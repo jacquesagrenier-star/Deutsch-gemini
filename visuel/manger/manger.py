@@ -221,12 +221,13 @@ CAFE = [
      "de": {"dit": "Bitte schön.", "fait": "Die Kellnerin bringt den Kaffee.", "mot": {"mot": "Kellnerin", "genre": "die"}},
      "tr": {"fr": ["Voilà.", "La serveuse apporte le café."], "en": ["Here you are.", "The waitress brings the coffee."],
             "pt": ["Aqui está.", "A garçonete traz o café."], "de": ["Bitte schön.", "Die Kellnerin bringt den Kaffee."]}},
-    {"id": "cuenta", "qui": "Tomas", "gens": ["Tomas", "Mark", "Javier"],
+    # 3 nov. : l'image faite montre MARK la main levee (le prompt disait Tomas) ; les phrases suivent l'image
+    {"id": "cuenta", "qui": "Mark", "gens": ["Tomas", "Mark", "Javier"],
      "scene": "Later, at the same table, the cups are empty. Tomas raises his hand towards the waiter Javier, who is at the counter in the background, making the small writing gesture in the air that means 'the bill, please'.",
-     "es": {"dit": "La cuenta, por favor.", "fait": "Tomás pide la cuenta.", "mot": {"mot": "cuenta", "genre": "la"}},
-     "de": {"dit": "Die Rechnung, bitte.", "fait": "Tomás möchte die Rechnung.", "mot": {"mot": "Rechnung", "genre": "die"}},
-     "tr": {"fr": ["L'addition, s'il vous plaît.", "Tomás demande l'addition."], "en": ["The bill, please.", "Tomás asks for the bill."],
-            "pt": ["A conta, por favor.", "Tomás pede a conta."], "de": ["Die Rechnung, bitte.", "Tomás möchte die Rechnung."]}},
+     "es": {"dit": "La cuenta, por favor.", "fait": "Mark pide la cuenta.", "mot": {"mot": "cuenta", "genre": "la"}},
+     "de": {"dit": "Die Rechnung, bitte.", "fait": "Mark möchte die Rechnung.", "mot": {"mot": "Rechnung", "genre": "die"}},
+     "tr": {"fr": ["L'addition, s'il vous plaît.", "Mark demande l'addition."], "en": ["The bill, please.", "Mark asks for the bill."],
+            "pt": ["A conta, por favor.", "Mark pede a conta."], "de": ["Die Rechnung, bitte.", "Mark möchte die Rechnung."]}},
     {"id": "pagar", "qui": "Mark", "gens": ["Mark", "Ines", "Tomas"],
      "scene": "At the same table, the waitress Ines holds out a card payment terminal and Mark pays by holding his bank card against it, smiling; the empty cups are still on the table.",
      "es": {"dit": "¿Puedo pagar con tarjeta?", "fait": "Mark paga con tarjeta.", "mot": {"mot": "pagar", "cat": "verbe"}},
@@ -234,7 +235,10 @@ CAFE = [
      "tr": {"fr": ["Je peux payer par carte ?", "Mark paie par carte."], "en": ["Can I pay by card?", "Mark pays by card."],
             "pt": ["Posso pagar com cartão?", "Mark paga com cartão."], "de": ["Kann ich mit Karte bezahlen?", "Mark bezahlt mit Karte."]}},
     {"id": "propina", "qui": "Tomas", "gens": ["Tomas", "Javier", "Mark"],
-     "scene": "Standing up to leave the same table, Tomas puts a few coins on the small saucer and gives them to the waiter Javier with a friendly nod; Javier smiles and thanks him; Mark puts on his jacket.",
+     # 3 nov., premiere prise ratee : Tomas portait le tablier et Javier son polo rouge. Le decor vient donc de
+     # cafe-cuenta, ou Javier porte deja le tablier, et chaque tenue est nommee.
+     "decor": "cafe-cuenta",
+     "scene": "Standing up to leave the same table, Tomas, the blond customer in his teal t-shirt exactly as in the last reference picture, leaves a few coins on the small saucer on the table and nods kindly to the waiter Javier; Javier, the man with the black moustache, wears the white shirt and the black apron of the waiter exactly as in the last reference picture (not his red polo shirt), and smiles and thanks him; Mark, in his grey jacket, stands beside Tomas. Only Javier wears an apron.",
      "es": {"dit": "Esto es para usted.", "fait": "Tomás deja una propina.", "mot": {"mot": "propina", "genre": "la"}},
      "de": {"dit": "Stimmt so.", "fait": "Tomás gibt Trinkgeld.", "mot": {"mot": "Trinkgeld", "genre": "das"}},
      "tr": {"fr": ["C'est pour vous.", "Tomás laisse un pourboire."], "en": ["This is for you.", "Tomás leaves a tip."],
@@ -467,7 +471,8 @@ def images():
         roles = " Javier is the waiter: a white shirt and a black apron." if "Javier" in m["gens"] else ""
         roles += " Ines is the waitress: a white shirt and a black apron." if "Ines" in m["gens"] else ""
         decor = " The same cafe, the same table, the same light as in the last reference picture." if avant else ""
-        out["cafe-" + m["id"]] = (m["gens"], CAFE_ + roles + decor + " " + m["scene"], "4:3", avant)
+        depart = m.get("decor", avant)
+        out["cafe-" + m["id"]] = (m["gens"], CAFE_ + roles + decor + " " + m["scene"], "4:3", depart)
         avant = "cafe-" + m["id"]
     return out
 
@@ -497,7 +502,7 @@ def ecrire_json():
          "aliments": ALIMENTS, "tradAliments": TRAD_ALIMENTS, "saveurs": SAVEURS, "gouts": gouts,
          "contenants": CONTENANTS, "voisinsContenants": VOISINS_CONTENANTS, "contenus": CONTENUS,
          "tradContenants": TRAD_CONTENANTS, "quantites": qtes,
-         "cafe": [{k: v for k, v in m.items() if k != "scene"} for m in CAFE], "roles": ROLES, "rolesChoix": ROLES_CHOIX,
+         "cafe": [{k: v for k, v in m.items() if k not in ("scene", "decor")} for m in CAFE], "roles": ROLES, "rolesChoix": ROLES_CHOIX,
          "carte": CARTE, "tradCarte": TRAD_CARTE, "tradCarteDe": TRAD_CARTE_DE,
          "liste": LISTE, "unites": UNITES, "produits": PRODUITS, "latam": LATAM, "sens": SENS,
          "decouverte": dec}
