@@ -9733,6 +9733,13 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="5"/><path d="M8 10v10M3 15h10"/><path d="M15 4v10.5"/><circle cx="13" cy="15" r="2"/><path d="M15 4l5 1.5v3L15 7"/></svg></div>
             <div><strong data-i18n="loi_tuile">Les loisirs</strong></div>
         </div>
+        <!-- Les animaux (3 nov. 2026, vague 2) : le genre et le pluriel, ou ils vivent (ferme, foret, mer, maison), ce
+             qu'ils mangent, leur couleur et leur taille ; les animaux de la ferme sont ceux de la scene bauernhof.
+             visuel/prototype/animales.html. es et de. -->
+        <div class="orb hidden" data-orbid="animales" id="tuileAnimales" onclick="ouvrirThemeIllustre('animales')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="4.2" ry="3.6"/><circle cx="6" cy="10.5" r="1.9"/><circle cx="9.6" cy="6.6" r="1.9"/><circle cx="14.4" cy="6.6" r="1.9"/><circle cx="18" cy="10.5" r="1.9"/></svg></div>
+            <div><strong data-i18n="ani_tuile">Les animaux</strong></div>
+        </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -14475,6 +14482,7 @@ const I18N = {
         met_tuile: "Les métiers",
         man_court: "Manger",
         trans_tuile: "Les transports",
+        ani_tuile: "Les animaux",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -16009,6 +16017,7 @@ const I18N = {
         met_tuile: "Jobs",
         man_court: "Food",
         trans_tuile: "Transport",
+        ani_tuile: "Animals",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17545,6 +17554,7 @@ const I18N = {
         met_tuile: "Meslekler",
         man_court: "Yemek",
         trans_tuile: "Ulaşım",
+        ani_tuile: "Hayvanlar",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19493,6 +19503,7 @@ const I18N = {
         met_tuile: "Професії",
         man_court: "Їжа",
         trans_tuile: "Транспорт",
+        ani_tuile: "Тварини",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21755,6 +21766,7 @@ const I18N = {
         met_tuile: "شغل‌ها",
         man_court: "خوردن",
         trans_tuile: "وسایل نقلیه",
+        ani_tuile: "حیوانات",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23460,6 +23472,7 @@ const I18N = {
         met_tuile: "المهن",
         man_court: "الأكل",
         trans_tuile: "وسائل النقل",
+        ani_tuile: "الحيوانات",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -23845,6 +23858,7 @@ const I18N = {
         met_tuile: "As profissões",
         man_court: "Comer",
         trans_tuile: "Os transportes",
+        ani_tuile: "Os animais",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25440,6 +25454,7 @@ const I18N = {
         met_tuile: "Zawody",
         man_court: "Jedzenie",
         trans_tuile: "Transport",
+        ani_tuile: "Zwierzęta",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -27035,6 +27050,7 @@ const I18N = {
         met_tuile: "Профессии",
         man_court: "Еда",
         trans_tuile: "Транспорт",
+        ani_tuile: "Животные",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28632,6 +28648,7 @@ const I18N = {
         met_tuile: "Berufe",
         man_court: "Essen",
         trans_tuile: "Verkehrsmittel",
+        ani_tuile: "Die Tiere",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30264,6 +30281,7 @@ const I18N = {
         met_tuile: "Las profesiones",
         man_court: "Comer",
         trans_tuile: "Los transportes",
+        ani_tuile: "Los animales",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -47165,7 +47183,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger"},
                           metiers: {page: "metiers.html", titre: "met_tuile", tuile: "tuileMetiers"},
                           transportes: {page: "transportes.html", titre: "trans_tuile", tuile: "tuileTransportes"},
-                          loisirs: {page: "loisirs.html", titre: "loi_tuile", tuile: "tuileLoisirs"}};
+                          loisirs: {page: "loisirs.html", titre: "loi_tuile", tuile: "tuileLoisirs"},
+                          animales: {page: "animales.html", titre: "ani_tuile", tuile: "tuileAnimales"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);

@@ -91,6 +91,25 @@ Source : `visuel/transportes/transportes.py` (`LIEUX`, `LIEU_TXT`, `IMAGES`).
 - **NOUVEAU — une rue résidentielle arborée** (Felix au volant d'une petite voiture grise) et **l'intérieur d'un
   avion** (Felix au hublot, l'aile et les nuages).
 
+### La ferme de l'oncle d'Anna (Brandebourg) — la scène `bauernhof`, le thème « Les animaux »
+- Maître : `visuel/scenes/bauernhof.png` (la scène de l'app, une photo, un matin d'automne). Les
+  images du thème « Les animaux » en sont des **retouches**, ce maître en référence
+  (`visuel/animales/animales.py`, décision du 3 nov. 2026 sur la continuité des lieux).
+- Ce qui ne bouge jamais : la **maison en briques rouges** et la grange (échelle, bois empilé), le
+  puits, le pommier, les **clôtures de bois** clair, la prairie verte et la colline des moutons ;
+  la cour en terre sablonneuse ; lumière dorée d'automne.
+- Ses bêtes : une vache **Holstein noire et blanche**, un cheval **alezan à liste blanche**, un
+  cochon **rose à quelques taches brunes**, des moutons blancs sur la colline, des poules
+  **rousses**, un **border collie noir et blanc**, un chat tigré sur le muret.
+- ⚠️ La scène montre l'oncle d'Anna et un **petit** cousin au chapeau de paille ; or l'arbre de
+  `visuel/familia` ne donne à Anna qu'un oncle, Frank (59 ans), et des cousins adultes (Felix 28,
+  Sophie 22). À trancher avant toute vidéo à la ferme ; les images du thème « Les animaux » ne
+  montrent personne.
+
+### Le salon de Jan et Katrin (Berlin) — « Où est le chat ? », « Les animaux »
+- Maître : `visuel/gato/img/piece.png` (la pièce vide ; carte et éléments fixes dans
+  `visuel/gato/gato.py`, `PIECE`). Le chat de la maison : **Moritz**, noir et blanc (smoking).
+
 ### Les lieux d'un seul épisode (gardés pour mémoire)
 - L'aéroport (épisode 1), le Bürgeramt (épisode 2), la piste cyclable (épisode 3) : voir leurs
   `A-TOURNER.txt`. S'ils reviennent, leur maître est dans `01-images/` de l'épisode.

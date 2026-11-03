@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Les animaux</title>
+<!--
+  LES ANIMAUX (theme illustre de la vague 2, 3 nov. 2026), en espagnol et en allemand. La ferme a deja sa scene
+  (bauernhof), ou l'on nomme les animaux en les touchant : ici un autre angle (regle 2 des themes) -- le genre et le
+  pluriel (der / die / das compte ; el / la, -s / -es, pez -> peces), ou ils vivent (la ferme, la foret, la mer, la
+  maison), ce qu'ils mangent (fressen, pas essen ; el pescado se mange, el pez nage), leur couleur (accordee en
+  espagnol, avec terminaison devant le nom en allemand) et leur taille (größer als, mas grande que).
+  Les animaux de la ferme sont ceux de la scene, le chat est Moritz (« Ou est le chat ? »). Toute la donnee et toutes
+  les phrases viennent de visuel/animales/animales.py -> animales/animales.json : aucune phrase n'est ecrite ici,
+  seuls les gabarits des questions (« Wo lebt ___ ? »). Un leurre n'est jamais qu'une valeur clairement fausse.
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne »
+  a chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin.
+  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
+  variante=latam (la voix), r=<AUDIO_REVISION>. Le tirage suit les mots (themes/tirage.js).
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.trou{display:inline-block;min-width:64px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+/* les images sont en 4:3 */
+.photo{display:block;width:100%;max-width:420px;margin:0 auto;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:16px;background:var(--carte)}
+/* deux images cote a cote : la gauche reste a gauche en arabe et en persan */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;direction:ltr}
+.duo img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block;background:var(--carte)}
+/* le nombre d'animaux d'une question de pluriel sans image de groupe : « ein Fuchs, zwei ___ » */
+.fois{display:block;text-align:center;font-weight:900;font-size:15px;color:var(--gris);margin-top:-4px}
+/* des images a toucher */
+.rangee{display:grid;grid-template-columns:1fr 1fr;gap:8px;direction:ltr}
+.rangee.trois{grid-template-columns:1fr 1fr 1fr}
+.rangee button{border:3px solid transparent;border-radius:14px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block;position:relative}
+.rangee img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.rangee button.juste{border-color:var(--vert)} .rangee button.faux{border-color:var(--rouge)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.ecoute{width:48px;height:48px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ecoute svg{width:24px;height:24px}
+.ecoute.grand{width:64px;height:64px;margin:0 auto} .ecoute.grand svg{width:32px;height:32px}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+.trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
+.trad.faux{color:var(--rouge);font-style:italic}
+.retourMsg .mot{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
+.retourMsg .mot .ecoute{width:38px;height:38px} .retourMsg .mot .ecoute svg{width:19px;height:19px}
+/* la decouverte : la fiche de l'animal touche, puis les animaux par lieu */
+.fiche{background:var(--carte);border-radius:14px;padding:10px;display:grid;grid-template-columns:minmax(120px,48%) 1fr;gap:12px;align-items:center}
+.fiche img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block;background:var(--verre)}
+.fiche .mot{font-weight:900;font-size:22px;color:var(--ambre-f);line-height:1.15}
+.fiche .pluriel{font-weight:800;font-size:15px;color:var(--encre);margin-top:2px}
+.fiche .sens{font-weight:700;font-size:14px;color:var(--gris);margin-top:2px}
+.fiche .dit{font-weight:800;font-size:15px;line-height:1.4;margin-top:6px}
+.fiche .ligne{display:flex;align-items:center;gap:10px;margin-top:8px}
+.lieu{margin:4px 0 0;font-weight:900;font-size:15px}
+.lieu .trad{display:inline;margin-inline-start:6px}
+.grille{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;direction:ltr}
+.grille button{border:3px solid transparent;border-radius:12px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block;position:relative}
+.grille img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.grille button.choisi{border-color:var(--ambre)}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.5;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.regle .exemples{display:block;margin-top:6px;color:var(--encre);font-weight:700;text-align:left}
+/* TOUS LES BOUTONS D'ACTION TOUT EN BAS DE L'ECRAN, comme dans les scenes (Jacques, 3 nov. 2026) */
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;z-index:5000;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite[hidden]{display:none}
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  display:flex;gap:10px;z-index:5000}
+.bas[hidden]{display:none}
+.bas button{flex:1;height:54px;border-radius:27px;font:800 16px var(--police);cursor:pointer;padding:0 10px}
+.bas .principal{border:0;color:#fff;background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28)}
+.bas .second{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+[lang]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<div class="bas" id="bas" hidden></div>
+<script src="themes/tirage.js?v=1"></script>
+<script src="themes/voix.js?v=1"></script>
+<script src="themes/zoom.js?v=3"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const DE_APP = APPRENDRE === "de";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// agrandir (themes/zoom.js) : un toucher sur la photo d'une question, la fiche ou les deux animaux compares ; la loupe
+// sur ce qu'on touche pour repondre (les images a choisir) et sur les animaux de la decouverte
+Zoom.init({direct: "img.photo, .duo img, .fiche img", loupe: ".rangee button, .grille button", langue: LANGUE});
+// vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
+const NB = Q.get("seance") === "1" ? 6 : 20;
+
+const TEXTES = {
+  titre:     {fr:"Les animaux", en:"Animals", tr:"Hayvanlar", uk:"Тварини", fa:"حیوانات", ar:"الحيوانات", pt:"Os animais", pl:"Zwierzęta", ru:"Животные", de:"Die Tiere"},
+  intro:     {fr:"Touche un animal : tu vois son nom et son pluriel, où il vit et ce qu'il mange, et tu l'entends.", en:"Tap an animal to see its name and plural, where it lives and what it eats, and to hear it.", tr:"Bir hayvana dokun: adını ve çoğulunu, nerede yaşadığını ve ne yediğini gör ve dinle.", uk:"Торкнися тварини: побачиш її назву й множину, де вона живе і що їсть, і почуєш.", fa:"روی یک حیوان بزن: نام و جمعش، جایی که زندگی می‌کند و آنچه می‌خورد را می‌بینی و می‌شنوی.", ar:"المس حيوانًا: ترى اسمه وجمعه وأين يعيش وماذا يأكل، وتسمعه.", pt:"Toque em um animal: você vê o nome e o plural, onde vive e o que come, e ouve.", pl:"Dotknij zwierzęcia: zobaczysz jego nazwę i liczbę mnogą, gdzie żyje i co je, i usłyszysz.", ru:"Нажми на животное: увидишь его название и множественное число, где оно живёт и что ест, и услышишь.", de:"Tippe auf ein Tier: Du siehst seinen Namen und die Mehrzahl, wo es lebt und was es frisst, und hörst es."},
+  regleDe:   {fr:"Chaque nom a son article, à apprendre avec lui : der, die ou das. Un mot en -chen est toujours das. Au pluriel, l'article est toujours die, et c'est la fin du mot qui change, souvent avec un Umlaut. Un animal frisst, une personne isst.", en:"Every noun has its article, to learn with it: der, die or das. A word ending in -chen is always das. In the plural the article is always die, and the end of the word changes, often with an umlaut. An animal frisst, a person isst.", tr:"Her ismin artikeli vardır, isimle birlikte öğrenilir: der, die ya da das. -chen ile biten kelime her zaman das'tır. Çoğulda artikel her zaman die'dir; kelimenin sonu değişir, çoğu zaman Umlaut ile. Hayvan frisst, insan isst.", uk:"Кожен іменник має свій артикль, його вчать разом зі словом: der, die або das. Слово на -chen завжди das. У множині артикль завжди die, а змінюється кінець слова, часто з умлаутом. Тварина frisst, людина isst.", fa:"هر اسم حرف تعریف خودش را دارد که باید همراهش یاد گرفت: der، die یا das. واژه‌ای که به ‎-chen ختم شود همیشه das است. در جمع، حرف تعریف همیشه die است و پایان واژه تغییر می‌کند، اغلب با اوملاوت. حیوان frisst، انسان isst.", ar:"لكل اسم أداة تعريف تُحفظ معه: der أو die أو das. الكلمة المنتهية بـ ‎-chen دائمًا das. في الجمع تكون الأداة دائمًا die، ويتغيّر آخر الكلمة، وغالبًا مع الأوملاوت. الحيوان frisst، والإنسان isst.", pt:"Cada substantivo tem seu artigo, que se aprende junto: der, die ou das. Uma palavra terminada em -chen é sempre das. No plural, o artigo é sempre die, e o fim da palavra muda, muitas vezes com trema. Um animal frisst, uma pessoa isst.", pl:"Każdy rzeczownik ma swój rodzajnik, którego uczy się razem z nim: der, die albo das. Słowo zakończone na -chen to zawsze das. W liczbie mnogiej rodzajnik to zawsze die, a zmienia się koniec słowa, często z umlautem. Zwierzę frisst, człowiek isst.", ru:"У каждого существительного свой артикль, его учат вместе со словом: der, die или das. Слово на -chen всегда das. Во множественном числе артикль всегда die, а меняется конец слова, часто с умлаутом. Животное frisst, человек isst.", de:"Jedes Nomen hat seinen Artikel, den man mitlernt: der, die oder das. Ein Wort auf -chen ist immer das. Im Plural ist der Artikel immer die, und das Ende des Wortes ändert sich, oft mit Umlaut. Ein Tier frisst, ein Mensch isst."},
+  regleEs:   {fr:"el ou la : le genre s'apprend avec le mot (la oveja, el ratón). Au pluriel : -s après une voyelle, -es après une consonne, et z devient c (el pez, los peces). La couleur s'accorde avec l'animal (la oveja blanca), sauf marrón, gris, rosa, naranja et azul, qui ne changent pas. El pez vit dans l'eau, el pescado se mange.", en:"el or la: learn the gender with the word (la oveja, el ratón). In the plural: -s after a vowel, -es after a consonant, and z becomes c (el pez, los peces). The colour agrees with the animal (la oveja blanca), except marrón, gris, rosa, naranja and azul, which never change. El pez lives in the water; el pescado is fish you eat.", tr:"el mi la mı: cinsiyet kelimeyle birlikte öğrenilir (la oveja, el ratón). Çoğulda ünlüden sonra -s, ünsüzden sonra -es gelir; z ise c olur (el pez, los peces). Renk hayvana uyar (la oveja blanca); marrón, gris, rosa, naranja ve azul değişmez. El pez suda yaşar, el pescado yenen balıktır.", uk:"el чи la: рід вчать разом зі словом (la oveja, el ratón). У множині: -s після голосної, -es після приголосної, а z стає c (el pez, los peces). Колір узгоджується з твариною (la oveja blanca), крім marrón, gris, rosa, naranja й azul, які не змінюються. El pez живе у воді, el pescado — риба, яку їдять.", fa:"el یا la: جنس را همراه واژه یاد بگیر (la oveja، el ratón). در جمع: بعد از مصوت ‎-s، بعد از صامت ‎-es، و z به c تبدیل می‌شود (el pez، los peces). رنگ با حیوان هماهنگ می‌شود (la oveja blanca)، جز marrón، gris، rosa، naranja و azul که تغییر نمی‌کنند. El pez در آب زندگی می‌کند؛ el pescado ماهیِ خوردنی است.", ar:"el أم la: يُحفظ الجنس مع الكلمة (la oveja، el ratón). في الجمع: ‎-s بعد حرف علّة، و‎-es بعد حرف ساكن، ويصير z حرف c ‏(el pez، los peces). يتوافق اللون مع الحيوان (la oveja blanca)، إلا marrón وgris وrosa وnaranja وazul فلا تتغيّر. El pez يعيش في الماء، وel pescado هو السمك الذي يُؤكل.", pt:"el ou la: o gênero se aprende com a palavra (la oveja, el ratón). No plural: -s depois de vogal, -es depois de consoante, e o z vira c (el pez, los peces). A cor concorda com o animal (la oveja blanca), menos marrón, gris, rosa, naranja e azul, que não mudam. El pez vive na água; el pescado é o peixe que se come.", pl:"el czy la: rodzaju uczy się razem ze słowem (la oveja, el ratón). W liczbie mnogiej: -s po samogłosce, -es po spółgłosce, a z zmienia się w c (el pez, los peces). Kolor zgadza się ze zwierzęciem (la oveja blanca), oprócz marrón, gris, rosa, naranja i azul, które się nie zmieniają. El pez żyje w wodzie, el pescado to ryba do jedzenia.", ru:"el или la: род учат вместе со словом (la oveja, el ratón). Во множественном числе: -s после гласной, -es после согласной, а z меняется на c (el pez, los peces). Цвет согласуется с животным (la oveja blanca), кроме marrón, gris, rosa, naranja и azul, которые не меняются. El pez живёт в воде, el pescado — рыба, которую едят.", de:"el oder la: Das Geschlecht lernt man mit dem Wort (la oveja, el ratón). Im Plural: -s nach einem Vokal, -es nach einem Konsonanten, und z wird zu c (el pez, los peces). Die Farbe richtet sich nach dem Tier (la oveja blanca), außer marrón, gris, rosa, naranja und azul, die gleich bleiben. El pez lebt im Wasser, el pescado ist Fisch zum Essen."},
+  ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  commencer: {fr:"Commencer les exercices", en:"Start the exercises", tr:"Alıştırmalara başla", uk:"Почати вправи", fa:"شروع تمرین‌ها", ar:"ابدأ التمارين", pt:"Começar os exercícios", pl:"Zacznij ćwiczenia", ru:"Начать упражнения", de:"Übungen starten"},
+  nom:       {fr:"Regarde l'image : quel animal est-ce ?", en:"Look at the picture: which animal is it?", tr:"Resme bak: bu hangi hayvan?", uk:"Подивися на зображення: що це за тварина?", fa:"به تصویر نگاه کن: این کدام حیوان است؟", ar:"انظر إلى الصورة: ما هذا الحيوان؟", pt:"Olhe a imagem: que animal é?", pl:"Spójrz na obrazek: jakie to zwierzę?", ru:"Посмотри на картинку: что это за животное?", de:"Sieh dir das Bild an: Welches Tier ist das?"},
+  article:   {fr:"Choisis l'article.", en:"Choose the article.", tr:"Artikeli seç.", uk:"Обери артикль.", fa:"حرف تعریف را انتخاب کن.", ar:"اختر أداة التعريف.", pt:"Escolha o artigo.", pl:"Wybierz rodzajnik.", ru:"Выбери артикль.", de:"Wähle den Artikel."},
+  pluriel:   {fr:"Choisis le bon pluriel.", en:"Choose the right plural.", tr:"Doğru çoğulu seç.", uk:"Обери правильну форму множини.", fa:"جمع درست را انتخاب کن.", ar:"اختر صيغة الجمع الصحيحة.", pt:"Escolha o plural certo.", pl:"Wybierz właściwą liczbę mnogą.", ru:"Выбери правильное множественное число.", de:"Wähle den richtigen Plural."},
+  habitat:   {fr:"Où vit cet animal ?", en:"Where does this animal live?", tr:"Bu hayvan nerede yaşar?", uk:"Де живе ця тварина?", fa:"این حیوان کجا زندگی می‌کند؟", ar:"أين يعيش هذا الحيوان؟", pt:"Onde vive este animal?", pl:"Gdzie żyje to zwierzę?", ru:"Где живёт это животное?", de:"Wo lebt dieses Tier?"},
+  quel:      {fr:"Lis la question et touche le bon animal.", en:"Read the question and tap the right animal.", tr:"Soruyu oku ve doğru hayvana dokun.", uk:"Прочитай запитання й торкнися потрібної тварини.", fa:"سؤال را بخوان و روی حیوان درست بزن.", ar:"اقرأ السؤال والمس الحيوان الصحيح.", pt:"Leia a pergunta e toque no animal certo.", pl:"Przeczytaj pytanie i dotknij właściwego zwierzęcia.", ru:"Прочитай вопрос и нажми на нужное животное.", de:"Lies die Frage und tippe auf das richtige Tier."},
+  manger:    {fr:"Que mange cet animal ?", en:"What does this animal eat?", tr:"Bu hayvan ne yer?", uk:"Що їсть ця тварина?", fa:"این حیوان چه می‌خورد؟", ar:"ماذا يأكل هذا الحيوان؟", pt:"O que este animal come?", pl:"Co je to zwierzę?", ru:"Что ест это животное?", de:"Was frisst dieses Tier?"},
+  verbeEs:   {fr:"Choisis la bonne forme du verbe : un animal, ou plusieurs ?", en:"Choose the right form of the verb: one animal, or several?", tr:"Fiilin doğru biçimini seç: bir hayvan mı, birkaç mı?", uk:"Обери правильну форму дієслова: одна тварина чи кілька?", fa:"شکل درست فعل را انتخاب کن: یک حیوان یا چند حیوان؟", ar:"اختر صيغة الفعل الصحيحة: حيوان واحد أم عدة حيوانات؟", pt:"Escolha a forma certa do verbo: um animal, ou vários?", pl:"Wybierz właściwą formę czasownika: jedno zwierzę czy kilka?", ru:"Выбери правильную форму глагола: одно животное или несколько?", de:"Wähle die richtige Verbform: ein Tier oder mehrere?"},
+  verbeDe:   {fr:"Choisis le bon verbe : un animal frisst (pas isst). Un seul, ou plusieurs ?", en:"Choose the right verb: an animal frisst (not isst). One, or several?", tr:"Doğru fiili seç: hayvan frisst (isst değil). Bir tane mi, birkaç mı?", uk:"Обери правильне дієслово: тварина frisst (не isst). Одна чи кілька?", fa:"فعل درست را انتخاب کن: حیوان frisst (نه isst). یکی یا چندتا؟", ar:"اختر الفعل الصحيح: الحيوان frisst (لا isst). واحد أم عدة؟", pt:"Escolha o verbo certo: um animal frisst (não isst). Um só, ou vários?", pl:"Wybierz właściwy czasownik: zwierzę frisst (nie isst). Jedno czy kilka?", ru:"Выбери правильный глагол: животное frisst (не isst). Одно или несколько?", de:"Wähle das richtige Verb: Ein Tier frisst (nicht isst). Eins oder mehrere?"},
+  couleurDe: {fr:"Regarde l'image : de quelle couleur est l'animal ?", en:"Look at the picture: what colour is the animal?", tr:"Resme bak: hayvan ne renk?", uk:"Подивися на зображення: якого кольору тварина?", fa:"به تصویر نگاه کن: حیوان چه رنگی است؟", ar:"انظر إلى الصورة: ما لون الحيوان؟", pt:"Olhe a imagem: de que cor é o animal?", pl:"Spójrz na obrazek: jakiego koloru jest zwierzę?", ru:"Посмотри на картинку: какого цвета животное?", de:"Sieh dir das Bild an: Welche Farbe hat das Tier?"},
+  couleurEs: {fr:"Choisis la couleur, accordée avec l'animal (el ou la).", en:"Choose the colour, agreeing with the animal (el or la).", tr:"Rengi seç; hayvana uysun (el ya da la).", uk:"Обери колір, узгоджений із твариною (el чи la).", fa:"رنگ را انتخاب کن، هماهنگ با حیوان (el یا la).", ar:"اختر اللون متوافقًا مع الحيوان (el أو la).", pt:"Escolha a cor, concordando com o animal (el ou la).", pl:"Wybierz kolor zgodny ze zwierzęciem (el czy la).", ru:"Выбери цвет, согласованный с животным (el или la).", de:"Wähle die Farbe, passend zum Tier (el oder la)."},
+  endung:    {fr:"Choisis la bonne forme : avec ou sans terminaison ?", en:"Choose the right form: with or without an ending?", tr:"Doğru biçimi seç: ekli mi, eksiz mi?", uk:"Обери правильну форму: із закінченням чи без?", fa:"شکل درست را انتخاب کن: با پسوند یا بی‌پسوند؟", ar:"اختر الصيغة الصحيحة: بنهاية أم بدونها؟", pt:"Escolha a forma certa: com ou sem terminação?", pl:"Wybierz właściwą formę: z końcówką czy bez?", ru:"Выбери правильную форму: с окончанием или без?", de:"Wähle die richtige Form: mit oder ohne Endung?"},
+  entendre:  {fr:"Écoute le mot et touche la bonne image.", en:"Listen to the word and tap the right picture.", tr:"Kelimeyi dinle ve doğru resme dokun.", uk:"Послухай слово й торкнися потрібного зображення.", fa:"واژه را گوش کن و روی تصویر درست بزن.", ar:"استمع إلى الكلمة والمس الصورة الصحيحة.", pt:"Ouça a palavra e toque na imagem certa.", pl:"Posłuchaj słowa i dotknij właściwego obrazka.", ru:"Послушай слово и нажми на нужную картинку.", de:"Hör dir das Wort an und tippe auf das richtige Bild."},
+  vraifaux:  {fr:"Regarde l'image : vrai ou faux ?", en:"Look at the picture: true or false?", tr:"Resme bak: doğru mu, yanlış mı?", uk:"Подивися на зображення: правда чи ні?", fa:"به تصویر نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a imagem: verdadeiro ou falso?", pl:"Spójrz na obrazek: prawda czy fałsz?", ru:"Посмотри на картинку: правда или нет?", de:"Sieh dir das Bild an: richtig oder falsch?"},
+  taille:    {fr:"Compare les deux animaux et touche le bon.", en:"Compare the two animals and tap the right one.", tr:"İki hayvanı karşılaştır ve doğru olana dokun.", uk:"Порівняй двох тварин і торкнися потрібної.", fa:"دو حیوان را مقایسه کن و روی حیوان درست بزن.", ar:"قارن بين الحيوانين والمس الصحيح.", pt:"Compare os dois animais e toque no certo.", pl:"Porównaj dwa zwierzęta i dotknij właściwego.", ru:"Сравни двух животных и нажми на нужное.", de:"Vergleiche die beiden Tiere und tippe auf das richtige."},
+  comparer:  {fr:"Plus grand ou plus petit ? Complète la phrase.", en:"Bigger or smaller? Complete the sentence.", tr:"Daha büyük mü, daha küçük mü? Cümleyi tamamla.", uk:"Більший чи менший? Доповни речення.", fa:"بزرگ‌تر یا کوچک‌تر؟ جمله را کامل کن.", ar:"أكبر أم أصغر؟ أكمل الجملة.", pt:"Maior ou menor? Complete a frase.", pl:"Większy czy mniejszy? Uzupełnij zdanie.", ru:"Больше или меньше? Дополни предложение.", de:"Größer oder kleiner? Ergänze den Satz."},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
+  reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
+  // pour avancer, toute l'app dit « Continuer », comme les scenes (decision du 3 nov. 2026) : les mots de review_continuer
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+};
+// les exemples de la regle, dans la langue apprise
+const EXEMPLES = {
+  de: "der Hund → die Hunde · die Kuh → die Kühe · das Huhn → die Hühner · der Bär → die Bären · das Eichhörnchen → die Eichhörnchen · Die Kuh frisst Gras.",
+  es: "la vaca → las vacas · el ratón → los ratones · el pez → los peces · la oveja blanca · el oso marrón · El delfín come pescado."
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- la donnee (animales.json, fabrique par visuel/animales/animales.py) ----------
+let D = null;
+const ANI = () => Object.keys(D.animaux);
+const an = a => D.animaux[a];
+const P = cle => D.phrases[APPRENDRE][cle];                    // une phrase de la langue apprise, par sa cle
+const sg = (a, maj) => { const [art, nom] = an(a)[APPRENDRE]; return (maj ? art.charAt(0).toUpperCase() + art.slice(1) : art) + " " + nom; };
+const plDe = (a, maj) => DE_APP ? (maj ? "Die " : "die ") + an(a).de[2] : ((an(a).es[0] === "el" ? "los" : "las") + " " + an(a).es[2]).replace(/^l/, maj ? "L" : "l");
+const femEs = a => an(a).es[0] === "la";
+const lieu = h => D.habitats[h][APPRENDRE];
+const aliment = f => D.aliments[f][APPRENDRE];
+const couleur = (c, a) => DE_APP ? D.couleurs[c].de : D.couleurs[c].es[femEs(a) ? 1 : 0];
+// ou il vit vraiment, et ou il ne vit clairement pas (jamais un lieu « aussi »)
+const vitLa = (a, h) => an(a).ou === h || an(a).aussi.includes(h);
+const pasLa = (a, h) => an(a).ou && !vitLa(a, h);
+// la phrase entiere traduite en francais, anglais, portugais (et en allemand pour qui apprend l'espagnol), comme la
+// famille ; ailleurs, le mot teste et sa traduction tiree du corpus (animales.json, gloses)
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+const tradPhrase = p => PHRASE_TRADUITE ? (((D.trad[APPRENDRE] || {})[p] || {})[LANGUE] || null) : null;
+const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
+const glose = m => { if (LANGUE === APPRENDRE) return ""; const g = (D.gloses[APPRENDRE] || {})[m] || {}; return g[LANGUE] || g.fr || ""; };
+
+// ---------- la voix : le fichier enregistre s'il existe, sinon le telephone (themes/voix.js) ----------
+let dire = t => Voix.dire(t);
+const taire = () => Voix.arreter();
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const uniques = a => a.filter((x, i) => a.indexOf(x) === i);
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
+// en persan et en arabe, chaque passage en lettres latines s'isole, sinon l'algorithme bidi en retourne les mots
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.replace(/[A-Za-zÀ-ÿñÑßäöüÄÖÜ-]+(?:[ ()]+[A-Za-zÀ-ÿñÑßäöüÄÖÜ-]+)*\)?/g, m => '<span dir="ltr">' + m + '</span>');
+const imgSrc = a => "animales/" + a + ".webp";
+const photo = a => '<img class="photo" alt="" src="' + imgSrc(a) + '">';
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+let file = [], rang = 0, bons = 0, repondu = false;
+// LE MOT DE LA QUESTION (regle 3, 3 nov. : « un mot appris compte partout ») : juger() l'envoie (« reponse »), l'app
+// fait avancer sa carte (revisionDeScene). Un animal, un lieu, un aliment : un nom du corpus {mot, genre}.
+let motQ = null, tradQ = null, choixQ = null;
+
+// LES MOTS DU THEME, a la forme du corpus : les quinze animaux, les quatre lieux, les aliments. En allemand, der Fisch
+// est a la fois l'animal et ce qu'on mange : UN mot, avec ses deux roles.
+let MOTS = null;
+function motsDuTheme(){
+  if (MOTS) return MOTS;
+  const out = [], par = {};
+  const ajouter = (mot, genre, role, id) => {
+    const k = genre + " " + mot;
+    if (!par[k]){ par[k] = {k, mot, genre, roles: {}}; out.push(par[k]); }
+    par[k].roles[role] = id;
+  };
+  ANI().forEach(a => ajouter(an(a)[APPRENDRE][1], an(a)[APPRENDRE][0], "a", a));
+  Object.keys(D.habitats).forEach(h => { const [m, g] = D.habitats[h][DE_APP ? "motDe" : "motEs"]; ajouter(m, g, "h", h); });
+  Object.keys(D.aliments).forEach(f => { const [m, g] = D.aliments[f][DE_APP ? "motDe" : "motEs"]; ajouter(m, g, "f", f); });
+  MOTS = out;
+  return MOTS;
+}
+const motAnimal = a => motsDuTheme().find(w => w.roles.a === a);
+const motLieu = h => motsDuTheme().find(w => w.roles.h === h);
+const motAliment = f => motsDuTheme().find(w => w.roles.f === f);
+const motDe = w => ({mot: w.mot, genre: w.genre || null, cat: w.cat || null});
+// le mot de la question : celui que la file demande (w), sinon le mot de l'animal (ou du lieu, de l'aliment) vise
+function viser(w, defaut){ motQ = motDe(w || defaut); }
+
+// LE MAUVAIS CHOIX TRADUIT (decision de Jacques du 3 nov., format commun « Tu as choisi : X — sa traduction ») : un
+// animal (nomme ou touche), un lieu (« im Meer » -> dans la mer), un aliment, une couleur. Un article, un pluriel, une
+// forme du verbe, Richtig / Falsch : rien a traduire.
+function choixTraduit(c){
+  if (!c || LANGUE === APPRENDRE) return null;
+  if (D.animaux[c]) return {aff: sg(c), sens: glose(an(c)[APPRENDRE][1])};
+  const a = ANI().find(x => sg(x) === c);
+  if (a) return {aff: c, sens: glose(an(a)[APPRENDRE][1])};
+  const h = Object.keys(D.habitats).find(x => lieu(x) === c);
+  if (h){ const t = ((D.tradLieux[APPRENDRE] || {})[c] || {})[LANGUE]; return {aff: c, sens: t || glose(D.habitats[h][DE_APP ? "motDe" : "motEs"][0])}; }
+  const f = Object.keys(D.aliments).find(x => aliment(x) === c);
+  if (f) return {aff: c, sens: glose(D.aliments[f][DE_APP ? "motDe" : "motEs"][0])};
+  const tc = ((D.tradCouleurs[APPRENDRE] || {})[c] || {});
+  if (tc[LANGUE]) return {aff: c, sens: tc[LANGUE]};
+  const coul = Object.keys(D.couleurs).find(x => D.couleurs[x].de === c || D.couleurs[x].es.includes(c));
+  if (coul){ const mots = D.couleurs[coul][DE_APP ? "motsDe" : "motsEs"]; return {aff: c, sens: mots.map(glose).filter(Boolean).join(", ")}; }
+  return null;
+}
+
+// apres la reponse : la phrase juste et sa traduction, le mot teste et sa traduction ; LA VOIX DIT LA PHRASE AFFICHEE
+// EN ENTIER (Jacques, 3 nov. : « Oui, partout ») ; le haut-parleur de la ligne du mot la redit
+function juger(ok, bonneTexte, phrase){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  const mt = motQ ? {aff: (motQ.genre ? motQ.genre + " " : "") + motQ.mot, sens: glose(motQ.mot)} : null;
+  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
+    + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
+    + traduction(tradQ || tradPhrase(phrase || bonneTexte))
+    + (!ok && (c => c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")(choixTraduit(choixQ)) || "")
+    + (mt ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(mt.aff) + (mt.sens ? ' · <span dir="auto">' + mt.sens + '</span>' : "") + '</span>' : "");
+  if (mt) $("redire").addEventListener("click", () => dire(phrase || bonneTexte));
+  dire(phrase || bonneTexte);
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = o; if (o === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = o; apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// des images a toucher : la bonne est a ; data-id pour les controles (tests/themes_illustres.py)
+function images(conteneur, ids, bonne, apres){
+  let bon;
+  conteneur.className = "rangee" + (ids.length === 3 ? " trois" : "");
+  ids.forEach(a => {
+    const b = document.createElement("button"); b.type = "button"; b.dataset.id = a;
+    b.innerHTML = '<img alt="" src="' + imgSrc(a) + '">'; if (a === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = a; apres(a === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// l'ecran d'une question : la consigne, une image (ou rien), l'enonce, les choix, le message
+function ecran(consigne, image, enonce, centre){
+  $("zone").innerHTML = '<p class="consigne">' + T(consigne) + '</p>' + (image || "")
+    + '<div class="enonce' + (centre ? " centre" : "") + '">' + cible(enonce) + '</div><div class="choix' + (centre ? " centre" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = () => '<span class="trou" id="trou">?</span>';
+const avecTrou = s => s.replace("___", trou());
+// une phrase avec un trou a la place d'un mot (« Die Kuh ___ Gras. ») : le mot doit y etre une seule fois, entier
+function troue(phrase, mot){
+  const t = phrase.split(" "), i = t.findIndex(x => x.replace(/[.,]$/, "") === mot);
+  if (i < 0) return null;
+  t[i] = "___" + t[i].slice(mot.length);
+  return t.join(" ");
+}
+// les questions de gabarit, dans la langue apprise ; les phrases, elles, viennent toutes de la donnee
+const QDE = {
+  nom: "Was ist das?", wo: a => "Wo lebt " + sg(a) + "?", frisst: a => "Was frisst " + sg(a) + "?", farbe: a => "Welche Farbe hat " + sg(a) + "?",
+  welchesLebt: h => "Welches Tier lebt " + lieu(h) + "?", welchesFrisst: f => "Welches Tier frisst " + aliment(f) + "?",
+  groesser: "Welches Tier ist größer?", kleiner: "Welches Tier ist kleiner?", vrai: "Richtig", faux: "Falsch"
+};
+const QES = {
+  nom: "¿Qué animal es?", wo: a => "¿Dónde vive " + sg(a) + "?", frisst: a => "¿Qué come " + sg(a) + "?",
+  welchesLebt: h => "¿Qué animal vive " + lieu(h) + "?", welchesFrisst: f => "¿Qué animal come " + aliment(f) + "?",
+  groesser: "¿Qué animal es más grande?", kleiner: "¿Qué animal es más pequeño?", vrai: "Verdadero", faux: "Falso"
+};
+const QL = DE_APP ? QDE : QES;
+// un animal que la file vise (w.roles.a), ou au hasard parmi ceux qui conviennent ; null si aucun
+function animalPour(w, filtre){
+  if (w && w.roles.a) return filtre(w.roles.a) ? w.roles.a : null;
+  if (w) return null;
+  const c = ANI().filter(filtre);
+  return c.length ? hasard(c) : null;
+}
+
+// ---------- les exercices ----------
+// Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+const EX = {
+  // « Was ist das? » : l'image, et quatre noms avec leur article
+  nom(w){
+    const a = animalPour(w, () => true); if (!a) return false;
+    viser(w, motAnimal(a));
+    const rep = sg(a), autres = melanger(ANI().filter(b => b !== a)).slice(0, 3).map(b => sg(b));
+    ecran("nom", photo(a), QL.nom, true);
+    boutons($("choix"), melanger([rep].concat(autres)), rep, ok => juger(ok, rep, P("ident|" + a)));
+    return true;
+  },
+  // « ___ Fuchs » : der, die ou das (en espagnol el / la, et au pluriel los / las)
+  article(w){
+    const a = animalPour(w, () => true); if (!a) return false;
+    viser(w, motAnimal(a));
+    const [art, nom, pl] = an(a)[APPRENDRE];
+    let enonce, rep, opts;
+    if (DE_APP){ enonce = "___ " + nom; rep = art; opts = ["der", "die", "das"]; }
+    else if (Math.random() < 0.5){ enonce = "___ " + nom; rep = art; opts = ["el", "la"]; }
+    else { enonce = "___ " + pl; rep = art === "el" ? "los" : "las"; opts = ["los", "las"]; }
+    ecran("article", photo(a), avecTrou(enonce), true);
+    boutons($("choix"), opts, rep, ok => { $("trou").textContent = rep; juger(ok, rep, P("art|" + a)); });
+    return true;
+  },
+  // le pluriel : « Auf dem Bild sind drei ___. » sur une image de groupe, sinon « ein Fuchs, zwei ___ »
+  pluriel(w){
+    const a = animalPour(w, () => true); if (!a) return false;
+    viser(w, motAnimal(a));
+    const pl = an(a)[APPRENDRE][2], groupe = an(a).nombre !== 1;
+    const phrase = groupe ? P("nombre|" + a) : P("plur|" + a);
+    const enonce = groupe ? phrase.replace(pl, "___") : phrase.replace(new RegExp(pl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "$"), "___");
+    const image = groupe ? photo(a) : photo(a) + '<span class="fois" dir="ltr">× 2</span>';
+    ecran("pluriel", image, avecTrou(enonce), true);
+    boutons($("choix"), melanger([pl].concat(an(a).plFaux[APPRENDRE])), pl, ok => { $("trou").textContent = pl; juger(ok, pl, phrase); });
+    return true;
+  },
+  // « Wo lebt der Fuchs? » : les lieux, sauf ceux ou il vit AUSSI ; vise un animal ou un lieu
+  habitat(w){
+    let a;
+    if (w && w.roles.h && !w.roles.a){ const c = ANI().filter(x => an(x).ou === w.roles.h); if (!c.length) return false; a = hasard(c); }
+    else a = animalPour(w, x => an(x).ou);
+    if (!a) return false;
+    viser(w, motAnimal(a));
+    const h = an(a).ou, rep = lieu(h);
+    const opts = [rep].concat(Object.keys(D.habitats).filter(x => pasLa(a, x)).map(lieu));
+    ecran("habitat", photo(a), QL.wo(a), true);
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, P("hab|" + a + "|" + h + "|sg")));
+    return true;
+  },
+  // « Welches Tier lebt im Meer? » / « Welches Tier frisst Nüsse? » : trois images, une seule juste
+  quel(w){
+    const questions = [];
+    Object.keys(D.habitats).forEach(h => ANI().filter(a => an(a).ou === h).forEach(a => {
+      const autres = ANI().filter(b => pasLa(b, h));
+      if (autres.length >= 2) questions.push({a, q: QL.welchesLebt(h), autres, phrase: P("hab|" + a + "|" + h + "|sg"), mot: motLieu(h)});
+    }));
+    Object.keys(D.aliments).forEach(f => ANI().filter(a => an(a).mange.includes(f)).forEach(a => {
+      const autres = ANI().filter(b => an(b).non.includes(f));
+      if (autres.length >= 2) questions.push({a, q: QL.welchesFrisst(f), autres, phrase: P("mange|" + a + "|" + f + "|sg"), mot: motAliment(f)});
+    }));
+    const c = questions.filter(x => !w || x.a === w.roles.a || x.mot === w);
+    if (!c.length) return false;
+    const x = hasard(c);
+    viser(w, w && w.roles.a === x.a ? w : x.mot);
+    $("zone").innerHTML = '<p class="consigne">' + T("quel") + '</p><div class="enonce centre">' + cible(x.q) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    images($("rang"), melanger([x.a].concat(melanger(x.autres).slice(0, 2))), x.a, ok => juger(ok, sg(x.a), x.phrase));
+    return true;
+  },
+  // « Was frisst die Kuh? » : ce qu'il mange, et seulement ce qu'il ne mange clairement pas ; vise un animal ou un aliment
+  manger(w){
+    const ok = x => an(x).mange.length && an(x).non.length;
+    let a;
+    if (w && w.roles.f && !w.roles.a){ const c = ANI().filter(x => ok(x) && an(x).mange.includes(w.roles.f)); if (!c.length) return false; a = hasard(c); }
+    else if (w && w.roles.f && w.roles.a && !ok(w.roles.a)){ const c = ANI().filter(x => ok(x) && an(x).mange.includes(w.roles.f)); if (!c.length) return false; a = hasard(c); }
+    else a = animalPour(w, ok);
+    if (!a) return false;
+    const f = w && w.roles.f && an(a).mange.includes(w.roles.f) ? w.roles.f : hasard(an(a).mange);
+    viser(w, motAnimal(a));
+    const rep = aliment(f), opts = [rep].concat(an(a).non.map(aliment)).slice(0, 4);
+    ecran("manger", photo(a), QL.frisst(a), true);
+    boutons($("choix"), melanger(opts), rep, ok2 => juger(ok2, rep, P("mange|" + a + "|" + f + "|sg")));
+    return true;
+  },
+  // le verbe, au singulier ou au pluriel : « Die Kühe ___ Gras. » fressen / frisst / essen ; « Los zorros ___ en el bosque. »
+  verbe(w){
+    const cand = [];
+    ANI().forEach(a => {
+      if (an(a).ou) ["sg", "pl"].forEach(n => cand.push({a, k: "hab|" + a + "|" + an(a).ou + "|" + n, n, t: "hab", mot: motLieu(an(a).ou)}));
+      an(a).mange.forEach(f => ["sg", "pl"].forEach(n => cand.push({a, k: "mange|" + a + "|" + f + "|" + n, n, t: "mange", mot: motAliment(f)})));
+    });
+    const c = cand.filter(x => !w || x.a === w.roles.a || x.mot === w);
+    if (!c.length) return false;
+    const x = hasard(c);
+    viser(w, w && w.roles.a === x.a ? w : x.mot);
+    const phrase = P(x.k);
+    const FORMES = DE_APP ? {hab: {sg: "lebt", pl: "leben"}, mange: {sg: "frisst", pl: "fressen"}} : {hab: {sg: "vive", pl: "viven"}, mange: {sg: "come", pl: "comen"}};
+    const rep = FORMES[x.t][x.n], autre = FORMES[x.t][x.n === "sg" ? "pl" : "sg"];
+    // en allemand, le piege d'essen : « isst » / « essen » (une personne), jamais pour un animal
+    const opts = [rep, autre].concat(DE_APP && x.t === "mange" ? [x.n === "sg" ? "isst" : "essen"] : []);
+    ecran(DE_APP ? "verbeDe" : "verbeEs", photo(x.a), avecTrou(troue(phrase, rep)));
+    boutons($("choix"), melanger(opts), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
+  },
+  // la couleur : « Welche Farbe hat der Fuchs? » ; en espagnol « La oveja es ___. » blanca / blanco (l'accord)
+  couleur(w){
+    const a = animalPour(w, x => an(x).couleur); if (!a) return false;
+    viser(w, motAnimal(a));
+    const c = an(a).couleur, rep = couleur(c, a), phrase = P("col|" + a + "|" + c);
+    const autres = melanger(Object.keys(D.couleurs).filter(x => x !== c && !(an(a).aussiCouleur || []).includes(x)));
+    if (DE_APP){
+      ecran("couleurDe", photo(a), QL.farbe(a), true);
+      boutons($("choix"), melanger([rep].concat(autres.slice(0, 3).map(x => D.couleurs[x].de))), rep, ok => juger(ok, rep, phrase));
+    } else {
+      // le piege de l'accord : la meme couleur a l'autre genre, quand elle change (blanco / blanca)
+      const autreGenre = D.couleurs[c].es[femEs(a) ? 0 : 1];
+      const opts = uniques([rep].concat(autreGenre !== rep ? [autreGenre] : [], autres.map(x => couleur(x, a)))).slice(0, 4);
+      ecran("couleurEs", photo(a), avecTrou(troue(phrase.replace(rep, "§"), "§") || phrase), true);
+      // un accord rate (blanco pour blanca) n'a rien a traduire : la regle commune, comme alto / alta
+      boutons($("choix"), melanger(opts), rep, ok => { if (choixQ === autreGenre) choixQ = null; $("trou").textContent = rep; juger(ok, rep, phrase); });
+    }
+    return true;
+  },
+  // ALLEMAND : « Das ist ein ___ Schaf. » weiß / weißer / weiße / weißes (la terminaison devant le nom)
+  endung(w){
+    if (!DE_APP) return false;
+    const a = animalPour(w, x => an(x).couleur && D.couleurs[an(x).couleur].deAttr); if (!a) return false;
+    viser(w, motAnimal(a));
+    const c = an(a).couleur, b = D.couleurs[c].deAttr, rep = b + {der: "er", die: "e", das: "es"}[an(a).de[0]];
+    const phrase = P("attr|" + a + "|" + c);
+    ecran("endung", photo(a), avecTrou(phrase.replace(rep, "___")), true);
+    boutons($("choix"), melanger([b, b + "er", b + "e", b + "es"]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
+  },
+  // l'ecoute : le nom dit (« der Fuchs »), trois images
+  entendre(w){
+    const a = animalPour(w, () => true); if (!a) return false;
+    viser(w, motAnimal(a));
+    const dit = sg(a), autres = melanger(ANI().filter(b => b !== a)).slice(0, 2);
+    $("zone").innerHTML = '<p class="consigne">' + T("entendre") + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
+      + '<div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    $("ecoute").addEventListener("click", () => dire(dit));
+    images($("rang"), melanger([a].concat(autres)), a, ok => juger(ok, dit, P("ident|" + a)));
+    dire(dit);
+    return true;
+  },
+  // vrai ou faux : ou il vit, ce qu'il mange, sa couleur -- le faux n'est jamais qu'une valeur clairement fausse
+  vraifaux(w){
+    const cand = [];
+    ANI().forEach(a => {
+      const x = an(a);
+      if (x.ou){
+        cand.push({a, vrai: true, k: "hab|" + a + "|" + x.ou + "|sg", juste: "hab|" + a + "|" + x.ou + "|sg", mot: motLieu(x.ou)});
+        Object.keys(D.habitats).filter(h => pasLa(a, h)).forEach(h => cand.push({a, vrai: false, k: "hab|" + a + "|" + h + "|sg", juste: "hab|" + a + "|" + x.ou + "|sg", mot: motLieu(h), faux: lieu(h)}));
+      }
+      if (x.mange.length){
+        const f = x.mange[0];
+        cand.push({a, vrai: true, k: "mange|" + a + "|" + f + "|sg", juste: "mange|" + a + "|" + f + "|sg", mot: motAliment(f)});
+        x.non.forEach(g => cand.push({a, vrai: false, k: "mange|" + a + "|" + g + "|sg", juste: "mange|" + a + "|" + f + "|sg", mot: motAliment(g), faux: aliment(g)}));
+      }
+      if (x.couleur){
+        cand.push({a, vrai: true, k: "col|" + a + "|" + x.couleur, juste: "col|" + a + "|" + x.couleur});
+        Object.keys(D.couleurs).filter(c => c !== x.couleur && !(x.aussiCouleur || []).includes(c))
+          .forEach(c => cand.push({a, vrai: false, k: "col|" + a + "|" + c, juste: "col|" + a + "|" + x.couleur, faux: couleur(c, a)}));
+      }
+    });
+    let c = cand.filter(x => !w || x.a === w.roles.a || (x.mot && x.mot === w));
+    if (!c.length) return false;
+    // autant de vraies que de fausses
+    const v = c.filter(x => x.vrai), f = c.filter(x => !x.vrai);
+    const x = hasard(Math.random() < 0.5 && v.length ? v : f.length ? f : v);
+    viser(w, motAnimal(x.a));
+    ecran("vraifaux", photo(x.a), P(x.k), true);
+    const rep = x.vrai ? QL.vrai : QL.faux;
+    boutons($("choix"), [QL.vrai, QL.faux], rep, ok => { choixQ = x.vrai ? null : (ok ? null : x.faux); juger(ok, rep, P(x.juste)); });
+    return true;
+  },
+  // « Welches Tier ist größer? » : deux animaux a deux crans de taille au moins, on touche le bon
+  taille(w){
+    const paires = [];
+    ANI().forEach(a => ANI().forEach(b => { if (an(a).taille - an(b).taille >= 2) paires.push([a, b]); }));
+    const c = paires.filter(([a, b]) => !w || w.roles.a === a || w.roles.a === b);
+    if (!c.length) return false;
+    const [g, p] = hasard(c), plus = w && w.roles.a ? w.roles.a === g : Math.random() < 0.5;
+    const rep = plus ? g : p;
+    viser(w, motAnimal(rep));
+    $("zone").innerHTML = '<p class="consigne">' + T("taille") + '</p><div class="enonce centre">' + cible(plus ? QL.groesser : QL.kleiner) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    const phrase = plus ? P("plus|" + g + "|" + p) : P("moins|" + p + "|" + g);
+    images($("rang"), melanger([g, p]), rep, ok => juger(ok, sg(rep), phrase));
+    return true;
+  },
+  // « Das Pferd ist ___ als der Hund. » größer / kleiner ; « El ratón es más ___ que el caballo. » (l'accord)
+  comparer(w){
+    const paires = [];
+    ANI().forEach(a => ANI().forEach(b => { if (an(a).taille - an(b).taille >= 2){ paires.push(["plus", a, b]); paires.push(["moins", b, a]); } }));
+    const c = paires.filter(([, a]) => !w || w.roles.a === a);
+    if (!c.length) return false;
+    const [sens, a, b] = hasard(c);
+    viser(w, motAnimal(a));
+    const phrase = P(sens + "|" + a + "|" + b);
+    let rep, opts;
+    if (DE_APP){ rep = sens === "plus" ? "größer" : "kleiner"; opts = sens === "plus" ? ["größer", "kleiner", "großer"] : ["kleiner", "größer", "klein"]; }
+    else {
+      const peq = femEs(a) ? "pequeña" : "pequeño";
+      rep = sens === "plus" ? "grande" : peq;
+      opts = sens === "plus" ? ["grande", "pequeño", "pequeña"] : [peq, femEs(a) ? "pequeño" : "pequeña", "grande"];
+    }
+    ecran("comparer", '<div class="duo"><img alt="" src="' + imgSrc(a) + '"><img alt="" src="' + imgSrc(b) + '"></div>', avecTrou(troue(phrase, rep)));
+    boutons($("choix"), melanger(opts), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
+  }
+};
+// les sortes de la langue apprise : la terminaison devant le nom en allemand seulement
+const SORTES = Object.keys(EX).filter(x => DE_APP || x !== "endung");
+
+// ---------- la decouverte : les animaux par lieu, la fiche de celui qu'on touche ----------
+function decouvrir(){
+  $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone");
+  z.innerHTML = '<p class="consigne">' + T("intro") + '</p><div class="fiche" id="fiche"></div><div id="lieux"></div>'
+    + '<p class="regle">' + isoler(T(DE_APP ? "regleDe" : "regleEs")) + '<span class="exemples" lang="' + APPRENDRE + '" dir="ltr">' + EXEMPLES[APPRENDRE] + '</span></p>';
+  const montrerFiche = a => {
+    z.querySelectorAll(".grille button").forEach(b => b.classList.toggle("choisi", b.dataset.id === a));
+    const dit = D.dit[APPRENDRE][a];
+    $("fiche").innerHTML = '<img alt="" src="' + imgSrc(a) + '"><div><div class="mot">' + cible(sg(a)) + '</div><div class="pluriel">' + cible(plDe(a)) + '</div>'
+      + '<div class="sens" dir="auto">' + glose(an(a)[APPRENDRE][1]) + '</div><div class="dit">' + cible(dit) + '</div>' + traduction(tradPhrase(dit))
+      + '<div class="ligne"><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div></div>';
+    $("ecoute").addEventListener("click", () => dire(dit));
+    dire(dit);
+  };
+  const li = $("lieux");
+  D.groupes.forEach(([h, liste]) => {
+    const t = ((D.tradLieux[APPRENDRE] || {})[lieu(h)] || {})[LANGUE];
+    li.insertAdjacentHTML("beforeend", '<p class="lieu">' + cible(lieu(h)) + (t && LANGUE !== APPRENDRE ? '<span class="trad" dir="auto">' + t + '</span>' : "") + '</p>');
+    const g = document.createElement("div"); g.className = "grille";
+    liste.forEach(a => {
+      const b = document.createElement("button"); b.type = "button"; b.dataset.id = a; b.setAttribute("aria-label", sg(a));
+      b.innerHTML = '<img alt="" src="' + imgSrc(a) + '">';
+      b.addEventListener("click", () => montrerFiche(a));
+      g.appendChild(b);
+    });
+    li.appendChild(g);
+  });
+  // la fiche s'ouvre sur la vache, sans parler : le son ne vient que d'un geste
+  const garde = dire; dire = () => {}; montrerFiche(D.groupes[0][1][0]); dire = garde;
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; taire(); demarrer(); };
+}
+// tout ce que la page peut dire dans la decouverte : l'inventaire des voix (visuel/voix_themes.py)
+function textesAVoix(){ return D ? Object.values(D.dit[APPRENDRE]).concat(ANI().map(a => sg(a))) : []; }
+
+// LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : la file des MOTS vient de l'app (Tirage.plan : les dus,
+// les rates recents, puis au plus NEUFS_MAX nouveaux) ; chaque mot recoit une question d'une sorte qui le vise,
+// jamais la meme sorte deux fois de suite, jamais deux fois la meme question. Rate, il revient plus loin.
+// Recopie de familia.html (visuel/THEMES-ILLUSTRES.md : ces fonctions sont identiques d'un theme a l'autre).
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
+}
+function montrer(){
+  repondu = false; $("suite").hidden = true; $("bas").hidden = true;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
+  // Si ce mot ne le permet pas, un mot plus loin dans la file passe devant ;
+  // en dernier recours seulement, la meme sorte, puis une question deja vue.
+  // (l'ecoute parle a chaque essai : on la fait taire pendant qu'on cherche, elle parle une fois choisie)
+  const garde = dire; dire = () => {};
+  const raz = so => { motQ = null; tradQ = null; choixQ = null; sorteCourante = so; };
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let n = 0; n < 25; n++){
+        raz(so);
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
+      raz(derniereSorte);
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
+      raz(so);
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+  }
+  if (!fait) fait = essai(file[rang], false);
+  dire = garde;
+  if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
+  vus.add(cleQuestion()); derniereSorte = fait;
+  window.scrollTo(0, 0);
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>';
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
+}
+// plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + '</div>';
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+// « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+function basDePartie(){
+  const b = $("bas"); b.innerHTML = boutonEncore() + '<button type="button" class="principal" id="terminer">' + T("terminer") + '</button>'; b.hidden = false;
+  const e = $("encore"); if (e) e.addEventListener("click", () => { b.hidden = true; encoreDesQuestions(); });
+}
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("animales/animales.json?v=1").then(r => r.json()).then(d => {
+  D = d;
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>

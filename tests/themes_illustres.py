@@ -19,7 +19,7 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 8798 par defaut ; THEMES_PORT=<n> quand une autre session en lance en meme temps (3 nov. 2026 : avec
 # allow_reuse_address, deux serveurs sur le meme port se lisent l'un l'autre sous Windows -- vecu).
 PORT = int(os.environ.get("THEMES_PORT", "8798"))
-THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "transportes", "loisirs"]          # un theme qui s'ajoute s'ajoute ici et dans THEMES_ILLUSTRES (index.html)
+THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "transportes", "loisirs", "animales"]          # un theme qui s'ajoute s'ajoute ici et dans THEMES_ILLUSTRES (index.html)
 # L'ANGLAIS (3 nov. 2026) : les themes qui ont deja leurs phrases anglaises, a mesure qu'ils les recoivent ; et le
 # britannique, la variante (« en&variante=gb »)
 ANGLAIS = ["familia", "descripcion", "contrarios"]

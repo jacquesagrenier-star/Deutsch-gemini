@@ -385,11 +385,33 @@ def loisirs_agenda():
     return c
 
 
+def animaux_quatre_lieux():
+    """Les animaux : quatre animaux de quatre lieux (la vache a la ferme, Moritz a la maison, le renard dans la foret,
+    le dauphin dans la mer), chacun dans un cadre de la couleur de son lieu -- le theme est « ou ils vivent », pas une
+    rangee d'animaux. Les images de la page (visuel/animales/animales.py --webp)."""
+    M = 14
+    pw, ph = (W - 3 * M) // 2, (H - 3 * M) // 2
+    c = Image.new("RGB", (W, H), (250, 249, 246))
+    d = ImageDraw.Draw(c)
+    cadres = {"kuh": (150, 186, 96), "katze": (214, 190, 150), "fuchs": (70, 112, 70), "delfin": (70, 136, 196)}
+    for k, (a, coul) in enumerate(cadres.items()):
+        im = Image.open(os.path.join(P, "animales", a + ".webp")).convert("RGB")
+        w, h = im.size
+        cw = round(w * 0.86); ch = round(cw * ph / pw)
+        im = im.crop(((w - cw) // 2, (h - ch) // 2, (w - cw) // 2 + cw, (h - ch) // 2 + ch)).resize((pw - 8, ph - 8), Image.LANCZOS)
+        x, y = M + (k % 2) * (pw + M), M + (k // 2) * (ph + M)
+        d.rounded_rectangle((x, y, x + pw, y + ph), radius=14, fill=coul)
+        c.paste(im, (x + 4, y + 4))
+    return c
+
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
              "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
              "metiers": metiers_polaroids,
              "transportes": transports_plan,
-             "loisirs": loisirs_agenda}
+             "loisirs": loisirs_agenda,
+             "animales": animaux_quatre_lieux}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
