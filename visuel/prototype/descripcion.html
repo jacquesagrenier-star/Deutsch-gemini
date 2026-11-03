@@ -546,38 +546,43 @@ function montrer(){
   repondu = false; $("suite").hidden = true;
   $("compte").textContent = (rang + 1) + " / " + file.length;
   $("barre").style.width = (rang / file.length * 100) + "%";
-  // un mot qu'une seule sorte sait habiller (Eltern : les mots de groupe) et c'etait la sorte d'avant : on avance
-  // d'abord un mot qui en prend une autre, pour ne jamais donner deux fois la meme sorte de suite
-  const possibles = x => SORTES.filter(so => { motQ = null; sorteCourante = so; return EX[so](x); });
-  if (derniereSorte){
-    const ps = possibles(file[rang]);
-    if (ps.length && ps.every(x => x === derniereSorte)){
-      for (let j = rang + 1; j < file.length; j++){
-        if (possibles(file[j]).some(x => x !== derniereSorte)){ [file[rang], file[j]] = [file[j], file[rang]]; break; }
+  // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
+  // Si ce mot ne le permet pas (der Bart : deux personnes, deja montrees), un mot plus loin dans la file passe devant ;
+  // en dernier recours seulement, la meme sorte, puis une question deja vue.
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let n = 0; n < 25; n++){
+        motQ = null; sorteCourante = so;
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
       }
     }
-  }
-  const w = file[rang];
-  const sortes = melanger(SORTES.filter(x => x !== derniereSorte)).concat(derniereSorte ? [derniereSorte] : []);
-  let fait = null;
-  for (const so of sortes){
-    for (let n = 0; n < 25 && !fait; n++){                // une autre sorte avant tout, et une question pas encore vue
-      motQ = null; sorteCourante = so;
-      if (!EX[so](w)) break;
-      if (!vus.has(cleQuestion())) fait = so;
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
+      motQ = null; sorteCourante = derniereSorte;
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
     }
-    if (fait) break;
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
+      motQ = null; sorteCourante = so;
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
   }
-  if (!fait){                                   // toutes ses questions deja vues : on en reprend une
-    for (const so of sortes){ motQ = null; sorteCourante = so; if (EX[so](w)){ fait = so; break; } }
-  }
+  if (!fait) fait = essai(file[rang], false);
   vus.add(cleQuestion()); derniereSorte = fait;
   window.scrollTo(0, 0);
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
-  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div><button type="button" id="encore">' + T("encore") + '</button><button type="button" id="terminer">' + T("terminer") + '</button></div>';
-  $("encore").addEventListener("click", demarrer);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div>' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  brancherEncore();
   $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
 }
 // plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
@@ -586,8 +591,18 @@ function toutRevu(prochaine){
   const quand = Tirage.revu(prochaine, LANGUE);
   $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
     + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
-    + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+    + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  brancherEncore();
   $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+// « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
 }
 async function demarrer(){
   const mots = motsDuTheme();

@@ -47,6 +47,13 @@ const Tirage = {
     if (!file.length && rates.length) prochaine = Math.min(prochaine, rates[0][0]);
     return {file, prochaine: prochaine === Infinity ? null : prochaine};
   },
+  // « ENCORE DES QUESTIONS » (Jacques, 3 nov. : « on pourrait toujours offrir des questions supplementaires ») :
+  // c'est l'eleve qui choisit de continuer. Des mots DEJA VUS du theme, au hasard ; la repetition espacee n'en est
+  // pas faussee : revisionDeScene() ne fait pas avancer un mot pas encore du, et une erreur le fait revenir plus tot.
+  supplement(mots, etats, nb){
+    const vus = mots.filter((m, i) => !etats || (etats[i] && (etats[i].e === "d" || etats[i].e === "f")));
+    return melanger(vus).slice(0, nb);
+  },
   // une erreur : le mot revient trois questions plus loin, sans depasser la longueur d'une partie
   remettre(file, rang, mot, nb){
     if (file.length >= nb) return;
@@ -64,5 +71,6 @@ const Tirage = {
 };
 const TIRAGE_TEXTES = {
   revu:      {fr:"Tout est revu pour aujourd'hui.", en:"Everything is reviewed for today.", tr:"Bugünlük her şey tekrar edildi.", uk:"На сьогодні все повторено.", fa:"برای امروز همه‌چیز مرور شد.", ar:"تمت مراجعة كل شيء لهذا اليوم.", pt:"Tudo revisado por hoje.", pl:"Na dziś wszystko powtórzone.", ru:"На сегодня всё повторено.", de:"Für heute ist alles wiederholt."},
+  encore:    {fr:"Encore des questions", en:"More questions", tr:"Daha fazla soru", uk:"Ще запитання", fa:"پرسش‌های بیشتر", ar:"مزيد من الأسئلة", pt:"Mais perguntas", pl:"Więcej pytań", ru:"Ещё вопросы", de:"Weitere Fragen"},
   prochaine: {fr:"Prochaine révision : {d}", en:"Next review: {d}", tr:"Sonraki tekrar: {d}", uk:"Наступне повторення: {d}", fa:"مرور بعدی: {d}", ar:"المراجعة التالية: {d}", pt:"Próxima revisão: {d}", pl:"Następna powtórka: {d}", ru:"Следующее повторение: {d}", de:"Nächste Wiederholung: {d}"}
 };

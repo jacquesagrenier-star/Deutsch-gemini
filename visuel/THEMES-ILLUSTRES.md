@@ -29,6 +29,11 @@ l'allemand que l'espagnol ». Ses décisions sont dans `decisions/DECISIONS.md` 
    - un mot **pas encore dû n'est jamais demandé** ; un mot raté dans la partie y revient trois questions plus loin ;
    - plus rien de dû ni de nouveau : « **Tout est revu pour aujourd'hui** » et la prochaine échéance, sans reposer
      des mots déjà sus ;
+   - « **Encore des questions** » (Jacques : « on pourrait toujours offrir des questions supplémentaires ») : un
+     bouton sur cet écran ET en fin de partie, jamais dans la séance. C'est l'élève qui choisit, rien ne se lance
+     seul. Ces questions portent sur des mots **déjà vus** du thème (`Tirage.supplement()`), au hasard ; elles ne
+     faussent pas la répétition espacée, puisque `revisionDeScene()` ne fait pas avancer un mot pas encore dû et
+     qu'une erreur le fait revenir plus tôt ;
    - chaque sorte de question sait **viser un mot** (`EX.<sorte>(w)`, false si elle ne peut pas) ; les sortes qui
      ne testent pas un mot à elles seules (« combien », les mots de groupe) ne font qu'habiller un mot choisi ;
    - la réserve de questions reste invisible : elle sert à ce qu'un mot revenu ne revienne pas avec la même phrase.
@@ -64,7 +69,7 @@ Le déroulé, dans la page :
 2. **Jusqu'à 20 questions** (Jacques : « 10 questions, ça ne me paraît pas beaucoup »), une par mot de la file
    (règle 5), **jamais deux fois la même sorte de suite**, **jamais deux fois la même question dans une partie**
    (`cleQuestion()`). Dans la séance : 6. Moins quand il y a moins de mots à revoir : c'est voulu.
-3. Un écran de fin (score, « Encore une fois », « Terminer »).
+3. Un écran de fin (score, « Encore des questions » hors séance, « Terminer »).
 
 **Toutes les phrases sont fabriquées depuis les données** (`personnages.json`, `familia.json`), jamais écrites à la
 main : une image ne dit que ce qu'elle montre, et aucune question ne la contredit. Les questions validées par
@@ -94,11 +99,7 @@ personne parmi celles montrées ; un trait inconnu (les yeux d'Anna) n'exclut ja
 3. **La page** : copier `familia.html` ou `descripcion.html`, garder le protocole, les textes `TEXTES` dans les
    **10 langues d'interface** (fr en tr uk fa ar pt pl ru de), `dir="ltr"` sur tout texte de la langue apprise et sur
    le compteur (sinon « 10 / 5 » en arabe), les couleurs en variables avec leur version `html.nuit`.
-4. **L'app** (`index.html`) : une entrée dans `THEMES_ILLUSTRES` (page, clé du titre, titre court, tuile) — c'est
-   elle qui nourrit le ruban de l'accueil, le tour de rôle de la séance et l'ouverture ; une tuile dans la section
-   « Thèmes illustrés » de Tout le contenu ; les clés de texte dans les **onze** blocs `I18N` (fr en tr uk fa ar pt
-   pl ru de es) ; rien à ajouter aux listes blanches du japonais, de l'anglais et du portugais (le bloc et la
-   section y sont déjà cachés).
+4. **L'app** (`index.html`) : voir « Le branchement » ci-dessous.
 5. **La vignette** : une fonction de plus dans `visuel/vignettes_themes.py` (3:4), qui dise le sujet autrement.
 6. **Contrôler** : `python tests/themes_illustres.py` (≥ 100 questions, séries propres), `node tests/syntaxe.js`,
    `python tests/verifier.py`, les deux parcours (`fusion-espagnol/parcours.py --app de` et `--app es-moteur`),
@@ -124,3 +125,47 @@ ramène aux cartes (`revenirDeLArret()`).
 | `index.html` : `THEMES_ILLUSTRES`, `ouvrirThemeIllustre()`, `majExplorerThemes()`, `themeDuJour()`, `insererThemeIllustre()`, `ouvrirArretTheme()` | l'app |
 | `visuel/prototype/themes/tirage.js` | le tirage par mots, commun à tous les thèmes |
 | `tests/themes_illustres.py` | la réserve de questions et les parties |
+
+## Le branchement : le modèle à suivre pour un thème neuf
+
+Ce qu'un thème neuf touche, et rien d'autre. Le reste (ruban de l'accueil, séance, ouverture, retour, voix, tirage,
+progression des mots) se fait tout seul à partir de ces quatre gestes.
+
+**1. Dans `index.html`, une ligne dans `THEMES_ILLUSTRES`.** L'ordre de la table est celui du ruban de l'accueil et
+du tour de rôle dans la séance.
+
+```js
+const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tuile: "tuileFamilia"},
+                          descripcion: {page: "descripcion.html", titre: "desc_tuile", court: "desc_court", tuile: "tuileDescripcion"},
+                          emociones: {page: "emociones.html", titre: "emo_tuile", tuile: "tuileEmociones"}};
+```
+
+- `page` : le fichier dans `visuel/prototype/` ;
+- `titre` : la clé I18N du nom du thème, `court` (facultatif) celle d'un nom court pour la vignette (« Décrire ») ;
+- `tuile` : l'id de sa tuile dans Tout le contenu, rendue visible en es et de par la même boucle.
+
+**2. Dans `index.html`, la tuile**, dans la section « Thèmes illustrés » (après `id="tuileDescripcion"`), sur le
+modèle des deux autres : `<div class="orb hidden" data-orbid="emociones" id="tuileEmociones"
+onclick="ouvrirThemeIllustre('emociones')" role="button" tabindex="0">`, une icône SVG, `data-i18n="emo_tuile"`.
+Et ses clés (`emo_tuile`, et `emo_court` s'il y a un nom court) dans les **onze** blocs `I18N` (fr en tr uk fa ar pt
+pl ru de es, dans cet ordre de blocs dans le fichier). Rien à ajouter aux listes blanches du japonais, de l'anglais
+et du portugais : le bloc de l'accueil et la section y sont déjà cachés, et une tuile neuve y est cachée par
+`data-orbid`.
+
+**3. La vignette** : une fonction dans `visuel/vignettes_themes.py` (`VIGNETTES`), qui écrit
+`visuel/prototype/themes/<thème>.webp` en 3:4.
+
+**4. La page `visuel/prototype/<thème>.html`**, qui charge `themes/tirage.js` et fournit au tirage :
+
+| ce que la page définit | à quoi ça sert |
+|---|---|
+| `motsDuTheme()` → `[{mot, genre?, cat?, ...}]` | les mots du thème, à la forme du CORPUS (« la abuela » : `{mot: "abuela", genre: "la"}` ; un adjectif : `{mot: "alto", cat: "adjectif"}`) ; ils servent de clés pour la progression |
+| `EX.<sorte>(w)` → `true` / `false` | chaque sorte de question, capable de viser le mot `w` (false si elle ne peut pas) ; sans `w`, un tirage au hasard (les contrôles) |
+| `motQ` | le mot que la question en cours teste, envoyé par `juger()` (`reponse`) |
+| `SORTES`, `NB` (20, 6 en séance), `NEUFS_MAX` (10, 3 en séance) | |
+| `montrer()`, `fin()`, `toutRevu()`, `demarrer()`, `encoreDesQuestions()` | la partie : les recopier de `familia.html`, elles sont identiques d'un thème à l'autre |
+
+Le protocole avec l'app : `etats` (la page demande, l'app répond avec l'état de chaque mot, `etatsDesMots()`),
+`exercice`, `bonne`, `reponse` (le mot testé), `fini`, `fermer`.
+
+**Contrôle** : ajouter le thème à `THEMES` dans `tests/themes_illustres.py`, puis le lancer.
