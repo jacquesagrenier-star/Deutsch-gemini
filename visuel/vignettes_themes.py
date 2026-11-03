@@ -406,12 +406,61 @@ def animaux_quatre_lieux():
 
 
 
+def meteo_quatre_saisons():
+    """« La meteo et les saisons » : la MEME place de Berlin aux quatre saisons, deux par deux (printemps, ete,
+    automne, hiver), et dans chaque case ses degres. Tant que les photos manquent, un dessin de chaque saison (un
+    ciel, un sol, un soleil, des feuilles, de la neige) : la vignette se refait d'elle-meme quand elles arrivent."""
+    M = 14
+    pw, ph = (W - 3 * M) // 2, (H - 3 * M) // 2
+    c = Image.new("RGB", (W, H), (244, 247, 250))
+    d = ImageDraw.Draw(c)
+    images = json.load(open(os.path.join(P, "meteo", "meteo.json"), encoding="utf-8"))["images"]
+    for k, id in enumerate(["fruehling", "sommer", "herbst", "winter"]):
+        x, y = M + (k % 2) * (pw + M), M + (k // 2) * (ph + M)
+        chemin = os.path.join(P, "meteo", id + ".webp")
+        if os.path.exists(chemin):
+            im = Image.open(chemin).convert("RGB")
+            w, h = im.size
+            ch = round(w * ph / pw)
+            im = im.crop((0, (h - ch) // 2, w, (h - ch) // 2 + ch)).resize((pw, ph), Image.LANCZOS)
+            c.paste(im, (x, y))
+        else:
+            ciel, sol = {"fruehling": ((150, 205, 240), (125, 190, 105)), "sommer": ((90, 170, 235), (110, 170, 80)),
+                         "herbst": ((200, 205, 215), (200, 140, 70)), "winter": ((205, 212, 222), (246, 248, 250))}[id]
+            d.rectangle((x, y, x + pw, y + ph), fill=ciel)
+            d.rectangle((x, y + ph * 2 // 3, x + pw, y + ph), fill=sol)
+            if id in ("fruehling", "sommer"):
+                r = 30 if id == "sommer" else 22
+                d.ellipse((x + 60 - r, y + 50 - r, x + 60 + r, y + 50 + r), fill=(255, 210, 63))
+            # l'arbre : en fleurs, vert, roux, nu sous la neige
+            d.rectangle((x + pw // 2 - 7, y + ph // 2, x + pw // 2 + 7, y + ph * 2 // 3 + 10), fill=(120, 86, 56))
+            feuillage = {"fruehling": (240, 170, 200), "sommer": (60, 130, 60), "herbst": (220, 120, 40), "winter": None}[id]
+            if feuillage:
+                d.ellipse((x + pw // 2 - 50, y + ph // 2 - 70, x + pw // 2 + 50, y + ph // 2 + 15), fill=feuillage)
+            if id == "herbst":
+                for n in range(9):
+                    lx, ly = x + 20 + (n * 47) % (pw - 40), y + 30 + (n * 29) % (ph // 2)
+                    d.ellipse((lx, ly, lx + 12, ly + 7), fill=(230, 140, 40))
+            if id == "winter":
+                for n in range(26):
+                    sx, sy = x + 10 + (n * 37) % (pw - 20), y + 10 + (n * 23) % (ph - 30)
+                    d.ellipse((sx, sy, sx + 6, sy + 6), fill=(255, 255, 255))
+        t = images[id]["temp"]
+        txt = "%s%d °C" % ("−" if t < 0 else "", abs(t))
+        tw = d.textlength(txt, font=F(22))
+        d.rounded_rectangle((x + pw - tw - 26, y + 10, x + pw - 10, y + 44), radius=17, fill=(28, 36, 48))
+        d.text((x + pw - tw - 18, y + 13), txt, font=F(22), fill=(255, 255, 255))
+        d.rectangle((x - 1, y - 1, x + pw, y + ph), outline=(214, 210, 202), width=2)
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
              "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
              "metiers": metiers_polaroids,
              "transportes": transports_plan,
              "loisirs": loisirs_agenda,
-             "animales": animaux_quatre_lieux}
+             "animales": animaux_quatre_lieux,
+             "meteo": meteo_quatre_saisons}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

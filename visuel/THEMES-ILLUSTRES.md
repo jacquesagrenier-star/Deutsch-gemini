@@ -264,6 +264,21 @@ Se déplacer (`transportes.html`, `visuel/transportes/transportes.py`, la seule 
   Viertel neun », régional mais juste) ; ni midi ni 13 h (halb eins, la una) ;
 - le relevé exhaustif des phrases (`visuel/transportes/toutes-les-phrases.json`, ~61 000 caractères en allemand) est un
   plafond ; ce qui s'enregistre est l'inventaire de `visuel/voix_themes.py` (`voix.json`).
+## Un thème du temps qu'il fait : « La météo et les saisons » (vague 2, 3 nov. 2026)
+
+`meteo.html`, `visuel/meteo/meteo.py` (la seule source), `visuel/meteo/web.py`. Ce qu'il apprend aux thèmes suivants :
+- **des faits, pas des légendes** : chaque image a ses faits `vrais` (il pleut, le ciel est couvert) et ses
+  `douteux` (un jour de pluie est-il frais ?) ; tout autre fait est **faux** pour elle, et seul un fait faux sert de
+  leurre ou de faux d'un « vrai ou faux ». Chaque fait a ses phrases (hace sol / está soleado ; die Sonne scheint /
+  es ist sonnig), chacune avec le mot du corpus qu'elle fait travailler ;
+- **ce qui se dessine ne se paie pas** : le thermomètre (degrés en lettres, des bandes de ressenti séparées pour
+  qu'un seul mot soit juste : 19 °C n'est ni chaud ni frais), les mois (seulement ceux qui tiennent dans UNE
+  saison : ni mars, ni juin, ni septembre, ni décembre), et un pictogramme tant qu'une photo manque ;
+- **chaque mot a au moins deux sortes de questions**, sinon la partie finit par deux fois la même sorte de suite ou
+  par une question déjà posée (vécu : les mois, `grado`, `nube`, `warm`) ; le « vrai ou faux » sert de seconde sorte
+  (le thermomètre, le mois, la phrase de la famille du mot sur une autre photo) ;
+- **ce qu'on n'y fait pas** : aucun vêtement (le thème Vêtements), pas de bonhomme de neige (la scène de l'hiver) ;
+  les mois ne sont demandés que rattachés à leur saison (les Repères ont les mois seuls).
 
 ## La séance
 
