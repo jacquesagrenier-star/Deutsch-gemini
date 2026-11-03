@@ -67,6 +67,10 @@ h2{margin:0;font-size:19px;font-weight:900}
 .aide .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .aide .tags span{border:1px solid var(--ambre);color:var(--encre);border-radius:999px;padding:5px 10px;font:700 13px var(--police)}
 .photo{width:100%;max-height:52vh;object-fit:cover;border-radius:14px;display:block}
+.clip{position:relative;width:100%;aspect-ratio:4/5;max-height:56vh;border-radius:16px;overflow:hidden;background:var(--carte)}
+.clip video{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block}
+.clip .lancer{position:absolute;inset:0;margin:auto;width:72px;height:72px;border-radius:50%;border:0;background:rgba(28,36,48,.6);color:#fff;font-size:30px;cursor:pointer}
+.clip .lancer[hidden]{display:none}
 .micro-zone{display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 0}
 .micro{width:76px;height:76px;border-radius:50%;border:0;background:linear-gradient(180deg,#E25B4C,#B83A2D);color:#fff;font-size:30px;cursor:pointer;box-shadow:0 8px 20px rgba(184,58,45,.3)}
 .micro.ecoute{animation:pouls 1.2s ease-in-out infinite}
@@ -92,6 +96,9 @@ textarea{width:100%;min-height:90px;border-radius:12px;border:1px solid rgba(76,
 .suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
   color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
 .suite[hidden]{display:none}
+/* « Suivant », « Commencer » tout en bas ET au-dessus de tout (Jacques, 3 nov. 2026, la regle des scenes) : sans
+   z-index, une image ou une loupe (z-index 2) qui defile passait devant le bouton fixe */
+.suite{z-index:5000}
 .suite:disabled{opacity:.45;cursor:default}
 button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
 [lang="de"]{unicode-bidi:isolate}
@@ -103,6 +110,7 @@ button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
 <div class="etapes" id="etapes"></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
+<script src="themes/zoom.js?v=3"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -116,10 +124,10 @@ const NOMS = { anna: "Anna · examinatrice", mark: "Mark · l’autre candidat" 
 // Chaque replique a un id : c'est le nom de son futur fichier son (dtz/voix/<id>.mp3).
 const L = {
   // Partie 1
-  a_bienvenue: ["anna", "Guten Tag und herzlich willkommen! Ich führe heute das Gespräch. Wir beginnen mit einer kurzen Vorstellung. Auf dem Blatt stehen ein paar Stichwörter. Wer möchte anfangen?",
-    "Bonjour et bienvenue ! C’est moi qui mène l’entretien aujourd’hui. Nous commençons par une courte présentation. Sur la feuille, il y a quelques mots-clés. Qui veut commencer ?"],
-  m_vorstellung: ["mark", "Ich fange gern an. Mein Name ist Mark, ich bin fünfundzwanzig Jahre alt. Ich komme aus Montréal, das ist in Kanada. Mein Vater ist Frankokanadier und meine Mutter ist Deutsche, deshalb spreche ich Französisch, Englisch und Deutsch. Seit ein paar Monaten wohne ich in Berlin, in einer kleinen Wohnung. Im Moment mache ich ein Praktikum in einem Büro. Meine Familie lebt noch in Kanada, aber wir telefonieren jede Woche.",
-    "Je veux bien commencer. Je m’appelle Mark, j’ai vingt-cinq ans. Je viens de Montréal, au Canada. Mon père est franco-canadien et ma mère est allemande : c’est pour ça que je parle français, anglais et allemand. J’habite à Berlin depuis quelques mois, dans un petit appartement. En ce moment, je fais un stage dans un bureau. Ma famille vit encore au Canada, mais on se téléphone chaque semaine."],
+  a_bienvenue: ["anna", "Guten Tag und herzlich willkommen! Ich führe heute das Gespräch. Wir beginnen mit einer kurzen Vorstellung. Auf dem Blatt stehen ein paar Stichwörter. Herr Garnier, fangen Sie bitte an.",
+    "Bonjour et bienvenue ! C’est moi qui mène l’entretien aujourd’hui. Nous commençons par une courte présentation. Sur la feuille, il y a quelques mots-clés. Monsieur Garnier, commencez, s’il vous plaît."],
+  m_vorstellung: ["mark", "Gern. Mein Name ist Mark Garnier, ich bin fünfundzwanzig Jahre alt. Ich komme aus Montréal, das ist in Kanada. Mein Vater ist Frankokanadier und meine Mutter ist Deutsche, deshalb spreche ich Französisch, Englisch und Deutsch. Seit ein paar Monaten wohne ich in Berlin, in einer kleinen Wohnung. Im Moment mache ich ein Praktikum in einem Büro. Meine Familie lebt noch in Kanada, aber wir telefonieren jede Woche.",
+    "Volontiers. Je m’appelle Mark Garnier, j’ai vingt-cinq ans. Je viens de Montréal, au Canada. Mon père est franco-canadien et ma mère est allemande : c’est pour ça que je parle français, anglais et allemand. J’habite à Berlin depuis quelques mois, dans un petit appartement. En ce moment, je fais un stage dans un bureau. Ma famille vit encore au Canada, mais on se téléphone chaque semaine."],
   a_danke_mark: ["anna", "Vielen Dank. Und jetzt Sie, bitte. Stellen Sie sich vor.",
     "Merci beaucoup. Et maintenant vous, s’il vous plaît. Présentez-vous."],
   // 1b : une question de suite, choisie selon ce qui manque
@@ -132,16 +140,16 @@ const L = {
   a_frage_deutsch: ["anna", "Danke schön. Warum lernen Sie Deutsch, und was ist für Sie dabei am schwierigsten?",
     "Merci. Pourquoi apprenez-vous l’allemand, et qu’est-ce qui est le plus difficile pour vous ?"],
   // Partie 2
-  a_fotos: ["anna", "Danke. Jetzt bekommen Sie beide ein Foto. Sehen Sie es sich kurz an. Erzählen Sie dann: Was sehen Sie? Was für eine Situation ist das? Fangen Sie wieder an?",
-    "Merci. Maintenant, vous recevez chacun une photo. Regardez-la un instant. Puis racontez : que voyez-vous ? Quelle est la situation ? Vous recommencez ?"],
+  a_fotos: ["anna", "Danke. Jetzt bekommen Sie beide ein Foto. Sehen Sie es sich kurz an. Erzählen Sie dann: Was sehen Sie? Was für eine Situation ist das? Herr Garnier, bitte.",
+    "Merci. Maintenant, vous recevez chacun une photo. Regardez-la un instant. Puis racontez : que voyez-vous ? Quelle est la situation ? Monsieur Garnier, s’il vous plaît."],
   m_foto: ["mark", "Auf meinem Foto sehe ich einen Marktstand mit sehr viel Obst. Vorne liegen Pfirsiche und Äpfel, dahinter Kirschen, Trauben und Pflaumen, alles in Holzkisten. Rechts steht eine junge Frau, man sieht sie nur von hinten. Ich glaube, sie möchte gerade etwas kaufen. Vielleicht ist es Samstagvormittag auf einem Wochenmarkt, denn im Hintergrund sind noch andere Leute.",
     "Sur ma photo, je vois un étal de marché avec beaucoup de fruits. Devant, il y a des pêches et des pommes, derrière des cerises, du raisin et des prunes, tout dans des cagettes en bois. À droite, il y a une jeune femme, on ne la voit que de dos. Je crois qu’elle veut acheter quelque chose. C’est peut-être un samedi matin sur un marché, parce qu’à l’arrière-plan il y a d’autres gens."],
   a_ihr_foto: ["anna", "Danke. Und was sehen Sie auf Ihrem Foto?", "Merci. Et vous, que voyez-vous sur votre photo ?"],
   a_erfahrung: ["anna", "Danke. Und wie ist das bei Ihnen: Wo kaufen Sie am liebsten ein, auf dem Markt oder im Supermarkt? Und wie war das in Ihrem Heimatland?",
     "Merci. Et chez vous, comment ça se passe : où préférez-vous faire vos courses, au marché ou au supermarché ? Et comment c’était dans votre pays d’origine ?"],
   // Partie 3
-  a_planen: ["anna", "Vielen Dank. Jetzt kommt der letzte Teil. Sie planen zusammen einen Ausflug mit Ihrem Deutschkurs. Auf dem Blatt stehen ein paar Fragen. Sprechen Sie miteinander und einigen Sie sich. Sie können anfangen.",
-    "Merci beaucoup. Voici la dernière partie. Vous organisez ensemble une sortie avec votre cours d’allemand. Sur la feuille, il y a quelques questions. Parlez ensemble et mettez-vous d’accord. Vous pouvez commencer."],
+  a_planen: ["anna", "Vielen Dank. Jetzt kommt der letzte Teil. Sie planen zusammen einen Ausflug mit Ihrem Deutschkurs. Auf dem Blatt stehen ein paar Fragen. Sprechen Sie miteinander und einigen Sie sich. Herr Garnier, fangen Sie an.",
+    "Merci beaucoup. Voici la dernière partie. Vous organisez ensemble une sortie avec votre cours d’allemand. Sur la feuille, il y a quelques questions. Parlez ensemble et mettez-vous d’accord. Monsieur Garnier, commencez."],
   m_p1: ["mark", "Also, wohin fahren wir? Ich hätte Lust auf einen See, zum Beispiel den Wannsee. Da kann man schwimmen und picknicken. Was meinst du?",
     "Alors, on va où ? J’aurais envie d’un lac, par exemple le Wannsee. On peut s’y baigner et pique-niquer. Qu’est-ce que tu en penses ?"],
   m_p2: ["mark", "Und wann machen wir das? Unter der Woche haben viele keine Zeit. Wie wäre es mit Samstag?",
@@ -288,11 +296,28 @@ function taire(){
   try{ if (audioEnCours){ audioEnCours.pause(); audioEnCours = null; } }catch(e){}
   try{ if (window.speechSynthesis) speechSynthesis.cancel(); }catch(e){}
 }
-function dire(id){
+// LA VIDEO D'ABORD (variante B, decision de Jacques du 3 nov. : « B : video »). Une replique qui a son clip
+// (manifeste : {video: 1}) se joue dans le cadre de sa bulle, avec le son du clip ; sinon sa voix enregistree
+// ({son: 1}), sinon la voix du telephone. Un navigateur qui refuse la lecture avec le son (iOS hors du geste) laisse
+// le bouton ▶ du cadre : la suite attend que le clip ait ete joue ou que l'on passe.
+function dire(id, cadre){
   return new Promise(fini => {
     taire();
     const [qui, texte] = L[id];
-    if (ENREGISTRE[id]){
+    const e = ENREGISTRE[id] || {};
+    if (e.video && cadre){
+      const v = cadre.querySelector("video");
+      const lancer = cadre.querySelector(".lancer");
+      audioEnCours = v;
+      let rendu = false;
+      const fin = () => { if (rendu) return; rendu = true; lancer.hidden = true; fini(); };
+      v.onended = fin; v.onerror = fin;
+      lancer.onclick = () => { lancer.hidden = true; v.play().catch(fin); };
+      try{ v.currentTime = 0; }catch(err){}
+      v.play().then(() => { lancer.hidden = true; }).catch(() => { lancer.hidden = false; });
+      return;
+    }
+    if (e === 1 || e.son){
       const au = new Audio("dtz/voix/" + id + ".mp3");
       audioEnCours = au;
       au.onended = au.onerror = () => fini();
@@ -364,18 +389,30 @@ function etapes(ici){
 function bulle(id, dejaDit){
   const [qui, de, fr] = L[id];
   const ligne = el("div", "qui");
-  const img = el("img"); img.src = IMG[qui]; img.alt = ""; ligne.appendChild(img);
+  let cadre = null;
+  if ((ENREGISTRE[id] || {}).video){
+    // Le clip remplace le petit portrait, au-dessus de la bulle : c'est le visage qui parle qu'on regarde.
+    cadre = el("div", "clip");
+    const v = el("video"); v.src = "dtz/video/" + id + ".mp4"; v.preload = "auto";
+    v.setAttribute("playsinline", ""); v.setAttribute("webkit-playsinline", ""); v.poster = "dtz/video/" + id + ".jpg";
+    const lancer = el("button", "lancer", "▶"); lancer.type = "button"; lancer.hidden = true; lancer.setAttribute("aria-label", "Lire");
+    cadre.append(v, lancer);
+    zone.appendChild(cadre);
+  } else {
+    const img = el("img"); img.src = IMG[qui]; img.alt = ""; ligne.appendChild(img);
+  }
   const b = el("div", "bulle");
   b.appendChild(el("div", "nom", NOMS[qui]));
   const d = el("div", "de", de); d.lang = "de"; b.appendChild(d);
   const f = el("div", "fr", fr); f.hidden = true; b.appendChild(f);
   const outils = el("div");
-  const hp = el("button", "hp", "🔊 Réécouter"); hp.type = "button"; hp.onclick = () => dire(id);
+  const hp = el("button", "hp", "🔊 Réécouter"); hp.type = "button"; hp.onclick = () => dire(id, cadre);
   const tr = el("button", "hp", "Traduire"); tr.type = "button"; tr.onclick = () => { f.hidden = !f.hidden; };
   outils.append(hp, tr); b.appendChild(outils);
   ligne.appendChild(b);
   zone.appendChild(ligne);
-  return dejaDit ? Promise.resolve() : dire(id);
+  if (cadre) cadre.scrollIntoView({ behavior: "smooth", block: "start" });
+  return dejaDit ? Promise.resolve() : dire(id, cadre);
 }
 function coach(cle){
   const ligne = el("div", "qui");
@@ -577,6 +614,9 @@ async function fin(){
 }
 
 document.getElementById("retour").onclick = () => { taire(); if (DANS_APP) parler("fermer"); else history.back(); };
+// Agrandir les images (themes/zoom.js, decision de Jacques du 3 nov. : « Oui, les deux ») : aucune image de l'oral ne
+// sert a repondre, toutes s'ouvrent au toucher -- les photos a decrire et les portraits d'Anna et de Mark.
+Zoom.init({direct: "img.photo, .qui img", loupe: "", langue: "fr"});
 accueil();
 </script>
 </body>

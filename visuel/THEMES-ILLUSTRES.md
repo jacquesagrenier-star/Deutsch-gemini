@@ -94,10 +94,14 @@ téléphone. Quand il n'y a pas de voix. ») : une seule fonction pour tous les 
   variante, jamais une voix fantaisie de `VOIX_A_FUIR`) ;
 - la page sait **avant de jouer** quels textes ont un fichier (`themes/sons.json`) : sur iPhone, `play()` et
   `speak()` doivent partir dans le geste ; attendre l'échec d'un fichier ferait taire la page ;
-- ce qu'on dit : dans la découverte, la fiche ou le mot touché ; **après une réponse, le mot clé** à la forme du
-  corpus (« la tía », « die Tante », « alto ») — jamais toute la phrase fabriquée, qui ne s'enregistre pas (des
-  milliers de combinaisons), et qu'on ne fait pas dire au téléphone pour ne pas mêler deux voix ;
-- chaque page expose `textesAVoix()` : tout ce qu'elle peut dire. `python visuel/voix_themes.py` le relève
+- ce qu'on dit : dans la découverte, la fiche ou le mot touché ; **après une réponse, la phrase affichée EN
+  ENTIER** (Jacques, 3 nov. : « Oui, partout », règle de TOUS les thèmes) — la phrase juste de la question
+  (`juger(ok, bonne, phrase)` la reçoit et la dit), sinon le mot clé à la forme du corpus (« la tía », « alto ») ;
+  une flèche de paire (« el tío → la tía ») se dit comme une virgule. Le fichier enregistré s'il existe pour ce
+  texte exact, sinon la voix du téléphone : ces phrases se fabriquent depuis les données, beaucoup n'ont pas encore
+  de fichier, et leur enregistrement attend l'accord de Jacques ;
+- chaque page expose `textesAVoix()` : les fiches et les mots ; `python visuel/voix_themes.py` les relève, **joue
+  des parties** (`PARTIES_VOIX`, 150) pour relever les phrases dites après les réponses, et le tout
   (→ `visuel/<thème>/voix.json`, que lisent `audio/manifest.py` et `audio/manifest_es.py`, source `<thème>`),
   écrit `themes/sons.json` et chiffre ce qui manque. Un texte à chiffres demande sa lecture en lettres dans
   `audio/lectures/<langue>.json` (« Tiene setenta y nueve años. »).
@@ -138,12 +142,32 @@ un nombre, vrai / faux, un possessif seul (mi / su), un accord (alto / alta). Mo
 
 **Les boutons du bas** (Jacques, 3 nov., la règle des scènes depuis la v1059 : « commencer les exercices ou
 continuer soit toujours en bas complètement de l'écran ») : **tout bouton qui fait avancer est fixé en bas de
-l'écran**, au-dessus de tout (`z-index: 5000`, comme les scènes), dans le même verre vert : « Commencer les
-exercices », « Suivant » (`.suite`) et ceux de la fin, « Encore des questions » et « Terminer », côte à côte dans
+l'écran**, au-dessus de tout (`z-index: 5000`, comme les scènes), dans le même verre vert : « Commencer »,
+« Continuer » (`.suite`) et ceux de la fin, « Encore des questions » et « Terminer », côte à côte dans
 `<div class="bas">` (fin de partie et « Tout est revu »). Le contenu garde en bas la place du bouton : `padding-bottom`
 du `body` d'au moins 54 px + 24 px + 12 px + la zone sûre (`calc(env(safe-area-inset-bottom,0px) + 90px)`), pour
 qu'aucune réponse ne passe dessous. À vérifier à 375 px sur la question la plus longue, défilée jusqu'en bas
 (Décrire : « elige », la description à choisir), de jour et de nuit. Modèle : `familia.html`, `descripcion.html`.
+
+**La page a la hauteur de l'écran, comme une scène** (Jacques, iPhone, 3 nov. : « Commencer » « pas complètement
+en bas », alors que le navigateur le montrait au bon endroit). Le document d'une scène ne dépasse jamais son cadre ;
+celui d'un thème défilait (Décrire : 2 500 px), et sur iPhone un bouton fixe dans un cadre dont le document déborde
+ne tombe pas au bas de l'écran. Donc `html{height:100%;overflow:hidden}` et `body{height:100%;overflow-y:auto}` :
+le contenu défile DANS le body, `document.documentElement.scrollHeight` reste celui du cadre (le mesurer : il doit
+valoir `innerHeight`), et la remise en haut d'une question fait aussi `document.body.scrollTop = 0`. Rappel : un
+cadre ne reçoit jamais `env(safe-area-inset-*)` (c'est l'app qui pose la marge, `#sceneSeance`) ; le bouton tombe
+donc à 12 px du bas du cadre, exactement comme le « Continuer » des scènes.
+
+**Les noms des boutons, fixes, partout** (Jacques, 3 nov. : « les noms des contrôles doivent être identiques
+partout ») : on ne dit jamais « Suivant ». Les clés des `TEXTES` d'une page, et les textes communs de `tirage.js` :
+
+| clé | fr | en | de | les autres langues |
+|---|---|---|---|---|
+| `commencer` | Commencer | Start | Starten | tr Başla, uk Почати, fa شروع, ar ابدأ, pt Começar, pl Zacznij, ru Начать |
+| `suivant` (le bouton qui avance) | Continuer | Continue | Weiter | le mot des scènes (`suite` de `visuel/prototype/index.html`) : tr Devam, uk Далі, fa ادامه, ar متابعة, pt Continuar, pl Dalej, ru Дальше |
+| `terminer` | Terminer | Finish | Beenden | tr Bitir, uk Завершити, fa پایان, ar إنهاء, pt Terminar, pl Zakończ, ru Завершить |
+| `TIRAGE_TEXTES.encore` | Encore des questions | More questions | Weitere Fragen | dans `themes/tirage.js` |
+| `TIRAGE_TEXTES.revu` | Tout est revu pour aujourd'hui. | Everything is reviewed for today. | — | dans `themes/tirage.js` |
 
 **Toutes les phrases sont fabriquées depuis les données** (`personnages.json`, `familia.json`), jamais écrites à la
 main : une image ne dit que ce qu'elle montre, et aucune question ne la contredit. Les questions validées par
@@ -151,7 +175,8 @@ Jacques (« Ça me convient », 3 nov.) : 8 sortes pour la famille, 7 pour Décr
 
 **La réserve : au moins 100 questions différentes par thème et par langue** (« J'irais une centaine de questions
 par thème »), mesurées, jamais supposées : `python tests/themes_illustres.py`. Au 3 nov. : famille ≈ 2 400 (es et
-de) ; Décrire ≈ 650 (es), 625 (de) ; les contraires 215 (es), 200 (de) ; Manger et goûter ≈ 1 560 (es), 1 580 (de), dont ≈ 1 110 additions de la carte
+de) ; Décrire ≈ 650 (es), 625 (de) ; les contraires 215 (es), 200 (de) ; « Où est le chat ? » 606 (es), 582 (de), dont 235 et 212 sans compter les
+départs des questions de mouvement ; Manger et goûter ≈ 1 560 (es), 1 580 (de), dont ≈ 1 110 additions de la carte
 du café (« ¿Cuánto es? », autant de commandes différentes) et ≈ 440-470 pour tout le reste. On élargit par de nouvelles combinaisons dans les sortes validées, jamais par du
 remplissage ni des quasi-doublons : la même question avec d'autres leurres n'en est pas une nouvelle (c'est pourquoi
 « completa » avec le visage ne s'ajoute pas à « yeux »). Une description partielle doit désigner **une seule**
@@ -170,22 +195,43 @@ où un seul verbe est juste (la taille, la largeur ; ouvert, fermé, plein, vide
    `adjetivos.json`, `adjectif.json`). Un mot qui manque : le proposer (allemand : JSON racine ; espagnol :
    `espanol/ajouter_mots.py espanol/ajouts/<fichier>.json`, mêmes clés que ses voisins, fr en pt ar de) — ses voix
    demandent l'accord de Jacques.
-2. **Les personnes** : réutiliser d'abord celles qui existent. Une personne neuve : un script comme
+2. **Les lieux, AVANT toute image** (Jacques, 3 nov. : la continuité des lieux) : une image de thème qui montre un
+   lieu connu (l'appartement de Mark, celui d'Anna, une pièce des scènes ou des vidéos) reprend les mêmes meubles,
+   couleurs et disposition que les scènes et `video/LIEUX.md` ; un lieu nouveau s'ajoute à `video/LIEUX.md`. Se
+   vérifie avant de lancer la génération, pas après.
+3. **Les personnes** : réutiliser d'abord celles qui existent. Une personne neuve : un script comme
    `visuel/familia/familia.py` (fal, `fal-ai/nano-banana-pro`, **0,15 $ l'image** ; `--montrer` est gratuit).
    **Annoncer le coût du lot avant de le lancer**, puis **vérifier chaque image contre sa description** ; une image
    ratée se refait. Mark et Anna ne se régénèrent pas : leur image sert de référence (retouche
    `nano-banana-pro/edit`). Puis `detourer.py` (BiRefNet, quelques centimes) et `web.py` (les webp : en pied
    900 px, visage carré pris sur la silhouette détourée — la tête d'un enfant n'est pas celle d'un adulte). Les
    originaux restent hors du dépôt (`visuel/<thème>/img/`, dans `.gitignore`).
-3. **La page** : copier `familia.html` ou `descripcion.html`, garder le protocole, les textes `TEXTES` dans les
+4. **La page** : copier `familia.html` ou `descripcion.html`, garder le protocole, les textes `TEXTES` dans les
    **10 langues d'interface** (fr en tr uk fa ar pt pl ru de), `dir="ltr"` sur tout texte de la langue apprise et sur
    le compteur (sinon « 10 / 5 » en arabe), les couleurs en variables avec leur version `html.nuit`.
-4. **L'app** (`index.html`) : voir « Le branchement » ci-dessous.
-5. **La vignette** : une fonction de plus dans `visuel/vignettes_themes.py` (4:3,4), qui dise le sujet autrement.
-6. **Contrôler** : `python tests/themes_illustres.py` (≥ 100 questions, séries propres), `node tests/syntaxe.js`,
+5. **L'app** (`index.html`) : voir « Le branchement » ci-dessous.
+6. **La vignette** : une fonction de plus dans `visuel/vignettes_themes.py` (4:3,4), qui dise le sujet autrement.
+7. **Contrôler** : `python tests/themes_illustres.py` (≥ 100 questions, séries propres), `node tests/syntaxe.js`,
    `python tests/verifier.py`, les deux parcours (`fusion-espagnol/parcours.py --app de` et `--app es-moteur`),
    chaque écart vérifié ligne à ligne et la nouvelle référence écrite dans CLAUDE.md ; à l'écran, au format du
    téléphone, de jour, de nuit, en arabe ou en persan.
+
+## Un thème d'objets dans une pièce : « Où est le chat ? » (3 nov. 2026)
+
+Les prépositions de lieu (`gato.html`, `visuel/gato/gato.py`, la seule source). Ce qu'il apprend aux thèmes suivants :
+- **une pièce vide, puis des retouches** (`nano-banana-pro/edit`, la pièce + la première image du chat en références) :
+  même cadrage, mêmes meubles, seule la place du chat change. Sur 31 retouches, 9 ont montré autre chose que le prompt :
+  4 sont devenues ce qu'elles montrent (le chat sur le panier au lieu de la fenêtre, à côté de la table au lieu d'entre
+  les chaises…), 2 places ont été abandonnées après trois essais (sur la chaise, sous la table : le modèle met le chat
+  sur la table, ajoute une deuxième table ou change de cadrage). **Vérifier chaque image agrandie**, pas sur une planche ;
+- **où est le chat** se mesure (`--mesurer` : la différence avec la pièce vide) : la flèche du mouvement va d'une place
+  à l'autre, et la page **recadre** chaque image autour du chat (à 375 px, la pièce entière montre un chat de 15 px) ;
+- **le mouvement** (Wohin + accusatif) : l'image d'AVANT et une flèche dans la question, l'image d'APRÈS dans la réponse ;
+- une préposition est un mot du thème : `{mot: "hinter", cat: "praep"}` fait avancer la carte des Prépositions
+  (`carteDeScene()`, cat « praep ») ;
+- deux places vraies sur une même image (le sac d'Anna est devant le canapé) : `AUSSI` dans `gato.py`, jamais l'une
+  pour leurre de l'autre ; en espagnol, toutes les formes justes d'une place (encima de / sobre / en la mesa) ;
+- les voix à enregistrer : `visuel/gato/voix.json` (fait par `gato.py`).
 
 ## La séance
 
@@ -274,7 +320,7 @@ l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire angl
   diffèrent (Mom / Mum, gray / grey, mustache / moustache, color / colour) et le dit dans une note.
 - **Les mots** : `genre: ""` (le corpus anglais n'a pas d'article) ; un mot qui manque au corpus s'ajoute dans
   `anglais/outils/mots_<niv>.py` ou `noms_<niv>.py`, puis `python anglais/outils/construire.py` (plus de 5 minutes),
-  `frequence.py --ecrire` et `voisins.py --ecrire`. Ajoutés le 3 nov. : chubby, slim, wavy (A2), earring (A2).
+  `frequence.py --ecrire` et `voisins.py --ecrire`. Ajoutés le 3 nov. : chubby, slim, wavy (A2), earring (A2) ; open (A1), disgusting (A2). ⚠️ Un `construire.py` complet change aussi des phrases d'exemple d'autres mots (les sources ont bougé depuis la dernière construction) : on ne pose alors que les mots ajoutés, pris dans la reconstruction, dans la version du dépôt.
 - **La voix** : aucune voix nouvelle (décision du 3 nov., écoute à l'aveugle Sarah / Google / Azure d'abord). Ce qui
   a un fichier `en-us/` se dit avec Sarah (américain), le reste avec la voix du téléphone (`en-US`, `en-GB`). Le
   britannique : toujours le téléphone. Il manque à Sarah, dans « Décrire » : *light brown*, *wavy*, *of medium
@@ -287,4 +333,9 @@ l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire angl
   - **Décrire une personne** : is / has / wears ; l'ordre des adjectifs devant *hair* (longueur, forme, couleur,
     sans virgule) — la sorte `ordre`, à la place de l'accord espagnol ; *chubby* plutôt que *fat*, *dark eyes* et
     jamais *black eyes* (deux notes dans la découverte) ; le superlatif à trois (« Who is the tallest? »).
+  - **Les contraires** : l'adjectif invariable après *be* (« The door is open. »), *the one* (« The one on the right
+    is ___. »), et deux sortes de plus : `comparatif` (-er, more, good → better, bad → worse ; les pièges : le double
+    comparatif *more bigger*, *beautifuler*, le superlatif) et `article` (*a* ou *an* devant l'adjectif : *an old
+    bike*, *an ugly vase*). Le britannique change les noms des phrases sans image (flat, film, jumper, High Street).
+    Le sens du mot et la traduction des phrases de l'image viennent de l'espagnol de la même image.
 - **Contrôle** : `ANGLAIS` dans `tests/themes_illustres.py` (le thème y passe en `en` et en `en&variante=gb`).

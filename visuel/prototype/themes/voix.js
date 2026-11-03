@@ -98,16 +98,82 @@ const Voix = (() => {
     try{ if (son) son.pause(); }catch(e){}
     try{ if (speechSynthesis.speaking || speechSynthesis.pending) speechSynthesis.cancel(); }catch(e){}
   }
+  // LE SON DE REUSSITE (3 nov. 2026, Jacques sur iPhone : le « +1 » sans le son des cartes et des scenes). Comme les
+  // scenes (sonBravo de visuel/prototype/index.html) : le son de l'APP quand la page est dans son cadre (meme
+  // origine : la kalimba des cartes, quel qu'il soit), sinon une copie des trois notes en WAV joue par un <audio>
+  // (iOS le joue meme en silencieux), sinon des oscillateurs. A appeler DANS le toucher de la reponse.
+  const NOTES = [1046.5, 1318.51, 1567.98];
+  let wav = null, ctxSecours = null, finBravo = 0;
+  try{
+    const H = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    if (H){
+      const ecart = 0.11, duree = 0.35, taux = 44100;
+      const ctx = new H(1, Math.ceil(taux * ((NOTES.length - 1) * ecart + duree + 0.05)), taux);
+      NOTES.forEach((f, k) => {
+        const o = ctx.createOscillator(), g = ctx.createGain(), t = k * ecart;
+        o.type = "triangle"; o.frequency.value = f;
+        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.55, t + 0.008); g.gain.exponentialRampToValueAtTime(0.001, t + duree);
+        o.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t + duree + 0.02);
+      });
+      const fini = buf => {
+        const n = buf.length, v = new DataView(new ArrayBuffer(44 + n * 2));
+        const ec = (p, s) => { for (let i = 0; i < s.length; i++) v.setUint8(p + i, s.charCodeAt(i)); };
+        ec(0, "RIFF"); v.setUint32(4, 36 + n * 2, true); ec(8, "WAVE"); ec(12, "fmt "); v.setUint32(16, 16, true); v.setUint16(20, 1, true);
+        v.setUint16(22, 1, true); v.setUint32(24, taux, true); v.setUint32(28, taux * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true);
+        ec(36, "data"); v.setUint32(40, n * 2, true);
+        const d = buf.getChannelData(0);
+        for (let i = 0; i < n; i++){ const s = Math.max(-1, Math.min(1, d[i])); v.setInt16(44 + i * 2, s < 0 ? s * 0x8000 : s * 0x7FFF, true); }
+        wav = new Audio(URL.createObjectURL(new Blob([v.buffer], {type: "audio/wav"}))); wav.preload = "auto";
+      };
+      const r = ctx.startRendering();
+      if (r && r.then) r.then(fini).catch(() => {}); else ctx.oncomplete = e => fini(e.renderedBuffer);
+    }
+  }catch(e){}
+  function secours(){
+    try{
+      const C = window.AudioContext || window.webkitAudioContext; if (!C) return;
+      ctxSecours = ctxSecours || new C(); if (ctxSecours.resume) ctxSecours.resume().catch(() => {});
+      const t0 = ctxSecours.currentTime;
+      NOTES.forEach((f, k) => {
+        const o = ctxSecours.createOscillator(), g = ctxSecours.createGain(), t = t0 + k * 0.11;
+        o.type = "triangle"; o.frequency.value = f;
+        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.32, t + 0.008); g.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+        o.connect(g); g.connect(ctxSecours.destination); o.start(t); o.stop(t + 0.4);
+      });
+    }catch(e){}
+  }
+  function bravo(){
+    finBravo = Date.now() + APRES_BRAVO;
+    try{ const app = window.parent; if (app && app !== window && typeof app.playMasteredSound === "function"){ app.playMasteredSound(); return; } }catch(e){}
+    try{ if (wav){ wav.currentTime = 0; const p = wav.play(); if (p && p.catch) p.catch(secours); return; } }catch(e){}
+    secours();
+  }
+  // LA PHRASE APRES LE SON : une phrase demandee juste apres bravo() attend la fin des trois notes. Sur iPhone, un
+  // son ne peut partir que DANS le toucher : on le lance donc tout de suite, muet, puis on le reprend du debut, le
+  // son coupe retire, une fois le bravo fini (l'element a ete lance par le geste, iOS le laisse rejouer) ; la voix du
+  // telephone est debloquee de meme par un enonce vide.
+  const APRES_BRAVO = 650;
   function dire(texte){
     if (!texte) return;
     arreter();
+    const attente = Math.max(0, finBravo - Date.now());
     const id = sha1(texte);
-    if (!connus.has(id)){ telephone(texte); return; }
-    son = new Audio(BASE + id + ".mp3" + (R ? "?r=" + R : ""));
+    if (!connus.has(id)){
+      if (!attente){ telephone(texte); return; }
+      try{ speechSynthesis.speak(new SpeechSynthesisUtterance("")); }catch(e){}
+      setTimeout(() => telephone(texte), attente);
+      return;
+    }
+    const s = son = new Audio(BASE + id + ".mp3" + (R ? "?r=" + R : ""));
     let repli = false;
-    const tel = () => { if (!repli){ repli = true; telephone(texte); } };
-    son.addEventListener("error", tel, {once: true});
-    son.play().catch(tel);
+    const tel = () => { if (!repli){ repli = true; if (s === son) telephone(texte); } };
+    s.addEventListener("error", tel, {once: true});
+    if (!attente){ s.play().catch(tel); return; }
+    s.muted = true;
+    const p = s.play();
+    const reprendre = () => { if (s !== son) return; try{ s.pause(); s.currentTime = 0; s.muted = false; s.play().catch(tel); }catch(e){ tel(); } };
+    if (p && p.then) p.then(() => setTimeout(reprendre, attente)).catch(() => setTimeout(() => { if (s === son){ s.muted = false; s.play().catch(tel); } }, attente));
+    else setTimeout(reprendre, attente);
   }
-  return {dire, arreter, aUnFichier: texte => connus.has(sha1(texte)), sha1};
+  return {dire, arreter, bravo, aUnFichier: texte => connus.has(sha1(texte)), sha1};
 })();

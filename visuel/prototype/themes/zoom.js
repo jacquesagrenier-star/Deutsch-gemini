@@ -12,7 +12,7 @@
 //     decouverte), pour ne jamais repondre en voulant regarder : `loupe`.
 // Un element qui n'est pas une image (l'arbre en SVG) est COPIE dans la visionneuse : la copie se regarde, elle ne
 // repond pas. L'indice « Écarte deux doigts » des scenes (v1068) s'affiche dans la visionneuse les deux premieres fois.
-// Une page : <script src="themes/zoom.js?v=1"></script>, puis Zoom.init({direct: "...", loupe: "...", langue}).
+// Une page : <script src="themes/zoom.js?v=3"></script>, puis Zoom.init({direct: "...", loupe: "...", langue}).
 const Zoom = (() => {
   const TEXTES = {
     pince: {fr: "Écarte deux doigts pour agrandir", en: "Spread two fingers to zoom in", tr: "Yakınlaştırmak için iki parmağını aç", uk: "Розведи два пальці, щоб збільшити", fa: "برای بزرگ‌نمایی دو انگشتت را از هم باز کن", ar: "باعِد بين إصبعين للتكبير", pt: "Afaste dois dedos para ampliar", pl: "Rozsuń dwa palce, aby powiększyć", ru: "Разведи два пальца, чтобы увеличить", de: "Spreize zwei Finger zum Vergrößern"},
@@ -30,9 +30,13 @@ const Zoom = (() => {
 .zoom-fermer{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);inset-inline-end:14px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.4);
   background:rgba(255,255,255,.16);color:#fff;font:700 26px/1 system-ui,sans-serif;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);z-index:2}
 .zoom-fermer:focus-visible{outline:3px solid #E8A23A;outline-offset:2px}
-.zoom-loupe{position:absolute;top:5px;inset-inline-end:5px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.88);display:flex;align-items:center;
-  justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.25);cursor:zoom-in;z-index:2}
-.zoom-loupe svg{width:17px;height:17px;fill:none;stroke:#1C2430;stroke-width:2.4;stroke-linecap:round}
+.zoom-loupe{position:absolute;top:0;inset-inline-end:0;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;
+  justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.28);cursor:zoom-in;z-index:2}
+/* Jacques, 3 nov. 2026 : « tasser les loupes le plus possible dans le coin droit en haut. Qui prennent le moins de place
+   sur le champ. » Un rond de 22 px colle au coin ; le doigt, lui, a une zone de 38 px, surtout hors de l'image
+   (::before transparent), pour toucher la loupe sans choisir la personne par erreur. */
+.zoom-loupe::before{content:"";position:absolute;inset:-8px}
+.zoom-loupe svg{width:13px;height:13px;fill:none;stroke:#1C2430;stroke-width:2.6;stroke-linecap:round}
 .zoom-direct{cursor:zoom-in}
 .zoom-voile .pince{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;pointer-events:none;animation:zpv 3.4s ease forwards}
 @keyframes zpv{0%{opacity:0}8%{opacity:1}86%{opacity:1}100%{opacity:0}}

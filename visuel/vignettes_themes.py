@@ -142,6 +142,28 @@ def contraires_verres():
     return c
 
 
+def chat_quatre_places():
+    """« Ou est le chat ? » : le meme chat (Moritz) a quatre places de la meme piece, deux par deux -- sur la table,
+    sous le canape, dans le carton, derriere le canape. Chaque case est serree sur le chat et son meuble (la place
+    mesuree par visuel/gato/gato.py --mesurer) : sur le ruban, une piece entiere montrerait un chat de deux pixels."""
+    M = 14
+    pw, ph = (W - 3 * M) // 2, (H - 3 * M) // 2
+    c = Image.new("RGB", (W, H), (250, 249, 246))
+    d = ImageDraw.Draw(c)
+    places = json.load(open(os.path.join(P, "gato", "gato.json"), encoding="utf-8"))["images"]
+    for k, id in enumerate(["tisch-auf", "sofa-unter", "karton-in", "sofa-hinter"]):
+        im = Image.open(os.path.join(P, "gato", id + ".webp")).convert("RGB")
+        w, h = im.size
+        cx, cy = places[id]["chat"][0] / 100 * w, places[id]["chat"][1] / 100 * h
+        cw = round(w * 0.36); ch = round(cw * ph / pw)
+        x0 = min(max(0, round(cx - cw / 2)), w - cw); y0 = min(max(0, round(cy - ch * 0.55)), h - ch)
+        im = im.crop((x0, y0, x0 + cw, y0 + ch)).resize((pw, ph), Image.LANCZOS)
+        x, y = M + (k % 2) * (pw + M), M + (k // 2) * (ph + M)
+        c.paste(im, (x, y))
+        d.rectangle((x - 1, y - 1, x + pw, y + ph), outline=(214, 210, 202), width=2)
+    return c
+
+
 def manger_ardoise():
     """L'ardoise du cafe : la carte a la craie et ses prix (des dessins, aucun mot : la meme vignette sert a l'espagnol
     et a l'allemand), et, posees devant, la tasse de the et la part de gateau des quantites. Le sujet est la commande et
@@ -182,10 +204,13 @@ def manger_ardoise():
 
 
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres,
-             "manger": manger_ardoise}
+             "gato": chat_quatre_places, "manger": manger_ardoise}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
+    # python visuel/vignettes_themes.py gato : une seule vignette (les autres restent telles quelles)
     for nom, f in VIGNETTES.items():
+        if sys.argv[1:] and nom not in sys.argv[1:]:
+            continue
         f().save(os.path.join(SORTIE, nom + ".webp"), "WEBP", quality=84, method=6)
         print("  ->", nom + ".webp")
