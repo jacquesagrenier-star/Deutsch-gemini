@@ -320,7 +320,18 @@ def recolter():
     for texte in reperes_textes(charger("reperes.json")):
         prendre(texte, "A1", "phrase" if " " in texte.strip() else "mot", "reperes")
 
+    # LES EMOTIONS ET LE CARACTERE (theme illustre, 3 nov. 2026) : les phrases de la
+    # decouverte, telles que la page les ecrit (visuel/emociones/emociones.json).
+    for texte in emociones_textes("de"):
+        prendre(texte, "A1", "phrase", "emociones")
+
     return out
+
+
+def emociones_textes(langue):
+    """Les phrases de la decouverte du theme illustre des emotions (de, es, latam)."""
+    d = charger(os.path.join("visuel", "emociones", "emociones.json"))
+    return [v["texte"] for v in d["decouverte"]["phrases"][langue].values()]
 
 
 def reperes_textes(d):

@@ -48,7 +48,9 @@ except Exception:
     pass
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PORT = 8791
+# Le port : 8791 par defaut ; PARCOURS_PORT=<n> pour une session qui en lance en meme temps qu'une autre (3 nov. 2026 :
+# sous Windows, deux serveurs sur le meme port avec allow_reuse_address peuvent se lire l'un l'autre).
+PORT = int(os.environ.get("PARCOURS_PORT", "8791"))
 HEURE_FIGEE = "2026-10-10T09:00:00"
 
 HASARD_FIGE = r"""

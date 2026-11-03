@@ -193,6 +193,10 @@ def recolter(variante):
     # regle que manifest.py (reperes_textes). Les memes textes dans les deux variantes.
     for t in manifest_de.reperes_textes(charger("reperes.json")):
         prendre(t, "reperes", "A1")
+    # LES EMOTIONS ET LE CARACTERE (theme illustre, 3 nov. 2026) : les phrases de la
+    # decouverte, a la variante pres (enfadado / enojado).
+    for t in manifest_de.emociones_textes(variante):
+        prendre(t, "emociones", "A1")
     return out
 
 
