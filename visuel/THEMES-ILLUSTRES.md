@@ -94,10 +94,14 @@ téléphone. Quand il n'y a pas de voix. ») : une seule fonction pour tous les 
   variante, jamais une voix fantaisie de `VOIX_A_FUIR`) ;
 - la page sait **avant de jouer** quels textes ont un fichier (`themes/sons.json`) : sur iPhone, `play()` et
   `speak()` doivent partir dans le geste ; attendre l'échec d'un fichier ferait taire la page ;
-- ce qu'on dit : dans la découverte, la fiche ou le mot touché ; **après une réponse, le mot clé** à la forme du
-  corpus (« la tía », « die Tante », « alto ») — jamais toute la phrase fabriquée, qui ne s'enregistre pas (des
-  milliers de combinaisons), et qu'on ne fait pas dire au téléphone pour ne pas mêler deux voix ;
-- chaque page expose `textesAVoix()` : tout ce qu'elle peut dire. `python visuel/voix_themes.py` le relève
+- ce qu'on dit : dans la découverte, la fiche ou le mot touché ; **après une réponse, la phrase affichée EN
+  ENTIER** (Jacques, 3 nov. : « Oui, partout », règle de TOUS les thèmes) — la phrase juste de la question
+  (`juger(ok, bonne, phrase)` la reçoit et la dit), sinon le mot clé à la forme du corpus (« la tía », « alto ») ;
+  une flèche de paire (« el tío → la tía ») se dit comme une virgule. Le fichier enregistré s'il existe pour ce
+  texte exact, sinon la voix du téléphone : ces phrases se fabriquent depuis les données, beaucoup n'ont pas encore
+  de fichier, et leur enregistrement attend l'accord de Jacques ;
+- chaque page expose `textesAVoix()` : les fiches et les mots ; `python visuel/voix_themes.py` les relève, **joue
+  des parties** (`PARTIES_VOIX`, 150) pour relever les phrases dites après les réponses, et le tout
   (→ `visuel/<thème>/voix.json`, que lisent `audio/manifest.py` et `audio/manifest_es.py`, source `<thème>`),
   écrit `themes/sons.json` et chiffre ce qui manque. Un texte à chiffres demande sa lecture en lettres dans
   `audio/lectures/<langue>.json` (« Tiene setenta y nueve años. »).
