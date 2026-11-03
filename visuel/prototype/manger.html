@@ -149,6 +149,7 @@ const TEXTES = {
   sabor:     {fr:"Quel goût ça a ?", en:"What does it taste like?", tr:"Tadı nasıl?", uk:"Який це має смак?", fa:"چه مزه‌ای دارد؟", ar:"ما طعمه؟", pt:"Que gosto tem?", pl:"Jaki to ma smak?", ru:"Какой у этого вкус?", de:"Wie schmeckt das?"},
   dice:      {fr:"Regarde le visage : que dit cette personne ?", en:"Look at the face: what does this person say?", tr:"Yüze bak: bu kişi ne diyor?", uk:"Подивися на обличчя: що каже ця людина?", fa:"به چهره نگاه کن: این شخص چه می‌گوید؟", ar:"انظر إلى الوجه: ماذا يقول هذا الشخص؟", pt:"Olhe o rosto: o que esta pessoa diz?", pl:"Spójrz na twarz: co mówi ta osoba?", ru:"Посмотри на лицо: что говорит этот человек?", de:"Sieh dir das Gesicht an: Was sagt diese Person?"},
   cantidad:  {fr:"Regarde l'image : quelle quantité ?", en:"Look at the picture: what quantity?", tr:"Resme bak: ne kadar?", uk:"Подивися на зображення: яка кількість?", fa:"به تصویر نگاه کن: چه مقدار؟", ar:"انظر إلى الصورة: ما الكمية؟", pt:"Olhe a imagem: que quantidade?", pl:"Spójrz na obrazek: jaka ilość?", ru:"Посмотри на картинку: какое количество?", de:"Sieh dir das Bild an: Welche Menge?"},
+  unidad:    {fr:"Lis la liste de courses et complète avec la bonne unité.", en:"Read the shopping list and fill in the right unit.", tr:"Alışveriş listesini oku ve doğru birimi yaz.", uk:"Прочитай список покупок і встав правильну одиницю.", fa:"فهرست خرید را بخوان و واحد درست را بگذار.", ar:"اقرأ قائمة المشتريات وأكمل بالوحدة الصحيحة.", pt:"Leia a lista de compras e complete com a unidade certa.", pl:"Przeczytaj listę zakupów i uzupełnij właściwą jednostką.", ru:"Прочитай список покупок и вставь нужную единицу.", de:"Lies die Einkaufsliste und ergänze die richtige Einheit."},
   lista:     {fr:"Lis la liste de courses : comment le dit-on ?", en:"Read the shopping list: how do you say it?", tr:"Alışveriş listesini oku: nasıl söylenir?", uk:"Прочитай список покупок: як це сказати?", fa:"فهرست خرید را بخوان: چطور گفته می‌شود؟", ar:"اقرأ قائمة المشتريات: كيف يُقال ذلك؟", pt:"Leia a lista de compras: como se diz?", pl:"Przeczytaj listę zakupów: jak to powiedzieć?", ru:"Прочитай список покупок: как это сказать?", de:"Lies die Einkaufsliste: Wie sagt man das?"},
   cafeDit:   {fr:"Au café : que dit-on à ce moment-là ?", en:"At the café: what do people say at this moment?", tr:"Kafede: bu anda ne denir?", uk:"У кав'ярні: що кажуть у цю мить?", fa:"در کافه: در این لحظه چه می‌گویند؟", ar:"في المقهى: ماذا يُقال في هذه اللحظة؟", pt:"No café: o que se diz neste momento?", pl:"W kawiarni: co się mówi w tej chwili?", ru:"В кафе: что говорят в этот момент?", de:"Im Café: Was sagt man in diesem Moment?"},
   cafeFait:  {fr:"Au café : que se passe-t-il ?", en:"At the café: what is happening?", tr:"Kafede: ne oluyor?", uk:"У кав'ярні: що відбувається?", fa:"در کافه: چه اتفاقی می‌افتد؟", ar:"في المقهى: ماذا يحدث؟", pt:"No café: o que está acontecendo?", pl:"W kawiarni: co się dzieje?", ru:"В кафе: что происходит?", de:"Im Café: Was passiert?"},
@@ -211,6 +212,7 @@ const ES = {
     return cuenta ? s + " " + (qui.length > 1 ? "piden" : "pide") + " la cuenta: " + liste(items, "es") + ". ¿Cuánto es?" : s + " " + v + " " + liste(items, "es") + ". ¿Cuánto es?"; },
   cuesta: it => "¿Cuánto cuesta " + it.un + "?",
   total: p => "Son " + prix(p) + ".", seul: (it, p) => maj(it.un) + " cuesta " + prix(p) + ".",
+  totalDit: p => "Son " + prixEnLettres(p) + ".", seulDit: (it, p) => maj(it.un) + " cuesta " + prixEnLettres(p) + ".",
   et: " y "
 };
 const DE = {
@@ -245,6 +247,7 @@ const DE = {
     return cuenta ? s + " " + (qui.length > 1 ? "möchten" : "möchte") + " die Rechnung: " + liste(items, "de") + ". Was macht das?" : s + " " + (qui.length > 1 ? "nehmen" : "nimmt") + " " + liste(items, "de") + ". Was macht das?"; },
   cuesta: it => "Was kostet " + it.nom + "?",
   total: p => "Das macht " + prix(p) + ".", seul: (it, p) => maj(it.nom) + " kostet " + prix(p) + ".",
+  totalDit: p => "Das macht " + prixEnLettres(p) + ".", seulDit: (it, p) => maj(it.nom) + " kostet " + prixEnLettres(p) + ".",
   et: " und "
 };
 const L = APPRENDRE === "de" ? DE : ES;
@@ -254,8 +257,25 @@ function liste(items, l){
   return t.length < 2 ? t[0] : t.slice(0, -1).join(", ") + (l === "de" ? " und " : " y ") + t[t.length - 1];
 }
 
-// ---------- les prix : « 4,90 € » ----------
+// ---------- les prix : « 4,90 € » a l'ecran, en lettres dans la voix (regle du 28 oct. : les nombres se disent) ----------
 const prix = c => Math.floor(c / 100) + "," + String(c % 100).padStart(2, "0") + " €";
+const ES_N = ["cero", "un", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce", "quince",
+              "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte", "veintiún", "veintidós", "veintitrés", "veinticuatro", "veinticinco",
+              "veintiséis", "veintisiete", "veintiocho", "veintinueve"];
+const ES_D = {3: "treinta", 4: "cuarenta", 5: "cincuenta", 6: "sesenta", 7: "setenta", 8: "ochenta", 9: "noventa"};
+const DE_N = ["null", "ein", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwölf", "dreizehn", "vierzehn",
+              "fünfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn"];
+const DE_D = {2: "zwanzig", 3: "dreißig", 4: "vierzig", 5: "fünfzig", 6: "sechzig", 7: "siebzig", 8: "achtzig", 9: "neunzig"};
+function nombre(n, l){
+  if (l === "es"){ if (n < 30) return ES_N[n]; const d = Math.floor(n / 10), u = n % 10; return ES_D[d] + (u ? " y " + (u === 1 ? "un" : ES_N[u]) : ""); }
+  if (n < 20) return DE_N[n]; const d = Math.floor(n / 10), u = n % 10; return (u ? (u === 1 ? "ein" : DE_N[u]) + "und" : "") + DE_D[d];
+}
+// es : « cuatro euros con noventa », « un euro con veinte » ; de : « vier Euro neunzig », « ein Euro zwanzig »
+function prixEnLettres(c){
+  const e = Math.floor(c / 100), ct = c % 100;
+  if (APPRENDRE === "es") return nombre(e, "es") + (e === 1 ? " euro" : " euros") + (ct ? " con " + nombre(ct, "es").replace(/ un$/, " uno").replace(/^un$/, "uno") : "");
+  return nombre(e, "de") + " Euro" + (ct ? " " + nombre(ct, "de").replace(/^ein$/, "eins") : "");
+}
 
 // ---------- la traduction dans la langue d'interface (Jacques, 3 nov. 2026) ----------
 // Sous la phrase de la decouverte, et APRES la reponse, sous la phrase juste -- jamais avant, elle donnerait la
@@ -339,15 +359,27 @@ const traduction = t => '<span class="trad" dir="auto">' + t + '</span>';
 const img = id => "manger/" + id + ".webp";
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 // LA VOIX (themes/voix.js) : le fichier enregistre s'il existe, sinon la voix du telephone. Dans la decouverte, la
-// fiche touchee ; apres une reponse, le MOT CLE a la forme du corpus (« la cuenta », « das Kilo », « ácido ») --
-// jamais la phrase fabriquee (des milliers de combinaisons : elle ne s'enregistre pas, et le telephone ne la dit pas
-// pour ne pas meler deux voix).
+// fiche touchee ; apres une reponse, LA PHRASE AFFICHEE, EN ENTIER (Jacques, 3 nov. 2026, « Oui, partout », comme
+// Decrire depuis la v1087) : « A Carmen no le gusta el limón. », « Una botella de agua. », « La cuenta, por favor. ».
+// Une phrase a prix se dit en lettres (« Son cuatro euros con noventa. ») : le telephone hacherait « 4,90 € ».
 let dire = texte => { if (texte) Voix.dire(latam(texte)); };
 const motCle = m => !m ? null : (m.genre ? m.genre + " " : "") + m.mot;
-// tout ce que la page peut dire : l'inventaire des voix a enregistrer (visuel/voix_themes.py)
+// TOUT CE QUE LA PAGE PEUT DIRE, pour l'inventaire des voix a enregistrer (visuel/voix_themes.py) : la decouverte et
+// chaque phrase juste qu'une question peut afficher. Sauf les phrases a prix (la carte, l'addition) : des centaines
+// de totaux, qui restent a la voix du telephone, lus en lettres.
 function textesAVoix(){
-  const ph = D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
-  return Object.values(ph).map(x => x.texte).concat(motsDuTheme().map(motCle));
+  const ph = D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"], out = Object.values(ph).map(x => x.texte);
+  GOUTS().forEach(g => {
+    out.push(L.aime(g), L.dit(g.a, g.r), APPRENDRE === "es" ? nom(g.p) + " dice: «" + L.dit(g.a, g.r) + "»" : nom(g.p) + " sagt: „" + L.dit(g.a, g.r) + "“");
+    if (APPRENDRE === "de") out.push(DE.schmecktPhrase(g), DE.mag(g));
+    const s = saveurDe(g.a);
+    if (s) out.push(L.saveur(g.a), APPRENDRE === "es" ? nom(g.p) + " prueba algo " + D.saveurs[s].es[0] + "." : nom(g.p) + " probiert etwas " + D.saveurs[s].etwas + ".");
+  });
+  QTES().forEach(q => out.push(maj(L.np(q.c, q.d)) + "."));
+  D.liste[APPRENDRE].forEach(x => out.push(x[1], maj(x[1]) + "."));
+  CAFE().forEach(m => out.push(m[APPRENDRE].dit, m[APPRENDRE].fait));
+  Object.keys(D.roles).forEach(p => { const r = D.roles[p][APPRENDRE]; if (r) out.push(L.rol(p).replace("___", r.genre + " " + r.mot)); });
+  return [...new Set(out.filter(Boolean).map(latam))];
 }
 
 // ---------- utilitaires ----------
@@ -364,7 +396,8 @@ let file = [], rang = 0, bons = 0, repondu = false;
 // LE MOT DE LA QUESTION (regle 3 : « un mot appris compte partout ») : juger() l'envoie, l'app fait avancer sa carte.
 // « sens » : rico est « delicieux » ici, pas « riche » (visuel/THEMES-ILLUSTRES.md).
 let motQ = null;
-function juger(ok, bonneTexte, phrase){
+// phrase : la phrase juste affichee sous la reponse ; lu : sa lecture en lettres quand elle a un prix
+function juger(ok, bonneTexte, phrase, lu){
   if (repondu) return; repondu = true;
   if (ok) bons++;
   parler("exercice", {juste: ok}); if (ok) parler("bonne");
@@ -377,7 +410,7 @@ function juger(ok, bonneTexte, phrase){
   // LE MOT CHOISI, quand il est faux (Jacques, 3 nov. : « quand je dis le mauvais, on devrait avoir l'affichage
   // traduit aussi ») : sa traduction, seulement quand elle est sure (TRAD_CHOIX, posee par la sorte)
   if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad + '</span>');
-  Voix.dire(latam(motCle(motQ)));
+  dire(lu || phrase || bonneTexte);
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
 // TRAD_CHOIX : {option: sa traduction dans la langue d'interface}, pose par la sorte quand la traduction est sure (une
@@ -649,6 +682,28 @@ const EX = {
     boutons($("choix"), options(rep, faux.map(latam), 3), rep, ok => juger(ok, rep, null));
     return true;
   },
+  // l'unite a completer : « 200 g queso » -> « doscientos ___ de queso » (gramos / kilos / litros) ; « zweihundert ___
+  // Käse » (Gramm / Kilo / Liter / Pfund). Le nombre reste celui de la ligne : seule l'unite change.
+  unidad(w){
+    if (w && !w.u) return false;
+    const FORMES = APPRENDRE === "es" ? [["kilo", "kilos"], ["gramo", "gramos"], ["litro", "litros"]]
+                                      : [["Kilo", "Kilo"], ["Gramm", "Gramm"], ["Liter", "Liter"], ["Pfund", "Pfund"], ["Packung", "Packungen"]];
+    const l = D.liste[APPRENDRE].filter(x => !w || x[2] === w.u); if (!l.length) return false;
+    const x = hasard(l), [ecrit, dit, u] = x, mots = dit.split(" ");
+    const i = mots.findIndex(m => FORMES.some(f => f.includes(m))); if (i < 0) return false;
+    const f = FORMES.find(f => f.includes(mots[i])), pl = f[1] === mots[i] && f[0] !== f[1] ? 1 : 0;
+    // l'article allemand (ein / eine) ne va qu'avec son unite : « eine Packung », « ein Kilo » -- pas de leurre qui jure
+    const art = APPRENDRE === "de" && i > 0 ? mots[i - 1] : null;
+    const va = g => !art || !/^ein(e)?$/.test(art) || (art === "eine") === (g[0] === "Packung");
+    const rep = mots[i], leurres = FORMES.filter(g => g !== f && va(g)).map(g => g[pl] || g[0]);
+    if (!leurres.length) return false;
+    motQ = w || {mot: u, genre: genreUnite(u)}; sensQ = {liste: x}; vuQ = null;
+    const phrase = mots.map((m, k) => k === i ? "___" : m).join(" ");
+    ecranListe("unidad", ecrit, avecTrou(phrase));
+    $("zone").querySelectorAll(".enonce")[1].innerHTML = cible(avecTrou(latam(phrase)));
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, maj(latam(dit)) + "."); });
+    return true;
+  },
   // au cafe : « ¿Qué dice Tomás? » La cuenta, por favor... ; « ¿Qué pasa? » Tomás pide la cuenta... ; « Javier es ___. »
   cafe(w){
     if (w && !w.cafe && !w.role) return false;
@@ -694,7 +749,7 @@ const EX = {
       motQ = w || {mot: it.mot, genre: it.genre}; sensQ = {cuesta: {cle: it.cle, p: it.prix}};
       ecran("cuenta", ardoise(), latam(L.cuesta(it)), true);
       const rep = prix(it.prix);
-      boutons($("choix"), options(rep, carte.filter(x => x.prix !== it.prix).map(x => prix(x.prix)), 3), rep, ok => juger(ok, rep, latam(L.seul(it, it.prix))));
+      boutons($("choix"), options(rep, carte.filter(x => x.prix !== it.prix).map(x => prix(x.prix)), 3), rep, ok => juger(ok, rep, latam(L.seul(it, it.prix)), latam(L.seulDit(it, it.prix))));
       return true;
     }
     const nbGens = Math.random() < 0.4 ? 2 : 1, qui = melanger(GENS).slice(0, nbGens);
@@ -705,7 +760,7 @@ const EX = {
     ecran("cuenta", ardoise(), latam(L.commande(qui, items, cuenta)));
     const rep = prix(total);
     const leurres = [50, -50, 100, -100, 20, -20, 30].map(d => total + d).filter(c => c > 0).map(prix);
-    boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(ok, rep, L.total(total)));
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(ok, rep, L.total(total), L.totalDit(total)));
     return true;
   },
   // VRAI OU FAUX, dans tous les domaines du theme : un gout (« A Marta le gusta el café. »), une saveur, ce qu'on
@@ -724,7 +779,7 @@ const EX = {
       if (!q) continue;
       if (q.ecran) q.ecran(); else ecran("vraifaux", q.image, q.phrase, true);
       const rep = q.vrai ? L.vrai : L.faux;
-      boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, q.juste));
+      boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, q.juste, q.lu));
       return true;
     }
     return false;
@@ -783,7 +838,7 @@ const VF = {
     const carte = CARTE(), it = w && w.m ? carte.find(x => x.cle === w.m) : hasard(carte); if (!it) return false;
     motQ = w || {mot: it.mot, genre: it.genre}; sensQ = {cuesta: {cle: it.cle, p: it.prix}}; vuQ = null;
     const p = vrai ? it.prix : hasard(carte.filter(x => x.prix !== it.prix)).prix;
-    return {ecran: () => ecran("vraifaux", ardoise(), latam(L.seul(it, p)), true), juste: latam(L.seul(it, it.prix)), vrai};
+    return {ecran: () => ecran("vraifaux", ardoise(), latam(L.seul(it, p)), true), juste: latam(L.seul(it, it.prix)), lu: latam(L.seulDit(it, it.prix)), vrai};
   },
   // un moment au cafe : « Tomás pide la cuenta. » -- le faux est un autre moment (jamais l'autre main levee)
   cafe(w, vrai){
@@ -872,7 +927,9 @@ function montrer(){
   const essai = (w, strict) => {
     const autres = melanger(SORTES.filter(x => x !== derniereSorte));
     for (const so of autres){
-      for (let n = 0; n < 25; n++){
+      // 60 essais (25 dans le modele) : les unites et les mots du cafe ont peu de questions, et une partie de 20 doit
+      // trouver une question neuve d'une autre sorte avant de se rabattre sur la meme
+      for (let n = 0; n < 60; n++){
         motQ = null; vuQ = null; sensQ = null; TRAD_CHOIX = null; sorteCourante = so;
         if (!EX[so](w)) break;
         if (!vus.has(cleQuestion())) return so;
