@@ -12,6 +12,7 @@ L'app a *beaucoup* changé ces derniers temps. *Visuellement*, elle s'est beauco
 🗣️ Une *voix* lit la phrase après chaque réponse
 🙏 Ce serait vraiment précieux que chacun prenne quelques minutes pour se connecter : votre participation compte beaucoup pour le test.
 🎁 Pour vous remercier, ceux qui participent au test pourront continuer à utiliser l'app *gratuitement* après le lancement.
+⏳ Il ne reste que quelques jours : le test devrait normalement se terminer d'ici le *9 novembre*.
 💬 Et dites-moi ce que vous pensez des changements : ce qui vous plaît, ce qui vous gêne, ce qui manque. Répondez-moi ici, ou écrivez-le dans la carte « Dis-nous ce qui t'aiderait » des réglages.
 👉 *wortando.com* — Merci, et bonne pratique ! 😊
 
@@ -25,6 +26,7 @@ The app has changed *a lot* lately. It *looks* much better, and there's new stuf
 🗣️ A *voice* reads the sentence after each answer
 🙏 It would really help if everyone could take a few minutes to log in: your participation means a lot for the test.
 🎁 As a thank-you, those who take part in the test will be able to keep using the app *for free* after the launch.
+⏳ Only a few days left: the test should normally be finished by *November 9*.
 💬 And tell me what you think of the changes: what you like, what bothers you, what's missing. Reply here, or write it in the "Tell us what would help you" box in the settings.
 👉 *wortando.com* — Thank you, and happy practising! 😊
 
@@ -38,6 +40,7 @@ Uygulama son zamanlarda *çok* değişti. *Görsel olarak* çok daha güzel oldu
 🗣️ Her cevaptan sonra bir *ses* cümleyi okuyor
 🙏 Herkesin giriş yapmak için birkaç dakika ayırması çok değerli olur: katılımınız test için çok önemli.
 🎁 Teşekkür olarak, teste katılanlar uygulamayı lansmandan sonra da *ücretsiz* kullanmaya devam edebilecek.
+⏳ Sadece birkaç gün kaldı: test normalde *9 Kasım*'a kadar tamamlanmış olacak.
 💬 Değişiklikler hakkında ne düşündüğünüzü de bana yazın: neyi sevdiniz, ne rahatsız etti, ne eksik. Buradan cevap verin ya da ayarlardaki "Sana ne yardımcı olurdu?" kutusuna yazın.
 👉 *wortando.com* — Teşekkürler, iyi çalışmalar! 😊
 
@@ -51,6 +54,7 @@ Uygulama son zamanlarda *çok* değişti. *Görsel olarak* çok daha güzel oldu
 🗣️ بعد از هر جواب، یک *صدا* جمله را می‌خواند
 🙏 خیلی ارزشمند است اگر هر کس چند دقیقه وقت بگذارد و وارد شود: مشارکت شما برای این آزمایش خیلی مهم است.
 🎁 برای تشکر، کسانی که در این آزمایش شرکت می‌کنند بعد از عرضهٔ برنامه هم می‌توانند *رایگان* از آن استفاده کنند.
+⏳ فقط چند روز مانده است: این آزمایش به‌طور معمول تا *۹ نوامبر* تمام می‌شود.
 💬 و به من بگویید دربارهٔ تغییرها چه فکر می‌کنید: چه چیزی را دوست دارید، چه چیزی اذیت‌تان می‌کند، چه چیزی کم است. همین‌جا جواب بدهید یا در کادر «بگو چه چیزی به تو کمک می‌کند» در تنظیمات بنویسید.
 👉 *wortando.com* — ممنون، و تمرین خوبی داشته باشید! 😊
 
@@ -64,6 +68,7 @@ Uygulama son zamanlarda *çok* değişti. *Görsel olarak* çok daha güzel oldu
 🗣️ Після кожної відповіді *голос* читає речення
 🙏 Буде дуже цінно, якщо кожен знайде кілька хвилин, щоб зайти: ваша участь дуже важлива для тестування.
 🎁 На знак подяки ті, хто бере участь у тестуванні, зможуть і далі користуватися застосунком *безкоштовно* після запуску.
+⏳ Залишилося лише кілька днів: тестування має завершитися приблизно до *9 листопада*.
 💬 І напишіть мені, що ви думаєте про зміни: що подобається, що заважає, чого бракує. Відповідайте тут або напишіть у полі «Скажи, що тобі допомогло б» у налаштуваннях.
 👉 *wortando.com* — Дякую, і гарної практики! 😊
 
@@ -77,6 +82,7 @@ O app mudou *muito* nos últimos tempos. *Visualmente* ficou bem melhor, e tem n
 🗣️ Uma *voz* lê a frase depois de cada resposta
 🙏 Seria muito valioso se cada um tirasse alguns minutos para entrar: a participação de vocês conta muito para o teste.
 🎁 Como agradecimento, quem participar do teste vai poder continuar usando o app *de graça* depois do lançamento.
+⏳ Faltam só alguns dias: o teste deve terminar, normalmente, até *9 de novembro*.
 💬 E me digam o que acharam das mudanças: o que vocês gostam, o que incomoda, o que falta. Respondam aqui ou escrevam no quadro "Conte para a gente o que ajudaria você" nas configurações.
 👉 *wortando.com* — Obrigado, e bons estudos! 😊
 
@@ -90,6 +96,7 @@ Die App hat sich in letzter Zeit *sehr* verändert. *Optisch* ist sie viel schö
 🗣️ Nach jeder Antwort liest eine *Stimme* den Satz vor
 🙏 Es wäre sehr wertvoll, wenn sich alle ein paar Minuten Zeit nehmen und sich anmelden: Eure Teilnahme ist für den Test sehr wichtig.
 🎁 Als Dankeschön können alle, die beim Test mitmachen, die App auch nach dem Start *kostenlos* weiter nutzen.
+⏳ Es sind nur noch wenige Tage: Der Test sollte normalerweise bis zum *9. November* abgeschlossen sein.
 💬 Und sagt mir, was ihr von den Änderungen haltet: was euch gefällt, was euch stört, was fehlt. Antwortet hier oder schreibt es in das Feld „Sag uns, was dir helfen würde" in den Einstellungen.
 👉 *wortando.com* — Danke, und viel Spaß beim Üben! 😊
 ```
