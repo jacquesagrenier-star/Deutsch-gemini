@@ -48,15 +48,21 @@ FAMILLE_DE = ["Vater", "Mutter", "Sohn", "Tochter", "Mann", "Frau", "Bruder", "S
 FAMILLE_ES = ["padre", "madre", "hijo", "hija", "marido", "mujer", "hermano", "hermana", "abuelo", "abuela", "nieto", "nieta", "tío", "tía",
               "sobrino", "sobrina", "primo", "prima", "suegro", "suegra", "yerno", "nuera", "cuñado", "cuñada"]
 DESC_DE_N = ["Brille", "Bart"]
-DESC_DE_A = ["schwarz", "braun", "blond", "rot", "glatt", "kurz", "lang", "grün", "blau", "dunkel", "grau", "schlank", "dick", "kräftig", "groß", "klein"]
+DESC_DE_A = ["schwarz", "braun", "blond", "rot", "glatt", "kurz", "lang", "grün", "blau", "dunkel", "grau", "schlank", "mollig", "kräftig", "groß", "klein"]
 DESC_ES_N = ["gafas", "gafas de sol", "barba", "bigote", "tatuaje"]
-DESC_ES_A = ["negro", "castaño", "rubio", "rojo", "liso", "rizado", "corto", "largo", "verde", "azul", "gris", "delgado", "gordo", "fuerte", "alto", "bajo", "pelirrojo", "calvo"]
+DESC_ES_A = ["negro", "castaño", "rubio", "rojo", "liso", "rizado", "corto", "largo", "verde", "azul", "gris", "delgado", "gordito", "fuerte", "alto", "bajo", "pelirrojo", "calvo"]
+
+# Le sens de la TAILLE d'une personne, la ou le corpus donne le sens general (3 nov. 2026, relecture qualite :
+# « büyük » et « великий » disent « gros, grand en volume », pas « de grande taille »). Le corpus garde son sens.
+SENS_TAILLE = {"groß": {"tr": "uzun boylu", "uk": "високий"}, "klein": {"tr": "kısa boylu", "uk": "невисокий"}}
 
 
 def main():
     fam = {"de": table(noms("themes.json"), LANGUES_DE, FAMILLE_DE), "es": table(noms("espanol/datos/temas.json"), LANGUES_ES, FAMILLE_ES)}
     desc = {"de": dict(table(noms("themes.json"), LANGUES_DE, DESC_DE_N), **table(adjectifs("adjectif.json"), LANGUES_DE, DESC_DE_A)),
             "es": dict(table(noms("espanol/datos/temas.json"), LANGUES_ES, DESC_ES_N), **table(adjectifs("espanol/datos/adjetivos.json"), LANGUES_ES, DESC_ES_A))}
+    for m, t in SENS_TAILLE.items():
+        desc["de"].setdefault(m, {}).update(t)
     for nom, d, voulus in (("familia", fam, {"de": FAMILLE_DE, "es": FAMILLE_ES}), ("descripcion", desc, {"de": DESC_DE_N + DESC_DE_A, "es": DESC_ES_N + DESC_ES_A})):
         for l in d:
             trouves = {k.split(" ", 1)[-1] for k in d[l]}

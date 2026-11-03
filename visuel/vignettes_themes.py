@@ -47,23 +47,28 @@ def pied(dossier, n):
 
 
 def famille_arbre():
-    """L'arbre : des visages ronds relies par des branches."""
+    """L'arbre : des visages ronds relies par des branches. Jacques, 3 nov. 2026 : « les images dans les tuiles
+    themes [...] sont completes » -- l'arbre ENTIER tient dans le cadre, avec de l'air tout autour : le feuillage,
+    le tronc jusqu'a son pied dans l'herbe, et chaque visage entier."""
     c = Image.new("RGB", (W, H), (240, 228, 210))
     d = ImageDraw.Draw(c)
-    vert = (122, 150, 96)
-    d.rounded_rectangle((W // 2 - 24, 330, W // 2 + 24, H), 18, fill=(150, 112, 78))
-    noeuds = {"Heinz": (225, 88), "Gisela": (375, 88), "Peter": (140, 245), "Sabine": (460, 245),
-              "Anna": (80, 410), "Jan": (300, 420), "Felix": (520, 410)}
+    vert, feuille = (122, 150, 96), (206, 222, 176)
+    # le sol, puis le tronc qui s'y plante, puis le feuillage (des ronds, a 18 px au moins des bords)
+    d.ellipse((150, 452, 450, 494), fill=(196, 208, 160))
+    d.polygon([(278, 330), (322, 330), (334, 472), (266, 472)], fill=(150, 112, 78))
+    d.polygon([(266, 472), (240, 482), (300, 476), (360, 482), (334, 472)], fill=(150, 112, 78))
+    for (x, y, r) in [(300, 196, 168), (160, 236, 132), (440, 236, 132), (300, 132, 108), (128, 296, 98), (472, 296, 98)]:
+        d.ellipse((x - r, y - r, x + r, y + r), fill=feuille)
+    noeuds = {"Heinz": (240, 104), "Gisela": (360, 104), "Peter": (170, 210), "Sabine": (430, 210),
+              "Anna": (120, 314), "Jan": (300, 318), "Felix": (480, 314)}
     liens = [("Heinz", "Peter"), ("Gisela", "Sabine"), ("Peter", "Anna"), ("Peter", "Jan"), ("Sabine", "Felix")]
-    for (x, y, r) in [(300, 230, 250), (130, 200, 150), (470, 200, 150), (300, 90, 140), (90, 370, 110), (510, 370, 110)]:
-        d.ellipse((x - r, y - r, x + r, y + r), fill=(206, 222, 176))
-    d.line([noeuds["Heinz"], noeuds["Gisela"]], fill=vert, width=10)
+    d.line([noeuds["Heinz"], noeuds["Gisela"]], fill=vert, width=9)
     for a, b in liens:
         xa, ya = noeuds[a]
         xb, yb = noeuds[b]
-        d.line([(xa, ya), (xa, (ya + yb) // 2), (xb, (ya + yb) // 2), (xb, yb)], fill=vert, width=10, joint="curve")
+        d.line([(xa, ya), (xa, (ya + yb) // 2), (xb, (ya + yb) // 2), (xb, yb)], fill=vert, width=9, joint="curve")
     for n, (x, y) in noeuds.items():
-        r = rond(visage("familia", n), 102 if n in ("Heinz", "Gisela") else 96, 6)
+        r = rond(visage("familia", n), 78, 5)
         c.paste(r, (x - r.size[0] // 2, y - r.size[1] // 2), r)
     return c
 
@@ -72,14 +77,16 @@ def decrire_toise():
     """La toise : les graduations en metres et trois tailles tres differentes."""
     c = Image.new("RGB", (W, H), (230, 238, 246))
     d = ImageDraw.Draw(c)
-    sol = H - 18
-    px_m = (sol - 26) / 2.0          # 2 m sur la hauteur
+    # de l'air tout autour du groupe (3 nov. 2026) : le sol remonte, les 2 m descendent sous le haut, et les
+    # graduations s'arretent a 16 px des bords au lieu de s'y perdre
+    sol = H - 34
+    px_m = (sol - 70) / 2.0          # 2 m sur la hauteur, a 70 px du haut
     for cm in range(0, 201, 10):
         y = sol - cm / 100 * px_m
         fort = cm % 50 == 0
-        d.line([(0, y), (W, y)], fill=(196, 212, 228) if not fort else (150, 176, 204), width=4 if fort else 2)
+        d.line([(16, y), (W - 16, y)], fill=(196, 212, 228) if not fort else (150, 176, 204), width=4 if fort else 2)
         if fort and cm:
-            d.text((14, y - 30), "%d,%02d" % (cm // 100, cm % 100) if cm % 100 else "%d m" % (cm // 100), font=F(26), fill=(90, 116, 146))
+            d.text((22, y - 30), "%d,%02d" % (cm // 100, cm % 100) if cm % 100 else "%d m" % (cm // 100), font=F(26), fill=(90, 116, 146))
     tailles = json.load(open(os.path.join(P, "descripcion", "personnages.json"), encoding="utf-8"))
     gens = [(n, tailles[n]["metres"]) for n in ("Carmen", "Mark", "Tomas")]
     ims = [pied("descripcion", n) for n, _ in gens]
@@ -95,16 +102,18 @@ def decrire_toise():
 def emotions_photomaton():
     """La planche de photomaton : Anna quatre fois, contente, surprise, fachee, triste. Une seule personne et quatre
     visages, deux par deux, comme les photos d'identite d'une cabine ; serre sur la tete (le ruban montre 66 px)."""
-    M = 14
+    M = 28                                         # les coins arrondis de la carte ne mordent pas les photos
     pw, ph = (W - 3 * M) // 2, (H - 3 * M) // 2
     c = Image.new("RGB", (W, H), (250, 249, 246))
     d = ImageDraw.Draw(c)
     for k, e in enumerate(["contento", "sorprendido", "enfadado", "triste"]):
         im = Image.open(os.path.join(P, "emociones", "Anna-" + e + ".webp")).convert("RGB")
         w, h = im.size
-        cw = round(w * 0.58)                       # serre sur la tete et le haut des epaules (session des emotions)
+        # la tete entiere, le menton et les epaules, avec de l'air au-dessus des cheveux (3 nov. 2026 : la coupe
+        # serree de la v1078 tranchait mentons et epaules)
+        cw = round(w * 0.80)
         ch = round(cw * ph / pw)
-        y0 = round(h * 0.07)
+        y0 = round(h * 0.04)
         im = im.crop(((w - cw) // 2, y0, (w + cw) // 2, y0 + ch)).resize((pw, ph), Image.LANCZOS)
         x, y = M + (k % 2) * (pw + M), M + (k // 2) * (ph + M)
         c.paste(im, (x, y))
