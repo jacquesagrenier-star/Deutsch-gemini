@@ -27,12 +27,15 @@ DOSSIER = os.path.join(os.path.expanduser("~"), ".wortando", "emociones", "img")
 # Les sources, en pied, 1536 x 2752 : le depot principal (Descripcion, Mark) et la famille.
 PRINCIPAL = "C:/Users/jacqu/OneDrive/Desktop/Mes Projets/DeutschAI"
 FAMILLE = "C:/Users/jacqu/.wortando/wt-themes/visuel/familia/img"
-SOURCES = {"Mark": PRINCIPAL + "/personnages/Mark.png", "Anna": FAMILLE + "/Anna-quotidien.png",
-           "Gisela": FAMILLE + "/Gisela.png", "Ben": FAMILLE + "/Ben.png"}
+SOURCES = {"Mark": PRINCIPAL + "/personnages/Mark.png", "Anna": FAMILLE + "/Anna-quotidien.png"}
+for n in ("Gisela", "Ben", "Heinz", "Peter", "Monika", "Sabine", "Frank", "Jan", "Katrin", "Lena", "Felix", "Sophie"):
+    SOURCES[n] = FAMILLE + "/" + n + ".png"
 for n in ("Carmen", "Diego", "Marta", "Javier", "Rosa", "Lucas", "Tomas", "Elena", "Ines", "Pablo"):
     SOURCES[n] = PRINCIPAL + "/visuel/descripcion/img/" + n + ".png"
 SEXE = {"Anna": "f", "Carmen": "f", "Gisela": "f", "Mark": "m", "Diego": "m", "Ben": "m", "Marta": "f", "Javier": "m",
-        "Rosa": "f", "Lucas": "m", "Tomas": "m", "Elena": "f", "Ines": "f", "Pablo": "m"}
+        "Rosa": "f", "Lucas": "m", "Tomas": "m", "Elena": "f", "Ines": "f", "Pablo": "m",
+        "Heinz": "m", "Peter": "m", "Monika": "f", "Sabine": "f", "Frank": "m", "Jan": "m", "Katrin": "f", "Lena": "f",
+        "Felix": "m", "Sophie": "f"}
 
 # Chaque emotion : ce que le visage doit montrer, sans equivoque (la peur n'est pas la surprise, l'inquietude n'est
 # pas la nervosite : chacune a son geste).
@@ -61,21 +64,58 @@ PORTRAITS = {
     "Mark":   ["sorprendido", "avergonzado", "cansado", "nervioso", "preocupado", "enfermo", "miedo"],
     "Diego":  ["enfadado", "contento", "miedo", "aburrido", "nervioso", "preocupado", "triste"],
     "Ben":    ["orgulloso", "aburrido", "cansado", "enfermo"],
+    # 3 nov., « Oui, vas-y » (Jacques) : deux visages de plus par emotion, une femme et un homme ; chaque emotion passe
+    # a cinq visages. Javier et non Lucas : ses lunettes de soleil cachent les yeux. Pas d'enfant dans les emotions fortes.
+    "Elena":  ["contento", "triste", "enfadado", "miedo"],
+    "Rosa":   ["sorprendido", "cansado", "aburrido", "nervioso"],
+    "Marta":  ["preocupado", "orgulloso", "avergonzado", "enfermo"],
+    "Tomas":  ["contento", "sorprendido", "nervioso", "avergonzado"],
+    "Pablo":  ["triste", "cansado", "orgulloso", "enfermo"],
+    "Javier": ["enfadado", "miedo", "aburrido", "preocupado"],
 }
-# Les traits, en paires de contraires ; la personne et la situation qui le montre sans un mot.
+# Les traits, en paires de contraires : pour chacun, les personnes et la situation qui le montre sans un mot. La
+# premiere est celle de la decouverte (ses phrases ont leur voix). 3 nov., deux de plus par trait (« Anna est
+# sympathique [...] revient tres souvent »), avec trois regles : jamais un trait et son contraire pour la meme
+# personne, ni deux traits voisins (sympathique et poli, antipathique et grossier, paresseux et desordonne) ; et AUCUN
+# trait negatif pour la famille d'Anna (recommandation du chef d'orchestre, appliquee le 3 nov.) : radin, paresseux,
+# grossier, desordonne et antipathique vont aux douze de Descripcion.
 TRAITS = {
-    "generoso":     ("Marta", "In a cafe, she happily pays the bill for the whole table of friends, handing her card to the waiter while the friends thank her, smiling."),
-    "tacano":       ("Javier", "At a restaurant table with friends, the bill arrives: he hides his wallet behind his back and looks away, pretending not to see the bill, while the friends look at him annoyed."),
-    "trabajador":   ("Rosa", "In an office in the evening, the window dark outside, she works hard and concentrated at her desk covered with folders, typing on a laptop, a cup of coffee beside her; the other desks are empty."),
-    "perezoso":     ("Lucas", "In the middle of the day, he lies lazily on a sofa in a living room watching television, a bag of crisps on his belly, while a big pile of dirty dishes and an overflowing laundry basket wait next to him."),
-    "extrovertido": ("Tomas", "At a lively party, he stands in the middle of a group of people, telling a story with big gestures and laughing loudly; everybody around him laughs too."),
-    "timido":       ("Elena", "At a lively party, she stands alone in a corner, half hidden behind a plant, holding her glass in both hands close to her chest and looking at the floor, while other guests chat in the background."),
-    "educado":      ("Mark", "At the entrance of a building, he holds the door open with a friendly smile for an elderly lady with a shopping bag who walks in and thanks him."),
-    "grosero":      ("Ines", "In a queue at a bakery counter, she pushes rudely in front of the other customers with her elbow, talking loudly on her phone, while the people in the queue look at her shocked."),
-    "ordenado":     ("Carmen", "She sits at a perfectly tidy desk in a bright study: pencils lined up, folders neatly stacked and labelled, shelves in perfect order behind her; she smiles, satisfied."),
-    "desordenado":  ("Diego", "He stands in the middle of a very messy bedroom, scratching his head: clothes all over the floor and the unmade bed, open drawers, books and empty cups everywhere."),
-    "simpatico":    ("Anna", "On a city street, she kindly helps a lost tourist couple, pointing the way on their paper map with a warm, friendly smile."),
-    "antipatico":   ("Pablo", "On a city street, a young woman asks him a question politely; he turns his back on her with a cold, unfriendly face and his arms crossed."),
+    "generoso":     [("Marta", "In a cafe, she happily pays the bill for the whole table of friends, handing her card to the waiter while the friends thank her, smiling."),
+                     ("Heinz", "In a sunny park, the elderly man happily buys two ice-cream cones from an ice-cream cart and hands them to a small boy and a little girl, who smile up at him delighted."),
+                     ("Monika", "At the door of her flat, she hands a big homemade cake and a full bag of groceries to a young neighbour, smiling warmly; the neighbour is touched and thanks her.")],
+    "tacano":       [("Javier", "At a restaurant table with friends, the bill arrives: he hides his wallet behind his back and looks away, pretending not to see the bill, while the friends look at him annoyed."),
+                     ("Lucas", "On a sofa with friends watching a film, he hides a big bag of crisps behind his back and shakes his head while a friend reaches out asking for some."),
+                     ("Elena", "In an office, colleagues collect money in an envelope for a birthday present; she clutches her purse to her chest and shakes her head, refusing to give anything, while a colleague holds out the envelope, disappointed.")],
+    "trabajador":   [("Rosa", "In an office in the evening, the window dark outside, she works hard and concentrated at her desk covered with folders, typing on a laptop, a cup of coffee beside her; the other desks are empty."),
+                     ("Sabine", "Late in the evening at a kitchen table under a lamp, she corrects a tall pile of school exercise books with a red pen, concentrated, a cup of tea beside her; the window behind her is dark."),
+                     ("Peter", "In a garden under the summer sun, he digs a vegetable bed with a spade, sweating, sleeves rolled up, a wheelbarrow full of soil next to him.")],
+    "perezoso":     [("Lucas", "In the middle of the day, he lies lazily on a sofa in a living room watching television, a bag of crisps on his belly, while a big pile of dirty dishes and an overflowing laundry basket wait next to him."),
+                     ("Tomas", "In a garden, he lies lazily in a hammock with his eyes half closed and a drink in his hand, while in the background other people carry boxes and rake leaves."),
+                     ("Javier", "In an office, he leans far back in his chair with his feet on the desk, yawning and looking at his phone, while a big pile of untouched files waits on the desk and a colleague walks past carrying many folders.")],
+    "extrovertido": [("Tomas", "At a lively party, he stands in the middle of a group of people, telling a story with big gestures and laughing loudly; everybody around him laughs too."),
+                     ("Sophie", "At a lively party in a living room, she dances in the middle of the room with her arms up, laughing, and pulls other guests in to dance with her."),
+                     ("Gisela", "At an outdoor market stall, the elderly woman chats cheerfully with the vendor and two other shoppers at the same time, laughing and gesturing, everyone smiling at her.")],
+    "timido":       [("Elena", "At a lively party, she stands alone in a corner, half hidden behind a plant, holding her glass in both hands close to her chest and looking at the floor, while other guests chat in the background."),
+                     ("Ben", "At the door of a bright school classroom, the boy stands half hidden behind the door frame, looking shyly at the floor and holding the straps of his school bag with both hands, while other children play inside."),
+                     ("Felix", "In a meeting room, all his colleagues turn to look at him because it is his turn to speak; he does not smile: he blushes bright red, hunches his shoulders, hides half of his face behind his sheet of paper and looks down at the table, very uncomfortable.")],
+    "educado":      [("Mark", "At the entrance of a building, he holds the door open with a friendly smile for an elderly lady with a shopping bag who walks in and thanks him."),
+                     ("Jan", "In a tram, he stands up and kindly offers his seat to an elderly woman with a walking stick, gesturing politely toward the seat; she smiles and thanks him."),
+                     ("Lena", "At a bakery counter, she takes her bag of bread rolls from the baker with a warm smile, saying thank you with her hand on her heart; the baker smiles back.")],
+    "grosero":      [("Ines", "In a queue at a bakery counter, she pushes rudely in front of the other customers with her elbow, talking loudly on her phone, while the people in the queue look at her shocked."),
+                     ("Diego", "In a cinema during a film, he talks loudly on his phone with his feet on the seat in front of him, while the other spectators turn around and glare at him, annoyed."),
+                     ("Rosa", "On a city pavement, she drops an empty coffee cup and a paper bag on the ground right next to a bin without looking, while a passer-by stares at her, shocked.")],
+    "ordenado":     [("Carmen", "She sits at a perfectly tidy desk in a bright study: pencils lined up, folders neatly stacked and labelled, shelves in perfect order behind her; she smiles, satisfied."),
+                     ("Katrin", "In a bedroom, she stands smiling in front of a perfectly organised open wardrobe: clothes folded in neat piles by colour, shirts on identical hangers, labelled boxes."),
+                     ("Frank", "In a garage, he hangs the last tool on a perfectly organised wall where every tool has its outlined place, with labelled boxes on the shelves and a clean floor; he looks satisfied.")],
+    "desordenado":  [("Diego", "He stands in the middle of a very messy bedroom, scratching his head: clothes all over the floor and the unmade bed, open drawers, books and empty cups everywhere."),
+                     ("Ines", "At a cafe table, she has emptied her overflowing handbag looking for her keys: papers, make-up, receipts, sweets, cables and coins are spread everywhere in a mess, and she rummages through it, confused."),
+                     ("Mark", "In a hotel room, he sits on a hugely overflowing suitcase trying to close it, with clothes, shoes and cables sticking out on all sides and more clothes thrown on the bed and the floor.")],
+    "simpatico":    [("Anna", "On a city street, she kindly helps a lost tourist couple, pointing the way on their paper map with a warm, friendly smile."),
+                     ("Peter", "On the doorstep of his house, he warmly welcomes a new young neighbour, shaking her hand with a big friendly smile and chatting cheerfully."),
+                     ("Felix", "In a cafe, he laughs warmly with an elderly lady at the next table who is showing him photos on her phone; both smile, a friendly chat.")],
+    "antipatico":   [("Pablo", "On a city street, a young woman asks him a question politely; he turns his back on her with a cold, unfriendly face and his arms crossed."),
+                     ("Marta", "At the reception desk of an office, a visitor asks her something politely; she does not look up from her screen, with a cold, bored, unfriendly face, and raises one hand to say 'not now'."),
+                     ("Carmen", "In the stairwell of an apartment building, a smiling neighbour waves and says hello to her; she frowns, rolls her eyes and turns her head away from him with a cold, sour, unfriendly face, refusing to answer.")],
 }
 MEME = ("The same person as in the reference picture: exactly the same face, the same age, the same hair, the same skin, "
         "the same glasses or beard if any, the same body and the same clothes. ")
@@ -93,9 +133,33 @@ def images():
     for p, emos in PORTRAITS.items():
         for e in emos:
             out[p + "-" + e] = (p, MEME + PORTRAIT + EMOTIONS[e], "1:1")
-    for t, (p, scene) in TRAITS.items():
-        out["trait-" + t] = (p, MEME + SITUATION + scene, "4:3")
+    for t, scenes in TRAITS.items():
+        for p, scene in scenes:
+            out["trait-" + t + "-" + p] = (p, MEME + SITUATION + scene, "4:3")
     return out
+
+
+def verifier_regles():
+    """Jamais un trait et son contraire, ni deux traits voisins, pour la meme personne ; rien de negatif pour la famille."""
+    voisins = {("simpatico", "educado"), ("simpatico", "generoso"), ("antipatico", "grosero"), ("perezoso", "desordenado")}
+    famille = {"Heinz", "Gisela", "Peter", "Monika", "Sabine", "Frank", "Jan", "Katrin", "Lena", "Felix", "Sophie", "Ben"}
+    negatifs = {"tacano", "perezoso", "grosero", "desordenado", "antipatico"}
+    par = {}
+    for t, scenes in TRAITS.items():
+        for p, _ in scenes:
+            par.setdefault(p, set()).add(t)
+    fautes = []
+    for p, ts in par.items():
+        for t in ts:
+            if MOTS_TRAITS[t]["contraire"] in ts:
+                fautes.append("%s : %s et son contraire" % (p, t))
+            if p in famille and t in negatifs:
+                fautes.append("%s (famille) : %s" % (p, t))
+        fautes += ["%s : %s et %s, voisins" % (p, a, b) for a, b in voisins if a in ts and b in ts]
+    for t, scenes in TRAITS.items():
+        if len({p for p, _ in scenes}) != len(scenes):
+            fautes.append("%s : deux fois la meme personne" % t)
+    return fautes
 
 
 # LES MOTS, la seule source : la page les lit dans emociones.json (questions et decouverte), les inventaires des voix
@@ -105,7 +169,9 @@ def images():
 MOTS_EMOTIONS = {
     "contento":    {"es": ["contento", "contenta"], "de": "glücklich"},
     "triste":      {"es": ["triste", "triste"], "de": "traurig"},
-    "enfadado":    {"es": ["enfadado", "enfadada"], "latam": ["enojado", "enojada"], "de": "sauer"},
+    # de : « wütend » et non « sauer » -- au corpus, sauer est « acide » (Die Zitrone ist sauer), et la reponse aurait
+    # fait avancer la carte du gout (3 nov.)
+    "enfadado":    {"es": ["enfadado", "enfadada"], "latam": ["enojado", "enojada"], "de": "wütend"},
     "miedo":       {"es": ["miedo", "miedo"], "de": "Angst", "tener": True},
     "sorprendido": {"es": ["sorprendido", "sorprendida"], "de": "überrascht"},
     "cansado":     {"es": ["cansado", "cansada"], "de": "müde"},
@@ -165,17 +231,47 @@ def ecrire_json():
         for e, p in DECOUVERTE.items():
             t = phrase(langue, p, MOTS_EMOTIONS[e], True)
             dec[langue][e] = {"texte": t, "son": identifiant(t)}
-        for t_id, (p, _) in TRAITS.items():
-            t = phrase(langue, p, MOTS_TRAITS[t_id], False)
+        for t_id, scenes in TRAITS.items():
+            t = phrase(langue, scenes[0][0], MOTS_TRAITS[t_id], False)
             dec[langue][t_id] = {"texte": t, "son": identifiant(t)}
-    d = {"sexe": {p: SEXE[p] for p in list(PORTRAITS) + [v[0] for v in TRAITS.values()]},
-         "noms": NOMS, "portraits": PORTRAITS, "traits": {t: v[0] for t, v in TRAITS.items()},
+    gens = list(PORTRAITS) + [p for v in TRAITS.values() for p, _ in v]
+    d = {"sexe": {p: SEXE[p] for p in dict.fromkeys(gens)},
+         "noms": NOMS, "portraits": PORTRAITS, "traits": {t: [p for p, _ in v] for t, v in TRAITS.items()},
          "emotions": MOTS_EMOTIONS, "caracteres": MOTS_TRAITS, "haben": HABEN,
-         "decouverte": {"visages": DECOUVERTE, "phrases": dec}}
+         "decouverte": {"visages": DECOUVERTE, "caracteres": {t: v[0][0] for t, v in TRAITS.items()}, "phrases": dec}}
     texte = json.dumps(d, ensure_ascii=False, indent=1) + "\n"
     for chemin in (os.path.join(ICI, "emociones.json"), os.path.join(RACINE, "visuel", "prototype", "emociones", "emociones.json")):
         os.makedirs(os.path.dirname(chemin), exist_ok=True)
         io.open(chemin, "w", encoding="utf-8", newline="\n").write(texte)
+
+
+def ecrire_gloses():
+    """La traduction des mots du theme, tiree du CORPUS (relu), pour les langues d'interface ou la page ne traduit pas
+    la phrase entiere (ar, tr, uk, fa, pl, ru) : sous la phrase juste, « triste — حزين ». Meme forme que
+    familia/gloses.json (cle : article et mot ; valeur : {langue: traduction}). Fichier DERIVE : le refaire."""
+    def lire(p):
+        return json.load(io.open(os.path.join(RACINE, p), encoding="utf-8"))
+    LDE = {"fr": "traduction", "en": "traduction_en", "tr": "traduction_tr", "uk": "traduction_uk", "fa": "traduction_fa",
+           "ar": "traduction_ar", "pt": "traduction_pt", "pl": "traduction_pl", "ru": "traduction_ru"}
+    LES = {"fr": "traduction", "en": "traduction_en", "pt": "traduction_pt", "ar": "traduction_ar", "de": "traduction_de"}
+    adj = lambda p: [e for v in lire(p).values() for e in v if isinstance(e, dict)]
+    noms = lambda p: [m for t in lire(p)["themes"] for m in t["mots"]]
+    voulus = {"de": [m["de"] for m in list(MOTS_EMOTIONS.values()) + list(MOTS_TRAITS.values()) if not m.get("tener")],
+              "es": [m["es"][0] for m in list(MOTS_EMOTIONS.values()) + list(MOTS_TRAITS.values()) if not m.get("tener")]}
+    out = {"de": {}, "es": {}}
+    for langue, adjs, ns, champs, nomsVoulus in (("de", adj("adjectif.json"), noms("themes.json"), LDE, {"Angst": "die", "Laune": "die", "Erkältung": "die"}),
+                                                 ("es", adj("espanol/datos/adjetivos.json"), noms("espanol/datos/temas.json"), LES, {"miedo": "el"})):
+        for e in adjs:
+            if e["mot"] in voulus[langue] and e["mot"] not in out[langue]:
+                out[langue][e["mot"]] = {l: e[c] for l, c in champs.items() if e.get(c)}
+        for m in ns:
+            if nomsVoulus.get(m["mot"]) == m.get("genre"):
+                cle = m["genre"] + " " + m["mot"]
+                out[langue].setdefault(cle, {l: m[c] for l, c in champs.items() if m.get(c)})
+    manque = [w for l in out for w in voulus[l] if w not in out[l]]
+    assert not manque, "absents du corpus : %s" % manque
+    io.open(os.path.join(RACINE, "visuel", "prototype", "emociones", "gloses.json"), "w", encoding="utf-8", newline="\n").write(
+        json.dumps(out, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
 
 
 def textes_a_dire(langue):
@@ -191,8 +287,19 @@ def main():
     inconnus = [n for n in noms if n not in tout]
     if inconnus:
         sys.exit("  inconnu : " + ", ".join(inconnus))
+    fautes = verifier_regles()
+    if fautes:
+        sys.exit("  distribution fautive :\n  " + "\n  ".join(fautes))
     os.makedirs(DOSSIER, exist_ok=True)
+    # v1078 : une seule scene par trait, nommee trait-<trait>.png ; elle devient trait-<trait>-<personne>.png
+    for t, scenes in TRAITS.items():
+        vieux = os.path.join(DOSSIER, "trait-" + t)
+        if os.path.exists(vieux + ".png"):
+            for ext in (".png", "-fal.json"):
+                if os.path.exists(vieux + ext):
+                    os.replace(vieux + ext, vieux + "-" + scenes[0][0] + ext)
     ecrire_json()
+    ecrire_gloses()
     if "--json" in sys.argv:
         return
     if refaire and not montrer:
