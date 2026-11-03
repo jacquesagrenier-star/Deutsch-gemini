@@ -559,6 +559,20 @@ const EX = {
   },
   // vrai ou faux : la phrase de l'image, ou celle d'une place fausse pour elle
   vraifaux(w){
+    // en espagnol, « estar » avait une seule sorte (hay / está) : en fin de partie, juste apres une question hay / está
+    // sur une preposition, le tirage n'avait plus qu'elle (« 1 sorte de suite », 3 nov.). Le vrai ou faux sait donc
+    // aussi le viser : « Hay un gato debajo de la mesa. » / « El gato está… » justes, « Está un gato… » / « El gato hay… » faux.
+    if (estVerbe(w) && !DE_APP){
+      const it = itemPour(null, x => !!x.place); if (!it) return false;
+      viser(w, motVerbe("estar"));
+      const hay = Math.random() < 0.5, vrai = Math.random() < 0.5;
+      const juste = hay ? "Hay un gato " + it.rep + "." : "El gato está " + it.rep + ".";
+      const phrase = vrai ? juste : (hay ? "Está un gato " + it.rep + "." : "El gato hay " + it.rep + ".");
+      ecran("vraifaux", photo(it.img), phrase, true);
+      const rep = vrai ? "Verdadero" : "Falso";
+      boutons($("choix"), ["Verdadero", "Falso"], rep, ok => juger(ok, rep, juste));
+      return true;
+    }
     if (estVerbe(w)){
       const v0 = verbeVise(w); if (!v0) return false;
       const [t, id, v] = v0, vrai = Math.random() < 0.5;
