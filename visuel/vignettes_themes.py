@@ -210,7 +210,37 @@ def vetements_meteo():
     return c
 
 
-VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo}
+def corps_carte():
+    """La carte du corps : Mark en pied, trois points rouges la ou l'on a mal (la tete, la gorge, le genou) et un
+    thermometre. Ni une rangee de personnes ni une scene de cabinet medical : le sujet, c'est ou l'on a mal."""
+    c = Image.new("RGB", (W, H), (232, 243, 240))
+    d = ImageDraw.Draw(c, "RGBA")
+    d.ellipse((40, 20, 380, 520), fill=(214, 234, 228))
+    mark = pied("descripcion", "Mark")
+    h = H - 34
+    mark = mark.resize((round(mark.size[0] * h / mark.size[1]), h), Image.LANCZOS)
+    x0, y0 = 210 - mark.size[0] // 2, 17
+    c.paste(mark, (x0, y0), mark)
+    rouge = (214, 64, 52)
+    # la tempe (jamais sur le visage), le cou, le genou
+    for (px, py) in [(68, 5), (50, 18.5), (30, 79)]:
+        x, y = x0 + mark.size[0] * px / 100, y0 + h * py / 100
+        d.ellipse((x - 26, y - 26, x + 26, y + 26), fill=rouge + (60,))
+        d.ellipse((x - 13, y - 13, x + 13, y + 13), fill=rouge + (255,), outline=(255, 255, 255, 255), width=4)
+    # le thermometre
+    tx, haut, bas = 470, 70, 380
+    d.rounded_rectangle((tx - 26, haut - 8, tx + 26, bas + 8), 26, fill=(255, 255, 255, 255), outline=(150, 170, 176, 255), width=4)
+    d.ellipse((tx - 46, bas - 20, tx + 46, bas + 72), fill=(255, 255, 255, 255), outline=(150, 170, 176, 255), width=4)
+    d.rounded_rectangle((tx - 11, haut + 90, tx + 11, bas + 20), 11, fill=rouge + (255,))
+    d.ellipse((tx - 32, bas - 6, tx + 32, bas + 58), fill=rouge + (255,))
+    for k in range(7):
+        y = haut + 20 + k * 40
+        d.line([(tx + 30, y), (tx + 52 if k % 2 == 0 else tx + 44, y)], fill=(120, 140, 148, 255), width=4)
+    return c
+
+
+VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
+             "cuerpo": corps_carte}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

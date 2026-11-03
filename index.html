@@ -9689,6 +9689,13 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8.5 3.5 4 6l1.8 4.2 2-.9V20.5h8.4V9.3l2 .9L20 6l-4.5-2.5a3.5 3.5 0 0 1-7 0z"/></svg></div>
             <div><strong data-i18n="ropa_tuile">Les vêtements</strong></div>
         </div>
+        <!-- Le corps et la sante (3 nov. 2026, vague 1) : dire ou on a mal et comment on se sent -- des personnes qui ont
+             mal, pas les objets des scenes arztpraxis et apotheke. me duele / mir tut ... weh (le datif), tener / haben
+             fiebre, le conseil, le dialogue chez le medecin (l'oral du DTZ) : visuel/prototype/cuerpo.html. es et de. -->
+        <div class="orb hidden" data-orbid="cuerpo" id="tuileCuerpo" onclick="ouvrirThemeIllustre('cuerpo')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="4.5" r="2.3"/><path d="M9 7.5v7.5M5 10.5h8M9 15l-3 5.5M9 15l3 5.5"/><path d="M18.5 8.5v6M15.5 11.5h6"/></svg></div>
+            <div><strong data-i18n="cue_tuile">Le corps et la santé</strong></div>
+        </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -14421,6 +14428,8 @@ const I18N = {
         con_tuile: "Les contraires",
         gato_tuile: "Où est le chat ?",
         ropa_tuile: "Les vêtements",
+        cue_tuile: "Le corps et la santé",
+        cue_court: "Le corps",
         ropa_court: "Vêtements",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
@@ -15946,6 +15955,8 @@ const I18N = {
         con_tuile: "Opposites",
         gato_tuile: "Where's the cat?",
         ropa_tuile: "Clothes",
+        cue_tuile: "Body and health",
+        cue_court: "Body",
         ropa_court: "Clothes",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
@@ -17473,6 +17484,8 @@ const I18N = {
         con_tuile: "Zıt anlamlılar",
         gato_tuile: "Kedi nerede?",
         ropa_tuile: "Giysiler",
+        cue_tuile: "Vücut ve sağlık",
+        cue_court: "Vücut",
         ropa_court: "Giysiler",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
@@ -19412,6 +19425,8 @@ const I18N = {
         con_tuile: "Протилежності",
         gato_tuile: "Де кіт?",
         ropa_tuile: "Одяг",
+        cue_tuile: "Тіло і здоров'я",
+        cue_court: "Тіло",
         ropa_court: "Одяг",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
@@ -21665,6 +21680,8 @@ const I18N = {
         con_tuile: "متضادها",
         gato_tuile: "گربه کجاست؟",
         ropa_tuile: "لباس‌ها",
+        cue_tuile: "بدن و سلامتی",
+        cue_court: "بدن",
         ropa_court: "لباس",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
@@ -23361,6 +23378,8 @@ const I18N = {
         con_tuile: "الأضداد",
         gato_tuile: "أين القطّ؟",
         ropa_tuile: "الملابس",
+        cue_tuile: "الجسم والصحة",
+        cue_court: "الجسم",
         ropa_court: "الملابس",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
@@ -23737,6 +23756,8 @@ const I18N = {
         con_tuile: "Os contrários",
         gato_tuile: "Onde está o gato?",
         ropa_tuile: "As roupas",
+        cue_tuile: "O corpo e a saúde",
+        cue_court: "O corpo",
         ropa_court: "Roupas",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
@@ -25323,6 +25344,8 @@ const I18N = {
         con_tuile: "Przeciwieństwa",
         gato_tuile: "Gdzie jest kot?",
         ropa_tuile: "Ubrania",
+        cue_tuile: "Ciało i zdrowie",
+        cue_court: "Ciało",
         ropa_court: "Ubrania",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
@@ -26909,6 +26932,8 @@ const I18N = {
         con_tuile: "Противоположности",
         gato_tuile: "Где кот?",
         ropa_tuile: "Одежда",
+        cue_tuile: "Тело и здоровье",
+        cue_court: "Тело",
         ropa_court: "Одежда",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
@@ -28497,6 +28522,8 @@ const I18N = {
         con_tuile: "Gegensätze",
         gato_tuile: "Wo ist die Katze?",
         ropa_tuile: "Kleidung",
+        cue_tuile: "Körper und Gesundheit",
+        cue_court: "Körper",
         ropa_court: "Kleidung",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
@@ -30120,6 +30147,8 @@ const I18N = {
         con_tuile: "Los contrarios",
         gato_tuile: "¿Dónde está el gato?",
         ropa_tuile: "La ropa",
+        cue_tuile: "El cuerpo y la salud",
+        cue_court: "El cuerpo",
         ropa_court: "Ropa",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
@@ -46999,7 +47028,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           emociones: {page: "emociones.html", titre: "emo_tuile", court: "emo_court", tuile: "tuileEmociones"},
                           contrarios: {page: "contrarios.html", titre: "con_tuile", tuile: "tuileContrarios", en: true},
                           gato: {page: "gato.html", titre: "gato_tuile", tuile: "tuileGato"},
-                          ropa: {page: "ropa.html", titre: "ropa_tuile", court: "ropa_court", tuile: "tuileRopa"}};
+                          ropa: {page: "ropa.html", titre: "ropa_tuile", court: "ropa_court", tuile: "tuileRopa"},
+                          cuerpo: {page: "cuerpo.html", titre: "cue_tuile", court: "cue_court", tuile: "tuileCuerpo"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);

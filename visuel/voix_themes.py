@@ -22,14 +22,14 @@ RACINE = os.path.dirname(ICI)
 sys.path.insert(0, os.path.join(RACINE, "audio"))
 import lectures                                   # noqa : les nombres en lettres
 PORT = int(os.environ.get("THEMES_PORT", "8808"))
-THEMES = ["familia", "descripcion", "ropa"]
+THEMES = ["familia", "descripcion", "ropa", "cuerpo"]
 THEMES_EN = ["contrarios"]      # ses voix es et de sont dans contrarios.json ; l'anglais passe par themes/voix.js
 PARTIES = int(os.environ.get("PARTIES_VOIX", "150"))
 # ce que la page dit apres chaque reponse, sur PARTIES parties : Voix.dire est ecoute, chaque question repondue
 ECHANTILLON = """async (n) => { const dits = new Set(); let apport = 0; const orig = Voix.dire; Voix.dire = t => { if (t) dits.add(t); };
   for (let s = 0; s < n; s++){ const avant = dits.size; await demarrer();
     for (let r = 0; r < file.length; r++){ rang = r; try { montrer(); } catch (e) { continue; }
-      const b = document.querySelector('#choix button, .rangee button, .arbre g.p:not(.ego)');
+      const b = document.querySelector('#choix button, .rangee button, .arbre g.p:not(.ego)') || document.querySelector('.corps .zone');
       if (b) b.dispatchEvent(new MouseEvent('click', {bubbles: true})); }
     apport = dits.size - avant; }
   Voix.dire = orig; return {dits: [...dits], apport}; }"""
