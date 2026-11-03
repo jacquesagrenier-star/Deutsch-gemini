@@ -293,7 +293,9 @@ const motDe = k => ({mot: APPRENDRE === "de" ? D.mots[k].de : APPRENDRE === "en"
 function viser(w, k){ cleQ = k; motQ = w || motDe(k); }
 
 // apres la reponse : la phrase juste, puis le mot cle, sa traduction et sa voix (Jacques, 3 nov. : la traduction
-// « dans le retour apres la reponse », jamais avant ; la voix dit le mot, comme la decouverte)
+// « dans le retour apres la reponse », jamais avant). LA VOIX DIT LA PHRASE AFFICHEE EN ENTIER (Jacques, 3 nov. :
+// « Oui, partout », comme Decrire depuis la v1087) ; le haut-parleur de la ligne du mot redit le mot seul. Apres une
+// bonne reponse, la phrase est TOUJOURS affichee : la voix ne dit jamais ce qu'on ne voit pas.
 function juger(ok, bonneTexte, phrase, motDit){
   if (repondu) return; repondu = true;
   if (ok) bons++;
@@ -303,17 +305,28 @@ function juger(ok, bonneTexte, phrase, motDit){
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const dit = motDit || (cleQ ? L.forme(cleQ, "m") : "");
   const choisi = ok ? null : motChoisi();
-  m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
+  m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && (ok || phrase !== bonneTexte) ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
     + traduction(tradQ || tradPhrase(phrase || bonneTexte))
     + (choisi ? '<span class="mot choisi"><s>' + cible(choisi.texte) + '</s> · <span>' + sens(choisi.k) + '</span></span>' : "")
     + (cleQ ? '<span class="mot' + (choisi ? " bon" : "") + '"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(dit) + ' · <span>' + sens(cleQ) + '</span></span>' : "");
-  if (cleQ){ $("redire").addEventListener("click", () => dire(dit)); dire(dit); }
+  if (cleQ) $("redire").addEventListener("click", () => dire(dit));
+  dire(phrase || bonneTexte || dit);
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
 // le mot de base d'une forme proposee : « estrecha » -> estrecho, « großer » -> groß ; null pour es / está, Verdadero...
 function cleDeForme(f){
   const ks = Object.keys(D.mots);
   if (APPRENDRE === "es") return ks.find(k => D.mots[k].es.includes(f)) || null;
+  if (APPRENDRE === "en"){
+    // « wide », « the widest », « more big », « bigger », « better » -> le mot de base ; « a » / « an » -> rien
+    const n = f.replace(/^(a|an|the)\s+/, "").replace(/^(more|most)\s+/, "");
+    const direct = ks.find(k => EN_MOTS[k] === n);
+    if (direct) return direct;
+    const IRR = {better: "bueno", best: "bueno", worse: "malo", worst: "malo"};
+    if (IRR[n]) return IRR[n];
+    return ks.find(k => { const b = EN_MOTS[k], r = b.replace(/e$/, "").replace(/y$/, "i"), d = b + b.slice(-1);
+      return [r + "er", r + "est", d + "er", d + "est"].includes(n); }) || null;
+  }
   const bons = ks.filter(k => f.startsWith(D.mots[k].de) && ["", "er", "e", "es"].includes(f.slice(D.mots[k].de.length)));
   return bons.sort((a, b) => D.mots[b].de.length - D.mots[a].de.length)[0] || null;
 }
