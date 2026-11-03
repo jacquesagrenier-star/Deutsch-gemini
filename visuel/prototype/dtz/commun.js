@@ -138,10 +138,12 @@ async function choisirSerie(series, motsDe, cle){
 function marquerFait(cle, s){ const faits = lire("faits", {}); faits[cle + s.id] = Date.now(); ecrire("faits", faits); }
 
 // ============ LE VERDICT DE L'EXAMEN ENTIER ============
-// hl : points Hoeren + Lesen sur 45 (ou null) ; schreiben, sprechen : "b1" | "a2" | "moins" (ou null).
+// hl : points Hoeren + Lesen sur 45 (ou null) ; schreiben, sprechen : "B1" | "A2" | "moins", en majuscules ou non (ou null).
 // Le B1 global demande le B1 a l'oral ET dans un ecrit (Hoeren+Lesen ou Schreiben).
 function niveauHL(points){ return points >= 33 ? "b1" : points >= 20 ? "a2" : "moins"; }
 function niveauGlobal(hl, schreiben, sprechen){
+  // l'oral et l'ecrit envoient « B1 » / « A2 » / « moins » : on accepte les deux casses
+  schreiben = schreiben ? String(schreiben).toLowerCase() : null; sprechen = sprechen ? String(sprechen).toLowerCase() : null;
   const nhl = hl === null || hl === undefined ? null : niveauHL(hl);
   if (sprechen === "b1" && (nhl === "b1" || schreiben === "b1")) return "b1";
   const tous = [nhl, schreiben, sprechen].filter(Boolean);
