@@ -27,7 +27,7 @@ html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
 body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
-  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 160px) max(10px,env(safe-area-inset-left,0px))}
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 100px) max(10px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
 .retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
 html[dir="rtl"] .retour{transform:scaleX(-1)}
@@ -86,8 +86,11 @@ button:disabled{cursor:default}
 .regle{margin:0;font-size:14px;font-weight:700;line-height:1.45;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
 .suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
   color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer;z-index:5000}
-/* le second bouton de la fin (« Encore des questions »), juste au-dessus du premier */
-.suite.secondaire{bottom:calc(76px + env(safe-area-inset-bottom,0px));background:var(--verre);color:var(--encre);border:2px solid var(--ambre);box-shadow:0 6px 16px rgba(0,0,0,.14)}
+/* la fin : « Encore des questions » et « Terminer » cote a cote, fixes tout en bas (comme familia.html) */
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:5000}
+.bas button{flex:1 1 0;min-width:0;height:54px;border:0;border-radius:27px;padding:0 12px;color:#fff;font:800 16px/1.15 var(--police);
+  background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.trad.faux{color:var(--rouge);font-style:italic}
 .suite[hidden]{display:none}
 .fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
 .fin .score{font-size:22px;font-weight:900}
@@ -102,8 +105,9 @@ button:disabled{cursor:default}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<button class="suite secondaire" id="suite2" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
+<script src="themes/voix.js?v=1"></script>
+<script src="themes/zoom.js?v=3"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
@@ -112,6 +116,8 @@ const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// agrandir (themes/zoom.js) : un toucher sur la photo d'une question ou d'une fiche, la loupe sur les personnes a choisir
+Zoom.init({direct: ".pied img, .fiche img", loupe: ".rangee button, #gens button", langue: LANGUE});
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
 const NB = Q.get("seance") === "1" ? 6 : 20;
 
@@ -161,6 +167,7 @@ const TEXTES = {
   // « Continuer » pour avancer, jamais « Suivant » (Jacques, 3 nov. : les memes noms partout)
   suivant:   {fr:"Continuer", en:"Continue", tr:"Devam et", uk:"Продовжити", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Kontynuuj", ru:"Продолжить", de:"Weiter"},
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
   retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
@@ -420,19 +427,16 @@ const PICTOS = {
 };
 const picto = s => '<span class="picto">' + PICTOS[s] + '</span>';
 const COULEUR_CSS = {rojo:"#D2362E", azul:"#2F62C8", verde:"#2E9A4C", amarillo:"#F2C21B", negro:"#1E1E22", blanco:"#FFFFFF", gris:"#8C9096", marron:"#7A4B2A", rosa:"#F08DB8"};
-// Les memes fichiers que l'app (sha1 du texte, audio/manifest.py) : Aurora pour l'allemand, Lolita (Espagne) et
-// Monica (Amerique latine) pour l'espagnol. Sans son (hors ligne, fichier absent) : la voix du telephone.
-const AUDIO = "https://deutschai-b6fbb.web.app/" + (APPRENDRE === "de" ? "" : LATAM ? "es-419/" : "es-es/");
-let son = null;
-function dire(texte, id){
-  try { if (son) son.pause(); } catch(e){}
-  const parlerTel = () => { try {
-    const u = new SpeechSynthesisUtterance(texte); u.lang = APPRENDRE === "de" ? "de-DE" : LATAM ? "es-MX" : "es-ES"; u.rate = 0.9;
-    speechSynthesis.cancel(); speechSynthesis.speak(u); } catch(e){} };
-  if (!id){ parlerTel(); return; }
-  son = new Audio(AUDIO + id + ".mp3" + (Q.get("r") ? "?r=" + Q.get("r") : ""));   // r : AUDIO_REVISION de l'app
-  son.addEventListener("error", parlerTel, {once: true});
-  son.play().catch(parlerTel);
+// LA VOIX (themes/voix.js, commune aux themes) : le fichier enregistre s'il existe (themes/sons.json), sinon la voix
+// du telephone. Apres une reponse, la phrase affichee EN ENTIER (Jacques, 3 nov. 2026 : « Oui, partout »).
+let dire = texte => Voix.dire(texte);
+const motCle = q => !q ? null : ((q.genre ? q.genre + " " : "") + q.mot);
+// tout ce que la page peut dire : l'inventaire des voix a enregistrer (visuel/voix_themes.py) -- les phrases de la
+// decouverte, ce que disent ses pastilles et sa bande des couleurs, et les mots du theme
+function textesAVoix(){
+  const phrases = Object.values(D.phrases[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"]).map(p => p.texte);
+  const pastilles = TENUES.flatMap(([, t]) => vus(t).map(x => L.item(x[0], x[1])));
+  return [...new Set(phrases.concat(pastilles, Object.keys(D.couleurs).map(c => formesCouleur(c).join(", ")), motsDuTheme().map(motCle)))];
 }
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
@@ -465,8 +469,20 @@ function juger(ok, bonneTexte, phrase){
   m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
   const tl = traduire(sensQ) || (TR ? null : glose(motQ));
   if (tl) m.insertAdjacentHTML("beforeend", traduction(tl));
+  // LE MOT CHOISI, quand il est faux (Jacques, 3 nov. 2026 : « quand je dis le mauvais, on devrait avoir l'affichage
+  // traduit aussi. Pour le mauvais mot. ») : sa traduction dans la langue d'interface, sous la bonne reponse
+  if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad + '</span>');
+  // LA PHRASE AFFICHEE, DITE EN ENTIER (Jacques, 3 nov. 2026, « Oui, partout ») : la phrase juste, sinon le mot cle
+  dire(phrase || motCle(motQ));
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
+// la traduction de chaque choix qui en a une sure (un vetement, une couleur, une situation), posee par la question ;
+// rien pour un prenom, une personne touchee, vrai / faux, une forme du verbe ou un accord (THEMES-ILLUSTRES.md)
+let choixFaux = null, SENS = new Map();
+const gloseSeule = m => (GLOSES[((m.genre || "") + " " + m.mot).trim()] || {})[LANGUE] || null;
+const sensPiece = (x, c) => TR === "de" ? DE.item(x, c) : TR ? TRADS[TR].item(x, c) : gloseSeule(motPiece(x));
+const sensCouleur = c => TR === "de" ? D.couleurs[c].de : TR ? [].concat(TRADS[TR].couleurs[c])[0] : gloseSeule(motCouleur(c));
+const sensSit = (s, p) => TR === "de" ? DE.sitRep(p)[s] : TR ? (TRADS[TR].sit[s] || "").replace("{P}", nom(p)) : gloseSeule(motSit(s));
 function boutons(conteneur, options, bonne, apres){
   let bon;
   options.forEach(o => {
@@ -474,6 +490,7 @@ function boutons(conteneur, options, bonne, apres){
     b.addEventListener("click", () => {
       conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
       if (b !== bon) b.classList.add("faux");
+      choixFaux = o === bonne ? null : {texte: String(o), trad: SENS.get(o) || null};
       apres(o === bonne);
     });
     conteneur.appendChild(b);
@@ -546,7 +563,7 @@ const EX = {
     if (!cand.length) return false;
     const [, t, x] = choisir(cand, w, c => c[1].p), rep = L.item(x[0], x[1]);
     motQ = w || motPiece(x[0]); sensQ = {p: t.p, items: [x], sit: null};
-    const opts = [rep, ...leurres(t, 3, (y, c) => L.item(y, c))];
+    const opts = [rep, ...leurres(t, 3, (y, c) => { const o = L.item(y, c); SENS.set(o, sensPiece(y, c)); return o; })];
     if (opts.length < 3) return false;
     ecran("queLleva", photo(t), L.queLleva(t.p), true);
     boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, L.phrase(t.p, [x], null)));
@@ -578,7 +595,7 @@ const EX = {
     const cand = PIECES_VUES().filter(([, , x]) => x[1] && (!w || (w.k === "piece" ? x[0] === w.x : x[1] === w.c)));
     if (!cand.length) return false;
     const [, t, x] = choisir(cand, w, c => c[1].p), c = x[1];
-    const forme = k => APPRENDRE === "de" ? D.couleurs[k].de : ES.couleur(x[0], k);
+    const forme = k => { const o = APPRENDRE === "de" ? D.couleurs[k].de : ES.couleur(x[0], k); SENS.set(o, sensCouleur(k)); return o; };
     const rep = forme(c), autres = melanger(Object.keys(D.couleurs).filter(k => loinC(k, c))).slice(0, 3).map(forme);
     motQ = w || motCouleur(c); sensQ = {p: t.p, items: [x], sit: null};
     ecran("couleur", photo(t), L.couleurQ(x[0], t.p), true);
@@ -622,7 +639,7 @@ const EX = {
     const cand = TENUES.filter(([, t]) => t.sit !== "diario" && (!w || t.sit === w.s));
     if (!cand.length) return false;
     const [, t] = choisir(cand, w, c => c[1].p), rep = APPRENDRE === "de" ? DE.sitRep(t.p)[t.sit] : ES.sitRep[t.sit];
-    const texte = s => APPRENDRE === "de" ? DE.sitRep(t.p)[s] : ES.sitRep[s];
+    const texte = s => { const o = APPRENDRE === "de" ? DE.sitRep(t.p)[s] : ES.sitRep[s]; SENS.set(o, sensSit(s, t.p)); return o; };
     const autres = melanger(D.contraires[t.sit]).slice(0, 3).map(texte);
     motQ = w || motSit(t.sit); sensQ = {p: t.p, items: vus(t), sit: t.sit};
     ecran("tiempo", photo(t), L.pourquoi(t.p), true);
@@ -666,7 +683,7 @@ const EX = {
     const cand = TENUES.filter(([, t]) => t.sit === "diario").flatMap(([cle, t]) => sits.flatMap(s => D.typique[s].filter(x => (!w || x === w.x) && met(x, t.p) && pourElle(x, t.p)).map(x => [cle, t, s, x])));
     if (!cand.length) return false;
     const [, t, s, x] = choisir(cand, w, c => c[1].p);
-    const texte = y => APPRENDRE === "de" ? DE.defAcc(y) : ES.item(y, null, true), rep = texte(x);
+    const texte = y => { const o = APPRENDRE === "de" ? DE.defAcc(y) : ES.item(y, null, true); SENS.set(o, sensPiece(y, null)); return o; }, rep = texte(x);
     // les leurres sont franchement deplaces : une cravate pour courir se refuse, qu'on soit homme ou femme
     const autres = melanger(D.deplace[s].filter(y => met(y, t.p))).slice(0, 3).map(texte);
     if (autres.length < 2) return false;
@@ -744,6 +761,9 @@ const EX = {
 // les sortes de la langue apprise : l'accord en espagnol, la terminaison en allemand
 const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" ? x !== "endung" : x !== "accord");
 
+// la bande des couleurs : rojo · roja · rojos · rojas ; rot · einen roten Mantel · eine rote Jacke · ein rotes Kleid
+const formesCouleur = c => { const r = D.couleurs[c].de;
+  return APPRENDRE === "de" ? (r === "rosa" ? [r] : [r, "einen " + r + "en Mantel", "eine " + r + "e Jacke", "ein " + r + "es Kleid"]) : [...new Set(D.couleurs[c].es)]; };
 // ---------- la decouverte : les situations, les personnes, ce qu'elles portent ----------
 function decouvrir(){
   $("compte").textContent = ""; $("barre").style.width = "0%";
@@ -758,14 +778,14 @@ function decouvrir(){
     const tl = traduire({p: t.p, items: vus(t), sit: t.sit === "diario" ? null : t.sit}) || (TR ? null : glose(motPiece(vus(t)[0][0])));
     $("fiche").innerHTML = '<img alt="' + nom(t.p) + '" src="' + imgT(t) + '"><div><div class="dit">' + cible(ph.texte) + '</div>' + (tl ? traduction(tl) : "")
       + '<button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button><div class="pastilles" id="pastilles"></div></div>';
-    $("ecoute").addEventListener("click", () => dire(ph.texte, ph.son));
+    $("ecoute").addEventListener("click", () => dire(ph.texte));
     vus(t).forEach(x => {
       const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr";
       b.textContent = APPRENDRE === "de" ? DE.defNom(x[0]) : ES.item(x[0], null, true);
       b.addEventListener("click", () => dire(L.item(x[0], x[1])));
       $("pastilles").appendChild(b);
     });
-    dire(ph.texte, ph.son);
+    dire(ph.texte);
   };
   const onglet = s => {
     $("sits").querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.s === s));
@@ -788,8 +808,7 @@ function decouvrir(){
   // la bande des couleurs : rojo · roja · rojos · rojas ; rot -> roter, rote, rotes, rote (apres ein / eine / ein, au nominatif)
   Object.keys(D.couleurs).forEach(c => {
     const b = document.createElement("button"); b.type = "button"; b.style.background = COULEUR_CSS[c];
-    const formes = APPRENDRE === "de" ? (D.couleurs[c].de === "rosa" ? ["rosa"] : [D.couleurs[c].de, "einen " + D.couleurs[c].de + "en Mantel", "eine " + D.couleurs[c].de + "e Jacke", "ein " + D.couleurs[c].de + "es Kleid"])
-                                      : [...new Set(D.couleurs[c].es)];
+    const formes = formesCouleur(c);
     b.setAttribute("aria-label", formes[0]);
     b.addEventListener("click", () => {
       $("couleurs").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b));
@@ -801,7 +820,7 @@ function decouvrir(){
   });
   onglet(sits[0]);
   const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
-  s.onclick = () => { s.onclick = null; try { if (son) son.pause(); speechSynthesis.cancel(); } catch(e){} demarrer(); };
+  s.onclick = () => { s.onclick = null; Voix.arreter(); demarrer(); };
 }
 
 // LES MOTS DU THEME (le tirage suit les mots, 3 nov. 2026), a la forme du corpus, cles de la progression commune :
@@ -829,7 +848,7 @@ function cleQuestion(){
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
 }
 function montrer(){
-  repondu = false; $("suite").hidden = true;
+  repondu = false; $("suite").hidden = true; choixFaux = null; SENS = new Map();
   $("compte").textContent = (rang + 1) + " / " + file.length;
   $("barre").style.width = (rang / file.length * 100) + "%";
   const essai = (w, strict) => {
@@ -863,45 +882,42 @@ function montrer(){
   window.scrollTo(0, 0);
 }
 // LES BOUTONS D'ACTION TOUJOURS TOUT EN BAS (regle de Jacques, 3 nov. 2026, comme dans les scenes : « commencer les
-// exercices ou continuer soit toujours en bas completement de l'ecran ») : « Terminer » prend le bouton fixe du bas,
-// « Encore des questions » le second, juste au-dessus. Jamais dans le flux de la page.
-let actionFin = null;
-function boutonsDeFin(terminer){
-  actionFin = terminer;
-  const s = $("suite"); s.textContent = T("terminer"); s.hidden = false;
-  const e = $("suite2"); e.hidden = Q.get("seance") === "1";            // jamais dans la seance (elle a sa longueur)
-  e.textContent = TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr;
-}
+// exercices ou continuer soit toujours en bas completement de l'ecran ») : la fin les met dans <div class="bas">.
 function fin(){
-  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length;
-  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>';
-  boutonsDeFin(() => parler("fini", {bons, faits: file.length}));
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>'
+    + '<div class="bas">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  brancherEncore();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
 }
 // plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
 function toutRevu(prochaine){
-  $("barre").style.width = "100%"; $("compte").textContent = "";
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
   const quand = Tirage.revu(prochaine, LANGUE);
   $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
-    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "") + '</div>';
-  boutonsDeFin(() => parler("fini", {bons: 0, faits: 0}));
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + '</div><div class="bas">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  brancherEncore();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
 }
-function partie(){ actionFin = null; $("suite2").hidden = true; }
+// jamais dans la seance (elle a sa longueur)
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
 // « Encore des questions » : en fin de partie et quand tout est revu
 async function encoreDesQuestions(){
-  const mots = motsDuTheme(); partie();
+  const mots = motsDuTheme();
   file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus_ = new Set(); derniereSorte = null;
   if (!file.length) return toutRevu(null);
   montrer();
 }
 async function demarrer(){
-  const mots = motsDuTheme(); partie();
+  const mots = motsDuTheme();
   const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
   file = plan.file; rang = 0; bons = 0; vus_ = new Set(); derniereSorte = null;
   if (!file.length) return toutRevu(plan.prochaine);
   montrer();
 }
-$("suite").addEventListener("click", () => { if (actionFin) return actionFin(); if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
-$("suite2").addEventListener("click", encoreDesQuestions);
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
 $("retour").addEventListener("click", () => parler("fermer"));
 $("retour").setAttribute("aria-label", T("retourAria"));
 $("titre").textContent = T("titre");
