@@ -8714,7 +8714,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1082</span>
+        <span class="subtitle-version">v1083</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -9658,6 +9658,12 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.4 14.3a4.3 4.3 0 0 0 7.2 0"/><path d="M9.2 9.6v.6M14.8 9.6v.6"/></svg></div>
             <div><strong data-i18n="emo_tuile">Émotions et caractère</strong></div>
         </div>
+        <!-- Les contraires (3 nov. 2026) : des choses et des lieux, la fin des « Adjetivos comunes » du cours de Jacques.
+             Dix-huit images en paires (ancho / estrecho, abierto / cerrado...) ; ser / estar et l'accord, la terminaison
+             allemande : visuel/prototype/contrarios.html. es et de. -->
+        <div class="orb hidden" data-orbid="contrarios" id="tuileContrarios" onclick="ouvrirThemeIllustre('contrarios')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h5l-.8 15.2a1 1 0 0 1-1 .8H7.8a1 1 0 0 1-1-.8z"/><path d="M6.4 10h4.2"/><path d="M13 4h5l-.8 15.2a1 1 0 0 1-1 .8h-1.4a1 1 0 0 1-1-.8z"/></svg></div>
+            <div><strong data-i18n="con_tuile">Les contraires</strong></div>
         <!-- Manger et gouter (3 nov. 2026, vague 1) : les gouts, les saveurs, les quantites et la commande au cafe -- pas
              les objets de la cuisine, qui ont leur scene. me gusta / gustan, ich mag / das schmeckt mir, un kilo de / ein
              Kilo, La cuenta, por favor / Die Rechnung, bitte : visuel/prototype/manger.html. es et de. -->
@@ -14392,6 +14398,7 @@ const I18N = {
         desc_court: "Décrire",
         emo_tuile: "Émotions et caractère",
         emo_court: "Émotions",
+        con_tuile: "Les contraires",
         man_tuile: "Manger et goûter",
         man_court: "Manger",
         seance_commencer: "Commencer",
@@ -15914,6 +15921,7 @@ const I18N = {
         desc_court: "Describing",
         emo_tuile: "Feelings and personality",
         emo_court: "Feelings",
+        con_tuile: "Opposites",
         man_tuile: "Food and taste",
         man_court: "Food",
         seance_commencer: "Start",
@@ -17438,6 +17446,7 @@ const I18N = {
         desc_court: "Tarif etmek",
         emo_tuile: "Duygular ve karakter",
         emo_court: "Duygular",
+        con_tuile: "Zıt anlamlılar",
         man_tuile: "Yemek ve tat",
         man_court: "Yemek",
         seance_commencer: "Başla",
@@ -19374,6 +19383,7 @@ const I18N = {
         desc_court: "Описати",
         emo_tuile: "Емоції та характер",
         emo_court: "Емоції",
+        con_tuile: "Протилежності",
         man_tuile: "Їжа і смак",
         man_court: "Їжа",
         seance_commencer: "Почати",
@@ -21623,6 +21633,7 @@ const I18N = {
         desc_court: "توصیف",
         emo_tuile: "احساسات و منش",
         emo_court: "احساسات",
+        con_tuile: "متضادها",
         man_tuile: "خوردن و چشیدن",
         man_court: "خوردن",
         seance_commencer: "شروع",
@@ -23316,6 +23327,7 @@ const I18N = {
         desc_court: "الوصف",
         emo_tuile: "المشاعر والطباع",
         emo_court: "المشاعر",
+        con_tuile: "الأضداد",
         man_tuile: "الأكل والتذوق",
         man_court: "الأكل",
         seance_commencer: "ابدأ",
@@ -23690,6 +23702,7 @@ const I18N = {
         desc_court: "Descrever",
         emo_tuile: "Emoções e personalidade",
         emo_court: "Emoções",
+        con_tuile: "Os contrários",
         man_tuile: "Comer e provar",
         man_court: "Comer",
         seance_commencer: "Começar",
@@ -25273,6 +25286,7 @@ const I18N = {
         desc_court: "Opisywanie",
         emo_tuile: "Emocje i charakter",
         emo_court: "Emocje",
+        con_tuile: "Przeciwieństwa",
         man_tuile: "Jedzenie i smak",
         man_court: "Jedzenie",
         seance_commencer: "Zacznij",
@@ -26856,6 +26870,7 @@ const I18N = {
         desc_court: "Описать",
         emo_tuile: "Эмоции и характер",
         emo_court: "Эмоции",
+        con_tuile: "Противоположности",
         man_tuile: "Еда и вкус",
         man_court: "Еда",
         seance_commencer: "Начать",
@@ -28441,6 +28456,7 @@ const I18N = {
         desc_court: "Beschreiben",
         emo_tuile: "Gefühle und Charakter",
         emo_court: "Gefühle",
+        con_tuile: "Gegensätze",
         man_tuile: "Essen und Geschmack",
         man_court: "Essen",
         seance_commencer: "Starten",
@@ -30061,6 +30077,7 @@ const I18N = {
         desc_court: "Describir",
         emo_tuile: "Emociones y carácter",
         emo_court: "Emociones",
+        con_tuile: "Los contrarios",
         man_tuile: "Comer y probar",
         man_court: "Comer",
         seance_commencer: "Empezar",
@@ -46916,6 +46933,7 @@ poserPaysCarte();
 const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tuile: "tuileFamilia"},
                           descripcion: {page: "descripcion.html", titre: "desc_tuile", court: "desc_court", tuile: "tuileDescripcion"},
                           emociones: {page: "emociones.html", titre: "emo_tuile", court: "emo_court", tuile: "tuileEmociones"},
+                          contrarios: {page: "contrarios.html", titre: "con_tuile", tuile: "tuileContrarios"},
                           manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger"}};
 function ouvrirThemeIllustre(nom, depuis){
     const th = THEMES_ILLUSTRES[nom];
@@ -52998,7 +53016,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1082;
+const APP_VERSION = 1083;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

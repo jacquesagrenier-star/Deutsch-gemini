@@ -197,6 +197,9 @@ def recolter(variante):
     # decouverte, a la variante pres (enfadado / enojado).
     for t in manifest_de.emociones_textes(variante):
         prendre(t, "emociones", "A1")
+    # LES CONTRAIRES (theme illustre, 3 nov. 2026) : la decouverte et les mots cles.
+    for t in manifest_de.contrarios_textes(variante):
+        prendre(t, "contrarios", "A1")
     return out
 
 

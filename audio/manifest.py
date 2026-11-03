@@ -324,8 +324,18 @@ def recolter():
     # decouverte, telles que la page les ecrit (visuel/emociones/emociones.json).
     for texte in emociones_textes("de"):
         prendre(texte, "A1", "phrase", "emociones")
+    # LES CONTRAIRES (theme illustre, 3 nov. 2026) : les phrases de la decouverte et les
+    # mots cles que la page dit apres chaque reponse (visuel/contrarios/contrarios.json).
+    for texte in contrarios_textes("de"):
+        prendre(texte, "A1", "phrase" if " " in texte else "mot", "contrarios")
 
     return out
+
+
+def contrarios_textes(langue):
+    """Ce que dit le theme illustre des contraires (de ; es et latam disent les memes textes)."""
+    d = charger(os.path.join("visuel", "contrarios", "contrarios.json"))
+    return list(d["sons"]["de" if langue == "de" else "es"])
 
 
 def emociones_textes(langue):

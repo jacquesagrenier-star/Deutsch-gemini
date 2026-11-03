@@ -9,6 +9,7 @@ ronds relies par des branches ; Decrire une personne, la toise et trois tailles 
 Tomas) sur des graduations en metres. Dessins du chef d'orchestre (couvertures.py, famille_arbre et
 decrire_toise), repris ici. Faites des webp DEJA PUBLIES (visuel/prototype/<theme>/) : sans les originaux et sans
 rien payer. Les emotions et le caractere : une planche de photomaton d'Anna, quatre visages (3 nov.).
+Les contraires : le verre plein et le verre vide, coupes par le milieu (3 nov.).
 Un theme futur : une fonction de plus dans VIGNETTES, qui dise le sujet autrement.
 """
 import json, os, sys
@@ -111,6 +112,27 @@ def emotions_photomaton():
     return c
 
 
+def contraires_verres():
+    """Les contraires : le verre plein et le verre vide, coupes par le milieu, un rond ambre « ↔ » sur la ligne.
+    Le meme verre, la meme table : seul le contraire change (le ruban montre 66 px, il faut le voir d'un coup)."""
+    c = Image.new("RGB", (W, H), (250, 249, 246))
+    demi = W // 2
+    for k, nom in enumerate(["vaso-lleno", "vaso-vacio"]):
+        im = Image.open(os.path.join(P, "contrarios", nom + ".webp")).convert("RGB")
+        w, h = im.size
+        ch = round(h * 0.74)                        # serre sur le verre (au tiers gauche de l'image, sur la table)
+        cw = round(ch * demi / H)
+        cx, y0 = round(w * 0.33), round(h * 0.2)
+        im = im.crop((cx - cw // 2, y0, cx - cw // 2 + cw, y0 + ch)).resize((demi, H), Image.LANCZOS)
+        c.paste(im, (k * demi, 0))
+    d = ImageDraw.Draw(c)
+    d.line([(demi, 0), (demi, H)], fill=(255, 255, 255), width=6)
+    r = 40
+    d.ellipse((demi - r, H // 2 - r, demi + r, H // 2 + r), fill=(232, 162, 58), outline=(255, 255, 255), width=5)
+    d.text((demi, H // 2 + 2), "↔", font=ImageFont.truetype("C:/Windows/Fonts/seguisym.ttf", 60), fill=(28, 36, 48), anchor="mm")
+    return c
+
+
 def manger_ardoise():
     """L'ardoise du cafe : la carte a la craie et ses prix (des dessins, aucun mot : la meme vignette sert a l'espagnol
     et a l'allemand), et, posees devant, la tasse de the et la part de gateau des quantites. Le sujet est la commande et
@@ -150,7 +172,8 @@ def manger_ardoise():
     return c
 
 
-VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "manger": manger_ardoise}
+VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres,
+             "manger": manger_ardoise}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

@@ -92,11 +92,17 @@ Jacques (« Ça me convient », 3 nov.) : 8 sortes pour la famille, 7 pour Décr
 
 **La réserve : au moins 100 questions différentes par thème et par langue** (« J'irais une centaine de questions
 par thème »), mesurées, jamais supposées : `python tests/themes_illustres.py`. Au 3 nov. : famille ≈ 2 400 (es et
-de) ; Décrire ≈ 650 (es), 625 (de) ; Manger et goûter ≈ 1 560 (es), 1 580 (de), dont ≈ 1 110 additions de la carte
+de) ; Décrire ≈ 650 (es), 625 (de) ; les contraires 215 (es), 200 (de) ; Manger et goûter ≈ 1 560 (es), 1 580 (de), dont ≈ 1 110 additions de la carte
 du café (« ¿Cuánto es? », autant de commandes différentes) et ≈ 440-470 pour tout le reste. On élargit par de nouvelles combinaisons dans les sortes validées, jamais par du
 remplissage ni des quasi-doublons : la même question avec d'autres leurres n'en est pas une nouvelle (c'est pourquoi
 « completa » avec le visage ne s'ajoute pas à « yeux »). Une description partielle doit désigner **une seule**
 personne parmi celles montrées ; un trait inconnu (les yeux d'Anna) n'exclut jamais personne.
+
+**Un thème de choses** (« Les contraires », `contrarios.html`) : une image par mot, et pour chaque image la liste
+des mots **clairement faux** pour elle (`faux`, dans `visuel/contrarios/contrarios.py`) ; un leurre ou le faux
+d'un « vrai ou faux » n'est jamais pris ailleurs. Une vieille bicyclette n'est pas forcément laide, une valise pas
+forcément neuve : ce que l'image ne tranche pas n'est jamais proposé. Ser / estar n'est demandé que sur les mots
+où un seul verbe est juste (la taille, la largeur ; ouvert, fermé, plein, vide).
 
 ## Faire un thème, pas à pas
 
@@ -136,7 +142,7 @@ ramène aux cartes (`revenirDeLArret()`).
 |---|---|
 | `visuel/prototype/<thème>.html` | la page (découverte, questions, fin) |
 | `visuel/prototype/<thème>/` | ses images web et ses données (`personnages.json`, `familia.json`) |
-| `visuel/descripcion/`, `visuel/familia/` | les scripts des images (génération, détourage, webp) |
+| `visuel/descripcion/`, `visuel/familia/`, `visuel/emociones/`, `visuel/contrarios/` | les scripts des images (génération, détourage, webp) |
 | `visuel/vignettes_themes.py` → `visuel/prototype/themes/` | les vignettes de l'accueil |
 | `index.html` : `THEMES_ILLUSTRES`, `ouvrirThemeIllustre()`, `majExplorerThemes()`, `themeDuJour()`, `insererThemeIllustre()`, `ouvrirArretTheme()` | l'app |
 | `visuel/prototype/themes/tirage.js` | le tirage par mots, commun à tous les thèmes |
