@@ -26,6 +26,10 @@ html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre
   --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (3 nov. 2026, Jacques sur iPhone : « Commencer » « pas
+   completement en bas ») : le contenu defile DANS le body, le document garde la hauteur du cadre (familia.html). */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
 body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
   padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
@@ -101,7 +105,7 @@ button:disabled{cursor:default}
 .suite[hidden]{display:none}
 /* Jacques, 3 nov. 2026, comme dans les scenes : « commencer les exercices ou continuer soit toujours en bas
    completement de l'ecran ». Tous les boutons d'action sont fixes en bas, jamais dans le flux : la suite (Commencer,
-   Suivant, Terminer) et, a la fin, « Encore des questions » et « Terminer » cote a cote (.bas, comme familia.html). */
+   Continuer, Terminer) et, a la fin, « Encore des questions » et « Terminer » cote a cote (.bas, comme familia.html). */
 .suite{z-index:5000}
 .bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:5000}
 .bas button{flex:1 1 0;min-width:0;height:54px;border:0;border-radius:27px;padding:0 12px;color:#fff;font:800 16px/1.15 var(--police);
@@ -120,7 +124,7 @@ button:disabled{cursor:default}
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=1"></script>
+<script src="themes/voix.js?v=2"></script>
 <script src="themes/zoom.js?v=3"></script>
 <script>
 const Q = new URLSearchParams(location.search);
@@ -142,7 +146,7 @@ const TEXTES = {
   regleEs:   {fr:"Les verbes pronominaux ont un pronom qui suit la personne : me levanto, te levantas, se levanta, nos levantamos, se levantan. L'heure : a las siete y media (7 h 30), a las ocho menos cuarto (7 h 45).", en:"Reflexive verbs take a pronoun that matches the person: me levanto, te levantas, se levanta, nos levantamos, se levantan. Time: a las siete y media (7:30), a las ocho menos cuarto (7:45).", tr:"Dönüşlü fiiller kişiye uyan bir zamir alır: me levanto, te levantas, se levanta, nos levantamos, se levantan. Saat: a las siete y media (7.30), a las ocho menos cuarto (7.45).", uk:"Зворотні дієслова мають займенник, що відповідає особі: me levanto, te levantas, se levanta, nos levantamos, se levantan. Час: a las siete y media (7:30), a las ocho menos cuarto (7:45).", fa:"فعل‌های بازتابی ضمیری دارند که با شخص هماهنگ است: me levanto، te levantas، se levanta، nos levantamos، se levantan. ساعت: a las siete y media (7:30)، a las ocho menos cuarto (7:45).", ar:"للأفعال الانعكاسية ضمير يوافق الشخص: me levanto، te levantas، se levanta، nos levantamos، se levantan. الساعة: a las siete y media (7:30)، a las ocho menos cuarto (7:45).", pt:"Os verbos reflexivos têm um pronome que acompanha a pessoa: me levanto, te levantas, se levanta, nos levantamos, se levantan. As horas: a las siete y media (7h30), a las ocho menos cuarto (7h45).", pl:"Czasowniki zwrotne mają zaimek zgodny z osobą: me levanto, te levantas, se levanta, nos levantamos, se levantan. Godzina: a las siete y media (7:30), a las ocho menos cuarto (7:45).", ru:"У возвратных глаголов есть местоимение, которое согласуется с лицом: me levanto, te levantas, se levanta, nos levantamos, se levantan. Время: a las siete y media (7:30), a las ocho menos cuarto (7:45).", de:"Reflexive Verben haben ein Pronomen, das zur Person passt: me levanto, te levantas, se levanta, nos levantamos, se levantan. Die Uhrzeit: a las siete y media (7.30 Uhr), a las ocho menos cuarto (7.45 Uhr)."},
   regleDe:   {fr:"Le verbe séparable se coupe en deux, sa particule va à la fin : aufstehen, Anna steht um sieben Uhr auf. Et attention : halb acht, c'est 7 h 30, la demi-heure AVANT huit heures.", en:"A separable verb splits in two and its particle goes to the end: aufstehen, Anna steht um sieben Uhr auf. And watch out: halb acht is 7:30, half an hour BEFORE eight.", tr:"Ayrılabilen fiil ikiye bölünür, öneki sona gider: aufstehen, Anna steht um sieben Uhr auf. Dikkat: halb acht 7.30 demektir, sekizden yarım saat ÖNCE.", uk:"Відокремлюване дієслово розпадається на дві частини, префікс іде в кінець: aufstehen, Anna steht um sieben Uhr auf. І увага: halb acht — це 7:30, пів години ДО восьмої.", fa:"فعل جداشدنی دو تکه می‌شود و پیشوندش به آخر جمله می‌رود: aufstehen، Anna steht um sieben Uhr auf. و دقت کن: halb acht یعنی 7:30، نیم ساعت پیش از هشت.", ar:"ينقسم الفعل القابل للفصل إلى جزأين وتذهب سابقته إلى آخر الجملة: aufstehen، Anna steht um sieben Uhr auf. وانتبه: halb acht تعني 7:30، أي نصف ساعة قبل الثامنة.", pt:"O verbo separável se divide em dois e a partícula vai para o fim: aufstehen, Anna steht um sieben Uhr auf. E atenção: halb acht é 7h30, meia hora ANTES das oito.", pl:"Czasownik rozdzielnie złożony dzieli się na dwie części, a przedrostek idzie na koniec: aufstehen, Anna steht um sieben Uhr auf. Uwaga: halb acht to 7:30, pół godziny PRZED ósmą.", ru:"Отделяемый глагол делится на две части, приставка уходит в конец: aufstehen, Anna steht um sieben Uhr auf. И внимание: halb acht — это 7:30, полчаса ДО восьми.", de:"Trennbare Verben teilen sich, die Vorsilbe steht am Ende: aufstehen, Anna steht um sieben Uhr auf. Und: halb acht ist 7.30 Uhr."},
   ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
-  commencer: {fr:"Commencer les exercices", en:"Start the exercises", tr:"Alıştırmalara başla", uk:"Почати вправи", fa:"شروع تمرین‌ها", ar:"ابدأ التمارين", pt:"Começar os exercícios", pl:"Zacznij ćwiczenia", ru:"Начать упражнения", de:"Übungen starten"},
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
   queHace:   {fr:"Regarde l'image : que se passe-t-il ?", en:"Look at the picture: what is happening?", tr:"Resme bak: ne oluyor?", uk:"Подивися на зображення: що відбувається?", fa:"به تصویر نگاه کن: چه اتفاقی می‌افتد؟", ar:"انظر إلى الصورة: ماذا يحدث؟", pt:"Olhe a imagem: o que está acontecendo?", pl:"Spójrz na obrazek: co się dzieje?", ru:"Посмотри на картинку: что происходит?", de:"Sieh dir das Bild an: Was passiert?"},
   aQueHora:  {fr:"Lis l'heure sur l'horloge et choisis la bonne réponse.", en:"Read the time on the clock and choose the right answer.", tr:"Saatteki zamanı oku ve doğru cevabı seç.", uk:"Прочитай час на годиннику й обери правильну відповідь.", fa:"ساعت را از روی ساعت بخوان و پاسخ درست را انتخاب کن.", ar:"اقرأ الوقت على الساعة واختر الإجابة الصحيحة.", pt:"Leia a hora no relógio e escolha a resposta certa.", pl:"Odczytaj godzinę z zegara i wybierz właściwą odpowiedź.", ru:"Посмотри на часы и выбери правильный ответ.", de:"Lies die Uhrzeit auf der Uhr und wähle die richtige Antwort."},
   vraifaux:  {fr:"Regarde l'image et l'horloge : vrai ou faux ?", en:"Look at the picture and the clock: true or false?", tr:"Resme ve saate bak: doğru mu, yanlış mı?", uk:"Подивися на зображення й годинник: правда чи ні?", fa:"به تصویر و ساعت نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة والساعة: صحيح أم خطأ؟", pt:"Olhe a imagem e o relógio: verdadeiro ou falso?", pl:"Spójrz na obrazek i zegar: prawda czy fałsz?", ru:"Посмотри на картинку и часы: правда или нет?", de:"Sieh dir das Bild und die Uhr an: richtig oder falsch?"},
@@ -158,7 +162,7 @@ const TEXTES = {
   frecuencia:{fr:"Regarde la semaine : toujours, parfois ou jamais ?", en:"Look at the week: always, sometimes or never?", tr:"Haftaya bak: her zaman mı, bazen mi, hiç mi?", uk:"Подивися на тиждень: завжди, іноді чи ніколи?", fa:"به هفته نگاه کن: همیشه، گاهی یا هرگز؟", ar:"انظر إلى الأسبوع: دائمًا أم أحيانًا أم أبدًا؟", pt:"Olhe a semana: sempre, às vezes ou nunca?", pl:"Spójrz na tydzień: zawsze, czasem czy nigdy?", ru:"Посмотри на неделю: всегда, иногда или никогда?", de:"Sieh dir die Woche an: immer, manchmal oder nie?"},
   momentEs:  {fr:"Regarde l'horloge : le matin, l'après-midi ou le soir ?", en:"Look at the clock: in the morning, the afternoon or the evening?", tr:"Saate bak: sabah mı, öğleden sonra mı, akşam mı?", uk:"Подивися на годинник: уранці, удень чи ввечері?", fa:"به ساعت نگاه کن: صبح، بعدازظهر یا شب؟", ar:"انظر إلى الساعة: في الصباح أم بعد الظهر أم في المساء؟", pt:"Olhe o relógio: de manhã, à tarde ou à noite?", pl:"Spójrz na zegar: rano, po południu czy wieczorem?", ru:"Посмотри на часы: утром, днём или вечером?", de:"Sieh auf die Uhr: am Morgen, am Nachmittag oder am Abend?"},
   momentDe:  {fr:"Regarde l'horloge : le matin, à midi ou le soir ?", en:"Look at the clock: in the morning, at noon or in the evening?", tr:"Saate bak: sabah mı, öğlen mi, akşam mı?", uk:"Подивися на годинник: уранці, опівдні чи ввечері?", fa:"به ساعت نگاه کن: صبح، ظهر یا شب؟", ar:"انظر إلى الساعة: في الصباح أم الظهر أم المساء؟", pt:"Olhe o relógio: de manhã, ao meio-dia ou à noite?", pl:"Spójrz na zegar: rano, w południe czy wieczorem?", ru:"Посмотри на часы: утром, в полдень или вечером?", de:"Sieh auf die Uhr: am Morgen, am Mittag oder am Abend?"},
-  suivant:   {fr:"Suivant", en:"Next", tr:"Devam", uk:"Далі", fa:"بعدی", ar:"التالي", pt:"Próximo", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
@@ -316,7 +320,7 @@ const unique = a => Array.from(new Set(a));
 function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
@@ -801,7 +805,7 @@ function montrer(){
   }
   if (!fait) fait = essai(file[rang], false);
   vus.add(cleQuestion()); derniereSorte = fait;
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
