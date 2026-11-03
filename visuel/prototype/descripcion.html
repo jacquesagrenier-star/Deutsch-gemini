@@ -58,6 +58,9 @@ button:disabled{cursor:default}
 .fin .score{font-size:22px;font-weight:900}
 .fin button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:10px 18px;font:800 16px var(--police);cursor:pointer}
 [lang]{unicode-bidi:isolate}
+/* la traduction dans la langue d'interface : une ligne, plus petite, en gris (3 nov. 2026) */
+.trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
+.case .trad{font-size:11.5px;text-align:center;padding:0 4px;margin-top:0}
 /* la decouverte (3 nov. 2026) : des cases a toucher, le mot dessous, la voix au toucher */
 .sec{font-weight:900;font-size:15px;margin:6px 0 0}
 .cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
@@ -253,6 +256,191 @@ const DE = {
 const L = APPRENDRE === "de" ? DE : ES;
 const OPTS_YEUX = APPRENDRE === "de" ? {verdes:"grün", azules:"blau", castanos:"braun", negros:"dunkel", grises:"grau"} : {verdes:"verdes", azules:"azules", castanos:"castaños", negros:"negros", grises:"grises"};
 
+// ---------- la traduction dans la langue d'interface (Jacques, 3 nov. 2026) ----------
+// « Il n'y a pas la traduction française. Qui serait importante. » APRES la reponse, sous la phrase juste (jamais
+// avant : elle donnerait la reponse), et sous chaque case de la decouverte. En francais, anglais et portugais (et en
+// allemand pour qui apprend l'espagnol), la description entiere, fabriquee avec les MEMES traits que la question ;
+// dans les autres langues, le mot et sa traduction du corpus (descripcion/gloses.json).
+const TRADS = {
+  fr: {
+    pron: p => p.sexe === "f" ? "Elle" : "Il",
+    adj: (p, m, f) => p.sexe === "f" ? f : m,
+    altura(p){ return {alto: this.adj(p, "grand", "grande"), mediano: "de taille moyenne", bajo: this.adj(p, "petit", "petite")}[p.altura]; },
+    tam(p){ return {delgado: "mince", gordo: this.adj(p, "gros", "grosse"), fuerte: this.adj(p, "fort", "forte")}[p.tam]; },
+    largo: {corto: "courts", largo: "longs"}, tipo: {liso: "raides", ondulado: "ondulés", rizado: "bouclés"},
+    color: {negro: "noirs", castano: "châtains", castano_claro: "châtain clair", rubio: "blonds", rojo: "roux"},
+    ojos: {verdes: "verts", azules: "bleus", castanos: "marron", negros: "noirs", grises: "gris"},
+    porte: {gafas: "des lunettes", gafas_sol: "des lunettes de soleil", pendiente: "une boucle d'oreille", pendientes: "des boucles d'oreilles"},
+    a: {barba: "une barbe", bigote: "une moustache", perilla: "un bouc", tatuaje: "un tatouage"},
+    et: a => a.length > 1 ? a.slice(0, -1).join(", ") + " et " + a[a.length - 1] : a[0],
+    // la description, trait par trait, dans l'ordre de la phrase espagnole ou allemande
+    decrire(p, keys){
+      const P = this.pron(p), out = [], has = k => keys.includes(k);
+      if (has("altura") && has("tam")) out.push(P + " est " + this.altura(p) + " et " + this.tam(p) + ".");
+      else if (has("altura")) out.push(P + " est " + this.altura(p) + ".");
+      else if (has("tam")) out.push(P + " est " + this.tam(p) + ".");
+      if (has("calvo")) out.push(P + " est chauve.");
+      if (has("pelirrojo")) out.push(P + " est " + this.adj(p, "roux", "rousse") + ".");
+      const lg = has("forme") || has("largo"), tp = has("forme") || has("tipo"), co = has("color");
+      const ch = [lg && this.largo[p.largo], tp && this.tipo[p.tipo], co && this.color[p.color]].filter(Boolean);
+      if (ch.length) out.push(P + " a les cheveux " + this.et(ch) + ".");
+      if (has("ojos") && p.ojos) out.push(P + " a les yeux " + this.ojos[p.ojos] + ".");
+      const ll = keys.filter(k => k.indexOf("lleva:") === 0).map(k => k.slice(6));
+      const a = ll.filter(x => this.a[x]).map(x => this.a[x]), po = ll.filter(x => this.porte[x]).map(x => this.porte[x]);
+      if (a.length) out.push(P + " a " + this.et(a) + ".");
+      if (po.length) out.push(P + " porte " + this.et(po) + ".");
+      return out.join(" ");
+    },
+    plusGrand: "Qui est le plus grand ?", plusPetit: "Qui est le plus petit ?",
+    yeuxRep(c){ return "Ils sont " + this.ojos[c] + "."; }
+  },
+  en: {
+    pron: p => p.sexe === "f" ? "She" : "He",
+    altura: p => ({alto: "tall", mediano: "of medium height", bajo: "short"})[p.altura],
+    tam: p => ({delgado: "slim", gordo: "plump", fuerte: "strong"})[p.tam],
+    largo: {corto: "short", largo: "long"}, tipo: {liso: "straight", ondulado: "wavy", rizado: "curly"},
+    color: {negro: "black", castano: "brown", castano_claro: "light brown", rubio: "blond", rojo: "red"},
+    ojos: {verdes: "green", azules: "blue", castanos: "brown", negros: "dark", grises: "grey"},
+    porte: {gafas: "glasses", gafas_sol: "sunglasses", pendiente: "an earring", pendientes: "earrings"},
+    a: {barba: "a beard", bigote: "a moustache", perilla: "a goatee", tatuaje: "a tattoo"},
+    et: a => a.length > 1 ? a.slice(0, -1).join(", ") + " and " + a[a.length - 1] : a[0],
+    decrire(p, keys){
+      const P = this.pron(p), out = [], has = k => keys.includes(k);
+      if (has("altura") && has("tam")) out.push(P + " is " + this.altura(p) + " and " + this.tam(p) + ".");
+      else if (has("altura")) out.push(P + " is " + this.altura(p) + ".");
+      else if (has("tam")) out.push(P + " is " + this.tam(p) + ".");
+      if (has("calvo")) out.push(P + " is bald.");
+      if (has("pelirrojo")) out.push(P + " has red hair.");
+      const lg = has("forme") || has("largo"), tp = has("forme") || has("tipo"), co = has("color");
+      const ch = [lg && this.largo[p.largo], tp && this.tipo[p.tipo], co && this.color[p.color]].filter(Boolean);
+      if (ch.length) out.push(P + " has " + ch.join(", ") + " hair.");
+      if (has("ojos") && p.ojos) out.push(P + " has " + this.ojos[p.ojos] + " eyes.");
+      const ll = keys.filter(k => k.indexOf("lleva:") === 0).map(k => k.slice(6));
+      const a = ll.filter(x => this.a[x]).map(x => this.a[x]), po = ll.filter(x => this.porte[x]).map(x => this.porte[x]);
+      if (a.length) out.push(P + " has " + this.et(a) + ".");
+      if (po.length) out.push(P + " wears " + this.et(po) + ".");
+      return out.join(" ");
+    },
+    plusGrand: "Who is the tallest?", plusPetit: "Who is the shortest?",
+    yeuxRep(c){ return "They are " + this.ojos[c] + "."; }
+  },
+  pt: {
+    pron: p => p.sexe === "f" ? "Ela" : "Ele",
+    adj: (p, m, f) => p.sexe === "f" ? f : m,
+    altura(p){ return {alto: this.adj(p, "alto", "alta"), mediano: "de estatura média", bajo: this.adj(p, "baixo", "baixa")}[p.altura]; },
+    tam(p){ return {delgado: this.adj(p, "magro", "magra"), gordo: this.adj(p, "gordo", "gorda"), fuerte: "forte"}[p.tam]; },
+    largo: {corto: "curto", largo: "comprido"}, tipo: {liso: "liso", ondulado: "ondulado", rizado: "cacheado"},
+    color: {negro: "preto", castano: "castanho", castano_claro: "castanho-claro", rubio: "loiro", rojo: "ruivo"},
+    ojos: {verdes: "verdes", azules: "azuis", castanos: "castanhos", negros: "escuros", grises: "cinza"},
+    porte: {gafas: "óculos", gafas_sol: "óculos de sol", pendiente: "um brinco", pendientes: "brincos"},
+    a: {barba: "barba", bigote: "bigode", perilla: "cavanhaque", tatuaje: "uma tatuagem"},
+    et: a => a.length > 1 ? a.slice(0, -1).join(", ") + " e " + a[a.length - 1] : a[0],
+    decrire(p, keys){
+      const P = this.pron(p), out = [], has = k => keys.includes(k);
+      if (has("altura") && has("tam")) out.push(P + " é " + this.altura(p) + " e " + this.tam(p) + ".");
+      else if (has("altura")) out.push(P + " é " + this.altura(p) + ".");
+      else if (has("tam")) out.push(P + " é " + this.tam(p) + ".");
+      if (has("calvo")) out.push(P + " é careca.");
+      if (has("pelirrojo")) out.push(P + " é " + this.adj(p, "ruivo", "ruiva") + ".");
+      const lg = has("forme") || has("largo"), tp = has("forme") || has("tipo"), co = has("color");
+      const ch = [lg && this.largo[p.largo], tp && this.tipo[p.tipo], co && this.color[p.color]].filter(Boolean);
+      if (ch.length) out.push(P + " tem o cabelo " + this.et(ch) + ".");
+      if (has("ojos") && p.ojos) out.push(P + " tem olhos " + this.ojos[p.ojos] + ".");
+      const ll = keys.filter(k => k.indexOf("lleva:") === 0).map(k => k.slice(6));
+      const a = ll.filter(x => this.a[x]).map(x => this.a[x]), po = ll.filter(x => this.porte[x]).map(x => this.porte[x]);
+      if (a.length) out.push(P + " tem " + this.et(a) + ".");
+      if (po.length) out.push(P + " usa " + this.et(po) + ".");
+      return out.join(" ");
+    },
+    plusGrand: "Quem é o mais alto?", plusPetit: "Quem é o mais baixo?",
+    yeuxRep(c){ return "São " + this.ojos[c] + "."; }
+  }
+};
+// L'allemand, pour qui apprend l'espagnol avec une interface allemande : le moteur allemand de la page.
+TRADS.de = {
+  decrire(p, keys){
+    const P = DE.pron(p), extra = [];
+    const ch = DE.traits(p).filter(t => keys.includes(t.k) || (t.k === "forme" && (keys.includes("largo") || keys.includes("tipo"))));
+    let txt = keys.length >= DE.traits(p).length ? DE.phrases(p) : DE.assembler(p, ch);
+    // la longueur seule ou la forme seule (« completa ») : la phrase de ce trait-la
+    if (keys.length === 1 && keys[0] === "largo") txt = P + " hat " + DE.largo[p.largo] + " Haare.";
+    if (keys.length === 1 && keys[0] === "tipo") txt = P + " hat " + DE.tipo[p.tipo] + " Haare.";
+    // « Es pelirroja » : rote Haare, sauf si la phrase des cheveux le dit deja
+    if (keys.includes("pelirrojo") && !keys.includes("color")) extra.push(P + " hat rote Haare.");
+    return [txt].concat(extra).filter(Boolean).join(" ");
+  },
+  plusGrand: DE.plusGrand, plusPetit: DE.plusPetit,
+  yeuxRep: c => DE.yeuxRep(c)
+};
+// « es / tiene / lleva » + une expression : ce que dit l'expression entiere
+const TRAD_VERBE = {
+  "es alto": ["être grand", "to be tall", "ser alto", "groß sein"], "es delgada": ["être mince", "to be slim", "ser magra", "schlank sein"],
+  "es calvo": ["être chauve", "to be bald", "ser careca", "eine Glatze haben"], "es fuerte": ["être fort", "to be strong", "ser forte", "kräftig sein"],
+  "es pelirroja": ["être rousse", "to have red hair", "ser ruiva", "rote Haare haben"],
+  "es de estatura mediana": ["être de taille moyenne", "to be of medium height", "ter estatura média", "mittelgroß sein"],
+  "es gordo": ["être gros", "to be plump", "ser gordo", "dick sein"],
+  "tiene el pelo rizado": ["avoir les cheveux bouclés", "to have curly hair", "ter o cabelo cacheado", "lockige Haare haben"],
+  "tiene los ojos verdes": ["avoir les yeux verts", "to have green eyes", "ter olhos verdes", "grüne Augen haben"],
+  "tiene el pelo largo y liso": ["avoir les cheveux longs et raides", "to have long, straight hair", "ter o cabelo comprido e liso", "lange, glatte Haare haben"],
+  "tiene los ojos azules": ["avoir les yeux bleus", "to have blue eyes", "ter olhos azuis", "blaue Augen haben"],
+  "tiene el pelo corto": ["avoir les cheveux courts", "to have short hair", "ter o cabelo curto", "kurze Haare haben"],
+  "lleva gafas": ["porter des lunettes", "to wear glasses", "usar óculos", "eine Brille tragen"],
+  "lleva barba": ["porter la barbe", "to have a beard", "usar barba", "einen Bart tragen"],
+  "lleva un tatuaje": ["avoir un tatouage", "to have a tattoo", "ter uma tatuagem", "ein Tattoo haben"],
+  "lleva bigote": ["porter la moustache", "to have a moustache", "usar bigode", "einen Schnurrbart tragen"],
+  "lleva pendientes": ["porter des boucles d'oreilles", "to wear earrings", "usar brincos", "Ohrringe tragen"],
+  "lleva gafas de sol": ["porter des lunettes de soleil", "to wear sunglasses", "usar óculos de sol", "eine Sonnenbrille tragen"],
+  "ist groß": ["être grand", "to be tall", "ser alto"], "ist schlank": ["être mince", "to be slim", "ser magro"],
+  "ist klein": ["être petit", "to be short", "ser baixo"], "ist kräftig": ["être fort", "to be strong", "ser forte"],
+  "ist dick": ["être gros", "to be plump", "ser gordo"], "ist mittelgroß": ["être de taille moyenne", "to be of medium height", "ter estatura média"],
+  "hat blaue Augen": ["avoir les yeux bleus", "to have blue eyes", "ter olhos azuis"], "hat lockige Haare": ["avoir les cheveux bouclés", "to have curly hair", "ter o cabelo cacheado"],
+  "hat eine Glatze": ["être chauve", "to be bald", "ser careca"], "hat kurze, blonde Haare": ["avoir les cheveux courts et blonds", "to have short, blond hair", "ter o cabelo curto e loiro"],
+  "hat ein Tattoo": ["avoir un tatouage", "to have a tattoo", "ter uma tatuagem"], "hat grüne Augen": ["avoir les yeux verts", "to have green eyes", "ter olhos verdes"],
+  "trägt eine Brille": ["porter des lunettes", "to wear glasses", "usar óculos"], "trägt eine Sonnenbrille": ["porter des lunettes de soleil", "to wear sunglasses", "usar óculos de sol"],
+  "trägt Ohrringe": ["porter des boucles d'oreilles", "to wear earrings", "usar brincos"]
+};
+const tradVerbe = expr => { const t = TRAD_VERBE[expr]; return t ? t[["fr", "en", "pt", "de"].indexOf(LANGUE)] || null : null; };
+// les cases de la decouverte : de courtes expressions, traduites dans les dix langues d'interface (les prenoms
+// restent ecrits comme a l'ecran). [fr, en, tr, uk, fa, ar, pt, pl, ru, de]
+const ORDRE_LANGUES = ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"];
+const TRAD_DECOUVERTE = {
+  "yeux-azules": ["les yeux bleus", "blue eyes", "mavi gözler", "блакитні очі", "چشم‌های آبی", "عينان زرقاوان", "olhos azuis", "niebieskie oczy", "голубые глаза", "blaue Augen"],
+  "yeux-verdes": ["les yeux verts", "green eyes", "yeşil gözler", "зелені очі", "چشم‌های سبز", "عينان خضراوان", "olhos verdes", "zielone oczy", "зелёные глаза", "grüne Augen"],
+  "yeux-castanos": ["les yeux marron", "brown eyes", "kahverengi gözler", "карі очі", "چشم‌های قهوه‌ای", "عينان بنّيّتان", "olhos castanhos", "brązowe oczy", "карие глаза", "braune Augen"],
+  "yeux-grises": ["les yeux gris", "grey eyes", "gri gözler", "сірі очі", "چشم‌های خاکستری", "عينان رماديّتان", "olhos cinza", "szare oczy", "серые глаза", "graue Augen"],
+  "yeux-negros": ["les yeux foncés", "dark eyes", "koyu renk gözler", "темні очі", "چشم‌های تیره", "عينان داكنتان", "olhos escuros", "ciemne oczy", "тёмные глаза", "dunkle Augen"],
+  "rubio": ["les cheveux blonds", "blond hair", "sarı saç", "світле волосся", "موی بور", "شعر أشقر", "cabelo loiro", "blond włosy", "светлые волосы", "blonde Haare"],
+  "castano": ["les cheveux châtains", "brown hair", "kahverengi saç", "каштанове волосся", "موی قهوه‌ای", "شعر بنّيّ", "cabelo castanho", "brązowe włosy", "каштановые волосы", "braune Haare"],
+  "castano_claro": ["les cheveux châtain clair", "light brown hair", "açık kahverengi saç", "світло-каштанове волосся", "موی قهوه‌ای روشن", "شعر بنّيّ فاتح", "cabelo castanho-claro", "jasnobrązowe włosy", "светло-каштановые волосы", "hellbraune Haare"],
+  "rojo": ["les cheveux roux", "red hair", "kızıl saç", "руде волосся", "موی قرمز", "شعر أحمر", "cabelo ruivo", "rude włosy", "рыжие волосы", "rote Haare"],
+  "negro": ["les cheveux noirs", "black hair", "siyah saç", "чорне волосся", "موی مشکی", "شعر أسود", "cabelo preto", "czarne włosy", "чёрные волосы", "schwarze Haare"],
+  "canoso": ["les cheveux gris", "grey hair", "kır saç", "сиве волосся", "موی جوگندمی", "شعر رماديّ", "cabelo grisalho", "siwe włosy", "седые волосы", "graue Haare"],
+  "corto": ["les cheveux courts", "short hair", "kısa saç", "коротке волосся", "موی کوتاه", "شعر قصير", "cabelo curto", "krótkie włosy", "короткие волосы", "kurze Haare"],
+  "largo": ["les cheveux longs", "long hair", "uzun saç", "довге волосся", "موی بلند", "شعر طويل", "cabelo comprido", "długie włosy", "длинные волосы", "lange Haare"],
+  "liso": ["les cheveux raides", "straight hair", "düz saç", "пряме волосся", "موی صاف", "شعر أملس", "cabelo liso", "proste włosy", "прямые волосы", "glatte Haare"],
+  "ondulado": ["les cheveux ondulés", "wavy hair", "dalgalı saç", "хвилясте волосся", "موی موج‌دار", "شعر مموّج", "cabelo ondulado", "falowane włosy", "волнистые волосы", "wellige Haare"],
+  "rizado": ["les cheveux bouclés", "curly hair", "kıvırcık saç", "кучеряве волосся", "موی فرفری", "شعر مجعّد", "cabelo cacheado", "kręcone włosy", "кудрявые волосы", "lockige Haare"],
+  "gafas": ["Diego porte des lunettes.", "Diego wears glasses.", "Diego gözlük takıyor.", "Diego носить окуляри.", "Diego عینک می‌زند.", "يضع Diego نظارة.", "Diego usa óculos.", "Diego nosi okulary.", "Diego носит очки.", "Diego trägt eine Brille."],
+  "barba": ["Pablo a une barbe.", "Pablo has a beard.", "Pablo'nun sakalı var.", "У Pablo борода.", "Pablo ریش دارد.", "لدى Pablo لحية.", "Pablo tem barba.", "Pablo ma brodę.", "У Pablo борода.", "Pablo hat einen Bart."],
+  "bigote": ["Javier a une moustache.", "Javier has a moustache.", "Javier'in bıyığı var.", "У Javier вуса.", "Javier سبیل دارد.", "لدى Javier شارب.", "Javier tem bigode.", "Javier ma wąsy.", "У Javier усы.", "Javier hat einen Schnurrbart."],
+  "calvo": ["Pablo est chauve.", "Pablo is bald.", "Pablo kel.", "Pablo лисий.", "Pablo کچل است.", "Pablo أصلع.", "Pablo é careca.", "Pablo jest łysy.", "Pablo лысый.", "Pablo hat eine Glatze."],
+  "pelirrojo": ["Inés est rousse.", "Inés has red hair.", "Inés kızıl saçlı.", "Inés руда.", "Inés مو قرمز است.", "Inés صهباء.", "Inés é ruiva.", "Inés jest ruda.", "Inés рыжая.", "Inés hat rote Haare."],
+  "Carmen": ["Carmen est petite.", "Carmen is short.", "Carmen kısa boylu.", "Carmen невисока.", "Carmen کوتاه‌قد است.", "Carmen قصيرة.", "Carmen é baixa.", "Carmen jest niska.", "Carmen невысокая.", "Carmen ist klein."],
+  "Anna": ["Anna est de taille moyenne.", "Anna is of medium height.", "Anna orta boylu.", "Anna середнього зросту.", "Anna قد متوسطی دارد.", "Anna متوسطة الطول.", "Anna tem estatura média.", "Anna jest średniego wzrostu.", "Anna среднего роста.", "Anna ist mittelgroß."],
+  "Tomas": ["Tomás est grand.", "Tomás is tall.", "Tomás uzun boylu.", "Tomás високий.", "Tomás قدبلند است.", "Tomás طويل.", "Tomás é alto.", "Tomás jest wysoki.", "Tomás высокий.", "Tomás ist groß."]
+};
+const tradDecouverte = cle => { const t = TRAD_DECOUVERTE[cle]; return t ? t[ORDRE_LANGUES.indexOf(LANGUE)] || null : null; };
+const TR = TRADS[LANGUE] && (LANGUE !== "de" || APPRENDRE === "es") ? TRADS[LANGUE] : null;
+let GLOSES = {}, trad = null;
+fetch("descripcion/gloses.json?v=1").then(r => r.json()).then(d => { GLOSES = d[APPRENDRE] || {}; }).catch(() => {});
+// la glose du mot de la question : « alto — طويل (القامة) »
+function glose(q){
+  if (!q) return null;
+  const cle = ((q.genre || "") + " " + q.mot).trim(), g = (GLOSES[cle] || {})[LANGUE];
+  return g ? cle + " — " + g : null;
+}
+const traduction = t => '<span class="trad" dir="auto">' + t + '</span>';
+
 // ---------- utilitaires ----------
 const $ = id => document.getElementById(id);
 const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
@@ -302,6 +490,8 @@ function juger(ok, bonneTexte){
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   m.innerHTML = ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)});
+  const tl = trad || (TR ? null : glose(motQ));
+  if (tl) m.insertAdjacentHTML("beforeend", traduction(tl));
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
 function marquer(conteneur, choisi, bon){
@@ -314,28 +504,28 @@ function marquer(conteneur, choisi, bon){
 // l'entendre, et le voir. La meme chose probablement pour les cheveux ». Chaque case : une image, le mot (en gras),
 // la phrase ou il vit (dessous), et la voix du mot SEULEMENT s'il a deja son fichier (null sinon : la voix du
 // telephone ne remplace pas une voix enregistree, et un mot neuf demande l'accord de Jacques).
-// [section, image, mot es, phrase es, voix es, mot de, phrase de, voix de]
+// [section, image, mot es, phrase es, voix es, mot de, phrase de, voix de, cle de traduction (TRAD_DECOUVERTE)]
 const DECOUVERTE = [
-  ["yeux", "yeux-azules", "azules", "los ojos azules", "azules", "blau", "blaue Augen", "blau"],
-  ["yeux", "yeux-verdes", "verdes", "los ojos verdes", "verdes", "grün", "grüne Augen", "grün"],
-  ["yeux", "yeux-castanos", "castaños", "los ojos castaños", null, "braun", "braune Augen", "braun"],
-  ["yeux", "yeux-grises", "grises", "los ojos grises", null, "grau", "graue Augen", "grau"],
-  ["yeux", "yeux-negros", "negros", "los ojos negros", "negros", "dunkel", "dunkle Augen", "dunkel"],
-  ["couleur", "tete-Elena", "rubio", "el pelo rubio", "rubio", "blond", "blonde Haare", "blond"],
-  ["couleur", "tete-Marta", "castaño", "el pelo castaño", "castaño", "braun", "braune Haare", "braun"],
-  ["couleur", "tete-Anna", "castaño claro", "el pelo castaño claro", null, "hellbraun", "hellbraune Haare", null],
-  ["couleur", "tete-Ines", "pelirrojo", "Inés es pelirroja.", "pelirrojo", "rot", "rote Haare", "rot"],
-  ["couleur", "tete-Rosa", "negro", "el pelo negro", "negro", "schwarz", "schwarze Haare", "schwarz"],
-  ["couleur", "tete-Peter", "canoso", "el pelo canoso", null, "grau", "graue Haare", "grau"],
-  ["forme", "tete-Javier", "corto", "el pelo corto", "corto", "kurz", "kurze Haare", "kurz"],
-  ["forme", "tete-Elena", "largo", "el pelo largo", "largo", "lang", "lange Haare", "lang"],
-  ["forme", "tete-Rosa", "liso", "el pelo liso", "liso", "glatt", "glatte Haare", "glatt"],
-  ["forme", "tete-Marta", "ondulado", "el pelo ondulado", null, "wellig", "wellige Haare", null],
-  ["forme", "tete-Carmen", "rizado", "el pelo rizado", "rizado", "lockig", "lockige Haare", null],
-  ["plus", "tete-Diego", "gafas", "Diego lleva gafas.", "gafas", "die Brille", "Diego trägt eine Brille.", "die Brille"],
-  ["plus", "tete-Pablo", "barba", "Pablo lleva barba.", "barba", "der Bart", "Pablo hat einen Bart.", "der Bart"],
-  ["plus", "tete-Javier", "bigote", "Javier lleva bigote.", "bigote", "der Schnurrbart", "Javier hat einen Schnurrbart.", null],
-  ["plus", "tete-Pablo", "calvo", "Pablo es calvo.", "calvo", "die Glatze", "Pablo hat eine Glatze.", null]
+  ["yeux", "yeux-azules", "azules", "los ojos azules", "azules", "blau", "blaue Augen", "blau", "yeux-azules"],
+  ["yeux", "yeux-verdes", "verdes", "los ojos verdes", "verdes", "grün", "grüne Augen", "grün", "yeux-verdes"],
+  ["yeux", "yeux-castanos", "castaños", "los ojos castaños", null, "braun", "braune Augen", "braun", "yeux-castanos"],
+  ["yeux", "yeux-grises", "grises", "los ojos grises", null, "grau", "graue Augen", "grau", "yeux-grises"],
+  ["yeux", "yeux-negros", "negros", "los ojos negros", "negros", "dunkel", "dunkle Augen", "dunkel", "yeux-negros"],
+  ["couleur", "tete-Elena", "rubio", "el pelo rubio", "rubio", "blond", "blonde Haare", "blond", "rubio"],
+  ["couleur", "tete-Marta", "castaño", "el pelo castaño", "castaño", "braun", "braune Haare", "braun", "castano"],
+  ["couleur", "tete-Anna", "castaño claro", "el pelo castaño claro", null, "hellbraun", "hellbraune Haare", null, "castano_claro"],
+  ["couleur", "tete-Ines", "pelirrojo", "Inés es pelirroja.", "pelirrojo", "rot", "rote Haare", "rot", APPRENDRE === "es" ? "pelirrojo" : "rojo"],
+  ["couleur", "tete-Rosa", "negro", "el pelo negro", "negro", "schwarz", "schwarze Haare", "schwarz", "negro"],
+  ["couleur", "tete-Peter", "canoso", "el pelo canoso", null, "grau", "graue Haare", "grau", "canoso"],
+  ["forme", "tete-Javier", "corto", "el pelo corto", "corto", "kurz", "kurze Haare", "kurz", "corto"],
+  ["forme", "tete-Elena", "largo", "el pelo largo", "largo", "lang", "lange Haare", "lang", "largo"],
+  ["forme", "tete-Rosa", "liso", "el pelo liso", "liso", "glatt", "glatte Haare", "glatt", "liso"],
+  ["forme", "tete-Marta", "ondulado", "el pelo ondulado", null, "wellig", "wellige Haare", null, "ondulado"],
+  ["forme", "tete-Carmen", "rizado", "el pelo rizado", "rizado", "lockig", "lockige Haare", null, "rizado"],
+  ["plus", "tete-Diego", "gafas", "Diego lleva gafas.", "gafas", "die Brille", "Diego trägt eine Brille.", "die Brille", "gafas"],
+  ["plus", "tete-Pablo", "barba", "Pablo lleva barba.", "barba", "der Bart", "Pablo hat einen Bart.", "der Bart", "barba"],
+  ["plus", "tete-Javier", "bigote", "Javier lleva bigote.", "bigote", "der Schnurrbart", "Javier hat einen Schnurrbart.", null, "bigote"],
+  ["plus", "tete-Pablo", "calvo", "Pablo es calvo.", "calvo", "die Glatze", "Pablo hat eine Glatze.", null, "calvo"]
 ];
 // la taille : trois personnes a l'echelle devant la toise [nom, mot es, phrase es, voix es, mot de, phrase de, voix de]
 const TAILLES = [["Carmen", "baja", "Carmen es baja.", "baja", "klein", "Carmen ist klein.", "klein"],
@@ -363,9 +553,9 @@ function dire(t){
 }
 const HP = '<svg class="hp" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6"/></svg>';
 function eteindre(){ document.querySelectorAll(".case.actif, .rangee button.juste").forEach(x => x.classList.remove("actif", "juste")); }
-function caseDecouverte(img, mot, phrase, voix, classe){
+function caseDecouverte(img, mot, phrase, voix, classe, cleTrad){
   const b = document.createElement("button"); b.type = "button"; b.className = "case" + (classe ? " " + classe : "");
-  b.innerHTML = '<img alt="" src="descripcion/' + img + '.webp"><b lang="' + APPRENDRE + '" dir="ltr">' + mot + (voix ? HP : "") + '</b><small lang="' + APPRENDRE + '" dir="ltr">' + phrase + '</small>';
+  b.innerHTML = '<img alt="" src="descripcion/' + img + '.webp"><b lang="' + APPRENDRE + '" dir="ltr">' + mot + (voix ? HP : "") + '</b><small lang="' + APPRENDRE + '" dir="ltr">' + phrase + '</small>' + (tradDecouverte(cleTrad) ? '<small class="trad" dir="auto">' + tradDecouverte(cleTrad) + '</small>' : "");
   b.addEventListener("click", () => { eteindre(); b.classList.add("actif"); dire(voix); });
   return b;
 }
@@ -380,13 +570,13 @@ function decouvrir(){
       const r = rangee(TAILLES.map(t => t[0]), 200, (b, id) => {
         const t = TAILLES.find(x => x[0] === id);
         eteindre(); b.classList.add("juste");
-        msg.innerHTML = cible(es ? t[2] : t[5]); dire(es ? t[3] : t[6]);
+        msg.innerHTML = cible(es ? t[2] : t[5]) + (tradDecouverte(t[0]) ? traduction(tradDecouverte(t[0])) : ""); dire(es ? t[3] : t[6]);
       });
       z.appendChild(r); z.appendChild(msg);
       return;
     }
     const g = document.createElement("div"); g.className = "cases";
-    DECOUVERTE.filter(d => d[0] === sec).forEach(d => g.appendChild(caseDecouverte(d[1], es ? d[2] : d[5], es ? d[3] : d[6], es ? d[4] : d[7], sec === "yeux" ? "yeux" : "")));
+    DECOUVERTE.filter(d => d[0] === sec).forEach(d => g.appendChild(caseDecouverte(d[1], es ? d[2] : d[5], es ? d[3] : d[6], es ? d[4] : d[7], sec === "yeux" ? "yeux" : "", d[8])));
     z.appendChild(g);
   });
   const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
@@ -413,6 +603,8 @@ function motsDuTheme(){
   if (APPRENDRE === "es") ["pelirrojo", "calvo"].forEach(m => { par[m] = par[m] || {mot: m, cat: "adjectif", attrs: []}; });
   return Object.values(par);
 }
+// tous les traits de p, comme la description complete (ES y ajoute « Es pelirroja » aux cheveux roux)
+const tousTraits = p => L.traits(p).map(t => t.k).concat(APPRENDRE === "es" && p.color === "rojo" && p.largo !== "calvo" ? ["pelirrojo"] : []);
 // les mots que porte un trait de p (« Tiene el pelo corto y liso » porte corto et liso)
 function portes(t, p){
   const m = (k, v) => (motDe(k, v) || {}).mot;
@@ -431,16 +623,17 @@ const EX = {
     const c = hasard(qui), autres = melanger(IDS.filter(i => i !== c)).slice(0, 3), ids = melanger([c, ...autres]);
     // trois fois sur quatre, deux ou trois traits seulement, choisis pour ne designer que c parmi les quatre (et,
     // si un mot est vise, parmi eux le trait qui le porte)
-    let texte = L.phrases(P[c]);
+    let texte = L.phrases(P[c]), cles = tousTraits(P[c]);
     if (Math.random() < 0.75){
       const tr = L.traits(P[c]);
       for (let n = 0; n < 80; n++){
         const ch = melanger(tr).slice(0, Math.random() < 0.5 ? 2 : 3).sort((a, b) => tr.indexOf(a) - tr.indexOf(b));
         if (w && !ch.some(t => portes(t, P[c]).includes(w.mot))) continue;
-        if (autres.every(o => !repondAussi(P[o], ch, P[c]))){ texte = L.assembler(P[c], ch); break; }
+        if (autres.every(o => !repondAussi(P[o], ch, P[c]))){ texte = L.assembler(P[c], ch); cles = ch.map(t => t.k); break; }
       }
     }
     motQ = motCourant(w);
+    trad = TR ? TR.decrire(P[c], cles) : null;
     const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("quien") + '</p><div class="enonce">' + cible(texte) + '</div>';
     const r = rangee(ids, 190, (b, id) => { const bon = r.querySelector('[data-id="' + c + '"]'); marquer(r, b, bon); juger(id === c, nom(c)); });
     z.appendChild(r); z.insertAdjacentHTML("beforeend", '<p class="retourMsg" id="msg"></p>');
@@ -452,6 +645,7 @@ const EX = {
     if (!cand.length) return false;
     const [id, tr] = hasard(cand);
     motQ = motDe(tr.k, tr.v);
+    trad = TR ? TR.decrire(P[id], [tr.k === "lleva" ? "lleva:" + tr.v : tr.k]) : null;
     const opts = melanger([tr.rep, ...melanger([...new Set(tr.opts)].filter(o => o !== tr.rep)).slice(0, 3)]);
     const img = tr.visage ? '<img class="visage" alt="" src="descripcion/' + id + '-visage.webp">' : '<img alt="" src="descripcion/' + id + '.webp">';
     const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("completa") + '</p><div class="vue">' + img + '<div class="enonce">' + cible(nom(id) + " — " + tr.phrase.replace("___", '<span class="trou" id="trou">?</span>')) + '</div></div><div class="choix" id="choix"></div><p class="retourMsg" id="msg"></p>';
@@ -472,6 +666,7 @@ const EX = {
     if (!cand.length) return false;
     const [mot, v] = hasard(cand);
     motQ = motCourant(w);
+    trad = TR ? tradVerbe(v + " " + mot) : null;
     const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("verbe") + '</p><div class="enonce" style="text-align:center;font-size:21px">' + cible('<span class="trou" id="trou">?</span> ' + mot) + '</div><div class="choix" id="choix" style="justify-content:center"></div><p class="retourMsg" id="msg"></p>';
     const ch = $("choix"); let bon;
     L.verbes.forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.textContent = o; if (o === v) bon = b;
@@ -488,6 +683,7 @@ const EX = {
     const [id, a] = hasard(cand);
     const masc = a[0], fem = a[0].replace(/o$/, "a"), rep = P[id].sexe === "f" ? fem : masc;
     motQ = {mot: masc, cat: "adjectif"};
+    trad = TR ? TR.decrire(P[id], [{alto: "altura", bajo: "altura", delgado: "tam", gordo: "tam", rubio: "color", pelirrojo: "pelirrojo", calvo: "calvo"}[masc]]) : null;
     const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("accord") + '</p><div class="vue"><img alt="" src="descripcion/' + id + '.webp"><div class="enonce">' + cible(nom(id) + ' es <span class="trou" id="trou">?</span>.') + '</div></div><div class="choix" id="choix"></div><p class="retourMsg" id="msg"></p>';
     const ch = $("choix"); let bon;
     [masc, fem].forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = "es"; b.textContent = o; if (o === rep) bon = b;
@@ -499,6 +695,7 @@ const EX = {
     if (!qui.length) return false;
     const id = hasard(qui), autres = melanger(IDS.filter(i => i !== id)).slice(0, 2), ids = melanger([id, ...autres]);
     motQ = motCourant(w);
+    trad = TR ? TR.decrire(P[id], tousTraits(P[id])) : null;
     const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("elige") + '</p><div class="vue"><img alt="" src="descripcion/' + id + '.webp"><img class="visage" alt="" src="descripcion/' + id + '-visage.webp"></div><div class="liste" id="choix"></div><p class="retourMsg" id="msg"></p>';
     const ch = $("choix"); let bon;
     ids.forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = L.phrases(P[o]); if (o === id) bon = b;
@@ -514,6 +711,7 @@ const EX = {
     do { ids = melanger(IDS).slice(0, 3); n++; } while (n < 200 && ids.some((a, i) => ids.some((b, j) => i < j && Math.abs(P[a].metres - P[b].metres) < 0.08)));
     const grand = alt ? alt[1] === "alto" : Math.random() < 0.6, rep = ids.reduce((m, i) => (grand ? P[i].metres > P[m].metres : P[i].metres < P[m].metres) ? i : m, ids[0]);
     motQ = motCourant(w);
+    trad = TR ? (grand ? TR.plusGrand : TR.plusPetit) : null;
     const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("taille") + '</p><div class="enonce" style="text-align:center">' + cible(grand ? L.plusGrand : L.plusPetit) + '</div>';
     const r = rangee(ids, 240, (b, id) => { const bon = r.querySelector('[data-id="' + rep + '"]'); marquer(r, b, bon); juger(id === rep, nom(rep)); });
     z.appendChild(r); z.insertAdjacentHTML("beforeend", '<p class="retourMsg" id="msg"></p>');
@@ -524,6 +722,7 @@ const EX = {
     if (!couleurs.length) return false;
     const c = hasard(couleurs), opts = melanger(Object.keys(OPTS_YEUX));
     motQ = motDe("ojos", c);
+    trad = TR ? TR.yeuxRep(c) : null;
     const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("yeux") + '</p><img class="photo" alt="" src="descripcion/yeux-' + c + '.webp"><div class="enonce" style="text-align:center">' + cible(L.yeuxQ) + '</div><div class="choix" id="choix" style="justify-content:center"></div><p class="retourMsg" id="msg"></p>';
     const ch = $("choix"); let bon;
     opts.forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.textContent = OPTS_YEUX[o]; if (o === c) bon = b;
@@ -553,19 +752,19 @@ function montrer(){
     const autres = melanger(SORTES.filter(x => x !== derniereSorte));
     for (const so of autres){
       for (let n = 0; n < 25; n++){
-        motQ = null; sorteCourante = so;
+        motQ = null; trad = null; sorteCourante = so;
         if (!EX[so](w)) break;
         if (!vus.has(cleQuestion())) return so;
       }
     }
     if (strict) return null;
     if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
-      motQ = null; sorteCourante = derniereSorte;
+      motQ = null; trad = null; sorteCourante = derniereSorte;
       if (!EX[derniereSorte](w)) break;
       if (!vus.has(cleQuestion())) return derniereSorte;
     }
     for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
-      motQ = null; sorteCourante = so;
+      motQ = null; trad = null; sorteCourante = so;
       if (EX[so](w)) return so;
     }
     return null;

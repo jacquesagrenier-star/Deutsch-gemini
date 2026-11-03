@@ -17,7 +17,10 @@ sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
 P = os.path.join(ICI, "prototype")
 SORTIE = os.path.join(P, "themes")
-W, H = 600, 800                       # 3:4, en double pour la nettete
+# 4:3,4, le format ou l'accueil montre les vignettes des scenes (Jacques, 3 nov. 2026 : « la meme hauteur que ce
+# qu'on a pour les scenes. Pour que ca soit harmonieux, donc trois a la fois ») : chaque dessin y est compose, rien
+# n'est coupe par le recadrage de l'accueil.
+W, H = 600, 510
 F = lambda t: ImageFont.truetype("C:/Windows/Fonts/segoeuib.ttf", t)
 
 
@@ -47,11 +50,11 @@ def famille_arbre():
     c = Image.new("RGB", (W, H), (240, 228, 210))
     d = ImageDraw.Draw(c)
     vert = (122, 150, 96)
-    d.rounded_rectangle((W // 2 - 26, 470, W // 2 + 26, 800), 20, fill=(150, 112, 78))
-    noeuds = {"Heinz": (210, 150), "Gisela": (390, 150), "Peter": (150, 360), "Sabine": (450, 360),
-              "Anna": (110, 580), "Jan": (300, 600), "Felix": (490, 580)}
+    d.rounded_rectangle((W // 2 - 24, 330, W // 2 + 24, H), 18, fill=(150, 112, 78))
+    noeuds = {"Heinz": (225, 88), "Gisela": (375, 88), "Peter": (140, 245), "Sabine": (460, 245),
+              "Anna": (80, 410), "Jan": (300, 420), "Felix": (520, 410)}
     liens = [("Heinz", "Peter"), ("Gisela", "Sabine"), ("Peter", "Anna"), ("Peter", "Jan"), ("Sabine", "Felix")]
-    for (x, y, r) in [(300, 330, 290), (150, 260, 170), (450, 260, 170), (300, 120, 170)]:
+    for (x, y, r) in [(300, 230, 250), (130, 200, 150), (470, 200, 150), (300, 90, 140), (90, 370, 110), (510, 370, 110)]:
         d.ellipse((x - r, y - r, x + r, y + r), fill=(206, 222, 176))
     d.line([noeuds["Heinz"], noeuds["Gisela"]], fill=vert, width=10)
     for a, b in liens:
@@ -59,7 +62,7 @@ def famille_arbre():
         xb, yb = noeuds[b]
         d.line([(xa, ya), (xa, (ya + yb) // 2), (xb, (ya + yb) // 2), (xb, yb)], fill=vert, width=10, joint="curve")
     for n, (x, y) in noeuds.items():
-        r = rond(visage("familia", n), 118 if n in ("Heinz", "Gisela") else 112, 7)
+        r = rond(visage("familia", n), 102 if n in ("Heinz", "Gisela") else 96, 6)
         c.paste(r, (x - r.size[0] // 2, y - r.size[1] // 2), r)
     return c
 
@@ -68,38 +71,39 @@ def decrire_toise():
     """La toise : les graduations en metres et trois tailles tres differentes."""
     c = Image.new("RGB", (W, H), (230, 238, 246))
     d = ImageDraw.Draw(c)
-    sol = 770
-    px_m = (sol - 60) / 2.0          # 2 m sur la hauteur
+    sol = H - 18
+    px_m = (sol - 26) / 2.0          # 2 m sur la hauteur
     for cm in range(0, 201, 10):
         y = sol - cm / 100 * px_m
         fort = cm % 50 == 0
         d.line([(0, y), (W, y)], fill=(196, 212, 228) if not fort else (150, 176, 204), width=4 if fort else 2)
         if fort and cm:
-            d.text((14, y - 34), "%d,%02d" % (cm // 100, cm % 100) if cm % 100 else "%d m" % (cm // 100), font=F(30), fill=(90, 116, 146))
+            d.text((14, y - 30), "%d,%02d" % (cm // 100, cm % 100) if cm % 100 else "%d m" % (cm // 100), font=F(26), fill=(90, 116, 146))
     tailles = json.load(open(os.path.join(P, "descripcion", "personnages.json"), encoding="utf-8"))
     gens = [(n, tailles[n]["metres"]) for n in ("Carmen", "Mark", "Tomas")]
     ims = [pied("descripcion", n) for n, _ in gens]
     ims = [i.resize((int(i.size[0] * m * px_m / i.size[1]), int(m * px_m)), Image.LANCZOS) for i, (_, m) in zip(ims, gens)]
-    x = 92
+    largeur = sum(i.size[0] * 0.8 for i in ims[:-1]) + ims[-1].size[0]
+    x = 92 + (W - 92 - largeur) / 2
     for i in ims:
         c.paste(i, (int(x), sol - i.size[1]), i)
-        x += i.size[0] * 0.74
+        x += i.size[0] * 0.8
     return c
 
 
 def emotions_photomaton():
     """La planche de photomaton : Anna quatre fois, contente, surprise, fachee, triste. Une seule personne et quatre
     visages, deux par deux, comme les photos d'identite d'une cabine ; serre sur la tete (le ruban montre 66 px)."""
-    M = 17
+    M = 14
     pw, ph = (W - 3 * M) // 2, (H - 3 * M) // 2
     c = Image.new("RGB", (W, H), (250, 249, 246))
     d = ImageDraw.Draw(c)
     for k, e in enumerate(["contento", "sorprendido", "enfadado", "triste"]):
         im = Image.open(os.path.join(P, "emociones", "Anna-" + e + ".webp")).convert("RGB")
         w, h = im.size
-        ch = round(h * 0.62)
-        cw = round(ch * pw / ph)
-        y0 = round(h * 0.03)
+        cw = round(w * 0.58)                       # serre sur la tete et le haut des epaules (session des emotions)
+        ch = round(cw * ph / pw)
+        y0 = round(h * 0.07)
         im = im.crop(((w - cw) // 2, y0, (w + cw) // 2, y0 + ch)).resize((pw, ph), Image.LANCZOS)
         x, y = M + (k % 2) * (pw + M), M + (k // 2) * (ph + M)
         c.paste(im, (x, y))
@@ -112,5 +116,5 @@ VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones"
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
     for nom, f in VIGNETTES.items():
-        f().resize((450, 600), Image.LANCZOS).save(os.path.join(SORTIE, nom + ".webp"), "WEBP", quality=84, method=6)
+        f().save(os.path.join(SORTIE, nom + ".webp"), "WEBP", quality=84, method=6)
         print("  ->", nom + ".webp")

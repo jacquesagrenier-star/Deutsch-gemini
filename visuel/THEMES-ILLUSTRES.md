@@ -71,6 +71,21 @@ Le déroulé, dans la page :
    (`cleQuestion()`). Dans la séance : 6. Moins quand il y a moins de mots à revoir : c'est voulu.
 3. Un écran de fin (score, « Encore des questions » hors séance, « Terminer »).
 
+**La traduction dans la langue d'interface** (Jacques, 3 nov. : « Il n'y a pas la traduction française. Qui serait
+importante ») : une ligne plus petite, grise, en italique (`.trad`), **sous le mot dans la découverte** et **après la
+réponse, sous la phrase juste** — jamais avant, elle donnerait la réponse. Comment, dans `familia.html` et
+`descripcion.html` :
+- en **français, anglais, portugais** (et en **allemand** pour qui apprend l'espagnol), la phrase entière, fabriquée
+  par un objet `TRADS[langue]` à partir des **mêmes choix** que la question (les mêmes personnes, le même lien, le
+  même possessif, le même groupe, les mêmes traits) ; chaque `EX.<sorte>` pose `trad` à côté de `motQ`, et `juger()`
+  l'affiche. Les accords sont dans l'objet (d'Anna, ma tante, « un frère et une sœur », o pai dela, a/an) ;
+- dans les **autres langues** (arabe, turc, ukrainien, persan, polonais, russe), le mot de la question et sa
+  traduction tirée du **corpus relu** (`<thème>/gloses.json`, fait par `visuel/familia/gloses.py`) : « la abuela —
+  бабуся ». Une phrase fabriquée aux cas de ces langues, avec des prénoms étrangers, serait souvent fausse et
+  personne ne la relirait ;
+- les **cases de la découverte**, de courtes expressions (« los ojos azules »), sont traduites à la main dans les
+  dix langues (`TRAD_DECOUVERTE`), les prénoms restant écrits comme à l'écran.
+
 **Toutes les phrases sont fabriquées depuis les données** (`personnages.json`, `familia.json`), jamais écrites à la
 main : une image ne dit que ce qu'elle montre, et aucune question ne la contredit. Les questions validées par
 Jacques (« Ça me convient », 3 nov.) : 8 sortes pour la famille, 7 pour Décrire.
@@ -100,7 +115,7 @@ personne parmi celles montrées ; un trait inconnu (les yeux d'Anna) n'exclut ja
    **10 langues d'interface** (fr en tr uk fa ar pt pl ru de), `dir="ltr"` sur tout texte de la langue apprise et sur
    le compteur (sinon « 10 / 5 » en arabe), les couleurs en variables avec leur version `html.nuit`.
 4. **L'app** (`index.html`) : voir « Le branchement » ci-dessous.
-5. **La vignette** : une fonction de plus dans `visuel/vignettes_themes.py` (3:4), qui dise le sujet autrement.
+5. **La vignette** : une fonction de plus dans `visuel/vignettes_themes.py` (4:3,4), qui dise le sujet autrement.
 6. **Contrôler** : `python tests/themes_illustres.py` (≥ 100 questions, séries propres), `node tests/syntaxe.js`,
    `python tests/verifier.py`, les deux parcours (`fusion-espagnol/parcours.py --app de` et `--app es-moteur`),
    chaque écart vérifié ligne à ligne et la nouvelle référence écrite dans CLAUDE.md ; à l'écran, au format du
@@ -153,7 +168,9 @@ et du portugais : le bloc de l'accueil et la section y sont déjà cachés, et u
 `data-orbid`.
 
 **3. La vignette** : une fonction dans `visuel/vignettes_themes.py` (`VIGNETTES`), qui écrit
-`visuel/prototype/themes/<thème>.webp` en 3:4.
+`visuel/prototype/themes/<thème>.webp` en **4:3,4 (600 × 510)**, le format des vignettes des scènes : l'accueil
+les montre au même gabarit, trois par page (Jacques : « la même hauteur que ce qu'on a pour les scènes »). Le dessin
+est composé pour ce format, rien n'y est coupé.
 
 **4. La page `visuel/prototype/<thème>.html`**, qui charge `themes/tirage.js` et fournit au tirage :
 
