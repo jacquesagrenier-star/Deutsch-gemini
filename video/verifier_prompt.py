@@ -552,6 +552,18 @@ REGLES = [
      u"crates >>. Et que le bras tendu suffit au geste : << only her arm "
      u"reaches forward >>."),
 
+    ("buste-qui-se-deplace", "faute",
+     r"(?i)\b(leans?|leaning) back\b|\bsits? up( straight)?\b|\bstraightens? up\b|\bsettles? back\b",
+     u"Dans un clip, le BUSTE qui se deplace (se redresse, se cale en arriere) : la camera le suit",
+     u"3 nov. 2026, DTZ oral, Kling (0,69 $ de reprises). << She leans back a few centimetres in her "
+     u"chair >> (plan 25) : la camera a RECULE pendant la prise, le cadre elargi de moitie, la table "
+     u"entiere revenue. << He sits up straight and beams >> (plan 22) : le cadre a SAUTE a mi-prise, "
+     u"Mark plus petit et decale. La camera etait pourtant dite verrouillee dans les deux prompts : "
+     u"le modele garde la personne au meme endroit du cadre plutot que la camera.",
+     u"Le buste ne bouge pas : << Her shoulders and her back stay where they are for the whole shot >>, "
+     u"et le sentiment passe par les mains ou le visage (main posee sur l'autre, pouce leve, levres "
+     u"serrees en sourire). Les deux reprises ecrites ainsi : cadre tenu du debut a la fin."),
+
     ("pose-pour-la-camera", "doute",
      r"(?i)\b(smiles? (at|into|for) the camera|looks? (at|into) the camera|"
      r"holds? (it |them )?up\b|held up|shows? (a|the|his|her)\b[^.]{0,60}"
@@ -784,6 +796,23 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"L'IMAGE DE DEPART recadree serre, sans bande vide sous les mains : Kling n'a plus ou poser ses sous-titres",
+     u"3 nov. 2026",
+     u"DTZ oral, Mark assis a une table (plan 13) : sur l'image entiere -- le quart du bas en dessus de "
+     u"table vide --, Kling a incruste une ligne de faux sous-titres sur cette table, de 1,5 s a la fin "
+     u"(texte_incruste.py : 186). La MEME replique, le MEME prompt, sur l'image recadree en 9:16 juste "
+     u"sous les mains (le visage 1,3 fois plus grand) : propre (0), et Anna recadree pareil, propre (11). "
+     u"Une bande vide et uniforme au bas du cadre ressemble a la place d'un sous-titre. "
+     u"⚠️ CA NE SUFFIT PAS TOUJOURS, le meme jour sur 23 prises : les TROIS annonces du resultat d'Anna "
+     u"(plans 23, 24, 25 -- les plus longues apres la consigne, et dites comme on proclame) ont eu de faux "
+     u"sous-titres sur le chemisier blanc, entre 76 et 80 % de la hauteur ; le plan 25 les a REFAITS a la "
+     u"reprise. Sauvees gratuitement par le recadrage APRES coup (acquis suivant) : crop=536:952:92:0, "
+     u"remis en 720x1280 -- les trois verdicts ont le meme cadre, plus serre que les autres repliques.",
+     u"Recadrer l'image maitresse AVANT Kling : le bas du cadre passe juste sous les mains ou sous le "
+     u"buste, jamais sur une surface nue (table, comptoir vide, sol). C'est gratuit, ca grossit le "
+     u"visage, et ca ne retire rien a la prise. Garder les deux cadres dans preparer_clips.py (CADRES). "
+     u"Un grand chemisier ou t-shirt clair uni est aussi une surface nue : sur une replique longue et "
+     u"solennelle, ne pas reprendre a l'aveugle -- regarder ou est le texte et recadrer la prise."),
     (u"Texte incruste par Kling dans une BANDE FIXE : RECADRER, gratuit, plutot que changer de modele",
      u"24 oct. 2026",
      u"04 Schrippe, la boulangere, plans 08 et 17 : de faux sous-titres sur la vitrine, entre 75 et "

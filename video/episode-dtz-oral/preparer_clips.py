@@ -71,7 +71,8 @@ GESTES = {
     "a_planen": "She explains the last task. Her two hands come apart and each comes to rest flat on the table, palms down, a hand's width from each other, and they stay there.",
     "a_ende_B1": "She announces a good result. A wide, warm smile spreads over her face and she nods twice, slowly, pleased; her hands stay folded on the table.",
     "a_ende_A2": "She announces a result and encourages. Her hand nearer the left edge of the picture stays on the table. Her other hand lifts a few centimetres, and its thumb and index finger come close together, almost touching, and stay like that.",
-    "a_ende_moins": "She announces a result and encourages. She leans back a few centimetres in her chair with a kind, encouraging smile, her empty hands sliding back towards the edge of the table.",
+    # 3 nov. 2026 : << leans back in her chair >> a fait RECULER la camera (le cadre s'elargit de moitie) ; le buste ne bouge plus.
+    "a_ende_moins": "She announces a result and encourages. Her shoulders and her back stay where they are for the whole shot. Her hand nearer the left edge of the picture stays flat on the table; her other hand comes to rest gently on top of it, and she presses her lips together in a kind, encouraging smile.",
     "m_p1": "He makes a suggestion and asks for an opinion. His hand nearer the left edge of the picture stays on the table. Only his other hand moves: on his question it lifts a few centimetres, palm up and open towards the lens, and stays there.",
     "m_p2": "He asks a question and makes a suggestion. His hand nearer the right edge of the picture rests on the table; his other hand lifts its index finger a few centimetres from the wood, as for an idea, and holds it there.",
     "m_p3": "He offers two options. His two hands come apart and each opens palm up on the table, one on each side, as if holding the two options, and they stay open.",
@@ -81,7 +82,8 @@ GESTES = {
     "m_ok2": "He agrees: a short, relaxed nod and a half-smile that reaches his eyes; his forearms stay lying on the table.",
     "m_nein": "He concedes good-naturedly: his head tilts to one side and both eyebrows lift, with a good-natured smile; his hands lie flat on the table, empty.",
     "m_nachfrage": "He asks what was meant. His eyes narrow a little and his eyebrows draw together, curious, and his face stays like that; his empty hands rest on the table.",
-    "m_ende": "He sums up happily. He sits up straight and beams; his two hands come apart and rest flat on the table, palms down, and stay there.",
+    # 3 nov. 2026 : << sits up straight >> a fait sauter le cadre a mi-prise (il se redresse, la camera le suit) ; le buste ne bouge plus.
+    "m_ende": "He sums up happily and beams. His shoulders and his back stay where they are for the whole shot. His hand nearer the left edge of the picture stays on the table; his other hand lifts a few centimetres from the wood in a small thumbs-up, and holds it there.",
 }
 
 
