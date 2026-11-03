@@ -1,0 +1,315 @@
+{
+  "_note": [
+    "DTZ, PRUEFUNGSTEIL LESEN -- nos textes, au format du DTZ (Pruefungshandbuch 2009, ch. 6.3.2), jamais son contenu.",
+    "",
+    "Une SERIE = 5 Teile, 25 items (+ exemples), 45 minutes.",
+    "  T1 une liste (tableau d'etages, site, repertoire), 5-7 rubriques : 1 exemple + 5 items a 3 choix,",
+    "     deux rubriques de la liste et l'option negative (« anderer Stock », « andere Seite »).",
+    "  T2 huit petites annonces a-h : 1 exemple + 5 situations ; une situation n'a pas d'annonce (x).",
+    "  T3 trois textes (presse, avis formels) : par texte un vrai/faux global, puis un choix a 3 sur un detail.",
+    "  T4 un long texte (notice, conditions, brochure) : 3 vrai/faux.",
+    "  T5 une lettre formelle a 6 trous (+ 1 exemple), 3 choix par trou.",
+    "",
+    "LES DOCUMENTS SONT MIS EN PAGE EN HTML, JAMAIS EN IMAGE (3 nov. 2026) : une IA ecrit mal l'allemand dans une",
+    "image, et un texte dans une image ne se relit pas, ne se corrige pas et ne s'agrandit pas sur un telephone.",
+    "Les images ne servent qu'aux photos (une annonce de vente, l'en-tete d'une brochure).",
+    "",
+    "Memes conventions que hoeren.json : bon = l'indice a sa place ; _fr montre apres la reponse ; mots = les",
+    "mots du corpus dont depend la reponse (repetition espacee). Les noms et adresses sont inventes."
+  ],
+  "series": [
+    {
+      "id": "S1",
+      "T1": {
+        "situation": "Sie sind im Kaufhaus Brenner und lesen den Wegweiser.",
+        "situation_fr": "Tu es au grand magasin Brenner et tu lis le panneau des étages.",
+        "aufgabe": "Lesen Sie die Aufgaben 1 bis 5 und den Wegweiser. In welchen Stock gehen Sie? Kreuzen Sie an: a, b oder c.",
+        "dokument": {
+          "typ": "wegweiser",
+          "titel": "Kaufhaus Brenner · Wegweiser",
+          "zeilen": [
+            {"etage": "5. Stock", "inhalt": "Restaurant · Toiletten · Kundenservice · Geschenkverpackung · Fundbüro"},
+            {"etage": "4. Stock", "inhalt": "Haushaltswaren · Elektrogeräte · Lampen · Bettwaren · Handtücher"},
+            {"etage": "3. Stock", "inhalt": "Kindermode · Spielwaren · Schreibwaren · Bücher · Zeitschriften"},
+            {"etage": "2. Stock", "inhalt": "Herrenmode · Herrenschuhe · Sportbekleidung · Fahrräder · Campingartikel"},
+            {"etage": "1. Stock", "inhalt": "Damenmode · Damenschuhe · Wäsche · Strümpfe"},
+            {"etage": "Erdgeschoss", "inhalt": "Kosmetik · Parfüm · Schmuck · Uhren · Taschen · Regenschirme · Information"},
+            {"etage": "Untergeschoss", "inhalt": "Lebensmittel · Getränke · Drogerie · Schlüsseldienst · Schuhreparatur"}
+          ]
+        },
+        "items": [
+          {
+            "nr": 0, "beispiel": true,
+            "frage": "Mark hat gestern im Kaufhaus seinen Schal verloren.",
+            "optionen": ["Erdgeschoss", "5. Stock", "anderer Stock"], "bon": 1,
+            "frage_fr": "Hier, Mark a perdu son écharpe dans le magasin.", "optionen_fr": ["Rez-de-chaussée", "5e étage", "Un autre étage"],
+            "erkl_fr": "Un objet perdu se cherche au « Fundbüro » (le bureau des objets trouvés) : 5. Stock.",
+            "mots": [{"mot": "Schal", "genre": "der"}, {"mot": "verlieren", "cat": "verbe"}]
+          },
+          {
+            "nr": 1,
+            "frage": "Mark möchte für seine Küche einen Wasserkocher kaufen.",
+            "optionen": ["4. Stock", "Untergeschoss", "anderer Stock"], "bon": 0,
+            "frage_fr": "Mark veut acheter une bouilloire pour sa cuisine.", "optionen_fr": ["4e étage", "Sous-sol", "Un autre étage"],
+            "erkl_fr": "Une bouilloire est un appareil électrique (« Elektrogeräte ») et un article de ménage (« Haushaltswaren ») : 4. Stock. Le sous-sol a des boissons, pas de quoi les chauffer.",
+            "mark_fr": "Une bouilloire au 4e. Le thé, c'est pour bientôt.",
+            "mots": [{"mot": "Küche", "genre": "die"}]
+          },
+          {
+            "nr": 2,
+            "frage": "Der Sohn von Marks Kollegin wird sechs. Mark sucht ein Spiel für ihn.",
+            "optionen": ["2. Stock", "3. Stock", "anderer Stock"], "bon": 1,
+            "frage_fr": "Le fils de la collègue de Mark va avoir six ans. Mark cherche un jeu pour lui.", "optionen_fr": ["2e étage", "3e étage", "Un autre étage"],
+            "erkl_fr": "Un jeu, c'est « Spielwaren » : 3. Stock. Au 2e, il y a des articles de sport, mais pas de jouets.",
+            "mark_fr": "Un jeu de société au 3e, et l'emballage cadeau au 5e.",
+            "mots": [{"mot": "Spiel", "genre": "das"}, {"mot": "Sohn", "genre": "der"}]
+          },
+          {
+            "nr": 3,
+            "frage": "Mark hat den Schlüssel für sein Fahrradschloss verloren. Er braucht einen neuen.",
+            "optionen": ["2. Stock", "Erdgeschoss", "anderer Stock"], "bon": 2,
+            "frage_fr": "Mark a perdu la clé de son antivol de vélo. Il lui en faut une nouvelle.", "optionen_fr": ["2e étage", "Rez-de-chaussée", "Un autre étage"],
+            "erkl_fr": "Le piège : « Fahrrad » attire vers le 2e étage. Mais Mark a besoin d'une clé : c'est le « Schlüsseldienst », au sous-sol (Untergeschoss), qui n'est pas proposé. D'où « anderer Stock ». Lis ce que la personne VEUT, pas le premier mot connu.",
+            "mark_fr": "J'allais monter voir les vélos ! C'est la clé qu'il me faut, au sous-sol.",
+            "mots": [{"mot": "Schlüssel", "genre": "der"}, {"mot": "Fahrrad", "genre": "das"}]
+          },
+          {
+            "nr": 4,
+            "frage": "Mark möchte jeden Morgen joggen und braucht dafür Laufschuhe.",
+            "optionen": ["1. Stock", "2. Stock", "anderer Stock"], "bon": 1,
+            "frage_fr": "Mark veut faire du jogging tous les matins et a besoin de chaussures de course.", "optionen_fr": ["1er étage", "2e étage", "Un autre étage"],
+            "erkl_fr": "Des chaussures pour homme et de sport : « Herrenschuhe » et « Sportbekleidung », tous deux au 2. Stock. Le 1er étage, c'est pour les femmes (« Damenschuhe »).",
+            "mark_fr": "Le 2e étage, rayon sport. Plus d'excuse demain matin.",
+            "mots": [{"mot": "Schuh", "genre": "der"}, {"mot": "Morgen", "genre": "der"}]
+          },
+          {
+            "nr": 5,
+            "frage": "Draußen regnet es stark, und Mark hat nichts gegen den Regen dabei.",
+            "optionen": ["4. Stock", "Untergeschoss", "anderer Stock"], "bon": 2,
+            "frage_fr": "Il pleut fort dehors, et Mark n'a rien contre la pluie.", "optionen_fr": ["4e étage", "Sous-sol", "Un autre étage"],
+            "erkl_fr": "Contre la pluie, il faut un parapluie : « Regenschirme », au rez-de-chaussée (Erdgeschoss). Ni le 4e ni le sous-sol : « anderer Stock ».",
+            "mark_fr": "Un parapluie, juste à l'entrée. Pratique.",
+            "mots": [{"mot": "Regenschirm", "genre": "der"}, {"mot": "Regen", "genre": "der"}]
+          }
+        ]
+      },
+      "T2": {
+        "aufgabe": "Lesen Sie zuerst die Situationen 6 bis 10 und suchen Sie dann in den Anzeigen a bis h. Welche Anzeige passt zu welcher Situation? Für eine Situation gibt es keine passende Anzeige. Dann kreuzen Sie x an.",
+        "anzeigen": [
+          {"b": "a", "titel": "Schreibtisch zu verkaufen", "text": "Wegen Umzug: Schreibtisch aus Holz, 120 × 60 cm, sehr guter Zustand, nur 25 €. Nur Abholung, Pankow, Nähe S-Bahnhof. Tel. 0176 482 19 03"},
+          {"b": "b", "titel": "Kochen wie in Italien!", "text": "Kochkurs für Anfänger in der Kochschule Mangiare, Prenzlauer Berg. Jeden Samstag von 11 bis 14 Uhr, 45 € mit Essen und Getränken. Anmeldung auf unserer Internetseite."},
+          {"b": "c", "titel": "Thai-Küche am Abend", "text": "Asiatisch kochen lernen: dienstags und donnerstags 18–21 Uhr, Volkshochschule Mitte. 6 Abende, 90 €. Bitte eigene Schürze mitbringen."},
+          {"b": "d", "titel": "Platz für die ganze Familie", "text": "4-Zimmer-Wohnung in Pankow, 98 m², 3. OG mit Aufzug und großem Balkon, Grundschule und Spielplatz in der Nähe. Frei ab 1. Januar. Kaltmiete 1.450 €. Hausverwaltung Seidel, Tel. 030 91 77 20"},
+          {"b": "e", "titel": "Hell und ruhig", "text": "2-Zimmer-Wohnung in Wedding, 54 m², Balkon zum Hof, Einbauküche. Ideal für Singles oder Paare. Kaltmiete 780 €. Besichtigung am Samstag, Anmeldung per E-Mail."},
+          {"b": "f", "titel": "Ich helfe Ihnen gern!", "text": "Studentin (22) hilft im Alltag: Einkaufen, Begleitung zu Terminen, kleine Arbeiten im Haushalt. 12 € pro Stunde, auch am Wochenende. Rufen Sie mich an: 0157 330 64 18"},
+          {"b": "g", "titel": "Herrenrad, fast neu", "text": "28 Zoll, 7 Gänge, mit Licht und Gepäckträger, erst ein Jahr alt. 120 €, Preis verhandelbar. Anschauen in Prenzlauer Berg, abends ab 18 Uhr."},
+          {"b": "h", "titel": "Tandempartner gesucht", "text": "Ich (Lisa, 29) spreche Deutsch und möchte mein Französisch verbessern. Treffen einmal pro Woche im Café oder online. Schreib mir: lisa.tandem@post.de"}
+        ],
+        "items": [
+          {
+            "nr": 0, "beispiel": true,
+            "situation": "Mark braucht für sein Zimmer einen Schreibtisch. Er möchte nicht viel Geld ausgeben.", "bon": "a",
+            "situation_fr": "Mark a besoin d'un bureau pour sa chambre. Il ne veut pas dépenser beaucoup.",
+            "erkl_fr": "« Schreibtisch … nur 25 € » : le meuble et le petit prix.",
+            "mots": [{"mot": "Schreibtisch", "genre": "der"}]
+          },
+          {
+            "nr": 6,
+            "situation": "Mark möchte am Wochenende kochen lernen.", "bon": "b",
+            "situation_fr": "Mark veut apprendre à cuisiner le week-end.",
+            "erkl_fr": "Deux cours de cuisine : b le samedi, c le mardi et le jeudi soir. Seul b tombe le week-end. Au DTZ, deux annonces se ressemblent toujours : c'est le détail (le jour, le lieu, le prix) qui tranche.",
+            "mark_fr": "Les pâtes du samedi, c'est pour moi.",
+            "mots": [{"mot": "Wochenende", "genre": "das"}, {"mot": "kochen", "cat": "verbe"}]
+          },
+          {
+            "nr": 7,
+            "situation": "Marks Kollege, seine Frau und ihre zwei Kinder suchen eine große Wohnung mit Balkon.", "bon": "d",
+            "situation_fr": "Le collègue de Mark, sa femme et leurs deux enfants cherchent un grand appartement avec balcon.",
+            "erkl_fr": "Les deux appartements ont un balcon. Mais e (54 m², « ideal für Singles oder Paare ») est trop petit pour quatre ; d a 4 pièces et une école primaire tout près.",
+            "mark_fr": "Je lui envoie l'annonce d ce soir.",
+            "mots": [{"mot": "Balkon", "genre": "der"}, {"mot": "Wohnung", "genre": "die"}]
+          },
+          {
+            "nr": 8,
+            "situation": "Frau Lehmann, Marks Nachbarin, ist 82 Jahre alt. Sie sucht jemanden, der für sie einkaufen geht.", "bon": "f",
+            "situation_fr": "Mme Lehmann, la voisine de Mark, a 82 ans. Elle cherche quelqu'un qui fasse ses courses.",
+            "erkl_fr": "« hilft im Alltag: Einkaufen » : l'étudiante propose exactement ce service.",
+            "mark_fr": "Je donne le numéro à Mme Lehmann. En attendant, je lui rapporte son pain.",
+            "mots": [{"mot": "Nachbarin", "genre": "die"}, {"mot": "einkaufen", "cat": "verbe"}]
+          },
+          {
+            "nr": 9,
+            "situation": "Mark möchte ein gebrauchtes Fahrrad kaufen und es nach der Arbeit anschauen.", "bon": "g",
+            "situation_fr": "Mark veut acheter un vélo d'occasion et le voir après le travail.",
+            "erkl_fr": "Un vélo « erst ein Jahr alt » (donc d'occasion), à voir « abends ab 18 Uhr » : après le travail.",
+            "mark_fr": "Un vélo à voir après 18 h : parfait.",
+            "mots": [{"mot": "Fahrrad", "genre": "das"}]
+          },
+          {
+            "nr": 10,
+            "situation": "Mark möchte sein Spanisch verbessern und sucht jemanden zum Sprechen.", "bon": "x",
+            "situation_fr": "Mark veut améliorer son espagnol et cherche quelqu'un avec qui parler.",
+            "erkl_fr": "L'annonce h cherche un tandem, mais pour le FRANÇAIS. Personne ne propose l'espagnol : x. Il y a toujours une situation sans annonce ; garde-la pour la fin, quand les autres annonces sont prises.",
+            "mark_fr": "Lisa veut du français… je pourrais l'aider, mais ça ne m'aide pas en espagnol.",
+            "mots": [{"mot": "verbessern", "cat": "verbe"}]
+          }
+        ]
+      },
+      "T3": {
+        "aufgabe": "Lesen Sie die Texte und lösen Sie die Aufgaben 11 bis 16. Kreuzen Sie an: richtig oder falsch, a, b oder c.",
+        "texte": [
+          {
+            "typ": "zeitung",
+            "kopf": "Berliner Kiezblatt · Pankow",
+            "titel": "Neuer Bus für das Wohngebiet am Feldrand",
+            "absaetze": [
+              "Ab dem 1. Dezember fährt in Pankow eine neue Buslinie. Der Bus 387 verbindet den S-Bahnhof Pankow mit dem neuen Wohngebiet am Feldrand. Bisher mussten die Bewohnerinnen und Bewohner bis zu zwanzig Minuten zu Fuß zur nächsten Haltestelle gehen.",
+              "Der neue Bus fährt montags bis freitags alle zehn Minuten, am Wochenende alle zwanzig Minuten. „Viele Menschen haben uns geschrieben und um eine bessere Verbindung gebeten“, sagt eine Sprecherin der Verkehrsbetriebe. In den ersten zwei Wochen können alle Fahrgäste die neue Linie kostenlos testen."
+            ],
+            "items": [
+              {
+                "nr": 11, "rf": true,
+                "frage": "Die neue Buslinie fährt am Wochenende nicht.", "optionen": ["Richtig", "Falsch"], "bon": 1,
+                "frage_fr": "La nouvelle ligne ne circule pas le week-end.", "optionen_fr": ["Vrai", "Faux"],
+                "erkl_fr": "« am Wochenende alle zwanzig Minuten » : elle roule le week-end, simplement moins souvent.",
+                "mots": [{"mot": "Bus", "genre": "der"}, {"mot": "Wochenende", "genre": "das"}]
+              },
+              {
+                "nr": 12,
+                "frage": "Die Bewohner des Wohngebiets …",
+                "optionen": ["mussten bisher lange zur Haltestelle laufen.", "fahren ab Dezember immer kostenlos.", "haben den Bus selbst bezahlt."], "bon": 0,
+                "frage_fr": "Les habitants du quartier…", "optionen_fr": ["devaient jusqu'ici marcher longtemps jusqu'à l'arrêt.", "voyageront toujours gratuitement à partir de décembre.", "ont payé le bus eux-mêmes."],
+                "erkl_fr": "« Bisher mussten … bis zu zwanzig Minuten zu Fuß … gehen » = « lange laufen ». La gratuité ne dure que « in den ersten zwei Wochen », pas « immer ».",
+                "mots": [{"mot": "Haltestelle", "genre": "die"}]
+              }
+            ]
+          },
+          {
+            "typ": "aushang",
+            "kopf": "Hausverwaltung Kern · Aushang für das Haus Gartenstraße 12",
+            "titel": "Arbeiten an der Fassade",
+            "absaetze": [
+              "Sehr geehrte Mieterinnen und Mieter,",
+              "ab Montag, dem 17. November, werden an unserem Haus die Fassade und die Fenster gestrichen. Die Arbeiten dauern ungefähr drei Wochen. In dieser Zeit steht vor dem Haus ein Gerüst. Bitte stellen Sie Ihre Fahrräder nicht mehr an die Hauswand, sondern in den Fahrradkeller.",
+              "Die Handwerker müssen auch auf Ihre Balkone. Räumen Sie deshalb bitte bis Freitag, dem 14. November, alle Pflanzen und Möbel von Ihrem Balkon. Für den Lärm bitten wir um Ihr Verständnis.",
+              "Mit freundlichen Grüßen\nIhre Hausverwaltung Kern"
+            ],
+            "items": [
+              {
+                "nr": 13, "rf": true,
+                "frage": "Die Arbeiten am Haus dauern nur ein paar Tage.", "optionen": ["Richtig", "Falsch"], "bon": 1,
+                "frage_fr": "Les travaux ne durent que quelques jours.", "optionen_fr": ["Vrai", "Faux"],
+                "erkl_fr": "« Die Arbeiten dauern ungefähr drei Wochen. »",
+                "mots": [{"mot": "dauern", "cat": "verbe"}]
+              },
+              {
+                "nr": 14,
+                "frage": "Die Mieter sollen …",
+                "optionen": ["ihre Fenster selbst streichen.", "ihre Fahrräder vor das Haus stellen.", "ihre Balkone leer machen."], "bon": 2,
+                "frage_fr": "Les locataires doivent…", "optionen_fr": ["repeindre eux-mêmes leurs fenêtres.", "mettre leurs vélos devant l'immeuble.", "vider leurs balcons."],
+                "erkl_fr": "« Räumen Sie … alle Pflanzen und Möbel von Ihrem Balkon » : le balcon doit être vide. Les vélos, au contraire, vont à la cave ; et ce sont les artisans qui repeignent.",
+                "mark_fr": "Mon balcon, avant vendredi le 14. Le basilic rentre au salon.",
+                "mots": [{"mot": "Balkon", "genre": "der"}, {"mot": "Pflanze", "genre": "die"}]
+              }
+            ]
+          },
+          {
+            "typ": "brief",
+            "kopf": "Spreestrom · Kundenservice",
+            "titel": "Wir lesen Ihren Stromzähler ab",
+            "absaetze": [
+              "Liebe Kundin, lieber Kunde,",
+              "einmal im Jahr lesen wir Ihren Stromzähler ab. In Ihrem Haus kommt unser Mitarbeiter am Mittwoch, dem 26. November, zwischen 8 und 12 Uhr. Er trägt einen Ausweis mit Foto.",
+              "Sie sind an diesem Tag nicht zu Hause? Dann können Sie den Zählerstand auch selbst ablesen und ihn uns bis zum 30. November mitteilen: online in Ihrem Kundenkonto oder mit der Postkarte in diesem Brief. Das Porto bezahlen wir. Wenn wir keinen Zählerstand bekommen, müssen wir Ihren Verbrauch schätzen.",
+              "Ihr Kundenservice"
+            ],
+            "items": [
+              {
+                "nr": 15, "rf": true,
+                "frage": "Ein Mitarbeiter kommt, um den Stromzähler abzulesen.", "optionen": ["Richtig", "Falsch"], "bon": 0,
+                "frage_fr": "Un employé vient relever le compteur d'électricité.", "optionen_fr": ["Vrai", "Faux"],
+                "erkl_fr": "« einmal im Jahr lesen wir Ihren Stromzähler ab … kommt unser Mitarbeiter am Mittwoch ».",
+                "mots": [{"mot": "Strom", "genre": "der"}, {"mot": "Mitarbeiter", "genre": "der"}]
+              },
+              {
+                "nr": 16,
+                "frage": "Wer am 26. November nicht zu Hause ist, …",
+                "optionen": ["muss einen neuen Termin vereinbaren.", "bezahlt eine Gebühr.", "kann den Zählerstand selbst mitteilen."], "bon": 2,
+                "frage_fr": "Qui n'est pas à la maison le 26 novembre…", "optionen_fr": ["doit prendre un nouveau rendez-vous.", "paie des frais.", "peut communiquer lui-même le relevé."],
+                "erkl_fr": "« Dann können Sie den Zählerstand auch selbst ablesen und ihn uns … mitteilen. » Rien ne coûte : « Das Porto bezahlen wir ».",
+                "mark_fr": "Mercredi matin, je travaille. Je relèverai le compteur moi-même.",
+                "mots": [{"mot": "mitteilen", "cat": "verbe"}, {"mot": "Termin", "genre": "der"}]
+              }
+            ]
+          }
+        ]
+      },
+      "T4": {
+        "aufgabe": "Lesen Sie zuerst die Aufgaben 17 bis 19 und suchen Sie dann die Informationen im Text. Kreuzen Sie an: richtig oder falsch.",
+        "dokument": {
+          "typ": "broschuere",
+          "kopf": "Stadtbibliothek Pankow",
+          "titel": "Ihr Bibliotheksausweis – das Wichtigste auf einen Blick",
+          "abschnitte": [
+            {"titel": "Der Ausweis", "text": "Den Ausweis bekommen Sie an jeder Theke der Stadtbibliothek. Bringen Sie dafür Ihren Personalausweis mit, oder Ihren Pass und eine Meldebescheinigung. Kinder und Jugendliche unter 18 Jahren brauchen die Unterschrift eines Elternteils. Der Ausweis kostet 10 Euro im Jahr, ermäßigt 5 Euro (für Schülerinnen und Schüler, Studierende und Menschen mit Berlinpass). Für Kinder ist er kostenlos."},
+            {"titel": "Ausleihen und verlängern", "text": "Bücher können Sie vier Wochen ausleihen, DVDs und Spiele zwei Wochen. Sie können die Leihfrist bis zu zweimal verlängern, online oder an der Theke – aber nur, wenn niemand anderes das Medium vorbestellt hat."},
+            {"titel": "Zurückgeben", "text": "Sie können alle Medien in jeder Bibliothek des Bezirks zurückgeben. Auch außerhalb der Öffnungszeiten ist das möglich: am Rückgabeautomaten neben dem Eingang."},
+            {"titel": "Gebühren", "text": "Wenn Sie ein Medium zu spät zurückbringen, zahlen Sie 0,25 Euro pro Tag und Medium. Sie haben Ihren Ausweis verloren? Bitte sagen Sie uns sofort Bescheid. Ein neuer Ausweis kostet 3 Euro."},
+            {"titel": "Digital", "text": "Mit Ihrem Ausweis können Sie auch E-Books und Zeitungen online lesen – kostenlos und rund um die Uhr."}
+          ]
+        },
+        "items": [
+          {
+            "nr": 17, "rf": true,
+            "frage": "Mark bringt für den Ausweis seinen Pass und eine Meldebescheinigung mit.", "optionen": ["Richtig", "Falsch"], "bon": 0,
+            "frage_fr": "Pour la carte, Mark apporte son passeport et une attestation de domicile.", "optionen_fr": ["Vrai", "Faux"],
+            "erkl_fr": "« Ihren Personalausweis …, oder Ihren Pass und eine Meldebescheinigung. » Mark est canadien : pas de carte d'identité allemande, donc le passeport ET l'attestation, celle qu'il a obtenue au Bürgeramt.",
+            "mark_fr": "L'attestation du Bürgeramt me resservira. Bien gardée dans ma pochette.",
+            "mots": [{"mot": "Pass", "genre": "der"}, {"mot": "Ausweis", "genre": "der"}]
+          },
+          {
+            "nr": 18, "rf": true,
+            "frage": "Man kann ein Buch immer zweimal verlängern.", "optionen": ["Richtig", "Falsch"], "bon": 1,
+            "frage_fr": "On peut toujours prolonger un livre deux fois.", "optionen_fr": ["Vrai", "Faux"],
+            "erkl_fr": "« aber nur, wenn niemand anderes das Medium vorbestellt hat » : pas « toujours ». Méfie-toi des mots absolus dans une affirmation (immer, nie, alle, nur) : c'est souvent là que le texte dit le contraire.",
+            "mots": [{"mot": "verlängern", "cat": "verbe"}, {"mot": "Buch", "genre": "das"}]
+          },
+          {
+            "nr": 19, "rf": true,
+            "frage": "Wenn Mark ein Buch drei Tage zu spät zurückbringt, zahlt er 75 Cent.", "optionen": ["Richtig", "Falsch"], "bon": 0,
+            "frage_fr": "Si Mark rapporte un livre avec trois jours de retard, il paie 75 centimes.", "optionen_fr": ["Vrai", "Faux"],
+            "erkl_fr": "« 0,25 Euro pro Tag und Medium » : trois jours pour un livre, 3 × 25 centimes = 75 centimes.",
+            "mark_fr": "75 centimes. Je mettrai un rappel quand même.",
+            "mots": [{"mot": "zurückgeben", "cat": "verbe"}, {"mot": "Gebühr", "genre": "die"}]
+          }
+        ]
+      },
+      "T5": {
+        "aufgabe": "Welche Wörter passen in die Lücken? Kreuzen Sie an: a, b oder c. Es gibt nur eine richtige Lösung.",
+        "brief": {
+          "absender": "Mark Gagnon\nGartenstraße 12\n10439 Berlin",
+          "empfaenger": "Hausverwaltung Kern\nFrau Brandt\nWichertstraße 40\n10439 Berlin",
+          "datum": "Berlin, 4. November 2026",
+          "betreff": "Reparatur {0} Fensters im Schlafzimmer",
+          "text": [
+            "Sehr geehrte Frau Brandt,",
+            "seit einer Woche {20} sich das Fenster in meinem Schlafzimmer nicht mehr richtig schließen. {21} es draußen jetzt kalt ist, wird das Zimmer in der Nacht sehr kühl.",
+            "Ich habe {22} schon am Montag angerufen, aber leider niemanden erreicht. {23} Sie bitte so bald wie möglich einen Handwerker schicken?",
+            "Ich bin von Montag bis Freitag ab 17 Uhr zu Hause. Sie erreichen mich {24} der Nummer 0176 482 77 15.",
+            "{25} freundlichen Grüßen",
+            "Mark Gagnon"
+          ]
+        },
+        "luecken": [
+          {"nr": 0, "beispiel": true, "optionen": ["des", "dem", "die"], "bon": 0, "erkl_fr": "« die Reparatur des Fensters » : le génitif, comme dans « la réparation de la fenêtre ». Dans un objet de lettre, c'est la forme habituelle."},
+          {"nr": 20, "optionen": ["kann", "lässt", "geht"], "bon": 1, "erkl_fr": "« sich nicht schließen lassen » : ne pas pouvoir se fermer. « kann sich » et « geht sich » ne se disent pas ici.", "mots": [{"mot": "Fenster", "genre": "das"}, {"mot": "schließen", "cat": "verbe"}]},
+          {"nr": 21, "optionen": ["Obwohl", "Damit", "Weil"], "bon": 2, "erkl_fr": "La pièce devient froide PARCE QU'il fait froid dehors : « Weil ». « Obwohl » (bien que) dirait le contraire ; « Damit » (pour que) donnerait un but.", "mots": [{"mot": "kalt", "cat": "adjectif"}]},
+          {"nr": 22, "optionen": ["Sie", "Ihnen", "Ihr"], "bon": 0, "erkl_fr": "« jemanden anrufen » : anrufen se construit avec l'accusatif, donc « Sie ». Le piège vient du français « téléphoner À quelqu'un », qui pousse vers « Ihnen ».", "mots": [{"mot": "anrufen", "cat": "verbe"}]},
+          {"nr": 23, "optionen": ["Könnten", "Müssten", "Wollten"], "bon": 0, "erkl_fr": "La demande polie d'une lettre formelle : « Könnten Sie bitte … ? » (Pourriez-vous… ?). « Müssten » serait un reproche, « Wollten » n'est pas une demande.", "mots": [{"mot": "Handwerker", "genre": "der"}, {"mot": "schicken", "cat": "verbe"}]},
+          {"nr": 24, "optionen": ["mit", "auf", "unter"], "bon": 2, "erkl_fr": "« unter der Nummer » : au numéro. La préposition se retient telle quelle : « unter der Nummer », « unter der Adresse ».", "mots": [{"mot": "Nummer", "genre": "die"}]},
+          {"nr": 25, "optionen": ["Von", "Mit", "Bei"], "bon": 1, "erkl_fr": "La formule de fin de toute lettre formelle : « Mit freundlichen Grüßen ». Elle ne change jamais."}
+        ]
+      }
+    }
+  ]
+}

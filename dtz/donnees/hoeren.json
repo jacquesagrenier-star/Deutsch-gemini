@@ -1,0 +1,338 @@
+{
+  "_note": [
+    "DTZ, PRUEFUNGSTEIL HOEREN -- nos textes, au format du DTZ (Pruefungshandbuch 2009, ch. 6.3.1), jamais son contenu.",
+    "",
+    "Une SERIE = un Pruefungsteil complet : 4 Teile, 20 items (+ exemples), environ 25 min avec les pauses.",
+    "  T1 annonces (telephone, haut-parleur) : 1 exemple + 4 items, question et 3 reponses.",
+    "  T2 radio : 5 items (meteo ET circulation toujours), W-Frage ou debut de phrase et 3 suites.",
+    "  T3 conversations : 1 exemple (vrai/faux) + 4 conversations x 2 items (vrai/faux global, puis choix a 3).",
+    "  T4 micro-trottoir : une intro, 1 avis exemple + 3 avis, a associer aux phrases a-f (deux de trop).",
+    "",
+    "LES SERIES 1-3 SONT RESERVEES A L'EXAMEN BLANC ; les suivantes tournent en entrainement.",
+    "",
+    "Champs d'un item :",
+    "  nr        le numero de la feuille de reponses (0 = exemple, deja resolu) ;",
+    "  rollen    qui parle, pour la transcription et la relecture (sinon Sprecher / Sprecherin) ;",
+    "  audio     les repliques, dans l'ordre : {wer, text}. wer = une cle de 'voix' ; la transcription s'affiche",
+    "            seulement APRES la reponse (entrainement) ou au corrige (examen) -- sinon ce serait de la lecture ;",
+    "  frage, optionen, bon   en allemand, comme a l'examen ; bon = l'indice de la bonne reponse, A SA PLACE",
+    "            (a, b, c), pas toujours la premiere : la feuille de reponses doit etre la meme pour tous ;",
+    "  frage_fr, optionen_fr  la traduction, montree apres la reponse ;",
+    "  erkl_fr   ou est l'indice dans le texte, et le piege ;",
+    "  mark_fr   ce que dit Mark apres la reponse (entrainement seulement) ;",
+    "  mots      les mots du corpus dont depend la reponse : ils entrent dans la repetition espacee (comme les",
+    "            themes illustres : {mot, genre, cat}). tests/dtz.py verifie qu'ils existent.",
+    "",
+    "Mark s'appelle Mark GAGNON dans les documents (nom propose le 3 nov. 2026, a confirmer par Jacques). Il habite",
+    "Gartenstrasse 12 (Prenzlauer Berg, Kiez de la boulangerie) ; sa Hausverwaltung est Kern (Frau Brandt).",
+    "Les nombres s'ecrivent en chiffres ; la voix recoit une lecture en lettres (audio/lectures/de.json)."
+  ],
+  "voix": {
+    "aurora":   {"nom": "Aurora (consignes)", "voice_id": "8HePnvwzEdJ614CQMPqF", "sexe": "f"},
+    "mark":     {"nom": "Mark", "voice_id": "J8ovlSvQ5WTDCCxIM8U0", "sexe": "m"},
+    "beamter":  {"nom": "Le Beamte (ep. 02)", "voice_id": "lwbCRuiP1VdfP1CRfjHk", "sexe": "m"},
+    "nachbar":  {"nom": "Le Nachbar (ep. 05)", "voice_id": "o66wtFhUpq7rflsMnh38", "sexe": "m"},
+    "dame":     {"nom": "La Dame (ep. 03)", "voice_id": "N85Zhun98cg4usHJ1afQ", "sexe": "f"},
+    "baeckerin":{"nom": "La Baeckerin (ep. 04)", "voice_id": "cDlEZdkTayS2jHnyaXx6", "sexe": "f"},
+    "radio_m":  {"nom": "Animateur radio (a choisir)", "voice_id": null, "sexe": "m"},
+    "radio_f":  {"nom": "Animatrice radio (a choisir)", "voice_id": null, "sexe": "f"}
+  },
+  "consignes": {
+    "T1": {"wer": "aurora", "de": "Teil 1. Sie hören jetzt Nachrichten am Telefon und Ansagen über Lautsprecher. Zu jedem Text gibt es eine Frage. Kreuzen Sie die richtige Antwort an: a, b oder c. Zuerst hören Sie ein Beispiel.", "fr": "Partie 1. Des messages au téléphone et des annonces par haut-parleur. Une question par texte, trois réponses. D'abord un exemple."},
+    "T2": {"wer": "aurora", "de": "Teil 2. Sie hören jetzt Meldungen aus dem Radio. Zu jedem Text gibt es eine Aufgabe. Kreuzen Sie die richtige Antwort an: a, b oder c.", "fr": "Partie 2. Des informations à la radio. Une question par texte, trois réponses."},
+    "T3": {"wer": "aurora", "de": "Teil 3. Sie hören jetzt Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie zuerst: Ist die Aussage richtig oder falsch? Kreuzen Sie dann die richtige Antwort an: a, b oder c. Zuerst hören Sie ein Beispiel.", "fr": "Partie 3. Des conversations. Deux questions par conversation : vrai ou faux, puis une réponse parmi trois. D'abord un exemple."},
+    "T4": {"wer": "aurora", "de": "Teil 4. Sie hören jetzt eine Radiosendung. Mehrere Personen sagen ihre Meinung zu einem Thema. Lesen Sie zuerst die Sätze a bis f. Sie haben dafür eine Minute Zeit. Welcher Satz passt zu welcher Person? Zwei Sätze passen nicht. Zuerst hören Sie ein Beispiel.", "fr": "Partie 4. Une émission de radio : des personnes donnent leur avis. Lis d'abord les phrases a à f (une minute). Quelle phrase va avec quelle personne ? Deux phrases sont de trop. D'abord un exemple."},
+    "ende": {"wer": "aurora", "de": "Das ist das Ende des Prüfungsteils Hören.", "fr": "C'est la fin de l'épreuve d'écoute."}
+  },
+  "series": [
+    {
+      "id": "S1",
+      "T1": [
+        {
+          "nr": 0, "beispiel": true, "typ": "Anrufbeantworter",
+          "audio": [{"wer": "baeckerin", "text": "Guten Tag, Herr Gagnon, hier spricht Frau Brandt von der Hausverwaltung Kern. Es geht um Ihren Briefkasten: Das Namensschild ist jetzt fertig. Sie können es ab morgen bei uns im Büro abholen, montags bis freitags von 9 bis 15 Uhr. Bringen Sie bitte Ihren Mietvertrag mit. Vielen Dank und auf Wiederhören."}],
+          "frage": "Was soll Herr Gagnon mitbringen?",
+          "optionen": ["Seinen Mietvertrag.", "Seinen Pass.", "Das Namensschild."], "bon": 0,
+          "frage_fr": "Qu'est-ce que M. Gagnon doit apporter ?",
+          "optionen_fr": ["Son bail.", "Son passeport.", "La plaque à son nom."],
+          "erkl_fr": "« Bringen Sie bitte Ihren Mietvertrag mit » : mitbringen, apporter avec soi. La plaque, il vient justement la chercher.",
+          "mark_fr": "Mon bail, je le mets dans mon sac tout de suite.",
+          "mots": [{"mot": "Mietvertrag", "genre": "der"}, {"mot": "abholen", "cat": "verbe"}]
+        },
+        {
+          "nr": 1, "typ": "Anrufbeantworter",
+          "audio": [{"wer": "dame", "text": "Guten Tag, hier ist die Praxis Dr. Yilmaz, eine Nachricht für Herrn Gagnon. Ihre Blutwerte sind da, und es ist alles in Ordnung. Sie müssen also nicht noch einmal zu uns kommen. Ihr Rezept für die Tabletten liegt bei uns an der Anmeldung. Sie können es ab Mittwoch abholen. Einen schönen Tag noch!"}],
+          "frage": "Was soll Herr Gagnon machen?",
+          "optionen": ["Noch einmal Blut abnehmen lassen.", "Ein Rezept in der Praxis abholen.", "Am Mittwoch die Ärztin anrufen."], "bon": 1,
+          "frage_fr": "Que doit faire M. Gagnon ?",
+          "optionen_fr": ["Refaire une prise de sang.", "Passer chercher une ordonnance au cabinet.", "Appeler la médecin mercredi."],
+          "erkl_fr": "« Ihr Rezept … liegt bei uns an der Anmeldung. Sie können es ab Mittwoch abholen. » Le piège : « Mittwoch » est bien dans le message, mais pour venir chercher l'ordonnance, pas pour appeler. Et « Sie müssen nicht noch einmal kommen » exclut la prise de sang.",
+          "mark_fr": "Tout est en ordre, ouf. Mercredi, je passe prendre l'ordonnance.",
+          "mots": [{"mot": "Rezept", "genre": "das"}, {"mot": "Anmeldung", "genre": "die"}, {"mot": "abholen", "cat": "verbe"}]
+        },
+        {
+          "nr": 2, "typ": "Durchsage Bahnhof",
+          "audio": [{"wer": "beamter", "text": "Information zu Gleis 4: Der Regionalexpress RE 1 nach Frankfurt (Oder), planmäßige Abfahrt 17:42 Uhr, fällt heute wegen einer technischen Störung aus. Reisende nach Erkner nehmen bitte die S-Bahn S 3 von Gleis 15. Wir bitten um Entschuldigung."}],
+          "frage": "Wie kommen Reisende heute nach Erkner?",
+          "optionen": ["Mit dem Bus vor dem Bahnhof.", "Mit dem RE 1, etwas später.", "Mit der S-Bahn von Gleis 15."], "bon": 2,
+          "frage_fr": "Comment les voyageurs vont-ils à Erkner aujourd'hui ?",
+          "optionen_fr": ["En bus, devant la gare.", "Avec le RE 1, un peu plus tard.", "Avec le S-Bahn, voie 15."],
+          "erkl_fr": "Le RE 1 « fällt aus » : il est supprimé, pas en retard. C'est le piège : « ausfallen » ne veut pas dire « partir plus tard ». La solution suit : « nehmen bitte die S-Bahn S 3 von Gleis 15 ».",
+          "mark_fr": "Supprimé, pas en retard ! Je file voie 15.",
+          "mots": [{"mot": "Gleis", "genre": "das"}, {"mot": "ausfallen", "cat": "verbe"}, {"mot": "Abfahrt", "genre": "die"}]
+        },
+        {
+          "nr": 3, "typ": "Bandansage",
+          "audio": [{"wer": "radio_f", "text": "Herzlich willkommen bei der Gesundheitskasse Berlin-Nord. Leider rufen Sie außerhalb unserer Servicezeiten an. Sie erreichen uns montags bis freitags von 8 bis 18 Uhr. Möchten Sie ein neues Foto für Ihre Gesundheitskarte schicken? Das geht am schnellsten online, in unserer App oder auf unserer Internetseite. Einen Brief müssen Sie dafür nicht schreiben. Vielen Dank für Ihren Anruf."}],
+          "frage": "Wie schickt man das Foto für die Gesundheitskarte am besten?",
+          "optionen": ["Über das Internet.", "Mit einem Brief.", "Am Telefon, ab 8 Uhr."], "bon": 0,
+          "frage_fr": "Quelle est la meilleure façon d'envoyer la photo pour la carte de santé ?",
+          "optionen_fr": ["Par Internet.", "Par lettre.", "Par téléphone, dès 8 h."],
+          "erkl_fr": "« Das geht am schnellsten online, in unserer App oder auf unserer Internetseite » : l'application et le site, c'est Internet. Le message dit qu'une lettre n'est pas nécessaire, et une photo ne s'envoie pas par téléphone.",
+          "mark_fr": "Une photo par l'application : ça, je sais faire.",
+          "mots": [{"mot": "Foto", "genre": "das"}, {"mot": "schicken", "cat": "verbe"}]
+        },
+        {
+          "nr": 4, "typ": "Anrufbeantworter",
+          "audio": [{"wer": "nachbar", "text": "Guten Abend, hier ist das Kursbüro der Volkshochschule, Wendt am Apparat. Eine Information für alle Teilnehmenden im Spanischkurs am Mittwoch: Ihre Kursleiterin ist krank, deshalb fällt der Kurs diese Woche aus. Wir holen die Stunde am Freitag nach, zur gleichen Zeit, aber in Raum 204 und nicht wie sonst in Raum 112. Bis Freitag!"}],
+          "frage": "Was ist diese Woche anders?",
+          "optionen": ["Der Kurs hat eine neue Kursleiterin.", "Der Kurs ist am Freitag in einem anderen Raum.", "Der Kurs beginnt am Mittwoch später."], "bon": 1,
+          "frage_fr": "Qu'est-ce qui change cette semaine ?",
+          "optionen_fr": ["Le cours a une nouvelle enseignante.", "Le cours a lieu vendredi dans une autre salle.", "Le cours commence plus tard mercredi."],
+          "erkl_fr": "Le cours du mercredi est annulé (« fällt aus ») et rattrapé vendredi (« nachholen »), à la même heure, « in Raum 204 und nicht wie sonst in Raum 112 ». L'enseignante est malade, mais personne ne la remplace.",
+          "mark_fr": "Vendredi, salle 204. Je le note dans mon téléphone.",
+          "mots": [{"mot": "Kurs", "genre": "der"}, {"mot": "Raum", "genre": "der"}, {"mot": "ausfallen", "cat": "verbe"}]
+        }
+      ],
+      "T2": [
+        {
+          "nr": 5, "typ": "Verkehrsmeldung",
+          "audio": [{"wer": "radio_m", "text": "Und jetzt der Verkehr. Auf der A 100 in Richtung Wedding gibt es nach einem Unfall 5 Kilometer Stau. Fahren Sie, wenn möglich, durch die Stadt. Und eine Information für alle, die am Wochenende mit der S-Bahn fahren: Zwischen Westkreuz und Halensee fahren von Freitagabend bis Montagfrüh keine Züge. Dort sind Busse unterwegs. Planen Sie mehr Zeit ein."}],
+          "frage": "Was hören Sie über das Wochenende?",
+          "optionen": ["Auf der A 100 gibt es am Wochenende Stau.", "Die S-Bahn fährt am Wochenende öfter.", "Zwischen Westkreuz und Halensee fahren Busse statt S-Bahnen."], "bon": 2,
+          "frage_fr": "Qu'entend-on à propos du week-end ?",
+          "optionen_fr": ["Il y aura des bouchons sur l'A 100 le week-end.", "Le S-Bahn passera plus souvent le week-end.", "Entre Westkreuz et Halensee, des bus remplacent le S-Bahn."],
+          "erkl_fr": "Le bouchon sur l'A 100, c'est maintenant, après un accident. Pour le week-end : « fahren … keine Züge. Dort sind Busse unterwegs » — des bus à la place des trains.",
+          "mark_fr": "Des bus à la place du S-Bahn : je partirai plus tôt samedi.",
+          "mots": [{"mot": "Stau", "genre": "der"}, {"mot": "Unfall", "genre": "der"}, {"mot": "Wochenende", "genre": "das"}]
+        },
+        {
+          "nr": 6, "typ": "Wetterbericht",
+          "audio": [{"wer": "radio_f", "text": "Das Wetter für Berlin und Brandenburg: Heute Vormittag regnet es noch, am Nachmittag wird es trocken, bei Temperaturen um 10 Grad. In der Nacht wird es klar und kalt, bis minus 2 Grad. Achtung: Morgen früh kann es auf den Straßen glatt sein. Morgen tagsüber gibt es viel Sonne, aber nur 5 Grad."}],
+          "frage": "Wie wird das Wetter morgen?",
+          "optionen": ["Regnerisch und mild.", "Sonnig, aber kalt.", "Bewölkt, um 10 Grad."], "bon": 1,
+          "frage_fr": "Quel temps fera-t-il demain ?",
+          "optionen_fr": ["Pluvieux et doux.", "Ensoleillé, mais froid.", "Nuageux, environ 10 degrés."],
+          "erkl_fr": "La pluie et les 10 degrés, c'est aujourd'hui. Demain : « viel Sonne, aber nur 5 Grad ». Dans un bulletin météo, repère d'abord le mot du jour : « heute », « morgen », « am Wochenende ».",
+          "mark_fr": "Du soleil, mais 5 degrés. Je sors l'écharpe.",
+          "mots": [{"mot": "Wetter", "genre": "das"}, {"mot": "glatt", "cat": "adjectif"}, {"mot": "kalt", "cat": "adjectif"}]
+        },
+        {
+          "nr": 7, "typ": "Veranstaltungstipp",
+          "audio": [{"wer": "radio_m", "text": "Unser Tipp für Samstag: Die Stadtteilbibliothek am Humannplatz feiert ihren Tag der offenen Tür. Von 10 bis 16 Uhr gibt es Führungen durch das Haus, Lesungen für Kinder und ein kleines Café. Wer an diesem Tag einen Bibliotheksausweis macht, bekommt ihn kostenlos. Normalerweise kostet er 10 Euro im Jahr."}],
+          "frage": "Am Samstag kann man in der Bibliothek …",
+          "optionen": ["einen Ausweis bekommen, ohne zu bezahlen.", "Bücher für 10 Euro kaufen.", "bis 18 Uhr Kinderbücher lesen."], "bon": 0,
+          "frage_fr": "Samedi, à la bibliothèque, on peut…",
+          "optionen_fr": ["obtenir une carte sans payer.", "acheter des livres pour 10 euros.", "lire des livres pour enfants jusqu'à 18 h."],
+          "erkl_fr": "« bekommt ihn kostenlos » : kostenlos = gratuit = « ohne zu bezahlen ». La réponse juste dit la même chose avec d'autres mots : c'est presque toujours ainsi au DTZ. Les 10 euros sont le prix habituel de la carte, et la journée finit à 16 h.",
+          "mark_fr": "Une carte gratuite ? J'y vais samedi.",
+          "mots": [{"mot": "Ausweis", "genre": "der"}, {"mot": "Bibliothek", "genre": "die"}, {"mot": "kostenlos", "cat": "adjectif"}]
+        },
+        {
+          "nr": 8, "typ": "Programmhinweis",
+          "audio": [{"wer": "radio_f", "text": "Heute Abend um 20 Uhr bei uns in der Sendung „Berlin am Abend“: Wie findet man in Berlin eine Wohnung? Eine Expertin vom Mieterverein beantwortet Ihre Fragen, zum Beispiel: Welche Unterlagen braucht man? Wie hoch darf die Kaution sein? Rufen Sie an, unter 030 22 00 44."}],
+          "frage": "Worum geht es heute Abend in der Sendung?",
+          "optionen": ["Um Ferienwohnungen in Berlin.", "Um eine neue Telefonnummer.", "Um die Suche nach einer Wohnung."], "bon": 2,
+          "frage_fr": "De quoi parle l'émission de ce soir ?",
+          "optionen_fr": ["Des appartements de vacances à Berlin.", "D'un nouveau numéro de téléphone.", "De la recherche d'un appartement."],
+          "erkl_fr": "« Wie findet man in Berlin eine Wohnung? » : trouver un appartement, c'est la recherche (« die Suche »). Le numéro de téléphone sert à appeler l'émission, ce n'est pas son sujet.",
+          "mark_fr": "La caution, c'est justement ma question. J'écouterai ce soir.",
+          "mots": [{"mot": "Wohnung", "genre": "die"}, {"mot": "Kaution", "genre": "die"}, {"mot": "Sendung", "genre": "die"}]
+        },
+        {
+          "nr": 9, "typ": "Servicemeldung",
+          "audio": [{"wer": "radio_m", "text": "Eine Meldung der Wasserbetriebe: Am Donnerstag gibt es in einigen Straßen im Bezirk Pankow von 9 bis 14 Uhr kein Wasser. Der Grund sind Bauarbeiten an einer Leitung. Betroffen sind die Gartenstraße und die Straßen in der Nähe. Die Wasserbetriebe bitten alle Anwohnerinnen und Anwohner, sich vorher Wasser in Flaschen oder Töpfe abzufüllen."}],
+          "frage": "Was sollen die Anwohner tun?",
+          "optionen": ["Am Donnerstag zu Hause bleiben.", "Vor Donnerstag Wasser abfüllen.", "Bei den Wasserbetrieben anrufen."], "bon": 1,
+          "frage_fr": "Que doivent faire les habitants ?",
+          "optionen_fr": ["Rester chez eux jeudi.", "Mettre de l'eau de côté avant jeudi.", "Appeler la compagnie des eaux."],
+          "erkl_fr": "La consigne arrive à la fin, comme souvent : « bitten …, sich vorher Wasser in Flaschen oder Töpfe abzufüllen ». « Vorher » : avant la coupure.",
+          "mark_fr": "La Gartenstraße, c'est chez moi ! Mercredi soir, je remplis des bouteilles.",
+          "mots": [{"mot": "Wasser", "genre": "das"}, {"mot": "Flasche", "genre": "die"}, {"mot": "Topf", "genre": "der"}]
+        }
+      ],
+      "T3": [
+        {
+          "nr": 0, "beispiel": true, "typ": "Treppenhaus", "rollen": {"nachbar": "Nachbar", "mark": "Mark"},
+          "audio": [
+            {"wer": "nachbar", "text": "Ach, Herr Gagnon, gut, dass ich Sie sehe! Ich habe heute Mittag ein Paket für Sie angenommen."},
+            {"wer": "mark", "text": "Oh, vielen Dank! Das sind bestimmt meine neuen Schuhe."},
+            {"wer": "nachbar", "text": "Gern. Ich muss aber gleich los, zum Sport. Können Sie es heute Abend um acht bei mir holen?"},
+            {"wer": "mark", "text": "Um acht? Ja, das passt. Dann klingle ich bei Ihnen."}
+          ],
+          "rf": true,
+          "frage": "Herr Gagnon und der Mann sind Nachbarn.", "optionen": ["Richtig", "Falsch"], "bon": 0,
+          "frage_fr": "M. Gagnon et l'homme sont voisins.", "optionen_fr": ["Vrai", "Faux"],
+          "erkl_fr": "Le voisin a pris un colis pour Mark, ils se croisent dans l'escalier et Mark « sonnera chez lui » : ce sont des voisins.",
+          "mark_fr": "Des chaussures neuves, et un voisin sympa.",
+          "mots": [{"mot": "Paket", "genre": "das"}, {"mot": "Nachbar", "genre": "der"}]
+        },
+        {
+          "nr": 10, "gespraech": 1, "typ": "Telefonat Hausverwaltung", "rollen": {"baeckerin": "Frau Brandt", "mark": "Mark"},
+          "audio": [
+            {"wer": "baeckerin", "text": "Hausverwaltung Kern, Brandt, guten Tag."},
+            {"wer": "mark", "text": "Guten Tag, Frau Brandt, hier ist Mark Gagnon aus der Gartenstraße 12. Bei mir ist die Heizung kalt, schon seit gestern Abend."},
+            {"wer": "baeckerin", "text": "Oh, das tut mir leid. Ist es nur im Wohnzimmer oder in der ganzen Wohnung?"},
+            {"wer": "mark", "text": "In der ganzen Wohnung. Und das Wasser in der Dusche ist auch nur lauwarm."},
+            {"wer": "baeckerin", "text": "Dann ist es wahrscheinlich die Anlage im Keller. Ich schicke Ihnen einen Techniker. Er kann morgen früh kommen, zwischen acht und zehn. Geht das?"},
+            {"wer": "mark", "text": "Morgen früh muss ich leider arbeiten. Geht es vielleicht auch am Nachmittag?"},
+            {"wer": "baeckerin", "text": "Moment … Ja, um 15 Uhr. Dann notiere ich das so."},
+            {"wer": "mark", "text": "Super, vielen Dank!"}
+          ],
+          "rf": true,
+          "frage": "In Herrn Gagnons Wohnung funktioniert die Heizung nicht.", "optionen": ["Richtig", "Falsch"], "bon": 0,
+          "frage_fr": "Le chauffage ne marche pas dans l'appartement de M. Gagnon.", "optionen_fr": ["Vrai", "Faux"],
+          "erkl_fr": "« Bei mir ist die Heizung kalt, schon seit gestern Abend », « in der ganzen Wohnung ». La première question d'une conversation porte sur la situation d'ensemble : qui parle, de quoi, pourquoi.",
+          "mark_fr": "Froid partout, et la douche tiède. Pas drôle en novembre.",
+          "mots": [{"mot": "Heizung", "genre": "die"}, {"mot": "Wohnung", "genre": "die"}]
+        },
+        {
+          "nr": 11, "gespraech": 1, "typ": "Telefonat Hausverwaltung", "gleiches_audio": 10,
+          "frage": "Wann kommt der Techniker?",
+          "optionen": ["Morgen zwischen acht und zehn.", "Morgen um 15 Uhr.", "Heute Abend."], "bon": 1,
+          "frage_fr": "Quand le technicien vient-il ?",
+          "optionen_fr": ["Demain entre 8 h et 10 h.", "Demain à 15 h.", "Ce soir."],
+          "erkl_fr": "Le piège classique : la première heure proposée (« zwischen acht und zehn ») ne convient pas à Mark, qui travaille. On convient ensuite de « 15 Uhr ». Au DTZ, retiens ce qui est DÉCIDÉ à la fin, pas ce qui est proposé au début.",
+          "mark_fr": "15 heures, c'est noté. Je quitterai le travail un peu plus tôt.",
+          "mots": [{"mot": "Techniker", "genre": "der"}, {"mot": "Nachmittag", "genre": "der"}]
+        },
+        {
+          "nr": 12, "gespraech": 2, "typ": "Bürgeramt", "rollen": {"beamter": "Beamter", "mark": "Mark"},
+          "audio": [
+            {"wer": "beamter", "text": "Der Nächste, bitte. Guten Tag."},
+            {"wer": "mark", "text": "Guten Tag. Ich brauche eine Meldebescheinigung. Meine Bank möchte sie sehen, für mein neues Konto."},
+            {"wer": "beamter", "text": "Kein Problem. Haben Sie Ihren Pass dabei?"},
+            {"wer": "mark", "text": "Ja, hier, bitte."},
+            {"wer": "beamter", "text": "Danke. So, die Bescheinigung kostet 10 Euro. Sie können hier auch mit Karte bezahlen."},
+            {"wer": "mark", "text": "Mit Karte? Prima. Und bekomme ich sie gleich?"},
+            {"wer": "beamter", "text": "Ja, ich drucke sie sofort aus. Einen Moment noch."}
+          ],
+          "rf": true,
+          "frage": "Herr Gagnon muss später noch einmal wiederkommen.", "optionen": ["Richtig", "Falsch"], "bon": 1,
+          "frage_fr": "M. Gagnon doit revenir plus tard.", "optionen_fr": ["Vrai", "Faux"],
+          "erkl_fr": "« Ich drucke sie sofort aus » : il repart avec son papier. Mark a appris à l'épisode 2 qu'il faut un rendez-vous au Bürgeramt ; ici il est au guichet, et tout se règle sur place.",
+          "mark_fr": "Cette fois, je repars avec le papier. Ça change de l'épisode 2 !",
+          "mots": [{"mot": "Pass", "genre": "der"}, {"mot": "ausdrucken", "cat": "verbe"}]
+        },
+        {
+          "nr": 13, "gespraech": 2, "typ": "Bürgeramt", "gleiches_audio": 12,
+          "frage": "Warum braucht Herr Gagnon die Bescheinigung?",
+          "optionen": ["Für seinen Arbeitgeber.", "Für seinen Vermieter.", "Für seine Bank."], "bon": 2,
+          "frage_fr": "Pourquoi M. Gagnon a-t-il besoin de l'attestation ?",
+          "optionen_fr": ["Pour son employeur.", "Pour son propriétaire.", "Pour sa banque."],
+          "erkl_fr": "« Meine Bank möchte sie sehen, für mein neues Konto. » La raison est dite dès la première phrase de Mark : au DTZ, la réponse au détail arrive souvent tôt.",
+          "mark_fr": "Ma banque, oui : sans ce papier, pas de compte.",
+          "mots": [{"mot": "Bank", "genre": "die"}, {"mot": "Konto", "genre": "das"}]
+        },
+        {
+          "nr": 14, "gespraech": 3, "typ": "Volkshochschule", "rollen": {"radio_f": "Kursteilnehmerin", "mark": "Mark"},
+          "audio": [
+            {"wer": "radio_f", "text": "Entschuldigung, sind Sie auch im Spanischkurs? Ich suche Raum 112."},
+            {"wer": "mark", "text": "Ja, genau. Aber heute sind wir in Raum 204, im zweiten Stock. Das stand in der E-Mail."},
+            {"wer": "radio_f", "text": "Ach so! Die E-Mail habe ich gar nicht gelesen. Danke! Wissen Sie auch, was wir für heute machen sollten? Ich war letzte Woche krank."},
+            {"wer": "mark", "text": "Wir sollten Seite 18 lesen und fünf Sätze über unsere Familie schreiben."},
+            {"wer": "radio_f", "text": "Fünf Sätze, oje. Dann schreibe ich sie schnell noch unten im Café."},
+            {"wer": "mark", "text": "Viel Glück! Bis gleich oben."}
+          ],
+          "rf": true,
+          "frage": "Die Frau und Herr Gagnon besuchen denselben Kurs.", "optionen": ["Richtig", "Falsch"], "bon": 0,
+          "frage_fr": "La femme et M. Gagnon suivent le même cours.", "optionen_fr": ["Vrai", "Faux"],
+          "erkl_fr": "« Sind Sie auch im Spanischkurs? » – « Ja, genau. » Ils se retrouvent tous deux en salle 204 : c'est le même cours.",
+          "mark_fr": "Une camarade de cours. Elle a raté le courriel, comme moi la dernière fois.",
+          "mots": [{"mot": "Kurs", "genre": "der"}, {"mot": "Stock", "genre": "der"}]
+        },
+        {
+          "nr": 15, "gespraech": 3, "typ": "Volkshochschule", "gleiches_audio": 14,
+          "frage": "Was muss die Frau noch machen?",
+          "optionen": ["Eine E-Mail an die Kursleiterin schreiben.", "Ein paar Sätze über ihre Familie schreiben.", "Seite 18 im Café kopieren."], "bon": 1,
+          "frage_fr": "Que doit encore faire la femme ?",
+          "optionen_fr": ["Écrire un courriel à l'enseignante.", "Écrire quelques phrases sur sa famille.", "Photocopier la page 18 au café."],
+          "erkl_fr": "Les devoirs : lire la page 18 ET « fünf Sätze über unsere Familie schreiben ». Elle dit : « Dann schreibe ich sie schnell noch unten im Café » — « sie », ce sont les cinq phrases. La page 18 et le café sont dans le texte, mais pas ensemble.",
+          "mark_fr": "Cinq phrases sur sa famille, en dix minutes : elle va y arriver.",
+          "mots": [{"mot": "Satz", "genre": "der"}, {"mot": "Familie", "genre": "die"}]
+        },
+        {
+          "nr": 16, "gespraech": 4, "typ": "Telefonat Arztpraxis", "rollen": {"dame": "Frau Ott", "mark": "Mark"},
+          "audio": [
+            {"wer": "dame", "text": "Praxis Dr. Hoffmann, Orthopädie, Sie sprechen mit Frau Ott."},
+            {"wer": "mark", "text": "Guten Tag, Gagnon ist mein Name. Ich habe seit drei Tagen starke Rückenschmerzen und hätte gern einen Termin."},
+            {"wer": "dame", "text": "Waren Sie schon einmal bei uns?"},
+            {"wer": "mark", "text": "Nein, das ist das erste Mal."},
+            {"wer": "dame", "text": "Gut. Morgen ist leider alles voll. Am Donnerstag um halb neun hätte ich noch etwas frei."},
+            {"wer": "mark", "text": "Donnerstag, halb neun. Das nehme ich."},
+            {"wer": "dame", "text": "Bringen Sie bitte Ihre Versichertenkarte mit und kommen Sie zehn Minuten früher. Sie müssen noch einen Fragebogen ausfüllen."},
+            {"wer": "mark", "text": "Mache ich. Vielen Dank, auf Wiederhören."}
+          ],
+          "rf": true,
+          "frage": "Herr Gagnon ist schon Patient in dieser Praxis.", "optionen": ["Richtig", "Falsch"], "bon": 1,
+          "frage_fr": "M. Gagnon est déjà patient de ce cabinet.", "optionen_fr": ["Vrai", "Faux"],
+          "erkl_fr": "« Waren Sie schon einmal bei uns? » – « Nein, das ist das erste Mal. » D'où le questionnaire à remplir, qu'on donne aux nouveaux patients.",
+          "mark_fr": "Première fois chez un orthopédiste à Berlin. Mon dos s'en souviendra.",
+          "mots": [{"mot": "Termin", "genre": "der"}, {"mot": "Rücken", "genre": "der"}, {"mot": "Schmerz", "genre": "der"}]
+        },
+        {
+          "nr": 17, "gespraech": 4, "typ": "Telefonat Arztpraxis", "gleiches_audio": 16,
+          "frage": "Warum soll Herr Gagnon früher kommen?",
+          "optionen": ["Weil er einen Fragebogen ausfüllen muss.", "Weil die Ärztin um halb neun weggeht.", "Weil er seine Karte abholen muss."], "bon": 0,
+          "frage_fr": "Pourquoi M. Gagnon doit-il venir plus tôt ?",
+          "optionen_fr": ["Parce qu'il doit remplir un questionnaire.", "Parce que la médecin part à 8 h 30.", "Parce qu'il doit venir chercher sa carte."],
+          "erkl_fr": "« Kommen Sie zehn Minuten früher. Sie müssen noch einen Fragebogen ausfüllen. » La raison suit immédiatement la consigne. La carte, il doit l'apporter (« mitbringen »), pas la chercher.",
+          "mark_fr": "Dix minutes plus tôt, avec ma carte. Compris.",
+          "mots": [{"mot": "ausfüllen", "cat": "verbe"}, {"mot": "mitbringen", "cat": "verbe"}]
+        }
+      ],
+      "T4": {
+        "thema": "Wie wichtig sind Ihnen Ihre Nachbarn?",
+        "thema_fr": "Vos voisins comptent-ils pour vous ?",
+        "intro": [{"wer": "radio_f", "text": "Willkommen zu „Stimmen aus dem Kiez“. Heute haben wir Menschen auf der Straße gefragt: Wie wichtig sind Ihnen Ihre Nachbarn? Hier sind einige Antworten."}],
+        "saetze": [
+          {"b": "a", "de": "Man sollte bei den Nachbarn nur klingeln, wenn es wichtig ist.", "fr": "On ne devrait sonner chez les voisins que si c'est important."},
+          {"b": "b", "de": "Gute Nachbarn sind für mich fast wie Verwandte.", "fr": "De bons voisins, pour moi, c'est presque de la famille."},
+          {"b": "c", "de": "Ich habe meine Nachbarin erst in einer schwierigen Situation kennengelernt.", "fr": "J'ai fait la connaissance de ma voisine seulement dans une situation difficile."},
+          {"b": "d", "de": "Wer neu in ein Haus zieht, sollte sich bei den Nachbarn vorstellen.", "fr": "Quand on emménage, on devrait se présenter aux voisins."},
+          {"b": "e", "de": "Es ist mir egal, wer neben mir wohnt.", "fr": "Ça m'est égal de savoir qui habite à côté."},
+          {"b": "f", "de": "In großen Häusern kennen sich die Leute heute nicht mehr.", "fr": "Dans les grands immeubles, les gens ne se connaissent plus."}
+        ],
+        "aussagen": [
+          {
+            "nr": 0, "beispiel": true, "bon": "b",
+            "audio": [{"wer": "dame", "text": "Ich wohne seit zwanzig Jahren im selben Haus. Im Sommer feiern wir zusammen im Hof, und wenn jemand Hilfe braucht, passen wir auf die Kinder auf. Für mich sind die Nachbarn fast eine zweite Familie."}],
+            "erkl_fr": "« fast eine zweite Familie » = « fast wie Verwandte » : la phrase reprend l'idée avec d'autres mots.",
+            "mots": [{"mot": "Hof", "genre": "der"}]
+          },
+          {
+            "nr": 18, "bon": "a",
+            "audio": [{"wer": "nachbar", "text": "Natürlich ist es schön, wenn man sich im Treppenhaus grüßt. Aber ich finde, man sollte bei den Nachbarn nur klingeln, wenn es wirklich nötig ist. Jeder braucht auch seine Ruhe, besonders am Abend und am Sonntag."}],
+            "erkl_fr": "Il aime saluer ses voisins (donc ce n'est pas « e », ça ne lui est pas égal), mais « nur klingeln, wenn es wirklich nötig ist ». Nötig ≈ wichtig : c'est « a ».",
+            "mark_fr": "Lui, je ne vais pas sonner chez lui le dimanche.",
+            "mots": [{"mot": "Treppenhaus", "genre": "das"}, {"mot": "klingeln", "cat": "verbe"}]
+          },
+          {
+            "nr": 19, "bon": "c",
+            "audio": [{"wer": "baeckerin", "text": "Letzten Winter war bei mir ein Rohr kaputt, überall war Wasser. Es war Sonntagabend, und ich wusste nicht, was ich machen sollte. Da hat die Frau von nebenan sofort geholfen und den Hausmeister angerufen. Vorher kannte ich sie gar nicht. Heute trinken wir oft zusammen Kaffee."}],
+            "erkl_fr": "Le tuyau cassé, c'est la situation difficile ; « Vorher kannte ich sie gar nicht » : elle a connu sa voisine à ce moment-là. C'est « c ».",
+            "mark_fr": "Un dégât d'eau qui finit en amitié. Belle histoire.",
+            "mots": [{"mot": "Hausmeister", "genre": "der"}, {"mot": "kaputt", "cat": "adjectif"}]
+          },
+          {
+            "nr": 20, "bon": "d",
+            "audio": [{"wer": "beamter", "text": "Als ich vor drei Jahren hier eingezogen bin, habe ich einen Zettel ins Treppenhaus gehängt und alle zu einem kleinen Fest eingeladen. Fast alle sind gekommen! Das ist für mich der beste Anfang: Man sagt Hallo, man sagt seinen Namen, und dann kennt man sich."}],
+            "erkl_fr": "Il a invité tout l'immeuble en arrivant et dit « das ist der beste Anfang » : il conseille aux nouveaux de se présenter. C'est « d ». Personne ne dit « e » ni « f » : ce sont les deux phrases de trop.",
+            "mark_fr": "Et moi, je ne me suis présenté à personne. Il a raison, je vais le faire.",
+            "mots": [{"mot": "Zettel", "genre": "der"}, {"mot": "einladen", "cat": "verbe"}]
+          }
+        ]
+      }
+    }
+  ]
+}
