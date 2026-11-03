@@ -103,6 +103,7 @@ button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
 <div class="etapes" id="etapes"></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
+<script src="themes/zoom.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -577,6 +578,9 @@ async function fin(){
 }
 
 document.getElementById("retour").onclick = () => { taire(); if (DANS_APP) parler("fermer"); else history.back(); };
+// Agrandir les images (themes/zoom.js, decision de Jacques du 3 nov. : « Oui, les deux ») : aucune image de l'oral ne
+// sert a repondre, toutes s'ouvrent au toucher -- les photos a decrire et les portraits d'Anna et de Mark.
+Zoom.init({direct: "img.photo, .qui img", loupe: "", langue: "fr"});
 accueil();
 </script>
 </body>
