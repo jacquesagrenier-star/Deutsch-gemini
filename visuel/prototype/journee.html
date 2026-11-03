@@ -144,6 +144,7 @@ const TEXTES = {
   ordre:     {fr:"Remets la journée dans l'ordre : touche d'abord ce qui vient en premier.", en:"Put the day in order: tap what comes first, then the next.", tr:"Günü sıraya koy: önce ilk olana dokun.", uk:"Розстав день по порядку: спершу торкнися того, що відбувається першим.", fa:"روز را مرتب کن: اول روی چیزی بزن که اول اتفاق می‌افتد.", ar:"رتّب اليوم: المس أولًا ما يحدث أولًا.", pt:"Coloque o dia em ordem: toque primeiro no que vem primeiro.", pl:"Ułóż dzień w kolejności: najpierw dotknij tego, co jest pierwsze.", ru:"Расставь день по порядку: сначала нажми на то, что идёт первым.", de:"Bring den Tag in die richtige Reihenfolge: Tippe zuerst auf das, was zuerst kommt."},
   apres:     {fr:"Qu'est-ce qui vient juste après ?", en:"What comes right after?", tr:"Hemen sonra ne geliyor?", uk:"Що відбувається одразу після цього?", fa:"درست بعد از آن چه می‌آید؟", ar:"ماذا يأتي بعد ذلك مباشرة؟", pt:"O que vem logo depois?", pl:"Co jest zaraz potem?", ru:"Что идёт сразу после этого?", de:"Was kommt direkt danach?"},
   avant:     {fr:"Qu'est-ce qui vient juste avant ?", en:"What comes right before?", tr:"Hemen önce ne geliyor?", uk:"Що відбувається безпосередньо перед цим?", fa:"درست قبل از آن چه می‌آید؟", ar:"ماذا يأتي قبل ذلك مباشرة؟", pt:"O que vem logo antes?", pl:"Co jest tuż przedtem?", ru:"Что идёт прямо перед этим?", de:"Was kommt direkt davor?"},
+  premier:   {fr:"Qu'est-ce qui vient en premier dans la journée ?", en:"What comes first in the day?", tr:"Günde ilk ne geliyor?", uk:"Що відбувається першим протягом дня?", fa:"در طول روز اول چه کاری انجام می‌شود؟", ar:"ما الذي يأتي أولًا في اليوم؟", pt:"O que vem primeiro no dia?", pl:"Co jest pierwsze w ciągu dnia?", ru:"Что идёт первым в течение дня?", de:"Was kommt am Tag zuerst?"},
   pronombre: {fr:"Choisis le bon pronom : me, te, se ou nos ?", en:"Choose the right pronoun: me, te, se or nos?", tr:"Doğru zamiri seç: me, te, se mi nos mu?", uk:"Обери правильний займенник: me, te, se чи nos?", fa:"ضمیر درست را انتخاب کن: me، te، se یا nos؟", ar:"اختر الضمير الصحيح: me أم te أم se أم nos؟", pt:"Escolha o pronome certo: me, te, se ou nos?", pl:"Wybierz właściwy zaimek: me, te, se czy nos?", ru:"Выбери правильное местоимение: me, te, se или nos?", de:"Wähle das richtige Pronomen: me, te, se oder nos?"},
   forma:     {fr:"Choisis la bonne forme du verbe.", en:"Choose the right form of the verb.", tr:"Fiilin doğru biçimini seç.", uk:"Обери правильну форму дієслова.", fa:"شکل درست فعل را انتخاب کن.", ar:"اختر الصيغة الصحيحة للفعل.", pt:"Escolha a forma certa do verbo.", pl:"Wybierz właściwą formę czasownika.", ru:"Выбери правильную форму глагола.", de:"Wähle die richtige Form des Verbs."},
   reflexiv:  {fr:"Choisis le bon pronom réfléchi : mich, dich, sich… ?", en:"Choose the right reflexive pronoun: mich, dich, sich…?", tr:"Doğru dönüşlü zamiri seç: mich, dich, sich…?", uk:"Обери правильний зворотний займенник: mich, dich, sich…?", fa:"ضمیر بازتابی درست را انتخاب کن: mich، dich، sich…؟", ar:"اختر الضمير الانعكاسي الصحيح: mich أم dich أم sich…؟", pt:"Escolha o pronome reflexivo certo: mich, dich, sich…?", pl:"Wybierz właściwy zaimek zwrotny: mich, dich, sich…?", ru:"Выбери правильное возвратное местоимение: mich, dich, sich…?", de:"Wähle das richtige Reflexivpronomen: mich, dich, sich …?"},
@@ -462,6 +463,7 @@ const EX = {
   // « Anna se ducha. ¿Y después? » : l'etape qui suit ; les leurres viennent d'AVANT (rien d'autre n'est « apres ») ;
   // et a l'envers, « ¿Y antes? ». En allemand : « Und dann? », « Und danach? » (« Dann zieht sie sich an. »)
   suite(w){
+    if (w && w.role === "ordre") return premier(w);
     if (w && !w.verbes && !["apres", "avant"].includes(w.role)) return false;
     const avant = w && !w.verbes ? w.role === "avant" : APPRENDRE === "es" && Math.random() < 0.35;
     // l'etape demandee (la reponse) et celle qu'on montre
@@ -671,6 +673,17 @@ function momentVraiFaux(w){
   ecran("vraifaux", photo(e), phrase, true);
   const rep = vrai ? L.vrai : L.faux;
   boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste));
+  return true;
+}
+// « ¿Qué hace Mark primero? » / « Was macht Mark zuerst? » : la premiere etape d'une journee d'Anna ou de Mark (un seul
+// sujet), contre trois etapes plus tardives ; sans image, c'est l'ordre de la journee qu'on se rappelle
+function premier(w){
+  const j = hasard(["anna", "mark"]), d = etapesDu(j), s = d[0].sujet;
+  const dit = e => APPRENDRE === "de" ? DE.pred(e.verbe, s) : cap(ES.pred(e.verbe, n(s))) + ".";
+  const rep = dit(d[0]), opts = unique([rep, ...melanger(d.slice(2)).map(dit)]).slice(0, 4);
+  motQ = w; tradQ = tradEtape(d[0]);
+  ecran("premier", "", APPRENDRE === "de" ? "Was macht " + DE.sujet(s) + " zuerst?" : "¿Qué hace " + ES.sujet(s) + " primero?", true, true);
+  boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, L.etape(d[0])));
   return true;
 }
 // la personne d'un exercice de conjugaison : yo / tu / nosotros (sans image), ou le sujet de l'etape (avec son image)
