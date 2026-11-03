@@ -116,8 +116,9 @@ PHRASES_ES = [
     ("abierto", "La tienda {v} ___.", "f"), ("abierto", "La ventana {v} ___.", "f"), ("abierto", "El banco {v} ___.", "m"),
     ("cerrado", "El museo {v} ___.", "m"), ("cerrado", "La farmacia {v} ___.", "f"),
     ("grande", "La plaza {v} muy ___.", "f"), ("grande", "El parque {v} ___.", "m"),
-    ("pequeno", "El piso {v} ___.", "m"), ("pequeno", "La cocina {v} ___.", "f"),
-    ("lleno", "El autobús {v} ___.", "m"), ("lleno", "La nevera {v} ___.", "f"),
+    # des mots communs a l'Espagne et a l'Amerique latine : pas « el piso » (le plancher la-bas), ni « la nevera »
+    ("pequeno", "El baño {v} ___.", "m"), ("pequeno", "La cocina {v} ___.", "f"),
+    ("lleno", "El autobús {v} ___.", "m"), ("lleno", "La caja {v} ___.", "f"),
     ("vacio", "La botella {v} ___.", "f"), ("vacio", "El tren {v} ___.", "m"),
     # l'accord seulement (le verbe est donne)
     ("bonito", "La plaza es muy ___.", "f"), ("feo", "El edificio es bastante ___.", "m"),
@@ -149,6 +150,114 @@ DIT = {
 PLANCHE = [["calle-ancha", "calle-estrecha"], ["puerta-abierta", "puerta-cerrada"], ["maleta-grande", "maleta-pequena"],
            ["bici-nueva", "bici-vieja"], ["vaso-lleno", "vaso-vacio"], ["jarron-bonito", "jarron-feo"],
            ["pastel-bueno", "manzana-mala"], ["tetera-rara", "silla-extrana"], ["vista-preciosa", "comida-asquerosa"]]
+
+# LA TRADUCTION DES PHRASES (Jacques, 3 nov. : « Il n'y a pas la traduction française. Qui serait importante » ; le
+# modele, visuel/THEMES-ILLUSTRES.md) : en francais, anglais, portugais, et en allemand pour qui apprend l'espagnol,
+# la phrase entiere, sous la phrase juste apres la reponse et sous la phrase de la decouverte ; dans les autres
+# langues, le mot et sa traduction du corpus. Chaque phrase de la page a la sienne, ecrite a la main.
+# L'image et son mot : (fr, en, pt, de) -- « Der Kuchen ist gut. » comme « El pastel está bueno. »
+TRAD_IMG = {
+    "calle-ancha":      ("La rue est large.", "The street is wide.", "A rua é larga.", "Die Straße ist breit."),
+    "calle-estrecha":   ("La rue est étroite.", "The street is narrow.", "A rua é estreita.", "Die Straße ist schmal."),
+    "puerta-abierta":   ("La porte est ouverte.", "The door is open.", "A porta está aberta.", "Die Tür ist offen."),
+    "puerta-cerrada":   ("La porte est fermée.", "The door is closed.", "A porta está fechada.", "Die Tür ist geschlossen."),
+    "jarron-bonito":    ("Le vase est joli.", "The vase is pretty.", "O vaso é bonito.", "Die Vase ist schön."),
+    "jarron-feo":       ("Le vase est laid.", "The vase is ugly.", "O vaso é feio.", "Die Vase ist hässlich."),
+    "pastel-bueno":     ("Le gâteau est bon.", "The cake is good.", "O bolo está bom.", "Der Kuchen ist gut."),
+    "comida-asquerosa": ("La nourriture est dégoûtante.", "The food is disgusting.", "A comida está nojenta.", "Das Essen ist eklig."),
+    "manzana-mala":     ("La pomme est gâtée.", "The apple has gone bad.", "A maçã está estragada.", "Der Apfel ist schlecht."),
+    "tetera-rara":      ("La théière est bizarre.", "The teapot is odd.", "O bule é estranho.", "Die Teekanne ist komisch."),
+    "silla-extrana":    ("La chaise est étrange.", "The chair is strange.", "A cadeira é estranha.", "Der Stuhl ist seltsam."),
+    "vista-preciosa":   ("La vue est magnifique.", "The view is beautiful.", "A vista é linda.", "Die Aussicht ist wunderschön."),
+    "maleta-grande":    ("La valise est grande.", "The suitcase is big.", "A mala é grande.", "Der Koffer ist groß."),
+    "maleta-pequena":   ("La valise est petite.", "The suitcase is small.", "A mala é pequena.", "Der Koffer ist klein."),
+    "bici-nueva":       ("Le vélo est neuf.", "The bike is new.", "A bicicleta é nova.", "Das Fahrrad ist neu."),
+    "bici-vieja":       ("Le vélo est vieux.", "The bike is old.", "A bicicleta é velha.", "Das Fahrrad ist alt."),
+    "vaso-lleno":       ("Le verre est plein.", "The glass is full.", "O copo está cheio.", "Das Glas ist voll."),
+    "vaso-vacio":       ("Le verre est vide.", "The glass is empty.", "O copo está vazio.", "Das Glas ist leer."),
+}
+# « Das ist ein großer Koffer. » (la terminaison, en allemand) : (fr, en, pt)
+TRAD_ATTR = {
+    "calle-ancha": ("C'est une rue large.", "It's a wide street.", "É uma rua larga."),
+    "calle-estrecha": ("C'est une rue étroite.", "It's a narrow street.", "É uma rua estreita."),
+    "puerta-abierta": ("C'est une porte ouverte.", "It's an open door.", "É uma porta aberta."),
+    "puerta-cerrada": ("C'est une porte fermée.", "It's a closed door.", "É uma porta fechada."),
+    "jarron-bonito": ("C'est un joli vase.", "It's a pretty vase.", "É um vaso bonito."),
+    "jarron-feo": ("C'est un vase laid.", "It's an ugly vase.", "É um vaso feio."),
+    "pastel-bueno": ("C'est un bon gâteau.", "It's a good cake.", "É um bolo bom."),
+    "comida-asquerosa": ("C'est un plat dégoûtant.", "It's disgusting food.", "É uma comida nojenta."),
+    "manzana-mala": ("C'est une pomme gâtée.", "It's a bad apple.", "É uma maçã estragada."),
+    "tetera-rara": ("C'est une théière bizarre.", "It's an odd teapot.", "É um bule estranho."),
+    "silla-extrana": ("C'est une chaise étrange.", "It's a strange chair.", "É uma cadeira estranha."),
+    "vista-preciosa": ("C'est une vue magnifique.", "It's a beautiful view.", "É uma vista linda."),
+    "maleta-grande": ("C'est une grande valise.", "It's a big suitcase.", "É uma mala grande."),
+    "maleta-pequena": ("C'est une petite valise.", "It's a small suitcase.", "É uma mala pequena."),
+    "bici-nueva": ("C'est un vélo neuf.", "It's a new bike.", "É uma bicicleta nova."),
+    "bici-vieja": ("C'est un vieux vélo.", "It's an old bike.", "É uma bicicleta velha."),
+    "vaso-lleno": ("C'est un verre plein.", "It's a full glass.", "É um copo cheio."),
+    "vaso-vacio": ("C'est un verre vide.", "It's an empty glass.", "É um copo vazio."),
+}
+# Les phrases sans image, telles qu'elles s'affichent une fois completees : (fr, en, pt, de) et (fr, en, pt)
+TRAD_PHRASES_ES = {
+    "El pasillo es ancho.": ("Le couloir est large.", "The hallway is wide.", "O corredor é largo.", "Der Flur ist breit."),
+    "Este río es muy ancho.": ("Ce fleuve est très large.", "This river is very wide.", "Este rio é muito largo.", "Dieser Fluss ist sehr breit."),
+    "La carretera es muy estrecha.": ("La route est très étroite.", "The road is very narrow.", "A estrada é muito estreita.", "Die Landstraße ist sehr schmal."),
+    "El puente es estrecho.": ("Le pont est étroit.", "The bridge is narrow.", "A ponte é estreita.", "Die Brücke ist schmal."),
+    "La tienda está abierta.": ("Le magasin est ouvert.", "The shop is open.", "A loja está aberta.", "Das Geschäft ist geöffnet."),
+    "La ventana está abierta.": ("La fenêtre est ouverte.", "The window is open.", "A janela está aberta.", "Das Fenster ist offen."),
+    "El banco está abierto.": ("La banque est ouverte.", "The bank is open.", "O banco está aberto.", "Die Bank ist geöffnet."),
+    "El museo está cerrado.": ("Le musée est fermé.", "The museum is closed.", "O museu está fechado.", "Das Museum ist geschlossen."),
+    "La farmacia está cerrada.": ("La pharmacie est fermée.", "The pharmacy is closed.", "A farmácia está fechada.", "Die Apotheke ist geschlossen."),
+    "La plaza es muy grande.": ("La place est très grande.", "The square is very big.", "A praça é muito grande.", "Der Platz ist sehr groß."),
+    "El parque es grande.": ("Le parc est grand.", "The park is big.", "O parque é grande.", "Der Park ist groß."),
+    "El baño es pequeño.": ("La salle de bain est petite.", "The bathroom is small.", "O banheiro é pequeno.", "Das Bad ist klein."),
+    "La cocina es pequeña.": ("La cuisine est petite.", "The kitchen is small.", "A cozinha é pequena.", "Die Küche ist klein."),
+    "El autobús está lleno.": ("Le bus est plein.", "The bus is full.", "O ônibus está cheio.", "Der Bus ist voll."),
+    "La caja está llena.": ("La boîte est pleine.", "The box is full.", "A caixa está cheia.", "Die Kiste ist voll."),
+    "La botella está vacía.": ("La bouteille est vide.", "The bottle is empty.", "A garrafa está vazia.", "Die Flasche ist leer."),
+    "El tren está vacío.": ("Le train est vide.", "The train is empty.", "O trem está vazio.", "Der Zug ist leer."),
+    "La plaza es muy bonita.": ("La place est très jolie.", "The square is very pretty.", "A praça é muito bonita.", "Der Platz ist sehr schön."),
+    "El edificio es bastante feo.": ("Le bâtiment est assez laid.", "The building is rather ugly.", "O prédio é bem feio.", "Das Gebäude ist ziemlich hässlich."),
+    "La casa es nueva.": ("La maison est neuve.", "The house is new.", "A casa é nova.", "Das Haus ist neu."),
+    "El sofá es nuevo.": ("Le canapé est neuf.", "The sofa is new.", "O sofá é novo.", "Das Sofa ist neu."),
+    "El puente es muy viejo.": ("Le pont est très vieux.", "The bridge is very old.", "A ponte é muito velha.", "Die Brücke ist sehr alt."),
+    "La iglesia es muy vieja.": ("L'église est très vieille.", "The church is very old.", "A igreja é muito velha.", "Die Kirche ist sehr alt."),
+    "La playa es preciosa.": ("La plage est magnifique.", "The beach is beautiful.", "A praia é linda.", "Der Strand ist wunderschön."),
+    "El jardín es precioso.": ("Le jardin est magnifique.", "The garden is beautiful.", "O jardim é lindo.", "Der Garten ist wunderschön."),
+    "Este libro es muy raro.": ("Ce livre est très bizarre.", "This book is very odd.", "Este livro é muito estranho.", "Dieses Buch ist sehr komisch."),
+    "La situación es extraña.": ("La situation est étrange.", "The situation is strange.", "A situação é estranha.", "Die Situation ist seltsam."),
+    "La sopa está muy buena.": ("La soupe est très bonne.", "The soup is very good.", "A sopa está muito boa.", "Die Suppe ist sehr gut."),
+    "La leche está mala.": ("Le lait a tourné.", "The milk has gone off.", "O leite está estragado.", "Die Milch ist schlecht."),
+    "El café de la máquina está asqueroso.": ("Le café de la machine est dégoûtant.", "The coffee from the machine is disgusting.", "O café da máquina está nojento.", "Der Kaffee aus dem Automaten ist eklig."),
+}
+TRAD_PHRASES_DE = {
+    "Das ist ein breiter Fluss.": ("C'est un fleuve large.", "It's a wide river.", "É um rio largo."),
+    "Das ist ein schmaler Weg.": ("C'est un chemin étroit.", "It's a narrow path.", "É um caminho estreito."),
+    "Das ist eine schmale Brücke.": ("C'est un pont étroit.", "It's a narrow bridge.", "É uma ponte estreita."),
+    "Das ist ein offenes Fenster.": ("C'est une fenêtre ouverte.", "It's an open window.", "É uma janela aberta."),
+    "Das ist ein geschlossenes Fenster.": ("C'est une fenêtre fermée.", "It's a closed window.", "É uma janela fechada."),
+    "Das ist ein schöner Garten.": ("C'est un beau jardin.", "It's a beautiful garden.", "É um jardim bonito."),
+    "Das ist ein hässliches Hemd.": ("C'est une chemise laide.", "It's an ugly shirt.", "É uma camisa feia."),
+    "Das ist ein gutes Restaurant.": ("C'est un bon restaurant.", "It's a good restaurant.", "É um bom restaurante."),
+    "Das ist ein schlechter Film.": ("C'est un mauvais film.", "It's a bad film.", "É um filme ruim."),
+    "Das ist ein ekliger Geruch.": ("C'est une odeur dégoûtante.", "It's a disgusting smell.", "É um cheiro nojento."),
+    "Das ist ein komisches Geräusch.": ("C'est un bruit bizarre.", "It's a strange noise.", "É um barulho estranho."),
+    "Das ist eine seltsame Frage.": ("C'est une question étrange.", "It's a strange question.", "É uma pergunta estranha."),
+    "Das ist ein wunderschöner Abend.": ("C'est une soirée magnifique.", "It's a wonderful evening.", "É uma noite maravilhosa."),
+    "Das ist ein großes Haus.": ("C'est une grande maison.", "It's a big house.", "É uma casa grande."),
+    "Das ist eine kleine Wohnung.": ("C'est un petit appartement.", "It's a small flat.", "É um apartamento pequeno."),
+    "Das ist ein neues Handy.": ("C'est un téléphone neuf.", "It's a new phone.", "É um celular novo."),
+    "Das ist eine alte Kirche.": ("C'est une vieille église.", "It's an old church.", "É uma igreja antiga."),
+    "Das ist ein voller Bus.": ("C'est un bus plein.", "It's a full bus.", "É um ônibus cheio."),
+    "Das ist eine leere Flasche.": ("C'est une bouteille vide.", "It's an empty bottle.", "É uma garrafa vazia."),
+}
+# les phrases de la decouverte prises au corpus, qui ne sont pas celles des questions
+TRAD_DIT = {
+    "es": {"La calle es muy estrecha.": ("La rue est très étroite.", "The street is very narrow.", "A rua é muito estreita.", "Die Straße ist sehr schmal.")},
+    "de": {"Die Straße ist sehr breit.": ("La rue est très large.", "The street is very wide.", "A rua é muito larga."),
+           "Die Gasse ist eng und schmal.": ("La ruelle est étroite et resserrée.", "The alley is tight and narrow.", "A viela é apertada e estreita."),
+           "Der Kuchen schmeckt sehr gut.": ("Le gâteau est très bon.", "The cake tastes very good.", "O bolo está muito gostoso.")},
+}
 
 # Les trois mots qui n'etaient pas au corpus (asqueroso en espagnol, eklig et geschlossen en allemand) : leur
 # traduction, en attendant qu'ils y entrent (espanol/ajouts/contrarios.json, adjectif.json).
@@ -205,6 +314,39 @@ def phrase_de(i):
     return "%s %s ist %s." % (art.capitalize(), nom, MOTS[im["mot"]]["de"])
 
 
+ENDUNG = {"der": "er", "die": "e", "das": "es", "m": "er", "f": "e", "n": "es"}
+ARTDE = {"der": "ein", "die": "eine", "das": "ein"}
+
+
+def phrases_traduites(dit):
+    """{es: {phrase: {fr, en, pt, de}}, de: {phrase: {fr, en, pt}}} : chaque phrase que la page peut montrer juste,
+    a la lettre pres comme elle l'affiche ; une phrase sans traduction arrete le script."""
+    es, de = {}, {}
+    for i, t in TRAD_IMG.items():
+        es[phrase_es(i)] = dict(zip(("fr", "en", "pt", "de"), t))
+        de[phrase_de(i)] = dict(zip(("fr", "en", "pt"), t[:3]))
+        art, nom = IMAGES[i]["de"]
+        de["Das ist %s %s%s %s." % (ARTDE[art], MOTS[IMAGES[i]["mot"]]["de"], ENDUNG[art], nom)] = dict(zip(("fr", "en", "pt"), TRAD_ATTR[i]))
+    for k, s, g in PHRASES_ES:
+        v = "está" if k in ESTAR or k in ("bueno", "malo", "asqueroso") else "es"
+        p = s.replace("{v}", v).replace("___", forme_es(k, g))
+        if p not in TRAD_PHRASES_ES:
+            sys.exit("  sans traduction : " + p)
+        es[p] = dict(zip(("fr", "en", "pt", "de"), TRAD_PHRASES_ES[p]))
+    for m, art, nom, g in PHRASES_DE:
+        p = "Das ist %s %s%s %s." % (art, m, ENDUNG[g], nom)
+        if p not in TRAD_PHRASES_DE:
+            sys.exit("  sans traduction : " + p)
+        de[p] = dict(zip(("fr", "en", "pt"), TRAD_PHRASES_DE[p]))
+    for l, cible in (("es", es), ("de", de)):
+        for p, t in TRAD_DIT[l].items():
+            cible[p] = dict(zip(("fr", "en", "pt", "de"), t))
+        manque = [p for p in dit[l].values() if p not in cible]
+        if manque:
+            sys.exit("  decouverte sans traduction : " + ", ".join(manque))
+    return {"es": es, "de": de}
+
+
 def ecrire_json():
     dit = {"es": {}, "de": {}}
     for i in IMAGES:
@@ -223,6 +365,7 @@ def ecrire_json():
     a_dire = {"es": list(dit["es"].values()) + [f for m in MOTS.values() for f in m["es"]],
               "de": list(dit["de"].values()) + [m["de"] for m in MOTS.values()]}
     d["sons"] = {l: {t: identifiant(t) for t in dict.fromkeys(v)} for l, v in a_dire.items()}
+    d["phrasesTrad"] = phrases_traduites(dit)
     texte = json.dumps(d, ensure_ascii=False, indent=1) + "\n"
     for chemin in (os.path.join(ICI, "contrarios.json"), os.path.join(RACINE, "visuel", "prototype", "contrarios", "contrarios.json")):
         os.makedirs(os.path.dirname(chemin), exist_ok=True)

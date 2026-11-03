@@ -64,8 +64,9 @@ button:disabled{cursor:default}
 .retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
 .retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
 .retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
-.retourMsg .trad{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
-.retourMsg .trad .ecoute{width:38px;height:38px} .retourMsg .trad .ecoute svg{width:19px;height:19px}
+.trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
+.retourMsg .mot{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
+.retourMsg .mot .ecoute{width:38px;height:38px} .retourMsg .mot .ecoute svg{width:19px;height:19px}
 /* la decouverte : la fiche de l'image touchee, puis la planche des paires */
 .fiche{background:var(--carte);border-radius:14px;padding:10px;display:grid;grid-template-columns:minmax(120px,48%) 1fr;gap:12px;align-items:center}
 .fiche img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block;background:var(--verre)}
@@ -142,6 +143,11 @@ const imageDe = k => IMG().find(i => D.images[i].mot === k);               // un
 const im = i => D.images[i];
 // la traduction d'un mot dans la langue d'interface (le corpus), montree dans la decouverte et APRES la reponse
 const sens = k => { const t = (D.trad[APPRENDRE] || {})[k] || {}; return t[LANGUE] || t.fr || ""; };
+// et la phrase entiere en francais, anglais, portugais (et en allemand pour qui apprend l'espagnol), comme la famille et
+// Decrire (visuel/THEMES-ILLUSTRES.md) ; ailleurs, le mot et sa traduction suffisent
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+const tradPhrase = p => PHRASE_TRADUITE ? (((D.phrasesTrad[APPRENDRE] || {})[p] || {})[LANGUE] || null) : null;
+const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 
 // ---------- la langue apprise : les phrases, fabriquees comme dans contrarios.py ----------
 const ES = {
@@ -211,7 +217,8 @@ let file = [], rang = 0, bons = 0, repondu = false;
 // LE MOT DE LA QUESTION (regle 3 de Jacques, 3 nov. : « un mot appris compte partout ») : juger() l'envoie
 // (« reponse » {mot, genre, cat, juste}), l'app fait avancer sa carte (revisionDeScene). L'adjectif a la forme du
 // corpus : le masculin en espagnol (abierto), la forme sans terminaison en allemand (offen).
-let motQ = null, cleQ = null;                    // cleQ : la cle du mot (« pequeno »), pour sa traduction et sa voix
+let motQ = null, cleQ = null, tradQ = null;      // cleQ : la cle du mot (« pequeno »), pour sa traduction et sa voix ;
+                                                 // tradQ : la traduction de la phrase juste, quand ce n'est pas une phrase seule
 const motDe = k => ({mot: APPRENDRE === "de" ? D.mots[k].de : D.mots[k].es[0], cat: "adjectif"});
 function viser(w, k){ cleQ = k; motQ = w || motDe(k); }
 
@@ -226,7 +233,8 @@ function juger(ok, bonneTexte, phrase, motDit){
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const dit = motDit || (cleQ ? L.forme(cleQ, "m") : "");
   m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
-    + (cleQ ? '<span class="trad"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(dit) + ' · <span>' + sens(cleQ) + '</span></span>' : "");
+    + traduction(tradQ || tradPhrase(phrase || bonneTexte))
+    + (cleQ ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(dit) + ' · <span>' + sens(cleQ) + '</span></span>' : "");
   if (cleQ){ $("redire").addEventListener("click", () => dire(dit)); dire(dit); }
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
@@ -312,6 +320,7 @@ const EX = {
     const opts = melanger([rep, ...autres.filter((x, n) => x !== rep && autres.indexOf(x) === n).slice(0, 3)]);
     const duo = '<div class="duo"><img alt="" src="' + imgSrc(g) + '"><img alt="" src="' + imgSrc(d) + '"></div>';
     const phrase = L.contraire(g, d);
+    tradQ = tradPhrase(L.phrase(g)) && tradPhrase(L.phrase(d)) ? tradPhrase(L.phrase(g)) + " ↔ " + tradPhrase(L.phrase(d)) : null;
     ecran("contraire", duo, avecTrou(phrase));
     boutons($("choix"), opts, rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep), rep); });
     return true;
@@ -406,7 +415,7 @@ function decouvrir(){
     const k = im(i).mot, m = D.mots[k], autre = m.contraire ? imageDe(m.contraire) : (m.voisins || []).map(imageDe).find(Boolean);
     $("planche").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.id === i));
     $("fiche").innerHTML = '<img alt="" src="' + imgSrc(i) + '"><div><div class="mot">' + cible(forme(k, i)) + '</div><div class="sens">' + sens(k) + '</div>'
-      + '<div class="dit">' + cible(dit[i]) + '</div><div class="ligne"><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button>'
+      + '<div class="dit">' + cible(dit[i]) + '</div>' + traduction(tradPhrase(dit[i])) + '<div class="ligne"><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button>'
       + (autre ? '<button type="button" class="vers" id="vers">' + T(m.contraire ? "contraireDe" : "presque") + ' <b>' + cible(forme(im(autre).mot, autre)) + '</b></button>' : "") + '</div></div>';
     $("ecoute").addEventListener("click", () => dire(dit[i]));
     if (autre) $("vers").addEventListener("click", () => montrer(autre));
@@ -455,19 +464,19 @@ function montrer(){
     const autres = melanger(SORTES.filter(x => x !== derniereSorte));
     for (const so of autres){
       for (let n = 0; n < 25; n++){
-        motQ = null; cleQ = null; sorteCourante = so;
+        motQ = null; cleQ = null; tradQ = null; sorteCourante = so;
         if (!EX[so](w)) break;
         if (!vus.has(cleQuestion())) return so;
       }
     }
     if (strict) return null;
     if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
-      motQ = null; cleQ = null; sorteCourante = derniereSorte;
+      motQ = null; cleQ = null; tradQ = null; sorteCourante = derniereSorte;
       if (!EX[derniereSorte](w)) break;
       if (!vus.has(cleQuestion())) return derniereSorte;
     }
     for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
-      motQ = null; cleQ = null; sorteCourante = so;
+      motQ = null; cleQ = null; tradQ = null; sorteCourante = so;
       if (EX[so](w)) return so;
     }
     return null;

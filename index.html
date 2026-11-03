@@ -9658,6 +9658,13 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.4 14.3a4.3 4.3 0 0 0 7.2 0"/><path d="M9.2 9.6v.6M14.8 9.6v.6"/></svg></div>
             <div><strong data-i18n="emo_tuile">Émotions et caractère</strong></div>
         </div>
+        <!-- Les contraires (3 nov. 2026) : des choses et des lieux, la fin des « Adjetivos comunes » du cours de Jacques.
+             Dix-huit images en paires (ancho / estrecho, abierto / cerrado...) ; ser / estar et l'accord, la terminaison
+             allemande : visuel/prototype/contrarios.html. es et de. -->
+        <div class="orb hidden" data-orbid="contrarios" id="tuileContrarios" onclick="ouvrirThemeIllustre('contrarios')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h5l-.8 15.2a1 1 0 0 1-1 .8H7.8a1 1 0 0 1-1-.8z"/><path d="M6.4 10h4.2"/><path d="M13 4h5l-.8 15.2a1 1 0 0 1-1 .8h-1.4a1 1 0 0 1-1-.8z"/></svg></div>
+            <div><strong data-i18n="con_tuile">Les contraires</strong></div>
+        </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -14385,6 +14392,7 @@ const I18N = {
         desc_court: "Décrire",
         emo_tuile: "Émotions et caractère",
         emo_court: "Émotions",
+        con_tuile: "Les contraires",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -15905,6 +15913,7 @@ const I18N = {
         desc_court: "Describing",
         emo_tuile: "Feelings and personality",
         emo_court: "Feelings",
+        con_tuile: "Opposites",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17427,6 +17436,7 @@ const I18N = {
         desc_court: "Tarif etmek",
         emo_tuile: "Duygular ve karakter",
         emo_court: "Duygular",
+        con_tuile: "Zıt anlamlılar",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19361,6 +19371,7 @@ const I18N = {
         desc_court: "Описати",
         emo_tuile: "Емоції та характер",
         emo_court: "Емоції",
+        con_tuile: "Протилежності",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21608,6 +21619,7 @@ const I18N = {
         desc_court: "توصیف",
         emo_tuile: "احساسات و منش",
         emo_court: "احساسات",
+        con_tuile: "متضادها",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23299,6 +23311,7 @@ const I18N = {
         desc_court: "الوصف",
         emo_tuile: "المشاعر والطباع",
         emo_court: "المشاعر",
+        con_tuile: "الأضداد",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -23671,6 +23684,7 @@ const I18N = {
         desc_court: "Descrever",
         emo_tuile: "Emoções e personalidade",
         emo_court: "Emoções",
+        con_tuile: "Os contrários",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25252,6 +25266,7 @@ const I18N = {
         desc_court: "Opisywanie",
         emo_tuile: "Emocje i charakter",
         emo_court: "Emocje",
+        con_tuile: "Przeciwieństwa",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -26833,6 +26848,7 @@ const I18N = {
         desc_court: "Описать",
         emo_tuile: "Эмоции и характер",
         emo_court: "Эмоции",
+        con_tuile: "Противоположности",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28416,6 +28432,7 @@ const I18N = {
         desc_court: "Beschreiben",
         emo_tuile: "Gefühle und Charakter",
         emo_court: "Gefühle",
+        con_tuile: "Gegensätze",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30034,6 +30051,7 @@ const I18N = {
         desc_court: "Describir",
         emo_tuile: "Emociones y carácter",
         emo_court: "Emociones",
+        con_tuile: "Los contrarios",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -46886,7 +46904,8 @@ poserPaysCarte();
 // L'ordre est celui du ruban de l'accueil et du tour de role de la seance : la famille d'abord (maquette A).
 const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tuile: "tuileFamilia"},
                           descripcion: {page: "descripcion.html", titre: "desc_tuile", court: "desc_court", tuile: "tuileDescripcion"},
-                          emociones: {page: "emociones.html", titre: "emo_tuile", court: "emo_court", tuile: "tuileEmociones"}};
+                          emociones: {page: "emociones.html", titre: "emo_tuile", court: "emo_court", tuile: "tuileEmociones"},
+                          contrarios: {page: "contrarios.html", titre: "con_tuile", tuile: "tuileContrarios"}};
 function ouvrirThemeIllustre(nom, depuis){
     const th = THEMES_ILLUSTRES[nom];
     if(!th) return;
