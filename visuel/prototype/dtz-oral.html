@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mark t’aide à préparer le DTZ</title>
+<!--
+  MARK T'AIDE A PREPARER LE DTZ -- L'ORAL (maquette, 3 nov. 2026, essai admin « dtz_oral »). Jacques : « est-ce qu'on peut
+  faire poser des questions par Anna ou Marc ». L'oral du DTZ en entier, dans son FORMAT (manuel du DTZ, 2009) :
+  1a se presenter, 1b repondre a des questions, 2a decrire une photo, 2b raconter et comparer, 3 planifier a deux.
+  Tout le contenu est a nous : textes, sujet, photos (deux scenes deja faites de l'app), voix.
+
+  LA FICTION. Mark parle allemand depuis l'enfance (scenes/personnages.json, « origine ») : il n'a pas besoin du DTZ.
+  C'est donc une REPETITION (decide par Jacques le 3 nov. : « Oui, une repetition ») : Anna joue l'examinatrice, Mark joue l'autre candidat, et l'eleve parle pour lui-meme.
+  Mark, de Montreal, explique en francais. On ne les voit jamais ensemble sur une image.
+
+  LE VERDICT EST UNE ESTIMATION, et la page le dit. La reconnaissance vocale donne un texte ; on y mesure ce qui se
+  mesure : les points de la consigne traites, la longueur, les liens (weil, dass, deshalb...), le passe, la
+  comparaison, les propositions et les questions a l'autre. La justesse de la grammaire et la prononciation, elle
+  ne les juge pas : c'est ecrit sous chaque verdict.
+
+  LES VOIX. Celles du telephone pour l'instant ; les fichiers enregistres (Anna 92qyovlOYJE0EVmWB0fA, Mark
+  J8ovlSvQ5WTDCCxIM8U0, ElevenLabs v2) se poseront dans dtz/voix/<id>.mp3, listes par dtz/voix/manifest.json :
+  la page les prend des qu'ils existent, sans changement de code.
+
+  LE MICRO. La reconnaissance du navigateur quand la page l'a (navigateur, site) ; sinon, dans les apps, elle la
+  demande a l'app par message (« wortando-scene », type « micro ») : le module natif vit dans la page de l'app.
+  Sans l'un ni l'autre : on ecrit sa reponse (utile aussi pour essayer sur un ordinateur).
+
+  Parametres : nuit=1. Interface en francais seulement (essai admin).
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;--turq:#14807A;
+  --verre:rgba(255,255,255,.9);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--bulle-mark:#FFF6E6;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;--turq:#4FC7BD;
+  --verre:rgba(20,36,50,.9);--bord:rgba(255,255,255,.14);--carte:#22384A;--bulle-mark:#3A3222}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(12px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+.titre{flex:1;font-weight:900;font-size:18px;line-height:1.2}
+.titre small{display:block;font-size:12px;font-weight:800;color:var(--gris);letter-spacing:.04em;text-transform:uppercase}
+.etapes{max-width:560px;margin:0 auto 12px;display:flex;gap:4px}
+.etapes i{flex:1;height:6px;border-radius:3px;background:rgba(28,36,48,.14)}
+.etapes i.fait{background:var(--turq)} .etapes i.ici{background:var(--ambre)}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:12px}
+h2{margin:0;font-size:19px;font-weight:900}
+.partie{font-size:12px;font-weight:900;color:var(--ambre-f);letter-spacing:.05em;text-transform:uppercase;margin:0}
+.qui{display:flex;gap:10px;align-items:flex-start}
+.qui img{width:54px;height:54px;border-radius:50%;object-fit:cover;object-position:50% 30%;flex:0 0 auto;background:var(--carte);border:2px solid var(--bord)}
+.bulle{flex:1;background:var(--carte);border-radius:4px 16px 16px 16px;padding:10px 12px;line-height:1.45}
+.bulle .nom{font-size:12px;font-weight:900;color:var(--gris);margin-bottom:2px}
+.bulle .de{font-weight:800;font-size:16px}
+.bulle .fr{font-size:13px;color:var(--gris);margin-top:4px}
+.bulle.mark{background:var(--bulle-mark)}
+.bulle.mark .texte{font-size:15px}
+.bulle button.hp{border:0;background:none;color:var(--turq);font:800 13px var(--police);padding:4px 0 0;margin-inline-end:10px;cursor:pointer}
+.feuille{background:var(--carte);border:2px dashed rgba(76,86,107,.35);border-radius:14px;padding:10px 12px}
+.feuille b{display:block;font-size:13px;color:var(--gris);margin-bottom:6px}
+.feuille .de{font-weight:800;line-height:1.45}
+.puces{display:flex;flex-wrap:wrap;gap:6px}
+.puces span{background:var(--verre);border:1px solid rgba(76,86,107,.25);border-radius:999px;padding:5px 11px;font-weight:800;font-size:14px}
+.puces span.ok{background:var(--vert);border-color:var(--vert);color:#fff}
+.aide{border-inline-start:4px solid var(--ambre);padding:4px 10px;font-size:14px;line-height:1.45}
+.aide .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.aide .tags span{border:1px solid var(--ambre);color:var(--encre);border-radius:999px;padding:5px 10px;font:700 13px var(--police)}
+.photo{width:100%;max-height:52vh;object-fit:cover;border-radius:14px;display:block}
+.micro-zone{display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 0}
+.micro{width:76px;height:76px;border-radius:50%;border:0;background:linear-gradient(180deg,#E25B4C,#B83A2D);color:#fff;font-size:30px;cursor:pointer;box-shadow:0 8px 20px rgba(184,58,45,.3)}
+.micro.ecoute{animation:pouls 1.2s ease-in-out infinite}
+@keyframes pouls{50%{transform:scale(1.08)}}
+.micro-info{font-weight:800;font-size:14px;color:var(--gris);text-align:center}
+.entendu{background:var(--carte);border-radius:12px;padding:10px 12px;font-style:italic;line-height:1.45;min-height:2.6em;width:100%}
+.entendu:empty::before{content:"…";color:var(--gris)}
+textarea{width:100%;min-height:90px;border-radius:12px;border:1px solid rgba(76,86,107,.35);padding:10px;font:600 15px var(--police);background:var(--carte);color:var(--encre)}
+.lien{border:0;background:none;color:var(--turq);font:800 14px var(--police);cursor:pointer;padding:2px}
+.verdict{border-radius:14px;padding:12px;background:var(--carte)}
+.verdict h3{margin:0 0 6px;font-size:18px}
+.niv{display:inline-block;border-radius:999px;padding:2px 10px;font-weight:900;color:#fff;margin-inline-start:6px;font-size:14px}
+.niv.B1{background:var(--vert)} .niv.A2{background:var(--ambre-f)} .niv.moins{background:var(--gris)}
+.crit{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.4}
+.crit li::before{content:"·";display:inline-block;width:1.3em;font-weight:900;color:var(--gris)}
+.crit li.ok::before{content:"✓";color:var(--vert)}
+.limite{font-size:12px;color:var(--gris);margin:8px 0 0}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.actions button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.tableau{width:100%;border-collapse:collapse;font-size:14px}
+.tableau td{padding:6px 4px;border-bottom:1px solid rgba(76,86,107,.18)}
+.tableau td:last-child{text-align:end}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite[hidden]{display:none}
+.suite:disabled{opacity:.45;cursor:default}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+[lang="de"]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button" aria-label="Retour">‹</button>
+  <div class="titre"><small>Préparation au DTZ · entraînement</small>Mark t’aide à préparer l’oral</div></div>
+<div class="etapes" id="etapes"></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<script>
+const Q = new URLSearchParams(location.search);
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+const DANS_APP = window.parent && window.parent !== window;
+function parler(type, extra){ try{ if (DANS_APP) parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+
+const IMG = { anna: "descripcion/Anna-visage.webp", mark: "descripcion/Mark-visage.webp" };
+const NOMS = { anna: "Anna · examinatrice", mark: "Mark · l’autre candidat" };
+
+// ---------------------------------------------------------------- le texte
+// Chaque replique a un id : c'est le nom de son futur fichier son (dtz/voix/<id>.mp3).
+const L = {
+  // Partie 1
+  a_bienvenue: ["anna", "Guten Tag und herzlich willkommen! Ich führe heute das Gespräch. Wir beginnen mit einer kurzen Vorstellung. Auf dem Blatt stehen ein paar Stichwörter. Wer möchte anfangen?",
+    "Bonjour et bienvenue ! C’est moi qui mène l’entretien aujourd’hui. Nous commençons par une courte présentation. Sur la feuille, il y a quelques mots-clés. Qui veut commencer ?"],
+  m_vorstellung: ["mark", "Ich fange gern an. Mein Name ist Mark, ich bin fünfundzwanzig Jahre alt. Ich komme aus Montréal, das ist in Kanada. Mein Vater ist Frankokanadier und meine Mutter ist Deutsche, deshalb spreche ich Französisch, Englisch und Deutsch. Seit ein paar Monaten wohne ich in Berlin, in einer kleinen Wohnung. Im Moment mache ich ein Praktikum in einem Büro. Meine Familie lebt noch in Kanada, aber wir telefonieren jede Woche.",
+    "Je veux bien commencer. Je m’appelle Mark, j’ai vingt-cinq ans. Je viens de Montréal, au Canada. Mon père est franco-canadien et ma mère est allemande : c’est pour ça que je parle français, anglais et allemand. J’habite à Berlin depuis quelques mois, dans un petit appartement. En ce moment, je fais un stage dans un bureau. Ma famille vit encore au Canada, mais on se téléphone chaque semaine."],
+  a_danke_mark: ["anna", "Vielen Dank. Und jetzt Sie, bitte. Stellen Sie sich vor.",
+    "Merci beaucoup. Et maintenant vous, s’il vous plaît. Présentez-vous."],
+  // 1b : une question de suite, choisie selon ce qui manque
+  a_frage_familie: ["anna", "Danke schön. Erzählen Sie doch noch etwas über Ihre Familie. Wer gehört dazu, und wo leben die anderen?",
+    "Merci. Parlez-nous encore un peu de votre famille. Qui en fait partie, et où vivent les autres ?"],
+  a_frage_beruf: ["anna", "Danke schön. Was machen Sie beruflich, oder was möchten Sie später in Deutschland arbeiten?",
+    "Merci. Que faites-vous comme métier, ou quel travail aimeriez-vous faire plus tard en Allemagne ?"],
+  a_frage_freizeit: ["anna", "Danke schön. Und was machen Sie gern in Ihrer Freizeit? Erzählen Sie ein bisschen.",
+    "Merci. Et que faites-vous volontiers pendant votre temps libre ? Racontez un peu."],
+  a_frage_deutsch: ["anna", "Danke schön. Warum lernen Sie Deutsch, und was ist für Sie dabei am schwierigsten?",
+    "Merci. Pourquoi apprenez-vous l’allemand, et qu’est-ce qui est le plus difficile pour vous ?"],
+  // Partie 2
+  a_fotos: ["anna", "Danke. Jetzt bekommen Sie beide ein Foto. Sehen Sie es sich kurz an. Erzählen Sie dann: Was sehen Sie? Was für eine Situation ist das? Fangen Sie wieder an?",
+    "Merci. Maintenant, vous recevez chacun une photo. Regardez-la un instant. Puis racontez : que voyez-vous ? Quelle est la situation ? Vous recommencez ?"],
+  m_foto: ["mark", "Auf meinem Foto sehe ich einen Marktstand mit sehr viel Obst. Vorne liegen Pfirsiche und Äpfel, dahinter Kirschen, Trauben und Pflaumen, alles in Holzkisten. Rechts steht eine junge Frau, man sieht sie nur von hinten. Ich glaube, sie möchte gerade etwas kaufen. Vielleicht ist es Samstagvormittag auf einem Wochenmarkt, denn im Hintergrund sind noch andere Leute.",
+    "Sur ma photo, je vois un étal de marché avec beaucoup de fruits. Devant, il y a des pêches et des pommes, derrière des cerises, du raisin et des prunes, tout dans des cagettes en bois. À droite, il y a une jeune femme, on ne la voit que de dos. Je crois qu’elle veut acheter quelque chose. C’est peut-être un samedi matin sur un marché, parce qu’à l’arrière-plan il y a d’autres gens."],
+  a_ihr_foto: ["anna", "Danke. Und was sehen Sie auf Ihrem Foto?", "Merci. Et vous, que voyez-vous sur votre photo ?"],
+  a_erfahrung: ["anna", "Danke. Und wie ist das bei Ihnen: Wo kaufen Sie am liebsten ein, auf dem Markt oder im Supermarkt? Und wie war das in Ihrem Heimatland?",
+    "Merci. Et chez vous, comment ça se passe : où préférez-vous faire vos courses, au marché ou au supermarché ? Et comment c’était dans votre pays d’origine ?"],
+  // Partie 3
+  a_planen: ["anna", "Vielen Dank. Jetzt kommt der letzte Teil. Sie planen zusammen einen Ausflug mit Ihrem Deutschkurs. Auf dem Blatt stehen ein paar Fragen. Sprechen Sie miteinander und einigen Sie sich. Sie können anfangen.",
+    "Merci beaucoup. Voici la dernière partie. Vous organisez ensemble une sortie avec votre cours d’allemand. Sur la feuille, il y a quelques questions. Parlez ensemble et mettez-vous d’accord. Vous pouvez commencer."],
+  m_p1: ["mark", "Also, wohin fahren wir? Ich hätte Lust auf einen See, zum Beispiel den Wannsee. Da kann man schwimmen und picknicken. Was meinst du?",
+    "Alors, on va où ? J’aurais envie d’un lac, par exemple le Wannsee. On peut s’y baigner et pique-niquer. Qu’est-ce que tu en penses ?"],
+  m_p2: ["mark", "Und wann machen wir das? Unter der Woche haben viele keine Zeit. Wie wäre es mit Samstag?",
+    "Et on le fait quand ? En semaine, beaucoup n’ont pas le temps. Que dirais-tu de samedi ?"],
+  m_p3: ["mark", "Wie kommen wir dahin? Wir könnten mit der S-Bahn fahren, oder mit dem Fahrrad. Was ist dir lieber?",
+    "Comment on y va ? On pourrait prendre le S-Bahn, ou le vélo. Qu’est-ce que tu préfères ?"],
+  m_p4: ["mark", "Und was nehmen wir mit? Ich kann einen Kuchen backen. Was bringst du mit?",
+    "Et qu’est-ce qu’on emporte ? Je peux faire un gâteau. Toi, qu’est-ce que tu apportes ?"],
+  m_p5: ["mark", "Gut. Wer sagt den anderen Bescheid? Schreibst du in die Gruppe, oder soll ich das machen?",
+    "Bien. Qui prévient les autres ? Tu écris dans le groupe, ou je m’en occupe ?"],
+  m_ok: ["mark", "Gute Idee, einverstanden!", "Bonne idée, d’accord !"],
+  m_ok2: ["mark", "Okay, das passt mir.", "D’accord, ça me va."],
+  m_nein: ["mark", "Hm, stimmt, da hast du recht. Dann machen wir es so.", "Hum, c’est vrai, tu as raison. Alors on fait comme ça."],
+  m_nachfrage: ["mark", "Wie meinst du das? Sag ruhig, was du denkst.", "Tu veux dire quoi ? Dis-moi ce que tu en penses."],
+  m_ende: ["mark", "Super, dann haben wir alles geplant. Ich freue mich schon!", "Super, alors on a tout prévu. J’ai déjà hâte !"],
+  // La fin
+  a_ende_B1: ["anna", "Vielen Dank, wir sind am Ende. Wenn das heute die Prüfung gewesen wäre, hätten Sie im Sprechen wahrscheinlich B1 erreicht. Sehr schön!",
+    "Merci beaucoup, nous avons terminé. Si c’était l’examen aujourd’hui, vous auriez probablement obtenu le B1 à l’oral. Très bien !"],
+  a_ende_A2: ["anna", "Vielen Dank, wir sind am Ende. Wenn das heute die Prüfung gewesen wäre, hätten Sie im Sprechen wahrscheinlich A2 erreicht. Bis B1 fehlt nicht mehr viel.",
+    "Merci beaucoup, nous avons terminé. Si c’était l’examen aujourd’hui, vous auriez probablement obtenu l’A2 à l’oral. Il ne manque plus grand-chose pour le B1."],
+  a_ende_moins: ["anna", "Vielen Dank, wir sind am Ende. Für A2 war es heute noch etwas knapp. Üben Sie weiter, das lohnt sich!",
+    "Merci beaucoup, nous avons terminé. Pour l’A2, c’était encore un peu juste aujourd’hui. Continuez à vous entraîner, ça vaut la peine !"]
+};
+
+// Mark, coach, en francais (texte seul : sa voix enregistree parle allemand).
+const COACH = {
+  accueil: "Salut ! Moi, c’est Mark. Au DTZ, l’oral se passe à deux, devant deux examinateurs, sans temps de préparation : environ 20 minutes en tout. On le répète ensemble : Anna joue l’examinatrice, moi l’autre candidat. Toi, tu parles pour toi, à voix haute.",
+  p1a: "Partie 1 : se présenter. Tu parles environ une minute, seul. Les mots-clés de la feuille t’aident, mais tu n’es pas obligé de tous les traiter. Je passe en premier : écoute comment je fais.",
+  p1b: "Ensuite, Anna te pose une ou deux questions sur ce que tu viens de dire. Réponds en plusieurs phrases, avec une raison (« weil… », « deshalb… ») : une réponse d’un mot ne montre rien.",
+  p2a: "Partie 2 : une photo. Dis ce que tu vois, où (links, rechts, im Hintergrund), et ce qui se passe, même si tu n’en es pas sûr : « Ich glaube… », « Vielleicht… ». Je décris la mienne d’abord.",
+  p2b: "Puis Anna te demande ton expérience et une comparaison avec ton pays. C’est là que le B1 se joue : raconter au passé et comparer (« mehr als », « billiger », « bei uns… »).",
+  p3: "Partie 3 : on planifie ensemble. Les examinateurs ne t’évaluent pas sur un exposé, mais sur la conversation : propose, réagis à ce que je dis, pose-moi des questions, et mettons-nous d’accord. Un « nein » avec une raison vaut mieux qu’un « ja » tout seul.",
+  fin: "Bravo d’être allé jusqu’au bout ! Le résultat ci-dessous est une estimation : l’app entend ce que tu dis, pas comment tu le dis."
+};
+const AIDE = {
+  p1a: ["Ich heiße …", "Ich komme aus …", "Ich wohne seit … in …", "Ich arbeite als … / Ich suche Arbeit.", "Ich bin verheiratet und habe … Kinder.", "Ich spreche …"],
+  p1b: ["… weil …", "Deshalb …", "Zum Beispiel …", "Am liebsten …"],
+  p2a: ["Auf dem Foto sehe ich …", "Links / Rechts / In der Mitte …", "Im Hintergrund …", "Ich glaube, …", "Vielleicht …"],
+  p2b: ["Ich kaufe meistens …", "In meinem Heimatland …", "Bei uns war das anders: …", "… ist billiger / frischer als …", "Früher habe ich …"],
+  p3: ["Wir könnten …", "Wie wäre es mit …?", "Gute Idee!", "Lieber …, weil …", "Was meinst du?", "Einverstanden."]
+};
+const STICHWORTE = ["Name", "Herkunft", "Wohnort", "Arbeit / Beruf", "Familie", "Sprachen"];
+const PLAN_NOTIZEN = ["Wohin?", "Wann?", "Wie hinkommen?", "Was mitnehmen?", "Wer sagt Bescheid?"];
+
+// ---------------------------------------------------------------- la mesure
+const norm = s => String(s || "").toLowerCase().replace(/[.,!?;:«»"„“()]/g, " ").replace(/\s+/g, " ").trim();
+const nbMots = s => norm(s).split(" ").filter(Boolean).length;
+const a = (re, s) => re.test(norm(s));
+const LIENS = /\b(weil|dass|wenn|obwohl|als|damit|deshalb|darum|deswegen|trotzdem|außerdem|denn|ob|zum beispiel)\b/;
+const PASSE = /\b(habe|hast|hat|haben|bin|bist|ist|sind|war|waren|hatte|hatten)\b[^.]*\bge\w+(t|en)\b|\b(war|waren|hatte|hatten|früher)\b/;
+const POINTS_1A = [
+  ["Name", /\b(heiße|heisse|mein name|name ist)\b/],
+  ["Herkunft", /\b(komme|komm) (aus|ursprünglich)|\b(geboren|stamme aus|bin aus)\b/],
+  ["Wohnort", /\b(wohne|lebe (in|seit|hier|jetzt|mit)|wohnort)\b/],
+  ["Arbeit / Beruf", /\b(arbeite|arbeit|beruf|beruflich|studiere|student|studentin|praktikum|ausbildung|job|stelle|arbeitslos|rente|rentner|rentnerin|hausfrau|hausmann)\b/],
+  ["Familie", /\b(verheiratet|ledig|geschieden|kinder|kind|sohn|söhne|tochter|töchter|frau|mann|familie|eltern|mutter|vater|bruder|schwester|geschwister|allein|single|partner|partnerin)\b/],
+  ["Sprachen", /\b(spreche|sprache|sprachen|muttersprache)\b/]
+];
+const VOCAB_FOTO = /\b(supermarkt|laden|geschäft|frau|mutter|kind|tochter|mädchen|einkaufswagen|wagen|korb|regal|regale|milch|flasche|banane|bananen|brot|eier|tüte|einkauf|einkaufen|kauft|kaufen|kasse|mann|leute|joghurt|lebensmittel)\b/g;
+
+function crit(texte, label, ok){ return { label, ok: !!ok }; }
+function niveauDe(okB1, okA2){ return okB1 ? "B1" : okA2 ? "A2" : "moins"; }
+
+const JUGES = {
+  p1a(t){
+    const pts = POINTS_1A.filter(p => a(p[1], t)).map(p => p[0]);
+    const n = nbMots(t), lien = a(LIENS, t);
+    return { points: pts, niveau: niveauDe(pts.length >= 5 && n >= 45 && lien, pts.length >= 3 && n >= 20), crit: [
+      crit(t, "Points de la feuille traités : " + pts.length + " sur 6" + (pts.length ? " (" + pts.join(", ") + ")" : ""), pts.length >= 4),
+      crit(t, "Une vraie minute : " + n + " mots entendus (visé : 45 et plus)", n >= 45),
+      crit(t, "Des phrases liées (weil, denn, deshalb, dass…)", lien)
+    ]};
+  },
+  p1b(t){
+    const n = nbMots(t), lien = a(LIENS, t), ex = a(/\b(zum beispiel|z b|zum beispiel|am liebsten|oft|jeden|jede|manchmal)\b/, t);
+    return { niveau: niveauDe(n >= 35 && lien, n >= 15), crit: [
+      crit(t, "Plusieurs phrases : " + n + " mots (visé : 35 et plus)", n >= 35),
+      crit(t, "Une raison ou une suite (weil, denn, deshalb, dass…)", lien),
+      crit(t, "Un détail concret (zum Beispiel, oft, am liebsten…)", ex)
+    ]};
+  },
+  p2a(t){
+    const n = nbMots(t);
+    const vocab = new Set((norm(t).match(VOCAB_FOTO) || []));
+    const c = [
+      crit(t, "Tu dis ce qu’on voit (Auf dem Foto sehe ich…, Man sieht…)", a(/\b(auf dem (foto|bild)|ich sehe|man sieht|sieht man|zu sehen)\b/, t)),
+      crit(t, "Tu situes (links, rechts, vorne, im Hintergrund…)", a(/\b(links|rechts|vorne|vorn|hinten|hintergrund|vordergrund|in der mitte|neben|daneben)\b/, t)),
+      crit(t, "Des mots de la photo : " + vocab.size + " (" + (Array.from(vocab).slice(0, 6).join(", ") || "aucun") + ")", vocab.size >= 3),
+      crit(t, "Tu imagines la situation (Ich glaube, vielleicht, wahrscheinlich…)", a(/\b(vielleicht|wahrscheinlich|ich glaube|ich denke|ich vermute|sieht so aus|scheint)\b/, t)),
+      crit(t, "Une à deux minutes : " + n + " mots (visé : 40 et plus)", n >= 40)
+    ];
+    const ok = c.filter(x => x.ok).length;
+    return { niveau: niveauDe(ok >= 4 && n >= 30, ok >= 2 && n >= 15), crit: c };
+  },
+  p2b(t){
+    const n = nbMots(t);
+    const c = [
+      crit(t, "Ton habitude (meistens, normalerweise, lieber, am liebsten…)", a(/\b(meistens|normalerweise|oft|immer|manchmal|lieber|am liebsten|jede woche|samstags|selten)\b/, t)),
+      crit(t, "Ton pays d’origine (in meinem Land, bei uns, in meiner Heimat…)", a(/\b(heimat|heimatland|meinem land|bei uns|in meinem)\b/, t)),
+      crit(t, "Une comparaison (als, anders, billiger, mehr, genauso…)", a(/\b(als|anders|genauso|mehr|weniger|billiger|teurer|größer|kleiner|besser|frischer|dagegen|gegensatz)\b/, t)),
+      crit(t, "Le passé (habe … gekauft, war, früher…)", a(PASSE, t)),
+      crit(t, "Une raison (weil, denn, deshalb…)", a(LIENS, t)),
+      crit(t, "Assez long : " + n + " mots (visé : 40 et plus)", n >= 40)
+    ];
+    const ok = c.filter(x => x.ok).length;
+    return { niveau: niveauDe(ok >= 4 && c[2].ok && n >= 30, ok >= 2 && n >= 15), crit: c };
+  },
+  p3(tours){
+    const tout = tours.join(" . ");
+    const compte = re => tours.filter(t => a(re, t)).length;
+    const pris = tours.filter(t => nbMots(t) >= 4).length;
+    const prop = compte(/\b(wir könnten|können wir|wie wäre es|wollen wir|lass uns|lasst uns|ich schlage vor|vielleicht|wir sollten|ich würde|was hältst du|treffen wir uns|ich bringe|ich kann|ich nehme)\b/);
+    const reac = compte(/\b(gute idee|einverstanden|okay|ok|genau|stimmt|super|prima|toll|ich finde|lieber|nicht so gut|ich weiß nicht|klingt gut|das passt|passt mir|gerne|gern|ja|nein)\b/);
+    const frage = compte(/\b(was meinst du|was denkst du|oder|passt (dir|es dir)|hast du|kannst du|willst du|möchtest du|wie findest du|bringst du|machst du|und du)\b/);
+    const raison = compte(LIENS);
+    const c = [
+      crit(tout, "Tu as répondu aux 5 questions de la feuille : " + pris + " sur 5", pris >= 4),
+      crit(tout, "Tu proposes (Wir könnten…, Wie wäre es…, Ich bringe…) : " + prop, prop >= 2),
+      crit(tout, "Tu réagis à ce que je dis (Gute Idee, lieber…, einverstanden) : " + reac, reac >= 2),
+      crit(tout, "Tu me poses des questions (Was meinst du ?, Hast du…?) : " + frage, frage >= 1),
+      crit(tout, "Tu donnes des raisons (weil, denn, deshalb…) : " + raison, raison >= 1)
+    ];
+    const ok = c.filter(x => x.ok).length;
+    return { niveau: niveauDe(ok >= 4 && c[0].ok, pris >= 3 && ok >= 2), crit: c };
+  }
+};
+const LIMITE = "Ce que l’app ne juge pas : la justesse de ta grammaire et ta prononciation. Au vrai examen, deux examinateurs les écoutent ; ici, réécoute le modèle et compare.";
+
+// ---------------------------------------------------------------- la voix
+const VOIX_A_FUIR = ["albert","bad news","bahh","bells","boing","bubbles","cellos","good news","jester","organ","superstar","trinoids","whisper","wobble","zarvox","deranged","hysterical","junior","ralph","kathy","fred","princess","bruce","agnes","vicki","eddy","flo","grandma","grandpa","reed","rocko","sandy","shelley"];
+let ENREGISTRE = {};
+fetch("dtz/voix/manifest.json", {cache: "no-store"}).then(r => r.ok ? r.json() : {}).then(m => { ENREGISTRE = m || {}; }).catch(() => {});
+let voixDe = { anna: null, mark: null };
+function choisirVoix(){
+  const toutes = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const de = toutes.filter(v => /^de/i.test(v.lang) && !VOIX_A_FUIR.some(f => (v.name || "").toLowerCase().includes(f)));
+  const trouve = re => de.find(v => re.test(v.name));
+  voixDe.anna = trouve(/anna|petra|helena|katja|marlene|google deutsch|hedda|female|frau/i) || de[0] || null;
+  voixDe.mark = trouve(/markus|yannick|martin|conrad|stefan|hans|killian|male|mann/i) || de.find(v => v !== voixDe.anna) || de[0] || null;
+}
+try{ choisirVoix(); if (window.speechSynthesis) speechSynthesis.onvoiceschanged = choisirVoix; }catch(e){}
+let audioEnCours = null;
+function taire(){
+  try{ if (audioEnCours){ audioEnCours.pause(); audioEnCours = null; } }catch(e){}
+  try{ if (window.speechSynthesis) speechSynthesis.cancel(); }catch(e){}
+}
+function dire(id){
+  return new Promise(fini => {
+    taire();
+    const [qui, texte] = L[id];
+    if (ENREGISTRE[id]){
+      const au = new Audio("dtz/voix/" + id + ".mp3");
+      audioEnCours = au;
+      au.onended = au.onerror = () => fini();
+      au.play().catch(() => fini());
+      return;
+    }
+    if (!window.speechSynthesis){ fini(); return; }
+    const u = new SpeechSynthesisUtterance(texte);
+    u.lang = "de-DE"; u.rate = 0.92;
+    const v = voixDe[qui]; if (v) u.voice = v;
+    if (voixDe.anna === voixDe.mark) u.pitch = qui === "mark" ? 0.85 : 1.1;
+    u.onend = u.onerror = () => fini();
+    speechSynthesis.speak(u);
+    setTimeout(fini, 400 + texte.length * 110);   // filet : certains moteurs n'appellent jamais onend
+  });
+}
+
+// ---------------------------------------------------------------- le micro
+// ecouter() rend un objet { arreter() } ; surTexte(texte, final) a chaque resultat ; surFin(texte) a la fin.
+const Reco = window.SpeechRecognition || window.webkitSpeechRecognition;
+let ecouteApp = null;   // la reponse de l'app, quand c'est elle qui ecoute
+window.addEventListener("message", e => {
+  const d = e.data;
+  if (!d || d.source !== "wortando-app" || d.type !== "micro" || !ecouteApp) return;
+  if (d.etat === "texte") ecouteApp.surTexte(d.texte || "");
+  else if (d.etat === "fin") { const f = ecouteApp; ecouteApp = null; f.surFin(d.texte || ""); }
+  else if (d.etat === "indisponible") { const f = ecouteApp; ecouteApp = null; f.surFin(null); }
+});
+function ecouter(surTexte, surFin){
+  if (Reco){
+    let actif = true, finals = "", provisoire = "", reco = null, fini = false;
+    const total = () => (finals + " " + provisoire).replace(/\s+/g, " ").trim();
+    const terminer = () => { if (fini) return; fini = true; surFin(total()); };
+    const lancer = () => {
+      reco = new Reco();
+      reco.lang = "de-DE"; reco.continuous = true; reco.interimResults = true;
+      reco.onresult = ev => {
+        provisoire = "";
+        for (let i = ev.resultIndex; i < ev.results.length; i++){
+          const r = ev.results[i];
+          if (r.isFinal) finals += " " + r[0].transcript; else provisoire += " " + r[0].transcript;
+        }
+        surTexte(total());
+      };
+      reco.onerror = ev => { if (ev && (ev.error === "not-allowed" || ev.error === "service-not-allowed")){ actif = false; if (!finals){ fini = true; surFin(null); } } };
+      // Une longue reponse : le moteur s'arrete apres un silence, on le relance tant qu'on ecoute.
+      reco.onend = () => { if (actif) { try{ lancer(); }catch(e){ terminer(); } } else setTimeout(terminer, 150); };
+      reco.start();
+    };
+    try{ lancer(); }catch(e){ setTimeout(() => surFin(null), 0); return { arreter(){} }; }
+    return { arreter(){ actif = false; try{ reco.stop(); }catch(e){} setTimeout(terminer, 1800); } };
+  }
+  if (DANS_APP){
+    ecouteApp = { surTexte, surFin };
+    parler("micro", { action: "start", langue: "de-DE" });
+    return { arreter(){ parler("micro", { action: "stop" }); } };
+  }
+  setTimeout(() => surFin(null), 0);
+  return { arreter(){} };
+}
+
+// ---------------------------------------------------------------- l'ecran
+const zone = document.getElementById("zone"), suite = document.getElementById("suite");
+function el(tag, cls, texte){ const e = document.createElement(tag); if (cls) e.className = cls; if (texte != null) e.textContent = texte; return e; }
+function etapes(ici){
+  const b = document.getElementById("etapes"); b.textContent = "";
+  ["p1a","p1b","p2a","p2b","p3"].forEach((p, i) => { const k = el("i"); const j = ["p1a","p1b","p2a","p2b","p3"].indexOf(ici); if (i < j || ici === "fin") k.className = "fait"; else if (i === j) k.className = "ici"; b.appendChild(k); });
+}
+function bulle(id, dejaDit){
+  const [qui, de, fr] = L[id];
+  const ligne = el("div", "qui");
+  const img = el("img"); img.src = IMG[qui]; img.alt = ""; ligne.appendChild(img);
+  const b = el("div", "bulle");
+  b.appendChild(el("div", "nom", NOMS[qui]));
+  const d = el("div", "de", de); d.lang = "de"; b.appendChild(d);
+  const f = el("div", "fr", fr); f.hidden = true; b.appendChild(f);
+  const outils = el("div");
+  const hp = el("button", "hp", "🔊 Réécouter"); hp.type = "button"; hp.onclick = () => dire(id);
+  const tr = el("button", "hp", "Traduire"); tr.type = "button"; tr.onclick = () => { f.hidden = !f.hidden; };
+  outils.append(hp, tr); b.appendChild(outils);
+  ligne.appendChild(b);
+  zone.appendChild(ligne);
+  return dejaDit ? Promise.resolve() : dire(id);
+}
+function coach(cle){
+  const ligne = el("div", "qui");
+  const img = el("img"); img.src = IMG.mark; img.alt = ""; ligne.appendChild(img);
+  const b = el("div", "bulle mark");
+  b.appendChild(el("div", "nom", "Mark · ton coach"));
+  b.appendChild(el("div", "texte", COACH[cle]));
+  ligne.appendChild(b);
+  zone.appendChild(ligne);
+  if (AIDE[cle]){
+    const aide = el("div", "aide");
+    aide.appendChild(el("div", "", "Pour t’aider :"));
+    const tags = el("div", "tags");
+    AIDE[cle].forEach(x => { const t = el("span", "", x); t.lang = "de"; tags.appendChild(t); });
+    aide.appendChild(tags);
+    zone.appendChild(aide);
+  }
+}
+function feuille(titre, items, texteDe, enFrancais){
+  const f = el("div", "feuille");
+  f.appendChild(el("b", "", titre));
+  if (texteDe){ const d = el("div", "de", texteDe); d.lang = "de"; f.appendChild(d); }
+  if (items){ const p = el("div", "puces"); items.forEach(x => { const s = el("span", "", x); if (!enFrancais) s.lang = "de"; p.appendChild(s); }); f.appendChild(p); }
+  zone.appendChild(f);
+  return f;
+}
+function photo(src){ const i = el("img", "photo"); i.src = src; i.alt = "La photo"; zone.appendChild(i); }
+function bouton(texte, action){ suite.hidden = false; suite.disabled = false; suite.textContent = texte; suite.onclick = () => { taire(); action(); }; }
+function vider(partie, titre, ici){ taire(); zone.textContent = ""; suite.hidden = true; etapes(ici); window.scrollTo(0, 0);
+  if (partie){ zone.appendChild(el("p", "partie", partie)); zone.appendChild(el("h2", "", titre)); } }
+
+// Le tour de parole de l'eleve : micro, texte entendu, ou saisie au clavier.
+function aToi(consigne, limiteS, quandFini){
+  const z = el("div", "micro-zone");
+  const m = el("button", "micro", "🎙"); m.type = "button"; m.setAttribute("aria-label", "Parler");
+  const info = el("div", "micro-info", consigne);
+  const entendu = el("div", "entendu"); entendu.lang = "de"; entendu.hidden = true;
+  const clavier = el("button", "lien", "⌨ Écrire ma réponse à la place"); clavier.type = "button";
+  z.append(m, info, entendu, clavier);
+  zone.appendChild(z);
+  let ec = null, debut = 0, minuterie = null, coupe = null, rendu = false;
+  const rendre = t => { if (rendu) return; rendu = true; z.remove(); quandFini(t || ""); };
+  const arreter = () => { if (!ec) return; clearInterval(minuterie); clearTimeout(coupe); m.classList.remove("ecoute"); m.textContent = "…"; m.disabled = true; info.textContent = "Je réfléchis…"; ec.arreter(); ec = null; };
+  m.onclick = () => {
+    if (ec){ arreter(); return; }
+    taire();
+    entendu.hidden = false; entendu.textContent = "";
+    m.classList.add("ecoute"); m.textContent = "■"; debut = Date.now();
+    const tic = () => { const s = Math.floor((Date.now() - debut) / 1000); info.textContent = "Je t’écoute · " + Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0") + " · touche ■ pour finir"; };
+    tic(); minuterie = setInterval(tic, 500);
+    coupe = setTimeout(arreter, limiteS * 1000);
+    ec = ecouter(t => { entendu.textContent = t; }, t => {
+      clearInterval(minuterie); clearTimeout(coupe); ec = null;
+      if (t === null){ m.classList.remove("ecoute"); m.textContent = "🎙"; m.disabled = false; info.textContent = "Le micro ne répond pas ici. Écris ta réponse ci-dessous."; clavier.click(); return; }
+      rendre(t);
+    });
+  };
+  clavier.onclick = () => {
+    if (ec) return;
+    clavier.remove();
+    const ta = el("textarea"); ta.lang = "de"; ta.placeholder = "Écris ici ce que tu dirais, en allemand…";
+    const ok = el("button", "lien", "Valider ma réponse ✓"); ok.type = "button";
+    ok.onclick = () => { if (ta.value.trim()) rendre(ta.value.trim()); };
+    z.append(ta, ok); ta.focus();
+  };
+}
+function montrerVerdict(res, texte, refaire, continuer){
+  if (texte){ const e = el("div", "entendu", texte); e.lang = "de"; zone.appendChild(el("div", "micro-info", "Ce que j’ai entendu :")); zone.appendChild(e); }
+  const v = el("div", "verdict");
+  const h = el("h3", "", "Mon estimation"); const n = el("span", "niv " + res.niveau, res.niveau === "moins" ? "pas encore A2" : res.niveau); h.appendChild(n); v.appendChild(h);
+  const ul = el("ul", "crit"); res.crit.forEach(c => { const li = el("li", c.ok ? "ok" : "", c.label); ul.appendChild(li); }); v.appendChild(ul);
+  v.appendChild(el("p", "limite", LIMITE));
+  zone.appendChild(v);
+  const act = el("div", "actions"); const r = el("button", "", "🎙 Recommencer cette partie"); r.type = "button"; r.onclick = refaire; act.appendChild(r); zone.appendChild(act);
+  bouton("Continuer", continuer);
+  v.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// ---------------------------------------------------------------- le deroule
+const resultats = {};
+function accueil(){
+  vider(null, null, null);
+  zone.appendChild(el("h2", "", "L’oral du DTZ, en répétition"));
+  coach("accueil");
+  feuille("Le déroulé (environ 20 minutes à deux)", ["1 · Se présenter", "1 · Répondre aux questions", "2 · Décrire une photo", "2 · Raconter et comparer", "3 · Planifier ensemble"], null, true);
+  zone.appendChild(el("p", "limite", "Mode entraînement : expliqué, avec des aides et des modèles. L’examen blanc, minuté et sans aide, viendra ensuite. Le verdict A2 / B1 est une estimation."));
+  bouton("Commencer", partie1a);
+}
+async function partie1a(){
+  vider("Partie 1 · se présenter", "Sich vorstellen", "p1a");
+  coach("p1a");
+  feuille("Ihr Aufgabenblatt", STICHWORTE);
+  bouton("Écouter Anna", async () => {
+    suite.hidden = true;
+    await bulle("a_bienvenue");
+    await bulle("m_vorstellung");
+    await bulle("a_danke_mark");
+    aToi("À toi : présente-toi, environ une minute", 100, t => {
+      const res = JUGES.p1a(t); resultats.p1a = res;
+      const puces = zone.querySelectorAll(".feuille .puces span");
+      puces.forEach(s => { if ((res.points || []).includes(s.textContent)) s.classList.add("ok"); });
+      montrerVerdict(res, t, partie1a, () => partie1b(res));
+    });
+  });
+}
+async function partie1b(res1){
+  vider("Partie 1 · répondre", "Nachfragen beantworten", "p1b");
+  coach("p1b");
+  // La question de suite porte sur ce que l'eleve n'a pas dit (comme le ferait l'examinatrice), sinon sur ses loisirs.
+  const manque = ((res1 && res1.points) || []);
+  const id = !manque.includes("Familie") ? "a_frage_familie" : !manque.includes("Arbeit / Beruf") ? "a_frage_beruf" : Math.random() < 0.5 ? "a_frage_freizeit" : "a_frage_deutsch";
+  bouton("Écouter Anna", async () => {
+    suite.hidden = true;
+    await bulle(id);
+    aToi("À toi : réponds en quelques phrases", 80, t => {
+      const res = JUGES.p1b(t); resultats.p1b = res;
+      montrerVerdict(res, t, () => partie1b(res1), partie2a);
+    });
+  });
+}
+async function partie2a(){
+  vider("Partie 2 · la photo", "Ein Foto beschreiben", "p2a");
+  coach("p2a");
+  bouton("Écouter Anna", async () => {
+    suite.hidden = true;
+    await bulle("a_fotos");
+    zone.appendChild(el("div", "micro-info", "La photo de Mark"));
+    photo("markt-obst-heimisch.webp");
+    await bulle("m_foto");
+    zone.appendChild(el("div", "micro-info", "Ta photo"));
+    photo("supermarkt.webp");
+    await bulle("a_ihr_foto");
+    aToi("À toi : décris ta photo, une à deux minutes", 130, t => {
+      const res = JUGES.p2a(t); resultats.p2a = res;
+      montrerVerdict(res, t, partie2a, partie2b);
+    });
+  });
+}
+async function partie2b(){
+  vider("Partie 2 · ton expérience", "Erzählen und vergleichen", "p2b");
+  coach("p2b");
+  bouton("Écouter Anna", async () => {
+    suite.hidden = true;
+    await bulle("a_erfahrung");
+    aToi("À toi : raconte et compare, environ une minute", 100, t => {
+      const res = JUGES.p2b(t); resultats.p2b = res;
+      montrerVerdict(res, t, partie2b, partie3);
+    });
+  });
+}
+async function partie3(){
+  vider("Partie 3 · planifier ensemble", "Gemeinsam etwas planen", "p3");
+  coach("p3");
+  const f = feuille("Gemeinsames Aufgabenblatt", PLAN_NOTIZEN, "Sie möchten mit Ihrem Deutschkurs einen Ausflug machen. Sie beide organisieren ihn. Planen Sie, was Sie tun können.");
+  bouton("Écouter Anna", async () => {
+    suite.hidden = true;
+    await bulle("a_planen");
+    const tours = [];
+    const puces = f.querySelectorAll(".puces span");
+    const tour = async (k, relance) => {
+      if (k >= 5){
+        await bulle("m_ende");
+        const res = JUGES.p3(tours); resultats.p3 = res;
+        montrerVerdict(res, null, partie3, fin);
+        return;
+      }
+      if (!relance) await bulle("m_p" + (k + 1));
+      aToi("À toi : réponds à Mark (" + PLAN_NOTIZEN[k] + ")", 50, async t => {
+        const ligne = el("div", "entendu", t || "(rien entendu)"); ligne.lang = "de"; zone.appendChild(ligne);
+        // Mark reagit a ce qu'il entend : trop court, il relance une fois ; un refus, il se range ; sinon il accepte.
+        if (nbMots(t) < 4 && !relance){ await bulle("m_nachfrage"); tour(k, true); return; }
+        tours.push(t);
+        if (nbMots(t) >= 4) puces[k].classList.add("ok");
+        const n = norm(t);
+        const refus = /\b(nicht|lieber|keine lust|zu weit|zu teuer|schlecht|leider)\b/.test(n);
+        if (k < 4) await bulle(refus ? "m_nein" : (k % 2 ? "m_ok2" : "m_ok"));
+        tour(k + 1, false);
+      });
+    };
+    tour(0, false);
+  });
+}
+async function fin(){
+  vider(null, null, "fin");
+  const parts = [["p1a", "1 · Se présenter"], ["p1b", "1 · Répondre"], ["p2a", "2 · La photo"], ["p2b", "2 · Raconter et comparer"], ["p3", "3 · Planifier ensemble"]];
+  const niv = parts.map(p => (resultats[p[0]] || {}).niveau || "moins");
+  const b1 = niv.filter(x => x === "B1").length, a2 = niv.filter(x => x !== "moins").length;
+  const global = b1 >= 3 && a2 === 5 ? "B1" : a2 >= 3 ? "A2" : "moins";
+  zone.appendChild(el("h2", "", "Le verdict d’Anna"));
+  await bulle("a_ende_" + global, true);
+  const tab = el("table", "tableau");
+  parts.forEach((p, i) => { const tr = el("tr"); tr.appendChild(el("td", "", p[1])); const td = el("td"); td.appendChild(el("span", "niv " + niv[i], niv[i] === "moins" ? "pas encore A2" : niv[i])); tr.appendChild(td); tab.appendChild(tr); });
+  zone.appendChild(tab);
+  zone.appendChild(el("p", "limite", "Au DTZ, le B1 à l’examen entier exige le B1 à l’oral, et aussi dans au moins une épreuve écrite (Écouter et Lire, ou Écrire). " + LIMITE));
+  coach("fin");
+  const act = el("div", "actions"); const r = el("button", "", "Recommencer l’oral"); r.type = "button"; r.onclick = accueil; act.appendChild(r); zone.appendChild(act);
+  bouton("Terminer", () => parler("fini", { faits: 0, bons: 0 }));
+  dire("a_ende_" + global);
+}
+
+document.getElementById("retour").onclick = () => { taire(); if (DANS_APP) parler("fermer"); else history.back(); };
+accueil();
+</script>
+</body>
+</html>
