@@ -268,7 +268,7 @@ ramène aux cartes (`revenirDeLArret()`).
 
 ## Le branchement : le modèle à suivre pour un thème neuf
 
-Ce qu'un thème neuf touche, et rien d'autre. Le reste (ruban de l'accueil, séance, ouverture, retour, voix, tirage,
+Ce qu'un thème neuf touche, et rien d'autre. Le reste (ruban de l'accueil, panneau de « N › » où sont TOUS les thèmes — `orbPanelData("themes_illustres")`, une option et sa vignette par thème de `THEMES_ILLUSTRES`, le retour au panneau en fin de thème —, séance, ouverture, retour, voix, tirage,
 progression des mots) se fait tout seul à partir de ces quatre gestes.
 
 **1. Dans `index.html`, une ligne dans `THEMES_ILLUSTRES`.** L'ordre de la table est celui du ruban de l'accueil et

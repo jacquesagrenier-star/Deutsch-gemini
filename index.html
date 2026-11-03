@@ -9440,11 +9440,12 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LES THEMES ILLUSTRES SUR L'ACCUEIL (Jacques, 3 nov. 2026 : « je passe le theme de la famille ou je
              passe le theme des caracteristiques physiques. D'un seul coup. Directement. » ; « On va prendre le A »).
              Le meme bloc que les scenes, juste dessous, avec sa phrase ; une vignette ouvre le theme EN ENTIER
-             (decouverte puis vingt questions), « N › » mene a la section de Tout le contenu. Espagnol et allemand. -->
+             (decouverte puis vingt questions). « N › » ouvre le panneau de TOUS les themes, comme « Explorer les
+             scenes » (Jacques, 3 nov. 2026 : il menait a Tout le contenu). -->
         <div class="explorer-scenes explorer-themes hidden" id="explorerThemes">
             <div class="explorer-haut">
                 <strong data-i18n="sec_illustres">Thèmes illustrés</strong>
-                <button type="button" class="explorer-tout" onclick="ouvrirListeThemesIllustres()"><span id="explorerThemesNb"></span> ›</button>
+                <button type="button" class="explorer-tout" onclick="openOrbPanel('themes_illustres')"><span id="explorerThemesNb"></span> ›</button>
             </div>
             <p class="explorer-desc" data-i18n="themes_ill_desc">Des personnes, des images, des questions. Un thème en entier, d'un coup.</p>
             <div class="explorer-ruban" id="explorerThemesRuban"></div>
@@ -43738,6 +43739,16 @@ function texteDus(dus, total){
 
 function orbPanelData(id){
     if(LANGUE_APPRISE === "en" && TUILES_ANGLAISES[id]) return panneauTuileAnglaise(id);
+    // LES THEMES ILLUSTRES (3 nov. 2026, Jacques : « N › » doit ouvrir tous les themes, sur le modele des
+    // scenes). Une option par theme de la langue apprise, dans l'ordre de THEMES_ILLUSTRES ; section « ailleurs » :
+    // ouverts a tous, comme leurs tuiles, et sans en-tete (une seule famille).
+    if(id === "themes_illustres"){
+        return {
+            icon:"carte", title:t("sec_illustres"), sub:t("themes_ill_desc"),
+            options: themesIllustresOuverts().map(nom => ({ icon:"carte", vignette:"themes/" + nom + ".webp",
+                title:t(THEMES_ILLUSTRES[nom].titre), desc:"", action:"ouvrirThemePanneau_" + nom, section:"ailleurs" }))
+        };
+    }
     if(id === "scenes"){
         return {
             icon:"carte", title:t("op_scenes_title"), sub:t("op_scenes_sub"),
@@ -44554,6 +44565,7 @@ function renderOrbPanel(){
     // son action dans SCENES_SEANCE : une scene ajoutee la-bas a son image ici
     // sans rien toucher d'autre.
     const icone = o => {
+        if(o.vignette) return `<div class="orb-opt-icon orb-opt-vignette"><img src="${baseScenes() + o.vignette}" alt="" loading="lazy"></div>`;
         const sc = typeof SCENES_SEANCE !== "undefined" && SCENES_SEANCE.find(x => x.ouvrir === o.action);
         return sc
             ? `<div class="orb-opt-icon orb-opt-vignette"><img src="${vignetteScene(sc.nom)}" alt="" loading="lazy"></div>`
@@ -47040,7 +47052,7 @@ const apprendreThemeIllustre = () => LANGUE_APPRISE === "es" ? "es" : LANGUE_APP
 function ouvrirThemeIllustre(nom, depuis){
     const th = THEMES_ILLUSTRES[nom];
     if(!th) return;
-    sceneOuverteDepuis = (depuis === "accueil" ? "themeaccueil:" : "theme:") + nom;
+    sceneOuverteDepuis = (depuis === "accueil" ? "themeaccueil:" : depuis === "panneau" ? "themepanneau:" : "theme:") + nom;
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t(th.titre);
@@ -57737,7 +57749,10 @@ function majExplorerThemes(){
     ruban.scrollLeft = 0;
     pagesExplorer(ruban, Math.ceil(noms.length / 3), "explorerThemesPages");
 }
-// « N › » : la section des themes dans Tout le contenu.
+// Le panneau des themes appelle window[action]() : une fonction par theme, faite depuis la table (un theme ajoute
+// a THEMES_ILLUSTRES a la sienne sans rien ecrire ici).
+Object.keys(THEMES_ILLUSTRES).forEach(nom => { window["ouvrirThemePanneau_" + nom] = () => ouvrirThemeIllustre(nom, "panneau"); });
+// Avant la v du 3 nov. 2026, « N › » menait a la section des themes dans Tout le contenu ; garde pour qui l'appellerait.
 function ouvrirListeThemesIllustres(){
     ouvrirToutLeContenu();
     setTimeout(() => {
@@ -58225,6 +58240,7 @@ window.addEventListener("message", (e) => {
     // Les themes illustres (v1076) reviennent a « Tout le contenu », d'ou on les a ouverts.
     if(String(sceneOuverteDepuis).indexOf("theme") === 0 && (d.type === "fini" || d.type === "fermer")){
         if(String(sceneOuverteDepuis).indexOf("themeaccueil:") === 0){ goHome(); return; }
+        if(String(sceneOuverteDepuis).indexOf("themepanneau:") === 0){ try{ openOrbPanel("themes_illustres"); }catch(err){ goHome(); } return; }
         try{ ouvrirToutLeContenu(); }catch(err){ goHome(); }
         return;
     }
