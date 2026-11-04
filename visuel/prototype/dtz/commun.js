@@ -35,6 +35,7 @@ const MARK_IMG = "../descripcion/Mark-visage.webp";
 //   titre, intro       le titre de la page et la bulle de Mark a l'accueil ;
 //   sur, a2, b1        le verdict de l'ecrit recu (DTZ : Hoeren + Lesen sur 45, A2 des 20, B1 des 33) ;
 //   niveau(points)     a la place des seuils, quand le bareme n'est pas une simple somme (le telc).
+//   tuiles             [{id, titre, sous}], les tuiles de l'accueil dans l'ordre de l'examen (sinon celles du DTZ).
 const PROFIL = Object.assign({
   id: "dtz",
   titre: "Le DTZ avec Mark et Anna",
@@ -180,8 +181,9 @@ const DTZ = {
   surRetour(fn){ this.retour = fn; },
   niveauGlobal, niveauHL, resultat, profil: PROFIL
 };
-// les quatre tuiles de l'examen, dans l'ordre du DTZ ; celles qu'aucun module n'a inscrites restent grisees
-const TUILES = [{id: "H", titre: "Écouter", sous: "Hören"}, {id: "L", titre: "Lire", sous: "Lesen"}, {id: "S", titre: "Écrire", sous: "Schreiben"}, {id: "Sp", titre: "Parler", sous: "Sprechen"}];
+// les tuiles de l'examen, dans l'ordre de ses epreuves : celles du profil (le telc en a sept, de L a Sp), sinon les
+// quatre du DTZ ; celles qu'aucun module n'a inscrites restent grisees
+const TUILES = PROFIL.tuiles || [{id: "H", titre: "Écouter", sous: "Hören"}, {id: "L", titre: "Lire", sous: "Lesen"}, {id: "S", titre: "Écrire", sous: "Schreiben"}, {id: "Sp", titre: "Parler", sous: "Sprechen"}];
 function accueil(){
   silence(); arreterChrono(); fermerPanneau(); DTZ.retour = null;
   $("titre").textContent = T("titre"); $("suite").hidden = true;
