@@ -403,6 +403,33 @@ l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire angl
     Le sens du mot et la traduction des phrases de l'image viennent de l'espagnol de la même image.
 - **Contrôle** : `ANGLAIS` dans `tests/themes_illustres.py` (le thème y passe en `en` et en `en&variante=gb`).
 
+### Mettre un thème en anglais : la marche à suivre (4 nov. 2026, les treize thèmes suivants)
+
+Jacques, 4 nov. : « il manque beaucoup de themes en anglais ». Pour chaque page, dans cet ordre :
+1. **`APPRENDRE` accepte `en`** (`["de", "en"].includes(…) ? … : "es"`) et `GB = APPRENDRE === "en" && variante === "gb"`.
+   Puis **relire chaque test de langue de la page** : `APPRENDRE === "de" ? X : Y`, `DE_APP ? … : …`, `ES_`,
+   `APPRENDRE === "es"`. L'anglais tombe sinon dans la branche espagnole (ser / estar, l'accord, el / la) : chaque
+   test reçoit sa branche anglaise ou exclut l'anglais.
+2. **Un objet `EN`** à côté de `ES` et `DE`, et `L` qui le choisit. Les phrases sont fabriquées depuis les mêmes données
+   que l'espagnol et l'allemand (une image ne dit que ce qu'elle montre). Les sortes propres à l'espagnol ou à
+   l'allemand sont retirées de `SORTES` en anglais ; une sorte propre à l'anglais (`genitif`, `ordre`, `comparatif`,
+   `article`…) enseigne un point de grammaire anglaise, jamais une traduction.
+3. **Les mots, à la forme du corpus anglais** (`anglais/datos/` : `themes.json` `mot` avec `genre: ""`,
+   `adjectifs.json`, `verbes.json` `infinitif`, `adverbes.json`) ; en britannique, le mot de `anglais/datos-gb/`
+   (mum, grey, moustache). Un mot à deux cartes reçoit `sens` (sa traduction française du corpus). Un mot absent du
+   corpus : le noter, il s'ajoute par `anglais/outils/` (jamais à la main dans `anglais/datos/`).
+4. **La traduction** (`TRADS.fr`, ou la traduction de la phrase espagnole de la même image quand c'est la même
+   phrase) : après la réponse seulement, et le mot choisi traduit après une erreur.
+5. **La voix** : `Voix.dire()` (themes/voix.js), la phrase affichée dite en entier après la réponse (« Oui,
+   partout », 4 nov.), et `textesAVoix()` qui rend aussi les textes anglais (`visuel/voix_themes.py`, clé `en`).
+   Aucune voix nouvelle.
+6. **Boston** : l'argent en dollars, les distances en miles, les températures en °F si la page en montre (le
+   britannique : livres, °C). Une image trop allemande ou trop européenne (une enseigne, des euros, un document
+   allemand) ne se force pas : le thème est signalé au chef.
+7. **L'espagnol et l'allemand ne changent pas** : leurs branches de code restent les mêmes.
+8. **Contrôle** : `THEMES_APPS="en,en&variante=gb" python tests/themes_illustres.py <thème>` (sous le verrou du
+   navigateur), au moins 100 questions, 0 défaut ; puis le thème dans `ANGLAIS` et `en: true` dans `THEMES_ILLUSTRES`.
+
 Deux ajouts de « La journée » (3 nov. 2026), utiles aux thèmes suivants :
 - **un adverbe compte aussi** : `carteDeScene()` accepte `{mot, cat: "adverbe"}` (la carte d'`adverbienTheme`,
   siempre / immer, zuerst) ; un mot que le corpus n'a pas reste « hors jeu », la page n'a rien à prévoir ;

@@ -89,7 +89,9 @@ def main():
     with sync_playwright() as p:
         nav = p.chromium.launch()
         for th in themes:
-            for app in ("es", "de") + (("en", "en&variante=gb") if th in ANGLAIS else ()):
+            # THEMES_APPS=en,en&variante=gb : seulement ces langues (une page qu'on met en anglais, avant d'etre dans ANGLAIS)
+            apps = tuple(os.environ["THEMES_APPS"].split(",")) if os.environ.get("THEMES_APPS") else ("es", "de") + (("en", "en&variante=gb") if th in ANGLAIS else ())
+            for app in apps:
                 for seance in ("", "&seance=1"):
                     ctx = nav.new_context(viewport={"width": 390, "height": 844})
                     page = ctx.new_page()
