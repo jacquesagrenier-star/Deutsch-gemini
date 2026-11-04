@@ -517,7 +517,7 @@ def chat():
     from PIL import Image
     im = Image.open(os.path.join(SALON, "sofa-auf.png")).convert("RGB")
     W, H = im.size
-    cx, cy, w = 0.44 * W, 0.585 * H, 760
+    cx, cy, w = 0.44 * W, 0.575 * H, 600          # le chat fait un tiers de la largeur (20 % a 760 px : trop petit sur l accueil)
     h = w * 3 // 4
     x, y = int(cx - w / 2), int(cy - h / 2)
     os.makedirs(DOSSIER, exist_ok=True)
