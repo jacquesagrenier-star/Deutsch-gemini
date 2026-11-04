@@ -176,7 +176,23 @@ tableau officiel en ligne. Aucun chiffre de barème n'est inventé d'ici là.
 ### 3.5 L'oral : environ 15 min, à deux, sans préparation, sans image
 Une page `visuel/prototype/telc-oral.html`, **copie du moteur de `dtz-oral.html`** (pas une réécriture : même micro,
 même vidéo, mêmes juges), avec l'accord de la session de l'oral. Anna est l'examinatrice, Mark l'autre candidat,
-c'est une répétition. Les trois parties :
+c'est une répétition.
+
+**L'organisation est celle de l'oral du DTZ** (décision de Jacques du 4 nov., « DTZ, l'oral : sections et exercices » :
+« Même organisation pour le futur bloc telc »). La session de l'oral du DTZ la construit, et le telc **reprend sa
+mécanique** au lieu d'en écrire une autre :
+- l'accueil de l'oral liste les sections avec leur état (fait, 2 / 4…) et propose l'examen complet ;
+- dans une section, une page par exercice, avec « Section N · titre », des points de progression qu'on peut toucher
+  pour sauter à un exercice, « ‹ » vers la liste et « Continuer » en bas ;
+- en fin de section, un récapitulatif des réponses et du retour d'Anna, puis Refaire la section, Section suivante ou
+  Toutes les sections ;
+- l'examen complet enchaîne les sections, avec l'estimation A2 / B1 à la fin seulement.
+
+Seules les sections changent. Le telc en a trois au lieu des cinq du DTZ (1a, 1b, 2a, 2b, 3). Je les écris dans les
+données de la page telc quand la mécanique du DTZ sera posée. Les mêmes trois niveaux (liste, exercice, récapitulatif)
+valent aussi pour l'écrit du telc (Sprachbausteine, courriels, répondeurs), pour que les deux blocs se ressemblent.
+
+Les trois sections :
 
 1. **Se présenter** et répondre à quelques questions d'Anna : la partie 1 du DTZ, avec d'autres questions de suite.
 2. **Planifier ensemble** avec Mark : le mécanisme de la partie 3 du DTZ (Mark propose, relance si c'est trop court, se
@@ -220,11 +236,20 @@ EXAMENS = {
 
 Chaque module (`hoeren-lesen.js` pour le DTZ, `telc-*.js` pour le telc) ne s'inscrit que dans le profil auquel il
 appartient. Les modules communs (le texte à trous, la feuille de réponses, la minuterie, la saisie courte) servent aux
-deux. Ce changement touche `commun.js`, qui appartient à la session « écouter et lire » : **je le lui propose, je ne le
-fais pas sans son accord** (message envoyé le 4 nov.).
+deux.
 
-Si elle préfère que rien ne bouge avant le 14 novembre (la date du DTZ), la solution de repli est une page telc à part
-qui **copie** `commun.js` (`visuel/prototype/telc/`), puis la fusion des deux après le 14 novembre.
+**Fait par la session « écouter et lire » le 4 nov.** (commit `6595ae0`, branche `claude/dtz-hoeren-lesen-965077`, pas
+encore sur `main`). La forme retenue est la sienne : la page telc pose `window.PROFIL_EXAMEN` **avant** de charger
+`commun.js` :
+- `{id: "telc", titre, intro, sur, a2, b1}`, ou `{id, titre, intro, niveau: points => "b1" | "a2" | "moins"}` quand le
+  barème n'est pas une somme à seuils ;
+- `id` préfixe le stockage local (`wortando_telc_…`) : les examens blancs du telc ne se mêlent pas à ceux du DTZ ;
+- sans profil, c'est le DTZ (45, 20, 33, l'intro de Mark) ; `niveauHL()` et `niveauGlobal()` suivent le profil.
+
+Restent propres au DTZ dans `hoeren-lesen.js` : ses Teile, ses textes et l'ordre écouter → lire. Le module telc reprend
+ses fonctions de rendu (`rendreDoc`, `rendreQuestion`, `feuilleReponses`) ; s'il en faut dans `commun.js`, je les
+demande à cette session. **Toute autre modification de `commun.js` lui passe en correctif**, pendant que deux autres
+sessions s'y branchent.
 
 ---
 
@@ -237,12 +262,12 @@ fichiers des deux sessions DTZ.
 |---|---|---|---|
 | 0 | Relever le format officiel du telc A2·B1 (format seul) → `preparation-examens/FORMAT-TELC.md` | petite | moi |
 | 1 | **Le panneau à deux blocs**, essai admin `examens_blocs`, 9 langues ; le bloc DTZ reprend ce qui existe, le bloc telc montre le commun dans son ordre et « bientôt » pour le reste | petite | moi, `index.html` (lignes du panneau annoncées aux deux sessions avant) |
-| 2 | Le profil d'examen dans `commun.js` (ou la copie de repli) | petite | la session « écouter et lire », ou moi avec son accord |
+| 2 | ~~Le profil d'examen dans `commun.js`~~ **fait** (`6595ae0`, session « écouter et lire ») ; la page telc attend que sa branche arrive sur `main` | — | la session « écouter et lire » |
 | 3 | **Les Sprachbausteine**, série 1, avec le moteur de texte à trous commun et les explications de Mark | moyenne | moi : `visuel/prototype/telc/` (ou `dtz/telc-*.js`) |
 | 4 | Lire au format du telc et le courriel à comprendre | moyenne | moi |
 | 5 | Écrire : le courriel et la réponse courte, jugés sur critères | moyenne | moi |
 | 6 | Écouter au format du telc, avec les répondeurs à noter (saisie courte) | moyenne | moi |
-| 7 | **L'oral du telc** (`telc-oral.html`, copie du moteur de l'oral du DTZ), voix du téléphone | grosse | moi, avec l'accord de la session de l'oral pour copier son moteur |
+| 7 | **L'oral du telc** (`telc-oral.html`, copie du moteur de l'oral du DTZ **avec son organisation sections / exercices / récapitulatif**, ses trois sections à lui), voix du téléphone ; après que la session de l'oral a posé cette organisation | grosse | moi, avec l'accord de la session de l'oral pour copier son moteur |
 | 8 | L'examen blanc du telc et son verdict | moyenne | moi |
 | 9 | Contrôle `tests/telc.py` (comme `tests/dtz.py`), `RELECTURE-DE.md` pour le germanophone, puis les 8 autres langues d'interface | moyenne | moi |
 | 10 | Sur accord : les vidéos de l'oral du telc (chiffrées avant) | dépense | moi |
