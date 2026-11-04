@@ -34,3 +34,20 @@ Le texte est déjà corrigé ; sans fichier, l'app lit ces deux textes avec la v
 | idem, impératif | oponte, opóngase, oponeos, opónganse (es-ES) ; oponte, opóngase, opónganse (es-419) | es-ES et es-419 | 70 |
 
 Produire : `python audio/generer_es.py --variante es|latam --niveaux B1 --textes "oponerse|oponte, opóngase, oponeos, opónganse|oponte, opóngase, opónganse"`.
+
+## En attente d'un accord : la ferme, le fils de Felix (4 nov. 2026)
+
+Décision de Jacques du 4 nov. : l'enfant de la scène bauernhof est le fils de Felix, plus le cousin d'Anna.
+Les quatre phrases sont déjà réécrites dans la scène (3c7441d) ; sans fichier, le téléphone les lit.
+Le mot de la zone (der Junge, el niño) a déjà sa voix, celle du corpus A1.
+
+| Où | Texte | Voix | Crédits (environ) |
+|----|-------|------|------|
+| scène Ferme, B1 (de) | Felix' Sohn wäscht sich die Hände. | Aurora | 34 |
+| scène Ferme, C1 (de) | Der Hund könnte Felix' Sohn gehören. | Aurora | 36 |
+| scène Ferme, B1 (es) | El hijo de Felix se agacha para dar de comer a la gallina. | es-ES et es-419 | 116 |
+| scène Ferme, C1 (es) | Puede que el perro sea del hijo de Felix. | es-ES et es-419 | 82 |
+
+Environ **270 crédits** en tout (multilingual v2, jamais Flash). Les anciennes phrases (« Annas Cousin… », « El primo de Anna… ») gardent leurs fichiers, que plus rien n'appelle.
+
+Produire : `python audio/generer.py --niveaux B1,C1 --textes "Felix' Sohn wäscht sich die Hände.|Der Hund könnte Felix' Sohn gehören."`, puis `python audio/generer_es.py --variante es|latam --niveaux B1,C1 --textes "El hijo de Felix se agacha para dar de comer a la gallina.|Puede que el perro sea del hijo de Felix."` ; ensuite `controler_sons.py` et `deposer.py`.

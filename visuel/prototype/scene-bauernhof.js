@@ -942,28 +942,13 @@ window.SCENE = {
   },
   {
    "id": "cousin",
-   "mot": "Cousin",
+   "mot": "Junge",
    "genre": "der",
-   "pluriel": "Cousins",
-   "niveau": "B1",
-   "theme": "familie_b1",
+   "pluriel": "Jungen",
+   "niveau": "A1",
+   "theme": "familie_a1",
    "personne": null,
    "aussi": [
-    {
-     "mot": "Junge",
-     "genre": "der",
-     "niveau": "A1",
-     "theme": "familie_a1",
-     "fr": "garçon",
-     "en": "boy",
-     "tr": "oğlan",
-     "uk": "хлопець",
-     "fa": "پسر",
-     "pt": "menino",
-     "ar": "ولد، صبي",
-     "pl": "chłopiec",
-     "ru": "мальчик"
-    },
     {
      "mot": "Kind",
      "genre": "das",
@@ -990,15 +975,15 @@ window.SCENE = {
      10.8
     ]
    ],
-   "fr": "cousin",
-   "en": "cousin",
-   "tr": "kuzen",
-   "uk": "двоюрідний брат",
-   "fa": "پسرعمو، پسردایی",
-   "pt": "primo",
-   "ar": "ابن العمّ أو الخال",
-   "pl": "kuzyn",
-   "ru": "двоюродный брат"
+   "fr": "garçon",
+   "en": "boy",
+   "tr": "oğlan",
+   "uk": "хлопець",
+   "fa": "پسر",
+   "pt": "menino",
+   "ar": "ولد، صبي",
+   "pl": "chłopiec",
+   "ru": "мальчик"
   },
   {
    "id": "hut",

@@ -723,21 +723,13 @@ window.SCENE = {
   },
   {
    "id": "cousin",
-   "mot": "cousin",
+   "mot": "boy",
    "genre": "",
-   "pluriel": "cousins",
+   "pluriel": "boys",
    "niveau": "A1",
-   "theme": "family_a1",
+   "theme": "people_a1",
    "personne": null,
    "aussi": [
-    {
-     "mot": "boy",
-     "genre": "",
-     "niveau": "A1",
-     "theme": "people_a1",
-     "fr": "garçon",
-     "es": "el niño, el chico"
-    },
     {
      "mot": "child",
      "genre": "",
@@ -757,8 +749,8 @@ window.SCENE = {
      10.8
     ]
    ],
-   "fr": "cousin",
-   "es": "el primo, la prima"
+   "fr": "garçon",
+   "es": "el niño, el chico"
   },
   {
    "id": "hut",
@@ -1433,15 +1425,15 @@ window.SCENE = {
      "n": "Se souvenir de = <b>remember</b>, sans réfléchi ni préposition."
     },
     {
-     "q": "Anna's cousin is washing ___ hands.",
+     "q": "Felix's son is washing ___ hands.",
      "c": [
       "his",
       "the",
       "himself"
      ],
      "f": "cousin",
-     "phrase": "Anna's cousin is washing his hands.",
-     "sens": "Le cousin d'Anna se lave les mains.",
+     "phrase": "Felix's son is washing his hands.",
+     "sens": "Le fils de Felix se lave les mains.",
      "n": "Les parties du corps prennent le possessif : <b>his hands</b>."
     },
     {
@@ -1555,7 +1547,7 @@ window.SCENE = {
      "n": "<b>must</b> + be."
     },
     {
-     "q": "The dog ___ belong to Anna's cousin.",
+     "q": "The dog ___ belong to Felix's son.",
      "c": [
       "could",
       "must to",
@@ -1563,8 +1555,8 @@ window.SCENE = {
      ],
      "f": "hund",
      "r": "cousin",
-     "phrase": "The dog could belong to Anna's cousin.",
-     "sens": "Le chien appartient peut-être au cousin d'Anna.",
+     "phrase": "The dog could belong to Felix's son.",
+     "sens": "Le chien appartient peut-être au fils de Felix.",
      "n": "Possibilité → <b>could</b>."
     },
     {

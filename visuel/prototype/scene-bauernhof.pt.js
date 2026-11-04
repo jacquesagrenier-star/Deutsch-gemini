@@ -681,20 +681,13 @@ window.SCENE = {
   },
   {
    "id": "cousin",
-   "mot": "primo",
+   "mot": "rapaz",
    "genre": "o",
-   "pluriel": "os primos",
+   "pluriel": "os rapazes",
    "niveau": "A1",
    "theme": "familia_pt",
    "personne": null,
    "aussi": [
-    {
-     "mot": "rapaz",
-     "genre": "o",
-     "niveau": "A1",
-     "theme": "familia_pt",
-     "fr": "garçon"
-    },
     {
      "mot": "criança",
      "genre": "a",
@@ -713,7 +706,7 @@ window.SCENE = {
      10.8
     ]
    ],
-   "fr": "cousin"
+   "fr": "garçon"
   },
   {
    "id": "hut",
@@ -1397,7 +1390,7 @@ window.SCENE = {
      }
     },
     {
-     "q": "O primo da Anna lava ___ mãos.",
+     "q": "O filho do Felix lava ___ mãos.",
      "c": [
       "as",
       "suas",
@@ -1405,8 +1398,8 @@ window.SCENE = {
      ],
      "f": "cousin",
      "r": null,
-     "phrase": "O primo da Anna lava as mãos.",
-     "sens": "Le cousin d'Anna se lave les mains.",
+     "phrase": "O filho do Felix lava as mãos.",
+     "sens": "Le fils de Felix se lave les mains.",
      "n": "Le corps : l'article, pas de pronom (<b>lava as mãos</b>)."
     },
     {
@@ -1551,7 +1544,7 @@ window.SCENE = {
      }
     },
     {
-     "q": "O cão ___ ser do primo da Anna.",
+     "q": "O cão ___ ser do filho do Felix.",
      "c": [
       "pode",
       "deve de",
@@ -1559,12 +1552,12 @@ window.SCENE = {
      ],
      "f": "hund",
      "r": "cousin",
-     "phrase": "O cão pode ser do primo da Anna.",
-     "sens": "Le chien appartient peut-être au cousin d'Anna.",
+     "phrase": "O cão pode ser do filho do Felix.",
+     "sens": "Le chien appartient peut-être au fils de Felix.",
      "n": "Possibilité : <b>poder</b>.",
      "br": {
-      "q": "O cachorro ___ ser do primo da Anna.",
-      "phrase": "O cachorro pode ser do primo da Anna."
+      "q": "O cachorro ___ ser do filho do Felix.",
+      "phrase": "O cachorro pode ser do filho do Felix."
      }
     },
     {

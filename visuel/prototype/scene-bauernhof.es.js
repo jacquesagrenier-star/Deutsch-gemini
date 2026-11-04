@@ -913,25 +913,13 @@ window.SCENE = {
   },
   {
    "id": "cousin",
-   "mot": "primo",
+   "mot": "niño",
    "genre": "el",
-   "pluriel": "los primos",
+   "pluriel": "los niños",
    "niveau": "A1",
    "theme": "la_familia",
    "personne": null,
-   "aussi": [
-    {
-     "mot": "niño",
-     "genre": "el",
-     "niveau": "A1",
-     "theme": "la_familia",
-     "fr": "l'enfant, le garçon",
-     "en": "the child, the boy",
-     "pt": "a criança, o menino",
-     "ar": "طفل، ولد",
-     "de": "das Kind"
-    }
-   ],
+   "aussi": [],
    "sur": null,
    "devant": 0,
    "boites": [
@@ -942,13 +930,13 @@ window.SCENE = {
      10.8
     ]
    ],
-   "fr": "le cousin",
-   "en": "the cousin",
-   "pt": "o primo",
-   "ar": "ابن العمّ أو الخال",
-   "pl": "kuzyn",
-   "ru": "двоюродный брат",
-   "de": "der Cousin",
+   "fr": "l'enfant, le garçon",
+   "en": "the child, the boy",
+   "pt": "a criança, o menino",
+   "ar": "طفل، ولد",
+   "pl": "chłopiec",
+   "ru": "мальчик",
+   "de": "das Kind",
    "latam": null
   },
   {
