@@ -101,10 +101,11 @@ Source : `visuel/transportes/transportes.py` (`LIEUX`, `LIEU_TXT`, `IMAGES`).
 - Ses bêtes : une vache **Holstein noire et blanche**, un cheval **alezan à liste blanche**, un
   cochon **rose à quelques taches brunes**, des moutons blancs sur la colline, des poules
   **rousses**, un **border collie noir et blanc**, un chat tigré sur le muret.
-- ⚠️ La scène montre l'oncle d'Anna et un **petit** cousin au chapeau de paille ; or l'arbre de
-  `visuel/familia` ne donne à Anna qu'un oncle, Frank (59 ans), et des cousins adultes (Felix 28,
-  Sophie 22). À trancher avant toute vidéo à la ferme ; les images du thème « Les animaux » ne
-  montrent personne.
+- Les gens de la ferme : l'oncle d'Anna (dans l'arbre de `visuel/familia`, son seul oncle est Frank,
+  59 ans, le mari de Sabine) et l'enfant au chapeau de paille, qui est **le fils de Felix**, le cousin
+  d'Anna (décision de Jacques du 4 nov. 2026 : « prendre l'enfant de Félix pour la ferme »), et non
+  un « petit cousin ». Ce fils n'est pas encore dans l'arbre de la famille. Les images du thème « Les
+  animaux » ne montrent personne.
 
 ### Le salon de Jan et Katrin (Berlin) — « Où est le chat ? », « Les animaux »
 - Maître : `visuel/gato/img/piece.png` (la pièce vide ; carte et éléments fixes dans
