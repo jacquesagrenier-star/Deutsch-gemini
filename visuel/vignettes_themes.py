@@ -492,6 +492,65 @@ def logement_plan():
     return c
 
 
+def demarches_formulaire():
+    """Les demarches : le formulaire de Mark (des cases vides, deux remplies a l'encre bleue, une case cochee), le
+    tampon rond du guichet, le passeport bleu nuit et le ticket d'attente numerote. Des dessins, aucun mot : la meme
+    vignette sert a l'espagnol et a l'allemand ; le sujet est la demarche, pas les objets du bureau de la scene."""
+    c = Image.new("RGB", (W, H), (214, 232, 226))
+    d = ImageDraw.Draw(c)
+    # le formulaire, un peu tourne, avec son ombre
+    f = Image.new("RGBA", (330, 430), (0, 0, 0, 0))
+    g = ImageDraw.Draw(f)
+    g.rectangle((0, 0, 329, 429), fill=(255, 253, 246), outline=(201, 207, 216), width=2)
+    g.rectangle((22, 22, 308, 34), fill=(28, 36, 48))                     # l'en-tete, une barre
+    encre = (29, 78, 158)
+    for k in range(6):
+        y = 64 + k * 50
+        for (xa, xb) in ((22, 158), (172, 308)) if k < 4 else ((22, 308),):
+            g.rectangle((xa, y, xb, y + 38), outline=(160, 168, 180), width=2)
+            g.rectangle((xa + 6, y + 6, xa + 50, y + 10), fill=(160, 168, 180))   # le nom de la case, un trait
+        if k in (0, 1):
+            g.line([(30, y + 28), (60, y + 22), (92, y + 29), (128, y + 21)], fill=encre, width=4)
+    # les cases a cocher, une cochee
+    for k in range(3):
+        x = 30 + k * 96
+        g.rectangle((x, 372, x + 22, 394), outline=(120, 128, 140), width=3)
+        if k == 0:
+            g.line([(x + 4, 383), (x + 10, 390), (x + 20, 376)], fill=encre, width=4)
+    # la signature
+    g.line([(176, 406), (200, 392), (214, 410), (236, 394), (262, 404), (300, 396)], fill=encre, width=4)
+    f = f.rotate(-4, resample=Image.BICUBIC, expand=True)
+    ombre = Image.new("RGBA", f.size, (0, 0, 0, 0))
+    ombre.paste((40, 60, 70, 70), (0, 0), f.split()[3])
+    c.paste(ombre, (54, 44), ombre)
+    c.paste(f, (44, 34), f)
+    # le tampon rond, bleu, par-dessus le coin du formulaire
+    t = Image.new("RGBA", (150, 150), (0, 0, 0, 0))
+    h = ImageDraw.Draw(t)
+    h.ellipse((6, 6, 144, 144), outline=(40, 86, 190, 215), width=8)
+    h.ellipse((28, 28, 122, 122), outline=(40, 86, 190, 200), width=4)
+    h.polygon([(75, 46), (86, 68), (110, 70), (92, 86), (98, 110), (75, 97), (52, 110), (58, 86), (40, 70), (64, 68)], fill=(40, 86, 190, 200))
+    t = t.rotate(14, resample=Image.BICUBIC)
+    c.paste(t, (250, 300), t)
+    # le passeport bleu nuit, avec son embleme dore (sans mot)
+    pp = Image.new("RGBA", (170, 236), (0, 0, 0, 0))
+    q = ImageDraw.Draw(pp)
+    q.rounded_rectangle((0, 0, 169, 235), 14, fill=(26, 38, 74))
+    q.ellipse((52, 70, 118, 136), outline=(214, 176, 92), width=5)
+    q.ellipse((72, 90, 98, 116), fill=(214, 176, 92))
+    q.rectangle((56, 168, 114, 174), fill=(214, 176, 92))
+    pp = pp.rotate(9, resample=Image.BICUBIC, expand=True)
+    c.paste(pp, (398, 40), pp)
+    # le ticket d'attente : un numero, comme au Buergeramt
+    tk = Image.new("RGBA", (150, 104), (0, 0, 0, 0))
+    r = ImageDraw.Draw(tk)
+    r.rounded_rectangle((0, 0, 149, 103), 10, fill=(255, 255, 255), outline=(232, 162, 58), width=5)
+    r.text((75, 54), "42", font=F(58), fill=(28, 36, 48), anchor="mm")
+    tk = tk.rotate(-8, resample=Image.BICUBIC, expand=True)
+    c.paste(tk, (420, 330), tk)
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
              "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
              "metiers": metiers_polaroids,
@@ -499,7 +558,8 @@ VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones"
              "loisirs": loisirs_agenda,
              "animales": animaux_quatre_lieux,
              "meteo": meteo_quatre_saisons,
-             "logement": logement_plan}
+             "logement": logement_plan,
+             "demarches": demarches_formulaire}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

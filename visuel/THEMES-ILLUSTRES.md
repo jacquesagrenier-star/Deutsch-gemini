@@ -410,3 +410,23 @@ Deux ajouts de « La journée » (3 nov. 2026), utiles aux thèmes suivants :
   la résout et rend la réponse ; le contrôle l'appelle quand la question a un `.ordre`.
 - **chaque mot a au moins deux sortes** : un mot qu'une seule sorte sait viser (les adverbes de fréquence, les moments
   de la journée) fait se suivre deux fois la même sorte dès que deux de ces mots se suivent dans la file.
+
+## Un thème de papiers : « Les démarches » (vague 3, 4 nov. 2026)
+
+L'administration et la vie pratique, au cœur du DTZ (`demarches.html`, `visuel/demarches/demarches.py`, la seule
+source). Ce qu'il apprend aux thèmes suivants :
+- **les papiers se dessinent en HTML, jamais dans l'image** (la règle des documents du DTZ) : le formulaire de Mark,
+  l'avis « Bitte bringen Sie mit », les heures d'ouverture et la confirmation de rendez-vous sont des `.papier` de la
+  page, dans la langue apprise (`lang`, `dir="ltr"`) ; les images n'ont aucun texte lisible ;
+- **deux mondes, les mêmes images** : en allemand Mark Garnier à Berlin-Pankow (Gartenstraße 12, l'adresse des
+  documents du DTZ), en espagnol le Mark de « Mark en Madrid » (mexicain, l'empadronamiento) ; chaque langue a ses
+  lieux, ses démarches et ses formulaires, écrits pour elle ;
+- **un leurre n'est jamais une réponse possible** : chaque démarche dit où elle peut AUSSI se faire (`aussi`, `"*"` :
+  partout, donc pas de « Wo? ») et quels verbes iraient aussi avec son objet (`aussi_v`) ; chaque image de document dit
+  les documents clairement faux pour elle (`FAUX_IMG` : deux cartes avec photo ne se servent jamais de leurre) ;
+- **un rendez-vous tombe un jour d'ouverture** : la confirmation tire une date réelle (nov.-déc. 2026) où le lieu est
+  ouvert, à une heure de ses plages ; les heures des questions évitent les bornes (« um 13 Uhr » à la fermeture) ;
+- **la phrase polie vient du corpus** : la forme `sie_Sie` (« Füllen Sie bitte das Formular aus! ») et le subjonctif
+  « usted » (« Rellene el formulario, por favor. »), leurres : les formes du / tú et ich / yo ;
+- les mots absents du corpus sont préparés par paires (`ajouts/demarches.json`, `espanol/ajouts/demarches.json`) et
+  restent « hors jeu » jusqu'à l'accord de Jacques.

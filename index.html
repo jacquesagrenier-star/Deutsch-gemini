@@ -9754,6 +9754,15 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div><strong data-i18n="log_tuile">Le logement</strong></div>
         </div>
 
+        <!-- Les demarches (4 nov. 2026, vague 3) : l'administration et la vie pratique, au coeur du DTZ -- pas les objets
+             de la scene buergeramt. Mark au Buergeramt, a la banque, chez le medecin ; le formulaire, l'avis, les heures
+             d'ouverture et la confirmation de rendez-vous en HTML ; Wo? + datif, les verbes separables, le Sie du guichet ;
+             usted et estar abierta : visuel/prototype/demarches.html. es et de. -->
+        <div class="orb hidden" data-orbid="demarches" id="tuileDemarches" onclick="ouvrirThemeIllustre('demarches')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 11h7M9 14.5h7M9 18h4"/></svg></div>
+            <div><strong data-i18n="dem_tuile">Les démarches</strong></div>
+        </div>
+
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
@@ -14500,6 +14509,8 @@ const I18N = {
         meteo_court: "La météo",
         log_tuile: "Le logement",
         log_court: "Logement",
+        dem_tuile: "Les démarches",
+        dem_court: "Démarches",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -16039,6 +16050,8 @@ const I18N = {
         meteo_court: "Weather",
         log_tuile: "Home and housing",
         log_court: "Home",
+        dem_tuile: "Paperwork and appointments",
+        dem_court: "Paperwork",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17580,6 +17593,8 @@ const I18N = {
         meteo_court: "Hava",
         log_tuile: "Ev ve konut",
         log_court: "Ev",
+        dem_tuile: "Resmî işler",
+        dem_court: "Resmî işler",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19533,6 +19548,8 @@ const I18N = {
         meteo_court: "Погода",
         log_tuile: "Житло",
         log_court: "Житло",
+        dem_tuile: "Офіційні справи",
+        dem_court: "Справи",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21800,6 +21817,8 @@ const I18N = {
         meteo_court: "آب‌وهوا",
         log_tuile: "خانه و مسکن",
         log_court: "خانه",
+        dem_tuile: "کارهای اداری",
+        dem_court: "اداری",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23510,6 +23529,8 @@ const I18N = {
         meteo_court: "الطقس",
         log_tuile: "السكن",
         log_court: "السكن",
+        dem_tuile: "المعاملات الإدارية",
+        dem_court: "المعاملات",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -23900,6 +23921,8 @@ const I18N = {
         meteo_court: "O tempo",
         log_tuile: "A moradia",
         log_court: "Moradia",
+        dem_tuile: "Os trâmites",
+        dem_court: "Trâmites",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25500,6 +25523,8 @@ const I18N = {
         meteo_court: "Pogoda",
         log_tuile: "Mieszkanie",
         log_court: "Mieszkanie",
+        dem_tuile: "Sprawy urzędowe",
+        dem_court: "Urzędy",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -27100,6 +27125,8 @@ const I18N = {
         meteo_court: "Погода",
         log_tuile: "Жильё",
         log_court: "Жильё",
+        dem_tuile: "Официальные дела",
+        dem_court: "Дела",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28702,6 +28729,8 @@ const I18N = {
         meteo_court: "Wetter",
         log_tuile: "Wohnen",
         log_court: "Wohnen",
+        dem_tuile: "Behördengänge",
+        dem_court: "Ämter",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30339,6 +30368,8 @@ const I18N = {
         meteo_court: "El tiempo",
         log_tuile: "La vivienda",
         log_court: "Vivienda",
+        dem_tuile: "Los trámites",
+        dem_court: "Trámites",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -47243,7 +47274,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           loisirs: {page: "loisirs.html", titre: "loi_tuile", tuile: "tuileLoisirs"},
                           animales: {page: "animales.html", titre: "ani_tuile", tuile: "tuileAnimales"},
                           meteo: {page: "meteo.html", titre: "meteo_tuile", court: "meteo_court", tuile: "tuileMeteo"},
-                          logement: {page: "logement.html", titre: "log_tuile", court: "log_court", tuile: "tuileLogement"}};
+                          logement: {page: "logement.html", titre: "log_tuile", court: "log_court", tuile: "tuileLogement"},
+                          demarches: {page: "demarches.html", titre: "dem_tuile", court: "dem_court", tuile: "tuileDemarches"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
