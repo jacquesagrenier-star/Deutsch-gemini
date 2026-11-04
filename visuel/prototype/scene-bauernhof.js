@@ -1627,7 +1627,7 @@ window.SCENE = {
  ],
  "grosPlans": [],
  "titre": "Auf dem Bauernhof",
- "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, son petit cousin au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
+ "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, le fils de Felix au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
  "consigne": "Anna passe la matinée à la ferme de son oncle, dans le Brandebourg. Touche un objet ou un animal.",
  "exclus": [],
  "couches": {
@@ -1840,15 +1840,15 @@ window.SCENE = {
      }
     },
     {
-     "q": "Annas Cousin wäscht ___ die Hände.",
+     "q": "Felix' Sohn wäscht ___ die Hände.",
      "c": [
       "sich",
       "ihn",
       "ihm"
      ],
      "f": "cousin",
-     "phrase": "Annas Cousin wäscht sich die Hände.",
-     "sens": "Le cousin d'Anna se lave les mains.",
+     "phrase": "Felix' Sohn wäscht sich die Hände.",
+     "sens": "Le fils de Felix se lave les mains.",
      "n": "Avec un complément (die Hände), le pronom est au datif — mais à la 3e personne, c'est toujours <b>sich</b>."
     },
     {
@@ -1986,7 +1986,7 @@ window.SCENE = {
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
-     "q": "Vielleicht, wer weiß: Der Hund ___ Annas Cousin gehören.",
+     "q": "Vielleicht, wer weiß: Der Hund ___ Felix' Sohn gehören.",
      "c": [
       "könnte",
       "muss",
@@ -1994,8 +1994,8 @@ window.SCENE = {
      ],
      "f": "hund",
      "r": "cousin",
-     "phrase": "Der Hund könnte Annas Cousin gehören.",
-     "sens": "Le chien appartient peut-être au cousin d'Anna.",
+     "phrase": "Der Hund könnte Felix' Sohn gehören.",
+     "sens": "Le chien appartient peut-être au fils de Felix.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -2029,7 +2029,7 @@ window.SCENE = {
  "traductions": {
   "en": {
    "champs": {
-    "alt": "Anna in the yard of her uncle's farm on an autumn morning: she holds an apple out to the horse over the fence and laughs; a cow stands in the meadow, a pig is in its pen, sheep on the hill, a cat on the low wall, a dog lying in the yard; her uncle carries a bale of straw, her little cousin in a straw hat gives grain to a hen; on the ground, a basket of eggs, a crate of apples, a milk churn and hens; behind, the brick house, the barn with its ladder and firewood, a well and an apple tree.",
+    "alt": "Anna in the yard of her uncle's farm on an autumn morning: she holds an apple out to the horse over the fence and laughs; a cow stands in the meadow, a pig is in its pen, sheep on the hill, a cat on the low wall, a dog lying in the yard; her uncle carries a bale of straw, Felix's son in a straw hat gives grain to a hen; on the ground, a basket of eggs, a crate of apples, a milk churn and hens; behind, the brick house, the barn with its ladder and firewood, a well and an apple tree.",
     "consigne": "Anna is spending the morning at her uncle's farm in Brandenburg. Tap an object or an animal."
    },
    "couches": {
@@ -2054,7 +2054,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "<b>sich waschen</b>: ich → <b>mich</b> (Akkusativ).",
     "B1 | Wir setzen uns auf die Bank.": "wir → <b>uns</b>.",
     "B1 | Erinnerst du dich an den Bauernhof?": "<b>sich erinnern an</b>: du → <b>dich</b>.",
-    "B1 | Annas Cousin wäscht sich die Hände.": "With an object (die Hände), the pronoun is in the Dativ — but in the third person it is always <b>sich</b>.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "With an object (die Hände), the pronoun is in the Dativ — but in the third person it is always <b>sich</b>.",
     "B1 | Die Hühner bewegen sich schnell.": "<b>sich bewegen</b>: sie (plural) → <b>sich</b>.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "<b>bevor</b> = before: the action of the subordinate clause comes later.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "<b>nachdem</b> + Perfekt in the subordinate clause when the main clause is in the present.",
@@ -2063,7 +2063,7 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "<b>seit</b> + subordinate clause: the conjugated verb goes to the end.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "<b>bis</b> = until, verb at the end.",
     "C1 | Das Pferd muss sehr lieb sein.": "<b>müssen</b> = an almost certain deduction.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = one possibility among others.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "<b>könnte</b> = one possibility among others.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
    },
@@ -2082,7 +2082,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "I wash after work.",
     "B1 | Wir setzen uns auf die Bank.": "We sit down on the bench.",
     "B1 | Erinnerst du dich an den Bauernhof?": "Do you remember the farm?",
-    "B1 | Annas Cousin wäscht sich die Hände.": "Anna's cousin is washing his hands.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "Felix's son is washing his hands.",
     "B1 | Die Hühner bewegen sich schnell.": "The chickens move fast.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Before Anna feeds the horse, she washes the apples.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "After fetching the straw, her uncle feeds the pig.",
@@ -2091,14 +2091,14 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "Since Anna has been working on the farm, she gets up early.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "The dog waits until Anna calls him.",
     "C1 | Das Pferd muss sehr lieb sein.": "The horse must be very gentle.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "The dog might belong to Anna's cousin.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "The dog might belong to Felix's son.",
     "C1 | Die Eier dürften von heute Morgen sein.": "The eggs are probably from this morning.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "The farm is said to be over a hundred years old."
    }
   },
   "tr": {
    "champs": {
-    "alt": "Anna bir sonbahar sabahı amcasının çiftliğinin avlusunda: çitin üzerinden ata bir elma uzatıyor ve gülüyor; çayırda bir inek duruyor, bir domuz ağılında, tepede koyunlar, alçak duvarda bir kedi, avluda yatan bir köpek; amcası bir saman balyası taşıyor, hasır şapkalı küçük kuzeni bir tavuğa yem veriyor; yerde bir sepet yumurta, bir kasa elma, bir süt güğümü ve tavuklar; arkada tuğla ev, merdiveni ve odunlarıyla ahır, bir kuyu ve bir elma ağacı.",
+    "alt": "Anna bir sonbahar sabahı amcasının çiftliğinin avlusunda: çitin üzerinden ata bir elma uzatıyor ve gülüyor; çayırda bir inek duruyor, bir domuz ağılında, tepede koyunlar, alçak duvarda bir kedi, avluda yatan bir köpek; amcası bir saman balyası taşıyor, Felix'in hasır şapkalı oğlu bir tavuğa yem veriyor; yerde bir sepet yumurta, bir kasa elma, bir süt güğümü ve tavuklar; arkada tuğla ev, merdiveni ve odunlarıyla ahır, bir kuyu ve bir elma ağacı.",
     "consigne": "Anna sabahı Brandenburg'da amcasının çiftliğinde geçiriyor. Bir nesneye ya da bir hayvana dokun."
    },
    "couches": {
@@ -2123,7 +2123,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "<b>sich waschen</b>: ich → <b>mich</b> (Akkusativ).",
     "B1 | Wir setzen uns auf die Bank.": "wir → <b>uns</b>.",
     "B1 | Erinnerst du dich an den Bauernhof?": "<b>sich erinnern an</b>: du → <b>dich</b>.",
-    "B1 | Annas Cousin wäscht sich die Hände.": "Bir nesne varsa (die Hände) zamir Dativ'dedir — ama 3. kişide her zaman <b>sich</b>.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "Bir nesne varsa (die Hände) zamir Dativ'dedir — ama 3. kişide her zaman <b>sich</b>.",
     "B1 | Die Hühner bewegen sich schnell.": "<b>sich bewegen</b>: sie (çoğul) → <b>sich</b>.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "<b>bevor</b> = -meden önce: yan cümledeki eylem sonra gelir.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "Ana cümle şimdiki zamandaysa yan cümlede <b>nachdem</b> + Perfekt.",
@@ -2132,7 +2132,7 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "<b>seit</b> + yan cümle: çekimli fiil sona gider.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "<b>bis</b> = -e kadar, fiil sonda.",
     "C1 | Das Pferd muss sehr lieb sein.": "<b>müssen</b> = neredeyse kesin bir çıkarım.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = birçok olasılıktan biri.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
    },
@@ -2151,7 +2151,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "İşten sonra yıkanıyorum.",
     "B1 | Wir setzen uns auf die Bank.": "Banka oturuyoruz.",
     "B1 | Erinnerst du dich an den Bauernhof?": "Çiftliği hatırlıyor musun?",
-    "B1 | Annas Cousin wäscht sich die Hände.": "Anna'nın kuzeni ellerini yıkıyor.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "Felix'in oğlu ellerini yıkıyor.",
     "B1 | Die Hühner bewegen sich schnell.": "Tavuklar hızlı hareket ediyor.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Anna atı beslemeden önce elmaları yıkıyor.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "Amcası samanı getirdikten sonra domuzu besliyor.",
@@ -2160,14 +2160,14 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "Anna çiftlikte çalışmaya başladığından beri erken kalkıyor.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "Köpek Anna onu çağırana kadar bekliyor.",
     "C1 | Das Pferd muss sehr lieb sein.": "At çok uysal olmalı.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "Köpek Anna'nın kuzeninin olabilir.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "Köpek Felix'in oğlunun olabilir.",
     "C1 | Die Eier dürften von heute Morgen sein.": "Yumurtalar bu sabahtan olsa gerek.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "Çiftliğin yüz yıldan eski olduğu söyleniyor."
    }
   },
   "uk": {
    "champs": {
-    "alt": "Анна на подвір'ї ферми свого дядька осіннього ранку: вона простягає коневі яблуко через огорожу і сміється; корова стоїть на лузі, свиня в загоні, вівці на пагорбі, кіт на мурі, пес лежить на подвір'ї; дядько несе тюк соломи, малий двоюрідний брат у солом'яному капелюсі дає зерно курці; на землі кошик яєць, ящик яблук, бідон молока і кури; позаду цегляний будинок, клуня з драбиною і дровами, криниця та яблуня.",
+    "alt": "Анна на подвір'ї ферми свого дядька осіннього ранку: вона простягає коневі яблуко через огорожу і сміється; корова стоїть на лузі, свиня в загоні, вівці на пагорбі, кіт на мурі, пес лежить на подвір'ї; дядько несе тюк соломи, син Фелікса в солом'яному капелюсі дає зерно курці; на землі кошик яєць, ящик яблук, бідон молока і кури; позаду цегляний будинок, клуня з драбиною і дровами, криниця та яблуня.",
     "consigne": "Анна проводить ранок на фермі свого дядька в Бранденбурзі. Торкнися предмета або тварини."
    },
    "couches": {
@@ -2192,7 +2192,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "<b>sich waschen</b>: ich → <b>mich</b> (Akkusativ).",
     "B1 | Wir setzen uns auf die Bank.": "wir → <b>uns</b>.",
     "B1 | Erinnerst du dich an den Bauernhof?": "<b>sich erinnern an</b>: du → <b>dich</b>.",
-    "B1 | Annas Cousin wäscht sich die Hände.": "З додатком (die Hände) займенник стоїть у Dativ — але в 3-й особі це завжди <b>sich</b>.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "З додатком (die Hände) займенник стоїть у Dativ — але в 3-й особі це завжди <b>sich</b>.",
     "B1 | Die Hühner bewegen sich schnell.": "<b>sich bewegen</b>: sie (множина) → <b>sich</b>.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "<b>bevor</b> = перш ніж: дія підрядного речення відбувається пізніше.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "<b>nachdem</b> + Perfekt у підрядному, коли головне речення в теперішньому часі.",
@@ -2201,7 +2201,7 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "<b>seit</b> + підрядне речення: відмінюване дієслово йде в кінець.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "<b>bis</b> = доки, дієслово в кінці.",
     "C1 | Das Pferd muss sehr lieb sein.": "<b>müssen</b> = майже певний висновок.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = одна можливість серед інших.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
    },
@@ -2220,7 +2220,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "Я миюся після роботи.",
     "B1 | Wir setzen uns auf die Bank.": "Ми сідаємо на лавку.",
     "B1 | Erinnerst du dich an den Bauernhof?": "Ти пам'ятаєш ферму?",
-    "B1 | Annas Cousin wäscht sich die Hände.": "Двоюрідний брат Анни миє руки.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "Син Фелікса миє руки.",
     "B1 | Die Hühner bewegen sich schnell.": "Кури швидко рухаються.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Перш ніж годувати коня, Анна миє яблука.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "Принісши солому, її дядько годує свиню.",
@@ -2229,14 +2229,14 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "Відколи Анна працює на фермі, вона рано встає.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "Собака чекає, поки Анна її покличе.",
     "C1 | Das Pferd muss sehr lieb sein.": "Кінь, мабуть, дуже лагідний.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "Собака, можливо, належить двоюрідному братові Анни.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "Собака, можливо, належить синові Фелікса.",
     "C1 | Die Eier dürften von heute Morgen sein.": "Яйця, напевно, сьогоднішні.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "Кажуть, фермі понад сто років."
    }
   },
   "fa": {
    "champs": {
-    "alt": "آنا در حیاط مزرعهٔ عمویش، در یک صبح پاییزی: از روی نرده سیبی به اسب می‌دهد و می‌خندد؛ گاوی در چمنزار ایستاده، خوکی در آغلش است، گوسفندها روی تپه، گربه‌ای روی دیوار کوتاه، سگی در حیاط دراز کشیده؛ عمویش بسته‌ای کاه می‌برد، پسرعموی کوچکش با کلاه حصیری به مرغی دانه می‌دهد؛ روی زمین، سبدی تخم‌مرغ، جعبه‌ای سیب، یک سطل شیر و چند مرغ؛ پشت، خانهٔ آجری، انبار با نردبان و هیزمش، یک چاه و یک درخت سیب.",
+    "alt": "آنا در حیاط مزرعهٔ عمویش، در یک صبح پاییزی: از روی نرده سیبی به اسب می‌دهد و می‌خندد؛ گاوی در چمنزار ایستاده، خوکی در آغلش است، گوسفندها روی تپه، گربه‌ای روی دیوار کوتاه، سگی در حیاط دراز کشیده؛ عمویش بسته‌ای کاه می‌برد، پسر فلیکس با کلاه حصیری به مرغی دانه می‌دهد؛ روی زمین، سبدی تخم‌مرغ، جعبه‌ای سیب، یک سطل شیر و چند مرغ؛ پشت، خانهٔ آجری، انبار با نردبان و هیزمش، یک چاه و یک درخت سیب.",
     "consigne": "آنا صبح را در مزرعهٔ عمویش در براندنبورگ می‌گذراند. روی یک شیء یا یک حیوان بزن."
    },
    "couches": {
@@ -2261,7 +2261,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "<b>sich waschen</b>: <span lang=\"de\">ich</span> ← <b>mich</b> (<span lang=\"de\">Akkusativ</span>).",
     "B1 | Wir setzen uns auf die Bank.": "<span lang=\"de\">wir</span> ← <b>uns</b>.",
     "B1 | Erinnerst du dich an den Bauernhof?": "<b>sich erinnern an</b>: <span lang=\"de\">du</span> ← <b>dich</b>.",
-    "B1 | Annas Cousin wäscht sich die Hände.": "با مفعول (<span lang=\"de\">die Hände</span>) ضمیر در <span lang=\"de\">Dativ</span> است — اما در سوم‌شخص همیشه <b>sich</b>.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "با مفعول (<span lang=\"de\">die Hände</span>) ضمیر در <span lang=\"de\">Dativ</span> است — اما در سوم‌شخص همیشه <b>sich</b>.",
     "B1 | Die Hühner bewegen sich schnell.": "<b>sich bewegen</b>: <span lang=\"de\">sie</span> (جمع) ← <b>sich</b>.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "<b>bevor</b> = پیش از آنکه: کنشِ جمله‌وارهٔ پیرو بعدتر می‌آید.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "<b>nachdem</b> + <span lang=\"de\">Perfekt</span> در جمله‌وارهٔ پیرو، وقتی جملهٔ اصلی در زمان حال است.",
@@ -2270,7 +2270,7 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "<b>seit</b> + جمله‌وارهٔ پیرو: فعلِ صرف‌شده به آخر می‌رود.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "<b>bis</b> = تا اینکه، فعل در آخر.",
     "C1 | Das Pferd muss sehr lieb sein.": "<b>müssen</b> = استنتاجی تقریباً قطعی.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
    },
@@ -2289,7 +2289,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "من بعد از کار خودم را می‌شویم.",
     "B1 | Wir setzen uns auf die Bank.": "ما روی نیمکت می‌نشینیم.",
     "B1 | Erinnerst du dich an den Bauernhof?": "مزرعه را به یاد می‌آوری؟",
-    "B1 | Annas Cousin wäscht sich die Hände.": "پسرعموی آنا دست‌هایش را می‌شوید.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "پسر فلیکس دست‌هایش را می‌شوید.",
     "B1 | Die Hühner bewegen sich schnell.": "مرغ‌ها تند حرکت می‌کنند.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "آنا پیش از غذا دادن به اسب، سیب‌ها را می‌شوید.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "عمویش پس از آوردن کاه، به خوک غذا می‌دهد.",
@@ -2298,14 +2298,14 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "از وقتی آنا در مزرعه کار می‌کند، زود بیدار می‌شود.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "سگ منتظر می‌ماند تا آنا صدایش کند.",
     "C1 | Das Pferd muss sehr lieb sein.": "اسب حتماً خیلی مهربان است.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "سگ شاید مال پسرعموی آنا باشد.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "سگ شاید مال پسر فلیکس باشد.",
     "C1 | Die Eier dürften von heute Morgen sein.": "تخم‌مرغ‌ها احتمالاً مال امروز صبح هستند.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "می‌گویند مزرعه بیش از صد سال قدمت دارد."
    }
   },
   "ar": {
    "champs": {
-    "alt": "آنا في فناء مزرعة عمّها في صباح خريفي: تمدّ تفاحة للحصان فوق السياج وتضحك؛ بقرة تقف في المرج، وخنزير في حظيرته، وخراف على التلّ، وقطّ على الجدار المنخفض، وكلب مستلقٍ في الفناء؛ عمّها يحمل حزمة قشّ، وابن عمّها الصغير بقبّعة قشّ يعطي الحبوب لدجاجة؛ وعلى الأرض سلّة بيض وصندوق تفاح وإناء حليب ودجاجات؛ وفي الخلف البيت المبنيّ بالطوب والحظيرة بسلّمها وحطبها وبئر وشجرة تفاح.",
+    "alt": "آنا في فناء مزرعة عمّها في صباح خريفي: تمدّ تفاحة للحصان فوق السياج وتضحك؛ بقرة تقف في المرج، وخنزير في حظيرته، وخراف على التلّ، وقطّ على الجدار المنخفض، وكلب مستلقٍ في الفناء؛ عمّها يحمل حزمة قشّ، وابن فيليكس بقبّعة قشّ يعطي الحبوب لدجاجة؛ وعلى الأرض سلّة بيض وصندوق تفاح وإناء حليب ودجاجات؛ وفي الخلف البيت المبنيّ بالطوب والحظيرة بسلّمها وحطبها وبئر وشجرة تفاح.",
     "consigne": "آنا تقضي الصباح في مزرعة عمّها في براندنبورغ. المس شيئًا أو حيوانًا."
    },
    "couches": {
@@ -2330,7 +2330,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "<b>sich waschen</b>: <span lang=\"de\">ich</span> ← <b>mich</b> (<span lang=\"de\">Akkusativ</span>).",
     "B1 | Wir setzen uns auf die Bank.": "<span lang=\"de\">wir</span> ← <b>uns</b>.",
     "B1 | Erinnerst du dich an den Bauernhof?": "<b>sich erinnern an</b>: <span lang=\"de\">du</span> ← <b>dich</b>.",
-    "B1 | Annas Cousin wäscht sich die Hände.": "مع مفعول (<span lang=\"de\">die Hände</span>) يكون الضمير في <span lang=\"de\">Dativ</span> — لكنه في الغائب دائمًا <b>sich</b>.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "مع مفعول (<span lang=\"de\">die Hände</span>) يكون الضمير في <span lang=\"de\">Dativ</span> — لكنه في الغائب دائمًا <b>sich</b>.",
     "B1 | Die Hühner bewegen sich schnell.": "<b>sich bewegen</b>: <span lang=\"de\">sie</span> (جمع) ← <b>sich</b>.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "<b>bevor</b> = قبل أن: فعل الجملة التابعة يأتي لاحقًا.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "<b>nachdem</b> + <span lang=\"de\">Perfekt</span> في الجملة التابعة عندما تكون الجملة الرئيسية في المضارع.",
@@ -2339,7 +2339,7 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "<b>seit</b> + جملة تابعة: يذهب الفعل المصرّف إلى الآخر.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "<b>bis</b> = حتى، والفعل في الآخر.",
     "C1 | Das Pferd muss sehr lieb sein.": "<b>müssen</b> = استنتاج شبه مؤكَّد.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
    },
@@ -2358,7 +2358,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "أغتسل بعد العمل.",
     "B1 | Wir setzen uns auf die Bank.": "نجلس على المقعد.",
     "B1 | Erinnerst du dich an den Bauernhof?": "هل تتذكّر المزرعة؟",
-    "B1 | Annas Cousin wäscht sich die Hände.": "ابن عمّ آنا يغسل يديه.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "ابن فيليكس يغسل يديه.",
     "B1 | Die Hühner bewegen sich schnell.": "الدجاج يتحرّك بسرعة.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "قبل أن تُطعم آنا الحصان، تغسل التفاح.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "بعد أن يُحضر عمّها القشّ، يُطعم الخنزير.",
@@ -2367,14 +2367,14 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "منذ أن بدأت آنا تعمل في المزرعة، تستيقظ باكراً.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "ينتظر الكلب حتى تناديه آنا.",
     "C1 | Das Pferd muss sehr lieb sein.": "لا بدّ أن الحصان لطيف جداً.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "ربما يكون الكلب لابن عمّ آنا.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "ربما يكون الكلب لابن فيليكس.",
     "C1 | Die Eier dürften von heute Morgen sein.": "على الأرجح البيض من هذا الصباح.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "يُقال إن عمر المزرعة يزيد على مئة سنة."
    }
   },
   "pt": {
    "champs": {
-    "alt": "Anna no pátio da fazenda do tio, numa manhã de outono: ela estende uma maçã ao cavalo por cima da cerca e ri; uma vaca está no prado, um porco está no chiqueiro, ovelhas na colina, um gato no muro baixo, um cachorro deitado no pátio; o tio carrega um fardo de palha, o priminho de chapéu de palha dá grãos a uma galinha; no chão, uma cesta de ovos, um caixote de maçãs, um latão de leite e galinhas; atrás, a casa de tijolos, o celeiro com a escada e a lenha, um poço e uma macieira.",
+    "alt": "Anna no pátio da fazenda do tio, numa manhã de outono: ela estende uma maçã ao cavalo por cima da cerca e ri; uma vaca está no prado, um porco está no chiqueiro, ovelhas na colina, um gato no muro baixo, um cachorro deitado no pátio; o tio carrega um fardo de palha, o filho de Felix, de chapéu de palha, dá grãos a uma galinha; no chão, uma cesta de ovos, um caixote de maçãs, um latão de leite e galinhas; atrás, a casa de tijolos, o celeiro com a escada e a lenha, um poço e uma macieira.",
     "consigne": "Anna passa a manhã na fazenda do tio, em Brandemburgo. Toque num objeto ou num animal."
    },
    "couches": {
@@ -2399,7 +2399,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "<b>sich waschen</b>: ich → <b>mich</b> (Akkusativ).",
     "B1 | Wir setzen uns auf die Bank.": "wir → <b>uns</b>.",
     "B1 | Erinnerst du dich an den Bauernhof?": "<b>sich erinnern an</b>: du → <b>dich</b>.",
-    "B1 | Annas Cousin wäscht sich die Hände.": "Com um complemento (die Hände), o pronome fica no Dativ — mas na 3ª pessoa é sempre <b>sich</b>.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "Com um complemento (die Hände), o pronome fica no Dativ — mas na 3ª pessoa é sempre <b>sich</b>.",
     "B1 | Die Hühner bewegen sich schnell.": "<b>sich bewegen</b>: sie (plural) → <b>sich</b>.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "<b>bevor</b> = antes que: a ação da oração subordinada vem depois.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "<b>nachdem</b> + Perfekt na subordinada quando a principal está no presente.",
@@ -2408,7 +2408,7 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "<b>seit</b> + subordinada: o verbo conjugado vai para o fim.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "<b>bis</b> = até que, verbo no fim.",
     "C1 | Das Pferd muss sehr lieb sein.": "<b>müssen</b> = dedução quase certa.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = uma possibilidade entre outras.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
    },
@@ -2427,7 +2427,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "Eu me lavo depois do trabalho.",
     "B1 | Wir setzen uns auf die Bank.": "Nós nos sentamos no banco.",
     "B1 | Erinnerst du dich an den Bauernhof?": "Você se lembra da fazenda?",
-    "B1 | Annas Cousin wäscht sich die Hände.": "O primo de Anna lava as mãos.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "O filho de Felix lava as mãos.",
     "B1 | Die Hühner bewegen sich schnell.": "As galinhas se mexem rápido.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Antes de dar de comer ao cavalo, Anna lava as maçãs.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "Depois de buscar a palha, o tio dela dá de comer ao porco.",
@@ -2436,14 +2436,14 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "Desde que Anna trabalha na fazenda, ela acorda cedo.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "O cachorro espera até Anna chamá-lo.",
     "C1 | Das Pferd muss sehr lieb sein.": "O cavalo deve ser muito manso.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "O cachorro talvez seja do primo de Anna.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "O cachorro talvez seja do filho de Felix.",
     "C1 | Die Eier dürften von heute Morgen sein.": "Os ovos provavelmente são desta manhã.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "Dizem que a fazenda tem mais de cem anos."
    }
   },
   "pl": {
    "champs": {
-    "alt": "Anna na podwórzu gospodarstwa swojego wujka jesiennym rankiem: podaje koniowi jabłko przez płot i śmieje się; krowa stoi na łące, świnia jest w zagrodzie, owce na wzgórzu, kot na murku, pies leży na podwórzu; wujek niesie belę słomy, mały kuzyn w słomkowym kapeluszu daje ziarno kurze; na ziemi kosz jajek, skrzynka jabłek, bańka na mleko i kury; z tyłu ceglany dom, stodoła z drabiną i drewnem, studnia i jabłoń.",
+    "alt": "Anna na podwórzu gospodarstwa swojego wujka jesiennym rankiem: podaje koniowi jabłko przez płot i śmieje się; krowa stoi na łące, świnia jest w zagrodzie, owce na wzgórzu, kot na murku, pies leży na podwórzu; wujek niesie belę słomy, syn Felixa w słomkowym kapeluszu daje ziarno kurze; na ziemi kosz jajek, skrzynka jabłek, bańka na mleko i kury; z tyłu ceglany dom, stodoła z drabiną i drewnem, studnia i jabłoń.",
     "consigne": "Anna spędza poranek w gospodarstwie swojego wujka w Brandenburgii. Dotknij przedmiotu albo zwierzęcia."
    },
    "couches": {
@@ -2468,7 +2468,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "<b>sich waschen</b>: ich → <b>mich</b> (Akkusativ).",
     "B1 | Wir setzen uns auf die Bank.": "wir → <b>uns</b>.",
     "B1 | Erinnerst du dich an den Bauernhof?": "<b>sich erinnern an</b>: du → <b>dich</b>.",
-    "B1 | Annas Cousin wäscht sich die Hände.": "Z dopełnieniem (die Hände) zaimek jest w Dativ — ale w 3. osobie to zawsze <b>sich</b>.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "Z dopełnieniem (die Hände) zaimek jest w Dativ — ale w 3. osobie to zawsze <b>sich</b>.",
     "B1 | Die Hühner bewegen sich schnell.": "<b>sich bewegen</b>: sie (liczba mnoga) → <b>sich</b>.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "<b>bevor</b> = zanim: czynność zdania podrzędnego następuje później.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "<b>nachdem</b> + Perfekt w zdaniu podrzędnym, gdy zdanie główne jest w czasie teraźniejszym.",
@@ -2477,7 +2477,7 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "<b>seit</b> + zdanie podrzędne: czasownik odmieniony idzie na koniec.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "<b>bis</b> = aż, czasownik na końcu.",
     "C1 | Das Pferd muss sehr lieb sein.": "<b>müssen</b> = prawie pewny wniosek.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = jedna z możliwości.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
    },
@@ -2496,7 +2496,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "Myję się po pracy.",
     "B1 | Wir setzen uns auf die Bank.": "Siadamy na ławce.",
     "B1 | Erinnerst du dich an den Bauernhof?": "Pamiętasz to gospodarstwo?",
-    "B1 | Annas Cousin wäscht sich die Hände.": "Kuzyn Anny myje ręce.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "Syn Felixa myje ręce.",
     "B1 | Die Hühner bewegen sich schnell.": "Kury szybko się ruszają.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Zanim Anna nakarmi konia, myje jabłka.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "Po przyniesieniu słomy jej wujek karmi świnię.",
@@ -2505,14 +2505,14 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "Odkąd Anna pracuje w gospodarstwie, wstaje wcześnie.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "Pies czeka, aż Anna go zawoła.",
     "C1 | Das Pferd muss sehr lieb sein.": "Koń musi być bardzo łagodny.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "Pies być może należy do kuzyna Anny.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "Pies być może należy do syna Felixa.",
     "C1 | Die Eier dürften von heute Morgen sein.": "Jajka są zapewne z dzisiejszego ranka.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "Podobno gospodarstwo ma ponad sto lat."
    }
   },
   "ru": {
    "champs": {
-    "alt": "Анна во дворе фермы своего дяди осенним утром: она протягивает лошади яблоко через ограду и смеётся; корова стоит на лугу, свинья в загоне, овцы на холме, кот на каменной стене, пёс лежит во дворе; дядя несёт тюк соломы, маленький двоюродный брат в соломенной шляпе даёт зерно курице; на земле корзина яиц, ящик яблок, бидон молока и куры; позади кирпичный дом, амбар с лестницей и дровами, колодец и яблоня.",
+    "alt": "Анна во дворе фермы своего дяди осенним утром: она протягивает лошади яблоко через ограду и смеётся; корова стоит на лугу, свинья в загоне, овцы на холме, кот на каменной стене, пёс лежит во дворе; дядя несёт тюк соломы, сын Феликса в соломенной шляпе даёт зерно курице; на земле корзина яиц, ящик яблок, бидон молока и куры; позади кирпичный дом, амбар с лестницей и дровами, колодец и яблоня.",
     "consigne": "Анна проводит утро на ферме своего дяди в Бранденбурге. Нажми на предмет или на животное."
    },
    "couches": {
@@ -2537,7 +2537,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "<b>sich waschen</b>: ich → <b>mich</b> (Akkusativ).",
     "B1 | Wir setzen uns auf die Bank.": "wir → <b>uns</b>.",
     "B1 | Erinnerst du dich an den Bauernhof?": "<b>sich erinnern an</b>: du → <b>dich</b>.",
-    "B1 | Annas Cousin wäscht sich die Hände.": "С дополнением (die Hände) местоимение стоит в Dativ — но в 3-м лице это всегда <b>sich</b>.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "С дополнением (die Hände) местоимение стоит в Dativ — но в 3-м лице это всегда <b>sich</b>.",
     "B1 | Die Hühner bewegen sich schnell.": "<b>sich bewegen</b>: sie (мн. число) → <b>sich</b>.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "<b>bevor</b> = прежде чем: действие придаточного происходит позже.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "<b>nachdem</b> + Perfekt в придаточном, если главное предложение в настоящем времени.",
@@ -2546,7 +2546,7 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "<b>seit</b> + придаточное: спрягаемый глагол уходит в конец.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "<b>bis</b> = пока не, глагол в конце.",
     "C1 | Das Pferd muss sehr lieb sein.": "<b>müssen</b> = почти уверенный вывод.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = одна возможность из нескольких.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = как говорят: слух, а не вывод."
    },
@@ -2565,7 +2565,7 @@ window.SCENE = {
     "B1 | Ich wasche mich nach der Arbeit.": "Я моюсь после работы.",
     "B1 | Wir setzen uns auf die Bank.": "Мы садимся на скамейку.",
     "B1 | Erinnerst du dich an den Bauernhof?": "Ты помнишь ферму?",
-    "B1 | Annas Cousin wäscht sich die Hände.": "Двоюродный брат Анны моет руки.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "Сын Феликса моет руки.",
     "B1 | Die Hühner bewegen sich schnell.": "Куры быстро двигаются.",
     "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Прежде чем покормить лошадь, Анна моет яблоки.",
     "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "Принеся солому, её дядя кормит свинью.",
@@ -2574,7 +2574,7 @@ window.SCENE = {
     "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "С тех пор как Анна работает на ферме, она рано встаёт.",
     "B2 | Der Hund wartet, bis Anna ihn ruft.": "Собака ждёт, пока Анна её позовёт.",
     "C1 | Das Pferd muss sehr lieb sein.": "Лошадь, должно быть, очень ласковая.",
-    "C1 | Der Hund könnte Annas Cousin gehören.": "Собака, возможно, принадлежит двоюродному брату Анны.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "Собака, возможно, принадлежит сыну Феликса.",
     "C1 | Die Eier dürften von heute Morgen sein.": "Яйца, вероятно, сегодняшние.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "Говорят, ферме больше ста лет."
    }

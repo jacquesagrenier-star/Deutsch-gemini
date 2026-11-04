@@ -1559,7 +1559,7 @@ window.SCENE = {
  ],
  "grosPlans": [],
  "titre": "En la granja",
- "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, son petit cousin au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
+ "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, le fils de Felix au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
  "consigne": "Anna passe la matinée à la ferme de son oncle, dans le Brandebourg. Touche un objet ou un animal.",
  "exclus": [],
  "couches": {
@@ -1732,7 +1732,7 @@ window.SCENE = {
      }
     },
     {
-     "q": "El primo de Anna ___ agacha para dar de comer a la gallina.",
+     "q": "El hijo de Felix ___ agacha para dar de comer a la gallina.",
      "c": [
       "se",
       "le",
@@ -1740,8 +1740,8 @@ window.SCENE = {
      ],
      "f": "cousin",
      "r": "huhn",
-     "phrase": "El primo de Anna se agacha para dar de comer a la gallina.",
-     "sens": "Le cousin d'Anna se baisse pour nourrir la poule.",
+     "phrase": "El hijo de Felix se agacha para dar de comer a la gallina.",
+     "sens": "Le fils de Felix se baisse pour nourrir la poule.",
      "n": "<b>agacharse</b> = s'accroupir ; él → <b>se</b>.",
      "revise": {
       "mot": "agacharse",
@@ -1932,7 +1932,7 @@ window.SCENE = {
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
-     "q": "Puede que el perro ___ del primo de Anna.",
+     "q": "Puede que el perro ___ del hijo de Felix.",
      "c": [
       "sea",
       "es",
@@ -1940,8 +1940,8 @@ window.SCENE = {
      ],
      "f": "hund",
      "r": "cousin",
-     "phrase": "Puede que el perro sea del primo de Anna.",
-     "sens": "Le chien est peut-être au cousin d'Anna.",
+     "phrase": "Puede que el perro sea del hijo de Felix.",
+     "sens": "Le chien est peut-être au fils de Felix.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1975,7 +1975,7 @@ window.SCENE = {
  "traductions": {
   "en": {
    "champs": {
-    "alt": "Anna in the yard of her uncle's farm on an autumn morning: she holds an apple out to the horse over the fence and laughs; a cow stands in the meadow, a pig is in its pen, sheep on the hill, a cat on the low wall, a dog lying in the yard; her uncle carries a bale of straw, her little cousin in a straw hat gives grain to a hen; on the ground, a basket of eggs, a crate of apples, a milk churn and hens; behind, the brick house, the barn with its ladder and firewood, a well and an apple tree.",
+    "alt": "Anna in the yard of her uncle's farm on an autumn morning: she holds an apple out to the horse over the fence and laughs; a cow stands in the meadow, a pig is in its pen, sheep on the hill, a cat on the low wall, a dog lying in the yard; her uncle carries a bale of straw, Felix's son in a straw hat gives grain to a hen; on the ground, a basket of eggs, a crate of apples, a milk churn and hens; behind, the brick house, the barn with its ladder and firewood, a well and an apple tree.",
     "consigne": "Anna is spending the morning at her uncle's farm in Brandenburg. Tap an object or an animal."
    },
    "couches": {
@@ -2000,7 +2000,7 @@ window.SCENE = {
     "B1 | El perro se tumba en el piso.": "<b>tumbarse</b> = to lie down; él → <b>se</b>.",
     "B1 | El perro se tumba en el suelo.": "<b>tumbarse</b> = to lie down; él → <b>se</b>.",
     "B1 | El gato se sienta en el muro.": "<b>sentarse</b> = to sit down; él → <b>se</b>.",
-    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "<b>agacharse</b> = to crouch down; él → <b>se</b>.",
+    "B1 | El hijo de Felix se agacha para dar de comer a la gallina.": "<b>agacharse</b> = to crouch down; él → <b>se</b>.",
     "B1 | Nosotros nos levantamos temprano en la granja.": "nosotros → <b>nos</b>.",
     "B1 | ¿Tú te lavas las manos después?": "tú → <b>te</b>, before the verb.",
     "B1 | Yo me pongo las botas.": "<b>ponerse</b> + clothing: yo → <b>me</b>.",
@@ -2012,7 +2012,7 @@ window.SCENE = {
     "B2 | ¿A ti te gustan los cerdos?": "a ti → <b>te</b>.",
     "B2 | Al tío de Anna le duele la espalda.": "<b>doler</b> works like gustar → <b>le</b> duele.",
     "C1 | El caballo debe de ser muy cariñoso.": "<b>deber de</b> + infinitive = a deduction.",
-    "C1 | Puede que el perro sea del primo de Anna.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
+    "C1 | Puede que el perro sea del hijo de Felix.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Serán de esta mañana.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que la granja tiene más de cien años.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
    },
@@ -2031,7 +2031,7 @@ window.SCENE = {
     "B1 | El perro se tumba en el piso.": "The dog lies down on the ground.",
     "B1 | El perro se tumba en el suelo.": "The dog lies down on the ground.",
     "B1 | El gato se sienta en el muro.": "The cat sits down on the wall.",
-    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "Anna's cousin bends down to feed the hen.",
+    "B1 | El hijo de Felix se agacha para dar de comer a la gallina.": "Felix's son bends down to feed the hen.",
     "B1 | Nosotros nos levantamos temprano en la granja.": "We get up early on the farm.",
     "B1 | ¿Tú te lavas las manos después?": "Do you wash your hands afterwards?",
     "B1 | Yo me pongo las botas.": "I put on my boots.",
@@ -2043,14 +2043,14 @@ window.SCENE = {
     "B2 | ¿A ti te gustan los cerdos?": "Do you like pigs?",
     "B2 | Al tío de Anna le duele la espalda.": "Anna's uncle has a sore back.",
     "C1 | El caballo debe de ser muy cariñoso.": "The horse must be very affectionate.",
-    "C1 | Puede que el perro sea del primo de Anna.": "The dog may belong to Anna's cousin.",
+    "C1 | Puede que el perro sea del hijo de Felix.": "The dog may belong to Felix's son.",
     "C1 | Serán de esta mañana.": "They are probably from this morning.",
     "C1 | Dicen que la granja tiene más de cien años.": "They say the farm is more than a hundred years old."
    }
   },
   "tr": {
    "champs": {
-    "alt": "Anna bir sonbahar sabahı amcasının çiftliğinin avlusunda: çitin üzerinden ata bir elma uzatıyor ve gülüyor; çayırda bir inek duruyor, bir domuz ağılında, tepede koyunlar, alçak duvarda bir kedi, avluda yatan bir köpek; amcası bir saman balyası taşıyor, hasır şapkalı küçük kuzeni bir tavuğa yem veriyor; yerde bir sepet yumurta, bir kasa elma, bir süt güğümü ve tavuklar; arkada tuğla ev, merdiveni ve odunlarıyla ahır, bir kuyu ve bir elma ağacı.",
+    "alt": "Anna bir sonbahar sabahı amcasının çiftliğinin avlusunda: çitin üzerinden ata bir elma uzatıyor ve gülüyor; çayırda bir inek duruyor, bir domuz ağılında, tepede koyunlar, alçak duvarda bir kedi, avluda yatan bir köpek; amcası bir saman balyası taşıyor, Felix'in hasır şapkalı oğlu bir tavuğa yem veriyor; yerde bir sepet yumurta, bir kasa elma, bir süt güğümü ve tavuklar; arkada tuğla ev, merdiveni ve odunlarıyla ahır, bir kuyu ve bir elma ağacı.",
     "consigne": "Anna sabahı Brandenburg'da amcasının çiftliğinde geçiriyor. Bir nesneye ya da bir hayvana dokun."
    },
    "couches": {
@@ -2061,7 +2061,7 @@ window.SCENE = {
   },
   "uk": {
    "champs": {
-    "alt": "Анна на подвір'ї ферми свого дядька осіннього ранку: вона простягає коневі яблуко через огорожу і сміється; корова стоїть на лузі, свиня в загоні, вівці на пагорбі, кіт на мурі, пес лежить на подвір'ї; дядько несе тюк соломи, малий двоюрідний брат у солом'яному капелюсі дає зерно курці; на землі кошик яєць, ящик яблук, бідон молока і кури; позаду цегляний будинок, клуня з драбиною і дровами, криниця та яблуня.",
+    "alt": "Анна на подвір'ї ферми свого дядька осіннього ранку: вона простягає коневі яблуко через огорожу і сміється; корова стоїть на лузі, свиня в загоні, вівці на пагорбі, кіт на мурі, пес лежить на подвір'ї; дядько несе тюк соломи, син Фелікса в солом'яному капелюсі дає зерно курці; на землі кошик яєць, ящик яблук, бідон молока і кури; позаду цегляний будинок, клуня з драбиною і дровами, криниця та яблуня.",
     "consigne": "Анна проводить ранок на фермі свого дядька в Бранденбурзі. Торкнися предмета або тварини."
    },
    "couches": {
@@ -2072,7 +2072,7 @@ window.SCENE = {
   },
   "fa": {
    "champs": {
-    "alt": "آنا در حیاط مزرعهٔ عمویش، در یک صبح پاییزی: از روی نرده سیبی به اسب می‌دهد و می‌خندد؛ گاوی در چمنزار ایستاده، خوکی در آغلش است، گوسفندها روی تپه، گربه‌ای روی دیوار کوتاه، سگی در حیاط دراز کشیده؛ عمویش بسته‌ای کاه می‌برد، پسرعموی کوچکش با کلاه حصیری به مرغی دانه می‌دهد؛ روی زمین، سبدی تخم‌مرغ، جعبه‌ای سیب، یک سطل شیر و چند مرغ؛ پشت، خانهٔ آجری، انبار با نردبان و هیزمش، یک چاه و یک درخت سیب.",
+    "alt": "آنا در حیاط مزرعهٔ عمویش، در یک صبح پاییزی: از روی نرده سیبی به اسب می‌دهد و می‌خندد؛ گاوی در چمنزار ایستاده، خوکی در آغلش است، گوسفندها روی تپه، گربه‌ای روی دیوار کوتاه، سگی در حیاط دراز کشیده؛ عمویش بسته‌ای کاه می‌برد، پسر فلیکس با کلاه حصیری به مرغی دانه می‌دهد؛ روی زمین، سبدی تخم‌مرغ، جعبه‌ای سیب، یک سطل شیر و چند مرغ؛ پشت، خانهٔ آجری، انبار با نردبان و هیزمش، یک چاه و یک درخت سیب.",
     "consigne": "آنا صبح را در مزرعهٔ عمویش در براندنبورگ می‌گذراند. روی یک شیء یا یک حیوان بزن."
    },
    "couches": {
@@ -2083,7 +2083,7 @@ window.SCENE = {
   },
   "ar": {
    "champs": {
-    "alt": "آنا في فناء مزرعة عمّها في صباح خريفي: تمدّ تفاحة للحصان فوق السياج وتضحك؛ بقرة تقف في المرج، وخنزير في حظيرته، وخراف على التلّ، وقطّ على الجدار المنخفض، وكلب مستلقٍ في الفناء؛ عمّها يحمل حزمة قشّ، وابن عمّها الصغير بقبّعة قشّ يعطي الحبوب لدجاجة؛ وعلى الأرض سلّة بيض وصندوق تفاح وإناء حليب ودجاجات؛ وفي الخلف البيت المبنيّ بالطوب والحظيرة بسلّمها وحطبها وبئر وشجرة تفاح.",
+    "alt": "آنا في فناء مزرعة عمّها في صباح خريفي: تمدّ تفاحة للحصان فوق السياج وتضحك؛ بقرة تقف في المرج، وخنزير في حظيرته، وخراف على التلّ، وقطّ على الجدار المنخفض، وكلب مستلقٍ في الفناء؛ عمّها يحمل حزمة قشّ، وابن فيليكس بقبّعة قشّ يعطي الحبوب لدجاجة؛ وعلى الأرض سلّة بيض وصندوق تفاح وإناء حليب ودجاجات؛ وفي الخلف البيت المبنيّ بالطوب والحظيرة بسلّمها وحطبها وبئر وشجرة تفاح.",
     "consigne": "آنا تقضي الصباح في مزرعة عمّها في براندنبورغ. المس شيئًا أو حيوانًا."
    },
    "couches": {
@@ -2108,7 +2108,7 @@ window.SCENE = {
     "B1 | El perro se tumba en el piso.": "<b>tumbarse</b> = يتمدّد؛ él → <b>se</b>.",
     "B1 | El perro se tumba en el suelo.": "<b>tumbarse</b> = يتمدّد؛ él → <b>se</b>.",
     "B1 | El gato se sienta en el muro.": "<b>sentarse</b> = يجلس؛ él → <b>se</b>.",
-    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "<b>agacharse</b> = ينحني، يجثو؛ él → <b>se</b>.",
+    "B1 | El hijo de Felix se agacha para dar de comer a la gallina.": "<b>agacharse</b> = ينحني، يجثو؛ él → <b>se</b>.",
     "B1 | Nosotros nos levantamos temprano en la granja.": "nosotros → <b>nos</b>.",
     "B1 | ¿Tú te lavas las manos después?": "tú → <b>te</b>، قبل الفعل.",
     "B1 | Yo me pongo las botas.": "<b>ponerse</b> + ثوب: yo → <b>me</b>.",
@@ -2120,7 +2120,7 @@ window.SCENE = {
     "B2 | ¿A ti te gustan los cerdos?": "a ti → <b>te</b>.",
     "B2 | Al tío de Anna le duele la espalda.": "<b>doler</b> يعمل مثل gustar → <b>le</b> duele.",
     "C1 | El caballo debe de ser muy cariñoso.": "<b>deber de</b> + مصدر = استنتاج.",
-    "C1 | Puede que el perro sea del primo de Anna.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Puede que el perro sea del hijo de Felix.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Serán de esta mañana.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que la granja tiene más de cien años.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
    },
@@ -2139,7 +2139,7 @@ window.SCENE = {
     "B1 | El perro se tumba en el piso.": "يستلقي الكلب على الأرض.",
     "B1 | El perro se tumba en el suelo.": "يستلقي الكلب على الأرض.",
     "B1 | El gato se sienta en el muro.": "تجلس القطة على الجدار.",
-    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "ينحني ابن عمّ آنا ليُطعم الدجاجة.",
+    "B1 | El hijo de Felix se agacha para dar de comer a la gallina.": "ينحني ابن فيليكس ليُطعم الدجاجة.",
     "B1 | Nosotros nos levantamos temprano en la granja.": "نحن نستيقظ باكراً في المزرعة.",
     "B1 | ¿Tú te lavas las manos después?": "هل تغسل يديك بعد ذلك؟",
     "B1 | Yo me pongo las botas.": "أنا أنتعل الجزمة.",
@@ -2151,14 +2151,14 @@ window.SCENE = {
     "B2 | ¿A ti te gustan los cerdos?": "هل تحبّ الخنازير؟",
     "B2 | Al tío de Anna le duele la espalda.": "عمّ آنا يؤلمه ظهره.",
     "C1 | El caballo debe de ser muy cariñoso.": "لا بدّ أن الحصان حنون جداً.",
-    "C1 | Puede que el perro sea del primo de Anna.": "ربما يكون الكلب لابن عمّ آنا.",
+    "C1 | Puede que el perro sea del hijo de Felix.": "ربما يكون الكلب لابن فيليكس.",
     "C1 | Serán de esta mañana.": "على الأرجح هي من هذا الصباح.",
     "C1 | Dicen que la granja tiene más de cien años.": "يُقال إن عمر المزرعة يزيد على مئة سنة."
    }
   },
   "pt": {
    "champs": {
-    "alt": "Anna no pátio da fazenda do tio, numa manhã de outono: ela estende uma maçã ao cavalo por cima da cerca e ri; uma vaca está no prado, um porco está no chiqueiro, ovelhas na colina, um gato no muro baixo, um cachorro deitado no pátio; o tio carrega um fardo de palha, o priminho de chapéu de palha dá grãos a uma galinha; no chão, uma cesta de ovos, um caixote de maçãs, um latão de leite e galinhas; atrás, a casa de tijolos, o celeiro com a escada e a lenha, um poço e uma macieira.",
+    "alt": "Anna no pátio da fazenda do tio, numa manhã de outono: ela estende uma maçã ao cavalo por cima da cerca e ri; uma vaca está no prado, um porco está no chiqueiro, ovelhas na colina, um gato no muro baixo, um cachorro deitado no pátio; o tio carrega um fardo de palha, o filho de Felix, de chapéu de palha, dá grãos a uma galinha; no chão, uma cesta de ovos, um caixote de maçãs, um latão de leite e galinhas; atrás, a casa de tijolos, o celeiro com a escada e a lenha, um poço e uma macieira.",
     "consigne": "Anna passa a manhã na fazenda do tio, em Brandemburgo. Toque num objeto ou num animal."
    },
    "couches": {
@@ -2183,7 +2183,7 @@ window.SCENE = {
     "B1 | El perro se tumba en el piso.": "<b>tumbarse</b> = deitar-se; él → <b>se</b>.",
     "B1 | El perro se tumba en el suelo.": "<b>tumbarse</b> = deitar-se; él → <b>se</b>.",
     "B1 | El gato se sienta en el muro.": "<b>sentarse</b> = sentar-se; él → <b>se</b>.",
-    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "<b>agacharse</b> = agachar-se; él → <b>se</b>.",
+    "B1 | El hijo de Felix se agacha para dar de comer a la gallina.": "<b>agacharse</b> = agachar-se; él → <b>se</b>.",
     "B1 | Nosotros nos levantamos temprano en la granja.": "nosotros → <b>nos</b>.",
     "B1 | ¿Tú te lavas las manos después?": "tú → <b>te</b>, antes do verbo.",
     "B1 | Yo me pongo las botas.": "<b>ponerse</b> + roupa: yo → <b>me</b>.",
@@ -2195,7 +2195,7 @@ window.SCENE = {
     "B2 | ¿A ti te gustan los cerdos?": "a ti → <b>te</b>.",
     "B2 | Al tío de Anna le duele la espalda.": "<b>doler</b> funciona como gustar → <b>le</b> duele.",
     "C1 | El caballo debe de ser muy cariñoso.": "<b>deber de</b> + infinitivo = uma dedução.",
-    "C1 | Puede que el perro sea del primo de Anna.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
+    "C1 | Puede que el perro sea del hijo de Felix.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Serán de esta mañana.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que la granja tiene más de cien años.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
    },
@@ -2214,7 +2214,7 @@ window.SCENE = {
     "B1 | El perro se tumba en el piso.": "O cachorro se deita no chão.",
     "B1 | El perro se tumba en el suelo.": "O cachorro se deita no chão.",
     "B1 | El gato se sienta en el muro.": "O gato se senta no muro.",
-    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "O primo de Anna se abaixa para dar de comer à galinha.",
+    "B1 | El hijo de Felix se agacha para dar de comer a la gallina.": "O filho de Felix se abaixa para dar de comer à galinha.",
     "B1 | Nosotros nos levantamos temprano en la granja.": "Nós nos levantamos cedo na fazenda.",
     "B1 | ¿Tú te lavas las manos después?": "Você lava as mãos depois?",
     "B1 | Yo me pongo las botas.": "Eu calço as botas.",
@@ -2226,14 +2226,14 @@ window.SCENE = {
     "B2 | ¿A ti te gustan los cerdos?": "Você gosta de porcos?",
     "B2 | Al tío de Anna le duele la espalda.": "O tio de Anna está com dor nas costas.",
     "C1 | El caballo debe de ser muy cariñoso.": "O cavalo deve ser muito carinhoso.",
-    "C1 | Puede que el perro sea del primo de Anna.": "Pode ser que o cachorro seja do primo de Anna.",
+    "C1 | Puede que el perro sea del hijo de Felix.": "Pode ser que o cachorro seja do filho de Felix.",
     "C1 | Serán de esta mañana.": "Devem ser desta manhã.",
     "C1 | Dicen que la granja tiene más de cien años.": "Dizem que a fazenda tem mais de cem anos."
    }
   },
   "pl": {
    "champs": {
-    "alt": "Anna na podwórzu gospodarstwa swojego wujka jesiennym rankiem: podaje koniowi jabłko przez płot i śmieje się; krowa stoi na łące, świnia jest w zagrodzie, owce na wzgórzu, kot na murku, pies leży na podwórzu; wujek niesie belę słomy, mały kuzyn w słomkowym kapeluszu daje ziarno kurze; na ziemi kosz jajek, skrzynka jabłek, bańka na mleko i kury; z tyłu ceglany dom, stodoła z drabiną i drewnem, studnia i jabłoń.",
+    "alt": "Anna na podwórzu gospodarstwa swojego wujka jesiennym rankiem: podaje koniowi jabłko przez płot i śmieje się; krowa stoi na łące, świnia jest w zagrodzie, owce na wzgórzu, kot na murku, pies leży na podwórzu; wujek niesie belę słomy, syn Felixa w słomkowym kapeluszu daje ziarno kurze; na ziemi kosz jajek, skrzynka jabłek, bańka na mleko i kury; z tyłu ceglany dom, stodoła z drabiną i drewnem, studnia i jabłoń.",
     "consigne": "Anna spędza poranek w gospodarstwie swojego wujka w Brandenburgii. Dotknij przedmiotu albo zwierzęcia."
    },
    "couches": {
@@ -2244,7 +2244,7 @@ window.SCENE = {
   },
   "ru": {
    "champs": {
-    "alt": "Анна во дворе фермы своего дяди осенним утром: она протягивает лошади яблоко через ограду и смеётся; корова стоит на лугу, свинья в загоне, овцы на холме, кот на каменной стене, пёс лежит во дворе; дядя несёт тюк соломы, маленький двоюродный брат в соломенной шляпе даёт зерно курице; на земле корзина яиц, ящик яблок, бидон молока и куры; позади кирпичный дом, амбар с лестницей и дровами, колодец и яблоня.",
+    "alt": "Анна во дворе фермы своего дяди осенним утром: она протягивает лошади яблоко через ограду и смеётся; корова стоит на лугу, свинья в загоне, овцы на холме, кот на каменной стене, пёс лежит во дворе; дядя несёт тюк соломы, сын Феликса в соломенной шляпе даёт зерно курице; на земле корзина яиц, ящик яблок, бидон молока и куры; позади кирпичный дом, амбар с лестницей и дровами, колодец и яблоня.",
     "consigne": "Анна проводит утро на ферме своего дяди в Бранденбурге. Нажми на предмет или на животное."
    },
    "couches": {
@@ -2255,7 +2255,7 @@ window.SCENE = {
   },
   "de": {
    "champs": {
-    "alt": "Anna im Hof des Bauernhofs ihres Onkels an einem Herbstmorgen: Sie reicht dem Pferd über den Zaun einen Apfel und lacht; eine Kuh steht auf der Wiese, ein Schwein in seinem Gehege, Schafe auf dem Hügel, eine Katze auf der Mauer, ein Hund liegt im Hof; ihr Onkel trägt ein Strohbündel, ihr kleiner Cousin mit Strohhut gibt einem Huhn Körner; am Boden ein Korb mit Eiern, eine Kiste Äpfel, eine Milchkanne und Hühner; dahinter das Backsteinhaus, die Scheune mit Leiter und Holz, ein Brunnen und ein Apfelbaum.",
+    "alt": "Anna im Hof des Bauernhofs ihres Onkels an einem Herbstmorgen: Sie reicht dem Pferd über den Zaun einen Apfel und lacht; eine Kuh steht auf der Wiese, ein Schwein in seinem Gehege, Schafe auf dem Hügel, eine Katze auf der Mauer, ein Hund liegt im Hof; ihr Onkel trägt ein Strohbündel, Felix' Sohn mit Strohhut gibt einem Huhn Körner; am Boden ein Korb mit Eiern, eine Kiste Äpfel, eine Milchkanne und Hühner; dahinter das Backsteinhaus, die Scheune mit Leiter und Holz, ein Brunnen und ein Apfelbaum.",
     "consigne": "Anna verbringt den Vormittag auf dem Bauernhof ihres Onkels in Brandenburg. Tippe auf einen Gegenstand oder ein Tier."
    },
    "couches": {
@@ -2280,7 +2280,7 @@ window.SCENE = {
     "B1 | El perro se tumba en el piso.": "<b>tumbarse</b> = sich hinlegen; él → <b>se</b>.",
     "B1 | El perro se tumba en el suelo.": "<b>tumbarse</b> = sich hinlegen; él → <b>se</b>.",
     "B1 | El gato se sienta en el muro.": "<b>sentarse</b> = sich setzen; él → <b>se</b>.",
-    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "<b>agacharse</b> = sich bücken; él → <b>se</b>.",
+    "B1 | El hijo de Felix se agacha para dar de comer a la gallina.": "<b>agacharse</b> = sich bücken; él → <b>se</b>.",
     "B1 | Nosotros nos levantamos temprano en la granja.": "nosotros → <b>nos</b>. Levantarse ist reflexiv, „aufstehen“ nicht.",
     "B1 | ¿Tú te lavas las manos después?": "tú → <b>te</b>, vor dem Verb.",
     "B1 | Yo me pongo las botas.": "<b>ponerse</b> + Kleidungsstück: yo → <b>me</b>. Statt „meine Stiefel“ steht der Artikel: las botas.",
@@ -2292,7 +2292,7 @@ window.SCENE = {
     "B2 | ¿A ti te gustan los cerdos?": "a ti → <b>te</b>.",
     "B2 | Al tío de Anna le duele la espalda.": "<b>doler</b> funktioniert wie gustar → <b>le</b> duele: ihm schmerzt der Rücken.",
     "C1 | El caballo debe de ser muy cariñoso.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
-    "C1 | Puede que el perro sea del primo de Anna.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Puede que el perro sea del hijo de Felix.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
     "C1 | Serán de esta mañana.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „sie werden wohl …“ im Deutschen.",
     "C1 | Dicen que la granja tiene más de cien años.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
    },
@@ -2311,7 +2311,7 @@ window.SCENE = {
     "B1 | El perro se tumba en el piso.": "Der Hund legt sich auf den Boden.",
     "B1 | El perro se tumba en el suelo.": "Der Hund legt sich auf den Boden.",
     "B1 | El gato se sienta en el muro.": "Die Katze setzt sich auf die Mauer.",
-    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "Annas Cousin bückt sich, um das Huhn zu füttern.",
+    "B1 | El hijo de Felix se agacha para dar de comer a la gallina.": "Felix' Sohn bückt sich, um das Huhn zu füttern.",
     "B1 | Nosotros nos levantamos temprano en la granja.": "Wir stehen auf dem Bauernhof früh auf.",
     "B1 | ¿Tú te lavas las manos después?": "Wäschst du dir danach die Hände?",
     "B1 | Yo me pongo las botas.": "Ich ziehe meine Stiefel an.",
@@ -2323,7 +2323,7 @@ window.SCENE = {
     "B2 | ¿A ti te gustan los cerdos?": "Magst du Schweine?",
     "B2 | Al tío de Anna le duele la espalda.": "Annas Onkel tut der Rücken weh.",
     "C1 | El caballo debe de ser muy cariñoso.": "Das Pferd muss sehr zutraulich sein.",
-    "C1 | Puede que el perro sea del primo de Anna.": "Vielleicht gehört der Hund Annas Cousin.",
+    "C1 | Puede que el perro sea del hijo de Felix.": "Vielleicht gehört der Hund Felix' Sohn.",
     "C1 | Serán de esta mañana.": "Sie werden wohl von heute Morgen sein.",
     "C1 | Dicen que la granja tiene más de cien años.": "Man sagt, der Bauernhof sei über hundert Jahre alt."
    }

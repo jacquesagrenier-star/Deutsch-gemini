@@ -1240,7 +1240,7 @@ window.SCENE = {
  ],
  "grosPlans": [],
  "titre": "On the farm",
- "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, son petit cousin au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
+ "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, le fils de Felix au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
  "consigne": "Anna passe la matinée à la ferme de son oncle, dans le Brandebourg. Touche un objet ou un animal.",
  "exclus": [],
  "couches": {
@@ -1598,7 +1598,7 @@ window.SCENE = {
  "traductions": {
   "es": {
    "champs": {
-    "alt": "Anna en el patio de la granja de su tío, una mañana de otoño: le da una manzana al caballo por encima de la cerca y se ríe; una vaca está en el prado, un cerdo en su corral, ovejas en la colina, un gato sobre el muro bajo, un perro echado en el patio; su tío carga un fardo de paja, su primito con sombrero de paja le da grano a una gallina; en el suelo, una cesta de huevos, una caja de manzanas, un bidón de leche y gallinas; detrás, la casa de ladrillo, el granero con su escalera y su leña, un pozo y un manzano.",
+    "alt": "Anna en el patio de la granja de su tío, una mañana de otoño: le da una manzana al caballo por encima de la cerca y se ríe; una vaca está en el prado, un cerdo en su corral, ovejas en la colina, un gato sobre el muro bajo, un perro echado en el patio; su tío carga un fardo de paja, el hijo de Felix con sombrero de paja le da grano a una gallina; en el suelo, una cesta de huevos, una caja de manzanas, un bidón de leche y gallinas; detrás, la casa de ladrillo, el granero con su escalera y su leña, un pozo y un manzano.",
     "consigne": "Anna pasa la mañana en la granja de su tío, en el campo. Toca un objeto o un animal."
    },
    "couches": {

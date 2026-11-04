@@ -1177,7 +1177,7 @@ window.SCENE = {
  ],
  "grosPlans": [],
  "titre": "Na quinta",
- "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, son petit cousin au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
+ "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, le fils de Felix au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
  "consigne": "Anna passe la matinée à la ferme de son oncle, dans le Brandebourg. Touche un objet ou un animal.",
  "exclus": [],
  "couches": {
