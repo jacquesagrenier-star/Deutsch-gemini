@@ -100,9 +100,25 @@ section.image{margin-top:30px; padding-top:18px; border-top:2px solid var(--trai
 .verre::after{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; padding:1.6px;
   background:linear-gradient(140deg, #fff 0%, rgba(255,255,255,.55) 22%, rgba(255,255,255,.06) 48%, rgba(255,255,255,.25) 74%, rgba(255,255,255,.95) 100%);
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude}
+@property --top{syntax:"<color>"; inherits:false; initial-value:transparent}
+@property --bot{syntax:"<color>"; inherits:false; initial-value:transparent}
+.verre{transition:color .35s ease, text-shadow .35s ease, --top .35s ease, --bot .35s ease}
 .verre.ombre{text-shadow:0 1px 2px rgba(0,0,0,.45)}
-.verre svg{fill:var(--ink)}
+.verre.lueur{text-shadow:0 0 3px rgba(255,255,255,.55)}
+.verre svg{fill:currentColor}
 .verre.ombre svg{filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.45))}
+
+/* La démonstration : l'image défile, les boutons restent en place (comme une page de thème) */
+.demo{display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start}
+.ecran{position:relative; width:320px; max-width:100%; height:540px; flex:0 0 auto; border-radius:30px; overflow:hidden; background:#888;
+  box-shadow:0 0 0 1px var(--trait), 0 14px 30px -18px rgba(0,0,0,.45)}
+.defile{position:absolute; inset:0; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; scrollbar-width:none}
+.defile::-webkit-scrollbar{display:none}
+.defile img{display:block; width:320px; height:auto; max-width:none}
+.ecran .rd{position:absolute; top:12px; left:16px; display:flex; gap:8px}
+.ecran .pill{top:auto; bottom:12px; left:16px; right:16px}
+.lecture{display:flex; flex-direction:column; gap:8px; flex:1 1 220px; min-width:0}
+.lecture .ligne{display:flex; flex-wrap:wrap; gap:6px; align-items:center; font-size:13px; color:var(--gris)}
 
 /* L'actuel : le vert des scènes et des thèmes (« .suite »), le rond blanc de « ‹ » */
 .pill.actuel{color:#fff; background:linear-gradient(180deg, var(--top), var(--bot));
@@ -111,7 +127,7 @@ section.image{margin-top:30px; padding-top:18px; border-top:2px solid var(--trai
   background:linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,.08) 40%, rgba(255,255,255,0) 52%)}
 .rond.actuel{color:var(--ink); background:var(--top); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
   box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.9), 0 4px 12px rgba(20,40,60,.10)}
-.rond.actuel svg{fill:var(--ink)}
+.rond.actuel svg{fill:currentColor}
 
 .choix-fin{margin-top:34px; padding:16px; border-radius:18px; background:var(--carte); border:1px solid var(--trait)}
 .choix-fin p:last-child{margin-bottom:0}
@@ -142,6 +158,10 @@ section.image{margin-top:30px; padding-top:18px; border-top:2px solid var(--trai
   <p class="petit">Le pire cas des trois images, sur la zone la plus claire et sur la plus chargée. Seuils WCAG, ceux de <code>tests/audit-contraste.js</code> : 4,5 : 1 pour le texte du bouton (17 px), 3 : 1 pour les ronds (le chevron de 27 px et le haut-parleur).</p>
   <div class="resume"><table id="resume"></table></div>
 
+  <h3>Quand le fond change sous le bouton</h3>
+  <p class="petit">Fais défiler l'image du doigt : la boulangerie, puis Carmen sur son fond de studio, puis la ferme. Les boutons restent en place, comme sur une page de thème. Avec le verre adaptatif, le texte passe du blanc au foncé quand le fond s'éclaircit, en douceur. Il ne change que si l'autre couleur se lit nettement mieux (20 % de contraste en plus), pour ne pas clignoter quand une limite de l'image passe sous le bouton.</p>
+  <div id="demo"></div>
+
   <div id="images"></div>
 
   <div class="choix-fin">
@@ -162,7 +182,9 @@ const DENS = [
   {id:"actuel", nom:"L'actuel", detail:"Continuer vert à 94-96 %, sans flou ; le rond « ‹ » blanc à 60 %."},
   {id:"clair", nom:"Verre clair", detail:"Teinte 18 %, flou 6 px, saturation 1,6. Texte blanc."},
   {id:"givre", nom:"Verre givré", detail:"Teinte 40-46 %, flou 18 px. Texte foncé le jour, blanc la nuit."},
-  {id:"teinte", nom:"Verre teinté", detail:"Teinte 64-72 %, flou 12 px. Plus transparent que l'actuel."}
+  {id:"teinte", nom:"Verre teinté", detail:"Teinte 64-72 %, flou 12 px. Plus transparent que l'actuel."},
+  {id:"adapt", nom:"Clair adaptatif", detail:"Voile de 9 %, flou 6 px. Le texte passe au foncé ou au blanc selon l'image, et le voile ne s'épaissit que là où c'est nécessaire pour lire (jusqu'à 60 %)."},
+  {id:"vert", nom:"Vert adaptatif", detail:"Ton idée : Continuer en verre vert, texte blanc, voile de 35 % qui ne se densifie que si c'est nécessaire ; les ronds en clair adaptatif."}
 ];
 const BLANC = [255,255,255], FONCE = [28,36,48], CLAIR_NUIT = [243,245,248];
 const TEINTES = {
@@ -182,6 +204,10 @@ function verre(d, mode, teinte){
   if (d === "givre") g = nuit ? {top:[18,26,36,.40], bot:[18,26,36,.46], ink:CLAIR_NUIT} : {top:[255,255,255,.40], bot:[255,255,255,.46], ink:FONCE},
                      g = Object.assign(g, {flou:18, sat:1.4});
   if (d === "teinte"){ const c = teinte === "auto" ? (nuit ? "ambre" : "noir") : teinte; g = Object.assign({}, TEINTES[c], {flou:12, sat:1.4}); }
+  if (d === "adapt" || d === "vert") g = {top:[255,255,255,.09], bot:[255,255,255,.09], flou:6, sat:1.6, ink:BLANC, ombre:true,
+                     adapt:true, palette:{f:VOILE_CLAIR, w:VOILE_SOMBRE}, min:AD_MIN, max:AD_MAX};
+  if (d === "vert") return {rond:g, pill:{top:VERT.concat([.35]), bot:VERT.concat([.35]), flou:10, sat:1.4, ink:BLANC, ombre:true,
+                     adapt:true, palette:{w:VERT}, min:.35, max:.90}};
   if (d === "propose"){ const p = verre("givre", mode, teinte).pill, r = verre("clair", mode, teinte).rond; return {pill:p, rond:r}; }
   return {pill:g, rond:g};
 }
@@ -214,7 +240,28 @@ function zones(D){
   const chargee = (loin.length ? loin : res).reduce((a,b) => b.e > a.e ? b : a);
   return {claire: claire.y, chargee: chargee.y};
 }
+/* Le fond flouté et saturé sous une bande, gardé en mémoire : le verre adaptatif essaie plusieurs teintes sur le même fond. */
+const CACHE = new Map();
+function fond(D, bande, flou, sat){
+  const k = D.cle + "|" + bande.x + "," + bande.y + "," + bande.w + "," + bande.h + "|" + flou + "|" + sat;
+  if (CACHE.has(k)) return CACHE.get(k);
+  if (CACHE.size > 600) CACHE.clear();
+  const g = {flou, sat, top:[0,0,0,0], bot:[0,0,0,0]};
+  const F = flouter(D, bande, g);
+  CACHE.set(k, F); return F;
+}
+function contraste(F, tc, al, ink){
+  const li = lum(ink[0], ink[1], ink[2]), vals = new Float32Array(F.length / 3);
+  for (let i = 0, j = 0; i < F.length; i += 3, j++)
+    vals[j] = ratio(li, lum(al*tc[0] + (1-al)*F[i], al*tc[1] + (1-al)*F[i+1], al*tc[2] + (1-al)*F[i+2]));
+  vals.sort();
+  return vals[Math.floor(vals.length * 0.05)];
+}
 function mesurer(D, bande, g, ink){
+  const t = [0,1,2,3].map(k => (g.top[k] + g.bot[k]) / 2);
+  return contraste(fond(D, bande, g.flou, g.sat), t, t[3], ink);
+}
+function flouter(D, bande, g){
   const R = Math.round(g.flou * 1.73);
   const x0 = Math.max(0, bande.x - R), x1 = Math.min(D.w, bande.x + bande.w + R);
   const y0 = Math.max(0, bande.y - R), y1 = Math.min(D.h, bande.y + bande.h + R);
@@ -237,8 +284,7 @@ function mesurer(D, bande, g, ink){
       const j = (y*bw + x)*3; a[j] = r/n; a[j+1] = gg/n; a[j+2] = bb/n;
     }
   }
-  const s = g.sat, t = [0,1,2,3].map(k => (g.top[k] + g.bot[k]) / 2), al = t[3];
-  const li = lum(ink[0], ink[1], ink[2]), vals = [];
+  const s = g.sat, out = new Float32Array(bande.w * bande.h * 3); let o = 0;
   for (let y = bande.y; y < bande.y + bande.h; y++) for (let x = bande.x; x < bande.x + bande.w; x++){
     const j = ((y - y0) * bw + x - x0) * 3; let r = a[j], gg = a[j+1], bb = a[j+2];
     if (s !== 1){
@@ -247,18 +293,52 @@ function mesurer(D, bande, g, ink){
       const b2 = (0.213-0.213*s)*r + (0.715-0.715*s)*gg + (0.072+0.928*s)*bb;
       r = Math.min(255, Math.max(0, r2)); gg = Math.min(255, Math.max(0, g2)); bb = Math.min(255, Math.max(0, b2));
     }
-    r = al*t[0] + (1-al)*r; gg = al*t[1] + (1-al)*gg; bb = al*t[2] + (1-al)*bb;
-    vals.push(ratio(li, lum(r, gg, bb)));
+    out[o++] = r; out[o++] = gg; out[o++] = bb;
   }
-  vals.sort((p,q) => p - q);
-  return vals[Math.floor(vals.length * 0.05)];
+  return out;
 }
 /* Le texte du bouton occupe le milieu de la pilule ; le chevron et le haut-parleur, le centre des ronds. */
+const bandePill = top => ({x: 16 + Math.round(288*.3), y: top + 17, w: Math.round(288*.4), h: 20});
+const bandesRonds = top => [{x: 27, y: top + 11, w: 18, h: 18}, {x: 75, y: top + 11, w: 18, h: 18}];
+const pire = (D, bandes, g, ink) => Math.min(...bandes.map(b => mesurer(D, b, g, ink)));
+/* LE VERRE ADAPTATIF. Il part à 9 % de teinte et ne s'épaissit que si le texte ne se lit pas
+   (jusqu'à 60 %) : un voile blanc sous un texte foncé, un voile sombre sous un texte blanc.
+   Il prend la couleur de texte qui demande le moins de voile, et ne change de couleur que si
+   l'autre en demande nettement moins (10 points), pour ne pas clignoter. */
+const AD_MIN = .09, AD_MAX = .60, AD_PAS = .03, VOILE_CLAIR = [255,255,255], VOILE_SOMBRE = [18,26,36], VERT = [30,112,72];
+function besoin(D, bandes, g, choix, seuil){
+  const ink = choix === "f" ? FONCE : BLANC, tc = g.palette[choix];
+  const Fs = bandes.map(b => fond(D, b, g.flou, g.sat));
+  let dernier = null;
+  for (let a = g.min; a <= g.max + 1e-6; a += AD_PAS){
+    const c = Math.min(...Fs.map(F => contraste(F, tc, a, ink)));
+    if (c >= seuil) return {a, ok:true};
+    dernier = {a, c, ok:false};
+  }
+  return dernier;
+}
+function adapter(D, bandes, g, seuil, actuelle){
+  const x = {}; Object.keys(g.palette).forEach(k => x[k] = besoin(D, bandes, g, k, seuil));
+  const note = r => r.ok ? r.a : 1 + (seuil - r.c);
+  let choix = Object.keys(x).reduce((a, b) => note(x[b]) < note(x[a]) ? b : a);
+  if (actuelle && x[actuelle] && actuelle !== choix && note(x[actuelle]) - note(x[choix]) < .10) choix = actuelle;
+  return {choix, a: x[choix].a};
+}
+function avecEncre(g, x){
+  const tc = g.palette[x.choix];
+  return Object.assign({}, g, {ink: x.choix === "f" ? FONCE : BLANC, ombre: x.choix === "w", lueur: x.choix === "f",
+    top: tc.concat([x.a]), bot: tc.concat([x.a]), voile: x.a});
+}
+function resoudre(D, topRonds, topPill, v, memo){
+  if (!v.pill.adapt) return v;
+  const p = adapter(D, [bandePill(topPill)], v.pill, 4.5, memo && memo.p);
+  const r = adapter(D, bandesRonds(topRonds), v.rond, 3, memo && memo.r);
+  return {pill: avecEncre(v.pill, p), rond: avecEncre(v.rond, r), memo: {p: p.choix, r: r.choix}};
+}
+const pct = a => Math.round(a * 100) + " %";
 function mesureGroupe(D, y, v){
-  const pill = mesurer(D, {x: 16 + Math.round(288*.3), y: y + PY + 17, w: Math.round(288*.4), h: 20}, v.pill, v.pill.ink);
-  const r1 = mesurer(D, {x: 16 + 11, y: y + 11, w: 18, h: 18}, v.rond, v.rond.ink);
-  const r2 = mesurer(D, {x: 64 + 11, y: y + 11, w: 18, h: 18}, v.rond, v.rond.ink);
-  return {pill, rond: Math.min(r1, r2)};
+  v = resoudre(D, y, y + PY, v);
+  return {pill: pire(D, [bandePill(y + PY)], v.pill, v.pill.ink), rond: pire(D, bandesRonds(y), v.rond, v.rond.ink), v};
 }
 const fmt = n => n.toFixed(1).replace(".", ",") + " : 1";
 function etat(n, seuil){
@@ -273,8 +353,9 @@ const HP = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.2h3.4L12 5
 function style(g){
   return `--top:${rgba(g.top)};--bot:${rgba(g.bot)};--flou:${g.flou}px;--sat:${g.sat};--ink:${rgba(g.ink)};color:${rgba(g.ink)}`;
 }
+const classe = g => g.actuel ? "actuel" : ("verre" + (g.ombre ? " ombre" : "") + (g.lueur ? " lueur" : ""));
 function boutons(v, texte, top){
-  const cl = g => g.actuel ? "actuel" : ("verre" + (g.ombre ? " ombre" : ""));
+  const cl = classe;
   return `<div class="btns" style="top:${top}px">
     <div class="ronds">
       <div class="rond ${cl(v.rond)}" style="${style(v.rond)}"><span class="chev">‹</span></div>
@@ -308,17 +389,18 @@ function seg(id, options, actif){
 }
 function section(im){
   const D = DONNEES[im.id]; if (!D) return "";
-  const z = E.zone[im.id] || "claire", d = E.dens[im.id] || "propose", y = D.zones[z];
-  const grand = verre(d, E.mode, E.teinte);
+  const z = E.zone[im.id] || "claire", d = E.dens[im.id] || "vert", y = D.zones[z];
+  const grand = resoudre(D, y, y + PY, verre(d, E.mode, E.teinte));
   const bandes = DENS.map(dd => {
-    const v = verre(dd.id, E.mode, E.teinte), m = mesureGroupe(D, y, v);
+    const m = mesureGroupe(D, y, verre(dd.id, E.mode, E.teinte)), v = m.v;
     let encres = "";
     if (dd.id === "clair" || dd.id === "givre"){
       const autre = lum(v.pill.ink[0], v.pill.ink[1], v.pill.ink[2]) > .5 ? FONCE : BLANC;
       const nomAutre = autre === BLANC ? "en blanc" : "en foncé";
-      const m2 = mesurer(D, {x: 16 + Math.round(288*.3), y: y + PY + 17, w: Math.round(288*.4), h: 20}, v.pill, autre);
+      const m2 = mesurer(D, bandePill(y + PY), v.pill, autre);
       encres = `<div class="encres">Le même verre avec le texte ${nomAutre} : ${fmt(m2)}</div>`;
     }
+    if (dd.id === "adapt") encres = `<div class="encres">Ici : bouton en texte ${v.pill.ink === FONCE ? "foncé" : "blanc"}, voile ${pct(v.pill.voile)} ; ronds en ${v.rond.ink === FONCE ? "foncé" : "blanc"}, voile ${pct(v.rond.voile)}.</div>`;
     return `<div class="bande-bloc">
       <div class="bande"><img src="${im.src}" alt="" style="top:${14 - y}px">${boutons(v, im.bouton, 14)}</div>
       <div class="nom"><b>${dd.nom}</b><span>flou ${v.pill.flou} px</span></div>
@@ -333,24 +415,68 @@ function section(im){
         <div class="groupe-ctl">Où poser les boutons</div>
         ${seg("z-" + im.id, [["claire","Zone la plus claire"],["chargee","Zone la plus chargée"]], z)}
         <div class="groupe-ctl">Le verre</div>
-        ${seg("d-" + im.id, [["actuel","L'actuel"],["clair","Clair"],["givre","Givré"],["teinte","Teinté"],["propose","Proposé"]], d)}
+        ${seg("d-" + im.id, [["actuel","L'actuel"],["clair","Clair"],["givre","Givré"],["teinte","Teinté"],["adapt","Adaptatif"],["vert","Vert"],["propose","Proposé"]], d)}
         <p class="petit">« Proposé » : la combinaison du chef, givré pour ${im.bouton}, clair pour les ronds.</p>
       </div>
     </div>
-    <h3>Les quatre verres côte à côte, même zone</h3>
+    <h3>Les verres côte à côte, même zone</h3>
     <div class="bandes">${bandes}</div>
   </section>`;
 }
+/* ---------- la démonstration : les trois images l'une sous l'autre, qu'on fait défiler ---------- */
+const PILE_IDS = ["baeckerei", "carmen", "bauernhof"], HE = 540, TOP_R = 12, TOP_P = HE - 12 - PH;
+const ED = {dens:"vert", memo:null, raf:0};
+let PILE = null;
+function pile(){
+  const ims = PILE_IDS.map(id => DONNEES[id]);
+  if (ims.some(D => !D)) return null;
+  const h = ims.reduce((s, D) => s + D.h, 0), c = document.createElement("canvas"); c.width = W; c.height = h;
+  const x = c.getContext("2d", {willReadFrequently:true}); let y = 0;
+  ims.forEach(D => { x.drawImage(D.img, 0, y, W, D.h); y += D.h; });
+  return {w:W, h, px:x.getImageData(0, 0, W, h).data};
+}
+function demo(){
+  const el = document.getElementById("demo"); if (!PILE){ el.innerHTML = ""; return; }
+  const ancien = el.querySelector(".defile"), s = ancien ? ancien.scrollTop : 0;
+  const imgs = PILE_IDS.map(id => `<img src="${IMAGES.find(i => i.id === id).src}" alt="">`).join("");
+  el.innerHTML = `<div class="demo"><div class="ecran"><div class="defile">${imgs}</div>
+      <div class="rd"><div class="rond" id="dR1"><span class="chev">‹</span></div><div class="rond" id="dR2">${HP}</div></div>
+      <div class="pill" id="dP">Continuer</div></div>
+    <div class="lecture"><div class="groupe-ctl">Le verre</div>
+      ${seg("demoDens", [["actuel","L'actuel"],["clair","Clair"],["givre","Givré"],["teinte","Teinté"],["adapt","Adaptatif"],["vert","Vert"]], ED.dens)}
+      <div class="ligne">Bouton <span id="dmP"></span></div><div class="ligne">Ronds <span id="dmR"></span></div>
+      <p class="petit" id="dmT"></p></div></div>`;
+  const d = el.querySelector(".defile"); d.scrollTop = s;
+  d.addEventListener("scroll", () => { if (!ED.raf) ED.raf = requestAnimationFrame(() => { ED.raf = 0; majDemo(); }); }, {passive:true});
+  ED.memo = null; majDemo();
+}
+function poser(el, g){ el.className = el.className.split(" ")[0] + " " + classe(g); el.setAttribute("style", style(g)); }
+function majDemo(){
+  const d = document.querySelector("#demo .defile"); if (!d || !PILE) return;
+  const s = Math.max(0, Math.min(d.scrollTop, PILE.h - HE));
+  const v = resoudre(PILE, s + TOP_R, s + TOP_P, verre(ED.dens, E.mode, E.teinte), ED.memo);
+  if (v.memo) ED.memo = v.memo;
+  poser(document.getElementById("dR1"), v.rond); poser(document.getElementById("dR2"), v.rond); poser(document.getElementById("dP"), v.pill);
+  document.getElementById("dmP").innerHTML = etat(pire(PILE, [bandePill(s + TOP_P)], v.pill, v.pill.ink), 4.5);
+  document.getElementById("dmR").innerHTML = etat(pire(PILE, bandesRonds(s + TOP_R), v.rond, v.rond.ink), 3);
+  const nom = g => g.ink === FONCE ? "foncé" : "blanc";
+  document.getElementById("dmT").textContent = v.pill.adapt
+    ? `En ce moment : bouton en texte ${nom(v.pill)}, voile ${pct(v.pill.voile)} ; ronds en ${nom(v.rond)}, voile ${pct(v.rond.voile)}. Les chiffres suivent l'image pendant qu'elle défile.`
+    : "Ce verre garde toujours la même couleur de texte : le chiffre montre ce que ça donne pendant que l'image défile.";
+}
+
 function tout(){
   document.documentElement.setAttribute("data-theme", E.mode === "nuit" ? "dark" : "light");
   document.querySelectorAll("#ctlMode button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === E.mode));
   document.querySelectorAll("#ctlTeinte button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === E.teinte));
   resume();
   document.getElementById("images").innerHTML = IMAGES.map(section).join("");
+  demo();
 }
 document.addEventListener("click", e => {
   const b = e.target.closest(".seg button"); if (!b) return;
   const id = b.parentElement.id, v = b.dataset.v;
+  if (id === "demoDens"){ ED.dens = v; demo(); return; }
   if (id === "ctlMode") E.mode = v;
   else if (id === "ctlTeinte") E.teinte = v;
   else if (id.startsWith("z-")) E.zone[id.slice(2)] = v;
@@ -359,7 +485,7 @@ document.addEventListener("click", e => {
 });
 legende();
 Promise.all(IMAGES.map(im => new Promise(ok => {
-  const i = new Image(); i.onload = () => { const D = lirePixels(i); D.zones = zones(D); DONNEES[im.id] = D; ok(); }; i.onerror = ok; i.src = im.src;
-}))).then(tout);
+  const i = new Image(); i.onload = () => { const D = lirePixels(i); D.zones = zones(D); D.img = i; DONNEES[im.id] = D; ok(); }; i.onerror = ok; i.src = im.src;
+}))).then(() => { PILE = pile(); tout(); });
 tout();
 </script>
