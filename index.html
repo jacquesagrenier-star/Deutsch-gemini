@@ -8661,6 +8661,13 @@ body[data-theme="dark"] .spf-piste{opacity:1; background:none;}
 body[data-theme="dark"] .spf-piste::before{content:""; position:absolute; inset:0; opacity:.32;
     background:url("visuel/fond/carte-filigrane.svg") repeat-x 0 0 / 960px 378px;}
 body[data-theme="dark"] .spf-pays{opacity:.85;}
+/* v1109 : LE PAYS MOINS EN EVIDENCE SUR LA SEANCE (Jacques, 4 nov. 2026 : « le vert il n'est pas teinte par le orange
+   lorsqu'il passe sur l'orange [...] on dirait qu'il est en avant-plan », puis « j'ai aime [...] pour que le pays [...]
+   soit un peu moins en evidence »). Dans la copie de la carte, les continents sont blancs a 32 % ; le pays y etait en
+   turquoise plein et semblait colle par-dessus l'ambre. A 45 % (40 % la nuit), il se fond dans la pilule comme le
+   reste. La grande carte du fond (.fm-pays) ne change pas. Avant / apres : .claude/maquette-choix-verre.html. */
+#home #seancePilule .spf-pays{opacity:.45;}
+body[data-theme="dark"] #home #seancePilule .spf-pays{opacity:.4;}
 /* La seance laisse voir la carte : le centre de l'anneau s'ouvre, sans voile (« Sans voile blanc sur [...] la
    progression ») ; la rangee des niveaux garde un verre blanc leger. L'anneau passe donc dans le ::before, decoupe
    en couronne par un masque : sur .pa-anneau, le masque couperait aussi le chiffre. */
