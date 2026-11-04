@@ -463,7 +463,10 @@ def depense():
     chemin = os.path.join(DOSSIER, "depenses.log")
     if not os.path.exists(chemin):
         return 0.0
-    return sum(float(l.split("\t")[3]) for l in io.open(chemin, encoding="utf-8") if l.count("\t") >= 3 and l.split("\t")[3].replace(".", "").isdigit())
+    # le montant est le dernier champ : sans rstrip(), « 0.15\n » n'etait jamais compte et la garde du plafond ne
+    # voyait aucune depense passee (vecu le 3 nov. 2026, sans depassement : 2,10 $ pour 2,50 $)
+    champs = [l.rstrip("\r\n").split("\t") for l in io.open(chemin, encoding="utf-8")]
+    return sum(float(c[3]) for c in champs if len(c) >= 4 and c[3].replace(".", "", 1).isdigit())
 
 
 def payer(noms, refaire):
