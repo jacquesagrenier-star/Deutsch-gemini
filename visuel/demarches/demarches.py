@@ -19,9 +19,11 @@ LES DEUX MONDES. Les images sont les memes, sans texte ; les phrases sont ecrite
     des documents du DTZ ; les textes du DTZ y mettent aussi la Hausverwaltung Kern et la Praxis Dr. Yilmaz) ;
   - en espagnol, le Mark de la serie « Mark en Madrid » (mexicain) : l'empadronamiento, la cita, el banco, la consulta.
 Mark a 25 ans en novembre 2026 (la presentation de l'oral du DTZ) : ne le 14 mars 2001. Ni compagne ni enfant : ledig.
-Sa mere est allemande (personnages.json) : il n'a donc pas besoin d'un permis de sejour en Allemagne. Le permis de
-sejour n'apparait qu'en avis general (« Was braucht man fuer die Aufenthaltserlaubnis? », sans Mark) ; question posee
-a Jacques par le chef.
+Sa mere est allemande (personnages.json), mais elle est devenue canadienne avant sa naissance : avec la regle d'avant
+2024, elle a perdu la nationalite allemande et ne l'a pas transmise. Mark n'est PAS allemand, il a besoin d'un titre
+de sejour et peut suivre un cours d'integration (decision de Jacques du 4 nov., decisions/DECISIONS.md). Le permis de
+sejour figure pour l'instant en avis (« Was braucht man fuer die Aufenthaltserlaubnis? ») ; en espagnol, Mark est
+mexicain a Madrid : le permiso de residencia vaut pour lui aussi.
 
 LES PHRASES SONT FABRIQUEES par la page (demarches.html) a partir de ces tables, jamais ecrites une a une : chaque
 demarche a ses morceaux (le verbe du corpus, l'objet, le lieu) et ses traductions-gabarits ({L} = le lieu). Un leurre
