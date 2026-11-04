@@ -57,6 +57,7 @@ window.PROFIL_EXAMEN = {
   titre: "Le telc A2·B1 avec Mark et Anna",
   intro: "Au telc Deutsch A2·B1, on commence par lire, puis viennent les Sprachbausteine, les courriels, l'écoute et l'oral à deux, sans image. Anna et moi, on t'aide à le préparer, partie par partie.",
   sur: 240,
+  seriesExamen: 0,   // pas encore d'examen blanc : toutes les series servent a l'entrainement
   niveau: points => points >= 168 ? "b1" : points >= 96 ? "a2" : "moins",
   tuiles: [
     {id: "L", titre: "Lire", sous: "Lesen"},
@@ -71,7 +72,7 @@ window.PROFIL_EXAMEN = {
 </script>
 <script src="../themes/tirage.js?v=1"></script>
 <script src="../dtz/commun.js?v=2"></script>
-<script src="sprachbausteine.js?v=1"></script>
+<script src="sprachbausteine.js?v=2"></script>
 <script>
 // Ouverte sur une partie (?partie=SB, depuis le panneau du bloc telc de l'app) : directement la partie ; sinon
 // l'accueil, comme la page du DTZ.

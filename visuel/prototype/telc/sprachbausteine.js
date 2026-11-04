@@ -50,17 +50,11 @@ DTZ.charger(fetch("donnees/sprachbausteine.json", { cache: "no-cache" })
 
 DTZ.partie({ id: "SB", ordre: 20, titre: T("sb_titre"), sous: T("sb_sous"), ouvrir: () => ouvrirSB() });
 
-// LA LETTRE DU JOUR : la moins recemment faite. Les series 1-3 de commun.js sont gardees pour l'examen blanc ;
-// celui du telc n'existe pas encore, et il n'y a que quatre lettres : elles servent toutes a l'entrainement
-// jusque-la (choisirSerie() ne laisserait que la quatrieme).
-function choisirSB(){
-  const faits = lire("faits", {});
-  const tri = SB.series.slice().sort((a, b) => (faits["SB" + a.id] || 0) - (faits["SB" + b.id] || 0));
-  return tri[0];
-}
-
-function ouvrirSB(serie){
-  SB.serie = serie || choisirSB();
+// LA LETTRE DU JOUR : choisirSerie() de commun.js, la moins recemment faite (les trous ne portent pas de mots
+// du corpus a faire reviser : la liste des mots est vide). L'examen blanc du telc n'existe pas encore : le profil
+// garde 0 serie pour lui (seriesExamen, telc.html), et les quatre lettres servent toutes a l'entrainement.
+async function ouvrirSB(serie){
+  SB.serie = serie || await choisirSerie(SB.series, () => [], "SB");
   SB.rep = SB.serie.luecken.map(() => null);
   SB.i = 0;
   DTZ.surRetour(() => { toutesLesSections(); return true; });
@@ -152,7 +146,7 @@ function recap(){
   silence(); $("suite").hidden = true;
   SB.i = -1;   // plus de trou « de la page » : la lettre du recapitulatif est complete
   const s = SB.serie, bons = s.luecken.filter((l, k) => SB.rep[k] === l.bon).length;
-  const faits = lire("faits", {}); faits["SB" + s.id] = Date.now(); ecrire("faits", faits);
+  marquerFait("SB", s);
   resultat("SB", { serie: s.id, bons, sur: 10 });
   const mot = bons >= 8 ? "sb_mark_bien" : bons >= 5 ? "sb_mark_moyen" : "sb_mark_faible";
   const lignes = s.luecken.map((l, k) => {
