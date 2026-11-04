@@ -178,6 +178,8 @@ const maj = s => s.charAt(0).toUpperCase() + s.slice(1);
 const latam = s => !LATAM || !s ? s : s.replace(/[A-Za-zÁÉÍÓÚáéíóúñÑ]+/g, w => D.latam[w] || w);
 const GOUTS = () => D.gouts, QTES = () => D.quantites, CAFE = () => D.cafe, CARTE = () => D.carte[APPRENDRE];
 const al = k => D.aliments[k][APPRENDRE];
+// DE fait aussi la traduction allemande de l'espagnol (lang=de) : il lit toujours les donnees allemandes
+const alDe = k => D.aliments[k].de;
 const saveurDe = k => D.aliments[k].saveur;
 // la forme d'une saveur (es) qui s'accorde avec l'aliment : el limon acido, las fresas dulces
 const formeEs = (s, k) => { const a = D.aliments[k].es; return D.saveurs[s].es[(a.pl ? 2 : 0) + (a.genre === "la" ? 1 : 0)]; };
@@ -225,14 +227,14 @@ const DE = {
   // « Die Erdbeeren schmecken Anna. » -- ce qui va dans le trou
   schmeckt(r, pl){ return (pl ? "schmecken" : "schmeckt") + ({no: " nicht", nada: " überhaupt nicht"}[r] || ""); },
   // « Die Suppe schmeckt Javier nicht. » : ce qu'on goute maintenant
-  schmecktPhrase(g){ const a = al(g.a); return maj(a.nom) + " " + (a.pl ? "schmecken" : "schmeckt") + " " + nom(g.p) + ({no: " nicht", nada: " überhaupt nicht"}[g.r] || "") + "."; },
-  mag(g){ const a = al(g.a); if (!a.gen) return null;
+  schmecktPhrase(g){ const a = alDe(g.a); return maj(a.nom) + " " + (a.pl ? "schmecken" : "schmeckt") + " " + nom(g.p) + ({no: " nicht", nada: " überhaupt nicht"}[g.r] || "") + "."; },
+  mag(g){ const a = alDe(g.a); if (!a.gen) return null;
     if (g.r === "encanta") return nom(g.p) + " liebt " + a.gen + ".";
     if (g.r === "gusta") return nom(g.p) + " mag " + a.gen + ".";
     return nom(g.p) + " mag " + (g.r === "nada" ? "überhaupt " : "") + a.kein + " " + a.gen + "."; },
   aime(g){ return this.mag(g) || this.schmecktPhrase(g); },
-  saveur(k, s){ const a = al(k), sujet = k === "picante" ? "das Essen" : a.nom; return maj(sujet) + " " + (a.pl ? "sind" : "ist") + " " + D.saveurs[s || saveurDe(k)].de + "."; },
-  dit(k, r){ const a = al(k);
+  saveur(k, s){ const a = alDe(k), sujet = k === "picante" ? "das Essen" : a.nom; return maj(sujet) + " " + (a.pl ? "sind" : "ist") + " " + D.saveurs[s || saveurDe(k)].de + "."; },
+  dit(k, r){ const a = alDe(k);
     if (POSITIF(r)) return "Lecker!";
     if (r === "nada") return "Igitt, das ist eklig!";
     if (saveurDe(k)) return this.trop(k, saveurDe(k));
@@ -241,7 +243,7 @@ const DE = {
   asco: () => "Igitt, das ist eklig!",
   bueno: "Sehr gut!",
   quienSaveur: s => "Wer probiert etwas " + D.saveurs[s].etwas + "?",
-  quienPaire(k, neg){ const a = al(k); return "Wem " + (a.pl ? "schmecken" : "schmeckt") + " " + (k === "picante" ? "das scharfe Essen" : a.nom) + (neg ? " nicht" : "") + "?"; },
+  quienPaire(k, neg){ const a = alDe(k); return "Wem " + (a.pl ? "schmecken" : "schmeckt") + " " + (k === "picante" ? "das scharfe Essen" : a.nom) + (neg ? " nicht" : "") + "?"; },
   dice: p => "Was sagt " + nom(p) + "?",
   cantidad: d => "Das ist ___ " + D.contenus[d].de.dit + ".",
   queEs: "Was ist das?", lista: "Wie sagt man das?",
@@ -287,6 +289,8 @@ function prixEnLettres(c){
 // reponse. En francais, anglais et portugais (et en allemand pour qui apprend l'espagnol), la phrase entiere, faite
 // avec les MEMES choix que la question (la meme personne, le meme aliment, la meme reaction) ; ailleurs, le mot et sa
 // traduction du corpus (manger/gloses.json).
+// « de » + voyelle ou h muet -> « d' » : quelque chose d'épicé, une douzaine d'œufs, 1 kg d'oranges, 1 l d'huile
+const deFr = (a, x) => (/de $/.test(a) && /^[aeiouyàâéèêëîïôœûh]/i.test(x)) ? a.replace(/de $/, "d'") + x : a + x;
 const SAV_TR = {fr: {dulce: "sucré", salado: "salé", picante: "épicé", amargo: "amer", acido: "acide"},
                 en: {dulce: "sweet", salado: "salty", picante: "spicy", amargo: "bitter", acido: "sour"},
                 pt: {dulce: "doce", salado: "salgado", picante: "apimentado", amargo: "amargo", acido: "azedo"}};
@@ -315,7 +319,9 @@ const TRADS = {
   // l'allemand, langue d'interface de l'espagnol seulement : la phrase allemande elle-meme, faite par DE
   de: {
     aime: g => DE.aime(g), dit: (k, r) => DE.dit(k, r),
-    vous: "Das macht ", et: " und ", prend: (n, pl) => pl ? " nehmen " : " nimmt ", addition: pl => pl ? " möchten die Rechnung: " : " möchte die Rechnung: ", cuesta: (x, p) => maj(x) + " kostet " + p + ".",
+    vous: "Das macht ", et: " und ", prend: (n, pl) => pl ? " nehmen " : " nimmt ", addition: pl => pl ? " möchten die Rechnung: " : " möchte die Rechnung: ",
+    // la carte donne l'accusatif de la commande (« einen Kaffee ») ; ici c'est le sujet : « Ein Kaffee kostet 1,50 €. »
+    cuesta: (x, p) => maj(x.replace(/^einen /, "ein ")) + " kostet " + p + ".",
     prix: c => prix(c)
   }
 };
@@ -325,8 +331,7 @@ const trCarte = (cle, n) => { const t = (APPRENDRE === "de" && D.tradCarteDe[cle
 const trListe = (items) => { const t = items.map(([it, n]) => trCarte(it.cle, n)); return t.length < 2 ? t[0] : t.slice(0, -1).join(", ") + TR.et + t[t.length - 1]; };
 const trQte = (c, d) => { let a = D.tradContenants[c][LANGUE], x = D.contenus[d].tr[LANGUE];
   if (LANGUE === "de") return maj(DE.np(c, d)) + ".";
-  if (LANGUE === "fr" && /de $/.test(a) && /^[aeiouœéh]/i.test(x)) a = a.replace(/de $/, "d'");
-  return maj(a + x) + "."; };
+  return maj(LANGUE === "fr" ? deFr(a, x) : a + x) + "."; };
 // ce que la question montre, pour la traduire
 let sensQ = null;
 function traduire(q){
@@ -334,15 +339,15 @@ function traduire(q){
   if (q.aime) return TR.aime(q.aime);
   if (q.probar){ const s = saveurDe(q.probar.a), n = nom(q.probar.p);
     if (LANGUE === "de") return n + " probiert etwas " + D.saveurs[s].etwas + ".";
-    if (LANGUE === "fr") return n + " goûte quelque chose " + (/^[aeiou]/.test(SAV_TR.fr[s]) ? "d'" : "de ") + SAV_TR.fr[s] + ".";
+    if (LANGUE === "fr") return n + " goûte " + deFr("quelque chose de ", SAV_TR.fr[s]) + ".";
     return n + (LANGUE === "en" ? " is tasting something " : " prova algo ") + SAV_TR[LANGUE][s] + "."; }
   if (q.saveur) return LANGUE === "de" ? DE.saveur(q.saveur) : D.tradAliments[q.saveur][LANGUE][1] + " " + D.tradAliments[q.saveur][LANGUE][2] + ".";
   if (q.dit) return TR.dit(q.dit.a, q.dit.r);
   if (q.qte) return trQte(q.qte.c, q.qte.d);
   if (q.liste){ const [ecrit, , u, prod] = q.liste, p = D.produits[prod][LANGUE];
-    if (LANGUE === "de") return ecrit;
+    if (LANGUE === "de") return APPRENDRE === "de" ? ecrit : ecrit.split(" ").slice(0, 2).join(" ") + " " + p;
     const tete = ecrit.split(" ")[0], unite = D.unites[u] ? D.unites[u][LANGUE] : ecrit.split(" ")[1] + (LANGUE === "en" ? " of" : " de");
-    return tete + " " + unite + " " + p; }
+    return tete + " " + (LANGUE === "fr" ? deFr(unite + " ", p) : unite + " " + p); }
   if (q.cafe) return D.cafe.find(m => m.id === q.cafe.id).tr[LANGUE][q.cafe.fait ? 1 : 0];
   if (q.role) return nom(q.role.p) + (LANGUE === "fr" ? " est " : LANGUE === "en" ? " is " : LANGUE === "pt" ? " é " : " ist ") + ROLES_TR[q.role.mot][LANGUE] + ".";
   if (q.commande){ const c = q.commande, s = c.qui.map(nom).join(TR.et);
