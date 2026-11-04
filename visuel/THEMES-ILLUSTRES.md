@@ -401,7 +401,63 @@ l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire angl
     comparatif *more bigger*, *beautifuler*, le superlatif) et `article` (*a* ou *an* devant l'adjectif : *an old
     bike*, *an ugly vase*). Le britannique change les noms des phrases sans image (flat, film, jumper, High Street).
     Le sens du mot et la traduction des phrases de l'image viennent de l'espagnol de la même image.
+  - **Émotions et caractère** : be + adjectif partout (« She is afraid », jamais « has fear » ; « has a cold », la seule
+    tournure avec have), feel + adjectif (l'adverbe sadly en piège), -ed / -ing (bored / boring), « How is she
+    feeling? » face à « What is she like? ». Britannique : ill, untidy, film, flat, shop.
+  - **Où est le chat ?** : les prépositions elles-mêmes (on, on top of, under, behind, in front of, next to, between,
+    above, at the window), le mouvement en into / onto / over, there is / there are face à It's. En anglais,
+    `praepTheme` prend les prépositions ANGLAISES (`fonctionnels.json`) : une préposition envoyée en `cat: "praep"`
+    est une carte anglaise. Britannique : handbag, opposite.
+  - **Le corps et la santé** : my / his / her devant le corps (jamais the), hurts / hurt, have a fever / a cold,
+    -ache (headache, toothache…), should + verbe, for / since, foot / feet. Britannique : a temperature (la carte
+    reste fever), ill, stomach ache, plaster, chemist's, doctor's surgery.
+  - **Les vêtements** : is wearing / wears, put on / take off, les noms pluriels (a pair of, are), l'ordre des
+    adjectifs, should, les réponses courtes. Britannique : trousers, jumper, trainers, swimming trunks, woolly hat.
+  - **La journée** : le present simple de la routine (-s, does / doesn't), wake up / get up / get dressed, l'heure
+    (a quarter past, half past ; seven thirty en américain), la place des adverbes de fréquence, first / then /
+    finally. Britannique : have a shower, have breakfast. L'image d'Anna dans le U-Bahn est écartée (`ECARTEES_EN`).
+  - **Manger et goûter** : like / love / hate + -ing, tastes + adjectif, too, much / many, some, a piece / glass of,
+    I'd like / Can I have. Dollars et livres (lb, gal) à Boston ; livres sterling, kg et pints en britannique ;
+    check / bill, fries / chips, cookie / biscuit.
+  - **Les métiers** : « She's a doctor », l'article obligatoire (a / an, an excellent teacher), What does she do?,
+    work as / at / in / for, un seul mot pour les deux sexes (police officer, firefighter). Britannique : postman,
+    shop assistant, chemist's. Les deux uniformes « POLIZEI » (Elena, Tomás) sont écartés en anglais.
+  - **Les loisirs** : play / go / ride, play the guitar, like / love / enjoy + -ing, How often? (twice a week), la
+    place des adverbes, Let's / How about -ing / Why don't we. Britannique : football, et la semaine qui commence le lundi.
+  - **Les transports : FERMÉ en anglais** (4 nov.) : 11 images sur 13 montrent Berlin (rames jaunes de la BVG, ICE,
+    panneaux « H », taxi allemand). Jacques décide : une version réduite en HTML, des images de Boston, ou rien.
 - **Contrôle** : `ANGLAIS` dans `tests/themes_illustres.py` (le thème y passe en `en` et en `en&variante=gb`).
+- **Mots ajoutés au corpus anglais le 4 nov.** : outgoing, rude, messy, tiring, scared, worrying (adjectifs) ; throat,
+  sore throat, toothache, backache, stomachache (stomach ache), earache, winter hat (woolly hat), swim trunks
+  (swimming trunks), fries (chips), pretzel, pound, pharmacist, bus driver, mail carrier, bike shop (noms) ; crawl ;
+  on top of, over, onto, across from, opposite (prépositions).
+
+### Mettre un thème en anglais : la marche à suivre (4 nov. 2026, les treize thèmes suivants)
+
+Jacques, 4 nov. : « il manque beaucoup de themes en anglais ». Pour chaque page, dans cet ordre :
+1. **`APPRENDRE` accepte `en`** (`["de", "en"].includes(…) ? … : "es"`) et `GB = APPRENDRE === "en" && variante === "gb"`.
+   Puis **relire chaque test de langue de la page** : `APPRENDRE === "de" ? X : Y`, `DE_APP ? … : …`, `ES_`,
+   `APPRENDRE === "es"`. L'anglais tombe sinon dans la branche espagnole (ser / estar, l'accord, el / la) : chaque
+   test reçoit sa branche anglaise ou exclut l'anglais.
+2. **Un objet `EN`** à côté de `ES` et `DE`, et `L` qui le choisit. Les phrases sont fabriquées depuis les mêmes données
+   que l'espagnol et l'allemand (une image ne dit que ce qu'elle montre). Les sortes propres à l'espagnol ou à
+   l'allemand sont retirées de `SORTES` en anglais ; une sorte propre à l'anglais (`genitif`, `ordre`, `comparatif`,
+   `article`…) enseigne un point de grammaire anglaise, jamais une traduction.
+3. **Les mots, à la forme du corpus anglais** (`anglais/datos/` : `themes.json` `mot` avec `genre: ""`,
+   `adjectifs.json`, `verbes.json` `infinitif`, `adverbes.json`) ; en britannique, le mot de `anglais/datos-gb/`
+   (mum, grey, moustache). Un mot à deux cartes reçoit `sens` (sa traduction française du corpus). Un mot absent du
+   corpus : le noter, il s'ajoute par `anglais/outils/` (jamais à la main dans `anglais/datos/`).
+4. **La traduction** (`TRADS.fr`, ou la traduction de la phrase espagnole de la même image quand c'est la même
+   phrase) : après la réponse seulement, et le mot choisi traduit après une erreur.
+5. **La voix** : `Voix.dire()` (themes/voix.js), la phrase affichée dite en entier après la réponse (« Oui,
+   partout », 4 nov.), et `textesAVoix()` qui rend aussi les textes anglais (`visuel/voix_themes.py`, clé `en`).
+   Aucune voix nouvelle.
+6. **Boston** : l'argent en dollars, les distances en miles, les températures en °F si la page en montre (le
+   britannique : livres, °C). Une image trop allemande ou trop européenne (une enseigne, des euros, un document
+   allemand) ne se force pas : le thème est signalé au chef.
+7. **L'espagnol et l'allemand ne changent pas** : leurs branches de code restent les mêmes.
+8. **Contrôle** : `THEMES_APPS="en,en&variante=gb" python tests/themes_illustres.py <thème>` (sous le verrou du
+   navigateur), au moins 100 questions, 0 défaut ; puis le thème dans `ANGLAIS` et `en: true` dans `THEMES_ILLUSTRES`.
 
 Deux ajouts de « La journée » (3 nov. 2026), utiles aux thèmes suivants :
 - **un adverbe compte aussi** : `carteDeScene()` accepte `{mot, cat: "adverbe"}` (la carte d'`adverbienTheme`,
