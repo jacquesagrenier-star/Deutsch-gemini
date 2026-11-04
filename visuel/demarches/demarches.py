@@ -555,7 +555,13 @@ def images():
     out = {}
     for i, im in IMAGES.items():
         src = im.get("source")
-        prompt = (MARK if src and "Mark" in src else "") + (LIEU_AMT if src and "Buergeramt" in src else "") + im["prompt"] + PHOTO
+        photo = PHOTO
+        if not src:
+            # un document seul : « Hands: five fingers » fait venir des mains (l'attestation de la planche d'essai,
+            # 4 nov. : deux mains inconnues en manches sombres). On demande au contraire l'objet seul.
+            photo = PHOTO.replace("Hands: five fingers each, natural. ", "No people and no hands in the picture: the object alone. ")
+            assert photo != PHOTO
+        prompt = (MARK if src and "Mark" in src else "") + (LIEU_AMT if src and "Buergeramt" in src else "") + im["prompt"] + photo
         out[i] = (src, prompt)
     return out
 
