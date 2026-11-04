@@ -163,6 +163,32 @@ Source : `visuel/transportes/transportes.py` (`LIEUX`, `LIEU_TXT`, `IMAGES`).
 - Maître : `visuel/gato/img/piece.png` (la pièce vide ; carte et éléments fixes dans
   `visuel/gato/gato.py`, `PIECE`). Le chat de la maison : **Moritz**, noir et blanc (smoking).
 
+### Les magasins du quartier — thème illustré « Faire les courses » (4 nov. 2026)
+- **Les magasins qui ont leur scène dans l'app gardent son image**, telle quelle et pour tout moment qui s'y passe
+  (retouche avec la scène en référence « POUR LE LIEU ») :
+  - la **boulangerie** : `visuel/prototype/baeckerei.webp` — comptoir vitré et caisse à GAUCHE, étagères de pains en
+    bois au fond, fenêtre et réverbère à DROITE, carrelage clair ; la boulangère : blouse blanche, **bonnet blanc**,
+    souriante. ⚠️ Ce n'est pas la boulangerie du Kiez de l'épisode 04 (autre décor) : le thème suit l'app ;
+  - le **supermarché** : `visuel/prototype/supermarkt.webp` — étagères blanches, sol gris, grandes vitres au fond,
+    caddie et panier rouge ; la caissière (à créer avec la première image de caisse) : la cinquantaine, chignon
+    foncé, polo de travail **bleu foncé**, comme l'employé du rayon ;
+  - la **pharmacie** : `visuel/prototype/apotheke.webp` ;
+  - le **marché** : `visuel/prototype/markt-obst-heimisch.webp` — auvent vert, cageots de bois ; le marchand de
+    fruits (à créer) : la soixantaine, barbe grise courte, tablier vert foncé.
+- **Quatre magasins neufs**, au format et dans le style des scènes (9:16, la boulangerie en référence de style), aucune
+  lettre, aucune enseigne, aucun prix :
+  - la **boucherie** (Metzgerei) : long comptoir vitré dans la moitié DROITE (saucisses, jambon, viandes sur plateaux
+    blancs), le boucher derrière (la quarantaine, cheveux bruns courts, blouse et tablier blancs), une balance sur le
+    comptoir, murs carrelés blancs, fenêtre à GAUCHE ;
+  - le **kiosque** (Kiosk, un Späti) : journaux et magazines aux couvertures vierges à GAUCHE, frigo de boissons au fond,
+    comptoir et caisse à DROITE ; le kiosquier : la cinquantaine, moustache grise, gilet vert foncé ;
+  - la **droguerie** (Drogerie, allemand seulement) : longues étagères blanches (dentifrice, savon, shampoing), caisse
+    à l'avant DROITE, la vendeuse : la trentaine, queue de cheval foncée, polo blanc ; sol gris ;
+  - la **librairie** (Buchhandlung) : étagères de bois pleines de livres, table de livres au centre, comptoir à DROITE ;
+    la libraire : la soixantaine, cheveux gris courts, lunettes rondes, gilet rouge foncé ; fenêtre à GAUCHE, parquet.
+- Les clients sont **Mark** et **Anna** (leurs images de référence) ; les vendeurs restent sans nom.
+- La source : `visuel/courses/courses.py` (LIEUX, MOMENTS). Un moment dans la boucherie reprend l'image de la boucherie.
+
 ### Les lieux d'un seul épisode (gardés pour mémoire)
 - L'aéroport (épisode 1), le Bürgeramt (épisode 2), la piste cyclable (épisode 3) : voir leurs
   `A-TOURNER.txt`. S'ils reviennent, leur maître est dans `01-images/` de l'épisode.

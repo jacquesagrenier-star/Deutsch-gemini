@@ -764,6 +764,17 @@ REGLES = [
      u"Ne pas commander le REGARD : commander le CORPS et la MARCHE. A la 3e prise, << She is already walking away "
      u"towards the LEFT edge, mid-stride, in profile: her body, her face and her steps all go to the left ... her back "
      u"is to the right side of the street >> -- juste. Le clip (H3) n'a plus qu'a continuer la marche."),
+    ("rayons-sans-texte-blanchis", "doute",
+     r"(?i)^(?![\s\S]*\b(colourful|colorful|plain colours|plain bright colours)\b)(?=[\s\S]*\b(shelves|shelf|aisle|racks?)\b)(?=[\s\S]*\b(goods|products|packets|packages|boxes|tins|books|magazines|newspapers|groceries)\b)[\s\S]*\bno (text|letters|writing|labels|logos)\b",
+     u"Un magasin, et << no text, no logos >> : le modele vide les rayons de toute couleur -- des boites blanches muettes",
+     u"4 nov. 2026, Faire les courses, kasse-karte (0,15 $). La caisse du supermarche de la scene, avec << Absolutely "
+     u"no text, no letters, no prices, no logos >> et << the same white shelves >> : derriere la caisse, des rayons "
+     u"entiers de boites et de bouteilles BLANCHES sans rien dessus -- un magasin fantome, rien du decor de reference "
+     u"(jus orange et rouges, boites rouges et vertes, sacs de cafe, chocolat). Le modele obeit a << pas de texte >> "
+     u"en retirant l'emballage lui-meme.",
+     u"Nommer les marchandises ET leurs couleurs, et dire que l'emballage reste colore : << shelves full of colourful "
+     u"goods as in the reference picture: bottles of orange and red juice, red and green tins... every package in "
+     u"plain colours with no writing, never white blank boxes >>. Ne pas ecrire << white shelves >> : le blanc s'etend."),
     ("portrait-pour-une-epaule", "doute",
      r"(?i)\b(shoulder|upper arm|back of (his|her) head)\b[^.]{0,90}\bof the "
      r"(first|second|third|fourth) reference picture\b",
@@ -1306,7 +1317,7 @@ PHRASE_VERROU = re.compile(r"(?i)Locked-off camera:[^.]*\.")
 #
 #    Ce qui reste est ce qui a reellement coute des images : la garde
 #    negative, l'icone appelee par son nom, et l'empilement de negations.
-POUR_IMAGE = ("garde-negative", "comptoir-devant", "icone-nommee-par-son-nom",
+POUR_IMAGE = ("garde-negative", "rayons-sans-texte-blanchis", "comptoir-devant", "icone-nommee-par-son-nom",
               "negations-en-nombre", "qualificatifs-empiles",
               "taille-par-adjectif", "nom-du-geste", "repere-hors-champ",
               "sol-bord-a-bord", "corps-sans-contact",
