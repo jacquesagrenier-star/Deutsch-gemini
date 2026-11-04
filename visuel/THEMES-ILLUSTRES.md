@@ -264,6 +264,21 @@ Se déplacer (`transportes.html`, `visuel/transportes/transportes.py`, la seule 
   Viertel neun », régional mais juste) ; ni midi ni 13 h (halb eins, la una) ;
 - le relevé exhaustif des phrases (`visuel/transportes/toutes-les-phrases.json`, ~61 000 caractères en allemand) est un
   plafond ; ce qui s'enregistre est l'inventaire de `visuel/voix_themes.py` (`voix.json`).
+## Un thème du temps qu'il fait : « La météo et les saisons » (vague 2, 3 nov. 2026)
+
+`meteo.html`, `visuel/meteo/meteo.py` (la seule source), `visuel/meteo/web.py`. Ce qu'il apprend aux thèmes suivants :
+- **des faits, pas des légendes** : chaque image a ses faits `vrais` (il pleut, le ciel est couvert) et ses
+  `douteux` (un jour de pluie est-il frais ?) ; tout autre fait est **faux** pour elle, et seul un fait faux sert de
+  leurre ou de faux d'un « vrai ou faux ». Chaque fait a ses phrases (hace sol / está soleado ; die Sonne scheint /
+  es ist sonnig), chacune avec le mot du corpus qu'elle fait travailler ;
+- **ce qui se dessine ne se paie pas** : le thermomètre (degrés en lettres, des bandes de ressenti séparées pour
+  qu'un seul mot soit juste : 19 °C n'est ni chaud ni frais), les mois (seulement ceux qui tiennent dans UNE
+  saison : ni mars, ni juin, ni septembre, ni décembre), et un pictogramme tant qu'une photo manque ;
+- **chaque mot a au moins deux sortes de questions**, sinon la partie finit par deux fois la même sorte de suite ou
+  par une question déjà posée (vécu : les mois, `grado`, `nube`, `warm`) ; le « vrai ou faux » sert de seconde sorte
+  (le thermomètre, le mois, la phrase de la famille du mot sur une autre photo) ;
+- **ce qu'on n'y fait pas** : aucun vêtement (le thème Vêtements), pas de bonhomme de neige (la scène de l'hiver) ;
+  les mois ne sont demandés que rattachés à leur saison (les Repères ont les mois seuls).
 
 ## La séance
 
@@ -395,3 +410,23 @@ Deux ajouts de « La journée » (3 nov. 2026), utiles aux thèmes suivants :
   la résout et rend la réponse ; le contrôle l'appelle quand la question a un `.ordre`.
 - **chaque mot a au moins deux sortes** : un mot qu'une seule sorte sait viser (les adverbes de fréquence, les moments
   de la journée) fait se suivre deux fois la même sorte dès que deux de ces mots se suivent dans la file.
+
+## Un thème de papiers : « Les démarches » (vague 3, 4 nov. 2026)
+
+L'administration et la vie pratique, au cœur du DTZ (`demarches.html`, `visuel/demarches/demarches.py`, la seule
+source). Ce qu'il apprend aux thèmes suivants :
+- **les papiers se dessinent en HTML, jamais dans l'image** (la règle des documents du DTZ) : le formulaire de Mark,
+  l'avis « Bitte bringen Sie mit », les heures d'ouverture et la confirmation de rendez-vous sont des `.papier` de la
+  page, dans la langue apprise (`lang`, `dir="ltr"`) ; les images n'ont aucun texte lisible ;
+- **deux mondes, les mêmes images** : en allemand Mark Garnier à Berlin-Pankow (Gartenstraße 12, l'adresse des
+  documents du DTZ), en espagnol le Mark de « Mark en Madrid » (mexicain, l'empadronamiento) ; chaque langue a ses
+  lieux, ses démarches et ses formulaires, écrits pour elle ;
+- **un leurre n'est jamais une réponse possible** : chaque démarche dit où elle peut AUSSI se faire (`aussi`, `"*"` :
+  partout, donc pas de « Wo? ») et quels verbes iraient aussi avec son objet (`aussi_v`) ; chaque image de document dit
+  les documents clairement faux pour elle (`FAUX_IMG` : deux cartes avec photo ne se servent jamais de leurre) ;
+- **un rendez-vous tombe un jour d'ouverture** : la confirmation tire une date réelle (nov.-déc. 2026) où le lieu est
+  ouvert, à une heure de ses plages ; les heures des questions évitent les bornes (« um 13 Uhr » à la fermeture) ;
+- **la phrase polie vient du corpus** : la forme `sie_Sie` (« Füllen Sie bitte das Formular aus! ») et le subjonctif
+  « usted » (« Rellene el formulario, por favor. »), leurres : les formes du / tú et ich / yo ;
+- les mots absents du corpus sont préparés par paires (`ajouts/demarches.json`, `espanol/ajouts/demarches.json`) et
+  restent « hors jeu » jusqu'à l'accord de Jacques.

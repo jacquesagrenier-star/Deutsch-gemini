@@ -3,14 +3,14 @@
   "La ferme (15 oct. 2026) : un matin d'automne dans la cour d'une petite ferme du Brandebourg, Anna, chez son oncle, tend une pomme au cheval par-dessus la cloture et rit ; son oncle porte une botte de paille, son petit cousin donne du grain a une poule ; vache, cochon, moutons, chat, chien, poules, oeufs, pommes, puits, maison de briques et grange. Theme : les animaux, la campagne, la nature. Scene creee a la demande de Jacques (« huit autres scenes basees sur les themes », 15 oct. 2026), construite par Fable.",
   "Image : visuel/scenes/bauernhof.png, PHOTO du 17 oct. 2026 (fal, 0,15 $, memes prompt et action, refs Anna-troisquarts.png + anna-20260908-0439.png) : Jacques voulait des photos, pas des peintures. L'ancienne image peinte du 15 oct. est rangee en visuel/scenes/bauernhof-v1.png. Aucun texte dans l'image.",
   "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
-  "Histoire des personnages (15 oct.) : la ferme est celle de l'ONCLE d'Anna (sa famille est allemande) ; le fermier est der Onkel (aussi der Mann), le garcon der Cousin (aussi Junge, Kind). Aucun compagnon d'Anna dans l'image ni dans les questions. Quatre poules, une zone chacune : huhn (devant le cousin), huhn-2 (a gauche, pres du panier), huhn-3 (au milieu), huhn-4 (devant a droite). Le bidon de lait est die Kanne (aussi Milch) ; le puits der Brunnen (el pozo en espagnol, surcharge). SANS ZONE bien que visibles (a signaler) : la botte de paille (Stroh manque au corpus allemand), le sac brun (der Sack : el saco manque au corpus espagnol), les clotures (Zaun manque), la grange (Scheune manque), la cheminee (Schornstein manque), les volets, l'enclos du cochon. Trop petits dans la photo : la lampe pres de la porte et le pot de fleurs rouges. Le soleil n'est pas dans le cadre.",
+  "Histoire des personnages (15 oct.) : la ferme est celle de l'ONCLE d'Anna (sa famille est allemande) ; le fermier est der Onkel (aussi der Mann), le garcon der Cousin (aussi Junge, Kind). 4 nov. 2026 : le garcon est le FILS DE FELIX (decision de Jacques) ; la zone (id cousin, garde pour les masques et les reperes) se nomme der Junge (aussi Kind) : ce qu'on voit, sans connaitre la famille ; les questions disent Felix' Sohn. Aucun compagnon d'Anna dans l'image ni dans les questions. Quatre poules, une zone chacune : huhn (devant le cousin), huhn-2 (a gauche, pres du panier), huhn-3 (au milieu), huhn-4 (devant a droite). Le bidon de lait est die Kanne (aussi Milch) ; le puits der Brunnen (el pozo en espagnol, surcharge). SANS ZONE bien que visibles (a signaler) : la botte de paille (Stroh manque au corpus allemand), le sac brun (der Sack : el saco manque au corpus espagnol), les clotures (Zaun manque), la grange (Scheune manque), la cheminee (Schornstein manque), les volets, l'enclos du cochon. Trop petits dans la photo : la lampe pres de la porte et le pot de fleurs rouges. Le soleil n'est pas dans le cadre.",
   "Mesures relues sur la grille en % du 17 oct. 2026 (nouvelle image).",
   "17 oct. 2026, nouvelle image : toutes les zones remesurees, memes id ; detourer.py relance en entier. RETIREES : wasser (plus de flaques dans la photo), ei-2 (plus d'oeuf par terre), lampe et blume (minuscules). AJOUTEES : baum-2 (l'arbre devant la foret), hose-2 et stiefel-2 (le jean et les bottes de l'oncle), hemd-3 (la chemise du cousin). Couches relues contre la photo (.claude/outils-scenes/couches_photos.py) : toutes vraies en allemand ; en espagnol, le seau « cuelga del pozo » (il pend sous le toit du puits, il n'est pas « al lado »)."
  ],
  "image": "bauernhof.webp",
  "source": "../scenes/bauernhof.png",
  "titre": "Auf dem Bauernhof",
- "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, son petit cousin au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
+ "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, le fils de Felix au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
  "consigne": "Anna passe la matinée à la ferme de son oncle, dans le Brandebourg. Touche un objet ou un animal.",
  "exclus": [],
  "couches": {
@@ -208,15 +208,15 @@
      "revise": "sich erinnern"
     },
     {
-     "q": "Annas Cousin wäscht ___ die Hände.",
+     "q": "Felix' Sohn wäscht ___ die Hände.",
      "c": [
       "sich",
       "ihn",
       "ihm"
      ],
      "f": "cousin",
-     "phrase": "Annas Cousin wäscht sich die Hände.",
-     "sens": "Le cousin d'Anna se lave les mains.",
+     "phrase": "Felix' Sohn wäscht sich die Hände.",
+     "sens": "Le fils de Felix se lave les mains.",
      "n": "Avec un complément (die Hände), le pronom est au datif — mais à la 3e personne, c'est toujours <b>sich</b>."
     },
     {
@@ -336,7 +336,7 @@
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
-     "q": "Vielleicht, wer weiß: Der Hund ___ Annas Cousin gehören.",
+     "q": "Vielleicht, wer weiß: Der Hund ___ Felix' Sohn gehören.",
      "c": [
       "könnte",
       "muss",
@@ -344,8 +344,8 @@
      ],
      "f": "hund",
      "r": "cousin",
-     "phrase": "Der Hund könnte Annas Cousin gehören.",
-     "sens": "Le chien appartient peut-être au cousin d'Anna.",
+     "phrase": "Der Hund könnte Felix' Sohn gehören.",
+     "sens": "Le chien appartient peut-être au fils de Felix.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -791,9 +791,8 @@
   },
   {
    "id": "cousin",
-   "mot": "Cousin",
+   "mot": "Junge",
    "aussi": [
-    "Junge",
     "Kind"
    ],
    "boite": [

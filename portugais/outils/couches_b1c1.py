@@ -660,7 +660,7 @@ katze | mauer | O gato ___ no muro. | senta-se | se senta / senta | O gato senta
 onkel |  | ___ depois do trabalho. | Lavo-me | Me lavo / Lavo | Lavo-me depois do trabalho. | Je me lave après le travail. | En tête de phrase : jamais le pronom devant.
 bank |  | ___ no banco. | Sentamo-nos | Nos sentamos / Sentamos-nos | Sentamo-nos no banco. | Nous nous asseyons sur le banc. | <b>sentamo-nos</b> : le s tombe devant nos.
 haus |  | ___ da quinta? | Lembras-te | Te lembras / Lembras | Lembras-te da quinta? | Tu te souviens de la ferme ? | <b>lembrar-se de</b> ; la ferme = <b>a quinta</b>, au Portugal.
-cousin |  | O primo da Anna lava ___ mãos. | as | suas / se as | O primo da Anna lava as mãos. | Le cousin d'Anna se lave les mains. | Le corps : l'article, pas de pronom (<b>lava as mãos</b>).
+cousin |  | O filho do Felix lava ___ mãos. | as | suas / se as | O filho do Felix lava as mãos. | Le fils de Felix se lave les mains. | Le corps : l'article, pas de pronom (<b>lava as mãos</b>).
 huhn-2 |  | As galinhas ___ depressa. | mexem-se | se mexem / mexem-nas | As galinhas mexem-se depressa. | Les poules bougent vite. | <b>mexer-se</b> = bouger.
 """),
 "B2": ("Antes de, depois de, desde que, até", """
@@ -673,7 +673,7 @@ hund | anna | O cão espera até a Anna o ___. | chamar | chama / chamou | O cã
 """),
 "C1": (T_HYPO, """
 pferd | anna | O cavalo ___ ser muito meigo. | deve | pode-se / tem | O cavalo deve ser muito meigo. | Le cheval doit être très gentil. | Déduction : <b>dever</b> ; <b>meigo</b> = doux, gentil.
-hund | cousin | O cão ___ ser do primo da Anna. | pode | deve de / há | O cão pode ser do primo da Anna. | Le chien appartient peut-être au cousin d'Anna. | Possibilité : <b>poder</b>.
+hund | cousin | O cão ___ ser do filho do Felix. | pode | deve de / há | O cão pode ser do filho do Felix. | Le chien appartient peut-être au fils de Felix. | Possibilité : <b>poder</b>.
 ei | korb | Os ovos ___ de hoje de manhã. | serão | sejam / foram-se | Os ovos serão de hoje de manhã. | Les œufs datent sans doute de ce matin. | Futur de supposition : <b>serão</b>.
 haus |  | A quinta ___ mais de cem anos. | teria | terá-se / tenha | A quinta teria mais de cem anos. | La ferme aurait plus de cent ans. | Le conditionnel de la rumeur.
 """),

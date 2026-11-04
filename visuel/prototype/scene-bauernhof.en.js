@@ -723,21 +723,13 @@ window.SCENE = {
   },
   {
    "id": "cousin",
-   "mot": "cousin",
+   "mot": "boy",
    "genre": "",
-   "pluriel": "cousins",
+   "pluriel": "boys",
    "niveau": "A1",
-   "theme": "family_a1",
+   "theme": "people_a1",
    "personne": null,
    "aussi": [
-    {
-     "mot": "boy",
-     "genre": "",
-     "niveau": "A1",
-     "theme": "people_a1",
-     "fr": "garçon",
-     "es": "el niño, el chico"
-    },
     {
      "mot": "child",
      "genre": "",
@@ -757,8 +749,8 @@ window.SCENE = {
      10.8
     ]
    ],
-   "fr": "cousin",
-   "es": "el primo, la prima"
+   "fr": "garçon",
+   "es": "el niño, el chico"
   },
   {
    "id": "hut",
@@ -1240,7 +1232,7 @@ window.SCENE = {
  ],
  "grosPlans": [],
  "titre": "On the farm",
- "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, son petit cousin au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
+ "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, le fils de Felix au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
  "consigne": "Anna passe la matinée à la ferme de son oncle, dans le Brandebourg. Touche un objet ou un animal.",
  "exclus": [],
  "couches": {
@@ -1433,15 +1425,15 @@ window.SCENE = {
      "n": "Se souvenir de = <b>remember</b>, sans réfléchi ni préposition."
     },
     {
-     "q": "Anna's cousin is washing ___ hands.",
+     "q": "Felix's son is washing ___ hands.",
      "c": [
       "his",
       "the",
       "himself"
      ],
      "f": "cousin",
-     "phrase": "Anna's cousin is washing his hands.",
-     "sens": "Le cousin d'Anna se lave les mains.",
+     "phrase": "Felix's son is washing his hands.",
+     "sens": "Le fils de Felix se lave les mains.",
      "n": "Les parties du corps prennent le possessif : <b>his hands</b>."
     },
     {
@@ -1555,7 +1547,7 @@ window.SCENE = {
      "n": "<b>must</b> + be."
     },
     {
-     "q": "The dog ___ belong to Anna's cousin.",
+     "q": "The dog ___ belong to Felix's son.",
      "c": [
       "could",
       "must to",
@@ -1563,8 +1555,8 @@ window.SCENE = {
      ],
      "f": "hund",
      "r": "cousin",
-     "phrase": "The dog could belong to Anna's cousin.",
-     "sens": "Le chien appartient peut-être au cousin d'Anna.",
+     "phrase": "The dog could belong to Felix's son.",
+     "sens": "Le chien appartient peut-être au fils de Felix.",
      "n": "Possibilité → <b>could</b>."
     },
     {
@@ -1598,7 +1590,7 @@ window.SCENE = {
  "traductions": {
   "es": {
    "champs": {
-    "alt": "Anna en el patio de la granja de su tío, una mañana de otoño: le da una manzana al caballo por encima de la cerca y se ríe; una vaca está en el prado, un cerdo en su corral, ovejas en la colina, un gato sobre el muro bajo, un perro echado en el patio; su tío carga un fardo de paja, su primito con sombrero de paja le da grano a una gallina; en el suelo, una cesta de huevos, una caja de manzanas, un bidón de leche y gallinas; detrás, la casa de ladrillo, el granero con su escalera y su leña, un pozo y un manzano.",
+    "alt": "Anna en el patio de la granja de su tío, una mañana de otoño: le da una manzana al caballo por encima de la cerca y se ríe; una vaca está en el prado, un cerdo en su corral, ovejas en la colina, un gato sobre el muro bajo, un perro echado en el patio; su tío carga un fardo de paja, el hijo de Felix con sombrero de paja le da grano a una gallina; en el suelo, una cesta de huevos, una caja de manzanas, un bidón de leche y gallinas; detrás, la casa de ladrillo, el granero con su escalera y su leña, un pozo y un manzano.",
     "consigne": "Anna pasa la mañana en la granja de su tío, en el campo. Toca un objeto o un animal."
    },
    "couches": {

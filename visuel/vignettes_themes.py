@@ -406,12 +406,160 @@ def animaux_quatre_lieux():
 
 
 
+def meteo_quatre_saisons():
+    """« La meteo et les saisons » : la MEME place de Berlin aux quatre saisons, deux par deux (printemps, ete,
+    automne, hiver), et dans chaque case ses degres. Tant que les photos manquent, un dessin de chaque saison (un
+    ciel, un sol, un soleil, des feuilles, de la neige) : la vignette se refait d'elle-meme quand elles arrivent."""
+    M = 14
+    pw, ph = (W - 3 * M) // 2, (H - 3 * M) // 2
+    c = Image.new("RGB", (W, H), (244, 247, 250))
+    d = ImageDraw.Draw(c)
+    images = json.load(open(os.path.join(P, "meteo", "meteo.json"), encoding="utf-8"))["images"]
+    for k, id in enumerate(["fruehling", "sommer", "herbst", "winter"]):
+        x, y = M + (k % 2) * (pw + M), M + (k // 2) * (ph + M)
+        chemin = os.path.join(P, "meteo", id + ".webp")
+        if os.path.exists(chemin):
+            im = Image.open(chemin).convert("RGB")
+            w, h = im.size
+            # la case est plus etroite que la photo (4:3) : on tranche sur les cotes, le tilleul reste au milieu
+            cw = min(w, round(h * pw / ph)); ch = min(h, round(cw * ph / pw))
+            im = im.crop(((w - cw) // 2, (h - ch) // 2, (w - cw) // 2 + cw, (h - ch) // 2 + ch)).resize((pw, ph), Image.LANCZOS)
+            c.paste(im, (x, y))
+        else:
+            ciel, sol = {"fruehling": ((150, 205, 240), (125, 190, 105)), "sommer": ((90, 170, 235), (110, 170, 80)),
+                         "herbst": ((200, 205, 215), (200, 140, 70)), "winter": ((205, 212, 222), (246, 248, 250))}[id]
+            d.rectangle((x, y, x + pw, y + ph), fill=ciel)
+            d.rectangle((x, y + ph * 2 // 3, x + pw, y + ph), fill=sol)
+            if id in ("fruehling", "sommer"):
+                r = 30 if id == "sommer" else 22
+                d.ellipse((x + 60 - r, y + 50 - r, x + 60 + r, y + 50 + r), fill=(255, 210, 63))
+            # l'arbre : en fleurs, vert, roux, nu sous la neige
+            d.rectangle((x + pw // 2 - 7, y + ph // 2, x + pw // 2 + 7, y + ph * 2 // 3 + 10), fill=(120, 86, 56))
+            feuillage = {"fruehling": (240, 170, 200), "sommer": (60, 130, 60), "herbst": (220, 120, 40), "winter": None}[id]
+            if feuillage:
+                d.ellipse((x + pw // 2 - 50, y + ph // 2 - 70, x + pw // 2 + 50, y + ph // 2 + 15), fill=feuillage)
+            if id == "herbst":
+                for n in range(9):
+                    lx, ly = x + 20 + (n * 47) % (pw - 40), y + 30 + (n * 29) % (ph // 2)
+                    d.ellipse((lx, ly, lx + 12, ly + 7), fill=(230, 140, 40))
+            if id == "winter":
+                for n in range(26):
+                    sx, sy = x + 10 + (n * 37) % (pw - 20), y + 10 + (n * 23) % (ph - 30)
+                    d.ellipse((sx, sy, sx + 6, sy + 6), fill=(255, 255, 255))
+        t = images[id]["temp"]
+        txt = "%s%d °C" % ("−" if t < 0 else "", abs(t))
+        tw = d.textlength(txt, font=F(22))
+        d.rounded_rectangle((x + pw - tw - 26, y + 10, x + pw - 10, y + 44), radius=17, fill=(28, 36, 48))
+        d.text((x + pw - tw - 18, y + 13), txt, font=F(22), fill=(255, 255, 255))
+        d.rectangle((x - 1, y - 1, x + pw, y + ph), outline=(214, 210, 202), width=2)
+
+
+def logement_plan():
+    """Le plan d'un appartement, dessine (le sujet : les pieces et ou elles sont), et dans trois pieces leur photo en
+    rond : la cuisine d'Anna, la chambre des enfants, la salle de bains (des photos deja publiees) ; une cle devant la
+    porte d'entree. Aucun mot : la meme vignette sert a l'espagnol et a l'allemand."""
+    c = Image.new("RGB", (W, H), (233, 238, 243))
+    d = ImageDraw.Draw(c)
+    mur, sol = (60, 72, 90), (255, 255, 255)
+    x0, y0, x1, y1 = 34, 40, 566, 470
+    d.rectangle((x0, y0, x1, y1), fill=sol, outline=mur, width=10)
+    # les cloisons : en haut cuisine / bain / chambre des enfants, le couloir, en bas le salon et la chambre
+    yc0, yc1 = 228, 282
+    d.line([(x0, yc0), (x1, yc0)], fill=mur, width=7); d.line([(x0, yc1), (x1, yc1)], fill=mur, width=7)
+    for x in (226, 360):
+        d.line([(x, y0), (x, yc0)], fill=mur, width=7)
+    d.line([(330, yc1), (330, y1)], fill=mur, width=7)
+    # les portes : des ouvertures dans les cloisons
+    for (a, b) in ((120, 170), (270, 312), (430, 480)):
+        d.line([(a, yc0), (b, yc0)], fill=sol, width=9)
+    for (a, b) in ((140, 190), (420, 470)):
+        d.line([(a, yc1), (b, yc1)], fill=sol, width=9)
+    d.line([(x0, 240), (x0, 270)], fill=sol, width=12)
+    # les meubles dessines, gris clair : le canape, le lit
+    gris = (200, 206, 214)
+    d.rounded_rectangle((70, 400, 250, 446), 10, fill=gris); d.rounded_rectangle((70, 400, 96, 446), 8, fill=(180, 188, 198))
+    d.rounded_rectangle((420, 330, 530, 450), 10, fill=gris); d.rounded_rectangle((430, 338, 520, 362), 8, fill=(180, 188, 198))
+    # trois photos en rond dans leurs pieces
+    for nom, (x, y), dia in (("anna-cuisine", (130, 134), 150), ("jk-bad", (293, 134), 110), ("jk-enfants-2", (463, 134), 150)):
+        im = Image.open(os.path.join(P, "logement", nom + ".webp")).convert("RGB")
+        r = rond(im, dia, 6, (232, 162, 58))
+        c.paste(r, (x - r.size[0] // 2, y - r.size[1] // 2), r)
+    # la cle, ambre, devant l'entree (a gauche du couloir)
+    k = (232, 162, 58)
+    d.ellipse((60, 232, 104, 276), outline=k, width=9)
+    d.line([(104, 254), (178, 254)], fill=k, width=9)
+    for x in (150, 168): d.line([(x, 254), (x, 272)], fill=k, width=8)
+    return c
+
+
+def demarches_formulaire():
+    """Les demarches : le formulaire de Mark (des cases vides, deux remplies a l'encre bleue, une case cochee), le
+    tampon rond du guichet, le passeport bleu nuit et le ticket d'attente numerote. Des dessins, aucun mot : la meme
+    vignette sert a l'espagnol et a l'allemand ; le sujet est la demarche, pas les objets du bureau de la scene."""
+    c = Image.new("RGB", (W, H), (214, 232, 226))
+    d = ImageDraw.Draw(c)
+    # le formulaire, un peu tourne, avec son ombre
+    f = Image.new("RGBA", (330, 430), (0, 0, 0, 0))
+    g = ImageDraw.Draw(f)
+    g.rectangle((0, 0, 329, 429), fill=(255, 253, 246), outline=(201, 207, 216), width=2)
+    g.rectangle((22, 22, 308, 34), fill=(28, 36, 48))                     # l'en-tete, une barre
+    encre = (29, 78, 158)
+    for k in range(6):
+        y = 64 + k * 50
+        for (xa, xb) in ((22, 158), (172, 308)) if k < 4 else ((22, 308),):
+            g.rectangle((xa, y, xb, y + 38), outline=(160, 168, 180), width=2)
+            g.rectangle((xa + 6, y + 6, xa + 50, y + 10), fill=(160, 168, 180))   # le nom de la case, un trait
+        if k in (0, 1):
+            g.line([(30, y + 28), (60, y + 22), (92, y + 29), (128, y + 21)], fill=encre, width=4)
+    # les cases a cocher, une cochee
+    for k in range(3):
+        x = 30 + k * 96
+        g.rectangle((x, 372, x + 22, 394), outline=(120, 128, 140), width=3)
+        if k == 0:
+            g.line([(x + 4, 383), (x + 10, 390), (x + 20, 376)], fill=encre, width=4)
+    # la signature
+    g.line([(176, 406), (200, 392), (214, 410), (236, 394), (262, 404), (300, 396)], fill=encre, width=4)
+    f = f.rotate(-4, resample=Image.BICUBIC, expand=True)
+    ombre = Image.new("RGBA", f.size, (0, 0, 0, 0))
+    ombre.paste((40, 60, 70, 70), (0, 0), f.split()[3])
+    c.paste(ombre, (54, 44), ombre)
+    c.paste(f, (44, 34), f)
+    # le tampon rond, bleu, par-dessus le coin du formulaire
+    t = Image.new("RGBA", (150, 150), (0, 0, 0, 0))
+    h = ImageDraw.Draw(t)
+    h.ellipse((6, 6, 144, 144), outline=(40, 86, 190, 215), width=8)
+    h.ellipse((28, 28, 122, 122), outline=(40, 86, 190, 200), width=4)
+    h.polygon([(75, 46), (86, 68), (110, 70), (92, 86), (98, 110), (75, 97), (52, 110), (58, 86), (40, 70), (64, 68)], fill=(40, 86, 190, 200))
+    t = t.rotate(14, resample=Image.BICUBIC)
+    c.paste(t, (250, 300), t)
+    # le passeport bleu nuit, avec son embleme dore (sans mot)
+    pp = Image.new("RGBA", (170, 236), (0, 0, 0, 0))
+    q = ImageDraw.Draw(pp)
+    q.rounded_rectangle((0, 0, 169, 235), 14, fill=(26, 38, 74))
+    q.ellipse((52, 70, 118, 136), outline=(214, 176, 92), width=5)
+    q.ellipse((72, 90, 98, 116), fill=(214, 176, 92))
+    q.rectangle((56, 168, 114, 174), fill=(214, 176, 92))
+    pp = pp.rotate(9, resample=Image.BICUBIC, expand=True)
+    c.paste(pp, (398, 40), pp)
+    # le ticket d'attente : un numero, comme au Buergeramt
+    tk = Image.new("RGBA", (150, 104), (0, 0, 0, 0))
+    r = ImageDraw.Draw(tk)
+    r.rounded_rectangle((0, 0, 149, 103), 10, fill=(255, 255, 255), outline=(232, 162, 58), width=5)
+    r.text((75, 54), "42", font=F(58), fill=(28, 36, 48), anchor="mm")
+    tk = tk.rotate(-8, resample=Image.BICUBIC, expand=True)
+    c.paste(tk, (420, 330), tk)
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
              "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
              "metiers": metiers_polaroids,
              "transportes": transports_plan,
              "loisirs": loisirs_agenda,
-             "animales": animaux_quatre_lieux}
+             "animales": animaux_quatre_lieux,
+             "meteo": meteo_quatre_saisons,
+             "logement": logement_plan,
+             "demarches": demarches_formulaire}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

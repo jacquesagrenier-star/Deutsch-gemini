@@ -22,9 +22,9 @@ RACINE = os.path.dirname(ICI)
 sys.path.insert(0, os.path.join(RACINE, "audio"))
 import lectures                                   # noqa : les nombres en lettres
 PORT = int(os.environ.get("THEMES_PORT", "8808"))
-THEMES = ["familia", "descripcion", "ropa", "cuerpo", "manger", "transportes", "loisirs", "animales"]
+THEMES = ["familia", "descripcion", "ropa", "cuerpo", "manger", "transportes", "loisirs", "animales", "meteo", "emociones"]
 # les themes sans page anglaise (pas de `en: true` dans THEMES_ILLUSTRES) : jamais ouverts en anglais
-SANS_EN = ["manger", "transportes", "animales"]
+SANS_EN = ["manger", "transportes", "animales", "meteo", "emociones"]
 THEMES_EN = ["contrarios"]      # ses voix es et de sont dans contrarios.json ; l'anglais passe par themes/voix.js
 PARTIES = int(os.environ.get("PARTIES_VOIX", "150"))
 # ce que la page dit apres chaque reponse, sur PARTIES parties : Voix.dire est ecoute, chaque question repondue
@@ -84,21 +84,12 @@ def textes_des_pages():
     return out
 
 
-def emotions():
-    import manifest
-    return {"es": manifest.emociones_textes("es"), "latam": manifest.emociones_textes("latam"), "de": manifest.emociones_textes("de")}
-
-
 def main():
     textes = textes_des_pages()
     for th, d in textes.items():
         chemin = os.path.join(ICI, th, "voix.json")
         io.open(chemin, "w", encoding="utf-8", newline="\n").write(json.dumps(d, ensure_ascii=False, indent=1) + "\n")
         print("  -> %s" % os.path.relpath(chemin, RACINE))
-    try:
-        textes["emociones"] = emotions()
-    except Exception as e:
-        print("  (emotions non lues : %s)" % e)
     # les contraires (3 nov. 2026) : la decouverte et les mots cles, tels que contrarios.json les donne
     # (audio/manifest.py, contrarios_textes ; l'Amerique latine dit les memes textes que l'Espagne)
     # -- en COMPLETANT l'anglais lu dans la page (THEMES_EN), jamais en le remplacant
@@ -117,14 +108,13 @@ def main():
                 i = ident(t)
                 if os.path.exists(os.path.join(dossier, i + ".mp3")):
                     ids.add(i)
-                elif th != "emociones":
+                else:
                     dit = lectures.lecture(langue, t)
                     credits += len(((("Word: %s." if langue == "en" else "Palabra: %s.") % dit)) if (" " not in t and langue in ("es", "en")) else dit)
                     manque.append(t)
-            if th != "emociones":
-                total += credits
-                print("  %-12s %-6s %3d textes, %3d sans fichier, ~%d credits" % (th, cle, len(d.get(cle, [])), len(manque), credits))
-                if manque: print("      " + (" | ".join(manque) if len(manque) <= 30 else " | ".join(manque[:30]) + " | ... %d de plus" % (len(manque) - 30)))
+            total += credits
+            print("  %-12s %-6s %3d textes, %3d sans fichier, ~%d credits" % (th, cle, len(d.get(cle, [])), len(manque), credits))
+            if manque: print("      " + (" | ".join(manque) if len(manque) <= 30 else " | ".join(manque[:30]) + " | ... %d de plus" % (len(manque) - 30)))
         sons[dos or "de"] = sorted(ids)
     chemin = os.path.join(ICI, "prototype", "themes", "sons.json")
     io.open(chemin, "w", encoding="utf-8", newline="\n").write(json.dumps(sons, indent=1) + "\n")
