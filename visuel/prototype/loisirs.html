@@ -801,6 +801,8 @@ function decouvrir(){
 // ce que la page peut dire hors des parties (visuel/voix_themes.py) : les phrases de la decouverte
 function textesAVoix(){
   const t = [];
+  if (!["es", "de"].includes(Q.get("apprendre") || "es")) return t;    // pas encore d'anglais : rien a dire
+
   ACTS().forEach(a => t.push(P.fait(A_, quiFait(a), a)));
   faits().forEach(f => t.push(P.aime(A_, [f.p], f.a, f.gern) + " " + P.freq(A_, f.p, f.a, f.freq)));
   ACTS().forEach(a => [0, 1].forEach(pf => t.push(P.propose(A_, a, pf))));
