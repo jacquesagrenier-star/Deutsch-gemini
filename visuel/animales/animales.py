@@ -393,7 +393,7 @@ def gloses():
 
 
 def ecrire_json():
-    a_traduire = vraies()
+    a_traduire = sorted(vraies())          # trie : un ensemble change d'ordre d'un lancement a l'autre
     phr = {"de": {k: v["de"] for k, v in PH.items() if "de" in v}, "es": {k: v["es"] for k, v in PH.items() if "es" in v}}
     trad = {"es": {}, "de": {}}
     for k in a_traduire:
