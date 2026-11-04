@@ -331,7 +331,7 @@ def recolter():
 
     # LA FAMILLE ET DECRIRE UNE PERSONNE (themes illustres, 3 nov. 2026) : les fiches de la decouverte et les mots
     # cles dits apres une reponse, tels que les pages les disent (visuel/voix_themes.py -> visuel/<theme>/voix.json).
-    for theme in ("familia", "descripcion", "ropa", "cuerpo"):
+    for theme in ("familia", "descripcion", "ropa", "cuerpo", "manger"):
         for texte in themes_textes(theme, "de"):
             prendre(texte, "A1", "phrase" if " " in texte else "mot", theme)
 
