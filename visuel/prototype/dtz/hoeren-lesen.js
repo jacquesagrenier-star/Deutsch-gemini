@@ -480,7 +480,10 @@ DTZ.partie({id: "L", ordre: 2, titre: T("lire_titre"), sous: T("lesen_s"), ouvri
 DTZ.examen({id: "HL", ordre: 1, titre: T("ex_complet"), sous: T("ex_complet_s"), lancer: () => lancerExamen("HL")});
 DTZ.examen({id: "H", ordre: 2, titre: T("ex_hoeren"), sous: T("ex_hoeren_s"), lancer: () => lancerExamen("H")});
 DTZ.examen({id: "L", ordre: 3, titre: T("ex_lesen"), sous: T("ex_lesen_s"), lancer: () => lancerExamen("L")});
-DTZ.charger(Promise.all([fetch("donnees/hoeren.json").then(r => r.json()), fetch("donnees/lesen.json").then(r => r.json())])
+// cache: "no-cache" : un telephone garderait sinon l'ancien JSON apres une correction (constate le 4 nov. : les photos
+// des annonces n'apparaissaient pas, la page lisait le lesen.json d'avant)
+const FRAIS = {cache: "no-cache"};
+DTZ.charger(Promise.all([fetch("donnees/hoeren.json", FRAIS).then(r => r.json()), fetch("donnees/lesen.json", FRAIS).then(r => r.json())])
   .then(([h, l]) => { H = h; L = l; Object.assign(DTZ_VOIX, h.voix); }));
 // les pistes enregistrees : facultatives -- sans manifeste, tout passe par la voix du telephone
-DTZ.charger(fetch("donnees/voix-hoeren.json").then(r => r.ok ? r.json() : {}).catch(() => ({})).then(m => Object.assign(DTZ_PISTES, m)));
+DTZ.charger(fetch("donnees/voix-hoeren.json", FRAIS).then(r => r.ok ? r.json() : {}).catch(() => ({})).then(m => Object.assign(DTZ_PISTES, m)));

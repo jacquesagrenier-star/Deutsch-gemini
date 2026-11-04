@@ -87,7 +87,9 @@ button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
 @media (max-width:520px){.annonces{grid-template-columns:1fr}}
 .annonce{background:var(--papier);border:1px solid var(--papier-trait);border-radius:10px;padding:10px;font-size:14px;line-height:1.45;position:relative}
 .annonce .l{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;background:var(--encre);color:var(--papier);font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center}
-.annonce .photo{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;margin:0 0 8px}
+/* la photo d'une annonce : un bandeau bas, comme une vignette de site d'annonces -- huit annonces se lisent
+   encore sans trop defiler sur un telephone */
+.annonce .photo{display:block;width:100%;height:120px;object-fit:cover;border-radius:6px;margin:0 0 8px;background:var(--papier-trait)}
 .annonce .t{font-weight:900;padding-right:28px;margin-bottom:3px}
 .journal{background:var(--papier);border:1px solid var(--papier-trait);border-radius:10px;padding:12px;font-family:var(--serif);line-height:1.55;font-size:15px}
 .journal .k{font-family:var(--police);font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);border-bottom:2px solid var(--encre);padding-bottom:4px;margin-bottom:8px}
