@@ -305,8 +305,32 @@ def manger_ardoise():
     return c
 
 
+def metiers_polaroids():
+    """Les metiers : trois photos posees de travers, comme sur un tableau de liege -- la boulangere, le coiffeur, le
+    mecanicien, chacun A SON POSTE (recadres dans leur scene par visuel/metiers/metiers.py). Ce sont des lieux de
+    travail autant que des personnes : le sujet du theme, qui fait quoi et ou."""
+    c = Image.new("RGB", (W, H), (226, 196, 150))
+    d = ImageDraw.Draw(c)
+    for k in range(0, W, 9):                       # le grain du liege, discret
+        d.line([(k, 0), (k + 40, H)], fill=(219, 188, 141), width=2)
+    pw, ph = 180, 240
+    for k, (id, angle, x, y) in enumerate([("s-baeckerin", 7, 18, 120), ("s-friseur", -4, 205, 70), ("s-mechaniker", 6, 395, 125)]):
+        im = Image.open(os.path.join(P, "metiers", id + ".webp")).convert("RGB").resize((pw, ph), Image.LANCZOS)
+        cadre = Image.new("RGB", (pw + 20, ph + 56), (255, 255, 255))
+        cadre.paste(im, (10, 10))
+        cadre = cadre.convert("RGBA").rotate(angle, expand=True, resample=Image.BICUBIC)
+        ombre = Image.new("RGBA", cadre.size, (0, 0, 0, 0))
+        ombre.paste((60, 40, 20, 90), mask=cadre.split()[3])
+        c.paste(ombre, (x + 6, y + 8), ombre)
+        c.paste(cadre, (x, y), cadre)
+        cx = x + cadre.size[0] // 2                # la punaise ambre
+        d.ellipse((cx - 11, y + 4, cx + 11, y + 26), fill=(232, 162, 58), outline=(168, 106, 14), width=2)
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
-             "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise}
+             "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
+             "metiers": metiers_polaroids}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

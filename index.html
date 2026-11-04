@@ -9712,6 +9712,13 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div><strong data-i18n="man_tuile">Manger et goûter</strong></div>
         </div>
 
+        <!-- « Les metiers » (3 nov. 2026) : qui fait quoi et ou, « Ich bin Arztin » / « Soy medica » sans article, le
+             masculin et le feminin (der Arzt / die Arztin, el / la policia). visuel/prototype/metiers.html. es et de. -->
+        <div class="orb hidden" data-orbid="metiers" id="tuileMetiers" onclick="ouvrirThemeIllustre('metiers')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8.5 7V5a1.5 1.5 0 0 1 1.5-1.5h4A1.5 1.5 0 0 1 15.5 5v2M3 12.5h18M11 12.5v2h2v-2"/></svg></div>
+            <div><strong data-i18n="met_tuile">Les métiers</strong></div>
+        </div>
+
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
@@ -14449,6 +14456,7 @@ const I18N = {
         jour_tuile: "La journée",
         jour_court: "Journée",
         man_tuile: "Manger et goûter",
+        met_tuile: "Les métiers",
         man_court: "Manger",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
@@ -15980,6 +15988,7 @@ const I18N = {
         jour_tuile: "Daily routine",
         jour_court: "Routine",
         man_tuile: "Food and taste",
+        met_tuile: "Jobs",
         man_court: "Food",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
@@ -17513,6 +17522,7 @@ const I18N = {
         jour_tuile: "Günlük rutin",
         jour_court: "Rutin",
         man_tuile: "Yemek ve tat",
+        met_tuile: "Meslekler",
         man_court: "Yemek",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
@@ -19458,6 +19468,7 @@ const I18N = {
         jour_tuile: "Розпорядок дня",
         jour_court: "День",
         man_tuile: "Їжа і смак",
+        met_tuile: "Професії",
         man_court: "Їжа",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
@@ -21717,6 +21728,7 @@ const I18N = {
         jour_tuile: "کارهای روزانه",
         jour_court: "روزانه",
         man_tuile: "خوردن و چشیدن",
+        met_tuile: "شغل‌ها",
         man_court: "خوردن",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
@@ -23419,6 +23431,7 @@ const I18N = {
         jour_tuile: "الروتين اليومي",
         jour_court: "اليوم",
         man_tuile: "الأكل والتذوق",
+        met_tuile: "المهن",
         man_court: "الأكل",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
@@ -23801,6 +23814,7 @@ const I18N = {
         jour_tuile: "A rotina do dia",
         jour_court: "Rotina",
         man_tuile: "Comer e provar",
+        met_tuile: "As profissões",
         man_court: "Comer",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
@@ -25393,6 +25407,7 @@ const I18N = {
         jour_tuile: "Plan dnia",
         jour_court: "Dzień",
         man_tuile: "Jedzenie i smak",
+        met_tuile: "Zawody",
         man_court: "Jedzenie",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
@@ -26985,6 +27000,7 @@ const I18N = {
         jour_tuile: "Распорядок дня",
         jour_court: "День",
         man_tuile: "Еда и вкус",
+        met_tuile: "Профессии",
         man_court: "Еда",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
@@ -28579,6 +28595,7 @@ const I18N = {
         jour_tuile: "Der Tagesablauf",
         jour_court: "Tagesablauf",
         man_tuile: "Essen und Geschmack",
+        met_tuile: "Berufe",
         man_court: "Essen",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
@@ -30208,6 +30225,7 @@ const I18N = {
         jour_tuile: "La rutina diaria",
         jour_court: "Rutina",
         man_tuile: "Comer y probar",
+        met_tuile: "Las profesiones",
         man_court: "Comer",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
@@ -47102,7 +47120,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           ropa: {page: "ropa.html", titre: "ropa_tuile", court: "ropa_court", tuile: "tuileRopa"},
                           cuerpo: {page: "cuerpo.html", titre: "cue_tuile", court: "cue_court", tuile: "tuileCuerpo"},
                           journee: {page: "journee.html", titre: "jour_tuile", court: "jour_court", tuile: "tuileJournee"},
-                          manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger"}};
+                          manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger"},
+                          metiers: {page: "metiers.html", titre: "met_tuile", tuile: "tuileMetiers"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
