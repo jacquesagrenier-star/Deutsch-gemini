@@ -567,7 +567,7 @@ function traduire(q){
 const FR_VERBE = {encanta: "adore", gusta: "aime", no: "n'aime pas", nada: "déteste"};
 const SAV_FR = {dulce: "sucré", salado: "salé", picante: "épicé", amargo: "amer", acido: "acide"};
 const voyelle = s => /^[aeiouyéèêœh]/i.test(s);
-const deFr = s => (voyelle(s) ? "d'" : "de ") + s;
+const deFrEn = s => (voyelle(s) ? "d'" : "de ") + s;
 const leFr = k => ea(k).frLe.charAt(0).toLowerCase() + ea(k).frLe.slice(1);
 const qteFr = (c, d) => { const a = EN_CT[c].fr, x = EN_CU[d].fr; return maj((/de $/.test(a) && voyelle(x) ? a.replace(/de $/, "d'") : a) + x) + "."; };
 const carteFr = (cle, n) => EN_CARTE.find(x => x.cle === cle).fr[n > 1 ? 1 : 0];
@@ -577,14 +577,14 @@ function traduireEn(q){
   if (q.aime) return nom(q.aime.p) + " " + FR_VERBE[q.aime.r] + " " + ea(q.aime.a).fr + ".";
   if (q.ing) return nom(q.ing.p) + " " + FR_VERBE[q.ing.r] + " " + ea(q.ing.a).ing + ".";
   if (q.saveur) return ea(q.saveur).frLe + (ea(q.saveur).pl ? " ont" : " a") + " un goût " + SAV_FR[saveurDe(q.saveur)] + ".";
-  if (q.probar) return nom(q.probar.p) + " goûte quelque chose " + deFr(SAV_FR[saveurDe(q.probar.a)]) + ".";
+  if (q.probar) return nom(q.probar.p) + " goûte quelque chose " + deFrEn(SAV_FR[saveurDe(q.probar.a)]) + ".";
   if (q.goute) return "Regarde ! " + nom(q.goute.p) + " goûte " + leFr(q.goute.a) + ".";
   if (q.dit) return ditFr(q.dit.a, q.dit.r);
   if (q.trop){ const g = q.trop, s = SAV_FR[saveurDe(g.a)];
     return g.r === "no" ? nom(g.p) + " n'aime pas " + leFr(g.a) + " : c'est trop " + s + "." : nom(g.p) + " " + FR_VERBE[g.r] + " " + ea(g.a).fr + " : c'est " + s + ", mais pas trop."; }
   if (q.qte) return qteFr(q.qte.c, q.qte.d);
   if (q.combien){ const x = q.combien, cu = EN_CU[x.d];
-    return x.how ? "Combien " + deFr(cu.fr) + " voulez-vous ? " + EN_CT[x.c].frC + ", s'il vous plaît."
+    return x.how ? "Combien " + deFrEn(cu.fr) + " voulez-vous ? " + EN_CT[x.c].frC + ", s'il vous plaît."
                  : "Il y a " + (x.c === "poco" ? "un peu de " + cu.fr : cu.frDu) + " " + EN_OU[x.id][1] + "."; }
   if (q.liste) return q.liste[5];
   if (q.cafe) return EN_CAFE[q.cafe.id].fr[q.cafe.fait ? 1 : 0];
