@@ -120,6 +120,29 @@ section.image{margin-top:30px; padding-top:18px; border-top:2px solid var(--trai
 .lecture{display:flex; flex-direction:column; gap:8px; flex:1 1 220px; min-width:0}
 .lecture .ligne{display:flex; flex-wrap:wrap; gap:6px; align-items:center; font-size:13px; color:var(--gris)}
 
+/* La carte : le verso défile, les trois boutons restent en bas */
+.ecran.carte-ecran{height:600px}
+.jb{position:absolute; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; border-radius:14px;
+  overflow:hidden; isolation:isolate; font:800 14.5px/1.15 var(--police); text-align:center; padding:4px}
+.jb small{display:block; font-size:11px; font-weight:700; opacity:.92}
+.jb svg.ic{width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; filter:none}
+.jb.mince{flex-direction:row; gap:7px; font-size:12.5px}
+.jb.mince small{display:inline; font-size:11.5px}
+.jb.mince svg.ic{width:19px; height:19px; stroke-width:1.7}
+.jb.rondc{border-radius:50%}
+.jb.rondc .chev{font:600 27px/1 var(--ui); padding-bottom:5px}
+.jb.actuelc{background:var(--top); color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--bord)}
+.bille{width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex:0 0 auto;
+  background:radial-gradient(circle at 50% 85%, rgba(255,255,255,.5), rgba(255,255,255,0) 45%), #2e9e6a;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.55), inset 0 1.5px 0 rgba(255,255,255,.85), inset 0 -6px 10px -6px rgba(10,70,40,.55), 0 3px 7px -2px rgba(10,70,40,.35)}
+.bille svg{width:16px; height:16px; fill:none !important; stroke:#fff; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; filter:none !important}
+.pips{display:flex; gap:5px}
+.pip{width:8px; height:8px; border-radius:50%; background:currentColor; opacity:.28}
+.pip.on{opacity:1}
+.mesures-carte{display:flex; flex-direction:column; gap:6px; font-size:13px; color:var(--gris)}
+.mesures-carte div{display:flex; flex-wrap:wrap; gap:4px 8px; align-items:center}
+.mesures-carte b{color:var(--encre); min-width:96px}
+
 /* L'actuel : le vert des scènes et des thèmes (« .suite »), le rond blanc de « ‹ » */
 .pill.actuel{color:#fff; background:linear-gradient(180deg, var(--top), var(--bot));
   box-shadow:inset 0 0 0 3px rgba(0,0,0,.10), inset 0 -8px 14px -8px rgba(0,0,0,.30), 0 10px 24px rgba(30,90,60,.28)}
@@ -154,6 +177,10 @@ section.image{margin-top:30px; padding-top:18px; border-top:2px solid var(--trai
   </div>
   <p class="petit">« Noir / ambre » : noir le jour, ambre la nuit, comme les boutons de l'accueil. « Vert » : la couleur actuelle de Continuer, en plus transparent.</p>
 
+  <h3>La carte : les trois boutons ne bougent plus</h3>
+  <p class="petit">Le verso défile du doigt et passe sous « Encore », « Continuer » et « Mettre de côté », qui restent toujours à la même place, en bas. Continuer est un vert très doux, presque transparent. Chaque bouton s'adapte : texte foncé ou blanc selon ce qui passe dessous, et sa couleur ne se densifie que si le texte ne se lirait plus.</p>
+  <div id="carteDemo"></div>
+
   <h3>Le contraste, en résumé</h3>
   <p class="petit">Le pire cas des trois images, sur la zone la plus claire et sur la plus chargée. Seuils WCAG, ceux de <code>tests/audit-contraste.js</code> : 4,5 : 1 pour le texte du bouton (17 px), 3 : 1 pour les ronds (le chevron de 27 px et le haut-parleur).</p>
   <div class="resume"><table id="resume"></table></div>
@@ -184,7 +211,7 @@ const DENS = [
   {id:"givre", nom:"Verre givré", detail:"Teinte 40-46 %, flou 18 px. Texte foncé le jour, blanc la nuit."},
   {id:"teinte", nom:"Verre teinté", detail:"Teinte 64-72 %, flou 12 px. Plus transparent que l'actuel."},
   {id:"adapt", nom:"Clair adaptatif", detail:"Voile de 9 %, flou 6 px. Le texte passe au foncé ou au blanc selon l'image, et le voile ne s'épaissit que là où c'est nécessaire pour lire (jusqu'à 60 %)."},
-  {id:"vert", nom:"Vert adaptatif", detail:"Ton idée : Continuer en verre vert, texte blanc, voile de 35 % qui ne se densifie que si c'est nécessaire ; les ronds en clair adaptatif."}
+  {id:"vert", nom:"Vert adaptatif", detail:"Ton idée : Continuer en vert très doux, presque transparent (voile de 18 %). Texte vert foncé sur un fond clair, blanc sur un fond sombre, et le vert ne se densifie que si c'est nécessaire. Les ronds en clair adaptatif."}
 ];
 const BLANC = [255,255,255], FONCE = [28,36,48], CLAIR_NUIT = [243,245,248];
 const TEINTES = {
@@ -205,9 +232,9 @@ function verre(d, mode, teinte){
                      g = Object.assign(g, {flou:18, sat:1.4});
   if (d === "teinte"){ const c = teinte === "auto" ? (nuit ? "ambre" : "noir") : teinte; g = Object.assign({}, TEINTES[c], {flou:12, sat:1.4}); }
   if (d === "adapt" || d === "vert") g = {top:[255,255,255,.09], bot:[255,255,255,.09], flou:6, sat:1.6, ink:BLANC, ombre:true,
-                     adapt:true, palette:{f:VOILE_CLAIR, w:VOILE_SOMBRE}, min:AD_MIN, max:AD_MAX};
-  if (d === "vert") return {rond:g, pill:{top:VERT.concat([.35]), bot:VERT.concat([.35]), flou:10, sat:1.4, ink:BLANC, ombre:true,
-                     adapt:true, palette:{w:VERT}, min:.35, max:.90}};
+                     adapt:true, palette:PAL.neutre, min:AD_MIN, max:AD_MAX};
+  if (d === "vert") return {rond:g, pill:{top:[70,180,120,.18], bot:[70,180,120,.18], flou:8, sat:1.5, ink:VERT_ENCRE,
+                     adapt:true, palette:PAL.vert, min:VERT_MIN, max:.85}};
   if (d === "propose"){ const p = verre("givre", mode, teinte).pill, r = verre("clair", mode, teinte).rond; return {pill:p, rond:r}; }
   return {pill:g, rond:g};
 }
@@ -305,9 +332,19 @@ const pire = (D, bandes, g, ink) => Math.min(...bandes.map(b => mesurer(D, b, g,
    (jusqu'à 60 %) : un voile blanc sous un texte foncé, un voile sombre sous un texte blanc.
    Il prend la couleur de texte qui demande le moins de voile, et ne change de couleur que si
    l'autre en demande nettement moins (10 points), pour ne pas clignoter. */
-const AD_MIN = .09, AD_MAX = .60, AD_PAS = .03, VOILE_CLAIR = [255,255,255], VOILE_SOMBRE = [18,26,36], VERT = [30,112,72];
+const AD_MIN = .09, AD_MAX = .60, AD_PAS = .03, VOILE_CLAIR = [255,255,255], VOILE_SOMBRE = [18,26,36], VERT_MIN = .18, VERT_ENCRE = [20,83,47];
+/* Chaque verre adaptatif a deux tenues : « f », un voile clair sous un texte foncé ; « w », un voile
+   sombre sous un texte blanc. Le vert garde sa couleur dans les deux : vert pâle et texte vert foncé,
+   ou vert profond et texte blanc. */
+const PAL = {
+  neutre: {f:{tc:VOILE_CLAIR, ink:FONCE},        w:{tc:VOILE_SOMBRE, ink:BLANC}},
+  vert:   {f:{tc:[70,180,120], ink:VERT_ENCRE},  w:{tc:[24,100,62], ink:BLANC}},
+  jaune:  {f:{tc:[245,220,110], ink:[105,86,12]}, w:{tc:[92,76,14], ink:BLANC}},
+  orange: {f:{tc:[245,180,130], ink:[126,68,18]}, w:{tc:[110,58,18], ink:BLANC}}
+};
+const nomEncre = ink => lum(ink[0], ink[1], ink[2]) < .5 ? "foncé" : "blanc";
 function besoin(D, bandes, g, choix, seuil){
-  const ink = choix === "f" ? FONCE : BLANC, tc = g.palette[choix];
+  const ink = g.palette[choix].ink, tc = g.palette[choix].tc;
   const Fs = bandes.map(b => fond(D, b, g.flou, g.sat));
   let dernier = null;
   for (let a = g.min; a <= g.max + 1e-6; a += AD_PAS){
@@ -325,8 +362,8 @@ function adapter(D, bandes, g, seuil, actuelle){
   return {choix, a: x[choix].a};
 }
 function avecEncre(g, x){
-  const tc = g.palette[x.choix];
-  return Object.assign({}, g, {ink: x.choix === "f" ? FONCE : BLANC, ombre: x.choix === "w", lueur: x.choix === "f",
+  const tc = g.palette[x.choix].tc;
+  return Object.assign({}, g, {ink: g.palette[x.choix].ink, ombre: x.choix === "w", lueur: x.choix === "f",
     top: tc.concat([x.a]), bot: tc.concat([x.a]), voile: x.a});
 }
 function resoudre(D, topRonds, topPill, v, memo){
@@ -400,7 +437,7 @@ function section(im){
       const m2 = mesurer(D, bandePill(y + PY), v.pill, autre);
       encres = `<div class="encres">Le même verre avec le texte ${nomAutre} : ${fmt(m2)}</div>`;
     }
-    if (dd.id === "adapt") encres = `<div class="encres">Ici : bouton en texte ${v.pill.ink === FONCE ? "foncé" : "blanc"}, voile ${pct(v.pill.voile)} ; ronds en ${v.rond.ink === FONCE ? "foncé" : "blanc"}, voile ${pct(v.rond.voile)}.</div>`;
+    if (dd.id === "adapt") encres = `<div class="encres">Ici : bouton en texte ${nomEncre(v.pill.ink)}, voile ${pct(v.pill.voile)} ; ronds en ${nomEncre(v.rond.ink)}, voile ${pct(v.rond.voile)}.</div>`;
     return `<div class="bande-bloc">
       <div class="bande"><img src="${im.src}" alt="" style="top:${14 - y}px">${boutons(v, im.bouton, 14)}</div>
       <div class="nom"><b>${dd.nom}</b><span>flou ${v.pill.flou} px</span></div>
@@ -433,7 +470,7 @@ function pile(){
   const h = ims.reduce((s, D) => s + D.h, 0), c = document.createElement("canvas"); c.width = W; c.height = h;
   const x = c.getContext("2d", {willReadFrequently:true}); let y = 0;
   ims.forEach(D => { x.drawImage(D.img, 0, y, W, D.h); y += D.h; });
-  return {w:W, h, px:x.getImageData(0, 0, W, h).data};
+  return {w:W, h, px:x.getImageData(0, 0, W, h).data, cle:"pile"};
 }
 function demo(){
   const el = document.getElementById("demo"); if (!PILE){ el.innerHTML = ""; return; }
@@ -459,10 +496,135 @@ function majDemo(){
   poser(document.getElementById("dR1"), v.rond); poser(document.getElementById("dR2"), v.rond); poser(document.getElementById("dP"), v.pill);
   document.getElementById("dmP").innerHTML = etat(pire(PILE, [bandePill(s + TOP_P)], v.pill, v.pill.ink), 4.5);
   document.getElementById("dmR").innerHTML = etat(pire(PILE, bandesRonds(s + TOP_R), v.rond, v.rond.ink), 3);
-  const nom = g => g.ink === FONCE ? "foncé" : "blanc";
+  const nom = g => nomEncre(g.ink);
   document.getElementById("dmT").textContent = v.pill.adapt
     ? `En ce moment : bouton en texte ${nom(v.pill)}, voile ${pct(v.pill.voile)} ; ronds en ${nom(v.rond)}, voile ${pct(v.rond.voile)}. Les chiffres suivent l'image pendant qu'elle défile.`
     : "Ce verre garde toujours la même couleur de texte : le chiffre montre ce que ça donne pendant que l'image défile.";
+}
+
+/* ---------- la carte ---------- */
+/* Le verso est DESSINÉ dans un canevas puis affiché comme image : c'est ce qui permet de mesurer
+   le contraste sur ce qui passe vraiment sous chaque bouton, texte de la carte compris. */
+const HC = 600, R2 = HC - 12 - 36, R1 = R2 - 8 - 70;
+const POS = {
+  retour:{x:16, y:12, w:40, h:40, band:{x:27, y:23, w:18, h:18}, seuil:3, base:"jb rondc"},
+  encore:{x:16, y:R1, w:140, h:70, band:{x:36, y:R1 + 14, w:100, h:42}, seuil:4.5, base:"jb"},
+  cont:{x:164, y:R1, w:140, h:70, band:{x:184, y:R1 + 14, w:100, h:42}, seuil:4.5, base:"jb"},
+  garde:{x:16, y:R2, w:288, h:36, band:{x:70, y:R2 + 9, w:180, h:18}, seuil:4.5, base:"jb mince"}
+};
+const NOMS_BOUTONS = {retour:"Retour ‹", encore:"Encore", cont:"Continuer", garde:"Mettre de côté"};
+const CARTE = {mode:null, D:null, url:null, dens:"vert", memo:{}, raf:0};
+function dessinerCarte(mode){
+  const nuit = mode === "nuit", base = DONNEES.baeckerei; if (!base) return;
+  const c = document.createElement("canvas"); c.width = W * 2; c.height = 1100 * 2;
+  const x = c.getContext("2d"); x.scale(2, 2);
+  const encre = nuit ? "#EEF2F5" : "#1C2430", gris = nuit ? "#A4ABBC" : "#576177", ambre = nuit ? "#F0A93C" : "#8A5A10";
+  const lignes = (t, px, y, larg, police, coul, inter) => {
+    x.font = police; x.fillStyle = coul; let l = "";
+    t.split(" ").forEach(m => { const e = l ? l + " " + m : m; if (x.measureText(e).width > larg && l){ x.fillText(l, px, y); y += inter; l = m; } else l = e; });
+    if (l){ x.fillText(l, px, y); y += inter; } return y;
+  };
+  // le fond de l'app, puis la carte
+  const fondApp = x.createLinearGradient(0, 0, 0, 1100);
+  if (nuit){ fondApp.addColorStop(0, "#14202C"); fondApp.addColorStop(1, "#1C2B3A"); }
+  else { fondApp.addColorStop(0, "#82AFDB"); fondApp.addColorStop(.55, "#A4C6E7"); fondApp.addColorStop(1, "#C0D6EA"); }
+  const top = 64; let y = top + 14;
+  // l'image du mot : les bretzels de la boulangerie
+  const im = base.img, nw = im.naturalWidth / 1536;
+  x.save(); x.beginPath(); x.roundRect(30, y, 260, 178, 14); x.clip();
+  x.drawImage(im, 600 * nw, 1290 * nw, 420 * nw, 288 * nw, 30, y, 260, 178); x.restore();
+  y += 178 + 40;
+  x.font = "800 30px Nunito, system-ui, sans-serif"; x.fillStyle = nuit ? "#FF8A80" : "#B3261E"; x.fillText("die", 30, y);
+  const lArt = x.measureText("die ").width; x.fillStyle = encre; x.fillText("Brezel", 30 + lArt, y);
+  y += 30; x.font = "700 18px Nunito, system-ui, sans-serif"; x.fillStyle = gris; x.fillText("le bretzel", 30, y);
+  y += 28; x.font = "700 14.5px Nunito, system-ui, sans-serif"; x.fillStyle = encre; x.fillText("Pluriel : die Brezeln", 30, y);
+  y += 20; x.fillStyle = nuit ? "rgba(255,255,255,.12)" : "rgba(30,41,59,.12)"; x.fillRect(30, y, 260, 1);
+  y += 30;
+  y = lignes("Zum Frühstück esse ich eine Brezel mit Butter.", 30, y, 260, "800 16px Nunito, system-ui, sans-serif", encre, 22);
+  y = lignes("Au petit-déjeuner, je mange un bretzel avec du beurre.", 30, y + 2, 260, "italic 600 14.5px Nunito, system-ui, sans-serif", gris, 20);
+  y += 18;
+  y = lignes("In der Bäckerei kaufe ich zwei Brezeln.", 30, y, 260, "800 16px Nunito, system-ui, sans-serif", encre, 22);
+  y = lignes("À la boulangerie, j'achète deux bretzels.", 30, y + 2, 260, "italic 600 14.5px Nunito, system-ui, sans-serif", gris, 20);
+  y += 18;
+  y = lignes("Die Brezeln sind noch warm.", 30, y, 260, "800 16px Nunito, system-ui, sans-serif", encre, 22);
+  y = lignes("Les bretzels sont encore chauds.", 30, y + 2, 260, "italic 600 14.5px Nunito, system-ui, sans-serif", gris, 20);
+  y += 22; x.font = "800 12px Nunito, system-ui, sans-serif"; x.fillStyle = ambre; x.fillText("BON À SAVOIR", 30, y); y += 22;
+  y = lignes("En Bavière et en Autriche, on dit aussi « die Breze ». Le bretzel se mange souvent au petit-déjeuner ou avec une Weißwurst.", 30, y, 260, "600 14.5px Nunito, system-ui, sans-serif", encre, 21);
+  const bas = y + 16;
+  // la carte elle-même, dessinée DESSOUS : on la peint après coup avec « destination-over »
+  x.globalCompositeOperation = "destination-over";
+  x.fillStyle = nuit ? "#1A2532" : "#FFFDF8"; x.beginPath(); x.roundRect(16, top, 288, bas - top, 20); x.fill();
+  x.fillStyle = fondApp; x.fillRect(0, 0, W, 1100);
+  x.globalCompositeOperation = "source-over";
+  x.strokeStyle = nuit ? "rgba(255,255,255,.14)" : "rgba(30,41,59,.32)"; x.lineWidth = 1; x.beginPath(); x.roundRect(16.5, top + .5, 287, bas - top - 1, 20); x.stroke();
+  const H = Math.min(1100, bas + 150);
+  const c2 = document.createElement("canvas"); c2.width = W * 2; c2.height = H * 2; c2.getContext("2d").drawImage(c, 0, 0);
+  const c1 = document.createElement("canvas"); c1.width = W; c1.height = H;
+  const x1 = c1.getContext("2d", {willReadFrequently:true}); x1.drawImage(c2, 0, 0, W, H);
+  CARTE.D = {w:W, h:H, px:x1.getImageData(0, 0, W, H).data, cle:"carte-" + mode};
+  CARTE.url = c2.toDataURL("image/png"); CARTE.mode = mode;
+}
+function verresCarte(dens, mode){
+  const nuit = mode === "nuit";
+  if (dens === "actuel"){
+    const a = (top, bord, ink) => ({actuel:true, top, bot:top, bord, ink, flou:0, sat:1});
+    return nuit ? {
+      retour: {actuel:true, top:[20,36,50,.6], bot:[20,36,50,.6], bord:[255,255,255,.14], ink:[238,242,245], flou:8, sat:1},
+      encore: a([240,214,110,.15], [240,214,110,.40], [239,221,156]),
+      cont:   a([46,139,87,.18],   [127,211,165,.40], [168,230,196]),
+      garde:  a([240,160,100,.15], [240,160,100,.40], [243,195,155])
+    } : {
+      retour: {actuel:true, top:[255,255,255,.6], bot:[255,255,255,.6], bord:[255,255,255,.9], ink:FONCE, flou:8, sat:1},
+      encore: a([254,249,224,1], [236,223,166,1], [127,108,24]),
+      cont:   a([217,245,230,1], [159,220,190,1], [28,107,71]),
+      garde:  a([253,234,217,1], [240,197,158,1], [149,87,27])
+    };
+  }
+  const adapt = (palette, min, max, flou) => ({adapt:true, palette, min, max, flou, sat:1.5,
+    top:palette.f.tc.concat([min]), bot:palette.f.tc.concat([min]), ink:palette.f.ink});
+  const neutre = adapt(PAL.neutre, AD_MIN, AD_MAX, 6);
+  return {
+    retour: neutre,
+    encore: dens === "couleurs" ? adapt(PAL.jaune, .14, .85, 8) : neutre,
+    cont:   adapt(PAL.vert, VERT_MIN, .85, 8),
+    garde:  dens === "couleurs" ? adapt(PAL.orange, .14, .85, 8) : neutre
+  };
+}
+const IC_MINUTERIE = `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2h4M12 14l3-3"/><circle cx="12" cy="14" r="8"/></svg>`;
+const IC_COFFRE = `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/><rect x="10.8" y="14.2" width="2.4" height="3.2" rx=".7"/><path d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/></svg>`;
+function carte(){
+  const el = document.getElementById("carteDemo"); if (!DONNEES.baeckerei) return;
+  if (CARTE.mode !== E.mode) dessinerCarte(E.mode);
+  const ancien = el.querySelector(".defile"), s = ancien ? ancien.scrollTop : 0;
+  const pos = k => `left:${POS[k].x}px;top:${POS[k].y}px;width:${POS[k].w}px;height:${POS[k].h}px`;
+  el.innerHTML = `<div class="demo"><div class="ecran carte-ecran"><div class="defile"><img src="${CARTE.url}" alt="Le verso de la carte « die Brezel »"></div>
+      <div class="jb rondc" id="cb-retour" style="${pos("retour")}"><span class="chev">‹</span></div>
+      <div class="jb" id="cb-encore">${IC_MINUTERIE}<span>Encore</span><small>retour dans 2 minutes</small></div>
+      <div class="jb" id="cb-cont"><span class="bille"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></span><span class="pips"><i class="pip on"></i><i class="pip"></i><i class="pip"></i><i class="pip"></i></span><span>Continuer</span></div>
+      <div class="jb mince" id="cb-garde">${IC_COFFRE}<span>Mettre de côté</span><small>pour le retravailler</small></div>
+    </div>
+    <div class="lecture"><div class="groupe-ctl">Les boutons</div>
+      ${seg("carteDens", [["actuel","L'actuel"],["vert","Seul Continuer en vert"],["couleurs","Chacun sa couleur"]], CARTE.dens)}
+      <p class="petit">« L'actuel » : les couleurs d'aujourd'hui, comme si les boutons restaient fixes. « Seul Continuer en vert » : Encore et Mettre de côté en verre clair. « Chacun sa couleur » : Encore jaune, Mettre de côté orangé, tous très doux.</p>
+      <div class="mesures-carte" id="carteMesures"></div></div></div>`;
+  const d = el.querySelector(".defile"); d.scrollTop = s;
+  d.addEventListener("scroll", () => { if (!CARTE.raf) CARTE.raf = requestAnimationFrame(() => { CARTE.raf = 0; majCarte(); }); }, {passive:true});
+  CARTE.memo = {}; majCarte();
+}
+function majCarte(){
+  const d = document.querySelector("#carteDemo .defile"); if (!d || !CARTE.D) return;
+  const s = Math.max(0, Math.min(d.scrollTop, CARTE.D.h - HC)), V = verresCarte(CARTE.dens, E.mode), lignes = [];
+  Object.keys(POS).forEach(k => {
+    const P = POS[k], b = {x:P.band.x, y:P.band.y + s, w:P.band.w, h:P.band.h};
+    let g = V[k];
+    if (g.adapt){ const x = adapter(CARTE.D, [b], g, P.seuil, CARTE.memo[k]); CARTE.memo[k] = x.choix; g = avecEncre(g, x); }
+    const el = document.getElementById("cb-" + k);
+    el.className = P.base + " " + (g.actuel ? "actuelc" : classe(g));
+    el.setAttribute("style", `left:${P.x}px;top:${P.y}px;width:${P.w}px;height:${P.h}px;` + style(g) + (g.bord ? `;--bord:${rgba(g.bord)}` : ""));
+    const c = mesurer(CARTE.D, b, g, g.ink);
+    lignes.push(`<div><b>${NOMS_BOUTONS[k]}</b>${etat(c, P.seuil)}${g.adapt ? `<span>texte ${nomEncre(g.ink)}, voile ${pct(g.voile)}</span>` : ""}</div>`);
+  });
+  document.getElementById("carteMesures").innerHTML = lignes.join("");
 }
 
 function tout(){
@@ -472,11 +634,13 @@ function tout(){
   resume();
   document.getElementById("images").innerHTML = IMAGES.map(section).join("");
   demo();
+  carte();
 }
 document.addEventListener("click", e => {
   const b = e.target.closest(".seg button"); if (!b) return;
   const id = b.parentElement.id, v = b.dataset.v;
   if (id === "demoDens"){ ED.dens = v; demo(); return; }
+  if (id === "carteDens"){ CARTE.dens = v; carte(); return; }
   if (id === "ctlMode") E.mode = v;
   else if (id === "ctlTeinte") E.teinte = v;
   else if (id.startsWith("z-")) E.zone[id.slice(2)] = v;
@@ -485,7 +649,11 @@ document.addEventListener("click", e => {
 });
 legende();
 Promise.all(IMAGES.map(im => new Promise(ok => {
-  const i = new Image(); i.onload = () => { const D = lirePixels(i); D.zones = zones(D); D.img = i; DONNEES[im.id] = D; ok(); }; i.onerror = ok; i.src = im.src;
-}))).then(() => { PILE = pile(); tout(); });
+  const i = new Image(); i.onload = () => { const D = lirePixels(i); D.zones = zones(D); D.img = i; D.cle = im.id; DONNEES[im.id] = D; ok(); }; i.onerror = ok; i.src = im.src;
+}))).then(() => {
+  // la carte est écrite en Nunito dans un canevas : attendre la police (au plus 2 s)
+  const polices = document.fonts ? Promise.all(["800 30px Nunito", "700 18px Nunito", "600 14.5px Nunito", "italic 600 14.5px Nunito"].map(f => document.fonts.load(f))) : Promise.resolve();
+  return Promise.race([polices, new Promise(ok => setTimeout(ok, 2000))]).catch(() => {});
+}).then(() => { PILE = pile(); tout(); });
 tout();
 </script>
