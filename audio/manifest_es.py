@@ -203,8 +203,10 @@ def recolter(variante):
         prendre(t, "contrarios", "A1")
     # LA FAMILLE ET DECRIRE UNE PERSONNE (themes illustres, 3 nov. 2026) : les fiches de la decouverte et les mots
     # cles, a la variante pres (visuel/<theme>/voix.json, cles es et latam).
-    for theme in ("familia", "descripcion", "ropa", "cuerpo", "manger"):
-        for t in manifest_de.themes_textes(theme, "latam" if variante == "latam" else "es"):
+    # Le chat et la journee (4 nov. 2026). Un theme sans cle latam (le chat) : l'Amerique latine dit les textes de l'Espagne.
+    for theme in ("familia", "descripcion", "ropa", "cuerpo", "manger", "gato", "journee"):
+        textes = manifest_de.themes_textes(theme, "latam") if variante == "latam" else []
+        for t in textes or manifest_de.themes_textes(theme, "es"):
             prendre(t, theme, "A1")
     return out
 
