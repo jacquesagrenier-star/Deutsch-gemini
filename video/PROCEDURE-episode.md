@@ -234,6 +234,34 @@ exception — et c'est la réplique deux fois plus longue que les autres.
 d'un facteur **2,8** entre Seedance et l'avatar (480p natif remonté en
 1080p), et chaque raccord se verrait. C'est tout l'un ou tout l'autre.
 
+### La bouche s'arrête avec la voix — contrôle obligatoire avant toute publication
+
+```bash
+python video/bouche_apres_voix.py --planche bouches.jpg <les prises>.mp4
+```
+
+Né le 4 nov. 2026 : Jacques, sur l'oral du DTZ, « la bouche d'Anna continue
+de bouger après la fin de sa réplique ». Mesuré ensuite sur les 23 prises
+Kling : **19 bougeaient après la voix**, de 0,4 à 3,5 s (lèvres qui
+s'entrouvrent, articulation muette, grand sourire), parfois jusqu'à la
+dernière image. La queue muette de 1,3 s des paniers sert à Kling pour
+refermer la bouche ; il la remplit souvent d'une articulation sans voix.
+Ni `texte_incruste.py` ni une planche d'images fixes ne le voient.
+
+L'outil lit la fin de la voix sur la piste du clip, suit le nez image par
+image et mesure la bouche. **Une prise qui bouge plus de 0,4 s après la voix
+ne sort pas telle quelle.** La correction gratuite, d'abord : **couper** à la
+première image où la bouche est fermée et les yeux ouverts, entre 0,08 et
+0,4 s après la voix (`--couper <dossier>`, ou `point_de_coupe()` depuis un
+script de publication, comme `episode-dtz-oral/publier_medias.py`). Au
+montage d'un épisode, le plan s'arrête au même endroit. La planche se
+**regarde** : le chiffre trie, l'œil tranche (une bouche qui se referme ou un
+sourire qui se pose comptent aussi comme mouvement).
+
+Si la bouche bouge **pendant** que la voix porte encore, mal ou hors du
+texte, couper ne sert à rien : c'est une prise à refaire, donc une dépense
+à annoncer à Jacques avec son coût, et on attend son accord.
+
 ---
 
 ## Étape 6 — monter

@@ -796,6 +796,17 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"La queue muette du panier ne FERME pas la bouche : COUPER le clip a la fin de la voix, gratuit",
+     u"4 nov. 2026",
+     u"DTZ oral, Jacques sur l'essai : << la bouche d'Anna continue de bouger apres la fin de sa replique >>. "
+     u"video/bouche_apres_voix.py sur les 23 prises Kling : 19 bougeaient apres la voix, de 0,4 a 3,5 s, "
+     u"souvent jusqu'a la derniere image -- avec pourtant la queue << Finally... listens without speaking >> "
+     u"et 1,3 s de silence dans la piste. Coupees a l'image ou la bouche est fermee et les yeux ouverts, "
+     u"0,08 a 0,4 s apres la voix : plus aucune articulation muette (regarde image par image). Une coupe "
+     u"choisie sur la bouche seule tombait sur un clignement (a_ihr_foto, m_ende) : les yeux comptent aussi.",
+     u"Garder la queue de silence dans le panier (elle sert a Kling), mais ne jamais la publier : passer "
+     u"CHAQUE prise a video/bouche_apres_voix.py et couper au point qu'il donne (point_de_coupe()). Ce "
+     u"n'est pas une affaire de prompt : aucune phrase n'a tenu la bouche fermee."),
     (u"L'IMAGE DE DEPART recadree serre, sans bande vide sous les mains : Kling n'a plus ou poser ses sous-titres",
      u"3 nov. 2026",
      u"DTZ oral, Mark assis a une table (plan 13) : sur l'image entiere -- le quart du bas en dessus de "

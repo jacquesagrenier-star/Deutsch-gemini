@@ -5,6 +5,7 @@
 
   visuel/prototype/dtz/voix/<id>.mp3    toutes les repliques (audio/scenes/dtz-oral/), mono 64 kbit/s
   visuel/prototype/dtz/video/<id>.mp4   les clips Kling de RETENUS seulement, 480 px de large, H.264 + AAC,
+                                        COUPES a la fin de la voix (video/bouche_apres_voix.py, point_de_coupe),
   visuel/prototype/dtz/video/<id>.jpg   leur premiere image (le poster, avant que la video joue)
   visuel/prototype/dtz/voix/manifest.json   {id: {"son": 1, "video": 0|1}} -- la page s'y fie
 
@@ -16,9 +17,12 @@ import io
 import json
 import os
 import subprocess
+import sys
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
+sys.path.insert(0, os.path.join(RACINE, "video"))
+from bouche_apres_voix import point_de_coupe  # noqa: E402
 DTZ = os.path.join(RACINE, "visuel", "prototype", "dtz")
 ESSAI = os.path.join(ICI, "_essai-avatar")
 
@@ -45,8 +49,14 @@ def main():
         prise = os.path.join(ESSAI, "plan%02d-kling.mp4" % n)
         video = n in RETENUS and os.path.exists(prise)
         if video:
+            # COUPE A LA FIN DE LA VOIX (4 nov. 2026, Jacques : la bouche d'Anna bougeait apres sa replique). La queue
+            # muette de 1,3 s du panier sert a Kling ; dans 19 prises sur 23 il y a fait articuler la bouche. La page
+            # s'arrete sur la derniere image : on coupe la ou la bouche est la plus fermee, 0,08 a 0,4 s apres la voix.
+            coupe, fin, retard = point_de_coupe(prise)
+            print("  %-16s voix -> %5.2f s, coupe a %5.2f s%s" % (cle, fin, coupe,
+                  "  (la bouche bougeait %.2f s de plus)" % retard if retard > 0.25 else ""))
             mp4 = os.path.join(DTZ, "video", cle + ".mp4")
-            ff("-i", prise, "-vf", "scale=480:-2", "-c:v", "libx264", "-preset", "slow", "-crf", "26",
+            ff("-i", prise, "-t", "%.3f" % coupe, "-vf", "scale=480:-2", "-c:v", "libx264", "-preset", "slow", "-crf", "26",
                "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "64k", "-movflags", "+faststart", mp4)
             ff("-i", mp4, "-frames:v", "1", "-q:v", "4", os.path.join(DTZ, "video", cle + ".jpg"))
         manifeste[cle] = {"son": 1, "video": 1 if video else 0}
