@@ -23,3 +23,14 @@ Voix : Aurora v2 pour l'allemand, les deux voix espagnoles habituelles
 
 Environ **650 crédits** ElevenLabs (8 phrases ; deux voix par phrase espagnole).
 Le plafond accordé (« jusqu'à 5 000 ») n'en laisse que 241 : il faut un nouvel accord.
+
+## En attente d'un accord (4 nov. 2026)
+
+Le texte est déjà corrigé ; sans fichier, l'app lit ces deux textes avec la voix du téléphone.
+
+| Où | Texte | Voix | Crédits (environ) |
+|----|-------|------|------|
+| verbos.json B1, oponer → **oponerse** | oponerse | es-ES et es-419 | 20 |
+| idem, impératif | oponte, opóngase, oponeos, opónganse (es-ES) ; oponte, opóngase, opónganse (es-419) | es-ES et es-419 | 70 |
+
+Produire : `python audio/generer_es.py --variante es|latam --niveaux B1 --textes "oponerse|oponte, opóngase, oponeos, opónganse|oponte, opóngase, opónganse"`.
