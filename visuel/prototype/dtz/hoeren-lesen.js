@@ -423,8 +423,8 @@ function rendreCopie(){
     res[p].teile.forEach(x => { res[p].total += x.n; res[p].bons += x.b; });
   });
   const total = parts.reduce((a, p) => a + res[p].total, 0), bons = parts.reduce((a, p) => a + res[p].bons, 0);
-  // une partie seule : la tendance, ramenee a 45 pour la comparer aux seuils
-  const sur45 = EX.quoi === "HL" ? bons : Math.round(bons * 45 / total);
+  // une partie seule : la tendance, ramenee au bareme entier (45 au DTZ) pour la comparer aux seuils
+  const sur45 = EX.quoi === "HL" ? bons : Math.round(bons * PROFIL.sur / total);
   const niv = niveauHL(sur45);
   const texte = bons + "/" + total + " → " + T("niv_" + niv);
   const faits = lire("examens", {}); faits[EX.sH.id] = Date.now(); ecrire("examens", faits);
@@ -433,11 +433,11 @@ function rendreCopie(){
   parler("resultat", {mode: "examen", serie: EX.sH.id, hoeren: res.H ? res.H.bons : null, lesen: res.L ? res.L.bons : null, niveau: niv});
   parler("fini", {bons, faits: total});
   $("titre").textContent = T("verdict");
-  const pct = v => Math.round(v * 100 / 45) + "%";
+  const pct = v => Math.round(v * 100 / PROFIL.sur) + "%";
   let h = '<div class="bloc"><div class="score">' + bons + ' <span style="font-size:20px;color:var(--gris)">' + T("sur", {n: total}) + '</span></div>' +
     '<span class="niveau ' + niv + '">' + T("niv_" + niv) + '</span>';
-  if (EX.quoi === "HL") h += '<div class="jauge"><i style="width:' + pct(bons) + '"></i><s style="left:' + pct(20) + '"><em>A2 · 20</em></s><s style="left:' + pct(33) + '"><em>B1 · 33</em></s></div>';
-  h += '<p><b>' + (EX.quoi !== "HL" ? T("v_tendance", {n: T("niv_" + niv)}) : niv === "b1" ? T("v_b1") : niv === "a2" ? T("v_a2", {n: 33 - bons}) : T("v_moins", {n: 20 - bons})) + '</b></p>' +
+  if (EX.quoi === "HL") h += '<div class="jauge"><i style="width:' + pct(bons) + '"></i><s style="left:' + pct(PROFIL.a2) + '"><em>A2 · ' + PROFIL.a2 + '</em></s><s style="left:' + pct(PROFIL.b1) + '"><em>B1 · ' + PROFIL.b1 + '</em></s></div>';
+  h += '<p><b>' + (EX.quoi !== "HL" ? T("v_tendance", {n: T("niv_" + niv)}) : niv === "b1" ? T("v_b1") : niv === "a2" ? T("v_a2", {n: PROFIL.b1 - bons}) : T("v_moins", {n: PROFIL.a2 - bons})) + '</b></p>' +
     '<p class="petit">' + T(EX.quoi === "HL" ? "v_regle" : "v_seul") + '</p><div class="detail">';
   parts.forEach(p => res[p].teile.forEach(x => { h += '<span>' + (p === "H" ? "Hören" : "Lesen") + ' · Teil ' + x.t.slice(1) + ' · ' + T(p + "_" + x.t) + '</span><b>' + x.b + ' / ' + x.n + '</b>'; }));
   h += '</div><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + T("mark_v_" + niv) + '</div></div>' +

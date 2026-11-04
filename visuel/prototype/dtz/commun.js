@@ -27,14 +27,29 @@ document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "l
 const RAPIDE = Q.get("rapide") === "1";          // pauses raccourcies : pour les essais seulement
 const SERIES_EXAMEN = 3;                          // les series 1-3 sont gardees pour l'examen blanc
 const MARK_IMG = "../descripcion/Mark-visage.webp";
+
+// LE PROFIL DE L'EXAMEN (4 nov. 2026, decision de Jacques : un bloc DTZ et un bloc telc A2·B1 dans la preparation
+// aux examens, le materiel commun servant aux deux). La page qui charge ce fichier peut poser window.PROFIL_EXAMEN
+// AVANT lui ; sans profil, c'est le DTZ.
+//   id      prefixe du stockage local (wortando_<id>_...) : les examens blancs du telc ne se melangent pas a ceux du DTZ ;
+//   titre, intro       le titre de la page et la bulle de Mark a l'accueil ;
+//   sur, a2, b1        le verdict de l'ecrit recu (DTZ : Hoeren + Lesen sur 45, A2 des 20, B1 des 33) ;
+//   niveau(points)     a la place des seuils, quand le bareme n'est pas une simple somme (le telc).
+const PROFIL = Object.assign({
+  id: "dtz",
+  titre: "Le DTZ avec Mark et Anna",
+  // Jacques, 4 nov. : « Mark et Anna t'aident à préparer le DTZ » -- Anna, l'examinatrice, est autant impliquee
+  intro: "Anna et moi, on t'aide à préparer le DTZ, l'examen de la fin du cours d'intégration. Les messages de mon répondeur, mon courrier, la radio de Berlin : c'est exactement ce qu'on y trouve.",
+  sur: 45, a2: 20, b1: 33, niveau: null
+}, window.PROFIL_EXAMEN || {});
 const ANNA_IMG = "../descripcion/Anna-visage.webp";
 
 // L'INTERFACE : le francais d'abord (maquette du 3 nov. 2026) ; les huit autres langues avant l'ouverture aux
 // eleves, ici, comme TEXTES des themes illustres. Un module ajoute ses cles par Object.assign(TXT, {...}).
 // Une cle sans traduction retombe sur le francais.
 const TXT = {
-  titre: "Le DTZ avec Mark et Anna",
-  intro: "Le DTZ, c'est l'examen de la fin du cours d'intégration. Je t'aide à le préparer : les messages de mon répondeur, mon courrier, la radio de Berlin… c'est exactement ce qu'on y trouve.",
+  titre: PROFIL.titre,
+  intro: PROFIL.intro,
   entrainement: "Entraînement avec Mark et Anna",
   entrainement_s: "Une partie à la fois, avec une explication après chaque réponse.",
   examen: "Examen blanc",
@@ -55,8 +70,8 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
 const ABC = "abcdefghx";
 function parler(type, extra){ try{ if (window.parent !== window) parent.postMessage(Object.assign({source: "wortando-scene", type}, extra || {}), "*"); }catch(e){} }
-function lire(cle, defaut){ try{ const v = localStorage.getItem("wortando_dtz_" + cle); return v ? JSON.parse(v) : defaut; }catch(e){ return defaut; } }
-function ecrire(cle, v){ try{ localStorage.setItem("wortando_dtz_" + cle, JSON.stringify(v)); }catch(e){} }
+function lire(cle, defaut){ try{ const v = localStorage.getItem("wortando_" + PROFIL.id + "_" + cle); return v ? JSON.parse(v) : defaut; }catch(e){ return defaut; } }
+function ecrire(cle, v){ try{ localStorage.setItem("wortando_" + PROFIL.id + "_" + cle, JSON.stringify(v)); }catch(e){} }
 
 // ============ LA VOIX ============
 // La voix du telephone, en attendant les fichiers : une voix allemande, et pour les dialogues une hauteur par
@@ -138,9 +153,12 @@ async function choisirSerie(series, motsDe, cle){
 function marquerFait(cle, s){ const faits = lire("faits", {}); faits[cle + s.id] = Date.now(); ecrire("faits", faits); }
 
 // ============ LE VERDICT DE L'EXAMEN ENTIER ============
-// hl : points Hoeren + Lesen sur 45 (ou null) ; schreiben, sprechen : "B1" | "A2" | "moins", en majuscules ou non (ou null).
+// hl : points de l'ecrit recu, Hoeren + Lesen (sur PROFIL.sur, 45 au DTZ ; ou null) ; schreiben, sprechen : "B1" | "A2" | "moins", en majuscules ou non (ou null).
 // Le B1 global demande le B1 a l'oral ET dans un ecrit (Hoeren+Lesen ou Schreiben).
-function niveauHL(points){ return points >= 33 ? "b1" : points >= 20 ? "a2" : "moins"; }
+function niveauHL(points){
+  if (typeof PROFIL.niveau === "function") return PROFIL.niveau(points);
+  return points >= PROFIL.b1 ? "b1" : points >= PROFIL.a2 ? "a2" : "moins";
+}
 function niveauGlobal(hl, schreiben, sprechen){
   // l'oral et l'ecrit envoient « B1 » / « A2 » / « moins » : on accepte les deux casses
   schreiben = schreiben ? String(schreiben).toLowerCase() : null; sprechen = sprechen ? String(sprechen).toLowerCase() : null;
@@ -160,7 +178,7 @@ const DTZ = {
   examen(e){ this.examens.push(e); this.examens.sort((a, b) => a.ordre - b.ordre); },
   charger(pr){ this.chargements.push(pr); },
   surRetour(fn){ this.retour = fn; },
-  niveauGlobal, niveauHL, resultat
+  niveauGlobal, niveauHL, resultat, profil: PROFIL
 };
 // les quatre tuiles de l'examen, dans l'ordre du DTZ ; celles qu'aucun module n'a inscrites restent grisees
 const TUILES = [{id: "H", titre: "Écouter", sous: "Hören"}, {id: "L", titre: "Lire", sous: "Lesen"}, {id: "S", titre: "Écrire", sous: "Schreiben"}, {id: "Sp", titre: "Parler", sous: "Sprechen"}];
