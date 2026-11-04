@@ -153,7 +153,9 @@ IMAGES = {
                            "through the open driver's window from the side: both hands on the steering wheel, seat belt on, looking ahead."},
     "flugzeug": {"qui": "Felix", "moyen": "flugzeug",
                  "prompt": "Felix is sitting by the window inside a passenger airplane in flight (a NEW place): the airplane wing and "
-                           "clouds are visible through the oval window, seat belt on, a small table folded in front of him."},
+                           "clouds are visible through the oval window, seat belt on, a small table folded in front of him.",
+                 # la prise payee met sa chaussure au premier plan, contre la paroi : on recadre (gratuit) au-dessus
+                 "cadre": (291, 34, 2121, 1406)},
 }
 ORDRE = list(IMAGES)
 PAYANTES = [i for i in ORDRE if not IMAGES[i].get("recadrage")]
@@ -868,6 +870,7 @@ def webp():
         src = os.path.join(IMG, id + ".png")
         if not os.path.exists(src): continue
         im = Image.open(src).convert("RGB")
+        if IMAGES[id].get("cadre"): im = im.crop(IMAGES[id]["cadre"])
         im = im.resize((1200, round(1200 * im.height / im.width)), Image.LANCZOS)
         im.save(os.path.join(PROTO, id + ".webp"), quality=78, method=6)
         print("  ", id)
