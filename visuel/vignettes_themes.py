@@ -551,6 +551,48 @@ def demarches_formulaire():
     return c
 
 
+def courses_sac():
+    """Faire les courses : un sac de papier d'ou sortent une baguette et des poireaux, une grande etiquette jaune et son
+    prix (un prix, aucun mot : la meme vignette sert a l'espagnol et a l'allemand), et deux magasins en ronds, pris dans
+    les scenes de l'app (le marche, la boulangerie). Le sujet est l'achat, pas les aliments (ceux de « Manger »)."""
+    import math
+    c = Image.new("RGB", (W, H), (222, 236, 222))
+    d = ImageDraw.Draw(c)
+    # la baguette et deux poireaux qui depassent du sac
+    d.rounded_rectangle((92, 40, 140, 250), 24, fill=(214, 160, 92), outline=(168, 112, 56), width=4)
+    for k in range(4):
+        d.line([(100, 70 + k * 40), (132, 86 + k * 40)], fill=(168, 112, 56), width=4)
+    for x, haut in ((176, 70), (212, 96)):
+        d.rectangle((x - 12, haut + 60, x + 12, 260), fill=(236, 240, 224))
+        d.polygon([(x - 14, haut + 64), (x - 30, haut), (x - 6, haut + 40), (x, haut - 10), (x + 8, haut + 40), (x + 30, haut + 6), (x + 14, haut + 64)], fill=(70, 140, 76))
+    # le sac de papier
+    d.polygon([(52, 214), (282, 214), (262, 478), (72, 478)], fill=(196, 150, 100))
+    d.polygon([(52, 214), (282, 214), (276, 244), (58, 244)], fill=(176, 130, 82))
+    for k in range(6):
+        d.line([(84 + k * 34, 262), (88 + k * 32, 470)], fill=(184, 138, 88), width=2)
+    # l'etiquette jaune, sa ficelle, son prix
+    cx, cy, ang = 440, 150, -12
+    pts = [(-120, -62), (96, -62), (136, 0), (96, 62), (-120, 62)]
+    a = math.radians(ang)
+    rot = lambda x, y: (cx + x * math.cos(a) - y * math.sin(a), cy + x * math.sin(a) + y * math.cos(a))
+    d.polygon([rot(*q) for q in pts], fill=(255, 222, 96), outline=(214, 172, 40))
+    tx, ty = rot(100, 0)
+    d.ellipse((tx - 9, ty - 9, tx + 9, ty + 9), fill=(222, 236, 222), outline=(214, 172, 40), width=3)
+    d.line([(tx, ty), (tx + 40, ty - 70)], fill=(120, 90, 60), width=4)
+    lbl = Image.new("RGBA", (260, 110), (0, 0, 0, 0))
+    ImageDraw.Draw(lbl).text((120, 55), "2,49 €", font=F(58), fill=(28, 36, 48), anchor="mm")
+    lbl = lbl.rotate(-ang, resample=Image.BICUBIC, expand=True)
+    c.paste(lbl, (int(cx - 10 - lbl.size[0] / 2), int(cy - lbl.size[1] / 2)), lbl)
+    # deux magasins des scenes, en ronds : le marche (les pommes) et la boulangerie (le comptoir)
+    for nom, boite, (x, y), dia in (("markt-obst-heimisch", (0.06, 0.64, 0.56, 0.92), (470, 330), 168), ("baeckerei", (0.0, 0.25, 0.62, 0.55), (352, 430), 128)):
+        im = Image.open(os.path.join(P, nom + ".webp")).convert("RGB")
+        w, h = im.size
+        im = im.crop((int(boite[0] * w), int(boite[1] * h), int(boite[2] * w), int(boite[3] * h)))
+        r = rond(im, dia, 7)
+        c.paste(r, (x - r.size[0] // 2, y - r.size[1] // 2), r)
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
              "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
              "metiers": metiers_polaroids,
@@ -559,7 +601,8 @@ VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones"
              "animales": animaux_quatre_lieux,
              "meteo": meteo_quatre_saisons,
              "logement": logement_plan,
-             "demarches": demarches_formulaire}
+             "demarches": demarches_formulaire,
+             "courses": courses_sac}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
