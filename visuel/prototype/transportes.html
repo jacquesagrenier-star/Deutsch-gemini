@@ -401,7 +401,9 @@ function tableau(lignes, vise){
 }
 // le plan : trois lignes, les stations ; un trajet se marque par son depart (vert) et son arrivee (rouge), jamais par
 // la correspondance (c'est la question)
-const ETIQ = {zoo: [0, 7, "start"], goethe: [0, -4, "middle"], markt: [-3, -4, "end"], rathaus: [2, 7, "start"], ost: [0, -4, "middle"],
+// Goethe SOUS la ligne, le Zoo au-dessus et le Marktplatz un cran plus haut : au-dessus, « Goetheplatz » et
+// « Marktplatz » se chevauchaient, puis « Zoológico » touchait « Plaza Mayor » (4 nov.)
+const ETIQ = {zoo: [-2, -4, "start"], goethe: [0, 7, "middle"], markt: [-2.5, -8.5, "end"], rathaus: [2, 7, "start"], ost: [0, -4, "middle"],
               uni: [3.5, 1.4, "start"], linden: [3.5, 1.4, "start"], schiller: [3.5, 1.4, "start"], stadion: [3.5, 1.4, "start"],
               flughafen: [0, -4, "middle"], museum: [3, 4.5, "start"], hafen: [3.5, 1.4, "start"]};
 function plan(t){
@@ -603,8 +605,58 @@ const EX = {
   entendre(w){ return toucher(w, true); },
   // vrai ou faux : la phrase de l'image, ou une phrase fausse pour elle (l'autre geste, un autre moyen)
   vraifaux(w){
+    const Vr = DE_APP ? "Richtig" : "Verdadero", F = DE_APP ? "Falsch" : "Falso", vrai = Math.random() < 0.5;
+    const dire2 = (image, juste, faux) => {
+      const rep = vrai ? Vr : F;
+      ecran("vraifaux", image, cible(vrai ? juste : faux), true);
+      boutons($("choix"), [Vr, F], rep, ok => juger(ok, rep, juste));
+      return true;
+    };
+    // les mots qu'une seule autre sorte savait viser (Gleis, Verspätung, umsteigen, kosten ; andén, retraso, cambiar,
+    // costar) : sans ce vrai ou faux, deux d'entre eux a la suite forcaient la meme sorte deux fois (test du 4 nov.).
+    // Le faux ne change qu'une chose, et elle se lit sur le document : la voie, les minutes, la ligne, le prix en mots.
+    const TAB = DE_APP ? {voie: "Gleis", retard: "Verspätung"} : {voie: "andén", retard: "retraso"};
+    if (w && (estNom(w, TAB.voie) || estNom(w, TAB.retard))){
+      const retard = w.mot === TAB.retard, tabs = D.tableaux[APPRENDRE], lignes = hasard(tabs);
+      const c = lignes.filter(r => !retard || r.retard); if (!c.length) return false;
+      const r = hasard(c);
+      viser(w, motNom(w.mot));
+      if (retard){
+        const u = DE_APP ? " Minuten" : " minutos", n = hasard([5, 10, 15, 20].filter(x => x !== r.retard));
+        return dire2(tableau(lignes, null), r.phraseRetard, r.phraseRetard.replace(r.retard + u, n + u));
+      }
+      const p = DE_APP ? "Gleis " : "andén ", v = hasard(uniques(lignes.map(x => x.voie)).filter(x => x !== r.voie));
+      return dire2(tableau(lignes, null), r.phraseVoie, r.phraseVoie.replace(p + r.voie, p + v));
+    }
+    if (w && estVerbe(w, DE_APP ? "umsteigen" : "cambiar")){
+      // le faux : la troisieme ligne, qui ne passe pas a cette station (deux lignes s'y croisent, jamais trois)
+      const t = hasard(D.trajets), x = t[DE_APP ? "de_" : "es"];
+      const autre = Object.keys(D.lignes).find(k => k !== t.l1 && k !== t.l2);
+      viser(w, motVerbe(w.mot));
+      const ligne = k => DE_APP ? "in die " + D.lignes[k].de : "a la " + D.lignes[k].es;
+      return dire2(plan(t), x.phraseL, x.phraseL.replace(ligne(t.l2), ligne(autre)));
+    }
+    if (w && estVerbe(w, DE_APP ? "kosten" : "costar")){
+      // le prix lu sur le billet, dit en mots : neunundzwanzig Euro neunzig, ou zweiundneunzig Euro neunzig ?
+      const p = hasard(D.prix[APPRENDRE]);
+      viser(w, motVerbe(w.mot));
+      const enMots = m => p.phrase.replace(p.ecrit, m);
+      return dire2(billet(p.ville, p.ar ? TYPE_BILLET.ar : TYPE_BILLET.simple, p.ecrit), enMots(p.mots), enMots(hasard(p.leurres)));
+    }
+    // les verbes du mouvement (fahren, gehen, fliegen ; ir) : la phrase d'une image ou la personne se deplace
+    const MOUV = DE_APP ? ["fahren", "gehen", "fliegen"] : ["ir"];
+    if (w && estVerbe(w, ...MOUV)){
+      const verbe = m => DE_APP ? (D.moyens[m].de.verbe || "fahren") : "ir";
+      const id = hasard(Object.keys(D.images).filter(i => D.images[i].moyen && !D.images[i].geste && verbe(D.images[i].moyen) === w.mot));
+      if (!id) return false;
+      const im = D.images[id];
+      const autre = hasard(Object.keys(D.moyens).filter(k => k !== im.moyen && k !== (im.moyen === "flugzeug" ? "fuss" : "flugzeug")));
+      const faux = DE_APP ? im.qui + " " + ({fuss: "geht", flugzeug: "fliegt"}[autre] || "fährt") + " " + D.moyens[autre].de.mit + "." : im.qui + " va " + D.moyens[autre].es.en + ".";
+      viser(w, motVerbe(w.mot));
+      return dire2(photo(id), im[APPRENDRE].phrase, faux);
+    }
     const id = imageVisee(w, i => D.images[i].moyen); if (!id) return false;
-    const im = D.images[id], vrai = Math.random() < 0.5;
+    const im = D.images[id];
     viserImage(w, id);
     let faux;
     if (im.geste) faux = im[APPRENDRE].faux;
@@ -615,7 +667,7 @@ const EX = {
     }
     const phrase = vrai ? im[APPRENDRE].phrase : faux;
     ecran("vraifaux", photo(id), cible(phrase), true);
-    const Vr = DE_APP ? "Richtig" : "Verdadero", F = DE_APP ? "Falsch" : "Falso", rep = vrai ? Vr : F;
+    const rep = vrai ? Vr : F;
     boutons($("choix"), [Vr, F], rep, ok => juger(ok, rep, im[APPRENDRE].phrase));
     return true;
   }
