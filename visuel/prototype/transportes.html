@@ -31,6 +31,10 @@ html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre
   --panneau:#0B1B2B;--panneau-l:#163049;--billet:#2A3A48;--billet-b:#5B6B78}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (regle commune, visuel/THEMES-ILLUSTRES.md) : le contenu defile
+   DANS le body, et le document garde la hauteur du cadre (sinon, sur iPhone, le bouton fixe ne tombe pas en bas). */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
 body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
   padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
@@ -129,8 +133,8 @@ html.nuit .plan{background:#F4F6F8}
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="bas" id="bas" hidden></div>
 <script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=1"></script>
-<script src="themes/zoom.js?v=3"></script>
+<script src="themes/voix.js?v=2"></script>
+<script src="themes/zoom.js?v=4"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
@@ -217,7 +221,7 @@ const TEXTES = {
   regleBillet:{fr:"Au guichet, on te demande : aller simple ou aller-retour ?", en:"At the ticket office they ask you: one way or return?", tr:"Gişede sana sorarlar: tek yön mü, gidiş-dönüş mü?", uk:"У касі тебе запитають: в один бік чи туди й назад?", fa:"در باجه از تو می‌پرسند: یک‌طرفه یا رفت‌وبرگشت؟", ar:"في شبّاك التذاكر يسألونك: ذهاب فقط أم ذهاب وعودة؟", pt:"No guichê, perguntam: só ida ou ida e volta?", pl:"W kasie zapytają cię: w jedną stronę czy tam i z powrotem?", ru:"В кассе тебя спросят: в одну сторону или туда и обратно?", de:"Am Schalter fragt man dich: einfach oder hin und zurück?"},
   umsteigenPuce:{fr:"changer de ligne", en:"changing lines", tr:"hat değiştirmek", uk:"пересадка", fa:"عوض کردن خط", ar:"تغيير الخط", pt:"trocar de linha", pl:"przesiadka", ru:"пересадка", de:"umsteigen"},
   ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
-  commencer: {fr:"Commencer les exercices", en:"Start the exercises", tr:"Alıştırmalara başla", uk:"Почати вправи", fa:"شروع تمرین‌ها", ar:"ابدأ التمارين", pt:"Começar os exercícios", pl:"Zacznij ćwiczenia", ru:"Начать упражнения", de:"Übungen starten"},
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
   wie:       {fr:"Regarde l'image et choisis le bon moyen de transport.", en:"Look at the picture and choose the right means of transport.", tr:"Resme bak ve doğru ulaşım aracını seç.", uk:"Подивися на зображення й обери правильний вид транспорту.", fa:"به تصویر نگاه کن و وسیلهٔ نقلیهٔ درست را انتخاب کن.", ar:"انظر إلى الصورة واختر وسيلة النقل الصحيحة.", pt:"Olhe a imagem e escolha o meio de transporte certo.", pl:"Spójrz na obrazek i wybierz właściwy środek transportu.", ru:"Посмотри на картинку и выбери правильный вид транспорта.", de:"Sieh dir das Bild an und wähle das richtige Verkehrsmittel."},
   mit:       {fr:"Après mit : choisis l'article (datif).", en:"After mit: choose the article (dative).", tr:"mit'ten sonra: artikeli seç (Dativ).", uk:"Після mit: обери артикль (Dativ).", fa:"بعد از mit: حرف تعریف را انتخاب کن (Dativ).", ar:"بعد mit: اختر أداة التعريف (Dativ).", pt:"Depois de mit: escolha o artigo (dativo).", pl:"Po mit: wybierz rodzajnik (Dativ).", ru:"После mit: выбери артикль (Dativ).", de:"Nach mit: Wähle den Artikel (Dativ)."},
   en:        {fr:"Choisis la bonne préposition.", en:"Choose the right preposition.", tr:"Doğru edatı seç.", uk:"Обери правильний прийменник.", fa:"حرف اضافهٔ درست را انتخاب کن.", ar:"اختر حرف الجرّ الصحيح.", pt:"Escolha a preposição certa.", pl:"Wybierz właściwy przyimek.", ru:"Выбери правильный предлог.", de:"Wähle die richtige Präposition."},
@@ -236,7 +240,7 @@ const TEXTES = {
   choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
   reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
   // « Continuer », jamais « Suivant » : le nom des scenes, dans toute l'app (decision de Jacques du 3 nov.)
-  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam et", uk:"Продовжити", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Kontynuuj", ru:"Продолжить", de:"Weiter"},
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
@@ -333,7 +337,7 @@ function choixTraduit(c){
 function juger(ok, bonneTexte, phrase, dit){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   if (apresQ) apresQ();
@@ -801,7 +805,7 @@ function montrer(){
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
   vus.add(cleQuestion()); derniereSorte = fait;
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
