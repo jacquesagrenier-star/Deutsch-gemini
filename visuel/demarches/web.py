@@ -18,6 +18,17 @@ from demarches import DOSSIER, IMAGES, ecrire_json   # noqa: E402
 
 SORTIE = os.path.join(ICI, "..", "prototype", "demarches")
 
+# Les mots que fal a ecrits malgre la consigne, floutes ici plutot que de racheter l'image (boites en pixels de
+# l'original 2400 x 1792). unterschreiben : « CONTRACT », en anglais et lisible, sur le contrat que signe Mark (4 nov.).
+FLOUS = {"unterschreiben": [(1755, 1315, 1845, 1425)]}
+
+
+def flouter(im, boites):
+    from PIL import ImageFilter
+    for b in boites:
+        im.paste(im.crop(b).filter(ImageFilter.GaussianBlur(9)), b[:2])
+    return im
+
 
 def main():
     os.makedirs(SORTIE, exist_ok=True)
@@ -28,7 +39,7 @@ def main():
         if not os.path.exists(src):
             manque.append(nom)
             continue
-        im = Image.open(src).convert("RGB")
+        im = flouter(Image.open(src).convert("RGB"), FLOUS.get(nom, []))
         w, h = im.size
         if abs(w * 3 - h * 4) > 8:                   # 4:3 exact (fal rend 4:3 a quelques pixels pres)
             ch = round(w * 3 / 4) if w * 3 < h * 4 else h
