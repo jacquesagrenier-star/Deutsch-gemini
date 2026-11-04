@@ -36614,7 +36614,11 @@ async function loadVerbeJson() {
                     exempleHighlight: v.exempleHighlight || "", perfektHighlight: v.perfektHighlight || "",
                     // L'espagnol (fusion, etape 3) : le registre, la construction
                     // particuliere, et ses trois temps en liste ordonnee.
+                    // La note existe dans chaque langue d'interface depuis le 4 nov. 2026
+                    // (construccion_fr, _en...) ; le champ nu garde l'anglais.
                     registro: v.registro || "", construccion: v.construccion || "",
+                    construccion_fr: v.construccion_fr, construccion_en: v.construccion_en, construccion_pt: v.construccion_pt,
+                    construccion_ar: v.construccion_ar, construccion_de: v.construccion_de,
                     preterito: v.preterito || null, imperfecto: v.imperfecto || null, subjuntivo: v.subjuntivo || null,
                     // Les temps ajoutes le 13 oct. 2026 (fusion-espagnol/tiempos.py),
                     // et la phrase de chaque temps avec ses trois traductions.
@@ -52138,7 +52142,8 @@ function buildRektionBadgesHtml(card){
     if(card.construccion){
         // Espagnol : « gustar : la chose aimee est le sujet » ne tient pas dans
         // une pastille, et c'est pourtant ce qui fait rater la phrase.
-        bloc += `<div class="verb-construccion">${card.construccion}</div>`;
+        // Dans la langue d'interface : elle etait servie en anglais a tous.
+        bloc += `<div class="verb-construccion">${texteTraduit(card, "construccion") || card.construccion}</div>`;
     }
     return bloc;
 }
