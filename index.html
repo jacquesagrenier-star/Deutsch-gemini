@@ -9711,6 +9711,14 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 11h13v2.5a6.5 6.5 0 0 1-13 0z"/><path d="M17 12h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1.5 1.5 1.5 1.5 3S8 8 8 9.5M12 3.5c0 1.5 1.5 1.5 1.5 3S12 8 12 9.5"/></svg></div>
             <div><strong data-i18n="man_tuile">Manger et goûter</strong></div>
         </div>
+        <!-- En ville : s'orienter (4 nov. 2026, vague 3) : les lieux de la ville, demander et donner son chemin, situer un
+             lieu sur un plan dessine (le quartier de Mark a Berlin, un quartier de Madrid) ; neben / gegenueber + datif,
+             zum / zur, Gehen Sie / Biegen Sie ... ab ; del / al, hay / esta, siga / gire. Pas les transports (leur theme) :
+             visuel/prototype/ciudad.html. es et de. -->
+        <div class="orb hidden" data-orbid="ciudad" id="tuileCiudad" onclick="ouvrirThemeIllustre('ciudad')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-6-5.6-6-10.5a6 6 0 0 1 12 0C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/></svg></div>
+            <div><strong data-i18n="ciu_tuile">En ville : s'orienter</strong></div>
+        </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -14450,6 +14458,8 @@ const I18N = {
         jour_court: "Journée",
         man_tuile: "Manger et goûter",
         man_court: "Manger",
+        ciu_tuile: "En ville : s'orienter",
+        ciu_court: "En ville",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -15981,6 +15991,8 @@ const I18N = {
         jour_court: "Routine",
         man_tuile: "Food and taste",
         man_court: "Food",
+        ciu_tuile: "In town: finding your way",
+        ciu_court: "In town",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17514,6 +17526,8 @@ const I18N = {
         jour_court: "Rutin",
         man_tuile: "Yemek ve tat",
         man_court: "Yemek",
+        ciu_tuile: "Şehirde yol bulmak",
+        ciu_court: "Şehirde",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19459,6 +19473,8 @@ const I18N = {
         jour_court: "День",
         man_tuile: "Їжа і смак",
         man_court: "Їжа",
+        ciu_tuile: "У місті: орієнтуватися",
+        ciu_court: "У місті",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21718,6 +21734,8 @@ const I18N = {
         jour_court: "روزانه",
         man_tuile: "خوردن و چشیدن",
         man_court: "خوردن",
+        ciu_tuile: "در شهر: پیدا کردن راه",
+        ciu_court: "در شهر",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23420,6 +23438,8 @@ const I18N = {
         jour_court: "اليوم",
         man_tuile: "الأكل والتذوق",
         man_court: "الأكل",
+        ciu_tuile: "في المدينة: معرفة الطريق",
+        ciu_court: "في المدينة",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -23802,6 +23822,8 @@ const I18N = {
         jour_court: "Rotina",
         man_tuile: "Comer e provar",
         man_court: "Comer",
+        ciu_tuile: "Na cidade: se orientar",
+        ciu_court: "Na cidade",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25394,6 +25416,8 @@ const I18N = {
         jour_court: "Dzień",
         man_tuile: "Jedzenie i smak",
         man_court: "Jedzenie",
+        ciu_tuile: "W mieście: jak trafić",
+        ciu_court: "W mieście",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -26986,6 +27010,8 @@ const I18N = {
         jour_court: "День",
         man_tuile: "Еда и вкус",
         man_court: "Еда",
+        ciu_tuile: "В городе: найти дорогу",
+        ciu_court: "В городе",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28580,6 +28606,8 @@ const I18N = {
         jour_court: "Tagesablauf",
         man_tuile: "Essen und Geschmack",
         man_court: "Essen",
+        ciu_tuile: "In der Stadt: sich orientieren",
+        ciu_court: "In der Stadt",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30209,6 +30237,8 @@ const I18N = {
         jour_court: "Rutina",
         man_tuile: "Comer y probar",
         man_court: "Comer",
+        ciu_tuile: "En la ciudad: orientarse",
+        ciu_court: "En la ciudad",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -47102,7 +47132,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           ropa: {page: "ropa.html", titre: "ropa_tuile", court: "ropa_court", tuile: "tuileRopa"},
                           cuerpo: {page: "cuerpo.html", titre: "cue_tuile", court: "cue_court", tuile: "tuileCuerpo"},
                           journee: {page: "journee.html", titre: "jour_tuile", court: "jour_court", tuile: "tuileJournee"},
-                          manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger"}};
+                          manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger"},
+                          ciudad: {page: "ciudad.html", titre: "ciu_tuile", court: "ciu_court", tuile: "tuileCiudad"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
