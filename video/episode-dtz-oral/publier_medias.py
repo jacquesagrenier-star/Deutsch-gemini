@@ -29,7 +29,9 @@ ESSAI = os.path.join(ICI, "_essai-avatar")
 # Les numeros de plan (scenes/dtz-oral.json) dont la prise Kling a ete regardee et gardee.
 # 3 nov. 2026 : les 23 prises, chacune passee a texte_incruste.py et vue sur une planche de 8 images. 22 et 25 sont
 # des reprises (le buste qui bougeait faisait bouger la camera) ; 23, 24 et 25 sont recadrees au-dessus de faux
-# sous-titres (crop=536:952:92:0, l'original en planNN-kling-avant-recadrage.mp4).
+# sous-titres (crop=720:900:0:50 depuis le 4 nov. : le cadre 4:5 que la page montre des autres clips, remonte de
+# 50 px ; l'original en planNN-kling-avant-recadrage.mp4). Le premier recadrage (crop=536:952:92:0, 9:16 depuis le
+# haut) laissait un mur au-dessus d'Anna et sa tete en bas du cadre (Jacques, 4 nov. : << mal cadree >>).
 RETENUS = {1, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25}
 
 

@@ -63,7 +63,7 @@ CASE_YEUX = (240, 60)
 # au-dessus d'elle.
 BOUCHES = {
     "anna-dtz": (366, 620, 115),
-    "anna-dtz-recadre": (356, 824, 155),   # oral du DTZ, plans 23-25, recadres au-dessus de faux sous-titres
+    "anna-dtz-recadre": (366, 570, 115),   # oral du DTZ, plans 23-25 : crop=720:900:0:50, au-dessus de faux sous-titres
     "mark-dtz": (390, 530, 140),
 }
 RECADRES = {("dtz-oral", 23), ("dtz-oral", 24), ("dtz-oral", 25)}

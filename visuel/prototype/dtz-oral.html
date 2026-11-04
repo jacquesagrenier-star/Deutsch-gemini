@@ -603,6 +603,9 @@ async function fin(){
   const global = b1 >= 3 && a2 === 5 ? "B1" : a2 >= 3 ? "A2" : "moins";
   zone.appendChild(el("h2", "", "Le verdict d’Anna"));
   await bulle("a_ende_" + global, true);
+  // Le cadre du clip, pour que dire() joue la VIDEO : sans lui, la voix seule passait sous l'image fixe et les levres
+  // d'Anna ne bougeaient pas (Jacques, 4 nov. 2026).
+  const cadreVerdict = [...zone.querySelectorAll(".clip")].pop() || null;
   const tab = el("table", "tableau");
   parts.forEach((p, i) => { const tr = el("tr"); tr.appendChild(el("td", "", p[1])); const td = el("td"); td.appendChild(el("span", "niv " + niv[i], niv[i] === "moins" ? "pas encore A2" : niv[i])); tr.appendChild(td); tab.appendChild(tr); });
   zone.appendChild(tab);
@@ -610,7 +613,7 @@ async function fin(){
   coach("fin");
   const act = el("div", "actions"); const r = el("button", "", "Recommencer l’oral"); r.type = "button"; r.onclick = accueil; act.appendChild(r); zone.appendChild(act);
   bouton("Terminer", () => parler("fini", { faits: 0, bons: 0 }));
-  dire("a_ende_" + global);
+  dire("a_ende_" + global, cadreVerdict);
 }
 
 document.getElementById("retour").onclick = () => { taire(); if (DANS_APP) parler("fermer"); else history.back(); };

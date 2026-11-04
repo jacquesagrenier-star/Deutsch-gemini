@@ -817,8 +817,11 @@ ACQUIS = [
      u"⚠️ CA NE SUFFIT PAS TOUJOURS, le meme jour sur 23 prises : les TROIS annonces du resultat d'Anna "
      u"(plans 23, 24, 25 -- les plus longues apres la consigne, et dites comme on proclame) ont eu de faux "
      u"sous-titres sur le chemisier blanc, entre 76 et 80 % de la hauteur ; le plan 25 les a REFAITS a la "
-     u"reprise. Sauvees gratuitement par le recadrage APRES coup (acquis suivant) : crop=536:952:92:0, "
-     u"remis en 720x1280 -- les trois verdicts ont le meme cadre, plus serre que les autres repliques.",
+     u"reprise. Sauvees gratuitement par le recadrage APRES coup (acquis suivant). ⚠️ Le premier recadrage, "
+     u"9:16 garde depuis le HAUT (crop=536:952:92:0), a laisse un mur au-dessus d'Anna et sa tete en bas "
+     u"du cadre de la page (Jacques : << mal cadree >>). Le bon : le cadre que la page MONTRE deja des autres "
+     u"clips (4:5, object-position 22 %), remonte juste au-dessus du texte -- crop=720:900:0:50 : meme taille, "
+     u"meme place qu'ailleurs.",
      u"Recadrer l'image maitresse AVANT Kling : le bas du cadre passe juste sous les mains ou sous le "
      u"buste, jamais sur une surface nue (table, comptoir vide, sol). C'est gratuit, ca grossit le "
      u"visage, et ca ne retire rien a la prise. Garder les deux cadres dans preparer_clips.py (CADRES). "
