@@ -430,7 +430,8 @@ def ecrire_json():
          # le mot choisi, quand il est faux : un lieu (« im Meer » -> dans la mer), une couleur (« grau » -> gris)
          "tradLieux": {l: {HABITATS[h][l]: {t: HABITATS[h][t] for t in ("fr", "en", "pt", "de") if t != l} for h in HABITATS} for l in ("de", "es")},
          "tradCouleurs": {"de": {cx["de"]: {"fr": cx["fr"][0], "en": cx["en"], "pt": cx["pt"][0]} for cx in COULEURS.values()},
-                          "es": {f: {"fr": cx["fr"][g], "en": cx["en"], "pt": cx["pt"][g], "de": cx["de"]} for cx in COULEURS.values() for g, f in enumerate(cx["es"])}},
+                          # « gris » ne change pas en espagnol, mais se traduit gris ou grise : la cle porte le genre de l'animal
+                          "es": {f + "|" + str(g): {"fr": cx["fr"][g], "en": cx["en"], "pt": cx["pt"][g], "de": cx["de"]} for cx in COULEURS.values() for g, f in enumerate(cx["es"])}},
          "gloses": gloses()}
     # ce que la page peut dire dans la decouverte : les fiches et les noms (les phrases apres les reponses se
     # relevent en jouant, visuel/voix_themes.py)

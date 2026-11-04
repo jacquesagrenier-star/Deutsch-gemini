@@ -205,7 +205,7 @@ function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wor
 let file = [], rang = 0, bons = 0, repondu = false;
 // LE MOT DE LA QUESTION (regle 3, 3 nov. : « un mot appris compte partout ») : juger() l'envoie (« reponse »), l'app
 // fait avancer sa carte (revisionDeScene). Un animal, un lieu, un aliment : un nom du corpus {mot, genre}.
-let motQ = null, tradQ = null, choixQ = null;
+let motQ = null, tradQ = null, choixQ = null, animalQ = null;     // animalQ : l'animal de la question (le genre d'une couleur choisie)
 
 // LES MOTS DU THEME, a la forme du corpus : les quinze animaux, les quatre lieux, les aliments. En allemand, der Fisch
 // est a la fois l'animal et ce qu'on mange : UN mot, avec ses deux roles.
@@ -243,7 +243,8 @@ function choixTraduit(c){
   if (h){ const t = ((D.tradLieux[APPRENDRE] || {})[c] || {})[LANGUE]; return {aff: c, sens: t || glose(D.habitats[h][DE_APP ? "motDe" : "motEs"][0])}; }
   const f = Object.keys(D.aliments).find(x => aliment(x) === c);
   if (f) return {aff: c, sens: glose(D.aliments[f][DE_APP ? "motDe" : "motEs"][0])};
-  const tc = ((D.tradCouleurs[APPRENDRE] || {})[c] || {});
+  // une couleur : en espagnol, traduite au genre de l'animal de la question (el perro gris -> gris, la vaca gris -> grise)
+  const tc = ((D.tradCouleurs[APPRENDRE] || {})[DE_APP ? c : c + "|" + (animalQ && femEs(animalQ) ? 1 : 0)] || {});
   if (tc[LANGUE]) return {aff: c, sens: tc[LANGUE]};
   const coul = Object.keys(D.couleurs).find(x => D.couleurs[x].de === c || D.couleurs[x].es.includes(c));
   if (coul){ const mots = D.couleurs[coul][DE_APP ? "motsDe" : "motsEs"]; return {aff: c, sens: mots.map(glose).filter(Boolean).join(", ")}; }
@@ -437,7 +438,7 @@ const EX = {
   // la couleur : « Welche Farbe hat der Fuchs? » ; en espagnol « La oveja es ___. » blanca / blanco (l'accord)
   couleur(w){
     const a = animalPour(w, x => an(x).couleur); if (!a) return false;
-    viser(w, motAnimal(a));
+    viser(w, motAnimal(a)); animalQ = a;
     const c = an(a).couleur, rep = couleur(c, a), phrase = P("col|" + a + "|" + c);
     const autres = melanger(Object.keys(D.couleurs).filter(x => x !== c && !(an(a).aussiCouleur || []).includes(x)));
     if (DE_APP){
@@ -501,7 +502,7 @@ const EX = {
     // autant de vraies que de fausses
     const v = c.filter(x => x.vrai), f = c.filter(x => !x.vrai);
     const x = hasard(Math.random() < 0.5 && v.length ? v : f.length ? f : v);
-    viser(w, motAnimal(x.a));
+    viser(w, motAnimal(x.a)); animalQ = x.a;
     ecran("vraifaux", photo(x.a), P(x.k), true);
     const rep = x.vrai ? QL.vrai : QL.faux;
     boutons($("choix"), [QL.vrai, QL.faux], rep, ok => { choixQ = x.vrai ? null : (ok ? null : x.faux); juger(ok, rep, P(x.juste)); });
@@ -600,7 +601,7 @@ function montrer(){
   // en dernier recours seulement, la meme sorte, puis une question deja vue.
   // (l'ecoute parle a chaque essai : on la fait taire pendant qu'on cherche, elle parle une fois choisie)
   const garde = dire; dire = () => {};
-  const raz = so => { motQ = null; tradQ = null; choixQ = null; sorteCourante = so; };
+  const raz = so => { motQ = null; tradQ = null; choixQ = null; animalQ = null; sorteCourante = so; };
   const essai = (w, strict) => {
     const autres = melanger(SORTES.filter(x => x !== derniereSorte));
     for (const so of autres){
