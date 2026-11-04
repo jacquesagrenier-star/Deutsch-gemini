@@ -29,6 +29,10 @@ def main():
             manque.append(i)
             continue
         im = Image.open(src).convert("RGB")
+        if IMAGES[i].get("cadre"):       # le recadrage voulu (meteo.py, cadre)
+            x0, y0, x1, y1 = IMAGES[i]["cadre"]
+            W, H = im.size
+            im = im.crop((round(x0 * W), round(y0 * H), round(x1 * W), round(y1 * H)))
         w, h = im.size
         # 4:3 exact (fal rend 4:3 a quelques pixels pres)
         if abs(w * 3 - h * 4) > 8:

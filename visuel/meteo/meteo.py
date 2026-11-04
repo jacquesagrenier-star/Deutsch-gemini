@@ -111,6 +111,8 @@ MOTS = {
 # de pluie est-il frais ? la neige est-elle du mauvais temps ?) -- jamais demandes, jamais pris pour leurre. Tout
 # autre fait est clairement FAUX pour elle, et seul un fait faux sert de leurre ou de faux d'un « vrai ou faux ».
 # temp : les degres du thermometre dessine a cote (decouverte) ; saison : None quand l'image ne la dit pas.
+# cadre : (x0, y0, x1, y1) en fractions, le recadrage du webp (web.py) quand la scene entiere rend trop petit ce qu'il
+# faut voir a 375 px (les gouttes sur la vitre, les visages)
 GARDE = ("Exactly the same square as in the reference picture: the same old buildings with the same pastel colours, "
          "the same balconies and windows, the same big linden tree with the round wooden bench around its trunk, the "
          "same little cafe on the right, the same green street lamp and bicycle rack on the left, the same camera "
@@ -186,7 +188,7 @@ IMAGES = {
         "prompt": "In a Berlin park in WINTER, a cold sunny day after a heavy snowfall, everything covered in white snow, a "
                   "blue sky: the boy of the first picture and the girl of the second picture play in the snow, throw snow "
                   "in the air and laugh, in warm winter clothes. No snowman, no sledge. Seen from the front."},
-    "lesen":     {"saison": None, "temp": 13, "act": "lesen", "vrais": ["lluvia", "malo"], "douteux": ["nublado", "fresco", "frio", "viento"], "source": ["Anna", "Mia", "salon"],
+    "lesen":     {"saison": None, "temp": 13, "act": "lesen", "cadre": (0.24, 0.12, 0.84, 0.72), "vrais": ["lluvia", "malo"], "douteux": ["nublado", "fresco", "frio", "viento"], "source": ["Anna", "Mia", "salon"],
         # la continuite des lieux (Jacques, 3 nov.) : le salon de Jan et Katrin, celui de « Ou est le chat ? » (video/LIEUX.md)
         "prompt": "EXACTLY the living room of the third picture: the same sofa, the same table and chairs, the same "
                   "shelves, the same colours, the same window and curtains, the same layout, seen from the same side. It "
