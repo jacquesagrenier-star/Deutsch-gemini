@@ -26,6 +26,7 @@ Object.assign(TXT, {
   sb_consigne_fr: "Lis la lettre. Pour chaque trou, choisis le mot qui convient.",
   sb_mark_debut: "Au telc, les Sprachbausteine viennent juste après la lecture : une lettre avec 10 trous. Chaque trou ne vaut qu'un demi-point, mais ce sont les seules questions de grammaire de l'examen. Mon truc : lis toujours ce qui vient AVANT et APRÈS le trou — le cas, la place du verbe, la préposition qui suit.",
   sb_trou: "Trou {n}",
+  sb_question: "Quel mot va dans ce trou ?",
   sb_juste: "Juste !",
   sb_faux: "Pas tout à fait : c'est « {m} ».",
   sb_recap: "Récapitulatif",
@@ -112,7 +113,7 @@ function pageTrou(){
     const aide = r === null ? "" :
       '<div class="aide"><div class="verdict ' + (r === l.bon ? "ok" : "ko") + '">' + esc(r === l.bon ? T("sb_juste") : T("sb_faux", {m: l.o[l.bon]})) + '</div>' +
       '<div class="dit"><img src="' + MARK_IMG + '" alt="Mark"><span class="erkl">' + esc(l.erkl_fr) + '</span></div></div>';
-    return '<div class="q" id="carte"><div class="tete"><span class="num">' + l.n + '</span><span class="frage">' + esc(T("sb_trou", {n: l.n})) + '</span></div>' +
+    return '<div class="q" id="carte"><div class="tete"><span class="num">' + l.n + '</span><span class="frage">' + esc(T("sb_question")) + '</span></div>' +
       '<div class="choix">' + opts + '</div>' + aide + '</div>';
   };
   $("zone").innerHTML =

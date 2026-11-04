@@ -275,9 +275,36 @@ fichiers des deux sessions DTZ.
 
 Les étapes 0 et 1 peuvent se faire tout de suite après votre accord. Les étapes 3 à 8 sont les « grosses pièces ».
 
+### Où on en est (4 nov. 2026, après le feu vert de Jacques)
+
+Jacques a retenu la proposition du chef : « Ouais, vas-y avec ta proposition. » (`decisions/DECISIONS.md`, 4 nov.,
+« le panneau »). La tuile montre donc « Comprendre l'examen » en tête, les deux blocs, puis « Autres examens ».
+
+- **0. Fait** : `preparation-examens/FORMAT-TELC.md`, relevé dans le Übungstest 1 gratuit du telc (format seul). Il
+  donne le barème exact : 240 points, 60 par compétence ; B1 = 70 % du total, 70 % dans 3 compétences et 40 % dans
+  chacune. Il précise aussi l'oral (≈ 15 min, une minute de réflexion avant la partie 3).
+- **1. Fait** (branche, en essai admin `examens_blocs`) :
+  - `panneauBlocsExamens()` et `panneauBlocExamen()`, en 9 langues ;
+  - `filtreExamen()` : les quatre épreuves communes, sans le C1 ni les tâches du Goethe. Le DTZ garde 80 écoutes,
+    49 questions de lecture, 21 écrits et 22 oraux ; le telc garde la même chose, sauf le récit sur image du DTZ
+    (17 oraux) ;
+  - « Autres examens » = le panneau d'avant, intact ;
+  - le retour des sous-panneaux vers la tuile (`retourOrbPanel()`) ; sans l'essai, rien ne change.
+- **2. Fait** par la session « écouter et lire » : `PROFIL_EXAMEN`, `PROFIL.tuiles` et `commun.css` (`6595ae0`,
+  `88d5b79`). Ma branche a fusionné la sienne : elle se publie **après** elle.
+- **3. Fait, à relire** :
+  - `visuel/prototype/telc/telc.html`, `sprachbausteine.js` et `donnees/sprachbausteine.json` : 4 lettres de Mark
+    (la gérance, la Volkshochschule, la fête d'Anna, le club de sport), 10 trous chacune ;
+  - une page par trou, des points de progression, un récapitulatif (Refaire / Section suivante / Toutes les sections),
+    comme l'oral du DTZ ;
+  - le contrôle : `python tests/telc.py` ;
+  - ce qui reste : l'interface en français seulement (comme la page du DTZ), aucun mot clé envoyé à la répétition
+    espacée, la relecture germanophone.
+- **Ensuite** : 4 (Lire et le courriel à comprendre), 5, 6, puis 7 quand l'organisation de l'oral du DTZ sera posée.
+
 ---
 
-## 6. À trancher par Jacques
+## 6. À trancher par Jacques (tranché le 4 nov.)
 
 1. **La forme du panneau** : deux grandes cartes, chacune ouvrant son panneau (recommandé), ou une seule liste à deux
    en-têtes ?
