@@ -9,6 +9,7 @@ relecture (decisions/DECISIONS.md).
     python audio/manifest.py --ecrire      (apres les corrections)
     python retours/qualite-es-de/voix_relecture.py <manifeste-avant.json> --a-blanc
     python retours/qualite-es-de/voix_relecture.py <manifeste-avant.json> --plafond 5000
+    ... --textes "texte exact|autre texte"   (seulement ceux-la)
 """
 import io
 import json
@@ -27,6 +28,11 @@ def main():
     apres = generer.charger_manifeste()
     a_faire = [e for e in apres if e["id"] not in avant
                and not os.path.exists(os.path.join(generer.SORTIE, e["id"] + ".mp3"))]
+    # 3 nov. : l'accord de Jacques pour les 8 phrases de A-JACQUES-VOIX.md ne
+    # couvre pas les autres textes neufs du manifeste (ceux des themes, du 4 nov.)
+    if "--textes" in sys.argv:
+        voulus = set(sys.argv[sys.argv.index("--textes") + 1].split("|"))
+        a_faire = [e for e in a_faire if e["texte"] in voulus]
     modele, taux = generer.MODELES["v2"]
     assert modele == "eleven_multilingual_v2"
     prix = lambda e: int(round(len(lectures.lecture("de", e["texte"])) * taux))
