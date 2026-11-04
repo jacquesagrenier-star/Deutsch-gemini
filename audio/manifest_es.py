@@ -195,7 +195,8 @@ def recolter(variante):
         prendre(t, "reperes", "A1")
     # LES EMOTIONS ET LE CARACTERE (theme illustre, 3 nov. 2026) : les phrases de la
     # decouverte, a la variante pres (enfadado / enojado).
-    for t in manifest_de.emociones_textes(variante):
+    # et depuis le 4 nov. les phrases dites apres chaque reponse (visuel/emociones/voix.json)
+    for t in manifest_de.emociones_textes(variante) + manifest_de.themes_textes("emociones", "latam" if variante == "latam" else "es"):
         prendre(t, "emociones", "A1")
     # LES CONTRAIRES (theme illustre, 3 nov. 2026) : la decouverte et les mots cles.
     for t in manifest_de.contrarios_textes(variante):
