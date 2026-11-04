@@ -64,6 +64,7 @@ CASE_YEUX = (240, 60)
 BOUCHES = {
     "anna-dtz": (366, 620, 115),
     "anna-dtz-recadre": (366, 570, 115),   # oral du DTZ, plans 23-25 : crop=720:900:0:50, au-dessus de faux sous-titres
+    "anna-dtz-sourire-recadre": (366, 570, 115),   # les memes plans, Anna souriante (4 nov. 2026)
     "mark-dtz": (390, 530, 140),
 }
 RECADRES = {("dtz-oral", 23), ("dtz-oral", 24), ("dtz-oral", 25)}

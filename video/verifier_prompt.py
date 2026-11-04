@@ -755,7 +755,7 @@ REGLES = [
      u"STYLE a la reception, avant de mesurer une seule zone : chaque zone "
      u"mesuree sur un dessin est du travail qu'on perdra."),
     ("regard-qui-fuit-l-autre", "doute",
-     r"(?i)(looks?|eyes are turned|head (is )?turned)[^.]{0,80}(towards|to) the (left|right) edge[^.]{0,200}(the young man|the woman|the man|him|her)",
+     r"(?i)\b(looks?|eyes are turned|head (is )?turned)\b[^.]{0,80}\b(towards|to) the (left|right) edge\b[^.]{0,200}\b(the young man|the woman|the man|him|her)\b",
      u"Deux personnes dans le cadre, et l'une doit regarder AILLEURS que l'autre : le modele les tourne l'une vers l'autre",
      u"24 oct. 2026, 04 Schrippe plan 19 (2 x 0,15 $). Anna sort de la boulangerie et doit regarder a gauche, du "
      u"mauvais cote, pendant que Mark s'eloigne a droite. Deux prises : << she looks along the pavement towards the "
@@ -821,7 +821,9 @@ ACQUIS = [
      u"9:16 garde depuis le HAUT (crop=536:952:92:0), a laisse un mur au-dessus d'Anna et sa tete en bas "
      u"du cadre de la page (Jacques : << mal cadree >>). Le bon : le cadre que la page MONTRE deja des autres "
      u"clips (4:5, object-position 22 %), remonte juste au-dessus du texte -- crop=720:900:0:50 : meme taille, "
-     u"meme place qu'ailleurs.",
+     u"meme place qu'ailleurs. Le 4 nov., les trois verdicts retournes avec Anna souriante (image retouchee, plan 84) : 2 "
+     u"sur 3 ont REFAIT les faux sous-titres, dans la meme bande -- une annonce de resultat en refait presque "
+     u"toujours (5 prises sur 6) : ces repliques se recadrent d'office.",
      u"Recadrer l'image maitresse AVANT Kling : le bas du cadre passe juste sous les mains ou sous le "
      u"buste, jamais sur une surface nue (table, comptoir vide, sol). C'est gratuit, ca grossit le "
      u"visage, et ca ne retire rien a la prise. Garder les deux cadres dans preparer_clips.py (CADRES). "
