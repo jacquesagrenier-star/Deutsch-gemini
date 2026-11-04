@@ -187,7 +187,8 @@ Jacques (« Ça me convient », 3 nov.) : 8 sortes pour la famille, 7 pour Décr
 **La réserve : au moins 100 questions différentes par thème et par langue** (« J'irais une centaine de questions
 par thème »), mesurées, jamais supposées : `python tests/themes_illustres.py`. Au 3 nov. : famille ≈ 2 400 (es et
 de) ; Décrire ≈ 650 (es), 625 (de) ; les contraires 215 (es), 200 (de) ; « Où est le chat ? » 606 (es), 582 (de), dont 235 et 212 sans compter les
-départs des questions de mouvement. On élargit par de nouvelles combinaisons dans les sortes validées, jamais par du
+départs des questions de mouvement ; Manger et goûter ≈ 1 560 (es), 1 580 (de), dont ≈ 1 110 additions de la carte
+du café (« ¿Cuánto es? », autant de commandes différentes) et ≈ 440-470 pour tout le reste. On élargit par de nouvelles combinaisons dans les sortes validées, jamais par du
 remplissage ni des quasi-doublons : la même question avec d'autres leurres n'en est pas une nouvelle (c'est pourquoi
 « completa » avec le visage ne s'ajoute pas à « yeux »). Une description partielle doit désigner **une seule**
 personne parmi celles montrées ; un trait inconnu (les yeux d'Anna) n'exclut jamais personne.

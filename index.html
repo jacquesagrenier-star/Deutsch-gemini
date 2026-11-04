@@ -8725,7 +8725,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1094</span>
+        <span class="subtitle-version">v1095</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -9703,6 +9703,13 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <div class="orb hidden" data-orbid="journee" id="tuileJournee" onclick="ouvrirThemeIllustre('journee')" role="button" tabindex="0">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/></svg></div>
             <div><strong data-i18n="jour_tuile">La journée</strong></div>
+        </div>
+        <!-- Manger et gouter (3 nov. 2026, vague 1) : les gouts, les saveurs, les quantites et la commande au cafe -- pas
+             les objets de la cuisine, qui ont leur scene. me gusta / gustan, ich mag / das schmeckt mir, un kilo de / ein
+             Kilo, La cuenta, por favor / Die Rechnung, bitte : visuel/prototype/manger.html. es et de. -->
+        <div class="orb hidden" data-orbid="manger" id="tuileManger" onclick="ouvrirThemeIllustre('manger')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 11h13v2.5a6.5 6.5 0 0 1-13 0z"/><path d="M17 12h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1.5 1.5 1.5 1.5 3S8 8 8 9.5M12 3.5c0 1.5 1.5 1.5 1.5 3S12 8 12 9.5"/></svg></div>
+            <div><strong data-i18n="man_tuile">Manger et goûter</strong></div>
         </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
@@ -14441,6 +14448,8 @@ const I18N = {
         ropa_court: "Vêtements",
         jour_tuile: "La journée",
         jour_court: "Journée",
+        man_tuile: "Manger et goûter",
+        man_court: "Manger",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -15970,6 +15979,8 @@ const I18N = {
         ropa_court: "Clothes",
         jour_tuile: "Daily routine",
         jour_court: "Routine",
+        man_tuile: "Food and taste",
+        man_court: "Food",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17501,6 +17512,8 @@ const I18N = {
         ropa_court: "Giysiler",
         jour_tuile: "Günlük rutin",
         jour_court: "Rutin",
+        man_tuile: "Yemek ve tat",
+        man_court: "Yemek",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19444,6 +19457,8 @@ const I18N = {
         ropa_court: "Одяг",
         jour_tuile: "Розпорядок дня",
         jour_court: "День",
+        man_tuile: "Їжа і смак",
+        man_court: "Їжа",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21701,6 +21716,8 @@ const I18N = {
         ropa_court: "لباس",
         jour_tuile: "کارهای روزانه",
         jour_court: "روزانه",
+        man_tuile: "خوردن و چشیدن",
+        man_court: "خوردن",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23401,6 +23418,8 @@ const I18N = {
         ropa_court: "الملابس",
         jour_tuile: "الروتين اليومي",
         jour_court: "اليوم",
+        man_tuile: "الأكل والتذوق",
+        man_court: "الأكل",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -23781,6 +23800,8 @@ const I18N = {
         ropa_court: "Roupas",
         jour_tuile: "A rotina do dia",
         jour_court: "Rotina",
+        man_tuile: "Comer e provar",
+        man_court: "Comer",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25371,6 +25392,8 @@ const I18N = {
         ropa_court: "Ubrania",
         jour_tuile: "Plan dnia",
         jour_court: "Dzień",
+        man_tuile: "Jedzenie i smak",
+        man_court: "Jedzenie",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -26961,6 +26984,8 @@ const I18N = {
         ropa_court: "Одежда",
         jour_tuile: "Распорядок дня",
         jour_court: "День",
+        man_tuile: "Еда и вкус",
+        man_court: "Еда",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28553,6 +28578,8 @@ const I18N = {
         ropa_court: "Kleidung",
         jour_tuile: "Der Tagesablauf",
         jour_court: "Tagesablauf",
+        man_tuile: "Essen und Geschmack",
+        man_court: "Essen",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30180,6 +30207,8 @@ const I18N = {
         ropa_court: "Ropa",
         jour_tuile: "La rutina diaria",
         jour_court: "Rutina",
+        man_tuile: "Comer y probar",
+        man_court: "Comer",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -47072,7 +47101,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           gato: {page: "gato.html", titre: "gato_tuile", tuile: "tuileGato"},
                           ropa: {page: "ropa.html", titre: "ropa_tuile", court: "ropa_court", tuile: "tuileRopa"},
                           cuerpo: {page: "cuerpo.html", titre: "cue_tuile", court: "cue_court", tuile: "tuileCuerpo"},
-                          journee: {page: "journee.html", titre: "jour_tuile", court: "jour_court", tuile: "tuileJournee"}};
+                          journee: {page: "journee.html", titre: "jour_tuile", court: "jour_court", tuile: "tuileJournee"},
+                          manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
@@ -53164,7 +53194,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1094;
+const APP_VERSION = 1095;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
