@@ -318,6 +318,7 @@ French | français
 English | anglais
 German | allemand
 Spanish | espagnol
+foggy | brumeux (il y a du brouillard) | ex=It's foggy this morning. # Il y a du brouillard ce matin.
 """
 # Pas de comparatif : on n'est pas « plus marie » ni « plus rouge » (pour les
 # couleurs, on peut, mais ce n'est pas ce que l'A1 doit en retenir).

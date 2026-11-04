@@ -148,6 +148,7 @@ cushion | le coussin
 clock | l'horloge, la pendule
 candle | la bougie
 trash | les ordures, la poubelle | u | gb=rubbish
+children's room | la chambre des enfants | ex=The children's room is next to the bathroom. # La chambre des enfants est à côté de la salle de bains.
 """,
 "food_a1": """
 food | la nourriture | u
@@ -685,5 +686,6 @@ plan | le projet, le plan
 habit | l'habitude
 line | la ligne
 point | le point
+date of birth | la date de naissance | ex=What's your date of birth? # Quelle est votre date de naissance ?
 """,
 }
