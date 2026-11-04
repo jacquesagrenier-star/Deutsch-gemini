@@ -401,7 +401,36 @@ l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire angl
     comparatif *more bigger*, *beautifuler*, le superlatif) et `article` (*a* ou *an* devant l'adjectif : *an old
     bike*, *an ugly vase*). Le britannique change les noms des phrases sans image (flat, film, jumper, High Street).
     Le sens du mot et la traduction des phrases de l'image viennent de l'espagnol de la même image.
+  - **Émotions et caractère** : be + adjectif partout (« She is afraid », jamais « has fear » ; « has a cold », la seule
+    tournure avec have), feel + adjectif (l'adverbe sadly en piège), -ed / -ing (bored / boring), « How is she
+    feeling? » face à « What is she like? ». Britannique : ill, untidy, film, flat, shop.
+  - **Où est le chat ?** : les prépositions elles-mêmes (on, on top of, under, behind, in front of, next to, between,
+    above, at the window), le mouvement en into / onto / over, there is / there are face à It's. En anglais,
+    `praepTheme` prend les prépositions ANGLAISES (`fonctionnels.json`) : une préposition envoyée en `cat: "praep"`
+    est une carte anglaise. Britannique : handbag, opposite.
+  - **Le corps et la santé** : my / his / her devant le corps (jamais the), hurts / hurt, have a fever / a cold,
+    -ache (headache, toothache…), should + verbe, for / since, foot / feet. Britannique : a temperature (la carte
+    reste fever), ill, stomach ache, plaster, chemist's, doctor's surgery.
+  - **Les vêtements** : is wearing / wears, put on / take off, les noms pluriels (a pair of, are), l'ordre des
+    adjectifs, should, les réponses courtes. Britannique : trousers, jumper, trainers, swimming trunks, woolly hat.
+  - **La journée** : le present simple de la routine (-s, does / doesn't), wake up / get up / get dressed, l'heure
+    (a quarter past, half past ; seven thirty en américain), la place des adverbes de fréquence, first / then /
+    finally. Britannique : have a shower, have breakfast. L'image d'Anna dans le U-Bahn est écartée (`ECARTEES_EN`).
+  - **Manger et goûter** : like / love / hate + -ing, tastes + adjectif, too, much / many, some, a piece / glass of,
+    I'd like / Can I have. Dollars et livres (lb, gal) à Boston ; livres sterling, kg et pints en britannique ;
+    check / bill, fries / chips, cookie / biscuit.
+  - **Les métiers** : « She's a doctor », l'article obligatoire (a / an, an excellent teacher), What does she do?,
+    work as / at / in / for, un seul mot pour les deux sexes (police officer, firefighter). Britannique : postman,
+    shop assistant, chemist's. Les deux uniformes « POLIZEI » (Elena, Tomás) sont écartés en anglais.
+  - **Les loisirs** : play / go / ride, play the guitar, like / love / enjoy + -ing, How often? (twice a week), la
+    place des adverbes, Let's / How about -ing / Why don't we. Britannique : football, et la semaine qui commence le lundi.
+  - **Les transports : FERMÉ en anglais** (4 nov.) : 11 images sur 13 montrent Berlin (rames jaunes de la BVG, ICE,
+    panneaux « H », taxi allemand). Jacques décide : une version réduite en HTML, des images de Boston, ou rien.
 - **Contrôle** : `ANGLAIS` dans `tests/themes_illustres.py` (le thème y passe en `en` et en `en&variante=gb`).
+- **Mots ajoutés au corpus anglais le 4 nov.** : outgoing, rude, messy, tiring, scared, worrying (adjectifs) ; throat,
+  sore throat, toothache, backache, stomachache (stomach ache), earache, winter hat (woolly hat), swim trunks
+  (swimming trunks), fries (chips), pretzel, pound, pharmacist, bus driver, mail carrier, bike shop (noms) ; crawl ;
+  on top of, over, onto, across from, opposite (prépositions).
 
 ### Mettre un thème en anglais : la marche à suivre (4 nov. 2026, les treize thèmes suivants)
 
