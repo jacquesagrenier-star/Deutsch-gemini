@@ -29,6 +29,10 @@ html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre
   --coeur:#F2789A;--croix:#A9B8C4;--case:#2C4558;--verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
+/* la page a la hauteur de l'ecran, comme une scene (regle commune, 3 nov. : sur iPhone, un bouton fixe dans un cadre
+   dont le document deborde ne tombe pas au bas de l'ecran) : le contenu defile DANS le body */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
 body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
   padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
@@ -147,8 +151,8 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="bas" id="bas" hidden></div>
 <script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=1"></script>
-<script src="themes/zoom.js?v=3"></script>
+<script src="themes/voix.js?v=2"></script>
+<script src="themes/zoom.js?v=4"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
@@ -179,7 +183,8 @@ const TEXTES = {
   regleProp: {es:{fr:"Proposer : <b>¿Quieres</b> + infinitif ? ou <b>¿Vamos a</b> + infinitif ? Répondre selon ce qu'on aime :", en:"Suggesting: <b>¿Quieres</b> + infinitive? or <b>¿Vamos a</b> + infinitive? Answering according to what you like:", pt:"Propor: <b>¿Quieres</b> + infinitivo? ou <b>¿Vamos a</b> + infinitivo? Responder conforme o que se gosta:", ar:"الاقتراح: <b>¿Quieres</b> + المصدر؟ أو <b>¿Vamos a</b> + المصدر؟ والردّ بحسب ما نحبّ:", de:"Vorschlagen: <b>¿Quieres</b> + Infinitiv? oder <b>¿Vamos a</b> + Infinitiv? Antworten, je nachdem, was man mag:"},
               de:{fr:"Proposer : <b>Hast du Lust</b>, … <b>zu</b> + infinitif ? ou <b>Wollen wir</b> … + infinitif ? Répondre selon ce qu'on aime :", en:"Suggesting: <b>Hast du Lust</b>, … <b>zu</b> + infinitive? or <b>Wollen wir</b> … + infinitive? Answering according to what you like:", tr:"Teklif: <b>Hast du Lust</b>, … <b>zu</b> + mastar? ya da <b>Wollen wir</b> … + mastar? Sevdiğine göre cevap ver:", uk:"Запропонувати: <b>Hast du Lust</b>, … <b>zu</b> + інфінітив? або <b>Wollen wir</b> … + інфінітив? Відповісти — залежно від того, що любиш:", fa:"پیشنهاد: <b>Hast du Lust</b>، … <b>zu</b> + مصدر؟ یا <b>Wollen wir</b> … + مصدر؟ و پاسخ بر اساس آنچه دوست داری:", ar:"الاقتراح: <b>Hast du Lust</b>، … <b>zu</b> + المصدر؟ أو <b>Wollen wir</b> … + المصدر؟ والردّ بحسب ما تحبّ:", pt:"Propor: <b>Hast du Lust</b>, … <b>zu</b> + infinitivo? ou <b>Wollen wir</b> … + infinitivo? Responder conforme o que se gosta:", pl:"Proponowanie: <b>Hast du Lust</b>, … <b>zu</b> + bezokolicznik? albo <b>Wollen wir</b> … + bezokolicznik? Odpowiedź zależy od tego, co lubisz:", ru:"Предложить: <b>Hast du Lust</b>, … <b>zu</b> + инфинитив? или <b>Wollen wir</b> … + инфинитив? Ответить — смотря что любишь:"}},
   ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
-  commencer: {fr:"Commencer les exercices", en:"Start the exercises", tr:"Alıştırmalara başla", uk:"Почати вправи", fa:"شروع تمرین‌ها", ar:"ابدأ التمارين", pt:"Começar os exercícios", pl:"Zacznij ćwiczenia", ru:"Начать упражнения", de:"Übungen starten"},
+  // les noms des boutons, les memes partout (regle commune, 3 nov.)
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
   quoi:      {fr:"Que fait cette personne ? Choisis la bonne phrase.", en:"What is this person doing? Choose the right sentence.", tr:"Bu kişi ne yapıyor? Doğru cümleyi seç.", uk:"Що робить ця людина? Обери правильне речення.", fa:"این شخص چه می‌کند؟ جملهٔ درست را انتخاب کن.", ar:"ماذا يفعل هذا الشخص؟ اختر الجملة الصحيحة.", pt:"O que essa pessoa está fazendo? Escolha a frase certa.", pl:"Co robi ta osoba? Wybierz właściwe zdanie.", ru:"Что делает этот человек? Выбери правильную фразу.", de:"Was macht diese Person? Wähle den richtigen Satz."},
   verbe:     {fr:"Choisis le bon verbe.", en:"Choose the right verb.", tr:"Doğru fiili seç.", uk:"Обери правильне дієслово.", fa:"فعل درست را انتخاب کن.", ar:"اختر الفعل الصحيح.", pt:"Escolha o verbo certo.", pl:"Wybierz właściwy czasownik.", ru:"Выбери правильный глагол.", de:"Wähle das richtige Verb."},
   art:       {fr:"Avec ou sans « a » ? Choisis la bonne forme.", en:"With or without “a”? Choose the right form.", pt:"Com ou sem “a”? Escolha a forma certa.", ar:"مع «a» أم بدونها؟ اختر الصيغة الصحيحة.", de:"Mit oder ohne „a“? Wähle die richtige Form."},
@@ -408,7 +413,7 @@ let choixTrad = {};
 function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
@@ -858,7 +863,7 @@ function montrer(){
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
   vus.add(cleQuestion()); derniereSorte = fait;
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
