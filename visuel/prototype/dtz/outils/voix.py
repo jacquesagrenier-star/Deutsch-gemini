@@ -131,6 +131,7 @@ def main():
     ap.add_argument("--pour-de-vrai", action="store_true", help="depenser reellement les credits")
     ap.add_argument("--plafond", type=int, default=0, help="credits au plus pour ce lancement")
     ap.add_argument("--serie", default="", help="seulement les pistes de cette serie (S1...) et les communes")
+    ap.add_argument("--sauter-sans-voix", action="store_true", help="laisser de cote les pistes dont une voix n'est pas choisie")
     a = ap.parse_args()
 
     H = json.load(io.open(os.path.join(DTZ, "donnees", "hoeren.json"), encoding="utf-8"))
@@ -144,6 +145,12 @@ def main():
     sans_voix = sorted({l["wer"] for ls in tout.values() for l in ls if not (voix.get(l["wer"]) or {}).get("voice_id")})
     sans_lecture = sorted({l["text"] for ls in tout.values() for l in ls
                            if re.search(r"\d", lectures.lecture("de", l["text"]))})
+    if sans_voix and a.sauter_sans_voix:
+        # les pistes qui attendent une voix pas encore choisie (la radio) restent a la voix du telephone
+        ecartees = [k for k, ls in tout.items() if any(l["wer"] in sans_voix for l in ls)]
+        tout = {k: v for k, v in tout.items() if k not in ecartees}
+        print("Pistes en attente de leur voix (%s) : %s" % (", ".join(sans_voix), ", ".join(ecartees)))
+        sans_voix = []
     if sans_voix:
         print("Voix sans identifiant (bloc « voix » de hoeren.json) : " + ", ".join(sans_voix))
     if sans_lecture:

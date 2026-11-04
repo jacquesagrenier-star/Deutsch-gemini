@@ -106,15 +106,17 @@ const TEILE = {H: ["T1", "T2", "T3", "T4"], L: ["T1", "T2", "T3", "T4", "T5"]};
 const consigneLesen = (s, teil) => s[teil].aufgabe;
 
 // ============ LE RENDU DES DOCUMENTS ET DES QUESTIONS ============
+// une photo d'annonce ou de brochure (outils/images.py) ; absente ou pas encore faite, elle disparait sans trou
+const photo = nom => nom ? '<img class="photo" src="images/' + esc(nom) + '.webp" alt="" loading="lazy" onerror="this.remove()">' : "";
 function rendreDoc(u){
   if (u.doc && u.doc.typ === "wegweiser")
     return '<div class="doc wegweiser" lang="de"><div class="t">' + esc(u.doc.titel) + '</div>' +
       u.doc.zeilen.map(z => '<div class="z"><b>' + esc(z.etage) + '</b><span>' + esc(z.inhalt) + '</span></div>').join("") + '</div>';
   if (u.doc && u.doc.typ === "broschuere")
-    return '<div class="doc brochure" lang="de"><div class="k">' + esc(u.doc.titel) + '<small>' + esc(u.doc.kopf) + '</small></div>' +
+    return '<div class="doc brochure" lang="de"><div class="k">' + esc(u.doc.titel) + '<small>' + esc(u.doc.kopf) + '</small></div>' + photo(u.doc.bild) +
       u.doc.abschnitte.map(a => '<div class="s"><b>' + esc(a.titel) + '</b>' + esc(a.text) + '</div>').join("") + '</div>';
   if (u.anzeigen)
-    return '<div class="doc annonces" lang="de">' + u.anzeigen.map(a => '<div class="annonce"><span class="l">' + a.b + '</span><div class="t">' + esc(a.titel) + '</div>' + esc(a.text) + '</div>').join("") + '</div>';
+    return '<div class="doc annonces" lang="de">' + u.anzeigen.map(a => '<div class="annonce"><span class="l">' + a.b + '</span>' + photo(a.bild) + '<div class="t">' + esc(a.titel) + '</div>' + esc(a.text) + '</div>').join("") + '</div>';
   if (u.texte){
     const t = u.texte, cls = t.typ === "zeitung" ? "journal" : t.typ === "aushang" ? "aushang" : "lettre";
     return '<div class="doc ' + cls + '" lang="de"><div class="k">' + esc(t.kopf) + '</div><h3>' + esc(t.titel) + '</h3>' +
