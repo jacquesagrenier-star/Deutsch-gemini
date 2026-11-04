@@ -213,6 +213,22 @@ mécanique** au lieu d'en écrire une autre :
   Toutes les sections ;
 - l'examen complet enchaîne les sections, avec l'estimation A2 / B1 à la fin seulement.
 
+**Ce qu'on copie, d'après la session de l'oral du DTZ** (4 nov., en ligne sur `main` depuis `6c3be6e`) : on part de
+`visuel/prototype/dtz-oral.html`.
+- **Le moteur, gardé** :
+  - la table `SECTIONS`, dont chaque exercice a `jouer`, `juge`, `modele`, `tour`, `feuille`, `photo` et `question` ;
+  - les fonctions `accueil()`, `exercice(s, e)`, `points(s, e)`, `apres(s, e)`, `recap(s)`, `fin()` et
+    `resultatSection(s)` ;
+  - l'état `ETAT`, avec **une autre `CLE_ETAT`** pour le telc ;
+  - le retour ‹ (section, puis liste, puis fermer) ;
+  - les règles des boutons, le zoom et le mode nuit.
+- **Propre au DTZ, réécrit pour le telc** :
+  - les répliques et les textes de Mark : `L`, `COACH`, `AIDE`, `STICHWORTE`, `PLAN_NOTIZEN` ;
+  - les juges : `JUGES` et `questions1b()` ;
+  - la planification avec Mark : `tourPlan()` et `critTour()` ;
+  - la règle d'estimation globale dans `fin()`.
+- **Pas repris** : les médias du DTZ (`visuel/prototype/dtz/` : manifeste, voix, vidéo).
+
 Seules les sections changent. Le telc en a trois au lieu des cinq du DTZ (1a, 1b, 2a, 2b, 3). Je les écris dans les
 données de la page telc quand la mécanique du DTZ sera posée. Les mêmes trois niveaux (liste, exercice, récapitulatif)
 valent aussi pour l'écrit du telc (Sprachbausteine, courriels, répondeurs), pour que les deux blocs se ressemblent.
