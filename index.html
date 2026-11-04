@@ -9711,7 +9711,6 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 11h13v2.5a6.5 6.5 0 0 1-13 0z"/><path d="M17 12h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1.5 1.5 1.5 1.5 3S8 8 8 9.5M12 3.5c0 1.5 1.5 1.5 1.5 3S12 8 12 9.5"/></svg></div>
             <div><strong data-i18n="man_tuile">Manger et goûter</strong></div>
         </div>
-
         <!-- « Les metiers » (3 nov. 2026) : qui fait quoi et ou, « Ich bin Arztin » / « Soy medica » sans article, le
              masculin et le feminin (der Arzt / die Arztin, el / la policia). visuel/prototype/metiers.html. es et de. -->
         <div class="orb hidden" data-orbid="metiers" id="tuileMetiers" onclick="ouvrirThemeIllustre('metiers')" role="button" tabindex="0">
@@ -9745,6 +9744,14 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <div class="orb hidden" data-orbid="meteo" id="tuileMeteo" onclick="ouvrirThemeIllustre('meteo')" role="button" tabindex="0">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><path d="M8 2v1.5M2 8h1.5M3.8 3.8l1 1M12.2 3.8l-1 1"/><path d="M9 19h9a3.5 3.5 0 0 0 0-7 5 5 0 0 0-9.6 1.4A2.8 2.8 0 0 0 9 19z"/></svg></div>
             <div><strong data-i18n="meteo_tuile">La météo et les saisons</strong></div>
+        </div>
+
+        <!-- Le logement (4 nov. 2026, vague 3) : les pieces, les meubles, ou est qui et quoi (stehen / liegen / haengen ;
+             hay / esta), les plans, et chercher un appartement (l'annonce, KM, NK, Kaution, la visite) pour le DTZ.
+             Les pieces des scenes et de « La journee » reprises telles quelles : visuel/prototype/logement.html. es et de. -->
+        <div class="orb hidden" data-orbid="logement" id="tuileLogement" onclick="ouvrirThemeIllustre('logement')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg></div>
+            <div><strong data-i18n="log_tuile">Le logement</strong></div>
         </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
@@ -14491,6 +14498,8 @@ const I18N = {
         ani_tuile: "Les animaux",
         meteo_tuile: "La météo et les saisons",
         meteo_court: "La météo",
+        log_tuile: "Le logement",
+        log_court: "Logement",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -16028,6 +16037,8 @@ const I18N = {
         ani_tuile: "Animals",
         meteo_tuile: "Weather and seasons",
         meteo_court: "Weather",
+        log_tuile: "Home and housing",
+        log_court: "Home",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17567,6 +17578,8 @@ const I18N = {
         ani_tuile: "Hayvanlar",
         meteo_tuile: "Hava durumu ve mevsimler",
         meteo_court: "Hava",
+        log_tuile: "Ev ve konut",
+        log_court: "Ev",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19518,6 +19531,8 @@ const I18N = {
         ani_tuile: "Тварини",
         meteo_tuile: "Погода і пори року",
         meteo_court: "Погода",
+        log_tuile: "Житло",
+        log_court: "Житло",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21783,6 +21798,8 @@ const I18N = {
         ani_tuile: "حیوانات",
         meteo_tuile: "آب‌وهوا و فصل‌ها",
         meteo_court: "آب‌وهوا",
+        log_tuile: "خانه و مسکن",
+        log_court: "خانه",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23491,6 +23508,8 @@ const I18N = {
         ani_tuile: "الحيوانات",
         meteo_tuile: "الطقس والفصول",
         meteo_court: "الطقس",
+        log_tuile: "السكن",
+        log_court: "السكن",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -23879,6 +23898,8 @@ const I18N = {
         ani_tuile: "Os animais",
         meteo_tuile: "O tempo e as estações",
         meteo_court: "O tempo",
+        log_tuile: "A moradia",
+        log_court: "Moradia",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25477,6 +25498,8 @@ const I18N = {
         ani_tuile: "Zwierzęta",
         meteo_tuile: "Pogoda i pory roku",
         meteo_court: "Pogoda",
+        log_tuile: "Mieszkanie",
+        log_court: "Mieszkanie",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -27075,6 +27098,8 @@ const I18N = {
         ani_tuile: "Животные",
         meteo_tuile: "Погода и времена года",
         meteo_court: "Погода",
+        log_tuile: "Жильё",
+        log_court: "Жильё",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28675,6 +28700,8 @@ const I18N = {
         ani_tuile: "Die Tiere",
         meteo_tuile: "Das Wetter und die Jahreszeiten",
         meteo_court: "Wetter",
+        log_tuile: "Wohnen",
+        log_court: "Wohnen",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30310,6 +30337,8 @@ const I18N = {
         ani_tuile: "Los animales",
         meteo_tuile: "El tiempo y las estaciones",
         meteo_court: "El tiempo",
+        log_tuile: "La vivienda",
+        log_court: "Vivienda",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -47213,7 +47242,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           transportes: {page: "transportes.html", titre: "trans_tuile", tuile: "tuileTransportes"},
                           loisirs: {page: "loisirs.html", titre: "loi_tuile", tuile: "tuileLoisirs"},
                           animales: {page: "animales.html", titre: "ani_tuile", tuile: "tuileAnimales"},
-                          meteo: {page: "meteo.html", titre: "meteo_tuile", court: "meteo_court", tuile: "tuileMeteo"}};
+                          meteo: {page: "meteo.html", titre: "meteo_tuile", court: "meteo_court", tuile: "tuileMeteo"},
+                          logement: {page: "logement.html", titre: "log_tuile", court: "log_court", tuile: "tuileLogement"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);

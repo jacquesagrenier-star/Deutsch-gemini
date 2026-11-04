@@ -452,6 +452,43 @@ def meteo_quatre_saisons():
         d.rounded_rectangle((x + pw - tw - 26, y + 10, x + pw - 10, y + 44), radius=17, fill=(28, 36, 48))
         d.text((x + pw - tw - 18, y + 13), txt, font=F(22), fill=(255, 255, 255))
         d.rectangle((x - 1, y - 1, x + pw, y + ph), outline=(214, 210, 202), width=2)
+
+
+def logement_plan():
+    """Le plan d'un appartement, dessine (le sujet : les pieces et ou elles sont), et dans trois pieces leur photo en
+    rond : la cuisine d'Anna, la chambre des enfants, la salle de bains (des photos deja publiees) ; une cle devant la
+    porte d'entree. Aucun mot : la meme vignette sert a l'espagnol et a l'allemand."""
+    c = Image.new("RGB", (W, H), (233, 238, 243))
+    d = ImageDraw.Draw(c)
+    mur, sol = (60, 72, 90), (255, 255, 255)
+    x0, y0, x1, y1 = 34, 40, 566, 470
+    d.rectangle((x0, y0, x1, y1), fill=sol, outline=mur, width=10)
+    # les cloisons : en haut cuisine / bain / chambre des enfants, le couloir, en bas le salon et la chambre
+    yc0, yc1 = 228, 282
+    d.line([(x0, yc0), (x1, yc0)], fill=mur, width=7); d.line([(x0, yc1), (x1, yc1)], fill=mur, width=7)
+    for x in (226, 360):
+        d.line([(x, y0), (x, yc0)], fill=mur, width=7)
+    d.line([(330, yc1), (330, y1)], fill=mur, width=7)
+    # les portes : des ouvertures dans les cloisons
+    for (a, b) in ((120, 170), (270, 312), (430, 480)):
+        d.line([(a, yc0), (b, yc0)], fill=sol, width=9)
+    for (a, b) in ((140, 190), (420, 470)):
+        d.line([(a, yc1), (b, yc1)], fill=sol, width=9)
+    d.line([(x0, 240), (x0, 270)], fill=sol, width=12)
+    # les meubles dessines, gris clair : le canape, le lit
+    gris = (200, 206, 214)
+    d.rounded_rectangle((70, 400, 250, 446), 10, fill=gris); d.rounded_rectangle((70, 400, 96, 446), 8, fill=(180, 188, 198))
+    d.rounded_rectangle((420, 330, 530, 450), 10, fill=gris); d.rounded_rectangle((430, 338, 520, 362), 8, fill=(180, 188, 198))
+    # trois photos en rond dans leurs pieces
+    for nom, (x, y), dia in (("anna-cuisine", (130, 134), 150), ("jk-bad", (293, 134), 110), ("jk-enfants-2", (463, 134), 150)):
+        im = Image.open(os.path.join(P, "logement", nom + ".webp")).convert("RGB")
+        r = rond(im, dia, 6, (232, 162, 58))
+        c.paste(r, (x - r.size[0] // 2, y - r.size[1] // 2), r)
+    # la cle, ambre, devant l'entree (a gauche du couloir)
+    k = (232, 162, 58)
+    d.ellipse((60, 232, 104, 276), outline=k, width=9)
+    d.line([(104, 254), (178, 254)], fill=k, width=9)
+    for x in (150, 168): d.line([(x, 254), (x, 272)], fill=k, width=8)
     return c
 
 
@@ -461,7 +498,8 @@ VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones"
              "transportes": transports_plan,
              "loisirs": loisirs_agenda,
              "animales": animaux_quatre_lieux,
-             "meteo": meteo_quatre_saisons}
+             "meteo": meteo_quatre_saisons,
+             "logement": logement_plan}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

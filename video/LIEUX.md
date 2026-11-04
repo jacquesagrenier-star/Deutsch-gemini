@@ -44,9 +44,48 @@ tournée dans ce lieu, dans **tous** les épisodes.
   désordre de fête), en pleine résolution, rangé dans `video/lieux/mark-salon.png`,
   `video/lieux/mark-cuisine.png`. Puis la carte et la liste ici.
 
-### L'appartement d'Anna — À CRÉER le jour où un épisode y va
-- Aucune source pour l'instant (les scènes `schlafzimmer` et `umzug` de l'app ne nomment personne).
-  On le conçoit une fois, vide, on l'écrit ici, et il ne change plus.
+- **Ce qui existe déjà en photo** (relevé le 4 nov. 2026 pour le thème « Le logement », qui les reprend telles
+  quelles, `visuel/logement/logement.py`) : sa **chambre** (« La journée », `visuel/prototype/journee/mark-1.webp`,
+  `mark-8.webp` : lit en bois clair, murs blancs, rideaux blancs devant la fenêtre à gauche, une chaise couverte de
+  vêtements) ; sa **salle de bains** (`mark-3.webp`, `mark-4.webp` : carrelage gris, douche à porte de verre, grand
+  miroir avec une rampe lumineuse au-dessus, petite fenêtre) ; le salon rangé avec un petit bureau devant la grande
+  fenêtre (`mark-6.webp`) et la cuisine le soir (`mark-7.webp`, même mur vert sauge).
+- **L'entrée (à générer, thème « Le logement », 4 nov.)** : même parquet clair et mêmes murs blancs que le salon,
+  portes blanches à panneaux ; un long couloir étroit, des patères avec vestes et sac à dos, un grand miroir à
+  cadre de bois accroché au mur, un plafonnier à boule de papier blanc, un long tapis rayé. Référence : le salon.
+
+### L'appartement d'Anna — en partie en photo (4 nov. 2026)
+- Les scènes `schlafzimmer` et `umzug` ne nomment personne dans l'image, mais leurs textes disent Anna
+  (« Anna packt ihren Koffer », « Anna emménage dans son nouvel appartement »).
+- ⚠️ **Deux chambres différentes** : celle de la scène `schlafzimmer` (grand lit en bois, couvre-lit beige, tapis
+  rond bleu, bureau sous la fenêtre) ne ressemble pas à celle de « La journée » (`journee/anna-1.webp`, `anna-4`,
+  `anna-10` : lit blanc, couette gris clair, table de chevet en bois avec une lampe, armoire en bois). Le thème
+  « Le logement » ne reprend QUE celle de « La journée », cohérente avec sa cuisine. À trancher avant un épisode.
+- La **cuisine** (« La journée », `anna-5`, `anna-9`) : buffets **bleu clair** vitrés à gauche, plan de travail en
+  bois, petite table ronde devant la fenêtre à deux battants, radiateur blanc dessous, étagère murale à droite,
+  plafonnier blanc. La **douche** (`anna-3`) : carrelage blanc, porte de verre, petite fenêtre. Le **salon**, le jour
+  de l'emménagement (`umzug`) : parquet, murs blancs, grande fenêtre au fond, canapé sous plastique avec un coussin
+  jaune, grand miroir posé contre le mur, lampadaire blanc, étagère blanche, tableau de mer.
+- **Le balcon (à générer, thème « Le logement », 4 nov.)** : étroit, garde-corps en fer forgé noir, petite table
+  ronde de bistrot en métal et deux chaises pliantes, plantes vertes et géraniums rouges en pots de terre cuite ;
+  derrière, les arbres d'une cour berlinoise. Référence : sa cuisine (le même immeuble, les mêmes fenêtres).
+
+### L'appartement de Jan et Katrin (la famille d'Anna) — en photo (4 nov. 2026)
+- Le **salon** de « Où est le chat ? » (`visuel/prototype/gato/piece.webp`, porte blanche à gauche, armoire sombre,
+  canapé gris clair, étagère blanche, table en pin). « La journée » : la **chambre des enfants** (`familia-1`, `-7`,
+  `-8` : deux lits en bois clair, peluches, tapis rayé multicolore, rideaux beiges), la **cuisine** (`familia-2`,
+  `-6` : table en bois, suspension blanche, deux fenêtres), la **salle de bains** (`familia-3` : lavabo, miroir,
+  baignoire, rideau de douche blanc) et l'**entrée** (`familia-4` : patères, banc à chaussures blanc, plafonnier).
+
+### L'appartement que visite Lena (die Besichtigung, thème « Le logement », 4 nov. 2026) — à générer
+- Un appartement à louer, **vide**, dans un Altbau de Berlin : murs blancs fraîchement peints, parquet de chêne
+  clair, hauts plafonds à moulure blanche, hautes fenêtres doubles blanches, radiateurs blancs sous les fenêtres,
+  aucun meuble. Cuisine équipée blanche (plan de travail en bois clair, évier inox, cuisinière blanche, grand
+  réfrigérateur blanc) ; salle de bains carrelée de blanc avec baignoire, lavabo et miroir ; salon vide avec une
+  porte-fenêtre sur un balcon à garde-corps noir.
+- **Frau Becker**, la propriétaire (personne neuve) : la soixantaine, cheveux gris courts, lunettes sans monture,
+  gilet beige sur un chemisier bleu clair, une chemise cartonnée bleu foncé. **Lena** (25 ans, la petite sœur
+  d'Anna, `visuel/familia/`) visite. La première image (la cuisine) sert de référence aux trois autres.
 
 ### La boulangerie du Kiez — épisode 04 « Schrippe »
 - Maîtres : `video/episode-04-schrippe/01-images/baeckerei-aussen.png` (dehors) et
