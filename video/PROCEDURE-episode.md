@@ -262,6 +262,27 @@ Si la bouche bouge **pendant** que la voix porte encore, mal ou hors du
 texte, couper ne sert à rien : c'est une prise à refaire, donc une dépense
 à annoncer à Jacques avec son coût, et on attend son accord.
 
+### Chaque vidéo, à son DÉBUT et à sa FIN : la bouche, le cadrage, l'expression
+
+Demandé par Jacques le 4 nov. 2026, après le verdict d'Anna (« ses lèvres ne
+bougent pas, puis l'image est mal centrée […] on voit juste sa tête, dans le
+bas de l'image ») :
+
+1. **La première et la dernière image de chaque clip publié**, sur une
+   planche : la bouche fermée, les yeux ouverts (une coupe sur un clignement
+   fige la page sur des yeux clos), l'expression voulue (Anna souriante comme
+   Mark, pas neutre).
+2. **Le cadrage, dans le cadre où le clip sera MONTRÉ** (la page de l'oral
+   montre du 4:5, `object-position: 50% 22%`), pas dans l'image brute : la
+   tête et les épaules au même endroit que dans les autres plans. Un clip
+   recadré pour une autre raison (faux sous-titres) reprend ce cadre exact,
+   jamais un cadre gardé « depuis le haut ».
+3. **Le clip qui joue, dans la page**, et pas seulement le fichier : le
+   verdict d'Anna jouait sa voix seule sous l'image fixe (un appel à
+   `dire()` sans le cadre du clip), et aucune mesure sur les fichiers ne
+   pouvait le voir. On lance chaque réplique et on lit `currentTime` qui
+   avance.
+
 ---
 
 ## Étape 6 — monter
