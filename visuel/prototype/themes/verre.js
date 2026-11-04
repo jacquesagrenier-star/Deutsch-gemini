@@ -1,53 +1,66 @@
-/* LE VERRE DES BOUTONS POSES SUR LES IMAGES (v1107, Jacques, 4 nov. 2026)
-   Maquette : .claude/maquette-verre-boutons.html (https://claude.ai/artifact/2XAbaphjgyVa79msFg4st7).
-   Jacques : « les boutons, ça ne prenne pas de place le moins possible » ; « le vert pour continuer. Lui pourrait
-   être un transparent vert » ; « un vert presque transparent. On voit que c'est vert, mais puis adaptif ».
+/* LE VERRE DES BOUTONS POSES SUR LES IMAGES (v1107 ; v1110 : le verre d'Apple et le rond qui avance)
+   Jacques, 4 nov. 2026 : « le meme verre, mais V-E-R-R-E. Donc, transparent, la meme chose qu'Apple » ; pour
+   Continuer, un rond centre en bas avec une fleche (« Une fleche plutot » ; « on va le placer au centre »).
+   Maquette : .claude/maquette-choix-verre.html.
 
-   Une balise par page (scènes, thèmes illustrés, DTZ oral), rien d'autre : ce fichier pose sa feuille de style et
+   Une balise par page (scenes, themes illustres, DTZ oral), rien d'autre : ce fichier pose sa feuille de style et
    s'occupe de tout.
-   - « Continuer » et les boutons du bas (.suite, .bas button) : un VERT TRÈS DOUX, presque transparent.
-   - Le rond « ‹ » (#retourChoix des scènes, .retour des thèmes) : un VERRE CLAIR.
-   Le même liseré de lumière, le même reflet en haut et les mêmes rayons partout ; seule la densité change.
-
-   ADAPTATIF : le bouton regarde ce qui passe dessous. Le texte passe au foncé sur du clair et au blanc sur du sombre,
-   et le voile ne s'épaissit que si le texte ne se lirait plus (4,5 : 1 pour un bouton, 3 : 1 pour un rond, seuils
-   de tests/audit-contraste.js). Il garde sa couleur tant que l'autre ne demande pas nettement moins de voile
-   (10 points), pour ne pas clignoter quand une limite de l'image passe sous le bouton.
-   ⚠️ LE COÛT SUR L'IPHONE (consigne du chef) : chaque image n'est lue qu'UNE fois, réduite à 32 px de large, et ce sont
-   ces pixels qu'on garde (pas le canevas : iOS vide les canevas en arrière-plan). Les recalculs sont regroupés
-   (au plus un toutes les 120 ms) et attendent la fin d'une animation. Une image d'une autre adresse (canevas
-   « sali ») est traitée comme un fond uni. */
+   - « Continuer » / « Commencer » (.suite, quand son libelle est court et sans fleche) : un ROND de 56 px centre en
+     bas, zone de toucher 64 px, une fleche ; le mot reste dans le bouton pour les lecteurs d'ecran.
+   - Les autres boutons du bas (.suite a long libelle, .bas button) : le meme verre, avec leur texte.
+   - Le rond « ‹ » (#retourChoix des scenes, .retour des themes) : le meme verre.
+   ADAPTATIF : le bouton regarde ce qui passe dessous. L'encre (texte ou fleche) passe au petrole fonce sur du clair
+   et au clair sur du sombre ; le voile, presque nul (5 %), ne s'epaissit que si l'encre ne se lirait plus (4,5 : 1
+   pour un texte, 3 : 1 pour une fleche ou un chevron, seuils de tests/audit-contraste.js). Il garde son encre tant
+   que l'autre ne demande pas nettement moins de voile (10 points), pour ne pas clignoter.
+   ⚠️ LE COUT SUR L'IPHONE : chaque image n'est lue qu'UNE fois, reduite a 32 px de large, et ce sont ces pixels
+   qu'on garde (pas le canevas : iOS vide les canevas en arriere-plan). Les recalculs sont regroupes (au plus un
+   toutes les 120 ms) et attendent la fin d'une animation. Une image d'une autre adresse (canevas « sali ») est
+   traitee comme un fond uni. */
 (function(){
   "use strict";
   if (window.__verreBoutons) return; window.__verreBoutons = true;
 
-  const BLANC = [255,255,255], FONCE = [28,36,48];
-  const PAL = {
-    vert:   {f:{tc:[70,180,120], ink:[20,83,47]}, w:{tc:[24,100,62], ink:BLANC}, min:.18, max:.85, seuil:4.5},
-    neutre: {f:{tc:BLANC, ink:FONCE},            w:{tc:[18,26,36], ink:BLANC},  min:.09, max:.60, seuil:3}
-  };
-  const SELECTEURS = [[".suite, .bas button", "vert"], ["#retourChoix, button.retour#retour", "neutre"]];
+  const BLANC = [255,255,255], PETROLE = [23,58,78], CLAIR = [243,245,248], NUIT = [18,26,36];
+  const APPLE = {f:{tc:BLANC, ink:PETROLE}, w:{tc:NUIT, ink:CLAIR}, min:.05, max:.60};
+  const SEUIL_TEXTE = 4.5, SEUIL_ICONE = 3;
   const PAS = .03, LARGEUR_LUE = 32;
+  const fleche = (c, gauche) => 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="'
+      + (gauche ? "M25 16H8M14 9.5L7.5 16l6.5 6.5" : "M7 16h17M18 9.5l6.5 6.5-6.5 6.5")
+      + '" fill="none" stroke="rgb(' + c.join(",") + ')" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>') + '")';
 
   /* ---------- la feuille ---------- */
   const css = `
 @property --v-haut{syntax:"<color>"; inherits:false; initial-value:transparent}
 @property --v-bas{syntax:"<color>"; inherits:false; initial-value:transparent}
-.verre-v{background:linear-gradient(180deg, var(--v-haut), var(--v-bas)) !important; color:var(--v-encre) !important;
+.verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.05) 30%, rgba(255,255,255,0) 48%), radial-gradient(60% 40% at 50% 110%, rgba(255,255,255,.22), rgba(255,255,255,0) 70%);
+  background:var(--v-reflet), linear-gradient(180deg, var(--v-haut), var(--v-bas)) !important; color:var(--v-encre) !important;
   border-color:transparent !important; overflow:hidden !important; isolation:isolate;
-  -webkit-backdrop-filter:blur(var(--v-flou)) saturate(1.5) !important; backdrop-filter:blur(var(--v-flou)) saturate(1.5) !important;
-  box-shadow:inset 0 -8px 14px -10px rgba(0,0,0,.22), 0 8px 22px rgba(0,0,0,.18), 0 1px 3px rgba(0,0,0,.10) !important;
+  -webkit-backdrop-filter:blur(12px) saturate(1.15) brightness(1.04) !important; backdrop-filter:blur(12px) saturate(1.15) brightness(1.04) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(255,255,255,.18), 0 8px 22px rgba(20,30,40,.14) !important;
   transition:color .35s ease, text-shadow .35s ease, --v-haut .35s ease, --v-bas .35s ease !important}
+html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,.02) 30%, rgba(255,255,255,0) 48%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22), inset 0 -1px 0 rgba(255,255,255,.06), 0 8px 22px rgba(0,0,0,.3) !important}
 .verre-v.v-pose{position:relative}
-.verre-v::before{content:"" !important; position:absolute !important; inset:2px !important; border-radius:inherit; z-index:-1; pointer-events:none;
-  background:linear-gradient(180deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.14) 36%, rgba(255,255,255,0) 52%) !important}
+.verre-v::before{content:none !important}
 .verre-v::after{content:"" !important; position:absolute !important; inset:0 !important; border-radius:inherit; pointer-events:none; padding:1.5px;
   background:linear-gradient(140deg, #fff 0%, rgba(255,255,255,.55) 22%, rgba(255,255,255,.06) 48%, rgba(255,255,255,.25) 74%, rgba(255,255,255,.95) 100%) !important;
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude}
-.verre-v.v-blanc{text-shadow:0 1px 2px rgba(0,0,0,.45) !important}
-.verre-v.v-fonce{text-shadow:0 0 3px rgba(255,255,255,.55) !important}
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:.8}
+.verre-v.v-blanc{text-shadow:0 1px 3px rgba(0,0,0,.6) !important}
+.verre-v.v-fonce{text-shadow:0 0 4px rgba(255,255,255,.75), 0 0 1px rgba(255,255,255,.6) !important}
 .verre-v svg{fill:currentColor}
-@media (prefers-reduced-motion: reduce){ .verre-v{transition:none !important} }`;
+/* le rond qui avance : 64 px de zone de toucher, le verre (56 px) dessine dans le ::before */
+.verre-v.v-rond{left:calc(50% - 32px) !important; right:auto !important; width:64px !important; height:64px !important; min-height:64px !important;
+  padding:0 !important; border-radius:50% !important; font-size:0 !important; color:transparent !important; text-shadow:none !important;
+  background:none !important; box-shadow:none !important; -webkit-backdrop-filter:none !important; backdrop-filter:none !important}
+.verre-v.v-rond::before{content:"" !important; position:absolute; inset:4px; border-radius:50%; z-index:-1; pointer-events:none;
+  background:var(--v-fleche) center / 26px 26px no-repeat, var(--v-reflet), linear-gradient(180deg, var(--v-haut), var(--v-bas));
+  -webkit-backdrop-filter:blur(12px) saturate(1.15) brightness(1.04); backdrop-filter:blur(12px) saturate(1.15) brightness(1.04);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(255,255,255,.18), 0 8px 22px rgba(20,30,40,.14);
+  transition:--v-haut .35s ease, --v-bas .35s ease}
+.verre-v.v-rond::after{inset:4px !important}
+.verre-v.v-rond:focus-visible{outline:2px solid #E8A23A; outline-offset:-2px}
+@media (prefers-reduced-motion: reduce){ .verre-v, .verre-v.v-rond::before{transition:none !important} }`;
   const st = document.createElement("style"); st.id = "verreBoutonsCss"; st.textContent = css;
   (document.head || document.documentElement).appendChild(st);
 
@@ -83,7 +96,7 @@
     const ancien = b.style.pointerEvents; b.style.pointerEvents = "none";
     const echantillon = [];
     let fond = null;
-    // La ligne du texte seulement (le milieu du bouton), comme dans la maquette : ce que le texte doit vaincre.
+    // La ligne du texte (ou le centre du rond) seulement : ce que l'encre doit vaincre.
     const fxs = r.width > 80 ? [.34, .42, .5, .58, .66] : [.4, .5, .6];
     for (const fx of fxs) for (const fy of [.42, .58]){
       const x = r.left + r.width * fx, y = r.top + r.height * fy;
@@ -94,7 +107,6 @@
         const ri = img.getBoundingClientRect();
         const ix = Math.floor((x - ri.left) / ri.width * P.w), iy = Math.floor((y - ri.top) / ri.height * P.h);
         if (ix >= 0 && iy >= 0 && ix < P.w && iy < P.h){
-          // un petit voisinage : l'image réduite fait déjà le flou
           for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
             const xx = Math.min(P.w - 1, Math.max(0, ix + dx)), yy = Math.min(P.h - 1, Math.max(0, iy + dy)), i = (yy * P.w + xx) * 4;
             echantillon.push([P.px[i], P.px[i+1], P.px[i+2]]);
@@ -108,21 +120,23 @@
     b.style.pointerEvents = ancien;
     return echantillon;
   }
-  function besoin(ech, tenue, P){
+  function besoin(ech, tenue, P, seuil){
     const li = lum(tenue.ink), tc = tenue.tc;
     let dernier = null;
     for (let a = P.min; a <= P.max + 1e-6; a += PAS){
       const vals = ech.map(c => ratio(li, lum([a*tc[0] + (1-a)*c[0], a*tc[1] + (1-a)*c[1], a*tc[2] + (1-a)*c[2]]))).sort((p, q) => p - q);
       const c = vals[Math.floor(vals.length * .05)];
-      if (c >= P.seuil) return {a, ok:true};
+      if (c >= seuil) return {a, ok:true};
       dernier = {a, c, ok:false};
     }
     return dernier;
   }
   function choisir(b, P){
     const ech = dessous(b); if (!ech) return;
-    const x = {f: besoin(ech, P.f, P), w: besoin(ech, P.w, P)};
-    const note = r => r.ok ? r.a : 1 + (P.seuil - r.c);
+    const icone = b.classList.contains("v-rond") || b.id === "retourChoix" || b.classList.contains("retour");
+    const seuil = icone ? SEUIL_ICONE : SEUIL_TEXTE;
+    const x = {f: besoin(ech, P.f, P, seuil), w: besoin(ech, P.w, P, seuil)};
+    const note = r => r.ok ? r.a : 1 + (seuil - r.c);
     let k = note(x.f) <= note(x.w) ? "f" : "w";
     const avant = b.dataset.verreTenue;
     if (avant && avant !== k && note(x[avant]) - note(x[k]) < .10) k = avant;
@@ -131,20 +145,24 @@
     b.style.setProperty("--v-haut", rgba(t.tc, Math.min(1, a + .03)));
     b.style.setProperty("--v-bas", rgba(t.tc, a));
     b.style.setProperty("--v-encre", rgba(t.ink, 1));
+    b.style.setProperty("--v-fleche", fleche(t.ink, document.documentElement.dir === "rtl"));
     b.classList.toggle("v-blanc", k === "w"); b.classList.toggle("v-fonce", k === "f");
   }
 
   /* ---------- les boutons et le rythme ---------- */
+  // Le rond : « Continuer », « Commencer »… un libelle court et sans fleche. « Continuer avec mes cartes → » garde son texte.
+  const enRond = b => b.classList.contains("suite") && !/[→←›‹]/.test(b.textContent) && b.textContent.trim().length <= 16;
   function boutons(){
     const l = [];
-    SELECTEURS.forEach(([sel, nom]) => document.querySelectorAll(sel).forEach(b => {
+    document.querySelectorAll(".suite, .bas button, #retourChoix, button.retour#retour").forEach(b => {
       if (!b.classList.contains("verre-v")){
         b.classList.add("verre-v");
-        b.style.setProperty("--v-flou", nom === "vert" ? "8px" : "6px");
         if (getComputedStyle(b).position === "static") b.classList.add("v-pose");
       }
-      if (b.offsetParent !== null || getComputedStyle(b).position === "fixed") l.push([b, PAL[nom]]);
-    }));
+      b.classList.toggle("v-rond", enRond(b));
+      if (b.classList.contains("v-rond") && b.getAttribute("aria-label") !== b.textContent.trim()) b.setAttribute("aria-label", b.textContent.trim());
+      if (b.offsetParent !== null || getComputedStyle(b).position === "fixed") l.push(b);
+    });
     return l;
   }
   let prevu = 0, dernier = 0, reports = 0;
@@ -158,7 +176,7 @@
     if (document.hidden) return;
     if (animationEnCours() && reports < 8){ reports++; plus_tard(150); return; }
     reports = 0; dernier = performance.now();
-    boutons().forEach(([b, P]) => { try{ choisir(b, P); }catch(e){} });
+    boutons().forEach(b => { try{ choisir(b, APPLE); }catch(e){} });
   }
   function plus_tard(ms){ if (!prevu) prevu = setTimeout(() => requestAnimationFrame(maj), ms); }
   function demander(){ plus_tard(Math.max(0, 120 - (performance.now() - dernier))); }
@@ -173,9 +191,9 @@
   addEventListener("load", demander, true);   // une image qui arrive
   document.addEventListener("visibilitychange", () => { if (!document.hidden) demander(); });
   function observer(){
-    // ⚠️ Nos propres retouches (le style et la classe des boutons) ne relancent pas le calcul : sinon il tournerait sans fin.
-    new MutationObserver(recs => { if (recs.some(r => !(r.target.classList && r.target.classList.contains("verre-v")))) demander(); })
-      .observe(document.body, {childList:true, subtree:true, attributes:true, attributeFilter:["hidden", "class", "style", "src"]});
+    // ⚠️ Nos propres retouches (le style, la classe et le nom des boutons) ne relancent pas le calcul : sinon il tournerait sans fin.
+    new MutationObserver(recs => { if (recs.some(r => r.type !== "attributes" || !(r.target.classList && r.target.classList.contains("verre-v")))) demander(); })
+      .observe(document.body, {childList:true, subtree:true, characterData:true, attributes:true, attributeFilter:["hidden", "class", "style", "src"]});
     demander();
   }
   if (document.body) observer(); else document.addEventListener("DOMContentLoaded", observer);
