@@ -1,5 +1,7 @@
 # Phrases à refaire avec une voix — accord de Jacques (3 nov. 2026)
 
+**FAIT le 3 nov.** (« Oui, fais les voix ») : `voix_jacques.py`, 15 fichiers (1 Aurora, 7 × 2 voix espagnoles), **593 crédits**, multilingual v2, normalisés et contrôlés (aucun SATURE, CLIC ni TRAINE). Deux ajustements à la table, pour la cohérence des scènes : n° 3 « Anna **va a estar** en España por una semana » (à l'aéroport, Anna part) ; n° 6 « **Mañana temprano** todo tiene que estar ya guardado » (c'est Anna qui fait sa valise).
+
 Relecture complète, phrases qui ont une voix enregistrée. Leur texte ne change
 qu'avec leur voix (sinon on entend une phrase et on en lit une autre). Tout le
 reste des signalements de scènes est corrigé sans dépense (options, notes,

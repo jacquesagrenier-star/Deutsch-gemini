@@ -71,6 +71,12 @@ Le déroulé, dans la page :
    (`cleQuestion()`). Dans la séance : 6. Moins quand il y a moins de mots à revoir : c'est voulu.
 3. Un écran de fin (score, « Encore des questions » hors séance, « Terminer »).
 
+**Les boutons d'action toujours tout en bas** (Jacques, 3 nov. 2026, la règle des scènes : « commencer les exercices
+ou continuer soit toujours en bas complètement de l'écran ») : Commencer, Suivant, Terminer, « Encore des questions »
+sont des boutons fixes (`.suite`, `position:fixed`, `bottom: calc(12px + env(safe-area-inset-bottom))`, `z-index:5000`),
+jamais dans le flux ; le second (« Encore des questions ») juste au-dessus du premier ; le contenu garde assez de place
+en bas (`padding-bottom` ≥ deux boutons + 24 px + la zone de sécurité). Modèle : `ropa.html` (`boutonsDeFin()`).
+
 **La traduction dans la langue d'interface** (Jacques, 3 nov. : « Il n'y a pas la traduction française. Qui serait
 importante ») : une ligne plus petite, grise, en italique (`.trad`), **sous le mot dans la découverte** et **après la
 réponse, sous la phrase juste** — jamais avant, elle donnerait la réponse. Comment, dans `familia.html` et
@@ -125,6 +131,11 @@ v1068, deux fois au plus, plus jamais après un premier agrandissement (même cl
   une petite loupe, pour ne jamais répondre en voulant regarder. Un élément qui n'est pas une image (l'arbre en SVG)
   est copié dans la visionneuse ; `data-zoom="<image>"` y montre une autre image (une personne en pied s'agrandit en
   son visage, faute de pixels dans l'image en pied).
+- **L'app s'en sert aussi** pour les tableaux de la galerie (Jacques, 3 nov., « Oui, les deux ») : `index.html`
+  charge `visuel/prototype/themes/zoom.js`, **une seule source** ; l'option `pincer` dit ce que deux doigts
+  agrandissent (sinon toute image de `main`), une toile (canvas) s'ouvre copiée en image (un tableau en cours tel
+  qu'il est peint, rien de plus), `data-zoom` donne l'image entière d'un tableau gagné, et `langue` peut être une
+  fonction. Un changement de `zoom.js` vaut pour l'app ET les thèmes : essayer les deux.
 - **Les yeux se lisent à 375 px** : une question sur les yeux d'une personne montre son gros plan à toute la largeur
   (`<Nom>-yeux.webp`, fait par `visuel/descripcion/yeux_personnes.py`, la place des yeux relevée à l'œil), jamais le
   petit visage ; les yeux de la découverte sont en deux colonnes. Une image neuve où l'on doit voir un détail : la
@@ -258,7 +269,7 @@ ramène aux cartes (`revenirDeLArret()`).
 
 ## Le branchement : le modèle à suivre pour un thème neuf
 
-Ce qu'un thème neuf touche, et rien d'autre. Le reste (ruban de l'accueil, séance, ouverture, retour, voix, tirage,
+Ce qu'un thème neuf touche, et rien d'autre. Le reste (ruban de l'accueil, panneau de « N › » où sont TOUS les thèmes — `orbPanelData("themes_illustres")`, une option et sa vignette par thème de `THEMES_ILLUSTRES`, le retour au panneau en fin de thème —, séance, ouverture, retour, voix, tirage,
 progression des mots) se fait tout seul à partir de ces quatre gestes.
 
 **1. Dans `index.html`, une ligne dans `THEMES_ILLUSTRES`.** L'ordre de la table est celui du ruban de l'accueil et
@@ -339,3 +350,11 @@ l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire angl
     bike*, *an ugly vase*). Le britannique change les noms des phrases sans image (flat, film, jumper, High Street).
     Le sens du mot et la traduction des phrases de l'image viennent de l'espagnol de la même image.
 - **Contrôle** : `ANGLAIS` dans `tests/themes_illustres.py` (le thème y passe en `en` et en `en&variante=gb`).
+
+Deux ajouts de « La journée » (3 nov. 2026), utiles aux thèmes suivants :
+- **un adverbe compte aussi** : `carteDeScene()` accepte `{mot, cat: "adverbe"}` (la carte d'`adverbienTheme`,
+  siempre / immer, zuerst) ; un mot que le corpus n'a pas reste « hors jeu », la page n'a rien à prévoir ;
+- **une question en plusieurs gestes** (remettre quatre étapes dans l'ordre) : la page définit `testerOrdre()`, qui
+  la résout et rend la réponse ; le contrôle l'appelle quand la question a un `.ordre`.
+- **chaque mot a au moins deux sortes** : un mot qu'une seule sorte sait viser (les adverbes de fréquence, les moments
+  de la journée) fait se suivre deux fois la même sorte dès que deux de ces mots se suivent dans la file.

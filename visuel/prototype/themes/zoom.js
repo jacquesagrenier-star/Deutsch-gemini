@@ -12,17 +12,21 @@
 //     decouverte), pour ne jamais repondre en voulant regarder : `loupe`.
 // Un element qui n'est pas une image (l'arbre en SVG) est COPIE dans la visionneuse : la copie se regarde, elle ne
 // repond pas. L'indice « Écarte deux doigts » des scenes (v1068) s'affiche dans la visionneuse les deux premieres fois.
-// Une page : <script src="themes/zoom.js?v=3"></script>, puis Zoom.init({direct: "...", loupe: "...", langue}).
+// Une page : <script src="themes/zoom.js?v=4"></script>, puis Zoom.init({direct: "...", loupe: "...", langue}).
+// L'APP (index.html) le charge aussi pour les tableaux de la galerie (Jacques, 3 nov. 2026, « Oui, les deux ») : UNE
+// seule source. Elle passe `pincer` (ce que deux doigts agrandissent, sinon toute image de <main>), une langue qui
+// change (une fonction), et une toile (canvas) s'y ouvre en image : un tableau en cours tel qu'il est peint, rien de
+// plus ; `data-zoom` donne l'image entiere d'un tableau gagne.
 const Zoom = (() => {
   const TEXTES = {
     pince: {fr: "Écarte deux doigts pour agrandir", en: "Spread two fingers to zoom in", tr: "Yakınlaştırmak için iki parmağını aç", uk: "Розведи два пальці, щоб збільшити", fa: "برای بزرگ‌نمایی دو انگشتت را از هم باز کن", ar: "باعِد بين إصبعين للتكبير", pt: "Afaste dois dedos para ampliar", pl: "Rozsuń dwa palce, aby powiększyć", ru: "Разведи два пальца, чтобы увеличить", de: "Spreize zwei Finger zum Vergrößern"},
     fermer: {fr: "Fermer", en: "Close", tr: "Kapat", uk: "Закрити", fa: "بستن", ar: "إغلاق", pt: "Fechar", pl: "Zamknij", ru: "Закрыть", de: "Schließen"},
     agrandir: {fr: "Agrandir l'image", en: "Enlarge the picture", tr: "Resmi büyüt", uk: "Збільшити зображення", fa: "بزرگ کردن تصویر", ar: "تكبير الصورة", pt: "Ampliar a imagem", pl: "Powiększ obrazek", ru: "Увеличить картинку", de: "Bild vergrößern"}
   };
-  let langue = "fr";
-  const T = c => TEXTES[c][langue] || TEXTES[c].fr;
+  const langue = () => (typeof opts.langue === "function" ? opts.langue() : opts.langue) || "fr";
+  const T = c => TEXTES[c][langue()] || TEXTES[c].fr;
   const CSS = `
-.zoom-voile{position:fixed;inset:0;z-index:9000;background:rgba(8,12,18,.94);display:flex;align-items:center;justify-content:center;touch-action:none;overflow:hidden}
+.zoom-voile{position:fixed;inset:0;z-index:9500;background:rgba(8,12,18,.94);display:flex;align-items:center;justify-content:center;touch-action:none;overflow:hidden}
 .zoom-voile[hidden]{display:none}
 .zoom-voile .zoom-contenu{transform-origin:0 0;will-change:transform;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 .zoom-voile img.zoom-contenu{max-width:100%;max-height:100%;object-fit:contain;display:block}
@@ -52,7 +56,7 @@ const Zoom = (() => {
   // l'indice se montre deux fois dans les themes, et plus jamais apres un premier agrandissement, ici OU dans les
   // scenes (meme origine, meme cle que visuel/prototype/index.html : PINCE_ZOOME)
   const VUS = "wortando_pinceThemesVus", ZOOME = "wortando_pinceZoome";
-  let voile = null, cont = null, ouvert = false, opts = {direct: "", loupe: "", pincer: ""};
+  let voile = null, cont = null, ouvert = false, opts = {direct: "", loupe: "", pincer: "", langue: "fr"};
   let Z = {s: 1, x: 0, y: 0, pinch: null, pan: null, bouge: false, dernier: 0};
   const pt = t => [t.clientX, t.clientY];
 
@@ -129,6 +133,8 @@ const Zoom = (() => {
       } else Z.dernier = t;
     }, {passive: true});
     document.addEventListener("keydown", e => { if (e.key === "Escape" && ouvert) fermer(); });
+    // le retour arriere (Android, navigateur) referme aussi la visionneuse
+    window.addEventListener("popstate", () => { if (ouvert) fermer(); });
     // le toucher direct, par delegation : les images changent a chaque question
     document.addEventListener("click", e => {
       if (ouvert || !opts.direct || !e.target.closest) return;
@@ -141,8 +147,8 @@ const Zoom = (() => {
     if (!t || !t.closest) return null;
     const porte = opts.loupe && t.closest(opts.loupe);
     if (porte) return contenuDe(porte);
-    const im = t.closest("main img, main svg");
-    return im ? (im.tagName === "IMG" ? im : im.closest("svg")) : null;
+    const im = t.closest(opts.pincer || "main img, main svg");
+    return !im ? null : im.tagName === "IMG" || im.tagName === "CANVAS" || (im.dataset && im.dataset.zoom) ? im : im.closest("svg") || im;
   }
   // data-zoom : une autre image a montrer agrandie (le visage d'une personne en pied)
   function contenuDe(porte){ return porte.dataset && porte.dataset.zoom || (porte.tagName === "IMG" ? porte : porte.querySelector("img") || porte); }
@@ -170,9 +176,12 @@ const Zoom = (() => {
   function ouvrir(el, clavier){
     construire();
     if (cont) cont.remove();
-    if (typeof el === "string" || el.tagName === "IMG"){
+    // la source : une adresse, data-zoom, une image, ou une toile copiee en image (rien de plus que ce qu'elle montre)
+    let src = typeof el === "string" ? el : el.dataset && el.dataset.zoom ? el.dataset.zoom : el.tagName === "IMG" ? (el.currentSrc || el.src) : null;
+    if (!src && el.tagName === "CANVAS"){ try{ src = el.toDataURL("image/jpeg", 0.92); }catch(e){ return; } }
+    if (src){
       cont = document.createElement("img"); cont.alt = "";
-      cont.src = typeof el === "string" ? el : (el.currentSrc || el.src);
+      cont.src = src;
     } else {
       // la copie garde l'allure de son conteneur (.arbre) ; ses identifiants, dedoubles, sont retires
       cont = document.createElement("div");
@@ -187,6 +196,7 @@ const Zoom = (() => {
     voile.insertBefore(cont, voile.firstChild);
     Z = {s: 1, x: 0, y: 0, pinch: null, pan: null, bouge: false, dernier: 0};
     voile.hidden = false; ouvert = true;
+    voile.querySelector(".zoom-fermer").setAttribute("aria-label", T("fermer"));
     retirerPince(); indice();
     // au clavier, le bouton fermer prend la main ; au doigt, pas d'anneau de focus sur la photo
     if (clavier) voile.querySelector(".zoom-fermer").focus({preventScroll: true});
@@ -208,13 +218,12 @@ const Zoom = (() => {
   }
   function init(o){
     opts = Object.assign(opts, o || {});
-    langue = opts.langue || "fr";
     construire(); ecouter();
     const marquer = () => {
       if (opts.direct) document.querySelectorAll(opts.direct).forEach(im => im.classList.add("zoom-direct"));
       if (opts.loupe) poserLoupes();
     };
-    new MutationObserver(marquer).observe(document.body, {childList: true, subtree: true});
+    if (opts.loupe) new MutationObserver(marquer).observe(document.body, {childList: true, subtree: true});
     marquer();
   }
   return {init, ouvrir, fermer};

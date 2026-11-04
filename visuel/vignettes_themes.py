@@ -164,6 +164,108 @@ def chat_quatre_places():
     return c
 
 
+def vetements_meteo():
+    """Le bulletin meteo : quatre personnes sous quatre pictogrammes dessines (la pluie, la neige, le soleil, les
+    alliances du mariage), chacune habillee pour son temps -- Anna au parapluie, Mark en manteau, Ines au chapeau,
+    Javier en costume (3 nov. 2026). Tant que leurs tenues de situation ne sont pas faites, leur tenue de tous les jours."""
+    c = Image.new("RGB", (W, H), (226, 238, 248))
+    d = ImageDraw.Draw(c)
+    bleu, ambre = (47, 111, 168), (232, 162, 58)
+    d.rectangle((0, 0, W, 112), fill=(205, 225, 243))
+    gens = [("Anna", "lluvia"), ("Mark", "frio"), ("Ines", "calor"), ("Javier", "boda")]
+    case = W // 4
+    for k, (n, sit) in enumerate(gens):
+        x0, cx, cy = k * case, k * case + case // 2, 56
+        if k:
+            d.line((x0, 14, x0, H - 14), fill=(196, 214, 232), width=2)
+        if sit == "lluvia":
+            for (ex, ey, r) in [(-16, 4, 18), (6, -6, 22), (24, 6, 15)]:
+                d.ellipse((cx + ex - r, cy + ey - r, cx + ex + r, cy + ey + r), fill=bleu)
+            d.rectangle((cx - 30, cy + 4, cx + 36, cy + 20), fill=bleu)
+            for dx in (-18, 2, 22):
+                d.line((cx + dx, cy + 28, cx + dx - 6, cy + 42), fill=bleu, width=5)
+        elif sit == "frio":
+            import math
+            for a in range(3):
+                t = math.pi / 3 * a
+                dx, dy = 34 * math.cos(t), 34 * math.sin(t)
+                d.line((cx - dx, cy - dy, cx + dx, cy + dy), fill=bleu, width=6)
+        elif sit == "calor":
+            d.ellipse((cx - 20, cy - 20, cx + 20, cy + 20), fill=ambre)
+            import math
+            for a in range(8):
+                t = math.pi / 4 * a
+                d.line((cx + 27 * math.cos(t), cy + 27 * math.sin(t), cx + 38 * math.cos(t), cy + 38 * math.sin(t)), fill=ambre, width=6)
+        else:
+            for ex in (-12, 12):
+                d.ellipse((cx + ex - 22, cy - 18, cx + ex + 22, cy + 26), outline=ambre, width=7)
+        chemin = os.path.join(P, "ropa", n + "-" + sit + ".webp")
+        p = Image.open(chemin if os.path.exists(chemin) else os.path.join(P, "descripcion", n + ".webp")).convert("RGBA")
+        p = p.crop(p.getbbox())
+        h = H - 130
+        p = p.resize((round(p.size[0] * h / p.size[1]), h), Image.LANCZOS)
+        if p.size[0] > case - 8:
+            p = p.resize((case - 8, round(p.size[1] * (case - 8) / p.size[0])), Image.LANCZOS)
+        c.paste(p, (cx - p.size[0] // 2, H - 8 - p.size[1]), p)
+    return c
+
+
+def corps_carte():
+    """La carte du corps : Mark en pied, trois points rouges la ou l'on a mal (la tete, la gorge, le genou) et un
+    thermometre. Ni une rangee de personnes ni une scene de cabinet medical : le sujet, c'est ou l'on a mal."""
+    c = Image.new("RGB", (W, H), (232, 243, 240))
+    d = ImageDraw.Draw(c, "RGBA")
+    d.ellipse((40, 20, 380, 520), fill=(214, 234, 228))
+    mark = pied("descripcion", "Mark")
+    h = H - 34
+    mark = mark.resize((round(mark.size[0] * h / mark.size[1]), h), Image.LANCZOS)
+    x0, y0 = 210 - mark.size[0] // 2, 17
+    c.paste(mark, (x0, y0), mark)
+    rouge = (214, 64, 52)
+    # la tempe (jamais sur le visage), le cou, le genou
+    for (px, py) in [(68, 5), (50, 18.5), (30, 79)]:
+        x, y = x0 + mark.size[0] * px / 100, y0 + h * py / 100
+        d.ellipse((x - 26, y - 26, x + 26, y + 26), fill=rouge + (60,))
+        d.ellipse((x - 13, y - 13, x + 13, y + 13), fill=rouge + (255,), outline=(255, 255, 255, 255), width=4)
+    # le thermometre
+    tx, haut, bas = 470, 70, 380
+    d.rounded_rectangle((tx - 26, haut - 8, tx + 26, bas + 8), 26, fill=(255, 255, 255, 255), outline=(150, 170, 176, 255), width=4)
+    d.ellipse((tx - 46, bas - 20, tx + 46, bas + 72), fill=(255, 255, 255, 255), outline=(150, 170, 176, 255), width=4)
+    d.rounded_rectangle((tx - 11, haut + 90, tx + 11, bas + 20), 11, fill=rouge + (255,))
+    d.ellipse((tx - 32, bas - 6, tx + 32, bas + 58), fill=rouge + (255,))
+    for k in range(7):
+        y = haut + 20 + k * 40
+        d.line([(tx + 30, y), (tx + 52 if k % 2 == 0 else tx + 44, y)], fill=(120, 140, 148, 255), width=4)
+    return c
+
+
+def journee_horloge():
+    """L'horloge de la journee : un grand cadran (sept heures et demie) et, autour, quatre moments du lundi d'Anna
+    en ronds -- le reveil, le petit-dejeuner, le metro, le coucher. Le sujet, c'est le temps qui passe."""
+    import math
+    c = Image.new("RGB", (W, H), (236, 230, 246))
+    d = ImageDraw.Draw(c)
+    cx, cy, r = W // 2, H // 2, 150
+    d.ellipse((cx - r - 10, cy - r - 10, cx + r + 10, cy + r + 10), fill=(28, 36, 48))
+    d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=(255, 255, 255))
+    for i in range(12):
+        a = math.radians(i * 30)
+        r1 = r - (34 if i % 3 == 0 else 22)
+        d.line([(cx + r1 * math.sin(a), cy - r1 * math.cos(a)), (cx + (r - 10) * math.sin(a), cy - (r - 10) * math.cos(a))],
+               fill=(28, 36, 48), width=10 if i % 3 == 0 else 5)
+    for angle, longueur, largeur in ((7.5 * 30, 78, 16), (30 * 6, 118, 10)):
+        a = math.radians(angle)
+        d.line([(cx, cy), (cx + longueur * math.sin(a), cy - longueur * math.cos(a))], fill=(28, 36, 48), width=largeur)
+    d.ellipse((cx - 13, cy - 13, cx + 13, cy + 13), fill=(232, 162, 58))
+    for (x, y), cle in zip(((92, 92), (W - 92, 92), (W - 92, H - 92), (92, H - 92)), ("anna-1", "anna-5", "anna-6", "anna-10")):
+        im = Image.open(os.path.join(P, "journee", cle + ".webp")).convert("RGB")
+        w, h = im.size
+        im = im.crop(((w - h) // 2, 0, (w + h) // 2, h))
+        o = rond(im, 150, 7)
+        c.paste(o, (x - o.size[0] // 2, y - o.size[1] // 2), o)
+    return c
+
+
 def manger_ardoise():
     """L'ardoise du cafe : la carte a la craie et ses prix (des dessins, aucun mot : la meme vignette sert a l'espagnol
     et a l'allemand), et, posees devant, la tasse de the et la part de gateau des quantites. Le sujet est la commande et
@@ -203,8 +305,8 @@ def manger_ardoise():
     return c
 
 
-VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres,
-             "gato": chat_quatre_places, "manger": manger_ardoise}
+VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
+             "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

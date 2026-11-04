@@ -8725,7 +8725,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1090</span>
+        <span class="subtitle-version">v1094</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -9440,11 +9440,12 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LES THEMES ILLUSTRES SUR L'ACCUEIL (Jacques, 3 nov. 2026 : « je passe le theme de la famille ou je
              passe le theme des caracteristiques physiques. D'un seul coup. Directement. » ; « On va prendre le A »).
              Le meme bloc que les scenes, juste dessous, avec sa phrase ; une vignette ouvre le theme EN ENTIER
-             (decouverte puis vingt questions), « N › » mene a la section de Tout le contenu. Espagnol et allemand. -->
+             (decouverte puis vingt questions). « N › » ouvre le panneau de TOUS les themes, comme « Explorer les
+             scenes » (Jacques, 3 nov. 2026 : il menait a Tout le contenu). -->
         <div class="explorer-scenes explorer-themes hidden" id="explorerThemes">
             <div class="explorer-haut">
                 <strong data-i18n="sec_illustres">Thèmes illustrés</strong>
-                <button type="button" class="explorer-tout" onclick="ouvrirListeThemesIllustres()"><span id="explorerThemesNb"></span> ›</button>
+                <button type="button" class="explorer-tout" onclick="openOrbPanel('themes_illustres')"><span id="explorerThemesNb"></span> ›</button>
             </div>
             <p class="explorer-desc" data-i18n="themes_ill_desc">Des personnes, des images, des questions. Un thème en entier, d'un coup.</p>
             <div class="explorer-ruban" id="explorerThemesRuban"></div>
@@ -9681,6 +9682,27 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <div class="orb hidden" data-orbid="gato" id="tuileGato" onclick="ouvrirThemeIllustre('gato')" role="button" tabindex="0">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20v-7h14v7"/><path d="M9 13V9.5L7.5 6.5l2.7 1.6h3.6l2.7-1.6L15 9.5V13"/><path d="M10.6 10.6h.01M13.4 10.6h.01"/></svg></div>
             <div><strong data-i18n="gato_tuile">Où est le chat ?</strong></div>
+        </div>
+        <!-- Les vetements (3 nov. 2026) : s'habiller selon la meteo et l'occasion. Les douze de Descripcion, dans leur
+             tenue et dans deux tenues de situation ; lleva / se pone / se quita, tragt + accusatif, anziehen / ausziehen,
+             l'accord des couleurs : visuel/prototype/ropa.html. es et de. -->
+        <div class="orb hidden" data-orbid="ropa" id="tuileRopa" onclick="ouvrirThemeIllustre('ropa')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8.5 3.5 4 6l1.8 4.2 2-.9V20.5h8.4V9.3l2 .9L20 6l-4.5-2.5a3.5 3.5 0 0 1-7 0z"/></svg></div>
+            <div><strong data-i18n="ropa_tuile">Les vêtements</strong></div>
+        </div>
+        <!-- Le corps et la sante (3 nov. 2026, vague 1) : dire ou on a mal et comment on se sent -- des personnes qui ont
+             mal, pas les objets des scenes arztpraxis et apotheke. me duele / mir tut ... weh (le datif), tener / haben
+             fiebre, le conseil, le dialogue chez le medecin (l'oral du DTZ) : visuel/prototype/cuerpo.html. es et de. -->
+        <div class="orb hidden" data-orbid="cuerpo" id="tuileCuerpo" onclick="ouvrirThemeIllustre('cuerpo')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="4.5" r="2.3"/><path d="M9 7.5v7.5M5 10.5h8M9 15l-3 5.5M9 15l3 5.5"/><path d="M18.5 8.5v6M15.5 11.5h6"/></svg></div>
+            <div><strong data-i18n="cue_tuile">Le corps et la santé</strong></div>
+        </div>
+        <!-- La journee (3 nov. 2026, vague 1) : un lundi d'Anna, le samedi de Mark, un jour d'ecole chez Jan et Katrin ;
+             les verbes pronominaux et separables, l'heure (une horloge sur chaque image), l'ordre et la frequence :
+             visuel/prototype/journee.html. es et de. -->
+        <div class="orb hidden" data-orbid="journee" id="tuileJournee" onclick="ouvrirThemeIllustre('journee')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/></svg></div>
+            <div><strong data-i18n="jour_tuile">La journée</strong></div>
         </div>
         <!-- Manger et gouter (3 nov. 2026, vague 1) : les gouts, les saveurs, les quantites et la commande au cafe -- pas
              les objets de la cuisine, qui ont leur scene. me gusta / gustan, ich mag / das schmeckt mir, un kilo de / ein
@@ -14420,6 +14442,12 @@ const I18N = {
         emo_court: "Émotions",
         con_tuile: "Les contraires",
         gato_tuile: "Où est le chat ?",
+        ropa_tuile: "Les vêtements",
+        cue_tuile: "Le corps et la santé",
+        cue_court: "Le corps",
+        ropa_court: "Vêtements",
+        jour_tuile: "La journée",
+        jour_court: "Journée",
         man_tuile: "Manger et goûter",
         man_court: "Manger",
         seance_commencer: "Commencer",
@@ -15945,6 +15973,12 @@ const I18N = {
         emo_court: "Feelings",
         con_tuile: "Opposites",
         gato_tuile: "Where's the cat?",
+        ropa_tuile: "Clothes",
+        cue_tuile: "Body and health",
+        cue_court: "Body",
+        ropa_court: "Clothes",
+        jour_tuile: "Daily routine",
+        jour_court: "Routine",
         man_tuile: "Food and taste",
         man_court: "Food",
         seance_commencer: "Start",
@@ -17472,6 +17506,12 @@ const I18N = {
         emo_court: "Duygular",
         con_tuile: "Zıt anlamlılar",
         gato_tuile: "Kedi nerede?",
+        ropa_tuile: "Giysiler",
+        cue_tuile: "Vücut ve sağlık",
+        cue_court: "Vücut",
+        ropa_court: "Giysiler",
+        jour_tuile: "Günlük rutin",
+        jour_court: "Rutin",
         man_tuile: "Yemek ve tat",
         man_court: "Yemek",
         seance_commencer: "Başla",
@@ -19411,6 +19451,12 @@ const I18N = {
         emo_court: "Емоції",
         con_tuile: "Протилежності",
         gato_tuile: "Де кіт?",
+        ropa_tuile: "Одяг",
+        cue_tuile: "Тіло і здоров'я",
+        cue_court: "Тіло",
+        ropa_court: "Одяг",
+        jour_tuile: "Розпорядок дня",
+        jour_court: "День",
         man_tuile: "Їжа і смак",
         man_court: "Їжа",
         seance_commencer: "Почати",
@@ -21664,6 +21710,12 @@ const I18N = {
         emo_court: "احساسات",
         con_tuile: "متضادها",
         gato_tuile: "گربه کجاست؟",
+        ropa_tuile: "لباس‌ها",
+        cue_tuile: "بدن و سلامتی",
+        cue_court: "بدن",
+        ropa_court: "لباس",
+        jour_tuile: "کارهای روزانه",
+        jour_court: "روزانه",
         man_tuile: "خوردن و چشیدن",
         man_court: "خوردن",
         seance_commencer: "شروع",
@@ -23360,6 +23412,12 @@ const I18N = {
         emo_court: "المشاعر",
         con_tuile: "الأضداد",
         gato_tuile: "أين القطّ؟",
+        ropa_tuile: "الملابس",
+        cue_tuile: "الجسم والصحة",
+        cue_court: "الجسم",
+        ropa_court: "الملابس",
+        jour_tuile: "الروتين اليومي",
+        jour_court: "اليوم",
         man_tuile: "الأكل والتذوق",
         man_court: "الأكل",
         seance_commencer: "ابدأ",
@@ -23736,6 +23794,12 @@ const I18N = {
         emo_court: "Emoções",
         con_tuile: "Os contrários",
         gato_tuile: "Onde está o gato?",
+        ropa_tuile: "As roupas",
+        cue_tuile: "O corpo e a saúde",
+        cue_court: "O corpo",
+        ropa_court: "Roupas",
+        jour_tuile: "A rotina do dia",
+        jour_court: "Rotina",
         man_tuile: "Comer e provar",
         man_court: "Comer",
         seance_commencer: "Começar",
@@ -25322,6 +25386,12 @@ const I18N = {
         emo_court: "Emocje",
         con_tuile: "Przeciwieństwa",
         gato_tuile: "Gdzie jest kot?",
+        ropa_tuile: "Ubrania",
+        cue_tuile: "Ciało i zdrowie",
+        cue_court: "Ciało",
+        ropa_court: "Ubrania",
+        jour_tuile: "Plan dnia",
+        jour_court: "Dzień",
         man_tuile: "Jedzenie i smak",
         man_court: "Jedzenie",
         seance_commencer: "Zacznij",
@@ -26908,6 +26978,12 @@ const I18N = {
         emo_court: "Эмоции",
         con_tuile: "Противоположности",
         gato_tuile: "Где кот?",
+        ropa_tuile: "Одежда",
+        cue_tuile: "Тело и здоровье",
+        cue_court: "Тело",
+        ropa_court: "Одежда",
+        jour_tuile: "Распорядок дня",
+        jour_court: "День",
         man_tuile: "Еда и вкус",
         man_court: "Еда",
         seance_commencer: "Начать",
@@ -28496,6 +28572,12 @@ const I18N = {
         emo_court: "Gefühle",
         con_tuile: "Gegensätze",
         gato_tuile: "Wo ist die Katze?",
+        ropa_tuile: "Kleidung",
+        cue_tuile: "Körper und Gesundheit",
+        cue_court: "Körper",
+        ropa_court: "Kleidung",
+        jour_tuile: "Der Tagesablauf",
+        jour_court: "Tagesablauf",
         man_tuile: "Essen und Geschmack",
         man_court: "Essen",
         seance_commencer: "Starten",
@@ -30119,6 +30201,12 @@ const I18N = {
         emo_court: "Emociones",
         con_tuile: "Los contrarios",
         gato_tuile: "¿Dónde está el gato?",
+        ropa_tuile: "La ropa",
+        cue_tuile: "El cuerpo y la salud",
+        cue_court: "El cuerpo",
+        ropa_court: "Ropa",
+        jour_tuile: "La rutina diaria",
+        jour_court: "Rutina",
         man_tuile: "Comer y probar",
         man_court: "Comer",
         seance_commencer: "Empezar",
@@ -43709,6 +43797,17 @@ function texteDus(dus, total){
 
 function orbPanelData(id){
     if(LANGUE_APPRISE === "en" && TUILES_ANGLAISES[id]) return panneauTuileAnglaise(id);
+    // LES THEMES ILLUSTRES (3 nov. 2026, Jacques : « N › » doit ouvrir tous les themes, sur le modele des
+    // scenes). Une option par theme de la langue apprise, dans l'ordre de THEMES_ILLUSTRES ; section « ailleurs » :
+    // ouverts a tous, comme leurs tuiles, et sans en-tete (une seule famille).
+    if(id === "themes_illustres"){
+        return {
+            icon:"carte", title:t("sec_illustres"), sub:t("themes_ill_desc"),
+            // l'action est le nom d'une fonction faite depuis la table (ouvrirThemePanneau_<theme>, plus bas)
+            options: themesIllustresOuverts().map(nom => { const ouvrir = "ouvrirThemePanneau_" + nom;
+                return { icon:"carte", vignette:"themes/" + nom + ".webp", title:t(THEMES_ILLUSTRES[nom].titre), desc:"", action:ouvrir, section:"ailleurs" }; })
+        };
+    }
     if(id === "scenes"){
         return {
             icon:"carte", title:t("op_scenes_title"), sub:t("op_scenes_sub"),
@@ -44525,6 +44624,7 @@ function renderOrbPanel(){
     // son action dans SCENES_SEANCE : une scene ajoutee la-bas a son image ici
     // sans rien toucher d'autre.
     const icone = o => {
+        if(o.vignette) return `<div class="orb-opt-icon orb-opt-vignette"><img src="${baseScenes() + o.vignette}" alt="" loading="lazy"></div>`;
         const sc = typeof SCENES_SEANCE !== "undefined" && SCENES_SEANCE.find(x => x.ouvrir === o.action);
         return sc
             ? `<div class="orb-opt-icon orb-opt-vignette"><img src="${vignetteScene(sc.nom)}" alt="" loading="lazy"></div>`
@@ -46999,6 +47099,9 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           emociones: {page: "emociones.html", titre: "emo_tuile", court: "emo_court", tuile: "tuileEmociones"},
                           contrarios: {page: "contrarios.html", titre: "con_tuile", tuile: "tuileContrarios", en: true},
                           gato: {page: "gato.html", titre: "gato_tuile", tuile: "tuileGato"},
+                          ropa: {page: "ropa.html", titre: "ropa_tuile", court: "ropa_court", tuile: "tuileRopa"},
+                          cuerpo: {page: "cuerpo.html", titre: "cue_tuile", court: "cue_court", tuile: "tuileCuerpo"},
+                          journee: {page: "journee.html", titre: "jour_tuile", court: "jour_court", tuile: "tuileJournee"},
                           manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
@@ -47010,7 +47113,7 @@ const apprendreThemeIllustre = () => LANGUE_APPRISE === "es" ? "es" : LANGUE_APP
 function ouvrirThemeIllustre(nom, depuis){
     const th = THEMES_ILLUSTRES[nom];
     if(!th) return;
-    sceneOuverteDepuis = (depuis === "accueil" ? "themeaccueil:" : "theme:") + nom;
+    sceneOuverteDepuis = (depuis === "accueil" ? "themeaccueil:" : depuis === "panneau" ? "themepanneau:" : "theme:") + nom;
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t(th.titre);
@@ -53091,7 +53194,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1090;
+const APP_VERSION = 1094;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -56853,6 +56956,9 @@ function ouvrirMosaiquePleinEcran(rang){
             }
         };
         img.src = urlImageMosaique(m);
+        // AGRANDIR (themes/zoom.js, 3 nov. 2026) -- gagne, l'image entiere ; en cours, la toile telle qu'elle est
+        // peinte, sans rien devoiler de plus (data-zoom absent : zoom.js copie la toile)
+        if(gagnee) toile.dataset.zoom = urlImageMosaique(m); else delete toile.dataset.zoom;
         vue.classList.remove("hidden");
         synchroniserHistorique();
     });
@@ -57704,7 +57810,10 @@ function majExplorerThemes(){
     ruban.scrollLeft = 0;
     pagesExplorer(ruban, Math.ceil(noms.length / 3), "explorerThemesPages");
 }
-// « N › » : la section des themes dans Tout le contenu.
+// Le panneau des themes appelle window[action]() : une fonction par theme, faite depuis la table (un theme ajoute
+// a THEMES_ILLUSTRES a la sienne sans rien ecrire ici).
+Object.keys(THEMES_ILLUSTRES).forEach(nom => { window["ouvrirThemePanneau_" + nom] = () => ouvrirThemeIllustre(nom, "panneau"); });
+// Avant la v du 3 nov. 2026, « N › » menait a la section des themes dans Tout le contenu ; garde pour qui l'appellerait.
 function ouvrirListeThemesIllustres(){
     ouvrirToutLeContenu();
     setTimeout(() => {
@@ -58192,6 +58301,7 @@ window.addEventListener("message", (e) => {
     // Les themes illustres (v1076) reviennent a « Tout le contenu », d'ou on les a ouverts.
     if(String(sceneOuverteDepuis).indexOf("theme") === 0 && (d.type === "fini" || d.type === "fermer")){
         if(String(sceneOuverteDepuis).indexOf("themeaccueil:") === 0){ goHome(); return; }
+        if(String(sceneOuverteDepuis).indexOf("themepanneau:") === 0){ try{ openOrbPanel("themes_illustres"); }catch(err){ goHome(); } return; }
         try{ ouvrirToutLeContenu(); }catch(err){ goHome(); }
         return;
     }
@@ -58257,6 +58367,11 @@ function carteDeScene(d){
     if(d.cat === "adjectif"){
         const i = (adjektiveTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
         return i < 0 ? null : { word: adjektiveTheme.words[i], index: i, themeId: adjektiveTheme.id, mode: "adjektive" };
+    }
+    // 3 nov. 2026, le theme « La journee » : siempre, a veces, nunca, primero / immer, manchmal, nie, zuerst
+    if(d.cat === "adverbe"){
+        const i = (adverbienTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
+        return i < 0 ? null : { word: adverbienTheme.words[i], index: i, themeId: adverbienTheme.id, mode: "adverbien" };
     }
     let premier = null, nomme = null;
     themesComptes().forEach(th => {
@@ -66918,5 +67033,18 @@ function showResults(){
 })();
 </script>
 
+<!-- AGRANDIR LES TABLEAUX DE LA GALERIE (Jacques, 3 nov. 2026, « Oui, les deux »), avec le module des
+     themes illustres -- UNE seule source, visuel/prototype/themes/zoom.js : un toucher sur le tableau en plein ecran
+     ouvre la visionneuse (au lieu de refermer le plein ecran), deux doigts sur le tableau ou sur une vignette de la
+     galerie aussi ; dedans, deux doigts jusqu'a x4, double toucher, la molette, le bouton x. -->
+<script src="visuel/prototype/themes/zoom.js?v=4"></script>
+<script>
+if(typeof Zoom !== "undefined"){
+    try{
+        Zoom.init({direct: "#mosaiquePleinToile", pincer: "#mosaiquePleinToile, #galerieMosaiques .galerie-item img",
+                   langue: () => { try{ return langueEtRepli()[0]; }catch(e){ return "fr"; } }});
+    }catch(e){}
+}
+</script>
 </body>
 </html>
