@@ -25,7 +25,6 @@ if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
 const RAPIDE = Q.get("rapide") === "1";          // pauses raccourcies : pour les essais seulement
-const SERIES_EXAMEN = 3;                          // les series 1-3 sont gardees pour l'examen blanc
 const MARK_IMG = "../descripcion/Mark-visage.webp";
 
 // LE PROFIL DE L'EXAMEN (4 nov. 2026, decision de Jacques : un bloc DTZ et un bloc telc A2·B1 dans la preparation
@@ -35,14 +34,18 @@ const MARK_IMG = "../descripcion/Mark-visage.webp";
 //   titre, intro       le titre de la page et la bulle de Mark a l'accueil ;
 //   sur, a2, b1        le verdict de l'ecrit recu (DTZ : Hoeren + Lesen sur 45, A2 des 20, B1 des 33) ;
 //   niveau(points)     a la place des seuils, quand le bareme n'est pas une simple somme (le telc).
-//   tuiles             [{id, titre, sous}], les tuiles de l'accueil dans l'ordre de l'examen (sinon celles du DTZ).
+//   tuiles             [{id, titre, sous}], les tuiles de l'accueil dans l'ordre de l'examen (sinon celles du DTZ) ;
+//   seriesExamen       combien de series, les premieres, sont gardees pour l'examen blanc (DTZ : 3 ; le telc,
+//                      qui n'a pas encore d'examen blanc, peut mettre 0).
 const PROFIL = Object.assign({
   id: "dtz",
   titre: "Le DTZ avec Mark et Anna",
   // Jacques, 4 nov. : « Mark et Anna t'aident à préparer le DTZ » -- Anna, l'examinatrice, est autant impliquee
   intro: "Anna et moi, on t'aide à préparer le DTZ, l'examen de la fin du cours d'intégration. Les messages de mon répondeur, mon courrier, la radio de Berlin : c'est exactement ce qu'on y trouve.",
-  sur: 45, a2: 20, b1: 33, niveau: null
+  sur: 45, a2: 20, b1: 33, niveau: null, seriesExamen: 3
 }, window.PROFIL_EXAMEN || {});
+// les series 1 a N sont gardees pour l'examen blanc (N = PROFIL.seriesExamen)
+const SERIES_EXAMEN = Math.max(0, PROFIL.seriesExamen | 0);
 const ANNA_IMG = "../descripcion/Anna-visage.webp";
 
 // L'INTERFACE : le francais d'abord (maquette du 3 nov. 2026) ; les huit autres langues avant l'ouverture aux
@@ -137,8 +140,9 @@ function confirmer(question, oui, libOui){
 
 // ============ LA SERIE SUIT LES MOTS ============
 // Comme tirage.js des themes illustres : parmi les series d'entrainement, celle dont les mots cles sont le plus dus
-// ou neufs ; a egalite, la moins recemment faite (cle : ce que l'on entraine, « HT3 » par exemple). Les series 1-3
-// sont gardees pour l'examen blanc, sauf tant qu'il n'y en a pas d'autres (la maquette n'a que la serie 1).
+// ou neufs ; a egalite, la moins recemment faite (cle : ce que l'on entraine, « HT3 » par exemple). Les series 1 a
+// SERIES_EXAMEN sont gardees pour l'examen blanc, sauf tant qu'il n'y en a pas d'autres (la maquette n'a que la
+// serie 1) ; un profil sans examen blanc (seriesExamen : 0) les entraine toutes.
 async function choisirSerie(series, motsDe, cle){
   const pool = series.length > SERIES_EXAMEN ? series.slice(SERIES_EXAMEN) : series;
   if (pool.length === 1) return pool[0];
