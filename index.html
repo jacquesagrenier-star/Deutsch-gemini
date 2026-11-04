@@ -10040,7 +10040,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
 
 <section id="orbPanel" class="screen">
-    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <button class="back" onclick="retourOrbPanel()"><span data-i18n="back_button">‹ Retour</span></button>
 
     <div class="title-row">
         <div>
@@ -11172,7 +11172,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
      annoncerait comme certains induirait en erreur le jour ou ils changent. -->
 
 <section id="pruefungInfo" class="screen">
-    <button class="back" onclick="openOrbPanel('pruefung')"><span data-i18n="back_button">‹ Retour</span></button>
+    <button class="back" onclick="retourPruefungInfo()"><span data-i18n="back_button">‹ Retour</span></button>
 
     <div class="title-row">
         <div>
@@ -15436,6 +15436,22 @@ const I18N = {
         zahlen_info_title: "Les nombres",
         orb_pruefung_title: "Préparation aux examens", orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Préparation aux examens", op_pruefung_sub: "Par niveau · Goethe · telc · DTZ",
+        // Le panneau a deux blocs (essai examens_blocs, 4 nov. 2026) : DTZ, telc A2-B1, autres examens.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1",
+        op_pruefung_bloc_dtz_t: "Se préparer au DTZ",
+        op_pruefung_bloc_dtz_d: "L’examen de la fin du cours d’intégration : écouter, lire, écrire, parler",
+        op_pruefung_bloc_telc_t: "Se préparer au telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "Lire d’abord, puis les Sprachbausteine, les courriels, l’écoute et l’oral",
+        op_pruefung_autres_t: "Autres examens",
+        op_pruefung_autres_d: "Goethe B1 et C1 : l’exposé, le message de forum, l’argumentation",
+        op_pruefung_autres_title: "Autres examens",
+        op_pruefung_autres_sub: "Goethe B1 · C1 · tous les exercices",
+        op_pruefung_dtz_title: "Se préparer au DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "Se préparer au telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · dans l’ordre de l’examen",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "Une lettre à trous : choisir le bon mot, et comprendre pourquoi",
         op_pruefung_hoeren_t: "Écouter", op_pruefung_hoeren_d: "Une annonce, un message — puis la question",
         op_pruefung_lesen_t: "Lire", op_pruefung_lesen_d: "Annonce, courriel, formulaire — et ce qu’on te demande",
         op_pruefung_schreiben_t: "Écrire", op_pruefung_schreiben_d: "La lettre officielle, remontée dans l’ordre",
@@ -16963,6 +16979,22 @@ const I18N = {
         zahlen_info_title: "Numbers",
         orb_pruefung_title: "Exam preparation", orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Exam preparation", op_pruefung_sub: "By level · Goethe · telc · DTZ",
+        // Le panneau a deux blocs (essai examens_blocs, 4 nov. 2026) : DTZ, telc A2-B1, autres examens.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1",
+        op_pruefung_bloc_dtz_t: "Prepare for the DTZ",
+        op_pruefung_bloc_dtz_d: "The exam at the end of the integration course: listening, reading, writing, speaking",
+        op_pruefung_bloc_telc_t: "Prepare for telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "Reading first, then Sprachbausteine, the emails, listening and speaking",
+        op_pruefung_autres_t: "Other exams",
+        op_pruefung_autres_d: "Goethe B1 and C1: the presentation, the forum post, the argument",
+        op_pruefung_autres_title: "Other exams",
+        op_pruefung_autres_sub: "Goethe B1 · C1 · all exercises",
+        op_pruefung_dtz_title: "Prepare for the DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "Prepare for telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · in exam order",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "A letter with gaps: pick the right word, and see why",
         op_pruefung_hoeren_t: "Listening", op_pruefung_hoeren_d: "An announcement, a message — then the question",
         op_pruefung_lesen_t: "Reading", op_pruefung_lesen_d: "Advert, email, form — and what you are asked",
         op_pruefung_schreiben_t: "Writing", op_pruefung_schreiben_d: "The formal letter, put back in order",
@@ -18490,6 +18522,22 @@ const I18N = {
         zahlen_info_title: "Sayılar",
         orb_pruefung_title: "Sınav hazırlığı", orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Sınav hazırlığı", op_pruefung_sub: "Seviyeye göre · Goethe · telc · DTZ",
+        // Le panneau a deux blocs (essai examens_blocs, 4 nov. 2026) : DTZ, telc A2-B1, autres examens.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1",
+        op_pruefung_bloc_dtz_t: "DTZ’ye hazırlan",
+        op_pruefung_bloc_dtz_d: "Uyum kursunun sonundaki sınav: dinleme, okuma, yazma, konuşma",
+        op_pruefung_bloc_telc_t: "telc Deutsch A2·B1’e hazırlan",
+        op_pruefung_bloc_telc_d: "Önce okuma, sonra Sprachbausteine, e-postalar, dinleme ve konuşma",
+        op_pruefung_autres_t: "Diğer sınavlar",
+        op_pruefung_autres_d: "Goethe B1 ve C1: sunum, forum mesajı, tartışma",
+        op_pruefung_autres_title: "Diğer sınavlar",
+        op_pruefung_autres_sub: "Goethe B1 · C1 · tüm alıştırmalar",
+        op_pruefung_dtz_title: "DTZ’ye hazırlan",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "telc A2·B1’e hazırlan",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · sınav sırasıyla",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "Boşluklu bir mektup: doğru sözcüğü seç ve nedenini anla",
         op_pruefung_hoeren_t: "Dinleme", op_pruefung_hoeren_d: "Bir anons, bir mesaj — sonra soru",
         op_pruefung_lesen_t: "Okuma", op_pruefung_lesen_d: "İlan, e-posta, form — ve sizden istenen",
         op_pruefung_schreiben_t: "Yazma", op_pruefung_schreiben_d: "Resmî mektup, doğru sıraya konmuş",
@@ -19938,6 +19986,22 @@ const I18N = {
         op_zahlen_o1_t: "Зрозуміти числа",
         op_zahlen_o1_d: "Grundzahlen, Ordnungszahlen, дроби",
         op_pruefung_title: "Підготовка до іспитів",
+        // Le panneau a deux blocs (essai examens_blocs, 4 nov. 2026) : DTZ, telc A2-B1, autres examens.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1",
+        op_pruefung_bloc_dtz_t: "Підготовка до DTZ",
+        op_pruefung_bloc_dtz_d: "Іспит наприкінці інтеграційного курсу: слухання, читання, письмо, говоріння",
+        op_pruefung_bloc_telc_t: "Підготовка до telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "Спочатку читання, потім Sprachbausteine, листи, слухання й усна частина",
+        op_pruefung_autres_t: "Інші іспити",
+        op_pruefung_autres_d: "Goethe B1 і C1: презентація, допис на форумі, аргументація",
+        op_pruefung_autres_title: "Інші іспити",
+        op_pruefung_autres_sub: "Goethe B1 · C1 · усі вправи",
+        op_pruefung_dtz_title: "Підготовка до DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "Підготовка до telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · у порядку іспиту",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "Лист із пропусками: обери правильне слово й зрозумій чому",
         op_pruefung_sub: "За рівнем · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "Слухання",
         op_pruefung_hoeren_d: "Оголошення, повідомлення — а потім питання",
@@ -20528,6 +20592,22 @@ const I18N = {
         orb_pruefung_title: "آمادگی برای آزمون",
         orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "آمادگی برای آزمون",
+        // Le panneau a deux blocs (essai examens_blocs, 4 nov. 2026) : DTZ, telc A2-B1, autres examens.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1",
+        op_pruefung_bloc_dtz_t: "آمادگی برای DTZ",
+        op_pruefung_bloc_dtz_d: "آزمون پایان دوره‌ی ادغام: شنیدن، خواندن، نوشتن، گفتن",
+        op_pruefung_bloc_telc_t: "آمادگی برای telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "اول خواندن، بعد Sprachbausteine، ایمیل‌ها، شنیدن و بخش شفاهی",
+        op_pruefung_autres_t: "آزمون‌های دیگر",
+        op_pruefung_autres_d: "Goethe B1 و C1: ارائه، پیام انجمن، استدلال",
+        op_pruefung_autres_title: "آزمون‌های دیگر",
+        op_pruefung_autres_sub: "Goethe B1 · C1 · همه‌ی تمرین‌ها",
+        op_pruefung_dtz_title: "آمادگی برای DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "آمادگی برای telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · به ترتیب آزمون",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "نامه‌ای با جای خالی: واژه‌ی درست را انتخاب کن و بفهم چرا",
         op_pruefung_sub: "بر پایهٔ سطح · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "شنیدن",
         op_pruefung_hoeren_d: "یک اعلان، یک پیام — سپس پرسش",
@@ -22058,6 +22138,22 @@ const I18N = {
         admin_deploy_title: "النشر",
         admin_deploy_desc: "‏deutsch-gemini.pages.dev (Cloudflare) و jacquesagrenier-star.github.io يعكسان فرع main (الإنتاج)؛ ولكل فرع معاينة على [الفرع].deutsch-gemini.pages.dev.",
         op_pruefung_title: "التحضير للامتحانات",
+        // Le panneau a deux blocs (essai examens_blocs, 4 nov. 2026) : DTZ, telc A2-B1, autres examens.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1",
+        op_pruefung_bloc_dtz_t: "الاستعداد لامتحان DTZ",
+        op_pruefung_bloc_dtz_d: "امتحان نهاية دورة الاندماج: الاستماع والقراءة والكتابة والمحادثة",
+        op_pruefung_bloc_telc_t: "الاستعداد لامتحان telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "القراءة أولًا، ثم Sprachbausteine والرسائل والاستماع والمحادثة",
+        op_pruefung_autres_t: "امتحانات أخرى",
+        op_pruefung_autres_d: "Goethe B1 وC1: العرض، ومشاركة المنتدى، والحِجاج",
+        op_pruefung_autres_title: "امتحانات أخرى",
+        op_pruefung_autres_sub: "Goethe B1 · C1 · كل التمارين",
+        op_pruefung_dtz_title: "الاستعداد لامتحان DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "الاستعداد لامتحان telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · بترتيب الامتحان",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "رسالة فيها فراغات: اختر الكلمة الصحيحة وافهم السبب",
         op_pruefung_sub: "حسب المستوى · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "الاستماع",
         op_pruefung_hoeren_d: "إعلان أو رسالة — ثم السؤال",
@@ -24786,6 +24882,22 @@ const I18N = {
         orb_pruefung_title: "Preparação para provas",
         orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Preparação para provas",
+        // Le panneau a deux blocs (essai examens_blocs, 4 nov. 2026) : DTZ, telc A2-B1, autres examens.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1",
+        op_pruefung_bloc_dtz_t: "Preparar-se para o DTZ",
+        op_pruefung_bloc_dtz_d: "A prova do fim do curso de integração: ouvir, ler, escrever, falar",
+        op_pruefung_bloc_telc_t: "Preparar-se para o telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "Primeiro ler, depois os Sprachbausteine, os e-mails, ouvir e falar",
+        op_pruefung_autres_t: "Outras provas",
+        op_pruefung_autres_d: "Goethe B1 e C1: a apresentação, a mensagem de fórum, a argumentação",
+        op_pruefung_autres_title: "Outras provas",
+        op_pruefung_autres_sub: "Goethe B1 · C1 · todos os exercícios",
+        op_pruefung_dtz_title: "Preparar-se para o DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "Preparar-se para o telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · na ordem da prova",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "Uma carta com lacunas: escolher a palavra certa e entender por quê",
         op_pruefung_sub: "Por nível · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "Ouvir",
         op_pruefung_hoeren_d: "Um aviso, uma mensagem — depois a pergunta",
@@ -26376,6 +26488,22 @@ const I18N = {
         orb_pruefung_title: "Przygotowanie do egzaminów",
         orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Przygotowanie do egzaminów",
+        // Le panneau a deux blocs (essai examens_blocs, 4 nov. 2026) : DTZ, telc A2-B1, autres examens.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1",
+        op_pruefung_bloc_dtz_t: "Przygotuj się do DTZ",
+        op_pruefung_bloc_dtz_d: "Egzamin na koniec kursu integracyjnego: słuchanie, czytanie, pisanie, mówienie",
+        op_pruefung_bloc_telc_t: "Przygotuj się do telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "Najpierw czytanie, potem Sprachbausteine, e-maile, słuchanie i mówienie",
+        op_pruefung_autres_t: "Inne egzaminy",
+        op_pruefung_autres_d: "Goethe B1 i C1: prezentacja, wpis na forum, argumentacja",
+        op_pruefung_autres_title: "Inne egzaminy",
+        op_pruefung_autres_sub: "Goethe B1 · C1 · wszystkie ćwiczenia",
+        op_pruefung_dtz_title: "Przygotuj się do DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "Przygotuj się do telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · w kolejności egzaminu",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "List z lukami: wybierz właściwe słowo i zrozum dlaczego",
         op_pruefung_sub: "Według poziomu · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "Słuchanie",
         op_pruefung_hoeren_d: "Komunikat, wiadomość — potem pytanie",
@@ -27969,6 +28097,22 @@ const I18N = {
         orb_pruefung_title: "Подготовка к экзаменам",
         orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Подготовка к экзаменам",
+        // Le panneau a deux blocs (essai examens_blocs, 4 nov. 2026) : DTZ, telc A2-B1, autres examens.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1",
+        op_pruefung_bloc_dtz_t: "Подготовка к DTZ",
+        op_pruefung_bloc_dtz_d: "Экзамен в конце интеграционного курса: аудирование, чтение, письмо, говорение",
+        op_pruefung_bloc_telc_t: "Подготовка к telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "Сначала чтение, затем Sprachbausteine, письма, аудирование и устная часть",
+        op_pruefung_autres_t: "Другие экзамены",
+        op_pruefung_autres_d: "Goethe B1 и C1: презентация, сообщение на форуме, аргументация",
+        op_pruefung_autres_title: "Другие экзамены",
+        op_pruefung_autres_sub: "Goethe B1 · C1 · все упражнения",
+        op_pruefung_dtz_title: "Подготовка к DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "Подготовка к telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · в порядке экзамена",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "Письмо с пропусками: выбери нужное слово и пойми почему",
         op_pruefung_sub: "По уровням · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "Аудирование",
         op_pruefung_hoeren_d: "Объявление, сообщение — потом вопрос",
@@ -44057,9 +44201,19 @@ function orbPanelData(id){
     // parce que c'est le seul filtre qui repose sur un accord : trois jurys
     // independants ont retenu ces mots-la. Les filtres par examen viennent
     // apres, pour celui qui sait deja lequel il passe.
-    if(id === "pruefung"){
+    //
+    // DEUX BLOCS, DTZ ET TELC A2·B1 (essai examens_blocs, 4 nov. 2026). Jacques : « ma vision, c'est d'avoir un
+    // bloc pour se preparer au DTZ, puis un bloc pour se preparer a l'examen A2 B1. » Essai allume : la tuile
+    // montre « Comprendre l'examen », les deux blocs et « Autres examens » ; le panneau d'avant devient ce
+    // dernier, intact (« rien de ce qui existe ne disparait »). Essai coupe : le panneau d'avant, tel quel.
+    // Voir panneauBlocsExamens() et preparation-examens/PLAN-DTZ-TELC.md.
+    if(id === "pruefung" && blocsExamensActifs()) return panneauBlocsExamens();
+    if(id === "pruefung_dtz" || id === "pruefung_telc") return panneauBlocExamen(id === "pruefung_dtz" ? "dtz" : "telc");
+    if(id === "pruefung" || id === "pruefung_autres"){
+        const autres = id === "pruefung_autres";
         return {
-            icon:"dossier", title:t("op_pruefung_title"), sub:t("op_pruefung_sub"),
+            icon:"dossier", title:t(autres ? "op_pruefung_autres_title" : "op_pruefung_title"),
+            sub:t(autres ? "op_pruefung_autres_sub" : "op_pruefung_sub"),
             options:[
                 // LES QUATRE EPREUVES D'ABORD, le vocabulaire ensuite. L'ordre
                 // dit ce que la tuile est devenue : elle preparait un lexique,
@@ -44395,6 +44549,12 @@ async function abrirGramatica(id, depuis){
 
 function openOrbPanel(id){
     if(LANGUE_APPRISE === "es" && FICHE_PAR_TUILE[id]){ abrirGramatica(FICHE_PAR_TUILE[id]); return; }
+    // Les blocs DTZ et telc (essai examens_blocs) : le panneau ouvert dit pour quel examen on s'entraine, et les
+    // quatre epreuves filtrent en consequence (filtreExamen). Ni le C1 ni le panneau d'avant n'en sont touches.
+    if(String(id).indexOf("pruefung") === 0){
+        pruefungExamen = id === "pruefung_dtz" ? "dtz" : id === "pruefung_telc" ? "telc" : null;
+        if(pruefungExamen && pruefungNiveau === "C1") pruefungNiveau = null;
+    }
     openOrbId = id;
     renderOrbPanel();
     showScreen("orbPanel");
@@ -45498,8 +45658,8 @@ function selectPruefungNiveau(n){
 // additionnees, et pour la lecture les QUESTIONS, pas les textes -- c'est le
 // nombre d'ecrans que l'usager va traverser.
 function nbEpreuves(niveau){
-    return exercicesHoeren(niveau).length + exercicesLesen(niveau).length
-         + exercicesSchreiben(niveau).length + exercicesSprechen(niveau).length;
+    return filtreExamen(exercicesHoeren)(niveau).length + filtreExamen(exercicesLesen)(niveau).length
+         + filtreExamen(exercicesSchreiben)(niveau).length + filtreExamen(exercicesSprechen)(niveau).length;
 }
 
 function renderPruefungNiveauBar(){
@@ -45583,7 +45743,7 @@ function lancerEpreuve(construire, kicker){
         if(!complet) epreuveGratuiteEnCours =
             { total: construire(GRATUIT.examenNiveau[niveauEchantillon()] || "A2").length };
         startExerciseSet(complet ? melangerEpreuve(liste) : liste, kicker,
-                         openPruefungInfo,
+                         retourEpreuve,
                          () => lancerEpreuve(construire, kicker));
     };
     if(!pruefungData) loadPruefungJson().then(jouer);
@@ -45602,10 +45762,124 @@ function openPruefungInfo(){
     if(!pruefungData) loadPruefungJson().then(renderPruefungNiveauBar);
 }
 
-function startPruefungSprechen(){ lancerEpreuve(exercicesSprechen, "kicker_pruefung_sprechen"); }
-function startPruefungLesen(){ lancerEpreuve(exercicesLesen, "kicker_pruefung_lesen"); }
-function startPruefungSchreiben(){ lancerEpreuve(exercicesSchreiben, "kicker_pruefung_schreiben"); }
-function startPruefungHoeren(){ lancerEpreuve(exercicesHoeren, "kicker_pruefung_hoeren"); }
+function startPruefungSprechen(){ lancerEpreuve(filtreExamen(exercicesSprechen), "kicker_pruefung_sprechen"); }
+function startPruefungLesen(){ lancerEpreuve(filtreExamen(exercicesLesen), "kicker_pruefung_lesen"); }
+function startPruefungSchreiben(){ lancerEpreuve(filtreExamen(exercicesSchreiben), "kicker_pruefung_schreiben"); }
+function startPruefungHoeren(){ lancerEpreuve(filtreExamen(exercicesHoeren), "kicker_pruefung_hoeren"); }
+
+// ============ DEUX BLOCS : LE DTZ ET LE TELC A2·B1 (essai examens_blocs, 4 nov. 2026) ============
+//
+// Jacques : « ma vision, c'est d'avoir un bloc pour se preparer au DTZ, puis un bloc pour se preparer a
+// l'examen A2 B1. Donc, il y a du materiel [...] qu'on va pouvoir utiliser dans les deux. » Et pour le panneau
+// (4 nov.) : « Comprendre l'examen » en tete, deux grandes cartes, puis « Autres examens » pour le Goethe B1 et
+// le C1, plus discrets -- rien de ce qui existe ne disparait.
+//
+// LE MATERIEL COMMUN NE SE COPIE PAS, IL SE FILTRE. Les quatre epreuves de pruefung.json servent aux deux
+// blocs ; pruefungExamen dit d'ou l'on vient (« dtz », « telc », ou null hors des blocs), et filtreExamen()
+// retire ce qui n'appartient pas a cet examen : le C1, et les taches propres au Goethe (l'expose, le message
+// de forum, les questions du Goethe A2). Le recit d'experience a partir d'une image n'existe qu'au DTZ ; le
+// telc n'a pas d'image a l'oral. Hors des blocs (pruefungExamen null), rien n'est filtre : le panneau
+// d'avant, et « Autres examens », gardent tout.
+let pruefungExamen = null;
+const PRUEFUNG_HORS_EXAMEN = {
+    dtz:  ["Forumsbeitrag", "Forumsbeiträge", "Erörterung", "Teil 1 · Fragen stellen",
+           "Teil 2 · Ein Thema präsentieren", "Teil 3 · Über eine Präsentation sprechen"],
+    telc: ["Forumsbeitrag", "Forumsbeiträge", "Erörterung", "Teil 1 · Fragen stellen",
+           "Teil 2 · Ein Thema präsentieren", "Teil 3 · Über eine Präsentation sprechen",
+           "Teil 2 · Über Erfahrungen sprechen"]
+};
+function filtreExamen(construire){
+    if(!pruefungExamen) return construire;
+    const hors = PRUEFUNG_HORS_EXAMEN[pruefungExamen] || [];
+    return niveau => {
+        // Les deux examens vont de l'A2 au B1 : le C1 n'y est pas.
+        if(niveau === "C1") return [];
+        const niveaux = niveau ? [niveau] : ["A2", "B1"];
+        const out = [];
+        niveaux.forEach(n => construire(n).forEach(e => {
+            if(hors.indexOf(e.topic) >= 0) return;
+            // Les textes de Lire numerotent leurs groupes a partir de 0 a chaque appel : sans le niveau dans le
+            // groupe, le texte 0 de l'A2 et celui du B1 se meleraient (melangerEpreuve() les reunit par groupe).
+            out.push(e.groupe === undefined ? e : Object.assign({}, e, { groupe: n + "-" + e.groupe }));
+        }));
+        return out;
+    };
+}
+// Le retour d'une epreuve : le bloc d'ou l'on vient, sinon « Comprendre l'examen » comme avant.
+function retourEpreuve(){
+    if(pruefungExamen) openOrbPanel("pruefung_" + pruefungExamen);
+    else openPruefungInfo();
+}
+function retourPruefungInfo(){ openOrbPanel(pruefungExamen ? "pruefung_" + pruefungExamen : "pruefung"); }
+function blocsExamensActifs(){
+    return essaiActif("examens_blocs") && (LANGUE_APPRISE === "de" || !LANGUE_APPRISE);
+}
+// Les sous-panneaux reviennent a la tuile ; tout autre panneau, a l'accueil comme avant.
+const PANNEAU_PARENT = { pruefung_dtz: "pruefung", pruefung_telc: "pruefung", pruefung_autres: "pruefung" };
+function retourOrbPanel(){
+    const parent = PANNEAU_PARENT[openOrbId];
+    if(parent) openOrbPanel(parent); else goHome();
+}
+function ouvrirBlocDtz(){ openOrbPanel("pruefung_dtz"); }
+function ouvrirBlocTelc(){ openOrbPanel("pruefung_telc"); }
+function ouvrirAutresExamens(){ openOrbPanel("pruefung_autres"); }
+function panneauBlocsExamens(){
+    return {
+        icon:"dossier", title:t("op_pruefung_title"), sub:t("op_pruefung_blocs_sub"),
+        options:[
+            { icon:"dossier", title:t("op_pruefung_info_t"), desc:t("op_pruefung_info_d"),
+              action:"openPruefungInfo", section:"comprendre" },
+            { icon:"dossier", title:t("op_pruefung_bloc_dtz_t"), desc:t("op_pruefung_bloc_dtz_d"),
+              primary:true, action:"ouvrirBlocDtz", section:"pratique" },
+            { icon:"dossier", title:t("op_pruefung_bloc_telc_t"), desc:t("op_pruefung_bloc_telc_d"),
+              primary:true, action:"ouvrirBlocTelc", section:"pratique" },
+            { icon:"dossier", title:t("op_pruefung_autres_t"), desc:t("op_pruefung_autres_d"),
+              action:"ouvrirAutresExamens", section:"ailleurs" }
+        ]
+    };
+}
+// Le panneau d'un bloc : le commun dans l'ordre de SON examen, puis ce qui lui est propre.
+function panneauBlocExamen(ex){
+    // les actions ecrites en toutes lettres : verifier.py lit le nom de la fonction dans le texte
+    const PORTES = { hoeren:"startPruefungHoeren", lesen:"startPruefungLesen",
+                     schreiben:"startPruefungSchreiben", sprechen:"startPruefungSprechen" };
+    const ep = cle => ({ icon:"exercice", title:t("op_pruefung_" + cle + "_t"), desc:t("op_pruefung_" + cle + "_d"),
+        action:PORTES[cle], section:"pratique" });
+    const comprendre = { icon:"dossier", title:t("op_pruefung_info_t"), desc:t("op_pruefung_info_d"),
+        action:"openPruefungInfo", section:"comprendre" };
+    if(ex === "dtz"){
+        // L'oral avec Anna et Mark (essai dtz_oral) est repris du panneau d'avant tel quel : son titre et son
+        // texte restent ecrits a un seul endroit, celui de sa session.
+        const oral = (orbPanelData("pruefung_autres").options || []).filter(o => o.action === "ouvrirDtzOral");
+        return {
+            icon:"dossier", title:t("op_pruefung_dtz_title"), sub:t("op_pruefung_dtz_sub"),
+            options:[comprendre, ep("hoeren"), ep("lesen"), ep("schreiben"), ep("sprechen")].concat(oral)
+        };
+    }
+    // Le telc : lire d'abord, puis les Sprachbausteine, ecrire, ecouter, parler (l'ordre de l'examen).
+    return {
+        icon:"dossier", title:t("op_pruefung_telc_title"), sub:t("op_pruefung_telc_sub"),
+        options:[comprendre, ep("lesen"),
+            { icon:"exercice", title:t("op_pruefung_sb_t"), desc:t("op_pruefung_sb_d"),
+              action:"ouvrirTelcSprachbausteine", section:"pratique" },
+            ep("schreiben"), ep("hoeren"), ep("sprechen")]
+    };
+}
+// LA PAGE DU TELC (visuel/prototype/telc/telc.html), dans le cadre des scenes comme l'oral du DTZ. Elle repose sur
+// visuel/prototype/dtz/commun.js (le profil d'examen « telc »). « partie » ouvre directement une partie.
+function ouvrirTelc(partie){
+    sceneOuverteDepuis = "telc";
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre){
+        cadre.title = t("op_pruefung_telc_title");
+        cadre.src = baseScenes() + "telc/telc.html?apprendre=de&lang=" + encodeURIComponent(getUiLang())
+                  + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
+                  + (partie ? "&partie=" + encodeURIComponent(partie) : "")
+                  + "&t=" + Date.now();
+    }
+    showScreen("sceneSeance");
+}
+function ouvrirTelcSprachbausteine(){ ouvrirTelc("SB"); }
 
 // orbAction() appelle window[action] SANS ARGUMENT : chaque option du panneau
 // a donc besoin de sa porte d'entree nommee.
@@ -47753,6 +48027,15 @@ const ESSAIS = {
         etat: "admin",
         titre: "Mark t'aide à préparer le DTZ : l'oral",
         desc: "Dans « Préparation à l'examen » : l'oral du DTZ en répétition (se présenter, répondre, décrire une photo, raconter et comparer, planifier avec Mark). Anna joue l'examinatrice et annonce une estimation A2 / B1 ; voix du téléphone en attendant les voix enregistrées."
+    },
+    // EN ESSAI le 4 nov. 2026, admin seul. Jacques : « ma vision, c'est d'avoir un bloc pour se
+    // preparer au DTZ, puis un bloc pour se preparer a l'examen A2 B1. » Puis, pour le panneau :
+    // « Ouais, vas-y avec ta proposition. » Voir panneauBlocsExamens() et
+    // preparation-examens/PLAN-DTZ-TELC.md.
+    examens_blocs: {
+        etat: "admin",
+        titre: "Préparation aux examens : un bloc DTZ, un bloc telc A2·B1",
+        desc: "La tuile montre « Comprendre l'examen », « Se préparer au DTZ », « Se préparer au telc Deutsch A2·B1 » et « Autres examens » (le panneau d'avant, Goethe B1 et C1 compris). Chaque bloc reprend les quatre épreuves dans l'ordre de son examen, sans le C1 ni les tâches du Goethe ; le telc ajoute les Sprachbausteine avec Mark."
     },
     premiers_pas: {
         etat: "tous",
@@ -58264,8 +58547,10 @@ window.addEventListener("message", (e) => {
     }
     // Essai dtz_oral : le micro demande par la page, et le retour au panneau « Preparation ».
     if(d.type === "micro"){ microPourCadre(d, e); return; }
-    if(sceneOuverteDepuis === "dtz" && (d.type === "fini" || d.type === "fermer")){
-        try{ openOrbPanel("pruefung"); }catch(err){ goHome(); }
+    // Le bloc d'ou l'on vient (essai examens_blocs) : l'oral du DTZ revient au bloc DTZ s'il en vient, la page du
+    // telc au bloc telc.
+    if((sceneOuverteDepuis === "dtz" || sceneOuverteDepuis === "telc") && (d.type === "fini" || d.type === "fermer")){
+        try{ openOrbPanel(sceneOuverteDepuis === "telc" ? "pruefung_telc" : pruefungExamen === "dtz" ? "pruefung_dtz" : "pruefung"); }catch(err){ goHome(); }
         return;
     }
     // Les themes illustres (v1076) reviennent a « Tout le contenu », d'ou on les a ouverts.
