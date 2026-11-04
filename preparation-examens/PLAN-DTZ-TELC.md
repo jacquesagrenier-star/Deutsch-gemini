@@ -93,9 +93,34 @@ dit « DTZ » ou « telc » avant d'ouvrir « Comprendre l'examen » ; les exerc
 
 ---
 
-## 2. Le panneau à deux blocs
+## 2. Le panneau : un bloc par examen
 
-### La forme proposée (recommandée)
+**Décidé par Jacques le 4 nov.** (`decisions/DECISIONS.md` : « trois blocs », puis « un bloc par examen »). La tuile
+montre « Comprendre l'examen » en tête, commun, puis **quatre blocs** : **DTZ**, **telc Deutsch A2·B1**,
+**Goethe-Zertifikat B1**, **C1**. Ses mots : « je mettrais des blocs différents si on est capable de nourrir des
+blocs de la bonne façon. » Il n'y a plus de ligne « Autres examens ».
+
+**La règle d'ouverture** : un bloc ne s'ouvre aux testeurs que lorsqu'il est nourri au format de son examen, avec
+assez d'exercices. D'ici là, il reste en essai admin. Un bloc sans aucun exercice ne s'affiche pas du tout
+(`blocNourri()`).
+
+**Construit** (essai `examens_blocs`, 9 langues) :
+
+| bloc | niveaux | ordre des épreuves | les quatre épreuves communes (après filtre) | propre au bloc |
+|---|---|---|---|---|
+| DTZ | A2, B1 | écouter, lire, écrire, parler | 80 écoutes, 49 questions de lecture, 21 écrits, 22 oraux | l'oral avec Anna et Mark (essai `dtz_oral`) ; bientôt Écouter et Lire au format DTZ |
+| telc A2·B1 | A2, B1 | lire, écrire, écouter, parler | 80, 49, 21, 17 (sans le récit sur image du DTZ) | les Sprachbausteine (4 lettres) |
+| Goethe B1 | B1 | lire, écouter, écrire, parler | 40, 27, 13, 12 (dont le message de forum et l'exposé) | rien encore |
+| C1 | C1 | lire, écouter, écrire, parler | 40, 6, 4, 4 | les feuilles de conjugaison (B2-C1 compris) |
+
+Les 4 « Fragen stellen » (oral A2, au format du Goethe A2) n'entrent dans aucun bloc, puisque aucun des quatre examens
+ne les pose. Ils restent dans le panneau d'avant (essai coupé). **Pas de paquet de vocabulaire dans les blocs** : la
+v471 l'a retiré de cette tuile, à la demande de Jacques (« ça donne l'impression qu'avec seulement ces mots-là on va
+être préparé »). Le vocabulaire par niveau reste dans les paquets de mots.
+
+La section suivante (deux cartes et « Autres examens ») était la première proposition, **remplacée** par celle-ci.
+
+### La forme proposée le 4 nov. au matin (remplacée)
 
 La tuile « Préparation aux examens » ouvre un panneau avec :
 
@@ -283,12 +308,12 @@ Jacques a retenu la proposition du chef : « Ouais, vas-y avec ta proposition. �
 - **0. Fait** : `preparation-examens/FORMAT-TELC.md`, relevé dans le Übungstest 1 gratuit du telc (format seul). Il
   donne le barème exact : 240 points, 60 par compétence ; B1 = 70 % du total, 70 % dans 3 compétences et 40 % dans
   chacune. Il précise aussi l'oral (≈ 15 min, une minute de réflexion avant la partie 3).
-- **1. Fait** (branche, en essai admin `examens_blocs`) :
+- **1. Fait** (branche, en essai admin `examens_blocs` ; depuis, quatre blocs, voir section 2) :
   - `panneauBlocsExamens()` et `panneauBlocExamen()`, en 9 langues ;
   - `filtreExamen()` : les quatre épreuves communes, sans le C1 ni les tâches du Goethe. Le DTZ garde 80 écoutes,
     49 questions de lecture, 21 écrits et 22 oraux ; le telc garde la même chose, sauf le récit sur image du DTZ
     (17 oraux) ;
-  - « Autres examens » = le panneau d'avant, intact ;
+  - d'abord « Autres examens » (le panneau d'avant), remplacé le jour même par les blocs Goethe B1 et C1 ;
   - le retour des sous-panneaux vers la tuile (`retourOrbPanel()`) ; sans l'essai, rien ne change.
 - **2. Fait** par la session « écouter et lire » : `PROFIL_EXAMEN`, `PROFIL.tuiles` et `commun.css` (`6595ae0`,
   `88d5b79`). Ma branche a fusionné la sienne : elle se publie **après** elle.
@@ -304,6 +329,82 @@ Jacques a retenu la proposition du chef : « Ouais, vas-y avec ta proposition. �
 
 ---
 
+## 5 bis. Les blocs Goethe B1 et C1 : quand pourront-ils s'ouvrir ?
+
+⚠️ Les formats ci-dessous viennent de ce que je sais des examens, **pas encore d'un relevé** : avant de construire,
+les relever dans les modèles gratuits (Goethe : *Modellsatz* B1 et C1 ; telc : *Übungstest* C1), comme pour le telc
+A2·B1 (`FORMAT-TELC.md`), et pour le format seulement.
+
+### Goethe-Zertifikat B1
+
+**Le format, à vérifier** : un examen **modulaire**. Chaque module (Lesen, Hören, Schreiben, Sprechen) se réussit
+seul, à 60 %, et on peut le repasser seul.
+- Lesen, environ 65 min, 5 parties : un blog, des articles, des annonces à associer, des avis, un règlement.
+- Hören, environ 40 min, 4 parties : annonces, visite guidée, conversation, débat radio.
+- Schreiben, 60 min : un courriel personnel, **un message de forum qui donne son avis**, un courriel formel court.
+- Sprechen, environ 15 min, à deux : planifier ensemble, puis **présenter un thème** (expérience, situation dans son
+  pays, avantages et inconvénients, avis), puis réagir à l'exposé de l'autre et répondre à ses questions.
+
+**Ce qui existe** :
+- les épreuves communes au B1 (40 écoutes, 27 questions de lecture) ;
+- 2 messages de forum et 3 exposés à remettre dans l'ordre, et 2 réactions à un exposé ;
+- la carte « DTZ, telc A2·B1, Goethe B1 : ce qui n'est pas pareil » ;
+- la planification avec Mark (l'oral du DTZ), réutilisable.
+
+**Ce qui manque** :
+- les parties de Lesen et de Hören au format Goethe ;
+- l'écrit libre (3 tâches jugées sur critères, comme l'écrit du telc) ;
+- l'exposé à l'oral : Mark présente d'abord un thème sur quatre « diapositives », puis l'élève fait le sien et
+  répond aux questions d'Anna ;
+- le verdict par module (60 %).
+
+**L'effort** : du même ordre que le telc, une fois celui-ci fait. La page telc, le moteur commun, l'écrit jugé sur
+critères et l'oral en sections servent tels quels ; il faut surtout **écrire les contenus** (au moins 3 séries par
+partie) et l'exposé. Ouverture possible **après le telc**, vers la mi-décembre si le telc ouvre fin novembre.
+
+### C1 (Goethe-Zertifikat C1 et telc Deutsch C1)
+
+**Le format, à vérifier** : les deux examens C1 ne se ressemblent pas plus que le DTZ et le Goethe B1.
+- Goethe C1 : modulaire ; Lesen, Hören, Schreiben (une prise de position argumentée et un texte formel), Sprechen à
+  deux (un exposé, puis une discussion pour convaincre l'autre).
+- telc C1 : un bloc écrit avec Lesen et Sprachbausteine, Hören, Schreiben, puis l'oral (exposé, discussion, résumé).
+
+Il faudra sans doute **choisir l'un des deux** comme modèle du bloc, ou faire deux blocs C1 : c'est à Jacques de
+trancher, une fois les formats relevés.
+
+**Ce qui existe** :
+- 40 écoutes C1 ;
+- 2 textes de lecture (un commentaire, un texte documentaire, 6 questions) ;
+- 3 argumentations (Erörterung) et 1 lettre formelle à remettre dans l'ordre ;
+- 2 exposés et 2 discussions ;
+- la carte « Et le C1 ? » (pas de liste officielle de vocabulaire au-delà du B1 ; argumenter, concéder, résumer) ;
+- les feuilles de conjugaison B2-C1 (passif, Konjunktiv I, Futur II, participe étendu) ;
+- le vocabulaire C1 du cours, dans les paquets de mots.
+
+**Ce qui manque** :
+- presque tout le format : les parties de Lesen et de Hören au format choisi ;
+- les Sprachbausteine C1, si c'est le telc ;
+- l'écrit argumenté jugé sur critères ;
+- l'oral (exposé, discussion où Mark défend l'autre camp, ce qui reprend la partie 3 de l'oral du telc) ;
+- le verdict.
+
+Les contenus C1 sont plus longs et plus difficiles à écrire juste : la relecture germanophone comptera davantage.
+
+**L'effort** : le plus grand des quatre. Il faut 2 à 3 fois le travail du Goethe B1, à cause de la longueur des
+textes et de la relecture. Ouverture possible **après le Goethe B1**, au début de 2027. D'ici là, le bloc reste en
+essai admin, avec ce qui existe.
+
+### Le calendrier qui en découle (proposition, pas décision)
+
+| bloc | s'ouvre aux testeurs quand… | date visée |
+|---|---|---|
+| DTZ | Écouter et Lire, l'écrit, l'oral et l'examen blanc sont faits et relus | 14 nov. (décision du 3 nov.) |
+| telc A2·B1 | ses 7 parties, l'oral en sections et l'examen blanc sont faits et relus | fin novembre |
+| Goethe B1 | son format est relevé, ses parties et son exposé sont faits et relus | mi-décembre |
+| C1 | le modèle (Goethe ou telc) est choisi, son format relevé, ses parties faites et relues | début 2027 |
+
+---
+
 ## 6. À trancher par Jacques (tranché le 4 nov.)
 
 1. **La forme du panneau** : deux grandes cartes, chacune ouvrant son panneau (recommandé), ou une seule liste à deux
@@ -313,3 +414,11 @@ Jacques a retenu la proposition du chef : « Ouais, vas-y avec ta proposition. �
    tuile ?
 3. **Le feu vert** pour construire dans l'ordre du point 5 : d'abord le format, le panneau et les Sprachbausteine, puis
    le reste du telc.
+
+Réponses de Jacques, le 4 nov. (`decisions/DECISIONS.md`) :
+- 1 et 2 : un bloc par examen (DTZ, telc A2·B1, Goethe B1, C1), voir section 2 ;
+- 3 : feu vert, en commençant par le panneau puis les Sprachbausteine ;
+- la relecture germanophone des lettres, c'est lui qui la fera faire : `retours/A-RELIRE-TELC.md`, dérivé par
+  `python visuel/prototype/telc/outils/relecture.py`.
+
+Encore ouvert : pour le C1, le modèle (Goethe C1, telc C1, ou deux blocs), une fois les formats relevés.
