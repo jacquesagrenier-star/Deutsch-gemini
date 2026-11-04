@@ -8671,6 +8671,65 @@ body[data-theme="dark"] #home #seancePilule > .pa-anneau::before{background:coni
 #home #seancePilule .pa-anneau b, #home #seancePilule .pa-anneau small{text-shadow:0 0 3px rgba(255,255,255,.95), 0 0 8px rgba(255,255,255,.75);}
 body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"] #home #seancePilule .pa-anneau small{text-shadow:0 0 3px rgba(0,0,0,.7), 0 0 8px rgba(0,0,0,.45);}
 #home #seancePilule .seance-niveaux{background:rgba(255,255,255,.38) !important;}
+
+/* ============ v1107 : LE VERRE DES BOUTONS (Jacques, 4 nov. 2026) ============
+   Maquette .claude/maquette-verre-boutons.html (https://claude.ai/artifact/2XAbaphjgyVa79msFg4st7), variante
+   « Chacun sa couleur ». Jacques : « pour des cartes, tous les boutons, comme le continuer, avoir dans 2 minutes,
+   ou mis de cote, ces boutons-la, c'est toujours fixe. L'image pourrait passer par-dessus. [...] ce qui est
+   transparent actuellement, ou presque, serait plus transparent. [...] un vert presque transparent. On voit que
+   c'est vert ». Et : « dans les exercices, dans les cartes, ton continu devrait rester toujours a la meme position ».
+   1. LA PLACE : la barre des boutons du verso et celle des exercices restent EN BAS DE L'ECRAN ; la carte defile
+      dessous. L'ecran reserve leur hauteur en bas, pour qu'on lise la carte jusqu'au bout.
+   2. LA MATIERE : la meme que les boutons poses sur les images -- un voile tres doux de la couleur du bouton
+      (Encore jaune, Continuer vert, Mettre de cote orange), le flou, le reflet en haut, le liseré de lumiere.
+      Le texte prend la couleur du bouton, en fonce le jour, en clair la nuit. Mesure dans la maquette : lisible
+      sur la carte et sur le fond de l'app avec 9 a 20 % de voile ; on prend 22-26 % pour la marge.
+   ⚠️ Pas de backdrop-filter, de filter ni de transform sur un parent de ces barres : il deviendrait le cadre
+   du « fixed » et les boutons remonteraient avec la carte. */
+#flashcards.active #flashcardActions:not(.hidden),
+#flashcards.active #cartePhrase:not(.hidden) .cp-actions{
+    position:fixed; z-index:950; margin:0 !important; width:auto !important; max-width:none !important;
+    left:max(12px, calc(50% - 310px), env(safe-area-inset-left, 0px));
+    right:max(12px, calc(50% - 310px), env(safe-area-inset-right, 0px));
+    bottom:calc(10px + env(safe-area-inset-bottom, 0px));
+}
+#flashcards.active:has(#flashcardActions:not(.hidden)){padding-bottom:calc(150px + env(safe-area-inset-bottom, 0px)) !important;}
+#flashcards.active:has(#cartePhrase:not(.hidden) .cp-actions){padding-bottom:calc(96px + env(safe-area-inset-bottom, 0px)) !important;}
+#flashcards.active:has(#flashcardActions.paquet-garde:not(.hidden)){padding-bottom:calc(100px + env(safe-area-inset-bottom, 0px)) !important;}
+
+#flashcardActions .judge-button, #flashcards .cp-actions button{
+    --v-haut:rgba(255,255,255,.46); --v-bas:rgba(255,255,255,.38); --v-encre:#1C2430;
+    position:relative; overflow:hidden; isolation:isolate; border-color:transparent !important;
+    background:linear-gradient(180deg, var(--v-haut), var(--v-bas)) !important; color:var(--v-encre) !important;
+    -webkit-backdrop-filter:blur(10px) saturate(1.5) !important; backdrop-filter:blur(10px) saturate(1.5) !important;
+    box-shadow:inset 0 -8px 14px -10px rgba(0,0,0,.16), 0 8px 20px rgba(20,30,40,.14), 0 1px 3px rgba(0,0,0,.08) !important;
+    text-shadow:none !important;}
+#flashcardActions .judge-button::before, #flashcards .cp-actions button::before{content:""; position:absolute; inset:2px; border-radius:inherit; z-index:-1; pointer-events:none;
+    background:linear-gradient(180deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.14) 36%, rgba(255,255,255,0) 52%) !important;}
+#flashcardActions .judge-button::after, #flashcards .cp-actions button::after{content:"" !important; display:block !important; position:absolute; inset:0 !important;
+    top:0 !important; left:0 !important; width:auto !important; height:auto !important; filter:none !important;
+    border-radius:inherit; pointer-events:none; padding:1.5px;
+    background:linear-gradient(140deg, #fff 0%, rgba(255,255,255,.55) 22%, rgba(255,255,255,.06) 48%, rgba(255,255,255,.25) 74%, rgba(255,255,255,.95) 100%) !important;
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude;}
+#flashcardActions .judge-again{--v-haut:rgba(245,220,110,.27); --v-bas:rgba(245,220,110,.22); --v-encre:#69560C;}
+#flashcardActions .judge-good, #flashcards .cp-actions button.primary{--v-haut:rgba(70,180,120,.27); --v-bas:rgba(70,180,120,.22); --v-encre:#14532F;}
+#flashcardActions .judge-garde, #flashcardActions .judge-sortir{--v-haut:rgba(245,180,130,.27); --v-bas:rgba(245,180,130,.22); --v-encre:#7E4412;}
+#flashcardActions .judge-garde.on{--v-haut:rgba(240,167,90,.80); --v-bas:rgba(230,150,70,.80); --v-encre:#46290A;}
+body[data-theme="dark"] #flashcardActions .judge-button, body[data-theme="dark"] #flashcards .cp-actions button{
+    --v-haut:rgba(255,255,255,.10); --v-bas:rgba(255,255,255,.07); --v-encre:#EEF2F5;
+    box-shadow:inset 0 -8px 14px -10px rgba(0,0,0,.4), 0 8px 20px rgba(0,0,0,.32) !important;}
+body[data-theme="dark"] #flashcardActions .judge-button::before, body[data-theme="dark"] #flashcards .cp-actions button::before{
+    background:linear-gradient(180deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,.05) 36%, rgba(255,255,255,0) 52%) !important;}
+body[data-theme="dark"] #flashcardActions .judge-button::after, body[data-theme="dark"] #flashcards .cp-actions button::after{opacity:.45;}
+body[data-theme="dark"] #flashcardActions .judge-again{--v-haut:rgba(240,214,110,.18); --v-bas:rgba(240,214,110,.14); --v-encre:#F2E3A6;}
+body[data-theme="dark"] #flashcardActions .judge-good, body[data-theme="dark"] #flashcards .cp-actions button.primary{--v-haut:rgba(80,190,130,.22); --v-bas:rgba(80,190,130,.17); --v-encre:#B5EBCD;}
+body[data-theme="dark"] #flashcardActions .judge-garde, body[data-theme="dark"] #flashcardActions .judge-sortir{--v-haut:rgba(240,165,100,.18); --v-bas:rgba(240,165,100,.14); --v-encre:#F5C9A3;}
+body[data-theme="dark"] #flashcardActions .judge-garde.on{--v-haut:rgba(201,128,58,.85); --v-bas:rgba(190,118,48,.85); --v-encre:#1B1207;}
+#flashcardActions .judge-button .judge-echeance, #flashcardActions .judge-good .judge-continuer,
+#flashcardActions .judge-good .srs-ladder-text{color:inherit !important;}
+#flashcardActions .judge-good .srs-pip{background:currentColor !important; opacity:.25;}
+#flashcardActions .judge-good .srs-pip.on{opacity:1;}
+#flashcards .cp-actions button:disabled{opacity:.55;}
 </style>
 
 <!-- v1003 : LE FOND COMMUN (Jacques, 29 oct. 2026). La carte du monde decoupee PAR LANGUE
