@@ -353,10 +353,10 @@ MOMENTS = [
      "fait": {"de": "Mark bezahlt mit Karte.", "es": "Mark paga con tarjeta.", "fr": "Mark paie par carte.", "en": "Mark is paying by card.", "pt": "Mark paga com cartão."},
      "mot": {"de": ["Karte", "die"], "es": ["tarjeta", "la"]},
      "scene": "At the checkout of the supermarket of the last reference picture (the same grey floor, the same light, and behind the checkout the same shelves full of colourful goods as in the reference picture: bottles of orange and red juice, red and green tins, brown paper bags of coffee, bars of chocolate -- every package in plain colours with no writing, never white blank boxes), Mark, the man of the first reference picture, holds a bank card against the small card terminal; the cashier, a woman of about fifty with dark hair in a bun and a dark blue work polo shirt, stands behind the till and smiles; his groceries lie on the belt: a plain white carton of milk with no print, a loaf of bread and three apples with plain unmarked skins, no stickers. No cash anywhere; the screen of the terminal shows no digits."},
-    {"id": "kasse-bon", "lieu": "supermarkt", "qui": "Mark", "v": "f",
+    {"id": "kasse-bon", "lieu": "supermarkt", "decor": "kasse-karte", "qui": "Mark", "v": "f",
      "fait": {"de": "Mark bekommt den Kassenbon.", "es": "Mark recibe el recibo.", "fr": "Mark reçoit le ticket de caisse.", "en": "Mark is getting the receipt.", "pt": "Mark recebe o recibo."},
      "mot": {"de": ["Kassenbon", "der"], "es": ["recibo", "el"]},
-     "scene": "At the same checkout, the same cashier with the dark blue polo shirt hands Mark a long white paper receipt; Mark takes it, his groceries already in a cloth bag over his shoulder. Behind them, the same shelves of colourful goods as in the reference picture, in plain colours with no writing, never white blank boxes. The receipt shows no readable writing."},
+     "scene": "A moment later, at exactly the same checkout as in the last reference picture (the same till, belt, card terminal, shelves of colourful goods in plain colours with no writing, the same floor and light): the SAME cashier as in the last reference picture -- the woman of about fifty with dark hair in a bun and the dark blue work polo shirt, exactly her face -- stands behind the till and hands Mark a long white paper receipt; Mark, the man of the first reference picture, takes it, his groceries now in a cloth bag over his shoulder, the belt empty. The receipt shows no readable writing."},
     {"id": "regal-suchen", "lieu": "supermarkt", "qui": "Mark", "v": "m",
      "fait": {"de": "Mark sucht den Reis.", "es": "Mark busca el arroz.", "fr": "Mark cherche le riz.", "en": "Mark is looking for the rice.", "pt": "Mark procura o arroz."},
      "mot": {"de": ["Reis", "der"], "es": ["arroz", "el"]},
@@ -415,7 +415,7 @@ def ecrire_json():
     d = {"magasins": [dict(m, pret=pret(m["img"])) for m in MAGASINS], "produits": PRODUITS, "lignes": LIGNES, "paires": PAIRES,
          "roles": ROLES, "tradRoles": TRAD_ROLES, "articles": ARTICLES, "commande": COMMANDE, "tradCommande": TRAD_COMMANDE,
          "emballages": [dict(e, pret=pret(e["img"])) for e in EMBALLAGES], "tradEmb": TRAD_EMB,
-         "moments": [dict({k: v for k, v in m.items() if k != "scene"}, img="courses/" + m["id"] + ".webp", pret=pret("courses/" + m["id"] + ".webp")) for m in MOMENTS],
+         "moments": [dict({k: v for k, v in m.items() if k not in ("scene", "decor")}, img="courses/" + m["id"] + ".webp", pret=pret("courses/" + m["id"] + ".webp")) for m in MOMENTS],
          "latam": {"patatas": "papas"},
          "decouverte": {"de": decouverte("de"), "es": decouverte("es")}}
     os.makedirs(SORTIE, exist_ok=True)
@@ -498,7 +498,8 @@ def images():
     for n, quoi in NATURES.items():
         out[n] = ([], NATURE + quoi, "4:3", None)
     for m in MOMENTS:
-        decor = {"baeckerei": "baeckerei", "supermarkt": "supermarkt", "markt": "markt-obst-heimisch", "metzgerei": "metzgerei"}[m["lieu"]]
+        # « decor » : l'image deja faite qui donne le lieu ET les gens (kasse-bon reprend la caissiere de kasse-karte, 4 nov.)
+        decor = m.get("decor") or {"baeckerei": "baeckerei", "supermarkt": "supermarkt", "markt": "markt-obst-heimisch", "metzgerei": "metzgerei"}[m["lieu"]]
         out[m["id"]] = ([m["qui"]], MOMENT + m["scene"], "4:3", decor)
     return out
 
