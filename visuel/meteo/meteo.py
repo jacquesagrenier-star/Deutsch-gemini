@@ -158,10 +158,15 @@ IMAGES = {
                   "flat light; it is NOT raining and the ground is completely dry; no puddles, no umbrellas; the linden "
                   "tree is green; a few people walk by; the parasols are closed."},
     "nebel":     {"saison": None, "temp": 5, "vrais": ["niebla"], "douteux": ["frio", "fresco", "malo", "nublado"], "source": "sommer",
-        "prompt": "A very FOGGY morning: thick white fog fills the square, the buildings at the back are only pale grey "
-                  "shapes, barely visible; only the linden tree, the bench and the street lamp in the foreground are "
-                  "clear; the street lamp is lit; soft white light; nobody at the cafe; one person walks into the fog."},
-    "gewitter":  {"saison": None, "temp": 22, "vrais": ["tormenta", "lluvia", "malo", "nublado"], "douteux": ["viento", "calor", "fresco"], "source": "sommer",
+        # 3 nov. : la premiere prise (rate1) avait un voile leger, confondu avec le ciel couvert sur une vignette
+        "prompt": "A morning of VERY THICK, DENSE FOG, visibility about twenty metres: the whole picture is milky white; "
+                  "the buildings at the back of the square and every upper floor disappear completely into the white; "
+                  "the houses on the sides fade into pale grey shapes after the first few metres; the linden tree is a "
+                  "soft grey silhouette; there is no sky, only white; only the bicycles, the street lamp and the near "
+                  "cobblestones in the foreground keep their colours; the street lamp is lit with a halo in the fog; the "
+                  "parasols are closed; one person walks into the fog and fades. The fog must be obvious at first sight, "
+                  "even on a very small picture."},
+    "gewitter":  {"saison": None, "temp": 22, "vrais": ["tormenta", "malo", "nublado"], "douteux": ["lluvia", "viento", "calor", "fresco"], "source": "sommer",
         "prompt": "A summer THUNDERSTORM in the late afternoon: a very dark, blue-black sky full of heavy storm clouds, ONE "
                   "bright bolt of lightning over the roofs, pouring rain, the linden tree green and shaking; the parasols "
                   "are closed; two people run for shelter under a balcony; the lit windows glow yellow."},

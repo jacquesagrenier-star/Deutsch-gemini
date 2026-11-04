@@ -421,8 +421,9 @@ def meteo_quatre_saisons():
         if os.path.exists(chemin):
             im = Image.open(chemin).convert("RGB")
             w, h = im.size
-            ch = round(w * ph / pw)
-            im = im.crop((0, (h - ch) // 2, w, (h - ch) // 2 + ch)).resize((pw, ph), Image.LANCZOS)
+            # la case est plus etroite que la photo (4:3) : on tranche sur les cotes, le tilleul reste au milieu
+            cw = min(w, round(h * pw / ph)); ch = min(h, round(cw * ph / pw))
+            im = im.crop(((w - cw) // 2, (h - ch) // 2, (w - cw) // 2 + cw, (h - ch) // 2 + ch)).resize((pw, ph), Image.LANCZOS)
             c.paste(im, (x, y))
         else:
             ciel, sol = {"fruehling": ((150, 205, 240), (125, 190, 105)), "sommer": ((90, 170, 235), (110, 170, 80)),
