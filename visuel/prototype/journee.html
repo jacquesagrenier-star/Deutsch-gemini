@@ -99,6 +99,15 @@ button:disabled{cursor:default}
 .frise button{border:3px solid transparent;border-radius:12px;padding:0;background:var(--carte);cursor:pointer;overflow:hidden;display:block}
 .frise button .photo{border-radius:0}
 .frise button.choisi{border-color:var(--ambre)}
+/* LA FRISE DANS LA QUESTION (retour de Jacques du 5 nov. 2026) : la journee entiere, l'etape connue entouree, celle
+   qu'on demande en pointilles avec son « ? » */
+.titreJour{text-align:center;font-weight:800;font-size:15px;color:var(--gris)}
+.frise .case{position:relative;border:3px solid transparent;border-radius:12px;overflow:hidden;background:var(--carte)}
+.frise .case .photo{border-radius:0}
+.frise .case.choisi{border-color:var(--ambre)}
+.frise .case.demandee{border:3px dashed var(--ambre-f)}
+.frise .case .marque{position:absolute;left:4px;top:4px;width:24px;height:24px;border-radius:999px;display:grid;place-items:center;
+  background:var(--ambre);color:#1C2430;font:800 15px var(--police);box-shadow:0 1px 4px rgba(0,0,0,.3)}
 .fiche{background:var(--carte);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px}
 .fiche .dit{font-weight:800;font-size:18px;line-height:1.4}
 .fiche .ligne{display:flex;align-items:flex-start;gap:10px}
@@ -526,6 +535,17 @@ const vaA = (vb, s) => D.verbes[vb].leurre !== false && (!D.verbes[vb].masculin 
 
 // ---------- les exercices ----------
 // Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+// LA FRISE DANS LA QUESTION. Retour de Jacques du 5 nov. 2026 (en anglais, « samedi, Mark prend son petit-dejeuner,
+// qu'est-ce qu'il fait ensuite ? [...] on ne sait meme pas qu'il va etre questionne a ce sujet-la apres ») : une question
+// sur l'ordre de la journee testait la memoire de la decouverte, pas la langue. Elle montre maintenant la journee
+// entiere, comme la decouverte : l'etape connue entouree, celle qu'on demande en pointilles avec son « ? ». On lit
+// l'image et on choisit la phrase qui la dit, avec le bon lien (dann, despues, then...) ; les leurres sont les autres
+// etapes de la meme journee, visibles elles aussi.
+function friseQuestion(j, connue, demandee){
+  return '<div class="titreJour">' + cible(D.jours[j].titre[APPRENDRE]) + '</div><div class="frise">'
+    + etapesDu(j).map(e => '<div class="case' + (e === connue ? " choisi" : "") + (e === demandee ? " demandee" : "") + '">' + photo(e, true, true)
+                           + (e === demandee ? '<span class="marque" aria-hidden="true">?</span>' : "") + '</div>').join("") + '</div>';
+}
 const EX = {
   // « ¿Qué hace Anna? » / « Was macht Anna? » : la photo et l'heure, quatre gestes au bon sujet
   queHace(w){
@@ -644,7 +664,7 @@ const EX = {
     tradQ = tradEtape(r);
     const enonce = (APPRENDRE === "de" ? DE.phrase(montree.verbe, DE.sujet(montree.sujet, true), n(montree.sujet)) : ES.phrase(montree.verbe, ES.sujet(montree.sujet, true), n(montree.sujet)))
                  + " " + (APPRENDRE === "de" ? "Und " + lien + "?" : "¿Y " + lien + "?");
-    ecran(avant ? "avant" : "apres", photo(montree, false), enonce, true, true);
+    ecran(avant ? "avant" : "apres", friseQuestion(r.jour, montree, r), enonce, true, true);
     tradsChoix = {}; [r, ...leurres].forEach(e => { tradsChoix[dit(e)] = tradGeste(e.verbe, e.sujet); });
     boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, L.etape(r)));
     return true;
@@ -901,7 +921,7 @@ function suiteEn(w){
   tradQ = tradEtape(r);
   const enonce = EN.phrase(montree.verbe, EN.sujet(montree.sujet, true), n(montree.sujet), null, null, montree.sujet) + " "
                + (mode === "avant" ? "What happens before that?" : mode === "fin" ? "What happens at the end of the day?" : "What happens next?");
-  ecran(mode === "avant" ? "avant" : mode === "fin" ? "finJour" : "apres", photo(montree, false), enonce, true, true);
+  ecran(mode === "avant" ? "avant" : mode === "fin" ? "finJour" : "apres", friseQuestion(r.jour, montree, r), enonce, true, true);
   tradsChoix = {}; [r, ...leurres].forEach(e => { tradsChoix[dit(e)] = tradGeste(e.verbe, e.sujet); });
   boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, etapeApresLien(r, lien, montree.sujet)));
   return true;
@@ -969,7 +989,7 @@ function premier(w){
                                        : cap(ES.pred(e.verbe, n(s))) + ".";
   const rep = dit(d[0]), opts = unique([rep, ...melanger(d.slice(2)).map(dit)]).slice(0, 4);
   motQ = w; tradQ = tradEtape(d[0]);
-  ecran("premier", "", APPRENDRE === "de" ? "Was macht " + DE.sujet(s) + " zuerst?" : APPRENDRE === "en" ? "What does " + EN.sujet(s) + " do first?" : "¿Qué hace " + ES.sujet(s) + " primero?", true, true);
+  ecran("premier", friseQuestion(j, null, d[0]), APPRENDRE === "de" ? "Was macht " + DE.sujet(s) + " zuerst?" : APPRENDRE === "en" ? "What does " + EN.sujet(s) + " do first?" : "¿Qué hace " + ES.sujet(s) + " primero?", true, true);
   tradsChoix = {}; d.forEach(e => { tradsChoix[dit(e)] = tradGeste(e.verbe, s); });
   const phrase = APPRENDRE === "en" ? etapeApresLien(d[0], "First", null) : L.etape(d[0]);
   boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, phrase));
