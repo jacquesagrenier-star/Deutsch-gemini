@@ -20,8 +20,14 @@ from travail import DOSSIER, IMAGES, ecrire_json   # noqa: E402
 SORTIE = os.path.join(ICI, "..", "prototype", "travail")
 
 # Les mots que fal aurait ecrits malgre la consigne, floutes ici plutot que de racheter l'image (boites en pixels de
-# l'original). Vide tant qu'aucune image n'en a montre.
-FLOUS = {}
+# l'original 2400 x 1792). bewerbung : « CV » en tete du CV que tient Mark ; gespraech : « Curriculum CV », a l'envers,
+# sur la feuille que tient la cheffe (5 nov.). On floute tout le texte, jamais la photo du CV.
+# zeitung : des titres d'annonces en faux anglais lisibles (« Food Wooed Salary ») -- toute la page du journal floutee,
+# le cercle rouge reste visible ; anschreiben : le bloc d'adresse et la formule d'appel, par prudence.
+FLOUS = {"bewerbung": [(1150, 830, 1480, 960), (1150, 960, 1640, 1300)],
+         "gespraech": [(1600, 1010, 2010, 1320)],
+         "zeitung": [(0, 0, 2400, 1792)],
+         "anschreiben": [(540, 330, 1740, 950), (540, 950, 1500, 1180)]}
 
 
 def flouter(im, boites):
