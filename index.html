@@ -9893,6 +9893,11 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
             <div><strong data-i18n="ciu_tuile">En ville : s'orienter</strong></div>
         </div>
 
+        <div class="orb hidden" data-orbid="fetes" id="tuileFetes" onclick="ouvrirThemeIllustre('fetes')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="8.5" rx="5" ry="6"/><path d="M12 14.5l-1.2 1.8h2.4zM12 16.3c0 2.2-2.2 2.6-1.6 5.2"/><path d="M17.5 4.5l1.5-1.5M19.5 7.5h2M4.5 5L3 3.5"/></svg></div>
+            <div><strong data-i18n="fet_tuile">Fêtes et invitations</strong></div>
+        </div>
+
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
@@ -14651,6 +14656,8 @@ const I18N = {
         eco_court: "École",
         ciu_tuile: "En ville : s'orienter",
         ciu_court: "En ville",
+        fet_tuile: "Fêtes et invitations",
+        fet_court: "Fêtes",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -16202,6 +16209,8 @@ const I18N = {
         eco_court: "School",
         ciu_tuile: "In town: finding your way",
         ciu_court: "In town",
+        fet_tuile: "Celebrations and invitations",
+        fet_court: "Celebrations",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17755,6 +17764,8 @@ const I18N = {
         eco_court: "Okul",
         ciu_tuile: "Şehirde yol bulmak",
         ciu_court: "Şehirde",
+        fet_tuile: "Bayramlar ve davetler",
+        fet_court: "Bayramlar",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19720,6 +19731,8 @@ const I18N = {
         eco_court: "Школа",
         ciu_tuile: "У місті: орієнтуватися",
         ciu_court: "У місті",
+        fet_tuile: "Свята й запрошення",
+        fet_court: "Свята",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21999,6 +22012,8 @@ const I18N = {
         eco_court: "مدرسه",
         ciu_tuile: "در شهر: پیدا کردن راه",
         ciu_court: "در شهر",
+        fet_tuile: "جشن‌ها و دعوت‌ها",
+        fet_court: "جشن‌ها",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23721,6 +23736,8 @@ const I18N = {
         eco_court: "المدرسة",
         ciu_tuile: "في المدينة: معرفة الطريق",
         ciu_court: "في المدينة",
+        fet_tuile: "الأعياد والدعوات",
+        fet_court: "الأعياد",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -24123,6 +24140,8 @@ const I18N = {
         eco_court: "Escola",
         ciu_tuile: "Na cidade: se orientar",
         ciu_court: "Na cidade",
+        fet_tuile: "Festas e convites",
+        fet_court: "Festas",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25735,6 +25754,8 @@ const I18N = {
         eco_court: "Szkoła",
         ciu_tuile: "W mieście: jak trafić",
         ciu_court: "W mieście",
+        fet_tuile: "Święta i zaproszenia",
+        fet_court: "Święta",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -27347,6 +27368,8 @@ const I18N = {
         eco_court: "Школа",
         ciu_tuile: "В городе: найти дорогу",
         ciu_court: "В городе",
+        fet_tuile: "Праздники и приглашения",
+        fet_court: "Праздники",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28961,6 +28984,8 @@ const I18N = {
         eco_court: "Schule",
         ciu_tuile: "In der Stadt: sich orientieren",
         ciu_court: "In der Stadt",
+        fet_tuile: "Feste und Einladungen",
+        fet_court: "Feste",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30610,6 +30635,8 @@ const I18N = {
         eco_court: "Colegio",
         ciu_tuile: "En la ciudad: orientarse",
         ciu_court: "En la ciudad",
+        fet_tuile: "Fiestas e invitaciones",
+        fet_court: "Fiestas",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -47524,7 +47551,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           vacances: {page: "vacances.html", titre: "vac_tuile", court: "vac_court", tuile: "tuileVacances"},
                           travail: {page: "travail.html", titre: "trav_tuile", court: "trav_court", tuile: "tuileTravail"},
                           ecole: {page: "ecole.html", titre: "eco_tuile", court: "eco_court", tuile: "tuileEcole"},
-                          ciudad: {page: "ciudad.html", titre: "ciu_tuile", court: "ciu_court", tuile: "tuileCiudad"}};
+                          ciudad: {page: "ciudad.html", titre: "ciu_tuile", court: "ciu_court", tuile: "tuileCiudad"},
+                          fetes: {page: "fetes.html", titre: "fet_tuile", court: "fet_court", tuile: "tuileFetes"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);

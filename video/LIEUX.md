@@ -234,6 +234,23 @@ Source : `visuel/ecole/ecole.py` (`IMAGES`, `KITA`, `CLASSE`, `SOURCES`). Les en
   Gartenstraße 12) et la Bergstraße, croisées par la Lindenstraße, la Schulstraße et la Parkstraße.
   En espagnol, le même plan porte des noms de Madrid (calle Mayor, calle del Sol, calle de la Luna,
   calle de la Paz, calle del Prado) ; les photos restent celles de Berlin, comme les scènes.
+### Les lieux du thème « Les fêtes et les invitations » (thème illustré, 5 nov. 2026)
+- **Le salon de Jan et Katrin à Noël** (`visuel/prototype/fetes/weihnachten.webp`) : la pièce du chat, retouchée
+  depuis son maître (armoire sombre à gauche, canapé gris clair aux coussins moutarde, étagère blanche, table en pin,
+  hautes fenêtres à rideaux blancs) ; un sapin aux boules rouges et dorées devant le canapé. Anna y fête Noël avec Ben
+  et Mia. Le **goûter d'anniversaire de Ben** (8 ans) s'y tiendra aussi (image à faire, même maître).
+- **La rue de Silvester** (`silvester.webp`) : une rue d'Altbauten de Berlin la nuit, façades claires, un peu de
+  neige au bord des trottoirs ; Anna, Lena et Felix aux cierges magiques.
+- **Le jardin de Pâques** (`ostern.webp`) : une pelouse sous des pommiers en fleurs, des jonquilles ; Ben et Mia et
+  leur panier d'œufs. Le jardin n'a pas de propriétaire dans l'histoire : ne pas le dire celui de quelqu'un sans le
+  décider.
+- **La cuisine de Mark** (`planen.webp`, mur vert sauge, réfrigérateur blanc à gauche, horloge ronde, étagère à
+  vaisselle, table en bois) : Mark et Anna y préparent une fête.
+- **Une porte d'appartement et sa cage d'escalier sombre** (`mitbringen.webp`) : Mark arrive avec un saladier chez
+  une amie (inconnue, cheveux bruns en chignon). Pas encore l'appartement d'Anna.
+- Madrid : **le salon des douze raisins** (`uvas.webp`) : guirlandes de papier multicolores, ballons dorés, la
+  télévision qui montre l'horloge de la Puerta del Sol ; Carmen, Javier et Inés. Dans le thème, la Nochevieja a lieu
+  chez Inés (calle del Pez 8).
 
 ### Les lieux d'un seul épisode (gardés pour mémoire)
 - L'aéroport (épisode 1), le Bürgeramt (épisode 2), la piste cyclable (épisode 3) : voir leurs
