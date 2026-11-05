@@ -699,7 +699,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -727,7 +727,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -793,7 +793,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -821,7 +821,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -1069,7 +1069,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -1097,7 +1097,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -1153,7 +1153,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -1193,7 +1193,7 @@ window.SCENE = {
      "de": "der Schuh"
     }
    ],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [

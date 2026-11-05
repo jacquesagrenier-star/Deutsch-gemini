@@ -92,6 +92,10 @@ button:disabled{cursor:default}
 .puces{display:flex;flex-wrap:wrap;gap:7px;direction:ltr}
 .puces button{border:2px solid var(--bord);background:var(--carte);color:var(--encre);border-radius:12px;padding:7px 11px;font:700 14px var(--police);cursor:pointer}
 .puces button.choisi{border-color:var(--ambre);background:var(--verre)}
+/* une puce qui fait entendre sa phrase porte le haut-parleur de l'app (v919), petit, apres le mot (Jacques, 5 nov. :
+   un haut-parleur partout ou l'on peut faire entendre quelque chose en le touchant) */
+.puces button.parle{display:inline-flex;align-items:center;gap:6px}
+.puces button.parle .ic-hp{width:14px;height:14px;flex:0 0 auto;color:var(--ambre-f)}
 .regle{margin:0;font-size:14px;font-weight:700;line-height:1.5;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
 .regle b{color:var(--encre)}
 .regle .exemples{display:block;margin-top:6px;color:var(--encre);font-weight:700;text-align:left}
@@ -248,6 +252,14 @@ const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LAN
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 
 let dire = t => { if (t) Voix.dire(t); };
+// le haut-parleur de l'app (v919, HP_SVG d'index.html) : celui des puces qui parlent, comme les repliques de cuerpo.html
+const HP_APP = '<svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
+// une puce qui dit une phrase quand on la touche : le mot, puis le haut-parleur ; le lecteur d'ecran entend « Ecouter : phrase »
+const puceParlante = (b, mot, phrase) => {
+  b.classList.add("parle");
+  b.innerHTML = '<span></span>' + HP_APP; b.firstChild.textContent = mot;
+  b.setAttribute("aria-label", T("ecouter") + " : " + phrase);
+};
 const taire = () => Voix.arreter();
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
@@ -577,7 +589,9 @@ function decouvrir(){
       o.innerHTML = '<p class="consigne">' + T("objets") + '</p><div class="puces" id="pu"></div>';
       liste.forEach(it => {
         const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE;
-        const m = motDeCle(it.mot); b.textContent = (m.genre ? m.genre + " " : "") + m.mot;
+        // le nom de l'objet (en espagnol, le mot de la question est le verbe estar : le nom est dans « mots »)
+        const cle = (it.mots || []).find(k => k.startsWith("n:")) || it.mot;
+        const m = motDeCle(cle) || {mot: cle.split(":")[1].split("|")[0]}; puceParlante(b, (m.genre ? m.genre + " " : "") + m.mot, it.phrase);
         b.addEventListener("click", () => { $("pu").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b)); montrerPhrase(it.phrase, it.trad[LANGUE]); dire(it.phrase); });
         $("pu").appendChild(b);
       });
@@ -598,7 +612,7 @@ function decouvrir(){
       + '<p class="regle">' + T(DE_APP ? "calculDe" : "calculEs") + '</p>';
     $("ecoute").addEventListener("click", () => dire(phraseDite));
     if (DE_APP) IT("abk").forEach(it => {
-      const b = document.createElement("button"); b.type = "button"; b.lang = "de"; b.textContent = it.q.replace(/^Was bedeutet „(.+)“\?$/, "$1");
+      const b = document.createElement("button"); b.type = "button"; b.lang = "de"; puceParlante(b, it.q.replace(/^Was bedeutet „(.+)“\?$/, "$1"), it.phrase);
       b.addEventListener("click", () => { $("abk").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b)); montrerPhrase(it.phrase, it.trad[LANGUE]); dire(it.phrase); });
       $("abk").appendChild(b);
     });

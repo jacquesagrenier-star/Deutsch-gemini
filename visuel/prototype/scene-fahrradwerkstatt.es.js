@@ -625,7 +625,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 1,
    "boites": [
     [
@@ -653,7 +653,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 1,
    "boites": [
     [
@@ -681,7 +681,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 1,
    "boites": [
     [
@@ -726,7 +726,7 @@ window.SCENE = {
      }
     }
    ],
-   "sur": null,
+   "sur": "mark",
    "devant": 1,
    "boites": [
     [
@@ -932,7 +932,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -960,7 +960,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -998,7 +998,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -1026,7 +1026,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -1054,7 +1054,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
