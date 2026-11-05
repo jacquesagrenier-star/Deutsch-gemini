@@ -9860,6 +9860,10 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3.5 4h2.2l2.3 10.5h10.2l2-7.5H7"/><circle cx="9.5" cy="18.8" r="1.5"/><circle cx="16.8" cy="18.8" r="1.5"/></svg></div>
             <div><strong data-i18n="cou_tuile">Faire les courses</strong></div>
         </div>
+        <div class="orb hidden" data-orbid="vacances" id="tuileVacances" onclick="ouvrirThemeIllustre('vacances')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="7.5" width="14" height="11.5" rx="2"/><path d="M9.5 7.5V5.5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2"/><path d="M9 7.5v11.5M15 7.5v11.5"/><circle cx="8" cy="20.5" r=".8"/><circle cx="16" cy="20.5" r=".8"/></svg></div>
+            <div><strong data-i18n="vac_tuile">Les vacances et le voyage</strong></div>
+        </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -14611,6 +14615,8 @@ const I18N = {
         dem_court: "Démarches",
         cou_tuile: "Faire les courses",
         cou_court: "Courses",
+        vac_tuile: "Les vacances et le voyage",
+        vac_court: "Vacances",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -16154,6 +16160,8 @@ const I18N = {
         dem_court: "Paperwork",
         cou_tuile: "Going shopping",
         cou_court: "Shopping",
+        vac_tuile: "Holidays and travel",
+        vac_court: "Holidays",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17699,6 +17707,8 @@ const I18N = {
         dem_court: "Resmî işler",
         cou_tuile: "Alışveriş yapmak",
         cou_court: "Alışveriş",
+        vac_tuile: "Tatil ve seyahat",
+        vac_court: "Tatil",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19656,6 +19666,8 @@ const I18N = {
         dem_court: "Справи",
         cou_tuile: "Покупки",
         cou_court: "Покупки",
+        vac_tuile: "Відпустка й подорожі",
+        vac_court: "Відпустка",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21927,6 +21939,8 @@ const I18N = {
         dem_court: "اداری",
         cou_tuile: "خرید کردن",
         cou_court: "خرید",
+        vac_tuile: "تعطیلات و سفر",
+        vac_court: "تعطیلات",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23641,6 +23655,8 @@ const I18N = {
         dem_court: "المعاملات",
         cou_tuile: "التسوق",
         cou_court: "التسوق",
+        vac_tuile: "العطلة والسفر",
+        vac_court: "العطلة",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -24035,6 +24051,8 @@ const I18N = {
         dem_court: "Trâmites",
         cou_tuile: "Fazer compras",
         cou_court: "Compras",
+        vac_tuile: "As férias e a viagem",
+        vac_court: "Férias",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25639,6 +25657,8 @@ const I18N = {
         dem_court: "Urzędy",
         cou_tuile: "Zakupy",
         cou_court: "Zakupy",
+        vac_tuile: "Wakacje i podróże",
+        vac_court: "Wakacje",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -27243,6 +27263,8 @@ const I18N = {
         dem_court: "Дела",
         cou_tuile: "Покупки",
         cou_court: "Покупки",
+        vac_tuile: "Отпуск и путешествия",
+        vac_court: "Отпуск",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28849,6 +28871,8 @@ const I18N = {
         dem_court: "Ämter",
         cou_tuile: "Einkaufen",
         cou_court: "Einkaufen",
+        vac_tuile: "Urlaub und Reisen",
+        vac_court: "Urlaub",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30490,6 +30514,8 @@ const I18N = {
         dem_court: "Trámites",
         cou_tuile: "Hacer la compra",
         cou_court: "La compra",
+        vac_tuile: "Las vacaciones y los viajes",
+        vac_court: "Vacaciones",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -47400,7 +47426,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           meteo: {page: "meteo.html", titre: "meteo_tuile", court: "meteo_court", tuile: "tuileMeteo"},
                           logement: {page: "logement.html", titre: "log_tuile", court: "log_court", tuile: "tuileLogement"},
                           demarches: {page: "demarches.html", titre: "dem_tuile", court: "dem_court", tuile: "tuileDemarches"},
-                          courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"}};
+                          courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"},
+                          vacances: {page: "vacances.html", titre: "vac_tuile", court: "vac_court", tuile: "tuileVacances"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
