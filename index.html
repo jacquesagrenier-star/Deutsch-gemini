@@ -6812,6 +6812,11 @@ body[data-theme="dark"] .bilan-notion.fait .bilan-go{color:#7fd3a5;}
 .bilan-bravo, .bilan-fin{margin:0; font-size:14px; font-weight:700; line-height:1.4;}
 .bilan-fin{margin-top:16px; padding:10px 12px; border-radius:12px; background:rgba(46,139,87,.12); color:#1f6b42; text-align:center;}
 body[data-theme="dark"] .bilan-carte{background:#232a34; color:#F2F2F6;}
+/* v1113 : la question de la montee de niveau (demanderMotsPlusBas), dans la carte du bilan. */
+.niveau-voile .niveau-titre{font-size:19px; line-height:1.3; margin:4px 0 14px; margin-inline-end:32px;}
+.niveau-voile .niveau-oui{margin-top:0;}
+.niveau-ligne{margin:12px 2px 0; font-size:13px; line-height:1.4; color:#4C566B; text-align:center;}
+body[data-theme="dark"] .niveau-ligne{color:#B8C0CC;}
 body[data-theme="dark"] .bilan-dates, body[data-theme="dark"] .bilan-chiffre span, body[data-theme="dark"] .bilan-notion-txt span,
 body[data-theme="dark"] .bilan-mots li span, body[data-theme="dark"] .bilan-fermer{color:#a9b2c0;}
 body[data-theme="dark"] .bilan-section h3, body[data-theme="dark"] .bilan-mots li i{color:#f3c985;}
@@ -14849,7 +14854,7 @@ const I18N = {
         info_partie_accueil: "Sur l'accueil",
         info_partie_ici: "Rangé ici",
         ip_partie_seance: "Ma séance du jour",
-        ip_seance_niveaux: "Les niveaux A1 à C1 décident d'où viennent les mots NOUVEAUX — pas tes révisions. Celles-ci reviennent de tous les niveaux que tu as déjà travaillés, quel que soit le niveau affiché.",
+        ip_seance_niveaux: "Les niveaux A1 à C1 décident d'où viennent les mots NOUVEAUX. Tes révisions viennent du niveau choisi et des niveaux au-dessus ; d'un niveau plus bas, seuls reviennent les mots que tu as ratés.",
         ip_seance_commencer: "« Commencer » compose la séance pour toi : d'abord les mots qu'il est temps de revoir, puis des mots nouveaux du niveau choisi, au plus {n} par jour. Un quart de la séance ({p} %) reste réservé au neuf, pour que le niveau choisi commande toujours quelque chose, même quand le retard est grand.",
         ip_seance_gardes: "« Gardés » ouvre ton coffre : les mots que tu y as mis avec « Garder ». Tu peux y tourner autant que tu veux — rien de ce que tu y fais ne change une échéance ni l'objectif du jour.",
         ip_seance_theme: "« par thème » est l'autre porte : tu choisis toi-même un thème, au lieu de laisser l'app composer la séance.",
@@ -14869,7 +14874,15 @@ const I18N = {
         flash_end_objectif_reste: "Encore {n} cartes pour ton objectif du jour.",
         mosaique_plafond: "Le tableau a avancé au maximum pour aujourd'hui. Il reprendra demain.",
         flash_recto: "Revenir au recto de la carte",
-        legende_seance_niveau: "Les pastilles A1 à C1 ne décident que de la provenance des mots NOUVEAUX. Tes révisions reviennent de tous les niveaux déjà travaillés, quel que soit celui qui est choisi.",
+        legende_seance_niveau: "Les pastilles A1 à C1 décident de la provenance des mots NOUVEAUX. Des niveaux plus bas, seuls reviennent en révision les mots que tu as ratés.",
+        niv_monte_titre: "Tu as commencé {n} mots ({niveaux}). Tu les connais déjà ?",
+        niv_monte_titre_one: "Tu as commencé 1 mot ({niveaux}). Tu le connais déjà ?",
+        niv_monte_oui: "Oui, je les connais",
+        niv_monte_oui_one: "Oui, je le connais",
+        niv_monte_garder: "Garde ceux que j'ai ratés",
+        niv_monte_garder_one: "Garde-le si je l'ai raté",
+        niv_monte_ligne: "Si tu les gardes, seuls ceux que tu as ratés reviendront en révision.",
+        niv_monte_ligne_one: "Si tu le gardes, il ne reviendra en révision que si tu l'as raté.",
         legende_objectif_quoi: "Aujourd'hui — les cartes que tu as jugées (« Encore » ou « ✓ »).",
         legende_mosaique: "Le tableau — il commence en gros carreaux de couleur, et chaque carte en affine un, révision comprise. Le peintre, l'année et le titre apparaissent à mesure. Touche-le pour l'agrandir.",
         legende_jours: "Jours travaillés — le total des journées où tu as fait quelque chose. Il ne redescend jamais, même après des vacances.",
@@ -16392,7 +16405,7 @@ const I18N = {
         info_partie_accueil: "On the home screen",
         info_partie_ici: "Kept here",
         ip_partie_seance: "Today's session",
-        ip_seance_niveaux: "The levels A1 to C1 decide where NEW words come from — not your reviews. Those come back from every level you have already worked on, whatever level is shown.",
+        ip_seance_niveaux: "The levels A1 to C1 decide where NEW words come from. Your reviews come from the chosen level and the ones above it; from a lower level, only the words you got wrong come back.",
         ip_seance_commencer: "“Start” builds the session for you: first the words it is time to see again, then new words from the chosen level, at most {n} a day. A quarter of the session ({p}%) stays reserved for new words, so the level you choose always commands something, even when the backlog is large.",
         ip_seance_gardes: "“Kept” opens your chest: the words you put there with “Keep”. You can go round it as often as you like — nothing you do there changes a due date or the daily goal.",
         ip_seance_theme: "“by theme” is the other door: you pick a theme yourself instead of letting the app build the session.",
@@ -16412,7 +16425,15 @@ const I18N = {
         flash_end_objectif_reste: "{n} more cards to reach today's goal.",
         mosaique_plafond: "The painting has moved as far as it can today. It picks up again tomorrow.",
         flash_recto: "Back to the front of the card",
-        legende_seance_niveau: "The A1–C1 pills only decide where NEW words come from. Your reviews come back from every level you have already worked, whichever one is selected.",
+        legende_seance_niveau: "The A1–C1 pills decide where NEW words come from. From lower levels, only the words you got wrong come back for review.",
+        niv_monte_titre: "You've started {n} words ({niveaux}). Do you already know them?",
+        niv_monte_titre_one: "You've started 1 word ({niveaux}). Do you already know it?",
+        niv_monte_oui: "Yes, I know them",
+        niv_monte_oui_one: "Yes, I know it",
+        niv_monte_garder: "Keep the ones I got wrong",
+        niv_monte_garder_one: "Keep it if I got it wrong",
+        niv_monte_ligne: "If you keep them, only the ones you got wrong will come back for review.",
+        niv_monte_ligne_one: "If you keep it, it will only come back for review if you got it wrong.",
         legende_objectif_quoi: "Today — the cards you judged (« Again » or « ✓ »).",
         legende_mosaique: "The painting — it starts as large squares of colour, and every card makes one of them finer, reviews included. Painter, year and title appear as you go. Tap it to enlarge.",
         legende_jours: "Days worked — the total number of days you did something. It never goes down, not even after a holiday.",
@@ -17937,7 +17958,7 @@ const I18N = {
         info_partie_accueil: "Ana ekranda",
         info_partie_ici: "Burada saklı",
         ip_partie_seance: "Bugünkü seansım",
-        ip_seance_niveaux: "A1'den C1'e seviyeler YENİ kelimelerin nereden geldiğine karar verir — tekrarlarına değil. Tekrarlar, hangi seviye görünürse görünsün, daha önce çalıştığın bütün seviyelerden gelir.",
+        ip_seance_niveaux: "A1'den C1'e seviyeler YENİ kelimelerin nereden geldiğine karar verir. Tekrarların seçilen seviyeden ve üstündekilerden gelir; daha alt bir seviyeden yalnızca yanlış yaptığın kelimeler döner.",
         ip_seance_commencer: "“Başla” seansı senin için kurar: önce yeniden görülme zamanı gelen kelimeler, sonra seçilen seviyeden yeni kelimeler, günde en fazla {n} tane. Seansın dörtte biri ({p}%) yeniye ayrılır; böylece birikmiş tekrar çok olsa bile seçtiğin seviye her zaman bir şeye karar verir.",
         ip_seance_gardes: "“Saklananlar” sandığını açar: “Sakla” ile oraya koyduğun kelimeler. İstediğin kadar dönebilirsin — orada yaptığın hiçbir şey bir tarihi ya da günlük hedefi değiştirmez.",
         ip_seance_theme: "“temaya göre” diğer kapıdır: seansı uygulamanın kurmasına bırakmak yerine temayı kendin seçersin.",
@@ -17957,7 +17978,15 @@ const I18N = {
         flash_end_objectif_reste: "Günlük hedefin için {n} kart kaldı.",
         mosaique_plafond: "Tablo bugünlük ilerleyebileceği kadar ilerledi. Yarın devam eder.",
         flash_recto: "Kartın ön yüzüne dön",
-        legende_seance_niveau: "A1–C1 düğmeleri yalnızca YENİ kelimelerin geldiği seviyeyi belirler. Tekrarların, hangisi seçili olursa olsun, çalıştığın tüm seviyelerden gelir.",
+        legende_seance_niveau: "A1–C1 düğmeleri YENİ kelimelerin nereden geldiğine karar verir. Alt seviyelerden yalnızca yanlış yaptığın kelimeler tekrara döner.",
+        niv_monte_titre: "{n} kelimeye başladın ({niveaux}). Bunları zaten biliyor musun?",
+        niv_monte_titre_one: "1 kelimeye başladın ({niveaux}). Bunu zaten biliyor musun?",
+        niv_monte_oui: "Evet, biliyorum",
+        niv_monte_oui_one: "Evet, biliyorum",
+        niv_monte_garder: "Yanlış yaptıklarımı tut",
+        niv_monte_garder_one: "Yanlış yaptıysam tut",
+        niv_monte_ligne: "Tutarsan, yalnızca yanlış yaptıkların tekrara döner.",
+        niv_monte_ligne_one: "Tutarsan, yalnızca yanlış yaptıysan tekrara döner.",
         legende_objectif_quoi: "Bugün — değerlendirdiğin kartlar.",
         legende_mosaique: "Tablo — iri renk kareleriyle başlar, her kart bunlardan birini inceltir, tekrarlar dahil. Ressam, yıl ve başlık yavaşça belirir. Büyütmek için dokun.",
         legende_jours: "Çalışılan gün — bir şeyler yaptığın günlerin toplamı. Tatilden sonra bile hiç azalmaz.",
@@ -20254,7 +20283,7 @@ const I18N = {
         info_partie_accueil: "На головному екрані",
         info_partie_ici: "Зберігається тут",
         ip_partie_seance: "Моє заняття на сьогодні",
-        ip_seance_niveaux: "Рівні від A1 до C1 вирішують, звідки беруться НОВІ слова — а не твої повторення. Повторення повертаються з усіх рівнів, які ти вже опрацював, хоч би який рівень був показаний.",
+        ip_seance_niveaux: "Рівні від A1 до C1 вирішують, звідки беруться НОВІ слова. Повторення приходять з обраного рівня і вищих; з нижчого рівня повертаються лише слова, у яких були помилки.",
         ip_seance_commencer: "«Почати» складає заняття за тебе: спершу слова, які час побачити знову, потім нові слова з обраного рівня, щонайбільше {n} на день. Чверть заняття ({p} %) лишається за новими словами, щоб обраний рівень завжди щось вирішував, навіть коли накопичилося багато.",
         ip_seance_gardes: "«Збережені» відкриває твою скриню: слова, які ти поклав туди через «Зберегти». Можеш крутитися там скільки завгодно — ніщо з того, що ти там робиш, не змінює ні терміну, ні денної мети.",
         ip_seance_theme: "«за темою» — інші двері: ти сам обираєш тему, замість того щоб застосунок складав заняття.",
@@ -20274,7 +20303,15 @@ const I18N = {
         flash_end_objectif_reste: "Ще {n} карток до денної мети.",
         mosaique_plafond: "Сьогодні картина просунулася максимально. Продовжить завтра.",
         flash_recto: "Повернутися на лицьовий бік картки",
-        legende_seance_niveau: "Позначки A1–C1 визначають лише, звідки беруться НОВІ слова. Повторення повертаються з усіх рівнів, які ти вже опрацьовував.",
+        legende_seance_niveau: "Позначки A1–C1 визначають, звідки беруться НОВІ слова. З нижчих рівнів на повторення повертаються лише слова, у яких були помилки.",
+        niv_monte_titre: "Розпочато слів: {n} ({niveaux}). Ти їх уже знаєш?",
+        niv_monte_titre_one: "Розпочато 1 слово ({niveaux}). Ти його вже знаєш?",
+        niv_monte_oui: "Так, я їх знаю",
+        niv_monte_oui_one: "Так, я його знаю",
+        niv_monte_garder: "Залиш ті, де були помилки",
+        niv_monte_garder_one: "Залиш, якщо була помилка",
+        niv_monte_ligne: "Якщо залишиш їх, на повторення повернуться лише ті, де були помилки.",
+        niv_monte_ligne_one: "Якщо залишиш його, воно повернеться на повторення лише тоді, коли була помилка.",
         legende_objectif_quoi: "Сьогодні — картки, які ти оцінив.",
         legende_mosaique: "Картина — вона починається з великих кольорових квадратів, і кожна картка робить один із них дрібнішим, разом із повтореннями. Художник, рік і назва з'являються поступово. Торкнися, щоб збільшити.",
         legende_jours: "Днів праці — загальна кількість днів, коли ти щось робив. Воно ніколи не зменшується, навіть після відпустки.",
@@ -21475,7 +21512,7 @@ const I18N = {
         info_partie_accueil: "در صفحهٔ خانه",
         info_partie_ici: "نگه‌داشته اینجا",
         ip_partie_seance: "جلسهٔ امروز من",
-        ip_seance_niveaux: "سطح‌های A1 تا C1 تعیین می‌کنند واژه‌های تازه از کجا بیایند — نه مرورهایت. مرورها از همهٔ سطح‌هایی که پیش‌تر کار کرده‌ای برمی‌گردند، هر سطحی که نشان داده شود.",
+        ip_seance_niveaux: "سطح‌های A1 تا C1 تعیین می‌کنند واژه‌های تازه از کجا بیایند. مرورهایت از سطح انتخاب‌شده و سطح‌های بالاتر می‌آیند؛ از سطح پایین‌تر فقط واژه‌هایی برمی‌گردند که اشتباهشان کرده‌ای.",
         ip_seance_commencer: "«شروع» جلسه را برایت می‌چیند: نخست واژه‌هایی که وقت دیدن دوباره‌شان است، سپس واژه‌های تازه از سطح انتخابی، حداکثر {n} تا در روز. یک‌چهارم جلسه ({p}٪) برای واژه‌های تازه کنار گذاشته می‌شود تا سطحی که برگزیده‌ای همیشه چیزی را تعیین کند، حتی وقتی عقب‌ماندگی زیاد است.",
         ip_seance_gardes: "«نگه‌داشته‌ها» صندوقت را باز می‌کند: واژه‌هایی که با «نگه‌داشتن» آنجا گذاشته‌ای. هر قدر بخواهی می‌توانی دور بزنی — هیچ‌کدام از کارهایت آنجا سررسیدی یا هدف روزانه را تغییر نمی‌دهد.",
         ip_seance_theme: "«بر پایهٔ موضوع» درِ دیگر است: خودت موضوع را برمی‌گزینی، به‌جای آنکه برنامه جلسه را بچیند.",
@@ -21495,7 +21532,15 @@ const I18N = {
         flash_end_objectif_reste: "{n} کارت دیگر تا هدف امروز.",
         mosaique_plafond: "تابلو امروز تا جای ممکن پیش رفت. فردا ادامه می‌یابد.",
         flash_recto: "بازگشت به روی کارت",
-        legende_seance_niveau: "دکمه‌های A1 تا C1 فقط تعیین می‌کنند واژه‌های نو از کدام سطح بیایند. مرورها از همهٔ سطح‌هایی که کار کرده‌ای برمی‌گردند.",
+        legende_seance_niveau: "دکمه‌های A1 تا C1 تعیین می‌کنند واژه‌های تازه از کجا بیایند. از سطح‌های پایین‌تر فقط واژه‌هایی که اشتباه کرده‌ای برای مرور برمی‌گردند.",
+        niv_monte_titre: "{n} واژه را شروع کرده‌ای ({niveaux}). آن‌ها را از قبل می‌دانی؟",
+        niv_monte_titre_one: "یک واژه را شروع کرده‌ای ({niveaux}). آن را از قبل می‌دانی؟",
+        niv_monte_oui: "بله، آن‌ها را می‌دانم",
+        niv_monte_oui_one: "بله، آن را می‌دانم",
+        niv_monte_garder: "آن‌هایی را که اشتباه کردم نگه دار",
+        niv_monte_garder_one: "اگر اشتباه کردم، نگهش دار",
+        niv_monte_ligne: "اگر نگهشان داری، فقط آن‌هایی که اشتباه کرده‌ای برای مرور برمی‌گردند.",
+        niv_monte_ligne_one: "اگر نگهش داری، فقط وقتی برای مرور برمی‌گردد که اشتباهش کرده باشی.",
         legende_objectif_quoi: "امروز — کارت‌هایی که داوری کرده‌ای.",
         legende_mosaique: "تابلو — با مربع‌های بزرگ رنگی آغاز می‌شود و هر کارت یکی از آن‌ها را ریزتر می‌کند، مرور هم حساب است. نام نقاش، سال و عنوان کم‌کم پدیدار می‌شوند. برای بزرگ‌نمایی روی آن بزن.",
         legende_jours: "روز کار — مجموع روزهایی که کاری کرده‌ای. هرگز کم نمی‌شود، حتی پس از تعطیلات.",
@@ -23082,7 +23127,7 @@ const I18N = {
         info_partie_accueil: "في الصفحة الرئيسية",
         info_partie_ici: "مرتَّب هنا",
         ip_partie_seance: "جلستي اليوم",
-        ip_seance_niveaux: "المستويات من A1 إلى C1 تحدّد من أين تأتي الكلمات الجديدة — لا مراجعاتك. فهذه تعود من كل المستويات التي عملت عليها، مهما كان المستوى المعروض.",
+        ip_seance_niveaux: "المستويات من A1 إلى C1 تحدّد من أين تأتي الكلمات الجديدة. تأتي مراجعاتك من المستوى المختار والمستويات الأعلى منه؛ أما من مستوى أدنى، فلا تعود إلا الكلمات التي أخطأت فيها.",
         ip_seance_commencer: "«ابدأ» يؤلّف الجلسة نيابةً عنك: أولاً الكلمات التي حان وقت مراجعتها، ثم كلمات جديدة من المستوى المختار، بحدّ أقصى {n} يومياً. ويبقى ربع الجلسة ({p} %) محجوزاً للجديد، كي يظلّ للمستوى المختار أثرٌ دائماً، حتى حين يكون التأخّر كبيراً.",
         ip_seance_gardes: "«المحفوظات» يفتح خزانتك: الكلمات التي وضعتها فيها بـ«احتفظ». يمكنك الدوران فيها كما تشاء — لا شيء مما تفعله هناك يغيّر موعداً ولا هدف اليوم.",
         ip_seance_theme: "«حسب الموضوع» هو الباب الآخر: تختار الموضوع بنفسك، بدل أن تدع التطبيق يؤلّف الجلسة.",
@@ -23102,7 +23147,15 @@ const I18N = {
         flash_end_objectif_reste: "تبقّت {n} بطاقات لبلوغ هدف اليوم.",
         mosaique_plafond: "تقدّمت اللوحة إلى أقصى ما يُسمح به اليوم. وستستأنف غداً.",
         flash_recto: "العودة إلى وجه البطاقة",
-        legende_seance_niveau: "النقاط من A1 إلى C1 لا تحدّد إلا مصدر الكلمات الجديدة. أما مراجعاتك فتعود من كل المستويات التي عملت عليها، مهما كان المختار.",
+        legende_seance_niveau: "النقاط من A1 إلى C1 تحدّد من أين تأتي الكلمات الجديدة. ومن المستويات الأدنى، لا تعود للمراجعة إلا الكلمات التي أخطأت فيها.",
+        niv_monte_titre: "عدد الكلمات التي بدأتها: {n} ({niveaux}). هل تعرفها من قبل؟",
+        niv_monte_titre_one: "لقد بدأت كلمة واحدة ({niveaux}). هل تعرفها من قبل؟",
+        niv_monte_oui: "نعم، أعرفها",
+        niv_monte_oui_one: "نعم، أعرفها",
+        niv_monte_garder: "احتفظ بالتي أخطأت فيها",
+        niv_monte_garder_one: "احتفظ بها إن أخطأت فيها",
+        niv_monte_ligne: "إن احتفظت بها، فلن تعود للمراجعة إلا الكلمات التي أخطأت فيها.",
+        niv_monte_ligne_one: "إن احتفظت بها، فلن تعود للمراجعة إلا إذا أخطأت فيها.",
         legende_objectif_quoi: "اليوم — البطاقات التي حكمت عليها («مرة أخرى» أو «✓»).",
         legende_mosaique: "اللوحة — تبدأ بمربّعات لونية كبيرة، وكل بطاقة تجعل واحداً منها أدقّ، بما فيها المراجعات. ويظهر الرسّام والسنة والعنوان تباعاً. المسها لتكبيرها.",
         legende_jours: "أيام العمل — مجموع الأيام التي فعلت فيها شيئاً. لا ينزل أبداً، ولو بعد إجازة.",
@@ -24276,7 +24329,7 @@ const I18N = {
         info_partie_accueil: "Na tela inicial",
         info_partie_ici: "Guardado aqui",
         ip_partie_seance: "Minha sessão do dia",
-        ip_seance_niveaux: "Os níveis A1 a C1 decidem de onde vêm as palavras NOVAS — não as suas revisões. Essas voltam de todos os níveis que você já trabalhou, seja qual for o nível mostrado.",
+        ip_seance_niveaux: "Os níveis A1 a C1 decidem de onde vêm as palavras NOVAS. Suas revisões vêm do nível escolhido e dos níveis acima; de um nível abaixo, só voltam as palavras que você errou.",
         ip_seance_commencer: "“Começar” monta a sessão para você: primeiro as palavras que está na hora de rever, depois palavras novas do nível escolhido, no máximo {n} por dia. Um quarto da sessão ({p} %) fica reservado para o novo, para que o nível escolhido sempre tenha peso, mesmo quando o atraso é grande.",
         ip_seance_gardes: "“Guardadas” abre o seu baú: as palavras que você colocou lá com “Guardar”. Você pode passar por elas quantas vezes quiser — nada do que você faz ali muda uma data nem a meta do dia.",
         ip_seance_theme: "“por tema” é a outra porta: você mesmo escolhe um tema, em vez de deixar o app montar a sessão.",
@@ -24296,7 +24349,15 @@ const I18N = {
         flash_end_objectif_reste: "Mais {n} cartas para a sua meta do dia.",
         mosaique_plafond: "O quadro já avançou o máximo por hoje. Ele continua amanhã.",
         flash_recto: "Voltar para a frente da carta",
-        legende_seance_niveau: "As bolinhas A1 a C1 só decidem de onde vêm as palavras NOVAS. Suas revisões voltam de todos os níveis já trabalhados, seja qual for o escolhido.",
+        legende_seance_niveau: "As bolinhas A1 a C1 decidem de onde vêm as palavras NOVAS. Dos níveis abaixo, só voltam para revisão as palavras que você errou.",
+        niv_monte_titre: "Você começou {n} palavras ({niveaux}). Já conhece essas palavras?",
+        niv_monte_titre_one: "Você começou 1 palavra ({niveaux}). Já conhece essa palavra?",
+        niv_monte_oui: "Sim, já conheço",
+        niv_monte_oui_one: "Sim, já conheço",
+        niv_monte_garder: "Guarde as que eu errei",
+        niv_monte_garder_one: "Guarde se eu errei",
+        niv_monte_ligne: "Se você guardar, só as que você errou voltarão para revisão.",
+        niv_monte_ligne_one: "Se você guardar, ela só voltará para revisão se você errou.",
         legende_objectif_quoi: "Hoje — as cartas que você avaliou (“De novo” ou “✓”).",
         legende_mosaique: "O quadro — ele começa em grandes quadrados de cor, e cada carta deixa um deles mais fino, revisões incluídas. O pintor, o ano e o título aparecem aos poucos. Toque nele para ampliar.",
         legende_jours: "Dias de estudo — o total de dias em que você fez alguma coisa. Ele nunca diminui, nem depois das férias.",
@@ -25880,7 +25941,7 @@ const I18N = {
         info_partie_accueil: "Na ekranie głównym",
         info_partie_ici: "Tutaj",
         ip_partie_seance: "Moja dzisiejsza sesja",
-        ip_seance_niveaux: "Poziomy od A1 do C1 decydują, skąd pochodzą NOWE słowa — nie twoje powtórki. Te wracają ze wszystkich poziomów, nad którymi już pracowałeś(-aś), niezależnie od pokazanego poziomu.",
+        ip_seance_niveaux: "Poziomy od A1 do C1 decydują, skąd pochodzą NOWE słowa. Powtórki pochodzą z wybranego poziomu i wyższych; z niższego poziomu wracają tylko słowa, w których był błąd.",
         ip_seance_commencer: "„Zacznij” układa sesję za ciebie: najpierw słowa, które czas powtórzyć, potem nowe słowa z wybranego poziomu, najwyżej {n} dziennie. Jedna czwarta sesji ({p} %) jest zarezerwowana dla nowych, żeby wybrany poziom zawsze miał znaczenie, nawet przy dużych zaległościach.",
         ip_seance_gardes: "„Zachowane” otwiera twoją skrzynię: słowa, które tam włożyłeś(-aś) przyciskiem „Zachowaj”. Możesz je przerabiać, ile chcesz — nic, co tam robisz, nie zmienia terminu ani dziennego celu.",
         ip_seance_theme: "„według tematu” to drugie wejście: sam(a) wybierasz temat, zamiast pozwolić aplikacji ułożyć sesję.",
@@ -25900,7 +25961,15 @@ const I18N = {
         flash_end_objectif_reste: "Do dziennego celu brakuje jeszcze kart: {n}.",
         mosaique_plafond: "Obraz posunął się dziś maksymalnie. Ruszy dalej jutro.",
         flash_recto: "Wróć na przód karty",
-        legende_seance_niveau: "Kropki od A1 do C1 decydują tylko o tym, skąd pochodzą NOWE słowa. Twoje powtórki wracają ze wszystkich poziomów, nad którymi już pracowałeś(-aś), niezależnie od wybranego.",
+        legende_seance_niveau: "Kropki od A1 do C1 decydują, skąd pochodzą NOWE słowa. Z niższych poziomów do powtórki wracają tylko słowa, w których był błąd.",
+        niv_monte_titre: "Rozpoczęte słowa: {n} ({niveaux}). Znasz je już?",
+        niv_monte_titre_one: "Rozpoczęte słowo: 1 ({niveaux}). Znasz je już?",
+        niv_monte_oui: "Tak, znam je",
+        niv_monte_oui_one: "Tak, znam je",
+        niv_monte_garder: "Zostaw te z błędami",
+        niv_monte_garder_one: "Zostaw, jeśli był błąd",
+        niv_monte_ligne: "Jeśli je zostawisz, do powtórki wrócą tylko te, w których był błąd.",
+        niv_monte_ligne_one: "Jeśli je zostawisz, wróci do powtórki tylko wtedy, gdy był błąd.",
         legende_objectif_quoi: "Dziś — karty, które oceniłeś(-aś) („Jeszcze raz” albo „✓”).",
         legende_mosaique: "Obraz — zaczyna się od dużych kolorowych kwadratów, a każda karta jeden z nich wyostrza, powtórki też. Malarz, rok i tytuł pojawiają się stopniowo. Dotknij, żeby powiększyć.",
         legende_jours: "Dni nauki — łączna liczba dni, w których coś zrobiłeś(-aś). Nigdy nie spada, nawet po wakacjach.",
@@ -27484,7 +27553,7 @@ const I18N = {
         info_partie_accueil: "На главном экране",
         info_partie_ici: "Здесь",
         ip_partie_seance: "Моё занятие на сегодня",
-        ip_seance_niveaux: "Уровни от A1 до C1 решают, откуда берутся НОВЫЕ слова, — но не твои повторения. Они приходят со всех уровней, над которыми ты уже работал(а), какой бы уровень ни был показан.",
+        ip_seance_niveaux: "Уровни от A1 до C1 решают, откуда берутся НОВЫЕ слова. Повторения приходят с выбранного уровня и уровней выше; с более низкого уровня возвращаются только слова, в которых были ошибки.",
         ip_seance_commencer: "«Начать» составляет занятие за тебя: сначала слова, которые пора повторить, потом новые слова выбранного уровня, не больше {n} в день. Четверть занятия ({p} %) всегда оставлена для нового, чтобы выбранный уровень всегда что-то решал, даже когда накопилось много долгов.",
         ip_seance_gardes: "«Отложенные» открывает твою копилку: слова, которые ты положил(а) туда кнопкой «Отложить». По ней можно ходить сколько угодно — ничто из того, что ты там делаешь, не меняет ни сроки, ни цель дня.",
         ip_seance_theme: "«по темам» — это другая дверь: ты сам(а) выбираешь тему, а не даёшь приложению составить занятие.",
@@ -27504,7 +27573,15 @@ const I18N = {
         flash_end_objectif_reste: "Ещё {n} карточек до цели дня.",
         mosaique_plafond: "Картина на сегодня продвинулась до предела. Завтра она продолжится.",
         flash_recto: "Вернуться к лицевой стороне карточки",
-        legende_seance_niveau: "Кнопки от A1 до C1 решают только, откуда берутся НОВЫЕ слова. Твои повторения приходят со всех уровней, над которыми ты уже работал(а), какой бы ни был выбран.",
+        legende_seance_niveau: "Кнопки от A1 до C1 решают, откуда берутся НОВЫЕ слова. С более низких уровней на повторение возвращаются только слова, в которых были ошибки.",
+        niv_monte_titre: "Начато слов: {n} ({niveaux}). Ты их уже знаешь?",
+        niv_monte_titre_one: "Начато 1 слово ({niveaux}). Ты его уже знаешь?",
+        niv_monte_oui: "Да, я их знаю",
+        niv_monte_oui_one: "Да, я его знаю",
+        niv_monte_garder: "Оставь те, где были ошибки",
+        niv_monte_garder_one: "Оставь, если была ошибка",
+        niv_monte_ligne: "Если оставить их, на повторение вернутся только те, где были ошибки.",
+        niv_monte_ligne_one: "Если оставить его, оно вернётся на повторение, только если была ошибка.",
         legende_objectif_quoi: "Сегодня — карточки, которые ты оценил(а) («Ещё раз» или «✓»).",
         legende_mosaique: "Картина — она начинается с крупных цветных квадратов, и каждая карточка делает один из них мельче, повторения тоже. Художник, год и название появляются постепенно. Нажми на неё, чтобы увеличить.",
         legende_jours: "Дни занятий — общее число дней, когда ты что-то делал(а). Оно никогда не уменьшается, даже после отпуска.",
@@ -29090,7 +29167,7 @@ const I18N = {
         info_partie_accueil: "Auf der Startseite",
         info_partie_ici: "Hier abgelegt",
         ip_partie_seance: "Meine Lerneinheit heute",
-        ip_seance_niveaux: "Die Niveaus A1 bis C1 bestimmen, woher die NEUEN Wörter kommen – nicht deine Wiederholungen. Die kommen aus allen Niveaus, die du schon bearbeitet hast, egal welches angezeigt ist.",
+        ip_seance_niveaux: "Die Niveaus A1 bis C1 bestimmen, woher die NEUEN Wörter kommen. Deine Wiederholungen kommen aus dem gewählten Niveau und den höheren; aus einem niedrigeren Niveau kommen nur die Wörter zurück, die du falsch hattest.",
         ip_seance_commencer: "„Starten“ stellt die Lerneinheit für dich zusammen: zuerst die Wörter, die wieder dran sind, dann neue Wörter aus dem gewählten Niveau, höchstens {n} am Tag. Ein Viertel der Lerneinheit ({p} %) bleibt dem Neuen vorbehalten, damit das gewählte Niveau immer etwas bestimmt, auch wenn der Rückstand groß ist.",
         ip_seance_gardes: "„Zurückgelegt“ öffnet deine Ablage: die Wörter, die du mit „Zurücklegen“ dort abgelegt hast. Du kannst dort so viel üben, wie du willst – nichts davon ändert eine Fälligkeit oder das Tagesziel.",
         ip_seance_theme: "„nach Thema“ ist die andere Tür: Du wählst selbst ein Thema, statt die App die Lerneinheit zusammenstellen zu lassen.",
@@ -29110,7 +29187,15 @@ const I18N = {
         flash_end_objectif_reste: "Noch {n} Karten bis zu deinem Tagesziel.",
         mosaique_plafond: "Das Gemälde ist für heute so weit wie möglich vorangekommen. Morgen geht es weiter.",
         flash_recto: "Zurück zur Vorderseite der Karte",
-        legende_seance_niveau: "Die Punkte A1 bis C1 bestimmen nur, woher die NEUEN Wörter kommen. Deine Wiederholungen kommen aus allen schon bearbeiteten Niveaus, egal welches gewählt ist.",
+        legende_seance_niveau: "Die Punkte A1 bis C1 bestimmen, woher die NEUEN Wörter kommen. Aus niedrigeren Niveaus kommen nur die Wörter zur Wiederholung zurück, die du falsch hattest.",
+        niv_monte_titre: "Du hast {n} Wörter angefangen ({niveaux}). Kennst du sie schon?",
+        niv_monte_titre_one: "Du hast 1 Wort angefangen ({niveaux}). Kennst du es schon?",
+        niv_monte_oui: "Ja, ich kenne sie",
+        niv_monte_oui_one: "Ja, ich kenne es",
+        niv_monte_garder: "Behalte die, die ich falsch hatte",
+        niv_monte_garder_one: "Behalte es, falls ich es falsch hatte",
+        niv_monte_ligne: "Wenn du sie behältst, kommen nur die zur Wiederholung zurück, die du falsch hattest.",
+        niv_monte_ligne_one: "Wenn du es behältst, kommt es nur zur Wiederholung zurück, wenn du es falsch hattest.",
         legende_objectif_quoi: "Heute – die Karten, die du bewertet hast („Nochmal“ oder „✓“).",
         legende_mosaique: "Das Gemälde – es beginnt als grobe Farbkacheln, und jede Karte verfeinert eine, Wiederholung eingeschlossen. Maler, Jahr und Titel erscheinen nach und nach. Tippe darauf, um es zu vergrößern.",
         legende_jours: "Lerntage – die Summe der Tage, an denen du etwas gemacht hast. Sie sinkt nie, auch nicht nach Ferien.",
@@ -30731,7 +30816,7 @@ const I18N = {
         info_partie_accueil: "En la pantalla de inicio",
         info_partie_ici: "Guardado aquí",
         ip_partie_seance: "Mi práctica de hoy",
-        ip_seance_niveaux: "Los niveles A1 a C1 deciden de dónde vienen las palabras NUEVAS — no tus repasos. Estos vuelven de todos los niveles que ya trabajaste, sea cual sea el nivel mostrado.",
+        ip_seance_niveaux: "Los niveles A1 a C1 deciden de dónde vienen las palabras NUEVAS. Tus repasos vienen del nivel elegido y de los superiores; de un nivel inferior, solo vuelven las palabras que fallaste.",
         ip_seance_commencer: "«Empezar» compone la práctica por ti: primero las palabras que toca volver a ver, luego palabras nuevas del nivel elegido, como máximo {n} al día. Una cuarta parte de la práctica ({p} %) queda reservada a lo nuevo, para que el nivel elegido siempre mande algo, incluso cuando el retraso es grande.",
         ip_seance_gardes: "«Apartadas» abre tu cofre: las palabras que pusiste ahí con «Apartar». Puedes recorrerlo tanto como quieras — nada de lo que hagas ahí cambia una fecha de repaso ni la meta del día.",
         ip_seance_theme: "«por tema» es la otra puerta: eliges tú un tema, en vez de dejar que la app componga la práctica.",
@@ -30751,7 +30836,15 @@ const I18N = {
         flash_end_objectif_reste: "Faltan {n} tarjetas para tu meta del día.",
         mosaique_plafond: "El cuadro avanzó al máximo por hoy. Seguirá mañana.",
         flash_recto: "Volver al anverso de la tarjeta",
-        legende_seance_niveau: "Los botones A1 a C1 solo deciden de dónde vienen las palabras NUEVAS. Tus repasos vuelven de todos los niveles ya trabajados, sea cual sea el elegido.",
+        legende_seance_niveau: "Los botones A1 a C1 deciden de dónde vienen las palabras NUEVAS. De los niveles inferiores, solo vuelven a repasarse las palabras que fallaste.",
+        niv_monte_titre: "Empezaste {n} palabras ({niveaux}). ¿Ya las conoces?",
+        niv_monte_titre_one: "Empezaste 1 palabra ({niveaux}). ¿Ya la conoces?",
+        niv_monte_oui: "Sí, ya las conozco",
+        niv_monte_oui_one: "Sí, ya la conozco",
+        niv_monte_garder: "Guarda las que fallé",
+        niv_monte_garder_one: "Guárdala si la fallé",
+        niv_monte_ligne: "Si las guardas, solo volverán a repasarse las que fallaste.",
+        niv_monte_ligne_one: "Si la guardas, solo volverá a repasarse si la fallaste.",
         legende_objectif_quoi: "Hoy — las tarjetas que juzgaste («Otra vez» o «✓»).",
         legende_mosaique: "El cuadro — empieza como grandes cuadrados de color, y cada tarjeta afina uno, repasos incluidos. El pintor, el año y el título aparecen poco a poco. Tócalo para ampliarlo.",
         legende_jours: "Días de práctica — el total de días en que hiciste algo. Nunca baja, ni siquiera después de unas vacaciones.",
@@ -33709,7 +33802,9 @@ function choisirNiveauDeclare(reponse){
     const niv = NIVEAU_DES_REPONSES[reponse];
     if(!niv) return;
     try{ localStorage.setItem(NIVEAU_DECLARE_KEY, reponse); }catch(e){}
-    fixerNiveauSeance(niv);
+    // v1113 : un choix de l'eleve -- un compte neuf n'a aucun mot commence,
+    // la question ne se pose donc que si ce reglage est refait plus tard.
+    fixerNiveauSeance(niv, true);
     document.querySelectorAll("[data-niveau-declare]").forEach(b =>
         b.classList.toggle("active", b.getAttribute("data-niveau-declare") === reponse));
     majVoyageBienvenue();
@@ -35864,10 +35959,7 @@ function composerSeanceHorsLigne(){
     const niveau = niveauSeance();
     const complet = accesComplet();
     const pool = complet ? paquetDuNiveau(niveau) : filtrerGratuit(paquetDuNiveau(niveau));
-    const tout = [];
-    NIVEAUX_CECR.forEach(n => {
-        tout.push.apply(tout, complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n)));
-    });
+    const tout = echeancesDeSeance(niveau, complet);   // v1113, la meme regle qu'en ligne
     const total = Math.max(HL_CARTES, tailleSeance());
     const demain = Date.now() + 86400000;
     let atteint = false;
@@ -36172,6 +36264,7 @@ async function recollerHorsLigne(){
             if(neuf) noterMotNeuf();
             if(!e.juste){
                 st.srsHits = 0;
+                st.rate = (st.rate || 0) + 1;   // v1113 : la trace de l'echec, voir motRate()
                 programmerEcheance(st, SRS_ENCORE_MINUTES);
             } else {
                 const reussites = st.srsHits || 0;
@@ -41157,6 +41250,20 @@ let cloudRestoreDone = false;
 function mergeWordState(a, b){
     if(!a) return b;
     if(!b) return a;
+    const w = etatLePlusAvance(a, b), autre = (w === a) ? b : a;
+    // v1113 : LES MARQUES DU CHANGEMENT DE NIVEAU NE SE PERDENT PAS A LA FUSION.
+    // « connu », « q » (question posee) et « rate » (echecs) viennent de l'un OU
+    // de l'autre appareil : l'etat le plus avance garde celles de l'autre, sinon
+    // un « Oui, je les connais » repondu sur le telephone renaitrait sur
+    // l'ordinateur, qui a fait plus de revisions.
+    if(!(autre.connu && !w.connu) && !(autre.q && !w.q) && !((autre.rate || 0) > (w.rate || 0))) return w;
+    const c = Object.assign({}, w);
+    if(autre.connu) c.connu = true;
+    if(autre.q) c.q = 1;
+    if((autre.rate || 0) > (c.rate || 0)) c.rate = autre.rate;
+    return c;
+}
+function etatLePlusAvance(a, b){
     const ra = a.reviews || 0, rb = b.reviews || 0;
     if(ra !== rb) return ra > rb ? a : b;
     if(!!a.mastered !== !!b.mastered) return a.mastered ? a : b;
@@ -46923,6 +47030,7 @@ function fermerFenetreDessus(){
     const video = document.getElementById("onboardingOverlay");
     if(video && video.classList.contains("show")){ closeOnboardingVideo(); return true; }
     if(document.getElementById("episodeVoile")){ fermerVoileEpisode(); return true; }
+    if(document.querySelector(".niveau-voile")){ fermerQuestionNiveau(); return true; }
     if(document.querySelector(".bilan-voile")){ fermerBilanSemaine(); return true; }
     const home = document.getElementById("home");
     if(VUE_CONTENU && home && home.classList.contains("active")){ quitterToutLeContenu(); return true; }
@@ -57548,7 +57656,7 @@ function choisirNiveauVocab(niv){
     // La carte affiche la ligne touchee (vocabVue) ; hors Premiers pas, un
     // niveau CECR reste aussi le niveau de la seance, comme depuis la v542.
     vocabVue = niv;
-    if(niv !== "PP" && !premiersPasEnCours()){ vocabVue = null; fixerNiveauSeance(niv); }
+    if(niv !== "PP" && !premiersPasEnCours()){ vocabVue = null; fixerNiveauSeance(niv, true); }
     majCarteVocab();
 }
 
@@ -57560,12 +57668,158 @@ function niveauSeance(){
     return "A1";
 }
 
-function fixerNiveauSeance(niv){
+// `parLUsager` : le niveau est choisi par l'eleve (pastille, carte du vocabulaire,
+// fin de l'A1 voyage). Seul ce cas pose la question de la montee (v1113) --
+// jamais la restauration nuage ni le niveau declare a l'inscription.
+function fixerNiveauSeance(niv, parLUsager){
     if(NIVEAUX_CECR.indexOf(niv) < 0) return;
+    const avant = niveauSeance();
     try{ localStorage.setItem(NIVEAU_SEANCE_KEY, niv); }catch(e){}
     // v905 : choisir un autre niveau arrete la revision en cours.
     try{ const r = lireRevoirNiveau(); if(r && r.n !== niv) ecrireRevoirNiveau(null); }catch(e){}
     majTuileSeance();
+    if(parLUsager && rangNiveauSeance(niv) > rangNiveauSeance(avant)){
+        try{ demanderMotsPlusBas(niv); }catch(e){}
+    }
+}
+
+// ============ LES MOTS D'UN NIVEAU PLUS BAS (v1113) ============
+// Jacques, 5 nov. 2026 (decisions/DECISIONS.md, « Changement de niveau ») :
+// passe de l'A1 au B1 en anglais, il voyait revenir « book » et « father » --
+// des revisions A1 dues, que la seance prend dans TOUS les niveaux. « S'il dit
+// qu'il connait deja, on ne lui presente pas dans la seance. S'il dit qu'il veut
+// les garder pour la revision, on garde seulement ceux qui ont rate. »
+//
+// LA REGLE, POUR LA SEANCE DU JOUR SEULEMENT (Mots au hasard et les themes ne
+// changent pas) : une seance du niveau L ramene les echeances de L et des
+// niveaux au-dessus comme avant ; d'un niveau plus bas, seulement les mots
+// rates au moins une fois. Un mot « connu » ne revient plus, a aucun niveau.
+// Sans reponse a la question, c'est la regle « garder » qui vaut.
+//
+// PREMIERS PAS COMPTE COMME UN NIVEAU SOUS L'A1, mais au meme rang : un debutant
+// en seance A1 n'est pas touche ; un eleve en B1 qui a feuillete Premiers pas ne
+// revoit que ce qu'il y a rate, et ces cartes comptent dans la question.
+const RANG_NIVEAU_SEANCE = { PP: 0, A1: 0, A2: 1, B1: 2, B2: 3, C1: 4 };
+function rangNiveauSeance(n){
+    return RANG_NIVEAU_SEANCE[n] !== undefined ? RANG_NIVEAU_SEANCE[n] : 0;
+}
+// RATE AU MOINS UNE FOIS. Les quatre chemins d'echec (« Encore », la scene, la
+// seance hors ligne, les exercices de la seance) comptent `rate` depuis la v1113.
+// Avant, rien ne le notait, mais l'historique le dit : un echec remet srsHits a
+// zero alors que reviews continue de monter, et la maitrise monte srsHits a 4
+// sans toucher a reviews. Un mot NON MAITRISE a donc ete rate si et seulement si
+// reviews > srsHits.
+// ⚠️ CE QUI EST PERDU, ACCEPTE (chef, 5 nov.) : un mot rate avant la v1113 puis
+// maitrise peut retomber a reviews <= srsHits (surtout si l'echec etait sa toute
+// premiere reponse, et apres ses entretiens). Il compte alors pour jamais rate et
+// ne revient pas d'un niveau plus bas : c'est un mot maitrise.
+function motRate(st){
+    return (st.rate || 0) > 0 || (st.reviews || 0) > (st.srsHits || 0);
+}
+// Les cartes du niveau `nivMot` que la seance du niveau `niveau` peut ramener.
+// Les cartes neuves passent : la seance ne prend le neuf que dans son niveau.
+function echeancesPermises(items, nivMot, niveau){
+    const plusBas = rangNiveauSeance(nivMot) < rangNiveauSeance(niveau);
+    return items.filter(it => {
+        const st = getWordState(it.themeId, it.index);
+        if(estNeuf(st)) return true;
+        if(st.connu) return false;
+        return !plusBas || motRate(st);
+    });
+}
+// Le corpus des echeances de la seance : tous les niveaux, passes par la regle.
+// Le SEUL endroit qui le construit -- la seance en ligne et la seance hors ligne.
+function echeancesDeSeance(niveau, complet){
+    const tout = [];
+    NIVEAUX_CECR.forEach(n => {
+        const p = complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n));
+        tout.push.apply(tout, echeancesPermises(p, n, niveau));
+    });
+    return tout;
+}
+// Les mots commences sous le niveau `niv` sur lesquels la question n'a pas
+// encore ete posee : { it, n } (n = niveau, « PP » pour Premiers pas).
+async function motsPlusBasCommences(niv){
+    const complet = accesComplet();
+    const r = rangNiveauSeance(niv);
+    const vus = new Set(), out = [];
+    const ajouter = (items, n) => items.forEach(it => {
+        const c = it.themeId + "|" + it.index;
+        if(vus.has(c)) return;
+        const st = getWordState(it.themeId, it.index);
+        if(estNeuf(st) || st.connu || st.q) return;
+        vus.add(c);
+        out.push({ it: it, n: n });
+    });
+    NIVEAUX_CECR.forEach(n => {
+        if(rangNiveauSeance(n) >= r) return;
+        ajouter(complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n)), n);
+    });
+    if(rangNiveauSeance("PP") < r){
+        try{
+            if(LANGUE_APPRISE !== "ja" && essaiActif("premiers_pas")){
+                await chargerPremiersPas();
+                ajouter(cartesPremiersPasVues(), "PP");
+            }
+        }catch(e){}
+    }
+    return out;
+}
+function fermerQuestionNiveau(){
+    const v = document.querySelector(".niveau-voile");
+    if(!v) return;
+    v.remove();
+    try{ synchroniserHistorique(); }catch(e){}
+}
+// La question, une fois par mot : chaque mot presente recoit `q` des que la
+// fenetre s'affiche. « Oui » ajoute `connu` ; « Garde… », le ✕ ou le voile ne
+// changent rien d'autre -- la regle « garder » vaut deja sans reponse.
+async function demanderMotsPlusBas(niv){
+    const liste = await motsPlusBasCommences(niv);
+    if(!liste.length) return;
+    liste.forEach(x => {
+        const st = getWordState(x.it.themeId, x.it.index);
+        st.q = 1;
+        setWordState(x.it.themeId, x.it.index, st);
+    });
+    const niveaux = ["PP"].concat(NIVEAUX_CECR)
+        .filter(n => liste.some(x => x.n === n))
+        .map(n => n === "PP" ? t("pp_badge") : n).join(" · ");
+    const un = liste.length === 1;
+    const creer = (tag, cls, txt) => { const e = document.createElement(tag); if(cls) e.className = cls; if(txt !== undefined) e.textContent = txt; return e; };
+    fermerQuestionNiveau();
+    const voile = creer("div", "bilan-voile niveau-voile");
+    voile.addEventListener("click", e => { if(e.target === voile) fermerQuestionNiveau(); });
+    const carte = creer("div", "bilan-carte");
+    const titre = tf(un ? "niv_monte_titre_one" : "niv_monte_titre", { n: liste.length, niveaux: niveaux });
+    carte.setAttribute("role", "dialog");
+    carte.setAttribute("aria-label", titre);
+    const x = creer("button", "bilan-fermer", "✕");
+    x.type = "button";
+    x.setAttribute("aria-label", t("abo_fermer"));
+    x.addEventListener("click", fermerQuestionNiveau);
+    carte.appendChild(x);
+    carte.appendChild(creer("h2", "bilan-titre niveau-titre", titre));
+    const oui = creer("button", "bilan-seance niveau-oui", t(un ? "niv_monte_oui_one" : "niv_monte_oui"));
+    oui.type = "button";
+    oui.addEventListener("click", () => {
+        liste.forEach(y => {
+            const st = getWordState(y.it.themeId, y.it.index);
+            st.connu = true;
+            setWordState(y.it.themeId, y.it.index, st);
+        });
+        fermerQuestionNiveau();
+        try{ majTuileSeance(); }catch(e){}
+    });
+    carte.appendChild(oui);
+    const garder = creer("button", "bilan-go large niveau-garder", t(un ? "niv_monte_garder_one" : "niv_monte_garder"));
+    garder.type = "button";
+    garder.addEventListener("click", fermerQuestionNiveau);
+    carte.appendChild(garder);
+    carte.appendChild(creer("p", "niveau-ligne", t(un ? "niv_monte_ligne_one" : "niv_monte_ligne")));
+    voile.appendChild(carte);
+    document.body.appendChild(voile);
+    try{ synchroniserHistorique(); }catch(e){}
 }
 
 // ============ REVOIR UN NIVEAU FINI (v905) ============
@@ -58740,6 +58994,7 @@ function revisionDeScene(d){
         let maitrise = false;
         if(!juste){
             st.srsHits = 0;
+            st.rate = (st.rate || 0) + 1;   // v1113 : la trace de l'echec, voir motRate()
             programmerEcheance(st, SRS_ENCORE_MINUTES);
         } else {
             const reussites = st.srsHits || 0;
@@ -60142,7 +60397,7 @@ function montrerCartePhrase(item){
         suite.classList.remove("hidden");
         suite.addEventListener("click", () => {
             const v = lireA1Voyage(); v.sf = true; ecrireA1Voyage(v);
-            try{ fixerNiveauSeance("A2"); }catch(e){}
+            try{ fixerNiveauSeance("A2", true); }catch(e){}
         }, { once: true, capture: true });
         try{ celebrateMastery(0, false); }catch(e){}
     } else if(item.forme === "pp_fin"){
@@ -61285,6 +61540,7 @@ function repondrePhrase(item, juste){
         let maitrise = false;
         if(!juste){
             st.srsHits = 0;
+            st.rate = (st.rate || 0) + 1;   // v1113 : la trace de l'echec, voir motRate()
             programmerEcheance(st, SRS_ENCORE_MINUTES);
         } else {
             const reussites = st.srsHits || 0;
@@ -63081,12 +63337,11 @@ async function ouvrirSeanceDuJour(sansScene){
     // Tous les niveaux pour les echeances, le niveau choisi pour le neuf.
     // En version gratuite aussi, les echeances viennent de tous les niveaux :
     // ce qu'on a appris pendant l'essai, ou que ce soit, continue de revenir.
-    const tout = [];
-    NIVEAUX_CECR.forEach(n => {
-        tout.push.apply(tout, complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n)));
-    });
-    // v829 : les flashcards de Premiers pas deja vues reviennent en revision.
-    try{ if(LANGUE_APPRISE !== "ja" && essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, cartesPremiersPasVues()); } }catch(e){}
+    // v1113 : d'un niveau plus bas, seulement les mots rates (echeancesDeSeance).
+    const tout = echeancesDeSeance(niveau, complet);
+    // v829 : les flashcards de Premiers pas deja vues reviennent en revision --
+    // v1113 : passees par la meme regle, Premiers pas au rang de l'A1.
+    try{ if(LANGUE_APPRISE !== "ja" && essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, echeancesPermises(cartesPremiersPasVues(), "PP", niveau)); } }catch(e){}
     // v862 (essai a1_voyage) : le neuf pris dans l'escale du jour au lieu de
     // tout l'A1. v864 : un compte neuf y part sans question.
     let av = null;
@@ -63331,7 +63586,7 @@ function majTuileSeance(){
                 const s = lirePremiersPas();
                 if(s.a !== false){ s.a = false; ecrirePremiersPas(s); }
             }
-            fixerNiveauSeance(niv);
+            fixerNiveauSeance(niv, true);
         });
         box.appendChild(b);
     });
@@ -64297,6 +64552,7 @@ function reviewAgain(){
     // rend plus couteux, pas moins.
     if(estNeuf(state)) noterMotNeuf();
     state.srsHits = 0;
+    state.rate = (state.rate || 0) + 1;   // v1113 : la trace de l'echec, voir motRate()
     setWordState(item.themeId, item.index, state);
     // v920 : le bilan de la semaine -- le mot tel qu'on le lisait, et son sens.
     try{
