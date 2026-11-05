@@ -129,6 +129,17 @@ Source : `visuel/transportes/transportes.py` (`LIEUX`, `LIEU_TXT`, `IMAGES`).
   rouge foncé, puis y remonte (même cadrage : `zug-ein` est une retouche de `zug-aus`).
 - **NOUVEAU — une rue résidentielle arborée** (Felix au volant d'une petite voiture grise) et **l'intérieur d'un
   avion** (Felix au hublot, l'aile et les nuages).
+### Les lieux du thème « Les vacances et le voyage » (thème illustré, 5 nov. 2026)
+Source : `visuel/vacances/vacances.py` (`IMAGES`, `REPRISES`). Trois voyages, hors de Berlin pour l'essentiel :
+- **La chambre d'Anna** = celle de « La journée » (lit blanc, table de chevet en bois et sa lampe, armoire en bois, fenêtre et
+  radiateur blancs) : elle y fait sa **petite valise à roulettes rouge foncé**, celle de la scène `flughafen` et du quai de gare des transports.
+- **Málaga** (Anna, en octobre) : la plage de la scène `strand` (recadrée), la place de la cathédrale (pierre claire, orangers), une rue
+  de la vieille ville et son étal de céramiques peintes. Anna en robe d'été et chapeau de paille ; à l'aéroport de Berlin, son manteau bleu marine et l'écharpe rouge.
+- **Hambourg** (Mark, un week-end de pluie) : l'hôtel de la scène `hotel` (recadrée), le train grandes lignes, le bateau du tour du port
+  (grues, Speicherstadt de brique rouge), une baraque à Fischbrötchen, un musée maritime, un café. Mark porte toujours le **manteau de
+  laine gris** de l'hôtel sur un pull bleu foncé, et son **sac à dos noir**.
+- **La mer Baltique** (Jan, Katrin, Ben, Mia, l'été dernier) : une maison blanche de bord de mer, **porte bleue**, roses grimpantes, la
+  mer derrière les dunes (l'appartement de vacances, `familia-wohnung`, référence de l'intérieur) ; la plage aux Strandkörbe.
 ### Le salon de Jan et Katrin (chez Ben et Mia) — thèmes « Où est le chat ? » et « La météo »
 - Maître : `visuel/gato/img/piece.png` (la pièce vide du chat Moritz ; copie dans
   `~/.wortando/meteo/ref/salon-jan-katrin.png`), webp publié `visuel/prototype/gato/piece.webp`. Toute image qui y
