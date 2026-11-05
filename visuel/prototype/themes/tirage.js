@@ -25,7 +25,8 @@ const Tirage = {
         clearTimeout(delai); window.removeEventListener("message", ecoute); fin(Array.isArray(d.etats) ? d.etats : null);
       }
       window.addEventListener("message", ecoute);
-      try{ window.parent.postMessage({source: "wortando-scene", type: "etats", mots: mots.map(m => ({mot: m.mot, genre: m.genre || null, cat: m.cat || null}))}, "*"); }
+      // « sens » (3 nov.) : la traduction de l'entree voulue, pour un mot a deux entrees au corpus (rico : delicieux / riche)
+      try{ window.parent.postMessage({source: "wortando-scene", type: "etats", mots: mots.map(m => ({mot: m.mot, genre: m.genre || null, cat: m.cat || null, sens: m.sens || null}))}, "*"); }
       catch(e){ clearTimeout(delai); fin(null); }
     });
   },

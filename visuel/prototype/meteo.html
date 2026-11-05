@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La météo et les saisons</title>
+<!--
+  « LA METEO ET LES SAISONS » (theme illustre, vague 2, 3 nov. 2026), en espagnol et en allemand. Une place de Berlin
+  (Prenzlauer Berg) sous huit temps -- la meme image retouchee, seul le temps change -- et six moments de saison
+  avec Anna, Ben et Mia. Ce qu'il enseigne : quel temps il fait (hace / esta / hay ; es ist / es gibt, jamais « es
+  macht »), la famille du mot (la lluvia, llueve ; der Regen, es regnet), les degres en lettres sur un thermometre
+  dessine (bajo cero, minus), le temps ou soi (hace frio / tengo frio ; es ist kalt / mir ist kalt), les saisons, ce
+  qu'on y fait, et les mois rattaches a leur saison ; en allemand, le verbe en deuxieme position (Heute regnet es).
+  Ce qui existait deja et qu'on ne double pas : la scene de l'hiver et le theme Vetements (aucune question sur un
+  vetement ici). Toute la donnee vient de visuel/meteo/meteo.py -> meteo/meteo.json : aucune phrase n'est ecrite ici.
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne » a
+  chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin.
+  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
+  variante=latam (la voix), r=<AUDIO_REVISION>. Le tirage suit les mots (themes/tirage.js).
+-->
+<style>
+:root{--fond1:#8FC1E8;--fond3:#D3E6F3;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --chaud:#D9542F;--froid:#2F78C4;--verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--tube:#E3E8EE;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --chaud:#FF8A65;--froid:#6FB2F2;--verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A;--tube:#2E4A5E}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (regle commune, 3 nov. 2026) : sur iPhone, un bouton fixe dans
+   un cadre dont le document deborde ne tombe pas au bas de l'ecran ; le contenu defile donc DANS le body. */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.trou{display:inline-block;min-width:56px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+/* une photo : 4:3 ; le thermometre de la decouverte dans le coin ; la gauche reste a gauche en arabe et en persan */
+.cadre{position:relative;width:100%;max-width:560px;margin:0 auto;direction:ltr;border-radius:16px;overflow:hidden;background:var(--carte);aspect-ratio:4/3}
+.cadre img{display:block;width:100%;height:100%;object-fit:cover}
+.cadre .degres{position:absolute;right:8px;top:8px;background:rgba(28,36,48,.72);color:#fff;font:900 14px var(--police);border-radius:999px;padding:4px 10px}
+/* le thermometre dessine (les degres, le ressenti) */
+.thermo{display:flex;justify-content:center;align-items:center;gap:18px;background:var(--carte);border-radius:16px;padding:10px;direction:ltr}
+.thermo svg{width:92px;height:200px;flex:0 0 auto}
+.thermo .valeur{font:900 44px var(--police);color:var(--encre);min-width:120px;text-align:center}
+.thermo input{width:100%}
+.rangee{display:grid;grid-template-columns:1fr 1fr;gap:8px;direction:ltr}
+.rangee.trois{grid-template-columns:1fr 1fr 1fr}
+.rangee button{border:3px solid transparent;border-radius:14px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block;position:relative;aspect-ratio:4/3}
+.rangee button img{display:block;width:100%;height:100%;object-fit:cover}
+.rangee button.th{aspect-ratio:auto;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;font:900 17px var(--police);color:var(--encre)}
+.rangee button.th svg{width:46px;height:110px}
+.rangee button.juste{border-color:var(--vert)} .rangee button.faux{border-color:var(--rouge)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix.colonne{flex-direction:column;align-items:stretch}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.choix.colonne button{border-radius:14px;text-align:left}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.ecoute{width:48px;height:48px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ecoute svg{width:24px;height:24px}
+.ecoute.grand{width:64px;height:64px;margin:0 auto} .ecoute.grand svg{width:32px;height:32px}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+.trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
+.retourMsg .mot{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
+.retourMsg .mot .ecoute{width:38px;height:38px} .retourMsg .mot .ecoute svg{width:19px;height:19px}
+.trad.faux{color:var(--rouge);font-style:italic}
+/* la decouverte : trois onglets (le temps, les degres, les saisons) */
+.onglets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;background:var(--carte);border-radius:999px;padding:4px}
+.onglets button{border:0;border-radius:999px;background:none;color:var(--gris);font:800 14px var(--police);padding:9px 4px;cursor:pointer}
+.onglets button.actif{background:var(--verre);color:var(--encre);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.dit{display:flex;align-items:center;gap:10px;background:var(--carte);border-radius:14px;padding:10px 12px}
+.dit .texte{flex:1;font-weight:800;font-size:17px;line-height:1.4}
+.puces{display:flex;flex-wrap:wrap;gap:7px;direction:ltr}
+.puces button{border:2px solid var(--bord);background:var(--carte);color:var(--encre);border-radius:12px;padding:7px 11px;font:700 14px var(--police);cursor:pointer}
+.puces button.choisi{border-color:var(--ambre);background:var(--verre)}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.5;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.regle b{color:var(--encre)}
+.regle .exemples{display:block;margin-top:6px;color:var(--encre);font-weight:700;text-align:left}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite{z-index:5000}
+.suite[hidden]{display:none}
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  display:flex;gap:10px;z-index:5000}
+.bas[hidden]{display:none}
+.bas button{flex:1;height:54px;border-radius:27px;font:800 16px var(--police);cursor:pointer;padding:0 10px}
+.bas .principal{border:0;color:#fff;background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28)}
+.bas .second{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+[lang]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<div class="bas" id="bas" hidden></div>
+<script src="themes/tirage.js?v=1"></script>
+<script src="themes/voix.js?v=2"></script>
+<script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=2"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// agrandir (themes/zoom.js) : un toucher sur la photo de la question ou de la decouverte, la loupe sur les images a choisir
+Zoom.init({direct: ".cadre img", loupe: ".rangee button:not(.th)", langue: LANGUE});
+// vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
+const NB = Q.get("seance") === "1" ? 6 : 20;
+
+const TEXTES = {
+  titre:      {fr:"La météo et les saisons", en:"Weather and seasons", tr:"Hava durumu ve mevsimler", uk:"Погода і пори року", fa:"آب‌وهوا و فصل‌ها", ar:"الطقس والفصول", pt:"O tempo e as estações", pl:"Pogoda i pory roku", ru:"Погода и времена года", de:"Das Wetter und die Jahreszeiten"},
+  intro:      {fr:"Touche un temps, un degré ou une saison : tu vois la phrase et tu l'entends.", en:"Tap a kind of weather, a temperature or a season: you see the sentence and hear it.", tr:"Bir hava durumuna, bir dereceye ya da bir mevsime dokun: cümleyi görür ve duyarsın.", uk:"Торкнися погоди, температури чи пори року: ти бачиш речення й чуєш його.", fa:"روی یک وضع هوا، یک دما یا یک فصل بزن: جمله را می‌بینی و می‌شنوی.", ar:"المس حالة طقس أو درجة حرارة أو فصلًا: ترى الجملة وتسمعها.", pt:"Toque em um tempo, uma temperatura ou uma estação: você vê a frase e a ouve.", pl:"Dotknij pogody, temperatury albo pory roku: widzisz zdanie i je słyszysz.", ru:"Нажми на погоду, температуру или время года: ты видишь фразу и слышишь её.", de:"Tippe auf ein Wetter, eine Temperatur oder eine Jahreszeit: Du siehst den Satz und hörst ihn."},
+  ongletTemps:{fr:"Le temps", en:"Weather", tr:"Hava", uk:"Погода", fa:"هوا", ar:"الطقس", pt:"O tempo", pl:"Pogoda", ru:"Погода", de:"Wetter"},
+  ongletDeg:  {fr:"Les degrés", en:"Degrees", tr:"Dereceler", uk:"Градуси", fa:"دما", ar:"الدرجات", pt:"Os graus", pl:"Stopnie", ru:"Градусы", de:"Grad"},
+  ongletSais: {fr:"Les saisons", en:"Seasons", tr:"Mevsimler", uk:"Пори року", fa:"فصل‌ها", ar:"الفصول", pt:"As estações", pl:"Pory roku", ru:"Времена года", de:"Jahreszeiten"},
+  regleEs:    {fr:"<b>hace</b> + un nom (calor, frío, sol, viento) · <b>está</b> + un adjectif (nublado, soleado) · <b>hay</b> + un nom (niebla, tormenta) · et deux verbes seuls : <b>llueve</b>, <b>nieva</b>.",
+               en:"<b>hace</b> + a noun (calor, frío, sol, viento) · <b>está</b> + an adjective (nublado, soleado) · <b>hay</b> + a noun (niebla, tormenta) · and two verbs on their own: <b>llueve</b>, <b>nieva</b>.",
+               tr:"<b>hace</b> + isim (calor, frío, sol, viento) · <b>está</b> + sıfat (nublado, soleado) · <b>hay</b> + isim (niebla, tormenta) · ve tek başına iki fiil: <b>llueve</b>, <b>nieva</b>.",
+               uk:"<b>hace</b> + іменник (calor, frío, sol, viento) · <b>está</b> + прикметник (nublado, soleado) · <b>hay</b> + іменник (niebla, tormenta) · і два дієслова самі по собі: <b>llueve</b>, <b>nieva</b>.",
+               fa:"<b>hace</b> + اسم (calor، frío، sol، viento) · <b>está</b> + صفت (nublado، soleado) · <b>hay</b> + اسم (niebla، tormenta) · و دو فعل به‌تنهایی: <b>llueve</b>، <b>nieva</b>.",
+               ar:"<b>hace</b> + اسم (calor، frío، sol، viento) · <b>está</b> + صفة (nublado، soleado) · <b>hay</b> + اسم (niebla، tormenta) · وفعلان وحدهما: <b>llueve</b>، <b>nieva</b>.",
+               pt:"<b>hace</b> + um substantivo (calor, frío, sol, viento) · <b>está</b> + um adjetivo (nublado, soleado) · <b>hay</b> + um substantivo (niebla, tormenta) · e dois verbos sozinhos: <b>llueve</b>, <b>nieva</b>.",
+               pl:"<b>hace</b> + rzeczownik (calor, frío, sol, viento) · <b>está</b> + przymiotnik (nublado, soleado) · <b>hay</b> + rzeczownik (niebla, tormenta) · i dwa czasowniki same: <b>llueve</b>, <b>nieva</b>.",
+               ru:"<b>hace</b> + существительное (calor, frío, sol, viento) · <b>está</b> + прилагательное (nublado, soleado) · <b>hay</b> + существительное (niebla, tormenta) · и два глагола сами по себе: <b>llueve</b>, <b>nieva</b>.",
+               de:"<b>hace</b> + Nomen (calor, frío, sol, viento) · <b>está</b> + Adjektiv (nublado, soleado) · <b>hay</b> + Nomen (niebla, tormenta) · und zwei Verben allein: <b>llueve</b>, <b>nieva</b>."},
+  regleDe:    {fr:"<b>es ist</b> + un adjectif (kalt, sonnig, windig) · <b>es gibt</b> + un nom (ein Gewitter) · <b>es regnet</b>, <b>es schneit</b> : des verbes. Jamais « es macht kalt » : c'est le français mot à mot.",
+               en:"<b>es ist</b> + an adjective (kalt, sonnig, windig) · <b>es gibt</b> + a noun (ein Gewitter) · <b>es regnet</b>, <b>es schneit</b>: verbs. Never “es macht kalt”.",
+               tr:"<b>es ist</b> + sıfat (kalt, sonnig, windig) · <b>es gibt</b> + isim (ein Gewitter) · <b>es regnet</b>, <b>es schneit</b>: fiiller. Asla “es macht kalt” değil.",
+               uk:"<b>es ist</b> + прикметник (kalt, sonnig, windig) · <b>es gibt</b> + іменник (ein Gewitter) · <b>es regnet</b>, <b>es schneit</b>: дієслова. Ніколи не «es macht kalt».",
+               fa:"<b>es ist</b> + صفت (kalt، sonnig، windig) · <b>es gibt</b> + اسم (ein Gewitter) · <b>es regnet</b>، <b>es schneit</b>: فعل‌اند. هرگز «es macht kalt» نه.",
+               ar:"<b>es ist</b> + صفة (kalt، sonnig، windig) · <b>es gibt</b> + اسم (ein Gewitter) · <b>es regnet</b>، <b>es schneit</b>: أفعال. لا تقل أبدًا «es macht kalt».",
+               pt:"<b>es ist</b> + um adjetivo (kalt, sonnig, windig) · <b>es gibt</b> + um substantivo (ein Gewitter) · <b>es regnet</b>, <b>es schneit</b>: verbos. Nunca “es macht kalt”.",
+               pl:"<b>es ist</b> + przymiotnik (kalt, sonnig, windig) · <b>es gibt</b> + rzeczownik (ein Gewitter) · <b>es regnet</b>, <b>es schneit</b>: czasowniki. Nigdy „es macht kalt”.",
+               ru:"<b>es ist</b> + прилагательное (kalt, sonnig, windig) · <b>es gibt</b> + существительное (ein Gewitter) · <b>es regnet</b>, <b>es schneit</b>: глаголы. Никогда не «es macht kalt».",
+               de:"<b>es ist</b> + Adjektiv · <b>es gibt</b> + Nomen · <b>es regnet</b>, <b>es schneit</b>: Verben."},
+  regleV2:    {fr:"Après « heute » ou « im Winter », le verbe reste en <b>deuxième</b> place : Heute <b>regnet</b> es.", en:"After “heute” or “im Winter”, the verb stays in <b>second</b> place: Heute <b>regnet</b> es.", tr:"“heute” ya da “im Winter”dan sonra fiil <b>ikinci</b> sırada kalır: Heute <b>regnet</b> es.", uk:"Після «heute» чи «im Winter» дієслово стоїть на <b>другому</b> місці: Heute <b>regnet</b> es.", fa:"بعد از «heute» یا «im Winter»، فعل در جای <b>دوم</b> می‌ماند: Heute <b>regnet</b> es.", ar:"بعد «heute» أو «im Winter» يبقى الفعل في المكان <b>الثاني</b>: Heute <b>regnet</b> es.", pt:"Depois de “heute” ou “im Winter”, o verbo fica em <b>segundo</b> lugar: Heute <b>regnet</b> es.", pl:"Po „heute” albo „im Winter” czasownik zostaje na <b>drugim</b> miejscu: Heute <b>regnet</b> es.", ru:"После «heute» или «im Winter» глагол стоит на <b>втором</b> месте: Heute <b>regnet</b> es.", de:"Nach „heute“ oder „im Winter“ steht das Verb an <b>zweiter</b> Stelle: Heute <b>regnet</b> es."},
+  regleDegEs: {fr:"<b>Hace</b> veinte grados. Sous zéro : <b>bajo cero</b>. Devant « grados » : veinti<b>ún</b>, treinta y <b>un</b>.", en:"<b>Hace</b> veinte grados. Below zero: <b>bajo cero</b>. Before “grados”: veinti<b>ún</b>, treinta y <b>un</b>.", tr:"<b>Hace</b> veinte grados. Sıfırın altı: <b>bajo cero</b>. “grados”tan önce: veinti<b>ún</b>, treinta y <b>un</b>.", uk:"<b>Hace</b> veinte grados. Нижче нуля: <b>bajo cero</b>. Перед «grados»: veinti<b>ún</b>, treinta y <b>un</b>.", fa:"<b>Hace</b> veinte grados. زیر صفر: <b>bajo cero</b>. پیش از «grados»: veinti<b>ún</b>، treinta y <b>un</b>.", ar:"<b>Hace</b> veinte grados. تحت الصفر: <b>bajo cero</b>. قبل «grados»: veinti<b>ún</b>، treinta y <b>un</b>.", pt:"<b>Hace</b> veinte grados. Abaixo de zero: <b>bajo cero</b>. Antes de “grados”: veinti<b>ún</b>, treinta y <b>un</b>.", pl:"<b>Hace</b> veinte grados. Poniżej zera: <b>bajo cero</b>. Przed „grados”: veinti<b>ún</b>, treinta y <b>un</b>.", ru:"<b>Hace</b> veinte grados. Ниже нуля: <b>bajo cero</b>. Перед «grados»: veinti<b>ún</b>, treinta y <b>un</b>.", de:"<b>Hace</b> veinte grados. Unter null: <b>bajo cero</b>. Vor „grados“: veinti<b>ún</b>, treinta y <b>un</b>."},
+  regleDegDe: {fr:"<b>Es sind</b> zwanzig Grad (« sind » : plusieurs degrés ; Grad ne prend pas de -e). Sous zéro : <b>minus</b> fünf Grad.", en:"<b>Es sind</b> zwanzig Grad (“sind”: several degrees; Grad takes no -e). Below zero: <b>minus</b> fünf Grad.", tr:"<b>Es sind</b> zwanzig Grad (“sind”: birden çok derece; Grad -e almaz). Sıfırın altı: <b>minus</b> fünf Grad.", uk:"<b>Es sind</b> zwanzig Grad («sind»: кілька градусів; Grad не має закінчення -e). Нижче нуля: <b>minus</b> fünf Grad.", fa:"<b>Es sind</b> zwanzig Grad («sind»: چند درجه؛ Grad پسوند ‎-e نمی‌گیرد). زیر صفر: <b>minus</b> fünf Grad.", ar:"<b>Es sind</b> zwanzig Grad (‏«sind»: عدة درجات، ولا تأخذ Grad ‏-e). تحت الصفر: <b>minus</b> fünf Grad.", pt:"<b>Es sind</b> zwanzig Grad (“sind”: vários graus; Grad não leva -e). Abaixo de zero: <b>minus</b> fünf Grad.", pl:"<b>Es sind</b> zwanzig Grad („sind”: kilka stopni; Grad nie ma końcówki -e). Poniżej zera: <b>minus</b> fünf Grad.", ru:"<b>Es sind</b> zwanzig Grad («sind»: несколько градусов; у Grad нет окончания -e). Ниже нуля: <b>minus</b> fünf Grad.", de:"<b>Es sind</b> zwanzig Grad. Unter null: <b>minus</b> fünf Grad."},
+  ressentiEs: {fr:"Le temps : <b>hace frío</b>. Toi : <b>tengo frío</b> (j'ai froid). <i>Soy fría</i> parle du caractère. Et pour dire que tu as chaud : <b>tengo calor</b>, jamais « estoy caliente », qui n'a pas ce sens.",
+               en:"The weather: <b>hace frío</b>. You: <b>tengo frío</b> (I'm cold). <i>Soy fría</i> is about character. And to say you're hot: <b>tengo calor</b>, never “estoy caliente”, which means something else.",
+               tr:"Hava: <b>hace frío</b>. Sen: <b>tengo frío</b> (üşüyorum). <i>Soy fría</i> karakterden söz eder. Sıcakladığını söylemek için: <b>tengo calor</b>; asla “estoy caliente” deme, başka bir anlamı var.",
+               uk:"Погода: <b>hace frío</b>. Ти: <b>tengo frío</b> (мені холодно). <i>Soy fría</i> — про характер. А щоб сказати, що тобі жарко: <b>tengo calor</b>, ніколи «estoy caliente» — це означає інше.",
+               fa:"هوا: <b>hace frío</b>. تو: <b>tengo frío</b> (سردم است). <i>Soy fría</i> دربارهٔ اخلاق است. و برای «گرمم است»: <b>tengo calor</b>، هرگز «estoy caliente» که معنای دیگری دارد.",
+               ar:"الطقس: <b>hace frío</b>. أنت: <b>tengo frío</b> (أشعر بالبرد). <i>Soy fría</i> عن الطبع. ولتقول إنك تشعر بالحرّ: <b>tengo calor</b>، ولا تقل أبدًا «estoy caliente» فمعناها مختلف.",
+               pt:"O tempo: <b>hace frío</b>. Você: <b>tengo frío</b> (estou com frio). <i>Soy fría</i> fala do caráter. E para dizer que está com calor: <b>tengo calor</b>, nunca “estoy caliente”, que tem outro sentido.",
+               pl:"Pogoda: <b>hace frío</b>. Ty: <b>tengo frío</b> (jest mi zimno). <i>Soy fría</i> mówi o charakterze. A żeby powiedzieć, że jest ci gorąco: <b>tengo calor</b>, nigdy „estoy caliente” — to znaczy coś innego.",
+               ru:"Погода: <b>hace frío</b>. Ты: <b>tengo frío</b> (мне холодно). <i>Soy fría</i> — о характере. А чтобы сказать, что тебе жарко: <b>tengo calor</b>, никогда не «estoy caliente» — это значит другое.",
+               de:"Das Wetter: <b>hace frío</b>. Du: <b>tengo frío</b> (mir ist kalt). <i>Soy fría</i> beschreibt den Charakter. Und wenn dir heiß ist: <b>tengo calor</b>, nie „estoy caliente“ – das bedeutet etwas anderes."},
+  ressentiDe: {fr:"Le temps : <b>es ist kalt</b>. Toi : <b>mir ist kalt</b> (j'ai froid), ni « ich habe kalt » (le français mot à mot), ni « ich bin kalt » (froid au toucher, ou une personne froide). Et « ich bin heiß » ne veut pas dire « j'ai chaud » : <b>mir ist heiß</b>.",
+               en:"The weather: <b>es ist kalt</b>. You: <b>mir ist kalt</b> (I'm cold), not “ich habe kalt”, not “ich bin kalt” (cold to the touch, or a cold person). And “ich bin heiß” doesn't mean “I'm hot”: <b>mir ist heiß</b>.",
+               tr:"Hava: <b>es ist kalt</b>. Sen: <b>mir ist kalt</b> (üşüyorum); ne “ich habe kalt” ne de “ich bin kalt” (dokununca soğuk ya da soğuk biri). “ich bin heiß” de “sıcakladım” demek değildir: <b>mir ist heiß</b>.",
+               uk:"Погода: <b>es ist kalt</b>. Ти: <b>mir ist kalt</b> (мені холодно), не «ich habe kalt» і не «ich bin kalt» (холодний на дотик або холодна людина). А «ich bin heiß» не означає «мені жарко»: <b>mir ist heiß</b>.",
+               fa:"هوا: <b>es ist kalt</b>. تو: <b>mir ist kalt</b> (سردم است)، نه «ich habe kalt» و نه «ich bin kalt» (سرد به لمس یا آدمی سرد). و «ich bin heiß» یعنی «گرمم است» نیست: <b>mir ist heiß</b>.",
+               ar:"الطقس: <b>es ist kalt</b>. أنت: <b>mir ist kalt</b> (أشعر بالبرد)، لا «ich habe kalt» ولا «ich bin kalt» (بارد الملمس أو شخص بارد). و«ich bin heiß» لا تعني «أشعر بالحرّ»: <b>mir ist heiß</b>.",
+               pt:"O tempo: <b>es ist kalt</b>. Você: <b>mir ist kalt</b> (estou com frio), nem “ich habe kalt”, nem “ich bin kalt” (frio ao toque, ou uma pessoa fria). E “ich bin heiß” não quer dizer “estou com calor”: <b>mir ist heiß</b>.",
+               pl:"Pogoda: <b>es ist kalt</b>. Ty: <b>mir ist kalt</b> (jest mi zimno), ani „ich habe kalt”, ani „ich bin kalt” (zimny w dotyku albo zimny człowiek). A „ich bin heiß” nie znaczy „jest mi gorąco”: <b>mir ist heiß</b>.",
+               ru:"Погода: <b>es ist kalt</b>. Ты: <b>mir ist kalt</b> (мне холодно), ни «ich habe kalt», ни «ich bin kalt» (холодный на ощупь или холодный человек). А «ich bin heiß» не значит «мне жарко»: <b>mir ist heiß</b>.",
+               de:"Das Wetter: <b>es ist kalt</b>. Du: <b>mir ist kalt</b>."},
+  hemisphere: {fr:"En Espagne, c'est l'hémisphère nord. En Argentine ou au Chili, c'est l'inverse : en julio es invierno.", en:"Spain is in the northern hemisphere. In Argentina or Chile it's the other way round: en julio es invierno.", tr:"İspanya kuzey yarımkürede. Arjantin ya da Şili'de tam tersi: en julio es invierno.", uk:"Іспанія — у північній півкулі. В Аргентині чи Чилі навпаки: en julio es invierno.", fa:"اسپانیا در نیمکرهٔ شمالی است. در آرژانتین یا شیلی برعکس است: en julio es invierno.", ar:"إسبانيا في نصف الكرة الشمالي. وفي الأرجنتين أو تشيلي العكس: en julio es invierno.", pt:"A Espanha fica no hemisfério norte. Na Argentina ou no Chile é o contrário: en julio es invierno.", pl:"Hiszpania leży na półkuli północnej. W Argentynie czy Chile jest odwrotnie: en julio es invierno.", ru:"Испания в Северном полушарии. В Аргентине или Чили наоборот: en julio es invierno.", de:"Spanien liegt auf der Nordhalbkugel. In Argentinien oder Chile ist es umgekehrt: en julio es invierno."},
+  imDe:       {fr:"Devant une saison ou un mois : <b>im</b> (in + dem) — im Sommer, im Juli.", en:"Before a season or a month: <b>im</b> (in + dem) — im Sommer, im Juli.", tr:"Bir mevsim ya da aydan önce: <b>im</b> (in + dem) — im Sommer, im Juli.", uk:"Перед порою року чи місяцем: <b>im</b> (in + dem) — im Sommer, im Juli.", fa:"پیش از فصل یا ماه: <b>im</b> (in + dem) — im Sommer، im Juli.", ar:"قبل الفصل أو الشهر: <b>im</b> (in + dem) — im Sommer، im Juli.", pt:"Antes de uma estação ou de um mês: <b>im</b> (in + dem) — im Sommer, im Juli.", pl:"Przed porą roku albo miesiącem: <b>im</b> (in + dem) — im Sommer, im Juli.", ru:"Перед временем года или месяцем: <b>im</b> (in + dem) — im Sommer, im Juli.", de:"Vor Jahreszeiten und Monaten: <b>im</b> — im Sommer, im Juli."},
+  quandPleut: {fr:"Quand il pleut", en:"When it rains", tr:"Yağmur yağınca", uk:"Коли йде дощ", fa:"وقتی باران می‌بارد", ar:"عندما تمطر", pt:"Quando chove", pl:"Kiedy pada", ru:"Когда идёт дождь", de:"Wenn es regnet"},
+  ecouter:    {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  commencer:  {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
+  temps:      {fr:"Regarde l'image : quel temps fait-il ?", en:"Look at the picture: what's the weather like?", tr:"Resme bak: hava nasıl?", uk:"Подивися на зображення: яка погода?", fa:"به تصویر نگاه کن: هوا چطور است؟", ar:"انظر إلى الصورة: كيف الطقس؟", pt:"Olhe a imagem: como está o tempo?", pl:"Spójrz na obrazek: jaka jest pogoda?", ru:"Посмотри на картинку: какая погода?", de:"Sieh dir das Bild an: Wie ist das Wetter?"},
+  cual:       {fr:"Lis la phrase et touche la bonne image.", en:"Read the sentence and tap the right picture.", tr:"Cümleyi oku ve doğru resme dokun.", uk:"Прочитай речення й торкнися потрібного зображення.", fa:"جمله را بخوان و روی تصویر درست بزن.", ar:"اقرأ الجملة والمس الصورة الصحيحة.", pt:"Leia a frase e toque na imagem certa.", pl:"Przeczytaj zdanie i dotknij właściwego obrazka.", ru:"Прочитай фразу и нажми на нужную картинку.", de:"Lies den Satz und tippe auf das richtige Bild."},
+  entendre:   {fr:"Écoute la phrase et touche la bonne image.", en:"Listen to the sentence and tap the right picture.", tr:"Cümleyi dinle ve doğru resme dokun.", uk:"Послухай речення й торкнися потрібного зображення.", fa:"جمله را گوش کن و روی تصویر درست بزن.", ar:"استمع إلى الجملة والمس الصورة الصحيحة.", pt:"Ouça a frase e toque na imagem certa.", pl:"Posłuchaj zdania i dotknij właściwego obrazka.", ru:"Послушай фразу и нажми на нужную картинку.", de:"Hör dir den Satz an und tippe auf das richtige Bild."},
+  vraifaux:   {fr:"Regarde l'image : vrai ou faux ?", en:"Look at the picture: true or false?", tr:"Resme bak: doğru mu, yanlış mı?", uk:"Подивися на зображення: правда чи ні?", fa:"به تصویر نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a imagem: verdadeiro ou falso?", pl:"Spójrz na obrazek: prawda czy fałsz?", ru:"Посмотри на картинку: правда или нет?", de:"Sieh dir das Bild an: richtig oder falsch?"},
+  hace:       {fr:"hace, está ou hay ? Regarde l'image.", en:"hace, está or hay? Look at the picture.", tr:"hace mı, está mı, hay mı? Resme bak.", uk:"hace, está чи hay? Подивися на зображення.", fa:"hace، está یا hay؟ به تصویر نگاه کن.", ar:"hace أم está أم hay؟ انظر إلى الصورة.", pt:"hace, está ou hay? Olhe a imagem.", pl:"hace, está czy hay? Spójrz na obrazek.", ru:"hace, está или hay? Посмотри на картинку.", de:"hace, está oder hay? Sieh dir das Bild an."},
+  gibt:       {fr:"Choisis le bon verbe. Regarde l'image.", en:"Choose the right verb. Look at the picture.", tr:"Doğru fiili seç. Resme bak.", uk:"Обери правильне дієслово. Подивися на зображення.", fa:"فعل درست را انتخاب کن. به تصویر نگاه کن.", ar:"اختر الفعل الصحيح. انظر إلى الصورة.", pt:"Escolha o verbo certo. Olhe a imagem.", pl:"Wybierz właściwy czasownik. Spójrz na obrazek.", ru:"Выбери правильный глагол. Посмотри на картинку.", de:"Wähle das richtige Verb. Sieh dir das Bild an."},
+  famille:    {fr:"Le nom, le verbe ou l'adjectif ? Choisis la bonne forme.", en:"The noun, the verb or the adjective? Choose the right form.", tr:"İsim mi, fiil mi, sıfat mı? Doğru biçimi seç.", uk:"Іменник, дієслово чи прикметник? Обери правильну форму.", fa:"اسم، فعل یا صفت؟ شکل درست را انتخاب کن.", ar:"الاسم أم الفعل أم الصفة؟ اختر الصيغة الصحيحة.", pt:"O substantivo, o verbo ou o adjetivo? Escolha a forma certa.", pl:"Rzeczownik, czasownik czy przymiotnik? Wybierz właściwą formę.", ru:"Существительное, глагол или прилагательное? Выбери правильную форму.", de:"Nomen, Verb oder Adjektiv? Wähle die richtige Form."},
+  degres:     {fr:"Lis le thermomètre : combien de degrés ?", en:"Read the thermometer: how many degrees?", tr:"Termometreyi oku: kaç derece?", uk:"Подивися на термометр: скільки градусів?", fa:"دماسنج را بخوان: چند درجه است؟", ar:"اقرأ مقياس الحرارة: كم درجة؟", pt:"Leia o termômetro: quantos graus?", pl:"Odczytaj termometr: ile stopni?", ru:"Посмотри на термометр: сколько градусов?", de:"Lies das Thermometer ab: Wie viel Grad sind es?"},
+  ressenti:   {fr:"Lis la température : quel temps fait-il ?", en:"Read the temperature: what's the weather like?", tr:"Sıcaklığı oku: hava nasıl?", uk:"Прочитай температуру: яка погода?", fa:"دما را بخوان: هوا چطور است؟", ar:"اقرأ درجة الحرارة: كيف الطقس؟", pt:"Leia a temperatura: como está o tempo?", pl:"Przeczytaj temperaturę: jaka jest pogoda?", ru:"Прочитай температуру: какая погода?", de:"Lies die Temperatur: Wie ist das Wetter?"},
+  moiFroid:   {fr:"{q} a froid. Que dit {q} ?", en:"{q} is cold. What does {q} say?", tr:"{q} üşüyor. {q} ne der?", uk:"{q} холодно. Що каже {q}?", fa:"{q} سردش است. {q} چه می‌گوید؟", ar:"{q} يشعر بالبرد. ماذا يقول {q}؟", pt:"{q} está com frio. O que {q} diz?", pl:"{q} jest zimno. Co mówi {q}?", ru:"{q} холодно. Что говорит {q}?", de:"{q} ist kalt. Was sagt {q}?"},
+  moiChaud:   {fr:"{q} a chaud. Que dit {q} ?", en:"{q} is hot. What does {q} say?", tr:"{q} sıcaklıyor. {q} ne der?", uk:"{q} жарко. Що каже {q}?", fa:"{q} گرمش است. {q} چه می‌گوید؟", ar:"{q} يشعر بالحرّ. ماذا يقول {q}؟", pt:"{q} está com calor. O que {q} diz?", pl:"{q} jest gorąco. Co mówi {q}?", ru:"{q} жарко. Что говорит {q}?", de:"{q} ist heiß. Was sagt {q}?"},
+  dehorsFroid:{fr:"{q} parle du temps : il fait froid dehors. Que dit {q} ?", en:"{q} is talking about the weather: it's cold outside. What does {q} say?", tr:"{q} havadan söz ediyor: dışarısı soğuk. {q} ne der?", uk:"{q} говорить про погоду: надворі холодно. Що каже {q}?", fa:"{q} دربارهٔ هوا حرف می‌زند: بیرون سرد است. {q} چه می‌گوید؟", ar:"{q} يتحدث عن الطقس: الجو بارد في الخارج. ماذا يقول {q}؟", pt:"{q} fala do tempo: está frio lá fora. O que {q} diz?", pl:"{q} mówi o pogodzie: na dworze jest zimno. Co mówi {q}?", ru:"{q} говорит о погоде: на улице холодно. Что говорит {q}?", de:"{q} spricht über das Wetter: Draußen ist es kalt. Was sagt {q}?"},
+  dehorsChaud:{fr:"{q} parle du temps : il fait chaud dehors. Que dit {q} ?", en:"{q} is talking about the weather: it's hot outside. What does {q} say?", tr:"{q} havadan söz ediyor: dışarısı sıcak. {q} ne der?", uk:"{q} говорить про погоду: надворі жарко. Що каже {q}?", fa:"{q} دربارهٔ هوا حرف می‌زند: بیرون گرم است. {q} چه می‌گوید؟", ar:"{q} يتحدث عن الطقس: الجو حار في الخارج. ماذا يقول {q}؟", pt:"{q} fala do tempo: está calor lá fora. O que {q} diz?", pl:"{q} mówi o pogodzie: na dworze jest gorąco. Co mówi {q}?", ru:"{q} говорит о погоде: на улице жарко. Что говорит {q}?", de:"{q} spricht über das Wetter: Draußen ist es heiß. Was sagt {q}?"},
+  saison:     {fr:"Regarde l'image : quelle saison est-ce ?", en:"Look at the picture: which season is it?", tr:"Resme bak: hangi mevsim?", uk:"Подивися на зображення: яка це пора року?", fa:"به تصویر نگاه کن: کدام فصل است؟", ar:"انظر إلى الصورة: أيّ فصل هذا؟", pt:"Olhe a imagem: que estação é?", pl:"Spójrz na obrazek: jaka to pora roku?", ru:"Посмотри на картинку: какое это время года?", de:"Sieh dir das Bild an: Welche Jahreszeit ist das?"},
+  moisSaison: {fr:"Choisis la bonne saison.", en:"Choose the right season.", tr:"Doğru mevsimi seç.", uk:"Обери правильну пору року.", fa:"فصل درست را انتخاب کن.", ar:"اختر الفصل الصحيح.", pt:"Escolha a estação certa.", pl:"Wybierz właściwą porę roku.", ru:"Выбери правильное время года.", de:"Wähle die richtige Jahreszeit."},
+  moisPhoto:  {fr:"Regarde l'image : quel mois peut-il être ?", en:"Look at the picture: which month could it be?", tr:"Resme bak: hangi ay olabilir?", uk:"Подивися на зображення: який це може бути місяць?", fa:"به تصویر نگاه کن: کدام ماه می‌تواند باشد؟", ar:"انظر إلى الصورة: أيّ شهر يمكن أن يكون؟", pt:"Olhe a imagem: que mês pode ser?", pl:"Spójrz na obrazek: jaki to może być miesiąc?", ru:"Посмотри на картинку: какой это может быть месяц?", de:"Sieh dir das Bild an: Welcher Monat kann das sein?"},
+  moisMois:   {fr:"Choisis le bon mois.", en:"Choose the right month.", tr:"Doğru ayı seç.", uk:"Обери правильний місяць.", fa:"ماه درست را انتخاب کن.", ar:"اختر الشهر الصحيح.", pt:"Escolha o mês certo.", pl:"Wybierz właściwy miesiąc.", ru:"Выбери правильный месяц.", de:"Wähle den richtigen Monat."},
+  act:        {fr:"Regarde l'image : que se passe-t-il ?", en:"Look at the picture: what's happening?", tr:"Resme bak: ne oluyor?", uk:"Подивися на зображення: що відбувається?", fa:"به تصویر نگاه کن: چه خبر است؟", ar:"انظر إلى الصورة: ماذا يحدث؟", pt:"Olhe a imagem: o que está acontecendo?", pl:"Spójrz na obrazek: co się dzieje?", ru:"Посмотри на картинку: что происходит?", de:"Sieh dir das Bild an: Was passiert?"},
+  actVerbe:   {fr:"Choisis la bonne forme du verbe.", en:"Choose the right form of the verb.", tr:"Fiilin doğru biçimini seç.", uk:"Обери правильну форму дієслова.", fa:"شکل درست فعل را انتخاب کن.", ar:"اختر الصيغة الصحيحة للفعل.", pt:"Escolha a forma certa do verbo.", pl:"Wybierz właściwą formę czasownika.", ru:"Выбери правильную форму глагола.", de:"Wähle die richtige Form des Verbs."},
+  v2:         {fr:"Quelle phrase est correcte ?", en:"Which sentence is correct?", tr:"Hangi cümle doğru?", uk:"Яке речення правильне?", fa:"کدام جمله درست است؟", ar:"أيّ جملة صحيحة؟", pt:"Qual frase está correta?", pl:"Które zdanie jest poprawne?", ru:"Какое предложение правильное?", de:"Welcher Satz ist richtig?"},
+  choix:      {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
+  reecouter:  {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
+  // pour avancer, « Continuer », jamais « Suivant » (Jacques, 3 nov.) : les noms de review_continuer d'index.html
+  suivant:    {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  terminer:   {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:      {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:      {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  retourAria: {fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- la donnee (meteo.json, fabrique par visuel/meteo/meteo.py) ----------
+let D = null;
+const L = APPRENDRE, DE_APP = APPRENDRE === "de";
+const E = cle => D.enonces[L][cle];
+const IMG = () => Object.keys(D.images);
+const PLACES = () => IMG().filter(i => !D.images[i].act);
+const vrai = (i, f) => D.images[i].vrais.includes(f);
+// un fait est FAUX pour une image s'il n'est ni vrai ni douteux : seul un fait faux sert de leurre
+const faux = (i, f) => !vrai(i, f) && !D.images[i].douteux.includes(f);
+const phrasesFait = f => D.faits[f][L];
+const premiere = f => phrasesFait(f)[0][0];
+// la phrase entiere traduite en francais, anglais, portugais (et en allemand pour qui apprend l'espagnol) ; ailleurs,
+// le mot teste et sa traduction tiree du corpus (gloses)
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+function tradPhrase(p){
+  if (!PHRASE_TRADUITE || !p) return null;
+  const t = D.trad[L];
+  if (t[p] && t[p][LANGUE]) return t[p][LANGUE];
+  // deux phrases a la suite (« Hace treinta grados. Hace calor. ») : leurs deux traductions
+  const parts = p.split(/(?<=\.) /);
+  if (parts.length > 1 && parts.every(x => t[x] && t[x][LANGUE])) return parts.map(x => t[x][LANGUE]).join(" ");
+  return null;
+}
+const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
+const glose = m => { const g = (D.gloses[L] || {})[m] || {}; return LANGUE === APPRENDRE ? "" : (g[LANGUE] || g.fr || ""); };
+
+// ---------- la voix : le fichier enregistre s'il existe, sinon le telephone (themes/voix.js) ----------
+let dire = t => Voix.dire(t);
+const taire = () => Voix.arreter();
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+function textesAVoix(){ return D ? Object.keys(D.sons[L]) : []; }
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const uniques = a => a.filter((x, i) => a.indexOf(x) === i);
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
+// en persan et en arabe, chaque passage en lettres latines s'isole, sinon l'algorithme bidi en retourne les mots
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.split(/(<[^>]+>)/).map(x => x.charAt(0) === "<" ? x
+  : x.replace(/[A-Za-zÀ-ÿñÑßäöüÄÖÜ¡¿«»„“?]+(?:[ +=,.:]+[A-Za-zÀ-ÿñÑßäöüÄÖÜ¡¿«»„“?]+)*/g, m => '<span dir="ltr">' + m + '</span>')).join("");
+
+// LES PICTOGRAMMES : tant qu'une photo manque (ou si elle ne charge pas), un dessin des faits de l'image
+function pictogramme(id){
+  const im = D.images[id] || {vrais: []}, v = f => im.vrais.includes(f);
+  const nuit = v("tormenta"), gris = v("nublado") || v("lluvia") || v("nieve") || v("niebla");
+  const ciel = nuit ? "#3B4252" : gris ? "#B7C0CB" : im.saison === "otono" ? "#E9C27A" : "#7EC3F0";
+  let s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="' + ciel + '"/>'
+    + '<rect y="220" width="400" height="80" fill="' + (im.saison === "invierno" || v("nieve") ? "#F4F7FA" : im.saison === "otono" ? "#C98A3C" : "#7DBB6A") + '"/>';
+  if (v("sol")) s += '<circle cx="300" cy="80" r="40" fill="#FFD23F"/>';
+  if (gris || v("viento") || nuit) s += '<g fill="' + (nuit ? "#262B36" : "#EEF2F6") + '"><ellipse cx="160" cy="90" rx="90" ry="38"/><ellipse cx="230" cy="75" rx="70" ry="34"/></g>';
+  if (v("lluvia")) for (let i = 0; i < 12; i++) s += '<line x1="' + (90 + i * 20) + '" y1="135" x2="' + (80 + i * 20) + '" y2="165" stroke="#2F78C4" stroke-width="4" stroke-linecap="round"/>';
+  if (v("nieve")) for (let i = 0; i < 14; i++) s += '<circle cx="' + (40 + (i * 53) % 330) + '" cy="' + (130 + (i * 37) % 80) + '" r="5" fill="#fff"/>';
+  if (v("viento")) s += '<g stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"><path d="M40 170h180c30 0 30-30 5-30"/><path d="M60 195h220c30 0 30 30 5 30"/></g>';
+  if (v("niebla")) for (let i = 0; i < 4; i++) s += '<rect x="20" y="' + (120 + i * 30) + '" width="360" height="12" rx="6" fill="#fff" opacity=".8"/>';
+  if (v("tormenta")) s += '<path d="M200 120l-30 60h25l-20 50 50-70h-25l20-40z" fill="#FFD23F"/>';
+  if (im.act) s += '<g fill="#1C2430" opacity=".8"><circle cx="170" cy="200" r="12"/><rect x="160" y="214" width="20" height="40" rx="8"/><circle cx="220" cy="210" r="9"/><rect x="212" y="221" width="16" height="30" rx="7"/></g>';
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(s + "</svg>");
+}
+const imgSrc = i => "meteo/" + i + ".webp";
+const imgTag = (i, extra) => '<img alt="" src="' + imgSrc(i) + '" data-id="' + i + '"' + (extra || "") + ' onerror="this.onerror=null;this.src=pictogramme(this.dataset.id)">';
+const photo = (i, degres) => '<div class="cadre">' + imgTag(i, ' id="photo"') + (degres ? '<span class="degres">' + D.images[i].temp + ' °C</span>' : "") + '</div>';
+// LE THERMOMETRE dessine : de -10 a 40 degres, le rouge au chaud, le bleu au froid
+function thermometre(t){
+  const y = v => 196 - (Math.max(-10, Math.min(40, v)) + 10) * 3.4, c = t >= 15 ? "var(--chaud)" : t >= 5 ? "var(--ambre)" : "var(--froid)";
+  let g = "";
+  for (let v = -10; v <= 40; v += 10) g += '<line x1="58" x2="68" y1="' + y(v) + '" y2="' + y(v) + '" stroke="var(--gris)" stroke-width="2"/><text x="72" y="' + (y(v) + 5) + '" font-size="13" font-weight="700" fill="var(--gris)">' + v + '</text>';
+  return '<svg viewBox="0 0 100 240" aria-hidden="true"><rect x="34" y="18" width="20" height="186" rx="10" fill="var(--tube)"/>'
+    + '<rect x="39" y="' + y(t) + '" width="10" height="' + (206 - y(t)) + '" rx="5" fill="' + c + '"/><circle cx="44" cy="214" r="18" fill="' + c + '"/>'
+    + '<line x1="34" x2="54" y1="' + y(0) + '" y2="' + y(0) + '" stroke="var(--encre)" stroke-width="1.5" stroke-dasharray="3 2"/>' + g + '</svg>';
+}
+const degresTxt = t => (t > 0 ? "+" : t < 0 ? "−" : "") + Math.abs(t) + " °C";
+const boiteThermo = t => '<div class="thermo">' + thermometre(t) + '<div class="valeur">' + degresTxt(t) + '</div></div>';
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+
+let file = [], rang = 0, bons = 0, repondu = false;
+// LE MOT DE LA QUESTION (regle 3, 3 nov. : « un mot appris compte partout ») : juger() l'envoie (« reponse »), l'app
+// fait avancer sa carte (revisionDeScene). Un nom : {mot: "lluvia", genre: "la"} ; un adjectif, un verbe : cat.
+let motQ = null, tradQ = null, choixQ = null;
+let MOTS = null;
+function motsDuTheme(){
+  if (MOTS) return MOTS;
+  MOTS = Object.keys(D.mots[L]).map(k => { const g = D.mots[L][k];
+    return (g === "adjectif" || g === "verbe") ? {mot: k, cat: g} : {mot: k, genre: g}; });
+  return MOTS;
+}
+const motDe = k => motsDuTheme().find(m => m.mot === k) || {mot: k};
+const motObj = m => ({mot: m.mot, genre: m.genre || null, cat: m.cat || null});
+// la question vise le mot w s'il est donne, sinon le mot k de l'item choisi
+function viser(w, k){ motQ = motObj(w || motDe(k)); }
+const accepte = (w, mots) => !w || mots.includes(w.mot);
+// le mot montre sous la reponse : « el calor », « nublado », « llover », et sa traduction (le corpus)
+function montreDe(m){
+  if (!m) return null;
+  return {aff: m.genre ? m.genre + " " + m.mot : m.mot, sens: glose(m.mot)};
+}
+
+// LE MAUVAIS CHOIX TRADUIT (regle commune des themes, 3 nov.) : « Tu as choisi : Nieva. — Il neige. » Une image
+// touchee : sa phrase. Une phrase : sa traduction (fr, en, pt, de pour l'espagnol), ailleurs la glose de son mot. Un
+// mot du corpus : sa glose. « Soy fría », « Ich habe kalt » : ce que ca veut dire, ou que ca ne se dit pas. Un verbe
+// conjugue de travers, hace / ist : rien a traduire.
+let MOT_DE_PHRASE = null;
+function motDePhrase(p){
+  if (!MOT_DE_PHRASE){
+    MOT_DE_PHRASE = {};
+    Object.values(D.faits).forEach(f => f[L].forEach(([ph, k]) => { MOT_DE_PHRASE[ph] = k; }));
+    Object.values(D.activites).forEach(a => { MOT_DE_PHRASE[a[L].phrase] = a[L].mots[0]; });
+    Object.values(D.bandePhrase[L]).forEach(([ph, k]) => { MOT_DE_PHRASE[ph] = k; });
+    Object.keys(D.saisonPhrase).forEach(s => { MOT_DE_PHRASE[D.saisonPhrase[s][L]] = D.saisons[s][DE_APP ? 1 : 0]; });
+  }
+  return MOT_DE_PHRASE[p] || null;
+}
+function choixTraduit(c){
+  if (!c || LANGUE === APPRENDRE) return null;
+  if (D.images[c]){ const p = direImage(c); return {aff: p, sens: tradPhrase(p) || glose(motDePhrase(p.split(/(?<=\.) /)[0]) || "")}; }
+  const cr = D.choixRessenti[c];
+  if (cr) return {aff: c, sens: cr[LANGUE] || ""};
+  if (D.trad[L][c]) return {aff: c, sens: tradPhrase(c) || glose(motDePhrase(c) || "")};
+  if (D.gloses[L][c]) return {aff: c, sens: glose(c)};
+  return null;
+}
+
+// apres la reponse : la phrase juste et sa traduction, le mot teste et sa voix, la phrase entiere dite
+function juger(ok, bonneTexte, phrase){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  const mt = montreDe(motQ);
+  m.innerHTML = (ok ? cible(E("bravo")) : T("bonne", {r: cible(bonneTexte)}))
+    + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
+    + traduction(tradQ || tradPhrase(phrase || bonneTexte))
+    + (!ok && (c => c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")(choixTraduit(choixQ)) || "")
+    + (mt ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(mt.aff) + (mt.sens ? ' · <span dir="auto">' + mt.sens + '</span>' : "") + '</span>' : "");
+  if (mt) $("redire").addEventListener("click", () => dire(phrase || bonneTexte));
+  dire(phrase || bonneTexte);
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = o; if (o === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = o; apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// des images a toucher : la bonne est i ; data-id pour les controles (tests/themes_illustres.py)
+function images(conteneur, ids, bonne, apres){
+  let bon;
+  conteneur.className = "rangee" + (ids.length === 3 ? " trois" : "");
+  ids.forEach(i => {
+    const b = document.createElement("button"); b.type = "button"; b.dataset.id = i;
+    b.innerHTML = imgTag(i); if (i === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = i; apres(i === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// l'ecran d'une question : la consigne, une image (ou rien), l'enonce, les choix, le message
+function ecran(consigne, image, enonce, centre, colonne){
+  $("zone").innerHTML = '<p class="consigne">' + consigne + '</p>' + (image || "")
+    + (enonce ? '<div class="enonce' + (centre ? " centre" : "") + '">' + cible(enonce) + '</div>' : "")
+    + '<div class="choix' + (colonne ? " colonne" : centre ? " centre" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = () => '<span class="trou" id="trou">?</span>';
+const avecTrou = s => cible(s).replace("___", trou());
+function ecranTrou(consigne, image, phrase){
+  $("zone").innerHTML = '<p class="consigne">' + consigne + '</p>' + (image || "") + '<div class="enonce">' + avecTrou(phrase) + '</div><div class="choix" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const remplir = rep => { const t = $("trou"); if (t) t.textContent = rep; };
+
+// ---------- ce que dit chaque image ----------
+// les faits vrais d'une image, une phrase chacun (la premiere forme) ; une activite : sa phrase
+function direImage(i){
+  const im = D.images[i];
+  if (im.act) return D.activites[im.act][L].phrase;
+  return im.vrais.slice(0, 3).map(premiere).join(" ");
+}
+// LES ITEMS DE FAIT : chaque phrase vraie de chaque image (une image de place ou de saison), et son mot
+function itemsFaits(){
+  const out = [];
+  IMG().forEach(i => D.images[i].vrais.forEach(f => phrasesFait(f).forEach(([p, k]) => out.push({img: i, f, p, k}))));
+  return out;
+}
+// LES PHRASES A RETROUVER PARMI DES PHOTOS (« la bonne image », l'ecoute) : les faits, les phrases de la famille du
+// mot (sur leur photo), les moments de saison. autres : les photos ou la phrase est clairement fausse.
+let A_IMAGES = null;
+function itemsAImages(){
+  if (A_IMAGES) return A_IMAGES;
+  const acts = IMG().filter(i => D.images[i].act);
+  A_IMAGES = itemsFaits().map(it => ({img: it.img, p: it.p, ks: [it.k], autres: IMG().filter(j => faux(j, it.f))}))
+    .concat(D.familles[L].map(([t, rep, , k, img, f]) => ({img, p: t.replace("___", rep), ks: [k], autres: IMG().filter(j => faux(j, f))})))
+    .concat(acts.map(i => { const x = D.activites[D.images[i].act][L]; return {img: i, p: x.phrase, ks: x.mots, autres: acts.filter(j => j !== i)}; }));
+  return A_IMAGES;
+}
+// des degres qu'on confond avec t : le signe, trece / treinta (dreizehn / dreissig), les chiffres inverses, +-10
+function leurresDegres(t){
+  const ok = n => n !== null && D.leurresNombres.includes(n) && n !== t;
+  const s = String(Math.abs(t)), inv = s.length === 2 ? Math.sign(t || 1) * Number(s[1] + s[0]) : null;
+  return melanger(uniques([-t, t >= 13 && t <= 19 ? (t - 10) * 10 : null, t >= 30 && t % 10 === 0 ? t / 10 + 10 : null, inv, t + 10, t - 10].filter(ok))).slice(0, 2);
+}
+// des thermometres a toucher (l'ecoute des degres) ; data-id « t<degres> » pour les controles
+function thermometres(conteneur, liste, bonne, apres){
+  let bon;
+  conteneur.className = "rangee trois";
+  liste.forEach(t => {
+    const b = document.createElement("button"); b.type = "button"; b.dataset.id = "t" + t; b.className = "th";
+    b.innerHTML = thermometre(t) + '<span>' + degresTxt(t) + '</span>'; if (t === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = D.degres[L][t]; apres(t === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// des phrases FAUSSES pour l'image i, une par fait (sa forme au hasard)
+const leurresFaits = (i, n, sauf) => melanger(Object.keys(D.faits).filter(f => faux(i, f) && f !== sauf)).slice(0, n).map(f => hasard(phrasesFait(f))[0]);
+
+// ---------- les exercices ----------
+// Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+const EX = {
+  // « ¿Qué tiempo hace? » / « Wie ist das Wetter? » : la photo, une phrase vraie et deux fausses
+  temps(w){
+    const c = itemsFaits().filter(it => accepte(w, [it.k]));
+    if (!c.length) return false;
+    const it = hasard(c), lr = leurresFaits(it.img, 2, it.f);
+    if (lr.length < 2) return false;
+    viser(w, it.k);
+    ecran(T("temps"), photo(it.img), E("temps"), true, true);
+    boutons($("choix"), melanger([it.p, ...lr]), it.p, ok => juger(ok, it.p, it.p));
+    return true;
+  },
+  // la phrase, et quatre photos : une seule la montre (les autres la contredisent)
+  cual(w){
+    const c = itemsAImages().filter(it => accepte(w, it.ks) && it.autres.length >= 3);
+    if (!c.length) return false;
+    const it = hasard(c);
+    viser(w, it.ks[0]);
+    const ids = melanger([it.img, ...melanger(it.autres).slice(0, 3)]);
+    $("zone").innerHTML = '<p class="consigne">' + T("cual") + '</p><div class="enonce centre">' + cible(it.p) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    images($("rang"), ids, it.img, ok => juger(ok, it.p, it.p));
+    return true;
+  },
+  // l'ecoute : la phrase dite, trois photos -- ou des degres dits, trois thermometres
+  entendre(w){
+    const G = DE_APP ? "Grad" : "grado";
+    const c = itemsAImages().filter(it => accepte(w, it.ks) && it.autres.length >= 2)
+      .concat(accepte(w, [G]) ? D.temperatures.map(t => ({t, p: D.degres[L][t], ks: [G]})) : []);
+    if (!c.length) return false;
+    const it = hasard(c);
+    let lr = [];
+    if (it.t !== undefined){ lr = leurresDegres(it.t); if (lr.length < 2) return false; }
+    viser(w, it.ks[0]);
+    $("zone").innerHTML = '<p class="consigne">' + T("entendre") + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
+      + '<div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    $("ecoute").addEventListener("click", () => dire(it.p));
+    if (it.t !== undefined) thermometres($("rang"), melanger([it.t, ...lr]), it.t, ok => juger(ok, it.p, it.p));
+    else images($("rang"), melanger([it.img, ...melanger(it.autres).slice(0, 2)]), it.img, ok => juger(ok, it.p, it.p));
+    dire(it.p);
+    return true;
+  },
+  // vrai ou faux : une phrase vraie ou clairement fausse -- pour une photo (un fait, un moment de saison, une phrase
+  // de la famille du mot), pour le thermometre (les degres, le ressenti) ou pour un mois. ks : les mots que la phrase
+  // fait travailler ; juste : ce qui est vrai, montre apres la reponse.
+  vraifaux(w){
+    const c = [], G = DE_APP ? "Grad" : "grado", M = D.mois[L], sw = s => D.saisons[s][DE_APP ? 1 : 0];
+    IMG().forEach(i => Object.keys(D.faits).forEach(f => { if (vrai(i, f) || faux(i, f)) phrasesFait(f).forEach(([p, k]) => c.push({img: i, p, ks: [k], v: vrai(i, f)})); }));
+    IMG().filter(i => D.images[i].act).forEach(i => Object.keys(D.activites).forEach(a => {
+      const x = D.activites[a][L]; c.push({img: i, p: x.phrase, ks: x.mots, v: D.images[i].act === a}); }));
+    D.familles[L].forEach(([t, rep, , k, img, f]) => { const p = t.replace("___", rep);
+      c.push({img, p, ks: [k], v: true}); IMG().filter(j => faux(j, f)).forEach(j => c.push({img: j, p, ks: [k], v: false})); });
+    D.temperatures.forEach(t => {
+      c.push({t, p: D.degres[L][t], ks: [G], v: true});
+      [-t, t + 10, t - 10].filter(n => n !== t && D.leurresNombres.includes(n)).forEach(n => c.push({t, p: D.degres[L][n], ks: [G], v: false, juste: D.degres[L][t]}));
+      const b = D.bandes[L].find(([, min, max]) => t >= min && t <= max);
+      if (b) D.bandes[L].forEach(([o]) => { const [p, k] = D.bandePhrase[L][o];
+        c.push({t, p: D.degres[L][t] + " " + p, ks: [k], v: o === b[0], juste: D.degres[L][t] + " " + D.bandePhrase[L][b[0]][0]}); });
+    });
+    Object.keys(M).forEach(m => Object.keys(D.saisons).forEach(s => c.push({p: M[m].trouSaison.replace("___", sw(s)), ks: [m, sw(s)], v: s === M[m].saison, juste: M[m].phrase})));
+    // autant de vraies que de fausses
+    const cand = c.filter(it => accepte(w, it.ks));
+    if (!cand.length) return false;
+    const v = Math.random() < 0.5, pool = cand.filter(it => it.v === v);
+    const it = hasard(pool.length ? pool : cand);
+    viser(w, it.ks[0]);
+    ecran(T("vraifaux"), it.img ? photo(it.img) : it.t !== undefined ? boiteThermo(it.t) : "", it.p, true);
+    const V = E("vrai"), F = E("faux"), rep = it.v ? V : F, juste = it.v ? it.p : (it.juste || direImage(it.img));
+    boutons($("choix"), [V, F], rep, ok => juger(ok, rep, juste));
+    return true;
+  },
+  // « ___ calor. » Hace / Está / Hay (es) ; « Es ___ kalt. » ist / gibt / macht (de)
+  verbe(w){
+    const c = [];
+    D.verbeTemps[L].forEach(([f, t, rep, opts]) => {
+      const juste = t.replace("___", rep), forme = phrasesFait(f).find(([p]) => p === juste) || phrasesFait(f)[0];
+      const imgs = IMG().filter(i => vrai(i, f));
+      if (imgs.length && accepte(w, [forme[1]])) c.push({t, rep, opts, juste, k: forme[1], imgs});
+    });
+    if (!c.length) return false;
+    const it = hasard(c);
+    viser(w, it.k);
+    ecranTrou(T(DE_APP ? "gibt" : "hace"), photo(hasard(it.imgs)), it.t);
+    boutons($("choix"), it.opts, it.rep, ok => { remplir(it.rep); juger(ok, it.rep, it.juste); });
+    return true;
+  },
+  // la famille du mot : « Hoy ___ mucho. » llueve / lluvia / llover ; « Es ___. » regnet / Regen / regnen
+  famille(w){
+    const c = D.familles[L].filter(x => accepte(w, [x[3]]));
+    if (!c.length) return false;
+    const [t, rep, autres, k, img] = hasard(c);
+    viser(w, k);
+    ecranTrou(T("famille"), photo(img), t);
+    const juste = t.replace("___", rep);
+    boutons($("choix"), melanger([rep, ...autres]), rep, ok => { remplir(rep); juger(ok, rep, juste); });
+    return true;
+  },
+  // le thermometre : « Hace treinta grados. » parmi des nombres qu'on confond (trece / treinta, el signo)
+  degres(w){
+    const k = DE_APP ? "Grad" : "grado";
+    if (!accepte(w, [k])) return false;
+    const t = hasard(D.temperatures), lr = leurresDegres(t);
+    if (lr.length < 2) return false;
+    viser(w, k);
+    ecran(T("degres"), boiteThermo(t), E("degres"), true, true);
+    const juste = D.degres[L][t];
+    boutons($("choix"), melanger([juste, ...lr.map(n => D.degres[L][n])]), juste, ok => juger(ok, juste, juste));
+    return true;
+  },
+  // le ressenti : « Hace treinta grados. » -> Hace calor / Hace fresco / Hace frío (des bandes separees)
+  ressenti(w){
+    const c = [];
+    D.bandes[L].forEach(([b, min, max]) => {
+      const [p, k] = D.bandePhrase[L][b];
+      if (accepte(w, [k])) D.temperatures.filter(t => t >= min && t <= max).forEach(t => c.push({t, p, k}));
+    });
+    if (!c.length) return false;
+    const it = hasard(c);
+    viser(w, it.k);
+    ecran(T("ressenti"), boiteThermo(it.t), D.degres[L][it.t], true, true);
+    const opts = D.bandes[L].map(([b]) => D.bandePhrase[L][b][0]);
+    boutons($("choix"), opts, it.p, ok => juger(ok, it.p, D.degres[L][it.t] + " " + it.p));
+    return true;
+  },
+  // le temps ou soi : « Anna a froid. Que dit Anna ? » Tengo frío / Hace frío / Soy fría ; Mir ist kalt / Es ist kalt
+  dit(w){
+    const c = D.ressenti[L].filter(x => accepte(w, [x[5]]));
+    if (!c.length) return false;
+    const [qui, img, sens, rep, autres, k] = hasard(c);
+    viser(w, k);
+    const froid = k === "frío" || k === "kalt";
+    ecranTrou(T((sens === "moi" ? "moi" : "dehors") + (froid ? "Froid" : "Chaud"), {q: qui}), photo(img), E("dit").replace("{q}", qui));
+    boutons($("choix"), melanger([rep, ...autres]), rep, ok => { remplir(rep); juger(ok, rep, rep); });
+    $("choix").className = "choix colonne";
+    return true;
+  },
+  // la saison d'une photo
+  saison(w){
+    // la saison de la photo ; ou le mois qu'elle peut etre (un seul mois de sa saison parmi les choix)
+    const c = [], M = D.mois[L], sw = s => D.saisons[s][DE_APP ? 1 : 0];
+    IMG().forEach(i => { const s = D.images[i].saison; if (!s) return;
+      if (accepte(w, [sw(s)])) c.push({i, s, k: sw(s)});
+      Object.keys(M).filter(m => M[m].saison === s && accepte(w, [m])).forEach(m => c.push({i, s, k: m, m})); });
+    if (!c.length) return false;
+    const it = hasard(c);
+    viser(w, it.k);
+    if (it.m){
+      const autres = melanger(Object.keys(M).filter(m => M[m].saison !== it.s)).slice(0, 2);
+      ecran(T("moisPhoto"), photo(it.i), E("mois"), true);
+      boutons($("choix"), melanger([it.m, ...autres]), it.m, ok => juger(ok, it.m, M[it.m].phrase));
+      return true;
+    }
+    ecran(T("saison"), photo(it.i), E("saison"), true, true);
+    const juste = D.saisonPhrase[it.s][L], autres = melanger(Object.keys(D.saisons).filter(s => s !== it.s)).slice(0, 2).map(s => D.saisonPhrase[s][L]);
+    boutons($("choix"), melanger([juste, ...autres]), juste, ok => juger(ok, juste, juste));
+    return true;
+  },
+  // les mois et leur saison : « En España, en julio es ___. » ; « En España, ___ es un mes de verano. »
+  mois(w){
+    const M = D.mois[L], c = [];
+    Object.keys(M).forEach(m => { const s = M[m].saison, ks = D.saisons[s][DE_APP ? 1 : 0];
+      if (accepte(w, [ks, m])) c.push({m, s, sens: "saison", k: w && w.mot === m ? m : ks});
+      if (accepte(w, [m])) c.push({m, s, sens: "mois", k: m}); });
+    if (!c.length) return false;
+    const it = hasard(c), x = M[it.m];
+    viser(w, it.k);
+    if (it.sens === "saison"){
+      const rep = D.saisons[it.s][DE_APP ? 1 : 0], autres = melanger(Object.keys(D.saisons).filter(s => s !== it.s)).slice(0, 2).map(s => D.saisons[s][DE_APP ? 1 : 0]);
+      ecranTrou(T("moisSaison"), "", x.trouSaison);
+      boutons($("choix"), melanger([rep, ...autres]), rep, ok => { remplir(rep); juger(ok, rep, x.phrase); });
+    } else {
+      const autres = melanger(Object.keys(M).filter(m => M[m].saison !== it.s)).slice(0, 2);
+      const forme = m => DE_APP ? "Im " + m : m, rep = forme(it.m);
+      ecranTrou(T("moisMois"), "", x.trouMois);
+      boutons($("choix"), melanger([rep, ...autres.map(forme)]), rep, ok => { remplir(rep); juger(ok, rep, DE_APP ? x.phrase : x.phraseMois); });
+    }
+    return true;
+  },
+  // un moment de saison : la photo et sa phrase parmi d'autres ; ou le verbe a la bonne personne (juegan, pas jugan)
+  act(w){
+    const c = [];
+    IMG().filter(i => D.images[i].act).forEach(i => { const x = D.activites[D.images[i].act][L];
+      x.mots.forEach((k, n) => { if (accepte(w, [k])){ c.push({i, x, k, sens: "phrase"}); if (n === 0) c.push({i, x, k, sens: "verbe"}); } }); });
+    if (!c.length) return false;
+    const it = hasard(c);
+    viser(w, it.k);
+    if (it.sens === "phrase"){
+      const autres = melanger(Object.keys(D.activites).filter(a => a !== D.images[it.i].act)).slice(0, 2).map(a => D.activites[a][L].phrase);
+      ecran(T("act"), photo(it.i), E("act"), true, true);
+      boutons($("choix"), melanger([it.x.phrase, ...autres]), it.x.phrase, ok => juger(ok, it.x.phrase, it.x.phrase));
+    } else {
+      ecranTrou(T("actVerbe"), photo(it.i), it.x.phrase.replace(new RegExp("\\b" + it.x.verbe + "\\b"), "___"));
+      boutons($("choix"), melanger([it.x.verbe, ...it.x.leurres]), it.x.verbe, ok => { remplir(it.x.verbe); juger(ok, it.x.verbe, it.x.phrase); });
+    }
+    return true;
+  },
+  // l'ordre des mots (allemand) : Heute regnet es. / Heute es regnet.
+  ordre(w){
+    if (!DE_APP) return false;
+    const c = D.v2.filter(x => accepte(w, [x[2]])).map(([juste, fautive, k, img]) => ({juste, fautive, k, img}));
+    Object.keys(D.activites).forEach(a => { const x = D.activites[a].de, img = IMG().find(i => D.images[i].act === a);
+      if (accepte(w, [x.mots[0]])) c.push({juste: x.phrase, fautive: x.v2, k: x.mots[0], img}); });
+    if (!c.length) return false;
+    const it = hasard(c);
+    viser(w, it.k);
+    ecran(T("v2"), photo(it.img), "", false, true);
+    boutons($("choix"), melanger([it.juste, it.fautive]), it.juste, ok => juger(ok, it.juste, it.juste));
+    return true;
+  }
+};
+// les sortes de la langue apprise
+const SORTES = DE_APP ? ["temps", "cual", "entendre", "vraifaux", "verbe", "famille", "degres", "ressenti", "dit", "saison", "mois", "act", "ordre"]
+                      : ["temps", "cual", "entendre", "vraifaux", "verbe", "famille", "degres", "ressenti", "dit", "saison", "mois", "act"];
+
+// ---------- la decouverte : le temps, les degres, les saisons ----------
+function decouvrir(){
+  $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone");
+  z.innerHTML = '<p class="consigne">' + T("intro") + '</p>'
+    + '<div class="onglets" role="tablist"><button type="button" id="o1" role="tab">' + T("ongletTemps") + '</button><button type="button" id="o2" role="tab">' + T("ongletDeg")
+    + '</button><button type="button" id="o3" role="tab">' + T("ongletSais") + '</button></div><div id="vue"></div>'
+    + '<div class="dit"><div class="texte" id="dit"></div><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>'
+    + '<div class="puces" id="puces"></div><div id="regles"></div>';
+  let phraseDite = "";
+  // la traduction : la phrase entiere en fr, en, pt (et de pour l'espagnol) ; ailleurs, le mot de chaque phrase et sa
+  // glose du corpus (« el calor — حرارة »)
+  const gloses = p => LANGUE === APPRENDRE ? "" : p.split(/(?<=\.) /).map(motDePhrase).filter(Boolean).filter((k, n, a) => a.indexOf(k) === n)
+    .map(k => { const m = motDe(k), g = glose(k); return g ? cible(m.genre ? m.genre + " " + k : k) + " — " + g : ""; }).filter(Boolean).join(" · ");
+  const montrerPhrase = p => { phraseDite = p; const t = tradPhrase(p);
+    $("dit").innerHTML = cible(p) + (t ? traduction(t) : (g => g ? '<span class="trad" dir="auto">' + g + '</span>' : "")(gloses(p))); };
+  $("ecoute").addEventListener("click", () => dire(phraseDite));
+  const onglet = n => ["o1", "o2", "o3"].forEach((id, k) => $(id).classList.toggle("actif", k === n));
+  const regles = cles => { $("regles").innerHTML = cles.map(c => '<p class="regle">' + isoler(T(c)) + '</p>').join(""); };
+  const puce = (texte, quoi) => { const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.textContent = texte;
+    b.addEventListener("click", () => { $("puces").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b)); quoi(); }); $("puces").appendChild(b); return b; };
+  const voirImage = (i, parle) => { $("vue").innerHTML = photo(i, true); const p = direImage(i); montrerPhrase(p); if (parle) dire(p); };
+  // le temps : la place sous ses huit temps
+  const temps = () => {
+    onglet(0); $("puces").innerHTML = "";
+    PLACES().forEach(i => puce(premiere(D.images[i].vrais[0]).replace(/\.$/, ""), () => voirImage(i, true)));
+    regles(DE_APP ? ["regleDe", "regleV2"] : ["regleEs"]);
+    voirImage("sommer", false); $("puces").firstChild.classList.add("choisi");
+  };
+  // les degres : un thermometre a faire glisser, la phrase en lettres et le ressenti
+  const degres = () => {
+    onglet(1); $("puces").innerHTML = "";
+    $("vue").innerHTML = '<div class="thermo" id="th"></div><input type="range" id="curseur" min="-10" max="35" step="1" value="20" aria-label="°C" dir="ltr">';
+    const maj = parle => {
+      const t = Number($("curseur").value);
+      $("th").innerHTML = thermometre(t) + '<div class="valeur">' + degresTxt(t) + '</div>';
+      const b = D.bandes[L].find(([, min, max]) => t >= min && t <= max);
+      const p = D.degres[L][t] + (b ? " " + D.bandePhrase[L][b[0]][0] : "");
+      montrerPhrase(p); if (parle) dire(p);
+    };
+    $("curseur").addEventListener("input", () => maj(false));
+    $("curseur").addEventListener("change", () => maj(true));
+    [-5, 0, 12, 22, 31].forEach(t => puce(degresTxt(t), () => { $("curseur").value = t; maj(true); }));
+    regles(DE_APP ? ["regleDegDe", "ressentiDe"] : ["regleDegEs", "ressentiEs"]);
+    maj(false);
+  };
+  // les saisons : chaque saison, ses mois, et ce qu'on y fait
+  const saisons = () => {
+    onglet(2); $("puces").innerHTML = "";
+    const ordre = ["primavera", "verano", "otono", "invierno"];
+    // en espagnol, la phrase sans sa saison (« Anna nada en el lago ») ; en allemand, la phrase entiere : sans
+    // « Im Sommer », le verbe ne serait plus a sa place
+    const court = p => (DE_APP ? p : p.replace(/^[^,]+, /, "")).replace(/\.$/, "");
+    ordre.forEach(s => {
+      const place = PLACES().find(i => D.images[i].saison === s), mois = Object.keys(D.mois[L]).filter(m => D.mois[L][m].saison === s);
+      puce(D.saisons[s][DE_APP ? 1 : 0] + " · " + mois.join(", "), () => {
+        $("vue").innerHTML = photo(place, true);
+        const p = D.saisonPhrase[s][L] + " " + D.mois[L][mois[0]].phrase; montrerPhrase(p); dire(p);
+      });
+      IMG().filter(i => D.images[i].act && D.images[i].saison === s).forEach(i => puce("· " + court(D.activites[D.images[i].act][L].phrase), () => voirImage(i, true)));
+    });
+    IMG().filter(i => D.images[i].act && !D.images[i].saison).forEach(i => puce((DE_APP ? "" : T("quandPleut") + " · ") + court(D.activites[D.images[i].act][L].phrase), () => voirImage(i, true)));
+    regles(DE_APP ? ["imDe"] : ["hemisphere"]);
+    $("puces").firstChild.click(); taire();
+  };
+  $("o1").addEventListener("click", temps); $("o2").addEventListener("click", degres); $("o3").addEventListener("click", saisons);
+  temps();
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; taire(); demarrer(); };
+}
+
+// LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : la file des MOTS vient de l'app (Tirage.plan : les dus,
+// les rates recents, puis au plus NEUFS_MAX nouveaux) ; chaque mot recoit une question d'une sorte qui le vise,
+// jamais la meme sorte deux fois de suite, jamais deux fois la meme question. Rate, il revient plus loin.
+// Recopie de familia.html (visuel/THEMES-ILLUSTRES.md : ces fonctions sont identiques d'un theme a l'autre).
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  // le thermometre n'est pas une image : sa valeur fait partie de la question ; l'ordre des mots n'a pas d'enonce, ses
+  // deux phrases la font
+  const th = z.querySelector(".thermo .valeur");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("data-id")).sort().join(",")
+    + "|" + (th ? th.textContent : "") + (sorteCourante === "ordre" ? "|" + Array.from(z.querySelectorAll("#choix button")).map(b => b.textContent).sort().join(",") : "");
+}
+function montrer(){
+  repondu = false; $("suite").hidden = true; $("bas").hidden = true;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
+  // Si ce mot ne le permet pas, un mot plus loin dans la file passe devant ;
+  // en dernier recours seulement, la meme sorte, puis une question deja vue.
+  // (l'ecoute parle a chaque essai : on la fait taire pendant qu'on cherche, elle parle une fois choisie)
+  const garde = dire; dire = () => {};
+  const raz = so => { motQ = null; tradQ = null; choixQ = null; sorteCourante = so; };
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let n = 0; n < 25; n++){
+        raz(so);
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
+      raz(derniereSorte);
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
+      raz(so);
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+  }
+  if (!fait) fait = essai(file[rang], false);
+  dire = garde;
+  if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
+  vus.add(cleQuestion()); derniereSorte = fait;
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>';
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
+}
+// plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + '</div>';
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+// « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+function basDePartie(){
+  const b = $("bas"); b.innerHTML = boutonEncore() + '<button type="button" class="principal" id="terminer">' + T("terminer") + '</button>'; b.hidden = false;
+  const e = $("encore"); if (e) e.addEventListener("click", () => { b.hidden = true; encoreDesQuestions(); });
+}
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("meteo/meteo.json?v=1").then(r => r.json()).then(d => {
+  D = d;
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>

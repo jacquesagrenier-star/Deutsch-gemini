@@ -38,6 +38,11 @@ above | au-dessus de | Lieu | There's a shelf above the sink. | Il y a une étag
 below | en dessous de | Lieu | It's ten degrees below zero. | Il fait dix degrés sous zéro.
 into | dans (avec mouvement) | Lieu | She walked into the room. | Elle est entrée dans la pièce.
 out of | hors de, de (en sortant) | Lieu | He took his keys out of his pocket. | Il a sorti ses clés de sa poche.
+on top of | sur (le dessus de) | Lieu | The cat is sleeping on top of the wardrobe. | Le chat dort sur l'armoire.
+over | au-dessus de, par-dessus | Lieu | The cat jumps over the box. | Le chat saute par-dessus le carton.
+onto | sur (avec mouvement) | Lieu | The cat jumps onto the table. | Le chat saute sur la table.
+across from | en face de (américain) | Lieu | The bank is across from the post office. | La banque est en face de la poste.
+opposite | en face de (britannique) | Lieu | The bank is opposite the post office. | La banque est en face de la poste.
 """,
 "pronomen": """
 myself | moi-même, me | Réfléchis | I cut myself while cooking. | Je me suis coupé en cuisinant.
