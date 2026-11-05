@@ -593,6 +593,60 @@ def courses_sac():
     return c
 
 
+def fetes_invitation():
+    """Les fetes et les invitations : la page d'un calendrier ou un jour est entoure a l'ambre, l'enveloppe ouverte d'ou
+    sort la carte d'invitation (un ballon dessine), et deux bulles de conversation -- l'une propose (« ? »), l'autre
+    accepte (le crochet vert) : planifier ensemble, l'oral du DTZ. Des dessins, aucun mot : la meme vignette sert a
+    l'espagnol et a l'allemand ; le sujet est l'invitation, pas les objets de la fete (ceux de la scene)."""
+    import math
+    c = Image.new("RGB", (W, H), (246, 232, 214))
+    d = ImageDraw.Draw(c)
+    # des confettis
+    for k, (x, y) in enumerate(((40, 40), (300, 30), (560, 60), (520, 250), (30, 300), (280, 480), (570, 470), (180, 20))):
+        col = [(232, 162, 58), (127, 183, 230), (229, 123, 110), (92, 180, 130)][k % 4]
+        d.rounded_rectangle((x, y, x + 16, y + 8), 3, fill=col)
+    # la page du calendrier, un peu tournee
+    p = Image.new("RGBA", (270, 300), (0, 0, 0, 0))
+    g = ImageDraw.Draw(p)
+    g.rounded_rectangle((0, 0, 269, 299), 14, fill=(255, 253, 246), outline=(201, 207, 216), width=2)
+    g.rounded_rectangle((0, 0, 269, 64), 14, fill=(200, 71, 58))
+    g.rectangle((0, 40, 269, 64), fill=(200, 71, 58))
+    for x in (70, 200):
+        g.ellipse((x - 9, -10, x + 9, 8), fill=(120, 128, 140))
+    for r in range(5):
+        for k in range(7):
+            x, y = 20 + k * 34, 86 + r * 40
+            g.rounded_rectangle((x, y, x + 24, y + 24), 5, fill=(226, 230, 236))
+    jx, jy = 20 + 5 * 34 + 12, 86 + 2 * 40 + 12                         # le samedi entoure
+    g.ellipse((jx - 24, jy - 24, jx + 24, jy + 24), outline=(232, 162, 58), width=7)
+    p = p.rotate(5, resample=Image.BICUBIC, expand=True)
+    ombre = Image.new("RGBA", p.size, (0, 0, 0, 0))
+    ombre.paste((60, 40, 30, 60), (0, 0), p.split()[3])
+    c.paste(ombre, (36, 120), ombre)
+    c.paste(p, (28, 110), p)
+    # l'enveloppe ouverte et la carte qui en sort (un ballon dessine)
+    ex, ey = 330, 120
+    d.rounded_rectangle((ex + 26, ey - 60, ex + 214, ey + 110), 8, fill=(255, 255, 255), outline=(232, 162, 58), width=5)
+    bx, by = ex + 120, ey - 4
+    d.ellipse((bx - 34, by - 44, bx + 34, by + 36), fill=(127, 183, 230))
+    d.ellipse((bx - 18, by - 30, bx - 4, by - 12), fill=(196, 224, 246))
+    d.polygon([(bx - 6, by + 36), (bx + 6, by + 36), (bx, by + 46)], fill=(127, 183, 230))
+    d.line([(bx, by + 46), (bx - 10, by + 70), (bx + 6, by + 96)], fill=(120, 128, 140), width=3)
+    d.polygon([(ex, ey + 40), (ex + 240, ey + 40), (ex + 240, ey + 190), (ex, ey + 190)], fill=(222, 190, 150))
+    d.polygon([(ex, ey + 40), (ex + 120, ey + 120), (ex + 240, ey + 40), (ex + 240, ey + 190), (ex, ey + 190)], fill=(206, 170, 126))
+    d.line([(ex, ey + 190), (ex + 120, ey + 116), (ex + 240, ey + 190)], fill=(186, 148, 104), width=4)
+    # les deux bulles : la proposition (« ? ») et l'accord (le crochet vert)
+    def bulle(x, y, w, h, fond, queue_droite):
+        d.rounded_rectangle((x, y, x + w, y + h), 26, fill=fond)
+        q = [(x + w - 40, y + h - 4), (x + w - 6, y + h + 26), (x + w - 64, y + h - 4)] if queue_droite else [(x + 40, y + h - 4), (x + 6, y + h + 26), (x + 64, y + h - 4)]
+        d.polygon(q, fill=fond)
+    bulle(300, 330, 130, 76, (127, 183, 230), False)
+    d.text((365, 368), "?", font=F(54), fill=(255, 255, 255), anchor="mm")
+    bulle(440, 380, 130, 76, (92, 180, 130), True)
+    d.line([(478, 418), (498, 438), (534, 400)], fill=(255, 255, 255), width=10, joint="curve")
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
              "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
              "metiers": metiers_polaroids,
@@ -602,7 +656,8 @@ VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones"
              "meteo": meteo_quatre_saisons,
              "logement": logement_plan,
              "demarches": demarches_formulaire,
-             "courses": courses_sac}
+             "courses": courses_sac,
+             "fetes": fetes_invitation}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
