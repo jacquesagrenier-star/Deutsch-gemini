@@ -200,6 +200,25 @@ Source : `visuel/vacances/vacances.py` (`IMAGES`, `REPRISES`). Trois voyages, ho
 - Les clients sont **Mark** et **Anna** (leurs images de référence) ; les vendeurs restent sans nom.
 - La source : `visuel/courses/courses.py` (LIEUX, MOMENTS). Un moment dans la boucherie reprend l'image de la boucherie.
 
+### L'école de Ben et la Kita de Mia — thème illustré « L'école et la garderie » (5 nov. 2026)
+Source : `visuel/ecole/ecole.py` (`IMAGES`, `KITA`, `CLASSE`, `SOURCES`). Les enfants de Jan et Katrin : Ben (7 ans,
+2e année, classe 2b) et Mia (4 ans).
+- **La Grundschule de Ben** (« Grundschule am Kiez ») = la façade de « La journée » (`visuel/prototype/journee/familia-5.webp` :
+  immeuble crème à grande porte vitrée, rue pavée de Berlin, réverbères). Le retour de l'école (`schule-abholen`) et la
+  cour de récréation (`pause` : un grand marronnier, une structure à grimper) la reçoivent « pour le lieu ».
+- **NOUVEAU — la classe 2b** (`klasse`, le maître des images de classe) : petits pupitres et chaises de bois clair en
+  rangées, grand tableau VERT entièrement vide, peintures d'enfants sans écriture sur un panneau de liège à DROITE,
+  fenêtre à GAUCHE, murs crème. **Frau Weber**, l'enseignante (personne neuve, sans image de référence avant `klasse`) : la
+  quarantaine, cheveux bruns mi-longs, lunettes, pull bleu foncé. La porte de la classe (`lehrerin`) et la réunion de
+  parents (`elternabend`, le soir, les parents sur les petites chaises) reprennent `klasse`.
+- **NOUVEAU — la Kita de Mia** (« Kita Pusteblume », `kita-bringen`, le maître des images de la Kita) : vestiaire clair,
+  parquet pâle, murs blancs, bancs bas en bois et rangée de petites patères avec vestes et petits sacs à dos, dessins
+  d'enfants sans écriture, grandes fenêtres. **Frau Krüger**, l'éducatrice (personne neuve) : la quarantaine, cheveux
+  courts blond vénitien, gilet vert, jean. `kita-abholen` (Mark vient chercher Mia), `anmelden` (le bureau de la
+  directrice : la cinquantaine, chignon gris, écharpe rouge) et `malen` (la salle de jeux) reprennent `kita-bringen`.
+- **Chez Jan et Katrin** : la chambre des enfants (`journee/familia-1`) pour `krank` et `packen`, la cuisine
+  (`journee/familia-2`) pour `hausaufgaben`. Mark vient chercher Mia : c'est un ami de la famille.
+
 ### Les lieux d'un seul épisode (gardés pour mémoire)
 - L'aéroport (épisode 1), le Bürgeramt (épisode 2), la piste cyclable (épisode 3) : voir leurs
   `A-TOURNER.txt`. S'ils reviennent, leur maître est dans `01-images/` de l'épisode.

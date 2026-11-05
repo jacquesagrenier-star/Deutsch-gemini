@@ -655,6 +655,30 @@ def travail_cv():
     im = im.crop((int(0.02 * w), int(0.0 * h), int(0.92 * w), int(0.9 * h)))
     r = rond(im, 228, 8)
     c.paste(r, (472 - r.size[0] // 2, 150 - r.size[1] // 2), r)
+def ecole_tableau():
+    """L'ecole et la garderie : le tableau vert de la classe, a la craie « ABC » et « 1 + 2 = 3 » (aucun mot d'une
+    langue : la meme vignette sert a l'espagnol et a l'allemand), un crayon pose sur son rebord, et les deux enfants en
+    ronds, pris dans les images du theme : Ben dans sa classe, Mia au vestiaire de la Kita."""
+    c = Image.new("RGB", (W, H), (236, 228, 206))
+    d = ImageDraw.Draw(c)
+    # le tableau, son cadre de bois et son rebord
+    d.rounded_rectangle((36, 34, 564, 300), 10, fill=(150, 110, 68))
+    d.rectangle((52, 50, 548, 284), fill=(46, 96, 72))
+    d.rectangle((44, 284, 556, 300), fill=(132, 96, 58))
+    craie = (240, 244, 236)
+    d.text((190, 125), "ABC", font=F(84), fill=craie, anchor="mm")
+    d.text((370, 215), "1 + 2 = 3", font=F(60), fill=craie, anchor="mm")
+    # le crayon jaune sur le rebord
+    d.polygon([(330, 286), (470, 286), (488, 292), (470, 298), (330, 298)], fill=(244, 196, 48))
+    d.polygon([(470, 286), (488, 292), (470, 298)], fill=(226, 196, 160))
+    d.rectangle((316, 286, 330, 298), fill=(232, 128, 140))
+    # les deux enfants, en ronds
+    for nom, boite, (x, y), dia in (("klasse", (0.40, 0.36, 0.66, 0.72), (178, 400), 176), ("kita-bringen", (0.24, 0.36, 0.36, 0.56), (420, 404), 160)):
+        im = Image.open(os.path.join(P, "ecole", nom + ".webp")).convert("RGB")
+        w, h = im.size
+        im = im.crop((int(boite[0] * w), int(boite[1] * h), int(boite[2] * w), int(boite[3] * h)))
+        r = rond(im, dia, 7)
+        c.paste(r, (x - r.size[0] // 2, y - r.size[1] // 2), r)
     return c
 
 
@@ -669,7 +693,8 @@ VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones"
              "demarches": demarches_formulaire,
              "courses": courses_sac,
              "vacances": vacances_carnet,
-             "travail": travail_cv}
+             "travail": travail_cv,
+             "ecole": ecole_tableau}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
