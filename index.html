@@ -1308,6 +1308,17 @@ body[data-theme="dark"] .subtitle-version{
 .orb[data-orbid="pruefung"] .orb-icon{background:rgba(82,98,122,.14); border-color:rgba(82,98,122,.28);}
 .orb[data-orbid="pruefung"] .orb-icon svg{stroke:#52627a;}
 .orb[data-orbid="pruefung"] .orb-badge{background:#52627a; box-shadow:0 2px 6px rgba(82,98,122,.35);}
+/* « Signaler un probleme ou une idee » (5 nov. 2026) : la bulle ambre de la
+   marque, dans la tuile de Tout le contenu comme dans la carte des reglages. */
+.orb[data-orbid="signaler"] .orb-icon{background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.34);}
+.orb[data-orbid="signaler"] .orb-icon svg{stroke:#b9770f;}
+body[data-theme="dark"] .orb[data-orbid="signaler"] .orb-icon svg{stroke:#F0B45A;}
+/* Le titre le plus long de la grille : trois lignes, sinon « ou une idée » se coupe. */
+.orb[data-orbid="signaler"] strong{-webkit-line-clamp:3; line-clamp:3;}
+.signaler-titre{display:flex; align-items:center; gap:10px;}
+.signaler-bulle{flex:0 0 26px; width:26px; height:26px; fill:rgba(232,162,58,.16); stroke:#b9770f;
+    stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;}
+body[data-theme="dark"] .signaler-bulle{stroke:#F0B45A; fill:rgba(240,180,90,.14);}
 
 
 body[data-theme="dark"] .orb-section{
@@ -3418,7 +3429,7 @@ html[data-apprendre="ja"] #episodeLigne,
 html[data-apprendre="ja"] .search-launch,
 html[data-apprendre="ja"] [data-seulement-de],
 html[data-apprendre="ja"] [data-seulement-es],
-html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]):not([data-orbid="ja-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]){ display:none !important; }
+html[data-apprendre="ja"] [data-orbid]:not([data-orbid="signaler"]):not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]):not([data-orbid="ja-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]){ display:none !important; }
 /* Les kanji et les kana dans le texte courant (fiches, exercices, tableaux) :
    une police japonaise en repli, sinon un kanji partage avec le chinois peut
    prendre sa forme chinoise. */
@@ -3426,8 +3437,7 @@ html[data-apprendre="ja"] body{ font-family: -apple-system, BlinkMacSystemFont, 
 html:not([data-apprendre="ja"]) [data-seulement-ja]{ display:none !important; }
 /* « Tout le contenu » : les sections dont toutes les tuiles sont cachees. */
 html[data-apprendre="ja"] h2.orb-section[data-section="illustres"],
-html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_pratique"]),
-html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_parcours"]){ display:none !important; }
+html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_pratique"]){ display:none !important; }
 /* Les exercices allemands des ecrans de niveau (Präsens, cas regi, articles). */
 html[data-apprendre="ja"] button[onclick*="startExercises"],
 html[data-apprendre="ja"] button[onclick*="startVerbRektionExercise"],
@@ -3464,7 +3474,7 @@ html[data-apprendre="en"] #episodeLigne,
 html[data-apprendre="en"] [data-seulement-de],
 html[data-apprendre="en"] [data-seulement-es],
 html[data-apprendre="en"] [data-seulement-ja],
-html[data-apprendre="en"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]):not([data-orbid="pronomen"]):not([data-orbid="zahlen"]):not([data-orbid="praep"]):not([data-orbid="konjunktionen"]):not([data-orbid="wortstellung"]):not([onclick^="ouvrirThemeIllustre"]){ display:none !important; }
+html[data-apprendre="en"] [data-orbid]:not([data-orbid="signaler"]):not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]):not([data-orbid="pronomen"]):not([data-orbid="zahlen"]):not([data-orbid="praep"]):not([data-orbid="konjunktionen"]):not([data-orbid="wortstellung"]):not([onclick^="ouvrirThemeIllustre"]){ display:none !important; }
 /* Les options des panneaux qui marchent avec l'anglais (27 oct. 2026) : les
    dictees, Ecrire, Construire la phrase, les familles d'expressions, les faux
    amis. Une regle a part, ancree sur #orbPanel pour passer devant la liste
@@ -3481,7 +3491,6 @@ html:not([data-apprendre="en"]) [data-seulement-en]{ display:none !important; }
 html[data-apprendre="en"] #orbGrid > h2.orb-section[data-section="illustres"],
 html[data-apprendre="en"] #orbGrid > [onclick^="ouvrirThemeIllustre"]{ order: 1; }
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_pratique"]),
-html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_parcours"]),
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:none !important; }
 html[data-apprendre="en"] button[onclick*="startExercises"],
 html[data-apprendre="en"] button[onclick*="startVerbRektionExercise"],
@@ -3510,7 +3519,7 @@ html[data-apprendre="pt"] [data-seulement-de],
 html[data-apprendre="pt"] [data-seulement-es],
 html[data-apprendre="pt"] [data-seulement-ja],
 html[data-apprendre="pt"] [data-seulement-en],
-html[data-apprendre="pt"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="pt-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]){ display:none !important; }
+html[data-apprendre="pt"] [data-orbid]:not([data-orbid="signaler"]):not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="pt-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]){ display:none !important; }
 html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startDictee"],
 html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startSchreiben"],
 html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="ouvrirTuilesMenu"],
@@ -3520,7 +3529,6 @@ html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startDueReview"]{ display
 html:not([data-apprendre="pt"]) [data-seulement-pt]{ display:none !important; }
 html[data-apprendre="pt"] h2.orb-section[data-section="illustres"],
 html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_pratique"]),
-html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_parcours"]),
 html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:none !important; }
 html[data-apprendre="pt"] button[onclick*="startExercises"],
 html[data-apprendre="pt"] button[onclick*="startVerbRektionExercise"],
@@ -10034,6 +10042,17 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
                 <strong data-i18n="vhs_kapitel_tile_title">Chapitres VHS</strong>
             </div>
         </div>
+        <!-- 5 nov. 2026 (decision de Jacques) : la DERNIERE tuile de « Tout le
+             contenu ». Elle ouvre les reglages sur #carteSignaler, le curseur dans
+             la zone de texte. Dans TOUTES les langues apprises : son data-orbid
+             est dans les listes blanches de en, ja et pt (ne pas l'oublier dans
+             une langue future). Pas de orb-de : ce n'est pas un contenu allemand. -->
+        <div class="orb" data-orbid="signaler" onclick="ouvrirSignaler()" role="button" tabindex="0" data-i18n-aria-label="retour_titre" aria-label="Signaler un problème ou une idée">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.6 3.8a.6.6 0 0 1-1-.46V16h0A2.5 2.5 0 0 1 4 13.5z"/><path d="M8.5 8.5h7M8.5 11.5h4.5"/></svg></div>
+            <div>
+                <strong data-i18n="retour_titre">Signaler un problème ou une idée</strong>
+            </div>
+        </div>
 
 
 
@@ -12463,6 +12482,34 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
          ⚠️ UN LIEN QUI MENE A UNE CARTE DOIT OUVRIR SON GROUPE : voir
          ouvrirGroupeReglages(). Une carte dans un <details> ferme n'existe pas
          pour qui arrive en la cherchant. -->
+    <!-- SIGNALER UN PROBLEME OU UNE IDEE. Suggestion d'usagers, relayee par Jacques.
+         Elle repare un desequilibre : l'app demande beaucoup de retours et
+         n'offrait aucun endroit pour en donner. Un testeur qui rencontre un
+         defaut devait ecrire a Jacques, hors de l'app, en se souvenant de ce
+         qu'il faisait -- donc la plupart ne disaient rien.
+         Le contexte est joint TOUT SEUL (version, ecran, langue, tuile ou
+         lien) : c'est exactement ce qui a manque toute la journee du 6
+         septembre pour diagnostiquer le son.
+         5 nov. 2026 : TOUT EN HAUT, TOUJOURS OUVERTE. Elle dormait dans le pli
+         « Compte, aide et retroaction » sous « Dis-nous ce qui t'aiderait ».
+         Jacques : « pas tres clair dans les reglages [...] Meme moi, j'ai eu un
+         peu de difficulte a trouver les premieres fois. » Ne pas la remettre
+         dans un groupe replie. La tuile du meme nom, a la fin de « Tout le
+         contenu », y mene : ouvrirSignaler(). -->
+    <div class="card carte-signaler" id="carteSignaler">
+        <strong class="signaler-titre">
+            <svg class="signaler-bulle" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.6 3.8a.6.6 0 0 1-1-.46V16h0A2.5 2.5 0 0 1 4 13.5z"/><path d="M8.5 8.5h7M8.5 11.5h4.5"/></svg>
+            <span data-i18n="retour_titre">Signaler un problème ou une idée</span>
+        </strong>
+        <p style="color:#4C566B; margin-top:6px;" data-i18n="retour_desc">Un mot qui sonne mal, un bouton qui ne répond pas, une idée : écris-le ici. La version de l'app et l'écran où tu étais sont joints automatiquement — tu n'as rien à noter.</p>
+        <div class="spacer"></div>
+        <textarea id="retourTexte" rows="4" maxlength="600" oninput="sauverBrouillonRetour()" data-i18n-aria-label="retour_titre" aria-label="Signaler un problème ou une idée"
+                  style="width:100%; padding:12px; border-radius:12px; font:inherit; font-size:16px;
+                         border:1px solid var(--bord-retour, rgba(30,41,59,.2)); background:transparent; color:inherit;"></textarea>
+        <div class="spacer"></div>
+        <button class="secondary" id="retourBtn" onclick="envoyerRetour()" data-i18n="retour_envoyer">ENVOYER</button>
+    </div>
+
     <div class="card">
         <details class="reglage-langue" id="reglageLangue">
             <summary>
@@ -12742,26 +12789,9 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
     </details>
 
     <details class="reglages-groupe" id="groupeCompte">
-        <summary data-i18n="settings_groupe_compte">Compte, aide et rétroaction</summary>
-        <!-- SIGNALER QUELQUE CHOSE. Suggestion d'usagers, relayee par Jacques.
-             Elle repare un desequilibre : l'app demande beaucoup de retours et
-             n'offrait aucun endroit pour en donner. Un testeur qui rencontre un
-             defaut devait ecrire a Jacques, hors de l'app, en se souvenant de ce
-             qu'il faisait -- donc la plupart ne disaient rien.
-             Le contexte est joint TOUT SEUL (version, ecran, langue, tuile ou
-             lien) : c'est exactement ce qui a manque toute la journee du 6
-             septembre pour diagnostiquer le son. -->
-        <div class="card">
-            <strong data-i18n="retour_titre">Dis-nous ce qui t'aiderait</strong>
-            <p style="color:#4C566B; margin-top:6px;" data-i18n="retour_desc">Un mot qui sonne mal, un bouton qui ne répond pas, une idée : écris-le ici. La version de l'app et l'écran où tu étais sont joints automatiquement — tu n'as rien à noter.</p>
-            <div class="spacer"></div>
-            <textarea id="retourTexte" rows="4" maxlength="600" oninput="sauverBrouillonRetour()"
-                      style="width:100%; padding:12px; border-radius:12px; font:inherit; font-size:16px;
-                             border:1px solid var(--bord-retour, rgba(30,41,59,.2)); background:transparent; color:inherit;"></textarea>
-            <div class="spacer"></div>
-            <button class="secondary" id="retourBtn" onclick="envoyerRetour()" data-i18n="retour_envoyer">ENVOYER</button>
-        </div>
-
+        <summary data-i18n="settings_groupe_compte">Compte et aide</summary>
+        <!-- « Signaler un probleme ou une idee » n'est plus ici : tout en haut
+             des reglages depuis le 5 nov. 2026 (#carteSignaler). -->
         <div class="card" id="inviteCard">
             <strong data-i18n="settings_invite_title">Inviter un ami</strong>
             <p style="color:#4C566B" data-i18n="settings_invite_desc">Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre l'allemand ou l'anglais.</p>
@@ -15108,7 +15138,7 @@ const I18N = {
         voice_test: "\u00c9couter",
         voice_none: "Aucune voix install\u00e9e pour cette langue sur cet appareil. Les phrases seront lues avec la voix par d\u00e9faut, donc avec un mauvais accent. Ajoute-la dans les r\u00e9glages de ton t\u00e9l\u00e9phone (Accessibilit\u00e9 \u203a Contenu parl\u00e9 \u203a Voix).",
         voice_only_one: "Une seule voix install\u00e9e. Tu peux en ajouter une am\u00e9lior\u00e9e dans les r\u00e9glages de ton t\u00e9l\u00e9phone, puis revenir la choisir ici.",
-        retour_titre: "Dis-nous ce qui t'aiderait",
+        retour_titre: "Signaler un problème ou une idée",
         retour_desc: "Un mot qui sonne mal, un bouton qui ne répond pas, une idée : écris-le ici. La version de l'app et l'écran où tu étais sont joints automatiquement — tu n'as rien à noter.",
         retour_envoyer: "ENVOYER",
         retour_vide: "Écris quelque chose d'abord.",
@@ -15416,7 +15446,7 @@ const I18N = {
         settings_langue_titre: "Langue",
         settings_groupe_son: "Son",
         settings_groupe_progression: "Ma progression",
-        settings_groupe_compte: "Compte, aide et rétroaction",
+        settings_groupe_compte: "Compte et aide",
         auth_signup_loading: "CRÉATION…",
         auth_logged_in_as: "Connecté en tant que : ",
         auth_logout: "SE DÉCONNECTER",
@@ -16681,7 +16711,7 @@ const I18N = {
         voice_test: "Listen",
         voice_none: "No voice installed for this language on this device. Sentences will be read with the default voice, and therefore with the wrong accent. Add one in your phone settings (Accessibility \u203a Spoken Content \u203a Voices).",
         voice_only_one: "Only one voice installed. You can add an enhanced one in your phone settings, then come back and pick it here.",
-        retour_titre: "Tell us what would help you",
+        retour_titre: "Report a problem or an idea",
         retour_desc: "A word that sounds wrong, a button that does nothing, an idea: write it here. The app version and the screen you were on are attached automatically — you have nothing to note down.",
         retour_envoyer: "SEND",
         retour_vide: "Write something first.",
@@ -16989,7 +17019,7 @@ const I18N = {
         settings_langue_titre: "Language",
         settings_groupe_son: "Sound",
         settings_groupe_progression: "My progress",
-        settings_groupe_compte: "Account, help and feedback",
+        settings_groupe_compte: "Account and help",
         auth_signup_loading: "CREATING…",
         auth_logged_in_as: "Signed in as: ",
         auth_logout: "SIGN OUT",
@@ -18258,7 +18288,7 @@ const I18N = {
         voice_test: "Dinle",
         voice_none: "Bu cihazda bu dil için yüklü ses yok. Cümleler varsayılan sesle, yani yanlış aksanla okunacak. Telefon ayarlarından bir tane ekle (Erişilebilirlik › Sözlü İçerik › Sesler).",
         voice_only_one: "Yalnızca bir ses yüklü. Telefon ayarlarından gelişmiş bir tane ekleyip buraya dönerek onu seçebilirsin.",
-        retour_titre: "Sana ne yardımcı olurdu?",
+        retour_titre: "Bir sorun ya da fikir bildir",
         retour_desc: "Kötü duyulan bir kelime, yanıt vermeyen bir düğme, bir fikir: buraya yaz. Uygulama sürümü ve bulunduğun ekran otomatik eklenir — not almana gerek yok.",
         retour_envoyer: "GÖNDER",
         retour_vide: "Önce bir şey yaz.",
@@ -18562,7 +18592,7 @@ const I18N = {
         settings_langue_titre: "Dil",
         settings_groupe_son: "Ses",
         settings_groupe_progression: "İlerlemem",
-        settings_groupe_compte: "Hesap, yardım ve geri bildirim",
+        settings_groupe_compte: "Hesap ve yardım",
         auth_signup_loading: "OLUŞTURULUYOR…",
         auth_logged_in_as: "Giriş yapan: ",
         auth_logout: "ÇIKIŞ YAP",
@@ -19459,7 +19489,7 @@ const I18N = {
         settings_langue_titre: "Мова",
         settings_groupe_son: "Звук",
         settings_groupe_progression: "Мій прогрес",
-        settings_groupe_compte: "Обліковий запис, допомога і відгуки",
+        settings_groupe_compte: "Обліковий запис і допомога",
         adj_decl_title: "Відмінювання прикметників",
         adj_decl_intro: "Закінчення прикметника залежить від того, що стоїть перед ним: означений артикль, неозначений артикль або нічого.",
         adj_decl_definite_title: "Після означеного артикля (der/die/das…)",
@@ -20650,7 +20680,7 @@ const I18N = {
         voice_desc: "Твій пристрій іноді пропонує кілька голосів для однієї мови: стиснутий, механічний, і покращений — значно природніший. Зірочка позначає найкращі.",
         voice_none: "Для цієї мови на пристрої не встановлено жодного голосу. Речення читатиме типовий голос, тобто з поганою вимовою. Додай голос у налаштуваннях телефона (Доступність › Вимовляння › Голос).",
         voice_only_one: "Встановлено лише один голос. Ти можеш додати покращений у налаштуваннях телефона, а тоді повернутися сюди й обрати його.",
-        retour_titre: "Скажи, що тобі допомогло б",
+        retour_titre: "Повідомити про проблему чи ідею",
         retour_desc: "Слово, що звучить не так, кнопка, яка не працює, ідея — напиши тут. Версія застосунку та екран додаються автоматично — тобі нічого не треба записувати.",
         retour_envoyer: "НАДІСЛАТИ",
         retour_vide: "Спочатку напиши щось.",
@@ -21472,7 +21502,7 @@ const I18N = {
         settings_langue_titre: "زبان",
         settings_groupe_son: "صدا",
         settings_groupe_progression: "پیشرفت من",
-        settings_groupe_compte: "حساب، راهنما و بازخورد",
+        settings_groupe_compte: "حساب و راهنما",
         op_due_desc: "نشستی از {n} کارت · {r} برای مرور",
         op_due_desc_neufs: "نشستی از {n} کارت",
         op_due_desc_zero: "فعلاً چیزی برای مرور نیست",
@@ -21589,7 +21619,7 @@ const I18N = {
         voice_none: "برای این زبان هیچ صدایی روی این دستگاه نصب نیست. جمله‌ها با صدای پیش‌فرض خوانده می‌شوند، یعنی با تلفظ بد. آن را در تنظیمات تلفن خود بیفزا (دسترس‌پذیری › محتوای گفتاری › صدا).",
         voice_only_one: "تنها یک صدا نصب است. می‌توانی در تنظیمات تلفن خود یک صدای بهبودیافته بیفزایی، سپس اینجا برگردی و آن را برگزینی.",
         voice_unsupported: "این مرورگر گفتارساز ندارد.",
-        retour_titre: "بگو چه چیزی به تو کمک می‌کند",
+        retour_titre: "گزارش یک مشکل یا یک ایده",
         retour_desc: "واژه‌ای که درست به گوش نمی‌آید، دکمه‌ای که پاسخ نمی‌دهد، یک ایده: همین‌جا بنویس. نسخهٔ برنامه و صفحه‌ای که در آن بودی خودبه‌خود پیوست می‌شوند — لازم نیست چیزی یادداشت کنی.",
         retour_envoyer: "فرستادن",
         retour_vide: "اول چیزی بنویس.",
@@ -22923,7 +22953,7 @@ const I18N = {
         settings_langue_titre: "اللغة",
         settings_groupe_son: "الصوت",
         settings_groupe_progression: "تقدّمي",
-        settings_groupe_compte: "الحساب والمساعدة والملاحظات",
+        settings_groupe_compte: "الحساب والمساعدة",
         auth_signup_loading: "جارٍ الإنشاء…",
         auth_logged_in_as: "متصل باسم: ",
         auth_logout: "تسجيل الخروج",
@@ -23040,7 +23070,7 @@ const I18N = {
         voice_test: "استمع",
         voice_none: "لا صوت مثبَّت لهذه اللغة على هذا الجهاز. ستُقرأ الجمل بالصوت الافتراضي، أي بلكنة رديئة. أضِفه من إعدادات هاتفك (إمكانية الوصول › المحتوى المنطوق › الأصوات).",
         voice_only_one: "صوت واحد مثبَّت فقط. يمكنك إضافة صوت محسَّن من إعدادات هاتفك، ثم العودة لاختياره هنا.",
-        retour_titre: "قل لنا ما الذي يساعدك",
+        retour_titre: "الإبلاغ عن مشكلة أو اقتراح فكرة",
         retour_desc: "كلمة تبدو في غير محلّها، زرّ لا يستجيب، فكرة: اكتبها هنا. نسخة التطبيق والشاشة التي كنت فيها تُرفقان تلقائياً — لا شيء عليك تدوينه.",
         retour_envoyer: "إرسال",
         retour_vide: "اكتب شيئاً أولاً.",
@@ -24713,7 +24743,7 @@ const I18N = {
         voice_test: "Ouvir",
         voice_none: "Nenhuma voz instalada para esta língua neste aparelho. As frases serão lidas com a voz padrão, ou seja, com o sotaque errado. Adicione uma nas configurações do seu celular (Acessibilidade › Conteúdo Falado › Vozes).",
         voice_only_one: "Só uma voz instalada. Você pode adicionar uma voz aprimorada nas configurações do celular e depois voltar aqui para escolhê-la.",
-        retour_titre: "Conte para a gente o que ajudaria você",
+        retour_titre: "Relatar um problema ou uma ideia",
         retour_desc: "Uma palavra que soa errada, um botão que não responde, uma ideia: escreva aqui. A versão do app e a tela em que você estava vão junto automaticamente — você não precisa anotar nada.",
         retour_envoyer: "ENVIAR",
         retour_vide: "Escreva alguma coisa primeiro.",
@@ -25016,7 +25046,7 @@ const I18N = {
         settings_langue_titre: "Idioma",
         settings_groupe_son: "Som",
         settings_groupe_progression: "Meu progresso",
-        settings_groupe_compte: "Conta, ajuda e feedback",
+        settings_groupe_compte: "Conta e ajuda",
         auth_signup_loading: "CRIANDO…",
         auth_logged_in_as: "Conectado como: ",
         auth_logout: "SAIR",
@@ -26351,7 +26381,7 @@ const I18N = {
         voice_test: "Posłuchaj",
         voice_none: "Na tym urządzeniu nie zainstalowano żadnego głosu dla tego języka. Zdania będą czytane głosem domyślnym, czyli ze złym akcentem. Dodaj go w ustawieniach telefonu (Dostępność › Mowa › Głosy).",
         voice_only_one: "Zainstalowany jest tylko jeden głos. Możesz dodać ulepszony w ustawieniach telefonu, a potem wrócić i wybrać go tutaj.",
-        retour_titre: "Powiedz nam, co by ci pomogło",
+        retour_titre: "Zgłoś problem lub pomysł",
         retour_desc: "Słowo, które źle brzmi, przycisk, który nie reaguje, pomysł: napisz to tutaj. Wersja aplikacji i ekran, na którym byłeś(-aś), dołączają się automatycznie — nie musisz niczego notować.",
         retour_envoyer: "WYŚLIJ",
         retour_vide: "Najpierw coś napisz.",
@@ -26652,7 +26682,7 @@ const I18N = {
         settings_langue_titre: "Język",
         settings_groupe_son: "Dźwięk",
         settings_groupe_progression: "Moje postępy",
-        settings_groupe_compte: "Konto, pomoc i opinie",
+        settings_groupe_compte: "Konto i pomoc",
         auth_signup_loading: "TWORZENIE…",
         auth_logged_in_as: "Zalogowano jako: ",
         auth_logout: "WYLOGUJ SIĘ",
@@ -27988,7 +28018,7 @@ const I18N = {
         voice_test: "Прослушать",
         voice_none: "Для этого языка на устройстве не установлен ни один голос. Фразы будут читаться голосом по умолчанию, то есть с неправильным акцентом. Добавь голос в настройках телефона (Универсальный доступ › Устный контент › Голоса).",
         voice_only_one: "Установлен только один голос. Можно добавить улучшенный в настройках телефона, а потом вернуться и выбрать его здесь.",
-        retour_titre: "Расскажи, что бы тебе помогло",
+        retour_titre: "Сообщить о проблеме или идее",
         retour_desc: "Слово звучит не так, кнопка не реагирует, есть идея — напиши здесь. Версия приложения и экран, на котором ты был(а), прикладываются автоматически — ничего записывать не нужно.",
         retour_envoyer: "ОТПРАВИТЬ",
         retour_vide: "Сначала напиши что-нибудь.",
@@ -28291,7 +28321,7 @@ const I18N = {
         settings_langue_titre: "Язык",
         settings_groupe_son: "Звук",
         settings_groupe_progression: "Мой прогресс",
-        settings_groupe_compte: "Аккаунт, помощь и отзывы",
+        settings_groupe_compte: "Аккаунт и помощь",
         auth_signup_loading: "СОЗДАНИЕ…",
         auth_logged_in_as: "Вход выполнен как:",
         auth_logout: "ВЫЙТИ",
@@ -29623,7 +29653,7 @@ const I18N = {
         voice_test: "Anhören",
         voice_none: "Auf diesem Gerät ist für diese Sprache keine Stimme installiert. Die Sätze werden mit der Standardstimme gelesen, also mit schlechtem Akzent. Füge sie in den Einstellungen deines Handys hinzu (Bedienungshilfen › Gesprochene Inhalte › Stimmen).",
         voice_only_one: "Nur eine Stimme installiert. Du kannst in den Einstellungen deines Handys eine verbesserte hinzufügen und sie dann hier auswählen.",
-        retour_titre: "Sag uns, was dir helfen würde",
+        retour_titre: "Ein Problem oder eine Idee melden",
         retour_desc: "Ein Wort, das schief klingt, ein Knopf, der nicht reagiert, eine Idee: Schreib es hier. Die Version der App und der Bildschirm, auf dem du warst, werden automatisch mitgeschickt – du musst nichts notieren.",
         retour_envoyer: "SENDEN",
         retour_vide: "Schreib erst etwas.",
@@ -29929,7 +29959,7 @@ const I18N = {
         settings_langue_titre: "Sprache",
         settings_groupe_son: "Ton",
         settings_groupe_progression: "Mein Fortschritt",
-        settings_groupe_compte: "Konto, Hilfe und Rückmeldung",
+        settings_groupe_compte: "Konto und Hilfe",
         auth_signup_loading: "WIRD ERSTELLT …",
         auth_logged_in_as: "Angemeldet als: ",
         auth_logout: "ABMELDEN",
@@ -31272,7 +31302,7 @@ const I18N = {
         voice_test: "Escuchar",
         voice_none: "No hay ninguna voz instalada para este idioma en este dispositivo. Las frases se leerán con la voz predeterminada, es decir, con mal acento. Agrégala en la configuración de tu teléfono (Accesibilidad › Contenido hablado › Voces).",
         voice_only_one: "Solo hay una voz instalada. Puedes agregar una mejorada en la configuración de tu teléfono y luego volver a elegirla aquí.",
-        retour_titre: "Dinos qué te ayudaría",
+        retour_titre: "Informar de un problema o una idea",
         retour_desc: "Una palabra que suena mal, un botón que no responde, una idea: escríbelo aquí. La versión de la app y la pantalla en la que estabas se adjuntan automáticamente — no tienes que anotar nada.",
         retour_envoyer: "ENVIAR",
         retour_vide: "Escribe algo primero.",
@@ -31578,7 +31608,7 @@ const I18N = {
         settings_langue_titre: "Idioma",
         settings_groupe_son: "Sonido",
         settings_groupe_progression: "Mi progreso",
-        settings_groupe_compte: "Cuenta, ayuda y comentarios",
+        settings_groupe_compte: "Cuenta y ayuda",
         auth_signup_loading: "CREANDO…",
         auth_logged_in_as: "Sesión iniciada como: ",
         auth_logout: "CERRAR SESIÓN",
@@ -47817,15 +47847,9 @@ function openSettings(){
     if(resetDailyEspace) resetDailyEspace.classList.toggle("hidden", !isAdminUser());
     restaurerBrouillonRetour();
     afficherLangueActuelle();
-    // Un retour commence et pas envoye : son groupe s'ouvre, sinon le
-    // brouillon dormirait dans un pli que personne ne rouvre.
-    const brouillon = document.getElementById("retourTexte");
-    // 13 oct. 2026 : le brouillon ouvrait le pli ET y amenait l'ecran a chaque
-    // visite des reglages. On ouvre le pli sans defiler : la page part du haut.
-    if(brouillon && brouillon.value.trim()){
-        const groupeCompte = document.getElementById("groupeCompte");
-        if(groupeCompte) groupeCompte.open = true;
-    }
+    // Un retour commence et pas envoye ouvrait le pli « Compte » (13 oct.
+    // 2026) ; depuis le 5 nov., la carte est tout en haut et toujours ouverte :
+    // le brouillon se voit sans rien ouvrir.
     showScreen("settings");
 }
 
@@ -48029,6 +48053,21 @@ function ouvrirGroupeReglages(id){
     if(!groupe) return;
     groupe.open = true;
     afterNextPaint(() => { try{ groupe.scrollIntoView({ block: "start", behavior: "smooth" }); }catch(e){} });
+}
+
+// La tuile « Signaler un probleme ou une idee » de Tout le contenu (5 nov. 2026) :
+// les reglages, ouverts sur la carte du haut, le curseur dans la zone de texte.
+// Retour ramene a Tout le contenu (ecranAvantReglages, VUE_CONTENU intact).
+function ouvrirSignaler(){
+    openSettings();
+    afterNextPaint(() => {
+        const zone = document.getElementById("retourTexte");
+        if(!zone) return;
+        // La carte est la premiere des reglages : le haut de la page suffit
+        // (scrollIntoView la glissait sous l'en-tete fixe).
+        try{ window.scrollTo(0, 0); }catch(e){}
+        try{ zone.focus({ preventScroll: true }); }catch(e){ try{ zone.focus(); }catch(e2){} }
+    });
 }
 
 // Le badge de l'accueil menait aux reglages, ou les badges sont maintenant
