@@ -94,10 +94,50 @@ const Voix = (() => {
       speechSynthesis.speak(u);
     }catch(e){}
   }
-  function arreter(){
-    try{ if (son) son.pause(); }catch(e){}
+  // COUPER EN FONDU (5 nov. 2026, Jacques : on passe a l'image ou a la question suivante pendant qu'une phrase est
+  // dite, et la voix continuait dessus ; « elegamment »). arreter(true) baisse le fichier enregistre en ~120 ms puis
+  // le met en pause ; la voix du telephone, elle, se coupe par cancel(). Sur iPhone, le volume d'un <audio> est en
+  // lecture seule : le fondu y devient un arret net. `tour` annule aussi une phrase en attente derriere le son de
+  // reussite (dire() juste apres bravo()) : on avance quand on veut, sans attendre la fin de rien.
+  const FONDU = 120;
+  let tour = 0;
+  // la phrase du telephone qui attend la fin du son de reussite : annulee par arreter() (la meteo, a15f561, 5 nov. :
+  // « Llueve » entendu sur la photo d'un jour de printemps, la phrase de la question d'avant)
+  let attenteTel = null;
+  function fondre(s){
+    try{
+      if (s.paused || s.muted){ s.pause(); return; }
+      const v0 = s.volume;
+      s.volume = v0 * 0.98;
+      if (Math.abs(s.volume - v0) < 1e-6){ s.pause(); return; }     // volume fige (iPhone) : arret net
+      const t0 = Date.now();
+      const pas = () => {
+        const k = (Date.now() - t0) / FONDU;
+        if (k >= 1 || s.paused){ try{ s.pause(); }catch(e){} return; }
+        s.volume = v0 * (1 - k);
+        setTimeout(pas, 16);                                         // pas requestAnimationFrame : il dort en arriere-plan
+      };
+      pas();
+    }catch(e){ try{ s.pause(); }catch(_){} }
+  }
+  function arreter(fondu){
+    tour++;
+    if (attenteTel){ clearTimeout(attenteTel); attenteTel = null; }
+    const s = son; son = null;
+    if (s){ if (fondu === true) fondre(s); else try{ s.pause(); }catch(e){} }
     try{ if (speechSynthesis.speaking || speechSynthesis.pending) speechSynthesis.cancel(); }catch(e){}
   }
+  // UN SEUL BRANCHEMENT POUR LES DIX-SEPT PAGES : tout bouton touche (Continuer, Commencer, un onglet, une reponse,
+  // le retour, Terminer, Encore) coupe la phrase en cours, en phase de capture, donc AVANT le geste de la page. Un
+  // bouton qui parle (reecouter, une reponse juste) relance ensuite sa propre phrase par dire(), comme avant. Le son
+  // de reussite ne passe pas par `son` : il n'est jamais coupe. La loupe et son voile (zoom.js) ne coupent rien.
+  try{
+    document.addEventListener("click", e => {
+      const b = e.target && e.target.closest ? e.target.closest("button, [role=tab]") : null;
+      if (!b || b.closest(".zoom-voile, .zoom-loupe, [data-garde-voix]")) return;
+      arreter(true);
+    }, true);
+  }catch(e){}
   // LE SON DE REUSSITE (3 nov. 2026, Jacques sur iPhone : le « +1 » sans le son des cartes et des scenes). Comme les
   // scenes (sonBravo de visuel/prototype/index.html) : le son de l'APP quand la page est dans son cadre (meme
   // origine : la kalimba des cartes, quel qu'il soit), sinon une copie des trois notes en WAV joue par un <audio>
@@ -157,11 +197,11 @@ const Voix = (() => {
     if (!texte) return;
     arreter();
     const attente = Math.max(0, finBravo - Date.now());
-    const id = sha1(texte);
+    const id = sha1(texte), ce = tour;
     if (!connus.has(id)){
       if (!attente){ telephone(texte); return; }
       try{ speechSynthesis.speak(new SpeechSynthesisUtterance("")); }catch(e){}
-      setTimeout(() => telephone(texte), attente);
+      attenteTel = setTimeout(() => { attenteTel = null; if (ce === tour) telephone(texte); }, attente);
       return;
     }
     const s = son = new Audio(BASE + id + ".mp3" + (R ? "?r=" + R : ""));
