@@ -8717,6 +8717,8 @@ body[data-theme="dark"]{--va-haut:rgba(255,255,255,.05); --va-bas:rgba(255,255,2
 #flashcards.active:has(#flashcardActions:not(.hidden)){padding-bottom:calc(122px + env(safe-area-inset-bottom, 0px)) !important;}
 #flashcards.active:has(#cartePhrase:not(.hidden) .cp-actions){padding-bottom:calc(96px + env(safe-area-inset-bottom, 0px)) !important;}
 #flashcards.active:has(#flashcardActions.paquet-garde:not(.hidden)){padding-bottom:calc(84px + env(safe-area-inset-bottom, 0px)) !important;}
+/* La notification d'un badge (« Badge debloque ») se posait sur le rond et la barre du bas : elle monte au-dessus. */
+body:has(#flashcards.active) .badge-toast{bottom:calc(118px + env(safe-area-inset-bottom, 0px));}
 
 /* 2. LE VERRE, une seule recette. */
 #flashcardActions .judge-button, #flashcards .cp-actions button, button.back, header .theme-icon-btn, header .avatar,
