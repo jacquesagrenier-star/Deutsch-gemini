@@ -134,6 +134,14 @@ button:disabled{cursor:default}
 .echelle .grille span.on::after{display:none}
 .dialogues{display:flex;flex-direction:column;gap:8px}
 .dialogues button{border:2px solid var(--bord);background:var(--carte);color:var(--encre);border-radius:14px;padding:9px 12px;font:700 15px var(--police);cursor:pointer;text-align:left;direction:ltr;display:flex;gap:10px;align-items:center}
+.dialogues .dit-l{flex:1 1 auto;min-width:0}
+/* le haut-parleur d'une ligne qui se fait entendre (Jacques, 5 nov. : « il faudrait qu'il y ait des petits haut-parleurs
+   pour les lignes, pour qu'on puisse voir qu'on peut cliquer pour entendre ») : celui de l'app (v919), dans un rond
+   ambre, au bout de la ligne ; il s'allume le temps du geste. Le meme que dans cuerpo.html. */
+.hp-ligne{flex:0 0 auto;align-self:center;width:34px;height:34px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);
+  color:var(--encre);display:inline-flex;align-items:center;justify-content:center}
+.hp-ligne .ic-hp{width:18px;height:18px;display:block}
+.dialogues button:active .hp-ligne,.dialogues button.joue .hp-ligne,.fiche .ligne:active .hp-ligne,.fiche .ligne.joue .hp-ligne{background:var(--ambre);color:#1C2430}
 .dialogues button.choisi{border-color:var(--ambre)}
 .regle{margin:0;font-size:14px;font-weight:700;line-height:1.5;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
 .regle b{color:var(--encre)}
@@ -402,6 +410,11 @@ const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "
 let dire = t => Voix.dire(t);
 const taire = () => Voix.arreter();
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+// le haut-parleur de l'app (v919, HP_SVG d'index.html), au bout des lignes qu'on touche pour les entendre
+const HP_APP = '<svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
+const hpLigne = () => '<span class="hp-ligne" aria-hidden="true">' + HP_APP + '</span>';
+// le rond s'allume le temps du geste
+const allumer = el => { document.querySelectorAll(".joue").forEach(x => x.classList.remove("joue")); el.classList.add("joue"); setTimeout(() => el.classList.remove("joue"), 1200); };
 
 // ---------- utilitaires ----------
 const $ = id => document.getElementById(id);
@@ -1062,7 +1075,14 @@ function decouvrir(){
     const montrerPers = p => {
       $("vis").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x.dataset.p === p));
       $("laFiche").innerHTML = fiche([p], D.fiches[p].map(f => [f.a, f.gern]));
-      $("laFiche").querySelectorAll(".ligne").forEach(l => l.addEventListener("click", () => { montrerLigne(p, faitDe(p, l.dataset.a)); dire(phraseDite); }));
+      // chaque ligne de la fiche se fait entendre quand on la touche : son haut-parleur au bout (Jacques, 5 nov.)
+      $("laFiche").querySelectorAll(".ligne").forEach(l => {
+        l.insertAdjacentHTML("beforeend", hpLigne()); l.setAttribute("role", "button"); l.tabIndex = 0;
+        l.setAttribute("aria-label", T("ecouter"));
+        const jouer = () => { allumer(l); montrerLigne(p, faitDe(p, l.dataset.a)); dire(phraseDite); };
+        l.addEventListener("click", jouer);
+        l.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); jouer(); } });
+      });
       montrerLigne(p, faitDe(p, D.fiches[p][0].a));
     };
     PERS().forEach(p => {
@@ -1084,8 +1104,9 @@ function decouvrir(){
       const q = P.propose(A_, a, pf), rep = P.repond(A_, a, f.gern, sexe, pf);
       [[q, tr("propose", a, pf, APPRENDRE), null], [rep, tr("repond", a, f.gern, sexe, pf), p]].forEach(([t, tt, qui]) => {
         const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE;
-        b.innerHTML = (qui ? imgVisage(qui).replace('class="visage"', 'class="visage" style="width:34px;height:34px"') : picto(a)) + '<span>' + t + '</span>';
-        b.addEventListener("click", () => { $("dial").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b)); ligneDite(t, tt); dire(t); });
+        b.innerHTML = (qui ? imgVisage(qui).replace('class="visage"', 'class="visage" style="width:34px;height:34px"') : picto(a)) + '<span class="dit-l">' + t + '</span>' + hpLigne();
+        b.setAttribute("aria-label", T("ecouter") + " : " + t);
+        b.addEventListener("click", () => { $("dial").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b)); allumer(b); ligneDite(t, tt); dire(t); });
         $("dial").appendChild(b);
       });
     });
