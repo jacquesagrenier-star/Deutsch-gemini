@@ -36,7 +36,7 @@ def main():
     for f in os.listdir(SORTIE):
         if f.startswith("trait-") and f.count("-") == 1:
             os.remove(os.path.join(SORTIE, f))
-    for t, qui in ((t, p) for t, scenes in TRAITS.items() for p, _ in scenes):
+    for t, qui in ((t, p) for t, scenes in TRAITS.items() for p, *_ in scenes):
         src = os.path.join(DOSSIER, "trait-" + t + "-" + qui + ".png")
         if not os.path.exists(src):
             manque.append("trait-" + t + "-" + qui)

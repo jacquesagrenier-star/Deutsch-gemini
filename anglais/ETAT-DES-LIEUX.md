@@ -40,7 +40,7 @@ mêmes images de scènes ; l'anglais se situe à **Boston**.
 - **cartes-phrases** dans la séance : écoute, oral, ordre, dictée et questions de grammaire
   anglaise, comme en allemand et en espagnol.
 
-- **thèmes illustrés** (v1085, 3 nov. 2026) : la famille d'Anna et Décrire une personne, dans le bloc de l'accueil, Tout le contenu et la séance ; les autres suivent (`visuel/THEMES-ILLUSTRES.md`, section « L'anglais »).
+- **thèmes illustrés** (v1085, 3 nov. 2026) : la famille d'Anna, Décrire une personne et les contraires (v1087), puis les émotions, le chat, le corps, les vêtements, la journée, manger, les métiers et les loisirs (4 nov.) ; les transports fermés (images de Berlin), dans le bloc de l'accueil, Tout le contenu et la séance ; les autres suivent (`visuel/THEMES-ILLUSTRES.md`, section « L'anglais »).
 
 **Reste** (la mosaïque est faite, v1013) : les couches A2-C1 des scènes (questions
 écrites pour l'anglais), l'A1 voyage, la voix (ElevenLabs, sur accord), puis la relecture

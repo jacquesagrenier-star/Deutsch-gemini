@@ -214,6 +214,7 @@ pan | la poêle
 pot | la casserole
 bell pepper | le poivron
 can | la boîte de conserve
+fries | les frites | gb=chips | ex=Carmen has a coffee and fries. # Carmen prend un café et des frites.
 """,
 "eatingout_a1": """
 restaurant | le restaurant
@@ -268,6 +269,8 @@ flu | la grippe | u
 appointment | le rendez-vous
 illness | la maladie
 Band-Aid | le pansement | gb=plaster
+throat | la gorge | ex=My throat hurts. # J'ai mal à la gorge.
+sore throat | le mal de gorge | ex=I have a sore throat. # J'ai mal à la gorge.
 """,
 "clothes_a1": """
 clothes | les vêtements | plt
@@ -303,6 +306,7 @@ watch | la montre | pl=watches
 ring | la bague
 size | la taille
 pajamas | le pyjama | plt | gb=pyjamas
+winter hat | le bonnet | gb=woolly hat | ex=It's cold: wear a winter hat! # Il fait froid : mets un bonnet !
 """,
 "city_a1": """
 city | la ville | pl=cities
@@ -582,6 +586,8 @@ hairdresser | le coiffeur, la coiffeuse
 engineer | l'ingénieur, l'ingénieure
 lawyer | l'avocat, l'avocate
 farmer | l'agriculteur, l'agricultrice
+pharmacist | le pharmacien, la pharmacienne | ex=The pharmacist sells medicine. # La pharmacienne vend des médicaments.
+bus driver | le chauffeur de bus, la chauffeuse de bus | ex=My uncle is a bus driver. # Mon oncle est chauffeur de bus.
 """,
 "freetime_a1": """
 hobby | le passe-temps | pl=hobbies

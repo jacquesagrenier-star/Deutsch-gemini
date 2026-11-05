@@ -8,17 +8,17 @@ Pour le relecteur ou la relectrice : Anna joue l'examinatrice (Sie), Mark l'autr
 
 **a_bienvenue** · Anna (Prüferin, Sie)
 
-> Guten Tag und herzlich willkommen! Ich führe heute das Gespräch. Wir beginnen mit einer kurzen Vorstellung. Auf dem Blatt stehen ein paar Stichwörter. Wer möchte anfangen?
+> Guten Tag und herzlich willkommen! Ich führe heute das Gespräch. Wir beginnen mit einer kurzen Vorstellung. Auf dem Blatt stehen ein paar Stichwörter. Herr Garnier, fangen Sie bitte an.
 
-_(fr : Bonjour et bienvenue ! C’est moi qui mène l’entretien aujourd’hui. Nous commençons par une courte présentation. Sur la feuille, il y a quelques mots-clés. Qui veut commencer ?)_
+_(fr : Bonjour et bienvenue ! C’est moi qui mène l’entretien aujourd’hui. Nous commençons par une courte présentation. Sur la feuille, il y a quelques mots-clés. Monsieur Garnier, commencez, s’il vous plaît.)_
 
 → 
 
 **m_vorstellung** · Mark (Mitkandidat ; Teil 3 : du)
 
-> Ich fange gern an. Mein Name ist Mark, ich bin fünfundzwanzig Jahre alt. Ich komme aus Montréal, das ist in Kanada. Mein Vater ist Frankokanadier und meine Mutter ist Deutsche, deshalb spreche ich Französisch, Englisch und Deutsch. Seit ein paar Monaten wohne ich in Berlin, in einer kleinen Wohnung. Im Moment mache ich ein Praktikum in einem Büro. Meine Familie lebt noch in Kanada, aber wir telefonieren jede Woche.
+> Gern. Mein Name ist Mark Garnier, ich bin fünfundzwanzig Jahre alt. Ich komme aus Montréal, das ist in Kanada. Mein Vater ist Frankokanadier und meine Mutter ist Deutsche, deshalb spreche ich Französisch, Englisch und Deutsch. Seit ein paar Monaten wohne ich in Berlin, in einer kleinen Wohnung. Im Moment mache ich ein Praktikum in einem Büro. Meine Familie lebt noch in Kanada, aber wir telefonieren jede Woche.
 
-_(fr : Je veux bien commencer. Je m’appelle Mark, j’ai vingt-cinq ans. Je viens de Montréal, au Canada. Mon père est franco-canadien et ma mère est allemande : c’est pour ça que je parle français, anglais et allemand. J’habite à Berlin depuis quelques mois, dans un petit appartement. En ce moment, je fais un stage dans un bureau. Ma famille vit encore au Canada, mais on se téléphone chaque semaine.)_
+_(fr : Volontiers. Je m’appelle Mark Garnier, j’ai vingt-cinq ans. Je viens de Montréal, au Canada. Mon père est franco-canadien et ma mère est allemande : c’est pour ça que je parle français, anglais et allemand. J’habite à Berlin depuis quelques mois, dans un petit appartement. En ce moment, je fais un stage dans un bureau. Ma famille vit encore au Canada, mais on se téléphone chaque semaine.)_
 
 → 
 
@@ -64,9 +64,9 @@ _(fr : Merci. Pourquoi apprenez-vous l’allemand, et qu’est-ce qui est le plu
 
 **a_fotos** · Anna (Prüferin, Sie)
 
-> Danke. Jetzt bekommen Sie beide ein Foto. Sehen Sie es sich kurz an. Erzählen Sie dann: Was sehen Sie? Was für eine Situation ist das? Fangen Sie wieder an?
+> Danke. Jetzt bekommen Sie beide ein Foto. Sehen Sie es sich kurz an. Erzählen Sie dann: Was sehen Sie? Was für eine Situation ist das? Herr Garnier, bitte.
 
-_(fr : Merci. Maintenant, vous recevez chacun une photo. Regardez-la un instant. Puis racontez : que voyez-vous ? Quelle est la situation ? Vous recommencez ?)_
+_(fr : Merci. Maintenant, vous recevez chacun une photo. Regardez-la un instant. Puis racontez : que voyez-vous ? Quelle est la situation ? Monsieur Garnier, s’il vous plaît.)_
 
 → 
 
@@ -96,9 +96,9 @@ _(fr : Merci. Et chez vous, comment ça se passe : où préférez-vous faire vos
 
 **a_planen** · Anna (Prüferin, Sie)
 
-> Vielen Dank. Jetzt kommt der letzte Teil. Sie planen zusammen einen Ausflug mit Ihrem Deutschkurs. Auf dem Blatt stehen ein paar Fragen. Sprechen Sie miteinander und einigen Sie sich. Sie können anfangen.
+> Vielen Dank. Jetzt kommt der letzte Teil. Sie planen zusammen einen Ausflug mit Ihrem Deutschkurs. Auf dem Blatt stehen ein paar Fragen. Sprechen Sie miteinander und einigen Sie sich. Herr Garnier, fangen Sie an.
 
-_(fr : Merci beaucoup. Voici la dernière partie. Vous organisez ensemble une sortie avec votre cours d’allemand. Sur la feuille, il y a quelques questions. Parlez ensemble et mettez-vous d’accord. Vous pouvez commencer.)_
+_(fr : Merci beaucoup. Voici la dernière partie. Vous organisez ensemble une sortie avec votre cours d’allemand. Sur la feuille, il y a quelques questions. Parlez ensemble et mettez-vous d’accord. Monsieur Garnier, commencez.)_
 
 → 
 

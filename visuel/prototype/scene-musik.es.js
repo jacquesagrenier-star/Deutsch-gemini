@@ -463,7 +463,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "frau",
    "devant": 0,
    "boites": [
     [
@@ -495,7 +495,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "frau",
    "devant": 0,
    "boites": [
     [

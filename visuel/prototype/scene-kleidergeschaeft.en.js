@@ -141,6 +141,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "winter hats",
    "niveau": "A1",
+   "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -737,7 +738,7 @@ window.SCENE = {
      }
     }
    ],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -760,7 +761,7 @@ window.SCENE = {
    "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [

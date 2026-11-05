@@ -7899,9 +7899,16 @@ body:not([data-ecran]) #fondMonde .fm-lettres, body[data-ecran="home"] #fondMond
    derriere le verre, a .34 ils disparaissaient. */
 body:not([data-ecran]) #fondMonde .fm-lettres span, body[data-ecran="home"] #fondMonde .fm-lettres span{opacity:.62; color:#8DA3B4;}
 body[data-theme="dark"]:not([data-ecran]) #fondMonde .fm-lettres span, body[data-theme="dark"][data-ecran="home"] #fondMonde .fm-lettres span{opacity:.75; color:#4A6378;}
-body:not([data-ecran]) #fondMonde .fm-piste, body[data-ecran="home"] #fondMonde .fm-piste{animation:fmDefile 170s linear infinite;}   /* v1004 : plus lent (Jacques) */
+body:not([data-ecran]) #fondMonde .fm-piste, body[data-ecran="home"] #fondMonde .fm-piste{animation:fmDefile 340s linear infinite;}   /* v1004 : plus lent (Jacques) ; v1089 : deux tours en 340 s, la meme vitesse */
 body:not([data-ecran]) #fondMonde .fm-lettres-piste, body[data-ecran="home"] #fondMonde .fm-lettres-piste{animation:fmLettres 130s linear infinite;}
-@keyframes fmDefile{from{transform:translateX(-338px);} to{transform:translateX(-1298px);}}
+/* v1089 : DEUX TOURS DE CARTE PAR BOUCLE, pas un (Jacques, 3 nov. 2026, iPhone : « Lorsque j'ouvre l'application allemande,
+   on voit la map se deplacer vers la gauche. Mais apres 5 ou 6 secondes, il y a un petit flash »). Le defilement part du pays
+   de la langue apprise (poserPaysCarte, un delai negatif) : pour l'allemand, ce point tombait a 165,6 s d'une boucle de 170 s,
+   et la boucle recommencait 4,4 s apres l'arrivee sur l'accueil -- en espagnol apres 11 s, en japonais apres pres de 2 min.
+   Le saut de 960 px est invisible sur l'ordinateur (la carte se repete), mais l'iPhone redessine la couche a ce moment-la.
+   Avec deux tours (-338 -> -2258 px en 340 s, la meme vitesse ; la piste de 2880 px couvre encore l'ecran), le depart tombe
+   toujours dans le premier : aucune boucle avant 170 s, quelle que soit la langue. Controle : tests/carte_accueil.py. */
+@keyframes fmDefile{from{transform:translateX(-338px);} to{transform:translateX(-2258px);}}
 /* v1036 : la carte et les lettres defilent de nouveau sur l'accueil. L'essai de la v1035 (les arreter)
    n'a rien change a la bande bleue de l'iPhone : elles n'y sont pour rien. */
 @keyframes fmLettres{from{transform:translateX(0);} to{transform:translateX(-390px);}}
@@ -8629,7 +8636,7 @@ body[data-theme="dark"] .spf-piste{opacity:.32;}
 .spf-lettres-piste{position:absolute; top:0; left:0; width:780px; height:100%;}
 .spf-lettres span::before{content:attr(data-l);}
 .spf-lettres span{position:absolute; font-family:Georgia, "Noto Serif", "Yu Mincho", "Hiragino Mincho ProN", serif; font-weight:600; font-size:104px; line-height:1; color:var(--fil-lettres);}
-body:not([data-ecran]) .spf-piste, body[data-ecran="home"] .spf-piste{animation:fmDefile 170s linear infinite;}
+body:not([data-ecran]) .spf-piste, body[data-ecran="home"] .spf-piste{animation:fmDefile 340s linear infinite;}
 body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-piste{animation:fmLettres 130s linear infinite;}
 @media (prefers-reduced-motion: reduce){ .spf-piste, .spf-lettres-piste{animation:none !important;} }
 /* v1050 : LE FOND SUIT LA BARRE D'ETAT (Jacques, 31 oct. 2026 : « les caracteres sont encore sur ma seance du jour.
@@ -8654,6 +8661,13 @@ body[data-theme="dark"] .spf-piste{opacity:1; background:none;}
 body[data-theme="dark"] .spf-piste::before{content:""; position:absolute; inset:0; opacity:.32;
     background:url("visuel/fond/carte-filigrane.svg") repeat-x 0 0 / 960px 378px;}
 body[data-theme="dark"] .spf-pays{opacity:.85;}
+/* v1109 : LE PAYS MOINS EN EVIDENCE SUR LA SEANCE (Jacques, 4 nov. 2026 : « le vert il n'est pas teinte par le orange
+   lorsqu'il passe sur l'orange [...] on dirait qu'il est en avant-plan », puis « j'ai aime [...] pour que le pays [...]
+   soit un peu moins en evidence »). Dans la copie de la carte, les continents sont blancs a 32 % ; le pays y etait en
+   turquoise plein et semblait colle par-dessus l'ambre. A 45 % (40 % la nuit), il se fond dans la pilule comme le
+   reste. La grande carte du fond (.fm-pays) ne change pas. Avant / apres : .claude/maquette-choix-verre.html. */
+#home #seancePilule .spf-pays{opacity:.45;}
+body[data-theme="dark"] #home #seancePilule .spf-pays{opacity:.4;}
 /* La seance laisse voir la carte : le centre de l'anneau s'ouvre, sans voile (« Sans voile blanc sur [...] la
    progression ») ; la rangee des niveaux garde un verre blanc leger. L'anneau passe donc dans le ::before, decoupe
    en couronne par un masque : sur .pa-anneau, le masque couperait aussi le chiffre. */
@@ -8664,6 +8678,86 @@ body[data-theme="dark"] #home #seancePilule > .pa-anneau::before{background:coni
 #home #seancePilule .pa-anneau b, #home #seancePilule .pa-anneau small{text-shadow:0 0 3px rgba(255,255,255,.95), 0 0 8px rgba(255,255,255,.75);}
 body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"] #home #seancePilule .pa-anneau small{text-shadow:0 0 3px rgba(0,0,0,.7), 0 0 8px rgba(0,0,0,.45);}
 #home #seancePilule .seance-niveaux{background:rgba(255,255,255,.38) !important;}
+
+/* ============ v1110 : LE VERRE D'APPLE ET LE ROND QUI AVANCE (Jacques, 4 nov. 2026) ============
+   Decisions du 4 nov. (decisions/DECISIONS.md), maquette .claude/maquette-choix-verre.html :
+   - LE VERRE, partout ou l'on appuie : « le meme verre, mais V-E-R-R-E. Donc, transparent, la meme chose qu'Apple ».
+     Presque pas de teinte (3 a 7 % de blanc), un flou, un filet de lumiere, des reflets ; l'encre foncee avec un
+     halo clair (blanche avec une ombre la nuit). Pas touches : la pilule ambre de la seance et ses boutons (cas a
+     part), les tuiles de l'accueil.
+   - CONTINUER ET VERIFIER, dans les exercices : un ROND de 56 px, centre en bas (zone de toucher 64 px), une fleche
+     neutre a l'encre petrole (« Une fleche plutot » ; « on va le placer au centre »), retournee en arabe et en persan.
+     Le mot reste dans le bouton, invisible : c'est le nom que lisent les lecteurs d'ecran.
+   - LE VERSO DES CARTES : Encore et Continuer cote a cote, 46 px ; Continuer = la bille verte au crochet et ses
+     quatre points, sans le mot. La couleur de chaque bouton passe par son icone seulement (minuteur jaune, bille
+     verte, coffre orange) : le verre, lui, reste transparent.
+   La barre des boutons reste fixe en bas (v1107). ⚠️ Pas de backdrop-filter, de filter ni de transform sur un
+   parent de ces barres : il deviendrait le cadre du « fixed ». */
+:root{--va-haut:rgba(255,255,255,.07); --va-bas:rgba(255,255,255,.03); --va-encre:#1C2430;
+    --va-halo:0 0 4px rgba(255,255,255,.75), 0 0 1px rgba(255,255,255,.6);
+    --va-filet:inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(255,255,255,.18); --va-ombre:0 8px 22px rgba(20,30,40,.12);
+    --va-reflet:linear-gradient(180deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.05) 30%, rgba(255,255,255,0) 48%), radial-gradient(60% 40% at 50% 110%, rgba(255,255,255,.22), rgba(255,255,255,0) 70%);
+    --va-fleche:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 16h17M18 9.5l6.5 6.5-6.5 6.5' fill='none' stroke='%23173A4E' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    --va-minuteur:#9A6F00; --va-coffre:#B8571A;}
+body[data-theme="dark"]{--va-haut:rgba(255,255,255,.05); --va-bas:rgba(255,255,255,.02); --va-encre:#F3F5F8;
+    --va-halo:0 1px 3px rgba(0,0,0,.7);
+    --va-filet:inset 0 1px 0 rgba(255,255,255,.22), inset 0 -1px 0 rgba(255,255,255,.06); --va-ombre:0 8px 22px rgba(0,0,0,.3);
+    --va-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,.02) 30%, rgba(255,255,255,0) 48%);
+    --va-fleche:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 16h17M18 9.5l6.5 6.5-6.5 6.5' fill='none' stroke='%23DCEBF2' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    --va-minuteur:#F0CD5A; --va-coffre:#F2A35E;}
+
+/* 1. LA PLACE (v1107) : les barres du verso et des exercices restent en bas de l'ecran ; la carte defile dessous. */
+#flashcards.active #flashcardActions:not(.hidden),
+#flashcards.active #cartePhrase:not(.hidden) .cp-actions{
+    position:fixed; z-index:950; margin:0 !important; width:auto !important; max-width:none !important;
+    left:max(12px, calc(50% - 310px), env(safe-area-inset-left, 0px));
+    right:max(12px, calc(50% - 310px), env(safe-area-inset-right, 0px));
+    bottom:calc(10px + env(safe-area-inset-bottom, 0px));
+}
+#flashcards.active:has(#flashcardActions:not(.hidden)){padding-bottom:calc(122px + env(safe-area-inset-bottom, 0px)) !important;}
+#flashcards.active:has(#cartePhrase:not(.hidden) .cp-actions){padding-bottom:calc(96px + env(safe-area-inset-bottom, 0px)) !important;}
+#flashcards.active:has(#flashcardActions.paquet-garde:not(.hidden)){padding-bottom:calc(84px + env(safe-area-inset-bottom, 0px)) !important;}
+/* La notification d'un badge (« Badge debloque ») se posait sur le rond et la barre du bas : elle monte au-dessus. */
+body:has(#flashcards.active) .badge-toast{bottom:calc(118px + env(safe-area-inset-bottom, 0px));}
+
+/* 2. LE VERRE, une seule recette. */
+#flashcardActions .judge-button, #flashcards .cp-actions button, button.back, header .theme-icon-btn, header .avatar,
+.cp-ecouter, .tr-btn, button.primary:not(.pa-play):not(#seancePilule *), button.secondary:not(#seancePilule *){
+    position:relative; overflow:hidden; isolation:isolate; border-color:transparent !important;
+    background:var(--va-reflet), linear-gradient(180deg, var(--va-haut), var(--va-bas)) !important; color:var(--va-encre) !important;
+    -webkit-backdrop-filter:blur(12px) saturate(1.15) brightness(1.04) !important; backdrop-filter:blur(12px) saturate(1.15) brightness(1.04) !important;
+    box-shadow:var(--va-filet), var(--va-ombre) !important; text-shadow:var(--va-halo) !important;}
+.cp-ecouter svg, .tr-btn svg{fill:currentColor;}
+#flashcardActions .judge-good::before, #flashcardActions .judge-good::after, #flashcards .cp-actions button::after{display:none !important;}
+button.primary:disabled, button.secondary:disabled, #flashcards .cp-actions button:disabled{opacity:.55;}
+
+/* 3. LE ROND QUI AVANCE : Continuer et Verifier des exercices. Le bouton fait 64 px (la zone du doigt) ; le verre,
+   dessine dans son ::before, en fait 56. */
+#flashcards .cp-actions{justify-content:center !important; align-items:center; gap:12px !important;}
+#flashcards .cp-actions button.primary{flex:0 0 64px !important; width:64px !important; height:64px !important; min-height:64px !important;
+    padding:0 !important; border-radius:50% !important; font-size:0 !important; color:transparent !important; text-shadow:none !important;
+    background:none !important; box-shadow:none !important; -webkit-backdrop-filter:none !important; backdrop-filter:none !important;}
+#flashcards .cp-actions button.primary::before{content:"" !important; display:block !important; position:absolute; inset:4px !important; border-radius:50%; z-index:-1; pointer-events:none;
+    background:var(--va-fleche) center / 26px 26px no-repeat, var(--va-reflet), linear-gradient(180deg, var(--va-haut), var(--va-bas)) !important;
+    -webkit-backdrop-filter:blur(12px) saturate(1.15) brightness(1.04); backdrop-filter:blur(12px) saturate(1.15) brightness(1.04);
+    box-shadow:var(--va-filet), var(--va-ombre);}
+html[dir="rtl"] #flashcards .cp-actions button.primary::before{transform:scaleX(-1);}
+#flashcards .cp-actions button.primary:focus-visible{outline:2px solid #E8A23A; outline-offset:-2px;}
+
+/* 4. LE VERSO : deux boutons de 46 px, la couleur dans les icones. */
+#flashcardActions .judge-row .judge-button{min-height:46px !important; height:46px; padding:0 10px !important; gap:8px !important;}
+#flashcardActions .judge-row .judge-again{display:grid !important; grid-template-columns:auto auto; align-content:center; justify-content:center; align-items:center; column-gap:8px; row-gap:0;}
+#flashcardActions .judge-again .minuterie{grid-row:1 / 3; order:0; color:var(--va-minuteur); width:22px; height:22px;}
+#flashcardActions .judge-again .judge-titre, #flashcardActions .judge-again .judge-echeance{grid-column:2; text-align:start; order:0;}
+#flashcardActions .judge-again .judge-echeance{font-size:11px !important; opacity:.85;}
+#flashcardActions .judge-row .judge-good{flex-direction:row !important;}
+#flashcardActions .judge-good .judge-bille{order:0 !important; width:28px; height:28px;}
+#flashcardActions .judge-good .srs-ladder, #flashcardActions .judge-good .srs-pips{order:1 !important;}
+#flashcardActions .judge-good .judge-continuer{position:absolute !important; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap;}
+#flashcardActions .judge-row2 .judge-button{min-height:36px !important;}
+#flashcardActions .judge-garde svg, #flashcardActions .judge-sortir svg{color:var(--va-coffre);}
+#flashcardActions .judge-garde.on{--va-haut:rgba(240,167,90,.34); --va-bas:rgba(240,167,90,.28);}
+body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165,100,.26); --va-bas:rgba(240,165,100,.20);}
 </style>
 
 <!-- v1003 : LE FOND COMMUN (Jacques, 29 oct. 2026). La carte du monde decoupee PAR LANGUE
@@ -8718,7 +8812,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1085</span>
+        <span class="subtitle-version">v1110</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -9433,11 +9527,12 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LES THEMES ILLUSTRES SUR L'ACCUEIL (Jacques, 3 nov. 2026 : « je passe le theme de la famille ou je
              passe le theme des caracteristiques physiques. D'un seul coup. Directement. » ; « On va prendre le A »).
              Le meme bloc que les scenes, juste dessous, avec sa phrase ; une vignette ouvre le theme EN ENTIER
-             (decouverte puis vingt questions), « N › » mene a la section de Tout le contenu. Espagnol et allemand. -->
+             (decouverte puis vingt questions). « N › » ouvre le panneau de TOUS les themes, comme « Explorer les
+             scenes » (Jacques, 3 nov. 2026 : il menait a Tout le contenu). -->
         <div class="explorer-scenes explorer-themes hidden" id="explorerThemes">
             <div class="explorer-haut">
                 <strong data-i18n="sec_illustres">Thèmes illustrés</strong>
-                <button type="button" class="explorer-tout" onclick="ouvrirListeThemesIllustres()"><span id="explorerThemesNb"></span> ›</button>
+                <button type="button" class="explorer-tout" onclick="openOrbPanel('themes_illustres')"><span id="explorerThemesNb"></span> ›</button>
             </div>
             <p class="explorer-desc" data-i18n="themes_ill_desc">Des personnes, des images, des questions. Un thème en entier, d'un coup.</p>
             <div class="explorer-ruban" id="explorerThemesRuban"></div>
@@ -9668,6 +9763,100 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <div class="orb hidden" data-orbid="contrarios" id="tuileContrarios" onclick="ouvrirThemeIllustre('contrarios')" role="button" tabindex="0">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h5l-.8 15.2a1 1 0 0 1-1 .8H7.8a1 1 0 0 1-1-.8z"/><path d="M6.4 10h4.2"/><path d="M13 4h5l-.8 15.2a1 1 0 0 1-1 .8h-1.4a1 1 0 0 1-1-.8z"/></svg></div>
             <div><strong data-i18n="con_tuile">Les contraires</strong></div>
+        </div>
+        <!-- « Ou est le chat ? » (3 nov. 2026) : les prepositions de lieu en images, un chat et une piece (le salon de Ben
+             et Mia) ; Wo? datif / Wohin? accusatif, del / al. visuel/prototype/gato.html. es et de. -->
+        <div class="orb hidden" data-orbid="gato" id="tuileGato" onclick="ouvrirThemeIllustre('gato')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20v-7h14v7"/><path d="M9 13V9.5L7.5 6.5l2.7 1.6h3.6l2.7-1.6L15 9.5V13"/><path d="M10.6 10.6h.01M13.4 10.6h.01"/></svg></div>
+            <div><strong data-i18n="gato_tuile">Où est le chat ?</strong></div>
+        </div>
+        <!-- Les vetements (3 nov. 2026) : s'habiller selon la meteo et l'occasion. Les douze de Descripcion, dans leur
+             tenue et dans deux tenues de situation ; lleva / se pone / se quita, tragt + accusatif, anziehen / ausziehen,
+             l'accord des couleurs : visuel/prototype/ropa.html. es et de. -->
+        <div class="orb hidden" data-orbid="ropa" id="tuileRopa" onclick="ouvrirThemeIllustre('ropa')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8.5 3.5 4 6l1.8 4.2 2-.9V20.5h8.4V9.3l2 .9L20 6l-4.5-2.5a3.5 3.5 0 0 1-7 0z"/></svg></div>
+            <div><strong data-i18n="ropa_tuile">Les vêtements</strong></div>
+        </div>
+        <!-- Le corps et la sante (3 nov. 2026, vague 1) : dire ou on a mal et comment on se sent -- des personnes qui ont
+             mal, pas les objets des scenes arztpraxis et apotheke. me duele / mir tut ... weh (le datif), tener / haben
+             fiebre, le conseil, le dialogue chez le medecin (l'oral du DTZ) : visuel/prototype/cuerpo.html. es et de. -->
+        <div class="orb hidden" data-orbid="cuerpo" id="tuileCuerpo" onclick="ouvrirThemeIllustre('cuerpo')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="4.5" r="2.3"/><path d="M9 7.5v7.5M5 10.5h8M9 15l-3 5.5M9 15l3 5.5"/><path d="M18.5 8.5v6M15.5 11.5h6"/></svg></div>
+            <div><strong data-i18n="cue_tuile">Le corps et la santé</strong></div>
+        </div>
+        <!-- La journee (3 nov. 2026, vague 1) : un lundi d'Anna, le samedi de Mark, un jour d'ecole chez Jan et Katrin ;
+             les verbes pronominaux et separables, l'heure (une horloge sur chaque image), l'ordre et la frequence :
+             visuel/prototype/journee.html. es et de. -->
+        <div class="orb hidden" data-orbid="journee" id="tuileJournee" onclick="ouvrirThemeIllustre('journee')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/></svg></div>
+            <div><strong data-i18n="jour_tuile">La journée</strong></div>
+        </div>
+        <!-- Manger et gouter (3 nov. 2026, vague 1) : les gouts, les saveurs, les quantites et la commande au cafe -- pas
+             les objets de la cuisine, qui ont leur scene. me gusta / gustan, ich mag / das schmeckt mir, un kilo de / ein
+             Kilo, La cuenta, por favor / Die Rechnung, bitte : visuel/prototype/manger.html. es et de. -->
+        <div class="orb hidden" data-orbid="manger" id="tuileManger" onclick="ouvrirThemeIllustre('manger')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 11h13v2.5a6.5 6.5 0 0 1-13 0z"/><path d="M17 12h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1.5 1.5 1.5 1.5 3S8 8 8 9.5M12 3.5c0 1.5 1.5 1.5 1.5 3S12 8 12 9.5"/></svg></div>
+            <div><strong data-i18n="man_tuile">Manger et goûter</strong></div>
+        </div>
+        <!-- « Les metiers » (3 nov. 2026) : qui fait quoi et ou, « Ich bin Arztin » / « Soy medica » sans article, le
+             masculin et le feminin (der Arzt / die Arztin, el / la policia). visuel/prototype/metiers.html. es et de. -->
+        <div class="orb hidden" data-orbid="metiers" id="tuileMetiers" onclick="ouvrirThemeIllustre('metiers')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8.5 7V5a1.5 1.5 0 0 1 1.5-1.5h4A1.5 1.5 0 0 1 15.5 5v2M3 12.5h18M11 12.5v2h2v-2"/></svg></div>
+            <div><strong data-i18n="met_tuile">Les métiers</strong></div>
+        </div>
+
+        <!-- Les transports (3 nov. 2026, vague 2) : se deplacer -- mit dem Bus (mit + datif), zu Fuss ; en autobus, a pie ;
+             einsteigen / aussteigen / umsteigen sur un plan de metro, subir al / bajar del ; le tableau des departs et
+             l'heure en mots ; le billet (einfach oder hin und zurueck ?) et son prix. visuel/prototype/transportes.html. es et de. -->
+        <div class="orb hidden" data-orbid="transportes" id="tuileTransportes" onclick="ouvrirThemeIllustre('transportes')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="14" rx="2.5"/><path d="M5 11h14M8 20l1.5-3M16 20l-1.5-3"/><path d="M8.5 14h.01M15.5 14h.01"/></svg></div>
+            <div><strong data-i18n="trans_tuile">Les transports</strong></div>
+        </div>
+        <!-- Les loisirs (3 nov. 2026, vague 2) : quinze activites photographiees avec des personnes connues ; me gusta /
+             gern, jugar ou tocar / spielen, machen, fahren, la frequence (un calendrier de quatre semaines) et proposer
+             une sortie. visuel/prototype/loisirs.html. es et de. -->
+        <div class="orb hidden" data-orbid="loisirs" id="tuileLoisirs" onclick="ouvrirThemeIllustre('loisirs')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="5"/><path d="M8 10v10M3 15h10"/><path d="M15 4v10.5"/><circle cx="13" cy="15" r="2"/><path d="M15 4l5 1.5v3L15 7"/></svg></div>
+            <div><strong data-i18n="loi_tuile">Les loisirs</strong></div>
+        </div>
+        <!-- Les animaux (3 nov. 2026, vague 2) : le genre et le pluriel, ou ils vivent (ferme, foret, mer, maison), ce
+             qu'ils mangent, leur couleur et leur taille ; les animaux de la ferme sont ceux de la scene bauernhof.
+             visuel/prototype/animales.html. es et de. -->
+        <div class="orb hidden" data-orbid="animales" id="tuileAnimales" onclick="ouvrirThemeIllustre('animales')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="4.2" ry="3.6"/><circle cx="6" cy="10.5" r="1.9"/><circle cx="9.6" cy="6.6" r="1.9"/><circle cx="14.4" cy="6.6" r="1.9"/><circle cx="18" cy="10.5" r="1.9"/></svg></div>
+            <div><strong data-i18n="ani_tuile">Les animaux</strong></div>
+        </div>
+        <!-- « La meteo et les saisons » (3 nov. 2026, vague 2) : une place de Berlin sous huit temps, le thermometre,
+             les saisons et ce qu'on y fait ; hace / esta / hay, es ist / es gibt. visuel/prototype/meteo.html. es et de. -->
+        <div class="orb hidden" data-orbid="meteo" id="tuileMeteo" onclick="ouvrirThemeIllustre('meteo')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><path d="M8 2v1.5M2 8h1.5M3.8 3.8l1 1M12.2 3.8l-1 1"/><path d="M9 19h9a3.5 3.5 0 0 0 0-7 5 5 0 0 0-9.6 1.4A2.8 2.8 0 0 0 9 19z"/></svg></div>
+            <div><strong data-i18n="meteo_tuile">La météo et les saisons</strong></div>
+        </div>
+
+        <!-- Le logement (4 nov. 2026, vague 3) : les pieces, les meubles, ou est qui et quoi (stehen / liegen / haengen ;
+             hay / esta), les plans, et chercher un appartement (l'annonce, KM, NK, Kaution, la visite) pour le DTZ.
+             Les pieces des scenes et de « La journee » reprises telles quelles : visuel/prototype/logement.html. es et de. -->
+        <div class="orb hidden" data-orbid="logement" id="tuileLogement" onclick="ouvrirThemeIllustre('logement')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg></div>
+            <div><strong data-i18n="log_tuile">Le logement</strong></div>
+        </div>
+
+        <!-- Les demarches (4 nov. 2026, vague 3) : l'administration et la vie pratique, au coeur du DTZ -- pas les objets
+             de la scene buergeramt. Mark au Buergeramt, a la banque, chez le medecin ; le formulaire, l'avis, les heures
+             d'ouverture et la confirmation de rendez-vous en HTML ; Wo? + datif, les verbes separables, le Sie du guichet ;
+             usted et estar abierta : visuel/prototype/demarches.html. es et de. -->
+        <div class="orb hidden" data-orbid="demarches" id="tuileDemarches" onclick="ouvrirThemeIllustre('demarches')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 11h7M9 14.5h7M9 18h4"/></svg></div>
+            <div><strong data-i18n="dem_tuile">Les démarches</strong></div>
+        </div>
+
+        <!-- Faire les courses (4 nov. 2026, vague 3) : l'achat dans les magasins -- ou acheter quoi, zur / zum et al / a la,
+             le dialogue au comptoir, les prix lus et entendus, comparer, la monnaie, le prospectus des offres. Les magasins
+             des scenes (baeckerei, supermarkt, apotheke, markt) en reprennent l'image ; pas les contenants ni le cafe de
+             « Manger et gouter » : visuel/prototype/courses.html. es et de. -->
+        <div class="orb hidden" data-orbid="courses" id="tuileCourses" onclick="ouvrirThemeIllustre('courses')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3.5 4h2.2l2.3 10.5h10.2l2-7.5H7"/><circle cx="9.5" cy="18.8" r="1.5"/><circle cx="16.8" cy="18.8" r="1.5"/></svg></div>
+            <div><strong data-i18n="cou_tuile">Faire les courses</strong></div>
         </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
@@ -10707,6 +10896,8 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
     <button class="secondary" onclick="startPraepWahl()" data-i18n="praep_btn_wahl">M'ENTRAÎNER : LAQUELLE ? →</button>
     <div class="spacer"></div>
     <button class="secondary" onclick="startVerbenMitPraep()" data-i18n="praep_btn_verben">M'ENTRAÎNER : VERBES À PRÉPOSITION →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="ouvrirThemeGato()" data-i18n="praep_btn_gato">M'ENTRAÎNER : OÙ EST LE CHAT ? →</button>
     <div class="spacer"></div>
     <button class="secondary vocab-tuile" onclick="startPraepVokabular()" data-i18n="praep_btn_vocab">VOCABULAIRE : PRÉPOSITIONS →</button>
     <div id="praepNiveauBar" class="filters-bar"></div>
@@ -14397,6 +14588,27 @@ const I18N = {
         emo_tuile: "Émotions et caractère",
         emo_court: "Émotions",
         con_tuile: "Les contraires",
+        gato_tuile: "Où est le chat ?",
+        loi_tuile: "Les loisirs",
+        ropa_tuile: "Les vêtements",
+        cue_tuile: "Le corps et la santé",
+        cue_court: "Le corps",
+        ropa_court: "Vêtements",
+        jour_tuile: "La journée",
+        jour_court: "Journée",
+        man_tuile: "Manger et goûter",
+        met_tuile: "Les métiers",
+        man_court: "Manger",
+        trans_tuile: "Les transports",
+        ani_tuile: "Les animaux",
+        meteo_tuile: "La météo et les saisons",
+        meteo_court: "La météo",
+        log_tuile: "Le logement",
+        log_court: "Logement",
+        dem_tuile: "Les démarches",
+        dem_court: "Démarches",
+        cou_tuile: "Faire les courses",
+        cou_court: "Courses",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -15309,6 +15521,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "M'ENTRAÎNER : LAQUELLE ? →",
         praep_btn_verben: "M'ENTRAÎNER : VERBES À PRÉPOSITION →",
+        praep_btn_gato: "M'ENTRAÎNER : OÙ EST LE CHAT ? →",
         kicker_partikeln_nuance: "Particules · Nuance",
 
         label_level_singular: "niveau",
@@ -15918,6 +16131,27 @@ const I18N = {
         emo_tuile: "Feelings and personality",
         emo_court: "Feelings",
         con_tuile: "Opposites",
+        gato_tuile: "Where's the cat?",
+        loi_tuile: "Free time",
+        ropa_tuile: "Clothes",
+        cue_tuile: "Body and health",
+        cue_court: "Body",
+        ropa_court: "Clothes",
+        jour_tuile: "Daily routine",
+        jour_court: "Routine",
+        man_tuile: "Food and taste",
+        met_tuile: "Jobs",
+        man_court: "Food",
+        trans_tuile: "Transport",
+        ani_tuile: "Animals",
+        meteo_tuile: "Weather and seasons",
+        meteo_court: "Weather",
+        log_tuile: "Home and housing",
+        log_court: "Home",
+        dem_tuile: "Paperwork and appointments",
+        dem_court: "Paperwork",
+        cou_tuile: "Going shopping",
+        cou_court: "Shopping",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -16828,6 +17062,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "PRACTICE: WHICH ONE? →",
         praep_btn_verben: "PRACTICE: VERBS WITH PREPOSITIONS →",
+        praep_btn_gato: "PRACTICE: WHERE'S THE CAT? →",
         kicker_partikeln_nuance: "Particles · Nuance",
 
         label_level_singular: "level",
@@ -17441,6 +17676,27 @@ const I18N = {
         emo_tuile: "Duygular ve karakter",
         emo_court: "Duygular",
         con_tuile: "Zıt anlamlılar",
+        gato_tuile: "Kedi nerede?",
+        loi_tuile: "Boş zaman",
+        ropa_tuile: "Giysiler",
+        cue_tuile: "Vücut ve sağlık",
+        cue_court: "Vücut",
+        ropa_court: "Giysiler",
+        jour_tuile: "Günlük rutin",
+        jour_court: "Rutin",
+        man_tuile: "Yemek ve tat",
+        met_tuile: "Meslekler",
+        man_court: "Yemek",
+        trans_tuile: "Ulaşım",
+        ani_tuile: "Hayvanlar",
+        meteo_tuile: "Hava durumu ve mevsimler",
+        meteo_court: "Hava",
+        log_tuile: "Ev ve konut",
+        log_court: "Ev",
+        dem_tuile: "Resmî işler",
+        dem_court: "Resmî işler",
+        cou_tuile: "Alışveriş yapmak",
+        cou_court: "Alışveriş",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -18347,6 +18603,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ALIŞTIRMA: HANGİSİ? →",
         praep_btn_verben: "ALIŞTIRMA: EDATLI FİİLLER →",
+        praep_btn_gato: "ALIŞTIRMA: KEDİ NEREDE? →",
         kicker_partikeln_nuance: "Partikeller · Nüans",
 
         label_level_singular: "seviye",
@@ -19376,6 +19633,27 @@ const I18N = {
         emo_tuile: "Емоції та характер",
         emo_court: "Емоції",
         con_tuile: "Протилежності",
+        gato_tuile: "Де кіт?",
+        loi_tuile: "Дозвілля",
+        ropa_tuile: "Одяг",
+        cue_tuile: "Тіло і здоров'я",
+        cue_court: "Тіло",
+        ropa_court: "Одяг",
+        jour_tuile: "Розпорядок дня",
+        jour_court: "День",
+        man_tuile: "Їжа і смак",
+        met_tuile: "Професії",
+        man_court: "Їжа",
+        trans_tuile: "Транспорт",
+        ani_tuile: "Тварини",
+        meteo_tuile: "Погода і пори року",
+        meteo_court: "Погода",
+        log_tuile: "Житло",
+        log_court: "Житло",
+        dem_tuile: "Офіційні справи",
+        dem_court: "Справи",
+        cou_tuile: "Покупки",
+        cou_court: "Покупки",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -19702,6 +19980,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ТРЕНУВАТИСЯ: ЯКИЙ САМЕ? →",
         praep_btn_verben: "ТРЕНУВАТИСЯ: ДІЄСЛОВА З ПРИЙМЕННИКАМИ →",
+        praep_btn_gato: "ТРЕНУВАТИСЯ: ДЕ КІТ? →",
         kicker_partikeln_nuance: "Частки · Відтінок",
         kicker_verben_revision: "Дієслова · Повторення",
         kicker_verben_flashcards: "Дієслова · Картки",
@@ -20568,6 +20847,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "تمرین: کدام‌یک؟ ←",
         praep_btn_verben: "تمرین: فعل‌های حرف‌اضافه‌دار ←",
+        praep_btn_gato: "تمرین: گربه کجاست؟ ←",
         kicker_partikeln_nuance: "ادات · ظرافت",
         label_level_singular: "سطح",
         label_level_plural: "سطح",
@@ -21624,6 +21904,27 @@ const I18N = {
         emo_tuile: "احساسات و منش",
         emo_court: "احساسات",
         con_tuile: "متضادها",
+        gato_tuile: "گربه کجاست؟",
+        loi_tuile: "اوقات فراغت",
+        ropa_tuile: "لباس‌ها",
+        cue_tuile: "بدن و سلامتی",
+        cue_court: "بدن",
+        ropa_court: "لباس",
+        jour_tuile: "کارهای روزانه",
+        jour_court: "روزانه",
+        man_tuile: "خوردن و چشیدن",
+        met_tuile: "شغل‌ها",
+        man_court: "خوردن",
+        trans_tuile: "وسایل نقلیه",
+        ani_tuile: "حیوانات",
+        meteo_tuile: "آب‌وهوا و فصل‌ها",
+        meteo_court: "آب‌وهوا",
+        log_tuile: "خانه و مسکن",
+        log_court: "خانه",
+        dem_tuile: "کارهای اداری",
+        dem_court: "اداری",
+        cou_tuile: "خرید کردن",
+        cou_court: "خرید",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -22153,6 +22454,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "تدرّب: أيّها؟ ←",
         praep_btn_verben: "تدرّب: أفعال بحروف جرّ ←",
+        praep_btn_gato: "تدرّب: أين القطّ؟ ←",
         kicker_partikeln_nuance: "الأدوات · الفرق",
         label_level_singular: "مستوى",
         label_level_plural: "مستويات",
@@ -23316,6 +23618,27 @@ const I18N = {
         emo_tuile: "المشاعر والطباع",
         emo_court: "المشاعر",
         con_tuile: "الأضداد",
+        gato_tuile: "أين القطّ؟",
+        loi_tuile: "أوقات الفراغ",
+        ropa_tuile: "الملابس",
+        cue_tuile: "الجسم والصحة",
+        cue_court: "الجسم",
+        ropa_court: "الملابس",
+        jour_tuile: "الروتين اليومي",
+        jour_court: "اليوم",
+        man_tuile: "الأكل والتذوق",
+        met_tuile: "المهن",
+        man_court: "الأكل",
+        trans_tuile: "وسائل النقل",
+        ani_tuile: "الحيوانات",
+        meteo_tuile: "الطقس والفصول",
+        meteo_court: "الطقس",
+        log_tuile: "السكن",
+        log_court: "السكن",
+        dem_tuile: "المعاملات الإدارية",
+        dem_court: "المعاملات",
+        cou_tuile: "التسوق",
+        cou_court: "التسوق",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -23689,6 +24012,27 @@ const I18N = {
         emo_tuile: "Emoções e personalidade",
         emo_court: "Emoções",
         con_tuile: "Os contrários",
+        gato_tuile: "Onde está o gato?",
+        loi_tuile: "Lazer",
+        ropa_tuile: "As roupas",
+        cue_tuile: "O corpo e a saúde",
+        cue_court: "O corpo",
+        ropa_court: "Roupas",
+        jour_tuile: "A rotina do dia",
+        jour_court: "Rotina",
+        man_tuile: "Comer e provar",
+        met_tuile: "As profissões",
+        man_court: "Comer",
+        trans_tuile: "Os transportes",
+        ani_tuile: "Os animais",
+        meteo_tuile: "O tempo e as estações",
+        meteo_court: "O tempo",
+        log_tuile: "A moradia",
+        log_court: "Moradia",
+        dem_tuile: "Os trâmites",
+        dem_court: "Trâmites",
+        cou_tuile: "Fazer compras",
+        cou_court: "Compras",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -24608,6 +24952,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "PRATICAR: QUAL DELAS? →",
         praep_btn_verben: "PRATICAR: VERBOS COM PREPOSIÇÃO →",
+        praep_btn_gato: "PRATICAR: ONDE ESTÁ O GATO? →",
         kicker_partikeln_nuance: "Partículas · Nuance",
         label_level_singular: "nível",
         label_level_plural: "níveis",
@@ -25271,6 +25616,27 @@ const I18N = {
         emo_tuile: "Emocje i charakter",
         emo_court: "Emocje",
         con_tuile: "Przeciwieństwa",
+        gato_tuile: "Gdzie jest kot?",
+        loi_tuile: "Czas wolny",
+        ropa_tuile: "Ubrania",
+        cue_tuile: "Ciało i zdrowie",
+        cue_court: "Ciało",
+        ropa_court: "Ubrania",
+        jour_tuile: "Plan dnia",
+        jour_court: "Dzień",
+        man_tuile: "Jedzenie i smak",
+        met_tuile: "Zawody",
+        man_court: "Jedzenie",
+        trans_tuile: "Transport",
+        ani_tuile: "Zwierzęta",
+        meteo_tuile: "Pogoda i pory roku",
+        meteo_court: "Pogoda",
+        log_tuile: "Mieszkanie",
+        log_court: "Mieszkanie",
+        dem_tuile: "Sprawy urzędowe",
+        dem_court: "Urzędy",
+        cou_tuile: "Zakupy",
+        cou_court: "Zakupy",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -26190,6 +26556,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ĆWICZĘ: KTÓRY? →",
         praep_btn_verben: "ĆWICZĘ: CZASOWNIKI Z PRZYIMKAMI →",
+        praep_btn_gato: "ĆWICZĘ: GDZIE JEST KOT? →",
         kicker_partikeln_nuance: "Partykuły · Niuans",
         label_level_singular: "poziom",
         label_level_plural: "poziomy",
@@ -26853,6 +27220,27 @@ const I18N = {
         emo_tuile: "Эмоции и характер",
         emo_court: "Эмоции",
         con_tuile: "Противоположности",
+        gato_tuile: "Где кот?",
+        loi_tuile: "Досуг",
+        ropa_tuile: "Одежда",
+        cue_tuile: "Тело и здоровье",
+        cue_court: "Тело",
+        ropa_court: "Одежда",
+        jour_tuile: "Распорядок дня",
+        jour_court: "День",
+        man_tuile: "Еда и вкус",
+        met_tuile: "Профессии",
+        man_court: "Еда",
+        trans_tuile: "Транспорт",
+        ani_tuile: "Животные",
+        meteo_tuile: "Погода и времена года",
+        meteo_court: "Погода",
+        log_tuile: "Жильё",
+        log_court: "Жильё",
+        dem_tuile: "Официальные дела",
+        dem_court: "Дела",
+        cou_tuile: "Покупки",
+        cou_court: "Покупки",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -27775,6 +28163,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ТРЕНИРОВАТЬСЯ: КАКОЙ? →",
         praep_btn_verben: "ТРЕНИРОВАТЬСЯ: ГЛАГОЛЫ С ПРЕДЛОГАМИ →",
+        praep_btn_gato: "ТРЕНИРОВАТЬСЯ: ГДЕ КОТ? →",
         kicker_partikeln_nuance: "Частицы · Оттенок",
         label_level_singular: "уровень",
         label_level_plural: "уровни",
@@ -28437,6 +28826,27 @@ const I18N = {
         emo_tuile: "Gefühle und Charakter",
         emo_court: "Gefühle",
         con_tuile: "Gegensätze",
+        gato_tuile: "Wo ist die Katze?",
+        loi_tuile: "Freizeit",
+        ropa_tuile: "Kleidung",
+        cue_tuile: "Körper und Gesundheit",
+        cue_court: "Körper",
+        ropa_court: "Kleidung",
+        jour_tuile: "Der Tagesablauf",
+        jour_court: "Tagesablauf",
+        man_tuile: "Essen und Geschmack",
+        met_tuile: "Berufe",
+        man_court: "Essen",
+        trans_tuile: "Verkehrsmittel",
+        ani_tuile: "Die Tiere",
+        meteo_tuile: "Das Wetter und die Jahreszeiten",
+        meteo_court: "Wetter",
+        log_tuile: "Wohnen",
+        log_court: "Wohnen",
+        dem_tuile: "Behördengänge",
+        dem_court: "Ämter",
+        cou_tuile: "Einkaufen",
+        cou_court: "Einkaufen",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -29359,6 +29769,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ÜBEN: WELCHE? →",
         praep_btn_verben: "ÜBEN: VERBEN MIT PRÄPOSITION →",
+        praep_btn_gato: "ÜBEN: WO IST DIE KATZE? →",
         kicker_partikeln_nuance: "Partikeln · Nuance",
         label_level_singular: "Niveau",
         label_level_plural: "Niveaus",
@@ -30056,6 +30467,27 @@ const I18N = {
         emo_tuile: "Emociones y carácter",
         emo_court: "Emociones",
         con_tuile: "Los contrarios",
+        gato_tuile: "¿Dónde está el gato?",
+        loi_tuile: "El tiempo libre",
+        ropa_tuile: "La ropa",
+        cue_tuile: "El cuerpo y la salud",
+        cue_court: "El cuerpo",
+        ropa_court: "Ropa",
+        jour_tuile: "La rutina diaria",
+        jour_court: "Rutina",
+        man_tuile: "Comer y probar",
+        met_tuile: "Las profesiones",
+        man_court: "Comer",
+        trans_tuile: "Los transportes",
+        ani_tuile: "Los animales",
+        meteo_tuile: "El tiempo y las estaciones",
+        meteo_court: "El tiempo",
+        log_tuile: "La vivienda",
+        log_court: "Vivienda",
+        dem_tuile: "Los trámites",
+        dem_court: "Trámites",
+        cou_tuile: "Hacer la compra",
+        cou_court: "La compra",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -30978,6 +31410,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "PRACTICAR: ¿CUÁL? →",
         praep_btn_verben: "PRACTICAR: VERBOS CON PREPOSICIÓN →",
+        praep_btn_gato: "PRACTICAR: ¿DÓNDE ESTÁ EL GATO? →",
         kicker_partikeln_nuance: "Partículas · Matiz",
         label_level_singular: "nivel",
         label_level_plural: "niveles",
@@ -36299,7 +36732,11 @@ async function loadVerbeJson() {
                     exempleHighlight: v.exempleHighlight || "", perfektHighlight: v.perfektHighlight || "",
                     // L'espagnol (fusion, etape 3) : le registre, la construction
                     // particuliere, et ses trois temps en liste ordonnee.
+                    // La note existe dans chaque langue d'interface depuis le 4 nov. 2026
+                    // (construccion_fr, _en...) ; le champ nu garde l'anglais.
                     registro: v.registro || "", construccion: v.construccion || "",
+                    construccion_fr: v.construccion_fr, construccion_en: v.construccion_en, construccion_pt: v.construccion_pt,
+                    construccion_ar: v.construccion_ar, construccion_de: v.construccion_de,
                     preterito: v.preterito || null, imperfecto: v.imperfecto || null, subjuntivo: v.subjuntivo || null,
                     // Les temps ajoutes le 13 oct. 2026 (fusion-espagnol/tiempos.py),
                     // et la phrase de chaque temps avec ses trois traductions.
@@ -37903,7 +38340,10 @@ const praepTheme = LANGUE_APPRISE === "es"
     ["lejos de", "loin de", "lieu (locution)", "El aeropuerto está lejos del centro.", "L'aéroport est loin du centre.", "far from", "The airport is far from the centre.", "place (phrase)"],
     ["antes de", "avant (de)", "temps (locution)", "Lávate las manos antes de comer.", "Lave-toi les mains avant de manger.", "before", "Wash your hands before eating.", "time (phrase)"],
     ["después de", "après", "temps (locution)", "Después de clase vamos al parque.", "Après les cours, nous allons au parc.", "after", "After class we go to the park.", "time (phrase)"],
-    ["a través de", "à travers, par l'intermédiaire de", "moyen (locution)", "Lo supe a través de una amiga.", "Je l'ai appris par une amie.", "through", "I found out through a friend.", "means (phrase)"]
+    ["a través de", "à travers, par l'intermédiaire de", "moyen (locution)", "Lo supe a través de una amiga.", "Je l'ai appris par une amie.", "through", "I found out through a friend.", "means (phrase)"],
+    // 3 nov. 2026 : le theme illustre « Ou est le chat ? » (accord de Jacques, « go »). En fin de liste, pour ne
+    // decaler l'index d'aucune carte deja apprise.
+    ["dentro de", "dans, à l'intérieur de", "lieu (locution)", "El gato está dentro de la caja.", "Le chat est dans le carton.", "inside", "The cat is inside the box.", "place (phrase)"]
   ]
 }
     : {
@@ -38980,6 +39420,11 @@ const MOTS_OUTILS_ES_PT = {
       "através de, por meio de",
       "Fiquei sabendo por meio de uma amiga.",
       "meio (locução)"
+    ],
+    "dentro de": [
+      "dentro de",
+      "O gato está dentro da caixa.",
+      "lugar (locução)"
     ]
   },
   "konjunktionen": {
@@ -39360,6 +39805,11 @@ const MOTS_OUTILS_ES_AR = {
       "عبر، من خلال، بواسطة",
       "عرفت ذلك عن طريق صديقة.",
       "الوسيلة (تركيب)"
+    ],
+    "dentro de": [
+      "داخل، في",
+      "القطّ داخل الصندوق.",
+      "المكان (تركيب)"
     ]
   },
   "konjunktionen": {
@@ -39740,6 +40190,11 @@ const MOTS_OUTILS_ES_DE = {
       "durch, über",
       "Ich habe es über eine Freundin erfahren.",
       "Mittel (Wendung)"
+    ],
+    "dentro de": [
+      "in, innerhalb von",
+      "Die Katze ist im Karton.",
+      "Ort (Wendung)"
     ]
   },
   "konjunktionen": {
@@ -43625,6 +44080,17 @@ function texteDus(dus, total){
 
 function orbPanelData(id){
     if(LANGUE_APPRISE === "en" && TUILES_ANGLAISES[id]) return panneauTuileAnglaise(id);
+    // LES THEMES ILLUSTRES (3 nov. 2026, Jacques : « N › » doit ouvrir tous les themes, sur le modele des
+    // scenes). Une option par theme de la langue apprise, dans l'ordre de THEMES_ILLUSTRES ; section « ailleurs » :
+    // ouverts a tous, comme leurs tuiles, et sans en-tete (une seule famille).
+    if(id === "themes_illustres"){
+        return {
+            icon:"carte", title:t("sec_illustres"), sub:t("themes_ill_desc"),
+            // l'action est le nom d'une fonction faite depuis la table (ouvrirThemePanneau_<theme>, plus bas)
+            options: themesIllustresOuverts().map(nom => { const ouvrir = "ouvrirThemePanneau_" + nom;
+                return { icon:"carte", vignette:"themes/" + nom + ".webp", title:t(THEMES_ILLUSTRES[nom].titre), desc:"", action:ouvrir, section:"ailleurs" }; })
+        };
+    }
     if(id === "scenes"){
         return {
             icon:"carte", title:t("op_scenes_title"), sub:t("op_scenes_sub"),
@@ -43682,7 +44148,9 @@ function orbPanelData(id){
                 { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix", section:"pratique" },
                 { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo", section:"pratique" }
             ].concat(LANGUE_APPRISE === "es" ? [
-                { icon:"exercice", title:t("op_es_gustar_t"), desc:t("op_es_gustar_d"), action:"startGustarUebung", section:"pratique" }
+                { icon:"exercice", title:t("op_es_gustar_t"), desc:t("op_es_gustar_d"), action:"startGustarUebung", section:"pratique" },
+                // 3 nov. 2026 : le theme illustre « Les loisirs » (me gusta + infinitif, en images)
+                { icon:"exercice", title:t("loi_tuile"), desc:"me gusta bailar · ¿Quieres jugar al tenis?", action:"ouvrirThemeLoisirs", section:"pratique" }
             ] : [
                 // Le francais n'a qu'un verbe la ou l'allemand en a deux, et
                 // la frontiere est nette : kennen une personne ou un lieu,
@@ -43781,7 +44249,10 @@ function orbPanelData(id){
                 { icon:"exercice", title:t("op_adverbien_o2_t"), desc:tf("op_adverbien_o2_d", { f: famillesAdverbes() }), action:"startAdverbienNuance", section:"pratique" },
                 { icon:"carte", title:t("op_adverbien_o3_t"), desc:tf("op_adverbien_o3_d", { n:(adverbienTheme.words || []).length, f: famillesAdverbes() }), action:"openAdverbienVokabular", section:"mots" },
                 { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeAdverbes", section:"pratique" }
-            ]
+            // 3 nov. 2026 : le theme illustre « Les loisirs », la frequence en images (un calendrier de quatre semaines)
+            ].concat(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de" ? [
+                { icon:"exercice", title:t("loi_tuile"), desc:LANGUE_APPRISE === "es" ? "siempre · a menudo · a veces · nunca" : "immer · oft · manchmal · nie · gern", action:"ouvrirThemeLoisirs", section:"pratique" }
+            ] : [])
         };
     }
     if(id === "schreiben"){
@@ -43929,7 +44400,7 @@ function orbPanelData(id){
                   action:"startPruefungSprechen", section:"pratique" },
                 // Essai dtz_oral (admin, francais seulement) : l'oral du DTZ avec Anna et Mark.
                 ...(essaiActif("dtz_oral") && (LANGUE_APPRISE === "de" || !LANGUE_APPRISE) ? [
-                { icon:"exercice", title:"Mark t’aide à préparer le DTZ : l’oral (essai)", desc:"Anna joue l’examinatrice, Mark l’autre candidat ; tu réponds à voix haute, verdict A2 / B1",
+                { icon:"exercice", title:"Mark et Anna t’aident à préparer le DTZ : l’oral (essai)", desc:"Anna joue l’examinatrice, Mark l’autre candidat ; tu réponds à voix haute, verdict A2 / B1",
                   action:"ouvrirDtzOral", section:"pratique" }] : [])
                 // AUCUN PAQUET DE VOCABULAIRE ICI, ET C'EST LE POINT (v471).
                 //
@@ -44011,6 +44482,8 @@ function orbPanelData(id){
                 // a preposition (B1) -- les deux series qui manquaient au cours.
                 { icon:"exercice", title:t("op_praep_o7_t"), desc:t("op_praep_o7_d"), action:"startPraepWahl", section:"pratique" },
                 { icon:"exercice", title:t("op_praep_o8_t"), desc:t("op_praep_o8_d"), action:"startVerbenMitPraep", section:"pratique" },
+                // 3 nov. 2026 : le theme illustre « Ou est le chat ? », Wo / Wohin en images (le chat change de place)
+                { icon:"exercice", title:t("gato_tuile"), desc:"auf dem Tisch · auf den Tisch", action:"ouvrirThemeGato", section:"pratique" },
                 { icon:"carte", title:t("op_vocab"), desc:"für, mit, wegen, auf…", action:"startPraepVokabular", section:"mots" },
                 { icon:"carte", title:t("op_praep_o5_t"), desc:"stehen/stellen, liegen/legen, sitzen/setzen, hängen…", action:"startPositionsverbenVokabular", section:"mots" },
                 // Le cours avait le vocabulaire de ces verbes et l'exercice
@@ -44439,6 +44912,7 @@ function renderOrbPanel(){
     // son action dans SCENES_SEANCE : une scene ajoutee la-bas a son image ici
     // sans rien toucher d'autre.
     const icone = o => {
+        if(o.vignette) return `<div class="orb-opt-icon orb-opt-vignette"><img src="${baseScenes() + o.vignette}" alt="" loading="lazy"></div>`;
         const sc = typeof SCENES_SEANCE !== "undefined" && SCENES_SEANCE.find(x => x.ouvrir === o.action);
         return sc
             ? `<div class="orb-opt-icon orb-opt-vignette"><img src="${vignetteScene(sc.nom)}" alt="" loading="lazy"></div>`
@@ -46884,11 +47358,12 @@ function poserPaysCarte(){
         const code = drapeauLangueApprise();
         const fm = document.getElementById("fondMonde");
         const largeur = (fm && fm.getBoundingClientRect().width) || window.innerWidth || 375;
-        // la piste : 960 px pour 360 degres, defilement de -338 a -1298 px en 170 s (fmDefile)
+        // la piste : 960 px pour 360 degres, defilement de -338 a -2258 px en 340 s (fmDefile, deux tours depuis la v1089) ;
+        // le depart se cale dans le PREMIER tour, d'ou au moins 170 s avant la boucle
         let t = largeur / 2 - (LONGITUDE_PAYS[code] + 180) / 360 * 960;
         while(t >= -338) t -= 960;
         while(t < -1298) t += 960;
-        const delai = -((-338 - t) / 960 * 170).toFixed(2) + "s";
+        const delai = -((-338 - t) / 1920 * 340).toFixed(2) + "s";
         [["#fondMonde .fm-piste", "fm-pays", ""], [".spf-piste", "spf-pays", "-fili"]].forEach(([sel, classe, suffixe]) => {
             document.querySelectorAll(sel).forEach(piste => {
                 let calque = piste.querySelector(":scope > ." + classe);
@@ -46909,8 +47384,21 @@ poserPaysCarte();
 // L'ordre est celui du ruban de l'accueil et du tour de role de la seance : la famille d'abord (maquette A).
 const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tuile: "tuileFamilia", en: true},
                           descripcion: {page: "descripcion.html", titre: "desc_tuile", court: "desc_court", tuile: "tuileDescripcion", en: true},
-                          emociones: {page: "emociones.html", titre: "emo_tuile", court: "emo_court", tuile: "tuileEmociones"},
-                          contrarios: {page: "contrarios.html", titre: "con_tuile", tuile: "tuileContrarios"}};
+                          emociones: {page: "emociones.html", titre: "emo_tuile", court: "emo_court", tuile: "tuileEmociones", en: true},
+                          contrarios: {page: "contrarios.html", titre: "con_tuile", tuile: "tuileContrarios", en: true},
+                          gato: {page: "gato.html", titre: "gato_tuile", tuile: "tuileGato", en: true},
+                          ropa: {page: "ropa.html", titre: "ropa_tuile", court: "ropa_court", tuile: "tuileRopa", en: true},
+                          cuerpo: {page: "cuerpo.html", titre: "cue_tuile", court: "cue_court", tuile: "tuileCuerpo", en: true},
+                          journee: {page: "journee.html", titre: "jour_tuile", court: "jour_court", tuile: "tuileJournee", en: true},
+                          manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger", en: true},
+                          metiers: {page: "metiers.html", titre: "met_tuile", tuile: "tuileMetiers", en: true},
+                          transportes: {page: "transportes.html", titre: "trans_tuile", tuile: "tuileTransportes"},
+                          loisirs: {page: "loisirs.html", titre: "loi_tuile", tuile: "tuileLoisirs", en: true},
+                          animales: {page: "animales.html", titre: "ani_tuile", tuile: "tuileAnimales"},
+                          meteo: {page: "meteo.html", titre: "meteo_tuile", court: "meteo_court", tuile: "tuileMeteo"},
+                          logement: {page: "logement.html", titre: "log_tuile", court: "log_court", tuile: "tuileLogement"},
+                          demarches: {page: "demarches.html", titre: "dem_tuile", court: "dem_court", tuile: "tuileDemarches"},
+                          courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
@@ -46921,7 +47409,7 @@ const apprendreThemeIllustre = () => LANGUE_APPRISE === "es" ? "es" : LANGUE_APP
 function ouvrirThemeIllustre(nom, depuis){
     const th = THEMES_ILLUSTRES[nom];
     if(!th) return;
-    sceneOuverteDepuis = (depuis === "accueil" ? "themeaccueil:" : "theme:") + nom;
+    sceneOuverteDepuis = (depuis === "accueil" ? "themeaccueil:" : depuis === "panneau" ? "themepanneau:" : "theme:") + nom;
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t(th.titre);
@@ -46939,7 +47427,7 @@ function ouvrirDtzOral(){
     sceneOuverteDepuis = "dtz";
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
-        cadre.title = "Mark t’aide à préparer le DTZ";
+        cadre.title = "Mark et Anna t’aident à préparer le DTZ";
         cadre.src = baseScenes() + "dtz-oral.html?apprendre=de"
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
                   + "&t=" + Date.now();
@@ -46997,6 +47485,10 @@ function voixThemeIllustre(){
          + (LANGUE_APPRISE === "en" ? "&variante=" + (VARIANTE_ANGLAIS === "gb" ? "gb" : "us") : "") + "&r=" + AUDIO_REVISION;
 }
 function ouvrirDescripcion(){ ouvrirThemeIllustre("descripcion"); }
+// le bouton M'ENTRAINER de « Comprendre les prepositions » (de), de la fiche « a, en, de » (es) et du panneau Prepositions
+function ouvrirThemeGato(){ ouvrirThemeIllustre("gato"); }
+// les lignes « Les loisirs » des panneaux Adverbes (de, es) et Verbes (es, a cote de gustar)
+function ouvrirThemeLoisirs(){ ouvrirThemeIllustre("loisirs"); }
 try{
     themesIllustresOuverts().forEach(nom => { const el = document.getElementById(THEMES_ILLUSTRES[nom].tuile); if(el) el.classList.remove("hidden"); });
 }catch(e){}
@@ -47587,8 +48079,8 @@ const ESSAIS = {
     // et l'examen blanc. Voir ouvrirDtzOral() et visuel/prototype/dtz-oral.html.
     dtz_oral: {
         etat: "admin",
-        titre: "Mark t'aide à préparer le DTZ : l'oral",
-        desc: "Dans « Préparation à l'examen » : l'oral du DTZ en répétition (se présenter, répondre, décrire une photo, raconter et comparer, planifier avec Mark). Anna joue l'examinatrice et annonce une estimation A2 / B1 ; voix du téléphone en attendant les voix enregistrées."
+        titre: "Mark et Anna t'aident à préparer le DTZ : l'oral",
+        desc: "Dans « Préparation à l'examen » : l'oral du DTZ en répétition (se présenter, répondre, décrire une photo, raconter et comparer, planifier avec Mark). Anna joue l'examinatrice et annonce une estimation A2 / B1 ; Anna et Mark parlent en vidéo, avec leurs voix de la série."
     },
     premiers_pas: {
         etat: "tous",
@@ -51769,7 +52261,8 @@ function buildRektionBadgesHtml(card){
     if(card.construccion){
         // Espagnol : « gustar : la chose aimee est le sujet » ne tient pas dans
         // une pastille, et c'est pourtant ce qui fait rater la phrase.
-        bloc += `<div class="verb-construccion">${card.construccion}</div>`;
+        // Dans la langue d'interface : elle etait servie en anglais a tous.
+        bloc += `<div class="verb-construccion">${texteTraduit(card, "construccion") || card.construccion}</div>`;
     }
     return bloc;
 }
@@ -53000,7 +53493,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1085;
+const APP_VERSION = 1110;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -53315,7 +53808,7 @@ const AUDIO_BASE = LANGUE_ENSEIGNEE.audio;
 //  14  Les nombres dits en lettres (v994, 28 oct.) : 82 sons allemands (prix,
 //      heures, dates de l'examen surtout) et 62 x 2 espagnols (annees). La voix
 //      recevait « 3,90 € » et le hachait. audio/lectures/, audio/refaire_lectures.py.
-const AUDIO_REVISION = "14";
+const AUDIO_REVISION = "15";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
@@ -56762,6 +57255,9 @@ function ouvrirMosaiquePleinEcran(rang){
             }
         };
         img.src = urlImageMosaique(m);
+        // AGRANDIR (themes/zoom.js, 3 nov. 2026) -- gagne, l'image entiere ; en cours, la toile telle qu'elle est
+        // peinte, sans rien devoiler de plus (data-zoom absent : zoom.js copie la toile)
+        if(gagnee) toile.dataset.zoom = urlImageMosaique(m); else delete toile.dataset.zoom;
         vue.classList.remove("hidden");
         synchroniserHistorique();
     });
@@ -57613,7 +58109,10 @@ function majExplorerThemes(){
     ruban.scrollLeft = 0;
     pagesExplorer(ruban, Math.ceil(noms.length / 3), "explorerThemesPages");
 }
-// « N › » : la section des themes dans Tout le contenu.
+// Le panneau des themes appelle window[action]() : une fonction par theme, faite depuis la table (un theme ajoute
+// a THEMES_ILLUSTRES a la sienne sans rien ecrire ici).
+Object.keys(THEMES_ILLUSTRES).forEach(nom => { window["ouvrirThemePanneau_" + nom] = () => ouvrirThemeIllustre(nom, "panneau"); });
+// Avant la v du 3 nov. 2026, « N › » menait a la section des themes dans Tout le contenu ; garde pour qui l'appellerait.
 function ouvrirListeThemesIllustres(){
     ouvrirToutLeContenu();
     setTimeout(() => {
@@ -58101,6 +58600,7 @@ window.addEventListener("message", (e) => {
     // Les themes illustres (v1076) reviennent a « Tout le contenu », d'ou on les a ouverts.
     if(String(sceneOuverteDepuis).indexOf("theme") === 0 && (d.type === "fini" || d.type === "fermer")){
         if(String(sceneOuverteDepuis).indexOf("themeaccueil:") === 0){ goHome(); return; }
+        if(String(sceneOuverteDepuis).indexOf("themepanneau:") === 0){ try{ openOrbPanel("themes_illustres"); }catch(err){ goHome(); } return; }
         try{ ouvrirToutLeContenu(); }catch(err){ goHome(); }
         return;
     }
@@ -58150,31 +58650,59 @@ window.addEventListener("message", (e) => {
 // homographes (der See / die See). Trois reponses par scene, donc trois
 // parcours du corpus -- jamais de boucle sur la progression (le piege de la
 // v100) : getWordState() ne lit qu'un mot.
+// LE SENS (3 nov. 2026). Un mot qui a deux entrees au corpus a deux cartes : rico
+// (« delicieux » et « riche »), comme sauer (acide / fache) ou aburrido (ennuyeux /
+// qui s'ennuie) le seraient. La page peut envoyer avec le mot la traduction
+// francaise de l'entree qu'elle enseigne (d.sens) : la carte qui porte cette
+// traduction l'emporte. Sans sens, ou si aucune carte ne le porte, rien ne change :
+// la premiere, comme avant (les scenes et les autres themes n'en envoient pas).
 function carteDeScene(d){
     const mot = (d && typeof d.mot === "string") ? d.mot : "";
     if(!mot) return null;
+    const sens = (typeof d.sens === "string" && d.sens) ? d.sens : null;
+    // le premier index qui convient, d'abord avec le sens demande, sinon sans
+    const chercher = (liste, ok, trad) => {
+        if(sens){ const j = liste.findIndex(w => ok(w) && trad(w) === sens); if(j >= 0) return j; }
+        return liste.findIndex(ok);
+    };
     if(d.cat === "verbe"){
-        const i = (verbeTheme.words || []).findIndex(w => w && w.infinitif === mot);
+        const i = chercher(verbeTheme.words || [], w => w && w.infinitif === mot, w => w.traduction);
         return i < 0 ? null : { word: verbeTheme.words[i], index: i, themeId: verbeTheme.id, mode: "verben" };
     }
+    // 3 nov. 2026, « Ou est le chat ? » : une question sur « hinter » ou « debajo de » fait avancer la carte de la
+    // preposition (le paquet Prepositions, praepTheme) -- la regle 3 des themes, un mot appris compte partout
+    if(d.cat === "praep"){
+        const i = (praepTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
+        return i < 0 ? null : { word: praepTheme.words[i], index: i, themeId: praepTheme.id, mode: "praep" };
+    }
     if(d.cat === "adjectif"){
-        const i = (adjektiveTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
+        const i = chercher(adjektiveTheme.words || [], w => Array.isArray(w) && w[0] === mot, w => w[1]);
         return i < 0 ? null : { word: adjektiveTheme.words[i], index: i, themeId: adjektiveTheme.id, mode: "adjektive" };
     }
-    let premier = null, nomme = null;
+    // 3 nov. 2026, le theme « La journee » : siempre, a veces, nunca, primero / immer, manchmal, nie, zuerst
+    if(d.cat === "adverbe"){
+        const i = (adverbienTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
+        return i < 0 ? null : { word: adverbienTheme.words[i], index: i, themeId: adverbienTheme.id, mode: "adverbien" };
+    }
+    let premier = null, nomme = null, duSens = null;
     themesComptes().forEach(th => {
         Object.keys(th.levels || {}).forEach(niv => {
             const lv = th.levels[niv];
             if(!lv || !Array.isArray(lv.words)) return;
-            const i = lv.words.findIndex(w => Array.isArray(w) && w[0] === mot
-                                              && (!d.genre || w[1] === d.genre));
+            const ok = w => Array.isArray(w) && w[0] === mot && (!d.genre || w[1] === d.genre);
+            const i = lv.words.findIndex(ok);
             if(i < 0) return;
             const it = { word: lv.words[i], index: i, themeId: lv.id, mode: "nomen" };
             if(!premier) premier = it;
             if(d.theme && lv.id === d.theme) nomme = it;
+            // le sens : rang 3, la traduction francaise d'un nom
+            if(sens && !duSens){
+                const j = lv.words.findIndex(w => ok(w) && w[3] === sens);
+                if(j >= 0) duSens = { word: lv.words[j], index: j, themeId: lv.id, mode: "nomen" };
+            }
         });
     });
-    return nomme || premier;
+    return duSens || nomme || premier;
 }
 
 // CE QUE VAUT UNE REPONSE : EXACTEMENT CE QUE VAUT UNE CARTE.
@@ -58266,8 +58794,24 @@ let sceneCompteExercices = false;
 function exerciceDeScene(){
     try{
         if(getLearningDirection() !== "de") return;
-        recordDailyActivity();
+        const palier = recordDailyActivity();
+        // 3 nov. 2026 : DANS UN THEME ILLUSTRE, LE PALIER A SA FETE, comme une carte. Jacques : « il n'y a pas
+        // d'affichage de la mosaique, avec le cercle de progression », « dans un theme illustre ». Le palier etait
+        // compte ici sans rien montrer : la regle des scenes (pas de fete par-dessus l'image au milieu d'une
+        // question). Un theme envoie « exercice » APRES la reponse, quand le retour s'affiche : rien a cacher. Le
+        // carreau de la reponse (« bonne ») arrive juste apres, et montrerMosaiquePalier attend 450 ms -- le meme
+        // ordre que pour une carte. Les scenes, elles, gardent leur regle.
+        if(palier > 0 && themeIllustreOuvert()) triggerDailyGoalCelebration(palier);
     }catch(e){}
+}
+// La page du cadre est-elle celle d'un theme illustre (depuis Tout le contenu, l'accueil ou la seance, ou il
+// s'ouvre comme un arret, « arret », sous le meme nom qu'une scene) ?
+function themeIllustreOuvert(){
+    try{
+        const cadre = document.getElementById("sceneCadre");
+        const page = cadre ? new URL(cadre.src, location.href).pathname.split("/").pop() : "";
+        return Object.values(THEMES_ILLUSTRES).some(th => th.page === page);
+    }catch(e){ return false; }
 }
 
 // ============ LA SEANCE MELANGEE (essai « phrases », v810-v812) ============
@@ -60325,7 +60869,9 @@ function montrerCartePhrase(item){
                 phrase.textContent = "";
                 phrase.appendChild(creer("span", "cp-or-allume", item.phrase.de));
                 reessayer.classList.add("hidden");
-                setTimeout(() => { micro.classList.add("reussi"); micro.textContent = "✓"; }, 260);
+                // v1110 : PLUS DE ROND VERT AU CROCHET (Jacques, 4 nov. : « on va se retrouver avec deux crochets. Donc, il
+                // faudrait peut-etre juste voir le plus 1 puis avec le son »). Le micro reste tel quel ; la reussite se
+                // voit au « +1 », s'entend au son et se fete aux confettis ; on avance par le rond a la fleche du bas.
                 if(!eclatDonne){
                     eclatDonne = true;
                     try{ poserCarreauDeLaCarte(item); }catch(e){}
@@ -66805,5 +67351,18 @@ function showResults(){
 })();
 </script>
 
+<!-- AGRANDIR LES TABLEAUX DE LA GALERIE (Jacques, 3 nov. 2026, « Oui, les deux »), avec le module des
+     themes illustres -- UNE seule source, visuel/prototype/themes/zoom.js : un toucher sur le tableau en plein ecran
+     ouvre la visionneuse (au lieu de refermer le plein ecran), deux doigts sur le tableau ou sur une vignette de la
+     galerie aussi ; dedans, deux doigts jusqu'a x4, double toucher, la molette, le bouton x. -->
+<script src="visuel/prototype/themes/zoom.js?v=4"></script>
+<script>
+if(typeof Zoom !== "undefined"){
+    try{
+        Zoom.init({direct: "#mosaiquePleinToile", pincer: "#mosaiquePleinToile, #galerieMosaiques .galerie-item img",
+                   langue: () => { try{ return langueEtRepli()[0]; }catch(e){ return "fr"; } }});
+    }catch(e){}
+}
+</script>
 </body>
 </html>

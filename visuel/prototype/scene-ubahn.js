@@ -532,7 +532,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "frau",
    "devant": 0,
    "boites": [
     [
@@ -844,7 +844,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 1,
    "boites": [
     [
@@ -873,7 +873,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 1,
    "boites": [
     [
@@ -902,7 +902,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 1,
    "boites": [
     [
@@ -931,7 +931,7 @@ window.SCENE = {
    "theme": "reisen_urlaub_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 1,
    "boites": [
     [
@@ -1018,7 +1018,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 1,
    "boites": [
     [
@@ -1063,7 +1063,7 @@ window.SCENE = {
      "ru": "ботинок, туфля"
     }
    ],
-   "sur": null,
+   "sur": "mark",
    "devant": 1,
    "boites": [
     [

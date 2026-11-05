@@ -577,7 +577,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "frau",
    "devant": 0,
    "boites": [
     [
@@ -822,7 +822,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -850,7 +850,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -878,7 +878,7 @@ window.SCENE = {
    "theme": "la_ropa",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -955,7 +955,7 @@ window.SCENE = {
      }
     }
    ],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -1000,7 +1000,7 @@ window.SCENE = {
      }
     }
    ],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -1378,15 +1378,15 @@ window.SCENE = {
    "titre": "Por ou para ?",
    "qs": [
     {
-     "q": "Anna viaja a España ___ una semana.",
+     "q": "Anna va a estar en España ___ una semana.",
      "c": [
       "por",
       "para",
       "de"
      ],
      "f": "anna",
-     "phrase": "Anna viaja a España por una semana.",
-     "sens": "Anna part en Espagne pour une semaine.",
+     "phrase": "Anna va a estar en España por una semana.",
+     "sens": "Anna va passer une semaine en Espagne.",
      "n": "Une durée → <b>por</b>.",
      "revise": {
       "mot": "viajar",
@@ -1598,7 +1598,7 @@ window.SCENE = {
      }
     },
     {
-     "q": "El piloto ___ ese avión muchas veces.",
+     "q": "Este piloto ya ___ ese avión muchas veces.",
      "c": [
       "ha pilotado",
       "pilotará",
@@ -1606,9 +1606,9 @@ window.SCENE = {
      ],
      "f": "pilot",
      "r": "flugzeug",
-     "phrase": "El piloto ha pilotado ese avión muchas veces.",
-     "sens": "Le pilote a piloté cet avion de nombreuses fois.",
-     "n": "Une expérience jusqu'à aujourd'hui (<b>muchas veces</b>) → pretérito perfecto."
+     "phrase": "Este piloto ya ha pilotado ese avión muchas veces.",
+     "sens": "Ce pilote a déjà piloté cet avion de nombreuses fois.",
+     "n": "Une expérience jusqu'à aujourd'hui (<b>ya</b>, <b>muchas veces</b>) → pretérito perfecto."
     }
    ]
   },
@@ -1693,7 +1693,7 @@ window.SCENE = {
     "A2 | Hay un boleto en el mostrador.": "<b>hay</b> introduces something new; <b>está</b> places something already known.",
     "A2 | Hay un billete en el mostrador.": "<b>hay</b> introduces something new; <b>está</b> places something already known.",
     "A2 | El piloto está delante de la ventana.": "<b>la</b> is feminine: <b>de la</b>, no contraction. Only <b>de + el</b> becomes <b>del</b>.",
-    "B1 | Anna viaja a España por una semana.": "A length of time → <b>por</b>.",
+    "B1 | Anna va a estar en España por una semana.": "A length of time → <b>por</b>.",
     "B1 | El avión sale para Madrid.": "The destination → <b>para</b>.",
     "B1 | Anna va a España para ver a su amiga.": "The purpose (in order to) → <b>para</b> + infinitive.",
     "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "<b>gracias por</b>: the reason, the thanks.",
@@ -1709,7 +1709,7 @@ window.SCENE = {
     "B2 | Hoy el avión ha llegado con retraso.": "<b>hoy</b> → pretérito perfecto.",
     "B2 | ¿Ya has comprado el boleto?": "<b>ya</b> (already): a link with the present → pretérito perfecto.",
     "B2 | ¿Ya has comprado el billete?": "<b>ya</b> (already): a link with the present → pretérito perfecto.",
-    "B2 | El piloto ha pilotado ese avión muchas veces.": "An experience up to today (<b>muchas veces</b>) → pretérito perfecto.",
+    "B2 | Este piloto ya ha pilotado ese avión muchas veces.": "An experience up to today (<b>ya</b>, <b>muchas veces</b>) → pretérito perfecto.",
     "C1 | Debe de estar contenta de viajar.": "<b>deber de</b> + infinitive = a deduction.",
     "C1 | Puede que el piloto pilote el avión de Anna.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Pesará más de veinte kilos.": "The <b>future</b> expresses a guess about the present.",
@@ -1727,7 +1727,7 @@ window.SCENE = {
     "A2 | Hay un boleto en el mostrador.": "There is a ticket on the counter.",
     "A2 | Hay un billete en el mostrador.": "There is a ticket on the counter.",
     "A2 | El piloto está delante de la ventana.": "The pilot is in front of the window.",
-    "B1 | Anna viaja a España por una semana.": "Anna is travelling to Spain for a week.",
+    "B1 | Anna va a estar en España por una semana.": "Anna is going to be in Spain for a week.",
     "B1 | El avión sale para Madrid.": "The plane is leaving for Madrid.",
     "B1 | Anna va a España para ver a su amiga.": "Anna is going to Spain to see her friend.",
     "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "\"Thank you for your help,\" Anna says to the employee.",
@@ -1743,7 +1743,7 @@ window.SCENE = {
     "B2 | Hoy el avión ha llegado con retraso.": "Today the plane arrived late.",
     "B2 | ¿Ya has comprado el boleto?": "Have you already bought the ticket?",
     "B2 | ¿Ya has comprado el billete?": "Have you already bought the ticket?",
-    "B2 | El piloto ha pilotado ese avión muchas veces.": "The pilot has flown that plane many times.",
+    "B2 | Este piloto ya ha pilotado ese avión muchas veces.": "This pilot has already flown that plane many times.",
     "C1 | Debe de estar contenta de viajar.": "She must be happy to be travelling.",
     "C1 | Puede que el piloto pilote el avión de Anna.": "The pilot may be flying Anna's plane.",
     "C1 | Pesará más de veinte kilos.": "It probably weighs more than twenty kilos.",
@@ -1807,7 +1807,7 @@ window.SCENE = {
     "A2 | Hay un boleto en el mostrador.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
     "A2 | Hay un billete en el mostrador.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
     "A2 | El piloto está delante de la ventana.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
-    "B1 | Anna viaja a España por una semana.": "مدة ← <b>por</b>.",
+    "B1 | Anna va a estar en España por una semana.": "مدة ← <b>por</b>.",
     "B1 | El avión sale para Madrid.": "الوجهة ← <b>para</b>.",
     "B1 | Anna va a España para ver a su amiga.": "الهدف (لكي) ← <b>para</b> + مصدر.",
     "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "<b>gracias por</b>: السبب، الشكر.",
@@ -1823,7 +1823,7 @@ window.SCENE = {
     "B2 | Hoy el avión ha llegado con retraso.": "<b>hoy</b> → pretérito perfecto.",
     "B2 | ¿Ya has comprado el boleto?": "<b>ya</b> (قد، بالفعل): صلة بالحاضر ← pretérito perfecto.",
     "B2 | ¿Ya has comprado el billete?": "<b>ya</b> (قد، بالفعل): صلة بالحاضر ← pretérito perfecto.",
-    "B2 | El piloto ha pilotado ese avión muchas veces.": "تجربة حتى اليوم (<b>muchas veces</b>) → pretérito perfecto.",
+    "B2 | Este piloto ya ha pilotado ese avión muchas veces.": "تجربة حتى اليوم (<b>ya</b>، <b>muchas veces</b>) → pretérito perfecto.",
     "C1 | Debe de estar contenta de viajar.": "<b>deber de</b> + مصدر = استنتاج.",
     "C1 | Puede que el piloto pilote el avión de Anna.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Pesará más de veinte kilos.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
@@ -1841,7 +1841,7 @@ window.SCENE = {
     "A2 | Hay un boleto en el mostrador.": "هناك تذكرة على المنضدة.",
     "A2 | Hay un billete en el mostrador.": "هناك تذكرة على المنضدة.",
     "A2 | El piloto está delante de la ventana.": "الطيّار أمام النافذة.",
-    "B1 | Anna viaja a España por una semana.": "تسافر آنا إلى إسبانيا لمدّة أسبوع.",
+    "B1 | Anna va a estar en España por una semana.": "ستبقى آنا في إسبانيا لمدّة أسبوع.",
     "B1 | El avión sale para Madrid.": "تقلع الطائرة إلى مدريد.",
     "B1 | Anna va a España para ver a su amiga.": "تذهب آنا إلى إسبانيا لرؤية صديقتها.",
     "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "«شكراً على مساعدتك»، تقول آنا للموظّفة.",
@@ -1857,7 +1857,7 @@ window.SCENE = {
     "B2 | Hoy el avión ha llegado con retraso.": "اليوم وصلت الطائرة متأخّرة.",
     "B2 | ¿Ya has comprado el boleto?": "هل اشتريت التذكرة بالفعل؟",
     "B2 | ¿Ya has comprado el billete?": "هل اشتريت التذكرة بالفعل؟",
-    "B2 | El piloto ha pilotado ese avión muchas veces.": "قاد الطيّار تلك الطائرة مرّات كثيرة.",
+    "B2 | Este piloto ya ha pilotado ese avión muchas veces.": "قاد هذا الطيّار تلك الطائرة مرّات كثيرة من قبل.",
     "C1 | Debe de estar contenta de viajar.": "لا بدّ أنها سعيدة بالسفر.",
     "C1 | Puede que el piloto pilote el avión de Anna.": "ربما يقود الطيّار طائرة آنا.",
     "C1 | Pesará más de veinte kilos.": "على الأرجح تزن أكثر من عشرين كيلوغراماً.",
@@ -1888,7 +1888,7 @@ window.SCENE = {
     "A2 | Hay un boleto en el mostrador.": "<b>hay</b> apresenta algo novo; <b>está</b> situa algo já conhecido.",
     "A2 | Hay un billete en el mostrador.": "<b>hay</b> apresenta algo novo; <b>está</b> situa algo já conhecido.",
     "A2 | El piloto está delante de la ventana.": "<b>la</b> é feminino: <b>de la</b>, sem contração. Só <b>de + el</b> vira <b>del</b>.",
-    "B1 | Anna viaja a España por una semana.": "Uma duração → <b>por</b>.",
+    "B1 | Anna va a estar en España por una semana.": "Uma duração → <b>por</b>.",
     "B1 | El avión sale para Madrid.": "O destino → <b>para</b>.",
     "B1 | Anna va a España para ver a su amiga.": "A finalidade (a fim de) → <b>para</b> + infinitivo.",
     "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "<b>gracias por</b>: a causa, o agradecimento.",
@@ -1904,7 +1904,7 @@ window.SCENE = {
     "B2 | Hoy el avión ha llegado con retraso.": "<b>hoy</b> → pretérito perfecto.",
     "B2 | ¿Ya has comprado el boleto?": "<b>ya</b> (já): uma ligação com o presente → pretérito perfecto.",
     "B2 | ¿Ya has comprado el billete?": "<b>ya</b> (já): uma ligação com o presente → pretérito perfecto.",
-    "B2 | El piloto ha pilotado ese avión muchas veces.": "Uma experiência até hoje (<b>muchas veces</b>) → pretérito perfecto.",
+    "B2 | Este piloto ya ha pilotado ese avión muchas veces.": "Uma experiência até hoje (<b>ya</b>, <b>muchas veces</b>) → pretérito perfecto.",
     "C1 | Debe de estar contenta de viajar.": "<b>deber de</b> + infinitivo = uma dedução.",
     "C1 | Puede que el piloto pilote el avión de Anna.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Pesará más de veinte kilos.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
@@ -1922,7 +1922,7 @@ window.SCENE = {
     "A2 | Hay un boleto en el mostrador.": "Há uma passagem no balcão.",
     "A2 | Hay un billete en el mostrador.": "Há uma passagem no balcão.",
     "A2 | El piloto está delante de la ventana.": "O piloto está em frente à janela.",
-    "B1 | Anna viaja a España por una semana.": "Anna viaja para a Espanha por uma semana.",
+    "B1 | Anna va a estar en España por una semana.": "Anna vai ficar na Espanha por uma semana.",
     "B1 | El avión sale para Madrid.": "O avião sai para Madri.",
     "B1 | Anna va a España para ver a su amiga.": "Anna vai à Espanha para ver a amiga.",
     "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "«Obrigada pela ajuda», diz Anna à funcionária.",
@@ -1938,7 +1938,7 @@ window.SCENE = {
     "B2 | Hoy el avión ha llegado con retraso.": "Hoje o avião chegou atrasado.",
     "B2 | ¿Ya has comprado el boleto?": "Você já comprou a passagem?",
     "B2 | ¿Ya has comprado el billete?": "Você já comprou a passagem?",
-    "B2 | El piloto ha pilotado ese avión muchas veces.": "O piloto já pilotou esse avião muitas vezes.",
+    "B2 | Este piloto ya ha pilotado ese avión muchas veces.": "Este piloto já pilotou esse avião muitas vezes.",
     "C1 | Debe de estar contenta de viajar.": "Ela deve estar contente de viajar.",
     "C1 | Puede que el piloto pilote el avión de Anna.": "Pode ser que o piloto pilote o avião de Anna.",
     "C1 | Pesará más de veinte kilos.": "Deve pesar mais de vinte quilos.",
@@ -1991,7 +1991,7 @@ window.SCENE = {
     "A2 | Hay un boleto en el mostrador.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
     "A2 | Hay un billete en el mostrador.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
     "A2 | El piloto está delante de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
-    "B1 | Anna viaja a España por una semana.": "Eine Dauer → <b>por</b>.",
+    "B1 | Anna va a estar en España por una semana.": "Eine Dauer → <b>por</b>.",
     "B1 | El avión sale para Madrid.": "Das Ziel → <b>para</b>.",
     "B1 | Anna va a España para ver a su amiga.": "Der Zweck („um … zu“) → <b>para</b> + Infinitiv.",
     "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "<b>gracias por</b>: der Grund, der Dank — beide deutschen „für“ sind hier verschieden: gracias por, aber para Anna.",
@@ -2007,7 +2007,7 @@ window.SCENE = {
     "B2 | Hoy el avión ha llegado con retraso.": "<b>hoy</b> → pretérito perfecto — mit haber, nicht mit „sein“: ha llegado.",
     "B2 | ¿Ya has comprado el boleto?": "<b>ya</b> (schon): ein Bezug zur Gegenwart → pretérito perfecto.",
     "B2 | ¿Ya has comprado el billete?": "<b>ya</b> (schon): ein Bezug zur Gegenwart → pretérito perfecto.",
-    "B2 | El piloto ha pilotado ese avión muchas veces.": "Eine Erfahrung bis heute (<b>muchas veces</b>) → pretérito perfecto.",
+    "B2 | Este piloto ya ha pilotado ese avión muchas veces.": "Eine Erfahrung bis heute (<b>ya</b>, <b>muchas veces</b>) → pretérito perfecto.",
     "C1 | Debe de estar contenta de viajar.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
     "C1 | Puede que el piloto pilote el avión de Anna.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
     "C1 | Pesará más de veinte kilos.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
@@ -2025,7 +2025,7 @@ window.SCENE = {
     "A2 | Hay un boleto en el mostrador.": "Auf dem Schalter liegt ein Ticket.",
     "A2 | Hay un billete en el mostrador.": "Auf dem Schalter liegt ein Ticket.",
     "A2 | El piloto está delante de la ventana.": "Der Pilot steht vor dem Fenster.",
-    "B1 | Anna viaja a España por una semana.": "Anna reist für eine Woche nach Spanien.",
+    "B1 | Anna va a estar en España por una semana.": "Anna wird eine Woche lang in Spanien sein.",
     "B1 | El avión sale para Madrid.": "Das Flugzeug fliegt nach Madrid.",
     "B1 | Anna va a España para ver a su amiga.": "Anna fährt nach Spanien, um ihre Freundin zu sehen.",
     "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "„Danke für Ihre Hilfe“, sagt Anna zur Angestellten.",
@@ -2041,7 +2041,7 @@ window.SCENE = {
     "B2 | Hoy el avión ha llegado con retraso.": "Heute ist das Flugzeug mit Verspätung angekommen.",
     "B2 | ¿Ya has comprado el boleto?": "Hast du das Ticket schon gekauft?",
     "B2 | ¿Ya has comprado el billete?": "Hast du das Ticket schon gekauft?",
-    "B2 | El piloto ha pilotado ese avión muchas veces.": "Der Pilot hat dieses Flugzeug schon viele Male geflogen.",
+    "B2 | Este piloto ya ha pilotado ese avión muchas veces.": "Dieser Pilot hat dieses Flugzeug schon viele Male geflogen.",
     "C1 | Debe de estar contenta de viajar.": "Sie muss sich auf die Reise freuen.",
     "C1 | Puede que el piloto pilote el avión de Anna.": "Vielleicht fliegt der Pilot Annas Flugzeug.",
     "C1 | Pesará más de veinte kilos.": "Er wird wohl über zwanzig Kilo wiegen.",
