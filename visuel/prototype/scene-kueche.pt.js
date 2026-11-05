@@ -994,7 +994,7 @@ window.SCENE = {
    "theme": "comida_a2_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 0,
    "boites": [
     [

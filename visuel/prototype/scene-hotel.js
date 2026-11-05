@@ -572,7 +572,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -601,7 +601,7 @@ window.SCENE = {
    "theme": "kleidung_b1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -630,7 +630,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -820,7 +820,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 0,
    "boites": [
     [
@@ -923,7 +923,7 @@ window.SCENE = {
      "ru": "джинсы"
     }
    ],
-   "sur": null,
+   "sur": "mark",
    "devant": 0,
    "boites": [
     [
@@ -952,7 +952,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 0,
    "boites": [
     [
@@ -1155,7 +1155,7 @@ window.SCENE = {
    "theme": "kleidung_a2",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "frau",
    "devant": 0,
    "boites": [
     [
@@ -1219,7 +1219,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "frau",
    "devant": 0,
    "boites": [
     [
