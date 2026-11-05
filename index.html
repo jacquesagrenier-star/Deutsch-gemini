@@ -9859,6 +9859,16 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
             <div><strong data-i18n="cou_tuile">Faire les courses</strong></div>
         </div>
 
+        <!-- L'ecole et la garderie (5 nov. 2026, vague 4) : les parents face a l'ecole, sujet frequent du DTZ -- amener et
+             aller chercher, inscrire, le mot d'absence, la reunion de parents, l'horaire, les fournitures, les vacances.
+             Ben (7 ans) et Mia (4 ans), les enfants de Jan et Katrin ; l'horaire, le mot d'absence, l'invitation et le
+             calendrier en HTML ; Wohin? / Wo?, les verbes separables, weil ; ir a / estar en, la « a » personnelle :
+             visuel/prototype/ecole.html. es et de. -->
+        <div class="orb hidden" data-orbid="ecole" id="tuileEcole" onclick="ouvrirThemeIllustre('ecole')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 9.5 12 5l9 4.5-9 4.5z"/><path d="M7 11.5v4.5c1.5 1.5 3 2 5 2s3.5-.5 5-2v-4.5"/><path d="M21 9.5v5"/></svg></div>
+            <div><strong data-i18n="eco_tuile">L'école et la garderie</strong></div>
+        </div>
+
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
@@ -14609,6 +14619,8 @@ const I18N = {
         dem_court: "Démarches",
         cou_tuile: "Faire les courses",
         cou_court: "Courses",
+        eco_tuile: "L'école et la garderie",
+        eco_court: "École",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -16152,6 +16164,8 @@ const I18N = {
         dem_court: "Paperwork",
         cou_tuile: "Going shopping",
         cou_court: "Shopping",
+        eco_tuile: "School and day care",
+        eco_court: "School",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17697,6 +17711,8 @@ const I18N = {
         dem_court: "Resmî işler",
         cou_tuile: "Alışveriş yapmak",
         cou_court: "Alışveriş",
+        eco_tuile: "Okul ve kreş",
+        eco_court: "Okul",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19654,6 +19670,8 @@ const I18N = {
         dem_court: "Справи",
         cou_tuile: "Покупки",
         cou_court: "Покупки",
+        eco_tuile: "Школа й дитсадок",
+        eco_court: "Школа",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21925,6 +21943,8 @@ const I18N = {
         dem_court: "اداری",
         cou_tuile: "خرید کردن",
         cou_court: "خرید",
+        eco_tuile: "مدرسه و مهدکودک",
+        eco_court: "مدرسه",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23639,6 +23659,8 @@ const I18N = {
         dem_court: "المعاملات",
         cou_tuile: "التسوق",
         cou_court: "التسوق",
+        eco_tuile: "المدرسة والحضانة",
+        eco_court: "المدرسة",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -24033,6 +24055,8 @@ const I18N = {
         dem_court: "Trâmites",
         cou_tuile: "Fazer compras",
         cou_court: "Compras",
+        eco_tuile: "A escola e a creche",
+        eco_court: "Escola",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25637,6 +25661,8 @@ const I18N = {
         dem_court: "Urzędy",
         cou_tuile: "Zakupy",
         cou_court: "Zakupy",
+        eco_tuile: "Szkoła i przedszkole",
+        eco_court: "Szkoła",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -27241,6 +27267,8 @@ const I18N = {
         dem_court: "Дела",
         cou_tuile: "Покупки",
         cou_court: "Покупки",
+        eco_tuile: "Школа и детский сад",
+        eco_court: "Школа",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28847,6 +28875,8 @@ const I18N = {
         dem_court: "Ämter",
         cou_tuile: "Einkaufen",
         cou_court: "Einkaufen",
+        eco_tuile: "Schule und Kita",
+        eco_court: "Schule",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30488,6 +30518,8 @@ const I18N = {
         dem_court: "Trámites",
         cou_tuile: "Hacer la compra",
         cou_court: "La compra",
+        eco_tuile: "El colegio y la guardería",
+        eco_court: "Colegio",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -47398,7 +47430,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           meteo: {page: "meteo.html", titre: "meteo_tuile", court: "meteo_court", tuile: "tuileMeteo"},
                           logement: {page: "logement.html", titre: "log_tuile", court: "log_court", tuile: "tuileLogement"},
                           demarches: {page: "demarches.html", titre: "dem_tuile", court: "dem_court", tuile: "tuileDemarches"},
-                          courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"}};
+                          courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"},
+                          ecole: {page: "ecole.html", titre: "eco_tuile", court: "eco_court", tuile: "tuileEcole"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);

@@ -19,6 +19,19 @@ from ecole import DOSSIER, IMAGES, DECOUPES, ecrire_json   # noqa: E402
 SORTIE = os.path.join(ICI, "..", "prototype", "ecole")
 
 
+# Les mots que fal a ecrits malgre la consigne, floutes ici plutot que de racheter l'image (boites en pixels de
+# l'original 2400 x 1792), 5 nov. : « Registration Form » sur le formulaire d'inscription, « Tempera » sur les pots de
+# peinture et un mot sur une feuille du mur de la Kita.
+FLOUS = {"anmelden": [(800, 1365, 1245, 1528)], "malen": [(1200, 1215, 1525, 1320), (425, 115, 510, 190)]}
+
+
+def flouter(im, boites):
+    from PIL import ImageFilter
+    for b in boites:
+        im.paste(im.crop(b).filter(ImageFilter.GaussianBlur(9)), b[:2])
+    return im
+
+
 def quatre_tiers(im):
     w, h = im.size
     if abs(w * 3 - h * 4) > 8:
@@ -56,7 +69,7 @@ def main():
         if not os.path.exists(src):
             manque.append(nom)
             continue
-        image = Image.open(src).convert("RGB")
+        image = flouter(Image.open(src).convert("RGB"), FLOUS.get(nom, []))
         if nom == "material":
             # les fournitures : une boite 4:3 par objet, en fractions de l'image (relevees a l'oeil)
             w, h = image.size
