@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""La question du changement de niveau (v1113), de bout en bout dans la page.
+"""La question du changement de niveau (v1114), de bout en bout dans la page.
 
     python tests/changement_niveau.py              (allemand)
     python tests/changement_niveau.py --app es     (ou en, pt)

@@ -6814,7 +6814,7 @@ body[data-theme="dark"] .bilan-notion.fait .bilan-go{color:#7fd3a5;}
 .bilan-bravo, .bilan-fin{margin:0; font-size:14px; font-weight:700; line-height:1.4;}
 .bilan-fin{margin-top:16px; padding:10px 12px; border-radius:12px; background:rgba(46,139,87,.12); color:#1f6b42; text-align:center;}
 body[data-theme="dark"] .bilan-carte{background:#232a34; color:#F2F2F6;}
-/* v1113 : la question de la montee de niveau (demanderMotsPlusBas), dans la carte du bilan. */
+/* v1114 : la question de la montee de niveau (demanderMotsPlusBas), dans la carte du bilan. */
 .niveau-voile .niveau-titre{font-size:19px; line-height:1.3; margin:4px 0 14px; margin-inline-end:32px;}
 .niveau-voile .niveau-oui{margin-top:0;}
 .niveau-ligne{margin:12px 2px 0; font-size:13px; line-height:1.4; color:#4C566B; text-align:center;}
@@ -33817,7 +33817,7 @@ function choisirNiveauDeclare(reponse){
     const niv = NIVEAU_DES_REPONSES[reponse];
     if(!niv) return;
     try{ localStorage.setItem(NIVEAU_DECLARE_KEY, reponse); }catch(e){}
-    // v1113 : un choix de l'eleve -- un compte neuf n'a aucun mot commence,
+    // v1114 : un choix de l'eleve -- un compte neuf n'a aucun mot commence,
     // la question ne se pose donc que si ce reglage est refait plus tard.
     fixerNiveauSeance(niv, true);
     document.querySelectorAll("[data-niveau-declare]").forEach(b =>
@@ -35974,7 +35974,7 @@ function composerSeanceHorsLigne(){
     const niveau = niveauSeance();
     const complet = accesComplet();
     const pool = complet ? paquetDuNiveau(niveau) : filtrerGratuit(paquetDuNiveau(niveau));
-    const tout = echeancesDeSeance(niveau, complet);   // v1113, la meme regle qu'en ligne
+    const tout = echeancesDeSeance(niveau, complet);   // v1114, la meme regle qu'en ligne
     const total = Math.max(HL_CARTES, tailleSeance());
     const demain = Date.now() + 86400000;
     let atteint = false;
@@ -36279,7 +36279,7 @@ async function recollerHorsLigne(){
             if(neuf) noterMotNeuf();
             if(!e.juste){
                 st.srsHits = 0;
-                st.rate = (st.rate || 0) + 1;   // v1113 : la trace de l'echec, voir motRate()
+                st.rate = (st.rate || 0) + 1;   // v1114 : la trace de l'echec, voir motRate()
                 programmerEcheance(st, SRS_ENCORE_MINUTES);
             } else {
                 const reussites = st.srsHits || 0;
@@ -41266,7 +41266,7 @@ function mergeWordState(a, b){
     if(!a) return b;
     if(!b) return a;
     const w = etatLePlusAvance(a, b), autre = (w === a) ? b : a;
-    // v1113 : LES MARQUES DU CHANGEMENT DE NIVEAU NE SE PERDENT PAS A LA FUSION.
+    // v1114 : LES MARQUES DU CHANGEMENT DE NIVEAU NE SE PERDENT PAS A LA FUSION.
     // « connu », « q » (question posee) et « rate » (echecs) viennent de l'un OU
     // de l'autre appareil : l'etat le plus avance garde celles de l'autre, sinon
     // un « Oui, je les connais » repondu sur le telephone renaitrait sur
@@ -57684,7 +57684,7 @@ function niveauSeance(){
 }
 
 // `parLUsager` : le niveau est choisi par l'eleve (pastille, carte du vocabulaire,
-// fin de l'A1 voyage). Seul ce cas pose la question de la montee (v1113) --
+// fin de l'A1 voyage). Seul ce cas pose la question de la montee (v1114) --
 // jamais la restauration nuage ni le niveau declare a l'inscription.
 function fixerNiveauSeance(niv, parLUsager){
     if(NIVEAUX_CECR.indexOf(niv) < 0) return;
@@ -57698,7 +57698,7 @@ function fixerNiveauSeance(niv, parLUsager){
     }
 }
 
-// ============ LES MOTS D'UN NIVEAU PLUS BAS (v1113) ============
+// ============ LES MOTS D'UN NIVEAU PLUS BAS (v1114) ============
 // Jacques, 5 nov. 2026 (decisions/DECISIONS.md, « Changement de niveau ») :
 // passe de l'A1 au B1 en anglais, il voyait revenir « book » et « father » --
 // des revisions A1 dues, que la seance prend dans TOUS les niveaux. « S'il dit
@@ -57719,12 +57719,12 @@ function rangNiveauSeance(n){
     return RANG_NIVEAU_SEANCE[n] !== undefined ? RANG_NIVEAU_SEANCE[n] : 0;
 }
 // RATE AU MOINS UNE FOIS. Les quatre chemins d'echec (« Encore », la scene, la
-// seance hors ligne, les exercices de la seance) comptent `rate` depuis la v1113.
+// seance hors ligne, les exercices de la seance) comptent `rate` depuis la v1114.
 // Avant, rien ne le notait, mais l'historique le dit : un echec remet srsHits a
 // zero alors que reviews continue de monter, et la maitrise monte srsHits a 4
 // sans toucher a reviews. Un mot NON MAITRISE a donc ete rate si et seulement si
 // reviews > srsHits.
-// ⚠️ CE QUI EST PERDU, ACCEPTE (chef, 5 nov.) : un mot rate avant la v1113 puis
+// ⚠️ CE QUI EST PERDU, ACCEPTE (chef, 5 nov.) : un mot rate avant la v1114 puis
 // maitrise peut retomber a reviews <= srsHits (surtout si l'echec etait sa toute
 // premiere reponse, et apres ses entretiens). Il compte alors pour jamais rate et
 // ne revient pas d'un niveau plus bas : c'est un mot maitrise.
@@ -59009,7 +59009,7 @@ function revisionDeScene(d){
         let maitrise = false;
         if(!juste){
             st.srsHits = 0;
-            st.rate = (st.rate || 0) + 1;   // v1113 : la trace de l'echec, voir motRate()
+            st.rate = (st.rate || 0) + 1;   // v1114 : la trace de l'echec, voir motRate()
             programmerEcheance(st, SRS_ENCORE_MINUTES);
         } else {
             const reussites = st.srsHits || 0;
@@ -61555,7 +61555,7 @@ function repondrePhrase(item, juste){
         let maitrise = false;
         if(!juste){
             st.srsHits = 0;
-            st.rate = (st.rate || 0) + 1;   // v1113 : la trace de l'echec, voir motRate()
+            st.rate = (st.rate || 0) + 1;   // v1114 : la trace de l'echec, voir motRate()
             programmerEcheance(st, SRS_ENCORE_MINUTES);
         } else {
             const reussites = st.srsHits || 0;
@@ -63352,10 +63352,10 @@ async function ouvrirSeanceDuJour(sansScene){
     // Tous les niveaux pour les echeances, le niveau choisi pour le neuf.
     // En version gratuite aussi, les echeances viennent de tous les niveaux :
     // ce qu'on a appris pendant l'essai, ou que ce soit, continue de revenir.
-    // v1113 : d'un niveau plus bas, seulement les mots rates (echeancesDeSeance).
+    // v1114 : d'un niveau plus bas, seulement les mots rates (echeancesDeSeance).
     const tout = echeancesDeSeance(niveau, complet);
     // v829 : les flashcards de Premiers pas deja vues reviennent en revision --
-    // v1113 : passees par la meme regle, Premiers pas au rang de l'A1.
+    // v1114 : passees par la meme regle, Premiers pas au rang de l'A1.
     try{ if(LANGUE_APPRISE !== "ja" && essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, echeancesPermises(cartesPremiersPasVues(), "PP", niveau)); } }catch(e){}
     // v862 (essai a1_voyage) : le neuf pris dans l'escale du jour au lieu de
     // tout l'A1. v864 : un compte neuf y part sans question.
@@ -64567,7 +64567,7 @@ function reviewAgain(){
     // rend plus couteux, pas moins.
     if(estNeuf(state)) noterMotNeuf();
     state.srsHits = 0;
-    state.rate = (state.rate || 0) + 1;   // v1113 : la trace de l'echec, voir motRate()
+    state.rate = (state.rate || 0) + 1;   // v1114 : la trace de l'echec, voir motRate()
     setWordState(item.themeId, item.index, state);
     // v920 : le bilan de la semaine -- le mot tel qu'on le lisait, et son sens.
     try{
