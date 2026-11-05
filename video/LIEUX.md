@@ -218,6 +218,22 @@ Source : `visuel/ecole/ecole.py` (`IMAGES`, `KITA`, `CLASSE`, `SOURCES`). Les en
   directrice : la cinquantaine, chignon gris, écharpe rouge) et `malen` (la salle de jeux) reprennent `kita-bringen`.
 - **Chez Jan et Katrin** : la chambre des enfants (`journee/familia-1`) pour `krank` et `packen`, la cuisine
   (`journee/familia-2`) pour `hausaufgaben`. Mark vient chercher Mia : c'est un ami de la famille.
+### Le quartier de Mark, dans la rue — thème illustré « En ville : s'orienter » (4 nov. 2026)
+- **Maître : la scène `kreuzung` de l'app** (`visuel/prototype/kreuzung.webp`, prompt
+  `visuel/scenes/kreuzung.prompt.txt`) : façades crème et ocre pâle du vieux Berlin, quatre étages,
+  hautes fenêtres, rez-de-chaussée commerçants ; trottoir pavé, lumière claire un peu couverte de fin
+  de matinée ; rien d'écrit nulle part (pas d'enseigne, de nom, de plaque). La boulangerie, la
+  pharmacie à la croix verte, la poste jaune, le café à l'auvent bordeaux et l'arrêt de bus au
+  panneau rond jaune et vert viennent tels quels de cette image (recadrés, `visuel/ciudad/ciudad.py
+  --recadrer`).
+- Chaque photo d'un autre lieu du quartier (gare, mairie, banque, hôpital, musée, cinéma…) reçoit
+  `kreuzung.webp` en première référence « pour la rue » et garde ces façades et cette lumière ; un
+  lieu se reconnaît à ce qu'il montre (la croix, le guichet, l'horloge de gare), jamais à une
+  enseigne.
+- **Le plan du quartier** est dessiné par la page, pas photographié : la Gartenstraße (la rue de Mark,
+  Gartenstraße 12) et la Bergstraße, croisées par la Lindenstraße, la Schulstraße et la Parkstraße.
+  En espagnol, le même plan porte des noms de Madrid (calle Mayor, calle del Sol, calle de la Luna,
+  calle de la Paz, calle del Prado) ; les photos restent celles de Berlin, comme les scènes.
 
 ### Les lieux d'un seul épisode (gardés pour mémoire)
 - L'aéroport (épisode 1), le Bürgeramt (épisode 2), la piste cyclable (épisode 3) : voir leurs

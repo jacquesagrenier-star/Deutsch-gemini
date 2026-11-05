@@ -9884,6 +9884,15 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
             <div><strong data-i18n="eco_tuile">L'école et la garderie</strong></div>
         </div>
 
+        <!-- En ville : s'orienter (4 nov. 2026, vague 3) : les lieux de la ville, demander et donner son chemin, situer un
+             lieu sur un plan dessine (le quartier de Mark a Berlin, un quartier de Madrid) ; neben / gegenueber + datif,
+             zum / zur, Gehen Sie / Biegen Sie ... ab ; del / al, hay / esta, siga / gire. Pas les transports (leur theme) :
+             visuel/prototype/ciudad.html. es et de. -->
+        <div class="orb hidden" data-orbid="ciudad" id="tuileCiudad" onclick="ouvrirThemeIllustre('ciudad')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-6-5.6-6-10.5a6 6 0 0 1 12 0C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/></svg></div>
+            <div><strong data-i18n="ciu_tuile">En ville : s'orienter</strong></div>
+        </div>
+
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
@@ -14640,6 +14649,8 @@ const I18N = {
         trav_court: "Le travail",
         eco_tuile: "L'école et la garderie",
         eco_court: "École",
+        ciu_tuile: "En ville : s'orienter",
+        ciu_court: "En ville",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -16189,6 +16200,8 @@ const I18N = {
         trav_court: "Work",
         eco_tuile: "School and day care",
         eco_court: "School",
+        ciu_tuile: "In town: finding your way",
+        ciu_court: "In town",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17740,6 +17753,8 @@ const I18N = {
         trav_court: "İş",
         eco_tuile: "Okul ve kreş",
         eco_court: "Okul",
+        ciu_tuile: "Şehirde yol bulmak",
+        ciu_court: "Şehirde",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19703,6 +19718,8 @@ const I18N = {
         trav_court: "Робота",
         eco_tuile: "Школа й дитсадок",
         eco_court: "Школа",
+        ciu_tuile: "У місті: орієнтуватися",
+        ciu_court: "У місті",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21980,6 +21997,8 @@ const I18N = {
         trav_court: "کار",
         eco_tuile: "مدرسه و مهدکودک",
         eco_court: "مدرسه",
+        ciu_tuile: "در شهر: پیدا کردن راه",
+        ciu_court: "در شهر",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23700,6 +23719,8 @@ const I18N = {
         trav_court: "العمل",
         eco_tuile: "المدرسة والحضانة",
         eco_court: "المدرسة",
+        ciu_tuile: "في المدينة: معرفة الطريق",
+        ciu_court: "في المدينة",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -24100,6 +24121,8 @@ const I18N = {
         trav_court: "Trabalho",
         eco_tuile: "A escola e a creche",
         eco_court: "Escola",
+        ciu_tuile: "Na cidade: se orientar",
+        ciu_court: "Na cidade",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25710,6 +25733,8 @@ const I18N = {
         trav_court: "Praca",
         eco_tuile: "Szkoła i przedszkole",
         eco_court: "Szkoła",
+        ciu_tuile: "W mieście: jak trafić",
+        ciu_court: "W mieście",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -27320,6 +27345,8 @@ const I18N = {
         trav_court: "Работа",
         eco_tuile: "Школа и детский сад",
         eco_court: "Школа",
+        ciu_tuile: "В городе: найти дорогу",
+        ciu_court: "В городе",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28932,6 +28959,8 @@ const I18N = {
         trav_court: "Arbeit",
         eco_tuile: "Schule und Kita",
         eco_court: "Schule",
+        ciu_tuile: "In der Stadt: sich orientieren",
+        ciu_court: "In der Stadt",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30579,6 +30608,8 @@ const I18N = {
         trav_court: "El trabajo",
         eco_tuile: "El colegio y la guardería",
         eco_court: "Colegio",
+        ciu_tuile: "En la ciudad: orientarse",
+        ciu_court: "En la ciudad",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -47492,7 +47523,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"},
                           vacances: {page: "vacances.html", titre: "vac_tuile", court: "vac_court", tuile: "tuileVacances"},
                           travail: {page: "travail.html", titre: "trav_tuile", court: "trav_court", tuile: "tuileTravail"},
-                          ecole: {page: "ecole.html", titre: "eco_tuile", court: "eco_court", tuile: "tuileEcole"}};
+                          ecole: {page: "ecole.html", titre: "eco_tuile", court: "eco_court", tuile: "tuileEcole"},
+                          ciudad: {page: "ciudad.html", titre: "ciu_tuile", court: "ciu_court", tuile: "tuileCiudad"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);

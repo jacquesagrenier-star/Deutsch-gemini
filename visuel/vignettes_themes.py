@@ -679,6 +679,48 @@ def ecole_tableau():
         im = im.crop((int(boite[0] * w), int(boite[1] * h), int(boite[2] * w), int(boite[3] * h)))
         r = rond(im, dia, 7)
         c.paste(r, (x - r.size[0] // 2, y - r.size[1] // 2), r)
+def ville_plan():
+    """En ville : s'orienter -- un petit plan de quartier dessine (des rues, des maisons, un parc), le point rouge
+    « vous etes ici », le chemin en pointilles ambre qui tourne deux fois, et au bout la pharmacie a la croix verte, en
+    rond (une photo de la rue de la scene Kreuzung). Aucun mot : la meme vignette sert a l'espagnol et a l'allemand."""
+    c = Image.new("RGB", (W, H), (228, 221, 207))
+    d = ImageDraw.Draw(c)
+    rue, trait = (253, 252, 248), (185, 177, 162)
+    for x in (150, 420):
+        d.rectangle((x - 22, 0, x + 22, H), fill=rue, outline=trait)
+    for y in (90, 280, 460):
+        d.rectangle((0, y - 22, W, y + 22), fill=rue, outline=trait)
+    for x in (150, 420):
+        for y in (90, 280, 460):
+            d.rectangle((x - 21, y - 21, x + 21, y + 21), fill=rue)
+    # les maisons, blanches, et le parc
+    for x0, x1 in ((14, 122), (178, 268), (302, 392), (448, 586)):
+        for y0, y1 in ((122, 248), (312, 428)):
+            for k in range(2):
+                h = (y1 - y0 - 8) / 2
+                ya = y0 + k * (h + 8)
+                d.rounded_rectangle((x0, ya, x1, ya + h), 8, fill=(255, 255, 255), outline=trait, width=2)
+    d.rounded_rectangle((302, 122, 392, 248), 10, fill=(191, 224, 178), outline=trait, width=2)
+    for cx, cy in ((325, 150), (365, 180), (330, 220), (372, 228)):
+        d.ellipse((cx - 13, cy - 13, cx + 13, cy + 13), fill=(125, 187, 106))
+    # le chemin : depuis le bas de la rue de gauche, a droite dans la rue du milieu, puis en haut dans celle de droite
+    pts = [(150, 500), (150, 280), (420, 280), (420, 190)]
+    for (xa, ya), (xb, yb) in zip(pts, pts[1:]):
+        d.line([(xa, ya), (xb, yb)], fill=(255, 255, 255), width=16)
+    for (xa, ya), (xb, yb) in zip(pts, pts[1:]):
+        n = int(max(abs(xb - xa), abs(yb - ya)) / 22)
+        for k in range(n):
+            t0, t1 = k / n, (k + .55) / n
+            d.line([(xa + (xb - xa) * t0, ya + (yb - ya) * t0), (xa + (xb - xa) * t1, ya + (yb - ya) * t1)], fill=(232, 162, 58), width=9)
+    # le point rouge, au depart
+    d.ellipse((150 - 19, 478 - 19, 150 + 19, 478 + 19), fill=(200, 71, 58), outline=(255, 255, 255), width=5)
+    d.polygon([(150, 430), (138, 452), (162, 452)], fill=(200, 71, 58))
+    # au bout, la pharmacie, en rond
+    im = Image.open(os.path.join(P, "ciudad", "apotheke.webp")).convert("RGB")
+    w, h = im.size
+    im = im.crop((0, 0, h, h))
+    r = rond(im, 170, 8, (232, 162, 58))
+    c.paste(r, (470 - r.size[0] // 2, 112 - r.size[1] // 2), r)
     return c
 
 
@@ -694,7 +736,8 @@ VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones"
              "courses": courses_sac,
              "vacances": vacances_carnet,
              "travail": travail_cv,
-             "ecole": ecole_tableau}
+             "ecole": ecole_tableau,
+             "ciudad": ville_plan}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
