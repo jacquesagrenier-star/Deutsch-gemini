@@ -3486,7 +3486,9 @@ html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:
 html[data-apprendre="en"] button[onclick*="startExercises"],
 html[data-apprendre="en"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="en"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
-html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]):not([onclick*="tuileEn_"]){ display:none !important; }
+html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]):not([onclick*="tuileEn_"]):not([onclick*="ouvrirThemePanneau_"]){ display:none !important; }
+/* « N › » des themes illustres (5 nov. 2026, Jacques : la 11 n'ouvrait rien en anglais) : le panneau ne propose que
+   les themes ouverts a l'anglais (themesIllustresOuverts()), la regle ci-dessus les cachait tous. */
 /* « S'entrainer par temps » (28 oct. 2026) : les cartes allemandes (Prasens,
    Prateritum, Perfekt) cedent la place a la liste anglaise, rangee par niveau
    et remplie depuis grammaire.json (#tempsEnCartes). */

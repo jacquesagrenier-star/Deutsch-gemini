@@ -1044,8 +1044,17 @@ function montrer(){
   // (l'ecoute parle a chaque essai : on la fait taire pendant qu'on cherche, elle parle une fois choisie)
   const garde = dire; dire = () => {};
   const raz = so => { motQ = null; tradQ = null; apresQ = null; choixQ = null; sorteCourante = so; };
+  // Un coup d'avance (5 nov. 2026, gato en anglais : « hang » n'a que vrai / faux, et la question d'avant le prenait
+  // aussi) : a l'avant-derniere question, la sorte que le DERNIER mot est seul a pouvoir prendre est reservee, tant
+  // qu'une autre convient ; sinon le dernier mot n'aurait que la meme sorte deux fois de suite.
+  let reservee = null;
+  if (rang === file.length - 2){
+    const w = file[file.length - 1];
+    const ok = SORTES.filter(so => { for (let n = 0; n < 25; n++){ raz(so); if (EX[so](w)) return true; } return false; });
+    if (ok.length === 1) reservee = ok[0];
+  }
   const essai = (w, strict) => {
-    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte && !(strict && x === reservee)));
     for (const so of autres){
       for (let n = 0; n < 25; n++){
         raz(so);
