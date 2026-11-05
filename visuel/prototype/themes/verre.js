@@ -94,12 +94,28 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
     }
     return document.documentElement.classList.contains("nuit") ? [18,30,42] : [220,230,236];
   }
-  /* Ce qu'il y a sous le bouton : les pixels de l'image (s'il y en a une), sinon la couleur du fond. */
+  /* Ou tombe un point de l'ecran dans l'image : la boite de l'image n'est pas toujours l'image (object-fit
+     contain laisse des bandes, cover rogne). v1111 : la flèche blanche entre les pieds d'une photo de studio
+     (Jacques, 5 nov. 2026, « Le corps et la sante ») venait d'une lecture au mauvais endroit ou trop tot. */
+  function versImage(img, P, x, y){
+    const ri = img.getBoundingClientRect(), cs = getComputedStyle(img);
+    let w = ri.width, h = ri.height, ox = ri.left, oy = ri.top;
+    const nw = img.naturalWidth, nh = img.naturalHeight, fit = cs.objectFit;
+    if (nw && nh && (fit === "contain" || fit === "cover" || fit === "scale-down")){
+      const e = fit === "cover" ? Math.max(ri.width / nw, ri.height / nh) : Math.min(ri.width / nw, ri.height / nh, fit === "scale-down" ? 1 : Infinity);
+      w = nw * e; h = nh * e;
+      const pos = (cs.objectPosition || "50% 50%").split(" ").map(v => v.endsWith("%") ? parseFloat(v) / 100 : .5);
+      ox = ri.left + (ri.width - w) * pos[0]; oy = ri.top + (ri.height - h) * (pos[1] === undefined ? .5 : pos[1]);
+    }
+    return [Math.floor((x - ox) / w * P.w), Math.floor((y - oy) / h * P.h)];
+  }
+  /* Ce qu'il y a sous le bouton : les pixels de l'image (s'il y en a une), sinon la couleur du fond.
+     Une image pas encore prete rend « null » : on ne decide rien sur elle, on recommence quand elle est la. */
   function dessous(b){
     const r = b.getBoundingClientRect(); if (r.width < 2 || r.height < 2) return null;
     const ancien = b.style.pointerEvents; b.style.pointerEvents = "none";
     const echantillon = [];
-    let fond = null;
+    let fond = null, pasPrete = false;
     // La ligne du texte (ou le centre du rond) seulement : ce que l'encre doit vaincre.
     const fxs = r.width > 80 ? [.34, .42, .5, .58, .66] : [.4, .5, .6];
     for (const fx of fxs) for (const fy of [.42, .58]){
@@ -107,9 +123,14 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
       const pile = document.elementsFromPoint ? document.elementsFromPoint(x, y) : [];
       const img = pile.find(e => e.tagName === "IMG" && !b.contains(e));
       const P = img ? pixels(img) : null;
+      if (img && !P && !(img.complete && img.naturalWidth)){
+        pasPrete = true;
+        img.addEventListener("load", demander, {once:true});
+        if (img.decode) img.decode().then(demander, () => {});
+        continue;
+      }
       if (P){
-        const ri = img.getBoundingClientRect();
-        const ix = Math.floor((x - ri.left) / ri.width * P.w), iy = Math.floor((y - ri.top) / ri.height * P.h);
+        const [ix, iy] = versImage(img, P, x, y);
         if (ix >= 0 && iy >= 0 && ix < P.w && iy < P.h){
           for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
             const xx = Math.min(P.w - 1, Math.max(0, ix + dx)), yy = Math.min(P.h - 1, Math.max(0, iy + dy)), i = (yy * P.w + xx) * 4;
@@ -122,7 +143,7 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
       echantillon.push(fond);
     }
     b.style.pointerEvents = ancien;
-    return echantillon;
+    return pasPrete ? null : echantillon;
   }
   function besoin(ech, tenue, P, seuil){
     const li = lum(tenue.ink), tc = tenue.tc;
@@ -141,9 +162,16 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
     const seuil = icone ? SEUIL_ICONE : SEUIL_TEXTE;
     const x = {f: besoin(ech, P.f, P, seuil), w: besoin(ech, P.w, P, seuil)};
     const note = r => r.ok ? r.a : 1 + (seuil - r.c);
-    let k = note(x.f) <= note(x.w) ? "f" : "w";
+    /* v1111 : L'ENCRE FONCEE D'ABORD (Jacques : « elle devrait etre en noir au lieu d'en blanc parce qu'on ne la
+       voit pas »). Le blanc seulement sur un fond vraiment fonce : la moyenne des pixels sous le bouton sous 12 %
+       de luminance, ET le fonce incapable de s'y lire meme avec 45 % de voile clair. Sinon l'encre petrole, quitte a epaissir
+       un peu le voile clair. La marge anti-clignotement ne garde plus un blanc devenu illisible. */
+    const moyenne = ech.reduce((s, c) => s + lum(c), 0) / ech.length;
+    // (un pantalon gris sur le fond clair d'un studio n'est pas « sombre » : la fleche y reste foncee, sur un voile clair)
+    const sombre = moyenne < .12 && !(x.f.ok && x.f.a <= .45);
+    let k = sombre && note(x.w) < note(x.f) ? "w" : "f";
     const avant = b.dataset.verreTenue;
-    if (avant && avant !== k && note(x[avant]) - note(x[k]) < .10) k = avant;
+    if (avant === "w" && k === "f" && sombre && note(x.w) - note(x.f) < .10) k = "w";
     const t = P[k], a = x[k].a, rgba = (c, al) => "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + al.toFixed(2) + ")";
     b.dataset.verreTenue = k;
     b.style.setProperty("--v-haut", rgba(t.tc, Math.min(1, a + .03)));
