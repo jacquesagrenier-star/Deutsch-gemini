@@ -195,9 +195,9 @@ Source : `visuel/ecole/ecole.py` (`IMAGES`, `KITA`, `CLASSE`, `SOURCES`). Les en
 - **La Grundschule de Ben** (« Grundschule am Kiez ») = la façade de « La journée » (`visuel/prototype/journee/familia-5.webp` :
   immeuble crème à grande porte vitrée, rue pavée de Berlin, réverbères). Le retour de l'école (`schule-abholen`) et la
   cour de récréation (`pause` : un grand marronnier, une structure à grimper) la reçoivent « pour le lieu ».
-- **NOUVEAU — la classe 2b** (`klasse`, le maître des images de classe) : petits pupitres de bois clair et chaises en
-  plastique bleu en rangées, grand tableau VERT entièrement vide, peintures d'enfants sans écriture sur un panneau de
-  liège, fenêtre à GAUCHE. **Frau Weber**, l'enseignante (personne neuve, sans image de référence avant `klasse`) : la
+- **NOUVEAU — la classe 2b** (`klasse`, le maître des images de classe) : petits pupitres et chaises de bois clair en
+  rangées, grand tableau VERT entièrement vide, peintures d'enfants sans écriture sur un panneau de liège à DROITE,
+  fenêtre à GAUCHE, murs crème. **Frau Weber**, l'enseignante (personne neuve, sans image de référence avant `klasse`) : la
   quarantaine, cheveux bruns mi-longs, lunettes, pull bleu foncé. La porte de la classe (`lehrerin`) et la réunion de
   parents (`elternabend`, le soir, les parents sur les petites chaises) reprennent `klasse`.
 - **NOUVEAU — la Kita de Mia** (« Kita Pusteblume », `kita-bringen`, le maître des images de la Kita) : vestiaire clair,

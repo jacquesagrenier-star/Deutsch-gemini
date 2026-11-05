@@ -318,8 +318,8 @@ KITA = ("The place is a bright, friendly Berlin day-care centre (Kita): pale woo
         "coat hooks with children's jackets and little backpacks, colourful children's drawings without any writing on the walls, big windows. ")
 ERZIEHERIN = "the day-care teacher, a friendly woman in her forties with short red-blond hair, a green cardigan and jeans"
 LEHRERIN = "Ben's class teacher, a friendly woman in her forties with shoulder-length brown hair, glasses, a dark blue jumper"
-CLASSE = ("The place is a primary school classroom in Berlin for 7-year-olds: small light wooden desks and blue plastic chairs in rows, a big "
-          "green blackboard that is completely clean and empty, children's paintings without writing on a corkboard, a window on the left. ")
+CLASSE = ("The place is a primary school classroom in Berlin for 7-year-olds: small light wooden desks and light wooden chairs in rows, a big "
+          "green blackboard that is completely clean and empty, children's paintings without writing on a corkboard on the right, a window on the left. ")
 IMAGES = {
     # les fournitures : une seule photo, decoupee ensuite (decouper.py)
     "material":      {"qui": [], "prompt": "Flat lay seen from directly above on a light wooden school desk: seven school supplies laid out in a neat grid, "
@@ -350,8 +350,8 @@ IMAGES = {
                       "after school: Katrin talks with " + LEHRERIN + " (the woman of the last reference picture), both friendly and attentive; Ben "
                       "stands next to his mother with his satchel. Seen from the side, the three of them from the waist up."},
     "elternabend":   {"qui": ["Jan", "Katrin"], "lieu": "klasse", "prompt": "The same classroom as in the last reference picture, in the evening, "
-                      "the ceiling lights on, dark outside. A parents' evening: Jan, Katrin and four other parents sit on the tiny children's chairs, "
-                      "their knees up high, a little amused; " + LEHRERIN + " (the woman of the last reference picture) stands in front of the clean "
+                      "the ceiling lights on, dark outside. A parents' evening with ONLY ADULTS, no children at all in the room: Jan, Katrin and four other parents sit on the small "
+                      "children's chairs, their knees up high, a little amused; " + LEHRERIN + " (the woman of the last reference picture) stands in front of the clean "
                       "blackboard and talks to them. Seen from the side of the room, a funny, warm moment."},
     "pause":         {"qui": ["Ben"], "lieu": "ecole", "prompt": "The schoolyard of the same Berlin primary school as in the last reference picture, "
                       "during the morning break, daylight: Ben laughs and runs after a red ball with three classmates, a big chestnut tree and a "
@@ -372,7 +372,9 @@ IMAGES = {
 }
 ESSAI = ["material", "kita-bringen", "kita-abholen", "klasse", "krank", "elternabend"]
 # les decoupes de « material » (x0, y0, x1, y1 en fractions de l'image), a relever sur l'image une fois faite
-DECOUPES = {}
+DECOUPES = {"heft": (110, 90, 570, 660), "buch": (585, 85, 1005, 660), "maeppchen": (995, 80, 1310, 660), "bleistift": (125, 690, 605, 785),
+            "lineal": (125, 805, 655, 935), "radiergummi": (685, 805, 895, 915), "schere": (915, 765, 1290, 945)}
+DECOUPES = {k: (x0 / 1400, y0 / 1045, x1 / 1400, y1 / 1045) for k, (x0, y0, x1, y1) in DECOUPES.items()}   # relevees sur la vue 1400 x 1045
 
 
 def identifiant(texte):
