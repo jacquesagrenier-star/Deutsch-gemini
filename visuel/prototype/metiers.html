@@ -352,7 +352,9 @@ function juger(ok, bonneTexte, phrase){
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const mt = montreDe(motQ);
   m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : APPRENDRE === "en" ? "Well done!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
-    + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
+    // la phrase juste, ECRITE, apres toute reponse (Jacques, 5 nov., comme la meteo : une ecoute reussie ne montrait
+    // que « ¡Muy bien! ») ; apres une erreur, « La bonne reponse » l'a deja
+    + ((ok || (phrase && phrase !== bonneTexte)) ? '<span class="phrase">' + cible(phrase || bonneTexte) + '</span>' : "")
     + traduction(tradQ || tradPhrase(phrase || bonneTexte))
     + (!ok && (c => c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")(choixTraduit(choixQ)) || "")
     + (mt ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(mt.aff) + (mt.sens ? ' · <span dir="auto">' + mt.sens + '</span>' : "") + '</span>' : "");
@@ -1074,6 +1076,7 @@ function cleQuestion(){
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
 }
 function montrer(){
+  taire();   // la phrase de la reponse d'avant ne passe jamais sur la question suivante (Jacques, 5 nov.)
   repondu = false; $("suite").hidden = true; $("bas").hidden = true;
   $("compte").textContent = (rang + 1) + " / " + file.length;
   $("barre").style.width = (rang / file.length * 100) + "%";
