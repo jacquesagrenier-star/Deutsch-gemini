@@ -603,8 +603,8 @@ def vacances_carnet():
     pts = [(int(x), int(300 + 120 * math.sin(x / W * 5.2 - 0.6))) for x in range(-10, W + 20, 4)]
     for k in range(0, len(pts) - 1, 3):
         d.line([pts[k], pts[k + 1]], fill=(168, 106, 14), width=5)
-    pw, ph = 168, 126
-    for k, (id, angle, x, y) in enumerate([("anna-eis", -6, 14, 40), ("mark-hafen", 5, 214, 250), ("familia-sandburg", -4, 412, 60)]):
+    pw, ph = 200, 150
+    for k, (id, angle, x, y) in enumerate([("anna-eis", -6, 8, 36), ("mark-hafen", 5, 196, 282), ("familia-sandburg", -4, 380, 50)]):
         im = Image.open(os.path.join(P, "vacances", id + ".webp")).convert("RGB").resize((pw, ph), Image.LANCZOS)
         cadre = Image.new("RGB", (pw + 16, ph + 40), (255, 255, 255))
         cadre.paste(im, (8, 8))
