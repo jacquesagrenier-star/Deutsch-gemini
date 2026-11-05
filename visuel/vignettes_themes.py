@@ -12,7 +12,7 @@ rien payer. Les emotions et le caractere : une planche de photomaton d'Anna, qua
 Les contraires : le verre plein et le verre vide, coupes par le milieu (3 nov.).
 Un theme futur : une fonction de plus dans VIGNETTES, qui dise le sujet autrement.
 """
-import json, os, sys
+import json, math, os, sys
 from PIL import Image, ImageDraw, ImageFont
 sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -593,6 +593,35 @@ def courses_sac():
     return c
 
 
+def vacances_carnet():
+    """Les vacances et le voyage : un carnet de voyage -- une route en pointilles sur un papier couleur sable, et le
+    long de la route trois photos numerotees 1, 2, 3 (Anna a Malaga, Mark au port de Hambourg, Ben et Mia et leur
+    chateau de sable). Le sujet du theme : ce qui s'est passe, DANS L'ORDRE (la frise des voyages)."""
+    c = Image.new("RGB", (W, H), (244, 233, 210))
+    d = ImageDraw.Draw(c)
+    # la route, une courbe en pointilles d'un bord a l'autre
+    pts = [(int(x), int(300 + 120 * math.sin(x / W * 5.2 - 0.6))) for x in range(-10, W + 20, 4)]
+    for k in range(0, len(pts) - 1, 3):
+        d.line([pts[k], pts[k + 1]], fill=(168, 106, 14), width=5)
+    pw, ph = 168, 126
+    for k, (id, angle, x, y) in enumerate([("anna-eis", -6, 14, 40), ("mark-hafen", 5, 214, 250), ("familia-sandburg", -4, 412, 60)]):
+        im = Image.open(os.path.join(P, "vacances", id + ".webp")).convert("RGB").resize((pw, ph), Image.LANCZOS)
+        cadre = Image.new("RGB", (pw + 16, ph + 40), (255, 255, 255))
+        cadre.paste(im, (8, 8))
+        cadre = cadre.convert("RGBA").rotate(angle, expand=True, resample=Image.BICUBIC)
+        ombre = Image.new("RGBA", cadre.size, (0, 0, 0, 0))
+        ombre.paste((80, 60, 30, 80), mask=cadre.split()[3])
+        c.paste(ombre, (x + 6, y + 8), ombre)
+        c.paste(cadre, (x, y), cadre)
+        # le numero de l'etape, un rond ambre sur le bord de la photo
+        cx, cy = x + 14, y + 10
+        d.ellipse((cx - 22, cy - 22, cx + 22, cy + 22), fill=(232, 162, 58), outline=(255, 255, 255), width=4)
+        t = str(k + 1)
+        bw = d.textbbox((0, 0), t, font=F(28))
+        d.text((cx - (bw[2] - bw[0]) / 2 - bw[0], cy - (bw[3] - bw[1]) / 2 - bw[1]), t, font=F(28), fill=(28, 36, 48))
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
              "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
              "metiers": metiers_polaroids,
@@ -602,7 +631,8 @@ VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones"
              "meteo": meteo_quatre_saisons,
              "logement": logement_plan,
              "demarches": demarches_formulaire,
-             "courses": courses_sac}
+             "courses": courses_sac,
+             "vacances": vacances_carnet}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
