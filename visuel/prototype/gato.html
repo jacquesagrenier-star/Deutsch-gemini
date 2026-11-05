@@ -1044,17 +1044,19 @@ function montrer(){
   // (l'ecoute parle a chaque essai : on la fait taire pendant qu'on cherche, elle parle une fois choisie)
   const garde = dire; dire = () => {};
   const raz = so => { motQ = null; tradQ = null; apresQ = null; choixQ = null; sorteCourante = so; };
-  // Un coup d'avance (5 nov. 2026, gato en anglais : « hang » n'a que vrai / faux, et la question d'avant le prenait
-  // aussi) : a l'avant-derniere question, la sorte que le DERNIER mot est seul a pouvoir prendre est reservee, tant
-  // qu'une autre convient ; sinon le dernier mot n'aurait que la meme sorte deux fois de suite.
-  let reservee = null;
-  if (rang === file.length - 2){
-    const w = file[file.length - 1];
-    const ok = SORTES.filter(so => { for (let n = 0; n < 25; n++){ raz(so); if (EX[so](w)) return true; } return false; });
-    if (ok.length === 1) reservee = ok[0];
-  }
-  const essai = (w, strict) => {
-    const autres = melanger(SORTES.filter(x => x !== derniereSorte && !(strict && x === reservee)));
+  // La fin de partie (5 nov. 2026, gato en anglais : « hang », « picture », « lie down » n'ont plus, en fin de file,
+  // qu'une ou deux sortes qui donnent encore une question NEUVE) : sur les trois derniers mots, une sorte est ecartee
+  // si, prise maintenant, elle ne laisse a la suite aucune facon de finir sans deux sortes de suite.
+  const fraiches = w => SORTES.filter(so => { for (let n = 0; n < 25; n++){ raz(so); if (!EX[so](w)) return false; if (!vus.has(cleQuestion())) return true; } return false; });
+  const bloquantes = j => {             // file[j] pose la question du rang : file[rang] prend sa place plus loin
+    const suite = file.slice(rang + 1).map((x, k) => rang + 1 + k === j ? file[rang] : x);
+    if (!suite.length || suite.length > 3) return new Set();
+    const q = suite.map(fraiches);
+    const faisable = (i, prec) => i >= q.length || q[i].some(so => so !== prec && faisable(i + 1, so));
+    return new Set(SORTES.filter(so => !faisable(0, so)));
+  };
+  const essai = (w, strict, exclues) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte && !(strict && exclues && exclues.has(x))));
     for (const so of autres){
       for (let n = 0; n < 25; n++){
         raz(so);
@@ -1074,11 +1076,12 @@ function montrer(){
     }
     return null;
   };
-  let fait = essai(file[rang], true);
-  for (let j = rang + 1; !fait && j < file.length; j++){
-    fait = essai(file[j], true);
-    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
-  }
+  let fait = null;
+  for (const fin of [true, false])      // d'abord en gardant une fin possible, puis sans
+    for (let j = rang; !fait && j < file.length; j++){
+      fait = essai(file[j], true, fin ? bloquantes(j) : null);
+      if (fait && j !== rang) [file[rang], file[j]] = [file[j], file[rang]];
+    }
   if (!fait) fait = essai(file[rang], false);
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
