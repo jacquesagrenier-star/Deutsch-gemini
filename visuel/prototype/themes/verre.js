@@ -33,6 +33,10 @@
   const css = `
 @property --v-haut{syntax:"<color>"; inherits:false; initial-value:transparent}
 @property --v-bas{syntax:"<color>"; inherits:false; initial-value:transparent}
+.verre-v{--v-haut:rgba(255,255,255,.08); --v-bas:rgba(255,255,255,.05); --v-encre:rgb(23,58,78); --v-fleche:${fleche(PETROLE, false)}}
+html.nuit .verre-v{--v-haut:rgba(18,26,36,.08); --v-bas:rgba(18,26,36,.05); --v-encre:rgb(243,245,248); --v-fleche:${fleche(CLAIR, false)}}
+html[dir="rtl"] .verre-v{--v-fleche:${fleche(PETROLE, true)}}
+html.nuit[dir="rtl"] .verre-v{--v-fleche:${fleche(CLAIR, true)}}
 .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.05) 30%, rgba(255,255,255,0) 48%), radial-gradient(60% 40% at 50% 110%, rgba(255,255,255,.22), rgba(255,255,255,0) 70%);
   background:var(--v-reflet), linear-gradient(180deg, var(--v-haut), var(--v-bas)) !important; color:var(--v-encre) !important;
   border-color:transparent !important; overflow:hidden !important; isolation:isolate;
@@ -150,20 +154,28 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
   }
 
   /* ---------- les boutons et le rythme ---------- */
-  // Le rond : « Continuer », « Commencer »… un libelle court et sans fleche. « Continuer avec mes cartes → » garde son texte.
-  const enRond = b => b.classList.contains("suite") && !/[→←›‹]/.test(b.textContent) && b.textContent.trim().length <= 16;
-  function boutons(){
-    const l = [];
-    document.querySelectorAll(".suite, .bas button, #retourChoix, button.retour#retour").forEach(b => {
+  // Le rond : « Continuer », « Commencer »… un libelle court et sans fleche. « Continuer avec mes cartes → » garde son
+  // texte, et un bouton marque data-rond="non" aussi (« Encore une fois », qui relance la scene).
+  const enRond = b => b.classList.contains("suite") && b.dataset.rond !== "non" && !/[→←›‹]/.test(b.textContent) && b.textContent.trim().length <= 16;
+  const SEL = ".suite, .bas button, #retourChoix, button.retour#retour";
+  /* v1111 : LA FORME SE POSE TOUT DE SUITE. Jacques, 5 nov. 2026 : « dans les scenes, l'ancien bouton continu
+     apparait a chaque fois et non seulement le cercle ». Les scenes creent leur « Continuer » a chaque reponse ; la
+     classe attendait le calcul suivant, que les confettis reportaient jusqu'a 1,2 s. Elle se pose maintenant dans
+     l'observateur, avant que la page se dessine ; seule la mesure de l'image attend. */
+  function classer(){
+    document.querySelectorAll(SEL).forEach(b => {
       if (!b.classList.contains("verre-v")){
         b.classList.add("verre-v");
         if (getComputedStyle(b).position === "static") b.classList.add("v-pose");
       }
-      b.classList.toggle("v-rond", enRond(b));
-      if (b.classList.contains("v-rond") && b.getAttribute("aria-label") !== b.textContent.trim()) b.setAttribute("aria-label", b.textContent.trim());
-      if (b.offsetParent !== null || getComputedStyle(b).position === "fixed") l.push(b);
+      const r = enRond(b);
+      if (b.classList.contains("v-rond") !== r) b.classList.toggle("v-rond", r);
+      if (r && b.getAttribute("aria-label") !== b.textContent.trim()) b.setAttribute("aria-label", b.textContent.trim());
     });
-    return l;
+  }
+  function boutons(){
+    classer();
+    return [...document.querySelectorAll(SEL)].filter(b => b.offsetParent !== null || getComputedStyle(b).position === "fixed");
   }
   let prevu = 0, dernier = 0, reports = 0;
   function animationEnCours(){
@@ -192,9 +204,10 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
   document.addEventListener("visibilitychange", () => { if (!document.hidden) demander(); });
   function observer(){
     // ⚠️ Nos propres retouches (le style, la classe et le nom des boutons) ne relancent pas le calcul : sinon il tournerait sans fin.
-    new MutationObserver(recs => { if (recs.some(r => r.type !== "attributes" || !(r.target.classList && r.target.classList.contains("verre-v")))) demander(); })
-      .observe(document.body, {childList:true, subtree:true, characterData:true, attributes:true, attributeFilter:["hidden", "class", "style", "src"]});
-    demander();
+    new MutationObserver(recs => {
+      if (recs.some(r => r.type !== "attributes" || !(r.target.classList && r.target.classList.contains("verre-v")))){ classer(); demander(); }
+    }).observe(document.body, {childList:true, subtree:true, characterData:true, attributes:true, attributeFilter:["hidden", "class", "style", "src"]});
+    classer(); demander();
   }
   if (document.body) observer(); else document.addEventListener("DOMContentLoaded", observer);
 })();
