@@ -437,14 +437,15 @@ const EX = {
   },
   // « Heute ist Ostern. Was sagst du? » -> Frohe Ostern!
   souhait(w){
-    const ks = fetesDe(w).filter(k => FE[k].wunsch && FE[k].situation);
+    const vV = estMot(w, verbe(ES_ ? "felicitar" : "gratulieren"));   // feliciter : l'anniversaire, le mariage
+    const ks = fetesDe(vV ? null : w).filter(k => FE[k].wunsch && FE[k].situation && (!vV || FE[k].c));
     if (!ks.length) return false;
     const k = hasard(ks);
     const autres = uniques(FETES().filter(x => FE[x].wunsch && !voisines(k).includes(x) && !(FE[x].aussi || []).includes(k) && FE[x].wunsch !== FE[k].wunsch).map(x => FE[x].wunsch));
     if (autres.length < 2) return false;
     viser(w || feteMot(k));
     const sit = situation(k), rep = FE[k].wunsch, opts = melanger([rep, ...melanger(autres).slice(0, 3)]);
-    tradQ = [sit.t, souhaitTrad(k)].filter(Boolean).join(" — ") || null; dirQ = FE[k].nom;
+    tradQ = [sit.t, souhaitTrad(k)].filter(Boolean).join(" — ") || null; dirQ = vV ? w.mot : FE[k].nom;
     const avant = imgsDe(k).length && !FE[k].c && Math.random() < 0.5 ? photo(hasard(imgsDe(k))) : "";
     ecran("c_souhait", avant, sit.s + " " + quiDit(k, sit.p), {centre: true});
     $("choix").classList.add("liste");
@@ -505,7 +506,7 @@ const EX = {
     let occupe;
     if (!w || estMot(w, EINL()) || (ES_ && estMot(w, verbe("venir")))) occupe = Math.random() < 0.5;
     else if (estMot(w, ES_ ? verbe(oui) : adverbe(oui))) occupe = false;
-    else if (estMot(w, ES_ ? verbe(non) : adverbe(non))) occupe = true;
+    else if (estMot(w, ES_ ? verbe(non) : adverbe(non)) || (!ES_ && estMot(w, verbe("absagen")))) occupe = true;
     else return false;
     const inv = hasard(INV), invite = hasard(inv.pour), jf = jourDe(inv.date);
     const motifs = Object.keys(MO).filter(m => !MO[m].semaine || jf < 5);
@@ -523,7 +524,7 @@ const EX = {
     const autres = melanger(motifs.filter(m => m !== mf)).slice(0, occupe ? 1 : 2);
     const choixM = occupe ? [mf, null, ...autres] : [null, ...autres];
     const rep = dit(mf), opts = melanger(choixM.map(dit));
-    tradQ = trad(mf); dirQ = motQ && motQ.cat === "verbe" && motQ.mot === "venir" ? "venir" : memeMot(motQ, EINL()) ? EINL().genre + " " + EINL().mot : ES_ ? (occupe ? "no puedo" : "voy") : (occupe ? "leider" : "gern");
+    tradQ = trad(mf); dirQ = motQ && motQ.cat === "verbe" && ["venir", "absagen"].includes(motQ.mot) ? motQ.mot : memeMot(motQ, EINL()) ? EINL().genre + " " + EINL().mot : ES_ ? (occupe ? "no puedo" : "voy") : (occupe ? "leider" : "gern");
     ecran("c_reponse", papierInvitation(inv, invite, inv.apports.length ? hasard(inv.apports) : null) + papierAgenda(invite, a), ES_ ? "¿Qué contesta " + invite + "?" : "Was antwortet " + invite + "?", {centre: true});
     $("choix").classList.add("liste");
     boutons($("choix"), opts, rep, ok => juger(ok, rep, rep), o => { const m = choixM.find(x => dit(x) === o); return m !== undefined ? trad(m) : null; });
@@ -576,13 +577,13 @@ const EX = {
   // se mettre d'accord : A propose un jour, B refuse et propose un autre jour, A accepte -> « Wann feiern sie? »
   accord(w){
     const jw = jourDeMot(w);
-    if (w && jw < 0 && !estMot(w, verbe("quedar"))) return false;
+    if (w && jw < 0 && !estMot(w, verbe("quedar")) && !estMot(w, verbe(ES_ ? "planear" : "planen"))) return false;
     const gens = Object.keys(PERS), a = hasard(gens), b = hasard(gens.filter(x => x !== a));
     const j2 = jw >= 0 ? jw : hasard([0, 1, 2, 3, 4, 5, 6]), j1 = hasard([0, 1, 2, 3, 4, 5, 6].filter(x => x !== j2));
     const motifs = Object.keys(MO).filter(m => !MO[m].semaine || j1 < 5), m = hasard(motifs), h = hasard([17, 18, 19, 20]);
     viser(w || jourMot(j2));
     const bulles = ES_
-      ? [[a, "¿Quedamos " + amJour(j1) + " a las " + h + ":00 para preparar la fiesta?", "g"], [b, cap(amJour(j1)) + " no puedo, " + MO[m].satz + ". ¿Qué tal " + amJour(j2) + "?", "d"], [a, "¡Perfecto! Quedamos " + amJour(j2) + "."]]
+      ? [[a, "¿Quedamos " + amJour(j1) + " a las " + h + ":00 para planear la fiesta?", "g"], [b, cap(amJour(j1)) + " no puedo, " + MO[m].satz + ". ¿Qué tal " + amJour(j2) + "?", "d"], [a, "¡Perfecto! Quedamos " + amJour(j2) + "."]]
       : [[a, "Wollen wir die Party " + amJour(j1) + " um " + h + " Uhr planen?", "g"], [b, cap(amJour(j1)) + " kann ich leider nicht, da " + MO[m].satz + ". Wie wäre es mit " + jourN(j2) + "?", "d"], [a, jourN(j2) + " passt mir gut. Dann treffen wir uns " + amJour(j2) + "!"]];
     bulles[2][2] = "g";
     const f = x => amJour(x), rep = f(j2);
@@ -590,7 +591,7 @@ const EX = {
     const juste = ES_ ? yEs(a, b) + " quedan " + amJour(j2) + "." : a + " und " + b + " treffen sich " + amJour(j2) + ".";
     tradQ = TL ? {fr: NomT(a, "fr") + " et " + nomT(b, "fr") + " se retrouvent " + amJour(j2, "fr") + ".", en: a + " and " + b + " are meeting " + amJour(j2, "en") + ".",
                   pt: NomT(a, "pt") + " e " + nomT(b, "pt") + " se encontram " + amJour(j2, "pt") + ".", de: a + " und " + b + " treffen sich " + amJour(j2, "de") + "."}[TL] : null;
-    dirQ = jourN(j2);
+    dirQ = motQ && motQ.cat === "verbe" ? motQ.mot : jourN(j2);
     ecran("c_accord", fil(bulles), ES_ ? "¿Qué día quedan " + yEs(a, b) + "?" : "Wann treffen sich " + a + " und " + b + "?", {centre: true});
     boutons($("choix"), opts, rep, ok => juger(ok, rep, juste), o => tradJourChoix(o, f));
     return true;
