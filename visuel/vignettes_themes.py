@@ -593,6 +593,45 @@ def courses_sac():
     return c
 
 
+def travail_cv():
+    """Le travail et l'emploi : le CV de Mark (sa photo, des lignes, aucun mot), une mallette de cuir, et en rond la
+    photo du contrat qu'il signe avec sa future cheffe (prise des demarches, la meme femme et le meme bureau que
+    l'entretien du theme). Le sujet est le chemin vers un poste, pas les objets du bureau de la scene « buero »."""
+    c = Image.new("RGB", (W, H), (232, 226, 214))
+    d = ImageDraw.Draw(c)
+    # le CV, un peu tourne, avec son ombre
+    f = Image.new("RGBA", (300, 400), (0, 0, 0, 0))
+    g = ImageDraw.Draw(f)
+    g.rectangle((0, 0, 299, 399), fill=(255, 253, 246), outline=(201, 207, 216), width=2)
+    g.rectangle((22, 24, 170, 40), fill=(28, 36, 48))                     # le nom, une barre
+    g.rectangle((22, 50, 130, 58), fill=(160, 168, 180))
+    ph = Image.open(os.path.join(P, "descripcion", "Mark-visage.webp")).convert("RGB").resize((86, 104), Image.LANCZOS)
+    f.paste(ph, (192, 22))
+    g.rectangle((192, 22, 277, 125), outline=(160, 168, 180), width=2)
+    for k, (y, n) in enumerate(((150, 3), (236, 2), (300, 3))):           # trois rubriques : un titre ambre, des lignes
+        g.rectangle((22, y, 120, y + 9), fill=(232, 162, 58))
+        for j in range(n):
+            g.rectangle((22, y + 22 + j * 18, 22 + (240 if j % 2 == 0 else 190), y + 28 + j * 18), fill=(176, 184, 196))
+    f = f.rotate(5, resample=Image.BICUBIC, expand=True)
+    ombre = Image.new("RGBA", f.size, (0, 0, 0, 0))
+    ombre.paste((60, 50, 30, 70), (0, 0), f.split()[3])
+    c.paste(ombre, (46, 70), ombre)
+    c.paste(f, (36, 60), f)
+    # la mallette de cuir, en bas a droite
+    x0, y0 = 350, 330
+    d.rounded_rectangle((x0 + 58, y0 - 34, x0 + 158, y0 + 16), 16, outline=(110, 70, 36), width=12)
+    d.rounded_rectangle((x0, y0, x0 + 216, y0 + 150), 18, fill=(150, 96, 52), outline=(110, 70, 36), width=4)
+    d.line([(x0, y0 + 56), (x0 + 216, y0 + 56)], fill=(110, 70, 36), width=5)
+    d.rounded_rectangle((x0 + 92, y0 + 42, x0 + 124, y0 + 72), 6, fill=(232, 196, 96), outline=(168, 126, 40), width=3)
+    # en rond : la signature du contrat (Mark et sa future cheffe)
+    im = Image.open(os.path.join(P, "demarches", "unterschreiben.webp")).convert("RGB")
+    w, h = im.size
+    im = im.crop((int(0.02 * w), int(0.0 * h), int(0.92 * w), int(0.9 * h)))
+    r = rond(im, 228, 8)
+    c.paste(r, (472 - r.size[0] // 2, 150 - r.size[1] // 2), r)
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
              "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
              "metiers": metiers_polaroids,
@@ -602,7 +641,8 @@ VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones"
              "meteo": meteo_quatre_saisons,
              "logement": logement_plan,
              "demarches": demarches_formulaire,
-             "courses": courses_sac}
+             "courses": courses_sac,
+             "travail": travail_cv}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

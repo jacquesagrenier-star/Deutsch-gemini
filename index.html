@@ -9859,6 +9859,15 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
             <div><strong data-i18n="cou_tuile">Faire les courses</strong></div>
         </div>
 
+        <!-- Le travail et l'emploi (5 nov. 2026, vague 4) : la recherche d'emploi, au coeur du DTZ -- pas les objets de
+             la scene buero. Lire une annonce (Vollzeit, Teilzeit, Minijob ; jornada completa, media jornada), le CV et la
+             lettre, l'entretien, le contrat (Probezeit, Urlaub), le premier jour, Sie / du et usted / tu, se declarer
+             malade (sich krankmelden) ; les papiers en HTML : visuel/prototype/travail.html. es et de. -->
+        <div class="orb hidden" data-orbid="travail" id="tuileTravail" onclick="ouvrirThemeIllustre('travail')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V5.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5.5v2"/><path d="M3.5 12.5h17"/><path d="M11 12.5v1.5h2v-1.5"/></svg></div>
+            <div><strong data-i18n="trav_tuile">Le travail et l'emploi</strong></div>
+        </div>
+
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
@@ -14609,6 +14618,8 @@ const I18N = {
         dem_court: "Démarches",
         cou_tuile: "Faire les courses",
         cou_court: "Courses",
+        trav_tuile: "Le travail et l'emploi",
+        trav_court: "Le travail",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -16152,6 +16163,8 @@ const I18N = {
         dem_court: "Paperwork",
         cou_tuile: "Going shopping",
         cou_court: "Shopping",
+        trav_tuile: "Work and jobs",
+        trav_court: "Work",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17697,6 +17710,8 @@ const I18N = {
         dem_court: "Resmî işler",
         cou_tuile: "Alışveriş yapmak",
         cou_court: "Alışveriş",
+        trav_tuile: "İş ve iş arama",
+        trav_court: "İş",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19654,6 +19669,8 @@ const I18N = {
         dem_court: "Справи",
         cou_tuile: "Покупки",
         cou_court: "Покупки",
+        trav_tuile: "Робота і пошук роботи",
+        trav_court: "Робота",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21925,6 +21942,8 @@ const I18N = {
         dem_court: "اداری",
         cou_tuile: "خرید کردن",
         cou_court: "خرید",
+        trav_tuile: "کار و کاریابی",
+        trav_court: "کار",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23639,6 +23658,8 @@ const I18N = {
         dem_court: "المعاملات",
         cou_tuile: "التسوق",
         cou_court: "التسوق",
+        trav_tuile: "العمل والبحث عن وظيفة",
+        trav_court: "العمل",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -24033,6 +24054,8 @@ const I18N = {
         dem_court: "Trâmites",
         cou_tuile: "Fazer compras",
         cou_court: "Compras",
+        trav_tuile: "O trabalho e o emprego",
+        trav_court: "Trabalho",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25637,6 +25660,8 @@ const I18N = {
         dem_court: "Urzędy",
         cou_tuile: "Zakupy",
         cou_court: "Zakupy",
+        trav_tuile: "Praca i szukanie pracy",
+        trav_court: "Praca",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -27241,6 +27266,8 @@ const I18N = {
         dem_court: "Дела",
         cou_tuile: "Покупки",
         cou_court: "Покупки",
+        trav_tuile: "Работа и поиск работы",
+        trav_court: "Работа",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28847,6 +28874,8 @@ const I18N = {
         dem_court: "Ämter",
         cou_tuile: "Einkaufen",
         cou_court: "Einkaufen",
+        trav_tuile: "Arbeit und Jobsuche",
+        trav_court: "Arbeit",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30488,6 +30517,8 @@ const I18N = {
         dem_court: "Trámites",
         cou_tuile: "Hacer la compra",
         cou_court: "La compra",
+        trav_tuile: "El trabajo y el empleo",
+        trav_court: "El trabajo",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -47398,7 +47429,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           meteo: {page: "meteo.html", titre: "meteo_tuile", court: "meteo_court", tuile: "tuileMeteo"},
                           logement: {page: "logement.html", titre: "log_tuile", court: "log_court", tuile: "tuileLogement"},
                           demarches: {page: "demarches.html", titre: "dem_tuile", court: "dem_court", tuile: "tuileDemarches"},
-                          courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"}};
+                          courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"},
+                          travail: {page: "travail.html", titre: "trav_tuile", court: "trav_court", tuile: "tuileTravail"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
