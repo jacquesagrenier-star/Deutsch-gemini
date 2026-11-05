@@ -24,8 +24,8 @@ import lectures                                   # noqa : les nombres en lettre
 PORT = int(os.environ.get("THEMES_PORT", "8808"))
 THEMES = ["familia", "descripcion", "ropa", "cuerpo", "manger", "transportes", "loisirs", "animales", "meteo", "emociones"]
 # les themes sans page anglaise (pas de `en: true` dans THEMES_ILLUSTRES) : jamais ouverts en anglais
-SANS_EN = ["manger", "transportes", "animales", "meteo", "emociones"]
-THEMES_EN = ["contrarios"]      # ses voix es et de sont dans contrarios.json ; l'anglais passe par themes/voix.js
+SANS_EN = ["transportes", "animales", "meteo"]
+THEMES_EN = ["contrarios", "gato", "journee", "metiers"]      # l'anglais seul : leurs voix es et de viennent d'ailleurs (contrarios.json, leur voix.json)
 PARTIES = int(os.environ.get("PARTIES_VOIX", "150"))
 # ce que la page dit apres chaque reponse, sur PARTIES parties : Voix.dire est ecoute, chaque question repondue
 ECHANTILLON = """async (n) => { const dits = new Set(); let apport = 0; const orig = Voix.dire; Voix.dire = t => { if (t) dits.add(t); };
@@ -41,6 +41,8 @@ DOSSIER = {"es": "es-es", "latam": "es-419", "de": "", "en": "en-us"}
 # sans l'accord de Jacques (une ecoute a l'aveugle Sarah / Google / Azure d'abord) : ce qui manque est seulement liste.
 # AUDIO_RACINE : le dossier ou vit audio/mp3 (le dossier principal ; un worktree ne l'a pas).
 AUDIO = os.environ.get("AUDIO_RACINE", RACINE)
+# VOIX_CLES=en : ne relire que ces langues (les autres gardent ce qu'elles ont dans voix.json)
+CLES = [c for c in os.environ.get("VOIX_CLES", "").split(",") if c]
 
 
 def ident(t):
@@ -61,6 +63,8 @@ def textes_des_pages():
         for th in THEMES + THEMES_EN:
             out[th] = {}
             for cle, (app, var) in CAS.items():
+                if CLES and cle not in CLES:
+                    continue
                 if cle == "en" and th in SANS_EN:
                     continue
                 if th in THEMES_EN and cle != "en":
@@ -88,7 +92,10 @@ def main():
     textes = textes_des_pages()
     for th, d in textes.items():
         chemin = os.path.join(ICI, th, "voix.json")
-        io.open(chemin, "w", encoding="utf-8", newline="\n").write(json.dumps(d, ensure_ascii=False, indent=1) + "\n")
+        # en COMPLETANT le voix.json du theme : une langue qu'on n'a pas relue (l'espagnol d'un theme de THEMES_EN) y reste
+        ancien = json.load(io.open(chemin, encoding="utf-8")) if os.path.exists(chemin) else {}
+        ancien.update(d)
+        io.open(chemin, "w", encoding="utf-8", newline="\n").write(json.dumps(ancien, ensure_ascii=False, indent=1) + "\n")
         print("  -> %s" % os.path.relpath(chemin, RACINE))
     # les contraires (3 nov. 2026) : la decouverte et les mots cles, tels que contrarios.json les donne
     # (audio/manifest.py, contrarios_textes ; l'Amerique latine dit les memes textes que l'Espagne)

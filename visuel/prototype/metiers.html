@@ -16,6 +16,16 @@
   a chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin.
   Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
   variante=latam (la voix), r=<AUDIO_REVISION>. Le tirage suit les mots (themes/tirage.js).
+  L'ANGLAIS (4 nov. 2026, apprendre=en, variante=gb) : les memes images, ses phrases a lui (EN_J, EN_L, EN_FAIT,
+  EX_EN, plus bas) -- c'est l'INVERSE de l'espagnol et de l'allemand : le metier prend TOUJOURS son article (She is a
+  doctor, He is an engineer : a ou an selon le son qui suit), « What does she do? » pour demander le metier (jamais
+  « What is she doing? »), work as / at / in / for / on (jamais « like »), le present simple et son -s (He drives a
+  bus, She teaches art). Presque aucun metier n'a de feminin : waiter / waitress et actor / actress existent, mais
+  police officer, firefighter, flight attendant valent pour tous. Des metiers sans image (an engineer, an artist,
+  a firefighter...) font travailler a / an. Elena et Tomas sont ecartes en anglais (« POLIZEI » sur l'uniforme,
+  pas a Boston) : le policier n'a plus que des questions sans image. Americain / britannique : salesperson / shop
+  assistant, store / shop, pharmacy / chemist's, doctor's office / doctor's surgery, mail carrier / postman,
+  math / maths, mom / mum, neighbor / neighbour, movies / films.
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -119,7 +129,9 @@ button:disabled{cursor:default}
 <script src="themes/verre.js?v=2"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+// l'anglais (4 nov. 2026, « il manque beaucoup de themes en anglais ») : les memes images, ses phrases a lui ; variante=gb
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
@@ -211,7 +223,20 @@ const TEXTES = {
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
-  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"},
+  // l'anglais seulement (son interface est en francais) : les regles, la note americain / britannique, les consignes de ses sortes
+  ongletPairesEn:{fr:"Un mot pour tous"},
+  noteArticleEn:{fr:"En anglais, c'est l'inverse du français : le métier prend <b>toujours un article</b>. <b>a</b>, et <b>an</b> devant le son d'une voyelle. Pour demander le métier : <b>What does she do?</b> (What is she doing? demande ce qu'elle fait en ce moment) :"},
+  noteAlsEn: {fr:"« Travailler comme » : <b>work as</b>, jamais like. Le lieu : <b>at</b> (at a hospital), <b>in</b> pour une pièce (in the kitchen), <b>for</b> pour un employeur (for the police). Ce qu'on fait au travail se dit au présent simple, avec le <b>-s</b> de he et she :"},
+  noteFemEn: {fr:"Presque tous les métiers n'ont <b>qu'un mot</b> pour un homme et pour une femme. Quelques-uns ont un féminin (waiter, waitress ; actor, actress), mais on préfère les mots qui valent pour tous : <b>police officer</b> (pas policeman), <b>firefighter</b> (pas fireman), <b>flight attendant</b> (pas stewardess) ; aux États-Unis, beaucoup disent <b>server</b> au restaurant."},
+  bonUs:     {fr:"Bon à savoir : tu apprends l'anglais américain. En Grande-Bretagne : shop assistant (salesperson), shop (store), chemist's (pharmacy ; le pharmacien y est aussi un chemist), doctor's surgery (doctor's office), postman (mail carrier, qu'on entend aussi mailman), maths (math). L'avocat : lawyer partout, attorney aux États-Unis, solicitor en Grande-Bretagne. Le caissier, la caissière : cashier des deux côtés."},
+  bonGb:     {fr:"Bon à savoir : tu apprends l'anglais britannique. Aux États-Unis : salesperson (shop assistant), store (shop), pharmacy (chemist's), doctor's office (doctor's surgery), mail carrier ou mailman (postman), math (maths). L'avocat : lawyer partout, solicitor en Grande-Bretagne, attorney aux États-Unis. Le caissier, la caissière : cashier des deux côtés."},
+  articleEn: {fr:"a, an ou rien ? En anglais, le métier prend toujours son article."},
+  questionEn:{fr:"Quelle question demande le métier ?"},
+  verbeEn:   {fr:"Ce que la personne fait au travail : le présent simple. N'oublie pas le -s de he et she."},
+  alsEn:     {fr:"as, at, in, for ou on ? Choisis le petit mot qui manque."},
+  neutre:    {fr:"Un homme ou une femme : quel mot convient ?"},
+  definition:{fr:"Qui fait cela ? Choisis le métier."}
 };
 // les exemples des regles, dans la langue apprise : une ligne de gauche a droite, la meme pour toutes les langues
 const EXEMPLES = {
@@ -220,16 +245,21 @@ const EXEMPLES = {
   noteFem: "der Lehrer → die Lehrer<b>in</b> · der Arzt → die <b>Ä</b>rzt<b>in</b> · der Koch → die K<b>ö</b>ch<b>in</b> · der Krankenpfleger → die <b>Krankenschwester</b>",
   noteFemEs: "el médic<b>o</b> → la médic<b>a</b> · el profes<b>or</b> → la profes<b>ora</b> · el dependient<b>e</b> → la dependient<b>a</b> · <b>el</b> policía → <b>la</b> policía",
   noteAls: "Er arbeitet <b>als</b> Kellner. · Sie arbeitet <b>als</b> Ärztin.",
-  noteAlsEs: "Trabaja <b>de</b> camarero. · Trabaja <b>como</b> camarera."
+  noteAlsEs: "Trabaja <b>de</b> camarero. · Trabaja <b>como</b> camarera.",
+  noteArticleEn: "She's <b>a</b> doctor. · He's <b>an</b> engineer. · She's <b>an</b> excellent teacher. · — What <b>does</b> she <b>do</b>? — She's a nurse.",
+  noteAlsEn: "He works <b>as</b> a waiter. · She works <b>at</b> a hospital. · He works <b>in</b> the kitchen. · She works <b>for</b> the police. · He drive<b>s</b> a bus. · She teach<b>es</b> art.",
+  noteFemEn: "He's <b>a</b> nurse. · She's <b>a</b> police officer. · a waiter → a wait<b>ress</b> · an actor → an act<b>ress</b>"
 };
 const DE_APP = APPRENDRE === "de";
-const cleNote = c => DE_APP ? c : c + "Es";
+const cleNote = c => DE_APP ? c : APPRENDRE === "en" ? c + "En" : c + "Es";
 const regle = cle => isoler(T(cleNote(cle))) + '<span class="exemples" lang="' + APPRENDRE + '" dir="ltr">' + EXEMPLES[cleNote(cle)] + '</span>';
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
 
 // ---------- la donnee (metiers.json, fabrique par visuel/metiers/metiers.py) ----------
 let D = null;
-const PERS = () => Object.keys(D.personnes);
+// en anglais, Elena et Tomas sont ecartes : « POLIZEI » sur l'uniforme, ce n'est pas Boston
+const EN_ECARTES = ["Elena", "Tomas"];
+const PERS = () => Object.keys(D.personnes).filter(id => APPRENDRE !== "en" || !EN_ECARTES.includes(id));
 const P = id => D.personnes[id];
 const PH = id => D.phrases[APPRENDRE][id];
 const forme = (met, s) => D.metiers[met][APPRENDRE][s];                     // {genre, mot}
@@ -271,6 +301,7 @@ let motQ = null, tradQ = null, choixQ = null;
 let MOTS = null;
 function motsDuTheme(){
   if (MOTS) return MOTS;
+  if (APPRENDRE === "en") return (MOTS = motsDuThemeEn());
   MOTS = [];
   Object.keys(D.metiers).forEach(met => ["m", "f"].forEach(s => { const f = forme(met, s); MOTS.push({k: "j:" + met + ":" + s, met, s, mot: f.mot, genre: f.genre}); }));
   Object.keys(D.lieux).forEach(l => { const n = D.lieux[l].nom[APPRENDRE]; MOTS.push({k: "l:" + l, lieu: l, mot: n.mot, genre: n.genre}); });
@@ -281,19 +312,22 @@ const estJob = w => w && w.met, estLieu = w => w && w.lieu, estVerbe = w => w &&
 const motJob = (met, s) => ({mot: forme(met, s).mot, genre: forme(met, s).genre});
 const motLieu = l => ({mot: D.lieux[l].nom[APPRENDRE].mot, genre: D.lieux[l].nom[APPRENDRE].genre});
 const motVerbe = v => ({mot: v, cat: "verbe"});
-function viser(w, defaut){ motQ = w ? {mot: w.mot, genre: w.genre || null, cat: w.cat || null} : defaut; }
+// « sens » : en anglais seulement, pour un mot a deux cartes au corpus (le britannique chemist's : pharmacie / pharmacie-droguerie)
+function viser(w, defaut){ motQ = w ? Object.assign({mot: w.mot, genre: w.genre || null, cat: w.cat || null}, w.sens ? {sens: w.sens} : {}) : defaut; }
 // les personnes qui ont la forme visee (Diego et la medecin du cabinet n'ont pas la meme : Arzt, Ärztin)
 const avecForme = w => PERS().filter(id => !w || (P(id).metier === w.met && P(id).sexe === w.s));
 // le mot montre sous la reponse : « die Ärztin », « die Bäckerei », « backen », et sa traduction (le corpus)
 function montreDe(m){
   if (!m) return null;
-  return {aff: m.genre ? m.genre + " " + m.mot : m.mot, sens: glose(m.mot)};
+  // en anglais, un verbe a sa glose a part (« cook » est un nom et un verbe)
+  return {aff: m.genre ? m.genre + " " + m.mot : m.mot, sens: glose(APPRENDRE === "en" && m.cat === "verbe" ? "v:" + m.mot : m.mot)};
 }
 // LE MAUVAIS CHOIX TRADUIT (decision de Jacques du 3 nov., regle commune des themes) : apres une erreur, ce que
 // l'eleve a choisi et ce que ca veut dire. Un metier : sa forme avec l'article et sa glose (« die Ärztin — la
 // medecin ») ; un lieu : sa traduction ; un verbe : son infinitif et son sens ; une personne touchee : sa phrase.
 // Une phrase a l'article en trop, als / wie, ein / der : rien a traduire.
 function choixTraduit(c){
+  if (APPRENDRE === "en") return choixTraduitEn(c);
   if (!c || LANGUE === APPRENDRE) return null;
   if (D.personnes[c]){ const ph = PH(c).cual; return {aff: ph, sens: tradPhrase(ph) || glose(forme(P(c).metier, P(c).sexe).mot)}; }
   for (const met of Object.keys(D.metiers)) for (const s of ["m", "f"]){
@@ -313,11 +347,11 @@ function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
   parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
-  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (motQ) parler("reponse", Object.assign({mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null}, motQ.sens ? {sens: motQ.sens} : {}, {juste: ok}));
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const mt = montreDe(motQ);
-  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
+  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : APPRENDRE === "en" ? "Well done!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
     + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
     + traduction(tradQ || tradPhrase(phrase || bonneTexte))
     + (!ok && (c => c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")(choixTraduit(choixQ)) || "")
@@ -529,28 +563,452 @@ const EX = {
 };
 // les sortes de la langue apprise
 const SORTES = DE_APP ? ["beruf", "ich", "adj", "ou", "fait", "verbe", "als", "paire", "cual", "entendre", "vraifaux"]
+             : APPRENDRE === "en" ? ["beruf", "ich", "article", "question", "ou", "fait", "verbe", "als", "neutre", "definition", "cual", "entendre", "vraifaux"]
                       : ["beruf", "ich", "ou", "fait", "verbe", "als", "paire", "cual", "entendre", "vraifaux"];
+
+// ---------- L'ANGLAIS (4 nov. 2026) ----------
+// Les phrases sont ecrites pour l'anglais, fabriquees depuis les memes personnes et les memes lieux (metiers.json) ;
+// rien n'est traduit de l'espagnol. Le point du theme : le metier prend TOUJOURS son article (She is a doctor, He is
+// an engineer), « What does she do? », work as / at / in / for / on, le present simple et son -s.
+const anA = s => /^(hon|hour)/i.test(s) || (/^[aeiou]/i.test(s) && !/^(uni|use|eu|one)/i.test(s)) ? "an" : "a";
+const avecA = s => anA(s) + " " + s;
+const maj = s => s.charAt(0).toUpperCase() + s.slice(1);
+// LES METIERS. k : la cle ; met : celle de metiers.json (null : sans image) ; sexe : le mot ne vaut que pour un homme
+// ou une femme ; fr [masculin, feminin] sans article ; gl : la glose ; def : qui fait quoi, et sa traduction (la sorte
+// « definition ») ; confus : les metiers trop proches pour servir de leurre l'un a l'autre. Le mot est celui du
+// corpus anglais (anglais/datos, et anglais/datos-gb en britannique) ; pharmacist, mail carrier et bus driver n'y
+// sont pas encore : « hors jeu » dans l'app, ils ne recoivent pas de question tant qu'ils n'y sont pas.
+const EN_J = [
+  {k: "arzt", met: "arzt", mot: "doctor", fr: ["médecin", "médecin"], gl: "le médecin", def: ["examines patients", "Un médecin examine les patients."], confus: ["pfleger"]},
+  {k: "apotheker", met: "apotheker", mot: "pharmacist", fr: ["pharmacien", "pharmacienne"], gl: "le pharmacien, la pharmacienne", def: ["sells medicine", "Un pharmacien vend des médicaments."], confus: ["verkaeufer"]},
+  {k: "baecker", met: "baecker", mot: "baker", fr: ["boulanger", "boulangère"], gl: "le boulanger, la boulangère", def: ["bakes bread", "Un boulanger fait du pain."]},
+  {k: "friseur", met: "friseur", mot: "hairdresser", fr: ["coiffeur", "coiffeuse"], gl: "le coiffeur, la coiffeuse", def: ["cuts hair", "Un coiffeur coupe les cheveux."]},
+  {k: "lehrer", met: "lehrer", mot: "teacher", fr: ["professeur", "professeure"], gl: "le professeur, la professeure", def: ["teaches students", "Un professeur enseigne aux élèves."]},
+  {k: "waiter", met: "kellner", sexe: "m", mot: "waiter", fr: ["serveur", "serveuse"], gl: "le serveur", def: ["serves food at a restaurant", "Un serveur sert les plats au restaurant."], confus: ["koch", "waitress", "flight"]},
+  // pas de definition : « Who serves food? » serait aussi « a waiter »
+  {k: "waitress", met: "kellner", sexe: "f", mot: "waitress", fr: ["serveur", "serveuse"], gl: "la serveuse", confus: ["koch", "waiter", "flight"]},
+  {k: "koch", met: "koch", mot: "cook", fr: ["cuisinier", "cuisinière"], gl: "le cuisinier, la cuisinière", def: ["cooks meals", "Un cuisinier prépare les repas."], confus: ["waiter", "waitress"]},
+  {k: "mechaniker", met: "mechaniker", mot: "mechanic", fr: ["mécanicien", "mécanicienne"], gl: "le mécanicien, la mécanicienne", def: ["repairs cars and bikes", "Un mécanicien répare les voitures et les vélos."], confus: ["electrician"]},
+  {k: "verkaeufer", met: "verkaeufer", mot: GB ? "shop assistant" : "salesperson", fr: ["vendeur", "vendeuse"], gl: "le vendeur, la vendeuse", def: ["helps customers in " + (GB ? "a shop" : "a store"), "Un vendeur aide les clients dans un magasin."], confus: ["apotheker"]},
+  {k: "pfleger", met: "pfleger", mot: "nurse", fr: ["infirmier", "infirmière"], gl: "l'infirmier, l'infirmière", def: ["takes care of patients", "Un infirmier s'occupe des patients."], confus: ["arzt"]},
+  {k: "rezeptionist", met: "rezeptionist", mot: "receptionist", fr: ["réceptionniste", "réceptionniste"], gl: "le réceptionniste, la réceptionniste", def: ["welcomes guests at a hotel", "Un réceptionniste accueille les clients à l'hôtel."]},
+  // sans image en anglais : la police (Elena et Tomas sont ecartes), et des metiers pour a / an
+  {k: "polizist", met: "polizist", mot: "police officer", fr: ["policier", "policière"], gl: "le policier, la policière", def: ["protects people", "Un policier protège les gens."]},
+  {k: "engineer", met: null, mot: "engineer", fr: ["ingénieur", "ingénieure"], gl: "l'ingénieur, l'ingénieure", def: ["designs bridges and machines", "Un ingénieur conçoit des ponts et des machines."], confus: ["architect"]},
+  {k: "architect", met: null, mot: "architect", fr: ["architecte", "architecte"], gl: "l'architecte", def: ["designs houses", "Un architecte dessine des maisons."], confus: ["engineer"]},
+  {k: "actor", met: null, sexe: "m", mot: "actor", fr: ["acteur", "actrice"], gl: "l'acteur", def: ["plays roles in " + (GB ? "films" : "movies"), "Un acteur joue des rôles au cinéma."]},
+  {k: "artist", met: null, mot: "artist", fr: ["artiste", "artiste"], gl: "l'artiste", def: ["paints pictures", "Un artiste peint des tableaux."]},
+  {k: "electrician", met: null, mot: "electrician", fr: ["électricien", "électricienne"], gl: "l'électricien, l'électricienne", def: ["installs lights", "Un électricien installe l'éclairage."], confus: ["mechaniker"]},
+  {k: "firefighter", met: null, mot: "firefighter", fr: ["pompier", "pompière"], gl: "le pompier, la pompière", def: ["puts out fires", "Un pompier éteint les incendies."]},
+  {k: "flight", met: null, mot: "flight attendant", fr: ["agent de bord", "agente de bord"], gl: "l'agent de bord", def: ["helps passengers on planes", "Un agent de bord aide les passagers dans l'avion."], confus: ["waiter", "waitress"]},
+  {k: "lawyer", met: null, mot: "lawyer", fr: ["avocat", "avocate"], gl: "l'avocat, l'avocate", def: ["defends people in court", "Un avocat défend les gens au tribunal."]},
+  // le britannique dit postman (le corpus : postman) ; l'americain, mail carrier, pour tous (mailman, au corpus, est un mot d'homme)
+  {k: "mail", met: null, sexe: GB ? "m" : null, mot: GB ? "postman" : "mail carrier", fr: ["facteur", "factrice"], gl: GB ? "le facteur" : "le facteur, la factrice", def: ["delivers the " + (GB ? "post" : "mail"), "Un facteur distribue le courrier."]},
+  {k: "busdriver", met: null, mot: "bus driver", fr: ["chauffeur de bus", "chauffeuse de bus"], gl: "le chauffeur de bus", def: ["drives a bus", "Un chauffeur de bus conduit un bus."]}
+];
+const JK = k => EN_J.find(J => J.k === k);
+const voisinsEn = (a, b) => a.k === b.k || (a.confus || []).includes(b.k) || (b.confus || []).includes(a.k);
+const jobFor = (met, s) => EN_J.find(J => J.met === met && (!J.sexe || J.sexe === s));
+const jobDe = id => jobFor(P(id).metier, P(id).sexe);
+const personnesJ = J => J.met ? PERS().filter(id => P(id).metier === J.met && (!J.sexe || P(id).sexe === J.sexe)) : [];
+const sexeTexte = J => J.sexe || hasard(["m", "f"]);
+const frJ = (J, s) => J.fr[s === "f" ? 1 : 0];
+// LES LIEUX : le mot du corpus, sa preposition (at, et in pour la cuisine ; in a shop en britannique), sa traduction
+const EN_L = {
+  praxis:      {mot: GB ? "doctor's surgery" : "doctor's office", fr: "dans un cabinet médical", gl: "le cabinet médical"},
+  krankenhaus: {mot: "hospital", fr: "à l'hôpital", gl: "l'hôpital"},
+  apotheke:    {mot: GB ? "chemist's" : "pharmacy", sens: GB ? "la pharmacie" : null, fr: "dans une pharmacie", gl: "la pharmacie"},
+  baeckerei:   {mot: "bakery", fr: "dans une boulangerie", gl: "la boulangerie"},
+  salon:       {mot: "hair salon", fr: "dans un salon de coiffure", gl: "le salon de coiffure"},
+  schule:      {mot: "school", fr: "dans une école", gl: "l'école"},
+  restaurant:  {mot: "restaurant", fr: "dans un restaurant", gl: "le restaurant"},
+  kueche:      {mot: "kitchen", prep: "in", det: "the", fr: "en cuisine", gl: "la cuisine"},
+  werkstatt:   {mot: "bike shop", fr: "dans un magasin de vélos", gl: "le magasin de vélos"},
+  geschaeft:   {mot: GB ? "shop" : "store", prep: GB ? "in" : "at", fr: "dans un magasin", gl: "le magasin"},
+  polizei:     {mot: "police station", fr: "au commissariat", gl: "le commissariat"},
+  hotel:       {mot: "hotel", fr: "dans un hôtel", gl: "l'hôtel"}
+};
+const prepL = l => EN_L[l].prep || "at";
+const lieuEn = l => prepL(l) + " " + (EN_L[l].det || anA(EN_L[l].mot)) + " " + EN_L[l].mot;
+// CE QUE CHACUN FAIT, au present simple : [he / she, la base, l'objet, en francais, des verbes faux avec cet objet]
+// (une image ne dit que ce qu'elle montre : le tableau de Marta porte un dessin, celui du professeur est vide)
+const EN_FAIT = (() => {
+  const med = ["examines", "examine", "patients", "examine les patients", ["bakes", "repairs", "sells"]];
+  const pain = ["bakes", "bake", "bread", "fait du pain", ["repairs", "examines", "teaches"]];
+  const cheveux = ["cuts", "cut", "hair", "coupe les cheveux", ["cooks", "repairs", "bakes"]];
+  const velos = ["repairs", "repair", "bikes", "répare des vélos", ["cooks", "bakes", "teaches"]];
+  const repas = ["cooks", "cook", "meals", "prépare les repas", ["repairs", "teaches", "examines"]];
+  return {
+    "s-aerztin": med, Diego: med, "s-baeckerin": pain, Pablo: pain, "s-friseur": cheveux, Ines: cheveux,
+    "s-mechaniker": velos, Rosa: velos, Javier: repas, Carmen: repas,
+    "s-apothekerin": ["sells", "sell", "medicine", "vend des médicaments", ["repairs", "bakes", "cooks"]],
+    "s-lehrer": ["teaches", "teach", GB ? "maths" : "math", "enseigne les maths", ["repairs", "bakes", "cooks"]],
+    Marta: ["teaches", "teach", "art", "enseigne les arts plastiques", ["repairs", "bakes", "cooks"]],
+    "s-kellnerin": ["serves", "serve", "food", "sert les plats", ["repairs", "teaches", "examines"]],
+    "s-verkaeuferin": ["sells", "sell", "clothes", "vend des vêtements", ["cooks", "bakes", "examines"]],
+    // donner a quelqu'un quelque chose : les leurres doivent rester des phrases justes (bake, cook someone something)
+    "s-rezeptionist": ["gives", "give", "the guests their keys", "donne leurs clés aux clients", ["bakes", "cooks"]],
+    Lucas: ["takes care of", "take care of", "patients", "s'occupe des patients", ["bakes", "repairs", "sells"]]
+  };
+})();
+const EN_VGL = {examine: "examiner", sell: "vendre", bake: "faire cuire, faire (du pain)", cut: "couper", teach: "enseigner", serve: "servir",
+                repair: "réparer", give: "donner", cook: "cuisiner", "take care of": "s'occuper de"};
+const EN_V3 = {bakes: "fait cuire", repairs: "répare", sells: "vend", examines: "examine", teaches: "enseigne", cooks: "cuisine", cuts: "coupe"};
+// les adjectifs devant le metier (a ou an change avec eux) : [anglais, francais m, f, avant le nom en francais, metiers]
+const EN_ADJ = [["good", "bon", "bonne", true], ["friendly", "sympathique", "sympathique", false], ["excellent", "excellent", "excellente", true],
+                ["experienced", "expérimenté", "expérimentée", false], ["honest", "honnête", "honnête", false, ["lawyer", "mechaniker", "verkaeufer", "mail"]]];
+// des personnes sans image, a Boston ; et les proches de la question « What does your sister do? »
+const EN_NOMS = {f: ["Emma", "Kate", "Lisa", "Megan"], m: ["Tom", "Ben", "Mike", "Ryan"]};
+const EN_REL = [["sister", "f", "ta sœur"], ["brother", "m", "ton frère"], [GB ? "mum" : "mom", "f", "ta mère"], ["dad", "m", "ton père"],
+                ["aunt", "f", "ta tante"], ["uncle", "m", "ton oncle"], [GB ? "neighbour" : "neighbor", "f", "ta voisine"], [GB ? "neighbour" : "neighbor", "m", "ton voisin"],
+                ["wife", "f", "ta femme"], ["husband", "m", "ton mari"]];
+// un homme ou une femme : le mot qui vaut pour tous, et le piege (un mot d'homme pour une femme, ou l'inverse)
+const EN_NEUTRE = [["firefighter", "f", "puts out fires", "éteint les incendies", "fireman", "pompier (un mot d'homme)"],
+                   ["polizist", "f", "works for the police", "travaille dans la police", "policeman", "policier (un mot d'homme)"],
+                   ["flight", "f", "helps passengers on planes", "aide les passagers dans l'avion", "steward", "steward (un homme)"],
+                   ["waitress", "f", "serves food at a restaurant", "sert les plats au restaurant", "waiter", "le serveur (un homme)"],
+                   ["waiter", "m", "serves food at a restaurant", "sert les plats au restaurant", "waitress", "la serveuse (une femme)"],
+                   ["actor", "m", "plays roles in " + (GB ? "films" : "movies"), "joue des rôles au cinéma", "actress", "l'actrice (une femme)"]]
+                  .concat(GB ? [] : [["mail", "f", "delivers the mail", "distribue le courrier", "mailman", "facteur (un mot d'homme)"]]);
+// les phrases et leur traduction : E() garde la traduction francaise de chaque phrase anglaise (tradPhrase la trouve)
+const E = (en, fr) => { if (D && D.trad.en) D.trad.en[en] = {fr}; return en; };
+// ce que veut dire un choix, pour la traduction apres une erreur (rempli par chaque question)
+const SENS_EN = new Map();
+const nomDe = id => P(id).nom;
+const ilEn = id => P(id).sexe === "f" ? "she" : "he";
+const ilFr = s => s === "f" ? "elle" : "il";
+const sujEn = id => nomDe(id) || maj(ilEn(id));                                       // « Diego », « She »
+const sujFr = id => nomDe(id) || maj(ilFr(P(id).sexe));
+const estEn = id => nomDe(id) ? nomDe(id) + " is" : maj(ilEn(id)) + "'s";              // « Diego is », « She's »
+const leFr = (J, s) => { const n = frJ(J, s); return (/^[aeiouéèh]/i.test(n) ? "L'" : s === "f" ? "La " : "Le ") + n; };
+const unFr = (J, s) => (s === "f" ? "une " : "un ") + frJ(J, s);
+const motJ = J => ({mot: J.mot, genre: ""});
+const motL = l => Object.assign({mot: EN_L[l].mot, genre: ""}, EN_L[l].sens ? {sens: EN_L[l].sens} : {});
+const motV = v => ({mot: v, cat: "verbe"});
+const estJ = w => w && w.j, estL = w => w && w.lieu, estV = w => w && w.cat === "verbe";
+// les phrases de chaque personne, a la forme de metiers.json (beruf, ich, ist, ou, fait, cual) : la decouverte et
+// les sortes communes les lisent comme les phrases espagnoles
+function phrasesEn(id){
+  const p = P(id), J = jobDe(id), s = p.sexe, fj = frJ(J, s), N = nomDe(id), F = EN_FAIT[id];
+  const est = estEn(id), Sfr = sujFr(id), Sf = N || "The " + J.mot, Sffr = N || leFr(J, s), a = avecA(J.mot);
+  const o = {
+    beruf: {q: "What does " + (N || ilEn(id)) + " do?", rep: a, phrase: E(est + " " + a + ".", Sfr + " est " + fj + ".")},
+    ich: {q: "What do you do?", juste: E("I'm " + a + ".", "Je suis " + fj + "."), faux: "I'm " + J.mot + "."},
+    ou: {q: "Where does " + (N || ilEn(id)) + " work?", lieux: {}},
+    fait: {q: "Who " + F[0] + " " + F[2] + "?", phrase: E(Sf + " " + F[0] + " " + F[2] + ".", Sffr + " " + F[3] + "."), trou: Sf + " ___ " + F[2] + ".",
+           v: F[0], inf: F[1], faux: F[4], fr: F[3]},
+    cual: E(maj(ilEn(id)) + "'s " + a + ".", maj(ilFr(s)) + " est " + fj + ".")
+  };
+  o.ist = {juste: o.beruf.phrase, faux: est + " " + J.mot + "."};
+  D.metiers[p.metier].lieux.forEach(l => { o.ou.lieux[l] = E(sujEn(id) + " works " + lieuEn(l) + ".", Sfr + " travaille " + EN_L[l].fr + "."); });
+  // la fiche de la decouverte : le nom une fois, puis he ou she (« Diego is a doctor. He works at a hospital. He examines patients. »)
+  const l0 = D.metiers[p.metier].lieux[0], Il = maj(ilEn(id)), IlFr = maj(ilFr(s));
+  o.fiche = [o.beruf.phrase, E(Il + " works " + lieuEn(l0) + ".", IlFr + " travaille " + EN_L[l0].fr + "."), E(Il + " " + F[0] + " " + F[2] + ".", IlFr + " " + F[3] + ".")];
+  return o;
+}
+// apres le chargement : les formes anglaises des metiers et des lieux, les phrases, les gloses
+function preparerAnglais(){
+  D.trad.en = {}; D.gloses.en = {}; D.phrases.en = {}; D.paires.en = []; D.sansImage.en = [];
+  Object.keys(D.metiers).forEach(met => { const m = jobFor(met, "m"), f = jobFor(met, "f");
+    D.metiers[met].en = {m: {genre: "", mot: m.mot}, f: {genre: "", mot: f.mot}}; });
+  Object.keys(D.lieux).forEach(l => { D.lieux[l].en = lieuEn(l); D.lieux[l].nom.en = motL(l); });
+  EN_J.forEach(J => { D.gloses.en[J.mot] = {fr: J.gl}; });
+  Object.keys(EN_L).forEach(l => { D.gloses.en[EN_L[l].mot] = {fr: EN_L[l].gl}; });
+  Object.keys(EN_VGL).forEach(v => { D.gloses.en["v:" + v] = {fr: EN_VGL[v]}; });
+  PERS().forEach(id => { D.phrases.en[id] = phrasesEn(id); });
+}
+// LES MOTS DU THEME EN ANGLAIS : chaque metier une fois (doctor vaut pour Diego et pour la medecin du cabinet ;
+// waiter et waitress sont deux mots), les lieux, les verbes de ce que font les personnes
+function motsDuThemeEn(){
+  const out = [];
+  EN_J.forEach(J => out.push({k: "j:" + J.k, j: J.k, mot: J.mot, genre: ""}));
+  Object.keys(EN_L).forEach(l => out.push(Object.assign({k: "l:" + l, lieu: l}, motL(l))));
+  uniques(PERS().map(id => EN_FAIT[id][1])).forEach(v => out.push({k: "v:" + v, mot: v, cat: "verbe"}));
+  return out;
+}
+function choixTraduitEn(c){
+  if (!c || LANGUE === APPRENDRE) return null;
+  if (D.personnes[c]){ const ph = sorteCourante === "fait" ? PH(c).fait.phrase : PH(c).cual; return {aff: ph, sens: tradPhrase(ph)}; }
+  return SENS_EN.has(c) ? {aff: c, sens: SENS_EN.get(c)} : null;
+}
+const sensA = (o, s) => SENS_EN.set(o, s);
+// une personne sans image : un prenom, et ce qu'elle dit en francais
+const quelquun = J => { const s = sexeTexte(J); return {s, N: hasard(EN_NOMS[s])}; };
+const EX_EN = {
+  // « What does Diego do? » a doctor / a baker / a nurse -- la reponse avec son article ; pour la serveuse, « a waiter » est le piege
+  beruf(w){
+    if (w && !estJ(w)) return false;
+    const c = PERS().filter(id => !w || jobDe(id).k === w.j); if (!c.length) return false;
+    const id = hasard(c), J = jobDe(id), s = P(id).sexe, q = PH(id).beruf; SENS_EN.clear();
+    viser(w, motJ(J));
+    const autres = melanger(EN_J.filter(x => !voisinsEn(x, J) && (!x.sexe || x.sexe === s)));
+    const pieges = J.k === "waitress" ? [JK("waiter")] : [];
+    const opts = [J].concat(pieges, autres).slice(0, 3);
+    opts.forEach(x => sensA(avecA(x.mot), unFr(x, x.sexe || s)));
+    ecran("beruf", photo(id), q.q, true);
+    boutons($("choix"), melanger(opts.map(x => avecA(x.mot))), q.rep, ok => juger(ok, q.rep, q.phrase));
+    return true;
+  },
+  // « — What do you do? » I'm a doctor. / I'm doctor. : l'article qu'un francophone oublie -- sur la photo, ou sans image
+  ich(w){
+    if (w && !estJ(w)) return false;
+    const J = w ? JK(w.j) : hasard(EN_J), ids = personnesJ(J); SENS_EN.clear();
+    viser(w, motJ(J));
+    const id = ids.length && Math.random() < 0.7 ? hasard(ids) : null;
+    let enonce, x;
+    if (id){
+      const q = PH(id), premiere = Math.random() < 0.5; x = premiere ? q.ich : q.ist;
+      enonce = premiere ? "— " + q.ich.q : q.beruf.q;
+    } else {
+      const s = sexeTexte(J), a = avecA(J.mot);
+      x = {juste: E("I'm " + a + ".", "Je suis " + frJ(J, s) + "."), faux: "I'm " + J.mot + "."}; enonce = "— What do you do?";
+    }
+    sensA(x.faux, "sans article : en anglais, le métier prend toujours a ou an");
+    ecran("ich", id ? photo(id) : "", enonce, true, true);
+    boutons($("choix"), melanger([x.juste, x.faux]), x.juste, ok => juger(ok, x.juste, x.juste));
+    return true;
+  },
+  // a, an ou rien : « Marta is ___ excellent teacher. » (an : c'est le son qui suit qui decide, an honest lawyer)
+  article(w){
+    if (w && !estJ(w)) return false;
+    const J = w ? JK(w.j) : hasard(EN_J), ids = personnesJ(J); SENS_EN.clear();
+    viser(w, motJ(J));
+    const id = ids.length && Math.random() < 0.6 ? hasard(ids) : null;
+    const t = id ? null : quelquun(J), s = id ? P(id).sexe : t.s;
+    const adj = Math.random() < 0.55 ? hasard(EN_ADJ.filter(x => !x[4] || x[4].includes(J.k))) : null;
+    const suite = (adj ? adj[0] + " " : "") + J.mot, rep = anA(suite);
+    const sujet = id ? estEn(id) : t.N + " is";
+    const phrase = sujet + " ___ " + suite + ".";
+    const fj = frJ(J, s), af = adj ? adj[s === "f" ? 2 : 1] : null;
+    const pron = id && !nomDe(id), sujetFr = id ? sujFr(id) : t.N;
+    const fr = adj ? (pron ? "C'est " : sujetFr + " est ") + (s === "f" ? "une " : "un ") + (adj[3] ? af + " " + fj : fj + " " + af) + "."
+                   : sujetFr + " est " + fj + ".";
+    const juste = E(phrase.replace("___", rep), fr);
+    sensA("—", "sans article : en anglais, le métier prend toujours a ou an");
+    sensA(rep === "a" ? "an" : "a", rep === "a" ? "an : devant le son d'une voyelle (an engineer, an honest lawyer)" : "a : devant le son d'une consonne (a doctor, a good teacher)");
+    ecran("articleEn", id ? photo(id) : "", avecTrou(phrase), true);
+    boutons($("choix"), ["a", "an", "—"], rep, ok => { remplir(rep); juger(ok, rep, juste); });
+    return true;
+  },
+  // « — ___ — She's a nurse. » What does she do? / What is she doing? / What she does? : la question du metier
+  question(w){
+    if (w && !estJ(w)) return false;
+    const J = w ? JK(w.j) : hasard(EN_J), ids = personnesJ(J); SENS_EN.clear();
+    viser(w, motJ(J));
+    const id = ids.length && Math.random() < 0.5 ? hasard(ids) : null;
+    let s, qui, quiFr;
+    if (id){ s = P(id).sexe; qui = nomDe(id) || ilEn(id); quiFr = nomDe(id) ? "Que fait " + nomDe(id) : "Que fait-" + ilFr(s); }
+    else { const r = hasard(EN_REL.filter(x => !J.sexe || x[1] === J.sexe)); s = r[1]; qui = "your " + r[0]; quiFr = "Que fait " + r[2]; }
+    const rep = (s === "f" ? "She" : "He") + "'s " + avecA(J.mot) + ".";
+    const bonne = "What does " + qui + " do?", maintenant = "What is " + qui + " doing?", ordre = "What " + qui + " does?";
+    sensA(maintenant, quiFr + " en ce moment ?");
+    sensA(ordre, "l'ordre ne va pas : la question met does avant " + (id && !nomDe(id) ? "le pronom" : "la personne"));
+    const phrase = E("— " + bonne + " — " + rep, "— " + quiFr + " dans la vie ? — " + maj(ilFr(s)) + " est " + frJ(J, s) + ".");
+    ecran("questionEn", id ? photo(id) : "", avecTrou("— ___<br>— " + rep), false, true);
+    boutons($("choix"), melanger([bonne, maintenant, ordre]), bonne, ok => { remplir(bonne); juger(ok, bonne, phrase); });
+    return true;
+  },
+  // « Where does Diego work? » at a hospital / at a bakery / in the kitchen ; la police, sans image
+  ou(w){
+    if (w && !estL(w)) return false;
+    const c = PERS().filter(id => !w || D.metiers[P(id).metier].lieux.includes(w.lieu)).map(id => ["p", id]);
+    if (!w || w.lieu === "polizei") c.push(["t", null]);
+    if (!c.length) return false;
+    const [t, id] = hasard(c), M = D.metiers[t === "p" ? P(id).metier : "polizist"]; SENS_EN.clear();
+    const lid = w ? w.lieu : hasard(M.lieux);
+    viser(w, motL(lid));
+    const faux = melanger(Object.keys(EN_L).filter(l => !M.lieux.includes(l) && !M.pasFaux.includes(l))).slice(0, 2);
+    const rep = lieuEn(lid);
+    [lid].concat(faux).forEach(l => sensA(lieuEn(l), EN_L[l].fr));
+    let q, phrase;
+    if (t === "p"){ q = PH(id).ou.q; phrase = PH(id).ou.lieux[lid]; }
+    else {
+      const {s, N} = quelquun(JK("polizist"));
+      q = N + " is a police officer. Where does " + (s === "f" ? "she" : "he") + " work?";
+      phrase = E((s === "f" ? "She" : "He") + " works " + rep + ".", maj(ilFr(s)) + " travaille " + EN_L[lid].fr + ".");
+    }
+    ecran("ou", t === "p" ? photo(id) : "", q, true);
+    boutons($("choix"), melanger([rep].concat(faux.map(lieuEn))), rep, ok => juger(ok, rep, phrase));
+    return true;
+  },
+  // « Who bakes bread? » : trois personnes, une seule le fait
+  fait(w){
+    if (w && !(estJ(w) || estV(w))) return false;
+    const c = PERS().filter(id => !w || (estV(w) ? PH(id).fait.inf === w.mot : jobDe(id).k === w.j));
+    if (!c.length) return false;
+    const id = hasard(c), J = jobDe(id), f = PH(id).fait; SENS_EN.clear();
+    viser(w, motJ(J));
+    const pris = [J], autres = [];
+    melanger(PERS()).forEach(o => { const Jo = jobDe(o);
+      if (autres.length < 2 && !pris.some(x => voisinsEn(x, Jo)) && PH(o).fait.v !== f.v){ autres.push(o); pris.push(Jo); } });
+    $("zone").innerHTML = '<p class="consigne">' + T("fait") + '</p><div class="enonce centre">' + cible(f.q) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    images($("rang"), melanger([id].concat(autres)), id, ok => juger(ok, f.phrase, f.phrase));
+    return true;
+  },
+  // le present simple : « Pablo ___ bread. » bakes / bake / repairs -- le -s, et un verbe faux avec ce complement
+  verbe(w){
+    if (w && !estV(w)) return false;
+    const c = PERS().filter(id => !w || PH(id).fait.inf === w.mot); if (!c.length) return false;
+    const id = hasard(c), f = PH(id).fait; SENS_EN.clear();
+    viser(w, motV(f.inf));
+    const leurre = hasard(f.faux);
+    sensA(f.inf, EN_VGL[f.inf] + " (sans le -s : avec he et she, " + f.v + ")");
+    sensA(leurre, EN_V3[leurre] || "");
+    ecran("verbeEn", photo(id), avecTrou(f.trou));
+    boutons($("choix"), melanger([f.v, f.inf, leurre]), f.v, ok => { remplir(f.v); juger(ok, f.v, f.phrase); });
+    return true;
+  },
+  // work as / at / in / for / on : « Pablo works ___ a baker. » as ; « Javier works ___ the kitchen. » in ; « Kate works ___ the police. » for
+  als(w){
+    if (w && !(estJ(w) || estL(w))) return false;
+    const cand = [];
+    // le metier : [phrase, reponse, choix, traduction, image, le mot vise]
+    const metier = (J, id) => {
+      const t = id ? null : quelquun(J), s = id ? P(id).sexe : t.s, S = id ? sujEn(id) : t.N, Sf = id ? sujFr(id) : t.N;
+      return [S + " works ___ " + avecA(J.mot) + ".", "as", ["as", "like", "at"], Sf + " travaille comme " + frJ(J, s) + ".", id, motJ(J)];
+    };
+    const lieu = (l, id) => {
+      const t = id ? null : quelquun(JK("polizist")), S = id ? sujEn(id) : t.N, Sf = id ? sujFr(id) : t.N, p = prepL(l);
+      return [S + " works ___ " + (EN_L[l].det || anA(EN_L[l].mot)) + " " + EN_L[l].mot + ".", p, [p, "as", "on"], Sf + " travaille " + EN_L[l].fr + ".", id, motL(l)];
+    };
+    const pour = () => { const t = quelquun(JK("polizist")); return [t.N + " works ___ the police.", "for", ["for", "as", "at"], t.N + " travaille dans la police.", null, motJ(JK("polizist"))]; };
+    const avion = () => { const t = quelquun(JK("flight")); return [t.N + " works ___ a plane.", "on", ["on", "as", "at"], t.N + " travaille dans un avion.", null, motJ(JK("flight"))]; };
+    const J = w && estJ(w) ? JK(w.j) : null;
+    if (!w || J){
+      (J ? [J] : EN_J).forEach(x => { personnesJ(x).forEach(id => cand.push(() => metier(x, id))); cand.push(() => metier(x, null));
+        if (x.k === "polizist") cand.push(pour); if (x.k === "flight") cand.push(avion); });
+    }
+    if (!w || estL(w)){
+      (w ? [w.lieu] : Object.keys(EN_L)).forEach(l => { PERS().filter(id => D.metiers[P(id).metier].lieux.includes(l)).forEach(id => cand.push(() => lieu(l, id)));
+        if (l === "polizei") cand.push(() => lieu(l, null)); });
+    }
+    if (!cand.length) return false;
+    const [ph, rep, opts, fr, id, mot] = hasard(cand)(); SENS_EN.clear();
+    viser(w, mot);
+    const SENS_P = {like: "comme (= de la même façon que) : pour un métier, on dit as", as: "comme, en tant que : devant un métier", at: "à, chez : devant un lieu",
+                    on: "sur", in: "dans", for: "pour"};
+    opts.forEach(o => sensA(o, SENS_P[o]));
+    const juste = E(ph.replace("___", rep), fr);
+    ecran("alsEn", id ? photo(id) : "", avecTrou(ph));
+    boutons($("choix"), melanger(opts), rep, ok => { remplir(rep); juger(ok, rep, juste); });
+    return true;
+  },
+  // un homme ou une femme : « Emma puts out fires. She's a ___. » firefighter / fireman ; la serveuse, sur sa photo
+  neutre(w){
+    if (w && !estJ(w)) return false;
+    const c = EN_NEUTRE.filter(x => !w || x[0] === w.j); if (!c.length) return false;
+    const [k, s, fait, frFait, piege, sensPiege] = hasard(c), J = JK(k); SENS_EN.clear();
+    viser(w, motJ(J));
+    const ids = personnesJ(J).filter(id => P(id).sexe === s), id = ids.length && Math.random() < 0.5 ? hasard(ids) : null;
+    const N = id ? (nomDe(id) || maj(ilEn(id))) : hasard(EN_NOMS[s]), Nf = id ? sujFr(id) : N, il = s === "f" ? "She" : "He";
+    const phrase = N + " " + fait + ". " + il + "'s " + anA(J.mot) + " ___.";
+    const juste = E(phrase.replace("___", J.mot), Nf + " " + frFait + ". " + maj(ilFr(s)) + " est " + frJ(J, s) + ".");
+    sensA(piege, sensPiege);
+    ecran("neutre", id ? photo(id) : "", avecTrou(phrase), true);
+    boutons($("choix"), melanger([J.mot, piege]), J.mot, ok => { remplir(J.mot); juger(ok, J.mot, juste); });
+    return true;
+  },
+  // qui fait quoi, sans image : « Who puts out fires? » a firefighter / a lawyer / an artist -- le present simple
+  definition(w){
+    if (w && !estJ(w)) return false;
+    const c = EN_J.filter(J => J.def && (!w || J.k === w.j)); if (!c.length) return false;
+    const J = hasard(c), [d, fr] = J.def, v = d.split(" ")[0]; SENS_EN.clear();
+    viser(w, motJ(J));
+    const autres = melanger(EN_J.filter(x => x.def && !voisinsEn(x, J) && x.def[0].split(" ")[0] !== v)).slice(0, 2);
+    const rep = avecA(J.mot), opts = [rep].concat(autres.map(x => avecA(x.mot)));
+    [J].concat(autres).forEach(x => sensA(avecA(x.mot), unFr(x, "m")));
+    const phrase = E(maj(rep) + " " + d + ".", fr);
+    ecran("definition", "", "Who " + d + "?", true);
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, phrase));
+    return true;
+  },
+  // la phrase, et quatre personnes : une seule la dit (le meme metier, l'autre sexe, est le piege : he ou she)
+  cual(w){
+    if (w && !estJ(w)) return false;
+    const c = PERS().filter(id => !w || jobDe(id).k === w.j); if (!c.length) return false;
+    const id = hasard(c), ph = PH(id).cual, J = jobDe(id); SENS_EN.clear();
+    viser(w, motJ(J));
+    const autres = PERS().filter(o => o !== id && PH(o).cual !== ph);
+    const piege = melanger(autres.filter(o => P(o).metier === P(id).metier)).slice(0, 1);
+    const ids = melanger([id].concat(piege, melanger(autres.filter(o => !piege.includes(o))).slice(0, 3 - piege.length)));
+    $("zone").innerHTML = '<p class="consigne">' + T("cual") + '</p><div class="enonce centre">' + cible(ph) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    images($("rang"), ids, id, ok => juger(ok, ph, ph));
+    return true;
+  },
+  // l'ecoute : la phrase dite, trois personnes
+  entendre(w){
+    if (w && !estJ(w)) return false;
+    const c = PERS().filter(id => !w || jobDe(id).k === w.j); if (!c.length) return false;
+    const id = hasard(c), ph = PH(id).cual, J = jobDe(id); SENS_EN.clear();
+    viser(w, motJ(J));
+    const autres = PERS().filter(o => o !== id && PH(o).cual !== ph);
+    const piege = melanger(autres.filter(o => P(o).metier === P(id).metier)).slice(0, 1);
+    const ids = melanger([id].concat(piege, melanger(autres.filter(o => !piege.includes(o))).slice(0, 2 - piege.length)));
+    $("zone").innerHTML = '<p class="consigne">' + T("entendre") + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
+      + '<div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    $("ecoute").addEventListener("click", () => dire(ph));
+    images($("rang"), ids, id, ok => juger(ok, ph, ph));
+    dire(ph);
+    return true;
+  },
+  // True or False : son metier, son lieu de travail, ce qu'il fait
+  vraifaux(w){
+    let genre;
+    if (!w) genre = hasard(["job", "lieu", "verbe"]);
+    else genre = estJ(w) ? "job" : estL(w) ? "lieu" : "verbe";
+    const c = PERS().filter(id => !w || (genre === "job" ? jobDe(id).k === w.j : genre === "lieu" ? D.metiers[P(id).metier].lieux.includes(w.lieu) : PH(id).fait.inf === w.mot));
+    if (!c.length) return false;
+    const id = hasard(c), J = jobDe(id), q = PH(id), M = D.metiers[P(id).metier], vrai = Math.random() < 0.5; SENS_EN.clear();
+    let juste, faux;
+    if (genre === "job"){
+      viser(w, motJ(J));
+      juste = q.beruf.phrase;
+      const X = hasard(EN_J.filter(x => personnesJ(x).length && !voisinsEn(x, J) && (!x.sexe || x.sexe === P(id).sexe)));
+      faux = estEn(id) + " " + avecA(X.mot) + ".";
+    } else if (genre === "lieu"){
+      const lid = w ? w.lieu : hasard(M.lieux);
+      viser(w, motL(lid));
+      juste = q.ou.lieux[lid];
+      const l2 = hasard(Object.keys(EN_L).filter(l => !M.lieux.includes(l) && !M.pasFaux.includes(l)));
+      faux = sujEn(id) + " works " + lieuEn(l2) + ".";
+    } else {
+      viser(w, motV(q.fait.inf));
+      juste = q.fait.phrase;
+      faux = juste.replace(" " + q.fait.v + " ", " " + hasard(q.fait.faux) + " ");
+    }
+    ecran("vraifaux", photo(id), vrai ? juste : faux, true);
+    const rep = vrai ? "True" : "False";
+    boutons($("choix"), ["True", "False"], rep, ok => juger(ok, rep, juste));
+    return true;
+  }
+};
+if (APPRENDRE === "en") Object.assign(EX, EX_EN);
+// la liste du second onglet, en anglais : chaque metier avec son article (et waiter, waitress ; actor, actress)
+const listeEn = () => EN_J.filter(J => J.k !== "waitress").map(J => ({en: J.k === "waiter" ? "a waiter · a waitress" : J.k === "actor" ? "an actor · an actress" : avecA(J.mot),
+                                                                      fr: J.k === "waiter" ? "le serveur · la serveuse" : J.k === "actor" ? "l'acteur · l'actrice" : J.gl}));
 
 // ---------- la decouverte : les personnes (la fiche et la galerie), puis le masculin et le feminin ----------
 // ce qu'une fiche dit : son metier, ou elle travaille, ce qu'elle fait
-const ficheDe = id => { const q = PH(id), l = D.metiers[P(id).metier].lieux[0]; return [q.beruf.phrase, q.ou.lieux[l], q.fait.phrase]; };
+const ficheDe = id => { if (APPRENDRE === "en") return PH(id).fiche; const q = PH(id), l = D.metiers[P(id).metier].lieux[0]; return [q.beruf.phrase, q.ou.lieux[l], q.fait.phrase]; };
 // les personnes dans l'ordre des metiers : la personne de la scene, puis le portrait
 const ORDRE = () => Object.keys(D.metiers).flatMap(met => PERS().filter(id => P(id).metier === met).sort((a, b) => (P(a).scene ? 0 : 1) - (P(b).scene ? 0 : 1)));
 function textesAVoix(){
   if (!D) return [];
+  if (APPRENDRE === "en") return PERS().map(id => ficheDe(id).join(" ")).concat(listeEn().map(x => x.en.replace(" · ", ", ")));
   return PERS().map(id => ficheDe(id).join(" ")).concat(D.paires[APPRENDRE].map(x => x.m + ", " + x.f));
 }
 function decouvrir(){
   $("compte").textContent = ""; $("barre").style.width = "0%";
   const z = $("zone");
   z.innerHTML = '<p class="consigne">' + T("intro") + '</p>'
-    + '<div class="onglets" role="tablist"><button type="button" id="oPers" role="tab">' + T("ongletPers") + '</button><button type="button" id="oPaires" role="tab">' + T("ongletPaires") + '</button></div>'
+    + '<div class="onglets" role="tablist"><button type="button" id="oPers" role="tab">' + T("ongletPers") + '</button><button type="button" id="oPaires" role="tab">' + T(APPRENDRE === "en" ? "ongletPairesEn" : "ongletPaires") + '</button></div>'
     + '<div id="vue"></div>';
   let dit = "";
   const personnes = () => {
     $("oPers").classList.add("actif"); $("oPaires").classList.remove("actif");
     $("vue").innerHTML = '<div class="fiche" id="fiche"></div><div class="galerie" id="galerie"></div>'
-      + '<p class="regle">' + regle("noteArticle") + '</p><p class="regle">' + regle("noteAls") + '</p>';
+      + '<p class="regle">' + regle("noteArticle") + '</p><p class="regle">' + regle("noteAls") + '</p>'
+      + (APPRENDRE === "en" ? '<p class="regle">' + isoler(T(GB ? "bonGb" : "bonUs")) + '</p>' : "");
     const montrerFiche = (id, parle) => {
       const lignes = ficheDe(id);
       dit = lignes.join(" ");
@@ -587,7 +1045,19 @@ function decouvrir(){
       pa.appendChild(b);
     });
   };
-  $("oPers").addEventListener("click", personnes); $("oPaires").addEventListener("click", paires);
+  // en anglais, le second onglet : un mot pour tous, chaque metier avec son article
+  const pairesEn = () => {
+    $("oPaires").classList.add("actif"); $("oPers").classList.remove("actif");
+    $("vue").innerHTML = '<p class="regle">' + regle("noteFem") + '</p><div class="paires" id="paires"></div>';
+    const pa = $("paires");
+    listeEn().forEach(x => {
+      const b = document.createElement("button"); b.type = "button";
+      b.innerHTML = '<span>' + cible(x.en) + traduction(LANGUE === APPRENDRE ? "" : x.fr) + '</span>' + HP.replace("<svg", '<svg width="20" height="20"');
+      b.addEventListener("click", () => { pa.querySelectorAll("button").forEach(y => y.classList.toggle("choisi", y === b)); dire(x.en.replace(" · ", ", ")); });
+      pa.appendChild(b);
+    });
+  };
+  $("oPers").addEventListener("click", personnes); $("oPaires").addEventListener("click", APPRENDRE === "en" ? pairesEn : paires);
   personnes();
   const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
   s.onclick = () => { s.onclick = null; taire(); demarrer(); };
@@ -687,6 +1157,7 @@ $("titre").textContent = T("titre");
 document.title = T("titre");
 fetch("metiers/metiers.json?v=1").then(r => r.json()).then(d => {
   D = d;
+  if (APPRENDRE === "en") preparerAnglais();
   if (Q.get("seance") === "1") demarrer(); else decouvrir();
 });
 </script>

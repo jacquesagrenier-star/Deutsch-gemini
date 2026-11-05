@@ -802,6 +802,7 @@ statistical | statistique | ex=There's no statistical difference between the gro
 damp | humide
 other | autre, divers
 mobile | mobile | ex=Mobile apps make banking easy. # Les applications mobiles facilitent les opérations bancaires.
+worrying | inquiétant | ex=The news from the doctor is worrying. # Les nouvelles du médecin sont inquiétantes.
 """
 
 # « adverbe | traduction | categorie | drapeaux ».
