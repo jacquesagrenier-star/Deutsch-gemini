@@ -51347,7 +51347,8 @@ function flipCard(){
     //
     // Ce n'est plus le mot seul depuis la v458 : le mot avec son article, puis
     // son pluriel, et la phrase si le réglage le demande. Voir direChaineCarte.
-    direChaineCarte();
+    // v1113 : apres la fete de l'objectif, si elle joue encore (voir direAuto).
+    direAuto(direChaineCarte);
     noterPastilleExamenVue();
 }
 
@@ -60230,7 +60231,8 @@ function montrerCartePhrase(item){
         // Jacques, 21 oct. 2026 : « la habitación », une faute, et la voix dit
         // « El piso tiene tres habitaciones ».
         const redire = item.forme === "dictee_mot" ? () => direMotPhrase(item) : () => direPhrase(item);
-        if(item.phrase) setTimeout(() => { if(retour.isConnected) redire(); }, juste ? 700 : 0);
+        // v1113 : apres la fete de l'objectif, si cette reponse vient de la declencher (voir direAuto)
+        if(item.phrase) setTimeout(() => { if(retour.isConnected) direAuto(() => { if(retour.isConnected) redire(); }); }, juste ? 700 : 0);
     };
     const ecouter = creer("button", "cp-ecouter"); ecouter.append(iconeHP(), " " + t("cp_ecouter"));
     ecouter.type = "button";
@@ -60498,7 +60500,7 @@ function montrerCartePhrase(item){
             choix.appendChild(b);
         });
         el.appendChild(choix);
-        if(!item.transitLu) direPhrase(item);
+        if(!item.transitLu) direAuto(() => direPhrase(item));
     } else if(item.forme === "rp_chiffres"){
         // v879 : LE NOMBRE ENTENDU, ECRIT EN CHIFFRES. On juge l'oreille : la
         // reponse ne demande pas de savoir ecrire « siebenundvierzig ».
@@ -60519,7 +60521,7 @@ function montrerCartePhrase(item){
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
-        direPhrase(item);
+        direAuto(() => direPhrase(item));
     } else if(item.forme === "rp_son"){
         // v880 : le son du jour -- la regle, puis ses mots, lettres soulignees.
         try{ marquerSonDuJour(item); }catch(e){}
@@ -60594,7 +60596,7 @@ function montrerCartePhrase(item){
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
-        direPhrase(item);
+        direAuto(() => direPhrase(item));
     } else if(item.forme === "rp_article" || item.forme === "rp_pluriel"){
         // v880 : LE GENRE (le nom seul, choisir l'article) et LE PLURIEL (le
         // singulier, choisir le pluriel parmi trois). La reponse dit la regle,
@@ -60844,7 +60846,7 @@ function montrerCartePhrase(item){
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
-        if(motSeul) direMotPhrase(item); else direPhrase(item);
+        direAuto(() => { if(motSeul) direMotPhrase(item); else direPhrase(item); });
     } else if(item.forme === "transit_lire"){
         // v981 : un oral sans mots a reconstruire, en mode transit : la phrase a
         // lire, son sens, et CONTINUER. Ne compte ni juste ni faux.
@@ -61502,7 +61504,7 @@ function montrerCartePhrase(item){
         el.appendChild(etatOral);
         suite.classList.remove("hidden");
         suite.addEventListener("click", () => palierApresPhrase(repondrePhrase(item, null)), { once: true, capture: true });
-        direPhrase(item);
+        direAuto(() => direPhrase(item));
     }
     // v862 : la derniere replique d'en face, sous la derniere carte du dialogue.
     if(item.apres){
@@ -65441,6 +65443,30 @@ function preparerSonsEssai(){
     // v956 : la kalimba des confettis est pour tous (prepareMasterySound).
 }
 let sonsPalierEls = {}, sonPalierEnCours = null;
+// v1113 : LA VOIX ATTEND LA FIN DE LA FETE DE L'OBJECTIF. Jacques, 5 nov. 2026 : « Lorsqu'on a atteint l'objectif
+// du jour, faudrait attendre que l'objectif joue se termine avant de lire la phrase du prochain exercice. » La fete
+// part au jugement de la carte qui franchit le palier ; la carte suivante arrive ~1 s plus tard et parlait aussitot,
+// par-dessus la piece du palier. FETE_OBJECTIF_FIN dit jusqu'a quand la fete joue : une estimation posee par
+// triggerDailyGoalCelebration(), puis la vraie duree de la piece des qu'elle part (jouerSonPalier), et sa fin reelle
+// (« ended »). direAuto() enveloppe ce que l'app dit D'ELLE-MEME (une carte-phrase qui arrive, le verso retourne) :
+// pendant la fete, la voix attend, et elle ne part pas si la personne a quitte la carte entre-temps. Ce que la
+// personne demande (Ecouter, toucher un modele) parle tout de suite, comme avant.
+let FETE_OBJECTIF_FIN = 0;
+function prolongerFete(ms){ FETE_OBJECTIF_FIN = Math.max(FETE_OBJECTIF_FIN, Date.now() + ms); }
+function direAuto(dire){
+    const reste = FETE_OBJECTIF_FIN - Date.now();
+    if(reste <= 0){ dire(); return; }
+    const carte = (currentCards || [])[currentFlashcard], phrase = CARTE_PHRASE_AFFICHEE;
+    const cp = document.getElementById("cartePhrase");
+    const enPhrase = !!(cp && !cp.classList.contains("hidden"));
+    setTimeout(() => {
+        const ecran = document.querySelector(".screen.active");
+        if(!ecran || ecran.id !== "flashcards") return;
+        if((currentCards || [])[currentFlashcard] !== carte) return;
+        if(enPhrase && (CARTE_PHRASE_AFFICHEE !== phrase || !cp || cp.classList.contains("hidden"))) return;
+        direAuto(dire);   // la fete a pu s'allonger (la piece part apres l'image de la mosaique)
+    }, Math.min(reste, 9000) + 200);
+}
 function preparerSonsPalier(){
     [1, 2, 3].forEach(m => {
         if(sonsPalierEls[m]) return;
@@ -65462,6 +65488,9 @@ function jouerSonPalier(m){
         const p = el.play();
         if(p && typeof p.catch === "function") p.catch(() => {});
         sonPalierEnCours = el;
+        // v1113 : la fete dure ce que dure la piece (voir direAuto)
+        prolongerFete(isFinite(el.duration) && el.duration > 0 ? el.duration * 1000 + 250 : 3500);
+        el.onended = () => { FETE_OBJECTIF_FIN = Math.min(FETE_OBJECTIF_FIN, Date.now() + 250); };
         return true;
     }catch(e){ return false; }
 }
@@ -65685,6 +65714,9 @@ function triggerDailyGoalCelebration(multiple){
     // v947 (essai anneau_palier) : l'anneau dit le palier -- plus de « +30 ! ».
     let anneau = false;
     try{ anneau = essaiActif("anneau_palier") && essaiActif("carreau_partout"); }catch(e){}
+    // v1113 : jusqu'a quand la fete joue (voir direAuto) -- la piece de l'anneau part apres 450 ms et l'image de la
+    // mosaique ; la fanfare et la foule (1,3 s plus tard) sans l'anneau.
+    { const T = SONS_PALIER_T; prolongerFete(anneau ? 450 + (T.carreaux + T.duree_carreaux - T.chevauche + Math.min(3, multiple) * T.tour) * 1000 + 600 : CELEBRATION_CHEER_DELAY_MS + 3200); }
     if(!anneau) showDailyGoalText(getDailyGoalTarget() * multiple);
     // v856 (essai carreau_partout) : la mosaique sous le « +30 ! ». Le delai
     // laisse la carte qui franchit le palier poser son propre carreau : le
