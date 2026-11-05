@@ -7166,6 +7166,17 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .cp-or-micro.reussi{background:#2e8b57 !important;}
 /* v856 : le « +1 » jaune au milieu des confettis. */
 .plus-un{position:fixed; left:50%; top:35%; z-index:10000; background:#E8A23A; color:#1C2430; border-radius:999px; padding:3px 13px 5px; font:900 24px Nunito, system-ui, sans-serif; box-shadow:0 3px 0 #b97c1e, 0 8px 20px rgba(28,36,48,.25); pointer-events:none; animation:plus-un 1.2s cubic-bezier(.2,.8,.3,1) forwards;}
+/* v1112 : LE « +1 » EN VERRE AMBRE (Jacques, 5 nov. 2026, choix 2 de la maquette https://claude.ai/artifact/1PEV7o4epg1DV3DnTxEwsP).
+   La pastille pleine devient une vitre translucide : degrade ambre, flou, liseré blanc et lueur interieure, ombre
+   ambree douce, chiffre a l'encre petrole. Meme taille, meme animation. La nuit, la vitre est plus dense : a 52-62 %
+   sur le fond bleu fonce, le chiffre petrole tombait a 2,5 : 1 ; a 84-90 % il passe 4,5. Le +1 des scenes et des
+   themes est le meme : l'app le pose dans #confettiContainer, par-dessus le cadre. */
+.plus-un{background:linear-gradient(180deg, rgba(240,170,60,.62), rgba(232,162,58,.52)); color:#173A4E;
+    -webkit-backdrop-filter:blur(10px) saturate(1.5); backdrop-filter:blur(10px) saturate(1.5);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75), inset 0 0 10px 2px rgba(255,255,255,.32), 0 8px 20px rgba(200,130,30,.28);
+    text-shadow:0 1px 0 rgba(255,255,255,.35);}
+body[data-theme="dark"] .plus-un{background:linear-gradient(180deg, rgba(240,170,60,.90), rgba(232,162,58,.84));
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55), inset 0 0 10px 2px rgba(255,255,255,.22), 0 8px 20px rgba(0,0,0,.35);}
 @keyframes plus-un{0%{opacity:0; transform:translate(-50%,-50%) scale(.3)} 18%{opacity:1; transform:translate(-50%,-50%) scale(1.15)} 30%{transform:translate(-50%,-50%) scale(1)} 70%{opacity:1; transform:translate(-50%,-110%) scale(1)} 100%{opacity:0; transform:translate(-50%,-160%) scale(.9)}}
 /* v856 : la mosaique sous le bandeau « +30 ! », ou les carreaux du palier poppent. */
 .mos-palier{position:fixed; left:50%; top:calc(16% + 46px); transform:translateX(-50%); z-index:10000; background:#fff; border-radius:14px; padding:7px 7px 9px; box-shadow:0 0 0 1.5px #e3dccf, 0 12px 30px rgba(28,36,48,.25); pointer-events:none; animation:mp-entre .45s cubic-bezier(.3,1.4,.5,1) both; transition:opacity .4s, transform .4s;}
