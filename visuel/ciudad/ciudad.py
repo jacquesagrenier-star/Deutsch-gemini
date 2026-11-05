@@ -669,6 +669,7 @@ PERSONNES_IMG = {
     "mark-demande": "Mark, the young man of the second picture (the same face, hair, build and clothes), stands on the pavement "
                     "of the same old Berlin street, holding his phone in one hand, and politely asks a woman of about sixty "
                     "with grey hair and a shopping bag for the way; he looks at her, friendly and a little lost.",
+    # recue le 5 nov. : son geste ne dit pas surement SA gauche -> la page la montre comme « elle montre le chemin », sans cote
     "mark-gauche": "Mark, the young man of the second picture (the same face, hair, build and clothes), on the same Berlin pavement, listens to the woman of about "
                    "sixty with grey hair and a shopping bag, who stretches out her arm and points along the street to HER "
                    "left, seen from the front; Mark looks in that direction and nods.",

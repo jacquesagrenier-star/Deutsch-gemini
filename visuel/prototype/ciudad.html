@@ -771,6 +771,8 @@ function decouvrir(){
         const g = D.lieux[id][APPRENDRE];
         const q = DE_APP ? "Entschuldigung, wie komme ich " + ({der: "zum", die: "zur", das: "zum"})[g.genre] + " " + g.mot + "?" : "Perdone, ¿cómo llego " + (g.genre === "el" ? "al " : "a la ") + g.mot + "?";
         $("vue").innerHTML = plan({depart: "sud", route: r.points, vise: [id]});
+        // la reponse : la dame montre le chemin (sans dire de quel cote : sur la photo, son geste ne le dit pas surement)
+        if (DE_APP && D.personnes.includes("mark-gauche")) $("photo").innerHTML = '<div class="photo"><img alt="" src="ciudad/mark-gauche.webp"></div>';
         montrerDit([q].concat(F.phrases)); dire([q].concat(F.phrases).join(" "));
       });
       pu.appendChild(b);
