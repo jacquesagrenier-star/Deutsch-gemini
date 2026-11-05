@@ -555,7 +555,10 @@ function juger(ok, bonneTexte, phrase){
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const mt = montreDe(motQ), c = !ok && choixQ != null ? choixTrad[choixQ] : null;
   m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : EN_APP ? "Well done!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
-    + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
+    // la phrase juste, ECRITE, apres toute reponse (Jacques, 5 nov. : une ecoute reussie ne montrait que « ¡Muy
+    // bien! » -- « il faudrait le voir ecrit aussi ») ; apres une erreur, « La bonne reponse » l'a deja ; sa traduction
+    // dessous (tradQ), et le haut-parleur de la ligne du mot la redit. Pendant la question, elle reste cachee.
+    + ((ok || (phrase && phrase !== bonneTexte)) ? '<span class="phrase">' + cible(phrase || bonneTexte) + '</span>' : "")
     + traduction(tradQ)
     + (c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")
     + (mt ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(mt.aff) + (mt.sens ? ' · <span dir="auto">' + mt.sens + '</span>' : "") + '</span>' : "");
@@ -1146,6 +1149,7 @@ function cleQuestion(){
     + "|" + (z.querySelector("#rang") ? "r" : z.querySelectorAll(".grille span.on").length);
 }
 function montrer(){
+  taire();   // la phrase de la reponse d'avant ne passe jamais sur la question suivante (Jacques, 5 nov.)
   repondu = false; $("suite").hidden = true; $("bas").hidden = true;
   $("compte").textContent = (rang + 1) + " / " + file.length;
   $("barre").style.width = (rang / file.length * 100) + "%";
