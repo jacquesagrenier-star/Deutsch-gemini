@@ -112,6 +112,13 @@ button:disabled{cursor:default}
 .dialogue .qui{flex:0 0 auto;font-size:12px;font-weight:900;color:var(--ambre-f);min-width:52px;padding-top:3px}
 .dialogue .txt{font-weight:800;font-size:16px;line-height:1.4}
 .dialogue .ligne.patient{background:rgba(43,181,170,.12)}
+/* le haut-parleur de chaque replique (Jacques, 5 nov. : « il faudrait qu'il y ait des petits haut-parleurs pour les
+   lignes, pour qu'on puisse voir qu'on peut cliquer pour entendre ») : celui de l'app, dans un rond, au bout de la ligne */
+.dialogue .dit{flex:1 1 auto;min-width:0}
+.dialogue .hp-ligne{flex:0 0 auto;align-self:center;width:34px;height:34px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);
+  color:var(--encre);display:inline-flex;align-items:center;justify-content:center}
+.dialogue .hp-ligne .ic-hp{width:18px;height:18px;display:block}
+.dialogue .ligne:active .hp-ligne,.dialogue .ligne.joue .hp-ligne{background:var(--ambre);color:#1C2430}
 .regle{margin:0;font-size:14px;font-weight:700;line-height:1.45;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
 .suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
   color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer;z-index:5000}
@@ -139,7 +146,7 @@ button:disabled{cursor:default}
 <script src="themes/tirage.js?v=1"></script>
 <script src="themes/voix.js?v=2"></script>
 <script src="themes/zoom.js?v=3"></script>
-<script src="themes/verre.js?v=2"></script>
+<script src="themes/verre.js?v=5"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
@@ -704,6 +711,8 @@ const photo = (k, p) => '<img class="photo" alt="" src="' + imgMal(k, p) + '"' +
 const fig = (src, p, legende) => '<figure><img alt="" src="' + src + '"' + repli(p) + '>' + (legende || "") + '</figure>';
 const duo = (a, b) => '<div class="duo">' + a + b + '</div>';
 const docSeul = f => '<img class="photo doc" alt="" src="' + imgDoc(f) + '"' + repli(nomDoc(f)) + '>';
+// le haut-parleur de l'app (v919, HP_SVG d'index.html) : celui des repliques du dialogue
+const HP_APP = '<svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
 // ---------- utilitaires ----------
@@ -1269,8 +1278,15 @@ function decouvrir(){
                 + (APPRENDRE === "en" ? '<p class="regle">' + T(GB ? "bonGb" : "bonUs") + '</p>' : "");
     L.dialogue.forEach(([qui, txt], i) => {
       const b = document.createElement("button"); b.type = "button"; b.className = "ligne" + (qui === "P" ? " patient" : "");
-      b.innerHTML = '<span class="qui">' + (qui === "D" ? nom(nomDoc(true)) : nom("Mark")) + '</span><span><span class="txt">' + cible(txt) + '</span>' + (tr ? traduction(tr[i]) : "") + '</span>';
-      b.addEventListener("click", () => Voix.dire(txt));
+      b.innerHTML = '<span class="qui">' + (qui === "D" ? nom(nomDoc(true)) : nom("Mark")) + '</span><span class="dit"><span class="txt">' + cible(txt) + '</span>' + (tr ? traduction(tr[i]) : "") + '</span>'
+                  + '<span class="hp-ligne" aria-hidden="true">' + HP_APP + '</span>';
+      b.setAttribute("aria-label", T("ecouter") + " : " + txt);
+      // toucher la replique ou son haut-parleur la fait entendre ; le rond s'allume le temps du geste
+      b.addEventListener("click", () => {
+        $("dialogue").querySelectorAll(".ligne.joue").forEach(x => x.classList.remove("joue"));
+        b.classList.add("joue"); setTimeout(() => b.classList.remove("joue"), 1200);
+        Voix.dire(txt);
+      });
       $("dialogue").appendChild(b);
     });
   };

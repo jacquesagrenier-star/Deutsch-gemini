@@ -1763,7 +1763,7 @@ function fin(){
     return;
   }
   entete(niveau + " · " + T("termine"), bilan(), niveau === "A1");
-  $("bas").innerHTML = `<button class="suite" id="encore">${T("encore")}</button>`;
+  $("bas").innerHTML = `<button class="suite" id="encore" data-rond="non">${T("encore")}</button>`;
   $("encore").addEventListener("click", demarrer);
 }
 
@@ -1865,6 +1865,6 @@ $("zoomRetour").addEventListener("click", e => { e.stopPropagation(); zoomRemett
 addEventListener("resize", () => zoomRemettre());
 
 </script>
-<script src="themes/verre.js?v=2"></script>
+<script src="themes/verre.js?v=5"></script>
 </body>
 </html>

@@ -530,9 +530,10 @@ window.SCENE = {
    "genre": "",
    "pluriel": "winter hats",
    "niveau": "A1",
+   "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "frau",
    "devant": 0,
    "boites": [
     [
@@ -558,7 +559,7 @@ window.SCENE = {
    "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "frau",
    "devant": 0,
    "boites": [
     [
@@ -675,7 +676,7 @@ window.SCENE = {
    "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -697,7 +698,7 @@ window.SCENE = {
    "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -755,7 +756,7 @@ window.SCENE = {
      "esp": "los vaqueros"
     }
    ],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -790,7 +791,7 @@ window.SCENE = {
      "es": "el zapato"
     }
    ],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -846,7 +847,7 @@ window.SCENE = {
    "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "nachbar",
    "devant": 0,
    "boites": [
     [
@@ -875,7 +876,7 @@ window.SCENE = {
    "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "nachbar",
    "devant": 0,
    "boites": [
     [
@@ -918,7 +919,7 @@ window.SCENE = {
    "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "nachbar",
    "devant": 0,
    "boites": [
     [
@@ -1344,6 +1345,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "pretzels",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [],
    "sur": null,

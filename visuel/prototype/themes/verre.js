@@ -33,6 +33,10 @@
   const css = `
 @property --v-haut{syntax:"<color>"; inherits:false; initial-value:transparent}
 @property --v-bas{syntax:"<color>"; inherits:false; initial-value:transparent}
+.verre-v{--v-haut:rgba(255,255,255,.08); --v-bas:rgba(255,255,255,.05); --v-encre:rgb(23,58,78); --v-fleche:${fleche(PETROLE, false)}}
+html.nuit .verre-v{--v-haut:rgba(18,26,36,.08); --v-bas:rgba(18,26,36,.05); --v-encre:rgb(243,245,248); --v-fleche:${fleche(CLAIR, false)}}
+html[dir="rtl"] .verre-v{--v-fleche:${fleche(PETROLE, true)}}
+html.nuit[dir="rtl"] .verre-v{--v-fleche:${fleche(CLAIR, true)}}
 .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.05) 30%, rgba(255,255,255,0) 48%), radial-gradient(60% 40% at 50% 110%, rgba(255,255,255,.22), rgba(255,255,255,0) 70%);
   background:var(--v-reflet), linear-gradient(180deg, var(--v-haut), var(--v-bas)) !important; color:var(--v-encre) !important;
   border-color:transparent !important; overflow:hidden !important; isolation:isolate;
@@ -90,12 +94,28 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
     }
     return document.documentElement.classList.contains("nuit") ? [18,30,42] : [220,230,236];
   }
-  /* Ce qu'il y a sous le bouton : les pixels de l'image (s'il y en a une), sinon la couleur du fond. */
+  /* Ou tombe un point de l'ecran dans l'image : la boite de l'image n'est pas toujours l'image (object-fit
+     contain laisse des bandes, cover rogne). v1111 : la flèche blanche entre les pieds d'une photo de studio
+     (Jacques, 5 nov. 2026, « Le corps et la sante ») venait d'une lecture au mauvais endroit ou trop tot. */
+  function versImage(img, P, x, y){
+    const ri = img.getBoundingClientRect(), cs = getComputedStyle(img);
+    let w = ri.width, h = ri.height, ox = ri.left, oy = ri.top;
+    const nw = img.naturalWidth, nh = img.naturalHeight, fit = cs.objectFit;
+    if (nw && nh && (fit === "contain" || fit === "cover" || fit === "scale-down")){
+      const e = fit === "cover" ? Math.max(ri.width / nw, ri.height / nh) : Math.min(ri.width / nw, ri.height / nh, fit === "scale-down" ? 1 : Infinity);
+      w = nw * e; h = nh * e;
+      const pos = (cs.objectPosition || "50% 50%").split(" ").map(v => v.endsWith("%") ? parseFloat(v) / 100 : .5);
+      ox = ri.left + (ri.width - w) * pos[0]; oy = ri.top + (ri.height - h) * (pos[1] === undefined ? .5 : pos[1]);
+    }
+    return [Math.floor((x - ox) / w * P.w), Math.floor((y - oy) / h * P.h)];
+  }
+  /* Ce qu'il y a sous le bouton : les pixels de l'image (s'il y en a une), sinon la couleur du fond.
+     Une image pas encore prete rend « null » : on ne decide rien sur elle, on recommence quand elle est la. */
   function dessous(b){
     const r = b.getBoundingClientRect(); if (r.width < 2 || r.height < 2) return null;
     const ancien = b.style.pointerEvents; b.style.pointerEvents = "none";
     const echantillon = [];
-    let fond = null;
+    let fond = null, pasPrete = false;
     // La ligne du texte (ou le centre du rond) seulement : ce que l'encre doit vaincre.
     const fxs = r.width > 80 ? [.34, .42, .5, .58, .66] : [.4, .5, .6];
     for (const fx of fxs) for (const fy of [.42, .58]){
@@ -103,9 +123,14 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
       const pile = document.elementsFromPoint ? document.elementsFromPoint(x, y) : [];
       const img = pile.find(e => e.tagName === "IMG" && !b.contains(e));
       const P = img ? pixels(img) : null;
+      if (img && !P && !(img.complete && img.naturalWidth)){
+        pasPrete = true;
+        img.addEventListener("load", demander, {once:true});
+        if (img.decode) img.decode().then(demander, () => {});
+        continue;
+      }
       if (P){
-        const ri = img.getBoundingClientRect();
-        const ix = Math.floor((x - ri.left) / ri.width * P.w), iy = Math.floor((y - ri.top) / ri.height * P.h);
+        const [ix, iy] = versImage(img, P, x, y);
         if (ix >= 0 && iy >= 0 && ix < P.w && iy < P.h){
           for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
             const xx = Math.min(P.w - 1, Math.max(0, ix + dx)), yy = Math.min(P.h - 1, Math.max(0, iy + dy)), i = (yy * P.w + xx) * 4;
@@ -118,7 +143,7 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
       echantillon.push(fond);
     }
     b.style.pointerEvents = ancien;
-    return echantillon;
+    return pasPrete ? null : echantillon;
   }
   function besoin(ech, tenue, P, seuil){
     const li = lum(tenue.ink), tc = tenue.tc;
@@ -137,9 +162,16 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
     const seuil = icone ? SEUIL_ICONE : SEUIL_TEXTE;
     const x = {f: besoin(ech, P.f, P, seuil), w: besoin(ech, P.w, P, seuil)};
     const note = r => r.ok ? r.a : 1 + (seuil - r.c);
-    let k = note(x.f) <= note(x.w) ? "f" : "w";
+    /* v1111 : L'ENCRE FONCEE D'ABORD (Jacques : « elle devrait etre en noir au lieu d'en blanc parce qu'on ne la
+       voit pas »). Le blanc seulement sur un fond vraiment fonce : la moyenne des pixels sous le bouton sous 12 %
+       de luminance, ET le fonce incapable de s'y lire meme avec 45 % de voile clair. Sinon l'encre petrole, quitte a epaissir
+       un peu le voile clair. La marge anti-clignotement ne garde plus un blanc devenu illisible. */
+    const moyenne = ech.reduce((s, c) => s + lum(c), 0) / ech.length;
+    // (un pantalon gris sur le fond clair d'un studio n'est pas « sombre » : la fleche y reste foncee, sur un voile clair)
+    const sombre = moyenne < .12 && !(x.f.ok && x.f.a <= .45);
+    let k = sombre && note(x.w) < note(x.f) ? "w" : "f";
     const avant = b.dataset.verreTenue;
-    if (avant && avant !== k && note(x[avant]) - note(x[k]) < .10) k = avant;
+    if (avant === "w" && k === "f" && sombre && note(x.w) - note(x.f) < .10) k = "w";
     const t = P[k], a = x[k].a, rgba = (c, al) => "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + al.toFixed(2) + ")";
     b.dataset.verreTenue = k;
     b.style.setProperty("--v-haut", rgba(t.tc, Math.min(1, a + .03)));
@@ -150,20 +182,28 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
   }
 
   /* ---------- les boutons et le rythme ---------- */
-  // Le rond : « Continuer », « Commencer »… un libelle court et sans fleche. « Continuer avec mes cartes → » garde son texte.
-  const enRond = b => b.classList.contains("suite") && !/[→←›‹]/.test(b.textContent) && b.textContent.trim().length <= 16;
-  function boutons(){
-    const l = [];
-    document.querySelectorAll(".suite, .bas button, #retourChoix, button.retour#retour").forEach(b => {
+  // Le rond : « Continuer », « Commencer »… un libelle court et sans fleche. « Continuer avec mes cartes → » garde son
+  // texte, et un bouton marque data-rond="non" aussi (« Encore une fois », qui relance la scene).
+  const enRond = b => b.classList.contains("suite") && b.dataset.rond !== "non" && !/[→←›‹]/.test(b.textContent) && b.textContent.trim().length <= 16;
+  const SEL = ".suite, .bas button, #retourChoix, button.retour#retour";
+  /* v1111 : LA FORME SE POSE TOUT DE SUITE. Jacques, 5 nov. 2026 : « dans les scenes, l'ancien bouton continu
+     apparait a chaque fois et non seulement le cercle ». Les scenes creent leur « Continuer » a chaque reponse ; la
+     classe attendait le calcul suivant, que les confettis reportaient jusqu'a 1,2 s. Elle se pose maintenant dans
+     l'observateur, avant que la page se dessine ; seule la mesure de l'image attend. */
+  function classer(){
+    document.querySelectorAll(SEL).forEach(b => {
       if (!b.classList.contains("verre-v")){
         b.classList.add("verre-v");
         if (getComputedStyle(b).position === "static") b.classList.add("v-pose");
       }
-      b.classList.toggle("v-rond", enRond(b));
-      if (b.classList.contains("v-rond") && b.getAttribute("aria-label") !== b.textContent.trim()) b.setAttribute("aria-label", b.textContent.trim());
-      if (b.offsetParent !== null || getComputedStyle(b).position === "fixed") l.push(b);
+      const r = enRond(b);
+      if (b.classList.contains("v-rond") !== r) b.classList.toggle("v-rond", r);
+      if (r && b.getAttribute("aria-label") !== b.textContent.trim()) b.setAttribute("aria-label", b.textContent.trim());
     });
-    return l;
+  }
+  function boutons(){
+    classer();
+    return [...document.querySelectorAll(SEL)].filter(b => b.offsetParent !== null || getComputedStyle(b).position === "fixed");
   }
   let prevu = 0, dernier = 0, reports = 0;
   function animationEnCours(){
@@ -192,9 +232,10 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
   document.addEventListener("visibilitychange", () => { if (!document.hidden) demander(); });
   function observer(){
     // ⚠️ Nos propres retouches (le style, la classe et le nom des boutons) ne relancent pas le calcul : sinon il tournerait sans fin.
-    new MutationObserver(recs => { if (recs.some(r => r.type !== "attributes" || !(r.target.classList && r.target.classList.contains("verre-v")))) demander(); })
-      .observe(document.body, {childList:true, subtree:true, characterData:true, attributes:true, attributeFilter:["hidden", "class", "style", "src"]});
-    demander();
+    new MutationObserver(recs => {
+      if (recs.some(r => r.type !== "attributes" || !(r.target.classList && r.target.classList.contains("verre-v")))){ classer(); demander(); }
+    }).observe(document.body, {childList:true, subtree:true, characterData:true, attributes:true, attributeFilter:["hidden", "class", "style", "src"]});
+    classer(); demander();
   }
   if (document.body) observer(); else document.addEventListener("DOMContentLoaded", observer);
 })();

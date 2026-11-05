@@ -17,6 +17,13 @@
   Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte), variante=latam.
   Le tirage suit les mots (themes/tirage.js). Les phrases sont FABRIQUEES depuis demarches.json, jamais ecrites une a
   une ; un leurre n'est jamais une reponse possible (« aussi », « aussi_v », « faux » dans demarches.py).
+  L'ANGLAIS (4 nov. 2026, apprendre=en, variante=gb) : Mark a Boston (12 Garden Street, 02114), la banque et le
+  cabinet medical ; le Buergeramt, l'Anmeldung, la Meldebescheinigung et la Krankenkasse sont ecartes (purement
+  allemands), ainsi que deux images (les euros du distributeur, la carte d'assurance allemande). Ses donnees sont dans
+  la page (objet EN), ses sortes a lui dans EX_EN : poli (Please sign here.), guichet (What's your zip code? / How do
+  you spell that?), demander (I'd like to / Can I ...?), prep (on Tuesday, at 9:30 a.m., in December, from ... to),
+  et la date ecrite a l'americaine (12/01/2026 : December 1st). Britannique : surname, postcode, mobile, fill in,
+  doctor's surgery, les dates jour / mois.
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -123,11 +130,15 @@ html.nuit .papier .case .val{color:#9CC3FF}
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
 <script src="themes/zoom.js?v=4"></script>
-<script src="themes/verre.js?v=2"></script>
+<script src="themes/verre.js?v=5"></script>
 <script src="themes/voix.js?v=2"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+// l'anglais (4 nov. 2026, « il manque beaucoup de themes en anglais ») : Mark a Boston, sans le Buergeramt ; variante=gb
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const EN_ = APPRENDRE === "en";
+const GB = EN_ && Q.get("variante") === "gb";
+const U = (us, gb) => GB ? gb : us;                          // le mot americain, ou le britannique
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
@@ -156,6 +167,14 @@ const TEXTES = {
   c_horaire: {fr:"Lis les heures d'ouverture et complète la phrase.", en:"Read the opening hours and complete the sentence.", tr:"Çalışma saatlerini oku ve cümleyi tamamla.", uk:"Прочитай години роботи й доповни речення.", fa:"ساعت کاری را بخوان و جمله را کامل کن.", ar:"اقرأ مواعيد العمل وأكمل الجملة.", pt:"Leia o horário de funcionamento e complete a frase.", pl:"Przeczytaj godziny otwarcia i uzupełnij zdanie.", ru:"Прочитай часы работы и закончи предложение.", de:"Lies die Öffnungszeiten und ergänze den Satz."},
   c_termin:  {fr:"Lis la confirmation de rendez-vous et réponds.", en:"Read the appointment confirmation and answer.", tr:"Randevu onayını oku ve cevap ver.", uk:"Прочитай підтвердження запису й дай відповідь.", fa:"تأیید وقت ملاقات را بخوان و جواب بده.", ar:"اقرأ تأكيد الموعد وأجب.", pt:"Leia a confirmação do horário e responda.", pl:"Przeczytaj potwierdzenie wizyty i odpowiedz.", ru:"Прочитай подтверждение записи и ответь.", de:"Lies die Terminbestätigung und antworte."},
   c_vraifaux:{fr:"Lis bien : vrai ou faux ?", en:"Read carefully: true or false?", tr:"Dikkatle oku: doğru mu, yanlış mı?", uk:"Уважно прочитай: правда чи ні?", fa:"با دقت بخوان: درست یا نادرست؟", ar:"اقرأ جيدًا: صحيح أم خطأ؟", pt:"Leia com atenção: verdadeiro ou falso?", pl:"Przeczytaj uważnie: prawda czy fałsz?", ru:"Прочитай внимательно: правда или нет?", de:"Lies genau: richtig oder falsch?"},
+  // L'ANGLAIS (interface en francais seulement : T() retombe sur fr)
+  c_guichet: {fr:"Au guichet : choisis la bonne réplique."},
+  c_demander:{fr:"Que dit-on poliment ? Choisis la phrase correcte."},
+  c_prep:    {fr:"Lis bien et choisis le petit mot qui manque."},
+  c_poliEn:  {fr:"Au guichet, l'employé demande poliment : choisis la bonne forme du verbe."},
+  regleEn:   {fr:"Au guichet, on demande poliment : I'd like to open an account (je voudrais ; I like, c'est « j'aime »), Can I make an appointment?, Could you spell that, please? L'employé, lui, emploie l'impératif : le verbe tout seul, sans to ni -s : Please " + U("fill out", "fill in") + " this form. Sign here, please. Prendre rendez-vous se dit make an appointment, jamais take ; mais prendre un numéro, take a number. Ce que fait Mark sur l'image : be + -ing (Mark is " + U("filling out", "filling in") + " the form). Le temps : on Monday, on " + U("December 1st", "1 December") + ", at 9:30, in December ; et les heures d'ouverture : The bank is open from 9 to 5."},
+  bonUs:     {fr:"Bon à savoir : tu apprends l'anglais américain, et l'on est à Boston. Les dates s'écrivent mois / jour / année : 03/14/2001, c'est le 14 mars (March 14th) ; 12/01/2026, c'est le 1er décembre, pas le 12 janvier. Les heures : a.m. le matin, p.m. l'après-midi et le soir (9 a.m., 5 p.m.). Sur un formulaire : last name (surname en Grande-Bretagne), zip code (postcode), cell phone (mobile). Remplir un formulaire : fill out (fill in en Grande-Bretagne). Le cabinet médical : doctor's office (doctor's surgery). Pour épeler, attention aux lettres : E se dit « i », I se dit « aï », A « éï », R « ar » ; G-A-R-N-I-E-R : « dji, éï, ar, èn, aï, i, ar »."},
+  bonGb:     {fr:"Bon à savoir : tu apprends l'anglais britannique. Les dates s'écrivent jour / mois / année, comme en français : 14/03/2001, c'est le 14 mars (14 March) ; aux États-Unis, on écrirait 03/14/2001, le mois d'abord. Les heures : am le matin, pm l'après-midi et le soir (9am, 5pm). Sur un formulaire : surname (last name aux États-Unis), postcode (zip code), mobile (cell phone). Remplir un formulaire : fill in (fill out aux États-Unis). Le cabinet médical : doctor's surgery (doctor's office). Pour épeler, attention aux lettres : E se dit « i », I se dit « aï », A « éï », R « ar » ; G-A-R-N-I-E-R : « dji, éï, ar, èn, aï, i, ar »."},
   ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
   reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
   commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
@@ -173,6 +192,180 @@ let D = null, LX, HO, DOC, DEM, CH, FO, AV, TE, CJ;
 const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
 const TL = PHRASE_TRADUITE ? LANGUE : null;                  // la langue des phrases traduites, sinon rien
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
+
+// ---------- L'ANGLAIS : Mark a Boston (4 nov. 2026) ----------
+// Les donnees sont ici, pas dans demarches.json (comme contrarios.html) ; elles prennent la forme des tables
+// allemandes (memes cles de lieux, de documents, de demarches) et sont posees dans D au chargement (preparer).
+// ECARTE en anglais, purement allemand : le Buergeramt et l'Anmeldung (s'inscrire a la mairie n'existe pas aux
+// Etats-Unis), la Meldebescheinigung, la Krankenkasse, la Bestaetigung du proprietaire, le permis de sejour ; donc
+// « aller chercher son attestation » (abholen), « remettre une photo » (foto, a la Krankenkasse), payer les frais du
+// Buergeramt. Les images : le distributeur (geld.webp) montre des billets en EUROS, et la carte verte a photo et
+// puce (versichertenkarte.webp) est la carte d'assurance maladie allemande -- les deux ne servent pas en anglais
+// (les demarches restent, sans image). Les autres n'ont ni enseigne, ni drapeau, ni texte lisible.
+// Les noms n'ont pas d'article au corpus anglais : pas de cle « genre » (genre null dans les reponses).
+const MOIS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const MOIS_FR = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+const ORD = n => n + ((n % 100 >= 11 && n % 100 <= 13) ? "th" : ({1: "st", 2: "nd", 3: "rd"})[n % 10] || "th");
+const dateDite = (j, m) => GB ? j + " " + MOIS_EN[m] : MOIS_EN[m] + " " + ORD(j);          // December 1st / 1 December
+const dateDiteFr = (j, m) => j + (j === 1 ? "er" : "") + " " + MOIS_FR[m];
+// l'heure : 9 a.m., 9:30 a.m., 3 p.m. (GB : 9am, 9:30am, 3pm)
+const heureEn = h => { const hh = Math.floor(h) % 24, d = hh < 12 ? "a" : "p", h12 = hh % 12 || 12;
+  return h12 + (h % 1 ? ":30" : "") + (GB ? d + "m" : " " + d + ".m."); };
+const pt = s => s.replace(/[.][.]$/, ".");                     // « at 9 a.m.. » -> « at 9 a.m. »
+const heureFr = h => Math.floor(h) + " h" + (h % 1 ? " 30" : "");
+const EN = {
+  lieux: {
+    bank:   {mot: "bank", nom: "the bank", dat: "at the bank", carte: "Bank · Beacon Hill branch, Boston, MA", trad: {fr: ["la banque", "à la banque", true]}},
+    praxis: {mot: U("doctor's office", "doctor's surgery"), nom: U("the doctor's office", "the doctor's surgery"), dat: U("at the doctor's office", "at the doctor's surgery"),
+             carte: U("Dr. Yilmaz · Family medicine, Boston, MA", "Dr Yilmaz · Family medicine, Boston, MA"), trad: {fr: ["le cabinet médical", "au cabinet médical", false]}},
+    // un lieu sans demarche : un leurre de « Where? » et du rendez-vous, jamais un mot du theme
+    poste:  {mot: "post office", nom: "the post office", dat: "at the post office", carte: "Post office · Boston, MA", trad: {fr: ["le bureau de poste", "au bureau de poste", false]}}
+  },
+  // des plages sans pause de midi, comme a Boston ; la banque ouvre le samedi matin
+  horaires: {
+    bank:   {"1": [[9, 17]], "2": [[9, 17]], "3": [[9, 17]], "4": [[9, 18]], "5": [[9, 17]], "6": [[9, 12]]},
+    praxis: {"1": [[8, 17]], "2": [[8, 19]], "3": [[8, 17]], "4": [[8, 17]], "5": [[8, 13]]}
+  },
+  ouvert: {open: "open", closed: "closed"},
+  // art : l'article de « What is this? » ; acc : ce qu'il faut (you need ...) ; liste : la ligne de l'avis
+  docs: {
+    pass:              {mot: "passport", art: "a", acc: "your passport", liste: "Your passport (photo ID)", img: "pass", accFr: "votre passeport", trad: {fr: "un passeport"}},
+    formular:          {mot: "form", art: "a", acc: "the completed form", liste: "The completed patient form", img: "formular", accFr: "le formulaire rempli", trad: {fr: "un formulaire"}},
+    versichertenkarte: {mot: "health insurance card", art: "a", acc: "your health insurance card", liste: "Your health insurance card", img: null, accFr: "votre carte d'assurance maladie", trad: {fr: "une carte d'assurance maladie"}},
+    arbeitsvertrag:    {mot: "employment contract", art: "an", acc: "your employment contract", liste: "Your signed employment contract", img: "arbeitsvertrag", accFr: "votre contrat de travail", trad: {fr: "un contrat de travail"}},
+    mietvertrag:       {mot: "lease", art: "a", acc: "your lease", liste: "Your lease (proof of address)", img: "mietvertrag", accFr: "votre bail", trad: {fr: "un bail"}},
+    foto:              {mot: "photo", art: "", affiche: "passport photos", pl: true, acc: "passport photos", liste: "Two passport photos", img: "foto", accFr: "des photos d'identité", trad: {fr: "des photos d'identité"}},
+    karte:             {mot: "debit card", art: "a", acc: "a debit card", liste: "A debit card", img: "karte", accFr: "une carte de débit", trad: {fr: "une carte de débit"}}
+  },
+  // v : le verbe (la forme du corpus) ; obj : son objet ; sie : la fin de la phrase de l'employe (Please ...) ;
+  // aussi : les lieux ou la demarche se fait aussi (« * » : partout) ; aussi_v : les verbes qui iraient aussi
+  demarches: [
+    {id: "nummer", v: "take", aussi_v: [], obj: "a number", lieu: null, aussi: [], img: "nummer", sie: "a number",
+     t: {fr: "Mark prend un numéro{L}."}, ts: {fr: "Prenez un numéro, s'il vous plaît."}},
+    {id: "formular", v: U("fill out", "fill in"), aussi_v: ["sign", "bring", "show", "take", "open"], obj: "the form", lieu: "bank", aussi: ["*"], img: "ausfuellen", sie: "this form",
+     t: {fr: "Mark remplit le formulaire{L}."}, ts: {fr: "Remplissez ce formulaire, s'il vous plaît."}},
+    {id: "zeigen_pass", v: "show", aussi_v: ["bring", "take", "sign", "open"], obj: "his passport", lieu: "bank", aussi: ["*"], img: "pass_zeigen", sie: "your passport",
+     t: {fr: "Mark montre son passeport{L}."}, ts: {fr: "Montrez votre passeport, s'il vous plaît."}},
+    {id: "konto", v: "open", aussi_v: ["make"], obj: "an account", lieu: "bank", aussi: U([], ["poste"]), img: "konto", sie: null,
+     t: {fr: "Mark ouvre un compte{L}."}},
+    {id: "geld", v: "withdraw", aussi_v: ["bring", "take", "show", "make"], obj: "some money", lieu: "bank", aussi: U([], ["poste"]), img: null, sie: null,
+     t: {fr: "Mark retire de l'argent{L}."}},
+    {id: "termin", v: "make", aussi_v: [], obj: "an appointment", lieu: "praxis", aussi: ["*"], img: "telefon", sie: "an appointment",
+     t: {fr: "Mark prend rendez-vous{L}."}, ts: {fr: "Prenez rendez-vous, s'il vous plaît."}},
+    {id: "zeigen_karte", v: "show", aussi_v: ["bring", "take", "sign"], obj: "his health insurance card", lieu: "praxis", aussi: [], img: "karte_zeigen", sie: "your health insurance card",
+     t: {fr: "Mark montre sa carte d'assurance maladie{L}."}, ts: {fr: "Montrez votre carte d'assurance maladie, s'il vous plaît."}},
+    {id: "warten", v: "wait", aussi_v: [], obj: "", lieu: "praxis", aussi: ["*"], img: "warten", sie: "here",
+     t: {fr: "Mark attend{L}."}, ts: {fr: "Attendez ici, s'il vous plaît."}},
+    {id: "unterschreiben", v: "sign", aussi_v: ["bring", "show", "take", "open", "fill out", "fill in", "make"], obj: "the employment contract", lieu: null, aussi: [], img: "unterschreiben", sie: "here",
+     t: {fr: "Mark signe le contrat de travail."}, ts: {fr: "Signez ici, s'il vous plaît."}},
+    {id: "mitbringen", v: "bring", aussi_v: ["sign", "show", "take", "open", "fill out", "fill in"], obj: "his employment contract", lieu: null, aussi: [], img: null, sie: "your employment contract",
+     t: {fr: "Mark apporte son contrat de travail."}, ts: {fr: "Apportez votre contrat de travail, s'il vous plaît."}}
+  ],
+  // base, s (he / she), ing
+  conj: {take: ["take", "takes", "taking"], "fill out": ["fill out", "fills out", "filling out"], "fill in": ["fill in", "fills in", "filling in"],
+         show: ["show", "shows", "showing"], open: ["open", "opens", "opening"], withdraw: ["withdraw", "withdraws", "withdrawing"],
+         make: ["make", "makes", "making"], wait: ["wait", "waits", "waiting"], sign: ["sign", "signs", "signing"], bring: ["bring", "brings", "bringing"]},
+  // le formulaire : t.fr = [le nom, le nom de la case, la valeur] ; phr : la phrase anglaise sur Mark ; phrFr : sa traduction ;
+  // tf : la traduction des valeurs fausses ; adj : l'adjectif du corpus ; dit : la date dite
+  champs: {
+    lastname:   {label: U("Last name", "Surname"), mot: U("last name", "surname"), v: "Garnier", faux: ["Garnet", "Gardner"], phr: "Mark's " + U("last name", "surname") + " is {v}.", phrFr: "Le nom de famille de Mark est {v}.",
+                 t: {fr: ["le nom de famille", "Nom de famille", null]}},
+    firstname:  {label: "First name", mot: "first name", v: "Mark", faux: ["Marc", "Max"], phr: "Mark's first name is {v}.", phrFr: "Le prénom de Mark est {v}.", t: {fr: ["le prénom", "Prénom", null]}},
+    dob:        {label: "Date of birth", mot: "date of birth", v: U("03/14/2001", "14/03/2001"), faux: U(["08/14/2001", "04/13/2001"], ["14/08/2001", "13/04/2001"]),
+                 phr: "Mark's date of birth is {v}.", phrFr: "La date de naissance de Mark est le {v}.", t: {fr: ["la date de naissance", "Date de naissance", "14/03/2001"]}},
+    pob:        {label: "Place of birth", mot: "place of birth", v: "Montreal", faux: ["Toronto", "Chicago"], phr: "Mark was born in {v}.", phrFr: "Mark est né à {v}.",
+                 t: {fr: ["le lieu de naissance", "Lieu de naissance", "Montréal"]}},
+    nationality:{label: "Nationality", mot: "nationality", v: "Canadian", faux: ["French", "American"], phr: "Mark is {v}.", phrFr: "Mark est {v}.",
+                 t: {fr: ["la nationalité", "Nationalité", "canadien"]}, tf: {French: ["français"], American: ["américain"]}},
+    marital:    {label: "Marital status", mot: "marital status", v: "Single", faux: ["Married", "Divorced"], adj: "single", phr: "Mark is {v}.", bas: true, phrFr: "Mark est {v}.",
+                 t: {fr: ["la situation familiale", "Situation familiale", "célibataire"]}, tf: {Married: ["marié"], Divorced: ["divorcé"]}},
+    address:    {label: "Address", mot: "address", v: "12 Garden Street", faux: ["21 Garden Street", "12 Garden Road"], phr: "Mark lives at {v}.", phrFr: "Mark habite au {v}.",
+                 t: {fr: ["l'adresse", "Adresse", null]}},
+    city:       {label: "City", mot: "city", v: "Boston", faux: ["Austin", "Montreal"], vf: false, t: {fr: ["la ville", "Ville", null]}},
+    zip:        {label: U("Zip code", "Postcode"), mot: U("zip code", "postcode"), v: "02114", faux: ["02141", "02411"], phr: "Mark's " + U("zip code", "postcode") + " is {v}.",
+                 phrFr: "Le code postal de Mark est {v}.", t: {fr: ["le code postal", "Code postal", null]}},
+    phone:      {label: U("Cell phone", "Mobile phone"), mot: U("cell phone", "mobile phone"), v: "617-555-0143", faux: ["617-555-0134", "716-555-0143"],
+                 phr: "Mark's " + U("cell phone", "mobile") + " number is {v}.", phrFr: "Le numéro de portable de Mark est le {v}.", t: {fr: ["le téléphone portable", "Portable", null]}},
+    occupation: {label: "Occupation", mot: "occupation", v: "Intern", faux: ["Teacher", "Doctor"], phr: "Mark is {a} {v}.", bas: true, phrFr: "Mark est {v}.",
+                 t: {fr: ["la profession", "Profession", "stagiaire"]}, tf: {Teacher: ["professeur"], Doctor: ["médecin"]}},
+    date:       {label: "Date", mot: "date", v: U("11/10/2026", "10/11/2026"), faux: U(["11/01/2026", "12/10/2026"], ["01/11/2026", "10/12/2026"]), vf: false,
+                 t: {fr: ["la date", "Date", "10/11/2026"]}},
+    signature:  {label: "Signature", mot: "signature", v: "✍", faux: [], vf: false, signature: true, t: {fr: ["la signature", "Signature", null]}}
+  },
+  formulaires: [
+    {id: "konto", titre: "Account application", lieu: "bank", champs: ["lastname", "firstname", "dob", "pob", "nationality", "address", "city", "zip", "phone", "date", "signature"]},
+    {id: "patient", titre: U("New patient form", "New patient registration form"), lieu: "praxis", champs: ["lastname", "firstname", "dob", "marital", "address", "city", "zip", "phone", "occupation", "date", "signature"]}
+  ],
+  // les avis « Please bring » : pour = le debut de la phrase ; q = la question
+  avis: [
+    {id: "konto", lieu: "bank", titre: "Opening an account", pour: "To open an account", q: "What do you need to open an account?", docs: ["pass", "mietvertrag"],
+     note: "We cannot open an account without these documents.", t: {fr: "Pour ouvrir un compte"}},
+    {id: "arzt", lieu: "praxis", titre: "Your first appointment", pour: "For your first appointment", q: "What do you need for your first appointment?", docs: ["versichertenkarte", "pass", "formular"],
+     note: "Please arrive 15 minutes early.", t: {fr: "Pour le premier rendez-vous"}},
+    {id: "travail", lieu: null, carte: "Human Resources · New employees", titre: "Your first day at work", pour: "For your first day at work", q: "What do you need for your first day at work?",
+     docs: ["pass", "arbeitsvertrag"], note: "Welcome to the team!", t: {fr: "Pour le premier jour de travail"}}
+  ],
+  termin: {mot: "appointment", salles: ["Room 104", "Room 214", "Room 307"]},
+  // les questions du guichet : [question, reponse de Mark, leur traduction, « spell » si l'echange vise aussi ce verbe]
+  guichet: {
+    lastname:   [["What's your " + U("last name", "surname") + "?", "Garnier.", "Quel est votre nom de famille ? — Garnier."],
+                 ["How do you spell your " + U("last name", "surname") + "?", "G-A-R-N-I-E-R.", "Comment s'écrit votre nom de famille ? — G-A-R-N-I-E-R.", "spell"]],
+    firstname:  [["What's your first name?", "Mark.", "Quel est votre prénom ? — Mark."],
+                 ["How do you spell your first name?", "M-A-R-K.", "Comment s'écrit votre prénom ? — M-A-R-K.", "spell"]],
+    dob:        [["What's your date of birth?", U("March 14th, 2001.", "14 March 2001."), "Quelle est votre date de naissance ? — Le 14 mars 2001."],
+                 ["When were you born?", U("On March 14th, 2001.", "On 14 March 2001."), "Quand êtes-vous né ? — Le 14 mars 2001."]],
+    pob:        [["Where were you born?", "In Montreal.", "Où êtes-vous né ? — À Montréal."]],
+    nationality:[["What's your nationality?", "I'm Canadian.", "Quelle est votre nationalité ? — Je suis canadien."],
+                 ["Where are you from?", "I'm from Canada.", "D'où venez-vous ? — Je viens du Canada."]],
+    marital:    [["Are you married?", "No, I'm single.", "Êtes-vous marié ? — Non, je suis célibataire."]],
+    address:    [["What's your address?", "12 Garden Street.", "Quelle est votre adresse ? — 12 Garden Street."],
+                 ["How do you spell Garden?", "G-A-R-D-E-N.", "Comment s'écrit Garden ? — G-A-R-D-E-N.", "spell"]],
+    city:       [[U("What city do you live in?", "Which city do you live in?"), "Boston.", "Dans quelle ville habitez-vous ? — À Boston."]],
+    zip:        [["What's your " + U("zip code", "postcode") + "?", "02114.", "Quel est votre code postal ? — 02114."]],
+    phone:      [["What's your " + U("cell phone", "mobile") + " number?", "617-555-0143.", "Quel est votre numéro de portable ? — 617-555-0143."]],
+    occupation: [["What do you do?", "I'm an intern.", "Que faites-vous dans la vie ? — Je suis stagiaire."]]
+  },
+  // demander poliment : [verbe vise, la situation, la phrase juste, trois fautes, la traduction]
+  demander: [
+    ["open", "At the bank, Mark wants to open an account.", "I'd like to open an account, please.",
+     ["I'd like open an account, please.", "I like to open an account, please.", "I would like opening an account, please."], "Je voudrais ouvrir un compte, s'il vous plaît."],
+    ["open", "At the bank, Mark wants to open an account.", "Can I open an account here?",
+     ["Can I to open an account here?", "Do I can open an account here?", "Can I opening an account here?"], "Est-ce que je peux ouvrir un compte ici ?"],
+    ["make", "Mark calls the " + U("doctor's office", "doctor's surgery") + ". He wants to see the doctor.", "I'd like to make an appointment, please.",
+     ["I'd like to take an appointment, please.", "I like to make an appointment, please.", "I'd like make an appointment, please."], "Je voudrais prendre rendez-vous, s'il vous plaît."],
+    ["make", "Mark calls the " + U("doctor's office", "doctor's surgery") + ". He wants to see the doctor on Tuesday.", "Can I make an appointment for Tuesday?",
+     ["Can I take an appointment for Tuesday?", "Can I to make an appointment for Tuesday?", "Do I can make an appointment for Tuesday?"], "Est-ce que je peux prendre rendez-vous pour mardi ?"],
+    ["withdraw", "At the bank, Mark needs some cash.", "I'd like to withdraw some money, please.",
+     ["I'd like withdraw some money, please.", "I like to withdraw some money, please.", "I would like withdrawing some money, please."], "Je voudrais retirer de l'argent, s'il vous plaît."],
+    ["withdraw", "At the bank, Mark needs some cash.", "Can I withdraw some money here?",
+     ["Can I to withdraw some money here?", "Do I can withdraw some money here?", "Can I withdrawing some money here?"], "Est-ce que je peux retirer de l'argent ici ?"],
+    ["spell", "Mark doesn't understand the name of the street.", "Could you spell that, please?",
+     ["Could you to spell that, please?", "Could you spelling that, please?", "You could spell that, please?"], "Pourriez-vous l'épeler, s'il vous plaît ?"],
+    ["spell", "The receptionist doesn't understand Mark's " + U("last name", "surname") + ".", "How do you spell that?",
+     ["How you spell that?", "How does you spell that?", "How do you spelling that?"], "Comment ça s'écrit ?"]
+  ],
+  // les mots du theme, a la forme du corpus anglais (anglais/datos, ou datos-gb pour le britannique)
+  mots: [
+    ["bank", "la banque"], [U("doctor's office", "doctor's surgery"), "le cabinet médical"], ["passport", "le passeport"], ["form", "le formulaire"],
+    ["health insurance card", "la carte d'assurance maladie"], ["employment contract", "le contrat de travail"], ["lease", "le bail"], ["photo", "la photo"],
+    ["debit card", "la carte de débit"], [U("last name", "surname"), "le nom de famille"], ["first name", "le prénom"], ["date of birth", "la date de naissance"],
+    ["place of birth", "le lieu de naissance"], ["nationality", "la nationalité"], ["marital status", "la situation familiale"], ["address", "l'adresse"],
+    [U("zip code", "postcode"), "le code postal"], ["city", "la ville"], [U("cell phone", "mobile phone"), "le téléphone portable"], ["occupation", "la profession"],
+    ["date", "la date"], ["signature", "la signature"], ["appointment", "le rendez-vous"],
+    ["single", "célibataire", "adjectif"], ["open", "ouvert", "adjectif"], ["closed", "fermé", "adjectif"],
+    ["take", "prendre", "verbe"], [U("fill out", "fill in"), "remplir (un formulaire)", "verbe"], ["show", "montrer", "verbe"], ["open", "ouvrir", "verbe"],
+    ["withdraw", "retirer (de l'argent)", "verbe"], ["make", "faire", "verbe"], ["wait", "attendre", "verbe"], ["sign", "signer", "verbe"],
+    ["bring", "apporter", "verbe"], ["spell", "épeler", "verbe"]
+  ].map(([mot, fr, cat]) => cat ? {mot, cat, g: {fr}} : {mot, g: {fr}})
+};
+// pose l'anglais dans D, a cote de l'allemand et de l'espagnol ; les leurres des images : ceux de l'allemand, parmi
+// les documents qui existent en anglais
+function preparerAnglais(d){
+  d.lieux.en = EN.lieux; d.horaires.en = EN.horaires; d.ouvert.en = EN.ouvert; d.docs.en = EN.docs; d.demarches.en = EN.demarches;
+  d.champs.en = EN.champs; d.formulaires.en = EN.formulaires; d.avis.en = EN.avis; d.termin.en = EN.termin; d.mots.en = EN.mots;
+  d.conj.en = EN.conj;
+  Object.keys(d.fauxImg).forEach(i => { d.fauxImg[i].en = d.fauxImg[i].de.filter(k => EN.docs[k]); });
+}
 
 // ---------- utilitaires ----------
 const $ = id => document.getElementById(id);
@@ -204,12 +397,14 @@ const decoupe = f => { const i = f.indexOf(" "); return i < 0 ? [f, ""] : [f.sli
 // « Mark meldet seine Wohnung im Bürgeramt an. » / « Mark abre una cuenta en el banco. »
 function phraseMark(d, avecLieu, lieuForce){
   const lieu = lieuForce || d.lieu, L = lieu && avecLieu !== false ? LX[lieu].dat : "";
+  if (EN_) return espaces("Mark is " + conj(d.v)[2] + " " + d.obj + " " + L + ".");   // « Mark is opening an account at the bank. »
   if (ES_) return espaces("Mark " + conj(d.v).er + " " + d.obj + " " + L + ".");
   const [v, p] = decoupe(conj(d.v).er);
   return espaces("Mark " + v + " " + d.obj + " " + L + " " + p + ".");
 }
 function phraseTrou(d){            // le lieu remplace par ___
-  if (ES_) return espaces("Mark " + conj(d.v).er + " " + d.obj + " ___.");
+  if (EN_) return espaces("Mark is " + conj(d.v)[2] + " " + d.obj + " ___.");
+  if (ES_)return espaces("Mark " + conj(d.v).er + " " + d.obj + " ___.");
   const [v, p] = decoupe(conj(d.v).er);
   return espaces("Mark " + v + " " + d.obj + " ___ " + p + ".");
 }
@@ -219,18 +414,19 @@ function tradMark(d, avecLieu, lieuForce){
   const a = lieu && avecLieu !== false ? (LX[lieu].trad[TL] || [])[1] || "" : "";
   return espaces(t.replace("{L}", a ? " " + a : ""));
 }
-const infinitifPhrase = d => ES_ ? espaces(d.v + " " + d.obj) : espaces(d.obj + " " + d.v);   // « ein Konto eröffnen » / « abrir una cuenta »
+const infinitifPhrase = d => ES_ || EN_ ?espaces(d.v + " " + d.obj) : espaces(d.obj + " " + d.v);   // « ein Konto eröffnen » / « abrir una cuenta »
 // la phrase polie du guichet : « Füllen Sie bitte das Formular aus! » / « Rellene el formulario, por favor. »
 function phrasePolie(d, forme){
   if (ES_) return espaces(cap(forme) + " " + d.sie + ", por favor.");
   const p = decoupe(conj(d.v).sie)[1];
   return espaces(cap(forme) + " Sie bitte " + d.sie + " " + p + "!");
 }
-const docAff = k => { const d = DOC[k]; return d.genre + " " + (d.affiche || d.mot); };
-const docPhrase = k => ES_ ? "Es " + docAff(k) + "." : "Das ist " + docAff(k) + ".";
+const docAff = k => { const d = DOC[k]; return EN_ ? espaces(d.art + " " + (d.affiche || d.mot)) : d.genre + " " + (d.affiche || d.mot); };   // a passport, an employment contract
+const docPhrase = k => EN_ ? (DOC[k].pl ? "These are " : "It's ") + docAff(k) + "." : ES_ ? "Es " + docAff(k) + "." : "Das ist " + docAff(k) + ".";
 function docTrad(k){
   if (!TL) return null;
   const t = DOC[k].trad[TL]; if (!t) return null;
+  if (EN_) return TL === "fr" ? (DOC[k].pl ? "Ce sont " : "C'est ") + t + "." : null;
   return {fr: "C'est " + t + ".", en: "This is " + t + ".", pt: "É " + t + ".", de: "Das ist " + t + "."}[TL];
 }
 const docDit = k => docAff(k);
@@ -238,8 +434,8 @@ const docMot = k => nom(DOC[k].mot, DOC[k].genre);
 const lieuMot = k => nom(LX[k].mot, LX[k].genre);
 const jour = (n, l) => D.jours[l || APPRENDRE][n - 1];
 const fem = k => ["la", "die"].includes(LX[k].genre);
-const ouvertForme = (k, ouvert) => ES_ ? D.ouvert.es[ouvert ? "abierto" : "cerrado"][fem(k) ? 1 : 0] : (ouvert ? "offen" : "geschlossen");
-const ouvertMot = ouvert => ({mot: ES_ ? (ouvert ? "abierto" : "cerrado") : (ouvert ? "offen" : "geschlossen"), cat: "adjectif"});
+const ouvertForme = (k, ouvert) => EN_ ? (ouvert ? "open" : "closed") : ES_ ? D.ouvert.es[ouvert ? "abierto" : "cerrado"][fem(k) ? 1 : 0] : (ouvert ? "offen" : "geschlossen");
+const ouvertMot = ouvert => ({mot: EN_ ? (ouvert ? "open" : "closed") : ES_ ? (ouvert ? "abierto" : "cerrado") : (ouvert ? "offen" : "geschlossen"), cat: "adjectif"});
 const estOuvert = (k, j, h) => ((HO[k] || {})[j] || []).some(([a, b]) => a <= h && h < b);
 const jourArticlePt = n => n >= 6 ? "no " : "na ";
 
@@ -255,7 +451,7 @@ function juger(ok, bonneTexte, phrase){
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const g = motQ ? glose(motQ) : "";
-  m.innerHTML = (ok ? cible(ES_ ? "¡Muy bien!" : "Sehr gut!") : T("bonne", {r: cible(esc(bonneTexte))}))
+  m.innerHTML = (ok ? cible(EN_ ? "Well done!" : ES_ ? "¡Muy bien!" : "Sehr gut!") : T("bonne", {r: cible(esc(bonneTexte))}))
     + (phrase && (ok || phrase !== bonneTexte) ? '<span class="phrase">' + cible(esc(phrase)) + '</span>' : "")
     + traduction(tradQ)
     + (!ok && choixFaux && choixFaux.trad ? '<span class="trad faux" dir="auto">' + T("choix", {c: cible(esc(choixFaux.texte)) + " — " + esc(choixFaux.trad)}) + '</span>' : "")
@@ -305,7 +501,7 @@ const avecTrou = s => esc(s).replace("___", trou());
 const entete = t => '<div class="entete">' + esc(t) + '</div>';
 function papierFormulaire(f, cachee, vise){
   const cases = f.champs.map(c => {
-    const x = CH[c], large = ["adresse", "direccion", "unterschrift", "firma", "staat", "nacimiento", "lugar"].includes(c) || x.label.length > 16;
+    const x = CH[c], large = ["adresse", "direccion", "unterschrift", "firma", "staat", "nacimiento", "lugar", "address", "signature"].includes(c) || x.label.length > 16;
     const val = x.signature ? '<span class="val signe">Mark Garnier</span>' : '<span class="val">' + esc(x.v) + '</span>';
     return '<div class="case' + (large ? " large" : "") + (c === cachee ? " cachee vise" : "") + (c === vise ? " vise" : "") + '" data-champ="' + c + '"><span class="lab">'
       + (c === cachee ? "?" : esc(x.label)) + '</span>' + val + '</div>';
@@ -314,17 +510,28 @@ function papierFormulaire(f, cachee, vise){
 }
 const itemDoc = k => cap(DOC[k].acc.replace(/^(der|die|das|den|ein|eine|el|la|los|las|un|una) /, ""));
 function papierAvis(a){
+  if (EN_) return '<div class="papier" lang="en">' + entete(a.carte || LX[a.lieu].carte) + '<h3>' + esc(a.titre) + '</h3>'
+    + '<div>Please bring:</div><ul>' + a.docs.map(k => '<li>' + esc(DOC[k].liste) + '</li>').join("") + '</ul>'
+    + '<p class="note">' + esc(a.note) + '</p></div>';
   return '<div class="papier" lang="' + APPRENDRE + '">' + entete(a.carte || LX[a.lieu].carte) + '<h3>' + esc(a.titre) + '</h3>'
     + '<div>' + (ES_ ? "Documentación necesaria:" : "Bitte bringen Sie mit:") + '</div><ul>' + a.docs.map(k => '<li>' + esc(itemDoc(k)) + '</li>').join("") + '</ul>'
     + '<p class="note">' + (ES_ ? "Sin estos documentos no podemos atenderle." : "Ohne diese Unterlagen können wir Ihnen leider nicht helfen.") + '</p></div>';
 }
 function plages(k, j){
   const p = (HO[k] || {})[j] || [];
+  if (EN_) return p.length ? p.map(([a, b]) => heureEn(a) + " – " + heureEn(b)).join(", ") : "Closed";
   if (!p.length) return ES_ ? "cerrado" : "geschlossen";
   const f = h => ES_ ? h + ":00" : String(h);
   return p.map(([a, b]) => f(a) + "–" + f(b)).join(ES_ ? " y " : " und ") + (ES_ ? "" : " Uhr");
 }
 function papierHoraires(k){
+  if (EN_){
+    // les heures de Boston : le samedi s'il ouvre, sinon « Saturday and Sunday: Closed »
+    const sam = !!(HO[k] || {})[6];
+    const l = [1, 2, 3, 4, 5].concat(sam ? [6] : []).map(j => '<tr><td>' + jour(j) + '</td><td>' + esc(plages(k, j)) + '</td></tr>').join("")
+      + '<tr><td>' + (sam ? jour(7) : jour(6) + " and " + jour(7)) + '</td><td>Closed</td></tr>';
+    return '<div class="papier" lang="en">' + entete(LX[k].carte) + '<h3>' + U("Hours", "Opening hours") + '</h3><table>' + l + '</table></div>';
+  }
   const lignes = [1, 2, 3, 4, 5].map(j => '<tr><td>' + cap(jour(j)) + '</td><td>' + esc(plages(k, j)) + '</td></tr>').join("")
     + '<tr><td>' + cap(jour(6)) + (ES_ ? " y " : " und ") + jour(7) + '</td><td>' + (ES_ ? "cerrado" : "geschlossen") + '</td></tr>';
   return '<div class="papier" lang="' + APPRENDRE + '">' + entete(LX[k].carte) + '<h3>' + (ES_ ? "Horario de atención al público" : "Öffnungszeiten") + '</h3><table>' + lignes + '</table></div>';
@@ -344,7 +551,12 @@ function tirerTermin(k){
 const dateTexte = d => { const p = n => String(n).padStart(2, "0"); return ES_ ? p(d.getDate()) + "/" + p(d.getMonth() + 1) + "/" + d.getFullYear() : p(d.getDate()) + "." + p(d.getMonth() + 1) + "." + d.getFullYear(); };
 const heureMin = (h, l) => { const hh = Math.floor(h), mm = h % 1 ? "30" : "00"; l = l || APPRENDRE;
   return l === "de" ? hh + ":" + mm + " Uhr" : l === "fr" ? hh + " h " + mm : l === "pt" ? hh + "h" + mm : hh + ":" + mm; };
+// la date du rendez-vous a l'americaine (12/01/2026 : le 1er decembre) ou a la britannique (01/12/2026)
+const dateEn = d => { const p = n => String(n).padStart(2, "0"); return GB ? p(d.getDate()) + "/" + p(d.getMonth() + 1) + "/" + d.getFullYear() : p(d.getMonth() + 1) + "/" + p(d.getDate()) + "/" + d.getFullYear(); };
 function papierTermin(t){
+  if (EN_) return '<div class="papier" lang="en">' + entete(LX[t.k].carte) + '<h3>Appointment confirmation</h3><div>Dear ' + U("Mr.", "Mr") + ' Garnier,</div>'
+    + '<div class="gros">Your appointment: ' + jour(t.j) + ', ' + dateEn(t.date) + ', ' + heureEn(t.h) + '</div><div>' + t.salle + '</div>'
+    + '<p class="note">Please arrive 10 minutes early.</p></div>';
   const c = ES_
     ? ['Confirmación de cita', 'Estimado señor Garnier:', 'Su cita: <b>' + jour(t.j) + ', ' + dateTexte(t.date) + ', ' + heureMin(t.h) + '</b>', 'Lugar: ' + t.salle, 'Por favor, sea puntual.']
     : ['Terminbestätigung', 'Sehr geehrter Herr Garnier,', 'Ihr Termin: <b>' + jour(t.j) + ', ' + dateTexte(t.date) + ', ' + heureMin(t.h) + '</b>', 'Ort: ' + t.salle, 'Bitte kommen Sie pünktlich.'];
@@ -360,6 +572,7 @@ const champAdj = c => CH[c].adj ? {mot: CH[c].adj === true ? CH[c].v : CH[c].adj
 const champsDe = w => Object.keys(CH).filter(c => !w || memeMot(champMot(c), w) || memeMot(champAdj(c), w));
 const estOuvertMot = w => w && w.cat === "adjectif" && Object.keys(D.ouvert[APPRENDRE]).includes(w.mot);
 const estTermin = w => w && !w.cat && w.mot === TE.mot && w.genre === TE.genre;
+const teDit = () => EN_ ? TE.mot : TE.genre + " " + TE.mot;            // der Termin / la cita / appointment
 const tradChamp = (c, i) => TL ? (CH[c].t[TL] || [])[i] : null;
 const valTrad = (c, v) => {
   if (!TL) return null;
@@ -370,6 +583,7 @@ const valTrad = (c, v) => {
 // « La nationalité de Mark est canadienne. » / « Mark's nationality is Canadian. »
 function tradChampPhrase(c, v){
   if (!TL) return null;
+  if (EN_){ const vt = valTrad(c, v); return TL === "fr" && CH[c].phrFr && vt !== null ? CH[c].phrFr.replace("{v}", vt) : null; }
   const l = tradChamp(c, 0), vt = valTrad(c, v); if (!l || vt === null) return null;
   if (TL === "fr") return cap(l) + " de Mark est " + vt + ".";
   if (TL === "en") return "Mark's " + l + " is " + vt + ".";
@@ -379,27 +593,34 @@ function tradChampPhrase(c, v){
 // « Marks Postleitzahl ist 13187. » / « El código postal de Mark es 28004. »
 function champPhrase(c, v){
   const x = CH[c];
+  if (EN_){   // « Mark lives at 12 Garden Street. », « Mark is single. », « Mark is an intern. » (a / an)
+    const w = x.bas ? v.toLowerCase() : v;
+    return x.phr.replace("{a}", /^[aeiou]/i.test(w) ? "an" : "a").replace("{v}", w);
+  }
   if (ES_) return cap(x.genre + " " + x.mot) + " de Mark es " + v + ".";
   return "Marks " + x.label + " ist " + (v === x.v && x.satz ? x.satz : (c === "geburtsdatum" ? "der " + v : v)) + ".";
 }
 const champCourt = (c, v) => CH[c].label + ": " + (CH[c].signature ? "Mark Garnier" : v);
 const champCourtTrad = (c, v) => TL && tradChamp(c, 1) ? tradChamp(c, 1) + (TL === "fr" ? " : " : ": ") + (CH[c].signature ? "Mark Garnier" : valTrad(c, v)) : null;
-const GROUPES = [["geburtsdatum", "datum"], ["nacimiento", "fecha"], ["ort", "geburtsort", "adresse"], ["municipio", "lugar", "direccion"], ["familienname", "vorname"], ["nombre", "apellidos"]];
+const GROUPES = [["geburtsdatum", "datum"], ["nacimiento", "fecha"], ["ort", "geburtsort", "adresse"], ["municipio", "lugar", "direccion"], ["familienname", "vorname"], ["nombre", "apellidos"],
+                 ["dob", "date"], ["city", "pob", "address", "nationality"], ["lastname", "firstname"]];   // l'anglais
 const memeGroupe = (a, b) => GROUPES.some(g => g.includes(a) && g.includes(b));
 // la phrase de l'avis : « Für die Anmeldung braucht man den Pass. » / « Para empadronarse, hace falta el pasaporte. »
-const avisPhrase = (a, k) => ES_ ? a.pour + ", hace falta " + DOC[k].acc + "." : a.pour + " braucht man " + DOC[k].acc + ".";
+const avisPhrase = (a, k) => EN_ ? a.pour + ", you need " + DOC[k].acc + "." : ES_ ?a.pour + ", hace falta " + DOC[k].acc + "." : a.pour + " braucht man " + DOC[k].acc + ".";
 function avisTrad(a, k){
   if (!TL) return null;
   const p = a.t[TL], d = DOC[k].trad[TL]; if (!p || !d) return null;
+  if (EN_) return TL === "fr" ? p + ", il faut " + DOC[k].accFr + "." : null;
   if (TL === "fr") return p + ", il faut " + d + ".";
   if (TL === "en") return p + ", you need " + d + ".";
   if (TL === "pt") return p + ", você precisa " + d.replace(/^o /, "do ").replace(/^a /, "da ").replace(/^uma /, "de uma ").replace(/^um /, "de um ") + ".";
   return p + " braucht man " + d.replace(/^der /, "den ") + ".";
 }
-const avisQuestion = a => ES_ ? "¿Qué hace falta " + a.pour.charAt(0).toLowerCase() + a.pour.slice(1) + "?" : "Was braucht man " + a.pour.charAt(0).toLowerCase() + a.pour.slice(1) + "?";
+const avisQuestion = a => EN_ ? a.q : ES_ ?"¿Qué hace falta " + a.pour.charAt(0).toLowerCase() + a.pour.slice(1) + "?" : "Was braucht man " + a.pour.charAt(0).toLowerCase() + a.pour.slice(1) + "?";
 // les heures : « Am Mittwoch um 15 Uhr ist das Bürgeramt geschlossen. »
 function horairePhrase(k, j, h, forme){
-  if (ES_) return cap(jour(j).replace(/^/, "el ")) + " a las " + h + ":00, " + LX[k].nom + " está " + forme + ".";
+  if (EN_) return "On " + jour(j) + " at " + heureEn(h) + ", " + LX[k].nom + " is " + forme + ".";   // On Wednesday at 3 p.m., the bank is closed.
+  if (ES_)return cap(jour(j).replace(/^/, "el ")) + " a las " + h + ":00, " + LX[k].nom + " está " + forme + ".";
   return "Am " + jour(j) + " um " + h + " Uhr ist " + LX[k].nom + " " + forme + ".";
 }
 function horaireTrad(k, j, h, ouvert){
@@ -419,10 +640,12 @@ function tirerHoraire(k){
   return {k, j, h, ouvert: estOuvert(k, j, h)};
 }
 // le rendez-vous : « Marks Termin ist am Dienstag um 9:30 Uhr im Bürgeramt. »
-const terminPhrase = t => ES_ ? "La cita de Mark es el " + jour(t.j) + " a las " + heureMin(t.h) + " " + LX[t.k].dat + "." : "Marks Termin ist am " + jour(t.j) + " um " + heureMin(t.h) + " " + LX[t.k].dat + ".";
+// en anglais : « Mark has an appointment at the bank on Tuesday, December 1st, at 9:30 a.m. »
+const terminPhrase = t => EN_ ? pt("Mark has an appointment " + LX[t.k].dat + " on " + jour(t.j) + ", " + dateDite(t.date.getDate(), t.date.getMonth()) + ", at " + heureEn(t.h) + ".") : ES_ ?"La cita de Mark es el " + jour(t.j) + " a las " + heureMin(t.h) + " " + LX[t.k].dat + "." : "Marks Termin ist am " + jour(t.j) + " um " + heureMin(t.h) + " " + LX[t.k].dat + ".";
 function terminTrad(t){
   if (!TL) return null;
   const lt = LX[t.k].trad[TL]; if (!lt) return null;
+  if (EN_) return TL === "fr" ? "Mark a rendez-vous " + lt[1] + " le " + jour(t.j, "fr") + " " + dateDiteFr(t.date.getDate(), t.date.getMonth()) + " à " + heureFr(t.h) + "." : null;
   if (TL === "fr") return "Le rendez-vous de Mark est " + jour(t.j, "fr") + " à " + heureMin(t.h, "fr") + ", " + lt[1] + ".";
   if (TL === "en") return "Mark's appointment is on " + jour(t.j, "en") + " at " + heureMin(t.h, "en") + " " + lt[1] + ".";
   if (TL === "pt") return "Mark tem horário marcado " + jourArticlePt(t.j) + jour(t.j, "pt") + ", às " + heureMin(t.h, "pt") + ", " + lt[1] + ".";
@@ -445,7 +668,7 @@ const EX = {
     const faux = D.fauxImg[img][APPRENDRE].filter(x => DOC[x] && docAff(x) !== docAff(k));
     const rep = docAff(k), opts = melanger([rep, ...melanger(faux).map(docAff).filter((x, i, a) => a.indexOf(x) === i).slice(0, 3)]);
     tradQ = docTrad(k); dirQ = docDit(k);
-    ecran("c_document", photo(img), ES_ ? "¿Qué es esto?" : "Was ist das?", {centre: true});
+    ecran("c_document", photo(img), EN_ ? "What is this?" : ES_ ? "¿Qué es esto?" : "Was ist das?", {centre: true});
     boutons($("choix"), opts, rep, ok => juger(ok, rep, docPhrase(k)), tradDocChoix);
     return true;
   },
@@ -487,20 +710,20 @@ const EX = {
     const autres = melanger(DEM.filter(x => x.img && x.img !== d.img && x.v !== d.v)).slice(0, 2);
     const rep = phraseMark(d, false), opts = melanger([rep, ...autres.map(x => phraseMark(x, false))]);
     tradQ = tradMark(d, false); dirQ = d.v;
-    ecran("c_quoi", photo(d.img), ES_ ? "¿Qué hace Mark?" : "Was macht Mark?", {centre: true});
+    ecran("c_quoi", photo(d.img), EN_ ? "What is Mark doing?" : ES_ ? "¿Qué hace Mark?" : "Was macht Mark?", {centre: true});
     $("choix").classList.add("liste");
     boutons($("choix"), opts, rep, ok => juger(ok, rep, rep), o => { const x = DEM.find(y => phraseMark(y, false) === o); return x ? tradMark(x, false) : null; });
     return true;
   },
   // « ein Konto ___ » -> eröffnen ; « ___ una cuenta » -> abrir (les verbes qui iraient aussi ne sont jamais proposes)
   verbe(w){
-    const libres = d => [...new Set(DEM.map(x => x.v))].filter(v => v !== d.v && !(d.aussi_v || []).includes(v) && v !== "warten" && v !== "esperar");
+    const libres = d => [...new Set(DEM.map(x => x.v))].filter(v => v !== d.v && !(d.aussi_v || []).includes(v) && v !== "warten" && v !== "esperar" && v !== "wait");
     const cand = demDe(w).filter(d => d.obj && libres(d).length);
     if (!cand.length) return false;
     const d = hasard(cand); viser(w || {mot: d.v, cat: "verbe"});
     const leurres = melanger(libres(d)).slice(0, 3);
     const opts = melanger([d.v, ...leurres]);
-    const enonce = ES_ ? "___ " + d.obj : d.obj + " ___";
+    const enonce = ES_ || EN_ ? "___ " + d.obj : d.obj + " ___";
     tradQ = tradMark(d, true); dirQ = d.v;
     ecran("c_verbe", d.img ? photo(d.img) : "", "", {centre: true});
     document.querySelector("#zone .enonce").innerHTML = cible(avecTrou(enonce));
@@ -567,7 +790,7 @@ const EX = {
       // « Wo unterschreibt Mark? » -> Unterschrift : la case ou l'on signe, parmi d'autres cases du formulaire
       const rep = CH[c].label, opts = melanger([rep, ...melanger(f.champs.filter(x => x !== c)).slice(0, 3).map(x => CH[x].label)]);
       tradQ = champCourtTrad(c, CH[c].v); dirQ = CH[c].label;
-      ecran("c_formValeur", papierFormulaire(f), ES_ ? "¿Dónde firma Mark?" : "Wo unterschreibt Mark?", {centre: true});
+      ecran("c_formValeur", papierFormulaire(f), EN_ ? "Where does Mark sign?" : ES_ ? "¿Dónde firma Mark?" : "Wo unterschreibt Mark?", {centre: true});
       boutons($("choix"), opts, rep, ok => juger(ok, rep, champCourt(c, CH[c].v)),
               o => { const x = Object.keys(CH).find(y => CH[y].label === o); return x ? tradChamp(x, 1) || glose(champMot(x)) : null; });
       return true;
@@ -575,7 +798,7 @@ const EX = {
     const autres = melanger(CH[c].faux).slice(0, 2).concat(melanger(f.champs.filter(x => x !== c && !CH[x].signature && !memeGroupe(x, c)).map(x => CH[x].v)).slice(0, 1));
     const rep = CH[c].v, opts = melanger([rep, ...autres.filter(x => x !== rep)]);
     tradQ = champCourtTrad(c, rep); dirQ = w && w.cat ? w.mot : CH[c].label;
-    const q = ES_ ? "¿Qué pone en «" + CH[c].label + "»?" : "Was steht bei „" + CH[c].label + "“?";
+    const q = EN_ ? "What does Mark write in the “" + CH[c].label + "” box?" : ES_ ? "¿Qué pone en «" + CH[c].label + "»?" : "Was steht bei „" + CH[c].label + "“?";
     ecran("c_formValeur", papierFormulaire(f, null, c), q, {centre: true});
     boutons($("choix"), opts, rep, ok => juger(ok, rep, champCourt(c, rep)), o => valTrad(c, o) !== o ? valTrad(c, o) : null);
     return true;
@@ -680,9 +903,9 @@ const EX = {
       const t = tirerTermin(hasard(Object.keys(HO)));
       const autreJ = hasard([1, 2, 3, 4, 5].filter(j => j !== t.j));
       avant = papierTermin(t);
-      const p = j => ES_ ? "La cita de Mark es el " + jour(j) + "." : "Marks Termin ist am " + jour(j) + ".";
+      const p = j => EN_ ? "Mark's appointment is on " + jour(j) + "." : ES_ ? "La cita de Mark es el " + jour(j) + "." : "Marks Termin ist am " + jour(j) + ".";
       phrase = p(vrai ? t.j : autreJ); juste = terminPhrase(t);
-      tradQ = terminTrad(t); dirQ = TE.genre + " " + TE.mot;
+      tradQ = terminTrad(t); dirQ = teDit();
     } else {
       const lieux = w ? lieuxDe(w) : null;
       const d = hasard(DEM.filter(x => x.lieu && leurresLieu(x).length && (!lieux || lieux.includes(x.lieu))));
@@ -692,19 +915,133 @@ const EX = {
       avant = d.img ? photo(d.img) : "";
       tradQ = tradMark(d, true); dirQ = LX[d.lieu].nom;
     }
-    const V = ES_ ? ["Verdadero", "Falso"] : ["Richtig", "Falsch"];
+    const V = EN_ ? ["True", "False"] : ES_ ? ["Verdadero", "Falso"] : ["Richtig", "Falsch"];
     const rep = phrase === juste ? V[0] : V[1];
     ecran("c_vraifaux", avant, phrase, {centre: true});
     boutons($("choix"), V, rep, ok => juger(ok, rep, juste));
     return true;
   }
 };
-const SORTES = Object.keys(EX).filter(x => !(ES_ && x === "ordre"));
+// ---------- L'ANGLAIS : ses sortes a lui (pas d'« ordre » : la place du petit mot est allemande) ----------
+const EX_EN = {
+  // l'imperatif poli de l'employe : « Please ___ this form. » -> fill out ; « ___ here, please. » -> Sign
+  // (le verbe seul : jamais signs, signing, to sign)
+  poli(w){
+    const cand = demDe(w).filter(d => d.sie);
+    if (!cand.length) return false;
+    const d = hasard(cand); viser(w || {mot: d.v, cat: "verbe"});
+    const [base, s, ing] = conj(d.v), devant = Math.random() < 0.5;
+    const formes = [base, s, ing, "to " + base].map(f => devant ? f : cap(f)), rep = formes[0];
+    const juste = devant ? "Please " + base + " " + d.sie + "." : cap(base) + " " + d.sie + ", please.";
+    const enonce = devant ? "Please ___ " + d.sie + "." : "___ " + d.sie + ", please.";
+    tradQ = TL ? (d.ts || {})[TL] || null : null; dirQ = d.v;
+    ecran("c_poliEn", "", "", {centre: true});
+    document.querySelector("#zone .enonce").innerHTML = cible(avecTrou(enonce));
+    boutons($("choix"), melanger(formes), rep, ok => { $("trou").textContent = rep; juger(ok, rep, juste); });
+    return true;
+  },
+  // la confirmation de rendez-vous : le jour, l'heure (a.m. / p.m.), le lieu, ou la date ECRITE a l'americaine
+  // (12/01/2026 : December 1st, pas January 12th ; en britannique 01/12/2026 : 1 December)
+  termin(w){
+    if (w && !estTermin(w)) return false;
+    viser(w || nom(TE.mot));
+    const t = tirerTermin(hasard(Object.keys(HO))), sorte = hasard(["jour", "heure", "lieu", "date"]);
+    const jj = t.date.getDate(), mm = t.date.getMonth(), uniques = a => a.filter((x, i) => a.indexOf(x) === i);
+    let q, rep, opts, trads = null;
+    if (sorte === "jour"){
+      q = "What day is Mark's appointment?";
+      const f = j => "on " + jour(j);
+      rep = f(t.j); opts = melanger([t.j, ...melanger([1, 2, 3, 4, 5, 6].filter(j => j !== t.j)).slice(0, 3)]).map(f);
+      trads = o => { const j = [1, 2, 3, 4, 5, 6].find(x => f(x) === o); return j ? jour(j, "fr") : null; };
+    } else if (sorte === "heure"){
+      q = "What time is Mark's appointment?";
+      const f = h => "at " + heureEn(h), inverse = t.h < 12 ? t.h + 12 : t.h - 12;      // 9:30 a.m. / 9:30 p.m.
+      rep = f(t.h);
+      opts = melanger(uniques([rep, f(inverse), ...melanger([t.h + 1, t.h - 1, t.h + 0.5, t.h + 2].filter(h => h >= 7 && h <= 19)).map(f)]).slice(0, 4));
+    } else if (sorte === "lieu"){
+      q = "Where is Mark's appointment?";
+      rep = LX[t.k].dat; opts = melanger([rep, ...Object.keys(LX).filter(k => k !== t.k).map(k => LX[k].dat)]);
+      trads = tradLieuChoix;
+    } else {
+      q = "What is the date of Mark's appointment?";
+      const f = (j, m) => "on " + dateDite(j, m), c = [[jj, mm]];
+      if (jj <= 12 && jj - 1 !== mm) c.push([mm + 1, jj - 1]);                             // la date lue a l'envers
+      melanger([[jj + 1, mm], [jj - 1, mm], [jj + 7, mm], [jj - 7, mm], [jj, mm === 10 ? 11 : 10]]).forEach(x => { if (x[0] >= 1 && x[0] <= 28 && c.length < 4) c.push(x); });
+      rep = f(jj, mm); opts = melanger(uniques(c.map(([j, m]) => f(j, m))));
+      trads = o => { const x = c.find(([j, m]) => f(j, m) === o); return x ? "le " + dateDiteFr(x[0], x[1]) : null; };
+    }
+    tradQ = terminTrad(t); dirQ = TE.mot;
+    ecran("c_termin", papierTermin(t), q, {centre: true});
+    boutons($("choix"), opts, rep, ok => juger(ok, rep, terminPhrase(t)), trads);
+    return true;
+  },
+  // au guichet : la question de l'employe et la reponse de Mark (What's your zip code? -- 02114. ; How do you
+  // spell that? ; When / Where were you born? ; What do you do? -- I'm an intern.)
+  guichet(w){
+    const G = EN.guichet, vise = (c, e) => !w || (w.cat === "verbe" ? e[3] === w.mot : memeMot(champMot(c), w) || memeMot(champAdj(c), w));
+    const cand = [];
+    Object.keys(G).forEach(c => G[c].forEach(e => { if (CH[c] && vise(c, e)) cand.push([c, e]); }));
+    if (!cand.length) return false;
+    const [c, e] = hasard(cand); viser(w || champMot(c));
+    const cherche = Math.random() < 0.5 ? 1 : 0;                                 // 1 : la reponse de Mark ; 0 : la question
+    const rep = e[cherche], autres = [];
+    Object.keys(G).forEach(x => { if (x !== c && !memeGroupe(x, c)) G[x].forEach(f => autres.push(f[cherche])); });
+    const leurres = melanger(autres).filter((x, i, a) => a.indexOf(x) === i && x !== rep).slice(0, 3);
+    tradQ = TL === "fr" ? e[2] : null;
+    ecran("c_guichet", "", "", {liste: true});
+    document.querySelector("#zone .enonce").innerHTML = cible(cherche ? "— " + esc(e[0]) + "<br>— " + trou() : "— " + trou() + "<br>— " + esc(e[1]));
+    boutons($("choix"), melanger([rep, ...leurres]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, e[0] + " " + e[1]); });
+    return true;
+  },
+  // demander poliment : I'd like to ... (jamais I like to, I'd like open), Can I ...?, Could you spell that, please?
+  demander(w){
+    const cand = EN.demander.filter(x => !w || (w.cat === "verbe" && x[0] === w.mot));
+    if (!cand.length) return false;
+    const [v, situation, juste, fautes, fr] = hasard(cand);
+    viser(w || {mot: v, cat: "verbe"});
+    tradQ = TL === "fr" ? fr : null; dirQ = v;
+    ecran("c_demander", "", esc(situation), {centre: true, liste: true});
+    boutons($("choix"), melanger([juste, ...fautes]), juste, ok => juger(ok, juste, juste));
+    return true;
+  },
+  // les petits mots du temps : on Tuesday, at 9:30 a.m., in December, on December 1st ; open from 9 a.m. to 5 p.m.
+  prep(w){
+    const src = [];
+    if (!w || estTermin(w)) src.push("termin");
+    if (!w || (estOuvertMot(w) && w.mot === "open")) src.push("horaire");
+    if (!src.length) return false;
+    let avant, enonce, rep, opts, juste, fr;
+    if (hasard(src) === "termin"){
+      viser(w || nom(TE.mot));
+      const t = tirerTermin(hasard(Object.keys(HO))), jj = t.date.getDate(), mm = t.date.getMonth();
+      const [p, suite, frS] = hasard([["on", jour(t.j), "le " + jour(t.j, "fr")], ["at", heureEn(t.h), "à " + heureFr(t.h)],
+                                      ["in", MOIS_EN[mm], "en " + MOIS_FR[mm]], ["on", dateDite(jj, mm), "le " + dateDiteFr(jj, mm)]]);
+      juste = pt("Mark's appointment is " + p + " " + suite + "."); enonce = pt("Mark's appointment is ___ " + suite + ".");
+      rep = p; opts = ["on", "at", "in"]; avant = papierTermin(t); fr = "Le rendez-vous de Mark est " + frS + "."; dirQ = TE.mot;
+    } else {
+      viser(w || ouvertMot(true));
+      const k = hasard(Object.keys(HO)), j = hasard(Object.keys(HO[k]).map(Number)), [a, b] = HO[k][j][0], de = Math.random() < 0.5;
+      juste = pt("On " + jour(j) + ", " + LX[k].nom + " is open from " + heureEn(a) + " to " + heureEn(b) + ".");
+      enonce = de ? juste.replace(" from ", " ___ ") : juste.replace(" to ", " ___ ");
+      rep = de ? "from" : "to"; opts = de ? ["from", "since", "at"] : ["to", "at", "in"]; avant = papierHoraires(k);
+      fr = "Le " + jour(j, "fr") + ", " + LX[k].trad.fr[0] + " est ouvert" + (LX[k].trad.fr[2] ? "e" : "") + " de " + heureFr(a) + " à " + heureFr(b) + "."; dirQ = "open";
+    }
+    tradQ = TL === "fr" ? fr : null;
+    ecran("c_prep", avant, "", {centre: true});
+    document.querySelector("#zone .enonce").innerHTML = cible(avecTrou(enonce));
+    boutons($("choix"), melanger(opts), rep, ok => { $("trou").textContent = rep; juger(ok, rep, juste); });
+    return true;
+  }
+};
+if (EN_) Object.assign(EX, EX_EN);
+const SORTES = EN_ ? ["document", "entendre", "ou", "quoi", "verbe", "poli", "formLabel", "formValeur", "apporter", "horaire", "termin", "vraifaux", "guichet", "demander", "prep"]
+                   : Object.keys(EX).filter(x => !(ES_ && x === "ordre"));
 
 // ---------- la decouverte ----------
 function textesAVoix(){
   if (!D) return [];
   const t = DEM.map(d => phraseMark(d, true)).concat(Object.keys(DOC).map(docAff), Object.keys(CH).map(c => CH[c].label), DEM.map(d => d.v));
+  if (EN_) Object.keys(EN.guichet).forEach(c => EN.guichet[c].forEach(e => t.push(e[0] + " " + e[1])));   // l'anglais : le guichet
   return [...new Set(t)];
 }
 function decouvrir(){
@@ -717,7 +1054,8 @@ function decouvrir(){
     + '<div class="section">' + T("secDem") + '</div>' + planche("pDem", dems.map(d => ["d:" + d.id, d.img, phraseMark(d, false)]))
     + '<div class="section">' + T("secDoc") + '</div>' + planche("pDoc", docs.map(k => ["k:" + k, DOC[k].img, docAff(k)]))
     + '<div class="section">' + T("secForm") + '</div>' + papierFormulaire(f)
-    + '<p class="regle">' + isoler(T(ES_ ? "regleEs" : "regleDe")) + '</p>';
+    + (EN_ ? '<p class="regle">' + T("regleEn") + '</p><p class="regle">' + T(GB ? "bonGb" : "bonUs") + '</p>'
+           : '<p class="regle">' + isoler(T(ES_ ? "regleEs" : "regleDe")) + '</p>');
   const fiche = (img, mot, sens, dit, trad) => {
     $("fiche").innerHTML = (img ? '<img alt="" src="' + imgSrc(img) + '">' : '<div></div>') + '<div><div class="mot">' + cible(esc(mot)) + '</div><div class="sens">' + esc(sens || "") + '</div>'
       + '<div class="dit">' + cible(esc(dit)) + '</div>' + traduction(trad) + '<div class="ligne"><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div></div>';
@@ -825,9 +1163,13 @@ $("retour").addEventListener("click", () => parler("fermer"));
 $("retour").setAttribute("aria-label", T("retourAria"));
 $("titre").textContent = T("titre");
 document.title = T("titre");
-fetch("demarches/demarches.json?v=1").then(r => r.json()).then(d => {
+function preparer(d){
+  if (EN_) preparerAnglais(d);
   D = d; LX = D.lieux[APPRENDRE]; HO = D.horaires[APPRENDRE]; DOC = D.docs[APPRENDRE]; DEM = D.demarches[APPRENDRE];
   CH = D.champs[APPRENDRE]; FO = D.formulaires[APPRENDRE]; AV = D.avis[APPRENDRE]; TE = D.termin[APPRENDRE]; CJ = D.conj[APPRENDRE];
+}
+fetch("demarches/demarches.json?v=1").then(r => r.json()).then(d => {
+  preparer(d);
   if (Q.get("seance") === "1") demarrer(); else decouvrir();
 });
 </script>

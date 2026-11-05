@@ -282,6 +282,7 @@ plug | la fiche, prise (mâle)
 repair | la réparation
 resident | l'habitant, résident
 sack | le sac (grand)
+square foot | le pied carré (0,09 m²) | pl=square feet | ex=The apartment is 850 square feet. # L'appartement fait 850 pieds carrés.
 """,
 "home_b1_2": """
 shared apartment | la colocation

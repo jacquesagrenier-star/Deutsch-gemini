@@ -424,13 +424,26 @@ l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire angl
     shop assistant, chemist's. Les deux uniformes « POLIZEI » (Elena, Tomás) sont écartés en anglais.
   - **Les loisirs** : play / go / ride, play the guitar, like / love / enjoy + -ing, How often? (twice a week), la
     place des adverbes, Let's / How about -ing / Why don't we. Britannique : football, et la semaine qui commence le lundi.
+  - **Les animaux** : les pluriels irréguliers (mice, geese, sheep, fish), there is / there are, on a farm / in the
+    forest, eats / eat et le générique sans article (Cats eat fish), doesn't, bigger / the biggest, has / has got
+    (britannique), its / it's.
+  - **La météo et les saisons** : It's sunny, It's raining (jamais « It makes »), There's a storm, it's cold / I'm
+    cold, les degrés en lettres, en °F à Boston (le thermomètre aussi) et en °C en britannique, in + mois et
+    saisons, fall / autumn. L'image du parc (la tour de la télévision de Berlin) est écartée.
+  - **Le logement** : there is / there are, in / on / above, How many bedrooms does it have? / has it got?, les
+    annonces de Boston (rent $2,400/mo., security deposit, 2BR/1BA, sq ft) et, en britannique, de Londres (£ pcm,
+    bills incl., m²) ; apartment / flat, elevator / lift, first floor / ground floor.
+  - **Les démarches, réduites à Boston** : la banque, le cabinet médical et les papiers (make an appointment,
+    Please fill out this form, Could you spell that?, on / at / in, les dates MM/DD/YYYY). Le Bürgeramt,
+    l'Anmeldung, la Krankenkasse et deux images (des euros, une carte d'assurance allemande) sont écartés.
   - **Les transports : FERMÉ en anglais** (4 nov.) : 11 images sur 13 montrent Berlin (rames jaunes de la BVG, ICE,
     panneaux « H », taxi allemand). Jacques décide : une version réduite en HTML, des images de Boston, ou rien.
 - **Contrôle** : `ANGLAIS` dans `tests/themes_illustres.py` (le thème y passe en `en` et en `en&variante=gb`).
 - **Mots ajoutés au corpus anglais le 4 nov.** : outgoing, rude, messy, tiring, scared, worrying (adjectifs) ; throat,
   sore throat, toothache, backache, stomachache (stomach ache), earache, winter hat (woolly hat), swim trunks
   (swimming trunks), fries (chips), pretzel, pound, pharmacist, bus driver, mail carrier, bike shop (noms) ; crawl ;
-  on top of, over, onto, across from, opposite (prépositions).
+  on top of, over, onto, across from, opposite (prépositions) ; puis foggy, puppy, children's room, cabinet (cupboard),
+  square foot, date of birth, place of birth, fill out (le lot 2).
 
 ### Mettre un thème en anglais : la marche à suivre (4 nov. 2026, les treize thèmes suivants)
 
