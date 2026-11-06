@@ -8503,6 +8503,63 @@ body[data-theme="dark"] .cp-passage-ok svg{stroke:#8ED3AA;}
 #home.palier-1:not(.vue-contenu) #ecouteLigneAccueil,
 #home.palier-1:not(.vue-contenu) #carteVocab, #home.palier-2:not(.vue-contenu) #carteVocab,
 #home.palier-1.sans-gardes #seanceGardes, #home.palier-2.sans-gardes #seanceGardes{display:none !important;}
+/* 6 nov. 2026 : L'ACCUEIL EN TUILES (decision de Jacques, variante C de .claude/maquette-tuiles-accueil.html,
+   artefact HJ3hPdxmjkTdwcaFwRUQCn). « Il me semble que ca libere pas vraiment d'espace » : sous la seance, une seule
+   grille de grandes tuiles remplace les deux rubans, les suggestions et les quatre lignes ; le tableau devient une bande
+   courte. L'accueil complet passe de 1206 a 711 px. Le rendu est celui de l'image de Gemini qu'il a envoyee (« plus
+   distingue »), refait en CSS : degrade releve au pixel, reflet, filet blanc a 5,6 %, trait de lumiere sur la bande,
+   ombre douce, leger relief. Sous le libelle de l'ambre, une vitre legerement fumee : le blanc s'y lit a 4,6 (la bande
+   eclaircie de l'image ne donnait que 2,7). Translucide comme la carte de la seance (Jacques : « la transparence comme sur la seance du jour ») : 75 a 95 % d'opacite, flou de verre. L'ambre et l'ardoise alternent selon la place (majGrilleAccueil).
+   ⚠️ Les rubans et les lignes RESTENT dans le DOM : caches ici, ils servent a Tout le contenu, aux tests et au parcours. */
+#home #grilleAccueil{grid-column:1 / -1; display:flex; flex-wrap:wrap; justify-content:center; gap:12px;}
+#home #grilleAccueil.hidden, #home.vue-contenu #grilleAccueil{display:none !important;}
+#home.grille-c:not(.vue-contenu) #suggAccueil, #home.grille-c:not(.vue-contenu) #explorerScenes,
+#home.grille-c:not(.vue-contenu) #explorerThemes, #home.grille-c:not(.vue-contenu) #ecouteLigneAccueil,
+#home.grille-c:not(.vue-contenu) #episodeLigne, #home.grille-c:not(.vue-contenu) #seanceGardes,
+#home.grille-c:not(.vue-contenu) #tuileToutContenu{display:none !important;}
+.tg{position:relative; display:block; flex:0 0 auto; width:calc((100% - 24px) / 3); aspect-ratio:1 / 1; padding:0; border:0; cursor:pointer;
+    border-radius:5.6%; overflow:hidden; color:#fff; font:inherit; -webkit-tap-highlight-color:transparent;
+    background:linear-gradient(150deg, rgba(249,169,19,0.75) 0%, rgba(239,144,23,0.81) 28%, rgba(227,114,27,0.86) 55%, rgba(219,94,26,0.91) 78%, rgba(212,76,21,0.95) 100%);
+    box-shadow:0 10px 20px -6px rgba(20,28,40,.30), 0 3px 6px rgba(20,28,40,.12),
+               inset 0 1px 0 rgba(255,255,255,.35), inset 0 -1px 0 rgba(0,0,0,.18), inset 1px 0 0 rgba(255,255,255,.10), inset -1px 0 0 rgba(0,0,0,.08);
+    -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
+    transition:transform .12s ease;}
+.tg.tg-ardoise{background:linear-gradient(180deg, rgba(86,93,101,0.78) 0%, rgba(58,65,75,0.87) 50%, rgba(42,49,59,0.96) 100%);}
+.tg.hidden{display:none !important;}
+.tg:active{transform:scale(.97);}
+.tg:focus-visible{outline:2px solid #E8A23A; outline-offset:3px;}
+.tg::before{content:""; position:absolute; inset:0 0 50% 0; pointer-events:none; z-index:1;
+    background:linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,0));}
+.tg-filet{position:absolute; inset:5.6%; border-radius:4.6%; border:1.5px solid rgba(255,255,255,.94); pointer-events:none; z-index:3;}
+.tg-ico{position:absolute; left:50%; top:41%; width:48%; transform:translate(-50%,-50%); z-index:2;}
+.tg-ico svg{display:block; width:100%; height:auto; overflow:visible;}
+.tg-ico svg *{vector-effect:non-scaling-stroke; stroke-width:1.6px;}
+.tg-ambre .tg-ico svg{filter:drop-shadow(0 1px 1px rgba(120,40,0,.30));}
+.tg-lib{position:absolute; left:5.6%; right:5.6%; bottom:5.6%; min-height:26%; box-sizing:border-box; z-index:2;
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:3px 5px;
+    background:rgba(0,0,0,.20); box-shadow:inset 0 1px 0 rgba(255,255,255,.42);
+    font-size:9.5px; font-weight:700; letter-spacing:.05em; line-height:1.15; text-transform:uppercase; overflow-wrap:anywhere; hyphens:auto;}
+.tg-ambre .tg-lib{text-shadow:0 1px 1px rgba(110,35,0,.30);}
+.tg-ardoise .tg-lib{background:rgba(255,255,255,.12);}
+html[lang="fa"] .tg-lib, html[lang="ar"] .tg-lib, html[dir="rtl"] .tg-lib{letter-spacing:0; text-transform:none; font-size:11px;}
+body[data-theme="dark"] .tg{box-shadow:0 10px 22px -6px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.10), inset 0 1px 0 rgba(255,255,255,.30), inset 0 -1px 0 rgba(0,0,0,.25);}
+/* le tableau en bande courte : la vignette, son titre, le rond › */
+#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau:not(.hidden){display:flex !important; flex-direction:row !important; align-items:center !important;
+    gap:12px !important; padding:8px 10px 8px 8px !important; border-radius:22px !important; overflow:visible !important;}
+#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau .vignette-tableau{flex:0 0 64px !important; width:64px !important; height:52px !important;
+    padding:2px !important; border-radius:12px !important;}
+#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau .vignette-tableau img{height:48px !important; border-radius:10px !important;}
+#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau .vignette-pct{display:none !important;}
+#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau > div:not([class]){display:block !important; min-width:0; flex:1 1 auto;}
+#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau > div:not([class]) strong{display:block; font-size:14.5px;}
+#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau .raccourci-sous{display:block; font-size:11.5px; opacity:.75;}
+#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau::after{content:"›"; flex:0 0 40px; width:40px; height:40px; margin-inline-start:auto; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:600; line-height:1; padding-bottom:3px; box-sizing:border-box; color:#fff;
+    background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%);
+    box-shadow:inset 0 0 0 2px rgba(0,0,0,.35), inset 0 0 14px rgba(255,255,255,.16), inset 0 1.5px 0 rgba(255,255,255,.55), 0 8px 18px rgba(20,16,10,.25);}
+html[dir="rtl"] #home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau::after{content:"‹";}
+body[data-theme="dark"] #home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau::after{color:#2A1A05;
+    background:linear-gradient(180deg, rgba(250,206,128,.86) 0%, rgba(237,169,60,.80) 52%, rgba(208,138,28,.88) 100%);}
 #home #seancePilule.niveaux-replies > .pa-niveaux{display:none !important;}
 #home #seancePilule .pa-changer{order:3; justify-self:center; border:0; background:none; font:inherit; font-size:13px; font-weight:700;
     color:var(--encre-v); padding:4px 10px; border-radius:999px; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
@@ -9924,6 +9981,16 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
         <div class="sugg-accueil hidden" id="suggAccueil">
             <div class="sugg-accueil-titre" data-i18n="sugg_titre">Pour aller plus loin aujourd'hui</div>
             <div class="sugg-accueil-liste" id="suggAccueilListe"></div>
+        </div>
+        <!-- 6 nov. 2026 : L'ACCUEIL EN TUILES (variante C, decision de Jacques). Une tuile par entree ; chacune
+             s'affiche quand la ligne ou le ruban qu'elle remplace s'afficherait (majGrilleAccueil). -->
+        <div class="grille-accueil hidden" id="grilleAccueil">
+            <button type="button" class="tg" data-tg="scenes" onclick="openOrbPanel('scenes')"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="2.6"/><path d="M3.5 16.2h2.6v-3.6l2.1-2 2.1 2v3.6h1.6V10h3.2v2.7h1.6v-1.6h2.3v5.1"/><circle cx="15.6" cy="7.2" r="1.4"/><path d="M3.5 16.2h17"/></svg></span><span class="tg-lib" data-i18n="orb_scenes_title">Scènes</span><span class="tg-filet" aria-hidden="true"></span></button>
+            <button type="button" class="tg" data-tg="themes" onclick="openOrbPanel('themes_illustres')"><span class="tg-ico"><svg viewBox="54 73 490 490" fill="none" stroke="currentColor" stroke-width="30.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="172" cy="113" r="30"/><path d="M118 207C118 179 142 161 172 161s54 18 54 46"/><path d="M300 553C298 450 300 330 344 214"/><path d="M163 233C230 240 290 280 310 345"/><path d="M79 364C175 360 268 410 300 520"/><path d="M495 330C410 336 326 378 300 470"/><path d="M455 291C418 262 391 240 391 209c0-23 17-39 38-39 13 0 22 7 26 19 4-12 13-19 26-19 21 0 38 16 38 39 0 31-27 53-64 82z"/></svg></span><span class="tg-lib" data-i18n="tuile_themes">Thèmes</span><span class="tg-filet" aria-hidden="true"></span></button>
+            <button type="button" class="tg" data-tg="ecouter" onclick="ecouterDepuisAccueil()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5.5 10.2v3.6M8.75 7.6v8.8M12 4.6v14.8M15.25 7.6v8.8M18.5 10.2v3.6"/></svg></span><span class="tg-lib" data-i18n="orb_ecouter_title">Écouter</span><span class="tg-filet" aria-hidden="true"></span></button>
+            <button type="button" class="tg" data-tg="episodes" onclick="episodeDepuisAccueil()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="10.4" width="18" height="10.1" rx="1.6"/><path d="M3 13.6h18"/><path d="M7.4 10.4 5.6 13.6M11.8 10.4 10 13.6M16.2 10.4 14.4 13.6M20.6 10.4 18.8 13.6"/><g transform="rotate(-13 3.2 10)"><rect x="3.2" y="6.7" width="17.8" height="3.3" rx=".7"/><path d="M7.4 6.7 5.7 10M11.8 6.7 10.1 10M16.2 6.7 14.5 10"/></g></svg></span><span class="tg-lib" data-i18n="ep_tuile">Mes épisodes</span><span class="tg-filet" aria-hidden="true"></span></button>
+            <button type="button" class="tg" data-tg="gardes" onclick="ouvrirGardes()"><span class="tg-ico"><svg viewBox="40 60 450 450" fill="none" stroke="currentColor" stroke-width="28.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M265 253C228 222 172 208 110 214V421C172 415 228 428 265 455 302 428 358 415 420 421V214C358 208 302 222 265 253z"/><path d="M265 253V455"/><path d="M110 245H78V463C150 459 222 467 265 497 308 467 380 459 452 463V245H420"/><path d="M265.00 76.00 L279.69 111.77 L318.26 114.70 L288.78 139.73 L297.92 177.30 L265.00 157.00 L232.08 177.30 L241.22 139.73 L211.74 114.70 L250.31 111.77Z"/></svg></span><span class="tg-lib" data-i18n="gardes_titre">Mis de côté</span><span class="tg-filet" aria-hidden="true"></span></button>
+            <button type="button" class="tg" data-tg="tout" onclick="ouvrirToutLeContenu()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="4" width="7" height="7" rx="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.8"/></svg></span><span class="tg-lib" data-i18n="accueil_tout_titre">Tout le contenu</span><span class="tg-filet" aria-hidden="true"></span></button>
         </div>
         <!-- v799 : EXPLORER LES SCENES, a part de la seance. Jacques voulait voir
              qu'il y a beaucoup de scenes (« peut-etre une cinquantaine ») et
@@ -16033,7 +16100,7 @@ const I18N = {
         ep_regle: "Un jour de pratique = au moins 10 exercices dans la journée. Les jours n'ont pas besoin de se suivre.",
         ep_prochain: "Prochain épisode : {titre}",
         ep_nouveau: "Nouveau",
-        accueil_tout_titre: "Tout le contenu",
+        accueil_tout_titre: "Tout le contenu", tuile_themes: "Thèmes",
         accueil_tout_sous: "Mots, grammaire, pratique",
         accueil_gardes_0: "Vide pour l'instant",
         accueil_gardes_1: "1 mot à revoir",
@@ -17725,7 +17792,7 @@ const I18N = {
         ep_regle: "A practice day = at least 10 exercises in one day. The days don't need to be in a row.",
         ep_prochain: "Next episode: {titre}",
         ep_nouveau: "New",
-        accueil_tout_titre: "All content",
+        accueil_tout_titre: "All content", tuile_themes: "Topics",
         accueil_tout_sous: "Words, grammar, practice",
         accueil_gardes_0: "Empty for now",
         accueil_gardes_1: "1 word to review",
@@ -19361,7 +19428,7 @@ const I18N = {
         ep_regle: "Bir pratik günü = bir günde en az 10 alıştırma. Günlerin art arda olması gerekmez.",
         ep_prochain: "Sonraki bölüm: {titre}",
         ep_nouveau: "Yeni",
-        accueil_tout_titre: "Tüm içerik",
+        accueil_tout_titre: "Tüm içerik", tuile_themes: "Konular",
         accueil_tout_sous: "Kelimeler, dilbilgisi, pratik",
         accueil_gardes_0: "Şimdilik boş",
         accueil_gardes_1: "Tekrar edilecek 1 kelime",
@@ -20275,7 +20342,7 @@ const I18N = {
         ep_regle: "День практики = щонайменше 10 вправ за день. Дні не мусять іти поспіль.",
         ep_prochain: "Наступний епізод: {titre}",
         ep_nouveau: "Нове",
-        accueil_tout_titre: "Усі розділи",
+        accueil_tout_titre: "Усі розділи", tuile_themes: "Теми",
         accueil_tout_sous: "Слова, граматика, практика",
         accueil_gardes_0: "Поки що порожньо",
         accueil_gardes_1: "1 слово до повторення",
@@ -22334,7 +22401,7 @@ const I18N = {
         ep_regle: "یک روز تمرین = دست‌کم ۱۰ تمرین در یک روز. لازم نیست روزها پشت سر هم باشند.",
         ep_prochain: "قسمت بعدی: {titre}",
         ep_nouveau: "تازه",
-        accueil_tout_titre: "همهٔ بخش‌ها",
+        accueil_tout_titre: "همهٔ بخش‌ها", tuile_themes: "موضوع‌ها",
         accueil_tout_sous: "واژه‌ها، دستور زبان، تمرین",
         accueil_gardes_0: "فعلاً خالی است",
         accueil_gardes_1: "۱ واژه برای مرور",
@@ -23848,7 +23915,7 @@ const I18N = {
         ep_regle: "يوم التدريب = 10 تمارين على الأقل في اليوم. لا يلزم أن تكون الأيام متتالية.",
         ep_prochain: "الحلقة التالية: {titre}",
         ep_nouveau: "جديد",
-        accueil_tout_titre: "كل المحتوى",
+        accueil_tout_titre: "كل المحتوى", tuile_themes: "مواضيع",
         accueil_tout_sous: "الكلمات والقواعد والتدريب",
         accueil_gardes_0: "فارغ حاليًا",
         accueil_gardes_1: "كلمة واحدة للمراجعة",
@@ -26067,7 +26134,7 @@ const I18N = {
         ep_regle: "Um dia de prática = pelo menos 10 exercícios no dia. Os dias não precisam ser seguidos.",
         ep_prochain: "Próximo episódio: {titre}",
         ep_nouveau: "Novo",
-        accueil_tout_titre: "Todo o conteúdo",
+        accueil_tout_titre: "Todo o conteúdo", tuile_themes: "Temas",
         accueil_tout_sous: "Palavras, gramática, prática",
         accueil_gardes_0: "Vazio por enquanto",
         accueil_gardes_1: "1 palavra para rever",
@@ -27766,7 +27833,7 @@ const I18N = {
         ep_regle: "Dzień ćwiczeń = co najmniej 10 ćwiczeń w ciągu dnia. Dni nie muszą następować po sobie.",
         ep_prochain: "Następny odcinek: {titre}",
         ep_nouveau: "Nowy",
-        accueil_tout_titre: "Cała zawartość",
+        accueil_tout_titre: "Cała zawartość", tuile_themes: "Tematy",
         accueil_tout_sous: "Słowa, gramatyka, ćwiczenia",
         accueil_gardes_0: "Na razie pusto",
         accueil_gardes_1: "1 słowo do powtórki",
@@ -29468,7 +29535,7 @@ const I18N = {
         ep_regle: "День практики = не меньше 10 упражнений за день. Дни не обязательно идут подряд.",
         ep_prochain: "Следующий эпизод: {titre}",
         ep_nouveau: "Новое",
-        accueil_tout_titre: "Все разделы",
+        accueil_tout_titre: "Все разделы", tuile_themes: "Темы",
         accueil_tout_sous: "Слова, грамматика, практика",
         accueil_gardes_0: "Пока пусто",
         accueil_gardes_1: "1 слово на повторение",
@@ -31169,7 +31236,7 @@ const I18N = {
         ep_regle: "Ein Lerntag = mindestens 10 Übungen an einem Tag. Die Tage müssen nicht aufeinanderfolgen.",
         ep_prochain: "Nächste Folge: {titre}",
         ep_nouveau: "Neu",
-        accueil_tout_titre: "Alle Inhalte",
+        accueil_tout_titre: "Alle Inhalte", tuile_themes: "Themen",
         accueil_tout_sous: "Wörter, Grammatik, Anwenden",
         accueil_gardes_0: "Noch leer",
         accueil_gardes_1: "1 Wort zu wiederholen",
@@ -32881,7 +32948,7 @@ const I18N = {
         ep_regle: "Un día de práctica = al menos 10 ejercicios en el día. Los días no tienen que ser seguidos.",
         ep_prochain: "Próximo episodio: {titre}",
         ep_nouveau: "Nuevo",
-        accueil_tout_titre: "Todo el contenido",
+        accueil_tout_titre: "Todo el contenido", tuile_themes: "Temas",
         accueil_tout_sous: "Palabras, gramática, práctica",
         accueil_gardes_0: "Vacío por ahora",
         accueil_gardes_1: "1 palabra para repasar",
@@ -49203,6 +49270,54 @@ function majPaliersAccueil(){
         try{ n = p === 1 ? majSuggestionsAccueil() : 0; }catch(e){ n = 0; }
         bloc.classList.toggle("hidden", !n);
     }
+    try{ majGrilleAccueil(); }catch(e){}
+}
+// 6 nov. 2026 : L'ACCUEIL EN TUILES (essai accueil_grille, decision de Jacques). Chaque tuile suit l'element qu'elle
+// remplace : elle s'affiche s'il s'afficherait sans la grille. On le demande au navigateur plutot que de recopier
+// ses regles, car elles sont nombreuses (« hidden », listes blanches de l'anglais, du japonais et du portugais).
+// Les paliers 1 et 2 cachent les rubans et Ecouter a qui commence : la grille, elle, les montre des le premier jour
+// (c'est ce que Jacques a choisi sur la maquette), sauf Mis de cote tant qu'il est vide, comme avant.
+const GRILLE_SOURCES = {scenes:"explorerScenes", themes:"explorerThemes", ecouter:"ecouteLigneAccueil",
+    episodes:"episodeLigne", gardes:"seanceGardes", tout:"tuileToutContenu"};
+let grilleObservee = false, grilleMajPrevue = false;
+function sourceAffichee(el, home){
+    for(let n = el; n && n !== home; n = n.parentElement){
+        if(getComputedStyle(n).display === "none") return false;
+    }
+    return true;
+}
+function majGrilleAccueil(){
+    const home = document.getElementById("home"), g = document.getElementById("grilleAccueil");
+    if(!home || !g) return;
+    let actif = false;
+    try{ actif = essaiActif("accueil_grille"); }catch(e){}
+    if(!actif){ home.classList.remove("grille-c"); g.classList.add("hidden"); return; }
+    const paliers = ["palier-1", "palier-2"].filter(c => home.classList.contains(c));
+    const vide = paliers.length > 0 && home.classList.contains("sans-gardes");
+    home.classList.remove("grille-c", ...paliers);
+    const vis = {};
+    Object.keys(GRILLE_SOURCES).forEach(k => {
+        const el = document.getElementById(GRILLE_SOURCES[k]);
+        vis[k] = !!el && sourceAffichee(el, home);
+    });
+    home.classList.add("grille-c", ...paliers);
+    if(vide) vis.gardes = false;
+    let i = 0;
+    g.querySelectorAll(".tg").forEach(b => {
+        const v = !!vis[b.dataset.tg];
+        b.classList.toggle("hidden", !v);
+        if(v){ b.classList.toggle("tg-ambre", i % 2 === 0); b.classList.toggle("tg-ardoise", i % 2 === 1); i++; }
+    });
+    g.classList.toggle("hidden", !i);
+    if(!grilleObservee && typeof MutationObserver === "function"){
+        grilleObservee = true;
+        const mo = new MutationObserver(() => {
+            if(grilleMajPrevue) return;
+            grilleMajPrevue = true;
+            requestAnimationFrame(() => { grilleMajPrevue = false; try{ majGrilleAccueil(); }catch(e){} });
+        });
+        Object.values(GRILLE_SOURCES).forEach(id => { const el = document.getElementById(id); if(el) mo.observe(el, {attributes:true, attributeFilter:["class"]}); });
+    }
 }
 // « Changer de niveau » : la rangee 🌱 A1 ... C1 repliee aux paliers 1 et 2.
 function majChangerNiveau(p){
@@ -50922,6 +51037,12 @@ function fermerLignePlacement(ev){
 // TOUT LE MONDE, essai ou pas. C'est le role de tests/syntaxe.js, avant
 // chaque envoi.
 const ESSAIS = {
+    // EN PRODUCTION le 6 nov. 2026 -- Jacques : « Oui, je prefere C ». Voir majGrilleAccueil().
+    accueil_grille: {
+        etat: "tous",
+        titre: "L'accueil en tuiles",
+        desc: "Sous la séance, une seule grille de tuiles (Scènes, Thèmes, Écouter, Mes épisodes, Mis de côté, Tout le contenu) à la place des rubans et des lignes ; le tableau en bande courte."
+    },
     // EN PRODUCTION le 22 oct. 2026 (v917) en espagnol, en allemand depuis la v931.
     // Jacques : une surprise pour Nicole et Daniel -- le 10e exercice d'une
     // journee debloque l'episode 1, puis un episode tous les 7 jours de pratique.
