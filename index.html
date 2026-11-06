@@ -6814,6 +6814,141 @@ body[data-theme="dark"] .bilan-notion.fait .bilan-go{color:#7fd3a5;}
 .bilan-bravo, .bilan-fin{margin:0; font-size:14px; font-weight:700; line-height:1.4;}
 .bilan-fin{margin-top:16px; padding:10px 12px; border-radius:12px; background:rgba(46,139,87,.12); color:#1f6b42; text-align:center;}
 body[data-theme="dark"] .bilan-carte{background:#232a34; color:#F2F2F6;}
+/* ============ LE TEST DE NIVEAU (essai « placement », 6 nov. 2026) ============
+   Au style de la maquette (https://claude.ai/artifact/T5crAvJXZqmYTfrgFD15uv) : le verre de
+   l'accueil (--v-fond, --v-liser, --encre-v, --gris-v, --ambre-v), jour et nuit. */
+#placement{--plc-trait:rgba(28,36,48,.12); --plc-fort:rgba(255,255,255,.82); --plc-ambre-doux:rgba(232,162,58,.16);
+    --plc-vert:#1F7A55; --plc-vert-doux:rgba(31,122,85,.12); --plc-sarcelle:#0B7268; --plc-sarcelle-doux:rgba(13,148,136,.12);
+    color:var(--encre-v);}
+body[data-theme="dark"] #placement{--plc-trait:rgba(255,255,255,.14); --plc-fort:rgba(28,46,62,.92); --plc-ambre-doux:rgba(240,169,60,.16);
+    --plc-vert:#8ED3AA; --plc-vert-doux:rgba(142,211,170,.13); --plc-sarcelle:#6FD3C7; --plc-sarcelle-doux:rgba(111,211,199,.12);}
+#plcCorps{position:relative; max-width:440px; margin:0 auto; min-height:calc(100vh - 140px); display:flex; flex-direction:column; gap:12px; padding:6px 2px 18px;}
+#placement h2, #placement h3{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing:-.015em; margin:0; color:var(--encre-v);}
+.plc-haut{display:flex; align-items:center; gap:10px;}
+.plc-rond{width:40px; height:40px; flex:none; border:0; border-radius:50%; background:var(--v-fond); box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre);
+    color:var(--encre-v); font:inherit; font-size:18px; font-weight:700; cursor:pointer; display:grid; place-items:center; margin:0; padding:0;}
+.plc-prog{flex:1; height:8px; border-radius:9px; background:var(--plc-trait); overflow:hidden;}
+.plc-prog i{display:block; height:100%; border-radius:9px; background:#E8A23A; transition:width .3s;}
+.plc-min{font-size:12px; font-weight:700; color:var(--gris-v); white-space:nowrap; font-variant-numeric:tabular-nums;}
+.plc-type, .plc-k{font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--ambre-v);}
+.plc-q{font-size:21px; font-weight:800; line-height:1.15;}
+.plc-mot{border-radius:24px; background:var(--plc-fort); box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre); padding:24px 14px; text-align:center;}
+.plc-mot b{font-family:'Bricolage Grotesque', -apple-system, sans-serif; font-size:31px; font-weight:800; line-height:1.1; overflow-wrap:anywhere;}
+.plc-phrase{border-radius:20px; background:var(--plc-fort); box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre); padding:16px 14px; display:grid; gap:6px;}
+.plc-phrase b{font-family:'Bricolage Grotesque', -apple-system, sans-serif; font-size:20px; font-weight:700; line-height:1.3;}
+.plc-phrase u{text-decoration:none; display:inline-block; min-width:62px; border-bottom:2.5px solid #E8A23A; margin:0 2px;}
+.plc-phrase small{font-size:12.5px; color:var(--gris-v);}
+.plc-phrase .plc-indice{font-weight:700; color:var(--ambre-v);}
+.plc-hp{width:96px; height:96px; border:0; border-radius:50%; margin:6px auto 0; padding:0; display:grid; place-items:center; cursor:pointer;
+    background:var(--plc-fort); box-shadow:inset 1.5px 1.5px 0 var(--v-liser), 0 6px 16px rgba(20,40,60,.14);}
+.plc-hp svg{width:40px; height:40px; stroke:var(--encre-v); fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;}
+.plc-hp-l{text-align:center; font-size:12px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--gris-v);}
+.plc-opts{display:grid; gap:8px;}
+.plc-opts.deux{grid-template-columns:1fr 1fr;}
+.plc-opt{border:0; margin:0; border-radius:18px; background:var(--v-fond); box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre); padding:13px 14px;
+    font:inherit; font-weight:700; font-size:15px; line-height:1.25; text-align:start; color:var(--encre-v); cursor:pointer;}
+.plc-opts.deux .plc-opt{text-align:center; font-family:'Bricolage Grotesque', -apple-system, sans-serif; font-size:18px;}
+.plc-opt.long{font-weight:600; font-size:14px;}
+.plc-opt:active{box-shadow:inset 0 0 0 2px var(--encre-v), var(--v-ombre);}
+.plc-pied{margin-top:auto; display:grid; gap:9px; padding-top:6px;}
+.plc-nsp{border:0; margin:0; background:none; box-shadow:inset 0 0 0 1.5px var(--plc-trait); border-radius:999px; padding:9px; font:inherit; font-size:14px; font-weight:700; color:var(--gris-v); cursor:pointer;}
+.plc-cta{border:0; margin:0; border-radius:999px; background:#1C2430; color:#fff; font:inherit; font-weight:800; font-size:15.5px; padding:14px; width:100%; cursor:pointer;}
+body[data-theme="dark"] .plc-cta{background:#E8A23A; color:#1C2430;}
+.plc-cta2{border:0; margin:0; border-radius:999px; background:var(--v-fond); box-shadow:inset 1.5px 1.5px 0 var(--v-liser); color:var(--encre-v); font:inherit; font-weight:800; font-size:14.5px; padding:12px; width:100%; cursor:pointer;}
+.plc-lien{border:0; margin:0; background:none; font:inherit; font-size:14px; font-weight:700; color:var(--ambre-v); cursor:pointer; padding:6px;}
+.plc-attente{margin:auto; color:var(--gris-v); font-weight:700;}
+.plc-intro-ic{width:76px; height:76px; border-radius:24px; background:var(--plc-ambre-doux); display:grid; place-items:center; margin:16px auto 4px;}
+.plc-intro-ic svg{width:40px; height:40px; stroke:var(--ambre-v); fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;}
+.plc-intro-t{font-size:27px !important; font-weight:800; text-align:center; line-height:1.1;}
+.plc-intro-p{text-align:center; color:var(--gris-v); margin:0; font-size:14.5px;}
+.plc-puces{list-style:none; margin:0; padding:12px 14px; display:grid; gap:10px; border-radius:20px; background:var(--v-fond); box-shadow:inset 1.5px 1.5px 0 var(--v-liser);}
+.plc-puces li{display:grid; grid-template-columns:26px 1fr; gap:8px; align-items:center; font-size:14px; font-weight:600;}
+.plc-puces svg{width:22px; height:22px; stroke:var(--ambre-v); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+.plc-res{display:grid; justify-items:center; gap:6px; text-align:center;}
+.plc-medaille{width:96px; height:96px; border-radius:50%; display:grid; place-items:center; background:radial-gradient(circle at 35% 30%,#F6CF8C,#E8A23A 58%,#A86A0E);
+    box-shadow:0 8px 18px rgba(120,70,0,.25), inset 2px 2px 0 rgba(255,255,255,.5);}
+.plc-medaille b{font-family:'Bricolage Grotesque', -apple-system, sans-serif; font-size:36px; font-weight:800; color:#1C2430;}
+.plc-medaille.pp b{font-size:40px;}
+.plc-res h2{font-size:23px; font-weight:800;}
+.plc-res p{margin:0; font-size:13.5px; color:var(--gris-v); max-width:32ch;}
+.plc-bilan{border-radius:20px; padding:11px 12px; background:var(--v-fond); box-shadow:inset 1.5px 1.5px 0 var(--v-liser); display:grid; gap:7px;}
+.plc-bilan h3{font-family:inherit !important; font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--gris-v) !important;}
+.plc-lv{display:grid; grid-template-columns:30px 1fr auto; gap:8px; align-items:center; font-size:13px;}
+.plc-lv > b{font-family:'Bricolage Grotesque', -apple-system, sans-serif; font-size:14px;}
+.plc-pts{display:flex; gap:4px; flex-wrap:wrap;}
+.plc-pts i{width:13px; height:13px; border-radius:50%; box-shadow:inset 0 0 0 1.5px var(--plc-trait);}
+.plc-pts i.f{background:var(--plc-sarcelle); box-shadow:none;}
+.plc-lv small{font-size:12px; color:var(--gris-v); font-variant-numeric:tabular-nums;}
+.plc-note{font-size:12px; color:var(--gris-v); font-style:italic;}
+.plc-puc{display:flex; flex-wrap:wrap; gap:5px;}
+.plc-puc span{font-size:12px; font-weight:700; padding:3px 9px; border-radius:999px;}
+.plc-puc .ok{background:var(--plc-vert-doux); color:var(--plc-vert);}
+.plc-puc .ko{background:var(--plc-ambre-doux); color:var(--ambre-v);}
+.plc-connus{border-radius:16px; padding:9px 11px; background:var(--plc-sarcelle-doux); font-size:12.5px; line-height:1.4;}
+.plc-connus summary{cursor:pointer; list-style:none;}
+.plc-connus summary::-webkit-details-marker{display:none;}
+.plc-connus summary b{color:var(--plc-sarcelle);}
+.plc-connus ul{margin:8px 0 0; padding:0 0 0 18px; display:grid; gap:3px;}
+.plc-connus li.ok::marker{content:"✓  "; color:var(--plc-vert);}
+.plc-connus li.ko::marker{content:"↻  "; color:var(--ambre-v);}
+.plc-voile{position:fixed; inset:0; background:rgba(10,20,30,.32); z-index:40;}
+.plc-feuille{position:fixed; left:0; right:0; bottom:0; z-index:41; max-width:480px; margin:0 auto; border-radius:24px 24px 0 0;
+    padding:16px 16px calc(20px + env(safe-area-inset-bottom, 0px)); background:var(--plc-fort); box-shadow:0 -8px 24px rgba(10,20,30,.16), inset 0 1.5px 0 var(--v-liser);
+    display:grid; gap:8px; max-height:88vh; overflow:auto;}
+body[data-theme="dark"] .plc-feuille{background:#1A2E40;}
+.plc-poignee{width:40px; height:5px; border-radius:5px; background:var(--plc-trait); justify-self:center;}
+.plc-feuille h3{font-size:19px;}
+.plc-ligne-niv{border:0; margin:0; display:grid; grid-template-columns:44px 1fr; gap:10px; align-items:center; border-radius:16px; padding:8px 10px;
+    background:var(--v-fond); color:var(--encre-v); font:inherit; text-align:start; cursor:pointer;}
+.plc-ligne-niv > b{font-family:'Bricolage Grotesque', -apple-system, sans-serif; font-size:18px; text-align:center;}
+.plc-ligne-niv small{font-size:12px; color:var(--gris-v); line-height:1.3;}
+.plc-ligne-niv em{font-style:normal; font-weight:800; color:var(--ambre-v);}
+.plc-ligne-niv.prop{box-shadow:inset 0 0 0 2px #E8A23A;}
+.plc-ligne-niv.on{background:#1C2430; color:#fff;}
+.plc-ligne-niv.on small, .plc-ligne-niv.on em{color:rgba(255,255,255,.85);}
+body[data-theme="dark"] .plc-ligne-niv.on{background:#E8A23A; color:#1C2430;}
+body[data-theme="dark"] .plc-ligne-niv.on small, body[data-theme="dark"] .plc-ligne-niv.on em{color:#1C2430;}
+/* La bienvenue a deux portes : les six boutons de la v699 restent, caches. */
+#setupNiveauGroup.avec-portes > .setup-niveaux, #setupNiveauGroup.avec-portes > .setup-niveau-note{display:none;}
+.setup-portes{display:grid; gap:8px;}
+.setup-porte{border:1.5px solid rgba(30,41,59,.25); border-radius:18px; background:rgba(255,255,255,.5); padding:12px 14px; display:grid; grid-template-columns:34px 1fr;
+    gap:2px 10px; align-items:center; text-align:start; font:inherit; color:#1e2433; cursor:pointer; margin:0;}
+.setup-porte .ic{font-size:24px; grid-row:span 2; text-align:center;}
+.setup-porte b{font-size:15px;}
+.setup-porte small{font-size:12.5px; color:#4C566B; line-height:1.3;}
+.setup-porte.on{border-color:#1C2430; background:rgba(255,255,255,.85);}
+.setup-portes-sous{border-radius:18px; padding:10px; display:grid; gap:8px; background:rgba(232,162,58,.16);}
+.setup-porte-choix{border:0; margin:0; border-radius:14px; background:rgba(255,255,255,.82); padding:10px 12px; display:grid; gap:2px; text-align:start; font:inherit; color:#1e2433; cursor:pointer;}
+.setup-porte-choix b{font-size:14.5px;}
+.setup-porte-choix small{font-size:12px; color:#4C566B;}
+.setup-porte-choix.prim{background:#1C2430; color:#fff;}
+.setup-porte-choix.prim small{color:rgba(255,255,255,.8);}
+.setup-porte-choix.on{box-shadow:inset 0 0 0 2px #E8A23A;}
+.setup-portes-niveaux{display:flex; gap:5px; flex-wrap:wrap; margin-top:6px;}
+.setup-porte-niv{border:0; margin:0; font:inherit; font-size:13px; font-weight:800; padding:6px 11px; border-radius:999px; background:rgba(28,36,48,.07); color:#4C566B; cursor:pointer;}
+.setup-porte-niv.on{background:#1C2430; color:#fff;}
+.setup-porte-tard{border:0; margin:0; background:none; font:inherit; font-size:13.5px; font-weight:700; color:#7D4A08; cursor:pointer; padding:4px; text-align:center;}
+.setup-porte-tard.on{text-decoration:underline;}
+body[data-theme="dark"] .setup-porte{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.2); color:#EEF2F5;}
+body[data-theme="dark"] .setup-porte small, body[data-theme="dark"] .setup-porte-choix small{color:#aab3c2;}
+body[data-theme="dark"] .setup-porte.on{border-color:#E8A23A; background:rgba(255,255,255,.1);}
+body[data-theme="dark"] .setup-porte-choix{background:rgba(255,255,255,.08); color:#EEF2F5;}
+body[data-theme="dark"] .setup-porte-choix.prim{background:#E8A23A; color:#1C2430;}
+body[data-theme="dark"] .setup-porte-choix.prim small{color:#1C2430;}
+body[data-theme="dark"] .setup-porte-niv{background:rgba(255,255,255,.1); color:#aab3c2;}
+body[data-theme="dark"] .setup-porte-niv.on{background:#E8A23A; color:#1C2430;}
+body[data-theme="dark"] .setup-porte-tard{color:#F0B456;}
+/* La ligne sous la rangee des niveaux (apres « Plus tard »). */
+#home #seancePilule > .pa-placement{order:3; width:100%;}
+.pa-placement{display:flex; align-items:center; gap:6px; border-radius:14px; padding:2px 4px 2px 10px; background:rgba(232,162,58,.16);}
+.pa-placement > button{border:0; margin:0; background:none; font:inherit; cursor:pointer;}
+.pa-placement .pa-plc-ouvrir{flex:1; text-align:start; font-size:13px; font-weight:700; color:#7D4A08; padding:7px 0;}
+.pa-placement .pa-plc-fermer{width:30px; height:30px; border-radius:50%; color:#5B6470; font-size:14px;}
+body[data-theme="dark"] .pa-placement .pa-plc-ouvrir{color:#F0B456;}
+body[data-theme="dark"] .pa-placement .pa-plc-fermer{color:#A9B8C4;}
+/* La carte des reglages. */
+.plc-carte-ligne{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-top:6px;}
+.plc-carte-niv{font-family:'Bricolage Grotesque', -apple-system, sans-serif; font-size:28px; font-weight:800; line-height:1;}
 /* v1114 : la question de la montee de niveau (demanderMotsPlusBas), dans la carte du bilan. */
 .niveau-voile .niveau-titre{font-size:19px; line-height:1.3; margin:4px 0 14px; margin-inline-end:32px;}
 .niveau-voile .niveau-oui{margin-top:0;}
@@ -9073,6 +9208,18 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
                 <button class="setup-choice" data-niveau-declare="C1" onclick="choisirNiveauDeclare('C1')"><span data-i18n="setup_niveau_c1">Niveau très avancé (C1)</span></button>
             </div>
             <div class="setup-niveau-note" data-i18n="setup_niveau_note">Tu pourras changer de niveau à tout moment, depuis ta séance du jour.</div>
+            <!-- LE TEST DE NIVEAU (essai « placement », 6 nov. 2026) : deux portes a la
+                 place des six boutons ci-dessus, caches (#setupNiveauGroup.avec-portes).
+                 Voir majBienvenuePlacement() et choisirPorteBienvenue(). -->
+            <div class="setup-portes hidden" id="setupPortes">
+                <button type="button" class="setup-porte" id="setupPorteZero" onclick="choisirPorteBienvenue('zero')"><span class="ic" aria-hidden="true">🌱</span><b data-i18n="plc_porte_zero">Je pars de zéro</b><small data-i18n="plc_porte_zero_sous">On commence par les Premiers pas.</small></button>
+                <button type="button" class="setup-porte" id="setupPortePeu" onclick="choisirPorteBienvenue('peu')"><span class="ic" aria-hidden="true">💬</span><b data-i18n="plc_porte_peu">Je connais déjà un peu</b><small data-i18n="plc_porte_peu_sous">Trouvons d'où tu pars.</small></button>
+                <div class="setup-portes-sous hidden" id="setupPortesSous">
+                    <button type="button" class="setup-porte-choix prim" id="setupPorteTest" onclick="choisirPorteBienvenue('test')"><b data-i18n="plc_porte_test">Trouver mon niveau</b><small data-i18n="plc_porte_test_sous">Environ 5 minutes. Tu peux arrêter à tout moment.</small></button>
+                    <div class="setup-porte-choix"><b data-i18n="plc_porte_niveau">Je connais mon niveau</b><div class="setup-portes-niveaux" id="setupPortesNiveaux"></div></div>
+                    <button type="button" class="setup-porte-tard" id="setupPorteTard" onclick="choisirPorteBienvenue('tard')" data-i18n="plc_porte_tard">Plus tard : commencer en A1</button>
+                </div>
+            </div>
         </div>
         <!-- v940 : LA DATE DE DEPART, DES L'INSCRIPTION. Jacques, 23 oct. 2026 :
              « mon amie Louise va partir en voyage au mois de novembre ; ca serait
@@ -9089,6 +9236,13 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
         <div class="spacer"></div>
         <button class="primary" onclick="completeInitialSetup()" data-i18n="setup_continue">CONTINUER</button>
     </div>
+</section>
+
+<!-- ================= LE TEST DE NIVEAU (essai « placement », 6 nov. 2026) =================
+     Un seul conteneur, rempli par rendrePlacement() : l'entree, les questions,
+     le bilan. Voir ouvrirPlacement(). -->
+<section id="placement" class="screen">
+    <div id="plcCorps"></div>
 </section>
 
 <!-- ================= LE PROFIL D'APPRENTISSAGE (v903, essai « profil ») =================
@@ -9449,6 +9603,8 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
             <div class="seance-pilule pilule-accueil" id="seancePilule">
                 <span class="pa-aujourdhui" data-i18n="accueil_aujourdhui">Aujourd'hui</span>
                 <div class="pa-niveaux" id="spNiveauxCarte"></div>
+                <!-- Le test de niveau (essai « placement ») : apres « Plus tard », deux semaines. Voir majLignePlacement(). -->
+                <div class="pa-placement hidden" id="spPlacement"><button type="button" class="pa-plc-ouvrir" onclick="event.stopPropagation(); ouvrirPlacement('seance')" data-i18n="plc_ligne">Pas sûr de ton niveau ? Trouve-le en 5 minutes ›</button><button type="button" class="pa-plc-fermer" onclick="fermerLignePlacement(event)" data-i18n-aria-label="abo_fermer" aria-label="Fermer">✕</button></div>
                 <button type="button" class="pa-play pa-entrer" onclick="entrerSeanceDuJour()" data-i18n-aria-label="seance_commencer" aria-label="Commencer">
                     <span class="pa-lueur" aria-hidden="true"></span>
                     <span class="pa-play-txt" id="spPlayTxt" data-i18n="seance_commencer_long">Commencer la séance</span>
@@ -12633,6 +12789,18 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
         <button class="secondary hidden" id="resetDailyBtn" onclick="resetDailyActivityConfirm()" data-i18n="settings_reset_daily">RÉINITIALISER LE COMPTE DU JOUR (TESTS)</button>
     </div>
 
+    <!-- LE TEST DE NIVEAU (essai « placement », 6 nov. 2026) : la carte « Mon niveau ».
+         Voir majCartePlacement(). -->
+    <div class="card hidden" id="cartePlacement">
+        <strong data-i18n="plc_carte_titre">Mon niveau</strong>
+        <div class="plc-carte-ligne"><span class="plc-carte-niv" id="plcCarteNiveau">A1</span><small style="color:#4C566B;" id="plcCarteClair"></small></div>
+        <small style="color:#4C566B; display:block; margin-top:4px;" class="hidden" id="plcCarteSource"></small>
+        <div class="spacer"></div>
+        <button class="secondary" id="plcCarteBouton" onclick="ouvrirPlacement('reglages')">Faire le test de niveau · 5 min</button>
+        <small style="color:#4C566B; display:block; margin-top:6px;" data-i18n="plc_carte_note">Chaque langue a son niveau. Le test ne retire rien : tes mots déjà appris restent appris.</small>
+        <button class="secondary hidden" id="plcCarteBienvenue" onclick="ouvrirBienvenue()" data-i18n="plc_carte_bienvenue">Voir la bienvenue à deux portes (essai)</button>
+    </div>
+
     <!-- v799 : le nombre de questions de la scene du jour (Jacques : « on pourrait
          changer le nombre de cartes, mais aussi le nombre de questions »). -->
     <div class="card">
@@ -14553,6 +14721,62 @@ const I18N = {
         niveau_clair_B1: "Intermédiaire : parler de sa vie, de son travail, de ses projets",
         niveau_clair_B2: "Avancé : suivre une discussion, donner son avis",
         niveau_clair_C1: "Expérimenté : s'exprimer avec aisance et nuance",
+        // Le test de niveau (essai « placement », 6 nov. 2026). Voir ouvrirPlacement().
+        plc_titre: "Trouver ton niveau",
+        plc_intro: "Une vingtaine de questions, environ 5 minutes. Elles deviennent plus difficiles quand tu réussis, plus simples quand tu hésites.",
+        plc_puce_lire: "Lis, écoute, puis choisis.",
+        plc_puce_son: "Mets le son : il y a des écoutes.",
+        plc_puce_nsp: "Tu ne sais pas ? Dis-le : tu seras placé plus juste qu'en devinant.",
+        plc_commencer: "Commencer",
+        plc_plus_tard: "Plus tard",
+        plc_arreter: "Arrêter le test",
+        plc_minutes: "≈ {n} min",
+        plc_attente: "Un instant",
+        plc_type_lecture: "Lecture",
+        plc_type_ecoute: "Écoute",
+        plc_type_grammaire: "Grammaire",
+        plc_q_lu: "Que veut dire ce mot ?",
+        plc_q_entendu: "Qu'as-tu entendu ?",
+        plc_q_gram: "Quel mot complète la phrase ?",
+        plc_q_phrase: "Que dit la phrase ?",
+        plc_reecouter: "Réécouter",
+        plc_nsp: "Je ne sais pas",
+        plc_ton_niveau: "Ton niveau",
+        plc_depart: "Ton point de départ",
+        plc_pp_sous: "Les sons, les mots qu'on entend partout, les premières phrases. En quelques jours, tu passes à l'A1.",
+        plc_sais_deja: "Ce que tu sais déjà",
+        plc_acquis: "acquis avec le niveau au-dessus",
+        plc_sur: "{j} sur {n}",
+        plc_a_revoir: "À revoir : {s}",
+        plc_rien_connu: "Rien n'est marqué « connu » : les Premiers pas reprennent tout, à ton rythme.",
+        plc_connus: "{n} mots réussis au test ne reviendront pas en révision.",
+        plc_connus_un: "1 mot réussi au test ne reviendra pas en révision.",
+        plc_connus_deux: "{n} mots réussis au test ne reviendront pas en révision ; ceux que tu as ratés ({r}) reviendront.",
+        plc_rates: "{r} mots ratés au test reviendront en révision.",
+        plc_rates_un: "1 mot raté au test reviendra en révision.",
+        plc_voir_mots: "Voir les mots ›",
+        plc_commencer_en: "Commencer en {n}",
+        plc_commencer_pp: "Commencer les Premiers pas",
+        plc_choisir: "Choisir moi-même",
+        plc_ou_commencer: "Où veux-tu commencer ?",
+        plc_propose: "proposé",
+        plc_indisponible: "Le test de niveau n'est pas disponible pour cette langue.",
+        plc_porte_zero: "Je pars de zéro",
+        plc_porte_zero_sous: "On commence par les Premiers pas.",
+        plc_porte_peu: "Je connais déjà un peu",
+        plc_porte_peu_sous: "Trouvons d'où tu pars.",
+        plc_porte_test: "Trouver mon niveau",
+        plc_porte_test_sous: "Environ 5 minutes. Tu peux arrêter à tout moment.",
+        plc_porte_niveau: "Je connais mon niveau",
+        plc_porte_tard: "Plus tard : commencer en A1",
+        plc_carte_titre: "Mon niveau",
+        plc_carte_test: "Proposé par le test du {d}.",
+        plc_carte_test_choisi: "Choisi par toi après le test du {d} (proposé : {p}).",
+        plc_faire: "Faire le test de niveau · 5 min",
+        plc_refaire: "Refaire le test de niveau · 5 min",
+        plc_carte_note: "Chaque langue a son niveau. Le test ne retire rien : tes mots déjà appris restent appris.",
+        plc_carte_bienvenue: "Voir la bienvenue à deux portes (essai)",
+        plc_ligne: "Pas sûr de ton niveau ? Trouve-le en 5 minutes ›",
         seance_porte_mots: "Les mots",
         seance_porte_mots_grammaire: "Mots et grammaire",
         seance_porte_scene: "La scène du jour",
@@ -16128,6 +16352,62 @@ const I18N = {
         niveau_clair_B1: "Intermediate: talking about your life, work and plans",
         niveau_clair_B2: "Upper intermediate: following a discussion, giving your opinion",
         niveau_clair_C1: "Advanced: expressing yourself fluently and with nuance",
+        // The placement test (trial « placement », 6 Nov. 2026). See ouvrirPlacement().
+        plc_titre: "Find your level",
+        plc_intro: "About twenty questions, around 5 minutes. They get harder when you get them right, easier when you hesitate.",
+        plc_puce_lire: "Read, listen, then choose.",
+        plc_puce_son: "Turn the sound on: there is some listening.",
+        plc_puce_nsp: "Not sure? Say so: you'll be placed more accurately than by guessing.",
+        plc_commencer: "Start",
+        plc_plus_tard: "Later",
+        plc_arreter: "Stop the test",
+        plc_minutes: "≈ {n} min",
+        plc_attente: "One moment",
+        plc_type_lecture: "Reading",
+        plc_type_ecoute: "Listening",
+        plc_type_grammaire: "Grammar",
+        plc_q_lu: "What does this word mean?",
+        plc_q_entendu: "What did you hear?",
+        plc_q_gram: "Which word completes the sentence?",
+        plc_q_phrase: "What does the sentence say?",
+        plc_reecouter: "Listen again",
+        plc_nsp: "I don't know",
+        plc_ton_niveau: "Your level",
+        plc_depart: "Your starting point",
+        plc_pp_sous: "The sounds, the words you hear everywhere, the first sentences. In a few days, you move on to A1.",
+        plc_sais_deja: "What you already know",
+        plc_acquis: "covered by the level above",
+        plc_sur: "{j} of {n}",
+        plc_a_revoir: "To review: {s}",
+        plc_rien_connu: "Nothing is marked as known: First steps covers everything, at your own pace.",
+        plc_connus: "{n} words you got right in the test won't come back for review.",
+        plc_connus_un: "1 word you got right in the test won't come back for review.",
+        plc_connus_deux: "{n} words you got right in the test won't come back for review; the ones you missed ({r}) will.",
+        plc_rates: "{r} words you missed in the test will come back for review.",
+        plc_rates_un: "1 word you missed in the test will come back for review.",
+        plc_voir_mots: "See the words ›",
+        plc_commencer_en: "Start at {n}",
+        plc_commencer_pp: "Start First steps",
+        plc_choisir: "Choose myself",
+        plc_ou_commencer: "Where do you want to start?",
+        plc_propose: "suggested",
+        plc_indisponible: "The placement test isn't available for this language.",
+        plc_porte_zero: "I'm starting from zero",
+        plc_porte_zero_sous: "We'll begin with First steps.",
+        plc_porte_peu: "I already know a little",
+        plc_porte_peu_sous: "Let's find where you're starting from.",
+        plc_porte_test: "Find my level",
+        plc_porte_test_sous: "About 5 minutes. You can stop at any time.",
+        plc_porte_niveau: "I know my level",
+        plc_porte_tard: "Later: start at A1",
+        plc_carte_titre: "My level",
+        plc_carte_test: "Suggested by the test on {d}.",
+        plc_carte_test_choisi: "Chosen by you after the test on {d} (suggested: {p}).",
+        plc_faire: "Take the placement test · 5 min",
+        plc_refaire: "Retake the placement test · 5 min",
+        plc_carte_note: "Each language has its own level. The test takes nothing away: words you've learned stay learned.",
+        plc_carte_bienvenue: "See the two-door welcome (trial)",
+        plc_ligne: "Not sure of your level? Find it in 5 minutes ›",
         seance_porte_mots: "Words",
         seance_porte_mots_grammaire: "Words & grammar",
         seance_porte_scene: "Today's scene",
@@ -34078,6 +34358,7 @@ function choisirDateDepartBienvenue(valeur){
 function ouvrirBienvenue(){
     refreshSetupChoiceActiveStates();
     majVoyageBienvenue();
+    try{ majBienvenuePlacement(); }catch(e){}   // le test de niveau (essai « placement »)
     const actif = document.querySelector(".screen.active");
     if(!actif || actif.id !== "setup") showScreen("setup");
 }
@@ -34177,6 +34458,9 @@ function completeInitialSetup(apresProfil){
         // elles rappellent cette fonction, qui reprend ici, a la decouverte.
         if(profilAPoser()){ ouvrirProfil(() => completeInitialSetup(true)); return; }
     }
+    // Le test de niveau (essai « placement ») : « Trouver mon niveau » a la bienvenue.
+    // Il rappelle cette fonction a la fin ; son drapeau est retombe entre-temps.
+    if(placementApresBienvenue(() => completeInitialSetup(true))) return;
     // LA DECOUVERTE GUIDEE (v700), la premiere fois seulement : le drapeau
     // voyage avec la sauvegarde, et un compte existant ne passe jamais ici.
     if(!lireDecouverte().debut && getLearningDirection() !== "en"){
@@ -41297,6 +41581,13 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem(PROFIL_KEY) || ""; }
                 catch(e){ return ""; }
             })(),
+            // Le test de niveau (essai « placement », 6 nov. 2026) : le dernier
+            // resultat (propose, choisi, scores par palier), pour mesurer sa
+            // justesse. Voir lirePlacement().
+            placementJson: (function(){
+                try{ return localStorage.getItem(PLACEMENT_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
             langueInterface: getUiLang(),
             // Le niveau de la seance du jour (v720) : sans lui, un appareil
             // neuf -- ou la nouvelle adresse du demenagement -- repartait en A1,
@@ -41778,6 +42069,13 @@ async function restoreProgressFromCloud(){
             if(typeof data.profilJson === "string" && data.profilJson && !lireProfil()){
                 const d = JSON.parse(data.profilJson);
                 if(d && typeof d === "object" && (d.r || d.f)) ecrireProfil(d);
+            }
+        }catch(e){}
+        try{
+            // Le test de niveau (6 nov. 2026) : un appareil qui n'a rien reprend le cloud.
+            if(typeof data.placementJson === "string" && data.placementJson && !localStorage.getItem(PLACEMENT_KEY)){
+                const d = JSON.parse(data.placementJson);
+                if(d && typeof d === "object") localStorage.setItem(PLACEMENT_KEY, JSON.stringify(d));
             }
         }catch(e){}
         try{
@@ -47800,6 +48098,7 @@ function openSettings(){
     const adminCard = document.getElementById("adminDashboardCard");
     if(adminCard) adminCard.classList.toggle("hidden", !isAdminUser());
     majEntreeEssaiAnglais();
+    try{ majCartePlacement(); }catch(e){}   // le test de niveau (essai « placement »)
     // "Inviter un ami" reste reserve a l'administrateur : l'inscription passe
     // par un code d'invitation, et lui seul peut en generer. Propose a un
     // testeur, ce bouton ne pouvait produire qu'une demande qu'il etait
@@ -48445,6 +48744,815 @@ function basculerApercuGratuit(){
     afficherEtatApercuGratuit(erreur);
 }
 
+// ============ LE TEST DE NIVEAU (essai « placement », 6 nov. 2026) ============
+// Amelioration 7 de l'evaluation du chef (decision f2932a7), maquette :
+// https://claude.ai/artifact/T5crAvJXZqmYTfrgFD15uv ; Jacques : « Vas-y pour les
+// recommandations » (decision 34d02c3). Pour qui n'est pas debutant : une
+// vingtaine de questions, 6 minutes au plus, puis un niveau propose (🌱, A1-C1 ;
+// B2 au plus en espagnol, ou le corpus s'arrete).
+//
+// LE PRINCIPE : des PALIERS de six questions d'un meme niveau -- deux mots lus,
+// un mot entendu, une phrase comprise, deux phrases de grammaire -- en partant
+// de l'A2. 5 ou 6 justes : on monte ; 3 ou moins : on descend ; 4 : trois
+// questions de plus (2 justes = reussi). On s'arrete des qu'un niveau reussi
+// touche un niveau rate. Simulation (maquette, section 7) : bon niveau 84 a
+// 97 %, a un niveau pres 100 % ; au hasard, au-dessus de 🌱 1,8 fois sur 100.
+//
+// ⚠️ RIEN N'EST ECRIT A LA MAIN. Les mots viennent du paquet du niveau
+// (paquetDuNiveau), ranges par frequence.json (rangs 10 a 250 du niveau, ni les
+// tout premiers ni les plus rares ; l'espagnol a le sien depuis le 6 nov.) ; la
+// grammaire, des series d'exercices du niveau (PLACEMENT_GRAMMAIRE, d'apres
+// l'ordre du cours et les feuilles de conjugaison) ; les phrases, des exemples
+// des mots (phraseDeCarte). Les series espagnoles qui se tapent (presente,
+// preterito, subjuntivo...) recoivent leurs leurres du verbe lui-meme
+// (les autres temps, meme personne).
+//
+// ⚠️ LES MOTS TRANSPARENTS SONT ECARTES : « das Problem », « el monumento »
+// mesurent le francais, pas la langue apprise (59 % des noms B2 espagnols pour
+// un francophone). Calcule contre la traduction DANS LA LANGUE D'INTERFACE.
+//
+// ⚠️ L'ECOUTE NE PASSE QUE PAR LES VOIX ENREGISTREES (Aurora, Lolita, Monica),
+// sondees avant la question (sonEnregistrePlc) et jouees par un lecteur a part,
+// sans repli : la voix du telephone varie d'un appareil a l'autre, elle
+// fausserait la mesure. Pas de fichier : la question devient une lecture.
+//
+// ⚠️ PAS DE CORRECTION PENDANT LE TEST (decision du 6 nov.) : ni vert ni rouge,
+// ni le niveau en cours. Le bilan vient a la fin.
+//
+// CE QUE LE TEST ECRIT DANS LA PROGRESSION (regle de la v1114, decision du
+// 6 nov.) : seulement les mots MONTRES, d'un niveau SOUS le niveau propose, et
+// seulement si l'eleve ne choisit pas plus bas. Reussi -> `connu` + `q` (il ne
+// revient plus, la question de la v1114 ne se repose pas pour lui) ; rate ->
+// `rate` et une echeance a demain (il revient en revision). Rien sur un mot non
+// montre, rien sur la grammaire. Le resultat va au nuage (placementJson).
+const PLACEMENT_KEY = PREFIXE_STOCKAGE + "placement";
+const PLACEMENT_TAILLE = 6;          // questions par palier
+const PLACEMENT_REUSSI = 5;          // justes pour monter
+const PLACEMENT_RATE = 3;            // justes ou moins pour descendre
+const PLACEMENT_RAB = 3;             // questions de plus a 4 sur 6
+const PLACEMENT_RAB_OK = 2;          // justes parmi elles pour reussir
+const PLACEMENT_DUREE_MAX = 6 * 60 * 1000;
+const PLACEMENT_LIGNE_JOURS = 14;    // la ligne « Pas sur de ton niveau ? », apres « Plus tard »
+const PLACEMENT_RANGS = [10, 250];
+const PLACEMENT_SECONDES_QUESTION = 10;
+const PLACEMENT_CATEGORIES = { nomen: "noms", verben: "verbes", adjektive: "adjectifs" };
+// Les series de chaque niveau : celles a trou (« ___ ») dont les choix sont dans
+// la langue apprise. Rangees d'apres COURS_GRAMMAIRE_PAR_LANGUE et les niveaux
+// des feuilles de conjugaison (conjugaison.json).
+const PLACEMENT_GRAMMAIRE = {
+    de: {
+        A1: ["exercises", "derEinExercises", "praepWahlExercises", "praepWoWohinExercises", "wortstellungV2Exercises"],
+        A2: ["perfektExercises", "praeteritumExercises", "positionsverbenExercises", "weilObwohlExercises",
+             "deshalbTrotzdemExercises", "aberSondernExercises", "wennWannExercises"],
+        B1: ["konjunktiv2Exercises", "zuInfinitivExercises", "wissenKennenExercises", "verbenMitPraepExercises",
+             "alsWennExercises", "wennObExercises", "adjektiveDeklinationExercises", "obwohlTrotzdemExercises"],
+        B2: ["relativGenitivOrderExercises", "premierePlaceExercises", "konjunktiv2VergangenheitExercises", "passivExercises"],
+        C1: ["konjunktiv1Exercises", "funktionsverbExercises", "partizipExercises", "werdenExercises"]
+    },
+    es: {
+        A1: ["exercises", "serEstarExercises", "gustarExercises", "demostrativosExercises", "preposicionesExercises",
+             "preposicionesViajeExercises"],
+        A2: ["praeteritumExercises", "perfektExercises", "porParaExercises", "perifrasisExercises", "imperativoExercises"],
+        B1: ["futuroExercises", "condicionalExercises", "konjunktiv2Exercises", "verbosConPreposicionExercises"],
+        B2: ["subjuntivoImperfectoExercises", "oracionesSiExercises", "compuestosExercises", "pasivaExercises"]
+    }
+};
+
+function lirePlacement(){
+    try{ const v = JSON.parse(localStorage.getItem(PLACEMENT_KEY) || "{}"); return (v && typeof v === "object") ? v : {}; }
+    catch(e){ return {}; }
+}
+function ecrirePlacement(v){
+    try{ localStorage.setItem(PLACEMENT_KEY, JSON.stringify(v)); }catch(e){}
+    try{ if(typeof scheduleCloudSync === "function") scheduleCloudSync(); }catch(e){}
+}
+function placementDisponible(){
+    return (LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es") && essaiActif("placement");
+}
+// Les niveaux du test : ceux qui ont des noms (l'espagnol s'arrete au B2).
+function niveauxPlacement(){
+    return NIVEAUX_CECR.filter(n => !(LANGUE_APPRISE === "es" && n === "C1")
+        && paquetDuNiveau(n).some(it => it.mode === "nomen"));
+}
+
+// ---------- Les textes ----------
+function sansAccentsPlc(s){
+    return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+}
+function sansArticlePlc(s){
+    return sansAccentsPlc(s).replace(/^(le |la |les |l'|l’|un |une |des |the |a |an |o |os |as |el |los |las |der |die |das |ein |eine |to )/, "").trim();
+}
+// Le sens tel qu'on l'affiche : sans parentheses (« expérience (de voyage) »).
+function sensAffichePlc(s){
+    return String(s || "").replace(/\s*\([^)]*\)/g, "").replace(/\s+/g, " ").trim();
+}
+function distancePlc(a, b){
+    const m = a.length, n = b.length;
+    let prec = Array.from({ length: n + 1 }, (_, j) => j);
+    for(let i = 1; i <= m; i++){
+        const cour = [i];
+        for(let j = 1; j <= n; j++){
+            cour[j] = Math.min(prec[j] + 1, cour[j - 1] + 1, prec[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+        }
+        prec = cour;
+    }
+    return prec[n];
+}
+// Transparent : une des traductions s'ecrit presque comme le mot (≥ 0,7).
+function transparentPlc(mot, traduction){
+    const a = sansArticlePlc(mot);
+    if(!a) return false;
+    return sensAffichePlc(traduction).split(/[,;/]/).some(x => {
+        const b = sansArticlePlc(x);
+        if(!b) return false;
+        return 1 - distancePlc(a, b) / Math.max(a.length, b.length) >= 0.7;
+    });
+}
+// Deux sens qui partagent un mot (« la faute » / « l'erreur, la faute ») ne
+// peuvent pas etre l'un le leurre de l'autre.
+function motsDuSensPlc(s){
+    return new Set(sansAccentsPlc(sensAffichePlc(s)).split(/[^a-z0-9Ѐ-ӿ؀-ۿ]+/).filter(x => x.length > 3));
+}
+function sensVoisinsPlc(a, b){
+    if(sansAccentsPlc(a) === sansAccentsPlc(b)) return true;
+    const A = motsDuSensPlc(a);
+    for(const x of motsDuSensPlc(b)) if(A.has(x)) return true;
+    return false;
+}
+function melangerPlc(l){
+    const c = l.slice();
+    for(let i = c.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [c[i], c[j]] = [c[j], c[i]]; }
+    return c;
+}
+
+// ---------- Les donnees ----------
+let FREQ_PLACEMENT = null;
+// cat|mot -> rang dans son niveau (1 = le plus frequent). L'espagnol lit ici
+// son classement, que la seance, elle, ne lit pas (frequenceDeSeance).
+async function chargerFrequencePlacement(){
+    if(FREQ_PLACEMENT) return FREQ_PLACEMENT;
+    const m = new Map();
+    try{
+        const r = await fetch(urlDonnees("frequence.json"), { cache: "no-cache" });
+        const d = r.ok ? await r.json() : null;
+        const cats = (d && d.categories) || {};
+        Object.keys(cats).forEach(cat => {
+            const rang = {};
+            (cats[cat] || []).forEach(e => {
+                if(!e || !e.m) return;
+                const n = e.n || "";
+                rang[n] = (rang[n] || 0) + 1;
+                const k = cat + "|" + e.m;
+                if(!m.has(k)) m.set(k, rang[n]);
+            });
+        });
+    }catch(e){}
+    FREQ_PLACEMENT = m;
+    return m;
+}
+// Les mots d'un niveau, dans leur tranche de frequence.
+function motsPlacement(niv){
+    const freq = FREQ_PLACEMENT || new Map();
+    const tous = [];
+    paquetDuNiveau(niv).forEach(it => {
+        const cat = PLACEMENT_CATEGORIES[it.mode];
+        if(!cat) return;
+        const mot = motDeLaCarte(it);
+        const brut = traductionDeLaCarte(it.word, it.mode);
+        const sens = sensAffichePlc(brut);
+        if(!mot || !sens || mot.length > 30 || sens.length > 48) return;
+        if(transparentPlc(mot, brut)) return;
+        tous.push({ it: it, mot: mot, sens: sens, cat: it.mode, rang: freq.get(cat + "|" + mot) || 0,
+                    cle: it.themeId + "|" + it.index });
+    });
+    const tranche = tous.filter(x => x.rang >= PLACEMENT_RANGS[0] && x.rang <= PLACEMENT_RANGS[1]);
+    if(tranche.length >= 30) return tranche;
+    const classes = tous.filter(x => x.rang > 0);
+    return classes.length >= 30 ? classes : tous;
+}
+// Le mot tel que la voix le dit et que l'ecran le montre : « der Vorschlag ».
+function motAffichePlc(x){
+    try{ return motDictee(x.it) || x.mot; }catch(e){ return x.mot; }
+}
+// Trois leurres : meme niveau, meme categorie, un autre theme, un autre sens.
+function leurresPlc(x, pool, n){
+    const out = [];
+    for(const y of melangerPlc(pool)){
+        if(out.length >= n) break;
+        // Un autre theme pour les noms ; les verbes et les adjectifs n'ont qu'un paquet.
+        if(y === x || y.cat !== x.cat || (x.cat === "nomen" && y.it.themeId === x.it.themeId)) continue;
+        if(sensVoisinsPlc(y.sens, x.sens) || out.some(z => sensVoisinsPlc(z, y.sens))) continue;
+        out.push(y.sens);
+    }
+    return out.length >= n ? out : null;
+}
+
+// LA SONDE : le fichier enregistre existe-t-il ? Un lecteur a part, qui ne
+// joue rien et n'inscrit rien dans audioAbsents (la sonde de la v653 avait
+// condamne des fichiers seulement lents).
+function sonEnregistrePlc(texte){
+    return new Promise(ok => {
+        if(!AUDIO_BASE || !texte) return ok(false);
+        const emp = empreinteAudio(texte);
+        if(!emp || audioAbsents.has(emp)) return ok(false);
+        const a = new Audio();
+        let fini = false;
+        const fin = v => {
+            if(fini) return;
+            fini = true;
+            clearTimeout(minuterie);
+            try{ a.removeAttribute("src"); a.load(); }catch(e){}
+            ok(v);
+        };
+        const minuterie = setTimeout(() => fin(false), 3500);
+        a.preload = "metadata";
+        a.addEventListener("loadedmetadata", () => fin(true));
+        a.addEventListener("error", () => fin(false));
+        a.src = AUDIO_BASE + emp + ".mp3?r=" + AUDIO_REVISION;
+    });
+}
+let lecteurPlc = null;
+function jouerSonPlc(texte){
+    try{
+        if(!texte || !AUDIO_BASE) return;
+        const emp = empreinteAudio(texte);
+        if(!emp) return;
+        try{ arreterAudioPregenere(); }catch(e){}
+        if(!lecteurPlc) lecteurPlc = new Audio();
+        lecteurPlc.pause();
+        lecteurPlc.src = AUDIO_BASE + emp + ".mp3?r=" + AUDIO_REVISION;
+        lecteurPlc.playbackRate = facteurVitesse || 1;
+        const p = lecteurPlc.play();
+        if(p && p.catch) p.catch(() => {});
+    }catch(e){}
+}
+function arreterSonPlc(){ try{ if(lecteurPlc) lecteurPlc.pause(); }catch(e){} }
+
+// Les formes d'un verbe espagnol, temps par temps (six personnes).
+function tablesVerbePlc(w){
+    const out = [];
+    ["praesens", "preterito", "imperfecto", "futuro", "condicional", "subjuntivo", "perfecto"].forEach(k => {
+        let v = w && w[k];
+        if(typeof v === "string"){ try{ v = JSON.parse(v.replace(/'/g, '"')); }catch(e){ v = null; } }
+        const l = Array.isArray(v) ? v : (v && typeof v === "object") ? Object.values(v) : [];
+        if(l.length) out.push(l.map(f => String(f || "").trim()));
+    });
+    return out;
+}
+let VERBES_PLC = null;
+function verbePlc(infinitif){
+    if(!VERBES_PLC){
+        VERBES_PLC = new Map();
+        NIVEAUX_CECR.forEach(n => paquetDuNiveau(n).forEach(it => {
+            if(it.mode === "verben" && it.word && it.word.infinitif && !VERBES_PLC.has(it.word.infinitif)) VERBES_PLC.set(it.word.infinitif, it.word);
+        }));
+    }
+    return VERBES_PLC.get(infinitif) || null;
+}
+// Une question de grammaire : une phrase a trou et ses choix.
+function questionGrammairePlc(ex){
+    if(!ex || typeof ex.question !== "string" || ex.question.split("___").length !== 2) return null;
+    if(ex.chunks && ex.chunks.length) return null;
+    const bonne = String(ex.correct || (ex.answers || [])[0] || "").trim();
+    if(!bonne) return null;
+    const acceptees = new Set((ex.answers || [bonne]).map(a => sansAccentsPlc(a)));
+    let choix = Array.isArray(ex.options) ? ex.options.map(o => String(o).trim()).filter(Boolean) : [];
+    let indice = "";
+    if(choix.length < 2 || choix.indexOf(bonne) < 0){
+        // Une serie qui se tape (l'espagnol) : les autres temps du meme verbe.
+        const m = String(ex.hint || "").match(/^\(\s*([^—–(]+?)\s*[—–-]/);
+        const w = m ? verbePlc(m[1].trim()) : null;
+        if(!w) return null;
+        const tables = tablesVerbePlc(w);
+        const b = sansAccentsPlc(bonne);
+        let place = -1;
+        tables.forEach(tb => tb.forEach((f, i) => { if(place < 0 && sansAccentsPlc(f) === b) place = i; }));
+        if(place < 0) return null;
+        const autres = [];
+        tables.forEach(tb => {
+            const f = tb[place];
+            if(f && !acceptees.has(sansAccentsPlc(f)) && !autres.some(a => sansAccentsPlc(a) === sansAccentsPlc(f))) autres.push(f);
+        });
+        if(autres.length < 2) return null;
+        choix = [bonne].concat(melangerPlc(autres).slice(0, 3));
+        indice = sensAffichePlc(texteTraduit(ex, "hint")).replace(/^[\s(]+|[\s)]+$/g, "");
+    } else {
+        choix = choix.filter(o => o === bonne || !acceptees.has(sansAccentsPlc(o)));
+    }
+    choix = melangerPlc(choix.slice(0, 4).indexOf(bonne) >= 0 ? choix.slice(0, 4) : [bonne].concat(choix.filter(o => o !== bonne).slice(0, 3)));
+    return { type: "gram", texte: ex.question, sous: texteTraduit(ex, "translation") || "", indice: indice,
+             options: choix, bonne: choix.indexOf(bonne), sujet: texteTraduit(ex, "topic") || ex.topic || "" };
+}
+const GRAMMAIRE_PLC = {};
+async function grammairePlc(niv){
+    if(GRAMMAIRE_PLC[niv]) return GRAMMAIRE_PLC[niv];
+    const langue = LANGUE_APPRISE === "es" ? "es" : "de";
+    const out = [];
+    for(const nom of ((PLACEMENT_GRAMMAIRE[langue] || {})[niv] || [])){
+        let l = [];
+        try{ l = await jeu(nom); }catch(e){}
+        l.forEach(ex => { const q = questionGrammairePlc(ex); if(q){ q.serie = nom; out.push(q); } });
+    }
+    // Trois choix ou plus d'abord : a deux choix, le hasard tombe juste une fois sur deux.
+    GRAMMAIRE_PLC[niv] = { forts: out.filter(q => q.options.length >= 3), deux: out.filter(q => q.options.length < 3) };
+    return GRAMMAIRE_PLC[niv];
+}
+
+// ---------- La fabrique des questions ----------
+function questionMotPlc(niv, x, pool, entendu){
+    const leurres = leurresPlc(x, pool, 3);
+    if(!leurres) return null;
+    const options = melangerPlc([x.sens].concat(leurres));
+    return { type: entendu ? "entendu" : "lu", niv: niv, x: x, texte: motAffichePlc(x),
+             dire: entendu ? motAffichePlc(x) : "", options: options, bonne: options.indexOf(x.sens) };
+}
+function questionPhrasePlc(niv, x, pool, entendu){
+    const p = phraseDeCarte(x.it, 12);
+    if(!p) return null;
+    const autres = [];
+    for(const y of melangerPlc(pool)){
+        if(autres.length >= 2) break;
+        if(y === x) continue;
+        const q = phraseDeCarte(y.it, 12);
+        if(!q || q.sens === p.sens || autres.indexOf(q.sens) >= 0) continue;
+        autres.push(q.sens);
+    }
+    if(autres.length < 2) return null;
+    const options = melangerPlc([p.sens].concat(autres));
+    return { type: entendu ? "phrase_entendue" : "phrase_lue", niv: niv, x: x, texte: p.de,
+             dire: entendu ? p.de : "", options: options, bonne: options.indexOf(p.sens) };
+}
+function prendrePlc(pool, utilises, filtre){
+    for(const x of melangerPlc(pool)){
+        if(utilises.has(x.cle) || (filtre && !filtre(x))) continue;
+        utilises.add(x.cle);
+        return x;
+    }
+    return null;
+}
+function grammaireSuivantePlc(g, utilisees){
+    for(const l of [g.forts, g.deux]){
+        const q = melangerPlc(l).find(q => !utilisees.has(q.texte));
+        if(q){ utilisees.add(q.texte); return Object.assign({}, q); }
+    }
+    return null;
+}
+// Un palier : lu, grammaire, entendu, lu, phrase, grammaire. Ce qui manque
+// (pas de voix, pas de serie) devient un mot lu.
+async function construirePalierPlc(etat, niv){
+    await chargerFrequencePlacement();
+    const pool = motsPlacement(niv);
+    const g = await grammairePlc(niv);
+    const u = etat.utilises;
+    const motLu = () => { for(let k = 0; k < 6; k++){ const x = prendrePlc(pool, u); if(!x) return null; const q = questionMotPlc(niv, x, pool, false); if(q) return q; } return null; };
+    // L'ecoute : trois candidats sondes ensemble, le premier qui a sa voix.
+    const candidatsMot = [], candidatsPhrase = [];
+    for(let k = 0; k < 3; k++){ const x = prendrePlc(pool, u); if(x) candidatsMot.push(x); }
+    for(let k = 0; k < 3; k++){ const x = prendrePlc(pool, u, y => !!phraseDeCarte(y.it, 12)); if(x) candidatsPhrase.push(x); }
+    const sondes = await Promise.all(candidatsMot.map(x => sonEnregistrePlc(motAffichePlc(x)))
+        .concat(candidatsPhrase.map(x => sonEnregistrePlc(phraseDeCarte(x.it, 12).de))));
+    const iMot = candidatsMot.findIndex((x, i) => sondes[i]);
+    const iPhrase = candidatsPhrase.findIndex((x, i) => sondes[candidatsMot.length + i]);
+    const entendu = iMot >= 0 ? questionMotPlc(niv, candidatsMot[iMot], pool, true)
+                  : (candidatsMot[0] ? questionMotPlc(niv, candidatsMot[0], pool, false) : null);
+    const phrase = iPhrase >= 0 ? questionPhrasePlc(niv, candidatsPhrase[iPhrase], pool, true)
+                 : (candidatsPhrase[0] ? questionPhrasePlc(niv, candidatsPhrase[0], pool, false) : null);
+    const gram = () => { const q = grammaireSuivantePlc(g, etat.grammaireVue); if(q) q.niv = niv; return q; };
+    const file = [motLu(), gram(), entendu, motLu(), phrase, gram()].map(q => q || motLu()).filter(Boolean);
+    etat.reserve[niv] = { pool: pool, g: g };
+    return file;
+}
+function rabPlc(etat, niv){
+    const r = etat.reserve[niv];
+    if(!r) return [];
+    const u = etat.utilises;
+    const lu = () => { for(let k = 0; k < 6; k++){ const x = prendrePlc(r.pool, u); if(!x) return null; const q = questionMotPlc(niv, x, r.pool, false); if(q) return q; } return null; };
+    const gq = grammaireSuivantePlc(r.g, etat.grammaireVue);
+    if(gq) gq.niv = niv;
+    return [lu(), gq || lu(), lu()].filter(Boolean);
+}
+
+// ---------- Le deroulement ----------
+let PLC = null;
+let placementDemandeBienvenue = false;
+
+function ouvrirPlacement(origine, fin){
+    if(!placementDisponible()) return false;
+    placementDemandeBienvenue = false;
+    arreterSonPlc();
+    PLC = { origine: origine || "reglages", fin: fin || null, phase: "entree" };
+    rendrePlacement();
+    showScreen("placement");
+    return true;
+}
+async function commencerPlacement(){
+    if(!PLC) return;
+    const L = niveauxPlacement();
+    if(!L.length){ showInfoToast(t("plc_indisponible")); quitterPlacement(); return; }
+    Object.assign(PLC, { phase: "attente", L: L, k: Math.max(0, L.indexOf("A2")), passe: -1, rate: L.length,
+        file: [], qi: 0, rab: false, reponses: [], debut: Date.now(), utilises: new Set(), grammaireVue: new Set(),
+        reserve: {}, prepas: {}, testes: [] });
+    rendrePlacement();
+    await lancerPalierPlc();
+}
+function prepaPlc(i){
+    const e = PLC;
+    if(!e || i < 0 || i >= e.L.length || i <= e.passe || i >= e.rate || e.prepas[i]) return;
+    e.prepas[i] = construirePalierPlc(e, e.L[i]).catch(() => []);
+}
+async function lancerPalierPlc(){
+    const e = PLC;
+    if(!e) return;
+    prepaPlc(e.k);
+    e.phase = "attente";
+    rendrePlacement();
+    const file = await e.prepas[e.k];
+    if(PLC !== e) return;
+    if(!file || !file.length){ terminerPlacement(); return; }
+    e.file = file; e.qi = 0; e.rab = false; e.testes.push(e.L[e.k]);
+    // Le palier suivant se prepare pendant celui-ci, dans les deux sens.
+    prepaPlc(e.k + 1); prepaPlc(e.k - 1);
+    e.phase = "question";
+    rendrePlacement();
+    jouerQuestionPlc();
+}
+function questionCourantePlc(){ return PLC && PLC.file[PLC.qi]; }
+function jouerQuestionPlc(){
+    const q = questionCourantePlc();
+    if(q && q.dire) jouerSonPlc(q.dire);
+}
+// i = le choix touche ; -1 = « Je ne sais pas ».
+function repondrePlacement(i){
+    const e = PLC;
+    const q = questionCourantePlc();
+    if(!e || e.phase !== "question" || !q) return;
+    arreterSonPlc();
+    e.reponses.push({ niv: q.niv, type: q.type, juste: i === q.bonne, nsp: i < 0, x: q.x || null,
+                      sujet: q.sujet || "", serie: q.serie || "", choisi: i >= 0 ? q.options[i] : "",
+                      attendu: q.options[q.bonne] });
+    if(Date.now() - e.debut > PLACEMENT_DUREE_MAX){ terminerPlacement(); return; }
+    e.qi++;
+    if(e.qi < e.file.length){ rendrePlacement(); jouerQuestionPlc(); return; }
+    // Fin du palier (ou du rab).
+    const duNiveau = e.reponses.filter(r => r.niv === e.L[e.k]);
+    let reussi;
+    if(!e.rab){
+        const j = duNiveau.filter(r => r.juste).length;
+        if(j > PLACEMENT_RATE && j < PLACEMENT_REUSSI){
+            const rab = rabPlc(e, e.L[e.k]);
+            if(rab.length){
+                e.rab = true; e.file = e.file.concat(rab);
+                rendrePlacement(); jouerQuestionPlc(); return;
+            }
+        }
+        reussi = j >= PLACEMENT_REUSSI || (j > PLACEMENT_RATE && j >= duNiveau.length - 1);
+    } else {
+        reussi = duNiveau.slice(-PLACEMENT_RAB).filter(r => r.juste).length >= PLACEMENT_RAB_OK;
+    }
+    if(reussi){
+        e.passe = e.k;
+        if(e.k === e.L.length - 1 || e.k + 1 === e.rate){ terminerPlacement(); return; }
+        e.k++;
+    } else {
+        e.rate = e.k;
+        if(e.k === 0 || e.k - 1 === e.passe){ terminerPlacement(); return; }
+        e.k--;
+    }
+    lancerPalierPlc();
+}
+// ✕ pendant le test : on garde ce qui est acquis. Rien d'acquis, rien d'ecrit.
+function arreterPlacement(){
+    const e = PLC;
+    if(!e) return;
+    arreterSonPlc();
+    const unPalier = e.phase && e.phase !== "entree" && (e.passe >= 0 || e.rate < (e.L || []).length);
+    if((e.phase === "question" || e.phase === "attente") && unPalier){ terminerPlacement(); return; }
+    if(e.phase === "resultat" || e.phase === "choix"){ quitterPlacement(); return; }
+    plusTardPlacement();
+}
+function plusTardPlacement(){
+    const e = PLC;
+    if(e && e.origine === "bienvenue"){
+        const v = lirePlacement();
+        if(!v.r){ v.pt = new Date().toISOString(); ecrirePlacement(v); }
+    }
+    quitterPlacement();
+}
+function quitterPlacement(){
+    const e = PLC;
+    PLC = null;
+    arreterSonPlc();
+    if(e && typeof e.fin === "function"){ e.fin(); return; }
+    if(e && e.origine === "reglages"){ openSettings(); return; }
+    goHome();
+}
+function terminerPlacement(){
+    const e = PLC;
+    if(!e) return;
+    e.phase = "resultat";
+    e.propose = e.passe >= 0 ? e.L[e.passe] : "PP";
+    e.choix = e.propose;
+    e.duree = Math.round((Date.now() - e.debut) / 1000);
+    rendrePlacement();
+}
+function rangPlc(niv){ return niv === "PP" ? -1 : NIVEAUX_CECR.indexOf(niv); }
+// Les mots que le choix ecrirait : montres, d'un niveau sous le niveau propose,
+// et le choix n'est pas plus bas que la proposition.
+function motsAMarquerPlc(e, choisi){
+    const rp = rangPlc(e.propose);
+    if(rangPlc(choisi) < rp) return [];
+    const vus = new Set();
+    return e.reponses.filter(r => {
+        if(!r.x || rangPlc(r.niv) >= rp || vus.has(r.x.cle)) return false;
+        vus.add(r.x.cle);
+        return true;
+    });
+}
+function appliquerPlacement(){
+    const e = PLC;
+    if(!e || !e.propose) return;
+    const choisi = e.choix || e.propose;
+    motsAMarquerPlc(e, choisi).forEach(r => {
+        try{
+            const st = getWordState(r.x.it.themeId, r.x.it.index);
+            if(r.juste){ st.connu = true; st.q = 1; }
+            else {
+                st.rate = (st.rate || 0) + 1;
+                if(estNeuf(st)){ st.srsHits = 0; programmerEcheance(st, 1440); }
+            }
+            setWordState(r.x.it.themeId, r.x.it.index, st);
+        }catch(err){}
+    });
+    // Le resultat, pour mesurer la justesse (champ placementJson du nuage).
+    const v = lirePlacement();
+    const pal = {};
+    e.testes.forEach(n => {
+        const l = e.reponses.filter(r => r.niv === n);
+        pal[n] = l.filter(r => r.juste).length + "/" + l.length;
+    });
+    v.r = { d: new Date().toISOString(), p: e.propose, c: choisi, o: e.origine, n: e.reponses.length, s: e.duree, pal: pal };
+    v.h = (Array.isArray(v.h) ? v.h : []).concat([v.r]).slice(-5);
+    delete v.pt;
+    ecrirePlacement(v);
+    // Le niveau, par le chemin de chaque origine.
+    if(e.origine === "bienvenue"){
+        choisirNiveauDeclare(choisi === "PP" ? "zero" : choisi === "A1" ? "peu" : choisi);
+        if(choisi === "PP" && essaiActif("premiers_pas")){ const s = lirePremiersPas(); s.a = true; ecrirePremiersPas(s); }
+    } else if(choisi === "PP"){
+        if(essaiActif("premiers_pas")){ const s = lirePremiersPas(); s.a = true; ecrirePremiersPas(s); }
+        majTuileSeance();
+    } else {
+        if(essaiActif("premiers_pas")){ const s = lirePremiersPas(); if(s.a !== false){ s.a = false; ecrirePremiersPas(s); } }
+        fixerNiveauSeance(choisi, true);
+    }
+    const fin = e.fin;
+    PLC = null;
+    if(typeof fin === "function"){ fin(); return; }
+    goHome();
+}
+function choisirNiveauPlacement(niv){
+    if(!PLC) return;
+    PLC.choix = niv;
+    rendrePlacement();
+}
+function ouvrirChoixPlacement(){ if(PLC){ PLC.phase = "choix"; rendrePlacement(); } }
+function fermerChoixPlacement(){ if(PLC){ PLC.phase = "resultat"; PLC.choix = PLC.propose; rendrePlacement(); } }
+
+// ---------- L'affichage ----------
+const ICONE_HP_PLC = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10z"/><path d="M16.5 9a4 4 0 0 1 0 6"/><path d="M19 6.5a7.5 7.5 0 0 1 0 11"/></svg>';
+function nomNiveauPlc(niv){ return niv === "PP" ? "🌱" : niv; }
+function clairNiveauPlc(niv){ return niv === "PP" ? t("pp_niveau_clair") : t("niveau_clair_" + niv); }
+function rendrePlacement(){
+    const box = document.getElementById("plcCorps");
+    const e = PLC;
+    if(!box || !e) return;
+    const H = echapperHtml;
+    let html = "";
+    if(e.phase === "entree"){
+        html = '<div class="plc-haut"><button type="button" class="plc-rond" onclick="plusTardPlacement()" aria-label="' + H(t("abo_fermer")) + '">✕</button></div>'
+            + '<div class="plc-intro-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18h3v-5H4zM10.5 18h3V9h-3zM17 18h3V5h-3z"/></svg></div>'
+            + '<h2 class="plc-intro-t">' + H(t("plc_titre")) + '</h2>'
+            + '<p class="plc-intro-p">' + H(t("plc_intro")) + '</p>'
+            + '<ul class="plc-puces">'
+            + '<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"/></svg>' + H(t("plc_puce_lire")) + '</li>'
+            + '<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10z"/><path d="M16.5 9a4 4 0 0 1 0 6"/></svg>' + H(t("plc_puce_son")) + '</li>'
+            + '<li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14"/><path d="M12 17h.01"/></svg>' + H(t("plc_puce_nsp")) + '</li>'
+            + '</ul>'
+            + '<div class="plc-pied"><button type="button" class="plc-cta" onclick="commencerPlacement()">' + H(t("plc_commencer")) + '</button>'
+            + '<button type="button" class="plc-lien" onclick="plusTardPlacement()">' + H(t("plc_plus_tard")) + '</button></div>';
+    } else if(e.phase === "attente" || e.phase === "question"){
+        const faites = e.reponses.length;
+        const prevues = Math.max(faites + (e.file.length - e.qi), 18);
+        const pc = Math.min(95, Math.round(100 * faites / prevues));
+        const restant = Math.max(1, Math.min(6, Math.round(((prevues - faites) * PLACEMENT_SECONDES_QUESTION) / 60)));
+        html = '<div class="plc-haut"><button type="button" class="plc-rond" onclick="arreterPlacement()" aria-label="' + H(t("plc_arreter")) + '">✕</button>'
+            + '<div class="plc-prog" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pc + '"><i style="width:' + pc + '%"></i></div>'
+            + '<span class="plc-min">' + H(tf("plc_minutes", { n: restant })) + '</span></div>';
+        const q = e.phase === "question" ? questionCourantePlc() : null;
+        if(!q){
+            html += '<div class="plc-attente">' + H(t("plc_attente")) + '</div>';
+        } else {
+            const ecoute = q.type === "entendu" || q.type === "phrase_entendue";
+            const consigne = q.type === "lu" ? t("plc_q_lu") : q.type === "entendu" ? t("plc_q_entendu")
+                : q.type === "gram" ? t("plc_q_gram") : t("plc_q_phrase");
+            html += '<div class="plc-type">' + H(ecoute ? t("plc_type_ecoute") : q.type === "gram" ? t("plc_type_grammaire") : t("plc_type_lecture")) + '</div>'
+                + '<h2 class="plc-q">' + H(consigne) + '</h2>';
+            if(ecoute){
+                html += '<button type="button" class="plc-hp" onclick="jouerQuestionPlc()" aria-label="' + H(t("plc_reecouter")) + '">' + ICONE_HP_PLC + '</button>'
+                    + '<div class="plc-hp-l">' + H(t("plc_reecouter")) + '</div>';
+            } else if(q.type === "gram"){
+                const morceaux = q.texte.split("___");
+                html += '<div class="plc-phrase"><b>' + H(morceaux[0]) + '<u>&nbsp;</u>' + H(morceaux[1]) + '</b>'
+                    + (q.indice ? '<small class="plc-indice">' + H(q.indice) + '</small>' : '')
+                    + (q.sous ? '<small>' + H(q.sous) + '</small>' : '') + '</div>';
+            } else if(q.type === "phrase_lue"){
+                html += '<div class="plc-phrase"><b>' + H(q.texte) + '</b></div>';
+            } else {
+                html += '<div class="plc-mot"><b lang="' + H(LANGUE_APPRISE) + '">' + H(q.texte) + '</b></div>';
+            }
+            const deux = q.type === "gram" && q.options.every(o => o.length <= 14);
+            html += '<div class="plc-opts' + (deux ? ' deux' : '') + '">'
+                + q.options.map((o, i) => '<button type="button" class="plc-opt' + (q.type.indexOf("phrase") === 0 ? ' long' : '') + '" onclick="repondrePlacement(' + i + ')">' + H(o) + '</button>').join("")
+                + '</div>'
+                + '<div class="plc-pied"><button type="button" class="plc-nsp" onclick="repondrePlacement(-1)">' + H(t("plc_nsp")) + '</button></div>';
+        }
+    } else if(e.phase === "resultat" || e.phase === "choix"){
+        html = rendreResultatPlc(e);
+    }
+    box.innerHTML = html;
+}
+function rendreResultatPlc(e){
+    const H = echapperHtml;
+    const p = e.propose;
+    const clair = clairNiveauPlc(p);
+    const morceaux = String(clair).split(/\s*[:：]\s*/);
+    const titre = p === "PP" ? t("pp_badge") : morceaux[0];
+    const sous = p === "PP" ? t("plc_pp_sous") : (morceaux.slice(1).join(" : ") || "");
+    let html = '<div class="plc-haut"><button type="button" class="plc-rond" onclick="quitterPlacement()" aria-label="' + H(t("abo_fermer")) + '">✕</button></div>'
+        + '<div class="plc-res"><div class="plc-k">' + H(p === "PP" ? t("plc_depart") : t("plc_ton_niveau")) + '</div>'
+        + '<div class="plc-medaille' + (p === "PP" ? ' pp' : '') + '"><b>' + H(nomNiveauPlc(p)) + '</b></div>'
+        + '<h2>' + H(titre) + '</h2>' + (sous ? '<p>' + H(sous) + '</p>' : '') + '</div>';
+    // Ce qu'on sait deja : un point par question, du plus haut niveau teste au plus bas.
+    const lignes = e.L.map((n, i) => ({ n: n, i: i })).reverse().map(({ n, i }) => {
+        const l = e.reponses.filter(r => r.niv === n);
+        if(!l.length){
+            return (i < e.passe) ? '<div class="plc-lv"><b>' + H(n) + '</b><span class="plc-note">' + H(t("plc_acquis")) + '</span><span></span></div>' : "";
+        }
+        return '<div class="plc-lv"><b>' + H(n) + '</b><span class="plc-pts">' + l.map(r => '<i' + (r.juste ? ' class="f"' : '') + '></i>').join("")
+            + '</span><small>' + H(tf("plc_sur", { j: l.filter(r => r.juste).length, n: l.length })) + '</small></div>';
+    }).join("");
+    const rp = rangPlc(p);
+    const sujetsOk = [], sujetsKo = [];
+    e.reponses.forEach(r => {
+        if(r.type !== "gram" || !r.sujet) return;
+        const rr = rangPlc(r.niv);
+        if(r.juste && rr <= rp && sujetsOk.indexOf(r.sujet) < 0) sujetsOk.push(r.sujet);
+        if(!r.juste && rr === rp + 1 && sujetsKo.indexOf(r.sujet) < 0) sujetsKo.push(r.sujet);
+    });
+    const puces = sujetsOk.slice(-3).map(s => '<span class="ok">✓ ' + H(s) + '</span>').join("")
+        + sujetsKo.slice(0, 1).map(s => '<span class="ko">' + H(tf("plc_a_revoir", { s: s })) + '</span>').join("");
+    const motsReconnus = p === "PP" ? e.reponses.filter(r => r.juste && r.x).slice(0, 3).map(r => '<span class="ok">✓ ' + H(motAffichePlc(r.x)) + '</span>').join("") : "";
+    html += '<div class="plc-bilan"><h3>' + H(t("plc_sais_deja")) + '</h3>' + lignes
+        + ((puces || motsReconnus) ? '<div class="plc-puc">' + (puces || motsReconnus) + '</div>' : '') + '</div>';
+    // Les mots marques.
+    const marques = motsAMarquerPlc(e, e.choix || p);
+    const ok = marques.filter(r => r.juste), ko = marques.filter(r => !r.juste);
+    if(p === "PP"){
+        html += '<div class="plc-connus">' + H(t("plc_rien_connu")) + '</div>';
+    } else if(marques.length){
+        const ligne = ok.length && ko.length ? tf("plc_connus_deux", { n: ok.length, r: ko.length })
+                    : ok.length ? tf(ok.length === 1 ? "plc_connus_un" : "plc_connus", { n: ok.length })
+                    : tf(ko.length === 1 ? "plc_rates_un" : "plc_rates", { r: ko.length });
+        html += '<details class="plc-connus"><summary>' + H(ligne) + ' <b>' + H(t("plc_voir_mots")) + '</b></summary><ul>'
+            + marques.map(r => '<li class="' + (r.juste ? 'ok' : 'ko') + '"><span lang="' + H(LANGUE_APPRISE) + '">' + H(motAffichePlc(r.x)) + '</span> · ' + H(r.x.sens) + '</li>').join("")
+            + '</ul></details>';
+    }
+    const choisi = e.choix || p;
+    const lib = choisi === "PP" ? t("plc_commencer_pp") : tf("plc_commencer_en", { n: choisi });
+    html += '<div class="plc-pied"><button type="button" class="plc-cta" onclick="appliquerPlacement()">' + H(lib) + '</button>'
+        + '<button type="button" class="plc-cta2" onclick="ouvrirChoixPlacement()">' + H(t("plc_choisir")) + '</button></div>';
+    if(e.phase === "choix"){
+        const niveaux = (essaiActif("premiers_pas") ? ["PP"] : []).concat(e.L);
+        html += '<div class="plc-voile" onclick="fermerChoixPlacement()"></div><div class="plc-feuille" role="dialog" aria-label="' + H(t("plc_ou_commencer")) + '">'
+            + '<div class="plc-poignee"></div><h3>' + H(t("plc_ou_commencer")) + '</h3>'
+            + niveaux.map(n => '<button type="button" class="plc-ligne-niv' + (n === p ? ' prop' : '') + (n === choisi ? ' on' : '') + '" onclick="choisirNiveauPlacement(\'' + n + '\')">'
+                + '<b>' + H(nomNiveauPlc(n)) + '</b><small>' + H(clairNiveauPlc(n)) + (n === p ? ' · <em>' + H(t("plc_propose")) + '</em>' : '') + '</small></button>').join("")
+            + '<button type="button" class="plc-cta" onclick="appliquerPlacement()">' + H(lib) + '</button></div>';
+    }
+    return html;
+}
+
+// ---------- Les entrees ----------
+// La bienvenue a deux portes (decision du 6 nov.) : « Je pars de zero » /
+// « Je connais deja un peu » -> Trouver mon niveau, Je connais mon niveau,
+// Plus tard. Les six boutons de la v699 restent dans la page, caches.
+function majBienvenuePlacement(){
+    const g = document.getElementById("setupNiveauGroup");
+    const portes = document.getElementById("setupPortes");
+    if(!g || !portes) return;
+    const on = placementDisponible();
+    g.classList.toggle("avec-portes", on);
+    portes.classList.toggle("hidden", !on);
+    if(!on) return;
+    const nivs = document.getElementById("setupPortesNiveaux");
+    if(nivs && !nivs.children.length){
+        niveauxPlacement().forEach(n => {
+            const b = document.createElement("button");
+            b.type = "button";
+            b.className = "setup-porte-niv";
+            b.textContent = n;
+            b.dataset.niveau = n;
+            b.addEventListener("click", () => choisirPorteBienvenue("niveau", n));
+            nivs.appendChild(b);
+        });
+    }
+    majPortesBienvenue();
+}
+let porteBienvenue = null;
+function choisirPorteBienvenue(quoi, niv){
+    if(quoi === "zero"){ porteBienvenue = "zero"; placementDemandeBienvenue = false; choisirNiveauDeclare("zero"); }
+    else if(quoi === "peu"){ porteBienvenue = porteBienvenue === "zero" || !porteBienvenue ? "peu" : porteBienvenue; }
+    else if(quoi === "test"){ porteBienvenue = "test"; placementDemandeBienvenue = true; choisirNiveauDeclare("peu"); }
+    else if(quoi === "niveau"){ porteBienvenue = "niveau:" + niv; placementDemandeBienvenue = false; choisirNiveauDeclare(niv === "A1" ? "peu" : niv); }
+    else if(quoi === "tard"){
+        porteBienvenue = "tard"; placementDemandeBienvenue = false; choisirNiveauDeclare("peu");
+        const v = lirePlacement();
+        if(!v.r){ v.pt = new Date().toISOString(); ecrirePlacement(v); }
+    }
+    majPortesBienvenue();
+}
+function majPortesBienvenue(){
+    const p = porteBienvenue || "";
+    const zero = document.getElementById("setupPorteZero"), peu = document.getElementById("setupPortePeu");
+    const sous = document.getElementById("setupPortesSous");
+    if(zero) zero.classList.toggle("on", p === "zero");
+    if(peu) peu.classList.toggle("on", !!p && p !== "zero");
+    if(sous) sous.classList.toggle("hidden", !p || p === "zero");
+    const test = document.getElementById("setupPorteTest"), tard = document.getElementById("setupPorteTard");
+    if(test) test.classList.toggle("on", p === "test");
+    if(tard) tard.classList.toggle("on", p === "tard");
+    document.querySelectorAll("#setupPortesNiveaux .setup-porte-niv").forEach(b =>
+        b.classList.toggle("on", p === "niveau:" + b.dataset.niveau));
+}
+// Appele par completeInitialSetup() : vrai si le test prend la suite.
+function placementApresBienvenue(suite){
+    if(!placementDemandeBienvenue || !placementDisponible()) return false;
+    return ouvrirPlacement("bienvenue", suite);
+}
+// La carte « Mon niveau » des reglages.
+function majCartePlacement(){
+    const on = placementDisponible();
+    try{ document.documentElement.toggleAttribute("data-placement", on); }catch(e){}
+    const c = document.getElementById("cartePlacement");
+    if(!c) return;
+    c.classList.toggle("hidden", !on);
+    if(!on) return;
+    const pp = premiersPasEnCours();
+    const niv = pp ? "PP" : niveauSeance();
+    const v = lirePlacement();
+    const n = document.getElementById("plcCarteNiveau");
+    if(n) n.textContent = nomNiveauPlc(niv);
+    const clair = document.getElementById("plcCarteClair");
+    if(clair) clair.textContent = clairNiveauPlc(niv);
+    const src = document.getElementById("plcCarteSource");
+    if(src){
+        let txt = "";
+        if(v.r && v.r.c === niv){
+            let date = "";
+            try{ date = new Date(v.r.d).toLocaleDateString(getUiLang(), { day: "numeric", month: "long" }); }catch(e){}
+            txt = v.r.p === v.r.c ? tf("plc_carte_test", { d: date }) : tf("plc_carte_test_choisi", { d: date, p: nomNiveauPlc(v.r.p) });
+        }
+        src.textContent = txt;
+        src.classList.toggle("hidden", !txt);
+    }
+    const b = document.getElementById("plcCarteBouton");
+    if(b) b.textContent = t(v.r ? "plc_refaire" : "plc_faire");
+    const adm = document.getElementById("plcCarteBienvenue");
+    if(adm) adm.classList.toggle("hidden", !isAdminUser());
+}
+// La ligne sous la rangee des niveaux : apres « Plus tard », deux semaines,
+// jamais apres un test fait ; ✕ la retire pour de bon.
+function majLignePlacement(){
+    const l = document.getElementById("spPlacement");
+    if(!l) return;
+    let voir = false;
+    try{
+        if(placementDisponible()){
+            const v = lirePlacement();
+            const depuis = v.pt ? Date.now() - new Date(v.pt).getTime() : Infinity;
+            voir = !v.r && !v.f && depuis >= 0 && depuis < PLACEMENT_LIGNE_JOURS * 86400000;
+        }
+    }catch(e){ voir = false; }
+    l.classList.toggle("hidden", !voir);
+}
+function fermerLignePlacement(ev){
+    if(ev) ev.stopPropagation();
+    const v = lirePlacement();
+    v.f = 1;
+    ecrirePlacement(v);
+    majLignePlacement();
+}
+
 // ============ LES FONCTIONS EN ESSAI (v713) ============
 // ⚠️ UNE SEULE APP, PAS DEUX. Jacques veut tester les nouveautes « a partir de
 // la vraie vie, quand je commence une session du jour », et decider ensuite
@@ -48621,6 +49729,14 @@ const ESSAIS = {
         compte: "examens",
         titre: "Préparation aux examens : un bloc par examen",
         desc: "La tuile montre « Comprendre l'examen », puis un bloc par examen : DTZ, telc Deutsch A2·B1, Goethe-Zertifikat B1 et C1. Chaque bloc reprend les quatre épreuves dans l'ordre de son examen, à ses niveaux et sans les tâches des autres ; le telc ajoute les Sprachbausteine avec Mark, le C1 les feuilles de conjugaison. Un bloc sans aucun exercice ne s'affiche pas."
+    },
+    // EN ESSAI le 6 nov. 2026, admin seul. Decision 34d02c3 (« Vas-y pour les recommandations ») :
+    // l'amelioration 7, le test de niveau. Maquette : https://claude.ai/artifact/T5crAvJXZqmYTfrgFD15uv.
+    // Voir ouvrirPlacement(). Pour la production : traduire les cles plc_* (fr et en seulement), passer a « tous ».
+    placement: {
+        etat: "admin",
+        titre: "Le test de niveau",
+        desc: "Pour qui n'est pas débutant, en allemand et en espagnol : des paliers de six questions (mots lus et entendus, phrases, grammaire), qui montent ou descendent, environ 5 minutes, puis un niveau proposé (🌱 à C1, B2 en espagnol). À la bienvenue, deux portes (« Je pars de zéro » / « Je connais déjà un peu ») ; dans les réglages, la carte « Mon niveau » ; après « Plus tard », une ligne sous la rangée des niveaux. Les mots réussis d'un niveau inférieur deviennent « connus »."
     },
     premiers_pas: {
         etat: "tous",
@@ -58179,8 +59295,11 @@ function echeancesPermises(items, nivMot, niveau){
     const plusBas = rangNiveauSeance(nivMot) < rangNiveauSeance(niveau);
     return items.filter(it => {
         const st = getWordState(it.themeId, it.index);
-        if(estNeuf(st)) return true;
+        // Le test de niveau (6 nov. 2026) marque aussi des mots jamais commences :
+        // `connu` passe donc avant « neuf ». Avant lui, il n'etait pose que sur des
+        // mots commences -- l'ordre des deux lignes ne changeait rien.
         if(st.connu) return false;
+        if(estNeuf(st)) return true;
         return !plusBas || motRate(st);
     });
 }
@@ -64054,6 +65173,7 @@ function majTuileSeance(){
     const clair = document.getElementById("seanceNiveauClair");
     if(clair) clair.textContent = pp ? t("pp_niveau_clair") : t("niveau_clair_" + niveau);
     try{ majPiluleSeance(); }catch(e){}
+    try{ majLignePlacement(); }catch(e){}   // le test de niveau (essai « placement »)
 }
 
 // ============ LA PILULE DE LA SEANCE (v881) ============
