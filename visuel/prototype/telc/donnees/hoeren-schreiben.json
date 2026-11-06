@@ -1,0 +1,304 @@
+{
+ "_note": [
+  "telc Deutsch A2·B1, HOEREN UND SCHREIBEN (items 52-56) -- nos textes, au FORMAT du telc (preparation-examens/FORMAT-TELC.md), jamais son contenu. Ecrit pour Wortando le 6 nov. 2026 (session « telc : Ecouter »).",
+  "5 messages de repondeur, chacun entendu 2 fois ; une note a completer par message ; 5 x 1 point, comptes en SCHREIBEN. Hoeren et Hoeren und Schreiben : 35 minutes ensemble.",
+  "Les voix (« wer ») sont celles de hoeren.json. audio : comme dans hoeren.json ({wer, text, dit?}, dit = la lecture en lettres de toute replique a chiffres).",
+  "notiz : la note, en lignes ; {} marque la case a remplir. loesung : la reponse ; typ (uhrzeit, zahl, telefon, wort) dit comment la saisie est comparee",
+  "(hoeren-schreiben.js, verifierNote) ; akzeptiert : d'autres formes justes ; exakt : true, pas de tolerance d'orthographe (un nom epele).",
+  "Relecture germanophone a faire avant l'ouverture aux eleves."
+ ],
+ "consigne": {
+  "wer": "aurora",
+  "text": "Hören und Schreiben. Sie hören fünf Nachrichten auf dem Anrufbeantworter. Sie hören jede Nachricht zweimal. Notieren Sie die fehlende Information.",
+  "text_fr": "Écouter et noter. Cinq messages sur un répondeur, chacun entendu deux fois. Note l'information qui manque : un mot, un nombre, une heure.",
+  "text_en": "Listening and writing. Five voicemail messages, each heard twice. Write down the missing piece of information: a word, a number, a time."
+ },
+ "conseil": {
+  "text_fr": "Avant chaque message, lis la note : tu sais déjà ce qu'il faut attraper (une heure, un prix, un nom). Souvent, on entend deux nombres : un seul est le bon. Un nom épelé s'écrit lettre par lettre.",
+  "text_en": "Before each message, read the note: you already know what to catch (a time, a price, a name). You often hear two numbers: only one is right. A spelled-out name is written letter by letter."
+ },
+ "series": [
+  {
+   "id": 1,
+   "nachrichten": [
+    {
+     "nr": 52,
+     "rollen": {
+      "f_mittel": "Zahnarztpraxis"
+     },
+     "audio": [
+      {
+       "wer": "f_mittel",
+       "text": "Guten Tag, Herr Garnier, hier ist die Zahnarztpraxis Dr. Hoffmann. Leider ist Frau Dr. Hoffmann am Donnerstag krank. Wir müssen Ihren Termin deshalb verschieben. Der neue Termin ist am Freitag, den 14. November, um 9:30 Uhr. Wenn das nicht passt, rufen Sie uns bitte zurück. Auf Wiederhören!",
+       "dit": "Guten Tag, Herr Garnier, hier ist die Zahnarztpraxis Doktor Hoffmann. Leider ist Frau Doktor Hoffmann am Donnerstag krank. Wir müssen Ihren Termin deshalb verschieben. Der neue Termin ist am Freitag, den vierzehnten November, um neun Uhr dreißig. Wenn das nicht passt, rufen Sie uns bitte zurück. Auf Wiederhören!"
+      }
+     ],
+     "notiz": {
+      "titel": "Zahnarzt Dr. Hoffmann",
+      "zeilen": [
+       "Termin am Donnerstag fällt aus.",
+       "Neuer Termin: Freitag, 14.11., um {} Uhr"
+      ]
+     },
+     "typ": "uhrzeit",
+     "loesung": "9:30",
+     "akzeptiert": [
+      "halb zehn",
+      "neun Uhr dreißig"
+     ],
+     "erkl_fr": "« um 9:30 Uhr », que la voix dit « neun Uhr dreißig ». Le 14, c'est la date, déjà écrite sur la note.",
+     "erkl_en": "„um 9:30 Uhr“, which the voice says as „neun Uhr dreißig“. The 14th is the date, already on the note."
+    },
+    {
+     "nr": 53,
+     "rollen": {
+      "m_mittel": "Fahrradwerkstatt"
+     },
+     "audio": [
+      {
+       "wer": "m_mittel",
+       "text": "Hallo, Herr Garnier, hier ist Kowalski von der Fahrradwerkstatt Speiche. Ihr Fahrrad ist fertig. Wir haben die Bremsen repariert und einen neuen Reifen montiert. Das macht zusammen 45 Euro. Sie können es ab morgen abholen, wir haben bis 19 Uhr geöffnet. Tschüss!",
+       "dit": "Hallo, Herr Garnier, hier ist Kowalski von der Fahrradwerkstatt Speiche. Ihr Fahrrad ist fertig. Wir haben die Bremsen repariert und einen neuen Reifen montiert. Das macht zusammen fünfundvierzig Euro. Sie können es ab morgen abholen, wir haben bis neunzehn Uhr geöffnet. Tschüss!"
+      }
+     ],
+     "notiz": {
+      "titel": "Fahrrad abholen (Werkstatt Speiche)",
+      "zeilen": [
+       "Bremsen und Reifen: fertig",
+       "Preis: {} Euro"
+      ]
+     },
+     "typ": "zahl",
+     "loesung": "45",
+     "akzeptiert": [
+      "fünfundvierzig"
+     ],
+     "erkl_fr": "« Das macht zusammen 45 Euro » (fünfundvierzig). Le piège : 19, c'est l'heure de fermeture.",
+     "erkl_en": "„Das macht zusammen 45 Euro“ (fünfundvierzig). The trap: 19 is the closing time."
+    },
+    {
+     "nr": 54,
+     "rollen": {
+      "anna": "Anna"
+     },
+     "audio": [
+      {
+       "wer": "anna",
+       "text": "Hallo Mark, hier ist Anna. Wegen Samstag, Lenas Party: Kannst du bitte Gläser mitbringen? Lena hat nicht genug für alle Gäste. Getränke und Kuchen haben wir schon. Und vergiss nicht: Wir treffen uns um sieben bei ihr. Bis dann!"
+      }
+     ],
+     "notiz": {
+      "titel": "Lenas Party am Samstag",
+      "zeilen": [
+       "Treffen: 19 Uhr bei Lena",
+       "Mitbringen: {}"
+      ]
+     },
+     "typ": "wort",
+     "loesung": "Gläser",
+     "akzeptiert": [
+      "Glas",
+      "Glaeser",
+      "Gläser für alle"
+     ],
+     "erkl_fr": "« Kannst du bitte Gläser mitbringen? » Les boissons et le gâteau, ils les ont déjà.",
+     "erkl_en": "„Kannst du bitte Gläser mitbringen?“ They already have the drinks and the cake."
+    },
+    {
+     "nr": 55,
+     "rollen": {
+      "f_jung": "Volkshochschule"
+     },
+     "audio": [
+      {
+       "wer": "f_jung",
+       "text": "Guten Tag, hier ist die Volkshochschule Pankow, eine Nachricht für die Teilnehmer vom Kurs Deutsch B1 am Abend. Ab nächster Woche findet Ihr Kurs in einem anderen Raum statt: nicht mehr in Raum 108, sondern in Raum 214, im zweiten Stock. Die Uhrzeit bleibt gleich. Vielen Dank.",
+       "dit": "Guten Tag, hier ist die Volkshochschule Pankow, eine Nachricht für die Teilnehmer vom Kurs Deutsch B eins am Abend. Ab nächster Woche findet Ihr Kurs in einem anderen Raum statt: nicht mehr in Raum hundertacht, sondern in Raum zweihundertvierzehn, im zweiten Stock. Die Uhrzeit bleibt gleich. Vielen Dank."
+      }
+     ],
+     "notiz": {
+      "titel": "Deutschkurs B1 (abends)",
+      "zeilen": [
+       "Ab nächster Woche",
+       "Neuer Raum: {}"
+      ]
+     },
+     "typ": "zahl",
+     "loesung": "214",
+     "akzeptiert": [],
+     "erkl_fr": "« nicht mehr in Raum 108, sondern in Raum 214 » : nicht mehr … sondern, plus … mais. 108, c'est l'ancienne salle.",
+     "erkl_en": "„nicht mehr in Raum 108, sondern in Raum 214“: nicht mehr … sondern, no longer … but. 108 is the old room."
+    },
+    {
+     "nr": 56,
+     "rollen": {
+      "m_jung": "Paketdienst"
+     },
+     "audio": [
+      {
+       "wer": "m_jung",
+       "text": "Hallo, hier ist der Paketdienst Blitz. Ich war heute um elf bei Ihnen, aber leider war niemand zu Hause. Ihr Paket habe ich im Kiosk um die Ecke abgegeben. Der Kiosk heißt Sommer, ich buchstabiere: S – O – M – M – E – R. Sie können es dort ab sechzehn Uhr abholen.",
+       "dit": "Hallo, hier ist der Paketdienst Blitz. Ich war heute um elf bei Ihnen, aber leider war niemand zu Hause. Ihr Paket habe ich im Kiosk um die Ecke abgegeben. Der Kiosk heißt Sommer, ich buchstabiere: Es, O, Em, Em, E, Er. Sie können es dort ab sechzehn Uhr abholen."
+      }
+     ],
+     "notiz": {
+      "titel": "Paket abholen",
+      "zeilen": [
+       "ab 16 Uhr",
+       "im Kiosk {}"
+      ]
+     },
+     "typ": "wort",
+     "loesung": "Sommer",
+     "akzeptiert": [
+      "Kiosk Sommer"
+     ],
+     "exakt": true,
+     "erkl_fr": "Le nom est épelé : S – O – M – M – E – R, deux M. Un nom épelé s'écrit exactement.",
+     "erkl_en": "The name is spelled out: S – O – M – M – E – R, two Ms. A spelled-out name must be written exactly."
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "nachrichten": [
+    {
+     "nr": 52,
+     "rollen": {
+      "anna": "Anna"
+     },
+     "audio": [
+      {
+       "wer": "anna",
+       "text": "Hallo Mark, ich bin's, Anna. Ich muss morgen doch länger am Flughafen bleiben, ich schaffe es also nicht um halb sechs. Treffen wir uns um Viertel nach sechs im Café Linde? Ruf mich an, wenn das nicht geht. Bis morgen!"
+      }
+     ],
+     "notiz": {
+      "titel": "Treffen mit Anna, Café Linde",
+      "zeilen": [
+       "Morgen",
+       "Uhrzeit: {} Uhr"
+      ]
+     },
+     "typ": "uhrzeit",
+     "loesung": "18:15",
+     "akzeptiert": [
+      "Viertel nach sechs",
+      "6:15"
+     ],
+     "erkl_fr": "« Viertel nach sechs » : six heures et quart, donc 18:15. Halb sechs (17:30), c'était l'heure prévue avant.",
+     "erkl_en": "„Viertel nach sechs“: quarter past six, so 18:15. Halb sechs (5:30) was the time planned before."
+    },
+    {
+     "nr": 53,
+     "rollen": {
+      "f_mittel": "Stadtbibliothek"
+     },
+     "audio": [
+      {
+       "wer": "f_mittel",
+       "text": "Guten Tag, hier ist die Stadtbibliothek Pankow, eine Nachricht für Herrn Garnier. Das Buch, das Sie bestellt haben, ist jetzt da. Wir legen es für Sie an der Ausleihe bereit. Bitte holen Sie es bis zum 20. November ab, danach geht es zurück ins Regal. Vielen Dank!",
+       "dit": "Guten Tag, hier ist die Stadtbibliothek Pankow, eine Nachricht für Herrn Garnier. Das Buch, das Sie bestellt haben, ist jetzt da. Wir legen es für Sie an der Ausleihe bereit. Bitte holen Sie es bis zum zwanzigsten November ab, danach geht es zurück ins Regal. Vielen Dank!"
+      }
+     ],
+     "notiz": {
+      "titel": "Stadtbibliothek: Buch abholen",
+      "zeilen": [
+       "an der Ausleihe",
+       "bis zum {}. November"
+      ]
+     },
+     "typ": "zahl",
+     "loesung": "20",
+     "akzeptiert": [
+      "zwanzigsten",
+      "zwanzig"
+     ],
+     "erkl_fr": "« bis zum 20. November » : la voix dit « zwanzigsten », la forme du nombre ordinal après « zum ».",
+     "erkl_en": "„bis zum 20. November“: the voice says „zwanzigsten“, the ordinal form after „zum“."
+    },
+    {
+     "nr": 54,
+     "rollen": {
+      "m_alt": "Hausmeister"
+     },
+     "audio": [
+      {
+       "wer": "m_alt",
+       "text": "Guten Tag, Herr Garnier, hier spricht Brückner, der Hausmeister. Eine Information für alle Mieter: Am Dienstag wird von acht bis zwölf Uhr das Wasser abgestellt, wir bekommen neue Leitungen im Keller. Bitte waschen Sie an diesem Vormittag keine Wäsche. Ab Mittwoch ist dann alles wieder normal."
+      }
+     ],
+     "notiz": {
+      "titel": "Kein Wasser im Haus",
+      "zeilen": [
+       "am {}",
+       "von 8 bis 12 Uhr: keine Wäsche waschen"
+      ]
+     },
+     "typ": "wort",
+     "loesung": "Dienstag",
+     "akzeptiert": [
+      "Di",
+      "Di."
+     ],
+     "erkl_fr": "« Am Dienstag wird … das Wasser abgestellt » : abstellen, couper. Mercredi, tout redevient normal.",
+     "erkl_en": "„Am Dienstag wird … das Wasser abgestellt“: abstellen, to turn off. On Wednesday everything is back to normal."
+    },
+    {
+     "nr": 55,
+     "rollen": {
+      "f_jung": "Fitnessstudio"
+     },
+     "audio": [
+      {
+       "wer": "f_jung",
+       "text": "Hallo, hier ist das Fitnessstudio Kraftwerk. Ihre Mitgliedskarte ist fertig. Bitte kommen Sie in den nächsten Tagen an die Theke und bringen Sie ein Passfoto mit, das kleben wir auf die Karte. Ihren Ausweis brauchen wir nicht mehr. Bis bald!"
+      }
+     ],
+     "notiz": {
+      "titel": "Fitnessstudio Kraftwerk: Karte abholen",
+      "zeilen": [
+       "an der Theke",
+       "Mitbringen: {}"
+      ]
+     },
+     "typ": "wort",
+     "loesung": "Passfoto",
+     "akzeptiert": [
+      "Foto",
+      "ein Passfoto",
+      "Passbild",
+      "Bild"
+     ],
+     "erkl_fr": "« bringen Sie ein Passfoto mit ». Le piège : le Ausweis (la pièce d'identité), « brauchen wir nicht mehr ».",
+     "erkl_en": "„bringen Sie ein Passfoto mit“. The trap: the Ausweis (ID card) „brauchen wir nicht mehr“."
+    },
+    {
+     "nr": 56,
+     "rollen": {
+      "m_mittel": "Möbelhaus"
+     },
+     "audio": [
+      {
+       "wer": "m_mittel",
+       "text": "Guten Tag, hier ist Schäfer vom Möbelhaus Nordlicht. Ihr Regal ist angekommen, und wir möchten einen Termin für die Lieferung machen. Bitte rufen Sie mich zurück, meine Nummer ist 030 44 71 925. Ich wiederhole: 030 44 71 925. Danke!",
+       "dit": "Guten Tag, hier ist Schäfer vom Möbelhaus Nordlicht. Ihr Regal ist angekommen, und wir möchten einen Termin für die Lieferung machen. Bitte rufen Sie mich zurück, meine Nummer ist null drei null, vierundvierzig, einundsiebzig, neun zwei fünf. Ich wiederhole: null drei null, vierundvierzig, einundsiebzig, neun zwei fünf. Danke!"
+      }
+     ],
+     "notiz": {
+      "titel": "Rückruf: Möbelhaus Nordlicht, Herr Schäfer",
+      "zeilen": [
+       "Regal ist da, Liefertermin machen",
+       "Telefon: {}"
+      ]
+     },
+     "typ": "telefon",
+     "loesung": "030 44 71 925",
+     "akzeptiert": [],
+     "erkl_fr": "Un numéro se dit souvent par groupes : « null drei null, vierundvierzig, einundsiebzig, neun zwei fünf ». Il est répété : la seconde fois, vérifie chaque groupe.",
+     "erkl_en": "A phone number is often said in groups: „null drei null, vierundvierzig, einundsiebzig, neun zwei fünf“. It's repeated: the second time, check each group."
+    }
+   ]
+  }
+ ]
+}

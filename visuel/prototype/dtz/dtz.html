@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le DTZ avec Mark et Anna</title>
+<!--
+  LE DTZ AVEC MARK ET ANNA (3 nov. 2026). Une preparation vivante au DTZ, decidee par Jacques : une REPETITION ou
+  Mark aide l'eleve a preparer l'examen et Anna joue l'examinatrice ; l'eleve repond pour lui-meme.
+
+  Cette page ne porte que le squelette. Le reste :
+    commun.css            le style, partage avec la page du telc ;
+    commun.js             voix, minuterie, panneau, tirage, verdict global, accueil construit des inscriptions ;
+    hoeren-lesen.js       Ecouter et Lire, et leur examen blanc (session « DTZ : ecouter et lire ») ;
+    sprechen-schreiben.js Parler et Ecrire (session « Preparation au DTZ avec Mark et Anna »).
+  Les donnees : donnees/*.json ; le controle : tests/dtz.py ; la relecture germanophone : outils/relecture.py.
+
+  Ouverte par l'app dans le cadre des scenes (sceneCadre, servie depuis visuel/prototype/ comme les themes), elle
+  parle comme une scene (source « wortando-scene ») : « exercice », « bonne », « reponse », « etats », « resultat »,
+  « fini », « fermer ». Parametres : lang, nuit=1, rapide=1 (pauses raccourcies, pour les essais seulement).
+-->
+<link rel="stylesheet" href="commun.css?v=2">
+</head>
+<body>
+<div class="haut">
+  <button class="retour" id="retour" type="button" aria-label="Retour">‹</button>
+  <div class="titre" id="titre">Le DTZ avec Mark et Anna</div>
+  <div class="chrono" id="chrono" dir="ltr" hidden></div>
+</div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<div class="voile" id="voile" hidden><div class="panneau" id="panneau"></div></div>
+<script src="../themes/tirage.js?v=1"></script>
+<script src="commun.js?v=2"></script>
+<script src="hoeren-lesen.js?v=2"></script>
+<!-- sprechen-schreiben.js (Parler, Ecrire) s'ajoutera ici -->
+<script>demarrer();</script>
+</body>
+</html>
