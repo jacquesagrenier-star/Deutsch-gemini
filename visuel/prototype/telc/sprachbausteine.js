@@ -18,6 +18,10 @@
 
 "use strict";
 
+// TOUT LE MODULE DANS SA PORTEE : les modules du telc partagent la page (telc.html), et des noms comme
+// points(), recap() ou continuer() se remplaceraient l'un l'autre sans rien dire. Seul SB sort (window.SB).
+(() => {
+
 // Les textes en francais et en anglais (telc-commun.js : textesTelc). Les explications des trous et la situation
 // viennent des donnees : erkl_fr / erkl_en, situation_fr / situation_en (champTelc ; le francais tant que l'anglais
 // manque).
@@ -206,3 +210,6 @@ function recap(){
   DTZ.surRetour(() => { toutesLesSections(); return true; });
   window.scrollTo(0, 0);
 }
+
+window.SB = SB;
+})();
