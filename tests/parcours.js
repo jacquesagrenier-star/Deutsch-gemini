@@ -89,6 +89,56 @@ function bilanSeances(listes){
     if(parts.length){
         lignes.push("  mediane des non finies : " + Math.round(100 * parts[Math.floor(parts.length / 2)]) + " % du paquet");
     }
+    lignes.push.apply(lignes, arretsParActivite(toutes));
+    return lignes;
+}
+
+// LE BILAN PAR VERSION (lot de l'evaluation, 6 nov. 2026, champs proposes par la session des maquettes).
+// Chaque seance porte depuis ce lot :
+//   v la version a l'ouverture ; q "f" (la fin) ou "r" (« ‹ »), absent = fermee sans l'un ni l'autre ;
+//   o 1 si l'objectif du jour etait atteint a la sortie ; i les fenetres et bulles montrees pendant la seance ;
+//   e / er les mots rates proposes a la fin et ceux refaits ; t la duree en secondes ; a l'activite a l'ecran
+//   quand on s'arrete (« carte », « ecoute », « parler », « gram », « scene », « reprise »...).
+// Les seances d'avant le lot n'ont pas `v` : elles forment le groupe « avant ».
+// ⚠️ Une douzaine de comptes donnent quelques dizaines de seances par semaine : assez pour voir un grand
+// ecart (moitie moins d'abandons), pas un petit. Deux ou trois semaines avant de conclure.
+function mediane(l){
+    if(!l.length) return null;
+    const x = l.slice().sort((a, b) => a - b);
+    return x[Math.floor(x.length / 2)];
+}
+function pc(n, total){ return total ? Math.round(100 * n / total) + " %" : "—"; }
+function arretsParActivite(toutes){
+    const lignes = [];
+    const groupes = {};
+    toutes.forEach(s => { const g = s.v ? "v" + s.v : "avant"; (groupes[g] = groupes[g] || []).push(s); });
+    const noms = Object.keys(groupes).sort((a, b) => a === "avant" ? -1 : b === "avant" ? 1 : a.localeCompare(b));
+    lignes.push("  par version :");
+    noms.forEach(g => {
+        const l = groupes[g];
+        const finies = l.filter(s => s.f || s.q === "f").length;
+        const retour = l.filter(s => !s.f && s.q === "r").length;
+        const fermees = l.filter(s => !s.f && !s.q).length;
+        const lachees = l.filter(s => !s.f);
+        const m = mediane(lachees.map(s => s.p / s.n));
+        let ligne = ("    " + g).padEnd(12) + String(l.length).padStart(3) + " seance(s) : finies " + pc(finies, l.length);
+        if(g !== "avant") ligne += ", « ‹ » " + pc(retour, l.length) + ", fermees " + pc(fermees, l.length);
+        else ligne += ", non finies " + pc(lachees.length, l.length);
+        if(m !== null) ligne += " ; mediane des non finies " + Math.round(100 * m) + " % du paquet";
+        lignes.push(ligne);
+        if(g === "avant") return;
+        const obj = lachees.filter(s => s.o).length;
+        if(lachees.length) lignes.push("      non finies avec l'objectif atteint : " + obj + " sur " + lachees.length);
+        const mi = mediane(l.map(s => s.i || 0)), mt = mediane(l.filter(s => s.t).map(s => s.t));
+        lignes.push("      fenetres et bulles par seance (mediane) : " + (mi === null ? "—" : mi)
+                    + " ; duree mediane : " + (mt === null ? "—" : Math.round(mt / 60) + " min"));
+        const e = l.reduce((x, s) => x + (s.e || 0), 0), er = l.reduce((x, s) => x + (s.er || 0), 0);
+        if(e) lignes.push("      mots rates proposes a la fin : " + e + ", refaits : " + er);
+        const parA = {};
+        lachees.filter(s => s.a).forEach(s => { parA[s.a] = (parA[s.a] || 0) + 1; });
+        const cles = Object.keys(parA).sort((x, y) => parA[y] - parA[x]);
+        if(cles.length) lignes.push("      ou l'on s'arrete : " + cles.map(k => k + " " + parA[k]).join(", "));
+    });
     return lignes;
 }
 

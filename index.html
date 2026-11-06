@@ -21,6 +21,10 @@
         }catch(e){ a = "de"; }
     }
     try{ document.documentElement.setAttribute("data-apprendre", a); }catch(e){}
+    /* Le numero de version a cote du logo, pour l'admin seulement (lot de l'evaluation, 6 nov. 2026) :
+       la classe est posee des le premier rendu si cet appareil a deja vu l'admin, puis tenue a jour par
+       onAuthStateChanged. */
+    try{ if(localStorage.getItem("wortando_estAdmin") === "1") document.documentElement.classList.add("est-admin"); }catch(e){}
 })();
 </script>
 <script>
@@ -565,7 +569,38 @@ window.LIEN_REINIT = (function(){
         }
     }
 
-    function partir(){ if(enCours) decouvrir(true); }
+    // PLUS DE PAGE QUI CHANGE SOUS LES YEUX (lot de l'evaluation, 6 nov. 2026). L'animation finie, si
+    // l'app ne sait pas encore qui est connecte (Firebase arrive de gstatic), on montrait l'accueil, puis la
+    // connexion, ou un ecran vide : les deux points ambre restent a la place, 6,5 s au plus depuis le
+    // chargement, jamais hors ligne. onAuthStateChanged pose COMPTE_INCONNU a false.
+    window.COMPTE_INCONNU = true;
+    function attendreLeCompte(){
+        if(!window.COMPTE_INCONNU) return false;
+        try{ if(navigator.onLine === false) return false; }catch(e){}
+        return Date.now() - debutPage < 6500;
+    }
+    function partir(){
+        if(!enCours) return;
+        if(attendreLeCompte()){
+            ecran.classList.add("passage");
+            if(minuterie) clearTimeout(minuterie);
+            minuterie = setTimeout(partir, 200);
+            return;
+        }
+        decouvrir(true);
+    }
+    // L'ECRAN D'ATTENTE APRES LA CONNEXION : couvert par handleEmailLogin(), libere quand la progression
+    // du nuage est restauree (libererAttenteConnexion), au plus tard apres `maxMs`.
+    window.ouvertureAttendre = function(texte, maxMs){
+        var p = document.getElementById("splashPassageTexte");
+        if(p) p.textContent = texte || "";
+        ecran.classList.add("passage");
+        enCours = true;
+        couvrir();
+        if(minuterie) clearTimeout(minuterie);
+        minuterie = setTimeout(partir, maxMs || 6000);
+    };
+    window.ouvertureLiberer = function(){ if(enCours && ecran.classList.contains("passage")) partir(); };
 
     function jouer(){
         // ⚠️ ON N'OUVRE PAS UNE PAGE QU'ON N'A PAS OUVERTE. Arriver ici par un
@@ -8426,6 +8461,106 @@ body[data-theme="dark"] #home .pa-ecoute .pa-play, body[data-theme="dark"] #home
 #home .pa-ecoute .pa-play::before, #home .pa-ecoute .pa-play::after{content:none !important;}
 #home .pa-ecoute .pa-play svg{width:17px; height:17px;}
 
+/* 6 nov. 2026 : LA SEANCE EN PARTIES (voir LE PLAN DE LA SEANCE dans le script).
+   Une barre sous l'en-tete : une part par partie, faite en encre, en cours en ambre. */
+#seanceParts{display:flex; gap:4px; margin:10px 0 14px;}
+/* Jacques, 6 nov. (iPhone) : la capsule micro / haut-parleur / compteur passait a la ligne sous un en-tete
+   long et se posait sur la barre (marge negative). La capsule reste a droite, le texte se replie a cote ;
+   sous 350 px elle passe sur sa ligne, et la barre a toujours la sienne dessous. */
+#flashcards.seance-en-parts .title-row{flex-wrap:nowrap; align-items:flex-start;}
+#flashcards.seance-en-parts .title-row > div:first-child{flex:1 1 auto; min-width:0;}
+#flashcards.seance-en-parts .title-row-pills{flex:none; flex-wrap:nowrap; margin-top:2px;}
+#flashcards.seance-en-parts #flashThemeTitle{font-size:24px; line-height:1.15; overflow-wrap:anywhere;}
+@media (max-width:349px){ #flashcards.seance-en-parts .title-row{flex-wrap:wrap;} #flashcards.seance-en-parts .title-row-pills{margin-inline-start:auto;} }
+#seanceParts.hidden{display:none;}
+#seanceParts i{display:block; flex:1 1 0; min-width:6px; height:7px; border-radius:4px; background:rgba(28,36,48,.14);}
+#seanceParts i.fait{background:#2C3A4A;}
+#seanceParts i.ici{background:linear-gradient(90deg, #E8A23A 0 var(--q, 0%), rgba(28,36,48,.14) var(--q, 0%) 100%);}
+html[dir="rtl"] #seanceParts i.ici{background:linear-gradient(270deg, #E8A23A 0 var(--q, 0%), rgba(28,36,48,.14) var(--q, 0%) 100%);}
+body[data-theme="dark"] #seanceParts i{background:rgba(255,255,255,.12);}
+body[data-theme="dark"] #seanceParts i.fait{background:#C9D4DD;}
+body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(90deg, #F0A93C 0 var(--q, 0%), rgba(255,255,255,.12) var(--q, 0%) 100%);}
+html[dir="rtl"] body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(270deg, #F0A93C 0 var(--q, 0%), rgba(255,255,255,.12) var(--q, 0%) 100%);}
+/* Lot de l'evaluation : sur l'ecran de fin (fin-paquet), toutes les parties sont faites. */
+#flashcards.fin-paquet #seanceParts i{background:#2C3A4A;}
+body[data-theme="dark"] #flashcards.fin-paquet #seanceParts i{background:#C9D4DD;}
+/* L'ecran de passage entre deux parties. */
+.cp-passage{display:grid; justify-items:center; gap:10px; text-align:center; padding:22px 8px 10px;}
+.cp-passage-ok{width:56px; height:56px; border-radius:50%; display:grid; place-items:center; background:rgba(31,122,85,.12);}
+.cp-passage-ok svg{width:30px; height:30px; fill:none; stroke:#1F7A55; stroke-width:3; stroke-linecap:round; stroke-linejoin:round;}
+body[data-theme="dark"] .cp-passage-ok{background:rgba(80,190,130,.16);}
+body[data-theme="dark"] .cp-passage-ok svg{stroke:#8ED3AA;}
+.cp-passage-fait{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size:22px; font-weight:800; letter-spacing:-.015em; line-height:1.2; text-wrap:balance;}
+.cp-passage-ensuite{margin:8px 0 0; font-size:16px; font-weight:700; text-wrap:balance;}
+.cp-passage-n{color:var(--gris-v); font-size:13px;}
+.cp-passage-go{margin-top:10px; min-width:180px;}
+/* Le plan sur la carte de l'accueil : il peut passer sur deux lignes. */
+#home #seancePilule .pa-contenu.pa-plan{white-space:normal; text-wrap:balance;}
+
+/* 6 nov. 2026 : L'ACCUEIL PAR PALIERS (palierAccueil). Rien n'est ferme : Tout le contenu
+   garde tout ; c'est l'accueil qui montre moins a qui commence. */
+#home.palier-1:not(.vue-contenu) #explorerScenes, #home.palier-1:not(.vue-contenu) #explorerThemes,
+#home.palier-1:not(.vue-contenu) #ecouteLigneAccueil,
+#home.palier-1:not(.vue-contenu) #carteVocab, #home.palier-2:not(.vue-contenu) #carteVocab,
+#home.palier-1.sans-gardes #seanceGardes, #home.palier-2.sans-gardes #seanceGardes{display:none !important;}
+#home #seancePilule.niveaux-replies > .pa-niveaux{display:none !important;}
+#home #seancePilule .pa-changer{order:3; justify-self:center; border:0; background:none; font:inherit; font-size:13px; font-weight:700;
+    color:var(--encre-v); padding:4px 10px; border-radius:999px; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
+#home #seancePilule .pa-changer.hidden{display:none;}
+#home.vue-contenu #suggAccueil{display:none !important;}
+/* Les trois suggestions : des cartes de verre, l'image a gauche, le rond a droite. */
+.sugg-accueil{display:grid; gap:10px; grid-column:1 / -1;}
+.sugg-accueil.hidden{display:none;}
+.sugg-accueil-titre{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight:800; font-size:17px; color:var(--encre-v); padding:2px 2px 0;}
+.sugg-accueil-liste{display:grid; gap:10px;}
+.sugg-carte{display:grid; grid-template-columns:72px minmax(0,1fr) auto; gap:12px; align-items:center; width:100%; text-align:start; border:0; cursor:pointer;
+    padding:8px 12px 8px 8px; border-radius:22px; font:inherit; color:var(--encre-v);
+    background:var(--v-fond); -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
+    box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre);}
+.sugg-carte img, .sugg-onde{width:72px; height:58px; object-fit:cover; border-radius:14px; display:block;}
+.sugg-onde{display:flex; align-items:center; justify-content:center; gap:4px; background:rgba(232,162,58,.16);}
+.sugg-onde i{display:block; width:5px; border-radius:3px; background:#B07A1E; height:14px;}
+.sugg-onde i:nth-child(2), .sugg-onde i:nth-child(4){height:26px; background:#E8A23A;}
+.sugg-onde i:nth-child(3){height:36px;}
+.sugg-tx{display:grid; gap:1px; min-width:0;}
+.sugg-kick{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight:800; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ambre-v);}
+.sugg-tx b{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight:700; font-size:15.5px; line-height:1.2;}
+.sugg-sous{font-size:12px; color:var(--gris-v); line-height:1.3;}
+.sugg-rond{width:38px; height:38px; border-radius:50%; display:grid; place-items:center; font-size:21px; font-weight:600; line-height:1; padding-bottom:2px; color:#fff;
+    background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%);
+    box-shadow:inset 0 0 0 2px rgba(0,0,0,.35), inset 0 0 14px rgba(255,255,255,.16), inset 0 1.5px 0 rgba(255,255,255,.55), 0 8px 18px rgba(20,16,10,.25);}
+html[dir="rtl"] .sugg-rond{transform:scaleX(-1);}
+body[data-theme="dark"] .sugg-rond{color:#2A1A05; background:linear-gradient(180deg, rgba(250,206,128,.86) 0%, rgba(237,169,60,.80) 52%, rgba(208,138,28,.88) 100%);
+    box-shadow:inset 0 0 0 2px rgba(150,90,10,.28), inset 0 0 14px rgba(255,255,255,.35), inset 0 1.5px 0 rgba(255,255,255,.8), 0 8px 20px rgba(237,169,60,.28);}
+.sugg-carte:focus-visible{outline:2px solid #E8A23A; outline-offset:2px;}
+
+/* 6 nov. 2026 : TOUT LE CONTENU PAR BUT. La recherche en tete, puis cinq sections ; dans
+   « En situation », les rubans des scenes et des themes a la place des 17 tuiles. */
+.contenu-recherche{display:none; grid-column:1 / -1; gap:8px;}
+#home.vue-contenu .contenu-recherche{display:grid;}
+.contenu-champ{display:flex; align-items:center; gap:10px; padding:11px 14px; border-radius:18px; cursor:text;
+    background:var(--v-fond); box-shadow:inset 1.5px 1.5px 0 var(--v-liser), inset 0 0 0 1px rgba(28,36,48,.10), var(--v-ombre); color:var(--gris-v);}
+body[data-theme="dark"] .contenu-champ{box-shadow:inset 1.5px 1.5px 0 var(--v-liser), inset 0 0 0 1px rgba(255,255,255,.12), var(--v-ombre);}
+.contenu-champ svg{width:18px; height:18px; flex:0 0 18px; fill:none; stroke:currentColor; stroke-width:2.3; stroke-linecap:round;}
+.contenu-champ input{flex:1; min-width:0; border:0; outline:0; background:transparent; font:inherit; font-size:16px; color:var(--encre-v);}
+.contenu-champ input::placeholder{color:var(--gris-v); opacity:1;}
+.contenu-chercher-mots{justify-self:start; border:0; background:none; font:inherit; font-size:14px; font-weight:700; color:var(--ambre-v); padding:2px 4px; cursor:pointer; text-align:start;}
+.contenu-chercher-mots.hidden{display:none;}
+#home .filtre-cache, #home .explorer-scenes.filtre-vide{display:none !important;}
+.place-situation{display:none;}
+#home.vue-contenu #orbGrid > #explorerScenes{display:block !important;}
+#home.vue-contenu #orbGrid > #explorerThemes:not(.hidden){display:block !important;}
+#home.vue-contenu #orbGrid > #explorerScenes.filtre-vide, #home.vue-contenu #orbGrid > #explorerThemes.filtre-vide{display:none !important;}
+#home.vue-contenu #orbGrid > .orb[onclick^="ouvrirThemeIllustre"]{display:none !important;}
+/* En espagnol, chaque fiche de grammaire n'apparait qu'une fois : dans « Toutes les fiches ». */
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid^="es-"]:not([data-orbid="es-indice"]),
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="kasus"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="praep"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="wortstellung"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="zuinfinitiv"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="pronomen"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="zahlen"]{display:none !important;}
+
 /* v1008 : LE TABLEAU DANS UN CADRE -- « verre et biseau dore » (proposition 4 retenue par Jacques,
    29 oct. 2026 : « un cadre pour la peinture [...] un melange de moderne et d'ancien »). Le verre de
    l'app autour, un biseau dore, des coins arrondis. */
@@ -8939,6 +9074,78 @@ html[dir="rtl"] #flashcards .cp-actions button.primary::before{transform:scaleX(
 #flashcardActions .judge-garde svg, #flashcardActions .judge-sortir svg{color:var(--va-coffre);}
 #flashcardActions .judge-garde.on{--va-haut:rgba(240,167,90,.34); --va-bas:rgba(240,167,90,.28);}
 body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165,100,.26); --va-bas:rgba(240,165,100,.20);}
+/* ============ LOT DE L'EVALUATION (6 nov. 2026, decision f2932a7) ============ */
+/* Le numero de version a cote du logo : l'admin seulement (classe posee dans le <head> et par
+   onAuthStateChanged). Le badge garde son texte juste : seul son affichage change. */
+html:not(.est-admin) .logo .subtitle-version{display:none !important;}
+/* La fleche des exercices (le rond de 64 px, fixe en bas) cachait la derniere ligne d'un tableau : plus
+   d'espace sous le contenu. */
+#flashcards.active:has(#cartePhrase:not(.hidden) .cp-actions){padding-bottom:calc(132px + env(safe-area-inset-bottom, 0px)) !important;}
+#flashcards.active #cartePhrase:not(.hidden){scroll-margin-bottom:132px;}
+/* Pendant qu'on defile, le rond se pose sur une ligne du texte (vu par le chef sur le tableau de « llegar », a
+   l'ouverture) : un fond de verre plus couvrant derriere la fleche, pour que la ligne dessous ne se melange pas a
+   elle. Le rond garde sa taille et sa place. */
+#flashcards .cp-actions button.primary::before{--va-haut:rgba(255,255,255,.78); --va-bas:rgba(255,255,255,.66);}
+body[data-theme="dark"] #flashcards .cp-actions button.primary::before{--va-haut:rgba(22,32,44,.82); --va-bas:rgba(22,32,44,.72);}
+/* Les fetes et les erreurs (maquettes a, b, c1 : artefact 3SR1A41Y5Yy197j6rbLZt4). */
+.fin-anneau{position:relative; width:112px; height:112px; margin:6px auto 4px; border-radius:50%; display:grid; place-content:center; justify-items:center; line-height:1;}
+.fin-anneau::before{content:""; position:absolute; inset:0; border-radius:50%;
+    background:conic-gradient(#E8A23A 0 calc(var(--p, 0) * 1%), #DCE8EE calc(var(--p, 0) * 1%) 100%);
+    -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px)); mask:radial-gradient(farthest-side, transparent calc(100% - 14px), #000 calc(100% - 13px));}
+.fin-anneau b{font-weight:800; font-size:34px; color:#1C2430;}
+.fin-anneau small{font-weight:700; font-size:13px; color:#566070; margin-top:4px; direction:ltr; unicode-bidi:isolate;}
+.fin-anneau.atteint b{color:#1F7A55;}
+.fin-court-tete{font-weight:800; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:#7D4A08; text-align:center;}
+.fin-courte{text-align:center;}
+.fin-courte .flash-end-title{font-size:21px;}
+.fin-fetes{display:grid; gap:8px; margin:14px 0 4px; text-align:start;}
+.fin-fete{display:grid; grid-template-columns:36px 1fr; gap:10px; align-items:center; padding:10px 12px; border-radius:16px; background:#FFF6E5; color:#1C2430;}
+.fin-fete-icone{font-size:24px; text-align:center;}
+.fin-fete-texte{display:flex; flex-direction:column; gap:2px; min-width:0;}
+.fin-fete-texte b{font-size:14.5px; line-height:1.25;}
+.fin-fete-texte small{font-size:12px; color:#566070;}
+.fin-fete-regarder{align-self:flex-start; margin-top:6px !important; padding:8px 14px; font-size:14px;}
+.fin-erreurs{margin:16px 0 4px; padding-top:14px; border-top:1px solid rgba(28,36,48,.12); text-align:center;}
+.fin-erreurs-titre{font-weight:800; font-size:16px; margin-bottom:8px; color:#1C2430;}
+.fin-erreurs-intro{font-size:13px; color:#566070; margin-bottom:8px;}
+.fin-erreurs-liste{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; justify-content:center; gap:6px;}
+.fin-erreur{display:inline-flex; align-items:center; gap:7px; padding:6px 12px 6px 9px; border-radius:999px; border:0; cursor:pointer;
+    background:#FBE3DC; color:#A33A22; font:inherit; text-align:start;}
+.fin-erreur svg{width:16px; height:16px; fill:currentColor; flex:0 0 16px;}
+html[dir="rtl"] .fin-erreur svg{transform:scaleX(-1);}
+.fin-erreur:focus-visible{outline:2px solid #E8A23A; outline-offset:2px;}
+.fin-erreur-mots{display:flex; flex-direction:column; min-width:0; line-height:1.2;}
+.fin-erreur-mot{font-weight:700; font-size:14px; overflow-wrap:anywhere;}
+.fin-erreur-sens{font-size:11.5px; color:#6B3324; overflow-wrap:anywhere;}
+.fin-erreurs-refaire{width:100%; margin-top:12px !important;}
+.bandeau-fetes{order:1; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:10px; margin:0 0 12px; padding:11px 8px 11px 14px; border-radius:20px;
+    background:linear-gradient(180deg, rgba(255,247,232,.92), rgba(255,236,204,.88)); color:#1C2430; box-shadow:inset 1.5px 1.5px 0 #fff, 0 8px 18px rgba(120,70,10,.18);}
+.bandeau-fetes-ouvre{cursor:pointer;}
+.bandeau-fetes-ems{font-size:22px; letter-spacing:2px;}
+.bandeau-fetes-tx{display:flex; flex-direction:column; gap:1px; min-width:0;}
+.bandeau-fetes-tx small{font-size:11.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:#8A5200;}
+.bandeau-fetes-tx b{font-size:13.5px; line-height:1.3; overflow-wrap:anywhere;}
+.bandeau-fetes-x{border:0; background:none; color:inherit; font-size:22px; line-height:1; padding:6px 10px; opacity:.65; cursor:pointer;}
+body[data-theme="dark"] .fin-anneau::before{background:conic-gradient(#F2B24A 0 calc(var(--p, 0) * 1%), #2D4A5E calc(var(--p, 0) * 1%) 100%);}
+body[data-theme="dark"] .fin-anneau b{color:#EEF2F5;}
+body[data-theme="dark"] .fin-anneau small{color:#A9B8C4;}
+body[data-theme="dark"] .fin-anneau.atteint b{color:#8ED3AA;}
+body[data-theme="dark"] .fin-court-tete{color:#F0B456;}
+body[data-theme="dark"] .fin-fete{background:rgba(255,255,255,.07); color:#EEF2F5;}
+body[data-theme="dark"] .fin-fete-texte small{color:#A9B8C4;}
+body[data-theme="dark"] .fin-erreurs{border-top-color:rgba(255,255,255,.12);}
+body[data-theme="dark"] .fin-erreurs-titre{color:#EEF2F5;}
+body[data-theme="dark"] .fin-erreurs-intro{color:#A9B8C4;}
+body[data-theme="dark"] .fin-erreur{background:rgba(255,120,90,.14); color:#FF9C85;}
+body[data-theme="dark"] .fin-erreur-sens{color:#F2B8AA;}
+body[data-theme="dark"] .bandeau-fetes{background:linear-gradient(180deg, rgba(60,44,22,.92), rgba(48,34,16,.92)); color:#F7F1E8; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.12), 0 8px 18px rgba(0,0,0,.35);}
+body[data-theme="dark"] .bandeau-fetes-tx small{color:#F6C46A;}
+/* L'ecran court cache la carte, sa barre et la carte-phrase : rien n'est defait, « Reprendre » les rend. */
+#flashcards.fin-courte-ouverte .flashcard-wrapper, #flashcards.fin-courte-ouverte #flashcardActions,
+#flashcards.fin-courte-ouverte #cartePhrase, #flashcards.fin-courte-ouverte #flashcardEnd{display:none !important;}
+body[data-theme="dark"] .flash-end-summary{color:#B7BBCB;}
+/* « Encore 10 cartes pour ton objectif du jour » restait gris fonce sur fond sombre (vu sur les captures du lot). */
+body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
 </style>
 
 <!-- v1003 : LE FOND COMMUN (Jacques, 29 oct. 2026). La carte du monde decoupee PAR LANGUE
@@ -8993,7 +9200,7 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1117</span>
+        <span class="subtitle-version">v1124</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -9028,7 +9235,7 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
         </div>
         <div class="auth-value-row">
             <span class="auth-value-icon">🎯</span>
-            <span data-i18n="auth_value_2">Objectifs quotidiens, séries, XP et badges pour rester motivé.</span>
+            <span data-i18n="auth_value_2">Chaque jour, une courte séance : des mots, de la grammaire, une scène illustrée, l'écoute et l'oral.</span>
         </div>
         <div class="auth-value-row">
             <span class="auth-value-icon">🔄</span>
@@ -9043,7 +9250,7 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
 
     <div class="card" id="authLoginCard">
         <div id="authContent">
-            <p style="color:#4C566B" data-i18n="auth_desc">Connecte-toi, ou crée ton compte avec ton code d'invitation.</p>
+            <p style="color:#4C566B" data-i18n="auth_desc">Content de te revoir : connecte-toi pour retrouver ta progression.</p>
             <div class="spacer"></div>
             <input id="authEmail" class="answer" type="email" placeholder="E-mail" style="margin-bottom:12px;" data-i18n-placeholder="auth_email_placeholder">
             <div class="password-field-wrap" style="margin-bottom:20px;">
@@ -9711,6 +9918,13 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
             </div>
         </div>
 
+        <!-- 6 nov. 2026 (decision 34d02c3, variante A) : TROIS SUGGESTIONS sous la seance,
+             pour qui commence (palier 1, voir palierAccueil) : la scene de l'etape, un theme
+             illustre, Ecouter. Remplies par majSuggestionsAccueil(). -->
+        <div class="sugg-accueil hidden" id="suggAccueil">
+            <div class="sugg-accueil-titre" data-i18n="sugg_titre">Pour aller plus loin aujourd'hui</div>
+            <div class="sugg-accueil-liste" id="suggAccueilListe"></div>
+        </div>
         <!-- v799 : EXPLORER LES SCENES, a part de la seance. Jacques voulait voir
              qu'il y a beaucoup de scenes (« peut-etre une cinquantaine ») et
              garder le mode Decouvrir (« des fois c'est ca que les gens
@@ -9833,23 +10047,31 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
             <button class="back" onclick="quitterToutLeContenu()"><span data-i18n="back_button">‹ Retour</span></button>
             <h2 data-i18n="accueil_tout_titre">Tout le contenu</h2>
         </div>
+        <!-- 6 nov. 2026 (decision 34d02c3, variante C) : LA RECHERCHE EN TETE DE TOUT LE
+             CONTENU. Elle filtre ce qui est ici (tuiles, scenes, themes) a chaque lettre,
+             et propose de chercher le mot dans le dictionnaire de l'app (filtrerContenu). -->
+        <div class="contenu-recherche" id="contenuRecherche">
+            <label class="contenu-champ" for="contenuRechercheInput">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+                <input id="contenuRechercheInput" type="search" autocomplete="off" autocapitalize="none"
+                       placeholder="Un mot, une règle, un thème…" data-i18n-placeholder="contenu_chercher"
+                       oninput="filtrerContenu(this.value)">
+            </label>
+            <button type="button" class="contenu-chercher-mots hidden" id="contenuChercherMots"
+                    onclick="chercherMotDepuisContenu()"></button>
+        </div>
 
 
         <!-- Section « Les mots ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="mots">
             <span class="sec-trait" aria-hidden="true"></span>
-            <span data-i18n="sec_mots">Travailler les mots</span>
+            <span data-i18n="sec_mes_mots">Mes mots</span>
         </h2>
         <!-- v799 : sortis de la tuile de seance (Jacques : « je le mettrais tout
              simplement dans des tuiles »). Sans orb-de : valables dans les deux
              directions, comme ils l'etaient dans la seance. -->
         <!-- v917 : la serie en recompense (essai « episodes »), visible des le premier episode debloque. -->
-        <div class="orb hidden" data-orbid="episodes" id="tuileEpisodes" onclick="ouvrirMesEpisodes()">
-            <span class="ep-nouveau hidden" id="tuileEpisodesNouveau" data-i18n="ep_nouveau">Nouveau</span>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M20.84 2.18L16.91 2.96L19.65 6.5L21.62 6.1L20.84 2.18M13.97 3.54L12 3.93L14.75 7.46L16.71 7.07L13.97 3.54M9.07 4.5L7.1 4.91L9.85 8.44L11.81 8.05L9.07 4.5M4.16 5.5L3.18 5.69A2 2 0 0 0 1.61 8.04L2 10L6.9 9.03L4.16 5.5M2 10V20C2 21.11 2.9 22 4 22H20C21.11 22 22 21.11 22 20V10H2Z"/></svg></div>
-            <div><strong data-i18n="ep_tuile">Mes épisodes</strong></div>
-        </div>
         <div class="orb" data-orbid="themes" onclick="ouvrirThemesDuNiveau()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></div>
             <div>
@@ -9858,14 +10080,6 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
         </div>
         <!-- v881 : le carnet de phrases et les feuilles de conjugaison, sortis
              de la porte de seance. Visibles des qu'ils ont du contenu. -->
-        <div class="orb hidden" data-orbid="carnet" id="tuileCarnet" onclick="ouvrirCarnetPhrases()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5v17"/><path d="M12 8h4M12 11.5h4"/></svg></div>
-            <div><strong id="tuileCarnetTxt"></strong></div>
-        </div>
-        <div class="orb hidden" data-orbid="feuilles" id="tuileFeuilles" onclick="ouvrirMesFeuilles()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12h6M9.5 15.5h6"/></svg></div>
-            <div><strong id="tuileFeuillesTxt"></strong></div>
-        </div>
         <div class="orb" data-orbid="kana" data-seulement-ja onclick="ouvrirKana()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-size="14" stroke="none" style="fill:var(--wt-icone)">あ</text></svg></div>
             <div><strong>Kana · 漢字</strong></div>
@@ -9925,12 +10139,6 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
              lecture, comparees a la langue de l'utilisateur. Le fichier vient
              de la langue apprise (urlDonnees) : prononciation.json, ou
              espanol/datos/prononciation.json. -->
-        <div class="orb orb-de" data-orbid="prononciation" onclick="ouvrirPrononciation()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 9v6h3l5 4V5L7 9H4z"/><path d="M16 9a4 4 0 010 6"/><path d="M18.5 6.5a7.5 7.5 0 010 11"/></svg></div>
-            <div>
-                <strong data-i18n="orb_prononciation">Prononciation</strong>
-            </div>
-        </div>
 
         <!-- Section « Themes illustres » (2 nov. 2026, Jacques : des themes « plus vivants », imagés, « quelque chose
              de solide. Complet. Autant pour l'allemand que l'espagnol »). Des personnes photorealistes reutilisables
@@ -9938,8 +10146,12 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
              scenes par ouvrirThemeIllustre(). Espagnol et allemand seulement ; cachee en japonais, anglais, portugais. -->
         <h2 class="orb-section orb-de" data-section="illustres">
             <span class="sec-trait" aria-hidden="true"></span>
-            <span data-i18n="sec_illustres">Thèmes illustrés</span>
+            <span data-i18n="sec_situation">En situation</span>
         </h2>
+        <!-- 6 nov. 2026 : ici, dans Tout le contenu, viennent se ranger les deux rubans de
+             l'accueil (#explorerScenes, #explorerThemes), deplaces par appliquerVueContenu() ;
+             les 17 tuiles des themes ci-dessous se cachent derriere eux (CSS). -->
+        <div id="placeSituation" class="place-situation" aria-hidden="true"></div>
         <!-- La famille d'Anna (pas celle de Mark, qui est a Montreal) : un arbre de quatorze personnes, les liens,
              les possessifs, « ¿Quién es…? / Wer ist…? ». Premier theme demande par Jacques. -->
         <div class="orb hidden" data-orbid="familia" id="tuileFamilia" onclick="ouvrirThemeIllustre('familia')" role="button" tabindex="0">
@@ -10060,13 +10272,54 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3.5 4h2.2l2.3 10.5h10.2l2-7.5H7"/><circle cx="9.5" cy="18.8" r="1.5"/><circle cx="16.8" cy="18.8" r="1.5"/></svg></div>
             <div><strong data-i18n="cou_tuile">Faire les courses</strong></div>
         </div>
+        <div class="orb hidden" data-orbid="vacances" id="tuileVacances" onclick="ouvrirThemeIllustre('vacances')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="7.5" width="14" height="11.5" rx="2"/><path d="M9.5 7.5V5.5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2"/><path d="M9 7.5v11.5M15 7.5v11.5"/><circle cx="8" cy="20.5" r=".8"/><circle cx="16" cy="20.5" r=".8"/></svg></div>
+            <div><strong data-i18n="vac_tuile">Les vacances et le voyage</strong></div>
+        </div>
+
+        <!-- Le travail et l'emploi (5 nov. 2026, vague 4) : la recherche d'emploi, au coeur du DTZ -- pas les objets de
+             la scene buero. Lire une annonce (Vollzeit, Teilzeit, Minijob ; jornada completa, media jornada), le CV et la
+             lettre, l'entretien, le contrat (Probezeit, Urlaub), le premier jour, Sie / du et usted / tu, se declarer
+             malade (sich krankmelden) ; les papiers en HTML : visuel/prototype/travail.html. es et de. -->
+        <div class="orb hidden" data-orbid="travail" id="tuileTravail" onclick="ouvrirThemeIllustre('travail')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V5.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5.5v2"/><path d="M3.5 12.5h17"/><path d="M11 12.5v1.5h2v-1.5"/></svg></div>
+            <div><strong data-i18n="trav_tuile">Le travail et l'emploi</strong></div>
+        </div>
+
+        <!-- L'ecole et la garderie (5 nov. 2026, vague 4) : les parents face a l'ecole, sujet frequent du DTZ -- amener et
+             aller chercher, inscrire, le mot d'absence, la reunion de parents, l'horaire, les fournitures, les vacances.
+             Ben (7 ans) et Mia (4 ans), les enfants de Jan et Katrin ; l'horaire, le mot d'absence, l'invitation et le
+             calendrier en HTML ; Wohin? / Wo?, les verbes separables, weil ; ir a / estar en, la « a » personnelle :
+             visuel/prototype/ecole.html. es et de. -->
+        <div class="orb hidden" data-orbid="ecole" id="tuileEcole" onclick="ouvrirThemeIllustre('ecole')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 9.5 12 5l9 4.5-9 4.5z"/><path d="M7 11.5v4.5c1.5 1.5 3 2 5 2s3.5-.5 5-2v-4.5"/><path d="M21 9.5v5"/></svg></div>
+            <div><strong data-i18n="eco_tuile">L'école et la garderie</strong></div>
+        </div>
+
+        <!-- En ville : s'orienter (4 nov. 2026, vague 3) : les lieux de la ville, demander et donner son chemin, situer un
+             lieu sur un plan dessine (le quartier de Mark a Berlin, un quartier de Madrid) ; neben / gegenueber + datif,
+             zum / zur, Gehen Sie / Biegen Sie ... ab ; del / al, hay / esta, siga / gire. Pas les transports (leur theme) :
+             visuel/prototype/ciudad.html. es et de. -->
+        <div class="orb hidden" data-orbid="ciudad" id="tuileCiudad" onclick="ouvrirThemeIllustre('ciudad')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-6-5.6-6-10.5a6 6 0 0 1 12 0C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/></svg></div>
+            <div><strong data-i18n="ciu_tuile">En ville : s'orienter</strong></div>
+        </div>
+
+        <div class="orb hidden" data-orbid="fetes" id="tuileFetes" onclick="ouvrirThemeIllustre('fetes')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="8.5" rx="5" ry="6"/><path d="M12 14.5l-1.2 1.8h2.4zM12 16.3c0 2.2-2.2 2.6-1.6 5.2"/><path d="M17.5 4.5l1.5-1.5M19.5 7.5h2M4.5 5L3 3.5"/></svg></div>
+            <div><strong data-i18n="fet_tuile">Fêtes et invitations</strong></div>
+        </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
             <span class="sec-trait" aria-hidden="true"></span>
-            <span data-i18n="sec_phrase">Travailler la phrase</span>
+            <span data-i18n="sec_regle">Comprendre une règle</span>
         </h2>
+        <div class="orb hidden" data-orbid="feuilles" id="tuileFeuilles" onclick="ouvrirMesFeuilles()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12h6M9.5 15.5h6"/></svg></div>
+            <div><strong id="tuileFeuillesTxt"></strong></div>
+        </div>
         <!-- LES FICHES PROPRES A L'ESPAGNOL (v747) : en allemand, data-seulement-es
              les cache. Elles ouvrent leur fiche directement (abrirGramatica). -->
         <div class="orb" data-seulement-ja data-orbid="ja-grammaire" onclick="abrirIndiceGramatica()">
@@ -10165,7 +10418,7 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="pratique">
             <span class="sec-trait" aria-hidden="true"></span>
-            <span data-i18n="sec_pratique">Pratiquer</span>
+            <span data-i18n="sec_ecouter_ecrire">Écouter, écrire, parler</span>
         </h2>
         <div class="orb orb-de" data-orbid="ecouter" onclick="ouvrirEcouteMenu()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg></div>
@@ -10190,6 +10443,12 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
                 <strong data-i18n="orb_ausdruecke_title">Expressions & tournures</strong>
             </div>
         </div>
+        <div class="orb orb-de" data-orbid="prononciation" onclick="ouvrirPrononciation()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 9v6h3l5 4V5L7 9H4z"/><path d="M16 9a4 4 0 010 6"/><path d="M18.5 6.5a7.5 7.5 0 010 11"/></svg></div>
+            <div>
+                <strong data-i18n="orb_prononciation">Prononciation</strong>
+            </div>
+        </div>
 
         <!-- Section « Mon parcours ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -10197,6 +10456,15 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
             <span class="sec-trait" aria-hidden="true"></span>
             <span data-i18n="sec_parcours">Mon parcours</span>
         </h2>
+        <div class="orb hidden" data-orbid="carnet" id="tuileCarnet" onclick="ouvrirCarnetPhrases()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5v17"/><path d="M12 8h4M12 11.5h4"/></svg></div>
+            <div><strong id="tuileCarnetTxt"></strong></div>
+        </div>
+        <div class="orb hidden" data-orbid="episodes" id="tuileEpisodes" onclick="ouvrirMesEpisodes()">
+            <span class="ep-nouveau hidden" id="tuileEpisodesNouveau" data-i18n="ep_nouveau">Nouveau</span>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M20.84 2.18L16.91 2.96L19.65 6.5L21.62 6.1L20.84 2.18M13.97 3.54L12 3.93L14.75 7.46L16.71 7.07L13.97 3.54M9.07 4.5L7.1 4.91L9.85 8.44L11.81 8.05L9.07 4.5M4.16 5.5L3.18 5.69A2 2 0 0 0 1.61 8.04L2 10L6.9 9.03L4.16 5.5M2 10V20C2 21.11 2.9 22 4 22H20C21.11 22 22 21.11 22 20V10H2Z"/></svg></div>
+            <div><strong data-i18n="ep_tuile">Mes épisodes</strong></div>
+        </div>
         <div class="orb" data-orbid="monvocab" onclick="openMyVocab()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg></div>
             <div>
@@ -12131,12 +12399,14 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
             <div class="pill combo-pill hidden" id="comboPillFlash" role="button" tabindex="0" onclick="expliquerCombo()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); expliquerCombo();}" data-i18n-aria-label="combo_info" aria-label="Bonnes réponses de suite">⚡ ×<span id="comboCountFlash">0</span></div>
             <!-- v982 : LE MODE TRANSIT, deux boutons. Voir basculerTransit(). -->
             <button type="button" class="tr-btn" id="trMicroBtn" onclick="basculerTransit('micro')" aria-pressed="false"
-                    data-i18n-aria-label="tr_btn_micro" aria-label="Couper ou rétablir le micro"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/><path class="tr-coupe" d="M3 3l18 18"/></svg></button>
+                    data-i18n-aria-label="tr_btn_micro" aria-label="Couper ou rétablir le micro" data-i18n-title="tr_btn_micro" title="Couper ou rétablir le micro"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/><path class="tr-coupe" d="M3 3l18 18"/></svg></button>
             <button type="button" class="tr-btn" id="trSonBtn" onclick="basculerTransit('son')" aria-pressed="false"
-                    data-i18n-aria-label="tr_btn_son" aria-label="Couper ou rétablir le son"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="tr-ouvert" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="tr-coupe" d="M16 9l5 6M21 9l-5 6"/></svg></button>
+                    data-i18n-aria-label="tr_btn_son" aria-label="Couper ou rétablir le son" data-i18n-title="tr_btn_son" title="Couper ou rétablir le son"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="tr-ouvert" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="tr-coupe" d="M16 9l5 6M21 9l-5 6"/></svg></button>
             <div class="pill" id="flashCounter">1 / 10</div>
         </div>
     </div>
+    <!-- 6 nov. 2026 : la barre de la seance du jour, en parties (majPartsSeance). -->
+    <div id="seanceParts" class="seance-parts hidden" aria-hidden="true"></div>
 
     <div class="flashcard-wrapper">
         <div id="flashcard" class="flashcard" onclick="handleCardTap(event)">
@@ -12392,10 +12662,16 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
          laisse le temps de relire le mot qu'on vient de rater. -->
 
     <div id="flashcardEnd" class="flashcard-end hidden">
-        <div class="flash-end-title" data-i18n="flash_end_title">Paquet terminé</div>
+        <!-- Lot de l'evaluation : en seance du jour, l'anneau du jour au-dessus (maquette a). -->
+        <div id="flashEndAnneau" class="fin-anneau hidden" aria-hidden="true"><b></b><small></small></div>
+        <div class="flash-end-title" id="flashEndTitre" data-i18n="flash_end_title">Paquet terminé</div>
         <div class="flash-end-summary" id="flashEndSummary"></div>
         <div id="flashEndObjectif" class="flash-end-objectif hidden"></div>
         <div id="flashEndARevoir" class="flash-end-objectif hidden"></div>
+        <!-- Lot de l'evaluation (6 nov. 2026) : les fetes gagnees pendant la seance, et les mots rates
+             a refaire. Remplis par showFlashcardEnd() (rendreFetes, rendreErreurs). -->
+        <div id="finFetes" class="fin-fetes hidden"></div>
+        <div id="finErreurs" class="fin-erreurs hidden"></div>
         <!-- La fin de l'apercu gratuit (v698) : remplie par afficherFinGratuite(). -->
         <div id="finGratuiteFlash" class="fin-gratuite hidden"></div>
         <button id="encoreNeufsBtn" class="secondary hidden" onclick="encoreDesMotsNeufs()" data-i18n="encore_neufs">Encore 15 mots nouveaux</button>
@@ -12403,6 +12679,19 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
         <button class="secondary" onclick="retryMastered()" data-i18n="review_retry_mastered">Revoir les cartes maîtrisées</button>
         <button id="dictationStartBtn" class="secondary hidden" onclick="startDictationExercise()" data-i18n="dictation_start_btn">🎧 S'ENTRAÎNER : DICTÉE</button>
         <button class="primary" onclick="handleFlashcardBack()" data-i18n="flash_end_done">TERMINER</button>
+    </div>
+    <!-- L'ECRAN DE FIN COURT (lot de l'evaluation, 6 nov. 2026) : « ‹ » au milieu de la seance du jour.
+         Ce qui est fait aujourd'hui, les fetes gagnees jusque-la, les mots rates ; Reprendre ou Terminer.
+         Voir montrerFinCourte(). -->
+    <div id="finCourte" class="flashcard-end fin-courte hidden">
+        <div class="fin-court-tete" data-i18n="fin_court_titre">Tu t'arrêtes ici</div>
+        <div id="finCourteAnneau" class="fin-anneau" aria-hidden="true"><b></b><small></small></div>
+        <div class="flash-end-title" id="finCourteResume"></div>
+        <div class="flash-end-summary" id="finCourteReste"></div>
+        <div id="finCourteFetes" class="fin-fetes hidden"></div>
+        <div id="finCourteErreurs" class="fin-erreurs hidden"></div>
+        <button type="button" class="primary" onclick="reprendreSeanceCourte()" data-i18n="fin_court_reprendre">Continuer la séance</button>
+        <button type="button" class="secondary" onclick="quitterSeanceCourte()" data-i18n="fin_court_accueil">Revenir à l'accueil</button>
     </div>
 
 </section>
@@ -13440,6 +13729,15 @@ try {
 const AUTH_REQUIRED = true;
 
 onAuthStateChanged(auth, (user) => {
+    // Lot de l'evaluation (6 nov. 2026) : le compte est connu, l'ecran d'ouverture peut partir ; et le
+    // numero de version a cote du logo ne se montre qu'a l'admin.
+    window.COMPTE_INCONNU = false;
+    try{ if(typeof window.ouvertureLiberer === "function" && !window.ATTENTE_CONNEXION) window.ouvertureLiberer(); }catch(e){}
+    try{
+        const admin = !!(user && user.email && typeof ADMIN_EMAIL === "string" && user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase());
+        document.documentElement.classList.toggle("est-admin", admin);
+        if(admin) localStorage.setItem("wortando_estAdmin", "1"); else localStorage.removeItem("wortando_estAdmin");
+    }catch(e){}
     const userProfile = document.getElementById("userProfile");
     const authContent = document.getElementById("authContent");
     const authModeToggle = document.getElementById("authModeToggle");
@@ -14902,6 +15200,16 @@ const I18N = {
         dem_court: "Démarches",
         cou_tuile: "Faire les courses",
         cou_court: "Courses",
+        vac_tuile: "Les vacances et le voyage",
+        vac_court: "Vacances",
+        trav_tuile: "Le travail et l'emploi",
+        trav_court: "Le travail",
+        eco_tuile: "L'école et la garderie",
+        eco_court: "École",
+        ciu_tuile: "En ville : s'orienter",
+        ciu_court: "En ville",
+        fet_tuile: "Fêtes et invitations",
+        fet_court: "Fêtes",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -14910,6 +15218,41 @@ const I18N = {
         seance_continuer_long: "Continuer la séance",
         seance_commencer_long: "Commencer la séance",
         seance_contenu: "mots, grammaire et scènes",
+        sec_mes_mots: "Mes mots",
+        sec_regle: "Comprendre une règle",
+        sec_situation: "En situation",
+        sec_ecouter_ecrire: "Écouter, écrire, parler",
+        contenu_chercher: "Un mot, une règle, un thème…",
+        contenu_chercher_mots: "Chercher « {q} » parmi les mots",
+        sugg_titre: "Pour aller plus loin aujourd'hui",
+        sugg_scene_etape: "La scène de ton étape",
+        sugg_scene_jour: "La scène du jour",
+        sugg_theme: "Un thème illustré",
+        sugg_ecouter_sous: "Les mots de ton niveau, à voix haute",
+        niveau_changer: "Changer de niveau",
+        seance_kicker_etape: "Étape {n} sur {t} · {lieu}",
+        seance_part_lieu: "Les mots de l'étape",
+        seance_part_neufs: "Mots nouveaux",
+        seance_part_feuille: "La conjugaison du jour",
+        seance_part_reperes: "Les repères",
+        seance_part_scene: "La scène",
+        seance_part_theme: "Le thème illustré",
+        seance_part_son: "Le son du jour",
+        seance_part_revisions: "Révisions",
+        seance_part_fin: "La fin de l'étape",
+        seance_passage_fait: "{part} : c'est fait",
+        seance_passage_ensuite: "Ensuite : {part}",
+        seance_passage_n: "{n} cartes",
+        seance_passage_un: "1 carte",
+        seance_plan_neufs: "{n} mots nouveaux",
+        seance_plan_neufs_un: "1 mot nouveau",
+        seance_plan_feuille: "la conjugaison",
+        seance_plan_reperes: "les repères",
+        seance_plan_scene: "une scène",
+        seance_plan_theme: "un thème illustré",
+        seance_plan_son: "le son du jour",
+        seance_plan_revisions: "{n} révisions",
+        seance_plan_revisions_un: "1 révision",
         garder_sous: "pour le retravailler",
         garder_fait: "Mis de côté",
         gardes_titre: "Mis de côté",
@@ -15410,6 +15753,23 @@ const I18N = {
         settings_reset_all: "RÉINITIALISER TOUTE LA PROGRESSION",
         settings_badges_title: "Badges",
         badge_unlocked_prefix: "Badge débloqué :",
+        fin_court_titre: "Tu t'arrêtes ici",
+        fin_court_resume: "{n} sur {cible} aujourd'hui",
+        fin_court_reprendre: "Continuer la séance",
+        fin_fetes_bandeau: "Gagné pendant ta dernière séance",
+        fin_erreurs_un: "Tu as raté 1 mot. On le refait ?",
+        fin_erreurs_n: "Tu as raté {n} mots. On les refait ?",
+        fin_erreurs_refaire: "Les refaire",
+        fin_erreurs_refaire_un: "Le refaire",
+        fin_reecouter: "Réécouter",
+        tr_bulle: "Le micro et le haut-parleur : touche le micro si tu ne peux pas parler à voix haute (l'oral devient écrit), le haut-parleur si tu ne peux pas écouter (la voix se tait). Tout se rallume quand tu quittes la séance.",
+        fin_seance_titre: "Séance terminée",
+        fin_court_accueil: "Revenir à l'accueil",
+        fin_court_reste_un: "Il reste 1 carte dans la séance.",
+        fin_court_reste_n: "Il reste {n} cartes dans la séance.",
+        fin_court_a_revoir_un: "Un mot à revoir, il reviendra à ta prochaine séance :",
+        fin_court_a_revoir_n: "{n} mots à revoir, ils reviendront à ta prochaine séance :",
+        attente_accueil: "Ouverture de ton accueil…",
         badge_locked_hint: "Pas encore débloqué",
         badge_first_word_title: "Premier pas",
         badge_first_word_desc: "Ta première réussite enregistrée.",
@@ -15510,9 +15870,9 @@ const I18N = {
         auth_title: "Apprends une langue, un mot à la fois",
         auth_apprendre_es: "Tu apprends l'allemand · passer à l'espagnol ›",
         auth_apprendre_de: "Tu apprends l'espagnol · passer à l'allemand ›",
-        auth_desc: "Connecte-toi, ou crée ton compte avec ton code d'invitation.",
+        auth_desc: "Content de te revoir : connecte-toi pour retrouver ta progression.",
         auth_value_1: "Vocabulaire et grammaire organisés par niveau, du A1 au C1.",
-        auth_value_2: "Objectifs quotidiens, séries, XP et badges pour rester motivé.",
+        auth_value_2: "Chaque jour, une courte séance : des mots, de la grammaire, une scène illustrée, l'écoute et l'oral.",
         auth_value_3: "Répétition espacée : chaque mot revient au bon moment pour rester en mémoire.",
         auth_mode_login: "Se connecter",
         auth_mode_signup: "Créer un compte",
@@ -16534,6 +16894,16 @@ const I18N = {
         dem_court: "Paperwork",
         cou_tuile: "Going shopping",
         cou_court: "Shopping",
+        vac_tuile: "Holidays and travel",
+        vac_court: "Holidays",
+        trav_tuile: "Work and jobs",
+        trav_court: "Work",
+        eco_tuile: "School and day care",
+        eco_court: "School",
+        ciu_tuile: "In town: finding your way",
+        ciu_court: "In town",
+        fet_tuile: "Celebrations and invitations",
+        fet_court: "Celebrations",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -16542,6 +16912,41 @@ const I18N = {
         seance_continuer_long: "Continue the session",
         seance_commencer_long: "Start the session",
         seance_contenu: "words, grammar and scenes",
+        sec_mes_mots: "My words",
+        sec_regle: "Understand a rule",
+        sec_situation: "In context",
+        sec_ecouter_ecrire: "Listen, write, speak",
+        contenu_chercher: "A word, a rule, a topic…",
+        contenu_chercher_mots: "Search “{q}” among the words",
+        sugg_titre: "To go further today",
+        sugg_scene_etape: "Your step's scene",
+        sugg_scene_jour: "Today's scene",
+        sugg_theme: "An illustrated topic",
+        sugg_ecouter_sous: "Your level's words, read aloud",
+        niveau_changer: "Change level",
+        seance_kicker_etape: "Step {n} of {t} · {lieu}",
+        seance_part_lieu: "The step's words",
+        seance_part_neufs: "New words",
+        seance_part_feuille: "Today's conjugation",
+        seance_part_reperes: "The basics",
+        seance_part_scene: "The scene",
+        seance_part_theme: "The illustrated topic",
+        seance_part_son: "Sound of the day",
+        seance_part_revisions: "Review",
+        seance_part_fin: "End of the step",
+        seance_passage_fait: "{part}: done",
+        seance_passage_ensuite: "Next: {part}",
+        seance_passage_n: "{n} cards",
+        seance_passage_un: "1 card",
+        seance_plan_neufs: "{n} new words",
+        seance_plan_neufs_un: "1 new word",
+        seance_plan_feuille: "conjugation",
+        seance_plan_reperes: "the basics",
+        seance_plan_scene: "a scene",
+        seance_plan_theme: "an illustrated topic",
+        seance_plan_son: "the sound of the day",
+        seance_plan_revisions: "{n} reviews",
+        seance_plan_revisions_un: "1 review",
         garder_sous: "to work on it",
         garder_fait: "Set aside",
         gardes_titre: "Set aside",
@@ -17040,6 +17445,23 @@ const I18N = {
         settings_reset_all: "RESET ALL PROGRESS",
         settings_badges_title: "Badges",
         badge_unlocked_prefix: "Badge unlocked:",
+        fin_court_titre: "Stopping here",
+        fin_court_resume: "{n} of {cible} today",
+        fin_court_reprendre: "Continue the session",
+        fin_fetes_bandeau: "Earned during your last session",
+        fin_erreurs_un: "You missed 1 word. Shall we do it again?",
+        fin_erreurs_n: "You missed {n} words. Shall we do them again?",
+        fin_erreurs_refaire: "Do them again",
+        fin_erreurs_refaire_un: "Do it again",
+        fin_reecouter: "Listen again",
+        tr_bulle: "Mic and speaker: tap the mic if you can't speak out loud (speaking turns into writing), the speaker if you can't listen (the voice goes quiet). Both come back on when you leave the session.",
+        fin_seance_titre: "Session complete",
+        fin_court_accueil: "Back to home",
+        fin_court_reste_un: "1 card left in the session.",
+        fin_court_reste_n: "{n} cards left in the session.",
+        fin_court_a_revoir_un: "One word to review; it will come back in your next session:",
+        fin_court_a_revoir_n: "{n} words to review; they will come back in your next session:",
+        attente_accueil: "Opening your home screen…",
         badge_locked_hint: "Not unlocked yet",
         badge_first_word_title: "First step",
         badge_first_word_desc: "Your first recorded success.",
@@ -17140,9 +17562,9 @@ const I18N = {
         auth_title: "Learn a language, one word at a time",
         auth_apprendre_es: "You're learning German · switch to Spanish ›",
         auth_apprendre_de: "You're learning Spanish · switch to German ›",
-        auth_desc: "Sign in, or create your account with your invitation code.",
+        auth_desc: "Welcome back: sign in to pick up where you left off.",
         auth_value_1: "Vocabulary and grammar organized by level, from A1 to C1.",
-        auth_value_2: "Daily goals, streaks, XP and badges to keep you motivated.",
+        auth_value_2: "Every day, a short session: words, grammar, an illustrated scene, listening and speaking.",
         auth_value_3: "Spaced repetition: every word comes back at just the right time to stick.",
         auth_mode_login: "Sign in",
         auth_mode_signup: "Create account",
@@ -18112,6 +18534,16 @@ const I18N = {
         dem_court: "Resmî işler",
         cou_tuile: "Alışveriş yapmak",
         cou_court: "Alışveriş",
+        vac_tuile: "Tatil ve seyahat",
+        vac_court: "Tatil",
+        trav_tuile: "İş ve iş arama",
+        trav_court: "İş",
+        eco_tuile: "Okul ve kreş",
+        eco_court: "Okul",
+        ciu_tuile: "Şehirde yol bulmak",
+        ciu_court: "Şehirde",
+        fet_tuile: "Bayramlar ve davetler",
+        fet_court: "Bayramlar",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -18120,6 +18552,41 @@ const I18N = {
         seance_continuer_long: "Seansa devam et",
         seance_commencer_long: "Seansı başlat",
         seance_contenu: "kelimeler, dilbilgisi ve sahneler",
+        sec_mes_mots: "Kelimelerim",
+        sec_regle: "Bir kuralı anla",
+        sec_situation: "Durum içinde",
+        sec_ecouter_ecrire: "Dinle, yaz, konuş",
+        contenu_chercher: "Kelime, kural, konu…",
+        contenu_chercher_mots: "“{q}” kelimeler arasında ara",
+        sugg_titre: "Bugün bir adım daha",
+        sugg_scene_etape: "Adımının sahnesi",
+        sugg_scene_jour: "Günün sahnesi",
+        sugg_theme: "Resimli bir konu",
+        sugg_ecouter_sous: "Seviyenin kelimeleri, sesli",
+        niveau_changer: "Seviyeyi değiştir",
+        seance_kicker_etape: "{t} adımdan {n}. · {lieu}",
+        seance_part_lieu: "Adımın kelimeleri",
+        seance_part_neufs: "Yeni kelimeler",
+        seance_part_feuille: "Günün çekimi",
+        seance_part_reperes: "Temeller",
+        seance_part_scene: "Sahne",
+        seance_part_theme: "Resimli konu",
+        seance_part_son: "Günün sesi",
+        seance_part_revisions: "Tekrar",
+        seance_part_fin: "Adımın sonu",
+        seance_passage_fait: "{part}: tamam",
+        seance_passage_ensuite: "Sırada: {part}",
+        seance_passage_n: "{n} kart",
+        seance_passage_un: "1 kart",
+        seance_plan_neufs: "{n} yeni kelime",
+        seance_plan_neufs_un: "1 yeni kelime",
+        seance_plan_feuille: "çekim",
+        seance_plan_reperes: "temeller",
+        seance_plan_scene: "bir sahne",
+        seance_plan_theme: "resimli bir konu",
+        seance_plan_son: "günün sesi",
+        seance_plan_revisions: "{n} tekrar",
+        seance_plan_revisions_un: "1 tekrar",
         garder_sous: "üzerinde çalışmak için",
         garder_fait: "Kenara ayrıldı",
         gardes_titre: "Kenara ayrılanlar",
@@ -18618,6 +19085,23 @@ const I18N = {
         settings_reset_all: "TÜM İLERLEMEYİ SIFIRLA",
         settings_badges_title: "Rozetler",
         badge_unlocked_prefix: "Rozet kazanıldı:",
+        fin_court_titre: "Burada bırakıyorsun",
+        fin_court_resume: "Bugün: {n} / {cible}",
+        fin_court_reprendre: "Çalışmaya devam et",
+        fin_fetes_bandeau: "Son çalışmanda kazandıkların",
+        fin_erreurs_un: "1 kelimeyi kaçırdın. Tekrar yapalım mı?",
+        fin_erreurs_n: "{n} kelimeyi kaçırdın. Tekrar yapalım mı?",
+        fin_erreurs_refaire: "Tekrar yap",
+        fin_erreurs_refaire_un: "Tekrar yap",
+        fin_reecouter: "Yeniden dinle",
+        tr_bulle: "Mikrofon ve hoparlör: Sesli konuşamıyorsan mikrofona dokun (konuşma yazmaya dönüşür), dinleyemiyorsan hoparlöre dokun (ses susar). Çalışmadan çıkınca ikisi de yeniden açılır.",
+        fin_seance_titre: "Çalışma bitti",
+        fin_court_accueil: "Ana sayfaya dön",
+        fin_court_reste_un: "Çalışmada 1 kart kaldı.",
+        fin_court_reste_n: "Çalışmada {n} kart kaldı.",
+        fin_court_a_revoir_un: "Tekrar edilecek bir kelime; bir sonraki çalışmanda geri gelecek:",
+        fin_court_a_revoir_n: "Tekrar edilecek {n} kelime; bir sonraki çalışmanda geri gelecekler:",
+        attente_accueil: "Ana sayfan açılıyor…",
         badge_locked_hint: "Henüz açılmadı",
         badge_first_word_title: "İlk adım",
         badge_first_word_desc: "Kaydedilen ilk başarın.",
@@ -18718,9 +19202,9 @@ const I18N = {
         auth_title: "Bir dili kelime kelime öğren",
         auth_apprendre_es: "Almanca öğreniyorsun · İspanyolcaya geç ›",
         auth_apprendre_de: "İspanyolca öğreniyorsun · Almancaya geç ›",
-        auth_desc: "Giriş yap ya da davet kodunla hesabını oluştur.",
+        auth_desc: "Tekrar hoş geldin: kaldığın yerden devam etmek için giriş yap.",
         auth_value_1: "A1'den C1'e, seviyeye göre düzenlenmiş kelime ve dilbilgisi.",
-        auth_value_2: "Motivasyonunu koruyacak günlük hedefler, seriler, XP ve rozetler.",
+        auth_value_2: "Her gün kısa bir çalışma: kelimeler, dil bilgisi, resimli bir sahne, dinleme ve konuşma.",
         auth_value_3: "Aralıklı tekrar: her kelime, akılda kalması için tam doğru anda geri gelir.",
         auth_mode_login: "Giriş yap",
         auth_mode_signup: "Hesap oluştur",
@@ -19579,6 +20063,23 @@ const I18N = {
         voice_test: "Послухати",
         voice_unsupported: "Цей браузер не має синтезу мовлення.",
         badge_unlocked_prefix: "Значок відкрито:",
+        fin_court_titre: "Зупиняєшся тут",
+        fin_court_resume: "Сьогодні: {n} з {cible}",
+        fin_court_reprendre: "Продовжити заняття",
+        fin_fetes_bandeau: "Здобуто на останньому занятті",
+        fin_erreurs_un: "Одне слово з помилкою. Повторимо?",
+        fin_erreurs_n: "Слова з помилкою: {n}. Повторимо?",
+        fin_erreurs_refaire: "Повторити",
+        fin_erreurs_refaire_un: "Повторити",
+        fin_reecouter: "Прослухати ще раз",
+        tr_bulle: "Мікрофон і динамік: торкнися мікрофона, якщо не можеш говорити вголос (усне стає письмовим), динаміка — якщо не можеш слухати (голос замовкає). Коли виходиш із заняття, усе знову вмикається.",
+        fin_seance_titre: "Заняття завершено",
+        fin_court_accueil: "Повернутися на головну",
+        fin_court_reste_un: "У занятті лишилася 1 картка.",
+        fin_court_reste_n: "Лишилося карток у занятті: {n}.",
+        fin_court_a_revoir_un: "Одне слово на повторення, воно повернеться на наступному занятті:",
+        fin_court_a_revoir_n: "Слова на повторення ({n}), вони повернуться на наступному занятті:",
+        attente_accueil: "Відкриваємо твою головну сторінку…",
         badge_locked_hint: "Ще не відкрито",
         badge_first_word_title: "Перший крок",
         badge_first_word_desc: "Твій перший зарахований успіх.",
@@ -20102,6 +20603,16 @@ const I18N = {
         dem_court: "Справи",
         cou_tuile: "Покупки",
         cou_court: "Покупки",
+        vac_tuile: "Відпустка й подорожі",
+        vac_court: "Відпустка",
+        trav_tuile: "Робота і пошук роботи",
+        trav_court: "Робота",
+        eco_tuile: "Школа й дитсадок",
+        eco_court: "Школа",
+        ciu_tuile: "У місті: орієнтуватися",
+        ciu_court: "У місті",
+        fet_tuile: "Свята й запрошення",
+        fet_court: "Свята",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -20110,6 +20621,41 @@ const I18N = {
         seance_continuer_long: "Продовжити заняття",
         seance_commencer_long: "Почати заняття",
         seance_contenu: "слова, граматика і сцени",
+        sec_mes_mots: "Мої слова",
+        sec_regle: "Зрозуміти правило",
+        sec_situation: "У ситуаціях",
+        sec_ecouter_ecrire: "Слухати, писати, говорити",
+        contenu_chercher: "Слово, правило, тема…",
+        contenu_chercher_mots: "Шукати «{q}» серед слів",
+        sugg_titre: "Сьогодні ще крок",
+        sugg_scene_etape: "Сцена твого кроку",
+        sugg_scene_jour: "Сцена дня",
+        sugg_theme: "Тема в картинках",
+        sugg_ecouter_sous: "Слова твого рівня, уголос",
+        niveau_changer: "Змінити рівень",
+        seance_kicker_etape: "Крок {n} з {t} · {lieu}",
+        seance_part_lieu: "Слова цього кроку",
+        seance_part_neufs: "Нові слова",
+        seance_part_feuille: "Дієвідміна дня",
+        seance_part_reperes: "Основи",
+        seance_part_scene: "Сцена",
+        seance_part_theme: "Тема в картинках",
+        seance_part_son: "Звук дня",
+        seance_part_revisions: "Повторення",
+        seance_part_fin: "Кінець кроку",
+        seance_passage_fait: "{part}: готово",
+        seance_passage_ensuite: "Далі: {part}",
+        seance_passage_n: "Карток: {n}",
+        seance_passage_un: "1 картка",
+        seance_plan_neufs: "нових слів: {n}",
+        seance_plan_neufs_un: "1 нове слово",
+        seance_plan_feuille: "дієвідміна",
+        seance_plan_reperes: "основи",
+        seance_plan_scene: "сцена",
+        seance_plan_theme: "тема в картинках",
+        seance_plan_son: "звук дня",
+        seance_plan_revisions: "повторень: {n}",
+        seance_plan_revisions_un: "1 повторення",
         garder_sous: "щоб попрацювати над ним",
         garder_fait: "Відкладено",
         gardes_titre: "Відкладені",
@@ -20301,9 +20847,9 @@ const I18N = {
         auth_title: "Вивчай мову слово за словом",
         auth_apprendre_es: "Ти вивчаєш німецьку · перейти на іспанську ›",
         auth_apprendre_de: "Ти вивчаєш іспанську · перейти на німецьку ›",
-        auth_desc: "Увійди або створи обліковий запис за кодом запрошення.",
+        auth_desc: "Раді знову тебе бачити: увійди, щоб повернутися до свого прогресу.",
         auth_value_1: "Лексика та граматика за рівнями, від A1 до C1.",
-        auth_value_2: "Щоденні цілі, серії, XP і значки — щоб не втрачати запал.",
+        auth_value_2: "Щодня коротке заняття: слова, граматика, ілюстрована сцена, аудіювання й мовлення.",
         auth_value_3: "Інтервальне повторення: кожне слово повертається саме тоді, коли треба.",
         auth_mode_login: "Увійти",
         auth_mode_signup: "Створити обліковий запис",
@@ -21617,9 +22163,9 @@ const I18N = {
         auth_title: "یک زبان را کلمه به کلمه یاد بگیر",
         auth_apprendre_es: "داری آلمانی یاد می‌گیری · رفتن به اسپانیایی ›",
         auth_apprendre_de: "داری اسپانیایی یاد می‌گیری · رفتن به آلمانی ›",
-        auth_desc: "وارد شو، یا با کد دعوتت حساب بساز.",
+        auth_desc: "خوش برگشتی: وارد شو تا از همان جایی که ماندی ادامه بدهی.",
         auth_value_1: "واژگان و دستور زبان، مرتب‌شده بر پایهٔ سطح، از A1 تا C1.",
-        auth_value_2: "هدف‌های روزانه، زنجیره‌ها، امتیاز و نشان‌ها تا انگیزه‌ات را نگه دارد.",
+        auth_value_2: "هر روز یک جلسهٔ کوتاه: واژه‌ها، دستور زبان، یک صحنهٔ مصور، شنیدن و گفتن.",
         auth_value_3: "تکرار با فاصله: هر واژه درست در زمان مناسب بازمی‌گردد تا در حافظه بماند.",
         auth_mode_login: "ورود",
         auth_mode_signup: "ساختن حساب",
@@ -21949,6 +22495,23 @@ const I18N = {
         settings_reset_all: "بازنشانی همهٔ پیشرفت",
         settings_badges_title: "نشان‌ها",
         badge_unlocked_prefix: "نشان باز شد:",
+        fin_court_titre: "همین‌جا دست نگه می‌داری",
+        fin_court_resume: "امروز: {n} از {cible}",
+        fin_court_reprendre: "ادامهٔ جلسه",
+        fin_fetes_bandeau: "به‌دست‌آمده در جلسهٔ قبلی‌ات",
+        fin_erreurs_un: "یک واژه را اشتباه زدی. دوباره انجامش بدهیم؟",
+        fin_erreurs_n: "{n} واژه را اشتباه زدی. دوباره انجامشان بدهیم؟",
+        fin_erreurs_refaire: "دوباره انجامشان بده",
+        fin_erreurs_refaire_un: "دوباره انجامش بده",
+        fin_reecouter: "دوباره گوش بده",
+        tr_bulle: "میکروفون و بلندگو: اگر نمی‌توانی بلند حرف بزنی، میکروفون را لمس کن (گفتن به نوشتن تبدیل می‌شود)؛ اگر نمی‌توانی گوش بدهی، بلندگو را (صدا خاموش می‌شود). وقتی از جلسه بیرون بروی، هر دو دوباره روشن می‌شوند.",
+        fin_seance_titre: "جلسه تمام شد",
+        fin_court_accueil: "بازگشت به صفحهٔ اصلی",
+        fin_court_reste_un: "۱ کارت در جلسه مانده است.",
+        fin_court_reste_n: "{n} کارت در جلسه مانده است.",
+        fin_court_a_revoir_un: "یک واژه برای مرور؛ در جلسهٔ بعدی‌ات برمی‌گردد:",
+        fin_court_a_revoir_n: "{n} واژه برای مرور؛ در جلسهٔ بعدی‌ات برمی‌گردند:",
+        attente_accueil: "در حال باز کردن صفحهٔ اصلی‌ات…",
         badge_locked_hint: "هنوز باز نشده",
         badge_first_word_title: "نخستین گام",
         myvocab_vide_explication: "<strong>واژگان من هنوز خالی است.</strong><br>این ذخیرهٔ شخصی توست: واژه‌هایی که جای دیگری با آن‌ها روبه‌رو می‌شوی — سر کلاس، در یک متن، در یک گفت‌وگو — و در برنامه نیستند.<br><br>یکی از آن‌ها را بالا جست‌وجو کن، سپس <strong>+</strong> کنار نتیجهٔ فرهنگ واژگان را لمس کن. آن واژه هم مانند بقیه به کارتی برای مرور تبدیل می‌شود.",
@@ -22438,6 +23001,16 @@ const I18N = {
         dem_court: "اداری",
         cou_tuile: "خرید کردن",
         cou_court: "خرید",
+        vac_tuile: "تعطیلات و سفر",
+        vac_court: "تعطیلات",
+        trav_tuile: "کار و کاریابی",
+        trav_court: "کار",
+        eco_tuile: "مدرسه و مهدکودک",
+        eco_court: "مدرسه",
+        ciu_tuile: "در شهر: پیدا کردن راه",
+        ciu_court: "در شهر",
+        fet_tuile: "جشن‌ها و دعوت‌ها",
+        fet_court: "جشن‌ها",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -22446,6 +23019,41 @@ const I18N = {
         seance_continuer_long: "ادامهٔ جلسه",
         seance_commencer_long: "شروع جلسه",
         seance_contenu: "واژه‌ها، دستور زبان و صحنه‌ها",
+        sec_mes_mots: "واژه‌های من",
+        sec_regle: "فهمیدن یک قاعده",
+        sec_situation: "در موقعیت",
+        sec_ecouter_ecrire: "گوش دادن، نوشتن، صحبت کردن",
+        contenu_chercher: "واژه، قاعده، موضوع…",
+        contenu_chercher_mots: "جست‌وجوی «{q}» در میان واژه‌ها",
+        sugg_titre: "امروز، یک قدم بیشتر",
+        sugg_scene_etape: "صحنهٔ مرحلهٔ تو",
+        sugg_scene_jour: "صحنهٔ امروز",
+        sugg_theme: "یک موضوع مصور",
+        sugg_ecouter_sous: "واژه‌های سطح تو، با صدای بلند",
+        niveau_changer: "تغییر سطح",
+        seance_kicker_etape: "مرحلهٔ {n} از {t} · {lieu}",
+        seance_part_lieu: "واژه‌های این مرحله",
+        seance_part_neufs: "واژه‌های تازه",
+        seance_part_feuille: "صرف فعل امروز",
+        seance_part_reperes: "پایه‌ها",
+        seance_part_scene: "صحنه",
+        seance_part_theme: "موضوع مصور",
+        seance_part_son: "صدای امروز",
+        seance_part_revisions: "مرور",
+        seance_part_fin: "پایان مرحله",
+        seance_passage_fait: "{part}: انجام شد",
+        seance_passage_ensuite: "بعدی: {part}",
+        seance_passage_n: "{n} کارت",
+        seance_passage_un: "یک کارت",
+        seance_plan_neufs: "{n} واژهٔ تازه",
+        seance_plan_neufs_un: "یک واژهٔ تازه",
+        seance_plan_feuille: "صرف فعل",
+        seance_plan_reperes: "پایه‌ها",
+        seance_plan_scene: "یک صحنه",
+        seance_plan_theme: "یک موضوع مصور",
+        seance_plan_son: "صدای امروز",
+        seance_plan_revisions: "{n} مرور",
+        seance_plan_revisions_un: "یک مرور",
         garder_sous: "برای تمرین بیشتر",
         garder_fait: "کنار گذاشته شد",
         gardes_titre: "کنارگذاشته‌ها",
@@ -23081,9 +23689,9 @@ const I18N = {
         auth_title: "تعلّم لغةً كلمةً كلمة",
         auth_apprendre_es: "أنت تتعلّم الألمانية · الانتقال إلى الإسبانية ›",
         auth_apprendre_de: "أنت تتعلّم الإسبانية · الانتقال إلى الألمانية ›",
-        auth_desc: "سجّل الدخول، أو أنشئ حسابك برمز الدعوة.",
+        auth_desc: "مرحبًا بعودتك: سجّل الدخول لتتابع من حيث توقفت.",
         auth_value_1: "المفردات والقواعد مرتّبة حسب المستوى، من A1 إلى C1.",
-        auth_value_2: "أهداف يومية وسلاسل ونقاط وأوسمة للحفاظ على الحافز.",
+        auth_value_2: "كل يوم حصة قصيرة: كلمات وقواعد ومشهد مصوَّر واستماع ومحادثة.",
         auth_value_3: "تكرار متباعد: كل كلمة تعود في وقتها المناسب لتبقى في الذاكرة.",
         auth_mode_login: "تسجيل الدخول",
         auth_mode_signup: "إنشاء حساب",
@@ -23402,6 +24010,23 @@ const I18N = {
         settings_reset_all: "إعادة ضبط كل التقدّم",
         settings_badges_title: "الأوسمة",
         badge_unlocked_prefix: "وسام مفتوح:",
+        fin_court_titre: "تتوقف هنا",
+        fin_court_resume: "اليوم: {n} من {cible}",
+        fin_court_reprendre: "متابعة الحصة",
+        fin_fetes_bandeau: "ما ربحته في حصتك الأخيرة",
+        fin_erreurs_un: "أخطأت في كلمة واحدة. هل نعيدها؟",
+        fin_erreurs_n: "كلمات أخطأت فيها: {n}. هل نعيدها؟",
+        fin_erreurs_refaire: "أعِدها",
+        fin_erreurs_refaire_un: "أعِدها",
+        fin_reecouter: "استمع مرة أخرى",
+        tr_bulle: "الميكروفون ومكبّر الصوت: المس الميكروفون إذا لم تستطع الكلام بصوت عالٍ (يصبح الكلام كتابة)، ومكبّر الصوت إذا لم تستطع الاستماع (يصمت الصوت). يعود كلاهما للعمل عند مغادرة الحصة.",
+        fin_seance_titre: "انتهت الحصة",
+        fin_court_accueil: "العودة إلى الصفحة الرئيسية",
+        fin_court_reste_un: "بقيت بطاقة واحدة في الحصة.",
+        fin_court_reste_n: "البطاقات المتبقية في الحصة: {n}.",
+        fin_court_a_revoir_un: "كلمة للمراجعة، ستعود في حصتك القادمة:",
+        fin_court_a_revoir_n: "كلمات للمراجعة ({n})، ستعود في حصتك القادمة:",
+        attente_accueil: "جارٍ فتح صفحتك الرئيسية…",
         badge_locked_hint: "لم يُفتح بعد",
         badge_first_word_title: "الخطوة الأولى",
         badge_first_word_desc: "أول نجاح مسجَّل لك.",
@@ -24185,6 +24810,16 @@ const I18N = {
         dem_court: "المعاملات",
         cou_tuile: "التسوق",
         cou_court: "التسوق",
+        vac_tuile: "العطلة والسفر",
+        vac_court: "العطلة",
+        trav_tuile: "العمل والبحث عن وظيفة",
+        trav_court: "العمل",
+        eco_tuile: "المدرسة والحضانة",
+        eco_court: "المدرسة",
+        ciu_tuile: "في المدينة: معرفة الطريق",
+        ciu_court: "في المدينة",
+        fet_tuile: "الأعياد والدعوات",
+        fet_court: "الأعياد",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -24193,6 +24828,41 @@ const I18N = {
         seance_continuer_long: "متابعة الجلسة",
         seance_commencer_long: "ابدأ الجلسة",
         seance_contenu: "كلمات وقواعد ومشاهد",
+        sec_mes_mots: "كلماتي",
+        sec_regle: "فهم قاعدة",
+        sec_situation: "في سياق",
+        sec_ecouter_ecrire: "استمع، اكتب، تحدّث",
+        contenu_chercher: "كلمة، قاعدة، موضوع…",
+        contenu_chercher_mots: "ابحث عن «{q}» بين الكلمات",
+        sugg_titre: "خطوة أخرى اليوم",
+        sugg_scene_etape: "مشهد مرحلتك",
+        sugg_scene_jour: "مشهد اليوم",
+        sugg_theme: "موضوع مصوّر",
+        sugg_ecouter_sous: "كلمات مستواك، بصوت عالٍ",
+        niveau_changer: "تغيير المستوى",
+        seance_kicker_etape: "المرحلة {n} من {t} · {lieu}",
+        seance_part_lieu: "كلمات المرحلة",
+        seance_part_neufs: "كلمات جديدة",
+        seance_part_feuille: "تصريف اليوم",
+        seance_part_reperes: "الأساسيات",
+        seance_part_scene: "المشهد",
+        seance_part_theme: "الموضوع المصوّر",
+        seance_part_son: "صوت اليوم",
+        seance_part_revisions: "المراجعة",
+        seance_part_fin: "نهاية المرحلة",
+        seance_passage_fait: "{part}: تمّ",
+        seance_passage_ensuite: "التالي: {part}",
+        seance_passage_n: "البطاقات: {n}",
+        seance_passage_un: "بطاقة واحدة",
+        seance_plan_neufs: "كلمات جديدة: {n}",
+        seance_plan_neufs_un: "كلمة جديدة واحدة",
+        seance_plan_feuille: "التصريف",
+        seance_plan_reperes: "الأساسيات",
+        seance_plan_scene: "مشهد",
+        seance_plan_theme: "موضوع مصوّر",
+        seance_plan_son: "صوت اليوم",
+        seance_plan_revisions: "مراجعات: {n}",
+        seance_plan_revisions_un: "مراجعة واحدة",
         garder_sous: "لتتمرّن عليها",
         garder_fait: "وُضعت جانبًا",
         gardes_titre: "الموضوعة جانبًا",
@@ -24580,6 +25250,16 @@ const I18N = {
         dem_court: "Trâmites",
         cou_tuile: "Fazer compras",
         cou_court: "Compras",
+        vac_tuile: "As férias e a viagem",
+        vac_court: "Férias",
+        trav_tuile: "O trabalho e o emprego",
+        trav_court: "Trabalho",
+        eco_tuile: "A escola e a creche",
+        eco_court: "Escola",
+        ciu_tuile: "Na cidade: se orientar",
+        ciu_court: "Na cidade",
+        fet_tuile: "Festas e convites",
+        fet_court: "Festas",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -24588,6 +25268,41 @@ const I18N = {
         seance_continuer_long: "Continuar a sessão",
         seance_commencer_long: "Começar a sessão",
         seance_contenu: "palavras, gramática e cenas",
+        sec_mes_mots: "Minhas palavras",
+        sec_regle: "Entender uma regra",
+        sec_situation: "Em situação",
+        sec_ecouter_ecrire: "Ouvir, escrever, falar",
+        contenu_chercher: "Palavra, regra, tema…",
+        contenu_chercher_mots: "Buscar “{q}” entre as palavras",
+        sugg_titre: "Para ir mais longe hoje",
+        sugg_scene_etape: "A cena da sua etapa",
+        sugg_scene_jour: "A cena do dia",
+        sugg_theme: "Um tema ilustrado",
+        sugg_ecouter_sous: "As palavras do seu nível, em voz alta",
+        niveau_changer: "Mudar de nível",
+        seance_kicker_etape: "Etapa {n} de {t} · {lieu}",
+        seance_part_lieu: "As palavras da etapa",
+        seance_part_neufs: "Palavras novas",
+        seance_part_feuille: "A conjugação do dia",
+        seance_part_reperes: "Os básicos",
+        seance_part_scene: "A cena",
+        seance_part_theme: "O tema ilustrado",
+        seance_part_son: "O som do dia",
+        seance_part_revisions: "Revisões",
+        seance_part_fin: "O fim da etapa",
+        seance_passage_fait: "{part}: feito",
+        seance_passage_ensuite: "Agora: {part}",
+        seance_passage_n: "{n} cartas",
+        seance_passage_un: "1 carta",
+        seance_plan_neufs: "{n} palavras novas",
+        seance_plan_neufs_un: "1 palavra nova",
+        seance_plan_feuille: "a conjugação",
+        seance_plan_reperes: "os básicos",
+        seance_plan_scene: "uma cena",
+        seance_plan_theme: "um tema ilustrado",
+        seance_plan_son: "o som do dia",
+        seance_plan_revisions: "{n} revisões",
+        seance_plan_revisions_un: "1 revisão",
         garder_sous: "para revisar depois",
         garder_fait: "Separada",
         gardes_titre: "Separadas",
@@ -25077,6 +25792,23 @@ const I18N = {
         settings_reset_all: "ZERAR TODO O PROGRESSO",
         settings_badges_title: "Medalhas",
         badge_unlocked_prefix: "Medalha desbloqueada:",
+        fin_court_titre: "Você para aqui",
+        fin_court_resume: "{n} de {cible} hoje",
+        fin_court_reprendre: "Continuar a sessão",
+        fin_fetes_bandeau: "Conquistado na sua última sessão",
+        fin_erreurs_un: "Você errou 1 palavra. Vamos refazer?",
+        fin_erreurs_n: "Você errou {n} palavras. Vamos refazer?",
+        fin_erreurs_refaire: "Refazer",
+        fin_erreurs_refaire_un: "Refazer",
+        fin_reecouter: "Ouvir de novo",
+        tr_bulle: "Microfone e alto-falante: toque no microfone se não puder falar em voz alta (a fala vira escrita) e no alto-falante se não puder ouvir (a voz se cala). Tudo volta ao normal quando você sai da sessão.",
+        fin_seance_titre: "Sessão concluída",
+        fin_court_accueil: "Voltar ao início",
+        fin_court_reste_un: "Falta 1 cartão na sessão.",
+        fin_court_reste_n: "Faltam {n} cartões na sessão.",
+        fin_court_a_revoir_un: "Uma palavra para revisar; ela volta na sua próxima sessão:",
+        fin_court_a_revoir_n: "{n} palavras para revisar; elas voltam na sua próxima sessão:",
+        attente_accueil: "Abrindo sua página inicial…",
         badge_locked_hint: "Ainda não desbloqueada",
         badge_first_word_title: "Primeiro passo",
         badge_first_word_desc: "Seu primeiro acerto registrado.",
@@ -25176,9 +25908,9 @@ const I18N = {
         auth_title: "Aprenda um idioma, uma palavra de cada vez",
         auth_apprendre_es: "Você está aprendendo alemão · mudar para espanhol ›",
         auth_apprendre_de: "Você está aprendendo espanhol · mudar para alemão ›",
-        auth_desc: "Entre, ou crie sua conta com o seu código de convite.",
+        auth_desc: "Que bom te ver de novo: entre para continuar de onde parou.",
         auth_value_1: "Vocabulário e gramática organizados por nível, do A1 ao C1.",
-        auth_value_2: "Metas diárias, sequências, XP e medalhas para manter a motivação.",
+        auth_value_2: "Todo dia, uma sessão curta: palavras, gramática, uma cena ilustrada, escuta e fala.",
         auth_value_3: "Repetição espaçada: cada palavra volta no momento certo para ficar na memória.",
         auth_mode_login: "Entrar",
         auth_mode_signup: "Criar conta",
@@ -26217,6 +26949,16 @@ const I18N = {
         dem_court: "Urzędy",
         cou_tuile: "Zakupy",
         cou_court: "Zakupy",
+        vac_tuile: "Wakacje i podróże",
+        vac_court: "Wakacje",
+        trav_tuile: "Praca i szukanie pracy",
+        trav_court: "Praca",
+        eco_tuile: "Szkoła i przedszkole",
+        eco_court: "Szkoła",
+        ciu_tuile: "W mieście: jak trafić",
+        ciu_court: "W mieście",
+        fet_tuile: "Święta i zaproszenia",
+        fet_court: "Święta",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -26225,6 +26967,41 @@ const I18N = {
         seance_continuer_long: "Kontynuuj sesję",
         seance_commencer_long: "Zacznij sesję",
         seance_contenu: "słowa, gramatyka i sceny",
+        sec_mes_mots: "Moje słowa",
+        sec_regle: "Zrozumieć regułę",
+        sec_situation: "W sytuacji",
+        sec_ecouter_ecrire: "Słuchać, pisać, mówić",
+        contenu_chercher: "Słowo, reguła, temat…",
+        contenu_chercher_mots: "Szukaj „{q}” wśród słów",
+        sugg_titre: "Dziś krok dalej",
+        sugg_scene_etape: "Scena twojego etapu",
+        sugg_scene_jour: "Scena dnia",
+        sugg_theme: "Temat ilustrowany",
+        sugg_ecouter_sous: "Słowa twojego poziomu, na głos",
+        niveau_changer: "Zmień poziom",
+        seance_kicker_etape: "Etap {n} z {t} · {lieu}",
+        seance_part_lieu: "Słowa tego etapu",
+        seance_part_neufs: "Nowe słowa",
+        seance_part_feuille: "Odmiana dnia",
+        seance_part_reperes: "Podstawy",
+        seance_part_scene: "Scena",
+        seance_part_theme: "Temat ilustrowany",
+        seance_part_son: "Dźwięk dnia",
+        seance_part_revisions: "Powtórki",
+        seance_part_fin: "Koniec etapu",
+        seance_passage_fait: "{part}: zrobione",
+        seance_passage_ensuite: "Dalej: {part}",
+        seance_passage_n: "Kart: {n}",
+        seance_passage_un: "1 karta",
+        seance_plan_neufs: "nowych słów: {n}",
+        seance_plan_neufs_un: "1 nowe słowo",
+        seance_plan_feuille: "odmiana",
+        seance_plan_reperes: "podstawy",
+        seance_plan_scene: "scena",
+        seance_plan_theme: "temat ilustrowany",
+        seance_plan_son: "dźwięk dnia",
+        seance_plan_revisions: "powtórek: {n}",
+        seance_plan_revisions_un: "1 powtórka",
         garder_sous: "żeby nad nim popracować",
         garder_fait: "Odłożone",
         gardes_titre: "Odłożone",
@@ -26716,6 +27493,23 @@ const I18N = {
         settings_reset_all: "ZRESETUJ WSZYSTKIE POSTĘPY",
         settings_badges_title: "Odznaki",
         badge_unlocked_prefix: "Odznaka zdobyta:",
+        fin_court_titre: "Kończysz tutaj",
+        fin_court_resume: "Dziś: {n} z {cible}",
+        fin_court_reprendre: "Kontynuuj sesję",
+        fin_fetes_bandeau: "Zdobyte podczas ostatniej sesji",
+        fin_erreurs_un: "1 słowo z błędem. Powtórzymy?",
+        fin_erreurs_n: "Słowa z błędem: {n}. Powtórzymy?",
+        fin_erreurs_refaire: "Powtórz",
+        fin_erreurs_refaire_un: "Powtórz",
+        fin_reecouter: "Posłuchaj jeszcze raz",
+        tr_bulle: "Mikrofon i głośnik: dotknij mikrofonu, jeśli nie możesz mówić na głos (mówienie zmienia się w pisanie), a głośnika, jeśli nie możesz słuchać (głos milknie). Po wyjściu z sesji oba włączają się ponownie.",
+        fin_seance_titre: "Sesja zakończona",
+        fin_court_accueil: "Wróć do ekranu głównego",
+        fin_court_reste_un: "W sesji została 1 karta.",
+        fin_court_reste_n: "Pozostałe karty w sesji: {n}.",
+        fin_court_a_revoir_un: "Jedno słowo do powtórki, wróci na następnej sesji:",
+        fin_court_a_revoir_n: "Słowa do powtórki ({n}), wrócą na następnej sesji:",
+        attente_accueil: "Otwieramy twój ekran główny…",
         badge_locked_hint: "Jeszcze nie zdobyta",
         badge_first_word_title: "Pierwszy krok",
         badge_first_word_desc: "Twój pierwszy zapisany sukces.",
@@ -26815,9 +27609,9 @@ const I18N = {
         auth_title: "Ucz się języka, słowo po słowie",
         auth_apprendre_es: "Uczysz się niemieckiego · przejdź na hiszpański ›",
         auth_apprendre_de: "Uczysz się hiszpańskiego · przejdź na niemiecki ›",
-        auth_desc: "Zaloguj się albo załóż konto z kodem zaproszenia.",
+        auth_desc: "Miło cię znowu widzieć: zaloguj się, by wrócić do swoich postępów.",
         auth_value_1: "Słownictwo i gramatyka uporządkowane według poziomów, od A1 do C1.",
-        auth_value_2: "Dzienne cele, serie, XP i odznaki, żeby nie stracić motywacji.",
+        auth_value_2: "Codziennie krótka sesja: słówka, gramatyka, ilustrowana scena, słuchanie i mówienie.",
         auth_value_3: "Powtórki w odstępach: każde słowo wraca we właściwym momencie, żeby zostać w pamięci.",
         auth_mode_login: "Zaloguj się",
         auth_mode_signup: "Załóż konto",
@@ -27854,6 +28648,16 @@ const I18N = {
         dem_court: "Дела",
         cou_tuile: "Покупки",
         cou_court: "Покупки",
+        vac_tuile: "Отпуск и путешествия",
+        vac_court: "Отпуск",
+        trav_tuile: "Работа и поиск работы",
+        trav_court: "Работа",
+        eco_tuile: "Школа и детский сад",
+        eco_court: "Школа",
+        ciu_tuile: "В городе: найти дорогу",
+        ciu_court: "В городе",
+        fet_tuile: "Праздники и приглашения",
+        fet_court: "Праздники",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -27862,6 +28666,41 @@ const I18N = {
         seance_continuer_long: "Продолжить занятие",
         seance_commencer_long: "Начать занятие",
         seance_contenu: "слова, грамматика и сцены",
+        sec_mes_mots: "Мои слова",
+        sec_regle: "Понять правило",
+        sec_situation: "В ситуациях",
+        sec_ecouter_ecrire: "Слушать, писать, говорить",
+        contenu_chercher: "Слово, правило, тема…",
+        contenu_chercher_mots: "Искать «{q}» среди слов",
+        sugg_titre: "Сегодня ещё шаг",
+        sugg_scene_etape: "Сцена твоего этапа",
+        sugg_scene_jour: "Сцена дня",
+        sugg_theme: "Тема в картинках",
+        sugg_ecouter_sous: "Слова твоего уровня, вслух",
+        niveau_changer: "Сменить уровень",
+        seance_kicker_etape: "Этап {n} из {t} · {lieu}",
+        seance_part_lieu: "Слова этапа",
+        seance_part_neufs: "Новые слова",
+        seance_part_feuille: "Спряжение дня",
+        seance_part_reperes: "Основы",
+        seance_part_scene: "Сцена",
+        seance_part_theme: "Тема в картинках",
+        seance_part_son: "Звук дня",
+        seance_part_revisions: "Повторение",
+        seance_part_fin: "Конец этапа",
+        seance_passage_fait: "{part}: готово",
+        seance_passage_ensuite: "Дальше: {part}",
+        seance_passage_n: "Карточек: {n}",
+        seance_passage_un: "1 карточка",
+        seance_plan_neufs: "новых слов: {n}",
+        seance_plan_neufs_un: "1 новое слово",
+        seance_plan_feuille: "спряжение",
+        seance_plan_reperes: "основы",
+        seance_plan_scene: "сцена",
+        seance_plan_theme: "тема в картинках",
+        seance_plan_son: "звук дня",
+        seance_plan_revisions: "повторений: {n}",
+        seance_plan_revisions_un: "1 повторение",
         garder_sous: "чтобы поработать над ним",
         garder_fait: "Отложено",
         gardes_titre: "Отложенные",
@@ -28354,6 +29193,23 @@ const I18N = {
         settings_reset_all: "СБРОСИТЬ ВЕСЬ ПРОГРЕСС",
         settings_badges_title: "Значки",
         badge_unlocked_prefix: "Новый значок:",
+        fin_court_titre: "Останавливаешься здесь",
+        fin_court_resume: "Сегодня: {n} из {cible}",
+        fin_court_reprendre: "Продолжить занятие",
+        fin_fetes_bandeau: "Получено на прошлом занятии",
+        fin_erreurs_un: "Одно слово с ошибкой. Повторим?",
+        fin_erreurs_n: "Слова с ошибкой: {n}. Повторим?",
+        fin_erreurs_refaire: "Повторить",
+        fin_erreurs_refaire_un: "Повторить",
+        fin_reecouter: "Прослушать ещё раз",
+        tr_bulle: "Микрофон и динамик: коснись микрофона, если не можешь говорить вслух (устное задание станет письменным), и динамика, если не можешь слушать (голос замолчит). Когда выйдешь из занятия, всё снова включится.",
+        fin_seance_titre: "Занятие завершено",
+        fin_court_accueil: "Вернуться на главную",
+        fin_court_reste_un: "В занятии осталась 1 карточка.",
+        fin_court_reste_n: "Осталось карточек в занятии: {n}.",
+        fin_court_a_revoir_un: "Одно слово на повторение, оно вернётся на следующем занятии:",
+        fin_court_a_revoir_n: "Слова на повторение ({n}), они вернутся на следующем занятии:",
+        attente_accueil: "Открываем твою главную страницу…",
         badge_locked_hint: "Пока не получен",
         badge_first_word_title: "Первый шаг",
         badge_first_word_desc: "Твой первый записанный успех.",
@@ -28453,9 +29309,9 @@ const I18N = {
         auth_title: "Учи язык, слово за словом",
         auth_apprendre_es: "Ты учишь немецкий · перейти на испанский ›",
         auth_apprendre_de: "Ты учишь испанский · перейти на немецкий ›",
-        auth_desc: "Войди или создай аккаунт с помощью кода-приглашения.",
+        auth_desc: "Рады снова тебя видеть: войди, чтобы вернуться к своему прогрессу.",
         auth_value_1: "Лексика и грамматика по уровням, от A1 до C1.",
-        auth_value_2: "Цели на день, серии, очки опыта и значки, чтобы не терять мотивацию.",
+        auth_value_2: "Каждый день — короткое занятие: слова, грамматика, иллюстрированная сцена, аудирование и речь.",
         auth_value_3: "Интервальное повторение: каждое слово возвращается в нужный момент, чтобы остаться в памяти.",
         auth_mode_login: "Войти",
         auth_mode_signup: "Создать аккаунт",
@@ -29493,6 +30349,16 @@ const I18N = {
         dem_court: "Ämter",
         cou_tuile: "Einkaufen",
         cou_court: "Einkaufen",
+        vac_tuile: "Urlaub und Reisen",
+        vac_court: "Urlaub",
+        trav_tuile: "Arbeit und Jobsuche",
+        trav_court: "Arbeit",
+        eco_tuile: "Schule und Kita",
+        eco_court: "Schule",
+        ciu_tuile: "In der Stadt: sich orientieren",
+        ciu_court: "In der Stadt",
+        fet_tuile: "Feste und Einladungen",
+        fet_court: "Feste",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -29501,6 +30367,41 @@ const I18N = {
         seance_continuer_long: "Lerneinheit fortsetzen",
         seance_commencer_long: "Lerneinheit starten",
         seance_contenu: "Wörter, Grammatik und Szenen",
+        sec_mes_mots: "Meine Wörter",
+        sec_regle: "Eine Regel verstehen",
+        sec_situation: "In Situationen",
+        sec_ecouter_ecrire: "Hören, schreiben, sprechen",
+        contenu_chercher: "Wort, Regel, Thema…",
+        contenu_chercher_mots: "„{q}“ unter den Wörtern suchen",
+        sugg_titre: "Heute noch ein Schritt",
+        sugg_scene_etape: "Die Szene deiner Etappe",
+        sugg_scene_jour: "Die Szene des Tages",
+        sugg_theme: "Ein bebildertes Thema",
+        sugg_ecouter_sous: "Die Wörter deines Niveaus, laut vorgelesen",
+        niveau_changer: "Niveau wechseln",
+        seance_kicker_etape: "Etappe {n} von {t} · {lieu}",
+        seance_part_lieu: "Die Wörter der Etappe",
+        seance_part_neufs: "Neue Wörter",
+        seance_part_feuille: "Die Konjugation des Tages",
+        seance_part_reperes: "Orientierung",
+        seance_part_scene: "Die Szene",
+        seance_part_theme: "Das bebilderte Thema",
+        seance_part_son: "Der Laut des Tages",
+        seance_part_revisions: "Wiederholung",
+        seance_part_fin: "Das Ende der Etappe",
+        seance_passage_fait: "{part}: geschafft",
+        seance_passage_ensuite: "Als Nächstes: {part}",
+        seance_passage_n: "{n} Karten",
+        seance_passage_un: "1 Karte",
+        seance_plan_neufs: "{n} neue Wörter",
+        seance_plan_neufs_un: "1 neues Wort",
+        seance_plan_feuille: "die Konjugation",
+        seance_plan_reperes: "Orientierung",
+        seance_plan_scene: "eine Szene",
+        seance_plan_theme: "ein bebildertes Thema",
+        seance_plan_son: "der Laut des Tages",
+        seance_plan_revisions: "{n} Wiederholungen",
+        seance_plan_revisions_un: "1 Wiederholung",
         garder_sous: "um es später zu üben",
         garder_fait: "Zurückgelegt",
         gardes_titre: "Zurückgelegt",
@@ -29990,6 +30891,23 @@ const I18N = {
         settings_reset_all: "GESAMTEN FORTSCHRITT ZURÜCKSETZEN",
         settings_badges_title: "Abzeichen",
         badge_unlocked_prefix: "Abzeichen freigeschaltet:",
+        fin_court_titre: "Du hörst hier auf",
+        fin_court_resume: "{n} von {cible} heute",
+        fin_court_reprendre: "Einheit fortsetzen",
+        fin_fetes_bandeau: "In deiner letzten Einheit gewonnen",
+        fin_erreurs_un: "Du hast 1 Wort verpasst. Noch einmal?",
+        fin_erreurs_n: "Du hast {n} Wörter verpasst. Noch einmal?",
+        fin_erreurs_refaire: "Noch einmal",
+        fin_erreurs_refaire_un: "Noch einmal",
+        fin_reecouter: "Noch einmal anhören",
+        tr_bulle: "Mikrofon und Lautsprecher: Tippe aufs Mikrofon, wenn du nicht laut sprechen kannst (Sprechen wird zu Schreiben), auf den Lautsprecher, wenn du nicht zuhören kannst (die Stimme verstummt). Beim Verlassen der Einheit ist beides wieder an.",
+        fin_seance_titre: "Einheit beendet",
+        fin_court_accueil: "Zurück zur Startseite",
+        fin_court_reste_un: "Noch 1 Karte in der Einheit.",
+        fin_court_reste_n: "Noch {n} Karten in der Einheit.",
+        fin_court_a_revoir_un: "Ein Wort zum Wiederholen, es kommt in deiner nächsten Einheit wieder:",
+        fin_court_a_revoir_n: "{n} Wörter zum Wiederholen, sie kommen in deiner nächsten Einheit wieder:",
+        attente_accueil: "Deine Startseite wird geöffnet…",
         badge_locked_hint: "Noch nicht freigeschaltet",
         badge_first_word_title: "Erster Schritt",
         badge_first_word_desc: "Dein erster gespeicherter Erfolg.",
@@ -30089,9 +31007,9 @@ const I18N = {
         auth_title: "Lerne eine Sprache, ein Wort nach dem anderen",
         auth_apprendre_es: "Du lernst Deutsch · zu Spanisch wechseln ›",
         auth_apprendre_de: "Du lernst Spanisch · zu Deutsch wechseln ›",
-        auth_desc: "Melde dich an oder erstelle dein Konto mit deinem Einladungscode.",
+        auth_desc: "Schön, dass du wieder da bist: Melde dich an und mach dort weiter, wo du aufgehört hast.",
         auth_value_1: "Wortschatz und Grammatik nach Niveau geordnet, von A1 bis C1.",
-        auth_value_2: "Tagesziele, Serien, XP und Abzeichen, um motiviert zu bleiben.",
+        auth_value_2: "Jeden Tag eine kurze Einheit: Wörter, Grammatik, eine illustrierte Szene, Hören und Sprechen.",
         auth_value_3: "Verteiltes Wiederholen: Jedes Wort kommt zur rechten Zeit wieder, damit es im Gedächtnis bleibt.",
         auth_mode_login: "Anmelden",
         auth_mode_signup: "Konto erstellen",
@@ -31143,6 +32061,16 @@ const I18N = {
         dem_court: "Trámites",
         cou_tuile: "Hacer la compra",
         cou_court: "La compra",
+        vac_tuile: "Las vacaciones y los viajes",
+        vac_court: "Vacaciones",
+        trav_tuile: "El trabajo y el empleo",
+        trav_court: "El trabajo",
+        eco_tuile: "El colegio y la guardería",
+        eco_court: "Colegio",
+        ciu_tuile: "En la ciudad: orientarse",
+        ciu_court: "En la ciudad",
+        fet_tuile: "Fiestas e invitaciones",
+        fet_court: "Fiestas",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -31151,6 +32079,41 @@ const I18N = {
         seance_continuer_long: "Continuar la práctica",
         seance_commencer_long: "Empezar la práctica",
         seance_contenu: "palabras, gramática y escenas",
+        sec_mes_mots: "Mis palabras",
+        sec_regle: "Entender una regla",
+        sec_situation: "En situación",
+        sec_ecouter_ecrire: "Escuchar, escribir, hablar",
+        contenu_chercher: "Palabra, regla, tema…",
+        contenu_chercher_mots: "Buscar «{q}» entre las palabras",
+        sugg_titre: "Para ir más lejos hoy",
+        sugg_scene_etape: "La escena de tu etapa",
+        sugg_scene_jour: "La escena del día",
+        sugg_theme: "Un tema ilustrado",
+        sugg_ecouter_sous: "Las palabras de tu nivel, en voz alta",
+        niveau_changer: "Cambiar de nivel",
+        seance_kicker_etape: "Etapa {n} de {t} · {lieu}",
+        seance_part_lieu: "Las palabras de la etapa",
+        seance_part_neufs: "Palabras nuevas",
+        seance_part_feuille: "La conjugación del día",
+        seance_part_reperes: "Lo básico",
+        seance_part_scene: "La escena",
+        seance_part_theme: "El tema ilustrado",
+        seance_part_son: "El sonido del día",
+        seance_part_revisions: "Repaso",
+        seance_part_fin: "El final de la etapa",
+        seance_passage_fait: "{part}: hecho",
+        seance_passage_ensuite: "Ahora: {part}",
+        seance_passage_n: "{n} tarjetas",
+        seance_passage_un: "1 tarjeta",
+        seance_plan_neufs: "{n} palabras nuevas",
+        seance_plan_neufs_un: "1 palabra nueva",
+        seance_plan_feuille: "la conjugación",
+        seance_plan_reperes: "lo básico",
+        seance_plan_scene: "una escena",
+        seance_plan_theme: "un tema ilustrado",
+        seance_plan_son: "el sonido del día",
+        seance_plan_revisions: "{n} repasos",
+        seance_plan_revisions_un: "1 repaso",
         garder_sous: "para trabajarla más",
         garder_fait: "Apartada",
         gardes_titre: "Apartadas",
@@ -31640,6 +32603,23 @@ const I18N = {
         settings_reset_all: "REINICIAR TODO EL PROGRESO",
         settings_badges_title: "Insignias",
         badge_unlocked_prefix: "Insignia desbloqueada:",
+        fin_court_titre: "Te detienes aquí",
+        fin_court_resume: "{n} de {cible} hoy",
+        fin_court_reprendre: "Continuar la sesión",
+        fin_fetes_bandeau: "Ganado en tu última sesión",
+        fin_erreurs_un: "Fallaste 1 palabra. ¿La repasamos?",
+        fin_erreurs_n: "Fallaste {n} palabras. ¿Las repasamos?",
+        fin_erreurs_refaire: "Repasarlas",
+        fin_erreurs_refaire_un: "Repasarla",
+        fin_reecouter: "Volver a escuchar",
+        tr_bulle: "Micrófono y altavoz: toca el micrófono si no puedes hablar en voz alta (hablar pasa a escribir) y el altavoz si no puedes escuchar (la voz se calla). Todo vuelve a activarse al salir de la sesión.",
+        fin_seance_titre: "Sesión terminada",
+        fin_court_accueil: "Volver al inicio",
+        fin_court_reste_un: "Queda 1 tarjeta en la sesión.",
+        fin_court_reste_n: "Quedan {n} tarjetas en la sesión.",
+        fin_court_a_revoir_un: "Una palabra para repasar; volverá en tu próxima sesión:",
+        fin_court_a_revoir_n: "{n} palabras para repasar; volverán en tu próxima sesión:",
+        attente_accueil: "Abriendo tu inicio…",
         badge_locked_hint: "Aún no desbloqueada",
         badge_first_word_title: "Primer paso",
         badge_first_word_desc: "Tu primer acierto registrado.",
@@ -31739,9 +32719,9 @@ const I18N = {
         auth_title: "Aprende un idioma, una palabra a la vez",
         auth_apprendre_es: "Aprendes alemán · pasar al español ›",
         auth_apprendre_de: "Aprendes español · pasar al alemán ›",
-        auth_desc: "Inicia sesión, o crea tu cuenta con tu código de invitación.",
+        auth_desc: "Qué bueno verte de nuevo: inicia sesión para seguir donde lo dejaste.",
         auth_value_1: "Vocabulario y gramática organizados por nivel, de A1 a C1.",
-        auth_value_2: "Metas diarias, rachas, XP e insignias para mantener la motivación.",
+        auth_value_2: "Cada día, una sesión corta: palabras, gramática, una escena ilustrada, escuchar y hablar.",
         auth_value_3: "Repetición espaciada: cada palabra vuelve en el momento justo para quedarse en la memoria.",
         auth_mode_login: "Iniciar sesión",
         auth_mode_signup: "Crear una cuenta",
@@ -34318,6 +35298,15 @@ function noterEtape(nom){
 // `node tests/parcours.js` en fait le tableau.
 //   d : ouverture (ISO)   n : cartes prevues   p : passees (jugees ou
 //   balayees, au plus n)  f : 1 si la fin de seance a ete atteinte
+// LOT DE L'EVALUATION (6 nov. 2026), les champs proposes par la session des maquettes, plus `a` :
+//   v : la version de l'app a l'ouverture -- separe « avant » et « apres » dans le meme bilan
+//   q : comment elle s'est terminee : "f" la fin, "r" le « ‹ » ; absent = fermee sans l'un ni l'autre
+//   o : 1 si l'objectif du jour etait atteint a la sortie (un paquet non fini n'est alors pas un abandon)
+//   i : les fenetres et bulles montrees pendant la seance (fete de l'objectif, bulles, badge, episode)
+//   e / er : les mots rates proposes a la fin, et ceux refaits
+//   t : la duree en secondes, de l'ouverture a la derniere carte passee
+//   a : l'activite a l'ecran quand on s'arrete -- « carte », la forme d'une carte-phrase (« ecoute »,
+//       « parler », « gram »...), « scene », « reprise » ; absent d'une seance finie
 // ⚠️ SEPT JOURS, RIEN DE PLUS. C'est ce qui sert a juger, et le champ part
 // avec CHAQUE sauvegarde : il ne doit pas grossir avec les mois.
 // ⚠️ PAS D'ECRITURE PAR CARTE DANS FIRESTORE. Le compte avance dans le
@@ -34354,7 +35343,46 @@ function debutSeanceSuivie(paquet){
     finSeanceSuivie(false);
     const d = new Date().toISOString();
     seanceSuivie = { d: d, paquet: paquet };
-    ecrireSeances({ d: d, n: paquet.length, p: 0, f: 0 });
+    ERREURS_SEANCE.length = 0;
+    let a = "carte";
+    try{ const it = paquet[0]; if(it && it.mode === "phrase") a = String(it.forme || "phrase").slice(0, 16); }catch(e){}
+    ecrireSeances({ d: d, n: paquet.length, p: 0, f: 0, a: a, v: APP_VERSION, i: 0, t: 0 });
+    derniereSeanceD = d;
+    // Le micro et le haut-parleur, nommes une fois (voir bulleTransitUneFois).
+    setTimeout(() => { try{ bulleTransitUneFois(); }catch(e){} }, 1600);
+}
+
+// La derniere seance ouverte (sa date d'ouverture) : l'ecran de fin y ecrit `e`, « Les refaire » `er`,
+// meme apres finSeanceSuivie().
+let derniereSeanceD = null;
+function majSeanceSuivie(maj){
+    const d = seanceSuivie ? seanceSuivie.d : derniereSeanceD;
+    if(!d) return;
+    const s = lireSeances().find(x => x.d === d);
+    if(!s) return;
+    maj(s);
+    ecrireSeances(s);
+}
+// Une fenetre ou une bulle montree pendant la seance (champ `i`).
+function noterInterruptionSeance(){
+    if(!seanceSuivie) return;
+    try{ majSeanceSuivie(s => { s.i = (s.i || 0) + 1; }); }catch(e){}
+}
+function objectifAtteint(){
+    try{ return (getDailyActivityCount() || 0) >= (getDailyGoalTarget() || DEFAULT_DAILY_GOAL_TARGET) ? 1 : 0; }catch(e){ return 0; }
+}
+function dureeSeance(s){ return Math.max(0, Math.round((Date.now() - Date.parse(s.d)) / 1000)); }
+// L'activite a l'ecran, pour la mesure (champ `a`).
+function activiteSeance(){
+    try{
+        const sc = document.getElementById("sceneSeance");
+        if(sc && sc.classList.contains("active")) return "scene";
+        if(seanceSuivie && currentCards !== seanceSuivie.paquet) return "reprise";
+        const it = (currentCards || [])[currentFlashcard];
+        if(!it) return "fin";
+        if(it.mode === "phrase") return String(it.forme || "phrase").slice(0, 16);
+        return "carte";
+    }catch(e){ return "?"; }
 }
 
 // Une carte du paquet passee. Seulement celles du paquet d'ouverture : les
@@ -34364,16 +35392,23 @@ function carteSeanceSuivie(){
     const s = seanceCourante();
     if(!s) return;
     s.p = Math.min(s.n, currentFlashcard);
+    s.a = activiteSeance();   // la carte qui arrive : celle ou l'on est si l'app se ferme
+    s.o = objectifAtteint();
+    s.t = dureeSeance(s);
     ecrireSeances(s);
 }
 
 // La seance se ferme : finie, ou quittee. Une seule demande de sauvegarde.
-function finSeanceSuivie(finie){
+// `raison` : "r" quand on touche « ‹ » (le champ q) ; sans raison, une seance non finie reste « fermee ».
+function finSeanceSuivie(finie, raison){
     if(!seanceSuivie) return;
     const s = seanceCourante();
     seanceSuivie = null;
     if(!s) return;
-    if(finie){ s.p = s.n; s.f = 1; }
+    if(finie){ s.p = s.n; s.f = 1; s.q = "f"; delete s.a; }
+    else { s.a = activiteSeance(); if(raison) s.q = raison; }
+    s.o = objectifAtteint();
+    if(s.p > 0 || finie) s.t = dureeSeance(s);
     ecrireSeances(s);
     if(typeof scheduleCloudSync === "function") scheduleCloudSync();
 }
@@ -35802,9 +36837,18 @@ async function handleEmailLogin() {
     if (!password) { showInfoToast(t('alert_enter_password')); return; }
     setAuthButtonLoading('authLoginBtn', true, 'auth_login_loading', 'auth_login');
     try {
+        // Lot de l'evaluation (6 nov. 2026) : plus de page blanche apres la connexion. L'etat passe a
+        // « attente » AVANT la connexion (le rappel d'authentification part pendant l'appel) ; la
+        // restauration du nuage le passe a « pret » ou libere l'ecran (libererAttenteConnexion).
+        window.ATTENTE_CONNEXION = "attente";
         await window.signInWithEmailAndPassword(window.firebaseAuth, email, password);
+        if(window.ATTENTE_CONNEXION === "attente" && typeof window.ouvertureAttendre === "function"){
+            window.ATTENTE_CONNEXION = "couvert";
+            try{ window.ouvertureAttendre(t("attente_accueil"), 6000); }catch(e){}
+        } else window.ATTENTE_CONNEXION = false;
         goHome();
     } catch (error) {
+        window.ATTENTE_CONNEXION = false;
         showInfoToast(t('alert_login_error_prefix') + getFriendlyAuthError(error));
     } finally {
         setAuthButtonLoading('authLoginBtn', false, 'auth_login_loading', 'auth_login');
@@ -42175,9 +43219,12 @@ async function restoreProgressFromCloud(){
                     d.forEach(s => {
                         if(!s || !s.d) return;
                         const l = parDate[s.d];
+                        // L'activite (a) et la version (v) suivent le cote le plus avance.
+                        const loin = l && (l.p || 0) >= (s.p || 0) ? l : s;
                         parDate[s.d] = l
-                            ? { d: s.d, n: Math.max(l.n || 0, s.n || 0), p: Math.max(l.p || 0, s.p || 0), f: (l.f || s.f) ? 1 : 0 }
+                            ? Object.assign({}, loin, { d: s.d, n: Math.max(l.n || 0, s.n || 0), p: Math.max(l.p || 0, s.p || 0), f: (l.f || s.f) ? 1 : 0 })
                             : s;
+                        if(parDate[s.d].f) delete parDate[s.d].a;
                     });
                     const limite = Date.now() - SEANCES_JOURS * 86400000;
                     const l = Object.values(parDate)
@@ -42309,6 +43356,14 @@ async function accorderLangueAuCompte(){
     return false;
 }
 
+// L'accueil est pret (la progression du nuage est arrivee) : l'ecran d'attente de la connexion part.
+function libererAttenteConnexion(){
+    const etat = window.ATTENTE_CONNEXION;
+    if(etat === "attente"){ window.ATTENTE_CONNEXION = "pret"; return; }
+    if(etat !== "couvert") return;
+    window.ATTENTE_CONNEXION = false;
+    setTimeout(() => { try{ if(typeof window.ouvertureLiberer === "function") window.ouvertureLiberer(); }catch(e){} }, 150);
+}
 window.onDeutschAiUserSignedIn = function(){
     // La langue d'abord : restaurer la progression allemande pour repartir
     // aussitot vers l'espagnol ne servirait a rien.
@@ -42318,7 +43373,8 @@ window.onDeutschAiUserSignedIn = function(){
         // s'ecrase), avant la synchronisation. Sur le web, ne fait rien.
         restoreProgressFromCloud()
             .then(v => horsLigneApresRestauration().then(() => v, () => v))
-            .then(scheduleCloudSync);
+            .then(scheduleCloudSync)
+            .then(() => libererAttenteConnexion(), () => libererAttenteConnexion());
     });
     loadVhsKapitelAccessFlag();
 };
@@ -42865,7 +43921,8 @@ function checkAndUnlockBadges(){
         if(stats[def.metric] >= def.threshold){
             unlocked.push(def.id);
             changed = true;
-            showBadgeToast(def);
+            // Pendant la seance du jour, le badge attend la fin (voir mettreFeteDeCote).
+            if(!mettreFeteDeCote({ k: "badge", id: def.id })) showBadgeToast(def);
         }
     });
     if(changed){
@@ -42929,6 +43986,7 @@ function showToast(icon, text, durationMs){
 }
 
 function showBadgeToast(def){
+    try{ noterInterruptionSeance(); }catch(e){}
     showToast(def.icon, `${t("badge_unlocked_prefix")} ${t(def.titleKey)}`);
 }
 
@@ -45982,7 +47040,10 @@ function construireQuizArticle(cartes){
             answers: [article], correct: article, correctEn: article,
             options: QUIZ_ARTICLE_GENRES
         };
-        ["fr", "en", "tr", "uk", "fa"].forEach(code => {
+        // 5 nov. 2026 : toutes les langues d'interface. La liste s'etait arretee aux cinq premieres :
+        // en portugais, arabe, polonais, russe (et en allemand pour l'espagnol), la traduction
+        // et l'explication retombaient sur une autre langue.
+        ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"].concat(LANGUE_APPRISE === "de" ? [] : ["de"]).forEach(code => {
             const suff = (code === "fr") ? "" : SUFFIXE_LANGUE[code];
             const labelPluriel = tfDans(code, "label_plural", {});
             ex["question" + suff] = "___ " + mot;
@@ -48094,6 +49155,186 @@ function appliquerVueContenu(){
             if(s !== el) s.classList.toggle("hors-contenu", VUE_CONTENU);
         });
     }
+    // 6 nov. 2026 : les rubans des scenes et des themes passent dans « En situation »
+    // le temps de Tout le contenu, puis reviennent sous la seance.
+    try{ rangerRubansContenu(VUE_CONTENU); }catch(e){}
+    if(!VUE_CONTENU){ try{ const c = document.getElementById("contenuRechercheInput"); if(c && c.value){ c.value = ""; filtrerContenu(""); } }catch(e){} }
+}
+// ============ L'ACCUEIL PAR PALIERS ET TOUT LE CONTENU PAR BUT (6 nov. 2026) ============
+// Decision 34d02c3 (Jacques : « Vas-y pour les recommandations »), apres l'evaluation du
+// chef : l'accueil d'un debutant montrait tout -- la progression de l'A1 au B2, 39 scenes,
+// 17 themes, Ecouter... -- et Tout le contenu repetait l'accueil (« j'ai l'impression que
+// c'est repetitif »).
+// L'ACCUEIL PAR PALIERS (variante A) : rien n'est ferme, c'est la mise en avant qui change.
+//   palier 1 -- A1, avant l'etape 3 et sous 150 mots vus : la seance, trois suggestions liees
+//               a l'etape (la scene, un theme, Ecouter), Tout le contenu ; la rangee des
+//               niveaux se replie derriere « Changer de niveau ».
+//   palier 2 -- etape 3 ou 150 mots : les rubans des scenes et des themes, et Ecouter.
+//   palier 3 -- le jalon des 12 etapes, 400 mots, ou un niveau au-dessus de l'A1 : tout.
+// « Mis de cote » se montre des qu'un mot y est ; le tableau et les episodes gardent leurs
+// regles. ACCUEIL_COMPLET_KEY (« 1 ») force le palier 3 : le parcours de test la pose, pour
+// que ses references restent celles d'un accueil complet.
+const ACCUEIL_COMPLET_KEY = PREFIXE_STOCKAGE + "accueilComplet";
+function palierAccueil(){
+    try{ if(localStorage.getItem(ACCUEIL_COMPLET_KEY) === "1") return 3; }catch(e){}
+    if(LANGUE_APPRISE === "ja") return 3;
+    if(niveauSeance() !== "A1") return 3;
+    let vus = 0;
+    try{ vus = nbMotsVus(); }catch(e){}
+    let etape = 0, jalon = false;
+    try{ const s = lireA1Voyage(); jalon = !!s.fin; etape = s.e || 0; }catch(e){}
+    if(jalon || vus >= 400) return 3;
+    if(etape >= 2 || vus >= 150) return 2;
+    return 1;
+}
+function majPaliersAccueil(){
+    const home = document.getElementById("home");
+    if(!home) return;
+    let p = 3;
+    try{ p = palierAccueil(); }catch(e){ p = 3; }
+    [1, 2, 3].forEach(n => home.classList.toggle("palier-" + n, n === p));
+    let gardes = 1;
+    try{ gardes = nombreGardes(); }catch(e){}
+    home.classList.toggle("sans-gardes", !gardes);
+    try{ majChangerNiveau(p); }catch(e){}
+    const bloc = document.getElementById("suggAccueil");
+    if(bloc){
+        let n = 0;
+        try{ n = p === 1 ? majSuggestionsAccueil() : 0; }catch(e){ n = 0; }
+        bloc.classList.toggle("hidden", !n);
+    }
+}
+// « Changer de niveau » : la rangee 🌱 A1 ... C1 repliee aux paliers 1 et 2.
+function majChangerNiveau(p){
+    const pil = document.getElementById("seancePilule");
+    if(!pil) return;
+    let b = pil.querySelector(".pa-changer");
+    if(!b){
+        b = document.createElement("button");
+        b.type = "button";
+        b.className = "pa-changer";
+        b.addEventListener("click", ev => { ev.stopPropagation(); pil.classList.add("niveaux-ouverts"); b.classList.add("hidden"); });
+        pil.appendChild(b);
+    }
+    b.textContent = t("niveau_changer") + " ›";
+    const replie = p < 3 && !pil.classList.contains("niveaux-ouverts");
+    pil.classList.toggle("niveaux-replies", replie);
+    b.classList.toggle("hidden", !replie);
+}
+function majSuggestionsAccueil(){
+    const liste = document.getElementById("suggAccueilListe");
+    if(!liste || seanceJaponaise()) return 0;
+    const items = [];
+    try{
+        let sc = null, etape = false;
+        if(a1VoyageEnCours() && A1_VOYAGE_DONNEES){
+            const v = lireA1Voyage();
+            const lieu = !v.fin ? escalesA1Voyage()[v.e || 0] : suiteA1Voyage()[v.k || 0];
+            sc = lieu ? sceneDuLieu(lieu) : null;
+            etape = !!sc;
+        }
+        if(!sc) sc = sceneDuJour();
+        if(sc && sc.nom){
+            const nom = sc.nom;
+            items.push({ img: vignetteScene(nom), kick: t(etape ? "sugg_scene_etape" : "sugg_scene_jour"), titre: titreCourtScene(sc),
+                         sous: t("explorer_desc"), ouvrir: () => ouvrirSceneDepuisAccueil(nom), cle: "s:" + nom });
+        }
+    }catch(e){}
+    try{
+        const noms = themesIllustresOuverts();
+        if(noms.length){
+            const jour = Math.floor(Date.now() / 86400000);
+            const nom = themeDuJour() || noms[jour % noms.length];
+            const th = THEMES_ILLUSTRES[nom];
+            if(th) items.push({ img: baseScenes() + "themes/" + nom + ".webp", kick: t("sugg_theme"), titre: t(th.titre),
+                                sous: t("themes_ill_desc"), ouvrir: () => ouvrirThemeIllustre(nom, "accueil"), cle: "t:" + nom });
+        }
+    }catch(e){}
+    items.push({ img: null, kick: t("orb_ecouter_title"), titre: t("ela_titre"), sous: t("sugg_ecouter_sous"),
+                 ouvrir: () => ecouterDepuisAccueil(), cle: "e" });
+    const cle = getUiLang() + "|" + items.map(x => x.cle).join(",");
+    if(liste.dataset.cle === cle && liste.children.length) return items.length;
+    liste.dataset.cle = cle;
+    liste.textContent = "";
+    items.forEach(x => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "sugg-carte";
+        if(x.img){
+            const img = document.createElement("img");
+            img.alt = ""; img.src = x.img; img.loading = "lazy";
+            b.appendChild(img);
+        } else {
+            const o = document.createElement("span");
+            o.className = "sugg-onde";
+            o.setAttribute("aria-hidden", "true");
+            for(let i = 0; i < 5; i++) o.appendChild(document.createElement("i"));
+            b.appendChild(o);
+        }
+        const tx = document.createElement("span");
+        tx.className = "sugg-tx";
+        const k = document.createElement("small"); k.className = "sugg-kick"; k.textContent = x.kick;
+        const ti = document.createElement("b"); ti.textContent = x.titre;
+        const so = document.createElement("small"); so.className = "sugg-sous"; so.textContent = x.sous;
+        tx.appendChild(k); tx.appendChild(ti); tx.appendChild(so);
+        b.appendChild(tx);
+        const r = document.createElement("span");
+        r.className = "sugg-rond"; r.setAttribute("aria-hidden", "true"); r.textContent = "›";
+        b.appendChild(r);
+        b.addEventListener("click", () => { try{ x.ouvrir(); }catch(e){} });
+        liste.appendChild(b);
+    });
+    return items.length;
+}
+// Les rubans : sous la seance sur l'accueil, dans « En situation » dans Tout le contenu.
+function rangerRubansContenu(dedans){
+    const place = document.getElementById("placeSituation");
+    const sc = document.getElementById("explorerScenes"), th = document.getElementById("explorerThemes");
+    if(!place || !sc || !th) return;
+    if(dedans){
+        if(place.nextElementSibling !== sc){ place.after(sc); sc.after(th); }
+    } else {
+        const ancre = document.getElementById("suggAccueil");
+        if(ancre && ancre.nextElementSibling !== sc){ ancre.after(sc); sc.after(th); }
+    }
+}
+// LA RECHERCHE DE TOUT LE CONTENU : a chaque lettre, ne restent que les tuiles, les scenes
+// et les themes dont le nom contient ce qu'on tape (sans accents ni majuscules) ; une
+// section sans rien dessous se cache. Le bouton dessous cherche le mot dans le dictionnaire
+// de l'app (la meme recherche que la loupe de l'accueil).
+const sansAccents = s => String(s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().trim();
+function filtrerContenu(valeur){
+    const q = sansAccents(valeur);
+    const grille = document.getElementById("orbGrid");
+    if(!grille) return;
+    const cartes = Array.from(grille.querySelectorAll(":scope > .orb:not(.orb-seance), #explorerScenes .explorer-v, #explorerThemes .explorer-v"));
+    cartes.forEach(c => c.classList.toggle("filtre-cache", !!q && sansAccents(c.textContent + " " + (c.getAttribute("aria-label") || "")).indexOf(q) < 0));
+    // Les sections : cachees quand aucune tuile visible ne les suit (jusqu'a la suivante).
+    Array.from(grille.querySelectorAll(":scope > h2.orb-section")).forEach(h => {
+        let vu = false;
+        for(let el = h.nextElementSibling; el && !el.matches("h2.orb-section"); el = el.nextElementSibling){
+            if(el.matches(".orb, .explorer-scenes, .place-situation")){
+                if(el.matches(".explorer-scenes")){ if(!el.classList.contains("hidden") && el.querySelector(".explorer-v:not(.filtre-cache)")) vu = true; }
+                else if(el.matches(".orb") && !el.classList.contains("filtre-cache") && el.offsetParent !== null) vu = true;
+            }
+        }
+        h.classList.toggle("filtre-cache", !!q && !vu);
+    });
+    ["explorerScenes", "explorerThemes"].forEach(id => {
+        const b = document.getElementById(id);
+        if(b) b.classList.toggle("filtre-vide", !!q && !b.querySelector(".explorer-v:not(.filtre-cache)"));
+    });
+    const bouton = document.getElementById("contenuChercherMots");
+    if(bouton){
+        bouton.classList.toggle("hidden", !q);
+        bouton.textContent = q ? tf("contenu_chercher_mots", { q: String(valeur).trim() }) : "";
+    }
+}
+function chercherMotDepuisContenu(){
+    const c = document.getElementById("contenuRechercheInput");
+    const v = c ? c.value.trim() : "";
+    if(c){ c.value = ""; filtrerContenu(""); }
+    ouvrirRechercheDepuisAccueil(v);
 }
 function ouvrirToutLeContenu(){
     VUE_CONTENU = true;
@@ -48116,7 +49357,7 @@ function quitterToutLeContenu(){
     synchroniserHistorique();
 }
 
-function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); noterEtape("accueil"); installerReperes(); try{ retourAuBilanSiDemande(); }catch(e){} }
+function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); noterEtape("accueil"); installerReperes(); try{ retourAuBilanSiDemande(); }catch(e){} try{ majBandeauFetes(); }catch(e){} }
 
 // Salutation selon l'heure + prénom déduit de l'e-mail (pas de nom affiché
 // collecté à l'inscription -- utilise la partie avant @, mise en majuscule).
@@ -48295,7 +49536,12 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           meteo: {page: "meteo.html", titre: "meteo_tuile", court: "meteo_court", tuile: "tuileMeteo", en: true},
                           logement: {page: "logement.html", titre: "log_tuile", court: "log_court", tuile: "tuileLogement", en: true},
                           demarches: {page: "demarches.html", titre: "dem_tuile", court: "dem_court", tuile: "tuileDemarches", en: true},
-                          courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"}};
+                          courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"},
+                          vacances: {page: "vacances.html", titre: "vac_tuile", court: "vac_court", tuile: "tuileVacances"},
+                          travail: {page: "travail.html", titre: "trav_tuile", court: "trav_court", tuile: "tuileTravail"},
+                          ecole: {page: "ecole.html", titre: "eco_tuile", court: "eco_court", tuile: "tuileEcole"},
+                          ciudad: {page: "ciudad.html", titre: "ciu_tuile", court: "ciu_court", tuile: "tuileCiudad"},
+                          fetes: {page: "fetes.html", titre: "fet_tuile", court: "fet_court", tuile: "tuileFetes"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
@@ -50008,6 +51254,7 @@ function ouvrirRepere(id){
 // Une bulle d'explication sous (ou sur) un element, avec un bouton OK.
 // `apres` est appele quand on la ferme par OK (v804, « Mis de cote »).
 function afficherBulle(ancre, message, apres){
+    try{ noterInterruptionSeance(); }catch(e){}
     fermerRepere();
     const b = document.createElement("div");
     b.className = "bulle-repere";
@@ -52132,8 +53379,13 @@ const FLASHCARD_RETURN_SCREENS = {
 };
 
 function handleFlashcardBack(){
-    // Quittee avant la fin : elle reste « non finie », a p cartes (v712).
-    finSeanceSuivie(false);
+    // Lot de l'evaluation (6 nov. 2026) : « ‹ » au milieu de la seance du jour ouvre d'abord l'ecran
+    // court (« 12 sur 20 aujourd'hui », les fetes, les erreurs). « Terminer », ou un second « ‹ », sort.
+    if(!sortieSansFinCourte && finCourteAMontrer()){ montrerFinCourte(); return; }
+    sortieSansFinCourte = false;
+    fermerFinCourte();
+    // Quittee avant la fin : elle reste « non finie », a p cartes (v712) ; q = "r" (lot de l'evaluation).
+    finSeanceSuivie(false, "r");
     // Le trophee se compte EN JOURS D'ACTIVITE (v629), et c'est d'ici qu'il
     // avance : une semaine d'absence ne consomme rien, une semaine de
     // seances ne consomme pas trois jours en un apres-midi. La garde de date
@@ -52306,6 +53558,10 @@ function loadFlashcard(){
     // efface d'abord celui d'une phrase qui l'aurait precedee.
     // v839 : Premiers pas avance a chaque carte montree.
     if(typeof item.ppPos === "number"){ try{ marquerPositionPremiersPas(item.ppPos); }catch(e){} }
+    // 6 nov. 2026 : l'en-tete et la barre de la seance en parties, puis l'ecran
+    // de passage a la premiere carte d'une partie (voir LE PLAN DE LA SEANCE).
+    try{ majPartsSeance(); }catch(e){}
+    try{ if(montrerPassageSeance()) return; }catch(e){}
     if(item.mode === "phrase"){ montrerCartePhrase(item); return; }
     cacherCartePhrase();
     // UN PAQUET PEUT MELANGER LES TYPES DE CARTES. Le vocabulaire d'examen tire
@@ -55273,7 +56529,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1117;
+const APP_VERSION = 1124;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -60040,7 +61296,12 @@ function majExplorerThemes(){
         sp.style.setProperty("--n", Math.max(8, sp.textContent.length));
         b.appendChild(img); b.appendChild(sp);
         b.setAttribute("aria-label", t(th.titre));
-        b.addEventListener("click", () => ouvrirThemeIllustre(nom, "accueil"));
+        // 6 nov. 2026 : le ruban vit aussi dans Tout le contenu (« En situation ») : le
+        // theme revient alors a Tout le contenu. Et il porte le nom du theme, comme la
+        // tuile qu'il remplace la, pour le parcours (en allemand et en espagnol : les
+        // listes blanches des essais cachent tout [data-orbid] inconnu).
+        b.addEventListener("click", () => ouvrirThemeIllustre(nom, VUE_CONTENU ? undefined : "accueil"));
+        if(LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es") b.dataset.orbid = nom;
         ruban.appendChild(b);
     });
     ruban.scrollLeft = 0;
@@ -61401,7 +62662,10 @@ function choixDuTrou(item){
         melangerPhrase(formesPresent(c.word)).forEach(f => ajouter(f));
     }
     const memes = (currentCardsFull || []).filter(it => it.mode === c.mode && !(it.themeId === c.themeId && it.index === c.index));
-    melangerPhrase(memes).forEach(it => {
+    // Lot de l'evaluation (6 nov. 2026) : les mots deja vus d'abord (voir leurresPhrase), puis les autres.
+    const vuMot = it => { try{ return !estNeuf(getWordState(it.themeId, it.index)); }catch(e){ return false; } };
+    const melanges = melangerPhrase(memes);
+    melanges.filter(vuMot).concat(melanges.filter(it => !vuMot(it))).forEach(it => {
         if(c.mode === "nomen") ajouter(it.word[0], it.word[1]);
         else if(c.mode === "adjektive") ajouter(it.word[0]);
     });
@@ -61418,7 +62682,12 @@ function leurresPhrase(item, n){
         const p = phraseDeCarte(it, 12);
         if(!p || p.sens === item.phrase.sens) return;
         const commun = p.mots.filter(m => mien.has(nuPhrase(m))).length;
-        cand.push({ sens: p.sens, score: commun + Math.random() });
+        // Lot de l'evaluation (6 nov. 2026) : un leurre se prend d'abord parmi les mots DEJA VUS -- un debutant
+        // n'a pas a ecarter un mot qu'on ne lui a jamais montre. Le tirage reste le meme (meme nombre d'appels
+        // au hasard) ; a defaut de mots vus, les autres, comme avant.
+        let vu = false;
+        try{ vu = !estNeuf(getWordState(it.themeId, it.index)); }catch(e){}
+        cand.push({ sens: p.sens, score: commun + Math.random() + (vu ? 1000 : 0) });
     });
     cand.sort((a, b) => b.score - a.score);
     const out = [];
@@ -61831,7 +63100,10 @@ function montrerCartePhrase(item){
     try{ marquerFeuille(item); }catch(e){}
     // v879 : les reperes (jours, mois, nombres) marquent leur passage.
     try{ marquerRepere(item); }catch(e){}
-    if(item.av && item.avBadge) type.appendChild(creer("b", "cp-av", item.avBadge));
+    // 6 nov. 2026 : dans la seance en parties, l'en-tete dit ou l'on est ; les
+    // etiquettes (« Etape 1 », « Reperes 1/10 », « Phrase »...) se taisent.
+    if(seancePartsActive()){ /* rien */ }
+    else if(item.av && item.avBadge) type.appendChild(creer("b", "cp-av", item.avBadge));
     else if(item.rpBadge){
         const bv = creer("b", "cp-av", item.rpBadge);
         if(String(item.themeId).indexOf("son_") === 0) bv.prepend(iconeHP(), " ");
@@ -62290,7 +63562,13 @@ function montrerCartePhrase(item){
                     if(x.textContent === juste) x.classList.add("bon");
                 });
                 if(o !== juste) b.classList.add("faux");
-                const regle = String(item.phrase.sens || "");
+                let regle = String(item.phrase.sens || "");
+                // 5 nov. 2026 : la traduction du mot, si la seance a ete faite sans elle (seance du jour
+                // gardee depuis le matin, themes pas encore charges a sa construction).
+                if(article){
+                    const tr = traductionNomRepere(item.phrase.de);
+                    if(tr && regle.indexOf(tr) < 0) regle += " · " + tr;
+                }
                 const exception = regle.indexOf("⚠️") === 0;
                 conclure(o === juste, item.phrase.de + (article ? "" : " (" + regle + ")"),
                          article ? echapperHtml(exception ? t("rp_exception") + " · " + regle.replace("⚠️", "").trim() : regle) : "");
@@ -63218,6 +64496,7 @@ function repondrePhrase(item, juste){
         // v920 : le bilan de la semaine.
         if(item.forme === "gram") noterGrammaireBilan(item.jeu, juste);
         else if(it && juste === false && item.phrase) noterMotRateBilan(it, item.phrase.de, item.phrase.sens);
+        if(it && juste === false && item.phrase && item.forme !== "gram"){ try{ noterErreurSeance(it, item.phrase.de, item.phrase.sens); }catch(e){} }
         if(!it || juste === null) return recordDailyActivity();
         const st = getWordState(it.themeId, it.index);
         const neuf = estNeuf(st);
@@ -64075,6 +65354,11 @@ async function preparerReperes(){
     if(!lireReperes().force && jourDApprentissage() < 2) return null;
     const R = await chargerReperes();
     if(!R) return null;
+    return choixReperes(R);
+}
+// 6 nov. 2026 : le choix lui-meme, sans attente -- le plan de l'accueil
+// (planSeanceDuJour) le lit aussi, pour annoncer les reperes du jour.
+function choixReperes(R){
     const st = lireReperes();
     const jour = getTodayStr();
     const ecart = debut => Math.round((Date.parse(jour) - Date.parse(debut)) / 86400000);
@@ -64091,23 +65375,34 @@ async function preparerReperes(){
 }
 // Deux leurres qui ressemblent : les chiffres inverses (23 / 32), la dizaine
 // ou la centaine voisine, l'unite voisine.
-function leurresNombre(n){
+// Lot de l'evaluation (6 nov. 2026) : TOUJOURS DANS LA PLAGE ENSEIGNEE. Le repere 0-20 proposait « 31 »
+// pour 13 (les chiffres inverses) et « 30 » pour 20 : un nombre que la seance n'a pas appris. `min` et
+// `max` sont les bornes du repere (ses nombres) ; a defaut, 0 a 1000 comme avant.
+function leurresNombre(n, min, max){
     const v = parseInt(n, 10);
+    const bas = isFinite(min) ? min : 0, haut = isFinite(max) ? max : 1000;
     const out = [];
-    const ajouter = x => { const s = String(x); if(x >= 0 && x <= 1000 && s !== n && out.indexOf(s) < 0) out.push(s); };
+    const ajouter = x => { const s = String(x); if(x >= bas && x <= haut && s !== n && out.indexOf(s) < 0) out.push(s); };
     if(v >= 10 && v < 100 && v % 10 && Math.floor(v / 10) !== v % 10) ajouter((v % 10) * 10 + Math.floor(v / 10));
     if(v >= 100) ajouter(v + (v >= 900 ? -100 : 100));
     if(v >= 20) ajouter(v + (v % 100 >= 90 ? -10 : 10));
     ajouter(v + 1); ajouter(v - 1); ajouter(v + 2);
+    // Pres des bornes (20 dans 0-20), il en manque : les voisins plus loin, toujours dans la plage.
+    ajouter(v - 2); ajouter(v + 3); ajouter(v - 3);
     return out.slice(0, 2);
 }
 // v1042 : LA TRADUCTION DU MOT, PRISE DANS LE CORPUS. Jacques, 31 oct. 2026 : « Dans exercice la Edad, on
 // ne voit pas la traduction en francais ». Les reperes « genre » (reperes.json) ne portent que le mot
 // et sa regle (« -dad -> la · 100 % ») ; la traduction vient des themes, dans la langue de l'usager.
-let TRADUCTIONS_NOMS_REPERES = null;
+// 5 nov. 2026 : LE CACHE SE REFAIT tant qu'il est vide ou que des themes sont arrives depuis (Jacques, 5 nov. :
+// « j'ai costumbre [...] il ne me donne pas la traduction en francais »). Fait une seule fois, il pouvait
+// naitre AVANT le chargement des themes et rester vide toute la journee, sans erreur.
+let TRADUCTIONS_NOMS_REPERES = null, TRADUCTIONS_NOMS_REPERES_N = -1;
 function traductionNomRepere(motAvecArticle){
     try{
-        if(!TRADUCTIONS_NOMS_REPERES){
+        const nThemes = themesComptes().length;
+        if(!TRADUCTIONS_NOMS_REPERES || !TRADUCTIONS_NOMS_REPERES.size || nThemes !== TRADUCTIONS_NOMS_REPERES_N){
+            TRADUCTIONS_NOMS_REPERES_N = nThemes;
             TRADUCTIONS_NOMS_REPERES = new Map();
             themesComptes().forEach(th => Object.keys(th.levels || {}).forEach(niv => {
                 ((th.levels[niv] || {}).words || []).forEach(w => {
@@ -64188,9 +65483,11 @@ function exercicesRepere(r, n, badge){
         // Entendre (choisir), entendre (ecrire en chiffres), le dire.
         const formes = ["ecoute", "rp_chiffres", "parler", "rp_chiffres", "ecoute"];
         const pris = melangerPhrase((r.l || []).concat(r.x || []));
+        const valeurs = (r.l || []).concat(r.x || []).map(x => parseInt(x[1], 10)).filter(x => isFinite(x));
+        const bornes = valeurs.length ? [Math.min.apply(null, valeurs), Math.max.apply(null, valeurs)] : [0, 1000];
         for(let k = 0; k < n && k < pris.length; k++){
             const l = pris[k], f = formes[k % formes.length];
-            if(f === "ecoute") out.push(carte(f, l[0], l[1], { q: "rp_q_nombre", leurres: leurresNombre(l[1]) }));
+            if(f === "ecoute") out.push(carte(f, l[0], l[1], { q: "rp_q_nombre", leurres: leurresNombre(l[1], bornes[0], bornes[1]) }));
             else if(f === "rp_chiffres") out.push(carte(f, l[0], l[1], { q: "rp_q_chiffres" }));
             else out.push(carte("parler", l[0], l[1], { q: "rp_q_dire", oralChiffres: { n: l[1], mot: l[0] } }));
         }
@@ -65081,6 +66378,10 @@ async function ouvrirSeanceDuJour(sansScene){
     try{ const rp = await preparerReperes(); if(rp && seance.length) seance = insererReperes(seance, rp); }catch(e){}
     // v880 : le son du jour, une fois par jour, au milieu.
     try{ const sd = await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
+    // 6 nov. 2026 : la seance regroupee par partie (voir LE PLAN DE LA SEANCE),
+    // AVANT premiereCarteFacile, qui ne deplace que quelques cartes de tete.
+    let regroupee = null;
+    try{ if(!seanceJaponaise()){ regroupee = regrouperSeance(seance, av); seance = regroupee.cartes; } }catch(e){ regroupee = null; }
     try{ seance = premiereCarteFacile(seance); }catch(e){}
     if(!seance.length){
         if(!complet){ seanceGratuiteVide(tout); return; }
@@ -65101,6 +66402,13 @@ async function ouvrirSeanceDuJour(sansScene){
     panneauAvantFlashcards = null;
     flashcardFromSearch = false;
     currentTheme = { id: "seance_" + niveau, name: t("seance_titre") + " \u00b7 " + niveau };
+    PASSAGES_VUS.clear();
+    SEANCE_PARTS = null;
+    if(regroupee){
+        let etape = null;
+        try{ if(av && av.lieu && !av.finA1) etape = { n: av.n + 1, t: av.total, lieu: sensPremiersPas(av.lieu.s) }; }catch(e){ etape = null; }
+        SEANCE_PARTS = { paquet: seance, parts: regroupee.parts, themeId: currentTheme.id, niveau: niveau, etape: etape };
+    }
     currentFlashcard = 0;
     flashcardMode = seance[0].mode || "nomen";
     setFlashHeader("seance_titre", null);
@@ -65121,8 +66429,346 @@ function glisserPhrasesPlusTard(paquet, tout){
         for(let i = currentFlashcard + 1; i < paquet.length; i++) if(paquet[i] && paquet[i].mode !== "phrase") places.push(i);
         if(!places.length) return;
         const avec = insererCartesPhrases(places.map(i => paquet[i]), tout);
-        places.forEach((i, k) => { paquet[i] = avec[k]; });
+        places.forEach((i, k) => {
+            // 6 nov. 2026 : la phrase prend la partie de la carte qu'elle remplace
+            // (voir LE PLAN DE LA SEANCE), sinon la barre se couperait en morceaux.
+            try{ if(SEANCE_PARTS && SEANCE_PARTS.paquet === paquet && avec[k] !== paquet[i]) SEANCE_PARTS.parts.set(avec[k], SEANCE_PARTS.parts.get(paquet[i]) || "revisions"); }catch(e){}
+            paquet[i] = avec[k];
+        });
     }).catch(() => {});
+}
+
+// ============ LE PLAN DE LA SEANCE (6 nov. 2026, decision 34d02c3) ============
+// L'evaluation du chef : la seance enchainait le tableau d'un verbe, deux cartes,
+// les nombres, une ecoute, l'oral, une phrase de reservation -- sans fil, et
+// sous trois etiquettes differentes (« Escale 1 », « Reperes 1/10 », « Phrase »).
+// Jacques : « Vas-y pour les recommandations » (maquettes B + C) :
+// - la seance est REGROUPEE PAR PARTIE, toujours dans cet ordre (ORDRE_PARTS) :
+//   l'etape (le verbe, ses mots, ses phrases toutes faites, le dialogue), la
+//   feuille de conjugaison, les mots nouveaux, les reperes, la scene ou le theme,
+//   le son du jour, les revisions ; la fin d'etape tout au bout. A l'interieur
+//   d'une partie, l'ordre des modules ne change pas (tri stable).
+// - pendant la seance, l'en-tete dit « Etape N sur 12 · le lieu » et le nom de
+//   la partie ; une barre en parties remplace les etiquettes des cartes ;
+// - entre deux parties, un ecran de passage (ce qui est fait, ce qui vient). Il
+//   n'est PAS une carte du paquet : seancesJson (n, p), l'objectif du jour et
+//   les reprises « Encore » ne le voient pas.
+// - sur l'accueil, la ligne sous le niveau dit ce que la seance contiendra
+//   (planSeanceDuJour) au lieu de « mots, grammaire et scenes ».
+// Les cartes-phrases vont dans la partie du mot qu'elles font travailler s'il est
+// dans la seance, sinon dans les revisions : elles restent APRES ce mot.
+const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "scene", "son", "revisions", "fin"];
+let SEANCE_PARTS = null;           // { paquet, parts (Map carte -> partie), themeId, niveau, etape }
+const PASSAGES_VUS = new Set();    // les parties dont l'ecran de passage a ete montre (v1122 : par partie)
+function partDeCarteSeance(c, av, parCle){
+    if(!c) return "revisions";
+    const forme = c.forme || "";
+    if(c.av) return /^(av_escale_fin|av_jalon|av_fin_a1)$/.test(forme) ? "fin" : "lieu";
+    if(forme === "scene_arret" || forme === "theme_arret") return "scene";
+    const tid = String(c.themeId || "");
+    if(tid.indexOf("son_") === 0) return "son";
+    if(c.rpBadge || c.rpTableau || tid.indexOf("rp_") === 0) return "reperes";
+    if(c.fcBadge || c.fcFeuille || c.feuilleTemps) return "feuille";
+    if(c.mode === "phrase"){
+        const k = c.cible ? (c.cible.themeId + ":" + c.cible.index) : null;
+        return (k && parCle.has(k)) ? parCle.get(k) : "revisions";
+    }
+    let neuf = false;
+    try{ neuf = estNeuf(getWordState(c.themeId, c.index)); }catch(e){}
+    return neuf ? ((av && !av.finA1) ? "lieu" : "neufs") : "revisions";
+}
+// Rend { cartes, parts } : la seance triee par partie, et la partie de chaque carte.
+function regrouperSeance(seance, av){
+    const parts = new Map(), parCle = new Map();
+    seance.forEach(c => {
+        if(!c || c.mode === "phrase") return;
+        const p = partDeCarteSeance(c, av, parCle);
+        parts.set(c, p);
+        parCle.set(c.themeId + ":" + c.index, p);
+    });
+    seance.forEach(c => { if(c && c.mode === "phrase") parts.set(c, partDeCarteSeance(c, av, parCle)); });
+    const rang = c => { const i = ORDRE_PARTS.indexOf(parts.get(c)); return i < 0 ? ORDRE_PARTS.length : i; };
+    const cartes = seance.map((c, i) => [c, i]).sort((a, b) => rang(a[0]) - rang(b[0]) || a[1] - b[1]).map(x => x[0]);
+    return { cartes: espacerPhrasesEtape(cartes, parts), parts: parts };
+}
+// v1124 (decision 64fad6f, Jacques, 6 nov.) : LES PHRASES DE L'ETAPE ESPACEES. Le regroupement retirait
+// les revisions qui separaient les phrases toutes faites (aux cartes 3, 8, 13) et les cartes-phrases des
+// mots de l'etape : elles se suivaient (« La cocina, las paredes son blancas. Las paredes son blancas. La
+// llave, la mesa, las paredes son blancas. »). Dans la partie de l'etape, elles alternent maintenant avec
+// les cartes de mots : deux mots, une phrase, deux mots... (une carte au moins s'il y a peu de mots).
+// Le tableau reste en tete, le dialogue a la fin ; chaque file garde son ordre ; une phrase ne passe
+// jamais avant la carte de son mot ; deux phrases de meme base ne se suivent jamais quand on peut l'eviter.
+function basePhraseEtape(c){
+    const t = (c && ((c.phrase && c.phrase.de) || (c.bloc && (c.bloc.ex || c.bloc.de)) || c.word)) || "";
+    return String(Array.isArray(t) ? t[0] : t).toLowerCase().normalize("NFD").replace(/\p{M}/gu, "").replace(/[^\p{L}\p{N} ]+/gu, " ").replace(/\s+/g, " ").trim();
+}
+function memeBasePhrase(a, b){
+    if(!a || !b) return false;
+    if(a.cible && b.cible && a.cible.themeId + ":" + a.cible.index === b.cible.themeId + ":" + b.cible.index) return true;
+    const x = basePhraseEtape(a), y = basePhraseEtape(b);
+    return !!(x && y && (x === y || (x.length >= 8 && y.indexOf(x) >= 0) || (y.length >= 8 && x.indexOf(y) >= 0)));
+}
+function espacerPhrasesEtape(cartes, parts){
+    const idx = [];
+    cartes.forEach((c, i) => { if(parts.get(c) === "lieu") idx.push(i); });
+    if(idx.length < 3) return cartes;
+    // La partie de l'etape est contigue apres le tri ; on ne touche qu'a elle.
+    for(let k = 1; k < idx.length; k++) if(idx[k] !== idx[k - 1] + 1) return cartes;
+    const bloc = idx.map(i => cartes[i]);
+    const tete = [], queue = [];
+    while(bloc.length && bloc[0].mode === "phrase" && bloc[0].forme === "pp_tableau") tete.push(bloc.shift());
+    while(bloc.length && String(bloc[bloc.length - 1].themeId || "") === "a1v_dialogue") queue.unshift(bloc.pop());
+    const phrases = bloc.filter(c => c.mode === "phrase"), mots = bloc.filter(c => c.mode !== "phrase");
+    if(!phrases.length || !mots.length) return cartes;
+    const ecart = Math.max(1, Math.min(2, Math.floor(mots.length / phrases.length)));
+    const cleMot = c => c.themeId + ":" + c.index;
+    const motsDuBloc = new Set(mots.map(cleMot));
+    const poses = new Set();
+    const prete = ph => !(ph.cible && motsDuBloc.has(cleMot(ph.cible)) && !poses.has(cleMot(ph.cible)));
+    const milieu = [];
+    let depuis = 0, derniere = null;
+    while(phrases.length || mots.length){
+        let j = -1;
+        if(phrases.length && (depuis >= ecart || !mots.length)){
+            const precedente = milieu.length && milieu[milieu.length - 1].mode === "phrase" ? milieu[milieu.length - 1] : null;
+            j = phrases.findIndex(ph => prete(ph) && !(precedente && memeBasePhrase(precedente, ph)));
+            if(j < 0 && !mots.length) j = phrases.findIndex(prete);
+            if(j < 0 && !mots.length) j = 0;
+        }
+        if(j >= 0){
+            derniere = phrases.splice(j, 1)[0];
+            milieu.push(derniere);
+            depuis = 0;
+        } else {
+            const m = mots.shift();
+            milieu.push(m);
+            poses.add(cleMot(m));
+            depuis++;
+        }
+    }
+    const refait = tete.concat(milieu, queue);
+    const sortie = cartes.slice();
+    refait.forEach((c, k) => { sortie[idx[0] + k] = c; });
+    return sortie;
+}
+function seancePartsActive(){
+    return !!(SEANCE_PARTS && currentCards === SEANCE_PARTS.paquet && currentTheme && currentTheme.id === SEANCE_PARTS.themeId);
+}
+function titrePartSeance(p, c){
+    if(p === "scene" && c && c.forme === "theme_arret") return t("seance_part_theme");
+    return t("seance_part_" + (ORDRE_PARTS.indexOf(p) >= 0 ? p : "revisions"));
+}
+// Les parties du paquet, dans l'ordre : [{ p, debut, n }]. La fin d'etape se
+// range dans la partie d'avant (elle n'en est que la conclusion).
+function segmentsSeance(paquet, parts){
+    const segs = [], vues = new Set();
+    paquet.forEach((c, j) => {
+        let p = parts.get(c);
+        // Une carte que le regroupement n'a pas vue (une copie faite en cours de seance) suit la partie
+        // ou elle tombe : elle ne cree pas de partie a elle seule.
+        if(!p) p = segs.length ? segs[segs.length - 1].p : "revisions";
+        if(p === "fin" && segs.length) p = segs[segs.length - 1].p;
+        // Une carte ratee revient quelques rangs plus loin (remettreEnFile) : elle compte dans
+        // la partie ou elle retombe, sinon elle la coupe en deux et fait naitre de faux passages
+        // (« Les revisions : c'est fait · Ensuite : les mots de l'etape », Jacques, 6 nov.).
+        if(vues.has(c) && segs.length) p = segs[segs.length - 1].p;
+        vues.add(c);
+        const s = segs[segs.length - 1];
+        if(s && s.p === p) s.n++;
+        else segs.push({ p: p, debut: j, n: 1 });
+    });
+    return segs;
+}
+// L'en-tete et la barre, a chaque carte (appelee par loadFlashcard).
+function majPartsSeance(){
+    const box = document.getElementById("seanceParts");
+    const zone = document.getElementById("flashcards");
+    const actif = seancePartsActive();
+    if(zone) zone.classList.toggle("seance-en-parts", actif);
+    if(!actif){
+        if(box){ box.classList.add("hidden"); box.textContent = ""; }
+        // Les reprises (« Encore », « en faire 20 de plus ») gardent l'en-tete d'avant.
+        if(SEANCE_PARTS && currentTheme && currentTheme.id === SEANCE_PARTS.themeId){
+            const k = document.getElementById("flashKicker"), h = document.getElementById("flashThemeTitle");
+            if(k) k.textContent = t("seance_titre");
+            if(h) h.textContent = currentTheme.name || "";
+        }
+        return;
+    }
+    const P = SEANCE_PARTS, paquet = P.paquet;
+    const i = Math.max(0, Math.min(currentFlashcard, paquet.length - 1));
+    const c = paquet[i];
+    const k = document.getElementById("flashKicker"), h = document.getElementById("flashThemeTitle");
+    if(k) k.textContent = P.etape ? tf("seance_kicker_etape", P.etape) : (t("seance_titre") + " · " + P.niveau);
+    if(h) h.textContent = titrePartSeance(P.parts.get(c) === "fin" ? "fin" : (segmentsSeance(paquet, P.parts).find(s => i >= s.debut && i < s.debut + s.n) || {}).p, c);
+    if(!box) return;
+    box.textContent = "";
+    segmentsSeance(paquet, P.parts).forEach(s => {
+        const b = document.createElement("i");
+        b.style.flexGrow = String(s.n);
+        if(currentFlashcard >= s.debut + s.n) b.className = "fait";
+        else if(currentFlashcard >= s.debut){
+            b.className = "ici";
+            b.style.setProperty("--q", Math.round(100 * (currentFlashcard - s.debut) / s.n) + "%");
+        }
+        box.appendChild(b);
+    });
+    box.classList.remove("hidden");
+}
+// L'ecran de passage, a la premiere carte d'une partie. Rend true s'il s'affiche :
+// loadFlashcard s'arrete alors, et « Continuer » la rappelle pour la carte.
+function montrerPassageSeance(){
+    if(!seancePartsActive()) return false;
+    const P = SEANCE_PARTS, i = currentFlashcard;
+    if(i <= 0 || i >= P.paquet.length) return false;
+    const segs = segmentsSeance(P.paquet, P.parts);
+    const s = segs.find(x => x.debut === i);
+    // v1122 : UN passage par partie et par seance, garde par le nom de la partie et non par le rang
+    // de la carte. Jacques, 6 nov. (iPhone, espagnol) : « a chaque carte, ca m'indique Revisions
+    // faites, ensuite les mots de l'etape, une carte ».
+    if(!s || PASSAGES_VUS.has(s.p) || s.p === segs[0].p) return false;
+    const avant = segs[segs.indexOf(s) - 1];
+    const zone = document.getElementById("flashcards"), el = document.getElementById("cartePhrase");
+    if(!zone || !el || !avant || avant.p === s.p) return false;
+    PASSAGES_VUS.add(s.p);
+    try{ arreterOralPhrase(); }catch(e){}
+    CARTE_PHRASE_AFFICHEE = null;
+    zone.classList.add("en-phrase");
+    el.classList.remove("hidden");
+    el.textContent = "";
+    const actions = document.getElementById("flashcardActions");
+    if(actions) actions.classList.add("hidden");
+    const minuscule = x => x ? x.charAt(0).toLocaleLowerCase() + x.slice(1) : x;
+    const boite = document.createElement("div");
+    boite.className = "cp-passage";
+    const ok = document.createElement("span");
+    ok.className = "cp-passage-ok";
+    ok.setAttribute("aria-hidden", "true");
+    ok.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg>';
+    const fait = document.createElement("b");
+    fait.className = "cp-passage-fait";
+    fait.textContent = tf("seance_passage_fait", { part: titrePartSeance(avant.p, P.paquet[avant.debut]) });
+    const ensuite = document.createElement("p");
+    ensuite.className = "cp-passage-ensuite";
+    ensuite.textContent = tf("seance_passage_ensuite", { part: minuscule(titrePartSeance(s.p, P.paquet[s.debut])) });
+    const n = document.createElement("small");
+    n.className = "cp-passage-n";
+    n.textContent = s.n === 1 ? t("seance_passage_un") : tf("seance_passage_n", { n: s.n });
+    const go = document.createElement("button");
+    go.type = "button";
+    go.className = "primary cp-passage-go";
+    go.textContent = t("review_continuer");
+    go.addEventListener("click", () => { loadFlashcard(); });
+    [ok, fait, ensuite, n, go].forEach(x => boite.appendChild(x));
+    el.appendChild(boite);
+    try{ majCompteurCarte(); }catch(e){}
+    try{ go.focus({ preventScroll: true }); }catch(e){}
+    return true;
+}
+// LE PLAN SUR L'ACCUEIL : ce que la seance contiendra, compte avec les memes regles
+// que cartesDeSeance() et les modules (sans hasard, sans rien ecrire), pour la
+// ligne sous le niveau : « Debutant · 6 mots nouveaux · les reperes · une scene ».
+// Une donnee qui manque (escales, reperes, feuilles) est chargee, puis la ligne
+// se refait. Le compte peut differer d'une carte quand une carte-phrase prend la
+// place d'un mot nouveau : c'est un plan, pas un releve.
+let PLAN_CACHE = null;
+const PLAN_CHARGEMENTS = new Set();
+function attendrePourLePlan(nom, promesse){
+    if(PLAN_CHARGEMENTS.has(nom) || !promesse || typeof promesse.then !== "function") return;
+    PLAN_CHARGEMENTS.add(nom);
+    promesse.then(() => { PLAN_CACHE = null; try{ majPlanPilule(); }catch(e){} }).catch(() => {});
+}
+function planSeanceDuJour(){
+    if(seanceJaponaise()) return null;
+    try{ if(premiersPasEnCours()) return null; }catch(e){ return null; }
+    const niveau = niveauSeance();
+    try{ const r = lireRevoirNiveau(); if(r && r.n === niveau) return null; }catch(e){}
+    let av = null;
+    try{
+        if(a1VoyageEnCours()){
+            if(A1_VOYAGE_DONNEES) av = lireA1Voyage();
+            else attendrePourLePlan("a1v", chargerA1Voyage());
+        }
+    }catch(e){ av = null; }
+    let fait = 0;
+    try{ fait = getDailyActivityCount() || 0; }catch(e){}
+    const complet = accesComplet();
+    const cleCache = [getTodayStr(), niveau, fait, complet ? 1 : 0, av ? JSON.stringify(av) : "",
+                      !!REPERES_DONNEES, !!FEUILLES_DONNEES, getUiLang(), LANGUE_APPRISE].join("|");
+    if(PLAN_CACHE && PLAN_CACHE.cle === cleCache) return PLAN_CACHE.texte;
+    const pool = complet ? paquetDuNiveau(niveau) : filtrerGratuit(paquetDuNiveau(niveau));
+    if(!pool.length) return null;   // donnees pas encore arrivees : rien en cache
+    const tout = [];
+    NIVEAUX_CECR.forEach(n => { tout.push.apply(tout, complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n))); });
+    let poolNeufs = pool;
+    if(av){
+        if(!av.fin){ const e = escalesA1Voyage()[av.e || 0]; if(e) poolNeufs = poolEscale(pool, e); }
+        else if((av.k || 0) < suiteA1Voyage().length) poolNeufs = poolSuite(pool, av.k || 0);
+    }
+    const neuf = it => estNeuf(getWordState(it.themeId, it.index));
+    const taille = tailleSeance();
+    const neufsDispo = poolNeufs.filter(neuf).length;
+    const plafond = placeNeufsRestante();
+    const reserve = Math.min(Math.round(taille * PART_NEUFS_RESERVEE), plafond, neufsDispo);
+    const dues = Math.min(cartesEchues(tout.filter(it => !neuf(it))).length, Math.max(0, taille - reserve));
+    let neufs = Math.min(neufsDispo, Math.max(0, Math.min(taille - dues, plafond)));
+    const total = dues + neufs;
+    // Les cartes-phrases PRENNENT LA PLACE de cartes (insererCartesPhrases) : celles
+    // qui tombent sur les mots nouveaux (apres les revisions) en retirent autant.
+    try{
+        if(LANGUE_APPRISE !== "ja" && essaiActif("phrases")){
+            const pal = palierSeance(tout.filter(it => !neuf(it)).length);
+            for(let k = pal.debut; k < total; k += pal.tous_les) if(k >= dues && neufs > 0) neufs--;
+        }
+    }catch(e){}
+    let feuille = false, reperes = false;
+    try{
+        if(feuillesEssai() && niveau !== "A1"){
+            if(FEUILLES_DONNEES) feuille = !!feuilleDuJour(niveau);
+            else attendrePourLePlan("feuilles", chargerFeuilles());
+        }
+    }catch(e){}
+    try{
+        if(reperesPourMoi() && (lireReperes().force || jourDApprentissage() >= 2)){
+            if(REPERES_DONNEES) reperes = !!choixReperes(REPERES_DONNEES);
+            else attendrePourLePlan("reperes", chargerReperes());
+        }
+    }catch(e){}
+    let scene = null;
+    try{
+        if(total >= 6){
+            if(!av && themeDuJour()) scene = "seance_plan_theme";
+            else if(arretSceneActif()) scene = "seance_plan_scene";
+        }
+    }catch(e){}
+    let son = false;
+    try{
+        if(essaiActif("son_du_jour") && jourDApprentissage() >= 3){
+            let st = {};
+            try{ st = JSON.parse(localStorage.getItem(SON_DU_JOUR_KEY) || "{}") || {}; }catch(e){ st = {}; }
+            son = st.j !== getTodayStr();
+        }
+    }catch(e){}
+    const morceaux = [];
+    if(feuille) morceaux.push(t("seance_plan_feuille"));
+    if(neufs) morceaux.push(neufs === 1 ? t("seance_plan_neufs_un") : tf("seance_plan_neufs", { n: neufs }));
+    if(reperes) morceaux.push(t("seance_plan_reperes"));
+    if(scene) morceaux.push(t(scene));
+    if(son) morceaux.push(t("seance_plan_son"));
+    if(dues) morceaux.push(dues === 1 ? t("seance_plan_revisions_un") : tf("seance_plan_revisions", { n: dues }));
+    const texte = morceaux.length ? morceaux.join(" · ") : null;
+    PLAN_CACHE = { cle: cleCache, texte: texte };
+    return texte;
+}
+function majPlanPilule(){
+    const pil = document.getElementById("seancePilule");
+    const el = pil && pil.querySelector(".pa-contenu");
+    if(!el) return;
+    let plan = null;
+    try{ plan = planSeanceDuJour(); }catch(e){ plan = null; }
+    if(plan){ el.removeAttribute("data-i18n"); el.textContent = plan; }
+    else { el.setAttribute("data-i18n", "seance_contenu"); el.textContent = t("seance_contenu"); }
+    el.classList.toggle("pa-plan", !!plan);
 }
 
 // Le sous-titre de la tuile : ce qu'il reste a faire, pas un pourcentage.
@@ -65189,6 +66835,7 @@ function majCompteDuJour(){
     // apparaitre des le retour d'une seance ou l'on vient d'y mettre un mot.
     try{ majBoutonGardes(); }catch(e){}
     try{ majAnneauSeance(); }catch(e){}
+    try{ majPaliersAccueil(); }catch(e){}   // 6 nov. 2026 : l'accueil par paliers
 }
 
 function majTuileSeance(){
@@ -65419,6 +67066,7 @@ function majPiluleSeance(){
     try{ pp = premiersPasEnCours(); }catch(e){}
     const niveau = niveauSeance();
     majTitrePilule();
+    try{ majPlanPilule(); }catch(e){}   // 6 nov. 2026 : le plan de la seance
     const niv = document.getElementById("spNiv");
     if(niv) niv.textContent = pp ? "🌱" : niveau;   // v882 : la fleche est dessinee par .pa-niv::after
     let clairTxt = pp ? t("pp_niveau_clair") : t("niveau_clair_" + niveau);
@@ -65606,7 +67254,7 @@ function episodesApresExercice(compteDuJour){
         s.d = 1; s.j = [auj];
         ecrireEpisodes(s);
         majTuileEpisodes();
-        setTimeout(() => montrerSurpriseEpisode(liste[0]), 700);
+        if(!mettreFeteDeCote({ k: "ep", id: liste[0].n })) setTimeout(() => montrerSurpriseEpisode(liste[0]), 700);
         return;
     }
     if(s.j.indexOf(auj) >= 0) return;
@@ -65616,7 +67264,7 @@ function episodesApresExercice(compteDuJour){
         s.d += 1; s.j = [auj];
         ecrireEpisodes(s);
         majTuileEpisodes();
-        setTimeout(() => montrerSurpriseEpisode(liste[s.d - 1]), 700);
+        if(!mettreFeteDeCote({ k: "ep", id: liste[s.d - 1].n })) setTimeout(() => montrerSurpriseEpisode(liste[s.d - 1]), 700);
         return;
     }
     ecrireEpisodes(s);
@@ -65632,6 +67280,7 @@ function urlEpisode(ep){
     return EPISODES_HOTE + ep.video + "." + langue + ".mp4";
 }
 function voileEpisode(){
+    try{ noterInterruptionSeance(); }catch(e){}
     const remplace = !!document.getElementById("episodeVoile");
     fermerVoileEpisode(true);
     const v = document.createElement("div");
@@ -66293,6 +67942,17 @@ function reviewAgain(){
         const recto = document.getElementById("flashWord");
         noterMotRateBilan(item, texteCarteAPrononcer(), recto ? recto.textContent : "");
     }catch(e){}
+    // Lot de l'evaluation : le mot rate, a refaire sur l'ecran de fin (rendreErreurs).
+    // Le sens : le recto quand il est dans la langue de l'eleve (frontIsFrench, le cas de la seance) ; sinon la
+    // traduction du verso. (#flashTranslation garde son texte d'exemple « Table » sur une carte qui ne s'en sert pas.)
+    try{
+        const w = texteCarteAPrononcer();
+        const recto = String((document.getElementById("flashWord") || {}).textContent || "").trim();
+        const tr = document.getElementById("flashTranslation");
+        const visible = tr && tr.offsetParent !== null ? String(tr.textContent || "").trim() : "";
+        const sens = (recto && String(w).toLowerCase().indexOf(recto.toLowerCase()) < 0) ? recto : visible;
+        noterErreurSeance(item, w, sens);
+    }catch(e){}
     sessionVues++;
     remettreEnFile(item);
     scheduleReview(SRS_ENCORE_MINUTES);   // revient dans la meme session
@@ -66711,6 +68371,18 @@ function showFlashcardEnd(){
     afficherFinGratuite("finGratuiteFlash",
         (!accesComplet() && neufsRestantsDansPaquet() === 0 && (currentCardsFull || []).length)
             ? tf("gratuit_fin_mots", { n: currentCardsFull.length }) : null);
+    // Lot de l'evaluation (maquette a) : en seance du jour, l'anneau et « Seance terminee », les fetes gagnees
+    // pendant la seance, les mots rates a refaire.
+    try{
+        const enSeance = !!(currentTheme && String(currentTheme.id).indexOf("seance_") === 0);
+        const anneau = document.getElementById("flashEndAnneau");
+        if(anneau){ anneau.classList.toggle("hidden", !enSeance); if(enSeance) majAnneauFin(anneau); }
+        const titre = document.getElementById("flashEndTitre");
+        if(titre) titre.textContent = t(enSeance ? "fin_seance_titre" : "flash_end_title");
+        rendreFetes(document.getElementById("finFetes"), prendreFetesAttente());
+        const ne = rendreErreurs(document.getElementById("finErreurs"), enSeance ? erreursDeLaSeance() : []);
+        if(enSeance && ne) majSeanceSuivie(s => { s.e = Math.max(s.e || 0, ne); });
+    }catch(e){}
     fin.classList.remove("hidden");
     sessionVues = 0; sessionSues = 0;
     return true;
@@ -66720,6 +68392,276 @@ function hideFlashcardEnd(){
     const fin = document.getElementById("flashcardEnd");
     if(fin) fin.classList.add("hidden");
     try{ document.getElementById("flashcards").classList.remove("fin-paquet"); }catch(e){}
+}
+
+// ============ LES FETES A LA FIN DE LA SEANCE (lot de l'evaluation, 6 nov. 2026) ============
+// Decision f2932a7 (decisions/DECISIONS.md). « Badge debloque » et la surprise d'un episode s'ouvraient
+// AU MILIEU de la seance du jour, par-dessus l'exercice. Pendant la seance, elles attendent ici (sur
+// l'appareil, pour survivre a une fermeture brutale) et se montrent :
+//  (a) sur l'ecran de fin, la seance finie (showFlashcardEnd) ;
+//  (b) sur l'ecran court, si l'on touche « ‹ » en cours (montrerFinCourte) ;
+//  (c) en bandeau sur l'accueil au prochain retour, si l'app a ete fermee d'un coup (majBandeauFetes).
+// La fete de l'objectif (l'anneau, le +1, la piece du palier, v1112-v1115) reste ou elle est : elle dit
+// le geste qui vient d'etre fait, sans ouvrir de fenetre.
+// Chaque fete : { k: "badge", id } ou { k: "ep", id: numero de l'episode }.
+const FETES_ATTENTE_KEY = PREFIXE_STOCKAGE + "fetesAttente";
+// Une fete qui attend plus de sept jours s'efface sans bruit : un badge d'il y a deux semaines ne fete plus rien.
+const FETES_ATTENTE_JOURS = 7;
+function lireFetesAttente(){
+    try{
+        const l = JSON.parse(localStorage.getItem(FETES_ATTENTE_KEY) || "[]");
+        const limite = Date.now() - FETES_ATTENTE_JOURS * 86400000;
+        return Array.isArray(l) ? l.filter(f => f && (!f.t || f.t >= limite)) : [];
+    }catch(e){ return []; }
+}
+function ecrireFetesAttente(l){
+    try{
+        if(l.length) localStorage.setItem(FETES_ATTENTE_KEY, JSON.stringify(l.slice(-12)));
+        else localStorage.removeItem(FETES_ATTENTE_KEY);
+    }catch(e){}
+}
+// Rend true si la fete est mise de cote (une seance du jour est ouverte), false sinon : elle s'affiche alors
+// tout de suite, comme avant.
+function mettreFeteDeCote(f){
+    if(!seanceSuivie) return false;
+    const l = lireFetesAttente();
+    if(!l.some(x => x && x.k === f.k && x.id === f.id)) l.push(Object.assign({ t: Date.now() }, f));
+    ecrireFetesAttente(l);
+    return true;
+}
+function prendreFetesAttente(){
+    const l = lireFetesAttente();
+    if(l.length) ecrireFetesAttente([]);
+    return l;
+}
+function elFin(tag, cls, texte){
+    const e = document.createElement(tag);
+    if(cls) e.className = cls;
+    if(texte !== undefined) e.textContent = texte;
+    return e;
+}
+// Une fete, en une ligne de la maquette a : l'icone, le titre en gras, une precision dessous.
+function ligneFete(f){
+    if(!f) return null;
+    if(f.k === "badge"){
+        const def = BADGE_DEFINITIONS.find(d => d.id === f.id);
+        if(!def) return null;
+        return { icone: def.icon, titre: t(def.titleKey), sous: def.descKey ? t(def.descKey) : t("badge_unlocked_prefix").replace(/\s*:\s*$/, "") };
+    }
+    if(f.k === "ep"){
+        let ep = null;
+        try{ ep = episodesDeLaLangue().find(e => e.n === f.id); }catch(e){}
+        if(!ep) return null;
+        return { icone: "🎬", titre: tf("ep_debloque", { n: ep.n, serie: EPISODES_SERIE[LANGUE_APPRISE] || "", titre: ep.titre }), ep: ep };
+    }
+    return null;
+}
+// Les fetes sur un ecran de fin (a, b). Rend le nombre de fetes montrees.
+function rendreFetes(boite, fetes){
+    if(!boite) return 0;
+    boite.textContent = "";
+    let n = 0;
+    (fetes || []).forEach(f => {
+        const l = ligneFete(f);
+        if(!l) return;
+        const ligne = elFin("div", "fin-fete");
+        ligne.appendChild(elFin("span", "fin-fete-icone", l.icone));
+        const txt = elFin("div", "fin-fete-texte");
+        txt.appendChild(elFin("b", "", l.titre));
+        if(l.sous) txt.appendChild(elFin("small", "", l.sous));
+        if(l.ep){
+            const go = elFin("button", "secondary fin-fete-regarder", "▶ " + t("ep_regarder"));
+            go.type = "button";
+            go.addEventListener("click", () => { try{ lireEpisode(l.ep); }catch(e){} });
+            txt.appendChild(go);
+        }
+        ligne.appendChild(txt);
+        boite.appendChild(ligne);
+        n++;
+    });
+    boite.classList.toggle("hidden", !n);
+    return n;
+}
+// (c1) L'app fermee d'un coup : au prochain accueil, un bandeau en verre au-dessus de la seance. « Pendant ta
+// derniere seance », ce qui a ete gagne ; le toucher ouvre l'episode s'il y en a un, la croix le range. Il ne
+// dure qu'un passage : les fetes sont prises en l'affichant.
+function majBandeauFetes(){
+    const home = document.getElementById("home");
+    if(!home) return;
+    let b = document.getElementById("bandeauFetes");
+    const lignes = prendreFetesAttente().map(ligneFete).filter(Boolean);
+    if(b) b.remove();
+    if(!lignes.length) return;
+    b = elFin("div", "bandeau-fetes");
+    b.id = "bandeauFetes";
+    b.setAttribute("role", "status");
+    b.appendChild(elFin("span", "bandeau-fetes-ems", lignes.map(l => l.icone).join("")));
+    const tx = elFin("span", "bandeau-fetes-tx");
+    tx.appendChild(elFin("small", "", t("fin_fetes_bandeau")));
+    tx.appendChild(elFin("b", "", lignes.map(l => l.titre).join(" · ")));
+    b.appendChild(tx);
+    const x = elFin("button", "bandeau-fetes-x", "×");
+    x.type = "button";
+    x.setAttribute("aria-label", t("abo_fermer"));
+    x.addEventListener("click", ev => { ev.stopPropagation(); b.remove(); });
+    b.appendChild(x);
+    const ep = (lignes.find(l => l.ep) || {}).ep;
+    if(ep){
+        b.classList.add("bandeau-fetes-ouvre");
+        b.addEventListener("click", () => { b.remove(); try{ montrerSurpriseEpisode(ep); }catch(e){} });
+    }
+    const salut = home.querySelector(".home-greeting-row");
+    if(salut && salut.parentNode === home) home.insertBefore(b, salut.nextSibling);
+    else home.insertBefore(b, home.firstChild);
+}
+// L'anneau du jour (maquettes a et b) : le compte sur l'objectif.
+function majAnneauFin(el){
+    if(!el) return;
+    let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
+    try{ fait = getDailyActivityCount() || 0; }catch(e){}
+    try{ cible = getDailyGoalTarget() || cible; }catch(e){}
+    const p = Math.max(0, Math.min(100, Math.round(100 * fait / Math.max(1, cible))));
+    el.style.setProperty("--p", p);
+    el.classList.toggle("atteint", fait >= cible);
+    el.querySelector("b").textContent = String(fait);
+    el.querySelector("small").textContent = "/" + cible + (fait >= cible ? " ✓" : "");
+    return { fait: fait, cible: cible };
+}
+
+// ============ REVOIR SES ERREURS A LA FIN (lot de l'evaluation, 6 nov. 2026) ============
+// « Tu as raté 3 mots, on les refait ? » sur l'ecran de fin (et l'ecran court) : chaque mot rate dans la
+// seance du jour, avec son sens et un haut-parleur pour le reecouter ; « On les refait » rejoue leurs
+// cartes. Un mot rate = « Encore » sur sa carte, ou une carte-phrase manquee qui le visait (pas la
+// grammaire, qui n'a pas de mot). Remis a zero a chaque seance (debutSeanceSuivie) et a chaque reprise.
+const ERREURS_SEANCE = [];
+function noterErreurSeance(it, w, sens){
+    if(!it || it.themeId === undefined || it.index === undefined) return;
+    if(!(currentTheme && String(currentTheme.id).indexOf("seance_") === 0)) return;
+    const c = it.themeId + "#" + it.index;
+    if(ERREURS_SEANCE.some(e => e.c === c)) return;
+    ERREURS_SEANCE.push({ c: c, it: it, w: String(w || "").trim(), s: String(sens || "").trim() });
+}
+function erreursDeLaSeance(){ return ERREURS_SEANCE.filter(e => e && e.w); }
+// `court` : l'ecran de « ‹ » (maquette b) -- les mots a revoir, sans bouton ; sinon l'ecran de fin (a) --
+// « Tu as raté 3 mots, on les refait ? » et « Les refaire ». Chaque pastille se touche : le mot se redit.
+function rendreErreurs(boite, erreurs, court){
+    if(!boite) return 0;
+    boite.textContent = "";
+    const l = (erreurs || []).slice(0, 12);
+    boite.classList.toggle("hidden", !l.length);
+    if(!l.length) return 0;
+    const n = l.length;
+    boite.appendChild(elFin("div", court ? "fin-erreurs-intro" : "fin-erreurs-titre",
+        court ? (n === 1 ? t("fin_court_a_revoir_un") : tf("fin_court_a_revoir_n", { n: n }))
+              : (n === 1 ? t("fin_erreurs_un") : tf("fin_erreurs_n", { n: n }))));
+    const liste = elFin("ul", "fin-erreurs-liste");
+    l.forEach(e => {
+        const li = elFin("li", "");
+        const b = elFin("button", "fin-erreur");
+        b.type = "button";
+        b.setAttribute("aria-label", t("fin_reecouter") + " : " + e.w + (e.s && e.s !== e.w ? " (" + e.s + ")" : ""));
+        try{ b.appendChild(iconeHP()); }catch(x){}
+        const mots = elFin("span", "fin-erreur-mots");
+        const w = elFin("span", "fin-erreur-mot", e.w);
+        w.setAttribute("lang", LANGUE_APPRISE);
+        mots.appendChild(w);
+        if(e.s && e.s !== e.w) mots.appendChild(elFin("span", "fin-erreur-sens", e.s));
+        b.appendChild(mots);
+        b.addEventListener("click", () => { try{ direAllemand(e.w); }catch(x){} });
+        li.appendChild(b);
+        liste.appendChild(li);
+    });
+    boite.appendChild(liste);
+    const cartes = l.filter(e => e.it && e.it.word && e.it.mode !== "phrase");
+    if(!court && cartes.length){
+        const b = elFin("button", "primary fin-erreurs-refaire",
+            t(cartes.length === 1 ? "fin_erreurs_refaire_un" : "fin_erreurs_refaire"));
+        b.type = "button";
+        b.addEventListener("click", refaireErreurs);
+        boite.appendChild(b);
+    }
+    return n;
+}
+function refaireErreurs(){
+    const items = erreursDeLaSeance().map(e => e.it).filter(it => it && it.word && it.mode !== "phrase");
+    if(!items.length) return;
+    try{ majSeanceSuivie(s => { s.er = (s.er || 0) + items.length; }); }catch(e){}
+    ERREURS_SEANCE.length = 0;
+    fermerFinCourte();
+    currentCards = items.slice();
+    try{ shuffleArray(currentCards); }catch(e){}
+    currentFlashcard = 0;
+    loadFlashcard();
+    try{ scrollTo(0, 0); }catch(e){}
+}
+
+// ============ L'ECRAN DE FIN COURT (lot de l'evaluation, 6 nov. 2026) ============
+let sortieSansFinCourte = false;
+function finCourteAMontrer(){
+    if(!seanceSuivie) return false;
+    if(!(currentTheme && String(currentTheme.id).indexOf("seance_") === 0)) return false;
+    const ecran = document.querySelector(".screen.active");
+    if(!ecran || ecran.id !== "flashcards") return false;
+    const fc = document.getElementById("finCourte");
+    if(!fc || !fc.classList.contains("hidden")) return false;   // deja ouvert : le second « ‹ » sort
+    const fin = document.getElementById("flashcardEnd");
+    if(fin && !fin.classList.contains("hidden")) return false;
+    if(!(currentCards || [])[currentFlashcard]) return false;   // plus de carte (loadFlashcard) : on sort
+    const s = seanceCourante();
+    return !!(s && s.p > 0) || lireFetesAttente().length > 0 || erreursDeLaSeance().length > 0;
+}
+function montrerFinCourte(){
+    try{ arreterChaineCarte(true); }catch(e){}
+    try{ stopMasteryCelebrations(); }catch(e){}
+    try{ if("speechSynthesis" in window) speechSynthesis.cancel(); }catch(e){}
+    try{ arreterAudioPregenere(); }catch(e){}
+    try{ fermerRepere(); }catch(e){}
+    const fc = document.getElementById("finCourte");
+    if(!fc) return;
+    const a = majAnneauFin(document.getElementById("finCourteAnneau")) || { fait: 0, cible: DEFAULT_DAILY_GOAL_TARGET };
+    const r = document.getElementById("finCourteResume");
+    if(r) r.textContent = tf("fin_court_resume", { n: a.fait, cible: a.cible });
+    // Ce qui reste du paquet propose (les reprises ne comptent pas, comme p et n).
+    const reste = document.getElementById("finCourteReste");
+    if(reste){
+        let n = 0;
+        try{ const s = seanceCourante(); if(s) n = Math.max(0, s.n - s.p); }catch(e){}
+        reste.textContent = n ? (n === 1 ? t("fin_court_reste_un") : tf("fin_court_reste_n", { n: n })) : "";
+        reste.classList.toggle("hidden", !n);
+    }
+    try{ rendreFetes(document.getElementById("finCourteFetes"), prendreFetesAttente()); }catch(e){}
+    try{ rendreErreurs(document.getElementById("finCourteErreurs"), erreursDeLaSeance(), true); }catch(e){}
+    document.getElementById("flashcards").classList.add("fin-courte-ouverte");
+    fc.classList.remove("hidden");
+    try{ scrollTo(0, 0); }catch(e){}
+}
+function fermerFinCourte(){
+    const fc = document.getElementById("finCourte");
+    if(fc) fc.classList.add("hidden");
+    try{ document.getElementById("flashcards").classList.remove("fin-courte-ouverte"); }catch(e){}
+}
+function reprendreSeanceCourte(){ fermerFinCourte(); }
+function quitterSeanceCourte(){
+    sortieSansFinCourte = true;
+    handleFlashcardBack();
+}
+
+// ============ LE MICRO ET LE HAUT-PARLEUR, NOMMES UNE FOIS (lot de l'evaluation, 6 nov. 2026) ============
+// Deux icones sans mot en haut de la seance : leur nom vit dans aria-label et title (tr_btn_micro,
+// tr_btn_son) ; la premiere seance ouverte sur cet appareil, une bulle dit a quoi elles servent.
+// Pas pendant Premiers pas ni la decouverte guidee, qui ont leurs propres bulles.
+const AIDE_TRANSIT_KEY = "wortando_aideTransitVue";
+function bulleTransitUneFois(){
+    try{ if(localStorage.getItem(AIDE_TRANSIT_KEY) === "1") return; }catch(e){ return; }
+    try{ if(decouverteEnCours()) return; }catch(e){}
+    if(!currentTheme || String(currentTheme.id).indexOf("seance_") !== 0 || currentTheme.id === "seance_premiers_pas") return;
+    if(bulleRepere) return;
+    const ecran = document.querySelector(".screen.active");
+    if(!ecran || ecran.id !== "flashcards") return;
+    const b = document.getElementById("trMicroBtn");
+    if(!b || !b.offsetParent) return;
+    try{ localStorage.setItem(AIDE_TRANSIT_KEY, "1"); }catch(e){}
+    afficherBulle(b, t("tr_bulle"));
 }
 
 let sharedAudioCtx = null;
@@ -67414,6 +69356,7 @@ function showDailyGoalText(threshold){
 // sur le fait que le clip soit muet ou non, et sans clip cette condition
 // n'aurait plus rien signifie -- le palier serait devenu entierement muet.
 function triggerDailyGoalCelebration(multiple){
+    try{ noterInterruptionSeance(); }catch(e){}
     // v955 : l'app installee vibre, et le rappel du jour se tait (voir programmerRappels).
     // v963 : LA VIBRATION APRES LES SONS, PAS EN MEME TEMPS. Jacques, 26 oct. 2026,
     // deux fois : le toucher de la carte « Vibrations » vibre, le palier jamais --

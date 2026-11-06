@@ -19,7 +19,7 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 8798 par defaut ; THEMES_PORT=<n> quand une autre session en lance en meme temps (3 nov. 2026 : avec
 # allow_reuse_address, deux serveurs sur le meme port se lisent l'un l'autre sous Windows -- vecu).
 PORT = int(os.environ.get("THEMES_PORT", "8798"))
-THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "transportes", "loisirs", "animales", "meteo", "logement", "demarches", "courses"]          # un theme qui s'ajoute s'ajoute ici et dans THEMES_ILLUSTRES (index.html)
+THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "transportes", "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes"]          # un theme qui s'ajoute s'ajoute ici et dans THEMES_ILLUSTRES (index.html)
 # L'ANGLAIS (3 nov. 2026) : les themes qui ont deja leurs phrases anglaises, a mesure qu'ils les recoivent ; et le
 # britannique, la variante (« en&variante=gb »)
 ANGLAIS = ["familia", "descripcion", "contrarios", "emociones", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "loisirs", "animales", "meteo", "logement", "demarches"]
@@ -41,9 +41,10 @@ COMPTER = """(n) => {
         if (b) { b.click(); const j = z.querySelector('#choix button.juste'); rep = j ? j.textContent : ''; }
         else if (typeof testerOrdre === 'function' && z.querySelector('.ordre')) rep = testerOrdre();   // la journee : remettre dans l'ordre, en quatre gestes
         else {
-          const g = z.querySelector('.arbre g.p:not(.ego)') || z.querySelector('.rangee button') || z.querySelector('.corps .zone');
+          // .plan .cible : les ronds a toucher sur le plan d'« En ville »
+          const g = z.querySelector('.arbre g.p:not(.ego)') || z.querySelector('.rangee button') || z.querySelector('.corps .zone') || z.querySelector('.plan .cible');
           if (g) g.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-          const j = z.querySelector('.arbre g.juste, .rangee button.juste, .corps .zone.juste'); rep = j ? j.dataset.id : '';
+          const j = z.querySelector('.arbre g.juste, .rangee button.juste, .corps .zone.juste, .plan .cible.juste'); rep = j ? j.dataset.id : '';
         }
         if (!rep) defauts.push(t + ' : pas de bonne reponse marquee');
         const k = t + '|' + (en ? en.textContent : '') + '|' + imgs + '|' + rep;
