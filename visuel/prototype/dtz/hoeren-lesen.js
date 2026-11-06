@@ -64,21 +64,22 @@ function unitesHoeren(s, teil){
   if (teil === "T4"){
     const t4 = s.T4, lettres = t4.saetze.map(x => x.b);
     return [{teil, intro: t4.intro, saetze: t4.saetze, thema: t4.thema, thema_fr: t4.thema_fr,
-      aussagen: t4.aussagen.map(a => ({audio: a.audio, q: question("H", {nr: a.nr, beispiel: a.beispiel, frage: a.beispiel ? T("exemple") : "Person " + a.nr,
+      cle: s.id + "-T4-intro",
+      aussagen: t4.aussagen.map(a => ({audio: a.audio, cle: s.id + "-T4-" + a.nr, q: question("H", {nr: a.nr, beispiel: a.beispiel, frage: a.beispiel ? T("exemple") : "Person " + a.nr,
         bon: a.bon, erkl_fr: a.erkl_fr, mark_fr: a.mark_fr, mots: a.mots, frage_fr: ""}, {kind: "lettre", lettres, options: lettres, bon: a.bon})})),
       get questions(){ return this.aussagen.map(a => a.q); }}];
   }
   if (teil === "T3"){
     const us = [], conv = {};
     s.T3.forEach(it => {
-      if (!it.gespraech){ us.push({teil, audio: it.audio, rollen: it.rollen, questions: [question("H", it)]}); return; }
+      if (!it.gespraech){ us.push({teil, audio: it.audio, rollen: it.rollen, cle: s.id + "-T3-" + it.nr, questions: [question("H", it)]}); return; }
       if (!conv[it.gespraech]){ conv[it.gespraech] = {teil, audio: null, questions: []}; us.push(conv[it.gespraech]); }
-      if (it.audio){ conv[it.gespraech].audio = it.audio; conv[it.gespraech].rollen = it.rollen; }
+      if (it.audio){ conv[it.gespraech].audio = it.audio; conv[it.gespraech].rollen = it.rollen; conv[it.gespraech].cle = s.id + "-T3-" + it.nr; }
       conv[it.gespraech].questions.push(question("H", it));
     });
     return us;
   }
-  return s[teil].map(it => ({teil, audio: it.audio, typ: it.typ, questions: [question("H", it)]}));
+  return s[teil].map(it => ({teil, audio: it.audio, typ: it.typ, cle: s.id + "-" + teil + "-" + it.nr, questions: [question("H", it)]}));
 }
 function unitesLesen(s, teil){
   const t = s[teil];
@@ -105,15 +106,17 @@ const TEILE = {H: ["T1", "T2", "T3", "T4"], L: ["T1", "T2", "T3", "T4", "T5"]};
 const consigneLesen = (s, teil) => s[teil].aufgabe;
 
 // ============ LE RENDU DES DOCUMENTS ET DES QUESTIONS ============
+// une photo d'annonce ou de brochure (outils/images.py) ; absente ou pas encore faite, elle disparait sans trou
+const photo = nom => nom ? '<img class="photo" src="images/' + esc(nom) + '.webp" alt="" loading="lazy" onerror="this.remove()">' : "";
 function rendreDoc(u){
   if (u.doc && u.doc.typ === "wegweiser")
     return '<div class="doc wegweiser" lang="de"><div class="t">' + esc(u.doc.titel) + '</div>' +
       u.doc.zeilen.map(z => '<div class="z"><b>' + esc(z.etage) + '</b><span>' + esc(z.inhalt) + '</span></div>').join("") + '</div>';
   if (u.doc && u.doc.typ === "broschuere")
-    return '<div class="doc brochure" lang="de"><div class="k">' + esc(u.doc.titel) + '<small>' + esc(u.doc.kopf) + '</small></div>' +
+    return '<div class="doc brochure" lang="de"><div class="k">' + esc(u.doc.titel) + '<small>' + esc(u.doc.kopf) + '</small></div>' + photo(u.doc.bild) +
       u.doc.abschnitte.map(a => '<div class="s"><b>' + esc(a.titel) + '</b>' + esc(a.text) + '</div>').join("") + '</div>';
   if (u.anzeigen)
-    return '<div class="doc annonces" lang="de">' + u.anzeigen.map(a => '<div class="annonce"><span class="l">' + a.b + '</span><div class="t">' + esc(a.titel) + '</div>' + esc(a.text) + '</div>').join("") + '</div>';
+    return '<div class="doc annonces" lang="de">' + u.anzeigen.map(a => '<div class="annonce"><span class="l">' + a.b + '</span>' + photo(a.bild) + '<div class="t">' + esc(a.titel) + '</div>' + esc(a.text) + '</div>').join("") + '</div>';
   if (u.texte){
     const t = u.texte, cls = t.typ === "zeitung" ? "journal" : t.typ === "aushang" ? "aushang" : "lettre";
     return '<div class="doc ' + cls + '" lang="de"><div class="k">' + esc(t.kopf) + '</div><h3>' + esc(t.titel) + '</h3>' +
@@ -231,13 +234,13 @@ function montrerUnite(){
   h += '</div>';
   $("zone").innerHTML = h;
   // a l'entrainement, chaque personne du micro-trottoir se reecoute seule
-  document.querySelectorAll("[data-a]").forEach(b => b.onclick = async () => { silence(); b.disabled = true; await jouerRepliques(u.aussagen[+b.dataset.a].audio); b.disabled = false; });
+  document.querySelectorAll("[data-a]").forEach(b => b.onclick = async () => { arreterSon(); debloquerSon(); b.disabled = true; const a = u.aussagen[+b.dataset.a]; await jouerPiste(a.cle, a.audio); b.disabled = false; });
   const jb = $("jouer");
   if (jb) jb.onclick = async () => {
     jb.disabled = true; jb.innerHTML = ICONE_SON + T("en_cours");
-    silence();
-    if (e.teil === "T4"){ await jouerRepliques(u.intro); for (const a of u.aussagen){ await attendre(1); await jouerRepliques(a.audio); } }
-    else await jouerRepliques(u.audio);
+    silence(); debloquerSon();
+    if (e.teil === "T4"){ await jouerPiste(u.cle, u.intro); for (const a of u.aussagen){ await attendre(1); await jouerPiste(a.cle, a.audio); } }
+    else await jouerPiste(u.cle, u.audio);
     e.joue = true; jb.disabled = false; jb.innerHTML = ICONE_SON + T("reecouter");
   };
   document.querySelectorAll("#zone .opt:not(:disabled)").forEach(b => b.onclick = () => repondreEntrainement(b.dataset.q, b.dataset.v));
@@ -281,7 +284,7 @@ function serieExamen(){
   return meilleur;
 }
 function lancerExamen(quoi){
-  const i = serieExamen(); ENT = null;
+  const i = serieExamen(); ENT = null; debloquerSon();   // dans le geste : iOS laissera ensuite jouer les pistes
   EX = {quoi, sH: H.series[i], sL: L.series[i], rep: {}, etape: null, teilL: "T1", fin: false};
   DTZ.surRetour(() => { if (!EX || EX.fin) return false; confirmer(T("quitter_q"), () => { silence(); EX = null; accueil(); }, T("quitter")); return true; });
   if (quoi === "L") examenLesen(); else examenHoeren();
@@ -307,29 +310,30 @@ async function examenHoeren(){
     if (EX !== jeton) return;
     const us = unitesHoeren(s, teil);
     afficherTeilHoeren(teil, us);
-    await dire(H.consignes[teil].de, "aurora"); await attendre(2);
+    await jouerPiste("consigne-" + teil, [{wer: "aurora", text: H.consignes[teil].de}]); await attendre(2);
     if (teil === "T4"){
       await attendre(60);                                      // une minute pour lire les phrases a-f
       if (EX !== jeton) return;
-      await jouerRepliques(us[0].intro);
+      await jouerPiste(us[0].cle, us[0].intro);
       for (const a of us[0].aussagen){
         if (EX !== jeton) return;
-        marquer(a.q.id); await attendre(2); await jouerRepliques(a.audio); await attendre(a.q.beispiel ? 3 : 10);
+        marquer(a.q.id); await attendre(2); await jouerPiste(a.cle, a.audio); await attendre(a.q.beispiel ? 3 : 10);
       }
     } else {
       for (const u of us){
         if (EX !== jeton) return;
         const q0 = u.questions[0];
         marquer(q0.id);
-        await dire(q0.beispiel ? "Beispiel." : "Nummer " + u.questions.map(q => q.nr).join(" und ") + ".", "aurora");
+        const annonce = q0.beispiel ? "Beispiel." : "Nummer " + u.questions.map(q => q.nr).join(" und ") + ".";
+        await jouerPiste(q0.beispiel ? "beispiel" : "nummer-" + u.questions.map(q => q.nr).join("-"), [{wer: "aurora", text: annonce}]);
         await attendre(teil === "T3" ? 8 : 5);                  // le temps de lire la question
-        await jouerRepliques(u.audio);
+        await jouerPiste(u.cle, u.audio);
         await attendre(teil === "T3" ? 12 : 8);                 // le temps de repondre
       }
     }
   }
   if (EX !== jeton) return;
-  await dire(H.consignes.ende.de, "aurora");
+  await jouerPiste("consigne-ende", [{wer: "aurora", text: H.consignes.ende.de}]);
   marquer(null);
   if (EX.quoi === "HL") pauseAvantLesen(); else rendreCopie();
 }
@@ -476,5 +480,10 @@ DTZ.partie({id: "L", ordre: 2, titre: T("lire_titre"), sous: T("lesen_s"), ouvri
 DTZ.examen({id: "HL", ordre: 1, titre: T("ex_complet"), sous: T("ex_complet_s"), lancer: () => lancerExamen("HL")});
 DTZ.examen({id: "H", ordre: 2, titre: T("ex_hoeren"), sous: T("ex_hoeren_s"), lancer: () => lancerExamen("H")});
 DTZ.examen({id: "L", ordre: 3, titre: T("ex_lesen"), sous: T("ex_lesen_s"), lancer: () => lancerExamen("L")});
-DTZ.charger(Promise.all([fetch("donnees/hoeren.json").then(r => r.json()), fetch("donnees/lesen.json").then(r => r.json())])
+// cache: "no-cache" : un telephone garderait sinon l'ancien JSON apres une correction (constate le 4 nov. : les photos
+// des annonces n'apparaissaient pas, la page lisait le lesen.json d'avant)
+const FRAIS = {cache: "no-cache"};
+DTZ.charger(Promise.all([fetch("donnees/hoeren.json", FRAIS).then(r => r.json()), fetch("donnees/lesen.json", FRAIS).then(r => r.json())])
   .then(([h, l]) => { H = h; L = l; Object.assign(DTZ_VOIX, h.voix); }));
+// les pistes enregistrees : facultatives -- sans manifeste, tout passe par la voix du telephone
+DTZ.charger(fetch("donnees/voix-hoeren.json", FRAIS).then(r => r.ok ? r.json() : {}).catch(() => ({})).then(m => Object.assign(DTZ_PISTES, m)));
