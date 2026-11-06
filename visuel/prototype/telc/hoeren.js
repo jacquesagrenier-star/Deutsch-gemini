@@ -401,7 +401,9 @@ function deroulement(vivant){
   return {
     pause: async (s, texte) => { etatExamen(texte); await attendre(s); return vivant(); },
     ecouter: async (segs, cles, nrs) => { if (nrs) marquerEx(nrs); etatExamen(T("ho_ex_joue"), true); return await jouerSegments(segs, cles, 1.2, E.jeton) && vivant(); },
-    consigne: async c => { etatExamen(T("ho_ex_consigne"), true); await direLigne(c); return vivant(); }
+    // une consigne ou un « Nummer 42 » : sa piste enregistree (cle), sinon la voix du telephone
+    dire: async (ligne, cle) => { await jouerSegments([[ligne]], [cle], 0, E.jeton); return vivant(); },
+    consigne: async (c, cle) => { etatExamen(T("ho_ex_consigne"), true); await jouerSegments([[c]], [cle], 0, E.jeton); return vivant(); }
   };
 }
 function feuilleTeil(teil){
@@ -429,7 +431,7 @@ async function examenH(fini, serie){
     if (!vivant()) return;
     feuilleTeil(teil);
     const us = moi.us.filter(u => u.teil === teil), u0 = us[0];
-    if (!await r.consigne(d.consignes[teil])) return;
+    if (!await r.consigne(d.consignes[teil], "telc-consigne-" + teil)) return;
     if (u0.lecture && !await r.pause(u0.lecture, T("ho_ex_lecture"))) return;
     if (teil === "T1"){
       const nrs = u0.questions.map(q => q.nr);
@@ -439,7 +441,8 @@ async function examenH(fini, serie){
     } else if (teil === "T3"){
       for (const u of us){
         const nr = u.questions[0].nr;
-        marquerEx([nr]); await direLigne({wer: "aurora", text: "Nummer " + nr + "."});
+        marquerEx([nr]);
+        if (!await r.dire({wer: "aurora", text: "Nummer " + nr + "."}, "telc-nummer-" + nr)) return;
         if (!await r.pause(5, T("ho_ex_lecture")) || !await r.ecouter(u.segs, u.cles, [nr]) || !await r.pause(4, T("ho_ex_pause")) || !await r.ecouter(u.segs, u.cles, [nr]) || !await r.pause(8, T("ho_ex_pause"))) return;
       }
     } else {

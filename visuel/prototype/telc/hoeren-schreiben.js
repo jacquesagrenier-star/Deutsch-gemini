@@ -193,15 +193,13 @@ async function examenHS(fini, serie){
     moi.ms.map(u => '<div class="q" id="q' + u.data.nr + '">' + rendreNotiz(u.data, "", null, false) + '</div>').join("") + '</div>';
   document.querySelectorAll("#zone input[data-nr]").forEach(c => c.oninput = () => { moi.saisie[+c.dataset.nr] = c.value; });
   window.scrollTo(0, 0);
-  if (!await r.consigne(HS.d.consigne)) return;
+  if (!await r.consigne(HS.d.consigne, "telc-consigne-HS")) return;
   for (const u of moi.ms){
     const nr = u.data.nr;
     O.marquerEx([nr]); const c = $("saisie" + nr); if (c) c.focus({preventScroll: true});
     if (!await r.pause(u.lecture, T("ho_ex_lecture")) || !await r.ecouter(u.segs, u.cles, [nr]) || !await r.pause(5, T("ho_ex_pause")) || !await r.ecouter(u.segs, u.cles, [nr]) || !await r.pause(15, T("ho_ex_pause"))) return;
   }
-  const ende = E.d.consignes.ende;
-  await O.direLigne(ende);
-  if (!vivant()) return;
+  if (!await r.dire(E.d.consignes.ende, "telc-consigne-ende")) return;
   const etats = {}; moi.ms.forEach(u => { etats[u.data.nr] = verifierNote(u.data, moi.saisie[u.data.nr]); });
   const bons = moi.ms.filter(u => noteOk(etats[u.data.nr])).length;
   marquerFait("XHS", s);
