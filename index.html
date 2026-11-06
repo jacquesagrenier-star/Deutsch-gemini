@@ -3395,7 +3395,7 @@ html{ touch-action:manipulation; }
    frequence et des examens, et la tuile d'examen (Goethe, telc, DTZ). */
 html[data-apprendre="es"] [data-i18n="credits_voix"],
 html[data-apprendre="es"] [data-i18n="credits_degres"],
-html[data-apprendre="es"] [data-i18n="credits_freq"],
+html[data-apprendre="es"]:not([data-placement]) [data-i18n="credits_freq"],
 html[data-apprendre="es"] [data-i18n="credits_examens"],
 html[data-apprendre="es"] [data-orbid="pruefung"]{ display:none !important; }
 /* Le japonais : ses propres credits (credits_dict, dans I18N_JAPONAIS). */
@@ -56249,8 +56249,15 @@ function motDeLaCarte(it){
     return Array.isArray(w) ? w[0] : (w && (w.infinitif || w.mot)) || "";
 }
 
+// ⚠️ L'ESPAGNOL A UN CLASSEMENT DEPUIS LE 6 NOV. 2026 (espanol/datos/frequence.json,
+// fait pour le test de niveau, decision 34d02c3), MAIS LA SEANCE NE LE LIT PAS :
+// avant, le fichier manquait et le classement restait vide ; il reste vide, pour
+// que l'ordre des mots neufs espagnols ne change pas sans une decision de Jacques.
+// Le test de niveau lit le fichier par lui-meme (chargerFrequencePlacement).
+function frequenceDeSeance(){ return LANGUE_APPRISE !== "es"; }
 async function chargerFrequence(){
     if(rangsFrequence) return rangsFrequence;
+    if(!frequenceDeSeance()){ rangsFrequence = new Map(); return rangsFrequence; }
     if(!chargementFrequence){
         chargementFrequence = (frequenceLueDAvance || fetch(urlDonnees('frequence.json'), { cache: 'no-cache' })
             .then(r => r.ok ? r.json() : null))
@@ -64068,7 +64075,7 @@ function prechaufferSeance(){
     seancePrechauffee = true;
     setTimeout(() => {
         // La frequence : lue, pas appliquee (voir frequenceLueDAvance).
-        try{ if(!rangsFrequence && !chargementFrequence && !frequenceLueDAvance)
+        try{ if(!rangsFrequence && !chargementFrequence && !frequenceLueDAvance && frequenceDeSeance())
             frequenceLueDAvance = fetch(urlDonnees('frequence.json'), { cache: 'no-cache' })
                 .then(r => r.ok ? r.json() : null).catch(() => null); }catch(e){}
         try{ if(essaiActif("premiers_pas")) chargerPremiersPas(); }catch(e){}
