@@ -157,22 +157,24 @@ async function jouerSegments(segs, cles, pause, jeton){
 }
 
 // ============ LES UNITES : ce qu'on entend d'un coup, et ses questions ============
-function qLettre(nr, frage, lettres, bon, erkl){ return {nr, kind: "lettre", frage, lettres, bon, erkl}; }
+// textes : {lettre: texte allemand de la solution}, pour que la correction dise « h · Spiele … » et pas « h » seul
+function qLettre(nr, frage, lettres, bon, erkl, textes){ return {nr, kind: "lettre", frage, lettres, bon, erkl, textes}; }
 function qRF(it){ return {nr: it.nr, kind: "rf", frage: it.aussage, bon: it.bon, trad: champTelc(it, "aussage"), erkl: champTelc(it, "erkl")}; }
 function unitesH(s){
   const t1 = s.T1, t4 = s.T4, l1 = t1.loesungen.map(x => x.b), l4 = t4.saetze.map(x => x.b), c = "telcH" + s.id + "-";
+  const x1 = {}, x4 = {}; t1.loesungen.forEach(x => { x1[x.b] = x.text; }); t4.saetze.forEach(x => { x4[x.b] = x.text; });
   return [
     {teil: "T1", fois: 2, lecture: 30, data: t1, rollen: t1.rollen, segs: [t1.audio], cles: [c + "T1"],
-     questions: t1.items.map(it => qLettre(it.nr, it.frage, l1, it.bon, champTelc(it, "erkl")))},
+     questions: t1.items.map(it => qLettre(it.nr, it.frage, l1, it.bon, champTelc(it, "erkl"), x1))},
     {teil: "T2", fois: 1, lecture: 30, data: s.T2, rollen: s.T2.rollen, segs: [s.T2.audio], cles: [c + "T2"], questions: s.T2.items.map(qRF)},
     ...s.T3.map(a => ({teil: "T3", fois: 2, lecture: 0, data: a, rollen: a.rollen, segs: [a.audio], cles: [c + a.nr], questions: [qRF(a)]})),
     {teil: "T4", fois: 1, lecture: 30, data: t4, rollen: Object.assign({}, t4.rollen), segs: [t4.intro].concat(t4.personen.map(p => p.audio)),
      cles: [c + "T4-intro"].concat(t4.personen.map(p => c + p.nr)), noms: [null].concat(t4.personen.map(p => p.name)),
-     questions: t4.personen.map((p, k) => qLettre(p.nr, T("ho_personne", {n: k + 1}), l4, p.bon, champTelc(p, "erkl")))}
+     questions: t4.personen.map((p, k) => qLettre(p.nr, T("ho_personne", {n: k + 1}), l4, p.bon, champTelc(p, "erkl"), x4))}
   ];
 }
 const questionsDe = us => [].concat(...us.map(u => u.questions));
-const libelle = (q, v) => v === undefined || v === null ? T("ho_sans_reponse") : q.kind === "rf" ? (v ? "richtig" : "falsch") : v;
+const libelle = (q, v) => v === undefined || v === null ? T("ho_sans_reponse") : q.kind === "rf" ? (v ? "richtig" : "falsch") : v + (q.textes && q.textes[v] ? " · " + q.textes[v] : "");
 
 // ============ LE RENDU COMMUN (aussi pour hoeren-schreiben.js) ============
 function bandeau(u){
