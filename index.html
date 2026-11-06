@@ -48943,12 +48943,19 @@ function distancePlc(a, b){
     }
     return prec[n];
 }
-// Transparent : une des traductions s'ecrit presque comme le mot (≥ 0,7).
+// Transparent : une des traductions s'ecrit presque comme le mot (≥ 0,7), une
+// fois gommees les correspondances d'orthographe (th/t, qu/c/k, ph/f, y/i,
+// lettres doublees, voyelle finale) : sans elles, « la ética » / « l'éthique »
+// et « la estética » / « l'esthétique » passaient pour des mots a apprendre.
+function squelettePlc(s){
+    return s.replace(/ph/g, "f").replace(/th/g, "t").replace(/qu/g, "k").replace(/c/g, "k").replace(/h/g, "")
+        .replace(/y/g, "i").replace(/z/g, "s").replace(/(.)\1+/g, "$1").replace(/[aeiou]+$/, "");
+}
 function transparentPlc(mot, traduction){
-    const a = sansArticlePlc(mot);
+    const a = squelettePlc(sansArticlePlc(mot));
     if(!a) return false;
     return sensAffichePlc(traduction).split(/[,;/]/).some(x => {
-        const b = sansArticlePlc(x);
+        const b = squelettePlc(sansArticlePlc(x));
         if(!b) return false;
         return 1 - distancePlc(a, b) / Math.max(a.length, b.length) >= 0.7;
     });
@@ -49120,7 +49127,13 @@ function questionGrammairePlc(ex){
         });
         if(autres.length < 2) return null;
         choix = [bonne].concat(melangerPlc(autres).slice(0, 3));
-        indice = sensAffichePlc(texteTraduit(ex, "hint")).replace(/^[\s(]+|[\s)]+$/g, "");
+        // ⚠️ LE TEMPS EST DIT DANS L'INDICE. Les leurres sont les autres temps du
+        // meme verbe : sans le temps, « Sabía que lo entendiste » serait aussi
+        // juste que « entenderías ». Avec lui, la question porte sur les formes
+        // du temps, ce que la serie enseigne.
+        indice = String(texteTraduit(ex, "hint") || "").trim().replace(/^\(\s*|\s*\)$/g, "");
+        const temps = texteTraduit(ex, "topic") || ex.topic || "";
+        if(temps) indice = indice ? indice + " · " + temps : temps;
     } else {
         choix = choix.filter(o => o === bonne || !acceptees.has(sansAccentsPlc(o)));
     }
@@ -49144,12 +49157,20 @@ async function grammairePlc(niv){
 }
 
 // ---------- La fabrique des questions ----------
+// Les articles des traductions : tous ou aucun (« la banque » parmi « gare »,
+// « morceau » designait la reponse).
+function sansArticleAffichePlc(s){
+    return String(s).replace(/^(le |la |les |l'|l’|the )/i, "");
+}
 function questionMotPlc(niv, x, pool, entendu){
-    const leurres = leurresPlc(x, pool, 3);
+    let leurres = leurresPlc(x, pool, 3);
     if(!leurres) return null;
-    const options = melangerPlc([x.sens].concat(leurres));
+    let sens = x.sens;
+    const avec = [sens].concat(leurres).filter(s => sansArticleAffichePlc(s) !== s).length;
+    if(avec && avec < leurres.length + 1){ sens = sansArticleAffichePlc(sens); leurres = leurres.map(sansArticleAffichePlc); }
+    const options = melangerPlc([sens].concat(leurres));
     return { type: entendu ? "entendu" : "lu", niv: niv, x: x, texte: motAffichePlc(x),
-             dire: entendu ? motAffichePlc(x) : "", options: options, bonne: options.indexOf(x.sens) };
+             dire: entendu ? motAffichePlc(x) : "", options: options, bonne: options.indexOf(sens) };
 }
 function questionPhrasePlc(niv, x, pool, entendu){
     const p = phraseDeCarte(x.it, 12);
