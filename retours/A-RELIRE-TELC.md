@@ -84,7 +84,7 @@ Von : Mark Garnier · An : Volkshochschule Berlin-Mitte · Betreff : Anmeldung: 
   _(explication montrée à l'élève : « sich interessieren für » : la préposition fait partie du verbe, toujours « für » + accusatif.)_
   → 
 - Trou 3 : a) kein · b) keinen · **c) keine**
-  _(explication montrée à l'élève : « die Kamera » est féminine : « eine Kamera », donc la négation « keine Kamera ». « kein » est pour le masculin ou le neutre au nominatif, « keinen » pour le masculin à l'accusatif.)_
+  _(explication montrée à l'élève : « die Kamera » est féminine : « eine Kamera », donc la négation « keine Kamera ». « kein » va avec un nom masculin au nominatif ou avec un nom neutre, « keinen » avec un masculin à l'accusatif.)_
   → 
 - Trou 4 : a) aber · **b) oder** · c) denn
   _(explication montrée à l'élève : Une question entre deux possibilités : « …, oder muss ich … ? ».)_
@@ -99,7 +99,7 @@ Von : Mark Garnier · An : Volkshochschule Berlin-Mitte · Betreff : Anmeldung: 
   _(explication montrée à l'élève : Une question fermée (oui ou non ?) rapportée : « Ich möchte wissen, ob … ». « dass » ne pose pas de question, et « wenn » exprime une condition ou un moment.)_
   → 
 - Trou 8 : a) wäre · **b) würde** · c) hätte
-  _(explication montrée à l'élève : La demande polie : « Ich würde … gern bezahlen » (je paierais volontiers), « würde » + infinitif. « wäre » et « hätte » ne vont pas avec « bezahlen ».)_
+  _(explication montrée à l'élève : La demande polie : « Ich würde … gern bezahlen » (je paierais volontiers), « würde » + infinitif. « wäre » (serais) et « hätte » (aurais) ne se construisent pas avec un infinitif comme « bezahlen ».)_
   → 
 - Trou 9 : a) Ihr · b) Ihrer · **c) Ihre**
   _(explication montrée à l'élève : « die Kontonummer » est féminine, à l'accusatif : « Ihre Kontonummer », avec la majuscule du vouvoiement.)_
@@ -108,17 +108,17 @@ Von : Mark Garnier · An : Volkshochschule Berlin-Mitte · Betreff : Anmeldung: 
   _(explication montrée à l'élève : Une formule figée de la lettre : « Vielen Dank im Voraus » (merci d'avance).)_
   → 
 
-### Lettre 3 · Anna invite Mark à sa fête. Il lui répond.
+### Lettre 3 · Tobias, un collègue, invite Mark à sa fête. Mark lui répond.
 
-Von : Mark · An : Anna · Betreff : Re: Party am Samstag
+Von : Mark · An : Tobias · Betreff : Re: Party am Samstag
 
-> Liebe Anna,
+> Lieber Tobias,
 >
 > vielen Dank für deine Nachricht! Entschuldige, **dass** ich erst heute antworte: Letzte Woche hatte ich sehr viel Arbeit.
 >
 > Natürlich komme ich gern **zu** deiner Party am Samstag! Soll ich etwas mitbringen? Ich kann einen Kuchen backen **oder** einen Salat machen, wie du möchtest. Ich komme **mit** dem Fahrrad, deshalb kann ich leider keine Getränke tragen. Weißt du schon, **wann** die Party anfängt? Ich muss am Samstag bis 16 Uhr arbeiten.
 >
-> Und noch eine Frage: Darf ich **eine** Kollegin mitbringen? Sie heißt Lena und ist erst **seit** zwei Wochen in Berlin. Sie kennt hier noch **keine** Leute und würde **sich** sehr freuen.
+> Und noch eine Frage: Darf ich **eine** Nachbarin mitbringen? Sie heißt Clara und ist erst **seit** zwei Wochen in Berlin. Sie kennt hier noch **keine** Leute und würde **sich** sehr freuen.
 >
 > Ich freue mich schon **auf** den Abend!
 >
@@ -144,7 +144,7 @@ Von : Mark · An : Anna · Betreff : Re: Party am Samstag
   _(explication montrée à l'élève : Une question sur le moment : « Weißt du, wann … ? » (quand ?). « wenn » n'est pas une question (si, chaque fois que), et « als » parle d'une seule fois dans le passé.)_
   → 
 - Trou 6 : a) einen · b) einer · **c) eine**
-  _(explication montrée à l'élève : « die Kollegin » est féminine, complément de « mitbringen » : accusatif, « eine Kollegin ».)_
+  _(explication montrée à l'élève : « die Nachbarin » est féminine, complément de « mitbringen » : accusatif, « eine Nachbarin ».)_
   → 
 - Trou 7 : a) vor · **b) seit** · c) ab
   _(explication montrée à l'élève : Elle est arrivée il y a deux semaines et elle y est toujours : « seit » + datif. « vor zwei Wochen » irait avec un passé (« sie ist vor zwei Wochen gekommen »).)_
@@ -153,7 +153,7 @@ Von : Mark · An : Anna · Betreff : Re: Party am Samstag
   _(explication montrée à l'élève : « Leute » est un pluriel sans article : sa négation est « keine » (keine Leute). « nicht » nie un verbe ou une phrase, pas un nom.)_
   → 
 - Trou 9 : **a) sich** · b) sie · c) ihr
-  _(explication montrée à l'élève : « sich freuen » est pronominal : avec « sie » (Lena), le pronom est « sich ».)_
+  _(explication montrée à l'élève : « sich freuen » est pronominal : avec « sie » (Clara), le pronom est « sich ».)_
   → 
 - Trou 10 : a) für · **b) auf** · c) an
   _(explication montrée à l'élève : On se réjouit d'une chose à venir : « sich freuen auf » + accusatif (auf den Abend). Pour une chose déjà là, ce serait « sich freuen über ».)_
@@ -165,7 +165,7 @@ Von : Mark Garnier · An : Fitnessstudio FitPunkt · Betreff : Mitgliedschaft un
 
 > Sehr geehrte Damen und Herren,
 >
-> ich trainiere seit einem Jahr **in** Ihrem Fitnessstudio in der Torstraße. Ich bin sehr zufrieden, **aber** ich habe jetzt ein Problem: Von Dezember bis Ende Januar besuche ich meine Familie in Kanada. In **dieser** Zeit kann ich nicht trainieren.
+> ich trainiere seit April **in** Ihrem Fitnessstudio in der Torstraße. Ich bin sehr zufrieden, **aber** ich habe jetzt ein Problem: Von Dezember bis Ende Januar besuche ich meine Familie in Kanada. In **dieser** Zeit kann ich nicht trainieren.
 >
 > Ist es möglich, die Mitgliedschaft für zwei Monate zu unterbrechen? Ich habe auf Ihrer Internetseite gelesen, **dass** das gegen eine kleine Gebühr geht. Kündigen möchte ich **meine** Mitgliedschaft auf keinen Fall. Wie viel kostet die Pause genau? Ich hoffe, die Gebühr ist nicht so hoch **wie** der Monatsbeitrag.
 >
@@ -187,7 +187,7 @@ Von : Mark Garnier · An : Fitnessstudio FitPunkt · Betreff : Mitgliedschaft un
   _(explication montrée à l'élève : « die Zeit » est féminine ; avec « in » pour dire quand, c'est le datif : « in dieser Zeit ».)_
   → 
 - Trou 4 : a) was · **b) dass** · c) ob
-  _(explication montrée à l'élève : « Ich habe gelesen, dass … » : « dass » rapporte une information. « ob » poserait une question, et « was » ne relie pas une phrase entière.)_
+  _(explication montrée à l'élève : « Ich habe gelesen, dass … » : « dass » rapporte une information. « ob » poserait une question (si oui ou non), et « was » demanderait « ce que » (Ich habe gelesen, was … kostet).)_
   → 
 - Trou 5 : a) mein · b) meinen · **c) meine**
   _(explication montrée à l'élève : « die Mitgliedschaft » est féminine, à l'accusatif (complément de « kündigen ») : « meine ».)_
@@ -206,4 +206,6 @@ Von : Mark Garnier · An : Fitnessstudio FitPunkt · Betreff : Mitgliedschaft un
   → 
 - Trou 10 : a) Gruß · b) Grüße · **c) Grüßen**
   _(explication montrée à l'élève : La formule de fin, figée : « Mit freundlichen Grüßen » (datif pluriel, avec -n). Une formule de fin qui manque ou qui est fausse coûte des points à l'écrit.)_
-  →
+  → 
+
+_(La partie « lesen » a son propre fichier de relecture, refait en même temps.)_
