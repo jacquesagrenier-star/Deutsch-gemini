@@ -1,56 +1,53 @@
 // LE TELC A2·B1 -- L'EXAMEN BLANC (6 nov. 2026, session « telc : Parler + examen blanc », decision de Jacques du
 // 6 nov. : le telc en quatre sessions paralleles, celle-ci fait l'oral et l'examen blanc).
 //
-// UN EXAMEN COMPLET, DANS L'ORDRE ET AU CHRONOMETRE DE L'EPREUVE (preparation-examens/FORMAT-TELC.md) :
+// UN EXAMEN COMPLET, DANS L'ORDRE ET AU CHRONOMETRE DE L'EPREUVE (preparation-examens/FORMAT-TELC.md, l'Uebungstest 1
+// du telc, le meme document que le Modelltest de Marina) :
 //   1. Lesen                                     45 min   items 1-18
 //   2. Sprachbausteine + Lesen und Schreiben     35 min   19-28, 29-30, le courriel 31
 //   3. Hoeren + Hoeren und Schreiben            ≈ 35 min   32-51, les repondeurs 52-56 (l'ecoute suit le son)
 //   4. Schreiben                                 10 min   la reponse courte 57
-//   5. une pause, puis l'oral (parler.html?examen=blanc, environ 15 min), qui revient ici pour le verdict.
-// Le verdict suit le bareme du telc : 240 points, 60 par competence ; B1 = 70 % du total ET 70 % dans 3 des 4
-// competences ET 40 % dans chacune ; A2 = 40 %, 40 % dans 3 des 4, 10 % dans chacune (verdictTelc()).
+//   5. une pause, puis l'oral (oral.html?examen=blanc, environ 15 min), qui revient ici pour le verdict
+//      (telc.html?partie=BLANC&etape=verdict).
+// Le verdict : niveauTelc() de telc-commun.js (240 points, 60 par competence, regle 70 % / 40 %). Une competence dont
+// une partie manque encore n'est pas comptee : le niveau dit « incomplet », on ne promet pas un B1 sur trois
+// competences.
 //
-// CE MODULE NE CONNAIT AUCUNE EPREUVE : il enchaine celles que les autres modules inscrivent. Les sessions Lire,
-// Ecrire et Ecouter branchent leur partie ainsi, sans toucher a ce fichier :
-//
-//   DTZ.partie({id: "L", ..., ouvrir, examen: lancer})      (ou window.TELC_EXAMEN.L = lancer)
-//
-//   lancer(o) affiche la partie EN MODE EXAMEN dans o.zone (#zone) : pas d'explication, pas de corrige, le bouton
-//   o.suite (#suite) pour avancer. Il recoit :
-//     o.id        la partie (« L », « SB », « LS », « H », « HS », « S ») ;
-//     o.numero    le numero de cet examen blanc (0, 1, 2...) : pour tourner parmi les series gardees a l'examen
-//                 (PROFIL.seriesExamen, les series 1 a N) ;
-//     o.fini(res) a appeler UNE fois, a la fin : res = les points de la partie par competence, sur l'echelle du
-//                 telc, et un detail libre pour le corrige :
-//                   L  {lesen}          sur 54 (18 × 3)          SB {schreiben} sur 5 (10 × 0,5)
-//                   LS {lesen, schreiben} sur 6 et 15 (29-30 ; le courriel 31, critere I)
-//                   H  {hoeren}         sur 60 (20 × 3)          HS {schreiben} sur 5 (5 × 1)
-//                   S  {schreiben}      sur 35 : le message 57 (5) + les criteres II a IV des deux textes (3 × 10),
-//                                       que la session Ecrire juge a la fin de l'ecrit ;
-//                   + {detail: {...}} au choix de la partie.
-//   lancer() peut rendre {terminer()} : appele quand le chronometre arrive a zero, il doit appeler o.fini() avec ce
-//   qui est rempli. Sans terminer(), la partie est close a zero avec 0 point.
-//   Une partie sans lancer est sautee (« pas encore prete ») et le verdict reste partiel.
+// CE MODULE NE CONNAIT AUCUNE EPREUVE : il enchaine celles que les modules inscrivent par TELC.epreuve() (le mode
+// d'emploi est en tete de telc-commun.js) :
+//   TELC.epreuve({id, ordre, minutes, sur: {Lesen: 54}, lancer: (fini, o) => { … ; fini({pts: {Lesen: x}, detail}) }})
+// lancer() affiche la partie minutee, sans aide, dans #zone, avance avec #suite. Il recoit en second argument
+// o = {numero (le numero de cet examen blanc, pour tourner parmi les series gardees), zone, suite, rapide, langue}.
+// Il peut rendre {terminer()} : appele a zero du chronometre, terminer() appelle fini() avec ce qui est rempli ; sans
+// lui, la partie est close a 0 point. Les minutes et l'ordre des etapes sont ceux de l'examen, ci-dessous : une partie
+// inscrite prend sa place dans son etape, une partie absente est sautee (« pas encore prete »).
 //
 // Les Sprachbausteine n'ont pas encore de mode examen dans sprachbausteine.js : examenSB(), plus bas, en tient lieu
-// (la lettre entiere, les 10 trous, sans corrige), et s'efface des que le module en inscrit un.
+// (la lettre entiere, les dix trous, sans corrige) et s'efface des que ce module inscrit le sien.
 //
 // L'etat de l'examen en cours (stockage local wortando_telc_blanc) survit au passage par la page de l'oral :
-// {debut, etape, numero, res: {L: {lesen}, SB: {...}, ..., Sp: {sprechen}}, fini}. parler.html y ecrit res.Sp.
+// {debut, etape, numero, res: {L: {pts, detail}, …, Sp: {pts: {Sprechen}}}, fini}. oral.html y ecrit res.Sp.
 
 "use strict";
 
-Object.assign(TXT, {
+textesTelc({
+fr: {
   bl_titre: "Examen blanc complet",
   bl_sous: "Dans l’ordre du telc : lire, Sprachbausteine, écouter, écrire (125 min), puis l’oral (environ 15 min).",
-  bl_intro: "Au telc, on commence par lire. Garde ton énergie pour l’écoute : elle vient tard. Chaque partie a son chronomètre, comme le jour de l’examen, et rien n’est corrigé avant la fin.",
+  bl_intro: "Au telc, on commence par lire. Garde ton énergie pour l’écoute : elle vient tard. Chaque étape a son chronomètre, comme le jour de l’examen, et rien n’est corrigé avant la fin.",
   bl_deroule: "Le déroulé",
   bl_e_L: "Lire", bl_e_L_s: "Lesen · 45 min",
+  bl_e_L_q: "Quatre parties, 18 questions : des petites annonces à associer, un texte court, des courriels, un texte plus long. 3 points par question.",
   bl_e_SBLS: "Sprachbausteine, lire et écrire", bl_e_SBLS_s: "Sprachbausteine · Lesen und Schreiben · 35 min",
+  bl_e_SBLS_q: "Une lettre à 10 trous (0,5 point chacun), puis un courriel à lire (2 questions, 3 points chacune) et à écrire : tu réponds à ses questions, avec formule d’appel et salutation (15 points).",
   bl_e_HHS: "Écouter", bl_e_HHS_s: "Hören · Hören und Schreiben · environ 35 min",
+  bl_e_HHS_q: "Quatre écoutes, 20 questions (3 points chacune) : certaines s’entendent deux fois, d’autres une seule. Puis 5 messages de répondeur : tu notes l’information demandée (1 point chacun).",
   bl_e_S: "Écrire", bl_e_S_s: "Schreiben · 10 min",
+  bl_e_S_q: "Une réponse courte à un message qui te pose une question : plus d’un mot (5 points). Pour les deux textes écrits, trois critères en plus : communication, correction, richesse de la langue (30 points).",
   bl_e_PAUSE: "La pause", bl_e_PAUSE_s: "Entre l’écrit et l’oral",
+  bl_e_PAUSE_q: "Prends ton temps : l’examen t’attend.",
   bl_e_Sp: "Parler", bl_e_Sp_s: "Mündliche Prüfung · à deux · environ 15 min",
+  bl_e_Sp_q: "Trois parties à deux, sans image : se présenter et répondre (6 points), planifier ensemble (12), donner et justifier son avis (12), plus prononciation, correction et richesse de la langue (30).",
   bl_p_L: "Lire", bl_p_SB: "Sprachbausteine", bl_p_LS: "Lire et écrire (le courriel)", bl_p_H: "Écouter",
   bl_p_HS: "Écouter et noter (les répondeurs)", bl_p_S: "Écrire (la réponse courte)", bl_p_Sp: "Parler",
   bl_pret: "prête", bl_pas_pret: "pas encore prête",
@@ -67,7 +64,7 @@ Object.assign(TXT, {
   bl_vers_oral: "Passer l’oral",
   bl_oral_texte: "Environ 15 minutes à deux, sans préparation, sauf une minute avant la partie 3. Anna mène l’entretien, je suis l’autre candidat.",
   bl_verdict: "Le verdict de l’examen blanc",
-  bl_lesen: "Lire (Lesen)", bl_hoeren: "Écouter (Hören)", bl_schreiben: "Écrire (Schreiben)", bl_sprechen: "Parler (Sprechen)",
+  bl_Lesen: "Lire (Lesen)", bl_Hoeren: "Écouter (Hören)", bl_Schreiben: "Écrire (Schreiben)", bl_Sprechen: "Parler (Sprechen)",
   bl_total: "Total", bl_incomplet: "incomplet",
   bl_regle: "Au telc A2·B1, le B1 demande 70 % du total (168 / 240), au moins 70 % (42 / 60) dans trois compétences sur quatre et 40 % (24 / 60) dans chacune. L’A2 demande 40 % du total (96 / 240), 40 % dans trois compétences et 10 % (6 / 60) dans chacune.",
   bl_partiel: "Verdict partiel : pas encore de {liste}. Le niveau s’affichera quand toutes les parties de l’examen existeront.",
@@ -79,18 +76,24 @@ Object.assign(TXT, {
   bl_refaire: "Refaire l’examen blanc", bl_retour: "Retour au telc",
   bl_terminer_partie: "Terminer cette partie", bl_terminer_q: "Terminer cette partie ? {n} trou(s) sans réponse.",
   bl_dernier: "{n} / 240 · {niv}", bl_dernier_partiel: "{n} points · partiel"
-});
-if (LANGUE === "en") Object.assign(TXT, {
+},
+en: {
   bl_titre: "Full mock exam",
   bl_sous: "In telc order: reading, Sprachbausteine, listening, writing (125 min), then speaking (about 15 min).",
-  bl_intro: "In the telc, you start with reading. Save your energy for listening: it comes late. Every part has its timer, as on the day of the exam, and nothing is marked until the end.",
+  bl_intro: "In the telc, you start with reading. Save your energy for listening: it comes late. Every step has its timer, as on the day of the exam, and nothing is marked until the end.",
   bl_deroule: "The running order",
   bl_e_L: "Reading", bl_e_L_s: "Lesen · 45 min",
+  bl_e_L_q: "Four parts, 18 questions: short ads to match, a short text, emails, a longer text. 3 points per question.",
   bl_e_SBLS: "Sprachbausteine, reading and writing", bl_e_SBLS_s: "Sprachbausteine · Lesen und Schreiben · 35 min",
+  bl_e_SBLS_q: "A letter with 10 gaps (0.5 points each), then an email to read (2 questions, 3 points each) and to answer: you reply to its questions, with an opening and a closing (15 points).",
   bl_e_HHS: "Listening", bl_e_HHS_s: "Hören · Hören und Schreiben · about 35 min",
+  bl_e_HHS_q: "Four recordings, 20 questions (3 points each): some are played twice, others only once. Then 5 voicemail messages: you note down the information asked for (1 point each).",
   bl_e_S: "Writing", bl_e_S_s: "Schreiben · 10 min",
+  bl_e_S_q: "A short reply to a message that asks you a question: more than one word (5 points). For the two written texts, three more criteria: communication, accuracy, range of language (30 points).",
   bl_e_PAUSE: "The break", bl_e_PAUSE_s: "Between the written and the oral exam",
+  bl_e_PAUSE_q: "Take your time: the exam will wait for you.",
   bl_e_Sp: "Speaking", bl_e_Sp_s: "Mündliche Prüfung · in pairs · about 15 min",
+  bl_e_Sp_q: "Three parts in pairs, no picture: introduce yourself and answer (6 points), plan together (12), give and justify your opinion (12), plus pronunciation, accuracy and range of language (30).",
   bl_p_L: "Reading", bl_p_SB: "Sprachbausteine", bl_p_LS: "Reading and writing (the email)", bl_p_H: "Listening",
   bl_p_HS: "Listening and note-taking (the voicemails)", bl_p_S: "Writing (the short reply)", bl_p_Sp: "Speaking",
   bl_pret: "ready", bl_pas_pret: "not ready yet",
@@ -107,7 +110,7 @@ if (LANGUE === "en") Object.assign(TXT, {
   bl_vers_oral: "Take the speaking test",
   bl_oral_texte: "About 15 minutes in pairs, with no preparation time, except one minute before part 3. Anna leads the conversation, I'm the other candidate.",
   bl_verdict: "The mock exam verdict",
-  bl_lesen: "Reading (Lesen)", bl_hoeren: "Listening (Hören)", bl_schreiben: "Writing (Schreiben)", bl_sprechen: "Speaking (Sprechen)",
+  bl_Lesen: "Reading (Lesen)", bl_Hoeren: "Listening (Hören)", bl_Schreiben: "Writing (Schreiben)", bl_Sprechen: "Speaking (Sprechen)",
   bl_total: "Total", bl_incomplet: "incomplete",
   bl_regle: "In the telc A2·B1, B1 requires 70% of the total (168 / 240), at least 70% (42 / 60) in three of the four skills and 40% (24 / 60) in each. A2 requires 40% of the total (96 / 240), 40% in three skills and 10% (6 / 60) in each.",
   bl_partiel: "Partial verdict: no {liste} yet. The level will be shown once every part of the exam exists.",
@@ -118,12 +121,10 @@ if (LANGUE === "en") Object.assign(TXT, {
   bl_estimation: "Writing and speaking are estimates: the app measures the content of your answers, not their accuracy or your pronunciation.",
   bl_refaire: "Retake the mock exam", bl_retour: "Back to the telc",
   bl_terminer_partie: "Finish this part", bl_terminer_q: "Finish this part? {n} gap(s) unanswered.",
-  bl_dernier: "{n} / 240 · {niv}", bl_dernier_partiel: "{n} points · partial",
-  // les cles de commun.js dont l'examen blanc se sert
-  quitter_q: "Leave the mock exam? It won't be counted.", quitter: "Leave", continuer: "Continue",
-  niv_b1: "B1", niv_a2: "A2", niv_moins: "below A2", sur: "out of {n}"
-});
+  bl_dernier: "{n} / 240 · {niv}", bl_dernier_partiel: "{n} points · partial"
+}});
 
+// les etapes de l'examen, dans son ordre et a ses minutes
 const BLANC_ETAPES = [
   { id: "L", minutes: 45, parties: ["L"] },
   { id: "SBLS", minutes: 35, parties: ["SB", "LS"] },
@@ -132,27 +133,12 @@ const BLANC_ETAPES = [
   { id: "PAUSE", pause: true },
   { id: "Sp", oral: true }
 ];
-// ce que vaut chaque partie, par competence (FORMAT-TELC.md, « Les points »)
-const BLANC_SUR = { L: {lesen: 54}, SB: {schreiben: 5}, LS: {lesen: 6, schreiben: 15}, H: {hoeren: 60}, HS: {schreiben: 5}, S: {schreiben: 35}, Sp: {sprechen: 60} };
-const COMPETENCES = ["lesen", "hoeren", "schreiben", "sprechen"];
-window.TELC_EXAMEN = window.TELC_EXAMEN || {};
+// ce que vaut chaque partie, par competence (telc-commun.js, FORMAT-TELC.md « Les points »)
+const BLANC_SUR = { L: {Lesen: 54}, SB: {Schreiben: 5}, LS: {Lesen: 6, Schreiben: 15}, H: {Hoeren: 60}, HS: {Schreiben: 5}, S: {Schreiben: 35}, Sp: {Sprechen: 60} };
+const COMPETENCES = ["Lesen", "Hoeren", "Schreiben", "Sprechen"];
 
-// le lanceur d'une partie en mode examen : celui que son module inscrit, sinon celui de window.TELC_EXAMEN
-function blancLanceur(id){
-  const p = DTZ.parties.find(x => x.id === id);
-  if (p && typeof p.examen === "function") return p.examen;
-  return typeof window.TELC_EXAMEN[id] === "function" ? window.TELC_EXAMEN[id] : null;
-}
-const blancPrete = id => id === "Sp" || !!blancLanceur(id);
-
-// LE VERDICT DU TELC : c = {lesen, hoeren, schreiben, sprechen}, chacune sur 60
-function verdictTelc(c){
-  const v = COMPETENCES.map(k => Number(c[k]) || 0), tot = v.reduce((x, y) => x + y, 0);
-  if (tot >= 168 && v.filter(x => x >= 42).length >= 3 && v.every(x => x >= 24)) return "b1";
-  if (tot >= 96 && v.filter(x => x >= 24).length >= 3 && v.every(x => x >= 6)) return "a2";
-  return "moins";
-}
-DTZ.verdictTelc = verdictTelc;
+const blancEpreuve = id => TELC.epreuves.find(e => e.id === id) || null;
+const blancPrete = id => id === "Sp" || !!blancEpreuve(id);
 
 let BL = null, BL_COURANT = null;
 function blancSauver(){ ecrire("blanc", BL); }
@@ -162,14 +148,14 @@ function blancUrl(page, extra){
   for (const k in (extra || {})) p.set(k, extra[k]);
   return page + "?" + p.toString();
 }
-const vir = n => LANGUE === "fr" ? String(Math.round(n * 10) / 10).replace(".", ",") : String(Math.round(n * 10) / 10);
+const vir = n => { const x = String(Math.round(n * 10) / 10); return LANGUE === "fr" ? x.replace(".", ",") : x; };
 function blancEcran(titre){ silence(); fermerPanneau(); $("titre").textContent = titre || T("bl_titre"); $("suite").hidden = true; window.scrollTo(0, 0); }
 function blancBouton(texte, action){ const s = $("suite"); s.hidden = false; s.disabled = false; s.textContent = texte; s.onclick = action; }
+const blancMark = texte => '<div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(texte) + '</div></div>';
 // pendant l'examen, « ‹ » demande avant de quitter ; l'examen en cours reste garde (on peut le reprendre)
 function blancGarderRetour(){
-  DTZ.surRetour(() => { confirmer(T("quitter_q"), () => { blancArreterPartie(); arreterChrono(); accueil(); }, T("quitter")); return true; });
+  DTZ.surRetour(() => { confirmer(T("quitter_q"), () => { BL_COURANT = null; silence(); arreterChrono(); accueil(); }, T("quitter")); return true; });
 }
-function blancArreterPartie(){ BL_COURANT = null; silence(); }
 
 // ---------------------------------------------------------------- l'entree
 function blancIntro(){
@@ -180,12 +166,13 @@ function blancIntro(){
   const enCours = BL && !BL.fini && BL.etape < BLANC_ETAPES.length;
   const lignes = BLANC_ETAPES.map((E, k) => {
     const parties = E.pause ? "" : (E.oral ? ["Sp"] : E.parties).map(id =>
-      '<span class="petit" style="display:block">' + esc(T("bl_p_" + id)) + ' · ' + esc(blancPrete(id) ? T("bl_pret") : T("bl_pas_pret")) + '</span>').join("");
-    return '<div class="mode" style="cursor:default"><b>' + (k + 1) + '. ' + esc(T("bl_e_" + E.id)) + '</b><span>' + esc(T("bl_e_" + E.id + "_s")) + '</span>' + parties + '</div>';
+      '<span class="petit" style="display:block">· ' + esc(T("bl_p_" + id)) + ' : ' + esc(blancPrete(id) ? T("bl_pret") : T("bl_pas_pret")) + '</span>').join("");
+    return '<div class="mode" style="cursor:default"><b>' + (k + 1) + '. ' + esc(T("bl_e_" + E.id)) + '</b><span>' + esc(T("bl_e_" + E.id + "_s")) + '</span>' +
+      '<span style="font-weight:600;color:var(--encre)">' + esc(T("bl_e_" + E.id + "_q")) + '</span>' + parties + '</div>';
   }).join("");
   const manque = Object.keys(BLANC_SUR).filter(id => !blancPrete(id));
   $("zone").innerHTML =
-    '<div class="bloc"><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T("bl_intro")) + '</div></div></div>' +
+    '<div class="bloc">' + blancMark(T("bl_intro")) + '</div>' +
     '<div class="bloc"><h2>' + esc(T("bl_deroule")) + '</h2>' + lignes +
       (manque.length ? '<p class="petit">' + esc(T("bl_note_pas_pret")) + '</p>' : "") +
       (enCours ? '<button class="secondaire" id="blNouveau">' + esc(T("bl_recommencer")) + '</button>' : "") + '</div>';
@@ -210,14 +197,15 @@ function blancEtape(){
   blancEcran(T("bl_e_" + E.id));
   if (E.pause || E.oral){
     $("zone").innerHTML = '<div class="bloc"><div class="petit">' + esc(n) + '</div><h2>' + esc(T("bl_e_" + E.id)) + '</h2>' +
-      '<div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T(E.pause ? "bl_pause_texte" : "bl_oral_texte")) + '</div></div></div>';
+      '<p>' + esc(T("bl_e_" + E.id + "_q")) + '</p>' + blancMark(T(E.pause ? "bl_pause_texte" : "bl_oral_texte")) + '</div>';
     if (E.pause) blancBouton(T("bl_suite"), () => { BL.etape++; blancSauver(); blancEtape(); });
-    else blancBouton(T("bl_vers_oral"), () => { silence(); location.href = blancUrl("parler.html", { examen: "blanc" }); });
+    else blancBouton(T("bl_vers_oral"), () => { silence(); location.href = blancUrl("oral.html", { examen: "blanc" }); });
     return;
   }
   const pretes = E.parties.filter(blancPrete);
   $("zone").innerHTML = '<div class="bloc"><div class="petit">' + esc(n) + '</div><h2>' + esc(T("bl_e_" + E.id)) + '</h2>' +
     '<p><b>' + esc(T("bl_minutes", {m: E.minutes})) + '</b> · ' + esc(T("bl_e_" + E.id + "_s")) + '</p>' +
+    '<p>' + esc(T("bl_e_" + E.id + "_q")) + '</p>' +
     E.parties.map(id => '<p class="petit">' + esc(T("bl_p_" + id)) + ' · ' + esc(blancPrete(id) ? T("bl_pret") : T("bl_pas_pret")) + '</p>').join("") +
     '<p class="petit">' + esc(pretes.length ? T(E.forcer === false ? "bl_entree_ecoute" : "bl_entree_s") : T("bl_rien_pret")) + '</p></div>';
   if (!pretes.length){
@@ -240,16 +228,17 @@ function blancTempsEcoule(E){
   try{ if (c.h && typeof c.h.terminer === "function") c.h.terminer(); }catch(e){}
   if (BL_COURANT === c) c.fini({});   // terminer() absent, ou qui n'a pas rendu : 0 point
 }
+// les points d'une partie, bornes a son bareme ; res = {pts: {Lesen: x}, detail}
 function blancBorner(id, res){
-  const out = {};
-  for (const c in BLANC_SUR[id]) out[c] = Math.min(BLANC_SUR[id][c], Math.max(0, Number(res && res[c]) || 0));
+  const sur = BLANC_SUR[id], pts = (res && res.pts) || {}, out = { pts: {} };
+  for (const c in sur) out.pts[c] = Math.min(sur[c], Math.max(0, Number(pts[c]) || 0));
   if (res && res.detail) out.detail = res.detail;
   return out;
 }
 function blancPartie(E, k){
   if (k >= E.parties.length) return blancFinEtape(E);
-  const id = E.parties[k], lancer = blancLanceur(id);
-  if (!lancer){ BL.res[id] = { absent: true }; blancSauver(); return blancPartie(E, k + 1); }
+  const id = E.parties[k], ep = blancEpreuve(id);
+  if (!ep){ BL.res[id] = { absent: true }; blancSauver(); return blancPartie(E, k + 1); }
   if (BL.tempsFini){ BL.res[id] = Object.assign(blancBorner(id, {}), { temps: true }); blancSauver(); return blancPartie(E, k + 1); }
   let rendu = false;
   const fini = res => {
@@ -261,9 +250,8 @@ function blancPartie(E, k){
   };
   blancEcran(T("bl_p_" + id));
   $("zone").innerHTML = "";
-  BL_COURANT = { id, fini, h: null };
-  const cour = BL_COURANT;
-  try{ cour.h = lancer({ id, zone: $("zone"), suite: $("suite"), numero: BL.numero || 0, fini, rapide: RAPIDE, langue: LANGUE }) || {}; }
+  const cour = BL_COURANT = { id, fini, h: null };
+  try{ cour.h = ep.lancer(fini, { numero: BL.numero || 0, zone: $("zone"), suite: $("suite"), rapide: RAPIDE, langue: LANGUE }) || {}; }
   catch(e){ fini({}); }
   blancGarderRetour();
 }
@@ -281,24 +269,30 @@ function blancVerdict(){
   arreterChrono();
   BL = lire("blanc", null) || BL;
   if (!BL) return blancIntro();
+  // l'oral passe par sa page : sa part arrive dans res.Sp ; a defaut, le dernier oral fait depuis le debut de l'examen
+  if (!BL.res.Sp){
+    const r = lire("resultats", {}).Sp;
+    if (r && r.quand >= BL.debut && typeof r.points === "number") BL.res.Sp = { pts: { Sprechen: r.points } };
+  }
   blancEcran(T("bl_verdict"));
   DTZ.surRetour(() => { accueil(); return true; });
-  const comp = {lesen: 0, hoeren: 0, schreiben: 0, sprechen: 0}, manque = [], compManque = new Set();
+  const comp = {Lesen: 0, Hoeren: 0, Schreiben: 0, Sprechen: 0}, manque = [], compManque = new Set();
   for (const id in BLANC_SUR){
     const r = BL.res[id];
     if (!r || r.absent){ manque.push(id); Object.keys(BLANC_SUR[id]).forEach(c => compManque.add(c)); continue; }
-    for (const c in BLANC_SUR[id]) comp[c] += Math.min(BLANC_SUR[id][c], Math.max(0, Number(r[c]) || 0));
+    for (const c in BLANC_SUR[id]) comp[c] += Math.min(BLANC_SUR[id][c], Math.max(0, Number((r.pts || {})[c]) || 0));
   }
+  // niveauTelc ne recoit que les competences completes : une seule qui manque, et c'est « incomplet »
+  const pourNiveau = {};
+  COMPETENCES.forEach(c => { if (!compManque.has(c)) pourNiveau[c] = comp[c]; });
+  const niv = niveauTelc(pourNiveau), complet = niv !== "incomplet";
   const total = COMPETENCES.reduce((n, c) => n + comp[c], 0);
-  const complet = manque.length === 0;
-  const niv = complet ? verdictTelc(comp) : null;
   const pct = n => Math.round(n / 240 * 100) + "%";
   const lignes = COMPETENCES.map(c => '<span>' + esc(T("bl_" + c)) + (compManque.has(c) ? ' · <i>' + esc(T("bl_incomplet")) + '</i>' : "") +
     '</span><b>' + vir(comp[c]) + ' / 60</b>').join("") +
     '<span>' + esc(T("bl_total")) + '</span><b>' + vir(total) + ' / 240</b>';
-  const mot = complet ? "bl_mark_" + niv : "bl_mark_partiel";
   $("zone").innerHTML =
-    '<div class="bloc"><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T(mot)) + '</div></div>' +
+    '<div class="bloc">' + blancMark(T(complet ? "bl_mark_" + niv : "bl_mark_partiel")) +
       '<div class="score">' + vir(total) + '</div><p class="petit" style="text-align:center">' + esc(T("sur", {n: 240})) + '</p>' +
       (complet ? '<span class="niveau ' + niv + '">' + esc(T("niv_" + niv)) + '</span>' : "") +
       '<div class="jauge"><i style="width:' + pct(total) + '"></i><s style="left:40%"><em>A2 · 96</em></s><s style="left:70%"><em>B1 · 168</em></s></div>' +
@@ -313,26 +307,25 @@ function blancVerdict(){
   if (!BL.fini){
     BL.fini = true; blancSauver();
     ecrire("blancs_faits", (BL.numero || 0) + 1);
-    const d = new Date();
-    ecrire("dernier", { date: d.toLocaleDateString(LANGUE === "en" ? "en-GB" : "fr-FR"),
+    ecrire("dernier", { date: new Date().toLocaleDateString(LANGUE === "en" ? "en-GB" : "fr-FR"),
       texte: complet ? T("bl_dernier", {n: vir(total), niv: T("niv_" + niv)}) : T("bl_dernier_partiel", {n: vir(total)}) });
-    resultat("blanc", { points: total, niveau: niv, competences: comp, partiel: !complet });
-    parler("resultat", { mode: "examen_blanc_telc", points: total, sur: 240, niveau: niv, competences: comp, partiel: !complet });
+    resultat("blanc", { points: total, niveau: niv, competences: comp });
+    parler("resultat", { mode: "examen_blanc_telc", points: total, sur: 240, niveau: niv, competences: comp });
   }
 }
 
 // ---------------------------------------------------------------- les Sprachbausteine en mode examen
 // En attendant le mode examen de sprachbausteine.js : la lettre entiere, les dix trous, a, b ou c, sans corrige.
 // La lettre : parmi les series gardees a l'examen (PROFIL.seriesExamen), sinon toutes, a tour de role.
-function examenSB(o){
+function examenSB(fini, o){
   const toutes = (typeof SB !== "undefined" && SB.series) || [];
   const pool = SERIES_EXAMEN > 0 ? toutes.slice(0, SERIES_EXAMEN) : toutes;
-  if (!pool.length){ setTimeout(() => o.fini({}), 0); return {}; }
-  const s = pool[(o.numero || 0) % pool.length];
+  if (!pool.length){ setTimeout(() => fini({}), 0); return {}; }
+  const s = pool[((o && o.numero) || 0) % pool.length];
   const rep = s.luecken.map(() => null);
   const trouHtml = n => {
     const k = s.luecken.findIndex(l => l.n === n), r = rep[k];
-    return '<span class="trou" id="blT' + n + '">' + (r === null ? "(" + n + ")" : esc(s.luecken[k].o[r])) + '</span>';
+    return '<span class="trou">' + (r === null ? "(" + n + ")" : esc(s.luecken[k].o[r])) + '</span>';
   };
   const rendre = () => {
     const lettre = '<div class="doc lettre" dir="ltr"><div class="k">' + (s.registre === "formel" ? "Brief" : "E-Mail") + '</div>' +
@@ -341,14 +334,14 @@ function examenSB(o){
     const lignes = s.luecken.map((l, k) => '<div class="q"><div class="tete"><span class="num">' + l.n + '</span></div><div class="choix ligne">' +
       l.o.map((w, j) => '<button class="opt' + (rep[k] === j ? " pris" : "") + '" data-k="' + k + '" data-j="' + j + '"><b>' + "abc"[j] + '</b><span lang="de">' + esc(w) + '</span></button>').join("") +
       '</div></div>').join("");
-    o.zone.innerHTML = '<div class="bloc"><p class="consigne" lang="de">' + esc(T("sb_consigne_de")) + '</p>' + lettre + '</div><div class="bloc">' + lignes + '</div>';
-    o.zone.querySelectorAll("[data-k]").forEach(b => b.onclick = () => { rep[Number(b.dataset.k)] = Number(b.dataset.j); const y = window.scrollY; rendre(); window.scrollTo(0, y); });
+    $("zone").innerHTML = '<div class="bloc"><p class="consigne" lang="de">' + esc(T("sb_consigne_de")) + '</p>' + lettre + '</div><div class="bloc">' + lignes + '</div>';
+    $("zone").querySelectorAll("[data-k]").forEach(b => b.onclick = () => { rep[Number(b.dataset.k)] = Number(b.dataset.j); const y = window.scrollY; rendre(); window.scrollTo(0, y); });
   };
   let fait = false;
   const finir = () => {
     if (fait) return; fait = true;
     const bons = s.luecken.filter((l, k) => rep[k] === l.bon).length;
-    o.fini({ schreiben: bons / 2, detail: { serie: s.id, bons, sur: 10, rep: rep.slice() } });
+    fini({ pts: { Schreiben: bons / 2 }, detail: { serie: s.id, bons, sur: 10, rep: rep.slice() } });
   };
   rendre();
   blancBouton(T("bl_terminer_partie"), () => {
@@ -357,7 +350,7 @@ function examenSB(o){
   });
   return { terminer: finir };
 }
-if (!window.TELC_EXAMEN.SB) window.TELC_EXAMEN.SB = examenSB;
+if (!blancEpreuve("SB")) TELC.epreuve({ id: "SB", ordre: 20, minutes: 0, sur: { Schreiben: 5 }, lancer: examenSB, secours: true });
 
 // ---------------------------------------------------------------- les inscriptions
 DTZ.examen({ id: "blanc", ordre: 10, titre: T("bl_titre"), sous: T("bl_sous"), lancer: blancIntro });

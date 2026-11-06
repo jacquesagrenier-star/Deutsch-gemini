@@ -1,4 +1,4 @@
-// Controle de l'oral du telc A2·B1 (visuel/prototype/telc/parler.html), sans navigateur.
+// Controle de l'oral du telc A2·B1 (visuel/prototype/telc/oral.html), sans navigateur.
 //
 // Usage : node tests/telc_oral.js
 //
@@ -17,7 +17,7 @@
 const fs = require("fs");
 const path = require("path");
 const RACINE = path.dirname(__dirname);
-const PAGE = path.join(RACINE, "visuel", "prototype", "telc", "parler.html");
+const PAGE = path.join(RACINE, "visuel", "prototype", "telc", "oral.html");
 const DTZ = path.join(RACINE, "visuel", "prototype", "dtz-oral.html");
 
 const fautes = [];
@@ -50,7 +50,13 @@ function charger(fichier, lang, exporter){
   return f(doc, fen, ls, loc, fetch0, { init(){} }, { back(){} }, function(){}, function(){});
 }
 
-const P = charger(PAGE, "fr", "UI, COACH, ATTEND, AIDE, L, MODELES_1A, MODELES_1B, PLAN, AVIS, JUGES, u");
+const P = charger(PAGE, "fr", "UI, COACH, ATTEND, AIDE, L, MODELES_1A, MODELES_1B, PLAN, AVIS, JUGES, u, STICHWORTE");
+// --json : les textes allemands, pour visuel/prototype/telc/outils/relecture_oral.py (la relecture germanophone)
+if (process.argv.includes("--json")){
+  const sansRe = o => JSON.parse(JSON.stringify(o, (k, v) => v instanceof RegExp ? undefined : v));
+  process.stdout.write(JSON.stringify({ L: P.L, MODELES_1A: P.MODELES_1A, MODELES_1B: P.MODELES_1B, PLAN: sansRe(P.PLAN), AVIS: sansRe(P.AVIS), AIDE: P.AIDE, STICHWORTE: P.STICHWORTE }));
+  process.exit(0);
+}
 const PE = charger(PAGE, "en", "u");
 
 // 1. l'interface
