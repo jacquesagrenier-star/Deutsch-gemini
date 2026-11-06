@@ -34434,7 +34434,7 @@ function choisirDateDepartBienvenue(valeur){
 function ouvrirBienvenue(){
     refreshSetupChoiceActiveStates();
     majVoyageBienvenue();
-    try{ majBienvenuePlacement(); }catch(e){}   // le test de niveau (essai « placement »)
+    try{ majBienvenuePlacement(); }catch(e){}   // essai « placement » : le test de niveau
     const actif = document.querySelector(".screen.active");
     if(!actif || actif.id !== "setup") showScreen("setup");
 }
@@ -48174,7 +48174,7 @@ function openSettings(){
     const adminCard = document.getElementById("adminDashboardCard");
     if(adminCard) adminCard.classList.toggle("hidden", !isAdminUser());
     majEntreeEssaiAnglais();
-    try{ majCartePlacement(); }catch(e){}   // le test de niveau (essai « placement »)
+    try{ majCartePlacement(); }catch(e){}   // essai « placement » : le test de niveau
     // "Inviter un ami" reste reserve a l'administrateur : l'inscription passe
     // par un code d'invitation, et lui seul peut en generer. Propose a un
     // testeur, ce bouton ne pouvait produire qu'une demande qu'il etait
@@ -65291,7 +65291,7 @@ function majTuileSeance(){
     const clair = document.getElementById("seanceNiveauClair");
     if(clair) clair.textContent = pp ? t("pp_niveau_clair") : t("niveau_clair_" + niveau);
     try{ majPiluleSeance(); }catch(e){}
-    try{ majLignePlacement(); }catch(e){}   // le test de niveau (essai « placement »)
+    try{ majLignePlacement(); }catch(e){}   // essai « placement » : le test de niveau
 }
 
 // ============ LA PILULE DE LA SEANCE (v881) ============
