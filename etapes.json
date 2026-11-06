@@ -1,0 +1,2427 @@
+{
+ "_lisez_moi": [
+  "Les étapes de l'A2 au C1 (6 nov. 2026), sur le modèle de l'A1 voyage : par niveau, des groupes d'étapes nommés, puis un groupe « examen » là où l'app a le contenu de l'épreuve.",
+  "Fichier DÉRIVÉ : le refaire avec python tests/etapes_construire.py (source : etapes/structure.py et etapes/traductions/), jamais à la main. Contrôle : python tests/etapes.py.",
+  "Une étape ne crée aucun contenu : elle NOMME ce qui existe (themes, feuilles de conjugaison, scenes, illustres = THEMES_ILLUSTRES, series d'exercices, tuiles ou fiches de grammaire, pruefung = une partie de pruefung.json).",
+  "sais : la ligne « Tu sais… » de l'étape, à l'infinitif, qui se lit après « Tu sais maintenant… » et « Cette semaine, tu as appris à… » (amorces dans je-sais.json)."
+ ],
+ "niveaux": {
+  "A2": [
+   {
+    "id": "a2-raconter",
+    "nom": {
+     "fr": "Raconter ma vie",
+     "en": "Talking about my life",
+     "tr": "Hayatımı anlatmak",
+     "uk": "Розповісти про моє життя",
+     "fa": "زندگی‌ام را تعریف کنم",
+     "ar": "أروي حياتي",
+     "pt": "Contar a minha vida",
+     "pl": "Opowiadać o swoim życiu",
+     "ru": "Рассказать о своей жизни"
+    },
+    "etapes": [
+     {
+      "id": "a2-journee",
+      "icone": "🗓️",
+      "t": {
+       "fr": "Ma journée d'hier",
+       "en": "My day yesterday",
+       "tr": "Dünkü günüm",
+       "uk": "Мій учорашній день",
+       "fa": "روز دیروزم",
+       "ar": "يومي أمس",
+       "pt": "Meu dia de ontem",
+       "pl": "Mój wczorajszy dzień",
+       "ru": "Мой вчерашний день"
+      },
+      "sais": {
+       "fr": "raconter ta journée d'hier",
+       "en": "talk about your day yesterday",
+       "tr": "dünkü gününü anlatmak",
+       "uk": "розповідати про свій учорашній день",
+       "fa": "روز دیروزت را تعریف کنی",
+       "ar": "سرد يومك أمس",
+       "pt": "contar o seu dia de ontem",
+       "pl": "opowiedzieć o swoim wczorajszym dniu",
+       "ru": "рассказывать о своём вчерашнем дне"
+      },
+      "themes": [
+       "zeit_kalender_a2",
+       "grundwortschatz_a2"
+      ],
+      "feuilles": [
+       "raconter_journee",
+       "perfekt_haben"
+      ],
+      "scenes": [
+       "schlafzimmer",
+       "kueche"
+      ],
+      "illustres": [
+       "journee"
+      ],
+      "series": [
+       "perfektExercises"
+      ]
+     },
+     {
+      "id": "a2-weekend",
+      "icone": "🎸",
+      "t": {
+       "fr": "Mon week-end, mes sorties",
+       "en": "My weekend, my outings",
+       "tr": "Hafta sonum, gezmelerim",
+       "uk": "Мої вихідні, мої розваги",
+       "fa": "آخر هفته‌ام، گردش‌هایم",
+       "ar": "عطلتي الأسبوعية ونزهاتي",
+       "pt": "Meu fim de semana, minhas saídas",
+       "pl": "Mój weekend, moje wyjścia",
+       "ru": "Мои выходные и развлечения"
+      },
+      "sais": {
+       "fr": "raconter ton week-end et tes sorties",
+       "en": "talk about your weekend and your outings",
+       "tr": "hafta sonunu ve gezmelerini anlatmak",
+       "uk": "розповідати про свої вихідні та розваги",
+       "fa": "از آخر هفته و گردش‌هایت تعریف کنی",
+       "ar": "سرد عطلتك الأسبوعية ونزهاتك",
+       "pt": "contar o seu fim de semana e as suas saídas",
+       "pl": "opowiedzieć o weekendzie i wyjściach",
+       "ru": "рассказывать о своих выходных и развлечениях"
+      },
+      "themes": [
+       "freizeit_hobbys_a2",
+       "sport_a2",
+       "musik_kunst_a2"
+      ],
+      "feuilles": [
+       "perfekt_sein"
+      ],
+      "scenes": [
+       "musik",
+       "sportplatz"
+      ],
+      "illustres": [
+       "loisirs"
+      ],
+      "series": [
+       "wortstellungV2Exercises"
+      ],
+      "tuiles": [
+       "wortstellung"
+      ]
+     },
+     {
+      "id": "a2-vacances",
+      "icone": "🏖️",
+      "t": {
+       "fr": "Mes vacances",
+       "en": "My holidays",
+       "tr": "Tatilim",
+       "uk": "Моя відпустка",
+       "fa": "تعطیلاتم",
+       "ar": "إجازتي",
+       "pt": "Minhas férias",
+       "pl": "Moje wakacje",
+       "ru": "Мой отпуск"
+      },
+      "sais": {
+       "fr": "raconter tes vacances",
+       "en": "talk about your holidays",
+       "tr": "tatilini anlatmak",
+       "uk": "розповідати про свою відпустку",
+       "fa": "از تعطیلاتت تعریف کنی",
+       "ar": "سرد إجازتك",
+       "pt": "contar as suas férias",
+       "pl": "opowiedzieć o swoich wakacjach",
+       "ru": "рассказывать о своём отпуске"
+      },
+      "themes": [
+       "reisen_urlaub_a2",
+       "wetter_a2",
+       "natur_a2",
+       "umwelt_a2"
+      ],
+      "feuilles": [
+       "participes_forts"
+      ],
+      "scenes": [
+       "strand",
+       "camping"
+      ],
+      "illustres": [
+       "meteo"
+      ],
+      "series": [
+       "praepWoWohinExercises"
+      ],
+      "tuiles": [
+       "praep"
+      ]
+     },
+     {
+      "id": "a2-enfance",
+      "icone": "🧒",
+      "t": {
+       "fr": "Quand j'étais petit",
+       "en": "When I was little",
+       "tr": "Küçükken",
+       "uk": "Моє дитинство",
+       "fa": "وقتی بچه بودم",
+       "ar": "في طفولتي",
+       "pt": "Quando eu era criança",
+       "pl": "Moje dzieciństwo",
+       "ru": "Моё детство"
+      },
+      "sais": {
+       "fr": "dire comment c'était quand tu étais petit",
+       "en": "say what it was like when you were little",
+       "tr": "küçükken hayatın nasıl olduğunu anlatmak",
+       "uk": "розповідати, як було в дитинстві",
+       "fa": "بگویی وقتی بچه بودی چطور بود",
+       "ar": "وصف طفولتك وكيف كانت الأمور حينها",
+       "pt": "dizer como era quando você era criança",
+       "pl": "opowiedzieć, jak było w dzieciństwie",
+       "ru": "рассказывать, каким было твоё детство"
+      },
+      "themes": [
+       "schule_a2",
+       "universitaet_a2",
+       "tiere_a2"
+      ],
+      "feuilles": [
+       "war_hatte",
+       "modaux_passe"
+      ],
+      "scenes": [
+       "klassenzimmer",
+       "bauernhof"
+      ],
+      "illustres": [
+       "animales"
+      ],
+      "series": [
+       "wortstellungSubExercises"
+      ],
+      "tuiles": [
+       "konjunktionen"
+      ]
+     },
+     {
+      "id": "a2-famille",
+      "icone": "👨‍👩‍👧",
+      "t": {
+       "fr": "Ma famille, ce que je ressens",
+       "en": "My family, how I feel",
+       "tr": "Ailem, duygularım",
+       "uk": "Моя сім'я, мої почуття",
+       "fa": "خانواده‌ام، احساسم",
+       "ar": "عائلتي وما أشعر به",
+       "pt": "Minha família, o que eu sinto",
+       "pl": "Moja rodzina, moje uczucia",
+       "ru": "Моя семья, мои чувства"
+      },
+      "sais": {
+       "fr": "parler de ta famille et de ce que tu ressens",
+       "en": "talk about your family and how you feel",
+       "tr": "ailenden ve duygularından bahsetmek",
+       "uk": "говорити про свою сім'ю та почуття",
+       "fa": "از خانواده‌ات و احساست حرف بزنی",
+       "ar": "التحدّث عن عائلتك وعمّا تشعر به",
+       "pt": "falar da sua família e do que você sente",
+       "pl": "mówić o rodzinie i o tym, co czujesz",
+       "ru": "говорить о своей семье и о своих чувствах"
+      },
+      "themes": [
+       "familie_a2",
+       "gefuehle_charakter_a2",
+       "feste_feiertage_a2"
+      ],
+      "feuilles": [
+       "reflechis_passe"
+      ],
+      "scenes": [
+       "familie",
+       "geburtstag"
+      ],
+      "illustres": [
+       "familia",
+       "emociones"
+      ],
+      "series": [
+       "possessivExercises"
+      ],
+      "tuiles": [
+       "possessiv"
+      ]
+     },
+     {
+      "id": "a2-decrire",
+      "icone": "🧥",
+      "t": {
+       "fr": "Décrire quelqu'un",
+       "en": "Describing someone",
+       "tr": "Birini tarif etmek",
+       "uk": "Описати людину",
+       "fa": "توصیف یک نفر",
+       "ar": "وصف شخص",
+       "pt": "Descrever alguém",
+       "pl": "Opisać kogoś",
+       "ru": "Описать человека"
+      },
+      "sais": {
+       "fr": "décrire quelqu'un",
+       "en": "describe someone",
+       "tr": "birini tarif etmek",
+       "uk": "описувати людину",
+       "fa": "یک نفر را توصیف کنی",
+       "ar": "وصف شخص ما",
+       "pt": "descrever alguém",
+       "pl": "opisać kogoś",
+       "ru": "описывать человека"
+      },
+      "themes": [
+       "kleidung_a2",
+       "koerperteile_a2",
+       "farben_formen_a2"
+      ],
+      "feuilles": [
+       "werden_devenir"
+      ],
+      "scenes": [
+       "kleidergeschaeft"
+      ],
+      "illustres": [
+       "descripcion",
+       "ropa",
+       "contrarios"
+      ],
+      "series": [
+       "adjektiveDeklinationExercises"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "a2-place",
+    "nom": {
+     "fr": "Me faire ma place",
+     "en": "Finding my place",
+     "tr": "Kendime bir yer edinmek",
+     "uk": "Знайти своє місце",
+     "fa": "جای خودم را پیدا کنم",
+     "ar": "أجد مكاني",
+     "pt": "Encontrar o meu lugar",
+     "pl": "Znaleźć swoje miejsce",
+     "ru": "Обустроиться на новом месте"
+    },
+    "etapes": [
+     {
+      "id": "a2-logement",
+      "icone": "🏠",
+      "t": {
+       "fr": "Trouver un logement",
+       "en": "Finding a place to live",
+       "tr": "Ev bulmak",
+       "uk": "Знайти житло",
+       "fa": "پیدا کردن خانه",
+       "ar": "إيجاد سكن",
+       "pt": "Encontrar moradia",
+       "pl": "Znaleźć mieszkanie",
+       "ru": "Найти жильё"
+      },
+      "sais": {
+       "fr": "chercher un appartement et emménager",
+       "en": "look for a flat and move in",
+       "tr": "daire aramak ve taşınmak",
+       "uk": "шукати квартиру й переїжджати",
+       "fa": "دنبال آپارتمان بگردی و اسباب‌کشی کنی",
+       "ar": "البحث عن شقة والانتقال إليها",
+       "pt": "procurar um apartamento e se mudar",
+       "pl": "szukać mieszkania i się wprowadzić",
+       "ru": "искать квартиру и переезжать"
+      },
+      "themes": [
+       "wohnen_a2",
+       "moebel_haushalt_a2"
+      ],
+      "feuilles": [
+       "separables"
+      ],
+      "scenes": [
+       "umzug",
+       "wohnzimmer"
+      ],
+      "illustres": [
+       "logement"
+      ],
+      "series": [
+       "praepReconnaissanceExercises"
+      ]
+     },
+     {
+      "id": "a2-travail",
+      "icone": "💼",
+      "t": {
+       "fr": "Au travail",
+       "en": "At work",
+       "tr": "İşte",
+       "uk": "На роботі",
+       "fa": "سر کار",
+       "ar": "في العمل",
+       "pt": "No trabalho",
+       "pl": "W pracy",
+       "ru": "На работе"
+      },
+      "sais": {
+       "fr": "parler de ton travail et de tes horaires",
+       "en": "talk about your job and your hours",
+       "tr": "işinden ve çalışma saatlerinden bahsetmek",
+       "uk": "говорити про свою роботу та графік",
+       "fa": "از کار و ساعت‌های کاری‌ات حرف بزنی",
+       "ar": "التحدّث عن عملك وساعات دوامك",
+       "pt": "falar do seu trabalho e dos seus horários",
+       "pl": "mówić o pracy i swoim grafiku",
+       "ru": "говорить о своей работе и рабочем графике"
+      },
+      "themes": [
+       "arbeit_buero_a2",
+       "berufe_a2"
+      ],
+      "feuilles": [
+       "separables_places",
+       "sans_ge"
+      ],
+      "scenes": [
+       "buero"
+      ],
+      "illustres": [
+       "metiers"
+      ],
+      "series": [
+       "wortstellungNichtExercises"
+      ]
+     },
+     {
+      "id": "a2-medecin",
+      "icone": "🩺",
+      "t": {
+       "fr": "Chez le médecin",
+       "en": "At the doctor's",
+       "tr": "Doktorda",
+       "uk": "У лікаря",
+       "fa": "پیش دکتر",
+       "ar": "عند الطبيب",
+       "pt": "No médico",
+       "pl": "U lekarza",
+       "ru": "У врача"
+      },
+      "sais": {
+       "fr": "expliquer au médecin ce que tu as",
+       "en": "tell the doctor what's wrong with you",
+       "tr": "doktora neyin olduğunu anlatmak",
+       "uk": "пояснювати лікарю, що тебе турбує",
+       "fa": "به دکتر بگویی چه مشکلی داری",
+       "ar": "شرح ما تعانيه للطبيب",
+       "pt": "explicar ao médico o que você está sentindo",
+       "pl": "wyjaśnić lekarzowi, co ci dolega",
+       "ru": "объяснять врачу, что с тобой"
+      },
+      "themes": [
+       "gesundheit_a2"
+      ],
+      "feuilles": [
+       "imperatif"
+      ],
+      "scenes": [
+       "arztpraxis",
+       "apotheke"
+      ],
+      "illustres": [
+       "cuerpo"
+      ],
+      "series": [
+       "kasusReconnaissanceExercises"
+      ],
+      "tuiles": [
+       "kasus"
+      ]
+     },
+     {
+      "id": "a2-demarches",
+      "icone": "🏛️",
+      "t": {
+       "fr": "Démarches et rendez-vous",
+       "en": "Paperwork and appointments",
+       "tr": "Resmî işler ve randevular",
+       "uk": "Формальності й запис на прийом",
+       "fa": "کارهای اداری و وقت گرفتن",
+       "ar": "المعاملات والمواعيد",
+       "pt": "Burocracia e agendamentos",
+       "pl": "Formalności i terminy",
+       "ru": "Документы и запись на приём"
+      },
+      "sais": {
+       "fr": "prendre rendez-vous et remplir un formulaire",
+       "en": "make an appointment and fill in a form",
+       "tr": "randevu almak ve form doldurmak",
+       "uk": "записуватися на прийом і заповнювати формуляр",
+       "fa": "وقت بگیری و فرم پر کنی",
+       "ar": "أخذ موعد وملء استمارة",
+       "pt": "marcar um horário e preencher um formulário",
+       "pl": "umówić się na wizytę i wypełnić formularz",
+       "ru": "записываться на приём и заполнять анкету"
+      },
+      "themes": [
+       "politik_gesellschaft_a2",
+       "zahlen_mengen_a2"
+      ],
+      "scenes": [
+       "buergeramt",
+       "post"
+      ],
+      "illustres": [
+       "demarches"
+      ],
+      "series": [
+       "wennObExercises",
+       "wortstellungFrageExercises"
+      ]
+     },
+     {
+      "id": "a2-achats",
+      "icone": "🛒",
+      "t": {
+       "fr": "Acheter, échanger, réclamer",
+       "en": "Buying, exchanging, complaining",
+       "tr": "Almak, değiştirmek, şikâyet etmek",
+       "uk": "Купити, обміняти, поскаржитися",
+       "fa": "خرید، تعویض، شکایت",
+       "ar": "الشراء والتبديل والشكوى",
+       "pt": "Comprar, trocar, reclamar",
+       "pl": "Kupić, wymienić, zareklamować",
+       "ru": "Купить, обменять, пожаловаться"
+      },
+      "sais": {
+       "fr": "acheter, échanger ou rapporter un article",
+       "en": "buy, exchange or return an item",
+       "tr": "bir ürün almak, değiştirmek ya da iade etmek",
+       "uk": "купувати, обмінювати або повертати товар",
+       "fa": "چیزی بخری، عوض کنی یا پس بدهی",
+       "ar": "شراء سلعة أو تبديلها أو إرجاعها",
+       "pt": "comprar, trocar ou devolver um produto",
+       "pl": "kupić, wymienić lub zwrócić towar",
+       "ru": "покупать, обменивать или возвращать товар"
+      },
+      "themes": [
+       "einkaufen_geld_a2",
+       "essen_trinken_a2",
+       "obst_gemuese_a2",
+       "kueche_kochen_a2"
+      ],
+      "scenes": [
+       "supermarkt",
+       "markt-gemuese-frucht"
+      ],
+      "illustres": [
+       "courses",
+       "manger"
+      ],
+      "series": [
+       "derEinExercises"
+      ]
+     },
+     {
+      "id": "a2-deplacer",
+      "icone": "🚇",
+      "t": {
+       "fr": "Me repérer, me déplacer",
+       "en": "Finding my way, getting around",
+       "tr": "Yolumu bulmak, dolaşmak",
+       "uk": "Орієнтуватися, пересуватися",
+       "fa": "راه یافتن، رفت‌وآمد",
+       "ar": "الاهتداء والتنقّل",
+       "pt": "Me orientar, me locomover",
+       "pl": "Odnaleźć się w mieście",
+       "ru": "Ориентироваться и передвигаться"
+      },
+      "sais": {
+       "fr": "te repérer et te déplacer en ville",
+       "en": "find your way and get around town",
+       "tr": "şehirde yolunu bulmak ve dolaşmak",
+       "uk": "орієнтуватися та пересуватися містом",
+       "fa": "در شهر راه پیدا کنی و رفت‌وآمد کنی",
+       "ar": "الاهتداء والتنقّل في المدينة",
+       "pt": "se orientar e se locomover na cidade",
+       "pl": "orientować się i poruszać po mieście",
+       "ru": "ориентироваться и передвигаться по городу"
+      },
+      "themes": [
+       "verkehr_a2",
+       "stadt_gebaeude_a2",
+       "medien_technologie_a2"
+      ],
+      "scenes": [
+       "kreuzung",
+       "ubahn",
+       "zug"
+      ],
+      "illustres": [
+       "transportes",
+       "gato"
+      ],
+      "series": [
+       "positionsverbenExercises"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "a2-examen",
+    "nom": {
+     "fr": "Réussir mon A2",
+     "en": "Passing my A2",
+     "tr": "A2 sınavımı geçmek",
+     "uk": "Скласти мій A2",
+     "fa": "در A2 قبول شوم",
+     "ar": "أنجح في A2",
+     "pt": "Passar no meu A2",
+     "pl": "Zdać mój egzamin A2",
+     "ru": "Сдать экзамен A2"
+    },
+    "examen": "Goethe A2 · telc A2·B1",
+    "etapes": [
+     {
+      "id": "a2-ex-ecouter",
+      "icone": "🎧",
+      "t": {
+       "fr": "Écouter",
+       "en": "Listening",
+       "tr": "Dinleme",
+       "uk": "Слухати",
+       "fa": "شنیداری",
+       "ar": "الاستماع",
+       "pt": "Ouvir",
+       "pl": "Słuchanie",
+       "ru": "Слушать"
+      },
+      "sais": {
+       "fr": "comprendre de courts messages entendus",
+       "en": "understand short spoken messages",
+       "tr": "duyduğun kısa mesajları anlamak",
+       "uk": "розуміти короткі повідомлення на слух",
+       "fa": "پیام‌های کوتاه شنیداری را بفهمی",
+       "ar": "فهم رسائل مسموعة قصيرة",
+       "pt": "entender mensagens curtas que você ouve",
+       "pl": "rozumieć krótkie wiadomości ze słuchu",
+       "ru": "понимать короткие сообщения на слух"
+      },
+      "pruefung": {
+       "partie": "hoeren",
+       "niveau": "A2"
+      }
+     },
+     {
+      "id": "a2-ex-lire",
+      "icone": "📖",
+      "t": {
+       "fr": "Lire",
+       "en": "Reading",
+       "tr": "Okuma",
+       "uk": "Читати",
+       "fa": "خوانداری",
+       "ar": "القراءة",
+       "pt": "Ler",
+       "pl": "Czytanie",
+       "ru": "Читать"
+      },
+      "sais": {
+       "fr": "lire une annonce, un horaire, un mode d'emploi",
+       "en": "read an ad, a timetable, a set of instructions",
+       "tr": "ilan, tarife, kullanım kılavuzu okumak",
+       "uk": "читати оголошення, розклад, інструкцію",
+       "fa": "آگهی، برنامهٔ زمانی و راهنمای استفاده بخوانی",
+       "ar": "قراءة إعلان أو جدول مواعيد أو دليل استعمال",
+       "pt": "ler um anúncio, um horário, um manual",
+       "pl": "czytać ogłoszenie, rozkład jazdy, instrukcję",
+       "ru": "читать объявление, расписание, инструкцию"
+      },
+      "pruefung": {
+       "partie": "lesen",
+       "niveau": "A2"
+      }
+     },
+     {
+      "id": "a2-ex-ecrire",
+      "icone": "✉️",
+      "t": {
+       "fr": "Écrire",
+       "en": "Writing",
+       "tr": "Yazma",
+       "uk": "Писати",
+       "fa": "نوشتاری",
+       "ar": "الكتابة",
+       "pt": "Escrever",
+       "pl": "Pisanie",
+       "ru": "Писать"
+      },
+      "sais": {
+       "fr": "écrire un message, un courriel ou une lettre simple",
+       "en": "write a simple message, email or letter",
+       "tr": "basit bir mesaj, e-posta ya da mektup yazmak",
+       "uk": "писати повідомлення, імейл або простий лист",
+       "fa": "پیام، ایمیل یا نامهٔ ساده بنویسی",
+       "ar": "كتابة رسالة قصيرة أو بريد إلكتروني أو رسالة بسيطة",
+       "pt": "escrever uma mensagem, um e-mail ou uma carta simples",
+       "pl": "napisać wiadomość, e-mail lub prosty list",
+       "ru": "писать сообщение, e-mail или простое письмо"
+      },
+      "pruefung": {
+       "partie": "schreiben",
+       "niveau": "A2"
+      }
+     },
+     {
+      "id": "a2-ex-parler",
+      "icone": "🗣️",
+      "t": {
+       "fr": "Parler",
+       "en": "Speaking",
+       "tr": "Konuşma",
+       "uk": "Говорити",
+       "fa": "گفتاری",
+       "ar": "التحدّث",
+       "pt": "Falar",
+       "pl": "Mówienie",
+       "ru": "Говорить"
+      },
+      "sais": {
+       "fr": "parler de toi et poser des questions",
+       "en": "talk about yourself and ask questions",
+       "tr": "kendinden bahsetmek ve soru sormak",
+       "uk": "розповідати про себе та ставити запитання",
+       "fa": "از خودت بگویی و سؤال بپرسی",
+       "ar": "التحدّث عن نفسك وطرح الأسئلة",
+       "pt": "falar de você e fazer perguntas",
+       "pl": "mówić o sobie i zadawać pytania",
+       "ru": "рассказывать о себе и задавать вопросы"
+      },
+      "pruefung": {
+       "partie": "sprechen",
+       "niveau": "A2"
+      }
+     }
+    ]
+   }
+  ],
+  "B1": [
+   {
+    "id": "b1-travailler",
+    "nom": {
+     "fr": "Travailler en allemand",
+     "en": "Working in German",
+     "tr": "İşimde Almanca kullanmak",
+     "uk": "Працювати німецькою",
+     "fa": "به آلمانی کار کنم",
+     "ar": "أعمل بالألمانية",
+     "pt": "Trabalhar em alemão",
+     "pl": "Pracować po niemiecku",
+     "ru": "Работать на немецком"
+    },
+    "etapes": [
+     {
+      "id": "b1-emploi",
+      "icone": "📰",
+      "t": {
+       "fr": "Chercher un emploi",
+       "en": "Looking for a job",
+       "tr": "İş aramak",
+       "uk": "Шукати роботу",
+       "fa": "جست‌وجوی کار",
+       "ar": "البحث عن عمل",
+       "pt": "Procurar emprego",
+       "pl": "Szukać pracy",
+       "ru": "Искать работу"
+      },
+      "sais": {
+       "fr": "chercher un emploi et répondre à une annonce",
+       "en": "look for a job and answer an ad",
+       "tr": "iş aramak ve bir ilana başvurmak",
+       "uk": "шукати роботу й відповідати на вакансію",
+       "fa": "دنبال کار بگردی و به آگهی جواب بدهی",
+       "ar": "البحث عن عمل والردّ على إعلان وظيفة",
+       "pt": "procurar emprego e responder a um anúncio",
+       "pl": "szukać pracy i odpowiedzieć na ogłoszenie",
+       "ru": "искать работу и откликаться на вакансию"
+      },
+      "themes": [
+       "berufe_b1",
+       "vhs_kapitel9_b1"
+      ],
+      "feuilles": [
+       "k2_poli"
+      ],
+      "scenes": [
+       "buero"
+      ],
+      "illustres": [
+       "metiers"
+      ]
+     },
+     {
+      "id": "b1-entretien",
+      "icone": "🤝",
+      "t": {
+       "fr": "L'entretien d'embauche",
+       "en": "The job interview",
+       "tr": "İş görüşmesi",
+       "uk": "Співбесіда",
+       "fa": "مصاحبهٔ کاری",
+       "ar": "مقابلة العمل",
+       "pt": "A entrevista de emprego",
+       "pl": "Rozmowa kwalifikacyjna",
+       "ru": "Собеседование"
+      },
+      "sais": {
+       "fr": "passer un entretien d'embauche",
+       "en": "handle a job interview",
+       "tr": "iş görüşmesine girmek",
+       "uk": "проходити співбесіду",
+       "fa": "مصاحبهٔ کاری بدهی",
+       "ar": "إجراء مقابلة عمل",
+       "pt": "fazer uma entrevista de emprego",
+       "pl": "poradzić sobie na rozmowie kwalifikacyjnej",
+       "ru": "проходить собеседование"
+      },
+      "themes": [
+       "vhs_kapitel12_b1",
+       "kleidung_b1",
+       "grundwortschatz_b1"
+      ],
+      "feuilles": [
+       "k2_formes"
+      ],
+      "scenes": [
+       "buero"
+      ],
+      "series": [
+       "weilObwohlExercises"
+      ]
+     },
+     {
+      "id": "b1-bureau",
+      "icone": "🖥️",
+      "t": {
+       "fr": "Au bureau",
+       "en": "At the office",
+       "tr": "Ofiste",
+       "uk": "В офісі",
+       "fa": "در دفتر کار",
+       "ar": "في المكتب",
+       "pt": "No escritório",
+       "pl": "W biurze",
+       "ru": "В офисе"
+      },
+      "sais": {
+       "fr": "expliquer comment les choses se font au bureau",
+       "en": "explain how things are done at the office",
+       "tr": "ofiste işlerin nasıl yürüdüğünü anlatmak",
+       "uk": "пояснювати, як усе влаштовано в офісі",
+       "fa": "توضیح بدهی کارها در دفتر چطور انجام می‌شود",
+       "ar": "شرح كيف تسير الأمور في المكتب",
+       "pt": "explicar como as coisas funcionam no escritório",
+       "pl": "wyjaśnić, jak to się robi w biurze",
+       "ru": "объяснять, как всё устроено в офисе"
+      },
+      "themes": [
+       "arbeit_buero_b1"
+      ],
+      "feuilles": [
+       "passif_present"
+      ],
+      "scenes": [
+       "buero",
+       "bibliothek"
+      ],
+      "series": [
+       "zuInfinitivExercises"
+      ],
+      "tuiles": [
+       "zuinfinitiv"
+      ]
+     },
+     {
+      "id": "b1-collegues",
+      "icone": "💬",
+      "t": {
+       "fr": "Collègues et désaccords",
+       "en": "Colleagues and disagreements",
+       "tr": "İş arkadaşları ve anlaşmazlıklar",
+       "uk": "Колеги та розбіжності",
+       "fa": "همکاران و اختلاف‌نظر",
+       "ar": "الزملاء والخلافات",
+       "pt": "Colegas e divergências",
+       "pl": "Koledzy z pracy i różnice zdań",
+       "ru": "Коллеги и разногласия"
+      },
+      "sais": {
+       "fr": "dire poliment que tu n'es pas d'accord",
+       "en": "politely say that you disagree",
+       "tr": "aynı fikirde olmadığını kibarca söylemek",
+       "uk": "ввічливо висловлювати незгоду",
+       "fa": "مؤدبانه بگویی که موافق نیستی",
+       "ar": "التعبير بلطف عن عدم موافقتك",
+       "pt": "dizer com educação que você não concorda",
+       "pl": "grzecznie powiedzieć, że się nie zgadzasz",
+       "ru": "вежливо выражать несогласие"
+      },
+      "themes": [
+       "gefuehle_charakter_b1",
+       "vhs_kapitel4_b1"
+      ],
+      "feuilles": [
+       "verbes_preposition"
+      ],
+      "illustres": [
+       "emociones"
+      ],
+      "series": [
+       "verbenMitPraepExercises",
+       "partikelnNuanceExercises"
+      ],
+      "tuiles": [
+       "partikeln"
+      ]
+     },
+     {
+      "id": "b1-argent",
+      "icone": "🏦",
+      "t": {
+       "fr": "Argent, contrats, assurances",
+       "en": "Money, contracts, insurance",
+       "tr": "Para, sözleşmeler, sigortalar",
+       "uk": "Гроші, договори, страхування",
+       "fa": "پول، قرارداد، بیمه",
+       "ar": "المال والعقود والتأمين",
+       "pt": "Dinheiro, contratos, seguros",
+       "pl": "Pieniądze, umowy, ubezpieczenia",
+       "ru": "Деньги, договоры, страховки"
+      },
+      "sais": {
+       "fr": "parler d'argent, de contrats et d'assurances",
+       "en": "talk about money, contracts and insurance",
+       "tr": "para, sözleşme ve sigortadan bahsetmek",
+       "uk": "говорити про гроші, договори та страхування",
+       "fa": "از پول، قرارداد و بیمه حرف بزنی",
+       "ar": "التحدّث عن المال والعقود والتأمين",
+       "pt": "falar de dinheiro, contratos e seguros",
+       "pl": "mówić o pieniądzach, umowach i ubezpieczeniach",
+       "ru": "говорить о деньгах, договорах и страховках"
+      },
+      "themes": [
+       "einkaufen_geld_b1",
+       "vhs_kapitel2_b1",
+       "vhs_kapitel3_b1"
+      ],
+      "feuilles": [
+       "lassen"
+      ],
+      "scenes": [
+       "buergeramt",
+       "post"
+      ],
+      "illustres": [
+       "demarches"
+      ]
+     },
+     {
+      "id": "b1-projets",
+      "icone": "🎓",
+      "t": {
+       "fr": "Me former, mes projets",
+       "en": "My training, my plans",
+       "tr": "Eğitimim ve planlarım",
+       "uk": "Моє навчання, мої плани",
+       "fa": "آموزشم، برنامه‌هایم",
+       "ar": "تدريبي ومشاريعي",
+       "pt": "Minha formação, meus planos",
+       "pl": "Moje kształcenie, moje plany",
+       "ru": "Моё обучение, мои планы"
+      },
+      "sais": {
+       "fr": "parler de ta formation et de tes projets",
+       "en": "talk about your training and your plans",
+       "tr": "eğitiminden ve planlarından bahsetmek",
+       "uk": "говорити про своє навчання та плани",
+       "fa": "از آموزش و برنامه‌هایت حرف بزنی",
+       "ar": "التحدّث عن تدريبك ومشاريعك",
+       "pt": "falar da sua formação e dos seus planos",
+       "pl": "mówić o swoim wykształceniu i planach",
+       "ru": "говорить о своём обучении и планах"
+      },
+      "themes": [
+       "schule_b1",
+       "universitaet_b1",
+       "vhs_kapitel11_b1"
+      ],
+      "feuilles": [
+       "futur"
+      ],
+      "scenes": [
+       "klassenzimmer",
+       "bibliothek"
+      ],
+      "series": [
+       "deshalbTrotzdemExercises"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "b1-avis",
+    "nom": {
+     "fr": "Donner mon avis",
+     "en": "Giving my opinion",
+     "tr": "Fikrimi söylemek",
+     "uk": "Висловити мою думку",
+     "fa": "نظرم را بگویم",
+     "ar": "أعبّر عن رأيي",
+     "pt": "Dar a minha opinião",
+     "pl": "Wyrażać swoje zdanie",
+     "ru": "Высказать своё мнение"
+    },
+    "etapes": [
+     {
+      "id": "b1-histoire",
+      "icone": "📚",
+      "t": {
+       "fr": "Lire une histoire",
+       "en": "Reading a story",
+       "tr": "Bir hikâye okumak",
+       "uk": "Прочитати історію",
+       "fa": "خواندن یک داستان",
+       "ar": "قراءة قصة",
+       "pt": "Ler uma história",
+       "pl": "Czytać opowiadanie",
+       "ru": "Прочитать историю"
+      },
+      "sais": {
+       "fr": "lire et raconter une histoire au passé",
+       "en": "read and tell a story in the past",
+       "tr": "geçmiş zamanda bir hikâye okumak ve anlatmak",
+       "uk": "читати й переказувати історію в минулому часі",
+       "fa": "داستانی بخوانی و آن را در زمان گذشته بازگو کنی",
+       "ar": "قراءة قصة وسردها بصيغة الماضي",
+       "pt": "ler e contar uma história no passado",
+       "pl": "przeczytać i opowiedzieć historię w czasie przeszłym",
+       "ru": "читать и пересказывать историю в прошедшем времени"
+      },
+      "themes": [
+       "musik_kunst_b1",
+       "freizeit_hobbys_b1",
+       "sport_b1",
+       "reisen_urlaub_b1",
+       "vhs_kapitel8_b1",
+       "vhs_kapitel10_b1"
+      ],
+      "feuilles": [
+       "praet_faible",
+       "praet_fort"
+      ],
+      "scenes": [
+       "museum",
+       "musik"
+      ],
+      "illustres": [
+       "loisirs"
+      ],
+      "series": [
+       "alsWennExercises",
+       "praeteritumExercises"
+      ]
+     },
+     {
+      "id": "b1-souvenirs",
+      "icone": "🕰️",
+      "t": {
+       "fr": "Fêtes, repas, souvenirs",
+       "en": "Celebrations, meals, memories",
+       "tr": "Kutlamalar, yemekler, anılar",
+       "uk": "Свята, застілля, спогади",
+       "fa": "جشن‌ها، غذاها، خاطره‌ها",
+       "ar": "الأعياد والوجبات والذكريات",
+       "pt": "Festas, refeições, lembranças",
+       "pl": "Święta, posiłki, wspomnienia",
+       "ru": "Праздники, застолья, воспоминания"
+      },
+      "sais": {
+       "fr": "raconter un souvenir, une fête, un repas",
+       "en": "talk about a memory, a party, a meal",
+       "tr": "bir anıyı, bir kutlamayı, bir yemeği anlatmak",
+       "uk": "розповідати про спогад, свято чи застілля",
+       "fa": "خاطره‌ای، جشنی یا غذایی را تعریف کنی",
+       "ar": "سرد ذكرى أو عيد أو وجبة",
+       "pt": "contar uma lembrança, uma festa, uma refeição",
+       "pl": "opowiedzieć o wspomnieniu, święcie, posiłku",
+       "ru": "рассказывать о воспоминаниях, праздниках, застольях"
+      },
+      "themes": [
+       "familie_b1",
+       "feste_feiertage_b1",
+       "zeit_kalender_b1",
+       "essen_trinken_b1",
+       "kueche_kochen_b1",
+       "obst_gemuese_b1",
+       "vhs_kapitel5_b1"
+      ],
+      "feuilles": [
+       "praet_familles",
+       "praet_mixte",
+       "plusquamperfekt"
+      ],
+      "scenes": [
+       "familie",
+       "geburtstag"
+      ],
+      "illustres": [
+       "familia",
+       "manger"
+      ],
+      "series": [
+       "blocsConnecteursExercises"
+      ]
+     },
+     {
+      "id": "b1-sante",
+      "icone": "🩺",
+      "t": {
+       "fr": "Santé et soins",
+       "en": "Health and care",
+       "tr": "Sağlık ve tedavi",
+       "uk": "Здоров'я та лікування",
+       "fa": "سلامت و درمان",
+       "ar": "الصحة والعلاج",
+       "pt": "Saúde e cuidados",
+       "pl": "Zdrowie i leczenie",
+       "ru": "Здоровье и лечение"
+      },
+      "sais": {
+       "fr": "parler de santé et de soins",
+       "en": "talk about health and medical care",
+       "tr": "sağlık ve tedaviden bahsetmek",
+       "uk": "говорити про здоров'я та лікування",
+       "fa": "از سلامت و درمان حرف بزنی",
+       "ar": "التحدّث عن الصحة والعلاج",
+       "pt": "falar de saúde e de cuidados",
+       "pl": "mówić o zdrowiu i leczeniu",
+       "ru": "говорить о здоровье и лечении"
+      },
+      "themes": [
+       "gesundheit_b1",
+       "koerperteile_b1",
+       "vhs_kapitel6_b1"
+      ],
+      "scenes": [
+       "arztpraxis",
+       "untersuchung"
+      ],
+      "illustres": [
+       "cuerpo"
+      ],
+      "series": [
+       "relativReconNomAkk"
+      ],
+      "tuiles": [
+       "relativ"
+      ]
+     },
+     {
+      "id": "b1-environnement",
+      "icone": "🌱",
+      "t": {
+       "fr": "L'environnement",
+       "en": "The environment",
+       "tr": "Çevre",
+       "uk": "Довкілля",
+       "fa": "محیط زیست",
+       "ar": "البيئة",
+       "pt": "O meio ambiente",
+       "pl": "Środowisko",
+       "ru": "Окружающая среда"
+      },
+      "sais": {
+       "fr": "dire ce qu'on devrait faire pour l'environnement",
+       "en": "say what we should do for the environment",
+       "tr": "çevre için ne yapılması gerektiğini söylemek",
+       "uk": "говорити, що варто робити для довкілля",
+       "fa": "بگویی برای محیط زیست چه باید کرد",
+       "ar": "قول ما ينبغي فعله من أجل البيئة",
+       "pt": "dizer o que deveríamos fazer pelo meio ambiente",
+       "pl": "powiedzieć, co należy robić dla środowiska",
+       "ru": "говорить, что нужно делать для окружающей среды"
+      },
+      "themes": [
+       "umwelt_b1",
+       "natur_b1",
+       "tiere_b1",
+       "wetter_b1",
+       "vhs_kapitel7_b1"
+      ],
+      "feuilles": [
+       "k2_modaux"
+      ],
+      "scenes": [
+       "bauernhof",
+       "park"
+      ],
+      "illustres": [
+       "animales",
+       "meteo"
+      ],
+      "series": [
+       "obwohlTrotzdemExercises",
+       "konjunktiv2Exercises"
+      ]
+     },
+     {
+      "id": "b1-medias",
+      "icone": "📱",
+      "t": {
+       "fr": "Médias et opinions",
+       "en": "Media and opinions",
+       "tr": "Medya ve görüşler",
+       "uk": "Медіа та думки",
+       "fa": "رسانه‌ها و نظرها",
+       "ar": "الإعلام والآراء",
+       "pt": "Mídia e opiniões",
+       "pl": "Media i opinie",
+       "ru": "СМИ и мнения"
+      },
+      "sais": {
+       "fr": "donner ton avis sur les médias",
+       "en": "give your opinion on the media",
+       "tr": "medya hakkında fikrini söylemek",
+       "uk": "висловлювати свою думку про медіа",
+       "fa": "نظرت را دربارهٔ رسانه‌ها بگویی",
+       "ar": "إبداء رأيك في الإعلام",
+       "pt": "dar a sua opinião sobre a mídia",
+       "pl": "wyrazić swoje zdanie o mediach",
+       "ru": "высказывать своё мнение о СМИ"
+      },
+      "themes": [
+       "medien_technologie_b1",
+       "farben_formen_b1",
+       "zahlen_mengen_b1"
+      ],
+      "series": [
+       "relativReconDativ",
+       "aberSondernExercises"
+      ]
+     },
+     {
+      "id": "b1-societe",
+      "icone": "🏙️",
+      "t": {
+       "fr": "Ma ville, ma société",
+       "en": "My city, my society",
+       "tr": "Şehrim, toplumum",
+       "uk": "Моє місто, моє суспільство",
+       "fa": "شهرم، جامعه‌ام",
+       "ar": "مدينتي ومجتمعي",
+       "pt": "Minha cidade, minha sociedade",
+       "pl": "Moje miasto, moje społeczeństwo",
+       "ru": "Мой город, моё общество"
+      },
+      "sais": {
+       "fr": "parler de ta ville et de la société",
+       "en": "talk about your city and about society",
+       "tr": "şehrinden ve toplumdan bahsetmek",
+       "uk": "говорити про своє місто та суспільство",
+       "fa": "از شهرت و جامعه حرف بزنی",
+       "ar": "التحدّث عن مدينتك والمجتمع",
+       "pt": "falar da sua cidade e da sociedade",
+       "pl": "mówić o swoim mieście i o społeczeństwie",
+       "ru": "говорить о своём городе и об обществе"
+      },
+      "themes": [
+       "politik_gesellschaft_b1",
+       "stadt_gebaeude_b1",
+       "verkehr_b1",
+       "wohnen_b1",
+       "moebel_haushalt_b1",
+       "vhs_kapitel1_b1",
+       "vhs_kapitel13_b1",
+       "vhs_kapitel14_b1",
+       "vhs_kapitel15_b1",
+       "vhs_kapitel16_b1"
+      ],
+      "scenes": [
+       "stadtplatz",
+       "kreuzung"
+      ],
+      "illustres": [
+       "transportes",
+       "logement"
+      ],
+      "series": [
+       "relativGenitivReconnaissanceExercises"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "b1-examen",
+    "nom": {
+     "fr": "Réussir mon B1",
+     "en": "Passing my B1",
+     "tr": "B1 sınavımı geçmek",
+     "uk": "Скласти мій B1",
+     "fa": "در B1 قبول شوم",
+     "ar": "أنجح في B1",
+     "pt": "Passar no meu B1",
+     "pl": "Zdać mój egzamin B1",
+     "ru": "Сдать экзамен B1"
+    },
+    "examen": "DTZ · telc · Goethe B1",
+    "etapes": [
+     {
+      "id": "b1-ex-hoeren",
+      "icone": "🎧",
+      "t": {
+       "fr": "Écouter",
+       "en": "Listening",
+       "tr": "Dinleme",
+       "uk": "Слухати",
+       "fa": "شنیداری",
+       "ar": "الاستماع",
+       "pt": "Ouvir",
+       "pl": "Słuchanie",
+       "ru": "Слушать"
+      },
+      "sais": {
+       "fr": "comprendre des annonces, des messages et des conversations",
+       "en": "understand announcements, messages and conversations",
+       "tr": "duyuru, mesaj ve konuşmaları anlamak",
+       "uk": "розуміти оголошення, повідомлення та розмови",
+       "fa": "اطلاعیه‌ها، پیام‌ها و گفت‌وگوها را بفهمی",
+       "ar": "فهم الإعلانات والرسائل والمحادثات",
+       "pt": "entender anúncios, mensagens e conversas",
+       "pl": "rozumieć ogłoszenia, wiadomości i rozmowy",
+       "ru": "понимать объявления, сообщения и разговоры"
+      },
+      "pruefung": {
+       "partie": "hoeren",
+       "niveau": "B1"
+      }
+     },
+     {
+      "id": "b1-ex-lesen",
+      "icone": "📖",
+      "t": {
+       "fr": "Lire",
+       "en": "Reading",
+       "tr": "Okuma",
+       "uk": "Читати",
+       "fa": "خوانداری",
+       "ar": "القراءة",
+       "pt": "Ler",
+       "pl": "Czytanie",
+       "ru": "Читать"
+      },
+      "sais": {
+       "fr": "lire une lettre de l'administration ou un article",
+       "en": "read an official letter or an article",
+       "tr": "resmî bir yazıyı ya da bir makaleyi okumak",
+       "uk": "читати лист від установи або статтю",
+       "fa": "نامهٔ اداری یا مقاله‌ای را بخوانی",
+       "ar": "قراءة رسالة رسمية أو مقال",
+       "pt": "ler uma carta de um órgão público ou um artigo",
+       "pl": "przeczytać pismo z urzędu lub artykuł",
+       "ru": "читать официальное письмо или статью"
+      },
+      "pruefung": {
+       "partie": "lesen",
+       "niveau": "B1"
+      }
+     },
+     {
+      "id": "b1-ex-schreiben",
+      "icone": "✉️",
+      "t": {
+       "fr": "Écrire",
+       "en": "Writing",
+       "tr": "Yazma",
+       "uk": "Писати",
+       "fa": "نوشتاری",
+       "ar": "الكتابة",
+       "pt": "Escrever",
+       "pl": "Pisanie",
+       "ru": "Писать"
+      },
+      "sais": {
+       "fr": "écrire une lettre formelle",
+       "en": "write a formal letter",
+       "tr": "resmî bir mektup yazmak",
+       "uk": "писати офіційний лист",
+       "fa": "نامهٔ رسمی بنویسی",
+       "ar": "كتابة رسالة رسمية",
+       "pt": "escrever uma carta formal",
+       "pl": "napisać list formalny",
+       "ru": "писать официальное письмо"
+      },
+      "pruefung": {
+       "partie": "schreiben",
+       "niveau": "B1"
+      }
+     },
+     {
+      "id": "b1-ex-sprechen",
+      "icone": "🗣️",
+      "t": {
+       "fr": "Parler de toi",
+       "en": "Talking about yourself",
+       "tr": "Kendinden bahsetmek",
+       "uk": "Розповісти про себе",
+       "fa": "حرف زدن از خودت",
+       "ar": "التحدّث عن نفسك",
+       "pt": "Falar de você",
+       "pl": "Mówić o sobie",
+       "ru": "Рассказать о себе"
+      },
+      "sais": {
+       "fr": "te présenter et raconter une expérience",
+       "en": "introduce yourself and describe an experience",
+       "tr": "kendini tanıtmak ve bir deneyimini anlatmak",
+       "uk": "представлятися й розповідати про свій досвід",
+       "fa": "خودت را معرفی کنی و تجربه‌ای را تعریف کنی",
+       "ar": "تقديم نفسك وسرد تجربة",
+       "pt": "se apresentar e contar uma experiência",
+       "pl": "przedstawić się i opowiedzieć o swoim doświadczeniu",
+       "ru": "представляться и рассказывать о своём опыте"
+      },
+      "pruefung": {
+       "partie": "sprechen",
+       "niveau": "B1",
+       "teil": [
+        "Teil 2 · Über Erfahrungen sprechen"
+       ]
+      }
+     },
+     {
+      "id": "b1-ex-planen",
+      "icone": "🧩",
+      "t": {
+       "fr": "Planifier ensemble",
+       "en": "Planning together",
+       "tr": "Birlikte plan yapmak",
+       "uk": "Планувати разом",
+       "fa": "برنامه‌ریزی با هم",
+       "ar": "التخطيط معًا",
+       "pt": "Planejar juntos",
+       "pl": "Planować razem",
+       "ru": "Планировать вместе"
+      },
+      "sais": {
+       "fr": "organiser quelque chose avec quelqu'un",
+       "en": "organise something with someone",
+       "tr": "biriyle birlikte bir şey planlamak",
+       "uk": "домовлятися про щось із кимось",
+       "fa": "با کسی برنامه‌ای بریزی",
+       "ar": "تنظيم أمر ما مع شخص آخر",
+       "pt": "organizar algo com alguém",
+       "pl": "zorganizować coś razem z kimś",
+       "ru": "организовывать что-то вместе с кем-то"
+      },
+      "pruefung": {
+       "partie": "sprechen",
+       "niveau": "B1",
+       "teil": [
+        "Teil 3 · Gemeinsam planen"
+       ]
+      }
+     },
+     {
+      "id": "b1-ex-praesentieren",
+      "icone": "📊",
+      "t": {
+       "fr": "Présenter un thème (Goethe)",
+       "en": "Presenting a topic (Goethe)",
+       "tr": "Bir konu sunmak (Goethe)",
+       "uk": "Представити тему (Goethe)",
+       "fa": "ارائهٔ یک موضوع (Goethe)",
+       "ar": "تقديم موضوع (Goethe)",
+       "pt": "Apresentar um tema (Goethe)",
+       "pl": "Przedstawić temat (Goethe)",
+       "ru": "Представить тему (Goethe)"
+      },
+      "sais": {
+       "fr": "présenter un thème et répondre aux questions",
+       "en": "present a topic and answer questions",
+       "tr": "bir konu sunmak ve soruları yanıtlamak",
+       "uk": "представляти тему й відповідати на запитання",
+       "fa": "موضوعی را ارائه کنی و به سؤال‌ها جواب بدهی",
+       "ar": "تقديم موضوع والإجابة عن الأسئلة",
+       "pt": "apresentar um tema e responder às perguntas",
+       "pl": "przedstawić temat i odpowiedzieć na pytania",
+       "ru": "представлять тему и отвечать на вопросы"
+      },
+      "pruefung": {
+       "partie": "sprechen",
+       "niveau": "B1",
+       "teil": [
+        "Teil 2 · Ein Thema präsentieren",
+        "Teil 3 · Über eine Präsentation sprechen"
+       ]
+      }
+     }
+    ]
+   }
+  ],
+  "B2": [
+   {
+    "id": "b2-egal",
+    "nom": {
+     "fr": "Discuter d'égal à égal",
+     "en": "Talking as equals",
+     "tr": "Eşit düzeyde konuşmak",
+     "uk": "Розмовляти на рівних",
+     "fa": "همپای دیگران گفت‌وگو کنم",
+     "ar": "أناقش على قدم المساواة",
+     "pt": "Conversar de igual para igual",
+     "pl": "Rozmawiać jak równy z równym",
+     "ru": "Говорить на равных"
+    },
+    "etapes": [
+     {
+      "id": "b2-aurait",
+      "icone": "💭",
+      "t": {
+       "fr": "Ce qui aurait pu être",
+       "en": "What might have been",
+       "tr": "Olabilecekler",
+       "uk": "Що могло б бути",
+       "fa": "آنچه می‌شد پیش بیاید",
+       "ar": "ما كان يمكن أن يحدث",
+       "pt": "O que poderia ter sido",
+       "pl": "Co mogło się wydarzyć",
+       "ru": "Что могло бы быть"
+      },
+      "sais": {
+       "fr": "dire ce qui aurait pu se passer",
+       "en": "say what could have happened",
+       "tr": "neler olmuş olabileceğini söylemek",
+       "uk": "говорити, що могло б статися",
+       "fa": "بگویی چه می‌توانست پیش بیاید",
+       "ar": "قول ما كان يمكن أن يحدث",
+       "pt": "dizer o que poderia ter acontecido",
+       "pl": "powiedzieć, co mogło się wydarzyć",
+       "ru": "говорить о том, что могло бы случиться"
+      },
+      "themes": [
+       "gefuehle_charakter_b2",
+       "familie_b2",
+       "feste_feiertage_b2"
+      ],
+      "feuilles": [
+       "k2_passe"
+      ],
+      "illustres": [
+       "emociones"
+      ],
+      "series": [
+       "konjunktiv2VergangenheitExercises"
+      ]
+     },
+     {
+      "id": "b2-reproche",
+      "icone": "😬",
+      "t": {
+       "fr": "« Tu aurais dû »",
+       "en": "“You should have”",
+       "tr": "“Yapmalıydın”",
+       "uk": "«Тобі варто було…»",
+       "fa": "«باید می‌کردی»",
+       "ar": "«كان عليك أن…»",
+       "pt": "“Você deveria ter…”",
+       "pl": "„Trzeba było”",
+       "ru": "«Тебе следовало бы»"
+      },
+      "sais": {
+       "fr": "dire ce que quelqu'un aurait dû faire",
+       "en": "say what someone should have done",
+       "tr": "birinin ne yapmış olması gerektiğini söylemek",
+       "uk": "говорити, що комусь варто було зробити",
+       "fa": "بگویی کسی چه کاری باید می‌کرد",
+       "ar": "قول ما كان على أحدهم أن يفعله",
+       "pt": "dizer o que alguém deveria ter feito",
+       "pl": "powiedzieć, co ktoś powinien był zrobić",
+       "ru": "говорить, что кому-то следовало сделать"
+      },
+      "themes": [
+       "freizeit_hobbys_b2",
+       "sport_b2",
+       "reisen_urlaub_b2"
+      ],
+      "feuilles": [
+       "double_infinitif"
+      ]
+     },
+     {
+      "id": "b2-soutenu",
+      "icone": "🎩",
+      "t": {
+       "fr": "Parler soutenu",
+       "en": "Formal speech",
+       "tr": "Özenli dille konuşmak",
+       "uk": "Говорити високим стилем",
+       "fa": "حرف زدن با زبانی فاخر",
+       "ar": "التحدّث بلغة رفيعة",
+       "pt": "Falar em registro formal",
+       "pl": "Mówić wyszukanym stylem",
+       "ru": "Говорить литературным языком"
+      },
+      "sais": {
+       "fr": "parler dans un registre soutenu",
+       "en": "speak in a formal register",
+       "tr": "özenli bir dille konuşmak",
+       "uk": "говорити високим стилем",
+       "fa": "به زبانی فاخر حرف بزنی",
+       "ar": "التحدّث بلغة رفيعة",
+       "pt": "falar em um registro formal",
+       "pl": "wypowiadać się w wyszukanym stylu",
+       "ru": "говорить литературным языком"
+      },
+      "themes": [
+       "musik_kunst_b2",
+       "schule_b2",
+       "universitaet_b2"
+      ],
+      "feuilles": [
+       "k2_forts"
+      ],
+      "scenes": [
+       "museum"
+      ],
+      "series": [
+       "adverbienNuanceExercises"
+      ],
+      "tuiles": [
+       "adverbien"
+      ]
+     },
+     {
+      "id": "b2-debattre",
+      "icone": "⚖️",
+      "t": {
+       "fr": "Débattre",
+       "en": "Debating",
+       "tr": "Tartışmak",
+       "uk": "Дискутувати",
+       "fa": "بحث کردن",
+       "ar": "المناظرة",
+       "pt": "Debater",
+       "pl": "Dyskutować",
+       "ru": "Дискутировать"
+      },
+      "sais": {
+       "fr": "débattre et défendre ton point de vue",
+       "en": "debate and defend your point of view",
+       "tr": "tartışmak ve görüşünü savunmak",
+       "uk": "дискутувати й відстоювати свою думку",
+       "fa": "بحث کنی و از دیدگاهت دفاع کنی",
+       "ar": "المناقشة والدفاع عن وجهة نظرك",
+       "pt": "debater e defender o seu ponto de vista",
+       "pl": "dyskutować i bronić swojego stanowiska",
+       "ru": "дискутировать и отстаивать свою точку зрения"
+      },
+      "themes": [
+       "politik_gesellschaft_b2",
+       "grundwortschatz_b2"
+      ],
+      "feuilles": [
+       "verbes_prep_b2"
+      ],
+      "series": [
+       "transformationConnecteursExercises",
+       "konjunktionenNuanceExercises"
+      ]
+     },
+     {
+      "id": "b2-precis",
+      "icone": "🔎",
+      "t": {
+       "fr": "Décrire avec précision",
+       "en": "Describing precisely",
+       "tr": "Ayrıntılı tarif etmek",
+       "uk": "Описувати точно",
+       "fa": "توصیف دقیق",
+       "ar": "الوصف بدقّة",
+       "pt": "Descrever com precisão",
+       "pl": "Opisać dokładnie",
+       "ru": "Описывать точно"
+      },
+      "sais": {
+       "fr": "décrire un objet ou un lieu avec précision",
+       "en": "describe an object or a place precisely",
+       "tr": "bir nesneyi ya da yeri ayrıntılı tarif etmek",
+       "uk": "точно описувати предмет або місце",
+       "fa": "چیزی یا جایی را دقیق توصیف کنی",
+       "ar": "وصف شيء أو مكان بدقّة",
+       "pt": "descrever um objeto ou um lugar com precisão",
+       "pl": "dokładnie opisać przedmiot lub miejsce",
+       "ru": "точно описывать предмет или место"
+      },
+      "themes": [
+       "wohnen_b2",
+       "moebel_haushalt_b2",
+       "kleidung_b2",
+       "farben_formen_b2",
+       "stadt_gebaeude_b2"
+      ],
+      "feuilles": [
+       "participe_adjectif"
+      ],
+      "illustres": [
+       "descripcion",
+       "contrarios"
+      ],
+      "series": [
+       "partizipExercises"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "b2-actualite",
+    "nom": {
+     "fr": "Comprendre l'actualité",
+     "en": "Understanding the news",
+     "tr": "Güncel olayları anlamak",
+     "uk": "Розуміти новини",
+     "fa": "اخبار روز را بفهمم",
+     "ar": "أفهم الأخبار",
+     "pt": "Entender as notícias",
+     "pl": "Rozumieć aktualności",
+     "ru": "Понимать новости"
+    },
+    "etapes": [
+     {
+      "id": "b2-article",
+      "icone": "📰",
+      "t": {
+       "fr": "Lire un article",
+       "en": "Reading an article",
+       "tr": "Bir makale okumak",
+       "uk": "Прочитати статтю",
+       "fa": "خواندن یک مقاله",
+       "ar": "قراءة مقال",
+       "pt": "Ler um artigo",
+       "pl": "Przeczytać artykuł",
+       "ru": "Прочитать статью"
+      },
+      "sais": {
+       "fr": "comprendre un article de journal",
+       "en": "understand a newspaper article",
+       "tr": "bir gazete makalesini anlamak",
+       "uk": "розуміти газетну статтю",
+       "fa": "مقالهٔ روزنامه را بفهمی",
+       "ar": "فهم مقال في صحيفة",
+       "pt": "entender um artigo de jornal",
+       "pl": "rozumieć artykuł z gazety",
+       "ru": "понимать газетную статью"
+      },
+      "themes": [
+       "medien_technologie_b2",
+       "zeit_kalender_b2"
+      ],
+      "feuilles": [
+       "passif_temps"
+      ],
+      "series": [
+       "passivExercises"
+      ]
+     },
+     {
+      "id": "b2-regles",
+      "icone": "🛠️",
+      "t": {
+       "fr": "Règles et consignes",
+       "en": "Rules and instructions",
+       "tr": "Kurallar ve talimatlar",
+       "uk": "Правила та інструкції",
+       "fa": "قانون‌ها و دستورها",
+       "ar": "القواعد والتعليمات",
+       "pt": "Regras e instruções",
+       "pl": "Zasady i instrukcje",
+       "ru": "Правила и инструкции"
+      },
+      "sais": {
+       "fr": "comprendre des règles et des consignes",
+       "en": "understand rules and instructions",
+       "tr": "kuralları ve talimatları anlamak",
+       "uk": "розуміти правила та інструкції",
+       "fa": "قانون‌ها و دستورها را بفهمی",
+       "ar": "فهم القواعد والتعليمات",
+       "pt": "entender regras e instruções",
+       "pl": "rozumieć zasady i instrukcje",
+       "ru": "понимать правила и инструкции"
+      },
+      "themes": [
+       "arbeit_buero_b2",
+       "berufe_b2",
+       "verkehr_b2"
+      ],
+      "feuilles": [
+       "passif_modal"
+      ],
+      "scenes": [
+       "buero"
+      ]
+     },
+     {
+      "id": "b2-etat",
+      "icone": "🔒",
+      "t": {
+       "fr": "Ouvert ou fermé : l'état",
+       "en": "Open or closed: the state",
+       "tr": "Açık mı, kapalı mı: durum",
+       "uk": "Відкрито чи закрито: стан",
+       "fa": "باز یا بسته: حالت چیزها",
+       "ar": "مفتوح أم مغلق: الحالة",
+       "pt": "Aberto ou fechado: o estado",
+       "pl": "Otwarte czy zamknięte: stan",
+       "ru": "Открыто или закрыто: состояние"
+      },
+      "sais": {
+       "fr": "dire dans quel état est une chose : ouverte, fermée, réparée",
+       "en": "say what state a thing is in: open, closed, repaired",
+       "tr": "bir şeyin durumunu söylemek: açık, kapalı, tamir edilmiş",
+       "uk": "говорити, в якому стані річ: відкрита, закрита, полагоджена",
+       "fa": "بگویی چیزی در چه حالتی است: باز، بسته، تعمیرشده",
+       "ar": "وصف حالة شيء: مفتوح، مغلق، مُصلَح",
+       "pt": "dizer em que estado algo está: aberto, fechado, consertado",
+       "pl": "powiedzieć, w jakim stanie jest coś: otwarte, zamknięte, naprawione",
+       "ru": "говорить, в каком состоянии вещь: открыта, закрыта, починена"
+      },
+      "themes": [
+       "einkaufen_geld_b2",
+       "essen_trinken_b2",
+       "kueche_kochen_b2",
+       "obst_gemuese_b2"
+      ],
+      "feuilles": [
+       "passif_etat"
+      ],
+      "scenes": [
+       "supermarkt"
+      ],
+      "illustres": [
+       "courses"
+      ]
+     },
+     {
+      "id": "b2-sanspassif",
+      "icone": "🌍",
+      "t": {
+       "fr": "Dire sans passif",
+       "en": "Saying it without the passive",
+       "tr": "Edilgen kullanmadan söylemek",
+       "uk": "Сказати без пасиву",
+       "fa": "گفتن بدون مجهول",
+       "ar": "القول دون استخدام المبني للمجهول",
+       "pt": "Dizer sem a passiva",
+       "pl": "Bez strony biernej",
+       "ru": "Сказать без пассива"
+      },
+      "sais": {
+       "fr": "dire la même chose sans passif",
+       "en": "say the same thing without the passive",
+       "tr": "aynı şeyi edilgen kullanmadan söylemek",
+       "uk": "говорити те саме без пасиву",
+       "fa": "همان را بدون مجهول بگویی",
+       "ar": "قول الشيء نفسه دون استخدام المبني للمجهول",
+       "pt": "dizer a mesma coisa sem a passiva",
+       "pl": "powiedzieć to samo bez strony biernej",
+       "ru": "говорить то же самое без пассива"
+      },
+      "themes": [
+       "umwelt_b2",
+       "natur_b2",
+       "wetter_b2",
+       "tiere_b2"
+      ],
+      "feuilles": [
+       "passif_ersatz"
+      ],
+      "scenes": [
+       "park"
+      ]
+     },
+     {
+      "id": "b2-science",
+      "icone": "🧬",
+      "t": {
+       "fr": "Science et santé",
+       "en": "Science and health",
+       "tr": "Bilim ve sağlık",
+       "uk": "Наука та здоров'я",
+       "fa": "علم و سلامت",
+       "ar": "العلم والصحة",
+       "pt": "Ciência e saúde",
+       "pl": "Nauka i zdrowie",
+       "ru": "Наука и здоровье"
+      },
+      "sais": {
+       "fr": "parler de science et de santé",
+       "en": "talk about science and health",
+       "tr": "bilim ve sağlıktan bahsetmek",
+       "uk": "говорити про науку та здоров'я",
+       "fa": "از علم و سلامت حرف بزنی",
+       "ar": "التحدّث عن العلم والصحة",
+       "pt": "falar de ciência e de saúde",
+       "pl": "mówić o nauce i zdrowiu",
+       "ru": "говорить о науке и здоровье"
+      },
+      "themes": [
+       "gesundheit_b2",
+       "koerperteile_b2",
+       "zahlen_mengen_b2"
+      ],
+      "feuilles": [
+       "werden_emplois"
+      ],
+      "scenes": [
+       "untersuchung"
+      ],
+      "illustres": [
+       "cuerpo"
+      ],
+      "series": [
+       "werdenExercises"
+      ]
+     }
+    ]
+   }
+  ],
+  "C1": [
+   {
+    "id": "c1-idees",
+    "nom": {
+     "fr": "Défendre mes idées",
+     "en": "Defending my ideas",
+     "tr": "Fikirlerimi savunmak",
+     "uk": "Відстоювати мої ідеї",
+     "fa": "از نظرهایم دفاع کنم",
+     "ar": "أدافع عن أفكاري",
+     "pt": "Defender as minhas ideias",
+     "pl": "Bronić swoich poglądów",
+     "ru": "Отстаивать свои идеи"
+    },
+    "etapes": [
+     {
+      "id": "c1-rapporter",
+      "icone": "🗞️",
+      "t": {
+       "fr": "« D'après lui… »",
+       "en": "“According to him…”",
+       "tr": "“Ona göre…”",
+       "uk": "«За його словами…»",
+       "fa": "«به گفتهٔ او…»",
+       "ar": "«بحسب قوله…»",
+       "pt": "“Segundo ele…”",
+       "pl": "„Według niego…”",
+       "ru": "«По его словам…»"
+      },
+      "sais": {
+       "fr": "rapporter ce que quelqu'un a dit",
+       "en": "report what someone said",
+       "tr": "birinin söylediğini aktarmak",
+       "uk": "переказувати, що хтось сказав",
+       "fa": "گفتهٔ کسی را نقل کنی",
+       "ar": "نقل ما قاله أحدهم",
+       "pt": "relatar o que alguém disse",
+       "pl": "przekazać, co ktoś powiedział",
+       "ru": "передавать чужие слова"
+      },
+      "themes": [
+       "sprache_kommunikation_c1",
+       "bildung_medien_c1",
+       "medien_technologie_c1"
+      ],
+      "feuilles": [
+       "k1"
+      ],
+      "series": [
+       "konjunktiv1Exercises"
+      ]
+     },
+     {
+      "id": "c1-ersatz",
+      "icone": "🔁",
+      "t": {
+       "fr": "Quand le Konjunktiv I ne se voit pas",
+       "en": "When the Konjunktiv I doesn't show",
+       "tr": "Konjunktiv I belli olmadığında",
+       "uk": "Коли Konjunktiv I непомітний",
+       "fa": "وقتی Konjunktiv I دیده نمی‌شود",
+       "ar": "حين لا يظهر Konjunktiv I",
+       "pt": "Quando o Konjunktiv I não aparece",
+       "pl": "Kiedy Konjunktiv I nie jest widoczny",
+       "ru": "Когда Konjunktiv I не виден"
+      },
+      "sais": {
+       "fr": "rapporter des paroles sans ambiguïté",
+       "en": "report speech without any ambiguity",
+       "tr": "söylenenleri açık ve net aktarmak",
+       "uk": "переказувати чужі слова однозначно",
+       "fa": "گفته‌ها را بی‌ابهام نقل کنی",
+       "ar": "نقل الكلام دون التباس",
+       "pt": "relatar uma fala sem ambiguidade",
+       "pl": "jednoznacznie przekazać czyjeś słowa",
+       "ru": "передавать чужие слова однозначно"
+      },
+      "themes": [
+       "denken_wahrnehmung_c1",
+       "ursache_wirkung_c1"
+      ],
+      "feuilles": [
+       "k1_ersatz"
+      ]
+     },
+     {
+      "id": "c1-tribunal",
+      "icone": "⚖️",
+      "t": {
+       "fr": "Témoins et tribunal",
+       "en": "Witnesses and the court",
+       "tr": "Tanıklar ve mahkeme",
+       "uk": "Свідки та суд",
+       "fa": "شاهدان و دادگاه",
+       "ar": "الشهود والمحكمة",
+       "pt": "Testemunhas e tribunal",
+       "pl": "Świadkowie i sąd",
+       "ru": "Свидетели и суд"
+      },
+      "sais": {
+       "fr": "rapporter un témoignage, une question, un ordre",
+       "en": "report a statement, a question, an order",
+       "tr": "bir ifadeyi, bir soruyu, bir emri aktarmak",
+       "uk": "переказувати свідчення, запитання, наказ",
+       "fa": "شهادتی، سؤالی یا دستوری را نقل کنی",
+       "ar": "نقل شهادة أو سؤال أو أمر",
+       "pt": "relatar um depoimento, uma pergunta, uma ordem",
+       "pl": "przekazać zeznanie, pytanie, polecenie",
+       "ru": "передавать показания, вопрос, приказ"
+      },
+      "themes": [
+       "recht_justiz_c1",
+       "polizei_verfahren_c1",
+       "sicherheit_krisen_c1"
+      ],
+      "feuilles": [
+       "k1_passe",
+       "k1_questions"
+      ]
+     },
+     {
+      "id": "c1-supposer",
+      "icone": "🤔",
+      "t": {
+       "fr": "Supposer, conclure",
+       "en": "Supposing, concluding",
+       "tr": "Varsaymak, sonuç çıkarmak",
+       "uk": "Припускати, робити висновки",
+       "fa": "حدس زدن، نتیجه گرفتن",
+       "ar": "الافتراض والاستنتاج",
+       "pt": "Supor, concluir",
+       "pl": "Przypuszczać, wnioskować",
+       "ru": "Предполагать, делать выводы"
+      },
+      "sais": {
+       "fr": "faire des suppositions et conclure",
+       "en": "make assumptions and draw conclusions",
+       "tr": "varsayımda bulunmak ve sonuç çıkarmak",
+       "uk": "висловлювати припущення й робити висновки",
+       "fa": "حدس بزنی و نتیجه بگیری",
+       "ar": "وضع افتراضات والاستنتاج منها",
+       "pt": "fazer suposições e concluir",
+       "pl": "snuć przypuszczenia i wyciągać wnioski",
+       "ru": "строить предположения и делать выводы"
+      },
+      "themes": [
+       "argumentation_c1",
+       "konflikt_verhandlung_c1",
+       "ethik_werte_c1",
+       "glaube_sinn_c1"
+      ],
+      "feuilles": [
+       "futur2"
+      ],
+      "series": [
+       "konnektorenExercises"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "c1-ecrit",
+    "nom": {
+     "fr": "Maîtriser l'allemand écrit",
+     "en": "Mastering written German",
+     "tr": "Yazılı Almancaya hâkim olmak",
+     "uk": "Опанувати письмову німецьку",
+     "fa": "بر آلمانی نوشتاری مسلط شوم",
+     "ar": "أتقن الألمانية المكتوبة",
+     "pt": "Dominar o alemão escrito",
+     "pl": "Opanować pisany niemiecki",
+     "ru": "Владеть письменным немецким"
+    },
+    "etapes": [
+     {
+      "id": "c1-administration",
+      "icone": "🏢",
+      "t": {
+       "fr": "L'allemand des administrations",
+       "en": "Official German",
+       "tr": "Resmî kurumların Almancası",
+       "uk": "Німецька офіційних установ",
+       "fa": "آلمانی اداری",
+       "ar": "لغة الدوائر الرسمية",
+       "pt": "O alemão dos órgãos públicos",
+       "pl": "Niemiecki urzędowy",
+       "ru": "Канцелярский немецкий"
+      },
+      "sais": {
+       "fr": "comprendre l'allemand des administrations",
+       "en": "understand the German of official letters",
+       "tr": "resmî kurumların Almancasını anlamak",
+       "uk": "розуміти німецьку офіційних установ",
+       "fa": "آلمانی اداری را بفهمی",
+       "ar": "فهم لغة الدوائر الرسمية الألمانية",
+       "pt": "entender o alemão dos órgãos públicos",
+       "pl": "rozumieć urzędowy niemiecki",
+       "ru": "понимать канцелярский немецкий"
+      },
+      "themes": [
+       "wirtschaft_verwaltung_c1",
+       "versicherung_c1",
+       "dienstleistung_c1",
+       "logistik_versand_c1",
+       "konsum_handel_c1",
+       "einkaufen_geld_c1"
+      ],
+      "feuilles": [
+       "passif_passe_modal"
+      ],
+      "scenes": [
+       "buergeramt"
+      ],
+      "illustres": [
+       "demarches"
+      ]
+     },
+     {
+      "id": "c1-participe",
+      "icone": "📜",
+      "t": {
+       "fr": "Le participe étendu",
+       "en": "The extended participle",
+       "tr": "Genişletilmiş ortaç",
+       "uk": "Поширений дієприкметник",
+       "fa": "وجه وصفی گسترده",
+       "ar": "الصفة المشتقة الموسَّعة (erweitertes Partizip)",
+       "pt": "O particípio estendido",
+       "pl": "Rozbudowany imiesłów",
+       "ru": "Распространённое причастное определение"
+      },
+      "sais": {
+       "fr": "lire des phrases longues et denses",
+       "en": "read long, dense sentences",
+       "tr": "uzun ve yoğun cümleler okumak",
+       "uk": "читати довгі й насичені речення",
+       "fa": "جمله‌های بلند و فشرده را بخوانی",
+       "ar": "قراءة جمل طويلة ومكثّفة",
+       "pt": "ler frases longas e densas",
+       "pl": "czytać długie i złożone zdania",
+       "ru": "читать длинные и насыщенные предложения"
+      },
+      "themes": [
+       "gesellschaft_wandel_c1",
+       "geschichte_erinnerung_c1",
+       "politik_gesellschaft_c1",
+       "alter_abschied_c1"
+      ],
+      "feuilles": [
+       "participe_etendu"
+      ]
+     },
+     {
+      "id": "c1-style",
+      "icone": "🧱",
+      "t": {
+       "fr": "Verbe + nom : le style écrit",
+       "en": "Verb + noun: written style",
+       "tr": "Fiil + isim: yazı dili",
+       "uk": "Дієслово + іменник: письмовий стиль",
+       "fa": "فعل + اسم: سبک نوشتاری",
+       "ar": "فعل + اسم: الأسلوب المكتوب",
+       "pt": "Verbo + substantivo: o estilo escrito",
+       "pl": "Czasownik + rzeczownik: styl pisany",
+       "ru": "Глагол + существительное: письменный стиль"
+      },
+      "sais": {
+       "fr": "écrire dans un style soutenu",
+       "en": "write in a formal style",
+       "tr": "özenli bir üslupla yazmak",
+       "uk": "писати високим стилем",
+       "fa": "به سبک فاخر بنویسی",
+       "ar": "الكتابة بأسلوب رفيع",
+       "pt": "escrever em um estilo formal",
+       "pl": "pisać w wyszukanym stylu",
+       "ru": "писать литературным языком"
+      },
+      "themes": [
+       "arbeit_buero_c1",
+       "universitaet_c1",
+       "schule_c1",
+       "erziehung_kindheit_c1",
+       "pflege_betreuung_c1"
+      ],
+      "feuilles": [
+       "fvg"
+      ],
+      "series": [
+       "funktionsverbExercises"
+      ]
+     },
+     {
+      "id": "c1-arts",
+      "icone": "🎭",
+      "t": {
+       "fr": "Arts, nature, campagne",
+       "en": "Arts, nature, countryside",
+       "tr": "Sanat, doğa, kırsal",
+       "uk": "Мистецтво, природа, село",
+       "fa": "هنر، طبیعت، روستا",
+       "ar": "الفنون والطبيعة والريف",
+       "pt": "Artes, natureza, campo",
+       "pl": "Sztuka, przyroda, wieś",
+       "ru": "Искусство, природа, деревня"
+      },
+      "sais": {
+       "fr": "parler d'art et de nature avec précision",
+       "en": "talk about art and nature precisely",
+       "tr": "sanat ve doğadan ayrıntılı biçimde bahsetmek",
+       "uk": "точно говорити про мистецтво та природу",
+       "fa": "از هنر و طبیعت دقیق حرف بزنی",
+       "ar": "التحدّث عن الفن والطبيعة بدقّة",
+       "pt": "falar de arte e de natureza com precisão",
+       "pl": "precyzyjnie mówić o sztuce i przyrodzie",
+       "ru": "точно говорить об искусстве и природе"
+      },
+      "themes": [
+       "technik_kunst_c1",
+       "buehne_text_c1",
+       "musik_kunst_c1",
+       "bild_aufnahme_c1",
+       "natur_c1",
+       "umwelt_c1",
+       "landwirtschaft_c1",
+       "garten_pflanzen_c1",
+       "meer_kueste_c1",
+       "tiere_c1",
+       "wetter_c1"
+      ]
+     },
+     {
+      "id": "c1-quotidien",
+      "icone": "🏡",
+      "t": {
+       "fr": "Le quotidien, en finesse",
+       "en": "Everyday life, with nuance",
+       "tr": "Günlük hayat, incelikle",
+       "uk": "Повсякдення з нюансами",
+       "fa": "زندگی روزمره، با ظرافت",
+       "ar": "الحياة اليومية بدقّة",
+       "pt": "O dia a dia, com sutileza",
+       "pl": "Codzienność w niuansach",
+       "ru": "Повседневная жизнь в деталях"
+      },
+      "sais": {
+       "fr": "parler de la vie de tous les jours avec finesse",
+       "en": "talk about everyday life with nuance",
+       "tr": "günlük hayattan incelikle bahsetmek",
+       "uk": "тонко говорити про повсякденне життя",
+       "fa": "از زندگی روزمره با ظرافت حرف بزنی",
+       "ar": "التحدّث عن الحياة اليومية بتعابير دقيقة",
+       "pt": "falar do dia a dia com sutileza",
+       "pl": "z wyczuciem mówić o życiu codziennym",
+       "ru": "тонко говорить о повседневной жизни"
+      },
+      "themes": [
+       "gesundheit_c1",
+       "koerperteile_c1",
+       "wohnen_c1",
+       "heimwerken_c1",
+       "handwerk_material_c1",
+       "kueche_kochen_c1",
+       "kleidung_c1",
+       "sport_c1",
+       "reisen_urlaub_c1",
+       "verkehr_c1",
+       "stadt_gebaeude_c1",
+       "familie_c1",
+       "gefuehle_charakter_c1",
+       "lebensfuehrung_c1",
+       "vereinsleben_c1"
+      ],
+      "scenes": [
+       "heimwerken"
+      ],
+      "series": [
+       "premierePlaceExercises"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "c1-examen",
+    "nom": {
+     "fr": "Réussir mon C1",
+     "en": "Passing my C1",
+     "tr": "C1 sınavımı geçmek",
+     "uk": "Скласти мій C1",
+     "fa": "در C1 قبول شوم",
+     "ar": "أنجح في C1",
+     "pt": "Passar no meu C1",
+     "pl": "Zdać mój egzamin C1",
+     "ru": "Сдать экзамен C1"
+    },
+    "examen": "Goethe C1 · telc C1",
+    "etapes": [
+     {
+      "id": "c1-ex-ecouter",
+      "icone": "🎧",
+      "t": {
+       "fr": "Écouter",
+       "en": "Listening",
+       "tr": "Dinleme",
+       "uk": "Слухати",
+       "fa": "شنیداری",
+       "ar": "الاستماع",
+       "pt": "Ouvir",
+       "pl": "Słuchanie",
+       "ru": "Слушать"
+      },
+      "sais": {
+       "fr": "comprendre une conférence ou un débat",
+       "en": "understand a lecture or a debate",
+       "tr": "bir konferansı ya da tartışmayı anlamak",
+       "uk": "розуміти лекцію або дебати",
+       "fa": "سخنرانی یا مناظره‌ای را بفهمی",
+       "ar": "فهم محاضرة أو مناظرة",
+       "pt": "entender uma palestra ou um debate",
+       "pl": "rozumieć wykład lub debatę",
+       "ru": "понимать лекцию или дискуссию"
+      },
+      "pruefung": {
+       "partie": "hoeren",
+       "niveau": "C1"
+      }
+     },
+     {
+      "id": "c1-ex-lire",
+      "icone": "📖",
+      "t": {
+       "fr": "Lire",
+       "en": "Reading",
+       "tr": "Okuma",
+       "uk": "Читати",
+       "fa": "خوانداری",
+       "ar": "القراءة",
+       "pt": "Ler",
+       "pl": "Czytanie",
+       "ru": "Читать"
+      },
+      "sais": {
+       "fr": "lire un commentaire ou un texte documentaire",
+       "en": "read a commentary or a factual text",
+       "tr": "bir yorum yazısı ya da bilgilendirici bir metin okumak",
+       "uk": "читати коментар або документальний текст",
+       "fa": "یادداشت تحلیلی یا متن مستندی را بخوانی",
+       "ar": "قراءة مقال رأي أو نصّ وثائقي",
+       "pt": "ler um comentário ou um texto informativo",
+       "pl": "czytać komentarz lub tekst informacyjny",
+       "ru": "читать комментарий или документальный текст"
+      },
+      "pruefung": {
+       "partie": "lesen",
+       "niveau": "C1"
+      }
+     },
+     {
+      "id": "c1-ex-ecrire",
+      "icone": "✍️",
+      "t": {
+       "fr": "Écrire",
+       "en": "Writing",
+       "tr": "Yazma",
+       "uk": "Писати",
+       "fa": "نوشتاری",
+       "ar": "الكتابة",
+       "pt": "Escrever",
+       "pl": "Pisanie",
+       "ru": "Писать"
+      },
+      "sais": {
+       "fr": "écrire une argumentation",
+       "en": "write an argumentative text",
+       "tr": "gerekçeli bir metin yazmak",
+       "uk": "писати аргументований текст",
+       "fa": "متن استدلالی بنویسی",
+       "ar": "كتابة نصّ حِجاجي",
+       "pt": "escrever um texto argumentativo",
+       "pl": "napisać tekst argumentacyjny",
+       "ru": "писать аргументированный текст"
+      },
+      "pruefung": {
+       "partie": "schreiben",
+       "niveau": "C1"
+      }
+     },
+     {
+      "id": "c1-ex-parler",
+      "icone": "🎤",
+      "t": {
+       "fr": "Parler",
+       "en": "Speaking",
+       "tr": "Konuşma",
+       "uk": "Говорити",
+       "fa": "گفتاری",
+       "ar": "التحدّث",
+       "pt": "Falar",
+       "pl": "Mówienie",
+       "ru": "Говорить"
+      },
+      "sais": {
+       "fr": "faire un exposé et en discuter",
+       "en": "give a presentation and discuss it",
+       "tr": "bir sunum yapmak ve üzerine konuşmak",
+       "uk": "робити доповідь і обговорювати її",
+       "fa": "ارائه بدهی و درباره‌اش گفت‌وگو کنی",
+       "ar": "تقديم عرض ومناقشته",
+       "pt": "fazer uma apresentação e discuti-la",
+       "pl": "wygłosić referat i o nim podyskutować",
+       "ru": "делать доклад и обсуждать его"
+      },
+      "pruefung": {
+       "partie": "sprechen",
+       "niveau": "C1"
+      }
+     }
+    ]
+   }
+  ]
+ }
+}

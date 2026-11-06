@@ -1,0 +1,1036 @@
+{
+ "_lisez_moi": [
+  "Les étapes de l'A2 au C1 (6 nov. 2026), sur le modèle de l'A1 voyage : par niveau, des groupes d'étapes nommés, puis un groupe « examen » là où l'app a le contenu de l'épreuve.",
+  "Fichier DÉRIVÉ : le refaire avec python tests/etapes_construire.py (source : etapes/structure.py et etapes/traductions/), jamais à la main. Contrôle : python tests/etapes.py.",
+  "Une étape ne crée aucun contenu : elle NOMME ce qui existe (themes, feuilles de conjugaison, scenes, illustres = THEMES_ILLUSTRES, series d'exercices, tuiles ou fiches de grammaire, pruefung = une partie de pruefung.json).",
+  "sais : la ligne « Tu sais… » de l'étape, à l'infinitif, qui se lit après « Tu sais maintenant… » et « Cette semaine, tu as appris à… » (amorces dans je-sais.json)."
+ ],
+ "niveaux": {
+  "A2": [
+   {
+    "id": "a2-raconter",
+    "nom": {
+     "fr": "Raconter ma vie",
+     "en": "Talking about my life",
+     "pt": "Contar a minha vida",
+     "ar": "أروي حياتي",
+     "de": "Von meinem Leben erzählen"
+    },
+    "etapes": [
+     {
+      "id": "a2-hoy",
+      "icone": "🗓️",
+      "t": {
+       "fr": "Ce que j'ai fait aujourd'hui",
+       "en": "What I did today",
+       "pt": "O que eu fiz hoje",
+       "ar": "ما فعلته اليوم",
+       "de": "Was ich heute gemacht habe"
+      },
+      "sais": {
+       "fr": "raconter ce que tu as fait aujourd'hui",
+       "en": "say what you did today",
+       "pt": "contar o que você fez hoje",
+       "ar": "سرد ما فعلته اليوم",
+       "de": "erzählen, was du heute gemacht hast"
+      },
+      "themes": [
+       "las_tareas",
+       "la_comunicacion",
+       "los_movimientos"
+      ],
+      "feuilles": [
+       "perfecto"
+      ],
+      "scenes": [
+       "schlafzimmer",
+       "kueche"
+      ],
+      "illustres": [
+       "journee"
+      ],
+      "fiches": [
+       "pasados"
+      ]
+     },
+     {
+      "id": "a2-vacaciones",
+      "icone": "🏖️",
+      "t": {
+       "fr": "Mes vacances",
+       "en": "My holidays",
+       "pt": "Minhas férias",
+       "ar": "إجازتي",
+       "de": "Mein Urlaub"
+      },
+      "sais": {
+       "fr": "raconter tes vacances",
+       "en": "talk about your holidays",
+       "pt": "contar as suas férias",
+       "ar": "سرد إجازتك",
+       "de": "von deinem Urlaub erzählen"
+      },
+      "themes": [
+       "el_viaje",
+       "las_vacaciones",
+       "el_hotel",
+       "el_aeropuerto"
+      ],
+      "feuilles": [
+       "preterito_regular",
+       "preterito_ser_ir"
+      ],
+      "scenes": [
+       "strand",
+       "flughafen",
+       "hotel"
+      ],
+      "illustres": [
+       "meteo",
+       "transportes"
+      ],
+      "series": [
+       "preposicionesViajeExercises"
+      ]
+     },
+     {
+      "id": "a2-pasado",
+      "icone": "😮",
+      "t": {
+       "fr": "Ce qui s'est passé",
+       "en": "What happened",
+       "pt": "O que aconteceu",
+       "ar": "ما حدث",
+       "de": "Was passiert ist"
+      },
+      "sais": {
+       "fr": "raconter ce qui s'est passé",
+       "en": "tell what happened",
+       "pt": "contar o que aconteceu",
+       "ar": "سرد ما حدث",
+       "de": "erzählen, was passiert ist"
+      },
+      "themes": [
+       "los_problemas",
+       "la_seguridad"
+      ],
+      "feuilles": [
+       "preterito_irregulier"
+      ],
+      "scenes": [
+       "zug",
+       "hotel"
+      ],
+      "series": [
+       "preposicionesExercises"
+      ],
+      "fiches": [
+       "preposiciones"
+      ]
+     },
+     {
+      "id": "a2-infancia",
+      "icone": "🧒",
+      "t": {
+       "fr": "Quand j'étais petit",
+       "en": "When I was little",
+       "pt": "Quando eu era criança",
+       "ar": "في طفولتي",
+       "de": "Als ich klein war"
+      },
+      "sais": {
+       "fr": "dire comment c'était quand tu étais petit",
+       "en": "say what it was like when you were little",
+       "pt": "dizer como era quando você era criança",
+       "ar": "وصف طفولتك وكيف كانت الأمور حينها",
+       "de": "erzählen, wie es war, als du klein warst"
+      },
+      "themes": [
+       "las_etapas",
+       "la_familia_extensa",
+       "los_estudios"
+      ],
+      "feuilles": [
+       "imperfecto",
+       "imperfecto_irregulier"
+      ],
+      "scenes": [
+       "familie",
+       "klassenzimmer"
+      ],
+      "illustres": [
+       "familia"
+      ],
+      "series": [
+       "demostrativosExercises"
+      ],
+      "fiches": [
+       "demostrativos-posesivos"
+      ]
+     },
+     {
+      "id": "a2-decorado",
+      "icone": "🎭",
+      "t": {
+       "fr": "Le décor et l'action",
+       "en": "The setting and the action",
+       "pt": "O cenário e a ação",
+       "ar": "المشهد والحدث",
+       "de": "Hintergrund und Handlung"
+      },
+      "sais": {
+       "fr": "raconter une histoire, avec le décor et l'action",
+       "en": "tell a story, with the setting and the action",
+       "pt": "contar uma história, com o cenário e a ação",
+       "ar": "سرد قصة بمشهدها وأحداثها",
+       "de": "eine Geschichte mit Hintergrund und Handlung erzählen"
+      },
+      "themes": [
+       "las_emociones",
+       "las_relaciones",
+       "el_aspecto",
+       "la_personalidad",
+       "las_fiestas",
+       "vhs_kapitel1_b1"
+      ],
+      "feuilles": [
+       "preterito_ou_imperfecto"
+      ],
+      "scenes": [
+       "geburtstag"
+      ],
+      "illustres": [
+       "emociones",
+       "descripcion"
+      ],
+      "series": [
+       "serEstarExercises"
+      ],
+      "fiches": [
+       "ser-estar"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "a2-place",
+    "nom": {
+     "fr": "Me faire ma place",
+     "en": "Finding my place",
+     "pt": "Encontrar o meu lugar",
+     "ar": "أجد مكاني",
+     "de": "Meinen Platz finden"
+    },
+    "etapes": [
+     {
+      "id": "a2-vivienda",
+      "icone": "🏠",
+      "t": {
+       "fr": "Le logement",
+       "en": "Home",
+       "pt": "A moradia",
+       "ar": "السكن",
+       "de": "Die Wohnung"
+      },
+      "sais": {
+       "fr": "décrire ton logement et ce que tu es en train de faire",
+       "en": "describe your home and what you're doing right now",
+       "pt": "descrever onde você mora e o que está fazendo",
+       "ar": "وصف سكنك وما تفعله الآن",
+       "de": "deine Wohnung beschreiben und sagen, was du gerade machst"
+      },
+      "themes": [
+       "la_vivienda",
+       "nom_casa",
+       "las_herramientas",
+       "los_materiales"
+      ],
+      "feuilles": [
+       "estar_gerundio"
+      ],
+      "scenes": [
+       "umzug",
+       "wohnzimmer"
+      ],
+      "illustres": [
+       "logement"
+      ],
+      "fiches": [
+       "hay-preguntas"
+      ]
+     },
+     {
+      "id": "a2-trabajo",
+      "icone": "💼",
+      "t": {
+       "fr": "Le travail, mes projets",
+       "en": "Work, my plans",
+       "pt": "O trabalho, meus planos",
+       "ar": "العمل ومشاريعي",
+       "de": "Die Arbeit, meine Pläne"
+      },
+      "sais": {
+       "fr": "parler de ton travail et de tes projets",
+       "en": "talk about your job and your plans",
+       "pt": "falar do seu trabalho e dos seus planos",
+       "ar": "التحدّث عن عملك ومشاريعك",
+       "de": "über deine Arbeit und deine Pläne sprechen"
+      },
+      "themes": [
+       "la_oficina",
+       "la_tecnologia",
+       "los_medios"
+      ],
+      "feuilles": [
+       "ir_a"
+      ],
+      "scenes": [
+       "buero"
+      ],
+      "illustres": [
+       "metiers"
+      ],
+      "series": [
+       "perifrasisExercises"
+      ],
+      "fiches": [
+       "perifrasis"
+      ]
+     },
+     {
+      "id": "a2-medico",
+      "icone": "🩺",
+      "t": {
+       "fr": "Chez le médecin",
+       "en": "At the doctor's",
+       "pt": "No médico",
+       "ar": "عند الطبيب",
+       "de": "Beim Arzt"
+      },
+      "sais": {
+       "fr": "expliquer au médecin ce que tu as",
+       "en": "tell the doctor what's wrong with you",
+       "pt": "explicar ao médico o que você está sentindo",
+       "ar": "شرح ما تعانيه للطبيب",
+       "de": "dem Arzt erklären, was dir fehlt"
+      },
+      "themes": [
+       "la_salud",
+       "partes_del_cuerpo",
+       "el_bienestar"
+      ],
+      "feuilles": [
+       "imperativo"
+      ],
+      "scenes": [
+       "arztpraxis",
+       "apotheke"
+      ],
+      "illustres": [
+       "cuerpo"
+      ],
+      "series": [
+       "imperativoExercises"
+      ],
+      "fiches": [
+       "pronombres"
+      ]
+     },
+     {
+      "id": "a2-servicios",
+      "icone": "🏛️",
+      "t": {
+       "fr": "Services et démarches",
+       "en": "Services and paperwork",
+       "pt": "Serviços e burocracia",
+       "ar": "الخدمات والمعاملات",
+       "de": "Dienste und Behördengänge"
+      },
+      "sais": {
+       "fr": "te débrouiller au guichet et dans les démarches",
+       "en": "get by at the counter and with paperwork",
+       "pt": "se virar no guichê e na burocracia",
+       "ar": "تدبّر أمرك عند الشبّاك وفي المعاملات",
+       "de": "dich am Schalter und bei Behördengängen zurechtfinden"
+      },
+      "themes": [
+       "los_servicios",
+       "orientarse",
+       "el_dinero",
+       "la_cantidad"
+      ],
+      "scenes": [
+       "buergeramt",
+       "post",
+       "kreuzung"
+      ],
+      "illustres": [
+       "demarches"
+      ],
+      "series": [
+       "porParaExercises"
+      ],
+      "fiches": [
+       "por-para"
+      ]
+     },
+     {
+      "id": "a2-compras",
+      "icone": "🛍️",
+      "t": {
+       "fr": "Acheter, cuisiner, sortir",
+       "en": "Shopping, cooking, going out",
+       "pt": "Comprar, cozinhar, sair",
+       "ar": "الشراء والطبخ والخروج",
+       "de": "Einkaufen, kochen, ausgehen"
+      },
+      "sais": {
+       "fr": "acheter, cuisiner et sortir",
+       "en": "shop, cook and go out",
+       "pt": "comprar, cozinhar e sair",
+       "ar": "الشراء والطبخ والخروج",
+       "de": "einkaufen, kochen und ausgehen"
+      },
+      "themes": [
+       "la_cocina_a2",
+       "las_frutas",
+       "las_verduras",
+       "la_moda",
+       "el_cine",
+       "la_musica",
+       "el_arte",
+       "el_deporte",
+       "la_naturaleza",
+       "el_medioambiente"
+      ],
+      "scenes": [
+       "supermarkt",
+       "markt-gemuese-frucht"
+      ],
+      "illustres": [
+       "courses",
+       "manger",
+       "loisirs"
+      ],
+      "series": [
+       "gustarExercises"
+      ]
+     }
+    ]
+   }
+  ],
+  "B1": [
+   {
+    "id": "b1-travailler",
+    "nom": {
+     "fr": "Travailler en espagnol",
+     "en": "Working in Spanish",
+     "pt": "Trabalhar em espanhol",
+     "ar": "أعمل بالإسبانية",
+     "de": "Auf Spanisch arbeiten"
+    },
+    "etapes": [
+     {
+      "id": "b1-empleo",
+      "icone": "📰",
+      "t": {
+       "fr": "Chercher un emploi",
+       "en": "Looking for a job",
+       "pt": "Procurar emprego",
+       "ar": "البحث عن عمل",
+       "de": "Eine Stelle suchen"
+      },
+      "sais": {
+       "fr": "chercher un emploi et demander poliment",
+       "en": "look for a job and ask politely",
+       "pt": "procurar emprego e pedir com educação",
+       "ar": "البحث عن عمل والطلب بلطف",
+       "de": "eine Stelle suchen und höflich um etwas bitten"
+      },
+      "themes": [
+       "el_trabajo_b1",
+       "comunicacion_profesional"
+      ],
+      "feuilles": [
+       "condicional_politesse"
+      ],
+      "scenes": [
+       "buero"
+      ],
+      "illustres": [
+       "metiers"
+      ]
+     },
+     {
+      "id": "b1-empresa",
+      "icone": "🏢",
+      "t": {
+       "fr": "L'entreprise",
+       "en": "The company",
+       "pt": "A empresa",
+       "ar": "الشركة",
+       "de": "Die Firma"
+      },
+      "sais": {
+       "fr": "parler de l'entreprise et de ce qui va se passer",
+       "en": "talk about the company and what's going to happen",
+       "pt": "falar da empresa e do que vai acontecer",
+       "ar": "التحدّث عن الشركة وعمّا سيحدث",
+       "de": "von der Firma erzählen und sagen, was passieren wird"
+      },
+      "themes": [
+       "la_empresa",
+       "las_finanzas",
+       "la_economia",
+       "el_consumo",
+       "la_publicidad"
+      ],
+      "feuilles": [
+       "futuro"
+      ],
+      "scenes": [
+       "buero"
+      ],
+      "series": [
+       "futuroExercises"
+      ],
+      "fiches": [
+       "futuro-condicional"
+      ]
+     },
+     {
+      "id": "b1-futuro",
+      "icone": "🔮",
+      "t": {
+       "fr": "Mon avenir",
+       "en": "My future",
+       "pt": "Meu futuro",
+       "ar": "مستقبلي",
+       "de": "Meine Zukunft"
+      },
+      "sais": {
+       "fr": "parler de ton avenir",
+       "en": "talk about your future",
+       "pt": "falar do seu futuro",
+       "ar": "التحدّث عن مستقبلك",
+       "de": "über deine Zukunft sprechen"
+      },
+      "themes": [
+       "la_educacion",
+       "la_tecnologia_b1",
+       "las_redes",
+       "la_ciencia",
+       "los_datos"
+      ],
+      "feuilles": [
+       "futuro_irregulier"
+      ],
+      "scenes": [
+       "klassenzimmer",
+       "bibliothek"
+      ]
+     },
+     {
+      "id": "b1-haria",
+      "icone": "🤷",
+      "t": {
+       "fr": "Ce que je ferais",
+       "en": "What I would do",
+       "pt": "O que eu faria",
+       "ar": "ما كنت سأفعله",
+       "de": "Was ich tun würde"
+      },
+      "sais": {
+       "fr": "dire ce que tu ferais à la place de quelqu'un",
+       "en": "say what you would do in someone's place",
+       "pt": "dizer o que você faria no lugar de alguém",
+       "ar": "قول ما كنت ستفعله مكان شخص آخر",
+       "de": "sagen, was du an jemandes Stelle tun würdest"
+      },
+      "themes": [
+       "la_industria",
+       "la_energia",
+       "la_agricultura",
+       "nom_taller"
+      ],
+      "feuilles": [
+       "condicional"
+      ],
+      "scenes": [
+       "bauernhof",
+       "heimwerken"
+      ],
+      "series": [
+       "condicionalExercises"
+      ]
+     },
+     {
+      "id": "b1-prohibir",
+      "icone": "⛔",
+      "t": {
+       "fr": "Ne fais pas ça !",
+       "en": "Don't do that!",
+       "pt": "Não faça isso!",
+       "ar": "لا تفعل ذلك!",
+       "de": "Mach das nicht!"
+      },
+      "sais": {
+       "fr": "donner un conseil ou une consigne : ne fais pas ça",
+       "en": "give advice or an instruction: don't do that",
+       "pt": "dar um conselho ou uma instrução: não faça isso",
+       "ar": "إعطاء نصيحة أو تعليمة: لا تفعل ذلك",
+       "de": "einen Rat oder eine Anweisung geben: Mach das nicht"
+      },
+      "themes": [
+       "la_salud_b1",
+       "la_medicina",
+       "cuerpo_humano",
+       "la_alimentacion",
+       "frutas_verduras_b1"
+      ],
+      "feuilles": [
+       "imperativo_negativo"
+      ],
+      "scenes": [
+       "arztpraxis"
+      ],
+      "illustres": [
+       "cuerpo"
+      ],
+      "fiches": [
+       "imperativo"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "b1-avis",
+    "nom": {
+     "fr": "Donner mon avis",
+     "en": "Giving my opinion",
+     "pt": "Dar a minha opinião",
+     "ar": "أعبّر عن رأيي",
+     "de": "Meine Meinung sagen"
+    },
+    "etapes": [
+     {
+      "id": "b1-deseo",
+      "icone": "🙏",
+      "t": {
+       "fr": "Je veux que…",
+       "en": "I want you to…",
+       "pt": "Quero que…",
+       "ar": "أريد أن…",
+       "de": "Ich will, dass …"
+      },
+      "sais": {
+       "fr": "dire ce que tu veux que les autres fassent",
+       "en": "say what you want other people to do",
+       "pt": "dizer o que você quer que os outros façam",
+       "ar": "قول ما تريد من الآخرين أن يفعلوه",
+       "de": "sagen, was du dir von anderen wünschst"
+      },
+      "themes": [
+       "relaciones_b1",
+       "la_psicologia",
+       "el_voluntariado"
+      ],
+      "feuilles": [
+       "subjuntivo",
+       "subjuntivo_souhait"
+      ],
+      "illustres": [
+       "emociones"
+      ],
+      "fiches": [
+       "subjuntivo"
+      ]
+     },
+     {
+      "id": "b1-cuando",
+      "icone": "🧳",
+      "t": {
+       "fr": "Quand tu viendras",
+       "en": "When you come",
+       "pt": "Quando você vier",
+       "ar": "حين تأتي",
+       "de": "Wenn du kommst"
+      },
+      "sais": {
+       "fr": "parler de ce qui se passera quand…",
+       "en": "talk about what will happen when…",
+       "pt": "falar do que vai acontecer quando…",
+       "ar": "التحدّث عمّا سيحدث حين…",
+       "de": "sagen, was passieren wird, wenn …"
+      },
+      "themes": [
+       "viajes_b1",
+       "la_movilidad",
+       "la_geografia",
+       "el_urbanismo",
+       "nom_paisaje"
+      ],
+      "feuilles": [
+       "subjuntivo_cuando"
+      ],
+      "scenes": [
+       "zug",
+       "stadtplatz"
+      ],
+      "illustres": [
+       "transportes"
+      ],
+      "series": [
+       "verbosConPreposicionExercises"
+      ]
+     },
+     {
+      "id": "b1-necesario",
+      "icone": "🌍",
+      "t": {
+       "fr": "Il faut que…",
+       "en": "It has to…",
+       "pt": "É preciso que…",
+       "ar": "يجب أن…",
+       "de": "Man muss …"
+      },
+      "sais": {
+       "fr": "dire ce qu'il faut faire",
+       "en": "say what has to be done",
+       "pt": "dizer o que é preciso fazer",
+       "ar": "قول ما يجب فعله",
+       "de": "sagen, was man tun muss"
+      },
+      "themes": [
+       "medioambiente_b1",
+       "la_inmigracion",
+       "la_igualdad",
+       "la_discapacidad",
+       "problemas_sociales"
+      ],
+      "feuilles": [
+       "subjuntivo_irregulier"
+      ],
+      "scenes": [
+       "park"
+      ]
+     },
+     {
+      "id": "b1-historia",
+      "icone": "📜",
+      "t": {
+       "fr": "Raconter l'histoire",
+       "en": "Telling the story",
+       "pt": "Contar a história",
+       "ar": "سرد القصة",
+       "de": "Die Geschichte erzählen"
+      },
+      "sais": {
+       "fr": "raconter l'histoire au passé",
+       "en": "tell the story in the past",
+       "pt": "contar a história no passado",
+       "ar": "سرد القصة بصيغة الماضي",
+       "de": "die Geschichte in der Vergangenheit erzählen"
+      },
+      "themes": [
+       "la_historia",
+       "la_cultura",
+       "la_literatura",
+       "la_religion",
+       "la_arquitectura",
+       "la_astronomia",
+       "el_espectaculo"
+      ],
+      "feuilles": [
+       "pluscuamperfecto"
+      ],
+      "scenes": [
+       "museum"
+      ]
+     },
+     {
+      "id": "b1-debate",
+      "icone": "🗣️",
+      "t": {
+       "fr": "Débattre de l'actualité",
+       "en": "Debating the news",
+       "pt": "Debater as notícias",
+       "ar": "مناقشة الأخبار",
+       "de": "Über das aktuelle Geschehen diskutieren"
+      },
+      "sais": {
+       "fr": "débattre de l'actualité",
+       "en": "debate the news",
+       "pt": "debater as notícias",
+       "ar": "مناقشة الأخبار الجارية",
+       "de": "über das aktuelle Geschehen diskutieren"
+      },
+      "themes": [
+       "la_argumentacion",
+       "la_actualidad",
+       "la_sociedad",
+       "la_politica",
+       "la_justicia",
+       "deporte_b1",
+       "la_gastronomia"
+      ],
+      "fiches": [
+       "conectores"
+      ]
+     }
+    ]
+   }
+  ],
+  "B2": [
+   {
+    "id": "b2-egal",
+    "nom": {
+     "fr": "Discuter d'égal à égal",
+     "en": "Talking as equals",
+     "pt": "Conversar de igual para igual",
+     "ar": "أناقش على قدم المساواة",
+     "de": "Auf Augenhöhe diskutieren"
+    },
+    "etapes": [
+     {
+      "id": "b2-matices",
+      "icone": "🎚️",
+      "t": {
+       "fr": "Les nuances",
+       "en": "Shades of meaning",
+       "pt": "As nuances",
+       "ar": "الفوارق الدقيقة",
+       "de": "Die Nuancen"
+      },
+      "sais": {
+       "fr": "nuancer ce que tu dis",
+       "en": "add nuance to what you say",
+       "pt": "dar nuances ao que você diz",
+       "ar": "تدقيق كلامك وتلطيفه",
+       "de": "deine Aussagen nuancieren"
+      },
+      "themes": [
+       "los_matices",
+       "el_registro",
+       "emociones_b2"
+      ],
+      "feuilles": [
+       "subj_imparfait"
+      ],
+      "series": [
+       "subjuntivoImperfectoExercises"
+      ]
+     },
+     {
+      "id": "b2-queria",
+      "icone": "💭",
+      "t": {
+       "fr": "Je voulais que tu viennes",
+       "en": "I wanted you to come",
+       "pt": "Eu queria que você viesse",
+       "ar": "أردت أن تأتي",
+       "de": "Ich wollte, dass du kommst"
+      },
+      "sais": {
+       "fr": "dire ce que tu voulais que les autres fassent",
+       "en": "say what you wanted other people to do",
+       "pt": "dizer o que você queria que os outros fizessem",
+       "ar": "قول ما كنت تريد من الآخرين أن يفعلوه",
+       "de": "sagen, was du dir von anderen gewünscht hast"
+      },
+      "themes": [
+       "el_liderazgo",
+       "la_gestion",
+       "negociacion_b2"
+      ],
+      "feuilles": [
+       "subj_imparfait_emplois"
+      ]
+     },
+     {
+      "id": "b2-si",
+      "icone": "🤖",
+      "t": {
+       "fr": "Si j'avais…",
+       "en": "If I had…",
+       "pt": "Se eu tivesse…",
+       "ar": "لو كان لديّ…",
+       "de": "Wenn ich hätte …"
+      },
+      "sais": {
+       "fr": "imaginer ce qui se passerait si…",
+       "en": "imagine what would happen if…",
+       "pt": "imaginar o que aconteceria se…",
+       "ar": "تخيّل ما سيحدث لو…",
+       "de": "dir vorstellen, was passieren würde, wenn …"
+      },
+      "themes": [
+       "la_ia",
+       "futuro_trabajo",
+       "la_investigacion"
+      ],
+      "feuilles": [
+       "si_irreel"
+      ],
+      "series": [
+       "oracionesSiExercises"
+      ]
+     },
+     {
+      "id": "b2-sihubiera",
+      "icone": "⏪",
+      "t": {
+       "fr": "Si j'avais su…",
+       "en": "If I had known…",
+       "pt": "Se eu tivesse sabido…",
+       "ar": "لو كنت أعلم…",
+       "de": "Wenn ich gewusst hätte …"
+      },
+      "sais": {
+       "fr": "dire ce qui se serait passé si…",
+       "en": "say what would have happened if…",
+       "pt": "dizer o que teria acontecido se…",
+       "ar": "قول ما كان سيحدث لو…",
+       "de": "sagen, was passiert wäre, wenn …"
+      },
+      "themes": [
+       "la_memoria",
+       "la_etica",
+       "la_bioetica"
+      ],
+      "feuilles": [
+       "si_passe",
+       "condicional_compuesto"
+      ],
+      "series": [
+       "compuestosExercises"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "b2-actualite",
+    "nom": {
+     "fr": "Comprendre l'actualité",
+     "en": "Understanding the news",
+     "pt": "Entender as notícias",
+     "ar": "أفهم الأخبار",
+     "de": "Das aktuelle Geschehen verstehen"
+    },
+    "etapes": [
+     {
+      "id": "b2-suponer",
+      "icone": "🔍",
+      "t": {
+       "fr": "Supposer",
+       "en": "Supposing",
+       "pt": "Supor",
+       "ar": "الافتراض",
+       "de": "Vermuten"
+      },
+      "sais": {
+       "fr": "faire des suppositions",
+       "en": "make assumptions",
+       "pt": "fazer suposições",
+       "ar": "وضع افتراضات",
+       "de": "Vermutungen anstellen"
+      },
+      "themes": [
+       "la_incertidumbre",
+       "pensamiento_critico",
+       "la_filosofia"
+      ],
+      "feuilles": [
+       "futuro_perfecto"
+      ]
+     },
+     {
+      "id": "b2-prensa",
+      "icone": "📰",
+      "t": {
+       "fr": "Lire la presse",
+       "en": "Reading the press",
+       "pt": "Ler a imprensa",
+       "ar": "قراءة الصحافة",
+       "de": "Zeitung lesen"
+      },
+      "sais": {
+       "fr": "comprendre un article de presse",
+       "en": "understand a news article",
+       "pt": "entender um artigo da imprensa",
+       "ar": "فهم مقال صحفي",
+       "de": "einen Zeitungsartikel verstehen"
+      },
+      "themes": [
+       "el_periodismo",
+       "la_geopolitica",
+       "la_globalizacion",
+       "la_macroeconomia"
+      ],
+      "feuilles": [
+       "pasiva"
+      ],
+      "series": [
+       "pasivaExercises"
+      ]
+     },
+     {
+      "id": "b2-indirecto",
+      "icone": "🎙️",
+      "t": {
+       "fr": "Rapporter ce qu'on a dit",
+       "en": "Reporting what was said",
+       "pt": "Relatar o que foi dito",
+       "ar": "نقل ما قيل",
+       "de": "Wiedergeben, was gesagt wurde"
+      },
+      "sais": {
+       "fr": "rapporter ce que quelqu'un a dit",
+       "en": "report what someone said",
+       "pt": "relatar o que alguém disse",
+       "ar": "نقل ما قاله أحدهم",
+       "de": "wiedergeben, was jemand gesagt hat"
+      },
+      "themes": [
+       "el_debate",
+       "la_retorica",
+       "la_critica"
+      ],
+      "feuilles": [
+       "estilo_indirecto"
+      ]
+     },
+     {
+      "id": "b2-mundo",
+      "icone": "🏛️",
+      "t": {
+       "fr": "Penser le monde",
+       "en": "Thinking about the world",
+       "pt": "Pensar o mundo",
+       "ar": "التفكير في العالم",
+       "de": "Über die Welt nachdenken"
+      },
+      "sais": {
+       "fr": "réfléchir aux grandes questions de société",
+       "en": "think about the big questions of society",
+       "pt": "refletir sobre as grandes questões da sociedade",
+       "ar": "التفكير في قضايا المجتمع الكبرى",
+       "de": "über die großen Fragen der Gesellschaft nachdenken"
+      },
+      "themes": [
+       "derechos_humanos",
+       "la_democracia",
+       "la_sociologia",
+       "la_antropologia",
+       "la_estetica",
+       "desarrollo_sostenible",
+       "nom_interior",
+       "frutas_verduras_b2",
+       "el_cuerpo_b2"
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
