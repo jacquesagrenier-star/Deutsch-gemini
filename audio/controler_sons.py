@@ -49,7 +49,8 @@ TRAINE_SOCLE, TRAINE_PENTE = 0.40, 0.10
 ARTICLES = {"el", "la", "los", "las", "un", "una", "unos", "unas",
             "the", "a", "an"}      # l'anglais (29 oct. 2026)
 
-DOSSIERS = {"es": ["es-es", "es-419"], "de": [""], "en": ["en-us"]}
+# « dtz » : les pistes de l'ecoute du DTZ (visuel/prototype/dtz/outils/voix.py), dans audio/mp3/dtz/
+DOSSIERS = {"es": ["es-es", "es-419"], "de": [""], "en": ["en-us"], "dtz": ["dtz"]}
 
 
 def pcm(chemin):
