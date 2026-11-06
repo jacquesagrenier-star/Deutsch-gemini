@@ -8328,7 +8328,15 @@ body[data-theme="dark"] #home .pa-ecoute .pa-play, body[data-theme="dark"] #home
 
 /* 6 nov. 2026 : LA SEANCE EN PARTIES (voir LE PLAN DE LA SEANCE dans le script).
    Une barre sous l'en-tete : une part par partie, faite en encre, en cours en ambre. */
-#seanceParts{display:flex; gap:4px; margin:-6px 0 12px;}
+#seanceParts{display:flex; gap:4px; margin:10px 0 14px;}
+/* Jacques, 6 nov. (iPhone) : la capsule micro / haut-parleur / compteur passait a la ligne sous un en-tete
+   long et se posait sur la barre (marge negative). La capsule reste a droite, le texte se replie a cote ;
+   sous 350 px elle passe sur sa ligne, et la barre a toujours la sienne dessous. */
+#flashcards.seance-en-parts .title-row{flex-wrap:nowrap; align-items:flex-start;}
+#flashcards.seance-en-parts .title-row > div:first-child{flex:1 1 auto; min-width:0;}
+#flashcards.seance-en-parts .title-row-pills{flex:none; flex-wrap:nowrap; margin-top:2px;}
+#flashcards.seance-en-parts #flashThemeTitle{font-size:24px; line-height:1.15; overflow-wrap:anywhere;}
+@media (max-width:349px){ #flashcards.seance-en-parts .title-row{flex-wrap:wrap;} #flashcards.seance-en-parts .title-row-pills{margin-inline-start:auto;} }
 #seanceParts.hidden{display:none;}
 #seanceParts i{display:block; flex:1 1 0; min-width:6px; height:7px; border-radius:4px; background:rgba(28,36,48,.14);}
 #seanceParts i.fait{background:#2C3A4A;}
@@ -64899,7 +64907,7 @@ function glisserPhrasesPlusTard(paquet, tout){
 // dans la seance, sinon dans les revisions : elles restent APRES ce mot.
 const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "scene", "son", "revisions", "fin"];
 let SEANCE_PARTS = null;           // { paquet, parts (Map carte -> partie), themeId, niveau, etape }
-const PASSAGES_VUS = new Set();    // les index du paquet dont l'ecran de passage a ete montre
+const PASSAGES_VUS = new Set();    // les parties dont l'ecran de passage a ete montre (v1122 : par partie)
 function partDeCarteSeance(c, av, parCle){
     if(!c) return "revisions";
     const forme = c.forme || "";
@@ -64941,10 +64949,18 @@ function titrePartSeance(p, c){
 // Les parties du paquet, dans l'ordre : [{ p, debut, n }]. La fin d'etape se
 // range dans la partie d'avant (elle n'en est que la conclusion).
 function segmentsSeance(paquet, parts){
-    const segs = [];
+    const segs = [], vues = new Set();
     paquet.forEach((c, j) => {
-        let p = parts.get(c) || "revisions";
+        let p = parts.get(c);
+        // Une carte que le regroupement n'a pas vue (une copie faite en cours de seance) suit la partie
+        // ou elle tombe : elle ne cree pas de partie a elle seule.
+        if(!p) p = segs.length ? segs[segs.length - 1].p : "revisions";
         if(p === "fin" && segs.length) p = segs[segs.length - 1].p;
+        // Une carte ratee revient quelques rangs plus loin (remettreEnFile) : elle compte dans
+        // la partie ou elle retombe, sinon elle la coupe en deux et fait naitre de faux passages
+        // (« Les revisions : c'est fait · Ensuite : les mots de l'etape », Jacques, 6 nov.).
+        if(vues.has(c) && segs.length) p = segs[segs.length - 1].p;
+        vues.add(c);
         const s = segs[segs.length - 1];
         if(s && s.p === p) s.n++;
         else segs.push({ p: p, debut: j, n: 1 });
@@ -64992,14 +65008,17 @@ function majPartsSeance(){
 function montrerPassageSeance(){
     if(!seancePartsActive()) return false;
     const P = SEANCE_PARTS, i = currentFlashcard;
-    if(i <= 0 || i >= P.paquet.length || PASSAGES_VUS.has(i)) return false;
+    if(i <= 0 || i >= P.paquet.length) return false;
     const segs = segmentsSeance(P.paquet, P.parts);
     const s = segs.find(x => x.debut === i);
-    if(!s) return false;
+    // v1122 : UN passage par partie et par seance, garde par le nom de la partie et non par le rang
+    // de la carte. Jacques, 6 nov. (iPhone, espagnol) : « a chaque carte, ca m'indique Revisions
+    // faites, ensuite les mots de l'etape, une carte ».
+    if(!s || PASSAGES_VUS.has(s.p) || s.p === segs[0].p) return false;
     const avant = segs[segs.indexOf(s) - 1];
     const zone = document.getElementById("flashcards"), el = document.getElementById("cartePhrase");
-    if(!zone || !el || !avant) return false;
-    PASSAGES_VUS.add(i);
+    if(!zone || !el || !avant || avant.p === s.p) return false;
+    PASSAGES_VUS.add(s.p);
     try{ arreterOralPhrase(); }catch(e){}
     CARTE_PHRASE_AFFICHEE = null;
     zone.classList.add("en-phrase");
