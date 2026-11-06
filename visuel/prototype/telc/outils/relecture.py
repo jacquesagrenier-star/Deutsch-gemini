@@ -66,7 +66,15 @@ def main():
         spec = importlib.util.spec_from_file_location(os.path.basename(chemin)[:-3], chemin)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        (getattr(module, "section", None) or getattr(module, "sections"))(lignes)
+        ajouter = getattr(module, "section", None) or getattr(module, "sections", None)
+        if ajouter:
+            ajouter(lignes)
+        else:
+            # un relecteur qui ecrit son propre fichier (relecture_lesen.py -> retours/A-RELIRE-TELC-LESEN.md) :
+            # il a tourne a l'import ; on le signale dans le fichier commun
+            lignes.append("_(La partie « %s » a son propre fichier de relecture, refait en même temps.)_"
+                          % os.path.basename(chemin)[len("relecture_"):-3])
+            lignes.append("")
     open(SORTIE, "w", encoding="utf-8", newline="\n").write("\n".join(lignes).rstrip() + "\n")
     print("ecrit", os.path.relpath(SORTIE, RACINE))
 
