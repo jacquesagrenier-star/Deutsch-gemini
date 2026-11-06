@@ -46048,6 +46048,7 @@ function exercicesSprechen(niveau){
             // oral, les deux s'entendent, et c'est l'enchainement qu'on
             // apprend a reconnaitre.
             audioDe: o.frage + " " + o.chunks.join(" "),
+            niveauExamen: o.niveau,
             ...champsPruefung(o, "erkl", "explanation")
         }));
 }
@@ -46069,6 +46070,7 @@ function exercicesSchreiben(niveau){
             ...videPruefung("hint"),
             chunks: o.chunks.slice(),
             audioDe: o.chunks.join(" "),
+            niveauExamen: o.niveau,
             ...champsPruefung(o, "erkl", "explanation")
         }));
 }
@@ -46102,6 +46104,7 @@ function exercicesLesen(niveau){
                     // avant de repondre transformerait une epreuve de
                     // lecture en epreuve d'ecoute.
                     audioDe: o.text,
+                    niveauExamen: o.niveau,
                     ...champsPruefung(q, "frage", "question", o.text + "\n\n— "),
                     ...videPruefung("translation"),
                     ...videPruefung("hint"),
@@ -46140,6 +46143,7 @@ function exercicesHoeren(niveau){
                 ...videPruefung("translation"),
                 ...videPruefung("hint"),
                 dictation: true, dictationText: o.audio, dictationLang: "de",
+                niveauExamen: o.niveau,
                 answers: [correct], correct: correct, correctEn: correct,
                 correctTr: correct, correctUk: correct, correctFa: correct, correctPt: correct, correctAr: correct, correctPl: correct, correctRu: correct,
                 options: options, optionsEn: options, optionsTr: options,
@@ -46157,6 +46161,22 @@ function exercicesHoeren(niveau){
 // serait quatre fois la meme question. La barre vit donc sur l'ecran
 // « Comprendre l'examen », au-dessus des quatre boutons qu'elle commande.
 let pruefungNiveau = null;   // null = les deux niveaux
+// SANS NIVEAU CHOISI, L'A2 ET LE B1 SEULEMENT (6 nov. 2026, decision de Jacques : « A et D »). Une testeuse B1
+// trouvait l'oral « pitched a bit above where I'm at as a B1 speaker », avec des notes qui parlaient « a lot about
+// C1 » : sans niveau choisi, les quatre epreuves melangeaient les quatre exercices C1 (Vortrag, Diskussion) a ceux
+// du DTZ et du B1, et leurs explications ne parlent que du C1. Le C1 n'arrive plus que par le bouton C1.
+// Les textes de Lire numerotent leurs groupes a partir de 0 a chaque appel : le groupe prend le niveau devant lui,
+// sans quoi le texte 0 de l'A2 et celui du B1 se meleraient (melangerEpreuve() les reunit par groupe).
+const PRUEFUNG_NIVEAUX_PAR_DEFAUT = ["A2", "B1"];
+function sansC1ParDefaut(construire){
+    return niveau => {
+        if(niveau) return construire(niveau);
+        const out = [];
+        PRUEFUNG_NIVEAUX_PAR_DEFAUT.forEach(n => construire(n).forEach(e =>
+            out.push(e.groupe === undefined ? e : Object.assign({}, e, { groupe: n + "-" + e.groupe }))));
+        return out;
+    };
+}
 
 function selectPruefungNiveau(n){
     pruefungNiveau = (n === "ALL") ? null : n;
@@ -46167,8 +46187,8 @@ function selectPruefungNiveau(n){
 // additionnees, et pour la lecture les QUESTIONS, pas les textes -- c'est le
 // nombre d'ecrans que l'usager va traverser.
 function nbEpreuves(niveau){
-    return filtreExamen(exercicesHoeren)(niveau).length + filtreExamen(exercicesLesen)(niveau).length
-         + filtreExamen(exercicesSchreiben)(niveau).length + filtreExamen(exercicesSprechen)(niveau).length;
+    return filtreExamen(sansC1ParDefaut(exercicesHoeren))(niveau).length + filtreExamen(sansC1ParDefaut(exercicesLesen))(niveau).length
+         + filtreExamen(sansC1ParDefaut(exercicesSchreiben))(niveau).length + filtreExamen(sansC1ParDefaut(exercicesSprechen))(niveau).length;
 }
 
 function renderPruefungNiveauBar(){
@@ -46271,167 +46291,12 @@ function openPruefungInfo(){
     if(!pruefungData) loadPruefungJson().then(renderPruefungNiveauBar);
 }
 
-function startPruefungSprechen(){ lancerEpreuve(filtreExamen(exercicesSprechen), "kicker_pruefung_sprechen"); }
-function startPruefungLesen(){ lancerEpreuve(filtreExamen(exercicesLesen), "kicker_pruefung_lesen"); }
-function startPruefungSchreiben(){ lancerEpreuve(filtreExamen(exercicesSchreiben), "kicker_pruefung_schreiben"); }
-function startPruefungHoeren(){ lancerEpreuve(filtreExamen(exercicesHoeren), "kicker_pruefung_hoeren"); }
+function startPruefungSprechen(){ lancerEpreuve(filtreExamen(sansC1ParDefaut(exercicesSprechen)), "kicker_pruefung_sprechen"); }
+function startPruefungLesen(){ lancerEpreuve(filtreExamen(sansC1ParDefaut(exercicesLesen)), "kicker_pruefung_lesen"); }
+function startPruefungSchreiben(){ lancerEpreuve(filtreExamen(sansC1ParDefaut(exercicesSchreiben)), "kicker_pruefung_schreiben"); }
+function startPruefungHoeren(){ lancerEpreuve(filtreExamen(sansC1ParDefaut(exercicesHoeren)), "kicker_pruefung_hoeren"); }
 
-// ============ DEUX BLOCS : LE DTZ ET LE TELC A2·B1 (essai examens_blocs, 4 nov. 2026) ============
-//
-// Jacques : « ma vision, c'est d'avoir un bloc pour se preparer au DTZ, puis un bloc pour se preparer a
-// l'examen A2 B1. Donc, il y a du materiel [...] qu'on va pouvoir utiliser dans les deux. » Et pour le panneau
-// (4 nov.) : « Comprendre l'examen » en tete, deux grandes cartes, puis « Autres examens » pour le Goethe B1 et
-// le C1, plus discrets -- rien de ce qui existe ne disparait.
-//
-// LE MATERIEL COMMUN NE SE COPIE PAS, IL SE FILTRE. Les quatre epreuves de pruefung.json servent a tous les
-// blocs ; pruefungExamen dit d'ou l'on vient (« dtz », « telc », « goethe », « c1 », ou null hors des blocs), et
-// filtreExamen() ne garde que les niveaux de cet examen et retire les taches qui n'en sont pas :
-//   - DTZ et telc (A2·B1) : ni le C1, ni les taches du Goethe (l'expose, le message de forum, les questions du
-//     Goethe A2) ; le telc perd aussi le recit d'experience a partir d'une image, propre au DTZ (pas d'image a
-//     l'oral du telc) ;
-//   - Goethe-Zertifikat B1 : le B1 seul (l'examen n'a qu'un niveau), sans le recit sur image du DTZ ;
-//   - C1 : le C1 seul.
-// Les 4 « Fragen stellen » (Sprechen A2, format du Goethe A2) ne vont dans aucun bloc : aucun des quatre examens ne
-// les pose. Ils restent dans le panneau d'avant (essai coupe). Hors des blocs (pruefungExamen null), rien n'est filtre.
-//
-// UN BLOC N'EST LISTE QUE S'IL A DE QUOI S'ENTRAINER (Jacques, 4 nov. : « si on est capable de nourrir des blocs de
-// la bonne facon »). Tous sont en essai admin tant qu'ils ne sont pas nourris au format de leur examen ; un bloc
-// sans aucune epreuve derriere lui (pruefung.json charge et vide pour ce bloc) n'apparait pas du tout.
-let pruefungExamen = null;
-const GOETHE_SEUL = ["Forumsbeitrag", "Forumsbeiträge", "Erörterung", "Teil 1 · Fragen stellen",
-                     "Teil 2 · Ein Thema präsentieren", "Teil 3 · Über eine Präsentation sprechen"];
-const BLOCS_EXAMENS = {
-    dtz:    { niveaux: ["A2", "B1"], hors: GOETHE_SEUL },
-    telc:   { niveaux: ["A2", "B1"], hors: GOETHE_SEUL.concat(["Teil 2 · Über Erfahrungen sprechen"]) },
-    goethe: { niveaux: ["B1"],       hors: ["Teil 2 · Über Erfahrungen sprechen"] },
-    c1:     { niveaux: ["C1"],       hors: [] }
-};
-function blocDePanneau(id){
-    return ({ pruefung_dtz: "dtz", pruefung_telc: "telc", pruefung_goethe: "goethe", pruefung_c1: "c1" })[id] || null;
-}
-function filtreExamen(construire, examen){
-    const ex = examen || pruefungExamen;
-    if(!ex) return construire;
-    const bloc = BLOCS_EXAMENS[ex];
-    return niveau => {
-        if(niveau && bloc.niveaux.indexOf(niveau) < 0) return [];
-        const out = [];
-        (niveau ? [niveau] : bloc.niveaux).forEach(n => construire(n).forEach(e => {
-            if(bloc.hors.indexOf(e.topic) >= 0) return;
-            // Les textes de Lire numerotent leurs groupes a partir de 0 a chaque appel : sans le niveau dans le
-            // groupe, le texte 0 de l'A2 et celui du B1 se meleraient (melangerEpreuve() les reunit par groupe).
-            out.push(e.groupe === undefined ? e : Object.assign({}, e, { groupe: n + "-" + e.groupe }));
-        }));
-        return out;
-    };
-}
-// un bloc a-t-il de quoi s'entrainer ? Tant que pruefung.json n'est pas arrive, on ne sait pas : on le montre.
-function blocNourri(ex){
-    if(!pruefungData) return true;
-    return [exercicesHoeren, exercicesLesen, exercicesSchreiben, exercicesSprechen]
-        .some(c => filtreExamen(c, ex)(null).length > 0);
-}
-// Le retour d'une epreuve : le bloc d'ou l'on vient, sinon « Comprendre l'examen » comme avant.
-function retourEpreuve(){
-    if(pruefungExamen) openOrbPanel("pruefung_" + pruefungExamen);
-    else openPruefungInfo();
-}
-function retourPruefungInfo(){ openOrbPanel(pruefungExamen ? "pruefung_" + pruefungExamen : "pruefung"); }
-function blocsExamensActifs(){
-    return essaiActif("examens_blocs") && (LANGUE_APPRISE === "de" || !LANGUE_APPRISE);
-}
-// Les sous-panneaux reviennent a la tuile ; tout autre panneau, a l'accueil comme avant.
-function retourOrbPanel(){
-    if(blocDePanneau(openOrbId)) openOrbPanel("pruefung"); else goHome();
-}
-function ouvrirBlocDtz(){ openOrbPanel("pruefung_dtz"); }
-function ouvrirBlocTelc(){ openOrbPanel("pruefung_telc"); }
-function ouvrirBlocGoethe(){ openOrbPanel("pruefung_goethe"); }
-function ouvrirBlocC1(){ openOrbPanel("pruefung_c1"); }
-function panneauBlocsExamens(){
-    // pruefung.json peut arriver apres l'ouverture du panneau : on le redessine alors (un bloc vide disparait)
-    if(!pruefungData) loadPruefungJson().then(() => { if(openOrbId === "pruefung") renderOrbPanel(); });
-    const blocs = [
-        { ex:"dtz",    action:"ouvrirBlocDtz",    t:"op_pruefung_bloc_dtz_t",    d:"op_pruefung_bloc_dtz_d" },
-        { ex:"telc",   action:"ouvrirBlocTelc",   t:"op_pruefung_bloc_telc_t",   d:"op_pruefung_bloc_telc_d" },
-        { ex:"goethe", action:"ouvrirBlocGoethe", t:"op_pruefung_bloc_goethe_t", d:"op_pruefung_bloc_goethe_d" },
-        { ex:"c1",     action:"ouvrirBlocC1",     t:"op_pruefung_bloc_c1_t",     d:"op_pruefung_bloc_c1_d" }
-    ].filter(b => blocNourri(b.ex));
-    return {
-        icon:"dossier", title:t("op_pruefung_title"), sub:t("op_pruefung_blocs_sub"),
-        options:[{ icon:"dossier", title:t("op_pruefung_info_t"), desc:t("op_pruefung_info_d"),
-                   action:"openPruefungInfo", section:"comprendre" }]
-            .concat(blocs.map(b => ({ icon:"dossier", title:t(b.t), desc:t(b.d), primary:true,
-                                      action:b.action, section:"pratique" })))
-    };
-}
-// Le panneau d'un bloc : le commun dans l'ordre de SON examen, puis ce qui lui est propre.
-function panneauBlocExamen(ex){
-    // les actions ecrites en toutes lettres : verifier.py lit le nom de la fonction dans le texte
-    const PORTES = { hoeren:"startPruefungHoeren", lesen:"startPruefungLesen",
-                     schreiben:"startPruefungSchreiben", sprechen:"startPruefungSprechen" };
-    const ep = cle => ({ icon:"exercice", title:t("op_pruefung_" + cle + "_t"), desc:t("op_pruefung_" + cle + "_d"),
-        action:PORTES[cle], section:"pratique" });
-    const comprendre = { icon:"dossier", title:t("op_pruefung_info_t"), desc:t("op_pruefung_info_d"),
-        action:"openPruefungInfo", section:"comprendre" };
-    if(ex === "dtz"){
-        // L'oral avec Anna et Mark (essai dtz_oral) est repris du panneau d'avant tel quel : son titre et son
-        // texte restent ecrits a un seul endroit, celui de sa session.
-        const oral = (orbPanelData("pruefung_classique").options || []).filter(o => o.action === "ouvrirDtzOral");
-        return {
-            icon:"dossier", title:t("op_pruefung_dtz_title"), sub:t("op_pruefung_dtz_sub"),
-            options:[comprendre, ep("hoeren"), ep("lesen"), ep("schreiben"), ep("sprechen")].concat(oral)
-        };
-    }
-    if(ex === "telc"){
-        // Le telc : lire d'abord, puis les Sprachbausteine, ecrire, ecouter, parler (l'ordre de l'examen).
-        return {
-            icon:"dossier", title:t("op_pruefung_telc_title"), sub:t("op_pruefung_telc_sub"),
-            // En tete, la page du telc avec Mark et Anna : toutes ses parties au format de l'examen (l'accueil de
-            // telc.html, ou les parties pas encore faites restent grisees), puis les epreuves communes.
-            options:[comprendre,
-                { icon:"exercice", title:t("op_pruefung_telc_mark_t"), desc:t("op_pruefung_telc_mark_d"),
-                  primary:true, action:"ouvrirTelcAccueil", section:"pratique" },
-                ep("lesen"),
-                { icon:"exercice", title:t("op_pruefung_sb_t"), desc:t("op_pruefung_sb_d"),
-                  action:"ouvrirTelcSprachbausteine", section:"pratique" },
-                ep("schreiben"), ep("hoeren"), ep("sprechen")]
-        };
-    }
-    if(ex === "goethe"){
-        // Le Goethe-Zertifikat B1 : lire, ecouter, ecrire, parler (l'ordre de l'examen).
-        return {
-            icon:"dossier", title:t("op_pruefung_goethe_title"), sub:t("op_pruefung_goethe_sub"),
-            options:[comprendre, ep("lesen"), ep("hoeren"), ep("schreiben"), ep("sprechen")]
-        };
-    }
-    // Le C1 : les quatre epreuves au C1, et les feuilles de conjugaison (le B2 et le C1 y sont : passif,
-    // Konjunktiv I, Futur II, participe etendu). Pas de paquet de vocabulaire ici, comme partout dans cette
-    // tuile depuis la v471 (Jacques : « ca donne l'impression qu'avec seulement ces mots-la on va etre prepare »).
-    return {
-        icon:"dossier", title:t("op_pruefung_c1bloc_title"), sub:t("op_pruefung_c1bloc_sub"),
-        options:[comprendre, ep("lesen"), ep("hoeren"), ep("schreiben"), ep("sprechen"),
-            { icon:"exercice", title:t("op_pruefung_feuilles_t"), desc:t("op_pruefung_feuilles_d"),
-              action:"ouvrirMesFeuilles", section:"pratique" }]
-    };
-}
-// LA PAGE DU TELC (visuel/prototype/telc/telc.html), dans le cadre des scenes comme l'oral du DTZ. Elle repose sur
-// visuel/prototype/dtz/commun.js (le profil d'examen « telc »). « partie » ouvre directement une partie.
-function ouvrirTelc(partie){
-    sceneOuverteDepuis = "telc";
-    const cadre = document.getElementById("sceneCadre");
-    if(cadre){
-        cadre.title = t("op_pruefung_telc_title");
-        cadre.src = baseScenes() + "telc/telc.html?apprendre=de&lang=" + encodeURIComponent(getUiLang())
-                  + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
-                  + (partie ? "&partie=" + encodeURIComponent(partie) : "")
-                  + "&t=" + Date.now();
-    }
-    showScreen("sceneSeance");
-}
-function ouvrirTelcSprachbausteine(){ ouvrirTelc("SB"); }
-function ouvrirTelcAccueil(){ ouvrirTelc(); }
-
+// ============ DEUX BLOCS : LE DTZ ET LE TELC A2·B1 (essai examens_blocs, 4 nov. 2026) =====
 // orbAction() appelle window[action] SANS ARGUMENT : chaque option du panneau
 // a donc besoin de sa porte d'entree nommee.
 
@@ -67277,7 +67142,14 @@ function majKickerExercice(){
     // Pendant une reprise des erreurs, la deuxieme ligne dit CE QU'ON REFAIT
     // et non ou l'on en est : on n'est pas dans le bloc 3, on est dans ses
     // fautes -- meme si la position du bloc reste en memoire pour la suite.
-    el.textContent = t(exerciseKickerKey)
+    // LE NIVEAU DE L'EPREUVE D'EXAMEN DANS LE TITRE (6 nov. 2026, decision de Jacques : « A et D ») :
+    // « Examen · Parler · B1 ». Une serie melange l'A2 et le B1 : le niveau suit donc l'exercice affiche
+    // (loadExercise() rappelle cette fonction a chaque exercice). Les codes A2, B1, C1 s'ecrivent pareil dans
+    // les 9 langues. Seulement pour les quatre epreuves : la decouverte guidee en emprunte une sous son propre titre.
+    const ex = activeExercises && activeExercises[currentExercise];
+    const niveauEx = (String(exerciseKickerKey).indexOf("kicker_pruefung_") === 0 && ex && ex.niveauExamen)
+        ? " · " + ex.niveauExamen : "";
+    el.textContent = t(exerciseKickerKey) + niveauEx
         + (revisionErreursEnCours
             ? "\n" + t("exo_kicker_erreurs")
             : (exerciseBlocTotal > 1
@@ -67408,6 +67280,7 @@ function loadExercise(){
     updateXpComboDisplay();
     const ex = activeExercises[currentExercise];
     if(!ex) return;
+    if(ex.niveauExamen) majKickerExercice();   // le niveau de l'epreuve d'examen, exercice par exercice
     answered = false;
     // L'anglais n'existe encore que pour une partie du contenu des exercices
     // (Phase 2 en cours) : on retombe sur le français si la traduction anglaise manque.
