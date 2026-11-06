@@ -1,0 +1,934 @@
+{
+  "_note": "Lire et ecrire au telc Deutsch A2·B1 (partie LS, items 29-31), ecrit pour Wortando (6 nov. 2026, session « telc Ecrire »). Le FORMAT du telc (preparation-examens/FORMAT-TELC.md), jamais son contenu : un courriel recu qui pose des questions ; 29 Richtig/Falsch et 30 un choix a 2 (3 points de Lesen chacun) ; 31 y repondre (critere I, 15 points de Schreiben). Les courriels viennent de la vie de Mark Garnier a Berlin ; l'eleve repond a la place de Mark et peut inventer les details. « punkte » : les questions du courriel que la reponse doit traiter, avec des « indices » (expressions regulieres) que la page cherche dans le texte. Dans « notes », « de » est un extrait EXACT de la lettre modele (tests/telc_ecrire.py le verifie). La grille, le bareme et les formules utiles sont dans schreiben.json (partie S), communs aux deux textes. Relecture germanophone a faire avant l'ouverture aux eleves.",
+  "series": [
+    {
+      "id": 1,
+      "registre": "informel",
+      "situation_fr": "Anna déménage samedi et demande de l'aide à Mark.",
+      "situation_en": "Anna is moving on Saturday and asks Mark for help.",
+      "mail": {
+        "von": "Anna",
+        "an": "Mark",
+        "betreff": "Umzug am Samstag – hilfst du mir?",
+        "lignes": [
+          "Hallo Mark,",
+          "wie geht es dir? Ich habe tolle Neuigkeiten: Ich habe endlich eine neue Wohnung gefunden! Sie ist in Kreuzberg, hat einen kleinen Balkon und ist nur fünf Minuten von meiner Arbeit entfernt.",
+          "Am Samstag ziehe ich um. Zwei Freundinnen helfen mir, aber wir brauchen noch ein paar starke Hände. Hast du an dem Tag Zeit? Wir fangen um neun Uhr an. Wenn du erst später kommen kannst, ist das auch kein Problem. Sag mir einfach, wann du da bist.",
+          "Ich habe noch keinen Transporter. Kennst du vielleicht jemanden, der ein großes Auto hat?",
+          "Mittags koche ich für alle. Was isst du gern? Isst du Fleisch, oder soll ich lieber etwas Vegetarisches kochen?",
+          "Liebe Grüße",
+          "Anna"
+        ]
+      },
+      "fragen": [
+        {
+          "n": 29,
+          "typ": "rf",
+          "de": "Anna zieht in eine Wohnung mit Balkon.",
+          "bon": 0,
+          "erkl_fr": "C'est juste : « hat einen kleinen Balkon ».",
+          "erkl_en": "That's right: \"hat einen kleinen Balkon\"."
+        },
+        {
+          "n": 30,
+          "typ": "ab",
+          "de": "Anna möchte wissen, …",
+          "o": [
+            "wann Mark kommen kann.",
+            "wo die neue Wohnung ist."
+          ],
+          "bon": 0,
+          "erkl_fr": "Anna demande « Sag mir einfach, wann du da bist ». L'adresse, c'est elle qui la donne (Kreuzberg) : elle ne la demande pas.",
+          "erkl_en": "Anna writes \"Sag mir einfach, wann du da bist\". She gives the address herself (Kreuzberg): she does not ask for it."
+        }
+      ],
+      "punkte": [
+        {
+          "de": "Hast du am Samstag Zeit?",
+          "indices": [
+            "zeit",
+            "samstag",
+            "kann ich",
+            "komme",
+            "helfe",
+            "leider"
+          ],
+          "aide_fr": "Dire si tu as le temps samedi.",
+          "aide_en": "Say whether you are free on Saturday."
+        },
+        {
+          "de": "Wann bist du da?",
+          "indices": [
+            "uhr",
+            "um \\w+",
+            "später",
+            "früh",
+            "halb"
+          ],
+          "aide_fr": "Dire à quelle heure tu arrives.",
+          "aide_en": "Say what time you will arrive."
+        },
+        {
+          "de": "Kennst du jemanden mit einem großen Auto?",
+          "indices": [
+            "auto",
+            "transporter",
+            "wagen",
+            "kombi",
+            "bus"
+          ],
+          "aide_fr": "Répondre à la question de la voiture.",
+          "aide_en": "Answer the question about the car."
+        },
+        {
+          "de": "Was isst du gern?",
+          "indices": [
+            "esse",
+            "fleisch",
+            "vegetarisch",
+            "pizza",
+            "nudeln",
+            "salat",
+            "essen"
+          ],
+          "aide_fr": "Dire ce que tu aimes manger (et si tu manges de la viande).",
+          "aide_en": "Say what you like to eat (and whether you eat meat)."
+        }
+      ],
+      "modeles": {
+        "a2": {
+          "lignes": [
+            "Liebe Anna,",
+            "danke für deine E-Mail. Toll, du hast eine neue Wohnung!",
+            "Am Samstag habe ich Zeit. Ich komme um zehn Uhr. Um neun Uhr kann ich nicht, ich habe am Morgen Deutschkurs.",
+            "Mein Kollege Jonas hat ein großes Auto. Ich frage ihn.",
+            "Ich esse gern Pizza. Ich esse auch Fleisch, aber nicht viel.",
+            "Bis Samstag!",
+            "Viele Grüße",
+            "Mark"
+          ],
+          "notes": [
+            {
+              "de": "Toll, du hast eine neue Wohnung!",
+              "note_fr": "Une réaction courte à la nouvelle : c'est bien, même au A2.",
+              "note_en": "A short reaction to the news: good, even at A2."
+            },
+            {
+              "de": "Ich komme um zehn Uhr.",
+              "note_fr": "Une phrase simple par question : le point est traité, le verbe est bien en 2e place.",
+              "note_en": "One simple sentence per question: the point is covered, the verb is correctly in second place."
+            },
+            {
+              "de": "Um neun Uhr kann ich nicht, ich habe am Morgen Deutschkurs.",
+              "note_fr": "Une raison, mais posée à côté, sans connecteur. Juste au A2 ; au B1, on la relie par weil.",
+              "note_en": "A reason, but set side by side with no linking word. Fine at A2; at B1 you link it with weil."
+            },
+            {
+              "de": "Ich frage ihn.",
+              "note_fr": "Le point de la voiture est traité, en trois mots.",
+              "note_en": "The car question is answered, in three words."
+            },
+            {
+              "de": "aber nicht viel",
+              "note_fr": "« aber » : le connecteur le plus simple, bien employé.",
+              "note_en": "\"aber\": the simplest linking word, used correctly."
+            }
+          ]
+        },
+        "b1": {
+          "lignes": [
+            "Liebe Anna,",
+            "vielen Dank für deine E-Mail! Ich freue mich sehr für dich, dass du endlich eine Wohnung gefunden hast. Ein Balkon in Kreuzberg – super!",
+            "Natürlich helfe ich dir am Samstag. Leider kann ich nicht schon um neun Uhr da sein, weil ich am Samstagmorgen noch meinen Deutschkurs habe. Ich bin aber spätestens um halb elf bei dir.",
+            "Zum Transporter: Mein Kollege Jonas hat einen großen Kombi. Ich rufe ihn heute Abend an und frage, ob er uns hilft.",
+            "Zum Essen: Ich esse eigentlich alles, aber am liebsten Nudeln. Wenn du etwas Vegetarisches kochst, ist das für mich auch perfekt.",
+            "Soll ich Getränke mitbringen?",
+            "Bis Samstag und liebe Grüße",
+            "Mark"
+          ],
+          "notes": [
+            {
+              "de": "Ich freue mich sehr für dich, dass du endlich eine Wohnung gefunden hast.",
+              "note_fr": "Il réagit à la nouvelle avec une subordonnée en « dass » et un Perfekt, verbe à la fin.",
+              "note_en": "He reacts to the news with a dass clause and a Perfekt, verb at the end."
+            },
+            {
+              "de": "weil ich am Samstagmorgen noch meinen Deutschkurs habe",
+              "note_fr": "La même raison que dans la lettre A2, mais reliée par « weil » : c'est ce qui fait la différence.",
+              "note_en": "The same reason as in the A2 letter, but linked with \"weil\": that is what makes the difference."
+            },
+            {
+              "de": "Ich bin aber spätestens um halb elf bei dir.",
+              "note_fr": "Une heure précise, et une promesse : Anna sait à quoi s'attendre (critère I).",
+              "note_en": "A precise time and a promise: Anna knows what to expect (criterion I)."
+            },
+            {
+              "de": "Zum Transporter:",
+              "note_fr": "Un paragraphe par question, annoncé en deux mots : la lettre se lit facilement (critère II).",
+              "note_en": "One paragraph per question, announced in two words: the letter is easy to read (criterion II)."
+            },
+            {
+              "de": "frage, ob er uns hilft",
+              "note_fr": "Une question indirecte avec « ob » : une structure du B1.",
+              "note_en": "An indirect question with \"ob\": a B1 structure."
+            },
+            {
+              "de": "Wenn du etwas Vegetarisches kochst, ist das für mich auch perfekt.",
+              "note_fr": "« wenn » au début, puis le verbe « ist » tout de suite : l'ordre des mots du B1.",
+              "note_en": "\"wenn\" first, then the verb \"ist\" straight after: B1 word order."
+            },
+            {
+              "de": "Soll ich Getränke mitbringen?",
+              "note_fr": "Une proposition en retour : il ne fait pas que répondre, il fait avancer l'échange.",
+              "note_en": "An offer in return: he does not just answer, he moves the exchange forward."
+            }
+          ]
+        }
+      },
+      "passer_fr": [
+        "Chaque réponse reçoit une raison ou un détail (pourquoi pas à neuf heures, quel plat exactement).",
+        "Les raisons sont reliées par weil, dass, ob, wenn, au lieu d'être posées à côté.",
+        "On réagit d'abord à la nouvelle, puis un paragraphe par question.",
+        "On propose quelque chose en retour (« Soll ich Getränke mitbringen? »)."
+      ],
+      "passer_en": [
+        "Every answer gets a reason or a detail (why not at nine, which dish exactly).",
+        "Reasons are linked with weil, dass, ob, wenn instead of being set side by side.",
+        "First react to the news, then one paragraph per question.",
+        "Offer something in return (\"Soll ich Getränke mitbringen?\")."
+      ]
+    },
+    {
+      "id": 2,
+      "registre": "informel",
+      "situation_fr": "Jonas, un collègue de Mark, prépare le départ à la retraite d'une collègue.",
+      "situation_en": "Jonas, Mark's colleague, is planning a farewell party for a colleague who is retiring.",
+      "mail": {
+        "von": "Jonas Albrecht",
+        "an": "Mark",
+        "betreff": "Abschied von Frau Yilmaz",
+        "lignes": [
+          "Hallo Mark,",
+          "wie du sicher weißt, geht Frau Yilmaz Ende des Monats in Rente. Wir möchten an ihrem letzten Arbeitstag um 15 Uhr eine kleine Feier im Besprechungsraum machen. Sie weiß noch nichts davon!",
+          "Wir kaufen zusammen ein Geschenk. Machst du mit? Jeder gibt zehn Euro. Hast du vielleicht eine Idee, was wir ihr schenken können? Ich weiß nur, dass sie gern im Garten arbeitet.",
+          "Wir brauchen auch noch Kuchen und Getränke. Was kannst du mitbringen?",
+          "Und noch eine Frage: Du fotografierst doch so gut. Könntest du an dem Tag ein paar Fotos machen?",
+          "Viele Grüße",
+          "Jonas"
+        ]
+      },
+      "fragen": [
+        {
+          "n": 29,
+          "typ": "rf",
+          "de": "Frau Yilmaz weiß schon von der Feier.",
+          "bon": 1,
+          "erkl_fr": "C'est faux : « Sie weiß noch nichts davon! » La fête est une surprise.",
+          "erkl_en": "That's wrong: \"Sie weiß noch nichts davon!\" The party is a surprise."
+        },
+        {
+          "n": 30,
+          "typ": "ab",
+          "de": "Jonas fragt Mark, ob er …",
+          "o": [
+            "die Feier organisiert.",
+            "beim Geschenk mitmacht."
+          ],
+          "bon": 1,
+          "erkl_fr": "« Machst du mit? Jeder gibt zehn Euro. » C'est Jonas qui organise la fête.",
+          "erkl_en": "\"Machst du mit? Jeder gibt zehn Euro.\" Jonas is the one organising the party."
+        }
+      ],
+      "punkte": [
+        {
+          "de": "Machst du beim Geschenk mit?",
+          "indices": [
+            "mache mit",
+            "mitmachen",
+            "euro",
+            "dabei",
+            "gebe"
+          ],
+          "aide_fr": "Dire si tu participes au cadeau.",
+          "aide_en": "Say whether you are joining in the present."
+        },
+        {
+          "de": "Hast du eine Idee für ein Geschenk?",
+          "indices": [
+            "idee",
+            "schenken",
+            "gutschein",
+            "pflanze",
+            "buch",
+            "blumen",
+            "könnten wir",
+            "kaufen"
+          ],
+          "aide_fr": "Proposer une idée de cadeau.",
+          "aide_en": "Suggest an idea for the present."
+        },
+        {
+          "de": "Was kannst du mitbringen?",
+          "indices": [
+            "bringe",
+            "mitbringen",
+            "kuchen",
+            "backe",
+            "getränke",
+            "saft"
+          ],
+          "aide_fr": "Dire ce que tu apportes.",
+          "aide_en": "Say what you will bring."
+        },
+        {
+          "de": "Könntest du Fotos machen?",
+          "indices": [
+            "foto",
+            "kamera",
+            "fotografiere"
+          ],
+          "aide_fr": "Répondre pour les photos.",
+          "aide_en": "Answer about the photos."
+        }
+      ],
+      "modeles": {
+        "a2": {
+          "lignes": [
+            "Hallo Jonas,",
+            "danke für deine E-Mail. Ja, ich mache mit. Ich gebe gern zehn Euro.",
+            "Meine Idee: Wir kaufen eine schöne Pflanze für den Garten.",
+            "Ich bringe einen Apfelkuchen mit. Den mache ich selbst.",
+            "Fotos mache ich gern. Ich bringe meine Kamera mit.",
+            "Viele Grüße",
+            "Mark"
+          ],
+          "notes": [
+            {
+              "de": "Ja, ich mache mit.",
+              "note_fr": "Réponse directe à la première question : c'est ce que l'examinateur cherche d'abord.",
+              "note_en": "A direct answer to the first question: that is what the examiner looks for first."
+            },
+            {
+              "de": "Meine Idee: Wir kaufen eine schöne Pflanze für den Garten.",
+              "note_fr": "Une idée claire, sans raison. Le point est traité au niveau A2.",
+              "note_en": "A clear idea, with no reason. The point is covered at A2 level."
+            },
+            {
+              "de": "Den mache ich selbst.",
+              "note_fr": "Un petit détail en plus, en phrase simple : bien.",
+              "note_en": "A small extra detail, in a simple sentence: good."
+            },
+            {
+              "de": "Fotos mache ich gern.",
+              "note_fr": "Commencer par l'objet (« Fotos ») et garder le verbe en 2e place : juste.",
+              "note_en": "Starting with the object (\"Fotos\") and keeping the verb in second place: correct."
+            }
+          ]
+        },
+        "b1": {
+          "lignes": [
+            "Hallo Jonas,",
+            "danke, dass du die Feier organisierst – das ist eine schöne Idee! Natürlich mache ich beim Geschenk mit. Die zehn Euro gebe ich dir morgen im Büro.",
+            "Weil Frau Yilmaz so gern im Garten arbeitet, könnten wir ihr einen Gutschein für ein Gartencenter schenken. Dann kann sie selbst aussuchen, was sie braucht. Was meinst du?",
+            "Ich backe gern einen Apfelkuchen. Wenn noch Getränke fehlen, kann ich auch Saft mitbringen.",
+            "Und klar, ich mache die Fotos! Ich schicke sie danach allen, damit jeder eine Erinnerung hat.",
+            "Bis morgen und viele Grüße",
+            "Mark"
+          ],
+          "notes": [
+            {
+              "de": "danke, dass du die Feier organisierst",
+              "note_fr": "Il remercie Jonas pour ce qu'il fait, avec « dass » : il réagit au message avant d'y répondre.",
+              "note_en": "He thanks Jonas for what he is doing, with \"dass\": he reacts to the message before answering it."
+            },
+            {
+              "de": "Die zehn Euro gebe ich dir morgen im Büro.",
+              "note_fr": "Un détail concret (quand, où) : Jonas n'a pas besoin de redemander.",
+              "note_en": "A concrete detail (when, where): Jonas does not need to ask again."
+            },
+            {
+              "de": "Weil Frau Yilmaz so gern im Garten arbeitet, könnten wir ihr einen Gutschein für ein Gartencenter schenken.",
+              "note_fr": "L'idée vient avec sa raison, et « könnten » rend la proposition polie : deux marques du B1 dans une phrase.",
+              "note_en": "The idea comes with its reason, and \"könnten\" makes the suggestion polite: two B1 features in one sentence."
+            },
+            {
+              "de": "was sie braucht",
+              "note_fr": "Une question indirecte, le verbe à la fin.",
+              "note_en": "An indirect question, verb at the end."
+            },
+            {
+              "de": "Was meinst du?",
+              "note_fr": "Il demande l'avis de Jonas : l'échange continue.",
+              "note_en": "He asks for Jonas's opinion: the exchange goes on."
+            },
+            {
+              "de": "damit jeder eine Erinnerung hat",
+              "note_fr": "« damit » donne le but : une subordonnée de plus, variée.",
+              "note_en": "\"damit\" gives the purpose: another, different kind of clause."
+            }
+          ]
+        }
+      },
+      "passer_fr": [
+        "L'idée de cadeau vient avec sa raison (« Weil sie so gern im Garten arbeitet… »).",
+        "Des subordonnées variées : dass, weil, wenn, damit, et une question indirecte.",
+        "Des propositions polies avec könnten, et l'avis de l'autre demandé.",
+        "Des détails concrets qui évitent une deuxième question (quand il donne l'argent, à qui il envoie les photos)."
+      ],
+      "passer_en": [
+        "The gift idea comes with its reason (\"Weil sie so gern im Garten arbeitet…\").",
+        "Varied clauses: dass, weil, wenn, damit, and an indirect question.",
+        "Polite suggestions with könnten, and asking for the other person's view.",
+        "Concrete details that save a second question (when he hands over the money, who gets the photos)."
+      ]
+    },
+    {
+      "id": 3,
+      "registre": "formel",
+      "situation_fr": "La responsable du cours de Mark à la Volkshochschule annonce des changements.",
+      "situation_en": "The coordinator of Mark's course at the adult education centre announces some changes.",
+      "mail": {
+        "von": "Sabine Hoffmann, Volkshochschule Berlin-Mitte",
+        "an": "Mark Garnier",
+        "betreff": "Ihr Deutschkurs B1 – Änderungen ab nächster Woche",
+        "lignes": [
+          "Sehr geehrter Herr Garnier,",
+          "leider muss ich Ihnen mitteilen, dass unser Kursraum ab nächster Woche renoviert wird. Der Kurs findet deshalb im Raum 214 im zweiten Stock statt. Außerdem möchten wir den Kurs vom Montag auf den Dienstag verschieben. Die Uhrzeit, 18 bis 20:15 Uhr, bleibt gleich. Können Sie auch dienstags kommen?",
+          "Am Ende des Kurses machen wir einen Ausflug in ein Museum. Möchten Sie mitkommen? Der Eintritt kostet für Kursteilnehmer vier Euro.",
+          "Zum Schluss habe ich noch eine Bitte: Wir planen für das neue Jahr einen Aufbaukurs. Welche Themen sind für Sie besonders wichtig?",
+          "Mit freundlichen Grüßen",
+          "Sabine Hoffmann"
+        ]
+      },
+      "fragen": [
+        {
+          "n": 29,
+          "typ": "rf",
+          "de": "Der Kurs fängt ab nächster Woche später an.",
+          "bon": 1,
+          "erkl_fr": "C'est faux : le jour change (le mardi au lieu du lundi), mais « Die Uhrzeit … bleibt gleich ».",
+          "erkl_en": "That's wrong: the day changes (Tuesday instead of Monday), but \"Die Uhrzeit … bleibt gleich\"."
+        },
+        {
+          "n": 30,
+          "typ": "ab",
+          "de": "Frau Hoffmann möchte wissen, …",
+          "o": [
+            "ob Herr Garnier am Dienstag kommen kann.",
+            "ob Herr Garnier einen anderen Raum kennt."
+          ],
+          "bon": 0,
+          "erkl_fr": "« Können Sie auch dienstags kommen? » Le nouveau local, c'est elle qui l'annonce (Raum 214).",
+          "erkl_en": "\"Können Sie auch dienstags kommen?\" She is the one announcing the new room (Raum 214)."
+        }
+      ],
+      "punkte": [
+        {
+          "de": "Können Sie auch dienstags kommen?",
+          "indices": [
+            "dienstag",
+            "passt",
+            "kann ich",
+            "komme"
+          ],
+          "aide_fr": "Dire si le mardi te convient.",
+          "aide_en": "Say whether Tuesday suits you."
+        },
+        {
+          "de": "Möchten Sie beim Ausflug mitkommen?",
+          "indices": [
+            "ausflug",
+            "museum",
+            "mitkommen",
+            "komme gern",
+            "teil"
+          ],
+          "aide_fr": "Dire si tu viens à la sortie au musée.",
+          "aide_en": "Say whether you will come on the museum trip."
+        },
+        {
+          "de": "Welche Themen sind für Sie wichtig?",
+          "indices": [
+            "thema",
+            "themen",
+            "wichtig",
+            "wünsche",
+            "zum beispiel",
+            "sprechen",
+            "schreiben",
+            "arbeit"
+          ],
+          "aide_fr": "Proposer des thèmes pour le cours suivant.",
+          "aide_en": "Suggest topics for the next course."
+        }
+      ],
+      "modeles": {
+        "a2": {
+          "lignes": [
+            "Sehr geehrte Frau Hoffmann,",
+            "vielen Dank für Ihre E-Mail.",
+            "Dienstags kann ich auch kommen. Das ist kein Problem.",
+            "Den Ausflug ins Museum finde ich gut. Ich komme gern mit.",
+            "Für mich sind diese Themen wichtig: Arbeit, Wohnung und Briefe schreiben.",
+            "Mit freundlichen Grüßen",
+            "Mark Garnier"
+          ],
+          "notes": [
+            {
+              "de": "Sehr geehrte Frau Hoffmann,",
+              "note_fr": "Il répond « Sehr geehrte Frau » à « Sehr geehrter Herr » : le registre est respecté (critère II).",
+              "note_en": "He answers \"Sehr geehrter Herr\" with \"Sehr geehrte Frau\": the register is kept (criterion II)."
+            },
+            {
+              "de": "Das ist kein Problem.",
+              "note_fr": "Une deuxième phrase toute faite, mais utile : le oui est clair.",
+              "note_en": "A second ready-made sentence, but useful: the yes is clear."
+            },
+            {
+              "de": "Für mich sind diese Themen wichtig: Arbeit, Wohnung und Briefe schreiben.",
+              "note_fr": "Il reprend les mots de la question et donne une liste. Suffisant au A2, sans raison.",
+              "note_en": "He reuses the words of the question and gives a list. Enough at A2, with no reason."
+            },
+            {
+              "de": "Mark Garnier",
+              "note_fr": "Prénom ET nom sous « Mit freundlichen Grüßen ».",
+              "note_en": "First AND last name under \"Mit freundlichen Grüßen\"."
+            }
+          ]
+        },
+        "b1": {
+          "lignes": [
+            "Sehr geehrte Frau Hoffmann,",
+            "vielen Dank für Ihre Informationen.",
+            "Der Dienstag passt mir gut, weil ich an diesem Tag früher Feierabend habe. Ich komme also ab nächster Woche in den Raum 214.",
+            "An dem Ausflug ins Museum nehme ich sehr gern teil. Ich interessiere mich für Geschichte, und vier Euro sind wirklich günstig. Könnten Sie mir noch sagen, wann und wo wir uns treffen?",
+            "Für den Aufbaukurs wünsche ich mir vor allem Themen aus dem Berufsleben, zum Beispiel Telefongespräche und offizielle E-Mails. Außerdem wäre es schön, wenn wir mehr sprechen würden.",
+            "Mit freundlichen Grüßen",
+            "Mark Garnier"
+          ],
+          "notes": [
+            {
+              "de": "weil ich an diesem Tag früher Feierabend habe",
+              "note_fr": "Le oui vient avec sa raison, reliée par « weil ».",
+              "note_en": "The yes comes with its reason, linked with \"weil\"."
+            },
+            {
+              "de": "Ich komme also ab nächster Woche in den Raum 214.",
+              "note_fr": "Il montre qu'il a compris le changement de local : il reprend l'information du message.",
+              "note_en": "He shows he has understood the room change: he picks up the information from the message."
+            },
+            {
+              "de": "An dem Ausflug ins Museum nehme ich sehr gern teil.",
+              "note_fr": "« an etwas teilnehmen » : un verbe précis à la place de « mitkommen ».",
+              "note_en": "\"an etwas teilnehmen\": a precise verb instead of \"mitkommen\"."
+            },
+            {
+              "de": "Könnten Sie mir noch sagen, wann und wo wir uns treffen?",
+              "note_fr": "Une question polie en retour, au Konjunktiv II, avec le verbe à la fin.",
+              "note_en": "A polite question back, in Konjunktiv II, with the verb at the end."
+            },
+            {
+              "de": "zum Beispiel Telefongespräche und offizielle E-Mails",
+              "note_fr": "Un exemple concret : le thème n'est plus seulement un mot.",
+              "note_en": "A concrete example: the topic is no longer just a word."
+            },
+            {
+              "de": "wäre es schön, wenn wir mehr sprechen würden",
+              "note_fr": "Un souhait poli (wäre, würden) : une structure du B1 qui donne le ton juste avec une école.",
+              "note_en": "A polite wish (wäre, würden): a B1 structure that strikes the right tone with a school."
+            }
+          ]
+        }
+      },
+      "passer_fr": [
+        "Le oui au mardi vient avec une raison (weil) et la reprise du nouveau local.",
+        "Des verbes plus précis : an etwas teilnehmen, sich interessieren für, sich wünschen.",
+        "Une question polie en retour au Konjunktiv II (« Könnten Sie mir noch sagen… »).",
+        "Les thèmes sont illustrés par des exemples et un souhait poli (wäre, würden)."
+      ],
+      "passer_en": [
+        "The yes to Tuesday comes with a reason (weil) and picks up the new room.",
+        "More precise verbs: an etwas teilnehmen, sich interessieren für, sich wünschen.",
+        "A polite question back in Konjunktiv II (\"Könnten Sie mir noch sagen…\").",
+        "The topics are backed by examples and a polite wish (wäre, würden)."
+      ]
+    },
+    {
+      "id": 4,
+      "registre": "formel",
+      "situation_fr": "Frau Becker, la voisine de Mark, part en vacances et lui demande un service.",
+      "situation_en": "Frau Becker, Mark's neighbour, is going on holiday and asks him for a favour.",
+      "mail": {
+        "von": "Helga Becker",
+        "an": "Mark Garnier",
+        "betreff": "Eine Bitte während meines Urlaubs",
+        "lignes": [
+          "Lieber Herr Garnier,",
+          "ich hoffe, es geht Ihnen gut. Ich fahre vom 10. bis zum 24. Juli zu meiner Tochter nach Hamburg. Darf ich Sie um einen Gefallen bitten?",
+          "Könnten Sie in dieser Zeit meine Blumen auf dem Balkon gießen? Bei der Hitze brauchen sie zweimal pro Woche Wasser. Es wäre auch sehr nett, wenn Sie meinen Briefkasten leeren könnten.",
+          "Ich möchte Ihnen vorher den Schlüssel geben. Wann sind Sie in den nächsten Tagen zu Hause?",
+          "Und haben Sie im Sommer auch Urlaubspläne? Dann helfe ich Ihnen natürlich auch gern.",
+          "Herzliche Grüße",
+          "Helga Becker"
+        ]
+      },
+      "fragen": [
+        {
+          "n": 29,
+          "typ": "rf",
+          "de": "Frau Becker ist zwei Wochen nicht zu Hause.",
+          "bon": 0,
+          "erkl_fr": "C'est juste : du 10 au 24 juillet, cela fait deux semaines.",
+          "erkl_en": "That's right: from 10 to 24 July is two weeks."
+        },
+        {
+          "n": 30,
+          "typ": "ab",
+          "de": "Frau Becker möchte …",
+          "o": [
+            "Herrn Garnier ihre Wohnung vermieten.",
+            "Herrn Garnier vor dem Urlaub den Schlüssel geben."
+          ],
+          "bon": 1,
+          "erkl_fr": "« Ich möchte Ihnen vorher den Schlüssel geben. » Il n'est pas question de louer l'appartement.",
+          "erkl_en": "\"Ich möchte Ihnen vorher den Schlüssel geben.\" Nothing is said about renting out the flat."
+        }
+      ],
+      "punkte": [
+        {
+          "de": "Könnten Sie meine Blumen gießen?",
+          "indices": [
+            "blumen",
+            "gieße",
+            "gießen",
+            "pflanzen"
+          ],
+          "aide_fr": "Répondre pour les fleurs.",
+          "aide_en": "Answer about the flowers."
+        },
+        {
+          "de": "Könnten Sie den Briefkasten leeren?",
+          "indices": [
+            "briefkasten",
+            "post",
+            "leere",
+            "leeren"
+          ],
+          "aide_fr": "Répondre pour la boîte aux lettres.",
+          "aide_en": "Answer about the letterbox."
+        },
+        {
+          "de": "Wann sind Sie zu Hause?",
+          "indices": [
+            "zu hause",
+            "uhr",
+            "abend",
+            "montag",
+            "dienstag",
+            "mittwoch",
+            "donnerstag",
+            "freitag",
+            "samstag",
+            "sonntag",
+            "schlüssel"
+          ],
+          "aide_fr": "Dire quand tu es chez toi pour recevoir la clé.",
+          "aide_en": "Say when you are at home to get the key."
+        },
+        {
+          "de": "Haben Sie auch Urlaubspläne?",
+          "indices": [
+            "urlaub",
+            "fahre",
+            "fliege",
+            "reise",
+            "sommer",
+            "august",
+            "juni",
+            "zu hause bleiben"
+          ],
+          "aide_fr": "Parler de tes projets de vacances.",
+          "aide_en": "Talk about your own holiday plans."
+        }
+      ],
+      "modeles": {
+        "a2": {
+          "lignes": [
+            "Liebe Frau Becker,",
+            "danke für Ihre E-Mail. Ich gieße gern Ihre Blumen. Ich leere auch Ihren Briefkasten.",
+            "Ich bin am Mittwoch und am Donnerstag ab 18 Uhr zu Hause. Dann können Sie mir den Schlüssel geben.",
+            "Im August fahre ich nach Montréal. Ich besuche meine Familie.",
+            "Schöne Ferien in Hamburg!",
+            "Herzliche Grüße",
+            "Mark Garnier"
+          ],
+          "notes": [
+            {
+              "de": "Liebe Frau Becker,",
+              "note_fr": "Elle écrit « Lieber Herr Garnier » : il répond sur le même ton, et garde « Sie » partout.",
+              "note_en": "She writes \"Lieber Herr Garnier\": he answers in the same tone and keeps \"Sie\" throughout."
+            },
+            {
+              "de": "Ich leere auch Ihren Briefkasten.",
+              "note_fr": "« Ihren » avec une majuscule : le possessif du « Sie ».",
+              "note_en": "\"Ihren\" with a capital letter: the possessive that goes with \"Sie\"."
+            },
+            {
+              "de": "Dann können Sie mir den Schlüssel geben.",
+              "note_fr": "« Dann » en tête, le verbe juste après : un ordre des mots juste, sans subordonnée.",
+              "note_en": "\"Dann\" first, the verb right after: correct word order, without a subordinate clause."
+            },
+            {
+              "de": "Ich besuche meine Familie.",
+              "note_fr": "Une raison posée à côté, comme au A2.",
+              "note_en": "A reason set side by side, as at A2."
+            }
+          ]
+        },
+        "b1": {
+          "lignes": [
+            "Liebe Frau Becker,",
+            "vielen Dank für Ihre Nachricht. Natürlich helfe ich Ihnen gern! Ich gieße Ihre Blumen jeden Montag und Donnerstag, und dabei leere ich auch gleich den Briefkasten. Soll ich die Post in Ihre Wohnung legen?",
+            "Den Schlüssel können Sie mir am Mittwochabend geben, denn dann bin ich ab 18 Uhr zu Hause. Wenn Ihnen das zu spät ist, klingeln Sie einfach am Samstagvormittag.",
+            "Ich fliege im August für drei Wochen nach Montréal, weil mein bester Freund heiratet. Es wäre toll, wenn Sie dann meine Pflanzen gießen könnten.",
+            "Ich wünsche Ihnen eine schöne Zeit bei Ihrer Tochter!",
+            "Herzliche Grüße",
+            "Mark Garnier"
+          ],
+          "notes": [
+            {
+              "de": "Ich gieße Ihre Blumen jeden Montag und Donnerstag",
+              "note_fr": "Il ne dit pas seulement oui : il dit quand, ce qui répond au « zweimal pro Woche » de sa voisine.",
+              "note_en": "He does not just say yes: he says when, which answers his neighbour's \"zweimal pro Woche\"."
+            },
+            {
+              "de": "Soll ich die Post in Ihre Wohnung legen?",
+              "note_fr": "Une question pratique en retour ; « in Ihre Wohnung » à l'accusatif, puisqu'on la pose quelque part.",
+              "note_en": "A practical question back; \"in Ihre Wohnung\" in the accusative, since you put it somewhere."
+            },
+            {
+              "de": "denn dann bin ich ab 18 Uhr zu Hause",
+              "note_fr": "« denn » donne la raison, le verbe reste en 2e place.",
+              "note_en": "\"denn\" gives the reason, the verb stays in second place."
+            },
+            {
+              "de": "Wenn Ihnen das zu spät ist, klingeln Sie einfach am Samstagvormittag.",
+              "note_fr": "Il prévoit une autre solution : une subordonnée en « wenn » et un conseil.",
+              "note_en": "He offers another option: a wenn clause and a piece of advice."
+            },
+            {
+              "de": "Es wäre toll, wenn Sie dann meine Pflanzen gießen könnten.",
+              "note_fr": "Il reprend la formule polie de Frau Becker (« Es wäre … nett, wenn … ») : réagir au texte, c'est aussi reprendre ses tournures.",
+              "note_en": "He reuses Frau Becker's polite phrase (\"Es wäre … nett, wenn …\"): reacting to a text also means reusing its phrases."
+            }
+          ]
+        }
+      },
+      "passer_fr": [
+        "Des réponses précises (quels jours, quelle heure) qui tiennent compte de ce que la voisine a écrit.",
+        "Une solution de rechange (« Wenn Ihnen das zu spät ist… »).",
+        "Des raisons reliées par denn et weil.",
+        "On reprend les tournures polies du message (« Es wäre toll, wenn … könnten »)."
+      ],
+      "passer_en": [
+        "Precise answers (which days, what time) that take account of what the neighbour wrote.",
+        "An alternative (\"Wenn Ihnen das zu spät ist…\").",
+        "Reasons linked with denn and weil.",
+        "Reusing the polite phrases of the message (\"Es wäre toll, wenn … könnten\")."
+      ]
+    },
+    {
+      "id": 5,
+      "registre": "informel",
+      "situation_fr": "Lukas, un ami de Munich, vient à Berlin et voudrait dormir chez Mark.",
+      "situation_en": "Lukas, a friend from Munich, is coming to Berlin and would like to stay at Mark's.",
+      "mail": {
+        "von": "Lukas",
+        "an": "Mark",
+        "betreff": "Ich komme nach Berlin!",
+        "lignes": [
+          "Hallo Mark,",
+          "lange nichts gehört! Wie gefällt dir das Leben in Berlin? Ich habe eine gute Nachricht: Im Mai habe ich eine Konferenz in Berlin, und danach bleibe ich noch ein Wochenende.",
+          "Kann ich von Freitag bis Sonntag bei dir übernachten? Die Hotels sind im Moment sehr teuer.",
+          "Ich war noch nie in Berlin. Was sollten wir unbedingt zusammen machen?",
+          "Ich komme am Freitagabend mit dem Zug am Hauptbahnhof an. Wie komme ich am besten zu dir?",
+          "Viele Grüße aus München",
+          "Lukas"
+        ]
+      },
+      "fragen": [
+        {
+          "n": 29,
+          "typ": "rf",
+          "de": "Lukas kennt Berlin schon.",
+          "bon": 1,
+          "erkl_fr": "C'est faux : « Ich war noch nie in Berlin. »",
+          "erkl_en": "That's wrong: \"Ich war noch nie in Berlin.\""
+        },
+        {
+          "n": 30,
+          "typ": "ab",
+          "de": "Lukas kommt nach Berlin, …",
+          "o": [
+            "weil er dort Urlaub machen möchte.",
+            "weil er dort beruflich zu tun hat."
+          ],
+          "bon": 1,
+          "erkl_fr": "Il vient pour une conférence (« eine Konferenz ») ; le week-end, il le rajoute après.",
+          "erkl_en": "He is coming for a conference (\"eine Konferenz\"); he only adds the weekend afterwards."
+        }
+      ],
+      "punkte": [
+        {
+          "de": "Wie gefällt dir das Leben in Berlin?",
+          "indices": [
+            "gefällt",
+            "berlin",
+            "stadt",
+            "leben"
+          ],
+          "aide_fr": "Dire comment tu trouves la vie à Berlin.",
+          "aide_en": "Say how you like life in Berlin."
+        },
+        {
+          "de": "Kann ich bei dir übernachten?",
+          "indices": [
+            "übernachten",
+            "schlafen",
+            "sofa",
+            "bett",
+            "gästezimmer",
+            "bei mir"
+          ],
+          "aide_fr": "Répondre pour l'hébergement.",
+          "aide_en": "Answer about staying at your place."
+        },
+        {
+          "de": "Was sollten wir zusammen machen?",
+          "indices": [
+            "können wir",
+            "sollten wir",
+            "könnten",
+            "museum",
+            "flohmarkt",
+            "fahrrad",
+            "spree",
+            "park",
+            "tor",
+            "gehen"
+          ],
+          "aide_fr": "Proposer ce que vous pourriez faire.",
+          "aide_en": "Suggest what you could do together."
+        },
+        {
+          "de": "Wie komme ich zu dir?",
+          "indices": [
+            "abholen",
+            "hole",
+            "s-bahn",
+            "u-bahn",
+            "bus",
+            "tram",
+            "zu fuß",
+            "bahnhof",
+            "nimm"
+          ],
+          "aide_fr": "Expliquer comment venir chez toi depuis la gare.",
+          "aide_en": "Explain how to get to your place from the station."
+        }
+      ],
+      "modeles": {
+        "a2": {
+          "lignes": [
+            "Hallo Lukas,",
+            "schön, von dir zu hören! Berlin gefällt mir sehr gut. Die Stadt ist groß und interessant.",
+            "Du kannst gern bei mir schlafen. Ich habe ein Sofa.",
+            "Wir können am Samstag zum Brandenburger Tor gehen und am Sonntag auf den Flohmarkt.",
+            "Ich hole dich am Hauptbahnhof ab. Schreib mir die Uhrzeit.",
+            "Bis bald!",
+            "Viele Grüße",
+            "Mark"
+          ],
+          "notes": [
+            {
+              "de": "Berlin gefällt mir sehr gut.",
+              "note_fr": "Il reprend le verbe de la question (« gefallen ») : la réponse est sûre.",
+              "note_en": "He reuses the verb from the question (\"gefallen\"): a safe answer."
+            },
+            {
+              "de": "Die Stadt ist groß und interessant.",
+              "note_fr": "Deux adjectifs simples : ça suffit au A2, mais ça reste général.",
+              "note_en": "Two simple adjectives: enough at A2, but still general."
+            },
+            {
+              "de": "Wir können am Samstag zum Brandenburger Tor gehen",
+              "note_fr": "Une proposition concrète avec « können » : bien.",
+              "note_en": "A concrete suggestion with \"können\": good."
+            },
+            {
+              "de": "Ich hole dich am Hauptbahnhof ab.",
+              "note_fr": "Un verbe séparable bien placé (« abholen » : hole … ab).",
+              "note_en": "A separable verb in the right place (\"abholen\": hole … ab)."
+            }
+          ]
+        },
+        "b1": {
+          "lignes": [
+            "Hallo Lukas,",
+            "was für eine tolle Nachricht! Ich freue mich riesig, dass du nach Berlin kommst.",
+            "Mir gefällt das Leben hier immer besser. Am Anfang war alles ein bisschen chaotisch, aber jetzt habe ich Freunde und kenne mich gut aus.",
+            "Natürlich kannst du bei mir übernachten. Mein Sofa ist zwar nicht sehr groß, aber ziemlich bequem.",
+            "Wenn das Wetter schön ist, sollten wir unbedingt mit dem Fahrrad an der Spree entlangfahren. Am Sonntag gibt es außerdem einen tollen Flohmarkt im Mauerpark.",
+            "Schreib mir, wann dein Zug ankommt. Dann hole ich dich am Hauptbahnhof ab, damit du dich nicht verläufst.",
+            "Bis bald und viele Grüße",
+            "Mark"
+          ],
+          "notes": [
+            {
+              "de": "Ich freue mich riesig, dass du nach Berlin kommst.",
+              "note_fr": "Il réagit à la nouvelle avec « sich freuen, dass ».",
+              "note_en": "He reacts to the news with \"sich freuen, dass\"."
+            },
+            {
+              "de": "Am Anfang war alles ein bisschen chaotisch, aber jetzt habe ich Freunde",
+              "note_fr": "Il compare avant et maintenant, au Präteritum puis au présent : la réponse a de la profondeur.",
+              "note_en": "He compares then and now, in the Präteritum and then the present: the answer has depth."
+            },
+            {
+              "de": "zwar nicht sehr groß, aber ziemlich bequem",
+              "note_fr": "« zwar … aber » : une concession, connecteur typique du B1.",
+              "note_en": "\"zwar … aber\": a concession, a typical B1 connector."
+            },
+            {
+              "de": "Wenn das Wetter schön ist, sollten wir unbedingt",
+              "note_fr": "Il reprend le « sollten » de Lukas et y ajoute une condition.",
+              "note_en": "He picks up Lukas's \"sollten\" and adds a condition."
+            },
+            {
+              "de": "Schreib mir, wann dein Zug ankommt.",
+              "note_fr": "Une question indirecte, et le verbe séparable réuni à la fin (« ankommt »).",
+              "note_en": "An indirect question, with the separable verb joined up at the end (\"ankommt\")."
+            },
+            {
+              "de": "damit du dich nicht verläufst",
+              "note_fr": "Le but avec « damit », et un verbe pronominal précis.",
+              "note_en": "Purpose with \"damit\", and a precise reflexive verb."
+            }
+          ]
+        }
+      },
+      "passer_fr": [
+        "La question « Wie gefällt dir Berlin? » reçoit une vraie réponse : avant, maintenant, pourquoi.",
+        "Des connecteurs plus riches : zwar … aber, wenn, damit, dass.",
+        "On reprend les mots de l'autre (sollten, übernachten) pour montrer qu'on a lu.",
+        "Les propositions sont concrètes (où, quand, à quelle condition)."
+      ],
+      "passer_en": [
+        "The question \"Wie gefällt dir Berlin?\" gets a real answer: before, now, and why.",
+        "Richer connectors: zwar … aber, wenn, damit, dass.",
+        "Reusing the other person's words (sollten, übernachten) to show you have read the message.",
+        "The suggestions are concrete (where, when, on what condition)."
+      ]
+    }
+  ]
+}

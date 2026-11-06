@@ -1,60 +1,127 @@
 // LE TELC A2·B1 AVEC MARK ET ANNA -- ECRIRE (6 nov. 2026, session « telc Ecrire »).
 //
-// Deux parties du telc, d'apres preparation-examens/FORMAT-TELC.md (le format seul, jamais le contenu) :
-//   LS  « Lire et ecrire » (Lesen und Schreiben, items 29-31) : un courriel recu qui pose des questions ;
-//       29 Richtig/Falsch, 30 un choix a 2, puis 31 la reponse a ce courriel (critere I sur 15) ;
-//       35 minutes avec les Sprachbausteine.
-//   S   « Ecrire » (Schreiben, item 57) : repondre a un message court qui pose une question (wann, was, warum
-//       nicht, welches, wie lange, wo, wohin), en plus d'un mot ; 10 minutes ; critere I sur 5.
-// Les criteres II, III, IV (10 points chacun) jugent les deux textes ensemble a l'examen : l'entrainement les
-// estime pour le texte que l'on vient d'ecrire.
+// La partie S du telc, d'apres preparation-examens/FORMAT-TELC.md (le format seul, jamais le contenu) :
+// « Schreiben », item 57, a la toute fin de l'ecrit, apres l'ecoute : repondre a un message court qui pose une
+// question (wann, was, warum nicht, welches, wie lange, wo, wohin), en plus d'un mot ; 10 minutes ; critere I sur 5.
+// S donne aussi les trois criteres d'ensemble de l'ecrit (II Kommunikative Gestaltung, III Formale Richtigkeit,
+// IV Spektrum sprachlicher Mittel, 10 points chacun), notes sur le courriel (partie LS) ET la reponse courte.
 //
-// L'ORGANISATION EST CELLE DES SPRACHBAUSTEINE (et de l'oral du DTZ, decision de Jacques du 4 nov.) : une page par
-// exercice, « Section · … », des points de progression qu'on touche pour sauter, « ‹ » vers la liste, « Continuer »
-// en bas ; en fin de section, un recapitulatif, puis Refaire / Section suivante / Toutes les sections.
+// CE FICHIER PORTE AUSSI LE MOTEUR des deux textes de l'ecrit, que lesen-schreiben.js (LS, le courriel) appelle :
 //   LS : 29 · 30 · 31 (ecrire) · ✓ (la grille) · M (les lettres modeles A2 et B1, annotees)
 //   S  : 57 (ecrire) · ✓ · M
+// L'organisation est celle des Sprachbausteine (decision de Jacques du 4 nov.) : une page par exercice,
+// « Section · … », des points de progression qu'on touche pour sauter, « ‹ » vers la liste, « Continuer » en bas ;
+// en fin de section, un recapitulatif, puis Refaire / Un autre sujet / Section suivante / Toutes les sections.
+// En tete de chaque section, « La tache a l'examen » : ce qu'on demande, le temps, les points, comment s'y prendre
+// (retour de Marina, l'enseignante, 1er nov. : le cahier du commerce « n'explique pas le format »).
 //
-// CE QUE LA PAGE NE FAIT PAS, et le dit : elle ne corrige ni la grammaire ni l'orthographe. Elle compte les mots,
-// cherche la formule d'appel et la salutation, le registre (du / Sie), les connecteurs et des indices de chaque
-// point ; le reste, c'est l'eleve qui le juge avec la grille, puis il compare aux lettres modeles.
+// CE QUE LA PAGE NE JUGE PAS, et le dit : ni la grammaire ni l'orthographe. Comme les JUGES de dtz-oral.html, elle
+// regarde ce qu'un programme peut voir : la longueur, la formule d'appel et la salutation, le registre (du / Sie,
+// assortis au message recu), les connecteurs, des indices de chaque point de la consigne. Le reste, l'eleve le juge
+// avec la grille de l'examinateur (criteres I a IV, descriptions B1 / A2 / sous A2), puis il compare aux lettres
+// modeles.
 //
-// Donnees : donnees/schreiben.json (controle : python tests/telc_schreiben.py). Interface en francais et en anglais
-// (?lang=en) ; les autres langues retombent sur le francais, comme le reste de la page.
-// Ce module ne connait de commun.js que ses fonctions publiques ($, esc, T, TXT, LANGUE, Q, parler, lire, ecrire,
-// DTZ, accueil, MARK_IMG, chrono, arreterChrono, ouvrir, fermerPanneau, choisirSerie, marquerFait, resultat,
-// silence) ; il s'inscrit par DTZ.partie() comme sprachbausteine.js.
+// Donnees : donnees/schreiben.json (la reponse courte, la grille, le bareme, les formules utiles) et
+// donnees/lesen-schreiben.json (les courriels, charges par lesen-schreiben.js). Controle : python tests/telc_ecrire.py.
+// Textes en francais et en anglais (textesTelc, champTelc de telc-commun.js).
 
 "use strict";
 
 const SCH_EN = LANGUE === "en";
 
-Object.assign(TXT, {
-  ls_titre: "Lire et écrire", ls_sous: "Un courriel à lire, puis ta réponse",
-  ls_section: "Section · Lire et écrire",
+const S_EN = {
+  s_titre: "Write", s_sous: "A short message, 10 minutes",
+  s_section: "Section · Write",
+  sch_situation: "The situation:",
+  sch_de: "From:", sch_a: "To:",
+  sch_juste: "Correct!", sch_faux: "Not quite.",
+  sch_mark_s: "This is the very last task of the written exam, after the listening: 10 minutes to reply to a short message. Look at the question word first (wann, warum, wohin…): your answer must answer it, in more than one word.",
+  sch_ecrire_s: "You receive this message. Reply to it, in more than one word.",
+  sch_tu_reponds: "You are replying for Mark: make up any details you need.",
+  sch_longueur_s: "Wortando's guide: two sentences at A2 (10 to 20 words), three or four at B1 (20 to 40 words).",
+  sch_temps_s: "In the exam: 10 minutes.",
+  sch_chrono_s: "Start the 10 minutes",
+  sch_temps_fini: "The exam time is up. You can finish your text, but on the day you would have to stop here.",
+  sch_formules: "Useful phrases",
+  sch_ton_texte: "Your text",
+  sch_placeholder: "Write your reply here, in German…",
+  sch_mots: "{n} word(s)",
+  sch_verifier: "Check my text",
+  sch_vide: "Write a few sentences first.",
+  sch_voit: "What the page can see",
+  sch_voit_s: "It counts and looks for clues; it does not correct grammar or spelling.",
+  sch_v_mots: "Length: {n} word(s).",
+  sch_v_court_s: "In the telc, you must write more than one word.",
+  sch_v_long: "That is long: check it over rather than adding more.",
+  sch_v_anrede_ok: "Opening: \"{m}\".",
+  sch_v_anrede_ko: "No opening at the start (Liebe …, Hallo …, Sehr geehrte …).",
+  sch_v_gruss_ok: "Closing at the end: \"{m}\".",
+  sch_v_gruss_ko: "No closing at the end (Viele Grüße, Liebe Grüße, Mit freundlichen Grüßen…).",
+  sch_v_gruss_froid: "\"Mit freundlichen Grüßen\" is a bit cold for a friend: \"Viele Grüße\" or \"Liebe Grüße\" will fit better.",
+  sch_v_sie_informel: "Are you saying du? The text has \"{m}\" in the middle of a sentence: that is the formal Sie. Keep the same register throughout.",
+  sch_v_du_formel: "The message uses Sie, and your text has \"{m}\": keep \"Sie\" throughout.",
+  sch_v_registre_ok: "The register ({r}) seems to hold from start to finish.",
+  sch_v_conn: "Linking words found: {m}.",
+  sch_v_conn_aucun: "No linking words found: connect your sentences (und, aber, denn, weil, dass…).",
+  sch_v_sub: "Subordinate clauses (weil, dass, wenn, ob…): a B1 feature.",
+  sch_v_sub_aucune: "No subordinate clause yet (weil, dass, wenn, ob…): this is often what takes you to B1.",
+  sch_v_question: "A question back: the exchange goes on.",
+  sch_v_point_ok: "seems covered",
+  sch_v_point_ko: "to check",
+  sch_v_frage_ok: "The question \"{f}\" seems to have its answer.",
+  sch_v_frage_ko: "I can't see an obvious answer to \"{f}\". {c}",
+  sch_grille: "The grid: you be the judge",
+  sch_grille_s: "Read your text again against each description, then choose. This is the examiner's grid, simplified.",
+  sch_coche: "I have answered:",
+  sch_b1p: "B1, fully", sch_b1: "B1, mostly", sch_a2p: "A2, fully", sch_a2: "A2, mostly", sch_moins: "Not A2 yet",
+  sch_desc_b1: "B1", sch_desc_a2: "A2", sch_desc_moins: "Below A2",
+  sch_estimation: "Estimate for this text: {p} out of {s}",
+  sch_estimation_note: "In the exam, writing is worth 60 points: the Sprachbausteine (5), the email (15), the voicemail notes (5), the short message (5) and criteria II to IV for both texts together (30). Here, this text alone.",
+  sch_remplir: "Choose a level for all four criteria to see the estimate.",
+  sch_incoherent: "You chose B1 for the task, but {n} point(s) are not ticked: at B1, every question gets an answer.",
+  sch_voir_modeles: "See the model letters",
+  sch_modeles: "Two model letters",
+  sch_modeles_s: "The same questions, two levels. Tap an underlined passage to read the note.",
+  sch_message_a2: "A2 model reply", sch_message_b1: "B1 model reply",
+  sch_passer: "What takes you from A2 to B1",
+  sch_terminer: "Finish the section",
+  sch_recap: "Summary",
+  sch_pas_estime: "No estimate: the grid has not been filled in.",
+  sch_mark_b1: "Well done, that is a B1 text! Keep the habit: a reason or a detail for every question.",
+  sch_mark_a2: "That is a good A2. To aim for B1, read the B1 model letter again: every answer there gets a reason, linked with weil, dass or wenn.",
+  sch_mark_moins: "It's a start. Go through the points to cover one by one: a full sentence for each, an opening, a closing. That is what the useful phrases are for.",
+  sch_refaire: "Redo the section", sch_suivante: "Next section", sch_toutes: "All sections",
+  sch_autre: "Another topic",
+  sch_reg_du: "du", sch_reg_sie: "Sie", sch_reg_beide: "du or Sie",
+  sch_formules_note: "Phrases marked \"du\" go with the informal register, those marked \"Sie\" with the formal one.",
+  sch_t_titre: "In the exam: the task in brief",
+  sch_t_quoi: "What you have to do", sch_t_temps: "Time", sch_t_points: "Points", sch_t_comment: "How to go about it",
+  s_t_quoi: "You receive a short message (a text, a note, an email) that asks one question: wann, was, warum nicht, welches, wie lange, wo or wohin. You reply in a few sentences; one word is not enough.",
+  s_t_temps: "10 minutes, at the very end of the written exam, after the listening.",
+  s_t_points: "5 points for your reply (criterion I). Together with your email, it also counts in criteria II to IV (30 points).",
+  s_t_e1: "Find the question word: your first sentence answers it.",
+  s_t_e2: "Add a reason or a detail (weil, denn, deshalb), or a question back.",
+  s_t_e3: "Opening and closing; du or Sie, like the message.",
+  s_t_e4: "Read it through once: the verb in the right place, capital letters on nouns.",
+  sch_ex_rendre: "Hand in my reply",
+  sch_ex_valider: "Confirm my marks",
+  sch_ex_note_s: "Mark your reply for the task (criterion I), then criteria II to IV on your two texts together, as the examiner does.",
+  sch_ex_note_seul: "Mark your reply for the task (criterion I), then criteria II to IV (here on this text alone, since the email was not written in this mock exam).",
+  sch_ex_ton_courriel: "Your email (31)", sch_ex_ta_reponse: "Your short reply (57)",
+  sch_ex_pas_aide: "Mock exam: no help, no hints. The page does not mark grammar: you mark yourself with the examiner's grid."
+};
+textesTelc({ en: S_EN, fr: {
   s_titre: "Écrire", s_sous: "Un message court, 10 minutes",
   s_section: "Section · Écrire",
   sch_situation: "La situation :",
   sch_de: "De :", sch_a: "À :",
-  sch_rf_consigne_de: "Lesen Sie die E-Mail. Ist die Aussage richtig oder falsch?",
-  sch_rf_consigne: "Lis le courriel. L'affirmation est-elle juste ou fausse ?",
-  sch_ab_consigne_de: "Lesen Sie die E-Mail noch einmal. Welche Antwort passt?",
-  sch_ab_consigne: "Relis le courriel. Quelle réponse convient ?",
-  sch_richtig: "Richtig", sch_falsch: "Falsch",
   sch_juste: "Juste !", sch_faux: "Pas tout à fait.",
-  sch_mark_ls: "Au telc, ce courriel arrive juste après les Sprachbausteine : deux questions pour vérifier que tu l'as compris, puis tu y réponds. Les deux questions t'aident : elles te montrent ce que le courriel demande.",
   sch_mark_s: "C'est la toute dernière tâche de l'écrit, après l'écoute : 10 minutes pour répondre à un message court. Regarde d'abord le mot interrogatif (wann, warum, wohin…) : ta réponse doit lui répondre, en plus d'un mot.",
-  sch_ecrire_ls_de: "Antworten Sie {p}. Schreiben Sie zu jeder Frage etwas. Vergessen Sie Anrede und Gruß nicht.",
-  sch_ecrire_ls: "Réponds à {p}. Écris quelque chose pour chaque question. N'oublie ni la formule d'appel ni la salutation.",
   sch_ecrire_s_de: "Sie bekommen diese Nachricht. Antworten Sie. Schreiben Sie mehr als ein Wort.",
   sch_ecrire_s: "Tu reçois ce message. Réponds-y, en plus d'un mot.",
-  sch_points_titre: "Les points à traiter",
   sch_tu_reponds: "Tu réponds à la place de Mark : invente les détails qu'il te faut.",
-  sch_longueur_ls: "Le modèle d'examen ne fixe pas de nombre de mots : ce qui compte, c'est de répondre à chaque question. Repère de Wortando : environ 40 à 80 mots au A2, 80 à 120 au B1.",
   sch_longueur_s: "Repère de Wortando : deux phrases au A2 (10 à 20 mots), trois ou quatre au B1 (20 à 40 mots).",
-  sch_temps_ls: "À l'examen, cette partie et les Sprachbausteine ont 35 minutes ensemble : compte environ 20 minutes pour ce courriel.",
   sch_temps_s: "À l'examen : 10 minutes.",
-  sch_chrono_ls: "Lancer le chrono (20 min conseillées)",
   sch_chrono_s: "Lancer les 10 minutes",
   sch_temps_fini: "Le temps de l'examen est écoulé. Tu peux finir ton texte, mais le jour J, il faudrait s'arrêter là.",
   sch_formules: "Formules utiles",
@@ -66,7 +133,6 @@ Object.assign(TXT, {
   sch_voit: "Ce que la page voit",
   sch_voit_s: "Elle compte et cherche des indices ; elle ne corrige ni la grammaire ni l'orthographe.",
   sch_v_mots: "Longueur : {n} mot(s).",
-  sch_v_court_ls: "C'est court pour répondre à toutes les questions.",
   sch_v_court_s: "Au telc, il faut écrire plus d'un mot.",
   sch_v_long: "C'est long : relis-toi plutôt que d'ajouter.",
   sch_v_anrede_ok: "Formule d'appel : « {m} ».",
@@ -98,12 +164,10 @@ Object.assign(TXT, {
   sch_voir_modeles: "Voir les lettres modèles",
   sch_modeles: "Deux lettres modèles",
   sch_modeles_s: "Les mêmes questions, deux niveaux. Touche un passage souligné pour lire la note.",
-  sch_modele_a2: "Lettre modèle A2", sch_modele_b1: "Lettre modèle B1",
   sch_message_a2: "Réponse modèle A2", sch_message_b1: "Réponse modèle B1",
   sch_passer: "Ce qui fait passer de A2 à B1",
   sch_terminer: "Terminer la section",
   sch_recap: "Récapitulatif",
-  sch_q_score: "Questions 29 et 30 : {n} sur 2",
   sch_pas_estime: "Pas d'estimation : la grille n'est pas remplie.",
   sch_mark_b1: "Bravo, c'est un texte de niveau B1 ! Garde ce réflexe : une raison ou un détail pour chaque question.",
   sch_mark_a2: "C'est un bon A2. Pour viser le B1, relis la lettre modèle B1 : chaque réponse y reçoit une raison, reliée par weil, dass ou wenn.",
@@ -112,96 +176,25 @@ Object.assign(TXT, {
   sch_autre: "Un autre sujet",
   sch_reg_du: "du", sch_reg_sie: "Sie", sch_reg_beide: "du ou Sie",
   sch_formules_note: "Les tournures marquées « du » vont avec le tutoiement, celles marquées « Sie » avec le vouvoiement.",
-  sch_frage_wann: "Wann?", sch_frage_was: "Was?", sch_frage_warum_nicht: "Warum nicht?", sch_frage_welches: "Welches?", sch_frage_wie_lange: "Wie lange?", sch_frage_wo: "Wo?", sch_frage_wohin: "Wohin?"
-});
-
-if (SCH_EN) Object.assign(TXT, {
-  ls_titre: "Read and write", ls_sous: "An email to read, then your reply",
-  ls_section: "Section · Read and write",
-  s_titre: "Write", s_sous: "A short message, 10 minutes",
-  s_section: "Section · Write",
-  sch_situation: "The situation:",
-  sch_de: "From:", sch_a: "To:",
-  sch_rf_consigne: "Read the email. Is the statement true or false?",
-  sch_ab_consigne: "Read the email again. Which answer fits?",
-  sch_juste: "Correct!", sch_faux: "Not quite.",
-  sch_mark_ls: "In the telc, this email comes right after the Sprachbausteine: two questions to check you have understood it, then you reply to it. Those two questions help you: they show you what the email is asking for.",
-  sch_mark_s: "This is the very last task of the written exam, after the listening: 10 minutes to reply to a short message. Look at the question word first (wann, warum, wohin…): your answer must answer it, in more than one word.",
-  sch_ecrire_ls: "Reply to {p}. Write something for each question. Don't forget the opening and the closing.",
-  sch_ecrire_s: "You receive this message. Reply to it, in more than one word.",
-  sch_points_titre: "The points to cover",
-  sch_tu_reponds: "You are replying for Mark: make up any details you need.",
-  sch_longueur_ls: "The exam sets no word count: what matters is answering every question. Wortando's guide: about 40 to 80 words at A2, 80 to 120 at B1.",
-  sch_longueur_s: "Wortando's guide: two sentences at A2 (10 to 20 words), three or four at B1 (20 to 40 words).",
-  sch_temps_ls: "In the exam, this part and the Sprachbausteine share 35 minutes: allow about 20 minutes for this email.",
-  sch_temps_s: "In the exam: 10 minutes.",
-  sch_chrono_ls: "Start the timer (20 min suggested)",
-  sch_chrono_s: "Start the 10 minutes",
-  sch_temps_fini: "The exam time is up. You can finish your text, but on the day you would have to stop here.",
-  sch_formules: "Useful phrases",
-  sch_ton_texte: "Your text",
-  sch_placeholder: "Write your reply here, in German…",
-  sch_mots: "{n} word(s)",
-  sch_verifier: "Check my text",
-  sch_vide: "Write a few sentences first.",
-  sch_voit: "What the page can see",
-  sch_voit_s: "It counts and looks for clues; it does not correct grammar or spelling.",
-  sch_v_mots: "Length: {n} word(s).",
-  sch_v_court_ls: "That is short for answering every question.",
-  sch_v_court_s: "In the telc, you must write more than one word.",
-  sch_v_long: "That is long: check it over rather than adding more.",
-  sch_v_anrede_ok: "Opening: \"{m}\".",
-  sch_v_anrede_ko: "No opening at the start (Liebe …, Hallo …, Sehr geehrte …).",
-  sch_v_gruss_ok: "Closing at the end: \"{m}\".",
-  sch_v_gruss_ko: "No closing at the end (Viele Grüße, Liebe Grüße, Mit freundlichen Grüßen…).",
-  sch_v_gruss_froid: "\"Mit freundlichen Grüßen\" is a bit cold for a friend: \"Viele Grüße\" or \"Liebe Grüße\" will fit better.",
-  sch_v_sie_informel: "Are you saying du? The text has \"{m}\" in the middle of a sentence: that is the formal Sie. Keep the same register throughout.",
-  sch_v_du_formel: "The message uses Sie, and your text has \"{m}\": keep \"Sie\" throughout.",
-  sch_v_registre_ok: "The register ({r}) seems to hold from start to finish.",
-  sch_v_conn: "Linking words found: {m}.",
-  sch_v_conn_aucun: "No linking words found: connect your sentences (und, aber, denn, weil, dass…).",
-  sch_v_sub: "Subordinate clauses (weil, dass, wenn, ob…): a B1 feature.",
-  sch_v_sub_aucune: "No subordinate clause yet (weil, dass, wenn, ob…): this is often what takes you to B1.",
-  sch_v_question: "A question back: the exchange goes on.",
-  sch_v_point_ok: "seems covered",
-  sch_v_point_ko: "to check",
-  sch_v_frage_ok: "The question \"{f}\" seems to have its answer.",
-  sch_v_frage_ko: "I can't see an obvious answer to \"{f}\". {c}",
-  sch_grille: "The grid: you be the judge",
-  sch_grille_s: "Read your text again against each description, then choose. This is the examiner's grid, simplified.",
-  sch_coche: "I have answered:",
-  sch_b1p: "B1, fully", sch_b1: "B1, mostly", sch_a2p: "A2, fully", sch_a2: "A2, mostly", sch_moins: "Not A2 yet",
-  sch_desc_moins: "Below A2",
-  sch_estimation: "Estimate for this text: {p} out of {s}",
-  sch_estimation_note: "In the exam, writing is worth 60 points: the Sprachbausteine (5), the email (15), the voicemail notes (5), the short message (5) and criteria II to IV for both texts together (30). Here, this text alone.",
-  sch_remplir: "Choose a level for all four criteria to see the estimate.",
-  sch_incoherent: "You chose B1 for the task, but {n} point(s) are not ticked: at B1, every question gets an answer.",
-  sch_voir_modeles: "See the model letters",
-  sch_modeles: "Two model letters",
-  sch_modeles_s: "The same questions, two levels. Tap an underlined passage to read the note.",
-  sch_modele_a2: "A2 model letter", sch_modele_b1: "B1 model letter",
-  sch_message_a2: "A2 model reply", sch_message_b1: "B1 model reply",
-  sch_passer: "What takes you from A2 to B1",
-  sch_terminer: "Finish the section",
-  sch_recap: "Summary",
-  sch_q_score: "Questions 29 and 30: {n} out of 2",
-  sch_pas_estime: "No estimate: the grid has not been filled in.",
-  sch_mark_b1: "Well done, that is a B1 text! Keep the habit: a reason or a detail for every question.",
-  sch_mark_a2: "That is a good A2. To aim for B1, read the B1 model letter again: every answer there gets a reason, linked with weil, dass or wenn.",
-  sch_mark_moins: "It's a start. Go through the points to cover one by one: a full sentence for each, an opening, a closing. That is what the useful phrases are for.",
-  sch_refaire: "Redo the section", sch_suivante: "Next section", sch_toutes: "All sections",
-  sch_autre: "Another topic",
-  sch_reg_beide: "du or Sie", niv_moins: "below A2",
-  sch_formules_note: "Phrases marked \"du\" go with the informal register, those marked \"Sie\" with the formal one."
-});
-
-// un champ des donnees dans la langue de l'interface : « x_en » en anglais s'il existe, sinon « x_fr »
-// (les notes des modeles et la grille ont « fr » / « en » sans suffixe)
-function trS(o, cle){
-  if (!o) return "";
-  if (cle === undefined) return (SCH_EN && o.en) || o.fr || "";
-  return (SCH_EN && o[cle + "_en"]) || o[cle + "_fr"] || "";
-}
+  sch_frage_wann: "Wann?", sch_frage_was: "Was?", sch_frage_warum_nicht: "Warum nicht?", sch_frage_welches: "Welches?", sch_frage_wie_lange: "Wie lange?", sch_frage_wo: "Wo?", sch_frage_wohin: "Wohin?",
+  // LA TACHE EN BREF (retour de Marina, 1er nov.)
+  sch_t_titre: "À l'examen : la tâche en bref",
+  sch_t_quoi: "Ce qu'on demande", sch_t_temps: "Le temps", sch_t_points: "Les points", sch_t_comment: "Comment s'y prendre",
+  s_t_quoi: "Tu reçois un message court (un SMS, un mot, un courriel) qui pose une question : wann, was, warum nicht, welches, wie lange, wo ou wohin. Tu y réponds en quelques phrases ; un seul mot ne suffit pas.",
+  s_t_temps: "10 minutes, à la toute fin de l'écrit, après l'écoute.",
+  s_t_points: "5 points pour ta réponse (critère I). Avec ton courriel, elle compte aussi dans les critères II à IV (30 points).",
+  s_t_e1: "Repère le mot interrogatif : ta première phrase y répond.",
+  s_t_e2: "Ajoute une raison ou un détail (weil, denn, deshalb), ou une question en retour.",
+  s_t_e3: "Formule d'appel et salutation ; du ou Sie, comme le message.",
+  s_t_e4: "Relis une fois : le verbe à sa place, les majuscules des noms.",
+  // L'EXAMEN BLANC
+  sch_ex_rendre: "Rendre ma réponse",
+  sch_ex_valider: "Valider mes notes",
+  sch_ex_note_s: "Note ta réponse pour la tâche (critère I), puis les critères II à IV sur tes deux textes ensemble, comme l'examinateur.",
+  sch_ex_note_seul: "Note ta réponse pour la tâche (critère I), puis les critères II à IV (ici sur ce texte seul : le courriel n'a pas été écrit dans cet examen blanc).",
+  sch_ex_ton_courriel: "Ton courriel (31)", sch_ex_ta_reponse: "Ta réponse courte (57)",
+  sch_ex_pas_aide: "Examen blanc : sans aide ni indice. La page ne note pas la grammaire : tu te notes toi-même avec la grille de l'examinateur."
+}});
 
 // le style propre a ces pages, ajoute par le module pour ne pas toucher a telc.html
 (function(){
@@ -247,30 +240,39 @@ function trS(o, cle){
     ".sch-form li .de{font-weight:800;direction:ltr;unicode-bidi:isolate;display:block}" +
     ".sch-form li .tr{font-size:13px;color:var(--gris);font-weight:700}" +
     ".sch-form li .reg{font-size:11px;font-weight:900;border:1px solid var(--trait);border-radius:999px;padding:0 6px;margin-left:6px;color:var(--gris)}" +
-    ".sch-texte{white-space:pre-wrap;direction:ltr;text-align:left;background:var(--papier);border:1px solid var(--papier-trait);border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.55}";
+    ".sch-texte{white-space:pre-wrap;direction:ltr;text-align:left;background:var(--papier);border:1px solid var(--papier-trait);border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.55}" +
+    ".sch-tache{background:var(--carte);border-radius:16px;padding:10px 12px}" +
+    ".sch-tache summary{font-weight:900;cursor:pointer;font-size:15px}" +
+    ".sch-tache h3{margin:10px 0 2px;font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--ambre-f)}" +
+    ".sch-tache p{font-weight:600;font-size:14px;line-height:1.5}" +
+    ".sch-tache ol{margin:2px 0 0;padding-left:20px;font-weight:600;font-size:14px;line-height:1.5;display:flex;flex-direction:column;gap:3px}";
   document.head.appendChild(st);
 })();
 
-const SCH = { d: null, mode: null, serie: null, i: 0, etat: null };
+// SCH.d : donnees/schreiben.json (la reponse courte, la grille, le bareme, les formules) ;
+// les courriels : LS_DONNEES.series (lesen-schreiben.js)
+const SCH = { d: null, mode: null, serie: null, i: 0, etat: null, ex: null, courrielExamen: null };
 
 DTZ.charger(fetch("donnees/schreiben.json", { cache: "no-cache" })
   .then(r => { if (!r.ok) throw new Error("schreiben.json"); return r.json(); })
   .then(d => { SCH.d = d; }));
 
-DTZ.partie({ id: "LS", ordre: 30, titre: T("ls_titre"), sous: T("ls_sous"), ouvrir: () => ouvrirSchreiben("LS") });
 DTZ.partie({ id: "S", ordre: 60, titre: T("s_titre"), sous: T("s_sous"), ouvrir: () => ouvrirSchreiben("S") });
+
+// L'EXAMEN BLANC : la reponse courte (critere I, 5) et les criteres II-IV de l'ecrit sur les deux textes (30).
+TELC.epreuve({ id: "S", ordre: 60, minutes: 10, sur: { Schreiben: 35 }, lancer: fini => examenSchreiben("S", fini) });
 
 // les pages de chaque partie, dans l'ordre ; le libelle de leur point de progression
 const SCH_PAGES = {
   LS: [{id: "q29", pt: "29"}, {id: "q30", pt: "30"}, {id: "ecrire", pt: "31"}, {id: "verifier", pt: "✓"}, {id: "modeles", pt: "M"}],
   S: [{id: "ecrire", pt: "57"}, {id: "verifier", pt: "✓"}, {id: "modeles", pt: "M"}]
 };
+const seriesDe = mode => mode === "LS" ? (typeof LS_DONNEES !== "undefined" ? LS_DONNEES.series : []) : SCH.d.series;
 
 // ============ L'OUVERTURE ============
 async function ouvrirSchreiben(mode, serie){
-  SCH.mode = mode;
-  const series = mode === "LS" ? SCH.d.email : SCH.d.kurz;
-  SCH.serie = serie || await choisirSerie(series, () => [], "SCH" + mode);
+  SCH.mode = mode; SCH.ex = null;
+  SCH.serie = serie || await choisirSerie(seriesDe(mode), () => [], "SCH" + mode);
   // ce que l'eleve a deja fait sur ce sujet (son texte, ses reponses, sa grille) reste la quand il revient
   SCH.etat = Object.assign({ q: {}, texte: "", coches: [], crit: {} }, lire("sch_" + mode + "_" + SCH.serie.id, {}));
   SCH.i = 0;
@@ -281,8 +283,8 @@ function garder(){ ecrire("sch_" + SCH.mode + "_" + SCH.serie.id, SCH.etat); }
 
 function toutesLesSectionsSch(){
   arreterChrono();
-  // ouverte directement sur cette partie depuis le panneau du bloc telc (?partie=LS ou S) : on ferme le cadre
-  if (Q.get("partie") === SCH.mode){ silence(); parler("fermer"); if (window.parent === window) accueil(); return; }
+  // ouverte directement sur cette partie depuis le panneau du bloc telc (TELC.direct) : on ferme le cadre
+  if (TELC.direct){ silence(); parler("fermer"); if (window.parent === window) accueil(); return; }
   accueil();
 }
 
@@ -308,10 +310,22 @@ function bulleMark(texte){
   return '<div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(texte) + '</div></div>';
 }
 
+// LA TACHE A L'EXAMEN : ce qu'on demande, le temps, les points, comment s'y prendre. Ouverte a la premiere visite
+// d'une section, repliee ensuite.
+function tacheHtml(ouverte){
+  const p = SCH.mode === "LS" ? "ls" : "s", n = SCH.mode === "LS" ? 6 : 4;
+  const etapes = []; for (let k = 1; k <= n; k++) etapes.push('<li>' + esc(T(p + "_t_e" + k)) + '</li>');
+  return '<details class="sch-tache"' + (ouverte ? " open" : "") + '><summary>' + esc(T("sch_t_titre")) + '</summary>' +
+    '<h3>' + esc(T("sch_t_quoi")) + '</h3><p>' + esc(T(p + "_t_quoi")) + '</p>' +
+    '<h3>' + esc(T("sch_t_temps")) + '</h3><p>' + esc(T(p + "_t_temps")) + '</p>' +
+    '<h3>' + esc(T("sch_t_points")) + '</h3><p>' + esc(T(p + "_t_points")) + '</p>' +
+    '<h3>' + esc(T("sch_t_comment")) + '</h3><ol>' + etapes.join("") + '</ol></details>';
+}
+function rienFait(){ return !SCH.etat.texte && Object.keys(SCH.etat.q).length === 0; }
+
 // le message recu, mis en page comme les lettres des Sprachbausteine (jamais en image)
-function docRecu(){
-  const s = SCH.serie;
-  if (SCH.mode === "LS"){
+function docRecu(mode, s){
+  if (mode === "LS"){
     const m = s.mail;
     return '<div class="doc lettre" dir="ltr"><div class="k">E-Mail</div>' +
       '<div class="petit" lang="de">' + esc(T("sch_de")) + ' ' + esc(m.von) + ' · ' + esc(T("sch_a")) + ' ' + esc(m.an) + '</div>' +
@@ -323,9 +337,13 @@ function docRecu(){
     n.lignes.map(l => '<p lang="de">' + esc(l) + '</p>').join("") + '</div>';
 }
 
-function situation(){
-  return '<p class="petit"><b>' + esc(T("sch_situation")) + '</b> ' + esc(trS(SCH.serie, "situation")) + '</p>';
+function situation(s){
+  return '<p class="petit"><b>' + esc(T("sch_situation")) + '</b> ' + esc(champTelc(s, "situation")) + '</p>';
 }
+const destinataire = (mode, s) => mode === "LS" ? s.mail.von.split(",")[0] : s.nachricht.von;
+const consigneEcrire = (mode, s) => '<p class="consigne" lang="de">' +
+  esc(mode === "LS" ? T("sch_ecrire_ls_de", {p: destinataire(mode, s)}) : T("sch_ecrire_s_de")) +
+  '<span class="fr">' + esc(mode === "LS" ? T("sch_ecrire_ls", {p: destinataire(mode, s)}) : T("sch_ecrire_s")) + '</span></p>';
 
 // ============ LES PAGES ============
 function page(){
@@ -340,7 +358,7 @@ function page(){
 
 function suite(libelle, action){
   const b = $("suite");
-  b.hidden = !libelle; if (!libelle) return;
+  b.hidden = !libelle; b.disabled = false; if (!libelle) return;
   b.textContent = libelle; b.onclick = action;
 }
 function pageSuivante(){
@@ -359,12 +377,12 @@ function pageQuestion(p){
   }).join("");
   const aide = r === undefined ? "" :
     '<div class="aide"><div class="verdict ' + (r === f.bon ? "ok" : "ko") + '">' + esc(T(r === f.bon ? "sch_juste" : "sch_faux")) + '</div>' +
-    '<div class="dit"><img src="' + MARK_IMG + '" alt="Mark"><span class="erkl">' + esc(trS(f)) + '</span></div></div>';
-  const premier = SCH.i === 0 && Object.keys(SCH.etat.q).length === 0;
+    '<div class="dit"><img src="' + MARK_IMG + '" alt="Mark"><span class="erkl">' + esc(champTelc(f, "erkl")) + '</span></div></div>';
+  const premier = SCH.i === 0 && rienFait();
   $("zone").innerHTML = enteteSch() +
-    (premier ? '<div class="bloc">' + bulleMark(T("sch_mark_ls")) + '</div>' : "") +
+    (SCH.i === 0 ? '<div class="bloc">' + (premier ? bulleMark(T("sch_mark_ls")) : "") + tacheHtml(premier) + '</div>' : "") +
     '<div class="bloc"><p class="consigne" lang="de">' + esc(T(f.typ === "rf" ? "sch_rf_consigne_de" : "sch_ab_consigne_de")) +
-      '<span class="fr">' + esc(T(f.typ === "rf" ? "sch_rf_consigne" : "sch_ab_consigne")) + '</span></p>' + situation() + docRecu() +
+      '<span class="fr">' + esc(T(f.typ === "rf" ? "sch_rf_consigne" : "sch_ab_consigne")) + '</span></p>' + situation(SCH.serie) + docRecu("LS", SCH.serie) +
     '<div class="q" id="carte"><div class="tete"><span class="num">' + f.n + '</span><span class="frage" lang="de">' + esc(f.de) + '</span></div>' +
       '<div class="choix' + (f.typ === "rf" ? " ligne" : "") + '">' + choix + '</div>' + aide + '</div></div>';
   document.querySelectorAll("[data-choix]").forEach(b => b.onclick = () => {
@@ -381,17 +399,14 @@ function pageQuestion(p){
 // 31 ou 57 : ecrire
 function pageEcrire(){
   const s = SCH.serie, ls = SCH.mode === "LS";
-  const destinataire = ls ? s.mail.von.split(",")[0] : s.nachricht.von;
   const points = ls
     ? '<div class="q"><div class="frage">' + esc(T("sch_points_titre")) + '</div><ol class="sch-liste">' +
-        s.punkte.map(p => '<li><span class="de" lang="de">' + esc(p.de) + '</span><span class="tr">' + esc(trS(p)) + '</span></li>').join("") + '</ol></div>'
-    : '<div class="q"><div class="frage" lang="de">' + esc(T("sch_frage_" + s.frage.replace(" ", "_"))) + '</div><p class="petit">' + esc(trS(s, "conseil")) + '</p></div>';
+        s.punkte.map(p => '<li><span class="de" lang="de">' + esc(p.de) + '</span><span class="tr">' + esc(champTelc(p, "aide")) + '</span></li>').join("") + '</ol></div>'
+    : '<div class="q"><div class="frage" lang="de">' + esc(T("sch_frage_" + s.frage.replace(" ", "_"))) + '</div><p class="petit">' + esc(champTelc(s, "conseil")) + '</p></div>';
+  const premier = !ls && rienFait();
   $("zone").innerHTML = enteteSch() +
-    (!ls && !SCH.etat.texte ? '<div class="bloc">' + bulleMark(T("sch_mark_s")) + '</div>' : "") +
-    '<div class="bloc">' +
-      '<p class="consigne" lang="de">' + esc(ls ? T("sch_ecrire_ls_de", {p: destinataire}) : T("sch_ecrire_s_de")) +
-        '<span class="fr">' + esc(ls ? T("sch_ecrire_ls", {p: destinataire}) : T("sch_ecrire_s")) + '</span></p>' +
-      situation() + docRecu() + points +
+    '<div class="bloc">' + (premier ? bulleMark(T("sch_mark_s")) : "") + tacheHtml(premier) + '</div>' +
+    '<div class="bloc">' + consigneEcrire(SCH.mode, s) + situation(s) + docRecu(SCH.mode, s) + points +
       '<p class="petit">' + esc(T("sch_tu_reponds")) + '</p>' +
       '<p class="petit">' + esc(T(ls ? "sch_longueur_ls" : "sch_longueur_s")) + '</p>' +
       '<p class="petit">' + esc(T(ls ? "sch_temps_ls" : "sch_temps_s")) + '</p>' +
@@ -409,8 +424,7 @@ function pageEcrire(){
   zone.oninput = () => { SCH.etat.texte = zone.value; garder(); compter(); };
   $("schChrono").onclick = () => {
     $("schTemps").hidden = true;
-    if (ls) chrono(SCH.d.temps.ls_conseil_min * 60, "bas", () => { $("schTemps").hidden = false; });
-    else chrono(SCH.d.temps.s_min * 60, "bas", () => { $("schTemps").hidden = false; });
+    chrono((ls ? SCH.d.temps.ls_conseil_min : SCH.d.temps.s_min) * 60, "bas", () => { $("schTemps").hidden = false; });
   };
   $("schFormules").onclick = formules;
   suite(T("sch_verifier"), () => {
@@ -419,17 +433,18 @@ function pageEcrire(){
   });
 }
 
-// les formules utiles, dans le panneau ; celles du registre de la serie d'abord marquees
+// les formules utiles, dans le panneau, marquees du / Sie
 function formules(){
   const reg = r => r === "du" ? T("sch_reg_du") : r === "Sie" ? T("sch_reg_sie") : T("sch_reg_beide");
   ouvrir('<div class="sch-form"><h2>' + esc(T("sch_formules")) + '</h2><p class="petit">' + esc(T("sch_formules_note")) + '</p>' +
-    SCH.d.redemittel.map(g => '<h3>' + esc(trS(g)) + '</h3><ul>' + g.items.map(it =>
-      '<li><span class="de" lang="de">' + esc(it.de) + '<span class="reg">' + esc(reg(it.reg)) + '</span></span><span class="tr">' + esc(trS(it)) + '</span></li>').join("") + '</ul>').join("") +
+    SCH.d.redemittel.map(g => '<h3>' + esc(champTelc(g, "titre")) + '</h3><ul>' + g.items.map(it =>
+      '<li><span class="de" lang="de">' + esc(it.de) + '<span class="reg">' + esc(reg(it.reg)) + '</span></span><span class="tr">' + esc(champTelc(it, "sens")) + '</span></li>').join("") + '</ul>').join("") +
     '</div><button class="secondaire" id="fermerP">' + esc(T("fermer")) + '</button>');
   $("fermerP").onclick = fermerPanneau;
 }
 
 // ============ CE QUE LA PAGE VOIT ============
+// Comme les JUGES de dtz-oral.html : ce qu'un programme peut voir sans juger la langue.
 const LETTRE = "\\p{L}";
 function motsDe(t){ return String(t || "").split(/\s+/).filter(w => /\p{L}/u.test(w)).length; }
 // un mot entier, insensible a la casse, lettres accentuees comprises (\b ne connait pas l'allemand)
@@ -437,8 +452,8 @@ function motRe(m, drapeaux){ return new RegExp("(^|[^" + LETTRE + "])(" + m + ")
 const SUBORD = ["weil", "dass", "wenn", "ob", "obwohl", "damit", "als", "bevor", "nachdem", "während", "falls"];
 const COORD = ["und", "aber", "oder", "denn", "deshalb", "trotzdem", "dann", "außerdem", "zwar", "sondern"];
 
-function analyser(texte){
-  const s = SCH.serie, ls = SCH.mode === "LS";
+function analyser(mode, s, texte){
+  const ls = mode === "LS";
   const lignes = texte.split(/\n/).map(l => l.trim()).filter(Boolean);
   const bas = texte.toLowerCase();
   const out = [];   // {c: "ok" | "ko" | "inf", t}
@@ -473,58 +488,67 @@ function analyser(texte){
     s.punkte.forEach(p => out.push(indice(p.indices) ? { c: "ok", t: p.de + " — " + T("sch_v_point_ok") } : { c: "inf", t: p.de + " — " + T("sch_v_point_ko") }));
   } else {
     const f = T("sch_frage_" + s.frage.replace(" ", "_"));
-    out.push(indice(s.indices) ? { c: "ok", t: T("sch_v_frage_ok", {f}) } : { c: "inf", t: T("sch_v_frage_ko", {f, c: trS(s, "conseil")}) });
+    out.push(indice(s.indices) ? { c: "ok", t: T("sch_v_frage_ok", {f}) } : { c: "inf", t: T("sch_v_frage_ko", {f, c: champTelc(s, "conseil")}) });
   }
   return out;
 }
 
 // ============ LA GRILLE ============
 const PALIERS = ["b1p", "b1", "a2p", "a2", "moins"];
-function ptsCritere(id, palier){
+// les points d'un critere : I vaut 15 pour le courriel, 5 pour la reponse courte ; II-IV, 10 (FORMAT-TELC.md)
+function ptsCritere(mode, id, palier){
   const b = SCH.d.bareme, k = PALIERS.indexOf(palier);
   if (k < 0) return null;
-  if (id === "I") return (SCH.mode === "LS" ? b.email_I : b.kurz_I)[k];
+  if (id === "I") return (mode === "LS" ? b.email_I : b.kurz_I)[k];
   return b.ensemble[k];
 }
-function surSch(){ const b = SCH.d.bareme; return (SCH.mode === "LS" ? b.email_I[0] : b.kurz_I[0]) + 3 * b.ensemble[0]; }
+function surSch(mode){ const b = SCH.d.bareme; return (mode === "LS" ? b.email_I[0] : b.kurz_I[0]) + 3 * b.ensemble[0]; }
 // l'estimation, quand les quatre criteres sont choisis : {points, sur, niveau}
 function estimation(){
   const c = SCH.etat.crit || {};
   if (!SCH.d.kriterien.every(k => c[k.id])) return null;
-  const points = SCH.d.kriterien.reduce((t, k) => t + ptsCritere(k.id, c[k.id]), 0), sur = surSch();
+  const points = SCH.d.kriterien.reduce((t, k) => t + ptsCritere(SCH.mode, k.id, c[k.id]), 0), sur = surSch(SCH.mode);
   // les seuils du telc (FORMAT-TELC.md) : B1 a 70 %, A2 a 40 %
   const niveau = points >= 0.7 * sur ? "b1" : points >= 0.4 * sur ? "a2" : "moins";
   return { points, sur, niveau };
 }
 
+// un critere de la grille : son nom, ses trois descriptions, les cinq paliers avec leurs points
+function critereHtml(mode, k, pris, sansPoints){
+  return '<div class="sch-crit"><h3>' + esc(champTelc(k, "titre")) + '<small lang="de">' + esc(k.de) + '</small></h3>' +
+    '<p class="sch-desc"><b>' + esc(T("sch_desc_b1")) + '</b> · ' + esc(champTelc(k, "b1")) + '</p>' +
+    '<p class="sch-desc"><b>' + esc(T("sch_desc_a2")) + '</b> · ' + esc(champTelc(k, "a2")) + '</p>' +
+    '<p class="sch-desc"><b>' + esc(T("sch_desc_moins")) + '</b> · ' + esc(champTelc(k, "moins")) + '</p>' +
+    '<div class="sch-niv">' + PALIERS.map(p => '<button type="button" data-crit="' + k.id + '" data-p="' + p + '" class="' + (pris === p ? "pris" : "") + '" aria-pressed="' + (pris === p) + '">' + esc(T("sch_" + p)) + (sansPoints ? "" : ' · ' + ptsCritere(mode, k.id, p)) + '</button>').join("") + '</div></div>';
+}
+function brancherCriteres(choix, apres){
+  document.querySelectorAll("[data-crit]").forEach(b => b.onclick = () => {
+    choix[b.dataset.crit] = b.dataset.p;
+    document.querySelectorAll('[data-crit="' + b.dataset.crit + '"]').forEach(x => { const on = x === b; x.classList.toggle("pris", on); x.setAttribute("aria-pressed", on); });
+    apres();
+  });
+}
+
 function pageVerifier(){
   const s = SCH.serie, ls = SCH.mode === "LS";
-  const v = analyser(SCH.etat.texte || "");
+  const v = analyser(SCH.mode, s, SCH.etat.texte || "");
   const coches = ls ? '<div class="q"><div class="frage">' + esc(T("sch_coche")) + '</div>' + s.punkte.map((p, k) =>
-      '<label class="sch-coche"><input type="checkbox" data-coche="' + k + '"' + (SCH.etat.coches.includes(k) ? " checked" : "") + '><span><span lang="de">' + esc(p.de) + '</span><br><span class="petit">' + esc(trS(p)) + '</span></span></label>').join("") + '</div>' : "";
-  const crit = SCH.d.kriterien.map(k => {
-    const pris = (SCH.etat.crit || {})[k.id];
-    return '<div class="sch-crit"><h3>' + esc(trS(k)) + '<small lang="de">' + esc(k.de) + '</small></h3>' +
-      '<p class="sch-desc"><b>' + esc(T("sch_desc_b1")) + '</b> · ' + esc(trS(k, "b1")) + '</p>' +
-      '<p class="sch-desc"><b>' + esc(T("sch_desc_a2")) + '</b> · ' + esc(trS(k, "a2")) + '</p>' +
-      '<p class="sch-desc"><b>' + esc(T("sch_desc_moins")) + '</b> · ' + esc(trS(k, "moins")) + '</p>' +
-      '<div class="sch-niv">' + PALIERS.map(p => '<button type="button" data-crit="' + k.id + '" data-p="' + p + '" class="' + (pris === p ? "pris" : "") + '" aria-pressed="' + (pris === p) + '">' + esc(T("sch_" + p)) + ' · ' + ptsCritere(k.id, p) + '</button>').join("") + '</div></div>';
-  }).join("");
+      '<label class="sch-coche"><input type="checkbox" data-coche="' + k + '"' + (SCH.etat.coches.includes(k) ? " checked" : "") + '><span><span lang="de">' + esc(p.de) + '</span><br><span class="petit">' + esc(champTelc(p, "aide")) + '</span></span></label>').join("") + '</div>' : "";
   $("zone").innerHTML = enteteSch() +
     '<div class="bloc"><h2>' + esc(T("sch_ton_texte")) + '</h2><div class="sch-texte" lang="de">' + esc(SCH.etat.texte || "") + '</div></div>' +
     '<div class="bloc"><h2>' + esc(T("sch_voit")) + '</h2><p class="petit">' + esc(T("sch_voit_s")) + '</p><ul class="sch-v">' +
       v.map(x => '<li class="' + x.c + '"><b>' + (x.c === "ok" ? "✓" : x.c === "ko" ? "✗" : "•") + '</b><span>' + esc(x.t) + '</span></li>').join("") + '</ul></div>' +
-    '<div class="bloc"><h2>' + esc(T("sch_grille")) + '</h2><p class="petit">' + esc(T("sch_grille_s")) + '</p>' + coches + crit +
+    '<div class="bloc"><h2>' + esc(T("sch_grille")) + '</h2><p class="petit">' + esc(T("sch_grille_s")) + '</p>' + coches +
+      SCH.d.kriterien.map(k => critereHtml(SCH.mode, k, (SCH.etat.crit || {})[k.id])).join("") +
       '<div id="schEstim"></div></div>';
   document.querySelectorAll("[data-coche]").forEach(b => b.onchange = () => {
     const k = Number(b.dataset.coche);
     SCH.etat.coches = SCH.etat.coches.filter(x => x !== k).concat(b.checked ? [k] : []);
     garder(); afficherEstimation();
   });
-  document.querySelectorAll("[data-crit]").forEach(b => b.onclick = () => {
-    SCH.etat.crit = Object.assign({}, SCH.etat.crit, {[b.dataset.crit]: b.dataset.p}); garder();
-    document.querySelectorAll('[data-crit="' + b.dataset.crit + '"]').forEach(x => { const on = x === b; x.classList.toggle("pris", on); x.setAttribute("aria-pressed", on); });
-    afficherEstimation();
+  SCH.etat.crit = SCH.etat.crit || {};
+  brancherCriteres(SCH.etat.crit, () => {
+    garder(); afficherEstimation();
     document.querySelectorAll(".point")[SCH_PAGES[SCH.mode].findIndex(p => p.id === "verifier")].classList.toggle("ok", !!estimation());
   });
   afficherEstimation();
@@ -545,7 +569,7 @@ function afficherEstimation(){
 // les passages notes sont soulignes et numerotes ; toucher un passage met sa note en avant (et l'inverse)
 function modeleHtml(m, prefixe){
   const places = m.notes.map(() => null);
-  const html = m.lignes.map((ligne, li) => {
+  const html = m.lignes.map(ligne => {
     const ici = [];
     m.notes.forEach((n, j) => {
       if (places[j]) return;
@@ -560,14 +584,15 @@ function modeleHtml(m, prefixe){
     });
     return '<p lang="de">' + h + esc(ligne.slice(cur)) + '</p>';
   }).join("");
+  const g = SCH_EN ? ["“", "”"] : ["« ", " »"];
   return { lettre: '<div class="doc lettre sch-modele" dir="ltr">' + html + '</div>',
-    notes: '<ol class="sch-notes">' + m.notes.map((n, j) => '<li data-li="' + prefixe + j + '"><span class="ex" lang="de">' + (SCH_EN ? "“" : "« ") + esc(n.de) + (SCH_EN ? "”" : " »") + '</span> — ' + esc(trS(n)) + '</li>').join("") + '</ol>' };
+    notes: '<ol class="sch-notes">' + m.notes.map((n, j) => '<li data-li="' + prefixe + j + '"><span class="ex" lang="de">' + g[0] + esc(n.de) + g[1] + '</span> — ' + esc(champTelc(n, "note")) + '</li>').join("") + '</ol>' };
 }
 
 function pageModeles(){
   const s = SCH.serie, ls = SCH.mode === "LS";
   const a2 = modeleHtml(s.modeles.a2, "a"), b1 = modeleHtml(s.modeles.b1, "b");
-  const passer = (SCH_EN && s.passer_en) || s.passer_fr || [];
+  const passer = champTelc(s, "passer") || [];
   $("zone").innerHTML = enteteSch() +
     '<div class="bloc"><h2>' + esc(T("sch_modeles")) + '</h2><p class="petit">' + esc(T("sch_modeles_s")) + '</p></div>' +
     (SCH.etat.texte ? '<div class="bloc"><h2>' + esc(T("sch_ton_texte")) + '</h2><div class="sch-texte" lang="de">' + esc(SCH.etat.texte) + '</div></div>' : "") +
@@ -616,5 +641,74 @@ function recapSch(){
   if (suivante) $("schSuivante").onclick = () => suivante.ouvrir();
   $("schToutes").onclick = toutesLesSectionsSch;
   DTZ.surRetour(() => { toutesLesSectionsSch(); return true; });
+  window.scrollTo(0, 0);
+}
+
+// ============ L'EXAMEN BLANC ============
+// TELC.epreuve (telc-commun.js) : examen-blanc.js appelle lancer(fini) et attend fini({pts, detail}).
+// Sans aide : ni Mark, ni indice, ni formules, ni compteur ; les questions 29-30 sans correction immediate.
+// La page ne pouvant juger la langue, l'eleve se note lui-meme avec la grille, une fois sa copie rendue :
+//   LS : 29 et 30 (3 points de Lesen chacune, comptes par la page) et le critere I du courriel (15) ;
+//   S  : le critere I de la reponse courte (5) et les criteres II-IV sur les deux textes ensemble (30), le courriel
+//        ecrit plus tot dans le meme examen blanc etant montre a cote (SCH.courrielExamen).
+async function examenSchreiben(mode, fini){
+  silence(); arreterChrono(); fermerPanneau();
+  const serie = await choisirSerie(seriesDe(mode), () => [], "SCHEX" + mode);
+  SCH.ex = { mode, serie, q: {}, texte: "", crit: {}, fini };
+  if (mode === "LS") SCH.courrielExamen = null;
+  DTZ.surRetour(() => { confirmer(T("quitter_q"), () => { SCH.ex = null; accueil(); }, T("quitter")); return true; });
+  copieExamen();
+}
+
+function copieExamen(){
+  const ex = SCH.ex, s = ex.serie, ls = ex.mode === "LS";
+  $("titre").textContent = T(ls ? "ls_titre" : "s_titre");
+  const questions = ls ? s.fragen.map(f => {
+    const opts = f.typ === "rf" ? [T("sch_richtig"), T("sch_falsch")] : f.o;
+    return '<div class="q"><div class="tete"><span class="num">' + f.n + '</span><span class="frage" lang="de">' + esc(f.de) + '</span></div>' +
+      '<div class="choix' + (f.typ === "rf" ? " ligne" : "") + '">' + opts.map((o, k) =>
+        '<button class="opt' + (ex.q[f.n] === k ? " pris" : "") + '" data-exq="' + f.n + '" data-k="' + k + '">' + (f.typ === "rf" ? "" : '<b>' + "ab"[k] + '</b>') + '<span lang="de">' + esc(o) + '</span></button>').join("") + '</div></div>';
+  }).join("") : "";
+  $("zone").innerHTML =
+    '<div class="bloc"><div class="section">' + esc(T(ls ? "ls_section" : "s_section")) + ' · ' + esc(T("examen")) + '</div><p class="petit">' + esc(T("sch_ex_pas_aide")) + '</p></div>' +
+    '<div class="bloc">' + (ls ? '<p class="consigne" lang="de">' + esc(T("sch_rf_consigne_de")) + '</p>' : "") + docRecu(ex.mode, s) + questions + '</div>' +
+    '<div class="bloc">' + consigneEcrire(ex.mode, s) +
+      '<textarea class="sch-zone' + (ls ? "" : " court") + '" id="exTexte" lang="de" spellcheck="false" autocapitalize="sentences" placeholder="' + esc(T("sch_placeholder")) + '"></textarea></div>';
+  $("exTexte").value = ex.texte;
+  $("exTexte").oninput = () => { ex.texte = $("exTexte").value; };
+  document.querySelectorAll("[data-exq]").forEach(b => b.onclick = () => {
+    ex.q[b.dataset.exq] = Number(b.dataset.k);
+    document.querySelectorAll('[data-exq="' + b.dataset.exq + '"]').forEach(x => x.classList.toggle("pris", x === b));
+  });
+  suite(T(ls ? "ls_ex_rendre" : "sch_ex_rendre"), noteExamen);
+  window.scrollTo(0, 0);
+}
+
+function noteExamen(){
+  const ex = SCH.ex, s = ex.serie, ls = ex.mode === "LS";
+  if (ls) SCH.courrielExamen = { serie: s, texte: ex.texte };
+  const avecCourriel = !ls && SCH.courrielExamen;
+  const criteres = SCH.d.kriterien.filter(k => ls ? k.id === "I" : true);
+  const textes = ls ? '<div class="sch-texte" lang="de">' + esc(ex.texte) + '</div>'
+    : (avecCourriel ? '<h2>' + esc(T("sch_ex_ton_courriel")) + '</h2><div class="sch-texte" lang="de">' + esc(SCH.courrielExamen.texte) + '</div>' : "") +
+      '<h2>' + esc(T("sch_ex_ta_reponse")) + '</h2><div class="sch-texte" lang="de">' + esc(ex.texte) + '</div>';
+  const punkte = ls ? '<ol class="sch-liste">' + s.punkte.map(p => '<li><span class="de" lang="de">' + esc(p.de) + '</span></li>').join("") + '</ol>' : "";
+  $("zone").innerHTML =
+    '<div class="bloc"><div class="section">' + esc(T(ls ? "ls_section" : "s_section")) + ' · ' + esc(T("examen")) + '</div>' +
+      '<p class="petit">' + esc(T(ls ? "ls_ex_note" : avecCourriel ? "sch_ex_note_s" : "sch_ex_note_seul")) + '</p>' + textes + punkte + '</div>' +
+    '<div class="bloc">' + criteres.map(k => critereHtml(ex.mode, k, ex.crit[k.id], false)).join("") + '</div>';
+  const pret = () => criteres.every(k => ex.crit[k.id]);
+  brancherCriteres(ex.crit, () => { $("suite").disabled = !pret(); });
+  suite(T("sch_ex_valider"), () => {
+    if (!pret()) return;
+    const ecrit = criteres.reduce((t, k) => t + ptsCritere(ex.mode, k.id, ex.crit[k.id]), 0);
+    const bons = ls ? s.fragen.filter(f => ex.q[f.n] === f.bon).length : 0;
+    const pts = ls ? { Lesen: 3 * bons, Schreiben: ecrit } : { Schreiben: ecrit };
+    const detail = { serie: s.id, texte: ex.texte, crit: Object.assign({}, ex.crit),
+      questions: ls ? s.fragen.map(f => ({ n: f.n, rep: ex.q[f.n], bon: f.bon })) : null };
+    const fin = ex.fini; SCH.ex = null; DTZ.surRetour(null);
+    if (typeof fin === "function") fin({ pts, detail });
+  });
+  $("suite").disabled = !pret();
   window.scrollTo(0, 0);
 }

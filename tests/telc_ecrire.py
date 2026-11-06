@@ -1,6 +1,7 @@
-"""Controle des donnees de l'epreuve Ecrire du telc Deutsch A2·B1 (visuel/prototype/telc/donnees/schreiben.json).
+"""Controle des donnees de l'ecrit du telc Deutsch A2·B1 : le courriel (partie LS, donnees/lesen-schreiben.json) et la
+reponse courte (partie S, donnees/schreiben.json, qui porte aussi la grille, le bareme et les formules utiles).
 
-Usage : python tests/telc_schreiben.py
+Usage : python tests/telc_ecrire.py
 
 Le format vient de preparation-examens/FORMAT-TELC.md (le Uebungstest gratuit du telc, format seulement) :
   Lesen und Schreiben (29-31) : un courriel recu qui pose des questions ; 29 Richtig/Falsch, 30 un choix a 2 ;
@@ -8,12 +9,13 @@ Le format vient de preparation-examens/FORMAT-TELC.md (le Uebungstest gratuit du
   Schreiben (57) : repondre a un message court qui pose une question (wann, was, warum nicht, welches, wie lange,
     wo, wohin), en plus d'un mot (critere I sur 5).
 Le controle verifie aussi :
-  - chaque texte en francais ET en anglais (l'interface en) ;
+  - chaque texte pour l'eleve en francais ET en anglais (suffixes _fr / _en, lus par champTelc) ;
   - les lettres modeles : formule d'appel, salutation, registre tenu (du / Sie), chaque note citant un extrait EXACT
     de sa lettre, sans chevauchement ; la lettre B1 plus longue que la lettre A2 ;
-  - le courriel recu : formule d'appel, salutation, au moins 3 questions, autant de points a traiter que de « ? » ;
+  - le courriel recu : formule d'appel, salutation, 3 ou 4 points, au moins autant de « ? » que de points ;
+  - la feuille non devinable : la bonne reponse de 29 et de 30 n'est pas toujours a la meme place ;
   - les indices des points sont des expressions regulieres valides ;
-  - le bareme : les paliers et les points de FORMAT-TELC.md.
+  - le bareme et les temps de FORMAT-TELC.md.
 """
 import json
 import os
@@ -21,7 +23,7 @@ import re
 import sys
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FICHIER = os.path.join(RACINE, "visuel", "prototype", "telc", "donnees", "schreiben.json")
+DONNEES = os.path.join(RACINE, "visuel", "prototype", "telc", "donnees")
 APPELS = ("Sehr geehrte", "Liebe ", "Lieber ", "Hallo ", "Hi ")
 FINS = re.compile(r"(Mit freundlichen Grüßen|(Viele|Liebe|Herzliche) Grüße|Bis bald|Bis morgen|Bis Samstag|Bis Sonntag)")
 DU = re.compile(r"(?<![^\W\d_])(du|dich|dir|dein|deine|deinen|deinem|deiner|euch)(?![^\W\d_])", re.I)
@@ -39,12 +41,15 @@ def mots(lignes):
     return sum(len([w for w in l.split() if re.search(r"[^\W\d_]", w)]) for l in lignes)
 
 
-def bilingue(ou, o, cles):
-    for c in cles:
-        for suffixe in ("_fr", "_en"):
-            v = o.get(c + suffixe) if c else o.get(suffixe[1:])
-            if not v or (isinstance(v, str) and not v.strip()):
-                faute(ou, "« %s » vide ou absent" % ((c or "") + suffixe if c else suffixe[1:]))
+def bilingue(ou, o, noms):
+    for nom in noms:
+        for lang in ("fr", "en"):
+            v = o.get(nom + "_" + lang)
+            if not v or (isinstance(v, str) and not v.strip()) or (isinstance(v, list) and any(not str(x).strip() for x in v)):
+                faute(ou, "« %s_%s » vide ou absent" % (nom, lang))
+        a, b = o.get(nom + "_fr"), o.get(nom + "_en")
+        if isinstance(a, list) and isinstance(b, list) and len(a) != len(b):
+            faute(ou, "%s_fr et %s_en n'ont pas le meme nombre de lignes" % (nom, nom))
 
 
 def lettre(ou, lignes, registre):
@@ -76,30 +81,25 @@ def modeles(ou, s):
             continue
         lettre(o2, m.get("lignes") or [], s.get("registre"))
         notes = m.get("notes") or []
-        if len(notes) < 1:
+        if not notes:
             faute(o2, "aucune note")
-        places = {}
+        places = []
         for j, n in enumerate(notes):
             o3 = o2 + ", note %d" % (j + 1)
-            bilingue(o3, n, [None])
+            bilingue(o3, n, ["note"])
             ex = n.get("de") or ""
             ligne = next((k for k, l in enumerate(m.get("lignes") or []) if ex and ex in l), None)
             if ligne is None:
                 faute(o3, "l'extrait n'est pas dans la lettre : %r" % ex)
                 continue
             debut = m["lignes"][ligne].index(ex)
-            for (l2, d2, f2) in places.values():
+            for (l2, d2, f2) in places:
                 if l2 == ligne and debut < f2 and debut + len(ex) > d2:
                     faute(o3, "l'extrait chevauche une autre note : %r" % ex)
-            places[j] = (ligne, debut, debut + len(ex))
+            places.append((ligne, debut, debut + len(ex)))
     if mod.get("a2") and mod.get("b1") and mots(mod["b1"].get("lignes") or []) <= mots(mod["a2"].get("lignes") or []):
         faute(ou, "la lettre B1 n'est pas plus longue que la lettre A2")
-    for suffixe in ("_fr", "_en"):
-        p = s.get("passer" + suffixe) or []
-        if not p or any(not x.strip() for x in p):
-            faute(ou, "« passer%s » vide" % suffixe)
-    if len(s.get("passer_fr") or []) != len(s.get("passer_en") or []):
-        faute(ou, "passer_fr et passer_en n'ont pas le meme nombre de lignes")
+    bilingue(ou, s, ["passer"])
     return mots(mod.get("a2", {}).get("lignes") or []), mots(mod.get("b1", {}).get("lignes") or [])
 
 
@@ -113,15 +113,20 @@ def regex(ou, liste):
             faute(ou, "indice invalide %r : %s" % (x, e))
 
 
-def email(d):
-    series = d.get("email") or []
-    if len(series) < 3:
-        faute("email", "moins de 3 series (%d)" % len(series))
+def ids_uniques(nom, series):
     ids = [s.get("id") for s in series]
     if len(set(ids)) != len(ids):
-        faute("email", "deux series ont le meme id")
+        faute(nom, "deux series ont le meme id")
+
+
+def courriels():
+    d = json.load(open(os.path.join(DONNEES, "lesen-schreiben.json"), encoding="utf-8"))
+    series = d.get("series") or []
+    if len(series) < 3:
+        faute("lesen-schreiben.json", "moins de 3 series (%d)" % len(series))
+    ids_uniques("lesen-schreiben.json", series)
     if {s.get("registre") for s in series} != {"formel", "informel"}:
-        faute("email", "il faut des courriels formels ET informels")
+        faute("lesen-schreiben.json", "il faut des courriels formels ET informels")
     longueurs = []
     for s in series:
         ou = "courriel %s" % s.get("id")
@@ -143,39 +148,35 @@ def email(d):
             o2 = ou + ", point %d" % (k + 1)
             if not (p.get("de") or "").strip():
                 faute(o2, "« de » vide")
-            bilingue(o2, p, [None])
+            bilingue(o2, p, ["aide"])
             regex(o2, p.get("indices"))
         fragen = s.get("fragen") or []
         if [f.get("n") for f in fragen] != [29, 30]:
             faute(ou, "les questions doivent etre 29 puis 30 : %r" % [f.get("n") for f in fragen])
         for f in fragen:
             o2 = ou + ", question %s" % f.get("n")
-            bilingue(o2, f, [None])
+            bilingue(o2, f, ["erkl"])
             if not (f.get("de") or "").strip():
                 faute(o2, "enonce vide")
-            if f.get("n") == 29:
-                if f.get("typ") != "rf" or f.get("bon") not in (0, 1):
-                    faute(o2, "29 est un Richtig/Falsch (typ rf, bon 0 ou 1)")
+            if f.get("n") == 29 and (f.get("typ") != "rf" or f.get("bon") not in (0, 1)):
+                faute(o2, "29 est un Richtig/Falsch (typ rf, bon 0 ou 1)")
             if f.get("n") == 30:
                 o = f.get("o") or []
                 if f.get("typ") != "ab" or len(o) != 2 or len(set(o)) != 2 or f.get("bon") not in (0, 1):
                     faute(o2, "30 est un choix a 2 (typ ab, deux choix differents, bon 0 ou 1)")
         longueurs.append(modeles(ou, s))
-    # la feuille n'est pas devinable : les bonnes reponses ne sont pas toutes a la meme place
     for n in (29, 30):
         bons = [f["bon"] for s in series for f in s.get("fragen") or [] if f.get("n") == n and "bon" in f]
         if len(bons) >= 3 and len(set(bons)) == 1:
-            faute("email", "question %d : la bonne reponse est toujours la meme (%r)" % (n, bons[0]))
+            faute("lesen-schreiben.json", "question %d : la bonne reponse est toujours la meme (%r)" % (n, bons[0]))
     return len(series), longueurs
 
 
-def kurz(d):
-    series = d.get("kurz") or []
+def reponses_courtes(d):
+    series = d.get("series") or []
     if len(series) < 3:
-        faute("kurz", "moins de 3 series (%d)" % len(series))
-    ids = [s.get("id") for s in series]
-    if len(set(ids)) != len(ids):
-        faute("kurz", "deux series ont le meme id")
+        faute("schreiben.json", "moins de 3 series (%d)" % len(series))
+    ids_uniques("schreiben.json", series)
     longueurs = []
     for s in series:
         ou = "message court %s" % s.get("id")
@@ -190,7 +191,7 @@ def kurz(d):
             faute(ou, "nachricht incomplete")
         if "?" not in texte:
             faute(ou, "le message ne pose pas de question")
-        mot = (s.get("frage") or "").split()[0]
+        mot = (s.get("frage") or "").split()[0] if s.get("frage") else ""
         if mot and not re.search(r"(?i)(?<![^\W\d_])" + re.escape(mot) + r"(?![^\W\d_])", texte):
             faute(ou, "le message ne contient pas « %s »" % mot)
         regex(ou, s.get("indices"))
@@ -208,7 +209,7 @@ def grille(d):
     for x in k:
         if not x.get("de"):
             faute("kriterien " + str(x.get("id")), "nom allemand absent")
-        bilingue("kriterien " + str(x.get("id")), x, [None, "b1", "a2", "moins"])
+        bilingue("kriterien " + str(x.get("id")), x, ["titre", "b1", "a2", "moins"])
     b = d.get("bareme") or {}
     if b.get("paliers") != ["b1p", "b1", "a2p", "a2", "moins"]:
         faute("bareme", "paliers inattendus")
@@ -227,7 +228,7 @@ def redemittel(d):
     groupes = d.get("redemittel") or []
     total = 0
     for g in groupes:
-        bilingue("formules " + str(g.get("id")), g, [None])
+        bilingue("formules " + str(g.get("id")), g, ["titre"])
         for it in g.get("items") or []:
             total += 1
             o = "formules %s, %r" % (g.get("id"), (it.get("de") or "")[:30])
@@ -235,19 +236,19 @@ def redemittel(d):
                 faute(o, "« de » vide")
             if it.get("reg") not in ("du", "Sie", "beide"):
                 faute(o, "registre inconnu : %r" % it.get("reg"))
-            bilingue(o, it, [None])
+            bilingue(o, it, ["sens"])
     if total < 20:
         faute("formules", "moins de 20 formules (%d)" % total)
     return len(groupes), total
 
 
-d = json.load(open(FICHIER, encoding="utf-8"))
-ne, le = email(d)
-nk, lk = kurz(d)
-grille(d)
-ng, nf = redemittel(d)
-print("Courriels : %d series ; lettres modeles A2 %s mots, B1 %s mots" % (ne, [a for a, b in le], [b for a, b in le]))
-print("Messages courts : %d series ; reponses A2 %s mots, B1 %s mots" % (nk, [a for a, b in lk], [b for a, b in lk]))
+s = json.load(open(os.path.join(DONNEES, "schreiben.json"), encoding="utf-8"))
+ne, le = courriels()
+nk, lk = reponses_courtes(s)
+grille(s)
+ng, nf = redemittel(s)
+print("Courriels (LS) : %d series ; lettres modeles A2 %s mots, B1 %s mots" % (ne, [a for a, b in le], [b for a, b in le]))
+print("Reponses courtes (S) : %d series ; A2 %s mots, B1 %s mots" % (nk, [a for a, b in lk], [b for a, b in lk]))
 print("Formules utiles : %d groupes, %d formules" % (ng, nf))
 if fautes:
     print("\n%d faute(s) :" % len(fautes))
