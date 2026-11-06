@@ -1095,8 +1095,20 @@ function montrer(){
   $("compte").textContent = (rang + 1) + " / " + file.length;
   $("barre").style.width = (rang / file.length * 100) + "%";
   const garde = dire; dire = () => {};
-  const essai = (w, strict) => {
-    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+  // La fin de partie (6 nov. 2026, le correctif de gato de la v1113 : themes_illustres.py a vu une fois « 1 sorte de
+  // suite » en espagnol) : 14 mots sur 34 n'acceptent que deux sortes (oficina : ou / vraifaux, fecha : formLabel /
+  // formValeur...). Sur les trois derniers mots, une sorte est ecartee si, prise maintenant, elle ne laisse a la suite
+  // aucune facon de finir sans deux sortes de suite.
+  const fraiches = w => SORTES.filter(so => { for (let n = 0; n < 25; n++){ remise(); sorteCourante = so; if (!EX[so](w)) return false; if (!vus.has(cleQuestion())) return true; } return false; });
+  const bloquantes = j => {             // file[j] pose la question du rang : file[rang] prend sa place plus loin
+    const suite = file.slice(rang + 1).map((x, k) => rang + 1 + k === j ? file[rang] : x);
+    if (!suite.length || suite.length > 3) return new Set();
+    const q = suite.map(fraiches);
+    const faisable = (i, prec) => i >= q.length || q[i].some(so => so !== prec && faisable(i + 1, so));
+    return new Set(SORTES.filter(so => !faisable(0, so)));
+  };
+  const essai = (w, strict, exclues) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte && !(strict && exclues && exclues.has(x))));
     for (const so of autres){
       for (let n = 0; n < 25; n++){
         remise(); sorteCourante = so;
@@ -1116,11 +1128,12 @@ function montrer(){
     }
     return null;
   };
-  let fait = essai(file[rang], true);
-  for (let j = rang + 1; !fait && j < file.length; j++){
-    fait = essai(file[j], true);
-    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
-  }
+  let fait = null;
+  for (const fin of [true, false])      // d'abord en gardant une fin possible, puis sans
+    for (let j = rang; !fait && j < file.length; j++){
+      fait = essai(file[j], true, fin ? bloquantes(j) : null);
+      if (fait && j !== rang) [file[rang], file[j]] = [file[j], file[rang]];
+    }
   if (!fait) fait = essai(file[rang], false);
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
