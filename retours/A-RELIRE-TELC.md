@@ -208,6 +208,1007 @@ Von : Mark Garnier · An : Fitnessstudio FitPunkt · Betreff : Mitgliedschaft un
   _(explication montrée à l'élève : La formule de fin, figée : « Mit freundlichen Grüßen » (datif pluriel, avec -n). Une formule de fin qui manque ou qui est fausse coûte des points à l'écrit.)_
   → 
 
+## Écouter (Hören) et Écouter et noter (Hören und Schreiben)
+
+Ces textes sont DITS (des conversations, des annonces, des messages de répondeur) : ils doivent sonner comme de l'allemand parlé de tous les jours, au niveau A2-B1. Questions : la langue est-elle naturelle à l'oral ? Chaque question a-t-elle **une seule** bonne réponse d'après ce qu'on entend ? Les phrases « richtig / falsch » et les solutions sont-elles claires ? Les nombres sont écrits en chiffres ; la voix les dira en lettres.
+
+### Les consignes
+
+- T1 : Hören, Teil 1. Sie hören ein Gespräch aus dem Alltag. Sie hören das Gespräch zweimal. Welche Lösung passt? Ordnen Sie zu: Es gibt neun Lösungen, a bis i. Drei Lösungen bleiben übrig. Sie haben jetzt dreißig Sekunden Zeit. Lesen Sie die Aufgaben.
+  → 
+- T2 : Hören, Teil 2. Sie hören ein Gespräch am Arbeitsplatz. Sie hören das Gespräch nur einmal. Sind die Aussagen richtig oder falsch? Sie haben jetzt dreißig Sekunden Zeit. Lesen Sie die Aussagen.
+  → 
+- T3 : Hören, Teil 3. Sie hören fünf kurze Texte: Ansagen und Durchsagen. Sie hören jeden Text zweimal. Ist die Aussage richtig oder falsch?
+  → 
+- T4 : Hören, Teil 4. Sie hören eine Radiosendung. Fünf Personen sagen ihre Meinung. Sie hören jede Person nur einmal. Welche Aussage passt zu welcher Person? Es gibt sechs Aussagen, a bis f. Eine Aussage passt nicht. Sie haben jetzt dreißig Sekunden Zeit. Lesen Sie die Aussagen.
+  → 
+- ende : Das ist das Ende des Prüfungsteils Hören.
+  → 
+- Hören und Schreiben : Hören und Schreiben. Sie hören fünf Nachrichten auf dem Anrufbeantworter. Sie hören jede Nachricht zweimal. Notieren Sie die fehlende Information.
+  → 
+
+### Hören, série 1 · Teil 1 (entendu deux fois) · Mark parle avec sa voisine, Mme Özdemir, de la fête dans la cour de son immeuble.
+
+> **Frau Özdemir** : Hallo Mark! Hast du kurz Zeit? Es geht um unser Hoffest am Samstag.
+>
+> **Mark** : Hallo, Frau Özdemir! Ja, klar. Ist schon alles organisiert?
+>
+> **Frau Özdemir** : Fast. Ich habe heute Morgen mit allen Nachbarn gesprochen. Also: Herr Brückner wollte zuerst einen Kuchen backen, aber sein Backofen ist kaputt. Dafür hat er einen großen Grill im Keller, und den bringt er mit.
+>
+> **Mark** : Super, dann können wir Würstchen grillen. Und wer backt jetzt den Kuchen?
+>
+> **Frau Özdemir** : Das macht meine Tochter Elif. Sie backt sehr gern.
+>
+> **Mark** : Und Familie Wagner? Die haben doch drei Kinder.
+>
+> **Frau Özdemir** : Genau. Frau Wagner organisiert Spiele für die Kinder: Malen, Sackhüpfen und so weiter. Ihr Mann wollte eigentlich Musik machen, er spielt ja Gitarre. Aber er muss am Samstag leider arbeiten.
+>
+> **Mark** : Schade. Und Frau Lindner aus dem Erdgeschoss?
+>
+> **Frau Özdemir** : Frau Lindner macht zwei große Salate, einen Nudelsalat und einen Kartoffelsalat.
+>
+> **Mark** : Lecker! Und die Studenten aus dem vierten Stock? Ich habe sie gestern im Treppenhaus getroffen, sie wollten auch helfen.
+>
+> **Frau Özdemir** : Die kümmern sich um die Getränke. Sie haben ein Auto und fahren am Freitag zum Getränkemarkt.
+>
+> **Mark** : Und ich? Ich möchte auch etwas machen.
+>
+> **Frau Özdemir** : Du zeichnest doch so schön. Kannst du die Einladungen schreiben und im Treppenhaus aufhängen? Am besten heute noch, sonst erfahren es die Leute zu spät.
+>
+> **Mark** : Klar, das mache ich. Und die Tische und Stühle?
+>
+> **Frau Özdemir** : Die holen wir am Samstagmorgen alle zusammen aus dem Keller. Und am Abend räumen wir auch alle zusammen auf!
+
+→ 
+
+Wer übernimmt welche Aufgabe beim Hoffest?
+- a) Getränke kaufen
+- b) einen Grill mitbringen
+- c) einen Kuchen backen
+- d) Musik machen
+- e) Tische und Stühle holen
+- f) Einladungen schreiben
+- g) Salate machen
+- h) Spiele für die Kinder organisieren
+- i) am Ende aufräumen
+- **32. Herr Brückner → b) einen Grill mitbringen**
+- **33. Frau Wagner → h) Spiele für die Kinder organisieren**
+- **34. Frau Lindner → g) Salate machen**
+- **35. die Studenten aus dem 4. Stock → a) Getränke kaufen**
+- **36. Mark → f) Einladungen schreiben**
+  → 
+
+### Hören, série 1 · Teil 2 (entendu une fois) · Au guichet d'information de l'aéroport, Anna parle avec son chef d'équipe, M. Kaya.
+
+> **Herr Kaya** : Anna, hast du einen Moment? Der Dienstplan für November ist fertig.
+>
+> **Anna** : Ja, gern. Hoffentlich habe ich nicht wieder so viele Frühschichten. Um vier Uhr aufstehen ist wirklich nichts für mich.
+>
+> **Herr Kaya** : Keine Sorge. Nächste Woche hast du Spätdienst, jeden Tag von 14 bis 22 Uhr.
+>
+> **Anna** : Oh, das ist gut.
+>
+> **Herr Kaya** : Ich habe aber eine Bitte. Wir bekommen eine neue Kollegin, Frau Petrović. Am Montag und am Dienstag macht sie zuerst einen Sicherheitskurs. Am Mittwoch fängt sie dann bei uns am Schalter an. Kannst du ihr alles zeigen?
+>
+> **Anna** : Klar, das mache ich gern. Spricht sie Englisch? Viele Fluggäste fragen ja auf Englisch.
+>
+> **Herr Kaya** : Ja, sehr gut, und Kroatisch natürlich auch. Deutsch ist nicht ihre Muttersprache, aber sie spricht es fließend.
+>
+> **Anna** : Prima. Und wie ist es am Wochenende? Am Samstag heiratet eine gute Freundin von mir, da möchte ich wirklich frei haben.
+>
+> **Herr Kaya** : Das steht schon im Plan: Am Samstag hast du frei. Am Sonntag brauche ich dich leider. Dafür hast du dann am Montag und am Dienstag danach frei.
+>
+> **Anna** : Okay, das passt. Dann kann ich am Montag mal ausschlafen. Und bekomme ich für die Einarbeitung extra Stunden?
+>
+> **Herr Kaya** : Nein, extra Stunden gibt es dafür leider nicht. Aber die Firma bezahlt dir in dieser Zeit jeden Tag das Essen in der Kantine.
+>
+> **Anna** : Na ja, besser als nichts. Danke!
+
+→ 
+
+- 37. Anna arbeitet nächste Woche am Nachmittag und am Abend. **(richtig)**
+  → 
+- 38. Die neue Kollegin arbeitet ab Montag am Schalter. **(falsch)**
+  → 
+- 39. Frau Petrović spricht mehrere Sprachen. **(richtig)**
+  → 
+- 40. Anna muss am Samstag arbeiten. **(falsch)**
+  → 
+- 41. Für die Einarbeitung bekommt Anna mehr Geld. **(falsch)**
+  → 
+
+### Hören, série 1 · Teil 3 (chaque annonce deux fois)
+
+42. Durchsage im Supermarkt
+
+> **Durchsage** : Liebe Kundinnen und Kunden, ein Angebot für alle, die es eilig haben: Heute ab 18 Uhr bekommen Sie alle Brote und Brötchen aus unserer Bäckerei zum halben Preis. Das Angebot gilt nur heute und nur, solange der Vorrat reicht.
+
+→ 
+
+- Heute Abend kostet das Brot weniger. **(richtig)**
+  → 
+
+43. Durchsage am Bahnhof
+
+> **Durchsage** : Achtung an Gleis 7: Der ICE 548 nach Hamburg, Abfahrt 10:15 Uhr, fährt heute ausnahmsweise von Gleis 9 ab. Ich wiederhole: der ICE nach Hamburg heute von Gleis 9.
+
+→ 
+
+- Der Zug nach Hamburg fährt heute später ab. **(falsch)**
+  → 
+
+44. Ansage am Telefon
+
+> **Bandansage** : Willkommen beim Museum für Stadtgeschichte. Wegen Bauarbeiten ist unser Haupteingang am Marktplatz bis Ende November geschlossen. Bitte benutzen Sie den Eingang in der Schulstraße, gleich um die Ecke. Unsere Öffnungszeiten bleiben gleich.
+
+→ 
+
+- Besucher müssen zurzeit einen anderen Eingang benutzen. **(richtig)**
+  → 
+
+45. Verkehrsmeldung im Radio
+
+> **Radio** : Und jetzt der Verkehr: Auf der Stadtautobahn A 100 gibt es zwischen dem Dreieck Funkturm und dem Kurfürstendamm nach einem Unfall fünf Kilometer Stau. Die Polizei bittet alle Autofahrer, diesen Bereich zu umfahren.
+
+→ 
+
+- Autofahrer sollen auf der A 100 langsam fahren. **(falsch)**
+  → 
+
+46. Durchsage im Kaufhaus
+
+> **Durchsage** : Liebe Kundinnen und Kunden, der kleine Leon, fünf Jahre alt, sucht seine Mama und seinen Papa. Leon wartet bei uns an der Information im Erdgeschoss, direkt am Haupteingang. Bitte holen Sie ihn dort ab.
+
+→ 
+
+- Leons Eltern sollen ins Erdgeschoss kommen. **(richtig)**
+  → 
+
+### Hören, série 1 · Teil 4 (chaque avis une fois) · Sollen die Geschäfte auch am Sonntag öffnen?
+
+> **Moderatorin** : Guten Abend und willkommen bei „Stimmen der Stadt“. Heute fragen wir: Sollen die Geschäfte in Berlin auch am Sonntag öffnen? Wir haben Berlinerinnen und Berliner auf der Straße gefragt.
+
+→ 
+
+- a) Wer die ganze Woche arbeitet, hätte endlich Zeit zum Einkaufen.
+- b) Die Menschen in den Geschäften brauchen auch einen freien Tag mit der Familie.
+- c) Am Sonntag sollte man lieber etwas anderes machen, als Geld auszugeben.
+- d) Für kleine Läden wäre das ein Nachteil.
+- e) Ich arbeite selbst am Sonntag und finde das nicht schlimm.
+- f) Für Touristen wäre das ein großer Vorteil.
+
+> **Jana, 23** : Ich bin Studentin und jobbe jedes Wochenende in einem Café, auch sonntags. Ehrlich gesagt finde ich das ganz normal, und ich bekomme sogar mehr Geld pro Stunde. Viele Leute arbeiten am Sonntag: im Krankenhaus, bei der Polizei, in Restaurants. Warum also nicht auch im Supermarkt?
+
+→ 
+
+- **47 → e) Ich arbeite selbst am Sonntag und finde das nicht schlimm.**
+  → 
+
+> **Werner, 71** : Ich war über vierzig Jahre Verkäufer in einem Kaufhaus. Der Sonntag war der einzige Tag, an dem ich meine Frau und meine Kinder richtig gesehen habe. Wer im Geschäft arbeitet, hat auch ein Recht darauf. Einkaufen kann man doch an sechs Tagen in der Woche.
+
+→ 
+
+- **48 → b) Die Menschen in den Geschäften brauchen auch einen freien Tag mit der Familie.**
+  → 
+
+> **Sandra, 41** : Ich arbeite Vollzeit im Büro, und danach hole ich meine Kinder von der Kita ab. Unter der Woche schaffe ich es kaum in den Supermarkt, und am Samstag ist es dort immer furchtbar voll. Für mich wäre ein offener Sonntag eine große Hilfe.
+
+→ 
+
+- **49 → a) Wer die ganze Woche arbeitet, hätte endlich Zeit zum Einkaufen.**
+  → 
+
+> **Murat, 48** : Ich habe einen kleinen Buchladen in Kreuzberg. Wenn die großen Kaufhäuser auch sonntags aufmachen, kommen noch weniger Kunden zu mir. Ich kann nicht sieben Tage in der Woche im Laden stehen, und mehr Personal kann ich nicht bezahlen.
+
+→ 
+
+- **50 → d) Für kleine Läden wäre das ein Nachteil.**
+  → 
+
+> **Lukas, 19** : Touristen gibt es in Berlin genug, und die finden auch am Sonntag genug zu tun. Ich treffe sonntags meine Freunde, wir gehen in den Park oder ins Museum. Ein Tag ohne Einkaufen tut uns allen gut, finde ich.
+
+→ 
+
+- **51 → c) Am Sonntag sollte man lieber etwas anderes machen, als Geld auszugeben.**
+  → 
+
+### Hören, série 2 · Teil 1 (entendu deux fois) · Mark appelle Anna : il voudrait aller au cinéma avec elle cette semaine.
+
+> **Mark** : Hallo Anna, ich bin's, Mark. Du, im Kino läuft jetzt der Film über den Mauerfall, von dem ich dir erzählt habe. Wann hast du diese Woche Zeit?
+>
+> **Anna** : Hallo Mark! Oh, diese Woche ist ziemlich voll. Warte, ich schaue mal in meinen Kalender. Also, am Montag habe ich Spätdienst, da arbeite ich bis zehn Uhr abends.
+>
+> **Mark** : Und am Dienstag? Da bringe ich mein Fahrrad in die Werkstatt, aber danach habe ich Zeit.
+>
+> **Anna** : Am Dienstag gehe ich normalerweise zum Yoga, aber der Kurs fällt diese Woche aus. Dafür hat mein Bruder Jan angerufen: Er und Katrin haben einen Elternabend in der Schule, und ich passe auf Ben und Mia auf.
+>
+> **Mark** : Ach so. Und am Mittwoch?
+>
+> **Anna** : Am Mittwoch fahre ich zu meiner Oma nach Potsdam. Eigentlich wollte ich am Donnerstag zu ihr, aber da muss sie zum Zahnarzt.
+>
+> **Mark** : Dann bleiben ja nur noch Donnerstag und Freitag.
+>
+> **Anna** : Am Donnerstag muss ich unbedingt ein Geschenk für Lena kaufen, sie hat am Samstag Geburtstag. Komm doch mit! Aber ins Kino gehen wir lieber am Freitag, da habe ich frei.
+>
+> **Mark** : Super, Freitag ist perfekt. Und am Wochenende?
+>
+> **Anna** : Am Samstag ist Lenas Party, und am Sonntag muss ich endlich mal meine Wohnung putzen. Sie sieht schlimm aus!
+
+→ 
+
+Was macht Anna an welchem Tag?
+- a) die Oma besuchen
+- b) bis spät arbeiten
+- c) zum Zahnarzt gehen
+- d) zum Yoga gehen
+- e) ins Kino gehen
+- f) auf Kinder aufpassen
+- g) die Wohnung putzen
+- h) ein Geschenk kaufen
+- i) das Fahrrad in die Werkstatt bringen
+- **32. Montag → b) bis spät arbeiten**
+- **33. Dienstag → f) auf Kinder aufpassen**
+- **34. Mittwoch → a) die Oma besuchen**
+- **35. Donnerstag → h) ein Geschenk kaufen**
+- **36. Freitag → e) ins Kino gehen**
+  → 
+
+### Hören, série 2 · Teil 2 (entendu une fois) · Premier jour de Tim, le nouvel apprenti de la gérance Kern. Mme Brandt lui explique sa journée.
+
+> **Frau Brandt** : Guten Morgen! Du bist Tim, unser neuer Azubi, richtig? Ich bin Petra Brandt. Wir duzen uns hier im Team, ist das okay für dich?
+>
+> **Tim** : Ja, klar. Guten Morgen, Petra.
+>
+> **Frau Brandt** : Also, dein erster Tag. Du sitzt hier am Fenster, direkt neben Herrn Kern. Er ist der Chef, aber diese Woche ist er im Urlaub. Du hast also ein bisschen Ruhe.
+>
+> **Tim** : Okay. Und was mache ich heute als Erstes?
+>
+> **Frau Brandt** : Am Vormittag gehst du mit mir ans Telefon. Die Mieter rufen meistens morgens an, wegen Reparaturen: die Heizung, ein Fenster, der Aufzug. Du schreibst alles auf: den Namen, die Adresse, die Telefonnummer und was kaputt ist. Die Post sortieren wir erst am Nachmittag.
+>
+> **Tim** : Und rufe ich dann auch die Handwerker an?
+>
+> **Frau Brandt** : Nein, das mache ich erst mal noch selbst. Das lernst du im nächsten Monat.
+>
+> **Tim** : Gut. Und wann ist Mittagspause?
+>
+> **Frau Brandt** : Von zwölf bis halb eins. Es gibt eine Kantine hier im Haus, aber die meisten von uns bringen ihr Essen von zu Hause mit. Wir haben eine kleine Küche mit Mikrowelle.
+>
+> **Tim** : Und bis wann arbeite ich?
+>
+> **Frau Brandt** : Diese Woche bis sechzehn Uhr. Und am Mittwoch hast du Berufsschule, da kommst du gar nicht ins Büro.
+
+→ 
+
+- 37. Tim hat seinen Platz neben dem Chef. **(richtig)**
+  → 
+- 38. Am Vormittag sortiert Tim die Post. **(falsch)**
+  → 
+- 39. Tim ruft heute selbst die Handwerker an. **(falsch)**
+  → 
+- 40. Die meisten Kollegen essen mittags in der Kantine. **(falsch)**
+  → 
+- 41. Am Mittwoch ist Tim nicht im Büro. **(richtig)**
+  → 
+
+### Hören, série 2 · Teil 3 (chaque annonce deux fois)
+
+42. Durchsage im Schwimmbad
+
+> **Durchsage** : Liebe Badegäste, in einer Viertelstunde schließen wir das große Becken für einen Schwimmkurs. Das Nichtschwimmerbecken und die Sauna bleiben wie immer bis 21 Uhr geöffnet.
+
+→ 
+
+- In fünfzehn Minuten schließt das ganze Schwimmbad. **(falsch)**
+  → 
+
+43. Ansage am Telefon
+
+> **Bandansage** : Guten Tag, Sie sind mit der Praxis Dr. Neumann verbunden. Unsere Praxis ist vom 23. Dezember bis zum 2. Januar geschlossen. In dringenden Fällen gehen Sie bitte zur Praxis Dr. Albers in der Lindenstraße 5. Ab dem 3. Januar sind wir wieder für Sie da.
+
+→ 
+
+- In dieser Zeit kann man zu einem anderen Arzt gehen. **(richtig)**
+  → 
+
+44. Meldung im Radio
+
+> **Radio** : Eine Meldung für alle, die am Wochenende mit der S-Bahn fahren: Wegen Bauarbeiten fährt die S 1 von Freitagabend bis Montagmorgen nicht zwischen Wannsee und Zehlendorf. Zwischen diesen Bahnhöfen fahren Ersatzbusse.
+
+→ 
+
+- Am Wochenende fahren auf einem Teil der Strecke Busse statt der S-Bahn. **(richtig)**
+  → 
+
+45. Durchsage im Supermarkt
+
+> **Durchsage** : Liebe Kundinnen und Kunden, bitte beachten Sie: Unser Markt schließt heute wegen einer Betriebsversammlung schon um 18 Uhr. Ab morgen sind wir wieder wie gewohnt von 7 bis 22 Uhr für Sie da.
+
+→ 
+
+- Morgen schließt der Supermarkt um 18 Uhr. **(falsch)**
+  → 
+
+46. Durchsage am Flughafen
+
+> **Durchsage** : Eine Information für alle Passagiere des Fluges nach Montreal: Ihr Flug hat leider vierzig Minuten Verspätung. Das Boarding beginnt jetzt um 13:20 Uhr am Gate B 12. Wir bitten um Ihr Verständnis.
+
+→ 
+
+- Der Flug nach Montreal startet später als geplant. **(richtig)**
+  → 
+
+### Hören, série 2 · Teil 4 (chaque avis une fois) · Haustiere in der Mietwohnung: Wer soll entscheiden?
+
+> **Moderator** : Hallo und herzlich willkommen bei „Stimmen der Stadt“. Unser Thema heute: Haustiere in der Mietwohnung. Sollen Mieter selbst entscheiden, ob sie einen Hund oder eine Katze haben? Wir haben uns umgehört.
+
+→ 
+
+- a) Ein großer Hund gehört nicht in eine kleine Stadtwohnung.
+- b) Mit einem Tier lernen Kinder, Verantwortung zu übernehmen.
+- c) Ob man ein Tier hat, sollte nicht der Vermieter entscheiden.
+- d) Ich bin froh, wenn in meinem Haus keine Tiere leben.
+- e) Für Menschen, die allein leben, ist ein Tier sehr wichtig.
+- f) Laute Tiere stören die Nachbarn.
+
+> **Gerda, 74** : Seit mein Mann gestorben ist, wohne ich allein. Meine Katze Mimi ist für mich wie eine Freundin: Sie wartet auf mich, wenn ich nach Hause komme, und abends sitzt sie bei mir auf dem Sofa. Ohne sie wäre ich sehr einsam.
+
+→ 
+
+- **47 → e) Für Menschen, die allein leben, ist ein Tier sehr wichtig.**
+  → 
+
+> **Lukas, 20** : Ich habe eine starke Allergie gegen Katzen. In meinem alten Haus hatten die Nachbarn drei Katzen, und im Treppenhaus musste ich immer niesen. Jetzt wohne ich in einem Haus ohne Tiere, und das ist für mich viel besser.
+
+→ 
+
+- **48 → d) Ich bin froh, wenn in meinem Haus keine Tiere leben.**
+  → 
+
+> **Katja, 38** : Unsere Tochter wollte unbedingt ein Kaninchen. Jetzt füttert sie es jeden Morgen vor der Schule und macht einmal in der Woche den Käfig sauber, ganz allein. Dabei lernt sie viel, finde ich: Ein Tier braucht dich jeden Tag, auch wenn du keine Lust hast.
+
+→ 
+
+- **49 → b) Mit einem Tier lernen Kinder, Verantwortung zu übernehmen.**
+  → 
+
+> **Horst, 69** : Mich stört das Bellen nicht so sehr, ehrlich gesagt. Aber in unserem Haus wohnt ein junger Mann mit einem riesigen Schäferhund, in einer Wohnung mit eineinhalb Zimmern. Das arme Tier! So ein Hund braucht einen Garten und viel Platz, keine kleine Wohnung im dritten Stock.
+
+→ 
+
+- **50 → a) Ein großer Hund gehört nicht in eine kleine Stadtwohnung.**
+  → 
+
+> **Stefan, 45** : Ich zahle jeden Monat viel Miete für meine Wohnung. Dann möchte ich auch selbst entscheiden, wie ich dort lebe. Wenn mein Hund niemanden stört, geht das den Vermieter nichts an.
+
+→ 
+
+- **51 → c) Ob man ein Tier hat, sollte nicht der Vermieter entscheiden.**
+  → 
+
+### Hören und Schreiben, série 1 (chaque message deux fois)
+
+> **Zahnarztpraxis** : Guten Tag, Herr Garnier, hier ist die Zahnarztpraxis Dr. Hoffmann. Leider ist Frau Dr. Hoffmann am Donnerstag krank. Wir müssen Ihren Termin deshalb verschieben. Der neue Termin ist am Freitag, den 14. November, um 9:30 Uhr. Wenn das nicht passt, rufen Sie uns bitte zurück. Auf Wiederhören!
+
+→ 
+
+- 52. Notiz « Zahnarzt Dr. Hoffmann » : Termin am Donnerstag fällt aus. / Neuer Termin: Freitag, 14.11., um **9:30** Uhr
+  → 
+
+> **Fahrradwerkstatt** : Hallo, Herr Garnier, hier ist Kowalski von der Fahrradwerkstatt Speiche. Ihr Fahrrad ist fertig. Wir haben die Bremsen repariert und einen neuen Reifen montiert. Das macht zusammen 45 Euro. Sie können es ab morgen abholen, wir haben bis 19 Uhr geöffnet. Tschüss!
+
+→ 
+
+- 53. Notiz « Fahrrad abholen (Werkstatt Speiche) » : Bremsen und Reifen: fertig / Preis: **45** Euro
+  → 
+
+> **Anna** : Hallo Mark, hier ist Anna. Wegen Samstag, Lenas Party: Kannst du bitte Gläser mitbringen? Lena hat nicht genug für alle Gäste. Getränke und Kuchen haben wir schon. Und vergiss nicht: Wir treffen uns um sieben bei ihr. Bis dann!
+
+→ 
+
+- 54. Notiz « Lenas Party am Samstag » : Treffen: 19 Uhr bei Lena / Mitbringen: **Gläser**
+  → 
+
+> **Volkshochschule** : Guten Tag, hier ist die Volkshochschule Pankow, eine Nachricht für die Teilnehmer vom Kurs Deutsch B1 am Abend. Ab nächster Woche findet Ihr Kurs in einem anderen Raum statt: nicht mehr in Raum 108, sondern in Raum 214, im zweiten Stock. Die Uhrzeit bleibt gleich. Vielen Dank.
+
+→ 
+
+- 55. Notiz « Deutschkurs B1 (abends) » : Ab nächster Woche / Neuer Raum: **214**
+  → 
+
+> **Paketdienst** : Hallo, hier ist der Paketdienst Blitz. Ich war heute um elf bei Ihnen, aber leider war niemand zu Hause. Ihr Paket habe ich im Kiosk um die Ecke abgegeben. Der Kiosk heißt Sommer, ich buchstabiere: S – O – M – M – E – R. Sie können es dort ab sechzehn Uhr abholen.
+
+→ 
+
+- 56. Notiz « Paket abholen » : ab 16 Uhr / im Kiosk **Sommer**
+  → 
+
+### Hören und Schreiben, série 2 (chaque message deux fois)
+
+> **Anna** : Hallo Mark, ich bin's, Anna. Ich muss morgen doch länger am Flughafen bleiben, ich schaffe es also nicht um halb sechs. Treffen wir uns um Viertel nach sechs im Café Linde? Ruf mich an, wenn das nicht geht. Bis morgen!
+
+→ 
+
+- 52. Notiz « Treffen mit Anna, Café Linde » : Morgen / Uhrzeit: **18:15** Uhr
+  → 
+
+> **Stadtbibliothek** : Guten Tag, hier ist die Stadtbibliothek Pankow, eine Nachricht für Herrn Garnier. Das Buch, das Sie bestellt haben, ist jetzt da. Wir legen es für Sie an der Ausleihe bereit. Bitte holen Sie es bis zum 20. November ab, danach geht es zurück ins Regal. Vielen Dank!
+
+→ 
+
+- 53. Notiz « Stadtbibliothek: Buch abholen » : an der Ausleihe / bis zum **20**. November
+  → 
+
+> **Hausmeister** : Guten Tag, Herr Garnier, hier spricht Brückner, der Hausmeister. Eine Information für alle Mieter: Am Dienstag wird von acht bis zwölf Uhr das Wasser abgestellt, wir bekommen neue Leitungen im Keller. Bitte waschen Sie an diesem Vormittag keine Wäsche. Ab Mittwoch ist dann alles wieder normal.
+
+→ 
+
+- 54. Notiz « Kein Wasser im Haus » : am **Dienstag** / von 8 bis 12 Uhr: keine Wäsche waschen
+  → 
+
+> **Fitnessstudio** : Hallo, hier ist das Fitnessstudio Kraftwerk. Ihre Mitgliedskarte ist fertig. Bitte kommen Sie in den nächsten Tagen an die Theke und bringen Sie ein Passfoto mit, das kleben wir auf die Karte. Ihren Ausweis brauchen wir nicht mehr. Bis bald!
+
+→ 
+
+- 55. Notiz « Fitnessstudio Kraftwerk: Karte abholen » : an der Theke / Mitbringen: **Passfoto**
+  → 
+
+> **Möbelhaus** : Guten Tag, hier ist Schäfer vom Möbelhaus Nordlicht. Ihr Regal ist angekommen, und wir möchten einen Termin für die Lieferung machen. Bitte rufen Sie mich zurück, meine Nummer ist 030 44 71 925. Ich wiederhole: 030 44 71 925. Danke!
+
+→ 
+
+- 56. Notiz « Rückruf: Möbelhaus Nordlicht, Herr Schäfer » : Regal ist da, Liefertermin machen / Telefon: **030 44 71 925**
+  → 
+
+## Lire et écrire : le courriel à lire puis à écrire (Lesen und Schreiben, 29-31)
+
+Pour chaque sujet : le courriel reçu, les deux questions de compréhension, les points que la réponse doit traiter, puis deux lettres modèles (A2 et B1). Questions : le courriel est-il naturel et au bon registre ? Les questions 29 et 30 n'ont-elles qu'une réponse possible ? Les lettres modèles sont-elles correctes, et la lettre A2 est-elle bien plus simple que la B1, sans être fautive ?
+
+### Courriel 1 · Tobias Lang, un collègue de Mark, déménage samedi et lui demande de l'aide. (informel)
+
+Von : Tobias Lang · An : Mark · Betreff : Umzug am Samstag – hilfst du mir?
+
+> Hallo Mark,
+>
+> wie geht es dir? Ich habe tolle Neuigkeiten: Ich habe endlich eine neue Wohnung gefunden! Sie ist in Prenzlauer Berg, hat einen kleinen Balkon und ist nur fünf Minuten von unserem Büro entfernt.
+>
+> Am Samstag ziehe ich um. Zwei Freunde helfen mir, aber wir brauchen noch ein paar starke Hände. Hast du an dem Tag Zeit? Wir fangen um neun Uhr an. Wenn du erst später kommen kannst, ist das auch kein Problem. Sag mir einfach, wann du da bist.
+>
+> Ich habe noch keinen Transporter. Kennst du vielleicht jemanden, der ein großes Auto hat?
+>
+> Mittags koche ich für alle. Was isst du gern? Isst du Fleisch, oder soll ich lieber etwas Vegetarisches kochen?
+>
+> Liebe Grüße
+>
+> Tobias
+
+→ 
+
+- 29. Tobias zieht in eine Wohnung mit Balkon. — **Richtig**
+  → 
+- 30. Tobias möchte wissen, … **a) wann Mark kommen kann.** · b) wo die neue Wohnung ist.
+  → 
+- Points à traiter : Hast du am Samstag Zeit? · Wann bist du da? · Kennst du jemanden mit einem großen Auto? · Was isst du gern?
+  → 
+
+**Lettre modèle A2** (montrée à l'élève comme exemple du niveau A2 : correcte, et typique de ce niveau)
+
+> Lieber Tobias,
+>
+> danke für deine E-Mail. Toll, du hast eine neue Wohnung!
+>
+> Am Samstag habe ich Zeit. Ich komme um zehn Uhr. Um neun Uhr kann ich nicht, ich spiele am Morgen Fußball.
+>
+> Mein Nachbar hat ein großes Auto. Ich frage ihn.
+>
+> Ich esse gern Pizza. Ich esse auch Fleisch, aber nicht viel.
+>
+> Bis Samstag!
+>
+> Viele Grüße
+>
+> Mark
+
+→ 
+
+**Lettre modèle B1** (montrée à l'élève comme exemple du niveau B1 : correcte, et typique de ce niveau)
+
+> Lieber Tobias,
+>
+> vielen Dank für deine E-Mail! Ich freue mich sehr für dich, dass du endlich eine Wohnung gefunden hast. Ein Balkon in Prenzlauer Berg – super!
+>
+> Natürlich helfe ich dir am Samstag. Leider kann ich nicht schon um neun Uhr da sein, weil ich am Samstagmorgen noch ein Fußballspiel habe. Ich bin aber spätestens um halb elf bei dir.
+>
+> Zum Transporter: Mein Nachbar hat einen großen Kombi. Ich rufe ihn heute Abend an und frage, ob er uns hilft.
+>
+> Zum Essen: Ich esse eigentlich alles, aber am liebsten Nudeln. Wenn du etwas Vegetarisches kochst, ist das für mich auch perfekt.
+>
+> Soll ich Getränke mitbringen?
+>
+> Bis Samstag und liebe Grüße
+>
+> Mark
+
+→ 
+
+### Courriel 2 · Jonas, un collègue de Mark, prépare le départ à la retraite d'une collègue. (informel)
+
+Von : Jonas Albrecht · An : Mark · Betreff : Abschied von Frau Schäfer
+
+> Hallo Mark,
+>
+> wie du sicher weißt, geht Frau Schäfer Ende des Monats in Rente. Wir möchten an ihrem letzten Arbeitstag um 15 Uhr eine kleine Feier im Besprechungsraum machen. Sie weiß noch nichts davon!
+>
+> Wir kaufen zusammen ein Geschenk. Machst du mit? Jeder gibt zehn Euro. Hast du vielleicht eine Idee, was wir ihr schenken können? Ich weiß nur, dass sie gern im Garten arbeitet.
+>
+> Wir brauchen auch noch Kuchen und Getränke. Was kannst du mitbringen?
+>
+> Und noch eine Frage: Du fotografierst doch so gut. Könntest du an dem Tag ein paar Fotos machen?
+>
+> Viele Grüße
+>
+> Jonas
+
+→ 
+
+- 29. Frau Schäfer weiß schon von der Feier. — **Falsch**
+  → 
+- 30. Jonas fragt Mark, ob er … a) die Feier organisiert. · **b) beim Geschenk mitmacht.**
+  → 
+- Points à traiter : Machst du beim Geschenk mit? · Hast du eine Idee für ein Geschenk? · Was kannst du mitbringen? · Könntest du Fotos machen?
+  → 
+
+**Lettre modèle A2** (montrée à l'élève comme exemple du niveau A2 : correcte, et typique de ce niveau)
+
+> Hallo Jonas,
+>
+> danke für deine E-Mail. Ja, ich mache mit. Ich gebe gern zehn Euro.
+>
+> Meine Idee: Wir kaufen eine schöne Pflanze für den Garten.
+>
+> Ich bringe einen Apfelkuchen mit. Den mache ich selbst.
+>
+> Fotos mache ich gern. Ich bringe meine Kamera mit.
+>
+> Viele Grüße
+>
+> Mark
+
+→ 
+
+**Lettre modèle B1** (montrée à l'élève comme exemple du niveau B1 : correcte, et typique de ce niveau)
+
+> Hallo Jonas,
+>
+> danke, dass du die Feier organisierst – das ist eine schöne Idee! Natürlich mache ich beim Geschenk mit. Die zehn Euro gebe ich dir morgen im Büro.
+>
+> Weil Frau Schäfer so gern im Garten arbeitet, könnten wir ihr einen Gutschein für ein Gartencenter schenken. Dann kann sie selbst aussuchen, was sie braucht. Was meinst du?
+>
+> Ich backe gern einen Apfelkuchen. Wenn noch Getränke fehlen, kann ich auch Saft mitbringen.
+>
+> Und klar, ich mache die Fotos! Ich schicke sie danach allen, damit jeder eine Erinnerung hat.
+>
+> Bis morgen und viele Grüße
+>
+> Mark
+
+→ 
+
+### Courriel 3 · La responsable du cours d'espagnol de Mark, à la Volkshochschule, annonce des changements. (formel)
+
+Von : Sabine Krüger, Volkshochschule Pankow · An : Mark Garnier · Betreff : Ihr Spanischkurs A2 – Änderungen ab nächster Woche
+
+> Sehr geehrter Herr Garnier,
+>
+> leider muss ich Ihnen mitteilen, dass unser Kursraum ab nächster Woche renoviert wird. Der Kurs findet deshalb im Raum 214 im zweiten Stock statt. Außerdem möchten wir den Kurs vom Montag auf den Dienstag verschieben. Die Uhrzeit, 18 bis 20:15 Uhr, bleibt gleich. Können Sie auch dienstags kommen?
+>
+> Am Ende des Kurses machen wir einen Ausflug in ein Museum. Möchten Sie mitkommen? Der Eintritt kostet für Kursteilnehmer vier Euro.
+>
+> Zum Schluss habe ich noch eine Bitte: Wir planen für das neue Jahr einen Aufbaukurs. Welche Themen sind für Sie besonders wichtig?
+>
+> Mit freundlichen Grüßen
+>
+> Sabine Krüger
+
+→ 
+
+- 29. Der Kurs fängt ab nächster Woche später an. — **Falsch**
+  → 
+- 30. Frau Krüger möchte wissen, … **a) ob Herr Garnier am Dienstag kommen kann.** · b) ob Herr Garnier einen anderen Raum kennt.
+  → 
+- Points à traiter : Können Sie auch dienstags kommen? · Möchten Sie beim Ausflug mitkommen? · Welche Themen sind für Sie wichtig?
+  → 
+
+**Lettre modèle A2** (montrée à l'élève comme exemple du niveau A2 : correcte, et typique de ce niveau)
+
+> Sehr geehrte Frau Krüger,
+>
+> vielen Dank für Ihre E-Mail.
+>
+> Dienstags kann ich auch kommen. Das ist kein Problem.
+>
+> Den Ausflug ins Museum finde ich gut. Ich komme gern mit.
+>
+> Für mich sind diese Themen wichtig: Reisen, Essen und Musik.
+>
+> Mit freundlichen Grüßen
+>
+> Mark Garnier
+
+→ 
+
+**Lettre modèle B1** (montrée à l'élève comme exemple du niveau B1 : correcte, et typique de ce niveau)
+
+> Sehr geehrte Frau Krüger,
+>
+> vielen Dank für Ihre Informationen.
+>
+> Der Dienstag passt mir gut, weil ich an diesem Tag früher Feierabend habe. Ich komme also ab nächster Woche in den Raum 214.
+>
+> An dem Ausflug ins Museum nehme ich sehr gern teil. Ich interessiere mich für Geschichte, und vier Euro sind wirklich günstig. Könnten Sie mir noch sagen, wann und wo wir uns treffen?
+>
+> Für den Aufbaukurs wünsche ich mir vor allem Themen für die Reise, zum Beispiel im Hotel reservieren und im Restaurant bestellen. Außerdem wäre es schön, wenn wir mehr sprechen würden.
+>
+> Mit freundlichen Grüßen
+>
+> Mark Garnier
+
+→ 
+
+### Courriel 4 · Frau Becker, la voisine de Mark, part en vacances et lui demande un service. (formel)
+
+Von : Helga Becker · An : Mark Garnier · Betreff : Eine Bitte während meines Urlaubs
+
+> Lieber Herr Garnier,
+>
+> ich hoffe, es geht Ihnen gut. Ich fahre vom 10. bis zum 24. Juli zu meiner Tochter nach Hamburg. Darf ich Sie um einen Gefallen bitten?
+>
+> Könnten Sie in dieser Zeit meine Blumen auf dem Balkon gießen? Bei der Hitze brauchen sie zweimal pro Woche Wasser. Es wäre auch sehr nett, wenn Sie meinen Briefkasten leeren könnten.
+>
+> Ich möchte Ihnen vorher den Schlüssel geben. Wann sind Sie in den nächsten Tagen zu Hause?
+>
+> Und haben Sie im Sommer auch Urlaubspläne? Dann helfe ich Ihnen natürlich auch gern.
+>
+> Herzliche Grüße
+>
+> Helga Becker
+
+→ 
+
+- 29. Frau Becker ist zwei Wochen nicht zu Hause. — **Richtig**
+  → 
+- 30. Frau Becker möchte … a) Herrn Garnier ihre Wohnung vermieten. · **b) Herrn Garnier vor dem Urlaub den Schlüssel geben.**
+  → 
+- Points à traiter : Könnten Sie meine Blumen gießen? · Könnten Sie den Briefkasten leeren? · Wann sind Sie zu Hause? · Haben Sie auch Urlaubspläne?
+  → 
+
+**Lettre modèle A2** (montrée à l'élève comme exemple du niveau A2 : correcte, et typique de ce niveau)
+
+> Liebe Frau Becker,
+>
+> danke für Ihre E-Mail. Ich gieße gern Ihre Blumen. Ich leere auch Ihren Briefkasten.
+>
+> Ich bin am Mittwoch und am Donnerstag ab 18 Uhr zu Hause. Dann können Sie mir den Schlüssel geben.
+>
+> Im August fahre ich nach Montréal. Ich besuche meine Familie.
+>
+> Eine schöne Zeit in Hamburg!
+>
+> Herzliche Grüße
+>
+> Mark Garnier
+
+→ 
+
+**Lettre modèle B1** (montrée à l'élève comme exemple du niveau B1 : correcte, et typique de ce niveau)
+
+> Liebe Frau Becker,
+>
+> vielen Dank für Ihre Nachricht. Natürlich helfe ich Ihnen gern! Ich gieße Ihre Blumen jeden Montag und Donnerstag, und dabei leere ich auch gleich den Briefkasten. Soll ich die Post in Ihre Wohnung legen?
+>
+> Den Schlüssel können Sie mir am Mittwochabend geben, denn dann bin ich ab 18 Uhr zu Hause. Wenn Ihnen das zu spät ist, klingeln Sie einfach am Samstagvormittag.
+>
+> Ich fliege im August für drei Wochen nach Montréal, weil mein bester Freund heiratet. Es wäre toll, wenn Sie dann meine Pflanzen gießen könnten.
+>
+> Ich wünsche Ihnen eine schöne Zeit bei Ihrer Tochter!
+>
+> Herzliche Grüße
+>
+> Mark Garnier
+
+→ 
+
+### Courriel 5 · Lukas, un ami de Munich, vient à Berlin et voudrait dormir chez Mark. (informel)
+
+Von : Lukas · An : Mark · Betreff : Ich komme nach Berlin!
+
+> Hallo Mark,
+>
+> lange nichts gehört! Wie gefällt dir das Leben in Berlin? Ich habe eine gute Nachricht: Im Mai habe ich eine Konferenz in Berlin, und danach bleibe ich noch ein Wochenende.
+>
+> Kann ich von Freitag bis Sonntag bei dir übernachten? Die Hotels sind im Moment sehr teuer.
+>
+> Ich war noch nie in Berlin. Was sollten wir unbedingt zusammen machen?
+>
+> Ich komme am Freitagabend mit dem Zug am Hauptbahnhof an. Wie komme ich am besten zu dir?
+>
+> Viele Grüße aus München
+>
+> Lukas
+
+→ 
+
+- 29. Lukas kennt Berlin schon. — **Falsch**
+  → 
+- 30. Lukas kommt nach Berlin, … a) weil er dort Urlaub machen möchte. · **b) weil er dort beruflich zu tun hat.**
+  → 
+- Points à traiter : Wie gefällt dir das Leben in Berlin? · Kann ich bei dir übernachten? · Was sollten wir zusammen machen? · Wie komme ich zu dir?
+  → 
+
+**Lettre modèle A2** (montrée à l'élève comme exemple du niveau A2 : correcte, et typique de ce niveau)
+
+> Hallo Lukas,
+>
+> schön, von dir zu hören! Berlin gefällt mir sehr gut. Die Stadt ist groß und interessant.
+>
+> Du kannst gern bei mir schlafen. Ich habe ein Sofa.
+>
+> Wir können am Samstag zum Brandenburger Tor gehen und am Sonntag auf den Flohmarkt.
+>
+> Ich hole dich am Hauptbahnhof ab. Schreib mir die Uhrzeit.
+>
+> Bis bald!
+>
+> Viele Grüße
+>
+> Mark
+
+→ 
+
+**Lettre modèle B1** (montrée à l'élève comme exemple du niveau B1 : correcte, et typique de ce niveau)
+
+> Hallo Lukas,
+>
+> was für eine tolle Nachricht! Ich freue mich riesig, dass du nach Berlin kommst.
+>
+> Mir gefällt das Leben hier immer besser. Am Anfang war alles ein bisschen chaotisch, aber jetzt habe ich Freunde und kenne mich gut aus.
+>
+> Natürlich kannst du bei mir übernachten. Mein Sofa ist zwar nicht sehr groß, aber ziemlich bequem.
+>
+> Wenn das Wetter schön ist, sollten wir unbedingt mit dem Fahrrad an der Spree entlangfahren. Am Sonntag gibt es außerdem einen tollen Flohmarkt im Mauerpark.
+>
+> Schreib mir, wann dein Zug ankommt. Dann hole ich dich am Hauptbahnhof ab, damit du dich nicht verläufst.
+>
+> Bis bald und viele Grüße
+>
+> Mark
+
+→ 
+
+## Écrire : la réponse courte (Schreiben, 57)
+
+### Message 1 · Jonas, un collègue de Mark, a deux places de cinéma et lui écrit. (informel, « wann »)
+
+SMS de Jonas :
+
+> Hi Mark! Ich habe zwei Kinokarten für diese Woche geschenkt bekommen. Wann hast du Zeit?
+>
+> Jonas
+
+→ 
+
+**Réponse modèle A2** (montrée à l'élève comme exemple du niveau A2 : correcte, et typique de ce niveau)
+
+> Hallo Jonas,
+>
+> super, danke! Ich habe am Donnerstag Zeit, ab 19 Uhr.
+>
+> Liebe Grüße
+>
+> Mark
+
+→ 
+
+**Réponse modèle B1** (montrée à l'élève comme exemple du niveau B1 : correcte, et typique de ce niveau)
+
+> Hallo Jonas,
+>
+> wie schön, danke! Am Mittwoch muss ich lange arbeiten, aber am Donnerstag habe ich ab 19 Uhr Zeit. Passt dir das?
+>
+> Liebe Grüße
+>
+> Mark
+
+→ 
+
+### Message 2 · Paul, l'entraîneur du club de volley de Mark, lui écrit. (informel, « warum nicht »)
+
+SMS de Paul :
+
+> Hallo Mark, du warst gestern nicht beim Training. Warum nicht?
+>
+> Paul
+
+→ 
+
+**Réponse modèle A2** (montrée à l'élève comme exemple du niveau A2 : correcte, et typique de ce niveau)
+
+> Hallo Paul,
+>
+> ich war krank. Ich hatte Fieber. Am Samstag komme ich wieder.
+>
+> Viele Grüße
+>
+> Mark
+
+→ 
+
+**Réponse modèle B1** (montrée à l'élève comme exemple du niveau B1 : correcte, et typique de ce niveau)
+
+> Hallo Paul,
+>
+> tut mir leid, dass ich nicht Bescheid gesagt habe. Ich konnte nicht kommen, weil ich eine starke Erkältung hatte. Jetzt geht es mir besser, deshalb bin ich am Samstag wieder dabei.
+>
+> Viele Grüße
+>
+> Mark
+
+→ 
+
+### Message 3 · Frau Becker, la voisine, a reçu un colis pour Mark. (formel, « wohin »)
+
+Zettel de Helga Becker :
+
+> Lieber Herr Garnier, der Paketbote hat heute ein Paket für Sie bei mir abgegeben. Wohin soll ich es stellen?
+>
+> Helga Becker
+
+→ 
+
+**Réponse modèle A2** (montrée à l'élève comme exemple du niveau A2 : correcte, et typique de ce niveau)
+
+> Liebe Frau Becker,
+>
+> vielen Dank! Bitte stellen Sie das Paket vor meine Tür.
+>
+> Viele Grüße
+>
+> Mark Garnier
+
+→ 
+
+**Réponse modèle B1** (montrée à l'élève comme exemple du niveau B1 : correcte, et typique de ce niveau)
+
+> Liebe Frau Becker,
+>
+> vielen Dank, das ist sehr nett! Könnten Sie das Paket bitte vor meine Wohnungstür stellen? Ich komme erst um 20 Uhr nach Hause und möchte Sie nicht so spät stören.
+>
+> Herzliche Grüße
+>
+> Mark Garnier
+
+→ 
+
+### Message 4 · Sophie, une collègue de Mark, organise un pique-nique dimanche. (informel, « was »)
+
+SMS de Sophie :
+
+> Am Sonntag machen wir ein Picknick im Tiergarten. Ich mache einen Salat. Was bringst du mit?
+>
+> Sophie
+
+→ 
+
+**Réponse modèle A2** (montrée à l'élève comme exemple du niveau A2 : correcte, et typique de ce niveau)
+
+> Hallo Sophie,
+>
+> toll! Ich bringe Brot und Käse mit.
+>
+> Bis Sonntag!
+>
+> Mark
+
+→ 
+
+**Réponse modèle B1** (montrée à l'élève comme exemple du niveau B1 : correcte, et typique de ce niveau)
+
+> Hallo Sophie,
+>
+> gute Idee! Ich bringe frisches Brot und eine Flasche Apfelschorle mit. Wenn du willst, kann ich auch eine Decke mitnehmen, denn ich habe eine große.
+>
+> Bis Sonntag und liebe Grüße
+>
+> Mark
+
+→ 
+
+### Message 5 · Frau Krüger, qui donne le cours de photo de Mark à la Volkshochschule, demande à chacun le thème de ses photos. (formel, « welches »)
+
+E-Mail de Sabine Krüger :
+
+> Liebe Kursteilnehmerinnen und Kursteilnehmer, in der letzten Kursstunde zeigt jede Person fünf eigene Fotos zu einem Thema. Welches Thema wählen Sie? Bitte antworten Sie bis Freitag.
+>
+> Sabine Krüger
+
+→ 
+
+**Réponse modèle A2** (montrée à l'élève comme exemple du niveau A2 : correcte, et typique de ce niveau)
+
+> Liebe Frau Krüger,
+>
+> ich wähle das Thema „Mein Kiez“. Ich fotografiere die Straßen in Pankow.
+>
+> Viele Grüße
+>
+> Mark Garnier
+
+→ 
+
+**Réponse modèle B1** (montrée à l'élève comme exemple du niveau B1 : correcte, et typique de ce niveau)
+
+> Liebe Frau Krüger,
+>
+> ich möchte gern Fotos zum Thema „Berlin im Winter“ zeigen, weil ich zum ersten Mal einen Winter in Berlin erlebe. Die Fotos mache ich am Wochenende an der Spree.
+>
+> Mit freundlichen Grüßen
+>
+> Mark Garnier
+
+→ 
+
+### Message 6 · Jonas, le collègue de Mark, doit le remplacer pendant ses vacances. (informel, « wie lange »)
+
+Chat de Jonas :
+
+> Hi Mark, ich habe gehört, dass du im Dezember nach Montréal fliegst. Wie lange bleibst du dort? Dann weiß ich, wie lange ich dich im Büro vertrete.
+>
+> Jonas
+
+→ 
+
+**Réponse modèle A2** (montrée à l'élève comme exemple du niveau A2 : correcte, et typique de ce niveau)
+
+> Hallo Jonas,
+>
+> ich bleibe zwei Wochen in Montréal, vom 20. Dezember bis zum 3. Januar. Danke!
+>
+> Viele Grüße
+>
+> Mark
+
+→ 
+
+**Réponse modèle B1** (montrée à l'élève comme exemple du niveau B1 : correcte, et typique de ce niveau)
+
+> Hallo Jonas,
+>
+> ich bin vom 20. Dezember bis zum 3. Januar weg, also genau zwei Wochen. Danke, dass du mich vertrittst! Wenn du im Sommer Urlaub machst, übernehme ich gern deine Aufgaben.
+>
+> Viele Grüße
+>
+> Mark
+
+→ 
+
+## Écrire : les formules utiles
+
+- **Commencer** : Liebe Sophie, / Lieber Jonas, (du) · Hallo Lukas, (du) · Liebe Frau Becker, / Lieber Herr Garnier, (Sie) · Sehr geehrte Frau Krüger, / Sehr geehrter Herr Kern, (Sie) · Sehr geehrte Damen und Herren, (Sie)
+  → 
+- **Réagir au message reçu** : Danke für deine E-Mail! / Vielen Dank für Ihre Nachricht. (beide) · Schön, von dir zu hören! (du) · Ich freue mich sehr, dass du nach Berlin kommst. (du) · Was für eine tolle Nachricht! (du) · Es tut mir leid, dass du krank bist. (du)
+  → 
+- **Accepter, dire oui** : Natürlich helfe ich dir gern. (du) · Ich komme sehr gern mit. (beide) · Der Dienstag passt mir gut. (beide) · An dem Ausflug nehme ich gern teil. (beide) · Das ist für mich kein Problem. (beide)
+  → 
+- **Refuser, avec une raison** : Leider kann ich am Samstag nicht, weil ich arbeiten muss. (beide) · Ich kann erst um elf Uhr kommen, denn ich habe vorher einen Termin. (beide) · Das klappt bei mir leider nicht. (beide) · Es tut mir leid, aber ... (beide)
+  → 
+- **Proposer** : Wir könnten zusammen ins Museum gehen. (beide) · Wie wäre es mit einem Gutschein? (beide) · Ich schlage vor, dass wir uns um zehn Uhr treffen. (beide) · Wenn du willst, bringe ich eine Decke mit. (du) · Was meinst du? / Was meinen Sie? (beide)
+  → 
+- **Demander, poser une question en retour** : Könntest du mir sagen, wann dein Zug ankommt? (du) · Könnten Sie mir bitte sagen, wo wir uns treffen? (Sie) · Soll ich etwas mitbringen? (beide) · Es wäre sehr nett, wenn Sie ... (Sie)
+  → 
+- **Donner une information, une raison** : Ich bin am Mittwoch ab 18 Uhr zu Hause. (beide) · Ich bleibe zwei Wochen, vom 20. Dezember bis zum 3. Januar. (beide) · Ich konnte nicht kommen, weil ich krank war. (beide) · Deshalb habe ich am Samstag Zeit. (beide) · Zum Essen: ... / Wegen des Autos: ... (beide)
+  → 
+- **Terminer** : Bis Samstag! / Bis bald! (du) · Ich freue mich auf deine Antwort. (du) · Ich wünsche Ihnen eine schöne Zeit! (Sie) · Viele Grüße / Liebe Grüße (du) · Herzliche Grüße (beide) · Mit freundlichen Grüßen (Sie)
+  → 
+
 ## Lire (Leseverstehen), Teile 1-4
 
 Trois séries de 18 questions. La bonne réponse est en **gras**. Questions : les textes sont-ils corrects et naturels ? Le niveau convient-il à l'A2-B1 ? Pour chaque question, **une seule** réponse est-elle défendable d'après le texte ?
@@ -674,4 +1675,376 @@ Trois séries de 18 questions. La bonne réponse est en **gras**. Questions : le
 - 17. Das Gemüse aus dem Garten … — a) wird im Supermarkt verkauft. · b) bekommen nur die Kassiererinnen. · **c) wird manchmal verschenkt.**
   → 
 - 18. Wer noch keine Kiste hat, … — **a) kann samstags trotzdem im Garten helfen.** · b) bekommt im nächsten Monat eine. · c) kann eine Kiste kaufen.
+  → 
+
+## L'oral (Mündliche Prüfung) : répliques et réponses modèles
+
+Anna mène l'entretien, Mark joue l'autre candidat, l'élève parle pour lui-même. Chaque réponse modèle existe au niveau A2 et au niveau B1, **jamais au-dessus**. Questions : l'allemand est-il correct et naturel à l'oral ? Le modèle A2 est-il vraiment A2, le modèle B1 vraiment B1 (pas plus difficile) ? Les tours de Mark sont-ils ceux d'un candidat B1 ?
+
+### Partie 1 · se présenter et répondre
+
+Mots-clés de la feuille : Name · Alter · Herkunft · Wohnort · Familie · Beruf / Arbeit · Sprachen · Freizeit
+
+- Modèle A2 : Ich heiße Mark Garnier. Ich bin fünfundzwanzig Jahre alt. Ich komme aus Kanada, aus Montréal. Jetzt wohne ich in Berlin. Ich mache ein Praktikum in einem Büro. Meine Familie wohnt in Kanada. Ich spreche Französisch, Englisch und Deutsch. In meiner Freizeit gehe ich gern laufen.
+  _(Je m’appelle Mark Garnier. J’ai vingt-cinq ans. Je viens du Canada, de Montréal. Maintenant, j’habite à Berlin. Je fais un stage dans un bureau. Ma famille habite au Canada. Je parle français, anglais et allemand. Pendant mon temps libre, j’aime courir.)_
+  → 
+- Question d'Anna : Danke schön. Erzählen Sie doch noch etwas über Ihre Familie. Wer gehört dazu, und wo leben die anderen?
+- Modèle A2 : Ich bin verheiratet. Ich habe zwei Kinder, einen Sohn und eine Tochter. Meine Eltern wohnen in meinem Heimatland.
+  _(Je suis marié. J’ai deux enfants, un fils et une fille. Mes parents habitent dans mon pays d’origine.)_
+  → 
+- Modèle B1 : Ich bin verheiratet, und wir haben zwei Kinder: Unser Sohn ist sieben und geht schon in die Schule, unsere Tochter ist drei. Meine Eltern und meine Schwester leben noch in meinem Heimatland. Wir telefonieren fast jeden Tag, aber ich vermisse sie natürlich, denn wir sehen uns nur einmal im Jahr.
+  _(Je suis marié et nous avons deux enfants : notre fils a sept ans et va déjà à l’école, notre fille a trois ans. Mes parents et ma sœur vivent encore dans mon pays d’origine. On se téléphone presque tous les jours, mais bien sûr ils me manquent, car on ne se voit qu’une fois par an.)_
+  → 
+- Question d'Anna : Danke schön. Was machen Sie beruflich, oder was möchten Sie später in Deutschland arbeiten?
+- Modèle A2 : In meinem Land war ich Verkäuferin. Hier suche ich Arbeit. Ich möchte gern in einem Geschäft arbeiten.
+  _(Dans mon pays, j’étais vendeuse. Ici, je cherche du travail. J’aimerais bien travailler dans un magasin.)_
+  → 
+- Modèle B1 : In meinem Heimatland habe ich zehn Jahre als Krankenpfleger gearbeitet. Hier in Deutschland möchte ich wieder in einem Krankenhaus arbeiten, aber zuerst muss ich meine Deutschprüfung bestehen. Deshalb lerne ich jeden Tag zwei Stunden, auch am Wochenende.
+  _(Dans mon pays, j’ai travaillé dix ans comme infirmier. Ici, en Allemagne, je voudrais retravailler dans un hôpital, mais d’abord je dois réussir mon examen d’allemand. C’est pour ça que j’étudie deux heures par jour, même le week-end.)_
+  → 
+- Question d'Anna : Danke schön. Und was machen Sie gern in Ihrer Freizeit? Erzählen Sie ein bisschen.
+- Modèle A2 : In meiner Freizeit spiele ich Fußball. Ich koche auch gern. Am Wochenende gehe ich in den Park.
+  _(Pendant mon temps libre, je joue au foot. J’aime aussi cuisiner. Le week-end, je vais au parc.)_
+  → 
+- Modèle B1 : Wenn ich Zeit habe, spiele ich mit Freunden Fußball, meistens am Sonntagvormittag. Außerdem koche ich sehr gern, vor allem Gerichte aus meinem Land. Letzte Woche habe ich zum Beispiel für meine Nachbarn gekocht, und sie waren begeistert.
+  _(Quand j’ai le temps, je joue au foot avec des amis, le plus souvent le dimanche matin. En plus, j’adore cuisiner, surtout des plats de mon pays. La semaine dernière, par exemple, j’ai cuisiné pour mes voisins, et ils ont adoré.)_
+  → 
+- Question d'Anna : Danke schön. Warum lernen Sie Deutsch, und was ist für Sie dabei am schwierigsten?
+- Modèle A2 : Ich lerne Deutsch, weil ich hier wohne und arbeite. Die Artikel sind sehr schwer für mich.
+  _(J’apprends l’allemand parce que j’habite et je travaille ici. Les articles sont très difficiles pour moi.)_
+  → 
+- Modèle B1 : Ich lerne Deutsch, weil ich hier arbeiten und mit meinen Nachbarn sprechen möchte. Am schwierigsten finde ich die Artikel: der, die, das. Deshalb lerne ich jedes Nomen mit seinem Artikel, und ich höre jeden Tag deutsches Radio.
+  _(J’apprends l’allemand parce que je veux travailler ici et parler avec mes voisins. Ce que je trouve le plus difficile, ce sont les articles : der, die, das. C’est pour ça que j’apprends chaque nom avec son article, et j’écoute la radio allemande tous les jours.)_
+  → 
+
+### Partie 2 · planifier ensemble
+
+#### une fête de fin de cours
+
+Feuille : Ihr Deutschkurs ist bald zu Ende. Sie möchten zusammen ein kleines Abschiedsfest organisieren. — Wann? · Wo? · Essen und Getränke? · Musik oder Spiele? · Geschenk für die Kursleiterin?
+
+- Anna (examinatrice) : Vielen Dank. Jetzt kommt Teil zwei. Ihr Deutschkurs ist bald zu Ende, und Sie möchten zusammen ein kleines Abschiedsfest organisieren. Auf dem Blatt stehen ein paar Punkte. Machen Sie Vorschläge und reagieren Sie auf die Vorschläge Ihres Partners. Herr Garnier, fangen Sie bitte an.
+  _(Merci beaucoup. Voici la partie deux. Votre cours d’allemand se termine bientôt, et vous voulez organiser ensemble une petite fête d’au revoir. Sur la feuille, il y a quelques points. Faites des propositions et réagissez à celles de votre partenaire. Monsieur Garnier, commencez, s’il vous plaît.)_
+  → 
+- Mark (l'autre candidat) : Also, wann machen wir das Fest? Ich würde sagen, am letzten Kurstag, direkt nach dem Unterricht. Was meinst du?
+  _(Alors, on fait la fête quand ? Je dirais le dernier jour du cours, juste après la leçon. Qu’est-ce que tu en penses ?)_
+  → 
+- Modèle A2 : Ja, gute Idee. Nach dem Unterricht haben alle Zeit.
+  _(Oui, bonne idée. Après la leçon, tout le monde a le temps.)_
+  → 
+- Modèle B1 : Der letzte Kurstag ist gut, aber nach dem Unterricht sind viele müde. Wie wäre es mit Freitagabend? Dann können alle länger bleiben.
+  _(Le dernier jour du cours, c’est bien, mais après la leçon, beaucoup sont fatigués. Que dirais-tu du vendredi soir ? Comme ça, tout le monde peut rester plus longtemps.)_
+  → 
+- Mark (l'autre candidat) : Und wo feiern wir? Wir könnten im Kursraum bleiben, oder wir gehen in ein Café in der Nähe. Was ist dir lieber?
+  _(Et on fait ça où ? On pourrait rester dans la salle de cours, ou aller dans un café pas loin. Tu préfères quoi ?)_
+  → 
+- Modèle A2 : Ich möchte lieber ins Café gehen. Das ist schön.
+  _(Je préférerais aller au café. C’est joli.)_
+  → 
+- Modèle B1 : Ein Café ist gemütlich, aber für so viele Leute ist es teuer. Ich schlage vor, wir bleiben im Kursraum. Dort können wir auch Musik hören.
+  _(Un café, c’est agréable, mais pour autant de monde, c’est cher. Je propose qu’on reste dans la salle de cours. Là, on peut aussi écouter de la musique.)_
+  → 
+- Mark (l'autre candidat) : Was machen wir mit dem Essen? Ich finde, jeder bringt etwas mit, das ist einfach und billig. Ich kann einen Salat machen. Und du?
+  _(Et pour la nourriture ? Je trouve que chacun apporte quelque chose, c’est simple et pas cher. Je peux faire une salade. Et toi ?)_
+  → 
+- Modèle A2 : Ich bringe Kuchen mit. Ich backe gern.
+  _(J’apporte un gâteau. J’aime faire des gâteaux.)_
+  → 
+- Modèle B1 : Einverstanden, jeder bringt etwas mit. Ich backe einen Kuchen. Wir sollten aber eine Liste machen, damit nicht alle Salat mitbringen.
+  _(D’accord, chacun apporte quelque chose. Moi, je fais un gâteau. Mais on devrait faire une liste, pour que tout le monde n’apporte pas de la salade.)_
+  → 
+- Mark (l'autre candidat) : Brauchen wir Musik, oder vielleicht ein Spiel? Ich könnte meine kleine Musikbox mitbringen. Was denkst du?
+  _(Il nous faut de la musique, ou peut-être un jeu ? Je pourrais apporter ma petite enceinte. Qu’en penses-tu ?)_
+  → 
+- Modèle A2 : Musik ist gut. Ein Spiel ist auch lustig.
+  _(La musique, c’est bien. Un jeu, c’est drôle aussi.)_
+  → 
+- Modèle B1 : Musik finde ich super. Wir könnten auch ein kleines Quiz über unseren Kurs machen, das macht bestimmt Spaß. Hast du Lust, die Fragen mit mir zu schreiben?
+  _(La musique, je trouve ça super. On pourrait aussi faire un petit quiz sur notre cours, ce sera sûrement drôle. Tu as envie d’écrire les questions avec moi ?)_
+  → 
+- Mark (l'autre candidat) : Und unsere Kursleiterin? Sollen wir ihr etwas schenken? Vielleicht Blumen und eine Karte von allen. Was hältst du davon?
+  _(Et notre professeure ? On lui offre quelque chose ? Peut-être des fleurs et une carte signée par tout le monde. Qu’en dis-tu ?)_
+  → 
+- Modèle A2 : Ja, Blumen sind gut. Ich kaufe sie.
+  _(Oui, des fleurs, c’est bien. Je les achète.)_
+  → 
+- Modèle B1 : Blumen und eine Karte finde ich schön. Ich kann die Karte kaufen, und alle schreiben etwas hinein. Sammelst du das Geld für die Blumen?
+  _(Des fleurs et une carte, je trouve ça joli. Je peux acheter la carte, et chacun écrit quelque chose dedans. Tu ramasses l’argent pour les fleurs ?)_
+  → 
+
+#### aider une amie à déménager
+
+Feuille : Ihre Freundin Lena zieht am Samstag in eine neue Wohnung. Sie möchten ihr zusammen helfen. — Wann treffen? · Wie transportieren? · Was mitbringen? · Essen für die Helfer? · Am Abend?
+
+- Anna (examinatrice) : Vielen Dank. Jetzt kommt Teil zwei. Ihre Freundin Lena zieht am Samstag in eine neue Wohnung, und Sie möchten ihr zusammen helfen. Auf dem Blatt stehen ein paar Punkte. Machen Sie Vorschläge und reagieren Sie auf die Vorschläge Ihres Partners. Herr Garnier, fangen Sie bitte an.
+  _(Merci beaucoup. Voici la partie deux. Votre amie Lena déménage samedi dans un nouvel appartement, et vous voulez l’aider ensemble. Sur la feuille, il y a quelques points. Faites des propositions et réagissez à celles de votre partenaire. Monsieur Garnier, commencez, s’il vous plaît.)_
+  → 
+- Mark (l'autre candidat) : Also, wann treffen wir uns am Samstag? Ich finde, früh ist besser, zum Beispiel um acht Uhr. Was meinst du?
+  _(Alors, on se retrouve à quelle heure samedi ? Je trouve que tôt, c’est mieux, par exemple à huit heures. Qu’en penses-tu ?)_
+  → 
+- Modèle A2 : Acht Uhr ist zu früh für mich. Ich komme um neun Uhr.
+  _(Huit heures, c’est trop tôt pour moi. Je viens à neuf heures.)_
+  → 
+- Modèle B1 : Acht Uhr ist mir ein bisschen zu früh, weil ich am Samstag erst um halb acht aufstehe. Wie wäre es mit neun Uhr? Dann bin ich sicher pünktlich.
+  _(Huit heures, c’est un peu tôt pour moi, parce que le samedi je ne me lève qu’à sept heures et demie. Que dirais-tu de neuf heures ? Comme ça, je serai sûrement à l’heure.)_
+  → 
+- Mark (l'autre candidat) : Lena hat viele Möbel. Wie bringen wir alles in die neue Wohnung? Wir könnten einen Transporter mieten. Was denkst du?
+  _(Lena a beaucoup de meubles. Comment on transporte tout dans le nouvel appartement ? On pourrait louer une camionnette. Qu’en penses-tu ?)_
+  → 
+- Modèle A2 : Ein Transporter ist gut. Ich kann fahren.
+  _(Une camionnette, c’est bien. Je peux conduire.)_
+  → 
+- Modèle B1 : Ein Transporter ist eine gute Idee, aber er kostet ziemlich viel. Vielleicht kann uns jemand ein großes Auto leihen. Ich frage heute Abend meinen Nachbarn.
+  _(Une camionnette, c’est une bonne idée, mais ça coûte assez cher. Quelqu’un peut peut-être nous prêter une grande voiture. Je demande à mon voisin ce soir.)_
+  → 
+- Mark (l'autre candidat) : Was sollen wir mitbringen? Ich nehme Werkzeug mit, für das Bett und die Schränke. Was bringst du mit?
+  _(Qu’est-ce qu’on apporte ? Moi, je prends des outils, pour le lit et les armoires. Et toi, tu apportes quoi ?)_
+  → 
+- Modèle A2 : Ich bringe Kartons mit. Ich habe viele.
+  _(J’apporte des cartons. J’en ai beaucoup.)_
+  → 
+- Modèle B1 : Gut, dann nehme ich Kartons und Klebeband mit. Ich habe noch viele vom letzten Umzug. Brauchen wir auch Decken für die Möbel?
+  _(Bien, alors je prends des cartons et du ruban adhésif. Il m’en reste beaucoup de mon dernier déménagement. Est-ce qu’il nous faut aussi des couvertures pour les meubles ?)_
+  → 
+- Mark (l'autre candidat) : Umziehen macht hungrig. Was machen wir mit dem Essen? Vielleicht bestellen wir Pizza für alle. Oder hast du eine andere Idee?
+  _(Déménager, ça donne faim. On fait comment pour manger ? On commande peut-être des pizzas pour tout le monde. Ou tu as une autre idée ?)_
+  → 
+- Modèle A2 : Pizza ist gut. Ich bezahle die Getränke.
+  _(Des pizzas, c’est bien. Je paie les boissons.)_
+  → 
+- Modèle B1 : Pizza ist praktisch, aber ich würde lieber belegte Brötchen machen, das ist billiger und gesünder. Ich kann sie am Morgen vorbereiten.
+  _(Les pizzas, c’est pratique, mais je préférerais faire des petits pains garnis, c’est moins cher et plus sain. Je peux les préparer le matin.)_
+  → 
+- Mark (l'autre candidat) : Und am Abend, wenn alles fertig ist? Wir könnten zusammen auf die neue Wohnung anstoßen. Was hältst du davon?
+  _(Et le soir, quand tout est fini ? On pourrait trinquer ensemble au nouvel appartement. Qu’en dis-tu ?)_
+  → 
+- Modèle A2 : Ja, gern. Ich bringe Saft mit.
+  _(Oui, volontiers. J’apporte du jus.)_
+  → 
+- Modèle B1 : Das finde ich schön, aber nach so einem Tag sind alle bestimmt sehr müde. Vielleicht trinken wir nur kurz etwas zusammen und feiern dann am nächsten Wochenende richtig.
+  _(Je trouve ça bien, mais après une journée pareille, tout le monde sera sûrement très fatigué. On peut peut-être juste boire un verre ensemble et faire vraiment la fête le week-end suivant.)_
+  → 
+
+#### un cadeau pour une collègue
+
+Feuille : Ihre Kollegin Sara hat nächste Woche Geburtstag. Sie möchten ihr zusammen ein Geschenk machen. — Was schenken? · Wie viel Geld? · Wo kaufen? · Wann übergeben? · Wer schreibt die Karte?
+
+- Anna (examinatrice) : Vielen Dank. Jetzt kommt Teil zwei. Ihre Kollegin Sara hat nächste Woche Geburtstag, und Sie möchten ihr zusammen ein Geschenk machen. Auf dem Blatt stehen ein paar Punkte. Machen Sie Vorschläge und reagieren Sie auf die Vorschläge Ihres Partners. Herr Garnier, fangen Sie bitte an.
+  _(Merci beaucoup. Voici la partie deux. Votre collègue Sara a son anniversaire la semaine prochaine, et vous voulez lui faire un cadeau ensemble. Sur la feuille, il y a quelques points. Faites des propositions et réagissez à celles de votre partenaire. Monsieur Garnier, commencez, s’il vous plaît.)_
+  → 
+- Mark (l'autre candidat) : Also, was schenken wir Sara? Sie liest sehr gern. Wie wäre es mit einem Buch?
+  _(Alors, qu’est-ce qu’on offre à Sara ? Elle adore lire. Que dirais-tu d’un livre ?)_
+  → 
+- Modèle A2 : Ein Buch ist gut. Aber welches Buch?
+  _(Un livre, c’est bien. Mais quel livre ?)_
+  → 
+- Modèle B1 : Ein Buch ist eine schöne Idee, aber wir wissen nicht, welche Bücher sie schon hat. Wie wäre es mit einem Gutschein für die Buchhandlung? Dann kann sie selbst wählen.
+  _(Un livre, c’est une jolie idée, mais on ne sait pas quels livres elle a déjà. Que dirais-tu d’un bon d’achat pour la librairie ? Comme ça, elle peut choisir elle-même.)_
+  → 
+- Mark (l'autre candidat) : Und wie viel Geld geben wir aus? Ich denke, jeder gibt zehn Euro. Ist das okay für dich?
+  _(Et on dépense combien ? Je pense que chacun donne dix euros. Ça te va ?)_
+  → 
+- Modèle A2 : Ja, zehn Euro ist okay.
+  _(Oui, dix euros, ça va.)_
+  → 
+- Modèle B1 : Zehn Euro finde ich in Ordnung. Wir könnten auch die anderen Kollegen fragen, ob sie mitmachen möchten. Dann wird das Geschenk größer.
+  _(Dix euros, je trouve ça correct. On pourrait aussi demander aux autres collègues s’ils veulent participer. Comme ça, le cadeau sera plus grand.)_
+  → 
+- Mark (l'autre candidat) : Wo kaufen wir das Geschenk? Ich kenne eine kleine Buchhandlung in der Nähe vom Büro. Oder bestellen wir es lieber im Internet?
+  _(On achète le cadeau où ? Je connais une petite librairie près du bureau. Ou on préfère le commander sur Internet ?)_
+  → 
+- Modèle A2 : Die Buchhandlung ist gut. Ich gehe morgen hin.
+  _(La librairie, c’est bien. J’y vais demain.)_
+  → 
+- Modèle B1 : Lieber in der Buchhandlung, weil es im Internet zu lange dauern kann. Ich habe am Donnerstag frei, dann kann ich hingehen.
+  _(Plutôt à la librairie, parce que sur Internet, ça peut prendre trop de temps. J’ai congé jeudi, je peux y aller ce jour-là.)_
+  → 
+- Mark (l'autre candidat) : Wann geben wir ihr das Geschenk? Vielleicht am Montag in der Mittagspause. Was meinst du?
+  _(Quand est-ce qu’on lui donne le cadeau ? Peut-être lundi, à la pause de midi. Qu’en penses-tu ?)_
+  → 
+- Modèle A2 : Am Montag ist gut. Ich bringe einen Kuchen mit.
+  _(Lundi, c’est bien. J’apporte un gâteau.)_
+  → 
+- Modèle B1 : Ihr Geburtstag ist doch am Mittwoch. Ich finde, wir sollten ihr das Geschenk an diesem Tag geben, zum Beispiel mit einem kleinen Kuchen in der Pause.
+  _(Mais son anniversaire, c’est mercredi. Je trouve qu’on devrait lui donner le cadeau ce jour-là, par exemple avec un petit gâteau à la pause.)_
+  → 
+- Mark (l'autre candidat) : Wir brauchen auch noch eine Karte. Schreibst du sie, oder soll ich das machen?
+  _(Il nous faut aussi une carte. Tu l’écris, ou je m’en occupe ?)_
+  → 
+- Modèle A2 : Ich schreibe die Karte. Ich schreibe gern.
+  _(J’écris la carte. J’aime écrire.)_
+  → 
+- Modèle B1 : Ich kann die Karte schreiben, aber meine Schrift ist nicht so schön. Vielleicht schreibst du den Text, und alle unterschreiben danach.
+  _(Je peux écrire la carte, mais mon écriture n’est pas très jolie. Tu écris peut-être le texte, et tout le monde signe après.)_
+  → 
+
+### Partie 3 · donner et justifier son avis
+
+#### une voiture en ville ?
+
+Feuille : Braucht man in einer großen Stadt wie Berlin ein eigenes Auto?
+
+- Anna (examinatrice) : Danke schön. Jetzt kommt der letzte Teil. Es geht um die Frage: Braucht man in einer großen Stadt wie Berlin ein eigenes Auto? Sagen Sie Ihre Meinung und begründen Sie sie. Reagieren Sie auch auf die Meinung Ihres Partners. Sie haben jetzt eine Minute Zeit zum Nachdenken.
+  _(Merci. Voici la dernière partie. La question est : dans une grande ville comme Berlin, a-t-on besoin d’une voiture à soi ? Donnez votre avis et justifiez-le. Réagissez aussi à l’avis de votre partenaire. Vous avez maintenant une minute pour réfléchir.)_
+  → 
+- Modèle A2 : Ich finde, ein Auto ist gut. Mit dem Auto bin ich schnell. Am Samstag kaufe ich viel ein, dann brauche ich das Auto. Die Busse sind oft voll.
+  _(Je trouve qu’une voiture, c’est bien. En voiture, je vais vite. Le samedi, je fais beaucoup de courses, alors j’ai besoin de la voiture. Les bus sont souvent pleins.)_
+  → 
+- Modèle B1 : Meiner Meinung nach braucht man in Berlin kein eigenes Auto. Erstens fahren Busse und Bahnen sehr oft, auch am Abend. Zweitens ist ein Auto teuer: Benzin, Versicherung, Parkplatz. Ich fahre zum Beispiel jeden Tag mit der U-Bahn zur Arbeit und brauche nur zwanzig Minuten. Natürlich ist ein Auto manchmal praktisch, aber dann kann man eins mieten.
+  _(À mon avis, à Berlin, on n’a pas besoin d’une voiture à soi. D’abord, les bus et les trains passent très souvent, même le soir. Ensuite, une voiture coûte cher : l’essence, l’assurance, le parking. Moi, par exemple, je vais au travail en métro tous les jours et je ne mets que vingt minutes. Bien sûr, une voiture est parfois pratique, mais dans ce cas on peut en louer une.)_
+  → 
+- Mark (l'autre candidat) : Ich sehe das ein bisschen anders. In Berlin fahren Busse und Bahnen fast überall hin, und ein Parkplatz ist teuer und schwer zu finden. Ich habe zum Beispiel kein Auto, und ich komme mit dem Fahrrad überall hin. Was sagst du dazu?
+  _(Moi, je vois ça un peu autrement. À Berlin, les bus et les trains vont presque partout, et une place de parking est chère et difficile à trouver. Moi, par exemple, je n’ai pas de voiture, et je vais partout à vélo. Qu’est-ce que tu en dis ?)_
+  → 
+- Modèle A2 : Ja, das stimmt, ein Parkplatz ist teuer. Aber mit dem Auto bin ich schneller. Ich fahre nicht gern Fahrrad.
+  _(Oui, c’est vrai, une place de parking coûte cher. Mais en voiture, je vais plus vite. Je n’aime pas faire du vélo.)_
+  → 
+- Modèle B1 : Da hast du recht, mit dem Fahrrad ist man in Berlin oft schnell. Trotzdem brauche ich das Auto, weil ich am Wochenende meine Eltern besuche, und sie wohnen weit weg auf dem Land. Vielleicht ist ein Carsharing-Auto für mich ein guter Kompromiss.
+  _(Tu as raison, à Berlin, on va souvent vite à vélo. Pourtant, j’ai besoin de la voiture, parce que le week-end je rends visite à mes parents, et ils habitent loin, à la campagne. Une voiture en autopartage serait peut-être un bon compromis pour moi.)_
+  → 
+- Mark (l'autre candidat) : Da bin ich nicht ganz deiner Meinung. Mit Kindern oder mit vielen Einkäufen ist ein Auto sehr praktisch. Meine Kollegin wohnt zum Beispiel am Stadtrand, und ohne Auto braucht sie über eine Stunde zur Arbeit. Was meinst du?
+  _(Là, je ne suis pas tout à fait d’accord avec toi. Avec des enfants ou avec beaucoup de courses, une voiture est très pratique. Ma collègue, par exemple, habite en périphérie, et sans voiture elle met plus d’une heure pour aller au travail. Qu’en penses-tu ?)_
+  → 
+- Modèle A2 : Das stimmt, mit Kindern ist ein Auto praktisch. Aber ich habe keine Kinder. Für mich ist die U-Bahn genug.
+  _(C’est vrai, avec des enfants, une voiture est pratique. Mais je n’ai pas d’enfants. Pour moi, le métro suffit.)_
+  → 
+- Modèle B1 : Ich verstehe, was du meinst: Am Stadtrand ist es ohne Auto schwieriger. Aber ich bleibe bei meiner Meinung, denn in der Innenstadt findet man kaum einen Parkplatz, und Autos machen die Luft schlechter. Für große Einkäufe kann man sich ja auch einmal ein Auto leihen.
+  _(Je comprends ce que tu veux dire : en périphérie, sans voiture, c’est plus difficile. Mais je reste sur mon avis, car dans le centre on ne trouve presque pas de place de parking, et les voitures polluent l’air. Pour les grosses courses, on peut bien emprunter une voiture de temps en temps.)_
+  → 
+
+#### un cours ou une appli ?
+
+Feuille : Lernt man eine Sprache besser in einem Kurs oder allein mit dem Handy?
+
+- Anna (examinatrice) : Danke schön. Jetzt kommt der letzte Teil. Es geht um die Frage: Lernt man eine Sprache besser in einem Kurs oder allein mit dem Handy? Sagen Sie Ihre Meinung und begründen Sie sie. Reagieren Sie auch auf die Meinung Ihres Partners. Sie haben jetzt eine Minute Zeit zum Nachdenken.
+  _(Merci. Voici la dernière partie. La question est : apprend-on mieux une langue dans un cours ou seul avec son téléphone ? Donnez votre avis et justifiez-le. Réagissez aussi à l’avis de votre partenaire. Vous avez maintenant une minute pour réfléchir.)_
+  → 
+- Modèle A2 : Ich finde, ein Kurs ist besser. Im Kurs kann ich fragen. Die Lehrerin hilft mir. Und ich spreche mit anderen Leuten. Allein ist es schwer für mich.
+  _(Je trouve qu’un cours, c’est mieux. En cours, je peux poser des questions. La prof m’aide. Et je parle avec d’autres gens. Seul, c’est difficile pour moi.)_
+  → 
+- Modèle B1 : Ich bin der Meinung, dass man heute auch allein gut lernen kann. Mit einer App kann man jeden Tag ein bisschen üben, auch im Bus oder in der Pause, und das kostet fast nichts. Ich höre zum Beispiel jeden Morgen deutsche Podcasts. Natürlich ist ein Kurs gut, wenn man sprechen üben möchte. Aber für Wörter und Grammatik reicht oft das Handy.
+  _(Je pense qu’aujourd’hui, on peut aussi bien apprendre seul. Avec une appli, on peut s’entraîner un peu chaque jour, même dans le bus ou à la pause, et ça ne coûte presque rien. Moi, par exemple, j’écoute des podcasts allemands tous les matins. Bien sûr, un cours, c’est bien si on veut s’entraîner à parler. Mais pour le vocabulaire et la grammaire, le téléphone suffit souvent.)_
+  → 
+- Mark (l'autre candidat) : Ich sehe das anders. Mit einer App kann ich lernen, wann ich will: im Bus, in der Pause oder am Abend. Und ein Kurs kostet viel Geld. Ich lerne zum Beispiel gerade Spanisch, jeden Morgen zehn Minuten mit dem Handy, und das klappt gut. Was sagst du dazu?
+  _(Moi, je vois ça autrement. Avec une appli, je peux apprendre quand je veux : dans le bus, à la pause ou le soir. Et un cours coûte cher. Moi, par exemple, j’apprends l’espagnol en ce moment, dix minutes chaque matin avec mon téléphone, et ça marche bien. Qu’est-ce que tu en dis ?)_
+  → 
+- Modèle A2 : Ja, das stimmt, eine App ist praktisch. Aber ich brauche eine Lehrerin. Im Kurs kann ich sprechen. Das ist für mich wichtig.
+  _(Oui, c’est vrai, une appli, c’est pratique. Mais j’ai besoin d’une prof. En cours, je peux parler. C’est important pour moi.)_
+  → 
+- Modèle B1 : Da hast du recht, eine App ist flexibel und billig. Aber ich glaube, dass man allein zu wenig spricht. Im Kurs muss ich jede Woche reden, auch wenn ich Fehler mache, und genau das hilft mir. Vielleicht ist beides zusammen am besten: der Kurs zum Sprechen und die App für die Wörter.
+  _(Tu as raison, une appli, c’est souple et pas cher. Mais je crois que seul, on ne parle pas assez. En cours, je suis obligé de parler chaque semaine, même si je fais des fautes, et c’est justement ça qui m’aide. Le mieux, c’est peut-être les deux : le cours pour parler et l’appli pour le vocabulaire.)_
+  → 
+- Mark (l'autre candidat) : Da bin ich nicht ganz deiner Meinung. Allein mit dem Handy spricht man fast nie. Im Kurs muss man sprechen, und die Lehrerin korrigiert die Fehler. Eine Freundin von mir hat zum Beispiel in ihrem Kurs viele nette Leute kennengelernt. Was meinst du?
+  _(Là, je ne suis pas tout à fait d’accord avec toi. Seul avec son téléphone, on ne parle presque jamais. En cours, on est obligé de parler, et la prof corrige les fautes. Une amie à moi, par exemple, a rencontré plein de gens sympas dans son cours. Qu’en penses-tu ?)_
+  → 
+- Modèle A2 : Das stimmt, im Kurs spricht man mehr. Aber ein Kurs ist teuer. Und ich habe am Abend keine Zeit.
+  _(C’est vrai, en cours, on parle plus. Mais un cours coûte cher. Et le soir, je n’ai pas le temps.)_
+  → 
+- Modèle B1 : Ich verstehe, was du meinst: Sprechen lernt man am besten mit anderen. Trotzdem bleibe ich bei meiner Meinung, denn ich arbeite im Schichtdienst und kann nicht jede Woche zur gleichen Zeit in einen Kurs gehen. Zum Sprechen kann ich ja auch einen Tandempartner suchen.
+  _(Je comprends ce que tu veux dire : on apprend le mieux à parler avec d’autres. Pourtant, je reste sur mon avis, car je travaille en horaires décalés et je ne peux pas aller à un cours chaque semaine à la même heure. Pour parler, je peux aussi chercher un partenaire d’échange linguistique.)_
+  → 
+
+#### la ville ou la campagne ?
+
+Feuille : Lebt man besser in der Stadt oder auf dem Land?
+
+- Anna (examinatrice) : Danke schön. Jetzt kommt der letzte Teil. Es geht um die Frage: Lebt man besser in der Stadt oder auf dem Land? Sagen Sie Ihre Meinung und begründen Sie sie. Reagieren Sie auch auf die Meinung Ihres Partners. Sie haben jetzt eine Minute Zeit zum Nachdenken.
+  _(Merci. Voici la dernière partie. La question est : vit-on mieux en ville ou à la campagne ? Donnez votre avis et justifiez-le. Réagissez aussi à l’avis de votre partenaire. Vous avez maintenant une minute pour réfléchir.)_
+  → 
+- Modèle A2 : Ich wohne lieber in der Stadt. In der Stadt gibt es viele Geschäfte und Restaurants. Ich kann mit dem Bus fahren. Auf dem Land ist es langweilig für mich.
+  _(Je préfère habiter en ville. En ville, il y a beaucoup de magasins et de restaurants. Je peux prendre le bus. À la campagne, je m’ennuie.)_
+  → 
+- Modèle B1 : Für mich ist das Leben auf dem Land besser, vor allem für Familien. Dort ist es ruhiger, die Luft ist besser und die Wohnungen sind billiger als in der Stadt. Meine Nachbarn sind zum Beispiel letztes Jahr in ein Dorf gezogen, und ihre Kinder können jetzt draußen spielen. Natürlich braucht man dort oft ein Auto, aber das ist für mich kein großes Problem.
+  _(Pour moi, la vie à la campagne est meilleure, surtout pour les familles. C’est plus calme, l’air est meilleur et les logements sont moins chers qu’en ville. Mes voisins, par exemple, ont déménagé dans un village l’année dernière, et maintenant leurs enfants peuvent jouer dehors. Bien sûr, là-bas, on a souvent besoin d’une voiture, mais pour moi, ce n’est pas un gros problème.)_
+  → 
+- Mark (l'autre candidat) : Ich sehe das anders. In der Stadt ist es laut, und die Mieten sind sehr hoch. Auf dem Land hat man Ruhe, Natur und oft einen Garten. Ich war zum Beispiel letzten Sommer zwei Wochen in einem kleinen Dorf, und ich habe so gut geschlafen wie nie. Was sagst du dazu?
+  _(Moi, je vois ça autrement. En ville, c’est bruyant, et les loyers sont très élevés. À la campagne, on a le calme, la nature et souvent un jardin. Par exemple, l’été dernier, j’ai passé deux semaines dans un petit village, et j’ai dormi comme jamais. Qu’est-ce que tu en dis ?)_
+  → 
+- Modèle A2 : Ja, das stimmt, die Stadt ist laut. Aber ich mag das, denn ich gehe gern aus. Auf dem Land kenne ich niemanden.
+  _(Oui, c’est vrai, la ville est bruyante. Mais j’aime ça, parce que j’aime sortir. À la campagne, je ne connais personne.)_
+  → 
+- Modèle B1 : Da hast du recht, die Mieten in der Stadt sind wirklich hoch. Aber für mich ist es wichtig, dass ich schnell bei der Arbeit bin und am Abend Freunde treffen kann. Auf dem Land würde ich mich allein fühlen. Vielleicht ziehe ich später aufs Land, wenn ich Kinder habe.
+  _(Tu as raison, les loyers en ville sont vraiment élevés. Mais pour moi, c’est important d’être vite au travail et de pouvoir voir des amis le soir. À la campagne, je me sentirais seul. Je déménagerai peut-être à la campagne plus tard, quand j’aurai des enfants.)_
+  → 
+- Mark (l'autre candidat) : Da bin ich nicht ganz deiner Meinung. Auf dem Land fährt der Bus vielleicht nur zweimal am Tag, und ohne Auto ist man nicht flexibel. In der Stadt sind Arbeit, Ärzte und Geschäfte ganz nah. Ich gehe zum Beispiel zu Fuß zur Arbeit und abends noch ins Kino. Was meinst du?
+  _(Là, je ne suis pas tout à fait d’accord avec toi. À la campagne, le bus passe peut-être deux fois par jour, et sans voiture on n’est pas libre de ses mouvements. En ville, le travail, les médecins et les magasins sont tout près. Moi, par exemple, je vais au travail à pied, et le soir je vais encore au cinéma. Qu’en penses-tu ?)_
+  → 
+- Modèle A2 : Das stimmt, der Bus fährt nicht oft. Aber ich habe ein Auto. Und ich liebe die Natur.
+  _(C’est vrai, le bus ne passe pas souvent. Mais j’ai une voiture. Et j’adore la nature.)_
+  → 
+- Modèle B1 : Ich verstehe dein Argument, in der Stadt ist alles ganz nah. Trotzdem finde ich die Ruhe wichtiger. Viele Leute arbeiten heute auch von zu Hause, deshalb muss man nicht jeden Tag in die Stadt fahren. Und am Wochenende kann man ja die Stadt besuchen.
+  _(Je comprends ton argument, en ville tout est tout près. Pourtant, je trouve le calme plus important. Aujourd’hui, beaucoup de gens travaillent aussi depuis chez eux, donc on n’est pas obligé d’aller en ville tous les jours. Et le week-end, on peut toujours aller visiter la ville.)_
+  → 
+
+#### travailler chez soi ou au bureau ?
+
+Feuille : Arbeitet man besser von zu Hause oder im Büro?
+
+- Anna (examinatrice) : Danke schön. Jetzt kommt der letzte Teil. Es geht um die Frage: Arbeitet man besser von zu Hause oder im Büro? Sagen Sie Ihre Meinung und begründen Sie sie. Reagieren Sie auch auf die Meinung Ihres Partners. Sie haben jetzt eine Minute Zeit zum Nachdenken.
+  _(Merci. Voici la dernière partie. La question est : travaille-t-on mieux depuis chez soi ou au bureau ? Donnez votre avis et justifiez-le. Réagissez aussi à l’avis de votre partenaire. Vous avez maintenant une minute pour réfléchir.)_
+  → 
+- Modèle A2 : Ich finde, zu Hause ist es besser, weil ich nicht mit dem Bus fahren muss. Ich kann länger schlafen. Und zu Hause ist es ruhig.
+  _(Je trouve que chez moi, c’est mieux, parce que je n’ai pas besoin de prendre le bus. Je peux dormir plus longtemps. Et chez moi, c’est calme.)_
+  → 
+- Modèle B1 : Meiner Meinung nach ist das Büro besser, jedenfalls für mich. Im Büro kann ich direkt mit meinen Kollegen sprechen, und ich lerne viel von ihnen. Außerdem trenne ich so Arbeit und Freizeit: Wenn ich nach Hause komme, habe ich Feierabend. Ich habe zum Beispiel letztes Jahr einen Monat zu Hause gearbeitet und mich oft allein gefühlt. Natürlich ist Homeoffice praktisch, wenn man Kinder hat.
+  _(À mon avis, le bureau, c’est mieux, en tout cas pour moi. Au bureau, je peux parler directement avec mes collègues, et j’apprends beaucoup d’eux. En plus, comme ça, je sépare le travail et le temps libre : quand je rentre chez moi, ma journée est finie. L’année dernière, par exemple, j’ai travaillé un mois chez moi et je me suis souvent senti seul. Bien sûr, le télétravail, c’est pratique quand on a des enfants.)_
+  → 
+- Mark (l'autre candidat) : Ich sehe das anders. Im Büro sehe ich meine Kollegen, und wir lösen Probleme oft schneller zusammen. Zu Hause bin ich allein, und abends höre ich nicht auf zu arbeiten. Bei meinem Praktikum gehe ich zum Beispiel jeden Tag ins Büro, und das gefällt mir. Was sagst du dazu?
+  _(Moi, je vois ça autrement. Au bureau, je vois mes collègues, et on résout souvent les problèmes plus vite ensemble. Chez moi, je suis seul, et le soir je n’arrête pas de travailler. Pendant mon stage, par exemple, je vais au bureau tous les jours, et ça me plaît. Qu’est-ce que tu en dis ?)_
+  → 
+- Modèle A2 : Das stimmt, im Büro sind die Kollegen. Aber ich kann sie auch anrufen. Zu Hause arbeite ich besser.
+  _(C’est vrai, au bureau, il y a les collègues. Mais je peux aussi les appeler. Chez moi, je travaille mieux.)_
+  → 
+- Modèle B1 : Da hast du recht, im Büro geht vieles schneller. Trotzdem arbeite ich lieber zu Hause, weil ich dort viel ruhiger bin und mich besser konzentrieren kann. Vielleicht ist eine Mischung am besten: zwei Tage im Büro und drei Tage zu Hause.
+  _(Tu as raison, au bureau, beaucoup de choses vont plus vite. Pourtant, je préfère travailler chez moi, parce que j’y suis beaucoup plus au calme et que je me concentre mieux. Le mieux, c’est peut-être un mélange : deux jours au bureau et trois jours à la maison.)_
+  → 
+- Mark (l'autre candidat) : Da bin ich nicht ganz deiner Meinung. Wer zu Hause arbeitet, spart jeden Tag Zeit und Geld für den Weg. Und man kann sich die Zeit besser einteilen. Eine Freundin von mir arbeitet zum Beispiel zweimal pro Woche zu Hause, und sie hat jetzt mehr Zeit für ihre Kinder. Was meinst du?
+  _(Là, je ne suis pas tout à fait d’accord avec toi. Quand on travaille chez soi, on gagne chaque jour du temps et de l’argent sur le trajet. Et on peut mieux organiser son temps. Une amie à moi, par exemple, travaille deux fois par semaine depuis chez elle, et maintenant elle a plus de temps pour ses enfants. Qu’en penses-tu ?)_
+  → 
+- Modèle A2 : Ja, das stimmt, man spart Zeit. Aber ich bin nicht gern allein. Ich gehe lieber ins Büro.
+  _(Oui, c’est vrai, on gagne du temps. Mais je n’aime pas être seul. Je préfère aller au bureau.)_
+  → 
+- Modèle B1 : Ich verstehe, was du meinst: Der Weg zur Arbeit kostet viel Zeit. Aber ich bleibe bei meiner Meinung, denn zu Hause habe ich keinen ruhigen Platz zum Arbeiten. Meine Wohnung ist klein, und meine Nachbarn sind oft laut. Deshalb ist das Büro für mich besser.
+  _(Je comprends ce que tu veux dire : le trajet jusqu’au travail prend beaucoup de temps. Mais je reste sur mon avis, car chez moi je n’ai pas d’endroit calme pour travailler. Mon appartement est petit, et mes voisins font souvent du bruit. C’est pour ça que le bureau est mieux pour moi.)_
+  → 
+
+#### un téléphone pour les enfants ?
+
+Feuille : Sollen Kinder unter zwölf Jahren schon ein eigenes Handy haben?
+
+- Anna (examinatrice) : Danke schön. Jetzt kommt der letzte Teil. Es geht um die Frage: Sollen Kinder unter zwölf Jahren schon ein eigenes Handy haben? Sagen Sie Ihre Meinung und begründen Sie sie. Reagieren Sie auch auf die Meinung Ihres Partners. Sie haben jetzt eine Minute Zeit zum Nachdenken.
+  _(Merci. Voici la dernière partie. La question est : les enfants de moins de douze ans doivent-ils déjà avoir leur propre téléphone portable ? Donnez votre avis et justifiez-le. Réagissez aussi à l’avis de votre partenaire. Vous avez maintenant une minute pour réfléchir.)_
+  → 
+- Modèle A2 : Ich finde, ein Kind braucht ein Handy. Dann kann es die Eltern anrufen. Das ist sicher. Meine Tochter hat auch ein Handy.
+  _(Je trouve qu’un enfant a besoin d’un téléphone. Comme ça, il peut appeler ses parents. C’est plus sûr. Ma fille aussi a un téléphone.)_
+  → 
+- Modèle B1 : Ich bin der Meinung, dass Kinder unter zwölf noch kein eigenes Handy brauchen. Sie sollten lieber draußen spielen, Sport machen oder Bücher lesen. Außerdem ist das Internet für kleine Kinder oft gefährlich. Unsere Nachbarn haben ihrem Sohn zum Beispiel ein einfaches Telefon ohne Internet gegeben: Er kann anrufen, aber nicht stundenlang spielen. Das finde ich einen guten Kompromiss.
+  _(Je pense que les enfants de moins de douze ans n’ont pas encore besoin de leur propre téléphone. Ils feraient mieux de jouer dehors, de faire du sport ou de lire des livres. En plus, Internet est souvent dangereux pour les jeunes enfants. Nos voisins, par exemple, ont donné à leur fils un simple téléphone sans Internet : il peut appeler, mais pas jouer pendant des heures. Je trouve que c’est un bon compromis.)_
+  → 
+- Mark (l'autre candidat) : Ich sehe das anders. Mit einem Handy sitzen Kinder oft stundenlang vor dem Bildschirm und spielen weniger draußen. Und im Internet sehen sie Dinge, die nicht für Kinder sind. Ein Kollege von mir hat seiner Tochter zum Beispiel erst mit dreizehn ein Handy gegeben, und das war kein Problem. Was sagst du dazu?
+  _(Moi, je vois ça autrement. Avec un téléphone, les enfants restent souvent des heures devant l’écran et jouent moins dehors. Et sur Internet, ils voient des choses qui ne sont pas pour les enfants. Un collègue à moi, par exemple, n’a donné un téléphone à sa fille qu’à treize ans, et ça n’a posé aucun problème. Qu’est-ce que tu en dis ?)_
+  → 
+- Modèle A2 : Das stimmt, Kinder spielen zu viel. Aber mit dem Handy kann mein Kind mich anrufen. Das ist für mich wichtig.
+  _(C’est vrai, les enfants jouent trop. Mais avec le téléphone, mon enfant peut m’appeler. C’est important pour moi.)_
+  → 
+- Modèle B1 : Da hast du recht, zu viel Zeit vor dem Bildschirm ist nicht gut. Aber die Eltern können das Handy ja kontrollieren, zum Beispiel mit einer Stunde pro Tag. Trotzdem bleibe ich dabei: Ein Handy ist heute wichtig für die Sicherheit, weil viele Kinder allein zur Schule fahren.
+  _(Tu as raison, trop de temps devant l’écran, ce n’est pas bien. Mais les parents peuvent contrôler le téléphone, par exemple avec une heure par jour. Pourtant, je maintiens mon avis : aujourd’hui, un téléphone est important pour la sécurité, parce que beaucoup d’enfants vont seuls à l’école.)_
+  → 
+- Mark (l'autre candidat) : Da bin ich nicht ganz deiner Meinung. Mit einem Handy können die Eltern ihr Kind immer erreichen, zum Beispiel wenn der Bus nicht kommt. Und heute schreiben fast alle Kinder einer Klasse in einer Gruppe. Ohne Handy ist man da schnell allein. Was meinst du?
+  _(Là, je ne suis pas tout à fait d’accord avec toi. Avec un téléphone, les parents peuvent toujours joindre leur enfant, par exemple quand le bus ne vient pas. Et aujourd’hui, presque tous les enfants d’une classe s’écrivent dans un groupe. Sans téléphone, on se retrouve vite seul. Qu’en penses-tu ?)_
+  → 
+- Modèle A2 : Ja, das stimmt, die Eltern können anrufen. Aber die Kinder sind zu jung. Sie sollen draußen spielen.
+  _(Oui, c’est vrai, les parents peuvent appeler. Mais les enfants sont trop jeunes. Ils doivent jouer dehors.)_
+  → 
+- Modèle B1 : Ich verstehe dein Argument, die Eltern möchten ihr Kind erreichen. Aber dafür reicht ein einfaches Telefon ohne Internet. Ich bleibe bei meiner Meinung, denn kleine Kinder können noch nicht gut mit dem Internet umgehen, und Gruppen mit der ganzen Klasse machen oft mehr Stress als Freude.
+  _(Je comprends ton argument, les parents veulent pouvoir joindre leur enfant. Mais pour ça, un simple téléphone sans Internet suffit. Je reste sur mon avis, car les jeunes enfants ne savent pas encore bien se servir d’Internet, et les groupes avec toute la classe font souvent plus de stress que de plaisir.)_
+  → 
+
+### Les autres répliques
+
+- Anna (examinatrice) : So, die Minute ist um. Sie fangen bitte an.
+  _(Voilà, la minute est passée. Commencez, s’il vous plaît.)_
+  → 
+- Mark (l'autre candidat) : Okay, wir sehen das nicht ganz gleich, aber ich verstehe deine Argumente gut.
+  _(D’accord, on ne voit pas ça tout à fait pareil, mais je comprends bien tes arguments.)_
   →
