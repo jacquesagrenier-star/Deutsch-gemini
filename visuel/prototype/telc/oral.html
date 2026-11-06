@@ -974,7 +974,8 @@ function coach(cle, aideSeule){
   }
 }
 function attend(cle){
-  const d = el("details", "boite");
+  // ouverte d'emblee : expliquer le format est la demande du groupe de Marina (le cahier du commerce ne le fait pas)
+  const d = el("details", "boite"); d.open = true;
   d.appendChild(el("summary", "", u("attend")));
   const ul = el("ul"); tr(ATTEND[cle]).forEach(x => ul.appendChild(el("li", "", x))); d.appendChild(ul);
   zone.appendChild(d);
