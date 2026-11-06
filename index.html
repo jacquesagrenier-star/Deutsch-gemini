@@ -8362,6 +8362,70 @@ body[data-theme="dark"] .cp-passage-ok svg{stroke:#8ED3AA;}
 /* Le plan sur la carte de l'accueil : il peut passer sur deux lignes. */
 #home #seancePilule .pa-contenu.pa-plan{white-space:normal; text-wrap:balance;}
 
+/* 6 nov. 2026 : L'ACCUEIL PAR PALIERS (palierAccueil). Rien n'est ferme : Tout le contenu
+   garde tout ; c'est l'accueil qui montre moins a qui commence. */
+#home.palier-1:not(.vue-contenu) #explorerScenes, #home.palier-1:not(.vue-contenu) #explorerThemes,
+#home.palier-1:not(.vue-contenu) #ecouteLigneAccueil,
+#home.palier-1:not(.vue-contenu) #carteVocab, #home.palier-2:not(.vue-contenu) #carteVocab,
+#home.palier-1.sans-gardes #seanceGardes, #home.palier-2.sans-gardes #seanceGardes{display:none !important;}
+#home #seancePilule.niveaux-replies > .pa-niveaux{display:none !important;}
+#home #seancePilule .pa-changer{order:3; justify-self:center; border:0; background:none; font:inherit; font-size:13px; font-weight:700;
+    color:var(--encre-v); padding:4px 10px; border-radius:999px; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
+#home #seancePilule .pa-changer.hidden{display:none;}
+#home.vue-contenu #suggAccueil{display:none !important;}
+/* Les trois suggestions : des cartes de verre, l'image a gauche, le rond a droite. */
+.sugg-accueil{display:grid; gap:10px; grid-column:1 / -1;}
+.sugg-accueil.hidden{display:none;}
+.sugg-accueil-titre{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight:800; font-size:17px; color:var(--encre-v); padding:2px 2px 0;}
+.sugg-accueil-liste{display:grid; gap:10px;}
+.sugg-carte{display:grid; grid-template-columns:72px minmax(0,1fr) auto; gap:12px; align-items:center; width:100%; text-align:start; border:0; cursor:pointer;
+    padding:8px 12px 8px 8px; border-radius:22px; font:inherit; color:var(--encre-v);
+    background:var(--v-fond); -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
+    box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre);}
+.sugg-carte img, .sugg-onde{width:72px; height:58px; object-fit:cover; border-radius:14px; display:block;}
+.sugg-onde{display:flex; align-items:center; justify-content:center; gap:4px; background:rgba(232,162,58,.16);}
+.sugg-onde i{display:block; width:5px; border-radius:3px; background:#B07A1E; height:14px;}
+.sugg-onde i:nth-child(2), .sugg-onde i:nth-child(4){height:26px; background:#E8A23A;}
+.sugg-onde i:nth-child(3){height:36px;}
+.sugg-tx{display:grid; gap:1px; min-width:0;}
+.sugg-kick{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight:800; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ambre-v);}
+.sugg-tx b{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight:700; font-size:15.5px; line-height:1.2;}
+.sugg-sous{font-size:12px; color:var(--gris-v); line-height:1.3;}
+.sugg-rond{width:38px; height:38px; border-radius:50%; display:grid; place-items:center; font-size:21px; font-weight:600; line-height:1; padding-bottom:2px; color:#fff;
+    background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%);
+    box-shadow:inset 0 0 0 2px rgba(0,0,0,.35), inset 0 0 14px rgba(255,255,255,.16), inset 0 1.5px 0 rgba(255,255,255,.55), 0 8px 18px rgba(20,16,10,.25);}
+html[dir="rtl"] .sugg-rond{transform:scaleX(-1);}
+body[data-theme="dark"] .sugg-rond{color:#2A1A05; background:linear-gradient(180deg, rgba(250,206,128,.86) 0%, rgba(237,169,60,.80) 52%, rgba(208,138,28,.88) 100%);
+    box-shadow:inset 0 0 0 2px rgba(150,90,10,.28), inset 0 0 14px rgba(255,255,255,.35), inset 0 1.5px 0 rgba(255,255,255,.8), 0 8px 20px rgba(237,169,60,.28);}
+.sugg-carte:focus-visible{outline:2px solid #E8A23A; outline-offset:2px;}
+
+/* 6 nov. 2026 : TOUT LE CONTENU PAR BUT. La recherche en tete, puis cinq sections ; dans
+   « En situation », les rubans des scenes et des themes a la place des 17 tuiles. */
+.contenu-recherche{display:none; grid-column:1 / -1; gap:8px;}
+#home.vue-contenu .contenu-recherche{display:grid;}
+.contenu-champ{display:flex; align-items:center; gap:10px; padding:11px 14px; border-radius:18px; cursor:text;
+    background:var(--v-fond); box-shadow:inset 1.5px 1.5px 0 var(--v-liser), inset 0 0 0 1px rgba(28,36,48,.10), var(--v-ombre); color:var(--gris-v);}
+body[data-theme="dark"] .contenu-champ{box-shadow:inset 1.5px 1.5px 0 var(--v-liser), inset 0 0 0 1px rgba(255,255,255,.12), var(--v-ombre);}
+.contenu-champ svg{width:18px; height:18px; flex:0 0 18px; fill:none; stroke:currentColor; stroke-width:2.3; stroke-linecap:round;}
+.contenu-champ input{flex:1; min-width:0; border:0; outline:0; background:transparent; font:inherit; font-size:16px; color:var(--encre-v);}
+.contenu-champ input::placeholder{color:var(--gris-v); opacity:1;}
+.contenu-chercher-mots{justify-self:start; border:0; background:none; font:inherit; font-size:14px; font-weight:700; color:var(--ambre-v); padding:2px 4px; cursor:pointer; text-align:start;}
+.contenu-chercher-mots.hidden{display:none;}
+#home .filtre-cache, #home .explorer-scenes.filtre-vide{display:none !important;}
+.place-situation{display:none;}
+#home.vue-contenu #orbGrid > #explorerScenes{display:block !important;}
+#home.vue-contenu #orbGrid > #explorerThemes:not(.hidden){display:block !important;}
+#home.vue-contenu #orbGrid > #explorerScenes.filtre-vide, #home.vue-contenu #orbGrid > #explorerThemes.filtre-vide{display:none !important;}
+#home.vue-contenu #orbGrid > .orb[onclick^="ouvrirThemeIllustre"]{display:none !important;}
+/* En espagnol, chaque fiche de grammaire n'apparait qu'une fois : dans « Toutes les fiches ». */
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid^="es-"]:not([data-orbid="es-indice"]),
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="kasus"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="praep"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="wortstellung"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="zuinfinitiv"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="pronomen"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="zahlen"]{display:none !important;}
+
 /* v1008 : LE TABLEAU DANS UN CADRE -- « verre et biseau dore » (proposition 4 retenue par Jacques,
    29 oct. 2026 : « un cadre pour la peinture [...] un melange de moderne et d'ancien »). Le verre de
    l'app autour, un biseau dore, des coins arrondis. */
@@ -9698,6 +9762,13 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
             </div>
         </div>
 
+        <!-- 6 nov. 2026 (decision 34d02c3, variante A) : TROIS SUGGESTIONS sous la seance,
+             pour qui commence (palier 1, voir palierAccueil) : la scene de l'etape, un theme
+             illustre, Ecouter. Remplies par majSuggestionsAccueil(). -->
+        <div class="sugg-accueil hidden" id="suggAccueil">
+            <div class="sugg-accueil-titre" data-i18n="sugg_titre">Pour aller plus loin aujourd'hui</div>
+            <div class="sugg-accueil-liste" id="suggAccueilListe"></div>
+        </div>
         <!-- v799 : EXPLORER LES SCENES, a part de la seance. Jacques voulait voir
              qu'il y a beaucoup de scenes (« peut-etre une cinquantaine ») et
              garder le mode Decouvrir (« des fois c'est ca que les gens
@@ -9820,23 +9891,31 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
             <button class="back" onclick="quitterToutLeContenu()"><span data-i18n="back_button">‹ Retour</span></button>
             <h2 data-i18n="accueil_tout_titre">Tout le contenu</h2>
         </div>
+        <!-- 6 nov. 2026 (decision 34d02c3, variante C) : LA RECHERCHE EN TETE DE TOUT LE
+             CONTENU. Elle filtre ce qui est ici (tuiles, scenes, themes) a chaque lettre,
+             et propose de chercher le mot dans le dictionnaire de l'app (filtrerContenu). -->
+        <div class="contenu-recherche" id="contenuRecherche">
+            <label class="contenu-champ" for="contenuRechercheInput">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+                <input id="contenuRechercheInput" type="search" autocomplete="off" autocapitalize="none"
+                       placeholder="Un mot, une règle, un thème…" data-i18n-placeholder="contenu_chercher"
+                       oninput="filtrerContenu(this.value)">
+            </label>
+            <button type="button" class="contenu-chercher-mots hidden" id="contenuChercherMots"
+                    onclick="chercherMotDepuisContenu()"></button>
+        </div>
 
 
         <!-- Section « Les mots ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="mots">
             <span class="sec-trait" aria-hidden="true"></span>
-            <span data-i18n="sec_mots">Travailler les mots</span>
+            <span data-i18n="sec_mes_mots">Mes mots</span>
         </h2>
         <!-- v799 : sortis de la tuile de seance (Jacques : « je le mettrais tout
              simplement dans des tuiles »). Sans orb-de : valables dans les deux
              directions, comme ils l'etaient dans la seance. -->
         <!-- v917 : la serie en recompense (essai « episodes »), visible des le premier episode debloque. -->
-        <div class="orb hidden" data-orbid="episodes" id="tuileEpisodes" onclick="ouvrirMesEpisodes()">
-            <span class="ep-nouveau hidden" id="tuileEpisodesNouveau" data-i18n="ep_nouveau">Nouveau</span>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M20.84 2.18L16.91 2.96L19.65 6.5L21.62 6.1L20.84 2.18M13.97 3.54L12 3.93L14.75 7.46L16.71 7.07L13.97 3.54M9.07 4.5L7.1 4.91L9.85 8.44L11.81 8.05L9.07 4.5M4.16 5.5L3.18 5.69A2 2 0 0 0 1.61 8.04L2 10L6.9 9.03L4.16 5.5M2 10V20C2 21.11 2.9 22 4 22H20C21.11 22 22 21.11 22 20V10H2Z"/></svg></div>
-            <div><strong data-i18n="ep_tuile">Mes épisodes</strong></div>
-        </div>
         <div class="orb" data-orbid="themes" onclick="ouvrirThemesDuNiveau()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></div>
             <div>
@@ -9845,14 +9924,6 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
         </div>
         <!-- v881 : le carnet de phrases et les feuilles de conjugaison, sortis
              de la porte de seance. Visibles des qu'ils ont du contenu. -->
-        <div class="orb hidden" data-orbid="carnet" id="tuileCarnet" onclick="ouvrirCarnetPhrases()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5v17"/><path d="M12 8h4M12 11.5h4"/></svg></div>
-            <div><strong id="tuileCarnetTxt"></strong></div>
-        </div>
-        <div class="orb hidden" data-orbid="feuilles" id="tuileFeuilles" onclick="ouvrirMesFeuilles()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12h6M9.5 15.5h6"/></svg></div>
-            <div><strong id="tuileFeuillesTxt"></strong></div>
-        </div>
         <div class="orb" data-orbid="kana" data-seulement-ja onclick="ouvrirKana()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-size="14" stroke="none" style="fill:var(--wt-icone)">あ</text></svg></div>
             <div><strong>Kana · 漢字</strong></div>
@@ -9912,12 +9983,6 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
              lecture, comparees a la langue de l'utilisateur. Le fichier vient
              de la langue apprise (urlDonnees) : prononciation.json, ou
              espanol/datos/prononciation.json. -->
-        <div class="orb orb-de" data-orbid="prononciation" onclick="ouvrirPrononciation()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 9v6h3l5 4V5L7 9H4z"/><path d="M16 9a4 4 0 010 6"/><path d="M18.5 6.5a7.5 7.5 0 010 11"/></svg></div>
-            <div>
-                <strong data-i18n="orb_prononciation">Prononciation</strong>
-            </div>
-        </div>
 
         <!-- Section « Themes illustres » (2 nov. 2026, Jacques : des themes « plus vivants », imagés, « quelque chose
              de solide. Complet. Autant pour l'allemand que l'espagnol »). Des personnes photorealistes reutilisables
@@ -9925,8 +9990,12 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
              scenes par ouvrirThemeIllustre(). Espagnol et allemand seulement ; cachee en japonais, anglais, portugais. -->
         <h2 class="orb-section orb-de" data-section="illustres">
             <span class="sec-trait" aria-hidden="true"></span>
-            <span data-i18n="sec_illustres">Thèmes illustrés</span>
+            <span data-i18n="sec_situation">En situation</span>
         </h2>
+        <!-- 6 nov. 2026 : ici, dans Tout le contenu, viennent se ranger les deux rubans de
+             l'accueil (#explorerScenes, #explorerThemes), deplaces par appliquerVueContenu() ;
+             les 17 tuiles des themes ci-dessous se cachent derriere eux (CSS). -->
+        <div id="placeSituation" class="place-situation" aria-hidden="true"></div>
         <!-- La famille d'Anna (pas celle de Mark, qui est a Montreal) : un arbre de quatorze personnes, les liens,
              les possessifs, « ¿Quién es…? / Wer ist…? ». Premier theme demande par Jacques. -->
         <div class="orb hidden" data-orbid="familia" id="tuileFamilia" onclick="ouvrirThemeIllustre('familia')" role="button" tabindex="0">
@@ -10089,8 +10158,12 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
             <span class="sec-trait" aria-hidden="true"></span>
-            <span data-i18n="sec_phrase">Travailler la phrase</span>
+            <span data-i18n="sec_regle">Comprendre une règle</span>
         </h2>
+        <div class="orb hidden" data-orbid="feuilles" id="tuileFeuilles" onclick="ouvrirMesFeuilles()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12h6M9.5 15.5h6"/></svg></div>
+            <div><strong id="tuileFeuillesTxt"></strong></div>
+        </div>
         <!-- LES FICHES PROPRES A L'ESPAGNOL (v747) : en allemand, data-seulement-es
              les cache. Elles ouvrent leur fiche directement (abrirGramatica). -->
         <div class="orb" data-seulement-ja data-orbid="ja-grammaire" onclick="abrirIndiceGramatica()">
@@ -10189,7 +10262,7 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="pratique">
             <span class="sec-trait" aria-hidden="true"></span>
-            <span data-i18n="sec_pratique">Pratiquer</span>
+            <span data-i18n="sec_ecouter_ecrire">Écouter, écrire, parler</span>
         </h2>
         <div class="orb orb-de" data-orbid="ecouter" onclick="ouvrirEcouteMenu()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg></div>
@@ -10214,6 +10287,12 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
                 <strong data-i18n="orb_ausdruecke_title">Expressions & tournures</strong>
             </div>
         </div>
+        <div class="orb orb-de" data-orbid="prononciation" onclick="ouvrirPrononciation()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 9v6h3l5 4V5L7 9H4z"/><path d="M16 9a4 4 0 010 6"/><path d="M18.5 6.5a7.5 7.5 0 010 11"/></svg></div>
+            <div>
+                <strong data-i18n="orb_prononciation">Prononciation</strong>
+            </div>
+        </div>
 
         <!-- Section « Mon parcours ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -10221,6 +10300,15 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
             <span class="sec-trait" aria-hidden="true"></span>
             <span data-i18n="sec_parcours">Mon parcours</span>
         </h2>
+        <div class="orb hidden" data-orbid="carnet" id="tuileCarnet" onclick="ouvrirCarnetPhrases()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5v17"/><path d="M12 8h4M12 11.5h4"/></svg></div>
+            <div><strong id="tuileCarnetTxt"></strong></div>
+        </div>
+        <div class="orb hidden" data-orbid="episodes" id="tuileEpisodes" onclick="ouvrirMesEpisodes()">
+            <span class="ep-nouveau hidden" id="tuileEpisodesNouveau" data-i18n="ep_nouveau">Nouveau</span>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M20.84 2.18L16.91 2.96L19.65 6.5L21.62 6.1L20.84 2.18M13.97 3.54L12 3.93L14.75 7.46L16.71 7.07L13.97 3.54M9.07 4.5L7.1 4.91L9.85 8.44L11.81 8.05L9.07 4.5M4.16 5.5L3.18 5.69A2 2 0 0 0 1.61 8.04L2 10L6.9 9.03L4.16 5.5M2 10V20C2 21.11 2.9 22 4 22H20C21.11 22 22 21.11 22 20V10H2Z"/></svg></div>
+            <div><strong data-i18n="ep_tuile">Mes épisodes</strong></div>
+        </div>
         <div class="orb" data-orbid="monvocab" onclick="openMyVocab()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg></div>
             <div>
@@ -14906,6 +14994,18 @@ const I18N = {
         seance_continuer_long: "Continuer la séance",
         seance_commencer_long: "Commencer la séance",
         seance_contenu: "mots, grammaire et scènes",
+        sec_mes_mots: "Mes mots",
+        sec_regle: "Comprendre une règle",
+        sec_situation: "En situation",
+        sec_ecouter_ecrire: "Écouter, écrire, parler",
+        contenu_chercher: "Un mot, une règle, un thème…",
+        contenu_chercher_mots: "Chercher « {q} » parmi les mots",
+        sugg_titre: "Pour aller plus loin aujourd'hui",
+        sugg_scene_etape: "La scène de ton étape",
+        sugg_scene_jour: "La scène du jour",
+        sugg_theme: "Un thème illustré",
+        sugg_ecouter_sous: "Les mots de ton niveau, à voix haute",
+        niveau_changer: "Changer de niveau",
         seance_kicker_etape: "Étape {n} sur {t} · {lieu}",
         seance_part_lieu: "Les mots de l'étape",
         seance_part_neufs: "Mots nouveaux",
@@ -16532,6 +16632,18 @@ const I18N = {
         seance_continuer_long: "Continue the session",
         seance_commencer_long: "Start the session",
         seance_contenu: "words, grammar and scenes",
+        sec_mes_mots: "My words",
+        sec_regle: "Understand a rule",
+        sec_situation: "In context",
+        sec_ecouter_ecrire: "Listen, write, speak",
+        contenu_chercher: "A word, a rule, a topic…",
+        contenu_chercher_mots: "Search “{q}” among the words",
+        sugg_titre: "To go further today",
+        sugg_scene_etape: "Your step's scene",
+        sugg_scene_jour: "Today's scene",
+        sugg_theme: "An illustrated topic",
+        sugg_ecouter_sous: "Your level's words, read aloud",
+        niveau_changer: "Change level",
         seance_kicker_etape: "Step {n} of {t} · {lieu}",
         seance_part_lieu: "The step's words",
         seance_part_neufs: "New words",
@@ -18160,6 +18272,18 @@ const I18N = {
         seance_continuer_long: "Seansa devam et",
         seance_commencer_long: "Seansı başlat",
         seance_contenu: "kelimeler, dilbilgisi ve sahneler",
+        sec_mes_mots: "Kelimelerim",
+        sec_regle: "Bir kuralı anla",
+        sec_situation: "Durum içinde",
+        sec_ecouter_ecrire: "Dinle, yaz, konuş",
+        contenu_chercher: "Kelime, kural, konu…",
+        contenu_chercher_mots: "“{q}” kelimeler arasında ara",
+        sugg_titre: "Bugün bir adım daha",
+        sugg_scene_etape: "Adımının sahnesi",
+        sugg_scene_jour: "Günün sahnesi",
+        sugg_theme: "Resimli bir konu",
+        sugg_ecouter_sous: "Seviyenin kelimeleri, sesli",
+        niveau_changer: "Seviyeyi değiştir",
         seance_kicker_etape: "{t} adımdan {n}. · {lieu}",
         seance_part_lieu: "Adımın kelimeleri",
         seance_part_neufs: "Yeni kelimeler",
@@ -20217,6 +20341,18 @@ const I18N = {
         seance_continuer_long: "Продовжити заняття",
         seance_commencer_long: "Почати заняття",
         seance_contenu: "слова, граматика і сцени",
+        sec_mes_mots: "Мої слова",
+        sec_regle: "Зрозуміти правило",
+        sec_situation: "У ситуаціях",
+        sec_ecouter_ecrire: "Слухати, писати, говорити",
+        contenu_chercher: "Слово, правило, тема…",
+        contenu_chercher_mots: "Шукати «{q}» серед слів",
+        sugg_titre: "Сьогодні ще крок",
+        sugg_scene_etape: "Сцена твого кроку",
+        sugg_scene_jour: "Сцена дня",
+        sugg_theme: "Тема в картинках",
+        sugg_ecouter_sous: "Слова твого рівня, уголос",
+        niveau_changer: "Змінити рівень",
         seance_kicker_etape: "Крок {n} з {t} · {lieu}",
         seance_part_lieu: "Слова цього кроку",
         seance_part_neufs: "Нові слова",
@@ -22603,6 +22739,18 @@ const I18N = {
         seance_continuer_long: "ادامهٔ جلسه",
         seance_commencer_long: "شروع جلسه",
         seance_contenu: "واژه‌ها، دستور زبان و صحنه‌ها",
+        sec_mes_mots: "واژه‌های من",
+        sec_regle: "فهمیدن یک قاعده",
+        sec_situation: "در موقعیت",
+        sec_ecouter_ecrire: "گوش دادن، نوشتن، صحبت کردن",
+        contenu_chercher: "واژه، قاعده، موضوع…",
+        contenu_chercher_mots: "جست‌وجوی «{q}» در میان واژه‌ها",
+        sugg_titre: "امروز، یک قدم بیشتر",
+        sugg_scene_etape: "صحنهٔ مرحلهٔ تو",
+        sugg_scene_jour: "صحنهٔ امروز",
+        sugg_theme: "یک موضوع مصور",
+        sugg_ecouter_sous: "واژه‌های سطح تو، با صدای بلند",
+        niveau_changer: "تغییر سطح",
         seance_kicker_etape: "مرحلهٔ {n} از {t} · {lieu}",
         seance_part_lieu: "واژه‌های این مرحله",
         seance_part_neufs: "واژه‌های تازه",
@@ -24400,6 +24548,18 @@ const I18N = {
         seance_continuer_long: "متابعة الجلسة",
         seance_commencer_long: "ابدأ الجلسة",
         seance_contenu: "كلمات وقواعد ومشاهد",
+        sec_mes_mots: "كلماتي",
+        sec_regle: "فهم قاعدة",
+        sec_situation: "في سياق",
+        sec_ecouter_ecrire: "استمع، اكتب، تحدّث",
+        contenu_chercher: "كلمة، قاعدة، موضوع…",
+        contenu_chercher_mots: "ابحث عن «{q}» بين الكلمات",
+        sugg_titre: "خطوة أخرى اليوم",
+        sugg_scene_etape: "مشهد مرحلتك",
+        sugg_scene_jour: "مشهد اليوم",
+        sugg_theme: "موضوع مصوّر",
+        sugg_ecouter_sous: "كلمات مستواك، بصوت عالٍ",
+        niveau_changer: "تغيير المستوى",
         seance_kicker_etape: "المرحلة {n} من {t} · {lieu}",
         seance_part_lieu: "كلمات المرحلة",
         seance_part_neufs: "كلمات جديدة",
@@ -24828,6 +24988,18 @@ const I18N = {
         seance_continuer_long: "Continuar a sessão",
         seance_commencer_long: "Começar a sessão",
         seance_contenu: "palavras, gramática e cenas",
+        sec_mes_mots: "Minhas palavras",
+        sec_regle: "Entender uma regra",
+        sec_situation: "Em situação",
+        sec_ecouter_ecrire: "Ouvir, escrever, falar",
+        contenu_chercher: "Palavra, regra, tema…",
+        contenu_chercher_mots: "Buscar “{q}” entre as palavras",
+        sugg_titre: "Para ir mais longe hoje",
+        sugg_scene_etape: "A cena da sua etapa",
+        sugg_scene_jour: "A cena do dia",
+        sugg_theme: "Um tema ilustrado",
+        sugg_ecouter_sous: "As palavras do seu nível, em voz alta",
+        niveau_changer: "Mudar de nível",
         seance_kicker_etape: "Etapa {n} de {t} · {lieu}",
         seance_part_lieu: "As palavras da etapa",
         seance_part_neufs: "Palavras novas",
@@ -26515,6 +26687,18 @@ const I18N = {
         seance_continuer_long: "Kontynuuj sesję",
         seance_commencer_long: "Zacznij sesję",
         seance_contenu: "słowa, gramatyka i sceny",
+        sec_mes_mots: "Moje słowa",
+        sec_regle: "Zrozumieć regułę",
+        sec_situation: "W sytuacji",
+        sec_ecouter_ecrire: "Słuchać, pisać, mówić",
+        contenu_chercher: "Słowo, reguła, temat…",
+        contenu_chercher_mots: "Szukaj „{q}” wśród słów",
+        sugg_titre: "Dziś krok dalej",
+        sugg_scene_etape: "Scena twojego etapu",
+        sugg_scene_jour: "Scena dnia",
+        sugg_theme: "Temat ilustrowany",
+        sugg_ecouter_sous: "Słowa twojego poziomu, na głos",
+        niveau_changer: "Zmień poziom",
         seance_kicker_etape: "Etap {n} z {t} · {lieu}",
         seance_part_lieu: "Słowa tego etapu",
         seance_part_neufs: "Nowe słowa",
@@ -28202,6 +28386,18 @@ const I18N = {
         seance_continuer_long: "Продолжить занятие",
         seance_commencer_long: "Начать занятие",
         seance_contenu: "слова, грамматика и сцены",
+        sec_mes_mots: "Мои слова",
+        sec_regle: "Понять правило",
+        sec_situation: "В ситуациях",
+        sec_ecouter_ecrire: "Слушать, писать, говорить",
+        contenu_chercher: "Слово, правило, тема…",
+        contenu_chercher_mots: "Искать «{q}» среди слов",
+        sugg_titre: "Сегодня ещё шаг",
+        sugg_scene_etape: "Сцена твоего этапа",
+        sugg_scene_jour: "Сцена дня",
+        sugg_theme: "Тема в картинках",
+        sugg_ecouter_sous: "Слова твоего уровня, вслух",
+        niveau_changer: "Сменить уровень",
         seance_kicker_etape: "Этап {n} из {t} · {lieu}",
         seance_part_lieu: "Слова этапа",
         seance_part_neufs: "Новые слова",
@@ -29891,6 +30087,18 @@ const I18N = {
         seance_continuer_long: "Lerneinheit fortsetzen",
         seance_commencer_long: "Lerneinheit starten",
         seance_contenu: "Wörter, Grammatik und Szenen",
+        sec_mes_mots: "Meine Wörter",
+        sec_regle: "Eine Regel verstehen",
+        sec_situation: "In Situationen",
+        sec_ecouter_ecrire: "Hören, schreiben, sprechen",
+        contenu_chercher: "Wort, Regel, Thema…",
+        contenu_chercher_mots: "„{q}“ unter den Wörtern suchen",
+        sugg_titre: "Heute noch ein Schritt",
+        sugg_scene_etape: "Die Szene deiner Etappe",
+        sugg_scene_jour: "Die Szene des Tages",
+        sugg_theme: "Ein bebildertes Thema",
+        sugg_ecouter_sous: "Die Wörter deines Niveaus, laut vorgelesen",
+        niveau_changer: "Niveau wechseln",
         seance_kicker_etape: "Etappe {n} von {t} · {lieu}",
         seance_part_lieu: "Die Wörter der Etappe",
         seance_part_neufs: "Neue Wörter",
@@ -31591,6 +31799,18 @@ const I18N = {
         seance_continuer_long: "Continuar la práctica",
         seance_commencer_long: "Empezar la práctica",
         seance_contenu: "palabras, gramática y escenas",
+        sec_mes_mots: "Mis palabras",
+        sec_regle: "Entender una regla",
+        sec_situation: "En situación",
+        sec_ecouter_ecrire: "Escuchar, escribir, hablar",
+        contenu_chercher: "Palabra, regla, tema…",
+        contenu_chercher_mots: "Buscar «{q}» entre las palabras",
+        sugg_titre: "Para ir más lejos hoy",
+        sugg_scene_etape: "La escena de tu etapa",
+        sugg_scene_jour: "La escena del día",
+        sugg_theme: "Un tema ilustrado",
+        sugg_ecouter_sous: "Las palabras de tu nivel, en voz alta",
+        niveau_changer: "Cambiar de nivel",
         seance_kicker_etape: "Etapa {n} de {t} · {lieu}",
         seance_part_lieu: "Las palabras de la etapa",
         seance_part_neufs: "Palabras nuevas",
@@ -48637,6 +48857,186 @@ function appliquerVueContenu(){
             if(s !== el) s.classList.toggle("hors-contenu", VUE_CONTENU);
         });
     }
+    // 6 nov. 2026 : les rubans des scenes et des themes passent dans « En situation »
+    // le temps de Tout le contenu, puis reviennent sous la seance.
+    try{ rangerRubansContenu(VUE_CONTENU); }catch(e){}
+    if(!VUE_CONTENU){ try{ const c = document.getElementById("contenuRechercheInput"); if(c && c.value){ c.value = ""; filtrerContenu(""); } }catch(e){} }
+}
+// ============ L'ACCUEIL PAR PALIERS ET TOUT LE CONTENU PAR BUT (6 nov. 2026) ============
+// Decision 34d02c3 (Jacques : « Vas-y pour les recommandations »), apres l'evaluation du
+// chef : l'accueil d'un debutant montrait tout -- la progression de l'A1 au B2, 39 scenes,
+// 17 themes, Ecouter... -- et Tout le contenu repetait l'accueil (« j'ai l'impression que
+// c'est repetitif »).
+// L'ACCUEIL PAR PALIERS (variante A) : rien n'est ferme, c'est la mise en avant qui change.
+//   palier 1 -- A1, avant l'etape 3 et sous 150 mots vus : la seance, trois suggestions liees
+//               a l'etape (la scene, un theme, Ecouter), Tout le contenu ; la rangee des
+//               niveaux se replie derriere « Changer de niveau ».
+//   palier 2 -- etape 3 ou 150 mots : les rubans des scenes et des themes, et Ecouter.
+//   palier 3 -- le jalon des 12 etapes, 400 mots, ou un niveau au-dessus de l'A1 : tout.
+// « Mis de cote » se montre des qu'un mot y est ; le tableau et les episodes gardent leurs
+// regles. ACCUEIL_COMPLET_KEY (« 1 ») force le palier 3 : le parcours de test la pose, pour
+// que ses references restent celles d'un accueil complet.
+const ACCUEIL_COMPLET_KEY = PREFIXE_STOCKAGE + "accueilComplet";
+function palierAccueil(){
+    try{ if(localStorage.getItem(ACCUEIL_COMPLET_KEY) === "1") return 3; }catch(e){}
+    if(LANGUE_APPRISE === "ja") return 3;
+    if(niveauSeance() !== "A1") return 3;
+    let vus = 0;
+    try{ vus = nbMotsVus(); }catch(e){}
+    let etape = 0, jalon = false;
+    try{ const s = lireA1Voyage(); jalon = !!s.fin; etape = s.e || 0; }catch(e){}
+    if(jalon || vus >= 400) return 3;
+    if(etape >= 2 || vus >= 150) return 2;
+    return 1;
+}
+function majPaliersAccueil(){
+    const home = document.getElementById("home");
+    if(!home) return;
+    let p = 3;
+    try{ p = palierAccueil(); }catch(e){ p = 3; }
+    [1, 2, 3].forEach(n => home.classList.toggle("palier-" + n, n === p));
+    let gardes = 1;
+    try{ gardes = nombreGardes(); }catch(e){}
+    home.classList.toggle("sans-gardes", !gardes);
+    try{ majChangerNiveau(p); }catch(e){}
+    const bloc = document.getElementById("suggAccueil");
+    if(bloc){
+        let n = 0;
+        try{ n = p === 1 ? majSuggestionsAccueil() : 0; }catch(e){ n = 0; }
+        bloc.classList.toggle("hidden", !n);
+    }
+}
+// « Changer de niveau » : la rangee 🌱 A1 ... C1 repliee aux paliers 1 et 2.
+function majChangerNiveau(p){
+    const pil = document.getElementById("seancePilule");
+    if(!pil) return;
+    let b = pil.querySelector(".pa-changer");
+    if(!b){
+        b = document.createElement("button");
+        b.type = "button";
+        b.className = "pa-changer";
+        b.addEventListener("click", ev => { ev.stopPropagation(); pil.classList.add("niveaux-ouverts"); b.classList.add("hidden"); });
+        pil.appendChild(b);
+    }
+    b.textContent = t("niveau_changer") + " ›";
+    const replie = p < 3 && !pil.classList.contains("niveaux-ouverts");
+    pil.classList.toggle("niveaux-replies", replie);
+    b.classList.toggle("hidden", !replie);
+}
+function majSuggestionsAccueil(){
+    const liste = document.getElementById("suggAccueilListe");
+    if(!liste || seanceJaponaise()) return 0;
+    const items = [];
+    try{
+        let sc = null, etape = false;
+        if(a1VoyageEnCours() && A1_VOYAGE_DONNEES){
+            const v = lireA1Voyage();
+            const lieu = !v.fin ? escalesA1Voyage()[v.e || 0] : suiteA1Voyage()[v.k || 0];
+            sc = lieu ? sceneDuLieu(lieu) : null;
+            etape = !!sc;
+        }
+        if(!sc) sc = sceneDuJour();
+        if(sc && sc.nom){
+            const nom = sc.nom;
+            items.push({ img: vignetteScene(nom), kick: t(etape ? "sugg_scene_etape" : "sugg_scene_jour"), titre: titreCourtScene(sc),
+                         sous: t("explorer_desc"), ouvrir: () => ouvrirSceneDepuisAccueil(nom), cle: "s:" + nom });
+        }
+    }catch(e){}
+    try{
+        const noms = themesIllustresOuverts();
+        if(noms.length){
+            const jour = Math.floor(Date.now() / 86400000);
+            const nom = themeDuJour() || noms[jour % noms.length];
+            const th = THEMES_ILLUSTRES[nom];
+            if(th) items.push({ img: baseScenes() + "themes/" + nom + ".webp", kick: t("sugg_theme"), titre: t(th.titre),
+                                sous: t("themes_ill_desc"), ouvrir: () => ouvrirThemeIllustre(nom, "accueil"), cle: "t:" + nom });
+        }
+    }catch(e){}
+    items.push({ img: null, kick: t("orb_ecouter_title"), titre: t("ela_titre"), sous: t("sugg_ecouter_sous"),
+                 ouvrir: () => ecouterDepuisAccueil(), cle: "e" });
+    const cle = getUiLang() + "|" + items.map(x => x.cle).join(",");
+    if(liste.dataset.cle === cle && liste.children.length) return items.length;
+    liste.dataset.cle = cle;
+    liste.textContent = "";
+    items.forEach(x => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "sugg-carte";
+        if(x.img){
+            const img = document.createElement("img");
+            img.alt = ""; img.src = x.img; img.loading = "lazy";
+            b.appendChild(img);
+        } else {
+            const o = document.createElement("span");
+            o.className = "sugg-onde";
+            o.setAttribute("aria-hidden", "true");
+            for(let i = 0; i < 5; i++) o.appendChild(document.createElement("i"));
+            b.appendChild(o);
+        }
+        const tx = document.createElement("span");
+        tx.className = "sugg-tx";
+        const k = document.createElement("small"); k.className = "sugg-kick"; k.textContent = x.kick;
+        const ti = document.createElement("b"); ti.textContent = x.titre;
+        const so = document.createElement("small"); so.className = "sugg-sous"; so.textContent = x.sous;
+        tx.appendChild(k); tx.appendChild(ti); tx.appendChild(so);
+        b.appendChild(tx);
+        const r = document.createElement("span");
+        r.className = "sugg-rond"; r.setAttribute("aria-hidden", "true"); r.textContent = "›";
+        b.appendChild(r);
+        b.addEventListener("click", () => { try{ x.ouvrir(); }catch(e){} });
+        liste.appendChild(b);
+    });
+    return items.length;
+}
+// Les rubans : sous la seance sur l'accueil, dans « En situation » dans Tout le contenu.
+function rangerRubansContenu(dedans){
+    const place = document.getElementById("placeSituation");
+    const sc = document.getElementById("explorerScenes"), th = document.getElementById("explorerThemes");
+    if(!place || !sc || !th) return;
+    if(dedans){
+        if(place.nextElementSibling !== sc){ place.after(sc); sc.after(th); }
+    } else {
+        const ancre = document.getElementById("suggAccueil");
+        if(ancre && ancre.nextElementSibling !== sc){ ancre.after(sc); sc.after(th); }
+    }
+}
+// LA RECHERCHE DE TOUT LE CONTENU : a chaque lettre, ne restent que les tuiles, les scenes
+// et les themes dont le nom contient ce qu'on tape (sans accents ni majuscules) ; une
+// section sans rien dessous se cache. Le bouton dessous cherche le mot dans le dictionnaire
+// de l'app (la meme recherche que la loupe de l'accueil).
+const sansAccents = s => String(s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().trim();
+function filtrerContenu(valeur){
+    const q = sansAccents(valeur);
+    const grille = document.getElementById("orbGrid");
+    if(!grille) return;
+    const cartes = Array.from(grille.querySelectorAll(":scope > .orb:not(.orb-seance), #explorerScenes .explorer-v, #explorerThemes .explorer-v"));
+    cartes.forEach(c => c.classList.toggle("filtre-cache", !!q && sansAccents(c.textContent + " " + (c.getAttribute("aria-label") || "")).indexOf(q) < 0));
+    // Les sections : cachees quand aucune tuile visible ne les suit (jusqu'a la suivante).
+    Array.from(grille.querySelectorAll(":scope > h2.orb-section")).forEach(h => {
+        let vu = false;
+        for(let el = h.nextElementSibling; el && !el.matches("h2.orb-section"); el = el.nextElementSibling){
+            if(el.matches(".orb, .explorer-scenes, .place-situation")){
+                if(el.matches(".explorer-scenes")){ if(!el.classList.contains("hidden") && el.querySelector(".explorer-v:not(.filtre-cache)")) vu = true; }
+                else if(el.matches(".orb") && !el.classList.contains("filtre-cache") && el.offsetParent !== null) vu = true;
+            }
+        }
+        h.classList.toggle("filtre-cache", !!q && !vu);
+    });
+    ["explorerScenes", "explorerThemes"].forEach(id => {
+        const b = document.getElementById(id);
+        if(b) b.classList.toggle("filtre-vide", !!q && !b.querySelector(".explorer-v:not(.filtre-cache)"));
+    });
+    const bouton = document.getElementById("contenuChercherMots");
+    if(bouton){
+        bouton.classList.toggle("hidden", !q);
+        bouton.textContent = q ? tf("contenu_chercher_mots", { q: String(valeur).trim() }) : "";
+    }
+}
+function chercherMotDepuisContenu(){
+    const c = document.getElementById("contenuRechercheInput");
+    const v = c ? c.value.trim() : "";
+    if(c){ c.value = ""; filtrerContenu(""); }
+    ouvrirRechercheDepuisAccueil(v);
 }
 function ouvrirToutLeContenu(){
     VUE_CONTENU = true;
@@ -59749,7 +60149,12 @@ function majExplorerThemes(){
         sp.style.setProperty("--n", Math.max(8, sp.textContent.length));
         b.appendChild(img); b.appendChild(sp);
         b.setAttribute("aria-label", t(th.titre));
-        b.addEventListener("click", () => ouvrirThemeIllustre(nom, "accueil"));
+        // 6 nov. 2026 : le ruban vit aussi dans Tout le contenu (« En situation ») : le
+        // theme revient alors a Tout le contenu. Et il porte le nom du theme, comme la
+        // tuile qu'il remplace la, pour le parcours (en allemand et en espagnol : les
+        // listes blanches des essais cachent tout [data-orbid] inconnu).
+        b.addEventListener("click", () => ouvrirThemeIllustre(nom, VUE_CONTENU ? undefined : "accueil"));
+        if(LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es") b.dataset.orbid = nom;
         ruban.appendChild(b);
     });
     ruban.scrollLeft = 0;
@@ -65223,6 +65628,7 @@ function majCompteDuJour(){
     // apparaitre des le retour d'une seance ou l'on vient d'y mettre un mot.
     try{ majBoutonGardes(); }catch(e){}
     try{ majAnneauSeance(); }catch(e){}
+    try{ majPaliersAccueil(); }catch(e){}   // 6 nov. 2026 : l'accueil par paliers
 }
 
 function majTuileSeance(){
