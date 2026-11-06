@@ -78,3 +78,7 @@ principaux :
 - le **dictionnaire** intégré (WikDict n'est câblé qu'en espagnol-français et espagnol-anglais) ;
 - les **épisodes** vidéo (français et anglais seulement) ;
 - la **visite guidée** : affichée en allemand, mais sans voix (comme en portugais et en arabe).
+
+## Ajouté le 6 nov. 2026 (v1120)
+
+Les textes du lot de l'évaluation (fin de séance, écran court, bandeau, bulle du micro, attente après la connexion) : voir `A-RELIRE-INTERFACE-LOT-EVALUATION.md` (leurs textes allemands sont dans le bloc `de` d'`I18N`).
