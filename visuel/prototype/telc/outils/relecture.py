@@ -58,6 +58,15 @@ def main():
         "",
     ]
     sprachbausteine(lignes)
+    # LES AUTRES PARTIES : chaque session ajoute outils/relecture_<partie>.py, qui expose section(lignes) et y
+    # ajoute ses textes allemands au meme format (texte, puis « → »). Ce fichier-ci n'a pas a changer.
+    import glob
+    import importlib.util
+    for chemin in sorted(glob.glob(os.path.join(ICI, "relecture_*.py"))):
+        spec = importlib.util.spec_from_file_location(os.path.basename(chemin)[:-3], chemin)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        module.section(lignes)
     open(SORTIE, "w", encoding="utf-8", newline="\n").write("\n".join(lignes).rstrip() + "\n")
     print("ecrit", os.path.relpath(SORTIE, RACINE))
 
