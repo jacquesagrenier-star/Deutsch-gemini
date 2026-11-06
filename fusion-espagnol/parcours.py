@@ -191,16 +191,22 @@ def releve(app, page_app=None):
                 page.evaluate("(id) => document.querySelector('#home [data-orbid=\"' + id + '\"]').click()", orb)
                 attendre()
                 verso(orb, noter(orb))
-                n = page.evaluate("""() => document.querySelector('.screen.active') &&
-                    document.querySelector('.screen.active').id === 'orbPanel'
-                    ? document.querySelectorAll('#orbPanel .orb-opt').length : 0""")
+                # Les options d'un panneau ; et, depuis la v1124, les fiches de « Toutes
+                # les fiches » (gramaticaIndice), une a une : en espagnol, la v1123 a
+                # retire leurs tuiles en double, et ce chemin rend leur couverture.
+                options = page.evaluate("""() => { const s = document.querySelector('.screen.active');
+                    if(!s) return null;
+                    if(s.id === 'orbPanel') return '#orbPanel .orb-opt';
+                    if(s.id === 'gramaticaIndice') return '#gramIndiceListe .orb-opt';
+                    return null; }""")
+                n = page.evaluate("(sel) => document.querySelectorAll(sel).length", options) if options else 0
                 for i in range(n):
                     accueil()
                     page.evaluate("(id) => document.querySelector('#home [data-orbid=\"' + id + '\"]').click()", orb)
                     attendre()
-                    nom = page.evaluate("(i) => document.querySelectorAll('#orbPanel .orb-opt')[i].innerText.split('\\n')[0].trim()", i)
+                    nom = page.evaluate("([sel, i]) => document.querySelectorAll(sel)[i].innerText.split('\\n')[0].trim()", [options, i])
                     erreurs.clear()
-                    page.evaluate("(i) => document.querySelectorAll('#orbPanel .orb-opt')[i].click()", i)
+                    page.evaluate("([sel, i]) => document.querySelectorAll(sel)[i].click()", [options, i])
                     attendre()
                     ch = "%s > %d %s" % (orb, i + 1, nom)
                     verso(ch, noter(ch))

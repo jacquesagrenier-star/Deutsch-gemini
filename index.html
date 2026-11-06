@@ -65342,7 +65342,67 @@ function regrouperSeance(seance, av){
     seance.forEach(c => { if(c && c.mode === "phrase") parts.set(c, partDeCarteSeance(c, av, parCle)); });
     const rang = c => { const i = ORDRE_PARTS.indexOf(parts.get(c)); return i < 0 ? ORDRE_PARTS.length : i; };
     const cartes = seance.map((c, i) => [c, i]).sort((a, b) => rang(a[0]) - rang(b[0]) || a[1] - b[1]).map(x => x[0]);
-    return { cartes: cartes, parts: parts };
+    return { cartes: espacerPhrasesEtape(cartes, parts), parts: parts };
+}
+// v1124 (decision 64fad6f, Jacques, 6 nov.) : LES PHRASES DE L'ETAPE ESPACEES. Le regroupement retirait
+// les revisions qui separaient les phrases toutes faites (aux cartes 3, 8, 13) et les cartes-phrases des
+// mots de l'etape : elles se suivaient (« La cocina, las paredes son blancas. Las paredes son blancas. La
+// llave, la mesa, las paredes son blancas. »). Dans la partie de l'etape, elles alternent maintenant avec
+// les cartes de mots : deux mots, une phrase, deux mots... (une carte au moins s'il y a peu de mots).
+// Le tableau reste en tete, le dialogue a la fin ; chaque file garde son ordre ; une phrase ne passe
+// jamais avant la carte de son mot ; deux phrases de meme base ne se suivent jamais quand on peut l'eviter.
+function basePhraseEtape(c){
+    const t = (c && ((c.phrase && c.phrase.de) || (c.bloc && (c.bloc.ex || c.bloc.de)) || c.word)) || "";
+    return String(Array.isArray(t) ? t[0] : t).toLowerCase().normalize("NFD").replace(/\p{M}/gu, "").replace(/[^\p{L}\p{N} ]+/gu, " ").replace(/\s+/g, " ").trim();
+}
+function memeBasePhrase(a, b){
+    if(!a || !b) return false;
+    if(a.cible && b.cible && a.cible.themeId + ":" + a.cible.index === b.cible.themeId + ":" + b.cible.index) return true;
+    const x = basePhraseEtape(a), y = basePhraseEtape(b);
+    return !!(x && y && (x === y || (x.length >= 8 && y.indexOf(x) >= 0) || (y.length >= 8 && x.indexOf(y) >= 0)));
+}
+function espacerPhrasesEtape(cartes, parts){
+    const idx = [];
+    cartes.forEach((c, i) => { if(parts.get(c) === "lieu") idx.push(i); });
+    if(idx.length < 3) return cartes;
+    // La partie de l'etape est contigue apres le tri ; on ne touche qu'a elle.
+    for(let k = 1; k < idx.length; k++) if(idx[k] !== idx[k - 1] + 1) return cartes;
+    const bloc = idx.map(i => cartes[i]);
+    const tete = [], queue = [];
+    while(bloc.length && bloc[0].mode === "phrase" && bloc[0].forme === "pp_tableau") tete.push(bloc.shift());
+    while(bloc.length && String(bloc[bloc.length - 1].themeId || "") === "a1v_dialogue") queue.unshift(bloc.pop());
+    const phrases = bloc.filter(c => c.mode === "phrase"), mots = bloc.filter(c => c.mode !== "phrase");
+    if(!phrases.length || !mots.length) return cartes;
+    const ecart = Math.max(1, Math.min(2, Math.floor(mots.length / phrases.length)));
+    const cleMot = c => c.themeId + ":" + c.index;
+    const motsDuBloc = new Set(mots.map(cleMot));
+    const poses = new Set();
+    const prete = ph => !(ph.cible && motsDuBloc.has(cleMot(ph.cible)) && !poses.has(cleMot(ph.cible)));
+    const milieu = [];
+    let depuis = 0, derniere = null;
+    while(phrases.length || mots.length){
+        let j = -1;
+        if(phrases.length && (depuis >= ecart || !mots.length)){
+            const precedente = milieu.length && milieu[milieu.length - 1].mode === "phrase" ? milieu[milieu.length - 1] : null;
+            j = phrases.findIndex(ph => prete(ph) && !(precedente && memeBasePhrase(precedente, ph)));
+            if(j < 0 && !mots.length) j = phrases.findIndex(prete);
+            if(j < 0 && !mots.length) j = 0;
+        }
+        if(j >= 0){
+            derniere = phrases.splice(j, 1)[0];
+            milieu.push(derniere);
+            depuis = 0;
+        } else {
+            const m = mots.shift();
+            milieu.push(m);
+            poses.add(cleMot(m));
+            depuis++;
+        }
+    }
+    const refait = tete.concat(milieu, queue);
+    const sortie = cartes.slice();
+    refait.forEach((c, k) => { sortie[idx[0] + k] = c; });
+    return sortie;
 }
 function seancePartsActive(){
     return !!(SEANCE_PARTS && currentCards === SEANCE_PARTS.paquet && currentTheme && currentTheme.id === SEANCE_PARTS.themeId);
