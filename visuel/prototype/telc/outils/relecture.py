@@ -66,7 +66,7 @@ def main():
         spec = importlib.util.spec_from_file_location(os.path.basename(chemin)[:-3], chemin)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        module.section(lignes)
+        (getattr(module, "section", None) or getattr(module, "sections"))(lignes)
     open(SORTIE, "w", encoding="utf-8", newline="\n").write("\n".join(lignes).rstrip() + "\n")
     print("ecrit", os.path.relpath(SORTIE, RACINE))
 
