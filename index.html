@@ -8326,6 +8326,34 @@ body[data-theme="dark"] #home .pa-ecoute .pa-play, body[data-theme="dark"] #home
 #home .pa-ecoute .pa-play::before, #home .pa-ecoute .pa-play::after{content:none !important;}
 #home .pa-ecoute .pa-play svg{width:17px; height:17px;}
 
+/* 6 nov. 2026 : LA SEANCE EN PARTIES (voir LE PLAN DE LA SEANCE dans le script).
+   Une barre sous l'en-tete : une part par partie, faite en encre, en cours en ambre. */
+#seanceParts{display:flex; gap:4px; margin:-6px 0 12px;}
+#seanceParts.hidden{display:none;}
+#seanceParts i{display:block; flex:1 1 0; min-width:6px; height:7px; border-radius:4px; background:rgba(28,36,48,.14);}
+#seanceParts i.fait{background:#2C3A4A;}
+#seanceParts i.ici{background:linear-gradient(90deg, #E8A23A 0 var(--q, 0%), rgba(28,36,48,.14) var(--q, 0%) 100%);}
+html[dir="rtl"] #seanceParts i.ici{background:linear-gradient(270deg, #E8A23A 0 var(--q, 0%), rgba(28,36,48,.14) var(--q, 0%) 100%);}
+body[data-theme="dark"] #seanceParts i{background:rgba(255,255,255,.12);}
+body[data-theme="dark"] #seanceParts i.fait{background:#C9D4DD;}
+body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(90deg, #F0A93C 0 var(--q, 0%), rgba(255,255,255,.12) var(--q, 0%) 100%);}
+html[dir="rtl"] body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(270deg, #F0A93C 0 var(--q, 0%), rgba(255,255,255,.12) var(--q, 0%) 100%);}
+/* Lot de l'evaluation : sur l'ecran de fin (fin-paquet), toutes les parties sont faites. */
+#flashcards.fin-paquet #seanceParts i{background:#2C3A4A;}
+body[data-theme="dark"] #flashcards.fin-paquet #seanceParts i{background:#C9D4DD;}
+/* L'ecran de passage entre deux parties. */
+.cp-passage{display:grid; justify-items:center; gap:10px; text-align:center; padding:22px 8px 10px;}
+.cp-passage-ok{width:56px; height:56px; border-radius:50%; display:grid; place-items:center; background:rgba(31,122,85,.12);}
+.cp-passage-ok svg{width:30px; height:30px; fill:none; stroke:#1F7A55; stroke-width:3; stroke-linecap:round; stroke-linejoin:round;}
+body[data-theme="dark"] .cp-passage-ok{background:rgba(80,190,130,.16);}
+body[data-theme="dark"] .cp-passage-ok svg{stroke:#8ED3AA;}
+.cp-passage-fait{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size:22px; font-weight:800; letter-spacing:-.015em; line-height:1.2; text-wrap:balance;}
+.cp-passage-ensuite{margin:8px 0 0; font-size:16px; font-weight:700; text-wrap:balance;}
+.cp-passage-n{color:var(--gris-v); font-size:13px;}
+.cp-passage-go{margin-top:10px; min-width:180px;}
+/* Le plan sur la carte de l'accueil : il peut passer sur deux lignes. */
+#home #seancePilule .pa-contenu.pa-plan{white-space:normal; text-wrap:balance;}
+
 /* v1008 : LE TABLEAU DANS UN CADRE -- « verre et biseau dore » (proposition 4 retenue par Jacques,
    29 oct. 2026 : « un cadre pour la peinture [...] un melange de moderne et d'ancien »). Le verre de
    l'app autour, un biseau dore, des coins arrondis. */
@@ -12125,6 +12153,8 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
             <div class="pill" id="flashCounter">1 / 10</div>
         </div>
     </div>
+    <!-- 6 nov. 2026 : la barre de la seance du jour, en parties (majPartsSeance). -->
+    <div id="seanceParts" class="seance-parts hidden" aria-hidden="true"></div>
 
     <div class="flashcard-wrapper">
         <div id="flashcard" class="flashcard" onclick="handleCardTap(event)">
@@ -14868,6 +14898,29 @@ const I18N = {
         seance_continuer_long: "Continuer la séance",
         seance_commencer_long: "Commencer la séance",
         seance_contenu: "mots, grammaire et scènes",
+        seance_kicker_etape: "Étape {n} sur {t} · {lieu}",
+        seance_part_lieu: "Les mots de l'étape",
+        seance_part_neufs: "Mots nouveaux",
+        seance_part_feuille: "La conjugaison du jour",
+        seance_part_reperes: "Les repères",
+        seance_part_scene: "La scène",
+        seance_part_theme: "Le thème illustré",
+        seance_part_son: "Le son du jour",
+        seance_part_revisions: "Révisions",
+        seance_part_fin: "La fin de l'étape",
+        seance_passage_fait: "{part} : c'est fait",
+        seance_passage_ensuite: "Ensuite : {part}",
+        seance_passage_n: "{n} cartes",
+        seance_passage_un: "1 carte",
+        seance_plan_neufs: "{n} mots nouveaux",
+        seance_plan_neufs_un: "1 mot nouveau",
+        seance_plan_feuille: "la conjugaison",
+        seance_plan_reperes: "les repères",
+        seance_plan_scene: "une scène",
+        seance_plan_theme: "un thème illustré",
+        seance_plan_son: "le son du jour",
+        seance_plan_revisions: "{n} révisions",
+        seance_plan_revisions_un: "1 révision",
         garder_sous: "pour le retravailler",
         garder_fait: "Mis de côté",
         gardes_titre: "Mis de côté",
@@ -16471,6 +16524,29 @@ const I18N = {
         seance_continuer_long: "Continue the session",
         seance_commencer_long: "Start the session",
         seance_contenu: "words, grammar and scenes",
+        seance_kicker_etape: "Step {n} of {t} · {lieu}",
+        seance_part_lieu: "The step's words",
+        seance_part_neufs: "New words",
+        seance_part_feuille: "Today's conjugation",
+        seance_part_reperes: "The basics",
+        seance_part_scene: "The scene",
+        seance_part_theme: "The illustrated topic",
+        seance_part_son: "Sound of the day",
+        seance_part_revisions: "Review",
+        seance_part_fin: "End of the step",
+        seance_passage_fait: "{part}: done",
+        seance_passage_ensuite: "Next: {part}",
+        seance_passage_n: "{n} cards",
+        seance_passage_un: "1 card",
+        seance_plan_neufs: "{n} new words",
+        seance_plan_neufs_un: "1 new word",
+        seance_plan_feuille: "conjugation",
+        seance_plan_reperes: "the basics",
+        seance_plan_scene: "a scene",
+        seance_plan_theme: "an illustrated topic",
+        seance_plan_son: "the sound of the day",
+        seance_plan_revisions: "{n} reviews",
+        seance_plan_revisions_un: "1 review",
         garder_sous: "to work on it",
         garder_fait: "Set aside",
         gardes_titre: "Set aside",
@@ -18076,6 +18152,29 @@ const I18N = {
         seance_continuer_long: "Seansa devam et",
         seance_commencer_long: "Seansı başlat",
         seance_contenu: "kelimeler, dilbilgisi ve sahneler",
+        seance_kicker_etape: "{t} adımdan {n}. · {lieu}",
+        seance_part_lieu: "Adımın kelimeleri",
+        seance_part_neufs: "Yeni kelimeler",
+        seance_part_feuille: "Günün çekimi",
+        seance_part_reperes: "Temeller",
+        seance_part_scene: "Sahne",
+        seance_part_theme: "Resimli konu",
+        seance_part_son: "Günün sesi",
+        seance_part_revisions: "Tekrar",
+        seance_part_fin: "Adımın sonu",
+        seance_passage_fait: "{part}: tamam",
+        seance_passage_ensuite: "Sırada: {part}",
+        seance_passage_n: "{n} kart",
+        seance_passage_un: "1 kart",
+        seance_plan_neufs: "{n} yeni kelime",
+        seance_plan_neufs_un: "1 yeni kelime",
+        seance_plan_feuille: "çekim",
+        seance_plan_reperes: "temeller",
+        seance_plan_scene: "bir sahne",
+        seance_plan_theme: "resimli bir konu",
+        seance_plan_son: "günün sesi",
+        seance_plan_revisions: "{n} tekrar",
+        seance_plan_revisions_un: "1 tekrar",
         garder_sous: "üzerinde çalışmak için",
         garder_fait: "Kenara ayrıldı",
         gardes_titre: "Kenara ayrılanlar",
@@ -20110,6 +20209,29 @@ const I18N = {
         seance_continuer_long: "Продовжити заняття",
         seance_commencer_long: "Почати заняття",
         seance_contenu: "слова, граматика і сцени",
+        seance_kicker_etape: "Крок {n} з {t} · {lieu}",
+        seance_part_lieu: "Слова цього кроку",
+        seance_part_neufs: "Нові слова",
+        seance_part_feuille: "Дієвідміна дня",
+        seance_part_reperes: "Основи",
+        seance_part_scene: "Сцена",
+        seance_part_theme: "Тема в картинках",
+        seance_part_son: "Звук дня",
+        seance_part_revisions: "Повторення",
+        seance_part_fin: "Кінець кроку",
+        seance_passage_fait: "{part}: готово",
+        seance_passage_ensuite: "Далі: {part}",
+        seance_passage_n: "Карток: {n}",
+        seance_passage_un: "1 картка",
+        seance_plan_neufs: "нових слів: {n}",
+        seance_plan_neufs_un: "1 нове слово",
+        seance_plan_feuille: "дієвідміна",
+        seance_plan_reperes: "основи",
+        seance_plan_scene: "сцена",
+        seance_plan_theme: "тема в картинках",
+        seance_plan_son: "звук дня",
+        seance_plan_revisions: "повторень: {n}",
+        seance_plan_revisions_un: "1 повторення",
         garder_sous: "щоб попрацювати над ним",
         garder_fait: "Відкладено",
         gardes_titre: "Відкладені",
@@ -22473,6 +22595,29 @@ const I18N = {
         seance_continuer_long: "ادامهٔ جلسه",
         seance_commencer_long: "شروع جلسه",
         seance_contenu: "واژه‌ها، دستور زبان و صحنه‌ها",
+        seance_kicker_etape: "مرحلهٔ {n} از {t} · {lieu}",
+        seance_part_lieu: "واژه‌های این مرحله",
+        seance_part_neufs: "واژه‌های تازه",
+        seance_part_feuille: "صرف فعل امروز",
+        seance_part_reperes: "پایه‌ها",
+        seance_part_scene: "صحنه",
+        seance_part_theme: "موضوع مصور",
+        seance_part_son: "صدای امروز",
+        seance_part_revisions: "مرور",
+        seance_part_fin: "پایان مرحله",
+        seance_passage_fait: "{part}: انجام شد",
+        seance_passage_ensuite: "بعدی: {part}",
+        seance_passage_n: "{n} کارت",
+        seance_passage_un: "یک کارت",
+        seance_plan_neufs: "{n} واژهٔ تازه",
+        seance_plan_neufs_un: "یک واژهٔ تازه",
+        seance_plan_feuille: "صرف فعل",
+        seance_plan_reperes: "پایه‌ها",
+        seance_plan_scene: "یک صحنه",
+        seance_plan_theme: "یک موضوع مصور",
+        seance_plan_son: "صدای امروز",
+        seance_plan_revisions: "{n} مرور",
+        seance_plan_revisions_un: "یک مرور",
         garder_sous: "برای تمرین بیشتر",
         garder_fait: "کنار گذاشته شد",
         gardes_titre: "کنارگذاشته‌ها",
@@ -24247,6 +24392,29 @@ const I18N = {
         seance_continuer_long: "متابعة الجلسة",
         seance_commencer_long: "ابدأ الجلسة",
         seance_contenu: "كلمات وقواعد ومشاهد",
+        seance_kicker_etape: "المرحلة {n} من {t} · {lieu}",
+        seance_part_lieu: "كلمات المرحلة",
+        seance_part_neufs: "كلمات جديدة",
+        seance_part_feuille: "تصريف اليوم",
+        seance_part_reperes: "الأساسيات",
+        seance_part_scene: "المشهد",
+        seance_part_theme: "الموضوع المصوّر",
+        seance_part_son: "صوت اليوم",
+        seance_part_revisions: "المراجعة",
+        seance_part_fin: "نهاية المرحلة",
+        seance_passage_fait: "{part}: تمّ",
+        seance_passage_ensuite: "التالي: {part}",
+        seance_passage_n: "البطاقات: {n}",
+        seance_passage_un: "بطاقة واحدة",
+        seance_plan_neufs: "كلمات جديدة: {n}",
+        seance_plan_neufs_un: "كلمة جديدة واحدة",
+        seance_plan_feuille: "التصريف",
+        seance_plan_reperes: "الأساسيات",
+        seance_plan_scene: "مشهد",
+        seance_plan_theme: "موضوع مصوّر",
+        seance_plan_son: "صوت اليوم",
+        seance_plan_revisions: "مراجعات: {n}",
+        seance_plan_revisions_un: "مراجعة واحدة",
         garder_sous: "لتتمرّن عليها",
         garder_fait: "وُضعت جانبًا",
         gardes_titre: "الموضوعة جانبًا",
@@ -24652,6 +24820,29 @@ const I18N = {
         seance_continuer_long: "Continuar a sessão",
         seance_commencer_long: "Começar a sessão",
         seance_contenu: "palavras, gramática e cenas",
+        seance_kicker_etape: "Etapa {n} de {t} · {lieu}",
+        seance_part_lieu: "As palavras da etapa",
+        seance_part_neufs: "Palavras novas",
+        seance_part_feuille: "A conjugação do dia",
+        seance_part_reperes: "Os básicos",
+        seance_part_scene: "A cena",
+        seance_part_theme: "O tema ilustrado",
+        seance_part_son: "O som do dia",
+        seance_part_revisions: "Revisões",
+        seance_part_fin: "O fim da etapa",
+        seance_passage_fait: "{part}: feito",
+        seance_passage_ensuite: "Agora: {part}",
+        seance_passage_n: "{n} cartas",
+        seance_passage_un: "1 carta",
+        seance_plan_neufs: "{n} palavras novas",
+        seance_plan_neufs_un: "1 palavra nova",
+        seance_plan_feuille: "a conjugação",
+        seance_plan_reperes: "os básicos",
+        seance_plan_scene: "uma cena",
+        seance_plan_theme: "um tema ilustrado",
+        seance_plan_son: "o som do dia",
+        seance_plan_revisions: "{n} revisões",
+        seance_plan_revisions_un: "1 revisão",
         garder_sous: "para revisar depois",
         garder_fait: "Separada",
         gardes_titre: "Separadas",
@@ -26316,6 +26507,29 @@ const I18N = {
         seance_continuer_long: "Kontynuuj sesję",
         seance_commencer_long: "Zacznij sesję",
         seance_contenu: "słowa, gramatyka i sceny",
+        seance_kicker_etape: "Etap {n} z {t} · {lieu}",
+        seance_part_lieu: "Słowa tego etapu",
+        seance_part_neufs: "Nowe słowa",
+        seance_part_feuille: "Odmiana dnia",
+        seance_part_reperes: "Podstawy",
+        seance_part_scene: "Scena",
+        seance_part_theme: "Temat ilustrowany",
+        seance_part_son: "Dźwięk dnia",
+        seance_part_revisions: "Powtórki",
+        seance_part_fin: "Koniec etapu",
+        seance_passage_fait: "{part}: zrobione",
+        seance_passage_ensuite: "Dalej: {part}",
+        seance_passage_n: "Kart: {n}",
+        seance_passage_un: "1 karta",
+        seance_plan_neufs: "nowych słów: {n}",
+        seance_plan_neufs_un: "1 nowe słowo",
+        seance_plan_feuille: "odmiana",
+        seance_plan_reperes: "podstawy",
+        seance_plan_scene: "scena",
+        seance_plan_theme: "temat ilustrowany",
+        seance_plan_son: "dźwięk dnia",
+        seance_plan_revisions: "powtórek: {n}",
+        seance_plan_revisions_un: "1 powtórka",
         garder_sous: "żeby nad nim popracować",
         garder_fait: "Odłożone",
         gardes_titre: "Odłożone",
@@ -27980,6 +28194,29 @@ const I18N = {
         seance_continuer_long: "Продолжить занятие",
         seance_commencer_long: "Начать занятие",
         seance_contenu: "слова, грамматика и сцены",
+        seance_kicker_etape: "Этап {n} из {t} · {lieu}",
+        seance_part_lieu: "Слова этапа",
+        seance_part_neufs: "Новые слова",
+        seance_part_feuille: "Спряжение дня",
+        seance_part_reperes: "Основы",
+        seance_part_scene: "Сцена",
+        seance_part_theme: "Тема в картинках",
+        seance_part_son: "Звук дня",
+        seance_part_revisions: "Повторение",
+        seance_part_fin: "Конец этапа",
+        seance_passage_fait: "{part}: готово",
+        seance_passage_ensuite: "Дальше: {part}",
+        seance_passage_n: "Карточек: {n}",
+        seance_passage_un: "1 карточка",
+        seance_plan_neufs: "новых слов: {n}",
+        seance_plan_neufs_un: "1 новое слово",
+        seance_plan_feuille: "спряжение",
+        seance_plan_reperes: "основы",
+        seance_plan_scene: "сцена",
+        seance_plan_theme: "тема в картинках",
+        seance_plan_son: "звук дня",
+        seance_plan_revisions: "повторений: {n}",
+        seance_plan_revisions_un: "1 повторение",
         garder_sous: "чтобы поработать над ним",
         garder_fait: "Отложено",
         gardes_titre: "Отложенные",
@@ -29646,6 +29883,29 @@ const I18N = {
         seance_continuer_long: "Lerneinheit fortsetzen",
         seance_commencer_long: "Lerneinheit starten",
         seance_contenu: "Wörter, Grammatik und Szenen",
+        seance_kicker_etape: "Etappe {n} von {t} · {lieu}",
+        seance_part_lieu: "Die Wörter der Etappe",
+        seance_part_neufs: "Neue Wörter",
+        seance_part_feuille: "Die Konjugation des Tages",
+        seance_part_reperes: "Orientierung",
+        seance_part_scene: "Die Szene",
+        seance_part_theme: "Das bebilderte Thema",
+        seance_part_son: "Der Laut des Tages",
+        seance_part_revisions: "Wiederholung",
+        seance_part_fin: "Das Ende der Etappe",
+        seance_passage_fait: "{part}: geschafft",
+        seance_passage_ensuite: "Als Nächstes: {part}",
+        seance_passage_n: "{n} Karten",
+        seance_passage_un: "1 Karte",
+        seance_plan_neufs: "{n} neue Wörter",
+        seance_plan_neufs_un: "1 neues Wort",
+        seance_plan_feuille: "die Konjugation",
+        seance_plan_reperes: "Orientierung",
+        seance_plan_scene: "eine Szene",
+        seance_plan_theme: "ein bebildertes Thema",
+        seance_plan_son: "der Laut des Tages",
+        seance_plan_revisions: "{n} Wiederholungen",
+        seance_plan_revisions_un: "1 Wiederholung",
         garder_sous: "um es später zu üben",
         garder_fait: "Zurückgelegt",
         gardes_titre: "Zurückgelegt",
@@ -31323,6 +31583,29 @@ const I18N = {
         seance_continuer_long: "Continuar la práctica",
         seance_commencer_long: "Empezar la práctica",
         seance_contenu: "palabras, gramática y escenas",
+        seance_kicker_etape: "Etapa {n} de {t} · {lieu}",
+        seance_part_lieu: "Las palabras de la etapa",
+        seance_part_neufs: "Palabras nuevas",
+        seance_part_feuille: "La conjugación del día",
+        seance_part_reperes: "Lo básico",
+        seance_part_scene: "La escena",
+        seance_part_theme: "El tema ilustrado",
+        seance_part_son: "El sonido del día",
+        seance_part_revisions: "Repaso",
+        seance_part_fin: "El final de la etapa",
+        seance_passage_fait: "{part}: hecho",
+        seance_passage_ensuite: "Ahora: {part}",
+        seance_passage_n: "{n} tarjetas",
+        seance_passage_un: "1 tarjeta",
+        seance_plan_neufs: "{n} palabras nuevas",
+        seance_plan_neufs_un: "1 palabra nueva",
+        seance_plan_feuille: "la conjugación",
+        seance_plan_reperes: "lo básico",
+        seance_plan_scene: "una escena",
+        seance_plan_theme: "un tema ilustrado",
+        seance_plan_son: "el sonido del día",
+        seance_plan_revisions: "{n} repasos",
+        seance_plan_revisions_un: "1 repaso",
         garder_sous: "para trabajarla más",
         garder_fait: "Apartada",
         gardes_titre: "Apartadas",
@@ -51730,6 +52013,10 @@ function loadFlashcard(){
     // efface d'abord celui d'une phrase qui l'aurait precedee.
     // v839 : Premiers pas avance a chaque carte montree.
     if(typeof item.ppPos === "number"){ try{ marquerPositionPremiersPas(item.ppPos); }catch(e){} }
+    // 6 nov. 2026 : l'en-tete et la barre de la seance en parties, puis l'ecran
+    // de passage a la premiere carte d'une partie (voir LE PLAN DE LA SEANCE).
+    try{ majPartsSeance(); }catch(e){}
+    try{ if(montrerPassageSeance()) return; }catch(e){}
     if(item.mode === "phrase"){ montrerCartePhrase(item); return; }
     cacherCartePhrase();
     // UN PAQUET PEUT MELANGER LES TYPES DE CARTES. Le vocabulaire d'examen tire
@@ -61253,7 +61540,10 @@ function montrerCartePhrase(item){
     try{ marquerFeuille(item); }catch(e){}
     // v879 : les reperes (jours, mois, nombres) marquent leur passage.
     try{ marquerRepere(item); }catch(e){}
-    if(item.av && item.avBadge) type.appendChild(creer("b", "cp-av", item.avBadge));
+    // 6 nov. 2026 : dans la seance en parties, l'en-tete dit ou l'on est ; les
+    // etiquettes (« Etape 1 », « Reperes 1/10 », « Phrase »...) se taisent.
+    if(seancePartsActive()){ /* rien */ }
+    else if(item.av && item.avBadge) type.appendChild(creer("b", "cp-av", item.avBadge));
     else if(item.rpBadge){
         const bv = creer("b", "cp-av", item.rpBadge);
         if(String(item.themeId).indexOf("son_") === 0) bv.prepend(iconeHP(), " ");
@@ -63504,6 +63794,11 @@ async function preparerReperes(){
     if(!lireReperes().force && jourDApprentissage() < 2) return null;
     const R = await chargerReperes();
     if(!R) return null;
+    return choixReperes(R);
+}
+// 6 nov. 2026 : le choix lui-meme, sans attente -- le plan de l'accueil
+// (planSeanceDuJour) le lit aussi, pour annoncer les reperes du jour.
+function choixReperes(R){
     const st = lireReperes();
     const jour = getTodayStr();
     const ecart = debut => Math.round((Date.parse(jour) - Date.parse(debut)) / 86400000);
@@ -64523,6 +64818,10 @@ async function ouvrirSeanceDuJour(sansScene){
     try{ const rp = await preparerReperes(); if(rp && seance.length) seance = insererReperes(seance, rp); }catch(e){}
     // v880 : le son du jour, une fois par jour, au milieu.
     try{ const sd = await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
+    // 6 nov. 2026 : la seance regroupee par partie (voir LE PLAN DE LA SEANCE),
+    // AVANT premiereCarteFacile, qui ne deplace que quelques cartes de tete.
+    let regroupee = null;
+    try{ if(!seanceJaponaise()){ regroupee = regrouperSeance(seance, av); seance = regroupee.cartes; } }catch(e){ regroupee = null; }
     try{ seance = premiereCarteFacile(seance); }catch(e){}
     if(!seance.length){
         if(!complet){ seanceGratuiteVide(tout); return; }
@@ -64543,6 +64842,13 @@ async function ouvrirSeanceDuJour(sansScene){
     panneauAvantFlashcards = null;
     flashcardFromSearch = false;
     currentTheme = { id: "seance_" + niveau, name: t("seance_titre") + " \u00b7 " + niveau };
+    PASSAGES_VUS.clear();
+    SEANCE_PARTS = null;
+    if(regroupee){
+        let etape = null;
+        try{ if(av && av.lieu && !av.finA1) etape = { n: av.n + 1, t: av.total, lieu: sensPremiersPas(av.lieu.s) }; }catch(e){ etape = null; }
+        SEANCE_PARTS = { paquet: seance, parts: regroupee.parts, themeId: currentTheme.id, niveau: niveau, etape: etape };
+    }
     currentFlashcard = 0;
     flashcardMode = seance[0].mode || "nomen";
     setFlashHeader("seance_titre", null);
@@ -64563,8 +64869,275 @@ function glisserPhrasesPlusTard(paquet, tout){
         for(let i = currentFlashcard + 1; i < paquet.length; i++) if(paquet[i] && paquet[i].mode !== "phrase") places.push(i);
         if(!places.length) return;
         const avec = insererCartesPhrases(places.map(i => paquet[i]), tout);
-        places.forEach((i, k) => { paquet[i] = avec[k]; });
+        places.forEach((i, k) => {
+            // 6 nov. 2026 : la phrase prend la partie de la carte qu'elle remplace
+            // (voir LE PLAN DE LA SEANCE), sinon la barre se couperait en morceaux.
+            try{ if(SEANCE_PARTS && SEANCE_PARTS.paquet === paquet && avec[k] !== paquet[i]) SEANCE_PARTS.parts.set(avec[k], SEANCE_PARTS.parts.get(paquet[i]) || "revisions"); }catch(e){}
+            paquet[i] = avec[k];
+        });
     }).catch(() => {});
+}
+
+// ============ LE PLAN DE LA SEANCE (6 nov. 2026, decision 34d02c3) ============
+// L'evaluation du chef : la seance enchainait le tableau d'un verbe, deux cartes,
+// les nombres, une ecoute, l'oral, une phrase de reservation -- sans fil, et
+// sous trois etiquettes differentes (« Escale 1 », « Reperes 1/10 », « Phrase »).
+// Jacques : « Vas-y pour les recommandations » (maquettes B + C) :
+// - la seance est REGROUPEE PAR PARTIE, toujours dans cet ordre (ORDRE_PARTS) :
+//   l'etape (le verbe, ses mots, ses phrases toutes faites, le dialogue), la
+//   feuille de conjugaison, les mots nouveaux, les reperes, la scene ou le theme,
+//   le son du jour, les revisions ; la fin d'etape tout au bout. A l'interieur
+//   d'une partie, l'ordre des modules ne change pas (tri stable).
+// - pendant la seance, l'en-tete dit « Etape N sur 12 · le lieu » et le nom de
+//   la partie ; une barre en parties remplace les etiquettes des cartes ;
+// - entre deux parties, un ecran de passage (ce qui est fait, ce qui vient). Il
+//   n'est PAS une carte du paquet : seancesJson (n, p), l'objectif du jour et
+//   les reprises « Encore » ne le voient pas.
+// - sur l'accueil, la ligne sous le niveau dit ce que la seance contiendra
+//   (planSeanceDuJour) au lieu de « mots, grammaire et scenes ».
+// Les cartes-phrases vont dans la partie du mot qu'elles font travailler s'il est
+// dans la seance, sinon dans les revisions : elles restent APRES ce mot.
+const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "scene", "son", "revisions", "fin"];
+let SEANCE_PARTS = null;           // { paquet, parts (Map carte -> partie), themeId, niveau, etape }
+const PASSAGES_VUS = new Set();    // les index du paquet dont l'ecran de passage a ete montre
+function partDeCarteSeance(c, av, parCle){
+    if(!c) return "revisions";
+    const forme = c.forme || "";
+    if(c.av) return /^(av_escale_fin|av_jalon|av_fin_a1)$/.test(forme) ? "fin" : "lieu";
+    if(forme === "scene_arret" || forme === "theme_arret") return "scene";
+    const tid = String(c.themeId || "");
+    if(tid.indexOf("son_") === 0) return "son";
+    if(c.rpBadge || c.rpTableau || tid.indexOf("rp_") === 0) return "reperes";
+    if(c.fcBadge || c.fcFeuille || c.feuilleTemps) return "feuille";
+    if(c.mode === "phrase"){
+        const k = c.cible ? (c.cible.themeId + ":" + c.cible.index) : null;
+        return (k && parCle.has(k)) ? parCle.get(k) : "revisions";
+    }
+    let neuf = false;
+    try{ neuf = estNeuf(getWordState(c.themeId, c.index)); }catch(e){}
+    return neuf ? ((av && !av.finA1) ? "lieu" : "neufs") : "revisions";
+}
+// Rend { cartes, parts } : la seance triee par partie, et la partie de chaque carte.
+function regrouperSeance(seance, av){
+    const parts = new Map(), parCle = new Map();
+    seance.forEach(c => {
+        if(!c || c.mode === "phrase") return;
+        const p = partDeCarteSeance(c, av, parCle);
+        parts.set(c, p);
+        parCle.set(c.themeId + ":" + c.index, p);
+    });
+    seance.forEach(c => { if(c && c.mode === "phrase") parts.set(c, partDeCarteSeance(c, av, parCle)); });
+    const rang = c => { const i = ORDRE_PARTS.indexOf(parts.get(c)); return i < 0 ? ORDRE_PARTS.length : i; };
+    const cartes = seance.map((c, i) => [c, i]).sort((a, b) => rang(a[0]) - rang(b[0]) || a[1] - b[1]).map(x => x[0]);
+    return { cartes: cartes, parts: parts };
+}
+function seancePartsActive(){
+    return !!(SEANCE_PARTS && currentCards === SEANCE_PARTS.paquet && currentTheme && currentTheme.id === SEANCE_PARTS.themeId);
+}
+function titrePartSeance(p, c){
+    if(p === "scene" && c && c.forme === "theme_arret") return t("seance_part_theme");
+    return t("seance_part_" + (ORDRE_PARTS.indexOf(p) >= 0 ? p : "revisions"));
+}
+// Les parties du paquet, dans l'ordre : [{ p, debut, n }]. La fin d'etape se
+// range dans la partie d'avant (elle n'en est que la conclusion).
+function segmentsSeance(paquet, parts){
+    const segs = [];
+    paquet.forEach((c, j) => {
+        let p = parts.get(c) || "revisions";
+        if(p === "fin" && segs.length) p = segs[segs.length - 1].p;
+        const s = segs[segs.length - 1];
+        if(s && s.p === p) s.n++;
+        else segs.push({ p: p, debut: j, n: 1 });
+    });
+    return segs;
+}
+// L'en-tete et la barre, a chaque carte (appelee par loadFlashcard).
+function majPartsSeance(){
+    const box = document.getElementById("seanceParts");
+    const zone = document.getElementById("flashcards");
+    const actif = seancePartsActive();
+    if(zone) zone.classList.toggle("seance-en-parts", actif);
+    if(!actif){
+        if(box){ box.classList.add("hidden"); box.textContent = ""; }
+        // Les reprises (« Encore », « en faire 20 de plus ») gardent l'en-tete d'avant.
+        if(SEANCE_PARTS && currentTheme && currentTheme.id === SEANCE_PARTS.themeId){
+            const k = document.getElementById("flashKicker"), h = document.getElementById("flashThemeTitle");
+            if(k) k.textContent = t("seance_titre");
+            if(h) h.textContent = currentTheme.name || "";
+        }
+        return;
+    }
+    const P = SEANCE_PARTS, paquet = P.paquet;
+    const i = Math.max(0, Math.min(currentFlashcard, paquet.length - 1));
+    const c = paquet[i];
+    const k = document.getElementById("flashKicker"), h = document.getElementById("flashThemeTitle");
+    if(k) k.textContent = P.etape ? tf("seance_kicker_etape", P.etape) : (t("seance_titre") + " · " + P.niveau);
+    if(h) h.textContent = titrePartSeance(P.parts.get(c) === "fin" ? "fin" : (segmentsSeance(paquet, P.parts).find(s => i >= s.debut && i < s.debut + s.n) || {}).p, c);
+    if(!box) return;
+    box.textContent = "";
+    segmentsSeance(paquet, P.parts).forEach(s => {
+        const b = document.createElement("i");
+        b.style.flexGrow = String(s.n);
+        if(currentFlashcard >= s.debut + s.n) b.className = "fait";
+        else if(currentFlashcard >= s.debut){
+            b.className = "ici";
+            b.style.setProperty("--q", Math.round(100 * (currentFlashcard - s.debut) / s.n) + "%");
+        }
+        box.appendChild(b);
+    });
+    box.classList.remove("hidden");
+}
+// L'ecran de passage, a la premiere carte d'une partie. Rend true s'il s'affiche :
+// loadFlashcard s'arrete alors, et « Continuer » la rappelle pour la carte.
+function montrerPassageSeance(){
+    if(!seancePartsActive()) return false;
+    const P = SEANCE_PARTS, i = currentFlashcard;
+    if(i <= 0 || i >= P.paquet.length || PASSAGES_VUS.has(i)) return false;
+    const segs = segmentsSeance(P.paquet, P.parts);
+    const s = segs.find(x => x.debut === i);
+    if(!s) return false;
+    const avant = segs[segs.indexOf(s) - 1];
+    const zone = document.getElementById("flashcards"), el = document.getElementById("cartePhrase");
+    if(!zone || !el || !avant) return false;
+    PASSAGES_VUS.add(i);
+    try{ arreterOralPhrase(); }catch(e){}
+    CARTE_PHRASE_AFFICHEE = null;
+    zone.classList.add("en-phrase");
+    el.classList.remove("hidden");
+    el.textContent = "";
+    const actions = document.getElementById("flashcardActions");
+    if(actions) actions.classList.add("hidden");
+    const minuscule = x => x ? x.charAt(0).toLocaleLowerCase() + x.slice(1) : x;
+    const boite = document.createElement("div");
+    boite.className = "cp-passage";
+    const ok = document.createElement("span");
+    ok.className = "cp-passage-ok";
+    ok.setAttribute("aria-hidden", "true");
+    ok.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg>';
+    const fait = document.createElement("b");
+    fait.className = "cp-passage-fait";
+    fait.textContent = tf("seance_passage_fait", { part: titrePartSeance(avant.p, P.paquet[avant.debut]) });
+    const ensuite = document.createElement("p");
+    ensuite.className = "cp-passage-ensuite";
+    ensuite.textContent = tf("seance_passage_ensuite", { part: minuscule(titrePartSeance(s.p, P.paquet[s.debut])) });
+    const n = document.createElement("small");
+    n.className = "cp-passage-n";
+    n.textContent = s.n === 1 ? t("seance_passage_un") : tf("seance_passage_n", { n: s.n });
+    const go = document.createElement("button");
+    go.type = "button";
+    go.className = "primary cp-passage-go";
+    go.textContent = t("review_continuer");
+    go.addEventListener("click", () => { loadFlashcard(); });
+    [ok, fait, ensuite, n, go].forEach(x => boite.appendChild(x));
+    el.appendChild(boite);
+    try{ majCompteurCarte(); }catch(e){}
+    try{ go.focus({ preventScroll: true }); }catch(e){}
+    return true;
+}
+// LE PLAN SUR L'ACCUEIL : ce que la seance contiendra, compte avec les memes regles
+// que cartesDeSeance() et les modules (sans hasard, sans rien ecrire), pour la
+// ligne sous le niveau : « Debutant · 6 mots nouveaux · les reperes · une scene ».
+// Une donnee qui manque (escales, reperes, feuilles) est chargee, puis la ligne
+// se refait. Le compte peut differer d'une carte quand une carte-phrase prend la
+// place d'un mot nouveau : c'est un plan, pas un releve.
+let PLAN_CACHE = null;
+const PLAN_CHARGEMENTS = new Set();
+function attendrePourLePlan(nom, promesse){
+    if(PLAN_CHARGEMENTS.has(nom) || !promesse || typeof promesse.then !== "function") return;
+    PLAN_CHARGEMENTS.add(nom);
+    promesse.then(() => { PLAN_CACHE = null; try{ majPlanPilule(); }catch(e){} }).catch(() => {});
+}
+function planSeanceDuJour(){
+    if(seanceJaponaise()) return null;
+    try{ if(premiersPasEnCours()) return null; }catch(e){ return null; }
+    const niveau = niveauSeance();
+    try{ const r = lireRevoirNiveau(); if(r && r.n === niveau) return null; }catch(e){}
+    let av = null;
+    try{
+        if(a1VoyageEnCours()){
+            if(A1_VOYAGE_DONNEES) av = lireA1Voyage();
+            else attendrePourLePlan("a1v", chargerA1Voyage());
+        }
+    }catch(e){ av = null; }
+    let fait = 0;
+    try{ fait = getDailyActivityCount() || 0; }catch(e){}
+    const complet = accesComplet();
+    const cleCache = [getTodayStr(), niveau, fait, complet ? 1 : 0, av ? JSON.stringify(av) : "",
+                      !!REPERES_DONNEES, !!FEUILLES_DONNEES, getUiLang(), LANGUE_APPRISE].join("|");
+    if(PLAN_CACHE && PLAN_CACHE.cle === cleCache) return PLAN_CACHE.texte;
+    const pool = complet ? paquetDuNiveau(niveau) : filtrerGratuit(paquetDuNiveau(niveau));
+    if(!pool.length) return null;   // donnees pas encore arrivees : rien en cache
+    const tout = [];
+    NIVEAUX_CECR.forEach(n => { tout.push.apply(tout, complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n))); });
+    let poolNeufs = pool;
+    if(av){
+        if(!av.fin){ const e = escalesA1Voyage()[av.e || 0]; if(e) poolNeufs = poolEscale(pool, e); }
+        else if((av.k || 0) < suiteA1Voyage().length) poolNeufs = poolSuite(pool, av.k || 0);
+    }
+    const neuf = it => estNeuf(getWordState(it.themeId, it.index));
+    const taille = tailleSeance();
+    const neufsDispo = poolNeufs.filter(neuf).length;
+    const plafond = placeNeufsRestante();
+    const reserve = Math.min(Math.round(taille * PART_NEUFS_RESERVEE), plafond, neufsDispo);
+    const dues = Math.min(cartesEchues(tout.filter(it => !neuf(it))).length, Math.max(0, taille - reserve));
+    let neufs = Math.min(neufsDispo, Math.max(0, Math.min(taille - dues, plafond)));
+    const total = dues + neufs;
+    // Les cartes-phrases PRENNENT LA PLACE de cartes (insererCartesPhrases) : celles
+    // qui tombent sur les mots nouveaux (apres les revisions) en retirent autant.
+    try{
+        if(LANGUE_APPRISE !== "ja" && essaiActif("phrases")){
+            const pal = palierSeance(tout.filter(it => !neuf(it)).length);
+            for(let k = pal.debut; k < total; k += pal.tous_les) if(k >= dues && neufs > 0) neufs--;
+        }
+    }catch(e){}
+    let feuille = false, reperes = false;
+    try{
+        if(feuillesEssai() && niveau !== "A1"){
+            if(FEUILLES_DONNEES) feuille = !!feuilleDuJour(niveau);
+            else attendrePourLePlan("feuilles", chargerFeuilles());
+        }
+    }catch(e){}
+    try{
+        if(reperesPourMoi() && (lireReperes().force || jourDApprentissage() >= 2)){
+            if(REPERES_DONNEES) reperes = !!choixReperes(REPERES_DONNEES);
+            else attendrePourLePlan("reperes", chargerReperes());
+        }
+    }catch(e){}
+    let scene = null;
+    try{
+        if(total >= 6){
+            if(!av && themeDuJour()) scene = "seance_plan_theme";
+            else if(arretSceneActif()) scene = "seance_plan_scene";
+        }
+    }catch(e){}
+    let son = false;
+    try{
+        if(essaiActif("son_du_jour") && jourDApprentissage() >= 3){
+            let st = {};
+            try{ st = JSON.parse(localStorage.getItem(SON_DU_JOUR_KEY) || "{}") || {}; }catch(e){ st = {}; }
+            son = st.j !== getTodayStr();
+        }
+    }catch(e){}
+    const morceaux = [];
+    if(feuille) morceaux.push(t("seance_plan_feuille"));
+    if(neufs) morceaux.push(neufs === 1 ? t("seance_plan_neufs_un") : tf("seance_plan_neufs", { n: neufs }));
+    if(reperes) morceaux.push(t("seance_plan_reperes"));
+    if(scene) morceaux.push(t(scene));
+    if(son) morceaux.push(t("seance_plan_son"));
+    if(dues) morceaux.push(dues === 1 ? t("seance_plan_revisions_un") : tf("seance_plan_revisions", { n: dues }));
+    const texte = morceaux.length ? morceaux.join(" · ") : null;
+    PLAN_CACHE = { cle: cleCache, texte: texte };
+    return texte;
+}
+function majPlanPilule(){
+    const pil = document.getElementById("seancePilule");
+    const el = pil && pil.querySelector(".pa-contenu");
+    if(!el) return;
+    let plan = null;
+    try{ plan = planSeanceDuJour(); }catch(e){ plan = null; }
+    if(plan){ el.removeAttribute("data-i18n"); el.textContent = plan; }
+    else { el.setAttribute("data-i18n", "seance_contenu"); el.textContent = t("seance_contenu"); }
+    el.classList.toggle("pa-plan", !!plan);
 }
 
 // Le sous-titre de la tuile : ce qu'il reste a faire, pas un pourcentage.
@@ -64860,6 +65433,7 @@ function majPiluleSeance(){
     try{ pp = premiersPasEnCours(); }catch(e){}
     const niveau = niveauSeance();
     majTitrePilule();
+    try{ majPlanPilule(); }catch(e){}   // 6 nov. 2026 : le plan de la seance
     const niv = document.getElementById("spNiv");
     if(niv) niv.textContent = pp ? "🌱" : niveau;   // v882 : la fleche est dessinee par .pa-niv::after
     let clairTxt = pp ? t("pp_niveau_clair") : t("niveau_clair_" + niveau);
