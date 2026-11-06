@@ -265,10 +265,37 @@ function blancFinEtape(E){
 }
 
 // ---------------------------------------------------------------- le verdict
+// LES GRILLES HORS CHRONO (6 nov., demande de telc-ecrire) : une partie qui fait noter l'eleve lui-meme (la grille
+// I-IV de l'ecrit) appelle fini() des « Rendre », pendant le chrono, puis inscrit sa grille ; l'examen blanc les
+// passe toutes ici, a la fin de l'examen, juste avant le verdict :
+//   TELC.epreuve({id: "S", …, lancer, grille: (finiGrille, o) => { … ; finiGrille({pts: {Schreiben: 22}, detail}) }})
+//   o = {detail (le detail rendu par fini()), numero, zone, suite, rapide, langue}.
+//   Les points de la grille S'AJOUTENT a ceux de fini() ({remplace: true} : ils les remplacent), bornes au bareme.
+function blancGrilles(){
+  const attente = TELC.epreuves.filter(e => typeof e.grille === "function" && BL.res[e.id] && !BL.res[e.id].absent && !BL.res[e.id].grilleFaite);
+  if (!attente.length) return false;
+  const e = attente[0], r = BL.res[e.id];
+  let rendu = false;
+  const finiGrille = res => {
+    if (rendu) return; rendu = true;
+    const pts = (res && res.pts) || {}, avant = r.pts || {}, total = {};
+    for (const c in BLANC_SUR[e.id]) total[c] = (res && res.remplace ? 0 : Number(avant[c]) || 0) + (Number(pts[c]) || 0);
+    BL.res[e.id] = Object.assign(blancBorner(e.id, { pts: total, detail: r.detail }), { grilleFaite: true, grille: (res && res.detail) || null });
+    blancSauver();
+    blancVerdict();
+  };
+  blancEcran(T("bl_p_" + e.id));
+  $("zone").innerHTML = "";
+  DTZ.surRetour(() => { confirmer(T("quitter_q"), () => { silence(); accueil(); }, T("quitter")); return true; });
+  try{ e.grille(finiGrille, { detail: r.detail || null, numero: BL.numero || 0, zone: $("zone"), suite: $("suite"), rapide: RAPIDE, langue: LANGUE }); }
+  catch(err){ finiGrille({}); }
+  return true;
+}
 function blancVerdict(){
   arreterChrono();
   BL = lire("blanc", null) || BL;
   if (!BL) return blancIntro();
+  if (!BL.fini && blancGrilles()) return;
   // l'oral passe par sa page : sa part arrive dans res.Sp ; a defaut, le dernier oral fait depuis le debut de l'examen
   if (!BL.res.Sp){
     const r = lire("resultats", {}).Sp;
