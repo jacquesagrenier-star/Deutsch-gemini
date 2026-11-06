@@ -45818,6 +45818,7 @@ function exercicesSprechen(niveau){
             // oral, les deux s'entendent, et c'est l'enchainement qu'on
             // apprend a reconnaitre.
             audioDe: o.frage + " " + o.chunks.join(" "),
+            niveauExamen: o.niveau,
             ...champsPruefung(o, "erkl", "explanation")
         }));
 }
@@ -45839,6 +45840,7 @@ function exercicesSchreiben(niveau){
             ...videPruefung("hint"),
             chunks: o.chunks.slice(),
             audioDe: o.chunks.join(" "),
+            niveauExamen: o.niveau,
             ...champsPruefung(o, "erkl", "explanation")
         }));
 }
@@ -45872,6 +45874,7 @@ function exercicesLesen(niveau){
                     // avant de repondre transformerait une epreuve de
                     // lecture en epreuve d'ecoute.
                     audioDe: o.text,
+                    niveauExamen: o.niveau,
                     ...champsPruefung(q, "frage", "question", o.text + "\n\n— "),
                     ...videPruefung("translation"),
                     ...videPruefung("hint"),
@@ -45910,6 +45913,7 @@ function exercicesHoeren(niveau){
                 ...videPruefung("translation"),
                 ...videPruefung("hint"),
                 dictation: true, dictationText: o.audio, dictationLang: "de",
+                niveauExamen: o.niveau,
                 answers: [correct], correct: correct, correctEn: correct,
                 correctTr: correct, correctUk: correct, correctFa: correct, correctPt: correct, correctAr: correct, correctPl: correct, correctRu: correct,
                 options: options, optionsEn: options, optionsTr: options,
@@ -45927,6 +45931,22 @@ function exercicesHoeren(niveau){
 // serait quatre fois la meme question. La barre vit donc sur l'ecran
 // « Comprendre l'examen », au-dessus des quatre boutons qu'elle commande.
 let pruefungNiveau = null;   // null = les deux niveaux
+// SANS NIVEAU CHOISI, L'A2 ET LE B1 SEULEMENT (6 nov. 2026, decision de Jacques : « A et D »). Une testeuse B1
+// trouvait l'oral « pitched a bit above where I'm at as a B1 speaker », avec des notes qui parlaient « a lot about
+// C1 » : sans niveau choisi, les quatre epreuves melangeaient les quatre exercices C1 (Vortrag, Diskussion) a ceux
+// du DTZ et du B1, et leurs explications ne parlent que du C1. Le C1 n'arrive plus que par le bouton C1.
+// Les textes de Lire numerotent leurs groupes a partir de 0 a chaque appel : le groupe prend le niveau devant lui,
+// sans quoi le texte 0 de l'A2 et celui du B1 se meleraient (melangerEpreuve() les reunit par groupe).
+const PRUEFUNG_NIVEAUX_PAR_DEFAUT = ["A2", "B1"];
+function sansC1ParDefaut(construire){
+    return niveau => {
+        if(niveau) return construire(niveau);
+        const out = [];
+        PRUEFUNG_NIVEAUX_PAR_DEFAUT.forEach(n => construire(n).forEach(e =>
+            out.push(e.groupe === undefined ? e : Object.assign({}, e, { groupe: n + "-" + e.groupe }))));
+        return out;
+    };
+}
 
 function selectPruefungNiveau(n){
     pruefungNiveau = (n === "ALL") ? null : n;
@@ -45937,8 +45957,8 @@ function selectPruefungNiveau(n){
 // additionnees, et pour la lecture les QUESTIONS, pas les textes -- c'est le
 // nombre d'ecrans que l'usager va traverser.
 function nbEpreuves(niveau){
-    return exercicesHoeren(niveau).length + exercicesLesen(niveau).length
-         + exercicesSchreiben(niveau).length + exercicesSprechen(niveau).length;
+    return sansC1ParDefaut(exercicesHoeren)(niveau).length + sansC1ParDefaut(exercicesLesen)(niveau).length
+         + sansC1ParDefaut(exercicesSchreiben)(niveau).length + sansC1ParDefaut(exercicesSprechen)(niveau).length;
 }
 
 function renderPruefungNiveauBar(){
@@ -46041,10 +46061,10 @@ function openPruefungInfo(){
     if(!pruefungData) loadPruefungJson().then(renderPruefungNiveauBar);
 }
 
-function startPruefungSprechen(){ lancerEpreuve(exercicesSprechen, "kicker_pruefung_sprechen"); }
-function startPruefungLesen(){ lancerEpreuve(exercicesLesen, "kicker_pruefung_lesen"); }
-function startPruefungSchreiben(){ lancerEpreuve(exercicesSchreiben, "kicker_pruefung_schreiben"); }
-function startPruefungHoeren(){ lancerEpreuve(exercicesHoeren, "kicker_pruefung_hoeren"); }
+function startPruefungSprechen(){ lancerEpreuve(sansC1ParDefaut(exercicesSprechen), "kicker_pruefung_sprechen"); }
+function startPruefungLesen(){ lancerEpreuve(sansC1ParDefaut(exercicesLesen), "kicker_pruefung_lesen"); }
+function startPruefungSchreiben(){ lancerEpreuve(sansC1ParDefaut(exercicesSchreiben), "kicker_pruefung_schreiben"); }
+function startPruefungHoeren(){ lancerEpreuve(sansC1ParDefaut(exercicesHoeren), "kicker_pruefung_hoeren"); }
 
 // orbAction() appelle window[action] SANS ARGUMENT : chaque option du panneau
 // a donc besoin de sa porte d'entree nommee.
@@ -66860,7 +66880,14 @@ function majKickerExercice(){
     // Pendant une reprise des erreurs, la deuxieme ligne dit CE QU'ON REFAIT
     // et non ou l'on en est : on n'est pas dans le bloc 3, on est dans ses
     // fautes -- meme si la position du bloc reste en memoire pour la suite.
-    el.textContent = t(exerciseKickerKey)
+    // LE NIVEAU DE L'EPREUVE D'EXAMEN DANS LE TITRE (6 nov. 2026, decision de Jacques : « A et D ») :
+    // « Examen · Parler · B1 ». Une serie melange l'A2 et le B1 : le niveau suit donc l'exercice affiche
+    // (loadExercise() rappelle cette fonction a chaque exercice). Les codes A2, B1, C1 s'ecrivent pareil dans
+    // les 9 langues. Seulement pour les quatre epreuves : la decouverte guidee en emprunte une sous son propre titre.
+    const ex = activeExercises && activeExercises[currentExercise];
+    const niveauEx = (String(exerciseKickerKey).indexOf("kicker_pruefung_") === 0 && ex && ex.niveauExamen)
+        ? " · " + ex.niveauExamen : "";
+    el.textContent = t(exerciseKickerKey) + niveauEx
         + (revisionErreursEnCours
             ? "\n" + t("exo_kicker_erreurs")
             : (exerciseBlocTotal > 1
@@ -66991,6 +67018,7 @@ function loadExercise(){
     updateXpComboDisplay();
     const ex = activeExercises[currentExercise];
     if(!ex) return;
+    if(ex.niveauExamen) majKickerExercice();   // le niveau de l'epreuve d'examen, exercice par exercice
     answered = false;
     // L'anglais n'existe encore que pour une partie du contenu des exercices
     // (Phase 2 en cours) : on retombe sur le français si la traduction anglaise manque.
