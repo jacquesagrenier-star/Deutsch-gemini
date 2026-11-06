@@ -129,6 +129,17 @@ Source : `visuel/transportes/transportes.py` (`LIEUX`, `LIEU_TXT`, `IMAGES`).
   rouge foncé, puis y remonte (même cadrage : `zug-ein` est une retouche de `zug-aus`).
 - **NOUVEAU — une rue résidentielle arborée** (Felix au volant d'une petite voiture grise) et **l'intérieur d'un
   avion** (Felix au hublot, l'aile et les nuages).
+### Les lieux du thème « Les vacances et le voyage » (thème illustré, 5 nov. 2026)
+Source : `visuel/vacances/vacances.py` (`IMAGES`, `REPRISES`). Trois voyages, hors de Berlin pour l'essentiel :
+- **La chambre d'Anna** = celle de « La journée » (lit blanc, table de chevet en bois et sa lampe, armoire en bois, fenêtre et
+  radiateur blancs) : elle y fait sa **petite valise à roulettes rouge foncé**, celle de la scène `flughafen` et du quai de gare des transports.
+- **Málaga** (Anna, en octobre) : la plage de la scène `strand` (recadrée), la place de la cathédrale (pierre claire, orangers), une rue
+  de la vieille ville et son étal de céramiques peintes. Anna en robe d'été et chapeau de paille ; à l'aéroport de Berlin, son manteau bleu marine et l'écharpe rouge.
+- **Hambourg** (Mark, un week-end de pluie) : l'hôtel de la scène `hotel` (recadrée), le train grandes lignes, le bateau du tour du port
+  (grues, Speicherstadt de brique rouge), une baraque à Fischbrötchen, un musée maritime, un café. Mark porte toujours le **manteau de
+  laine gris** de l'hôtel sur un pull bleu foncé, et son **sac à dos noir**.
+- **La mer Baltique** (Jan, Katrin, Ben, Mia, l'été dernier) : une maison blanche de bord de mer, **porte bleue**, roses grimpantes, la
+  mer derrière les dunes (l'appartement de vacances, `familia-wohnung`, référence de l'intérieur) ; la plage aux Strandkörbe.
 ### Le salon de Jan et Katrin (chez Ben et Mia) — thèmes « Où est le chat ? » et « La météo »
 - Maître : `visuel/gato/img/piece.png` (la pièce vide du chat Moritz ; copie dans
   `~/.wortando/meteo/ref/salon-jan-katrin.png`), webp publié `visuel/prototype/gato/piece.webp`. Toute image qui y
@@ -188,6 +199,58 @@ Source : `visuel/transportes/transportes.py` (`LIEUX`, `LIEU_TXT`, `IMAGES`).
     la libraire : la soixantaine, cheveux gris courts, lunettes rondes, gilet rouge foncé ; fenêtre à GAUCHE, parquet.
 - Les clients sont **Mark** et **Anna** (leurs images de référence) ; les vendeurs restent sans nom.
 - La source : `visuel/courses/courses.py` (LIEUX, MOMENTS). Un moment dans la boucherie reprend l'image de la boucherie.
+
+### L'école de Ben et la Kita de Mia — thème illustré « L'école et la garderie » (5 nov. 2026)
+Source : `visuel/ecole/ecole.py` (`IMAGES`, `KITA`, `CLASSE`, `SOURCES`). Les enfants de Jan et Katrin : Ben (7 ans,
+2e année, classe 2b) et Mia (4 ans).
+- **La Grundschule de Ben** (« Grundschule am Kiez ») = la façade de « La journée » (`visuel/prototype/journee/familia-5.webp` :
+  immeuble crème à grande porte vitrée, rue pavée de Berlin, réverbères). Le retour de l'école (`schule-abholen`) et la
+  cour de récréation (`pause` : un grand marronnier, une structure à grimper) la reçoivent « pour le lieu ».
+- **NOUVEAU — la classe 2b** (`klasse`, le maître des images de classe) : petits pupitres et chaises de bois clair en
+  rangées, grand tableau VERT entièrement vide, peintures d'enfants sans écriture sur un panneau de liège à DROITE,
+  fenêtre à GAUCHE, murs crème. **Frau Weber**, l'enseignante (personne neuve, sans image de référence avant `klasse`) : la
+  quarantaine, cheveux bruns mi-longs, lunettes, pull bleu foncé. La porte de la classe (`lehrerin`) et la réunion de
+  parents (`elternabend`, le soir, les parents sur les petites chaises) reprennent `klasse`.
+- **NOUVEAU — la Kita de Mia** (« Kita Pusteblume », `kita-bringen`, le maître des images de la Kita) : vestiaire clair,
+  parquet pâle, murs blancs, bancs bas en bois et rangée de petites patères avec vestes et petits sacs à dos, dessins
+  d'enfants sans écriture, grandes fenêtres. **Frau Krüger**, l'éducatrice (personne neuve) : la quarantaine, cheveux
+  courts blond vénitien, gilet vert, jean. `kita-abholen` (Mark vient chercher Mia), `anmelden` (le bureau de la
+  directrice : la cinquantaine, chignon gris, écharpe rouge) et `malen` (la salle de jeux) reprennent `kita-bringen`.
+- **Chez Jan et Katrin** : la chambre des enfants (`journee/familia-1`) pour `krank` et `packen`, la cuisine
+  (`journee/familia-2`) pour `hausaufgaben`. Mark vient chercher Mia : c'est un ami de la famille.
+### Le quartier de Mark, dans la rue — thème illustré « En ville : s'orienter » (4 nov. 2026)
+- **Maître : la scène `kreuzung` de l'app** (`visuel/prototype/kreuzung.webp`, prompt
+  `visuel/scenes/kreuzung.prompt.txt`) : façades crème et ocre pâle du vieux Berlin, quatre étages,
+  hautes fenêtres, rez-de-chaussée commerçants ; trottoir pavé, lumière claire un peu couverte de fin
+  de matinée ; rien d'écrit nulle part (pas d'enseigne, de nom, de plaque). La boulangerie, la
+  pharmacie à la croix verte, la poste jaune, le café à l'auvent bordeaux et l'arrêt de bus au
+  panneau rond jaune et vert viennent tels quels de cette image (recadrés, `visuel/ciudad/ciudad.py
+  --recadrer`).
+- Chaque photo d'un autre lieu du quartier (gare, mairie, banque, hôpital, musée, cinéma…) reçoit
+  `kreuzung.webp` en première référence « pour la rue » et garde ces façades et cette lumière ; un
+  lieu se reconnaît à ce qu'il montre (la croix, le guichet, l'horloge de gare), jamais à une
+  enseigne.
+- **Le plan du quartier** est dessiné par la page, pas photographié : la Gartenstraße (la rue de Mark,
+  Gartenstraße 12) et la Bergstraße, croisées par la Lindenstraße, la Schulstraße et la Parkstraße.
+  En espagnol, le même plan porte des noms de Madrid (calle Mayor, calle del Sol, calle de la Luna,
+  calle de la Paz, calle del Prado) ; les photos restent celles de Berlin, comme les scènes.
+### Les lieux du thème « Les fêtes et les invitations » (thème illustré, 5 nov. 2026)
+- **Le salon de Jan et Katrin à Noël** (`visuel/prototype/fetes/weihnachten.webp`) : la pièce du chat, retouchée
+  depuis son maître (armoire sombre à gauche, canapé gris clair aux coussins moutarde, étagère blanche, table en pin,
+  hautes fenêtres à rideaux blancs) ; un sapin aux boules rouges et dorées devant le canapé. Anna y fête Noël avec Ben
+  et Mia. Le **goûter d'anniversaire de Ben** (8 ans) s'y tiendra aussi (image à faire, même maître).
+- **La rue de Silvester** (`silvester.webp`) : une rue d'Altbauten de Berlin la nuit, façades claires, un peu de
+  neige au bord des trottoirs ; Anna, Lena et Felix aux cierges magiques.
+- **Le jardin de Pâques** (`ostern.webp`) : une pelouse sous des pommiers en fleurs, des jonquilles ; Ben et Mia et
+  leur panier d'œufs. Le jardin n'a pas de propriétaire dans l'histoire : ne pas le dire celui de quelqu'un sans le
+  décider.
+- **La cuisine de Mark** (`planen.webp`, mur vert sauge, réfrigérateur blanc à gauche, horloge ronde, étagère à
+  vaisselle, table en bois) : Mark et Anna y préparent une fête.
+- **Une porte d'appartement et sa cage d'escalier sombre** (`mitbringen.webp`) : Mark arrive avec un saladier chez
+  une amie (inconnue, cheveux bruns en chignon). Pas encore l'appartement d'Anna.
+- Madrid : **le salon des douze raisins** (`uvas.webp`) : guirlandes de papier multicolores, ballons dorés, la
+  télévision qui montre l'horloge de la Puerta del Sol ; Carmen, Javier et Inés. Dans le thème, la Nochevieja a lieu
+  chez Inés (calle del Pez 8).
 
 ### Les lieux d'un seul épisode (gardés pour mémoire)
 - L'aéroport (épisode 1), le Bürgeramt (épisode 2), la piste cyclable (épisode 3) : voir leurs

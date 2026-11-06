@@ -8965,7 +8965,7 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1117</span>
+        <span class="subtitle-version">v1118</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -10010,6 +10010,43 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
         <div class="orb hidden" data-orbid="courses" id="tuileCourses" onclick="ouvrirThemeIllustre('courses')" role="button" tabindex="0">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3.5 4h2.2l2.3 10.5h10.2l2-7.5H7"/><circle cx="9.5" cy="18.8" r="1.5"/><circle cx="16.8" cy="18.8" r="1.5"/></svg></div>
             <div><strong data-i18n="cou_tuile">Faire les courses</strong></div>
+        </div>
+        <div class="orb hidden" data-orbid="vacances" id="tuileVacances" onclick="ouvrirThemeIllustre('vacances')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="7.5" width="14" height="11.5" rx="2"/><path d="M9.5 7.5V5.5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2"/><path d="M9 7.5v11.5M15 7.5v11.5"/><circle cx="8" cy="20.5" r=".8"/><circle cx="16" cy="20.5" r=".8"/></svg></div>
+            <div><strong data-i18n="vac_tuile">Les vacances et le voyage</strong></div>
+        </div>
+
+        <!-- Le travail et l'emploi (5 nov. 2026, vague 4) : la recherche d'emploi, au coeur du DTZ -- pas les objets de
+             la scene buero. Lire une annonce (Vollzeit, Teilzeit, Minijob ; jornada completa, media jornada), le CV et la
+             lettre, l'entretien, le contrat (Probezeit, Urlaub), le premier jour, Sie / du et usted / tu, se declarer
+             malade (sich krankmelden) ; les papiers en HTML : visuel/prototype/travail.html. es et de. -->
+        <div class="orb hidden" data-orbid="travail" id="tuileTravail" onclick="ouvrirThemeIllustre('travail')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V5.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5.5v2"/><path d="M3.5 12.5h17"/><path d="M11 12.5v1.5h2v-1.5"/></svg></div>
+            <div><strong data-i18n="trav_tuile">Le travail et l'emploi</strong></div>
+        </div>
+
+        <!-- L'ecole et la garderie (5 nov. 2026, vague 4) : les parents face a l'ecole, sujet frequent du DTZ -- amener et
+             aller chercher, inscrire, le mot d'absence, la reunion de parents, l'horaire, les fournitures, les vacances.
+             Ben (7 ans) et Mia (4 ans), les enfants de Jan et Katrin ; l'horaire, le mot d'absence, l'invitation et le
+             calendrier en HTML ; Wohin? / Wo?, les verbes separables, weil ; ir a / estar en, la « a » personnelle :
+             visuel/prototype/ecole.html. es et de. -->
+        <div class="orb hidden" data-orbid="ecole" id="tuileEcole" onclick="ouvrirThemeIllustre('ecole')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 9.5 12 5l9 4.5-9 4.5z"/><path d="M7 11.5v4.5c1.5 1.5 3 2 5 2s3.5-.5 5-2v-4.5"/><path d="M21 9.5v5"/></svg></div>
+            <div><strong data-i18n="eco_tuile">L'école et la garderie</strong></div>
+        </div>
+
+        <!-- En ville : s'orienter (4 nov. 2026, vague 3) : les lieux de la ville, demander et donner son chemin, situer un
+             lieu sur un plan dessine (le quartier de Mark a Berlin, un quartier de Madrid) ; neben / gegenueber + datif,
+             zum / zur, Gehen Sie / Biegen Sie ... ab ; del / al, hay / esta, siga / gire. Pas les transports (leur theme) :
+             visuel/prototype/ciudad.html. es et de. -->
+        <div class="orb hidden" data-orbid="ciudad" id="tuileCiudad" onclick="ouvrirThemeIllustre('ciudad')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-6-5.6-6-10.5a6 6 0 0 1 12 0C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/></svg></div>
+            <div><strong data-i18n="ciu_tuile">En ville : s'orienter</strong></div>
+        </div>
+
+        <div class="orb hidden" data-orbid="fetes" id="tuileFetes" onclick="ouvrirThemeIllustre('fetes')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="8.5" rx="5" ry="6"/><path d="M12 14.5l-1.2 1.8h2.4zM12 16.3c0 2.2-2.2 2.6-1.6 5.2"/><path d="M17.5 4.5l1.5-1.5M19.5 7.5h2M4.5 5L3 3.5"/></svg></div>
+            <div><strong data-i18n="fet_tuile">Fêtes et invitations</strong></div>
         </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
@@ -14813,6 +14850,16 @@ const I18N = {
         dem_court: "Démarches",
         cou_tuile: "Faire les courses",
         cou_court: "Courses",
+        vac_tuile: "Les vacances et le voyage",
+        vac_court: "Vacances",
+        trav_tuile: "Le travail et l'emploi",
+        trav_court: "Le travail",
+        eco_tuile: "L'école et la garderie",
+        eco_court: "École",
+        ciu_tuile: "En ville : s'orienter",
+        ciu_court: "En ville",
+        fet_tuile: "Fêtes et invitations",
+        fet_court: "Fêtes",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -16406,6 +16453,16 @@ const I18N = {
         dem_court: "Paperwork",
         cou_tuile: "Going shopping",
         cou_court: "Shopping",
+        vac_tuile: "Holidays and travel",
+        vac_court: "Holidays",
+        trav_tuile: "Work and jobs",
+        trav_court: "Work",
+        eco_tuile: "School and day care",
+        eco_court: "School",
+        ciu_tuile: "In town: finding your way",
+        ciu_court: "In town",
+        fet_tuile: "Celebrations and invitations",
+        fet_court: "Celebrations",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -18001,6 +18058,16 @@ const I18N = {
         dem_court: "Resmî işler",
         cou_tuile: "Alışveriş yapmak",
         cou_court: "Alışveriş",
+        vac_tuile: "Tatil ve seyahat",
+        vac_court: "Tatil",
+        trav_tuile: "İş ve iş arama",
+        trav_court: "İş",
+        eco_tuile: "Okul ve kreş",
+        eco_court: "Okul",
+        ciu_tuile: "Şehirde yol bulmak",
+        ciu_court: "Şehirde",
+        fet_tuile: "Bayramlar ve davetler",
+        fet_court: "Bayramlar",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -20025,6 +20092,16 @@ const I18N = {
         dem_court: "Справи",
         cou_tuile: "Покупки",
         cou_court: "Покупки",
+        vac_tuile: "Відпустка й подорожі",
+        vac_court: "Відпустка",
+        trav_tuile: "Робота і пошук роботи",
+        trav_court: "Робота",
+        eco_tuile: "Школа й дитсадок",
+        eco_court: "Школа",
+        ciu_tuile: "У місті: орієнтуватися",
+        ciu_court: "У місті",
+        fet_tuile: "Свята й запрошення",
+        fet_court: "Свята",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -22378,6 +22455,16 @@ const I18N = {
         dem_court: "اداری",
         cou_tuile: "خرید کردن",
         cou_court: "خرید",
+        vac_tuile: "تعطیلات و سفر",
+        vac_court: "تعطیلات",
+        trav_tuile: "کار و کاریابی",
+        trav_court: "کار",
+        eco_tuile: "مدرسه و مهدکودک",
+        eco_court: "مدرسه",
+        ciu_tuile: "در شهر: پیدا کردن راه",
+        ciu_court: "در شهر",
+        fet_tuile: "جشن‌ها و دعوت‌ها",
+        fet_court: "جشن‌ها",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -24142,6 +24229,16 @@ const I18N = {
         dem_court: "المعاملات",
         cou_tuile: "التسوق",
         cou_court: "التسوق",
+        vac_tuile: "العطلة والسفر",
+        vac_court: "العطلة",
+        trav_tuile: "العمل والبحث عن وظيفة",
+        trav_court: "العمل",
+        eco_tuile: "المدرسة والحضانة",
+        eco_court: "المدرسة",
+        ciu_tuile: "في المدينة: معرفة الطريق",
+        ciu_court: "في المدينة",
+        fet_tuile: "الأعياد والدعوات",
+        fet_court: "الأعياد",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -24537,6 +24634,16 @@ const I18N = {
         dem_court: "Trâmites",
         cou_tuile: "Fazer compras",
         cou_court: "Compras",
+        vac_tuile: "As férias e a viagem",
+        vac_court: "Férias",
+        trav_tuile: "O trabalho e o emprego",
+        trav_court: "Trabalho",
+        eco_tuile: "A escola e a creche",
+        eco_court: "Escola",
+        ciu_tuile: "Na cidade: se orientar",
+        ciu_court: "Na cidade",
+        fet_tuile: "Festas e convites",
+        fet_court: "Festas",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -26191,6 +26298,16 @@ const I18N = {
         dem_court: "Urzędy",
         cou_tuile: "Zakupy",
         cou_court: "Zakupy",
+        vac_tuile: "Wakacje i podróże",
+        vac_court: "Wakacje",
+        trav_tuile: "Praca i szukanie pracy",
+        trav_court: "Praca",
+        eco_tuile: "Szkoła i przedszkole",
+        eco_court: "Szkoła",
+        ciu_tuile: "W mieście: jak trafić",
+        ciu_court: "W mieście",
+        fet_tuile: "Święta i zaproszenia",
+        fet_court: "Święta",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -27845,6 +27962,16 @@ const I18N = {
         dem_court: "Дела",
         cou_tuile: "Покупки",
         cou_court: "Покупки",
+        vac_tuile: "Отпуск и путешествия",
+        vac_court: "Отпуск",
+        trav_tuile: "Работа и поиск работы",
+        trav_court: "Работа",
+        eco_tuile: "Школа и детский сад",
+        eco_court: "Школа",
+        ciu_tuile: "В городе: найти дорогу",
+        ciu_court: "В городе",
+        fet_tuile: "Праздники и приглашения",
+        fet_court: "Праздники",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -29501,6 +29628,16 @@ const I18N = {
         dem_court: "Ämter",
         cou_tuile: "Einkaufen",
         cou_court: "Einkaufen",
+        vac_tuile: "Urlaub und Reisen",
+        vac_court: "Urlaub",
+        trav_tuile: "Arbeit und Jobsuche",
+        trav_court: "Arbeit",
+        eco_tuile: "Schule und Kita",
+        eco_court: "Schule",
+        ciu_tuile: "In der Stadt: sich orientieren",
+        ciu_court: "In der Stadt",
+        fet_tuile: "Feste und Einladungen",
+        fet_court: "Feste",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -31168,6 +31305,16 @@ const I18N = {
         dem_court: "Trámites",
         cou_tuile: "Hacer la compra",
         cou_court: "La compra",
+        vac_tuile: "Las vacaciones y los viajes",
+        vac_court: "Vacaciones",
+        trav_tuile: "El trabajo y el empleo",
+        trav_court: "El trabajo",
+        eco_tuile: "El colegio y la guardería",
+        eco_court: "Colegio",
+        ciu_tuile: "En la ciudad: orientarse",
+        ciu_court: "En la ciudad",
+        fet_tuile: "Fiestas e invitaciones",
+        fet_court: "Fiestas",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -48396,7 +48543,12 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           meteo: {page: "meteo.html", titre: "meteo_tuile", court: "meteo_court", tuile: "tuileMeteo", en: true},
                           logement: {page: "logement.html", titre: "log_tuile", court: "log_court", tuile: "tuileLogement", en: true},
                           demarches: {page: "demarches.html", titre: "dem_tuile", court: "dem_court", tuile: "tuileDemarches", en: true},
-                          courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"}};
+                          courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"},
+                          vacances: {page: "vacances.html", titre: "vac_tuile", court: "vac_court", tuile: "tuileVacances"},
+                          travail: {page: "travail.html", titre: "trav_tuile", court: "trav_court", tuile: "tuileTravail"},
+                          ecole: {page: "ecole.html", titre: "eco_tuile", court: "eco_court", tuile: "tuileEcole"},
+                          ciudad: {page: "ciudad.html", titre: "ciu_tuile", court: "ciu_court", tuile: "tuileCiudad"},
+                          fetes: {page: "fetes.html", titre: "fet_tuile", court: "fet_court", tuile: "tuileFetes"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
@@ -54542,7 +54694,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1117;
+const APP_VERSION = 1118;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

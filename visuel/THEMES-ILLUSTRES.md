@@ -499,3 +499,22 @@ source). Ce qu'il apprend aux thèmes suivants :
   « usted » (« Rellene el formulario, por favor. »), leurres : les formes du / tú et ich / yo ;
 - les mots absents du corpus sont préparés par paires (`ajouts/demarches.json`, `espanol/ajouts/demarches.json`) et
   restent « hors jeu » jusqu'à l'accord de Jacques.
+
+## Un thème au passé : « Les vacances et le voyage » (vague 4, 5 nov. 2026)
+
+Raconter au passé (`vacances.html`, `visuel/vacances/vacances.py`, la seule source). Ce qu'il apprend aux thèmes suivants :
+- **la conjugaison vient du corpus, jamais d'une table écrite à la main** : l'auxiliaire et le participe allemands sont LUS dans la
+  phrase `perfekt` de `verbe.json` (« Wir sind nach Spanien geflogen. » → sein, geflogen), l'auxiliaire se conjugue par personne ; le
+  pretérito espagnol est la clé `preterito` de `verbos.json`. Les formes FAUSSES se calculent aussi : le participe faible d'un verbe fort
+  (gefliegt), le ge- de trop (gebesichtigt, gereserviert), le ge- mal placé (geankommen) ; en espagnol la forme régulière d'un irrégulier
+  (hació, llegé) et l'accent (visito / visitó). La traduction se fabrique de même : passé composé français avec l'accord du participe
+  après être, prétérit anglais, preterito perfeito brésilien calculé ;
+- **la frise dans la question** (décision du 5 nov. sur La journée) : toute question sur l'ordre (remettre dans l'ordre, « Und danach? »,
+  « zuerst », « zum Schluss ») montre la frise du voyage, numérotée ; elle ne teste jamais la mémoire de la découverte ;
+- **un faux est faux dans l'histoire, pas seulement sur la photo** : le faux d'un vrai ou faux et les leurres de « qu'est-ce qui s'est
+  passé ? » viennent des AUTRES voyages (Mark n'a pas nagé), jamais d'une étape du même voyage, qui serait vraie ailleurs dans le récit ;
+- **une valise ne montre que ce qui est sur le lit** : ce qui est rangé ne se voit pas, donc la question est « qu'est-ce qu'il y a sur le
+  lit ? », et les leurres viennent de l'autre valise ;
+- **le temps qu'il fait renvoie à la météo sans la refaire** : cinq faits au passé seulement (die Sonne hat geschienen, es war warm,
+  es hat geregnet ; hizo sol, llovió), avec les faits vrais et douteux de chaque photo, comme `meteo.py` ;
+- **la réservation se dessine** (la règle des papiers) : une confirmation en HTML, ses chiffres écrits, ses réponses dites en lettres.

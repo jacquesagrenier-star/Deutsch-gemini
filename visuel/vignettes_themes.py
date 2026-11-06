@@ -12,7 +12,7 @@ rien payer. Les emotions et le caractere : une planche de photomaton d'Anna, qua
 Les contraires : le verre plein et le verre vide, coupes par le milieu (3 nov.).
 Un theme futur : une fonction de plus dans VIGNETTES, qui dise le sujet autrement.
 """
-import json, os, sys
+import json, math, os, sys
 from PIL import Image, ImageDraw, ImageFont
 sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -593,6 +593,194 @@ def courses_sac():
     return c
 
 
+def vacances_carnet():
+    """Les vacances et le voyage : un carnet de voyage -- une route en pointilles sur un papier couleur sable, et le
+    long de la route trois photos numerotees 1, 2, 3 (Anna a Malaga, Mark au port de Hambourg, Ben et Mia et leur
+    chateau de sable). Le sujet du theme : ce qui s'est passe, DANS L'ORDRE (la frise des voyages)."""
+    c = Image.new("RGB", (W, H), (244, 233, 210))
+    d = ImageDraw.Draw(c)
+    # la route, une courbe en pointilles d'un bord a l'autre
+    pts = [(int(x), int(300 + 120 * math.sin(x / W * 5.2 - 0.6))) for x in range(-10, W + 20, 4)]
+    for k in range(0, len(pts) - 1, 3):
+        d.line([pts[k], pts[k + 1]], fill=(168, 106, 14), width=5)
+    pw, ph = 200, 150
+    for k, (id, angle, x, y) in enumerate([("anna-eis", -6, 8, 36), ("mark-hafen", 5, 196, 282), ("familia-sandburg", -4, 380, 50)]):
+        im = Image.open(os.path.join(P, "vacances", id + ".webp")).convert("RGB").resize((pw, ph), Image.LANCZOS)
+        cadre = Image.new("RGB", (pw + 16, ph + 40), (255, 255, 255))
+        cadre.paste(im, (8, 8))
+        cadre = cadre.convert("RGBA").rotate(angle, expand=True, resample=Image.BICUBIC)
+        ombre = Image.new("RGBA", cadre.size, (0, 0, 0, 0))
+        ombre.paste((80, 60, 30, 80), mask=cadre.split()[3])
+        c.paste(ombre, (x + 6, y + 8), ombre)
+        c.paste(cadre, (x, y), cadre)
+        # le numero de l'etape, un rond ambre sur le bord de la photo
+        cx, cy = x + 14, y + 10
+        d.ellipse((cx - 22, cy - 22, cx + 22, cy + 22), fill=(232, 162, 58), outline=(255, 255, 255), width=4)
+        t = str(k + 1)
+        bw = d.textbbox((0, 0), t, font=F(28))
+        d.text((cx - (bw[2] - bw[0]) / 2 - bw[0], cy - (bw[3] - bw[1]) / 2 - bw[1]), t, font=F(28), fill=(28, 36, 48))
+    return c
+def travail_cv():
+    """Le travail et l'emploi : le CV de Mark (sa photo, des lignes, aucun mot), une mallette de cuir, et en rond la
+    photo du contrat qu'il signe avec sa future cheffe (prise des demarches, la meme femme et le meme bureau que
+    l'entretien du theme). Le sujet est le chemin vers un poste, pas les objets du bureau de la scene « buero »."""
+    c = Image.new("RGB", (W, H), (232, 226, 214))
+    d = ImageDraw.Draw(c)
+    # le CV, un peu tourne, avec son ombre
+    f = Image.new("RGBA", (300, 400), (0, 0, 0, 0))
+    g = ImageDraw.Draw(f)
+    g.rectangle((0, 0, 299, 399), fill=(255, 253, 246), outline=(201, 207, 216), width=2)
+    g.rectangle((22, 24, 170, 40), fill=(28, 36, 48))                     # le nom, une barre
+    g.rectangle((22, 50, 130, 58), fill=(160, 168, 180))
+    ph = Image.open(os.path.join(P, "descripcion", "Mark-visage.webp")).convert("RGB").resize((86, 104), Image.LANCZOS)
+    f.paste(ph, (192, 22))
+    g.rectangle((192, 22, 277, 125), outline=(160, 168, 180), width=2)
+    for k, (y, n) in enumerate(((150, 3), (236, 2), (300, 3))):           # trois rubriques : un titre ambre, des lignes
+        g.rectangle((22, y, 120, y + 9), fill=(232, 162, 58))
+        for j in range(n):
+            g.rectangle((22, y + 22 + j * 18, 22 + (240 if j % 2 == 0 else 190), y + 28 + j * 18), fill=(176, 184, 196))
+    f = f.rotate(5, resample=Image.BICUBIC, expand=True)
+    ombre = Image.new("RGBA", f.size, (0, 0, 0, 0))
+    ombre.paste((60, 50, 30, 70), (0, 0), f.split()[3])
+    c.paste(ombre, (46, 70), ombre)
+    c.paste(f, (36, 60), f)
+    # la mallette de cuir, en bas a droite
+    x0, y0 = 350, 330
+    d.rounded_rectangle((x0 + 58, y0 - 34, x0 + 158, y0 + 16), 16, outline=(110, 70, 36), width=12)
+    d.rounded_rectangle((x0, y0, x0 + 216, y0 + 150), 18, fill=(150, 96, 52), outline=(110, 70, 36), width=4)
+    d.line([(x0, y0 + 56), (x0 + 216, y0 + 56)], fill=(110, 70, 36), width=5)
+    d.rounded_rectangle((x0 + 92, y0 + 42, x0 + 124, y0 + 72), 6, fill=(232, 196, 96), outline=(168, 126, 40), width=3)
+    # en rond : la signature du contrat (Mark et sa future cheffe)
+    im = Image.open(os.path.join(P, "demarches", "unterschreiben.webp")).convert("RGB")
+    w, h = im.size
+    im = im.crop((int(0.02 * w), int(0.0 * h), int(0.92 * w), int(0.9 * h)))
+    r = rond(im, 228, 8)
+    c.paste(r, (472 - r.size[0] // 2, 150 - r.size[1] // 2), r)
+    return c
+def ecole_tableau():
+    """L'ecole et la garderie : le tableau vert de la classe, a la craie « ABC » et « 1 + 2 = 3 » (aucun mot d'une
+    langue : la meme vignette sert a l'espagnol et a l'allemand), un crayon pose sur son rebord, et les deux enfants en
+    ronds, pris dans les images du theme : Ben dans sa classe, Mia au vestiaire de la Kita."""
+    c = Image.new("RGB", (W, H), (236, 228, 206))
+    d = ImageDraw.Draw(c)
+    # le tableau, son cadre de bois et son rebord
+    d.rounded_rectangle((36, 34, 564, 300), 10, fill=(150, 110, 68))
+    d.rectangle((52, 50, 548, 284), fill=(46, 96, 72))
+    d.rectangle((44, 284, 556, 300), fill=(132, 96, 58))
+    craie = (240, 244, 236)
+    d.text((190, 125), "ABC", font=F(84), fill=craie, anchor="mm")
+    d.text((370, 215), "1 + 2 = 3", font=F(60), fill=craie, anchor="mm")
+    # le crayon jaune sur le rebord
+    d.polygon([(330, 286), (470, 286), (488, 292), (470, 298), (330, 298)], fill=(244, 196, 48))
+    d.polygon([(470, 286), (488, 292), (470, 298)], fill=(226, 196, 160))
+    d.rectangle((316, 286, 330, 298), fill=(232, 128, 140))
+    # les deux enfants, en ronds
+    for nom, boite, (x, y), dia in (("klasse", (0.40, 0.36, 0.66, 0.72), (178, 400), 176), ("kita-bringen", (0.24, 0.36, 0.36, 0.56), (420, 404), 160)):
+        im = Image.open(os.path.join(P, "ecole", nom + ".webp")).convert("RGB")
+        w, h = im.size
+        im = im.crop((int(boite[0] * w), int(boite[1] * h), int(boite[2] * w), int(boite[3] * h)))
+        r = rond(im, dia, 7)
+        c.paste(r, (x - r.size[0] // 2, y - r.size[1] // 2), r)
+    return c
+def ville_plan():
+    """En ville : s'orienter -- un petit plan de quartier dessine (des rues, des maisons, un parc), le point rouge
+    « vous etes ici », le chemin en pointilles ambre qui tourne deux fois, et au bout la pharmacie a la croix verte, en
+    rond (une photo de la rue de la scene Kreuzung). Aucun mot : la meme vignette sert a l'espagnol et a l'allemand."""
+    c = Image.new("RGB", (W, H), (228, 221, 207))
+    d = ImageDraw.Draw(c)
+    rue, trait = (253, 252, 248), (185, 177, 162)
+    for x in (150, 420):
+        d.rectangle((x - 22, 0, x + 22, H), fill=rue, outline=trait)
+    for y in (90, 280, 460):
+        d.rectangle((0, y - 22, W, y + 22), fill=rue, outline=trait)
+    for x in (150, 420):
+        for y in (90, 280, 460):
+            d.rectangle((x - 21, y - 21, x + 21, y + 21), fill=rue)
+    # les maisons, blanches, et le parc
+    for x0, x1 in ((14, 122), (178, 268), (302, 392), (448, 586)):
+        for y0, y1 in ((122, 248), (312, 428)):
+            for k in range(2):
+                h = (y1 - y0 - 8) / 2
+                ya = y0 + k * (h + 8)
+                d.rounded_rectangle((x0, ya, x1, ya + h), 8, fill=(255, 255, 255), outline=trait, width=2)
+    d.rounded_rectangle((302, 122, 392, 248), 10, fill=(191, 224, 178), outline=trait, width=2)
+    for cx, cy in ((325, 150), (365, 180), (330, 220), (372, 228)):
+        d.ellipse((cx - 13, cy - 13, cx + 13, cy + 13), fill=(125, 187, 106))
+    # le chemin : depuis le bas de la rue de gauche, a droite dans la rue du milieu, puis en haut dans celle de droite
+    pts = [(150, 500), (150, 280), (420, 280), (420, 190)]
+    for (xa, ya), (xb, yb) in zip(pts, pts[1:]):
+        d.line([(xa, ya), (xb, yb)], fill=(255, 255, 255), width=16)
+    for (xa, ya), (xb, yb) in zip(pts, pts[1:]):
+        n = int(max(abs(xb - xa), abs(yb - ya)) / 22)
+        for k in range(n):
+            t0, t1 = k / n, (k + .55) / n
+            d.line([(xa + (xb - xa) * t0, ya + (yb - ya) * t0), (xa + (xb - xa) * t1, ya + (yb - ya) * t1)], fill=(232, 162, 58), width=9)
+    # le point rouge, au depart
+    d.ellipse((150 - 19, 478 - 19, 150 + 19, 478 + 19), fill=(200, 71, 58), outline=(255, 255, 255), width=5)
+    d.polygon([(150, 430), (138, 452), (162, 452)], fill=(200, 71, 58))
+    # au bout, la pharmacie, en rond
+    im = Image.open(os.path.join(P, "ciudad", "apotheke.webp")).convert("RGB")
+    w, h = im.size
+    im = im.crop((0, 0, h, h))
+    r = rond(im, 170, 8, (232, 162, 58))
+    c.paste(r, (470 - r.size[0] // 2, 112 - r.size[1] // 2), r)
+    return c
+
+
+def fetes_invitation():
+    """Les fetes et les invitations : la page d'un calendrier ou un jour est entoure a l'ambre, l'enveloppe ouverte d'ou
+    sort la carte d'invitation (un ballon dessine), et deux bulles de conversation -- l'une propose (« ? »), l'autre
+    accepte (le crochet vert) : planifier ensemble, l'oral du DTZ. Des dessins, aucun mot : la meme vignette sert a
+    l'espagnol et a l'allemand ; le sujet est l'invitation, pas les objets de la fete (ceux de la scene)."""
+    import math
+    c = Image.new("RGB", (W, H), (246, 232, 214))
+    d = ImageDraw.Draw(c)
+    # des confettis
+    for k, (x, y) in enumerate(((40, 40), (300, 30), (560, 60), (520, 250), (30, 300), (280, 480), (570, 470), (180, 20))):
+        col = [(232, 162, 58), (127, 183, 230), (229, 123, 110), (92, 180, 130)][k % 4]
+        d.rounded_rectangle((x, y, x + 16, y + 8), 3, fill=col)
+    # la page du calendrier, un peu tournee
+    p = Image.new("RGBA", (270, 300), (0, 0, 0, 0))
+    g = ImageDraw.Draw(p)
+    g.rounded_rectangle((0, 0, 269, 299), 14, fill=(255, 253, 246), outline=(201, 207, 216), width=2)
+    g.rounded_rectangle((0, 0, 269, 64), 14, fill=(200, 71, 58))
+    g.rectangle((0, 40, 269, 64), fill=(200, 71, 58))
+    for x in (70, 200):
+        g.ellipse((x - 9, -10, x + 9, 8), fill=(120, 128, 140))
+    for r in range(5):
+        for k in range(7):
+            x, y = 20 + k * 34, 86 + r * 40
+            g.rounded_rectangle((x, y, x + 24, y + 24), 5, fill=(226, 230, 236))
+    jx, jy = 20 + 5 * 34 + 12, 86 + 2 * 40 + 12                         # le samedi entoure
+    g.ellipse((jx - 24, jy - 24, jx + 24, jy + 24), outline=(232, 162, 58), width=7)
+    p = p.rotate(5, resample=Image.BICUBIC, expand=True)
+    ombre = Image.new("RGBA", p.size, (0, 0, 0, 0))
+    ombre.paste((60, 40, 30, 60), (0, 0), p.split()[3])
+    c.paste(ombre, (36, 120), ombre)
+    c.paste(p, (28, 110), p)
+    # l'enveloppe ouverte et la carte qui en sort (un ballon dessine)
+    ex, ey = 330, 120
+    d.rounded_rectangle((ex + 26, ey - 60, ex + 214, ey + 110), 8, fill=(255, 255, 255), outline=(232, 162, 58), width=5)
+    bx, by = ex + 120, ey - 4
+    d.ellipse((bx - 34, by - 44, bx + 34, by + 36), fill=(127, 183, 230))
+    d.ellipse((bx - 18, by - 30, bx - 4, by - 12), fill=(196, 224, 246))
+    d.polygon([(bx - 6, by + 36), (bx + 6, by + 36), (bx, by + 46)], fill=(127, 183, 230))
+    d.line([(bx, by + 46), (bx - 10, by + 70), (bx + 6, by + 96)], fill=(120, 128, 140), width=3)
+    d.polygon([(ex, ey + 40), (ex + 240, ey + 40), (ex + 240, ey + 190), (ex, ey + 190)], fill=(222, 190, 150))
+    d.polygon([(ex, ey + 40), (ex + 120, ey + 120), (ex + 240, ey + 40), (ex + 240, ey + 190), (ex, ey + 190)], fill=(206, 170, 126))
+    d.line([(ex, ey + 190), (ex + 120, ey + 116), (ex + 240, ey + 190)], fill=(186, 148, 104), width=4)
+    # les deux bulles : la proposition (« ? ») et l'accord (le crochet vert)
+    def bulle(x, y, w, h, fond, queue_droite):
+        d.rounded_rectangle((x, y, x + w, y + h), 26, fill=fond)
+        q = [(x + w - 40, y + h - 4), (x + w - 6, y + h + 26), (x + w - 64, y + h - 4)] if queue_droite else [(x + 40, y + h - 4), (x + 6, y + h + 26), (x + 64, y + h - 4)]
+        d.polygon(q, fill=fond)
+    bulle(300, 330, 130, 76, (127, 183, 230), False)
+    d.text((365, 368), "?", font=F(54), fill=(255, 255, 255), anchor="mm")
+    bulle(440, 380, 130, 76, (92, 180, 130), True)
+    d.line([(478, 418), (498, 438), (534, 400)], fill=(255, 255, 255), width=10, joint="curve")
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
              "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
              "metiers": metiers_polaroids,
@@ -602,7 +790,12 @@ VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones"
              "meteo": meteo_quatre_saisons,
              "logement": logement_plan,
              "demarches": demarches_formulaire,
-             "courses": courses_sac}
+             "courses": courses_sac,
+             "vacances": vacances_carnet,
+             "travail": travail_cv,
+             "ecole": ecole_tableau,
+             "ciudad": ville_plan,
+             "fetes": fetes_invitation}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
