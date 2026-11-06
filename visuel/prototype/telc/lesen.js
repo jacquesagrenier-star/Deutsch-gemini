@@ -13,13 +13,17 @@
 // sections et exercices ») : la liste des parties ; dans une partie, UNE PAGE PAR QUESTION, avec les points de
 // progression qu'on touche pour sauter, « ‹ » vers la liste, « Continuer » en bas ; en fin de partie, le
 // recapitulatif, puis Refaire / Partie suivante / Toutes les parties. En plus : l'epreuve entiere, minutee
-// (45 min, sans aide, le corrige apres), que l'examen blanc du bloc peut lancer par TELC_LESEN.lancer().
+// (45 min, sans aide, le corrige apres), que l'examen blanc du bloc lance par TELC.epreuve() (ou TELC_LESEN.lancer()).
 //
-// LANGUES : l'interface de cette partie existe en francais et en anglais (TXT_L_FR, TXT_L_EN ; les autres langues
-// retombent sur le francais) ; les donnees portent leurs champs *_fr et *_en.
-// Ce module ne connait de commun.js que ses fonctions publiques ($, esc, T, TXT, LANGUE, parler, lire, ecrire,
-// chrono, arreterChrono, confirmer, choisirSerie, marquerFait, resultat, silence, DTZ, accueil, MARK_IMG) ; il
-// s'inscrit par DTZ.partie() comme sprachbausteine.js, et garde tout le reste dans sa fermeture.
+// LANGUES : francais et anglais, par telc-commun.js (textesTelc pour les textes, champTelc pour les champs *_fr /
+// *_en des donnees) ; les autres langues retombent sur le francais.
+// LE FORMAT EXPLIQUE (retour de Marina, 1er nov. : le cahier telc du commerce a de bons exercices mais « n'explique pas
+// le format ») : la liste des parties dit l'epreuve en bref, et chaque partie commence par ce qu'on demande, les
+// points, le temps conseille et comment s'y prendre.
+// Ce module ne connait de commun.js et de telc-commun.js que leurs fonctions publiques ($, esc, T, LANGUE, parler,
+// lire, ecrire, chrono, arreterChrono, confirmer, choisirSerie, marquerFait, resultat, silence, DTZ, accueil,
+// MARK_IMG, textesTelc, champTelc, TELC) ; il s'inscrit par DTZ.partie() et TELC.epreuve() comme
+// sprachbausteine.js, et garde tout le reste dans sa fermeture.
 
 "use strict";
 
@@ -78,6 +82,36 @@ const TXT_L_FR = {
   l_mark_v_b1: "Bravo ! La lecture, c'est solide. Garde ton énergie pour l'écoute, elle vient plus tard dans l'examen.",
   l_mark_v_a2: "C'est un bon début. Regarde surtout les questions ratées dans le corrigé : c'est là que se cachent les points du B1.",
   l_mark_v_moins: "Ne t'inquiète pas : reprenons les parties une par une, avec les explications.",
+  l_bref: "L'épreuve en bref",
+  l_bref_quoi_t: "Ce qu'on te demande :",
+  l_bref_quoi: "lire quatre sortes de textes de tous les jours (des petites annonces, un avis ou un article court, des courriels, un article plus long) et répondre à 18 questions : associer, vrai ou faux, a, b ou c. Tu n'écris rien.",
+  l_bref_temps_t: "Le temps :",
+  l_bref_temps: "45 minutes pour les quatre parties, au tout début de l'examen, avant les Sprachbausteine. Tu choisis l'ordre et le temps de chaque partie.",
+  l_bref_points_t: "Les points :",
+  l_bref_points: "3 points par bonne réponse, 54 en tout. Avec les 6 points des questions 29 et 30 (« Lire et écrire »), la lecture vaut 60 points, un quart de l'examen. Une mauvaise réponse ne retire pas de points : ne laisse aucune question sans réponse.",
+  l_bref_comment_t: "Comment t'y prendre :",
+  l_bref_comment: "lis d'abord la consigne et les questions, puis cherche dans le texte l'endroit qui y répond. Surveille l'heure : environ 10 minutes par partie, un peu plus pour la dernière, et quelques minutes à la fin pour vérifier et reporter tes réponses sur la feuille de réponses.",
+  l_comment_marche: "Comment se passe cette partie",
+  l_quoi_t: "Ce qu'on te demande :",
+  l_points_t: "Les points :",
+  l_temps_t: "Le temps conseillé :",
+  l_strategie_t: "Comment t'y prendre :",
+  l_t1_quoi: "5 situations (1 à 5) et 8 petites annonces (a à h). Pour chaque situation, trouve l'annonce qui convient. Chaque annonce ne sert qu'une fois, et 3 annonces ne vont avec aucune situation.",
+  l_t1_points: "5 questions × 3 points = 15 points",
+  l_t1_temps: "environ 10 minutes",
+  l_t1_comment: "lis une situation et repère ce qui compte vraiment (qui, quoi, quand, où, combien). Puis parcours les annonces : plusieurs parlent du même sujet, mais une seule remplit toutes les conditions. Écarte les annonces déjà prises.",
+  l_t2_quoi: "un texte court de la vie quotidienne (un avis dans l'immeuble, un article de quartier, un mot du médecin). La question 6 est un vrai ou faux, les questions 7 à 9 ont trois réponses, a, b ou c.",
+  l_t2_points: "4 questions × 3 points = 12 points",
+  l_t2_temps: "environ 8 minutes",
+  l_t2_comment: "les questions suivent l'ordre du texte. Pour chacune, retrouve la phrase qui en parle et compare-la mot à mot : un « nur », un « nicht » ou une date suffit à rendre une réponse fausse.",
+  l_t3_quoi: "4 courriels (10 à 13) et 6 phrases (a à f) qui disent de quoi parle un courriel. Pour chaque courriel, choisis la phrase qui donne son but. 2 phrases ne vont avec aucun courriel.",
+  l_t3_points: "4 questions × 3 points = 12 points",
+  l_t3_temps: "environ 8 minutes",
+  l_t3_comment: "pas besoin de tout comprendre : on te demande le sens global. Demande-toi pourquoi la personne écrit (remercier, se plaindre, demander, annuler…). Le début et la fin du courriel le disent souvent.",
+  l_t4_quoi: "un texte plus long (un article de journal) et 5 questions (14 à 18), chacune avec trois réponses, a, b ou c.",
+  l_t4_points: "5 questions × 3 points = 15 points",
+  l_t4_temps: "environ 15 minutes",
+  l_t4_comment: "lis d'abord les questions, puis le texte, paragraphe par paragraphe : les questions suivent son ordre. Méfie-toi des réponses qui reprennent les mots exacts du texte ; la bonne dit souvent la même chose autrement.",
   l_refaire_epreuve: "Refaire une épreuve"
 };
 const TXT_L_EN = {
@@ -132,15 +166,45 @@ const TXT_L_EN = {
   l_mark_v_b1: "Well done! Your reading is solid. Save your energy for listening; it comes later in the exam.",
   l_mark_v_a2: "A good start. Look closely at the questions you missed in the answers: that's where the B1 points are hiding.",
   l_mark_v_moins: "Don't worry: let's go back over the parts one at a time, with the explanations.",
+  l_bref: "The test at a glance",
+  l_bref_quoi_t: "What you have to do:",
+  l_bref_quoi: "read four kinds of everyday texts (small ads, a notice or a short article, e-mails, a longer article) and answer 18 questions: matching, true or false, a, b or c. You don't write anything.",
+  l_bref_temps_t: "Time:",
+  l_bref_temps: "45 minutes for the four parts, at the very start of the exam, before the Sprachbausteine. You choose the order and how long you spend on each part.",
+  l_bref_points_t: "Points:",
+  l_bref_points: "3 points per correct answer, 54 in total. With the 6 points of questions 29 and 30 (“Reading and writing”), reading is worth 60 points, a quarter of the exam. A wrong answer costs you nothing: never leave a question blank.",
+  l_bref_comment_t: "How to go about it:",
+  l_bref_comment: "read the instructions and the questions first, then look for the place in the text that answers them. Keep an eye on the time: about 10 minutes per part, a little more for the last one, and a few minutes at the end to check and copy your answers onto the answer sheet.",
+  l_comment_marche: "How this part works",
+  l_quoi_t: "What you have to do:",
+  l_points_t: "Points:",
+  l_temps_t: "Suggested time:",
+  l_strategie_t: "How to go about it:",
+  l_t1_quoi: "5 situations (1 to 5) and 8 small ads (a to h). For each situation, find the ad that fits. Each ad is used only once, and 3 ads match no situation.",
+  l_t1_points: "5 questions × 3 points = 15 points",
+  l_t1_temps: "about 10 minutes",
+  l_t1_comment: "read a situation and spot what really matters (who, what, when, where, how much). Then go through the ads: several are about the same topic, but only one meets every condition. Rule out the ads you have already used.",
+  l_t2_quoi: "a short everyday text (a notice in the building, a local news item, a note from the doctor). Question 6 is true or false; questions 7 to 9 have three answers, a, b or c.",
+  l_t2_points: "4 questions × 3 points = 12 points",
+  l_t2_temps: "about 8 minutes",
+  l_t2_comment: "the questions follow the order of the text. For each one, find the sentence it is about and compare word by word: a “nur”, a “nicht” or a date is enough to make an answer wrong.",
+  l_t3_quoi: "4 e-mails (10 to 13) and 6 sentences (a to f) saying what an e-mail is about. For each e-mail, choose the sentence that gives its purpose. 2 sentences match no e-mail.",
+  l_t3_points: "4 questions × 3 points = 12 points",
+  l_t3_temps: "about 8 minutes",
+  l_t3_comment: "you don't need to understand everything: you are asked for the overall meaning. Ask yourself why the person is writing (to thank, complain, ask, cancel…). The beginning and the end of the e-mail often tell you.",
+  l_t4_quoi: "a longer text (a newspaper article) and 5 questions (14 to 18), each with three answers, a, b or c.",
+  l_t4_points: "5 questions × 3 points = 15 points",
+  l_t4_temps: "about 15 minutes",
+  l_t4_comment: "read the questions first, then the text, paragraph by paragraph: the questions follow its order. Be wary of answers that repeat the exact words of the text; the right one often says the same thing differently.",
   l_refaire_epreuve: "Do another test"
 };
-Object.assign(TXT, LANGUE === "en" ? Object.assign({}, TXT_L_FR, TXT_L_EN) : TXT_L_FR);
+textesTelc({fr: TXT_L_FR, en: TXT_L_EN});
 
 const TELC_LESEN = (() => {
   const EN = LANGUE === "en";
   // le champ traduit d'un objet : tr(it, "erkl") lit erkl_en ou erkl_fr ; tr(p, "") lit p.en ou p.fr (les consignes
   // et les phrases du Teil 3) ; sans traduction anglaise, le francais
-  const tr = (o, k) => { const c = k ? k + "_" : ""; return (o && (o[c + (EN ? "en" : "fr")] || o[c + "fr"])) || ""; };
+  const tr = (o, k) => k ? champTelc(o, k) : ((o && (o[LANGUE] || o.fr)) || "");
   const deS = s => '<span lang="de" dir="ltr">' + esc(s) + '</span>';
   const TEILE = ["T1", "T2", "T3", "T4"];
   const titreTeil = t => T("l_" + t.toLowerCase());
@@ -163,10 +227,7 @@ const TELC_LESEN = (() => {
     ".lboutons{display:flex;flex-direction:column;gap:8px}.lboutons .secondaire{align-self:stretch;text-align:center}";
   document.head.appendChild(style);
 
-  const E = {donnees: null, direct: false, serie: null, teil: null, qs: [], rep: [], i: 0, ex: null};
-  // ouverte directement sur cette partie (?partie=L, depuis le panneau du bloc telc de l'app) : le « ‹ » de la liste
-  // des parties ramene alors au panneau, comme pour les Sprachbausteine
-  E.direct = Q.get("partie") === "L";
+  const E = {donnees: null, serie: null, teil: null, qs: [], rep: [], i: 0, ex: null};
 
   DTZ.charger(fetch("donnees/lesen.json", {cache: "no-cache"})
     .then(r => { if (!r.ok) throw new Error("lesen.json"); return r.json(); })
@@ -187,7 +248,7 @@ const TELC_LESEN = (() => {
         frage: T("l_quelle_phrase"), frage_tr: "", erkl: tr(m, "erkl"), item: m}));
     }
     return t.items.map(it => ({nr: it.nr, teil, kind: it.rf ? "rf" : "abc", options: it.rf ? RF : it.optionen, bon: it.bon,
-      frage: it.frage, frage_tr: tr(it, "frage"), options_tr: it.rf ? null : (it["optionen" + (EN ? "_en" : "_fr")] || it.optionen_fr),
+      frage: it.frage, frage_tr: tr(it, "frage"), options_tr: it.rf ? null : champTelc(it, "optionen"),
       erkl: tr(it, "erkl"), item: it}));
   }
   const toutes = s => [].concat(...TEILE.map(t => questions(s, t)));
@@ -254,28 +315,37 @@ const TELC_LESEN = (() => {
     return '<p class="consigne"><span lang="de">' + esc(c.de || "") + '</span><span class="fr">' + esc(tr(c, "")) + '</span></p>';
   };
 
+  // ce que demande la partie, ses points, le temps conseille et comment s'y prendre (retour de Marina, 1er nov.)
+  function explication(teil){
+    const k = "l_" + teil.toLowerCase();
+    return '<div class="bloc"><h2>' + esc(T("l_comment_marche")) + '</h2>' +
+      [["l_quoi_t", k + "_quoi"], ["l_points_t", k + "_points"], ["l_temps_t", k + "_temps"], ["l_strategie_t", k + "_comment"]].map(([t, c]) =>
+        '<p class="petit"><b>' + esc(T(t)) + '</b> ' + esc(T(c)) + '</p>').join("") + '</div>';
+  }
+
   // ============ LA LISTE DES PARTIES ============
   function liste(){
     silence(); arreterChrono(); E.ex = null;
     $("titre").textContent = T("l_titre") + " · Lesen"; $("suite").hidden = true;
     const faits = lire("lesen_teile", {});
-    const vu = lire("lesen_vu", false);
     $("zone").innerHTML =
-      (vu ? "" : '<div class="bloc"><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T("l_mark_debut")) + '</div></div></div>') +
+      '<div class="bloc"><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T("l_mark_debut")) + '</div></div></div>' +
+      '<div class="bloc"><h2>' + esc(T("l_bref")) + '</h2>' + ["l_bref_quoi", "l_bref_temps", "l_bref_points", "l_bref_comment"].map(k =>
+        '<p class="petit"><b>' + esc(T(k + "_t")) + '</b> ' + esc(T(k)) + '</p>').join("") + '</div>' +
       '<div class="bloc"><h2>' + esc(T("l_parties")) + '</h2><div class="teils">' + TEILE.map(t => {
         const f = faits[t], n = questions(E.donnees.series[0], t).length;
         return '<button class="teil" data-t="' + t + '"><span>Teil ' + t.slice(1) + ' · ' + esc(titreTeil(t)) + '<br><small>' + esc(T("l_" + t.toLowerCase() + "_s")) + '</small></span>' +
           '<small>' + esc(f ? T("l_dernier", {b: f.bons, n: f.n}) : T("l_questions", {n})) + '</small></button>';
       }).join("") + '</div></div>' +
       '<div class="bloc"><button class="mode" id="lComplet"><b>' + esc(T("l_complet")) + '</b><span>' + esc(T("l_complet_s")) + '</span></button></div>';
-    ecrire("lesen_vu", true);
     document.querySelectorAll("[data-t]").forEach(b => b.onclick = () => ouvrirTeil(b.dataset.t));
     $("lComplet").onclick = () => lancer({});
     DTZ.surRetour(() => { toutesLesSections(); return true; });
     window.scrollTo(0, 0);
   }
   function toutesLesSections(){
-    if (E.direct){ silence(); parler("fermer"); if (window.parent === window) accueil(); return; }
+    // ouverte directement sur cette partie (?partie=L, TELC.direct) : retour au panneau du bloc telc de l'app
+    if (TELC.direct){ silence(); parler("fermer"); if (window.parent === window) accueil(); return; }
     accueil();
   }
 
@@ -301,6 +371,7 @@ const TELC_LESEN = (() => {
     const etat = {r, montrer, fige: montrer};
     $("titre").textContent = "Teil " + E.teil.slice(1) + " · " + titreTeil(E.teil);
     let h = '<div class="bloc"><div class="lsection">' + esc(T("l_section", {n: E.teil.slice(1)})) + ' · ' + esc(titreTeil(E.teil)) + '</div>' + points() + '</div>';
+    if (E.i === 0) h += explication(E.teil);
     h += '<div class="bloc">' + (E.i === 0 ? consigne(E.teil) : "");
     if (E.teil === "T1") h += carte(q, etat) + annonces(s, q, r, montrer);
     else if (E.teil === "T3") h += courriel(q.mail) + carte(q, etat);
@@ -388,7 +459,8 @@ const TELC_LESEN = (() => {
     let h = (premiere ? '<div class="bloc"><p class="petit">' + esc(T("l_regles")) + '</p></div>' : "") +
       '<div class="onglets">' + TEILE.map(t => '<button class="onglet' + (t === teil ? " actif" : "") + '" data-o="' + t + '">Teil ' + t.slice(1) +
         (reste(t) ? ' <span class="n">· ' + reste(t) + '</span>' : " ✓") + '</button>').join("") + '</div>';
-    h += '<div class="bloc"><div class="lsection">' + esc(T("l_section", {n: teil.slice(1)})) + ' · ' + esc(titreTeil(teil)) + '</div>' + consigne(teil);
+    h += '<div class="bloc"><div class="lsection">' + esc(T("l_section", {n: teil.slice(1)})) + ' · ' + esc(titreTeil(teil)) + '</div>' +
+      '<p class="petit">' + esc(T("l_" + teil.toLowerCase() + "_points")) + ' · ' + esc(T("l_" + teil.toLowerCase() + "_temps")) + '</p>' + consigne(teil);
     const qs = x.qs.filter(q => q.teil === teil);
     const etat = q => ({r: x.rep[q.nr], montrer: false, fige: false});
     if (teil === "T1"){
@@ -450,6 +522,10 @@ const TELC_LESEN = (() => {
   }
 
   DTZ.partie({id: "L", ordre: 10, titre: T("l_titre"), sous: T("l_sous"), ouvrir: () => liste()});
+  // l'examen blanc (examen-blanc.js) : la partie minutee, 45 min, sa propre minuterie ; les 54 points vont a Lesen
+  // (les 6 autres de Lesen viennent de « Lire et ecrire »). fini(null) si l'eleve quitte l'epreuve.
+  TELC.epreuve({id: "L", ordre: 10, minutes: 45, sur: {Lesen: 54},
+    lancer: fini => lancer({fin: res => fini(res ? {pts: {Lesen: res.points}, detail: res} : null)})});
   // pour l'examen blanc du bloc et pour les controles : les donnees, les questions d'une serie, l'epreuve minutee
   return {
     get series(){ return E.donnees ? E.donnees.series : []; },
