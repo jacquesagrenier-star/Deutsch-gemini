@@ -325,6 +325,7 @@ have breakfast | prendre le petit-déjeuner
 listen to | écouter
 do crafts | bricoler, faire des travaux manuels | ex=The kids love to do crafts on rainy days. # Les enfants adorent bricoler les jours de pluie.
 crawl | ramper, se glisser | ex=The cat crawls under the sofa. # Le chat se glisse sous le canapé.
+fill out | remplir (un formulaire) | ex=Please fill out this form. # Remplissez ce formulaire, s'il vous plaît.
 """
 
 # « adjectif | traduction | drapeaux » (gb=, ex=).

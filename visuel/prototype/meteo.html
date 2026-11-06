@@ -17,6 +17,15 @@
   chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin.
   Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
   variante=latam (la voix), r=<AUDIO_REVISION>. Le tirage suit les mots (themes/tirage.js).
+  L'ANGLAIS (apprendre=en, 4 nov. 2026, Jacques : « il manque beaucoup de themes en anglais ») : les memes images et la
+  meme mecanique, des phrases ecrites pour l'anglais (objet EN, verse dans D par brancherAnglais() : meteo.json n'est
+  pas touche). On y apprend « It's » + un adjectif (sunny, cloudy, windy, foggy, cold), jamais « it makes » (le
+  francais « il fait » mot a mot) ; le present continu pour la pluie qui tombe (It's raining, It's snowing) contre le
+  present simple de l'habitude (it snows every winter) -- la sorte « continu », propre a l'anglais ; « There's a
+  storm » ; la famille du mot (rain, it's raining, a rainy day) ; le temps ou soi avec be (It's cold / I'm cold, jamais
+  « I have cold ») ; les saisons et les mois avec in (in January, in the summer). Boston : en americain les degres en
+  °F (le thermometre dessine aussi : 0 a 100, la ligne du gel a 32), en britannique (variante=gb) en °C, avec autumn
+  au lieu de fall. L'image du parc (park, la tour de la television de Berlin au fond) est ecartee : ECARTEES_EN.
 -->
 <style>
 :root{--fond1:#8FC1E8;--fond3:#D3E6F3;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -112,12 +121,15 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="bas" id="bas" hidden></div>
 <script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=2"></script>
+<script src="themes/voix.js?v=4"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=5"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const EN_APP = APPRENDRE === "en", GB = EN_APP && Q.get("variante") === "gb";
+// les degres en Fahrenheit : l'anglais americain seulement (Boston) ; le britannique, l'espagnol et l'allemand en °C
+const FAHR = EN_APP && !GB;
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
@@ -208,6 +220,17 @@ const TEXTES = {
   terminer:   {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:      {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:      {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  // l'anglais seulement (son interface est en francais)
+  regleEn:    {fr:"Pour le temps, l'anglais part de <b>it</b> : <b>It's</b> + un adjectif — It's sunny, It's cloudy, It's windy, It's foggy, It's cold. Jamais « it makes » : c'est le français « il fait » mot à mot. Un orage : <b>There's</b> a storm. Pour demander : <b>What's the weather like?</b>"},
+  regleEn2:   {fr:"La pluie et la neige qui tombent en ce moment : le présent continu, <b>It's raining</b>, <b>It's snowing</b>. Pour une habitude, le présent simple : In Boston, it <b>snows</b> every winter. Et la famille du mot : rain → it's raining → a rainy day ; sun → sunny ; cloud → cloudy ; wind → windy ; fog → foggy."},
+  bonUs:      {fr:"Bon à savoir : tu apprends l'anglais américain. L'automne s'y dit <b>fall</b> (autumn se comprend), on dit volontiers <b>in the winter</b>, <b>in the summer</b>, et les degrés sont en <b>Fahrenheit</b> (°F). En Grande-Bretagne : autumn, in winter, et les degrés en Celsius (°C)."},
+  bonGb:      {fr:"Bon à savoir : tu apprends l'anglais britannique. On y dit <b>autumn</b>, plutôt <b>in winter</b>, <b>in summer</b> (sans the), et les degrés sont en <b>Celsius</b> (°C). Aux États-Unis : fall, in the winter, et les degrés en Fahrenheit (70 °F, c'est 21 °C)."},
+  regleDegUs: {fr:"Aux États-Unis, et donc à Boston, les degrés sont en <b>Fahrenheit</b> : <b>It's seventy degrees</b> (21 °C), une belle journée. L'eau gèle à <b>thirty-two degrees</b> (0 °C) ; sous 0 °F (« below zero »), c'est rare. Gare à thir<b>teen</b> (13) et <b>thir</b>ty (30) : l'accent tombe sur -teen. Pour convertir : (°F − 32) ÷ 1,8."},
+  regleDegGb: {fr:"En Grande-Bretagne, les degrés sont en <b>Celsius</b> : <b>It's twenty degrees</b>. Sous zéro : <b>minus</b> five (degrees), ou five degrees <b>below zero</b>. Gare à thir<b>teen</b> (13) et <b>thir</b>ty (30) : l'accent tombe sur -teen."},
+  ressentiEn: {fr:"Le temps : <b>It's cold</b>. Toi : <b>I'm cold</b> (j'ai froid), avec <b>be</b> — jamais « I have cold », le français mot à mot. De même : It's hot / <b>I'm hot</b> (j'ai chaud). Et quatre mots, du plus chaud au plus froid : hot, warm, cool, cold (« It's cool » veut aussi dire « c'est génial » ; pour le temps, c'est frais)."},
+  saisonsEn:  {fr:"<b>in</b> + un mois ou une saison : <b>in</b> January, <b>in</b> (the) winter. Les mois prennent une majuscule (July), pas les saisons (summer). À Boston comme en France, c'est l'hémisphère nord."},
+  itsEn:      {fr:"Complète la phrase. Regarde l'image."},
+  continu:    {fr:"En ce moment, ou d'habitude ? Choisis la bonne forme du verbe."},
   retourAria: {fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -215,6 +238,9 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 // ---------- la donnee (meteo.json, fabrique par visuel/meteo/meteo.py) ----------
 let D = null;
 const L = APPRENDRE, DE_APP = APPRENDRE === "de";
+// le mot de la saison dans D.saisons (es, de, puis en, ajoute par brancherAnglais) ; le mot du degre
+const SI = DE_APP ? 1 : EN_APP ? 2 : 0;
+const GRADO = DE_APP ? "Grad" : EN_APP ? "degree" : "grado";
 const E = cle => D.enonces[L][cle];
 const IMG = () => Object.keys(D.images);
 const PLACES = () => IMG().filter(i => !D.images[i].act);
@@ -237,6 +263,168 @@ function tradPhrase(p){
 }
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 const glose = m => { const g = (D.gloses[L] || {})[m] || {}; return LANGUE === APPRENDRE ? "" : (g[LANGUE] || g.fr || ""); };
+
+// ---------- L'ANGLAIS (4 nov. 2026) : ses phrases a lui, versees dans D a cote de es et de ----------
+// Les memes faits (sol, lluvia...), les memes images, les memes sortes : seules les phrases sont ecrites pour l'anglais.
+// Les mots, a la forme du CORPUS anglais (anglais/datos, et datos-gb en britannique) ; « cle » distingue les deux cartes
+// d'un meme mot : rain (la pluie, un nom) et rain~v (pleuvoir, un verbe), de meme snow. « foggy » manque au corpus :
+// il reste « hors jeu » dans l'app (signale). Rien de ce bloc ne sert a l'espagnol ni a l'allemand.
+const ECARTEES_EN = ["park"];   // le parc au printemps : la tour de la television de Berlin au fond -- pas Boston
+const FALL = GB ? "autumn" : "fall";
+const SAISON_EN = {primavera: "spring", verano: "summer", otono: FALL, invierno: "winter"};
+const SAISON_FR = {primavera: "le printemps", verano: "l'été", otono: "l'automne", invierno: "l'hiver"};
+// « in the summer » en americain, « in summer » en britannique (les deux se disent des deux cotes)
+const EN_SAISON = s => (GB ? "In " : "In the ") + SAISON_EN[s];
+const MOTS_EN = (() => {
+  const n = (m, fr) => ({cle: m, mot: m, genre: "", fr}), a = (m, fr) => ({cle: m, mot: m, cat: "adjectif", fr}),
+        v = (m, fr, cle) => ({cle: cle || m, mot: m, cat: "verbe", fr});
+  return [n("weather", "le temps (qu'il fait)"), n("sun", "le soleil"), n("rain", "la pluie"), v("rain", "pleuvoir", "rain~v"),
+    n("snow", "la neige"), v("snow", "neiger", "snow~v"), n("wind", "le vent"), n("cloud", "le nuage"), n("fog", "le brouillard"),
+    n("storm", "la tempête, l'orage"), n("degree", "le degré"), n("spring", "le printemps"), n("summer", "l'été"), n(FALL, "l'automne"),
+    n("winter", "l'hiver"), n("January", "janvier"), n("February", "février"), n("April", "avril"), n("May", "mai"), n("July", "juillet"),
+    n("August", "août"), n("October", "octobre"), n("November", "novembre"), n("lake", "le lac"), n("ice cream", "la glace"),
+    n("leaf", "la feuille"), a("sunny", "ensoleillé"), a("cloudy", "nuageux"), a("windy", "venteux"), a("rainy", "pluvieux"),
+    a("foggy", "brumeux"), a("hot", "chaud, très chaud"), a("warm", "chaud (agréable)"), a("cool", "frais"), a("cold", "froid"),
+    v("swim", "nager"), v("eat", "manger"), v("pick up", "ramasser"), v("play", "jouer"), v("read", "lire")];
+})();
+const FAITS_EN = {
+  sol: [["It's sunny.", "sunny"], ["The sun is shining.", "sun"]], calor: [["It's hot.", "hot"]], frio: [["It's cold.", "cold"]],
+  fresco: [["It's cool.", "cool"]], lluvia: [["It's raining.", "rain~v"], ["It's a rainy day.", "rainy"]], nieve: [["It's snowing.", "snow~v"]],
+  nublado: [["It's cloudy.", "cloudy"]], viento: [["It's windy.", "windy"]], niebla: [["It's foggy.", "foggy"]],
+  tormenta: [["There's a storm.", "storm"]], buen: [["The weather is nice.", "weather"]], malo: [["The weather is bad.", "weather"]]
+};
+// la famille du mot : [phrase a trou, reponse, leurres, mot, image, fait] -- un seul choix juste (« It's rainy » est
+// juste aussi : il n'est jamais leurre de « It's ___. » raining)
+const FAMILLES_EN = [
+  ["It's ___.", "raining", ["rain", "rains"], "rain~v", "regen", "lluvia"],
+  ["There's a lot of ___ today.", "rain", ["raining", "rainy"], "rain", "regen", "lluvia"],
+  ["It's a ___ day.", "rainy", ["rain", "raining"], "rainy", "regen", "lluvia"],
+  ["It's ___.", "snowing", ["snow", "snows"], "snow~v", "winter", "nieve"],
+  ["There's a lot of ___ on the square.", "snow", ["snowing", "snows"], "snow", "winter", "nieve"],
+  ["The ___ is shining.", "sun", ["sunny"], "sun", "sommer", "sol"],
+  ["It's a ___ day.", "sunny", ["sun"], "sunny", "sommer", "sol"],
+  ["It's ___.", "cloudy", ["cloud", "clouds"], "cloudy", "bewoelkt", "nublado"],
+  ["There are a lot of ___ in the sky.", "clouds", ["cloudy", "cloud"], "cloud", "bewoelkt", "nublado"],
+  ["It's ___.", "windy", ["wind"], "windy", "herbst", "viento"],
+  ["The ___ is very strong.", "wind", ["windy"], "wind", "herbst", "viento"],
+  ["It's ___.", "foggy", ["fog"], "foggy", "nebel", "niebla"],
+  ["There's a lot of ___ this morning.", "fog", ["foggy"], "fog", "nebel", "niebla"]
+];
+// It's + adjectif, There's + nom, jamais « It makes » (le francais « il fait ») : [fait, phrase a trou, reponse, choix]
+const VERBE_EN = [
+  ["calor", "___ hot.", "It's", ["It's", "It makes", "There's"]], ["frio", "___ cold.", "It's", ["It's", "It makes", "There's"]],
+  ["fresco", "___ cool.", "It's", ["It's", "It makes"]], ["sol", "___ sunny.", "It's", ["It's", "It makes", "There's"]],
+  ["viento", "___ windy.", "It's", ["It's", "It makes", "There's"]], ["nublado", "___ cloudy.", "It's", ["It's", "It makes", "There's"]],
+  ["niebla", "___ foggy.", "It's", ["It's", "It makes", "There's"]], ["lluvia", "___ raining.", "It's", ["It's", "It makes", "There's"]],
+  ["nieve", "___ snowing.", "It's", ["It's", "It makes", "There's"]], ["tormenta", "___ a storm.", "There's", ["There's", "It makes", "It has"]],
+  ["buen", "The weather ___ nice.", "is", ["is", "makes", "has"]], ["malo", "The weather ___ bad.", "is", ["is", "makes", "has"]]
+];
+// le temps ou soi, avec be : [qui, image, moi | dehors, reponse, leurres, mot]
+const RESSENTI_EN = [
+  ["Anna", "winter", "moi", "I'm cold.", ["It's cold.", "I have cold."], "cold"], ["Anna", "winter", "dehors", "It's cold.", ["I'm cold.", "It makes cold."], "cold"],
+  ["Mark", "nebel", "moi", "I'm cold.", ["It's cold.", "I have cold."], "cold"], ["Mark", "nebel", "dehors", "It's cold.", ["I'm cold.", "It makes cold."], "cold"],
+  ["Anna", "sommer", "moi", "I'm hot.", ["It's hot.", "I have hot."], "hot"], ["Anna", "sommer", "dehors", "It's hot.", ["I'm hot.", "It makes hot."], "hot"],
+  ["Mark", "sommer", "moi", "I'm hot.", ["It's hot.", "I have hot."], "hot"], ["Mark", "sommer", "dehors", "It's hot.", ["I'm hot.", "It makes hot."], "hot"]
+];
+// ce que veut dire un mauvais choix (le choix faux traduit)
+const CHOIX_EN = {
+  "I have cold.": "ne se dit pas : c'est le français « j'ai froid » mot à mot", "I have hot.": "ne se dit pas : c'est le français « j'ai chaud » mot à mot",
+  "It makes cold.": "ne se dit pas : c'est le français « il fait froid » mot à mot", "It makes hot.": "ne se dit pas : c'est le français « il fait chaud » mot à mot",
+  "It makes": "ne se dit pas : c'est le français « il fait » mot à mot", "makes": "ne se dit pas : c'est le français « il fait » mot à mot",
+  "rains": "le présent simple : une habitude (it rains a lot in April)", "snows": "le présent simple : une habitude (it snows every winter)",
+  "is raining": "le présent continu : ce qui se passe en ce moment", "is snowing": "le présent continu : ce qui se passe en ce moment",
+  "raining": "la forme en -ing : il lui faut is (it's raining)", "snowing": "la forme en -ing : il lui faut is (it's snowing)"
+};
+// des bandes separees : un seul mot juste pour chaque temperature (75 °F n'est ni chaud ni frais : warm)
+const BANDES_EN = FAHR ? [["calor", 86, 999], ["warm", 68, 79], ["fresco", 48, 59], ["frio", -999, 39]]
+                       : [["calor", 30, 99], ["warm", 20, 26], ["fresco", 9, 15], ["frio", -99, 4]];
+const BANDE_EN = {calor: ["It's hot.", "hot"], warm: ["It's warm.", "warm"], fresco: ["It's cool.", "cool"], frio: ["It's cold.", "cold"]};
+// les temperatures de Boston en °F (13 a 19 : les « -teen » qu'on confond avec 30 a 90) ; en britannique, celles de meteo.json
+const TEMPS_F = [10, 14, 15, 16, 17, 18, 19, 20, 23, 25, 28, 30, 32, 35, 37, 39, 40, 43, 45, 46, 48, 50, 52, 54, 55, 57, 59, 60, 62, 64,
+                 65, 68, 70, 72, 73, 75, 77, 79, 80, 82, 84, 86, 88, 90, 91, 93, 95, 97, 100];
+const NOMBRES_EN = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen",
+                    "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+const DIZAINES_EN = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+const nombreEn = n => n < 0 ? "minus " + nombreEn(-n) : n < 20 ? NOMBRES_EN[n] : n === 100 ? "one hundred"
+                    : DIZAINES_EN[Math.floor(n / 10)] + (n % 10 ? "-" + NOMBRES_EN[n % 10] : "");
+const degresEn = t => "It's " + nombreEn(t) + (Math.abs(t) === 1 ? " degree." : " degrees.");
+const degresEnFr = t => FAHR ? "Il fait " + t + " °F (" + Math.round((t - 32) / 1.8) + " °C)."
+                             : "Il fait " + (t < 0 ? "moins " + (-t) : t) + (Math.abs(t) >= 2 ? " degrés." : " degré.");
+// les moments de saison (le parc est ecarte) : la phrase, le verbe conjugue et ses leurres (le -s), les mots
+const ACT_EN = {
+  see:      {phrase: EN_SAISON("verano") + ", Anna swims in the lake.", verbe: "swims", leurres: ["swim", "swimming"], mots: ["swim", "lake", "summer"], fr: "L'été, Anna nage dans le lac."},
+  eis:      {phrase: EN_SAISON("verano") + ", Ben and Mia eat ice cream.", verbe: "eat", leurres: ["eats", "eating"], mots: ["eat", "ice cream", "summer"], fr: "L'été, Ben et Mia mangent des glaces."},
+  blaetter: {phrase: (GB ? "In autumn" : "In the fall") + ", Ben and Mia pick up leaves in the forest.", verbe: "pick", leurres: ["picks", "picking"], mots: ["pick up", "leaf", FALL], fr: "À l'automne, Ben et Mia ramassent des feuilles dans la forêt."},
+  schnee:   {phrase: EN_SAISON("invierno") + ", Ben and Mia play in the snow.", verbe: "play", leurres: ["plays", "playing"], mots: ["play", "snow", "winter"], fr: "L'hiver, Ben et Mia jouent dans la neige."},
+  lesen:    {phrase: "When it rains, Anna reads a book with Mia.", verbe: "reads", leurres: ["read", "reading"], mots: ["read", "rain~v"], fr: "Quand il pleut, Anna lit un livre avec Mia."}
+};
+// les mois rattaches a leur saison, a Boston (l'hemisphere nord)
+const MOIS_EN = {January: ["invierno", "janvier"], February: ["invierno", "février"], April: ["primavera", "avril"], May: ["primavera", "mai"],
+                 July: ["verano", "juillet"], August: ["verano", "août"], October: ["otono", "octobre"], November: ["otono", "novembre"]};
+// L'ANGLAIS SEULEMENT, la sorte « continu » : en ce moment (is raining) ou d'habitude (rains)
+const CONTINU_EN = [
+  {img: "regen", t: "Look! It ___ right now.", rep: "is raining", opts: ["is raining", "rains", "raining"], k: "rain~v", fr: "Regarde ! Il pleut en ce moment."},
+  {img: "winter", t: "Look! It ___ right now.", rep: "is snowing", opts: ["is snowing", "snows", "snowing"], k: "snow~v", fr: "Regarde ! Il neige en ce moment."},
+  {img: "lesen", t: "Anna and Mia are staying inside today. It ___.", rep: "is raining", opts: ["is raining", "rains", "raining"], k: "rain~v", fr: "Anna et Mia restent à la maison aujourd'hui. Il pleut."},
+  {img: "winter", t: "Today it ___. The square is all white.", rep: "is snowing", opts: ["is snowing", "snows", "snowing"], k: "snow~v", fr: "Aujourd'hui, il neige. La place est toute blanche."},
+  {img: null, t: "In Boston, it ___ every winter.", rep: "snows", opts: ["snows", "is snowing", "snowing"], k: "snow~v", fr: "À Boston, il neige chaque hiver."},
+  {img: null, t: "In Boston, it ___ a lot in April.", rep: "rains", opts: ["rains", "is raining", "raining"], k: "rain~v", fr: "À Boston, il pleut beaucoup en avril."}
+];
+const TRAD_EN = {
+  "It's sunny.": "Il y a du soleil.", "The sun is shining.": "Le soleil brille.", "It's hot.": "Il fait chaud.", "It's cold.": "Il fait froid.",
+  "It's cool.": "Il fait frais.", "It's warm.": "Il fait bon.", "It's raining.": "Il pleut.", "It's a rainy day.": "C'est un jour de pluie.",
+  "It's snowing.": "Il neige.", "It's cloudy.": "Le ciel est nuageux.", "It's windy.": "Il y a du vent.", "It's foggy.": "Il y a du brouillard.",
+  "There's a storm.": "Il y a un orage.", "The weather is nice.": "Il fait beau.", "The weather is bad.": "Il fait mauvais.",
+  "There's a lot of rain today.": "Il y a beaucoup de pluie aujourd'hui.", "There's a lot of snow on the square.": "Il y a beaucoup de neige sur la place.",
+  "It's a sunny day.": "C'est une journée ensoleillée.", "There are a lot of clouds in the sky.": "Il y a beaucoup de nuages dans le ciel.",
+  "The wind is very strong.": "Le vent est très fort.", "There's a lot of fog this morning.": "Il y a beaucoup de brouillard ce matin.",
+  "I'm cold.": "J'ai froid.", "I'm hot.": "J'ai chaud."
+};
+// mots et formes qu'un mauvais choix peut montrer (« Tu as choisi : rainy — pluvieux »)
+const GLOSES_FORMES_EN = {clouds: "les nuages", leaves: "les feuilles"};
+
+// verse l'anglais dans D (une fois, au chargement) : D garde la meme forme que pour es et de
+function brancherAnglais(D){
+  ECARTEES_EN.forEach(i => { const a = D.images[i] && D.images[i].act; delete D.images[i]; if (a) delete D.activites[a]; });
+  Object.keys(FAITS_EN).forEach(f => { D.faits[f].en = FAITS_EN[f]; });
+  Object.keys(SAISON_EN).forEach(s => { D.saisons[s][2] = SAISON_EN[s]; D.saisonPhrase[s].en = "It's " + SAISON_EN[s] + "."; });
+  Object.keys(ACT_EN).forEach(a => { if (D.activites[a]) D.activites[a].en = ACT_EN[a]; });
+  D.familles.en = FAMILLES_EN; D.verbeTemps.en = VERBE_EN; D.ressenti.en = RESSENTI_EN;
+  D.bandes.en = BANDES_EN; D.bandePhrase.en = BANDE_EN;
+  Object.keys(CHOIX_EN).forEach(c => { D.choixRessenti[c] = {fr: CHOIX_EN[c]}; });
+  D.enonces.en = {temps: "What's the weather like?", degres: "What's the temperature?", saison: "What season is it?", act: "Which sentence goes with the picture?",
+                  mois: "What month could it be?", dit: "{q} says: “___”", vrai: "True", faux: "False", bravo: "Well done!"};
+  const trad = {};
+  Object.keys(TRAD_EN).forEach(p => { trad[p] = {fr: TRAD_EN[p]}; });
+  D.mois.en = {};
+  Object.keys(MOIS_EN).forEach(m => { const [s, fr] = MOIS_EN[m], S = SAISON_EN[s];
+    const phrase = "In Boston, it's " + S + " in " + m + ".";
+    D.mois.en[m] = {saison: s, phrase, phraseMois: phrase, trouSaison: "In Boston, it's ___ in " + m + ".", trouMois: "In Boston, it's " + S + " ___."};
+    trad[phrase] = {fr: "À Boston, en " + fr + ", c'est " + SAISON_FR[s] + "."}; });
+  Object.keys(SAISON_EN).forEach(s => { trad["It's " + SAISON_EN[s] + "."] = {fr: "C'est " + SAISON_FR[s] + "."}; });
+  Object.keys(ACT_EN).forEach(a => { trad[ACT_EN[a].phrase] = {fr: ACT_EN[a].fr}; });
+  CONTINU_EN.forEach(x => { trad[x.t.replace("___", x.rep)] = {fr: x.fr}; });
+  if (FAHR){ D.temperatures = TEMPS_F; D.leurresNombres = Array.from({length: 101}, (x, i) => i); }
+  D.degres.en = {};
+  for (let t = -15; t <= 100; t++){ D.degres.en[t] = degresEn(t); trad[degresEn(t)] = {fr: degresEnFr(t)}; }
+  D.trad.en = trad;
+  D.gloses.en = {};
+  MOTS_EN.forEach(m => { D.gloses.en[m.cle] = {fr: m.fr}; if (m.cle === m.mot) D.gloses.en[m.mot] = {fr: m.fr}; });
+  Object.keys(GLOSES_FORMES_EN).forEach(f => { D.gloses.en[f] = {fr: GLOSES_FORMES_EN[f]}; });
+  D.continu = CONTINU_EN.filter(x => !x.img || D.images[x.img]);
+  // ce que la page dit (visuel/voix_themes.py) : chaque phrase juste, une fois
+  const sons = {};
+  Object.values(FAITS_EN).forEach(l => l.forEach(([p]) => { sons[p] = ""; }));
+  FAMILLES_EN.forEach(x => { sons[x[0].replace("___", x[1])] = ""; });
+  Object.values(D.activites).forEach(a => { sons[a.en.phrase] = ""; });
+  Object.keys(SAISON_EN).forEach(s => { sons[D.saisonPhrase[s].en] = ""; });
+  Object.values(D.mois.en).forEach(x => { sons[x.phrase] = ""; });
+  D.temperatures.forEach(t => { sons[D.degres.en[t]] = ""; });
+  Object.values(BANDE_EN).forEach(([p]) => { sons[p] = ""; });
+  RESSENTI_EN.forEach(x => { sons[x[3]] = ""; });
+  D.continu.forEach(x => { sons[x.t.replace("___", x.rep)] = ""; });
+  D.sons.en = sons;
+}
 
 // ---------- la voix : le fichier enregistre s'il existe, sinon le telephone (themes/voix.js) ----------
 let dire = t => Voix.dire(t);
@@ -273,9 +461,11 @@ function pictogramme(id){
 }
 const imgSrc = i => "meteo/" + i + ".webp";
 const imgTag = (i, extra) => '<img alt="" src="' + imgSrc(i) + '" data-id="' + i + '"' + (extra || "") + ' onerror="this.onerror=null;this.src=pictogramme(this.dataset.id)">';
-const photo = (i, degres) => '<div class="cadre">' + imgTag(i, ' id="photo"') + (degres ? '<span class="degres">' + D.images[i].temp + ' °C</span>' : "") + '</div>';
+const photo = (i, degres) => '<div class="cadre">' + imgTag(i, ' id="photo"') + (degres ? '<span class="degres">' + (FAHR ? Math.round(D.images[i].temp * 1.8 + 32) + ' °F' : D.images[i].temp + ' °C') + '</span>' : "") + '</div>';
 // LE THERMOMETRE dessine : de -10 a 40 degres, le rouge au chaud, le bleu au froid
+// (en americain, en °F : de 0 a 100, la ligne pointillee au gel, 32 °F, les memes couleurs a 59 et 41 °F)
 function thermometre(t){
+  if (FAHR) return thermometreF(t);
   const y = v => 196 - (Math.max(-10, Math.min(40, v)) + 10) * 3.4, c = t >= 15 ? "var(--chaud)" : t >= 5 ? "var(--ambre)" : "var(--froid)";
   let g = "";
   for (let v = -10; v <= 40; v += 10) g += '<line x1="58" x2="68" y1="' + y(v) + '" y2="' + y(v) + '" stroke="var(--gris)" stroke-width="2"/><text x="72" y="' + (y(v) + 5) + '" font-size="13" font-weight="700" fill="var(--gris)">' + v + '</text>';
@@ -283,7 +473,15 @@ function thermometre(t){
     + '<rect x="39" y="' + y(t) + '" width="10" height="' + (206 - y(t)) + '" rx="5" fill="' + c + '"/><circle cx="44" cy="214" r="18" fill="' + c + '"/>'
     + '<line x1="34" x2="54" y1="' + y(0) + '" y2="' + y(0) + '" stroke="var(--encre)" stroke-width="1.5" stroke-dasharray="3 2"/>' + g + '</svg>';
 }
-const degresTxt = t => (t > 0 ? "+" : t < 0 ? "−" : "") + Math.abs(t) + " °C";
+function thermometreF(t){
+  const y = v => 196 - Math.max(0, Math.min(100, v)) * 1.7, c = t >= 59 ? "var(--chaud)" : t >= 41 ? "var(--ambre)" : "var(--froid)";
+  let g = "";
+  for (let v = 0; v <= 100; v += 20) g += '<line x1="58" x2="68" y1="' + y(v) + '" y2="' + y(v) + '" stroke="var(--gris)" stroke-width="2"/><text x="72" y="' + (y(v) + 5) + '" font-size="13" font-weight="700" fill="var(--gris)">' + v + '</text>';
+  return '<svg viewBox="0 0 100 240" aria-hidden="true"><rect x="34" y="18" width="20" height="186" rx="10" fill="var(--tube)"/>'
+    + '<rect x="39" y="' + y(t) + '" width="10" height="' + (206 - y(t)) + '" rx="5" fill="' + c + '"/><circle cx="44" cy="214" r="18" fill="' + c + '"/>'
+    + '<line x1="34" x2="54" y1="' + y(32) + '" y2="' + y(32) + '" stroke="var(--encre)" stroke-width="1.5" stroke-dasharray="3 2"/>' + g + '</svg>';
+}
+const degresTxt = t => FAHR ? t + " °F" : (t > 0 ? "+" : t < 0 ? "−" : "") + Math.abs(t) + " °C";
 const boiteThermo = t => '<div class="thermo">' + thermometre(t) + '<div class="valeur">' + degresTxt(t) + '</div></div>';
 function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
 
@@ -294,19 +492,22 @@ let motQ = null, tradQ = null, choixQ = null;
 let MOTS = null;
 function motsDuTheme(){
   if (MOTS) return MOTS;
+  // en anglais : MOTS_EN, chacun avec sa cle (rain / rain~v) ; un nom a le genre "", comme au corpus anglais
+  if (EN_APP) return (MOTS = MOTS_EN.map(m => m.cat ? {mot: m.mot, cat: m.cat, cle: m.cle} : {mot: m.mot, genre: "", cle: m.cle}));
   MOTS = Object.keys(D.mots[L]).map(k => { const g = D.mots[L][k];
     return (g === "adjectif" || g === "verbe") ? {mot: k, cat: g} : {mot: k, genre: g}; });
   return MOTS;
 }
-const motDe = k => motsDuTheme().find(m => m.mot === k) || {mot: k};
-const motObj = m => ({mot: m.mot, genre: m.genre || null, cat: m.cat || null});
+// (cle : l'anglais seulement, ou un mot a deux cartes, rain et rain~v ; ailleurs, le mot lui-meme)
+const motDe = k => motsDuTheme().find(m => (m.cle || m.mot) === k) || {mot: k};
+const motObj = m => Object.assign({mot: m.mot, genre: m.genre || null, cat: m.cat || null}, m.cle ? {cle: m.cle} : {});
 // la question vise le mot w s'il est donne, sinon le mot k de l'item choisi
 function viser(w, k){ motQ = motObj(w || motDe(k)); }
-const accepte = (w, mots) => !w || mots.includes(w.mot);
+const accepte = (w, mots) => !w || mots.includes(w.cle || w.mot);
 // le mot montre sous la reponse : « el calor », « nublado », « llover », et sa traduction (le corpus)
 function montreDe(m){
   if (!m) return null;
-  return {aff: m.genre ? m.genre + " " + m.mot : m.mot, sens: glose(m.mot)};
+  return {aff: m.genre ? m.genre + " " + m.mot : m.mot, sens: glose(m.cle || m.mot)};
 }
 
 // LE MAUVAIS CHOIX TRADUIT (regle commune des themes, 3 nov.) : « Tu as choisi : Nieva. — Il neige. » Une image
@@ -320,7 +521,7 @@ function motDePhrase(p){
     Object.values(D.faits).forEach(f => f[L].forEach(([ph, k]) => { MOT_DE_PHRASE[ph] = k; }));
     Object.values(D.activites).forEach(a => { MOT_DE_PHRASE[a[L].phrase] = a[L].mots[0]; });
     Object.values(D.bandePhrase[L]).forEach(([ph, k]) => { MOT_DE_PHRASE[ph] = k; });
-    Object.keys(D.saisonPhrase).forEach(s => { MOT_DE_PHRASE[D.saisonPhrase[s][L]] = D.saisons[s][DE_APP ? 1 : 0]; });
+    Object.keys(D.saisonPhrase).forEach(s => { MOT_DE_PHRASE[D.saisonPhrase[s][L]] = D.saisons[s][SI]; });
   }
   return MOT_DE_PHRASE[p] || null;
 }
@@ -469,7 +670,7 @@ const EX = {
   },
   // l'ecoute : la phrase dite, trois photos -- ou des degres dits, trois thermometres
   entendre(w){
-    const G = DE_APP ? "Grad" : "grado";
+    const G = GRADO;
     const c = itemsAImages().filter(it => accepte(w, it.ks) && it.autres.length >= 2)
       .concat(accepte(w, [G]) ? D.temperatures.map(t => ({t, p: D.degres[L][t], ks: [G]})) : []);
     if (!c.length) return false;
@@ -489,7 +690,7 @@ const EX = {
   // de la famille du mot), pour le thermometre (les degres, le ressenti) ou pour un mois. ks : les mots que la phrase
   // fait travailler ; juste : ce qui est vrai, montre apres la reponse.
   vraifaux(w){
-    const c = [], G = DE_APP ? "Grad" : "grado", M = D.mois[L], sw = s => D.saisons[s][DE_APP ? 1 : 0];
+    const c = [], G = GRADO, M = D.mois[L], sw = s => D.saisons[s][SI];
     IMG().forEach(i => Object.keys(D.faits).forEach(f => { if (vrai(i, f) || faux(i, f)) phrasesFait(f).forEach(([p, k]) => c.push({img: i, p, ks: [k], v: vrai(i, f)})); }));
     IMG().filter(i => D.images[i].act).forEach(i => Object.keys(D.activites).forEach(a => {
       const x = D.activites[a][L]; c.push({img: i, p: x.phrase, ks: x.mots, v: D.images[i].act === a}); }));
@@ -525,7 +726,7 @@ const EX = {
     if (!c.length) return false;
     const it = hasard(c);
     viser(w, it.k);
-    ecranTrou(T(DE_APP ? "gibt" : "hace"), photo(hasard(it.imgs)), it.t);
+    ecranTrou(T(DE_APP ? "gibt" : EN_APP ? "itsEn" : "hace"), photo(hasard(it.imgs)), it.t);
     boutons($("choix"), it.opts, it.rep, ok => { remplir(it.rep); juger(ok, it.rep, it.juste); });
     return true;
   },
@@ -542,7 +743,7 @@ const EX = {
   },
   // le thermometre : « Hace treinta grados. » parmi des nombres qu'on confond (trece / treinta, el signo)
   degres(w){
-    const k = DE_APP ? "Grad" : "grado";
+    const k = GRADO;
     if (!accepte(w, [k])) return false;
     const t = hasard(D.temperatures), lr = leurresDegres(t);
     if (lr.length < 2) return false;
@@ -573,7 +774,7 @@ const EX = {
     if (!c.length) return false;
     const [qui, img, sens, rep, autres, k] = hasard(c);
     viser(w, k);
-    const froid = k === "frío" || k === "kalt";
+    const froid = k === "frío" || k === "kalt" || k === "cold";
     ecranTrou(T((sens === "moi" ? "moi" : "dehors") + (froid ? "Froid" : "Chaud"), {q: qui}), photo(img), E("dit").replace("{q}", qui));
     boutons($("choix"), melanger([rep, ...autres]), rep, ok => { remplir(rep); juger(ok, rep, rep); });
     $("choix").className = "choix colonne";
@@ -582,7 +783,7 @@ const EX = {
   // la saison d'une photo
   saison(w){
     // la saison de la photo ; ou le mois qu'elle peut etre (un seul mois de sa saison parmi les choix)
-    const c = [], M = D.mois[L], sw = s => D.saisons[s][DE_APP ? 1 : 0];
+    const c = [], M = D.mois[L], sw = s => D.saisons[s][SI];
     IMG().forEach(i => { const s = D.images[i].saison; if (!s) return;
       if (accepte(w, [sw(s)])) c.push({i, s, k: sw(s)});
       Object.keys(M).filter(m => M[m].saison === s && accepte(w, [m])).forEach(m => c.push({i, s, k: m, m})); });
@@ -603,19 +804,20 @@ const EX = {
   // les mois et leur saison : « En España, en julio es ___. » ; « En España, ___ es un mes de verano. »
   mois(w){
     const M = D.mois[L], c = [];
-    Object.keys(M).forEach(m => { const s = M[m].saison, ks = D.saisons[s][DE_APP ? 1 : 0];
+    Object.keys(M).forEach(m => { const s = M[m].saison, ks = D.saisons[s][SI];
       if (accepte(w, [ks, m])) c.push({m, s, sens: "saison", k: w && w.mot === m ? m : ks});
       if (accepte(w, [m])) c.push({m, s, sens: "mois", k: m}); });
     if (!c.length) return false;
     const it = hasard(c), x = M[it.m];
     viser(w, it.k);
     if (it.sens === "saison"){
-      const rep = D.saisons[it.s][DE_APP ? 1 : 0], autres = melanger(Object.keys(D.saisons).filter(s => s !== it.s)).slice(0, 2).map(s => D.saisons[s][DE_APP ? 1 : 0]);
+      const rep = D.saisons[it.s][SI], autres = melanger(Object.keys(D.saisons).filter(s => s !== it.s)).slice(0, 2).map(s => D.saisons[s][SI]);
       ecranTrou(T("moisSaison"), "", x.trouSaison);
       boutons($("choix"), melanger([rep, ...autres]), rep, ok => { remplir(rep); juger(ok, rep, x.phrase); });
     } else {
       const autres = melanger(Object.keys(M).filter(m => M[m].saison !== it.s)).slice(0, 2);
-      const forme = m => DE_APP ? "Im " + m : m, rep = forme(it.m);
+      // en anglais, la preposition avec le mois : « In Boston, it's winter in January. »
+      const forme = m => DE_APP ? "Im " + m : EN_APP ? "in " + m : m, rep = forme(it.m);
       ecranTrou(T("moisMois"), "", x.trouMois);
       boutons($("choix"), melanger([rep, ...autres.map(forme)]), rep, ok => { remplir(rep); juger(ok, rep, DE_APP ? x.phrase : x.phraseMois); });
     }
@@ -651,10 +853,24 @@ const EX = {
     ecran(T("v2"), photo(it.img), "", false, true);
     boutons($("choix"), melanger([it.juste, it.fautive]), it.juste, ok => juger(ok, it.juste, it.juste));
     return true;
+  },
+  // L'ANGLAIS SEULEMENT : en ce moment ou d'habitude. « Look! It ___ right now. » is raining / rains / raining ;
+  // « In Boston, it ___ every winter. » snows / is snowing / snowing
+  continu(w){
+    if (!EN_APP) return false;
+    const c = D.continu.filter(x => accepte(w, [x.k]));
+    if (!c.length) return false;
+    const it = hasard(c);
+    viser(w, it.k);
+    ecranTrou(T("continu"), it.img ? photo(it.img) : "", it.t);
+    const juste = it.t.replace("___", it.rep);
+    boutons($("choix"), melanger(it.opts), it.rep, ok => { remplir(it.rep); juger(ok, it.rep, juste); });
+    return true;
   }
 };
 // les sortes de la langue apprise
 const SORTES = DE_APP ? ["temps", "cual", "entendre", "vraifaux", "verbe", "famille", "degres", "ressenti", "dit", "saison", "mois", "act", "ordre"]
+             : EN_APP ? ["temps", "cual", "entendre", "vraifaux", "verbe", "famille", "degres", "ressenti", "dit", "saison", "mois", "act", "continu"]
                       : ["temps", "cual", "entendre", "vraifaux", "verbe", "famille", "degres", "ressenti", "dit", "saison", "mois", "act"];
 
 // ---------- la decouverte : le temps, les degres, les saisons ----------
@@ -670,7 +886,7 @@ function decouvrir(){
   // la traduction : la phrase entiere en fr, en, pt (et de pour l'espagnol) ; ailleurs, le mot de chaque phrase et sa
   // glose du corpus (« el calor — حرارة »)
   const gloses = p => LANGUE === APPRENDRE ? "" : p.split(/(?<=\.) /).map(motDePhrase).filter(Boolean).filter((k, n, a) => a.indexOf(k) === n)
-    .map(k => { const m = motDe(k), g = glose(k); return g ? cible(m.genre ? m.genre + " " + k : k) + " — " + g : ""; }).filter(Boolean).join(" · ");
+    .map(k => { const m = motDe(k), g = glose(k); return g ? cible(m.genre ? m.genre + " " + m.mot : m.mot) + " — " + g : ""; }).filter(Boolean).join(" · ");
   const montrerPhrase = p => { phraseDite = p; const t = tradPhrase(p);
     $("dit").innerHTML = cible(p) + (t ? traduction(t) : (g => g ? '<span class="trad" dir="auto">' + g + '</span>' : "")(gloses(p))); };
   $("ecoute").addEventListener("click", () => dire(phraseDite));
@@ -683,13 +899,15 @@ function decouvrir(){
   const temps = () => {
     onglet(0); $("puces").innerHTML = "";
     PLACES().forEach(i => puce(premiere(D.images[i].vrais[0]).replace(/\.$/, ""), () => voirImage(i, true)));
-    regles(DE_APP ? ["regleDe", "regleV2"] : ["regleEs"]);
+    regles(DE_APP ? ["regleDe", "regleV2"] : EN_APP ? ["regleEn", "regleEn2", GB ? "bonGb" : "bonUs"] : ["regleEs"]);
     voirImage("sommer", false); $("puces").firstChild.classList.add("choisi");
   };
   // les degres : un thermometre a faire glisser, la phrase en lettres et le ressenti
   const degres = () => {
     onglet(1); $("puces").innerHTML = "";
-    $("vue").innerHTML = '<div class="thermo" id="th"></div><input type="range" id="curseur" min="-10" max="35" step="1" value="20" aria-label="°C" dir="ltr">';
+    // en americain, le curseur en °F (0 a 100, 68 °F = 20 °C)
+    $("vue").innerHTML = '<div class="thermo" id="th"></div>' + (FAHR ? '<input type="range" id="curseur" min="0" max="100" step="1" value="68" aria-label="°F" dir="ltr">'
+                                                                      : '<input type="range" id="curseur" min="-10" max="35" step="1" value="20" aria-label="°C" dir="ltr">');
     const maj = parle => {
       const t = Number($("curseur").value);
       $("th").innerHTML = thermometre(t) + '<div class="valeur">' + degresTxt(t) + '</div>';
@@ -699,8 +917,8 @@ function decouvrir(){
     };
     $("curseur").addEventListener("input", () => maj(false));
     $("curseur").addEventListener("change", () => maj(true));
-    [-5, 0, 12, 22, 31].forEach(t => puce(degresTxt(t), () => { $("curseur").value = t; maj(true); }));
-    regles(DE_APP ? ["regleDegDe", "ressentiDe"] : ["regleDegEs", "ressentiEs"]);
+    (FAHR ? [23, 32, 54, 72, 88] : [-5, 0, 12, 22, 31]).forEach(t => puce(degresTxt(t), () => { $("curseur").value = t; maj(true); }));
+    regles(DE_APP ? ["regleDegDe", "ressentiDe"] : EN_APP ? [GB ? "regleDegGb" : "regleDegUs", "ressentiEn"] : ["regleDegEs", "ressentiEs"]);
     maj(false);
   };
   // les saisons : chaque saison, ses mois, et ce qu'on y fait
@@ -712,14 +930,14 @@ function decouvrir(){
     const court = p => (DE_APP ? p : p.replace(/^[^,]+, /, "")).replace(/\.$/, "");
     ordre.forEach(s => {
       const place = PLACES().find(i => D.images[i].saison === s), mois = Object.keys(D.mois[L]).filter(m => D.mois[L][m].saison === s);
-      puce(D.saisons[s][DE_APP ? 1 : 0] + " · " + mois.join(", "), () => {
+      puce(D.saisons[s][SI] + " · " + mois.join(", "), () => {
         $("vue").innerHTML = photo(place, true);
         const p = D.saisonPhrase[s][L] + " " + D.mois[L][mois[0]].phrase; montrerPhrase(p); dire(p);
       });
       IMG().filter(i => D.images[i].act && D.images[i].saison === s).forEach(i => puce("· " + court(D.activites[D.images[i].act][L].phrase), () => voirImage(i, true)));
     });
     IMG().filter(i => D.images[i].act && !D.images[i].saison).forEach(i => puce((DE_APP ? "" : T("quandPleut") + " · ") + court(D.activites[D.images[i].act][L].phrase), () => voirImage(i, true)));
-    regles(DE_APP ? ["imDe"] : ["hemisphere"]);
+    regles(DE_APP ? ["imDe"] : EN_APP ? ["saisonsEn"] : ["hemisphere"]);
     $("puces").firstChild.click(); taire();
   };
   $("o1").addEventListener("click", temps); $("o2").addEventListener("click", degres); $("o3").addEventListener("click", saisons);
@@ -827,6 +1045,7 @@ $("titre").textContent = T("titre");
 document.title = T("titre");
 fetch("meteo/meteo.json?v=1").then(r => r.json()).then(d => {
   D = d;
+  if (EN_APP) brancherAnglais(D);
   if (Q.get("seance") === "1") demarrer(); else decouvrir();
 });
 </script>

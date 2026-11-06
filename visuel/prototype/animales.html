@@ -17,6 +17,13 @@
   a chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin.
   Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
   variante=latam (la voix), r=<AUDIO_REVISION>. Le tirage suit les mots (themes/tirage.js).
+  L'ANGLAIS (4 nov. 2026, apprendre=en, variante=gb) : les memes images, aucune ecartee (ECARTEES_EN vide : ni
+  enseigne, ni plaque, ni document), ses phrases a lui (EN_A, EN_H, EN_F, EN_C, EX_EN, plus bas). Il n'a ni genre ni
+  accord : il enseigne le pluriel, regulier et irregulier (mouse -> mice, sheep, fish, deer qui ne changent pas, et
+  sans image goose -> geese, wolf -> wolves, puppy -> puppies), there is / there are, on a farm mais in the forest,
+  le present simple et son -s (A rabbit eats carrots. Cats eat fish. : le generique au pluriel, sans article),
+  doesn't / don't, bigger than et the biggest, has (has got en britannique), it / its / their, et la couleur devant
+  le nom, sans -s (white sheep, an orange fox). Americain / britannique : gray / grey, color / colour, has / has got.
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -111,12 +118,15 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="bas" id="bas" hidden></div>
 <script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=2"></script>
+<script src="themes/voix.js?v=4"></script>
 <script src="themes/zoom.js?v=3"></script>
 <script src="themes/verre.js?v=5"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+// l'anglais (4 nov. 2026, « il manque beaucoup de themes en anglais ») : les memes images, ses phrases a lui ; variante=gb
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
+const EN_APP = APPRENDRE === "en";
 const DE_APP = APPRENDRE === "de";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -157,7 +167,22 @@ const TEXTES = {
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
-  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"},
+  // l'anglais seulement (son interface est en francais) : les regles, la note americain / britannique, les consignes de ses sortes
+  regleEnPl: {fr:"Le pluriel : -s (cows), -es après s, x, sh et ch (foxes), y devient ies (puppies), f devient ves (wolves). Quelques pluriels irréguliers : mouse → mice, goose → geese. Et des noms qui ne changent pas : sheep, fish, deer. La couleur se place devant le nom et ne prend jamais de -s : a pink pig, white sheep. Chicken, c'est la poule (et le poulet qu'on mange)."},
+  regleEnPres:{fr:"Ce qu'un animal fait d'habitude se dit au présent simple : un -s pour un seul animal (it eats), rien pour plusieurs (they eat) ; la négation, doesn't et don't. Une vérité générale se dit au pluriel SANS article : Cats eat fish (en français : les chats). Où il vit : on a farm, mais in the forest, in the sea, in a house. Ce qu'on voit : there is pour un, there are pour plusieurs."},
+  regleEnComp:{fr:"Comparer : bigger than, smaller than (jamais more big) ; le plus grand : the biggest. Un animal, c'est it (he ou she pour son propre chien, son chat) ; son possessif est its, sans apostrophe : it's veut dire it is. Pour plusieurs : they, their."},
+  bonUs:     {fr:"Bon à savoir : tu apprends l'anglais américain. Les noms des animaux sont les mêmes en Grande-Bretagne, mais on y écrit grey (gray) et colour (color), et on y dit souvent A cat has got four legs pour A cat has four legs."},
+  bonGb:     {fr:"Bon à savoir : tu apprends l'anglais britannique. Les noms des animaux sont les mêmes aux États-Unis, mais on y écrit gray (grey) et color (colour), et on y dit A cat has four legs plutôt que A cat has got four legs (en Grande-Bretagne, les deux se disent)."},
+  prepEn:    {fr:"on ou in ? Choisis le petit mot qui manque."},
+  verbeEn:   {fr:"Choisis la bonne forme du verbe : un seul animal (-s), ou plusieurs ?"},
+  negatifEn: {fr:"La négation : doesn't ou don't ? Un seul animal, ou plusieurs ?"},
+  thereEn:   {fr:"There is ou there are ? Un seul, ou plusieurs ?"},
+  adjEn:     {fr:"Où va la couleur ? Choisis la bonne forme."},
+  superlatifEn:{fr:"Le plus grand ou le plus petit des trois ? Complète la phrase."},
+  haveEn:    {fr:"has ou have ? Complète la phrase."},
+  haveGb:    {fr:"has got ou have got ? Complète la phrase."},
+  itsEn:     {fr:"its, it's, their ou they're ? Choisis le mot qui manque."}
 };
 // les exemples de la regle, dans la langue apprise
 const EXEMPLES = {
@@ -168,11 +193,13 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 
 // ---------- la donnee (animales.json, fabrique par visuel/animales/animales.py) ----------
 let D = null;
-const ANI = () => Object.keys(D.animaux);
+// en anglais, aucune image n'est ecartee (regardees une a une le 4 nov. 2026 : ni enseigne, ni plaque, ni document)
+const ECARTEES_EN = [];
+const ANI = () => Object.keys(D.animaux).filter(a => !EN_APP || !ECARTEES_EN.includes(a));
 const an = a => D.animaux[a];
 const P = cle => D.phrases[APPRENDRE][cle];                    // une phrase de la langue apprise, par sa cle
 const sg = (a, maj) => { const [art, nom] = an(a)[APPRENDRE]; return (maj ? art.charAt(0).toUpperCase() + art.slice(1) : art) + " " + nom; };
-const plDe = (a, maj) => DE_APP ? (maj ? "Die " : "die ") + an(a).de[2] : ((an(a).es[0] === "el" ? "los" : "las") + " " + an(a).es[2]).replace(/^l/, maj ? "L" : "l");
+const plDe = (a, maj) => EN_APP ? (maj ? "Two " : "two ") + an(a).en[2] : DE_APP ? (maj ? "Die " : "die ") + an(a).de[2] : ((an(a).es[0] === "el" ? "los" : "las") + " " + an(a).es[2]).replace(/^l/, maj ? "L" : "l");
 const femEs = a => an(a).es[0] === "la";
 const lieu = h => D.habitats[h][APPRENDRE];
 const aliment = f => D.aliments[f][APPRENDRE];
@@ -213,6 +240,7 @@ let motQ = null, tradQ = null, choixQ = null, animalQ = null;     // animalQ : l
 let MOTS = null;
 function motsDuTheme(){
   if (MOTS) return MOTS;
+  if (EN_APP) return (MOTS = motsDuThemeEn());
   const out = [], par = {};
   const ajouter = (mot, genre, role, id) => {
     const k = genre + " " + mot;
@@ -236,6 +264,7 @@ function viser(w, defaut){ motQ = motDe(w || defaut); }
 // animal (nomme ou touche), un lieu (« im Meer » -> dans la mer), un aliment, une couleur. Un article, un pluriel, une
 // forme du verbe, Richtig / Falsch : rien a traduire.
 function choixTraduit(c){
+  if (EN_APP) return choixTraduitEn(c);
   if (!c || LANGUE === APPRENDRE) return null;
   if (D.animaux[c]) return {aff: sg(c), sens: glose(an(c)[APPRENDRE][1])};
   const a = ANI().find(x => sg(x) === c);
@@ -262,7 +291,7 @@ function juger(ok, bonneTexte, phrase){
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const mt = motQ ? {aff: (motQ.genre ? motQ.genre + " " : "") + motQ.mot, sens: glose(motQ.mot)} : null;
-  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
+  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : EN_APP ? "Well done!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
     + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
     + traduction(tradQ || tradPhrase(phrase || bonneTexte))
     + (!ok && (c => c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")(choixTraduit(choixQ)) || "")
@@ -544,15 +573,540 @@ const EX = {
     return true;
   }
 };
-// les sortes de la langue apprise : la terminaison devant le nom en allemand seulement
-const SORTES = Object.keys(EX).filter(x => DE_APP || x !== "endung");
+// ---------- L'ANGLAIS (4 nov. 2026) ----------
+// Les phrases sont ecrites pour l'anglais, fabriquees depuis les memes animaux (animales.json : ou il vit, ce qu'il
+// mange, sa couleur, sa taille) ; rien n'est traduit de l'espagnol. Ce que le theme enseigne : le pluriel, regulier et
+// irregulier (mouse -> mice, sheep -> sheep), there is / there are, on a farm / in the forest, le present simple et son
+// -s (A rabbit eats carrots. Cats eat fish. : le generique au pluriel, sans article), doesn't / don't, bigger than et
+// the biggest, has (has got en britannique), it / its, et la couleur devant le nom, sans -s (white sheep).
+const anA = s => /^[aeiou]/i.test(s) ? "an" : "a";
+const avecA = s => anA(s) + " " + s;
+const maj = s => s.charAt(0).toUpperCase() + s.slice(1);
+const GRIS = GB ? "grey" : "gray", COULEUR = GB ? "colour" : "color";
+// LES ANIMAUX EN ANGLAIS. mot, pl : le nom et son pluriel (le corpus anglais) ; faux : des pluriels clairement faux ;
+// fr : [le, les, un, genre] ; groupe : l'image en montre plusieurs (3, ou « many » pour le banc de poissons) ;
+// img: false : sans image (les pluriels irreguliers goose, wolf, deer, puppy, et rabbit pour « A rabbit eats carrots ») ;
+// ou, aussi : ou il vit, et ou il peut AUSSI vivre (jamais un leurre) ; habPl : « Cows live on a farm » est vrai en
+// general (pas « Dogs live on a farm ») ; pasSg : « A fish lives in the sea » serait faux (le poisson rouge) ;
+// mange, non : ce qu'il mange, et ce qu'il ne mange clairement pas (le leurre, la negation) ; pattes, ailes : has /
+// has got ; ici : ou l'image le montre (There is a cat on the sofa) ; its : une phrase de l'image avec son possessif.
+const EN_A = {
+  kuh:   {mot: "cow", pl: "cows", faux: ["cow", "cowes"], fr: ["la vache", "les vaches", "une vache", "f"], ou: "bauernhof", habPl: true,
+          mange: ["grass"], non: ["meat", "fish"], pattes: 4, ici: ["on the farm", "à la ferme"],
+          its: ["The cow is eating grass. ___ legs are white.", "Its", "La vache mange de l'herbe. Ses pattes sont blanches."]},
+  pferd: {mot: "horse", pl: "horses", faux: ["horse", "horsees"], fr: ["le cheval", "les chevaux", "un cheval", "m"], ou: "bauernhof", habPl: true,
+          mange: ["grass", "carrots"], non: ["meat", "fish"], pattes: 4, jambes: true, ici: ["on the farm", "à la ferme"],
+          its: ["The horse is eating grass. There is a white spot on ___ head.", "its", "Le cheval mange de l'herbe. Il a une tache blanche sur la tête."]},
+  schwein: {mot: "pig", pl: "pigs", faux: ["pig", "piges"], fr: ["le cochon", "les cochons", "un cochon", "m"], ou: "bauernhof", habPl: true,
+          mange: [], non: [], pattes: 4, ici: ["on the farm", "à la ferme"],
+          its: ["The pig is pink. ___ ears are big.", "Its", "Le cochon est rose. Ses oreilles sont grandes."]},
+  schaf: {mot: "sheep", pl: "sheep", faux: ["sheeps", "sheepes"], groupe: 3, fr: ["le mouton", "les moutons", "un mouton", "m"], ou: "bauernhof", habPl: true,
+          mange: ["grass"], non: ["meat", "fish"], pattes: 4, ici: ["on the farm", "à la ferme"],
+          its: ["The sheep are eating grass. ___ wool is white.", "Their", "Les moutons mangent de l'herbe. Leur laine est blanche."]},
+  huhn:  {mot: "chicken", pl: "chickens", faux: ["chicken", "chickenes"], groupe: 3, fr: ["la poule", "les poules", "une poule", "f"], ou: "bauernhof", habPl: true,
+          mange: [], non: [], pattes: 2, ailes: true, ici: ["on the farm", "à la ferme"],
+          its: ["The chickens are eating. ___ feathers are brown.", "Their", "Les poules mangent. Leurs plumes sont marron."]},
+  hund:  {mot: "dog", pl: "dogs", faux: ["dog", "doges"], fr: ["le chien", "les chiens", "un chien", "m"], ou: "bauernhof", aussi: ["haus"],
+          mange: ["meat"], non: [], pattes: 4, ici: ["on the farm", "à la ferme"],
+          its: ["The dog is lying on the ground. ___ front legs are white.", "Its", "Le chien est couché par terre. Ses pattes avant sont blanches."]},
+  katze: {mot: "cat", pl: "cats", faux: ["cat", "cates"], fr: ["le chat", "les chats", "un chat", "m"], ou: "haus", aussi: ["bauernhof"],
+          mange: ["meat", "fish"], non: ["nuts", "carrots"], pattes: 4, ici: ["on the sofa", "sur le canapé"],
+          its: ["The cat is lying on the sofa. ___ face is black and white.", "Its", "Le chat est couché sur le canapé. Sa tête est noire et blanche."]},
+  goldfisch: {mot: "goldfish", pl: "goldfish", faux: ["goldfishs"], fr: ["le poisson rouge", "les poissons rouges", "un poisson rouge", "m"], ou: "haus",
+          mange: [], non: [], pattes: 0, ici: ["in the bowl", "dans le bocal"],
+          its: ["The goldfish is swimming in ___ bowl.", "its", "Le poisson rouge nage dans son bocal."]},
+  baer:  {mot: "bear", pl: "bears", faux: ["bear", "beares"], fr: ["l'ours", "les ours", "un ours", "m"], ou: "wald", habPl: true,
+          mange: ["fish"], non: [], pattes: 4, ici: ["in the forest", "dans la forêt"],
+          its: ["The bear is walking in the forest. ___ fur is brown.", "Its", "L'ours marche dans la forêt. Sa fourrure est brune."]},
+  fuchs: {mot: "fox", pl: "foxes", faux: ["foxs", "fox"], fr: ["le renard", "les renards", "un renard", "m"], ou: "wald", habPl: true,
+          mange: ["meat"], non: ["grass"], pattes: 4, ici: ["in the forest", "dans la forêt"],
+          its: ["The fox is orange. ___ tail is long.", "Its", "Le renard est orange. Sa queue est longue."]},
+  eichhoernchen: {mot: "squirrel", pl: "squirrels", faux: ["squirrel", "squirreles"], fr: ["l'écureuil", "les écureuils", "un écureuil", "m"], ou: "wald", aussi: ["bauernhof"], habPl: true,
+          mange: ["nuts"], non: ["fish", "grass"], pattes: 4, ici: ["in the forest", "dans la forêt"],
+          its: ["The squirrel is holding a nut in ___ paws.", "its", "L'écureuil tient une noisette dans ses pattes."]},
+  vogel: {mot: "bird", pl: "birds", faux: ["bird", "birdes"], fr: ["l'oiseau", "les oiseaux", "un oiseau", "m"], ou: null,
+          mange: [], non: [], pattes: 2, ailes: true, ici: ["on the branch", "sur la branche"],
+          its: ["The bird is sitting on a branch. ___ wings are blue.", "Its", "L'oiseau est posé sur une branche. Ses ailes sont bleues."]},
+  fisch: {mot: "fish", pl: "fish", faux: ["fishs"], groupe: "many", fr: ["le poisson", "les poissons", "un poisson", "m"], ou: "meer", pasSg: true,
+          mange: [], non: [], pattes: 0, ici: ["in the sea", "dans la mer"],
+          its: ["The fish are in the sea. ___ swimming together.", "They're", "Les poissons sont dans la mer. Ils nagent ensemble."]},
+  delfin: {mot: "dolphin", pl: "dolphins", faux: ["dolphin", "dolphines"], fr: ["le dauphin", "les dauphins", "un dauphin", "m"], ou: "meer", habPl: true,
+          mange: ["fish"], non: ["grass", "nuts", "carrots"], pattes: 0, ici: ["in the sea", "dans la mer"],
+          its: ["The dolphin is jumping out of the water. ___ body is " + GRIS + ".", "Its", "Le dauphin saute hors de l'eau. Son corps est gris."]},
+  maus:  {mot: "mouse", pl: "mice", faux: ["mouses", "mices"], fr: ["la souris", "les souris", "une souris", "f"], ou: null,
+          mange: [], non: [], pattes: 4, ici: ["on the floor", "par terre"],
+          its: ["The mouse is " + GRIS + ". ___ tail is long.", "Its", "La souris est grise. Sa queue est longue."]},
+  // sans image : des pluriels irreguliers, et le lapin des carottes
+  gans:  {mot: "goose", pl: "geese", faux: ["gooses", "geeses"], img: false, fr: ["l'oie", "les oies", "une oie", "f"], ou: null,
+          mange: ["grass"], non: ["meat"], pattes: 2, ailes: true, ici: ["on the farm", "à la ferme"]},
+  wolf:  {mot: "wolf", pl: "wolves", faux: ["wolfs", "wolfes"], img: false, fr: ["le loup", "les loups", "un loup", "m"], ou: "wald", habPl: true,
+          mange: ["meat"], non: ["grass", "nuts", "carrots"], pattes: 4, ici: ["in the forest", "dans la forêt"]},
+  hirsch: {mot: "deer", pl: "deer", faux: ["deers", "deeres"], img: false, fr: ["le cerf", "les cerfs", "un cerf", "m"], ou: "wald", aussi: ["bauernhof"], habPl: true,
+          mange: ["grass"], non: ["meat", "fish"], pattes: 4, ici: ["in the forest", "dans la forêt"]},
+  kaninchen: {mot: "rabbit", pl: "rabbits", faux: ["rabbit", "rabbites"], img: false, fr: ["le lapin", "les lapins", "un lapin", "m"], ou: null,
+          mange: ["carrots", "grass"], non: ["meat", "fish"], pattes: 4, ici: ["on the farm", "à la ferme"]},
+  welpe: {mot: "puppy", pl: "puppies", faux: ["puppys", "puppyes"], img: false, fr: ["le chiot", "les chiots", "un chiot", "m"], ou: null,
+          mange: [], non: [], pattes: 4, ici: ["in the house", "dans la maison"]}
+};
+// LES LIEUX : le mot du corpus, la preposition (on a farm, mais in the forest), la traduction
+const EN_H = {
+  bauernhof: {mot: "farm", lieu: "on a farm", prep: "on", reste: "a farm", fr: "à la ferme", gl: "la ferme"},
+  wald:      {mot: "forest", lieu: "in the forest", prep: "in", reste: "the forest", fr: "dans la forêt", gl: "la forêt"},
+  meer:      {mot: "sea", lieu: "in the sea", prep: "in", reste: "the sea", fr: "dans la mer", gl: "la mer"},
+  haus:      {mot: "house", lieu: "in a house", prep: "in", reste: "a house", fr: "dans une maison", gl: "la maison"}
+};
+// la ou l'image (ou la phrase) le montre, quand c'est un des lieux : There is a cow on the farm (le mot farm)
+const ICI_H = {"on the farm": "bauernhof", "in the forest": "wald", "in the sea": "meer", "in the house": "haus"};
+// CE QU'ILS MANGENT : le mot du corpus (nut, carrot), la forme de la phrase (nuts, carrots : pas d'article), le francais
+const EN_F = {
+  grass:   {mot: "grass", aff: "grass", fr: "de l'herbe", pas: "d'herbe", gl: "l'herbe"},
+  meat:    {mot: "meat", aff: "meat", fr: "de la viande", pas: "de viande", gl: "la viande"},
+  fish:    {mot: "fish", aff: "fish", fr: "du poisson", pas: "de poisson", gl: "le poisson"},
+  nuts:    {mot: "nut", aff: "nuts", fr: "des noix", pas: "de noix", gl: "les noix"},
+  carrots: {mot: "carrot", aff: "carrots", fr: "des carottes", pas: "de carottes", gl: "les carottes"}
+};
+// LES COULEURS (les cles d'animales.json) : l'anglais ne s'accorde jamais ; le francais [m, f, m pl, f pl]
+const EN_C = {
+  "noir-blanc": {en: "black and white", fr: ["noir et blanc", "noire et blanche", "noirs et blancs", "noires et blanches"]},
+  brun:         {en: "brown", fr: ["marron", "marron", "marron", "marron"]},
+  rose:         {en: "pink", fr: ["rose", "rose", "roses", "roses"]},
+  blanc:        {en: "white", fr: ["blanc", "blanche", "blancs", "blanches"]},
+  gris:         {en: GRIS, fr: ["gris", "grise", "gris", "grises"]},
+  orange:       {en: "orange", fr: ["orange", "orange", "orange", "orange"]},
+  "bleu-jaune": {en: "blue and yellow", fr: ["bleu et jaune", "bleue et jaune", "bleus et jaunes", "bleues et jaunes"]}
+};
+// deux images qu'on ne propose jamais l'une pour l'autre : un poisson rouge EST un poisson, une poule EST un oiseau
+const CONFUS_EN = [["fisch", "goldfisch"], ["fisch", "delfin"], ["huhn", "vogel"]];
+const confus = (a, b) => CONFUS_EN.some(([x, y]) => (x === a && y === b) || (x === b && y === a));
+const A = a => EN_A[a];
+const TOUS = () => Object.keys(EN_A).filter(a => A(a).img === false || ANI().includes(a));
+const IMG = () => ANI().filter(a => EN_A[a]);
+const img = a => A(a).img !== false;
+const grp = a => !!A(a).groupe;
+const fem = a => A(a).fr[3] === "f";
+const frPlNu = a => A(a).fr[1].replace(/^les /, "");
+const photoEn = a => img(a) ? photo(a) : "";
+// le sujet : n = "sg" ou "pl". Une image d'un seul animal : the cow / cows (le generique) ; une image de groupe : a
+// sheep / these sheep (« the sheep ___ » ne dirait pas s'il y en a un ou plusieurs) ; sans image : a wolf / wolves.
+// En francais, le generique a son article : les vaches.
+const sujEn = (a, n) => n === "sg" ? (img(a) && !grp(a) ? "the " + A(a).mot : avecA(A(a).mot)) : (grp(a) ? "these " + A(a).pl : A(a).pl);
+const sujFr = (a, n) => n === "sg" ? (img(a) && !grp(a) ? A(a).fr[0] : A(a).fr[2]) : (grp(a) ? "ces " + frPlNu(a) : A(a).fr[1]);
+const nombreDe = a => grp(a) ? "pl" : "sg";                                   // ce que l'image montre
+const VB = {sg: {live: "lives", eat: "eats", have: "has", be: "is", do: "does"}, pl: {live: "live", eat: "eat", have: "have", be: "are", do: "do"}};
+const nombresHab = a => !A(a).ou ? [] : [].concat(A(a).pasSg ? [] : ["sg"], grp(a) || A(a).habPl ? ["pl"] : []);
+const pasLaEn = (a, h) => !!A(a).ou && A(a).ou !== h && !(A(a).aussi || []).includes(h);
+const frCoul = (c, a, n) => EN_C[c].fr[(fem(a) ? 1 : 0) + (n === "pl" ? 2 : 0)];
+const ilFr = (a, n) => (fem(a) ? "elle" : "il") + (n === "pl" ? "s" : "");
+const queFr = s => /^[aeiouéh]/i.test(s) ? "qu'" + s : "que " + s;
+const grandFr = (a, plus) => (plus ? "grand" : "petit") + (fem(a) ? "e" : "");
+const NOMBRES = [["two", "deux"], ["three", "trois"], ["four", "quatre"]];
+// les phrases et leur traduction : E() garde la traduction francaise de chaque phrase anglaise (tradPhrase la trouve)
+const E = (en, fr) => { if (D && D.trad.en) D.trad.en[en] = {fr}; return en; };
+const phHab = (a, h, n) => E(maj(sujEn(a, n)) + " " + VB[n].live + " " + EN_H[h].lieu + ".", maj(sujFr(a, n)) + " " + (n === "sg" ? "vit" : "vivent") + " " + EN_H[h].fr + ".");
+const phMange = (a, f, n) => E(maj(sujEn(a, n)) + " " + VB[n].eat + " " + EN_F[f].aff + ".", maj(sujFr(a, n)) + " " + (n === "sg" ? "mange" : "mangent") + " " + EN_F[f].fr + ".");
+const phCoul = (a, c) => { const n = nombreDe(a); return E((n === "pl" ? "These " + A(a).pl : "The " + A(a).mot) + " " + VB[n].be + " " + EN_C[c].en + ".", (n === "pl" ? "Ces " + frPlNu(a) : maj(A(a).fr[0])) + " " + (n === "pl" ? "sont" : "est") + " " + frCoul(c, a, n) + "."); };
+const phIdent = a => grp(a) ? E("They're " + A(a).pl + ".", "Ce sont des " + frPlNu(a) + ".") : E("It's " + avecA(A(a).mot) + ".", "C'est " + A(a).fr[2] + ".");
+const nomAff = a => grp(a) ? A(a).pl : avecA(A(a).mot);
+const nomFr = a => grp(a) ? "des " + frPlNu(a) : A(a).fr[2];
+// ce que veut dire un choix, pour la traduction apres une erreur (rempli par chaque question)
+const SENS_EN = new Map();
+const sensA = (o, s) => SENS_EN.set(o, s);
+function choixTraduitEn(c){
+  if (!c || LANGUE === APPRENDRE) return null;
+  if (EN_A[c]) return {aff: nomAff(c), sens: nomFr(c)};
+  return SENS_EN.has(c) ? {aff: c, sens: SENS_EN.get(c)} : null;
+}
+// LES MOTS DU THEME EN ANGLAIS, a la forme du corpus (genre "") : les animaux, les lieux, ce qu'ils mangent, et les
+// verbes live et eat. fish est un seul mot, l'animal et ce qu'on mange (comme der Fisch).
+function motsDuThemeEn(){
+  const out = [], par = {};
+  const ajouter = (mot, role, id, cat) => {
+    if (!par[mot]){ par[mot] = Object.assign({k: mot, mot, genre: "", roles: {}}, cat ? {cat} : {}); out.push(par[mot]); }
+    par[mot].roles[role] = id;
+  };
+  TOUS().forEach(a => ajouter(A(a).mot, "a", a));
+  Object.keys(EN_H).forEach(h => ajouter(EN_H[h].mot, "h", h));
+  Object.keys(EN_F).forEach(f => ajouter(EN_F[f].mot, "f", f));
+  ["live", "eat"].forEach(v => ajouter(v, "v", v, "verbe"));
+  return out;
+}
+const motA = a => motsDuTheme().find(w => w.roles.a === a);
+const motH = h => motsDuTheme().find(w => w.roles.h === h);
+const motF = f => motsDuTheme().find(w => w.roles.f === f);
+const motV = v => motsDuTheme().find(w => w.roles.v === v);
+const wA = w => w && w.roles.a, wH = w => w && w.roles.h, wF = w => w && w.roles.f, wV = w => w && w.roles.v;
+// un animal que la file vise, ou au hasard parmi ceux qui conviennent (liste) ; null si aucun
+function animalEn(w, liste){
+  if (w) return wA(w) && liste.includes(w.roles.a) ? w.roles.a : null;
+  return liste.length ? hasard(liste) : null;
+}
+// apres le chargement : les formes anglaises que la decouverte et la voix lisent (sg, plDe, lieu, dit, gloses, trad)
+function preparerAnglais(){
+  D.trad.en = {}; D.gloses.en = {}; D.dit.en = {}; D.tradLieux.en = {};
+  ANI().forEach(a => { if (EN_A[a]) D.animaux[a].en = [anA(A(a).mot), A(a).mot, A(a).pl]; });
+  Object.keys(EN_H).forEach(h => { D.habitats[h].en = EN_H[h].lieu; D.tradLieux.en[EN_H[h].lieu] = {fr: EN_H[h].fr}; D.gloses.en[EN_H[h].mot] = {fr: EN_H[h].gl}; });
+  Object.keys(EN_A).forEach(a => { D.gloses.en[A(a).mot] = {fr: A(a).fr[0]}; });
+  Object.keys(EN_F).forEach(f => { D.gloses.en[EN_F[f].mot] = {fr: EN_F[f].gl}; });
+  D.gloses.en.fish = {fr: "le poisson"}; D.gloses.en.chicken = {fr: "la poule, le poulet"};
+  D.gloses.en.live = {fr: "vivre, habiter"}; D.gloses.en.eat = {fr: "manger"};
+  // la fiche : ou il vit, puis ce qu'il mange ou sa couleur, avec it / they (« The cow lives on a farm. It eats grass. »)
+  ANI().forEach(a => {
+    if (!EN_A[a]) return;
+    const x = A(a), n = nombreDe(a), c = an(a).couleur, Il = n === "pl" ? "They" : "It", IlFr = maj(ilFr(a, n));
+    const deux = [];
+    if (x.ou) deux.push([phHab(a, x.ou, n), D.trad.en[phHab(a, x.ou, n)].fr]);
+    else if (c) deux.push([phCoul(a, c), D.trad.en[phCoul(a, c)].fr]);
+    if (x.ou && x.mange.length) deux.push([Il + " " + VB[n].eat + " " + EN_F[x.mange[0]].aff + ".", IlFr + " " + (n === "pl" ? "mangent" : "mange") + " " + EN_F[x.mange[0]].fr + "."]);
+    else if (x.ou && c) deux.push([Il + (n === "pl" ? "'re " : "'s ") + EN_C[c].en + ".", IlFr + " " + (n === "pl" ? "sont" : "est") + " " + frCoul(c, a, n) + "."]);
+    D.dit.en[a] = E(deux.map(p => p[0]).join(" "), deux.map(p => p[1]).join(" "));
+  });
+}
+// la regle de la decouverte, en trois parties, et la note americain / britannique
+const EXEMPLES_EN = {
+  regleEnPl: "a cow → two cows · a fox → two foxes · a puppy → two puppies · a wolf → two wolves · a mouse → two mice · a goose → two geese · a sheep → two sheep · a fish → two fish · white sheep",
+  regleEnPres: "A rabbit eats carrots. · Cats eat fish. · Cows don't eat meat. · Cows live on a farm. · Foxes live in the forest. · There is a cat on the sofa. · There are three sheep.",
+  regleEnComp: "A horse is bigger than a dog. · The mouse is the smallest. · A cat " + (GB ? "has got" : "has") + " four legs. · The fox is orange. Its tail is long."
+};
+const reglesEn = () => ["regleEnPl", "regleEnPres", "regleEnComp"].map(k => '<p class="regle">' + isoler(T(k)) + '<span class="exemples" lang="en" dir="ltr">' + EXEMPLES_EN[k] + '</span></p>').join("")
+  + '<p class="regle">' + isoler(T(GB ? "bonGb" : "bonUs")) + '</p>';
+// la phrase a trou : le mot remplace par ___ (une seule fois, entier)
+const avecBlanc = (phrase, mot) => troue(phrase, mot) || phrase;
+const EX_EN = {
+  // « What animal is this? » a cow / a horse ; une image de groupe : « What animals are these? » sheep / chickens
+  nom(w){
+    const a = animalEn(w, IMG()); if (!a) return false;
+    viser(w, motA(a)); SENS_EN.clear();
+    const g = grp(a), forme = x => g ? A(x).pl : avecA(A(x).mot);
+    const autres = melanger(IMG().filter(b => b !== a && !confus(a, b) && forme(b) !== forme(a))).slice(0, 3);
+    [a].concat(autres).forEach(x => sensA(forme(x), g ? "des " + frPlNu(x) : A(x).fr[2]));
+    const rep = forme(a);
+    ecran("nom", photo(a), g ? "What animals are these?" : "What animal is this?", true);
+    boutons($("choix"), melanger([a].concat(autres).map(forme)), rep, ok => juger(ok, rep, phIdent(a)));
+    return true;
+  },
+  // le pluriel : « one cow, two ___ » ; « There are three ___. » sur l'image de groupe ; sans image : « one goose, three ___ »
+  pluriel(w){
+    const a = animalEn(w, TOUS()); if (!a) return false;
+    viser(w, motA(a));
+    const x = A(a), pl = x.pl;
+    let enonce, fr, image = "";
+    if (grp(a)){
+      const beaucoup = x.groupe === "many";
+      enonce = beaucoup ? "There are a lot of ___." : "There are three ___.";
+      fr = (beaucoup ? "Il y a beaucoup de " : "Il y a trois ") + frPlNu(a) + ".";
+      image = photo(a);
+    } else {
+      const [nb, nbFr] = img(a) ? NOMBRES[0] : hasard(NOMBRES);
+      enonce = "one " + x.mot + ", " + nb + " ___"; fr = x.fr[2] + ", " + nbFr + " " + frPlNu(a);
+      if (img(a)) image = photo(a) + '<span class="fois" dir="ltr">× 2</span>';
+    }
+    const phrase = E(enonce.replace("___", pl), fr);
+    ecran("pluriel", image, avecTrou(enonce), true);
+    boutons($("choix"), melanger([pl].concat(x.faux)), pl, ok => { $("trou").textContent = pl; juger(ok, pl, phrase); });
+    return true;
+  },
+  // « Where does the cow live? » on a farm / in the forest / in the sea ; vise un animal ou un lieu
+  habitat(w){
+    let a;
+    if (wH(w) && !wA(w)){ const c = TOUS().filter(x => A(x).ou === w.roles.h && nombresHab(x).length); if (!c.length) return false; a = hasard(c); }
+    else a = animalEn(w, TOUS().filter(x => nombresHab(x).length));
+    if (!a) return false;
+    viser(w, motA(a)); SENS_EN.clear();
+    const h = A(a).ou, n = hasard(nombresHab(a)), rep = EN_H[h].lieu;
+    const lieux = [h].concat(Object.keys(EN_H).filter(x => pasLaEn(a, x)));
+    lieux.forEach(x => sensA(EN_H[x].lieu, EN_H[x].fr));
+    ecran("habitat", photoEn(a), "Where " + VB[n].do + " " + sujEn(a, n) + " live?", true);
+    boutons($("choix"), melanger(lieux.map(x => EN_H[x].lieu)), rep, ok => juger(ok, rep, phHab(a, h, n)));
+    return true;
+  },
+  // on ou in : « The cow lives ___ a farm. » on ; « The fox lives ___ the forest. » in
+  prep(w){
+    let a;
+    if (wH(w) && !wA(w)){ const c = TOUS().filter(x => A(x).ou === w.roles.h && nombresHab(x).length); if (!c.length) return false; a = hasard(c); }
+    else a = animalEn(w, TOUS().filter(x => nombresHab(x).length));
+    if (!a) return false;
+    viser(w, motA(a)); SENS_EN.clear();
+    const h = A(a).ou, n = hasard(nombresHab(a)), rep = EN_H[h].prep, phrase = phHab(a, h, n);
+    sensA("on", "sur : on a farm (à la ferme)"); sensA("in", "dans : in the forest, in the sea, in a house");
+    ecran("prepEn", photoEn(a), avecTrou(phrase.replace(" " + EN_H[h].lieu, " ___ " + EN_H[h].reste)), true);
+    boutons($("choix"), ["on", "in"], rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
+  },
+  // « Which animal lives in the sea? » / « Which animal eats nuts? » : trois images, une seule juste
+  quel(w){
+    const qs = [];
+    Object.keys(EN_H).forEach(h => IMG().filter(a => A(a).ou === h && nombresHab(a).includes(nombreDe(a))).forEach(a => {
+      const autres = IMG().filter(b => pasLaEn(b, h));
+      if (autres.length >= 2) qs.push({a, q: "Which animal lives " + EN_H[h].lieu + "?", autres, phrase: () => phHab(a, h, nombreDe(a)), mot: motH(h)});
+    }));
+    Object.keys(EN_F).forEach(f => IMG().filter(a => A(a).mange.includes(f)).forEach(a => {
+      const autres = IMG().filter(b => A(b).non.includes(f));
+      if (autres.length >= 2) qs.push({a, q: "Which animal eats " + EN_F[f].aff + "?", autres, phrase: () => phMange(a, f, nombreDe(a)), mot: motF(f)});
+    }));
+    const c = qs.filter(x => !w || x.a === w.roles.a || x.mot === w);
+    if (!c.length) return false;
+    const x = hasard(c);
+    viser(w, x.mot);
+    $("zone").innerHTML = '<p class="consigne">' + T("quel") + '</p><div class="enonce centre">' + cible(x.q) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    images($("rang"), melanger([x.a].concat(melanger(x.autres).slice(0, 2))), x.a, ok => juger(ok, nomAff(x.a), x.phrase()));
+    return true;
+  },
+  // « What does the cow eat? » / « What do cows eat? » grass / meat / fish : seulement ce qu'il ne mange clairement pas
+  manger(w){
+    const ok = x => A(x).mange.length && A(x).non.length;
+    let a;
+    if (wF(w) && !(wA(w) && ok(w.roles.a))){ const c = TOUS().filter(x => ok(x) && A(x).mange.includes(w.roles.f)); if (!c.length) return false; a = hasard(c); }
+    else a = animalEn(w, TOUS().filter(ok));
+    if (!a) return false;
+    viser(w, motA(a)); SENS_EN.clear();
+    const f = wF(w) && A(a).mange.includes(w.roles.f) ? w.roles.f : hasard(A(a).mange), n = hasard(["sg", "pl"]);
+    const opts = [f].concat(A(a).non).slice(0, 4);
+    opts.forEach(x => sensA(EN_F[x].aff, EN_F[x].gl));
+    const rep = EN_F[f].aff;
+    ecran("manger", photoEn(a), "What " + VB[n].do + " " + sujEn(a, n) + " eat?", true);
+    boutons($("choix"), melanger(opts.map(x => EN_F[x].aff)), rep, ok2 => juger(ok2, rep, phMange(a, f, n)));
+    return true;
+  },
+  // le present simple et son -s : « The cow ___ grass. » eats / eat / eating ; « Cows ___ on a farm. » live / lives
+  verbe(w){
+    const cand = [];
+    TOUS().forEach(a => {
+      nombresHab(a).forEach(n => cand.push({a, n, t: "live", f: () => phHab(a, A(a).ou, n), mot: motH(A(a).ou)}));
+      A(a).mange.forEach(f => ["sg", "pl"].forEach(n => cand.push({a, n, t: "eat", f: () => phMange(a, f, n), mot: motF(f)})));
+    });
+    const c = cand.filter(x => !w || x.a === w.roles.a || x.mot === w || (wV(w) && w.roles.v === x.t));
+    if (!c.length) return false;
+    const x = hasard(c);
+    viser(w, motA(x.a));
+    const phrase = x.f(), rep = VB[x.n][x.t], autre = VB[x.n === "sg" ? "pl" : "sg"][x.t], ing = x.t === "live" ? "living" : "eating";
+    ecran("verbeEn", photoEn(x.a), avecTrou(avecBlanc(phrase, rep)));
+    boutons($("choix"), melanger([rep, autre, ing]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
+  },
+  // la negation : « A cow ___ eat meat. » doesn't / don't / isn't ; « Cows ___ live in the sea. » don't
+  negatif(w){
+    const cand = [];
+    TOUS().forEach(a => {
+      const x = A(a), sg = !x.pasSg;
+      x.non.forEach(f => (sg ? ["sg", "pl"] : ["pl"]).forEach(n => cand.push({a, n, t: "eat", mot: motF(f),
+        en: maj(sujEn(a, n)) + " ___ eat " + EN_F[f].aff + ".", fr: maj(sujFr(a, n)) + " ne " + (n === "sg" ? "mange" : "mangent") + " pas " + EN_F[f].pas + "."})));
+      // ou il ne vit pas : au singulier pour l'animal de l'image ; le generique seulement entre la mer et la terre (Cows don't live in the sea)
+      Object.keys(EN_H).filter(h => pasLaEn(a, h)).forEach(h => {
+        const ns = [].concat(sg ? ["sg"] : [], (x.habPl || grp(a)) && (h === "meer" || x.ou === "meer") ? ["pl"] : []);
+        ns.forEach(n => cand.push({a, n, t: "live", mot: motH(h),
+          en: maj(sujEn(a, n)) + " ___ live " + EN_H[h].lieu + ".", fr: maj(sujFr(a, n)) + " ne " + (n === "sg" ? "vit" : "vivent") + " pas " + EN_H[h].fr + "."}));
+      });
+    });
+    const c = cand.filter(x => !w || x.a === w.roles.a || x.mot === w || (wV(w) && w.roles.v === x.t));
+    if (!c.length) return false;
+    const x = hasard(c);
+    viser(w, motA(x.a));
+    const rep = x.n === "sg" ? "doesn't" : "don't", opts = x.n === "sg" ? ["doesn't", "don't", "isn't"] : ["don't", "doesn't", "aren't"];
+    const phrase = E(x.en.replace("___", rep), x.fr);
+    ecran("negatifEn", photoEn(x.a), avecTrou(x.en), true);
+    boutons($("choix"), opts, rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
+  },
+  // there is / there are : « There ___ a cow on the farm. » ; « There ___ three sheep on the farm. » ; sans image, un ou plusieurs
+  there(w){
+    const cand = [];
+    TOUS().forEach(a => {
+      const x = A(a), [ici, iciFr] = x.ici, mot = ICI_H[ici] ? motH(ICI_H[ici]) : null;
+      if (img(a) && !grp(a)) cand.push({a, mot, n: "sg", en: "There ___ " + avecA(x.mot) + " " + ici + ".", fr: "Il y a " + x.fr[2] + " " + iciFr + "."});
+      else if (grp(a)) cand.push({a, mot, n: "pl", en: "There ___ " + (x.groupe === "many" ? "a lot of" : "three") + " " + x.pl + " " + ici + ".",
+                                  fr: "Il y a " + (x.groupe === "many" ? "beaucoup de" : "trois") + " " + frPlNu(a) + " " + iciFr + "."});
+      else {
+        cand.push({a, mot, n: "sg", en: "There ___ " + avecA(x.mot) + " " + ici + ".", fr: "Il y a " + x.fr[2] + " " + iciFr + "."});
+        NOMBRES.forEach(([nb, nbFr]) => cand.push({a, mot, n: "pl", en: "There ___ " + nb + " " + x.pl + " " + ici + ".", fr: "Il y a " + nbFr + " " + frPlNu(a) + " " + iciFr + "."}));
+      }
+    });
+    const c = cand.filter(x => !w || x.a === w.roles.a || (x.mot && x.mot === w));
+    if (!c.length) return false;
+    const x = hasard(c);
+    viser(w, motA(x.a));
+    const rep = x.n === "sg" ? "is" : "are", phrase = E(x.en.replace("___", rep), x.fr);
+    ecran("thereEn", photoEn(x.a), avecTrou(x.en), true);
+    boutons($("choix"), ["is", "are"], rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
+  },
+  // la couleur : « What color is the fox? » orange / brown... (« colour » en britannique) ; « What color are the sheep? »
+  couleur(w){
+    const a = animalEn(w, IMG().filter(x => an(x).couleur)); if (!a) return false;
+    viser(w, motA(a)); SENS_EN.clear();
+    const c = an(a).couleur, n = nombreDe(a), rep = EN_C[c].en;
+    const autres = melanger(Object.keys(EN_C).filter(x => x !== c && !(an(a).aussiCouleur || []).includes(x))).slice(0, 3);
+    [c].concat(autres).forEach(x => sensA(EN_C[x].en, frCoul(x, a, n)));
+    ecran("couleurDe", photo(a), "What " + COULEUR + " " + VB[n].be + (n === "pl" ? " these " + A(a).pl : " the " + A(a).mot) + "?", true);
+    boutons($("choix"), melanger([c].concat(autres).map(x => EN_C[x].en)), rep, ok => juger(ok, rep, phCoul(a, c)));
+    return true;
+  },
+  // la couleur devant le nom, sans -s : « It's ___. » a pink pig / a pig pink / an pink pig ; « They're ___. » white sheep / whites sheep
+  adjectif(w){
+    const a = animalEn(w, IMG().filter(x => an(x).couleur && (!grp(x) || !EN_C[an(x).couleur].en.includes(" ")))); if (!a) return false;
+    viser(w, motA(a));
+    const c = an(a).couleur, adj = EN_C[c].en, x = A(a);
+    let rep, opts, phrase;
+    if (grp(a)){
+      rep = adj + " " + x.pl; opts = [rep, adj + "s " + x.pl, x.pl + " " + adj];
+      phrase = E("They're " + rep + ".", "Ce sont des " + frPlNu(a) + " " + frCoul(c, a, "pl") + ".");
+    } else {
+      rep = anA(adj) + " " + adj + " " + x.mot; opts = [rep, anA(x.mot) + " " + x.mot + " " + adj, (anA(adj) === "an" ? "a " : "an ") + adj + " " + x.mot];
+      phrase = E("It's " + rep + ".", "C'est " + x.fr[2] + " " + frCoul(c, a, "sg") + ".");
+    }
+    ecran("adjEn", photo(a), avecTrou(grp(a) ? "They're ___." : "It's ___."), true);
+    boutons($("choix"), melanger(opts), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
+  },
+  // l'ecoute : le nom dit (« a cow », « sheep »), trois images
+  entendre(w){
+    const a = animalEn(w, IMG()); if (!a) return false;
+    viser(w, motA(a));
+    const dit = nomAff(a), autres = melanger(IMG().filter(b => b !== a && !confus(a, b))).slice(0, 2);
+    $("zone").innerHTML = '<p class="consigne">' + T("entendre") + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
+      + '<div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    $("ecoute").addEventListener("click", () => dire(dit));
+    images($("rang"), melanger([a].concat(autres)), a, ok => juger(ok, dit, phIdent(a)));
+    dire(dit);
+    return true;
+  },
+  // True or False : ou il vit, ce qu'il mange, sa couleur -- le faux n'est jamais qu'une valeur clairement fausse
+  vraifaux(w){
+    const cand = [];
+    IMG().forEach(a => {
+      const x = A(a), n = nombreDe(a);
+      if (x.ou && nombresHab(a).includes(n)){
+        const juste = () => phHab(a, x.ou, n);
+        cand.push({a, vrai: true, f: juste, juste, mot: motH(x.ou), t: "live"});
+        Object.keys(EN_H).filter(h => pasLaEn(a, h)).forEach(h => cand.push({a, vrai: false, f: () => phHab(a, h, n), juste, mot: motH(h), t: "live"}));
+      }
+      x.mange.forEach(f => {
+        const juste = () => phMange(a, f, n);
+        cand.push({a, vrai: true, f: juste, juste, mot: motF(f), t: "eat"});
+        x.non.forEach(g => cand.push({a, vrai: false, f: () => phMange(a, g, n), juste, mot: motF(g), t: "eat"}));
+      });
+      const c = an(a).couleur;
+      if (c){
+        const juste = () => phCoul(a, c);
+        cand.push({a, vrai: true, f: juste, juste});
+        Object.keys(EN_C).filter(k => k !== c && !(an(a).aussiCouleur || []).includes(k)).forEach(k => cand.push({a, vrai: false, f: () => phCoul(a, k), juste}));
+      }
+    });
+    const c = cand.filter(x => !w || x.a === w.roles.a || (x.mot && x.mot === w) || (wV(w) && w.roles.v === x.t));
+    if (!c.length) return false;
+    const v = c.filter(x => x.vrai), f = c.filter(x => !x.vrai);
+    const x = hasard(Math.random() < 0.5 && v.length ? v : f.length ? f : v);
+    viser(w, motA(x.a));
+    ecran("vraifaux", photo(x.a), x.f(), true);
+    const rep = x.vrai ? "True" : "False";
+    boutons($("choix"), ["True", "False"], rep, ok => juger(ok, rep, x.juste()));
+    return true;
+  },
+  // « Which animal is bigger? » : deux animaux a deux crans de taille au moins, on touche le bon
+  taille(w){
+    const paires = [];
+    IMG().forEach(a => IMG().forEach(b => { if (an(a).taille - an(b).taille >= 2) paires.push([a, b]); }));
+    const c = paires.filter(([a, b]) => !w || w.roles.a === a || w.roles.a === b);
+    if (!c.length) return false;
+    const [g, p] = hasard(c), plus = w && w.roles.a ? w.roles.a === g : Math.random() < 0.5;
+    const rep = plus ? g : p, autre = plus ? p : g;
+    viser(w, motA(rep));
+    $("zone").innerHTML = '<p class="consigne">' + T("taille") + '</p><div class="enonce centre">' + cible(plus ? "Which animal is bigger?" : "Which animal is smaller?") + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    const phrase = E(maj(avecA(A(rep).mot)) + " is " + (plus ? "bigger" : "smaller") + " than " + avecA(A(autre).mot) + ".",
+                     maj(A(rep).fr[2]) + " est plus " + grandFr(rep, plus) + " " + queFr(A(autre).fr[2]) + ".");
+    images($("rang"), melanger([g, p]), rep, ok => juger(ok, avecA(A(rep).mot), phrase));
+    return true;
+  },
+  // « A horse is ___ than a dog. » bigger / more big / biggest (jamais « more big », jamais le superlatif avec than)
+  comparer(w){
+    const paires = [];
+    IMG().forEach(a => IMG().forEach(b => { if (an(a).taille - an(b).taille >= 2){ paires.push([true, a, b]); paires.push([false, b, a]); } }));
+    const c = paires.filter(([, a]) => !w || w.roles.a === a);
+    if (!c.length) return false;
+    const [plus, a, b] = hasard(c);
+    viser(w, motA(a));
+    const rep = plus ? "bigger" : "smaller", opts = plus ? ["bigger", "more big", "biggest"] : ["smaller", "more small", "smallest"];
+    const enonce = maj(avecA(A(a).mot)) + " is ___ than " + avecA(A(b).mot) + ".";
+    const phrase = E(enonce.replace("___", rep), maj(A(a).fr[2]) + " est plus " + grandFr(a, plus) + " " + queFr(A(b).fr[2]) + ".");
+    ecran("comparer", '<div class="duo"><img alt="" src="' + imgSrc(a) + '"><img alt="" src="' + imgSrc(b) + '"></div>', avecTrou(enonce));
+    boutons($("choix"), melanger(opts), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
+  },
+  // le superlatif : trois animaux, « The cow is the ___ of the three. » biggest / bigger / most big
+  superlatif(w){
+    const seuls = IMG().filter(a => !grp(a));
+    const t = an, cand = [];
+    seuls.forEach(a => {
+      const petits = seuls.filter(b => t(a).taille - t(b).taille >= 2), grands = seuls.filter(b => t(b).taille - t(a).taille >= 2);
+      if (petits.length >= 2) cand.push([true, a, petits]);
+      if (grands.length >= 2) cand.push([false, a, grands]);
+    });
+    const c = cand.filter(([, a]) => !w || w.roles.a === a);
+    if (!c.length) return false;
+    const [plus, a, autres] = hasard(c), deux = melanger(autres).slice(0, 2);
+    viser(w, motA(a));
+    const rep = plus ? "biggest" : "smallest", opts = plus ? ["biggest", "bigger", "most big"] : ["smallest", "smaller", "most small"];
+    const enonce = "The " + A(a).mot + " is the ___ of the three.";
+    const phrase = E(enonce.replace("___", rep), maj(A(a).fr[0]) + " est " + (fem(a) ? "la" : "le") + " plus " + grandFr(a, plus) + " des trois.");
+    ecran("superlatifEn", '<div class="duo" style="grid-template-columns:1fr 1fr 1fr">' + melanger([a].concat(deux)).map(x => '<img alt="" src="' + imgSrc(x) + '">').join("") + '</div>', avecTrou(enonce));
+    boutons($("choix"), melanger(opts), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
+  },
+  // has (has got en britannique) : « A cat ___ four legs. » has / have / is ; « Birds ___ two wings. » have
+  have(w){
+    const cand = [];
+    TOUS().forEach(a => {
+      const x = A(a);
+      if (x.pattes) cand.push({a, en: (x.pattes === 4 ? "four" : "two") + " legs", fr: (x.pattes === 4 ? "quatre " : "deux ") + (x.jambes ? "jambes" : "pattes")});
+      if (x.ailes) cand.push({a, en: "two wings", fr: "deux ailes"});
+    });
+    const c = cand.filter(x => !w || x.a === w.roles.a);
+    if (!c.length) return false;
+    const x = hasard(c), a = x.a, n = hasard(["sg", "pl"]);
+    viser(w, motA(a));
+    const sujet = n === "sg" ? avecA(A(a).mot) : A(a).pl, sujetFr = n === "sg" ? A(a).fr[2] : A(a).fr[1];
+    const rep = GB ? (n === "sg" ? "has got" : "have got") : VB[n].have;
+    const opts = GB ? (n === "sg" ? ["has got", "have got", "is"] : ["have got", "has got", "are"]) : (n === "sg" ? ["has", "have", "is"] : ["have", "has", "are"]);
+    const enonce = maj(sujet) + " ___ " + x.en + ".";
+    const phrase = E(enonce.replace("___", rep), maj(sujetFr) + " " + (n === "sg" ? "a" : "ont") + " " + x.fr + ".");
+    ecran(GB ? "haveGb" : "haveEn", photoEn(a), avecTrou(enonce), true);
+    boutons($("choix"), opts, rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
+  },
+  // it / its : « The fox is orange. ___ tail is long. » Its / It's / Their ; « Look at the pig. ___ pink. » It's ; les groupes : their, they're
+  its(w){
+    const cand = [];
+    IMG().forEach(a => {
+      const x = A(a), c = an(a).couleur, n = nombreDe(a);
+      if (x.its) cand.push({a, en: x.its[0], rep: x.its[1], fr: x.its[2]});
+      if (c) cand.push({a, en: "Look at the " + (n === "pl" ? x.pl : x.mot) + ". ___ " + EN_C[c].en + ".", rep: n === "pl" ? "They're" : "It's",
+                        fr: "Regarde " + x.fr[n === "pl" ? 1 : 0] + ". " + maj(ilFr(a, n)) + " " + (n === "pl" ? "sont" : "est") + " " + frCoul(c, a, n) + "."});
+    });
+    const c = cand.filter(x => !w || x.a === w.roles.a);
+    if (!c.length) return false;
+    const x = hasard(c);
+    viser(w, motA(x.a)); SENS_EN.clear();
+    const R = x.rep.toLowerCase(), JEU = {"its": ["its", "it's", "their"], "it's": ["it's", "its", "their"], "their": ["their", "its", "they're"], "they're": ["they're", "their", "its"]}[R];
+    const casse = s => x.rep.charAt(0) === x.rep.charAt(0).toUpperCase() ? maj(s) : s, opts = JEU.map(casse);
+    const SENS = {"its": "son, sa, ses (à l'animal)", "it's": "it is : il est, elle est", "their": "leur, leurs", "they're": "they are : ils sont, elles sont"};
+    opts.forEach(o => sensA(o, SENS[o.toLowerCase()]));
+    const phrase = E(x.en.replace("___", x.rep), x.fr);
+    ecran("itsEn", photo(x.a), avecTrou(x.en), true);
+    boutons($("choix"), melanger(opts), x.rep, ok => { $("trou").textContent = x.rep; juger(ok, x.rep, phrase); });
+    return true;
+  }
+};
+// chaque question anglaise repart d'une table des sens vide : un choix ne garde jamais le sens d'une question precedente
+if (EN_APP) Object.keys(EX_EN).forEach(k => { EX[k] = w => { SENS_EN.clear(); return EX_EN[k](w); }; });
+// les sortes de la langue apprise : la terminaison devant le nom en allemand seulement ; l'anglais a les siennes
+const SORTES = EN_APP ? ["nom", "pluriel", "habitat", "prep", "quel", "manger", "verbe", "negatif", "there", "couleur", "adjectif", "entendre", "vraifaux", "taille", "comparer", "superlatif", "have", "its"]
+                      : Object.keys(EX).filter(x => DE_APP || x !== "endung");
 
 // ---------- la decouverte : les animaux par lieu, la fiche de celui qu'on touche ----------
 function decouvrir(){
   $("compte").textContent = ""; $("barre").style.width = "0%";
   const z = $("zone");
   z.innerHTML = '<p class="consigne">' + T("intro") + '</p><div class="fiche" id="fiche"></div><div id="lieux"></div>'
-    + '<p class="regle">' + isoler(T(DE_APP ? "regleDe" : "regleEs")) + '<span class="exemples" lang="' + APPRENDRE + '" dir="ltr">' + EXEMPLES[APPRENDRE] + '</span></p>';
+    + (EN_APP ? reglesEn() : '<p class="regle">' + isoler(T(DE_APP ? "regleDe" : "regleEs")) + '<span class="exemples" lang="' + APPRENDRE + '" dir="ltr">' + EXEMPLES[APPRENDRE] + '</span></p>');
   const montrerFiche = a => {
     z.querySelectorAll(".grille button").forEach(b => b.classList.toggle("choisi", b.dataset.id === a));
     const dit = D.dit[APPRENDRE][a];
@@ -581,7 +1135,10 @@ function decouvrir(){
   s.onclick = () => { s.onclick = null; taire(); demarrer(); };
 }
 // tout ce que la page peut dire dans la decouverte : l'inventaire des voix (visuel/voix_themes.py)
-function textesAVoix(){ return D ? Object.values(D.dit[APPRENDRE]).concat(ANI().map(a => sg(a))) : []; }
+function textesAVoix(){
+  if (D && EN_APP) return Object.values(D.dit.en).concat(IMG().map(nomAff));        // l'ecoute dit « a cow », et « sheep » pour une image de groupe
+  return D ? Object.values(D.dit[APPRENDRE]).concat(ANI().map(a => sg(a))) : [];
+}
 
 // LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : la file des MOTS vient de l'app (Tirage.plan : les dus,
 // les rates recents, puis au plus NEUFS_MAX nouveaux) ; chaque mot recoit une question d'une sorte qui le vise,
@@ -677,6 +1234,7 @@ $("titre").textContent = T("titre");
 document.title = T("titre");
 fetch("animales/animales.json?v=1").then(r => r.json()).then(d => {
   D = d;
+  if (EN_APP) preparerAnglais();
   if (Q.get("seance") === "1") demarrer(); else decouvrir();
 });
 </script>

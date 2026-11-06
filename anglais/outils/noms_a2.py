@@ -223,6 +223,7 @@ lampshade | l'abat-jour
 landlady | la propriétaire (bailleuse) | ex=Our landlady lives upstairs. # Notre propriétaire habite à l'étage.
 laundry | le linge (à laver) | u
 laundry basket | le panier à linge
+cabinet | le placard (de cuisine) | gb=cupboard | ex=There is a cabinet on the wall. # Il y a un placard au mur.
 """,
 "home_a2_2": """
 leather | le cuir | u
@@ -390,6 +391,7 @@ plastic | le plastique | u
 pollution | la pollution | u
 rainbow | l'arc-en-ciel
 rat | le rat
+puppy | le chiot | pl=puppies | ex=The puppy is sleeping in its basket. # Le chiot dort dans son panier.
 """,
 "nature_a2_2": """
 rose | la rose
@@ -791,5 +793,6 @@ thanks | les remerciements | plt
 third | le tiers | ex=A third of the students live on campus. # Un tiers des étudiants habitent sur le campus.
 remainder | le reste | ex=I'll pay the remainder next month. # Je paierai le reste le mois prochain.
 greeting | la salutation
+place of birth | le lieu de naissance | ex=Please write your place of birth here. # Écrivez votre lieu de naissance ici, s'il vous plaît.
 """,
 }

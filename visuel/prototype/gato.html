@@ -116,7 +116,7 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="bas" id="bas" hidden></div>
 <script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=2"></script>
+<script src="themes/voix.js?v=4"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=5"></script>
 <script>
@@ -486,7 +486,9 @@ function juger(ok, bonneTexte, phrase){
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const mt = montreDe(motQ);
   m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : EN_APP ? "Well done!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
-    + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
+    // la phrase juste, ECRITE, apres toute reponse (Jacques, 5 nov., d'abord sur la meteo : une ecoute reussie ne
+    // montrait que « ¡Muy bien! ») ; apres une erreur, « La bonne reponse » l'a deja
+    + ((ok || (phrase && phrase !== bonneTexte)) ? '<span class="phrase">' + cible(phrase || bonneTexte) + '</span>' : "")
     + traduction(tradQ || tradPhrase(phrase || bonneTexte))
     + (!ok && (c => c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")(choixTraduit(choixQ)) || "")
     + (mt ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(mt.aff) + (mt.sens ? ' · <span dir="auto">' + mt.sens + '</span>' : "") + '</span>' : "");
@@ -1044,8 +1046,19 @@ function montrer(){
   // (l'ecoute parle a chaque essai : on la fait taire pendant qu'on cherche, elle parle une fois choisie)
   const garde = dire; dire = () => {};
   const raz = so => { motQ = null; tradQ = null; apresQ = null; choixQ = null; sorteCourante = so; };
-  const essai = (w, strict) => {
-    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+  // La fin de partie (5 nov. 2026, gato en anglais : « hang », « picture », « lie down » n'ont plus, en fin de file,
+  // qu'une ou deux sortes qui donnent encore une question NEUVE) : sur les trois derniers mots, une sorte est ecartee
+  // si, prise maintenant, elle ne laisse a la suite aucune facon de finir sans deux sortes de suite.
+  const fraiches = w => SORTES.filter(so => { for (let n = 0; n < 25; n++){ raz(so); if (!EX[so](w)) return false; if (!vus.has(cleQuestion())) return true; } return false; });
+  const bloquantes = j => {             // file[j] pose la question du rang : file[rang] prend sa place plus loin
+    const suite = file.slice(rang + 1).map((x, k) => rang + 1 + k === j ? file[rang] : x);
+    if (!suite.length || suite.length > 3) return new Set();
+    const q = suite.map(fraiches);
+    const faisable = (i, prec) => i >= q.length || q[i].some(so => so !== prec && faisable(i + 1, so));
+    return new Set(SORTES.filter(so => !faisable(0, so)));
+  };
+  const essai = (w, strict, exclues) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte && !(strict && exclues && exclues.has(x))));
     for (const so of autres){
       for (let n = 0; n < 25; n++){
         raz(so);
@@ -1065,11 +1078,12 @@ function montrer(){
     }
     return null;
   };
-  let fait = essai(file[rang], true);
-  for (let j = rang + 1; !fait && j < file.length; j++){
-    fait = essai(file[j], true);
-    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
-  }
+  let fait = null;
+  for (const fin of [true, false])      // d'abord en gardant une fin possible, puis sans
+    for (let j = rang; !fait && j < file.length; j++){
+      fait = essai(file[j], true, fin ? bloquantes(j) : null);
+      if (fait && j !== rang) [file[rang], file[j]] = [file[j], file[rang]];
+    }
   if (!fait) fait = essai(file[rang], false);
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
