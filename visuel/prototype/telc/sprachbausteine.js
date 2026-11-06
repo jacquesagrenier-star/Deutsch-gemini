@@ -30,12 +30,12 @@ const SB_EN = {
   sb_trou: "Gap {n}",
   sb_question: "Which word goes in this gap?",
   sb_juste: "Correct!",
-  sb_faux: "Not quite: it's \"{m}\".",
+  sb_faux: "Not quite: it's “{m}”.",
   sb_recap: "Summary",
   sb_score: "{n} out of 10",
   sb_points: "In the exam, that would be {p} point(s) out of 5.",
   sb_mark_bien: "Very good! You already spot what the gap needs. Keep that habit on exam day.",
-  sb_mark_moyen: "Not bad! Reread the explanations for the gaps you missed: the same traps keep coming back (the case after a preposition, the verb at the end after \"weil\" or \"dass\").",
+  sb_mark_moyen: "Not bad! Reread the explanations for the gaps you missed: the same traps keep coming back (the case after a preposition, the verb at the end after “weil” or “dass”).",
   sb_mark_faible: "It's a start, and that's normal. Reread each explanation below, then do the letter again: you'll see the same little words always come back.",
   sb_refaire: "Redo the section",
   sb_suivante: "Next section",
@@ -68,6 +68,8 @@ textesTelc({ en: SB_EN, fr: {
 }});
 
 const SB = { series: [], serie: null, rep: [], i: 0 };
+// « De : » en francais, « From: » en anglais
+const DEUXPTS = () => LANGUE === "fr" ? " : " : ": ";
 
 DTZ.charger(fetch("donnees/sprachbausteine.json", { cache: "no-cache" })
   .then(r => { if (!r.ok) throw new Error("sprachbausteine.json"); return r.json(); })
@@ -110,7 +112,7 @@ function trou(n){
 function lettre(apresParagraphe){
   const s = SB.serie;
   const tete = '<div class="k">' + (s.registre === "formel" ? "Brief" : "E-Mail") + '</div>' +
-    '<div class="petit" lang="de">' + esc(T("sb_de")) + ' : ' + esc(s.von) + ' · ' + esc(T("sb_a")) + ' : ' + esc(s.an) + '</div>' +
+    '<div class="petit" lang="de">' + esc(T("sb_de")) + DEUXPTS() + esc(s.von) + ' · ' + esc(T("sb_a")) + DEUXPTS() + esc(s.an) + '</div>' +
     '<div class="objet" lang="de">' + esc(s.betreff) + '</div>';
   const corps = s.absaetze.map((p, k) => {
     const html = esc(p).replace(/\{(\d+)\}/g, (m, n) => trou(Number(n)));
@@ -140,7 +142,7 @@ function pageTrou(){
     (SB.i === 0 && r === null && SB.rep.every(x => x === null)
       ? '<div class="bloc"><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T("sb_mark_debut")) + '</div></div></div>' : "") +
     '<div class="bloc"><p class="consigne" lang="de">' + esc(T("sb_consigne_de")) + '<span class="fr">' + esc(T("sb_consigne_fr")) + '</span></p>' +
-    '<p class="petit"><b>' + esc(T("sb_situation")) + ' :</b> ' + esc(champTelc(s, "situation")) + '</p>' +
+    '<p class="petit"><b>' + esc(T("sb_situation")) + DEUXPTS().trimEnd() + '</b> ' + esc(champTelc(s, "situation")) + '</p>' +
     lettre((k, p) => ici.test(p) ? carte() : "") + '</div>';
   document.querySelectorAll("[data-aller]").forEach(b => b.onclick = () => { SB.i = Number(b.dataset.aller); pageTrou(); });
   document.querySelectorAll("[data-choix]").forEach(b => b.onclick = () => choisir(Number(b.dataset.choix)));
@@ -196,7 +198,7 @@ function recap(){
     '<div class="bloc">' + rates.concat(justes).join("") + '</div>' +
     '<div class="bloc boutons">' +
       '<button class="secondaire" id="sbRefaire">' + esc(T("sb_refaire")) + '</button>' +
-      (suivante ? '<button class="secondaire" id="sbSuivante">' + esc(T("sb_suivante")) + ' : ' + esc(suivante.titre) + '</button>' : "") +
+      (suivante ? '<button class="secondaire" id="sbSuivante">' + esc(T("sb_suivante")) + DEUXPTS() + esc(suivante.titre) + '</button>' : "") +
       '<button class="secondaire" id="sbToutes">' + esc(T("sb_toutes")) + '</button></div>';
   $("sbRefaire").onclick = () => ouvrirSB(s);
   if (suivante) $("sbSuivante").onclick = () => suivante.ouvrir();
