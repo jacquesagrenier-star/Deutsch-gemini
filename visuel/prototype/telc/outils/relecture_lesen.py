@@ -1,11 +1,10 @@
-"""Refait retours/A-RELIRE-TELC-LESEN.md, la relecture germanophone de Lire (Leseverstehen) du telc, a partir des
-donnees.
+"""La relecture germanophone de Lire (Leseverstehen) du telc : section(lignes) ajoute les textes de donnees/lesen.json
+a retours/A-RELIRE-TELC.md.
 
-Usage : python visuel/prototype/telc/outils/relecture_lesen.py
+Usage : python visuel/prototype/telc/outils/relecture.py (qui ramasse tous les relecture_<partie>.py).
 
-Le fichier est DERIVE : on ne le corrige jamais a la main ; on corrige donnees/lesen.json, puis on relance ce
-script. (Un fichier a part de A-RELIRE-TELC.md, pour que les sessions paralleles du bloc telc n'ecrivent pas le
-meme script ; la session des examens pourra les reunir.)
+Le fichier est DERIVE : on ne le corrige jamais a la main ; on corrige donnees/lesen.json, puis on relance
+relecture.py.
 """
 import json
 import os
@@ -13,7 +12,6 @@ import os
 ICI = os.path.dirname(os.path.abspath(__file__))
 TELC = os.path.dirname(ICI)
 RACINE = os.path.dirname(os.path.dirname(os.path.dirname(TELC)))
-SORTIE = os.path.join(RACINE, "retours", "A-RELIRE-TELC-LESEN.md")
 RF = ["richtig", "falsch"]
 
 
@@ -39,31 +37,22 @@ def items(lignes, its):
         lignes.append("  → ")
 
 
-def main():
+def section(L):
     d = json.load(open(os.path.join(TELC, "donnees", "lesen.json"), encoding="utf-8"))
-    L = [
-        "# Le telc Deutsch A2·B1, Lire (Leseverstehen) : textes allemands à relire",
-        "",
-        "Pages : `visuel/prototype/telc/lesen.js`. Fichier DÉRIVÉ des données (ne pas corriger ici : la session corrige "
-        "`visuel/prototype/telc/donnees/lesen.json`, puis relance `python visuel/prototype/telc/outils/relecture_lesen.py`).",
-        "",
-        "Pour le relecteur ou la relectrice : ces textes sont écrits pour Wortando, au format du telc Deutsch A2·B1 "
-        "(jamais repris de ses modèles). Mark Garnier, de Montréal, vit à Berlin-Pankow. Écrire la correction sous la "
-        "ligne, après « → ». Une ligne laissée vide veut dire « correct ». La bonne réponse est en **gras**. Questions : "
-        "les textes sont-ils corrects et naturels ? Le niveau convient-il à l'A2-B1 ? Pour chaque question, **une seule** "
-        "réponse est-elle défendable d'après le texte ?",
-        "",
-        "## Les consignes",
-        "",
-    ]
+    L.append("## Lire (Leseverstehen), Teile 1-4")
+    L.append("")
+    L.append("Trois séries de 18 questions. La bonne réponse est en **gras**. Questions : les textes sont-ils corrects et "
+             "naturels ? Le niveau convient-il à l'A2-B1 ? Pour chaque question, **une seule** réponse est-elle "
+             "défendable d'après le texte ?")
+    L.append("")
+    L.append("### Les consignes")
+    L.append("")
     for t, c in d["consignes"].items():
         L.append("- Teil %s : %s" % (t[1:], c["de"]))
         L.append("  → ")
     L.append("")
     for s in d["series"]:
-        L.append("## Série %d" % s["id"])
-        L.append("")
-        L.append("### Teil 1 · Petites annonces")
+        L.append("### Lire, série %d · Teil 1 · Petites annonces" % s["id"])
         L.append("")
         for a in s["T1"]["anzeigen"]:
             L.append("- (%s) **%s** — %s" % (a["b"], a["titel"], a["text"]))
@@ -73,12 +62,12 @@ def main():
             L.append("- %d. %s — **%s**" % (it["nr"], it["situation"], it["bon"]))
             L.append("  → ")
         L.append("")
-        L.append("### Teil 2 · Un texte court")
+        L.append("### Lire, série %d · Teil 2 · Un texte court" % s["id"])
         L.append("")
         texte(L, s["T2"]["text"])
         items(L, s["T2"]["items"])
         L.append("")
-        L.append("### Teil 3 · Des courriels")
+        L.append("### Lire, série %d · Teil 3 · Des courriels" % s["id"])
         L.append("")
         for p in s["T3"]["saetze"]:
             L.append("- (%s) %s" % (p["b"], p["de"]))
@@ -94,13 +83,8 @@ def main():
             L.append("")
             L.append("→ ")
             L.append("")
-        L.append("### Teil 4 · Un texte plus long")
+        L.append("### Lire, série %d · Teil 4 · Un texte plus long" % s["id"])
         L.append("")
         texte(L, s["T4"]["text"])
         items(L, s["T4"]["items"])
         L.append("")
-    open(SORTIE, "w", encoding="utf-8", newline="\n").write("\n".join(L).rstrip() + "\n")
-    print("ecrit", os.path.relpath(SORTIE, RACINE))
-
-
-main()
