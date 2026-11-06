@@ -55,6 +55,18 @@ egal(R.pointsRappel({ srsHits: 2 }), 2, "points = srsHits");
 egal(R.pointsRappel({ srsHits: 1, mastered: true }), 4, "maitrise = 4 points");
 egal(R.dejaVuRappel({ mastered: false, due: 0, reviews: 0 }), false, "un mot jamais juge n'est pas vu");
 egal(R.dejaVuRappel({ srsHits: 0, due: 123 }), true, "un mot rate (Encore) est vu");
+// « Vu » = le contraire exact d'estNeuf(), la definition du reste de l'app (le
+// lot des petites ameliorations classe ses leurres de phrases dessus).
+{
+    const m = source.match(/function estNeuf\(st\)\{[\s\S]*?\r?\n\}/);
+    verifier(!!m, "estNeuf() introuvable dans index.html");
+    if(m){
+        const estNeuf = vm.runInNewContext("(" + m[0] + ")");
+        [{}, { mastered: false, due: 0, reviews: 0 }, { srsHits: 1 }, { due: 5 }, { mastered: true },
+         { reviews: 2 }, { srsHits: 0, due: 0, reviews: 4 }, { srsHits: 3, srsDailyStreak: 2, due: 9 }]
+            .forEach(st => egal(R.dejaVuRappel(st), !estNeuf(Object.assign({}, st)), "vu = !estNeuf pour " + JSON.stringify(st)));
+    }
+}
 
 // ---------- 2. Une carte sur trois, par regle ----------
 function jouer(eligibles, possibles){

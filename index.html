@@ -54499,9 +54499,13 @@ function empreinteRappel(s){
 
 // Le mot a-t-il deja ete juge au moins une fois ? (« Encore » compte : le mot
 // a ete vu, et le retrouver tout de suite est justement l'exercice.)
+// ⚠️ C'EST EXACTEMENT LE CONTRAIRE D'estNeuf() -- recopie ici parce que la
+// logique pure ne lit rien d'autre. Le lot des petites ameliorations (6 nov.)
+// classe ses leurres de cartes-phrases sur !estNeuf() : une seule definition de
+// « vu » pour toute l'app. Si estNeuf() change, changer celle-ci avec.
 function dejaVuRappel(st){
     st = st || {};
-    return !!(st.mastered || (st.srsHits || 0) > 0 || (st.reviews || 0) > 0 || st.due);
+    return !!(st.mastered || st.due || (st.srsHits || 0));
 }
 
 // Les points verts tels que les pastilles les montrent (0 a 4).
