@@ -101,9 +101,11 @@ DTZ.charger(fetch("donnees/lesen-schreiben.json", { cache: "no-cache" })
 
 DTZ.partie({ id: "LS", ordre: 30, titre: T("ls_titre"), sous: T("ls_sous"), ouvrir: () => ouvrirSchreiben("LS") });
 
-// L'EXAMEN BLANC : 29 et 30 comptent en Lesen (3 points chacune), le courriel 31 en Schreiben (critere I, 15).
+// L'EXAMEN BLANC : 29 et 30 comptent en Lesen (3 points chacune), le courriel 31 en Schreiben (critere I, 15, note par
+// la grille hors chrono, a la fin de l'examen).
 // « minutes : 0 » : la partie partage les 35 minutes des Sprachbausteine.
-TELC.epreuve({ id: "LS", ordre: 30, minutes: 0, sur: { Lesen: 6, Schreiben: 15 }, lancer: fini => examenSchreiben("LS", fini) });
+TELC.epreuve({ id: "LS", ordre: 30, minutes: 0, sur: { Lesen: 6, Schreiben: 15 },
+  lancer: (fini, o) => examenSchreiben("LS", fini, o), grille: (finiGrille, o) => grilleSchreiben("LS", finiGrille, o) });
 
 // ======================================================================================================
 // LA PARTIE S : ECRIRE, LA REPONSE COURTE, ET LE MOTEUR COMMUN AUX DEUX TEXTES
@@ -341,7 +343,8 @@ DTZ.charger(fetch("donnees/schreiben.json", { cache: "no-cache" })
 DTZ.partie({ id: "S", ordre: 60, titre: T("s_titre"), sous: T("s_sous"), ouvrir: () => ouvrirSchreiben("S") });
 
 // L'EXAMEN BLANC : la reponse courte (critere I, 5) et les criteres II-IV de l'ecrit sur les deux textes (30).
-TELC.epreuve({ id: "S", ordre: 60, minutes: 10, sur: { Schreiben: 35 }, lancer: fini => examenSchreiben("S", fini) });
+TELC.epreuve({ id: "S", ordre: 60, minutes: 10, sur: { Schreiben: 35 },
+  lancer: (fini, o) => examenSchreiben("S", fini, o), grille: (finiGrille, o) => grilleSchreiben("S", finiGrille, o) });
 
 // les pages de chaque partie, dans l'ordre ; le libelle de leur point de progression
 const SCH_PAGES = {
@@ -726,69 +729,93 @@ function recapSch(){
 }
 
 // ============ L'EXAMEN BLANC ============
-// TELC.epreuve (telc-commun.js) : examen-blanc.js appelle lancer(fini) et attend fini({pts, detail}).
-// Sans aide : ni Mark, ni indice, ni formules, ni compteur ; les questions 29-30 sans correction immediate.
-// La page ne pouvant juger la langue, l'eleve se note lui-meme avec la grille, une fois sa copie rendue :
-//   LS : 29 et 30 (3 points de Lesen chacune, comptes par la page) et le critere I du courriel (15) ;
-//   S  : le critere I de la reponse courte (5) et les criteres II-IV sur les deux textes ensemble (30), le courriel
-//        ecrit plus tot dans le meme examen blanc etant montre a cote (SCH.courrielExamen).
-async function examenSchreiben(mode, fini){
-  silence(); arreterChrono(); fermerPanneau();
-  const serie = await choisirSerie(seriesDe(mode), () => [], "SCHEX" + mode);
-  SCH.ex = { mode, serie, q: {}, texte: "", crit: {}, fini };
-  if (mode === "LS") SCH.courrielExamen = null;
-  DTZ.surRetour(() => { confirmer(T("quitter_q"), () => { SCH.ex = null; accueil(); }, T("quitter")); return true; });
-  copieExamen();
+// L'appel d'examen-blanc.js (session telc-parler-blanc, 74fa58d), en deux temps :
+//   1. lancer(fini, o), PENDANT le chrono : la copie, sans aide (ni Mark, ni indice, ni formules, ni compteur, ni
+//      correction de 29-30). « Rendre », ou terminer() a zero du chrono, appelle fini() avec ce que la page sait
+//      compter seule : LS {Lesen : 3 par bonne reponse a 29-30, Schreiben : 0}, S {Schreiben : 0} ; le texte va dans
+//      detail, pour la grille.
+//   2. grille(finiGrille, o), HORS chrono, a la fin de l'examen (au retour de l'oral, avant le verdict) : la page ne
+//      jugeant pas la langue, l'eleve se note avec la grille de l'examinateur. LS : le critere I du courriel (15).
+//      S : le critere I de la reponse courte (5) et les criteres II-IV sur les DEUX textes (30). Les points
+//      s'ajoutent a ceux de fini().
+// L'oral s'ouvre dans une autre page entre les deux : rien n'est garde en memoire, tout passe par detail. Le
+// courriel rendu en LS est recopie dans le detail de S (SCH.courrielExamen, sinon le resultat LS de l'examen blanc).
+// La serie tourne avec le numero de l'examen blanc (o.numero), comme les Sprachbausteine.
+function serieExamen(mode, o){
+  const pool = seriesDe(mode);
+  return pool.length ? pool[((o && o.numero) || 0) % pool.length] : null;
 }
 
-function copieExamen(){
-  const ex = SCH.ex, s = ex.serie, ls = ex.mode === "LS";
+function examenSchreiben(mode, fini, o){
+  silence(); arreterChrono(); fermerPanneau();
+  const s = serieExamen(mode, o), ls = mode === "LS";
+  if (!s){ setTimeout(() => fini({}), 0); return {}; }
+  const ex = { mode, serie: s, q: {}, texte: "" };
+  let rendu = false;
+  if (ls) SCH.courrielExamen = null;
   $("titre").textContent = T(ls ? "ls_titre" : "s_titre");
   const questions = ls ? s.fragen.map(f => {
     const opts = f.typ === "rf" ? [T("sch_richtig"), T("sch_falsch")] : f.o;
     return '<div class="q"><div class="tete"><span class="num">' + f.n + '</span><span class="frage" lang="de">' + esc(f.de) + '</span></div>' +
-      '<div class="choix' + (f.typ === "rf" ? " ligne" : "") + '">' + opts.map((o, k) =>
-        '<button class="opt' + (ex.q[f.n] === k ? " pris" : "") + '" data-exq="' + f.n + '" data-k="' + k + '">' + (f.typ === "rf" ? "" : '<b>' + "ab"[k] + '</b>') + '<span lang="de">' + esc(o) + '</span></button>').join("") + '</div></div>';
+      '<div class="choix' + (f.typ === "rf" ? " ligne" : "") + '">' + opts.map((x, k) =>
+        '<button class="opt" data-exq="' + f.n + '" data-k="' + k + '">' + (f.typ === "rf" ? "" : '<b>' + "ab"[k] + '</b>') + '<span lang="de">' + esc(x) + '</span></button>').join("") + '</div></div>';
   }).join("") : "";
   $("zone").innerHTML =
     '<div class="bloc"><div class="section">' + esc(T(ls ? "ls_section" : "s_section")) + ' · ' + esc(T("examen")) + '</div><p class="petit">' + esc(T("sch_ex_pas_aide")) + '</p></div>' +
-    '<div class="bloc">' + (ls ? '<p class="consigne" lang="de">' + esc(T("sch_rf_consigne_de")) + '</p>' : "") + docRecu(ex.mode, s) + questions + '</div>' +
-    '<div class="bloc">' + consigneEcrire(ex.mode, s) +
+    '<div class="bloc">' + (ls ? '<p class="consigne" lang="de">' + esc(T("sch_rf_consigne_de")) + '</p>' : "") + docRecu(mode, s) + questions + '</div>' +
+    '<div class="bloc">' + consigneEcrire(mode, s) +
       '<textarea class="sch-zone' + (ls ? "" : " court") + '" id="exTexte" lang="de" spellcheck="false" autocapitalize="sentences" placeholder="' + esc(T("sch_placeholder")) + '"></textarea></div>';
-  $("exTexte").value = ex.texte;
   $("exTexte").oninput = () => { ex.texte = $("exTexte").value; };
   document.querySelectorAll("[data-exq]").forEach(b => b.onclick = () => {
     ex.q[b.dataset.exq] = Number(b.dataset.k);
     document.querySelectorAll('[data-exq="' + b.dataset.exq + '"]').forEach(x => x.classList.toggle("pris", x === b));
   });
-  suite(T(ls ? "ls_ex_rendre" : "sch_ex_rendre"), noteExamen);
+  const rendre = () => {
+    if (rendu) return; rendu = true;
+    const zone = $("exTexte"); if (zone) ex.texte = zone.value;
+    const bons = ls ? s.fragen.filter(f => ex.q[f.n] === f.bon).length : 0;
+    const detail = { mode, serie: s.id, texte: ex.texte,
+      questions: ls ? s.fragen.map(f => ({ n: f.n, rep: ex.q[f.n] === undefined ? null : ex.q[f.n], bon: f.bon })) : null };
+    if (ls) SCH.courrielExamen = { serie: s.id, texte: ex.texte };
+    else detail.courriel = courrielDeLExamen();
+    fini({ pts: ls ? { Lesen: 3 * bons, Schreiben: 0 } : { Schreiben: 0 }, detail });
+  };
+  suite(T(ls ? "ls_ex_rendre" : "sch_ex_rendre"), rendre);
   window.scrollTo(0, 0);
+  return { terminer: rendre };
 }
 
-function noteExamen(){
-  const ex = SCH.ex, s = ex.serie, ls = ex.mode === "LS";
-  if (ls) SCH.courrielExamen = { serie: s, texte: ex.texte };
-  const avecCourriel = !ls && SCH.courrielExamen;
+// le courriel rendu plus tot dans le meme examen blanc : en memoire, sinon dans l'etat de l'examen blanc
+function courrielDeLExamen(){
+  if (SCH.courrielExamen) return SCH.courrielExamen;
+  try{ const r = typeof BL !== "undefined" && BL && BL.res && BL.res.LS; if (r && r.detail && r.detail.texte !== undefined) return { serie: r.detail.serie, texte: r.detail.texte }; }catch(e){}
+  return null;
+}
+
+function grilleSchreiben(mode, finiGrille, o){
+  silence(); arreterChrono(); fermerPanneau();
+  const ls = mode === "LS", d = (o && o.detail) || {};
+  const s = seriesDe(mode).find(x => x.id === d.serie) || null;
+  const texte = d.texte || "";
+  const courriel = ls ? null : d.courriel;
+  const crit = {};
   const criteres = SCH.d.kriterien.filter(k => ls ? k.id === "I" : true);
-  const textes = ls ? '<div class="sch-texte" lang="de">' + esc(ex.texte) + '</div>'
-    : (avecCourriel ? '<h2>' + esc(T("sch_ex_ton_courriel")) + '</h2><div class="sch-texte" lang="de">' + esc(SCH.courrielExamen.texte) + '</div>' : "") +
-      '<h2>' + esc(T("sch_ex_ta_reponse")) + '</h2><div class="sch-texte" lang="de">' + esc(ex.texte) + '</div>';
-  const punkte = ls ? '<ol class="sch-liste">' + s.punkte.map(p => '<li><span class="de" lang="de">' + esc(p.de) + '</span></li>').join("") + '</ol>' : "";
+  const textes = ls ? '<div class="sch-texte" lang="de">' + esc(texte) + '</div>'
+    : (courriel ? '<h2>' + esc(T("sch_ex_ton_courriel")) + '</h2><div class="sch-texte" lang="de">' + esc(courriel.texte || "") + '</div>' : "") +
+      '<h2>' + esc(T("sch_ex_ta_reponse")) + '</h2><div class="sch-texte" lang="de">' + esc(texte) + '</div>';
+  const punkte = ls && s ? '<ol class="sch-liste">' + s.punkte.map(p => '<li><span class="de" lang="de">' + esc(p.de) + '</span><span class="tr">' + esc(champTelc(p, "aide")) + '</span></li>').join("") + '</ol>' : "";
+  $("titre").textContent = T(ls ? "ls_titre" : "s_titre");
   $("zone").innerHTML =
     '<div class="bloc"><div class="section">' + esc(T(ls ? "ls_section" : "s_section")) + ' · ' + esc(T("examen")) + '</div>' +
-      '<p class="petit">' + esc(T(ls ? "ls_ex_note" : avecCourriel ? "sch_ex_note_s" : "sch_ex_note_seul")) + '</p>' + textes + punkte + '</div>' +
-    '<div class="bloc">' + criteres.map(k => critereHtml(ex.mode, k, ex.crit[k.id], false)).join("") + '</div>';
-  const pret = () => criteres.every(k => ex.crit[k.id]);
-  brancherCriteres(ex.crit, () => { $("suite").disabled = !pret(); });
+      '<p class="petit">' + esc(T(ls ? "ls_ex_note" : courriel ? "sch_ex_note_s" : "sch_ex_note_seul")) + '</p>' +
+      (s ? docRecu(mode, s) : "") + textes + punkte + '</div>' +
+    '<div class="bloc">' + criteres.map(k => critereHtml(mode, k, null, false)).join("") + '</div>';
+  const pret = () => criteres.every(k => crit[k.id]);
+  brancherCriteres(crit, () => { $("suite").disabled = !pret(); });
   suite(T("sch_ex_valider"), () => {
     if (!pret()) return;
-    const ecrit = criteres.reduce((t, k) => t + ptsCritere(ex.mode, k.id, ex.crit[k.id]), 0);
-    const bons = ls ? s.fragen.filter(f => ex.q[f.n] === f.bon).length : 0;
-    const pts = ls ? { Lesen: 3 * bons, Schreiben: ecrit } : { Schreiben: ecrit };
-    const detail = { serie: s.id, texte: ex.texte, crit: Object.assign({}, ex.crit),
-      questions: ls ? s.fragen.map(f => ({ n: f.n, rep: ex.q[f.n], bon: f.bon })) : null };
-    const fin = ex.fini; SCH.ex = null; DTZ.surRetour(null);
-    if (typeof fin === "function") fin({ pts, detail });
+    const ecrit = criteres.reduce((t, k) => t + ptsCritere(mode, k.id, crit[k.id]), 0);
+    finiGrille({ pts: { Schreiben: ecrit }, detail: { crit: Object.assign({}, crit) } });
   });
   $("suite").disabled = !pret();
   window.scrollTo(0, 0);
