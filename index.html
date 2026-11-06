@@ -8326,6 +8326,106 @@ body[data-theme="dark"] #home .pa-ecoute .pa-play, body[data-theme="dark"] #home
 #home .pa-ecoute .pa-play::before, #home .pa-ecoute .pa-play::after{content:none !important;}
 #home .pa-ecoute .pa-play svg{width:17px; height:17px;}
 
+/* 6 nov. 2026 : LA SEANCE EN PARTIES (voir LE PLAN DE LA SEANCE dans le script).
+   Une barre sous l'en-tete : une part par partie, faite en encre, en cours en ambre. */
+#seanceParts{display:flex; gap:4px; margin:10px 0 14px;}
+/* Jacques, 6 nov. (iPhone) : la capsule micro / haut-parleur / compteur passait a la ligne sous un en-tete
+   long et se posait sur la barre (marge negative). La capsule reste a droite, le texte se replie a cote ;
+   sous 350 px elle passe sur sa ligne, et la barre a toujours la sienne dessous. */
+#flashcards.seance-en-parts .title-row{flex-wrap:nowrap; align-items:flex-start;}
+#flashcards.seance-en-parts .title-row > div:first-child{flex:1 1 auto; min-width:0;}
+#flashcards.seance-en-parts .title-row-pills{flex:none; flex-wrap:nowrap; margin-top:2px;}
+#flashcards.seance-en-parts #flashThemeTitle{font-size:24px; line-height:1.15; overflow-wrap:anywhere;}
+@media (max-width:349px){ #flashcards.seance-en-parts .title-row{flex-wrap:wrap;} #flashcards.seance-en-parts .title-row-pills{margin-inline-start:auto;} }
+#seanceParts.hidden{display:none;}
+#seanceParts i{display:block; flex:1 1 0; min-width:6px; height:7px; border-radius:4px; background:rgba(28,36,48,.14);}
+#seanceParts i.fait{background:#2C3A4A;}
+#seanceParts i.ici{background:linear-gradient(90deg, #E8A23A 0 var(--q, 0%), rgba(28,36,48,.14) var(--q, 0%) 100%);}
+html[dir="rtl"] #seanceParts i.ici{background:linear-gradient(270deg, #E8A23A 0 var(--q, 0%), rgba(28,36,48,.14) var(--q, 0%) 100%);}
+body[data-theme="dark"] #seanceParts i{background:rgba(255,255,255,.12);}
+body[data-theme="dark"] #seanceParts i.fait{background:#C9D4DD;}
+body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(90deg, #F0A93C 0 var(--q, 0%), rgba(255,255,255,.12) var(--q, 0%) 100%);}
+html[dir="rtl"] body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(270deg, #F0A93C 0 var(--q, 0%), rgba(255,255,255,.12) var(--q, 0%) 100%);}
+/* Lot de l'evaluation : sur l'ecran de fin (fin-paquet), toutes les parties sont faites. */
+#flashcards.fin-paquet #seanceParts i{background:#2C3A4A;}
+body[data-theme="dark"] #flashcards.fin-paquet #seanceParts i{background:#C9D4DD;}
+/* L'ecran de passage entre deux parties. */
+.cp-passage{display:grid; justify-items:center; gap:10px; text-align:center; padding:22px 8px 10px;}
+.cp-passage-ok{width:56px; height:56px; border-radius:50%; display:grid; place-items:center; background:rgba(31,122,85,.12);}
+.cp-passage-ok svg{width:30px; height:30px; fill:none; stroke:#1F7A55; stroke-width:3; stroke-linecap:round; stroke-linejoin:round;}
+body[data-theme="dark"] .cp-passage-ok{background:rgba(80,190,130,.16);}
+body[data-theme="dark"] .cp-passage-ok svg{stroke:#8ED3AA;}
+.cp-passage-fait{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size:22px; font-weight:800; letter-spacing:-.015em; line-height:1.2; text-wrap:balance;}
+.cp-passage-ensuite{margin:8px 0 0; font-size:16px; font-weight:700; text-wrap:balance;}
+.cp-passage-n{color:var(--gris-v); font-size:13px;}
+.cp-passage-go{margin-top:10px; min-width:180px;}
+/* Le plan sur la carte de l'accueil : il peut passer sur deux lignes. */
+#home #seancePilule .pa-contenu.pa-plan{white-space:normal; text-wrap:balance;}
+
+/* 6 nov. 2026 : L'ACCUEIL PAR PALIERS (palierAccueil). Rien n'est ferme : Tout le contenu
+   garde tout ; c'est l'accueil qui montre moins a qui commence. */
+#home.palier-1:not(.vue-contenu) #explorerScenes, #home.palier-1:not(.vue-contenu) #explorerThemes,
+#home.palier-1:not(.vue-contenu) #ecouteLigneAccueil,
+#home.palier-1:not(.vue-contenu) #carteVocab, #home.palier-2:not(.vue-contenu) #carteVocab,
+#home.palier-1.sans-gardes #seanceGardes, #home.palier-2.sans-gardes #seanceGardes{display:none !important;}
+#home #seancePilule.niveaux-replies > .pa-niveaux{display:none !important;}
+#home #seancePilule .pa-changer{order:3; justify-self:center; border:0; background:none; font:inherit; font-size:13px; font-weight:700;
+    color:var(--encre-v); padding:4px 10px; border-radius:999px; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
+#home #seancePilule .pa-changer.hidden{display:none;}
+#home.vue-contenu #suggAccueil{display:none !important;}
+/* Les trois suggestions : des cartes de verre, l'image a gauche, le rond a droite. */
+.sugg-accueil{display:grid; gap:10px; grid-column:1 / -1;}
+.sugg-accueil.hidden{display:none;}
+.sugg-accueil-titre{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight:800; font-size:17px; color:var(--encre-v); padding:2px 2px 0;}
+.sugg-accueil-liste{display:grid; gap:10px;}
+.sugg-carte{display:grid; grid-template-columns:72px minmax(0,1fr) auto; gap:12px; align-items:center; width:100%; text-align:start; border:0; cursor:pointer;
+    padding:8px 12px 8px 8px; border-radius:22px; font:inherit; color:var(--encre-v);
+    background:var(--v-fond); -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
+    box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre);}
+.sugg-carte img, .sugg-onde{width:72px; height:58px; object-fit:cover; border-radius:14px; display:block;}
+.sugg-onde{display:flex; align-items:center; justify-content:center; gap:4px; background:rgba(232,162,58,.16);}
+.sugg-onde i{display:block; width:5px; border-radius:3px; background:#B07A1E; height:14px;}
+.sugg-onde i:nth-child(2), .sugg-onde i:nth-child(4){height:26px; background:#E8A23A;}
+.sugg-onde i:nth-child(3){height:36px;}
+.sugg-tx{display:grid; gap:1px; min-width:0;}
+.sugg-kick{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight:800; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ambre-v);}
+.sugg-tx b{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight:700; font-size:15.5px; line-height:1.2;}
+.sugg-sous{font-size:12px; color:var(--gris-v); line-height:1.3;}
+.sugg-rond{width:38px; height:38px; border-radius:50%; display:grid; place-items:center; font-size:21px; font-weight:600; line-height:1; padding-bottom:2px; color:#fff;
+    background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%);
+    box-shadow:inset 0 0 0 2px rgba(0,0,0,.35), inset 0 0 14px rgba(255,255,255,.16), inset 0 1.5px 0 rgba(255,255,255,.55), 0 8px 18px rgba(20,16,10,.25);}
+html[dir="rtl"] .sugg-rond{transform:scaleX(-1);}
+body[data-theme="dark"] .sugg-rond{color:#2A1A05; background:linear-gradient(180deg, rgba(250,206,128,.86) 0%, rgba(237,169,60,.80) 52%, rgba(208,138,28,.88) 100%);
+    box-shadow:inset 0 0 0 2px rgba(150,90,10,.28), inset 0 0 14px rgba(255,255,255,.35), inset 0 1.5px 0 rgba(255,255,255,.8), 0 8px 20px rgba(237,169,60,.28);}
+.sugg-carte:focus-visible{outline:2px solid #E8A23A; outline-offset:2px;}
+
+/* 6 nov. 2026 : TOUT LE CONTENU PAR BUT. La recherche en tete, puis cinq sections ; dans
+   « En situation », les rubans des scenes et des themes a la place des 17 tuiles. */
+.contenu-recherche{display:none; grid-column:1 / -1; gap:8px;}
+#home.vue-contenu .contenu-recherche{display:grid;}
+.contenu-champ{display:flex; align-items:center; gap:10px; padding:11px 14px; border-radius:18px; cursor:text;
+    background:var(--v-fond); box-shadow:inset 1.5px 1.5px 0 var(--v-liser), inset 0 0 0 1px rgba(28,36,48,.10), var(--v-ombre); color:var(--gris-v);}
+body[data-theme="dark"] .contenu-champ{box-shadow:inset 1.5px 1.5px 0 var(--v-liser), inset 0 0 0 1px rgba(255,255,255,.12), var(--v-ombre);}
+.contenu-champ svg{width:18px; height:18px; flex:0 0 18px; fill:none; stroke:currentColor; stroke-width:2.3; stroke-linecap:round;}
+.contenu-champ input{flex:1; min-width:0; border:0; outline:0; background:transparent; font:inherit; font-size:16px; color:var(--encre-v);}
+.contenu-champ input::placeholder{color:var(--gris-v); opacity:1;}
+.contenu-chercher-mots{justify-self:start; border:0; background:none; font:inherit; font-size:14px; font-weight:700; color:var(--ambre-v); padding:2px 4px; cursor:pointer; text-align:start;}
+.contenu-chercher-mots.hidden{display:none;}
+#home .filtre-cache, #home .explorer-scenes.filtre-vide{display:none !important;}
+.place-situation{display:none;}
+#home.vue-contenu #orbGrid > #explorerScenes{display:block !important;}
+#home.vue-contenu #orbGrid > #explorerThemes:not(.hidden){display:block !important;}
+#home.vue-contenu #orbGrid > #explorerScenes.filtre-vide, #home.vue-contenu #orbGrid > #explorerThemes.filtre-vide{display:none !important;}
+#home.vue-contenu #orbGrid > .orb[onclick^="ouvrirThemeIllustre"]{display:none !important;}
+/* En espagnol, chaque fiche de grammaire n'apparait qu'une fois : dans « Toutes les fiches ». */
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid^="es-"]:not([data-orbid="es-indice"]),
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="kasus"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="praep"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="wortstellung"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="zuinfinitiv"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="pronomen"],
+html[data-apprendre="es"] #home.vue-contenu #orbGrid > .orb[data-orbid="zahlen"]{display:none !important;}
+
 /* v1008 : LE TABLEAU DANS UN CADRE -- « verre et biseau dore » (proposition 4 retenue par Jacques,
    29 oct. 2026 : « un cadre pour la peinture [...] un melange de moderne et d'ancien »). Le verre de
    l'app autour, un biseau dore, des coins arrondis. */
@@ -8965,7 +9065,7 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1120</span>
+        <span class="subtitle-version">v1124</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -9662,6 +9762,13 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
             </div>
         </div>
 
+        <!-- 6 nov. 2026 (decision 34d02c3, variante A) : TROIS SUGGESTIONS sous la seance,
+             pour qui commence (palier 1, voir palierAccueil) : la scene de l'etape, un theme
+             illustre, Ecouter. Remplies par majSuggestionsAccueil(). -->
+        <div class="sugg-accueil hidden" id="suggAccueil">
+            <div class="sugg-accueil-titre" data-i18n="sugg_titre">Pour aller plus loin aujourd'hui</div>
+            <div class="sugg-accueil-liste" id="suggAccueilListe"></div>
+        </div>
         <!-- v799 : EXPLORER LES SCENES, a part de la seance. Jacques voulait voir
              qu'il y a beaucoup de scenes (« peut-etre une cinquantaine ») et
              garder le mode Decouvrir (« des fois c'est ca que les gens
@@ -9784,23 +9891,31 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
             <button class="back" onclick="quitterToutLeContenu()"><span data-i18n="back_button">‹ Retour</span></button>
             <h2 data-i18n="accueil_tout_titre">Tout le contenu</h2>
         </div>
+        <!-- 6 nov. 2026 (decision 34d02c3, variante C) : LA RECHERCHE EN TETE DE TOUT LE
+             CONTENU. Elle filtre ce qui est ici (tuiles, scenes, themes) a chaque lettre,
+             et propose de chercher le mot dans le dictionnaire de l'app (filtrerContenu). -->
+        <div class="contenu-recherche" id="contenuRecherche">
+            <label class="contenu-champ" for="contenuRechercheInput">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+                <input id="contenuRechercheInput" type="search" autocomplete="off" autocapitalize="none"
+                       placeholder="Un mot, une règle, un thème…" data-i18n-placeholder="contenu_chercher"
+                       oninput="filtrerContenu(this.value)">
+            </label>
+            <button type="button" class="contenu-chercher-mots hidden" id="contenuChercherMots"
+                    onclick="chercherMotDepuisContenu()"></button>
+        </div>
 
 
         <!-- Section « Les mots ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="mots">
             <span class="sec-trait" aria-hidden="true"></span>
-            <span data-i18n="sec_mots">Travailler les mots</span>
+            <span data-i18n="sec_mes_mots">Mes mots</span>
         </h2>
         <!-- v799 : sortis de la tuile de seance (Jacques : « je le mettrais tout
              simplement dans des tuiles »). Sans orb-de : valables dans les deux
              directions, comme ils l'etaient dans la seance. -->
         <!-- v917 : la serie en recompense (essai « episodes »), visible des le premier episode debloque. -->
-        <div class="orb hidden" data-orbid="episodes" id="tuileEpisodes" onclick="ouvrirMesEpisodes()">
-            <span class="ep-nouveau hidden" id="tuileEpisodesNouveau" data-i18n="ep_nouveau">Nouveau</span>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M20.84 2.18L16.91 2.96L19.65 6.5L21.62 6.1L20.84 2.18M13.97 3.54L12 3.93L14.75 7.46L16.71 7.07L13.97 3.54M9.07 4.5L7.1 4.91L9.85 8.44L11.81 8.05L9.07 4.5M4.16 5.5L3.18 5.69A2 2 0 0 0 1.61 8.04L2 10L6.9 9.03L4.16 5.5M2 10V20C2 21.11 2.9 22 4 22H20C21.11 22 22 21.11 22 20V10H2Z"/></svg></div>
-            <div><strong data-i18n="ep_tuile">Mes épisodes</strong></div>
-        </div>
         <div class="orb" data-orbid="themes" onclick="ouvrirThemesDuNiveau()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></div>
             <div>
@@ -9809,14 +9924,6 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
         </div>
         <!-- v881 : le carnet de phrases et les feuilles de conjugaison, sortis
              de la porte de seance. Visibles des qu'ils ont du contenu. -->
-        <div class="orb hidden" data-orbid="carnet" id="tuileCarnet" onclick="ouvrirCarnetPhrases()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5v17"/><path d="M12 8h4M12 11.5h4"/></svg></div>
-            <div><strong id="tuileCarnetTxt"></strong></div>
-        </div>
-        <div class="orb hidden" data-orbid="feuilles" id="tuileFeuilles" onclick="ouvrirMesFeuilles()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12h6M9.5 15.5h6"/></svg></div>
-            <div><strong id="tuileFeuillesTxt"></strong></div>
-        </div>
         <div class="orb" data-orbid="kana" data-seulement-ja onclick="ouvrirKana()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-size="14" stroke="none" style="fill:var(--wt-icone)">あ</text></svg></div>
             <div><strong>Kana · 漢字</strong></div>
@@ -9876,12 +9983,6 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
              lecture, comparees a la langue de l'utilisateur. Le fichier vient
              de la langue apprise (urlDonnees) : prononciation.json, ou
              espanol/datos/prononciation.json. -->
-        <div class="orb orb-de" data-orbid="prononciation" onclick="ouvrirPrononciation()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 9v6h3l5 4V5L7 9H4z"/><path d="M16 9a4 4 0 010 6"/><path d="M18.5 6.5a7.5 7.5 0 010 11"/></svg></div>
-            <div>
-                <strong data-i18n="orb_prononciation">Prononciation</strong>
-            </div>
-        </div>
 
         <!-- Section « Themes illustres » (2 nov. 2026, Jacques : des themes « plus vivants », imagés, « quelque chose
              de solide. Complet. Autant pour l'allemand que l'espagnol »). Des personnes photorealistes reutilisables
@@ -9889,8 +9990,12 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
              scenes par ouvrirThemeIllustre(). Espagnol et allemand seulement ; cachee en japonais, anglais, portugais. -->
         <h2 class="orb-section orb-de" data-section="illustres">
             <span class="sec-trait" aria-hidden="true"></span>
-            <span data-i18n="sec_illustres">Thèmes illustrés</span>
+            <span data-i18n="sec_situation">En situation</span>
         </h2>
+        <!-- 6 nov. 2026 : ici, dans Tout le contenu, viennent se ranger les deux rubans de
+             l'accueil (#explorerScenes, #explorerThemes), deplaces par appliquerVueContenu() ;
+             les 17 tuiles des themes ci-dessous se cachent derriere eux (CSS). -->
+        <div id="placeSituation" class="place-situation" aria-hidden="true"></div>
         <!-- La famille d'Anna (pas celle de Mark, qui est a Montreal) : un arbre de quatorze personnes, les liens,
              les possessifs, « ¿Quién es…? / Wer ist…? ». Premier theme demande par Jacques. -->
         <div class="orb hidden" data-orbid="familia" id="tuileFamilia" onclick="ouvrirThemeIllustre('familia')" role="button" tabindex="0">
@@ -10053,8 +10158,12 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
             <span class="sec-trait" aria-hidden="true"></span>
-            <span data-i18n="sec_phrase">Travailler la phrase</span>
+            <span data-i18n="sec_regle">Comprendre une règle</span>
         </h2>
+        <div class="orb hidden" data-orbid="feuilles" id="tuileFeuilles" onclick="ouvrirMesFeuilles()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12h6M9.5 15.5h6"/></svg></div>
+            <div><strong id="tuileFeuillesTxt"></strong></div>
+        </div>
         <!-- LES FICHES PROPRES A L'ESPAGNOL (v747) : en allemand, data-seulement-es
              les cache. Elles ouvrent leur fiche directement (abrirGramatica). -->
         <div class="orb" data-seulement-ja data-orbid="ja-grammaire" onclick="abrirIndiceGramatica()">
@@ -10153,7 +10262,7 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="pratique">
             <span class="sec-trait" aria-hidden="true"></span>
-            <span data-i18n="sec_pratique">Pratiquer</span>
+            <span data-i18n="sec_ecouter_ecrire">Écouter, écrire, parler</span>
         </h2>
         <div class="orb orb-de" data-orbid="ecouter" onclick="ouvrirEcouteMenu()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg></div>
@@ -10178,6 +10287,12 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
                 <strong data-i18n="orb_ausdruecke_title">Expressions & tournures</strong>
             </div>
         </div>
+        <div class="orb orb-de" data-orbid="prononciation" onclick="ouvrirPrononciation()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 9v6h3l5 4V5L7 9H4z"/><path d="M16 9a4 4 0 010 6"/><path d="M18.5 6.5a7.5 7.5 0 010 11"/></svg></div>
+            <div>
+                <strong data-i18n="orb_prononciation">Prononciation</strong>
+            </div>
+        </div>
 
         <!-- Section « Mon parcours ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -10185,6 +10300,15 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
             <span class="sec-trait" aria-hidden="true"></span>
             <span data-i18n="sec_parcours">Mon parcours</span>
         </h2>
+        <div class="orb hidden" data-orbid="carnet" id="tuileCarnet" onclick="ouvrirCarnetPhrases()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5v17"/><path d="M12 8h4M12 11.5h4"/></svg></div>
+            <div><strong id="tuileCarnetTxt"></strong></div>
+        </div>
+        <div class="orb hidden" data-orbid="episodes" id="tuileEpisodes" onclick="ouvrirMesEpisodes()">
+            <span class="ep-nouveau hidden" id="tuileEpisodesNouveau" data-i18n="ep_nouveau">Nouveau</span>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M20.84 2.18L16.91 2.96L19.65 6.5L21.62 6.1L20.84 2.18M13.97 3.54L12 3.93L14.75 7.46L16.71 7.07L13.97 3.54M9.07 4.5L7.1 4.91L9.85 8.44L11.81 8.05L9.07 4.5M4.16 5.5L3.18 5.69A2 2 0 0 0 1.61 8.04L2 10L6.9 9.03L4.16 5.5M2 10V20C2 21.11 2.9 22 4 22H20C21.11 22 22 21.11 22 20V10H2Z"/></svg></div>
+            <div><strong data-i18n="ep_tuile">Mes épisodes</strong></div>
+        </div>
         <div class="orb" data-orbid="monvocab" onclick="openMyVocab()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg></div>
             <div>
@@ -12125,6 +12249,8 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
             <div class="pill" id="flashCounter">1 / 10</div>
         </div>
     </div>
+    <!-- 6 nov. 2026 : la barre de la seance du jour, en parties (majPartsSeance). -->
+    <div id="seanceParts" class="seance-parts hidden" aria-hidden="true"></div>
 
     <div class="flashcard-wrapper">
         <div id="flashcard" class="flashcard" onclick="handleCardTap(event)">
@@ -14868,6 +14994,41 @@ const I18N = {
         seance_continuer_long: "Continuer la séance",
         seance_commencer_long: "Commencer la séance",
         seance_contenu: "mots, grammaire et scènes",
+        sec_mes_mots: "Mes mots",
+        sec_regle: "Comprendre une règle",
+        sec_situation: "En situation",
+        sec_ecouter_ecrire: "Écouter, écrire, parler",
+        contenu_chercher: "Un mot, une règle, un thème…",
+        contenu_chercher_mots: "Chercher « {q} » parmi les mots",
+        sugg_titre: "Pour aller plus loin aujourd'hui",
+        sugg_scene_etape: "La scène de ton étape",
+        sugg_scene_jour: "La scène du jour",
+        sugg_theme: "Un thème illustré",
+        sugg_ecouter_sous: "Les mots de ton niveau, à voix haute",
+        niveau_changer: "Changer de niveau",
+        seance_kicker_etape: "Étape {n} sur {t} · {lieu}",
+        seance_part_lieu: "Les mots de l'étape",
+        seance_part_neufs: "Mots nouveaux",
+        seance_part_feuille: "La conjugaison du jour",
+        seance_part_reperes: "Les repères",
+        seance_part_scene: "La scène",
+        seance_part_theme: "Le thème illustré",
+        seance_part_son: "Le son du jour",
+        seance_part_revisions: "Révisions",
+        seance_part_fin: "La fin de l'étape",
+        seance_passage_fait: "{part} : c'est fait",
+        seance_passage_ensuite: "Ensuite : {part}",
+        seance_passage_n: "{n} cartes",
+        seance_passage_un: "1 carte",
+        seance_plan_neufs: "{n} mots nouveaux",
+        seance_plan_neufs_un: "1 mot nouveau",
+        seance_plan_feuille: "la conjugaison",
+        seance_plan_reperes: "les repères",
+        seance_plan_scene: "une scène",
+        seance_plan_theme: "un thème illustré",
+        seance_plan_son: "le son du jour",
+        seance_plan_revisions: "{n} révisions",
+        seance_plan_revisions_un: "1 révision",
         garder_sous: "pour le retravailler",
         garder_fait: "Mis de côté",
         gardes_titre: "Mis de côté",
@@ -16471,6 +16632,41 @@ const I18N = {
         seance_continuer_long: "Continue the session",
         seance_commencer_long: "Start the session",
         seance_contenu: "words, grammar and scenes",
+        sec_mes_mots: "My words",
+        sec_regle: "Understand a rule",
+        sec_situation: "In context",
+        sec_ecouter_ecrire: "Listen, write, speak",
+        contenu_chercher: "A word, a rule, a topic…",
+        contenu_chercher_mots: "Search “{q}” among the words",
+        sugg_titre: "To go further today",
+        sugg_scene_etape: "Your step's scene",
+        sugg_scene_jour: "Today's scene",
+        sugg_theme: "An illustrated topic",
+        sugg_ecouter_sous: "Your level's words, read aloud",
+        niveau_changer: "Change level",
+        seance_kicker_etape: "Step {n} of {t} · {lieu}",
+        seance_part_lieu: "The step's words",
+        seance_part_neufs: "New words",
+        seance_part_feuille: "Today's conjugation",
+        seance_part_reperes: "The basics",
+        seance_part_scene: "The scene",
+        seance_part_theme: "The illustrated topic",
+        seance_part_son: "Sound of the day",
+        seance_part_revisions: "Review",
+        seance_part_fin: "End of the step",
+        seance_passage_fait: "{part}: done",
+        seance_passage_ensuite: "Next: {part}",
+        seance_passage_n: "{n} cards",
+        seance_passage_un: "1 card",
+        seance_plan_neufs: "{n} new words",
+        seance_plan_neufs_un: "1 new word",
+        seance_plan_feuille: "conjugation",
+        seance_plan_reperes: "the basics",
+        seance_plan_scene: "a scene",
+        seance_plan_theme: "an illustrated topic",
+        seance_plan_son: "the sound of the day",
+        seance_plan_revisions: "{n} reviews",
+        seance_plan_revisions_un: "1 review",
         garder_sous: "to work on it",
         garder_fait: "Set aside",
         gardes_titre: "Set aside",
@@ -18076,6 +18272,41 @@ const I18N = {
         seance_continuer_long: "Seansa devam et",
         seance_commencer_long: "Seansı başlat",
         seance_contenu: "kelimeler, dilbilgisi ve sahneler",
+        sec_mes_mots: "Kelimelerim",
+        sec_regle: "Bir kuralı anla",
+        sec_situation: "Durum içinde",
+        sec_ecouter_ecrire: "Dinle, yaz, konuş",
+        contenu_chercher: "Kelime, kural, konu…",
+        contenu_chercher_mots: "“{q}” kelimeler arasında ara",
+        sugg_titre: "Bugün bir adım daha",
+        sugg_scene_etape: "Adımının sahnesi",
+        sugg_scene_jour: "Günün sahnesi",
+        sugg_theme: "Resimli bir konu",
+        sugg_ecouter_sous: "Seviyenin kelimeleri, sesli",
+        niveau_changer: "Seviyeyi değiştir",
+        seance_kicker_etape: "{t} adımdan {n}. · {lieu}",
+        seance_part_lieu: "Adımın kelimeleri",
+        seance_part_neufs: "Yeni kelimeler",
+        seance_part_feuille: "Günün çekimi",
+        seance_part_reperes: "Temeller",
+        seance_part_scene: "Sahne",
+        seance_part_theme: "Resimli konu",
+        seance_part_son: "Günün sesi",
+        seance_part_revisions: "Tekrar",
+        seance_part_fin: "Adımın sonu",
+        seance_passage_fait: "{part}: tamam",
+        seance_passage_ensuite: "Sırada: {part}",
+        seance_passage_n: "{n} kart",
+        seance_passage_un: "1 kart",
+        seance_plan_neufs: "{n} yeni kelime",
+        seance_plan_neufs_un: "1 yeni kelime",
+        seance_plan_feuille: "çekim",
+        seance_plan_reperes: "temeller",
+        seance_plan_scene: "bir sahne",
+        seance_plan_theme: "resimli bir konu",
+        seance_plan_son: "günün sesi",
+        seance_plan_revisions: "{n} tekrar",
+        seance_plan_revisions_un: "1 tekrar",
         garder_sous: "üzerinde çalışmak için",
         garder_fait: "Kenara ayrıldı",
         gardes_titre: "Kenara ayrılanlar",
@@ -20110,6 +20341,41 @@ const I18N = {
         seance_continuer_long: "Продовжити заняття",
         seance_commencer_long: "Почати заняття",
         seance_contenu: "слова, граматика і сцени",
+        sec_mes_mots: "Мої слова",
+        sec_regle: "Зрозуміти правило",
+        sec_situation: "У ситуаціях",
+        sec_ecouter_ecrire: "Слухати, писати, говорити",
+        contenu_chercher: "Слово, правило, тема…",
+        contenu_chercher_mots: "Шукати «{q}» серед слів",
+        sugg_titre: "Сьогодні ще крок",
+        sugg_scene_etape: "Сцена твого кроку",
+        sugg_scene_jour: "Сцена дня",
+        sugg_theme: "Тема в картинках",
+        sugg_ecouter_sous: "Слова твого рівня, уголос",
+        niveau_changer: "Змінити рівень",
+        seance_kicker_etape: "Крок {n} з {t} · {lieu}",
+        seance_part_lieu: "Слова цього кроку",
+        seance_part_neufs: "Нові слова",
+        seance_part_feuille: "Дієвідміна дня",
+        seance_part_reperes: "Основи",
+        seance_part_scene: "Сцена",
+        seance_part_theme: "Тема в картинках",
+        seance_part_son: "Звук дня",
+        seance_part_revisions: "Повторення",
+        seance_part_fin: "Кінець кроку",
+        seance_passage_fait: "{part}: готово",
+        seance_passage_ensuite: "Далі: {part}",
+        seance_passage_n: "Карток: {n}",
+        seance_passage_un: "1 картка",
+        seance_plan_neufs: "нових слів: {n}",
+        seance_plan_neufs_un: "1 нове слово",
+        seance_plan_feuille: "дієвідміна",
+        seance_plan_reperes: "основи",
+        seance_plan_scene: "сцена",
+        seance_plan_theme: "тема в картинках",
+        seance_plan_son: "звук дня",
+        seance_plan_revisions: "повторень: {n}",
+        seance_plan_revisions_un: "1 повторення",
         garder_sous: "щоб попрацювати над ним",
         garder_fait: "Відкладено",
         gardes_titre: "Відкладені",
@@ -22473,6 +22739,41 @@ const I18N = {
         seance_continuer_long: "ادامهٔ جلسه",
         seance_commencer_long: "شروع جلسه",
         seance_contenu: "واژه‌ها، دستور زبان و صحنه‌ها",
+        sec_mes_mots: "واژه‌های من",
+        sec_regle: "فهمیدن یک قاعده",
+        sec_situation: "در موقعیت",
+        sec_ecouter_ecrire: "گوش دادن، نوشتن، صحبت کردن",
+        contenu_chercher: "واژه، قاعده، موضوع…",
+        contenu_chercher_mots: "جست‌وجوی «{q}» در میان واژه‌ها",
+        sugg_titre: "امروز، یک قدم بیشتر",
+        sugg_scene_etape: "صحنهٔ مرحلهٔ تو",
+        sugg_scene_jour: "صحنهٔ امروز",
+        sugg_theme: "یک موضوع مصور",
+        sugg_ecouter_sous: "واژه‌های سطح تو، با صدای بلند",
+        niveau_changer: "تغییر سطح",
+        seance_kicker_etape: "مرحلهٔ {n} از {t} · {lieu}",
+        seance_part_lieu: "واژه‌های این مرحله",
+        seance_part_neufs: "واژه‌های تازه",
+        seance_part_feuille: "صرف فعل امروز",
+        seance_part_reperes: "پایه‌ها",
+        seance_part_scene: "صحنه",
+        seance_part_theme: "موضوع مصور",
+        seance_part_son: "صدای امروز",
+        seance_part_revisions: "مرور",
+        seance_part_fin: "پایان مرحله",
+        seance_passage_fait: "{part}: انجام شد",
+        seance_passage_ensuite: "بعدی: {part}",
+        seance_passage_n: "{n} کارت",
+        seance_passage_un: "یک کارت",
+        seance_plan_neufs: "{n} واژهٔ تازه",
+        seance_plan_neufs_un: "یک واژهٔ تازه",
+        seance_plan_feuille: "صرف فعل",
+        seance_plan_reperes: "پایه‌ها",
+        seance_plan_scene: "یک صحنه",
+        seance_plan_theme: "یک موضوع مصور",
+        seance_plan_son: "صدای امروز",
+        seance_plan_revisions: "{n} مرور",
+        seance_plan_revisions_un: "یک مرور",
         garder_sous: "برای تمرین بیشتر",
         garder_fait: "کنار گذاشته شد",
         gardes_titre: "کنارگذاشته‌ها",
@@ -24247,6 +24548,41 @@ const I18N = {
         seance_continuer_long: "متابعة الجلسة",
         seance_commencer_long: "ابدأ الجلسة",
         seance_contenu: "كلمات وقواعد ومشاهد",
+        sec_mes_mots: "كلماتي",
+        sec_regle: "فهم قاعدة",
+        sec_situation: "في سياق",
+        sec_ecouter_ecrire: "استمع، اكتب، تحدّث",
+        contenu_chercher: "كلمة، قاعدة، موضوع…",
+        contenu_chercher_mots: "ابحث عن «{q}» بين الكلمات",
+        sugg_titre: "خطوة أخرى اليوم",
+        sugg_scene_etape: "مشهد مرحلتك",
+        sugg_scene_jour: "مشهد اليوم",
+        sugg_theme: "موضوع مصوّر",
+        sugg_ecouter_sous: "كلمات مستواك، بصوت عالٍ",
+        niveau_changer: "تغيير المستوى",
+        seance_kicker_etape: "المرحلة {n} من {t} · {lieu}",
+        seance_part_lieu: "كلمات المرحلة",
+        seance_part_neufs: "كلمات جديدة",
+        seance_part_feuille: "تصريف اليوم",
+        seance_part_reperes: "الأساسيات",
+        seance_part_scene: "المشهد",
+        seance_part_theme: "الموضوع المصوّر",
+        seance_part_son: "صوت اليوم",
+        seance_part_revisions: "المراجعة",
+        seance_part_fin: "نهاية المرحلة",
+        seance_passage_fait: "{part}: تمّ",
+        seance_passage_ensuite: "التالي: {part}",
+        seance_passage_n: "البطاقات: {n}",
+        seance_passage_un: "بطاقة واحدة",
+        seance_plan_neufs: "كلمات جديدة: {n}",
+        seance_plan_neufs_un: "كلمة جديدة واحدة",
+        seance_plan_feuille: "التصريف",
+        seance_plan_reperes: "الأساسيات",
+        seance_plan_scene: "مشهد",
+        seance_plan_theme: "موضوع مصوّر",
+        seance_plan_son: "صوت اليوم",
+        seance_plan_revisions: "مراجعات: {n}",
+        seance_plan_revisions_un: "مراجعة واحدة",
         garder_sous: "لتتمرّن عليها",
         garder_fait: "وُضعت جانبًا",
         gardes_titre: "الموضوعة جانبًا",
@@ -24652,6 +24988,41 @@ const I18N = {
         seance_continuer_long: "Continuar a sessão",
         seance_commencer_long: "Começar a sessão",
         seance_contenu: "palavras, gramática e cenas",
+        sec_mes_mots: "Minhas palavras",
+        sec_regle: "Entender uma regra",
+        sec_situation: "Em situação",
+        sec_ecouter_ecrire: "Ouvir, escrever, falar",
+        contenu_chercher: "Palavra, regra, tema…",
+        contenu_chercher_mots: "Buscar “{q}” entre as palavras",
+        sugg_titre: "Para ir mais longe hoje",
+        sugg_scene_etape: "A cena da sua etapa",
+        sugg_scene_jour: "A cena do dia",
+        sugg_theme: "Um tema ilustrado",
+        sugg_ecouter_sous: "As palavras do seu nível, em voz alta",
+        niveau_changer: "Mudar de nível",
+        seance_kicker_etape: "Etapa {n} de {t} · {lieu}",
+        seance_part_lieu: "As palavras da etapa",
+        seance_part_neufs: "Palavras novas",
+        seance_part_feuille: "A conjugação do dia",
+        seance_part_reperes: "Os básicos",
+        seance_part_scene: "A cena",
+        seance_part_theme: "O tema ilustrado",
+        seance_part_son: "O som do dia",
+        seance_part_revisions: "Revisões",
+        seance_part_fin: "O fim da etapa",
+        seance_passage_fait: "{part}: feito",
+        seance_passage_ensuite: "Agora: {part}",
+        seance_passage_n: "{n} cartas",
+        seance_passage_un: "1 carta",
+        seance_plan_neufs: "{n} palavras novas",
+        seance_plan_neufs_un: "1 palavra nova",
+        seance_plan_feuille: "a conjugação",
+        seance_plan_reperes: "os básicos",
+        seance_plan_scene: "uma cena",
+        seance_plan_theme: "um tema ilustrado",
+        seance_plan_son: "o som do dia",
+        seance_plan_revisions: "{n} revisões",
+        seance_plan_revisions_un: "1 revisão",
         garder_sous: "para revisar depois",
         garder_fait: "Separada",
         gardes_titre: "Separadas",
@@ -26316,6 +26687,41 @@ const I18N = {
         seance_continuer_long: "Kontynuuj sesję",
         seance_commencer_long: "Zacznij sesję",
         seance_contenu: "słowa, gramatyka i sceny",
+        sec_mes_mots: "Moje słowa",
+        sec_regle: "Zrozumieć regułę",
+        sec_situation: "W sytuacji",
+        sec_ecouter_ecrire: "Słuchać, pisać, mówić",
+        contenu_chercher: "Słowo, reguła, temat…",
+        contenu_chercher_mots: "Szukaj „{q}” wśród słów",
+        sugg_titre: "Dziś krok dalej",
+        sugg_scene_etape: "Scena twojego etapu",
+        sugg_scene_jour: "Scena dnia",
+        sugg_theme: "Temat ilustrowany",
+        sugg_ecouter_sous: "Słowa twojego poziomu, na głos",
+        niveau_changer: "Zmień poziom",
+        seance_kicker_etape: "Etap {n} z {t} · {lieu}",
+        seance_part_lieu: "Słowa tego etapu",
+        seance_part_neufs: "Nowe słowa",
+        seance_part_feuille: "Odmiana dnia",
+        seance_part_reperes: "Podstawy",
+        seance_part_scene: "Scena",
+        seance_part_theme: "Temat ilustrowany",
+        seance_part_son: "Dźwięk dnia",
+        seance_part_revisions: "Powtórki",
+        seance_part_fin: "Koniec etapu",
+        seance_passage_fait: "{part}: zrobione",
+        seance_passage_ensuite: "Dalej: {part}",
+        seance_passage_n: "Kart: {n}",
+        seance_passage_un: "1 karta",
+        seance_plan_neufs: "nowych słów: {n}",
+        seance_plan_neufs_un: "1 nowe słowo",
+        seance_plan_feuille: "odmiana",
+        seance_plan_reperes: "podstawy",
+        seance_plan_scene: "scena",
+        seance_plan_theme: "temat ilustrowany",
+        seance_plan_son: "dźwięk dnia",
+        seance_plan_revisions: "powtórek: {n}",
+        seance_plan_revisions_un: "1 powtórka",
         garder_sous: "żeby nad nim popracować",
         garder_fait: "Odłożone",
         gardes_titre: "Odłożone",
@@ -27980,6 +28386,41 @@ const I18N = {
         seance_continuer_long: "Продолжить занятие",
         seance_commencer_long: "Начать занятие",
         seance_contenu: "слова, грамматика и сцены",
+        sec_mes_mots: "Мои слова",
+        sec_regle: "Понять правило",
+        sec_situation: "В ситуациях",
+        sec_ecouter_ecrire: "Слушать, писать, говорить",
+        contenu_chercher: "Слово, правило, тема…",
+        contenu_chercher_mots: "Искать «{q}» среди слов",
+        sugg_titre: "Сегодня ещё шаг",
+        sugg_scene_etape: "Сцена твоего этапа",
+        sugg_scene_jour: "Сцена дня",
+        sugg_theme: "Тема в картинках",
+        sugg_ecouter_sous: "Слова твоего уровня, вслух",
+        niveau_changer: "Сменить уровень",
+        seance_kicker_etape: "Этап {n} из {t} · {lieu}",
+        seance_part_lieu: "Слова этапа",
+        seance_part_neufs: "Новые слова",
+        seance_part_feuille: "Спряжение дня",
+        seance_part_reperes: "Основы",
+        seance_part_scene: "Сцена",
+        seance_part_theme: "Тема в картинках",
+        seance_part_son: "Звук дня",
+        seance_part_revisions: "Повторение",
+        seance_part_fin: "Конец этапа",
+        seance_passage_fait: "{part}: готово",
+        seance_passage_ensuite: "Дальше: {part}",
+        seance_passage_n: "Карточек: {n}",
+        seance_passage_un: "1 карточка",
+        seance_plan_neufs: "новых слов: {n}",
+        seance_plan_neufs_un: "1 новое слово",
+        seance_plan_feuille: "спряжение",
+        seance_plan_reperes: "основы",
+        seance_plan_scene: "сцена",
+        seance_plan_theme: "тема в картинках",
+        seance_plan_son: "звук дня",
+        seance_plan_revisions: "повторений: {n}",
+        seance_plan_revisions_un: "1 повторение",
         garder_sous: "чтобы поработать над ним",
         garder_fait: "Отложено",
         gardes_titre: "Отложенные",
@@ -29646,6 +30087,41 @@ const I18N = {
         seance_continuer_long: "Lerneinheit fortsetzen",
         seance_commencer_long: "Lerneinheit starten",
         seance_contenu: "Wörter, Grammatik und Szenen",
+        sec_mes_mots: "Meine Wörter",
+        sec_regle: "Eine Regel verstehen",
+        sec_situation: "In Situationen",
+        sec_ecouter_ecrire: "Hören, schreiben, sprechen",
+        contenu_chercher: "Wort, Regel, Thema…",
+        contenu_chercher_mots: "„{q}“ unter den Wörtern suchen",
+        sugg_titre: "Heute noch ein Schritt",
+        sugg_scene_etape: "Die Szene deiner Etappe",
+        sugg_scene_jour: "Die Szene des Tages",
+        sugg_theme: "Ein bebildertes Thema",
+        sugg_ecouter_sous: "Die Wörter deines Niveaus, laut vorgelesen",
+        niveau_changer: "Niveau wechseln",
+        seance_kicker_etape: "Etappe {n} von {t} · {lieu}",
+        seance_part_lieu: "Die Wörter der Etappe",
+        seance_part_neufs: "Neue Wörter",
+        seance_part_feuille: "Die Konjugation des Tages",
+        seance_part_reperes: "Orientierung",
+        seance_part_scene: "Die Szene",
+        seance_part_theme: "Das bebilderte Thema",
+        seance_part_son: "Der Laut des Tages",
+        seance_part_revisions: "Wiederholung",
+        seance_part_fin: "Das Ende der Etappe",
+        seance_passage_fait: "{part}: geschafft",
+        seance_passage_ensuite: "Als Nächstes: {part}",
+        seance_passage_n: "{n} Karten",
+        seance_passage_un: "1 Karte",
+        seance_plan_neufs: "{n} neue Wörter",
+        seance_plan_neufs_un: "1 neues Wort",
+        seance_plan_feuille: "die Konjugation",
+        seance_plan_reperes: "Orientierung",
+        seance_plan_scene: "eine Szene",
+        seance_plan_theme: "ein bebildertes Thema",
+        seance_plan_son: "der Laut des Tages",
+        seance_plan_revisions: "{n} Wiederholungen",
+        seance_plan_revisions_un: "1 Wiederholung",
         garder_sous: "um es später zu üben",
         garder_fait: "Zurückgelegt",
         gardes_titre: "Zurückgelegt",
@@ -31323,6 +31799,41 @@ const I18N = {
         seance_continuer_long: "Continuar la práctica",
         seance_commencer_long: "Empezar la práctica",
         seance_contenu: "palabras, gramática y escenas",
+        sec_mes_mots: "Mis palabras",
+        sec_regle: "Entender una regla",
+        sec_situation: "En situación",
+        sec_ecouter_ecrire: "Escuchar, escribir, hablar",
+        contenu_chercher: "Palabra, regla, tema…",
+        contenu_chercher_mots: "Buscar «{q}» entre las palabras",
+        sugg_titre: "Para ir más lejos hoy",
+        sugg_scene_etape: "La escena de tu etapa",
+        sugg_scene_jour: "La escena del día",
+        sugg_theme: "Un tema ilustrado",
+        sugg_ecouter_sous: "Las palabras de tu nivel, en voz alta",
+        niveau_changer: "Cambiar de nivel",
+        seance_kicker_etape: "Etapa {n} de {t} · {lieu}",
+        seance_part_lieu: "Las palabras de la etapa",
+        seance_part_neufs: "Palabras nuevas",
+        seance_part_feuille: "La conjugación del día",
+        seance_part_reperes: "Lo básico",
+        seance_part_scene: "La escena",
+        seance_part_theme: "El tema ilustrado",
+        seance_part_son: "El sonido del día",
+        seance_part_revisions: "Repaso",
+        seance_part_fin: "El final de la etapa",
+        seance_passage_fait: "{part}: hecho",
+        seance_passage_ensuite: "Ahora: {part}",
+        seance_passage_n: "{n} tarjetas",
+        seance_passage_un: "1 tarjeta",
+        seance_plan_neufs: "{n} palabras nuevas",
+        seance_plan_neufs_un: "1 palabra nueva",
+        seance_plan_feuille: "la conjugación",
+        seance_plan_reperes: "lo básico",
+        seance_plan_scene: "una escena",
+        seance_plan_theme: "un tema ilustrado",
+        seance_plan_son: "el sonido del día",
+        seance_plan_revisions: "{n} repasos",
+        seance_plan_revisions_un: "1 repaso",
         garder_sous: "para trabajarla más",
         garder_fait: "Apartada",
         gardes_titre: "Apartadas",
@@ -48346,6 +48857,186 @@ function appliquerVueContenu(){
             if(s !== el) s.classList.toggle("hors-contenu", VUE_CONTENU);
         });
     }
+    // 6 nov. 2026 : les rubans des scenes et des themes passent dans « En situation »
+    // le temps de Tout le contenu, puis reviennent sous la seance.
+    try{ rangerRubansContenu(VUE_CONTENU); }catch(e){}
+    if(!VUE_CONTENU){ try{ const c = document.getElementById("contenuRechercheInput"); if(c && c.value){ c.value = ""; filtrerContenu(""); } }catch(e){} }
+}
+// ============ L'ACCUEIL PAR PALIERS ET TOUT LE CONTENU PAR BUT (6 nov. 2026) ============
+// Decision 34d02c3 (Jacques : « Vas-y pour les recommandations »), apres l'evaluation du
+// chef : l'accueil d'un debutant montrait tout -- la progression de l'A1 au B2, 39 scenes,
+// 17 themes, Ecouter... -- et Tout le contenu repetait l'accueil (« j'ai l'impression que
+// c'est repetitif »).
+// L'ACCUEIL PAR PALIERS (variante A) : rien n'est ferme, c'est la mise en avant qui change.
+//   palier 1 -- A1, avant l'etape 3 et sous 150 mots vus : la seance, trois suggestions liees
+//               a l'etape (la scene, un theme, Ecouter), Tout le contenu ; la rangee des
+//               niveaux se replie derriere « Changer de niveau ».
+//   palier 2 -- etape 3 ou 150 mots : les rubans des scenes et des themes, et Ecouter.
+//   palier 3 -- le jalon des 12 etapes, 400 mots, ou un niveau au-dessus de l'A1 : tout.
+// « Mis de cote » se montre des qu'un mot y est ; le tableau et les episodes gardent leurs
+// regles. ACCUEIL_COMPLET_KEY (« 1 ») force le palier 3 : le parcours de test la pose, pour
+// que ses references restent celles d'un accueil complet.
+const ACCUEIL_COMPLET_KEY = PREFIXE_STOCKAGE + "accueilComplet";
+function palierAccueil(){
+    try{ if(localStorage.getItem(ACCUEIL_COMPLET_KEY) === "1") return 3; }catch(e){}
+    if(LANGUE_APPRISE === "ja") return 3;
+    if(niveauSeance() !== "A1") return 3;
+    let vus = 0;
+    try{ vus = nbMotsVus(); }catch(e){}
+    let etape = 0, jalon = false;
+    try{ const s = lireA1Voyage(); jalon = !!s.fin; etape = s.e || 0; }catch(e){}
+    if(jalon || vus >= 400) return 3;
+    if(etape >= 2 || vus >= 150) return 2;
+    return 1;
+}
+function majPaliersAccueil(){
+    const home = document.getElementById("home");
+    if(!home) return;
+    let p = 3;
+    try{ p = palierAccueil(); }catch(e){ p = 3; }
+    [1, 2, 3].forEach(n => home.classList.toggle("palier-" + n, n === p));
+    let gardes = 1;
+    try{ gardes = nombreGardes(); }catch(e){}
+    home.classList.toggle("sans-gardes", !gardes);
+    try{ majChangerNiveau(p); }catch(e){}
+    const bloc = document.getElementById("suggAccueil");
+    if(bloc){
+        let n = 0;
+        try{ n = p === 1 ? majSuggestionsAccueil() : 0; }catch(e){ n = 0; }
+        bloc.classList.toggle("hidden", !n);
+    }
+}
+// « Changer de niveau » : la rangee 🌱 A1 ... C1 repliee aux paliers 1 et 2.
+function majChangerNiveau(p){
+    const pil = document.getElementById("seancePilule");
+    if(!pil) return;
+    let b = pil.querySelector(".pa-changer");
+    if(!b){
+        b = document.createElement("button");
+        b.type = "button";
+        b.className = "pa-changer";
+        b.addEventListener("click", ev => { ev.stopPropagation(); pil.classList.add("niveaux-ouverts"); b.classList.add("hidden"); });
+        pil.appendChild(b);
+    }
+    b.textContent = t("niveau_changer") + " ›";
+    const replie = p < 3 && !pil.classList.contains("niveaux-ouverts");
+    pil.classList.toggle("niveaux-replies", replie);
+    b.classList.toggle("hidden", !replie);
+}
+function majSuggestionsAccueil(){
+    const liste = document.getElementById("suggAccueilListe");
+    if(!liste || seanceJaponaise()) return 0;
+    const items = [];
+    try{
+        let sc = null, etape = false;
+        if(a1VoyageEnCours() && A1_VOYAGE_DONNEES){
+            const v = lireA1Voyage();
+            const lieu = !v.fin ? escalesA1Voyage()[v.e || 0] : suiteA1Voyage()[v.k || 0];
+            sc = lieu ? sceneDuLieu(lieu) : null;
+            etape = !!sc;
+        }
+        if(!sc) sc = sceneDuJour();
+        if(sc && sc.nom){
+            const nom = sc.nom;
+            items.push({ img: vignetteScene(nom), kick: t(etape ? "sugg_scene_etape" : "sugg_scene_jour"), titre: titreCourtScene(sc),
+                         sous: t("explorer_desc"), ouvrir: () => ouvrirSceneDepuisAccueil(nom), cle: "s:" + nom });
+        }
+    }catch(e){}
+    try{
+        const noms = themesIllustresOuverts();
+        if(noms.length){
+            const jour = Math.floor(Date.now() / 86400000);
+            const nom = themeDuJour() || noms[jour % noms.length];
+            const th = THEMES_ILLUSTRES[nom];
+            if(th) items.push({ img: baseScenes() + "themes/" + nom + ".webp", kick: t("sugg_theme"), titre: t(th.titre),
+                                sous: t("themes_ill_desc"), ouvrir: () => ouvrirThemeIllustre(nom, "accueil"), cle: "t:" + nom });
+        }
+    }catch(e){}
+    items.push({ img: null, kick: t("orb_ecouter_title"), titre: t("ela_titre"), sous: t("sugg_ecouter_sous"),
+                 ouvrir: () => ecouterDepuisAccueil(), cle: "e" });
+    const cle = getUiLang() + "|" + items.map(x => x.cle).join(",");
+    if(liste.dataset.cle === cle && liste.children.length) return items.length;
+    liste.dataset.cle = cle;
+    liste.textContent = "";
+    items.forEach(x => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "sugg-carte";
+        if(x.img){
+            const img = document.createElement("img");
+            img.alt = ""; img.src = x.img; img.loading = "lazy";
+            b.appendChild(img);
+        } else {
+            const o = document.createElement("span");
+            o.className = "sugg-onde";
+            o.setAttribute("aria-hidden", "true");
+            for(let i = 0; i < 5; i++) o.appendChild(document.createElement("i"));
+            b.appendChild(o);
+        }
+        const tx = document.createElement("span");
+        tx.className = "sugg-tx";
+        const k = document.createElement("small"); k.className = "sugg-kick"; k.textContent = x.kick;
+        const ti = document.createElement("b"); ti.textContent = x.titre;
+        const so = document.createElement("small"); so.className = "sugg-sous"; so.textContent = x.sous;
+        tx.appendChild(k); tx.appendChild(ti); tx.appendChild(so);
+        b.appendChild(tx);
+        const r = document.createElement("span");
+        r.className = "sugg-rond"; r.setAttribute("aria-hidden", "true"); r.textContent = "›";
+        b.appendChild(r);
+        b.addEventListener("click", () => { try{ x.ouvrir(); }catch(e){} });
+        liste.appendChild(b);
+    });
+    return items.length;
+}
+// Les rubans : sous la seance sur l'accueil, dans « En situation » dans Tout le contenu.
+function rangerRubansContenu(dedans){
+    const place = document.getElementById("placeSituation");
+    const sc = document.getElementById("explorerScenes"), th = document.getElementById("explorerThemes");
+    if(!place || !sc || !th) return;
+    if(dedans){
+        if(place.nextElementSibling !== sc){ place.after(sc); sc.after(th); }
+    } else {
+        const ancre = document.getElementById("suggAccueil");
+        if(ancre && ancre.nextElementSibling !== sc){ ancre.after(sc); sc.after(th); }
+    }
+}
+// LA RECHERCHE DE TOUT LE CONTENU : a chaque lettre, ne restent que les tuiles, les scenes
+// et les themes dont le nom contient ce qu'on tape (sans accents ni majuscules) ; une
+// section sans rien dessous se cache. Le bouton dessous cherche le mot dans le dictionnaire
+// de l'app (la meme recherche que la loupe de l'accueil).
+const sansAccents = s => String(s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().trim();
+function filtrerContenu(valeur){
+    const q = sansAccents(valeur);
+    const grille = document.getElementById("orbGrid");
+    if(!grille) return;
+    const cartes = Array.from(grille.querySelectorAll(":scope > .orb:not(.orb-seance), #explorerScenes .explorer-v, #explorerThemes .explorer-v"));
+    cartes.forEach(c => c.classList.toggle("filtre-cache", !!q && sansAccents(c.textContent + " " + (c.getAttribute("aria-label") || "")).indexOf(q) < 0));
+    // Les sections : cachees quand aucune tuile visible ne les suit (jusqu'a la suivante).
+    Array.from(grille.querySelectorAll(":scope > h2.orb-section")).forEach(h => {
+        let vu = false;
+        for(let el = h.nextElementSibling; el && !el.matches("h2.orb-section"); el = el.nextElementSibling){
+            if(el.matches(".orb, .explorer-scenes, .place-situation")){
+                if(el.matches(".explorer-scenes")){ if(!el.classList.contains("hidden") && el.querySelector(".explorer-v:not(.filtre-cache)")) vu = true; }
+                else if(el.matches(".orb") && !el.classList.contains("filtre-cache") && el.offsetParent !== null) vu = true;
+            }
+        }
+        h.classList.toggle("filtre-cache", !!q && !vu);
+    });
+    ["explorerScenes", "explorerThemes"].forEach(id => {
+        const b = document.getElementById(id);
+        if(b) b.classList.toggle("filtre-vide", !!q && !b.querySelector(".explorer-v:not(.filtre-cache)"));
+    });
+    const bouton = document.getElementById("contenuChercherMots");
+    if(bouton){
+        bouton.classList.toggle("hidden", !q);
+        bouton.textContent = q ? tf("contenu_chercher_mots", { q: String(valeur).trim() }) : "";
+    }
+}
+function chercherMotDepuisContenu(){
+    const c = document.getElementById("contenuRechercheInput");
+    const v = c ? c.value.trim() : "";
+    if(c){ c.value = ""; filtrerContenu(""); }
+    ouvrirRechercheDepuisAccueil(v);
 }
 function ouvrirToutLeContenu(){
     VUE_CONTENU = true;
@@ -51730,6 +52421,10 @@ function loadFlashcard(){
     // efface d'abord celui d'une phrase qui l'aurait precedee.
     // v839 : Premiers pas avance a chaque carte montree.
     if(typeof item.ppPos === "number"){ try{ marquerPositionPremiersPas(item.ppPos); }catch(e){} }
+    // 6 nov. 2026 : l'en-tete et la barre de la seance en parties, puis l'ecran
+    // de passage a la premiere carte d'une partie (voir LE PLAN DE LA SEANCE).
+    try{ majPartsSeance(); }catch(e){}
+    try{ if(montrerPassageSeance()) return; }catch(e){}
     if(item.mode === "phrase"){ montrerCartePhrase(item); return; }
     cacherCartePhrase();
     // UN PAQUET PEUT MELANGER LES TYPES DE CARTES. Le vocabulaire d'examen tire
@@ -54697,7 +55392,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1120;
+const APP_VERSION = 1124;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -59454,7 +60149,12 @@ function majExplorerThemes(){
         sp.style.setProperty("--n", Math.max(8, sp.textContent.length));
         b.appendChild(img); b.appendChild(sp);
         b.setAttribute("aria-label", t(th.titre));
-        b.addEventListener("click", () => ouvrirThemeIllustre(nom, "accueil"));
+        // 6 nov. 2026 : le ruban vit aussi dans Tout le contenu (« En situation ») : le
+        // theme revient alors a Tout le contenu. Et il porte le nom du theme, comme la
+        // tuile qu'il remplace la, pour le parcours (en allemand et en espagnol : les
+        // listes blanches des essais cachent tout [data-orbid] inconnu).
+        b.addEventListener("click", () => ouvrirThemeIllustre(nom, VUE_CONTENU ? undefined : "accueil"));
+        if(LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es") b.dataset.orbid = nom;
         ruban.appendChild(b);
     });
     ruban.scrollLeft = 0;
@@ -61253,7 +61953,10 @@ function montrerCartePhrase(item){
     try{ marquerFeuille(item); }catch(e){}
     // v879 : les reperes (jours, mois, nombres) marquent leur passage.
     try{ marquerRepere(item); }catch(e){}
-    if(item.av && item.avBadge) type.appendChild(creer("b", "cp-av", item.avBadge));
+    // 6 nov. 2026 : dans la seance en parties, l'en-tete dit ou l'on est ; les
+    // etiquettes (« Etape 1 », « Reperes 1/10 », « Phrase »...) se taisent.
+    if(seancePartsActive()){ /* rien */ }
+    else if(item.av && item.avBadge) type.appendChild(creer("b", "cp-av", item.avBadge));
     else if(item.rpBadge){
         const bv = creer("b", "cp-av", item.rpBadge);
         if(String(item.themeId).indexOf("son_") === 0) bv.prepend(iconeHP(), " ");
@@ -63504,6 +64207,11 @@ async function preparerReperes(){
     if(!lireReperes().force && jourDApprentissage() < 2) return null;
     const R = await chargerReperes();
     if(!R) return null;
+    return choixReperes(R);
+}
+// 6 nov. 2026 : le choix lui-meme, sans attente -- le plan de l'accueil
+// (planSeanceDuJour) le lit aussi, pour annoncer les reperes du jour.
+function choixReperes(R){
     const st = lireReperes();
     const jour = getTodayStr();
     const ecart = debut => Math.round((Date.parse(jour) - Date.parse(debut)) / 86400000);
@@ -64523,6 +65231,10 @@ async function ouvrirSeanceDuJour(sansScene){
     try{ const rp = await preparerReperes(); if(rp && seance.length) seance = insererReperes(seance, rp); }catch(e){}
     // v880 : le son du jour, une fois par jour, au milieu.
     try{ const sd = await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
+    // 6 nov. 2026 : la seance regroupee par partie (voir LE PLAN DE LA SEANCE),
+    // AVANT premiereCarteFacile, qui ne deplace que quelques cartes de tete.
+    let regroupee = null;
+    try{ if(!seanceJaponaise()){ regroupee = regrouperSeance(seance, av); seance = regroupee.cartes; } }catch(e){ regroupee = null; }
     try{ seance = premiereCarteFacile(seance); }catch(e){}
     if(!seance.length){
         if(!complet){ seanceGratuiteVide(tout); return; }
@@ -64543,6 +65255,13 @@ async function ouvrirSeanceDuJour(sansScene){
     panneauAvantFlashcards = null;
     flashcardFromSearch = false;
     currentTheme = { id: "seance_" + niveau, name: t("seance_titre") + " \u00b7 " + niveau };
+    PASSAGES_VUS.clear();
+    SEANCE_PARTS = null;
+    if(regroupee){
+        let etape = null;
+        try{ if(av && av.lieu && !av.finA1) etape = { n: av.n + 1, t: av.total, lieu: sensPremiersPas(av.lieu.s) }; }catch(e){ etape = null; }
+        SEANCE_PARTS = { paquet: seance, parts: regroupee.parts, themeId: currentTheme.id, niveau: niveau, etape: etape };
+    }
     currentFlashcard = 0;
     flashcardMode = seance[0].mode || "nomen";
     setFlashHeader("seance_titre", null);
@@ -64563,8 +65282,346 @@ function glisserPhrasesPlusTard(paquet, tout){
         for(let i = currentFlashcard + 1; i < paquet.length; i++) if(paquet[i] && paquet[i].mode !== "phrase") places.push(i);
         if(!places.length) return;
         const avec = insererCartesPhrases(places.map(i => paquet[i]), tout);
-        places.forEach((i, k) => { paquet[i] = avec[k]; });
+        places.forEach((i, k) => {
+            // 6 nov. 2026 : la phrase prend la partie de la carte qu'elle remplace
+            // (voir LE PLAN DE LA SEANCE), sinon la barre se couperait en morceaux.
+            try{ if(SEANCE_PARTS && SEANCE_PARTS.paquet === paquet && avec[k] !== paquet[i]) SEANCE_PARTS.parts.set(avec[k], SEANCE_PARTS.parts.get(paquet[i]) || "revisions"); }catch(e){}
+            paquet[i] = avec[k];
+        });
     }).catch(() => {});
+}
+
+// ============ LE PLAN DE LA SEANCE (6 nov. 2026, decision 34d02c3) ============
+// L'evaluation du chef : la seance enchainait le tableau d'un verbe, deux cartes,
+// les nombres, une ecoute, l'oral, une phrase de reservation -- sans fil, et
+// sous trois etiquettes differentes (« Escale 1 », « Reperes 1/10 », « Phrase »).
+// Jacques : « Vas-y pour les recommandations » (maquettes B + C) :
+// - la seance est REGROUPEE PAR PARTIE, toujours dans cet ordre (ORDRE_PARTS) :
+//   l'etape (le verbe, ses mots, ses phrases toutes faites, le dialogue), la
+//   feuille de conjugaison, les mots nouveaux, les reperes, la scene ou le theme,
+//   le son du jour, les revisions ; la fin d'etape tout au bout. A l'interieur
+//   d'une partie, l'ordre des modules ne change pas (tri stable).
+// - pendant la seance, l'en-tete dit « Etape N sur 12 · le lieu » et le nom de
+//   la partie ; une barre en parties remplace les etiquettes des cartes ;
+// - entre deux parties, un ecran de passage (ce qui est fait, ce qui vient). Il
+//   n'est PAS une carte du paquet : seancesJson (n, p), l'objectif du jour et
+//   les reprises « Encore » ne le voient pas.
+// - sur l'accueil, la ligne sous le niveau dit ce que la seance contiendra
+//   (planSeanceDuJour) au lieu de « mots, grammaire et scenes ».
+// Les cartes-phrases vont dans la partie du mot qu'elles font travailler s'il est
+// dans la seance, sinon dans les revisions : elles restent APRES ce mot.
+const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "scene", "son", "revisions", "fin"];
+let SEANCE_PARTS = null;           // { paquet, parts (Map carte -> partie), themeId, niveau, etape }
+const PASSAGES_VUS = new Set();    // les parties dont l'ecran de passage a ete montre (v1122 : par partie)
+function partDeCarteSeance(c, av, parCle){
+    if(!c) return "revisions";
+    const forme = c.forme || "";
+    if(c.av) return /^(av_escale_fin|av_jalon|av_fin_a1)$/.test(forme) ? "fin" : "lieu";
+    if(forme === "scene_arret" || forme === "theme_arret") return "scene";
+    const tid = String(c.themeId || "");
+    if(tid.indexOf("son_") === 0) return "son";
+    if(c.rpBadge || c.rpTableau || tid.indexOf("rp_") === 0) return "reperes";
+    if(c.fcBadge || c.fcFeuille || c.feuilleTemps) return "feuille";
+    if(c.mode === "phrase"){
+        const k = c.cible ? (c.cible.themeId + ":" + c.cible.index) : null;
+        return (k && parCle.has(k)) ? parCle.get(k) : "revisions";
+    }
+    let neuf = false;
+    try{ neuf = estNeuf(getWordState(c.themeId, c.index)); }catch(e){}
+    return neuf ? ((av && !av.finA1) ? "lieu" : "neufs") : "revisions";
+}
+// Rend { cartes, parts } : la seance triee par partie, et la partie de chaque carte.
+function regrouperSeance(seance, av){
+    const parts = new Map(), parCle = new Map();
+    seance.forEach(c => {
+        if(!c || c.mode === "phrase") return;
+        const p = partDeCarteSeance(c, av, parCle);
+        parts.set(c, p);
+        parCle.set(c.themeId + ":" + c.index, p);
+    });
+    seance.forEach(c => { if(c && c.mode === "phrase") parts.set(c, partDeCarteSeance(c, av, parCle)); });
+    const rang = c => { const i = ORDRE_PARTS.indexOf(parts.get(c)); return i < 0 ? ORDRE_PARTS.length : i; };
+    const cartes = seance.map((c, i) => [c, i]).sort((a, b) => rang(a[0]) - rang(b[0]) || a[1] - b[1]).map(x => x[0]);
+    return { cartes: espacerPhrasesEtape(cartes, parts), parts: parts };
+}
+// v1124 (decision 64fad6f, Jacques, 6 nov.) : LES PHRASES DE L'ETAPE ESPACEES. Le regroupement retirait
+// les revisions qui separaient les phrases toutes faites (aux cartes 3, 8, 13) et les cartes-phrases des
+// mots de l'etape : elles se suivaient (« La cocina, las paredes son blancas. Las paredes son blancas. La
+// llave, la mesa, las paredes son blancas. »). Dans la partie de l'etape, elles alternent maintenant avec
+// les cartes de mots : deux mots, une phrase, deux mots... (une carte au moins s'il y a peu de mots).
+// Le tableau reste en tete, le dialogue a la fin ; chaque file garde son ordre ; une phrase ne passe
+// jamais avant la carte de son mot ; deux phrases de meme base ne se suivent jamais quand on peut l'eviter.
+function basePhraseEtape(c){
+    const t = (c && ((c.phrase && c.phrase.de) || (c.bloc && (c.bloc.ex || c.bloc.de)) || c.word)) || "";
+    return String(Array.isArray(t) ? t[0] : t).toLowerCase().normalize("NFD").replace(/\p{M}/gu, "").replace(/[^\p{L}\p{N} ]+/gu, " ").replace(/\s+/g, " ").trim();
+}
+function memeBasePhrase(a, b){
+    if(!a || !b) return false;
+    if(a.cible && b.cible && a.cible.themeId + ":" + a.cible.index === b.cible.themeId + ":" + b.cible.index) return true;
+    const x = basePhraseEtape(a), y = basePhraseEtape(b);
+    return !!(x && y && (x === y || (x.length >= 8 && y.indexOf(x) >= 0) || (y.length >= 8 && x.indexOf(y) >= 0)));
+}
+function espacerPhrasesEtape(cartes, parts){
+    const idx = [];
+    cartes.forEach((c, i) => { if(parts.get(c) === "lieu") idx.push(i); });
+    if(idx.length < 3) return cartes;
+    // La partie de l'etape est contigue apres le tri ; on ne touche qu'a elle.
+    for(let k = 1; k < idx.length; k++) if(idx[k] !== idx[k - 1] + 1) return cartes;
+    const bloc = idx.map(i => cartes[i]);
+    const tete = [], queue = [];
+    while(bloc.length && bloc[0].mode === "phrase" && bloc[0].forme === "pp_tableau") tete.push(bloc.shift());
+    while(bloc.length && String(bloc[bloc.length - 1].themeId || "") === "a1v_dialogue") queue.unshift(bloc.pop());
+    const phrases = bloc.filter(c => c.mode === "phrase"), mots = bloc.filter(c => c.mode !== "phrase");
+    if(!phrases.length || !mots.length) return cartes;
+    const ecart = Math.max(1, Math.min(2, Math.floor(mots.length / phrases.length)));
+    const cleMot = c => c.themeId + ":" + c.index;
+    const motsDuBloc = new Set(mots.map(cleMot));
+    const poses = new Set();
+    const prete = ph => !(ph.cible && motsDuBloc.has(cleMot(ph.cible)) && !poses.has(cleMot(ph.cible)));
+    const milieu = [];
+    let depuis = 0, derniere = null;
+    while(phrases.length || mots.length){
+        let j = -1;
+        if(phrases.length && (depuis >= ecart || !mots.length)){
+            const precedente = milieu.length && milieu[milieu.length - 1].mode === "phrase" ? milieu[milieu.length - 1] : null;
+            j = phrases.findIndex(ph => prete(ph) && !(precedente && memeBasePhrase(precedente, ph)));
+            if(j < 0 && !mots.length) j = phrases.findIndex(prete);
+            if(j < 0 && !mots.length) j = 0;
+        }
+        if(j >= 0){
+            derniere = phrases.splice(j, 1)[0];
+            milieu.push(derniere);
+            depuis = 0;
+        } else {
+            const m = mots.shift();
+            milieu.push(m);
+            poses.add(cleMot(m));
+            depuis++;
+        }
+    }
+    const refait = tete.concat(milieu, queue);
+    const sortie = cartes.slice();
+    refait.forEach((c, k) => { sortie[idx[0] + k] = c; });
+    return sortie;
+}
+function seancePartsActive(){
+    return !!(SEANCE_PARTS && currentCards === SEANCE_PARTS.paquet && currentTheme && currentTheme.id === SEANCE_PARTS.themeId);
+}
+function titrePartSeance(p, c){
+    if(p === "scene" && c && c.forme === "theme_arret") return t("seance_part_theme");
+    return t("seance_part_" + (ORDRE_PARTS.indexOf(p) >= 0 ? p : "revisions"));
+}
+// Les parties du paquet, dans l'ordre : [{ p, debut, n }]. La fin d'etape se
+// range dans la partie d'avant (elle n'en est que la conclusion).
+function segmentsSeance(paquet, parts){
+    const segs = [], vues = new Set();
+    paquet.forEach((c, j) => {
+        let p = parts.get(c);
+        // Une carte que le regroupement n'a pas vue (une copie faite en cours de seance) suit la partie
+        // ou elle tombe : elle ne cree pas de partie a elle seule.
+        if(!p) p = segs.length ? segs[segs.length - 1].p : "revisions";
+        if(p === "fin" && segs.length) p = segs[segs.length - 1].p;
+        // Une carte ratee revient quelques rangs plus loin (remettreEnFile) : elle compte dans
+        // la partie ou elle retombe, sinon elle la coupe en deux et fait naitre de faux passages
+        // (« Les revisions : c'est fait · Ensuite : les mots de l'etape », Jacques, 6 nov.).
+        if(vues.has(c) && segs.length) p = segs[segs.length - 1].p;
+        vues.add(c);
+        const s = segs[segs.length - 1];
+        if(s && s.p === p) s.n++;
+        else segs.push({ p: p, debut: j, n: 1 });
+    });
+    return segs;
+}
+// L'en-tete et la barre, a chaque carte (appelee par loadFlashcard).
+function majPartsSeance(){
+    const box = document.getElementById("seanceParts");
+    const zone = document.getElementById("flashcards");
+    const actif = seancePartsActive();
+    if(zone) zone.classList.toggle("seance-en-parts", actif);
+    if(!actif){
+        if(box){ box.classList.add("hidden"); box.textContent = ""; }
+        // Les reprises (« Encore », « en faire 20 de plus ») gardent l'en-tete d'avant.
+        if(SEANCE_PARTS && currentTheme && currentTheme.id === SEANCE_PARTS.themeId){
+            const k = document.getElementById("flashKicker"), h = document.getElementById("flashThemeTitle");
+            if(k) k.textContent = t("seance_titre");
+            if(h) h.textContent = currentTheme.name || "";
+        }
+        return;
+    }
+    const P = SEANCE_PARTS, paquet = P.paquet;
+    const i = Math.max(0, Math.min(currentFlashcard, paquet.length - 1));
+    const c = paquet[i];
+    const k = document.getElementById("flashKicker"), h = document.getElementById("flashThemeTitle");
+    if(k) k.textContent = P.etape ? tf("seance_kicker_etape", P.etape) : (t("seance_titre") + " · " + P.niveau);
+    if(h) h.textContent = titrePartSeance(P.parts.get(c) === "fin" ? "fin" : (segmentsSeance(paquet, P.parts).find(s => i >= s.debut && i < s.debut + s.n) || {}).p, c);
+    if(!box) return;
+    box.textContent = "";
+    segmentsSeance(paquet, P.parts).forEach(s => {
+        const b = document.createElement("i");
+        b.style.flexGrow = String(s.n);
+        if(currentFlashcard >= s.debut + s.n) b.className = "fait";
+        else if(currentFlashcard >= s.debut){
+            b.className = "ici";
+            b.style.setProperty("--q", Math.round(100 * (currentFlashcard - s.debut) / s.n) + "%");
+        }
+        box.appendChild(b);
+    });
+    box.classList.remove("hidden");
+}
+// L'ecran de passage, a la premiere carte d'une partie. Rend true s'il s'affiche :
+// loadFlashcard s'arrete alors, et « Continuer » la rappelle pour la carte.
+function montrerPassageSeance(){
+    if(!seancePartsActive()) return false;
+    const P = SEANCE_PARTS, i = currentFlashcard;
+    if(i <= 0 || i >= P.paquet.length) return false;
+    const segs = segmentsSeance(P.paquet, P.parts);
+    const s = segs.find(x => x.debut === i);
+    // v1122 : UN passage par partie et par seance, garde par le nom de la partie et non par le rang
+    // de la carte. Jacques, 6 nov. (iPhone, espagnol) : « a chaque carte, ca m'indique Revisions
+    // faites, ensuite les mots de l'etape, une carte ».
+    if(!s || PASSAGES_VUS.has(s.p) || s.p === segs[0].p) return false;
+    const avant = segs[segs.indexOf(s) - 1];
+    const zone = document.getElementById("flashcards"), el = document.getElementById("cartePhrase");
+    if(!zone || !el || !avant || avant.p === s.p) return false;
+    PASSAGES_VUS.add(s.p);
+    try{ arreterOralPhrase(); }catch(e){}
+    CARTE_PHRASE_AFFICHEE = null;
+    zone.classList.add("en-phrase");
+    el.classList.remove("hidden");
+    el.textContent = "";
+    const actions = document.getElementById("flashcardActions");
+    if(actions) actions.classList.add("hidden");
+    const minuscule = x => x ? x.charAt(0).toLocaleLowerCase() + x.slice(1) : x;
+    const boite = document.createElement("div");
+    boite.className = "cp-passage";
+    const ok = document.createElement("span");
+    ok.className = "cp-passage-ok";
+    ok.setAttribute("aria-hidden", "true");
+    ok.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg>';
+    const fait = document.createElement("b");
+    fait.className = "cp-passage-fait";
+    fait.textContent = tf("seance_passage_fait", { part: titrePartSeance(avant.p, P.paquet[avant.debut]) });
+    const ensuite = document.createElement("p");
+    ensuite.className = "cp-passage-ensuite";
+    ensuite.textContent = tf("seance_passage_ensuite", { part: minuscule(titrePartSeance(s.p, P.paquet[s.debut])) });
+    const n = document.createElement("small");
+    n.className = "cp-passage-n";
+    n.textContent = s.n === 1 ? t("seance_passage_un") : tf("seance_passage_n", { n: s.n });
+    const go = document.createElement("button");
+    go.type = "button";
+    go.className = "primary cp-passage-go";
+    go.textContent = t("review_continuer");
+    go.addEventListener("click", () => { loadFlashcard(); });
+    [ok, fait, ensuite, n, go].forEach(x => boite.appendChild(x));
+    el.appendChild(boite);
+    try{ majCompteurCarte(); }catch(e){}
+    try{ go.focus({ preventScroll: true }); }catch(e){}
+    return true;
+}
+// LE PLAN SUR L'ACCUEIL : ce que la seance contiendra, compte avec les memes regles
+// que cartesDeSeance() et les modules (sans hasard, sans rien ecrire), pour la
+// ligne sous le niveau : « Debutant · 6 mots nouveaux · les reperes · une scene ».
+// Une donnee qui manque (escales, reperes, feuilles) est chargee, puis la ligne
+// se refait. Le compte peut differer d'une carte quand une carte-phrase prend la
+// place d'un mot nouveau : c'est un plan, pas un releve.
+let PLAN_CACHE = null;
+const PLAN_CHARGEMENTS = new Set();
+function attendrePourLePlan(nom, promesse){
+    if(PLAN_CHARGEMENTS.has(nom) || !promesse || typeof promesse.then !== "function") return;
+    PLAN_CHARGEMENTS.add(nom);
+    promesse.then(() => { PLAN_CACHE = null; try{ majPlanPilule(); }catch(e){} }).catch(() => {});
+}
+function planSeanceDuJour(){
+    if(seanceJaponaise()) return null;
+    try{ if(premiersPasEnCours()) return null; }catch(e){ return null; }
+    const niveau = niveauSeance();
+    try{ const r = lireRevoirNiveau(); if(r && r.n === niveau) return null; }catch(e){}
+    let av = null;
+    try{
+        if(a1VoyageEnCours()){
+            if(A1_VOYAGE_DONNEES) av = lireA1Voyage();
+            else attendrePourLePlan("a1v", chargerA1Voyage());
+        }
+    }catch(e){ av = null; }
+    let fait = 0;
+    try{ fait = getDailyActivityCount() || 0; }catch(e){}
+    const complet = accesComplet();
+    const cleCache = [getTodayStr(), niveau, fait, complet ? 1 : 0, av ? JSON.stringify(av) : "",
+                      !!REPERES_DONNEES, !!FEUILLES_DONNEES, getUiLang(), LANGUE_APPRISE].join("|");
+    if(PLAN_CACHE && PLAN_CACHE.cle === cleCache) return PLAN_CACHE.texte;
+    const pool = complet ? paquetDuNiveau(niveau) : filtrerGratuit(paquetDuNiveau(niveau));
+    if(!pool.length) return null;   // donnees pas encore arrivees : rien en cache
+    const tout = [];
+    NIVEAUX_CECR.forEach(n => { tout.push.apply(tout, complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n))); });
+    let poolNeufs = pool;
+    if(av){
+        if(!av.fin){ const e = escalesA1Voyage()[av.e || 0]; if(e) poolNeufs = poolEscale(pool, e); }
+        else if((av.k || 0) < suiteA1Voyage().length) poolNeufs = poolSuite(pool, av.k || 0);
+    }
+    const neuf = it => estNeuf(getWordState(it.themeId, it.index));
+    const taille = tailleSeance();
+    const neufsDispo = poolNeufs.filter(neuf).length;
+    const plafond = placeNeufsRestante();
+    const reserve = Math.min(Math.round(taille * PART_NEUFS_RESERVEE), plafond, neufsDispo);
+    const dues = Math.min(cartesEchues(tout.filter(it => !neuf(it))).length, Math.max(0, taille - reserve));
+    let neufs = Math.min(neufsDispo, Math.max(0, Math.min(taille - dues, plafond)));
+    const total = dues + neufs;
+    // Les cartes-phrases PRENNENT LA PLACE de cartes (insererCartesPhrases) : celles
+    // qui tombent sur les mots nouveaux (apres les revisions) en retirent autant.
+    try{
+        if(LANGUE_APPRISE !== "ja" && essaiActif("phrases")){
+            const pal = palierSeance(tout.filter(it => !neuf(it)).length);
+            for(let k = pal.debut; k < total; k += pal.tous_les) if(k >= dues && neufs > 0) neufs--;
+        }
+    }catch(e){}
+    let feuille = false, reperes = false;
+    try{
+        if(feuillesEssai() && niveau !== "A1"){
+            if(FEUILLES_DONNEES) feuille = !!feuilleDuJour(niveau);
+            else attendrePourLePlan("feuilles", chargerFeuilles());
+        }
+    }catch(e){}
+    try{
+        if(reperesPourMoi() && (lireReperes().force || jourDApprentissage() >= 2)){
+            if(REPERES_DONNEES) reperes = !!choixReperes(REPERES_DONNEES);
+            else attendrePourLePlan("reperes", chargerReperes());
+        }
+    }catch(e){}
+    let scene = null;
+    try{
+        if(total >= 6){
+            if(!av && themeDuJour()) scene = "seance_plan_theme";
+            else if(arretSceneActif()) scene = "seance_plan_scene";
+        }
+    }catch(e){}
+    let son = false;
+    try{
+        if(essaiActif("son_du_jour") && jourDApprentissage() >= 3){
+            let st = {};
+            try{ st = JSON.parse(localStorage.getItem(SON_DU_JOUR_KEY) || "{}") || {}; }catch(e){ st = {}; }
+            son = st.j !== getTodayStr();
+        }
+    }catch(e){}
+    const morceaux = [];
+    if(feuille) morceaux.push(t("seance_plan_feuille"));
+    if(neufs) morceaux.push(neufs === 1 ? t("seance_plan_neufs_un") : tf("seance_plan_neufs", { n: neufs }));
+    if(reperes) morceaux.push(t("seance_plan_reperes"));
+    if(scene) morceaux.push(t(scene));
+    if(son) morceaux.push(t("seance_plan_son"));
+    if(dues) morceaux.push(dues === 1 ? t("seance_plan_revisions_un") : tf("seance_plan_revisions", { n: dues }));
+    const texte = morceaux.length ? morceaux.join(" · ") : null;
+    PLAN_CACHE = { cle: cleCache, texte: texte };
+    return texte;
+}
+function majPlanPilule(){
+    const pil = document.getElementById("seancePilule");
+    const el = pil && pil.querySelector(".pa-contenu");
+    if(!el) return;
+    let plan = null;
+    try{ plan = planSeanceDuJour(); }catch(e){ plan = null; }
+    if(plan){ el.removeAttribute("data-i18n"); el.textContent = plan; }
+    else { el.setAttribute("data-i18n", "seance_contenu"); el.textContent = t("seance_contenu"); }
+    el.classList.toggle("pa-plan", !!plan);
 }
 
 // Le sous-titre de la tuile : ce qu'il reste a faire, pas un pourcentage.
@@ -64631,6 +65688,7 @@ function majCompteDuJour(){
     // apparaitre des le retour d'une seance ou l'on vient d'y mettre un mot.
     try{ majBoutonGardes(); }catch(e){}
     try{ majAnneauSeance(); }catch(e){}
+    try{ majPaliersAccueil(); }catch(e){}   // 6 nov. 2026 : l'accueil par paliers
 }
 
 function majTuileSeance(){
@@ -64860,6 +65918,7 @@ function majPiluleSeance(){
     try{ pp = premiersPasEnCours(); }catch(e){}
     const niveau = niveauSeance();
     majTitrePilule();
+    try{ majPlanPilule(); }catch(e){}   // 6 nov. 2026 : le plan de la seance
     const niv = document.getElementById("spNiv");
     if(niv) niv.textContent = pp ? "🌱" : niveau;   // v882 : la fleche est dessinee par .pa-niv::after
     let clairTxt = pp ? t("pp_niveau_clair") : t("niveau_clair_" + niveau);
