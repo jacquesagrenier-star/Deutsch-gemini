@@ -327,7 +327,7 @@ window.SCENE = {
    "theme": "travel_a2",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "junge",
    "devant": 0,
    "boites": [
     [
@@ -739,7 +739,7 @@ window.SCENE = {
    "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [

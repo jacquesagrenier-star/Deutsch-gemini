@@ -235,6 +235,7 @@ full | plein
 empty | vide
 clean | propre
 dirty | sale
+open | ouvert | ex=The shop is open until eight. # Le magasin est ouvert jusqu'à huit heures.
 closed | fermé
 free | libre, gratuit
 busy | occupé
@@ -317,10 +318,11 @@ French | français
 English | anglais
 German | allemand
 Spanish | espagnol
+foggy | brumeux (il y a du brouillard) | ex=It's foggy this morning. # Il y a du brouillard ce matin.
 """
 # Pas de comparatif : on n'est pas « plus marie » ni « plus rouge » (pour les
 # couleurs, on peut, mais ce n'est pas ce que l'A1 doit en retenir).
-SANS_COMPARATIF = {"married", "single", "closed", "free", "ready", "wrong", "right", "true",
+SANS_COMPARATIF = {"married", "single", "open", "closed", "free", "ready", "wrong", "right", "true",
                    "favorite", "afraid", "broken", "awake", "in love", "American", "Canadian", "French", "English", "German", "Spanish", "round", "flat", "red", "blue", "green", "yellow", "black", "white",
                    "gray", "brown", "orange", "pink", "purple", "delicious", "important"}
 COMPARATIFS_IRREGULIERS = {"good": ("better", "the best"), "bad": ("worse", "the worst"),

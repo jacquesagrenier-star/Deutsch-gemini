@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le telc A2·B1 avec Mark et Anna</title>
+<!--
+  LE TELC DEUTSCH A2·B1 AVEC MARK ET ANNA (4 nov. 2026, session « examens DTZ / telc »). Le bloc telc de la
+  preparation aux examens, decide par Jacques le 4 nov. : « un bloc pour se preparer au DTZ, puis un bloc pour se
+  preparer a l'examen A2 B1 ». Le materiel commun sert aux deux : cette page repose sur la page du DTZ
+  (../dtz/commun.css, ../dtz/commun.js), avec le profil d'examen « telc » ci-dessous.
+
+  Les parties propres au telc, une par fichier, et la session qui la fait (decision du 6 nov., 1c40ee6) :
+    telc-commun.js        textes fr/en, champs traduits, inscription a l'examen blanc, niveau au telc (assemblage) ;
+    lesen.js              L   Lire, Teile 1-4                        session telc-lire ;
+    sprachbausteine.js    SB  la lettre a trous (10 trous, 3 choix)  assemblage (relecture : telc-lire) ;
+    hoeren.js             H   Ecouter, Teile 1-4                     session telc-ecouter ;
+    hoeren-schreiben.js   HS  les repondeurs a noter                 session telc-ecouter ;
+    schreiben.js          LS  le courriel a comprendre puis a ecrire, ET
+                          S   la reponse courte                      session telc-ecrire ;
+    sprechen.js           Sp  ouvre oral.html (l'oral)               session telc-parler-blanc ;
+    examen-blanc.js           l'examen blanc                         session telc-parler-blanc.
+  Chaque module a ses donnees dans donnees/<module>.json. Mode d'emploi : preparation-examens/TELC-ASSEMBLAGE.md.
+  Le format : preparation-examens/FORMAT-TELC.md ; le plan : preparation-examens/PLAN-DTZ-TELC.md.
+
+  Ouverte par l'app dans le cadre des scenes (ouvrirTelc(), sceneOuverteDepuis « telc »). Parametres : lang,
+  nuit=1, partie=SB (ouvre directement une partie ; le « ‹ » ramene alors au panneau du bloc telc de l'app).
+-->
+<link rel="stylesheet" href="../dtz/commun.css?v=1">
+<style>
+/* ce qui est propre aux pages a sections du telc : l'en-tete de section, les points de progression, le trou de la page */
+.section{font-size:12px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:var(--gris)}
+.points{display:flex;flex-wrap:wrap;gap:6px}
+.point{width:32px;height:32px;border-radius:50%;border:2px solid var(--trait);background:var(--verre);color:var(--encre);font:900 13px var(--police);cursor:pointer;padding:0}
+.point.ok{border-color:var(--vert);background:var(--vert);color:#fff}
+.point.ko{border-color:var(--rouge);background:var(--rouge);color:#fff}
+.point.ici{box-shadow:0 0 0 3px var(--ambre)}
+.trou.actif{background:rgba(232,162,58,.22);border-radius:4px}
+.trou.ok{color:var(--vert);border-color:var(--vert)}
+.trou.ko{color:var(--rouge);border-color:var(--rouge);text-decoration:line-through}
+.lettre .q{margin:8px 0 10px;font-family:var(--police)}
+.ok{color:var(--vert);font-weight:900} .ko{color:var(--rouge);font-weight:900}
+.q .erkl{font-weight:600;line-height:1.5;margin:0}
+.boutons{gap:8px}
+.boutons .secondaire{align-self:stretch;text-align:center}
+</style>
+</head>
+<body>
+<div class="haut">
+  <button class="retour" id="retour" type="button" aria-label="Retour">‹</button>
+  <div class="titre" id="titre">Le telc A2·B1 avec Mark et Anna</div>
+  <div class="chrono" id="chrono" dir="ltr" hidden></div>
+</div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<div class="voile" id="voile" hidden><div class="panneau" id="panneau"></div></div>
+<script>
+// LE PROFIL DU TELC, pose AVANT commun.js (son mode d'emploi est en tete de commun.js).
+// Le bareme (FORMAT-TELC.md) : 240 points, 60 par competence ; B1 = 70 % du total ET 70 % dans 3 des 4
+// competences ET 40 % dans chacune ; A2 = 40 %, 40 % dans 3 des 4, 10 % dans chacune. L'examen blanc du telc
+// n'existe pas encore : ce niveau() ne regarde que le total, en attendant le calcul complet par competence.
+window.PROFIL_EXAMEN = {
+  id: "telc",
+  titre: "Le telc A2·B1 avec Mark et Anna",
+  intro: "Au telc Deutsch A2·B1, on commence par lire, puis viennent les Sprachbausteine, les courriels, l'écoute et l'oral à deux, sans image. Anna et moi, on t'aide à le préparer, partie par partie.",
+  sur: 240,
+  seriesExamen: 0,   // pas encore d'examen blanc : toutes les series servent a l'entrainement
+  niveau: points => points >= 168 ? "b1" : points >= 96 ? "a2" : "moins",
+  tuiles: [
+    {id: "L", titre: "Lire", sous: "Lesen"},
+    {id: "SB", titre: "Sprachbausteine", sous: "Sprachbausteine"},
+    {id: "LS", titre: "Lire et écrire", sous: "Lesen und Schreiben"},
+    {id: "H", titre: "Écouter", sous: "Hören"},
+    {id: "HS", titre: "Écouter et noter", sous: "Hören und Schreiben"},
+    {id: "S", titre: "Écrire", sous: "Schreiben"},
+    {id: "Sp", titre: "Parler", sous: "Sprechen"}
+  ]
+};
+</script>
+<script src="../themes/tirage.js?v=1"></script>
+<script src="../dtz/commun.js?v=2"></script>
+<script src="telc-commun.js?v=1"></script>
+<!-- LES MODULES DES PARTIES, dans l'ordre de l'examen. Un fichier absent laisse sa tuile grisee (« bientot ») :
+     chaque session n'ajoute QUE son fichier, ces lignes sont deja la. -->
+<script src="lesen.js?v=1"></script>
+<script src="sprachbausteine.js?v=4"></script>
+<script src="hoeren.js?v=1"></script>
+<script src="hoeren-schreiben.js?v=1"></script>
+<script src="schreiben.js?v=1"></script>
+<script src="sprechen.js?v=1"></script>
+<script src="examen-blanc.js?v=1"></script>
+<script>
+// Ouverte sur une partie (?partie=SB, depuis le panneau du bloc telc de l'app) : directement la partie, et le « ‹ »
+// de la partie ramene alors au panneau de l'app (TELC.direct) ; sinon l'accueil, comme la page du DTZ.
+Promise.all(DTZ.chargements).then(() => {
+  const p = Q.get("partie"), partie = p && DTZ.parties.find(x => x.id === p);
+  if (partie){ TELC.direct = true; partie.ouvrir(); } else accueil();
+}).catch(() => { $("zone").innerHTML = '<div class="bloc"><p>Les données du telc ne se chargent pas.</p></div>'; });
+</script>
+</body>
+</html>

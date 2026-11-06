@@ -1311,7 +1311,7 @@ window.SCENE = {
    "theme": "la_cocina_a2",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 0,
    "boites": [
     [

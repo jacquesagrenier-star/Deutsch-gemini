@@ -444,7 +444,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "frau",
    "devant": 0,
    "boites": [
     [
@@ -627,7 +627,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -647,7 +647,7 @@ window.SCENE = {
    "niveau": "A1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -668,7 +668,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -726,7 +726,7 @@ window.SCENE = {
      }
     }
    ],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -758,7 +758,7 @@ window.SCENE = {
      }
     }
    ],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [

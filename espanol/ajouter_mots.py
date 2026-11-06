@@ -124,23 +124,53 @@ def main():
     # traduction fr, traduction en, exemple, exemple fr, exemple en, {autres
     # langues}]. Un adjectif deja present a n'importe quel niveau n'est pas
     # rajoute ; un nom du meme mot (el cuadrado) n'empeche pas l'adjectif.
+    # 3 nov. 2026 : UN SECOND SENS, seulement s'il est demande -- rico,
+    # « delicieux » existait, « riche » entre a cote (deux cartes) parce que la
+    # ligne porte "_second_sens": true. Sans cette marque, le mot deja present
+    # n'est pas rajoute, comme avant (un vieux lot relance apres une relecture
+    # qui a change une traduction ne doit pas creer de doublon).
     adjectifs = 0
     if "adjetivos" in aj:
         chemin = os.path.join(DATOS, "adjetivos.json")
         d = lire(chemin)
         deja = {x["mot"] for v in d.values() for x in v}
+        sens = {(x["mot"], x.get("traduction")) for v in d.values() for x in v}
         for niv, lignes in aj["adjetivos"].items():
             for ligne in lignes:
                 mot, fem, source, fr, en, ex, ex_fr, ex_en = ligne[:8]
-                if mot in deja:
+                extra = dict(ligne[8]) if len(ligne) > 8 else {}
+                second = extra.pop("_second_sens", False)
+                if (mot, fr) in sens or (mot in deja and not second):
                     continue
                 e = {"traduction": fr, "traduction_en": en, "exemple": ex, "exemple_fr": ex_fr,
                      "exemple_en": ex_en, "theme_source": source, "mot": mot, "feminin": fem}
+                e.update(extra)
+                d.setdefault(niv, []).append(e)
+                deja.add(mot)
+                sens.add((mot, fr))
+                adjectifs += 1
+        ecrire(chemin, d)
+
+    # LES ADVERBES (3 nov. 2026, le theme « La journee » : primero) : ranges par
+    # niveau dans adverbios.json. Ligne : [mot, kategorie, theme_source,
+    # traduction fr, traduction en, exemple, exemple fr, exemple en, {autres
+    # langues}]. Un adverbe deja present a n'importe quel niveau n'est pas rajoute.
+    if "adverbios" in aj:
+        chemin = os.path.join(DATOS, "adverbios.json")
+        d = lire(chemin)
+        deja = {x["mot"] for v in d.values() if isinstance(v, list) for x in v}
+        for niv, lignes in aj["adverbios"].items():
+            for ligne in lignes:
+                mot, kat, source, fr, en, ex, ex_fr, ex_en = ligne[:8]
+                if mot in deja:
+                    continue
+                e = {"traduction": fr, "traduction_en": en, "exemple": ex, "exemple_fr": ex_fr,
+                     "exemple_en": ex_en, "theme_source": source, "mot": mot, "kategorie": kat}
                 if len(ligne) > 8:
                     e.update(ligne[8])
                 d.setdefault(niv, []).append(e)
                 deja.add(mot)
-                adjectifs += 1
+                autres += 1
         ecrire(chemin, d)
 
     ecrire(temas_chemin, temas)

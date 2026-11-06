@@ -1,0 +1,1699 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Comer y probar</title>
+<!--
+  MANGER ET GOUTER (theme illustre, 3 nov. 2026, vague 1 lancee par Jacques : « manger et gouter »). L'angle : les
+  GOUTS, les QUANTITES et la COMMANDE -- jamais les objets de la cuisine, du supermarche ou du marche, qui ont leur
+  scene (regle 2 : pas de theme qui refait une scene). On voit des personnes qui goutent, aiment ou n'aiment pas, et
+  commandent au cafe. Lien avec « Les contraires » (rico / asqueroso, lecker / eklig) et « Emotions » (les visages).
+  Images et mots : visuel/manger/manger.py -> manger/manger.json ; les phrases sont FABRIQUEES depuis ces donnees :
+  une image ne dit que ce qu'elle montre. La carte et la liste de courses sont dessinees ici (fal ecrit mal).
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne »
+  a chaque reponse (objectif du jour, carreaux), « reponse » {mot, genre, cat, sens, juste} pour le mot teste,
+  « fini » et « fermer » a la fin. Le tirage suit les mots (themes/tirage.js) ; la voix : themes/voix.js.
+  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, sans decouverte),
+  variante=latam (jugo, mesero, sandwich ; la voix de Monica), r=<AUDIO_REVISION> ; textesAVoix() pour visuel/voix_themes.py.
+  L'ANGLAIS (4 nov. 2026, apprendre=en, variante=gb) : les memes images, ses phrases a lui (objet EN, sortes EX_EN) --
+  like / love / hate + nom (le gout en general, sans the : Anna likes strawberries) ou + -ing (Pablo loves eating
+  pizza), taste + adjectif (The lemon tastes sour, jamais is tasting ; l'action : Carmen is tasting the lemon), too +
+  adjectif (It's too salty!), countable / uncountable (some, a little, How much / How many, a piece of, a dozen sans
+  of), commander poliment (I'd like a coffee, please ; Can I have...? ; face a I like coffee). Boston : la carte en
+  dollars, la liste de courses en livres et en gallons ; le britannique en livres sterling, kilos, grammes et pints.
+  Americain / britannique : check / bill, fries / chips, cookie / biscuit, can / tin, carton / litre...
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--ardoise:#24382F;--craie:#F4F1E6;--papier:#FFFDF4;--ligne:#C9D6E8;
+  --police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A;--ardoise:#13211B;--craie:#EDE8D8;--papier:#2A3A48;--ligne:#3E5468}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (3 nov. 2026, regle commune, modele familia.html) : le contenu
+   defile DANS le body, et un bouton fixe tombe bien au bas de l'ecran, aussi sur iPhone */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 96px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.trou{display:inline-block;min-width:64px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+/* une image : le portrait carre ou la nature morte et le cafe en 4:3 */
+.photo{display:block;width:100%;max-width:340px;margin:0 auto;height:auto;border-radius:16px;background:var(--carte)}
+.photo.large{max-width:none;aspect-ratio:4/3;object-fit:cover}
+/* quatre visages a toucher */
+.visages{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.visages button{border:3px solid transparent;border-radius:16px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block;color:var(--gris)}
+.visages img{display:block;width:100%;height:auto;aspect-ratio:1}
+.visages .nom{display:block;font-size:13px;font-weight:800;padding:3px 0 5px}
+.visages button.juste{border-color:var(--vert)} .visages button.faux{border-color:var(--rouge)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+/* la carte du cafe : une ardoise a la craie */
+.carteCafe{direction:ltr;background:var(--ardoise);color:var(--craie);border-radius:14px;padding:12px 16px;font-weight:700;font-size:15px;box-shadow:inset 0 0 0 4px rgba(255,255,255,.06)}
+.carteCafe .t{font-weight:900;font-size:18px;text-align:center;letter-spacing:.04em;margin-bottom:6px}
+.carteCafe .l{display:flex;justify-content:space-between;gap:10px;padding:2px 0;border-bottom:1px dashed rgba(244,241,230,.22)}
+.carteCafe .l:last-child{border-bottom:0}
+.carteCafe .p{font-variant-numeric:tabular-nums;white-space:nowrap}
+/* la liste de courses : une feuille lignee */
+.liste{direction:ltr;background:var(--papier);color:var(--encre);border-radius:12px;padding:10px 16px 14px;border:1px solid var(--ligne);
+  background-image:repeating-linear-gradient(180deg,transparent 0 31px,var(--ligne) 31px 32px);background-position:0 40px}
+.liste .t{font-weight:800;font-size:14px;color:var(--gris);margin-bottom:8px}
+.liste .l,.liste .l.enonce{font:700 24px "Segoe Print","Bradley Hand","Comic Sans MS",var(--police);line-height:32px;background:none;padding:0;border-radius:0}
+/* la decouverte : trois onglets, une planche de vignettes, la fiche de celle qu'on touche */
+.onglets{display:flex;gap:6px;background:var(--carte);border-radius:999px;padding:4px}
+.onglets button{flex:1;border:0;border-radius:999px;background:none;color:var(--gris);font:800 14px var(--police);padding:8px 4px;cursor:pointer}
+.onglets button[aria-selected="true"]{background:var(--ambre);color:#1C2430}
+.planche{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.planche.larges{grid-template-columns:repeat(3,1fr)}
+.planche button{border:3px solid transparent;border-radius:12px;padding:0;background:var(--carte);cursor:pointer;overflow:hidden;display:block}
+.planche img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover}
+.planche.larges img{aspect-ratio:4/3}
+.planche button.choisi{border-color:var(--ambre)}
+.fiche{background:var(--carte);border-radius:14px;padding:10px;display:grid;grid-template-columns:minmax(110px,44%) 1fr;gap:12px;align-items:center}
+.fiche img{width:100%;height:auto;border-radius:10px;display:block}
+.fiche .mot{font-weight:900;font-size:22px;color:var(--ambre-f);line-height:1.15}
+.fiche .dit{font-weight:800;font-size:17px;line-height:1.4;margin-top:6px}
+.fiche .ecoute{margin-top:10px;width:44px;height:44px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.fiche .ecoute svg{width:22px;height:22px}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.45;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer;z-index:5000}
+.suite[hidden]{display:none}
+/* LES BOUTONS D'ACTION TOUJOURS TOUT EN BAS (regle de Jacques, 3 nov. 2026, comme dans les scenes : « commencer les
+   exercices ou continuer soit toujours en bas completement de l'ecran ») : la fin de partie et « Tout est revu »
+   posent les leurs ici, jamais dans le flux ; le padding du body leur laisse la place (54 + 24 + la zone de securite) */
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:5000}
+.bas[hidden]{display:none}
+.bas button{flex:1;min-height:54px;border:0;border-radius:27px;padding:4px 12px;color:#fff;font:800 16px/1.15 var(--police);
+  background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.bas button.second{background:var(--verre);color:var(--encre);border:2px solid rgba(52,140,90,.9)}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+[lang]{unicode-bidi:isolate}
+/* la traduction dans la langue d'interface : une ligne, plus petite, en gris (3 nov. 2026) */
+.trad{display:block;font-size:13px;font-weight:600;color:var(--gris);line-height:1.35;margin-top:2px}
+.trad.faux{color:var(--rouge);font-style:italic}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<div class="bas" id="bas" hidden></div>
+<script src="themes/tirage.js?v=1"></script>
+<script src="themes/voix.js?v=4"></script>
+<script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=5"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+// l'anglais (4 nov. 2026, « il manque beaucoup de themes en anglais ») : les memes images, ses phrases a lui ; variante=gb
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
+const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
+const NB = Q.get("seance") === "1" ? 6 : 20;
+// agrandir (themes/zoom.js) : un toucher sur une photo ou une fiche ; la loupe sur ce qu'on touche pour repondre
+Zoom.init({direct: ".photo, .fiche img", loupe: ".visages button, .planche button", langue: LANGUE});
+
+const TEXTES = {
+  titre:     {fr:"Manger et goûter", en:"Food and taste", tr:"Yemek ve tat", uk:"Їжа і смак", fa:"خوردن و چشیدن", ar:"الأكل والتذوق", pt:"Comer e provar", pl:"Jedzenie i smak", ru:"Еда и вкус", de:"Essen und Geschmack"},
+  ongletG:   {fr:"Les goûts", en:"Tastes", tr:"Zevkler", uk:"Смаки", fa:"سلیقه‌ها", ar:"الأذواق", pt:"Os gostos", pl:"Gusty", ru:"Вкусы", de:"Geschmack"},
+  ongletQ:   {fr:"Les quantités", en:"Quantities", tr:"Miktarlar", uk:"Кількість", fa:"مقدارها", ar:"الكميات", pt:"As quantidades", pl:"Ilości", ru:"Количество", de:"Mengen"},
+  ongletC:   {fr:"Au café", en:"At the café", tr:"Kafede", uk:"У кав'ярні", fa:"در کافه", ar:"في المقهى", pt:"No café", pl:"W kawiarni", ru:"В кафе", de:"Im Café"},
+  introG:    {fr:"Touche un visage : tu vois si la personne aime, et tu l'entends.", en:"Tap a face to see and hear whether the person likes it.", tr:"Bir yüze dokun: kişinin beğenip beğenmediğini gör ve dinle.", uk:"Торкнися обличчя: побачиш і почуєш, чи подобається людині.", fa:"روی یک چهره بزن تا ببینی و بشنوی آن شخص دوستش دارد یا نه.", ar:"المس وجهًا لترى وتسمع هل يعجب الشخصَ ما يأكله.", pt:"Toque em um rosto para ver e ouvir se a pessoa gosta.", pl:"Dotknij twarzy, aby zobaczyć i usłyszeć, czy tej osobie smakuje.", ru:"Нажми на лицо, чтобы увидеть и услышать, нравится ли человеку.", de:"Tippe auf ein Gesicht: Du siehst und hörst, ob es der Person schmeckt."},
+  introQ:    {fr:"Touche une image : tu vois la quantité, et tu l'entends.", en:"Tap a picture to see and hear the quantity.", tr:"Bir resme dokun: miktarı gör ve dinle.", uk:"Торкнися зображення: побачиш і почуєш кількість.", fa:"روی یک تصویر بزن تا مقدار را ببینی و بشنوی.", ar:"المس صورة لترى الكمية وتسمعها.", pt:"Toque em uma imagem para ver e ouvir a quantidade.", pl:"Dotknij obrazka, aby zobaczyć i usłyszeć ilość.", ru:"Нажми на картинку, чтобы увидеть и услышать количество.", de:"Tippe auf ein Bild: Du siehst und hörst die Menge."},
+  introC:    {fr:"Touche un moment : tu entends ce qu'on dit au café.", en:"Tap a moment to hear what people say at the café.", tr:"Bir ana dokun: kafede ne söylendiğini dinle.", uk:"Торкнися моменту: почуєш, що кажуть у кав'ярні.", fa:"روی یک لحظه بزن تا بشنوی در کافه چه می‌گویند.", ar:"المس لحظة لتسمع ما يُقال في المقهى.", pt:"Toque em um momento para ouvir o que se diz no café.", pl:"Dotknij chwili, aby usłyszeć, co się mówi w kawiarni.", ru:"Нажми на момент, чтобы услышать, что говорят в кафе.", de:"Tippe auf einen Moment: Du hörst, was man im Café sagt."},
+  regleGes:  {fr:"Me gusta el café : une seule chose, gusta. Me gustan las fresas : plusieurs, gustan. Me encanta : j'adore. No me gusta nada : je n'aime pas du tout.", en:"Me gusta el café: one thing, gusta. Me gustan las fresas: several, gustan. Me encanta: I love it. No me gusta nada: I don't like it at all.", tr:"Me gusta el café: tek bir şey, gusta. Me gustan las fresas: birden fazla, gustan. Me encanta: bayılırım. No me gusta nada: hiç sevmem.", uk:"Me gusta el café: одна річ — gusta. Me gustan las fresas: кілька — gustan. Me encanta: обожнюю. No me gusta nada: зовсім не подобається.", fa:"Me gusta el café: یک چیز، gusta. Me gustan las fresas: چند چیز، gustan. Me encanta: عاشقش هستم. No me gusta nada: اصلاً دوست ندارم.", ar:"Me gusta el café: شيء واحد، gusta. Me gustan las fresas: عدة أشياء، gustan. Me encanta: أعشقه. No me gusta nada: لا يعجبني أبدًا.", pt:"Me gusta el café: uma coisa só, gusta. Me gustan las fresas: várias, gustan. Me encanta: eu adoro. No me gusta nada: não gosto nada.", pl:"Me gusta el café: jedna rzecz — gusta. Me gustan las fresas: kilka — gustan. Me encanta: uwielbiam. No me gusta nada: wcale mi nie smakuje.", ru:"Me gusta el café: одна вещь — gusta. Me gustan las fresas: несколько — gustan. Me encanta: обожаю. No me gusta nada: совсем не нравится.", de:"Me gusta el café: eine Sache, gusta. Me gustan las fresas: mehrere, gustan. Me encanta: Ich liebe es. No me gusta nada: Das mag ich überhaupt nicht."},
+  regleGde:  {fr:"Ich mag Kaffee : mögen, ce qu'on aime en général. Der Kaffee schmeckt mir : ce qu'on goûte maintenant. Ich trinke gern Kaffee : gern avec le verbe. Et la négation : Ich mag keinen Kaffee.", en:"Ich mag Kaffee: mögen, what you like in general. Der Kaffee schmeckt mir: what you are tasting now. Ich trinke gern Kaffee: gern with the verb. And the negative: Ich mag keinen Kaffee.", tr:"Ich mag Kaffee: mögen, genel olarak sevdiğin şey. Der Kaffee schmeckt mir: şu an tattığın şey. Ich trinke gern Kaffee: fiille birlikte gern. Olumsuzu: Ich mag keinen Kaffee.", uk:"Ich mag Kaffee: mögen — що подобається загалом. Der Kaffee schmeckt mir: що смакуєш зараз. Ich trinke gern Kaffee: gern з дієсловом. Заперечення: Ich mag keinen Kaffee.", fa:"Ich mag Kaffee: mögen، آنچه به‌طور کلی دوست داری. Der Kaffee schmeckt mir: آنچه الان می‌چشی. Ich trinke gern Kaffee: gern همراه فعل. و منفی: Ich mag keinen Kaffee.", ar:"Ich mag Kaffee: mögen، ما تحبه عمومًا. Der Kaffee schmeckt mir: ما تتذوقه الآن. Ich trinke gern Kaffee: gern مع الفعل. والنفي: Ich mag keinen Kaffee.", pt:"Ich mag Kaffee: mögen, o que você gosta em geral. Der Kaffee schmeckt mir: o que você está provando agora. Ich trinke gern Kaffee: gern com o verbo. E a negação: Ich mag keinen Kaffee.", pl:"Ich mag Kaffee: mögen — co lubisz ogólnie. Der Kaffee schmeckt mir: co smakujesz teraz. Ich trinke gern Kaffee: gern z czasownikiem. Przeczenie: Ich mag keinen Kaffee.", ru:"Ich mag Kaffee: mögen — что нравится вообще. Der Kaffee schmeckt mir: что пробуешь сейчас. Ich trinke gern Kaffee: gern с глаголом. Отрицание: Ich mag keinen Kaffee.", de:"Ich mag Kaffee: im Allgemeinen. Der Kaffee schmeckt mir: jetzt. Ich trinke gern Kaffee: gern mit dem Verb. Verneint: Ich mag keinen Kaffee."},
+  regleQes:  {fr:"En espagnol, la quantité prend « de » : un kilo de tomates, una botella de agua, un poco de azúcar.", en:"In Spanish, a quantity takes « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", tr:"İspanyolcada miktar « de » ile söylenir: un kilo de tomates, una botella de agua, un poco de azúcar.", uk:"В іспанській кількість кажуть із « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", fa:"در اسپانیایی، مقدار با « de » می‌آید: un kilo de tomates، una botella de agua، un poco de azúcar.", ar:"في الإسبانية تأتي الكمية مع « de »: un kilo de tomates، una botella de agua، un poco de azúcar.", pt:"Em espanhol, a quantidade leva « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", pl:"Po hiszpańsku ilość łączy się z « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", ru:"По-испански количество идёт с « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", de:"Auf Spanisch steht nach der Menge « de »: un kilo de tomates, una botella de agua, un poco de azúcar."},
+  regleQde:  {fr:"En allemand, pas de « de » : ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. L'article suit le contenant : eine Flasche, ein Glas.", en:"In German, no « of »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. The article goes with the container: eine Flasche, ein Glas.", tr:"Almancada « de » yoktur: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. Artikel kaba göre değişir: eine Flasche, ein Glas.", uk:"У німецькій немає « de »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. Артикль залежить від тари: eine Flasche, ein Glas.", fa:"در آلمانی « de » نمی‌آید: ein Kilo Tomaten، eine Flasche Wasser، ein bisschen Zucker. حرف تعریف از ظرف پیروی می‌کند: eine Flasche، ein Glas.", ar:"في الألمانية لا توجد « de »: ein Kilo Tomaten، eine Flasche Wasser، ein bisschen Zucker. وأداة التعريف تتبع الوعاء: eine Flasche، ein Glas.", pt:"Em alemão, não há « de »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. O artigo acompanha o recipiente: eine Flasche, ein Glas.", pl:"Po niemiecku nie ma « de »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. Rodzajnik zależy od opakowania: eine Flasche, ein Glas.", ru:"В немецком нет « de »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. Артикль зависит от тары: eine Flasche, ein Glas.", de:"Ohne Präposition: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker."},
+  regleCes:  {fr:"Pour commander, « Quisiera… » (je voudrais) est plus poli que « Quiero… ». Pour finir : « La cuenta, por favor ».", en:"To order, « Quisiera… » (I would like) is more polite than « Quiero… ». To finish: « La cuenta, por favor ».", tr:"Sipariş verirken « Quisiera… » (isterdim), « Quiero… »'dan daha kibardır. Sonunda: « La cuenta, por favor ».", uk:"Щоб замовити, « Quisiera… » (я хотів би) ввічливіше, ніж « Quiero… ». Наприкінці: « La cuenta, por favor ».", fa:"برای سفارش، « Quisiera… » (می‌خواستم) مؤدبانه‌تر از « Quiero… » است. در پایان: « La cuenta, por favor ».", ar:"عند الطلب، « Quisiera… » (أودّ) أكثر تهذيبًا من « Quiero… ». وفي النهاية: « La cuenta, por favor ».", pt:"Para pedir, « Quisiera… » (eu queria) é mais educado que « Quiero… ». Para terminar: « La cuenta, por favor ».", pl:"Zamawiając, « Quisiera… » (chciałbym) jest grzeczniejsze niż « Quiero… ». Na koniec: « La cuenta, por favor ».", ru:"При заказе « Quisiera… » (я бы хотел) вежливее, чем « Quiero… ». В конце: « La cuenta, por favor ».", de:"Zum Bestellen ist « Quisiera… » (ich hätte gern) höflicher als « Quiero… ». Zum Schluss: « La cuenta, por favor »."},
+  regleCde:  {fr:"Pour commander, « Ich hätte gern… » ou « Ich möchte… » : plus poli que « Ich will… ». Pour finir : « Die Rechnung, bitte ». En laissant le pourboire : « Stimmt so ».", en:"To order, « Ich hätte gern… » or « Ich möchte… »: more polite than « Ich will… ». To finish: « Die Rechnung, bitte ». Leaving the tip: « Stimmt so ».", tr:"Sipariş için « Ich hätte gern… » ya da « Ich möchte… », « Ich will… »'den daha kibardır. Sonunda: « Die Rechnung, bitte ». Bahşiş bırakırken: « Stimmt so ».", uk:"Щоб замовити: « Ich hätte gern… » або « Ich möchte… », ввічливіше, ніж « Ich will… ». Наприкінці: « Die Rechnung, bitte ». Залишаючи чайові: « Stimmt so ».", fa:"برای سفارش: « Ich hätte gern… » یا « Ich möchte… »، مؤدبانه‌تر از « Ich will… ». در پایان: « Die Rechnung, bitte ». هنگام انعام دادن: « Stimmt so ».", ar:"للطلب: « Ich hätte gern… » أو « Ich möchte… »، وهما أكثر تهذيبًا من « Ich will… ». وفي النهاية: « Die Rechnung, bitte ». وعند ترك البقشيش: « Stimmt so ».", pt:"Para pedir: « Ich hätte gern… » ou « Ich möchte… », mais educado que « Ich will… ». Para terminar: « Die Rechnung, bitte ». Ao deixar a gorjeta: « Stimmt so ».", pl:"Zamawiając: « Ich hätte gern… » albo « Ich möchte… », grzeczniej niż « Ich will… ». Na koniec: « Die Rechnung, bitte ». Zostawiając napiwek: « Stimmt so ».", ru:"Для заказа: « Ich hätte gern… » или « Ich möchte… », вежливее, чем « Ich will… ». В конце: « Die Rechnung, bitte ». Оставляя чаевые: « Stimmt so ».", de:"Höflich bestellen: « Ich hätte gern… ». Zum Schluss: « Die Rechnung, bitte »."},
+  ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
+  aime:      {fr:"Regarde le visage et choisis la bonne forme.", en:"Look at the face and choose the right form.", tr:"Yüze bak ve doğru biçimi seç.", uk:"Подивися на обличчя й обери правильну форму.", fa:"به چهره نگاه کن و شکل درست را انتخاب کن.", ar:"انظر إلى الوجه واختر الصيغة الصحيحة.", pt:"Olhe o rosto e escolha a forma certa.", pl:"Spójrz na twarz i wybierz właściwą formę.", ru:"Посмотри на лицо и выбери правильную форму.", de:"Sieh dir das Gesicht an und wähle die richtige Form."},
+  mogen:     {fr:"Regarde le visage et choisis le bon mot.", en:"Look at the face and choose the right word.", tr:"Yüze bak ve doğru kelimeyi seç.", uk:"Подивися на обличчя й обери правильне слово.", fa:"به چهره نگاه کن و کلمهٔ درست را انتخاب کن.", ar:"انظر إلى الوجه واختر الكلمة الصحيحة.", pt:"Olhe o rosto e escolha a palavra certa.", pl:"Spójrz na twarz i wybierz właściwe słowo.", ru:"Посмотри на лицо и выбери правильное слово.", de:"Sieh dir das Gesicht an und wähle das richtige Wort."},
+  quien:     {fr:"Lis la question et touche le bon visage.", en:"Read the question and tap the right face.", tr:"Soruyu oku ve doğru yüze dokun.", uk:"Прочитай запитання й торкнися потрібного обличчя.", fa:"سؤال را بخوان و روی چهرهٔ درست بزن.", ar:"اقرأ السؤال والمس الوجه الصحيح.", pt:"Leia a pergunta e toque no rosto certo.", pl:"Przeczytaj pytanie i dotknij właściwej twarzy.", ru:"Прочитай вопрос и нажми на нужное лицо.", de:"Lies die Frage und tippe auf das richtige Gesicht."},
+  sabor:     {fr:"Quel goût ça a ?", en:"What does it taste like?", tr:"Tadı nasıl?", uk:"Який це має смак?", fa:"چه مزه‌ای دارد؟", ar:"ما طعمه؟", pt:"Que gosto tem?", pl:"Jaki to ma smak?", ru:"Какой у этого вкус?", de:"Wie schmeckt das?"},
+  dice:      {fr:"Regarde le visage : que dit cette personne ?", en:"Look at the face: what does this person say?", tr:"Yüze bak: bu kişi ne diyor?", uk:"Подивися на обличчя: що каже ця людина?", fa:"به چهره نگاه کن: این شخص چه می‌گوید؟", ar:"انظر إلى الوجه: ماذا يقول هذا الشخص؟", pt:"Olhe o rosto: o que esta pessoa diz?", pl:"Spójrz na twarz: co mówi ta osoba?", ru:"Посмотри на лицо: что говорит этот человек?", de:"Sieh dir das Gesicht an: Was sagt diese Person?"},
+  cantidad:  {fr:"Regarde l'image : quelle quantité ?", en:"Look at the picture: what quantity?", tr:"Resme bak: ne kadar?", uk:"Подивися на зображення: яка кількість?", fa:"به تصویر نگاه کن: چه مقدار؟", ar:"انظر إلى الصورة: ما الكمية؟", pt:"Olhe a imagem: que quantidade?", pl:"Spójrz na obrazek: jaka ilość?", ru:"Посмотри на картинку: какое количество?", de:"Sieh dir das Bild an: Welche Menge?"},
+  unidad:    {fr:"Lis la liste de courses et complète avec la bonne unité.", en:"Read the shopping list and fill in the right unit.", tr:"Alışveriş listesini oku ve doğru birimi yaz.", uk:"Прочитай список покупок і встав правильну одиницю.", fa:"فهرست خرید را بخوان و واحد درست را بگذار.", ar:"اقرأ قائمة المشتريات وأكمل بالوحدة الصحيحة.", pt:"Leia a lista de compras e complete com a unidade certa.", pl:"Przeczytaj listę zakupów i uzupełnij właściwą jednostką.", ru:"Прочитай список покупок и вставь нужную единицу.", de:"Lies die Einkaufsliste und ergänze die richtige Einheit."},
+  lista:     {fr:"Lis la liste de courses : comment le dit-on ?", en:"Read the shopping list: how do you say it?", tr:"Alışveriş listesini oku: nasıl söylenir?", uk:"Прочитай список покупок: як це сказати?", fa:"فهرست خرید را بخوان: چطور گفته می‌شود؟", ar:"اقرأ قائمة المشتريات: كيف يُقال ذلك؟", pt:"Leia a lista de compras: como se diz?", pl:"Przeczytaj listę zakupów: jak to powiedzieć?", ru:"Прочитай список покупок: как это сказать?", de:"Lies die Einkaufsliste: Wie sagt man das?"},
+  cafeDit:   {fr:"Au café : que dit-on à ce moment-là ?", en:"At the café: what do people say at this moment?", tr:"Kafede: bu anda ne denir?", uk:"У кав'ярні: що кажуть у цю мить?", fa:"در کافه: در این لحظه چه می‌گویند؟", ar:"في المقهى: ماذا يُقال في هذه اللحظة؟", pt:"No café: o que se diz neste momento?", pl:"W kawiarni: co się mówi w tej chwili?", ru:"В кафе: что говорят в этот момент?", de:"Im Café: Was sagt man in diesem Moment?"},
+  cafeFait:  {fr:"Au café : que se passe-t-il ?", en:"At the café: what is happening?", tr:"Kafede: ne oluyor?", uk:"У кав'ярні: що відбувається?", fa:"در کافه: چه اتفاقی می‌افتد؟", ar:"في المقهى: ماذا يحدث؟", pt:"No café: o que está acontecendo?", pl:"W kawiarni: co się dzieje?", ru:"В кафе: что происходит?", de:"Im Café: Was passiert?"},
+  cafeQui:   {fr:"Au café : qui est-ce ?", en:"At the café: who is it?", tr:"Kafede: bu kim?", uk:"У кав'ярні: хто це?", fa:"در کافه: این کیست؟", ar:"في المقهى: من هذا؟", pt:"No café: quem é?", pl:"W kawiarni: kto to jest?", ru:"В кафе: кто это?", de:"Im Café: Wer ist das?"},
+  cuenta:    {fr:"Lis la carte et calcule.", en:"Read the menu and work it out.", tr:"Menüyü oku ve hesapla.", uk:"Прочитай меню й порахуй.", fa:"منو را بخوان و حساب کن.", ar:"اقرأ قائمة الطعام واحسب.", pt:"Leia o cardápio e calcule.", pl:"Przeczytaj menu i policz.", ru:"Прочитай меню и посчитай.", de:"Lies die Karte und rechne."},
+  vraifaux:  {fr:"Regarde l'image : vrai ou faux ?", en:"Look at the picture: true or false?", tr:"Resme bak: doğru mu, yanlış mı?", uk:"Подивися на зображення: правда чи ні?", fa:"به تصویر نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a imagem: verdadeiro ou falso?", pl:"Spójrz na obrazek: prawda czy fałsz?", ru:"Посмотри на картинку: правда или нет?", de:"Sieh dir das Bild an: richtig oder falsch?"},
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"},
+  // l'anglais seulement (son interface est en francais) : les regles de la decouverte, ce qui est bon a savoir, les
+  // consignes de ses sortes a lui
+  regleGen:  {fr:"Aimer, adorer, détester : like, love, hate, avec un -s après he ou she (Ben loves cake) et doesn't à la négation (Carmen doesn't like lemons). Un goût en général se dit sans the : Anna likes strawberries, Mark likes coffee. Après like, love, hate, le verbe prend -ing : Pablo loves eating pizza. Le goût d'une chose : The lemon tastes sour (jamais is tasting) ; l'action, en ce moment : Carmen is tasting the lemon. Trop : too, devant l'adjectif (It's too salty!)."},
+  regleQen:  {fr:"En anglais, la quantité prend of : a bottle of water, a glass of milk, a piece of cake. Sauf a dozen : a dozen eggs (jamais a dozen of eggs), et two dozen, sans s. Ce qui se compte prend many et le pluriel (How many eggs?), le reste much (How much milk?). Some dans une phrase affirmative : There is some milk, There are some eggs. Un peu de : a little sugar (a few, quelques-uns, ne va qu'avec ce qui se compte : a few eggs)."},
+  regleCen:  {fr:"Pour commander poliment : I'd like a coffee, please (I would like : je voudrais), ou Can I have a coffee, please? Jamais I like a coffee : I like coffee veut dire j'aime le café. Pour finir : Can I have the check, please?"},
+  regleCgb:  {fr:"Pour commander poliment : I'd like a coffee, please (I would like : je voudrais), ou Can I have a coffee, please? Jamais I like a coffee : I like coffee veut dire j'aime le café. Pour finir : Can I have the bill, please?"},
+  bonQus:    {fr:"Bon à savoir : aux États-Unis, on pèse en livres (a pound, lb, environ 450 g : two pounds of oranges, à peu près un kilo) et le lait s'achète au gallon (environ 3,8 litres) ou en carton. La boîte de conserve : a can. En Grande-Bretagne : des kilos et des grammes, a pint of milk (une pinte, un peu plus d'un demi-litre) et a tin of tomatoes."},
+  bonQgb:    {fr:"Bon à savoir : en Grande-Bretagne, on pèse en kilos et en grammes, mais le lait se vend encore à la pinte (a pint of milk, un peu plus d'un demi-litre). La boîte de conserve : a tin (a can aux États-Unis). Aux États-Unis, on pèse en livres (a pound, lb, environ 450 g) et le lait s'achète au gallon (environ 3,8 litres)."},
+  bonCus:    {fr:"Bon à savoir : tu apprends l'anglais américain, et l'on est à Boston : les prix sont en dollars ($2.50 : two dollars and fifty cents). L'addition : the check (the bill en Grande-Bretagne). Le pourboire (the tip) est presque obligatoire aux États-Unis : 15 à 20 %. Les frites : fries (chips en Grande-Bretagne) ; les chips : chips (crisps en Grande-Bretagne). Et cookie (biscuit), candy (sweets), eggplant (aubergine), zucchini (courgette). L'entrée d'un repas : appetizer (starter en Grande-Bretagne) ; attention, an entrée, aux États-Unis, c'est le plat principal (main course). À emporter : takeout (takeaway)."},
+  bonCgb:    {fr:"Bon à savoir : tu apprends l'anglais britannique : les prix sont en livres sterling (£2.80 : two pounds eighty). L'addition : the bill (the check aux États-Unis). Le pourboire (the tip) : environ 10 %, souvent déjà compté sur l'addition (service charge). Les frites : chips (fries aux États-Unis) ; les chips : crisps (chips aux États-Unis). Et biscuit (cookie), sweets (candy), aubergine (eggplant), courgette (zucchini). L'entrée d'un repas : starter (appetizer aux États-Unis, où an entrée est le plat principal, main course). À emporter : takeaway (takeout)."},
+  ing:       {fr:"Après like, love, hate : quelle forme du verbe ?"},
+  gouter:    {fr:"Le goût d'une chose, ou ce que fait la personne en ce moment ?"},
+  trop:      {fr:"Regarde le visage et complète la phrase."},
+  combien:   {fr:"Regarde l'image : ça se compte, ou pas ?"},
+  poli:      {fr:"Au café : commander poliment, ou dire ce qu'on aime ?"}
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- la donnee (manger.json) ----------
+let D = null;
+const nom = p => (D.noms || {})[p] || p;
+const maj = s => s.charAt(0).toUpperCase() + s.slice(1);
+// l'Amerique latine : jugo, mesero, sandwich, papas -- a l'ecran et dans la voix ; la carte du corpus reste zumo
+const latam = s => !LATAM || !s ? s : s.replace(/[A-Za-zÁÉÍÓÚáéíóúñÑ]+/g, w => D.latam[w] || w);
+const GOUTS = () => D.gouts, QTES = () => D.quantites, CAFE = () => D.cafe, CARTE = () => APPRENDRE === "en" ? EN_CARTE : D.carte[APPRENDRE];
+const al = k => D.aliments[k][APPRENDRE];
+// DE fait aussi la traduction allemande de l'espagnol (lang=de) : il lit toujours les donnees allemandes
+const alDe = k => D.aliments[k].de;
+const saveurDe = k => D.aliments[k].saveur;
+// la forme d'une saveur (es) qui s'accorde avec l'aliment : el limon acido, las fresas dulces
+const formeEs = (s, k) => { const a = D.aliments[k].es; return D.saveurs[s].es[(a.pl ? 2 : 0) + (a.genre === "la" ? 1 : 0)]; };
+const ASCO = ["asqueroso", "asquerosa", "asquerosos", "asquerosas"];
+const formeAsco = k => { const a = D.aliments[k].es; return ASCO[(a.pl ? 2 : 0) + (a.genre === "la" ? 1 : 0)]; };
+const POSITIF = r => r === "encanta" || r === "gusta";
+const PAIRES = ["limon", "picante", "cafe"];             // deux personnes, un oui et un non
+
+// ---------- la langue apprise : les phrases, fabriquees comme celles de manger.py ----------
+const ES = {
+  bravo: "¡Muy bien!", vrai: "Verdadero", faux: "Falso",
+  // « le gusta », « no le gustan nada » : ce qui va dans le trou
+  verbe(r, pl){ const n = pl ? "n" : ""; return {encanta: "le encanta" + n, gusta: "le gusta" + n, no: "no le gusta" + n, nada: "no le gusta" + n + " nada"}[r]; },
+  aime(g){ const a = al(g.a); return "A " + nom(g.p) + " " + this.verbe(g.r, a.pl) + " " + a.vu + "."; },
+  // « La comida es picante. » : le sujet court, jamais « la comida picante es picante »
+  saveur(k, s){ const a = al(k), f = formeEs(s || saveurDe(k), k);
+    const v = D.aliments[k].estar ? (a.pl ? "están" : "está") : (a.pl ? "son" : "es"); return maj(a.court || a.vu) + " " + v + " " + f + "."; },
+  copule(k){ const a = al(k); return D.aliments[k].estar ? (a.pl ? "están" : "está") : (a.pl ? "son" : "es"); },
+  dit(k, r){ const a = al(k);
+    if (POSITIF(r)) return "¡Qué rico!";
+    if (r === "nada") return "¡" + (a.pl ? "Están" : "Está") + " " + formeAsco(k) + "!";
+    if (saveurDe(k)) return this.trop(k, saveurDe(k));
+    return "No me gusta" + (a.pl ? "n" : "") + " " + a.vu + "."; },
+  trop(k, s){ return "¡" + (al(k).pl ? "Están" : "Está") + " demasiado " + formeEs(s, k) + "!"; },
+  asco(k){ return "¡" + (al(k).pl ? "Están" : "Está") + " " + formeAsco(k) + "!"; },
+  bueno: "¡Está buenísimo!",
+  quienSaveur: s => "¿Quién prueba algo " + D.saveurs[s].es[0] + "?",
+  quienPaire(k, neg){ const a = al(k); return "¿A quién " + (neg ? "no " : "") + "le gusta" + (a.pl ? "n" : "") + " " + a.vu + "?"; },
+  dice: p => "¿Qué dice " + nom(p) + "?",
+  cantidad: d => "Es ___ " + D.contenus[d].es.dit + ".",
+  queEs: "¿Qué es?", lista: "¿Cómo se dice?",
+  np: (c, d) => D.contenants[c].es.art + " " + D.contenus[d].es.dit,
+  rol: p => nom(p) + " es ___.",
+  carte: "Carta", listeTitre: "Lista de la compra",
+  // la commande : « Carmen toma un café y un trozo de tarta. ¿Cuánto es? »
+  commande(qui, items, cuenta){ const s = qui.map(nom).join(" y "), v = qui.length > 1 ? "toman" : "toma";
+    return cuenta ? s + " " + (qui.length > 1 ? "piden" : "pide") + " la cuenta: " + liste(items, "es") + ". ¿Cuánto es?" : s + " " + v + " " + liste(items, "es") + ". ¿Cuánto es?"; },
+  cuesta: it => "¿Cuánto cuesta " + it.un + "?",
+  total: p => "Son " + prix(p) + ".", seul: (it, p) => maj(it.un) + " cuesta " + prix(p) + ".",
+  totalDit: p => "Son " + prixEnLettres(p) + ".", seulDit: (it, p) => maj(it.un) + " cuesta " + prixEnLettres(p) + ".",
+  et: " y "
+};
+const DE = {
+  bravo: "Sehr gut!", vrai: "Richtig", faux: "Falsch",
+  // « Die Erdbeeren schmecken Anna. » -- ce qui va dans le trou
+  schmeckt(r, pl){ return (pl ? "schmecken" : "schmeckt") + ({no: " nicht", nada: " überhaupt nicht"}[r] || ""); },
+  // « Die Suppe schmeckt Javier nicht. » : ce qu'on goute maintenant
+  schmecktPhrase(g){ const a = alDe(g.a); return maj(a.nom) + " " + (a.pl ? "schmecken" : "schmeckt") + " " + nom(g.p) + ({no: " nicht", nada: " überhaupt nicht"}[g.r] || "") + "."; },
+  mag(g){ const a = alDe(g.a); if (!a.gen) return null;
+    if (g.r === "encanta") return nom(g.p) + " liebt " + a.gen + ".";
+    if (g.r === "gusta") return nom(g.p) + " mag " + a.gen + ".";
+    return nom(g.p) + " mag " + (g.r === "nada" ? "überhaupt " : "") + a.kein + " " + a.gen + "."; },
+  aime(g){ return this.mag(g) || this.schmecktPhrase(g); },
+  saveur(k, s){ const a = alDe(k), sujet = k === "picante" ? "das Essen" : a.nom; return maj(sujet) + " " + (a.pl ? "sind" : "ist") + " " + D.saveurs[s || saveurDe(k)].de + "."; },
+  dit(k, r){ const a = alDe(k);
+    if (POSITIF(r)) return "Lecker!";
+    if (r === "nada") return "Igitt, das ist eklig!";
+    if (saveurDe(k)) return this.trop(k, saveurDe(k));
+    return "Ich mag " + a.kein + " " + a.gen + "."; },
+  trop: (k, s) => "Das ist zu " + D.saveurs[s].de + "!",
+  asco: () => "Igitt, das ist eklig!",
+  bueno: "Sehr gut!",
+  quienSaveur: s => "Wer probiert etwas " + D.saveurs[s].etwas + "?",
+  quienPaire(k, neg){ const a = alDe(k); return "Wem " + (a.pl ? "schmecken" : "schmeckt") + " " + (k === "picante" ? "das scharfe Essen" : a.nom) + (neg ? " nicht" : "") + "?"; },
+  dice: p => "Was sagt " + nom(p) + "?",
+  cantidad: d => "Das ist ___ " + D.contenus[d].de.dit + ".",
+  queEs: "Was ist das?", lista: "Wie sagt man das?",
+  np: (c, d) => D.contenants[c].de.art + " " + D.contenus[d].de.dit,
+  rol: p => nom(p) + " ist ___.",
+  carte: "Speisekarte", listeTitre: "Einkaufsliste",
+  commande(qui, items, cuenta){ const s = qui.map(nom).join(" und ");
+    return cuenta ? s + " " + (qui.length > 1 ? "möchten" : "möchte") + " die Rechnung: " + liste(items, "de") + ". Was macht das?" : s + " " + (qui.length > 1 ? "nehmen" : "nimmt") + " " + liste(items, "de") + ". Was macht das?"; },
+  cuesta: it => "Was kostet " + it.nom + "?",
+  total: p => "Das macht " + prix(p) + ".", seul: (it, p) => maj(it.nom) + " kostet " + prix(p) + ".",
+  totalDit: p => "Das macht " + prixEnLettres(p) + ".", seulDit: (it, p) => maj(it.nom) + " kostet " + prixEnLettres(p) + ".",
+  et: " und "
+};
+// L'ANGLAIS (4 nov. 2026). Les phrases enseignent l'anglais, fabriquees depuis les memes degustations, quantites et
+// moments du cafe que l'espagnol et l'allemand (une image ne dit que ce qu'elle montre). Les mots a la forme du corpus
+// anglais (anglais/datos, et anglais/datos-gb pour le britannique : biscuit, bill, litre).
+// L'aliment : le mot du corpus, le gout EN GENERAL (sans the, au pluriel ce qui se compte : « Anna likes
+// strawberries », « Mark likes coffee »), la chose goutee (« the lemon »), et le francais de la traduction. La soupe n'a
+// pas de gout general : c'est CETTE soupe, trop salee, que Javier n'aime pas (« Javier doesn't like the soup »).
+const EN_AL = {
+  tarta:     {mot: "cake", gen: "cake", the: "the cake", fr: "le gâteau", frLe: "Le gâteau", ing: "manger du gâteau"},
+  chocolate: {mot: "chocolate", gen: "chocolate", the: "the chocolate", fr: "le chocolat", frLe: "Le chocolat", ing: "manger du chocolat"},
+  limon:     {mot: "lemon", gen: "lemons", the: "the lemon", fr: "les citrons", frLe: "Le citron", ing: "manger des citrons"},
+  picante:   {mot: "food", gen: "spicy food", the: "the food", fr: "les plats épicés", frLe: "Le plat", ing: "manger épicé"},
+  cafe:      {mot: "coffee", gen: "coffee", the: "the coffee", fr: "le café", frLe: "Le café", ing: "boire du café", boire: true},
+  sopa:      {mot: "soup", gen: null, the: "the soup", fr: "la soupe", frLe: "La soupe"},
+  pretzel:   {mot: "pretzel", gen: "pretzels", the: "the pretzel", fr: "les bretzels", frLe: "Le bretzel", ing: "manger des bretzels"},
+  fresa:     {mot: "strawberry", gen: "strawberries", the: "the strawberries", pl: true, fr: "les fraises", frLe: "Les fraises", ing: "manger des fraises"},
+  pescado:   {mot: "fish", gen: "fish", the: "the fish", fr: "le poisson", frLe: "Le poisson", ing: "manger du poisson"},
+  galleta:   {mot: GB ? "biscuit" : "cookie", gen: GB ? "biscuits" : "cookies", the: GB ? "the biscuits" : "the cookies", pl: true, fr: "les biscuits", frLe: "Les biscuits", ing: "manger des biscuits"},
+  pizza:     {mot: "pizza", gen: "pizza", the: "the pizza", fr: "la pizza", frLe: "La pizza", ing: "manger de la pizza"},
+  queso:     {mot: "cheese", gen: "cheese", the: "the cheese", fr: "le fromage", frLe: "Le fromage", ing: "manger du fromage"},
+  tomate:    {mot: "tomato", gen: "tomatoes", the: "the tomatoes", pl: true, fr: "les tomates", frLe: "Les tomates", ing: "manger des tomates"}
+};
+const ea = k => EN_AL[k];
+const EN_SAV = {dulce: "sweet", salado: "salty", picante: "spicy", amargo: "bitter", acido: "sour"};
+// la reaction du visage : le verbe a la troisieme personne ; « no le gusta nada » devient hate
+const EN_VERBE = {encanta: "loves", gusta: "likes", no: "doesn't like", nada: "hates"};
+const verbeDe = r => ({encanta: "love", nada: "hate"}[r] || "like");
+// « It's », ou « They're » pour ce qui est au pluriel (the strawberries ; lemons, en general)
+const ilsEn = pl => pl ? "They're" : "It's";
+const genPl = k => /s$/.test(ea(k).gen || "");
+// LES QUANTITES : le contenant (« a bottle of » ; « a dozen », sans of), sa reponse courte (« A bottle, please. ») et le
+// francais. Boston pese en livres (two pounds of oranges, a peu pres le kilo de l'image) et vend le lait en carton ;
+// le britannique a son kilo, sa tin et son litre.
+const EN_CT = {kilo: GB ? {mot: "kilo", art: "a kilo of", court: "A kilo", fr: "un kilo de ", frC: "Un kilo"} : {mot: "pound", art: "two pounds of", court: "Two pounds", fr: "deux livres de ", frC: "Deux livres"},
+  botella: {mot: "bottle", art: "a bottle of", court: "A bottle", fr: "une bouteille de ", frC: "Une bouteille"},
+  vaso:    {mot: "glass", art: "a glass of", court: "A glass", fr: "un verre de ", frC: "Un verre"},
+  taza:    {mot: "cup", art: "a cup of", court: "A cup", fr: "une tasse de ", frC: "Une tasse"},
+  trozo:   {mot: "piece", art: "a piece of", court: "A piece", fr: "un morceau de ", frC: "Un morceau"},
+  lata:    GB ? {mot: "tin", art: "a tin of", court: "A tin", fr: "une boîte de ", frC: "Une boîte"} : {mot: "can", art: "a can of", court: "A can", fr: "une boîte de ", frC: "Une boîte"},
+  docena:  {mot: "dozen", art: "a dozen", court: "A dozen", fr: "une douzaine de ", frC: "Une douzaine"},
+  loncha:  {mot: "slice", art: "a slice of", court: "A slice", fr: "une tranche de ", frC: "Une tranche"},
+  litro:   GB ? {mot: "litre", art: "a litre of", court: "A litre", fr: "un litre de ", frC: "Un litre"} : {mot: "carton", art: "a carton of", court: "A carton", fr: "une brique de ", frC: "Une brique"},
+  poco:    {mot: null, art: "a little", court: "Just a little", fr: "un peu de ", frC: "Juste un peu"}};
+// le contenu : n = il se compte (many, are, les leurres a few) ; frDu, le partitif francais
+const EN_CU = {naranja: {mot: "orange", dit: "oranges", n: true, fr: "oranges", frDu: "des oranges"}, agua: {mot: "water", dit: "water", fr: "eau", frDu: "de l'eau"},
+  leche: {mot: "milk", dit: "milk", fr: "lait", frDu: "du lait"}, te: {mot: "tea", dit: "tea", fr: "thé", frDu: "du thé"}, tarta: {mot: "cake", dit: "cake", fr: "gâteau", frDu: "du gâteau"},
+  tomate: {mot: "tomato", dit: "tomatoes", n: true, fr: "tomates", frDu: "des tomates"}, huevo: {mot: "egg", dit: "eggs", n: true, fr: "œufs", frDu: "des œufs"},
+  queso: {mot: "cheese", dit: "cheese", fr: "fromage", frDu: "du fromage"}, azucar: {mot: "sugar", dit: "sugar", fr: "sucre", frDu: "du sucre"}};
+// ou est la quantite, sur chaque image (« There are some eggs in the carton. ») -- la balance : the scale, the scales en britannique
+const EN_OU = {"qte-kilo-naranja": [GB ? "on the scales" : "on the scale", "sur la balance"], "qte-botella-agua": ["in the bottle", "dans la bouteille"],
+  "qte-vaso-leche": ["in the glass", "dans le verre"], "qte-taza-te": ["in the cup", "dans la tasse"], "qte-trozo-tarta": ["on the plate", "dans l'assiette"],
+  "qte-lata-tomate": [GB ? "in the tin" : "in the can", "dans la boîte"], "qte-docena-huevo": [GB ? "in the box" : "in the carton", "dans la boîte"],
+  "qte-loncha-queso": ["on the board", "sur la planche"], "qte-litro-leche": ["in the carton", "dans la brique"], "qte-poco-azucar": ["on the spoon", "sur la cuillère"]};
+// les contenants plausibles d'un contenu (les leurres) : jamais absurdes (a carton of tea), jamais vrais pour l'image (a
+// piece of cheese pour la tranche, a slice of cake pour le morceau) ; en britannique, a litre et a bottle sont voisins
+const COMPAT_EN = {agua: ["botella", "vaso", "taza"].concat(GB ? ["litro"] : []), leche: ["botella", "vaso", "taza", "litro"], te: ["taza", "vaso", "botella"],
+  naranja: ["kilo", "docena", "lata"], tomate: ["kilo", "lata"], huevo: ["docena", "kilo"], tarta: ["trozo", "kilo"], queso: ["loncha", "kilo"], azucar: ["kilo", "poco", "taza"]};
+const autresContenantsEn = q => (COMPAT_EN[q.d] || []).filter(c => c !== q.c && c !== "poco" && !(GB && (D.voisinsContenants[q.c] || []).includes(c)));
+// LA LISTE DE COURSES de Boston (livres, gallons, douzaines) et de Londres (kilos, grammes, pints) : [ecrit, dit, unite,
+// produit, lectures fausses, francais]. Les pieges : two pound (sans s), a dozen of, two dozens, a gallon milk (sans of).
+const EN_LISTE = GB ? [
+  ["1 kg tomatoes", "a kilo of tomatoes", "kilo", "tomates", ["a litre of tomatoes", "two kilos of tomatoes", "a hundred grams of tomatoes"], "un kilo de tomates"],
+  ["2 kg potatoes", "two kilos of potatoes", "kilo", "patatas", ["twelve kilos of potatoes", "two litres of potatoes", "two hundred grams of potatoes"], "deux kilos de pommes de terre"],
+  ["½ kg cheese", "half a kilo of cheese", "kilo", "queso", ["a kilo of cheese", "half a litre of cheese", "five kilos of cheese"], "un demi-kilo de fromage"],
+  ["100 g ham", "a hundred grams of ham", "gram", "jamon", ["a hundred kilos of ham", "ten grams of ham", "a thousand grams of ham"], "cent grammes de jambon"],
+  ["200 g cheese", "two hundred grams of cheese", "gram", "queso", ["twelve grams of cheese", "two hundred kilos of cheese", "two kilos of cheese"], "deux cents grammes de fromage"],
+  ["250 g ham", "two hundred and fifty grams of ham", "gram", "jamon", ["twenty-five grams of ham", "two hundred and fifty kilos of ham", "two and a half kilos of ham"], "deux cent cinquante grammes de jambon"],
+  ["500 g rice", "five hundred grams of rice", "gram", "arroz", ["fifty grams of rice", "five hundred kilos of rice", "five kilos of rice"], "cinq cents grammes de riz"],
+  ["2 pints milk", "two pints of milk", "pint", "leche", ["two pint of milk", "twelve pints of milk", "two kilos of milk"], "deux pintes de lait"],
+  ["4 pints milk", "four pints of milk", "pint", "leche", ["fourteen pints of milk", "four pint of milk", "four kilos of milk"], "quatre pintes de lait"],
+  ["1 l orange juice", "a litre of orange juice", "litre", "zumo", ["a kilo of orange juice", "eleven litres of orange juice", "half a litre of orange juice"], "un litre de jus d'orange"],
+  ["2 l water", "two litres of water", "litre", "agua", ["twelve litres of water", "two kilos of water", "half a litre of water"], "deux litres d'eau"],
+  ["1 doz eggs", "a dozen eggs", "dozen", "huevos", ["a dozen of eggs", "twelve dozen eggs", "a kilo of eggs"], "une douzaine d'œufs"],
+  ["½ doz eggs", "half a dozen eggs", "dozen", "huevos", ["half a dozen of eggs", "a dozen eggs", "six dozen eggs"], "une demi-douzaine d'œufs"]
+] : [
+  ["2 lb apples", "two pounds of apples", "pound", "manzanas", ["two pound of apples", "twelve pounds of apples", "two gallons of apples"], "deux livres de pommes"],
+  ["1 lb tomatoes", "a pound of tomatoes", "pound", "tomates", ["one pounds of tomatoes", "ten pounds of tomatoes", "a gallon of tomatoes"], "une livre de tomates"],
+  ["½ lb cheese", "half a pound of cheese", "pound", "queso", ["a pound of cheese", "five pounds of cheese", "half a gallon of cheese"], "une demi-livre de fromage"],
+  ["3 lb potatoes", "three pounds of potatoes", "pound", "patatas", ["thirteen pounds of potatoes", "three pound of potatoes", "three gallons of potatoes"], "trois livres de pommes de terre"],
+  ["2 lb rice", "two pounds of rice", "pound", "arroz", ["two pounds rice", "twenty pounds of rice", "two gallons of rice"], "deux livres de riz"],
+  ["1 lb ham", "a pound of ham", "pound", "jamon", ["a pound ham", "ten pounds of ham", "a gallon of ham"], "une livre de jambon"],
+  ["1 gal milk", "a gallon of milk", "gallon", "leche", ["a gallon milk", "ten gallons of milk", "a pound of milk"], "un gallon de lait"],
+  ["2 gal water", "two gallons of water", "gallon", "agua", ["two gallon of water", "twelve gallons of water", "two pounds of water"], "deux gallons d'eau"],
+  ["½ gal orange juice", "half a gallon of orange juice", "gallon", "zumo", ["a gallon of orange juice", "half a pound of orange juice", "five gallons of orange juice"], "un demi-gallon de jus d'orange"],
+  ["1 doz eggs", "a dozen eggs", "dozen", "huevos", ["a dozen of eggs", "twelve dozen eggs", "a gallon of eggs"], "une douzaine d'œufs"],
+  ["2 doz eggs", "two dozen eggs", "dozen", "huevos", ["two dozens of eggs", "two dozens eggs", "twelve dozen eggs"], "deux douzaines d'œufs"]
+];
+const EN_UNITES = GB ? ["kilo", "gram", "litre", "pint", "dozen"] : ["pound", "gallon", "dozen"];
+// les unites a completer (« two ___ of apples ») : [singulier, pluriel] ; un litre et une pint ne se servent pas de
+// leurre l'un a l'autre (deux mesures justes pour le lait)
+const EN_FORMES = GB ? [["kilo", "kilos"], ["gram", "grams"], ["litre", "litres"], ["pint", "pints"], ["dozen", "dozen"]] : [["pound", "pounds"], ["gallon", "gallons"], ["dozen", "dozen"]];
+const EN_VOIS_U = {litre: "pint", pint: "litre"};
+// LE CAFE : ce qu'on dit, ce qui se passe, le mot du corpus, et le francais
+const EN_CAFE = {
+  carta:    {dit: "Could we have the menu, please?", fait: "Mark asks for the menu.", mot: {mot: "menu", genre: ""}, fr: ["On pourrait avoir la carte, s'il vous plaît ?", "Mark demande la carte."]},
+  pedir:    {dit: "I'd like a coffee, please.", fait: "Mark orders a coffee.", mot: {mot: "order", cat: "verbe"}, fr: ["Je voudrais un café, s'il vous plaît.", "Mark commande un café."]},
+  camarera: {dit: GB ? "Here you are." : "Here you go.", fait: "The waitress brings the coffee.", mot: {mot: "waitress", genre: ""}, fr: ["Voilà.", "La serveuse apporte le café."]},
+  cuenta:   {dit: "Can I have the " + (GB ? "bill" : "check") + ", please?", fait: "Mark asks for the " + (GB ? "bill." : "check."), mot: {mot: GB ? "bill" : "check", genre: ""}, fr: ["Je peux avoir l'addition, s'il vous plaît ?", "Mark demande l'addition."]},
+  pagar:    {dit: "Can I pay by card?", fait: "Mark pays by card.", mot: {mot: "pay", cat: "verbe"}, fr: ["Je peux payer par carte ?", "Mark paie par carte."]},
+  propina:  {dit: "This is for you.", fait: "Tomás leaves a tip.", mot: {mot: "tip", genre: ""}, fr: ["C'est pour vous.", "Tomás laisse un pourboire."]}
+};
+const EN_ROLES = {Javier: {mot: "waiter", art: "the waiter", fr: "le serveur"}, Ines: {mot: "waitress", art: "the waitress", fr: "la serveuse"},
+                  Mark: {mot: "customer", art: "a customer", fr: "un client"}, Tomas: {mot: "customer", art: "a customer", fr: "un client"}};
+const EN_ROLES_CHOIX = {m: ["the waiter", "a customer", "the cook"], f: ["the waitress", "a customer", "the cook"]};
+const EN_ROLES_TR = {m: {"the waiter": "le serveur", "a customer": "un client", "the cook": "le cuisinier"}, f: {"the waitress": "la serveuse", "a customer": "une cliente", "the cook": "la cuisinière"}};
+// LA CARTE d'un cafe de Boston, en dollars (Londres : en livres). Fries / chips : un pluriel sans article (« Carmen
+// has a coffee and fries »), « two orders of fries » a deux
+const EN_CARTE = [
+  {cle: "cafe", mot: "coffee", genre: "", carte: "Coffee", un: "a coffee", deux: "two coffees", prix: GB ? 280 : 250, fr: ["un café", "deux cafés"]},
+  {cle: "te", mot: "tea", genre: "", carte: "Tea", un: "a tea", deux: "two teas", prix: GB ? 220 : 225, fr: ["un thé", "deux thés"]},
+  {cle: "zumo", mot: "juice", genre: "", carte: "Orange juice", un: "an orange juice", deux: "two orange juices", prix: GB ? 290 : 375, fr: ["un jus d'orange", "deux jus d'orange"]},
+  {cle: "cerveza", mot: "beer", genre: "", carte: "Beer", un: "a beer", deux: "two beers", prix: GB ? 520 : 700, fr: ["une bière", "deux bières"]},
+  {cle: "tarta", mot: "cake", genre: "", carte: "Cake (slice)", un: "a piece of cake", deux: "two pieces of cake", prix: GB ? 350 : 450, fr: ["une part de gâteau", "deux parts de gâteau"]},
+  {cle: "bocadillo", mot: "sandwich", genre: "", carte: "Sandwich", un: "a sandwich", deux: "two sandwiches", prix: GB ? 450 : 850, fr: ["un sandwich", "deux sandwichs"]},
+  {cle: "frites", mot: GB ? "chips" : "fries", genre: "", carte: GB ? "Chips" : "Fries", un: GB ? "chips" : "fries", deux: GB ? "two portions of chips" : "two orders of fries", pl: true, prix: GB ? 300 : 350, fr: ["des frites", "deux portions de frites"]},
+  {cle: "helado", mot: "ice cream", genre: "", carte: "Ice cream", un: "an ice cream", deux: "two ice creams", prix: GB ? 320 : 400, fr: ["une glace", "deux glaces"]}
+];
+// les prix en lettres pour la voix : « seven dollars and twenty-five cents » ; a Londres « four pounds eighty »
+const EN_N = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+              "sixteen", "seventeen", "eighteen", "nineteen"];
+const EN_D = {2: "twenty", 3: "thirty", 4: "forty", 5: "fifty", 6: "sixty", 7: "seventy", 8: "eighty", 9: "ninety"};
+const nombreEn = n => n < 20 ? EN_N[n] : EN_D[Math.floor(n / 10)] + (n % 10 ? "-" + EN_N[n % 10] : "");
+function prixEnMots(c){
+  const d = Math.floor(c / 100), ct = c % 100;
+  if (GB) return (d ? nombreEn(d) + (d === 1 ? " pound" : " pounds") : "") + (ct ? (d ? " " : "") + nombreEn(ct) + (d ? "" : " pence") : "");
+  return (d ? nombreEn(d) + (d === 1 ? " dollar" : " dollars") : "") + (ct ? (d ? " and " : "") + nombreEn(ct) + (ct === 1 ? " cent" : " cents") : "");
+}
+// le prix en francais : « 7,25 $ », « 4,80 £ »
+const prixFr = c => Math.floor(c / 100) + "," + String(c % 100).padStart(2, "0") + (GB ? " £" : " $");
+const listeEn = items => { const t = items.map(([it, n]) => n > 1 ? it.deux : it.un); return t.length < 2 ? t[0] : t.slice(0, -1).join(", ") + " and " + t[t.length - 1]; };
+const EN = {
+  bravo: "Well done!", vrai: "True", faux: "False",
+  // « Ben loves cake. », « Carmen doesn't like lemons. », « Javier doesn't like the soup. »
+  aime: g => nom(g.p) + " " + EN_VERBE[g.r] + " " + (ea(g.a).gen || ea(g.a).the) + ".",
+  // like + -ing : « Mark likes drinking coffee. », « Pablo loves eating pizza. »
+  ing: g => nom(g.p) + " " + EN_VERBE[g.r] + (ea(g.a).boire ? " drinking " : " eating ") + ea(g.a).gen + ".",
+  // le gout, un verbe d'etat : « The lemon tastes sour. », « The strawberries taste sweet. »
+  saveur: (k, s) => maj(ea(k).the) + (ea(k).pl ? " taste " : " tastes ") + EN_SAV[s || saveurDe(k)] + ".",
+  // l'action, en ce moment : « Carmen is tasting something sour. », « Look! Carmen is tasting the lemon. »
+  probar: (p, s) => nom(p) + " is tasting something " + EN_SAV[s] + ".",
+  goute: g => "Look! " + nom(g.p) + " is tasting " + ea(g.a).the + ".",
+  // ce que dit la personne : « It's delicious! », « It's too sour! », « Yuck! It's disgusting! », « I don't like tomatoes. »
+  dit(k, r){ const pl = ea(k).pl;
+    if (POSITIF(r)) return ilsEn(pl) + " delicious!";
+    if (r === "nada") return this.asco(k);
+    if (saveurDe(k)) return this.trop(k, saveurDe(k));
+    return "I don't like " + ea(k).gen + "."; },
+  trop: (k, s) => ilsEn(ea(k).pl) + " too " + EN_SAV[s] + "!",
+  asco: k => "Yuck! " + ilsEn(ea(k).pl) + " disgusting!",
+  bueno: k => ilsEn(ea(k).pl) + " really good!",
+  cite: (p, t) => nom(p) + " says: “" + t + "”",
+  // too + adjectif : « Carmen doesn't like the lemon. It's too sour. » ; « Tomás likes lemons. They're sour, but not too sour. »
+  tropPhrase(g, mot){ const k = g.a, s = EN_SAV[saveurDe(k)], m = mot || "too";
+    return g.r === "no" ? nom(g.p) + " doesn't like " + ea(k).the + ". " + ilsEn(ea(k).pl) + " " + m + " " + s + "."
+                        : nom(g.p) + " " + EN_VERBE[g.r] + " " + ea(k).gen + ". " + ilsEn(genPl(k)) + " " + s + ", but not " + m + " " + s + "."; },
+  quienSaveur: s => "Who is tasting something " + EN_SAV[s] + "?",
+  quienPaire: (k, neg) => "Who " + (neg ? "doesn't like " : "likes ") + ea(k).gen + "?",
+  dice: p => "What does " + nom(p) + " say?",
+  np: (c, d) => EN_CT[c].art + " " + EN_CU[d].dit,
+  cantidad: d => "This is ___ " + EN_CU[d].dit + ".",
+  queEs: "What is this?", lista: "How do you say it?",
+  // countable / uncountable : « How many eggs do you want? A dozen, please. » ; « There are some eggs in the carton. »
+  combienQ: q => "How ___ " + EN_CU[q.d].dit + " do you want?",
+  combienR: q => "How " + (EN_CU[q.d].n ? "many " : "much ") + EN_CU[q.d].dit + " do you want? " + EN_CT[q.c].court + ", please.",
+  someQ: q => "There ___ " + EN_CU[q.d].dit + " " + EN_OU[q.id][0] + ".",
+  someR: q => "There " + (q.c === "poco" ? "is a little " : EN_CU[q.d].n ? "are some " : "is some ") + EN_CU[q.d].dit + " " + EN_OU[q.id][0] + ".",
+  rol: p => nom(p) + " is ___.",
+  carte: "Menu", listeTitre: "Shopping list",
+  // la commande : « Carmen has a coffee and a piece of cake. How much is that? »
+  commande(qui, items, cuenta){ const s = qui.map(nom).join(" and "), pl = qui.length > 1;
+    return cuenta ? s + (pl ? " ask" : " asks") + " for the " + (GB ? "bill" : "check") + ": " + listeEn(items) + ". How much is that?"
+                  : s + (pl ? " have " : " has ") + listeEn(items) + ". How much is that?"; },
+  cuesta: it => it.pl ? "How much are the " + it.un + "?" : "How much is " + it.un + "?",
+  seul: (it, p) => (it.pl ? "The " + it.un + " are " : maj(it.un) + " is ") + prix(p) + ".",
+  seulDit: (it, p) => (it.pl ? "The " + it.un + " are " : maj(it.un) + " is ") + prixEnMots(p) + ".",
+  total: p => "That's " + prix(p) + ".", totalDit: p => "That's " + prixEnMots(p) + ".",
+  // commander poliment : « I'd like a coffee, please. », « Can I have a piece of cake, please? » ; et ce qu'on aime en
+  // general, sans would : « I like coffee. I drink it every morning. »
+  poliA: it => "I'd like " + it.un + ", please.",
+  poliB: it => "Can I have " + it.un + ", please?",
+  poliC: (g, sujet) => (sujet || (g.r === "encanta" ? "I love" : "I like")) + " " + ea(g.a).gen + ". " + (ea(g.a).boire ? "I drink it every morning." : genPl(g.a) ? "I eat them every week." : "I eat it every week.")
+};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
+// « un café y un trozo de tarta », « einen Kaffee und ein Stück Kuchen » : items = [[article de la carte, nombre]]
+function liste(items, l){
+  const t = items.map(([it, n]) => n > 1 ? it.deux : it.un);
+  return t.length < 2 ? t[0] : t.slice(0, -1).join(", ") + (l === "de" ? " und " : " y ") + t[t.length - 1];
+}
+
+// ---------- les prix : « 4,90 € » a l'ecran, en lettres dans la voix (regle du 28 oct. : les nombres se disent) ----------
+const prix = c => APPRENDRE === "en" ? (GB ? "£" : "$") + Math.floor(c / 100) + "." + String(c % 100).padStart(2, "0")
+                                     : Math.floor(c / 100) + "," + String(c % 100).padStart(2, "0") + " €";
+const ES_N = ["cero", "un", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce", "quince",
+              "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte", "veintiún", "veintidós", "veintitrés", "veinticuatro", "veinticinco",
+              "veintiséis", "veintisiete", "veintiocho", "veintinueve"];
+const ES_D = {3: "treinta", 4: "cuarenta", 5: "cincuenta", 6: "sesenta", 7: "setenta", 8: "ochenta", 9: "noventa"};
+const DE_N = ["null", "ein", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwölf", "dreizehn", "vierzehn",
+              "fünfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn"];
+const DE_D = {2: "zwanzig", 3: "dreißig", 4: "vierzig", 5: "fünfzig", 6: "sechzig", 7: "siebzig", 8: "achtzig", 9: "neunzig"};
+function nombre(n, l){
+  if (l === "es"){ if (n < 30) return ES_N[n]; const d = Math.floor(n / 10), u = n % 10; return ES_D[d] + (u ? " y " + (u === 1 ? "un" : ES_N[u]) : ""); }
+  if (n < 20) return DE_N[n]; const d = Math.floor(n / 10), u = n % 10; return (u ? (u === 1 ? "ein" : DE_N[u]) + "und" : "") + DE_D[d];
+}
+// es : « cuatro euros con noventa », « un euro con veinte » ; de : « vier Euro neunzig », « ein Euro zwanzig »
+function prixEnLettres(c){
+  const e = Math.floor(c / 100), ct = c % 100;
+  if (APPRENDRE === "es") return nombre(e, "es") + (e === 1 ? " euro" : " euros") + (ct ? " con " + nombre(ct, "es").replace(/ un$/, " uno").replace(/^un$/, "uno") : "");
+  return nombre(e, "de") + " Euro" + (ct ? " " + nombre(ct, "de").replace(/^ein$/, "eins") : "");
+}
+
+// ---------- la traduction dans la langue d'interface (Jacques, 3 nov. 2026) ----------
+// Sous la phrase de la decouverte, et APRES la reponse, sous la phrase juste -- jamais avant, elle donnerait la
+// reponse. En francais, anglais et portugais (et en allemand pour qui apprend l'espagnol), la phrase entiere, faite
+// avec les MEMES choix que la question (la meme personne, le meme aliment, la meme reaction) ; ailleurs, le mot et sa
+// traduction du corpus (manger/gloses.json).
+// « de » + voyelle ou h muet -> « d' » : quelque chose d'épicé, une douzaine d'œufs, 1 kg d'oranges, 1 l d'huile
+const deFr = (a, x) => (/de $/.test(a) && /^[aeiouyàâéèêëîïôœûh]/i.test(x)) ? a.replace(/de $/, "d'") + x : a + x;
+const SAV_TR = {fr: {dulce: "sucré", salado: "salé", picante: "épicé", amargo: "amer", acido: "acide"},
+                en: {dulce: "sweet", salado: "salty", picante: "spicy", amargo: "bitter", acido: "sour"},
+                pt: {dulce: "doce", salado: "salgado", picante: "apimentado", amargo: "amargo", acido: "azedo"}};
+const PT_ADORA = {tarta: "bolo", chocolate: "chocolate", pizza: "pizza"};
+const ROLES_TR = {camarero: {fr: "le serveur", en: "the waiter", pt: "o garçom", de: "der Kellner"}, camarera: {fr: "la serveuse", en: "the waitress", pt: "a garçonete", de: "die Kellnerin"},
+                  cliente: {fr: "un client", en: "a customer", pt: "um cliente", de: "ein Gast"}, Kellner: {fr: "le serveur", en: "the waiter", pt: "o garçom"}, Kellnerin: {fr: "la serveuse", en: "the waitress", pt: "a garçonete"}};
+const TRADS = {
+  fr: {
+    aime(g){ const x = D.tradAliments[g.a].fr[0], n = nom(g.p); return {encanta: n + " adore " + x + ".", gusta: n + " aime " + x + ".", no: n + " n'aime pas " + x + ".", nada: n + " n'aime pas du tout " + x + "."}[g.r]; },
+    dit(k, r){ if (POSITIF(r)) return "C'est délicieux !"; if (r === "nada") return "C'est dégoûtant !"; if (saveurDe(k)) return "C'est trop " + SAV_TR.fr[saveurDe(k)] + " !"; return "Je n'aime pas " + D.tradAliments[k].fr[0] + "."; },
+    vous: "Ça fait ", et: " et ", prend: (n, pl) => pl ? " prennent " : " prend ", addition: pl => pl ? " demandent l'addition : " : " demande l'addition : ", cuesta: (x, p) => maj(x) + " coûte " + p + ".",
+    prix: c => prix(c)
+  },
+  en: {
+    aime(g){ const x = D.tradAliments[g.a].en[0], n = nom(g.p); return {encanta: n + " loves " + x + ".", gusta: n + " likes " + x + ".", no: n + " doesn't like " + x + ".", nada: n + " doesn't like " + x + " at all."}[g.r]; },
+    dit(k, r){ if (POSITIF(r)) return "Delicious!"; if (r === "nada") return "Disgusting!"; if (saveurDe(k)) return "It's too " + SAV_TR.en[saveurDe(k)] + "!"; return "I don't like " + D.tradAliments[k].en[0] + "."; },
+    vous: "That's ", et: " and ", prend: (n, pl) => pl ? " have " : " has ", addition: pl => " ask" + (pl ? "" : "s") + " for the bill: ", cuesta: (x, p) => maj(x) + " costs " + p + ".",
+    prix: c => "€" + Math.floor(c / 100) + "." + String(c % 100).padStart(2, "0")
+  },
+  pt: {
+    aime(g){ const x = D.tradAliments[g.a].pt[0], n = nom(g.p); return {encanta: n + " adora " + (PT_ADORA[g.a] || x.replace(/^d[eoa]s? /, "")) + ".", gusta: n + " gosta " + x + ".", no: n + " não gosta " + x + ".", nada: n + " não gosta nada " + x + "."}[g.r]; },
+    dit(k, r){ if (POSITIF(r)) return "Que delícia!"; if (r === "nada") return "Que nojo!"; if (saveurDe(k)) return "Está " + SAV_TR.pt[saveurDe(k)] + " demais!"; return "Não gosto " + D.tradAliments[k].pt[0] + "."; },
+    vous: "São ", et: " e ", prend: (n, pl) => pl ? " pedem " : " pede ", addition: pl => pl ? " pedem a conta: " : " pede a conta: ", cuesta: (x, p) => maj(x) + " custa " + p + ".",
+    prix: c => prix(c)
+  },
+  // l'allemand, langue d'interface de l'espagnol seulement : la phrase allemande elle-meme, faite par DE
+  de: {
+    aime: g => DE.aime(g), dit: (k, r) => DE.dit(k, r),
+    vous: "Das macht ", et: " und ", prend: (n, pl) => pl ? " nehmen " : " nimmt ", addition: pl => pl ? " möchten die Rechnung: " : " möchte die Rechnung: ",
+    // la carte donne l'accusatif de la commande (« einen Kaffee ») ; ici c'est le sujet : « Ein Kaffee kostet 1,50 €. »
+    cuesta: (x, p) => maj(x.replace(/^einen /, "ein ")) + " kostet " + p + ".",
+    prix: c => prix(c)
+  }
+};
+const TR = (LANGUE === APPRENDRE) ? null : (TRADS[LANGUE] && (LANGUE !== "de" || APPRENDRE === "es") ? TRADS[LANGUE] : null);
+// les articles de la carte dans la langue d'interface ; l'allemand appris a une Brezel a la place du bocadillo
+const trCarte = (cle, n) => { const t = (APPRENDRE === "de" && D.tradCarteDe[cle] && D.tradCarteDe[cle][LANGUE]) || D.tradCarte[cle][LANGUE]; return t[n > 1 ? 1 : 0]; };
+const trListe = (items) => { const t = items.map(([it, n]) => trCarte(it.cle, n)); return t.length < 2 ? t[0] : t.slice(0, -1).join(", ") + TR.et + t[t.length - 1]; };
+const trQte = (c, d) => { let a = D.tradContenants[c][LANGUE], x = D.contenus[d].tr[LANGUE];
+  if (LANGUE === "de") return maj(DE.np(c, d)) + ".";
+  return maj(LANGUE === "fr" ? deFr(a, x) : a + x) + "."; };
+// ce que la question montre, pour la traduire
+let sensQ = null;
+function traduire(q){
+  if (!TR || !q) return null;
+  if (APPRENDRE === "en") return traduireEn(q);
+  if (q.aime) return TR.aime(q.aime);
+  if (q.probar){ const s = saveurDe(q.probar.a), n = nom(q.probar.p);
+    if (LANGUE === "de") return n + " probiert etwas " + D.saveurs[s].etwas + ".";
+    if (LANGUE === "fr") return n + " goûte " + deFr("quelque chose de ", SAV_TR.fr[s]) + ".";
+    return n + (LANGUE === "en" ? " is tasting something " : " prova algo ") + SAV_TR[LANGUE][s] + "."; }
+  if (q.saveur) return LANGUE === "de" ? DE.saveur(q.saveur) : D.tradAliments[q.saveur][LANGUE][1] + " " + D.tradAliments[q.saveur][LANGUE][2] + ".";
+  if (q.dit) return TR.dit(q.dit.a, q.dit.r);
+  if (q.qte) return trQte(q.qte.c, q.qte.d);
+  if (q.liste){ const [ecrit, , u, prod] = q.liste, p = D.produits[prod][LANGUE];
+    if (LANGUE === "de") return APPRENDRE === "de" ? ecrit : ecrit.split(" ").slice(0, 2).join(" ") + " " + p;
+    const tete = ecrit.split(" ")[0], unite = D.unites[u] ? D.unites[u][LANGUE] : ecrit.split(" ")[1] + (LANGUE === "en" ? " of" : " de");
+    return tete + " " + (LANGUE === "fr" ? deFr(unite + " ", p) : unite + " " + p); }
+  if (q.cafe) return D.cafe.find(m => m.id === q.cafe.id).tr[LANGUE][q.cafe.fait ? 1 : 0];
+  if (q.role) return nom(q.role.p) + (LANGUE === "fr" ? " est " : LANGUE === "en" ? " is " : LANGUE === "pt" ? " é " : " ist ") + ROLES_TR[q.role.mot][LANGUE] + ".";
+  if (q.commande){ const c = q.commande, s = c.qui.map(nom).join(TR.et);
+    return s + (c.cuenta ? TR.addition(c.qui.length > 1) : TR.prend(s, c.qui.length > 1)) + trListe(c.items) + ". " + TR.vous + TR.prix(c.total) + "."; }
+  if (q.cuesta) return TR.cuesta(trCarte(q.cuesta.cle, 1), TR.prix(q.cuesta.p));
+  return null;
+}
+// L'ANGLAIS, traduit en francais (son interface, la seule) : les memes choix que la phrase anglaise, ses tournures a
+// elle (« Lucas déteste le poisson. », « Le citron a un goût acide. », « Ça fait 7,25 $. »)
+const FR_VERBE = {encanta: "adore", gusta: "aime", no: "n'aime pas", nada: "déteste"};
+const SAV_FR = {dulce: "sucré", salado: "salé", picante: "épicé", amargo: "amer", acido: "acide"};
+const voyelle = s => /^[aeiouyéèêœh]/i.test(s);
+const deFrEn = s => (voyelle(s) ? "d'" : "de ") + s;
+const leFr = k => ea(k).frLe.charAt(0).toLowerCase() + ea(k).frLe.slice(1);
+const qteFr = (c, d) => { const a = EN_CT[c].fr, x = EN_CU[d].fr; return maj((/de $/.test(a) && voyelle(x) ? a.replace(/de $/, "d'") : a) + x) + "."; };
+const carteFr = (cle, n) => EN_CARTE.find(x => x.cle === cle).fr[n > 1 ? 1 : 0];
+const ditFr = (k, r) => POSITIF(r) ? "C'est délicieux !" : r === "nada" ? "Beurk ! C'est dégoûtant !" : saveurDe(k) ? "C'est trop " + SAV_FR[saveurDe(k)] + " !" : "Je n'aime pas " + ea(k).fr + ".";
+function traduireEn(q){
+  if (LANGUE !== "fr" || !q) return null;
+  if (q.aime) return nom(q.aime.p) + " " + FR_VERBE[q.aime.r] + " " + ea(q.aime.a).fr + ".";
+  if (q.ing) return nom(q.ing.p) + " " + FR_VERBE[q.ing.r] + " " + ea(q.ing.a).ing + ".";
+  if (q.saveur) return ea(q.saveur).frLe + (ea(q.saveur).pl ? " ont" : " a") + " un goût " + SAV_FR[saveurDe(q.saveur)] + ".";
+  if (q.probar) return nom(q.probar.p) + " goûte quelque chose " + deFrEn(SAV_FR[saveurDe(q.probar.a)]) + ".";
+  if (q.goute) return "Regarde ! " + nom(q.goute.p) + " goûte " + leFr(q.goute.a) + ".";
+  if (q.dit) return ditFr(q.dit.a, q.dit.r);
+  if (q.trop){ const g = q.trop, s = SAV_FR[saveurDe(g.a)];
+    return g.r === "no" ? nom(g.p) + " n'aime pas " + leFr(g.a) + " : c'est trop " + s + "." : nom(g.p) + " " + FR_VERBE[g.r] + " " + ea(g.a).fr + " : c'est " + s + ", mais pas trop."; }
+  if (q.qte) return qteFr(q.qte.c, q.qte.d);
+  if (q.combien){ const x = q.combien, cu = EN_CU[x.d];
+    return x.how ? "Combien " + deFrEn(cu.fr) + " voulez-vous ? " + EN_CT[x.c].frC + ", s'il vous plaît."
+                 : "Il y a " + (x.c === "poco" ? "un peu de " + cu.fr : cu.frDu) + " " + EN_OU[x.id][1] + "."; }
+  if (q.liste) return q.liste[5];
+  if (q.cafe) return EN_CAFE[q.cafe.id].fr[q.cafe.fait ? 1 : 0];
+  if (q.role) return nom(q.role.p) + " est " + EN_ROLES[q.role.p].fr + ".";
+  if (q.commande){ const c = q.commande, s = c.qui.map(nom).join(" et "), pl = c.qui.length > 1, t = c.items.map(([it, n]) => carteFr(it.cle, n));
+    const l = t.length < 2 ? t[0] : t.slice(0, -1).join(", ") + " et " + t[t.length - 1];
+    return s + (c.cuenta ? (pl ? " demandent l'addition : " : " demande l'addition : ") : (pl ? " prennent " : " prend ")) + l + ". Ça fait " + prixFr(c.total) + "."; }
+  if (q.cuesta){ const it = EN_CARTE.find(x => x.cle === q.cuesta.cle);
+    return it.pl ? "Les frites coûtent " + prixFr(q.cuesta.p) + "." : maj(it.fr[0]) + " coûte " + prixFr(q.cuesta.p) + "."; }
+  if (q.poli){ const p = q.poli;
+    if (p.it) return p.b ? "Est-ce que je peux avoir " + p.it.fr[0] + ", s'il vous plaît ?" : "Je voudrais " + p.it.fr[0] + ", s'il vous plaît.";
+    return (p.g.r === "encanta" ? "J'adore " : "J'aime ") + ea(p.g.a).fr + ". " + (ea(p.g.a).boire ? "J'en bois tous les matins." : "J'en mange toutes les semaines."); }
+  return null;
+}
+let GLOSES = {};
+fetch("manger/gloses.json?v=1").then(r => r.json()).then(d => { GLOSES = d[APPRENDRE] || {}; }).catch(() => {});
+// la glose du mot de la question : « el limón — ليمون », « süß — шоколадний »
+function glose(m){
+  if (!m) return null;
+  const cle = ((m.genre || "") + " " + m.mot).trim(), g = (GLOSES[cle] || GLOSES[m.mot] || {})[LANGUE];
+  return g ? cle + " — " + g : null;
+}
+const traduction = t => '<span class="trad" dir="auto">' + t + '</span>';
+
+// ---------- les images et la voix ----------
+const img = id => "manger/" + id + ".webp";
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+// LA VOIX (themes/voix.js) : le fichier enregistre s'il existe, sinon la voix du telephone. Dans la decouverte, la
+// fiche touchee ; apres une reponse, LA PHRASE AFFICHEE, EN ENTIER (Jacques, 3 nov. 2026, « Oui, partout », comme
+// Decrire depuis la v1087) : « A Carmen no le gusta el limón. », « Una botella de agua. », « La cuenta, por favor. ».
+// Une phrase a prix se dit en lettres (« Son cuatro euros con noventa. ») : le telephone hacherait « 4,90 € ».
+let dire = texte => { if (texte) Voix.dire(latam(texte)); };
+// Les phrases a prix (« Son cuatro euros con noventa. ») passent par la voix prise AU CHARGEMENT : l'inventaire des voix
+// (visuel/voix_themes.py) n'ecoute que Voix.dire, et ces phrases-la, des centaines de totaux, ne s'enregistrent pas --
+// le telephone les dit en lettres. Voulu, pas un oubli.
+const direPrix = (d => texte => { if (texte) d(latam(texte)); })(Voix.dire);
+const motCle = m => !m ? null : (m.genre ? m.genre + " " : "") + m.mot;
+// TOUT CE QUE LA PAGE PEUT DIRE, pour l'inventaire des voix a enregistrer (visuel/voix_themes.py) : la decouverte et
+// chaque phrase juste qu'une question peut afficher. Sauf les phrases a prix (la carte, l'addition) : des centaines
+// de totaux, qui restent a la voix du telephone, lus en lettres.
+// L'ANGLAIS : la decouverte et chaque phrase juste que ses sortes peuvent afficher (sans les phrases a prix, comme en
+// espagnol et en allemand)
+let PH_EN = null;
+function phrasesEn(){
+  if (PH_EN) return PH_EN;
+  PH_EN = {};
+  GOUTS().forEach(g => { PH_EN[g.id] = {texte: EN.aime(g)}; });
+  QTES().forEach(q => { PH_EN[q.id] = {texte: maj(EN.np(q.c, q.d)) + "."}; });
+  CAFE().forEach(m => { PH_EN["cafe-" + m.id] = {texte: EN_CAFE[m.id].dit}; });
+  return PH_EN;
+}
+function textesAVoixEn(){
+  const out = Object.values(phrasesEn()).map(x => x.texte);
+  GOUTS().forEach(g => {
+    out.push(EN.dit(g.a, g.r), EN.cite(g.p, EN.dit(g.a, g.r)), EN.goute(g));
+    if (ea(g.a).gen) out.push(EN.ing(g));
+    if (POSITIF(g.r) && ea(g.a).gen) out.push(EN.poliC(g));
+    if (saveurDe(g.a)) out.push(EN.saveur(g.a), EN.probar(g.p, saveurDe(g.a)), EN.tropPhrase(g));
+  });
+  QTES().forEach(q => { out.push(EN.someR(q)); if (q.c !== "poco") out.push(EN.combienR(q)); });
+  EN_LISTE.forEach(x => out.push(x[1], maj(x[1]) + "."));
+  CAFE().forEach(m => out.push(EN_CAFE[m.id].dit, EN_CAFE[m.id].fait));
+  Object.keys(EN_ROLES).forEach(p => out.push(EN.rol(p).replace("___", EN_ROLES[p].art)));
+  EN_CARTE.forEach(it => out.push(EN.poliA(it), EN.poliB(it)));
+  return [...new Set(out.filter(Boolean))];
+}
+function textesAVoix(){
+  if (APPRENDRE === "en") return textesAVoixEn();
+  const ph = D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"], out = Object.values(ph).map(x => x.texte);
+  GOUTS().forEach(g => {
+    out.push(L.aime(g), L.dit(g.a, g.r), APPRENDRE === "es" ? nom(g.p) + " dice: «" + L.dit(g.a, g.r) + "»" : nom(g.p) + " sagt: „" + L.dit(g.a, g.r) + "“");
+    if (APPRENDRE === "de") out.push(DE.schmecktPhrase(g), DE.mag(g));
+    const s = saveurDe(g.a);
+    if (s) out.push(L.saveur(g.a), APPRENDRE === "es" ? nom(g.p) + " prueba algo " + D.saveurs[s].es[0] + "." : nom(g.p) + " probiert etwas " + D.saveurs[s].etwas + ".");
+  });
+  QTES().forEach(q => out.push(maj(L.np(q.c, q.d)) + "."));
+  D.liste[APPRENDRE].forEach(x => out.push(x[1], maj(x[1]) + "."));
+  CAFE().forEach(m => out.push(m[APPRENDRE].dit, m[APPRENDRE].fait));
+  Object.keys(D.roles).forEach(p => { const r = D.roles[p][APPRENDRE]; if (r) out.push(L.rol(p).replace("___", r.genre + " " + r.mot)); });
+  return [...new Set(out.filter(Boolean).map(latam))];
+}
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
+// en persan et en arabe, chaque passage en lettres latines (« Me gusta el café ») s'isole : sinon l'algorithme bidi
+// en retourne les mots
+// (les guillemets avec : « Quisiera… » reste d'un bloc)
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.replace(/(?:« )?[A-Za-zÀ-ÿñÑßäöüÄÖÜ¡¿][A-Za-zÀ-ÿñÑßäöüÄÖÜ¡¿!?…,.' ]*[A-Za-zÀ-ÿñÑßäöüÄÖÜ!?…](?: »)?/g, m => '<span dir="ltr">' + m + '</span>');
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+let file = [], rang = 0, bons = 0, repondu = false;
+// LE MOT DE LA QUESTION (regle 3 : « un mot appris compte partout ») : juger() l'envoie, l'app fait avancer sa carte.
+// « sens » : rico est « delicieux » ici, pas « riche » (visuel/THEMES-ILLUSTRES.md).
+let motQ = null;
+// phrase : la phrase juste affichee sous la reponse ; lu : sa lecture en lettres quand elle a un prix
+function juger(ok, bonneTexte, phrase, lu){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, sens: motQ.sens || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
+  const tl = traduire(sensQ) || (TR ? null : glose(motQ));
+  if (tl) m.insertAdjacentHTML("beforeend", traduction(tl));
+  // LE MOT CHOISI, quand il est faux (Jacques, 3 nov. : « quand je dis le mauvais, on devrait avoir l'affichage
+  // traduit aussi ») : sa traduction, seulement quand elle est sure (TRAD_CHOIX, posee par la sorte)
+  if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad + '</span>');
+  if (lu) direPrix(lu); else dire(phrase || bonneTexte);
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+// TRAD_CHOIX : {option: sa traduction dans la langue d'interface}, pose par la sorte quand la traduction est sure (une
+// saveur, un contenant, une replique du cafe, ce que dit la personne) ; rien pour un prenom, un prix, vrai / faux,
+// une forme de gustar ou de mögen
+let choixFaux = null, TRAD_CHOIX = null;
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = o; if (o === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixFaux = o === bonne ? null : {texte: String(o), trad: TRAD_CHOIX && TRAD_CHOIX[o]};
+      apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// l'ecran d'une question : la consigne, une image (ou rien), l'enonce, les choix, le message
+function ecran(consigne, image, enonce, centre){
+  $("zone").innerHTML = '<p class="consigne">' + T(consigne) + '</p>' + (image || "")
+    + '<div class="enonce' + (centre ? " centre" : "") + '">' + cible(enonce) + '</div><div class="choix' + (centre ? " centre" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+// la liste de courses : la ligne ecrite EST l'enonce (une question par ligne), sur une feuille lignee ; dessous, ce
+// qu'on demande (« ¿Cómo se dice? ») ou l'affirmation a juger
+function ecranListe(consigne, ecrit, question){
+  $("zone").innerHTML = '<p class="consigne">' + T(consigne) + '</p><div class="liste"><div class="t">' + L.listeTitre + '</div><div class="l enonce" lang="' + APPRENDRE + '">'
+    + latam(ecrit) + '</div></div><div class="enonce centre">' + cible(question) + '</div><div class="choix centre" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = () => '<span class="trou" id="trou">?</span>';
+const avecTrou = s => s.replace("___", trou());
+const portrait = id => '<img class="photo" alt="" src="' + img(id) + '">';
+const large = id => '<img class="photo large" alt="" src="' + img(id) + '">';
+// des options : la bonne et jusqu'a n leurres distincts, melanges
+const options = (bonne, leurres, n) => melanger([bonne, ...melanger([...new Set(leurres)].filter(x => x !== bonne)).slice(0, n)]);
+
+// LES MOTS DU THEME (le tirage suit les mots), a la forme du corpus : chaque mot porte ce que les sortes savent en
+// faire (a : un aliment goute, s : une saveur, r : une reaction, v : un verbe, c : un contenant, d : un contenu,
+// u : une unite de la liste, cafe : un moment, role : qui est qui, m : un article de la carte). Un mot peut en
+// porter plusieurs (la tarta est goutee, pesee et sur la carte).
+let MOTS = null;
+function motsDuTheme(){
+  if (MOTS) return MOTS;
+  if (APPRENDRE === "en") return (MOTS = motsDuThemeEn());
+  const par = new Map();
+  const ajouter = (mot, g, props) => {
+    if (!mot) return;
+    const cle = mot + "|" + g;
+    if (!par.has(cle)) par.set(cle, Object.assign({mot}, g === "adjectif" || g === "verbe" ? {cat: g} : {genre: g}));
+    const w = par.get(cle);
+    for (const k in props) if (w[k] === undefined) w[k] = props[k];
+  };
+  Object.keys(D.aliments).forEach(k => ajouter(al(k).mot, al(k).genre, {a: k}));
+  Object.keys(D.saveurs).forEach(s => ajouter(APPRENDRE === "de" ? D.saveurs[s].de : D.saveurs[s].es[0], "adjectif", {s}));
+  if (APPRENDRE === "es"){
+    ajouter("rico", "adjectif", {r: "pos", sens: D.sens.es.rico}); ajouter("asqueroso", "adjectif", {r: "nada"});
+    ajouter("gustar", "verbe", {v: "gustar"}); ajouter("encantar", "verbe", {v: "encantar"}); ajouter("probar", "verbe", {v: "probar"});
+  } else {
+    ajouter("lecker", "adjectif", {r: "pos"}); ajouter("eklig", "adjectif", {r: "nada"});
+    ajouter("mögen", "verbe", {v: "mogen"}); ajouter("schmecken", "verbe", {v: "schmecken"}); ajouter("lieben", "verbe", {v: "lieben"}); ajouter("probieren", "verbe", {v: "probar"});
+  }
+  Object.keys(D.contenants).forEach(c => ajouter(D.contenants[c][APPRENDRE].mot, D.contenants[c][APPRENDRE].genre, {c}));
+  Object.keys(D.contenus).forEach(d => ajouter(D.contenus[d][APPRENDRE].mot, D.contenus[d][APPRENDRE].genre, {d}));
+  CAFE().forEach(m => ajouter(m[APPRENDRE].mot.mot, m[APPRENDRE].mot.genre || m[APPRENDRE].mot.cat, {cafe: m.id}));
+  Object.keys(D.roles).forEach(p => { const r = D.roles[p][APPRENDRE]; if (r) ajouter(r.mot, r.genre, {role: p}); });
+  CARTE().forEach(it => ajouter(it.mot, it.genre, {m: it.cle}));
+  const UNITES_G = APPRENDRE === "es" ? {kilo: "el", gramo: "el", litro: "el"} : {Kilo: "das", Gramm: "das", Liter: "der", Pfund: "das", Packung: "die"};
+  Object.keys(UNITES_G).forEach(u => ajouter(u, UNITES_G[u], {u}));
+  MOTS = [...par.values()];
+  return MOTS;
+}
+// LA ROTATION : un mot qui a plusieurs images (le citron : Carmen et Tomas) n'en montre jamais deux fois de suite la
+// meme. La derniere vue est retenue par mot, sur le telephone (une commodite : sans stockage, on tire au hasard).
+const CLE_VUS = "wortando_manger_" + APPRENDRE;
+let DERNIERS = {};
+try { DERNIERS = JSON.parse(localStorage.getItem(CLE_VUS) || "{}") || {}; } catch(e){}
+let vuQ = null;
+function retenir(){ if (!vuQ) return; DERNIERS[vuQ[0]] = vuQ[1]; try { localStorage.setItem(CLE_VUS, JSON.stringify(DERNIERS)); } catch(e){} }
+const sansLeDernier = (liste, cle, qui) => { const autres = liste.filter(x => qui(x) !== DERNIERS[cle]); return autres.length ? autres : liste; };
+// une degustation qui convient (filtre), jamais la meme que la derniere fois pour ce mot
+function uneDegustation(ok, w){
+  const l = GOUTS().filter(ok); if (!l.length) return null;
+  const cle = w ? w.mot : "gout", g = hasard(sansLeDernier(l, cle, x => x.id)); vuQ = [cle, g.id]; return g;
+}
+
+// ce que dit la personne qui goute : les degustations qu'un mot vise, le mot que la phrase teste, et les leurres --
+// jamais un leurre qui pourrait aussi etre vrai : qui aime ne dit pas « trop epice » de ce qu'il aime ; qui grimace
+// pourrait dire « c'est degoutant » ; qui n'aime pas ne dit ni « delicieux » ni « tres bon »
+const viseDit = w => g => !w || (w.r ? (w.r === "pos" ? POSITIF(g.r) : g.r === "nada") : w.s ? (g.r === "no" && saveurDe(g.a) === w.s) : g.a === w.a);
+const motSaveur = s => APPRENDRE === "de" ? D.saveurs[s].de : D.saveurs[s].es[0];
+function motDit(g){
+  if (POSITIF(g.r)) return APPRENDRE === "es" ? {mot: "rico", cat: "adjectif", sens: D.sens.es.rico} : {mot: "lecker", cat: "adjectif"};
+  if (g.r === "nada") return {mot: APPRENDRE === "es" ? "asqueroso" : "eklig", cat: "adjectif"};
+  return saveurDe(g.a) ? {mot: motSaveur(saveurDe(g.a)), cat: "adjectif"} : {mot: al(g.a).mot, genre: al(g.a).genre};
+}
+function leurresDit(g){
+  const autres = Object.keys(D.saveurs).filter(s => s !== saveurDe(g.a)).map(s => L.trop(g.a, s));
+  if (POSITIF(g.r)) return [L.asco(g.a), ...autres];
+  if (g.r === "nada" || !saveurDe(g.a)) return [L.dit(g.a, "gusta"), L.bueno];
+  return [L.dit(g.a, "gusta"), L.bueno, ...autres];
+}
+// LES CONTENANTS PLAUSIBLES de chaque contenu : un leurre se trompe de contenant, jamais au point d'etre absurde
+// (« ein Liter Kuchen », « ein Stück Eier ») ; et jamais un voisin qui pourrait etre vrai (une bouteille d'eau d'un litre)
+const COMPAT = {agua: ["botella", "vaso", "taza", "litro"], leche: ["botella", "vaso", "taza", "litro"], te: ["taza", "vaso", "botella", "litro"],
+                naranja: ["kilo", "docena", "lata"], tomate: ["kilo", "lata"], huevo: ["docena", "kilo"], tarta: ["trozo", "kilo"],
+                queso: ["loncha", "trozo", "kilo"], azucar: ["kilo", "poco", "taza"]};
+const autresContenants = q => (COMPAT[q.d] || []).filter(c => c !== q.c && c !== "poco" && !(D.voisinsContenants[q.c] || []).includes(c));
+// les deux moments ou l'on leve la main (la carte, l'addition) ne servent pas de leurre l'un a l'autre
+const VOIS_CAFE = {carta: ["cuenta"], cuenta: ["carta"]};
+const genreUnite = u => APPRENDRE === "es" ? "el" : ({Liter: "der", Packung: "die"}[u] || "das");
+// la carte du cafe, une ardoise a la craie
+const ardoise = () => '<div class="carteCafe"><div class="t">' + L.carte + '</div>' + CARTE().map(it => '<div class="l"><span>' + latam(it.carte) + '</span><span class="p">' + prix(it.prix) + '</span></div>').join("") + '</div>';
+
+// LES TRADUCTIONS SURES D'UN CHOIX FAUX (dans la langue d'interface) : la saveur, le contenant, la replique.
+// fr / en / pt (et de pour qui apprend l'espagnol) ecrits ici ; ailleurs, le mot du corpus relu (gloses.json).
+const tradSaveur = s => SAV_TR[LANGUE] ? SAV_TR[LANGUE][s] : LANGUE === "de" ? D.saveurs[s].de : ((GLOSES[motSaveur(s)] || {})[LANGUE] || null);
+const tradContenant = c => { const t = D.tradContenants[c][LANGUE];
+  if (t) return t.trim().replace(/ d'$/, " de");
+  if (LANGUE === "de") return D.contenants[c].de.art;
+  const k = D.contenants[c][APPRENDRE]; return k.mot ? ((GLOSES[k.genre + " " + k.mot] || {})[LANGUE] || null) : null; };
+const DIT_TR = {fr: {pos: "C'est délicieux !", bon: "C'est très bon !", asco: "C'est dégoûtant !", trop: s => "C'est trop " + SAV_TR.fr[s] + " !"},
+                en: {pos: "Delicious!", bon: "It's very good!", asco: "Disgusting!", trop: s => "It's too " + SAV_TR.en[s] + "!"},
+                pt: {pos: "Que delícia!", bon: "Está muito bom!", asco: "Que nojo!", trop: s => "Está " + SAV_TR.pt[s] + " demais!"},
+                de: {pos: "Lecker!", bon: "Sehr gut!", asco: "Igitt, das ist eklig!", trop: s => "Das ist zu " + D.saveurs[s].de + "!"}};
+// ce que dit la personne : la liste des leurres avec leur traduction (rien hors fr, en, pt, de)
+function tradLeurresDit(g){
+  const T_ = DIT_TR[LANGUE]; if (!T_ || LANGUE === APPRENDRE) return null;
+  const out = {}; out[L.dit(g.a, "gusta")] = T_.pos; out[L.bueno] = T_.bon; out[L.asco(g.a)] = T_.asco;
+  Object.keys(D.saveurs).forEach(s => { out[L.trop(g.a, s)] = T_.trop(s); });
+  return out;
+}
+
+// ---------- les exercices ----------
+// Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+const EX = {
+  // « A Carmen ___ el limón. » le gusta / no le gusta / le gustan / no le gustan -- de : « Die Zitrone ___ Carmen. »
+  aime(w){
+    const vise = g => !w || (w.a ? g.a === w.a : APPRENDRE === "es" ? (w.v === "gustar" && g.r !== "encanta") || (w.v === "encantar" && g.r === "encanta") : w.v === "schmecken");
+    if (w && !w.a && !w.v) return false;
+    const g = uneDegustation(vise, w); if (!g) return false;
+    motQ = w || (APPRENDRE === "es" ? {mot: g.r === "encanta" ? "encantar" : "gustar", cat: "verbe"} : {mot: "schmecken", cat: "verbe"}); sensQ = {aime: g};
+    const pl = al(g.a).pl;
+    let phrase, rep, leurres;
+    if (APPRENDRE === "es"){
+      rep = ES.verbe(g.r, pl); phrase = "A " + nom(g.p) + " ___ " + al(g.a).vu + ".";
+      const pos = POSITIF(g.r), base = g.r === "encanta" ? "encanta" : g.r === "nada" ? "nada" : pos ? "gusta" : "no";
+      const oppose = pos ? (g.r === "encanta" ? "no" : "no") : "gusta";
+      leurres = [ES.verbe(base, !pl), ES.verbe(oppose, pl), ES.verbe(oppose, !pl)];
+    } else {
+      // le groupe entier, dans l'ordre allemand : « Die Tomaten ___. » schmecken Peter nicht / schmeckt Peter nicht...
+      const groupe = (r, p) => (p ? "schmecken " : "schmeckt ") + nom(g.p) + ({no: " nicht", nada: " überhaupt nicht"}[r] || "");
+      rep = groupe(g.r, pl); phrase = maj(g.a === "picante" ? "das scharfe Essen" : al(g.a).nom) + " ___.";
+      const oppose = POSITIF(g.r) ? "no" : "gusta";
+      leurres = [groupe(g.r, !pl), groupe(oppose, pl), groupe(oppose, !pl)];
+    }
+    ecran("aime", portrait(g.id), avecTrou(phrase));
+    const juste = phrase.replace("___", rep);
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, juste); });
+    return true;
+  },
+  // de seulement : « Anna ___ Erdbeeren. » mag / mögen / magst ; « Peter mag ___ Tomaten. » keine / kein / keinen
+  mogen(w){
+    if (APPRENDRE !== "de") return false;
+    if (w && !w.a && w.v !== "mogen" && w.v !== "lieben") return false;
+    const vise = g => al(g.a).gen && (!w || (w.a ? g.a === w.a : w.v === "lieben" ? g.r === "encanta" : g.r !== "encanta"));
+    const g = uneDegustation(vise, w); if (!g) return false;
+    const a = al(g.a); motQ = w || {mot: g.r === "encanta" ? "lieben" : "mögen", cat: "verbe"}; sensQ = {aime: g};
+    let phrase, rep, leurres;
+    if (g.r === "encanta"){ phrase = nom(g.p) + " ___ " + a.gen + "."; rep = "liebt"; leurres = ["lieben", "liebst", "liebe"]; }
+    else if (g.r === "gusta"){ phrase = nom(g.p) + " ___ " + a.gen + "."; rep = "mag"; leurres = ["mögen", "magst", "mögt"]; }
+    else { phrase = nom(g.p) + " mag " + (g.r === "nada" ? "überhaupt " : "") + "___ " + a.gen + "."; rep = a.kein; leurres = ["keine", "kein", "keinen", "nicht"]; }
+    ecran("mogen", portrait(g.id), avecTrou(phrase));
+    const juste = phrase.replace("___", rep);
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, juste); });
+    return true;
+  },
+  // « ¿Quién prueba algo ácido? » : quatre visages, un seul goute cette saveur ; ou la paire du meme aliment :
+  // « ¿A quién no le gusta el café? » (deux visages : on ne suppose rien de ce que les autres n'ont pas goute)
+  quien(w){
+    if (w && !w.s && w.v !== "probar" && !(w.a && PAIRES.includes(w.a)) && w.v !== "gustar" && w.v !== "schmecken") return false;
+    const paire = w ? !!(w.a || w.v === "gustar" || w.v === "schmecken") : Math.random() < 0.3;
+    let pris, bon, enonce, phrase;
+    if (paire){
+      const k = w && w.a ? w.a : hasard(PAIRES), deux = GOUTS().filter(g => g.a === k), neg = Math.random() < 0.5;
+      bon = deux.find(g => POSITIF(g.r) !== neg); pris = deux; enonce = L.quienPaire(k, neg); phrase = L.aime(bon);
+      motQ = w || (APPRENDRE === "es" ? {mot: "gustar", cat: "verbe"} : {mot: "schmecken", cat: "verbe"}); sensQ = {aime: bon}; vuQ = null;
+    } else {
+      const s = w && w.s ? w.s : hasard(Object.keys(D.saveurs));
+      bon = uneDegustation(g => saveurDe(g.a) === s, w);
+      const autres = melanger(GOUTS().filter(g => saveurDe(g.a) && saveurDe(g.a) !== s));
+      pris = [bon]; const vus = new Set([s]);
+      for (const a of autres){ if (pris.length >= 4) break; if (!vus.has(saveurDe(a.a))){ vus.add(saveurDe(a.a)); pris.push(a); } }
+      enonce = L.quienSaveur(s); phrase = L.saveur(bon.a);
+      motQ = w || {mot: APPRENDRE === "de" ? D.saveurs[s].de : D.saveurs[s].es[0], cat: "adjectif"}; sensQ = {saveur: bon.a};
+    }
+    $("zone").innerHTML = '<p class="consigne">' + T("quien") + '</p><div class="enonce centre">' + cible(enonce) + '</div><div class="visages" id="choix"></div><p class="retourMsg" id="msg"></p>';
+    const ch = $("choix"); let bouton;
+    melanger(pris).forEach(g => {
+      const b = document.createElement("button"); b.type = "button";
+      b.innerHTML = '<img alt="' + nom(g.p) + '" src="' + img(g.id) + '"><span class="nom">' + nom(g.p) + '</span>';
+      if (g === bon) bouton = b;
+      b.addEventListener("click", () => {
+        ch.querySelectorAll("button").forEach(y => { y.disabled = true; if (y === bouton) y.classList.add("juste"); });
+        if (b !== bouton) b.classList.add("faux");
+        juger(g === bon, nom(bon.p), phrase);
+      });
+      ch.appendChild(b);
+    });
+    return true;
+  },
+  // « El limón es ___. » ácido / dulce / salado... -- « Die Zitrone ist ___. »
+  sabor(w){
+    if (w && !w.s && !(w.a && saveurDe(w.a))) return false;
+    const g = uneDegustation(g => saveurDe(g.a) && (!w || (w.s ? saveurDe(g.a) === w.s : g.a === w.a)), w); if (!g) return false;
+    const s = saveurDe(g.a); motQ = w || {mot: APPRENDRE === "de" ? D.saveurs[s].de : D.saveurs[s].es[0], cat: "adjectif"}; sensQ = {saveur: g.a};
+    const forme = x => APPRENDRE === "de" ? D.saveurs[x].de : formeEs(x, g.a);
+    const juste = L.saveur(g.a), sujet = APPRENDRE === "de" ? maj(g.a === "picante" ? "das Essen" : al(g.a).nom) + " " + (al(g.a).pl ? "sind" : "ist") : maj(al(g.a).court || al(g.a).vu) + " " + ES.copule(g.a);
+    ecran("sabor", portrait(g.id), avecTrou(sujet + " ___."));
+    const rep = forme(s);
+    TRAD_CHOIX = {}; Object.keys(D.saveurs).forEach(x => { TRAD_CHOIX[forme(x)] = tradSaveur(x); });
+    boutons($("choix"), options(rep, Object.keys(D.saveurs).filter(x => x !== s).map(forme), 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, juste); });
+    return true;
+  },
+  // « ¿Qué dice Carmen? » ¡Qué rico! / ¡Está demasiado ácido! / ¡Está asqueroso! -- le lien avec « Les contraires »
+  dice(w){
+    if (w && !w.r && !w.s && !w.a) return false;
+    const g = uneDegustation(viseDit(w), w); if (!g) return false;
+    const rep = L.dit(g.a, g.r);
+    motQ = w || motDit(g); sensQ = {dit: {a: g.a, r: g.r}};
+    ecran("dice", portrait(g.id), L.dice(g.p), true);
+    TRAD_CHOIX = tradLeurresDit(g);
+    boutons($("choix"), options(rep, leurresDit(g), 3), rep, ok => juger(ok, rep, null));
+    return true;
+  },
+  // « Es ___ agua. » una botella de / un vaso de... ; ou « ¿Qué es? » una botella de agua / un vaso de agua...
+  cantidad(w){
+    if (w && !(w.c && w.c !== "poco") && !w.d) return false;
+    const l = QTES().filter(q => !w || (w.c ? q.c === w.c : q.d === w.d)); if (!l.length) return false;
+    const cle = w ? w.mot : "qte", q = hasard(sansLeDernier(l, cle, x => x.id)); vuQ = [cle, q.id];
+    motQ = w || (q.c !== "poco" ? {mot: D.contenants[q.c][APPRENDRE].mot, genre: D.contenants[q.c][APPRENDRE].genre} : {mot: D.contenus[q.d][APPRENDRE].mot, genre: D.contenus[q.d][APPRENDRE].genre});
+    sensQ = {qte: q};
+    const autresC = autresContenants(q);
+    const juste = maj(L.np(q.c, q.d)) + ".";
+    if (Math.random() < 0.5){
+      const art = c => D.contenants[c][APPRENDRE].art, rep = art(q.c);
+      TRAD_CHOIX = {}; Object.keys(D.contenants).forEach(c => { TRAD_CHOIX[art(c)] = tradContenant(c); });
+      ecran("cantidad", large(q.id), avecTrou(L.cantidad(q.d)));
+      boutons($("choix"), options(rep, autresC.map(art), 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, juste); });
+    } else {
+      // des quantites plausibles, toutes fausses pour l'image : un autre contenant pour le meme contenu, ou un autre
+      // contenu dans le meme contenant (une bouteille de lait pour une bouteille d'eau)
+      const autresD = Object.keys(D.contenus).filter(d => d !== q.d && (COMPAT[d] || []).includes(q.c) && !QTES().some(x => x.c === q.c && x.d === d));
+      const rep = L.np(q.c, q.d);
+      const leurres = melanger(autresC).slice(0, 2).map(c => L.np(c, q.d)).concat(autresD.length ? [L.np(q.c, hasard(autresD))] : []);
+      if (TR) { TRAD_CHOIX = {}; Object.keys(D.contenus).forEach(d => (COMPAT[d] || []).forEach(c => { TRAD_CHOIX[L.np(c, d)] = trQte(c, d).replace(/\.$/, ""); })); }
+      ecran("cantidad", large(q.id), L.queEs, true);
+      boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(ok, rep, juste));
+    }
+    return true;
+  },
+  // la liste de courses : « 200 g queso » -> « doscientos gramos de queso » (les nombres en lettres)
+  lista(w){
+    if (w && !w.u) return false;
+    const l = D.liste[APPRENDRE].filter(x => !w || x[2] === w.u); if (!l.length) return false;
+    const x = hasard(l), [ecrit, dit, u, , faux] = x;
+    motQ = w || {mot: u, genre: genreUnite(u)}; sensQ = {liste: x}; vuQ = null;
+    ecranListe("lista", ecrit, L.lista);
+    const rep = latam(dit);
+    boutons($("choix"), options(rep, faux.map(latam), 3), rep, ok => juger(ok, rep, null));
+    return true;
+  },
+  // l'unite a completer : « 200 g queso » -> « doscientos ___ de queso » (gramos / kilos / litros) ; « zweihundert ___
+  // Käse » (Gramm / Kilo / Liter / Pfund). Le nombre reste celui de la ligne : seule l'unite change.
+  unidad(w){
+    if (w && !w.u) return false;
+    const FORMES = APPRENDRE === "es" ? [["kilo", "kilos"], ["gramo", "gramos"], ["litro", "litros"]]
+                                      : [["Kilo", "Kilo"], ["Gramm", "Gramm"], ["Liter", "Liter"], ["Pfund", "Pfund"], ["Packung", "Packungen"]];
+    const l = D.liste[APPRENDRE].filter(x => !w || x[2] === w.u); if (!l.length) return false;
+    const x = hasard(l), [ecrit, dit, u] = x, mots = dit.split(" ");
+    const i = mots.findIndex(m => FORMES.some(f => f.includes(m))); if (i < 0) return false;
+    const f = FORMES.find(f => f.includes(mots[i])), pl = f[1] === mots[i] && f[0] !== f[1] ? 1 : 0;
+    // l'article allemand (ein / eine) ne va qu'avec son unite : « eine Packung », « ein Kilo » -- pas de leurre qui jure
+    const art = APPRENDRE === "de" && i > 0 ? mots[i - 1] : null;
+    const va = g => !art || !/^ein(e)?$/.test(art) || (art === "eine") === (g[0] === "Packung");
+    const rep = mots[i], leurres = FORMES.filter(g => g !== f && va(g)).map(g => g[pl] || g[0]);
+    if (!leurres.length) return false;
+    motQ = w || {mot: u, genre: genreUnite(u)}; sensQ = {liste: x}; vuQ = null;
+    const phrase = mots.map((m, k) => k === i ? "___" : m).join(" ");
+    ecranListe("unidad", ecrit, avecTrou(phrase));
+    $("zone").querySelectorAll(".enonce")[1].innerHTML = cible(avecTrou(latam(phrase)));
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, maj(latam(dit)) + "."); });
+    return true;
+  },
+  // au cafe : « ¿Qué dice Tomás? » La cuenta, por favor... ; « ¿Qué pasa? » Tomás pide la cuenta... ; « Javier es ___. »
+  cafe(w){
+    if (w && !w.cafe && !w.role) return false;
+    const variante = w ? (w.cafe && w.role ? (Math.random() < 0.67 ? "moment" : "role") : w.cafe ? "moment" : "role") : (Math.random() < 0.75 ? "moment" : "role");
+    if (variante === "role"){
+      const p = w && w.role ? w.role : hasard(Object.keys(D.roles).filter(x => D.roles[x][APPRENDRE]));
+      const r = D.roles[p][APPRENDRE]; if (!r) return false;
+      const m = hasard(CAFE().filter(x => x.gens.includes(p)));
+      motQ = w || {mot: r.mot, genre: r.genre}; sensQ = {role: {p, mot: r.mot}}; vuQ = null;
+      const rep = latam(r.genre + " " + r.mot), tous = D.rolesChoix[APPRENDRE][D.sexe[p]];
+      const ROLE_DE = {"el camarero": "camarero", "la camarera": "camarera", "el cliente": "cliente", "la cliente": "cliente", "der Kellner": "Kellner", "die Kellnerin": "Kellnerin"};
+      if (TR) { TRAD_CHOIX = {}; tous.forEach(x => { const k = ROLE_DE[x]; if (k && ROLES_TR[k] && ROLES_TR[k][LANGUE]) TRAD_CHOIX[latam(x)] = ROLES_TR[k][LANGUE]; }); }
+      ecran("cafeQui", large("cafe-" + m.id), avecTrou(L.rol(p)));
+      boutons($("choix"), options(rep, tous.map(latam), 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, L.rol(p).replace("___", rep)); });
+      return true;
+    }
+    const m = w && w.cafe ? CAFE().find(x => x.id === w.cafe) : hasard(CAFE());
+    motQ = w || m[APPRENDRE].mot; vuQ = null;
+    const autres = CAFE().filter(x => x !== m && !(VOIS_CAFE[m.id] || []).includes(x.id));
+    if (Math.random() < 0.55){
+      sensQ = {cafe: {id: m.id}};
+      const rep = latam(m[APPRENDRE].dit);
+      TRAD_CHOIX = {}; CAFE().forEach(x => { if (x.tr[LANGUE] && LANGUE !== APPRENDRE) TRAD_CHOIX[latam(x[APPRENDRE].dit)] = x.tr[LANGUE][0]; });
+      ecran("cafeDit", large("cafe-" + m.id), L.dice(m.qui), true);
+      boutons($("choix"), options(rep, autres.map(x => latam(x[APPRENDRE].dit)), 3), rep, ok => juger(ok, rep, null));
+    } else {
+      sensQ = {cafe: {id: m.id, fait: true}};
+      const rep = latam(m[APPRENDRE].fait);
+      TRAD_CHOIX = {}; CAFE().forEach(x => { if (x.tr[LANGUE] && LANGUE !== APPRENDRE) TRAD_CHOIX[latam(x[APPRENDRE].fait)] = x.tr[LANGUE][1]; });
+      ecran("cafeFait", large("cafe-" + m.id), APPRENDRE === "es" ? "¿Qué pasa?" : "Was passiert?", true);
+      boutons($("choix"), options(rep, autres.map(x => latam(x[APPRENDRE].fait)), 3), rep, ok => juger(ok, rep, null));
+    }
+    return true;
+  },
+  // la carte du cafe : « Carmen toma un café y un trozo de tarta. ¿Cuánto es? » -- utile pour le DTZ
+  cuenta(w){
+    if (w && !w.m && w.cafe !== "cuenta") return false;
+    const carte = CARTE(), GENS = ["Mark", "Tomas", "Carmen", "Diego", "Marta", "Pablo", "Rosa", "Elena", "Lucas"];   // jamais Javier ni Ines : ils servent
+    vuQ = null;
+    if (w ? (w.m && Math.random() < 0.25) : Math.random() < 0.2){
+      // le prix d'un seul article
+      const it = w ? carte.find(x => x.cle === w.m) : hasard(carte);
+      motQ = w || {mot: it.mot, genre: it.genre}; sensQ = {cuesta: {cle: it.cle, p: it.prix}};
+      ecran("cuenta", ardoise(), latam(L.cuesta(it)), true);
+      const rep = prix(it.prix);
+      boutons($("choix"), options(rep, carte.filter(x => x.prix !== it.prix).map(x => prix(x.prix)), 3), rep, ok => juger(ok, rep, latam(L.seul(it, it.prix)), latam(L.seulDit(it, it.prix))));
+      return true;
+    }
+    const nbGens = Math.random() < 0.4 ? 2 : 1, qui = melanger(GENS).slice(0, nbGens);
+    const premier = w && w.m ? carte.find(x => x.cle === w.m) : hasard(carte);
+    const items = [premier, ...melanger(carte.filter(x => x !== premier)).slice(0, Math.random() < 0.5 ? 1 : 2)].map(it => [it, nbGens > 1 && Math.random() < 0.5 ? 2 : 1]);
+    const total = items.reduce((s, [it, n]) => s + it.prix * n, 0), cuenta = !!(w && w.cafe === "cuenta") || (!w && Math.random() < 0.25);
+    motQ = w || {mot: premier.mot, genre: premier.genre}; sensQ = {commande: {qui, items, total, cuenta}};
+    ecran("cuenta", ardoise(), latam(L.commande(qui, items, cuenta)));
+    const rep = prix(total);
+    const leurres = [50, -50, 100, -100, 20, -20, 30].map(d => total + d).filter(c => c > 0).map(prix);
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(ok, rep, L.total(total), L.totalDit(total)));
+    return true;
+  },
+  // VRAI OU FAUX, dans tous les domaines du theme : un gout (« A Marta le gusta el café. »), une saveur, ce qu'on
+  // goute (« Carmen prueba algo ácido. »), ce qu'on dit (« Lucas dice: ¡Está asqueroso! »), une quantite, la liste de
+  // courses, la carte et ses prix, un moment au cafe, qui est qui. Le faux est toujours clairement faux pour l'image :
+  // la reaction contraire, une autre saveur, un autre contenant (jamais un voisin), un autre moment (jamais l'autre
+  // main levee), une fausse lecture ecrite a la main.
+  vraifaux(w){
+    if (w && w.v === "mogen" && APPRENDRE !== "de") return false;
+    const domaines = !w ? ["gout", "gout", "saveur", "probar", "dit", "qte", "liste", "carte", "cafe", "role"]
+      : [].concat(w.a || (w.v && w.v !== "probar") ? ["gout"] : [], w.a && saveurDe(w.a) || w.s ? ["saveur"] : [], w.v === "probar" || w.s ? ["probar"] : [],
+                  w.r || w.a || w.s ? ["dit"] : [], w.c && w.c !== "poco" || w.d ? ["qte"] : [], w.u ? ["liste"] : [], w.m ? ["carte"] : [],
+                  w.cafe ? ["cafe"] : [], w.role ? ["role"] : []);
+    for (const domaine of melanger(domaines)){
+      const q = VF[domaine](w, Math.random() < 0.5);
+      if (!q) continue;
+      if (q.ecran) q.ecran(); else ecran("vraifaux", q.image, q.phrase, true);
+      const rep = q.vrai ? L.vrai : L.faux;
+      boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, q.juste, q.lu));
+      return true;
+    }
+    return false;
+  }
+};
+// les domaines du vrai ou faux : chacun rend {image, phrase, juste, vrai} (ou false s'il ne peut viser ce mot)
+const VF = {
+  gout(w, vrai){
+    const vise = g => !w || (w.a ? g.a === w.a : APPRENDRE === "es" ? (w.v === "gustar" ? g.r !== "encanta" : w.v === "encantar" ? g.r === "encanta" : false)
+                       : w.v === "lieben" ? g.r === "encanta" && al(g.a).gen : w.v === "mogen" ? g.r !== "encanta" && al(g.a).gen : w.v === "schmecken");
+    const g = uneDegustation(vise, w); if (!g) return false;
+    motQ = w || (APPRENDRE === "es" ? {mot: "gustar", cat: "verbe"} : {mot: al(g.a).gen ? "mögen" : "schmecken", cat: "verbe"}); sensQ = {aime: g};
+    // le faux : la reaction contraire, a la meme personne et au meme aliment
+    const juste = L.aime(g), contraire = Object.assign({}, g, {r: POSITIF(g.r) ? "no" : "gusta"});
+    return {image: portrait(g.id), phrase: vrai ? juste : L.aime(contraire), juste, vrai};
+  },
+  saveur(w, vrai){
+    const g = uneDegustation(g => saveurDe(g.a) && (!w || (w.s ? saveurDe(g.a) === w.s : g.a === w.a)), w); if (!g) return false;
+    motQ = w || {mot: motSaveur(saveurDe(g.a)), cat: "adjectif"}; sensQ = {saveur: g.a};
+    const juste = L.saveur(g.a);
+    return {image: portrait(g.id), phrase: vrai ? juste : L.saveur(g.a, hasard(Object.keys(D.saveurs).filter(s => s !== saveurDe(g.a)))), juste, vrai};
+  },
+  // « Carmen prueba algo ácido. » / « Carmen probiert etwas Saures. »
+  probar(w, vrai){
+    const g = uneDegustation(g => saveurDe(g.a) && (!w || !w.s || saveurDe(g.a) === w.s), w); if (!g) return false;
+    motQ = w || (APPRENDRE === "es" ? {mot: "probar", cat: "verbe"} : {mot: "probieren", cat: "verbe"}); sensQ = {probar: g};
+    const dit = s => APPRENDRE === "es" ? nom(g.p) + " prueba algo " + D.saveurs[s].es[0] + "." : nom(g.p) + " probiert etwas " + D.saveurs[s].etwas + ".";
+    const juste = dit(saveurDe(g.a));
+    return {image: portrait(g.id), phrase: vrai ? juste : dit(hasard(Object.keys(D.saveurs).filter(s => s !== saveurDe(g.a)))), juste, vrai};
+  },
+  // « Lucas dice: «¡Está asqueroso!» » -- le faux est un des leurres de « ¿Qué dice? », jamais une phrase possible
+  dit(w, vrai){
+    const g = uneDegustation(viseDit(w), w); if (!g) return false;
+    motQ = w || motDit(g); sensQ = {dit: {a: g.a, r: g.r}};
+    const cite = t => APPRENDRE === "es" ? nom(g.p) + " dice: «" + t + "»" : nom(g.p) + " sagt: „" + t + "“", juste = L.dit(g.a, g.r);
+    return {image: portrait(g.id), phrase: cite(vrai ? juste : hasard(leurresDit(g))), juste: cite(juste), vrai};
+  },
+  qte(w, vrai){
+    const l = QTES().filter(q => !w || (w.c ? q.c === w.c : q.d === w.d)); if (!l.length) return false;
+    const q = hasard(l), autres = autresContenants(q); if (!autres.length) return false;
+    motQ = w || {mot: D.contenus[q.d][APPRENDRE].mot, genre: D.contenus[q.d][APPRENDRE].genre}; sensQ = {qte: q}; vuQ = null;
+    const juste = maj(L.np(q.c, q.d)) + ".";
+    const faux = maj(L.np(hasard(autres), q.d)) + ".";
+    return {image: large(q.id), phrase: vrai ? juste : faux, juste, vrai};
+  },
+  // la liste : « 200 g queso » et une lecture, juste ou fausse
+  liste(w, vrai){
+    const l = D.liste[APPRENDRE].filter(x => !w || x[2] === w.u); if (!l.length) return false;
+    const x = hasard(l), [ecrit, dit, u, , faux] = x;
+    motQ = w || {mot: u, genre: genreUnite(u)}; sensQ = {liste: x}; vuQ = null;
+    const lu = latam(vrai ? dit : hasard(faux));
+    return {ecran: () => ecranListe("vraifaux", ecrit, maj(lu) + "."), juste: maj(latam(dit)) + ".", vrai};
+  },
+  // la carte : « Un zumo cuesta 2,50 €. » -- le faux prend le prix d'un autre article
+  carte(w, vrai){
+    const carte = CARTE(), it = w && w.m ? carte.find(x => x.cle === w.m) : hasard(carte); if (!it) return false;
+    motQ = w || {mot: it.mot, genre: it.genre}; sensQ = {cuesta: {cle: it.cle, p: it.prix}}; vuQ = null;
+    const p = vrai ? it.prix : hasard(carte.filter(x => x.prix !== it.prix)).prix;
+    return {ecran: () => ecran("vraifaux", ardoise(), latam(L.seul(it, p)), true), juste: latam(L.seul(it, it.prix)), lu: latam(L.seulDit(it, it.prix)), vrai};
+  },
+  // un moment au cafe : « Tomás pide la cuenta. » -- le faux est un autre moment (jamais l'autre main levee)
+  cafe(w, vrai){
+    const m = w && w.cafe ? CAFE().find(x => x.id === w.cafe) : hasard(CAFE());
+    motQ = w || m[APPRENDRE].mot; sensQ = {cafe: {id: m.id, fait: true}}; vuQ = null;
+    const juste = latam(m[APPRENDRE].fait), autres = CAFE().filter(x => x !== m && !(VOIS_CAFE[m.id] || []).includes(x.id));
+    return {image: large("cafe-" + m.id), phrase: vrai ? juste : latam(hasard(autres)[APPRENDRE].fait), juste, vrai};
+  },
+  // qui est qui : « Javier es el camarero. »
+  role(w, vrai){
+    const p = w && w.role ? w.role : hasard(Object.keys(D.roles).filter(x => D.roles[x][APPRENDRE]));
+    const r = D.roles[p][APPRENDRE]; if (!r) return false;
+    const m = hasard(CAFE().filter(x => x.gens.includes(p)));
+    motQ = w || {mot: r.mot, genre: r.genre}; sensQ = {role: {p, mot: r.mot}}; vuQ = null;
+    const tous = D.rolesChoix[APPRENDRE][D.sexe[p]], bon = r.genre + " " + r.mot, juste = latam(L.rol(p).replace("___", bon));
+    return {image: large("cafe-" + m.id), phrase: vrai ? juste : latam(L.rol(p).replace("___", hasard(tous.filter(x => x !== bon)))), juste, vrai};
+  }
+};
+// ---------- L'ANGLAIS : ses mots et ses sortes (4 nov. 2026) ----------
+// Les sortes espagnoles et allemandes qui n'ont pas de sens en anglais (mögen / kein) n'y sont pas ; s'y ajoutent ing
+// (like + -ing), gouter (tastes / is tasting), trop (too + adjectif), combien (much / many, some, a little) et poli
+// (I'd like, Can I have... face a I like). Le francais n'est montre qu'apres la reponse (traduireEn).
+const EN_FR = APPRENDRE === "en" && LANGUE === "fr";
+const motEn = (mot, cat) => cat ? {mot, cat} : {mot, genre: ""};
+// les mots du theme a la forme du corpus anglais (genre "" : le corpus n'a pas d'article ; cat pour un adjectif, un
+// verbe, un adverbe). Un mot que le corpus n'a pas (pretzel, fries, pound...) reste « hors jeu » dans l'app.
+function motsDuThemeEn(){
+  const par = new Map();
+  const ajouter = (mot, cat, props) => {
+    if (!mot) return;
+    const cle = mot + "|" + (cat || "");
+    if (!par.has(cle)) par.set(cle, motEn(mot, cat));
+    const w = par.get(cle);
+    for (const k in props) if (w[k] === undefined) w[k] = props[k];
+  };
+  Object.keys(D.aliments).forEach(k => ajouter(ea(k).mot, null, {a: k}));
+  Object.keys(EN_SAV).forEach(s => ajouter(EN_SAV[s], "adjectif", {s}));
+  ajouter("delicious", "adjectif", {r: "pos"}); ajouter("disgusting", "adjectif", {r: "nada"});
+  ["like", "love", "hate", "taste", "eat", "drink"].forEach(v => ajouter(v, "verbe", {v}));
+  ajouter("too", "adverbe", {t: true});
+  Object.keys(EN_CT).forEach(c => ajouter(EN_CT[c].mot, null, {c}));
+  Object.keys(EN_CU).forEach(d => ajouter(EN_CU[d].mot, null, {d}));
+  CAFE().forEach(m => { const x = EN_CAFE[m.id].mot; ajouter(x.mot, x.cat || null, {cafe: m.id}); });
+  Object.keys(EN_ROLES).forEach(p => ajouter(EN_ROLES[p].mot, null, {role: p}));
+  EN_CARTE.forEach(it => ajouter(it.mot, null, {m: it.cle}));
+  EN_UNITES.forEach(u => ajouter(u, null, {u}));
+  return [...par.values()];
+}
+// ce que dit la personne : les degustations qu'un mot vise (too : celles qui ne plaisent pas, a cause d'un gout), le mot
+// que la phrase teste, les leurres (jamais un leurre qui pourrait etre vrai, comme en espagnol) et leur francais
+const viseDitEn = w => g => !w || (w.r ? (w.r === "pos" ? POSITIF(g.r) : g.r === "nada") : w.t ? (g.r === "no" && !!saveurDe(g.a))
+                                  : w.s ? (g.r === "no" && saveurDe(g.a) === w.s) : g.a === w.a);
+function motDitEn(g){
+  if (POSITIF(g.r)) return motEn("delicious", "adjectif");
+  if (g.r === "nada") return motEn("disgusting", "adjectif");
+  return saveurDe(g.a) ? motEn(EN_SAV[saveurDe(g.a)], "adjectif") : motEn(ea(g.a).mot);
+}
+function leurresDitEn(g){
+  const autres = Object.keys(EN_SAV).filter(s => s !== saveurDe(g.a)).map(s => EN.trop(g.a, s));
+  if (POSITIF(g.r)) return [EN.asco(g.a), ...autres];
+  if (g.r === "nada" || !saveurDe(g.a)) return [EN.dit(g.a, "gusta"), EN.bueno(g.a)];
+  return [EN.dit(g.a, "gusta"), EN.bueno(g.a), ...autres];
+}
+function tradLeurresDitEn(g){
+  if (!EN_FR) return null;
+  const out = {}; out[EN.dit(g.a, "gusta")] = "C'est délicieux !"; out[EN.bueno(g.a)] = "C'est très bon !"; out[EN.asco(g.a)] = "Beurk ! C'est dégoûtant !";
+  Object.keys(EN_SAV).forEach(s => { out[EN.trop(g.a, s)] = "C'est trop " + SAV_FR[s] + " !"; });
+  return out;
+}
+// quatre visages (ou deux) a toucher, le bon est « bon »
+function ecranVisages(pris, bon, enonce, phrase){
+  $("zone").innerHTML = '<p class="consigne">' + T("quien") + '</p><div class="enonce centre">' + cible(enonce) + '</div><div class="visages" id="choix"></div><p class="retourMsg" id="msg"></p>';
+  const ch = $("choix"); let bouton;
+  melanger(pris).forEach(g => {
+    const b = document.createElement("button"); b.type = "button";
+    b.innerHTML = '<img alt="' + nom(g.p) + '" src="' + img(g.id) + '"><span class="nom">' + nom(g.p) + '</span>';
+    if (g === bon) bouton = b;
+    b.addEventListener("click", () => {
+      ch.querySelectorAll("button").forEach(y => { y.disabled = true; if (y === bouton) y.classList.add("juste"); });
+      if (b !== bouton) b.classList.add("faux");
+      juger(g === bon, nom(bon.p), phrase);
+    });
+    ch.appendChild(b);
+  });
+}
+const avecReponse = rep => ok => { $("trou").textContent = rep; return ok; };
+const EX_EN = {
+  // « Ben ___ cake. » loves / love / doesn't like / hates : le -s de he et she, doesn't
+  aime(w){
+    if (w && !w.a && !["like", "love", "hate"].includes(w.v)) return false;
+    const g = uneDegustation(g => !w || (w.a ? g.a === w.a : verbeDe(g.r) === w.v), w); if (!g) return false;
+    motQ = w || motEn(verbeDe(g.r), "verbe"); sensQ = {aime: g};
+    const rep = EN_VERBE[g.r];
+    // jamais un leurre qui pourrait etre vrai : qui deteste « doesn't like » aussi, qui n'aime pas pourrait detester
+    const LEURRES = {encanta: ["love", "doesn't like", "hates"], gusta: ["like", "doesn't like", "don't like"], no: ["don't like", "likes", "like"], nada: ["hate", "likes", "loves"]};
+    ecran("aime", portrait(g.id), avecTrou(nom(g.p) + " ___ " + (ea(g.a).gen || ea(g.a).the) + "."));
+    boutons($("choix"), options(rep, LEURRES[g.r], 3), rep, ok => juger(avecReponse(rep)(ok), rep, EN.aime(g)));
+    return true;
+  },
+  // like / love / hate + -ing : « Pablo loves ___ pizza. » eating / eat / eats / drinking (jamais to eat, qui est juste)
+  ing(w){
+    if (w && !w.a && !["like", "love", "hate", "eat", "drink"].includes(w.v)) return false;
+    const vise = g => !!ea(g.a).gen && (!w || (w.a ? g.a === w.a : w.v === "eat" ? !ea(g.a).boire : w.v === "drink" ? !!ea(g.a).boire : verbeDe(g.r) === w.v));
+    const g = uneDegustation(vise, w); if (!g) return false;
+    const boire = !!ea(g.a).boire;
+    motQ = w || motEn(boire ? "drink" : "eat", "verbe"); sensQ = {ing: g};
+    const rep = boire ? "drinking" : "eating", leurres = boire ? ["drink", "drinks", "eating"] : ["eat", "eats", "drinking"];
+    ecran("ing", portrait(g.id), avecTrou(nom(g.p) + " " + EN_VERBE[g.r] + " ___ " + ea(g.a).gen + "."));
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(avecReponse(rep)(ok), rep, EN.ing(g)));
+    return true;
+  },
+  // « Who is tasting something sour? » (quatre visages, une saveur chacun) ; ou la paire : « Who doesn't like coffee? »
+  quien(w){
+    if (w && !w.s && w.v !== "taste" && !(w.a && PAIRES.includes(w.a)) && w.v !== "like") return false;
+    const paire = w ? !!(w.a || w.v === "like") : Math.random() < 0.3;
+    let pris, bon, enonce, phrase;
+    if (paire){
+      const k = w && w.a ? w.a : hasard(PAIRES), deux = GOUTS().filter(g => g.a === k), neg = Math.random() < 0.5;
+      bon = deux.find(g => POSITIF(g.r) !== neg); pris = deux; enonce = EN.quienPaire(k, neg); phrase = EN.aime(bon);
+      motQ = w || motEn("like", "verbe"); sensQ = {aime: bon}; vuQ = null;
+    } else {
+      const s = w && w.s ? w.s : hasard(Object.keys(EN_SAV));
+      bon = uneDegustation(g => saveurDe(g.a) === s, w);
+      const autres = melanger(GOUTS().filter(g => saveurDe(g.a) && saveurDe(g.a) !== s));
+      pris = [bon]; const vus = new Set([s]);
+      for (const a of autres){ if (pris.length >= 4) break; if (!vus.has(saveurDe(a.a))){ vus.add(saveurDe(a.a)); pris.push(a); } }
+      enonce = EN.quienSaveur(s); phrase = EN.probar(bon.p, s);
+      motQ = w || motEn(EN_SAV[s], "adjectif"); sensQ = {probar: bon};
+    }
+    ecranVisages(pris, bon, enonce, phrase);
+    return true;
+  },
+  // le gout : « The lemon tastes ___. » sour / sweet / salty / bitter / spicy
+  sabor(w){
+    if (w && !w.s && !(w.a && saveurDe(w.a))) return false;
+    const g = uneDegustation(g => saveurDe(g.a) && (!w || (w.s ? saveurDe(g.a) === w.s : g.a === w.a)), w); if (!g) return false;
+    const s = saveurDe(g.a), rep = EN_SAV[s]; motQ = w || motEn(rep, "adjectif"); sensQ = {saveur: g.a};
+    ecran("sabor", portrait(g.id), avecTrou(maj(ea(g.a).the) + (ea(g.a).pl ? " taste" : " tastes") + " ___."));
+    if (EN_FR){ TRAD_CHOIX = {}; Object.keys(EN_SAV).forEach(x => { TRAD_CHOIX[EN_SAV[x]] = SAV_FR[x]; }); }
+    boutons($("choix"), options(rep, Object.keys(EN_SAV).filter(x => x !== s).map(x => EN_SAV[x]), 3), rep, ok => juger(avecReponse(rep)(ok), rep, EN.saveur(g.a)));
+    return true;
+  },
+  // taste, verbe d'etat ou d'action : « The lemon ___ sour. » tastes (jamais is tasting) ; « Look! Carmen ___ the
+  // lemon. » is tasting (ce qu'elle fait en ce moment)
+  gouter(w){
+    if (w && w.v !== "taste" && !w.s && !w.a) return false;
+    const peutEtat = !w || w.v === "taste" || !!w.s || !!saveurDe(w.a), peutAction = !w || w.v === "taste" || !!w.a;
+    const etat = peutEtat && (!peutAction || Math.random() < 0.5);
+    const g = uneDegustation(g => (!etat || saveurDe(g.a)) && (!w || (w.s ? saveurDe(g.a) === w.s : w.a ? g.a === w.a : true)), w); if (!g) return false;
+    motQ = w || motEn("taste", "verbe");
+    let phrase, rep, leurres, juste;
+    if (etat){
+      const pl = ea(g.a).pl; phrase = maj(ea(g.a).the) + " ___ " + EN_SAV[saveurDe(g.a)] + ".";
+      rep = pl ? "taste" : "tastes"; leurres = pl ? ["tastes", "are tasting", "tasting"] : ["taste", "is tasting", "tasting"]; juste = EN.saveur(g.a); sensQ = {saveur: g.a};
+    } else {
+      phrase = "Look! " + nom(g.p) + " ___ " + ea(g.a).the + "."; rep = "is tasting"; leurres = ["tastes", "taste", "are tasting"]; juste = EN.goute(g); sensQ = {goute: g};
+    }
+    ecran("gouter", portrait(g.id), avecTrou(phrase));
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(avecReponse(rep)(ok), rep, juste));
+    return true;
+  },
+  // « What does Carmen say? » It's delicious! / It's too sour! / Yuck! It's disgusting! -- le lien avec « Les contraires »
+  dice(w){
+    if (w && !w.r && !w.s && !w.a && !w.t) return false;
+    const g = uneDegustation(viseDitEn(w), w); if (!g) return false;
+    const rep = EN.dit(g.a, g.r);
+    motQ = w || motDitEn(g); sensQ = {dit: {a: g.a, r: g.r}};
+    ecran("dice", portrait(g.id), EN.dice(g.p), true);
+    TRAD_CHOIX = tradLeurresDitEn(g);
+    boutons($("choix"), options(rep, leurresDitEn(g), 3), rep, ok => juger(ok, rep, null));
+    return true;
+  },
+  // too + adjectif : « Carmen doesn't like the lemon. It's ___ sour. » ; « Tomás likes lemons. They're sour, but not ___
+  // sour. » too / to / two (trois mots qui se disent pareil)
+  trop(w){
+    if (w && !w.t && !w.s && !(w.a && saveurDe(w.a))) return false;
+    const g = uneDegustation(g => saveurDe(g.a) && g.r !== "nada" && (!w || (w.s ? saveurDe(g.a) === w.s : w.a ? g.a === w.a : true)), w); if (!g) return false;
+    motQ = w || motEn("too", "adverbe"); sensQ = {trop: g};
+    ecran("trop", portrait(g.id), avecTrou(EN.tropPhrase(g, "___")));
+    boutons($("choix"), options("too", ["to", "two"], 2), "too", ok => juger(avecReponse("too")(ok), "too", EN.tropPhrase(g)));
+    return true;
+  },
+  // « This is ___ water. » a bottle of / a glass of... ; ou « What is this? » a bottle of water / a glass of water...
+  cantidad(w){
+    if (w && !(w.c && w.c !== "poco") && !w.d) return false;
+    const l = QTES().filter(q => !w || (w.c ? q.c === w.c : q.d === w.d)); if (!l.length) return false;
+    const cle = w ? w.mot : "qte", q = hasard(sansLeDernier(l, cle, x => x.id)); vuQ = [cle, q.id];
+    motQ = w || (q.c !== "poco" ? motEn(EN_CT[q.c].mot) : motEn(EN_CU[q.d].mot)); sensQ = {qte: q};
+    const autresC = autresContenantsEn(q), juste = maj(EN.np(q.c, q.d)) + ".";
+    if (Math.random() < 0.5){
+      const rep = EN_CT[q.c].art;
+      if (EN_FR){ TRAD_CHOIX = {}; Object.keys(EN_CT).forEach(c => { TRAD_CHOIX[EN_CT[c].art] = EN_CT[c].fr.trim(); }); }
+      ecran("cantidad", large(q.id), avecTrou(EN.cantidad(q.d)));
+      boutons($("choix"), options(rep, autresC.map(c => EN_CT[c].art), 3), rep, ok => juger(avecReponse(rep)(ok), rep, juste));
+    } else {
+      // des quantites plausibles, toutes fausses pour l'image : un autre contenant pour le meme contenu, ou un autre
+      // contenu dans le meme contenant (a bottle of milk pour une bouteille d'eau)
+      const autresD = Object.keys(EN_CU).filter(d => d !== q.d && (COMPAT_EN[d] || []).includes(q.c) && !QTES().some(x => x.c === q.c && x.d === d));
+      const rep = EN.np(q.c, q.d);
+      const leurres = melanger(autresC).slice(0, 2).map(c => EN.np(c, q.d)).concat(autresD.length ? [EN.np(q.c, hasard(autresD))] : []);
+      if (EN_FR){ TRAD_CHOIX = {}; Object.keys(EN_CU).forEach(d => (COMPAT_EN[d] || []).forEach(c => { TRAD_CHOIX[EN.np(c, d)] = qteFr(c, d).replace(/\.$/, ""); })); }
+      ecran("cantidad", large(q.id), EN.queEs, true);
+      boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(ok, rep, juste));
+    }
+    return true;
+  },
+  // countable / uncountable : « How ___ eggs do you want? » much / many ; « There ___ milk in the glass. » is some /
+  // are some / is a / is any ; « There ___ sugar on the spoon. » is a little / is a few / are a few
+  combien(w){
+    if (w && !w.d && !(w.c && w.c !== "poco")) return false;
+    const l = QTES().filter(q => !w || (w.c ? q.c === w.c : q.d === w.d)); if (!l.length) return false;
+    const q = hasard(l), cu = EN_CU[q.d]; vuQ = null;
+    motQ = w || motEn(cu.mot);
+    const how = q.c !== "poco" && Math.random() < 0.5;
+    sensQ = {combien: {c: q.c, d: q.d, id: q.id, how}};
+    let phrase, rep, opts, juste;
+    if (how){ phrase = EN.combienQ(q); rep = cu.n ? "many" : "much"; opts = ["much", "many"]; juste = EN.combienR(q); }
+    else {
+      phrase = EN.someQ(q); juste = EN.someR(q);
+      if (q.c === "poco"){ rep = "is a little"; opts = ["is a little", "is a few", "are a few", "is many"]; }
+      else if (cu.n){ rep = "are some"; opts = ["are some", "is some", "is a", "are any"]; }
+      else { rep = "is some"; opts = ["is some", "are some", "is a", "is any"]; }
+    }
+    ecran("combien", large(q.id), avecTrou(phrase));
+    boutons($("choix"), how ? opts : melanger(opts), rep, ok => juger(avecReponse(rep)(ok), rep, juste));
+    return true;
+  },
+  // la liste de courses : « 2 lb apples » -> « two pounds of apples » ; a Londres « 2 pints milk » -> « two pints of milk »
+  lista(w){
+    if (w && !w.u) return false;
+    const l = EN_LISTE.filter(x => !w || x[2] === w.u); if (!l.length) return false;
+    const x = hasard(l), [ecrit, dit, u, , faux] = x;
+    motQ = w || motEn(u); sensQ = {liste: x}; vuQ = null;
+    ecranListe("lista", ecrit, EN.lista);
+    boutons($("choix"), options(dit, faux, 3), dit, ok => juger(ok, dit, null));
+    return true;
+  },
+  // l'unite a completer : « two ___ of apples » pounds / gallons / dozen ; « two ___ eggs » dozen / dozens (sans s apres un
+  // nombre). Le nombre reste celui de la ligne : seule l'unite change.
+  unidad(w){
+    if (w && !w.u) return false;
+    const l = EN_LISTE.filter(x => !w || x[2] === w.u); if (!l.length) return false;
+    const x = hasard(l), [ecrit, dit, u] = x, mots = dit.split(" ");
+    const i = mots.findIndex(m => EN_FORMES.some(f => f.includes(m))); if (i < 0) return false;
+    const f = EN_FORMES.find(f => f.includes(mots[i])), pl = f[1] === mots[i] && f[0] !== f[1] ? 1 : 0;
+    const rep = mots[i], leurres = EN_FORMES.filter(g => g !== f && g[0] !== EN_VOIS_U[f[0]]).map(g => g[pl]);
+    if (f[0] === "dozen" && i > 0 && !["a", "half"].includes(mots[i - 1])) leurres.unshift("dozens");
+    motQ = w || motEn(u); sensQ = {liste: x}; vuQ = null;
+    const phrase = mots.map((m, k) => k === i ? "___" : m).join(" ");
+    ecranListe("unidad", ecrit, avecTrou(phrase));
+    $("zone").querySelectorAll(".enonce")[1].innerHTML = cible(avecTrou(phrase));
+    boutons($("choix"), options(rep, f[0] === "dozen" && leurres[0] === "dozens" ? [leurres[0], ...melanger(leurres.slice(1)).slice(0, 2)] : leurres, 3), rep,
+            ok => juger(avecReponse(rep)(ok), rep, maj(dit) + "."));
+    return true;
+  },
+  // au cafe : « What does Mark say? » Can I have the check, please?... ; « What is happening? » Mark orders a coffee...
+  // ; « Javier is ___. » the waiter / a customer / the cook
+  cafe(w){
+    if (w && !w.cafe && !w.role) return false;
+    const variante = w ? (w.cafe && w.role ? (Math.random() < 0.67 ? "moment" : "role") : w.cafe ? "moment" : "role") : (Math.random() < 0.75 ? "moment" : "role");
+    if (variante === "role"){
+      const p = w && w.role ? w.role : hasard(Object.keys(EN_ROLES)), r = EN_ROLES[p];
+      const m = hasard(CAFE().filter(x => x.gens.includes(p)));
+      motQ = w || motEn(r.mot); sensQ = {role: {p}}; vuQ = null;
+      const sx = D.sexe[p];
+      TRAD_CHOIX = EN_FR ? EN_ROLES_TR[sx] : null;
+      ecran("cafeQui", large("cafe-" + m.id), avecTrou(EN.rol(p)));
+      boutons($("choix"), options(r.art, EN_ROLES_CHOIX[sx], 3), r.art, ok => juger(avecReponse(r.art)(ok), r.art, EN.rol(p).replace("___", r.art)));
+      return true;
+    }
+    const m = w && w.cafe ? CAFE().find(x => x.id === w.cafe) : hasard(CAFE()), x = EN_CAFE[m.id];
+    motQ = w || x.mot; vuQ = null;
+    const autres = CAFE().filter(y => y !== m && !(VOIS_CAFE[m.id] || []).includes(y.id));
+    const fait = Math.random() >= 0.55;
+    sensQ = {cafe: {id: m.id, fait}};
+    const champ = fait ? "fait" : "dit", rep = x[champ];
+    if (EN_FR){ TRAD_CHOIX = {}; CAFE().forEach(y => { TRAD_CHOIX[EN_CAFE[y.id][champ]] = EN_CAFE[y.id].fr[fait ? 1 : 0]; }); }
+    ecran(fait ? "cafeFait" : "cafeDit", large("cafe-" + m.id), fait ? "What is happening?" : EN.dice(m.qui), true);
+    boutons($("choix"), options(rep, autres.map(y => EN_CAFE[y.id][champ]), 3), rep, ok => juger(ok, rep, null));
+    return true;
+  },
+  // la carte du cafe, en dollars : « Carmen has a coffee and a piece of cake. How much is that? »
+  cuenta(w){
+    if (w && !w.m && w.cafe !== "cuenta") return false;
+    const carte = EN_CARTE, GENS = ["Mark", "Tomas", "Carmen", "Diego", "Marta", "Pablo", "Rosa", "Elena", "Lucas"];   // jamais Javier ni Ines : ils servent
+    vuQ = null;
+    if (w ? (w.m && Math.random() < 0.25) : Math.random() < 0.2){
+      // le prix d'un seul article : « How much is a coffee? »
+      const it = w ? carte.find(x => x.cle === w.m) : hasard(carte);
+      motQ = w || motEn(it.mot); sensQ = {cuesta: {cle: it.cle, p: it.prix}};
+      ecran("cuenta", ardoise(), EN.cuesta(it), true);
+      const rep = prix(it.prix);
+      boutons($("choix"), options(rep, carte.filter(x => x.prix !== it.prix).map(x => prix(x.prix)), 3), rep, ok => juger(ok, rep, EN.seul(it, it.prix), EN.seulDit(it, it.prix)));
+      return true;
+    }
+    const nbGens = Math.random() < 0.4 ? 2 : 1, qui = melanger(GENS).slice(0, nbGens);
+    const premier = w && w.m ? carte.find(x => x.cle === w.m) : hasard(carte);
+    const items = [premier, ...melanger(carte.filter(x => x !== premier)).slice(0, Math.random() < 0.5 ? 1 : 2)].map(it => [it, nbGens > 1 && Math.random() < 0.5 ? 2 : 1]);
+    const total = items.reduce((s, [it, n]) => s + it.prix * n, 0), cuenta = !!(w && w.cafe === "cuenta") || (!w && Math.random() < 0.25);
+    motQ = w || motEn(premier.mot); sensQ = {commande: {qui, items, total, cuenta}};
+    ecran("cuenta", ardoise(), EN.commande(qui, items, cuenta));
+    const rep = prix(total);
+    const leurres = [50, -50, 100, -100, 20, -20, 30].map(d => total + d).filter(c => c > 0).map(prix);
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(ok, rep, EN.total(total), EN.totalDit(total)));
+    return true;
+  },
+  // commander poliment : « Mark says: “___ a coffee, please.” » I'd like / I like / I'd like to ; « “___ a piece of cake,
+  // please?” » Can I have ; et ce qu'on aime, sans would : « Rosa says: “___ pretzels. I eat them every week.” » I like
+  poli(w){
+    const aimeOk = g => POSITIF(g.r) && !!ea(g.a).gen;
+    if (w && !w.m && w.cafe !== "pedir" && !["like", "love"].includes(w.v) && !(w.a && GOUTS().some(g => g.a === w.a && aimeOk(g)))) return false;
+    const peutGout = !w || ["like", "love"].includes(w.v) || (!!w.a && GOUTS().some(g => g.a === w.a && aimeOk(g))), peutCafe = !w || !!w.m || w.cafe === "pedir";
+    if (peutGout && (!peutCafe || Math.random() < 0.35)){
+      const g = uneDegustation(g => aimeOk(g) && (!w || (w.a ? g.a === w.a : verbeDe(g.r) === w.v)), w); if (!g) return false;
+      const rep = g.r === "encanta" ? "I love" : "I like", leurres = ["I'd like", "I'm liking", g.r === "encanta" ? "I loves" : "I likes"];
+      motQ = w || motEn(verbeDe(g.r), "verbe"); sensQ = {poli: {g}};
+      ecran("poli", portrait(g.id), avecTrou(nom(g.p) + " says: “" + EN.poliC(g, "___") + "”"));
+      boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(avecReponse(rep)(ok), rep, EN.poliC(g)));
+      return true;
+    }
+    const it = w && w.m ? EN_CARTE.find(x => x.cle === w.m) : hasard(EN_CARTE), b = Math.random() < 0.5;
+    motQ = w || motEn(it.mot); sensQ = {poli: {it, b}}; vuQ = null;
+    const rep = b ? "Can I have" : "I'd like", leurres = b ? ["Can I to have", "Can I having", "Do I have"] : ["I like", "I'd like to", "I'm liking"];
+    const juste = b ? EN.poliB(it) : EN.poliA(it);
+    ecran("poli", large("cafe-pedir"), avecTrou("Mark says: “" + juste.replace(rep, "___") + "”"));
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(avecReponse(rep)(ok), rep, juste));
+    return true;
+  },
+  // VRAI OU FAUX, dans tous les domaines du theme, le faux toujours clairement faux pour l'image (comme en espagnol)
+  vraifaux(w){
+    const verbesGout = ["like", "love", "hate", "eat", "drink"];
+    const domaines = !w ? ["gout", "gout", "saveur", "probar", "dit", "qte", "liste", "carte", "cafe", "role"]
+      : [].concat(w.a || verbesGout.includes(w.v) ? ["gout"] : [], (w.a && saveurDe(w.a)) || w.s || w.v === "taste" ? ["saveur"] : [], w.v === "taste" || w.s ? ["probar"] : [],
+                  w.r || w.a || w.s || w.t ? ["dit"] : [], (w.c && w.c !== "poco") || w.d ? ["qte"] : [], w.u ? ["liste"] : [], w.m ? ["carte"] : [],
+                  w.cafe ? ["cafe"] : [], w.role ? ["role"] : []);
+    for (const domaine of melanger(domaines)){
+      const q = VF_EN[domaine](w, Math.random() < 0.5);
+      if (!q) continue;
+      if (q.ecran) q.ecran(); else ecran("vraifaux", q.image, q.phrase, true);
+      const rep = q.vrai ? EN.vrai : EN.faux;
+      boutons($("choix"), [EN.vrai, EN.faux], rep, ok => juger(ok, rep, q.juste, q.lu));
+      return true;
+    }
+    return false;
+  }
+};
+const VF_EN = {
+  // « Lucas hates fish. » / « Mark likes drinking coffee. » -- le faux : la reaction contraire, meme personne, meme aliment
+  gout(w, vrai){
+    const ing = w ? ["eat", "drink"].includes(w.v) || (!!w.a && !!ea(w.a).gen && Math.random() < 0.3) : Math.random() < 0.3;
+    const vise = g => (!ing || !!ea(g.a).gen) && (!w || (w.a ? g.a === w.a : w.v === "eat" ? !ea(g.a).boire : w.v === "drink" ? !!ea(g.a).boire : verbeDe(g.r) === w.v));
+    const g = uneDegustation(vise, w); if (!g) return false;
+    motQ = w || (ing ? motEn(ea(g.a).boire ? "drink" : "eat", "verbe") : motEn(verbeDe(g.r), "verbe"));
+    sensQ = ing ? {ing: g} : {aime: g};
+    const f = ing ? EN.ing : EN.aime, juste = f(g), contraire = Object.assign({}, g, {r: POSITIF(g.r) ? "no" : "gusta"});
+    return {image: portrait(g.id), phrase: vrai ? juste : f(contraire), juste, vrai};
+  },
+  saveur(w, vrai){
+    const g = uneDegustation(g => saveurDe(g.a) && (!w || (w.s ? saveurDe(g.a) === w.s : w.a ? g.a === w.a : true)), w); if (!g) return false;
+    motQ = w || motEn(EN_SAV[saveurDe(g.a)], "adjectif"); sensQ = {saveur: g.a};
+    const juste = EN.saveur(g.a);
+    return {image: portrait(g.id), phrase: vrai ? juste : EN.saveur(g.a, hasard(Object.keys(EN_SAV).filter(s => s !== saveurDe(g.a)))), juste, vrai};
+  },
+  // « Carmen is tasting something sour. »
+  probar(w, vrai){
+    const g = uneDegustation(g => saveurDe(g.a) && (!w || !w.s || saveurDe(g.a) === w.s), w); if (!g) return false;
+    motQ = w || motEn("taste", "verbe"); sensQ = {probar: g};
+    const juste = EN.probar(g.p, saveurDe(g.a));
+    return {image: portrait(g.id), phrase: vrai ? juste : EN.probar(g.p, hasard(Object.keys(EN_SAV).filter(s => s !== saveurDe(g.a)))), juste, vrai};
+  },
+  // « Lucas says: “Yuck! It's disgusting!” » -- le faux est un des leurres de « What does Lucas say? »
+  dit(w, vrai){
+    const g = uneDegustation(viseDitEn(w), w); if (!g) return false;
+    motQ = w || motDitEn(g); sensQ = {dit: {a: g.a, r: g.r}};
+    const juste = EN.dit(g.a, g.r);
+    return {image: portrait(g.id), phrase: EN.cite(g.p, vrai ? juste : hasard(leurresDitEn(g))), juste: EN.cite(g.p, juste), vrai};
+  },
+  qte(w, vrai){
+    const l = QTES().filter(q => !w || (w.c ? q.c === w.c : q.d === w.d)); if (!l.length) return false;
+    const q = hasard(l), autres = autresContenantsEn(q); if (!autres.length) return false;
+    motQ = w || motEn(EN_CU[q.d].mot); sensQ = {qte: q}; vuQ = null;
+    const juste = maj(EN.np(q.c, q.d)) + ".";
+    return {image: large(q.id), phrase: vrai ? juste : maj(EN.np(hasard(autres), q.d)) + ".", juste, vrai};
+  },
+  liste(w, vrai){
+    const l = EN_LISTE.filter(x => !w || x[2] === w.u); if (!l.length) return false;
+    const x = hasard(l), [ecrit, dit, u, , faux] = x;
+    motQ = w || motEn(u); sensQ = {liste: x}; vuQ = null;
+    const lu = vrai ? dit : hasard(faux);
+    return {ecran: () => ecranListe("vraifaux", ecrit, maj(lu) + "."), juste: maj(dit) + ".", vrai};
+  },
+  // « A coffee is $2.50. » -- le faux prend le prix d'un autre article
+  carte(w, vrai){
+    const it = w && w.m ? EN_CARTE.find(x => x.cle === w.m) : hasard(EN_CARTE); if (!it) return false;
+    motQ = w || motEn(it.mot); sensQ = {cuesta: {cle: it.cle, p: it.prix}}; vuQ = null;
+    const p = vrai ? it.prix : hasard(EN_CARTE.filter(x => x.prix !== it.prix)).prix;
+    return {ecran: () => ecran("vraifaux", ardoise(), EN.seul(it, p), true), juste: EN.seul(it, it.prix), lu: EN.seulDit(it, it.prix), vrai};
+  },
+  // « Mark asks for the check. » -- le faux est un autre moment (jamais l'autre main levee)
+  cafe(w, vrai){
+    const m = w && w.cafe ? CAFE().find(x => x.id === w.cafe) : hasard(CAFE());
+    motQ = w || EN_CAFE[m.id].mot; sensQ = {cafe: {id: m.id, fait: true}}; vuQ = null;
+    const juste = EN_CAFE[m.id].fait, autres = CAFE().filter(x => x !== m && !(VOIS_CAFE[m.id] || []).includes(x.id));
+    return {image: large("cafe-" + m.id), phrase: vrai ? juste : EN_CAFE[hasard(autres).id].fait, juste, vrai};
+  },
+  // « Javier is the waiter. »
+  role(w, vrai){
+    const p = w && w.role ? w.role : hasard(Object.keys(EN_ROLES)), r = EN_ROLES[p];
+    const m = hasard(CAFE().filter(x => x.gens.includes(p)));
+    motQ = w || motEn(r.mot); sensQ = {role: {p}}; vuQ = null;
+    const tous = EN_ROLES_CHOIX[D.sexe[p]], juste = EN.rol(p).replace("___", r.art);
+    return {image: large("cafe-" + m.id), phrase: vrai ? juste : EN.rol(p).replace("___", hasard(tous.filter(x => x !== r.art))), juste, vrai};
+  }
+};
+if (APPRENDRE === "en") Object.assign(EX, EX_EN);
+// les sortes de la langue apprise : « mögen / kein » n'existe qu'en allemand ; l'anglais a les siennes (EX_EN)
+const SORTES = APPRENDRE === "en" ? Object.keys(EX_EN) : Object.keys(EX).filter(x => APPRENDRE === "de" || x !== "mogen");
+
+// ---------- la decouverte : trois planches a toucher, chaque element se voit, s'entend et se traduit ----------
+function decouvrir(){
+  $("bas").hidden = true; $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone"), phrases = APPRENDRE === "en" ? phrasesEn() : D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  z.innerHTML = '<div class="onglets" role="tablist"><button type="button" role="tab" id="oG">' + T("ongletG") + '</button><button type="button" role="tab" id="oQ">' + T("ongletQ")
+              + '</button><button type="button" role="tab" id="oC">' + T("ongletC") + '</button></div>'
+              + '<p class="consigne" id="intro"></p><div class="planche" id="planche"></div><div class="fiche" id="fiche"></div><p class="regle" id="regle"></p>';
+  // l'anglais : ce que dit la personne, le contenant (« a bottle », « two pounds »), ce qui se passe au cafe ; sous la
+  // regle, ce qui differe entre l'americain et le britannique (« Bon à savoir »)
+  const minuscule = s => s.charAt(0).toLowerCase() + s.slice(1);
+  const ONGLETS = APPRENDRE === "en" ? {
+    G: {liste: GOUTS(), larges: false, intro: "introG", regle: "regleGen", mot: g => EN.dit(g.a, g.r), sous: () => null, trad: g => traduireEn({aime: g})},
+    Q: {liste: QTES(), larges: true, intro: "introQ", regle: "regleQen", note: GB ? "bonQgb" : "bonQus",
+        mot: q => q.c === "poco" ? EN.np(q.c, q.d) : minuscule(EN_CT[q.c].court), sous: () => null, trad: q => traduireEn({qte: q})},
+    C: {liste: CAFE().map(m => Object.assign({}, m, {id: "cafe-" + m.id, cle: m.id})), larges: true, intro: "introC", regle: GB ? "regleCgb" : "regleCen", note: GB ? "bonCgb" : "bonCus",
+        mot: m => EN_CAFE[m.cle].fait, sous: () => null, trad: m => traduireEn({cafe: {id: m.cle}})}
+  } : {
+    G: {liste: GOUTS(), larges: false, intro: "introG", regle: APPRENDRE === "de" ? "regleGde" : "regleGes",
+        mot: g => L.dit(g.a, g.r), sous: g => null, trad: g => traduire({aime: g}) || (TR ? null : glose({mot: al(g.a).mot, genre: al(g.a).genre}))},
+    Q: {liste: QTES(), larges: true, intro: "introQ", regle: APPRENDRE === "de" ? "regleQde" : "regleQes",
+        mot: q => q.c === "poco" ? L.np(q.c, q.d) : (APPRENDRE === "de" ? D.contenants[q.c].de.genre + " " + D.contenants[q.c].de.mot : D.contenants[q.c].es.genre + " " + D.contenants[q.c].es.mot),
+        sous: q => null, trad: q => traduire({qte: q}) || (TR ? null : glose(q.c !== "poco" ? D.contenants[q.c][APPRENDRE] : D.contenus[q.d][APPRENDRE]))},
+    C: {liste: CAFE().map(m => Object.assign({}, m, {id: "cafe-" + m.id, cle: m.id})), larges: true, intro: "introC", regle: APPRENDRE === "de" ? "regleCde" : "regleCes",
+        mot: m => latam(m[APPRENDRE].fait), sous: m => null, trad: m => traduire({cafe: {id: m.cle}}) || (TR ? null : glose(m[APPRENDRE].mot))}
+  };
+  const montrer = (o, it) => {
+    const ph = phrases[it.id];
+    $("planche").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.id === it.id));
+    $("fiche").innerHTML = '<img alt="" src="' + img(it.id) + '"><div><div class="mot">' + cible(o.mot(it)) + '</div><div class="dit">' + cible(ph.texte) + '</div>'
+                         + ((t => t ? traduction(t) : "")(o.trad(it)))
+                         + '<button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>';
+    $("ecoute").addEventListener("click", () => dire(ph.texte));
+    dire(ph.texte);
+  };
+  const onglet = cle => {
+    const o = ONGLETS[cle];
+    ["G", "Q", "C"].forEach(k => $("o" + k).setAttribute("aria-selected", k === cle));
+    $("intro").textContent = T(o.intro);
+    $("regle").innerHTML = isoler(T(o.regle)) + (o.note ? '<span style="display:block;margin-top:8px">' + isoler(T(o.note)) + '</span>' : "");
+    const pl = $("planche"); pl.className = "planche" + (o.larges ? " larges" : ""); pl.innerHTML = "";
+    o.liste.forEach(it => {
+      const b = document.createElement("button"); b.type = "button"; b.dataset.id = it.id;
+      b.setAttribute("aria-label", it.p ? nom(it.p) : phrases[it.id].texte);
+      b.innerHTML = '<img alt="" src="' + img(it.id) + '">';
+      b.addEventListener("click", () => montrer(o, it));
+      pl.appendChild(b);
+    });
+    // la fiche s'ouvre sur la premiere, sans parler : le son ne vient que d'un geste
+    const garde = dire; dire = () => {}; montrer(o, o.liste[0]); dire = garde;
+  };
+  ["G", "Q", "C"].forEach(k => $("o" + k).addEventListener("click", () => onglet(k)));
+  onglet("G");
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; Voix.arreter(); demarrer(); };
+}
+
+// LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : la file des MOTS vient de l'app (Tirage.plan : les dus,
+// les rates recents, puis au plus NEUFS_MAX nouveaux) ; chaque mot recoit une question d'une sorte qui le vise,
+// jamais la meme sorte deux fois de suite, jamais deux fois la meme question. Rate, il revient plus loin.
+// Recopie de familia.html (visuel/THEMES-ILLUSTRES.md : ces fonctions sont identiques d'un theme a l'autre).
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
+}
+function montrer(){
+  repondu = false; $("suite").hidden = true; $("bas").hidden = true; choixFaux = null;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
+  // Si ce mot ne le permet pas, un mot plus loin dans la file passe devant ;
+  // en dernier recours seulement, la meme sorte, puis une question deja vue.
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      // 60 essais (25 dans le modele) : les unites et les mots du cafe ont peu de questions, et une partie de 20 doit
+      // trouver une question neuve d'une autre sorte avant de se rabattre sur la meme
+      for (let n = 0; n < 60; n++){
+        motQ = null; vuQ = null; sensQ = null; TRAD_CHOIX = null; sorteCourante = so;
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
+      motQ = null; vuQ = null; sensQ = null; TRAD_CHOIX = null; sorteCourante = derniereSorte;
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
+      motQ = null; vuQ = null; sensQ = null; TRAD_CHOIX = null; sorteCourante = so;
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+  }
+  if (!fait) fait = essai(file[rang], false);
+  vus.add(cleQuestion()); derniereSorte = fait; retenir();
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>';
+  boutonsBas(() => parler("fini", {bons, faits: file.length}));
+}
+// plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + '</div>';
+  boutonsBas(() => parler("fini", {bons: 0, faits: 0}));
+}
+// « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
+// Les deux, cote a cote, fixes tout en bas ; « Terminer » est le geste principal (vert plein).
+function boutonsBas(terminer){
+  const b = $("bas");
+  b.innerHTML = (Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>')
+              + '<button type="button" id="terminer">' + T("terminer") + '</button>';
+  b.hidden = false;
+  const e = $("encore"); if (e) e.addEventListener("click", encoreDesQuestions);
+  $("terminer").addEventListener("click", terminer);
+}
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("manger/manger.json?v=1").then(r => r.json()).then(d => {
+  D = d;
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>

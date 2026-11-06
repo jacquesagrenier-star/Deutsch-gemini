@@ -915,6 +915,34 @@ function sha1Hex(texte){
         .map(x => x.toString(16).padStart(8, "0")).join("");
 }
 function empreinte(t){ return sha1Hex(t).slice(0, 16); }
+/* COUPER EN FONDU (5 nov. 2026, Jacques : passer a la question suivante pendant
+   qu'une phrase est dite, la voix continuait). Comme les themes illustres
+   (themes/voix.js) : tout bouton touche coupe la phrase, en phase de capture,
+   avant le geste de la page ; ~120 ms de fondu sur le fichier, arret net sur
+   iPhone (volume en lecture seule), cancel() pour la voix du telephone. Un
+   bouton qui parle relance ensuite sa phrase par dire(). Le son de reussite
+   (bravoAudio) n'est pas touche. Le bouton 1:1 du zoom ne coupe rien. */
+function fondreVoix(a){
+  try {
+    if (a.paused){ return; }
+    const v0 = a.volume; a.volume = v0 * 0.98;
+    if (Math.abs(a.volume - v0) < 1e-6){ a.pause(); return; }
+    const t0 = Date.now();
+    const pas = () => {
+      const k = (Date.now() - t0) / 120;
+      if (k >= 1 || a.paused){ try { a.pause(); } catch (e) {} return; }
+      a.volume = v0 * (1 - k); setTimeout(pas, 16);
+    };
+    pas();
+  } catch (e) { try { a.pause(); } catch (_) {} }
+}
+document.addEventListener("click", e => {
+  const b = e.target && e.target.closest ? e.target.closest("button") : null;
+  if (!b || b.id === "zoomRetour") return;
+  const a = audioEnCours; audioEnCours = null;
+  if (a) fondreVoix(a);
+  try { if ("speechSynthesis" in window && (speechSynthesis.speaking || speechSynthesis.pending)) speechSynthesis.cancel(); } catch (e) {}
+}, true);
 function dire(t){
   if (audioEnCours){ audioEnCours.pause(); audioEnCours = null; }
   if ("speechSynthesis" in window) speechSynthesis.cancel();
@@ -1763,7 +1791,7 @@ function fin(){
     return;
   }
   entete(niveau + " · " + T("termine"), bilan(), niveau === "A1");
-  $("bas").innerHTML = `<button class="suite" id="encore">${T("encore")}</button>`;
+  $("bas").innerHTML = `<button class="suite" id="encore" data-rond="non">${T("encore")}</button>`;
   $("encore").addEventListener("click", demarrer);
 }
 
@@ -1865,5 +1893,6 @@ $("zoomRetour").addEventListener("click", e => { e.stopPropagation(); zoomRemett
 addEventListener("resize", () => zoomRemettre());
 
 </script>
+<script src="themes/verre.js?v=5"></script>
 </body>
 </html>

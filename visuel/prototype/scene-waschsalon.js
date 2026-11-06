@@ -764,7 +764,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -822,7 +822,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -867,7 +867,7 @@ window.SCENE = {
      "ru": "кроссовки, кеды"
     }
    ],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -1237,7 +1237,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "frau",
    "devant": 0,
    "boites": [
     [
@@ -1385,7 +1385,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "maedchen",
    "devant": 0,
    "boites": [
     [
@@ -1459,7 +1459,7 @@ window.SCENE = {
      "ru": "джинсы"
     }
    ],
-   "sur": null,
+   "sur": "maedchen",
    "devant": 0,
    "boites": [
     [
@@ -1488,7 +1488,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "maedchen",
    "devant": 0,
    "boites": [
     [

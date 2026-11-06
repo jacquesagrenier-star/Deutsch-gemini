@@ -324,6 +324,8 @@ look at | regarder
 have breakfast | prendre le petit-déjeuner
 listen to | écouter
 do crafts | bricoler, faire des travaux manuels | ex=The kids love to do crafts on rainy days. # Les enfants adorent bricoler les jours de pluie.
+crawl | ramper, se glisser | ex=The cat crawls under the sofa. # Le chat se glisse sous le canapé.
+fill out | remplir (un formulaire) | ex=Please fill out this form. # Remplissez ce formulaire, s'il vous plaît.
 """
 
 # « adjectif | traduction | drapeaux » (gb=, ex=).
@@ -372,6 +374,7 @@ dense | dense
 digital | numérique
 direct | direct, directement
 discreet | discret
+disgusting | dégoûtant, répugnant | ex=This soup is disgusting! # Cette soupe est dégoûtante !
 distant | lointain, éloigné
 divorced | divorcé
 double | double
@@ -526,6 +529,11 @@ unlikable | antipathique
 fat | gras, gros
 free of charge | gratuit | ex=Delivery is free of charge. # La livraison est gratuite.
 Swiss | suisse
+outgoing | sociable, extraverti | ex=She is very outgoing and loves parties. # Elle est très sociable et adore les fêtes.
+rude | impoli, grossier | ex=Don't be rude to the waiter. # Ne sois pas impoli avec le serveur.
+messy | désordonné, mal rangé | ex=My brother is really messy. # Mon frère est vraiment désordonné.
+tiring | fatigant | ex=The trip was long and tiring. # Le voyage était long et fatigant.
+scared | qui a peur, effrayé | ex=I'm scared of big dogs. # J'ai peur des gros chiens.
 """
 
 # « adverbe | traduction | categorie | drapeaux ».

@@ -417,7 +417,7 @@ window.SCENE = {
    "theme": "verkehr_a2",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "junge",
    "devant": 0,
    "boites": [
     [
@@ -955,7 +955,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [

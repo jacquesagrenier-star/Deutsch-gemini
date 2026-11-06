@@ -3486,7 +3486,9 @@ html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:
 html[data-apprendre="en"] button[onclick*="startExercises"],
 html[data-apprendre="en"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="en"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
-html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]):not([onclick*="tuileEn_"]){ display:none !important; }
+html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]):not([onclick*="tuileEn_"]):not([onclick*="ouvrirThemePanneau_"]){ display:none !important; }
+/* « N › » des themes illustres (5 nov. 2026, Jacques : la 11 n'ouvrait rien en anglais) : le panneau ne propose que
+   les themes ouverts a l'anglais (themesIllustresOuverts()), la regle ci-dessus les cachait tous. */
 /* « S'entrainer par temps » (28 oct. 2026) : les cartes allemandes (Prasens,
    Prateritum, Perfekt) cedent la place a la liste anglaise, rangee par niveau
    et remplie depuis grammaire.json (#tempsEnCartes). */
@@ -6812,6 +6814,11 @@ body[data-theme="dark"] .bilan-notion.fait .bilan-go{color:#7fd3a5;}
 .bilan-bravo, .bilan-fin{margin:0; font-size:14px; font-weight:700; line-height:1.4;}
 .bilan-fin{margin-top:16px; padding:10px 12px; border-radius:12px; background:rgba(46,139,87,.12); color:#1f6b42; text-align:center;}
 body[data-theme="dark"] .bilan-carte{background:#232a34; color:#F2F2F6;}
+/* v1114 : la question de la montee de niveau (demanderMotsPlusBas), dans la carte du bilan. */
+.niveau-voile .niveau-titre{font-size:19px; line-height:1.3; margin:4px 0 14px; margin-inline-end:32px;}
+.niveau-voile .niveau-oui{margin-top:0;}
+.niveau-ligne{margin:12px 2px 0; font-size:13px; line-height:1.4; color:#4C566B; text-align:center;}
+body[data-theme="dark"] .niveau-ligne{color:#B8C0CC;}
 body[data-theme="dark"] .bilan-dates, body[data-theme="dark"] .bilan-chiffre span, body[data-theme="dark"] .bilan-notion-txt span,
 body[data-theme="dark"] .bilan-mots li span, body[data-theme="dark"] .bilan-fermer{color:#a9b2c0;}
 body[data-theme="dark"] .bilan-section h3, body[data-theme="dark"] .bilan-mots li i{color:#f3c985;}
@@ -7166,6 +7173,17 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .cp-or-micro.reussi{background:#2e8b57 !important;}
 /* v856 : le « +1 » jaune au milieu des confettis. */
 .plus-un{position:fixed; left:50%; top:35%; z-index:10000; background:#E8A23A; color:#1C2430; border-radius:999px; padding:3px 13px 5px; font:900 24px Nunito, system-ui, sans-serif; box-shadow:0 3px 0 #b97c1e, 0 8px 20px rgba(28,36,48,.25); pointer-events:none; animation:plus-un 1.2s cubic-bezier(.2,.8,.3,1) forwards;}
+/* v1112 : LE « +1 » EN VERRE AMBRE (Jacques, 5 nov. 2026, choix 2 de la maquette https://claude.ai/artifact/1PEV7o4epg1DV3DnTxEwsP).
+   La pastille pleine devient une vitre translucide : degrade ambre, flou, liseré blanc et lueur interieure, ombre
+   ambree douce, chiffre a l'encre petrole. Meme taille, meme animation. La nuit, la vitre est plus dense : a 52-62 %
+   sur le fond bleu fonce, le chiffre petrole tombait a 2,5 : 1 ; a 84-90 % il passe 4,5. Le +1 des scenes et des
+   themes est le meme : l'app le pose dans #confettiContainer, par-dessus le cadre. */
+.plus-un{background:linear-gradient(180deg, rgba(240,170,60,.62), rgba(232,162,58,.52)); color:#173A4E;
+    -webkit-backdrop-filter:blur(10px) saturate(1.5); backdrop-filter:blur(10px) saturate(1.5);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75), inset 0 0 10px 2px rgba(255,255,255,.32), 0 8px 20px rgba(200,130,30,.28);
+    text-shadow:0 1px 0 rgba(255,255,255,.35);}
+body[data-theme="dark"] .plus-un{background:linear-gradient(180deg, rgba(240,170,60,.90), rgba(232,162,58,.84));
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55), inset 0 0 10px 2px rgba(255,255,255,.22), 0 8px 20px rgba(0,0,0,.35);}
 @keyframes plus-un{0%{opacity:0; transform:translate(-50%,-50%) scale(.3)} 18%{opacity:1; transform:translate(-50%,-50%) scale(1.15)} 30%{transform:translate(-50%,-50%) scale(1)} 70%{opacity:1; transform:translate(-50%,-110%) scale(1)} 100%{opacity:0; transform:translate(-50%,-160%) scale(.9)}}
 /* v856 : la mosaique sous le bandeau « +30 ! », ou les carreaux du palier poppent. */
 .mos-palier{position:fixed; left:50%; top:calc(16% + 46px); transform:translateX(-50%); z-index:10000; background:#fff; border-radius:14px; padding:7px 7px 9px; box-shadow:0 0 0 1.5px #e3dccf, 0 12px 30px rgba(28,36,48,.25); pointer-events:none; animation:mp-entre .45s cubic-bezier(.3,1.4,.5,1) both; transition:opacity .4s, transform .4s;}
@@ -7899,9 +7917,16 @@ body:not([data-ecran]) #fondMonde .fm-lettres, body[data-ecran="home"] #fondMond
    derriere le verre, a .34 ils disparaissaient. */
 body:not([data-ecran]) #fondMonde .fm-lettres span, body[data-ecran="home"] #fondMonde .fm-lettres span{opacity:.62; color:#8DA3B4;}
 body[data-theme="dark"]:not([data-ecran]) #fondMonde .fm-lettres span, body[data-theme="dark"][data-ecran="home"] #fondMonde .fm-lettres span{opacity:.75; color:#4A6378;}
-body:not([data-ecran]) #fondMonde .fm-piste, body[data-ecran="home"] #fondMonde .fm-piste{animation:fmDefile 170s linear infinite;}   /* v1004 : plus lent (Jacques) */
+body:not([data-ecran]) #fondMonde .fm-piste, body[data-ecran="home"] #fondMonde .fm-piste{animation:fmDefile 340s linear infinite;}   /* v1004 : plus lent (Jacques) ; v1089 : deux tours en 340 s, la meme vitesse */
 body:not([data-ecran]) #fondMonde .fm-lettres-piste, body[data-ecran="home"] #fondMonde .fm-lettres-piste{animation:fmLettres 130s linear infinite;}
-@keyframes fmDefile{from{transform:translateX(-338px);} to{transform:translateX(-1298px);}}
+/* v1089 : DEUX TOURS DE CARTE PAR BOUCLE, pas un (Jacques, 3 nov. 2026, iPhone : « Lorsque j'ouvre l'application allemande,
+   on voit la map se deplacer vers la gauche. Mais apres 5 ou 6 secondes, il y a un petit flash »). Le defilement part du pays
+   de la langue apprise (poserPaysCarte, un delai negatif) : pour l'allemand, ce point tombait a 165,6 s d'une boucle de 170 s,
+   et la boucle recommencait 4,4 s apres l'arrivee sur l'accueil -- en espagnol apres 11 s, en japonais apres pres de 2 min.
+   Le saut de 960 px est invisible sur l'ordinateur (la carte se repete), mais l'iPhone redessine la couche a ce moment-la.
+   Avec deux tours (-338 -> -2258 px en 340 s, la meme vitesse ; la piste de 2880 px couvre encore l'ecran), le depart tombe
+   toujours dans le premier : aucune boucle avant 170 s, quelle que soit la langue. Controle : tests/carte_accueil.py. */
+@keyframes fmDefile{from{transform:translateX(-338px);} to{transform:translateX(-2258px);}}
 /* v1036 : la carte et les lettres defilent de nouveau sur l'accueil. L'essai de la v1035 (les arreter)
    n'a rien change a la bande bleue de l'iPhone : elles n'y sont pour rien. */
 @keyframes fmLettres{from{transform:translateX(0);} to{transform:translateX(-390px);}}
@@ -8629,7 +8654,7 @@ body[data-theme="dark"] .spf-piste{opacity:.32;}
 .spf-lettres-piste{position:absolute; top:0; left:0; width:780px; height:100%;}
 .spf-lettres span::before{content:attr(data-l);}
 .spf-lettres span{position:absolute; font-family:Georgia, "Noto Serif", "Yu Mincho", "Hiragino Mincho ProN", serif; font-weight:600; font-size:104px; line-height:1; color:var(--fil-lettres);}
-body:not([data-ecran]) .spf-piste, body[data-ecran="home"] .spf-piste{animation:fmDefile 170s linear infinite;}
+body:not([data-ecran]) .spf-piste, body[data-ecran="home"] .spf-piste{animation:fmDefile 340s linear infinite;}
 body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-piste{animation:fmLettres 130s linear infinite;}
 @media (prefers-reduced-motion: reduce){ .spf-piste, .spf-lettres-piste{animation:none !important;} }
 /* v1050 : LE FOND SUIT LA BARRE D'ETAT (Jacques, 31 oct. 2026 : « les caracteres sont encore sur ma seance du jour.
@@ -8654,6 +8679,13 @@ body[data-theme="dark"] .spf-piste{opacity:1; background:none;}
 body[data-theme="dark"] .spf-piste::before{content:""; position:absolute; inset:0; opacity:.32;
     background:url("visuel/fond/carte-filigrane.svg") repeat-x 0 0 / 960px 378px;}
 body[data-theme="dark"] .spf-pays{opacity:.85;}
+/* v1109 : LE PAYS MOINS EN EVIDENCE SUR LA SEANCE (Jacques, 4 nov. 2026 : « le vert il n'est pas teinte par le orange
+   lorsqu'il passe sur l'orange [...] on dirait qu'il est en avant-plan », puis « j'ai aime [...] pour que le pays [...]
+   soit un peu moins en evidence »). Dans la copie de la carte, les continents sont blancs a 32 % ; le pays y etait en
+   turquoise plein et semblait colle par-dessus l'ambre. A 45 % (40 % la nuit), il se fond dans la pilule comme le
+   reste. La grande carte du fond (.fm-pays) ne change pas. Avant / apres : .claude/maquette-choix-verre.html. */
+#home #seancePilule .spf-pays{opacity:.45;}
+body[data-theme="dark"] #home #seancePilule .spf-pays{opacity:.4;}
 /* La seance laisse voir la carte : le centre de l'anneau s'ouvre, sans voile (« Sans voile blanc sur [...] la
    progression ») ; la rangee des niveaux garde un verre blanc leger. L'anneau passe donc dans le ::before, decoupe
    en couronne par un masque : sur .pa-anneau, le masque couperait aussi le chiffre. */
@@ -8664,6 +8696,88 @@ body[data-theme="dark"] #home #seancePilule > .pa-anneau::before{background:coni
 #home #seancePilule .pa-anneau b, #home #seancePilule .pa-anneau small{text-shadow:0 0 3px rgba(255,255,255,.95), 0 0 8px rgba(255,255,255,.75);}
 body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"] #home #seancePilule .pa-anneau small{text-shadow:0 0 3px rgba(0,0,0,.7), 0 0 8px rgba(0,0,0,.45);}
 #home #seancePilule .seance-niveaux{background:rgba(255,255,255,.38) !important;}
+
+/* ============ v1110 : LE VERRE D'APPLE ET LE ROND QUI AVANCE (Jacques, 4 nov. 2026) ============
+   Decisions du 4 nov. (decisions/DECISIONS.md), maquette .claude/maquette-choix-verre.html :
+   - LE VERRE, partout ou l'on appuie : « le meme verre, mais V-E-R-R-E. Donc, transparent, la meme chose qu'Apple ».
+     Presque pas de teinte (3 a 7 % de blanc), un flou, un filet de lumiere, des reflets ; l'encre foncee avec un
+     halo clair (blanche avec une ombre la nuit). Pas touches : la pilule ambre de la seance et ses boutons (cas a
+     part), les tuiles de l'accueil.
+   - CONTINUER ET VERIFIER, dans les exercices : un ROND de 56 px, centre en bas (zone de toucher 64 px), une fleche
+     neutre a l'encre petrole (« Une fleche plutot » ; « on va le placer au centre »), retournee en arabe et en persan.
+     Le mot reste dans le bouton, invisible : c'est le nom que lisent les lecteurs d'ecran.
+   - LE VERSO DES CARTES : Encore et Continuer cote a cote, 46 px ; Continuer = la bille verte au crochet et ses
+     quatre points, sans le mot. La couleur de chaque bouton passe par son icone seulement (minuteur jaune, bille
+     verte, coffre orange) : le verre, lui, reste transparent.
+   La barre des boutons reste fixe en bas (v1107). ⚠️ Pas de backdrop-filter, de filter ni de transform sur un
+   parent de ces barres : il deviendrait le cadre du « fixed ». */
+:root{--va-haut:rgba(255,255,255,.07); --va-bas:rgba(255,255,255,.03); --va-encre:#1C2430;
+    --va-halo:0 0 4px rgba(255,255,255,.75), 0 0 1px rgba(255,255,255,.6);
+    --va-filet:inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(255,255,255,.18); --va-ombre:0 8px 22px rgba(20,30,40,.12);
+    --va-reflet:linear-gradient(180deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.05) 30%, rgba(255,255,255,0) 48%), radial-gradient(60% 40% at 50% 110%, rgba(255,255,255,.22), rgba(255,255,255,0) 70%);
+    --va-fleche:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 16h17M18 9.5l6.5 6.5-6.5 6.5' fill='none' stroke='%23173A4E' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    --va-minuteur:#9A6F00; --va-coffre:#B8571A;}
+body[data-theme="dark"]{--va-haut:rgba(255,255,255,.05); --va-bas:rgba(255,255,255,.02); --va-encre:#F3F5F8;
+    --va-halo:0 1px 3px rgba(0,0,0,.7);
+    --va-filet:inset 0 1px 0 rgba(255,255,255,.22), inset 0 -1px 0 rgba(255,255,255,.06); --va-ombre:0 8px 22px rgba(0,0,0,.3);
+    --va-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,.02) 30%, rgba(255,255,255,0) 48%);
+    --va-fleche:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 16h17M18 9.5l6.5 6.5-6.5 6.5' fill='none' stroke='%23DCEBF2' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    --va-minuteur:#F0CD5A; --va-coffre:#F2A35E;}
+
+/* 1. LA PLACE (v1107) : les barres du verso et des exercices restent en bas de l'ecran ; la carte defile dessous. */
+#flashcards.active #flashcardActions:not(.hidden),
+#flashcards.active #cartePhrase:not(.hidden) .cp-actions{
+    position:fixed; z-index:950; margin:0 !important; width:auto !important; max-width:none !important;
+    left:max(12px, calc(50% - 310px), env(safe-area-inset-left, 0px));
+    right:max(12px, calc(50% - 310px), env(safe-area-inset-right, 0px));
+    bottom:calc(10px + env(safe-area-inset-bottom, 0px));
+}
+#flashcards.active:has(#flashcardActions:not(.hidden)){padding-bottom:calc(168px + env(safe-area-inset-bottom, 0px)) !important;}
+#flashcards.active:has(#cartePhrase:not(.hidden) .cp-actions){padding-bottom:calc(96px + env(safe-area-inset-bottom, 0px)) !important;}
+#flashcards.active:has(#flashcardActions.paquet-garde:not(.hidden)){padding-bottom:calc(130px + env(safe-area-inset-bottom, 0px)) !important;}
+/* La notification d'un badge (« Badge debloque ») se posait sur le rond et la barre du bas : elle monte au-dessus. */
+body:has(#flashcards.active) .badge-toast{bottom:calc(160px + env(safe-area-inset-bottom, 0px));}
+
+/* 2. LE VERRE, une seule recette. */
+#flashcardActions .judge-button, #flashcards .cp-actions button, button.back, header .theme-icon-btn, header .avatar,
+.cp-ecouter, .tr-btn, button.primary:not(.pa-play):not(#seancePilule *), button.secondary:not(#seancePilule *){
+    position:relative; overflow:hidden; isolation:isolate; border-color:transparent !important;
+    background:var(--va-reflet), linear-gradient(180deg, var(--va-haut), var(--va-bas)) !important; color:var(--va-encre) !important;
+    -webkit-backdrop-filter:blur(12px) saturate(1.15) brightness(1.04) !important; backdrop-filter:blur(12px) saturate(1.15) brightness(1.04) !important;
+    box-shadow:var(--va-filet), var(--va-ombre) !important; text-shadow:var(--va-halo) !important;}
+.cp-ecouter svg, .tr-btn svg{fill:currentColor;}
+#flashcardActions .judge-good::before, #flashcardActions .judge-good::after, #flashcards .cp-actions button::after{display:none !important;}
+button.primary:disabled, button.secondary:disabled, #flashcards .cp-actions button:disabled{opacity:.55;}
+
+/* 3. LE ROND QUI AVANCE : Continuer et Verifier des exercices. Le bouton fait 64 px (la zone du doigt) ; le verre,
+   dessine dans son ::before, en fait 56. */
+#flashcards .cp-actions{justify-content:center !important; align-items:center; gap:12px !important;}
+#flashcards .cp-actions button.primary{flex:0 0 64px !important; width:64px !important; height:64px !important; min-height:64px !important;
+    padding:0 !important; border-radius:50% !important; font-size:0 !important; color:transparent !important; text-shadow:none !important;
+    background:none !important; box-shadow:none !important; -webkit-backdrop-filter:none !important; backdrop-filter:none !important;}
+#flashcards .cp-actions button.primary::before{content:"" !important; display:block !important; position:absolute; inset:4px !important; border-radius:50%; z-index:-1; pointer-events:none;
+    background:var(--va-fleche) center / 26px 26px no-repeat, var(--va-reflet), linear-gradient(180deg, var(--va-haut), var(--va-bas)) !important;
+    -webkit-backdrop-filter:blur(12px) saturate(1.15) brightness(1.04); backdrop-filter:blur(12px) saturate(1.15) brightness(1.04);
+    box-shadow:var(--va-filet), var(--va-ombre);}
+html[dir="rtl"] #flashcards .cp-actions button.primary::before{transform:scaleX(-1);}
+#flashcards .cp-actions button.primary:focus-visible{outline:2px solid #E8A23A; outline-offset:-2px;}
+
+/* 4. LE VERSO : deux boutons cote a cote, la couleur dans les icones.
+   v1111 : 92 px de haut au lieu de 46 (Jacques, 5 nov. 2026 : « le bouton pour revoir dans deux minutes pis celui
+   pour OK est un peu petit, je le doublerais [...] en hauteur »). L'icone au-dessus du mot, en colonne. */
+#flashcardActions .judge-row .judge-button{min-height:92px !important; height:92px; padding:6px 10px !important; gap:5px !important;
+    flex-direction:column !important; justify-content:center !important; align-items:center !important;}
+#flashcardActions .judge-again .minuterie{order:-1; color:var(--va-minuteur); width:26px; height:26px;}
+#flashcardActions .judge-again .judge-titre{order:0; font-size:15.5px;}
+#flashcardActions .judge-again .judge-echeance{order:1; font-size:11.5px !important; opacity:.85;}
+#flashcardActions .judge-good .judge-bille{order:0 !important; width:34px; height:34px;}
+#flashcardActions .judge-good .judge-bille svg{width:19px; height:19px;}
+#flashcardActions .judge-good .srs-ladder, #flashcardActions .judge-good .srs-pips{order:1 !important;}
+#flashcardActions .judge-good .judge-continuer{position:absolute !important; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap;}
+#flashcardActions .judge-row2 .judge-button{min-height:36px !important;}
+#flashcardActions .judge-garde svg, #flashcardActions .judge-sortir svg{color:var(--va-coffre);}
+#flashcardActions .judge-garde.on{--va-haut:rgba(240,167,90,.34); --va-bas:rgba(240,167,90,.28);}
+body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165,100,.26); --va-bas:rgba(240,165,100,.20);}
 </style>
 
 <!-- v1003 : LE FOND COMMUN (Jacques, 29 oct. 2026). La carte du monde decoupee PAR LANGUE
@@ -8718,7 +8832,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1085</span>
+        <span class="subtitle-version">v1116</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -9433,11 +9547,12 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LES THEMES ILLUSTRES SUR L'ACCUEIL (Jacques, 3 nov. 2026 : « je passe le theme de la famille ou je
              passe le theme des caracteristiques physiques. D'un seul coup. Directement. » ; « On va prendre le A »).
              Le meme bloc que les scenes, juste dessous, avec sa phrase ; une vignette ouvre le theme EN ENTIER
-             (decouverte puis vingt questions), « N › » mene a la section de Tout le contenu. Espagnol et allemand. -->
+             (decouverte puis vingt questions). « N › » ouvre le panneau de TOUS les themes, comme « Explorer les
+             scenes » (Jacques, 3 nov. 2026 : il menait a Tout le contenu). -->
         <div class="explorer-scenes explorer-themes hidden" id="explorerThemes">
             <div class="explorer-haut">
                 <strong data-i18n="sec_illustres">Thèmes illustrés</strong>
-                <button type="button" class="explorer-tout" onclick="ouvrirListeThemesIllustres()"><span id="explorerThemesNb"></span> ›</button>
+                <button type="button" class="explorer-tout" onclick="openOrbPanel('themes_illustres')"><span id="explorerThemesNb"></span> ›</button>
             </div>
             <p class="explorer-desc" data-i18n="themes_ill_desc">Des personnes, des images, des questions. Un thème en entier, d'un coup.</p>
             <div class="explorer-ruban" id="explorerThemesRuban"></div>
@@ -9668,6 +9783,100 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <div class="orb hidden" data-orbid="contrarios" id="tuileContrarios" onclick="ouvrirThemeIllustre('contrarios')" role="button" tabindex="0">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h5l-.8 15.2a1 1 0 0 1-1 .8H7.8a1 1 0 0 1-1-.8z"/><path d="M6.4 10h4.2"/><path d="M13 4h5l-.8 15.2a1 1 0 0 1-1 .8h-1.4a1 1 0 0 1-1-.8z"/></svg></div>
             <div><strong data-i18n="con_tuile">Les contraires</strong></div>
+        </div>
+        <!-- « Ou est le chat ? » (3 nov. 2026) : les prepositions de lieu en images, un chat et une piece (le salon de Ben
+             et Mia) ; Wo? datif / Wohin? accusatif, del / al. visuel/prototype/gato.html. es et de. -->
+        <div class="orb hidden" data-orbid="gato" id="tuileGato" onclick="ouvrirThemeIllustre('gato')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20v-7h14v7"/><path d="M9 13V9.5L7.5 6.5l2.7 1.6h3.6l2.7-1.6L15 9.5V13"/><path d="M10.6 10.6h.01M13.4 10.6h.01"/></svg></div>
+            <div><strong data-i18n="gato_tuile">Où est le chat ?</strong></div>
+        </div>
+        <!-- Les vetements (3 nov. 2026) : s'habiller selon la meteo et l'occasion. Les douze de Descripcion, dans leur
+             tenue et dans deux tenues de situation ; lleva / se pone / se quita, tragt + accusatif, anziehen / ausziehen,
+             l'accord des couleurs : visuel/prototype/ropa.html. es et de. -->
+        <div class="orb hidden" data-orbid="ropa" id="tuileRopa" onclick="ouvrirThemeIllustre('ropa')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8.5 3.5 4 6l1.8 4.2 2-.9V20.5h8.4V9.3l2 .9L20 6l-4.5-2.5a3.5 3.5 0 0 1-7 0z"/></svg></div>
+            <div><strong data-i18n="ropa_tuile">Les vêtements</strong></div>
+        </div>
+        <!-- Le corps et la sante (3 nov. 2026, vague 1) : dire ou on a mal et comment on se sent -- des personnes qui ont
+             mal, pas les objets des scenes arztpraxis et apotheke. me duele / mir tut ... weh (le datif), tener / haben
+             fiebre, le conseil, le dialogue chez le medecin (l'oral du DTZ) : visuel/prototype/cuerpo.html. es et de. -->
+        <div class="orb hidden" data-orbid="cuerpo" id="tuileCuerpo" onclick="ouvrirThemeIllustre('cuerpo')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="4.5" r="2.3"/><path d="M9 7.5v7.5M5 10.5h8M9 15l-3 5.5M9 15l3 5.5"/><path d="M18.5 8.5v6M15.5 11.5h6"/></svg></div>
+            <div><strong data-i18n="cue_tuile">Le corps et la santé</strong></div>
+        </div>
+        <!-- La journee (3 nov. 2026, vague 1) : un lundi d'Anna, le samedi de Mark, un jour d'ecole chez Jan et Katrin ;
+             les verbes pronominaux et separables, l'heure (une horloge sur chaque image), l'ordre et la frequence :
+             visuel/prototype/journee.html. es et de. -->
+        <div class="orb hidden" data-orbid="journee" id="tuileJournee" onclick="ouvrirThemeIllustre('journee')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/></svg></div>
+            <div><strong data-i18n="jour_tuile">La journée</strong></div>
+        </div>
+        <!-- Manger et gouter (3 nov. 2026, vague 1) : les gouts, les saveurs, les quantites et la commande au cafe -- pas
+             les objets de la cuisine, qui ont leur scene. me gusta / gustan, ich mag / das schmeckt mir, un kilo de / ein
+             Kilo, La cuenta, por favor / Die Rechnung, bitte : visuel/prototype/manger.html. es et de. -->
+        <div class="orb hidden" data-orbid="manger" id="tuileManger" onclick="ouvrirThemeIllustre('manger')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 11h13v2.5a6.5 6.5 0 0 1-13 0z"/><path d="M17 12h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1.5 1.5 1.5 1.5 3S8 8 8 9.5M12 3.5c0 1.5 1.5 1.5 1.5 3S12 8 12 9.5"/></svg></div>
+            <div><strong data-i18n="man_tuile">Manger et goûter</strong></div>
+        </div>
+        <!-- « Les metiers » (3 nov. 2026) : qui fait quoi et ou, « Ich bin Arztin » / « Soy medica » sans article, le
+             masculin et le feminin (der Arzt / die Arztin, el / la policia). visuel/prototype/metiers.html. es et de. -->
+        <div class="orb hidden" data-orbid="metiers" id="tuileMetiers" onclick="ouvrirThemeIllustre('metiers')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8.5 7V5a1.5 1.5 0 0 1 1.5-1.5h4A1.5 1.5 0 0 1 15.5 5v2M3 12.5h18M11 12.5v2h2v-2"/></svg></div>
+            <div><strong data-i18n="met_tuile">Les métiers</strong></div>
+        </div>
+
+        <!-- Les transports (3 nov. 2026, vague 2) : se deplacer -- mit dem Bus (mit + datif), zu Fuss ; en autobus, a pie ;
+             einsteigen / aussteigen / umsteigen sur un plan de metro, subir al / bajar del ; le tableau des departs et
+             l'heure en mots ; le billet (einfach oder hin und zurueck ?) et son prix. visuel/prototype/transportes.html. es et de. -->
+        <div class="orb hidden" data-orbid="transportes" id="tuileTransportes" onclick="ouvrirThemeIllustre('transportes')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="14" rx="2.5"/><path d="M5 11h14M8 20l1.5-3M16 20l-1.5-3"/><path d="M8.5 14h.01M15.5 14h.01"/></svg></div>
+            <div><strong data-i18n="trans_tuile">Les transports</strong></div>
+        </div>
+        <!-- Les loisirs (3 nov. 2026, vague 2) : quinze activites photographiees avec des personnes connues ; me gusta /
+             gern, jugar ou tocar / spielen, machen, fahren, la frequence (un calendrier de quatre semaines) et proposer
+             une sortie. visuel/prototype/loisirs.html. es et de. -->
+        <div class="orb hidden" data-orbid="loisirs" id="tuileLoisirs" onclick="ouvrirThemeIllustre('loisirs')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="5"/><path d="M8 10v10M3 15h10"/><path d="M15 4v10.5"/><circle cx="13" cy="15" r="2"/><path d="M15 4l5 1.5v3L15 7"/></svg></div>
+            <div><strong data-i18n="loi_tuile">Les loisirs</strong></div>
+        </div>
+        <!-- Les animaux (3 nov. 2026, vague 2) : le genre et le pluriel, ou ils vivent (ferme, foret, mer, maison), ce
+             qu'ils mangent, leur couleur et leur taille ; les animaux de la ferme sont ceux de la scene bauernhof.
+             visuel/prototype/animales.html. es et de. -->
+        <div class="orb hidden" data-orbid="animales" id="tuileAnimales" onclick="ouvrirThemeIllustre('animales')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="4.2" ry="3.6"/><circle cx="6" cy="10.5" r="1.9"/><circle cx="9.6" cy="6.6" r="1.9"/><circle cx="14.4" cy="6.6" r="1.9"/><circle cx="18" cy="10.5" r="1.9"/></svg></div>
+            <div><strong data-i18n="ani_tuile">Les animaux</strong></div>
+        </div>
+        <!-- « La meteo et les saisons » (3 nov. 2026, vague 2) : une place de Berlin sous huit temps, le thermometre,
+             les saisons et ce qu'on y fait ; hace / esta / hay, es ist / es gibt. visuel/prototype/meteo.html. es et de. -->
+        <div class="orb hidden" data-orbid="meteo" id="tuileMeteo" onclick="ouvrirThemeIllustre('meteo')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><path d="M8 2v1.5M2 8h1.5M3.8 3.8l1 1M12.2 3.8l-1 1"/><path d="M9 19h9a3.5 3.5 0 0 0 0-7 5 5 0 0 0-9.6 1.4A2.8 2.8 0 0 0 9 19z"/></svg></div>
+            <div><strong data-i18n="meteo_tuile">La météo et les saisons</strong></div>
+        </div>
+
+        <!-- Le logement (4 nov. 2026, vague 3) : les pieces, les meubles, ou est qui et quoi (stehen / liegen / haengen ;
+             hay / esta), les plans, et chercher un appartement (l'annonce, KM, NK, Kaution, la visite) pour le DTZ.
+             Les pieces des scenes et de « La journee » reprises telles quelles : visuel/prototype/logement.html. es et de. -->
+        <div class="orb hidden" data-orbid="logement" id="tuileLogement" onclick="ouvrirThemeIllustre('logement')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg></div>
+            <div><strong data-i18n="log_tuile">Le logement</strong></div>
+        </div>
+
+        <!-- Les demarches (4 nov. 2026, vague 3) : l'administration et la vie pratique, au coeur du DTZ -- pas les objets
+             de la scene buergeramt. Mark au Buergeramt, a la banque, chez le medecin ; le formulaire, l'avis, les heures
+             d'ouverture et la confirmation de rendez-vous en HTML ; Wo? + datif, les verbes separables, le Sie du guichet ;
+             usted et estar abierta : visuel/prototype/demarches.html. es et de. -->
+        <div class="orb hidden" data-orbid="demarches" id="tuileDemarches" onclick="ouvrirThemeIllustre('demarches')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 11h7M9 14.5h7M9 18h4"/></svg></div>
+            <div><strong data-i18n="dem_tuile">Les démarches</strong></div>
+        </div>
+
+        <!-- Faire les courses (4 nov. 2026, vague 3) : l'achat dans les magasins -- ou acheter quoi, zur / zum et al / a la,
+             le dialogue au comptoir, les prix lus et entendus, comparer, la monnaie, le prospectus des offres. Les magasins
+             des scenes (baeckerei, supermarkt, apotheke, markt) en reprennent l'image ; pas les contenants ni le cafe de
+             « Manger et gouter » : visuel/prototype/courses.html. es et de. -->
+        <div class="orb hidden" data-orbid="courses" id="tuileCourses" onclick="ouvrirThemeIllustre('courses')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3.5 4h2.2l2.3 10.5h10.2l2-7.5H7"/><circle cx="9.5" cy="18.8" r="1.5"/><circle cx="16.8" cy="18.8" r="1.5"/></svg></div>
+            <div><strong data-i18n="cou_tuile">Faire les courses</strong></div>
         </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
@@ -10005,7 +10214,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
 
 <section id="orbPanel" class="screen">
-    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <button class="back" onclick="retourOrbPanel()"><span data-i18n="back_button">‹ Retour</span></button>
 
     <div class="title-row">
         <div>
@@ -10708,6 +10917,8 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
     <div class="spacer"></div>
     <button class="secondary" onclick="startVerbenMitPraep()" data-i18n="praep_btn_verben">M'ENTRAÎNER : VERBES À PRÉPOSITION →</button>
     <div class="spacer"></div>
+    <button class="secondary" onclick="ouvrirThemeGato()" data-i18n="praep_btn_gato">M'ENTRAÎNER : OÙ EST LE CHAT ? →</button>
+    <div class="spacer"></div>
     <button class="secondary vocab-tuile" onclick="startPraepVokabular()" data-i18n="praep_btn_vocab">VOCABULAIRE : PRÉPOSITIONS →</button>
     <div id="praepNiveauBar" class="filters-bar"></div>
     <div class="spacer"></div>
@@ -11135,7 +11346,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
      annoncerait comme certains induirait en erreur le jour ou ils changent. -->
 
 <section id="pruefungInfo" class="screen">
-    <button class="back" onclick="openOrbPanel('pruefung')"><span data-i18n="back_button">‹ Retour</span></button>
+    <button class="back" onclick="retourPruefungInfo()"><span data-i18n="back_button">‹ Retour</span></button>
 
     <div class="title-row">
         <div>
@@ -14397,6 +14608,27 @@ const I18N = {
         emo_tuile: "Émotions et caractère",
         emo_court: "Émotions",
         con_tuile: "Les contraires",
+        gato_tuile: "Où est le chat ?",
+        loi_tuile: "Les loisirs",
+        ropa_tuile: "Les vêtements",
+        cue_tuile: "Le corps et la santé",
+        cue_court: "Le corps",
+        ropa_court: "Vêtements",
+        jour_tuile: "La journée",
+        jour_court: "Journée",
+        man_tuile: "Manger et goûter",
+        met_tuile: "Les métiers",
+        man_court: "Manger",
+        trans_tuile: "Les transports",
+        ani_tuile: "Les animaux",
+        meteo_tuile: "La météo et les saisons",
+        meteo_court: "La météo",
+        log_tuile: "Le logement",
+        log_court: "Logement",
+        dem_tuile: "Les démarches",
+        dem_court: "Démarches",
+        cou_tuile: "Faire les courses",
+        cou_court: "Courses",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -14637,7 +14869,7 @@ const I18N = {
         info_partie_accueil: "Sur l'accueil",
         info_partie_ici: "Rangé ici",
         ip_partie_seance: "Ma séance du jour",
-        ip_seance_niveaux: "Les niveaux A1 à C1 décident d'où viennent les mots NOUVEAUX — pas tes révisions. Celles-ci reviennent de tous les niveaux que tu as déjà travaillés, quel que soit le niveau affiché.",
+        ip_seance_niveaux: "Les niveaux A1 à C1 décident d'où viennent les mots NOUVEAUX. Tes révisions viennent du niveau choisi et des niveaux au-dessus ; d'un niveau plus bas, seuls reviennent les mots que tu as ratés.",
         ip_seance_commencer: "« Commencer » compose la séance pour toi : d'abord les mots qu'il est temps de revoir, puis des mots nouveaux du niveau choisi, au plus {n} par jour. Un quart de la séance ({p} %) reste réservé au neuf, pour que le niveau choisi commande toujours quelque chose, même quand le retard est grand.",
         ip_seance_gardes: "« Gardés » ouvre ton coffre : les mots que tu y as mis avec « Garder ». Tu peux y tourner autant que tu veux — rien de ce que tu y fais ne change une échéance ni l'objectif du jour.",
         ip_seance_theme: "« par thème » est l'autre porte : tu choisis toi-même un thème, au lieu de laisser l'app composer la séance.",
@@ -14657,7 +14889,15 @@ const I18N = {
         flash_end_objectif_reste: "Encore {n} cartes pour ton objectif du jour.",
         mosaique_plafond: "Le tableau a avancé au maximum pour aujourd'hui. Il reprendra demain.",
         flash_recto: "Revenir au recto de la carte",
-        legende_seance_niveau: "Les pastilles A1 à C1 ne décident que de la provenance des mots NOUVEAUX. Tes révisions reviennent de tous les niveaux déjà travaillés, quel que soit celui qui est choisi.",
+        legende_seance_niveau: "Les pastilles A1 à C1 décident de la provenance des mots NOUVEAUX. Des niveaux plus bas, seuls reviennent en révision les mots que tu as ratés.",
+        niv_monte_titre: "Tu as commencé {n} mots ({niveaux}). Tu les connais déjà ?",
+        niv_monte_titre_one: "Tu as commencé 1 mot ({niveaux}). Tu le connais déjà ?",
+        niv_monte_oui: "Oui, je les connais",
+        niv_monte_oui_one: "Oui, je le connais",
+        niv_monte_garder: "Garde ceux que j'ai ratés",
+        niv_monte_garder_one: "Garde-le si je l'ai raté",
+        niv_monte_ligne: "Si tu les gardes, seuls ceux que tu as ratés reviendront en révision.",
+        niv_monte_ligne_one: "Si tu le gardes, il ne reviendra en révision que si tu l'as raté.",
         legende_objectif_quoi: "Aujourd'hui — les cartes que tu as jugées (« Encore » ou « ✓ »).",
         legende_mosaique: "Le tableau — il commence en gros carreaux de couleur, et chaque carte en affine un, révision comprise. Le peintre, l'année et le titre apparaissent à mesure. Touche-le pour l'agrandir.",
         legende_jours: "Jours travaillés — le total des journées où tu as fait quelque chose. Il ne redescend jamais, même après des vacances.",
@@ -15309,6 +15549,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "M'ENTRAÎNER : LAQUELLE ? →",
         praep_btn_verben: "M'ENTRAÎNER : VERBES À PRÉPOSITION →",
+        praep_btn_gato: "M'ENTRAÎNER : OÙ EST LE CHAT ? →",
         kicker_partikeln_nuance: "Particules · Nuance",
 
         label_level_singular: "niveau",
@@ -15391,6 +15632,30 @@ const I18N = {
         zahlen_info_title: "Les nombres",
         orb_pruefung_title: "Préparation aux examens", orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Préparation aux examens", op_pruefung_sub: "Par niveau · Goethe · telc · DTZ",
+        // Le panneau des examens (essai examens_blocs, 4 nov. 2026) : un bloc par examen, DTZ, telc A2-B1, Goethe B1, C1.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1 · C1",
+        op_pruefung_bloc_dtz_t: "Se préparer au DTZ",
+        op_pruefung_bloc_dtz_d: "L’examen de la fin du cours d’intégration : écouter, lire, écrire, parler",
+        op_pruefung_bloc_telc_t: "Se préparer au telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "Lire d’abord, puis les Sprachbausteine, les courriels, l’écoute et l’oral",
+        op_pruefung_dtz_title: "Se préparer au DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "Se préparer au telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · dans l’ordre de l’examen",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "Une lettre à trous : choisir le bon mot, et comprendre pourquoi",
+        op_pruefung_telc_mark_t: "Le telc avec Mark et Anna",
+        op_pruefung_telc_mark_d: "Les parties au format du telc, avec une explication après chaque réponse",
+        op_pruefung_bloc_goethe_t: "Se préparer au Goethe-Zertifikat B1",
+        op_pruefung_bloc_goethe_d: "Lire, écouter, écrire (dont le message de forum), parler (dont l’exposé)",
+        op_pruefung_bloc_c1_t: "Se préparer au C1",
+        op_pruefung_bloc_c1_d: "Argumenter, nuancer, résumer : écouter, lire, écrire, parler au niveau C1",
+        op_pruefung_goethe_title: "Se préparer au Goethe B1",
+        op_pruefung_goethe_sub: "Goethe-Zertifikat B1",
+        op_pruefung_c1bloc_title: "Se préparer au C1",
+        op_pruefung_c1bloc_sub: "Goethe-Zertifikat C1 · telc Deutsch C1",
+        op_pruefung_feuilles_t: "Les feuilles de conjugaison",
+        op_pruefung_feuilles_d: "Les temps du B2 et du C1 : passif, Konjunktiv I, participe étendu…",
         op_pruefung_hoeren_t: "Écouter", op_pruefung_hoeren_d: "Une annonce, un message — puis la question",
         op_pruefung_lesen_t: "Lire", op_pruefung_lesen_d: "Annonce, courriel, formulaire — et ce qu’on te demande",
         op_pruefung_schreiben_t: "Écrire", op_pruefung_schreiben_d: "La lettre officielle, remontée dans l’ordre",
@@ -15918,6 +16183,27 @@ const I18N = {
         emo_tuile: "Feelings and personality",
         emo_court: "Feelings",
         con_tuile: "Opposites",
+        gato_tuile: "Where's the cat?",
+        loi_tuile: "Free time",
+        ropa_tuile: "Clothes",
+        cue_tuile: "Body and health",
+        cue_court: "Body",
+        ropa_court: "Clothes",
+        jour_tuile: "Daily routine",
+        jour_court: "Routine",
+        man_tuile: "Food and taste",
+        met_tuile: "Jobs",
+        man_court: "Food",
+        trans_tuile: "Transport",
+        ani_tuile: "Animals",
+        meteo_tuile: "Weather and seasons",
+        meteo_court: "Weather",
+        log_tuile: "Home and housing",
+        log_court: "Home",
+        dem_tuile: "Paperwork and appointments",
+        dem_court: "Paperwork",
+        cou_tuile: "Going shopping",
+        cou_court: "Shopping",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -16158,7 +16444,7 @@ const I18N = {
         info_partie_accueil: "On the home screen",
         info_partie_ici: "Kept here",
         ip_partie_seance: "Today's session",
-        ip_seance_niveaux: "The levels A1 to C1 decide where NEW words come from — not your reviews. Those come back from every level you have already worked on, whatever level is shown.",
+        ip_seance_niveaux: "The levels A1 to C1 decide where NEW words come from. Your reviews come from the chosen level and the ones above it; from a lower level, only the words you got wrong come back.",
         ip_seance_commencer: "“Start” builds the session for you: first the words it is time to see again, then new words from the chosen level, at most {n} a day. A quarter of the session ({p}%) stays reserved for new words, so the level you choose always commands something, even when the backlog is large.",
         ip_seance_gardes: "“Kept” opens your chest: the words you put there with “Keep”. You can go round it as often as you like — nothing you do there changes a due date or the daily goal.",
         ip_seance_theme: "“by theme” is the other door: you pick a theme yourself instead of letting the app build the session.",
@@ -16178,7 +16464,15 @@ const I18N = {
         flash_end_objectif_reste: "{n} more cards to reach today's goal.",
         mosaique_plafond: "The painting has moved as far as it can today. It picks up again tomorrow.",
         flash_recto: "Back to the front of the card",
-        legende_seance_niveau: "The A1–C1 pills only decide where NEW words come from. Your reviews come back from every level you have already worked, whichever one is selected.",
+        legende_seance_niveau: "The A1–C1 pills decide where NEW words come from. From lower levels, only the words you got wrong come back for review.",
+        niv_monte_titre: "You've started {n} words ({niveaux}). Do you already know them?",
+        niv_monte_titre_one: "You've started 1 word ({niveaux}). Do you already know it?",
+        niv_monte_oui: "Yes, I know them",
+        niv_monte_oui_one: "Yes, I know it",
+        niv_monte_garder: "Keep the ones I got wrong",
+        niv_monte_garder_one: "Keep it if I got it wrong",
+        niv_monte_ligne: "If you keep them, only the ones you got wrong will come back for review.",
+        niv_monte_ligne_one: "If you keep it, it will only come back for review if you got it wrong.",
         legende_objectif_quoi: "Today — the cards you judged (« Again » or « ✓ »).",
         legende_mosaique: "The painting — it starts as large squares of colour, and every card makes one of them finer, reviews included. Painter, year and title appear as you go. Tap it to enlarge.",
         legende_jours: "Days worked — the total number of days you did something. It never goes down, not even after a holiday.",
@@ -16828,6 +17122,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "PRACTICE: WHICH ONE? →",
         praep_btn_verben: "PRACTICE: VERBS WITH PREPOSITIONS →",
+        praep_btn_gato: "PRACTICE: WHERE'S THE CAT? →",
         kicker_partikeln_nuance: "Particles · Nuance",
 
         label_level_singular: "level",
@@ -16910,6 +17205,30 @@ const I18N = {
         zahlen_info_title: "Numbers",
         orb_pruefung_title: "Exam preparation", orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Exam preparation", op_pruefung_sub: "By level · Goethe · telc · DTZ",
+        // Le panneau des examens (essai examens_blocs, 4 nov. 2026) : un bloc par examen, DTZ, telc A2-B1, Goethe B1, C1.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1 · C1",
+        op_pruefung_bloc_dtz_t: "Prepare for the DTZ",
+        op_pruefung_bloc_dtz_d: "The exam at the end of the integration course: listening, reading, writing, speaking",
+        op_pruefung_bloc_telc_t: "Prepare for telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "Reading first, then Sprachbausteine, the emails, listening and speaking",
+        op_pruefung_dtz_title: "Prepare for the DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "Prepare for telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · in exam order",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "A letter with gaps: pick the right word, and see why",
+        op_pruefung_telc_mark_t: "telc with Mark and Anna",
+        op_pruefung_telc_mark_d: "The parts in telc format, with an explanation after every answer",
+        op_pruefung_bloc_goethe_t: "Prepare for the Goethe-Zertifikat B1",
+        op_pruefung_bloc_goethe_d: "Reading, listening, writing (with the forum post), speaking (with the presentation)",
+        op_pruefung_bloc_c1_t: "Prepare for C1",
+        op_pruefung_bloc_c1_d: "Argue, nuance, summarise: listening, reading, writing and speaking at C1",
+        op_pruefung_goethe_title: "Prepare for Goethe B1",
+        op_pruefung_goethe_sub: "Goethe-Zertifikat B1",
+        op_pruefung_c1bloc_title: "Prepare for C1",
+        op_pruefung_c1bloc_sub: "Goethe-Zertifikat C1 · telc Deutsch C1",
+        op_pruefung_feuilles_t: "Conjugation sheets",
+        op_pruefung_feuilles_d: "B2 and C1 tenses: passive, Konjunktiv I, extended participle…",
         op_pruefung_hoeren_t: "Listening", op_pruefung_hoeren_d: "An announcement, a message — then the question",
         op_pruefung_lesen_t: "Reading", op_pruefung_lesen_d: "Advert, email, form — and what you are asked",
         op_pruefung_schreiben_t: "Writing", op_pruefung_schreiben_d: "The formal letter, put back in order",
@@ -17441,6 +17760,27 @@ const I18N = {
         emo_tuile: "Duygular ve karakter",
         emo_court: "Duygular",
         con_tuile: "Zıt anlamlılar",
+        gato_tuile: "Kedi nerede?",
+        loi_tuile: "Boş zaman",
+        ropa_tuile: "Giysiler",
+        cue_tuile: "Vücut ve sağlık",
+        cue_court: "Vücut",
+        ropa_court: "Giysiler",
+        jour_tuile: "Günlük rutin",
+        jour_court: "Rutin",
+        man_tuile: "Yemek ve tat",
+        met_tuile: "Meslekler",
+        man_court: "Yemek",
+        trans_tuile: "Ulaşım",
+        ani_tuile: "Hayvanlar",
+        meteo_tuile: "Hava durumu ve mevsimler",
+        meteo_court: "Hava",
+        log_tuile: "Ev ve konut",
+        log_court: "Ev",
+        dem_tuile: "Resmî işler",
+        dem_court: "Resmî işler",
+        cou_tuile: "Alışveriş yapmak",
+        cou_court: "Alışveriş",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -17681,7 +18021,7 @@ const I18N = {
         info_partie_accueil: "Ana ekranda",
         info_partie_ici: "Burada saklı",
         ip_partie_seance: "Bugünkü seansım",
-        ip_seance_niveaux: "A1'den C1'e seviyeler YENİ kelimelerin nereden geldiğine karar verir — tekrarlarına değil. Tekrarlar, hangi seviye görünürse görünsün, daha önce çalıştığın bütün seviyelerden gelir.",
+        ip_seance_niveaux: "A1'den C1'e seviyeler YENİ kelimelerin nereden geldiğine karar verir. Tekrarların seçilen seviyeden ve üstündekilerden gelir; daha alt bir seviyeden yalnızca yanlış yaptığın kelimeler döner.",
         ip_seance_commencer: "“Başla” seansı senin için kurar: önce yeniden görülme zamanı gelen kelimeler, sonra seçilen seviyeden yeni kelimeler, günde en fazla {n} tane. Seansın dörtte biri ({p}%) yeniye ayrılır; böylece birikmiş tekrar çok olsa bile seçtiğin seviye her zaman bir şeye karar verir.",
         ip_seance_gardes: "“Saklananlar” sandığını açar: “Sakla” ile oraya koyduğun kelimeler. İstediğin kadar dönebilirsin — orada yaptığın hiçbir şey bir tarihi ya da günlük hedefi değiştirmez.",
         ip_seance_theme: "“temaya göre” diğer kapıdır: seansı uygulamanın kurmasına bırakmak yerine temayı kendin seçersin.",
@@ -17701,7 +18041,15 @@ const I18N = {
         flash_end_objectif_reste: "Günlük hedefin için {n} kart kaldı.",
         mosaique_plafond: "Tablo bugünlük ilerleyebileceği kadar ilerledi. Yarın devam eder.",
         flash_recto: "Kartın ön yüzüne dön",
-        legende_seance_niveau: "A1–C1 düğmeleri yalnızca YENİ kelimelerin geldiği seviyeyi belirler. Tekrarların, hangisi seçili olursa olsun, çalıştığın tüm seviyelerden gelir.",
+        legende_seance_niveau: "A1–C1 düğmeleri YENİ kelimelerin nereden geldiğine karar verir. Alt seviyelerden yalnızca yanlış yaptığın kelimeler tekrara döner.",
+        niv_monte_titre: "{n} kelimeye başladın ({niveaux}). Bunları zaten biliyor musun?",
+        niv_monte_titre_one: "1 kelimeye başladın ({niveaux}). Bunu zaten biliyor musun?",
+        niv_monte_oui: "Evet, biliyorum",
+        niv_monte_oui_one: "Evet, biliyorum",
+        niv_monte_garder: "Yanlış yaptıklarımı tut",
+        niv_monte_garder_one: "Yanlış yaptıysam tut",
+        niv_monte_ligne: "Tutarsan, yalnızca yanlış yaptıkların tekrara döner.",
+        niv_monte_ligne_one: "Tutarsan, yalnızca yanlış yaptıysan tekrara döner.",
         legende_objectif_quoi: "Bugün — değerlendirdiğin kartlar.",
         legende_mosaique: "Tablo — iri renk kareleriyle başlar, her kart bunlardan birini inceltir, tekrarlar dahil. Ressam, yıl ve başlık yavaşça belirir. Büyütmek için dokun.",
         legende_jours: "Çalışılan gün — bir şeyler yaptığın günlerin toplamı. Tatilden sonra bile hiç azalmaz.",
@@ -18347,6 +18695,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ALIŞTIRMA: HANGİSİ? →",
         praep_btn_verben: "ALIŞTIRMA: EDATLI FİİLLER →",
+        praep_btn_gato: "ALIŞTIRMA: KEDİ NEREDE? →",
         kicker_partikeln_nuance: "Partikeller · Nüans",
 
         label_level_singular: "seviye",
@@ -18429,6 +18778,30 @@ const I18N = {
         zahlen_info_title: "Sayılar",
         orb_pruefung_title: "Sınav hazırlığı", orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Sınav hazırlığı", op_pruefung_sub: "Seviyeye göre · Goethe · telc · DTZ",
+        // Le panneau des examens (essai examens_blocs, 4 nov. 2026) : un bloc par examen, DTZ, telc A2-B1, Goethe B1, C1.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1 · C1",
+        op_pruefung_bloc_dtz_t: "DTZ’ye hazırlan",
+        op_pruefung_bloc_dtz_d: "Uyum kursunun sonundaki sınav: dinleme, okuma, yazma, konuşma",
+        op_pruefung_bloc_telc_t: "telc Deutsch A2·B1’e hazırlan",
+        op_pruefung_bloc_telc_d: "Önce okuma, sonra Sprachbausteine, e-postalar, dinleme ve konuşma",
+        op_pruefung_dtz_title: "DTZ’ye hazırlan",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "telc A2·B1’e hazırlan",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · sınav sırasıyla",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "Boşluklu bir mektup: doğru sözcüğü seç ve nedenini anla",
+        op_pruefung_telc_mark_t: "Mark ve Anna ile telc",
+        op_pruefung_telc_mark_d: "telc biçiminde bölümler, her yanıttan sonra bir açıklama",
+        op_pruefung_bloc_goethe_t: "Goethe-Zertifikat B1’e hazırlan",
+        op_pruefung_bloc_goethe_d: "Okuma, dinleme, yazma (forum mesajı dahil), konuşma (sunum dahil)",
+        op_pruefung_bloc_c1_t: "C1’e hazırlan",
+        op_pruefung_bloc_c1_d: "Tartışmak, incelikle anlatmak, özetlemek: C1 düzeyinde dinleme, okuma, yazma, konuşma",
+        op_pruefung_goethe_title: "Goethe B1’e hazırlan",
+        op_pruefung_goethe_sub: "Goethe-Zertifikat B1",
+        op_pruefung_c1bloc_title: "C1’e hazırlan",
+        op_pruefung_c1bloc_sub: "Goethe-Zertifikat C1 · telc Deutsch C1",
+        op_pruefung_feuilles_t: "Çekim sayfaları",
+        op_pruefung_feuilles_d: "B2 ve C1 zamanları: edilgen, Konjunktiv I, genişletilmiş ortaç…",
         op_pruefung_hoeren_t: "Dinleme", op_pruefung_hoeren_d: "Bir anons, bir mesaj — sonra soru",
         op_pruefung_lesen_t: "Okuma", op_pruefung_lesen_d: "İlan, e-posta, form — ve sizden istenen",
         op_pruefung_schreiben_t: "Yazma", op_pruefung_schreiben_d: "Resmî mektup, doğru sıraya konmuş",
@@ -19376,6 +19749,27 @@ const I18N = {
         emo_tuile: "Емоції та характер",
         emo_court: "Емоції",
         con_tuile: "Протилежності",
+        gato_tuile: "Де кіт?",
+        loi_tuile: "Дозвілля",
+        ropa_tuile: "Одяг",
+        cue_tuile: "Тіло і здоров'я",
+        cue_court: "Тіло",
+        ropa_court: "Одяг",
+        jour_tuile: "Розпорядок дня",
+        jour_court: "День",
+        man_tuile: "Їжа і смак",
+        met_tuile: "Професії",
+        man_court: "Їжа",
+        trans_tuile: "Транспорт",
+        ani_tuile: "Тварини",
+        meteo_tuile: "Погода і пори року",
+        meteo_court: "Погода",
+        log_tuile: "Житло",
+        log_court: "Житло",
+        dem_tuile: "Офіційні справи",
+        dem_court: "Справи",
+        cou_tuile: "Покупки",
+        cou_court: "Покупки",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -19702,6 +20096,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ТРЕНУВАТИСЯ: ЯКИЙ САМЕ? →",
         praep_btn_verben: "ТРЕНУВАТИСЯ: ДІЄСЛОВА З ПРИЙМЕННИКАМИ →",
+        praep_btn_gato: "ТРЕНУВАТИСЯ: ДЕ КІТ? →",
         kicker_partikeln_nuance: "Частки · Відтінок",
         kicker_verben_revision: "Дієслова · Повторення",
         kicker_verben_flashcards: "Дієслова · Картки",
@@ -19869,6 +20264,30 @@ const I18N = {
         op_zahlen_o1_t: "Зрозуміти числа",
         op_zahlen_o1_d: "Grundzahlen, Ordnungszahlen, дроби",
         op_pruefung_title: "Підготовка до іспитів",
+        // Le panneau des examens (essai examens_blocs, 4 nov. 2026) : un bloc par examen, DTZ, telc A2-B1, Goethe B1, C1.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1 · C1",
+        op_pruefung_bloc_dtz_t: "Підготовка до DTZ",
+        op_pruefung_bloc_dtz_d: "Іспит наприкінці інтеграційного курсу: слухання, читання, письмо, говоріння",
+        op_pruefung_bloc_telc_t: "Підготовка до telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "Спочатку читання, потім Sprachbausteine, листи, слухання й усна частина",
+        op_pruefung_dtz_title: "Підготовка до DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "Підготовка до telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · у порядку іспиту",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "Лист із пропусками: обери правильне слово й зрозумій чому",
+        op_pruefung_telc_mark_t: "telc з Марком і Анною",
+        op_pruefung_telc_mark_d: "Частини у форматі telc, з поясненням після кожної відповіді",
+        op_pruefung_bloc_goethe_t: "Підготовка до Goethe-Zertifikat B1",
+        op_pruefung_bloc_goethe_d: "Читання, слухання, письмо (зокрема допис на форумі), говоріння (зокрема презентація)",
+        op_pruefung_bloc_c1_t: "Підготовка до C1",
+        op_pruefung_bloc_c1_d: "Аргументувати, нюансувати, підсумовувати: слухання, читання, письмо, говоріння на рівні C1",
+        op_pruefung_goethe_title: "Підготовка до Goethe B1",
+        op_pruefung_goethe_sub: "Goethe-Zertifikat B1",
+        op_pruefung_c1bloc_title: "Підготовка до C1",
+        op_pruefung_c1bloc_sub: "Goethe-Zertifikat C1 · telc Deutsch C1",
+        op_pruefung_feuilles_t: "Таблиці дієвідмінювання",
+        op_pruefung_feuilles_d: "Часи B2 і C1: пасив, Konjunktiv I, поширений дієприкметник…",
         op_pruefung_sub: "За рівнем · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "Слухання",
         op_pruefung_hoeren_d: "Оголошення, повідомлення — а потім питання",
@@ -19975,7 +20394,7 @@ const I18N = {
         info_partie_accueil: "На головному екрані",
         info_partie_ici: "Зберігається тут",
         ip_partie_seance: "Моє заняття на сьогодні",
-        ip_seance_niveaux: "Рівні від A1 до C1 вирішують, звідки беруться НОВІ слова — а не твої повторення. Повторення повертаються з усіх рівнів, які ти вже опрацював, хоч би який рівень був показаний.",
+        ip_seance_niveaux: "Рівні від A1 до C1 вирішують, звідки беруться НОВІ слова. Повторення приходять з обраного рівня і вищих; з нижчого рівня повертаються лише слова, у яких були помилки.",
         ip_seance_commencer: "«Почати» складає заняття за тебе: спершу слова, які час побачити знову, потім нові слова з обраного рівня, щонайбільше {n} на день. Чверть заняття ({p} %) лишається за новими словами, щоб обраний рівень завжди щось вирішував, навіть коли накопичилося багато.",
         ip_seance_gardes: "«Збережені» відкриває твою скриню: слова, які ти поклав туди через «Зберегти». Можеш крутитися там скільки завгодно — ніщо з того, що ти там робиш, не змінює ні терміну, ні денної мети.",
         ip_seance_theme: "«за темою» — інші двері: ти сам обираєш тему, замість того щоб застосунок складав заняття.",
@@ -19995,7 +20414,15 @@ const I18N = {
         flash_end_objectif_reste: "Ще {n} карток до денної мети.",
         mosaique_plafond: "Сьогодні картина просунулася максимально. Продовжить завтра.",
         flash_recto: "Повернутися на лицьовий бік картки",
-        legende_seance_niveau: "Позначки A1–C1 визначають лише, звідки беруться НОВІ слова. Повторення повертаються з усіх рівнів, які ти вже опрацьовував.",
+        legende_seance_niveau: "Позначки A1–C1 визначають, звідки беруться НОВІ слова. З нижчих рівнів на повторення повертаються лише слова, у яких були помилки.",
+        niv_monte_titre: "Розпочато слів: {n} ({niveaux}). Ти їх уже знаєш?",
+        niv_monte_titre_one: "Розпочато 1 слово ({niveaux}). Ти його вже знаєш?",
+        niv_monte_oui: "Так, я їх знаю",
+        niv_monte_oui_one: "Так, я його знаю",
+        niv_monte_garder: "Залиш ті, де були помилки",
+        niv_monte_garder_one: "Залиш, якщо була помилка",
+        niv_monte_ligne: "Якщо залишиш їх, на повторення повернуться лише ті, де були помилки.",
+        niv_monte_ligne_one: "Якщо залишиш його, воно повернеться на повторення лише тоді, коли була помилка.",
         legende_objectif_quoi: "Сьогодні — картки, які ти оцінив.",
         legende_mosaique: "Картина — вона починається з великих кольорових квадратів, і кожна картка робить один із них дрібнішим, разом із повтореннями. Художник, рік і назва з'являються поступово. Торкнися, щоб збільшити.",
         legende_jours: "Днів праці — загальна кількість днів, коли ти щось робив. Воно ніколи не зменшується, навіть після відпустки.",
@@ -20459,6 +20886,30 @@ const I18N = {
         orb_pruefung_title: "آمادگی برای آزمون",
         orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "آمادگی برای آزمون",
+        // Le panneau des examens (essai examens_blocs, 4 nov. 2026) : un bloc par examen, DTZ, telc A2-B1, Goethe B1, C1.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1 · C1",
+        op_pruefung_bloc_dtz_t: "آمادگی برای DTZ",
+        op_pruefung_bloc_dtz_d: "آزمون پایان دوره‌ی ادغام: شنیدن، خواندن، نوشتن، گفتن",
+        op_pruefung_bloc_telc_t: "آمادگی برای telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "اول خواندن، بعد Sprachbausteine، ایمیل‌ها، شنیدن و بخش شفاهی",
+        op_pruefung_dtz_title: "آمادگی برای DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "آمادگی برای telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · به ترتیب آزمون",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "نامه‌ای با جای خالی: واژه‌ی درست را انتخاب کن و بفهم چرا",
+        op_pruefung_telc_mark_t: "telc با مارک و آنا",
+        op_pruefung_telc_mark_d: "بخش‌ها در قالب telc، با توضیح پس از هر پاسخ",
+        op_pruefung_bloc_goethe_t: "آمادگی برای Goethe-Zertifikat B1",
+        op_pruefung_bloc_goethe_d: "خواندن، شنیدن، نوشتن (با پیام انجمن)، گفتن (با ارائه)",
+        op_pruefung_bloc_c1_t: "آمادگی برای C1",
+        op_pruefung_bloc_c1_d: "استدلال، ظرافت، خلاصه‌کردن: شنیدن، خواندن، نوشتن و گفتن در سطح C1",
+        op_pruefung_goethe_title: "آمادگی برای Goethe B1",
+        op_pruefung_goethe_sub: "Goethe-Zertifikat B1",
+        op_pruefung_c1bloc_title: "آمادگی برای C1",
+        op_pruefung_c1bloc_sub: "Goethe-Zertifikat C1 · telc Deutsch C1",
+        op_pruefung_feuilles_t: "برگه‌های صرف فعل",
+        op_pruefung_feuilles_d: "زمان‌های B2 و C1: مجهول، Konjunktiv I، صفت فاعلی گسترده…",
         op_pruefung_sub: "بر پایهٔ سطح · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "شنیدن",
         op_pruefung_hoeren_d: "یک اعلان، یک پیام — سپس پرسش",
@@ -20568,6 +21019,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "تمرین: کدام‌یک؟ ←",
         praep_btn_verben: "تمرین: فعل‌های حرف‌اضافه‌دار ←",
+        praep_btn_gato: "تمرین: گربه کجاست؟ ←",
         kicker_partikeln_nuance: "ادات · ظرافت",
         label_level_singular: "سطح",
         label_level_plural: "سطح",
@@ -21195,7 +21647,7 @@ const I18N = {
         info_partie_accueil: "در صفحهٔ خانه",
         info_partie_ici: "نگه‌داشته اینجا",
         ip_partie_seance: "جلسهٔ امروز من",
-        ip_seance_niveaux: "سطح‌های A1 تا C1 تعیین می‌کنند واژه‌های تازه از کجا بیایند — نه مرورهایت. مرورها از همهٔ سطح‌هایی که پیش‌تر کار کرده‌ای برمی‌گردند، هر سطحی که نشان داده شود.",
+        ip_seance_niveaux: "سطح‌های A1 تا C1 تعیین می‌کنند واژه‌های تازه از کجا بیایند. مرورهایت از سطح انتخاب‌شده و سطح‌های بالاتر می‌آیند؛ از سطح پایین‌تر فقط واژه‌هایی برمی‌گردند که اشتباهشان کرده‌ای.",
         ip_seance_commencer: "«شروع» جلسه را برایت می‌چیند: نخست واژه‌هایی که وقت دیدن دوباره‌شان است، سپس واژه‌های تازه از سطح انتخابی، حداکثر {n} تا در روز. یک‌چهارم جلسه ({p}٪) برای واژه‌های تازه کنار گذاشته می‌شود تا سطحی که برگزیده‌ای همیشه چیزی را تعیین کند، حتی وقتی عقب‌ماندگی زیاد است.",
         ip_seance_gardes: "«نگه‌داشته‌ها» صندوقت را باز می‌کند: واژه‌هایی که با «نگه‌داشتن» آنجا گذاشته‌ای. هر قدر بخواهی می‌توانی دور بزنی — هیچ‌کدام از کارهایت آنجا سررسیدی یا هدف روزانه را تغییر نمی‌دهد.",
         ip_seance_theme: "«بر پایهٔ موضوع» درِ دیگر است: خودت موضوع را برمی‌گزینی، به‌جای آنکه برنامه جلسه را بچیند.",
@@ -21215,7 +21667,15 @@ const I18N = {
         flash_end_objectif_reste: "{n} کارت دیگر تا هدف امروز.",
         mosaique_plafond: "تابلو امروز تا جای ممکن پیش رفت. فردا ادامه می‌یابد.",
         flash_recto: "بازگشت به روی کارت",
-        legende_seance_niveau: "دکمه‌های A1 تا C1 فقط تعیین می‌کنند واژه‌های نو از کدام سطح بیایند. مرورها از همهٔ سطح‌هایی که کار کرده‌ای برمی‌گردند.",
+        legende_seance_niveau: "دکمه‌های A1 تا C1 تعیین می‌کنند واژه‌های تازه از کجا بیایند. از سطح‌های پایین‌تر فقط واژه‌هایی که اشتباه کرده‌ای برای مرور برمی‌گردند.",
+        niv_monte_titre: "{n} واژه را شروع کرده‌ای ({niveaux}). آن‌ها را از قبل می‌دانی؟",
+        niv_monte_titre_one: "یک واژه را شروع کرده‌ای ({niveaux}). آن را از قبل می‌دانی؟",
+        niv_monte_oui: "بله، آن‌ها را می‌دانم",
+        niv_monte_oui_one: "بله، آن را می‌دانم",
+        niv_monte_garder: "آن‌هایی را که اشتباه کردم نگه دار",
+        niv_monte_garder_one: "اگر اشتباه کردم، نگهش دار",
+        niv_monte_ligne: "اگر نگهشان داری، فقط آن‌هایی که اشتباه کرده‌ای برای مرور برمی‌گردند.",
+        niv_monte_ligne_one: "اگر نگهش داری، فقط وقتی برای مرور برمی‌گردد که اشتباهش کرده باشی.",
         legende_objectif_quoi: "امروز — کارت‌هایی که داوری کرده‌ای.",
         legende_mosaique: "تابلو — با مربع‌های بزرگ رنگی آغاز می‌شود و هر کارت یکی از آن‌ها را ریزتر می‌کند، مرور هم حساب است. نام نقاش، سال و عنوان کم‌کم پدیدار می‌شوند. برای بزرگ‌نمایی روی آن بزن.",
         legende_jours: "روز کار — مجموع روزهایی که کاری کرده‌ای. هرگز کم نمی‌شود، حتی پس از تعطیلات.",
@@ -21624,6 +22084,27 @@ const I18N = {
         emo_tuile: "احساسات و منش",
         emo_court: "احساسات",
         con_tuile: "متضادها",
+        gato_tuile: "گربه کجاست؟",
+        loi_tuile: "اوقات فراغت",
+        ropa_tuile: "لباس‌ها",
+        cue_tuile: "بدن و سلامتی",
+        cue_court: "بدن",
+        ropa_court: "لباس",
+        jour_tuile: "کارهای روزانه",
+        jour_court: "روزانه",
+        man_tuile: "خوردن و چشیدن",
+        met_tuile: "شغل‌ها",
+        man_court: "خوردن",
+        trans_tuile: "وسایل نقلیه",
+        ani_tuile: "حیوانات",
+        meteo_tuile: "آب‌وهوا و فصل‌ها",
+        meteo_court: "آب‌وهوا",
+        log_tuile: "خانه و مسکن",
+        log_court: "خانه",
+        dem_tuile: "کارهای اداری",
+        dem_court: "اداری",
+        cou_tuile: "خرید کردن",
+        cou_court: "خرید",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -21981,6 +22462,30 @@ const I18N = {
         admin_deploy_title: "النشر",
         admin_deploy_desc: "‏deutsch-gemini.pages.dev (Cloudflare) و jacquesagrenier-star.github.io يعكسان فرع main (الإنتاج)؛ ولكل فرع معاينة على [الفرع].deutsch-gemini.pages.dev.",
         op_pruefung_title: "التحضير للامتحانات",
+        // Le panneau des examens (essai examens_blocs, 4 nov. 2026) : un bloc par examen, DTZ, telc A2-B1, Goethe B1, C1.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1 · C1",
+        op_pruefung_bloc_dtz_t: "الاستعداد لامتحان DTZ",
+        op_pruefung_bloc_dtz_d: "امتحان نهاية دورة الاندماج: الاستماع والقراءة والكتابة والمحادثة",
+        op_pruefung_bloc_telc_t: "الاستعداد لامتحان telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "القراءة أولًا، ثم Sprachbausteine والرسائل والاستماع والمحادثة",
+        op_pruefung_dtz_title: "الاستعداد لامتحان DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "الاستعداد لامتحان telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · بترتيب الامتحان",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "رسالة فيها فراغات: اختر الكلمة الصحيحة وافهم السبب",
+        op_pruefung_telc_mark_t: "telc مع مارك وآنا",
+        op_pruefung_telc_mark_d: "الأجزاء بصيغة telc، مع شرح بعد كل إجابة",
+        op_pruefung_bloc_goethe_t: "الاستعداد لامتحان Goethe-Zertifikat B1",
+        op_pruefung_bloc_goethe_d: "القراءة والاستماع والكتابة (ومنها مشاركة المنتدى) والمحادثة (ومنها العرض)",
+        op_pruefung_bloc_c1_t: "الاستعداد لمستوى C1",
+        op_pruefung_bloc_c1_d: "الحِجاج والتدقيق والتلخيص: الاستماع والقراءة والكتابة والمحادثة في مستوى C1",
+        op_pruefung_goethe_title: "الاستعداد لامتحان Goethe B1",
+        op_pruefung_goethe_sub: "Goethe-Zertifikat B1",
+        op_pruefung_c1bloc_title: "الاستعداد لمستوى C1",
+        op_pruefung_c1bloc_sub: "Goethe-Zertifikat C1 · telc Deutsch C1",
+        op_pruefung_feuilles_t: "أوراق تصريف الأفعال",
+        op_pruefung_feuilles_d: "أزمنة B2 وC1: المبني للمجهول، Konjunktiv I، اسم الفاعل الموسَّع…",
         op_pruefung_sub: "حسب المستوى · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "الاستماع",
         op_pruefung_hoeren_d: "إعلان أو رسالة — ثم السؤال",
@@ -22153,6 +22658,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "تدرّب: أيّها؟ ←",
         praep_btn_verben: "تدرّب: أفعال بحروف جرّ ←",
+        praep_btn_gato: "تدرّب: أين القطّ؟ ←",
         kicker_partikeln_nuance: "الأدوات · الفرق",
         label_level_singular: "مستوى",
         label_level_plural: "مستويات",
@@ -22780,7 +23286,7 @@ const I18N = {
         info_partie_accueil: "في الصفحة الرئيسية",
         info_partie_ici: "مرتَّب هنا",
         ip_partie_seance: "جلستي اليوم",
-        ip_seance_niveaux: "المستويات من A1 إلى C1 تحدّد من أين تأتي الكلمات الجديدة — لا مراجعاتك. فهذه تعود من كل المستويات التي عملت عليها، مهما كان المستوى المعروض.",
+        ip_seance_niveaux: "المستويات من A1 إلى C1 تحدّد من أين تأتي الكلمات الجديدة. تأتي مراجعاتك من المستوى المختار والمستويات الأعلى منه؛ أما من مستوى أدنى، فلا تعود إلا الكلمات التي أخطأت فيها.",
         ip_seance_commencer: "«ابدأ» يؤلّف الجلسة نيابةً عنك: أولاً الكلمات التي حان وقت مراجعتها، ثم كلمات جديدة من المستوى المختار، بحدّ أقصى {n} يومياً. ويبقى ربع الجلسة ({p} %) محجوزاً للجديد، كي يظلّ للمستوى المختار أثرٌ دائماً، حتى حين يكون التأخّر كبيراً.",
         ip_seance_gardes: "«المحفوظات» يفتح خزانتك: الكلمات التي وضعتها فيها بـ«احتفظ». يمكنك الدوران فيها كما تشاء — لا شيء مما تفعله هناك يغيّر موعداً ولا هدف اليوم.",
         ip_seance_theme: "«حسب الموضوع» هو الباب الآخر: تختار الموضوع بنفسك، بدل أن تدع التطبيق يؤلّف الجلسة.",
@@ -22800,7 +23306,15 @@ const I18N = {
         flash_end_objectif_reste: "تبقّت {n} بطاقات لبلوغ هدف اليوم.",
         mosaique_plafond: "تقدّمت اللوحة إلى أقصى ما يُسمح به اليوم. وستستأنف غداً.",
         flash_recto: "العودة إلى وجه البطاقة",
-        legende_seance_niveau: "النقاط من A1 إلى C1 لا تحدّد إلا مصدر الكلمات الجديدة. أما مراجعاتك فتعود من كل المستويات التي عملت عليها، مهما كان المختار.",
+        legende_seance_niveau: "النقاط من A1 إلى C1 تحدّد من أين تأتي الكلمات الجديدة. ومن المستويات الأدنى، لا تعود للمراجعة إلا الكلمات التي أخطأت فيها.",
+        niv_monte_titre: "عدد الكلمات التي بدأتها: {n} ({niveaux}). هل تعرفها من قبل؟",
+        niv_monte_titre_one: "لقد بدأت كلمة واحدة ({niveaux}). هل تعرفها من قبل؟",
+        niv_monte_oui: "نعم، أعرفها",
+        niv_monte_oui_one: "نعم، أعرفها",
+        niv_monte_garder: "احتفظ بالتي أخطأت فيها",
+        niv_monte_garder_one: "احتفظ بها إن أخطأت فيها",
+        niv_monte_ligne: "إن احتفظت بها، فلن تعود للمراجعة إلا الكلمات التي أخطأت فيها.",
+        niv_monte_ligne_one: "إن احتفظت بها، فلن تعود للمراجعة إلا إذا أخطأت فيها.",
         legende_objectif_quoi: "اليوم — البطاقات التي حكمت عليها («مرة أخرى» أو «✓»).",
         legende_mosaique: "اللوحة — تبدأ بمربّعات لونية كبيرة، وكل بطاقة تجعل واحداً منها أدقّ، بما فيها المراجعات. ويظهر الرسّام والسنة والعنوان تباعاً. المسها لتكبيرها.",
         legende_jours: "أيام العمل — مجموع الأيام التي فعلت فيها شيئاً. لا ينزل أبداً، ولو بعد إجازة.",
@@ -23316,6 +23830,27 @@ const I18N = {
         emo_tuile: "المشاعر والطباع",
         emo_court: "المشاعر",
         con_tuile: "الأضداد",
+        gato_tuile: "أين القطّ؟",
+        loi_tuile: "أوقات الفراغ",
+        ropa_tuile: "الملابس",
+        cue_tuile: "الجسم والصحة",
+        cue_court: "الجسم",
+        ropa_court: "الملابس",
+        jour_tuile: "الروتين اليومي",
+        jour_court: "اليوم",
+        man_tuile: "الأكل والتذوق",
+        met_tuile: "المهن",
+        man_court: "الأكل",
+        trans_tuile: "وسائل النقل",
+        ani_tuile: "الحيوانات",
+        meteo_tuile: "الطقس والفصول",
+        meteo_court: "الطقس",
+        log_tuile: "السكن",
+        log_court: "السكن",
+        dem_tuile: "المعاملات الإدارية",
+        dem_court: "المعاملات",
+        cou_tuile: "التسوق",
+        cou_court: "التسوق",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -23689,6 +24224,27 @@ const I18N = {
         emo_tuile: "Emoções e personalidade",
         emo_court: "Emoções",
         con_tuile: "Os contrários",
+        gato_tuile: "Onde está o gato?",
+        loi_tuile: "Lazer",
+        ropa_tuile: "As roupas",
+        cue_tuile: "O corpo e a saúde",
+        cue_court: "O corpo",
+        ropa_court: "Roupas",
+        jour_tuile: "A rotina do dia",
+        jour_court: "Rotina",
+        man_tuile: "Comer e provar",
+        met_tuile: "As profissões",
+        man_court: "Comer",
+        trans_tuile: "Os transportes",
+        ani_tuile: "Os animais",
+        meteo_tuile: "O tempo e as estações",
+        meteo_court: "O tempo",
+        log_tuile: "A moradia",
+        log_court: "Moradia",
+        dem_tuile: "Os trâmites",
+        dem_court: "Trâmites",
+        cou_tuile: "Fazer compras",
+        cou_court: "Compras",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -23932,7 +24488,7 @@ const I18N = {
         info_partie_accueil: "Na tela inicial",
         info_partie_ici: "Guardado aqui",
         ip_partie_seance: "Minha sessão do dia",
-        ip_seance_niveaux: "Os níveis A1 a C1 decidem de onde vêm as palavras NOVAS — não as suas revisões. Essas voltam de todos os níveis que você já trabalhou, seja qual for o nível mostrado.",
+        ip_seance_niveaux: "Os níveis A1 a C1 decidem de onde vêm as palavras NOVAS. Suas revisões vêm do nível escolhido e dos níveis acima; de um nível abaixo, só voltam as palavras que você errou.",
         ip_seance_commencer: "“Começar” monta a sessão para você: primeiro as palavras que está na hora de rever, depois palavras novas do nível escolhido, no máximo {n} por dia. Um quarto da sessão ({p} %) fica reservado para o novo, para que o nível escolhido sempre tenha peso, mesmo quando o atraso é grande.",
         ip_seance_gardes: "“Guardadas” abre o seu baú: as palavras que você colocou lá com “Guardar”. Você pode passar por elas quantas vezes quiser — nada do que você faz ali muda uma data nem a meta do dia.",
         ip_seance_theme: "“por tema” é a outra porta: você mesmo escolhe um tema, em vez de deixar o app montar a sessão.",
@@ -23952,7 +24508,15 @@ const I18N = {
         flash_end_objectif_reste: "Mais {n} cartas para a sua meta do dia.",
         mosaique_plafond: "O quadro já avançou o máximo por hoje. Ele continua amanhã.",
         flash_recto: "Voltar para a frente da carta",
-        legende_seance_niveau: "As bolinhas A1 a C1 só decidem de onde vêm as palavras NOVAS. Suas revisões voltam de todos os níveis já trabalhados, seja qual for o escolhido.",
+        legende_seance_niveau: "As bolinhas A1 a C1 decidem de onde vêm as palavras NOVAS. Dos níveis abaixo, só voltam para revisão as palavras que você errou.",
+        niv_monte_titre: "Você começou {n} palavras ({niveaux}). Já conhece essas palavras?",
+        niv_monte_titre_one: "Você começou 1 palavra ({niveaux}). Já conhece essa palavra?",
+        niv_monte_oui: "Sim, já conheço",
+        niv_monte_oui_one: "Sim, já conheço",
+        niv_monte_garder: "Guarde as que eu errei",
+        niv_monte_garder_one: "Guarde se eu errei",
+        niv_monte_ligne: "Se você guardar, só as que você errou voltarão para revisão.",
+        niv_monte_ligne_one: "Se você guardar, ela só voltará para revisão se você errou.",
         legende_objectif_quoi: "Hoje — as cartas que você avaliou (“De novo” ou “✓”).",
         legende_mosaique: "O quadro — ele começa em grandes quadrados de cor, e cada carta deixa um deles mais fino, revisões incluídas. O pintor, o ano e o título aparecem aos poucos. Toque nele para ampliar.",
         legende_jours: "Dias de estudo — o total de dias em que você fez alguma coisa. Ele nunca diminui, nem depois das férias.",
@@ -24608,6 +25172,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "PRATICAR: QUAL DELAS? →",
         praep_btn_verben: "PRATICAR: VERBOS COM PREPOSIÇÃO →",
+        praep_btn_gato: "PRATICAR: ONDE ESTÁ O GATO? →",
         kicker_partikeln_nuance: "Partículas · Nuance",
         label_level_singular: "nível",
         label_level_plural: "níveis",
@@ -24693,6 +25258,30 @@ const I18N = {
         orb_pruefung_title: "Preparação para provas",
         orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Preparação para provas",
+        // Le panneau des examens (essai examens_blocs, 4 nov. 2026) : un bloc par examen, DTZ, telc A2-B1, Goethe B1, C1.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1 · C1",
+        op_pruefung_bloc_dtz_t: "Preparar-se para o DTZ",
+        op_pruefung_bloc_dtz_d: "A prova do fim do curso de integração: ouvir, ler, escrever, falar",
+        op_pruefung_bloc_telc_t: "Preparar-se para o telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "Primeiro ler, depois os Sprachbausteine, os e-mails, ouvir e falar",
+        op_pruefung_dtz_title: "Preparar-se para o DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "Preparar-se para o telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · na ordem da prova",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "Uma carta com lacunas: escolher a palavra certa e entender por quê",
+        op_pruefung_telc_mark_t: "O telc com Mark e Anna",
+        op_pruefung_telc_mark_d: "As partes no formato do telc, com uma explicação depois de cada resposta",
+        op_pruefung_bloc_goethe_t: "Preparar-se para o Goethe-Zertifikat B1",
+        op_pruefung_bloc_goethe_d: "Ler, ouvir, escrever (com a mensagem de fórum), falar (com a apresentação)",
+        op_pruefung_bloc_c1_t: "Preparar-se para o C1",
+        op_pruefung_bloc_c1_d: "Argumentar, matizar, resumir: ouvir, ler, escrever e falar no nível C1",
+        op_pruefung_goethe_title: "Preparar-se para o Goethe B1",
+        op_pruefung_goethe_sub: "Goethe-Zertifikat B1",
+        op_pruefung_c1bloc_title: "Preparar-se para o C1",
+        op_pruefung_c1bloc_sub: "Goethe-Zertifikat C1 · telc Deutsch C1",
+        op_pruefung_feuilles_t: "As fichas de conjugação",
+        op_pruefung_feuilles_d: "Os tempos do B2 e do C1: voz passiva, Konjunktiv I, particípio estendido…",
         op_pruefung_sub: "Por nível · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "Ouvir",
         op_pruefung_hoeren_d: "Um aviso, uma mensagem — depois a pergunta",
@@ -25271,6 +25860,27 @@ const I18N = {
         emo_tuile: "Emocje i charakter",
         emo_court: "Emocje",
         con_tuile: "Przeciwieństwa",
+        gato_tuile: "Gdzie jest kot?",
+        loi_tuile: "Czas wolny",
+        ropa_tuile: "Ubrania",
+        cue_tuile: "Ciało i zdrowie",
+        cue_court: "Ciało",
+        ropa_court: "Ubrania",
+        jour_tuile: "Plan dnia",
+        jour_court: "Dzień",
+        man_tuile: "Jedzenie i smak",
+        met_tuile: "Zawody",
+        man_court: "Jedzenie",
+        trans_tuile: "Transport",
+        ani_tuile: "Zwierzęta",
+        meteo_tuile: "Pogoda i pory roku",
+        meteo_court: "Pogoda",
+        log_tuile: "Mieszkanie",
+        log_court: "Mieszkanie",
+        dem_tuile: "Sprawy urzędowe",
+        dem_court: "Urzędy",
+        cou_tuile: "Zakupy",
+        cou_court: "Zakupy",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -25514,7 +26124,7 @@ const I18N = {
         info_partie_accueil: "Na ekranie głównym",
         info_partie_ici: "Tutaj",
         ip_partie_seance: "Moja dzisiejsza sesja",
-        ip_seance_niveaux: "Poziomy od A1 do C1 decydują, skąd pochodzą NOWE słowa — nie twoje powtórki. Te wracają ze wszystkich poziomów, nad którymi już pracowałeś(-aś), niezależnie od pokazanego poziomu.",
+        ip_seance_niveaux: "Poziomy od A1 do C1 decydują, skąd pochodzą NOWE słowa. Powtórki pochodzą z wybranego poziomu i wyższych; z niższego poziomu wracają tylko słowa, w których był błąd.",
         ip_seance_commencer: "„Zacznij” układa sesję za ciebie: najpierw słowa, które czas powtórzyć, potem nowe słowa z wybranego poziomu, najwyżej {n} dziennie. Jedna czwarta sesji ({p} %) jest zarezerwowana dla nowych, żeby wybrany poziom zawsze miał znaczenie, nawet przy dużych zaległościach.",
         ip_seance_gardes: "„Zachowane” otwiera twoją skrzynię: słowa, które tam włożyłeś(-aś) przyciskiem „Zachowaj”. Możesz je przerabiać, ile chcesz — nic, co tam robisz, nie zmienia terminu ani dziennego celu.",
         ip_seance_theme: "„według tematu” to drugie wejście: sam(a) wybierasz temat, zamiast pozwolić aplikacji ułożyć sesję.",
@@ -25534,7 +26144,15 @@ const I18N = {
         flash_end_objectif_reste: "Do dziennego celu brakuje jeszcze kart: {n}.",
         mosaique_plafond: "Obraz posunął się dziś maksymalnie. Ruszy dalej jutro.",
         flash_recto: "Wróć na przód karty",
-        legende_seance_niveau: "Kropki od A1 do C1 decydują tylko o tym, skąd pochodzą NOWE słowa. Twoje powtórki wracają ze wszystkich poziomów, nad którymi już pracowałeś(-aś), niezależnie od wybranego.",
+        legende_seance_niveau: "Kropki od A1 do C1 decydują, skąd pochodzą NOWE słowa. Z niższych poziomów do powtórki wracają tylko słowa, w których był błąd.",
+        niv_monte_titre: "Rozpoczęte słowa: {n} ({niveaux}). Znasz je już?",
+        niv_monte_titre_one: "Rozpoczęte słowo: 1 ({niveaux}). Znasz je już?",
+        niv_monte_oui: "Tak, znam je",
+        niv_monte_oui_one: "Tak, znam je",
+        niv_monte_garder: "Zostaw te z błędami",
+        niv_monte_garder_one: "Zostaw, jeśli był błąd",
+        niv_monte_ligne: "Jeśli je zostawisz, do powtórki wrócą tylko te, w których był błąd.",
+        niv_monte_ligne_one: "Jeśli je zostawisz, wróci do powtórki tylko wtedy, gdy był błąd.",
         legende_objectif_quoi: "Dziś — karty, które oceniłeś(-aś) („Jeszcze raz” albo „✓”).",
         legende_mosaique: "Obraz — zaczyna się od dużych kolorowych kwadratów, a każda karta jeden z nich wyostrza, powtórki też. Malarz, rok i tytuł pojawiają się stopniowo. Dotknij, żeby powiększyć.",
         legende_jours: "Dni nauki — łączna liczba dni, w których coś zrobiłeś(-aś). Nigdy nie spada, nawet po wakacjach.",
@@ -26190,6 +26808,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ĆWICZĘ: KTÓRY? →",
         praep_btn_verben: "ĆWICZĘ: CZASOWNIKI Z PRZYIMKAMI →",
+        praep_btn_gato: "ĆWICZĘ: GDZIE JEST KOT? →",
         kicker_partikeln_nuance: "Partykuły · Niuans",
         label_level_singular: "poziom",
         label_level_plural: "poziomy",
@@ -26275,6 +26894,30 @@ const I18N = {
         orb_pruefung_title: "Przygotowanie do egzaminów",
         orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Przygotowanie do egzaminów",
+        // Le panneau des examens (essai examens_blocs, 4 nov. 2026) : un bloc par examen, DTZ, telc A2-B1, Goethe B1, C1.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1 · C1",
+        op_pruefung_bloc_dtz_t: "Przygotuj się do DTZ",
+        op_pruefung_bloc_dtz_d: "Egzamin na koniec kursu integracyjnego: słuchanie, czytanie, pisanie, mówienie",
+        op_pruefung_bloc_telc_t: "Przygotuj się do telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "Najpierw czytanie, potem Sprachbausteine, e-maile, słuchanie i mówienie",
+        op_pruefung_dtz_title: "Przygotuj się do DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "Przygotuj się do telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · w kolejności egzaminu",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "List z lukami: wybierz właściwe słowo i zrozum dlaczego",
+        op_pruefung_telc_mark_t: "telc z Markiem i Anną",
+        op_pruefung_telc_mark_d: "Części w formacie telc, z wyjaśnieniem po każdej odpowiedzi",
+        op_pruefung_bloc_goethe_t: "Przygotuj się do Goethe-Zertifikat B1",
+        op_pruefung_bloc_goethe_d: "Czytanie, słuchanie, pisanie (z wpisem na forum), mówienie (z prezentacją)",
+        op_pruefung_bloc_c1_t: "Przygotuj się do C1",
+        op_pruefung_bloc_c1_d: "Argumentować, niuansować, streszczać: słuchanie, czytanie, pisanie i mówienie na poziomie C1",
+        op_pruefung_goethe_title: "Przygotuj się do Goethe B1",
+        op_pruefung_goethe_sub: "Goethe-Zertifikat B1",
+        op_pruefung_c1bloc_title: "Przygotuj się do C1",
+        op_pruefung_c1bloc_sub: "Goethe-Zertifikat C1 · telc Deutsch C1",
+        op_pruefung_feuilles_t: "Karty koniugacji",
+        op_pruefung_feuilles_d: "Czasy B2 i C1: strona bierna, Konjunktiv I, rozbudowany imiesłów…",
         op_pruefung_sub: "Według poziomu · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "Słuchanie",
         op_pruefung_hoeren_d: "Komunikat, wiadomość — potem pytanie",
@@ -26853,6 +27496,27 @@ const I18N = {
         emo_tuile: "Эмоции и характер",
         emo_court: "Эмоции",
         con_tuile: "Противоположности",
+        gato_tuile: "Где кот?",
+        loi_tuile: "Досуг",
+        ropa_tuile: "Одежда",
+        cue_tuile: "Тело и здоровье",
+        cue_court: "Тело",
+        ropa_court: "Одежда",
+        jour_tuile: "Распорядок дня",
+        jour_court: "День",
+        man_tuile: "Еда и вкус",
+        met_tuile: "Профессии",
+        man_court: "Еда",
+        trans_tuile: "Транспорт",
+        ani_tuile: "Животные",
+        meteo_tuile: "Погода и времена года",
+        meteo_court: "Погода",
+        log_tuile: "Жильё",
+        log_court: "Жильё",
+        dem_tuile: "Официальные дела",
+        dem_court: "Дела",
+        cou_tuile: "Покупки",
+        cou_court: "Покупки",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -27096,7 +27760,7 @@ const I18N = {
         info_partie_accueil: "На главном экране",
         info_partie_ici: "Здесь",
         ip_partie_seance: "Моё занятие на сегодня",
-        ip_seance_niveaux: "Уровни от A1 до C1 решают, откуда берутся НОВЫЕ слова, — но не твои повторения. Они приходят со всех уровней, над которыми ты уже работал(а), какой бы уровень ни был показан.",
+        ip_seance_niveaux: "Уровни от A1 до C1 решают, откуда берутся НОВЫЕ слова. Повторения приходят с выбранного уровня и уровней выше; с более низкого уровня возвращаются только слова, в которых были ошибки.",
         ip_seance_commencer: "«Начать» составляет занятие за тебя: сначала слова, которые пора повторить, потом новые слова выбранного уровня, не больше {n} в день. Четверть занятия ({p} %) всегда оставлена для нового, чтобы выбранный уровень всегда что-то решал, даже когда накопилось много долгов.",
         ip_seance_gardes: "«Отложенные» открывает твою копилку: слова, которые ты положил(а) туда кнопкой «Отложить». По ней можно ходить сколько угодно — ничто из того, что ты там делаешь, не меняет ни сроки, ни цель дня.",
         ip_seance_theme: "«по темам» — это другая дверь: ты сам(а) выбираешь тему, а не даёшь приложению составить занятие.",
@@ -27116,7 +27780,15 @@ const I18N = {
         flash_end_objectif_reste: "Ещё {n} карточек до цели дня.",
         mosaique_plafond: "Картина на сегодня продвинулась до предела. Завтра она продолжится.",
         flash_recto: "Вернуться к лицевой стороне карточки",
-        legende_seance_niveau: "Кнопки от A1 до C1 решают только, откуда берутся НОВЫЕ слова. Твои повторения приходят со всех уровней, над которыми ты уже работал(а), какой бы ни был выбран.",
+        legende_seance_niveau: "Кнопки от A1 до C1 решают, откуда берутся НОВЫЕ слова. С более низких уровней на повторение возвращаются только слова, в которых были ошибки.",
+        niv_monte_titre: "Начато слов: {n} ({niveaux}). Ты их уже знаешь?",
+        niv_monte_titre_one: "Начато 1 слово ({niveaux}). Ты его уже знаешь?",
+        niv_monte_oui: "Да, я их знаю",
+        niv_monte_oui_one: "Да, я его знаю",
+        niv_monte_garder: "Оставь те, где были ошибки",
+        niv_monte_garder_one: "Оставь, если была ошибка",
+        niv_monte_ligne: "Если оставить их, на повторение вернутся только те, где были ошибки.",
+        niv_monte_ligne_one: "Если оставить его, оно вернётся на повторение, только если была ошибка.",
         legende_objectif_quoi: "Сегодня — карточки, которые ты оценил(а) («Ещё раз» или «✓»).",
         legende_mosaique: "Картина — она начинается с крупных цветных квадратов, и каждая карточка делает один из них мельче, повторения тоже. Художник, год и название появляются постепенно. Нажми на неё, чтобы увеличить.",
         legende_jours: "Дни занятий — общее число дней, когда ты что-то делал(а). Оно никогда не уменьшается, даже после отпуска.",
@@ -27775,6 +28447,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ТРЕНИРОВАТЬСЯ: КАКОЙ? →",
         praep_btn_verben: "ТРЕНИРОВАТЬСЯ: ГЛАГОЛЫ С ПРЕДЛОГАМИ →",
+        praep_btn_gato: "ТРЕНИРОВАТЬСЯ: ГДЕ КОТ? →",
         kicker_partikeln_nuance: "Частицы · Оттенок",
         label_level_singular: "уровень",
         label_level_plural: "уровни",
@@ -27860,6 +28533,30 @@ const I18N = {
         orb_pruefung_title: "Подготовка к экзаменам",
         orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Подготовка к экзаменам",
+        // Le panneau des examens (essai examens_blocs, 4 nov. 2026) : un bloc par examen, DTZ, telc A2-B1, Goethe B1, C1.
+        op_pruefung_blocs_sub: "DTZ · telc A2·B1 · Goethe B1 · C1",
+        op_pruefung_bloc_dtz_t: "Подготовка к DTZ",
+        op_pruefung_bloc_dtz_d: "Экзамен в конце интеграционного курса: аудирование, чтение, письмо, говорение",
+        op_pruefung_bloc_telc_t: "Подготовка к telc Deutsch A2·B1",
+        op_pruefung_bloc_telc_d: "Сначала чтение, затем Sprachbausteine, письма, аудирование и устная часть",
+        op_pruefung_dtz_title: "Подготовка к DTZ",
+        op_pruefung_dtz_sub: "Deutsch-Test für Zuwanderer · A2·B1",
+        op_pruefung_telc_title: "Подготовка к telc A2·B1",
+        op_pruefung_telc_sub: "telc Deutsch A2·B1 · в порядке экзамена",
+        op_pruefung_sb_t: "Sprachbausteine",
+        op_pruefung_sb_d: "Письмо с пропусками: выбери нужное слово и пойми почему",
+        op_pruefung_telc_mark_t: "telc с Марком и Анной",
+        op_pruefung_telc_mark_d: "Части в формате telc, с объяснением после каждого ответа",
+        op_pruefung_bloc_goethe_t: "Подготовка к Goethe-Zertifikat B1",
+        op_pruefung_bloc_goethe_d: "Чтение, аудирование, письмо (включая сообщение на форуме), говорение (включая презентацию)",
+        op_pruefung_bloc_c1_t: "Подготовка к C1",
+        op_pruefung_bloc_c1_d: "Аргументировать, передавать оттенки, резюмировать: аудирование, чтение, письмо и говорение на уровне C1",
+        op_pruefung_goethe_title: "Подготовка к Goethe B1",
+        op_pruefung_goethe_sub: "Goethe-Zertifikat B1",
+        op_pruefung_c1bloc_title: "Подготовка к C1",
+        op_pruefung_c1bloc_sub: "Goethe-Zertifikat C1 · telc Deutsch C1",
+        op_pruefung_feuilles_t: "Таблицы спряжения",
+        op_pruefung_feuilles_d: "Времена B2 и C1: пассив, Konjunktiv I, распространённое причастие…",
         op_pruefung_sub: "По уровням · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "Аудирование",
         op_pruefung_hoeren_d: "Объявление, сообщение — потом вопрос",
@@ -28437,6 +29134,27 @@ const I18N = {
         emo_tuile: "Gefühle und Charakter",
         emo_court: "Gefühle",
         con_tuile: "Gegensätze",
+        gato_tuile: "Wo ist die Katze?",
+        loi_tuile: "Freizeit",
+        ropa_tuile: "Kleidung",
+        cue_tuile: "Körper und Gesundheit",
+        cue_court: "Körper",
+        ropa_court: "Kleidung",
+        jour_tuile: "Der Tagesablauf",
+        jour_court: "Tagesablauf",
+        man_tuile: "Essen und Geschmack",
+        met_tuile: "Berufe",
+        man_court: "Essen",
+        trans_tuile: "Verkehrsmittel",
+        ani_tuile: "Die Tiere",
+        meteo_tuile: "Das Wetter und die Jahreszeiten",
+        meteo_court: "Wetter",
+        log_tuile: "Wohnen",
+        log_court: "Wohnen",
+        dem_tuile: "Behördengänge",
+        dem_court: "Ämter",
+        cou_tuile: "Einkaufen",
+        cou_court: "Einkaufen",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -28680,7 +29398,7 @@ const I18N = {
         info_partie_accueil: "Auf der Startseite",
         info_partie_ici: "Hier abgelegt",
         ip_partie_seance: "Meine Lerneinheit heute",
-        ip_seance_niveaux: "Die Niveaus A1 bis C1 bestimmen, woher die NEUEN Wörter kommen – nicht deine Wiederholungen. Die kommen aus allen Niveaus, die du schon bearbeitet hast, egal welches angezeigt ist.",
+        ip_seance_niveaux: "Die Niveaus A1 bis C1 bestimmen, woher die NEUEN Wörter kommen. Deine Wiederholungen kommen aus dem gewählten Niveau und den höheren; aus einem niedrigeren Niveau kommen nur die Wörter zurück, die du falsch hattest.",
         ip_seance_commencer: "„Starten“ stellt die Lerneinheit für dich zusammen: zuerst die Wörter, die wieder dran sind, dann neue Wörter aus dem gewählten Niveau, höchstens {n} am Tag. Ein Viertel der Lerneinheit ({p} %) bleibt dem Neuen vorbehalten, damit das gewählte Niveau immer etwas bestimmt, auch wenn der Rückstand groß ist.",
         ip_seance_gardes: "„Zurückgelegt“ öffnet deine Ablage: die Wörter, die du mit „Zurücklegen“ dort abgelegt hast. Du kannst dort so viel üben, wie du willst – nichts davon ändert eine Fälligkeit oder das Tagesziel.",
         ip_seance_theme: "„nach Thema“ ist die andere Tür: Du wählst selbst ein Thema, statt die App die Lerneinheit zusammenstellen zu lassen.",
@@ -28700,7 +29418,15 @@ const I18N = {
         flash_end_objectif_reste: "Noch {n} Karten bis zu deinem Tagesziel.",
         mosaique_plafond: "Das Gemälde ist für heute so weit wie möglich vorangekommen. Morgen geht es weiter.",
         flash_recto: "Zurück zur Vorderseite der Karte",
-        legende_seance_niveau: "Die Punkte A1 bis C1 bestimmen nur, woher die NEUEN Wörter kommen. Deine Wiederholungen kommen aus allen schon bearbeiteten Niveaus, egal welches gewählt ist.",
+        legende_seance_niveau: "Die Punkte A1 bis C1 bestimmen, woher die NEUEN Wörter kommen. Aus niedrigeren Niveaus kommen nur die Wörter zur Wiederholung zurück, die du falsch hattest.",
+        niv_monte_titre: "Du hast {n} Wörter angefangen ({niveaux}). Kennst du sie schon?",
+        niv_monte_titre_one: "Du hast 1 Wort angefangen ({niveaux}). Kennst du es schon?",
+        niv_monte_oui: "Ja, ich kenne sie",
+        niv_monte_oui_one: "Ja, ich kenne es",
+        niv_monte_garder: "Behalte die, die ich falsch hatte",
+        niv_monte_garder_one: "Behalte es, falls ich es falsch hatte",
+        niv_monte_ligne: "Wenn du sie behältst, kommen nur die zur Wiederholung zurück, die du falsch hattest.",
+        niv_monte_ligne_one: "Wenn du es behältst, kommt es nur zur Wiederholung zurück, wenn du es falsch hattest.",
         legende_objectif_quoi: "Heute – die Karten, die du bewertet hast („Nochmal“ oder „✓“).",
         legende_mosaique: "Das Gemälde – es beginnt als grobe Farbkacheln, und jede Karte verfeinert eine, Wiederholung eingeschlossen. Maler, Jahr und Titel erscheinen nach und nach. Tippe darauf, um es zu vergrößern.",
         legende_jours: "Lerntage – die Summe der Tage, an denen du etwas gemacht hast. Sie sinkt nie, auch nicht nach Ferien.",
@@ -29359,6 +30085,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ÜBEN: WELCHE? →",
         praep_btn_verben: "ÜBEN: VERBEN MIT PRÄPOSITION →",
+        praep_btn_gato: "ÜBEN: WO IST DIE KATZE? →",
         kicker_partikeln_nuance: "Partikeln · Nuance",
         label_level_singular: "Niveau",
         label_level_plural: "Niveaus",
@@ -30056,6 +30783,27 @@ const I18N = {
         emo_tuile: "Emociones y carácter",
         emo_court: "Emociones",
         con_tuile: "Los contrarios",
+        gato_tuile: "¿Dónde está el gato?",
+        loi_tuile: "El tiempo libre",
+        ropa_tuile: "La ropa",
+        cue_tuile: "El cuerpo y la salud",
+        cue_court: "El cuerpo",
+        ropa_court: "Ropa",
+        jour_tuile: "La rutina diaria",
+        jour_court: "Rutina",
+        man_tuile: "Comer y probar",
+        met_tuile: "Las profesiones",
+        man_court: "Comer",
+        trans_tuile: "Los transportes",
+        ani_tuile: "Los animales",
+        meteo_tuile: "El tiempo y las estaciones",
+        meteo_court: "El tiempo",
+        log_tuile: "La vivienda",
+        log_court: "Vivienda",
+        dem_tuile: "Los trámites",
+        dem_court: "Trámites",
+        cou_tuile: "Hacer la compra",
+        cou_court: "La compra",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -30299,7 +31047,7 @@ const I18N = {
         info_partie_accueil: "En la pantalla de inicio",
         info_partie_ici: "Guardado aquí",
         ip_partie_seance: "Mi práctica de hoy",
-        ip_seance_niveaux: "Los niveles A1 a C1 deciden de dónde vienen las palabras NUEVAS — no tus repasos. Estos vuelven de todos los niveles que ya trabajaste, sea cual sea el nivel mostrado.",
+        ip_seance_niveaux: "Los niveles A1 a C1 deciden de dónde vienen las palabras NUEVAS. Tus repasos vienen del nivel elegido y de los superiores; de un nivel inferior, solo vuelven las palabras que fallaste.",
         ip_seance_commencer: "«Empezar» compone la práctica por ti: primero las palabras que toca volver a ver, luego palabras nuevas del nivel elegido, como máximo {n} al día. Una cuarta parte de la práctica ({p} %) queda reservada a lo nuevo, para que el nivel elegido siempre mande algo, incluso cuando el retraso es grande.",
         ip_seance_gardes: "«Apartadas» abre tu cofre: las palabras que pusiste ahí con «Apartar». Puedes recorrerlo tanto como quieras — nada de lo que hagas ahí cambia una fecha de repaso ni la meta del día.",
         ip_seance_theme: "«por tema» es la otra puerta: eliges tú un tema, en vez de dejar que la app componga la práctica.",
@@ -30319,7 +31067,15 @@ const I18N = {
         flash_end_objectif_reste: "Faltan {n} tarjetas para tu meta del día.",
         mosaique_plafond: "El cuadro avanzó al máximo por hoy. Seguirá mañana.",
         flash_recto: "Volver al anverso de la tarjeta",
-        legende_seance_niveau: "Los botones A1 a C1 solo deciden de dónde vienen las palabras NUEVAS. Tus repasos vuelven de todos los niveles ya trabajados, sea cual sea el elegido.",
+        legende_seance_niveau: "Los botones A1 a C1 deciden de dónde vienen las palabras NUEVAS. De los niveles inferiores, solo vuelven a repasarse las palabras que fallaste.",
+        niv_monte_titre: "Empezaste {n} palabras ({niveaux}). ¿Ya las conoces?",
+        niv_monte_titre_one: "Empezaste 1 palabra ({niveaux}). ¿Ya la conoces?",
+        niv_monte_oui: "Sí, ya las conozco",
+        niv_monte_oui_one: "Sí, ya la conozco",
+        niv_monte_garder: "Guarda las que fallé",
+        niv_monte_garder_one: "Guárdala si la fallé",
+        niv_monte_ligne: "Si las guardas, solo volverán a repasarse las que fallaste.",
+        niv_monte_ligne_one: "Si la guardas, solo volverá a repasarse si la fallaste.",
         legende_objectif_quoi: "Hoy — las tarjetas que juzgaste («Otra vez» o «✓»).",
         legende_mosaique: "El cuadro — empieza como grandes cuadrados de color, y cada tarjeta afina uno, repasos incluidos. El pintor, el año y el título aparecen poco a poco. Tócalo para ampliarlo.",
         legende_jours: "Días de práctica — el total de días en que hiciste algo. Nunca baja, ni siquiera después de unas vacaciones.",
@@ -30978,6 +31734,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "PRACTICAR: ¿CUÁL? →",
         praep_btn_verben: "PRACTICAR: VERBOS CON PREPOSICIÓN →",
+        praep_btn_gato: "PRACTICAR: ¿DÓNDE ESTÁ EL GATO? →",
         kicker_partikeln_nuance: "Partículas · Matiz",
         label_level_singular: "nivel",
         label_level_plural: "niveles",
@@ -33276,7 +34033,9 @@ function choisirNiveauDeclare(reponse){
     const niv = NIVEAU_DES_REPONSES[reponse];
     if(!niv) return;
     try{ localStorage.setItem(NIVEAU_DECLARE_KEY, reponse); }catch(e){}
-    fixerNiveauSeance(niv);
+    // v1114 : un choix de l'eleve -- un compte neuf n'a aucun mot commence,
+    // la question ne se pose donc que si ce reglage est refait plus tard.
+    fixerNiveauSeance(niv, true);
     document.querySelectorAll("[data-niveau-declare]").forEach(b =>
         b.classList.toggle("active", b.getAttribute("data-niveau-declare") === reponse));
     majVoyageBienvenue();
@@ -35431,10 +36190,7 @@ function composerSeanceHorsLigne(){
     const niveau = niveauSeance();
     const complet = accesComplet();
     const pool = complet ? paquetDuNiveau(niveau) : filtrerGratuit(paquetDuNiveau(niveau));
-    const tout = [];
-    NIVEAUX_CECR.forEach(n => {
-        tout.push.apply(tout, complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n)));
-    });
+    const tout = echeancesDeSeance(niveau, complet);   // v1114, la meme regle qu'en ligne
     const total = Math.max(HL_CARTES, tailleSeance());
     const demain = Date.now() + 86400000;
     let atteint = false;
@@ -35739,6 +36495,7 @@ async function recollerHorsLigne(){
             if(neuf) noterMotNeuf();
             if(!e.juste){
                 st.srsHits = 0;
+                st.rate = (st.rate || 0) + 1;   // v1114 : la trace de l'echec, voir motRate()
                 programmerEcheance(st, SRS_ENCORE_MINUTES);
             } else {
                 const reussites = st.srsHits || 0;
@@ -36299,7 +37056,11 @@ async function loadVerbeJson() {
                     exempleHighlight: v.exempleHighlight || "", perfektHighlight: v.perfektHighlight || "",
                     // L'espagnol (fusion, etape 3) : le registre, la construction
                     // particuliere, et ses trois temps en liste ordonnee.
+                    // La note existe dans chaque langue d'interface depuis le 4 nov. 2026
+                    // (construccion_fr, _en...) ; le champ nu garde l'anglais.
                     registro: v.registro || "", construccion: v.construccion || "",
+                    construccion_fr: v.construccion_fr, construccion_en: v.construccion_en, construccion_pt: v.construccion_pt,
+                    construccion_ar: v.construccion_ar, construccion_de: v.construccion_de,
                     preterito: v.preterito || null, imperfecto: v.imperfecto || null, subjuntivo: v.subjuntivo || null,
                     // Les temps ajoutes le 13 oct. 2026 (fusion-espagnol/tiempos.py),
                     // et la phrase de chaque temps avec ses trois traductions.
@@ -37903,7 +38664,10 @@ const praepTheme = LANGUE_APPRISE === "es"
     ["lejos de", "loin de", "lieu (locution)", "El aeropuerto está lejos del centro.", "L'aéroport est loin du centre.", "far from", "The airport is far from the centre.", "place (phrase)"],
     ["antes de", "avant (de)", "temps (locution)", "Lávate las manos antes de comer.", "Lave-toi les mains avant de manger.", "before", "Wash your hands before eating.", "time (phrase)"],
     ["después de", "après", "temps (locution)", "Después de clase vamos al parque.", "Après les cours, nous allons au parc.", "after", "After class we go to the park.", "time (phrase)"],
-    ["a través de", "à travers, par l'intermédiaire de", "moyen (locution)", "Lo supe a través de una amiga.", "Je l'ai appris par une amie.", "through", "I found out through a friend.", "means (phrase)"]
+    ["a través de", "à travers, par l'intermédiaire de", "moyen (locution)", "Lo supe a través de una amiga.", "Je l'ai appris par une amie.", "through", "I found out through a friend.", "means (phrase)"],
+    // 3 nov. 2026 : le theme illustre « Ou est le chat ? » (accord de Jacques, « go »). En fin de liste, pour ne
+    // decaler l'index d'aucune carte deja apprise.
+    ["dentro de", "dans, à l'intérieur de", "lieu (locution)", "El gato está dentro de la caja.", "Le chat est dans le carton.", "inside", "The cat is inside the box.", "place (phrase)"]
   ]
 }
     : {
@@ -38980,6 +39744,11 @@ const MOTS_OUTILS_ES_PT = {
       "através de, por meio de",
       "Fiquei sabendo por meio de uma amiga.",
       "meio (locução)"
+    ],
+    "dentro de": [
+      "dentro de",
+      "O gato está dentro da caixa.",
+      "lugar (locução)"
     ]
   },
   "konjunktionen": {
@@ -39360,6 +40129,11 @@ const MOTS_OUTILS_ES_AR = {
       "عبر، من خلال، بواسطة",
       "عرفت ذلك عن طريق صديقة.",
       "الوسيلة (تركيب)"
+    ],
+    "dentro de": [
+      "داخل، في",
+      "القطّ داخل الصندوق.",
+      "المكان (تركيب)"
     ]
   },
   "konjunktionen": {
@@ -39740,6 +40514,11 @@ const MOTS_OUTILS_ES_DE = {
       "durch, über",
       "Ich habe es über eine Freundin erfahren.",
       "Mittel (Wendung)"
+    ],
+    "dentro de": [
+      "in, innerhalb von",
+      "Die Katze ist im Karton.",
+      "Ort (Wendung)"
     ]
   },
   "konjunktionen": {
@@ -40702,6 +41481,20 @@ let cloudRestoreDone = false;
 function mergeWordState(a, b){
     if(!a) return b;
     if(!b) return a;
+    const w = etatLePlusAvance(a, b), autre = (w === a) ? b : a;
+    // v1114 : LES MARQUES DU CHANGEMENT DE NIVEAU NE SE PERDENT PAS A LA FUSION.
+    // « connu », « q » (question posee) et « rate » (echecs) viennent de l'un OU
+    // de l'autre appareil : l'etat le plus avance garde celles de l'autre, sinon
+    // un « Oui, je les connais » repondu sur le telephone renaitrait sur
+    // l'ordinateur, qui a fait plus de revisions.
+    if(!(autre.connu && !w.connu) && !(autre.q && !w.q) && !((autre.rate || 0) > (w.rate || 0))) return w;
+    const c = Object.assign({}, w);
+    if(autre.connu) c.connu = true;
+    if(autre.q) c.q = 1;
+    if((autre.rate || 0) > (c.rate || 0)) c.rate = autre.rate;
+    return c;
+}
+function etatLePlusAvance(a, b){
     const ra = a.reviews || 0, rb = b.reviews || 0;
     if(ra !== rb) return ra > rb ? a : b;
     if(!!a.mastered !== !!b.mastered) return a.mastered ? a : b;
@@ -43625,6 +44418,17 @@ function texteDus(dus, total){
 
 function orbPanelData(id){
     if(LANGUE_APPRISE === "en" && TUILES_ANGLAISES[id]) return panneauTuileAnglaise(id);
+    // LES THEMES ILLUSTRES (3 nov. 2026, Jacques : « N › » doit ouvrir tous les themes, sur le modele des
+    // scenes). Une option par theme de la langue apprise, dans l'ordre de THEMES_ILLUSTRES ; section « ailleurs » :
+    // ouverts a tous, comme leurs tuiles, et sans en-tete (une seule famille).
+    if(id === "themes_illustres"){
+        return {
+            icon:"carte", title:t("sec_illustres"), sub:t("themes_ill_desc"),
+            // l'action est le nom d'une fonction faite depuis la table (ouvrirThemePanneau_<theme>, plus bas)
+            options: themesIllustresOuverts().map(nom => { const ouvrir = "ouvrirThemePanneau_" + nom;
+                return { icon:"carte", vignette:"themes/" + nom + ".webp", title:t(THEMES_ILLUSTRES[nom].titre), desc:"", action:ouvrir, section:"ailleurs" }; })
+        };
+    }
     if(id === "scenes"){
         return {
             icon:"carte", title:t("op_scenes_title"), sub:t("op_scenes_sub"),
@@ -43682,7 +44486,9 @@ function orbPanelData(id){
                 { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix", section:"pratique" },
                 { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo", section:"pratique" }
             ].concat(LANGUE_APPRISE === "es" ? [
-                { icon:"exercice", title:t("op_es_gustar_t"), desc:t("op_es_gustar_d"), action:"startGustarUebung", section:"pratique" }
+                { icon:"exercice", title:t("op_es_gustar_t"), desc:t("op_es_gustar_d"), action:"startGustarUebung", section:"pratique" },
+                // 3 nov. 2026 : le theme illustre « Les loisirs » (me gusta + infinitif, en images)
+                { icon:"exercice", title:t("loi_tuile"), desc:"me gusta bailar · ¿Quieres jugar al tenis?", action:"ouvrirThemeLoisirs", section:"pratique" }
             ] : [
                 // Le francais n'a qu'un verbe la ou l'allemand en a deux, et
                 // la frontiere est nette : kennen une personne ou un lieu,
@@ -43781,7 +44587,10 @@ function orbPanelData(id){
                 { icon:"exercice", title:t("op_adverbien_o2_t"), desc:tf("op_adverbien_o2_d", { f: famillesAdverbes() }), action:"startAdverbienNuance", section:"pratique" },
                 { icon:"carte", title:t("op_adverbien_o3_t"), desc:tf("op_adverbien_o3_d", { n:(adverbienTheme.words || []).length, f: famillesAdverbes() }), action:"openAdverbienVokabular", section:"mots" },
                 { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeAdverbes", section:"pratique" }
-            ]
+            // 3 nov. 2026 : le theme illustre « Les loisirs », la frequence en images (un calendrier de quatre semaines)
+            ].concat(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de" ? [
+                { icon:"exercice", title:t("loi_tuile"), desc:LANGUE_APPRISE === "es" ? "siempre · a menudo · a veces · nunca" : "immer · oft · manchmal · nie · gern", action:"ouvrirThemeLoisirs", section:"pratique" }
+            ] : [])
         };
     }
     if(id === "schreiben"){
@@ -43903,7 +44712,14 @@ function orbPanelData(id){
     // parce que c'est le seul filtre qui repose sur un accord : trois jurys
     // independants ont retenu ces mots-la. Les filtres par examen viennent
     // apres, pour celui qui sait deja lequel il passe.
-    if(id === "pruefung"){
+    //
+    // UN BLOC PAR EXAMEN (essai examens_blocs, 4 nov. 2026) : DTZ, telc A2·B1, Goethe-Zertifikat B1, C1, avec
+    // « Comprendre l'examen » en tete. Jacques : « je mettrais des blocs differents si on est capable de nourrir des
+    // blocs de la bonne facon. » Essai coupe : le panneau d'avant, tel quel (« pruefung_classique » est ce meme
+    // panneau, lu par les blocs, jamais ouvert). Voir panneauBlocsExamens() et preparation-examens/PLAN-DTZ-TELC.md.
+    if(id === "pruefung" && blocsExamensActifs()) return panneauBlocsExamens();
+    if(blocDePanneau(id)) return panneauBlocExamen(blocDePanneau(id));
+    if(id === "pruefung" || id === "pruefung_classique"){
         return {
             icon:"dossier", title:t("op_pruefung_title"), sub:t("op_pruefung_sub"),
             options:[
@@ -43929,7 +44745,7 @@ function orbPanelData(id){
                   action:"startPruefungSprechen", section:"pratique" },
                 // Essai dtz_oral (admin, francais seulement) : l'oral du DTZ avec Anna et Mark.
                 ...(essaiActif("dtz_oral") && (LANGUE_APPRISE === "de" || !LANGUE_APPRISE) ? [
-                { icon:"exercice", title:"Mark t’aide à préparer le DTZ : l’oral (essai)", desc:"Anna joue l’examinatrice, Mark l’autre candidat ; tu réponds à voix haute, verdict A2 / B1",
+                { icon:"exercice", title:"Mark et Anna t’aident à préparer le DTZ : l’oral (essai)", desc:"Anna joue l’examinatrice, Mark l’autre candidat ; tu réponds à voix haute, verdict A2 / B1",
                   action:"ouvrirDtzOral", section:"pratique" }] : [])
                 // AUCUN PAQUET DE VOCABULAIRE ICI, ET C'EST LE POINT (v471).
                 //
@@ -44011,6 +44827,8 @@ function orbPanelData(id){
                 // a preposition (B1) -- les deux series qui manquaient au cours.
                 { icon:"exercice", title:t("op_praep_o7_t"), desc:t("op_praep_o7_d"), action:"startPraepWahl", section:"pratique" },
                 { icon:"exercice", title:t("op_praep_o8_t"), desc:t("op_praep_o8_d"), action:"startVerbenMitPraep", section:"pratique" },
+                // 3 nov. 2026 : le theme illustre « Ou est le chat ? », Wo / Wohin en images (le chat change de place)
+                { icon:"exercice", title:t("gato_tuile"), desc:"auf dem Tisch · auf den Tisch", action:"ouvrirThemeGato", section:"pratique" },
                 { icon:"carte", title:t("op_vocab"), desc:"für, mit, wegen, auf…", action:"startPraepVokabular", section:"mots" },
                 { icon:"carte", title:t("op_praep_o5_t"), desc:"stehen/stellen, liegen/legen, sitzen/setzen, hängen…", action:"startPositionsverbenVokabular", section:"mots" },
                 // Le cours avait le vocabulaire de ces verbes et l'exercice
@@ -44239,6 +45057,13 @@ async function abrirGramatica(id, depuis){
 
 function openOrbPanel(id){
     if(LANGUE_APPRISE === "es" && FICHE_PAR_TUILE[id]){ abrirGramatica(FICHE_PAR_TUILE[id]); return; }
+    // Les blocs DTZ et telc (essai examens_blocs) : le panneau ouvert dit pour quel examen on s'entraine, et les
+    // quatre epreuves filtrent en consequence (filtreExamen). Ni le C1 ni le panneau d'avant n'en sont touches.
+    if(String(id).indexOf("pruefung") === 0){
+        pruefungExamen = blocDePanneau(id);
+        // un niveau choisi qui n'est pas celui de l'examen (le C1 dans le bloc DTZ, l'A2 dans le bloc C1) s'oublie
+        if(pruefungExamen && pruefungNiveau && BLOCS_EXAMENS[pruefungExamen].niveaux.indexOf(pruefungNiveau) < 0) pruefungNiveau = null;
+    }
     openOrbId = id;
     renderOrbPanel();
     showScreen("orbPanel");
@@ -44439,6 +45264,7 @@ function renderOrbPanel(){
     // son action dans SCENES_SEANCE : une scene ajoutee la-bas a son image ici
     // sans rien toucher d'autre.
     const icone = o => {
+        if(o.vignette) return `<div class="orb-opt-icon orb-opt-vignette"><img src="${baseScenes() + o.vignette}" alt="" loading="lazy"></div>`;
         const sc = typeof SCENES_SEANCE !== "undefined" && SCENES_SEANCE.find(x => x.ouvrir === o.action);
         return sc
             ? `<div class="orb-opt-icon orb-opt-vignette"><img src="${vignetteScene(sc.nom)}" alt="" loading="lazy"></div>`
@@ -45222,6 +46048,7 @@ function exercicesSprechen(niveau){
             // oral, les deux s'entendent, et c'est l'enchainement qu'on
             // apprend a reconnaitre.
             audioDe: o.frage + " " + o.chunks.join(" "),
+            niveauExamen: o.niveau,
             ...champsPruefung(o, "erkl", "explanation")
         }));
 }
@@ -45243,6 +46070,7 @@ function exercicesSchreiben(niveau){
             ...videPruefung("hint"),
             chunks: o.chunks.slice(),
             audioDe: o.chunks.join(" "),
+            niveauExamen: o.niveau,
             ...champsPruefung(o, "erkl", "explanation")
         }));
 }
@@ -45276,6 +46104,7 @@ function exercicesLesen(niveau){
                     // avant de repondre transformerait une epreuve de
                     // lecture en epreuve d'ecoute.
                     audioDe: o.text,
+                    niveauExamen: o.niveau,
                     ...champsPruefung(q, "frage", "question", o.text + "\n\n— "),
                     ...videPruefung("translation"),
                     ...videPruefung("hint"),
@@ -45314,6 +46143,7 @@ function exercicesHoeren(niveau){
                 ...videPruefung("translation"),
                 ...videPruefung("hint"),
                 dictation: true, dictationText: o.audio, dictationLang: "de",
+                niveauExamen: o.niveau,
                 answers: [correct], correct: correct, correctEn: correct,
                 correctTr: correct, correctUk: correct, correctFa: correct, correctPt: correct, correctAr: correct, correctPl: correct, correctRu: correct,
                 options: options, optionsEn: options, optionsTr: options,
@@ -45331,6 +46161,22 @@ function exercicesHoeren(niveau){
 // serait quatre fois la meme question. La barre vit donc sur l'ecran
 // « Comprendre l'examen », au-dessus des quatre boutons qu'elle commande.
 let pruefungNiveau = null;   // null = les deux niveaux
+// SANS NIVEAU CHOISI, L'A2 ET LE B1 SEULEMENT (6 nov. 2026, decision de Jacques : « A et D »). Une testeuse B1
+// trouvait l'oral « pitched a bit above where I'm at as a B1 speaker », avec des notes qui parlaient « a lot about
+// C1 » : sans niveau choisi, les quatre epreuves melangeaient les quatre exercices C1 (Vortrag, Diskussion) a ceux
+// du DTZ et du B1, et leurs explications ne parlent que du C1. Le C1 n'arrive plus que par le bouton C1.
+// Les textes de Lire numerotent leurs groupes a partir de 0 a chaque appel : le groupe prend le niveau devant lui,
+// sans quoi le texte 0 de l'A2 et celui du B1 se meleraient (melangerEpreuve() les reunit par groupe).
+const PRUEFUNG_NIVEAUX_PAR_DEFAUT = ["A2", "B1"];
+function sansC1ParDefaut(construire){
+    return niveau => {
+        if(niveau) return construire(niveau);
+        const out = [];
+        PRUEFUNG_NIVEAUX_PAR_DEFAUT.forEach(n => construire(n).forEach(e =>
+            out.push(e.groupe === undefined ? e : Object.assign({}, e, { groupe: n + "-" + e.groupe }))));
+        return out;
+    };
+}
 
 function selectPruefungNiveau(n){
     pruefungNiveau = (n === "ALL") ? null : n;
@@ -45341,8 +46187,8 @@ function selectPruefungNiveau(n){
 // additionnees, et pour la lecture les QUESTIONS, pas les textes -- c'est le
 // nombre d'ecrans que l'usager va traverser.
 function nbEpreuves(niveau){
-    return exercicesHoeren(niveau).length + exercicesLesen(niveau).length
-         + exercicesSchreiben(niveau).length + exercicesSprechen(niveau).length;
+    return filtreExamen(sansC1ParDefaut(exercicesHoeren))(niveau).length + filtreExamen(sansC1ParDefaut(exercicesLesen))(niveau).length
+         + filtreExamen(sansC1ParDefaut(exercicesSchreiben))(niveau).length + filtreExamen(sansC1ParDefaut(exercicesSprechen))(niveau).length;
 }
 
 function renderPruefungNiveauBar(){
@@ -45426,7 +46272,7 @@ function lancerEpreuve(construire, kicker){
         if(!complet) epreuveGratuiteEnCours =
             { total: construire(GRATUIT.examenNiveau[niveauEchantillon()] || "A2").length };
         startExerciseSet(complet ? melangerEpreuve(liste) : liste, kicker,
-                         openPruefungInfo,
+                         retourEpreuve,
                          () => lancerEpreuve(construire, kicker));
     };
     if(!pruefungData) loadPruefungJson().then(jouer);
@@ -45445,11 +46291,166 @@ function openPruefungInfo(){
     if(!pruefungData) loadPruefungJson().then(renderPruefungNiveauBar);
 }
 
-function startPruefungSprechen(){ lancerEpreuve(exercicesSprechen, "kicker_pruefung_sprechen"); }
-function startPruefungLesen(){ lancerEpreuve(exercicesLesen, "kicker_pruefung_lesen"); }
-function startPruefungSchreiben(){ lancerEpreuve(exercicesSchreiben, "kicker_pruefung_schreiben"); }
-function startPruefungHoeren(){ lancerEpreuve(exercicesHoeren, "kicker_pruefung_hoeren"); }
+function startPruefungSprechen(){ lancerEpreuve(filtreExamen(sansC1ParDefaut(exercicesSprechen)), "kicker_pruefung_sprechen"); }
+function startPruefungLesen(){ lancerEpreuve(filtreExamen(sansC1ParDefaut(exercicesLesen)), "kicker_pruefung_lesen"); }
+function startPruefungSchreiben(){ lancerEpreuve(filtreExamen(sansC1ParDefaut(exercicesSchreiben)), "kicker_pruefung_schreiben"); }
+function startPruefungHoeren(){ lancerEpreuve(filtreExamen(sansC1ParDefaut(exercicesHoeren)), "kicker_pruefung_hoeren"); }
 
+// ============ DEUX BLOCS : LE DTZ ET LE TELC A2·B1 (essai examens_blocs, 4 nov. 2026) ============
+//
+// Jacques : « ma vision, c'est d'avoir un bloc pour se preparer au DTZ, puis un bloc pour se preparer a
+// l'examen A2 B1. Donc, il y a du materiel [...] qu'on va pouvoir utiliser dans les deux. » Et pour le panneau
+// (4 nov.) : « Comprendre l'examen » en tete, deux grandes cartes, puis « Autres examens » pour le Goethe B1 et
+// le C1, plus discrets -- rien de ce qui existe ne disparait.
+//
+// LE MATERIEL COMMUN NE SE COPIE PAS, IL SE FILTRE. Les quatre epreuves de pruefung.json servent a tous les
+// blocs ; pruefungExamen dit d'ou l'on vient (« dtz », « telc », « goethe », « c1 », ou null hors des blocs), et
+// filtreExamen() ne garde que les niveaux de cet examen et retire les taches qui n'en sont pas :
+//   - DTZ et telc (A2·B1) : ni le C1, ni les taches du Goethe (l'expose, le message de forum, les questions du
+//     Goethe A2) ; le telc perd aussi le recit d'experience a partir d'une image, propre au DTZ (pas d'image a
+//     l'oral du telc) ;
+//   - Goethe-Zertifikat B1 : le B1 seul (l'examen n'a qu'un niveau), sans le recit sur image du DTZ ;
+//   - C1 : le C1 seul.
+// Les 4 « Fragen stellen » (Sprechen A2, format du Goethe A2) ne vont dans aucun bloc : aucun des quatre examens ne
+// les pose. Ils restent dans le panneau d'avant (essai coupe). Hors des blocs (pruefungExamen null), rien n'est filtre.
+//
+// UN BLOC N'EST LISTE QUE S'IL A DE QUOI S'ENTRAINER (Jacques, 4 nov. : « si on est capable de nourrir des blocs de
+// la bonne facon »). Tous sont en essai admin tant qu'ils ne sont pas nourris au format de leur examen ; un bloc
+// sans aucune epreuve derriere lui (pruefung.json charge et vide pour ce bloc) n'apparait pas du tout.
+let pruefungExamen = null;
+const GOETHE_SEUL = ["Forumsbeitrag", "Forumsbeiträge", "Erörterung", "Teil 1 · Fragen stellen",
+                     "Teil 2 · Ein Thema präsentieren", "Teil 3 · Über eine Präsentation sprechen"];
+const BLOCS_EXAMENS = {
+    dtz:    { niveaux: ["A2", "B1"], hors: GOETHE_SEUL },
+    telc:   { niveaux: ["A2", "B1"], hors: GOETHE_SEUL.concat(["Teil 2 · Über Erfahrungen sprechen"]) },
+    goethe: { niveaux: ["B1"],       hors: ["Teil 2 · Über Erfahrungen sprechen"] },
+    c1:     { niveaux: ["C1"],       hors: [] }
+};
+function blocDePanneau(id){
+    return ({ pruefung_dtz: "dtz", pruefung_telc: "telc", pruefung_goethe: "goethe", pruefung_c1: "c1" })[id] || null;
+}
+function filtreExamen(construire, examen){
+    const ex = examen || pruefungExamen;
+    if(!ex) return construire;
+    const bloc = BLOCS_EXAMENS[ex];
+    return niveau => {
+        if(niveau && bloc.niveaux.indexOf(niveau) < 0) return [];
+        const out = [];
+        (niveau ? [niveau] : bloc.niveaux).forEach(n => construire(n).forEach(e => {
+            if(bloc.hors.indexOf(e.topic) >= 0) return;
+            // Les textes de Lire numerotent leurs groupes a partir de 0 a chaque appel : sans le niveau dans le
+            // groupe, le texte 0 de l'A2 et celui du B1 se meleraient (melangerEpreuve() les reunit par groupe).
+            out.push(e.groupe === undefined ? e : Object.assign({}, e, { groupe: n + "-" + e.groupe }));
+        }));
+        return out;
+    };
+}
+// un bloc a-t-il de quoi s'entrainer ? Tant que pruefung.json n'est pas arrive, on ne sait pas : on le montre.
+function blocNourri(ex){
+    if(!pruefungData) return true;
+    return [exercicesHoeren, exercicesLesen, exercicesSchreiben, exercicesSprechen]
+        .some(c => filtreExamen(c, ex)(null).length > 0);
+}
+// Le retour d'une epreuve : le bloc d'ou l'on vient, sinon « Comprendre l'examen » comme avant.
+function retourEpreuve(){
+    if(pruefungExamen) openOrbPanel("pruefung_" + pruefungExamen);
+    else openPruefungInfo();
+}
+function retourPruefungInfo(){ openOrbPanel(pruefungExamen ? "pruefung_" + pruefungExamen : "pruefung"); }
+function blocsExamensActifs(){
+    return essaiActif("examens_blocs") && (LANGUE_APPRISE === "de" || !LANGUE_APPRISE);
+}
+// Les sous-panneaux reviennent a la tuile ; tout autre panneau, a l'accueil comme avant.
+function retourOrbPanel(){
+    if(blocDePanneau(openOrbId)) openOrbPanel("pruefung"); else goHome();
+}
+function ouvrirBlocDtz(){ openOrbPanel("pruefung_dtz"); }
+function ouvrirBlocTelc(){ openOrbPanel("pruefung_telc"); }
+function ouvrirBlocGoethe(){ openOrbPanel("pruefung_goethe"); }
+function ouvrirBlocC1(){ openOrbPanel("pruefung_c1"); }
+function panneauBlocsExamens(){
+    // pruefung.json peut arriver apres l'ouverture du panneau : on le redessine alors (un bloc vide disparait)
+    if(!pruefungData) loadPruefungJson().then(() => { if(openOrbId === "pruefung") renderOrbPanel(); });
+    const blocs = [
+        { ex:"dtz",    action:"ouvrirBlocDtz",    t:"op_pruefung_bloc_dtz_t",    d:"op_pruefung_bloc_dtz_d" },
+        { ex:"telc",   action:"ouvrirBlocTelc",   t:"op_pruefung_bloc_telc_t",   d:"op_pruefung_bloc_telc_d" },
+        { ex:"goethe", action:"ouvrirBlocGoethe", t:"op_pruefung_bloc_goethe_t", d:"op_pruefung_bloc_goethe_d" },
+        { ex:"c1",     action:"ouvrirBlocC1",     t:"op_pruefung_bloc_c1_t",     d:"op_pruefung_bloc_c1_d" }
+    ].filter(b => blocNourri(b.ex));
+    return {
+        icon:"dossier", title:t("op_pruefung_title"), sub:t("op_pruefung_blocs_sub"),
+        options:[{ icon:"dossier", title:t("op_pruefung_info_t"), desc:t("op_pruefung_info_d"),
+                   action:"openPruefungInfo", section:"comprendre" }]
+            .concat(blocs.map(b => ({ icon:"dossier", title:t(b.t), desc:t(b.d), primary:true,
+                                      action:b.action, section:"pratique" })))
+    };
+}
+// Le panneau d'un bloc : le commun dans l'ordre de SON examen, puis ce qui lui est propre.
+function panneauBlocExamen(ex){
+    // les actions ecrites en toutes lettres : verifier.py lit le nom de la fonction dans le texte
+    const PORTES = { hoeren:"startPruefungHoeren", lesen:"startPruefungLesen",
+                     schreiben:"startPruefungSchreiben", sprechen:"startPruefungSprechen" };
+    const ep = cle => ({ icon:"exercice", title:t("op_pruefung_" + cle + "_t"), desc:t("op_pruefung_" + cle + "_d"),
+        action:PORTES[cle], section:"pratique" });
+    const comprendre = { icon:"dossier", title:t("op_pruefung_info_t"), desc:t("op_pruefung_info_d"),
+        action:"openPruefungInfo", section:"comprendre" };
+    if(ex === "dtz"){
+        // L'oral avec Anna et Mark (essai dtz_oral) est repris du panneau d'avant tel quel : son titre et son
+        // texte restent ecrits a un seul endroit, celui de sa session.
+        const oral = (orbPanelData("pruefung_classique").options || []).filter(o => o.action === "ouvrirDtzOral");
+        return {
+            icon:"dossier", title:t("op_pruefung_dtz_title"), sub:t("op_pruefung_dtz_sub"),
+            options:[comprendre, ep("hoeren"), ep("lesen"), ep("schreiben"), ep("sprechen")].concat(oral)
+        };
+    }
+    if(ex === "telc"){
+        // Le telc : lire d'abord, puis les Sprachbausteine, ecrire, ecouter, parler (l'ordre de l'examen).
+        return {
+            icon:"dossier", title:t("op_pruefung_telc_title"), sub:t("op_pruefung_telc_sub"),
+            // En tete, la page du telc avec Mark et Anna : toutes ses parties au format de l'examen (l'accueil de
+            // telc.html, ou les parties pas encore faites restent grisees), puis les epreuves communes.
+            options:[comprendre,
+                { icon:"exercice", title:t("op_pruefung_telc_mark_t"), desc:t("op_pruefung_telc_mark_d"),
+                  primary:true, action:"ouvrirTelcAccueil", section:"pratique" },
+                ep("lesen"),
+                { icon:"exercice", title:t("op_pruefung_sb_t"), desc:t("op_pruefung_sb_d"),
+                  action:"ouvrirTelcSprachbausteine", section:"pratique" },
+                ep("schreiben"), ep("hoeren"), ep("sprechen")]
+        };
+    }
+    if(ex === "goethe"){
+        // Le Goethe-Zertifikat B1 : lire, ecouter, ecrire, parler (l'ordre de l'examen).
+        return {
+            icon:"dossier", title:t("op_pruefung_goethe_title"), sub:t("op_pruefung_goethe_sub"),
+            options:[comprendre, ep("lesen"), ep("hoeren"), ep("schreiben"), ep("sprechen")]
+        };
+    }
+    // Le C1 : les quatre epreuves au C1, et les feuilles de conjugaison (le B2 et le C1 y sont : passif,
+    // Konjunktiv I, Futur II, participe etendu). Pas de paquet de vocabulaire ici, comme partout dans cette
+    // tuile depuis la v471 (Jacques : « ca donne l'impression qu'avec seulement ces mots-la on va etre prepare »).
+    return {
+        icon:"dossier", title:t("op_pruefung_c1bloc_title"), sub:t("op_pruefung_c1bloc_sub"),
+        options:[comprendre, ep("lesen"), ep("hoeren"), ep("schreiben"), ep("sprechen"),
+            { icon:"exercice", title:t("op_pruefung_feuilles_t"), desc:t("op_pruefung_feuilles_d"),
+              action:"ouvrirMesFeuilles", section:"pratique" }]
+    };
+}
+// LA PAGE DU TELC (visuel/prototype/telc/telc.html), dans le cadre des scenes comme l'oral du DTZ. Elle repose sur
+// visuel/prototype/dtz/commun.js (le profil d'examen « telc »). « partie » ouvre directement une partie.
+function ouvrirTelc(partie){
+    sceneOuverteDepuis = "telc";
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre){
+        cadre.title = t("op_pruefung_telc_title");
+        cadre.src = baseScenes() + "telc/telc.html?apprendre=de&lang=" + encodeURIComponent(getUiLang())
+                  + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
+                  + (partie ? "&partie=" + encodeURIComponent(partie) : "")
+                  + "&t=" + Date.now();
+    }
+    showScreen("sceneSeance");
+}
+function ouvrirTelcSprachbausteine(){ ouvrirTelc("SB"); }
+function ouvrirTelcAccueil(){ ouvrirTelc(); }
 // orbAction() appelle window[action] SANS ARGUMENT : chaque option du panneau
 // a donc besoin de sa porte d'entree nommee.
 
@@ -46449,6 +47450,7 @@ function fermerFenetreDessus(){
     const video = document.getElementById("onboardingOverlay");
     if(video && video.classList.contains("show")){ closeOnboardingVideo(); return true; }
     if(document.getElementById("episodeVoile")){ fermerVoileEpisode(); return true; }
+    if(document.querySelector(".niveau-voile")){ fermerQuestionNiveau(); return true; }
     if(document.querySelector(".bilan-voile")){ fermerBilanSemaine(); return true; }
     const home = document.getElementById("home");
     if(VUE_CONTENU && home && home.classList.contains("active")){ quitterToutLeContenu(); return true; }
@@ -46884,11 +47886,12 @@ function poserPaysCarte(){
         const code = drapeauLangueApprise();
         const fm = document.getElementById("fondMonde");
         const largeur = (fm && fm.getBoundingClientRect().width) || window.innerWidth || 375;
-        // la piste : 960 px pour 360 degres, defilement de -338 a -1298 px en 170 s (fmDefile)
+        // la piste : 960 px pour 360 degres, defilement de -338 a -2258 px en 340 s (fmDefile, deux tours depuis la v1089) ;
+        // le depart se cale dans le PREMIER tour, d'ou au moins 170 s avant la boucle
         let t = largeur / 2 - (LONGITUDE_PAYS[code] + 180) / 360 * 960;
         while(t >= -338) t -= 960;
         while(t < -1298) t += 960;
-        const delai = -((-338 - t) / 960 * 170).toFixed(2) + "s";
+        const delai = -((-338 - t) / 1920 * 340).toFixed(2) + "s";
         [["#fondMonde .fm-piste", "fm-pays", ""], [".spf-piste", "spf-pays", "-fili"]].forEach(([sel, classe, suffixe]) => {
             document.querySelectorAll(sel).forEach(piste => {
                 let calque = piste.querySelector(":scope > ." + classe);
@@ -46909,8 +47912,21 @@ poserPaysCarte();
 // L'ordre est celui du ruban de l'accueil et du tour de role de la seance : la famille d'abord (maquette A).
 const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tuile: "tuileFamilia", en: true},
                           descripcion: {page: "descripcion.html", titre: "desc_tuile", court: "desc_court", tuile: "tuileDescripcion", en: true},
-                          emociones: {page: "emociones.html", titre: "emo_tuile", court: "emo_court", tuile: "tuileEmociones"},
-                          contrarios: {page: "contrarios.html", titre: "con_tuile", tuile: "tuileContrarios"}};
+                          emociones: {page: "emociones.html", titre: "emo_tuile", court: "emo_court", tuile: "tuileEmociones", en: true},
+                          contrarios: {page: "contrarios.html", titre: "con_tuile", tuile: "tuileContrarios", en: true},
+                          gato: {page: "gato.html", titre: "gato_tuile", tuile: "tuileGato", en: true},
+                          ropa: {page: "ropa.html", titre: "ropa_tuile", court: "ropa_court", tuile: "tuileRopa", en: true},
+                          cuerpo: {page: "cuerpo.html", titre: "cue_tuile", court: "cue_court", tuile: "tuileCuerpo", en: true},
+                          journee: {page: "journee.html", titre: "jour_tuile", court: "jour_court", tuile: "tuileJournee", en: true},
+                          manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger", en: true},
+                          metiers: {page: "metiers.html", titre: "met_tuile", tuile: "tuileMetiers", en: true},
+                          transportes: {page: "transportes.html", titre: "trans_tuile", tuile: "tuileTransportes"},
+                          loisirs: {page: "loisirs.html", titre: "loi_tuile", tuile: "tuileLoisirs", en: true},
+                          animales: {page: "animales.html", titre: "ani_tuile", tuile: "tuileAnimales", en: true},
+                          meteo: {page: "meteo.html", titre: "meteo_tuile", court: "meteo_court", tuile: "tuileMeteo", en: true},
+                          logement: {page: "logement.html", titre: "log_tuile", court: "log_court", tuile: "tuileLogement", en: true},
+                          demarches: {page: "demarches.html", titre: "dem_tuile", court: "dem_court", tuile: "tuileDemarches", en: true},
+                          courses: {page: "courses.html", titre: "cou_tuile", court: "cou_court", tuile: "tuileCourses"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
@@ -46921,7 +47937,7 @@ const apprendreThemeIllustre = () => LANGUE_APPRISE === "es" ? "es" : LANGUE_APP
 function ouvrirThemeIllustre(nom, depuis){
     const th = THEMES_ILLUSTRES[nom];
     if(!th) return;
-    sceneOuverteDepuis = (depuis === "accueil" ? "themeaccueil:" : "theme:") + nom;
+    sceneOuverteDepuis = (depuis === "accueil" ? "themeaccueil:" : depuis === "panneau" ? "themepanneau:" : "theme:") + nom;
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t(th.titre);
@@ -46939,7 +47955,7 @@ function ouvrirDtzOral(){
     sceneOuverteDepuis = "dtz";
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
-        cadre.title = "Mark t’aide à préparer le DTZ";
+        cadre.title = "Mark et Anna t’aident à préparer le DTZ";
         cadre.src = baseScenes() + "dtz-oral.html?apprendre=de"
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
                   + "&t=" + Date.now();
@@ -46997,6 +48013,10 @@ function voixThemeIllustre(){
          + (LANGUE_APPRISE === "en" ? "&variante=" + (VARIANTE_ANGLAIS === "gb" ? "gb" : "us") : "") + "&r=" + AUDIO_REVISION;
 }
 function ouvrirDescripcion(){ ouvrirThemeIllustre("descripcion"); }
+// le bouton M'ENTRAINER de « Comprendre les prepositions » (de), de la fiche « a, en, de » (es) et du panneau Prepositions
+function ouvrirThemeGato(){ ouvrirThemeIllustre("gato"); }
+// les lignes « Les loisirs » des panneaux Adverbes (de, es) et Verbes (es, a cote de gustar)
+function ouvrirThemeLoisirs(){ ouvrirThemeIllustre("loisirs"); }
 try{
     themesIllustresOuverts().forEach(nom => { const el = document.getElementById(THEMES_ILLUSTRES[nom].tuile); if(el) el.classList.remove("hidden"); });
 }catch(e){}
@@ -47587,8 +48607,20 @@ const ESSAIS = {
     // et l'examen blanc. Voir ouvrirDtzOral() et visuel/prototype/dtz-oral.html.
     dtz_oral: {
         etat: "admin",
-        titre: "Mark t'aide à préparer le DTZ : l'oral",
-        desc: "Dans « Préparation à l'examen » : l'oral du DTZ en répétition (se présenter, répondre, décrire une photo, raconter et comparer, planifier avec Mark). Anna joue l'examinatrice et annonce une estimation A2 / B1 ; voix du téléphone en attendant les voix enregistrées."
+        titre: "Mark et Anna t'aident à préparer le DTZ : l'oral",
+        desc: "Dans « Préparation à l'examen » : l'oral du DTZ en répétition (se présenter, répondre, décrire une photo, raconter et comparer, planifier avec Mark). Anna joue l'examinatrice et annonce une estimation A2 / B1 ; Anna et Mark parlent en vidéo, avec leurs voix de la série."
+    },
+    // EN ESSAI le 4 nov. 2026, admin seul. Jacques : « ma vision, c'est d'avoir un bloc pour se
+    // preparer au DTZ, puis un bloc pour se preparer a l'examen A2 B1. » Puis, pour le panneau :
+    // « Ouais, vas-y avec ta proposition. » Voir panneauBlocsExamens() et
+    // preparation-examens/PLAN-DTZ-TELC.md.
+    examens_blocs: {
+        etat: "admin",
+        // ouvert aussi au compte dont users/<uid>.essais contient « examens » (bouton « OUVRIR LES EXAMENS »
+        // du tableau de bord), decision de Jacques du 6 nov. 2026
+        compte: "examens",
+        titre: "Préparation aux examens : un bloc par examen",
+        desc: "La tuile montre « Comprendre l'examen », puis un bloc par examen : DTZ, telc Deutsch A2·B1, Goethe-Zertifikat B1 et C1. Chaque bloc reprend les quatre épreuves dans l'ordre de son examen, à ses niveaux et sans les tâches des autres ; le telc ajoute les Sprachbausteine avec Mark, le C1 les feuilles de conjugaison. Un bloc sans aucun exercice ne s'affiche pas."
     },
     premiers_pas: {
         etat: "tous",
@@ -47606,6 +48638,14 @@ function essaiActif(nom){
     const e = ESSAIS[nom];
     if(!e) return false;
     if(e.etat === "tous") return true;
+    // UN ESSAI OUVERT A UN COMPTE (6 nov. 2026, Jacques : « Oui, son compte », pour la testeuse B1 des examens) :
+    // un essai qui porte `compte: "<nom>"` s'allume aussi pour le compte dont users/<uid>.essais contient ce nom.
+    // C'est le meme champ que l'anglais (essaisDuCompte, basculerEssaiCompte) : jamais d'adresse dans ce fichier.
+    // L'admin, lui, garde son interrupteur (essaisCoupes) comme pour tout essai.
+    if(e.etat === "admin" && e.compte && !isAdminUser()){
+        const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+        return !!user && essaisDuCompte(user.uid).includes(e.compte);
+    }
     if(e.etat !== "admin" || !isAdminUser()) return false;
     return essaisCoupes().indexOf(nom) < 0;
 }
@@ -48343,6 +49383,15 @@ async function renderAdminUsersList(){
                         const anglaisOn = Array.isArray(u.essais) && u.essais.includes("anglais");
                         return `<button class="secondary admin-vhs" onclick="basculerEssaiCompte('${u.id}', 'anglais', ${!anglaisOn}, '${u._coll}')">
                         ${anglaisOn ? "ANGLAIS OUVERT ✓ — RETIRER" : "OUVRIR L'ANGLAIS"}
+                    </button>`;
+                    })()}
+                    ${(() => {
+                        // Les blocs par examen (essai examens_blocs) ouverts a ce compte, 6 nov. 2026 (« Oui, son
+                        // compte »). Lignes allemandes seulement : la preparation aux examens n'existe qu'en allemand.
+                        if(u._coll !== RESUMES_COLL) return "";
+                        const examensOn = Array.isArray(u.essais) && u.essais.includes("examens");
+                        return `<button class="secondary admin-vhs" onclick="basculerEssaiCompte('${u.id}', 'examens', ${!examensOn}, '${u._coll}')">
+                        ${examensOn ? "EXAMENS OUVERTS ✓ — RETIRER" : "OUVRIR LES EXAMENS"}
                     </button>`;
                     })()}
                 </div>
@@ -50732,7 +51781,8 @@ function flipCard(){
     //
     // Ce n'est plus le mot seul depuis la v458 : le mot avec son article, puis
     // son pluriel, et la phrase si le réglage le demande. Voir direChaineCarte.
-    direChaineCarte();
+    // v1115 : apres la fete de l'objectif, si elle joue encore (voir direAuto).
+    direAuto(direChaineCarte);
     noterPastilleExamenVue();
 }
 
@@ -51769,7 +52819,8 @@ function buildRektionBadgesHtml(card){
     if(card.construccion){
         // Espagnol : « gustar : la chose aimee est le sujet » ne tient pas dans
         // une pastille, et c'est pourtant ce qui fait rater la phrase.
-        bloc += `<div class="verb-construccion">${card.construccion}</div>`;
+        // Dans la langue d'interface : elle etait servie en anglais a tous.
+        bloc += `<div class="verb-construccion">${texteTraduit(card, "construccion") || card.construccion}</div>`;
     }
     return bloc;
 }
@@ -53000,7 +54051,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1085;
+const APP_VERSION = 1116;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -53315,7 +54366,7 @@ const AUDIO_BASE = LANGUE_ENSEIGNEE.audio;
 //  14  Les nombres dits en lettres (v994, 28 oct.) : 82 sons allemands (prix,
 //      heures, dates de l'examen surtout) et 62 x 2 espagnols (annees). La voix
 //      recevait « 3,90 € » et le hachait. audio/lectures/, audio/refaire_lectures.py.
-const AUDIO_REVISION = "14";
+const AUDIO_REVISION = "15";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
@@ -56762,6 +57813,9 @@ function ouvrirMosaiquePleinEcran(rang){
             }
         };
         img.src = urlImageMosaique(m);
+        // AGRANDIR (themes/zoom.js, 3 nov. 2026) -- gagne, l'image entiere ; en cours, la toile telle qu'elle est
+        // peinte, sans rien devoiler de plus (data-zoom absent : zoom.js copie la toile)
+        if(gagnee) toile.dataset.zoom = urlImageMosaique(m); else delete toile.dataset.zoom;
         vue.classList.remove("hidden");
         synchroniserHistorique();
     });
@@ -57052,7 +58106,7 @@ function choisirNiveauVocab(niv){
     // La carte affiche la ligne touchee (vocabVue) ; hors Premiers pas, un
     // niveau CECR reste aussi le niveau de la seance, comme depuis la v542.
     vocabVue = niv;
-    if(niv !== "PP" && !premiersPasEnCours()){ vocabVue = null; fixerNiveauSeance(niv); }
+    if(niv !== "PP" && !premiersPasEnCours()){ vocabVue = null; fixerNiveauSeance(niv, true); }
     majCarteVocab();
 }
 
@@ -57064,12 +58118,158 @@ function niveauSeance(){
     return "A1";
 }
 
-function fixerNiveauSeance(niv){
+// `parLUsager` : le niveau est choisi par l'eleve (pastille, carte du vocabulaire,
+// fin de l'A1 voyage). Seul ce cas pose la question de la montee (v1114) --
+// jamais la restauration nuage ni le niveau declare a l'inscription.
+function fixerNiveauSeance(niv, parLUsager){
     if(NIVEAUX_CECR.indexOf(niv) < 0) return;
+    const avant = niveauSeance();
     try{ localStorage.setItem(NIVEAU_SEANCE_KEY, niv); }catch(e){}
     // v905 : choisir un autre niveau arrete la revision en cours.
     try{ const r = lireRevoirNiveau(); if(r && r.n !== niv) ecrireRevoirNiveau(null); }catch(e){}
     majTuileSeance();
+    if(parLUsager && rangNiveauSeance(niv) > rangNiveauSeance(avant)){
+        try{ demanderMotsPlusBas(niv); }catch(e){}
+    }
+}
+
+// ============ LES MOTS D'UN NIVEAU PLUS BAS (v1114) ============
+// Jacques, 5 nov. 2026 (decisions/DECISIONS.md, « Changement de niveau ») :
+// passe de l'A1 au B1 en anglais, il voyait revenir « book » et « father » --
+// des revisions A1 dues, que la seance prend dans TOUS les niveaux. « S'il dit
+// qu'il connait deja, on ne lui presente pas dans la seance. S'il dit qu'il veut
+// les garder pour la revision, on garde seulement ceux qui ont rate. »
+//
+// LA REGLE, POUR LA SEANCE DU JOUR SEULEMENT (Mots au hasard et les themes ne
+// changent pas) : une seance du niveau L ramene les echeances de L et des
+// niveaux au-dessus comme avant ; d'un niveau plus bas, seulement les mots
+// rates au moins une fois. Un mot « connu » ne revient plus, a aucun niveau.
+// Sans reponse a la question, c'est la regle « garder » qui vaut.
+//
+// PREMIERS PAS COMPTE COMME UN NIVEAU SOUS L'A1, mais au meme rang : un debutant
+// en seance A1 n'est pas touche ; un eleve en B1 qui a feuillete Premiers pas ne
+// revoit que ce qu'il y a rate, et ces cartes comptent dans la question.
+const RANG_NIVEAU_SEANCE = { PP: 0, A1: 0, A2: 1, B1: 2, B2: 3, C1: 4 };
+function rangNiveauSeance(n){
+    return RANG_NIVEAU_SEANCE[n] !== undefined ? RANG_NIVEAU_SEANCE[n] : 0;
+}
+// RATE AU MOINS UNE FOIS. Les quatre chemins d'echec (« Encore », la scene, la
+// seance hors ligne, les exercices de la seance) comptent `rate` depuis la v1114.
+// Avant, rien ne le notait, mais l'historique le dit : un echec remet srsHits a
+// zero alors que reviews continue de monter, et la maitrise monte srsHits a 4
+// sans toucher a reviews. Un mot NON MAITRISE a donc ete rate si et seulement si
+// reviews > srsHits.
+// ⚠️ CE QUI EST PERDU, ACCEPTE (chef, 5 nov.) : un mot rate avant la v1114 puis
+// maitrise peut retomber a reviews <= srsHits (surtout si l'echec etait sa toute
+// premiere reponse, et apres ses entretiens). Il compte alors pour jamais rate et
+// ne revient pas d'un niveau plus bas : c'est un mot maitrise.
+function motRate(st){
+    return (st.rate || 0) > 0 || (st.reviews || 0) > (st.srsHits || 0);
+}
+// Les cartes du niveau `nivMot` que la seance du niveau `niveau` peut ramener.
+// Les cartes neuves passent : la seance ne prend le neuf que dans son niveau.
+function echeancesPermises(items, nivMot, niveau){
+    const plusBas = rangNiveauSeance(nivMot) < rangNiveauSeance(niveau);
+    return items.filter(it => {
+        const st = getWordState(it.themeId, it.index);
+        if(estNeuf(st)) return true;
+        if(st.connu) return false;
+        return !plusBas || motRate(st);
+    });
+}
+// Le corpus des echeances de la seance : tous les niveaux, passes par la regle.
+// Le SEUL endroit qui le construit -- la seance en ligne et la seance hors ligne.
+function echeancesDeSeance(niveau, complet){
+    const tout = [];
+    NIVEAUX_CECR.forEach(n => {
+        const p = complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n));
+        tout.push.apply(tout, echeancesPermises(p, n, niveau));
+    });
+    return tout;
+}
+// Les mots commences sous le niveau `niv` sur lesquels la question n'a pas
+// encore ete posee : { it, n } (n = niveau, « PP » pour Premiers pas).
+async function motsPlusBasCommences(niv){
+    const complet = accesComplet();
+    const r = rangNiveauSeance(niv);
+    const vus = new Set(), out = [];
+    const ajouter = (items, n) => items.forEach(it => {
+        const c = it.themeId + "|" + it.index;
+        if(vus.has(c)) return;
+        const st = getWordState(it.themeId, it.index);
+        if(estNeuf(st) || st.connu || st.q) return;
+        vus.add(c);
+        out.push({ it: it, n: n });
+    });
+    NIVEAUX_CECR.forEach(n => {
+        if(rangNiveauSeance(n) >= r) return;
+        ajouter(complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n)), n);
+    });
+    if(rangNiveauSeance("PP") < r){
+        try{
+            if(LANGUE_APPRISE !== "ja" && essaiActif("premiers_pas")){
+                await chargerPremiersPas();
+                ajouter(cartesPremiersPasVues(), "PP");
+            }
+        }catch(e){}
+    }
+    return out;
+}
+function fermerQuestionNiveau(){
+    const v = document.querySelector(".niveau-voile");
+    if(!v) return;
+    v.remove();
+    try{ synchroniserHistorique(); }catch(e){}
+}
+// La question, une fois par mot : chaque mot presente recoit `q` des que la
+// fenetre s'affiche. « Oui » ajoute `connu` ; « Garde… », le ✕ ou le voile ne
+// changent rien d'autre -- la regle « garder » vaut deja sans reponse.
+async function demanderMotsPlusBas(niv){
+    const liste = await motsPlusBasCommences(niv);
+    if(!liste.length) return;
+    liste.forEach(x => {
+        const st = getWordState(x.it.themeId, x.it.index);
+        st.q = 1;
+        setWordState(x.it.themeId, x.it.index, st);
+    });
+    const niveaux = ["PP"].concat(NIVEAUX_CECR)
+        .filter(n => liste.some(x => x.n === n))
+        .map(n => n === "PP" ? t("pp_badge") : n).join(" · ");
+    const un = liste.length === 1;
+    const creer = (tag, cls, txt) => { const e = document.createElement(tag); if(cls) e.className = cls; if(txt !== undefined) e.textContent = txt; return e; };
+    fermerQuestionNiveau();
+    const voile = creer("div", "bilan-voile niveau-voile");
+    voile.addEventListener("click", e => { if(e.target === voile) fermerQuestionNiveau(); });
+    const carte = creer("div", "bilan-carte");
+    const titre = tf(un ? "niv_monte_titre_one" : "niv_monte_titre", { n: liste.length, niveaux: niveaux });
+    carte.setAttribute("role", "dialog");
+    carte.setAttribute("aria-label", titre);
+    const x = creer("button", "bilan-fermer", "✕");
+    x.type = "button";
+    x.setAttribute("aria-label", t("abo_fermer"));
+    x.addEventListener("click", fermerQuestionNiveau);
+    carte.appendChild(x);
+    carte.appendChild(creer("h2", "bilan-titre niveau-titre", titre));
+    const oui = creer("button", "bilan-seance niveau-oui", t(un ? "niv_monte_oui_one" : "niv_monte_oui"));
+    oui.type = "button";
+    oui.addEventListener("click", () => {
+        liste.forEach(y => {
+            const st = getWordState(y.it.themeId, y.it.index);
+            st.connu = true;
+            setWordState(y.it.themeId, y.it.index, st);
+        });
+        fermerQuestionNiveau();
+        try{ majTuileSeance(); }catch(e){}
+    });
+    carte.appendChild(oui);
+    const garder = creer("button", "bilan-go large niveau-garder", t(un ? "niv_monte_garder_one" : "niv_monte_garder"));
+    garder.type = "button";
+    garder.addEventListener("click", fermerQuestionNiveau);
+    carte.appendChild(garder);
+    carte.appendChild(creer("p", "niveau-ligne", t(un ? "niv_monte_ligne_one" : "niv_monte_ligne")));
+    voile.appendChild(carte);
+    document.body.appendChild(voile);
+    try{ synchroniserHistorique(); }catch(e){}
 }
 
 // ============ REVOIR UN NIVEAU FINI (v905) ============
@@ -57613,7 +58813,10 @@ function majExplorerThemes(){
     ruban.scrollLeft = 0;
     pagesExplorer(ruban, Math.ceil(noms.length / 3), "explorerThemesPages");
 }
-// « N › » : la section des themes dans Tout le contenu.
+// Le panneau des themes appelle window[action]() : une fonction par theme, faite depuis la table (un theme ajoute
+// a THEMES_ILLUSTRES a la sienne sans rien ecrire ici).
+Object.keys(THEMES_ILLUSTRES).forEach(nom => { window["ouvrirThemePanneau_" + nom] = () => ouvrirThemeIllustre(nom, "panneau"); });
+// Avant la v du 3 nov. 2026, « N › » menait a la section des themes dans Tout le contenu ; garde pour qui l'appellerait.
 function ouvrirListeThemesIllustres(){
     ouvrirToutLeContenu();
     setTimeout(() => {
@@ -58094,13 +59297,16 @@ window.addEventListener("message", (e) => {
     }
     // Essai dtz_oral : le micro demande par la page, et le retour au panneau « Preparation ».
     if(d.type === "micro"){ microPourCadre(d, e); return; }
-    if(sceneOuverteDepuis === "dtz" && (d.type === "fini" || d.type === "fermer")){
-        try{ openOrbPanel("pruefung"); }catch(err){ goHome(); }
+    // Le bloc d'ou l'on vient (essai examens_blocs) : l'oral du DTZ revient au bloc DTZ s'il en vient, la page du
+    // telc au bloc telc.
+    if((sceneOuverteDepuis === "dtz" || sceneOuverteDepuis === "telc") && (d.type === "fini" || d.type === "fermer")){
+        try{ openOrbPanel(sceneOuverteDepuis === "telc" ? "pruefung_telc" : pruefungExamen === "dtz" ? "pruefung_dtz" : "pruefung"); }catch(err){ goHome(); }
         return;
     }
     // Les themes illustres (v1076) reviennent a « Tout le contenu », d'ou on les a ouverts.
     if(String(sceneOuverteDepuis).indexOf("theme") === 0 && (d.type === "fini" || d.type === "fermer")){
         if(String(sceneOuverteDepuis).indexOf("themeaccueil:") === 0){ goHome(); return; }
+        if(String(sceneOuverteDepuis).indexOf("themepanneau:") === 0){ try{ openOrbPanel("themes_illustres"); }catch(err){ goHome(); } return; }
         try{ ouvrirToutLeContenu(); }catch(err){ goHome(); }
         return;
     }
@@ -58150,31 +59356,59 @@ window.addEventListener("message", (e) => {
 // homographes (der See / die See). Trois reponses par scene, donc trois
 // parcours du corpus -- jamais de boucle sur la progression (le piege de la
 // v100) : getWordState() ne lit qu'un mot.
+// LE SENS (3 nov. 2026). Un mot qui a deux entrees au corpus a deux cartes : rico
+// (« delicieux » et « riche »), comme sauer (acide / fache) ou aburrido (ennuyeux /
+// qui s'ennuie) le seraient. La page peut envoyer avec le mot la traduction
+// francaise de l'entree qu'elle enseigne (d.sens) : la carte qui porte cette
+// traduction l'emporte. Sans sens, ou si aucune carte ne le porte, rien ne change :
+// la premiere, comme avant (les scenes et les autres themes n'en envoient pas).
 function carteDeScene(d){
     const mot = (d && typeof d.mot === "string") ? d.mot : "";
     if(!mot) return null;
+    const sens = (typeof d.sens === "string" && d.sens) ? d.sens : null;
+    // le premier index qui convient, d'abord avec le sens demande, sinon sans
+    const chercher = (liste, ok, trad) => {
+        if(sens){ const j = liste.findIndex(w => ok(w) && trad(w) === sens); if(j >= 0) return j; }
+        return liste.findIndex(ok);
+    };
     if(d.cat === "verbe"){
-        const i = (verbeTheme.words || []).findIndex(w => w && w.infinitif === mot);
+        const i = chercher(verbeTheme.words || [], w => w && w.infinitif === mot, w => w.traduction);
         return i < 0 ? null : { word: verbeTheme.words[i], index: i, themeId: verbeTheme.id, mode: "verben" };
     }
+    // 3 nov. 2026, « Ou est le chat ? » : une question sur « hinter » ou « debajo de » fait avancer la carte de la
+    // preposition (le paquet Prepositions, praepTheme) -- la regle 3 des themes, un mot appris compte partout
+    if(d.cat === "praep"){
+        const i = (praepTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
+        return i < 0 ? null : { word: praepTheme.words[i], index: i, themeId: praepTheme.id, mode: "praep" };
+    }
     if(d.cat === "adjectif"){
-        const i = (adjektiveTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
+        const i = chercher(adjektiveTheme.words || [], w => Array.isArray(w) && w[0] === mot, w => w[1]);
         return i < 0 ? null : { word: adjektiveTheme.words[i], index: i, themeId: adjektiveTheme.id, mode: "adjektive" };
     }
-    let premier = null, nomme = null;
+    // 3 nov. 2026, le theme « La journee » : siempre, a veces, nunca, primero / immer, manchmal, nie, zuerst
+    if(d.cat === "adverbe"){
+        const i = (adverbienTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
+        return i < 0 ? null : { word: adverbienTheme.words[i], index: i, themeId: adverbienTheme.id, mode: "adverbien" };
+    }
+    let premier = null, nomme = null, duSens = null;
     themesComptes().forEach(th => {
         Object.keys(th.levels || {}).forEach(niv => {
             const lv = th.levels[niv];
             if(!lv || !Array.isArray(lv.words)) return;
-            const i = lv.words.findIndex(w => Array.isArray(w) && w[0] === mot
-                                              && (!d.genre || w[1] === d.genre));
+            const ok = w => Array.isArray(w) && w[0] === mot && (!d.genre || w[1] === d.genre);
+            const i = lv.words.findIndex(ok);
             if(i < 0) return;
             const it = { word: lv.words[i], index: i, themeId: lv.id, mode: "nomen" };
             if(!premier) premier = it;
             if(d.theme && lv.id === d.theme) nomme = it;
+            // le sens : rang 3, la traduction francaise d'un nom
+            if(sens && !duSens){
+                const j = lv.words.findIndex(w => ok(w) && w[3] === sens);
+                if(j >= 0) duSens = { word: lv.words[j], index: j, themeId: lv.id, mode: "nomen" };
+            }
         });
     });
-    return nomme || premier;
+    return duSens || nomme || premier;
 }
 
 // CE QUE VAUT UNE REPONSE : EXACTEMENT CE QUE VAUT UNE CARTE.
@@ -58212,6 +59446,7 @@ function revisionDeScene(d){
         let maitrise = false;
         if(!juste){
             st.srsHits = 0;
+            st.rate = (st.rate || 0) + 1;   // v1114 : la trace de l'echec, voir motRate()
             programmerEcheance(st, SRS_ENCORE_MINUTES);
         } else {
             const reussites = st.srsHits || 0;
@@ -58266,8 +59501,24 @@ let sceneCompteExercices = false;
 function exerciceDeScene(){
     try{
         if(getLearningDirection() !== "de") return;
-        recordDailyActivity();
+        const palier = recordDailyActivity();
+        // 3 nov. 2026 : DANS UN THEME ILLUSTRE, LE PALIER A SA FETE, comme une carte. Jacques : « il n'y a pas
+        // d'affichage de la mosaique, avec le cercle de progression », « dans un theme illustre ». Le palier etait
+        // compte ici sans rien montrer : la regle des scenes (pas de fete par-dessus l'image au milieu d'une
+        // question). Un theme envoie « exercice » APRES la reponse, quand le retour s'affiche : rien a cacher. Le
+        // carreau de la reponse (« bonne ») arrive juste apres, et montrerMosaiquePalier attend 450 ms -- le meme
+        // ordre que pour une carte. Les scenes, elles, gardent leur regle.
+        if(palier > 0 && themeIllustreOuvert()) triggerDailyGoalCelebration(palier);
     }catch(e){}
+}
+// La page du cadre est-elle celle d'un theme illustre (depuis Tout le contenu, l'accueil ou la seance, ou il
+// s'ouvre comme un arret, « arret », sous le meme nom qu'une scene) ?
+function themeIllustreOuvert(){
+    try{
+        const cadre = document.getElementById("sceneCadre");
+        const page = cadre ? new URL(cadre.src, location.href).pathname.split("/").pop() : "";
+        return Object.values(THEMES_ILLUSTRES).some(th => th.page === page);
+    }catch(e){ return false; }
 }
 
 // ============ LA SEANCE MELANGEE (essai « phrases », v810-v812) ============
@@ -59416,7 +60667,8 @@ function montrerCartePhrase(item){
         // Jacques, 21 oct. 2026 : « la habitación », une faute, et la voix dit
         // « El piso tiene tres habitaciones ».
         const redire = item.forme === "dictee_mot" ? () => direMotPhrase(item) : () => direPhrase(item);
-        if(item.phrase) setTimeout(() => { if(retour.isConnected) redire(); }, juste ? 700 : 0);
+        // v1115 : apres la fete de l'objectif, si cette reponse vient de la declencher (voir direAuto)
+        if(item.phrase) setTimeout(() => { if(retour.isConnected) direAuto(() => { if(retour.isConnected) redire(); }); }, juste ? 700 : 0);
     };
     const ecouter = creer("button", "cp-ecouter"); ecouter.append(iconeHP(), " " + t("cp_ecouter"));
     ecouter.type = "button";
@@ -59598,7 +60850,7 @@ function montrerCartePhrase(item){
         suite.classList.remove("hidden");
         suite.addEventListener("click", () => {
             const v = lireA1Voyage(); v.sf = true; ecrireA1Voyage(v);
-            try{ fixerNiveauSeance("A2"); }catch(e){}
+            try{ fixerNiveauSeance("A2", true); }catch(e){}
         }, { once: true, capture: true });
         try{ celebrateMastery(0, false); }catch(e){}
     } else if(item.forme === "pp_fin"){
@@ -59684,7 +60936,7 @@ function montrerCartePhrase(item){
             choix.appendChild(b);
         });
         el.appendChild(choix);
-        if(!item.transitLu) direPhrase(item);
+        if(!item.transitLu) direAuto(() => direPhrase(item));
     } else if(item.forme === "rp_chiffres"){
         // v879 : LE NOMBRE ENTENDU, ECRIT EN CHIFFRES. On juge l'oreille : la
         // reponse ne demande pas de savoir ecrire « siebenundvierzig ».
@@ -59705,7 +60957,7 @@ function montrerCartePhrase(item){
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
-        direPhrase(item);
+        direAuto(() => direPhrase(item));
     } else if(item.forme === "rp_son"){
         // v880 : le son du jour -- la regle, puis ses mots, lettres soulignees.
         try{ marquerSonDuJour(item); }catch(e){}
@@ -59780,7 +61032,7 @@ function montrerCartePhrase(item){
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
-        direPhrase(item);
+        direAuto(() => direPhrase(item));
     } else if(item.forme === "rp_article" || item.forme === "rp_pluriel"){
         // v880 : LE GENRE (le nom seul, choisir l'article) et LE PLURIEL (le
         // singulier, choisir le pluriel parmi trois). La reponse dit la regle,
@@ -60030,7 +61282,7 @@ function montrerCartePhrase(item){
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
-        if(motSeul) direMotPhrase(item); else direPhrase(item);
+        direAuto(() => { if(motSeul) direMotPhrase(item); else direPhrase(item); });
     } else if(item.forme === "transit_lire"){
         // v981 : un oral sans mots a reconstruire, en mode transit : la phrase a
         // lire, son sens, et CONTINUER. Ne compte ni juste ni faux.
@@ -60325,7 +61577,9 @@ function montrerCartePhrase(item){
                 phrase.textContent = "";
                 phrase.appendChild(creer("span", "cp-or-allume", item.phrase.de));
                 reessayer.classList.add("hidden");
-                setTimeout(() => { micro.classList.add("reussi"); micro.textContent = "✓"; }, 260);
+                // v1110 : PLUS DE ROND VERT AU CROCHET (Jacques, 4 nov. : « on va se retrouver avec deux crochets. Donc, il
+                // faudrait peut-etre juste voir le plus 1 puis avec le son »). Le micro reste tel quel ; la reussite se
+                // voit au « +1 », s'entend au son et se fete aux confettis ; on avance par le rond a la fleche du bas.
                 if(!eclatDonne){
                     eclatDonne = true;
                     try{ poserCarreauDeLaCarte(item); }catch(e){}
@@ -60686,7 +61940,7 @@ function montrerCartePhrase(item){
         el.appendChild(etatOral);
         suite.classList.remove("hidden");
         suite.addEventListener("click", () => palierApresPhrase(repondrePhrase(item, null)), { once: true, capture: true });
-        direPhrase(item);
+        direAuto(() => direPhrase(item));
     }
     // v862 : la derniere replique d'en face, sous la derniere carte du dialogue.
     if(item.apres){
@@ -60739,6 +61993,7 @@ function repondrePhrase(item, juste){
         let maitrise = false;
         if(!juste){
             st.srsHits = 0;
+            st.rate = (st.rate || 0) + 1;   // v1114 : la trace de l'echec, voir motRate()
             programmerEcheance(st, SRS_ENCORE_MINUTES);
         } else {
             const reussites = st.srsHits || 0;
@@ -62535,12 +63790,11 @@ async function ouvrirSeanceDuJour(sansScene){
     // Tous les niveaux pour les echeances, le niveau choisi pour le neuf.
     // En version gratuite aussi, les echeances viennent de tous les niveaux :
     // ce qu'on a appris pendant l'essai, ou que ce soit, continue de revenir.
-    const tout = [];
-    NIVEAUX_CECR.forEach(n => {
-        tout.push.apply(tout, complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n)));
-    });
-    // v829 : les flashcards de Premiers pas deja vues reviennent en revision.
-    try{ if(LANGUE_APPRISE !== "ja" && essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, cartesPremiersPasVues()); } }catch(e){}
+    // v1114 : d'un niveau plus bas, seulement les mots rates (echeancesDeSeance).
+    const tout = echeancesDeSeance(niveau, complet);
+    // v829 : les flashcards de Premiers pas deja vues reviennent en revision --
+    // v1114 : passees par la meme regle, Premiers pas au rang de l'A1.
+    try{ if(LANGUE_APPRISE !== "ja" && essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, echeancesPermises(cartesPremiersPasVues(), "PP", niveau)); } }catch(e){}
     // v862 (essai a1_voyage) : le neuf pris dans l'escale du jour au lieu de
     // tout l'A1. v864 : un compte neuf y part sans question.
     let av = null;
@@ -62785,7 +64039,7 @@ function majTuileSeance(){
                 const s = lirePremiersPas();
                 if(s.a !== false){ s.a = false; ecrirePremiersPas(s); }
             }
-            fixerNiveauSeance(niv);
+            fixerNiveauSeance(niv, true);
         });
         box.appendChild(b);
     });
@@ -63751,6 +65005,7 @@ function reviewAgain(){
     // rend plus couteux, pas moins.
     if(estNeuf(state)) noterMotNeuf();
     state.srsHits = 0;
+    state.rate = (state.rate || 0) + 1;   // v1114 : la trace de l'echec, voir motRate()
     setWordState(item.themeId, item.index, state);
     // v920 : le bilan de la semaine -- le mot tel qu'on le lisait, et son sens.
     try{
@@ -64624,6 +65879,30 @@ function preparerSonsEssai(){
     // v956 : la kalimba des confettis est pour tous (prepareMasterySound).
 }
 let sonsPalierEls = {}, sonPalierEnCours = null;
+// v1115 : LA VOIX ATTEND LA FIN DE LA FETE DE L'OBJECTIF. Jacques, 5 nov. 2026 : « Lorsqu'on a atteint l'objectif
+// du jour, faudrait attendre que l'objectif joue se termine avant de lire la phrase du prochain exercice. » La fete
+// part au jugement de la carte qui franchit le palier ; la carte suivante arrive ~1 s plus tard et parlait aussitot,
+// par-dessus la piece du palier. FETE_OBJECTIF_FIN dit jusqu'a quand la fete joue : une estimation posee par
+// triggerDailyGoalCelebration(), puis la vraie duree de la piece des qu'elle part (jouerSonPalier), et sa fin reelle
+// (« ended »). direAuto() enveloppe ce que l'app dit D'ELLE-MEME (une carte-phrase qui arrive, le verso retourne) :
+// pendant la fete, la voix attend, et elle ne part pas si la personne a quitte la carte entre-temps. Ce que la
+// personne demande (Ecouter, toucher un modele) parle tout de suite, comme avant.
+let FETE_OBJECTIF_FIN = 0;
+function prolongerFete(ms){ FETE_OBJECTIF_FIN = Math.max(FETE_OBJECTIF_FIN, Date.now() + ms); }
+function direAuto(dire){
+    const reste = FETE_OBJECTIF_FIN - Date.now();
+    if(reste <= 0){ dire(); return; }
+    const carte = (currentCards || [])[currentFlashcard], phrase = CARTE_PHRASE_AFFICHEE;
+    const cp = document.getElementById("cartePhrase");
+    const enPhrase = !!(cp && !cp.classList.contains("hidden"));
+    setTimeout(() => {
+        const ecran = document.querySelector(".screen.active");
+        if(!ecran || ecran.id !== "flashcards") return;
+        if((currentCards || [])[currentFlashcard] !== carte) return;
+        if(enPhrase && (CARTE_PHRASE_AFFICHEE !== phrase || !cp || cp.classList.contains("hidden"))) return;
+        direAuto(dire);   // la fete a pu s'allonger (la piece part apres l'image de la mosaique)
+    }, Math.min(reste, 9000) + 200);
+}
 function preparerSonsPalier(){
     [1, 2, 3].forEach(m => {
         if(sonsPalierEls[m]) return;
@@ -64645,6 +65924,9 @@ function jouerSonPalier(m){
         const p = el.play();
         if(p && typeof p.catch === "function") p.catch(() => {});
         sonPalierEnCours = el;
+        // v1115 : la fete dure ce que dure la piece (voir direAuto)
+        prolongerFete(isFinite(el.duration) && el.duration > 0 ? el.duration * 1000 + 250 : 3500);
+        el.onended = () => { FETE_OBJECTIF_FIN = Math.min(FETE_OBJECTIF_FIN, Date.now() + 250); };
         return true;
     }catch(e){ return false; }
 }
@@ -64868,6 +66150,9 @@ function triggerDailyGoalCelebration(multiple){
     // v947 (essai anneau_palier) : l'anneau dit le palier -- plus de « +30 ! ».
     let anneau = false;
     try{ anneau = essaiActif("anneau_palier") && essaiActif("carreau_partout"); }catch(e){}
+    // v1115 : jusqu'a quand la fete joue (voir direAuto) -- la piece de l'anneau part apres 450 ms et l'image de la
+    // mosaique ; la fanfare et la foule (1,3 s plus tard) sans l'anneau.
+    { const T = SONS_PALIER_T; prolongerFete(anneau ? 450 + (T.carreaux + T.duree_carreaux - T.chevauche + Math.min(3, multiple) * T.tour) * 1000 + 600 : CELEBRATION_CHEER_DELAY_MS + 3200); }
     if(!anneau) showDailyGoalText(getDailyGoalTarget() * multiple);
     // v856 (essai carreau_partout) : la mosaique sous le « +30 ! ». Le delai
     // laisse la carte qui franchit le palier poser son propre carreau : le
@@ -66043,7 +67328,14 @@ function majKickerExercice(){
     // Pendant une reprise des erreurs, la deuxieme ligne dit CE QU'ON REFAIT
     // et non ou l'on en est : on n'est pas dans le bloc 3, on est dans ses
     // fautes -- meme si la position du bloc reste en memoire pour la suite.
-    el.textContent = t(exerciseKickerKey)
+    // LE NIVEAU DE L'EPREUVE D'EXAMEN DANS LE TITRE (6 nov. 2026, decision de Jacques : « A et D ») :
+    // « Examen · Parler · B1 ». Une serie melange l'A2 et le B1 : le niveau suit donc l'exercice affiche
+    // (loadExercise() rappelle cette fonction a chaque exercice). Les codes A2, B1, C1 s'ecrivent pareil dans
+    // les 9 langues. Seulement pour les quatre epreuves : la decouverte guidee en emprunte une sous son propre titre.
+    const ex = activeExercises && activeExercises[currentExercise];
+    const niveauEx = (String(exerciseKickerKey).indexOf("kicker_pruefung_") === 0 && ex && ex.niveauExamen)
+        ? " · " + ex.niveauExamen : "";
+    el.textContent = t(exerciseKickerKey) + niveauEx
         + (revisionErreursEnCours
             ? "\n" + t("exo_kicker_erreurs")
             : (exerciseBlocTotal > 1
@@ -66174,6 +67466,7 @@ function loadExercise(){
     updateXpComboDisplay();
     const ex = activeExercises[currentExercise];
     if(!ex) return;
+    if(ex.niveauExamen) majKickerExercice();   // le niveau de l'epreuve d'examen, exercice par exercice
     answered = false;
     // L'anglais n'existe encore que pour une partie du contenu des exercices
     // (Phase 2 en cours) : on retombe sur le français si la traduction anglaise manque.
@@ -66805,5 +68098,18 @@ function showResults(){
 })();
 </script>
 
+<!-- AGRANDIR LES TABLEAUX DE LA GALERIE (Jacques, 3 nov. 2026, « Oui, les deux »), avec le module des
+     themes illustres -- UNE seule source, visuel/prototype/themes/zoom.js : un toucher sur le tableau en plein ecran
+     ouvre la visionneuse (au lieu de refermer le plein ecran), deux doigts sur le tableau ou sur une vignette de la
+     galerie aussi ; dedans, deux doigts jusqu'a x4, double toucher, la molette, le bouton x. -->
+<script src="visuel/prototype/themes/zoom.js?v=4"></script>
+<script>
+if(typeof Zoom !== "undefined"){
+    try{
+        Zoom.init({direct: "#mosaiquePleinToile", pincer: "#mosaiquePleinToile, #galerieMosaiques .galerie-item img",
+                   langue: () => { try{ return langueEtRepli()[0]; }catch(e){ return "fr"; } }});
+    }catch(e){}
+}
+</script>
 </body>
 </html>
