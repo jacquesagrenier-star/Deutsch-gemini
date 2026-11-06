@@ -105,8 +105,45 @@ function dire(texte, wer){
     }catch(e){ setTimeout(fin, 50); }
   });
 }
-function silence(){ try{ speechSynthesis.cancel(); }catch(e){} }
+function silence(){ try{ speechSynthesis.cancel(); }catch(e){} try{ LECTEUR.pause(); }catch(e){} }
 async function jouerRepliques(lignes){ for (const l of lignes || []) await dire(l.text, l.wer); }
+
+// LES PISTES ENREGISTREES (ElevenLabs v2, accord de Jacques du 4 nov. 2026). Un module verse son manifeste
+// {cle: fichier} dans DTZ_PISTES (hoeren-lesen.js : donnees/voix-hoeren.json, fait par outils/voix.py). Les fichiers
+// sont servis par Firebase Hosting, comme toutes les voix du cours, avec un nom tire de leur contenu (cache d'un an).
+// Une piste absente du manifeste, ou qui ne se charge pas, passe par la voix du telephone : rien ne reste muet.
+const DTZ_PISTES = {};
+const BASE_PISTES = "https://deutschai-b6fbb.web.app/dtz/";
+// UN SEUL LECTEUR POUR TOUTE LA PAGE : iOS n'accepte de jouer un son que dans le geste qui l'a demande ; un
+// lecteur debloque une fois (au toucher de « Commencer » ou d'« Ecouter ») peut ensuite changer de fichier seul.
+const LECTEUR = new Audio();
+LECTEUR.preload = "auto";
+const SILENCE_MP3 = "data:audio/mpeg;base64,SUQzBAAAAAAAIlRTU0UAAAAOAAADTGF2ZjYzLjEuMTAxAAAAAAAAAAAAAAD/83DAAAAAAAAAAAAASW5mbwAAAA8AAAAGAAADKQBaWlpaWlpaWlpaWlpaWlpae3t7e3t7e3t7e3t7e3t7e3ucnJycnJycnJycnJycnJycvb29vb29vb29vb29vb29vb3e3t7e3t7e3t7e3t7e3t7e3v////////////////////8AAAAATGF2YzYzLjEuAAAAAAAAAAAAAAAAJAKjAAAAAAAAAymyj8UTAAAAAAAAAAAAAAAAAP/zQMQAAAADSAAAAABMQU1FMy4xMDBVVVVVVVVVVVVVTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//NCxFsAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//NAxKQAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/80LEowAAA0gAAAAAVVVVVVVVVVVVVVVVVVVVVVVVVVVMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/80DEpAAAA0gAAAAAVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsSjAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ==";
+function debloquerSon(){ try{ LECTEUR.src = SILENCE_MP3; const p = LECTEUR.play(); if (p) p.catch(() => {}); }catch(e){} }
+function jouerFichier(url){
+  return new Promise(fin => {
+    let fait = false, parti = false;
+    const finir = ok => { if (fait) return; fait = true; LECTEUR.onended = LECTEUR.onerror = LECTEUR.onplaying = null; fin(ok); };
+    LECTEUR.onended = () => finir(true);
+    LECTEUR.onerror = () => finir(false);
+    // deux filets, pour que l'examen ne se fige jamais : un fichier qui n'a pas commence au bout de 8 s cede la
+    // place a la voix du telephone (un 404 ne declenche pas toujours « error ») ; un fichier commence s'arrete au
+    // plus tard a sa duree plus 3 s
+    LECTEUR.onplaying = () => {
+      if (parti) return; parti = true;
+      const d = isFinite(LECTEUR.duration) && LECTEUR.duration > 0 ? LECTEUR.duration : 90;
+      setTimeout(() => finir(true), (d + 3) * 1000);
+    };
+    try{ LECTEUR.src = url; const p = LECTEUR.play(); if (p) p.catch(() => finir(false)); }catch(e){ finir(false); }
+    setTimeout(() => { if (!parti){ try{ LECTEUR.pause(); }catch(e){} finir(false); } }, 8000);
+  });
+}
+async function jouerPiste(cle, lignes){
+  const f = DTZ_PISTES[cle];
+  if (f && !RAPIDE && await jouerFichier(BASE_PISTES + f)) return;
+  await jouerRepliques(lignes);
+}
+function arreterSon(){ try{ LECTEUR.pause(); }catch(e){} silence(); }
 const attendre = s => new Promise(r => setTimeout(r, RAPIDE ? Math.min(400, s * 1000) : s * 1000));
 const ICONE_SON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
 

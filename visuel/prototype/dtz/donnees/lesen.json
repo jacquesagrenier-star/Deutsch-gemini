@@ -15,7 +15,9 @@
     "Les images ne servent qu'aux photos (une annonce de vente, l'en-tete d'une brochure).",
     "",
     "Memes conventions que hoeren.json : bon = l'indice a sa place ; _fr montre apres la reponse ; mots = les",
-    "mots du corpus dont depend la reponse (repetition espacee). Les noms et adresses sont inventes."
+    "mots du corpus dont depend la reponse (repetition espacee). Les noms et adresses sont inventes.",
+    "bild (annonce, brochure) : le nom d'une photo de images/ (faite par outils/images.py, jamais de texte dedans) ;",
+    "    absente ou pas encore faite, la carte s'affiche sans elle."
   ],
   "series": [
     {
@@ -96,13 +98,13 @@
       "T2": {
         "aufgabe": "Lesen Sie zuerst die Situationen 6 bis 10 und suchen Sie dann in den Anzeigen a bis h. Welche Anzeige passt zu welcher Situation? Für eine Situation gibt es keine passende Anzeige. Dann kreuzen Sie x an.",
         "anzeigen": [
-          {"b": "a", "titel": "Schreibtisch zu verkaufen", "text": "Wegen Umzug: Schreibtisch aus Holz, 120 × 60 cm, sehr guter Zustand, nur 25 €. Nur Abholung, Pankow, Nähe S-Bahnhof. Tel. 0176 482 19 03"},
-          {"b": "b", "titel": "Kochen wie in Italien!", "text": "Kochkurs für Anfänger in der Kochschule Mangiare, Prenzlauer Berg. Jeden Samstag von 11 bis 14 Uhr, 45 € mit Essen und Getränken. Anmeldung auf unserer Internetseite."},
-          {"b": "c", "titel": "Thai-Küche am Abend", "text": "Asiatisch kochen lernen: dienstags und donnerstags 18–21 Uhr, Volkshochschule Mitte. 6 Abende, 90 €. Bitte eigene Schürze mitbringen."},
-          {"b": "d", "titel": "Platz für die ganze Familie", "text": "4-Zimmer-Wohnung in Pankow, 98 m², 3. OG mit Aufzug und großem Balkon, Grundschule und Spielplatz in der Nähe. Frei ab 1. Januar. Kaltmiete 1.450 €. Hausverwaltung Seidel, Tel. 030 91 77 20"},
-          {"b": "e", "titel": "Hell und ruhig", "text": "2-Zimmer-Wohnung in Wedding, 54 m², Balkon zum Hof, Einbauküche. Ideal für Singles oder Paare. Kaltmiete 780 €. Besichtigung am Samstag, Anmeldung per E-Mail."},
+          {"b": "a", "bild": "annonce-schreibtisch", "titel": "Schreibtisch zu verkaufen", "text": "Wegen Umzug: Schreibtisch aus Holz, 120 × 60 cm, sehr guter Zustand, nur 25 €. Nur Abholung, Pankow, Nähe S-Bahnhof. Tel. 0176 482 19 03"},
+          {"b": "b", "bild": "annonce-pasta", "titel": "Kochen wie in Italien!", "text": "Kochkurs für Anfänger in der Kochschule Mangiare, Prenzlauer Berg. Jeden Samstag von 11 bis 14 Uhr, 45 € mit Essen und Getränken. Anmeldung auf unserer Internetseite."},
+          {"b": "c", "bild": "annonce-thai", "titel": "Thai-Küche am Abend", "text": "Asiatisch kochen lernen: dienstags und donnerstags 18–21 Uhr, Volkshochschule Mitte. 6 Abende, 90 €. Bitte eigene Schürze mitbringen."},
+          {"b": "d", "bild": "annonce-familienwohnung", "titel": "Platz für die ganze Familie", "text": "4-Zimmer-Wohnung in Pankow, 98 m², 3. OG mit Aufzug und großem Balkon, Grundschule und Spielplatz in der Nähe. Frei ab 1. Januar. Kaltmiete 1.450 €. Hausverwaltung Seidel, Tel. 030 91 77 20"},
+          {"b": "e", "bild": "annonce-zweizimmer", "titel": "Hell und ruhig", "text": "2-Zimmer-Wohnung in Wedding, 54 m², Balkon zum Hof, Einbauküche. Ideal für Singles oder Paare. Kaltmiete 780 €. Besichtigung am Samstag, Anmeldung per E-Mail."},
           {"b": "f", "titel": "Ich helfe Ihnen gern!", "text": "Studentin (22) hilft im Alltag: Einkaufen, Begleitung zu Terminen, kleine Arbeiten im Haushalt. 12 € pro Stunde, auch am Wochenende. Rufen Sie mich an: 0157 330 64 18"},
-          {"b": "g", "titel": "Herrenrad, fast neu", "text": "28 Zoll, 7 Gänge, mit Licht und Gepäckträger, erst ein Jahr alt. 120 €, Preis verhandelbar. Anschauen in Prenzlauer Berg, abends ab 18 Uhr."},
+          {"b": "g", "bild": "annonce-herrenrad", "titel": "Herrenrad, fast neu", "text": "28 Zoll, 7 Gänge, mit Licht und Gepäckträger, erst ein Jahr alt. 120 €, Preis verhandelbar. Anschauen in Prenzlauer Berg, abends ab 18 Uhr."},
           {"b": "h", "titel": "Tandempartner gesucht", "text": "Ich (Lisa, 29) spreche Deutsch und möchte mein Französisch verbessern. Treffen einmal pro Woche im Café oder online. Schreib mir: lisa.tandem@post.de"}
         ],
         "items": [
@@ -248,6 +250,7 @@
         "aufgabe": "Lesen Sie zuerst die Aufgaben 17 bis 19 und suchen Sie dann die Informationen im Text. Kreuzen Sie an: richtig oder falsch.",
         "dokument": {
           "typ": "broschuere",
+          "bild": "brochure-bibliothek",
           "kopf": "Stadtbibliothek Pankow",
           "titel": "Ihr Bibliotheksausweis – das Wichtigste auf einen Blick",
           "abschnitte": [

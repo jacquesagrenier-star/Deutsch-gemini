@@ -18,7 +18,32 @@
 
 "use strict";
 
-Object.assign(TXT, {
+// Les textes en francais et en anglais (telc-commun.js : textesTelc). Les explications des trous et la situation
+// viennent des donnees : erkl_fr / erkl_en, situation_fr / situation_en (champTelc ; le francais tant que l'anglais
+// manque).
+const SB_EN = {
+  sb_titre: "Sprachbausteine",
+  sb_sous: "A letter, 10 gaps",
+  sb_section: "Section · Sprachbausteine",
+  sb_consigne_fr: "Read the letter. For each gap, choose the word that fits.",
+  sb_mark_debut: "At telc, the Sprachbausteine come right after the reading: a letter with 10 gaps. Each gap is worth only half a point, but these are the only grammar questions in the whole exam. My tip: always read what comes BEFORE and AFTER the gap — the case, the position of the verb, the preposition that follows.",
+  sb_trou: "Gap {n}",
+  sb_question: "Which word goes in this gap?",
+  sb_juste: "Correct!",
+  sb_faux: "Not quite: it's \"{m}\".",
+  sb_recap: "Summary",
+  sb_score: "{n} out of 10",
+  sb_points: "In the exam, that would be {p} point(s) out of 5.",
+  sb_mark_bien: "Very good! You already spot what the gap needs. Keep that habit on exam day.",
+  sb_mark_moyen: "Not bad! Reread the explanations for the gaps you missed: the same traps keep coming back (the case after a preposition, the verb at the end after \"weil\" or \"dass\").",
+  sb_mark_faible: "It's a start, and that's normal. Reread each explanation below, then do the letter again: you'll see the same little words always come back.",
+  sb_refaire: "Redo the section",
+  sb_suivante: "Next section",
+  sb_toutes: "All sections",
+  sb_situation: "The situation",
+  sb_de: "From", sb_a: "To", sb_objet: "Subject"
+};
+textesTelc({ en: SB_EN, fr: {
   sb_titre: "Sprachbausteine",
   sb_sous: "Une lettre, 10 trous",
   sb_section: "Section · Sprachbausteine",
@@ -40,9 +65,9 @@ Object.assign(TXT, {
   sb_toutes: "Toutes les sections",
   sb_situation: "La situation",
   sb_de: "De", sb_a: "À", sb_objet: "Objet"
-});
+}});
 
-const SB = { series: [], serie: null, rep: [], i: 0, direct: false };
+const SB = { series: [], serie: null, rep: [], i: 0 };
 
 DTZ.charger(fetch("donnees/sprachbausteine.json", { cache: "no-cache" })
   .then(r => { if (!r.ok) throw new Error("sprachbausteine.json"); return r.json(); })
@@ -62,7 +87,7 @@ async function ouvrirSB(serie){
 }
 
 function toutesLesSections(){
-  if (SB.direct){ silence(); parler("fermer"); if (window.parent === window) accueil(); return; }
+  if (TELC.direct){ silence(); parler("fermer"); if (window.parent === window) accueil(); return; }
   accueil();
 }
 
@@ -106,7 +131,7 @@ function pageTrou(){
     }).join("");
     const aide = r === null ? "" :
       '<div class="aide"><div class="verdict ' + (r === l.bon ? "ok" : "ko") + '">' + esc(r === l.bon ? T("sb_juste") : T("sb_faux", {m: l.o[l.bon]})) + '</div>' +
-      '<div class="dit"><img src="' + MARK_IMG + '" alt="Mark"><span class="erkl">' + esc(l.erkl_fr) + '</span></div></div>';
+      '<div class="dit"><img src="' + MARK_IMG + '" alt="Mark"><span class="erkl">' + esc(champTelc(l, "erkl")) + '</span></div></div>';
     return '<div class="q" id="carte"><div class="tete"><span class="num">' + l.n + '</span><span class="frage">' + esc(T("sb_question")) + '</span></div>' +
       '<div class="choix">' + opts + '</div>' + aide + '</div>';
   };
@@ -115,7 +140,7 @@ function pageTrou(){
     (SB.i === 0 && r === null && SB.rep.every(x => x === null)
       ? '<div class="bloc"><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T("sb_mark_debut")) + '</div></div></div>' : "") +
     '<div class="bloc"><p class="consigne" lang="de">' + esc(T("sb_consigne_de")) + '<span class="fr">' + esc(T("sb_consigne_fr")) + '</span></p>' +
-    '<p class="petit"><b>' + esc(T("sb_situation")) + ' :</b> ' + esc(s.situation_fr) + '</p>' +
+    '<p class="petit"><b>' + esc(T("sb_situation")) + ' :</b> ' + esc(champTelc(s, "situation")) + '</p>' +
     lettre((k, p) => ici.test(p) ? carte() : "") + '</div>';
   document.querySelectorAll("[data-aller]").forEach(b => b.onclick = () => { SB.i = Number(b.dataset.aller); pageTrou(); });
   document.querySelectorAll("[data-choix]").forEach(b => b.onclick = () => choisir(Number(b.dataset.choix)));
@@ -153,7 +178,7 @@ function recap(){
     const ok = SB.rep[k] === l.bon;
     return '<div class="q"><div class="tete"><span class="num">' + l.n + '</span><span class="frage">' +
       (ok ? '<span class="ok">✓</span> ' : '<span class="ko">✗</span> <s lang="de">' + esc(l.o[SB.rep[k]]) + '</s> → ') +
-      '<b lang="de">' + esc(l.o[l.bon]) + '</b></span></div><p class="erkl">' + esc(l.erkl_fr) + '</p></div>';
+      '<b lang="de">' + esc(l.o[l.bon]) + '</b></span></div><p class="erkl">' + esc(champTelc(l, "erkl")) + '</p></div>';
   });
   // ce qui est rate d'abord : c'est ce qu'on vient relire
   const rates = lignes.filter((x, k) => SB.rep[k] !== s.luecken[k].bon), justes = lignes.filter((x, k) => SB.rep[k] === s.luecken[k].bon);
