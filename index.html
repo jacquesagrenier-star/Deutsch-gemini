@@ -1308,6 +1308,17 @@ body[data-theme="dark"] .subtitle-version{
 .orb[data-orbid="pruefung"] .orb-icon{background:rgba(82,98,122,.14); border-color:rgba(82,98,122,.28);}
 .orb[data-orbid="pruefung"] .orb-icon svg{stroke:#52627a;}
 .orb[data-orbid="pruefung"] .orb-badge{background:#52627a; box-shadow:0 2px 6px rgba(82,98,122,.35);}
+/* « Signaler un probleme ou une idee » (5 nov. 2026) : la bulle ambre de la
+   marque, dans la tuile de Tout le contenu comme dans la carte des reglages. */
+.orb[data-orbid="signaler"] .orb-icon{background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.34);}
+.orb[data-orbid="signaler"] .orb-icon svg{stroke:#b9770f;}
+body[data-theme="dark"] .orb[data-orbid="signaler"] .orb-icon svg{stroke:#F0B45A;}
+/* Le titre le plus long de la grille : trois lignes, sinon « ou une idée » se coupe. */
+.orb[data-orbid="signaler"] strong{-webkit-line-clamp:3; line-clamp:3;}
+.signaler-titre{display:flex; align-items:center; gap:10px;}
+.signaler-bulle{flex:0 0 26px; width:26px; height:26px; fill:rgba(232,162,58,.16); stroke:#b9770f;
+    stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;}
+body[data-theme="dark"] .signaler-bulle{stroke:#F0B45A; fill:rgba(240,180,90,.14);}
 
 
 body[data-theme="dark"] .orb-section{
@@ -3418,7 +3429,7 @@ html[data-apprendre="ja"] #episodeLigne,
 html[data-apprendre="ja"] .search-launch,
 html[data-apprendre="ja"] [data-seulement-de],
 html[data-apprendre="ja"] [data-seulement-es],
-html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]):not([data-orbid="ja-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]){ display:none !important; }
+html[data-apprendre="ja"] [data-orbid]:not([data-orbid="signaler"]):not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]):not([data-orbid="ja-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]){ display:none !important; }
 /* Les kanji et les kana dans le texte courant (fiches, exercices, tableaux) :
    une police japonaise en repli, sinon un kanji partage avec le chinois peut
    prendre sa forme chinoise. */
@@ -3426,8 +3437,7 @@ html[data-apprendre="ja"] body{ font-family: -apple-system, BlinkMacSystemFont, 
 html:not([data-apprendre="ja"]) [data-seulement-ja]{ display:none !important; }
 /* « Tout le contenu » : les sections dont toutes les tuiles sont cachees. */
 html[data-apprendre="ja"] h2.orb-section[data-section="illustres"],
-html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_pratique"]),
-html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_parcours"]){ display:none !important; }
+html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_pratique"]){ display:none !important; }
 /* Les exercices allemands des ecrans de niveau (Präsens, cas regi, articles). */
 html[data-apprendre="ja"] button[onclick*="startExercises"],
 html[data-apprendre="ja"] button[onclick*="startVerbRektionExercise"],
@@ -3464,7 +3474,7 @@ html[data-apprendre="en"] #episodeLigne,
 html[data-apprendre="en"] [data-seulement-de],
 html[data-apprendre="en"] [data-seulement-es],
 html[data-apprendre="en"] [data-seulement-ja],
-html[data-apprendre="en"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]):not([data-orbid="pronomen"]):not([data-orbid="zahlen"]):not([data-orbid="praep"]):not([data-orbid="konjunktionen"]):not([data-orbid="wortstellung"]):not([onclick^="ouvrirThemeIllustre"]){ display:none !important; }
+html[data-apprendre="en"] [data-orbid]:not([data-orbid="signaler"]):not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]):not([data-orbid="pronomen"]):not([data-orbid="zahlen"]):not([data-orbid="praep"]):not([data-orbid="konjunktionen"]):not([data-orbid="wortstellung"]):not([onclick^="ouvrirThemeIllustre"]){ display:none !important; }
 /* Les options des panneaux qui marchent avec l'anglais (27 oct. 2026) : les
    dictees, Ecrire, Construire la phrase, les familles d'expressions, les faux
    amis. Une regle a part, ancree sur #orbPanel pour passer devant la liste
@@ -3481,7 +3491,6 @@ html:not([data-apprendre="en"]) [data-seulement-en]{ display:none !important; }
 html[data-apprendre="en"] #orbGrid > h2.orb-section[data-section="illustres"],
 html[data-apprendre="en"] #orbGrid > [onclick^="ouvrirThemeIllustre"]{ order: 1; }
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_pratique"]),
-html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_parcours"]),
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:none !important; }
 html[data-apprendre="en"] button[onclick*="startExercises"],
 html[data-apprendre="en"] button[onclick*="startVerbRektionExercise"],
@@ -3510,7 +3519,7 @@ html[data-apprendre="pt"] [data-seulement-de],
 html[data-apprendre="pt"] [data-seulement-es],
 html[data-apprendre="pt"] [data-seulement-ja],
 html[data-apprendre="pt"] [data-seulement-en],
-html[data-apprendre="pt"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="pt-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]){ display:none !important; }
+html[data-apprendre="pt"] [data-orbid]:not([data-orbid="signaler"]):not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="pt-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]){ display:none !important; }
 html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startDictee"],
 html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startSchreiben"],
 html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="ouvrirTuilesMenu"],
@@ -3520,7 +3529,6 @@ html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startDueReview"]{ display
 html:not([data-apprendre="pt"]) [data-seulement-pt]{ display:none !important; }
 html[data-apprendre="pt"] h2.orb-section[data-section="illustres"],
 html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_pratique"]),
-html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_parcours"]),
 html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:none !important; }
 html[data-apprendre="pt"] button[onclick*="startExercises"],
 html[data-apprendre="pt"] button[onclick*="startVerbRektionExercise"],
@@ -7819,7 +7827,7 @@ body[data-theme="dark"] .entete-contenu h2{color:#F2F2F6;}
 #seancePilule.pa-etape .pa-titre{display:flex; flex-direction:column;}
 #seancePilule.pa-etape .pa-titre strong{font-size:16px; line-height:1.25;}
 #seancePilule.pa-etape .pa-kick{order:2; font-size:12px; font-weight:800; letter-spacing:0; text-transform:none;
-    line-height:1.3; margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; opacity:.85;}
+    line-height:1.3; margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}   /* 5 nov. 2026 : plus d'opacity:.85 -- la ligne faisait 3,9:1 le jour (decision 21d5764) */
 #seancePilule.pa-etape .pa-sous{margin-top:3px;}
 /* v945 : le titre et son etape un peu plus loin de l'anneau -- « trop entasses » (Jacques). */
 #seancePilule .pa-txt{margin-inline-start:6px;}
@@ -8699,6 +8707,24 @@ body[data-theme="dark"] #home #seancePilule > .pa-play{background:linear-gradien
 #home #seancePilule .seance-pp.on{background:#FFFFFF !important; box-shadow:inset 0 0 0 2px #2BB5AA, 0 3px 10px rgba(20,128,122,.35) !important;}
 #home #seancePilule.pa-etape .pa-kick{color:rgba(28,36,48,.80) !important;}
 body[data-theme="dark"] #home #seancePilule.pa-etape .pa-kick{color:rgba(255,255,255,.85) !important;}
+/* 5 nov. 2026 (decision 21d5764) : la ligne de l'etape de l'A1 (« Me debrouiller en allemand · etape 3 sur 12 »),
+   le lieu dessous et la frise des etapes. La ligne peut passer sur deux lignes plutot que de finir en points de suspension
+   (des langues d'interface plus longues que le francais). Le point du jour : ambre plein, anneau blanc et filet d'encre --
+   l'anneau blanc seul ne le detachait pas de l'orange de la carte. */
+#seancePilule.pa-av .pa-kick{white-space:normal !important; text-overflow:clip !important; overflow:visible !important;}
+#seancePilule .pa-lieu{order:3; display:block; font-size:12.5px; font-weight:700; line-height:1.3; margin-top:1px;}
+#home #seancePilule .pa-lieu{color:rgba(28,36,48,.80);}
+body[data-theme="dark"] #home #seancePilule .pa-lieu{color:rgba(255,255,255,.85);}
+#seancePilule .pa-frise{order:4; position:relative; display:block; width:min(210px, 78%); height:22px; margin:6px auto 0;}
+#seancePilule .pf-rail{position:absolute; inset-inline:4px; top:10px; height:2px; border-radius:2px; background:rgba(28,36,48,.22);}
+#seancePilule .pf-pts{position:absolute; inset:0; display:flex; justify-content:space-between; align-items:center;}
+#seancePilule .pf-pt{flex:0 0 auto; width:8px; height:8px; border-radius:50%; background:rgba(28,36,48,.30);}
+#seancePilule .pf-pt.fait{background:rgba(28,36,48,.58);}
+#seancePilule .pf-pt.ici{width:14px; height:14px; background:#E8A23A; box-shadow:0 0 0 2px #FFFFFF, 0 0 0 3.5px rgba(28,36,48,.72), 0 2px 6px rgba(120,60,0,.35);}
+body[data-theme="dark"] #seancePilule .pf-rail{background:rgba(255,255,255,.28);}
+body[data-theme="dark"] #seancePilule .pf-pt{background:rgba(255,255,255,.40);}
+body[data-theme="dark"] #seancePilule .pf-pt.fait{background:rgba(255,255,255,.72);}
+body[data-theme="dark"] #seancePilule .pf-pt.ici{background:#F0B45A; box-shadow:0 0 0 2px rgba(255,255,255,.90), 0 2px 6px rgba(0,0,0,.45);}
 /* v1047 : LE MONDE EN FILIGRANE DANS LA CARTE DE LA SEANCE (proposition 5 ; Jacques, 31 oct. 2026 : « mettre
    un fond oranger egal mais que lorsque des continents ou des lettres [...] passent en arriere de la tuile [...]
    qu'on puisse les voir » ; « Le 5 »). Un orange plein, et les continents qui passent derriere s'y dessinent en
@@ -8967,7 +8993,7 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1116</span>
+        <span class="subtitle-version">v1117</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -10188,6 +10214,17 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div>
             <div>
                 <strong data-i18n="vhs_kapitel_tile_title">Chapitres VHS</strong>
+            </div>
+        </div>
+        <!-- 5 nov. 2026 (decision de Jacques) : la DERNIERE tuile de « Tout le
+             contenu ». Elle ouvre les reglages sur #carteSignaler, le curseur dans
+             la zone de texte. Dans TOUTES les langues apprises : son data-orbid
+             est dans les listes blanches de en, ja et pt (ne pas l'oublier dans
+             une langue future). Pas de orb-de : ce n'est pas un contenu allemand. -->
+        <div class="orb" data-orbid="signaler" onclick="ouvrirSignaler()" role="button" tabindex="0" data-i18n-aria-label="retour_titre" aria-label="Signaler un problème ou une idée">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.6 3.8a.6.6 0 0 1-1-.46V16h0A2.5 2.5 0 0 1 4 13.5z"/><path d="M8.5 8.5h7M8.5 11.5h4.5"/></svg></div>
+            <div>
+                <strong data-i18n="retour_titre">Signaler un problème ou une idée</strong>
             </div>
         </div>
 
@@ -12060,11 +12097,11 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
     <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
     <div class="title-row">
         <div>
-            <div class="kicker" data-i18n="av_carnet_kicker">A1 voyage</div>
+            <div class="kicker" data-i18n="av_carnet_kicker">A1</div>
             <h2 data-i18n="av_carnet_titre">Mon carnet de phrases</h2>
         </div>
     </div>
-    <p class="carnet-sous" data-i18n="av_carnet_sous">Les phrases toutes faites de tes escales, à ouvrir sur place. Touche une phrase pour l'entendre.</p>
+    <p class="carnet-sous" data-i18n="av_carnet_sous">Les phrases toutes faites de tes étapes, à ouvrir sur place. Touche une phrase pour l'entendre.</p>
     <div id="carnetListe" class="carnet-liste"></div>
 </section>
 
@@ -12619,6 +12656,34 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
          ⚠️ UN LIEN QUI MENE A UNE CARTE DOIT OUVRIR SON GROUPE : voir
          ouvrirGroupeReglages(). Une carte dans un <details> ferme n'existe pas
          pour qui arrive en la cherchant. -->
+    <!-- SIGNALER UN PROBLEME OU UNE IDEE. Suggestion d'usagers, relayee par Jacques.
+         Elle repare un desequilibre : l'app demande beaucoup de retours et
+         n'offrait aucun endroit pour en donner. Un testeur qui rencontre un
+         defaut devait ecrire a Jacques, hors de l'app, en se souvenant de ce
+         qu'il faisait -- donc la plupart ne disaient rien.
+         Le contexte est joint TOUT SEUL (version, ecran, langue, tuile ou
+         lien) : c'est exactement ce qui a manque toute la journee du 6
+         septembre pour diagnostiquer le son.
+         5 nov. 2026 : TOUT EN HAUT, TOUJOURS OUVERTE. Elle dormait dans le pli
+         « Compte, aide et retroaction » sous « Dis-nous ce qui t'aiderait ».
+         Jacques : « pas tres clair dans les reglages [...] Meme moi, j'ai eu un
+         peu de difficulte a trouver les premieres fois. » Ne pas la remettre
+         dans un groupe replie. La tuile du meme nom, a la fin de « Tout le
+         contenu », y mene : ouvrirSignaler(). -->
+    <div class="card carte-signaler" id="carteSignaler">
+        <strong class="signaler-titre">
+            <svg class="signaler-bulle" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.6 3.8a.6.6 0 0 1-1-.46V16h0A2.5 2.5 0 0 1 4 13.5z"/><path d="M8.5 8.5h7M8.5 11.5h4.5"/></svg>
+            <span data-i18n="retour_titre">Signaler un problème ou une idée</span>
+        </strong>
+        <p style="color:#4C566B; margin-top:6px;" data-i18n="retour_desc">Un mot qui sonne mal, un bouton qui ne répond pas, une idée : écris-le ici. La version de l'app et l'écran où tu étais sont joints automatiquement — tu n'as rien à noter.</p>
+        <div class="spacer"></div>
+        <textarea id="retourTexte" rows="4" maxlength="600" oninput="sauverBrouillonRetour()" data-i18n-aria-label="retour_titre" aria-label="Signaler un problème ou une idée"
+                  style="width:100%; padding:12px; border-radius:12px; font:inherit; font-size:16px;
+                         border:1px solid var(--bord-retour, rgba(30,41,59,.2)); background:transparent; color:inherit;"></textarea>
+        <div class="spacer"></div>
+        <button class="secondary" id="retourBtn" onclick="envoyerRetour()" data-i18n="retour_envoyer">ENVOYER</button>
+    </div>
+
     <div class="card">
         <details class="reglage-langue" id="reglageLangue">
             <summary>
@@ -12910,26 +12975,9 @@ body[data-theme="dark"] #flashcardActions .judge-garde.on{--va-haut:rgba(240,165
     </details>
 
     <details class="reglages-groupe" id="groupeCompte">
-        <summary data-i18n="settings_groupe_compte">Compte, aide et rétroaction</summary>
-        <!-- SIGNALER QUELQUE CHOSE. Suggestion d'usagers, relayee par Jacques.
-             Elle repare un desequilibre : l'app demande beaucoup de retours et
-             n'offrait aucun endroit pour en donner. Un testeur qui rencontre un
-             defaut devait ecrire a Jacques, hors de l'app, en se souvenant de ce
-             qu'il faisait -- donc la plupart ne disaient rien.
-             Le contexte est joint TOUT SEUL (version, ecran, langue, tuile ou
-             lien) : c'est exactement ce qui a manque toute la journee du 6
-             septembre pour diagnostiquer le son. -->
-        <div class="card">
-            <strong data-i18n="retour_titre">Dis-nous ce qui t'aiderait</strong>
-            <p style="color:#4C566B; margin-top:6px;" data-i18n="retour_desc">Un mot qui sonne mal, un bouton qui ne répond pas, une idée : écris-le ici. La version de l'app et l'écran où tu étais sont joints automatiquement — tu n'as rien à noter.</p>
-            <div class="spacer"></div>
-            <textarea id="retourTexte" rows="4" maxlength="600" oninput="sauverBrouillonRetour()"
-                      style="width:100%; padding:12px; border-radius:12px; font:inherit; font-size:16px;
-                             border:1px solid var(--bord-retour, rgba(30,41,59,.2)); background:transparent; color:inherit;"></textarea>
-            <div class="spacer"></div>
-            <button class="secondary" id="retourBtn" onclick="envoyerRetour()" data-i18n="retour_envoyer">ENVOYER</button>
-        </div>
-
+        <summary data-i18n="settings_groupe_compte">Compte et aide</summary>
+        <!-- « Signaler un probleme ou une idee » n'est plus ici : tout en haut
+             des reglages depuis le 5 nov. 2026 (#carteSignaler). -->
         <div class="card" id="inviteCard">
             <strong data-i18n="settings_invite_title">Inviter un ami</strong>
             <p style="color:#4C566B" data-i18n="settings_invite_desc">Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre l'allemand ou l'anglais.</p>
@@ -14607,7 +14655,7 @@ const I18N = {
         pp_fin_titre: "Tes premiers pas sont faits !",
         pp_fin_texte: "Tu as les phrases de base pour te présenter, commander, demander ton chemin, réserver et dire que tu ne comprends pas. La suite continue au niveau A1.",
         // v862 (essai a1_voyage)
-        av_badge: "✈️ Escale {n}",
+        av_badge: "Étape {n}",
         av_suite_badge: "A1 · étape {n}",
         av_date_invite: "✈️ Tu pars bientôt ? Donne ta date de départ : on te dira chaque jour le rythme pour être prêt.",
         av_date_ajouter: "Ma date",
@@ -14616,7 +14664,7 @@ const I18N = {
         av_date_ok: "OK",
         av_date_effacer: "Effacer",
         av_date_modifier: "Changer la date de départ",
-        av_depart_rythme: "✈️ Départ dans {n} jours · {e} escales par semaine pour être prêt",
+        av_depart_rythme: "✈️ Départ dans {n} jours · {e} étapes par semaine pour être prêt",
         av_depart_pret: "✈️ Départ dans {n} jours · tu es prêt !",
         av_bloc_mien: "✏️ Le mien",
         av_bloc_ecris: "Écris ton mot",
@@ -14624,10 +14672,10 @@ const I18N = {
         av_etape_fin_texte: "Prochaine étape : {t}.",
         av_q_bloc: "Phrase toute faite : change le mot en couleur, ou mets le tien.",
         av_q_dialogue: "À toi de jouer : réponds à voix haute.",
-        av_escale_fin_titre: "Escale {n} : terminée !",
-        av_escale_fin_texte: "Prochaine escale : {t}.",
+        av_escale_fin_titre: "Étape {n} : terminée !",
+        av_escale_fin_texte: "Prochaine étape : {t}.",
         av_jalon_titre_voyage: "Ton voyage est prêt !",
-        av_jalon_titre: "12 escales : tu sais te débrouiller en voyage !",
+        av_jalon_titre: "12 étapes : tu sais te débrouiller !",
         av_jalon_texte: "{n} phrases toutes faites t'attendent dans ton carnet. Ouvre-le sur place.",
         av_jalon_k: "Et maintenant : ton A1 est fait à {p} %",
         av_jalon_change: "Jusqu'ici, tu as appris des phrases toutes faites. Maintenant, tu apprends à fabriquer les tiennes : la famille, le logement, le travail, et la grammaire pour dire ce que tu veux.",
@@ -14635,15 +14683,16 @@ const I18N = {
         av_fin_a1_titre: "A1 terminé !",
         av_fin_a1_texte: "Tu as vu tout le vocabulaire de l'A1. Place à l'A2.",
         av_fin_a1_bouton: "Commencer l'A2",
-        av_porte: "Escale {n} sur {t}",
-        av_porte_suite: "A1 · la suite · {n} sur {t}",
+        av_porte: "{m} · étape {n} sur {t}",
+        av_moitie_1: "Me débrouiller en allemand",
+        av_moitie_2: "Vivre en Allemagne",
         av_en_voyage: "Bon voyage !",
         av_carnet_n: "📒 Mon carnet · {n} phrases",
         av_carnet_1: "📒 Mon carnet · 1 phrase",
-        av_carnet_kicker: "A1 voyage",
+        av_carnet_kicker: "A1",
         av_carnet_titre: "Mon carnet de phrases",
-        av_carnet_sous: "Les phrases toutes faites de tes escales, à ouvrir sur place. Touche une phrase pour l'entendre.",
-        av_carnet_vide: "Ton carnet se remplit à chaque escale.",
+        av_carnet_sous: "Les phrases toutes faites de tes étapes, à ouvrir sur place. Touche une phrase pour l'entendre.",
+        av_carnet_vide: "Ton carnet se remplit à chaque étape.",
         // v867 (essai feuilles_conj) : les feuilles de conjugaison A2-B1.
         fc_badge: "📄 Feuille {n}/{t} · {niveau}",
         fc_badge_revoir: "📄 Feuille à revoir · {niveau}",
@@ -14660,7 +14709,7 @@ const I18N = {
         fc_entrainer: "M'ENTRAÎNER →",
         av_pp_suite_k: "La suite",
         av_pp_suite_t: "Ton A1 commence",
-        av_pp_e1: "12 escales : manger dehors, le marché, le train, la santé, rencontrer des gens…",
+        av_pp_e1: "12 étapes : manger dehors, le marché, le train, la santé, rencontrer des gens…",
         av_pp_e2: "Tu pars bientôt ? Donne ta date de départ, on te dira le rythme pour être prêt.",
         av_pp_e3: "Le reste de l'A1 : le logement, les démarches, la famille, le travail…",
         pp_fin_bouton: "Continuer",
@@ -15332,7 +15381,7 @@ const I18N = {
         voice_test: "\u00c9couter",
         voice_none: "Aucune voix install\u00e9e pour cette langue sur cet appareil. Les phrases seront lues avec la voix par d\u00e9faut, donc avec un mauvais accent. Ajoute-la dans les r\u00e9glages de ton t\u00e9l\u00e9phone (Accessibilit\u00e9 \u203a Contenu parl\u00e9 \u203a Voix).",
         voice_only_one: "Une seule voix install\u00e9e. Tu peux en ajouter une am\u00e9lior\u00e9e dans les r\u00e9glages de ton t\u00e9l\u00e9phone, puis revenir la choisir ici.",
-        retour_titre: "Dis-nous ce qui t'aiderait",
+        retour_titre: "Signaler un problème ou une idée",
         retour_desc: "Un mot qui sonne mal, un bouton qui ne répond pas, une idée : écris-le ici. La version de l'app et l'écran où tu étais sont joints automatiquement — tu n'as rien à noter.",
         retour_envoyer: "ENVOYER",
         retour_vide: "Écris quelque chose d'abord.",
@@ -15640,7 +15689,7 @@ const I18N = {
         settings_langue_titre: "Langue",
         settings_groupe_son: "Son",
         settings_groupe_progression: "Ma progression",
-        settings_groupe_compte: "Compte, aide et rétroaction",
+        settings_groupe_compte: "Compte et aide",
         auth_signup_loading: "CRÉATION…",
         auth_logged_in_as: "Connecté en tant que : ",
         auth_logout: "SE DÉCONNECTER",
@@ -16239,7 +16288,7 @@ const I18N = {
         pp_fin_titre: "Your first steps are done!",
         pp_fin_texte: "You have the basic phrases to introduce yourself, order, ask the way, book a room and say you don't understand. It continues at level A1.",
         // v862 (a1_voyage trial)
-        av_badge: "✈️ Stop {n}",
+        av_badge: "Step {n}",
         av_suite_badge: "A1 · step {n}",
         av_date_invite: "✈️ Travelling soon? Add your departure date: each day we'll tell you the pace to be ready.",
         av_date_ajouter: "My date",
@@ -16248,7 +16297,7 @@ const I18N = {
         av_date_ok: "OK",
         av_date_effacer: "Clear",
         av_date_modifier: "Change the departure date",
-        av_depart_rythme: "✈️ Leaving in {n} days · {e} stops a week to be ready",
+        av_depart_rythme: "✈️ Leaving in {n} days · {e} steps a week to be ready",
         av_depart_pret: "✈️ Leaving in {n} days · you're ready!",
         av_bloc_mien: "✏️ My own",
         av_bloc_ecris: "Type your word",
@@ -16256,10 +16305,10 @@ const I18N = {
         av_etape_fin_texte: "Next step: {t}.",
         av_q_bloc: "Ready-made phrase: change the coloured word, or use your own.",
         av_q_dialogue: "Your turn: answer out loud.",
-        av_escale_fin_titre: "Stop {n}: done!",
-        av_escale_fin_texte: "Next stop: {t}.",
+        av_escale_fin_titre: "Step {n}: done!",
+        av_escale_fin_texte: "Next step: {t}.",
         av_jalon_titre_voyage: "Your trip is ready!",
-        av_jalon_titre: "12 stops: you can get by on a trip!",
+        av_jalon_titre: "12 steps: you can get by!",
         av_jalon_texte: "{n} ready-made phrases are waiting in your phrasebook. Open it on the spot.",
         av_jalon_k: "And now: your A1 is {p}% done",
         av_jalon_change: "Until now, you learned ready-made phrases. Now you learn to build your own: family, home, work, and the grammar to say what you want.",
@@ -16267,15 +16316,16 @@ const I18N = {
         av_fin_a1_titre: "A1 complete!",
         av_fin_a1_texte: "You've seen all the A1 vocabulary. On to A2.",
         av_fin_a1_bouton: "Start A2",
-        av_porte: "Stop {n} of {t}",
-        av_porte_suite: "A1 · next · {n} of {t}",
+        av_porte: "{m} · step {n} of {t}",
+        av_moitie_1: "Getting by in German",
+        av_moitie_2: "Living in Germany",
         av_en_voyage: "Have a good trip!",
         av_carnet_n: "📒 My phrasebook · {n} phrases",
         av_carnet_1: "📒 My phrasebook · 1 phrase",
-        av_carnet_kicker: "A1 travel",
+        av_carnet_kicker: "A1",
         av_carnet_titre: "My phrasebook",
-        av_carnet_sous: "The ready-made phrases from your stops, to open on the spot. Tap a phrase to hear it.",
-        av_carnet_vide: "Your phrasebook fills up at every stop.",
+        av_carnet_sous: "The ready-made phrases from your steps, to open on the spot. Tap a phrase to hear it.",
+        av_carnet_vide: "Your phrasebook fills up at every step.",
         fc_badge: "📄 Sheet {n}/{t} · {niveau}",
         fc_badge_revoir: "📄 Sheet to review · {niveau}",
         fc_kicker: "Conjugation",
@@ -16291,7 +16341,7 @@ const I18N = {
         fc_entrainer: "PRACTISE →",
         av_pp_suite_k: "What's next",
         av_pp_suite_t: "Your A1 begins",
-        av_pp_e1: "12 stops: eating out, the market, the train, health, meeting people…",
+        av_pp_e1: "12 steps: eating out, the market, the train, health, meeting people…",
         av_pp_e2: "Travelling soon? Add your departure date and we'll tell you the pace to be ready.",
         av_pp_e3: "The rest of A1: housing, paperwork, family, work…",
         pp_fin_bouton: "Continue",
@@ -16961,7 +17011,7 @@ const I18N = {
         voice_test: "Listen",
         voice_none: "No voice installed for this language on this device. Sentences will be read with the default voice, and therefore with the wrong accent. Add one in your phone settings (Accessibility \u203a Spoken Content \u203a Voices).",
         voice_only_one: "Only one voice installed. You can add an enhanced one in your phone settings, then come back and pick it here.",
-        retour_titre: "Tell us what would help you",
+        retour_titre: "Report a problem or an idea",
         retour_desc: "A word that sounds wrong, a button that does nothing, an idea: write it here. The app version and the screen you were on are attached automatically — you have nothing to note down.",
         retour_envoyer: "SEND",
         retour_vide: "Write something first.",
@@ -17269,7 +17319,7 @@ const I18N = {
         settings_langue_titre: "Language",
         settings_groupe_son: "Sound",
         settings_groupe_progression: "My progress",
-        settings_groupe_compte: "Account, help and feedback",
+        settings_groupe_compte: "Account and help",
         auth_signup_loading: "CREATING…",
         auth_logged_in_as: "Signed in as: ",
         auth_logout: "SIGN OUT",
@@ -17872,7 +17922,7 @@ const I18N = {
         pp_fin_titre: "İlk adımlarını attın!",
         pp_fin_texte: "Kendini tanıtmak, sipariş vermek, yol sormak, rezervasyon yapmak ve anlamadığını söylemek için temel cümleler artık sende. Devamı A1 seviyesinde.",
         // v865 : l'A1 voyage
-        av_badge: "✈️ {n}. durak",
+        av_badge: "{n}. adım",
         av_suite_badge: "A1 · {n}. adım",
         av_date_invite: "✈️ Yakında yolculuğa mı çıkıyorsun? Gidiş tarihini gir: hazır olmak için gereken temponu her gün söyleyelim.",
         av_date_ajouter: "Tarihim",
@@ -17881,7 +17931,7 @@ const I18N = {
         av_date_ok: "Tamam",
         av_date_effacer: "Sil",
         av_date_modifier: "Gidiş tarihini değiştir",
-        av_depart_rythme: "✈️ Gidişe {n} gün · hazır olmak için haftada {e} durak",
+        av_depart_rythme: "✈️ Gidişe {n} gün · hazır olmak için haftada {e} adım",
         av_depart_pret: "✈️ Gidişe {n} gün · hazırsın!",
         av_bloc_mien: "✏️ Benimki",
         av_bloc_ecris: "Kendi kelimeni yaz",
@@ -17889,10 +17939,10 @@ const I18N = {
         av_etape_fin_texte: "Sıradaki adım: {t}.",
         av_q_bloc: "Hazır cümle: renkli kelimeyi değiştir ya da kendininkini yaz.",
         av_q_dialogue: "Sıra sende: yüksek sesle cevap ver.",
-        av_escale_fin_titre: "{n}. durak tamamlandı!",
-        av_escale_fin_texte: "Sıradaki durak: {t}.",
+        av_escale_fin_titre: "{n}. adım tamamlandı!",
+        av_escale_fin_texte: "Sıradaki adım: {t}.",
         av_jalon_titre_voyage: "Yolculuğuna hazırsın!",
-        av_jalon_titre: "12 durak: yolculukta idare edebilirsin!",
+        av_jalon_titre: "12 adım: artık idare edebilirsin!",
         av_jalon_texte: "Defterinde {n} hazır cümle seni bekliyor. Yerinde aç.",
         av_jalon_k: "Şimdi: A1'inin %{p}'i tamam",
         av_jalon_change: "Şimdiye kadar hazır cümleler öğrendin. Şimdi kendi cümlelerini kurmayı öğreneceksin: aile, ev, iş ve istediğini söyleyebilmek için dilbilgisi.",
@@ -17900,15 +17950,16 @@ const I18N = {
         av_fin_a1_titre: "A1 tamamlandı!",
         av_fin_a1_texte: "A1'in bütün kelimelerini gördün. Sıra A2'de.",
         av_fin_a1_bouton: "A2'ye başla",
-        av_porte: "{t} duraktan {n}.",
-        av_porte_suite: "A1 · devamı · {t} adımdan {n}.",
+        av_porte: "{m} · {t} adımdan {n}.",
+        av_moitie_1: "Almancayla idare etmek",
+        av_moitie_2: "Almanya'da yaşamak",
         av_en_voyage: "İyi yolculuklar!",
         av_carnet_n: "📒 Defterim · {n} cümle",
         av_carnet_1: "📒 Defterim · 1 cümle",
-        av_carnet_kicker: "A1 yolculuk",
+        av_carnet_kicker: "A1",
         av_carnet_titre: "Cümle defterim",
-        av_carnet_sous: "Duraklarındaki hazır cümleler, yerinde açmak için. Dinlemek için bir cümleye dokun.",
-        av_carnet_vide: "Defterin her durakta doluyor.",
+        av_carnet_sous: "Adımlarındaki hazır cümleler, yerinde açmak için. Dinlemek için bir cümleye dokun.",
+        av_carnet_vide: "Defterin her adımda doluyor.",
         fc_badge: "📄 Tablo {n}/{t} · {niveau}",
         fc_badge_revoir: "📄 Tekrar edilecek tablo · {niveau}",
         fc_kicker: "Fiil çekimi",
@@ -17924,7 +17975,7 @@ const I18N = {
         fc_entrainer: "ALIŞTIRMA YAP →",
         av_pp_suite_k: "Devamı",
         av_pp_suite_t: "A1'in başlıyor",
-        av_pp_e1: "12 durak: dışarıda yemek, pazar, tren, sağlık, insanlarla tanışmak…",
+        av_pp_e1: "12 adım: dışarıda yemek, pazar, tren, sağlık, insanlarla tanışmak…",
         av_pp_e2: "Yakında yolculuğa mı çıkıyorsun? Gidiş tarihini gir, hazır olmak için gereken temponu söyleyelim.",
         av_pp_e3: "A1'in geri kalanı: ev, resmî işler, aile, iş…",
         pp_fin_bouton: "Devam et",
@@ -18538,7 +18589,7 @@ const I18N = {
         voice_test: "Dinle",
         voice_none: "Bu cihazda bu dil için yüklü ses yok. Cümleler varsayılan sesle, yani yanlış aksanla okunacak. Telefon ayarlarından bir tane ekle (Erişilebilirlik › Sözlü İçerik › Sesler).",
         voice_only_one: "Yalnızca bir ses yüklü. Telefon ayarlarından gelişmiş bir tane ekleyip buraya dönerek onu seçebilirsin.",
-        retour_titre: "Sana ne yardımcı olurdu?",
+        retour_titre: "Bir sorun ya da fikir bildir",
         retour_desc: "Kötü duyulan bir kelime, yanıt vermeyen bir düğme, bir fikir: buraya yaz. Uygulama sürümü ve bulunduğun ekran otomatik eklenir — not almana gerek yok.",
         retour_envoyer: "GÖNDER",
         retour_vide: "Önce bir şey yaz.",
@@ -18842,7 +18893,7 @@ const I18N = {
         settings_langue_titre: "Dil",
         settings_groupe_son: "Ses",
         settings_groupe_progression: "İlerlemem",
-        settings_groupe_compte: "Hesap, yardım ve geri bildirim",
+        settings_groupe_compte: "Hesap ve yardım",
         auth_signup_loading: "OLUŞTURULUYOR…",
         auth_logged_in_as: "Giriş yapan: ",
         auth_logout: "ÇIKIŞ YAP",
@@ -19739,7 +19790,7 @@ const I18N = {
         settings_langue_titre: "Мова",
         settings_groupe_son: "Звук",
         settings_groupe_progression: "Мій прогрес",
-        settings_groupe_compte: "Обліковий запис, допомога і відгуки",
+        settings_groupe_compte: "Обліковий запис і допомога",
         adj_decl_title: "Відмінювання прикметників",
         adj_decl_intro: "Закінчення прикметника залежить від того, що стоїть перед ним: означений артикль, неозначений артикль або нічого.",
         adj_decl_definite_title: "Після означеного артикля (der/die/das…)",
@@ -19861,7 +19912,7 @@ const I18N = {
         pp_fin_titre: "Перші кроки зроблено!",
         pp_fin_texte: "У тебе є базові фрази, щоб представитися, замовити, спитати дорогу, забронювати й сказати, що не розумієш. Далі — рівень A1.",
         // v865 : l'A1 voyage
-        av_badge: "✈️ Зупинка {n}",
+        av_badge: "Крок {n}",
         av_suite_badge: "A1 · крок {n}",
         av_date_invite: "✈️ Незабаром у подорож? Вкажи дату від'їзду: щодня підкажемо, у якому темпі йти, щоб бути готовим.",
         av_date_ajouter: "Моя дата",
@@ -19870,7 +19921,7 @@ const I18N = {
         av_date_ok: "OK",
         av_date_effacer: "Стерти",
         av_date_modifier: "Змінити дату від'їзду",
-        av_depart_rythme: "✈️ Від'їзд через {n} дн. · {e} зупинки на тиждень, щоб бути готовим",
+        av_depart_rythme: "✈️ Від'їзд через {n} дн. · {e} кроки на тиждень, щоб бути готовим",
         av_depart_pret: "✈️ Від'їзд через {n} дн. · ти готовий!",
         av_bloc_mien: "✏️ Своє",
         av_bloc_ecris: "Напиши своє слово",
@@ -19878,10 +19929,10 @@ const I18N = {
         av_etape_fin_texte: "Наступний крок: {t}.",
         av_q_bloc: "Готова фраза: зміни кольорове слово або встав своє.",
         av_q_dialogue: "Твоя черга: відповідай уголос.",
-        av_escale_fin_titre: "Зупинку {n} завершено!",
-        av_escale_fin_texte: "Наступна зупинка: {t}.",
+        av_escale_fin_titre: "Крок {n} завершено!",
+        av_escale_fin_texte: "Наступний крок: {t}.",
         av_jalon_titre_voyage: "Ти готовий до подорожі!",
-        av_jalon_titre: "12 зупинок: ти дасиш собі раду в подорожі!",
+        av_jalon_titre: "12 кроків: ти даси собі раду!",
         av_jalon_texte: "У твоєму записнику чекають {n} готових фраз. Відкривай його на місці.",
         av_jalon_k: "А тепер: твій A1 виконано на {p} %",
         av_jalon_change: "Досі ти вчив готові фрази. Тепер ти вчишся складати власні: сім'я, житло, робота і граматика, щоб казати те, що хочеш.",
@@ -19889,15 +19940,16 @@ const I18N = {
         av_fin_a1_titre: "A1 завершено!",
         av_fin_a1_texte: "Ти бачив усю лексику рівня A1. Час для A2.",
         av_fin_a1_bouton: "Почати A2",
-        av_porte: "Зупинка {n} з {t}",
-        av_porte_suite: "A1 · далі · {n} з {t}",
+        av_porte: "{m} · крок {n} з {t}",
+        av_moitie_1: "Даю раду німецькою",
+        av_moitie_2: "Живу в Німеччині",
         av_en_voyage: "Щасливої дороги!",
         av_carnet_n: "📒 Мій записник · фраз: {n}",
         av_carnet_1: "📒 Мій записник · 1 фраза",
-        av_carnet_kicker: "A1 подорож",
+        av_carnet_kicker: "A1",
         av_carnet_titre: "Мій записник фраз",
-        av_carnet_sous: "Готові фрази з твоїх зупинок, щоб відкривати на місці. Торкнися фрази, щоб її почути.",
-        av_carnet_vide: "Записник поповнюється на кожній зупинці.",
+        av_carnet_sous: "Готові фрази з твоїх кроків, щоб відкривати на місці. Торкнися фрази, щоб її почути.",
+        av_carnet_vide: "Записник поповнюється з кожним кроком.",
         fc_badge: "📄 Таблиця {n}/{t} · {niveau}",
         fc_badge_revoir: "📄 Таблиця для повторення · {niveau}",
         fc_kicker: "Дієвідмінювання",
@@ -19913,7 +19965,7 @@ const I18N = {
         fc_entrainer: "ТРЕНУВАТИСЯ →",
         av_pp_suite_k: "Далі",
         av_pp_suite_t: "Починається твій A1",
-        av_pp_e1: "12 зупинок: поїсти в місті, ринок, потяг, здоров'я, знайомства…",
+        av_pp_e1: "12 кроків: поїсти в місті, ринок, потяг, здоров'я, знайомства…",
         av_pp_e2: "Незабаром у подорож? Вкажи дату від'їзду, і ми підкажемо темп, щоб бути готовим.",
         av_pp_e3: "Решта A1: житло, документи, сім'я, робота…",
         pp_fin_bouton: "Продовжити",
@@ -20930,7 +20982,7 @@ const I18N = {
         voice_desc: "Твій пристрій іноді пропонує кілька голосів для однієї мови: стиснутий, механічний, і покращений — значно природніший. Зірочка позначає найкращі.",
         voice_none: "Для цієї мови на пристрої не встановлено жодного голосу. Речення читатиме типовий голос, тобто з поганою вимовою. Додай голос у налаштуваннях телефона (Доступність › Вимовляння › Голос).",
         voice_only_one: "Встановлено лише один голос. Ти можеш додати покращений у налаштуваннях телефона, а тоді повернутися сюди й обрати його.",
-        retour_titre: "Скажи, що тобі допомогло б",
+        retour_titre: "Повідомити про проблему чи ідею",
         retour_desc: "Слово, що звучить не так, кнопка, яка не працює, ідея — напиши тут. Версія застосунку та екран додаються автоматично — тобі нічого не треба записувати.",
         retour_envoyer: "НАДІСЛАТИ",
         retour_vide: "Спочатку напиши щось.",
@@ -21752,7 +21804,7 @@ const I18N = {
         settings_langue_titre: "زبان",
         settings_groupe_son: "صدا",
         settings_groupe_progression: "پیشرفت من",
-        settings_groupe_compte: "حساب، راهنما و بازخورد",
+        settings_groupe_compte: "حساب و راهنما",
         op_due_desc: "نشستی از {n} کارت · {r} برای مرور",
         op_due_desc_neufs: "نشستی از {n} کارت",
         op_due_desc_zero: "فعلاً چیزی برای مرور نیست",
@@ -21869,7 +21921,7 @@ const I18N = {
         voice_none: "برای این زبان هیچ صدایی روی این دستگاه نصب نیست. جمله‌ها با صدای پیش‌فرض خوانده می‌شوند، یعنی با تلفظ بد. آن را در تنظیمات تلفن خود بیفزا (دسترس‌پذیری › محتوای گفتاری › صدا).",
         voice_only_one: "تنها یک صدا نصب است. می‌توانی در تنظیمات تلفن خود یک صدای بهبودیافته بیفزایی، سپس اینجا برگردی و آن را برگزینی.",
         voice_unsupported: "این مرورگر گفتارساز ندارد.",
-        retour_titre: "بگو چه چیزی به تو کمک می‌کند",
+        retour_titre: "گزارش یک مشکل یا یک ایده",
         retour_desc: "واژه‌ای که درست به گوش نمی‌آید، دکمه‌ای که پاسخ نمی‌دهد، یک ایده: همین‌جا بنویس. نسخهٔ برنامه و صفحه‌ای که در آن بودی خودبه‌خود پیوست می‌شوند — لازم نیست چیزی یادداشت کنی.",
         retour_envoyer: "فرستادن",
         retour_vide: "اول چیزی بنویس.",
@@ -22196,7 +22248,7 @@ const I18N = {
         pp_fin_titre: "گام‌های نخستت را برداشتی!",
         pp_fin_texte: "حالا جمله‌های پایه را داری تا خودت را معرفی کنی، سفارش بدهی، راه را بپرسی، رزرو کنی و بگویی که نمی‌فهمی. ادامه در سطح A1.",
         // v865 : l'A1 voyage
-        av_badge: "✈️ ایستگاه {n}",
+        av_badge: "مرحلهٔ {n}",
         av_suite_badge: "A1 · گام {n}",
         av_date_invite: "✈️ به‌زودی سفر می‌روی؟ تاریخ حرکتت را بنویس تا هر روز بگوییم با چه سرعتی پیش بروی که آماده باشی.",
         av_date_ajouter: "تاریخ من",
@@ -22205,7 +22257,7 @@ const I18N = {
         av_date_ok: "باشه",
         av_date_effacer: "پاک کردن",
         av_date_modifier: "تغییر تاریخ حرکت",
-        av_depart_rythme: "✈️ {n} روز تا حرکت · هفته‌ای {e} ایستگاه تا آماده باشی",
+        av_depart_rythme: "✈️ {n} روز تا حرکت · هفته‌ای {e} مرحله تا آماده باشی",
         av_depart_pret: "✈️ {n} روز تا حرکت · آماده‌ای!",
         av_bloc_mien: "✏️ مال خودم",
         av_bloc_ecris: "کلمهٔ خودت را بنویس",
@@ -22213,10 +22265,10 @@ const I18N = {
         av_etape_fin_texte: "گام بعدی: {t}.",
         av_q_bloc: "جملهٔ آماده: کلمهٔ رنگی را عوض کن یا کلمهٔ خودت را بگذار.",
         av_q_dialogue: "نوبت توست: بلند جواب بده.",
-        av_escale_fin_titre: "ایستگاه {n} تمام شد!",
-        av_escale_fin_texte: "ایستگاه بعدی: {t}.",
+        av_escale_fin_titre: "مرحلهٔ {n} تمام شد!",
+        av_escale_fin_texte: "مرحلهٔ بعدی: {t}.",
         av_jalon_titre_voyage: "برای سفرت آماده‌ای!",
-        av_jalon_titre: "۱۲ ایستگاه: در سفر از پس کارهایت برمی‌آیی!",
+        av_jalon_titre: "۱۲ مرحله: از پس کارهایت برمی‌آیی!",
         av_jalon_texte: "{n} جملهٔ آماده در دفترچه‌ات منتظر توست. همان‌جا بازش کن.",
         av_jalon_k: "و حالا: {p}٪ از A1 تو انجام شده",
         av_jalon_change: "تا اینجا جمله‌های آماده یاد گرفتی. حالا یاد می‌گیری جمله‌های خودت را بسازی: خانواده، خانه، کار، و دستور زبانی که بتوانی هر چه می‌خواهی بگویی.",
@@ -22224,15 +22276,16 @@ const I18N = {
         av_fin_a1_titre: "A1 تمام شد!",
         av_fin_a1_texte: "همهٔ واژه‌های A1 را دیدی. نوبت A2 است.",
         av_fin_a1_bouton: "شروع A2",
-        av_porte: "ایستگاه {n} از {t}",
-        av_porte_suite: "A1 · ادامه · {n} از {t}",
+        av_porte: "{m} · مرحلهٔ {n} از {t}",
+        av_moitie_1: "از پس کارهایم به آلمانی برمی‌آیم",
+        av_moitie_2: "در آلمان زندگی می‌کنم",
         av_en_voyage: "سفر خوش!",
         av_carnet_n: "📒 دفترچهٔ من · {n} جمله",
         av_carnet_1: "📒 دفترچهٔ من · ۱ جمله",
-        av_carnet_kicker: "A1 سفر",
+        av_carnet_kicker: "A1",
         av_carnet_titre: "دفترچهٔ جمله‌های من",
-        av_carnet_sous: "جمله‌های آمادهٔ ایستگاه‌هایت، برای باز کردن در همان‌جا. روی جمله بزن تا آن را بشنوی.",
-        av_carnet_vide: "دفترچه‌ات در هر ایستگاه پرتر می‌شود.",
+        av_carnet_sous: "جمله‌های آمادهٔ مرحله‌هایت، برای باز کردن در همان‌جا. روی جمله بزن تا آن را بشنوی.",
+        av_carnet_vide: "دفترچه‌ات در هر مرحله پرتر می‌شود.",
         fc_badge: "📄 برگهٔ {n}/{t} · {niveau}",
         fc_badge_revoir: "📄 برگه برای مرور · {niveau}",
         fc_kicker: "صرف فعل",
@@ -22248,7 +22301,7 @@ const I18N = {
         fc_entrainer: "تمرین کن ←",
         av_pp_suite_k: "ادامه",
         av_pp_suite_t: "A1 تو شروع می‌شود",
-        av_pp_e1: "۱۲ ایستگاه: غذا خوردن بیرون، بازار، قطار، سلامت، آشنا شدن با مردم…",
+        av_pp_e1: "۱۲ مرحله: غذا خوردن بیرون، بازار، قطار، سلامت، آشنا شدن با مردم…",
         av_pp_e2: "به‌زودی سفر می‌روی؟ تاریخ حرکتت را بنویس تا سرعت لازم برای آماده شدن را بگوییم.",
         av_pp_e3: "بقیهٔ A1: مسکن، کارهای اداری، خانواده، کار…",
         pp_fin_bouton: "ادامه",
@@ -23203,7 +23256,7 @@ const I18N = {
         settings_langue_titre: "اللغة",
         settings_groupe_son: "الصوت",
         settings_groupe_progression: "تقدّمي",
-        settings_groupe_compte: "الحساب والمساعدة والملاحظات",
+        settings_groupe_compte: "الحساب والمساعدة",
         auth_signup_loading: "جارٍ الإنشاء…",
         auth_logged_in_as: "متصل باسم: ",
         auth_logout: "تسجيل الخروج",
@@ -23320,7 +23373,7 @@ const I18N = {
         voice_test: "استمع",
         voice_none: "لا صوت مثبَّت لهذه اللغة على هذا الجهاز. ستُقرأ الجمل بالصوت الافتراضي، أي بلكنة رديئة. أضِفه من إعدادات هاتفك (إمكانية الوصول › المحتوى المنطوق › الأصوات).",
         voice_only_one: "صوت واحد مثبَّت فقط. يمكنك إضافة صوت محسَّن من إعدادات هاتفك، ثم العودة لاختياره هنا.",
-        retour_titre: "قل لنا ما الذي يساعدك",
+        retour_titre: "الإبلاغ عن مشكلة أو اقتراح فكرة",
         retour_desc: "كلمة تبدو في غير محلّها، زرّ لا يستجيب، فكرة: اكتبها هنا. نسخة التطبيق والشاشة التي كنت فيها تُرفقان تلقائياً — لا شيء عليك تدوينه.",
         retour_envoyer: "إرسال",
         retour_vide: "اكتب شيئاً أولاً.",
@@ -23942,7 +23995,7 @@ const I18N = {
         pp_fin_titre: "أكملت خطواتك الأولى!",
         pp_fin_texte: "لديك الآن العبارات الأساسية لتقدّم نفسك، وتطلب، وتسأل عن الطريق، وتحجز، وتقول إنك لا تفهم. يستمر المسار في المستوى A1.",
         // v865 : l'A1 voyage
-        av_badge: "✈️ المحطة {n}",
+        av_badge: "المرحلة {n}",
         av_suite_badge: "A1 · الخطوة {n}",
         av_date_invite: "✈️ هل ستسافر قريبًا؟ أدخل تاريخ سفرك، وسنخبرك كل يوم بالوتيرة التي تحتاجها لتكون جاهزًا.",
         av_date_ajouter: "تاريخي",
@@ -23951,7 +24004,7 @@ const I18N = {
         av_date_ok: "حسنًا",
         av_date_effacer: "مسح",
         av_date_modifier: "تغيير تاريخ السفر",
-        av_depart_rythme: "✈️ السفر بعد {n} يومًا · {e} محطات في الأسبوع لتكون جاهزًا",
+        av_depart_rythme: "✈️ السفر بعد {n} يومًا · {e} مراحل في الأسبوع لتكون جاهزًا",
         av_depart_pret: "✈️ السفر بعد {n} يومًا · أنت جاهز!",
         av_bloc_mien: "✏️ كلمتي",
         av_bloc_ecris: "اكتب كلمتك",
@@ -23959,10 +24012,10 @@ const I18N = {
         av_etape_fin_texte: "الخطوة التالية: {t}.",
         av_q_bloc: "عبارة جاهزة: غيّر الكلمة الملوّنة أو ضع كلمتك.",
         av_q_dialogue: "دورك: أجب بصوت عالٍ.",
-        av_escale_fin_titre: "انتهت المحطة {n}!",
-        av_escale_fin_texte: "المحطة التالية: {t}.",
+        av_escale_fin_titre: "انتهت المرحلة {n}!",
+        av_escale_fin_texte: "المرحلة التالية: {t}.",
         av_jalon_titre_voyage: "أنت جاهز لرحلتك!",
-        av_jalon_titre: "12 محطة: تستطيع أن تتدبّر أمرك في السفر!",
+        av_jalon_titre: "12 مرحلة: تستطيع أن تتدبّر أمرك!",
         av_jalon_texte: "{n} عبارة جاهزة تنتظرك في دفترك. افتحه هناك.",
         av_jalon_k: "والآن: أنجزت {p}٪ من مستوى A1",
         av_jalon_change: "حتى الآن تعلّمت عبارات جاهزة. والآن تتعلّم أن تصنع عباراتك: العائلة، السكن، العمل، والقواعد لتقول ما تريد.",
@@ -23970,15 +24023,16 @@ const I18N = {
         av_fin_a1_titre: "أنهيت مستوى A1!",
         av_fin_a1_texte: "رأيت كل مفردات مستوى A1. حان وقت A2.",
         av_fin_a1_bouton: "ابدأ A2",
-        av_porte: "المحطة {n} من {t}",
-        av_porte_suite: "A1 · التتمة · {n} من {t}",
+        av_porte: "{m} · المرحلة {n} من {t}",
+        av_moitie_1: "أتدبّر أمري بالألمانية",
+        av_moitie_2: "أعيش في ألمانيا",
         av_en_voyage: "رحلة سعيدة!",
         av_carnet_n: "📒 دفتري · {n} عبارة",
         av_carnet_1: "📒 دفتري · عبارة واحدة",
-        av_carnet_kicker: "A1 سفر",
+        av_carnet_kicker: "A1",
         av_carnet_titre: "دفتر عباراتي",
-        av_carnet_sous: "العبارات الجاهزة من محطاتك، لتفتحها هناك. المس عبارة لتسمعها.",
-        av_carnet_vide: "يمتلئ دفترك في كل محطة.",
+        av_carnet_sous: "العبارات الجاهزة من مراحلك، لتفتحها هناك. المس عبارة لتسمعها.",
+        av_carnet_vide: "يمتلئ دفترك في كل مرحلة.",
         fc_badge: "📄 الورقة {n}/{t} · {niveau}",
         fc_badge_revoir: "📄 ورقة للمراجعة · {niveau}",
         fc_kicker: "تصريف الأفعال",
@@ -23994,7 +24048,7 @@ const I18N = {
         fc_entrainer: "تدرّب ←",
         av_pp_suite_k: "التتمة",
         av_pp_suite_t: "يبدأ مستواك A1",
-        av_pp_e1: "12 محطة: الأكل في الخارج، السوق، القطار، الصحة، التعرّف على الناس…",
+        av_pp_e1: "12 مرحلة: الأكل في الخارج، السوق، القطار، الصحة، التعرّف على الناس…",
         av_pp_e2: "هل ستسافر قريبًا؟ أدخل تاريخ سفرك وسنخبرك بالوتيرة لتكون جاهزًا.",
         av_pp_e3: "بقية A1: السكن، المعاملات، العائلة، العمل…",
         pp_fin_bouton: "متابعة",
@@ -24336,7 +24390,7 @@ const I18N = {
         pp_fin_titre: "Seus primeiros passos estão feitos!",
         pp_fin_texte: "Você tem as frases básicas para se apresentar, pedir, perguntar o caminho, reservar e dizer que não entende. A continuação é no nível A1.",
         // v865 : l'A1 voyage
-        av_badge: "✈️ Parada {n}",
+        av_badge: "Etapa {n}",
         av_suite_badge: "A1 · etapa {n}",
         av_date_invite: "✈️ Vai viajar em breve? Informe a data da partida: a cada dia, diremos o ritmo para você estar pronto.",
         av_date_ajouter: "Minha data",
@@ -24345,7 +24399,7 @@ const I18N = {
         av_date_ok: "OK",
         av_date_effacer: "Apagar",
         av_date_modifier: "Mudar a data da partida",
-        av_depart_rythme: "✈️ Partida em {n} dias · {e} paradas por semana para estar pronto",
+        av_depart_rythme: "✈️ Partida em {n} dias · {e} etapas por semana para estar pronto",
         av_depart_pret: "✈️ Partida em {n} dias · você está pronto!",
         av_bloc_mien: "✏️ A minha",
         av_bloc_ecris: "Escreva sua palavra",
@@ -24353,10 +24407,10 @@ const I18N = {
         av_etape_fin_texte: "Próxima etapa: {t}.",
         av_q_bloc: "Frase pronta: troque a palavra colorida ou use a sua.",
         av_q_dialogue: "Sua vez: responda em voz alta.",
-        av_escale_fin_titre: "Parada {n}: concluída!",
-        av_escale_fin_texte: "Próxima parada: {t}.",
+        av_escale_fin_titre: "Etapa {n}: concluída!",
+        av_escale_fin_texte: "Próxima etapa: {t}.",
         av_jalon_titre_voyage: "Sua viagem está pronta!",
-        av_jalon_titre: "12 paradas: você já se vira numa viagem!",
+        av_jalon_titre: "12 etapas: você já se vira!",
         av_jalon_texte: "{n} frases prontas esperam por você no seu caderno. Abra-o no lugar.",
         av_jalon_k: "E agora: seu A1 está {p}% feito",
         av_jalon_change: "Até aqui, você aprendeu frases prontas. Agora, aprende a montar as suas: a família, a moradia, o trabalho e a gramática para dizer o que quiser.",
@@ -24364,15 +24418,16 @@ const I18N = {
         av_fin_a1_titre: "A1 concluído!",
         av_fin_a1_texte: "Você viu todo o vocabulário do A1. Agora é a vez do A2.",
         av_fin_a1_bouton: "Começar o A2",
-        av_porte: "Parada {n} de {t}",
-        av_porte_suite: "A1 · continuação · {n} de {t}",
+        av_porte: "{m} · etapa {n} de {t}",
+        av_moitie_1: "Me virar em alemão",
+        av_moitie_2: "Morar na Alemanha",
         av_en_voyage: "Boa viagem!",
         av_carnet_n: "📒 Meu caderno · {n} frases",
         av_carnet_1: "📒 Meu caderno · 1 frase",
-        av_carnet_kicker: "A1 viagem",
+        av_carnet_kicker: "A1",
         av_carnet_titre: "Meu caderno de frases",
-        av_carnet_sous: "As frases prontas das suas paradas, para abrir no lugar. Toque numa frase para ouvi-la.",
-        av_carnet_vide: "Seu caderno vai se enchendo a cada parada.",
+        av_carnet_sous: "As frases prontas das suas etapas, para abrir no lugar. Toque numa frase para ouvi-la.",
+        av_carnet_vide: "Seu caderno vai se enchendo a cada etapa.",
         fc_badge: "📄 Folha {n}/{t} · {niveau}",
         fc_badge_revoir: "📄 Folha para revisar · {niveau}",
         fc_kicker: "Conjugação",
@@ -24388,7 +24443,7 @@ const I18N = {
         fc_entrainer: "PRATICAR →",
         av_pp_suite_k: "A continuação",
         av_pp_suite_t: "Seu A1 começa",
-        av_pp_e1: "12 paradas: comer fora, o mercado, o trem, a saúde, conhecer pessoas…",
+        av_pp_e1: "12 etapas: comer fora, o mercado, o trem, a saúde, conhecer pessoas…",
         av_pp_e2: "Vai viajar em breve? Informe a data da partida e diremos o ritmo para estar pronto.",
         av_pp_e3: "O resto do A1: moradia, burocracia, família, trabalho…",
         pp_fin_bouton: "Continuar",
@@ -24993,7 +25048,7 @@ const I18N = {
         voice_test: "Ouvir",
         voice_none: "Nenhuma voz instalada para esta língua neste aparelho. As frases serão lidas com a voz padrão, ou seja, com o sotaque errado. Adicione uma nas configurações do seu celular (Acessibilidade › Conteúdo Falado › Vozes).",
         voice_only_one: "Só uma voz instalada. Você pode adicionar uma voz aprimorada nas configurações do celular e depois voltar aqui para escolhê-la.",
-        retour_titre: "Conte para a gente o que ajudaria você",
+        retour_titre: "Relatar um problema ou uma ideia",
         retour_desc: "Uma palavra que soa errada, um botão que não responde, uma ideia: escreva aqui. A versão do app e a tela em que você estava vão junto automaticamente — você não precisa anotar nada.",
         retour_envoyer: "ENVIAR",
         retour_vide: "Escreva alguma coisa primeiro.",
@@ -25296,7 +25351,7 @@ const I18N = {
         settings_langue_titre: "Idioma",
         settings_groupe_son: "Som",
         settings_groupe_progression: "Meu progresso",
-        settings_groupe_compte: "Conta, ajuda e feedback",
+        settings_groupe_compte: "Conta e ajuda",
         auth_signup_loading: "CRIANDO…",
         auth_logged_in_as: "Conectado como: ",
         auth_logout: "SAIR",
@@ -25972,7 +26027,7 @@ const I18N = {
         pp_fin_titre: "Pierwsze kroki za tobą!",
         pp_fin_texte: "Masz podstawowe zwroty, by się przedstawić, zamówić, zapytać o drogę, zarezerwować pokój i powiedzieć, że nie rozumiesz. Dalej — poziom A1.",
         // v865 : l'A1 voyage
-        av_badge: "✈️ Przystanek {n}",
+        av_badge: "Etap {n}",
         av_suite_badge: "A1 · krok {n}",
         av_date_invite: "✈️ Wyjeżdżasz niedługo? Podaj datę wyjazdu, a każdego dnia powiemy ci, w jakim tempie iść, żeby być gotowym.",
         av_date_ajouter: "Moja data",
@@ -25981,7 +26036,7 @@ const I18N = {
         av_date_ok: "OK",
         av_date_effacer: "Usuń",
         av_date_modifier: "Zmień datę wyjazdu",
-        av_depart_rythme: "✈️ Wyjazd za {n} dni · {e} przystanki tygodniowo, żeby być gotowym",
+        av_depart_rythme: "✈️ Wyjazd za {n} dni · {e} etapy tygodniowo, żeby być gotowym",
         av_depart_pret: "✈️ Wyjazd za {n} dni · jesteś gotowy!",
         av_bloc_mien: "✏️ Moje",
         av_bloc_ecris: "Wpisz swoje słowo",
@@ -25989,10 +26044,10 @@ const I18N = {
         av_etape_fin_texte: "Następny krok: {t}.",
         av_q_bloc: "Gotowe zdanie: zmień kolorowe słowo albo wstaw swoje.",
         av_q_dialogue: "Twoja kolej: odpowiedz na głos.",
-        av_escale_fin_titre: "Przystanek {n} ukończony!",
-        av_escale_fin_texte: "Następny przystanek: {t}.",
+        av_escale_fin_titre: "Etap {n} ukończony!",
+        av_escale_fin_texte: "Następny etap: {t}.",
         av_jalon_titre_voyage: "Jesteś gotowy do podróży!",
-        av_jalon_titre: "12 przystanków: poradzisz sobie w podróży!",
+        av_jalon_titre: "12 etapów: poradzisz sobie!",
         av_jalon_texte: "W twoim notesie czeka {n} gotowych zdań. Otwórz go na miejscu.",
         av_jalon_k: "A teraz: twój A1 jest gotowy w {p}%",
         av_jalon_change: "Do tej pory uczyłeś się gotowych zdań. Teraz uczysz się budować własne: rodzina, mieszkanie, praca i gramatyka, żeby mówić to, co chcesz.",
@@ -26000,15 +26055,16 @@ const I18N = {
         av_fin_a1_titre: "A1 ukończony!",
         av_fin_a1_texte: "Znasz już całe słownictwo A1. Czas na A2.",
         av_fin_a1_bouton: "Zacznij A2",
-        av_porte: "Przystanek {n} z {t}",
-        av_porte_suite: "A1 · dalej · {n} z {t}",
+        av_porte: "{m} · etap {n} z {t}",
+        av_moitie_1: "Radzić sobie po niemiecku",
+        av_moitie_2: "Żyć w Niemczech",
         av_en_voyage: "Szczęśliwej podróży!",
         av_carnet_n: "📒 Mój notes · zdania: {n}",
         av_carnet_1: "📒 Mój notes · 1 zdanie",
-        av_carnet_kicker: "A1 podróż",
+        av_carnet_kicker: "A1",
         av_carnet_titre: "Mój notes ze zdaniami",
-        av_carnet_sous: "Gotowe zdania z twoich przystanków, do otwarcia na miejscu. Dotknij zdania, żeby je usłyszeć.",
-        av_carnet_vide: "Twój notes zapełnia się na każdym przystanku.",
+        av_carnet_sous: "Gotowe zdania z twoich etapów, do otwarcia na miejscu. Dotknij zdania, żeby je usłyszeć.",
+        av_carnet_vide: "Twój notes zapełnia się na każdym etapie.",
         fc_badge: "📄 Tabela {n}/{t} · {niveau}",
         fc_badge_revoir: "📄 Tabela do powtórki · {niveau}",
         fc_kicker: "Koniugacja",
@@ -26024,7 +26080,7 @@ const I18N = {
         fc_entrainer: "ĆWICZ →",
         av_pp_suite_k: "Dalej",
         av_pp_suite_t: "Zaczyna się twój A1",
-        av_pp_e1: "12 przystanków: jedzenie na mieście, targ, pociąg, zdrowie, poznawanie ludzi…",
+        av_pp_e1: "12 etapów: jedzenie na mieście, targ, pociąg, zdrowie, poznawanie ludzi…",
         av_pp_e2: "Wyjeżdżasz niedługo? Podaj datę wyjazdu, a powiemy ci, w jakim tempie iść, żeby być gotowym.",
         av_pp_e3: "Reszta A1: mieszkanie, urzędy, rodzina, praca…",
         pp_fin_bouton: "Dalej",
@@ -26631,7 +26687,7 @@ const I18N = {
         voice_test: "Posłuchaj",
         voice_none: "Na tym urządzeniu nie zainstalowano żadnego głosu dla tego języka. Zdania będą czytane głosem domyślnym, czyli ze złym akcentem. Dodaj go w ustawieniach telefonu (Dostępność › Mowa › Głosy).",
         voice_only_one: "Zainstalowany jest tylko jeden głos. Możesz dodać ulepszony w ustawieniach telefonu, a potem wrócić i wybrać go tutaj.",
-        retour_titre: "Powiedz nam, co by ci pomogło",
+        retour_titre: "Zgłoś problem lub pomysł",
         retour_desc: "Słowo, które źle brzmi, przycisk, który nie reaguje, pomysł: napisz to tutaj. Wersja aplikacji i ekran, na którym byłeś(-aś), dołączają się automatycznie — nie musisz niczego notować.",
         retour_envoyer: "WYŚLIJ",
         retour_vide: "Najpierw coś napisz.",
@@ -26932,7 +26988,7 @@ const I18N = {
         settings_langue_titre: "Język",
         settings_groupe_son: "Dźwięk",
         settings_groupe_progression: "Moje postępy",
-        settings_groupe_compte: "Konto, pomoc i opinie",
+        settings_groupe_compte: "Konto i pomoc",
         auth_signup_loading: "TWORZENIE…",
         auth_logged_in_as: "Zalogowano jako: ",
         auth_logout: "WYLOGUJ SIĘ",
@@ -27608,7 +27664,7 @@ const I18N = {
         pp_fin_titre: "Первые шаги сделаны!",
         pp_fin_texte: "У тебя есть базовые фразы, чтобы представиться, заказать, спросить дорогу, забронировать номер и сказать, что не понимаешь. Дальше — уровень A1.",
         // v865 : l'A1 voyage
-        av_badge: "✈️ Остановка {n}",
+        av_badge: "Этап {n}",
         av_suite_badge: "A1 · шаг {n}",
         av_date_invite: "✈️ Скоро в поездку? Укажи дату отъезда: каждый день мы подскажем, в каком темпе идти, чтобы быть готовым.",
         av_date_ajouter: "Моя дата",
@@ -27617,7 +27673,7 @@ const I18N = {
         av_date_ok: "OK",
         av_date_effacer: "Стереть",
         av_date_modifier: "Изменить дату отъезда",
-        av_depart_rythme: "✈️ Отъезд через {n} дн. · {e} остановки в неделю, чтобы быть готовым",
+        av_depart_rythme: "✈️ Отъезд через {n} дн. · {e} этапа в неделю, чтобы быть готовым",
         av_depart_pret: "✈️ Отъезд через {n} дн. · ты готов!",
         av_bloc_mien: "✏️ Своё",
         av_bloc_ecris: "Напиши своё слово",
@@ -27625,10 +27681,10 @@ const I18N = {
         av_etape_fin_texte: "Следующий шаг: {t}.",
         av_q_bloc: "Готовая фраза: замени цветное слово или вставь своё.",
         av_q_dialogue: "Твоя очередь: ответь вслух.",
-        av_escale_fin_titre: "Остановка {n} пройдена!",
-        av_escale_fin_texte: "Следующая остановка: {t}.",
+        av_escale_fin_titre: "Этап {n} пройден!",
+        av_escale_fin_texte: "Следующий этап: {t}.",
         av_jalon_titre_voyage: "Ты готов к поездке!",
-        av_jalon_titre: "12 остановок: в поездке ты справишься!",
+        av_jalon_titre: "12 этапов: ты справишься!",
         av_jalon_texte: "В твоём блокноте ждут {n} готовых фраз. Открывай его на месте.",
         av_jalon_k: "А теперь: твой A1 пройден на {p} %",
         av_jalon_change: "До сих пор ты учил готовые фразы. Теперь ты учишься строить свои: семья, жильё, работа и грамматика, чтобы говорить то, что хочешь.",
@@ -27636,15 +27692,16 @@ const I18N = {
         av_fin_a1_titre: "A1 пройден!",
         av_fin_a1_texte: "Ты видел всю лексику уровня A1. Пора к A2.",
         av_fin_a1_bouton: "Начать A2",
-        av_porte: "Остановка {n} из {t}",
-        av_porte_suite: "A1 · дальше · {n} из {t}",
+        av_porte: "{m} · этап {n} из {t}",
+        av_moitie_1: "Справляюсь по-немецки",
+        av_moitie_2: "Живу в Германии",
         av_en_voyage: "Счастливого пути!",
         av_carnet_n: "📒 Мой блокнот · фраз: {n}",
         av_carnet_1: "📒 Мой блокнот · 1 фраза",
-        av_carnet_kicker: "A1 поездка",
+        av_carnet_kicker: "A1",
         av_carnet_titre: "Мой блокнот фраз",
-        av_carnet_sous: "Готовые фразы с твоих остановок, чтобы открывать на месте. Коснись фразы, чтобы её услышать.",
-        av_carnet_vide: "Блокнот пополняется на каждой остановке.",
+        av_carnet_sous: "Готовые фразы с твоих этапов, чтобы открывать на месте. Коснись фразы, чтобы её услышать.",
+        av_carnet_vide: "Блокнот пополняется на каждом этапе.",
         fc_badge: "📄 Таблица {n}/{t} · {niveau}",
         fc_badge_revoir: "📄 Таблица на повторение · {niveau}",
         fc_kicker: "Спряжение",
@@ -27660,7 +27717,7 @@ const I18N = {
         fc_entrainer: "ТРЕНИРОВАТЬСЯ →",
         av_pp_suite_k: "Дальше",
         av_pp_suite_t: "Начинается твой A1",
-        av_pp_e1: "12 остановок: поесть в городе, рынок, поезд, здоровье, знакомства…",
+        av_pp_e1: "12 этапов: поесть в городе, рынок, поезд, здоровье, знакомства…",
         av_pp_e2: "Скоро в поездку? Укажи дату отъезда, и мы подскажем темп, чтобы быть готовым.",
         av_pp_e3: "Остальной A1: жильё, документы, семья, работа…",
         pp_fin_bouton: "Продолжить",
@@ -28268,7 +28325,7 @@ const I18N = {
         voice_test: "Прослушать",
         voice_none: "Для этого языка на устройстве не установлен ни один голос. Фразы будут читаться голосом по умолчанию, то есть с неправильным акцентом. Добавь голос в настройках телефона (Универсальный доступ › Устный контент › Голоса).",
         voice_only_one: "Установлен только один голос. Можно добавить улучшенный в настройках телефона, а потом вернуться и выбрать его здесь.",
-        retour_titre: "Расскажи, что бы тебе помогло",
+        retour_titre: "Сообщить о проблеме или идее",
         retour_desc: "Слово звучит не так, кнопка не реагирует, есть идея — напиши здесь. Версия приложения и экран, на котором ты был(а), прикладываются автоматически — ничего записывать не нужно.",
         retour_envoyer: "ОТПРАВИТЬ",
         retour_vide: "Сначала напиши что-нибудь.",
@@ -28571,7 +28628,7 @@ const I18N = {
         settings_langue_titre: "Язык",
         settings_groupe_son: "Звук",
         settings_groupe_progression: "Мой прогресс",
-        settings_groupe_compte: "Аккаунт, помощь и отзывы",
+        settings_groupe_compte: "Аккаунт и помощь",
         auth_signup_loading: "СОЗДАНИЕ…",
         auth_logged_in_as: "Вход выполнен как:",
         auth_logout: "ВЫЙТИ",
@@ -29246,7 +29303,7 @@ const I18N = {
         pp_porte_titre: "Erste Wörter",
         pp_fin_titre: "Deine ersten Schritte sind gemacht!",
         pp_fin_texte: "Du hast die Grundsätze, um dich vorzustellen, zu bestellen, nach dem Weg zu fragen, zu reservieren und zu sagen, dass du etwas nicht verstehst. Weiter geht es auf Niveau A1.",
-        av_badge: "✈️ Etappe {n}",
+        av_badge: "Etappe {n}",
         av_suite_badge: "A1 · Schritt {n}",
         av_date_invite: "✈️ Reist du bald? Gib dein Abreisedatum an: Wir sagen dir jeden Tag, in welchem Tempo du rechtzeitig fit bist.",
         av_date_ajouter: "Mein Datum",
@@ -29266,7 +29323,7 @@ const I18N = {
         av_escale_fin_titre: "Etappe {n}: geschafft!",
         av_escale_fin_texte: "Nächste Etappe: {t}.",
         av_jalon_titre_voyage: "Deine Reise ist vorbereitet!",
-        av_jalon_titre: "12 Etappen: Du kommst auf Reisen zurecht!",
+        av_jalon_titre: "12 Etappen: Du kommst zurecht!",
         av_jalon_texte: "{n} fertige Sätze warten in deinem Heft. Schlag es vor Ort auf.",
         av_jalon_k: "Und jetzt: Dein A1 ist zu {p} % geschafft",
         av_jalon_change: "Bis hierher hast du fertige Sätze gelernt. Jetzt lernst du, eigene zu bauen: Familie, Wohnen, Arbeit und die Grammatik, um zu sagen, was du willst.",
@@ -29274,12 +29331,13 @@ const I18N = {
         av_fin_a1_titre: "A1 geschafft!",
         av_fin_a1_texte: "Du hast den ganzen Wortschatz von A1 gesehen. Jetzt kommt A2.",
         av_fin_a1_bouton: "A2 beginnen",
-        av_porte: "Etappe {n} von {t}",
-        av_porte_suite: "A1 · die Fortsetzung · {n} von {t}",
+        av_porte: "{m} · Etappe {n} von {t}",
+        av_moitie_1: "Auf Deutsch zurechtkommen",
+        av_moitie_2: "In Deutschland leben",
         av_en_voyage: "Gute Reise!",
         av_carnet_n: "📒 Mein Heft · {n} Sätze",
         av_carnet_1: "📒 Mein Heft · 1 Satz",
-        av_carnet_kicker: "A1 Reise",
+        av_carnet_kicker: "A1",
         av_carnet_titre: "Mein Satzheft",
         av_carnet_sous: "Die fertigen Sätze deiner Etappen, zum Aufschlagen vor Ort. Tippe auf einen Satz, um ihn zu hören.",
         av_carnet_vide: "Dein Heft füllt sich mit jeder Etappe.",
@@ -29903,7 +29961,7 @@ const I18N = {
         voice_test: "Anhören",
         voice_none: "Auf diesem Gerät ist für diese Sprache keine Stimme installiert. Die Sätze werden mit der Standardstimme gelesen, also mit schlechtem Akzent. Füge sie in den Einstellungen deines Handys hinzu (Bedienungshilfen › Gesprochene Inhalte › Stimmen).",
         voice_only_one: "Nur eine Stimme installiert. Du kannst in den Einstellungen deines Handys eine verbesserte hinzufügen und sie dann hier auswählen.",
-        retour_titre: "Sag uns, was dir helfen würde",
+        retour_titre: "Ein Problem oder eine Idee melden",
         retour_desc: "Ein Wort, das schief klingt, ein Knopf, der nicht reagiert, eine Idee: Schreib es hier. Die Version der App und der Bildschirm, auf dem du warst, werden automatisch mitgeschickt – du musst nichts notieren.",
         retour_envoyer: "SENDEN",
         retour_vide: "Schreib erst etwas.",
@@ -30209,7 +30267,7 @@ const I18N = {
         settings_langue_titre: "Sprache",
         settings_groupe_son: "Ton",
         settings_groupe_progression: "Mein Fortschritt",
-        settings_groupe_compte: "Konto, Hilfe und Rückmeldung",
+        settings_groupe_compte: "Konto und Hilfe",
         auth_signup_loading: "WIRD ERSTELLT …",
         auth_logged_in_as: "Angemeldet als: ",
         auth_logout: "ABMELDEN",
@@ -30895,7 +30953,7 @@ const I18N = {
         pp_porte_titre: "Primeras palabras",
         pp_fin_titre: "¡Tus primeros pasos están dados!",
         pp_fin_texte: "Ya tienes las frases básicas para presentarte, pedir, preguntar el camino, reservar y decir que no entiendes. Lo que sigue continúa en el nivel A1.",
-        av_badge: "✈️ Escala {n}",
+        av_badge: "Etapa {n}",
         av_suite_badge: "A1 · etapa {n}",
         av_date_invite: "✈️ ¿Te vas pronto? Indica tu fecha de salida: cada día te diremos el ritmo para tenerlo todo listo.",
         av_date_ajouter: "Mi fecha",
@@ -30904,7 +30962,7 @@ const I18N = {
         av_date_ok: "OK",
         av_date_effacer: "Borrar",
         av_date_modifier: "Cambiar la fecha de salida",
-        av_depart_rythme: "✈️ Salida en {n} días · {e} escalas por semana para tenerlo todo listo",
+        av_depart_rythme: "✈️ Salida en {n} días · {e} etapas por semana para tenerlo todo listo",
         av_depart_pret: "✈️ Salida en {n} días · ¡lo tienes todo listo!",
         av_bloc_mien: "✏️ Mi palabra",
         av_bloc_ecris: "Escribe tu palabra",
@@ -30912,10 +30970,10 @@ const I18N = {
         av_etape_fin_texte: "Próxima etapa: {t}.",
         av_q_bloc: "Frase hecha: cambia la palabra de color o pon la tuya.",
         av_q_dialogue: "Te toca: responde en voz alta.",
-        av_escale_fin_titre: "Escala {n}: ¡terminada!",
-        av_escale_fin_texte: "Próxima escala: {t}.",
+        av_escale_fin_titre: "Etapa {n}: ¡terminada!",
+        av_escale_fin_texte: "Próxima etapa: {t}.",
         av_jalon_titre_voyage: "¡Tu viaje está listo!",
-        av_jalon_titre: "12 escalas: ¡ya sabes desenvolverte de viaje!",
+        av_jalon_titre: "12 etapas: ¡ya sabes desenvolverte!",
         av_jalon_texte: "{n} frases hechas te esperan en tu cuaderno. Ábrelo allí mismo.",
         av_jalon_k: "Y ahora: tu A1 está al {p} %",
         av_jalon_change: "Hasta aquí aprendiste frases hechas. Ahora aprendes a construir las tuyas: la familia, la vivienda, el trabajo y la gramática para decir lo que quieres.",
@@ -30923,15 +30981,16 @@ const I18N = {
         av_fin_a1_titre: "¡A1 terminado!",
         av_fin_a1_texte: "Ya viste todo el vocabulario del A1. Ahora, el A2.",
         av_fin_a1_bouton: "Empezar el A2",
-        av_porte: "Escala {n} de {t}",
-        av_porte_suite: "A1 · lo que sigue · {n} de {t}",
+        av_porte: "{m} · etapa {n} de {t}",
+        av_moitie_1: "Desenvolverme en alemán",
+        av_moitie_2: "Vivir en Alemania",
         av_en_voyage: "¡Buen viaje!",
         av_carnet_n: "📒 Mi cuaderno · {n} frases",
         av_carnet_1: "📒 Mi cuaderno · 1 frase",
-        av_carnet_kicker: "A1 viaje",
+        av_carnet_kicker: "A1",
         av_carnet_titre: "Mi cuaderno de frases",
-        av_carnet_sous: "Las frases hechas de tus escalas, para abrir allí mismo. Toca una frase para oírla.",
-        av_carnet_vide: "Tu cuaderno se llena en cada escala.",
+        av_carnet_sous: "Las frases hechas de tus etapas, para abrir allí mismo. Toca una frase para oírla.",
+        av_carnet_vide: "Tu cuaderno se llena en cada etapa.",
         fc_badge: "📄 Hoja {n}/{t} · {niveau}",
         fc_badge_revoir: "📄 Hoja para repasar · {niveau}",
         fc_kicker: "Conjugación",
@@ -30947,7 +31006,7 @@ const I18N = {
         fc_entrainer: "PRACTICAR →",
         av_pp_suite_k: "Lo que sigue",
         av_pp_suite_t: "Tu A1 empieza",
-        av_pp_e1: "12 escalas: comer fuera, el mercado, el tren, la salud, conocer gente…",
+        av_pp_e1: "12 etapas: comer fuera, el mercado, el tren, la salud, conocer gente…",
         av_pp_e2: "¿Te vas pronto? Indica tu fecha de salida y te diremos el ritmo para tenerlo todo listo.",
         av_pp_e3: "El resto del A1: la vivienda, los trámites, la familia, el trabajo…",
         pp_fin_bouton: "Continuar",
@@ -31552,7 +31611,7 @@ const I18N = {
         voice_test: "Escuchar",
         voice_none: "No hay ninguna voz instalada para este idioma en este dispositivo. Las frases se leerán con la voz predeterminada, es decir, con mal acento. Agrégala en la configuración de tu teléfono (Accesibilidad › Contenido hablado › Voces).",
         voice_only_one: "Solo hay una voz instalada. Puedes agregar una mejorada en la configuración de tu teléfono y luego volver a elegirla aquí.",
-        retour_titre: "Dinos qué te ayudaría",
+        retour_titre: "Informar de un problema o una idea",
         retour_desc: "Una palabra que suena mal, un botón que no responde, una idea: escríbelo aquí. La versión de la app y la pantalla en la que estabas se adjuntan automáticamente — no tienes que anotar nada.",
         retour_envoyer: "ENVIAR",
         retour_vide: "Escribe algo primero.",
@@ -31858,7 +31917,7 @@ const I18N = {
         settings_langue_titre: "Idioma",
         settings_groupe_son: "Sonido",
         settings_groupe_progression: "Mi progreso",
-        settings_groupe_compte: "Cuenta, ayuda y comentarios",
+        settings_groupe_compte: "Cuenta y ayuda",
         auth_signup_loading: "CREANDO…",
         auth_logged_in_as: "Sesión iniciada como: ",
         auth_logout: "CERRAR SESIÓN",
@@ -32428,6 +32487,8 @@ const I18N = {
 // anglaise (« Subjunctive », « Two pasts ») : elle est remise en francais.
 const I18N_ESPAGNOL = {
     "fr": {
+        "av_moitie_1": "Me débrouiller en espagnol",
+        "av_moitie_2": "Vivre en Espagne",
         "carte_genre_el": "masculin",
         "carte_genre_la": "féminin",
         "home_title_1": "Apprends l'espagnol",
@@ -32572,6 +32633,8 @@ const I18N_ESPAGNOL = {
         "vhs_kapitel_liste_title": "Mon cours d'espagnol"
     },
     "en": {
+        "av_moitie_1": "Getting by in Spanish",
+        "av_moitie_2": "Living in Spain",
         "carte_genre_el": "masculine",
         "carte_genre_la": "feminine",
         "home_title_1": "Learn Spanish",
@@ -32716,6 +32779,8 @@ const I18N_ESPAGNOL = {
         "vhs_kapitel_liste_title": "My Spanish course"
     },
     "pt": {
+        "av_moitie_1": "Me virar em espanhol",
+        "av_moitie_2": "Morar na Espanha",
         "carte_genre_el": "masculino",
         "carte_genre_la": "feminino",
         "home_title_1": "Aprenda espanhol",
@@ -32860,6 +32925,8 @@ const I18N_ESPAGNOL = {
         "vhs_kapitel_liste_title": "Meu curso de espanhol"
     },
     "ar": {
+        "av_moitie_1": "أتدبّر أمري بالإسبانية",
+        "av_moitie_2": "أعيش في إسبانيا",
         "carte_genre_el": "مذكر",
         "carte_genre_la": "مؤنث",
         "home_title_1": "تعلّم الإسبانية",
@@ -33004,6 +33071,8 @@ const I18N_ESPAGNOL = {
         "vhs_kapitel_liste_title": "دروسي في الإسبانية"
     },
     "de": {
+        "av_moitie_1": "Auf Spanisch zurechtkommen",
+        "av_moitie_2": "In Spanien leben",
         "abo_av_mots": "3 700 Wörter von A1 bis B2",
         "abo_av_examens": "Der Akzent aus Spanien oder Lateinamerika",
         "carte_genre_el": "maskulin",
@@ -33275,6 +33344,8 @@ if(LANGUE_APPRISE === "ja"){
 // en francais seulement (sa seule langue d'interface pour l'instant).
 const I18N_ANGLAIS = {
     "fr": {
+        "av_moitie_1": "Me débrouiller en anglais",
+        "av_moitie_2": "Vivre aux États-Unis",
         "home_title_1": "Apprends l'anglais",
         "home_subtitle": "Ton tuteur personnel pour le vocabulaire et la grammaire anglaise.",
         "credits_dict": "Mots, traductions et phrases d'exemple : choisis et écrits par Wortando à partir de ses cours d'allemand et d'espagnol (brouillon, à relire par un anglophone).",
@@ -33339,6 +33410,8 @@ const I18N_ANGLAIS = {
         "en_variante_gb": "Britannique"
     },
     "es": {
+        "av_moitie_1": "Defenderme en inglés",
+        "av_moitie_2": "Vivir en Estados Unidos",
         "home_title_1": "Aprende inglés",
         "home_subtitle": "Tu tutor personal para el vocabulario y la gramática del inglés.",
         "credits_dict": "Palabras, traducciones y frases de ejemplo: elegidas y escritas por Wortando a partir de sus cursos de alemán y de español (borrador, pendiente de revisión por un anglohablante).",
@@ -33441,6 +33514,8 @@ if(LANGUE_APPRISE === "en"){
 // l'anglais, en francais seulement.
 const I18N_PORTUGAIS = {
     "fr": {
+        "av_moitie_1": "Me débrouiller en portugais",
+        "av_moitie_2": "Vivre au Portugal",
         "home_title_1": "Apprends le portugais",
         "home_subtitle": "Ton tuteur personnel pour le vocabulaire et la grammaire du portugais du Portugal.",
         "credits_dict": "Mots, traductions et phrases d'exemple : choisis et écrits par Wortando à partir de son cours d'espagnol, en portugais du Portugal (brouillon, à relire par un lusophone).",
@@ -33493,6 +33568,7 @@ const I18N_PORTUGAIS = {
 // La variante du Bresil (30 oct. 2026) : ce qui nomme le Portugal.
 const I18N_PORTUGAIS_BRESIL = {
     "fr": {
+        "av_moitie_2": "Vivre au Brésil",
         "home_subtitle": "Ton tuteur personnel pour le vocabulaire et la grammaire du portugais du Brésil.",
         "credits_dict": "Mots, traductions et phrases d'exemple : choisis et écrits par Wortando à partir de son cours d'espagnol, en portugais du Portugal, puis convertis en portugais du Brésil (brouillon, à relire par un lusophone).",
         "profil_r_vivre": "Pour vivre au Brésil",
@@ -48116,15 +48192,9 @@ function openSettings(){
     if(resetDailyEspace) resetDailyEspace.classList.toggle("hidden", !isAdminUser());
     restaurerBrouillonRetour();
     afficherLangueActuelle();
-    // Un retour commence et pas envoye : son groupe s'ouvre, sinon le
-    // brouillon dormirait dans un pli que personne ne rouvre.
-    const brouillon = document.getElementById("retourTexte");
-    // 13 oct. 2026 : le brouillon ouvrait le pli ET y amenait l'ecran a chaque
-    // visite des reglages. On ouvre le pli sans defiler : la page part du haut.
-    if(brouillon && brouillon.value.trim()){
-        const groupeCompte = document.getElementById("groupeCompte");
-        if(groupeCompte) groupeCompte.open = true;
-    }
+    // Un retour commence et pas envoye ouvrait le pli « Compte » (13 oct.
+    // 2026) ; depuis le 5 nov., la carte est tout en haut et toujours ouverte :
+    // le brouillon se voit sans rien ouvrir.
     showScreen("settings");
 }
 
@@ -48328,6 +48398,21 @@ function ouvrirGroupeReglages(id){
     if(!groupe) return;
     groupe.open = true;
     afterNextPaint(() => { try{ groupe.scrollIntoView({ block: "start", behavior: "smooth" }); }catch(e){} });
+}
+
+// La tuile « Signaler un probleme ou une idee » de Tout le contenu (5 nov. 2026) :
+// les reglages, ouverts sur la carte du haut, le curseur dans la zone de texte.
+// Retour ramene a Tout le contenu (ecranAvantReglages, VUE_CONTENU intact).
+function ouvrirSignaler(){
+    openSettings();
+    afterNextPaint(() => {
+        const zone = document.getElementById("retourTexte");
+        if(!zone) return;
+        // La carte est la premiere des reglages : le haut de la page suffit
+        // (scrollIntoView la glissait sous l'en-tete fixe).
+        try{ window.scrollTo(0, 0); }catch(e){}
+        try{ zone.focus({ preventScroll: true }); }catch(e){ try{ zone.focus(); }catch(e2){} }
+    });
 }
 
 // Le badge de l'accueil menait aux reglages, ou les badges sont maintenant
@@ -55167,7 +55252,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1116;
+const APP_VERSION = 1117;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -59747,6 +59832,7 @@ function vignetteScene(nom){ return baseScenes() + "vignettes/" + nom + ".webp";
 function majTitrePorteMots(){
     const titreMots = document.getElementById("seancePorteMotsTitre");
     if(!titreMots) return;
+    ["avLigne", "avLieu", "avN", "avT"].forEach(k => { delete titreMots.dataset[k]; });
     const porte = titreMots.closest(".seance-porte");
     if(premiersPasEnCours()){
         try{
@@ -64482,19 +64568,30 @@ function majPorteA1Voyage(titreMots, porte){
         chargerA1Voyage().then(x => { if(x){ try{ majTuileSeance(); }catch(e){} } });
         return false;
     }
-    let lieu = null, texte = "";
+    // 5 nov. 2026 (decisions 2ff859f et 21d5764) : NI « VOYAGE » NI « ESCALE ».
+    // Les 12 premieres etapes s'appellent « Me debrouiller en allemand », les 10
+    // de la suite « Vivre en Allemagne » (I18N_ESPAGNOL : « en espagnol », « en
+    // Espagne »). La pilule en fait sa ligne, met le lieu dessous et la frise des
+    // etapes en points (majFriseEtapes) ; plus d'emoji du lieu.
+    let lieu = null, nEt = 1, totEt = 1, moitie = "av_moitie_1";
     if(!s.fin){
         const esc = escalesA1Voyage();
         lieu = esc[Math.min(s.e || 0, esc.length - 1)];
-        texte = tf("av_porte", { n: Math.min((s.e || 0) + 1, esc.length), t: esc.length }) + " · " + sensPremiersPas(lieu.s);
+        nEt = Math.min((s.e || 0) + 1, esc.length); totEt = esc.length;
     } else {
         const suite = suiteA1Voyage();
         if((s.k || 0) >= suite.length) return false;
         lieu = suite[s.k || 0];
-        texte = tf("av_porte_suite", { n: (s.k || 0) + 1, t: suite.length }) + " · " + sensPremiersPas(lieu.s);
+        nEt = (s.k || 0) + 1; totEt = suite.length; moitie = "av_moitie_2";
     }
+    const ligne = tf("av_porte", { m: t(moitie), n: nEt, t: totEt });
+    const lieuTxt = sensPremiersPas(lieu.s);
     titreMots.removeAttribute("data-i18n");
-    titreMots.textContent = (lieu.icone ? lieu.icone + " " : "") + texte;
+    titreMots.textContent = ligne + " · " + lieuTxt;
+    titreMots.dataset.avLigne = ligne;
+    titreMots.dataset.avLieu = lieuTxt;
+    titreMots.dataset.avN = String(nEt);
+    titreMots.dataset.avT = String(totEt);
     const sc = sceneDuLieu(lieu);
     if(porte){
         porte.classList.add("porte-pp");
@@ -65251,11 +65348,47 @@ function majTitrePilule(){
     pil.classList.toggle("pa-etape", !ordinaire);
     sp.textContent = t("seance_titre");
     const kick = pil.querySelector(".pa-titre .pa-kick");
+    const av = (!ordinaire && titre && titre.dataset.avLigne) ? titre.dataset : null;
     if(kick && !ordinaire){
         kick.removeAttribute("data-i18n");
-        kick.textContent = titre.textContent.trim().split(" · ")[0];
+        kick.textContent = av ? av.avLigne : titre.textContent.trim().split(" · ")[0];
     }
+    majFriseEtapes(pil, av);
     ajusterTitrePilule(sp);
+}
+// 5 nov. 2026 (decision 21d5764, variantes E et G des captures de la vraie
+// seance) : sous la ligne de l'etape, le lieu, puis LA FRISE -- un point par
+// etape, les etapes faites en plein, un point ambre sur celle du jour. Jacques :
+// « j'aime bien d'avoir les points de progression [...] J'ai comme l'impression
+// d'avancer quand je suis un usager. » Le bouton du titre ne contient que du
+// texte de phrase : des span, pas de div. En arabe et en persan, la page est en
+// rtl : la rangee flex part de la droite, la frise avance de droite a gauche.
+function majFriseEtapes(pil, av){
+    const titre = pil && pil.querySelector(".pa-titre");
+    if(!titre) return;
+    titre.querySelectorAll(".pa-lieu, .pa-frise").forEach(x => x.remove());
+    pil.classList.toggle("pa-av", !!av);
+    if(!av) return;
+    const n = Math.max(1, parseInt(av.avN, 10) || 1), tot = Math.max(n, parseInt(av.avT, 10) || 1);
+    const lieu = document.createElement("span");
+    lieu.className = "pa-lieu";
+    lieu.textContent = av.avLieu || "";
+    titre.appendChild(lieu);
+    const f = document.createElement("span");
+    f.className = "pa-frise";
+    f.setAttribute("aria-hidden", "true");
+    const rail = document.createElement("span");
+    rail.className = "pf-rail";
+    const pts = document.createElement("span");
+    pts.className = "pf-pts";
+    for(let i = 1; i <= tot; i++){
+        const p = document.createElement("span");
+        p.className = "pf-pt" + (i < n ? " fait" : i === n ? " ici" : "");
+        pts.appendChild(p);
+    }
+    f.appendChild(rail);
+    f.appendChild(pts);
+    titre.appendChild(f);
 }
 function majPiluleSeance(){
     const pil = document.getElementById("seancePilule");
