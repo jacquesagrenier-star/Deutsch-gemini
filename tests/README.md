@@ -26,6 +26,22 @@ dégradée : plus une seule fonction définie. Seul le navigateur le disait.
 s'arrête là. Il signale aussi tout **octet de contrôle** dans le fichier —
 c'était la première des deux fautes, un NUL au milieu d'une déclaration CSS.
 
+## Et le rappel actif des cartes
+
+```bash
+node tests/rappel_actif.js
+```
+
+À lancer quand on touche aux cartes actives (essai `rappel_actif`, 6 nov. 2026).
+Ni navigateur ni verrou : il extrait d'`index.html` la logique pure (entre les
+marques « RAPPEL ACTIF : LOGIQUE PURE ») et vérifie la forme selon les points
+(choisir à 0-1, choisir ou taper à 2, taper à 3 et maîtrisé), la règle « une
+carte sur trois », la tolérance de la saisie (accent, faute de frappe, article,
+`sich`, même son en espagnol, autre mot connu = faux), puis tout le corpus
+allemand et espagnol : chaque mot tapé juste est juste, et aucun leurre n'est la
+bonne réponse sous une autre forme (même mot, même sens, autre genre).
+Quelques minutes sur une machine chargée.
+
 ## Et le français servi aux autres langues
 
 ```bash

@@ -7167,6 +7167,38 @@ body[data-theme="dark"] .cp-retour.bon{color:#7fd3a5;} body[data-theme="dark"] .
 .cp-saisie{width:100%; font-size:18px; padding:12px; border-radius:12px; border:1.5px solid #e2d6c0; margin-top:12px; background:#fff; color:#1C2430;}
 body[data-theme="dark"] .cp-saisie{background:#273041; color:#F2F2F6; border-color:#3a4558;}
 .cp-indice{color:#8a5a0e; font-size:14px; margin-top:4px;}
+/* LE RAPPEL ACTIF (essai rappel_actif, 6 nov. 2026) : une carte sur trois demande le mot.
+   Elle prend la place de la carte retournable, comme la carte-phrase. */
+#flashcards.en-rappel .flashcard-wrapper, #flashcards.en-rappel #flashcardActions{display:none !important;}
+#flashcards.fin-paquet #rappelActif{display:none !important;}
+.rappel-actif{text-align:center;}
+.rappel-actif .cp-type{justify-content:center;}
+.ra-mot{font-size:30px; font-weight:900; line-height:1.2; margin:6px 0 4px; overflow-wrap:anywhere;}
+.ra-choix button{font-size:18px; font-weight:700; text-align:center;}
+.cp-choix button.pale{opacity:.5;}
+body[data-theme="dark"] .ra-choix button.bon{border-color:#5cc08a; background:rgba(46,139,87,.24); color:#d8f3e4;}
+body[data-theme="dark"] .ra-choix button.faux{border-color:#e2725f; background:rgba(192,57,43,.22); color:#fbe1dc;}
+.ra-saisie{text-align:center; font-weight:600;}
+.ra-touches{display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin-top:10px;}
+.ra-touche{min-width:42px; height:42px; border-radius:10px; border:1.5px solid #e2d6c0; background:#fff; color:#1C2430; font-size:18px; font-weight:700; cursor:pointer;}
+body[data-theme="dark"] .ra-touche{background:#273041; color:#F2F2F6; border-color:#3a4558;}
+.ra-verifier, .ra-suite{width:100%; margin-top:12px;}
+.ra-lien{background:none; border:0; color:#8a5a0e; font:inherit; font-weight:700; font-size:14.5px; padding:10px 12px; margin-top:4px; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
+body[data-theme="dark"] .ra-lien{color:#f2c27a;}
+.ra-lien:disabled{opacity:.45; cursor:default;}
+.ra-verdict{text-align:center;}
+.ra-verdict .ra-titre{display:block;}
+.ra-rep{font-size:22px; font-weight:900; margin:4px 0 2px; overflow-wrap:anywhere;}
+.ra-rep u{text-decoration:none; background:rgba(232,162,58,.38); border-radius:4px; padding:0 1px;}
+.ra-verdict small{display:block; font-weight:600; font-size:13.5px; opacity:.92;}
+.cp-retour.presque{background:rgba(232,162,58,.16); color:#7a4f06;}
+body[data-theme="dark"] .cp-retour.presque{color:#f3c56b;}
+.ra-points{display:flex; align-items:center; justify-content:center; gap:10px; margin-top:12px;}
+.ra-echeance{font-size:13px; font-weight:700; color:#1c6b47;}
+body[data-theme="dark"] .ra-echeance{color:#8ed3aa;}
+.ra-points.faux .ra-echeance{color:#9b2c20;}
+body[data-theme="dark"] .ra-points.faux .ra-echeance{color:#f2a197;}
+.ra-pied{display:flex; justify-content:center;}
 .seance-niveau.seance-pp{font-size:14px; padding:0 5px;}
 .cp-type b.cp-pp{background:#d9f0e6; color:#0F6E56;}
 .cp-mot-pp{font-size:30px; font-weight:900; text-align:center; margin:14px 0 4px; line-height:1.2;}
@@ -12600,6 +12632,8 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
 
     <!-- LA CARTE-PHRASE (essai v810) : remplie par montrerCartePhrase(). -->
     <div id="cartePhrase" class="carte-phrase hidden" aria-live="polite"></div>
+    <!-- LE RAPPEL ACTIF (essai rappel_actif, 6 nov. 2026) : rempli par montrerRappelActif(). -->
+    <div id="rappelActif" class="carte-phrase rappel-actif hidden" aria-live="polite"></div>
     <div id="flashcardActions" class="flashcard-actions hidden">
         <!-- ⚠️ QUATRE BOUTONS COTE A COTE (v594), ET LE COFFRE EST L'UN D'EUX.
              Il etait au-dessus, discret et sans cadre, parce qu'il n'est pas un
@@ -15011,6 +15045,23 @@ const I18N = {
         cp_reponse: "La bonne réponse :",
         cp_tu_as_ecrit: "Tu as écrit :",
         cp_presque: "Une petite faute de frappe : on la compte juste.",
+        ra_consigne_choisir: "Comment dit-on…",
+        ra_consigne_taper_de: "Écris-le en allemand",
+        ra_consigne_taper_es: "Écris-le en espagnol",
+        ra_juste: "Juste !",
+        ra_juste_synonyme: "Juste : un autre mot qui veut dire la même chose",
+        ra_presque: "Presque : ça compte juste",
+        ra_faux: "Pas tout à fait. La bonne réponse :",
+        ra_tu_as_ecrit: "Tu as écrit « {s} ».",
+        ra_raison_accent_de: "Seuls les accents ou le ß diffèrent.",
+        ra_raison_accent_es: "Seuls les accents diffèrent.",
+        ra_raison_frappe: "Une faute de frappe.",
+        ra_raison_son: "Ça se prononce pareil, mais ça s'écrit autrement.",
+        ra_raison_article: "Le mot est juste ; regarde l'article.",
+        ra_raison_article_aussi: "Et l'article est « {a} ».",
+        ra_raison_sich: "Ce verbe se dit avec « sich ».",
+        ra_raison_autre: "C'est un autre mot, que tu as déjà vu.",
+        ra_je_ne_sais_pas: "Je ne sais pas",
         flash_end_a_revoir_un: "1 phrase à revoir demain",
         flash_end_a_revoir_n: "{n} phrases à revoir demain",
         pp_badge: "Premiers pas",
@@ -16706,6 +16757,23 @@ const I18N = {
         cp_reponse: "The right answer:",
         cp_tu_as_ecrit: "You wrote:",
         cp_presque: "Just a small typo: we count it as right.",
+        ra_consigne_choisir: "How do you say…",
+        ra_consigne_taper_de: "Write it in German",
+        ra_consigne_taper_es: "Write it in Spanish",
+        ra_juste: "Right!",
+        ra_juste_synonyme: "Right: another word that means the same thing",
+        ra_presque: "Almost: it counts as right",
+        ra_faux: "Not quite. The right answer:",
+        ra_tu_as_ecrit: "You wrote “{s}”.",
+        ra_raison_accent_de: "Only the accents or the ß are different.",
+        ra_raison_accent_es: "Only the accents are different.",
+        ra_raison_frappe: "A typo.",
+        ra_raison_son: "It sounds the same, but it is spelled differently.",
+        ra_raison_article: "The word is right; check the article.",
+        ra_raison_article_aussi: "And the article is “{a}”.",
+        ra_raison_sich: "This verb takes “sich”.",
+        ra_raison_autre: "That is another word, one you have already seen.",
+        ra_je_ne_sais_pas: "I don't know",
         flash_end_a_revoir_un: "1 sentence to review tomorrow",
         flash_end_a_revoir_n: "{n} sentences to review tomorrow",
         pp_badge: "First steps",
@@ -51220,6 +51288,15 @@ const ESSAIS = {
         titre: "Le test de niveau",
         desc: "Pour qui n'est pas débutant, en allemand et en espagnol : des paliers de six questions (mots lus et entendus, phrases, grammaire), qui montent ou descendent, environ 5 minutes, puis un niveau proposé (🌱 à C1, B2 en espagnol). À la bienvenue, deux portes (« Je pars de zéro » / « Je connais déjà un peu ») ; dans les réglages, la carte « Mon niveau » ; après « Plus tard », une ligne sous la rangée des niveaux. Les mots réussis d'un niveau inférieur deviennent « connus »."
     },
+    // EN ESSAI le 6 nov. 2026, admin seul. L'evaluation du chef : des cartes trop
+    // passives ; Jacques : « Vas-y pour les recommandations » (decision 34d02c3, partie 2
+    // de la maquette « Seance, cartes et accueil »). Voir preparerRappelActif(). Pour la
+    // production : traduire les cles ra_* (fr et en seulement), passer a « tous ».
+    rappel_actif: {
+        etat: "admin",
+        titre: "Le rappel actif dans les cartes",
+        desc: "Une carte de mots sur trois (règle fixe, jamais un mot neuf) demande le mot au lieu de le montrer : choisir parmi 3 à 0 ou 1 point vert, choisir ou taper à 2, taper à 3 et une fois maîtrisé. Les leurres sont des mots déjà vus, de la même sorte. Juste ou presque = ✓, faux = Encore ; les points avancent comme avant. Allemand et espagnol."
+    },
     premiers_pas: {
         etat: "tous",
         titre: "Premiers pas (un niveau avant A1)",
@@ -53684,6 +53761,8 @@ function loadFlashcard(){
     majEcheances();
     const item = currentCards[currentFlashcard];
     if(!item){ handleFlashcardBack(); return; }
+    // L'essai rappel_actif : la question d'une carte precedente s'efface.
+    cacherRappelActif();
     // LA CARTE-PHRASE (essai v810) a son propre rendu ; une carte ordinaire
     // efface d'abord celui d'une phrase qui l'aurait precedee.
     // v839 : Premiers pas avance a chaque carte montree.
@@ -54362,7 +54441,561 @@ function loadFlashcard(){
             }
         }, 650);
     }
+    // L'essai rappel_actif : une carte sur trois demande le mot (voir preparerRappelActif).
+    try{ preparerRappelActif(item); }catch(e){ cacherRappelActif(); }
     noterEtape("carte");
+}
+
+// ============ LE RAPPEL ACTIF (essai « rappel_actif », 6 nov. 2026) ============
+// L'evaluation du chef (6 nov.) : les cartes sont trop passives -- on retourne,
+// puis on se juge soi-meme, et rien ne verifie qu'on a vraiment retrouve le
+// mot. Jacques a accepte la maquette (« Vas-y pour les recommandations »,
+// decision 34d02c3, partie 2 de l'artefact « Seance, cartes et accueil ») :
+//   - UNE CARTE SUR TROIS, PAR REGLE FIXE ET NON AU HASARD, demande le mot au
+//     lieu de le montrer. La regle : dans un paquet, la premiere carte
+//     eligible, puis une sur trois des suivantes (deux cartes ordinaires
+//     entre deux cartes actives). Rejouer le meme paquet donne les memes
+//     cartes actives.
+//   - Jamais un mot neuf : on ne retrouve pas ce qu'on n'a jamais vu.
+//   - 0 ou 1 point vert : CHOISIR PARMI 3. 2 points : choisir ou taper, selon
+//     le mot (fixe, par son empreinte). 3 points ou maitrise : TAPER.
+//   - Le verdict remplace le jugement de soi : juste (ou « presque »), c'est
+//     la bille ✓ (reviewGood) ; faux, c'est « Encore » (reviewAgain). Les
+//     quatre points avancent exactement comme avant.
+//   - Les leurres viennent UNIQUEMENT de mots deja vus, de la meme categorie,
+//     et jamais de la bonne reponse sous une autre forme (meme mot, meme sens,
+//     l'autre genre d'un nom de personne). Pas deux leurres : carte ordinaire.
+//   - Le micro viendra plus tard (apres un essai sur l'iPhone).
+// Les textes de l'essai sont en francais et en anglais (repli des autres
+// langues), comme tous les essais : on les traduit au passage en production.
+//
+// ⚠️ LA LOGIQUE EST PURE, ENTRE LES DEUX MARQUES CI-DESSOUS : aucune lecture du
+// DOM, du stockage ni des variables de la seance. tests/rappel_actif.js
+// l'extrait d'ici et l'execute sous Node -- le choix de la forme, les leurres et
+// la tolerance se verifient sans navigateur ni verrou. Ce qui lit l'etat de
+// l'app est plus bas, apres la marque de fin.
+// ---- RAPPEL ACTIF : LOGIQUE PURE (debut) ----
+const RAPPEL_MODES = ["nomen", "verben", "adjektive"];
+// Les articles qu'on peut taper devant un nom, par langue apprise.
+const RAPPEL_ARTICLES = {
+    de: ["der", "die", "das"],
+    es: ["el", "la", "los", "las"]
+};
+// Les touches sous le champ : ce qu'un clavier francais n'a pas.
+const RAPPEL_TOUCHES = {
+    de: ["ä", "ö", "ü", "ß"],
+    es: ["á", "é", "í", "ó", "ú", "ü", "ñ"]
+};
+// Une carte active, puis deux ordinaires : « une sur trois ».
+const RAPPEL_ECART = 2;
+
+function empreinteRappel(s){
+    // FNV-1a 32 bits : la meme chaine donne toujours le meme nombre.
+    let h = 0x811c9dc5;
+    s = String(s);
+    for(let i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+    return h >>> 0;
+}
+
+// Le mot a-t-il deja ete juge au moins une fois ? (« Encore » compte : le mot
+// a ete vu, et le retrouver tout de suite est justement l'exercice.)
+function dejaVuRappel(st){
+    st = st || {};
+    return !!(st.mastered || (st.srsHits || 0) > 0 || (st.reviews || 0) > 0 || st.due);
+}
+
+// Les points verts tels que les pastilles les montrent (0 a 4).
+function pointsRappel(st){
+    st = st || {};
+    return st.mastered ? 4 : Math.min(4, st.srsHits || 0);
+}
+
+// 0-1 point : choisir. 2 : choisir ou taper, selon l'empreinte du mot (fixe).
+// 3-4 : taper.
+function formeSelonPoints(points, cle){
+    if(points <= 1) return "choisir";
+    if(points === 2) return (empreinteRappel(cle) % 2) ? "taper" : "choisir";
+    return "taper";
+}
+
+// La regle « une sur trois ». `depuis` = cartes eligibles passees depuis la
+// derniere carte active (RAPPEL_ECART au debut d'un paquet, pour que la premiere
+// eligible soit active). Rend { active, depuis } pour la carte suivante.
+// Une carte qui devait etre active mais n'a pas pu l'etre (pas deux leurres
+// deja vus) ne remet pas le compte a zero : la suivante prend son tour.
+function tourDuRappel(depuis, eligible, possible){
+    if(!eligible) return { active: false, depuis: depuis };
+    if(depuis >= RAPPEL_ECART){
+        if(possible) return { active: true, depuis: 0 };
+        return { active: false, depuis: depuis };
+    }
+    return { active: false, depuis: depuis + 1 };
+}
+
+// Minuscules, ponctuation retiree, espaces resserres. Les accents restent.
+function normRappel(s){
+    return String(s || "").normalize("NFC").toLowerCase()
+        .replace(/[.,!?;:¿¡«»"“”„…]/g, " ")
+        .replace(/\s+/g, " ").trim();
+}
+// Les accents retires aussi, et ß -> ss. « nina » = « niña », « strasse » = « Straße ».
+function plierRappel(s){
+    return normRappel(s).replace(/ß/g, "ss").normalize("NFD").replace(/[̀-ͯ]/g, "");
+}
+// Le sens, pour reconnaitre deux cartes qui veulent dire la meme chose : sans
+// article (le, la, l', un, the, to...), sans parenthese, sans accent.
+function sensPlieRappel(s){
+    return plierRappel(String(s || "").replace(/\([^)]*\)/g, " "))
+        .replace(/^(le|la|les|l'|l’|un|une|des|the|a|an|to|der|die|das|el|los|las|o|os|as|um|uma) +/, "")
+        .replace(/^(l'|l’)/, "")
+        .trim();
+}
+
+// Le son d'un mot espagnol deja plie : ll et y, b et v, le h muet, c / z / s
+// (seseo), qu / c dur / k, ge-gi / je-ji se confondent a l'oreille.
+function sonEspagnolRappel(s){
+    return String(s || "")
+        .replace(/ll/g, "y").replace(/v/g, "b").replace(/h/g, "")
+        .replace(/qu([ei])/g, "k$1").replace(/c([aou])/g, "k$1").replace(/c$/g, "k")
+        .replace(/c([ei])/g, "s$1").replace(/z/g, "s")
+        .replace(/g([ei])/g, "j$1")
+        .replace(/([a-z])\1/g, "$1");
+}
+
+// Distance d'edition avec la transposition (« Tsich » pour « Tisch » = 1).
+function distanceRappel(a, b){
+    a = String(a); b = String(b);
+    const d = [];
+    for(let i = 0; i <= a.length; i++){ d[i] = [i]; }
+    for(let j = 0; j <= b.length; j++){ d[0][j] = j; }
+    for(let i = 1; i <= a.length; i++){
+        for(let j = 1; j <= b.length; j++){
+            const c = a[i - 1] === b[j - 1] ? 0 : 1;
+            d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + c);
+            if(i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1])
+                d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+        }
+    }
+    return d[a.length][b.length];
+}
+
+// Combien de lettres de travers comptent encore comme une faute de frappe :
+// aucune sous 4 lettres (« Bus » / « Bad » sont deux mots), une jusqu'a 7,
+// deux a partir de 8.
+function seuilFrappeRappel(n){
+    return n >= 8 ? 2 : (n >= 4 ? 1 : 0);
+}
+
+// Les formes acceptables d'une reponse : « schuld (sein) » s'accepte avec ou
+// sans la parenthese.
+function formesAttenduesRappel(mot){
+    const m = String(mot || "").trim();
+    const out = [m];
+    const sansPar = m.replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
+    if(sansPar && sansPar !== m) out.push(sansPar);
+    return out;
+}
+
+// LA TOLERANCE, EN UNE REGLE. On compare le MOT, puis l'article a part.
+//   juste   : le mot exact (majuscules, ponctuation et espaces ignores) ;
+//             l'article peut manquer, il est montre dans la reponse ;
+//             un autre mot de meme sens (un synonyme du paquet) compte aussi.
+//   presque : COMPTE JUSTE, mais l'ecart est montre --
+//             « accent » : seuls les accents ou ß different (nina / niña) ;
+//             « frappe » : une lettre de travers (deux au-dela de 7 lettres),
+//                          SAUF si ce qu'on a tape est un autre mot connu ;
+//             « son »     : en espagnol, meme prononciation (yave / llave) ;
+//             « article » : le mot est juste, l'article ne l'est pas ;
+//             « sich »    : le verbe sans son « sich ».
+//   faux    : tout le reste ; « autre » si c'est un autre mot qu'on connait.
+// opts : { langue, mode, article, autres: Set de mots plies, synonymes: [mots] }
+function jugerSaisieRappel(saisi, mot, opts){
+    opts = opts || {};
+    const langue = opts.langue === "es" ? "es" : "de";
+    const res = { verdict: "faux", raison: "", article: "" };
+    let tape = normRappel(saisi);
+    if(!tape) return { verdict: "vide", raison: "", article: "" };
+    // L'article tape, s'il y en a un, se met a part.
+    let artTape = "";
+    if(opts.mode === "nomen"){
+        const morceaux = tape.split(" ");
+        if(morceaux.length > 1 && (RAPPEL_ARTICLES[langue] || []).indexOf(morceaux[0]) >= 0){
+            artTape = morceaux.shift();
+            tape = morceaux.join(" ");
+        }
+    }
+    // « die (Pl.) », « der/das » : les articles admis pour ce nom.
+    const artsAdmis = String(opts.article || "").toLowerCase().replace(/\([^)]*\)/g, " ")
+        .split(/[\/\s]+/).filter(Boolean);
+    const formes = formesAttenduesRappel(mot);
+    const verbeSich = opts.mode === "verben" && langue === "de" && /^sich /i.test(String(mot).trim());
+    if(verbeSich) formes.slice().forEach(f => { if(/^sich /i.test(f)) formes.push(f.replace(/^sich /i, "")); });
+    const formesN = formes.map(normRappel);
+    const formesP = formes.map(plierRappel);
+    // Le mot lui-meme.
+    let motOk = "";
+    if(formesN.indexOf(tape) >= 0) motOk = "exact";
+    else if(formesP.indexOf(plierRappel(tape)) >= 0) motOk = "accent";
+    else if(langue === "de" && formesP.indexOf(plierRappel(tape).replace(/ae/g, "a").replace(/oe/g, "o").replace(/ue/g, "u")) >= 0) motOk = "accent";
+    else if((opts.synonymes || []).some(s => formesAttenduesRappel(s).map(plierRappel).indexOf(plierRappel(tape)) >= 0)) motOk = "synonyme";
+    else {
+        const p = plierRappel(tape);
+        const autres = opts.autres || new Set();
+        if(autres.has(p)) return { verdict: "faux", raison: "autre", article: "" };
+        // En espagnol, ce qui se prononce pareil (« la yave » pour « la llave ») :
+        // l'oreille a retrouve le mot, l'orthographe pas encore.
+        if(langue === "es" && formesP.map(sonEspagnolRappel).indexOf(sonEspagnolRappel(p)) >= 0) motOk = "son";
+        else if(formesP.some(f => distanceRappel(p, f) <= seuilFrappeRappel(f.length) && seuilFrappeRappel(f.length) > 0)) motOk = "frappe";
+    }
+    if(!motOk) return res;
+    // Le verbe sans « sich » : le mot est la, la forme est incomplete.
+    let raison = (motOk === "accent" || motOk === "frappe" || motOk === "son") ? motOk : "";
+    if(verbeSich && motOk !== "synonyme" && !/^sich /.test(tape)) raison = raison || "sich";
+    // L'article : absent = toléré ; present et faux = presque.
+    if(artTape && artsAdmis.length && artsAdmis.indexOf(artTape) < 0){
+        return { verdict: "presque", raison: raison || "article", article: artTape, articleFaux: true };
+    }
+    if(raison) return { verdict: "presque", raison: raison, article: artTape };
+    return { verdict: "juste", raison: motOk === "synonyme" ? "synonyme" : "", article: artTape };
+}
+
+// Les lettres de la bonne reponse qui different de ce qu'on a tape, pour les
+// souligner (« la <u>ll</u>ave »). Rend une liste de { c, diff }.
+function ecartLettresRappel(saisi, attendu){
+    const a = Array.from(normRappel(saisi)), b = Array.from(String(attendu || ""));
+    const bl = b.map(c => c.toLowerCase());
+    const d = [];
+    for(let i = 0; i <= a.length; i++){ d[i] = [i]; }
+    for(let j = 0; j <= b.length; j++){ d[0][j] = j; }
+    for(let i = 1; i <= a.length; i++)
+        for(let j = 1; j <= b.length; j++)
+            d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === bl[j - 1] ? 0 : 1));
+    const diff = new Array(b.length).fill(false);
+    let i = a.length, j = b.length;
+    while(i > 0 || j > 0){
+        if(i > 0 && j > 0 && d[i][j] === d[i - 1][j - 1] + (a[i - 1] === bl[j - 1] ? 0 : 1)){
+            if(a[i - 1] !== bl[j - 1]) diff[j - 1] = true;
+            i--; j--;
+        } else if(j > 0 && d[i][j] === d[i][j - 1] + 1){ diff[j - 1] = true; j--; }
+        else i--;
+    }
+    return b.map((c, k) => ({ c: c, diff: diff[k] && c !== " " }));
+}
+
+// LES LEURRES. cible et pool sont des cartes du paquet ({ themeId, index, mode,
+// word }) ; dep fournit ce que la logique ne doit pas aller chercher seule :
+//   dep.etat(it)    -> l'etat du mot (getWordState)
+//   dep.reponse(it) -> ce qui s'affiche comme choix (« la llave », « gehen »)
+//   dep.sens(it)    -> le sens dans la langue de l'eleve (« la clé »)
+//   dep.mode(it)    -> la categorie (nomen, verben, adjektive)
+// Regles : deja vu ; meme categorie ; ni la carte elle-meme, ni le meme mot
+// (meme reponse pliee), ni le meme sens, ni l'autre genre d'un nom de personne
+// (der Arzt / die Ärztin, rang 8) ; deux leurres distincts. Le meme theme (le
+// meme lieu) d'abord : la confusion y est utile. L'ordre vient de l'empreinte,
+// jamais du hasard.
+function leurresDejaVus(cible, pool, n, dep){
+    const cle = it => it.themeId + ":" + it.index;
+    const modeC = dep.mode(cible);
+    const repC = plierRappel(dep.reponse(cible));
+    const motC = plierRappel(Array.isArray(cible.word) ? cible.word[0] : (cible.word && cible.word.infinitif) || "");
+    const sensC = sensPlieRappel(dep.sens(cible));
+    const paireC = (modeC === "nomen" && Array.isArray(cible.word)) ? plierRappel(cible.word[8] || "") : "";
+    const vus = new Set([cle(cible)]);
+    const pris = new Set([repC]);
+    const sensPris = new Set([sensC]);
+    const cands = [];
+    (pool || []).forEach(it => {
+        if(!it || !it.word || vus.has(cle(it))) return;
+        vus.add(cle(it));
+        if(dep.mode(it) !== modeC) return;
+        if(!dejaVuRappel(dep.etat(it))) return;
+        const rep = dep.reponse(it);
+        const repP = plierRappel(rep);
+        if(!repP || pris.has(repP)) return;
+        const mot = plierRappel(Array.isArray(it.word) ? it.word[0] : (it.word.infinitif || ""));
+        if(mot && (mot === motC || mot === paireC)) return;
+        if(modeC === "nomen" && Array.isArray(it.word) && motC && plierRappel(it.word[8] || "") === motC) return;
+        const sens = sensPlieRappel(dep.sens(it));
+        if(!sens || sens === sensC) return;
+        cands.push({ it: it, rep: rep, repP: repP, sens: sens,
+                     meme: it.themeId === cible.themeId ? 0 : 1,
+                     ordre: empreinteRappel(cle(cible) + "|" + cle(it)) });
+    });
+    cands.sort((a, b) => (a.meme - b.meme) || (a.ordre - b.ordre));
+    const out = [];
+    for(const c of cands){
+        if(out.length >= n) break;
+        if(pris.has(c.repP) || sensPris.has(c.sens)) continue;
+        pris.add(c.repP); sensPris.add(c.sens);
+        out.push({ texte: c.rep, it: c.it });
+    }
+    return out;
+}
+
+// La bonne reponse parmi les leurres, a une place fixe pour ce mot.
+function ordreDesChoix(cleCible, bonne, leurres){
+    const tous = [{ texte: bonne, juste: true }].concat(leurres.map(l => ({ texte: l.texte, juste: false })));
+    return tous.map(c => ({ c: c, k: empreinteRappel(cleCible + "#" + c.texte) }))
+        .sort((a, b) => a.k - b.k).map(x => x.c);
+}
+// ---- RAPPEL ACTIF : LOGIQUE PURE (fin) ----
+
+// ---- Ce qui lit l'etat de l'app ----
+// Le compte « une sur trois » vit le temps d'un paquet (currentCardsFull), et
+// chaque decision est retenue par rang dans la file affichee (currentCards) :
+// redessiner la meme carte (changement de langue) redonne la meme forme.
+let RAPPEL_PAQUET = null;
+let RAPPEL_DEPUIS = RAPPEL_ECART;
+const RAPPEL_DECISIONS = new WeakMap();
+
+function modeDeLaCarteRappel(it){
+    return (it && it.mode) || flashcardMode;
+}
+function reponseRappel(it){
+    return motDictee({ mode: modeDeLaCarteRappel(it), word: it.word });
+}
+function sensRappel(it){
+    const m = modeDeLaCarteRappel(it);
+    if(m === "verben") return texteTraduit(it.word, "traduction");
+    if(m === "nomen") return texteCarte(it.word, "nomen", "traduction");
+    return texteCarte(it.word, m, "traduction");
+}
+function depRappel(){
+    return {
+        etat: it => getWordState(it.themeId, it.index),
+        reponse: reponseRappel,
+        sens: sensRappel,
+        mode: modeDeLaCarteRappel
+    };
+}
+
+// La carte peut-elle demander le mot, abstraction faite du tour ?
+function carteEligibleRappel(item){
+    if(!essaiActif("rappel_actif")) return false;
+    if(LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "es") return false;
+    if(!frontIsFrench || getLearningDirection() === "en") return false;
+    if(dansLePaquetGarde() || decouverteEnCours() || paquetTermine()) return false;
+    if(!item || !item.word || RAPPEL_MODES.indexOf(modeDeLaCarteRappel(item)) < 0) return false;
+    // Une paire de contraires (« ehrlich/unehrlich ») ne se tape pas.
+    if(/\//.test(reponseRappel(item))) return false;
+    return dejaVuRappel(getWordState(item.themeId, item.index));
+}
+
+function cacherRappelActif(){
+    const zone = document.getElementById("flashcards");
+    if(zone) zone.classList.remove("en-rappel");
+    const el = document.getElementById("rappelActif");
+    if(el){ el.classList.add("hidden"); el.textContent = ""; }
+}
+
+// Appelee a la fin de loadFlashcard(), la carte deja dessinee (cachee derriere).
+function preparerRappelActif(item){
+    if(currentCardsFull !== RAPPEL_PAQUET){ RAPPEL_PAQUET = currentCardsFull; RAPPEL_DEPUIS = RAPPEL_ECART; }
+    let memo = RAPPEL_DECISIONS.get(currentCards);
+    if(!memo){ memo = new Map(); RAPPEL_DECISIONS.set(currentCards, memo); }
+    const cleCarte = item.themeId + ":" + item.index;
+    let dec = memo.get(currentFlashcard);
+    if(!dec || dec.cle !== cleCarte){
+        dec = { cle: cleCarte, forme: null, leurres: [] };
+        const eligible = carteEligibleRappel(item);
+        let forme = null, leurres = [];
+        if(eligible && RAPPEL_DEPUIS >= RAPPEL_ECART){
+            const st = getWordState(item.themeId, item.index);
+            forme = formeSelonPoints(pointsRappel(st), cleCarte);
+            if(forme === "choisir"){
+                const pool = (currentCardsFull || []).concat(currentCards || []);
+                leurres = leurresDejaVus(item, pool, 2, depRappel());
+            }
+        }
+        const possible = !!forme && (forme === "taper" || leurres.length >= 2);
+        const tour = tourDuRappel(RAPPEL_DEPUIS, eligible, possible);
+        RAPPEL_DEPUIS = tour.depuis;
+        if(tour.active){ dec.forme = forme; dec.leurres = leurres; }
+        memo.set(currentFlashcard, dec);
+    }
+    if(!dec.forme || dec.fait) return;
+    montrerRappelActif(item, dec);
+}
+
+function montrerRappelActif(item, dec){
+    const zone = document.getElementById("flashcards");
+    const el = document.getElementById("rappelActif");
+    if(!zone || !el) return;
+    const langue = LANGUE_APPRISE === "es" ? "es" : "de";
+    const creer = (tag, cls, texte) => {
+        const n = document.createElement(tag);
+        if(cls) n.className = cls;
+        if(texte !== undefined) n.textContent = texte;
+        return n;
+    };
+    const st = getWordState(item.themeId, item.index);
+    const mode = modeDeLaCarteRappel(item);
+    const bonne = reponseRappel(item);
+    const recto = document.getElementById("flashWord");
+    const question = recto ? recto.textContent : sensRappel(item);
+    el.textContent = "";
+    el.classList.remove("hidden");
+    zone.classList.add("en-rappel");
+    // dir="auto" : un texte d'essai qui retombe sur l'anglais garde sa ponctuation
+    // a sa place dans une interface de droite a gauche.
+    const consigne = creer("div", "cp-type", t(dec.forme === "choisir" ? "ra_consigne_choisir" : "ra_consigne_taper_" + langue));
+    consigne.setAttribute("dir", "auto");
+    el.appendChild(consigne);
+    const motQ = creer("div", "ra-mot", question);
+    motQ.setAttribute("dir", "auto");
+    el.appendChild(motQ);
+    const corps = creer("div", "ra-corps");
+    el.appendChild(corps);
+    const pied = creer("div", "ra-pied");
+    el.appendChild(pied);
+    const lienGarde = creer("button", "ra-lien", t(estGardee(item) ? "garder_fait" : "garder_action"));
+    lienGarde.type = "button";
+    lienGarde.addEventListener("click", () => {
+        dec.fait = true;
+        el.querySelectorAll("button, input").forEach(n => { n.disabled = true; });
+        basculerGardeCarte();
+    });
+
+    // Le verdict : la reponse, l'ecart, les points tels qu'ils seront, et le
+    // seul bouton qui fait passer -- celui qui enregistre le jugement.
+    const conclure = (verdict, raison, saisi, articleFaux) => {
+        if(dec.fait) return;
+        dec.fait = true;
+        corps.querySelectorAll("button, input").forEach(n => { n.disabled = true; });
+        corps.querySelectorAll(".ra-cache-apres").forEach(n => n.remove());
+        const juste = verdict === "juste" || verdict === "presque";
+        const v = creer("div", "cp-retour ra-verdict " + (verdict === "juste" ? "bon" : verdict === "presque" ? "presque" : "faux"));
+        const titre = creer("b", "ra-titre", t(verdict === "juste" ? (raison === "synonyme" ? "ra_juste_synonyme" : "ra_juste")
+                                               : verdict === "presque" ? "ra_presque" : "ra_faux"));
+        titre.setAttribute("dir", "auto");
+        v.appendChild(titre);
+        const rep = creer("div", "ra-rep");
+        rep.setAttribute("lang", langue);
+        rep.setAttribute("dir", "ltr");
+        if(verdict === "presque" && saisi){
+            ecartLettresRappel(saisi, bonne).forEach(x => {
+                if(x.diff){ const u = creer("u", "", x.c); rep.appendChild(u); }
+                else rep.appendChild(document.createTextNode(x.c));
+            });
+        } else rep.textContent = bonne;
+        v.appendChild(rep);
+        if(saisi && verdict !== "juste"){
+            const expl = creer("small", "", tf("ra_tu_as_ecrit", { s: saisi })
+                + (raison ? " " + t("ra_raison_" + raison + (raison === "accent" ? "_" + langue : "")) : "")
+                + (articleFaux && raison !== "article" ? " " + tf("ra_raison_article_aussi", { a: (Array.isArray(item.word) ? item.word[1] : "") }) : ""));
+            expl.setAttribute("dir", "auto");
+            v.appendChild(expl);
+        }
+        corps.appendChild(v);
+        // Les pastilles : allumees comme apres le jugement, la nouvelle en train
+        // de s'allumer (« le point s'allume sous les yeux »).
+        const atteints = juste ? Math.min(pointsRappel(st) + 1, SRS_PALIERS) : 0;
+        const ligne = creer("div", "ra-points" + (juste ? "" : " faux"));
+        const pips = creer("span", "srs-pips");
+        for(let i = 0; i < SRS_PALIERS; i++){
+            let cls = i < atteints ? "srs-pip on" : (i === atteints && atteints < SRS_PALIERS ? "srs-pip next" : "srs-pip");
+            if(juste && i === atteints - 1) cls += " frais";
+            pips.appendChild(creer("span", cls));
+        }
+        ligne.appendChild(pips);
+        ligne.appendChild(creer("span", "ra-echeance", juste ? echeanceProchaineReussite(st)
+                                                           : tf("echeance_encore", { n: SRS_ENCORE_MINUTES })));
+        corps.appendChild(ligne);
+        const suite = creer("button", "primary ra-suite", juste ? t("review_continuer") : t("review_again"));
+        suite.type = "button";
+        suite.addEventListener("click", () => {
+            suite.disabled = true;
+            lienGarde.disabled = true;
+            if(juste) reviewGood(); else reviewAgain();
+        }, { once: true });
+        corps.appendChild(suite);
+        try{ suite.focus({ preventScroll: true }); }catch(e){}
+        // Le mot dit par la voix de l'app, apres le son de reussite.
+        // (Les confettis et leur son viennent au « Continuer », avec reviewGood().)
+        setTimeout(() => { if(el.isConnected && !el.classList.contains("hidden")){ try{ direAllemand(bonne); }catch(e){} } }, 150);
+    };
+
+    if(dec.forme === "choisir"){
+        const box = creer("div", "cp-choix ra-choix");
+        box.setAttribute("lang", langue);
+        ordreDesChoix(dec.cle, bonne, dec.leurres).forEach(ch => {
+            const b = creer("button", "", ch.texte);
+            b.type = "button";
+            b.setAttribute("dir", "ltr");
+            if(ch.juste) b.dataset.juste = "1";
+            b.addEventListener("click", () => {
+                if(dec.fait) return;
+                b.classList.add(ch.juste ? "bon" : "faux");
+                box.querySelectorAll("button").forEach(x => {
+                    if(x.dataset.juste) x.classList.add("bon"); else if(x !== b) x.classList.add("pale");
+                });
+                conclure(ch.juste ? "juste" : "faux", "", "");
+            });
+            box.appendChild(b);
+        });
+        corps.appendChild(box);
+    } else {
+        const champ = creer("input", "cp-saisie ra-saisie");
+        champ.type = "text";
+        champ.setAttribute("lang", langue);
+        champ.setAttribute("dir", "ltr");
+        champ.setAttribute("autocapitalize", "off");
+        champ.setAttribute("autocomplete", "off");
+        champ.setAttribute("autocorrect", "off");
+        champ.setAttribute("enterkeyhint", "done");
+        champ.setAttribute("aria-label", t("ra_consigne_taper_" + langue));
+        champ.spellcheck = false;
+        corps.appendChild(champ);
+        const touches = creer("div", "ra-touches ra-cache-apres");
+        (RAPPEL_TOUCHES[langue] || []).forEach(c => {
+            const k = creer("button", "ra-touche", c);
+            k.type = "button";
+            // La touche ne vole pas le focus : le clavier du telephone reste ouvert.
+            k.addEventListener("mousedown", e => e.preventDefault());
+            k.addEventListener("click", () => {
+                const a = champ.selectionStart == null ? champ.value.length : champ.selectionStart;
+                const z = champ.selectionEnd == null ? a : champ.selectionEnd;
+                champ.value = champ.value.slice(0, a) + c + champ.value.slice(z);
+                try{ champ.setSelectionRange(a + c.length, a + c.length); }catch(e){}
+                champ.focus();
+            });
+            touches.appendChild(k);
+        });
+        corps.appendChild(touches);
+        const verif = creer("button", "primary ra-verifier ra-cache-apres", t("verify_button"));
+        verif.type = "button";
+        verif.addEventListener("click", () => {
+            const saisi = champ.value.trim();
+            if(!saisi){ champ.focus(); return; }
+            const pool = (currentCardsFull || []).concat(currentCards || []);
+            const sensC = sensPlieRappel(sensRappel(item));
+            const autres = new Set(), synonymes = [];
+            pool.forEach(it => {
+                if(!it || !it.word || (it.themeId === item.themeId && it.index === item.index)) return;
+                if(modeDeLaCarteRappel(it) !== mode) return;
+                const w = Array.isArray(it.word) ? it.word[0] : it.word.infinitif;
+                if(!w) return;
+                if(sensPlieRappel(sensRappel(it)) === sensC) synonymes.push(w);
+                else autres.add(plierRappel(w));
+            });
+            // L'autre genre d'un nom de personne n'est pas une faute de frappe.
+            if(mode === "nomen" && Array.isArray(item.word) && item.word[8]) autres.add(plierRappel(item.word[8]));
+            const r = jugerSaisieRappel(saisi, Array.isArray(item.word) ? item.word[0] : item.word.infinitif, {
+                langue: langue, mode: mode, article: Array.isArray(item.word) ? item.word[1] : "",
+                autres: autres, synonymes: synonymes
+            });
+            conclure(r.verdict, r.raison, saisi, !!r.articleFaux);
+        });
+        champ.addEventListener("keydown", e => { if(e.key === "Enter"){ e.preventDefault(); verif.click(); } });
+        corps.appendChild(verif);
+        // « Je ne sais pas » retourne la carte, comme aujourd'hui : on se juge.
+        const nsp = creer("button", "ra-lien ra-cache-apres", t("ra_je_ne_sais_pas"));
+        nsp.type = "button";
+        nsp.addEventListener("click", () => { dec.fait = true; cacherRappelActif(); flipCard(); });
+        corps.appendChild(nsp);
+        setTimeout(() => { try{ if(champ.isConnected) champ.focus({ preventScroll: true }); }catch(e){} }, 60);
+    }
+    pied.appendChild(lienGarde);
 }
 
 // LE PAQUET EST-IL DEJA FINI ? La carte reste a l'ecran quand showFlashcardEnd()
