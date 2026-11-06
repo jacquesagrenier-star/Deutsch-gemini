@@ -185,7 +185,9 @@ async function choisirSerie(series, motsDe, cle){
   if (pool.length === 1) return pool[0];
   const faits = lire("faits", {});
   const notes = await Promise.all(pool.map(async s => {
-    const mots = motsDe(s), etats = await Tirage.demander(mots);
+    // une serie sans mot cle (les Sprachbausteine du telc) ne demande rien a l'app : la question attendrait ses 2 s
+    // de delai pour rien, et le tri se fait alors par « quand » seul (correctif de la session telc, 6 nov.)
+    const mots = motsDe(s), etats = mots.length ? await Tirage.demander(mots) : null;
     const utiles = etats ? etats.filter(e => e && (e.e === "d" || e.e === "n")).length : mots.length;
     return {s, utiles, quand: faits[cle + s.id] || 0};
   }));
