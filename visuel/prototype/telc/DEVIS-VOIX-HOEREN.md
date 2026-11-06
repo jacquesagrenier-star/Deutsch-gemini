@@ -5,7 +5,8 @@ cette session.** D'ici là, la page parle avec la voix du téléphone.
 
 ## Ce qu'il y a à dire
 
-Compté sur `donnees/hoeren.json` (la lecture en lettres `dit` quand une réplique a des chiffres) :
+Compté sur `donnees/hoeren.json` et `donnees/hoeren-schreiben.json` (la lecture en lettres `dit` quand une réplique a
+des chiffres) :
 
 | lot | caractères |
 |---|---|
@@ -53,9 +54,12 @@ Pris sur le solde de l'abonnement Pro renouvelé le 4 nov. (600 000 crédits pou
 
 ## Après la génération
 
-1. `python audio/controler_sons.py --dossiers de` : aucun SATURE, CLIC ni TRAINE.
-2. Les lectures `dit` recopiées dans `audio/lectures/de.json`.
-3. Chaque réplique reçoit son champ `mp3` dans `hoeren.json` : la page joue le fichier, sinon le téléphone.
-4. **L'hébergement** : Firebase Hosting est plein (erreur 429), rien n'y est déposé. Les voix de l'oral du DTZ vivent
-   dans le dépôt (`visuel/prototype/dtz/voix/`) ; les nôtres feraient environ 15 Mo dans `visuel/prototype/telc/voix/`.
-   Où les mettre : question posée au chef d'orchestre.
+La fabrication passe par l'outil des voix du DTZ (`visuel/prototype/dtz/outils/voix.py`, session « DTZ : écouter et
+lire ») : une piste par texte entendu (une voix par personne, le contexte entre répliques, la sonie du cours).
+
+1. Les lectures `dit` versées dans `audio/lectures/de.json` (comme `outils/lectures_dtz.py`).
+2. `python audio/controler_sons.py --dossiers de` : aucun SATURE, CLIC ni TRAINE.
+3. Le manifeste `donnees/voix-ecouter.json` ({clé de piste : fichier}) : la page joue le fichier, sinon la voix du
+   téléphone. Les clés sont déjà dans le code (`telcH1-T1`, `telcH1-42`, `telcHS1-52`…).
+4. **L'hébergement** : Firebase Hosting, comme les pistes du DTZ (`BASE_PISTES` de `commun.js`), débloqué le 6 nov.
+   au matin d'après le chef d'orchestre ; le dépôt seulement après l'accord de Jacques.

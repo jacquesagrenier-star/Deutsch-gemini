@@ -1,18 +1,20 @@
-"""Controle des donnees de l'ecoute du telc Deutsch A2·B1 (visuel/prototype/telc/donnees/hoeren.json).
+"""Controle des donnees de l'ecoute du telc Deutsch A2·B1 : visuel/prototype/telc/donnees/hoeren.json (Hoeren, items
+32-51) et hoeren-schreiben.json (Hoeren und Schreiben, items 52-56).
 
-Usage : python tests/telc_hoeren.py
+Usage : python tests/telc_ecouter.py
 
 Le format vient de preparation-examens/FORMAT-TELC.md (le Uebungstest gratuit du telc, format seulement) :
-  Hoeren Teil 1 (32-36) : 5 associations, solutions a-i ; Teil 2 (37-41) et Teil 3 (42-46) : 5 richtig / falsch ;
+  Teil 1 (32-36) : 5 associations, solutions a-i ; Teil 2 (37-41) et Teil 3 (42-46) : 5 richtig / falsch ;
   Teil 4 (47-51) : 5 associations, solutions a-f (une de trop) ; Hoeren und Schreiben (52-56) : 5 notes.
 Le controle verifie aussi :
-  - qu'aucune solution n'est prise deux fois (Teil 1 et 4) et que la feuille n'est pas devinable (pas plus de 4 « richtig »
-    ou de 4 « falsch » sur les 5 d'un Teil) ;
-  - que chaque replique qui contient un chiffre a sa lecture en lettres (« dit »), et que cette lecture n'a plus de
-    chiffre (regle du depot : les nombres se disent en lettres) ;
-  - que chaque voix nommee existe, et que chaque explication et traduction existe en francais ET en anglais ;
-  - que la solution d'une note s'entend bien dans le message (dans « dit » ou « text »).
-Separe de tests/telc.py (les Sprachbausteine), que d'autres sessions modifient en meme temps.
+  - qu'aucune solution n'est prise deux fois (Teil 1 et 4) et que la feuille n'est pas devinable (ni 5 « richtig »
+    ni 5 « falsch » sur les 5 d'un Teil) ;
+  - que chaque replique qui contient un chiffre a sa lecture en lettres (« dit »), sans chiffre (les nombres se
+    disent en lettres) ;
+  - que chaque voix nommee existe (les voix sont dans hoeren.json), et que chaque explication et traduction existe en
+    francais ET en anglais ;
+  - que la solution d'une note s'entend bien dans le message ;
+  - que les deux modules sont dans une fonction (ils partagent la page avec les autres parties du telc).
 """
 import json
 import os
@@ -20,7 +22,7 @@ import re
 import sys
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FICHIER = os.path.join(RACINE, "visuel", "prototype", "telc", "donnees", "hoeren.json")
+TELC = os.path.join(RACINE, "visuel", "prototype", "telc")
 fautes = []
 
 
@@ -50,14 +52,15 @@ def repliques(ou, lignes, voix):
             faute(o2, "la lecture contient encore un chiffre : %r" % l["dit"][:60])
 
 
-def associations(ou, bloc, items_cle, lettres_attendues, voix):
+def associations(ou, bloc, items_cle, lettres_attendues):
     sol = bloc.get("loesungen") or bloc.get("saetze") or []
     lettres = [x.get("b") for x in sol]
     if lettres != list(lettres_attendues):
         faute(ou, "solutions %s au lieu de %s" % ("".join(map(str, lettres)), lettres_attendues))
     for x in sol:
-        if not all((x.get(c) or "").strip() for c in ("de", "fr", "en")):
-            faute(ou, "solution %s sans de / fr / en" % x.get("b"))
+        if not (x.get("text") or "").strip():
+            faute(ou, "solution %s sans texte allemand" % x.get("b"))
+        langues(ou + ", solution %s" % x.get("b"), x, "text")
     items = bloc.get(items_cle) or []
     bons = [it.get("bon") for it in items]
     if len(set(bons)) != len(bons):
@@ -79,7 +82,7 @@ def vrai_faux(ou, items):
     for it in items:
         o2 = ou + ", item %s" % it.get("nr")
         if not isinstance(it.get("bon"), bool):
-            faute(o2, "« bon » doit valoir true ou false")
+            faute(o2, "« bon » doit valoir true (richtig) ou false (falsch)")
         if not (it.get("aussage") or "").strip():
             faute(o2, "pas d'Aussage")
         langues(o2, it, "aussage")
@@ -89,28 +92,31 @@ def vrai_faux(ou, items):
         faute(ou, "feuille devinable : %d richtig sur %d" % (r, len(items)))
 
 
-def main():
-    d = json.load(open(FICHIER, encoding="utf-8"))
+def consigne(ou, c, voix):
+    if not (c.get("text") or "").strip() or c.get("wer") not in voix:
+        faute(ou, "texte allemand ou voix manquant")
+    langues(ou, c, "text")
+    if re.search(r"\d", c.get("dit") or c.get("text") or ""):
+        faute(ou, "un chiffre dans la consigne dite, sans lecture")
+
+
+def hoeren():
+    d = json.load(open(os.path.join(TELC, "donnees", "hoeren.json"), encoding="utf-8"))
     voix = d.get("voix") or {}
-    for t in ("T1", "T2", "T3", "T4", "HS", "ende"):
-        c = (d.get("consignes") or {}).get(t) or {}
-        if not all((c.get(k) or "").strip() for k in ("de", "fr", "en")) or c.get("wer") not in voix:
-            faute("consigne " + t, "de / fr / en ou voix manquant")
-        if re.search(r"\d", c.get("dit") or c.get("de") or ""):
-            faute("consigne " + t, "un chiffre dans la consigne dite")
-    for t in ("T1", "T2", "T3", "T4", "HS"):
-        c = (d.get("conseils") or {}).get(t) or {}
-        if not ((c.get("fr") or "").strip() and (c.get("en") or "").strip()):
-            faute("conseil " + t, "fr / en manquant")
-    nH = 0
-    for s in d.get("hoeren") or []:
+    for t in ("T1", "T2", "T3", "T4", "ende"):
+        consigne("consigne " + t, (d.get("consignes") or {}).get(t) or {}, voix)
+    for t in ("T1", "T2", "T3", "T4"):
+        langues("conseil " + t, (d.get("conseils") or {}).get(t) or {}, "text")
+    series = d.get("series") or []
+    if len({s.get("id") for s in series}) != len(series):
+        faute("hoeren.json", "deux series ont le meme id")
+    for s in series:
         ou = "Hoeren serie %s" % s.get("id")
         t1 = s.get("T1") or {}
         repliques(ou + " T1", t1.get("audio"), voix)
-        items = associations(ou + " T1", t1, "items", "abcdefghi", voix)
-        numeros(ou + " T1", items, 32)
-        langues(ou + " T1", t1, "situation")
-        langues(ou + " T1", t1, "frage")
+        numeros(ou + " T1", associations(ou + " T1", t1, "items", "abcdefghi"), 32)
+        for c in ("situation", "frage"):
+            langues(ou + " T1", t1, c)
         t2 = s.get("T2") or {}
         repliques(ou + " T2", t2.get("audio"), voix)
         numeros(ou + " T2", t2.get("items") or [], 37)
@@ -123,16 +129,20 @@ def main():
             repliques(ou + " T3 %s" % a.get("nr"), a.get("audio"), voix)
         t4 = s.get("T4") or {}
         repliques(ou + " T4 intro", t4.get("intro"), voix)
-        pers = associations(ou + " T4", t4, "personen", "abcdef", voix)
+        pers = associations(ou + " T4", t4, "personen", "abcdef")
         numeros(ou + " T4", pers, 47)
-        if len(pers) != 5:
-            faute(ou + " T4", "%d personnes au lieu de 5" % len(pers))
         for p in pers:
             repliques(ou + " T4 %s" % p.get("nr"), p.get("audio"), voix)
         langues(ou + " T4", t4, "thema")
-        nH += 1
-    nHS = 0
-    for s in d.get("notizen") or []:
+    return len(series), voix
+
+
+def hoeren_schreiben(voix):
+    d = json.load(open(os.path.join(TELC, "donnees", "hoeren-schreiben.json"), encoding="utf-8"))
+    consigne("consigne HS", d.get("consigne") or {}, voix)
+    langues("conseil HS", d.get("conseil") or {}, "text")
+    series = d.get("series") or []
+    for s in series:
         ou = "Hoeren und Schreiben serie %s" % s.get("id")
         ms = s.get("nachrichten") or []
         numeros(ou, ms, 52)
@@ -154,14 +164,24 @@ def main():
                     faute(o2, "la solution %r ne s'entend pas dans le message" % sol)
             elif m.get("typ") == "wort" and sol.lower() not in entendu.lower():
                 faute(o2, "la solution %r ne s'entend pas dans le message" % sol)
-        nHS += 1
-    print("Hoeren : %d serie(s), %d items ; Hoeren und Schreiben : %d serie(s), %d notes" % (nH, nH * 20, nHS, nHS * 5))
-    if fautes:
-        print("\n%d faute(s) :" % len(fautes))
-        for f in fautes:
-            print("   " + f)
-        sys.exit(1)
-    print("OK : le format du telc est respecte.")
+    return len(series)
 
 
-main()
+def modules():
+    for f in ("hoeren.js", "hoeren-schreiben.js"):
+        src = open(os.path.join(TELC, f), encoding="utf-8").read()
+        code = "\n".join(l for l in src.splitlines() if not l.startswith("//")).strip()
+        if not (code.startswith("(function(){") and code.rstrip().endswith("})();")):
+            faute(f, "le module n'est pas dans une fonction : ses noms remplaceraient ceux des autres parties")
+
+
+nH, voix = hoeren()
+nHS = hoeren_schreiben(voix)
+modules()
+print("Hoeren : %d serie(s), %d items ; Hoeren und Schreiben : %d serie(s), %d notes" % (nH, nH * 20, nHS, nHS * 5))
+if fautes:
+    print("\n%d faute(s) :" % len(fautes))
+    for f in fautes:
+        print("   " + f)
+    sys.exit(1)
+print("OK : le format du telc est respecte.")
