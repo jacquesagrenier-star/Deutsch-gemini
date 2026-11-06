@@ -186,7 +186,7 @@ METEO = {
 
 # LES DEUX VALISES : ce qui est VISIBLE sur le lit (et seulement ca : une chose rangee dans la valise ne se voit pas,
 # donc rien ne se demande au passe « qu'a-t-elle emporte »). de / es : (genre, mot du corpus, pluriel affiche) ;
-# hors : absent du corpus (hors jeu dans l'app tant qu'il n'y est pas, voir AJOUTS).
+# Tous au corpus depuis le 6 nov. 2026 (die Sonnencreme, die Sonnenbrille, la crema solar : decision fe14b7d).
 OBJETS = {
     "pass":        {"de": ("der", "Pass"), "es": ("el", "pasaporte"), "fr": "le passeport", "en": "the passport", "pt": "o passaporte"},
     "badeanzug":   {"de": ("der", "Badeanzug"), "es": ("el", "bañador"), "fr": "le maillot de bain", "en": "the swimsuit", "pt": "o maiô"},
@@ -223,8 +223,9 @@ NOMBRES = {"de": ["", "eine", "zwei", "drei", "vier", "fünf", "sechs", "sieben"
 # les mots d'ordre (frise) : ceux du corpus
 LIENS = {"de": ["zuerst", "dann", "danach", "schließlich"], "es": ["primero", "después", "luego", "al final"]}
 
-# LES MOTS QUI MANQUENT AU CORPUS : proposes a Jacques, pas ajoutes (ils restent « hors jeu » jusqu'a son accord).
-AJOUTS = {"de": ["die Sonnencreme", "die Sonnenbrille", "das Einzelzimmer"], "es": ["la crema solar", "la habitación doble", "la habitación individual"]}
+# LES MOTS QUI MANQUAIENT AU CORPUS : les six ajoutes le 6 nov. 2026 (« Oui, les 6 », decision fe14b7d) par
+# ajouts/vacances.json et espanol/ajouts/vacances.json ; il n'en manque plus.
+AJOUTS = {"de": [], "es": []}
 
 # ---------------------------------------------------------------------------------------------------------------
 # LE CORPUS
@@ -342,7 +343,8 @@ def verifier():
             ok = (m["mot"] in (vde if app == "de" else ves)) if m.get("cat") == "verbe" else \
                  (m["mot"] in (ade if app == "de" else aes)) if m.get("cat") == "adjectif" else ((m.get("genre"), m["mot"]) in (nde if app == "de" else nes))
             if not ok: absents.append(app + " " + m["mot"])
-    for app, noms in (("de", [("das", "Doppelzimmer"), ("die", "Nacht"), ("das", "Frühstück")]), ("es", [("la", "habitación"), ("la", "noche"), ("el", "desayuno"), ("la", "reserva")])):
+    for app, noms in (("de", [("das", "Doppelzimmer"), ("das", "Einzelzimmer"), ("die", "Nacht"), ("das", "Frühstück")]),
+                      ("es", [("la", "habitación"), ("la", "habitación doble"), ("la", "habitación individual"), ("la", "noche"), ("el", "desayuno"), ("la", "reserva")])):
         for g, m in noms:
             if (g, m) not in (nde if app == "de" else nes): fautes.append("%s %s %s absent" % (app, g, m))
     return fautes, sorted(set(absents))
@@ -440,8 +442,8 @@ def ecrire_gloses():
             if m.get("cat") == "verbe": poser(m["mot"], verbes.get(m["mot"]))
             elif m.get("cat") == "adjectif": poser(m["mot"], adj.get(m["mot"]))
             else: poser(m["genre"] + " " + m["mot"], noms.get((m["genre"], m["mot"])))
-        for g, m in ([("das", "Doppelzimmer"), ("die", "Nacht"), ("das", "Frühstück"), ("das", "Hotel")] if app == "de"
-                     else [("la", "habitación"), ("la", "noche"), ("el", "desayuno"), ("la", "reserva"), ("el", "hotel")]):
+        for g, m in ([("das", "Doppelzimmer"), ("das", "Einzelzimmer"), ("die", "Nacht"), ("das", "Frühstück"), ("das", "Hotel")] if app == "de"
+                     else [("la", "habitación"), ("la", "habitación doble"), ("la", "habitación individual"), ("la", "noche"), ("el", "desayuno"), ("la", "reserva"), ("el", "hotel")]):
             poser(g + " " + m, noms.get((g, m)))
         for v in (["reservieren", "buchen"] if app == "de" else ["reservar"]):
             poser(v, verbes.get(v))

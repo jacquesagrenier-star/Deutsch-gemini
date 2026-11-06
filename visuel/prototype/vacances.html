@@ -434,11 +434,17 @@ function carteHTML(r){
 // ---------- les mots du theme (le tirage suit les mots, 3 nov. 2026) ----------
 // A la forme du CORPUS, cles de la progression commune : chaque verbe (son infinitif), les objets des valises (avec
 // leur genre), les mots du temps qu'il a fait, ceux de la reservation, et les liens de l'ordre (zuerst, primero...).
-// Un mot que le corpus n'a pas (die Sonnencreme, la crema solar) est « hors jeu » dans l'app : la page n'a rien a prevoir.
-const MOTS_RESA = {de: [{mot: "Doppelzimmer", genre: "das", resa: "doppel"}, {mot: "Nacht", genre: "die", resa: "nuit"}, {mot: "Frühstück", genre: "das", resa: "petitdej"},
+// Tous au corpus depuis le 6 nov. 2026 (die Sonnencreme, das Einzelzimmer, la habitación doble... : decision fe14b7d).
+// La chambre de la confirmation a son mot, double (doppel) ou simple (einzel), dans les deux langues.
+const MOTS_RESA = {de: [{mot: "Doppelzimmer", genre: "das", resa: "doppel"}, {mot: "Einzelzimmer", genre: "das", resa: "einzel"},
+                        {mot: "Nacht", genre: "die", resa: "nuit"}, {mot: "Frühstück", genre: "das", resa: "petitdej"},
                         {mot: "reservieren", cat: "verbe", resa: "accueil"}, {mot: "buchen", cat: "verbe", resa: "buchen"}],
-                   es: [{mot: "habitación", genre: "la", resa: "chambre"}, {mot: "noche", genre: "la", resa: "nuit"}, {mot: "desayuno", genre: "el", resa: "petitdej"},
-                        {mot: "reservar", cat: "verbe", resa: "accueil"}]};
+                   es: [{mot: "habitación", genre: "la", resa: "chambre"}, {mot: "habitación doble", genre: "la", resa: "doppel"},
+                        {mot: "habitación individual", genre: "la", resa: "einzel"}, {mot: "noche", genre: "la", resa: "nuit"},
+                        {mot: "desayuno", genre: "el", resa: "petitdej"}, {mot: "reservar", cat: "verbe", resa: "accueil"}]};
+// le mot vise est une chambre (double ou simple) : la confirmation tiree doit etre de cette chambre
+const chambreVisee = w => w && (w.resa === "doppel" || w.resa === "einzel") ? w.resa : null;
+const resasPour = w => D.reservations.filter(x => !chambreVisee(w) || x.chambre === chambreVisee(w));
 let MOTS = null;
 function motsDuTheme(){
   if (MOTS) return MOTS;
@@ -647,9 +653,9 @@ const EX = {
   },
   // LA RESERVATION : « Was hat Lena gebucht? » -- « Ein Doppelzimmer für drei Nächte. » ; et « Wie viele Nächte...? »
   buchung(w){
-    if (w && !["doppel", "chambre", "nuit", "buchen", "accueil"].includes(w.resa)) return false;
+    if (w && !["doppel", "einzel", "chambre", "nuit", "buchen", "accueil"].includes(w.resa)) return false;
     if (w && w.resa === "accueil" && DE_APP) return false;       // reservieren : la reception (« ich habe ... reserviert »)
-    const r = hasard(D.reservations.filter(x => !w || w.resa !== "doppel" || x.chambre === "doppel"));
+    const r = hasard(resasPour(w));
     const autreCh = r.chambre === "doppel" ? "einzel" : "doppel";
     if (w && w.resa === "nuit" || (!w && Math.random() < 0.35)){
       const rep = L.rNuits(r.nuits), opts = unique([rep, ...melanger([1, 2, 3, 4, 5, 6, 7].filter(x => x !== r.nuits)).slice(0, 3).map(L.rNuits)]);
@@ -660,7 +666,7 @@ const EX = {
     }
     const nAutre = hasard([r.nuits + 1, Math.max(1, r.nuits - 1) === r.nuits ? r.nuits + 2 : Math.max(1, r.nuits - 1)]);
     const rep = L.reserve(r), opts = unique([rep, L.reserve(r, autreCh), L.reserve(r, null, nAutre), L.reserve(r, autreCh, nAutre)]);
-    motQ = w || (r.chambre === "doppel" && Math.random() < 0.5 ? motResa(DE_APP ? "doppel" : "chambre") : DE_APP ? motResa("buchen") : motResa(Math.random() < 0.5 ? "accueil" : "chambre"));
+    motQ = w || (Math.random() < 0.5 ? motResa(r.chambre) : DE_APP ? motResa("buchen") : motResa(Math.random() < 0.5 ? "accueil" : "chambre"));
     tradQ = tradReserve(r.chambre, r.nuits);
     ecran("carte", carteHTML(r), L.qReserve(r), true, true);
     tradsChoix = {}; [[r.chambre, r.nuits], [autreCh, r.nuits], [r.chambre, nAutre], [autreCh, nAutre]].forEach(([c, x]) => { tradsChoix[L.reserve(r, c, x)] = tradReserve(c, x); });
@@ -670,11 +676,11 @@ const EX = {
   // A LA RECEPTION : « Guten Tag, ich habe ein Doppelzimmer für drei Nächte reserviert. » -- et la faute « ich bin »
   // (« reservó » en espagnol : la personne)
   rezeption(w){
-    if (w && !["doppel", "chambre", "nuit", "accueil"].includes(w.resa)) return false;
-    const r = hasard(D.reservations.filter(x => !w || w.resa !== "doppel" || x.chambre === "doppel"));
+    if (w && !["doppel", "einzel", "chambre", "nuit", "accueil"].includes(w.resa)) return false;
+    const r = hasard(resasPour(w));
     const autreCh = r.chambre === "doppel" ? "einzel" : "doppel", nAutre = r.nuits === 1 ? 2 : hasard([r.nuits - 1, r.nuits + 1]);
     const rep = L.accueil(r), opts = unique([rep, L.accueil(r, autreCh), L.accueil(r, null, nAutre), L.accueil(r, null, null, DE_APP ? "bin" : "reservó")]);
-    motQ = w || motResa(hasard(["accueil", "accueil", "nuit", r.chambre === "doppel" ? (DE_APP ? "doppel" : "chambre") : "nuit"]));
+    motQ = w || motResa(hasard(["accueil", "accueil", "nuit", r.chambre]));
     tradQ = tradAccueil(r.chambre, r.nuits);
     ecran("rezeption", carteHTML(r), "", false, true);
     tradsChoix = {}; tradsChoix[L.accueil(r, autreCh)] = tradAccueil(autreCh, r.nuits); tradsChoix[L.accueil(r, null, nAutre)] = tradAccueil(r.chambre, nAutre);
@@ -693,15 +699,15 @@ const EX = {
   },
   // LA RESERVATION, VRAI OU FAUX : la chambre, les nuits ou le petit-dejeuner, un fait change une fois sur deux
   carteVF(w){
-    if (w && !["doppel", "chambre", "nuit", "petitdej", "buchen", "accueil"].includes(w.resa)) return false;
-    const r = hasard(D.reservations.filter(x => !w || w.resa !== "doppel" || x.chambre === "doppel"));
-    const quoi = w ? ({doppel: "chambre", chambre: "chambre", buchen: "chambre", accueil: "chambre", nuit: "nuit", petitdej: "petitdej"})[w.resa] : hasard(["chambre", "nuit", "petitdej"]);
+    if (w && !["doppel", "einzel", "chambre", "nuit", "petitdej", "buchen", "accueil"].includes(w.resa)) return false;
+    const r = hasard(resasPour(w));
+    const quoi = w ? ({doppel: "chambre", einzel: "chambre", chambre: "chambre", buchen: "chambre", accueil: "chambre", nuit: "nuit", petitdej: "petitdej"})[w.resa] : hasard(["chambre", "nuit", "petitdej"]);
     const vrai = Math.random() < 0.5;
     let phrase, juste;
     if (quoi === "chambre"){ juste = L.vfChambre(r, r.chambre); phrase = vrai ? juste : L.vfChambre(r, r.chambre === "doppel" ? "einzel" : "doppel"); }
     else if (quoi === "nuit"){ juste = L.vfNuits(r, r.nuits); phrase = vrai ? juste : L.vfNuits(r, r.nuits === 1 ? 2 : hasard([r.nuits - 1, r.nuits + 1])); }
     else { juste = L.vfPetitdej(r.petitdej); phrase = vrai ? juste : L.vfPetitdej(!r.petitdej); }
-    motQ = w || motResa(quoi === "chambre" ? (r.chambre === "doppel" ? (DE_APP ? "doppel" : "chambre") : DE_APP ? "buchen" : "accueil") : quoi);
+    motQ = w || motResa(quoi === "chambre" ? (Math.random() < 0.5 ? r.chambre : DE_APP ? "buchen" : "accueil") : quoi);
     tradQ = quoi === "petitdej" ? tradPetitdej(r.petitdej) : null;
     ecran("carteVF", carteHTML(r), phrase, true);
     const rep = vrai ? L.vrai : L.faux;
