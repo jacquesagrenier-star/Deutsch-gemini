@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mark t’aide à préparer le DTZ</title>
+<title>Mark et Anna t’aident à préparer le DTZ</title>
 <!--
-  MARK T'AIDE A PREPARER LE DTZ -- L'ORAL (maquette, 3 nov. 2026, essai admin « dtz_oral »). Jacques : « est-ce qu'on peut
-  faire poser des questions par Anna ou Marc ». L'oral du DTZ en entier, dans son FORMAT (manuel du DTZ, 2009) :
-  1a se presenter, 1b repondre a des questions, 2a decrire une photo, 2b raconter et comparer, 3 planifier a deux.
+  MARK ET ANNA T'AIDENT A PREPARER LE DTZ -- L'ORAL (maquette, 3 nov. 2026, essai admin « dtz_oral » ; titre du 4 nov.).
+  Jacques : « est-ce qu'on peut faire poser des questions par Anna ou Marc ». L'oral du DTZ en entier, dans son FORMAT
+  (manuel du DTZ, 2009), en CINQ SECTIONS qu'on fait seules ou a la suite (examen complet) : 1 se presenter, 2 repondre a
+  des questions, 3 decrire une photo, 4 raconter et comparer, 5 planifier a deux. Une page par exercice (SECTIONS).
   Tout le contenu est a nous : textes, sujet, photos (deux scenes deja faites de l'app), voix.
 
   LA FICTION. Mark parle allemand depuis l'enfance (scenes/personnages.json, « origine ») : il n'a pas besoin du DTZ.
@@ -19,9 +20,9 @@
   comparaison, les propositions et les questions a l'autre. La justesse de la grammaire et la prononciation, elle
   ne les juge pas : c'est ecrit sous chaque verdict.
 
-  LES VOIX. Celles du telephone pour l'instant ; les fichiers enregistres (Anna 92qyovlOYJE0EVmWB0fA, Mark
-  J8ovlSvQ5WTDCCxIM8U0, ElevenLabs v2) se poseront dans dtz/voix/<id>.mp3, listes par dtz/voix/manifest.json :
-  la page les prend des qu'ils existent, sans changement de code.
+  LES VOIX ET LES CLIPS. Anna et Mark parlent en video (Kling, dtz/video/<id>.mp4, coupes a la fin de la voix) avec
+  leurs voix de la serie (ElevenLabs v2, dtz/voix/<id>.mp3), listes par dtz/voix/manifest.json et fabriques par
+  video/episode-dtz-oral/publier_medias.py ; sans fichier, la voix du telephone.
 
   LE MICRO. La reconnaissance du navigateur quand la page l'a (navigateur, site) ; sinon, dans les apps, elle la
   demande a l'app par message (« wortando-scene », type « micro ») : le module natif vit dans la page de l'app.
@@ -42,9 +43,25 @@ body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-att
 .retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
 .titre{flex:1;font-weight:900;font-size:18px;line-height:1.2}
 .titre small{display:block;font-size:12px;font-weight:800;color:var(--gris);letter-spacing:.04em;text-transform:uppercase}
-.etapes{max-width:560px;margin:0 auto 12px;display:flex;gap:4px}
-.etapes i{flex:1;height:6px;border-radius:3px;background:rgba(28,36,48,.14)}
-.etapes i.fait{background:var(--turq)} .etapes i.ici{background:var(--ambre)}
+.etapes{max-width:560px;margin:-4px auto 8px;display:flex;justify-content:center;gap:2px}
+.etapes[hidden]{display:none}
+.point{width:30px;height:30px;border:0;background:none;padding:0;cursor:pointer;display:grid;place-items:center}
+.point::before{content:"";width:12px;height:12px;border-radius:50%;border:2px solid var(--turq);box-sizing:border-box}
+.point.fait::before{background:var(--turq)}
+.point.ici::before{width:16px;height:16px;border-color:var(--ambre);background:var(--ambre)}
+.sections{display:flex;flex-direction:column;gap:8px}
+.sections > b{font-size:13px;color:var(--gris)}
+.section{display:flex;align-items:center;gap:12px;width:100%;text-align:start;border:1px solid rgba(76,86,107,.25);background:var(--carte);color:var(--encre);border-radius:14px;padding:10px 12px;font:inherit;cursor:pointer}
+.section .num{width:30px;height:30px;border-radius:50%;background:var(--turq);color:#fff;display:grid;place-items:center;font-weight:900;flex:0 0 auto}
+html.nuit .section .num{color:#0E1C26}
+.section .nomsec{flex:1;display:flex;flex-direction:column;line-height:1.3}
+.section .nomsec b{font-size:16px}
+.section .nomsec small{font-size:13px;color:var(--gris);font-weight:700}
+.section .etat{font-weight:900;color:var(--gris);font-size:14px;white-space:nowrap}
+.section .etat.fait{color:var(--vert);font-size:18px}
+.puces span.ici{border-color:var(--ambre);box-shadow:0 0 0 2px var(--ambre) inset}
+.verdict .question{font-weight:800;line-height:1.45;margin:0 0 6px}
+.verdict .micro-info{text-align:start;margin-top:8px}
 main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:12px}
 h2{margin:0;font-size:19px;font-weight:900}
 .partie{font-size:12px;font-weight:900;color:var(--ambre-f);letter-spacing:.05em;text-transform:uppercase;margin:0}
@@ -106,11 +123,12 @@ button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
 </head>
 <body>
 <div class="haut"><button class="retour" id="retour" type="button" aria-label="Retour">‹</button>
-  <div class="titre"><small>Préparation au DTZ · entraînement</small>Mark t’aide à préparer l’oral</div></div>
-<div class="etapes" id="etapes"></div>
+  <div class="titre"><small id="titrePetit">Préparation au DTZ · entraînement</small><span id="titreGrand">Mark et Anna t’aident à préparer l’oral</span></div></div>
+<div class="etapes" id="etapes" hidden></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=5"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -199,6 +217,9 @@ const norm = s => String(s || "").toLowerCase().replace(/[.,!?;:«»"„“()]/g
 const nbMots = s => norm(s).split(" ").filter(Boolean).length;
 const a = (re, s) => re.test(norm(s));
 const LIENS = /\b(weil|dass|wenn|obwohl|als|damit|deshalb|darum|deswegen|trotzdem|außerdem|denn|ob|zum beispiel)\b/;
+const PROPOSE = /\b(wir könnten|können wir|wie wäre es|wollen wir|lass uns|lasst uns|ich schlage vor|vielleicht|wir sollten|ich würde|was hältst du|treffen wir uns|ich bringe|ich kann|ich nehme)\b/;
+const REAGIT = /\b(gute idee|einverstanden|okay|ok|genau|stimmt|super|prima|toll|ich finde|lieber|nicht so gut|ich weiß nicht|klingt gut|das passt|passt mir|gerne|gern|ja|nein)\b/;
+const DEMANDE = /\b(was meinst du|was denkst du|oder|passt (dir|es dir)|hast du|kannst du|willst du|möchtest du|wie findest du|bringst du|machst du|und du)\b/;
 const PASSE = /\b(habe|hast|hat|haben|bin|bist|ist|sind|war|waren|hatte|hatten)\b[^.]*\bge\w+(t|en)\b|\b(war|waren|hatte|hatten|früher)\b/;
 const POINTS_1A = [
   ["Name", /\b(heiße|heisse|mein name|name ist)\b/],
@@ -261,9 +282,7 @@ const JUGES = {
     const tout = tours.join(" . ");
     const compte = re => tours.filter(t => a(re, t)).length;
     const pris = tours.filter(t => nbMots(t) >= 4).length;
-    const prop = compte(/\b(wir könnten|können wir|wie wäre es|wollen wir|lass uns|lasst uns|ich schlage vor|vielleicht|wir sollten|ich würde|was hältst du|treffen wir uns|ich bringe|ich kann|ich nehme)\b/);
-    const reac = compte(/\b(gute idee|einverstanden|okay|ok|genau|stimmt|super|prima|toll|ich finde|lieber|nicht so gut|ich weiß nicht|klingt gut|das passt|passt mir|gerne|gern|ja|nein)\b/);
-    const frage = compte(/\b(was meinst du|was denkst du|oder|passt (dir|es dir)|hast du|kannst du|willst du|möchtest du|wie findest du|bringst du|machst du|und du)\b/);
+    const prop = compte(PROPOSE), reac = compte(REAGIT), frage = compte(DEMANDE);
     const raison = compte(LIENS);
     const c = [
       crit(tout, "Tu as répondu aux 5 questions de la feuille : " + pris + " sur 5", pris >= 4),
@@ -382,9 +401,21 @@ function ecouter(surTexte, surFin){
 // ---------------------------------------------------------------- l'ecran
 const zone = document.getElementById("zone"), suite = document.getElementById("suite");
 function el(tag, cls, texte){ const e = document.createElement(tag); if (cls) e.className = cls; if (texte != null) e.textContent = texte; return e; }
-function etapes(ici){
+function entete(petit, grand){ document.getElementById("titrePetit").textContent = petit; document.getElementById("titreGrand").textContent = grand; }
+// Un point par exercice de la section : plein quand il est fait, ambre pour celui-ci ; on le touche pour y sauter.
+function points(s, e){
   const b = document.getElementById("etapes"); b.textContent = "";
-  ["p1a","p1b","p2a","p2b","p3"].forEach((p, i) => { const k = el("i"); const j = ["p1a","p1b","p2a","p2b","p3"].indexOf(ici); if (i < j || ici === "fin") k.className = "fait"; else if (i === j) k.className = "ici"; b.appendChild(k); });
+  b.hidden = s < 0;
+  if (s < 0) return;
+  const st = etatSection(s);
+  SECTIONS[s].ex.forEach((x, k) => {
+    const p = el("button", "point" + (st.fait[k] ? " fait" : "") + (k === e ? " ici" : ""));
+    p.type = "button";
+    p.setAttribute("aria-label", "Exercice " + (k + 1) + " : " + x.titre + (st.fait[k] ? ", fait" : ""));
+    if (k === e) p.setAttribute("aria-current", "step");
+    p.onclick = () => exercice(s, k);
+    b.appendChild(p);
+  });
 }
 function bulle(id, dejaDit){
   const [qui, de, fr] = L[id];
@@ -414,7 +445,8 @@ function bulle(id, dejaDit){
   if (cadre) cadre.scrollIntoView({ behavior: "smooth", block: "start" });
   return dejaDit ? Promise.resolve() : dire(id, cadre);
 }
-function coach(cle){
+function coach(cle, aideSeule){
+  if (aideSeule) return aideDe(cle);
   const ligne = el("div", "qui");
   const img = el("img"); img.src = IMG.mark; img.alt = ""; ligne.appendChild(img);
   const b = el("div", "bulle mark");
@@ -422,6 +454,9 @@ function coach(cle){
   b.appendChild(el("div", "texte", COACH[cle]));
   ligne.appendChild(b);
   zone.appendChild(ligne);
+  aideDe(cle);
+}
+function aideDe(cle){
   if (AIDE[cle]){
     const aide = el("div", "aide");
     aide.appendChild(el("div", "", "Pour t’aider :"));
@@ -441,8 +476,7 @@ function feuille(titre, items, texteDe, enFrancais){
 }
 function photo(src){ const i = el("img", "photo"); i.src = src; i.alt = "La photo"; zone.appendChild(i); }
 function bouton(texte, action){ suite.hidden = false; suite.disabled = false; suite.textContent = texte; suite.onclick = () => { taire(); action(); }; }
-function vider(partie, titre, ici){ taire(); zone.textContent = ""; suite.hidden = true; etapes(ici); window.scrollTo(0, 0);
-  if (partie){ zone.appendChild(el("p", "partie", partie)); zone.appendChild(el("h2", "", titre)); } }
+function vider(){ taire(); zone.textContent = ""; suite.hidden = true; window.scrollTo(0, 0); }
 
 // Le tour de parole de l'eleve : micro, texte entendu, ou saisie au clavier.
 function aToi(consigne, limiteS, quandFini){
@@ -479,141 +513,244 @@ function aToi(consigne, limiteS, quandFini){
     z.append(ta, ok); ta.focus();
   };
 }
-function montrerVerdict(res, texte, refaire, continuer){
+function montrerVerdict(res, texte, refaire, continuer, titre){
   if (texte){ const e = el("div", "entendu", texte); e.lang = "de"; zone.appendChild(el("div", "micro-info", "Ce que j’ai entendu :")); zone.appendChild(e); }
   const v = el("div", "verdict");
-  const h = el("h3", "", "Mon estimation"); const n = el("span", "niv " + res.niveau, res.niveau === "moins" ? "pas encore A2" : res.niveau); h.appendChild(n); v.appendChild(h);
+  const h = el("h3", "", titre || "Le retour d’Anna"); if (res.niveau) h.appendChild(chip(res.niveau)); v.appendChild(h);
   const ul = el("ul", "crit"); res.crit.forEach(c => { const li = el("li", c.ok ? "ok" : "", c.label); ul.appendChild(li); }); v.appendChild(ul);
   v.appendChild(el("p", "limite", LIMITE));
   zone.appendChild(v);
-  const act = el("div", "actions"); const r = el("button", "", "🎙 Recommencer cette partie"); r.type = "button"; r.onclick = refaire; act.appendChild(r); zone.appendChild(act);
+  const act = el("div", "actions"); const r = el("button", "", "🎙 Recommencer cet exercice"); r.type = "button"; r.onclick = refaire; act.appendChild(r); zone.appendChild(act);
   bouton("Continuer", continuer);
   v.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-// ---------------------------------------------------------------- le deroule
-const resultats = {};
+// ---------------------------------------------------------------- les sections
+// TROIS NIVEAUX (Jacques, 4 nov. 2026, « sections et exercices » et « choisir sa section », DECISIONS.md) : « tout
+// s'ajoute un a la suite de l'autre... c'est comme un fil de conversation » ; « De pouvoir passer d'une section a
+// l'autre sans passer partout par le processus ». (1) l'accueil liste les cinq sections avec leur etat et propose
+// l'examen complet ; (2) dans une section, UNE PAGE PAR EXERCICE, des points qu'on touche pour sauter, « ‹ » vers la
+// liste ; (3) en fin de section, le recapitulatif des reponses et du retour, puis Refaire / Section suivante / Toutes
+// les sections. L'examen complet enchaine les cinq sections et donne l'estimation A2 / B1 a la fin seulement.
+const SECTIONS = [
+  { cle: "p1a", titre: "Se présenter", de: "Sich vorstellen", ex: [
+    { titre: "Écoute Mark", modele: true, jouer: [["bulle", "a_bienvenue"], ["bulle", "m_vorstellung"]], feuille: "stichworte" },
+    { titre: "À toi", jouer: [["bulle", "a_danke_mark"]], feuille: "stichworte", juge: "p1a", limite: 100, consigne: "À toi : présente-toi, environ une minute" }
+  ]},
+  { cle: "p1b", titre: "Répondre aux questions", de: "Nachfragen beantworten", ex: [
+    { titre: "Première question", question: 0, juge: "p1b", limite: 80, consigne: "À toi : réponds en quelques phrases" },
+    { titre: "Deuxième question", question: 1, juge: "p1b", limite: 80, consigne: "À toi : réponds en quelques phrases" }
+  ]},
+  { cle: "p2a", titre: "Décrire une photo", de: "Ein Foto beschreiben", ex: [
+    { titre: "La photo de Mark", modele: true, jouer: [["bulle", "a_fotos"], ["photo", "markt-obst-heimisch.webp", "La photo de Mark"], ["bulle", "m_foto"]] },
+    { titre: "Ta photo", photo: ["supermarkt.webp", "Ta photo"], jouer: [["bulle", "a_ihr_foto"]], juge: "p2a", limite: 130, consigne: "À toi : décris ta photo, une à deux minutes" }
+  ]},
+  { cle: "p2b", titre: "Raconter et comparer", de: "Erzählen und vergleichen", ex: [
+    { titre: "Ton expérience", jouer: [["bulle", "a_erfahrung"]], juge: "p2b", limite: 100, consigne: "À toi : raconte et compare, environ une minute" }
+  ]},
+  { cle: "p3", titre: "Planifier avec Mark", de: "Gemeinsam etwas planen", ex: PLAN_NOTIZEN.map((q, k) => ({
+    titre: q, tour: k, feuille: "plan", limite: 50,
+    jouer: k === 0 ? [["bulle", "a_planen"], ["bulle", "m_p1"]] : [["bulle", "m_p" + (k + 1)]]
+  }))}
+];
+const QUESTIONS_1B = ["a_frage_familie", "a_frage_beruf", "a_frage_freizeit", "a_frage_deutsch"];
+const RANG = { moins: 0, A2: 1, B1: 2 }, NIV = ["moins", "A2", "B1"];
+
+// L'etat des sections reste d'une visite a l'autre (« ‹ » ramene a la liste sans rien perdre). Stockage du
+// navigateur, enveloppe : une fenetre privee le refuse, la page marche sans.
+const CLE_ETAT = "wortando_dtzOral";
+let ETAT = {};
+try{ ETAT = JSON.parse(localStorage.getItem(CLE_ETAT) || "{}") || {}; }catch(e){ ETAT = {}; }
+function sauver(){ try{ localStorage.setItem(CLE_ETAT, JSON.stringify(ETAT)); }catch(e){} }
+function etatSection(s){ const c = SECTIONS[s].cle; if (!ETAT[c]) ETAT[c] = { fait: [], rep: [], res: [] }; return ETAT[c]; }
+let examen = false, ici = { s: -1, e: -1 };
+
+// Les deux questions de la section 2 portent d'abord sur ce que l'eleve n'a pas dit en se presentant (comme le
+// ferait l'examinatrice) ; tirees une fois par passage de la section.
+function questions1b(){
+  const st = etatSection(1);
+  if (!st.questions){
+    const pts = (etatSection(0).res[1] || {}).points || [];
+    const prio = QUESTIONS_1B.filter(id => (id === "a_frage_familie" && !pts.includes("Familie")) || (id === "a_frage_beruf" && !pts.includes("Arbeit / Beruf")));
+    const reste = QUESTIONS_1B.filter(id => !prio.includes(id)).sort(() => Math.random() - 0.5);
+    st.questions = prio.concat(reste).slice(0, 2);
+    sauver();
+  }
+  return st.questions;
+}
+function aJouer(s, e){
+  const X = SECTIONS[s].ex[e];
+  return X.question != null ? [["bulle", questions1b()[X.question]]] : X.jouer;
+}
+function chip(n){ return el("span", "niv " + n, n === "moins" ? "pas encore A2" : n); }
+// Ce que vaut un tour de la planification, pris seul (la section entiere se juge sur les cinq : JUGES.p3).
+function critTour(t){
+  return [
+    crit(t, "Tu réponds en une phrase (" + nbMots(t) + " mots)", nbMots(t) >= 4),
+    crit(t, "Tu proposes (Wir könnten…, Wie wäre es…, Ich bringe…)", a(PROPOSE, t)),
+    crit(t, "Tu réagis (Gute Idee, lieber…, einverstanden)", a(REAGIT, t)),
+    crit(t, "Tu poses une question à Mark (Was meinst du ?, … oder …?)", a(DEMANDE, t)),
+    crit(t, "Tu donnes une raison (weil, denn, deshalb…)", a(LIENS, t))
+  ];
+}
+function resultatSection(s){
+  const S = SECTIONS[s], st = etatSection(s);
+  if (S.cle === "p3") return S.ex.some((x, k) => st.rep[k] != null) ? JUGES.p3(S.ex.map((x, k) => st.rep[k] || "")) : null;
+  const rs = S.ex.map((x, k) => x.juge ? st.res[k] : null).filter(Boolean);
+  if (!rs.length) return null;
+  if (rs.length === 1) return rs[0];
+  const r = Math.floor(rs.reduce((n, x) => n + RANG[x.niveau], 0) / rs.length);
+  return { niveau: NIV[r], crit: [].concat(...rs.map(x => x.crit)) };
+}
+
 function accueil(){
-  vider(null, null, null);
+  examen = false; ici = { s: -1, e: -1 };
+  vider(); entete("Préparation au DTZ · entraînement", "Mark et Anna t’aident à préparer l’oral"); points(-1);
   zone.appendChild(el("h2", "", "L’oral du DTZ, en répétition"));
   coach("accueil");
-  feuille("Le déroulé (environ 20 minutes à deux)", ["1 · Se présenter", "1 · Répondre aux questions", "2 · Décrire une photo", "2 · Raconter et comparer", "3 · Planifier ensemble"], null, true);
-  zone.appendChild(el("p", "limite", "Mode entraînement : expliqué, avec des aides et des modèles. L’examen blanc, minuté et sans aide, viendra ensuite. Le verdict A2 / B1 est une estimation."));
-  bouton("Commencer", partie1a);
+  const liste = el("div", "sections");
+  liste.appendChild(el("b", "", "Les cinq sections (environ 20 minutes à deux)"));
+  SECTIONS.forEach((S, s) => {
+    const st = etatSection(s), n = S.ex.length, f = S.ex.filter((x, k) => st.fait[k]).length;
+    const b = el("button", "section"); b.type = "button";
+    b.appendChild(el("span", "num", String(s + 1)));
+    const t = el("span", "nomsec"); t.appendChild(el("b", "", S.titre));
+    const d = el("small", "", S.de); d.lang = "de"; t.appendChild(d); b.appendChild(t);
+    const etat = el("span", "etat" + (f === n ? " fait" : ""), f === n ? "✓" : f ? f + " / " + n : "");
+    if (f === n) etat.setAttribute("aria-label", "fait");
+    b.appendChild(etat);
+    b.onclick = () => { examen = false; exercice(s, 0); };
+    liste.appendChild(b);
+  });
+  zone.appendChild(liste);
+  zone.appendChild(el("p", "limite", "Touche une section pour t’y entraîner seule, ou fais l’examen complet : les cinq sections à la suite, puis l’estimation A2 / B1 d’Anna. Mode entraînement : expliqué, avec des aides et des modèles. L’examen blanc, minuté et sans aide, viendra ensuite."));
+  bouton("▶ Examen complet", () => { examen = true; exercice(0, 0); });
 }
-async function partie1a(){
-  vider("Partie 1 · se présenter", "Sich vorstellen", "p1a");
-  coach("p1a");
-  feuille("Ihr Aufgabenblatt", STICHWORTE);
-  bouton("Écouter Anna", async () => {
+
+function exercice(s, e){
+  ici = { s, e };
+  const S = SECTIONS[s], X = S.ex[e], st = etatSection(s);
+  if (e === 0 && s === 1 && !st.fait.length) questions1b();
+  vider();
+  entete((examen ? "Examen complet · " : "") + "Exercice " + (e + 1) + " sur " + S.ex.length, "Section " + (s + 1) + " · " + S.titre);
+  points(s, e);
+  const p = el("p", "partie", S.de); p.lang = "de"; zone.appendChild(p);
+  zone.appendChild(el("h2", "", X.titre));
+  // Le conseil de Mark ouvre la section ; les exercices suivants gardent seulement les tournures qui aident.
+  coach(S.cle, e > 0);
+  let f = null;
+  if (X.feuille === "stichworte") f = feuille("Ihr Aufgabenblatt", STICHWORTE);
+  if (X.feuille === "plan"){
+    f = feuille("Gemeinsames Aufgabenblatt", PLAN_NOTIZEN, "Sie möchten mit Ihrem Deutschkurs einen Ausflug machen. Sie beide organisieren ihn. Planen Sie, was Sie tun können.");
+    f.querySelectorAll(".puces span").forEach((x, k) => { if (st.fait[k]) x.classList.add("ok"); if (k === e) x.classList.add("ici"); });
+  }
+  if (X.photo){ zone.appendChild(el("div", "micro-info", X.photo[1])); photo(X.photo[0]); }
+  const jouer = aJouer(s, e);
+  const premier = L[jouer.find(x => x[0] === "bulle")[1]][0];
+  bouton(premier === "mark" ? "Écouter Mark" : "Écouter Anna", async () => {
     suite.hidden = true;
-    await bulle("a_bienvenue");
-    await bulle("m_vorstellung");
-    await bulle("a_danke_mark");
-    aToi("À toi : présente-toi, environ une minute", 100, t => {
-      const res = JUGES.p1a(t); resultats.p1a = res;
-      const puces = zone.querySelectorAll(".feuille .puces span");
-      puces.forEach(s => { if ((res.points || []).includes(s.textContent)) s.classList.add("ok"); });
-      montrerVerdict(res, t, partie1a, () => partie1b(res));
+    for (const j of jouer){
+      if (j[0] === "bulle") await bulle(j[1]);
+      else { zone.appendChild(el("div", "micro-info", j[2])); photo(j[1]); }
+    }
+    if (X.modele){ st.fait[e] = true; sauver(); points(s, e); bouton("Continuer", () => apres(s, e)); return; }
+    if (X.tour != null){ tourPlan(s, e, false, f); return; }
+    aToi(X.consigne, X.limite, t => {
+      const res = JUGES[X.juge](t);
+      st.rep[e] = t; st.res[e] = res; st.fait[e] = true; sauver(); points(s, e);
+      if (X.juge === "p1a" && f) f.querySelectorAll(".puces span").forEach(x => { if ((res.points || []).includes(x.textContent)) x.classList.add("ok"); });
+      montrerVerdict(res, t, () => exercice(s, e), () => apres(s, e));
     });
   });
 }
-async function partie1b(res1){
-  vider("Partie 1 · répondre", "Nachfragen beantworten", "p1b");
-  coach("p1b");
-  // La question de suite porte sur ce que l'eleve n'a pas dit (comme le ferait l'examinatrice), sinon sur ses loisirs.
-  const manque = ((res1 && res1.points) || []);
-  const id = !manque.includes("Familie") ? "a_frage_familie" : !manque.includes("Arbeit / Beruf") ? "a_frage_beruf" : Math.random() < 0.5 ? "a_frage_freizeit" : "a_frage_deutsch";
-  bouton("Écouter Anna", async () => {
-    suite.hidden = true;
-    await bulle(id);
-    aToi("À toi : réponds en quelques phrases", 80, t => {
-      const res = JUGES.p1b(t); resultats.p1b = res;
-      montrerVerdict(res, t, () => partie1b(res1), partie2a);
-    });
+// Un tour de la planification : Mark pose sa question, l'eleve repond, Mark reagit. Trop court, il relance une fois ;
+// un refus, il se range ; sinon il accepte. Au dernier tour, il conclut.
+function tourPlan(s, e, relance, f){
+  const st = etatSection(s);
+  aToi("À toi : réponds à Mark (" + PLAN_NOTIZEN[e] + ")", 50, async t => {
+    const ligne = el("div", "entendu", t || "(rien entendu)"); ligne.lang = "de"; zone.appendChild(ligne);
+    if (nbMots(t) < 4 && !relance){ await bulle("m_nachfrage"); tourPlan(s, e, true, f); return; }
+    st.rep[e] = t; st.fait[e] = true; sauver(); points(s, e);
+    if (f && nbMots(t) >= 4) f.querySelectorAll(".puces span")[e].classList.add("ok");
+    const refus = /\b(nicht|lieber|keine lust|zu weit|zu teuer|schlecht|leider)\b/.test(norm(t));
+    await bulle(e < 4 ? (refus ? "m_nein" : (e % 2 ? "m_ok2" : "m_ok")) : "m_ende");
+    montrerVerdict({ crit: critTour(t) }, null, () => exercice(s, e), () => apres(s, e), "Le retour de Mark");
   });
 }
-async function partie2a(){
-  vider("Partie 2 · la photo", "Ein Foto beschreiben", "p2a");
-  coach("p2a");
-  bouton("Écouter Anna", async () => {
-    suite.hidden = true;
-    await bulle("a_fotos");
-    zone.appendChild(el("div", "micro-info", "La photo de Mark"));
-    photo("markt-obst-heimisch.webp");
-    await bulle("m_foto");
-    zone.appendChild(el("div", "micro-info", "Ta photo"));
-    photo("supermarkt.webp");
-    await bulle("a_ihr_foto");
-    aToi("À toi : décris ta photo, une à deux minutes", 130, t => {
-      const res = JUGES.p2a(t); resultats.p2a = res;
-      montrerVerdict(res, t, partie2a, partie2b);
-    });
-  });
+function apres(s, e){
+  if (e + 1 < SECTIONS[s].ex.length) return exercice(s, e + 1);
+  if (examen) return s + 1 < SECTIONS.length ? exercice(s + 1, 0) : fin();
+  recap(s);
 }
-async function partie2b(){
-  vider("Partie 2 · ton expérience", "Erzählen und vergleichen", "p2b");
-  coach("p2b");
-  bouton("Écouter Anna", async () => {
-    suite.hidden = true;
-    await bulle("a_erfahrung");
-    aToi("À toi : raconte et compare, environ une minute", 100, t => {
-      const res = JUGES.p2b(t); resultats.p2b = res;
-      montrerVerdict(res, t, partie2b, partie3);
-    });
+
+function recap(s){
+  const S = SECTIONS[s], st = etatSection(s);
+  ici = { s, e: "recap" };
+  vider(); entete("Fin de la section", "Section " + (s + 1) + " · " + S.titre); points(s, -1);
+  zone.appendChild(el("h2", "", "Ton récapitulatif"));
+  S.ex.forEach((X, k) => {
+    if (X.modele) return;
+    const c = el("div", "verdict");
+    const r = X.juge ? st.res[k] : null;
+    const h = el("h3", "", X.titre); if (r) h.appendChild(chip(r.niveau)); c.appendChild(h);
+    const j = aJouer(s, k).filter(x => x[0] === "bulle").pop();
+    if (j){ const q = el("div", "question", L[j[1]][1]); q.lang = "de"; c.appendChild(q); }
+    if (st.rep[k] != null){
+      c.appendChild(el("div", "micro-info", "Ta réponse :"));
+      const e = el("div", "entendu", st.rep[k] || "(rien entendu)"); e.lang = "de"; c.appendChild(e);
+      c.appendChild(el("div", "micro-info", X.tour != null ? "Le retour de Mark :" : "Le retour d’Anna :"));
+      const ul = el("ul", "crit"); (r ? r.crit : critTour(st.rep[k])).forEach(x => ul.appendChild(el("li", x.ok ? "ok" : "", x.label))); c.appendChild(ul);
+    } else c.appendChild(el("p", "limite", "Pas encore fait : touche son point en haut pour y aller."));
+    zone.appendChild(c);
   });
+  // La section entiere, quand elle a plusieurs reponses (les deux questions, la conversation) : une seule estimation.
+  const r = resultatSection(s);
+  if (r && S.ex.filter(x => !x.modele).length > 1){
+    const c = el("div", "verdict");
+    const h = el("h3", "", S.cle === "p3" ? "Toute la conversation" : "Toute la section"); h.appendChild(chip(r.niveau)); c.appendChild(h);
+    if (S.cle === "p3"){ const ul = el("ul", "crit"); r.crit.forEach(x => ul.appendChild(el("li", x.ok ? "ok" : "", x.label))); c.appendChild(ul); }
+    zone.appendChild(c);
+  }
+  zone.appendChild(el("p", "limite", LIMITE));
+  const act = el("div", "actions");
+  const refaire = el("button", "", "Refaire la section"); refaire.type = "button";
+  refaire.onclick = () => { if (s === 1) st.questions = null; exercice(s, 0); };
+  const toutes = el("button", "", "Toutes les sections"); toutes.type = "button"; toutes.onclick = accueil;
+  act.append(refaire, toutes); zone.appendChild(act);
+  if (s + 1 < SECTIONS.length) bouton("Section suivante", () => exercice(s + 1, 0));
+  else { toutes.remove(); bouton("Toutes les sections", accueil); }
 }
-async function partie3(){
-  vider("Partie 3 · planifier ensemble", "Gemeinsam etwas planen", "p3");
-  coach("p3");
-  const f = feuille("Gemeinsames Aufgabenblatt", PLAN_NOTIZEN, "Sie möchten mit Ihrem Deutschkurs einen Ausflug machen. Sie beide organisieren ihn. Planen Sie, was Sie tun können.");
-  bouton("Écouter Anna", async () => {
-    suite.hidden = true;
-    await bulle("a_planen");
-    const tours = [];
-    const puces = f.querySelectorAll(".puces span");
-    const tour = async (k, relance) => {
-      if (k >= 5){
-        await bulle("m_ende");
-        const res = JUGES.p3(tours); resultats.p3 = res;
-        montrerVerdict(res, null, partie3, fin);
-        return;
-      }
-      if (!relance) await bulle("m_p" + (k + 1));
-      aToi("À toi : réponds à Mark (" + PLAN_NOTIZEN[k] + ")", 50, async t => {
-        const ligne = el("div", "entendu", t || "(rien entendu)"); ligne.lang = "de"; zone.appendChild(ligne);
-        // Mark reagit a ce qu'il entend : trop court, il relance une fois ; un refus, il se range ; sinon il accepte.
-        if (nbMots(t) < 4 && !relance){ await bulle("m_nachfrage"); tour(k, true); return; }
-        tours.push(t);
-        if (nbMots(t) >= 4) puces[k].classList.add("ok");
-        const n = norm(t);
-        const refus = /\b(nicht|lieber|keine lust|zu weit|zu teuer|schlecht|leider)\b/.test(n);
-        if (k < 4) await bulle(refus ? "m_nein" : (k % 2 ? "m_ok2" : "m_ok"));
-        tour(k + 1, false);
-      });
-    };
-    tour(0, false);
-  });
-}
+
 async function fin(){
-  vider(null, null, "fin");
-  const parts = [["p1a", "1 · Se présenter"], ["p1b", "1 · Répondre"], ["p2a", "2 · La photo"], ["p2b", "2 · Raconter et comparer"], ["p3", "3 · Planifier ensemble"]];
-  const niv = parts.map(p => (resultats[p[0]] || {}).niveau || "moins");
+  ici = { s: -1, e: "fin" };
+  vider(); entete("Examen complet", "Le verdict d’Anna"); points(-1);
+  const niv = SECTIONS.map((S, s) => (resultatSection(s) || {}).niveau || "moins");
   const b1 = niv.filter(x => x === "B1").length, a2 = niv.filter(x => x !== "moins").length;
   const global = b1 >= 3 && a2 === 5 ? "B1" : a2 >= 3 ? "A2" : "moins";
   zone.appendChild(el("h2", "", "Le verdict d’Anna"));
   await bulle("a_ende_" + global, true);
+  // Le cadre du clip, pour que dire() joue la VIDEO : sans lui, la voix seule passait sous l'image fixe et les levres
+  // d'Anna ne bougeaient pas (Jacques, 4 nov. 2026).
+  const cadreVerdict = [...zone.querySelectorAll(".clip")].pop() || null;
   const tab = el("table", "tableau");
-  parts.forEach((p, i) => { const tr = el("tr"); tr.appendChild(el("td", "", p[1])); const td = el("td"); td.appendChild(el("span", "niv " + niv[i], niv[i] === "moins" ? "pas encore A2" : niv[i])); tr.appendChild(td); tab.appendChild(tr); });
+  SECTIONS.forEach((S, i) => { const tr = el("tr"); tr.appendChild(el("td", "", (i + 1) + " · " + S.titre)); const td = el("td"); td.appendChild(chip(niv[i])); tr.appendChild(td); tab.appendChild(tr); });
   zone.appendChild(tab);
   zone.appendChild(el("p", "limite", "Au DTZ, le B1 à l’examen entier exige le B1 à l’oral, et aussi dans au moins une épreuve écrite (Écouter et Lire, ou Écrire). " + LIMITE));
   coach("fin");
-  const act = el("div", "actions"); const r = el("button", "", "Recommencer l’oral"); r.type = "button"; r.onclick = accueil; act.appendChild(r); zone.appendChild(act);
+  const act = el("div", "actions");
+  const r = el("button", "", "Refaire l’examen"); r.type = "button"; r.onclick = () => { examen = true; etatSection(1).questions = null; exercice(0, 0); };
+  const t = el("button", "", "Toutes les sections"); t.type = "button"; t.onclick = accueil;
+  act.append(r, t); zone.appendChild(act);
   bouton("Terminer", () => parler("fini", { faits: 0, bons: 0 }));
-  dire("a_ende_" + global);
+  dire("a_ende_" + global, cadreVerdict);
 }
 
-document.getElementById("retour").onclick = () => { taire(); if (DANS_APP) parler("fermer"); else history.back(); };
+// « ‹ » : d'une section (ou du verdict) vers la liste des sections ; de la liste, on quitte l'oral.
+document.getElementById("retour").onclick = () => {
+  taire();
+  if (ici.s >= 0 || ici.e === "fin"){ accueil(); return; }
+  if (DANS_APP) parler("fermer"); else history.back();
+};
 // Agrandir les images (themes/zoom.js, decision de Jacques du 3 nov. : « Oui, les deux ») : aucune image de l'oral ne
 // sert a repondre, toutes s'ouvrent au toucher -- les photos a decrire et les portraits d'Anna et de Mark.
 Zoom.init({direct: "img.photo, .qui img", loupe: "", langue: "fr"});

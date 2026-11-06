@@ -293,7 +293,7 @@ window.SCENE = {
    "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "torwart",
    "devant": 0,
    "boites": [
     [
@@ -315,7 +315,7 @@ window.SCENE = {
    "theme": "sports_b1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 0,
    "boites": [
     [
@@ -340,7 +340,7 @@ window.SCENE = {
    "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 0,
    "boites": [
     [
@@ -366,7 +366,7 @@ window.SCENE = {
    "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 0,
    "boites": [
     [
@@ -388,7 +388,7 @@ window.SCENE = {
    "theme": "clothes_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 0,
    "boites": [
     [

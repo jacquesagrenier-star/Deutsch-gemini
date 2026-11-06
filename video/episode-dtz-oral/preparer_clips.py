@@ -37,7 +37,11 @@ VOIX = os.path.join(RACINE, "audio", "scenes", "dtz-oral")
 # (texte_incruste.py : 186). Le cadre 9:16 s'arrete juste sous les mains : plus de place vide ou poser du texte, et
 # le visage grossit (acquis « RECADRER une prise payee plutot que d'en racheter une »). Fenetres relevees a l'oeil
 # sur les images 1536 x 2752.
-CADRES = {"anna-dtz": (282, 140, 1282, 1918), "mark-dtz": (120, 380, 1256, 2400)}
+CADRES = {"anna-dtz": (282, 140, 1282, 1918), "anna-dtz-sourire": (282, 140, 1282, 1918), "mark-dtz": (120, 380, 1256, 2400)}
+# LES TROIS VERDICTS, ANNA SOURIANTE (4 nov. 2026, Jacques : « un peu plus souriante comme Marc », pour la video qui
+# reste a faire ; accord « go », 1,80 $) : anna-dtz.png RETOUCHEE (plan 84), rien d'autre ne change. Les autres clips
+# gardent anna-dtz.
+SOURIANTE = {"a_ende_B1", "a_ende_A2", "a_ende_moins"}
 
 POITRINE = {
     "anna": "Across her chest we see only the plain grey-blue cardigan, open, and the plain white blouse, from the first frame to the last.",
@@ -97,7 +101,7 @@ def main():
     os.makedirs(PROMPTS, exist_ok=True)
 
     maitres = {}
-    for qui, nom in (("anna", "anna-dtz"), ("mark", "mark-dtz")):
+    for qui, nom in (("anna", "anna-dtz"), ("anna-sourire", "anna-dtz-sourire"), ("mark", "mark-dtz")):
         cadre = os.path.join(IMAGES, nom + "-cadre.png")
         Image.open(os.path.join(IMAGES, nom + ".png")).convert("RGB").crop(CADRES[nom]).resize((1080, 1920), Image.LANCZOS).save(cadre)
         maitres[qui] = (nom, cadre)
@@ -110,7 +114,7 @@ def main():
         if not p["video"]:
             continue
         qui, num = p["locuteur"], p["n"]
-        nom, src = maitres[qui]
+        nom, src = maitres["anna-sourire" if p["id"] in SOURIANTE else qui]
         jpg = os.path.join(TEL, "plan%02d-%s.jpg" % (num, nom))
         im = Image.open(src).convert("RGB")
         if im.width > 1080:
@@ -123,7 +127,12 @@ def main():
            "-c:a", "libmp3lame", "-b:a", "128k", os.path.join(TEL, "plan%02d-pleine.mp3" % num))
         # La queue d'apres-parole en DERNIER paragraphe, commencant par « Finally » : c'est ce que lit
         # verifier_prompt.py (PARA_FINAL), et ce qui garde le visage vivant pendant la queue de 1,3 s.
-        prompt = "\n\n".join([DEBUT[qui] + " " + GESTES[p["id"]], POITRINE[qui], CAMERA + " " + QUEUE[qui], FIN[qui]])
+        debut, fin = DEBUT[qui], FIN[qui]
+        if p["id"] in SOURIANTE:
+            debut = debut.replace("as an examiner who is kind and unhurried. Let her face follow the voice.",
+                                  "as an examiner who is kind and glad for the candidate. Let her face follow the voice, and between her sentences her warm, open smile comes back.")
+            fin = fin.replace("her face stays attentive.", "she keeps her warm, open smile.")
+        prompt = "\n\n".join([debut + " " + GESTES[p["id"]], POITRINE[qui], CAMERA + " " + QUEUE[qui], fin])
         io.open(os.path.join(PROMPTS, "plan%02d.txt" % num), "w", encoding="utf-8", newline="\n").write(prompt + "\n")
         n += 1
     print("%d paniers prets dans %s" % (n, os.path.relpath(TEL, RACINE)))

@@ -1,0 +1,922 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Faire les courses</title>
+<!--
+  FAIRE LES COURSES (theme illustre, vague 3, 4 nov. 2026). L'angle : L'ACHAT DANS LES MAGASINS -- ou acheter quoi,
+  aller au magasin (zur / zum, in der / im, auf dem Markt, am Kiosk ; al / a la, en el / en la), le dialogue au
+  comptoir (le client et la vendeuse), les prix lus et entendus (neunundvierzig / vierundneunzig ; sesenta / setenta),
+  l'accord du verbe (kostet / kosten, cuesta / cuestan), comparer (teurer, mas caro / mas cara), la monnaie rendue,
+  le prospectus des offres (eine Packung, ein Glas, eine Tube, eine Tuete / un paquete, un bote, un tubo, una bolsa)
+  et l'article de la commande (Ich haette gern einen Kuchen / Quisiera una tarta).
+  PAS de doublon avec « Manger et gouter » (ses contenants, sa liste en grammes, sa commande AU CAFE) ; et pas de
+  scene refaite : les magasins qui ont leur scene (baeckerei, supermarkt, apotheke, markt) en reprennent l'image.
+  Donnees : visuel/courses/courses.py -> courses/courses.json ; les phrases sont FABRIQUEES ici depuis ces donnees.
+  Les prix, les etiquettes et le prospectus sont dessines ici (fal ecrit mal).
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne »
+  a chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer ».
+  Le tirage suit les mots (themes/tirage.js) ; la voix : themes/voix.js ; agrandir : themes/zoom.js.
+  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, sans decouverte),
+  variante=latam (papas fritas ; la voix de Monica), r=<AUDIO_REVISION> ; textesAVoix() pour visuel/voix_themes.py.
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--papier:#FFFDF4;--ligne:#C9D6E8;
+  --etiq:#FFE680;--etiq-bord:#E2B935;--prosp:#FFF6D8;--prosp-titre:#C8473A;
+  --police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A;--papier:#2A3A48;--ligne:#3E5468;
+  --etiq:#4A4020;--etiq-bord:#B8922A;--prosp:#2E3328;--prosp-titre:#F07F72}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (regle commune, modele familia.html) */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 96px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.enonce .sous{display:block;margin-top:6px}
+.trou{display:inline-block;min-width:64px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+/* une image : un magasin (une scene, en hauteur, recadree), une nature morte ou un moment en 4:3 */
+.photo{display:block;width:100%;max-width:360px;margin:0 auto;height:auto;border-radius:16px;background:var(--carte)}
+.photo.haute{aspect-ratio:4/5;object-fit:cover;object-position:50% 45%}
+.photo.large{max-width:none;aspect-ratio:4/3;object-fit:cover}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+/* les prix a choisir : des etiquettes jaunes */
+.choix.etiquettes button{border-radius:8px 8px 8px 22px;background:var(--etiq);border:2px solid var(--etiq-bord);font:900 20px var(--police);padding:10px 16px;font-variant-numeric:tabular-nums}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.ecoute{width:44px;height:44px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;vertical-align:middle}
+.ecoute svg{width:22px;height:22px}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+/* trois ou quatre images a toucher (les emballages) */
+.rangee{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rangee button{border:3px solid transparent;border-radius:14px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block}
+.rangee img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.rangee button.juste{border-color:var(--vert)} .rangee button.faux{border-color:var(--rouge)}
+/* le prospectus des offres */
+.prospekt{direction:ltr;background:var(--prosp);border-radius:14px;padding:10px 12px;border:1px solid var(--ligne)}
+.prospekt .t{font-weight:900;font-size:17px;color:var(--prosp-titre);text-transform:uppercase;letter-spacing:.04em;text-align:center;margin-bottom:6px}
+.prospekt .l{display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px dashed var(--ligne)}
+.prospekt .l:last-child{border-bottom:0}
+.prospekt .l img{width:64px;height:48px;object-fit:cover;border-radius:8px;flex:0 0 auto}
+.prospekt .l .n{flex:1;font-weight:800;font-size:15px}
+.prospekt .l .n small{display:block;font-weight:700;color:var(--gris);font-size:13px}
+.prospekt .l .p{font:900 18px var(--police);background:var(--etiq);border:2px solid var(--etiq-bord);border-radius:6px 6px 6px 16px;padding:2px 8px;white-space:nowrap;font-variant-numeric:tabular-nums}
+/* la decouverte : trois onglets, une planche, la fiche de ce qu'on touche */
+.onglets{display:flex;gap:6px;background:var(--carte);border-radius:999px;padding:4px}
+.onglets button{flex:1;border:0;border-radius:999px;background:none;color:var(--gris);font:800 14px var(--police);padding:8px 4px;cursor:pointer}
+.onglets button[aria-selected="true"]{background:var(--ambre);color:#1C2430}
+.planche{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.planche button{border:3px solid transparent;border-radius:12px;padding:0;background:var(--carte);cursor:pointer;overflow:hidden;display:block}
+.planche img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
+.planche button.choisi{border-color:var(--ambre)}
+.planche.etiq{grid-template-columns:repeat(4,1fr)}
+.planche.etiq button{background:var(--etiq);border:2px solid var(--etiq-bord);border-radius:8px 8px 8px 18px;font:900 16px var(--police);color:var(--encre);padding:12px 2px;font-variant-numeric:tabular-nums}
+.planche.etiq button.choisi{outline:3px solid var(--ambre-f)}
+.repliques{display:flex;flex-direction:column;gap:6px}
+.repliques button{text-align:left;border:2px solid transparent;border-radius:12px;background:var(--carte);color:var(--encre);font:800 15px var(--police);padding:9px 12px;cursor:pointer;direction:ltr}
+.repliques button.choisi{border-color:var(--ambre)}
+/* le haut-parleur de chaque replique (Jacques, 5 nov. : un haut-parleur visible partout ou une ligne se fait entendre) :
+   celui de l'app (v919), dans un rond ambre, au bout de la ligne -- le meme que dans « Le corps et la sante » */
+.repliques button{display:flex;align-items:center;gap:10px}
+.repliques .txt{flex:1 1 auto;min-width:0}
+.repliques .hp-ligne{flex:0 0 auto;width:34px;height:34px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);
+  color:var(--encre);display:inline-flex;align-items:center;justify-content:center}
+.repliques .hp-ligne .ic-hp{width:18px;height:18px;display:block}
+.repliques button:active .hp-ligne,.repliques button.joue .hp-ligne{background:var(--ambre);color:#1C2430}
+.fiche{background:var(--carte);border-radius:14px;padding:10px;display:grid;grid-template-columns:minmax(110px,40%) 1fr;gap:12px;align-items:center}
+.fiche.seule{grid-template-columns:1fr}
+.fiche img{width:100%;height:auto;border-radius:10px;display:block;aspect-ratio:3/4;object-fit:cover}
+.fiche .mot{font-weight:900;font-size:22px;color:var(--ambre-f);line-height:1.15}
+.fiche .dit{font-weight:800;font-size:17px;line-height:1.4;margin-top:6px}
+.fiche .ecoute{margin-top:10px}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.45;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer;z-index:5000}
+.suite[hidden]{display:none}
+/* LES BOUTONS D'ACTION TOUJOURS TOUT EN BAS (regle de Jacques, 3 nov. 2026, comme dans les scenes) */
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:5000}
+.bas[hidden]{display:none}
+.bas button{flex:1;min-height:54px;border:0;border-radius:27px;padding:4px 12px;color:#fff;font:800 16px/1.15 var(--police);
+  background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.bas button.second{background:var(--verre);color:var(--encre);border:2px solid rgba(52,140,90,.9)}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+[lang]{unicode-bidi:isolate}
+/* la traduction dans la langue d'interface : une ligne, plus petite, en gris (3 nov. 2026) */
+.trad{display:block;font-size:13px;font-weight:600;color:var(--gris);line-height:1.35;margin-top:2px}
+.trad.faux{color:var(--rouge);font-style:italic}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<div class="bas" id="bas" hidden></div>
+<script src="themes/tirage.js?v=1"></script>
+<script src="themes/voix.js?v=4"></script>
+<script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=5"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
+const NB = Q.get("seance") === "1" ? 6 : 20;
+// agrandir (themes/zoom.js) : un toucher sur une photo ou une fiche ; la loupe sur ce qu'on touche pour repondre
+Zoom.init({direct: ".photo, .fiche img, .prospekt img", loupe: ".rangee button, .planche button", langue: LANGUE});
+
+const TEXTES = {
+  titre:     {fr:"Faire les courses", en:"Going shopping", tr:"Alışveriş yapmak", uk:"Покупки", fa:"خرید کردن", ar:"التسوق", pt:"Fazer compras", pl:"Zakupy", ru:"Покупки", de:"Einkaufen"},
+  ongletM:   {fr:"Les magasins", en:"Shops", tr:"Dükkânlar", uk:"Магазини", fa:"مغازه‌ها", ar:"المتاجر", pt:"As lojas", pl:"Sklepy", ru:"Магазины", de:"Geschäfte"},
+  ongletD:   {fr:"Au comptoir", en:"At the counter", tr:"Tezgâhta", uk:"Біля прилавка", fa:"پشت پیشخوان", ar:"عند المنضدة", pt:"No balcão", pl:"Przy ladzie", ru:"У прилавка", de:"An der Theke"},
+  ongletP:   {fr:"Les prix", en:"Prices", tr:"Fiyatlar", uk:"Ціни", fa:"قیمت‌ها", ar:"الأسعار", pt:"Os preços", pl:"Ceny", ru:"Цены", de:"Preise"},
+  introM:    {fr:"Touche un magasin : tu le vois, et tu entends ce qu'on y achète.", en:"Tap a shop to see it and hear what you buy there.", tr:"Bir dükkâna dokun: onu gör ve orada ne alındığını dinle.", uk:"Торкнися магазину: побачиш його й почуєш, що там купують.", fa:"روی یک مغازه بزن تا آن را ببینی و بشنوی آنجا چه می‌خرند.", ar:"المس متجرًا لتراه وتسمع ما يُشترى فيه.", pt:"Toque em uma loja para vê-la e ouvir o que se compra lá.", pl:"Dotknij sklepu, aby go zobaczyć i usłyszeć, co się tam kupuje.", ru:"Нажми на магазин, чтобы увидеть его и услышать, что там покупают.", de:"Tippe auf ein Geschäft: Du siehst es und hörst, was man dort kauft."},
+  introD:    {fr:"Touche une réplique : tu entends la question et la réponse.", en:"Tap a line to hear the question and the answer.", tr:"Bir replik seç: soruyu ve cevabı dinle.", uk:"Торкнися репліки: почуєш запитання й відповідь.", fa:"روی یک جمله بزن تا سؤال و جواب را بشنوی.", ar:"المس عبارة لتسمع السؤال والجواب.", pt:"Toque em uma fala para ouvir a pergunta e a resposta.", pl:"Dotknij kwestii, aby usłyszeć pytanie i odpowiedź.", ru:"Нажми на реплику, чтобы услышать вопрос и ответ.", de:"Tippe auf einen Satz: Du hörst die Frage und die Antwort."},
+  introP:    {fr:"Touche une étiquette : tu entends le prix.", en:"Tap a label to hear the price.", tr:"Bir etikete dokun: fiyatı dinle.", uk:"Торкнися цінника: почуєш ціну.", fa:"روی یک برچسب بزن تا قیمت را بشنوی.", ar:"المس بطاقة لتسمع السعر.", pt:"Toque em uma etiqueta para ouvir o preço.", pl:"Dotknij etykiety, aby usłyszeć cenę.", ru:"Нажми на ценник, чтобы услышать цену.", de:"Tippe auf ein Preisschild: Du hörst den Preis."},
+  regleMde:  {fr:"Où on est (Wo?) : in der Bäckerei, im Supermarkt, auf dem Markt, am Kiosk. Où on va (Wohin?) : zur Bäckerei, zum Supermarkt.", en:"Where you are (Wo?): in der Bäckerei, im Supermarkt, auf dem Markt, am Kiosk. Where you go (Wohin?): zur Bäckerei, zum Supermarkt.", tr:"Neredesin (Wo?): in der Bäckerei, im Supermarkt, auf dem Markt, am Kiosk. Nereye gidiyorsun (Wohin?): zur Bäckerei, zum Supermarkt.", uk:"Де ти (Wo?): in der Bäckerei, im Supermarkt, auf dem Markt, am Kiosk. Куди йдеш (Wohin?): zur Bäckerei, zum Supermarkt.", fa:"کجا هستی (Wo?): in der Bäckerei، im Supermarkt، auf dem Markt، am Kiosk. کجا می‌روی (Wohin?): zur Bäckerei، zum Supermarkt.", ar:"أين أنت (Wo?): in der Bäckerei، im Supermarkt، auf dem Markt، am Kiosk. إلى أين تذهب (Wohin?): zur Bäckerei، zum Supermarkt.", pt:"Onde você está (Wo?): in der Bäckerei, im Supermarkt, auf dem Markt, am Kiosk. Para onde vai (Wohin?): zur Bäckerei, zum Supermarkt.", pl:"Gdzie jesteś (Wo?): in der Bäckerei, im Supermarkt, auf dem Markt, am Kiosk. Dokąd idziesz (Wohin?): zur Bäckerei, zum Supermarkt.", ru:"Где ты (Wo?): in der Bäckerei, im Supermarkt, auf dem Markt, am Kiosk. Куда идёшь (Wohin?): zur Bäckerei, zum Supermarkt.", de:"Wo? In der Bäckerei, im Supermarkt, auf dem Markt, am Kiosk. Wohin? Zur Bäckerei, zum Supermarkt."},
+  regleMes:  {fr:"On va al supermercado (a + el = al) ou a la panadería ; on est en el supermercado, en la panadería.", en:"You go al supermercado (a + el = al) or a la panadería; you are en el supermercado, en la panadería.", tr:"al supermercado (a + el = al) ya da a la panadería'ya gidilir; en el supermercado, en la panadería'da olunur.", uk:"Ідуть al supermercado (a + el = al) або a la panadería; перебувають en el supermercado, en la panadería.", fa:"به al supermercado (a + el = al) یا a la panadería می‌روی؛ در en el supermercado، en la panadería هستی.", ar:"تذهب al supermercado (a + el = al) أو a la panadería؛ وتكون en el supermercado، en la panadería.", pt:"Vai-se al supermercado (a + el = al) ou a la panadería; está-se en el supermercado, en la panadería.", pl:"Idzie się al supermercado (a + el = al) albo a la panadería; jest się en el supermercado, en la panadería.", ru:"Идут al supermercado (a + el = al) или a la panadería; находятся en el supermercado, en la panadería.", de:"Man geht al supermercado (a + el = al) oder a la panadería; man ist en el supermercado, en la panadería."},
+  regleDde:  {fr:"Pour demander poliment : « Ich hätte gern… ». La vendeuse demande « Was darf es sein? » puis « Sonst noch etwas? » ; on termine par « Das ist alles. »", en:"To ask politely: « Ich hätte gern… ». The shop assistant asks « Was darf es sein? », then « Sonst noch etwas? »; you finish with « Das ist alles. »", tr:"Kibarca istemek için: « Ich hätte gern… ». Satıcı « Was darf es sein? », sonra « Sonst noch etwas? » diye sorar; « Das ist alles. » diyerek bitirirsin.", uk:"Ввічливо попросити: « Ich hätte gern… ». Продавчиня питає « Was darf es sein? », потім « Sonst noch etwas? »; закінчують словами « Das ist alles. »", fa:"برای درخواست مؤدبانه: « Ich hätte gern… ». فروشنده می‌پرسد « Was darf es sein? » و بعد « Sonst noch etwas? »؛ در پایان می‌گویی « Das ist alles. »", ar:"للطلب بأدب: « Ich hätte gern… ». تسأل البائعة « Was darf es sein? » ثم « Sonst noch etwas? »، وتنهي بـ « Das ist alles. »", pt:"Para pedir com educação: « Ich hätte gern… ». A vendedora pergunta « Was darf es sein? » e depois « Sonst noch etwas? »; você termina com « Das ist alles. »", pl:"Żeby grzecznie poprosić: « Ich hätte gern… ». Sprzedawczyni pyta « Was darf es sein? », potem « Sonst noch etwas? »; kończysz słowami « Das ist alles. »", ru:"Чтобы вежливо попросить: « Ich hätte gern… ». Продавщица спрашивает « Was darf es sein? », потом « Sonst noch etwas? »; заканчивают словами « Das ist alles. »", de:"Höflich bitten: « Ich hätte gern… »."},
+  regleDes:  {fr:"« Quisiera… » est poli (je voudrais). La vendeuse demande « ¿Qué desea? » puis « ¿Algo más? » ; on termine par « Eso es todo. »", en:"« Quisiera… » is polite (I would like). The shop assistant asks « ¿Qué desea? », then « ¿Algo más? »; you finish with « Eso es todo. »", tr:"« Quisiera… » kibardır (isterdim). Satıcı « ¿Qué desea? », sonra « ¿Algo más? » diye sorar; « Eso es todo. » diyerek bitirirsin.", uk:"« Quisiera… » звучить ввічливо (я хотів би). Продавчиня питає « ¿Qué desea? », потім « ¿Algo más? »; закінчують словами « Eso es todo. »", fa:"« Quisiera… » مؤدبانه است (می‌خواستم). فروشنده می‌پرسد « ¿Qué desea? » و بعد « ¿Algo más? »؛ در پایان می‌گویی « Eso es todo. »", ar:"« Quisiera… » مهذبة (أودّ). تسأل البائعة « ¿Qué desea? » ثم « ¿Algo más? »، وتنهي بـ « Eso es todo. »", pt:"« Quisiera… » é educado (eu queria). A vendedora pergunta « ¿Qué desea? » e depois « ¿Algo más? »; você termina com « Eso es todo. »", pl:"« Quisiera… » jest grzeczne (chciałbym). Sprzedawczyni pyta « ¿Qué desea? », potem « ¿Algo más? »; kończysz słowami « Eso es todo. »", ru:"« Quisiera… » звучит вежливо (я бы хотел). Продавщица спрашивает « ¿Qué desea? », потом « ¿Algo más? »; заканчивают словами « Eso es todo. »", de:"« Quisiera… » ist höflich (ich hätte gern). Die Verkäuferin fragt « ¿Qué desea? », dann « ¿Algo más? »; zum Schluss sagt man « Eso es todo. »"},
+  reglePde:  {fr:"En allemand, l'unité vient avant la dizaine : 49 = neunundvierzig (« neuf et quarante »). Un prix se lit sans « virgule » : 2,49 € = zwei Euro neunundvierzig.", en:"In German, the units come before the tens: 49 = neunundvierzig (« nine and forty »). A price is read without « point »: €2.49 = zwei Euro neunundvierzig.", tr:"Almancada birler onlardan önce gelir: 49 = neunundvierzig (« dokuz ve kırk »). Fiyat « virgül » denmeden okunur: 2,49 € = zwei Euro neunundvierzig.", uk:"У німецькій одиниці йдуть перед десятками: 49 = neunundvierzig (« дев'ять і сорок »). Ціну читають без « коми »: 2,49 € = zwei Euro neunundvierzig.", fa:"در آلمانی یکان پیش از دهگان می‌آید: 49 = neunundvierzig (« نُه و چهل »). قیمت بدون « ممیز » خوانده می‌شود: 2,49 € = zwei Euro neunundvierzig.", ar:"في الألمانية تأتي الآحاد قبل العشرات: 49 = neunundvierzig (« تسعة وأربعون »). ويُقرأ السعر بلا « فاصلة »: 2,49 € = zwei Euro neunundvierzig.", pt:"Em alemão, a unidade vem antes da dezena: 49 = neunundvierzig (« nove e quarenta »). O preço se lê sem « vírgula »: 2,49 € = zwei Euro neunundvierzig.", pl:"Po niemiecku jedności są przed dziesiątkami: 49 = neunundvierzig (« dziewięć i czterdzieści »). Cenę czyta się bez « przecinka »: 2,49 € = zwei Euro neunundvierzig.", ru:"В немецком единицы идут перед десятками: 49 = neunundvierzig (« девять и сорок »). Цену читают без « запятой »: 2,49 € = zwei Euro neunundvierzig.", de:"49 = neunundvierzig ; 2,49 € = zwei Euro neunundvierzig."},
+  reglePes:  {fr:"En espagnol, on relie les euros et les centimes par « con » : 2,49 € = dos euros con cuarenta y nueve. Attention : sesenta (60) et setenta (70) se ressemblent.", en:"In Spanish, euros and cents are joined with « con »: €2.49 = dos euros con cuarenta y nueve. Careful: sesenta (60) and setenta (70) sound alike.", tr:"İspanyolcada avro ile sent « con » ile bağlanır: 2,49 € = dos euros con cuarenta y nueve. Dikkat: sesenta (60) ile setenta (70) birbirine benzer.", uk:"В іспанській євро й центи з'єднують словом « con »: 2,49 € = dos euros con cuarenta y nueve. Увага: sesenta (60) і setenta (70) схожі.", fa:"در اسپانیایی یورو و سنت با « con » به هم وصل می‌شوند: 2,49 € = dos euros con cuarenta y nueve. دقت کن: sesenta (60) و setenta (70) شبیه هم‌اند.", ar:"في الإسبانية تُربط اليوروهات بالسنتات بكلمة « con »: 2,49 € = dos euros con cuarenta y nueve. انتبه: sesenta (60) وsetenta (70) متشابهتان.", pt:"Em espanhol, euros e centavos se ligam com « con »: 2,49 € = dos euros con cuarenta y nueve. Atenção: sesenta (60) e setenta (70) se parecem.", pl:"Po hiszpańsku euro i centy łączy się słowem « con »: 2,49 € = dos euros con cuarenta y nueve. Uwaga: sesenta (60) i setenta (70) brzmią podobnie.", ru:"По-испански евро и центы соединяют словом « con »: 2,49 € = dos euros con cuarenta y nueve. Внимание: sesenta (60) и setenta (70) похожи.", de:"Auf Spanisch verbindet man Euro und Cent mit « con »: 2,49 € = dos euros con cuarenta y nueve. Vorsicht: sesenta (60) und setenta (70) klingen ähnlich."},
+  ou:        {fr:"Lis la question et choisis le magasin.", en:"Read the question and choose the shop.", tr:"Soruyu oku ve dükkânı seç.", uk:"Прочитай запитання й обери магазин.", fa:"سؤال را بخوان و مغازه را انتخاب کن.", ar:"اقرأ السؤال واختر المتجر.", pt:"Leia a pergunta e escolha a loja.", pl:"Przeczytaj pytanie i wybierz sklep.", ru:"Прочитай вопрос и выбери магазин.", de:"Lies die Frage und wähle das Geschäft."},
+  magasin:   {fr:"Regarde l'image : où sommes-nous ?", en:"Look at the picture: where are we?", tr:"Resme bak: neredeyiz?", uk:"Подивися на зображення: де ми?", fa:"به تصویر نگاه کن: کجا هستیم؟", ar:"انظر إلى الصورة: أين نحن؟", pt:"Olhe a imagem: onde estamos?", pl:"Spójrz na obrazek: gdzie jesteśmy?", ru:"Посмотри на картинку: где мы?", de:"Sieh dir das Bild an: Wo sind wir?"},
+  aller:     {fr:"Complète avec la bonne préposition.", en:"Fill in the right preposition.", tr:"Doğru edatla tamamla.", uk:"Встав правильний прийменник.", fa:"با حرف اضافهٔ درست کامل کن.", ar:"أكمل بحرف الجر الصحيح.", pt:"Complete com a preposição certa.", pl:"Uzupełnij właściwym przyimkiem.", ru:"Вставь правильный предлог.", de:"Ergänze die richtige Präposition."},
+  qui:       {fr:"Qui le dit : le client ou le vendeur ?", en:"Who says it: the customer or the shop assistant?", tr:"Bunu kim söylüyor: müşteri mi, satıcı mı?", uk:"Хто це каже: покупець чи продавець?", fa:"چه کسی این را می‌گوید: مشتری یا فروشنده؟", ar:"من يقول هذا: الزبون أم البائع؟", pt:"Quem diz isso: o cliente ou o vendedor?", pl:"Kto to mówi: klient czy sprzedawca?", ru:"Кто это говорит: покупатель или продавец?", de:"Wer sagt das: der Kunde oder die Verkäuferin?"},
+  reponse:   {fr:"Au magasin : que répond-on ?", en:"In the shop: what is the answer?", tr:"Dükkânda: ne cevap verilir?", uk:"У магазині: що відповідають?", fa:"در مغازه: چه جوابی می‌دهند؟", ar:"في المتجر: بماذا يُجاب؟", pt:"Na loja: o que se responde?", pl:"W sklepie: co się odpowiada?", ru:"В магазине: что отвечают?", de:"Im Geschäft: Was antwortet man?"},
+  prix:      {fr:"Écoute (ou lis) le prix et touche la bonne étiquette.", en:"Listen to (or read) the price and tap the right label.", tr:"Fiyatı dinle (ya da oku) ve doğru etikete dokun.", uk:"Послухай (або прочитай) ціну й торкнися правильного цінника.", fa:"قیمت را گوش بده (یا بخوان) و روی برچسب درست بزن.", ar:"استمع إلى السعر (أو اقرأه) والمس البطاقة الصحيحة.", pt:"Ouça (ou leia) o preço e toque na etiqueta certa.", pl:"Posłuchaj (albo przeczytaj) ceny i dotknij właściwej etykiety.", ru:"Послушай (или прочитай) цену и нажми на нужный ценник.", de:"Hör dir den Preis an (oder lies ihn) und tippe auf das richtige Preisschild."},
+  comparer:  {fr:"Compare les prix et complète.", en:"Compare the prices and fill in the gap.", tr:"Fiyatları karşılaştır ve tamamla.", uk:"Порівняй ціни й доповни.", fa:"قیمت‌ها را مقایسه کن و کامل کن.", ar:"قارن الأسعار وأكمل.", pt:"Compare os preços e complete.", pl:"Porównaj ceny i uzupełnij.", ru:"Сравни цены и вставь слово.", de:"Vergleiche die Preise und ergänze."},
+  rendu:     {fr:"Calcule la monnaie rendue.", en:"Work out the change.", tr:"Para üstünü hesapla.", uk:"Порахуй решту.", fa:"باقی‌ماندهٔ پول را حساب کن.", ar:"احسب الباقي.", pt:"Calcule o troco.", pl:"Policz resztę.", ru:"Посчитай сдачу.", de:"Rechne das Wechselgeld aus."},
+  kostet:    {fr:"Complète avec la bonne forme du verbe.", en:"Fill in the right form of the verb.", tr:"Fiilin doğru biçimiyle tamamla.", uk:"Встав правильну форму дієслова.", fa:"با شکل درست فعل کامل کن.", ar:"أكمل بالصيغة الصحيحة للفعل.", pt:"Complete com a forma certa do verbo.", pl:"Uzupełnij właściwą formą czasownika.", ru:"Вставь правильную форму глагола.", de:"Ergänze die richtige Verbform."},
+  commande:  {fr:"Commande au comptoir : complète avec le bon article.", en:"Ordering at the counter: fill in the right article.", tr:"Tezgâhta sipariş: doğru tanımlıkla tamamla.", uk:"Замовлення біля прилавка: встав правильний артикль.", fa:"سفارش پشت پیشخوان: با حرف تعریف درست کامل کن.", ar:"الطلب عند المنضدة: أكمل بأداة التعريف الصحيحة.", pt:"Pedido no balcão: complete com o artigo certo.", pl:"Zamówienie przy ladzie: uzupełnij właściwym rodzajnikiem.", ru:"Заказ у прилавка: вставь правильный артикль.", de:"Bestellen an der Theke: Ergänze den richtigen Artikel."},
+  prospekt:  {fr:"Lis le prospectus des offres.", en:"Read the special offers leaflet.", tr:"İndirim broşürünü oku.", uk:"Прочитай рекламну листівку з акціями.", fa:"بروشور تخفیف‌ها را بخوان.", ar:"اقرأ نشرة العروض.", pt:"Leia o folheto de ofertas.", pl:"Przeczytaj gazetkę z promocjami.", ru:"Прочитай листовку со скидками.", de:"Lies den Prospekt mit den Angeboten."},
+  emballage: {fr:"Touche ce que demande le client.", en:"Tap what the customer asks for.", tr:"Müşterinin istediğine dokun.", uk:"Торкнися того, що просить покупець.", fa:"روی چیزی که مشتری می‌خواهد بزن.", ar:"المس ما يطلبه الزبون.", pt:"Toque no que o cliente pede.", pl:"Dotknij tego, o co prosi klient.", ru:"Нажми на то, что просит покупатель.", de:"Tippe auf das, was der Kunde möchte."},
+  vraifaux:  {fr:"Regarde l'image : vrai ou faux ?", en:"Look at the picture: true or false?", tr:"Resme bak: doğru mu, yanlış mı?", uk:"Подивися на зображення: правда чи ні?", fa:"به تصویر نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a imagem: verdadeiro ou falso?", pl:"Spójrz na obrazek: prawda czy fałsz?", ru:"Посмотри на картинку: правда или нет?", de:"Sieh dir das Bild an: richtig oder falsch?"},
+  ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Прослухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal hören"},
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- la donnee (courses.json) ----------
+let D = null;
+const maj = s => s.charAt(0).toUpperCase() + s.slice(1);
+// l'Amerique latine : papas fritas -- a l'ecran et dans la voix
+const latam = s => !LATAM || !s ? s : s.replace(/[A-Za-zÁÉÍÓÚáéíóúñÑ]+/g, w => D.latam[w] || w);
+const mag = id => D.magasins.find(m => m.id === id);
+const MAGS = () => D.magasins.filter(m => m[APPRENDRE]);
+const art = id => D.articles.find(a => a.id === id);
+const PERS = [{n: "Mark", s: "m"}, {n: "Anna", s: "f"}];
+const ligne = id => D.lignes[id];
+const texteLigne = id => latam(ligne(id)[APPRENDRE]);
+const voixLigne = id => latam((ligne(id).dit || {})[APPRENDRE] || ligne(id)[APPRENDRE]);
+
+// ---------- les prix : « 2,49 € » a l'ecran, en lettres dans la voix (regle du 28 oct. : les nombres se disent) ----------
+const prix = c => Math.floor(c / 100) + "," + String(c % 100).padStart(2, "0") + " €";
+const prixEn = c => "€" + Math.floor(c / 100) + "." + String(c % 100).padStart(2, "0");
+const ES_N = ["cero", "un", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce", "quince",
+              "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte", "veintiún", "veintidós", "veintitrés", "veinticuatro", "veinticinco",
+              "veintiséis", "veintisiete", "veintiocho", "veintinueve"];
+const ES_D = {3: "treinta", 4: "cuarenta", 5: "cincuenta", 6: "sesenta", 7: "setenta", 8: "ochenta", 9: "noventa"};
+const DE_N = ["null", "ein", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwölf", "dreizehn", "vierzehn",
+              "fünfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn"];
+const DE_D = {2: "zwanzig", 3: "dreißig", 4: "vierzig", 5: "fünfzig", 6: "sechzig", 7: "siebzig", 8: "achtzig", 9: "neunzig"};
+function nombre(n, l){
+  if (l === "es"){ if (n < 30) return ES_N[n]; const d = Math.floor(n / 10), u = n % 10; return ES_D[d] + (u ? " y " + (u === 1 ? "un" : ES_N[u]) : ""); }
+  if (n < 20) return DE_N[n]; const d = Math.floor(n / 10), u = n % 10; return (u ? (u === 1 ? "ein" : DE_N[u]) + "und" : "") + DE_D[d];
+}
+// es : « cuatro euros con noventa », « un euro con veinte », « noventa céntimos » ; de : « vier Euro neunzig », « neunzig Cent »
+function lettres(c){
+  const e = Math.floor(c / 100), ct = c % 100;
+  const esCt = n => nombre(n, "es").replace(/ un$/, " uno").replace(/^un$/, "uno").replace(/veintiún$/, "veintiuno");
+  if (APPRENDRE === "es"){
+    if (!e) return (ct === 1 ? "un céntimo" : nombre(ct, "es") + " céntimos");
+    return nombre(e, "es") + (e === 1 ? " euro" : " euros") + (ct ? " con " + esCt(ct) : "");
+  }
+  if (!e) return nombre(ct, "de") + " Cent";
+  return nombre(e, "de") + " Euro" + (ct ? " " + nombre(ct, "de").replace(/^ein$/, "eins") : "");
+}
+const BILLETS = {500: {de: "Fünf-Euro-Schein", es: "cinco", fr: "cinq", en: "five", pt: "cinco"}, 1000: {de: "Zehn-Euro-Schein", es: "diez", fr: "dix", en: "ten", pt: "dez"},
+                 2000: {de: "Zwanzig-Euro-Schein", es: "veinte", fr: "vingt", en: "twenty", pt: "vinte"}, 5000: {de: "Fünfzig-Euro-Schein", es: "cincuenta", fr: "cinquante", en: "fifty", pt: "cinquenta"}};
+const entre = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+
+// ---------- la langue apprise : les phrases ----------
+const ES = {
+  bravo: "¡Muy bien!", vrai: "Verdadero", faux: "Falso",
+  wo: m => m.es.en + " " + m.es.mot,
+  woPh: m => maj(m.es.en + " " + m.es.mot) + ".",
+  ouQ: p => "¿Dónde se compra" + (p.es.pl ? "n " : " ") + p.es.art + "?",
+  ouPh: (p, m) => maj(p.es.art) + " se compra" + (p.es.pl ? "n " : " ") + m.es.en + " " + m.es.mot + ".",
+  ouSommes: "¿Dónde estamos?",
+  sommesPh: m => "Estamos " + m.es.en + " " + m.es.mot + ".",
+  allerZu: (pe, p, m) => pe.n + " necesita " + p.es.nu + ". Va ___ " + m.es.mot + ".",
+  allerWo: (pe, p, m) => pe.n + " compra " + p.es.nu + ". Está ___ " + m.es.mot + ".",
+  estLa: (pe, m) => pe.n + " está " + m.es.en + " " + m.es.mot + ".",
+  citer: t => "«" + t + "»",
+  quiQ: "¿Quién lo dice?",
+  dit: (role, t) => maj(role) + " dice: «" + t + "»",
+  repQ: role => "¿Qué responde " + role + "?",
+  coute: (a, p) => maj(a.es[0]) + (a.es[1] ? " cuestan " : " cuesta ") + p + ".",
+  plusQue: (a, b, adj) => maj(a.es[0]) + (a.es[1] ? " son " : " es ") + adj + " que " + b.es[0] + ".",
+  rendu: (pe, t, b) => "Son " + t + ". " + pe.n + " paga con un billete de " + BILLETS[b].es + " euros.",
+  renduQ: () => "Le dan ___ de cambio.",
+  renduPh: (pe, t, b, r) => "Son " + t + ". " + pe.n + " paga con un billete de " + BILLETS[b].es + " euros. Le dan " + r + " de cambio.",
+  kostetQ: a => "¿Cuánto ___ " + a.es[0] + "?",
+  kostetPh: a => "¿Cuánto " + (a.es[1] ? "cuestan " : "cuesta ") + a.es[0] + "?",
+  commande: x => "Quisiera ___ " + x[1] + ".",
+  commandePh: x => "Quisiera " + x[0] + " " + x[1] + ".",
+  offres: "Ofertas de la semana",
+  combien: e => "¿Cuánto cuesta " + e.es.np + "?",
+  quoiPour: p => "¿Qué cuesta " + p + "?",
+  embPh: (e, p) => maj(e.es.np) + " cuesta " + p + ".",
+  demande: e => "«" + maj(e.es.np) + ", por favor.»",
+  demandePh: e => maj(e.es.np) + ", por favor."
+};
+const DE = {
+  bravo: "Sehr gut!", vrai: "Richtig", faux: "Falsch",
+  wo: m => m.de.wo + " " + m.de.mot,
+  woPh: m => maj(m.de.wo + " " + m.de.mot) + ".",
+  ouQ: p => "Wo kauft man " + p.de + "?",
+  ouPh: (p, m) => maj(p.de) + " kauft man " + m.de.wo + " " + m.de.mot + ".",
+  ouSommes: "Wo sind wir?",
+  sommesPh: m => "Wir sind " + m.de.wo + " " + m.de.mot + ".",
+  allerZu: (pe, p, m) => pe.n + " braucht " + p.de + ". " + (pe.s === "f" ? "Sie" : "Er") + " geht ___ " + m.de.mot + ".",
+  allerWo: (pe, p, m) => pe.n + " kauft " + p.de + ". " + (pe.s === "f" ? "Sie" : "Er") + " ist ___ " + m.de.mot + ".",
+  estLa: (pe, m) => pe.n + " ist " + m.de.wo + " " + m.de.mot + ".",
+  citer: t => "„" + t + "“",
+  quiQ: "Wer sagt das?",
+  dit: (role, t) => maj(role) + " sagt: „" + t + "“",
+  repQ: role => "Was antwortet " + role + "?",
+  coute: (a, p) => maj(a.de[0]) + (a.de[1] ? " kosten " : " kostet ") + p + ".",
+  plusQue: (a, b, adj) => maj(a.de[0]) + (a.de[1] ? " sind " : " ist ") + adj + " als " + b.de[0] + ".",
+  rendu: (pe, t, b) => "Das macht " + t + ". " + pe.n + " bezahlt mit einem " + BILLETS[b].de + ".",
+  renduQ: pe => (pe.s === "f" ? "Sie" : "Er") + " bekommt ___ zurück.",
+  renduPh: (pe, t, b, r) => "Das macht " + t + ". " + pe.n + " bezahlt mit einem " + BILLETS[b].de + ". " + (pe.s === "f" ? "Sie" : "Er") + " bekommt " + r + " zurück.",
+  kostetQ: a => "Was ___ " + a.de[0] + "?",
+  kostetPh: a => "Was " + (a.de[1] ? "kosten " : "kostet ") + a.de[0] + "?",
+  commande: x => "Ich hätte gern ___ " + x[1] + ".",
+  commandePh: x => "Ich hätte gern " + x[0] + " " + x[1] + ".",
+  offres: "Angebote der Woche",
+  combien: e => "Was kostet " + e.de.np + "?",
+  quoiPour: p => "Was kostet " + p + "?",
+  embPh: (e, p) => maj(e.de.np) + " kostet " + p + ".",
+  demande: e => "„" + maj(e.de.np) + ", bitte.“",
+  demandePh: e => maj(e.de.np) + ", bitte."
+};
+const L = APPRENDRE === "de" ? DE : ES;
+const roleNom = (r, s) => { const x = D.roles[APPRENDRE][r][s]; return x[1] + " " + x[0]; };
+
+// ---------- la traduction dans la langue d'interface (Jacques, 3 nov. 2026) ----------
+// APRES la reponse, sous la phrase juste -- jamais avant. En francais, anglais et portugais (et en allemand pour qui
+// apprend l'espagnol), la phrase entiere, faite avec les MEMES choix que la question ; ailleurs, le mot et sa
+// traduction du corpus (courses/gloses.json).
+const TR = (LANGUE === APPRENDRE) ? null : (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")) ? LANGUE : null;
+const prixTr = c => TR === "en" ? prixEn(c) : prix(c);
+const PRON = {fr: {m: "Il", f: "Elle"}, en: {m: "He", f: "She"}, pt: {m: "Ele", f: "Ela"}, de: {m: "Er", f: "Sie"}};
+// le magasin dans la langue d'interface : [nom, « a la boulangerie » / « at the bakery » / « na padaria », vers]
+const magTr = (m, k) => { if (TR === "de") return [m.de.genre + " " + m.de.mot, m.de.wo + " " + m.de.mot, m.de.zu + " " + m.de.mot][k];
+  const t = m.tr[TR]; return TR === "fr" && k === 2 ? t[1] : t[k]; };
+const prodTr = (p, k) => { const t = p.tr[TR]; return Array.isArray(t) ? t[k] : t; };
+// les articles : fr [nom, feminin], pt [nom, feminin], le pluriel vient de l'allemand (die Äpfel)
+function accordTr(a, mot){
+  const pl = a.de[1];
+  if (TR === "fr"){ const f = a.tr.fr[1]; return mot === "cher" ? "cher" + (f ? "e" : "") + (pl ? "s" : "") : mot; }
+  if (TR === "pt"){ const f = a.tr.pt[1]; return mot + (f ? "a" : "o") + (pl ? "s" : ""); }
+  return mot;
+}
+function traduire(q){
+  if (!TR || !q) return null;
+  const fr = TR === "fr", en = TR === "en", pt = TR === "pt", de = TR === "de";
+  if (q.ou){ const p = q.ou.p, m = q.ou.m;
+    if (de) return DE.ouQ(p) + " " + maj(magTr(m, 1)) + ".";
+    if (fr) return "Où achète-t-on " + prodTr(p, 0) + " ? " + maj(magTr(m, 1)) + ".";
+    if (en) return "Where do you buy " + prodTr(p, 0) + "? " + maj(magTr(m, 1)) + ".";
+    return "Onde se compra " + prodTr(p, 0) + "? " + maj(magTr(m, 1)) + "."; }
+  if (q.sommes){ const m = q.sommes;
+    return (fr ? "Nous sommes " : en ? "We're " : pt ? "Estamos " : "Wir sind ") + magTr(m, 1) + "."; }
+  if (q.aller){ const {pe, p, m, zu} = q.aller, il = PRON[TR][pe.s];
+    if (zu){
+      if (de) return pe.n + " braucht " + p.de + ". " + il + " geht " + magTr(m, 2) + ".";
+      if (fr) return pe.n + " a besoin " + prodTr(p, 1) + ". " + il + " va " + magTr(m, 2) + ".";
+      if (en) return pe.n + " needs " + prodTr(p, 0) + ". " + il + "'s going " + magTr(m, 2) + ".";
+      return pe.n + " precisa de " + prodTr(p, 0) + ". " + il + " vai " + magTr(m, 2) + "."; }
+    if (de) return pe.n + " kauft " + p.de + ". " + il + " ist " + magTr(m, 1) + ".";
+    if (fr) return pe.n + " achète " + prodTr(p, 0) + ". " + il + " est " + magTr(m, 1) + ".";
+    if (en) return pe.n + " is buying " + prodTr(p, 0) + ". " + il + "'s " + magTr(m, 1) + ".";
+    return pe.n + " compra " + prodTr(p, 0) + ". " + il + " está " + magTr(m, 1) + "."; }
+  if (q.estLa){ const {pe, m} = q.estLa;
+    return pe.n + (fr ? " est " : en ? " is " : pt ? " está " : " ist ") + magTr(m, 1) + "."; }
+  if (q.fait) return q.fait[TR] || (de ? null : null);
+  if (q.qui){ const {id, r, s} = q.qui, t = ligne(id).tr[APPRENDRE][TR], qui = maj(D.tradRoles[TR][r][s]);
+    return fr ? qui + " dit : « " + t + " »" : en ? qui + " says: “" + t + "”" : pt ? qui + " diz: «" + t + "»" : qui + " sagt: „" + t + "“"; }
+  if (q.paire) return ligne(q.paire.q).tr[APPRENDRE][TR] + " — " + ligne(q.paire.r).tr[APPRENDRE][TR];
+  if (q.coute){ const {a, c} = q.coute, pl = a.de[1];
+    if (de) return DE.coute(a, prix(c));
+    if (fr) return maj(a.tr.fr[0]) + (pl ? " coûtent " : " coûte ") + prix(c) + ".";
+    if (en) return maj(a.tr.en) + (pl ? " cost " : " costs ") + prixEn(c) + ".";
+    return maj(a.tr.pt[0]) + (pl ? " custam " : " custa ") + prix(c) + "."; }
+  if (q.compare){ const {a, b, plus} = q.compare, pl = a.de[1];
+    if (de) return DE.plusQue(a, b, plus ? "teurer" : "billiger");
+    if (fr) return maj(a.tr.fr[0]) + (pl ? " sont " : " est ") + (plus ? "plus " : "moins ") + accordTr(a, "cher") + " que " + b.tr.fr[0] + ".";
+    if (en) return maj(a.tr.en) + (pl ? " are " : " is ") + (plus ? "more expensive" : "cheaper") + " than " + b.tr.en + ".";
+    return maj(a.tr.pt[0]) + (pl ? " são mais " : " é mais ") + accordTr(a, plus ? "car" : "barat") + " que " + b.tr.pt[0] + "."; }
+  if (q.rendu){ const {pe, t, b, r} = q.rendu, il = PRON[TR][pe.s];
+    if (de) return DE.renduPh(pe, prix(t), b, prix(r));
+    if (fr) return "Ça fait " + prix(t) + ". " + pe.n + " paie avec un billet de " + BILLETS[b].fr + " euros. On lui rend " + prix(r) + ".";
+    if (en) return "That's " + prixEn(t) + ". " + pe.n + " pays with a " + BILLETS[b].en + "-euro note. " + il + " gets " + prixEn(r) + " back.";
+    return "São " + prix(t) + ". " + pe.n + " paga com uma nota de " + BILLETS[b].pt + " euros. " + il + " recebe " + prix(r) + " de troco."; }
+  if (q.kostet){ const a = q.kostet, pl = a.de[1];
+    if (de) return DE.kostetPh(a);
+    if (fr) return "Combien " + (pl ? "coûtent " : "coûte ") + a.tr.fr[0] + " ?";
+    if (en) return "How much " + (pl ? "are " : "is ") + a.tr.en + "?";
+    return "Quanto " + (pl ? "custam " : "custa ") + a.tr.pt[0] + "?"; }
+  if (q.commande){ const t = D.tradCommande[q.commande][TR];
+    return (fr ? "Je voudrais " : en ? "I'd like " : pt ? "Eu queria " : "Ich hätte gern ") + t + "."; }
+  if (q.emb){ const {e, c} = q.emb, t = D.tradEmb[e.id][TR];
+    return maj(t) + (fr ? " coûte " : en ? " costs " : pt ? " custa " : " kostet ") + prixTr(c) + "."; }
+  if (q.demande){ const t = D.tradEmb[q.demande.id][TR];
+    return maj(t) + (fr ? ", s'il vous plaît." : en ? ", please." : pt ? ", por favor." : ", bitte."); }
+  return null;
+}
+let GLOSES = {};
+fetch("courses/gloses.json?v=1").then(r => r.json()).then(d => { GLOSES = d[APPRENDRE] || {}; }).catch(() => {});
+// la glose du mot de la question : « la panadería — مخبز »
+function glose(m){
+  if (!m) return null;
+  const cle = (m.genre ? m.genre + " " : "") + m.mot, g = (GLOSES[cle] || GLOSES[m.mot] || {})[LANGUE];
+  return g ? cle + " — " + g : null;
+}
+const traduction = t => '<span class="trad" dir="auto">' + t + '</span>';
+// LES TRADUCTIONS SURES D'UN CHOIX FAUX : un magasin, un role, une replique, un emballage ; rien pour un prix, une
+// preposition, une forme du verbe ou un article
+function tradMag(m){
+  if (TR) return magTr(m, TR === "de" ? 1 : 1);
+  const g = GLOSES[m[APPRENDRE].genre + " " + m[APPRENDRE].mot]; return g ? (g[LANGUE] || null) : null;
+}
+const tradRole = (r, s) => TR ? D.tradRoles[TR][r][s] : ((GLOSES[D.roles[APPRENDRE][r][s][1] + " " + D.roles[APPRENDRE][r][s][0]] || {})[LANGUE] || null);
+const tradLigne = id => TR ? ligne(id).tr[APPRENDRE][TR] : null;
+
+// ---------- les images et la voix ----------
+// le haut-parleur de l'app (v919, HP_SVG d'index.html) : celui des repliques du dialogue
+const HP_APP = '<svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+// LA VOIX (themes/voix.js) : le fichier enregistre s'il existe, sinon la voix du telephone. Dans la decouverte, la
+// fiche touchee ; apres une reponse, LA PHRASE AFFICHEE, EN ENTIER (Jacques, 3 nov. 2026, « Oui, partout »).
+// Une phrase a prix se dit en lettres (« Die Butter kostet zwei Euro neunundvierzig. ») : le telephone hacherait « 2,49 € ».
+let dire = texte => { if (texte) Voix.dire(latam(texte)); };
+// Les phrases a prix passent par la voix prise AU CHARGEMENT : l'inventaire des voix (visuel/voix_themes.py) n'ecoute
+// que Voix.dire, et ces phrases-la, des milliers de prix, ne s'enregistrent pas -- le telephone les dit en lettres.
+const direPrix = (d => texte => { if (texte) d(latam(texte)); })(Voix.dire);
+// TOUT CE QUE LA PAGE PEUT DIRE SANS PRIX, pour l'inventaire des voix a enregistrer (visuel/voix_themes.py)
+function textesAVoix(){
+  const out = Object.values(D.decouverte[APPRENDRE]).map(x => x.texte);
+  MAGS().forEach(m => out.push(L.woPh(m), L.sommesPh(m)));
+  D.produits.forEach(p => p.vend.forEach(id => { const m = mag(id); if (m && m[APPRENDRE]) out.push(L.ouPh(p, m)); }));
+  Object.keys(D.lignes).forEach(id => { if (!ligne(id).dit) { out.push(texteLigne(id)); D.roles && ["m", "f"].forEach(s => out.push(L.dit(roleNom(ligne(id).r, s), texteLigne(id)))); } });
+  D.paires.forEach(p => { if (!ligne(p.q).dit && !ligne(p.r).dit) out.push(texteLigne(p.q) + " " + texteLigne(p.r)); });
+  D.commande[APPRENDRE].forEach(x => out.push(L.commandePh(x)));
+  D.articles.forEach(a => out.push(L.kostetPh(a)));
+  D.emballages.forEach(e => out.push(latam(L.demandePh(e))));
+  D.moments.forEach(m => { if (m.fait[APPRENDRE]) out.push(m.fait[APPRENDRE]); });
+  return [...new Set(out.filter(Boolean).map(latam))];
+}
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.replace(/(?:« )?[A-Za-zÀ-ÿñÑßäöüÄÖÜ¡¿][A-Za-zÀ-ÿñÑßäöüÄÖÜ¡¿!?…,.'+= ()0-9€]*[A-Za-zÀ-ÿñÑßäöüÄÖÜ!?…)0-9€](?: »)?/g, m => '<span dir="ltr">' + m + '</span>');
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+let file = [], rang = 0, bons = 0, repondu = false;
+// LE MOT DE LA QUESTION (regle 3 : « un mot appris compte partout ») : juger() l'envoie, l'app fait avancer sa carte.
+let motQ = null, sensQ = null;
+// phrase : la phrase juste affichee sous la reponse ; lu : sa lecture en lettres quand elle a un prix
+function juger(ok, bonneTexte, phrase, lu){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, sens: motQ.sens || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
+  const tl = traduire(sensQ) || (TR ? null : glose(motQ));
+  if (tl) m.insertAdjacentHTML("beforeend", traduction(isoler(tl)));
+  // LE MOT CHOISI, quand il est faux (Jacques, 3 nov.) : sa traduction, seulement quand elle est sure
+  if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad + '</span>');
+  if (lu) direPrix(lu); else dire(phrase || bonneTexte);
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+let choixFaux = null, TRAD_CHOIX = null;
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = o; if (o === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixFaux = o === bonne ? null : {texte: String(o), trad: TRAD_CHOIX && TRAD_CHOIX[o]};
+      apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// l'ecran d'une question : la consigne, une image (ou rien), l'enonce, les choix, le message
+function ecran(consigne, image, enonce, centre, classeChoix){
+  $("zone").innerHTML = '<p class="consigne">' + T(consigne) + '</p>' + (image || "")
+    + '<div class="enonce' + (centre ? " centre" : "") + '">' + enonce + '</div><div class="choix' + (centre ? " centre" : "") + (classeChoix ? " " + classeChoix : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = () => '<span class="trou" id="trou">?</span>';
+const avecTrou = s => cible(latam(s)).replace("___", trou());
+const sous = s => '<span class="sous">' + cible(latam(s)) + '</span>';
+const photoHaute = src => '<img class="photo haute" alt="" src="' + src + '">';
+const photoLarge = src => '<img class="photo large" alt="" src="' + src + '">';
+const options = (bonne, leurres, n) => melanger([bonne, ...melanger([...new Set(leurres)].filter(x => x !== bonne)).slice(0, n)]);
+const boutonEcoute = id => '<button type="button" class="ecoute" id="' + id + '" aria-label="' + T("reecouter") + '">' + HP + '</button>';
+
+// LES MOTS DU THEME (le tirage suit les mots), a la forme du corpus. Chaque mot porte ce que les sortes savent en faire :
+// mag (un magasin), role (K / V et le sexe), lignes (les repliques qui l'enseignent), art (un article a prix),
+// cmd (une commande), emb (un emballage du prospectus), mom (un moment), et les mots des prix (kosten, prix, rendu, cmp).
+let MOTS = null;
+function motsDuTheme(){
+  if (MOTS) return MOTS;
+  const par = new Map();
+  const ajouter = (mot, g, props) => {
+    if (!mot) return;
+    const cle = mot + "|" + g;
+    if (!par.has(cle)) par.set(cle, Object.assign({mot}, g === "adjectif" || g === "verbe" ? {cat: g} : {genre: g}));
+    const w = par.get(cle);
+    for (const k in props){
+      if (Array.isArray(props[k])) w[k] = [...new Set((w[k] || []).concat(props[k]))];
+      else if (w[k] === undefined) w[k] = props[k];
+    }
+  };
+  MAGS().forEach(m => ajouter(m[APPRENDRE].mot, m[APPRENDRE].genre, {mag: m.id}));
+  ["K", "V"].forEach(r => ["m", "f"].forEach(s => { const x = D.roles[APPRENDRE][r][s]; ajouter(x[0], x[1], {role: r, sexe: s}); }));
+  Object.keys(D.lignes).forEach(id => { const x = (ligne(id).mot || {})[APPRENDRE]; if (x) ajouter(x[0], x[1], {lignes: [id]}); });
+  D.articles.forEach(a => ajouter(a[APPRENDRE][2], a[APPRENDRE][3], {art: [a.id]}));
+  D.commande[APPRENDRE].forEach((x, i) => ajouter(x[2], x[3], {cmd: [i]}));
+  D.emballages.forEach(e => ajouter(e[APPRENDRE].mot[0], e[APPRENDRE].mot[1], {emb: e.id}));
+  D.moments.forEach(m => { const x = m.mot[APPRENDRE]; ajouter(x[0], x[1], {mom: [m.id]}); });
+  if (APPRENDRE === "de"){
+    ajouter("kosten", "verbe", {prix: true, kostet: true}); ajouter("Euro", "der", {prix: true, rendu: true}); ajouter("bezahlen", "verbe", {rendu: true});
+    ajouter("teuer", "adjectif", {cmp: "plus"}); ajouter("billig", "adjectif", {cmp: "moins"}); ajouter("Angebot", "das", {angebot: true});
+  } else {
+    ajouter("costar", "verbe", {prix: true, kostet: true}); ajouter("euro", "el", {prix: true, rendu: true}); ajouter("pagar", "verbe", {rendu: true});
+    ajouter("caro", "adjectif", {cmp: "plus"}); ajouter("barato", "adjectif", {cmp: "moins"}); ajouter("oferta", "la", {angebot: true});
+  }
+  MOTS = [...par.values()];
+  return MOTS;
+}
+const motMag = m => ({mot: m[APPRENDRE].mot, genre: m[APPRENDRE].genre});
+const motDe = x => x[1] === "verbe" || x[1] === "adjectif" ? {mot: x[0], cat: x[1]} : {mot: x[0], genre: x[1]};
+// les magasins de la langue qui NE vendent PAS ce produit : les seuls leurres permis
+const autresMags = p => MAGS().filter(m => !p.vend.includes(m.id));
+// les images d'un magasin : la sienne (scene de l'app ou image du theme) et les moments qui s'y passent, quand elles existent
+const imagesDe = m => (m.pret ? [m.img] : []).concat(D.moments.filter(x => x.pret && x.lieu === m.id).map(x => x.img));
+const prixHasard = a => { const [mn, mx] = a.prix; return entre(mn, mx); };
+// LES LEURRES D'UN PRIX : les confusions de l'oreille -- de : les unites et les dizaines inversees (49 / 94),
+// siebzehn / siebzig, un euro de plus ou de moins ; es : sesenta / setenta, quince / cincuenta, doce / dos
+function leurresPrix(c){
+  const e = Math.floor(c / 100), ct = c % 100, out = new Set(), mk = (x, y) => { if (x >= 0 && x < 100 && y >= 0 && y < 100 && (x || y)) out.add(x * 100 + y); };
+  if (ct % 10 && Math.floor(ct / 10) && ct % 10 !== Math.floor(ct / 10)) mk(e, (ct % 10) * 10 + Math.floor(ct / 10));
+  if (APPRENDRE === "de"){
+    if (ct >= 13 && ct <= 19) mk(e, (ct % 10) * 10);
+    if (ct % 10 === 0 && ct >= 30) mk(e, 10 + ct / 10);
+    if (e >= 13 && e <= 19) mk((e % 10) * 10 > 99 ? e : (e % 10) * 10, ct);
+  } else {
+    const d = Math.floor(ct / 10); if (d === 6 || d === 7) mk(e, (13 - d) * 10 + ct % 10);
+    if (ct === 15) mk(e, 50); if (ct === 50) mk(e, 15);
+    if (e === 2) mk(12, ct); if (e === 12) mk(2, ct);
+  }
+  mk(e + 1, ct); if (e > 1) mk(e - 1, ct); if (e < 10) mk(e + 10, ct);
+  mk(e, (ct + 10) % 100);
+  out.delete(c);
+  return [...out];
+}
+
+// ---------- les exercices ----------
+// Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+const EX = {
+  // « Wo kauft man Brot? » In der Bäckerei. / In der Apotheke. ... -- jamais un magasin qui le vend aussi
+  ou(w){
+    if (w && !w.mag) return false;
+    const prods = D.produits.filter(p => (!w || p.vend.includes(w.mag)) && autresMags(p).length >= 2);
+    if (!prods.length) return false;
+    const p = hasard(prods), vendeurs = p.vend.filter(id => mag(id) && mag(id)[APPRENDRE]);
+    const m = mag(w ? w.mag : hasard(vendeurs));
+    motQ = w || motMag(m); sensQ = {ou: {p, m}};
+    TRAD_CHOIX = {}; MAGS().forEach(x => { TRAD_CHOIX[L.woPh(x)] = tradMag(x); });
+    const rep = L.woPh(m);
+    ecran("ou", "", cible(latam(L.ouQ(p))), true);
+    boutons($("choix"), options(rep, autresMags(p).map(L.woPh), 3), rep, ok => juger(ok, rep, latam(L.ouPh(p, m))));
+    return true;
+  },
+  // l'image d'un magasin (la scene, ou un moment qui s'y passe) : « Wo sind wir? » Auf dem Markt.
+  magasin(w){
+    if (w && !w.mag) return false;
+    const l = MAGS().filter(m => (!w || m.id === w.mag) && imagesDe(m).length); if (!l.length) return false;
+    const m = hasard(l), src = hasard(imagesDe(m));
+    motQ = w || motMag(m); sensQ = {sommes: m};
+    TRAD_CHOIX = {}; MAGS().forEach(x => { TRAD_CHOIX[L.woPh(x)] = tradMag(x); });
+    const rep = L.woPh(m);
+    ecran("magasin", m.img === src ? photoHaute(src) : photoLarge(src), cible(L.ouSommes), true);
+    boutons($("choix"), options(rep, MAGS().filter(x => x.id !== m.id).map(L.woPh), 3), rep, ok => juger(ok, rep, L.sommesPh(m)));
+    return true;
+  },
+  // « Mark braucht Brot. Er geht ___ Bäckerei. » zur / zum / zu / in -- « Er ist ___ Supermarkt. » im / in der...
+  // es : « Va ___ supermercado. » al / a el / a la ; « Está ___ panadería. » en la / a la...
+  aller(w){
+    if (w && !w.mag) return false;
+    const m = w ? mag(w.mag) : hasard(MAGS()), p = hasard(D.produits.filter(x => x.vend.includes(m.id))), pe = hasard(PERS), zu = Math.random() < 0.5;
+    motQ = w || motMag(m); sensQ = {aller: {pe, p, m, zu}};
+    const x = m[APPRENDRE];
+    const rep = APPRENDRE === "de" ? (zu ? x.zu : x.wo) : (zu ? x.a : x.en), leurres = APPRENDRE === "de" ? (zu ? x.zuL : x.woL) : (zu ? x.aL : x.enL);
+    const phrase = (zu ? L.allerZu : L.allerWo)(pe, p, m);
+    ecran("aller", "", avecTrou(phrase));
+    const juste = latam(phrase.replace("___", rep));
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, juste); });
+    return true;
+  },
+  // « „Sonst noch etwas?“ Wer sagt das? » der Kunde / die Verkäuferin
+  qui(w){
+    if (w && !w.role && !w.lignes) return false;
+    // un mot de role (der Kunde) prend les repliques qui n'enseignent pas d'autre mot : il ne vole pas la seule question
+    // de « Kassenbon » ou de « Gramm »
+    const libre = id => !((ligne(id).mot || {})[APPRENDRE]);
+    let ids = Object.keys(D.lignes).filter(id => !w || (w.lignes ? w.lignes.includes(id) : ligne(id).r === w.role));
+    if (w && w.role && ids.some(libre)) ids = ids.filter(libre);
+    if (!ids.length) return false;
+    const id = hasard(ids), r = ligne(id).r, autre = r === "K" ? "V" : "K";
+    const s = w && w.role ? w.sexe : hasard(["m", "f"]), s2 = hasard(["m", "f"]);
+    const rep = roleNom(r, s), leurre = roleNom(autre, s2);
+    motQ = w || (ligne(id).mot && ligne(id).mot[APPRENDRE] ? motDe(ligne(id).mot[APPRENDRE]) : motDe(D.roles[APPRENDRE][r][s]));
+    sensQ = {qui: {id, r, s}};
+    TRAD_CHOIX = {}; TRAD_CHOIX[rep] = tradRole(r, s); TRAD_CHOIX[leurre] = tradRole(autre, s2);
+    ecran("qui", "", cible(L.citer(texteLigne(id))) + sous(L.quiQ), true);
+    const phrase = L.dit(rep, texteLigne(id)), lu = ligne(id).dit ? L.dit(rep, voixLigne(id)) : null;
+    boutons($("choix"), melanger([rep, leurre]), rep, ok => juger(ok, rep, phrase, lu));
+    return true;
+  },
+  // « Die Verkäuferin: „Sonst noch etwas?“ Was antwortet der Kunde? » -- les leurres : les reponses des autres paires,
+  // jamais une qui pourrait aussi convenir (« aussi »)
+  reponse(w){
+    if (w && !w.role && !w.lignes) return false;
+    const pr = D.paires.filter(p => !w || (w.lignes ? (w.lignes.includes(p.q) || w.lignes.includes(p.r)) : ligne(p.r).r === w.role));
+    const avecLeurres = p => D.paires.map(x => x.r).filter(id => id !== p.r && ligne(id).r === ligne(p.r).r && !p.aussi.includes(id));
+    let l = pr.filter(p => avecLeurres(p).length >= 2);
+    const libre = p => !((ligne(p.q).mot || {})[APPRENDRE]) && !((ligne(p.r).mot || {})[APPRENDRE]);
+    if (w && w.role && l.some(libre)) l = l.filter(libre);
+    if (!l.length) return false;
+    const p = hasard(l), rq = ligne(p.q).r, rr = ligne(p.r).r;
+    const sr = w && w.role ? w.sexe : hasard(["m", "f"]), sq = hasard(["m", "f"]);
+    const motPaire = (ligne(p.r).mot || {})[APPRENDRE] || (ligne(p.q).mot || {})[APPRENDRE];
+    motQ = w || (motPaire ? motDe(motPaire) : motDe(D.roles[APPRENDRE][rr][sr]));
+    sensQ = {paire: p};
+    const rep = texteLigne(p.r), leurres = avecLeurres(p).map(texteLigne);
+    TRAD_CHOIX = {}; D.paires.forEach(x => { TRAD_CHOIX[texteLigne(x.r)] = tradLigne(x.r); });
+    ecran("reponse", "", cible(maj(roleNom(rq, sq)) + ": " + L.citer(texteLigne(p.q))) + sous(L.repQ(roleNom(rr, sr))));
+    const phrase = L.citer(texteLigne(p.q)) + " — " + L.citer(rep);
+    const lu = (ligne(p.q).dit || ligne(p.r).dit) ? voixLigne(p.q) + " " + voixLigne(p.r) : null;
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(ok, rep, phrase, lu || voixLigne(p.q) + " " + voixLigne(p.r)));
+    return true;
+  },
+  // le prix en lettres (et a l'oreille) : « Die Butter kostet zwei Euro neunundvierzig. » -> l'etiquette 2,49 €
+  prix(w){
+    if (w && !w.prix && !w.art) return false;
+    const a = w && w.art ? art(hasard(w.art)) : hasard(D.articles), c = prixHasard(a);
+    motQ = w || motDe(APPRENDRE === "de" ? ["kosten", "verbe"] : ["costar", "verbe"]); sensQ = {coute: {a, c}};
+    const ditTexte = L.coute(a, lettres(c)), rep = prix(c);
+    ecran("prix", "", cible(ditTexte) + " " + boutonEcoute("reecoute"), true, "etiquettes");
+    $("reecoute").addEventListener("click", () => direPrix(ditTexte));
+    boutons($("choix"), options(rep, leurresPrix(c).map(prix), 3), rep, ok => juger(ok, rep, L.coute(a, prix(c)), ditTexte));
+    return true;
+  },
+  // « Der Käse kostet 4,50 €. Die Butter kostet 1,99 €. Der Käse ist ___ als die Butter. » teurer / billiger / teuerer...
+  // es : « El queso es ___ que la mantequilla. » más caro / más barato / más cara / caro (l'accord)
+  comparer(w){
+    if (w && !w.cmp && !w.art) return false;
+    const a = w && w.art ? art(hasard(w.art)) : hasard(D.articles), b = hasard(D.articles.filter(x => x.id !== a.id));
+    let ca = prixHasard(a), cb = prixHasard(b), n = 0;
+    while (Math.abs(ca - cb) < 30 && n++ < 20){ ca = prixHasard(a); cb = prixHasard(b); }
+    if (Math.abs(ca - cb) < 30) cb = ca + 50;
+    if (w && w.cmp && (w.cmp === "plus") !== (ca > cb)) [ca, cb] = [cb, ca];
+    const plus = ca > cb;
+    motQ = w || motDe(APPRENDRE === "de" ? [plus ? "teuer" : "billig", "adjectif"] : [plus ? "caro" : "barato", "adjectif"]);
+    sensQ = {compare: {a, b, plus}};
+    let rep, leurres;
+    if (APPRENDRE === "de"){ rep = plus ? "teurer" : "billiger"; leurres = plus ? ["billiger", "teuerer", "teuer"] : ["teurer", "billig", "mehr billig"]; }
+    else {
+      const i = (a.es[1] ? 2 : 0) + (a.es[3] === "la" ? 1 : 0), F = {c: ["caro", "cara", "caros", "caras"], b: ["barato", "barata", "baratos", "baratas"]};
+      const x = plus ? F.c : F.b, y = plus ? F.b : F.c;
+      rep = "más " + x[i]; leurres = ["más " + y[i], "más " + x[i ^ 1], x[i]];
+    }
+    TRAD_CHOIX = {};
+    if (TR){ const fr = TR === "fr", en = TR === "en", pt = TR === "pt";
+      const tx = p => TR === "de" ? (p ? "teurer" : "billiger") : fr ? (p ? "plus cher" : "moins cher") : en ? (p ? "more expensive" : "cheaper") : (p ? "mais caro" : "mais barato");
+      if (APPRENDRE === "de"){ TRAD_CHOIX[plus ? "billiger" : "teurer"] = tx(!plus); }
+      else TRAD_CHOIX[leurres[0]] = tx(!plus); }
+    const enonce = cible(L.coute(a, prix(ca)) + " " + L.coute(b, prix(cb))) + sous(L.plusQue(a, b, "___"));
+    ecran("comparer", "", enonce.replace("___", trou()));
+    const juste = L.plusQue(a, b, rep);
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, juste); });
+    return true;
+  },
+  // la monnaie : « Das macht 7,80 €. Mark bezahlt mit einem Zehn-Euro-Schein. Er bekommt ___ zurück. » 2,20 € / 3,20 €...
+  rendu(w){
+    if (w && !w.rendu) return false;
+    const t = entre(110, 4890), b = [500, 1000, 2000, 5000].find(x => x > t), r = b - t, pe = hasard(PERS);
+    motQ = w || motDe(APPRENDRE === "de" ? ["bezahlen", "verbe"] : ["pagar", "verbe"]); sensQ = {rendu: {pe, t, b, r}};
+    const re = Math.floor(r / 100), rc = r % 100;
+    const l = new Set([r + 100, r - 100, re * 100 + (100 - rc) % 100, r + 10, r - 10, r + 90].filter(x => x > 0 && x !== r));
+    const rep = prix(r);
+    ecran("rendu", "", cible(L.rendu(pe, prix(t), b)) + sous(L.renduQ(pe)).replace("___", trou()));
+    const juste = L.renduPh(pe, prix(t), b, prix(r)), lu = L.renduPh(pe, lettres(t), b, lettres(r));
+    boutons($("choix"), options(rep, [...l].map(prix), 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, juste, lu); });
+    return true;
+  },
+  // l'accord : « Was ___ die Äpfel? » kosten / kostet / kostest -- « ¿Cuánto ___ las manzanas? » cuestan / cuesta / costan
+  kostet(w){
+    if (w && !w.kostet && !w.art) return false;
+    const a = w && w.art ? art(hasard(w.art)) : hasard(D.articles);
+    motQ = w || motDe(APPRENDRE === "de" ? ["kosten", "verbe"] : ["costar", "verbe"]); sensQ = {kostet: a};
+    const pl = a[APPRENDRE][1];
+    const rep = APPRENDRE === "de" ? (pl ? "kosten" : "kostet") : (pl ? "cuestan" : "cuesta");
+    const leurres = APPRENDRE === "de" ? ["kostet", "kosten", "kostest"] : ["cuesta", "cuestan", "costa", "costan"];
+    ecran("kostet", "", avecTrou(L.kostetQ(a)), true);
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, L.kostetPh(a)); });
+    return true;
+  },
+  // l'article de la commande : « Ich hätte gern ___ Kuchen. » einen / ein / eine -- « Quisiera ___ tarta. » una / un / uno
+  commande(w){
+    if (w && !w.cmd) return false;
+    const liste = D.commande[APPRENDRE], i = w ? hasard(w.cmd) : Math.floor(Math.random() * liste.length), x = liste[i];
+    motQ = w || motDe([x[2], x[3]]); sensQ = {commande: x[4]};
+    const rep = x[0], leurres = APPRENDRE === "de" ? ["ein", "eine", "einen"] : ["un", "una", "uno"];
+    ecran("commande", "", avecTrou(L.commande(x)), true);
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, latam(L.commandePh(x))); });
+    return true;
+  },
+  // le prospectus des offres (dessine) : « Was kostet eine Packung Nudeln? » ou « Was kostet 1,79 €? »
+  prospekt(w){
+    if (w && !w.emb && !w.angebot) return false;
+    const cibleE = w && w.emb ? D.emballages.find(e => e.id === w.emb) : hasard(D.emballages);
+    const quatre = [cibleE, ...melanger(D.emballages.filter(e => e.id !== cibleE.id)).slice(0, 3)];
+    const prixDe = new Map(); const pris = new Set();
+    quatre.forEach(e => { let c, n = 0; do { c = entre(e.prix[0], e.prix[1]); } while (pris.has(c) && n++ < 30); pris.add(c); prixDe.set(e.id, c); });
+    const c = prixDe.get(cibleE.id), x = cibleE[APPRENDRE];
+    motQ = w || motDe(x.mot); sensQ = {emb: {e: cibleE, c}};
+    const lignes = melanger(quatre).map(e => '<div class="l">' + (e.pret ? '<img alt="" src="' + e.img + '">' : "") + '<div class="n">' + latam(e[APPRENDRE].ligne)
+      + '<small>' + latam(e[APPRENDRE].emb) + '</small></div><div class="p">' + prix(prixDe.get(e.id)) + '</div></div>').join("");
+    const flyer = '<div class="prospekt" lang="' + APPRENDRE + '"><div class="t">' + L.offres + '</div>' + lignes + '</div>';
+    const parPrix = Math.random() < 0.5;
+    const juste = latam(L.embPh(cibleE, prix(c))), lu = latam(L.embPh(cibleE, lettres(c)));
+    if (parPrix){
+      const rep = prix(c);
+      ecran("prospekt", flyer, cible(latam(L.combien(cibleE))), true, "etiquettes");
+      boutons($("choix"), melanger(quatre.map(e => prix(prixDe.get(e.id)))), rep, ok => juger(ok, rep, juste, lu));
+    } else {
+      const np = e => latam(maj(e[APPRENDRE].np)), rep = np(cibleE);
+      TRAD_CHOIX = {}; quatre.forEach(e => { TRAD_CHOIX[np(e)] = TR ? D.tradEmb[e.id][TR] : null; });
+      ecran("prospekt", flyer, cible(L.quoiPour(prix(c))), true);
+      boutons($("choix"), melanger(quatre.map(np)), rep, ok => juger(ok, rep, juste, lu));
+    }
+    return true;
+  },
+  // « „Eine Tube Zahnpasta, bitte.“ » : toucher la bonne nature morte (quand les images existent)
+  emballage(w){
+    if (w && !w.emb) return false;
+    const prets = D.emballages.filter(e => e.pret); if (prets.length < 3) return false;
+    const cibleE = w ? prets.find(e => e.id === w.emb) : hasard(prets); if (!cibleE) return false;
+    const pris = [cibleE, ...melanger(prets.filter(e => e.id !== cibleE.id)).slice(0, 3)];
+    motQ = w || motDe(cibleE[APPRENDRE].mot); sensQ = {demande: cibleE};
+    $("zone").innerHTML = '<p class="consigne">' + T("emballage") + '</p><div class="enonce centre">' + cible(latam(L.demande(cibleE))) + '</div><div class="rangee" id="rangee"></div><p class="retourMsg" id="msg"></p>';
+    const ch = $("rangee"); let bouton;
+    melanger(pris).forEach(e => {
+      const b = document.createElement("button"); b.type = "button"; b.dataset.id = e.id;
+      b.innerHTML = '<img alt="" src="' + e.img + '">';
+      if (e === cibleE) bouton = b;
+      b.addEventListener("click", () => {
+        ch.querySelectorAll("button").forEach(y => { y.disabled = true; if (y === bouton) y.classList.add("juste"); });
+        if (b !== bouton) b.classList.add("faux");
+        choixFaux = e === cibleE ? null : {texte: latam(maj(e[APPRENDRE].np)), trad: TR ? D.tradEmb[e.id][TR] : null};
+        juger(e === cibleE, latam(maj(cibleE[APPRENDRE].np)), latam(L.demandePh(cibleE)));
+      });
+      ch.appendChild(b);
+    });
+    return true;
+  },
+  // un moment au comptoir (quand les images existent) : « Mark bezahlt mit Karte. » vrai ; « Mark ist in der Apotheke. » faux
+  vraifaux(w){
+    if (w && !w.mom && !w.mag) return false;
+    const l = D.moments.filter(m => m.pret && mag(m.lieu)[APPRENDRE] && (!w || (w.mom ? w.mom.includes(m.id) : m.lieu === w.mag))); if (!l.length) return false;
+    const mo = hasard(l), lieu = mag(mo.lieu), pe = PERS.find(x => x.n === mo.qui);
+    const fait = !!(w && w.mom) || (!(w && w.mag) && Math.random() < 0.5), vrai = fait || Math.random() < 0.5;
+    let affirme, juste;
+    if (fait){ affirme = juste = mo.fait[APPRENDRE]; motQ = w || motDe(mo.mot[APPRENDRE]); sensQ = {fait: mo.fait}; }
+    else {
+      const autre = hasard(MAGS().filter(x => x.id !== lieu.id));
+      affirme = L.estLa(pe, vrai ? lieu : autre); juste = L.estLa(pe, lieu); motQ = w || motMag(lieu); sensQ = {estLa: {pe, m: lieu}};
+    }
+    ecran("vraifaux", photoLarge(mo.img), cible(affirme), true);
+    const rep = vrai ? L.vrai : L.faux;
+    boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste));
+    return true;
+  }
+};
+const SORTES = Object.keys(EX);
+
+// ---------- la decouverte : trois planches a toucher, chaque element se voit, s'entend et se traduit ----------
+const PRIX_DECOUVERTE = [99, 149, 249, 290, 475, 1260, 1770, 1999, 2450, 3780, 6790, 7660];
+function trDecouverte(m){
+  if (!TR) return glose(motMag(m));
+  const prods = D.produits.filter(p => p.vend[0] === m.id), deux = APPRENDRE === "de" ? prods.slice(0, 2) : prods.slice(0, 1);
+  if (TR === "de") return m.id === "supermarkt" ? "Im Supermarkt kauft man fast alles." : maj(m.de.wo + " " + m.de.mot) + " kauft man " + deux.map(p => p.de).join(" und ") + ".";
+  const et = TR === "fr" ? " et " : TR === "en" ? " and " : " e ";
+  if (m.id === "supermarkt") return TR === "fr" ? "Au supermarché, on achète presque tout." : TR === "en" ? "At the supermarket, you can buy almost everything." : "No supermercado, compra-se quase tudo.";
+  const liste = deux.map(p => prodTr(p, 0)).join(et);
+  return TR === "fr" ? maj(magTr(m, 1)) + ", on achète " + liste + "." : TR === "en" ? maj(magTr(m, 1)) + ", you buy " + liste + "." : maj(magTr(m, 1)) + ", compra-se " + liste + ".";
+}
+let muet = false;
+function decouvrir(){
+  $("bas").hidden = true; $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone"), phrases = D.decouverte[APPRENDRE];
+  z.innerHTML = '<div class="onglets" role="tablist"><button type="button" role="tab" id="oM">' + T("ongletM") + '</button><button type="button" role="tab" id="oD">' + T("ongletD")
+              + '</button><button type="button" role="tab" id="oP">' + T("ongletP") + '</button></div>'
+              + '<p class="consigne" id="intro"></p><div id="planche"></div><div class="fiche" id="fiche"></div><p class="regle" id="regle"></p>';
+  const fiche = (image, mot, dit, trad, voix, prixVoix) => {
+    $("fiche").className = "fiche" + (image ? "" : " seule");
+    $("fiche").innerHTML = (image ? '<img alt="" src="' + image + '">' : "") + '<div><div class="mot">' + cible(mot) + '</div>' + (dit ? '<div class="dit">' + dit + '</div>' : "")
+      + (trad ? traduction(isoler(trad)) : "") + '<button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>';
+    const parle = () => { if (!muet) (prixVoix ? direPrix : dire)(voix); };
+    $("ecoute").addEventListener("click", parle); parle();
+  };
+  const choisir = (pl, b) => pl.querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b));
+  const ONGLETS = {
+    M(pl){ pl.className = "planche";
+      MAGS().filter(m => m.pret).forEach(m => {
+        const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", m[APPRENDRE].genre + " " + m[APPRENDRE].mot);
+        b.innerHTML = '<img alt="" src="' + m.img + '">';
+        b.addEventListener("click", () => { choisir(pl, b); const ph = phrases["mag-" + m.id].texte; fiche(m.img, m[APPRENDRE].genre + " " + m[APPRENDRE].mot, cible(ph), trDecouverte(m), ph); });
+        pl.appendChild(b);
+      });
+      return pl.querySelector("button"); },
+    D(pl){ pl.className = "repliques";
+      D.paires.forEach(p => {
+        const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE;
+        const t = document.createElement("span"); t.className = "txt"; t.textContent = texteLigne(p.q); b.appendChild(t);
+        b.insertAdjacentHTML("beforeend", '<span class="hp-ligne" aria-hidden="true">' + HP_APP + '</span>');
+        b.setAttribute("aria-label", T("ecouter") + " : " + texteLigne(p.q));
+        // toucher la replique ou son haut-parleur ouvre la fiche et la fait entendre ; le rond s'allume le temps du geste
+        b.addEventListener("click", () => { choisir(pl, b);
+          if (!muet) { pl.querySelectorAll(".joue").forEach(x => x.classList.remove("joue")); b.classList.add("joue"); setTimeout(() => b.classList.remove("joue"), 1200); }
+          const dit = cible(maj(roleNom(ligne(p.q).r, "f")) + " : " + L.citer(texteLigne(p.q))) + "<br>" + cible(maj(roleNom(ligne(p.r).r, "m")) + " : " + L.citer(texteLigne(p.r)));
+          const tq = tradLigne(p.q), trr = tradLigne(p.r);
+          const prixVoix = !!(ligne(p.q).dit || ligne(p.r).dit);
+          fiche(null, texteLigne(p.q), dit, tq && trr ? tq + " — " + trr : null, voixLigne(p.q) + " " + voixLigne(p.r), prixVoix); });
+        pl.appendChild(b);
+      });
+      return pl.querySelector("button"); },
+    P(pl){ pl.className = "planche etiq";
+      PRIX_DECOUVERTE.forEach(c => {
+        const b = document.createElement("button"); b.type = "button"; b.dir = "ltr"; b.textContent = prix(c);
+        b.addEventListener("click", () => { choisir(pl, b); fiche(null, prix(c), cible(lettres(c)), null, lettres(c), true); });
+        pl.appendChild(b);
+      });
+      return pl.querySelector("button"); }
+  };
+  const REGLES = {M: APPRENDRE === "de" ? "regleMde" : "regleMes", D: APPRENDRE === "de" ? "regleDde" : "regleDes", P: APPRENDRE === "de" ? "reglePde" : "reglePes"};
+  const onglet = cle => {
+    ["M", "D", "P"].forEach(k => $("o" + k).setAttribute("aria-selected", k === cle));
+    $("intro").textContent = T("intro" + cle);
+    $("regle").innerHTML = isoler(T(REGLES[cle]));
+    const pl = $("planche"); pl.innerHTML = "";
+    const premier = ONGLETS[cle](pl);
+    // la fiche s'ouvre sur le premier, sans parler : le son ne vient que d'un geste
+    muet = true;
+    try { if (premier) premier.click(); } finally { muet = false; }
+  };
+  ["M", "D", "P"].forEach(k => $("o" + k).addEventListener("click", () => onglet(k)));
+  onglet("M");
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; Voix.arreter(); demarrer(); };
+}
+
+// LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : recopie de manger.html (identique d'un theme a l'autre).
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
+}
+function montrer(){
+  repondu = false; $("suite").hidden = true; $("bas").hidden = true; choixFaux = null;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let n = 0; n < 60; n++){
+        motQ = null; sensQ = null; TRAD_CHOIX = null; sorteCourante = so;
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){
+      motQ = null; sensQ = null; TRAD_CHOIX = null; sorteCourante = derniereSorte;
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){
+      motQ = null; sensQ = null; TRAD_CHOIX = null; sorteCourante = so;
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+  }
+  if (!fait) fait = essai(file[rang], false);
+  vus.add(cleQuestion()); derniereSorte = fait;
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>';
+  boutonsBas(() => parler("fini", {bons, faits: file.length}));
+}
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + '</div>';
+  boutonsBas(() => parler("fini", {bons: 0, faits: 0}));
+}
+function boutonsBas(terminer){
+  const b = $("bas");
+  b.innerHTML = (Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>')
+              + '<button type="button" id="terminer">' + T("terminer") + '</button>';
+  b.hidden = false;
+  const e = $("encore"); if (e) e.addEventListener("click", encoreDesQuestions);
+  $("terminer").addEventListener("click", terminer);
+}
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("courses/courses.json?v=1").then(r => r.json()).then(d => {
+  D = d;
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>

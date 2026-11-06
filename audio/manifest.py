@@ -321,8 +321,9 @@ def recolter():
         prendre(texte, "A1", "phrase" if " " in texte.strip() else "mot", "reperes")
 
     # LES EMOTIONS ET LE CARACTERE (theme illustre, 3 nov. 2026) : les phrases de la
-    # decouverte, telles que la page les ecrit (visuel/emociones/emociones.json).
-    for texte in emociones_textes("de"):
+    # decouverte, telles que la page les ecrit (visuel/emociones/emociones.json) ; et depuis le 4 nov.
+    # les phrases dites apres chaque reponse, relevees en jouant la page (visuel/emociones/voix.json).
+    for texte in emociones_textes("de") + themes_textes("emociones", "de"):
         prendre(texte, "A1", "phrase", "emociones")
     # LES CONTRAIRES (theme illustre, 3 nov. 2026) : les phrases de la decouverte et les
     # mots cles que la page dit apres chaque reponse (visuel/contrarios/contrarios.json).
@@ -331,7 +332,7 @@ def recolter():
 
     # LA FAMILLE ET DECRIRE UNE PERSONNE (themes illustres, 3 nov. 2026) : les fiches de la decouverte et les mots
     # cles dits apres une reponse, tels que les pages les disent (visuel/voix_themes.py -> visuel/<theme>/voix.json).
-    for theme in ("familia", "descripcion", "ropa", "cuerpo"):
+    for theme in ("familia", "descripcion", "ropa", "cuerpo", "manger"):
         for texte in themes_textes(theme, "de"):
             prendre(texte, "A1", "phrase" if " " in texte else "mot", theme)
 

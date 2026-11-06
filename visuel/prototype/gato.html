@@ -18,6 +18,11 @@
   a chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste (une preposition : cat « praep »), « fini »
   et « fermer » a la fin. Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de
   decouverte), variante=latam (la voix), r=<AUDIO_REVISION>. Le tirage suit les mots (themes/tirage.js).
+  L'ANGLAIS (4 nov. 2026, « il manque beaucoup de themes en anglais ») : apprendre=en, variante=gb pour le
+  britannique. Pas de cas : on y apprend les prepositions elles-memes (on, under, behind, in front of, next to,
+  between, above, at), is sitting / is lying, into / onto / over / to pour le mouvement, there is / there are et
+  « Where is the cat? — It's under the table. ». Les memes images ; les phrases anglaises sont fabriquees dans la
+  page (EN_PLACES et voisins, plus bas) a partir des memes places que gato.json, qui ne change pas.
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -111,11 +116,13 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="bas" id="bas" hidden></div>
 <script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=2"></script>
+<script src="themes/voix.js?v=4"></script>
 <script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=5"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const EN_APP = APPRENDRE === "en", GB = EN_APP && Q.get("variante") === "gb";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
@@ -175,7 +182,15 @@ const TEXTES = {
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
-  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"},
+  // l'anglais seulement (son interface est en francais)
+  regleEnPos:  {fr:"<b>Où il est</b> : la préposition suffit, rien ne change avec elle (pas de cas). Assis : <b>is sitting</b> ; couché : <b>is lying</b>. Au-dessus, sans toucher : <b>above</b> (ou over). Et avec <b>on</b> : on the wall (au mur), on the shelf (sur l'étagère) ; mais <b>at</b> the window (à la fenêtre)."},
+  regleEnMvt:  {fr:"<b>Où il va</b> : un mouvement. Vers l'intérieur : <b>into</b> ; vers le dessus : <b>onto</b> ; par-dessus : <b>over</b> ; vers un endroit : <b>to</b>. Under, behind, next to, in front of ne changent pas. À l'oral, on entend aussi « jumps on the table » : onto est plus précis."},
+  regleEnThere:{fr:"<b>There is</b> (<b>there are</b> au pluriel) dit ce qu'il y a ; <b>It's</b> dit où il est. Jamais « it has » pour « il y a », et it's (it is) ne s'écrit pas its."},
+  bonUs:       {fr:"<b>Bon à savoir</b> (anglais américain) : « en face de » se dit <b>across from</b> (en britannique, opposite) ; <b>in front of</b> veut dire « devant ». Le sac à main est un <b>purse</b> (en britannique, handbag), et on dit souvent <b>couch</b> pour sofa. Une armoire est un <b>wardrobe</b> : un closet est un placard encastré."},
+  bonGb:       {fr:"<b>Bon à savoir</b> (anglais britannique) : « en face de » se dit <b>opposite</b> (en américain, across from) ; <b>in front of</b> veut dire « devant ». Le sac à main est un <b>handbag</b> (en américain, purse)."},
+  intoOnto:    {fr:"Il a bougé jusque-là : into, onto ou over ?"},
+  thereIs:     {fr:"There is, there are ou it's ? Regarde l'image."}
 };
 // les exemples des regles, dans la langue apprise : une ligne de gauche a droite, la meme pour toutes les langues
 const EXEMPLES = {
@@ -183,7 +198,10 @@ const EXEMPLES = {
   regleWohin: "der Tisch → auf <b>den</b> Tisch · die Tür → vor <b>die</b> Tür · das Sofa → auf <b>das</b> Sofa · die Stühle → zwischen <b>die</b> Stühle",
   kurz: "in dem → <b>im</b> · an dem → <b>am</b> · in das → <b>ins</b> · an das → <b>ans</b> · auf das → <b>aufs</b>",
   regleEs: "el gato está <b>debajo de</b> la mesa → el gato se mete <b>debajo de</b> la mesa · salta <b>a</b> la mesa",
-  contrEs: "de + el = <b>del</b> : detrás del sofá · a + el = <b>al</b> : salta al sofá · de la, a la : detrás de la mesa, salta a la mesa"
+  contrEs: "de + el = <b>del</b> : detrás del sofá · a + el = <b>al</b> : salta al sofá · de la, a la : detrás de la mesa, salta a la mesa",
+  regleEnPos: "<b>on</b> the table · <b>under</b> the chair · <b>behind</b> the sofa · <b>in front of</b> the door · <b>next to</b> the basket · <b>between</b> the cushions · <b>above</b> the table",
+  regleEnMvt: "in the box → jumps <b>into</b> the box · on the table → jumps <b>onto</b> the table · at the window → goes <b>to</b> the window · jumps <b>over</b> the box",
+  regleEnThere: "<b>There is</b> a cat under the table. · Where is the cat? — <b>It's</b> under the table. · <b>There are</b> two cushions on the sofa."
 };
 const regle = cle => isoler(T(cle)) + '<span class="exemples" lang="' + APPRENDRE + '" dir="ltr">' + EXEMPLES[cle] + '</span>';
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -201,9 +219,139 @@ const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LAN
 const tradPhrase = p => PHRASE_TRADUITE ? (((D.trad[APPRENDRE] || {})[p] || {})[LANGUE] || null) : null;
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 
+// ---------- L'ANGLAIS (4 nov. 2026) : les phrases, fabriquees depuis les memes places que gato.json ----------
+// Chaque place : [assis ou couche, ses prepositions justes (la premiere est celle de la decouverte), le verbe du
+// mouvement, sa preposition]. Comme l'espagnol, plusieurs formes justes par place (in / inside the box, on top of /
+// on the basket) : aucune n'est jamais le leurre d'une autre. Les verbes de position suivent l'allemand (sitzt /
+// liegt) ; ceux du mouvement enseignent into / onto / to (climbs into the basket, jumps onto the shelf, goes to the
+// window). « on the shelf » et « at the window » : la ou l'allemand dit im Regal, am Fenster.
+const EN_PLACES = {
+  "sofa-vor": ["lying", ["in front of"], "lies down", "in front of"], "tisch-auf": ["sitting", ["on"], "jumps", "onto"],
+  "stuhl-unter": ["lying", ["under"], "crawls", "under"], "tisch-neben": ["sitting", ["next to"], "sits down", "next to"],
+  "kissen-zwischen": ["sitting", ["between"], "sits down", "between"], "sofa-auf": ["lying", ["on"], "jumps", "onto"],
+  "sofa-hinter": ["sitting", ["behind"], "hides", "behind"], "sofa-unter": ["lying", ["under"], "crawls", "under"],
+  "korb-in": ["lying", ["in", "inside"], "climbs", "into"], "korb-neben": ["sitting", ["next to"], "sits down", "next to"],
+  "korb-auf": ["sitting", ["on top of", "on"], "jumps", "onto"], "karton-in": ["sitting", ["in", "inside"], "jumps", "into"],
+  "karton-auf": ["sitting", ["on top of", "on"], "jumps", "onto"], "schrank-auf": ["lying", ["on top of"], "climbs", "onto"],
+  "tuer-vor": ["sitting", ["in front of"], "sits down", "in front of"], "fenster-an": ["sitting", ["at"], "goes", "to"],
+  "regal-in": ["lying", ["on"], "jumps", "onto"], "pflanze-vor": ["sitting", ["in front of"], "sits down", "in front of"],
+  "vorhang-hinter": ["sitting", ["behind"], "hides", "behind"], "tasche-in": ["sitting", ["in", "inside"], "crawls", "into"]
+};
+// les noms, a la forme du corpus anglais (anglais/datos, et datos-gb pour le britannique : handbag) ; EN_AFF : la
+// forme de la phrase quand elle differe (between the cushions)
+const EN_NOMS = {tisch:"table", stuhl:"chair", sofa:"sofa", kissen:"cushion", korb:"basket", karton:"box", schrank:"wardrobe", tuer:"door",
+                 fenster:"window", regal:"shelf", pflanze:"plant", vorhang:"curtain", tasche:"purse", wand:"wall", lampe:"lamp", bild:"picture"};
+const EN_NOMS_GB = {tasche:"handbag"}, EN_AFF = {kissen:"cushions"};
+const motEn = n => (GB && EN_NOMS_GB[n]) || EN_NOMS[n];
+const affNom = n => (GB && EN_NOMS_GB[n]) || EN_AFF[n] || EN_NOMS[n];
+// le verbe du mouvement a l'infinitif (le corpus) ; crawl manque au corpus anglais : il reste hors jeu
+const EN_INF = {jumps:"jump", "lies down":"lie down", crawls:"crawl", "sits down":"sit down", hides:"hide", climbs:"climb", goes:"go"};
+// LES MOTS ANGLAIS DU THEME. Les prepositions ont cat « praep », comme en espagnol et en allemand : en anglais,
+// praepTheme d'index.html prend les prepositions ANGLAISES (anglais/datos/fonctionnels.json, loadFunktionswoerterJson).
+// « lie » (etre couche) n'y est pas : le seul « lie » du corpus est mentir ; les questions qui le montrent visent leur nom.
+const EN_PREPS_MOTS = ["in", "on", "on top of", "under", "behind", "in front of", "next to", "between", "above", "over", "at", "into", "onto"];
+const EN_VERBES = ["sit", "sit down", "lie down", "jump", "climb", "crawl", "hide", "go", "put", "hang"];
+// la traduction du mot montre sous la reponse (le corpus, et une glose ecrite pour les prepositions)
+const EN_GLOSES = {table:"la table", chair:"la chaise", sofa:"le canapé", cushion:"le coussin", basket:"le panier", box:"la boîte", wardrobe:"l'armoire, la penderie",
+  door:"la porte", window:"la fenêtre", shelf:"l'étagère", plant:"la plante", curtain:"le rideau", purse:"le sac à main", handbag:"le sac à main", wall:"le mur",
+  lamp:"la lampe", picture:"le tableau, l'image", sit:"être assis", "sit down":"s'asseoir", "lie down":"s'allonger", jump:"sauter", climb:"monter, grimper",
+  crawl:"ramper, se glisser", hide:"cacher, se cacher", go:"aller", put:"mettre, poser", hang:"accrocher, pendre",
+  on:"sur", "on top of":"sur (le dessus de)", under:"sous", behind:"derrière", "in front of":"devant", "next to":"à côté de", between:"entre",
+  above:"au-dessus de", over:"au-dessus de, par-dessus", at:"à (contre, au bord de)", into:"dans (un mouvement vers l'intérieur)",
+  onto:"sur (un mouvement vers le dessus)", in:"dans", inside:"à l'intérieur de", to:"à, vers"};
+// la traduction francaise des groupes : la preposition et le nom, avec les contractions (du, au, des)
+const FR_P = {on:"sur", "on top of":"sur", under:"sous", behind:"derrière", "in front of":"devant", "next to":"à côté de", between:"entre",
+              above:"au-dessus de", over:"au-dessus de", in:"dans", inside:"à l'intérieur de", into:"dans", onto:"sur", at:"à", to:"à"};
+const FR_NOM = {tisch:["la", "table"], stuhl:["la", "chaise"], sofa:["le", "canapé"], kissen:["les", "coussins"], korb:["le", "panier"], karton:["le", "carton"],
+                schrank:["l'", "armoire"], tuer:["la", "porte"], fenster:["la", "fenêtre"], regal:["l'", "étagère"], pflanze:["la", "plante"], vorhang:["le", "rideau"],
+                tasche:["le", "sac à main"], wand:["le", "mur"], lampe:["la", "lampe"], bild:["le", "tableau"]};
+const FR_V = {jumps:"saute", "lies down":"se couche", crawls:"se glisse", "sits down":"s'assoit", hides:"se cache", climbs:"grimpe", goes:"va"};
+function frGroupe(prep, n){
+  if (prep === "on" && n === "wand") return "au mur";
+  if (prep === "over" && n === "karton") return "par-dessus le carton";
+  const [a, nom] = FR_NOM[n], p = FR_P[prep];
+  if (p.slice(-3) === " de") return p.slice(0, -3) + " " + {le: "du ", les: "des ", la: "de la ", "l'": "de l'"}[a] + nom;
+  if (p === "à") return {le: "au ", les: "aux ", la: "à la ", "l'": "à l'"}[a] + nom;
+  return p + " " + (a === "l'" ? a : a + " ") + nom;
+}
+const EN_PREP_RE = /\b(in front of|on top of|next to|between|behind|under|above|inside|over|into|onto|on|in|at|to)\b/;
+// un groupe anglais (« under the sofa », « next to Mia ») : sa preposition et sa traduction, ou null s'il n'y en a pas
+// de sure (« at the wall » se traduirait « au mur », la bonne reponse : rien)
+function groupeEn(c){
+  const m = /^(in front of|on top of|next to|between|behind|under|above|inside|over|into|onto|on|in|at|to) (.+)$/.exec(c || "");
+  if (!m) return null;
+  const prep = m[1], reste = m[2], art = /^the (.+)$/.exec(reste);
+  if (!art) return {prep, fr: FR_P[prep] + " " + reste.replace(" and ", " et ")};
+  const n = Object.keys(FR_NOM).find(k => affNom(k) === art[1]);
+  if (!n || (prep === "at" && n !== "fenster")) return null;
+  return {prep, fr: frGroupe(prep, n)};
+}
+// les personnes, les gestes d'Anna et de Ben, le saut par-dessus le carton et les objets de la piece
+const EN_PERSONNES = {"ben-mia": ["between Ben and Mia", "sitting", "between"], "mia-tisch": ["next to Mia", "lying", "next to"]};
+const DE_EN = {neben:"next to", unter:"under", hinter:"behind", auf:"on", in:"in", vor:"in front of", zwischen:"between", "über":"above", an:"at"};
+const EN_GESTES = {
+  "anna-korb": {q:"Where does Anna put the cat?", rep:"in the basket", phrase:"Anna puts the cat in the basket.", prep:"in", nom:"korb", leurres:["next to the basket", "on top of the basket"]},
+  "ben-tisch": {q:"Where does Ben put the cat?", rep:"on the table", phrase:"Ben puts the cat on the table.", prep:"on", nom:"tisch", leurres:["under the table", "next to the table"]}
+};
+const EN_UEBER = {q:"The cat jumps ___.", rep:"over the box", phrase:"The cat jumps over the box.", prep:"over", nom:"karton", leurres:["into the box", "onto the box"]};
+const EN_OBJETS = {
+  lampe: {q:"Where is the lamp?", rep:["above the table", "over the table"], preps:["above", "over"], nom:"tisch", sujet:"lampe", phrase:"The lamp is hanging above the table.",
+          leurres:["under the table", "next to the table", "on the table"], fr:"La lampe est suspendue au-dessus de la table."},
+  "bild-sofa": {q:"Where is the picture?", rep:["above the sofa", "over the sofa"], preps:["above", "over"], nom:"sofa", sujet:"bild", phrase:"The picture is hanging above the sofa.",
+          leurres:["under the sofa", "next to the sofa", "on the sofa"], fr:"Le tableau est accroché au-dessus du canapé."},
+  "bild-wand": {q:"Where is the picture?", rep:["on the wall"], preps:["on"], nom:"wand", sujet:"bild", phrase:"The picture is hanging on the wall.",
+          leurres:["at the wall", "in the wall", "behind the wall"], fr:"Le tableau est accroché au mur."}
+};
+// ce qu'il y a dans la piece (there is / there are), vrai sur la piece vide : [there is / are, la suite, la traduction, les noms, la preposition]
+const EN_PIECE = [
+  ["There is", "a lamp above the table", "Il y a une lampe au-dessus de la table.", ["lampe", "tisch"], "above"],
+  ["There is", "a picture above the sofa", "Il y a un tableau au-dessus du canapé.", ["bild", "sofa"], "above"],
+  ["There is", "a picture on the wall", "Il y a un tableau au mur.", ["bild", "wand"], "on"],
+  ["There are", "two cushions on the sofa", "Il y a deux coussins sur le canapé.", ["kissen", "sofa"], "on"],
+  ["There are", "a lot of books on the shelves", "Il y a beaucoup de livres sur les étagères.", ["regal"], "on"],
+  ["There is", "a box on the floor", "Il y a un carton par terre.", ["karton"], "on"]
+].map(([s, t, fr, n, p]) => ({s, t, fr, n, p}));
+// les donnees anglaises, posees dans D au chargement : D.places[id].en, D.personnes[id].en (qui portait la traduction
+// anglaise d'une phrase espagnole ou allemande, inutile quand on apprend l'anglais), D.trad.en, D.gloses.en
+function preparerAnglais(){
+  const tr = {};
+  PLACES().forEach(id => {
+    const [e, preps, mvVerbe, mvPrep] = EN_PLACES[id], n = D.places[id].de.nom, aff = affNom(n);
+    const donde = preps.map(x => x + " the " + aff), mvLieu = mvPrep + " the " + aff;
+    const etre = e === "sitting" ? "assis" : "couché";
+    donde.forEach((g, i) => { tr["The cat is " + e + " " + g + "."] = {fr: "Le chat est " + etre + " " + frGroupe(preps[i], n) + "."}; });
+    const mouvement = "The cat " + mvVerbe + " " + mvLieu + ".";
+    tr[mouvement] = {fr: "Le chat " + FR_V[mvVerbe] + " " + frGroupe(mvPrep, n) + "."};
+    D.places[id].en = {preps, nom: n, genre: "", mot: aff, pluriel: D.places[id].de.pluriel, donde, etre: e, mvVerbe, mvPrep, mvLieu,
+                       mvInf: EN_INF[mvVerbe], phrase: "The cat is " + e + " " + donde[0] + ".", mouvement};
+  });
+  Object.keys(D.personnes).forEach(id => {
+    const [rep, e, prep] = EN_PERSONNES[id], phrase = "The cat is " + e + " " + rep + ".";
+    D.personnes[id].en = {q: "Where is the cat?", rep, phrase, prep, v: e === "sitting" ? "sit" : null};
+    D.personnes[id].leurresEn = D.personnes[id].leurresDe.map(([a, b]) => [DE_EN[a], b]);
+    tr[phrase] = {fr: D.personnes[id].fr};
+  });
+  Object.keys(D.gestes).forEach(id => { D.gestes[id].en = EN_GESTES[id]; tr[EN_GESTES[id].phrase] = {fr: D.gestes[id].fr}; });
+  D.ueber.en = EN_UEBER; tr[EN_UEBER.phrase] = {fr: D.ueber.fr};
+  D.objets.forEach(o => { const x = EN_OBJETS[o.id]; o.en = x; x.rep.forEach(r => { tr[x.phrase.replace(x.rep[0], r)] = {fr: x.fr}; }); });
+  EN_PIECE.forEach(f => { tr[f.s + " " + f.t + "."] = {fr: f.fr}; });
+  D.trad.en = tr;
+  D.gloses.en = {};
+  Object.keys(EN_GLOSES).forEach(k => { D.gloses.en[k] = {fr: EN_GLOSES[k]}; });
+}
+// la question en anglais sans mot vise (les controles) : sa preposition si c'est un mot du theme, sinon son nom
+const enDefaut = it => EN_PREPS_MOTS.includes(it.prep) || !it.nom ? motPrep(it.prep) : motNom(it.nom);
+
 // ---------- la voix : le fichier enregistre s'il existe, sinon le telephone (themes/voix.js) ----------
 let dire = t => Voix.dire(t);
 const taire = () => Voix.arreter();
+// tout ce que la page peut dire en anglais (visuel/voix_themes.py, cle en) : les phrases de la decouverte et les mots.
+// L'espagnol et l'allemand ont leur inventaire dans visuel/gato/voix.json (fait par gato.py) : rien ici.
+function textesAVoix(){
+  if (!EN_APP || !D) return [];
+  return uniques(items().map(it => it.phrase).concat(PLACES().map(id => pl(id).mouvement), Object.keys(D.gestes).map(id => D.gestes[id].en.phrase),
+    [D.ueber.en.phrase], EN_PIECE.map(f => f.s + " " + f.t + "."), motsDuTheme().map(m => m.mot)));
+}
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
 // ---------- utilitaires ----------
@@ -219,6 +367,8 @@ const imgSrc = i => "gato/" + i + ".webp";
 // l'article (ou la forme courte) d'un groupe, en couleur : le datif en ambre, l'accusatif en bleu-vert
 const KURZ = ["im", "am", "ins", "ans", "aufs"];
 function marquer(groupe, cas){
+  // en anglais, la preposition elle-meme : en ambre ce qui ne bouge pas (on), en bleu-vert le mouvement (onto)
+  if (EN_APP){ const m = EN_PREP_RE.exec(groupe); return !m ? groupe : groupe.slice(0, m.index) + '<span class="cas-' + cas + '">' + m[1] + '</span>' + groupe.slice(m.index + m[1].length); }
   const t = groupe.split(" ");
   let i = -1;
   if (DE_APP) i = KURZ.includes(t[0]) ? 0 : (t.length >= 3 && /^(dem|den|der|die|das)$/.test(t[1]) ? 1 : -1);
@@ -268,6 +418,13 @@ let motQ = null, tradQ = null, apresQ = null, montreQ = null, choixQ = null;   /
 let MOTS = null;
 function motsDuTheme(){
   if (MOTS) return MOTS;
+  if (EN_APP){
+    const nomsEn = uniques(PLACES().map(id => D.places[id].de.nom).concat(["wand", "lampe", "bild"]));
+    MOTS = EN_PREPS_MOTS.map(p => ({k: "p:" + p, mot: p, cat: "praep"}))
+      .concat(nomsEn.map(n => ({k: "n:" + n, n, mot: motEn(n), genre: ""})))
+      .concat(EN_VERBES.map(v => ({k: "v:" + v, mot: v, cat: "verbe"})));
+    return MOTS;
+  }
   const preps = DE_APP ? ["auf", "unter", "in", "vor", "hinter", "neben", "zwischen", "über", "an"]
                        : ["encima de", "sobre", "debajo de", "dentro de", "en", "delante de", "detrás de", "al lado de", "entre"];
   const noms = uniques(PLACES().map(id => D.places[id].de.nom).concat(D.objets.filter(o => o.id === "bild-wand").map(o => o.de.nom)));
@@ -278,6 +435,7 @@ function motsDuTheme(){
 }
 // le nom d'une cle (tisch) dans la langue apprise : {mot: "Tisch", genre: "der"} / {mot: "mesa", genre: "la"}
 function nomDe(n){
+  if (EN_APP) return {mot: motEn(n), genre: ""};
   const p = PLACES().map(id => D.places[id]).find(x => x.de.nom === n);
   if (p) return {mot: p[APPRENDRE].mot, genre: p[APPRENDRE].genre};
   return DE_APP ? {mot: "Wand", genre: "die"} : {mot: "pared", genre: "la"};
@@ -304,6 +462,9 @@ function choixTraduit(c){
   if (!c || LANGUE === APPRENDRE) return null;
   const glose = m => { const g = (D.gloses[APPRENDRE] || {})[m] || {}; return g[LANGUE] || g.fr || ""; };
   if (D.places[c]){ const ph = pl(c).phrase; return {aff: ph, sens: tradPhrase(ph) || glose(DE_APP ? pl(c).prep : pl(c).preps[0])}; }
+  // en anglais : un groupe (« onto the sofa — sur le canapé »), ou une preposition seule (into, onto, over)
+  if (EN_APP){ const ge = groupeEn(c); if (ge) return {aff: c, sens: PHRASE_TRADUITE ? ge.fr : glose(ge.prep)};
+               return EN_PREP_RE.test(c) && EN_GLOSES[c] && c.indexOf(" ") < 0 ? {aff: c, sens: glose(c)} : null; }
   const g = (D.groupes[APPRENDRE] || {})[c];
   // en allemand, le cas de ce qui a ete choisi : « im Karton » se traduit comme « in den Karton », c'est le cas qui fautait
   if (g) return {aff: c + (g.cas ? " (" + (g.cas === "dat" ? "Wo? → Dativ" : "Wohin? → Akkusativ") + ")" : ""), sens: PHRASE_TRADUITE ? (g[LANGUE] || "") : glose(g.prep)};
@@ -324,8 +485,10 @@ function juger(ok, bonneTexte, phrase){
   }
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const mt = montreDe(motQ);
-  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
-    + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
+  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : EN_APP ? "Well done!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
+    // la phrase juste, ECRITE, apres toute reponse (Jacques, 5 nov., d'abord sur la meteo : une ecoute reussie ne
+    // montrait que « ¡Muy bien! ») ; apres une erreur, « La bonne reponse » l'a deja
+    + ((ok || (phrase && phrase !== bonneTexte)) ? '<span class="phrase">' + cible(phrase || bonneTexte) + '</span>' : "")
     + traduction(tradQ || tradPhrase(phrase || bonneTexte))
     + (!ok && (c => c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")(choixTraduit(choixQ)) || "")
     + (mt ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(mt.aff) + (mt.sens ? ' · <span dir="auto">' + mt.sens + '</span>' : "") + '</span>' : "");
@@ -378,22 +541,30 @@ function itemsOu(){
   PLACES().forEach(id => {
     const p = pl(id), nom = D.places[id].de.nom;
     if (DE_APP) out.push({img: id, place: id, q: p.qWo, rep: p.wo, phrase: p.phrase, prep: p.prep, nom, vrais: [p.wo], cas: "dat"});
+    else if (EN_APP) p.preps.forEach((x, i) => out.push({img: id, place: id, q: "Where is the cat?", rep: p.donde[i], phrase: "The cat is " + p.etre + " " + p.donde[i] + ".",
+                                                         prep: x, nom, vrais: p.donde, v: p.etre === "sitting" ? "sit" : null, chat: true}));
     else p.preps.forEach((x, i) => out.push({img: id, place: id, q: "¿Dónde está el gato?", rep: p.donde[i], phrase: "El gato está " + p.donde[i] + ".", prep: x, nom, vrais: p.donde}));
   });
   Object.keys(D.personnes).forEach(id => {
     const q = D.personnes[id][APPRENDRE];
+    if (EN_APP){ out.push({img: id, q: q.q, rep: q.rep, phrase: q.phrase, prep: q.prep, nom: null, vrais: [q.rep], v: q.v, chat: true,
+                           leurres: D.personnes[id].leurresEn.map(([a, b]) => groupe(a, b))}); return; }
     out.push({img: id, q: q.q, rep: q.rep, phrase: q.phrase, prep: q.prep, nom: q.nom || null, vrais: [q.rep], cas: "dat",
               leurres: (DE_APP ? D.personnes[id].leurresDe : D.personnes[id].leurresEs).map(([a, b]) => groupe(a, b, "dat"))});
   });
   D.objets.forEach(o => {
     const x = o[APPRENDRE];
-    if (DE_APP) out.push({img: "piece", q: x.q, rep: x.rep, phrase: x.phrase, prep: x.prep, nom: o.id === "bild-wand" ? x.nom : null, vrais: [x.rep], leurres: x.leurres, cas: "dat"});
+    // en anglais : l'objet (the lamp, the picture) est un mot du theme (sujet), et son verbe est hang
+    if (EN_APP) x.rep.forEach((r, i) => out.push({img: "piece", q: x.q, rep: r, phrase: x.phrase.replace(x.rep[0], r), prep: x.preps[i], nom: x.nom, sujet: x.sujet,
+                                                  v: "hang", vrais: x.rep, leurres: x.leurres}));
+    else if (DE_APP) out.push({img: "piece", q: x.q, rep: x.rep, phrase: x.phrase, prep: x.prep, nom: o.id === "bild-wand" ? x.nom : null, vrais: [x.rep], leurres: x.leurres, cas: "dat"});
     else x.rep.forEach((r, i) => out.push({img: "piece", q: x.q, rep: r, phrase: x.phrase.replace(x.rep[0], r), prep: x.preps[i], nom: o.id === "bild-wand" ? x.nom : null, vrais: x.rep, leurres: x.leurres}));
   });
   return out;
 }
 // le groupe « preposition + article + nom » d'une cle de nom, comme gato.py (pour les leurres des personnes)
 function groupe(prep, n, cas){
+  if (EN_APP) return prep + " the " + affNom(n);
   const p = PLACES().map(id => D.places[id]).find(x => x.de.nom === n);
   if (DE_APP){
     const g = p ? p.de.genre : (n === "wand" ? "die" : "der"), mot = p ? p.de.mot : (n === "wand" ? "Wand" : n);
@@ -416,8 +587,25 @@ let ITEMS = null;
 const items = () => ITEMS || (ITEMS = itemsOu());
 // un item pour le mot vise (preposition ou nom), sinon au hasard parmi ceux que propose filtre
 function itemPour(w, filtre){
-  const c = items().filter(it => (!filtre || filtre(it)) && (!w || (estPrep(w) && it.prep === w.mot) || (estNom(w) && it.nom === w.n)));
+  const c = items().filter(it => (!filtre || filtre(it)) && (!w || (estPrep(w) && it.prep === w.mot) || (estNom(w) && it.nom === w.n)
+                                   || (EN_APP && ((estNom(w) && it.sujet === w.n) || (estVerbe(w) && it.v === w.mot)))));
   return c.length ? hasard(c) : null;
+}
+// L'ANGLAIS : ou va le chat. Le lieu d'arrivee que prendrait le verbe du mouvement pour une autre place (un leurre) :
+// jumps / climbs into ou onto, crawls into ou under, goes to ; lies down, sits down, hides : la place elle-meme
+function lieuEn(verbe, y){
+  const q = pl(y);
+  if (verbe === "goes") return ["kissen", "tasche", "karton"].includes(q.nom) ? null : "to the " + q.mot;   // un meuble, pas un sac
+  if (verbe === "jumps" || verbe === "climbs") return ["into", "onto"].includes(q.mvPrep) ? q.mvLieu : null;
+  if (verbe === "crawls") return ["into", "under"].includes(q.mvPrep) ? q.mvLieu : q.preps[0] === "behind" ? q.donde[0] : null;
+  return q.preps[0] === "at" ? null : q.donde[0];
+}
+// les leurres d'un mouvement : d'autres places FAUSSES pour l'image d'arrivee, jamais le meme objet (« onto the box »
+// pour « into the box » : avant la reponse, la fleche ne les distingue pas), jamais la place de depart
+function leurresVers(x, s, n){
+  const p = pl(x), justes = p.donde.concat([p.mvLieu]);
+  const autres = melanger(PLACES().filter(y => y !== x && y !== s && compatibles(x, y) && D.places[y].de.nom !== p.nom));
+  return uniques(autres.map(y => lieuEn(p.mvVerbe, y)).filter(l => l && !justes.includes(l))).slice(0, n);
 }
 // les places ou l'on peut aller, avec leur mouvement (et une place d'AVANT compatible)
 const depart = dest => hasard(PLACES().filter(s => compatibles(s, dest)));
@@ -441,9 +629,9 @@ function verbeVise(w){
 const EX = {
   // « Wo sitzt die Katze? » / « ¿Dónde está el gato? » : l'image, la bonne place et des places fausses
   wo(w){
-    if (estVerbe(w)) return false;
+    if (estVerbe(w) && !EN_APP) return false;      // en anglais, sit et hang : la phrase de la reponse les montre
     const it = itemPour(w); if (!it) return false;
-    viser(w, it.nom && !it.prep ? motNom(it.nom) : motPrep(it.prep));
+    viser(w, EN_APP ? enDefaut(it) : it.nom && !it.prep ? motNom(it.nom) : motPrep(it.prep));
     ecran("wo", photo(it.img), it.q, true);
     boutons($("choix"), melanger([it.rep, ...leurresPlace(it, 2)]), it.rep, ok => juger(ok, it.rep, it.phrase));
     return true;
@@ -534,9 +722,9 @@ const EX = {
   },
   // la phrase, et quatre images : une seule la montre
   cual(w){
-    if (estVerbe(w)) return false;
+    if (estVerbe(w) && !EN_APP) return false;
     const it = itemPour(w, x => !!x.place); if (!it) return false;
-    viser(w, motPrep(it.prep));
+    viser(w, EN_APP ? enDefaut(it) : motPrep(it.prep));
     const autres = melanger(PLACES().filter(y => compatibles(it.place, y) && !items().some(o => o.place === y && o.rep === it.rep)));
     const proches = autres.filter(y => D.places[y].de.nom === it.nom || pl(y).prep === it.prep || (pl(y).preps || []).includes(it.prep));
     const ids = melanger([it.place, ...uniques(proches.concat(autres)).slice(0, 3)]);
@@ -546,9 +734,9 @@ const EX = {
   },
   // l'ecoute : la phrase dite, trois images
   entendre(w){
-    if (estVerbe(w)) return false;
+    if (estVerbe(w) && !EN_APP) return false;
     const it = itemPour(w, x => !!x.place); if (!it) return false;
-    viser(w, motPrep(it.prep));
+    viser(w, EN_APP ? enDefaut(it) : motPrep(it.prep));
     const autres = melanger(PLACES().filter(y => compatibles(it.place, y) && !items().some(o => o.place === y && o.rep === it.rep)));
     $("zone").innerHTML = '<p class="consigne">' + T("entendre") + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
       + '<div id="rang"></div><p class="retourMsg" id="msg"></p>';
@@ -562,7 +750,7 @@ const EX = {
     // en espagnol, « estar » avait une seule sorte (hay / está) : en fin de partie, juste apres une question hay / está
     // sur une preposition, le tirage n'avait plus qu'elle (« 1 sorte de suite », 3 nov.). Le vrai ou faux sait donc
     // aussi le viser : « Hay un gato debajo de la mesa. » / « El gato está… » justes, « Está un gato… » / « El gato hay… » faux.
-    if (estVerbe(w) && !DE_APP){
+    if (estVerbe(w) && APPRENDRE === "es"){
       const it = itemPour(null, x => !!x.place); if (!it) return false;
       viser(w, motVerbe("estar"));
       const hay = Math.random() < 0.5, vrai = Math.random() < 0.5;
@@ -571,6 +759,25 @@ const EX = {
       ecran("vraifaux", photo(it.img), phrase, true);
       const rep = vrai ? "Verdadero" : "Falso";
       boutons($("choix"), ["Verdadero", "Falso"], rep, ok => juger(ok, rep, juste));
+      return true;
+    }
+    // L'ANGLAIS, un verbe : la position (is sitting, is hanging) ou le mouvement (jumps onto, lies down in front of,
+    // puts the cat in), vrai, ou faux par un autre lieu faux pour l'image
+    if (estVerbe(w) && EN_APP){
+      const c = items().filter(it => it.v === w.mot).map(it => ["i", it])
+        .concat(PLACES().filter(id => pl(id).mvInf === w.mot).map(id => ["p", id]))
+        .concat(w.mot === "put" ? Object.keys(D.gestes).map(id => ["g", id]) : [])
+        .concat(w.mot === "jump" ? [["u", "saut-ueber"]] : []);
+      if (!c.length) return false;
+      const [t, x] = hasard(c), vrai = Math.random() < 0.5;
+      viser(w, null);
+      let image, juste, faux = null;
+      if (t === "i"){ image = photo(x.img); juste = x.phrase; const l = leurresPlace(x, 1)[0]; if (l) faux = juste.replace(x.rep, l); }
+      else if (t === "p"){ const p = pl(x), s = depart(x); apresQ = x; image = photo(s, x); juste = p.mouvement; const l = leurresVers(x, s, 1)[0]; if (l) faux = juste.replace(p.mvLieu, l); }
+      else { const g = t === "g" ? D.gestes[x].en : D.ueber.en; image = photo(x); juste = g.phrase; faux = juste.replace(g.rep, hasard(g.leurres)); }
+      const montre = vrai || !faux ? juste : faux, rep = vrai || !faux ? "True" : "False";
+      ecran("vraifaux", image, montre, true);
+      boutons($("choix"), ["True", "False"], rep, ok => juger(ok, rep, juste));
       return true;
     }
     if (estVerbe(w)){
@@ -588,11 +795,11 @@ const EX = {
       return true;
     }
     const it = itemPour(w); if (!it) return false;
-    viser(w, it.nom && !it.prep ? motNom(it.nom) : motPrep(it.prep));
+    viser(w, EN_APP ? enDefaut(it) : it.nom && !it.prep ? motNom(it.nom) : motPrep(it.prep));
     const vrai = Math.random() < 0.5, faux = leurresPlace(it, 1)[0];
     const phrase = vrai || !faux ? it.phrase : it.phrase.replace(it.rep, faux);
     ecran("vraifaux", photo(it.img), phrase, true);
-    const V = DE_APP ? "Richtig" : "Verdadero", F = DE_APP ? "Falsch" : "Falso", rep = vrai || !faux ? V : F;
+    const V = DE_APP ? "Richtig" : EN_APP ? "True" : "Verdadero", F = DE_APP ? "Falsch" : EN_APP ? "False" : "Falso", rep = vrai || !faux ? V : F;
     boutons($("choix"), [V, F], rep, ok => juger(ok, rep, it.phrase));
     return true;
   },
@@ -612,7 +819,7 @@ const EX = {
   },
   // « El gato está detrás ___ sofá. » del / de la / de el -- le nom vise (el sofa : del)
   del(w){
-    if (DE_APP || (w && !estNom(w))) return false;
+    if (APPRENDRE !== "es" || (w && !estNom(w))) return false;
     const c = items().filter(it => it.place && / de$/.test(it.prep) && !pl(it.place).pluriel && (!w || it.nom === w.n));
     if (!c.length) return false;
     const it = hasard(c), p = pl(it.place);
@@ -626,7 +833,7 @@ const EX = {
   // « El gato está debajo de la mesa. Ahora salta ___. » : l'image d'avant, la fleche, la place d'arrivee ;
   // et les gestes d'Anna et de Ben, et le saut par-dessus le carton
   adonde(w){
-    if (DE_APP || estVerbe(w)) return false;
+    if (APPRENDRE !== "es" || estVerbe(w)) return false;
     const c = PLACES().filter(id => !w || (estPrep(w) && pl(id).mvPrep === w.mot) || (estNom(w) && pl(id).nom === w.n)).map(id => ["p", id])
       .concat(Object.keys(D.gestes).filter(id => !w || (estPrep(w) && D.gestes[id].es.prep === w.mot) || (estNom(w) && D.gestes[id].es.nom === w.n)).map(id => ["g", id]))
       .concat((!w || (estNom(w) && w.n === "karton")) ? [["u", "saut-ueber"]] : []);
@@ -657,7 +864,7 @@ const EX = {
   },
   // « El gato salta ___ sofá. » al / a la / a el, sur l'image d'avant et la fleche
   al(w){
-    if (DE_APP || (w && !estNom(w))) return false;
+    if (APPRENDRE !== "es" || (w && !estNom(w))) return false;
     const c = PLACES().filter(id => pl(id).mvPrep === "a" && (!w || pl(id).nom === w.n));
     if (!c.length) return false;
     const x = hasard(c), p = pl(x), s = depart(x);
@@ -669,7 +876,7 @@ const EX = {
   },
   // « ___ un gato debajo de la mesa. » Hay ; « El gato ___ debajo de la mesa. » está
   hayEsta(w){
-    if (DE_APP || (w && !(estVerbe(w) || estPrep(w)))) return false;
+    if (APPRENDRE !== "es" || (w && !(estVerbe(w) || estPrep(w)))) return false;
     const it = itemPour(estPrep(w) ? w : null, x => !!x.place); if (!it) return false;
     viser(w, estPrep(w) ? motPrep(it.prep) : motVerbe("estar"));
     const hay = Math.random() < 0.5;
@@ -678,10 +885,75 @@ const EX = {
     ecran("hayEsta", photo(it.img), avecTrou(phrase));
     boutons($("choix"), opts, rep, ok => { remplir(rep); juger(ok, rep, phrase.replace("___", rep)); });
     return true;
+  },
+  // L'ANGLAIS SEULEMENT : « The cat is under the chair. Now it jumps ___. » -- l'image d'avant, la fleche, la place
+  // d'arrivee (onto the table, into the box, to the window) ; les gestes d'Anna et de Ben ; le saut par-dessus le carton
+  vers(w){
+    if (!EN_APP) return false;
+    const okP = id => { const p = pl(id); return !w || (estPrep(w) && p.mvPrep === w.mot) || (estNom(w) && p.nom === w.n) || (estVerbe(w) && p.mvInf === w.mot); };
+    const okG = g => !w || (estPrep(w) && g.prep === w.mot) || (estNom(w) && g.nom === w.n) || (estVerbe(w) && w.mot === "put");
+    const c = PLACES().filter(okP).map(id => ["p", id])
+      .concat(Object.keys(D.gestes).filter(id => okG(D.gestes[id].en)).map(id => ["g", id]))
+      .concat((!w || (estPrep(w) && w.mot === "over") || (estNom(w) && w.n === "karton") || (estVerbe(w) && w.mot === "jump")) ? [["u", "saut-ueber"]] : []);
+    if (!c.length) return false;
+    const [t, x] = hasard(c);
+    if (t === "p"){
+      const p = pl(x), s = depart(x);
+      viser(w, EN_PREPS_MOTS.includes(p.mvPrep) ? motPrep(p.mvPrep) : motNom(p.nom)); apresQ = x;
+      ecran("wohin", photo(s, x), avecTrou(pl(s).phrase + " Now it " + p.mvVerbe + " ___."), true);
+      boutons($("choix"), melanger([p.mvLieu, ...leurresVers(x, s, 2)]), p.mvLieu, ok => { remplir(p.mvLieu); juger(ok, p.mvLieu, p.mouvement); });
+    } else {
+      const g = t === "g" ? D.gestes[x].en : D.ueber.en;
+      viser(w, EN_PREPS_MOTS.includes(g.prep) ? motPrep(g.prep) : motNom(g.nom));
+      ecran("wohin", photo(x), avecTrou(g.q), true);
+      boutons($("choix"), melanger([g.rep, ...g.leurres.slice(0, 2)]), g.rep, ok => { remplir(g.rep); juger(ok, g.rep, g.phrase); });
+    }
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT : into, onto ou over. L'image d'ARRIVEE (dans le carton ou dessus : avant, la fleche ne le
+  // dirait pas), le verbe du mouvement : « The cat jumps ___ the box. » -- into ; « The cat climbs ___ the wardrobe. » -- onto
+  intoOnto(w){
+    if (!EN_APP) return false;
+    const c = PLACES().filter(id => { const p = pl(id); return ["into", "onto"].includes(p.mvPrep)
+        && (!w || (estPrep(w) && p.mvPrep === w.mot) || (estNom(w) && p.nom === w.n) || (estVerbe(w) && p.mvInf === w.mot)); }).map(id => ["p", id])
+      .concat((!w || (estPrep(w) && w.mot === "over") || (estNom(w) && w.n === "karton") || (estVerbe(w) && w.mot === "jump")) ? [["u", "saut-ueber"]] : []);
+    if (!c.length) return false;
+    const [t, x] = hasard(c);
+    const p = t === "p" ? pl(x) : null, rep = p ? p.mvPrep : "over";
+    viser(w, motPrep(rep));
+    ecran("intoOnto", photo(x), avecTrou(p ? "The cat " + p.mvVerbe + " ___ the " + p.mot + "." : "The cat jumps ___ the box."), true);
+    boutons($("choix"), melanger(["into", "onto", "over"]), rep, ok => { remplir(rep); juger(ok, rep, p ? p.mouvement : D.ueber.en.phrase); });
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT : there is / there are (il y a), it's (il est la) -- jamais « it has », ni « its »
+  thereIs(w){
+    if (!EN_APP || (w && !(estNom(w) || estPrep(w)))) return false;
+    const chats = items().filter(it => it.chat && (!w || (estPrep(w) && it.prep === w.mot) || (estNom(w) && it.nom === w.n)));
+    const faits = EN_PIECE.filter(f => !w || (estPrep(w) && f.p === w.mot) || (estNom(w) && f.n.includes(w.n)));
+    const c = chats.map(it => ["a", it]).concat(chats.map(it => ["b", it]), faits.map(f => ["c", f]));
+    if (!c.length) return false;
+    const [t, x] = hasard(c);
+    let image, phrase, rep, opts, juste, fr = null;
+    if (t === "c"){
+      viser(w, motNom(x.n[0])); image = photo("piece");
+      phrase = "___ " + x.t + "."; rep = x.s; opts = ["There is", "There are", "It has"]; juste = x.s + " " + x.t + "."; fr = x.fr;
+    } else {
+      viser(w, enDefaut(x)); image = photo(x.img);
+      const g = groupeEn(x.rep);
+      if (t === "a"){ phrase = "___ a cat " + x.rep + "."; rep = "There is"; opts = ["There is", "There are", "It has"]; juste = "There is a cat " + x.rep + ".";
+                      if (g) fr = "Il y a un chat " + g.fr + "."; }
+      else { phrase = "Where is the cat? — ___ " + x.rep + "."; rep = "It's"; opts = ["It's", "Its", "There's"]; juste = "Where is the cat? — It's " + x.rep + ".";
+             if (g) fr = "Où est le chat ? — Il est " + g.fr + "."; }
+    }
+    tradQ = PHRASE_TRADUITE ? fr : null;
+    ecran("thereIs", image, avecTrou(phrase));
+    boutons($("choix"), melanger(opts), rep, ok => { remplir(rep); juger(ok, rep, juste); });
+    return true;
   }
 };
 // les sortes de la langue apprise
 const SORTES = DE_APP ? ["wo", "dativ", "wohin", "akkusativ", "kurz", "cual", "entendre", "vraifaux", "verbe"]
+             : EN_APP ? ["wo", "vers", "intoOnto", "thereIs", "cual", "entendre", "vraifaux"]
                       : ["wo", "del", "adonde", "al", "hayEsta", "cual", "entendre", "vraifaux"];
 
 // ---------- la decouverte : la piece, deux onglets, les places a toucher ----------
@@ -691,7 +963,8 @@ function decouvrir(){
   z.innerHTML = '<p class="consigne">' + T("intro") + '</p><div id="vue"></div>'
     + '<div class="dit"><div class="texte" id="dit"></div><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>'
     + '<div class="onglets" role="tablist"><button type="button" id="oPos" role="tab">' + T("ongletPos") + '</button><button type="button" id="oMvt" role="tab">' + T("ongletMvt") + '</button></div>'
-    + '<div class="puces" id="puces"></div><p class="regle" id="regle"></p><p class="regle">' + regle(DE_APP ? "kurz" : "contrEs") + '</p>';
+    + '<div class="puces" id="puces"></div><p class="regle" id="regle"></p><p class="regle">' + regle(DE_APP ? "kurz" : EN_APP ? "regleEnThere" : "contrEs") + '</p>'
+    + (EN_APP ? '<p class="regle">' + T(GB ? "bonGb" : "bonUs") + '</p>' : "");
   let ici = "sofa-vor", phraseDite = "";
   // en espagnol, les autres formes justes de la meme place (« sobre la mesa », « en la mesa ») sous la phrase
   const montrerPhrase = (phrase, groupeTxt, cas, autres) => {
@@ -703,7 +976,7 @@ function decouvrir(){
   // ou il est : la place, la phrase au datif
   const position = () => {
     $("oPos").classList.add("actif"); $("oMvt").classList.remove("actif");
-    $("regle").innerHTML = regle(DE_APP ? "regleWo" : "regleEs");
+    $("regle").innerHTML = regle(DE_APP ? "regleWo" : EN_APP ? "regleEnPos" : "regleEs");
     const pu = $("puces"); pu.innerHTML = "";
     const liste = items().filter(it => it.place && (DE_APP || it.rep === pl(it.place).donde[0]))
       .concat(items().filter(it => !it.place && (DE_APP || it.vrais[0] === it.rep)));
@@ -721,7 +994,7 @@ function decouvrir(){
   // ou il va : l'image d'avant (la place ou il etait) et la fleche, puis l'image d'apres
   const mouvement = () => {
     $("oMvt").classList.add("actif"); $("oPos").classList.remove("actif");
-    $("regle").innerHTML = regle(DE_APP ? "regleWohin" : "regleEs");
+    $("regle").innerHTML = regle(DE_APP ? "regleWohin" : EN_APP ? "regleEnMvt" : "regleEs");
     const pu = $("puces"); pu.innerHTML = "";
     const liste = PLACES().map(id => ({dest: id, rep: DE_APP ? pl(id).wohin : pl(id).mvVerbe + " " + pl(id).mvLieu, phrase: pl(id).mouvement}))
       .concat(Object.keys(D.gestes).map(id => ({img: id, rep: D.gestes[id][APPRENDRE].rep, phrase: D.gestes[id][APPRENDRE].phrase, entier: true})))
@@ -731,7 +1004,8 @@ function decouvrir(){
       b.innerHTML = marquerDans(it.entier ? it.phrase.replace(/\.$/, "") : it.rep, it.rep, "akk");
       b.addEventListener("click", () => {
         pu.querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b));
-        const groupeTxt = DE_APP ? it.rep : null;
+        // en anglais, la preposition du mouvement en couleur dans la phrase (onto, into, to, over)
+        const groupeTxt = DE_APP ? it.rep : EN_APP ? (it.dest ? pl(it.dest).mvLieu : it.rep) : null;
         montrerPhrase(it.phrase, groupeTxt, "akk"); dire(it.phrase);
         if (!it.dest){ $("vue").innerHTML = photo(it.img); return; }
         const avant = ici !== it.dest && compatibles(ici, it.dest) ? ici : depart(it.dest);
@@ -772,8 +1046,19 @@ function montrer(){
   // (l'ecoute parle a chaque essai : on la fait taire pendant qu'on cherche, elle parle une fois choisie)
   const garde = dire; dire = () => {};
   const raz = so => { motQ = null; tradQ = null; apresQ = null; choixQ = null; sorteCourante = so; };
-  const essai = (w, strict) => {
-    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+  // La fin de partie (5 nov. 2026, gato en anglais : « hang », « picture », « lie down » n'ont plus, en fin de file,
+  // qu'une ou deux sortes qui donnent encore une question NEUVE) : sur les trois derniers mots, une sorte est ecartee
+  // si, prise maintenant, elle ne laisse a la suite aucune facon de finir sans deux sortes de suite.
+  const fraiches = w => SORTES.filter(so => { for (let n = 0; n < 25; n++){ raz(so); if (!EX[so](w)) return false; if (!vus.has(cleQuestion())) return true; } return false; });
+  const bloquantes = j => {             // file[j] pose la question du rang : file[rang] prend sa place plus loin
+    const suite = file.slice(rang + 1).map((x, k) => rang + 1 + k === j ? file[rang] : x);
+    if (!suite.length || suite.length > 3) return new Set();
+    const q = suite.map(fraiches);
+    const faisable = (i, prec) => i >= q.length || q[i].some(so => so !== prec && faisable(i + 1, so));
+    return new Set(SORTES.filter(so => !faisable(0, so)));
+  };
+  const essai = (w, strict, exclues) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte && !(strict && exclues && exclues.has(x))));
     for (const so of autres){
       for (let n = 0; n < 25; n++){
         raz(so);
@@ -793,11 +1078,12 @@ function montrer(){
     }
     return null;
   };
-  let fait = essai(file[rang], true);
-  for (let j = rang + 1; !fait && j < file.length; j++){
-    fait = essai(file[j], true);
-    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
-  }
+  let fait = null;
+  for (const fin of [true, false])      // d'abord en gardant une fin possible, puis sans
+    for (let j = rang; !fait && j < file.length; j++){
+      fait = essai(file[j], true, fin ? bloquantes(j) : null);
+      if (fait && j !== rang) [file[rang], file[j]] = [file[j], file[rang]];
+    }
   if (!fait) fait = essai(file[rang], false);
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
@@ -846,6 +1132,7 @@ $("titre").textContent = T("titre");
 document.title = T("titre");
 fetch("gato/gato.json?v=1").then(r => r.json()).then(d => {
   D = d;
+  if (EN_APP) preparerAnglais();
   if (Q.get("seance") === "1") demarrer(); else decouvrir();
 });
 </script>

@@ -1,0 +1,50 @@
+{
+ "_lisez_moi": [
+  "Les métiers qui manquaient au corpus espagnol pour le thème illustré « Les métiers » (visuel/prototype/metiers.html, 3 nov. 2026) : le corpus avait médico / médica, camarero / camarera, dependiente / dependienta, profesor, cocinero, enfermera, recepcionista (el), la policía (l'institution), mais ni panadero, ni peluquero, ni farmacéutico, ni mécanico, ni leurs féminins. Leur pendant allemand : ajouts/theme-metiers.json (et Bäcker, Friseur, Mechaniker, Koch, Polizist, Krankenpfleger déjà au corpus).",
+  "Appliqué par : python espanol/ajouter_mots.py espanol/ajouts/metiers.json (idempotent). EN ATTENTE DE L'ACCORD DE JACQUES (avec le thème).",
+  "el policía et la recepcionista vont dans el_trabajo : ajouter_mots.py ne pose pas un mot déjà présent dans son thème (la policía est dans la_seguridad, el recepcionista dans el_hotel).",
+  "Noms : [mot, article, pluriel, fr, en, exemple, exemple fr, exemple en, {pt, ar, de}] -- les mêmes clés que leurs voisins."
+ ],
+ "ajouts": {
+  "el_trabajo": [
+   ["panadero", "el", "panaderos", "le boulanger", "the baker", "El panadero hace pan todas las mañanas.", "Le boulanger fait du pain tous les matins.", "The baker makes bread every morning.",
+    {"traduction_pt": "o padeiro", "exemple_pt": "O padeiro faz pão todas as manhãs.", "traduction_ar": "خبّاز", "exemple_ar": "الخبّاز يصنع الخبز كل صباح.", "traduction_de": "der Bäcker", "exemple_de": "Der Bäcker backt jeden Morgen Brot."}],
+   ["panadera", "la", "panaderas", "la boulangère", "the baker (woman)", "La panadera me guarda una barra de pan.", "La boulangère me met une baguette de côté.", "The baker keeps a loaf of bread for me.",
+    {"traduction_pt": "a padeira", "exemple_pt": "A padeira guarda um pão para mim.", "traduction_ar": "خبّازة", "exemple_ar": "الخبّازة تحتفظ لي برغيف خبز.", "traduction_de": "die Bäckerin", "exemple_de": "Die Bäckerin legt mir ein Brot zurück."}],
+   ["policía", "el", "policías", "le policier", "the police officer", "El policía nos indica el camino.", "Le policier nous indique le chemin.", "The police officer shows us the way.",
+    {"traduction_pt": "o policial", "exemple_pt": "O policial nos mostra o caminho.", "traduction_ar": "شرطي", "exemple_ar": "الشرطي يدلّنا على الطريق.", "traduction_de": "der Polizist", "exemple_de": "Der Polizist zeigt uns den Weg."}],
+   ["recepcionista", "la", "recepcionistas", "la réceptionniste", "the receptionist (woman)", "La recepcionista nos da la llave de la habitación.", "La réceptionniste nous donne la clé de la chambre.", "The receptionist gives us the room key.",
+    {"traduction_pt": "a recepcionista", "exemple_pt": "A recepcionista nos dá a chave do quarto.", "traduction_ar": "موظفة استقبال", "exemple_ar": "موظفة الاستقبال تعطينا مفتاح الغرفة.", "traduction_de": "die Rezeptionistin", "exemple_de": "Die Rezeptionistin gibt uns den Zimmerschlüssel."}]
+  ],
+  "la_escuela": [
+   ["profesora", "la", "profesoras", "la professeure", "the teacher (woman)", "La profesora explica la lección otra vez.", "La professeure explique encore la leçon.", "The teacher explains the lesson again.",
+    {"traduction_pt": "a professora", "exemple_pt": "A professora explica a lição de novo.", "traduction_ar": "معلّمة", "exemple_ar": "المعلّمة تشرح الدرس مرة أخرى.", "traduction_de": "die Lehrerin", "exemple_de": "Die Lehrerin erklärt die Lektion noch einmal."}]
+  ],
+  "el_restaurante": [
+   ["cocinera", "la", "cocineras", "la cuisinière", "the cook (woman)", "La cocinera prepara una paella para veinte personas.", "La cuisinière prépare une paella pour vingt personnes.", "The cook is making a paella for twenty people.",
+    {"traduction_pt": "a cozinheira", "exemple_pt": "A cozinheira prepara uma paella para vinte pessoas.", "traduction_ar": "طبّاخة", "exemple_ar": "الطبّاخة تحضّر باييلا لعشرين شخصًا.", "traduction_de": "die Köchin", "exemple_de": "Die Köchin macht eine Paella für zwanzig Personen."}]
+  ],
+  "el_cuerpo": [
+   ["enfermero", "el", "enfermeros", "l'infirmier", "the nurse (man)", "El enfermero me toma la tensión.", "L'infirmier prend ma tension.", "The nurse takes my blood pressure.",
+    {"traduction_pt": "o enfermeiro", "exemple_pt": "O enfermeiro mede a minha pressão.", "traduction_ar": "ممرّض", "exemple_ar": "الممرّض يقيس ضغط دمي.", "traduction_de": "der Krankenpfleger", "exemple_de": "Der Krankenpfleger misst meinen Blutdruck."}]
+  ],
+  "la_salud": [
+   ["farmacéutico", "el", "farmacéuticos", "le pharmacien", "the pharmacist", "El farmacéutico me explica cómo tomar el medicamento.", "Le pharmacien m'explique comment prendre le médicament.", "The pharmacist explains how to take the medicine.",
+    {"traduction_pt": "o farmacêutico", "exemple_pt": "O farmacêutico me explica como tomar o remédio.", "traduction_ar": "صيدلي", "exemple_ar": "الصيدلي يشرح لي كيف آخذ الدواء.", "traduction_de": "der Apotheker", "exemple_de": "Der Apotheker erklärt mir, wie ich das Medikament nehme."}],
+   ["farmacéutica", "la", "farmacéuticas", "la pharmacienne", "the pharmacist (woman)", "La farmacéutica me da unas pastillas para la tos.", "La pharmacienne me donne des comprimés contre la toux.", "The pharmacist gives me some tablets for my cough.",
+    {"traduction_pt": "a farmacêutica", "exemple_pt": "A farmacêutica me dá uns comprimidos para a tosse.", "traduction_ar": "صيدلانية", "exemple_ar": "الصيدلانية تعطيني أقراصًا للسعال.", "traduction_de": "die Apothekerin", "exemple_de": "Die Apothekerin gibt mir Tabletten gegen Husten."}]
+  ],
+  "los_servicios": [
+   ["peluquero", "el", "peluqueros", "le coiffeur", "the hairdresser", "El peluquero me corta el pelo muy corto.", "Le coiffeur me coupe les cheveux très courts.", "The hairdresser cuts my hair very short.",
+    {"traduction_pt": "o cabeleireiro", "exemple_pt": "O cabeleireiro corta meu cabelo bem curto.", "traduction_ar": "حلّاق", "exemple_ar": "الحلّاق يقصّ شعري قصيرًا جدًا.", "traduction_de": "der Friseur", "exemple_de": "Der Friseur schneidet mir die Haare sehr kurz."}],
+   ["peluquera", "la", "peluqueras", "la coiffeuse", "the hairdresser (woman)", "Mi peluquera trabaja cerca de mi casa.", "Ma coiffeuse travaille près de chez moi.", "My hairdresser works near my house.",
+    {"traduction_pt": "a cabeleireira", "exemple_pt": "Minha cabeleireira trabalha perto da minha casa.", "traduction_ar": "مصفّفة شعر", "exemple_ar": "مصفّفة شعري تعمل قرب بيتي.", "traduction_de": "die Friseurin", "exemple_de": "Meine Friseurin arbeitet in der Nähe meiner Wohnung."}],
+   ["peluquería", "la", "peluquerías", "le salon de coiffure", "the hair salon", "La peluquería cierra a las ocho.", "Le salon de coiffure ferme à huit heures.", "The hair salon closes at eight.",
+    {"traduction_pt": "o salão de beleza", "exemple_pt": "O salão de beleza fecha às oito.", "traduction_ar": "صالون تصفيف الشعر", "exemple_ar": "يغلق صالون تصفيف الشعر في الساعة الثامنة.", "traduction_de": "der Friseursalon", "exemple_de": "Der Friseursalon schließt um acht Uhr."}],
+   ["mecánico", "el", "mecánicos", "le mécanicien", "the mechanic", "El mecánico repara mi bicicleta.", "Le mécanicien répare mon vélo.", "The mechanic is repairing my bike.",
+    {"traduction_pt": "o mecânico", "exemple_pt": "O mecânico conserta a minha bicicleta.", "traduction_ar": "ميكانيكي", "exemple_ar": "الميكانيكي يصلح درّاجتي.", "traduction_de": "der Mechaniker", "exemple_de": "Der Mechaniker repariert mein Fahrrad."}],
+   ["mecánica", "la", "mecánicas", "la mécanicienne", "the mechanic (woman)", "La mecánica cambia la rueda de la bicicleta.", "La mécanicienne change la roue du vélo.", "The mechanic changes the bike's wheel.",
+    {"traduction_pt": "a mecânica", "exemple_pt": "A mecânica troca a roda da bicicleta.", "traduction_ar": "ميكانيكية", "exemple_ar": "الميكانيكية تغيّر عجلة الدرّاجة.", "traduction_de": "die Mechanikerin", "exemple_de": "Die Mechanikerin wechselt das Rad am Fahrrad."}]
+  ]
+ }
+}

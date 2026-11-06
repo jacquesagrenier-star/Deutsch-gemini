@@ -18,6 +18,12 @@
   Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
   variante=latam (la computadora, la escuela, la voix de Monica), r=<AUDIO_REVISION>.
   Le tirage suit les mots (themes/tirage.js) ; la voix : le fichier enregistre, sinon le telephone (themes/voix.js).
+  L'ANGLAIS (apprendre=en, 4 nov. 2026, Jacques : « il manque beaucoup de themes en anglais ») : les memes images et
+  la meme mecanique, des phrases ecrites pour l'anglais (objet EN). L'anglais n'a presque pas de pronominaux : on y
+  apprend le present simple de la routine (she gets up, le -s, does / doesn't), les verbes a particule de la journee
+  (wake up, get up, get dressed, go to bed), l'heure (a quarter to seven ; en americain aussi six forty-five), la place
+  des adverbes de frequence (avant le verbe, apres be) et first / then / after that / finally. variante=gb : have a
+  shower, have breakfast, pyjamas. L'image du metro d'Anna (anna-6, la rame jaune de Berlin) est ecartee : Boston.
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -93,6 +99,15 @@ button:disabled{cursor:default}
 .frise button{border:3px solid transparent;border-radius:12px;padding:0;background:var(--carte);cursor:pointer;overflow:hidden;display:block}
 .frise button .photo{border-radius:0}
 .frise button.choisi{border-color:var(--ambre)}
+/* LA FRISE DANS LA QUESTION (retour de Jacques du 5 nov. 2026) : la journee entiere, l'etape connue entouree, celle
+   qu'on demande en pointilles avec son « ? » */
+.titreJour{text-align:center;font-weight:800;font-size:15px;color:var(--gris)}
+.frise .case{position:relative;border:3px solid transparent;border-radius:12px;overflow:hidden;background:var(--carte)}
+.frise .case .photo{border-radius:0}
+.frise .case.choisi{border-color:var(--ambre)}
+.frise .case.demandee{border:3px dashed var(--ambre-f)}
+.frise .case .marque{position:absolute;left:4px;top:4px;width:24px;height:24px;border-radius:999px;display:grid;place-items:center;
+  background:var(--ambre);color:#1C2430;font:800 15px var(--police);box-shadow:0 1px 4px rgba(0,0,0,.3)}
 .fiche{background:var(--carte);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px}
 .fiche .dit{font-weight:800;font-size:18px;line-height:1.4}
 .fiche .ligne{display:flex;align-items:flex-start;gap:10px}
@@ -124,11 +139,13 @@ button:disabled{cursor:default}
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=2"></script>
+<script src="themes/voix.js?v=4"></script>
 <script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=5"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
 const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -167,6 +184,14 @@ const TEXTES = {
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
   choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
+  // l'anglais seulement (son interface est en francais)
+  regleEn:   {fr:"Pour ce qu'on fait d'habitude, l'anglais prend le présent simple : I get up, she get<b>s</b> up. Le -s vient avec he, she, it (et un nom au singulier : Anna, the family) ; -es après sh, ch et o (brush<b>es</b>, go<b>es</b>), et have devient <b>has</b>. La question et la négation passent par do / does, et le verbe reste nu : <b>What time does</b> she <b>get</b> up? She <b>doesn't</b> shave. L'heure : at seven o'clock (7 h), at a quarter past seven (7 h 15), at half past seven (7 h 30), at a quarter to eight (7 h 45). Always, sometimes, never se mettent avant le verbe (She <b>always</b> gets up early) mais après be (She <b>is never</b> late). Et pour l'ordre : first, then, after that, finally."},
+  bonUs:     {fr:"Bon à savoir : tu apprends l'anglais américain. On y dit <b>take a shower</b>, <b>eat breakfast</b>, <b>pajamas</b>, et l'heure souvent avec les chiffres : <b>six forty-five</b>, <b>seven thirty</b> (et parfois <b>a quarter after seven</b>). À l'écrit : <b>7:30 a.m.</b> le matin, <b>7:30 p.m.</b> le soir. En Grande-Bretagne : have a shower, have breakfast, pyjamas, 7.30 am."},
+  bonGb:     {fr:"Bon à savoir : tu apprends l'anglais britannique. On y dit <b>have a shower</b>, <b>have breakfast</b>, <b>pyjamas</b>, et l'heure plutôt avec past et to : <b>a quarter to seven</b>, <b>half past seven</b>. À l'écrit : <b>7.30 am</b>, <b>7.30 pm</b>. Aux États-Unis : take a shower, eat breakfast, pajamas, 7:30 a.m."},
+  momentEn:  {fr:"Regarde l'horloge : le matin, l'après-midi, le soir ou la nuit ?"},
+  doesQ:     {fr:"Regarde l'image et l'horloge, puis réponds à la question."},
+  placeAdv:  {fr:"Où va l'adverbe ? Choisis la phrase correcte."},
+  finJour:   {fr:"Qu'est-ce qui vient à la fin de la journée ?"},
   retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -240,7 +265,110 @@ const DE = {
   jours: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
   moments: {morgen: "am Morgen", mittag: "am Mittag", abend: "am Abend"}
 };
-const L = APPRENDRE === "de" ? DE : ES;
+// ---------- L'ANGLAIS (4 nov. 2026) : ses phrases a lui, fabriquees depuis les memes etapes ----------
+// Chaque geste au present simple : b (I, you, we, they), s (he, she, it), ing, et le -s fautif qu'on entend chez les
+// debutants (haves, gos, brushs) ; c : ce qui suit, {P} pour le possessif de la personne (my, her, their...).
+// mot / cat : le mot du CORPUS anglais que l'etape fait avancer (anglais/datos : verbe par son infinitif, nom avec
+// genre "", adverbe). « go to bed », « take a shower », « come home » n'y sont pas : bed, shower, home le sont.
+// En britannique (GB) : have a shower, have breakfast, have dinner, pyjamas.
+const VERBES_EN = {
+  "despertarse":         {b: "wake", s: "wakes", ing: "waking", c: "up", mot: "wake up", cat: "verbe"},
+  "levantarse":          {b: "get", s: "gets", ing: "getting", c: "up", mot: "get up", cat: "verbe"},
+  "ducharse":            GB ? {b: "have", s: "has", ing: "having", piege: "haves", c: "a shower", mot: "shower", cat: "nom"}
+                            : {b: "take", s: "takes", ing: "taking", c: "a shower", mot: "shower", cat: "nom"},
+  "vestirse":            {b: "get", s: "gets", ing: "getting", c: "dressed", mot: "get dressed", cat: "verbe"},
+  "desayunar":           GB ? {b: "have", s: "has", ing: "having", piege: "haves", c: "breakfast", mot: "breakfast", cat: "nom"}
+                            : {b: "eat", s: "eats", ing: "eating", c: "breakfast", mot: "breakfast", cat: "nom"},
+  "trabajar-aeropuerto": {b: "work", s: "works", ing: "working", c: "at the airport", mot: "work", cat: "verbe"},
+  "volver":              {b: "come", s: "comes", ing: "coming", c: "home", mot: "home", cat: "adverbe"},
+  "cenar":               GB ? {b: "have", s: "has", ing: "having", piege: "haves", c: "dinner", mot: "dinner", cat: "nom"}
+                            : {b: "eat", s: "eats", ing: "eating", c: "dinner", mot: "dinner", cat: "nom"},
+  "acostarse":           {b: "go", s: "goes", ing: "going", piege: "gos", c: "to bed", mot: "bed", cat: "nom"},
+  "correr":              {b: "go", s: "goes", ing: "going", piege: "gos", c: "running", mot: "run", cat: "verbe"},
+  "afeitarse":           {b: "shave", s: "shaves", ing: "shaving", c: "", mot: "shave", cat: "verbe"},
+  "trabajar-portatil":   {b: "work", s: "works", ing: "working", c: "on {P} laptop", mot: "laptop", cat: "nom"},
+  "cocinar":             {b: "cook", s: "cooks", ing: "cooking", c: "", mot: "cook", cat: "verbe"},
+  "despertar":           {b: "wake", s: "wakes", ing: "waking", c: "Mia up", mot: "wake up", cat: "verbe"},
+  "lavarse-dientes":     {b: "brush", s: "brushes", ing: "brushing", piege: "brushs", c: "{P} teeth", mot: "brush", cat: "verbe"},
+  "peinar":              {b: "brush", s: "brushes", ing: "brushing", piege: "brushs", c: "Mia's hair", mot: "brush", cat: "verbe"},
+  "llevar-colegio":      {b: "take", s: "takes", ing: "taking", c: "the children to school", mot: "take", cat: "verbe"},
+  "ponerse-pijama":      {b: "put", s: "puts", ing: "putting", c: "on {P} " + (GB ? "pyjamas" : "pajamas"), mot: "put on", cat: "verbe"}
+};
+// LA FREQUENCE EN ANGLAIS : les memes faits que journee.json (frequences), en morceaux pour placer l'adverbe -- S, v
+// (le verbe conjugue), r (ce qui suit) -- et quatre faits avec be, ou l'adverbe passe APRES le verbe (« Anna is never
+// late for work »). Rien ne contredit les journees : Ben et Mia se couchent a 20 h, Katrin reveille Mia, Mark se frotte
+// les yeux au reveil, Anna est au guichet a 9 h. fr : la traduction, apres la reponse.
+const MANGER_EN = GB ? "has" : "eats";
+const FREQ_EN = [
+  {qui: "Anna", f: "siempre", S: "Anna", v: MANGER_EN, r: "breakfast at home", fr: "Anna prend toujours son petit-déjeuner à la maison."},
+  {qui: "Anna", f: "nunca", S: "Anna", v: "drives", r: "to work", fr: "Anna ne va jamais au travail en voiture."},
+  {qui: "Anna", f: "a veces", jours: [0, 0, 0, 0, 0, 1, 1], S: "Anna", v: MANGER_EN, r: "dinner with her family", fr: "Anna dîne parfois avec sa famille."},
+  {qui: "Mark", f: "siempre", S: "Mark", v: "goes", r: "running", fr: "Mark va toujours courir."},
+  {qui: "Mark", f: "a veces", jours: [1, 0, 0, 1, 0, 1, 0], S: "Mark", v: "shaves", r: "", fr: "Mark se rase parfois."},
+  {qui: "Mark", f: "a veces", jours: [0, 1, 0, 0, 1, 1, 0], S: "Mark", v: "cooks", r: "", fr: "Mark fait parfois la cuisine."},
+  {qui: "Mark", f: "nunca", S: "Mark", v: "goes", r: "to bed early", fr: "Mark ne se couche jamais tôt."},
+  {qui: "BenMia", f: "siempre", S: "Ben and Mia", v: "brush", r: "their teeth", fr: "Ben et Mia se brossent toujours les dents."},
+  {qui: "Mia", f: "nunca", S: "Mia", v: "brushes", r: "her hair by herself", fr: "Mia ne se coiffe jamais seule."},
+  {qui: "Jan", f: "a veces", jours: [1, 0, 1, 0, 0, 0, 0], S: "Jan", v: "takes", r: "the children to school", fr: "Jan emmène parfois les enfants à l'école."},
+  {qui: "Katrin", f: "siempre", S: "Katrin", v: "wakes", r: "Mia up", fr: "Katrin réveille toujours Mia."},
+  {qui: "BenMia", f: "nunca", S: "Ben and Mia", v: "go", r: "to bed late", fr: "Ben et Mia ne se couchent jamais tard."},
+  {qui: "BenMia", f: "siempre", be: true, S: "Ben and Mia", v: "are", r: "in bed at eight o'clock", fr: "Ben et Mia sont toujours au lit à 20 h."},
+  {qui: "Anna", f: "nunca", be: true, S: "Anna", v: "is", r: "late for work", fr: "Anna n'est jamais en retard au travail."},
+  {qui: "Katrin", f: "siempre", be: true, S: "Katrin", v: "is", r: "up before Mia", fr: "Katrin est toujours levée avant Mia."},
+  {qui: "Mark", f: "a veces", jours: [1, 0, 0, 0, 1, 0, 0], be: true, S: "Mark", v: "is", r: "tired in the morning", fr: "Mark est parfois fatigué le matin."}
+];
+// les images qu'on ne montre pas a Boston : la rame jaune du U-Bahn de Berlin (anglais/ETAT-DES-LIEUX.md, la scene ubahn)
+const ECARTEES_EN = ["anna-6"];
+const TITRES_EN = {anna: "Anna's Monday", mark: "Mark's Saturday", familia: "A family day"};
+// l'heure en lettres : « at a quarter to seven », « at half past six in the evening » ; en americain, l'heure en
+// chiffres dits aussi (« at six forty-five ») -- jamais en britannique. styleHeure ne change que le temps d'une question.
+const NOMBRES_EN = ["twelve", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+let styleHeure = "cadran";
+const suffixeEn = h => h < 12 ? "" : h < 18 ? " in the afternoon" : h < 22 ? " in the evening" : " at night";
+function heureEn(h, m, style){
+  const k = h % 12 || 12, s = k % 12 + 1, st = style || styleHeure;
+  const t = m === 0 ? NOMBRES_EN[k] + " o'clock"
+          : st === "chiffres" ? NOMBRES_EN[k] + ({15: " fifteen", 30: " thirty", 45: " forty-five"})[m]
+          : ({15: "a quarter past " + NOMBRES_EN[k], 30: "half past " + NOMBRES_EN[k], 45: "a quarter to " + NOMBRES_EN[s]})[m];
+  return "at " + t + suffixeEn(h);
+}
+// le pronom d'un sujet, et la personne de son verbe : the family -> they (« What do they do next? »)
+const PRON_EN = {Anna: "she", Katrin: "she", Mia: "she", Mark: "he", Jan: "he", Ben: "he", BenMia: "they", familia: "they"};
+const pronEn = s => ({p: PRON_EN[s] || "they", k: PRON_EN[s] === "they" || !PRON_EN[s] ? 4 : 2});
+function possEn(c, k, s){
+  const P = k === 0 ? "my" : k === 1 ? "your" : k === 3 ? "our" : k === 4 ? "their" : (D.sexe[s] === "f" ? "her" : D.sexe[s] === "m" ? "his" : "their");
+  return (c || "").replace("{P}", P);
+}
+const EN = {
+  bravo: "Well done!", vrai: "True", faux: "False",
+  sujet: (s, debut) => debut ? D.sujets[s].en : D.sujets[s].en.replace(/^The /, "the "),
+  // {v, c} : le verbe a la personne k (le -s a la troisieme) et ce qui suit ; s : le sujet, pour his / her
+  formes(vb, k, s){ const v = VERBES_EN[vb]; return {v: k === 2 ? v.s : v.b, c: possEn(v.c, k, s)}; },
+  pred(vb, k, s){ const f = EN.formes(vb, k, s); return [f.v, f.c].filter(Boolean).join(" "); },
+  // le verbe nu, apres do / does : « brush her teeth »
+  nu(vb, k, s){ const v = VERBES_EN[vb]; return [v.b, possEn(v.c, k, s)].filter(Boolean).join(" "); },
+  heure: (vb, h, m) => heureEn(h, m),
+  // « Anna gets up at a quarter to seven. » ; S : le sujet ecrit (« I », « Anna »), s : sa cle
+  phrase: (vb, S, k, h, m, s) => [S, EN.pred(vb, k, s), h == null ? "" : heureEn(h, m)].filter(Boolean).join(" ") + ".",
+  etape: e => EN.phrase(e.verbe, EN.sujet(e.sujet, true), n(e.sujet), e.h, e.m, e.sujet),
+  // « What does Anna do at a quarter to seven? » : le present simple de la routine, la question en does
+  queHace: (s, e) => "What " + (n(s) === 4 ? "do " : "does ") + EN.sujet(s) + " do " + heureEn(e.h, e.m) + "?",
+  // « What time does Anna get up? », « What time do Ben and Mia brush their teeth? »
+  aQueHora: e => "What time " + (n(e.sujet) === 4 ? "do " : "does ") + EN.sujet(e.sujet) + " " + EN.nu(e.verbe, n(e.sujet), e.sujet) + "?",
+  reponseHeure: (vb, h, m) => cap(heureEn(h, m)),
+  liens: ["First", "Then", "After that", "Finally"],
+  jours: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+  // « in the morning » mais « at night » : la preposition fait partie du mot
+  moments: {morning: "in the morning", afternoon: "in the afternoon", evening: "in the evening", night: "at night"}
+};
+// « First, Anna wakes up... Then she gets up... » : la virgule apres First, After that, Finally, pas apres Then
+const lienEn = l => l === "Then" || l === "then" ? cap(l) + " " : cap(l) + ", ";
+// une etape apres un lien : le pronom si le sujet est celui d'avant, sinon le sujet (« Then the family eats breakfast »)
+function etapeApresLien(e, lien, avant, h){
+  const p = avant === e.sujet ? pronEn(e.sujet) : null;
+  return lienEn(lien) + EN.phrase(e.verbe, p ? p.p : EN.sujet(e.sujet, false), p ? p.k : n(e.sujet), h === false ? null : e.h, e.m, e.sujet);
+}
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
 
 // ---------- la traduction dans la langue d'interface (Jacques, 3 nov. 2026) ----------
 // Sous la phrase de la decouverte, et APRES la reponse, sous la phrase juste -- jamais avant. En francais, anglais,
@@ -263,8 +391,11 @@ function tradSuite(etapes){
   if (TR === "de") return etapes.map((e, i) => DE.v2(DE.liens[i], e.verbe, D.sujets[e.sujet].de, n(e.sujet), e.h, e.m)).join(" ");
   return etapes.map((e, i) => LIENS_TR[TR][i] + ", " + minus(tradEtape(e), e.sujet)).join(" ");
 }
-let GLOSES = {};
-fetch("journee/gloses.json?v=1").then(r => r.json()).then(d => { GLOSES = d[APPRENDRE] || {}; }).catch(() => {});
+// l'anglais n'est pas dans gloses.json : ses adverbes et ses moments, traduits a la main (le choix faux traduit)
+const GLOSES_EN = {always: {fr: "toujours"}, sometimes: {fr: "parfois"}, never: {fr: "jamais"},
+                   morning: {fr: "le matin"}, evening: {fr: "le soir"}, night: {fr: "la nuit"}};
+let GLOSES = APPRENDRE === "en" ? GLOSES_EN : {};
+fetch("journee/gloses.json?v=1").then(r => r.json()).then(d => { GLOSES = d[APPRENDRE] || GLOSES; }).catch(() => {});
 function glose(m){
   if (!m) return null;
   const cle = ((m.genre || "") + " " + m.mot).trim(), g = (GLOSES[cle] || {})[LANGUE];
@@ -300,6 +431,7 @@ let dire = texte => { try { Voix.dire(texte); } catch(e){} };
 // pour visuel/voix_themes.py : ce que la page dit avec un fichier enregistre -- les phrases de la decouverte, qui
 // sont aussi les phrases justes des questions sur une etape ; le reste passe par la voix du telephone
 function textesAVoix(){
+  if (APPRENDRE === "en") return ETAPES.map(e => EN.etape(e));
   const dec = D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
   return ETAPES.map(e => dec[e.cle].texte);
 }
@@ -368,16 +500,22 @@ const remplir = (t, rep) => { const x = $("trou"); if (x) x.textContent = rep; }
 // anziehen », « aufstehen »), les adverbes de la frequence et de l'ordre (siempre, primero / immer, zuerst), et les
 // moments de la journee (la manana / der Morgen). Un mot que le corpus n'a pas encore est « hors jeu » dans l'app.
 const ADV = {es: [["siempre", "f"], ["a veces", "f"], ["nunca", "f"], ["primero", "ordre"], ["después", "apres"], ["luego", "apres"], ["antes", "avant"]],
-             de: [["immer", "f"], ["manchmal", "f"], ["nie", "f"], ["zuerst", "ordre"], ["dann", "apres"], ["danach", "apres"]]};
-const MOMENTS = {es: [["la", "mañana", "manana"], ["la", "tarde", "tarde"], ["la", "noche", "noche"]], de: [["der", "Morgen", "morgen"], ["der", "Abend", "abend"]]};
+             de: [["immer", "f"], ["manchmal", "f"], ["nie", "f"], ["zuerst", "ordre"], ["dann", "apres"], ["danach", "apres"]],
+             // finally : le dernier lien de la suite (« Finally, she goes to bed. »), role « fin »
+             en: [["always", "f"], ["sometimes", "f"], ["never", "f"], ["first", "ordre"], ["then", "apres"], ["after that", "apres"], ["finally", "fin"]]};
+// l'apres-midi n'a aucune etape franche (rien entre midi et 18 h) : « in the afternoon » n'est qu'un leurre
+const MOMENTS = {es: [["la", "mañana", "manana"], ["la", "tarde", "tarde"], ["la", "noche", "noche"]], de: [["der", "Morgen", "morgen"], ["der", "Abend", "abend"]],
+                 en: [["", "morning", "morning"], ["", "evening", "evening"], ["", "night", "night"]]};
 let MOTS = null;
 function motsDuTheme(){
   if (MOTS) return MOTS;
   MOTS = []; const vus = {};
   ETAPES.forEach(e => {
     // le mot que l'etape fait avancer : son verbe, ou un nom du corpus (« ins Bett gehen » -> das Bett)
-    const v = D.verbes[e.verbe][APPRENDRE], mot = v.mot;
-    if (!vus[mot]){ vus[mot] = v.genre ? {mot, genre: v.genre, verbes: []} : {mot, cat: "verbe", verbes: []}; MOTS.push(vus[mot]); }
+    // en anglais : VERBES_EN (un nom a le genre "", un adverbe sa categorie : come home -> home)
+    const v = APPRENDRE === "en" ? VERBES_EN[e.verbe] : D.verbes[e.verbe][APPRENDRE], mot = v.mot;
+    if (!vus[mot]){ vus[mot] = APPRENDRE === "en" ? (v.cat === "nom" ? {mot, genre: "", verbes: []} : {mot, cat: v.cat, verbes: []})
+                             : v.genre ? {mot, genre: v.genre, verbes: []} : {mot, cat: "verbe", verbes: []}; MOTS.push(vus[mot]); }
     if (!vus[mot].verbes.includes(e.verbe)) vus[mot].verbes.push(e.verbe);
   });
   ADV[APPRENDRE].forEach(([mot, role]) => MOTS.push({mot, cat: "adverbe", role}));
@@ -397,16 +535,29 @@ const vaA = (vb, s) => D.verbes[vb].leurre !== false && (!D.verbes[vb].masculin 
 
 // ---------- les exercices ----------
 // Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+// LA FRISE DANS LA QUESTION. Retour de Jacques du 5 nov. 2026 (en anglais, « samedi, Mark prend son petit-dejeuner,
+// qu'est-ce qu'il fait ensuite ? [...] on ne sait meme pas qu'il va etre questionne a ce sujet-la apres ») : une question
+// sur l'ordre de la journee testait la memoire de la decouverte, pas la langue. Elle montre maintenant la journee
+// entiere, comme la decouverte : l'etape connue entouree, celle qu'on demande en pointilles avec son « ? ». On lit
+// l'image et on choisit la phrase qui la dit, avec le bon lien (dann, despues, then...) ; les leurres sont les autres
+// etapes de la meme journee, visibles elles aussi.
+function friseQuestion(j, connue, demandee){
+  return '<div class="titreJour">' + cible(D.jours[j].titre[APPRENDRE]) + '</div><div class="frise">'
+    + etapesDu(j).map(e => '<div class="case' + (e === connue ? " choisi" : "") + (e === demandee ? " demandee" : "") + '">' + photo(e, true, true)
+                           + (e === demandee ? '<span class="marque" aria-hidden="true">?</span>' : "") + '</div>').join("") + '</div>';
+}
 const EX = {
   // « ¿Qué hace Anna? » / « Was macht Anna? » : la photo et l'heure, quatre gestes au bon sujet
   queHace(w){
     if (!estVerbe(w)) return false;
     const e = hasard(etapesDe(w)); motQ = w || motDuVerbe(e.verbe); tradQ = tradEtape(e);
-    const dire = vb => APPRENDRE === "de" ? DE.pred(vb, e.sujet) : cap(ES.pred(vb, n(e.sujet))) + ".";
+    // en anglais : « She gets up. », « They brush their teeth. » -- le pronom et le -s
+    const dire = vb => APPRENDRE === "de" ? DE.pred(vb, e.sujet) : APPRENDRE === "en" ? (p => cap(p.p) + " " + EN.pred(vb, p.k, e.sujet) + ".")(pronEn(e.sujet))
+                                                                 : cap(ES.pred(vb, n(e.sujet))) + ".";
     const rep = dire(e.verbe);
     const autres = melanger(unique(Object.keys(D.verbes).filter(vb => groupe(vb) !== groupe(e.verbe) && vaA(vb, e.sujet))
                      .map(dire).filter(t => t !== rep))).slice(0, 3);
-    ecran("queHace", photo(e), L.queHace(e.sujet), true);
+    ecran("queHace", photo(e), L.queHace(e.sujet, e), true);
     tradsChoix = {}; Object.keys(D.verbes).forEach(vb => { tradsChoix[dire(vb)] = tradGeste(vb, e.sujet); });
     boutons($("choix"), melanger([rep, ...autres]), rep, ok => juger(ok, rep, L.etape(e)));
     return true;
@@ -415,14 +566,18 @@ const EX = {
   aQueHora(w){
     if (!estVerbe(w)) return false;
     const e = hasard(etapesDe(w)); motQ = w || motDuVerbe(e.verbe); tradQ = tradEtape(e);
+    // en americain, une fois sur trois l'heure en chiffres dits (« At six forty-five ») : toutes les reponses, et la
+    // phrase dite apres, dans la meme facon de dire l'heure
+    if (APPRENDRE === "en") styleHeure = !GB && Math.random() < 0.35 ? "chiffres" : "cadran";
     const h = e.h, m = e.m, t = (hh, mm) => L.reponseHeure(e.verbe, (hh + 24) % 24, (mm + 60) % 60);
     const rep = t(h, m);
     const voisins = [[h, m + 15], [h, m - 15], [h + 1, m], [h - 1, m], [h, m + 30], [h, m - 30]]
       .map(([hh, mm]) => mm >= 60 ? [hh + 1, mm - 60] : mm < 0 ? [hh - 1, mm + 60] : [hh, mm])
       .filter(([hh]) => periode(hh) === periode(h));   // jamais un leurre que le soleil, la lune ou « de la tarde » trahit
     const autres = melanger(unique(voisins.map(([hh, mm]) => t(hh, mm)).filter(x => x !== rep))).slice(0, 3);
+    const juste = L.etape(e); styleHeure = "cadran";
     ecran("aQueHora", photo(e), L.aQueHora(e), true);
-    boutons($("choix"), melanger([rep, ...autres]), rep, ok => juger(ok, rep, L.etape(e)));
+    boutons($("choix"), melanger([rep, ...autres]), rep, ok => juger(ok, rep, juste));
     return true;
   },
   // « Anna se ducha a las siete. » vrai ou faux -- le faux change l'heure ou le geste (jamais un geste voisin)
@@ -449,7 +604,8 @@ const EX = {
   // (« a las siete menos cuarto » avant « a las siete »). Le mot vise : un verbe de l'une, ou primero / zuerst.
   ordre(w){
     // le mot vise : un verbe, primero / zuerst, ou un lien de la suite dite (despues / dann, danach)
-    if (w && !(w.verbes || w.role === "ordre" || (w.role === "apres" && L.liens.includes(cap(w.mot))))) return false;
+    // (en anglais aussi finally, role « fin » : le dernier lien)
+    if (w && !(w.verbes || w.role === "ordre" || ((w.role === "apres" || w.role === "fin") && L.liens.includes(cap(w.mot))))) return false;
     const jours = Object.keys(D.jours).filter(j => !w || !w.verbes || etapesDu(j).some(e => w.verbes.includes(e.verbe)));
     const j = hasard(jours), toutes = etapesDu(j);
     let pris = melanger(toutes).slice(0, 4);
@@ -458,7 +614,9 @@ const EX = {
     while (pris.length < 4){ const x = hasard(toutes); if (!pris.includes(x)) pris.push(x); }
     const ordre = pris.slice().sort((a, b) => a.rang - b.rang);
     motQ = w || (Math.random() < 0.3 ? motAdv("ordre")[0] : motDuVerbe(hasard(pris).verbe));
+    // en anglais : « First, Anna wakes up at half past six. Then she gets up at a quarter to seven. After that, ... »
     const suite = ordre.map((e, i) => APPRENDRE === "de" ? DE.v2(DE.liens[i], e.verbe, DE.sujet(e.sujet, false), n(e.sujet), e.h, e.m)
+                                    : APPRENDRE === "en" ? etapeApresLien(e, EN.liens[i], i ? ordre[i - 1].sujet : null)
                                                           : L.liens[i] + ", " + minus(ES.etape(e), e.sujet));
     tradQ = tradSuite(ordre);
     $("zone").innerHTML = '<p class="consigne">' + isoler(T("ordre")) + '</p><div class="enonce centre">' + cible(D.jours[j].titre[APPRENDRE]) + '</div><div class="ordre" id="ordre"></div><p class="retourMsg" id="msg"></p>';
@@ -484,6 +642,7 @@ const EX = {
   // « Anna se ducha. ¿Y después? » : l'etape qui suit ; les leurres viennent d'AVANT (rien d'autre n'est « apres ») ;
   // et a l'envers, « ¿Y antes? ». En allemand : « Und dann? », « Und danach? » (« Dann zieht sie sich an. »)
   suite(w){
+    if (APPRENDRE === "en") return suiteEn(w);
     if (w && w.role === "ordre") return premier(w);
     if (w && !w.verbes && !["apres", "avant"].includes(w.role)) return false;
     const avant = w && !w.verbes ? w.role === "avant" : APPRENDRE === "es" && Math.random() < 0.35;
@@ -505,7 +664,7 @@ const EX = {
     tradQ = tradEtape(r);
     const enonce = (APPRENDRE === "de" ? DE.phrase(montree.verbe, DE.sujet(montree.sujet, true), n(montree.sujet)) : ES.phrase(montree.verbe, ES.sujet(montree.sujet, true), n(montree.sujet)))
                  + " " + (APPRENDRE === "de" ? "Und " + lien + "?" : "¿Y " + lien + "?");
-    ecran(avant ? "avant" : "apres", photo(montree, false), enonce, true, true);
+    ecran(avant ? "avant" : "apres", friseQuestion(r.jour, montree, r), enonce, true, true);
     tradsChoix = {}; [r, ...leurres].forEach(e => { tradsChoix[dit(e)] = tradGeste(e.verbe, e.sujet); });
     boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, L.etape(r)));
     return true;
@@ -635,6 +794,7 @@ const EX = {
   },
   // « Anna se ducha antes de vestirse. » vrai ou faux -- les deux photos et leurs horloges (espagnol)
   avantApres(w){
+    if (APPRENDRE === "en") return avantApresEn(w);
     if (w && !w.verbes && !["después", "antes"].includes(w.mot)) return false;
     // deux etapes du meme jour et du meme sujet : l'infinitif (« antes de vestirse ») a le sujet du verbe
     const paires = [];
@@ -662,25 +822,143 @@ const EX = {
     const e = hasard(cand), k = quand(e), rep = L.moments[k];
     motQ = w || MOTS_MOMENTS().find(x => x.moment === k);
     tradQ = tradEtape(e);
-    const S = APPRENDRE === "de" ? DE.sujet(e.sujet, true) : ES.sujet(e.sujet, true);
+    const S = APPRENDRE === "de" ? DE.sujet(e.sujet, true) : APPRENDRE === "en" ? EN.sujet(e.sujet, true) : ES.sujet(e.sujet, true);
     let phrase;
     if (APPRENDRE === "de"){ const f = DE.formes(e.verbe, n(e.sujet)); phrase = [S, f.v, f.r, f.o, "___", f.c, f.p].filter(Boolean).join(" ") + "."; }
+    else if (APPRENDRE === "en") phrase = [S, EN.pred(e.verbe, n(e.sujet), e.sujet), "___"].join(" ") + ".";   // « Anna eats breakfast ___. »
     else phrase = [S, ES.pred(e.verbe, n(e.sujet)), "___"].join(" ") + ".";
-    ecran(APPRENDRE === "de" ? "momentDe" : "momentEs", photo(e), avecTrou(phrase));
+    ecran(APPRENDRE === "de" ? "momentDe" : APPRENDRE === "en" ? "momentEn" : "momentEs", photo(e), avecTrou(phrase));
     tradsChoix = {}; Object.keys(L.moments).forEach(c => { tradsChoix[L.moments[c]] = tradMot(MOTS_MOMENTS().find(x => x.moment === c)); });
     boutons($("choix"), Object.values(L.moments), rep, ok => { remplir(0, rep); juger(ok, rep, phrase.replace("___", rep)); });
     return true;
+  },
+  // L'ANGLAIS SEULEMENT : le -s de la troisieme personne. « Anna ___ up at a quarter to seven. » gets / get / getting ;
+  // « I ___ my teeth... » brush / brushes / brushing ; et le -s fautif des debutants (haves, gos, brushs).
+  // Pas « The family ___ » : un nom collectif prend aussi le pluriel en britannique, deux reponses seraient justes.
+  troisieme(w){
+    if (APPRENDRE !== "en" || !estVerbe(w)) return false;
+    const e = hasard(etapesDe(w)), v = VERBES_EN[e.verbe];
+    let q = personne(e);
+    if (q.s === "familia"){ const k = hasard([0, 1, 3]); q = {k, s: null, S: D.personnes.en[k]}; }
+    const rep = q.k === 2 ? v.s : v.b;
+    const opts = unique([rep, q.k === 2 ? v.b : v.s, q.k === 2 && v.piege ? v.piege : null, v.ing].filter(Boolean));
+    motQ = w || motDuVerbe(e.verbe); tradQ = traduire(e.verbe, q.k, q.s, e.h, e.m);
+    const phrase = [q.S, "___", possEn(v.c, q.k, q.s || e.sujet), heureEn(e.h, e.m)].filter(Boolean).join(" ") + ".";
+    ecran("forma", q.s ? photo(e) : "", avecTrou(phrase));
+    boutons($("choix"), melanger(opts), rep, ok => { remplir(0, rep); juger(ok, rep, phrase.replace("___", rep)); });
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT : la question en does et sa reponse courte. « Does Anna get up at seven o'clock? » -- « No, she
+  // doesn't. » ; le faux change l'heure ou le geste, comme « vrai ou faux » ; les leurres : la reponse inverse et deux
+  // fautes de grammaire (« Yes, she is. », « No, she don't. »). Pas la famille : « Does the family...? Yes, it does. »
+  doesQ(w){
+    if (APPRENDRE !== "en" || !estVerbe(w)) return false;
+    const cand = etapesDe(w).filter(x => x.sujet !== "familia");
+    if (!cand.length) return false;
+    const e = hasard(cand); motQ = w || motDuVerbe(e.verbe); tradQ = tradEtape(e);
+    const vrai = Math.random() < 0.5;
+    let f = e;
+    if (!vrai){
+      const autres = ETAPES.filter(x => x.verbe !== e.verbe && groupe(x.verbe) !== groupe(e.verbe) && vaA(x.verbe, e.sujet));
+      if (Math.random() < 0.5 || !autres.length){ const [hh, mm] = hasard([[e.h + 1, e.m], [e.h - 1, e.m], [e.h, (e.m + 30) % 60]]); f = {verbe: e.verbe, sujet: e.sujet, h: hh, m: mm}; }
+      else f = {verbe: hasard(autres).verbe, sujet: e.sujet, h: e.h, m: e.m};
+    }
+    const k = n(e.sujet), p = pronEn(e.sujet).p, il = k === 4;
+    const question = (il ? "Do " : "Does ") + EN.sujet(e.sujet, true) + " " + EN.nu(f.verbe, k, e.sujet) + " " + heureEn(f.h, f.m) + "?";
+    const oui = "Yes, " + p + (il ? " do." : " does."), non = "No, " + p + (il ? " don't." : " doesn't.");
+    const rep = vrai ? oui : non;
+    const leurres = vrai ? [non, "Yes, " + p + (il ? " are." : " is."), "Yes, " + p + (il ? " does." : " do.")]
+                         : [oui, "No, " + p + (il ? " aren't." : " isn't."), "No, " + p + (il ? " doesn't." : " don't.")];
+    ecran("doesQ", photo(e), question, true);
+    boutons($("choix"), melanger([rep, ...leurres]), rep, ok => juger(ok, rep, L.etape(e)));
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT : la place de l'adverbe de frequence. Avant le verbe (« Anna always eats breakfast at
+  // home. »), apres be (« Anna is never late for work. ») ; les fautes : entre le verbe et ce qui suit (« eats always
+  // breakfast »), avant be (« always is »), en fin de phrase (« ... never »). Sometimes peut aller en tete ou en fin
+  // de phrase : avec lui, seule la faute du milieu est proposee, et jamais avec be.
+  placeAdv(w){
+    if (APPRENDRE !== "en" || (w && w.role !== "f")) return false;
+    const cles = Object.keys(D.adverbes), cle = w ? cles.find(c => D.adverbes[c].en === w.mot) : null;
+    const cand = D.frequences.filter(x => (!cle || x.f === cle) && (x.f !== "a veces" || (!x.be && x.r)));
+    if (!cand.length) return false;
+    const fa = hasard(cand), A = D.adverbes[fa.f].en, phr = a => a.filter(Boolean).join(" ") + ".";
+    const rep = phr(fa.be ? [fa.S, fa.v, A, fa.r] : [fa.S, A, fa.v, fa.r]);
+    const fautes = [phr(fa.be ? [fa.S, A, fa.v, fa.r] : [fa.S, fa.v, A, fa.r])];
+    if (fa.f !== "a veces") fautes.push(phr([fa.S, fa.v, fa.r, A]));
+    const opts = unique([rep, ...fautes]);
+    if (opts.length < 2) return false;
+    motQ = w || motsDuTheme().find(x => x.mot === A);
+    tradQ = TR ? fa[TR] || null : null;
+    const qui = fa.qui === "BenMia" ? ["Ben", "Mia"] : [fa.qui];
+    ecran("placeAdv", '<div class="visages">' + qui.map(p => '<img alt="" src="' + VISAGE(p) + '">').join("") + '</div>' + semaineHTML(coches(fa.f, fa)), "", true, true);
+    $("zone").querySelector(".enonce").remove();
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep));
+    return true;
   }
 };
+// L'ANGLAIS : « Anna takes a shower. What happens next? » -- « Then she gets dressed. » / « After that, she gets
+// dressed. » ; « What happens before that? » -- « Before that, she gets up. » ; « What happens at the end of the
+// day? » -- « Finally, she goes to bed. » Les leurres viennent du bon cote de la journee, comme en espagnol.
+function suiteEn(w){
+  if (w && w.role === "ordre") return premier(w);
+  if (w && !w.verbes && !["apres", "fin"].includes(w.role)) return false;
+  const longueur = e => etapesDu(e.jour).length;
+  const candDe = mode => (w && w.verbes ? etapesDe(w) : ETAPES).filter(e => mode === "avant" ? longueur(e) - e.rang - 1 >= 2
+                                                                      : mode === "fin" ? e.rang === longueur(e) - 1 && e.rang >= 2 : e.rang >= 2);
+  // un verbe du debut de journee (wake up) n'a rien avant lui : on essaie les autres sens
+  let mode = w && !w.verbes ? (w.role === "fin" ? "fin" : "apres") : hasard(["apres", "apres", "avant", "fin"]);
+  let cand = candDe(mode);
+  for (const m of ["apres", "avant"]) if (!cand.length && w && w.verbes){ mode = m; cand = candDe(mode); }
+  if (!cand.length) return false;
+  const r = hasard(cand), d = etapesDu(r.jour), montree = mode === "avant" ? d[r.rang + 1] : d[r.rang - 1];
+  const leurres = melanger(mode === "avant" ? d.slice(r.rang + 1) : d.slice(0, r.rang)).slice(0, 3);
+  const lien = mode === "avant" ? "before that" : mode === "fin" ? "finally" : w && ["then", "after that"].includes(w.mot) ? w.mot : hasard(["then", "after that"]);
+  const dit = e => etapeApresLien(e, lien, montree.sujet, false);
+  const rep = dit(r), opts = unique([rep, ...leurres.map(dit)]);
+  if (opts.length < 3) return false;
+  motQ = w || motsDuTheme().find(x => x.mot === lien) || motDuVerbe(r.verbe);
+  tradQ = tradEtape(r);
+  const enonce = EN.phrase(montree.verbe, EN.sujet(montree.sujet, true), n(montree.sujet), null, null, montree.sujet) + " "
+               + (mode === "avant" ? "What happens before that?" : mode === "fin" ? "What happens at the end of the day?" : "What happens next?");
+  ecran(mode === "avant" ? "avant" : mode === "fin" ? "finJour" : "apres", friseQuestion(r.jour, montree, r), enonce, true, true);
+  tradsChoix = {}; [r, ...leurres].forEach(e => { tradsChoix[dit(e)] = tradGeste(e.verbe, e.sujet); });
+  boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, etapeApresLien(r, lien, montree.sujet)));
+  return true;
+}
+// L'ANGLAIS : « Anna takes a shower before she gets dressed. » vrai ou faux -- before / after suivis du present simple,
+// les deux photos et leurs horloges. Le meme sujet dans les deux gestes, jamais la famille (« before it eats »).
+function avantApresEn(w){
+  if (w && !w.verbes) return false;
+  const paires = [];
+  ETAPES.forEach(a => ETAPES.forEach(b => { if (a.jour === b.jour && a.sujet === b.sujet && a.sujet !== "familia" && a.rang !== b.rang && a.verbe !== b.verbe
+    && (!w || w.verbes.includes(a.verbe) || w.verbes.includes(b.verbe))) paires.push([a, b]); }));
+  if (!paires.length) return false;
+  const [a, b] = hasard(paires), lien = hasard(["before", "after"]), p = pronEn(a.sujet);
+  const vrai = lien === "before" ? a.rang < b.rang : a.rang > b.rang;
+  const dit = l => EN.phrase(a.verbe, EN.sujet(a.sujet, true), n(a.sujet), null, null, a.sujet).replace(/\.$/, " " + l + " " + p.p + " " + EN.pred(b.verbe, p.k, b.sujet) + ".");
+  const phrase = dit(lien), juste = vrai ? phrase : dit(lien === "before" ? "after" : "before");
+  motQ = w || motDuVerbe(Math.random() < 0.5 ? a.verbe : b.verbe);
+  const [p1, p2] = a.rang < b.rang ? [a, b] : [b, a];
+  tradQ = TR ? tradEtape(p1) + " " + tradEtape(p2) : null;
+  ecran("vraifaux", '<div class="duo">' + photo(p1, true, true) + photo(p2, true, true) + '</div>', phrase, true);
+  const rep = vrai ? EN.vrai : EN.faux;
+  boutons($("choix"), [EN.vrai, EN.faux], rep, ok => juger(ok, rep, juste));
+  return true;
+}
 // le moment que trahissent l'icone du cadran et la fin de l'heure ecrite (« de la tarde », « abends »)
-const periode = h => (h >= 18 || h < 6 ? "lune" : "soleil") + (APPRENDRE === "es" ? (h < 12 ? 0 : h < 20 ? 1 : 2) : (h < 18 ? 0 : 1));
+// (en anglais, la fin de l'heure ecrite : rien le matin, in the afternoon, in the evening, at night -- suffixeEn)
+const periode = h => (h >= 18 || h < 6 ? "lune" : "soleil") + (APPRENDRE === "en" ? suffixeEn(h) : APPRENDRE === "es" ? (h < 12 ? 0 : h < 20 ? 1 : 2) : (h < 18 ? 0 : 1));
 // la semaine d'une frequence : tout coche (siempre), rien (nunca), les jours du fait (a veces) ; pour « laquelle
 // des trois semaines ? », un « a veces » quelconque si le fait n'en est pas un
 const coches = (f, fa) => f === "siempre" ? [1, 1, 1, 1, 1, 1, 1] : f === "nunca" ? [0, 0, 0, 0, 0, 0, 0] : (fa && fa.jours) || [1, 0, 0, 1, 0, 1, 0];
 const semaineHTML = c => '<div class="semaine">' + L.jours.map((j, i) => '<div>' + j + '<b class="' + (c[i] ? "oui" : "non") + '">' + (c[i] ? "✓" : "·") + '</b></div>').join("") + '</div>';
 // le moment de la journee d'une etape, quand il ne fait aucun doute (19 h 30 n'est ni franchement « tarde » ni « noche »)
+// En anglais : le matin avant midi ; le soir de 18 h 30 a 19 h 30 ; la nuit a partir de 23 h. 18 h, 20 h, 22 h 30 n'y
+// sont pas (« in the evening » ou « at night » ? on entend les deux), et rien n'a lieu l'apres-midi.
 function quand(e){
   const t = e.h * 60 + e.m;
+  if (APPRENDRE === "en") return t < 12 * 60 ? "morning" : t >= 18 * 60 + 30 && t <= 19 * 60 + 30 ? "evening" : t >= 23 * 60 ? "night" : null;
   if (APPRENDRE === "es") return t < 12 * 60 ? "manana" : t >= 13 * 60 && t <= 18 * 60 + 30 ? "tarde" : t >= 21 * 60 ? "noche" : null;
   if (/Abend/.test(D.verbes[e.verbe].de.c || "")) return null;          // pas « am Abend zu Abend »
   return t <= 9 * 60 ? "morgen" : t >= 18 * 60 && t <= 22 * 60 + 30 ? "abend" : null;
@@ -689,8 +967,11 @@ function quand(e){
 function momentVraiFaux(w){
   const cand = ETAPES.filter(e => quand(e) === w.moment);
   if (!cand.length) return false;
-  const e = hasard(cand), vrai = Math.random() < 0.5, autre = hasard(Object.keys(L.moments).filter(k => k !== w.moment));
+  // en anglais, le faux n'est jamais le moment voisin (le soir / la nuit) : seulement ce que l'horloge dement franchement
+  const VOISIN_EN = {evening: "night", night: "evening"};
+  const e = hasard(cand), vrai = Math.random() < 0.5, autre = hasard(Object.keys(L.moments).filter(k => k !== w.moment && !(APPRENDRE === "en" && VOISIN_EN[w.moment] === k)));
   const dit = k => APPRENDRE === "de" ? (f => [DE.sujet(e.sujet, true), f.v, f.r, f.o, L.moments[k], f.c, f.p].filter(Boolean).join(" ") + ".")(DE.formes(e.verbe, n(e.sujet)))
+                 : APPRENDRE === "en" ? [EN.sujet(e.sujet, true), EN.pred(e.verbe, n(e.sujet), e.sujet), L.moments[k]].join(" ") + "."
                                        : [ES.sujet(e.sujet, true), ES.pred(e.verbe, n(e.sujet)), L.moments[k]].join(" ") + ".";
   motQ = w; tradQ = tradEtape(e);
   const juste = dit(w.moment), phrase = vrai ? juste : dit(autre);
@@ -703,22 +984,29 @@ function momentVraiFaux(w){
 // sujet), contre trois etapes plus tardives ; sans image, c'est l'ordre de la journee qu'on se rappelle
 function premier(w){
   const j = hasard(["anna", "mark"]), d = etapesDu(j), s = d[0].sujet;
-  const dit = e => APPRENDRE === "de" ? DE.pred(e.verbe, s) : cap(ES.pred(e.verbe, n(s))) + ".";
+  // en anglais : « What does Mark do first? » -- « He wakes up. », puis la phrase dite « First, Mark wakes up at... »
+  const dit = e => APPRENDRE === "de" ? DE.pred(e.verbe, s) : APPRENDRE === "en" ? cap(pronEn(s).p) + " " + EN.pred(e.verbe, n(s), s) + "."
+                                       : cap(ES.pred(e.verbe, n(s))) + ".";
   const rep = dit(d[0]), opts = unique([rep, ...melanger(d.slice(2)).map(dit)]).slice(0, 4);
   motQ = w; tradQ = tradEtape(d[0]);
-  ecran("premier", "", APPRENDRE === "de" ? "Was macht " + DE.sujet(s) + " zuerst?" : "¿Qué hace " + ES.sujet(s) + " primero?", true, true);
+  ecran("premier", friseQuestion(j, null, d[0]), APPRENDRE === "de" ? "Was macht " + DE.sujet(s) + " zuerst?" : APPRENDRE === "en" ? "What does " + EN.sujet(s) + " do first?" : "¿Qué hace " + ES.sujet(s) + " primero?", true, true);
   tradsChoix = {}; d.forEach(e => { tradsChoix[dit(e)] = tradGeste(e.verbe, s); });
-  boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, L.etape(d[0])));
+  const phrase = APPRENDRE === "en" ? etapeApresLien(d[0], "First", null) : L.etape(d[0]);
+  boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, phrase));
   return true;
 }
 // la personne d'un exercice de conjugaison : yo / tu / nosotros (sans image), ou le sujet de l'etape (avec son image)
 function personne(e){
   const k = hasard([0, 1, 3, n(e.sujet), n(e.sujet)]);
-  if (k === n(e.sujet)) return {k, s: e.sujet, S: APPRENDRE === "de" ? DE.sujet(e.sujet, true) : ES.sujet(e.sujet, true)};
+  if (k === n(e.sujet)) return {k, s: e.sujet, S: APPRENDRE === "de" ? DE.sujet(e.sujet, true) : APPRENDRE === "en" ? EN.sujet(e.sujet, true) : ES.sujet(e.sujet, true)};
   return {k, s: null, S: D.personnes[APPRENDRE][k]};
 }
 // les sortes de la langue apprise
-const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" ? !["reflexiv", "trennbar", "satzbau"].includes(x) : !["pronombre", "forma", "avantApres"].includes(x));
+// l'anglais : ni pronominaux (pronombre, forma, reflexiv), ni verbe separable, ni verbe en deuxieme position ; a la
+// place, le -s (troisieme), la question en does (doesQ) et la place de l'adverbe (placeAdv), qui n'existent qu'en anglais
+const SORTES_EN = ["troisieme", "doesQ", "placeAdv"];
+const SORTES = Object.keys(EX).filter(x => APPRENDRE === "en" ? !["pronombre", "forma", "reflexiv", "trennbar", "satzbau"].includes(x)
+  : !SORTES_EN.includes(x) && (APPRENDRE === "es" ? !["reflexiv", "trennbar", "satzbau"].includes(x) : !["pronombre", "forma", "avantApres"].includes(x)));
 // pour tests/themes_illustres.py : remettre dans l'ordre se resout en quatre gestes, pas en un
 function testerOrdre(){
   const z = $("ordre"); if (!z) return "";
@@ -730,10 +1018,13 @@ function testerOrdre(){
 // ---------- la decouverte : les trois journees, on touche un moment, on le voit et on l'entend ----------
 function decouvrir(){
   $("compte").textContent = ""; $("barre").style.width = "0%";
-  const z = $("zone"), dec = D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  // en anglais, les phrases de la decouverte se fabriquent ici (journee.json n'a que l'espagnol et l'allemand)
+  const dec = APPRENDRE === "en" ? Object.fromEntries(ETAPES.map(e => [e.cle, {texte: EN.etape(e)}])) : D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  const z = $("zone");
   z.innerHTML = '<div class="onglets" role="tablist">' + Object.keys(D.jours).map(j => '<button type="button" role="tab" data-j="' + j + '" lang="' + APPRENDRE + '" dir="ltr">' + D.jours[j].titre[APPRENDRE] + '</button>').join("") + '</div>'
               + '<p class="consigne">' + isoler(T("intro")) + '</p><div class="fiche" id="fiche"></div><div class="frise" id="frise"></div>'
-              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : "regleEs")) + '</p>';
+              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : APPRENDRE === "en" ? "regleEn" : "regleEs")) + '</p>'
+              + (APPRENDRE === "en" ? '<p class="consigne">' + T(GB ? "bonGb" : "bonUs") + '</p>' : "");
   const montrer = e => {
     const ph = dec[e.cle], t = tradEtape(e) || (TR ? null : glose(motDuVerbe(e.verbe)));
     $("frise").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.cle === e.cle));
@@ -849,6 +1140,17 @@ document.title = T("titre");
 fetch("journee/journee.json?v=1").then(r => r.json()).then(d => {
   D = d;
   ETAPES = Object.keys(d.jours).flatMap(j => d.jours[j].etapes.map(([verbe, sujet, h, m], rang) => ({cle: j + "-" + (rang + 1), jour: j, rang, verbe, sujet, h, m})));
+  if (APPRENDRE === "en"){
+    // Boston : sans les images ecartees (la cle garde le nom de l'image, le rang se recompte dans la journee) ; un
+    // geste sans phrase anglaise sort aussi des leurres
+    ETAPES = ETAPES.filter(e => !ECARTEES_EN.includes(e.cle) && VERBES_EN[e.verbe]);
+    const rangs = {}; ETAPES.forEach(e => { e.rang = rangs[e.jour] = (e.jour in rangs) ? rangs[e.jour] + 1 : 0; });
+    Object.keys(D.verbes).forEach(vb => { if (!VERBES_EN[vb]) delete D.verbes[vb]; });
+    Object.keys(D.jours).forEach(j => { D.jours[j].titre.en = TITRES_EN[j]; });
+    // la frequence et ses phrases anglaises (FREQ_EN), au lieu de celles de l'espagnol et de l'allemand
+    Object.keys(D.adverbes).forEach(c => { D.adverbes[c].en = ({siempre: "always", "a veces": "sometimes", nunca: "never"})[c]; });
+    D.frequences = FREQ_EN.map(x => Object.assign({}, x, {en: (x.be ? [x.S, x.v, "{A}", x.r] : [x.S, "{A}", x.v, x.r]).filter(Boolean).join(" ") + "."}));
+  }
   if (Q.get("seance") === "1") demarrer(); else decouvrir();
 });
 </script>

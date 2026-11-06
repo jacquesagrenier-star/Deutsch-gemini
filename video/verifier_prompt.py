@@ -755,7 +755,7 @@ REGLES = [
      u"STYLE a la reception, avant de mesurer une seule zone : chaque zone "
      u"mesuree sur un dessin est du travail qu'on perdra."),
     ("regard-qui-fuit-l-autre", "doute",
-     r"(?i)(looks?|eyes are turned|head (is )?turned)[^.]{0,80}(towards|to) the (left|right) edge[^.]{0,200}(the young man|the woman|the man|him|her)",
+     r"(?i)\b(looks?|eyes are turned|head (is )?turned)\b[^.]{0,80}\b(towards|to) the (left|right) edge\b[^.]{0,200}\b(the young man|the woman|the man|him|her)\b",
      u"Deux personnes dans le cadre, et l'une doit regarder AILLEURS que l'autre : le modele les tourne l'une vers l'autre",
      u"24 oct. 2026, 04 Schrippe plan 19 (2 x 0,15 $). Anna sort de la boulangerie et doit regarder a gauche, du "
      u"mauvais cote, pendant que Mark s'eloigne a droite. Deux prises : << she looks along the pavement towards the "
@@ -764,6 +764,17 @@ REGLES = [
      u"Ne pas commander le REGARD : commander le CORPS et la MARCHE. A la 3e prise, << She is already walking away "
      u"towards the LEFT edge, mid-stride, in profile: her body, her face and her steps all go to the left ... her back "
      u"is to the right side of the street >> -- juste. Le clip (H3) n'a plus qu'a continuer la marche."),
+    ("rayons-sans-texte-blanchis", "doute",
+     r"(?i)^(?![\s\S]*\b(colourful|colorful|plain colours|plain bright colours)\b)(?=[\s\S]*\b(shelves|shelf|aisle|racks?)\b)(?=[\s\S]*\b(goods|products|packets|packages|boxes|tins|books|magazines|newspapers|groceries)\b)[\s\S]*\bno (text|letters|writing|labels|logos)\b",
+     u"Un magasin, et << no text, no logos >> : le modele vide les rayons de toute couleur -- des boites blanches muettes",
+     u"4 nov. 2026, Faire les courses, kasse-karte (0,15 $). La caisse du supermarche de la scene, avec << Absolutely "
+     u"no text, no letters, no prices, no logos >> et << the same white shelves >> : derriere la caisse, des rayons "
+     u"entiers de boites et de bouteilles BLANCHES sans rien dessus -- un magasin fantome, rien du decor de reference "
+     u"(jus orange et rouges, boites rouges et vertes, sacs de cafe, chocolat). Le modele obeit a << pas de texte >> "
+     u"en retirant l'emballage lui-meme.",
+     u"Nommer les marchandises ET leurs couleurs, et dire que l'emballage reste colore : << shelves full of colourful "
+     u"goods as in the reference picture: bottles of orange and red juice, red and green tins... every package in "
+     u"plain colours with no writing, never white blank boxes >>. Ne pas ecrire << white shelves >> : le blanc s'etend."),
     ("portrait-pour-une-epaule", "doute",
      r"(?i)\b(shoulder|upper arm|back of (his|her) head)\b[^.]{0,90}\bof the "
      r"(first|second|third|fourth) reference picture\b",
@@ -796,6 +807,17 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"La queue muette du panier ne FERME pas la bouche : COUPER le clip a la fin de la voix, gratuit",
+     u"4 nov. 2026",
+     u"DTZ oral, Jacques sur l'essai : << la bouche d'Anna continue de bouger apres la fin de sa replique >>. "
+     u"video/bouche_apres_voix.py sur les 23 prises Kling : 19 bougeaient apres la voix, de 0,4 a 3,5 s, "
+     u"souvent jusqu'a la derniere image -- avec pourtant la queue << Finally... listens without speaking >> "
+     u"et 1,3 s de silence dans la piste. Coupees a l'image ou la bouche est fermee et les yeux ouverts, "
+     u"0,08 a 0,4 s apres la voix : plus aucune articulation muette (regarde image par image). Une coupe "
+     u"choisie sur la bouche seule tombait sur un clignement (a_ihr_foto, m_ende) : les yeux comptent aussi.",
+     u"Garder la queue de silence dans le panier (elle sert a Kling), mais ne jamais la publier : passer "
+     u"CHAQUE prise a video/bouche_apres_voix.py et couper au point qu'il donne (point_de_coupe()). Ce "
+     u"n'est pas une affaire de prompt : aucune phrase n'a tenu la bouche fermee."),
     (u"L'IMAGE DE DEPART recadree serre, sans bande vide sous les mains : Kling n'a plus ou poser ses sous-titres",
      u"3 nov. 2026",
      u"DTZ oral, Mark assis a une table (plan 13) : sur l'image entiere -- le quart du bas en dessus de "
@@ -806,8 +828,13 @@ ACQUIS = [
      u"⚠️ CA NE SUFFIT PAS TOUJOURS, le meme jour sur 23 prises : les TROIS annonces du resultat d'Anna "
      u"(plans 23, 24, 25 -- les plus longues apres la consigne, et dites comme on proclame) ont eu de faux "
      u"sous-titres sur le chemisier blanc, entre 76 et 80 % de la hauteur ; le plan 25 les a REFAITS a la "
-     u"reprise. Sauvees gratuitement par le recadrage APRES coup (acquis suivant) : crop=536:952:92:0, "
-     u"remis en 720x1280 -- les trois verdicts ont le meme cadre, plus serre que les autres repliques.",
+     u"reprise. Sauvees gratuitement par le recadrage APRES coup (acquis suivant). ⚠️ Le premier recadrage, "
+     u"9:16 garde depuis le HAUT (crop=536:952:92:0), a laisse un mur au-dessus d'Anna et sa tete en bas "
+     u"du cadre de la page (Jacques : << mal cadree >>). Le bon : le cadre que la page MONTRE deja des autres "
+     u"clips (4:5, object-position 22 %), remonte juste au-dessus du texte -- crop=720:900:0:50 : meme taille, "
+     u"meme place qu'ailleurs. Le 4 nov., les trois verdicts retournes avec Anna souriante (image retouchee, plan 84) : 2 "
+     u"sur 3 ont REFAIT les faux sous-titres, dans la meme bande -- une annonce de resultat en refait presque "
+     u"toujours (5 prises sur 6) : ces repliques se recadrent d'office.",
      u"Recadrer l'image maitresse AVANT Kling : le bas du cadre passe juste sous les mains ou sous le "
      u"buste, jamais sur une surface nue (table, comptoir vide, sol). C'est gratuit, ca grossit le "
      u"visage, et ca ne retire rien a la prise. Garder les deux cadres dans preparer_clips.py (CADRES). "
@@ -1290,7 +1317,7 @@ PHRASE_VERROU = re.compile(r"(?i)Locked-off camera:[^.]*\.")
 #
 #    Ce qui reste est ce qui a reellement coute des images : la garde
 #    negative, l'icone appelee par son nom, et l'empilement de negations.
-POUR_IMAGE = ("garde-negative", "comptoir-devant", "icone-nommee-par-son-nom",
+POUR_IMAGE = ("garde-negative", "rayons-sans-texte-blanchis", "comptoir-devant", "icone-nommee-par-son-nom",
               "negations-en-nombre", "qualificatifs-empiles",
               "taille-par-adjectif", "nom-du-geste", "repere-hors-champ",
               "sol-bord-a-bord", "corps-sans-contact",

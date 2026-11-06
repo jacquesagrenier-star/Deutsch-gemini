@@ -504,7 +504,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "onkel",
    "devant": 0,
    "boites": [
     [
@@ -525,7 +525,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "onkel",
    "devant": 0,
    "boites": [
     [
@@ -557,7 +557,7 @@ window.SCENE = {
      }
     }
    ],
-   "sur": null,
+   "sur": "onkel",
    "devant": 0,
    "boites": [
     [
@@ -578,7 +578,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "onkel",
    "devant": 0,
    "boites": [
     [
@@ -681,20 +681,13 @@ window.SCENE = {
   },
   {
    "id": "cousin",
-   "mot": "primo",
+   "mot": "rapaz",
    "genre": "o",
-   "pluriel": "os primos",
+   "pluriel": "os rapazes",
    "niveau": "A1",
    "theme": "familia_pt",
    "personne": null,
    "aussi": [
-    {
-     "mot": "rapaz",
-     "genre": "o",
-     "niveau": "A1",
-     "theme": "familia_pt",
-     "fr": "garçon"
-    },
     {
      "mot": "criança",
      "genre": "a",
@@ -713,7 +706,7 @@ window.SCENE = {
      10.8
     ]
    ],
-   "fr": "cousin"
+   "fr": "garçon"
   },
   {
    "id": "hut",
@@ -724,7 +717,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "cousin",
    "devant": 0,
    "boites": [
     [
@@ -745,7 +738,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "cousin",
    "devant": 0,
    "boites": [
     [
@@ -808,7 +801,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -829,7 +822,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -865,7 +858,7 @@ window.SCENE = {
      }
     }
    ],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -886,7 +879,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "anna",
    "devant": 0,
    "boites": [
     [
@@ -1177,7 +1170,7 @@ window.SCENE = {
  ],
  "grosPlans": [],
  "titre": "Na quinta",
- "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, son petit cousin au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
+ "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, le fils de Felix au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
  "consigne": "Anna passe la matinée à la ferme de son oncle, dans le Brandebourg. Touche un objet ou un animal.",
  "exclus": [],
  "couches": {
@@ -1397,7 +1390,7 @@ window.SCENE = {
      }
     },
     {
-     "q": "O primo da Anna lava ___ mãos.",
+     "q": "O filho do Felix lava ___ mãos.",
      "c": [
       "as",
       "suas",
@@ -1405,8 +1398,8 @@ window.SCENE = {
      ],
      "f": "cousin",
      "r": null,
-     "phrase": "O primo da Anna lava as mãos.",
-     "sens": "Le cousin d'Anna se lave les mains.",
+     "phrase": "O filho do Felix lava as mãos.",
+     "sens": "Le fils de Felix se lave les mains.",
      "n": "Le corps : l'article, pas de pronom (<b>lava as mãos</b>)."
     },
     {
@@ -1551,7 +1544,7 @@ window.SCENE = {
      }
     },
     {
-     "q": "O cão ___ ser do primo da Anna.",
+     "q": "O cão ___ ser do filho do Felix.",
      "c": [
       "pode",
       "deve de",
@@ -1559,12 +1552,12 @@ window.SCENE = {
      ],
      "f": "hund",
      "r": "cousin",
-     "phrase": "O cão pode ser do primo da Anna.",
-     "sens": "Le chien appartient peut-être au cousin d'Anna.",
+     "phrase": "O cão pode ser do filho do Felix.",
+     "sens": "Le chien appartient peut-être au fils de Felix.",
      "n": "Possibilité : <b>poder</b>.",
      "br": {
-      "q": "O cachorro ___ ser do primo da Anna.",
-      "phrase": "O cachorro pode ser do primo da Anna."
+      "q": "O cachorro ___ ser do filho do Felix.",
+      "phrase": "O cachorro pode ser do filho do Felix."
      }
     },
     {

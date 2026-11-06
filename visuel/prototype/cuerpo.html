@@ -15,9 +15,15 @@
   que, du musst dich…) ; et le dialogue chez le medecin, pour l'oral du DTZ.
   Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne »
   a chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin.
-  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
-  variante=latam|es, r=<AUDIO_REVISION>. Les phrases sont FABRIQUEES depuis cuerpo/cuerpo.json
+  Parametres : apprendre=es|de|en, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
+  variante=latam|es (espagnol), us|gb (anglais), r=<AUDIO_REVISION>. Les phrases sont FABRIQUEES depuis cuerpo/cuerpo.json
   (visuel/cuerpo/cuerpo.py) : une image ne dit que ce qu'elle montre.
+  L'ANGLAIS (4 nov. 2026, essai admin, a Boston, interface en francais) : les memes images et la meme mecanique,
+  des phrases ecrites pour l'anglais (objet EN, tables EN_* dans la page) : my / his / her devant la partie du corps,
+  jamais « the » (My head hurts, Her knee hurts) ; hurts / hurt ; I have a cold / a fever / the flu ; les composes
+  headache, toothache, backache, stomachache, earache et a sore throat ; should + le verbe nu ; for / since ; les
+  pluriels foot / feet, tooth / teeth. Le britannique (variante=gb) : a temperature, ill, stomach ache, plaster,
+  chemist's, surgery, 38 degres au lieu de 101.
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -106,6 +112,13 @@ button:disabled{cursor:default}
 .dialogue .qui{flex:0 0 auto;font-size:12px;font-weight:900;color:var(--ambre-f);min-width:52px;padding-top:3px}
 .dialogue .txt{font-weight:800;font-size:16px;line-height:1.4}
 .dialogue .ligne.patient{background:rgba(43,181,170,.12)}
+/* le haut-parleur de chaque replique (Jacques, 5 nov. : « il faudrait qu'il y ait des petits haut-parleurs pour les
+   lignes, pour qu'on puisse voir qu'on peut cliquer pour entendre ») : celui de l'app, dans un rond, au bout de la ligne */
+.dialogue .dit{flex:1 1 auto;min-width:0}
+.dialogue .hp-ligne{flex:0 0 auto;align-self:center;width:34px;height:34px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);
+  color:var(--encre);display:inline-flex;align-items:center;justify-content:center}
+.dialogue .hp-ligne .ic-hp{width:18px;height:18px;display:block}
+.dialogue .ligne:active .hp-ligne,.dialogue .ligne.joue .hp-ligne{background:var(--ambre);color:#1C2430}
 .regle{margin:0;font-size:14px;font-weight:700;line-height:1.45;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
 .suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
   color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer;z-index:5000}
@@ -131,11 +144,13 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="basFixe" id="basFixe" hidden></div>
 <script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=2"></script>
+<script src="themes/voix.js?v=4"></script>
 <script src="themes/zoom.js?v=3"></script>
+<script src="themes/verre.js?v=5"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
@@ -184,7 +199,22 @@ const TEXTES = {
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
-  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"},
+  // L'ANGLAIS (interface en francais seulement, comme tout l'essai anglais)
+  introMedecinEn:{fr:"Un rendez-vous chez la médecin, à Boston. Touche une réplique pour l'entendre."},
+  dueleEn:   {fr:"Choisis le bon verbe : hurts ou hurt ?"},
+  pronEn:    {fr:"Choisis le bon possessif : my, your, his, her, our ou their ?"},
+  verboEn:   {fr:"Choisis le bon verbe : has, is, hurts ou hurt ?"},
+  ache:      {fr:"Regarde l'image : quel mal a cette personne ?"},
+  article:   {fr:"Choisis le bon article : a, an ou the ?"},
+  pluriel:   {fr:"Un pied, deux pieds : choisis la bonne forme."},
+  should:    {fr:"Complète le conseil : should, et le verbe juste après."},
+  depuis:    {fr:"Chez le médecin : for, since ou during ?"},
+  regleMalEn:{fr:"En anglais, la partie du corps prend un possessif, jamais « the » : My head hurts (j'ai mal à la tête). Le possessif suit la personne qui a mal : his pour un homme, her pour une femme — « son genou » se dit his knee ou her knee. hurts pour une chose, hurt pour plusieurs : My foot hurts, my feet hurt. On dit aussi : I have a headache, a toothache, a backache, a stomachache (stomach ache en britannique), an earache, a sore throat. Deux pluriels irréguliers : one foot, two feet ; one tooth, two teeth."},
+  regleMaladeEn:{fr:"Le mal se dit avec have et un article : I have a cold, a cough, a fever — et the flu. Là où le français dit « de la fièvre », l'anglais dit a fever. Comment on se sent : be (I'm tired, I'm sick — I'm ill en britannique). Le conseil : should + le verbe sans to (You should rest), et should ne prend jamais de -s (She should rest)."},
+  regleMedecinEn:{fr:"L'anglais n'a pas de vouvoiement : you sert pour tout le monde, la politesse passe par Could you…?, please et thank you. Le médecin demande What's the matter? ou What's wrong?, puis How long have you had…? On répond for + une durée (for three days) ou since + un point de départ (since Monday) — jamais during, ni « since three days » : le français dit « depuis » dans les deux cas."},
+  bonUs:     {fr:"Bon à savoir : tu apprends l'anglais américain, à Boston. La fièvre se mesure en degrés Fahrenheit (101 °F, environ 38 °C). En britannique, on dirait a temperature pour la fièvre (I have a temperature), ill pour malade, stomach ache en deux mots, a plaster pour le pansement (Band-Aid ici), the chemist's pour la pharmacie et the surgery pour le cabinet du médecin (ici the doctor's office)."},
+  bonGb:     {fr:"Bon à savoir : tu apprends l'anglais britannique. La fièvre se dit souvent a temperature (I have a temperature, 38 °C), malade se dit ill, et l'on écrit stomach ache en deux mots. En américain, on dirait a fever (101 °F), sick, stomachache, a Band-Aid pour le pansement (ici a plaster), the pharmacy ou the drugstore pour la pharmacie (ici the chemist's) et the doctor's office pour le cabinet (ici the surgery)."}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
 
@@ -349,7 +379,109 @@ const DE = {
              ["D", "Sie haben eine Grippe. Sie müssen im Bett bleiben."], ["D", "Ich schreibe Ihnen ein Rezept."], ["P", "Vielen Dank, Frau Doktor."], ["D", "Gute Besserung!"]]
 };
 DE.leurres.quien = ["Ärztin", "Arzt", "Patient", "Rezept"];
-const L = APPRENDRE === "de" ? DE : ES;
+// ---------- l'anglais (4 nov. 2026) ----------
+// A Boston, l'americain par defaut, le britannique en variante (variante=gb). Ce que la page enseigne en anglais :
+// my / his / her devant la partie du corps, jamais « the » (My head hurts ; son genou = his knee ou her knee) ;
+// hurts / hurt ; have + un article (a fever, a cold, the flu) ; les composes headache, toothache, backache,
+// stomachache, earache et a sore throat (comme les -schmerzen de l'allemand) ; should + le verbe nu ; for / since ;
+// foot / feet, tooth / teeth. Les cases ⟦nom|valeur⟧ comme en espagnol et en allemand.
+const EN_PART = {cabeza:"head", garganta:"throat", oido:"ear", muela:"tooth", espalda:"back", estomago:"stomach", brazo:"arm", mano:"hand", rodilla:"knee",
+  piernas:"legs", pies:"feet", ojos:"eyes", cuello:"neck", hombro:"shoulder", pecho:"chest", nariz:"nose", boca:"mouth", oreja:"ear"};
+const EN_UN = {piernas:"leg", pies:"foot", ojos:"eye"};
+// a deux (their, our) : le pluriel de chaque partie qui fait mal
+const EN_PL = {cabeza:"heads", garganta:"throats", oido:"ears", muela:"teeth", espalda:"backs", estomago:"stomachs", brazo:"arms", mano:"hands", rodilla:"knees",
+  piernas:"legs", pies:"feet", ojos:"eyes"};
+// l'endroit qui fait mal -> le mal qu'on a : I have a headache
+const EN_ACHE = {cabeza:"headache", muela:"toothache", espalda:"backache", estomago: GB ? "stomach ache" : "stomachache", oido:"earache", garganta:"sore throat"};
+const EN_ART_ACHE = k => k === "oido" ? "an" : "a";
+// les maux : [article, mot] ; « allergies » au pluriel et sans article, comme on le dit
+const EN_SINT = {fiebre: ["a", GB ? "temperature" : "fever"], tos: ["a", "cough"], gripe: ["the", "flu"], alergia: ["", "allergies"], resfriado: ["a", "cold"]};
+const EN_ETAT = {enfermo: GB ? "ill" : "sick", cansado: "tired"};
+const EN_CONS = {descansar:"rest", medico:"see a doctor", pastilla:"take some medicine", agua:"drink plenty of water", cama:"stay in bed", te:"have some tea with honey",
+  jarabe:"take some cough syrup", dentista:"go to the dentist", tirita: GB ? "put a plaster on it" : "put a Band-Aid on it", sentarte:"sit down for a while",
+  pantalla:"take a break from the screen", hielo:"use an ice pack", ligero:"eat something light"};
+// les mots a la forme du corpus anglais (anglais/datos/, et datos-gb/ en britannique) : les cartes que la page fait avancer
+const EN_MOT = {cabeza:"head", garganta:"throat", oido:"ear", muela:"tooth", espalda:"back", estomago:"stomach", brazo:"arm", mano:"hand", rodilla:"knee",
+  piernas:"leg", pies:"foot", ojos:"eye", cuello:"neck", hombro:"shoulder", pecho:"chest", nariz:"nose", boca:"mouth", oreja:"ear"};
+// la fievre : « fever » partout, meme quand le britannique dit « a temperature » (temperature, au corpus, est la carte de la meteo)
+const EN_MOT_SINT = {fiebre: "fever", tos:"cough", gripe:"flu", alergia:"allergy", resfriado:"cold"};
+// la fievre a Boston : en degres Fahrenheit (38,3 °C) ; le britannique, en Celsius
+const EN_FIEVRE = GB ? "thirty-eight degrees" : "a hundred and one degrees";
+const HIS = a => fem(a) ? "her" : "his", HE = a => fem(a) ? "She" : "He";
+const EN = {
+  bravo: "Well done!", vrai: "True", faux: "False",
+  parte: k => EN_PART[k],
+  un: k => EN_UN[k] || EN_PART[k],
+  v: (k, un) => PLURIEL(k) && !un ? "hurt" : "hurts",
+  // per : 1 my, 2 et U your (la question), 3 le genitif (Mark's back), 3p his / her, P their (deux personnes), N our
+  dolor(per, k, a, b, un){
+    const deux = per === "P" || per === "N", x = deux ? EN_PL[k] : un ? EN.un(k) : EN.parte(k), pl = deux || (PLURIEL(k) && !un);
+    const X = "⟦parte|" + x + "⟧", V = "⟦verbe|" + (pl ? "hurt" : "hurts") + "⟧";
+    if (per === "1") return "⟦pron|My⟧ " + X + " " + V + ".";
+    if (per === "2" || per === "U") return "⟦aux|" + (pl ? "Do" : "Does") + "⟧ ⟦pron|your⟧ " + X + " hurt?";
+    if (per === "3p") return "⟦pron|" + maj(HIS(a)) + "⟧ " + X + " " + V + ".";
+    if (per === "P") return "⟦pron|Their⟧ " + X + " " + V + ".";
+    if (per === "N") return "⟦pron|Our⟧ " + X + " " + V + ".";
+    return nom(a) + "'s " + X + " " + V + ".";
+  },
+  mot: k => { const [ar, m] = EN_SINT[k]; return (ar ? "⟦art|" + ar + "⟧ " : "") + "⟦mal|" + m + "⟧"; },
+  sintPlein: k => plein(EN.mot(k)),
+  sint(per, k, a){
+    const m = EN.mot(k);
+    if (per === "1") return "I ⟦verbe|have⟧ " + m + ".";
+    if (per === "U") return "⟦aux|Do⟧ you have " + m + "?";
+    return nom(a) + " ⟦verbe|has⟧ " + m + ".";
+  },
+  estado(per, k, a){ const m = "⟦mal|" + EN_ETAT[k] + "⟧"; return per === "1" ? "I'm " + m + "." : nom(a) + " ⟦verbe|is⟧ " + m + "."; },
+  unAche: k => EN_ART_ACHE(k) + " " + EN_ACHE[k],
+  ache(per, k, a){ const m = "⟦art|" + EN_ART_ACHE(k) + "⟧ ⟦mal|" + EN_ACHE[k] + "⟧"; return per === "1" ? "I ⟦verbe|have⟧ " + m + "." : nom(a) + " ⟦verbe|has⟧ " + m + "."; },
+  mal(per, k, a, b){ const g = genre(k); return g === "d" ? EN.dolor(per, k, a, b) : g === "s" ? EN.sint(per, k, a) : EN.estado(per, k, a); },
+  // ce qu'on repond a « What's wrong with Mark? » : His back hurts. / He has a fever. / He is tired.
+  pred(k, a){ const g = genre(k); return g === "d" ? maj(HIS(a)) + " " + EN.parte(k) + " " + EN.v(k) + "." : g === "s" ? HE(a) + " has " + EN.sintPlein(k) + "." : HE(a) + " is " + EN_ETAT[k] + "."; },
+  predAche: (k, a) => HE(a) + " has " + EN.unAche(k) + ".",
+  // le conseil : should + le verbe sans to, sans -s a la troisieme personne
+  consejo(per, c, a){ return (per === "1" ? "I" : per === "3" ? HE(a) : "You") + " ⟦modal|should⟧ " + EN_CONS[c] + "."; },
+  cava: a => "— What's wrong, " + nom(a) + "? — ",
+  cava2: a => "— What's wrong, " + nom(a) + "? ",
+  doc: f => "The doctor",
+  docDit: (f, t) => "The doctor: “" + t + "”",
+  bonjour: () => "Hello. What's the matter? ",
+  queDuele: a => "Where does it hurt, " + nom(a) + "?",
+  quePasa: a => "What's wrong with " + nom(a) + "?",
+  pp: (a, b) => "What's wrong with " + nom(a) + " and " + nom(b) + "? ",
+  euch: () => "— What's wrong with you two? — ",
+  // sur la silhouette de Mark ou de Rosa : his / her, selon la personne
+  toca: (k, p) => "Point to ⟦pron|" + HIS(p) + "⟧ ⟦parte|" + EN.un(k) + "⟧.",
+  cest: (k, p) => "That's ⟦pron|" + HIS(p) + "⟧ ⟦parte|" + EN.un(k) + "⟧.",
+  queEs: "What's this?",
+  quien: (p, f) => nom(p) + " works at this " + (GB ? "doctor's surgery" : "doctor's office") + ". " + (f ? "She" : "He") + " is a ⟦mot|doctor⟧.",
+  medico: {
+    parte: (k, a) => "— Hello, " + nom(a) + ". How long " + (PLURIEL(k) ? "have" : "has") + " your ⟦parte|" + EN.parte(k) + "⟧ been hurting? — For three days.",
+    fiebre: a => "— Hello, " + nom(a) + ". Do you have a ⟦mal|" + EN_SINT.fiebre[1] + "⟧? — Yes, " + EN_FIEVRE + ".",
+    receta: () => "— I'll write you a ⟦mot|prescription⟧. You can get your medicine at the " + (GB ? "chemist's" : "pharmacy") + ".",
+    cita: () => "— Come back next week: I'll make you another ⟦mot|appointment⟧ for Tuesday.",
+    ache: (k, a) => "— Hello, " + nom(a) + ". How long have you had ⟦mal|" + EN.unAche(k) + "⟧? — For three days."
+  },
+  paciente: {
+    parte: (k, a) => "— Hello, " + nom(a) + ". What's the matter? — My ⟦parte|" + EN.parte(k) + "⟧ " + EN.v(k) + ". " + (PLURIEL(k) ? "They" : "It") + " started hurting three days ago.",
+    fiebre: a => "— Hello, " + nom(a) + ". What's the matter? — I have a ⟦mal|" + EN_SINT.fiebre[1] + "⟧: " + EN_FIEVRE + ".",
+    receta: () => "— Doctor, could you write me a ⟦mot|prescription⟧ for some cough syrup?",
+    cita: () => "— Good morning. My ⟦mot|appointment⟧ with the doctor is at ten.",
+    ache: (k, a) => "— Hello, " + nom(a) + ". What's the matter? — I've had ⟦mal|" + EN.unAche(k) + "⟧ for three days."
+  },
+  // des leurres qui commencent tous par une consonne : « a ___ » ne trahit jamais la reponse
+  leurres: {receta: ["prescription", GB ? "plaster" : "Band-Aid", "doctor", "cough"], cita: ["appointment", "prescription", EN_SINT.fiebre[1], "cough"],
+            quien: ["doctor", "patient", "prescription", GB ? "plaster" : "Band-Aid"]},
+  fiebreOpts: [EN_SINT.fiebre[1], "cough", "cold", "headache"],
+  vfDoc: (p, f, vrai) => nom(p) + " is " + (vrai ? "a doctor" : "a patient") + ".",
+  dialogue: [["D", "Good morning. What's the matter?"], ["P", "My throat hurts and I have a " + EN_SINT.fiebre[1] + "."], ["D", "How long have you been " + EN_ETAT.enfermo + "?"],
+             ["P", "For three days."], ["D", "You have the flu. You should stay in bed."],
+             ["D", "I'll write you a prescription. You can get your medicine at the " + (GB ? "chemist's" : "pharmacy") + "."],
+             ["P", "Thank you very much, doctor."], ["D", "Get well soon!"]]
+};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
+// les guillemets de la langue apprise (« » en espagnol et en allemand, comme avant ; “ ” en anglais)
+const GU = APPRENDRE === "en" ? ["“", "”"] : ["«", "»"];
 
 // ---------- la traduction dans la langue d'interface (comme la famille, Decrire et Emotions) ----------
 // En francais, anglais et portugais (et en allemand pour qui apprend l'espagnol), la phrase juste entiere, fabriquee
@@ -404,11 +536,11 @@ const FR = {
   dialogue: ["Bonjour. Qu'est-ce qui ne va pas ?", "J'ai mal à la gorge et j'ai de la fièvre.", "Depuis quand ?", "Depuis trois jours.",
              "Vous avez la grippe. Vous devez rester au lit.", "Je vous fais une ordonnance.", "Merci beaucoup, docteur.", "Bon rétablissement !"]
 };
-const EN = {
+const EN_TR = {   // l'anglais LANGUE D'INTERFACE (qui apprend l'espagnol ou l'allemand) ; l'anglais appris est EN, plus bas
   x: (k, un) => un && ENU[k] ? ENU[k] : ENP[k],
   hurt: k => PLURIEL(k) ? "hurt" : "hurts",
   dolor(per, k, a, b, un){ if (un && ENU[k]) return (per === "1" ? "My " : nom(a) + "'s ") + ENU[k] + " hurts.";
-    const x = ENP[k], h = EN.hurt(k), sore = PLURIEL(k) ? "sore " + x : (k === "muela" ? "toothache" : "a sore " + x);
+    const x = ENP[k], h = EN_TR.hurt(k), sore = PLURIEL(k) ? "sore " + x : (k === "muela" ? "toothache" : "a sore " + x);
     return {"1": "My " + x + " " + h + ".", "2": (PLURIEL(k) ? "Do" : "Does") + " your " + x + " hurt?", "U": (PLURIEL(k) ? "Do" : "Does") + " your " + x + " hurt?",
             "P": nom(a) + " and " + nom(b) + " have " + sore + ".", "N": nom(b) + " and I have " + sore + "."}[per] || nom(a) + "'s " + x + " " + h + "."; },
   sint(per, k, a){ const x = {fiebre:"a fever", tos:"a cough", gripe:"the flu", alergia:"an allergy", resfriado:"a cold"}[k];
@@ -424,8 +556,8 @@ const EN = {
   bonjour: () => "Hello. What's the matter? ",
   pp: (a, b) => "What's wrong with " + nom(a) + " and " + nom(b) + "? ",
   euch: () => "— What's wrong with you two? — ",
-  toca: k => "Touch the " + EN.x(k, true) + ".",
-  cest: k => "That's the " + EN.x(k, true) + ".",
+  toca: k => "Touch the " + EN_TR.x(k, true) + ".",
+  cest: k => "That's the " + EN_TR.x(k, true) + ".",
   quien: (p, f) => nom(p) + " works at this practice. " + (f ? "She" : "He") + " is a doctor.",
   vfDoc: (p, f, vrai) => nom(p) + " is " + (vrai ? "a doctor" : "a patient") + ".",
   medico: {parte: (k, a) => "— Hello, " + nom(a) + ". How long " + (PLURIEL(k) ? "have" : "has") + " your " + ENP[k] + " been hurting? — For three days.",
@@ -489,8 +621,67 @@ DE_TRAD.euch = () => "—Was ist los mit euch? —";
 DE_TRAD.medico = {}; DE_TRAD.paciente = {};
 for (const c of ["medico", "paciente"]) for (const f in DE[c]) DE_TRAD[c][f] = (...x) => plein(DE[c][f](...x));
 DE_TRAD.dialogue = DE.dialogue.map(l => l[1]);
-const TRADS = {fr: FR, en: EN, pt: PT, de: DE_TRAD};
-const TR = (LANGUE === APPRENDRE) ? null : (TRADS[LANGUE] && (LANGUE !== "de" || APPRENDRE === "es") ? TRADS[LANGUE] : null);
+const TRADS = {fr: FR, en: EN_TR, pt: PT, de: DE_TRAD};
+// LE FRANCAIS SOUS L'ANGLAIS APPRIS : les memes maux, avec ses phrases a lui (should -> « tu devrais », his knee ->
+// « son genou », Their feet hurt -> « Ils ont mal aux pieds »)
+const SON = s => s.replace(/^le /, "son ").replace(/^la /, "sa ").replace(/^les /, "ses ").replace(/^l'/, "son ");
+const MON = s => s.replace(/^le /, "mon ").replace(/^la /, "ma ").replace(/^les /, "mes ").replace(/^l'/, "mon ");
+const FR_CONS_EN = {descansar:"se reposer", medico:"aller voir un médecin", pastilla:"prendre un médicament", agua:"boire beaucoup d'eau", cama:"rester au lit",
+  te:"boire du thé au miel", jarabe:"prendre du sirop contre la toux", dentista:"aller chez le dentiste", tirita:"mettre un pansement dessus", sentarte:"s'asseoir un moment",
+  pantalla:"faire une pause loin de l'écran", hielo:"mettre une poche de glace", ligero:"manger quelque chose de léger"};
+const FR_FIEVRE = GB ? "38 degrés" : "101 degrés Fahrenheit (38 °C)";
+const FR_DUREE = {"two days":"deux jours", "three days":"trois jours", "four days":"quatre jours", "a week":"une semaine",
+  "yesterday":"hier", "Monday":"lundi", "last week":"la semaine dernière", "this morning":"ce matin"};
+const FR_DEUX = {mano:"aux mains", brazo:"aux bras", rodilla:"aux genoux", oido:"aux oreilles"};
+const FR_EN = Object.assign({}, FR, {
+  dolor(per, k, a, b, un){
+    // a deux (Their hands hurt, Our knees hurt) : « aux mains », « aux genoux »
+    const x = (per === "P" || per === "N") && FR_DEUX[k] ? FR_DEUX[k] : un && FRU[k] ? FRU[k] : FRP[k][1];
+    if (per === "3p") return (fem(a) ? "Elle" : "Il") + " a mal " + x + ".";
+    if (per === "P") return (fem(a) && fem(b) ? "Elles ont" : "Ils ont") + " mal " + x + ".";
+    if (per === "N") return "Nous avons mal " + x + ".";
+    return FR.dolor(per, k, a, b, un);
+  },
+  sint(per, k, a){
+    if (k === "alergia") return per === "1" ? "J'ai des allergies." : per === "U" ? "Avez-vous des allergies ?" : nom(a) + " a des allergies.";
+    return FR.sint(per, k, a);
+  },
+  consejo(per, c, a){
+    const pr = {"1": ["me ", "m'"], "3": ["se ", "s'"]}[per] || ["te ", "t'"];
+    const v = FR_CONS_EN[c].replace(/^se /, pr[0]).replace(/^s'/, pr[1]);
+    return (per === "1" ? "Je devrais " : per === "3" ? (fem(a) ? "Elle" : "Il") + " devrait " : "Tu devrais ") + v + ".";
+  },
+  quoi: a => "Qu'est-ce qu'" + (fem(a) ? "elle" : "il") + " a, " + nom(a) + " ? ",
+  pp: (a, b) => "Qu'est-ce qu'" + (fem(a) && fem(b) ? "elles ont" : "ils ont") + ", " + nom(a) + " et " + nom(b) + " ? ",
+  euch: () => "— Qu'est-ce que vous avez, tous les deux ? — ",
+  toca: (k, p) => "Montre " + SON(FRP[k][2] || FRP[k][0]) + ".",
+  cest: (k, p) => p ? "C'est " + SON(FRP[k][2] || FRP[k][0]) + "." : FR.cest(k),
+  mon: k => maj(MON(FRP[k][0])) + ".",
+  quien: (p, f) => nom(p) + " travaille dans ce cabinet médical. " + (f ? "Elle" : "Il") + " est médecin.",
+  medico: {parte: (k, a) => "— Bonjour, " + nom(a) + ". Depuis combien de temps avez-vous mal " + FRP[k][1] + " ? — Depuis trois jours.",
+           fiebre: a => "— Bonjour, " + nom(a) + ". Avez-vous de la fièvre ? — Oui, " + FR_FIEVRE + ".",
+           receta: () => "— Je vous fais une ordonnance. Vous trouverez le médicament à la pharmacie.",
+           cita: () => "— Revenez la semaine prochaine : je vous donne un autre rendez-vous pour mardi.",
+           ache: (k, a) => "— Bonjour, " + nom(a) + ". Depuis combien de temps avez-vous mal " + FRP[k][1] + " ? — Depuis trois jours."},
+  paciente: {parte: (k, a) => "— Bonjour, " + nom(a) + ". Qu'est-ce qui ne va pas ? — J'ai mal " + FRP[k][1] + ". Ça a commencé il y a trois jours.",
+             fiebre: a => "— Bonjour, " + nom(a) + ". Qu'est-ce qui ne va pas ? — J'ai de la fièvre : " + FR_FIEVRE + ".",
+             receta: () => "— Docteur, pourriez-vous me faire une ordonnance pour du sirop contre la toux ?",
+             cita: () => "— Bonjour. J'ai rendez-vous avec le médecin à dix heures.",
+             ache: (k, a) => "— Bonjour, " + nom(a) + ". Qu'est-ce qui ne va pas ? — J'ai mal " + FRP[k][1] + " depuis trois jours."},
+  // for / since : le francais dit « depuis » dans les deux cas
+  depuis(k, ache, a, d){
+    const g = ache ? "d" : genre(k);
+    const q = g === "d" ? "Depuis combien de temps avez-vous mal " + FRP[k][1] + " ?"
+            : g === "s" ? "Depuis combien de temps avez-vous " + {fiebre:"de la fièvre", tos:"cette toux", gripe:"la grippe", resfriado:"ce rhume"}[k] + " ?"
+            : "Depuis combien de temps êtes-vous " + (k === "enfermo" ? "malade" : fem(a) ? "fatiguée" : "fatigué") + " ?";
+    return "— Bonjour, " + nom(a) + ". " + q + " — Depuis " + FR_DUREE[d] + ".";
+  },
+  dialogue: ["Bonjour. Qu'est-ce qui ne va pas ?", "J'ai mal à la gorge et j'ai de la fièvre.", "Depuis combien de temps êtes-vous malade ?", "Depuis trois jours.",
+             "Vous avez la grippe. Vous devriez rester au lit.", "Je vous fais une ordonnance. Vous trouverez le médicament à la pharmacie.", "Merci beaucoup, docteur.", "Bon rétablissement !"]
+});
+// l'anglais appris : l'interface est en francais (FR_EN) ; ailleurs, pas de traduction plutot qu'une fausse
+const TR = APPRENDRE === "en" ? (LANGUE === "fr" ? FR_EN : null)
+         : (LANGUE === APPRENDRE) ? null : (TRADS[LANGUE] && (LANGUE !== "de" || APPRENDRE === "es") ? TRADS[LANGUE] : null);
 // ce que la question montre, pour la traduire : une fonction qui recoit l'objet de la langue (TR)
 let sensQ = null;
 const traduire = () => { if (!TR || !sensQ) return null; try { return sensQ(TR); } catch(e){ return null; } };
@@ -520,6 +711,8 @@ const photo = (k, p) => '<img class="photo" alt="" src="' + imgMal(k, p) + '"' +
 const fig = (src, p, legende) => '<figure><img alt="" src="' + src + '"' + repli(p) + '>' + (legende || "") + '</figure>';
 const duo = (a, b) => '<div class="duo">' + a + b + '</div>';
 const docSeul = f => '<img class="photo doc" alt="" src="' + imgDoc(f) + '"' + repli(nomDoc(f)) + '>';
+// le haut-parleur de l'app (v919, HP_SVG d'index.html) : celui des repliques du dialogue
+const HP_APP = '<svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
 // ---------- utilitaires ----------
@@ -536,7 +729,7 @@ let file = [], rang = 0, bons = 0, repondu = false;
 let motQ = null;
 const motCle = m => !m ? null : ((m.genre ? m.genre + " " : "") + m.mot);
 
-const dite = t => t ? t.replace(/[«»—]/g, " ").replace(/\s+/g, " ").trim() : null;
+const dite = t => t ? t.replace(/[«»“”—]/g, " ").replace(/\s+/g, " ").trim() : null;
 function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
@@ -562,14 +755,21 @@ function juger(ok, bonneTexte, phrase){
 let choixFaux = null;
 const DET = /^(el|la|los|las|un|una|der|die|das|ein|eine)\s+/i;
 function tradPartie(k, un){
-  if (TR === FR) return un && FRP[k][2] ? FRP[k][2] : FRP[k][0];
-  if (TR === EN) return "the " + EN.x(k, un);
+  if (TR === FR || TR === FR_EN) return un && FRP[k][2] ? FRP[k][2] : FRP[k][0];
+  if (TR === EN_TR) return "the " + EN_TR.x(k, un);
   if (TR === PT) return un && PTP[k][2] ? PTP[k][2] : PTP[k][0];
   if (TR === DE_TRAD) return un ? DE.un(k) : DE.parte(k);
   const g = glose(motDe(k)); return g ? g.split(" — ").pop() : null;
 }
+// les leurres anglais du dialogue, traduits comme au corpus
+const FR_MOT_EN = {fever:"la fièvre", temperature:"la fièvre (la température)", cough:"la toux", cold:"le rhume", flu:"la grippe", headache:"le mal de tête",
+  prescription:"l'ordonnance", appointment:"le rendez-vous", doctor:"le médecin", patient:"le patient", "Band-Aid":"le pansement", plaster:"le pansement"};
 function tradDuChoix(o){
   if (typeof o !== "string" || !D) return null;
+  if (APPRENDRE === "en" && TR){
+    const a = Object.keys(EN_ACHE).find(x => EN.unAche(x) === o); if (a) return "avoir mal " + FRP[a][1];
+    if (FR_MOT_EN[o]) return FR_MOT_EN[o];
+  }
   for (const k of Object.keys(D.partes)){
     if (L.parte(k) === o) return tradPartie(k, false);
     if (L.un(k) === o) return tradPartie(k, true);
@@ -616,6 +816,7 @@ function aTrou(consigne, image, phrase, nomCase, options, centre){
 let MOTS = null;
 function motsDuTheme(){
   if (MOTS) return MOTS;
+  if (APPRENDRE === "en") return (MOTS = motsAnglais());
   const par = {};
   Object.entries(D.partes).forEach(([k, v]) => {
     const [mot, g] = APPRENDRE === "de" ? v.cde : v.ces, cle = g + " " + mot;
@@ -632,11 +833,24 @@ function motsDuTheme(){
   }
   return MOTS;
 }
+// L'ANGLAIS : les mots du corpus anglais (genre ""), « ear » pour l'oreille et l'oreille interne ; les composes en
+// -ache (headache est au corpus ; toothache, backache, stomachache, earache et sore throat pas encore : ils restent
+// « hors jeu » dans l'app jusqu'a leur ajout) ; doctor pour la medecin et le medecin (doc: "*")
+function motsAnglais(){
+  const par = {};
+  Object.keys(D.partes).forEach(k => { const mot = EN_MOT[k]; (par[mot] = par[mot] || {mot, genre: "", k: []}).k.push(k); });
+  const out = Object.values(par);
+  Object.keys(D.sintomas).forEach(k => out.push({mot: EN_MOT_SINT[k], genre: "", s: k}));
+  Object.keys(D.estados).forEach(k => out.push({mot: EN_ETAT[k], cat: "adjectif", e: k}));
+  Object.keys(EN_ACHE).forEach(k => out.push({mot: EN_ACHE[k], genre: "", ache: k}));
+  out.push({mot: "prescription", genre: "", c: "receta"}, {mot: "appointment", genre: "", c: "cita"}, {mot: "doctor", genre: "", doc: "*"});
+  return out;
+}
 const motDe = k => motsDuTheme().find(m => (m.k && m.k.includes(k)) || m.s === k || m.e === k);
 // le mal que vise un mot : une partie qui a ses images de douleur, un mal, un etat ; un compose -> sa partie
 function malDe(w){
   if (!w) return null;
-  if (w.s) return w.s; if (w.e) return w.e; if (w.schmerz) return w.schmerz;
+  if (w.s) return w.s; if (w.e) return w.e; if (w.schmerz) return w.schmerz; if (w.ache) return w.ache;
   return (w.k || []).find(k => D.dolores[k]) || null;
 }
 const tousLesMaux = () => DOLORES().concat(Object.keys(D.sintomas), Object.keys(D.estados));
@@ -683,8 +897,9 @@ const ouToucher = k => P(k).toucher ? Object.keys(D.toucher[P(k).toucher]).map(p
 const EX = {
   // « ¿Qué le duele a Carmen? » / « Was tut Carmen weh? » : la personne qui a mal, quatre endroits
   queDuele(w){
-    const k = unMal(w, x => genre(x) === "d" && !(w && w.schmerz)); if (!k) return false;
+    const k = unMal(w, x => genre(x) === "d" && !(w && (w.schmerz || w.ache))); if (!k) return false;
     const p = quelquun(k), rep = L.parte(k); motQ = w || motDe(k);
+    if (APPRENDRE === "en") return queDueleEn(k, p);
     sensQ = tr => tr.dolor("3", k, p);
     ecran("queDuele", photo(k, p), L.queDuele(p), true);
     boutons($("choix"), melanger([rep, ...leurresMaux(k, 3, x => genre(x) === "d", p).map(L.parte)]), rep, ok => juger(ok, rep, plein(L.dolor("3", k, p))));
@@ -695,8 +910,8 @@ const EX = {
     const ks = w ? (w.k || []).filter(k => P(k).toucher) : Object.keys(D.partes).filter(k => P(k).toucher);
     if (!ks.length) return false;
     const k = hasard(ks), [sorte, p] = hasard(ouToucher(k)); motQ = w || motDe(k);
-    const phrase = L.toca(k), rep = trou(phrase, "parte")[1];
-    sensQ = tr => tr.toca(k);
+    const phrase = L.toca(k, p), rep = trou(phrase, "parte")[1];
+    sensQ = tr => tr.toca(k, p);
     const z = $("zone"), [h] = corpsHTML(sorte, p, null);
     z.dataset.q = sorte + p;
     z.innerHTML = '<p class="consigne">' + T("tocar") + '</p><div class="enonce centre">' + cible(plein(phrase)) + '</div>' + h + '<p class="retourMsg" id="msg"></p>';
@@ -714,24 +929,25 @@ const EX = {
     if (!ks.length) return false;
     const k = hasard(ks), [sorte, p] = hasard(ouToucher(k)); motQ = w || motDe(k);
     const [h, ou] = corpsHTML(sorte, p, k), rep = L.un(k);
-    sensQ = tr => tr.cest(k);
+    sensQ = tr => tr.cest(k, p);
     ecran("nombrar", h, L.queEs, true);
     $("zone").dataset.q = sorte + p + ou;
     const autres = Object.keys(D.toucher[sorte][p]).filter(x => x !== k && L.un(x) !== rep);
-    boutons($("choix"), melanger([rep, ...melanger(autres).slice(0, 3).map(L.un)]), rep, ok => juger(ok, rep, plein(L.cest(k))));
+    boutons($("choix"), melanger([rep, ...melanger(autres).slice(0, 3).map(L.un)]), rep, ok => juger(ok, rep, plein(L.cest(k, p))));
     return true;
   },
   // « A Mark le ___ los pies. » duele / duelen ; « Mark ___ die Füße weh. » tut / tun
   duele(w){
-    const k = unMal(w, x => genre(x) === "d" && !(w && w.schmerz)); if (!k) return false;
+    const k = unMal(w, x => genre(x) === "d" && !(w && (w.schmerz || w.ache))); if (!k) return false;
     const p = quelquun(k), un = k === "pies" && Math.random() < 0.3, moi = Math.random() < 0.5; motQ = w || motDe(k);
     const coeur = L.dolor(moi ? "1" : "3", k, p, null, un), phrase = moi ? L.cava(p) + coeur : coeur;
     sensQ = tr => (moi ? tr.cava(p) : "") + tr.dolor(moi ? "1" : "3", k, p, null, un);
-    return aTrou(APPRENDRE === "de" ? "dueleDe" : "dueleEs", photo(k, p), phrase, "verbe", APPRENDRE === "de" ? ["tut", "tun"] : ["duele", "duelen"], true);
+    return aTrou(APPRENDRE === "de" ? "dueleDe" : APPRENDRE === "en" ? "dueleEn" : "dueleEs", photo(k, p), phrase, "verbe",
+                 APPRENDRE === "de" ? ["tut", "tun"] : APPRENDRE === "en" ? ["hurts", "hurt"] : ["duele", "duelen"], true);
   },
   // le pronom : me, te, le, nos, les ; le datif : mir, dir, ihm, ihr, Ihnen, uns
   pronombre(w){
-    const k = unMal(w, x => genre(x) === "d" && !(w && w.schmerz)); if (!k) return false;
+    const k = unMal(w, x => genre(x) === "d" && !(w && (w.schmerz || w.ache))); if (!k) return false;
     motQ = w || motDe(k);
     const per = hasard(["1", "2", "3", "U", "P", "N"]);
     // le patient n'est jamais le medecin de l'image (Ines et Pablo sont aussi patients ailleurs)
@@ -744,6 +960,18 @@ const EX = {
       opts = ["me", "te", "le", "nos", "les"].map(x => casse(debut, x));
       sensQ = tr => per === "1" ? tr.cava(p) + tr.dolor("1", k, p) : per === "2" ? tr.cava2(p) + tr.dolor("2", k, p)
                   : per === "U" ? tr.docDit(f, tr.bonjour(p) + tr.dolor("U", k, p)) : tr.dolor(per, k, p, b);
+    } else if (APPRENDRE === "en"){
+      // le possessif anglais : my, your, his, her, our, their -- il suit la personne qui a mal, jamais la chose
+      phrase = per === "1" ? EN.cava(p) + EN.dolor("1", k, p) : per === "2" ? EN.cava2(p) + EN.dolor("2", k, p)
+             : per === "U" ? EN.docDit(f, EN.bonjour() + EN.dolor("U", k, p)) : per === "N" ? EN.euch() + EN.dolor("N", k, p, b)
+             : per === "P" ? EN.pp(p, b) + EN.dolor("P", k, p, b) : EN.quePasa(p) + " " + EN.dolor("3p", k, p);
+      const debut = per !== "2" && per !== "U";
+      opts = ["my", "your", "his", "her", "our", "their"].map(x => casse(debut, x));
+      // his ET her toujours proposes pour une seule personne : « son genou » est his knee ou her knee
+      if (per === "3") opts = [casse(true, fem(p) ? "his" : "her")].concat(melanger(opts.filter(x => !/^(his|her)$/i.test(x))));
+      sensQ = tr => per === "1" ? tr.cava(p) + tr.dolor("1", k, p) : per === "2" ? tr.cava2(p) + tr.dolor("2", k, p)
+                  : per === "U" ? tr.docDit(f, tr.bonjour(p) + tr.dolor("U", k, p)) : per === "N" ? tr.euch() + tr.dolor("N", k, p, b)
+                  : per === "P" ? tr.pp(p, b) + tr.dolor("P", k, p, b) : tr.quoi(p) + tr.dolor("3p", k, p);
     } else {
       const dp = per === "3" ? "3p" : per === "P" ? "Pp" : per;
       phrase = per === "1" ? DE.cava(p) + DE.dolor("1", k, p) : per === "2" ? DE.cava2(p) + DE.dolor("2", k, p)
@@ -758,27 +986,31 @@ const EX = {
     if (b) image = duo(fig(imgMal(k, p), p, nom(p)), fig(imgMal(k, b), b, nom(b)));
     if (per === "U") image = duo(fig(imgDoc(f), nomDoc(f)), fig(imgMal(k, p), p));
     const rep = trou(phrase, "pron")[1];
-    return aTrou(APPRENDRE === "de" ? "pronDe" : "pronEs", image, phrase, "pron", [rep].concat(melanger(opts.filter(x => x !== rep)).slice(0, 3)));
+    const autres = APPRENDRE === "en" && per === "3" ? opts.filter(x => x !== rep).slice(0, 3) : melanger(opts.filter(x => x !== rep)).slice(0, 3);
+    return aTrou(APPRENDRE === "de" ? "pronDe" : APPRENDRE === "en" ? "pronEn" : "pronEs", image, phrase, "pron", [rep].concat(autres));
   },
   // « ¿Qué le pasa a Mark? » : une image, quatre reponses (tiene fiebre, le duele la espalda, está cansado)
   queTiene(w){
-    const k = unMal(w, x => genre(x) !== "d" && !(w && w.schmerz)); if (!k) return false;
-    const p = quelquun(k), rep = L.pred(k, p); motQ = w || motDe(k);
-    sensQ = tr => genre(k) === "s" ? tr.sint("3", k, p) : tr.estado("3", k, p);
+    // en anglais, un compose en -ache aussi : « What's wrong with Javier? » -> « He has a toothache. »
+    const ache = APPRENDRE === "en" && !!(w && w.ache);
+    const k = ache ? w.ache : unMal(w, x => genre(x) !== "d" && !(w && w.schmerz)); if (!k) return false;
+    const p = quelquun(k), rep = ache ? EN.predAche(k, p) : L.pred(k, p); motQ = w || motDe(k);
+    sensQ = tr => ache ? tr.dolor("3", k, p) : genre(k) === "s" ? tr.sint("3", k, p) : tr.estado("3", k, p);
     ecran("queTiene", photo(k, p), L.quePasa(p), true, true);
     const maux = [k, ...leurresMaux(k, 3, null, p)], dePred = o => maux.find(x => L.pred(x, p) === o);
     const tradPred = o => { const x = dePred(o); if (!x) return null; if (!TR) { const g = glose(motDe(x)); return g ? g.split(" — ").pop() : null; }
                             return genre(x) === "d" ? TR.dolor("3", x, p) : genre(x) === "s" ? TR.sint("3", x, p) : TR.estado("3", x, p); };
-    boutons($("choix"), melanger(maux.map(x => L.pred(x, p))), rep, ok => juger(ok, rep, plein(L.mal("3", k, p))), tradPred);
+    boutons($("choix"), melanger(maux.map(x => ache && x === k ? rep : L.pred(x, p))), rep, ok => juger(ok, rep, plein(ache ? EN.ache("3", k, p) : L.mal("3", k, p))), tradPred);
     return true;
   },
   // « Mark ___ fiebre. » tiene / está / duele / duelen ; « Mark ___ Kopfschmerzen. » hat / ist / tut / tun
   verbo(w){
     const k = unMal(w); if (!k) return false;
     const p = quelquun(k); motQ = w || motDe(k);
-    const phrase = w && w.schmerz ? DE.schmerz("3", k, p) : L.mal("3", k, p);
+    const phrase = w && w.schmerz ? DE.schmerz("3", k, p) : w && w.ache ? EN.ache("3", k, p) : L.mal("3", k, p);
     sensQ = tr => genre(k) === "d" ? tr.dolor("3", k, p) : genre(k) === "s" ? tr.sint("3", k, p) : tr.estado("3", k, p);
-    return aTrou(APPRENDRE === "de" ? "verboDe" : "verboEs", photo(k, p), phrase, "verbe", APPRENDRE === "de" ? ["hat", "ist", "tut", "tun"] : ["tiene", "está", "duele", "duelen"], true);
+    return aTrou(APPRENDRE === "de" ? "verboDe" : APPRENDRE === "en" ? "verboEn" : "verboEs", photo(k, p), phrase, "verbe",
+                 APPRENDRE === "de" ? ["hat", "ist", "tut", "tun"] : APPRENDRE === "en" ? ["has", "is", "hurts", "hurt"] : ["tiene", "está", "duele", "duelen"], true);
   },
   // le conseil : « Carmen: «Me duelen los pies.» » -> « Tienes que sentarte un rato. »
   consejo(w){
@@ -788,10 +1020,10 @@ const EX = {
     const bons = Object.keys(D.consejos).filter(va), mauvais = Object.keys(D.consejos).filter(c => !va(c) && !D.consejos[c].general);
     if (!bons.length || mauvais.length < 3) return false;
     const c = hasard(bons); motQ = w || motDe(k);
-    const dit = w && w.schmerz ? plein(DE.schmerz("1", k, p)) : plein(L.mal("1", k, p));
+    const dit = w && w.schmerz ? plein(DE.schmerz("1", k, p)) : w && w.ache ? plein(EN.ache("1", k, p)) : plein(L.mal("1", k, p));
     const rep = plein(L.consejo("2", c, p));
     sensQ = tr => tr.consejo("2", c, p);
-    ecran("consejo", photo(k, p), nom(p) + ": «" + dit + "»", false, true);
+    ecran("consejo", photo(k, p), nom(p) + ": " + GU[0] + dit + GU[1], false, true);
     boutons($("choix"), melanger([rep, ...melanger(mauvais).slice(0, 3).map(x => plein(L.consejo("2", x, p)))]), rep, ok => juger(ok, rep, null));
     return true;
   },
@@ -823,7 +1055,7 @@ const EX = {
   // « Diego tiene fiebre. » vrai ou faux -- le faux n'est jamais un mal voisin
   vraifaux(w){
     if (w && w.doc){
-      const f = w.doc === "f", p = nomDoc(f), vrai = Math.random() < 0.5; motQ = w;
+      const f = w.doc === "*" ? docAuHasard() : w.doc === "f", p = nomDoc(f), vrai = Math.random() < 0.5; motQ = w;
       sensQ = tr => tr.vfDoc(p, f, true);
       ecran("vraifaux", docSeul(f), L.vfDoc(p, f, vrai), true);
       const rep = vrai ? L.vrai : L.faux;
@@ -832,22 +1064,106 @@ const EX = {
     }
     const k = unMal(w); if (!k) return false;
     const p = quelquun(k), vrai = Math.random() < 0.5; motQ = w || motDe(k);
-    const juste = plein(w && w.schmerz ? DE.schmerz("3", k, p) : L.mal("3", k, p));
+    const juste = plein(w && w.schmerz ? DE.schmerz("3", k, p) : w && w.ache ? EN.ache("3", k, p) : L.mal("3", k, p));
     const faux = plein(L.mal("3", hasard(leurresMaux(k, 6, null, p)), p));
     sensQ = tr => genre(k) === "d" ? tr.dolor("3", k, p) : genre(k) === "s" ? tr.sint("3", k, p) : tr.estado("3", k, p);
     ecran("vraifaux", photo(k, p), vrai ? juste : faux, true);
     const rep = vrai ? L.vrai : L.faux;
     boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste));
     return true;
+  },
+  // L'ANGLAIS SEULEMENT : les composes. « What's wrong with Javier? He has ___. » a toothache, a headache, an earache…
+  ache(w){
+    if (APPRENDRE !== "en") return false;
+    const k = w ? (w.ache || (w.k || []).find(x => EN_ACHE[x])) : hasard(Object.keys(EN_ACHE)); if (!k) return false;
+    const p = quelquun(k); motQ = w || motsDuTheme().find(m => m.ache === k);
+    const phrase = EN.quePasa(p) + " " + HE(p) + " has ⟦mal|" + EN.unAche(k) + "⟧.";
+    sensQ = tr => tr.quoi(p) + tr.dolor("3p", k, p);
+    return aTrou("ache", photo(k, p), phrase, "mal", [EN.unAche(k)].concat(leurresAche(k, 3, p).map(EN.unAche)));
+  },
+  // L'ANGLAIS SEULEMENT : l'article. « I have ___ cold. » a / an / the -- la ou le francais dit « de la fievre », « la grippe »
+  article(w){
+    if (APPRENDRE !== "en") return false;
+    let k = null, ache = false;
+    if (w){ if (w.s && EN_SINT[w.s][0]) k = w.s; else if (w.ache){ k = w.ache; ache = true; } }
+    else { const x = hasard(Object.keys(EN_SINT).filter(y => EN_SINT[y][0]).concat(Object.keys(EN_ACHE).map(y => "+" + y))); ache = x[0] === "+"; k = ache ? x.slice(1) : x; }
+    if (!k) return false;
+    const p = quelquun(k), moi = Math.random() < 0.5, per = moi ? "1" : "3"; motQ = w || (ache ? motsDuTheme().find(m => m.ache === k) : motDe(k));
+    const coeur = ache ? EN.ache(per, k, p) : EN.sint(per, k, p);
+    sensQ = tr => (moi ? tr.cava(p) : "") + (ache ? tr.dolor(per, k, p) : tr.sint(per, k, p));
+    return aTrou("article", photo(k, p), (moi ? EN.cava(p) : "") + coeur, "art", ["a", "an", "the"], true);
+  },
+  // L'ANGLAIS SEULEMENT : les pluriels irreguliers. « My ___ hurt. » feet ; « My ___ hurts. » foot ; « Their ___ hurt. » teeth
+  pluriel(w){
+    if (APPRENDRE !== "en") return false;
+    const IRR = {pies: ["foot", "feet", "foots", "feets"], muela: ["tooth", "teeth", "tooths", "teeths"]};
+    const k = w ? (w.k || []).find(x => IRR[x]) : hasard(Object.keys(IRR)); if (!k) return false;
+    motQ = w || motDe(k);
+    const per = hasard(k === "pies" ? ["1", "1u", "3p", "P", "N"] : ["1", "3p", "P", "N"]), un = per === "1u", pe = un ? "1" : per;
+    const p = quelquun(k), b = (pe === "P" || pe === "N") ? hasard(D.dolores[k].filter(x => x !== p)) : null;
+    const coeur = EN.dolor(pe, k, p, b, un);
+    const phrase = pe === "1" ? EN.cava(p) + coeur : pe === "3p" ? EN.quePasa(p) + " " + coeur : pe === "P" ? EN.pp(p, b) + coeur : EN.euch() + coeur;
+    sensQ = tr => (pe === "1" ? tr.cava(p) : pe === "3p" ? tr.quoi(p) : pe === "P" ? tr.pp(p, b) : tr.euch()) + tr.dolor(pe, k, p, b, un);
+    const image = b ? duo(fig(imgMal(k, p), p, nom(p)), fig(imgMal(k, b), b, nom(b))) : photo(k, p);
+    return aTrou("pluriel", image, phrase, "parte", IRR[k], true);
+  },
+  // L'ANGLAIS SEULEMENT : should + le verbe nu, sans -s. « Mark's back hurts. He ___ rest. » should / should to / shoulds
+  should(w){
+    if (APPRENDRE !== "en") return false;
+    const k = unMal(w); if (!k) return false;
+    const ache = !!(w && w.ache), p = quelquun(k), image = imgMal(k, p).split("/").pop().replace(".webp", "");
+    const cs = Object.keys(D.consejos).filter(c => D.consejos[c].va.includes(k) || (D.consejos[c].images || []).includes(image));
+    if (!cs.length) return false;
+    const c = hasard(cs), per = hasard(["1", "2", "3"]); motQ = w || motDe(k);
+    const dit = plein(ache ? EN.ache("1", k, p) : EN.mal("1", k, p)), dit3 = plein(ache ? EN.ache("3", k, p) : EN.mal("3", k, p));
+    const phrase = per === "1" ? nom(p) + ": “" + dit + " " + EN.consejo("1", c, p) + "”"
+                 : per === "2" ? nom(p) + ": “" + dit + "” — " + EN.consejo("2", c, p)
+                 : dit3 + " " + EN.consejo("3", c, p);
+    sensQ = tr => {
+      const m = x => ache || genre(k) === "d" ? tr.dolor(x, k, p) : genre(k) === "s" ? tr.sint(x, k, p) : tr.estado(x, k, p);
+      return per === "1" ? nom(p) + " : « " + m("1") + " " + tr.consejo("1", c, p) + " »" : per === "2" ? nom(p) + " : « " + m("1") + " » — " + tr.consejo("2", c, p)
+           : m("3") + " " + tr.consejo("3", c, p);
+    };
+    return aTrou("should", photo(k, p), phrase, "modal", ["should", "should to", "shoulds", "must to"]);
+  },
+  // L'ANGLAIS SEULEMENT : for + une duree, since + un point de depart ; jamais during (le francais dit « depuis »)
+  depuis(w){
+    if (APPRENDRE !== "en") return false;
+    const ache = !!(w && w.ache);
+    const k = ache ? w.ache : unMal(w, x => x !== "alergia"); if (!k) return false;
+    const f = docAuHasard(), p = quelquun(k, nomDoc(f)); motQ = w || motDe(k);
+    const g = ache ? "a" : genre(k);
+    const q = g === "a" ? "How long have you had " + EN.unAche(k) + "?"
+            : g === "d" ? "How long " + (PLURIEL(k) ? "have" : "has") + " your " + EN.parte(k) + " been hurting?"
+            : g === "s" ? "How long have you had " + EN.sintPlein(k) + "?" : "How long have you been " + EN_ETAT[k] + "?";
+    const pour = Math.random() < 0.5, d = hasard(pour ? ["two days", "three days", "four days", "a week"] : ["yesterday", "Monday", "last week", "this morning"]);
+    const phrase = "— Hello, " + nom(p) + ". " + q + " — ⟦prep|" + (pour ? "For" : "Since") + "⟧ " + d + ".";
+    sensQ = tr => tr.depuis(k, ache, p, d);
+    return aTrou("depuis", duo(fig(imgDoc(f), nomDoc(f), EN.doc(f)), fig(imgMal(k, p), p)), phrase, "prep", ["For", "Since", "During"]);
   }
 };
+// l'anglais : « Where does it hurt, Carmen? » -> « My knee. » (la personne repond elle-meme, avec my)
+function queDueleEn(k, p){
+  const mon = x => "My " + EN.parte(x) + ".", rep = mon(k), ls = leurresMaux(k, 3, x => genre(x) === "d", p);
+  sensQ = tr => tr.dolor("1", k, p);
+  ecran("queDuele", photo(k, p), EN.queDuele(p), true);
+  boutons($("choix"), melanger([rep, ...ls.map(mon)]), rep, ok => juger(ok, rep, plein(EN.dolor("1", k, p))),
+          o => { const x = ls.find(y => mon(y) === o); return x && TR ? FR_EN.mon(x) : null; });
+  return true;
+}
+// des composes leurres : jamais un voisin (l'oreille et la dent se touchent sur la joue), jamais un mal que la personne
+// montre sur une autre image
+function leurresAche(k, n, p){
+  const l = Object.keys(EN_ACHE).filter(x => x !== k && !(p && gensDe(x).includes(p))), loins = l.filter(x => loin(x, k));
+  return melanger(loins.length >= n ? loins : l).slice(0, n);
+}
 // LE DIALOGUE CHEZ LE MEDECIN (l'oral du DTZ) : la replique du medecin ou du patient, la case du mot teste
 function dialogue(w, qui){
   const M = L[qui], f = docAuHasard(), doc = fig(imgDoc(f), nomDoc(f), L.doc(f));
   let phrase, cas, opts, image, sens;
   if (w && w.doc){
     if (qui !== "medico") return false;
-    const ff = w.doc === "f", p = nomDoc(ff); motQ = w;
+    const ff = w.doc === "*" ? docAuHasard() : w.doc === "f", p = nomDoc(ff); motQ = w;
     phrase = L.quien(p, ff); cas = "mot"; opts = L.leurres.quien; image = docSeul(ff);
     sens = tr => tr.quien(p, ff);
   } else if (w ? w.c : Math.random() < 0.25){
@@ -861,13 +1177,18 @@ function dialogue(w, qui){
     const k = w ? w.schmerz : hasard(Object.keys(SCHMERZ)), p = quelquun(k, nomDoc(f)); motQ = w || motsDuTheme().find(m => m.schmerz === k);
     phrase = M.schmerz(k, p); cas = "mal"; opts = melanger(Object.values(SCHMERZ));
     image = duo(doc, fig(imgMal(k, p), p)); sens = tr => tr[qui].schmerz(k, p);
+  } else if (APPRENDRE === "en" && (w ? w.ache : Math.random() < 0.2)){
+    // l'anglais : « How long have you had a toothache? », « I've had a headache for three days. »
+    const k = w ? w.ache : hasard(Object.keys(EN_ACHE)), p = quelquun(k, nomDoc(f)); motQ = w || motsDuTheme().find(m => m.ache === k);
+    phrase = M.ache(k, p); cas = "mal"; opts = leurresAche(k, 3, p).map(EN.unAche);
+    image = duo(doc, fig(imgMal(k, p), p)); sens = tr => tr[qui].ache(k, p);
   } else {
     const k = unMal(w, x => genre(x) === "d" || x === "fiebre"); if (!k) return false;
     const p = quelquun(k, nomDoc(f)); motQ = w || motDe(k);
     image = duo(doc, fig(imgMal(k, p), p));
     if (k === "fiebre"){
       phrase = M.fiebre(p); cas = "mal";
-      opts = APPRENDRE === "de" ? ["Fieber", "Husten", "eine Allergie", "eine Grippe"] : ["fiebre", "tos", "alergia", "gripe"];
+      opts = APPRENDRE === "de" ? ["Fieber", "Husten", "eine Allergie", "eine Grippe"] : APPRENDRE === "en" ? EN.fiebreOpts : ["fiebre", "tos", "alergia", "gripe"];
       sens = tr => tr[qui].fiebre(p);
     } else {
       phrase = M.parte(k, p); cas = "parte"; opts = [L.parte(k), ...leurresMaux(k, 3, x => genre(x) === "d" && PLURIEL(x) === PLURIEL(k), p).map(L.parte)];
@@ -878,7 +1199,9 @@ function dialogue(w, qui){
   const rep = trou(phrase, cas)[1];
   return aTrou(qui, image, phrase, cas, [rep].concat(opts.filter(x => x !== rep)).slice(0, 4));
 }
-const SORTES = Object.keys(EX);
+// les sortes propres a l'anglais n'existent qu'en anglais ; le pronom reflechi n'existe pas en anglais
+const SORTES_EN = ["ache", "article", "pluriel", "should", "depuis"];
+const SORTES = Object.keys(EX).filter(x => APPRENDRE === "en" ? x !== "reflexivo" : !SORTES_EN.includes(x));
 
 // tout ce que la page peut dire : la decouverte et les mots cles (visuel/voix_themes.py en fait l'inventaire)
 function textesAVoix(){
@@ -889,6 +1212,11 @@ function textesAVoix(){
   Object.values(D.consejoDecouverte).forEach(c => t.push(plein(L.consejo("2", c))));
   L.dialogue.forEach(l => t.push(l[1]));
   Object.keys(D.partes).filter(k => P(k).toucher).forEach(k => t.push(L.un(k)));
+  // l'anglais : la fiche « My head hurts. I have a headache. » et les composes seuls
+  if (APPRENDRE === "en"){
+    DOLORES().filter(k => EN_ACHE[k]).forEach(k => t.push(plein(EN.dolor("1", k)) + " " + plein(EN.ache("1", k))));
+    Object.keys(EN_ACHE).forEach(k => t.push(plein(EN.ache("1", k))));
+  }
   return t.concat(motsDuTheme().map(motCle));
 }
 
@@ -898,9 +1226,9 @@ function decouvrir(){
   const z = $("zone"), dec = D.decouverte;
   z.innerHTML = '<div class="onglets" role="tablist">' + ["oCorps", "oMal", "oMalade", "oMedecin"].map((o, i) => '<button type="button" role="tab" data-o="' + i + '">' + T(o) + '</button>').join("") + '</div><div id="onglet"></div>';
   const fiche = (k, p, extra) => {
-    const g = genre(k), dit = plein(L.mal("1", k, p)), trad = TR ? (g === "d" ? TR.dolor("1", k, p) : g === "s" ? TR.sint("1", k, p) : TR.estado("1", k, p)) : glose(motDe(k));
+    const g = genre(k), dit = plein(L.mal("1", k, p)) + (APPRENDRE === "en" && g === "d" && EN_ACHE[k] ? " " + plein(EN.ache("1", k, p)) : ""), trad = TR ? (g === "d" ? TR.dolor("1", k, p) : g === "s" ? TR.sint("1", k, p) : TR.estado("1", k, p)) : glose(motDe(k));
     const c = D.consejoDecouverte[k], conseil = c ? plein(L.consejo("2", c)) : null;
-    let h = '<img alt="" src="' + imgMal(k, p) + '"' + repli(p) + '><div><div class="mot">' + cible(g === "d" ? L.parte(k) : g === "s" ? (APPRENDRE === "de" ? D.sintomas[k].de : D.sintomas[k].es) : (APPRENDRE === "de" ? D.estados[k].de : D.estados[k].es[fem(p) ? 1 : 0])) + '</div>'
+    let h = '<img alt="" src="' + imgMal(k, p) + '"' + repli(p) + '><div><div class="mot">' + cible(APPRENDRE === "en" ? (g === "d" ? EN.parte(k) : g === "s" ? EN.sintPlein(k) : EN_ETAT[k]) : g === "d" ? L.parte(k) : g === "s" ? (APPRENDRE === "de" ? D.sintomas[k].de : D.sintomas[k].es) : (APPRENDRE === "de" ? D.estados[k].de : D.estados[k].es[fem(p) ? 1 : 0])) + '</div>'
           + '<div class="dit">' + cible(dit) + '</div>' + (trad ? traduction(trad) : "")
           + '<button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button>';
     if (conseil) h += '<div class="conseil"><small>' + T("conseil") + '</small>' + cible(conseil) + (TR ? traduction(TR.consejo("2", c)) : "")
@@ -945,17 +1273,25 @@ function decouvrir(){
   };
   const medecin = () => {
     const o = $("onglet"), tr = TR ? TR.dialogue : null;
-    o.innerHTML = '<p class="consigne">' + T("introMedecin") + '</p>' + duo(fig(imgDoc(true), nomDoc(true), L.doc(true)), fig(imgMal("garganta", "Mark"), "Mark", nom("Mark")))
-                + '<div class="dialogue" id="dialogue"></div><p class="regle">' + T("regleMedecin") + '</p>';
+    o.innerHTML = '<p class="consigne">' + T(APPRENDRE === "en" ? "introMedecinEn" : "introMedecin") + '</p>' + duo(fig(imgDoc(true), nomDoc(true), L.doc(true)), fig(imgMal("garganta", "Mark"), "Mark", nom("Mark")))
+                + '<div class="dialogue" id="dialogue"></div><p class="regle">' + T(APPRENDRE === "en" ? "regleMedecinEn" : "regleMedecin") + '</p>'
+                + (APPRENDRE === "en" ? '<p class="regle">' + T(GB ? "bonGb" : "bonUs") + '</p>' : "");
     L.dialogue.forEach(([qui, txt], i) => {
       const b = document.createElement("button"); b.type = "button"; b.className = "ligne" + (qui === "P" ? " patient" : "");
-      b.innerHTML = '<span class="qui">' + (qui === "D" ? nom(nomDoc(true)) : nom("Mark")) + '</span><span><span class="txt">' + cible(txt) + '</span>' + (tr ? traduction(tr[i]) : "") + '</span>';
-      b.addEventListener("click", () => Voix.dire(txt));
+      b.innerHTML = '<span class="qui">' + (qui === "D" ? nom(nomDoc(true)) : nom("Mark")) + '</span><span class="dit"><span class="txt">' + cible(txt) + '</span>' + (tr ? traduction(tr[i]) : "") + '</span>'
+                  + '<span class="hp-ligne" aria-hidden="true">' + HP_APP + '</span>';
+      b.setAttribute("aria-label", T("ecouter") + " : " + txt);
+      // toucher la replique ou son haut-parleur la fait entendre ; le rond s'allume le temps du geste
+      b.addEventListener("click", () => {
+        $("dialogue").querySelectorAll(".ligne.joue").forEach(x => x.classList.remove("joue"));
+        b.classList.add("joue"); setTimeout(() => b.classList.remove("joue"), 1200);
+        Voix.dire(txt);
+      });
       $("dialogue").appendChild(b);
     });
   };
-  const onglets = [corps, () => planche(DOLORES(), "introMal", APPRENDRE === "de" ? "regleMalDe" : "regleMalEs"),
-                   () => planche(Object.keys(D.sintomas).concat(["cansado"]), "introMalade", APPRENDRE === "de" ? "regleMaladeDe" : "regleMaladeEs"), medecin];
+  const onglets = [corps, () => planche(DOLORES(), "introMal", APPRENDRE === "de" ? "regleMalDe" : APPRENDRE === "en" ? "regleMalEn" : "regleMalEs"),
+                   () => planche(Object.keys(D.sintomas).concat(["cansado"]), "introMalade", APPRENDRE === "de" ? "regleMaladeDe" : APPRENDRE === "en" ? "regleMaladeEn" : "regleMaladeEs"), medecin];
   const choisir = i => { z.querySelectorAll(".onglets button").forEach(b => b.setAttribute("aria-selected", b.dataset.o == i)); Voix.arreter(); onglets[i](); };
   z.querySelectorAll(".onglets button").forEach(b => b.addEventListener("click", () => choisir(+b.dataset.o)));
   choisir(0);

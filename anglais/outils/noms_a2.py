@@ -109,6 +109,7 @@ turn | le tour | ex=It's your turn to choose the movie. # C'est ton tour de choi
 veterinarian | le vétérinaire
 workday | la journée de travail | gb=working day | ex=My workday starts at eight. # Ma journée de travail commence à huit heures.
 workshop | l'atelier (formation)
+mail carrier | le facteur, la factrice | ex=Kate is a mail carrier. # Kate est factrice.
 """,
 "food_a2": """
 apricot | l'abricot
@@ -151,6 +152,8 @@ mango | la mangue
 melon | le melon
 mixing bowl | le saladier
 mustard | la moutarde
+pretzel | le bretzel | ex=Rosa likes soft pretzels. # Rosa aime les bretzels moelleux.
+pound | la livre (453 g) | ex=Two pounds of apples, please. # Deux livres de pommes, s'il vous plaît.
 """,
 "food_a2_2": """
 noodles | les nouilles | plt | ex=We had chicken soup with noodles. # Nous avons mangé une soupe au poulet avec des nouilles.
@@ -220,6 +223,7 @@ lampshade | l'abat-jour
 landlady | la propriétaire (bailleuse) | ex=Our landlady lives upstairs. # Notre propriétaire habite à l'étage.
 laundry | le linge (à laver) | u
 laundry basket | le panier à linge
+cabinet | le placard (de cuisine) | gb=cupboard | ex=There is a cabinet on the wall. # Il y a un placard au mur.
 """,
 "home_a2_2": """
 leather | le cuir | u
@@ -312,6 +316,10 @@ weight | le poids
 well-being | le bien-être | u
 wound | la blessure
 belly | le ventre
+toothache | le mal de dents | ex=I have a toothache. # J'ai mal aux dents.
+backache | le mal de dos | ex=He has a backache. # Il a mal au dos.
+stomachache | le mal de ventre | gb=stomach ache | ex=I have a stomachache. # J'ai mal au ventre.
+earache | le mal d'oreille | ex=She has an earache. # Elle a mal à l'oreille.
 """,
 "clothes_a2": """
 appearance | l'allure, l'apparence
@@ -342,6 +350,7 @@ wristwatch | la montre
 zipper | la fermeture éclair | gb=zip
 sandal | la sandale
 underpants | le caleçon, le slip | plt
+swim trunks | le maillot de bain (d'homme) | gb=swimming trunks | ex=He is wearing red swim trunks. # Il porte un maillot de bain rouge.
 """,
 "nature_a2": """
 ant | la fourmi
@@ -382,6 +391,7 @@ plastic | le plastique | u
 pollution | la pollution | u
 rainbow | l'arc-en-ciel
 rat | le rat
+puppy | le chiot | pl=puppies | ex=The puppy is sleeping in its basket. # Le chiot dort dans son panier.
 """,
 "nature_a2_2": """
 rose | la rose
@@ -506,6 +516,7 @@ street lamp | le réverbère
 tax | l'impôt | u
 port | le port
 center | le centre | gb=centre
+bike shop | le magasin de vélos | ex=Rosa works at a bike shop. # Rosa travaille dans un magasin de vélos.
 """,
 "education_a2": """
 admission | l'admission
@@ -782,5 +793,6 @@ thanks | les remerciements | plt
 third | le tiers | ex=A third of the students live on campus. # Un tiers des étudiants habitent sur le campus.
 remainder | le reste | ex=I'll pay the remainder next month. # Je paierai le reste le mois prochain.
 greeting | la salutation
+place of birth | le lieu de naissance | ex=Please write your place of birth here. # Écrivez votre lieu de naissance ici, s'il vous plaît.
 """,
 }
