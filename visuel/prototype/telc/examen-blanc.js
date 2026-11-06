@@ -50,7 +50,7 @@ fr: {
   bl_e_Sp_q: "Trois parties à deux, sans image : se présenter et répondre (6 points), planifier ensemble (12), donner et justifier son avis (12), plus prononciation, correction et richesse de la langue (30).",
   bl_p_L: "Lire", bl_p_SB: "Sprachbausteine", bl_p_LS: "Lire et écrire (le courriel)", bl_p_H: "Écouter",
   bl_p_HS: "Écouter et noter (les répondeurs)", bl_p_S: "Écrire (la réponse courte)", bl_p_Sp: "Parler",
-  bl_pret: "prête", bl_pas_pret: "pas encore prête",
+  bl_pret: "prête", bl_pas_pret: "pas encore prête", bl_deux_points: " : ",
   bl_note_pas_pret: "Les parties pas encore prêtes sont sautées : le verdict sera partiel. Elles arrivent une à une.",
   bl_go: "Commencer", bl_commencer: "Commencer l’examen", bl_reprendre: "Reprendre l’examen en cours : {e}", bl_recommencer: "Recommencer à zéro",
   bl_etape: "Étape {n} sur {sur}",
@@ -96,7 +96,7 @@ en: {
   bl_e_Sp_q: "Three parts in pairs, no picture: introduce yourself and answer (6 points), plan together (12), give and justify your opinion (12), plus pronunciation, accuracy and range of language (30).",
   bl_p_L: "Reading", bl_p_SB: "Sprachbausteine", bl_p_LS: "Reading and writing (the email)", bl_p_H: "Listening",
   bl_p_HS: "Listening and note-taking (the voicemails)", bl_p_S: "Writing (the short reply)", bl_p_Sp: "Speaking",
-  bl_pret: "ready", bl_pas_pret: "not ready yet",
+  bl_pret: "ready", bl_pas_pret: "not ready yet", bl_deux_points: ": ",
   bl_note_pas_pret: "Parts that aren't ready yet are skipped: the verdict will be partial. They're arriving one by one.",
   bl_go: "Start", bl_commencer: "Start the exam", bl_reprendre: "Resume the exam in progress: {e}", bl_recommencer: "Start again from scratch",
   bl_etape: "Step {n} of {sur}",
@@ -166,7 +166,7 @@ function blancIntro(){
   const enCours = BL && !BL.fini && BL.etape < BLANC_ETAPES.length;
   const lignes = BLANC_ETAPES.map((E, k) => {
     const parties = E.pause ? "" : (E.oral ? ["Sp"] : E.parties).map(id =>
-      '<span class="petit" style="display:block">· ' + esc(T("bl_p_" + id)) + ' : ' + esc(blancPrete(id) ? T("bl_pret") : T("bl_pas_pret")) + '</span>').join("");
+      '<span class="petit" style="display:block">· ' + esc(T("bl_p_" + id)) + esc(T("bl_deux_points")) + esc(blancPrete(id) ? T("bl_pret") : T("bl_pas_pret")) + '</span>').join("");
     return '<div class="mode" style="cursor:default"><b>' + (k + 1) + '. ' + esc(T("bl_e_" + E.id)) + '</b><span>' + esc(T("bl_e_" + E.id + "_s")) + '</span>' +
       '<span style="font-weight:600;color:var(--encre)">' + esc(T("bl_e_" + E.id + "_q")) + '</span>' + parties + '</div>';
   }).join("");
