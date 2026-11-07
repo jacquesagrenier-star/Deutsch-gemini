@@ -333,7 +333,8 @@ def recolter():
     # LA FAMILLE ET DECRIRE UNE PERSONNE (themes illustres, 3 nov. 2026) : les fiches de la decouverte et les mots
     # cles dits apres une reponse, tels que les pages les disent (visuel/voix_themes.py -> visuel/<theme>/voix.json).
     # le chat et la journee (4 nov. 2026) : visuel/gato/voix.json vient de gato.py, visuel/journee/voix.json du releve
-    for theme in ("familia", "descripcion", "ropa", "cuerpo", "manger", "gato", "journee"):
+    # les 22 themes (7 nov. 2026 ; avant, sept seulement : les phrases des autres n'etaient jamais enregistrees)
+    for theme in THEMES_VOIX:
         for texte in themes_textes(theme, "de"):
             prendre(texte, "A1", "phrase" if " " in texte else "mot", theme)
 
@@ -344,6 +345,11 @@ def contrarios_textes(langue):
     """Ce que dit le theme illustre des contraires (de ; es et latam disent les memes textes)."""
     d = charger(os.path.join("visuel", "contrarios", "contrarios.json"))
     return list(d["sons"]["de" if langue == "de" else "es"])
+
+# les themes illustres dont visuel/<theme>/voix.json est lu (les emotions : leur ligne a part, plus haut)
+THEMES_VOIX = ("familia", "descripcion", "ropa", "cuerpo", "manger", "gato", "journee", "contrarios", "metiers", "transportes",
+               "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes")
+
 
 def themes_textes(theme, langue):
     """Ce que la page d'un theme illustre peut dire (de, es, latam) : visuel/<theme>/voix.json."""
