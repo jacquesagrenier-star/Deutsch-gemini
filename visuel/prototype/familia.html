@@ -116,7 +116,7 @@ document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
 // vingt questions seule (Jacques, 3 nov.) ; dans la seance du jour (seance=1), un jour sur trois a la place de la scene :
 // six questions et pas de decouverte (themeDuJour() dans index.html)
-const NB = Q.get("seance") === "1" ? 6 : 20;
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(6, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le theme court de la seance legere (4 questions), essai seance_legere
 // agrandir (themes/zoom.js) : un toucher sur un visage ou une fiche, la loupe sur l'arbre qu'on touche pour repondre
 Zoom.init({direct: ".duo img, .fiche img", loupe: ".arbre", langue: LANGUE});
 

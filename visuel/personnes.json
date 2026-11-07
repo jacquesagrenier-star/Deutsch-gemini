@@ -1,0 +1,74 @@
+{
+ "_lisez_moi": [
+  "LA FICHE COMMUNE DES PERSONNES RECURRENTES des themes illustres (decision de Jacques du 6 nov. 2026, « oui » ;",
+  "decisions/DECISIONS.md, apres l'audit des 14 contradictions). Les generateurs (metiers, cuerpo, manger, emociones,",
+  "transportes, journee) LISENT ici le metier, le nom ecrit, l'age et les faits, au lieu de les choisir chacun de leur",
+  "cote ; tests/themes_illustres.py les controle sur les phrases fabriquees. Lue par visuel/personnes.py.",
+  "Les cles sont celles des IMAGES (Ines, Tomas : les fichiers n'ont pas d'accent) ; « nom » est le prenom ecrit.",
+  "Les ages et les liens de la famille d'Anna viennent de visuel/familia/familia.json (pas recopies ici) ; Mark et Anna",
+  "de scenes/personnages.json. La famille en Allemagne est celle d'ANNA ; Anna n'a ni compagnon ni enfant."
+ ],
+ "_regle": [
+  "1. Une seule fiche par personne : le metier ci-dessous est le seul qu'une phrase peut lui donner.",
+  "2. Aucun trait de « traits_interdits » sur une personne recurrente (Mark, Anna, la famille d'Anna, les 12 de",
+  "   Descripcion) : ces traits vont aux prenoms de « reserves », qui n'apparaissent dans aucun autre theme.",
+  "3. Une image ne donne jamais un autre metier que la fiche : on change la phrase et le prenom, pas l'image.",
+  "4. Les generateurs combinatoires respectent « jamais » (Anna ne va jamais au travail en voiture).",
+  "5. L'age commande le lieu : avant 6 ans la Kita (« in die Kita », « a la guarderia »), jamais « zur Schule »."
+ ],
+ "traits_interdits": ["pobre", "rico", "tacano", "perezoso", "grosero", "desordenado", "antipatico"],
+ "mots_interdits": {
+  "de": ["arm", "reich", "geizig", "faul", "unhöflich", "unordentlich", "unsympathisch"],
+  "es": ["pobre", "rico", "rica", "tacaño", "tacaña", "perezoso", "perezosa", "grosero", "grosera", "desordenado", "desordenada", "antipático", "antipática"],
+  "en": ["poor", "rich", "stingy", "lazy", "rude", "messy", "untidy", "unfriendly"]
+ },
+ "recurrents": {
+  "Mark":   {"sexe": "m", "groupe": "histoire", "age": 25, "metier": null,
+             "faits": "arrive de Montreal (de Mexico dans « Mark en Madrid »), Gartenstrasse 12 a Pankow ; il APPREND l'allemand : jamais « fliessend »"},
+  "Anna":   {"sexe": "f", "groupe": "histoire", "age": 30, "metier": null,
+             "faits": "employee au guichet de l'aeroport ; va au travail en U-Bahn, jamais en voiture ; sans compagnon ni enfant",
+             "jamais": [{"moyen": "auto", "dest": "zur Arbeit"}]},
+  "Diego":  {"sexe": "m", "groupe": "descripcion", "metier": "arzt"},
+  "Elena":  {"sexe": "f", "groupe": "descripcion", "metier": "polizist"},
+  "Pablo":  {"sexe": "m", "groupe": "descripcion", "metier": "baecker"},
+  "Marta":  {"sexe": "f", "groupe": "descripcion", "metier": "lehrer"},
+  "Javier": {"sexe": "m", "groupe": "descripcion", "metier": "koch"},
+  "Ines":   {"sexe": "f", "groupe": "descripcion", "metier": "friseur", "nom": "Inés"},
+  "Tomas":  {"sexe": "m", "groupe": "descripcion", "metier": "polizist", "nom": "Tomás"},
+  "Carmen": {"sexe": "f", "groupe": "descripcion", "metier": "koch"},
+  "Lucas":  {"sexe": "m", "groupe": "descripcion", "metier": "pfleger"},
+  "Rosa":   {"sexe": "f", "groupe": "descripcion", "metier": "mechaniker"},
+  "Heinz":  {"sexe": "m", "groupe": "famille"},
+  "Gisela": {"sexe": "f", "groupe": "famille"},
+  "Peter":  {"sexe": "m", "groupe": "famille", "faits": "vit avec Monika (un couple, un seul logement)"},
+  "Monika": {"sexe": "f", "groupe": "famille", "faits": "vit avec Peter (un couple, un seul logement)"},
+  "Sabine": {"sexe": "f", "groupe": "famille"},
+  "Frank":  {"sexe": "m", "groupe": "famille"},
+  "Jan":    {"sexe": "m", "groupe": "famille"},
+  "Katrin": {"sexe": "f", "groupe": "famille"},
+  "Lena":   {"sexe": "f", "groupe": "famille"},
+  "Felix":  {"sexe": "m", "groupe": "famille"},
+  "Sophie": {"sexe": "f", "groupe": "famille"},
+  "Ben":    {"sexe": "m", "groupe": "famille", "lieu": "schule", "faits": "a la Grundschule"},
+  "Mia":    {"sexe": "f", "groupe": "famille", "lieu": "kita", "faits": "a la Kita : jamais « zur Schule »"}
+ },
+ "_reserves": [
+  "Les prenoms reserves : chacun montre le visage d'une personne deja photographiee (« visage », l'image reprise telle",
+  "quelle, rien de paye), mais n'apparait dans AUCUN autre theme. Ils portent les traits interdits aux recurrents et les",
+  "situations qui contrediraient leur metier (l'enseignante severe, l'entraineur, le bureau). Un visage, un prenom : le",
+  "meme visage garde le meme prenom reserve dans tout le theme. Alicia est la medecin du cabinet de la scene arztpraxis",
+  "(sans nom dans les metiers), dans « Le corps et la sante »."
+ ],
+ "reserves": {
+  "Hugo":   {"sexe": "m", "visage": "Diego"},
+  "Sergio": {"sexe": "m", "visage": "Javier"},
+  "Bruno":  {"sexe": "m", "visage": "Lucas"},
+  "Mario":  {"sexe": "m", "visage": "Tomas"},
+  "Carlos": {"sexe": "m", "visage": "Pablo"},
+  "Nuria":  {"sexe": "f", "visage": "Ines"},
+  "Paula":  {"sexe": "f", "visage": "Elena"},
+  "Silvia": {"sexe": "f", "visage": "Rosa"},
+  "Irene":  {"sexe": "f", "visage": "Carmen"},
+  "Alicia": {"sexe": "f", "visage": "s-aerztin", "metier": "arzt"}
+ }
+}

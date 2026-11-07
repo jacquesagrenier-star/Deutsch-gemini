@@ -7167,6 +7167,35 @@ body[data-theme="dark"] .cp-retour.bon{color:#7fd3a5;} body[data-theme="dark"] .
 .cp-saisie{width:100%; font-size:18px; padding:12px; border-radius:12px; border:1.5px solid #e2d6c0; margin-top:12px; background:#fff; color:#1C2430;}
 body[data-theme="dark"] .cp-saisie{background:#273041; color:#F2F2F6; border-color:#3a4558;}
 .cp-indice{color:#8a5a0e; font-size:14px; margin-top:4px;}
+/* LE RAPPEL ACTIF (essai rappel_actif, 6 nov. 2026) : une carte sur trois demande le mot.
+   Elle prend la place de la carte retournable, comme la carte-phrase. */
+#flashcards.en-rappel .flashcard-wrapper{display:none !important;}
+/* Les boutons du verso (#flashcardActions, v923) reviennent apres le choix, les memes
+   et a la meme place (decision du 7 nov.) ; sur un choix faux, ni « Encore » ni les
+   points de « Continuer » : le mot revient de toute facon. */
+#flashcards.en-rappel:not(.ra-juge) #flashcardActions{display:none !important;}
+#flashcards.ra-faux #flashcardActions .judge-again{display:none !important;}
+#flashcards.ra-faux #flashcardActions .judge-good .srs-ladder{display:none !important;}
+#flashcards.ra-faux #flashcardActions .judge-row{grid-template-columns:1fr;}
+#flashcards.fin-paquet #rappelActif{display:none !important;}
+.rappel-actif{text-align:center;}
+.rappel-actif .cp-type{justify-content:center;}
+.ra-mot{font-size:30px; font-weight:900; line-height:1.2; margin:6px 0 4px; overflow-wrap:anywhere;}
+.ra-choix button{font-size:18px; font-weight:700; text-align:center;}
+.cp-choix button.pale{opacity:.5;}
+body[data-theme="dark"] .ra-choix button.bon{border-color:#5cc08a; background:rgba(46,139,87,.24); color:#d8f3e4;}
+body[data-theme="dark"] .ra-choix button.faux{border-color:#e2725f; background:rgba(192,57,43,.22); color:#fbe1dc;}
+.ra-verdict{text-align:center;}
+.ra-verdict .ra-titre{display:block;}
+.ra-verdict.bon .ra-titre{font-size:19px;}
+.ra-rep{font-size:22px; font-weight:900; margin:4px 0 2px; overflow-wrap:anywhere;}
+.ra-rep u{text-decoration:none; background:rgba(232,162,58,.38); border-radius:4px; padding:0 1px;}
+.ra-verdict small{display:block; font-weight:600; font-size:13.5px; opacity:.92;}
+.ra-points{display:flex; align-items:center; justify-content:center; gap:10px; margin-top:12px;}
+.ra-echeance{font-size:13px; font-weight:700; color:#1c6b47;}
+body[data-theme="dark"] .ra-echeance{color:#8ed3aa;}
+.ra-points.faux .ra-echeance{color:#9b2c20;}
+body[data-theme="dark"] .ra-points.faux .ra-echeance{color:#f2a197;}
 .seance-niveau.seance-pp{font-size:14px; padding:0 5px;}
 .cp-type b.cp-pp{background:#d9f0e6; color:#0F6E56;}
 .cp-mot-pp{font-size:30px; font-weight:900; text-align:center; margin:14px 0 4px; line-height:1.2;}
@@ -8516,15 +8545,17 @@ body[data-theme="dark"] .cp-passage-ok svg{stroke:#8ED3AA;}
 #home.grille-c:not(.vue-contenu) #suggAccueil, #home.grille-c:not(.vue-contenu) #explorerScenes,
 #home.grille-c:not(.vue-contenu) #explorerThemes, #home.grille-c:not(.vue-contenu) #ecouteLigneAccueil,
 #home.grille-c:not(.vue-contenu) #episodeLigne, #home.grille-c:not(.vue-contenu) #seanceGardes,
-#home.grille-c:not(.vue-contenu) #tuileToutContenu{display:none !important;}
+#home.grille-c:not(.vue-contenu) #tuileToutContenu, #home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau{display:none !important;}
 .tg{position:relative; display:block; flex:0 0 auto; width:calc((100% - 24px) / 3); aspect-ratio:1 / 1; padding:0; border:0; cursor:pointer;
     border-radius:5.6%; overflow:hidden; color:#fff; font:inherit; -webkit-tap-highlight-color:transparent;
-    background:linear-gradient(150deg, rgba(249,169,19,0.75) 0%, rgba(239,144,23,0.81) 28%, rgba(227,114,27,0.86) 55%, rgba(219,94,26,0.91) 78%, rgba(212,76,21,0.95) 100%);
+    /* 7 nov. 2026 (accord de Jacques, « oui, transparent ») : le haut aussi transparent que la carte de la seance
+       (66 %, son flou), le bas qui fonce jusqu'a 96 % sous le titre ; blanc au pire point 5,0 le jour, 5,9 la nuit. */
+    background:linear-gradient(180deg, rgba(249,169,19,.66) 0%, rgba(236,134,22,.76) 36%, rgba(196,74,16,.92) 66%, rgba(160,46,10,.96) 100%);
     box-shadow:0 10px 20px -6px rgba(20,28,40,.30), 0 3px 6px rgba(20,28,40,.12),
                inset 0 1px 0 rgba(255,255,255,.35), inset 0 -1px 0 rgba(0,0,0,.18), inset 1px 0 0 rgba(255,255,255,.10), inset -1px 0 0 rgba(0,0,0,.08);
-    -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
+    -webkit-backdrop-filter:blur(8px) saturate(1.6); backdrop-filter:blur(8px) saturate(1.6);
     transition:transform .12s ease;}
-.tg.tg-ardoise{background:linear-gradient(180deg, rgba(86,93,101,0.78) 0%, rgba(58,65,75,0.87) 50%, rgba(42,49,59,0.96) 100%);}
+.tg.tg-ardoise{background:linear-gradient(180deg, rgba(92,99,108,.66) 0%, rgba(64,71,81,.76) 40%, rgba(38,44,54,.92) 74%, rgba(24,29,37,.95) 100%);}
 .tg.hidden{display:none !important;}
 .tg:active{transform:scale(.97);}
 .tg:focus-visible{outline:2px solid #E8A23A; outline-offset:3px;}
@@ -8537,29 +8568,23 @@ body[data-theme="dark"] .cp-passage-ok svg{stroke:#8ED3AA;}
 .tg-ambre .tg-ico svg{filter:drop-shadow(0 1px 1px rgba(120,40,0,.30));}
 .tg-lib{position:absolute; left:5.6%; right:5.6%; bottom:5.6%; min-height:26%; box-sizing:border-box; z-index:2;
     display:flex; align-items:center; justify-content:center; text-align:center; padding:3px 5px;
-    background:rgba(0,0,0,.20); box-shadow:inset 0 1px 0 rgba(255,255,255,.42);
     font-size:9.5px; font-weight:700; letter-spacing:.05em; line-height:1.15; text-transform:uppercase; overflow-wrap:anywhere; hyphens:auto;}
-.tg-ambre .tg-lib{text-shadow:0 1px 1px rgba(110,35,0,.30);}
-.tg-ardoise .tg-lib{background:rgba(255,255,255,.12);}
-html[lang="fa"] .tg-lib, html[lang="ar"] .tg-lib, html[dir="rtl"] .tg-lib{letter-spacing:0; text-transform:none; font-size:11px;}
+.tg-ambre .tg-lib, .tg-ambre .tg-tab-texte{text-shadow:0 1px 2px rgba(90,25,0,.45);}
+html[lang="fa"] .tg-lib, html[lang="ar"] .tg-lib, html[dir="rtl"] .tg-lib,
+html[lang="fa"] .tg-tab-titre, html[lang="ar"] .tg-tab-titre, html[dir="rtl"] .tg-tab-titre{letter-spacing:0; text-transform:none; font-size:12px;}
 body[data-theme="dark"] .tg{box-shadow:0 10px 22px -6px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.10), inset 0 1px 0 rgba(255,255,255,.30), inset 0 -1px 0 rgba(0,0,0,.25);}
-/* le tableau en bande courte : la vignette, son titre, le rond › */
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau:not(.hidden){display:flex !important; flex-direction:row !important; align-items:center !important;
-    gap:12px !important; padding:8px 10px 8px 8px !important; border-radius:22px !important; overflow:visible !important;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau .vignette-tableau{flex:0 0 64px !important; width:64px !important; height:52px !important;
-    padding:2px !important; border-radius:12px !important;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau .vignette-tableau img{height:48px !important; border-radius:10px !important;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau .vignette-pct{display:none !important;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau > div:not([class]){display:flex !important; flex-direction:column; justify-content:center; gap:1px; min-width:0; flex:1 1 auto;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau > div:not([class]) strong{display:block; font-size:14.5px;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau .raccourci-sous{display:block; font-size:11.5px; opacity:.75;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau::after{content:"›"; flex:0 0 40px; width:40px; height:40px; margin-inline-start:auto; border-radius:50%;
-    display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:600; line-height:1; padding-bottom:3px; box-sizing:border-box; color:#fff;
-    background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%);
-    box-shadow:inset 0 0 0 2px rgba(0,0,0,.35), inset 0 0 14px rgba(255,255,255,.16), inset 0 1.5px 0 rgba(255,255,255,.55), 0 8px 18px rgba(20,16,10,.25);}
-html[dir="rtl"] #home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau::after{content:"‹";}
-body[data-theme="dark"] #home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau::after{color:#2A1A05;
-    background:linear-gradient(180deg, rgba(250,206,128,.86) 0%, rgba(237,169,60,.80) 52%, rgba(208,138,28,.88) 100%);}
+/* 7 nov. 2026 : LA TUILE DU TABLEAU (piste 2 retouchee, accord de Jacques). « Je preferais lorsqu'on avait un
+   tableau complet dans l'image » : pleine largeur, de la meme famille que les autres, la toile ENTIERE a gauche
+   (sa forme gardee, en largeur comme en hauteur), « N % » et « Ton tableau » a droite, en bas, sur le plus fonce. */
+.tg.tg-tab{width:100%; aspect-ratio:auto; height:156px; border-radius:16px;}
+.tg.tg-tab .tg-filet{inset:7px; border-radius:11px;}
+.tg-tab-corps{position:absolute; inset:7px; z-index:2; display:flex; align-items:center; gap:16px; padding:14px 16px 14px 14px; box-sizing:border-box;}
+.tg-tab-corps img{display:block; height:100%; width:auto; max-width:58%; object-fit:contain; flex:0 0 auto; border-radius:4px;
+    box-shadow:0 0 0 2px rgba(255,255,255,.9), 0 6px 14px rgba(0,0,0,.30);}
+.tg-tab-corps img[hidden]{display:none;}
+.tg-tab-texte{display:flex; flex-direction:column; justify-content:flex-end; align-self:stretch; gap:2px; min-width:0; text-align:start;}
+.tg-tab-pct{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight:800; font-size:30px; line-height:1;}
+.tg-tab-titre{font-size:11px; font-weight:700; letter-spacing:.05em; line-height:1.15; text-transform:uppercase; padding-bottom:2px; overflow-wrap:anywhere;}
 #home #seancePilule.niveaux-replies > .pa-niveaux{display:none !important;}
 #home #seancePilule .pa-changer{order:3; justify-self:center; border:0; background:none; font:inherit; font-size:13px; font-weight:700;
     color:var(--encre-v); padding:4px 10px; border-radius:999px; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
@@ -8984,6 +9009,93 @@ body[data-theme="dark"] .fete-tableau{background:linear-gradient(180deg, #0E1C26
 .ft-sous{bottom:calc(5% + env(safe-area-inset-bottom, 0px)); font-weight:800; font-size:14px;}
 body[data-theme="dark"] .ft-titre, body[data-theme="dark"] .ft-sous{color:#F6C46A; text-shadow:none;}
 .fete-tableau.ft-fini .ft-titre, .fete-tableau.ft-fini .ft-sous{opacity:1; transform:none;}
+/* LA NOUVELLE ETOILE (essai seance_legere, voir feteEtoile) : la variante A de la maquette du 7 nov. -- le soir en
+   mode clair, la nuit en mode sombre ; l'ecran de 375 x 720 de la maquette, mis a l'echelle du telephone. */
+.fete-etoile{position:fixed; inset:0; z-index:100001; overflow:hidden; font-family:Nunito, system-ui, sans-serif;
+    background:linear-gradient(180deg,#18223F 0%,#26345A 34%,#3E4B78 56%,#6A6F96 74%,#B98A80 90%,#DDA477 100%);
+    --fe-ombre:rgba(255,236,200,.9); --fe-sur:#F6CE84; --fe-titre:#FFF6E8; --fe-ligne:rgba(255,246,232,.9); --fe-gras:#FFE3A8;
+    --fe-btn-fond:#1C2430; --fe-btn-txt:#FFF6E8; --fe-btn-ombre:0 6px 16px rgba(28,36,48,.35); --fe-cnom:rgba(255,246,232,.62);
+    --fe-pastille:#E8A23A; animation:feEntre .35s ease-out both;}
+body[data-theme="dark"] .fete-etoile{background:linear-gradient(180deg,#050A13 0%,#0A1222 40%,#111A30 70%,#1A1D33 88%,#2A2236 100%);
+    --fe-ombre:rgba(255,236,200,.85); --fe-sur:#F0B456; --fe-titre:#F3F5F8; --fe-ligne:rgba(236,239,242,.86); --fe-gras:#F6CE84;
+    --fe-btn-fond:#F0B456; --fe-btn-txt:#1C2430; --fe-btn-ombre:0 6px 16px rgba(0,0,0,.4); --fe-cnom:rgba(236,239,242,.5); --fe-pastille:#F0B456;}
+.fete-etoile.fe-part{opacity:0; transition:opacity .35s;}
+@keyframes feEntre{from{opacity:0} to{opacity:1}}
+.fe-fond{position:absolute; inset:0; width:100%; height:100%;}
+.fe-loin{fill:#FFF6E2; opacity:var(--m); animation:feScint var(--d) ease-in-out var(--o) infinite;}
+@keyframes feScint{0%,100%{opacity:var(--m)} 50%{opacity:calc(var(--m) * .35)}}
+.fe-scene{position:absolute; left:50%; top:50%; width:375px; height:720px; transform-origin:50% 50%;
+    --t-trait:.5s; --t-allume:1.3s; --t-texte:2.0s; --t-btn:2.75s;}
+.fe-cst{position:absolute; left:0; top:34px; width:375px; height:372px;}
+.fe-svg{display:block; width:375px; height:372px; overflow:visible;}
+.fe-avenir{stroke:rgba(255,246,232,.16); stroke-width:1.2; stroke-dasharray:2 5; stroke-linecap:round;}
+.fe-trait{stroke:#FFF1D6; stroke-opacity:.55; stroke-width:1.6; stroke-linecap:round;}
+.fe-place{fill:rgba(255,246,232,.34);}
+.fe-halo{fill:#FFF3D6;}
+.fe-astre .fe-h1{opacity:calc(var(--lum) * .07);} .fe-astre .fe-h2{opacity:calc(var(--lum) * .16);}
+.fe-astre .fe-coeur{opacity:var(--lum); animation:feScint2 var(--d) ease-in-out var(--o) infinite;}
+@keyframes feScint2{0%,100%{opacity:var(--lum)} 50%{opacity:calc(var(--lum) * .78)}}
+.fe-neuve .fe-h1{opacity:.10;} .fe-neuve .fe-h2{opacity:.22;} .fe-neuve .fe-h3{opacity:.40;}
+.fe-neuve .fe-coeur{filter:drop-shadow(0 0 6px var(--fe-ombre));}
+.fe-rayons{fill:#FFF6E2; opacity:.30; transform-box:fill-box; transform-origin:center; transform:scale(.55);}
+.fe-onde{fill:none; stroke:#FFE7B8; stroke-width:2; opacity:0; transform-box:fill-box; transform-origin:center;}
+.fe-pouls{fill:none; stroke:#FFE7B8; stroke-width:1.4; transform-box:fill-box; transform-origin:center; animation:fePouls 2.8s ease-in-out infinite;}
+@keyframes fePouls{0%,100%{opacity:0; transform:scale(.8)} 50%{opacity:.55; transform:scale(1.15)}}
+.fe-tete{opacity:0;} .fe-tete-h{fill:#FFE7B8; opacity:.35;} .fe-tete-c{fill:#FFFDF6;}
+.fe-nom-et{font:800 14px Nunito, system-ui, sans-serif; fill:#FFF1D6; letter-spacing:.02em;
+    paint-order:stroke; stroke:rgba(8,14,30,.55); stroke-width:3px; stroke-linejoin:round;}
+.fe-ne-nom{font-weight:900;} .fe-ne-dist{font-weight:700; fill-opacity:.82;}
+.fe-cnom{position:absolute; left:0; right:0; top:386px; margin:0; text-align:center; font-size:11.5px; font-weight:800;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--fe-cnom);}
+.fe-cnom i{font-style:normal; font-weight:700; letter-spacing:.08em; text-transform:none;}
+.fete-etoile.fe-fin .fe-cnom{font-size:15px; letter-spacing:.12em; color:var(--fe-titre); top:384px;}
+.fe-compte{position:absolute; left:50%; top:410px; transform:translateX(-50%); margin:0; white-space:nowrap;
+    display:flex; align-items:center; gap:6px; padding:4px 13px 4px 11px; border-radius:999px;
+    background:var(--fe-pastille); color:#1C2430; box-shadow:0 3px 0 #A86A0E; font-weight:900; font-size:16px; font-variant-numeric:tabular-nums;}
+.fe-cp-et{width:13px; height:13px; fill:#1C2430;}
+.fe-txt{position:absolute; left:28px; right:28px; top:458px; display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center;}
+.fe-txt p{margin:0;}
+.fe-sur{font-size:13px; font-weight:800; color:var(--fe-sur); letter-spacing:.02em;}
+.fe-titre{font-size:30px; font-weight:900; color:var(--fe-titre); line-height:1.1; text-wrap:balance;}
+.fe-ligne{font-size:17.5px; font-weight:700; color:var(--fe-ligne); line-height:1.4; text-wrap:balance; margin-top:4px !important;}
+.fe-ligne:empty{display:none;}
+.fe-ligne b{color:var(--fe-gras); font-weight:900;}
+/* les boutons de l'app ont leur verre (position, largeur, fond) : celui-ci garde le sien */
+.fete-etoile .fe-btn{position:absolute !important; left:24px !important; right:24px !important; top:auto !important; bottom:34px !important;
+    width:auto !important; height:54px !important; margin:0 !important; padding:0 !important; border:0 !important; border-radius:999px !important;
+    font:900 17px Nunito, system-ui, sans-serif !important; background:var(--fe-btn-fond) !important; color:var(--fe-btn-txt) !important;
+    box-shadow:var(--fe-btn-ombre) !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; cursor:pointer;}
+.fete-etoile .fe-btn::before, .fete-etoile .fe-btn::after{display:none !important;}
+.fe-btn:focus-visible{outline:3px solid #F6CE84; outline-offset:3px;}
+/* l'animation, seulement sous .fe-joue : sans elle (mouvement reduit), l'ecran est dans son etat final */
+.fe-joue .fe-n-trait{stroke-dasharray:1; animation:feDessin .8s cubic-bezier(.55,0,.35,1) var(--t-trait) both;}
+@keyframes feDessin{from{stroke-dashoffset:1} to{stroke-dashoffset:0}}
+.fe-joue .fe-tete{animation:feFile .8s cubic-bezier(.55,0,.35,1) var(--t-trait) both;}
+@keyframes feFile{0%{transform:translate(var(--x1),var(--y1)); opacity:0} 12%{opacity:1} 88%{opacity:1} 100%{transform:translate(var(--x2),var(--y2)); opacity:0}}
+.fe-joue .fe-astre-n{animation:feAllume .75s cubic-bezier(.2,1.5,.4,1) var(--t-allume) both;}
+@keyframes feAllume{0%{transform:scale(0); opacity:0} 30%{opacity:1} 55%{transform:scale(1.5)} 100%{transform:scale(1); opacity:1}}
+.fe-joue .fe-rayons{animation:feRayons 1.5s ease-out var(--t-allume) both;}
+@keyframes feRayons{0%{opacity:0; transform:scale(.2) rotate(0deg)} 25%{opacity:1; transform:scale(1.15) rotate(18deg)} 100%{opacity:.30; transform:scale(.55) rotate(45deg)}}
+.fe-joue .fe-onde{animation:feOnde 1.1s ease-out var(--t-allume) both;}
+.fe-joue .fe-onde.fe-o2{animation-delay:calc(var(--t-allume) + .12s); animation-duration:.9s;}
+@keyframes feOnde{0%{opacity:0; transform:scale(.08)} 6%{opacity:.9} 100%{opacity:0; transform:scale(1)}}
+.fe-joue .fe-pouls{animation:feApparait .01s linear var(--t-allume) both, fePouls 2.8s ease-in-out calc(var(--t-allume) + .9s) infinite;}
+.fe-joue .fe-compte{animation:fePop .6s cubic-bezier(.2,1.8,.4,1) calc(var(--t-allume) + .22s) both;}
+@keyframes fePop{0%{opacity:0; transform:translateX(-50%) scale(.3)} 100%{opacity:1; transform:translateX(-50%) scale(1)}}
+.fe-joue .fe-nom-et{animation:feApparait .45s ease calc(var(--t-allume) + .22s) both;}
+.fe-joue .fe-cnom{animation:feMonte .5s ease-out calc(var(--t-allume) + .22s) both;}
+.fe-joue .fe-txt > *{animation:feMonte .55s ease-out both;}
+.fe-joue .fe-txt > :nth-child(1){animation-delay:var(--t-texte);}
+.fe-joue .fe-txt > :nth-child(2){animation-delay:calc(var(--t-texte) + .12s);}
+.fe-joue .fe-txt > :nth-child(3){animation-delay:calc(var(--t-texte) + .3s);}
+.fe-joue .fe-btn{animation:feMonte .5s ease-out var(--t-btn) both;}
+.fete-etoile.fe-fin .fe-astre{transform-box:fill-box; transform-origin:center;}
+.fe-joue.fe-fin .fe-astre{animation:feVague .8s ease-in-out calc(2.05s + var(--i) * .08s) both;}
+.fete-etoile.fe-fin .fe-scene{--t-texte:3.1s; --t-btn:3.8s;}
+@keyframes feVague{0%,100%{transform:scale(1)} 45%{transform:scale(1.55)}}
+@keyframes feMonte{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+@keyframes feApparait{from{opacity:0} to{opacity:1}}
+@media (prefers-reduced-motion: reduce){ .fete-etoile, .fete-etoile *{animation:none !important;} }
 /* v1061 (suite) : LE CARTEL A COTE DU TABLEAU, PAS DESSOUS (Jacques : « que ca prenne moins de place en [hauteur] »).
    Le tableau a gauche (170 px de haut au plus), la plaque a droite, empilee : annee, peintre, titre, jours, galerie. */
 #home #carteMosaique:not(.replie){display:grid; grid-template-columns:auto minmax(0, 1fr); align-items:center; column-gap:14px; padding:14px;}
@@ -9257,7 +9369,7 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1127</span>
+        <span class="subtitle-version">v1134</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -9991,6 +10103,7 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
             <button type="button" class="tg" data-tg="episodes" onclick="episodeDepuisAccueil()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="10.4" width="18" height="10.1" rx="1.6"/><path d="M3 13.6h18"/><path d="M7.4 10.4 5.6 13.6M11.8 10.4 10 13.6M16.2 10.4 14.4 13.6M20.6 10.4 18.8 13.6"/><g transform="rotate(-13 3.2 10)"><rect x="3.2" y="6.7" width="17.8" height="3.3" rx=".7"/><path d="M7.4 6.7 5.7 10M11.8 6.7 10.1 10M16.2 6.7 14.5 10"/></g></svg></span><span class="tg-lib" data-i18n="ep_tuile">Mes épisodes</span><span class="tg-filet" aria-hidden="true"></span></button>
             <button type="button" class="tg" data-tg="gardes" data-orbid="gardes" onclick="ouvrirGardes()"><span class="tg-ico"><svg viewBox="40 60 450 450" fill="none" stroke="currentColor" stroke-width="28.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M265 253C228 222 172 208 110 214V421C172 415 228 428 265 455 302 428 358 415 420 421V214C358 208 302 222 265 253z"/><path d="M265 253V455"/><path d="M110 245H78V463C150 459 222 467 265 497 308 467 380 459 452 463V245H420"/><path d="M265.00 76.00 L279.69 111.77 L318.26 114.70 L288.78 139.73 L297.92 177.30 L265.00 157.00 L232.08 177.30 L241.22 139.73 L211.74 114.70 L250.31 111.77Z"/></svg></span><span class="tg-lib" data-i18n="gardes_titre">Mis de côté</span><span class="tg-filet" aria-hidden="true"></span></button>
             <button type="button" class="tg" data-tg="tout" onclick="ouvrirToutLeContenu()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="4" width="7" height="7" rx="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.8"/></svg></span><span class="tg-lib" data-i18n="accueil_tout_titre">Tout le contenu</span><span class="tg-filet" aria-hidden="true"></span></button>
+            <button type="button" class="tg tg-tab hidden" data-tg="tableau" onclick="ouvrirGalerieMosaiques()" data-i18n-aria-label="tableau_tuile" aria-label="Ton tableau"><span class="tg-filet"></span><span class="tg-tab-corps"><img id="grilleTableauImg" alt="" hidden><span class="tg-tab-texte"><span class="tg-tab-pct" id="grilleTableauPct"></span><span class="tg-tab-titre" data-i18n="tableau_tuile">Ton tableau</span></span></span></button>
         </div>
         <!-- v799 : EXPLORER LES SCENES, a part de la seance. Jacques voulait voir
              qu'il y a beaucoup de scenes (« peut-etre une cinquantaine ») et
@@ -12600,6 +12713,8 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
 
     <!-- LA CARTE-PHRASE (essai v810) : remplie par montrerCartePhrase(). -->
     <div id="cartePhrase" class="carte-phrase hidden" aria-live="polite"></div>
+    <!-- LE RAPPEL ACTIF (essai rappel_actif, 6 nov. 2026) : rempli par montrerRappelActif(). -->
+    <div id="rappelActif" class="carte-phrase rappel-actif hidden" aria-live="polite"></div>
     <div id="flashcardActions" class="flashcard-actions hidden">
         <!-- ⚠️ QUATRE BOUTONS COTE A COTE (v594), ET LE COFFRE EST L'UN D'EUX.
              Il etait au-dessus, discret et sans cadre, parce qu'il n'est pas un
@@ -15011,6 +15126,14 @@ const I18N = {
         cp_reponse: "La bonne réponse :",
         cp_tu_as_ecrit: "Tu as écrit :",
         cp_presque: "Une petite faute de frappe : on la compte juste.",
+        ra_consigne_choisir: "Comment dit-on…",
+        ra_bravo_1: "Bravo !",
+        ra_bravo_2: "Exact !",
+        ra_bravo_3: "Parfait !",
+        ra_bravo_4: "Bien vu !",
+        ra_faux: "Pas tout à fait. La bonne réponse :",
+        ra_consigne_orthographe: "Lequel est bien écrit ?",
+        ra_tu_as_choisi: "Tu as choisi « {s} ».",
         flash_end_a_revoir_un: "1 phrase à revoir demain",
         flash_end_a_revoir_n: "{n} phrases à revoir demain",
         pp_badge: "Premiers pas",
@@ -15367,6 +15490,12 @@ const I18N = {
         flash_end_summary_one: "1 carte vue.",
         flash_end_done: "TERMINER",
         encore_neufs: "{n} cartes de plus",
+        legere_encore: "Encore une séance",
+        legere_fin_une: "Ta séance du jour est faite.",
+        legere_fin_n: "{n} séances aujourd'hui",
+        etoile_aria: "Une nouvelle étoile",
+        etoile_compte: "{n} étoiles sur {t}",
+        etoile_groupe_complet: "groupe complet",
         dict_section_title: "Dictionnaire",
         dict_section_note: "Touche le + pour faire une carte d'un mot et la retrouver dans Mon vocabulaire. La flèche → mène à la carte du cours quand elle existe déjà.",
         search_head_cours: "Cartes de l'app",
@@ -16707,6 +16836,14 @@ const I18N = {
         cp_reponse: "The right answer:",
         cp_tu_as_ecrit: "You wrote:",
         cp_presque: "Just a small typo: we count it as right.",
+        ra_consigne_choisir: "How do you say…",
+        ra_bravo_1: "Well done!",
+        ra_bravo_2: "Exactly!",
+        ra_bravo_3: "Perfect!",
+        ra_bravo_4: "Nice one!",
+        ra_faux: "Not quite. The right answer:",
+        ra_consigne_orthographe: "Which one is spelled right?",
+        ra_tu_as_choisi: "You chose “{s}”.",
         flash_end_a_revoir_un: "1 sentence to review tomorrow",
         flash_end_a_revoir_n: "{n} sentences to review tomorrow",
         pp_badge: "First steps",
@@ -17062,6 +17199,12 @@ const I18N = {
         flash_end_summary_one: "1 card seen.",
         flash_end_done: "DONE",
         encore_neufs: "{n} more cards",
+        legere_encore: "One more session",
+        legere_fin_une: "Today's session is done.",
+        legere_fin_n: "{n} sessions today",
+        etoile_aria: "A new star",
+        etoile_compte: "{n} stars out of {t}",
+        etoile_groupe_complet: "group complete",
         dict_section_title: "Dictionary",
         dict_section_note: "Tap + to turn a word into a card and find it in My vocabulary. The arrow → opens the course card when there already is one.",
         search_head_cours: "Cards in the app",
@@ -18404,6 +18547,14 @@ const I18N = {
         cp_reponse: "Doğru cevap:",
         cp_tu_as_ecrit: "Senin yazdığın:",
         cp_presque: "Küçük bir yazım hatası: doğru sayıyoruz.",
+        ra_consigne_choisir: "Nasıl denir…",
+        ra_bravo_1: "Aferin!",
+        ra_bravo_2: "Tam olarak!",
+        ra_bravo_3: "Mükemmel!",
+        ra_bravo_4: "Harika!",
+        ra_faux: "Tam değil. Doğru cevap:",
+        ra_consigne_orthographe: "Hangisi doğru yazılmış?",
+        ra_tu_as_choisi: "“{s}” seçtin.",
         flash_end_a_revoir_un: "Yarın tekrar edilecek 1 cümle",
         flash_end_a_revoir_n: "Yarın tekrar edilecek {n} cümle",
         pp_badge: "İlk adımlar",
@@ -20474,6 +20625,14 @@ const I18N = {
         cp_reponse: "Правильна відповідь:",
         cp_tu_as_ecrit: "Ти написав(-ла):",
         cp_presque: "Невелика описка: зараховуємо як правильно.",
+        ra_consigne_choisir: "Як сказати…",
+        ra_bravo_1: "Браво!",
+        ra_bravo_2: "Саме так!",
+        ra_bravo_3: "Чудово!",
+        ra_bravo_4: "Влучно!",
+        ra_faux: "Не зовсім. Правильна відповідь:",
+        ra_consigne_orthographe: "Яке написано правильно?",
+        ra_tu_as_choisi: "Ти вибрав(-ла) «{s}».",
         flash_end_a_revoir_un: "1 речення на повторення завтра",
         flash_end_a_revoir_n: "Речень на повторення завтра: {n}",
         pp_badge: "Перші кроки",
@@ -22874,6 +23033,14 @@ const I18N = {
         cp_reponse: "پاسخ درست:",
         cp_tu_as_ecrit: "نوشتهٔ تو:",
         cp_presque: "یک غلط تایپی کوچک: درست حساب می‌کنیم.",
+        ra_consigne_choisir: "چطور می‌گویند…",
+        ra_bravo_1: "آفرین!",
+        ra_bravo_2: "دقیقاً!",
+        ra_bravo_3: "عالی!",
+        ra_bravo_4: "درست زدی!",
+        ra_faux: "نه کاملاً. پاسخ درست:",
+        ra_consigne_orthographe: "کدام درست نوشته شده است؟",
+        ra_tu_as_choisi: "«{s}» را انتخاب کردی.",
         flash_end_a_revoir_un: "۱ جمله برای مرور فردا",
         flash_end_a_revoir_n: "{n} جمله برای مرور فردا",
         pp_badge: "گام‌های نخست",
@@ -24684,6 +24851,14 @@ const I18N = {
         cp_reponse: "الإجابة الصحيحة:",
         cp_tu_as_ecrit: "ما كتبته:",
         cp_presque: "خطأ مطبعي صغير: نحسبه صحيحًا.",
+        ra_consigne_choisir: "كيف نقول…",
+        ra_bravo_1: "أحسنت!",
+        ra_bravo_2: "بالضبط!",
+        ra_bravo_3: "ممتاز!",
+        ra_bravo_4: "إجابة موفقة!",
+        ra_faux: "ليس تمامًا. الإجابة الصحيحة:",
+        ra_consigne_orthographe: "أيّها مكتوب بشكل صحيح؟",
+        ra_tu_as_choisi: "اخترت: «{s}».",
         flash_end_a_revoir_un: "جملة واحدة للمراجعة غدًا",
         flash_end_a_revoir_n: "جمل للمراجعة غدًا: {n}",
         pp_badge: "الخطوات الأولى",
@@ -25124,6 +25299,14 @@ const I18N = {
         cp_reponse: "A resposta certa:",
         cp_tu_as_ecrit: "Você escreveu:",
         cp_presque: "Só um pequeno erro de digitação: conta como certo.",
+        ra_consigne_choisir: "Como se diz…",
+        ra_bravo_1: "Muito bem!",
+        ra_bravo_2: "Exato!",
+        ra_bravo_3: "Perfeito!",
+        ra_bravo_4: "Mandou bem!",
+        ra_faux: "Não exatamente. A resposta certa:",
+        ra_consigne_orthographe: "Qual está escrito certo?",
+        ra_tu_as_choisi: "Você escolheu “{s}”.",
         flash_end_a_revoir_un: "1 frase para revisar amanhã",
         flash_end_a_revoir_n: "{n} frases para revisar amanhã",
         pp_badge: "Primeiros passos",
@@ -26824,6 +27007,14 @@ const I18N = {
         cp_reponse: "Prawidłowa odpowiedź:",
         cp_tu_as_ecrit: "Napisałeś(-aś):",
         cp_presque: "Mała literówka: liczymy jako dobrze.",
+        ra_consigne_choisir: "Jak się mówi…",
+        ra_bravo_1: "Brawo!",
+        ra_bravo_2: "Dokładnie!",
+        ra_bravo_3: "Świetnie!",
+        ra_bravo_4: "Trafione!",
+        ra_faux: "Nie całkiem. Prawidłowa odpowiedź:",
+        ra_consigne_orthographe: "Które jest napisane poprawnie?",
+        ra_tu_as_choisi: "Wybrałeś(-aś) „{s}”.",
         flash_end_a_revoir_un: "1 zdanie do powtórki jutro",
         flash_end_a_revoir_n: "Zdania do powtórki jutro: {n}",
         pp_badge: "Pierwsze kroki",
@@ -28524,6 +28715,14 @@ const I18N = {
         cp_reponse: "Правильный ответ:",
         cp_tu_as_ecrit: "Ты написал(а):",
         cp_presque: "Небольшая опечатка: засчитываем как верно.",
+        ra_consigne_choisir: "Как сказать…",
+        ra_bravo_1: "Молодец!",
+        ra_bravo_2: "Именно!",
+        ra_bravo_3: "Отлично!",
+        ra_bravo_4: "В точку!",
+        ra_faux: "Не совсем. Правильный ответ:",
+        ra_consigne_orthographe: "Какое написано правильно?",
+        ra_tu_as_choisi: "Ты выбрал(а) «{s}».",
         flash_end_a_revoir_un: "1 предложение на повторение завтра",
         flash_end_a_revoir_n: "Предложений на повторение завтра: {n}",
         pp_badge: "Первые шаги",
@@ -30227,6 +30426,14 @@ const I18N = {
         cp_reponse: "Die richtige Antwort:",
         cp_tu_as_ecrit: "Du hast geschrieben:",
         cp_presque: "Ein kleiner Tippfehler: Wir zählen es trotzdem als richtig.",
+        ra_consigne_choisir: "Wie sagt man…",
+        ra_bravo_1: "Super!",
+        ra_bravo_2: "Genau!",
+        ra_bravo_3: "Perfekt!",
+        ra_bravo_4: "Gut gemacht!",
+        ra_faux: "Nicht ganz. Die richtige Antwort:",
+        ra_consigne_orthographe: "Welches ist richtig geschrieben?",
+        ra_tu_as_choisi: "Du hast „{s}“ gewählt.",
         flash_end_a_revoir_un: "1 Satz morgen wiederholen",
         flash_end_a_revoir_n: "{n} Sätze morgen wiederholen",
         pp_badge: "Erste Schritte",
@@ -31939,6 +32146,14 @@ const I18N = {
         cp_reponse: "La respuesta correcta:",
         cp_tu_as_ecrit: "Escribiste:",
         cp_presque: "Solo un pequeño error al teclear: la contamos como correcta.",
+        ra_consigne_choisir: "¿Cómo se dice…?",
+        ra_bravo_1: "¡Muy bien!",
+        ra_bravo_2: "¡Exacto!",
+        ra_bravo_3: "¡Perfecto!",
+        ra_bravo_4: "¡Bien hecho!",
+        ra_faux: "No del todo. La respuesta correcta:",
+        ra_consigne_orthographe: "¿Cuál está bien escrito?",
+        ra_tu_as_choisi: "Elegiste «{s}».",
         flash_end_a_revoir_un: "1 frase para repasar mañana",
         flash_end_a_revoir_n: "{n} frases para repasar mañana",
         pp_badge: "Primeros pasos",
@@ -42795,6 +43010,9 @@ async function syncProgressToCloud(){
             // Android, iPhone, iPad ou ordinateur, rien de plus (v686) : pour
             // savoir qui peut tester sur Google Play. Voir typeAppareil().
             appareil: typeAppareil(),
+            // Le numero de compilation de l'app des magasins (« 16 »), vide sur
+            // le web. Voir versionNative().
+            versionNative: versionNative(),
             // Les ouvertures et les verifications de version (v684), voir
             // noterVersion() -- lu par `node tests/versions.js`.
             journalVersionJson: (function(){
@@ -42905,6 +43123,7 @@ async function syncProgressToCloud(){
                 synonymesEcartes: aEcrire.synonymesEcartes || "",
                 langueInterface: aEcrire.langueInterface || "",
                 appareil: aEcrire.appareil || "",
+                versionNative: aEcrire.versionNative || "",
                 updatedAt: window.fsServerTimestamp()
             }, { merge: true });
             marquerGel(null);
@@ -49315,7 +49534,7 @@ function majPaliersAccueil(){
 // Les paliers 1 et 2 cachent les rubans et Ecouter a qui commence : la grille, elle, les montre des le premier jour
 // (c'est ce que Jacques a choisi sur la maquette), sauf Mis de cote tant qu'il est vide, comme avant.
 const GRILLE_SOURCES = {scenes:"explorerScenes", themes:"explorerThemes", ecouter:"ecouteLigneAccueil",
-    episodes:"episodeLigne", gardes:"seanceGardes", tout:"tuileToutContenu"};
+    episodes:"episodeLigne", gardes:"seanceGardes", tout:"tuileToutContenu", tableau:"tuileTableau"};
 let grilleObservee = false, grilleMajPrevue = false, grilleEmpreinte = "";
 function empreinteGrille(home){
     return String(home.className).replace(/\bgrille-c\b/g, "").replace(/\s+/g, " ").trim() + "|" +
@@ -49331,7 +49550,8 @@ function tuilesProposees(home){
         ecouter: !!document.getElementById("ecouteLigneAccueil") && L !== "ja",
         episodes: sans("episodeLigne") && (L === "de" || L === "es"),
         gardes: !!document.getElementById("seanceGardes") && !(debut && home.classList.contains("sans-gardes")),
-        tout: !!document.getElementById("tuileToutContenu")
+        tout: !!document.getElementById("tuileToutContenu"),
+        tableau: sans("tuileTableau")
     };
 }
 function majGrilleAccueil(){
@@ -51262,6 +51482,29 @@ const ESSAIS = {
         titre: "Le test de niveau",
         desc: "Pour qui n'est pas débutant, en allemand et en espagnol : des paliers de six questions (mots lus et entendus, phrases, grammaire), qui montent ou descendent, environ 5 minutes, puis un niveau proposé (🌱 à C1, B2 en espagnol). À la bienvenue, deux portes (« Je pars de zéro » / « Je connais déjà un peu ») ; dans les réglages, la carte « Mon niveau » ; après « Plus tard », une ligne sous la rangée des niveaux. Les mots réussis d'un niveau inférieur deviennent « connus »."
     },
+    // EN ESSAI le 6 nov. 2026 (v1128), admin seul. L'evaluation du chef : des cartes trop
+    // passives ; Jacques : « Vas-y pour les recommandations » (decision 34d02c3, partie 2
+    // de la maquette « Seance, cartes et accueil »). Voir preparerRappelActif().
+    // EN PRODUCTION le 7 nov. 2026 -- Jacques : « je veux que ce changement-la s'applique
+    // a tout le monde. Immediatement. » Textes ra_* dans les dix blocs d'I18N. Seuls
+    // l'allemand et l'espagnol s'allument (carteEligibleRappel) : l'anglais, le portugais
+    // et le japonais gardent leurs cartes ordinaires.
+    rappel_actif: {
+        etat: "tous",
+        titre: "Le rappel actif dans les cartes",
+        desc: "Une carte de mots sur trois (règle fixe, jamais un mot neuf) demande le mot au lieu de le montrer : choisir parmi 3 à 0 ou 1 point vert, choisir ou taper à 2, taper à 3 et une fois maîtrisé. Les leurres sont des mots déjà vus, de la même sorte. Juste ou presque = ✓, faux = Encore ; les points avancent comme avant. Allemand et espagnol."
+    },
+    // EN ESSAI le 6 nov. 2026, admin seul. Decisions 96e3fa0 et d9d9dbd (« GO pour la mise en oeuvre, en ESSAI
+    // ADMIN d'abord ») : la seance LEGERE. Plus d'objectif chiffre : la seance du jour est une lecon de taille
+    // fixe (TAILLE_LECON), et « Encore une seance » en rouvre une autre, sans limite, en comptant les seances
+    // finies du jour (×2, ×3). Version 1 : la taille et la fin. La suite (s'arreter et reprendre, l'accueil au
+    // crepuscule, les etoiles et les planetes) vient par versions. Maquette :
+    // https://claude.ai/artifact/9yd8kUnaXPQSJvf49BEje4 ; plan : seance-legere.md (notes du chef).
+    seance_legere: {
+        etat: "admin",
+        titre: "La séance légère (une leçon par jour, sans objectif chiffré)",
+        desc: "La séance du jour fait toujours la même taille, quel que soit l'objectif réglé ; à la fin, « Encore une séance » en ouvre une autre, sans limite, et l'écran de fin dit combien de séances sont faites aujourd'hui. Une étape de l'A1 finie allume son étoile en plein écran à la fin de la séance (une seule fête par séance : l'étoile d'abord, le tableau le lendemain). Les autres comptes gardent l'objectif « N / 20 »."
+    },
     premiers_pas: {
         etat: "tous",
         titre: "Premiers pas (un niveau avant A1)",
@@ -51887,6 +52130,21 @@ function typeAppareil(){
     }catch(e){ return ""; }
 }
 
+// LA VERSION DE L'APP DES MAGASINS (7 nov. 2026, Jacques : « Oui, ajoute-le »).
+// Le tableau de bord dit « Android · version 16 ». versionName vaut « 1.0 »
+// pour toutes les compilations ; le seul nombre qui change est le numero de
+// build (versionCode Android, numero TestFlight iOS), que Codemagic ecrit dans
+// le user agent de la vue web : « ... WortandoNatif/16 » (wortando-ios,
+// outils/version_user_agent.js). Une compilation plus ancienne, ou locale,
+// dit « WortandoNatif » sans numero, ou rien : le champ reste vide. C'est le
+// numero de NOTRE app, pas la version du systeme du telephone.
+function versionNative(){
+    try{
+        const m = /WortandoNatif\/(\d+)/.exec(navigator.userAgent || "");
+        return m ? m[1] : "";
+    }catch(e){ return ""; }
+}
+
 function repartitionAppareils(users){
     const n = {};
     let inconnus = 0;
@@ -52013,7 +52271,7 @@ async function renderAdminUsersList(){
                 </summary>
                 <div class="admin-detail">
                     <small>${tf('admin_user_stats', { vus: mots, mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small><br>
-                    <small>${u.email || ""}${u.langueInterface ? " · interface en " + (NOMS_LANGUE[u.langueInterface] || u.langueInterface) : ""}${u.appareil ? " · " + u.appareil : ""}</small>
+                    <small>${u.email || ""}${u.langueInterface ? " · interface en " + (NOMS_LANGUE[u.langueInterface] || u.langueInterface) : ""}${u.appareil ? " · " + u.appareil + (u.versionNative ? " · version " + u.versionNative : "") : ""}</small>
                     ${retour}
                     ${u._coll === RESUMES_COLL ? `<button class="secondary admin-vhs" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
                         ${vhsOn ? t('admin_vhs_access_on') : t('admin_vhs_access_off')}
@@ -52097,6 +52355,7 @@ async function reconstruireResumes(){
                 essais: Array.isArray(u.essais) ? u.essais : [],
                 langueInterface: u.langueInterface || "",
                 appareil: u.appareil || "",
+                versionNative: u.versionNative || "",
                 // La date du document complet, PAS l'heure de la
                 // reconstruction : sinon tous les testeurs paraitraient
                 // actifs a l'instant.
@@ -53717,6 +53976,7 @@ function setFlashHeader(kickerKey, titleKey){
 }
 
 function loadFlashcard(){
+    oublierCarteJugee();   // une carte (re)dessinee n'a pas encore ete jugee
     updateXpComboDisplay();
     hideFlashcardEnd();
     // La phrase a prononcer appartient a la carte qu'on affiche, et a elle
@@ -53729,6 +53989,8 @@ function loadFlashcard(){
     majEcheances();
     const item = currentCards[currentFlashcard];
     if(!item){ handleFlashcardBack(); return; }
+    // L'essai rappel_actif : la question d'une carte precedente s'efface.
+    cacherRappelActif();
     // LA CARTE-PHRASE (essai v810) a son propre rendu ; une carte ordinaire
     // efface d'abord celui d'une phrase qui l'aurait precedee.
     // v839 : Premiers pas avance a chaque carte montree.
@@ -54407,7 +54669,611 @@ function loadFlashcard(){
             }
         }, 650);
     }
+    // L'essai rappel_actif : une carte sur trois demande le mot (voir preparerRappelActif).
+    try{ preparerRappelActif(item); }catch(e){ cacherRappelActif(); }
     noterEtape("carte");
+}
+
+// ============ LE RAPPEL ACTIF (essai « rappel_actif », 6 nov. 2026) ============
+// L'evaluation du chef (6 nov.) : les cartes sont trop passives -- on retourne,
+// puis on se juge soi-meme, et rien ne verifie qu'on a vraiment retrouve le
+// mot. Jacques a accepte la maquette (« Vas-y pour les recommandations »,
+// decision 34d02c3, partie 2 de l'artefact « Seance, cartes et accueil »).
+// EN PRODUCTION POUR TOUS depuis le 7 nov. 2026 ; textes ra_* dans les onze blocs
+// d'I18N (fr, en, tr, uk, fa, ar, pt, pl, ru, de, es).
+//
+// L'ECHELLE PAR MOT (7 nov. 2026, idee de Jacques et d'une testeuse) : « la
+// premiere fois tu vois si tu le sais en tournant le verso de la carte. La
+// deuxieme fois, tu choisis entre trois mots differents, puis [...] trois mots,
+// mais qui sont ecrits avec des fautes. Il y en a juste un qui est ecrit
+// correctement. » Selon les points verts du mot :
+//   0 point (mot nouveau) : la carte qu'on retourne, sans rappel ;
+//   1 point  : trois mots differents (des mots deja vus, de la meme sorte) ;
+//   2 points : trois mots differents, plus proches (meme theme, meme article,
+//              meme debut) ;
+//   3 points et maitrise : LE MEME MOT ECRIT DE TROIS FACONS, une seule juste --
+//              des fautes reelles (de : trema, ß, lettre doublee ou simple, ie/ei,
+//              h muet, majuscule, article ; es : accent, ñ, b/v, ll/y, h, z/c/s,
+//              g/j, rr, mb/nb, y/i final, article), jamais deux fois la meme,
+//              jamais un vrai mot du corpus.
+// Plus de mot a taper ici (l'exercice Ecrire reste ailleurs). Une carte sur trois,
+// par regle fixe et non au hasard ; le verdict remplace le jugement de soi :
+// juste = la bille ✓ (reviewGood), faux = « Encore » (reviewAgain). Les quatre
+// points avancent exactement comme avant. Le micro viendra plus tard.
+//
+// ⚠️ LA LOGIQUE EST PURE, ENTRE LES DEUX MARQUES CI-DESSOUS : aucune lecture du
+// DOM, du stockage ni des variables de la seance. tests/rappel_actif.js
+// l'extrait d'ici et l'execute sous Node -- la forme, les leurres et les fautes
+// se verifient sans navigateur ni verrou, sur tout le corpus de et es.
+// ---- RAPPEL ACTIF : LOGIQUE PURE (debut) ----
+const RAPPEL_MODES = ["nomen", "verben", "adjektive"];
+const RAPPEL_ARTICLES = {
+    de: ["der", "die", "das"],
+    es: ["el", "la", "los", "las"]
+};
+// Une carte active, puis deux ordinaires : « une sur trois ».
+const RAPPEL_ECART = 2;
+
+function empreinteRappel(s){
+    // FNV-1a 32 bits : la meme chaine donne toujours le meme nombre.
+    let h = 0x811c9dc5;
+    s = String(s);
+    for(let i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+    return h >>> 0;
+}
+
+// « Vu » = le contraire exact d'estNeuf() -- recopie ici parce que la logique
+// pure ne lit rien d'autre. Le lot des petites ameliorations (6 nov.) classe ses
+// leurres de cartes-phrases dessus : une seule definition de « vu » pour toute
+// l'app. Si estNeuf() change, changer celle-ci avec (le test le verifie).
+function dejaVuRappel(st){
+    st = st || {};
+    return !!(st.mastered || st.due || (st.srsHits || 0));
+}
+
+// Les points verts tels que les pastilles les montrent (0 a 4).
+function pointsRappel(st){
+    st = st || {};
+    return st.mastered ? 4 : Math.min(4, st.srsHits || 0);
+}
+
+// L'echelle : null a 0 point (la carte qu'on retourne), « choisir » a 1,
+// « proches » a 2, « orthographe » a 3 et une fois maitrise.
+function formeSelonPoints(points){
+    if(points <= 0) return null;
+    if(points === 1) return "choisir";
+    if(points === 2) return "proches";
+    return "orthographe";
+}
+
+// La regle « une sur trois ». `depuis` = cartes eligibles passees depuis la
+// derniere carte active (RAPPEL_ECART au debut d'un paquet, pour que la premiere
+// eligible soit active). Une carte qui devait etre active mais n'a pas pu l'etre
+// (ni leurres, ni fautes possibles) ne remet pas le compte a zero.
+function tourDuRappel(depuis, eligible, possible){
+    if(!eligible) return { active: false, depuis: depuis };
+    if(depuis >= RAPPEL_ECART){
+        if(possible) return { active: true, depuis: 0 };
+        return { active: false, depuis: depuis };
+    }
+    return { active: false, depuis: depuis + 1 };
+}
+
+// Minuscules, ponctuation retiree, espaces resserres. Les accents restent.
+function normRappel(s){
+    return String(s || "").normalize("NFC").toLowerCase()
+        .replace(/[.,!?;:¿¡«»"“”„…]/g, " ")
+        .replace(/\s+/g, " ").trim();
+}
+// Les accents retires aussi, et ß -> ss.
+function plierRappel(s){
+    return normRappel(s).replace(/ß/g, "ss").normalize("NFD").replace(/[̀-ͯ]/g, "");
+}
+// Le sens, pour reconnaitre deux cartes qui veulent dire la meme chose : sans
+// article (le, la, l', un, the, to...), sans parenthese, sans accent.
+function sensPlieRappel(s){
+    return plierRappel(String(s || "").replace(/\([^)]*\)/g, " "))
+        .replace(/^(le|la|les|l'|l’|un|une|des|the|a|an|to|der|die|das|el|los|las|o|os|as|um|uma) +/, "")
+        .replace(/^(l'|l’)/, "")
+        .trim();
+}
+
+// Les lettres de la bonne reponse qui different de la reponse choisie, pour les
+// souligner (« der Schlü<u>ss</u>el »). Lettre a lettre, majuscules comprises.
+function ecartLettresRappel(choisi, attendu){
+    const a = Array.from(String(choisi || "").normalize("NFC")), b = Array.from(String(attendu || "").normalize("NFC"));
+    const d = [];
+    for(let i = 0; i <= a.length; i++){ d[i] = [i]; }
+    for(let j = 0; j <= b.length; j++){ d[0][j] = j; }
+    for(let i = 1; i <= a.length; i++)
+        for(let j = 1; j <= b.length; j++)
+            d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    const diff = new Array(b.length).fill(false);
+    let i = a.length, j = b.length;
+    while(i > 0 || j > 0){
+        if(i > 0 && j > 0 && d[i][j] === d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)){
+            if(a[i - 1] !== b[j - 1]) diff[j - 1] = true;
+            i--; j--;
+        } else if(j > 0 && d[i][j] === d[i][j - 1] + 1){ diff[j - 1] = true; j--; }
+        else i--;
+    }
+    return b.map((c, k) => ({ c: c, diff: diff[k] && c !== " " }));
+}
+
+// Le debut commun de deux mots (plies), pour les leurres « proches ».
+function debutCommunRappel(a, b){
+    a = plierRappel(a); b = plierRappel(b);
+    let n = 0;
+    while(n < a.length && n < b.length && a[n] === b[n]) n++;
+    return n;
+}
+
+// LES LEURRES. cible et pool sont des cartes du paquet ({ themeId, index, mode,
+// word }) ; dep fournit ce que la logique ne doit pas aller chercher seule :
+//   dep.etat(it)    -> l'etat du mot (getWordState)
+//   dep.reponse(it) -> ce qui s'affiche comme choix (« la llave », « gehen »)
+//   dep.sens(it)    -> le sens dans la langue de l'eleve (« la clé »)
+//   dep.mode(it)    -> la categorie (nomen, verben, adjektive)
+// Regles : deja vu ; meme categorie ; ni la carte elle-meme, ni le meme mot
+// (meme reponse pliee), ni le meme sens, ni l'autre genre d'un nom de personne
+// (der Arzt / die Ärztin, rang 8) ; deux leurres distincts. L'ordre vient de
+// l'empreinte, jamais du hasard.
+//   proches = false (1 point) : le meme theme d'abord ;
+//   proches = true  (2 points) : le plus proche d'abord -- meme theme, meme
+//                     article, meme debut (« der Schlüssel » / « der Schlitten »).
+function leurresDejaVus(cible, pool, n, dep, proches){
+    const cle = it => it.themeId + ":" + it.index;
+    const modeC = dep.mode(cible);
+    const repC = plierRappel(dep.reponse(cible));
+    const motBrut = it => Array.isArray(it.word) ? (it.word[0] || "") : ((it.word && it.word.infinitif) || "");
+    const motC = plierRappel(motBrut(cible));
+    const artC = (modeC === "nomen" && Array.isArray(cible.word)) ? String(cible.word[1] || "").toLowerCase() : "";
+    const sensC = sensPlieRappel(dep.sens(cible));
+    const paireC = (modeC === "nomen" && Array.isArray(cible.word)) ? plierRappel(cible.word[8] || "") : "";
+    const vus = new Set([cle(cible)]);
+    const pris = new Set([repC]);
+    const sensPris = new Set([sensC]);
+    const cands = [];
+    (pool || []).forEach(it => {
+        if(!it || !it.word || vus.has(cle(it))) return;
+        vus.add(cle(it));
+        if(dep.mode(it) !== modeC) return;
+        if(!dejaVuRappel(dep.etat(it))) return;
+        const rep = dep.reponse(it);
+        const repP = plierRappel(rep);
+        if(!repP || pris.has(repP)) return;
+        const mot = plierRappel(motBrut(it));
+        if(mot && (mot === motC || mot === paireC)) return;
+        if(modeC === "nomen" && Array.isArray(it.word) && motC && plierRappel(it.word[8] || "") === motC) return;
+        const sens = sensPlieRappel(dep.sens(it));
+        if(!sens || sens === sensC) return;
+        const memeTheme = it.themeId === cible.themeId ? 1 : 0;
+        let score = memeTheme;
+        if(proches){
+            const art = (modeC === "nomen" && Array.isArray(it.word)) ? String(it.word[1] || "").toLowerCase() : "";
+            score = memeTheme * 2 + (artC && art === artC ? 2 : 0) + Math.min(3, debutCommunRappel(motBrut(it), motBrut(cible)));
+        }
+        cands.push({ it: it, rep: rep, repP: repP, sens: sens, score: score,
+                     ordre: empreinteRappel(cle(cible) + "|" + cle(it)) });
+    });
+    cands.sort((a, b) => (b.score - a.score) || (a.ordre - b.ordre));
+    const out = [];
+    for(const c of cands){
+        if(out.length >= n) break;
+        if(pris.has(c.repP) || sensPris.has(c.sens)) continue;
+        pris.add(c.repP); sensPris.add(c.sens);
+        out.push({ texte: c.rep, it: c.it });
+    }
+    return out;
+}
+
+// LES FAUTES D'ORTHOGRAPHE (3 points et maitrise). Le meme mot, mal ecrit de
+// facons qu'un apprenant ecrit vraiment. Chaque famille propose ses variantes ;
+// on en prend une d'une famille d'orthographe, puis une d'une autre famille
+// (l'article ou la majuscule compris). Jamais la bonne forme, jamais deux fois
+// la meme, jamais un vrai mot : estUnMot(forme) dit si la forme est un autre mot
+// du corpus (en minuscules), et la variante est alors ecartee.
+//   o = { langue, mode, mot (sans article), article, cle }
+function variantesMot(m, langue){
+    const fam = {};
+    const ajouter = (f, v) => { if(v && v !== m) (fam[f] = fam[f] || []).push(v); };
+    const remplacerA = (s, i, n, par) => s.slice(0, i) + par + s.slice(i + n);
+    const chaque = (re, fn) => { let x; re.lastIndex = 0; while((x = re.exec(m))){ fn(x); if(!re.global) break; } };
+    if(langue === "de"){
+        const sansTrema = { "ä": "a", "ö": "o", "ü": "u", "Ä": "A", "Ö": "O", "Ü": "U" };
+        const avecTrema = { "a": "ä", "o": "ö", "u": "ü" };
+        let trema = false;
+        for(let i = 0; i < m.length; i++) if(sansTrema[m[i]]){ trema = true; ajouter("trema", remplacerA(m, i, 1, sansTrema[m[i]])); }
+        // Un trema ajoute, seulement sur un mot qui n'en a pas, et sur sa premiere
+        // voyelle a / o / u (le plus souvent celle du radical : « Väter », « Plänung ») --
+        // jamais dans au / eu.
+        // Si la premiere voyelle est un e ou un i, rien : « Meldüng » n'est pas une faute qu'on fait.
+        const premiere = m.search(/[aeiouAEIOU]/);
+        if(!trema && premiere >= 0 && avecTrema[m[premiere].toLowerCase()] && !(m[premiere] === "u" && /[ae]$/i.test(m.slice(0, premiere)))){
+            const v = avecTrema[m[premiere].toLowerCase()];
+            ajouter("trema", remplacerA(m, premiere, 1, m[premiere] === m[premiere].toUpperCase() ? v.toUpperCase() : v));
+        }
+        chaque(/ß/g, x => ajouter("eszett", remplacerA(m, x.index, 1, "ss")));
+        chaque(/ss/g, x => ajouter("eszett", remplacerA(m, x.index, 2, "ß")));
+        chaque(/([bdfgklmnprst])\1/g, x => ajouter("double", remplacerA(m, x.index, 2, x[1])));
+        chaque(/[aeiouäöü]([bdfglmnprt])[aeiouäöü]/g, x => ajouter("double", remplacerA(m, x.index + 1, 1, x[1] + x[1])));
+        chaque(/ie/g, x => { ajouter("ie", remplacerA(m, x.index, 2, "i")); ajouter("ie", remplacerA(m, x.index, 2, "ei")); });
+        chaque(/ei/g, x => ajouter("ie", remplacerA(m, x.index, 2, "ie")));
+        chaque(/[aeiouäöü]h[lmnr]/g, x => ajouter("dehnung", remplacerA(m, x.index + 1, 1, "")));
+    } else {
+        const sansAccent = { "á": "a", "é": "e", "í": "i", "ó": "o", "ú": "u", "ü": "u" };
+        for(let i = 0; i < m.length; i++) if(sansAccent[m[i]]) ajouter("accent", remplacerA(m, i, 1, sansAccent[m[i]]));
+        chaque(/ñ/g, x => ajouter("enie", remplacerA(m, x.index, 1, "n")));
+        chaque(/b/g, x => ajouter("bv", remplacerA(m, x.index, 1, "v")));
+        chaque(/v/g, x => ajouter("bv", remplacerA(m, x.index, 1, "b")));
+        chaque(/ll/g, x => ajouter("lly", remplacerA(m, x.index, 2, "y")));
+        chaque(/y(?=[aeiouáéíóú])/g, x => ajouter("lly", remplacerA(m, x.index, 1, "ll")));
+        // Le h muet, pas celui de « ch » (« leche » -> « lece » n'est pas une faute qu'on fait).
+        chaque(/h/g, x => { if(m[x.index - 1] !== "c") ajouter("h", remplacerA(m, x.index, 1, "")); });
+        if(/^[aeiouáéíóú]/.test(m)) ajouter("h", "h" + m);
+        chaque(/z/g, x => ajouter("sz", remplacerA(m, x.index, 1, "s")));
+        chaque(/c(?=[eiéí])/g, x => ajouter("sz", remplacerA(m, x.index, 1, "s")));
+        // Le seseo dans l'autre sens : « caza » pour « casa », « cemana » pour « semana ».
+        chaque(/s(?=[aouáóú])/g, x => ajouter("sz", remplacerA(m, x.index, 1, "z")));
+        chaque(/s(?=[eiéí])/g, x => ajouter("sz", remplacerA(m, x.index, 1, "c")));
+        chaque(/m(?=[bp])/g, x => ajouter("mb", remplacerA(m, x.index, 1, "n")));
+        chaque(/y$/g, x => ajouter("lly", remplacerA(m, x.index, 1, "i")));
+        chaque(/g(?=[eiéí])/g, x => ajouter("gj", remplacerA(m, x.index, 1, "j")));
+        chaque(/j(?=[eiéí])/g, x => ajouter("gj", remplacerA(m, x.index, 1, "g")));
+        chaque(/rr/g, x => ajouter("rr", remplacerA(m, x.index, 2, "r")));
+    }
+    return fam;
+}
+
+// Les familles dans l'ordre ou on les prend : d'abord les fautes que cite la
+// decision du 7 nov. (« tréma, lettre doublée, majuscule, article » ; « accent, ñ,
+// b/v, ll/y »), puis les autres.
+const RAPPEL_PRIORITE_FAUTES = {
+    de: ["trema", "eszett", "double", "majuscule", "article", "ie", "dehnung"],
+    es: ["accent", "enie", "bv", "lly", "article", "sz", "gj", "rr", "h", "mb"]
+};
+
+function fautesOrthographe(o, estUnMot){
+    const langue = o.langue === "es" ? "es" : "de";
+    const mot = String(o.mot || "").normalize("NFC").trim();
+    if(!mot) return [];
+    // Le verbe pronominal garde son « sich » : la faute porte sur le verbe.
+    const sich = langue === "de" && /^sich /.test(mot) ? "sich " : "";
+    const coeur = mot.slice(sich.length);
+    const art = o.mode === "nomen" ? String(o.article || "").trim() : "";
+    const artAffiche = art.split(/[\/\s]/)[0] || "";
+    const artsAdmis = art.toLowerCase().replace(/\([^)]*\)/g, " ").split(/[\/\s]+/).filter(Boolean);
+    const avecArt = (m, a) => { const x = a === undefined ? artAffiche : a; return (x ? x + " " : "") + m; };
+    const bonne = avecArt(sich + coeur);
+    const vues = new Set([bonne]);
+    const vuesMin = new Set([normRappel(bonne)]);
+    const valide = (forme, motSeul, memeMot) => {
+        if(vues.has(forme)) return false;
+        // Une variante de majuscule seule a le meme texte en minuscules : c'est
+        // voulu. Les autres ne doivent pas se confondre en minuscules.
+        if(!memeMot && vuesMin.has(normRappel(forme))) return false;
+        if(!memeMot && estUnMot && estUnMot(normRappel(motSeul))) return false;
+        return true;
+    };
+    const fam = variantesMot(coeur, langue);
+    const ordre = RAPPEL_PRIORITE_FAUTES[langue];
+    const familles = Object.keys(fam).sort((a, b) => ordre.indexOf(a) - ordre.indexOf(b));
+    const prendre = f => {
+        const liste = fam[f].slice().sort((a, b) => empreinteRappel(o.cle + "#" + a) - empreinteRappel(o.cle + "#" + b));
+        for(const v of liste){
+            const forme = avecArt(sich + v);
+            if(valide(forme, sich + v, false)){ vues.add(forme); vuesMin.add(normRappel(forme)); return forme; }
+        }
+        return null;
+    };
+    const out = [];
+    const utilisees = new Set();
+    // 1. Une faute d'orthographe, d'abord.
+    for(const f of familles){ const v = prendre(f); if(v){ out.push(v); utilisees.add(f); break; } }
+    // 2. Puis une autre famille : une autre faute, l'article ou la majuscule.
+    const autres = [];
+    if(o.mode === "nomen" && langue === "de" && /^[A-ZÄÖÜ]/.test(coeur)) autres.push("majuscule");
+    if(o.mode === "nomen" && artAffiche && (RAPPEL_ARTICLES[langue] || []).length) autres.push("article");
+    const reste = familles.filter(f => !utilisees.has(f)).concat(autres)
+        .sort((a, b) => ordre.indexOf(a) - ordre.indexOf(b));
+    for(const f of reste){
+        if(out.length >= 2) break;
+        let v = null;
+        if(f === "majuscule"){
+            const forme = avecArt(coeur.charAt(0).toLowerCase() + coeur.slice(1));
+            if(valide(forme, coeur, true)){ v = forme; vues.add(forme); }
+        } else if(f === "article"){
+            const pool = (RAPPEL_ARTICLES[langue] || []).filter(a => artsAdmis.indexOf(a) < 0)
+                .filter(a => langue !== "es" || (/s$/.test(a) === /s$/.test(artAffiche)));
+            const a = pool.sort((x, y) => empreinteRappel(o.cle + "@" + x) - empreinteRappel(o.cle + "@" + y))[0];
+            if(a){
+                const forme = avecArt(coeur, a);
+                if(valide(forme, coeur, true)){ v = forme; vues.add(forme); }
+            }
+        } else v = prendre(f);
+        if(v){ out.push(v); utilisees.add(f); }
+    }
+    // 3. S'il manque encore une forme, une deuxieme faute d'une famille deja prise.
+    for(const f of familles){ if(out.length >= 2) break; const v = prendre(f); if(v) out.push(v); }
+    return out.length >= 2 ? out.slice(0, 2) : [];
+}
+
+// La bonne reponse parmi les leurres ou les fautes, a une place fixe pour ce mot.
+function ordreDesChoix(cleCible, bonne, autres){
+    const tous = [{ texte: bonne, juste: true }].concat(autres.map(l => ({ texte: l.texte || l, juste: false })));
+    return tous.map(c => ({ c: c, k: empreinteRappel(cleCible + "#" + c.texte) }))
+        .sort((a, b) => a.k - b.k).map(x => x.c);
+}
+// LE MOT D'ENCOURAGEMENT (Jacques, 7 nov. : « j'inclurais juste bravo ou quelque
+// chose comme ca. Mais je ne reecrirais pas la computadora. On l'a deja a
+// l'ecran. ») Quatre variantes, ra_bravo_1 a ra_bravo_4, choisies par l'empreinte
+// de la carte : la meme carte dit toujours la meme chose, deux cartes voisines
+// rarement.
+const RAPPEL_NB_BRAVOS = 4;
+function numeroBravo(cle){
+    return 1 + (empreinteRappel("bravo|" + cle) % RAPPEL_NB_BRAVOS);
+}
+
+// LES BOUTONS APRES LE CHOIX (decision du 7 nov. : « les memes boutons que le
+// verso »). Choix juste : « Encore » (j'ai devine : comme le Encore de la carte
+// normale), « Continuer » (le point avance, comme « Je savais ») et « Mettre de
+// cote ». Choix faux : le mot revient de toute facon, donc « Continuer » fait ce
+// que fait « Encore », et « Mettre de cote » reste.
+function boutonsApresChoix(juste){
+    return juste ? ["encore", "continuer", "garde"] : ["continuer", "garde"];
+}
+function jugementDuBouton(juste, bouton){
+    if(boutonsApresChoix(juste).indexOf(bouton) < 0) return null;
+    if(bouton === "garde") return "garde";
+    if(bouton === "encore") return "encore";
+    return juste ? "je_savais" : "encore";
+}
+// ---- RAPPEL ACTIF : LOGIQUE PURE (fin) ----
+
+// ---- Ce qui lit l'etat de l'app ----
+// Le compte « une sur trois » vit le temps d'un paquet (currentCardsFull), et
+// chaque decision est retenue par rang dans la file affichee (currentCards) :
+// redessiner la meme carte (changement de langue) redonne la meme forme.
+let RAPPEL_PAQUET = null;
+let RAPPEL_DEPUIS = RAPPEL_ECART;
+const RAPPEL_DECISIONS = new WeakMap();
+// Les mots du corpus, en minuscules, pour qu'une faute ne soit jamais un vrai mot.
+let RAPPEL_CORPUS = null;
+
+function modeDeLaCarteRappel(it){
+    return (it && it.mode) || flashcardMode;
+}
+function reponseRappel(it){
+    return motDictee({ mode: modeDeLaCarteRappel(it), word: it.word });
+}
+function sensRappel(it){
+    const m = modeDeLaCarteRappel(it);
+    if(m === "verben") return texteTraduit(it.word, "traduction");
+    if(m === "nomen") return texteCarte(it.word, "nomen", "traduction");
+    return texteCarte(it.word, m, "traduction");
+}
+function depRappel(){
+    return {
+        etat: it => getWordState(it.themeId, it.index),
+        reponse: reponseRappel,
+        sens: sensRappel,
+        mode: modeDeLaCarteRappel
+    };
+}
+function corpusRappel(){
+    if(RAPPEL_CORPUS && RAPPEL_CORPUS.langue === LANGUE_APPRISE && RAPPEL_CORPUS.n > 0) return RAPPEL_CORPUS.mots;
+    const mots = new Set();
+    const ajouter = t => String(t || "").split(/[\s\/,]+/).forEach(x => { const n = normRappel(x); if(n) mots.add(n); });
+    const prendre = it => {
+        if(!it || !it.word) return;
+        const w = it.word;
+        if(Array.isArray(w)){ ajouter(w[0]); if(modeDeLaCarteRappel(it) === "nomen"){ ajouter(w[2]); ajouter(w[8]); } }
+        else { ajouter(w.infinitif); try{ formesPresent(w).forEach(ajouter); }catch(e){} }
+    };
+    let n = 0;
+    try{ NIVEAUX_CECR.forEach(niv => { (paquetDuNiveau(niv) || []).forEach(it => { prendre(it); n++; }); }); }catch(e){}
+    (currentCardsFull || []).forEach(prendre);
+    RAPPEL_CORPUS = { langue: LANGUE_APPRISE, mots: mots, n: n };
+    return mots;
+}
+
+// La carte peut-elle demander le mot, abstraction faite du tour ?
+function carteEligibleRappel(item){
+    if(!essaiActif("rappel_actif")) return false;
+    if(LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "es") return false;
+    if(!frontIsFrench || getLearningDirection() === "en") return false;
+    if(dansLePaquetGarde() || decouverteEnCours() || paquetTermine()) return false;
+    if(!item || !item.word || RAPPEL_MODES.indexOf(modeDeLaCarteRappel(item)) < 0) return false;
+    // Une carte d'une serie de Tout le contenu (item.exo, harmonisation des exercices,
+    // 7 nov.) garde le geste de sa serie. item.exo est le rang dans la serie, a partir
+    // de 0 : on teste sa presence, pas sa valeur.
+    if(item.exo !== undefined) return false;
+    // Une paire de contraires (« ehrlich/unehrlich ») ne se choisit pas.
+    if(/\//.test(reponseRappel(item))) return false;
+    return !!formeSelonPoints(pointsRappel(getWordState(item.themeId, item.index)));
+}
+
+// Les deux autres choix d'une carte active, selon sa forme. Une orthographe sans
+// deux fautes possibles retombe sur les leurres proches.
+function choixAutresRappel(item, forme, cleCarte){
+    const pool = (currentCardsFull || []).concat(currentCards || []);
+    if(forme === "orthographe"){
+        const w = item.word;
+        const mot = Array.isArray(w) ? w[0] : (w && w.infinitif);
+        // Le mot lui-meme n'est pas « un autre mot » ; son pluriel, si (« die Mütter »
+        // n'est pas une faute de « die Mutter »).
+        const soi = new Set([normRappel(mot)]);
+        const corpus = corpusRappel();
+        const fautes = fautesOrthographe({ langue: LANGUE_APPRISE, mode: modeDeLaCarteRappel(item), mot: mot,
+            article: Array.isArray(w) ? w[1] : "", cle: cleCarte }, f => !soi.has(f) && corpus.has(f));
+        if(fautes.length >= 2) return { forme: "orthographe", autres: fautes.map(t => ({ texte: t })) };
+        forme = "proches";
+    }
+    const leurres = leurresDejaVus(item, pool, 2, depRappel(), forme === "proches");
+    return leurres.length >= 2 ? { forme: forme, autres: leurres } : null;
+}
+
+function cacherRappelActif(){
+    const zone = document.getElementById("flashcards");
+    if(zone) zone.classList.remove("en-rappel", "ra-juge", "ra-faux");
+    const el = document.getElementById("rappelActif");
+    if(el){ el.classList.add("hidden"); el.textContent = ""; }
+}
+
+// Appelee a la fin de loadFlashcard(), la carte deja dessinee (cachee derriere).
+function preparerRappelActif(item){
+    if(currentCardsFull !== RAPPEL_PAQUET){ RAPPEL_PAQUET = currentCardsFull; RAPPEL_DEPUIS = RAPPEL_ECART; }
+    let memo = RAPPEL_DECISIONS.get(currentCards);
+    if(!memo){ memo = new Map(); RAPPEL_DECISIONS.set(currentCards, memo); }
+    const cleCarte = item.themeId + ":" + item.index;
+    let dec = memo.get(currentFlashcard);
+    if(!dec || dec.cle !== cleCarte){
+        dec = { cle: cleCarte, forme: null, autres: [] };
+        const eligible = carteEligibleRappel(item);
+        let choix = null;
+        if(eligible && RAPPEL_DEPUIS >= RAPPEL_ECART){
+            const st = getWordState(item.themeId, item.index);
+            choix = choixAutresRappel(item, formeSelonPoints(pointsRappel(st)), cleCarte);
+        }
+        const tour = tourDuRappel(RAPPEL_DEPUIS, eligible, !!choix);
+        RAPPEL_DEPUIS = tour.depuis;
+        if(tour.active){ dec.forme = choix.forme; dec.autres = choix.autres; }
+        memo.set(currentFlashcard, dec);
+    }
+    if(!dec.forme || dec.fait) return;
+    montrerRappelActif(item, dec);
+}
+
+function montrerRappelActif(item, dec){
+    const zone = document.getElementById("flashcards");
+    const el = document.getElementById("rappelActif");
+    if(!zone || !el) return;
+    const langue = LANGUE_APPRISE === "es" ? "es" : "de";
+    const creer = (tag, cls, texte) => {
+        const n = document.createElement(tag);
+        if(cls) n.className = cls;
+        if(texte !== undefined) n.textContent = texte;
+        return n;
+    };
+    const st = getWordState(item.themeId, item.index);
+    const bonne = reponseRappel(item);
+    const recto = document.getElementById("flashWord");
+    const question = recto ? recto.textContent : sensRappel(item);
+    el.textContent = "";
+    el.classList.remove("hidden");
+    zone.classList.add("en-rappel");
+    // dir="auto" : chaque texte garde sa ponctuation a sa place dans une interface
+    // de droite a gauche.
+    const consigne = creer("div", "cp-type", t(dec.forme === "orthographe" ? "ra_consigne_orthographe" : "ra_consigne_choisir"));
+    consigne.setAttribute("dir", "auto");
+    el.appendChild(consigne);
+    const motQ = creer("div", "ra-mot", question);
+    motQ.setAttribute("dir", "auto");
+    el.appendChild(motQ);
+    const corps = creer("div", "ra-corps");
+    el.appendChild(corps);
+    installerBoutonsRappel();
+
+    // Le verdict : la reponse, l'ecart s'il s'agissait d'orthographe, puis les
+    // boutons du verso (#flashcardActions), les memes et a la meme place.
+    const conclure = (juste, choisi) => {
+        if(dec.fait) return;
+        dec.fait = true;
+        corps.querySelectorAll("button").forEach(n => { n.disabled = true; });
+        const v = creer("div", "cp-retour ra-verdict " + (juste ? "bon" : "faux"));
+        // Juste : le bouton choisi est deja vert, la reponse deja a l'ecran -- un mot
+        // court suffit. Faux : la bonne reponse, ecrite, avec l'ecart surligne.
+        const titre = creer("b", "ra-titre", t(juste ? "ra_bravo_" + numeroBravo(dec.cle) : "ra_faux"));
+        titre.setAttribute("dir", "auto");
+        v.appendChild(titre);
+        if(!juste){
+            const rep = creer("div", "ra-rep");
+            rep.setAttribute("lang", langue);
+            rep.setAttribute("dir", "ltr");
+            if(dec.forme === "orthographe" && choisi){
+                ecartLettresRappel(choisi, bonne).forEach(x => {
+                    if(x.diff) rep.appendChild(creer("u", "", x.c));
+                    else rep.appendChild(document.createTextNode(x.c));
+                });
+            } else rep.textContent = bonne;
+            v.appendChild(rep);
+        }
+        if(!juste && choisi){
+            const expl = creer("small", "", tf("ra_tu_as_choisi", { s: choisi }));
+            expl.setAttribute("dir", "auto");
+            v.appendChild(expl);
+        }
+        corps.appendChild(v);
+        // Sur un choix faux, les points de « Continuer » sont caches (il remet le mot
+        // dans 2 minutes) : l'echeance se lit ici.
+        if(!juste){
+            const ligne = creer("div", "ra-points faux");
+            ligne.appendChild(creer("span", "ra-echeance", tf("echeance_encore", { n: SRS_ENCORE_MINUTES })));
+            corps.appendChild(ligne);
+        }
+        zone.classList.add("ra-juge");
+        zone.classList.toggle("ra-faux", !juste);
+        const actions = document.getElementById("flashcardActions");
+        if(actions){
+            actions.dataset.raJuste = juste ? "1" : "0";
+            try{ majEcheances(); }catch(e){}
+            actions.classList.remove("hidden");
+            try{ resizeFlashcard(); }catch(e){}
+            const bon = actions.querySelector(".judge-good");
+            try{ if(bon) bon.focus({ preventScroll: true }); }catch(e){}
+        }
+        // Le mot dit par la voix de l'app. (Les confettis et leur son viennent au
+        // « Continuer », avec reviewGood().)
+        setTimeout(() => { if(el.isConnected && !el.classList.contains("hidden")){ try{ direAllemand(bonne); }catch(e){} } }, 150);
+    };
+
+    const box = creer("div", "cp-choix ra-choix");
+    box.setAttribute("lang", langue);
+    ordreDesChoix(dec.cle, bonne, dec.autres).forEach(ch => {
+        const b = creer("button", "", ch.texte);
+        b.type = "button";
+        b.setAttribute("dir", "ltr");
+        if(ch.juste) b.dataset.juste = "1";
+        b.addEventListener("click", () => {
+            if(dec.fait) return;
+            b.classList.add(ch.juste ? "bon" : "faux");
+            box.querySelectorAll("button").forEach(x => {
+                if(x.dataset.juste) x.classList.add("bon"); else if(x !== b) x.classList.add("pale");
+            });
+            conclure(ch.juste, ch.juste ? "" : ch.texte);
+        });
+        box.appendChild(b);
+    });
+    corps.appendChild(box);
+}
+
+// Les boutons du verso, sur une carte active : ils gardent leurs fonctions
+// (reviewAgain, reviewGood, basculerGardeCarte) ; seul « Continuer » apres un choix
+// faux agit comme « Encore ». Un ecouteur pose une fois, en capture, sur
+// #flashcardActions : il passe avant le onclick du bouton et ne fait rien hors
+// d'une carte active.
+let BOUTONS_RAPPEL_POSES = false;
+function installerBoutonsRappel(){
+    if(BOUTONS_RAPPEL_POSES) return;
+    const actions = document.getElementById("flashcardActions");
+    if(!actions) return;
+    BOUTONS_RAPPEL_POSES = true;
+    actions.addEventListener("click", e => {
+        const zone = document.getElementById("flashcards");
+        if(!zone || !zone.classList.contains("ra-juge")) return;
+        const b = e.target && e.target.closest ? e.target.closest(".judge-button") : null;
+        if(!b) return;
+        const bouton = b.classList.contains("judge-again") ? "encore"
+                     : b.classList.contains("judge-good") ? "continuer"
+                     : b.classList.contains("judge-garde") ? "garde" : null;
+        if(!bouton) return;
+        const j = jugementDuBouton(actions.dataset.raJuste === "1", bouton);
+        // Le bouton fait deja ce qu'il faut : on le laisse faire.
+        if(j === "garde" || (j === "encore" && bouton === "encore") || (j === "je_savais" && bouton === "continuer")) return;
+        e.stopPropagation();
+        e.preventDefault();
+        if(j === "encore") reviewAgain();
+    }, true);
 }
 
 // LE PAQUET EST-IL DEJA FINI ? La carte reste a l'ecran quand showFlashcardEnd()
@@ -56704,7 +57570,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1127;
+const APP_VERSION = 1134;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -58705,6 +59571,8 @@ function neufsRestantsDansPaquet(){
 // Relance la seance avec la dose suivante, sans quitter le paquet.
 function encoreDesMotsNeufs(){
     if(currentTheme && currentTheme.id === "seance_premiers_pas"){ hideFlashcardEnd(); ouvrirPremiersPas(SUPPLEMENT_SEANCE); return; }
+    // Essai « seance_legere » : en seance du jour, le bouton ouvre une seance entiere de plus.
+    if(seanceLegere() && estSeanceDuJourOuverte()){ encoreUneSeance(); return; }
     const t2 = trancheSupplementaire();
     // La dose du jour ne s'applique qu'aux MOTS NEUFS. Eponger du retard n'en
     // consomme pas : ce sont des mots deja rencontres.
@@ -58766,6 +59634,9 @@ const TAILLE_SEANCE_MAX = 140;
 // matin, objectif a cent : la seance en sert soixante. Un seul nombre commande
 // la journee, quelle que soit la porte par laquelle on travaille.
 function tailleSeance(){
+    // Essai « seance_legere » (decision 96e3fa0) : une lecon de taille fixe. L'objectif regle et ce qui a deja
+    // ete fait aujourd'hui ne la changent plus ; « Encore une seance » en ouvre une autre de la meme taille.
+    if(seanceLegere()) return TAILLE_LECON;
     let cible = DEFAULT_DAILY_GOAL_TARGET, fait = 0;
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
     try{ fait = getDailyActivityCount() || 0; }catch(e){}
@@ -58774,6 +59645,366 @@ function tailleSeance(){
     return Math.max(5, Math.min(TAILLE_SEANCE_MAX, cible - fait));
 }
 const SUPPLEMENT_SEANCE = 20;
+
+// ============ LA SEANCE LEGERE (essai « seance_legere », 6 nov. 2026, decisions 96e3fa0 et d9d9dbd) ============
+// Jacques : « on ne met plus d'objectifs du jour, de quantite » ; « il faut aussi toujours que si l'etudiant veut
+// etudier plus, que ca soit facile de continuer ». La seance du jour est une lecon de taille fixe ; a la fin,
+// « Encore une seance » en ouvre une autre (de nouveaux mots, les revisions restantes), sans limite. Le nombre de
+// seances finies aujourd'hui (le « ×2 » de la maquette) se garde ici et repart a zero le lendemain.
+// ⚠️ La scene ET le theme dans chaque lecon attendent le correctif de l'insertion (ORDRE_PARTS,
+// insererThemeIllustre) de la session du plan de seance : cette version n'y touche pas.
+const TAILLE_LECON = 20;
+const THEME_COURT_NB = 4;   // le theme court de la lecon : quatre questions (parametre nb des pages de themes)
+const SEANCES_LEGERES_KEY = PREFIXE_STOCKAGE + "seancesLegeres";
+function seanceLegere(){
+    try{ return essaiActif("seance_legere") && !seanceJaponaise(); }catch(e){ return false; }
+}
+function seancesFiniesAujourdhui(){
+    let v = null;
+    try{ v = JSON.parse(localStorage.getItem(SEANCES_LEGERES_KEY) || "null"); }catch(e){ v = null; }
+    return (v && v.j === getTodayStr()) ? (v.n || 0) : 0;
+}
+// Une seance finie compte une fois : l'ecran de fin peut se reafficher pour le meme paquet.
+let PAQUET_LEGER_COMPTE = null;
+function noterSeanceLegereFinie(paquet){
+    if(!paquet || PAQUET_LEGER_COMPTE === paquet) return seancesFiniesAujourdhui();
+    PAQUET_LEGER_COMPTE = paquet;
+    const n = seancesFiniesAujourdhui() + 1;
+    try{ localStorage.setItem(SEANCES_LEGERES_KEY, JSON.stringify({ j: getTodayStr(), n: n })); }catch(e){}
+    return n;
+}
+function estSeanceDuJourOuverte(){
+    return !!(currentTheme && String(currentTheme.id).indexOf("seance_") === 0 && currentTheme.id !== "seance_premiers_pas");
+}
+// « Encore une seance » : une lecon entiere de plus, rouverte depuis l'etat du jour. Une dose de mots
+// nouveaux s'ouvre pour elle (le plafond du jour la refuserait sinon) ; les revisions restantes suivent.
+function encoreUneSeance(){
+    hideFlashcardEnd();
+    try{ ajouterSerieNeufs(); }catch(e){}
+    try{ ouvrirSeanceDuJour(true); }catch(e){}
+}
+
+// ============ LA NOUVELLE ETOILE (essai seance_legere, 7 nov. 2026) ============
+// Jacques trouvait la constellation de la carte trop petite pour qu'on la remarque. La carte reste discrete ;
+// quand une etape se termine, un plein ecran au modele de la fete du tableau. Variante A retenue le 7 nov.
+// (« Pour l'etoile, je mettrai le A ») sur la maquette https://claude.ai/artifact/7r3z85teAW1gAfz8NxXFhJ :
+//   - le ciel du soir (mode clair) ou la nuit (mode sombre), la constellation en grand, la figure a venir en
+//     pointille ; le trait se dessine jusqu'a l'etoile, l'etoile s'allume ;
+//   - au moment ou elle prend son ampleur : « N / M » dans la pastille ambree, le nom de la constellation,
+//     et a cote de l'etoile son nom avec sa distance dessous (« Pollux », « a 34 annees-lumiere ») ;
+//   - le groupe, le nom de l'etape, « Tu sais maintenant… » (je-sais.json), un seul bouton « Continuer » ;
+//   - la derniere etoile du groupe : une vague de lumiere et le nom de la figure dans la langue apprise.
+// UNE SEULE FETE PAR FIN DE SEANCE : l'etoile passe d'abord ; un tableau complete pendant la seance attend
+// la fin de la seance, et le lendemain si l'etoile a eu la sienne ce jour-la.
+// Les donnees : etoiles/ciel.json (DERIVE : python etoiles/outils/construire.py ; mesures de SIMBAD, chaque
+// etoile avec sa reference). Seuls les groupes de l'A1 voyage ont leur figure pour l'instant (les 12 escales :
+// les Gemeaux ; la suite de 10 etapes : Orion). La fete de la planete (le dernier jour d'un niveau, un seul
+// ecran en deux temps) viendra avec les planetes (version 4).
+const ETOILE_ATTENTE_KEY = PREFIXE_STOCKAGE + "etoileAttente";
+const TABLEAU_ATTENTE_KEY = PREFIXE_STOCKAGE + "tableauAttente";
+const ETOILE_FETEE_KEY = PREFIXE_STOCKAGE + "etoileFetee";
+function etoileLire(k){
+    try{ const v = JSON.parse(localStorage.getItem(k) || "null"); return (v && typeof v === "object") ? v : null; }
+    catch(e){ return null; }
+}
+function etoileEcrire(k, v){
+    try{ if(v) localStorage.setItem(k, JSON.stringify(v)); else localStorage.removeItem(k); }catch(e){}
+}
+function seanceLegereDuJour(){
+    try{ return seanceLegere() && estSeanceDuJourOuverte(); }catch(e){ return false; }
+}
+// La carte « fin d'escale » (ou le jalon de la 12e) vient de s'afficher : l'etape est faite, son etoile
+// attend la fin de la seance.
+function noterEtoileFinEtape(item){
+    if(!item || !item.lieu || typeof item.n !== "number") return;
+    const total = item.enSuite ? suiteA1Voyage().length : escalesA1Voyage().length;
+    etoileEcrire(ETOILE_ATTENTE_KEY, { g: item.enSuite ? "a1_suite" : "a1_escales", n: item.n, total: total,
+                                       id: item.lieu.id || "", s: item.lieu.s || "", j: getTodayStr() });
+}
+// Le dernier carreau d'un tableau pose pendant la seance legere : sa fete attend la fin de la seance.
+function differerFeteTableau(v){
+    if(!(seanceSuivie && seanceLegereDuJour())) return false;
+    etoileEcrire(TABLEAU_ATTENTE_KEY, { r: v.r, numero: ((v && v.g) || []).length + 1, t: Date.now() });
+    return true;
+}
+function montrerTableauDiffere(tb){
+    chargerMosaiques().then(() => {
+        if(!MOSAIQUES || !MOSAIQUES.length) return;
+        const m = MOSAIQUES[(Math.max(1, tb.r) - 1) % MOSAIQUES.length];
+        if(m) imageMosaique(m).then(img => feteTableau(m, img, tb.numero), () => {});
+    }).catch(() => {});
+}
+// L'ecran de fin de la seance legere : l'etoile, sinon le tableau qui attend (pas le jour d'une etoile).
+function fetesFinSeanceLegere(){
+    const auj = getTodayStr();
+    const et = etoileLire(ETOILE_ATTENTE_KEY);
+    if(et){
+        etoileEcrire(ETOILE_ATTENTE_KEY, null);
+        etoileEcrire(ETOILE_FETEE_KEY, { j: auj });
+        feteEtoile(et);
+        return;
+    }
+    const tb = etoileLire(TABLEAU_ATTENTE_KEY);
+    const fetee = etoileLire(ETOILE_FETEE_KEY);
+    if(tb && !(fetee && fetee.j === auj)){
+        etoileEcrire(TABLEAU_ATTENTE_KEY, null);
+        montrerTableauDiffere(tb);
+    }
+}
+
+let CIEL = null, chargementCiel = null, JE_SAIS = null, chargementJeSais = null;
+function chargerCiel(){
+    if(CIEL) return Promise.resolve(CIEL);
+    if(!chargementCiel){
+        chargementCiel = fetch(cacheBustedUrl(RACINE_DEPOT + "etoiles/ciel.json"), { cache: "no-cache" })
+            .then(r => r.ok ? r.json() : null)
+            .then(d => { CIEL = (d && d.constellations) ? d : null; return CIEL; })
+            .catch(() => null)
+            .finally(() => { if(!CIEL) chargementCiel = null; });
+    }
+    return chargementCiel;
+}
+function chargerJeSais(){
+    if(JE_SAIS) return Promise.resolve(JE_SAIS);
+    if(!chargementJeSais){
+        chargementJeSais = fetch(urlDonnees("je-sais.json"), { cache: "no-cache" })
+            .then(r => r.ok ? r.json() : null)
+            .then(d => { JE_SAIS = (d && d.amorces) ? d : null; return JE_SAIS; })
+            .catch(() => null)
+            .finally(() => { if(!JE_SAIS) chargementJeSais = null; });
+    }
+    return chargementJeSais;
+}
+// « a 34 annees-lumiere » dans la langue d'interface : le pluriel et les chiffres viennent du navigateur.
+function phraseDistanceEtoile(e){
+    const lg = getUiLang();
+    const T = (CIEL.textes_distance && (CIEL.textes_distance[lg] || CIEL.textes_distance.en)) || null;
+    if(!T || !e || !e.affiche) return "";
+    let n = String(e.affiche);
+    try{ n = new Intl.NumberFormat(lg).format(e.affiche); }catch(x){}
+    let f = T.other;
+    if(e.environ) f = T.environ || T.other;
+    else { try{ f = T[new Intl.PluralRules(lg).select(e.affiche)] || T.other; }catch(x){} }
+    return f.replace("{n}", n);
+}
+function nomFigure(c, lg){ return (c.noms && (c.noms[lg] || c.noms.en || c.noms.fr)) || ""; }
+// Une etoile sans nom propre : la lettre grecque et la constellation, selon l'usage de la langue (« Tau des
+// Gemeaux », « Tau Geminorum ») ; voir SANS_NOM dans etoiles/outils/figures.py.
+function nomEtoileAffiche(e, lg){ return (e.noms && (e.noms[lg] || e.noms.en)) || e.nom; }
+function etincelleChemin(x, y, R){
+    const ri = R * .3, f = v => v.toFixed(1);
+    return "M" + f(x) + " " + f(y - R) + "L" + f(x + ri) + " " + f(y - ri) + "L" + f(x + R) + " " + f(y) + "L" + f(x + ri) + " " + f(y + ri)
+         + "L" + f(x) + " " + f(y + R) + "L" + f(x - ri) + " " + f(y + ri) + "L" + f(x - R) + " " + f(y) + "L" + f(x - ri) + " " + f(y - ri) + "Z";
+}
+// Le nom et la distance a cote de l'etoile, la ou ils ne coupent aucun trait allume et ne touchent aucune etoile
+// (ils peuvent passer sur les pointilles de la figure a venir) : a droite, au-dessus, au-dessous, a gauche, en
+// diagonale, et a defaut la place libre la plus proche (90 px au plus). Les largeurs sont mesurees.
+function placerEtiquetteEtoile(P, rayons, traits, i, largeur, hauteur, marge, W, H){
+    const x = P[i].x, y = P[i].y, w = largeur, h = hauteur, d = marge;
+    function coupe(a, b, bb){
+        const dx = b.x - a.x, dy = b.y - a.y;
+        let t0 = 0, t1 = 1;
+        const pq = [[-dx, a.x - bb[0]], [dx, bb[2] - a.x], [-dy, a.y - bb[1]], [dy, bb[3] - a.y]];
+        for(const [p, q] of pq){
+            if(p === 0){ if(q < 0) return false; }
+            else { const t = q / p; if(p < 0) t0 = Math.max(t0, t); else t1 = Math.min(t1, t); if(t0 > t1) return false; }
+        }
+        return true;
+    }
+    function touche(cx, cy, r, bb){
+        const nx = Math.min(Math.max(cx, bb[0]), bb[2]), ny = Math.min(Math.max(cy, bb[1]), bb[3]);
+        return (nx - cx) * (nx - cx) + (ny - cy) * (ny - cy) < r * r;
+    }
+    function collisions(bx, by){
+        const bb = [bx - 3, by - 3, bx + w + 3, by + h + 3];
+        let n = 0;
+        traits.forEach(([a, b]) => { if(coupe(P[a], P[b], bb)) n++; });
+        P.forEach((p, j) => { if(j !== i && touche(p.x, p.y, rayons[j] + 5, bb)) n++; });
+        return n;
+    }
+    const dans = (bx, by) => bx >= 8 && bx + w <= W - 8 && by >= 6 && by + h <= H - 36;
+    const cands = [["start", x + d, y - h / 2], ["middle", x - w / 2, y - d - h], ["middle", x - w / 2, y + d], ["end", x - d - w, y - h / 2],
+                   ["start", x + d * .7, y + d * .7], ["start", x + d * .7, y - d * .7 - h], ["end", x - d * .7 - w, y + d * .7], ["end", x - d * .7 - w, y - d * .7 - h]];
+    let choix = null;
+    for(let [ancre, bx, by] of cands){
+        if(ancre === "middle") bx = Math.min(Math.max(bx, 8), W - 8 - w);
+        if(!dans(bx, by)) continue;
+        const n = collisions(bx, by);
+        if(!choix || n < choix.n) choix = { n: n, bx: bx, by: by, ancre: ancre };
+        if(n === 0) break;
+    }
+    if(!choix || choix.n > 0){
+        let mieux = null;
+        for(let gy = 6; gy + h <= H - 36; gy += 3){
+            for(let gx = 8; gx + w <= W - 8; gx += 3){
+                const nx = Math.min(Math.max(x, gx - 3), gx + w + 3), ny = Math.min(Math.max(y, gy - 3), gy + h + 3);
+                const dist = Math.hypot(nx - x, ny - y);
+                if(dist < d * .8 || dist > 90 || (mieux && dist >= mieux.dist)) continue;
+                if(collisions(gx, gy) === 0) mieux = { dist: dist, bx: gx, by: gy };
+            }
+        }
+        if(mieux) choix = { n: 0, bx: mieux.bx, by: mieux.by, ancre: mieux.bx >= x ? "start" : (mieux.bx + w <= x ? "end" : "middle") };
+    }
+    if(!choix) choix = { bx: Math.min(Math.max(x - w / 2, 8), W - 8 - w), by: Math.max(6, y - d - h), ancre: "middle" };
+    const tx = choix.ancre === "start" ? choix.bx : (choix.ancre === "end" ? choix.bx + w : choix.bx + w / 2);
+    return { x: tx, y: choix.by + 14 * .8, ancre: choix.ancre };
+}
+function svgConstellationFete(c, n, fin, nomEt, distEt){
+    const W = (CIEL.boite && CIEL.boite[0]) || 375, H = (CIEL.boite && CIEL.boite[1]) || 372;
+    const P = c.etoiles, lit = i => i <= n;
+    const f = v => (+v).toFixed(1);
+    const out = ['<svg class="fe-svg" viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true">'];
+    c.traits.forEach(([a, b]) => out.push('<line class="fe-avenir" x1="' + f(P[a].x) + '" y1="' + f(P[a].y) + '" x2="' + f(P[b].x) + '" y2="' + f(P[b].y) + '"/>'));
+    c.traits.forEach(([a, b]) => {
+        if(a < n && b < n) out.push('<line class="fe-trait" x1="' + f(P[a].x) + '" y1="' + f(P[a].y) + '" x2="' + f(P[b].x) + '" y2="' + f(P[b].y) + '"/>');
+    });
+    // le trait qui mene a l'etoile neuve, depuis une etoile deja allumee
+    c.traits.forEach(([a, b]) => {
+        if((a === n && b < n) || (b === n && a < n)){
+            const o = a === n ? b : a;
+            out.push('<line class="fe-trait fe-n-trait" pathLength="1" x1="' + f(P[o].x) + '" y1="' + f(P[o].y) + '" x2="' + f(P[n].x) + '" y2="' + f(P[n].y) + '"/>');
+            out.push('<g class="fe-tete" style="--x1:' + f(P[o].x) + 'px;--y1:' + f(P[o].y) + 'px;--x2:' + f(P[n].x) + 'px;--y2:' + f(P[n].y) + 'px">'
+                     + '<circle class="fe-tete-h" r="7"/><circle class="fe-tete-c" r="2.2"/></g>');
+        }
+    });
+    const rayons = P.map((e, i) => e.r * (lit(i) ? 3.0 : 1.4));
+    let etiq = "";
+    P.forEach((e, i) => {
+        const x = e.x, y = e.y;
+        if(i === n){
+            const R = e.r * 1.25;
+            out.push('<g class="fe-neuve"><circle class="fe-onde" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 7) + '"/>'
+                     + '<circle class="fe-onde fe-o2" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 4.4) + '"/>'
+                     + '<g class="fe-astre-n" style="transform-origin:' + f(x) + 'px ' + f(y) + 'px">'
+                     + '<circle class="fe-halo fe-h1" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 5.4) + '"/>'
+                     + '<circle class="fe-halo fe-h2" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 3) + '"/>'
+                     + '<circle class="fe-halo fe-h3" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 1.8) + '"/>'
+                     + '<path class="fe-rayons" d="' + etincelleChemin(x, y, R * 5.2) + '"/>'
+                     + '<circle class="fe-coeur" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R) + '" style="fill:' + e.couleur + '"/></g>'
+                     + '<circle class="fe-pouls" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 2.6) + '"/></g>');
+            // la place du nom et de la distance, mesures dans la police de l'app
+            let w = 150;
+            try{
+                const cv = document.createElement("canvas").getContext("2d");
+                cv.font = "900 14px Nunito, system-ui, sans-serif"; const w1 = cv.measureText(nomEt).width;
+                cv.font = "700 14px Nunito, system-ui, sans-serif"; const w2 = distEt ? cv.measureText(distEt).width : 0;
+                w = Math.max(w1, w2);
+            }catch(x2){}
+            const hh = distEt ? 17 + 14 : 14;
+            const pl = placerEtiquetteEtoile(P, rayons, c.traits.filter(([a, b]) => lit(a) && lit(b)), i, w, hh, R * 2.4, W, H);
+            etiq = '<text class="fe-nom-et" x="' + f(pl.x) + '" y="' + f(pl.y) + '" text-anchor="' + pl.ancre + '">'
+                 + '<tspan class="fe-ne-nom" x="' + f(pl.x) + '"></tspan>'
+                 + (distEt ? '<tspan class="fe-ne-dist" x="' + f(pl.x) + '" dy="17"></tspan>' : '') + '</text>';
+        } else if(lit(i)){
+            const d = (2.6 + ((i * 37) % 38) / 10).toFixed(2), o = ((i * 53) % 60 / 10).toFixed(2);
+            out.push('<g class="fe-astre" style="--d:' + d + 's;--o:-' + o + 's;--lum:' + e.lum + ';--i:' + i + '">'
+                     + '<circle class="fe-halo fe-h1" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(e.r * 4.6) + '"/>'
+                     + '<circle class="fe-halo fe-h2" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(e.r * 2.6) + '"/>'
+                     + '<circle class="fe-coeur" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(e.r) + '" style="fill:' + e.couleur + '"/></g>');
+        } else {
+            out.push('<circle class="fe-place" cx="' + f(x) + '" cy="' + f(y) + '" r="2.3"/>');
+        }
+    });
+    out.push(etiq, '</svg>');
+    return out.join("");
+}
+function fondEtoilesFete(Wp, Hp){
+    const n = Math.round(150 * (Wp * Hp) / (375 * 720));
+    const out = ['<svg class="fe-fond" viewBox="0 0 ' + Wp + ' ' + Hp + '" preserveAspectRatio="none" aria-hidden="true">'];
+    for(let k = 0; k < n; k++){
+        const x = 3 + Math.random() * (Wp - 6), y = 3 + Math.random() * (Hp * .78);
+        const r = .3 + 1.15 * Math.pow(Math.random(), 2.6), m = .14 + .55 * Math.pow(Math.random(), 1.7) * (1 - y / Hp * .7);
+        out.push('<circle class="fe-loin" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + r.toFixed(2) + '" style="--d:'
+                 + (4 + Math.random() * 6).toFixed(1) + 's;--o:-' + (Math.random() * 10).toFixed(1) + 's;--m:' + m.toFixed(2) + '"/>');
+    }
+    out.push('</svg>');
+    return out.join("");
+}
+// Le son de l'etoile (decision ba2ffde) : une cloche douce ; a la fin du groupe, l'arpege par-dessus.
+function sonEtoile(delai, fin){
+    if(transitSansSon()) return;
+    const c = getAudioCtx();
+    if(!c) return;
+    try{ c.resume(); }catch(e){}
+    const bus = c.createGain(); bus.gain.value = .16; bus.connect(c.destination);
+    const cloche = (t0, fq, dur) => [[1, .55, 1], [2.0, .22, .7], [3.01, .12, .5], [4.16, .06, .35]].forEach(p => {
+        const o = c.createOscillator(), g = c.createGain();
+        o.type = "sine"; o.frequency.value = fq * p[0];
+        g.gain.setValueAtTime(.0001, t0); g.gain.exponentialRampToValueAtTime(p[1], t0 + .006);
+        g.gain.exponentialRampToValueAtTime(.0001, t0 + dur * p[2]);
+        o.connect(g); g.connect(bus); o.start(t0); o.stop(t0 + dur + .05);
+    });
+    const t = c.currentTime + delai;
+    cloche(t, 1046.5, 1.1);
+    if(fin) [523.25, 659.25, 783.99, 1046.5, 1318.5].forEach((fq, k) => cloche(t + .9 + k * .16, fq, 1.0));
+}
+let feteEtoileOuverte = null;
+function fermerFeteEtoile(){
+    if(!feteEtoileOuverte) return;
+    const f = feteEtoileOuverte; feteEtoileOuverte = null;
+    f.classList.add("fe-part");
+    setTimeout(() => f.remove(), 350);
+}
+async function feteEtoile(et){
+    await Promise.all([chargerCiel(), chargerJeSais()]);
+    if(!CIEL) return;
+    const cle = CIEL.groupes && CIEL.groupes[et.g];
+    const c = cle && CIEL.constellations[cle];
+    if(!c || !(et.n >= 0) || et.n >= c.etoiles.length) return;
+    const n = et.n, total = c.etoiles.length, fin = n === total - 1;
+    const etoile = c.etoiles[n];
+    const lg = getUiLang();
+    const nomEtoile = nomEtoileAffiche(etoile, lg);
+    const distance = phraseDistanceEtoile(etoile);
+    const voile = document.createElement("div");
+    voile.className = "fete-etoile" + (fin ? " fe-fin" : "");
+    voile.setAttribute("role", "dialog");
+    voile.setAttribute("aria-modal", "true");
+    voile.setAttribute("aria-label", t("etoile_aria"));
+    const Wp = Math.max(320, window.innerWidth || 375), Hp = Math.max(480, window.innerHeight || 720);
+    voile.innerHTML = fondEtoilesFete(Wp, Hp)
+        + '<div class="fe-scene"><div class="fe-cst">' + svgConstellationFete(c, n, fin, nomEtoile, distance) + '</div>'
+        + '<p class="fe-cnom"></p><p class="fe-compte"><svg class="fe-cp-et" viewBox="0 0 20 20" aria-hidden="true">'
+        + '<path d="M10 0L12.6 7.4L20 10L12.6 12.6L10 20L7.4 12.6L0 10L7.4 7.4Z"/></svg><span class="fe-cp-n"></span></p>'
+        + '<div class="fe-txt"><p class="fe-sur"></p><p class="fe-titre"></p><p class="fe-ligne"></p></div>'
+        + '<button class="fe-btn" type="button"></button></div>';
+    // les textes, par textContent (aucun texte de donnees dans le HTML)
+    const q = s => voile.querySelector(s);
+    const nomUi = nomFigure(c, lg), nomAppris = nomFigure(c, LANGUE_APPRISE);
+    q(".fe-cnom").textContent = nomUi;
+    if(fin && nomAppris && nomAppris !== nomUi){ const i = document.createElement("i"); i.textContent = " · " + nomAppris; q(".fe-cnom").appendChild(i); }
+    q(".fe-cp-n").textContent = (n + 1) + " / " + total;
+    q(".fe-compte").setAttribute("aria-label", tf("etoile_compte", { n: n + 1, t: total }));
+    const nomEt = q(".fe-ne-nom"); if(nomEt) nomEt.textContent = nomEtoile;
+    const distEt = q(".fe-ne-dist"); if(distEt) distEt.textContent = distance;
+    const groupe = t(et.g === "a1_suite" ? "av_moitie_2" : "av_moitie_1");
+    q(".fe-sur").textContent = fin ? groupe + " · " + t("etoile_groupe_complet") : groupe;
+    q(".fe-titre").textContent = sensPremiersPas(et.s);
+    const sais = JE_SAIS && JE_SAIS.a1 && JE_SAIS.a1[et.id];
+    const amorce = JE_SAIS && JE_SAIS.amorces && JE_SAIS.amorces.maintenant;
+    if(sais && amorce){
+        const l = q(".fe-ligne");
+        l.appendChild(document.createTextNode(sensPremiersPas(amorce).replace(/[\s…]+$/, "").replace(/\.\.\.$/, "") + " "));
+        const b = document.createElement("b"); b.textContent = sensPremiersPas(sais); l.appendChild(b);
+        l.appendChild(document.createTextNode("."));
+    }
+    const btn = q(".fe-btn");
+    btn.textContent = t("pp_fin_bouton");
+    btn.addEventListener("click", fermerFeteEtoile);
+    voile.addEventListener("keydown", e => { if(e.key === "Escape") fermerFeteEtoile(); });
+    // l'ecran de la maquette (375 x 720) mis a la taille du telephone
+    const k = Math.min(Wp / 375, Hp / 720);
+    const sc = q(".fe-scene");
+    sc.style.transform = "translate(-50%, -50%) scale(" + k.toFixed(3) + ")";
+    fermerFeteEtoile();
+    document.body.appendChild(voile);
+    feteEtoileOuverte = voile;
+    try{ noterInterruptionSeance(); }catch(e){}
+    const reduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(!reduit) requestAnimationFrame(() => voile.classList.add("fe-joue"));
+    try{ sonEtoile(reduit ? 0 : 1.3, fin); }catch(e){}
+    setTimeout(() => { try{ btn.focus({ preventScroll: true }); }catch(e){} }, reduit ? 0 : 2800);
+}
 
 function cle(it){ return it.themeId + ":" + it.index; }
 
@@ -59604,7 +60835,7 @@ function poserCarreau(sansSon){
     ecrireMosaique(v);
     majMosaiqueAccueil();
     // v1062 : LE DERNIER CARREAU LANCE LA FETE, sous les yeux, la ou on est (voir feteTableau).
-    if(v.c === MOSAIQUE_CARREAUX && v.g.indexOf(v.r) < 0){ try{ lancerFeteTableau(v); }catch(e){} }
+    if(v.c === MOSAIQUE_CARREAUX && v.g.indexOf(v.r) < 0){ try{ if(!differerFeteTableau(v)) lancerFeteTableau(v); }catch(e){} }
     // v849-v855 : une petite mosaique se montrait ici, a chaque carreau (essai
     // carreau_partout). RETIREE EN v856. Jacques : « a chaque fois qu'on tourne
     // une carte, ca peut devenir irritant » -- puis « je reviendrais aux
@@ -60177,6 +61408,10 @@ function majVignetteTableau(canvas, faits, total, fini){
     const sous = document.getElementById("tableauSous");
     const pct = tf("tableau_pct", { p: Math.round(Math.min(1, faits / Math.max(1, total)) * 100) });
     if(sous) sous.textContent = pct;
+    // 7 nov. 2026 : la meme image et le meme pourcentage dans la tuile de la grille de l'accueil.
+    const gi = document.getElementById("grilleTableauImg"), gp = document.getElementById("grilleTableauPct");
+    if(gi && img && img.getAttribute("src")){ gi.src = img.getAttribute("src"); gi.hidden = false; }
+    if(gp) gp.textContent = pct;
     // v1000 : dans le coin de la vignette, plus sur une ligne a lui (« gagner de l'espace »).
     const coin = document.getElementById("vignettePct");
     if(coin) coin.textContent = t("tableau_tuile") + " · " + pct;   // v1003 : « Ton tableau · 55 % » sur le bandeau
@@ -63492,7 +64727,9 @@ function montrerCartePhrase(item){
         el.appendChild(f);
         fait.repondu = true;
         suite.classList.remove("hidden");
-        try{ launchConfetti(); playMasteredSound(); }catch(e){}
+        // Essai seance_legere : la fete est l'etoile, en plein ecran a la fin de la seance (voir feteEtoile).
+        if(seanceLegereDuJour()) noterEtoileFinEtape(item);
+        else { try{ launchConfetti(); playMasteredSound(); }catch(e){} }
     } else if(item.forme === "av_jalon"){
         // Le jalon (maquette, ecran 6) : ce qui est fait, et CE QUI CHANGE --
         // c'est lui qui donne envie de continuer apres les escales.
@@ -63518,7 +64755,8 @@ function montrerCartePhrase(item){
         el.appendChild(ch);
         fait.repondu = true;
         suite.classList.remove("hidden");
-        try{ celebrateMastery(0, false); }catch(e){}
+        if(seanceLegereDuJour() && item.lieu) noterEtoileFinEtape(item);
+        else { try{ celebrateMastery(0, false); }catch(e){} }
     } else if(item.forme === "av_fin_a1"){
         const f = creer("div", "cp-fete-pp");
         f.appendChild(creer("div", "cp-fete-emoji", "🏅"));
@@ -66316,8 +67554,16 @@ async function preparerArretScene(seance, sceneImposee, enPremiersPas){
         let p = null;
         try{ p = profilActif(); }catch(e){}
         const ecart = (p && p.f === "images") ? 4 : (p && (p.f === "oreille" || p.f === "regles")) ? 12 : 8;
-        const nb = Math.max(1, Math.floor(seance.length / ecart));
-        const prevue = sceneImposee || sceneDuJour();
+        // Essai « seance_legere » : UNE scene par lecon (le theme court suit), et « Encore une seance »
+        // prend une autre scene que la precedente (la N-ieme suivante, N = seances finies aujourd'hui).
+        const legere = !enPremiersPas && seanceLegere();
+        const nb = legere ? 1 : Math.max(1, Math.floor(seance.length / ecart));
+        let prevue = sceneImposee || sceneDuJour();
+        // (la scene imposee d'une etape de l'A1 garde la premiere seance ; les suivantes changent de lieu)
+        if(legere){
+            const n = seancesFiniesAujourdhui();
+            for(let k = 0; k < n; k++) prevue = autreSceneQue(prevue) || prevue;
+        }
         const candidates = [prevue];
         const ajouter = x => { if(x && !candidates.some(c => c.nom === x.nom)) candidates.push(x); };
         ajouter(sceneDuJour());
@@ -66400,6 +67646,13 @@ function ouvrirArretScene(item){
 function themeDuJour(){
     if(LANGUE_APPRISE !== "es" && LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "en") return null;
     const jour = Math.floor(Date.now() / 86400000);
+    // Essai « seance_legere » (decision d9d9dbd) : un theme court CHAQUE jour, a tous les niveaux, en plus de
+    // la scene ; « Encore une seance » prend le theme suivant (un par seance finie aujourd'hui).
+    if(seanceLegere()){
+        try{ if(premiersPasEnCours()) return null; }catch(e){}
+        const ouverts = themesIllustresOuverts();
+        return ouverts.length ? ouverts[(jour + seancesFiniesAujourdhui()) % ouverts.length] : null;
+    }
     if(jour % 3 !== 0) return null;
     try{ if(premiersPasEnCours()) return null; }catch(e){}
     try{ if(jourDApprentissage() <= 7 && nbMotsVus() < 100) return null; }catch(e){}
@@ -66415,6 +67668,8 @@ function insererThemeIllustre(seance){
                    theme: nom, phrase: null, word: "" };
     const sortie = seance.slice();
     const i = sortie.findIndex(c => c && c.forme === "scene_arret");
+    // Essai « seance_legere » : la scene ET le theme -- le theme juste apres la scene, dans sa partie a lui.
+    if(i >= 0 && seanceLegere()){ sortie.splice(i + 1, 0, item); return sortie; }
     if(i >= 0) sortie[i] = item;                       // a la place de la scene
     else sortie.splice(Math.max(2, Math.round(sortie.length / 2)), 0, item);   // pas de scene ce jour-la : au milieu
     return sortie;
@@ -66426,7 +67681,7 @@ function ouvrirArretTheme(item){
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t(th.titre);
-        cadre.src = baseScenes() + th.page + "?seance=1&apprendre=" + apprendreThemeIllustre()
+        cadre.src = baseScenes() + th.page + "?seance=1" + (seanceLegere() ? "&nb=" + THEME_COURT_NB : "") + "&apprendre=" + apprendreThemeIllustre()
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
                   + voixThemeIllustre() + "&t=" + Date.now();
@@ -66552,7 +67807,8 @@ async function ouvrirSeanceDuJour(sansScene){
     // v862 : pendant les escales, la scene de l'escale.
     try{ if(LANGUE_APPRISE !== "ja") seance = await preparerArretScene(seance, av ? av.scene : null); }catch(e){}
     // 3 nov. 2026 : un jour sur trois, un theme illustre a la place de cet arret (themeDuJour).
-    try{ if(!av) seance = insererThemeIllustre(seance); }catch(e){}
+    // Essai « seance_legere » : le theme court tous les jours, A1 voyage compris (« a tous les niveaux »).
+    try{ if(!av || seanceLegere()) seance = insererThemeIllustre(seance); }catch(e){}
     try{ if(av) seance = insererA1Voyage(seance, av); }catch(e){}
     try{ if(fc && seance.length) seance = insererFeuille(seance, fc, tout); }catch(e){}
     // v879 : les reperes (jours, mois, nombres), tot dans l'A1.
@@ -66638,13 +67894,18 @@ function glisserPhrasesPlusTard(paquet, tout){
 //   (planSeanceDuJour) au lieu de « mots, grammaire et scenes ».
 // Les cartes-phrases vont dans la partie du mot qu'elles font travailler s'il est
 // dans la seance, sinon dans les revisions : elles restent APRES ce mot.
-const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "scene", "son", "revisions", "fin"];
+const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "scene", "theme", "son", "revisions", "fin"];
+// Essai « seance_legere » (decision d9d9dbd) : la lecon dans l'ordre de la maquette -- « Revisions · Mots ·
+// Grammaire · Scene · Theme ». Hors essai, aucune carte ne va dans « theme » : ORDRE_PARTS ne change rien.
+const ORDRE_PARTS_LEGERE = ["revisions", "lieu", "neufs", "feuille", "reperes", "scene", "theme", "son", "fin"];
+function ordreParts(){ return seanceLegere() ? ORDRE_PARTS_LEGERE : ORDRE_PARTS; }
 let SEANCE_PARTS = null;           // { paquet, parts (Map carte -> partie), themeId, niveau, etape }
 const PASSAGES_VUS = new Set();    // les parties dont l'ecran de passage a ete montre (v1122 : par partie)
 function partDeCarteSeance(c, av, parCle){
     if(!c) return "revisions";
     const forme = c.forme || "";
     if(c.av) return /^(av_escale_fin|av_jalon|av_fin_a1)$/.test(forme) ? "fin" : "lieu";
+    if(forme === "theme_arret" && seanceLegere()) return "theme";
     if(forme === "scene_arret" || forme === "theme_arret") return "scene";
     const tid = String(c.themeId || "");
     if(tid.indexOf("son_") === 0) return "son";
@@ -66668,7 +67929,8 @@ function regrouperSeance(seance, av){
         parCle.set(c.themeId + ":" + c.index, p);
     });
     seance.forEach(c => { if(c && c.mode === "phrase") parts.set(c, partDeCarteSeance(c, av, parCle)); });
-    const rang = c => { const i = ORDRE_PARTS.indexOf(parts.get(c)); return i < 0 ? ORDRE_PARTS.length : i; };
+    const ordre = ordreParts();
+    const rang = c => { const i = ordre.indexOf(parts.get(c)); return i < 0 ? ordre.length : i; };
     const cartes = seance.map((c, i) => [c, i]).sort((a, b) => rang(a[0]) - rang(b[0]) || a[1] - b[1]).map(x => x[0]);
     return { cartes: espacerPhrasesEtape(cartes, parts), parts: parts };
 }
@@ -66988,9 +68250,17 @@ function majCompteurCarte(){
     // (Jacques : « au lieu de voir comment je suis par rapport a mon objectif, je
     // pourrais voir que j'ai 3 mots mis de cote »).
     if(currentTheme && currentTheme.id === "gardes"){
+        el.classList.remove("hidden");
         el.textContent = tf("gardes_compteur", { n: nombreGardes() });
         return;
     }
+    // Essai « seance_legere » : plus de « fait / objectif » en seance du jour ; la barre des parties dit ou l'on en est.
+    if(seanceLegere() && estSeanceDuJourOuverte()){
+        el.textContent = "";
+        el.classList.add("hidden");
+        return;
+    }
+    el.classList.remove("hidden");
     let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
     try{ fait = getDailyActivityCount() || 0; }catch(e){}
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
@@ -68093,6 +69363,8 @@ function echeanceProchaineReussite(state){
 
 function reviewAgain(){
     if(!currentCards.length) return;
+    if(deuxiemeToucher()) return;
+    marquerCarteJugee();
     arreterChaineCarte(true);   // voir reviewGood()
     const item = currentCards[currentFlashcard];
     // ⚠️ DANS LE COFFRE, « ENCORE » NE TOUCHE A RIEN (v603). Hors du coffre il
@@ -68106,8 +69378,7 @@ function reviewAgain(){
     if(dansLePaquetGarde()){
         remettreEnFile(item);
         try{ poserCarreauDeLaCarte(item); }catch(e){}   // v853
-        clearTimeout(attentePalier);
-        attentePalier = setTimeout(nextFlashcard, 220);
+        programmerSuite(nextFlashcard, 220);
         return;
     }
     const state = getWordState(item.themeId, item.index);
@@ -68158,6 +69429,45 @@ function remettreEnFile(item){
 // que le clic, le point vert gagne s'allumait sur une carte deja disparue :
 // l'effort n'etait paye par rien de visible.
 let attentePalier = null;
+// ============ LE DEUXIEME TOUCHER NE COMPTE RIEN (7 nov. 2026) ============
+// Entre le jugement et la carte suivante, la carte reste a l'ecran 950 ms (520,
+// 1 250 a la maitrise, ATTENTE_COFFRE_MS au coffre) -- et ses boutons restent
+// touchables. Un deuxieme toucher sur ✓ jugeait la carte une seconde fois : un
+// mot a un point passait a trois d'un coup (mesure de la maquette des points),
+// la progression se gonflait sans rien avoir appris. Et il ne faisait pas
+// passer plus vite.
+// La regle (Jacques : « rien ne doit ralentir quelqu'un qui sait ») : un seul
+// effet par carte. Le deuxieme toucher -- ✓, Encore, Mettre de cote, l'etoile,
+// Sortir du coffre -- ne compte RIEN et fait tout de suite ce que la minuterie
+// aurait fait (en general, la carte suivante).
+// ⚠️ Toute nouvelle attente apres un jugement passe par programmerSuite(), et
+// tout nouveau bouton qui juge commence par deuxiemeToucher() : sinon la
+// minuterie part sans qu'on puisse la devancer, ou la carte se juge deux fois.
+let carteJugee = null;       // { item, i } : la carte deja jugee, qui attend de partir
+let suiteDeLaCarte = null;   // ce que fera la minuterie en cours
+function programmerSuite(fn, ms){
+    clearTimeout(attentePalier);
+    suiteDeLaCarte = fn;
+    attentePalier = setTimeout(() => { suiteDeLaCarte = null; fn(); }, ms);
+}
+function marquerCarteJugee(){
+    carteJugee = currentCards.length ? { item: currentCards[currentFlashcard], i: currentFlashcard } : null;
+}
+function oublierCarteJugee(){
+    carteJugee = null;
+    suiteDeLaCarte = null;
+}
+function deuxiemeToucher(){
+    if(!carteJugee || !currentCards.length) return false;
+    if(carteJugee.i !== currentFlashcard || carteJugee.item !== currentCards[currentFlashcard]){
+        oublierCarteJugee();
+        return false;
+    }
+    // (une ligne : verifier.py lit un « suite(); » seul sur sa ligne comme l'appel d'une fonction globale)
+    const suite = suiteDeLaCarte;
+    if(suite){ clearTimeout(attentePalier); suiteDeLaCarte = null; suite(); }
+    return true;
+}
 // ============ LE REGARD EN ARRIERE EST RETIRE (v575) ============
 // Il vivait ici depuis la v553 : un bouton « Precedent » rouvrait en plein ecran
 // la carte qu'on venait de juger, en lecture seule.
@@ -68178,10 +69488,10 @@ function celebrerPalier(pointGagne){
     if(pointGagne){ launchConfetti(); playMasteredSound(); }
     // v853 : le +1 avec les confettis, pas sur la carte suivante.
     try{ poserCarreauDeLaCarte(carteCourante()); }catch(e){}
-    clearTimeout(attentePalier);
     // La celebration garde son temps d'animation, mais elle ne fait plus
-    // disparaitre la carte : elle ouvre « Suivant ».
-    attentePalier = setTimeout(nextFlashcard, pointGagne ? 950 : 520);
+    // disparaitre la carte : elle ouvre « Suivant ». Un deuxieme toucher la
+    // devance (deuxiemeToucher()).
+    programmerSuite(nextFlashcard, pointGagne ? 950 : 520);
 }
 
 // v924 : LA BULLE DU PREMIER « CONTINUER ». Marc-Antoine (rapporte par Jacques,
@@ -68205,7 +69515,9 @@ function bulleDuPremierContinuer(){
 
 function reviewGood(){
     if(!currentCards.length) return;
+    if(deuxiemeToucher()) return;
     if(bulleDuPremierContinuer()) return;
+    marquerCarteJugee();
     // JUGER COUPE LA VOIX, TOUT DE SUITE (v741). La carte reste encore 950 ms
     // pour la celebration : la chaine continuait d'y parler, et le pluriel
     // tombait sur la carte suivante. Signale par Jacques, en allemand comme en
@@ -68288,6 +69600,9 @@ function dansLePaquetGarde(){
 function basculerGardeCarte(){
     const it = carteCourante();
     if(!it) return;
+    // Un deuxieme toucher remettait le mot hors du coffre : un seul effet par carte.
+    if(deuxiemeToucher()) return;
+    marquerCarteJugee();
     const st = getWordState(it.themeId, it.index);
     st.garde = !st.garde;
     setWordState(it.themeId, it.index, st);
@@ -68309,19 +69624,21 @@ function basculerGardeCarte(){
     // la progression ». Le carreau s'affiche (v853) : l'objectif du jour avance avec lui, comme pour
     // « Encore ». Le calendrier du mot, lui, ne bouge toujours pas (v603).
     try{ const palierCoffre = recordDailyActivity(); if(palierCoffre > 0) triggerDailyGoalCelebration(palierCoffre); }catch(e){}
-    clearTimeout(attentePalier);
-    attentePalier = setTimeout(nextFlashcard, ATTENTE_COFFRE_MS);
+    programmerSuite(nextFlashcard, ATTENTE_COFFRE_MS);
 }
 
 // Passer sans rien faire : la carte avance, le mot reste garde, et aucune
 // donnee ne bouge. C'est le seul bouton de l'application qui ne fait
 // LITTERALEMENT rien d'autre qu'avancer -- et c'est sa raison d'etre.
 function suivanteDansLeCoffre(){
+    if(deuxiemeToucher()) return;
     clearTimeout(attentePalier);
     nextFlashcard();
 }
 
 function sortirDuCoffre(){
+    if(deuxiemeToucher()) return;
+    marquerCarteJugee();
     // Le couvercle s'ouvre AVANT que la carte parte : c'est le seul instant ou
     // le geste peut se montrer. Voir la note du CSS.
     const b = document.querySelector(".judge-sortir");
@@ -68362,7 +69679,7 @@ function sortirDuCoffre(){
     let vide = false;
     try{ vide = nombreGardes() === 0; }catch(e){}
     if(vide){
-        attentePalier = setTimeout(() => {
+        programmerSuite(() => {
             retourSeanceAccueil = true;
             try{ hideFlashcardEnd(); }catch(e){}
             handleFlashcardBack();
@@ -68370,7 +69687,7 @@ function sortirDuCoffre(){
         }, ATTENTE_COFFRE_MS);
         return;
     }
-    attentePalier = setTimeout(nextFlashcard, ATTENTE_COFFRE_MS);
+    programmerSuite(nextFlashcard, ATTENTE_COFFRE_MS);
 }
 
 // ⚠️ ON COMPTE DANS LA PROGRESSION, PAS DANS LE COURS. Construire le paquet
@@ -68473,6 +69790,8 @@ async function ouvrirGardes(){
 }
 
 function markKnownAlready(){
+    if(currentCards.length && deuxiemeToucher()) return;
+    marquerCarteJugee();
     arreterChaineCarte(true);   // voir reviewGood()
     if(currentCards.length){
         const it = currentCards[currentFlashcard];
@@ -68540,7 +69859,22 @@ function showFlashcardEnd(){
         encore.classList.toggle("hidden", reste <= 1 || !premiersPasEnCours());
         encore.textContent = tf("encore_neufs", { n: SUPPLEMENT_SEANCE });
     }
+    else if(encore && seanceLegere() && estSeanceDuJourOuverte()){
+        // Essai « seance_legere » : pas d'objectif a annoncer ; combien de seances aujourd'hui, et
+        // « Encore une seance », toujours la, bien visible, sans limite.
+        const n = noterSeanceLegereFinie(currentCards);
+        if(mot){
+            mot.textContent = n > 1 ? tf("legere_fin_n", { n: n }) : t("legere_fin_une");
+            mot.classList.add("atteint");
+            mot.classList.remove("hidden");
+        }
+        encore.textContent = t("legere_encore");
+        encore.classList.remove("hidden", "secondary");
+        encore.classList.add("primary");
+    }
     else if(encore){
+        encore.classList.remove("primary");
+        encore.classList.add("secondary");
         const t2 = trancheSupplementaire();
         encore.classList.toggle("hidden", t2.cartes.length === 0);
         if(t2.cartes.length) encore.textContent = tf("encore_neufs",
@@ -68557,7 +69891,7 @@ function showFlashcardEnd(){
     try{
         const enSeance = !!(currentTheme && String(currentTheme.id).indexOf("seance_") === 0);
         const anneau = document.getElementById("flashEndAnneau");
-        if(anneau){ anneau.classList.toggle("hidden", !enSeance); if(enSeance) majAnneauFin(anneau); }
+        if(anneau){ anneau.classList.toggle("hidden", !enSeance); if(enSeance) majAnneauFin(anneau, true); }
         const titre = document.getElementById("flashEndTitre");
         if(titre) titre.textContent = t(enSeance ? "fin_seance_titre" : "flash_end_title");
         rendreFetes(document.getElementById("finFetes"), prendreFetesAttente());
@@ -68566,6 +69900,8 @@ function showFlashcardEnd(){
     }catch(e){}
     fin.classList.remove("hidden");
     sessionVues = 0; sessionSues = 0;
+    // Essai seance_legere : une seule fete par fin de seance, l'etoile d'abord (voir fetesFinSeanceLegere).
+    if(seanceLegereDuJour()){ try{ fetesFinSeanceLegere(); }catch(e){} }
     return true;
 }
 
@@ -68696,8 +70032,18 @@ function majBandeauFetes(){
     else home.insertBefore(b, home.firstChild);
 }
 // L'anneau du jour (maquettes a et b) : le compte sur l'objectif.
-function majAnneauFin(el){
+function majAnneauFin(el, finie){
     if(!el) return;
+    // Essai « seance_legere » : l'anneau de FIN est plein, avec un ✓, et « ×2 », « ×3 » quand on enchaine.
+    // L'ecran court (« ‹ » en cours) garde l'ancien anneau : ses parties faites viennent avec la version 2.
+    if(finie && seanceLegere() && estSeanceDuJourOuverte()){
+        const n = Math.max(1, seancesFiniesAujourdhui());
+        el.style.setProperty("--p", 100);
+        el.classList.add("atteint");
+        el.querySelector("b").textContent = "✓";
+        el.querySelector("small").textContent = n > 1 ? "×" + n : "";
+        return { fait: n, cible: n };
+    }
     let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
     try{ fait = getDailyActivityCount() || 0; }catch(e){}
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
@@ -69674,8 +71020,7 @@ function markMastered(discret){
     feterLeTrophee();
     majEcheances(true);
     try{ poserCarreauDeLaCarte(item); }catch(e){}   // v853, voir celebrerPalier()
-    clearTimeout(attentePalier);
-    attentePalier = setTimeout(nextFlashcard,
+    programmerSuite(nextFlashcard,
         (discret && !justReachedMultiple) ? ATTENTE_ETOILE_MS : ATTENTE_FETE_MS);
 }
 
@@ -69700,6 +71045,7 @@ function programmerMaitrise(state){
 }
 
 function nextFlashcard(){
+    oublierCarteJugee();
     noterEtape("reponse");
     currentFlashcard++;
     carteSeanceSuivie();

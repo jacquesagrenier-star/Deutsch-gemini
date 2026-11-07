@@ -50,6 +50,24 @@ S'y ajoutent les décisions qui les précèdent :
 - **la vignette dit le sujet autrement qu'une rangée de personnes** (Jacques : « On dirait deux groupes de
   familles ») : l'arbre pour la famille, la toise pour Décrire.
 
+**La cohérence des personnes** (décision de Jacques du 6 nov. 2026, après « Diego est pauvre » alors qu'il est
+médecin) : **une seule fiche par personne récurrente**, `visuel/personnes.json` (lue par `visuel/personnes.py`),
+que les générateurs LISENT au lieu de choisir chacun un métier :
+- un métier par personne, celui de la fiche (Diego médecin, Pablo boulanger, Inés coiffeuse, Marta professeure,
+  Javier et Carmen cuisiniers, Elena et Tomás policiers, Rosa mécanicienne, Lucas infirmier ; Mark et Anna : leur
+  histoire). Le médecin du Corps est donc Diego, et la médecin Alicia (le visage de la médecin du cabinet) ;
+- **aucun trait de la liste noire** (pauvre, riche, radin, paresseux, impoli, désordonné, antipathique) sur Mark,
+  Anna, la famille d'Anna et les 12 de Descripción : ces traits vont aux **prénoms réservés** de la fiche (Hugo,
+  Sergio, Bruno, Mario, Carlos, Nuria, Paula, Silvia, Irene), qu'aucun autre thème n'emploie ; un prénom réservé
+  reprend l'image d'un visage déjà photographié (`visage`), rien n'est payé ;
+- **une image ne donne jamais un autre métier que la fiche** : on change la phrase ou le prénom (le serveur du café
+  de Manger est « l'homme à la moustache », sans prénom), pas l'image ;
+- les générateurs combinatoires respectent les faits (« jamais » : Anna ne va jamais au travail en voiture) ;
+- l'âge commande le lieu : avant 6 ans la Kita, jamais « zur Schule » (Mia, 4 ans) ; Mark apprend l'allemand.
+Le contrôle : `python tests/themes_illustres.py --coherence` (sans navigateur, quelques secondes), aussi en tête du
+contrôle complet. Il lit la donnée des pages et les `voix.json` : après un changement de phrases, refaire ces
+relevés (`VOIX_THEMES=<thèmes> python visuel/voix_themes.py`, sous le verrou du navigateur) avant de le croire.
+
 ## Ce qu'est un thème
 
 Une page autonome `visuel/prototype/<thème>.html`, ses images dans `visuel/prototype/<thème>/`, ouverte par l'app

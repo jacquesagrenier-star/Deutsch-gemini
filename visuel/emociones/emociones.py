@@ -21,6 +21,8 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
 sys.path.insert(0, os.path.join(RACINE, "video"))
 import omnihuman as O                                        # noqa: E402
+sys.path.insert(0, os.path.dirname(ICI))
+import personnes as PERS                                     # noqa: E402 -- la fiche commune (6 nov. 2026)
 
 EDIT, PRIX = "fal-ai/nano-banana-pro/edit", 0.15
 DOSSIER = os.path.join(os.path.expanduser("~"), ".wortando", "emociones", "img")
@@ -36,6 +38,7 @@ SEXE = {"Anna": "f", "Carmen": "f", "Gisela": "f", "Mark": "m", "Diego": "m", "B
         "Rosa": "f", "Lucas": "m", "Tomas": "m", "Elena": "f", "Ines": "f", "Pablo": "m",
         "Heinz": "m", "Peter": "m", "Monika": "f", "Sabine": "f", "Frank": "m", "Jan": "m", "Katrin": "f", "Lena": "f",
         "Felix": "m", "Sophie": "f"}
+SEXE.update({p: f["sexe"] for p, f in PERS.RESERVES.items()})      # les prenoms reserves (visuel/personnes.json)
 
 # Chaque emotion : ce que le visage doit montrer, sans equivoque (la peur n'est pas la surprise, l'inquietude n'est
 # pas la nervosite : chacune a son geste).
@@ -79,19 +82,25 @@ PORTRAITS = {
 # personne, ni deux traits voisins (sympathique et poli, antipathique et grossier, paresseux et desordonne) ; et AUCUN
 # trait negatif pour la famille d'Anna (recommandation du chef d'orchestre, appliquee le 3 nov.) : radin, paresseux,
 # grossier, desordonne et antipathique vont aux douze de Descripcion.
+# 6 nov. 2026 (decision de Jacques, la coherence des personnages, visuel/personnes.json) : AUCUN trait de la liste noire
+# (radin, paresseux, grossier, desordonne, antipathique, riche, pauvre) sur Mark, Anna, la famille d'Anna ni les douze
+# de Descripcion, qui ont un metier dans « Les metiers » ; ni une situation qui leur donnerait un autre metier
+# (l'enseignante severe, l'entraineur, le bureau). Ces images gardent leur visage, mais la personne porte un PRENOM
+# RESERVE (Hugo, Sergio, Bruno, Mario, Carlos, Nuria, Paula, Silvia, Irene), qu'aucun autre theme n'emploie : un
+# visage, un prenom reserve. visage() donne l'image (trait-<trait>-<visage>.webp) : rien n'est refait ni paye.
 TRAITS = {
     "generoso":     [("Marta", "In a cafe, she happily pays the bill for the whole table of friends, handing her card to the waiter while the friends thank her, smiling."),
                      ("Heinz", "In a sunny park, the elderly man happily buys two ice-cream cones from an ice-cream cart and hands them to a small boy and a little girl, who smile up at him delighted."),
                      ("Monika", "At the door of her flat, she hands a big homemade cake and a full bag of groceries to a young neighbour, smiling warmly; the neighbour is touched and thanks her.")],
-    "tacano":       [("Javier", "At a restaurant table with friends, the bill arrives: he hides his wallet behind his back and looks away, pretending not to see the bill, while the friends look at him annoyed."),
-                     ("Lucas", "On a sofa with friends watching a film, he hides a big bag of crisps behind his back and shakes his head while a friend reaches out asking for some."),
-                     ("Elena", "In an office, colleagues collect money in an envelope for a birthday present; she clutches her purse to her chest and shakes her head, refusing to give anything, while a colleague holds out the envelope, disappointed.")],
-    "trabajador":   [("Rosa", "In an office in the evening, the window dark outside, she works hard and concentrated at her desk covered with folders, typing on a laptop, a cup of coffee beside her; the other desks are empty."),
+    "tacano":       [("Sergio", "At a restaurant table with friends, the bill arrives: he hides his wallet behind his back and looks away, pretending not to see the bill, while the friends look at him annoyed."),
+                     ("Bruno", "On a sofa with friends watching a film, he hides a big bag of crisps behind his back and shakes his head while a friend reaches out asking for some."),
+                     ("Paula", "In an office, colleagues collect money in an envelope for a birthday present; she clutches her purse to her chest and shakes her head, refusing to give anything, while a colleague holds out the envelope, disappointed.")],
+    "trabajador":   [("Silvia", "In an office in the evening, the window dark outside, she works hard and concentrated at her desk covered with folders, typing on a laptop, a cup of coffee beside her; the other desks are empty."),
                      ("Sabine", "Late in the evening at a kitchen table under a lamp, she corrects a tall pile of school exercise books with a red pen, concentrated, a cup of tea beside her; the window behind her is dark."),
                      ("Peter", "In a garden under the summer sun, he digs a vegetable bed with a spade, sweating, sleeves rolled up, a wheelbarrow full of soil next to him.")],
-    "perezoso":     [("Lucas", "In the middle of the day, he lies lazily on a sofa in a living room watching television, a bag of crisps on his belly, while a big pile of dirty dishes and an overflowing laundry basket wait next to him."),
-                     ("Tomas", "In a garden, he lies lazily in a hammock with his eyes half closed and a drink in his hand, while in the background other people carry boxes and rake leaves."),
-                     ("Javier", "In an office, he leans far back in his chair with his feet on the desk, yawning and looking at his phone, while a big pile of untouched files waits on the desk and a colleague walks past carrying many folders.")],
+    "perezoso":     [("Bruno", "In the middle of the day, he lies lazily on a sofa in a living room watching television, a bag of crisps on his belly, while a big pile of dirty dishes and an overflowing laundry basket wait next to him."),
+                     ("Mario", "In a garden, he lies lazily in a hammock with his eyes half closed and a drink in his hand, while in the background other people carry boxes and rake leaves."),
+                     ("Sergio", "In an office, he leans far back in his chair with his feet on the desk, yawning and looking at his phone, while a big pile of untouched files waits on the desk and a colleague walks past carrying many folders.")],
     "extrovertido": [("Tomas", "At a lively party, he stands in the middle of a group of people, telling a story with big gestures and laughing loudly; everybody around him laughs too."),
                      ("Sophie", "At a lively party in a living room, she dances in the middle of the room with her arms up, laughing, and pulls other guests in to dance with her."),
                      ("Gisela", "At an outdoor market stall, the elderly woman chats cheerfully with the vendor and two other shoppers at the same time, laughing and gesturing, everyone smiling at her.")],
@@ -101,20 +110,21 @@ TRAITS = {
     "educado":      [("Mark", "At the entrance of a building, he holds the door open with a friendly smile for an elderly lady with a shopping bag who walks in and thanks him."),
                      ("Jan", "In a tram, he stands up and kindly offers his seat to an elderly woman with a walking stick, gesturing politely toward the seat; she smiles and thanks him."),
                      ("Lena", "At a bakery counter, she takes her bag of bread rolls from the baker with a warm smile, saying thank you with her hand on her heart; the baker smiles back.")],
-    "grosero":      [("Ines", "In a queue at a bakery counter, she pushes rudely in front of the other customers with her elbow, talking loudly on her phone, while the people in the queue look at her shocked."),
-                     ("Diego", "In a cinema during a film, he talks loudly on his phone with his feet on the seat in front of him, while the other spectators turn around and glare at him, annoyed."),
-                     ("Rosa", "On a city pavement, she drops an empty coffee cup and a paper bag on the ground right next to a bin without looking, while a passer-by stares at her, shocked.")],
+    "grosero":      [("Nuria", "In a queue at a bakery counter, she pushes rudely in front of the other customers with her elbow, talking loudly on her phone, while the people in the queue look at her shocked."),
+                     ("Hugo", "In a cinema during a film, he talks loudly on his phone with his feet on the seat in front of him, while the other spectators turn around and glare at him, annoyed."),
+                     ("Silvia", "On a city pavement, she drops an empty coffee cup and a paper bag on the ground right next to a bin without looking, while a passer-by stares at her, shocked.")],
     "ordenado":     [("Carmen", "She sits at a perfectly tidy desk in a bright study: pencils lined up, folders neatly stacked and labelled, shelves in perfect order behind her; she smiles, satisfied."),
                      ("Katrin", "In a bedroom, she stands smiling in front of a perfectly organised open wardrobe: clothes folded in neat piles by colour, shirts on identical hangers, labelled boxes."),
                      ("Frank", "In a garage, he hangs the last tool on a perfectly organised wall where every tool has its outlined place, with labelled boxes on the shelves and a clean floor; he looks satisfied.")],
-    "desordenado":  [("Diego", "He stands in the middle of a very messy bedroom, scratching his head: clothes all over the floor and the unmade bed, open drawers, books and empty cups everywhere."),
-                     ("Ines", "At a cafe table, she has emptied her overflowing handbag looking for her keys: papers, make-up, receipts, sweets, cables and coins are spread everywhere in a mess, and she rummages through it, confused."),
-                     ("Mark", "In a hotel room, he sits on a hugely overflowing suitcase trying to close it, with clothes, shoes and cables sticking out on all sides and more clothes thrown on the bed and the floor.")],
+    "desordenado":  [("Hugo", "He stands in the middle of a very messy bedroom, scratching his head: clothes all over the floor and the unmade bed, open drawers, books and empty cups everywhere."),
+                     ("Nuria", "At a cafe table, she has emptied her overflowing handbag looking for her keys: papers, make-up, receipts, sweets, cables and coins are spread everywhere in a mess, and she rummages through it, confused.")],
+    # 6 nov. 2026 : Mark sur sa valise debordante (trait-desordenado-Mark.webp) est retire : Mark, le heros, ne porte
+    # aucun trait de la liste noire, et son visage ne se rebaptise pas. L'image reste dans le depot, inutilisee.
     "simpatico":    [("Anna", "On a city street, she kindly helps a lost tourist couple, pointing the way on their paper map with a warm, friendly smile."),
                      ("Peter", "On the doorstep of his house, he warmly welcomes a new young neighbour, shaking her hand with a big friendly smile and chatting cheerfully."),
                      ("Felix", "In a cafe, he laughs warmly with an elderly lady at the next table who is showing him photos on her phone; both smile, a friendly chat.")],
-    "antipatico":   [("Pablo", "On a city street, a young woman asks him a question politely; he turns his back on her with a cold, unfriendly face and his arms crossed."),
-                     ("Carmen", "In the stairwell of an apartment building, a smiling neighbour waves and says hello to her; she frowns, rolls her eyes and turns her head away from him with a cold, sour, unfriendly face, refusing to answer.")],
+    "antipatico":   [("Carlos", "On a city street, a young woman asks him a question politely; he turns his back on her with a cold, unfriendly face and his arms crossed."),
+                     ("Irene", "In the stairwell of an apartment building, a smiling neighbour waves and says hello to her; she frowns, rolls her eyes and turns her head away from him with a cold, sour, unfriendly face, refusing to answer.")],
     # 3 nov., « go » (Jacques) : les adjectifs de personne de sa liste de cours « Adjetivos comunes », deux personnes
     # par mot. Une scene a plusieurs personnes porte la liste des autres (leurs images vont aussi en reference).
     # « feliz » : es feliz (en general) face a esta contento (aujourd'hui, le visage) -- un bel exercice ser / estar.
@@ -123,18 +133,18 @@ TRAITS = {
                      ("Jan", "In a park on a sunny day, the man carries the little girl from the third reference picture on his shoulders and holds the hand of the boy from the second reference picture; all three laugh, happy together.", ["Ben", "Mia"])],
     "carinoso":     [("Heinz", "In a cosy living room, the elderly man from the first reference picture tenderly holds the hand of the elderly woman from the second reference picture and kisses her forehead; she smiles, moved.", ["Gisela"]),
                      ("Katrin", "On a sofa in the evening, the woman from the first reference picture holds the little girl from the second reference picture in her arms and reads her a picture book, stroking her hair tenderly; both smile.", ["Mia"])],
-    "estricto":     [("Carmen", "In a classroom, she stands in front of the blackboard as a teacher, pointing firmly at a pupil who is chatting, with a stern, serious face and raised eyebrows; the pupils sit very straight and silent."),
-                     ("Pablo", "On a sports field, he is a football coach with a whistle around his neck, pointing at his stopwatch with a stern face while young players run another lap, out of breath.")],
+    "estricto":     [("Irene", "In a classroom, she stands in front of the blackboard as a teacher, pointing firmly at a pupil who is chatting, with a stern, serious face and raised eyebrows; the pupils sit very straight and silent."),
+                     ("Carlos", "On a sports field, he is a football coach with a whistle around his neck, pointing at his stopwatch with a stern face while young players run another lap, out of breath.")],
     "estudioso":    [("Lena", "In a quiet university library, she studies attentively at a table covered with open books, colourful notes and highlighters, writing carefully in her notebook."),
                      ("Sophie", "At her desk in a student room in the evening, she revises for an exam with flash cards, books and a neat timetable on the wall, concentrated and motivated.")],
     "inteligente":  [("Felix", "In front of a whiteboard covered with mathematical formulas, he has just found the solution to a hard problem and points at it with a smile, while two colleagues look impressed."),
                      ("Elena", "At a chess club table, she makes the winning move with a calm, clever smile, while her older opponent stares at the board, surprised and impressed.")],
     "independiente":[("Rosa", "In her new flat, she assembles a big wardrobe all by herself with a screwdriver and the instructions, confident and satisfied, boxes and tools around her."),
                      ("Marta", "On a country road, she repairs the flat tyre of her bicycle herself, her bike upside down, tools in hand, calm and capable, a backpack beside her.")],
-    "rico":         [("Tomas", "On the deck of a beautiful private sailing yacht in a sunny harbour full of luxury boats, he relaxes in elegant clothes with sunglasses on his head, a glass in his hand."),
-                     ("Ines", "In a large luxurious penthouse apartment with designer furniture and a huge window overlooking the city skyline, she sits on an expensive sofa, elegant and relaxed.")],
-    "pobre":        [("Lucas", "At a supermarket checkout, he carefully counts a few coins in his open hand to pay for bread and milk; his jacket is old and worn, his face is worried but dignified. A modest, everyday scene, no misery."),
-                     ("Diego", "At the end of the month, in a small, simple, tidy student room, he opens his empty wallet and looks at a single coin, then at a packet of cheap noodles on the table, a little sad but dignified. No misery.")],
+    "rico":         [("Mario", "On the deck of a beautiful private sailing yacht in a sunny harbour full of luxury boats, he relaxes in elegant clothes with sunglasses on his head, a glass in his hand."),
+                     ("Nuria", "In a large luxurious penthouse apartment with designer furniture and a huge window overlooking the city skyline, she sits on an expensive sofa, elegant and relaxed.")],
+    "pobre":        [("Bruno", "At a supermarket checkout, he carefully counts a few coins in his open hand to pay for bread and milk; his jacket is old and worn, his face is worried but dignified. A modest, everyday scene, no misery."),
+                     ("Hugo", "At the end of the month, in a small, simple, tidy student room, he opens his empty wallet and looks at a single coin, then at a packet of cheap noodles on the table, a little sad but dignified. No misery.")],
 }
 MEME = ("The same person as in the reference picture: exactly the same face, the same age, the same hair, the same skin, "
         "the same glasses or beard if any, the same body and the same clothes. ")
@@ -159,7 +169,8 @@ def images():
         for p, scene, *autres in scenes:
             autres = autres[0] if autres else []
             meme = MEME_PLUSIEURS if autres else MEME
-            out["trait-" + t + "-" + p] = (p, meme + SITUATION + scene, "4:3", autres)
+            # un prenom reserve garde le visage (et l'image) de la personne photographiee
+            out["trait-" + t + "-" + PERS.visage(p)] = (PERS.visage(p), meme + SITUATION + scene, "4:3", autres)
     return out
 
 
@@ -171,8 +182,8 @@ def verifier_regles():
     # contredisent chez une meme personne -- l'un servirait de leurre trompeur sur l'image de l'autre.
     incompatibles = {("antipatico", "generoso"), ("antipatico", "carinoso"), ("antipatico", "educado"), ("antipatico", "feliz"),
                      ("grosero", "carinoso"), ("grosero", "simpatico"), ("tacano", "carinoso"), ("perezoso", "estudioso")}
-    famille = {"Heinz", "Gisela", "Peter", "Monika", "Sabine", "Frank", "Jan", "Katrin", "Lena", "Felix", "Sophie", "Ben"}
-    negatifs = {"tacano", "perezoso", "grosero", "desordenado", "antipatico"}
+    # 6 nov. 2026 : la liste noire vaut pour TOUS les recurrents (Mark, Anna, la famille, les douze de Descripcion)
+    negatifs = PERS.TRAITS_INTERDITS
     par = {}
     for t, scenes in TRAITS.items():
         for p, *_ in scenes:
@@ -182,8 +193,10 @@ def verifier_regles():
         for t in ts:
             if MOTS_TRAITS[t]["contraire"] and MOTS_TRAITS[t]["contraire"] in ts:
                 fautes.append("%s : %s et son contraire" % (p, t))
-            if p in famille and t in negatifs:
-                fautes.append("%s (famille) : %s" % (p, t))
+            if PERS.recurrent(p) and t in negatifs:
+                fautes.append("%s (personne recurrente, visuel/personnes.json) : %s" % (p, t))
+            if not PERS.recurrent(p) and not PERS.reserve(p):
+                fautes.append("%s : ni recurrent ni prenom reserve" % p)
         fautes += ["%s : %s et %s, voisins" % (p, a, b) for a, b in voisins if a in ts and b in ts]
         fautes += ["%s : %s et %s, incompatibles" % (p, a, b) for a, b in incompatibles if a in ts and b in ts]
     for t, scenes in TRAITS.items():
@@ -243,7 +256,7 @@ MOTS_TRAITS = {
 DECOUVERTE = {"contento": "Anna", "nervioso": "Anna", "miedo": "Carmen", "orgulloso": "Carmen",
               "avergonzado": "Gisela", "enfermo": "Gisela", "sorprendido": "Mark", "preocupado": "Mark",
               "enfadado": "Diego", "triste": "Diego", "aburrido": "Ben", "cansado": "Ben"}
-NOMS = {"Ines": "Inés", "Tomas": "Tomás"}
+NOMS = PERS.noms()                                           # Ines -> Inés, Tomas -> Tomás (visuel/personnes.json)
 
 
 def phrase(langue, p, mot, emotion):
@@ -276,7 +289,7 @@ def ecrire_json():
             dec[langue][t_id] = {"texte": t, "son": identifiant(t)}
     gens = list(PORTRAITS) + [x[0] for v in TRAITS.values() for x in v]
     d = {"sexe": {p: SEXE[p] for p in dict.fromkeys(gens)},
-         "noms": NOMS, "portraits": PORTRAITS, "traits": {t: [x[0] for x in v] for t, v in TRAITS.items()},
+         "noms": NOMS, "visages": {p: PERS.visage(p) for p in dict.fromkeys(gens) if PERS.reserve(p)}, "portraits": PORTRAITS, "traits": {t: [x[0] for x in v] for t, v in TRAITS.items()},
          "emotions": MOTS_EMOTIONS, "caracteres": MOTS_TRAITS, "haben": HABEN,
          "decouverte": {"visages": DECOUVERTE, "caracteres": {t: v[0][0] for t, v in TRAITS.items()}, "phrases": dec},
          "sens": sens_des_mots()}
@@ -382,7 +395,7 @@ def main():
         if os.path.exists(vieux + ".png"):
             for ext in (".png", "-fal.json"):
                 if os.path.exists(vieux + ext):
-                    os.replace(vieux + ext, vieux + "-" + scenes[0][0] + ext)
+                    os.replace(vieux + ext, vieux + "-" + PERS.visage(scenes[0][0]) + ext)
     ecrire_json()
     ecrire_gloses()
     if "--json" in sys.argv:

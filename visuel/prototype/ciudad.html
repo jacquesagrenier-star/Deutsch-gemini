@@ -129,7 +129,7 @@ document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
 // agrandir (themes/zoom.js) : la photo d'un lieu au toucher, le plan aussi ; la loupe sur les photos a choisir
 Zoom.init({direct: ".photo img", loupe: ".rangee button", langue: LANGUE});
-const NB = Q.get("seance") === "1" ? 6 : 20;
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(6, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le theme court de la seance legere (4 questions), essai seance_legere
 
 const TEXTES = {
   titre:     {fr:"En ville : s'orienter", en:"In town: finding your way", tr:"Şehirde: yolunu bulmak", uk:"У місті: орієнтуватися", fa:"در شهر: پیدا کردن راه", ar:"في المدينة: معرفة الطريق", pt:"Na cidade: se orientar", pl:"W mieście: jak trafić", ru:"В городе: найти дорогу", de:"In der Stadt: sich orientieren"},

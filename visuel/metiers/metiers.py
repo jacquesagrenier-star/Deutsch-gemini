@@ -33,6 +33,8 @@ import io, json, os, sys, time
 sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
+sys.path.insert(0, os.path.dirname(ICI))
+import personnes as PERS                                     # noqa: E402 -- la fiche commune (6 nov. 2026)
 PROTO = os.path.join(RACINE, "visuel", "prototype", "metiers")
 SCENES = os.path.join(RACINE, "visuel", "prototype")
 IMG = os.path.join(ICI, "img")
@@ -230,7 +232,10 @@ def personnes():
     for id, (sc, met, s, *_r) in SCENE_P.items():
         P[id] = {"img": id, "sexe": s, "metier": met, "nom": None, "scene": sc}
     for nom, (met, s, *_r) in PORTRAITS.items():
-        P[nom] = {"img": nom, "sexe": s, "metier": met, "nom": nom, "scene": None}
+        # le metier et le prenom ecrit viennent de la fiche commune (visuel/personnes.json) : « Inés », pas « Ines »
+        if PERS.metier(nom) != met or PERS.sexe(nom) != s:
+            raise SystemExit("%s : %s ici, %s dans visuel/personnes.json" % (nom, met, PERS.metier(nom)))
+        P[nom] = {"img": nom, "sexe": s, "metier": met, "nom": PERS.nom(nom), "scene": None}
     return P
 
 
@@ -414,6 +419,12 @@ def ecrire_voix(d):
     fois (Lolita pour l'Espagne, Monica pour l'Amerique latine)."""
     v = {"_lisez_moi": "FABRIQUE par visuel/metiers/metiers.py : les textes a enregistrer (ElevenLabs v2, accord de Jacques).",
          "de": sorted(d["trad"]["de"]), "es": sorted(d["trad"]["es"])}
+    # l'anglais (et ce que d'autres outils y posent) vient de visuel/voix_themes.py, qui joue la page : on le garde
+    chemin = os.path.join(ICI, "voix.json")
+    if os.path.exists(chemin):
+        for k, x in json.load(io.open(chemin, encoding="utf-8")).items():
+            if k not in v and k != "credits":
+                v[k] = x
     v["credits"] = {"de (Aurora)": sum(len(t) for t in v["de"]), "es (Lolita + Monica)": 2 * sum(len(t) for t in v["es"])}
     io.open(os.path.join(ICI, "voix.json"), "w", encoding="utf-8", newline="\n").write(json.dumps(v, ensure_ascii=False, indent=1) + "\n")
     return v["credits"]

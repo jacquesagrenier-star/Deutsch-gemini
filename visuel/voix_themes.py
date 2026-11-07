@@ -70,6 +70,10 @@ DOSSIER = {"es": "es-es", "latam": "es-419", "de": "", "en": "en-us"}
 AUDIO = os.environ.get("AUDIO_RACINE", RACINE)
 # VOIX_CLES=en : ne relire que ces langues (les autres gardent ce qu'elles ont dans voix.json)
 CLES = [c for c in os.environ.get("VOIX_CLES", "").split(",") if c]
+# VOIX_THEMES=emociones,cuerpo : ne relire que ces themes (6 nov. 2026, la coherence des personnages). Leur voix.json
+# est refait, mais PAS themes/sons.json, qui se calcule sur tous les themes : un texte neuf n'y est pas de toute facon
+# (il n'a pas de fichier), la page prend la voix du telephone.
+SEULS = [c for c in os.environ.get("VOIX_THEMES", "").split(",") if c]
 
 
 def ident(t):
@@ -88,6 +92,8 @@ def textes_des_pages():
     with sync_playwright() as p:
         nav = p.chromium.launch()
         for th in THEMES + THEMES_EN:
+            if SEULS and th not in SEULS:
+                continue
             out[th] = {}
             for cle, (app, var) in CAS.items():
                 if CLES and cle not in CLES:
@@ -131,6 +137,9 @@ def main():
         ancien.update(d)
         io.open(chemin, "w", encoding="utf-8", newline="\n").write(json.dumps(ancien, ensure_ascii=False, indent=1) + "\n")
         print("  -> %s" % os.path.relpath(chemin, RACINE))
+    if SEULS:
+        print("\n  VOIX_THEMES : themes/sons.json n'est pas refait (il se calcule sur tous les themes)")
+        return
     # les contraires (3 nov. 2026) : la decouverte et les mots cles, tels que contrarios.json les donne
     # (audio/manifest.py, contrarios_textes ; l'Amerique latine dit les memes textes que l'Espagne)
     # -- en COMPLETANT l'anglais lu dans la page (THEMES_EN), jamais en le remplacant
