@@ -15418,6 +15418,9 @@ const I18N = {
         flash_end_summary_one: "1 carte vue.",
         flash_end_done: "TERMINER",
         encore_neufs: "{n} cartes de plus",
+        legere_encore: "Encore une séance",
+        legere_fin_une: "Ta séance du jour est faite.",
+        legere_fin_n: "{n} séances aujourd'hui",
         dict_section_title: "Dictionnaire",
         dict_section_note: "Touche le + pour faire une carte d'un mot et la retrouver dans Mon vocabulaire. La flèche → mène à la carte du cours quand elle existe déjà.",
         search_head_cours: "Cartes de l'app",
@@ -17129,6 +17132,9 @@ const I18N = {
         flash_end_summary_one: "1 card seen.",
         flash_end_done: "DONE",
         encore_neufs: "{n} more cards",
+        legere_encore: "One more session",
+        legere_fin_une: "Today's session is done.",
+        legere_fin_n: "{n} sessions today",
         dict_section_title: "Dictionary",
         dict_section_note: "Tap + to turn a word into a card and find it in My vocabulary. The arrow → opens the course card when there already is one.",
         search_head_cours: "Cards in the app",
@@ -51297,6 +51303,17 @@ const ESSAIS = {
         titre: "Le rappel actif dans les cartes",
         desc: "Une carte de mots sur trois (règle fixe, jamais un mot neuf) demande le mot au lieu de le montrer : choisir parmi 3 à 0 ou 1 point vert, choisir ou taper à 2, taper à 3 et une fois maîtrisé. Les leurres sont des mots déjà vus, de la même sorte. Juste ou presque = ✓, faux = Encore ; les points avancent comme avant. Allemand et espagnol."
     },
+    // EN ESSAI le 6 nov. 2026, admin seul. Decisions 96e3fa0 et d9d9dbd (« GO pour la mise en oeuvre, en ESSAI
+    // ADMIN d'abord ») : la seance LEGERE. Plus d'objectif chiffre : la seance du jour est une lecon de taille
+    // fixe (TAILLE_LECON), et « Encore une seance » en rouvre une autre, sans limite, en comptant les seances
+    // finies du jour (×2, ×3). Version 1 : la taille et la fin. La suite (s'arreter et reprendre, l'accueil au
+    // crepuscule, les etoiles et les planetes) vient par versions. Maquette :
+    // https://claude.ai/artifact/9yd8kUnaXPQSJvf49BEje4 ; plan : seance-legere.md (notes du chef).
+    seance_legere: {
+        etat: "admin",
+        titre: "La séance légère (une leçon par jour, sans objectif chiffré)",
+        desc: "La séance du jour fait toujours la même taille, quel que soit l'objectif réglé ; à la fin, « Encore une séance » en ouvre une autre, sans limite, et l'écran de fin dit combien de séances sont faites aujourd'hui. Les autres comptes gardent l'objectif « N / 20 »."
+    },
     premiers_pas: {
         etat: "tous",
         titre: "Premiers pas (un niveau avant A1)",
@@ -59297,6 +59314,8 @@ function neufsRestantsDansPaquet(){
 // Relance la seance avec la dose suivante, sans quitter le paquet.
 function encoreDesMotsNeufs(){
     if(currentTheme && currentTheme.id === "seance_premiers_pas"){ hideFlashcardEnd(); ouvrirPremiersPas(SUPPLEMENT_SEANCE); return; }
+    // Essai « seance_legere » : en seance du jour, le bouton ouvre une seance entiere de plus.
+    if(seanceLegere() && estSeanceDuJourOuverte()){ encoreUneSeance(); return; }
     const t2 = trancheSupplementaire();
     // La dose du jour ne s'applique qu'aux MOTS NEUFS. Eponger du retard n'en
     // consomme pas : ce sont des mots deja rencontres.
@@ -59358,6 +59377,9 @@ const TAILLE_SEANCE_MAX = 140;
 // matin, objectif a cent : la seance en sert soixante. Un seul nombre commande
 // la journee, quelle que soit la porte par laquelle on travaille.
 function tailleSeance(){
+    // Essai « seance_legere » (decision 96e3fa0) : une lecon de taille fixe. L'objectif regle et ce qui a deja
+    // ete fait aujourd'hui ne la changent plus ; « Encore une seance » en ouvre une autre de la meme taille.
+    if(seanceLegere()) return TAILLE_LECON;
     let cible = DEFAULT_DAILY_GOAL_TARGET, fait = 0;
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
     try{ fait = getDailyActivityCount() || 0; }catch(e){}
@@ -59366,6 +59388,43 @@ function tailleSeance(){
     return Math.max(5, Math.min(TAILLE_SEANCE_MAX, cible - fait));
 }
 const SUPPLEMENT_SEANCE = 20;
+
+// ============ LA SEANCE LEGERE (essai « seance_legere », 6 nov. 2026, decisions 96e3fa0 et d9d9dbd) ============
+// Jacques : « on ne met plus d'objectifs du jour, de quantite » ; « il faut aussi toujours que si l'etudiant veut
+// etudier plus, que ca soit facile de continuer ». La seance du jour est une lecon de taille fixe ; a la fin,
+// « Encore une seance » en ouvre une autre (de nouveaux mots, les revisions restantes), sans limite. Le nombre de
+// seances finies aujourd'hui (le « ×2 » de la maquette) se garde ici et repart a zero le lendemain.
+// ⚠️ La scene ET le theme dans chaque lecon attendent le correctif de l'insertion (ORDRE_PARTS,
+// insererThemeIllustre) de la session du plan de seance : cette version n'y touche pas.
+const TAILLE_LECON = 20;
+const SEANCES_LEGERES_KEY = PREFIXE_STOCKAGE + "seancesLegeres";
+function seanceLegere(){
+    try{ return essaiActif("seance_legere") && !seanceJaponaise(); }catch(e){ return false; }
+}
+function seancesFiniesAujourdhui(){
+    let v = null;
+    try{ v = JSON.parse(localStorage.getItem(SEANCES_LEGERES_KEY) || "null"); }catch(e){ v = null; }
+    return (v && v.j === getTodayStr()) ? (v.n || 0) : 0;
+}
+// Une seance finie compte une fois : l'ecran de fin peut se reafficher pour le meme paquet.
+let PAQUET_LEGER_COMPTE = null;
+function noterSeanceLegereFinie(paquet){
+    if(!paquet || PAQUET_LEGER_COMPTE === paquet) return seancesFiniesAujourdhui();
+    PAQUET_LEGER_COMPTE = paquet;
+    const n = seancesFiniesAujourdhui() + 1;
+    try{ localStorage.setItem(SEANCES_LEGERES_KEY, JSON.stringify({ j: getTodayStr(), n: n })); }catch(e){}
+    return n;
+}
+function estSeanceDuJourOuverte(){
+    return !!(currentTheme && String(currentTheme.id).indexOf("seance_") === 0 && currentTheme.id !== "seance_premiers_pas");
+}
+// « Encore une seance » : une lecon entiere de plus, rouverte depuis l'etat du jour. Une dose de mots
+// nouveaux s'ouvre pour elle (le plafond du jour la refuserait sinon) ; les revisions restantes suivent.
+function encoreUneSeance(){
+    hideFlashcardEnd();
+    try{ ajouterSerieNeufs(); }catch(e){}
+    try{ ouvrirSeanceDuJour(true); }catch(e){}
+}
 
 function cle(it){ return it.themeId + ":" + it.index; }
 
@@ -67580,9 +67639,17 @@ function majCompteurCarte(){
     // (Jacques : « au lieu de voir comment je suis par rapport a mon objectif, je
     // pourrais voir que j'ai 3 mots mis de cote »).
     if(currentTheme && currentTheme.id === "gardes"){
+        el.classList.remove("hidden");
         el.textContent = tf("gardes_compteur", { n: nombreGardes() });
         return;
     }
+    // Essai « seance_legere » : plus de « fait / objectif » en seance du jour ; la barre des parties dit ou l'on en est.
+    if(seanceLegere() && estSeanceDuJourOuverte()){
+        el.textContent = "";
+        el.classList.add("hidden");
+        return;
+    }
+    el.classList.remove("hidden");
     let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
     try{ fait = getDailyActivityCount() || 0; }catch(e){}
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
@@ -69132,7 +69199,22 @@ function showFlashcardEnd(){
         encore.classList.toggle("hidden", reste <= 1 || !premiersPasEnCours());
         encore.textContent = tf("encore_neufs", { n: SUPPLEMENT_SEANCE });
     }
+    else if(encore && seanceLegere() && estSeanceDuJourOuverte()){
+        // Essai « seance_legere » : pas d'objectif a annoncer ; combien de seances aujourd'hui, et
+        // « Encore une seance », toujours la, bien visible, sans limite.
+        const n = noterSeanceLegereFinie(currentCards);
+        if(mot){
+            mot.textContent = n > 1 ? tf("legere_fin_n", { n: n }) : t("legere_fin_une");
+            mot.classList.add("atteint");
+            mot.classList.remove("hidden");
+        }
+        encore.textContent = t("legere_encore");
+        encore.classList.remove("hidden", "secondary");
+        encore.classList.add("primary");
+    }
     else if(encore){
+        encore.classList.remove("primary");
+        encore.classList.add("secondary");
         const t2 = trancheSupplementaire();
         encore.classList.toggle("hidden", t2.cartes.length === 0);
         if(t2.cartes.length) encore.textContent = tf("encore_neufs",
@@ -69149,7 +69231,7 @@ function showFlashcardEnd(){
     try{
         const enSeance = !!(currentTheme && String(currentTheme.id).indexOf("seance_") === 0);
         const anneau = document.getElementById("flashEndAnneau");
-        if(anneau){ anneau.classList.toggle("hidden", !enSeance); if(enSeance) majAnneauFin(anneau); }
+        if(anneau){ anneau.classList.toggle("hidden", !enSeance); if(enSeance) majAnneauFin(anneau, true); }
         const titre = document.getElementById("flashEndTitre");
         if(titre) titre.textContent = t(enSeance ? "fin_seance_titre" : "flash_end_title");
         rendreFetes(document.getElementById("finFetes"), prendreFetesAttente());
@@ -69288,8 +69370,18 @@ function majBandeauFetes(){
     else home.insertBefore(b, home.firstChild);
 }
 // L'anneau du jour (maquettes a et b) : le compte sur l'objectif.
-function majAnneauFin(el){
+function majAnneauFin(el, finie){
     if(!el) return;
+    // Essai « seance_legere » : l'anneau de FIN est plein, avec un ✓, et « ×2 », « ×3 » quand on enchaine.
+    // L'ecran court (« ‹ » en cours) garde l'ancien anneau : ses parties faites viennent avec la version 2.
+    if(finie && seanceLegere() && estSeanceDuJourOuverte()){
+        const n = Math.max(1, seancesFiniesAujourdhui());
+        el.style.setProperty("--p", 100);
+        el.classList.add("atteint");
+        el.querySelector("b").textContent = "✓";
+        el.querySelector("small").textContent = n > 1 ? "×" + n : "";
+        return { fait: n, cible: n };
+    }
     let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
     try{ fait = getDailyActivityCount() || 0; }catch(e){}
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
