@@ -64,6 +64,8 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
   transition:--v-haut .35s ease, --v-bas .35s ease}
 .verre-v.v-rond::after{inset:4px !important}
 .verre-v.v-rond:focus-visible{outline:2px solid #E8A23A; outline-offset:-2px}
+/* 6 nov. : dans les pages a #zone (themes illustres, DTZ oral), le rond fixe descend dans la bande du bas */
+html.v-zone .verre-v.v-rond.v-fixe{bottom:calc(6px + env(safe-area-inset-bottom,0px)) !important}
 @media (prefers-reduced-motion: reduce){ .verre-v, .verre-v.v-rond::before{transition:none !important} }`;
   const st = document.createElement("style"); st.id = "verreBoutonsCss"; st.textContent = css;
   (document.head || document.documentElement).appendChild(st);
@@ -199,8 +201,61 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
       const r = enRond(b);
       if (b.classList.contains("v-rond") !== r) b.classList.toggle("v-rond", r);
       if (r && b.getAttribute("aria-label") !== b.textContent.trim()) b.setAttribute("aria-label", b.textContent.trim());
+      if (r){
+        const fixe = getComputedStyle(b).position === "fixed";
+        if (b.classList.contains("v-fixe") !== fixe) b.classList.toggle("v-fixe", fixe);
+        const vu = fixe && !b.hidden && getComputedStyle(b).display !== "none";
+        if (vu && b.dataset.verreVu !== "1") degagerBientot(b);
+        b.dataset.verreVu = vu ? "1" : "";
+      }
     });
   }
+  /* LE ROND NE COUVRE PLUS LA BONNE REPONSE (6 nov. 2026, Jacques sur iPhone, « Gisela está feliz » : « la fleche
+     pour continuer, souvent, elle embarque par-dessus la bonne reponse [...] la mettre tout simplement plus basse »).
+     Le rond descend (feuille ci-dessus) ; les pages gardent en bas au moins 90 px plus l'espace sur, plus haut que
+     lui. Et quand il apparait, si une bonne reponse (.juste) passe sous son verre, la page defile juste assez pour la
+     montrer au-dessus, avec 12 px d'air -- sans jamais faire passer le haut de la reponse hors de l'ecran. */
+  function defilant(e){
+    for (let p = e.parentElement; p && p !== document.documentElement; p = p.parentElement){
+      const oy = getComputedStyle(p).overflowY;
+      if ((oy === "auto" || oy === "scroll") && p.scrollHeight > p.clientHeight + 1) return p;
+    }
+    return document.scrollingElement || document.documentElement;
+  }
+  function degager(rond){
+    if (rond.hidden || getComputedStyle(rond).display === "none") return;
+    const r = rond.getBoundingClientRect(), v = {l: r.left + 4, r: r.right - 4, t: r.top + 4 - 12};
+    // ce qui doit se voir : chaque bonne reponse, et la phrase ecrite de la reponse (#msg) juste dessous (la mesure du
+    // 6 nov. : « Gisela esta avergonzada. » passait sous le rond une fois la reponse degagee). `haut` : le plus haut
+    // d'entre eux, qui ne doit jamais sortir de l'ecran par le haut.
+    let bas = -Infinity, haut = Infinity, e0 = null;
+    const voir = (e, b) => {
+      if (!b.width || !b.height) return;
+      haut = Math.min(haut, b.top);
+      if (b.right <= v.l || b.left >= v.r || b.bottom <= v.t) return;   // ne passe pas sous le rond
+      bas = Math.max(bas, b.bottom); e0 = e0 || e;
+    };
+    document.querySelectorAll(".juste").forEach(e => {
+      if (rond.contains(e) || e.offsetParent === null && getComputedStyle(e).position !== "fixed") return;
+      voir(e, e.getBoundingClientRect());
+    });
+    document.querySelectorAll("#zone .retourMsg, #msg").forEach(m => { if (m.textContent.trim()) voir(m, m.getBoundingClientRect()); });
+    if (!e0) return false;
+    const d = Math.min(bas - v.t, Math.max(0, haut - 8));
+    if (d < 1) return false;
+    const sc = defilant(e0), doux = !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+    try{ sc.scrollBy({top: d, behavior: doux ? "smooth" : "auto"}); }catch(e){ sc.scrollTop += d; }
+    return true;
+  }
+  // apres la mise en page de la reponse (le message s'ecrit dans le meme geste) ; une seconde fois, une fois les
+  // images posees, seulement si la premiere n'a rien eu a faire (sinon elle relancerait un defilement en cours)
+  function degagerBientot(b){
+    let fait = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => { fait = degager(b); }));
+    setTimeout(() => { if (!fait) degager(b); }, 450);
+  }
+  const marquerZone = () => { if (document.getElementById("zone")) document.documentElement.classList.add("v-zone"); };
+  marquerZone(); document.addEventListener("DOMContentLoaded", marquerZone);
   function boutons(){
     classer();
     return [...document.querySelectorAll(SEL)].filter(b => b.offsetParent !== null || getComputedStyle(b).position === "fixed");

@@ -138,6 +138,55 @@ const Voix = (() => {
       arreter(true);
     }, true);
   }catch(e){}
+  // REECOUTER (6 nov. 2026, Jacques : « lorsqu'on est dans les themes, qu'on a une image, d'etre capable de reecouter
+  // la phrase »). A chaque question neuve (une .consigne posee dans #zone) qui n'a pas deja son haut-parleur, un rond
+  // haut-parleur s'ajoute au bout de la consigne -- en haut, loin du rond « → » et des reponses. Il redit la derniere
+  // phrase dite dans cette question (apres la reponse : la phrase juste) ; avant, la phrase de l'enonce quand elle est
+  // entiere (pas de trou a remplir) ; sans l'une ni l'autre, il reste cache. Il passe par dire() : le fondu et la
+  // phrase en attente derriere le son de reussite s'appliquent comme partout.
+  // la phrase dite, et la consigne de la question ou elle l'a ete (une question neuve = une consigne neuve ; pas de
+  // remise a zero dans l'observateur, qui passe APRES le code de la page et effacerait une phrase dite au rendu)
+  let ditQuestion = "", ditConsigne = null;
+  const dejaDit = z => { const c = z && z.querySelector(".consigne"); return c && c === ditConsigne ? ditQuestion : ""; };
+  const HP = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
+  function phraseEnonce(z){
+    const e = z && z.querySelector(".enonce");
+    if (!e || e.querySelector("#trou, .trou")) return "";
+    const ls = e.querySelectorAll("[lang]");
+    return (ls.length ? Array.from(ls).map(x => x.textContent).join(" ") : "").replace(/\s+/g, " ").trim();
+  }
+  function majReecoute(){
+    const z = document.getElementById("zone"), b = z && z.querySelector(".v-redire");
+    if (b) b.hidden = !(dejaDit(z) || phraseEnonce(z));
+  }
+  function poserReecoute(){
+    const z = document.getElementById("zone"); if (!z) return;
+    const c = z.querySelector(".consigne");
+    if (!c || c.querySelector(".v-redire") || z.querySelector(".ecoute:not(.v-redire), #ecoute")) return;
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "ecoute v-redire"; b.innerHTML = HP;
+    let nom = "";
+    try{ if (typeof T === "function") nom = T("ecouter"); }catch(e){}
+    b.setAttribute("aria-label", nom && nom !== "ecouter" ? nom : "Réécouter");
+    b.addEventListener("click", () => { const t = dejaDit(z) || phraseEnonce(z); if (t) dire(t); });
+    c.appendChild(b);
+    majReecoute();
+  }
+  function brancherReecoute(){
+    const z = document.getElementById("zone"); if (!z) return;
+    const st = document.createElement("style");
+    st.textContent = ".consigne .v-redire{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;"
+      + "min-width:34px;vertical-align:middle;margin:-4px 0 0;margin-inline-start:8px;padding:0}"
+      + ".consigne .v-redire svg{width:18px;height:18px}.consigne .v-redire[hidden]{display:none}";
+    (document.head || document.documentElement).appendChild(st);
+    new MutationObserver(recs => {
+      const neuve = recs.some(r => Array.from(r.addedNodes).some(n => n.nodeType === 1 && !n.classList.contains("v-redire")
+        && (n.classList.contains("consigne") || (n.querySelector && n.querySelector(".consigne")))));
+      if (neuve) poserReecoute(); else majReecoute();
+    }).observe(z, {childList: true, subtree: true});
+    poserReecoute();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", brancherReecoute); else brancherReecoute();
   // LE SON DE REUSSITE (3 nov. 2026, Jacques sur iPhone : le « +1 » sans le son des cartes et des scenes). Comme les
   // scenes (sonBravo de visuel/prototype/index.html) : le son de l'APP quand la page est dans son cadre (meme
   // origine : la kalimba des cartes, quel qu'il soit), sinon une copie des trois notes en WAV joue par un <audio>
@@ -196,6 +245,7 @@ const Voix = (() => {
   function dire(texte){
     if (!texte) return;
     arreter();
+    try{ ditQuestion = texte; ditConsigne = document.querySelector("#zone .consigne"); majReecoute(); }catch(e){}
     const attente = Math.max(0, finBravo - Date.now());
     const id = sha1(texte), ce = tour;
     if (!connus.has(id)){
