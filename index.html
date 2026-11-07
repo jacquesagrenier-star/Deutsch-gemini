@@ -53931,6 +53931,7 @@ function setFlashHeader(kickerKey, titleKey){
 }
 
 function loadFlashcard(){
+    oublierCarteJugee();   // une carte (re)dessinee n'a pas encore ete jugee
     updateXpComboDisplay();
     hideFlashcardEnd();
     // La phrase a prononcer appartient a la carte qu'on affiche, et a elle
@@ -69317,6 +69318,8 @@ function echeanceProchaineReussite(state){
 
 function reviewAgain(){
     if(!currentCards.length) return;
+    if(deuxiemeToucher()) return;
+    marquerCarteJugee();
     arreterChaineCarte(true);   // voir reviewGood()
     const item = currentCards[currentFlashcard];
     // ⚠️ DANS LE COFFRE, « ENCORE » NE TOUCHE A RIEN (v603). Hors du coffre il
@@ -69330,8 +69333,7 @@ function reviewAgain(){
     if(dansLePaquetGarde()){
         remettreEnFile(item);
         try{ poserCarreauDeLaCarte(item); }catch(e){}   // v853
-        clearTimeout(attentePalier);
-        attentePalier = setTimeout(nextFlashcard, 220);
+        programmerSuite(nextFlashcard, 220);
         return;
     }
     const state = getWordState(item.themeId, item.index);
@@ -69382,6 +69384,48 @@ function remettreEnFile(item){
 // que le clic, le point vert gagne s'allumait sur une carte deja disparue :
 // l'effort n'etait paye par rien de visible.
 let attentePalier = null;
+// ============ LE DEUXIEME TOUCHER NE COMPTE RIEN (7 nov. 2026) ============
+// Entre le jugement et la carte suivante, la carte reste a l'ecran 950 ms (520,
+// 1 250 a la maitrise, ATTENTE_COFFRE_MS au coffre) -- et ses boutons restent
+// touchables. Un deuxieme toucher sur ✓ jugeait la carte une seconde fois : un
+// mot a un point passait a trois d'un coup (mesure de la maquette des points),
+// la progression se gonflait sans rien avoir appris. Et il ne faisait pas
+// passer plus vite.
+// La regle (Jacques : « rien ne doit ralentir quelqu'un qui sait ») : un seul
+// effet par carte. Le deuxieme toucher -- ✓, Encore, Mettre de cote, l'etoile,
+// Sortir du coffre -- ne compte RIEN et fait tout de suite ce que la minuterie
+// aurait fait (en general, la carte suivante).
+// ⚠️ Toute nouvelle attente apres un jugement passe par programmerSuite(), et
+// tout nouveau bouton qui juge commence par deuxiemeToucher() : sinon la
+// minuterie part sans qu'on puisse la devancer, ou la carte se juge deux fois.
+let carteJugee = null;       // { item, i } : la carte deja jugee, qui attend de partir
+let suiteDeLaCarte = null;   // ce que fera la minuterie en cours
+function programmerSuite(fn, ms){
+    clearTimeout(attentePalier);
+    suiteDeLaCarte = fn;
+    attentePalier = setTimeout(() => { suiteDeLaCarte = null; fn(); }, ms);
+}
+function marquerCarteJugee(){
+    carteJugee = currentCards.length ? { item: currentCards[currentFlashcard], i: currentFlashcard } : null;
+}
+function oublierCarteJugee(){
+    carteJugee = null;
+    suiteDeLaCarte = null;
+}
+function deuxiemeToucher(){
+    if(!carteJugee || !currentCards.length) return false;
+    if(carteJugee.i !== currentFlashcard || carteJugee.item !== currentCards[currentFlashcard]){
+        oublierCarteJugee();
+        return false;
+    }
+    const suite = suiteDeLaCarte;
+    if(suite){
+        clearTimeout(attentePalier);
+        suiteDeLaCarte = null;
+        suite();
+    }
+    return true;
+}
 // ============ LE REGARD EN ARRIERE EST RETIRE (v575) ============
 // Il vivait ici depuis la v553 : un bouton « Precedent » rouvrait en plein ecran
 // la carte qu'on venait de juger, en lecture seule.
@@ -69402,10 +69446,10 @@ function celebrerPalier(pointGagne){
     if(pointGagne){ launchConfetti(); playMasteredSound(); }
     // v853 : le +1 avec les confettis, pas sur la carte suivante.
     try{ poserCarreauDeLaCarte(carteCourante()); }catch(e){}
-    clearTimeout(attentePalier);
     // La celebration garde son temps d'animation, mais elle ne fait plus
-    // disparaitre la carte : elle ouvre « Suivant ».
-    attentePalier = setTimeout(nextFlashcard, pointGagne ? 950 : 520);
+    // disparaitre la carte : elle ouvre « Suivant ». Un deuxieme toucher la
+    // devance (deuxiemeToucher()).
+    programmerSuite(nextFlashcard, pointGagne ? 950 : 520);
 }
 
 // v924 : LA BULLE DU PREMIER « CONTINUER ». Marc-Antoine (rapporte par Jacques,
@@ -69429,7 +69473,9 @@ function bulleDuPremierContinuer(){
 
 function reviewGood(){
     if(!currentCards.length) return;
+    if(deuxiemeToucher()) return;
     if(bulleDuPremierContinuer()) return;
+    marquerCarteJugee();
     // JUGER COUPE LA VOIX, TOUT DE SUITE (v741). La carte reste encore 950 ms
     // pour la celebration : la chaine continuait d'y parler, et le pluriel
     // tombait sur la carte suivante. Signale par Jacques, en allemand comme en
@@ -69512,6 +69558,9 @@ function dansLePaquetGarde(){
 function basculerGardeCarte(){
     const it = carteCourante();
     if(!it) return;
+    // Un deuxieme toucher remettait le mot hors du coffre : un seul effet par carte.
+    if(deuxiemeToucher()) return;
+    marquerCarteJugee();
     const st = getWordState(it.themeId, it.index);
     st.garde = !st.garde;
     setWordState(it.themeId, it.index, st);
@@ -69533,19 +69582,21 @@ function basculerGardeCarte(){
     // la progression ». Le carreau s'affiche (v853) : l'objectif du jour avance avec lui, comme pour
     // « Encore ». Le calendrier du mot, lui, ne bouge toujours pas (v603).
     try{ const palierCoffre = recordDailyActivity(); if(palierCoffre > 0) triggerDailyGoalCelebration(palierCoffre); }catch(e){}
-    clearTimeout(attentePalier);
-    attentePalier = setTimeout(nextFlashcard, ATTENTE_COFFRE_MS);
+    programmerSuite(nextFlashcard, ATTENTE_COFFRE_MS);
 }
 
 // Passer sans rien faire : la carte avance, le mot reste garde, et aucune
 // donnee ne bouge. C'est le seul bouton de l'application qui ne fait
 // LITTERALEMENT rien d'autre qu'avancer -- et c'est sa raison d'etre.
 function suivanteDansLeCoffre(){
+    if(deuxiemeToucher()) return;
     clearTimeout(attentePalier);
     nextFlashcard();
 }
 
 function sortirDuCoffre(){
+    if(deuxiemeToucher()) return;
+    marquerCarteJugee();
     // Le couvercle s'ouvre AVANT que la carte parte : c'est le seul instant ou
     // le geste peut se montrer. Voir la note du CSS.
     const b = document.querySelector(".judge-sortir");
@@ -69586,7 +69637,7 @@ function sortirDuCoffre(){
     let vide = false;
     try{ vide = nombreGardes() === 0; }catch(e){}
     if(vide){
-        attentePalier = setTimeout(() => {
+        programmerSuite(() => {
             retourSeanceAccueil = true;
             try{ hideFlashcardEnd(); }catch(e){}
             handleFlashcardBack();
@@ -69594,7 +69645,7 @@ function sortirDuCoffre(){
         }, ATTENTE_COFFRE_MS);
         return;
     }
-    attentePalier = setTimeout(nextFlashcard, ATTENTE_COFFRE_MS);
+    programmerSuite(nextFlashcard, ATTENTE_COFFRE_MS);
 }
 
 // ⚠️ ON COMPTE DANS LA PROGRESSION, PAS DANS LE COURS. Construire le paquet
@@ -69697,6 +69748,8 @@ async function ouvrirGardes(){
 }
 
 function markKnownAlready(){
+    if(currentCards.length && deuxiemeToucher()) return;
+    marquerCarteJugee();
     arreterChaineCarte(true);   // voir reviewGood()
     if(currentCards.length){
         const it = currentCards[currentFlashcard];
@@ -70925,8 +70978,7 @@ function markMastered(discret){
     feterLeTrophee();
     majEcheances(true);
     try{ poserCarreauDeLaCarte(item); }catch(e){}   // v853, voir celebrerPalier()
-    clearTimeout(attentePalier);
-    attentePalier = setTimeout(nextFlashcard,
+    programmerSuite(nextFlashcard,
         (discret && !justReachedMultiple) ? ATTENTE_ETOILE_MS : ATTENTE_FETE_MS);
 }
 
@@ -70951,6 +71003,7 @@ function programmerMaitrise(state){
 }
 
 function nextFlashcard(){
+    oublierCarteJugee();
     noterEtape("reponse");
     currentFlashcard++;
     carteSeanceSuivie();
