@@ -198,6 +198,9 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 let D = null;
 const nom = p => (D.noms || {})[p] || p;
 const maj = s => s.charAt(0).toUpperCase() + s.slice(1);
+// au cafe, le serveur et la serveuse sans prenom (6 nov. 2026 : Javier est cuisinier, Ines coiffeuse) : « der Mann mit dem
+// Schnurrbart » ; les autres, leur prenom. l : la langue (apprise par defaut, celle de l'interface pour la traduction).
+const quiCafe = (p, l) => { const a = (D.anonymes || {})[p]; if (!a) return nom(p); l = l || APPRENDRE; return (l === "en" && GB && a.en_gb) || a[l] || nom(p); };
 // l'Amerique latine : jugo, mesero, sandwich, papas -- a l'ecran et dans la voix ; la carte du corpus reste zumo
 const latam = s => !LATAM || !s ? s : s.replace(/[A-Za-zÁÉÍÓÚáéíóúñÑ]+/g, w => D.latam[w] || w);
 const GOUTS = () => D.gouts, QTES = () => D.quantites, CAFE = () => D.cafe, CARTE = () => APPRENDRE === "en" ? EN_CARTE : D.carte[APPRENDRE];
@@ -236,7 +239,7 @@ const ES = {
   cantidad: d => "Es ___ " + D.contenus[d].es.dit + ".",
   queEs: "¿Qué es?", lista: "¿Cómo se dice?",
   np: (c, d) => D.contenants[c].es.art + " " + D.contenus[d].es.dit,
-  rol: p => nom(p) + " es ___.",
+  rol: p => maj(quiCafe(p)) + " es ___.",
   carte: "Carta", listeTitre: "Lista de la compra",
   // la commande : « Carmen toma un café y un trozo de tarta. ¿Cuánto es? »
   commande(qui, items, cuenta){ const s = qui.map(nom).join(" y "), v = qui.length > 1 ? "toman" : "toma";
@@ -272,7 +275,7 @@ const DE = {
   cantidad: d => "Das ist ___ " + D.contenus[d].de.dit + ".",
   queEs: "Was ist das?", lista: "Wie sagt man das?",
   np: (c, d) => D.contenants[c].de.art + " " + D.contenus[d].de.dit,
-  rol: p => nom(p) + " ist ___.",
+  rol: p => maj(quiCafe(p)) + " ist ___.",
   carte: "Speisekarte", listeTitre: "Einkaufsliste",
   commande(qui, items, cuenta){ const s = qui.map(nom).join(" und ");
     return cuenta ? s + " " + (qui.length > 1 ? "möchten" : "möchte") + " die Rechnung: " + liste(items, "de") + ". Was macht das?" : s + " " + (qui.length > 1 ? "nehmen" : "nimmt") + " " + liste(items, "de") + ". Was macht das?"; },
@@ -446,7 +449,7 @@ const EN = {
   combienR: q => "How " + (EN_CU[q.d].n ? "many " : "much ") + EN_CU[q.d].dit + " do you want? " + EN_CT[q.c].court + ", please.",
   someQ: q => "There ___ " + EN_CU[q.d].dit + " " + EN_OU[q.id][0] + ".",
   someR: q => "There " + (q.c === "poco" ? "is a little " : EN_CU[q.d].n ? "are some " : "is some ") + EN_CU[q.d].dit + " " + EN_OU[q.id][0] + ".",
-  rol: p => nom(p) + " is ___.",
+  rol: p => maj(quiCafe(p)) + " is ___.",
   carte: "Menu", listeTitre: "Shopping list",
   // la commande : « Carmen has a coffee and a piece of cake. How much is that? »
   commande(qui, items, cuenta){ const s = qui.map(nom).join(" and "), pl = qui.length > 1;
@@ -556,7 +559,7 @@ function traduire(q){
     const tete = ecrit.split(" ")[0], unite = D.unites[u] ? D.unites[u][LANGUE] : ecrit.split(" ")[1] + (LANGUE === "en" ? " of" : " de");
     return tete + " " + (LANGUE === "fr" ? deFr(unite + " ", p) : unite + " " + p); }
   if (q.cafe) return D.cafe.find(m => m.id === q.cafe.id).tr[LANGUE][q.cafe.fait ? 1 : 0];
-  if (q.role) return nom(q.role.p) + (LANGUE === "fr" ? " est " : LANGUE === "en" ? " is " : LANGUE === "pt" ? " é " : " ist ") + ROLES_TR[q.role.mot][LANGUE] + ".";
+  if (q.role) return maj(quiCafe(q.role.p, LANGUE)) + (LANGUE === "fr" ? " est " : LANGUE === "en" ? " is " : LANGUE === "pt" ? " é " : " ist ") + ROLES_TR[q.role.mot][LANGUE] + ".";
   if (q.commande){ const c = q.commande, s = c.qui.map(nom).join(TR.et);
     return s + (c.cuenta ? TR.addition(c.qui.length > 1) : TR.prend(s, c.qui.length > 1)) + trListe(c.items) + ". " + TR.vous + TR.prix(c.total) + "."; }
   if (q.cuesta) return TR.cuesta(trCarte(q.cuesta.cle, 1), TR.prix(q.cuesta.p));
@@ -588,7 +591,7 @@ function traduireEn(q){
                  : "Il y a " + (x.c === "poco" ? "un peu de " + cu.fr : cu.frDu) + " " + EN_OU[x.id][1] + "."; }
   if (q.liste) return q.liste[5];
   if (q.cafe) return EN_CAFE[q.cafe.id].fr[q.cafe.fait ? 1 : 0];
-  if (q.role) return nom(q.role.p) + " est " + EN_ROLES[q.role.p].fr + ".";
+  if (q.role) return maj(quiCafe(q.role.p, "fr")) + " est " + EN_ROLES[q.role.p].fr + ".";
   if (q.commande){ const c = q.commande, s = c.qui.map(nom).join(" et "), pl = c.qui.length > 1, t = c.items.map(([it, n]) => carteFr(it.cle, n));
     const l = t.length < 2 ? t[0] : t.slice(0, -1).join(", ") + " et " + t[t.length - 1];
     return s + (c.cuenta ? (pl ? " demandent l'addition : " : " demande l'addition : ") : (pl ? " prennent " : " prend ")) + l + ". Ça fait " + prixFr(c.total) + "."; }
@@ -990,7 +993,7 @@ const EX = {
     boutons($("choix"), options(rep, leurres, 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, maj(latam(dit)) + "."); });
     return true;
   },
-  // au cafe : « ¿Qué dice Tomás? » La cuenta, por favor... ; « ¿Qué pasa? » Tomás pide la cuenta... ; « Javier es ___. »
+  // au cafe : « ¿Qué dice Tomás? » La cuenta, por favor... ; « ¿Qué pasa? » Tomás pide la cuenta... ; « El hombre del bigote es ___. »
   cafe(w){
     if (w && !w.cafe && !w.role) return false;
     const variante = w ? (w.cafe && w.role ? (Math.random() < 0.67 ? "moment" : "role") : w.cafe ? "moment" : "role") : (Math.random() < 0.75 ? "moment" : "role");
@@ -1013,7 +1016,7 @@ const EX = {
       sensQ = {cafe: {id: m.id}};
       const rep = latam(m[APPRENDRE].dit);
       TRAD_CHOIX = {}; CAFE().forEach(x => { if (x.tr[LANGUE] && LANGUE !== APPRENDRE) TRAD_CHOIX[latam(x[APPRENDRE].dit)] = x.tr[LANGUE][0]; });
-      ecran("cafeDit", large("cafe-" + m.id), L.dice(m.qui), true);
+      ecran("cafeDit", large("cafe-" + m.id), L.dice(quiCafe(m.qui)), true);
       boutons($("choix"), options(rep, autres.map(x => latam(x[APPRENDRE].dit)), 3), rep, ok => juger(ok, rep, null));
     } else {
       sensQ = {cafe: {id: m.id, fait: true}};
@@ -1027,7 +1030,7 @@ const EX = {
   // la carte du cafe : « Carmen toma un café y un trozo de tarta. ¿Cuánto es? » -- utile pour le DTZ
   cuenta(w){
     if (w && !w.m && w.cafe !== "cuenta") return false;
-    const carte = CARTE(), GENS = ["Mark", "Tomas", "Carmen", "Diego", "Marta", "Pablo", "Rosa", "Elena", "Lucas"];   // jamais Javier ni Ines : ils servent
+    const carte = CARTE(), GENS = ["Mark", "Tomas", "Carmen", "Diego", "Marta", "Pablo", "Rosa", "Elena", "Lucas"];   // jamais les visages du serveur et de la serveuse
     vuQ = null;
     if (w ? (w.m && Math.random() < 0.25) : Math.random() < 0.2){
       // le prix d'un seul article
@@ -1133,7 +1136,7 @@ const VF = {
     const juste = latam(m[APPRENDRE].fait), autres = CAFE().filter(x => x !== m && !(VOIS_CAFE[m.id] || []).includes(x.id));
     return {image: large("cafe-" + m.id), phrase: vrai ? juste : latam(hasard(autres)[APPRENDRE].fait), juste, vrai};
   },
-  // qui est qui : « Javier es el camarero. »
+  // qui est qui : « El hombre del bigote es el camarero. »
   role(w, vrai){
     const p = w && w.role ? w.role : hasard(Object.keys(D.roles).filter(x => D.roles[x][APPRENDRE]));
     const r = D.roles[p][APPRENDRE]; if (!r) return false;
@@ -1381,7 +1384,7 @@ const EX_EN = {
     return true;
   },
   // au cafe : « What does Mark say? » Can I have the check, please?... ; « What is happening? » Mark orders a coffee...
-  // ; « Javier is ___. » the waiter / a customer / the cook
+  // ; « The man with the mustache is ___. » the waiter / a customer / the cook
   cafe(w){
     if (w && !w.cafe && !w.role) return false;
     const variante = w ? (w.cafe && w.role ? (Math.random() < 0.67 ? "moment" : "role") : w.cafe ? "moment" : "role") : (Math.random() < 0.75 ? "moment" : "role");
@@ -1402,14 +1405,14 @@ const EX_EN = {
     sensQ = {cafe: {id: m.id, fait}};
     const champ = fait ? "fait" : "dit", rep = x[champ];
     if (EN_FR){ TRAD_CHOIX = {}; CAFE().forEach(y => { TRAD_CHOIX[EN_CAFE[y.id][champ]] = EN_CAFE[y.id].fr[fait ? 1 : 0]; }); }
-    ecran(fait ? "cafeFait" : "cafeDit", large("cafe-" + m.id), fait ? "What is happening?" : EN.dice(m.qui), true);
+    ecran(fait ? "cafeFait" : "cafeDit", large("cafe-" + m.id), fait ? "What is happening?" : EN.dice(quiCafe(m.qui)), true);
     boutons($("choix"), options(rep, autres.map(y => EN_CAFE[y.id][champ]), 3), rep, ok => juger(ok, rep, null));
     return true;
   },
   // la carte du cafe, en dollars : « Carmen has a coffee and a piece of cake. How much is that? »
   cuenta(w){
     if (w && !w.m && w.cafe !== "cuenta") return false;
-    const carte = EN_CARTE, GENS = ["Mark", "Tomas", "Carmen", "Diego", "Marta", "Pablo", "Rosa", "Elena", "Lucas"];   // jamais Javier ni Ines : ils servent
+    const carte = EN_CARTE, GENS = ["Mark", "Tomas", "Carmen", "Diego", "Marta", "Pablo", "Rosa", "Elena", "Lucas"];   // jamais les visages du serveur et de la serveuse
     vuQ = null;
     if (w ? (w.m && Math.random() < 0.25) : Math.random() < 0.2){
       // le prix d'un seul article : « How much is a coffee? »
@@ -1530,7 +1533,7 @@ const VF_EN = {
     const juste = EN_CAFE[m.id].fait, autres = CAFE().filter(x => x !== m && !(VOIS_CAFE[m.id] || []).includes(x.id));
     return {image: large("cafe-" + m.id), phrase: vrai ? juste : EN_CAFE[hasard(autres).id].fait, juste, vrai};
   },
-  // « Javier is the waiter. »
+  // « The man with the mustache is the waiter. »
   role(w, vrai){
     const p = w && w.role ? w.role : hasard(Object.keys(EN_ROLES)), r = EN_ROLES[p];
     const m = hasard(CAFE().filter(x => x.gens.includes(p)));

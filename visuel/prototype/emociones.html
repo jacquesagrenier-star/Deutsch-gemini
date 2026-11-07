@@ -184,7 +184,7 @@ const EMOS = () => Object.keys(D.emotions), TRAITS = () => Object.keys(D.caracte
 // fatigue s'ennuyer. Une question n'a qu'une bonne reponse, ou elle n'est pas posee.
 const VOISINS = {triste:["preocupado"], preocupado:["triste", "nervioso", "miedo"], nervioso:["preocupado", "miedo"], miedo:["nervioso", "preocupado", "sorprendido"],
                  sorprendido:["miedo"], cansado:["aburrido", "enfermo"], aburrido:["cansado"], enfermo:["cansado"]};
-// Les traits que la meme scene pourrait aussi montrer : Pablo qui tourne le dos est antipathique ET grossier, Lucas
+// Les traits que la meme scene pourrait aussi montrer : Carlos qui tourne le dos est antipathique ET grossier, Bruno
 // sur le canape paresseux ET desordonne, Anna qui aide le touriste sympathique ET polie.
 const VOISINS_T = {antipatico:["grosero"], grosero:["antipatico"], simpatico:["educado", "generoso", "carinoso", "feliz"], educado:["simpatico"], generoso:["simpatico", "carinoso"],
                    perezoso:["desordenado"], desordenado:["perezoso"], estudioso:["trabajador", "inteligente"], trabajador:["estudioso"], inteligente:["estudioso"],
@@ -366,7 +366,8 @@ const phraseT = (p, t) => nom(p) + " " + predT(p, t) + ".";
 
 // ---------- les images et les sons ----------
 const imgP = (p, e) => "emociones/" + p + "-" + e + ".webp";
-const imgT = (t, p) => "emociones/trait-" + t + "-" + p + ".webp";
+// un prenom reserve (6 nov. 2026 : Hugo, Nuria...) garde l'image du visage photographie (D.visages, visuel/personnes.json)
+const imgT = (t, p) => "emociones/trait-" + t + "-" + ((D.visages || {})[p] || p) + ".webp";
 // LA VOIX : la fonction commune des themes (themes/voix.js) -- le fichier enregistre s'il existe (Aurora, Lolita,
 // Monica ; themes/sons.json le sait avant de jouer), sinon la voix du telephone (3 nov. 2026 : « Pour le moment, on
 // va mettre les voix du téléphone. Quand il n'y a pas de voix. »). « let » : la decouverte la fait taire un instant.
@@ -569,10 +570,10 @@ const EX = {
     boutons($("choix"), melanger([formes[0], formes[1]]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, nom(p) + " " + verbe + " " + rep + "."); });
     return true;
   },
-  // « ¿Cómo es Javier? » / « Wie ist Javier? » : une scene, quatre traits
+  // « ¿Cómo es Sergio? » / « Wie ist Sergio? » : une scene, quatre traits
   commentEs(w){
     if (w && !w.t) return false;
-    // l'anglais : « What is Javier like? » -- « He is stingy. »
+    // l'anglais : « What is Sergio like? » -- « He is stingy. »
     if (APPRENDRE === "en"){
       const t = w ? w.t : hasard(TRAITS()), p = unePersonne(t), P = EN.pron(p), rep = P + " " + predT(p, t) + "."; motQ = w || motT(t); sensQ = {p, t};
       tradsOpts[rep] = TR ? frOpt(p, TR.t[t]) : null;
@@ -586,7 +587,7 @@ const EX = {
     boutons($("choix"), melanger([rep, ...leurresT(t, 3).map(x => predT(p, x))]), rep, ok => juger(ok, rep, phraseT(p, t)));
     return true;
   },
-  // « Javier es tacaño. Marta, al contrario, es ___. » : la paire d'images ; le mot vise est celui de la reponse
+  // « Sergio es tacaño. Marta, al contrario, es ___. » : la paire d'images ; le mot vise est celui de la reponse
   contraire(w){
     if (w && !(w.t && D.caracteres[w.t].contraire)) return false;
     const c = w ? w.t : hasard(TRAITS().filter(x => D.caracteres[x].contraire)), t = D.caracteres[c].contraire, a = unePersonne(t), b = unePersonne(c);   // b en dernier : la rotation retient le mot vise

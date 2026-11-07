@@ -30,6 +30,8 @@ import io, json, os, random, sys, time
 sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
+sys.path.insert(0, os.path.dirname(ICI))
+import personnes as PERSONNES                                # noqa: E402 -- la fiche commune (6 nov. 2026)
 PROTO = os.path.join(RACINE, "visuel", "prototype", "transportes")
 IMG = os.path.join(ICI, "img")
 # les images de reference des personnes (hors depot, dossier de la session des themes)
@@ -432,6 +434,11 @@ def construire():
         for qui, sexe in PERS.items():
             dests_de = DEST_AVION["de"] if m == "flugzeug" else [(x[0], x[2], x[3], x[4]) for x in DEST]
             dests_es = DEST_AVION["es"] if m == "flugzeug" else [(x[1], x[2], x[3], x[4], x[0]) for x in DEST]
+            # 6 nov. 2026 (decision de Jacques) : la combinaison respecte les faits etablis -- « Anna fahrt nie mit dem
+            # Auto zur Arbeit » (La journee ; visuel/personnes.json, « jamais ») : cette phrase-la ne se fabrique pas
+            exclus = {x["dest"] for x in PERSONNES.jamais(qui) if x["moyen"] == m}
+            dests_de = [x for x in dests_de if x[0] not in exclus]
+            dests_es = [x for x in dests_es if x[4] not in exclus]
             for (dd, dfr, den, dpt) in dests_de:
                 p = "%s %s %s %s." % (qui, CONJ_DE[v]["er"], mit_de(m), dd)
                 ich = "%s sagt: „Ich %s %s %s.“" % (qui, CONJ_DE[v]["ich"], mit_de(m), dd)

@@ -273,7 +273,10 @@ CV = {
         {"titre": "Persönliche Daten", "mot": None, "lignes": ["Mark Garnier", "geboren am 14.03.2001 in Montréal", "Gartenstraße 12, 13187 Berlin", "Telefon: 0176 23 81 45 09"]},
         {"titre": "Berufserfahrung", "mot": ["Praktikum", "das"], "lignes": ["seit 03/2026: Praktikum in einem Büro, Berlin", "2023–2025: Kundenservice (Teilzeit), Reisebüro, Montréal"]},
         {"titre": "Ausbildung", "mot": ["Ausbildung", "die"], "lignes": ["2019–2023: Studium Tourismus (Bachelor), Montréal"]},
-        {"titre": "Sprachkenntnisse", "mot": ["Sprachkenntnisse", "die (Pl.)"], "lignes": ["Französisch: Muttersprache", "Deutsch: fließend", "Englisch: sehr gut", "Spanisch: Grundkenntnisse"]},
+        # 6 nov. 2026 (decision de Jacques, la coherence des personnages) : Mark arrive a Berlin et APPREND l'allemand --
+        # jamais « fliessend ». Il parle trois langues (« Ich spreche Französisch, Deutsch und Englisch », l'entretien) :
+        # l'espagnol (« Grundkenntnisse ») quitte le CV, qui le disait au meme niveau que l'allemand.
+        {"titre": "Sprachkenntnisse", "mot": ["Sprachkenntnisse", "die (Pl.)"], "lignes": ["Französisch: Muttersprache", "Deutsch: Grundkenntnisse (Deutschkurs)", "Englisch: sehr gut"]},
         {"titre": "Hobbys", "mot": ["Hobby", "das"], "lignes": ["Fußball, Laufen, Kochen"]}],
         "t": {"fr": ["Données personnelles", "Expérience professionnelle", "Formation", "Langues", "Loisirs"],
               "en": ["Personal details", "Work experience", "Education", "Languages", "Hobbies"],
@@ -292,15 +295,14 @@ CV = {
 # les langues du CV, pour les « vrai ou faux » : [langue dans la phrase, niveau dans la phrase, traductions]
 SPRACHEN = {
     "de": [["Französisch", "Mark spricht Französisch als Muttersprache.", {"fr": "Le français est la langue maternelle de Mark.", "en": "French is Mark's mother tongue.", "pt": "O francês é a língua materna do Mark."}],
-           ["Deutsch", "Mark spricht fließend Deutsch.", {"fr": "Mark parle couramment allemand.", "en": "Mark speaks fluent German.", "pt": "Mark fala alemão fluentemente."}],
-           ["Englisch", "Mark spricht sehr gut Englisch.", {"fr": "Mark parle très bien anglais.", "en": "Mark speaks very good English.", "pt": "Mark fala inglês muito bem."}],
-           ["Spanisch", "Mark hat Grundkenntnisse in Spanisch.", {"fr": "Mark a des notions d'espagnol.", "en": "Mark has basic Spanish.", "pt": "Mark tem noções de espanhol."}]],
+           ["Deutsch", "Mark spricht ein bisschen Deutsch und lernt es.", {"fr": "Mark parle un peu allemand et l'apprend.", "en": "Mark speaks a little German and is learning it.", "pt": "Mark fala um pouco de alemão e está aprendendo."}],
+           ["Englisch", "Mark spricht sehr gut Englisch.", {"fr": "Mark parle très bien anglais.", "en": "Mark speaks very good English.", "pt": "Mark fala inglês muito bem."}]],
     "es": [["español", "La lengua materna de Mark es el español.", {"fr": "La langue maternelle de Mark est l'espagnol.", "en": "Mark's mother tongue is Spanish.", "pt": "A língua materna do Mark é o espanhol.", "de": "Marks Muttersprache ist Spanisch."}],
            ["inglés", "Mark habla muy bien inglés.", {"fr": "Mark parle très bien anglais.", "en": "Mark speaks very good English.", "pt": "Mark fala inglês muito bem.", "de": "Mark spricht sehr gut Englisch."}],
            ["francés", "Mark tiene un nivel intermedio de francés.", {"fr": "Mark a un niveau intermédiaire en français.", "en": "Mark has intermediate French.", "pt": "Mark tem nível intermediário de francês.", "de": "Mark spricht mittelgut Französisch."}]],
 }
 # la phrase fausse : une autre langue a la meme place (« Mark spricht fliessend Spanisch. »)
-SPRACHE_T = {"de": {"Französisch": "Französisch", "Deutsch": "Deutsch", "Englisch": "Englisch", "Spanisch": "Spanisch"},
+SPRACHE_T = {"de": {"Französisch": "Französisch", "Deutsch": "Deutsch", "Englisch": "Englisch"},
              "es": {"español": "español", "inglés": "inglés", "francés": "francés"}}
 
 # ---------------------------------------------------------------------------------------------------------------

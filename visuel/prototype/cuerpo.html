@@ -52,7 +52,7 @@ main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(
 .trou{display:inline-block;min-width:54px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
 /* une image : la personne qui a mal (3:4), le medecin (4:3) */
 .photo{display:block;width:100%;max-width:300px;margin:0 auto;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:16px;background:var(--carte)}
-.photo.doc{max-width:none;aspect-ratio:4/3}
+.photo.doc{object-position:50% 20%}
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:end}
 .duo figure{margin:0;text-align:center;font-weight:800;color:var(--gris);font-size:13px}
 .duo img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:12px;display:block;margin-bottom:4px;background:var(--carte)}
@@ -306,7 +306,7 @@ const ES = {
   },
   leurres: {receta: ["receta", "cita", "tirita", "pastilla"], cita: ["cita", "receta", "tirita", "tos"], quien: ["médica", "médico", "paciente", "receta"]},
   vfDoc: (p, f, vrai) => nom(p) + " es " + (vrai ? (f ? "médica" : "médico") : "paciente") + ".",
-  // la decouverte chez le medecin : la medica (Ines) et Mark, qui a mal a la gorge
+  // la decouverte chez le medecin : la medica (Alicia, la medecin du cabinet) et Mark, qui a mal a la gorge
   dialogue: [["D", "Buenos días. ¿Qué le pasa?"], ["P", "Me duele la garganta y tengo fiebre."], ["D", "¿Desde cuándo?"], ["P", "Desde hace tres días."],
              ["D", "Tiene usted gripe. Tiene que quedarse en la cama."], ["D", "Le escribo una receta."], ["P", "Muchas gracias, doctora."], ["D", "¡Que se mejore!"]]
 };
@@ -950,7 +950,7 @@ const EX = {
     const k = unMal(w, x => genre(x) === "d" && !(w && (w.schmerz || w.ache))); if (!k) return false;
     motQ = w || motDe(k);
     const per = hasard(["1", "2", "3", "U", "P", "N"]);
-    // le patient n'est jamais le medecin de l'image (Ines et Pablo sont aussi patients ailleurs)
+    // le patient n'est jamais le medecin de l'image (Diego est aussi patient ailleurs)
     const f = docAuHasard(), p = quelquun(k, per === "U" ? nomDoc(f) : null), b = (per === "P" || per === "N") ? hasard(D.dolores[k].filter(x => x !== p)) : null;
     let phrase, image = photo(k, p), opts;
     if (APPRENDRE === "es"){
