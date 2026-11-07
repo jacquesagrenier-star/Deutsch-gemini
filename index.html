@@ -47911,13 +47911,17 @@ function panneauBlocExamen(ex){
             icon:"dossier", title:t("op_pruefung_telc_title"), sub:t("op_pruefung_telc_sub"),
             // En tete, la page du telc avec Mark et Anna : toutes ses parties au format de l'examen (l'accueil de
             // telc.html, ou les parties pas encore faites restent grisees), puis les epreuves communes.
-            options:[comprendre,
+            // Ces deux lignes menent aux pages du telc, traduites en francais et en anglais seulement : dans une
+            // autre langue d'interface, elles se cachent jusqu'a leur traduction (decision de Jacques du 7 nov.,
+            // « s'assurer qu'ils sont traduits dans toutes les langues »). Les epreuves communes, elles, le sont.
+            options:[comprendre].concat(LANGUES_PAGES_TELC.indexOf(getUiLang()) >= 0 ? [
                 { icon:"exercice", title:t("op_pruefung_telc_mark_t"), desc:t("op_pruefung_telc_mark_d"),
-                  primary:true, action:"ouvrirTelcAccueil", section:"pratique" },
-                ep("lesen"),
+                  primary:true, action:"ouvrirTelcAccueil", section:"pratique" }] : [],
+                [ep("lesen")],
+                LANGUES_PAGES_TELC.indexOf(getUiLang()) >= 0 ? [
                 { icon:"exercice", title:t("op_pruefung_sb_t"), desc:t("op_pruefung_sb_d"),
-                  action:"ouvrirTelcSprachbausteine", section:"pratique" },
-                ep("schreiben"), ep("hoeren"), ep("sprechen")]
+                  action:"ouvrirTelcSprachbausteine", section:"pratique" }] : [],
+                [ep("schreiben"), ep("hoeren"), ep("sprechen")])
         };
     }
     if(ex === "goethe"){
@@ -47951,6 +47955,9 @@ function ouvrirTelc(partie){
     }
     showScreen("sceneSeance");
 }
+// Les langues d'interface dans lesquelles les pages du telc (visuel/prototype/telc/) sont traduites. Une langue
+// s'ajoute ici le jour ou toutes ses pages et ses donnees le sont (controle : tests/telc_langues.py, a venir).
+const LANGUES_PAGES_TELC = ["fr", "en"];
 function ouvrirTelcSprachbausteine(){ ouvrirTelc("SB"); }
 function ouvrirTelcAccueil(){ ouvrirTelc(); }
 // orbAction() appelle window[action] SANS ARGUMENT : chaque option du panneau
@@ -49975,7 +49982,10 @@ const GRATUIT = {
     // Les quatre epreuves aussi : lancerEpreuve() les reduit a l'echantillon.
     portesOuvertes: ["openNomen", "openNomenNiveau", "openVerbenNiveau", "openAdjektive", "openAdjektiveDeklination",
                      "ouvrirSceneClasse",
-                     "startPruefungHoeren", "startPruefungLesen", "startPruefungSchreiben", "startPruefungSprechen"]
+                     "startPruefungHoeren", "startPruefungLesen", "startPruefungSchreiben", "startPruefungSprechen",
+                     // les quatre blocs par examen (v1117) ne font que mener aux quatre epreuves : sans eux, la
+                     // version gratuite perdrait l'echantillon des epreuves qu'elle avait avant les blocs
+                     "ouvrirBlocDtz", "ouvrirBlocTelc", "ouvrirBlocGoethe", "ouvrirBlocC1"]
 };
 
 let accesAVieFirestore = false;
@@ -51204,10 +51214,12 @@ const ESSAIS = {
     // preparer au DTZ, puis un bloc pour se preparer a l'examen A2 B1. » Puis, pour le panneau :
     // « Ouais, vas-y avec ta proposition. » Voir panneauBlocsExamens() et
     // preparation-examens/PLAN-DTZ-TELC.md.
+    // OUVERT A TOUS le 7 nov. 2026. Jacques : « On peut quand meme les ouvrir a tout le monde. Particulierement
+    // Marina. » Les pages du telc ne se montrent qu'en fr et en tant qu'elles ne sont pas traduites
+    // (LANGUES_PAGES_TELC). Le champ `compte` (6 nov., bouton « OUVRIR LES EXAMENS ») ne sert plus, garde pour
+    // le jour ou l'essai repasserait a « admin ».
     examens_blocs: {
-        etat: "admin",
-        // ouvert aussi au compte dont users/<uid>.essais contient « examens » (bouton « OUVRIR LES EXAMENS »
-        // du tableau de bord), decision de Jacques du 6 nov. 2026
+        etat: "tous",
         compte: "examens",
         titre: "Préparation aux examens : un bloc par examen",
         desc: "La tuile montre « Comprendre l'examen », puis un bloc par examen : DTZ, telc Deutsch A2·B1, Goethe-Zertifikat B1 et C1. Chaque bloc reprend les quatre épreuves dans l'ordre de son examen, à ses niveaux et sans les tâches des autres ; le telc ajoute les Sprachbausteine avec Mark, le C1 les feuilles de conjugaison. Un bloc sans aucun exercice ne s'affiche pas."
