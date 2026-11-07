@@ -9315,6 +9315,28 @@ body[data-theme="dark"] .bandeau-fetes-tx small{color:#F6C46A;}
 body[data-theme="dark"] .flash-end-summary{color:#B7BBCB;}
 /* « Encore 10 cartes pour ton objectif du jour » restait gris fonce sur fond sombre (vu sur les captures du lot). */
 body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
+/* La dictee de phrase, mot par mot (7 nov. 2026, retour d'un utilisateur) : rouge seulement pour les mots faux, les
+   mots justes dans la couleur du texte, la bonne phrase en vert et les lettres corrigees en gras. */
+.cp-retour.dictee-faux{background:rgba(192,57,43,.06); color:#1C2430; font-weight:500;}
+.cp-dic{display:flex; flex-direction:column; gap:6px; font-weight:500;}
+.cp-dic p{margin:0;}
+.cp-dic-titre{font-weight:800; color:#8A5A00;}
+.cp-dic-sous{font-weight:500; font-size:13.5px; color:#7a4f06;}
+.cp-dic-lib{font-weight:700; color:#566070; font-size:13.5px;}
+.cp-dic-ecrit{color:#1C2430;}
+.cp-dic-ecrit .cp-faute{color:#B3261E;}
+.cp-dic-manque{text-decoration:none; border-bottom:2px solid currentColor; padding:0 2px;}
+.cp-dic-presque{color:#8A5A00; text-decoration:underline dotted; text-decoration-thickness:1.5px; text-underline-offset:3px; font-weight:700;}
+.cp-dic-phrase{color:#1F6B42; font-weight:600;}
+.cp-dic-phrase b{font-weight:900; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:2px;}
+body[data-theme="dark"] .cp-retour.dictee-faux{background:rgba(255,120,90,.10); color:#EEF2F5;}
+body[data-theme="dark"] .cp-dic-titre{color:#F3C56B;}
+body[data-theme="dark"] .cp-dic-sous{color:#F0D49A;}
+body[data-theme="dark"] .cp-dic-lib{color:#A9B8C4;}
+body[data-theme="dark"] .cp-dic-ecrit{color:#EEF2F5;}
+body[data-theme="dark"] .cp-dic-ecrit .cp-faute{color:#FF9C85;}
+body[data-theme="dark"] .cp-dic-presque{color:#F3C56B;}
+body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
 </style>
 
 <!-- v1003 : LE FOND COMMUN (Jacques, 29 oct. 2026). La carte du monde decoupee PAR LANGUE
@@ -64097,6 +64119,108 @@ function ecartDictee(saisi, attendu){
         : '<span class="cp-faute">' + echapperHtml(m) + "</span>").join(" ");
 }
 
+// ============ LA CORRECTION DE LA DICTEE, MOT PAR MOT (7 nov. 2026) ============
+// Retour d'un utilisateur, decision de Jacques (journal-retours, 30bf8a0) : dans « Trabajo con la computadora en
+// casa », il avait ecrit « computatora » ; « Trabajo », juste, etait souligne, et TOUT le retour etait rouge, la
+// reponse comme la bonne phrase : on ne voyait plus ce qui etait juste. Desormais :
+//  - l'alignement se fait MOT PAR MOT (alignerDictee) : un mot oublie ou en trop ne decale pas le reste, et un mot
+//    juste n'est jamais souligne ; puis LETTRE PAR LETTRE dans un mot (lettresCorrigees) ;
+//  - rouge seulement pour les mots faux ; la bonne phrase en vert, seules les lettres corrigees en gras
+//    (« computa**d**ora ») ;
+//  - un mot de quatre lettres ou plus a UNE lettre pres compte juste : « Presque ! », en orange, avec la correction.
+//    Moins de quatre lettres, non : « la » et « le », « con » et « son » sont d'autres mots.
+// Casse, accents, ß et ponctuation ne comptent pas, comme partout (normaliserSaisie). Controle : tests/dictee_ecart.js.
+const DICTEE_MOT_TOLERE = 4;   // longueur a partir de laquelle une lettre de travers est pardonnee
+function distanceMots(a, b){
+    let prec = Array.from({ length: b.length + 1 }, (_, j) => j);
+    for(let i = 1; i <= a.length; i++){
+        const cour = [i];
+        for(let j = 1; j <= b.length; j++)
+            cour[j] = Math.min(prec[j] + 1, cour[j - 1] + 1, prec[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+        prec = cour;
+    }
+    return prec[b.length];
+}
+// Les paires, dans l'ordre : { t: "juste" | "presque" | "faux" | "trop" | "manque", s: mot ecrit, a: mot attendu }.
+function alignerDictee(saisi, attendu){
+    const a = String(saisi || "").trim().split(/\s+/).filter(m => normaliserSaisie(m));
+    const b = String(attendu || "").trim().split(/\s+/).filter(m => normaliserSaisie(m));
+    const na = a.map(normaliserSaisie), nb = b.map(normaliserSaisie);
+    const proche = (x, y) => distanceMots(x, y) <= Math.max(2, Math.floor(Math.max(x.length, y.length) / 3));
+    const cout = (i, j) => na[i] === nb[j] ? 0 : (proche(na[i], nb[j]) ? 1 : 3);
+    // Un mot oublie ou en trop coute 2 ; deux mots voisins s'apparient (1), deux mots sans rapport aussi (3) plutot
+    // que de compter un oubli ET un ajout (4).
+    const D = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0));
+    for(let i = 0; i <= a.length; i++) D[i][0] = 2 * i;
+    for(let j = 0; j <= b.length; j++) D[0][j] = 2 * j;
+    for(let i = 1; i <= a.length; i++)
+        for(let j = 1; j <= b.length; j++)
+            D[i][j] = Math.min(D[i - 1][j - 1] + cout(i - 1, j - 1), D[i - 1][j] + 2, D[i][j - 1] + 2);
+    const paires = [];
+    let i = a.length, j = b.length;
+    while(i > 0 || j > 0){
+        if(i > 0 && j > 0 && D[i][j] === D[i - 1][j - 1] + cout(i - 1, j - 1)){
+            const x = na[i - 1], y = nb[j - 1];
+            const tp = x === y ? "juste"
+                : (x.length >= DICTEE_MOT_TOLERE && y.length >= DICTEE_MOT_TOLERE && distanceMots(x, y) <= 1) ? "presque" : "faux";
+            paires.push({ t: tp, s: a[i - 1], a: b[j - 1] }); i--; j--;
+        } else if(j > 0 && (i === 0 || D[i][j] === D[i][j - 1] + 2)){
+            paires.push({ t: "manque", s: "", a: b[j - 1] }); j--;
+        } else {
+            paires.push({ t: "trop", s: a[i - 1], a: "" }); i--;
+        }
+    }
+    paires.reverse();
+    const juste = paires.length > 0 && paires.every(p => p.t === "juste" || p.t === "presque");
+    return { paires: paires, juste: juste, presque: juste && paires.some(p => p.t === "presque") };
+}
+// Le mot attendu, les lettres a corriger entourees de <b> : celles qui manquent ou different dans le mot ecrit.
+// Comparees sans casse ni accents (une lettre a la fois), comme la saisie.
+function lettresCorrigees(ecrit, attendu){
+    const base = c => normaliserSaisie(c) || c.toLowerCase();
+    const A = Array.from(String(ecrit || "")), B = Array.from(String(attendu || ""));
+    const ba = A.map(base), bb = B.map(base);
+    const D = Array.from({ length: A.length + 1 }, (_, i) => { const r = new Array(B.length + 1).fill(0); r[0] = i; return r; });
+    for(let j = 0; j <= B.length; j++) D[0][j] = j;
+    for(let i = 1; i <= A.length; i++)
+        for(let j = 1; j <= B.length; j++)
+            D[i][j] = Math.min(D[i - 1][j] + 1, D[i][j - 1] + 1, D[i - 1][j - 1] + (ba[i - 1] === bb[j - 1] ? 0 : 1));
+    const gras = new Array(B.length).fill(false);
+    let i = A.length, j = B.length;
+    while(i > 0 || j > 0){
+        if(i > 0 && j > 0 && D[i][j] === D[i - 1][j - 1] + (ba[i - 1] === bb[j - 1] ? 0 : 1)){
+            if(ba[i - 1] !== bb[j - 1]) gras[j - 1] = true;
+            i--; j--;
+        } else if(j > 0 && D[i][j] === D[i][j - 1] + 1){ gras[j - 1] = true; j--; }
+        else i--;
+    }
+    // Une lettre en trop dans le mot ecrit n'a pas de lettre a mettre en gras : le mot entier reste en vert.
+    let html = "", ouvert = false;
+    B.forEach((c, k) => {
+        if(gras[k] && !ouvert){ html += "<b>"; ouvert = true; }
+        if(!gras[k] && ouvert){ html += "</b>"; ouvert = false; }
+        html += echapperHtml(c);
+    });
+    return html + (ouvert ? "</b>" : "");
+}
+// Le retour d'une dictee de phrase : « Tu as ecrit : … » (les mots justes dans la couleur du texte, les mots a une
+// lettre pres en orange, les mots faux soulignes en rouge, un mot oublie marque « … »), puis la bonne phrase en vert.
+function rendreDictee(al, langue){
+    const ecrit = [], juste = [];
+    al.paires.forEach(p => {
+        if(p.t === "juste"){ ecrit.push(echapperHtml(p.s)); juste.push(echapperHtml(p.a)); }
+        else if(p.t === "presque"){ ecrit.push('<span class="cp-dic-presque">' + echapperHtml(p.s) + "</span>"); juste.push(lettresCorrigees(p.s, p.a)); }
+        else if(p.t === "faux"){ ecrit.push('<span class="cp-faute">' + echapperHtml(p.s) + "</span>"); juste.push(lettresCorrigees(p.s, p.a)); }
+        else if(p.t === "trop"){ ecrit.push('<span class="cp-faute">' + echapperHtml(p.s) + "</span>"); }
+        else { ecrit.push('<span class="cp-faute cp-dic-manque">…</span>'); juste.push("<b>" + echapperHtml(p.a) + "</b>"); }
+    });
+    const lg = langue ? ' lang="' + echapperHtml(langue) + '"' : "";
+    return '<div class="cp-dic">'
+        + '<p class="cp-dic-ecrit"><span class="cp-dic-lib">' + echapperHtml(t("cp_tu_as_ecrit")) + '</span> <span' + lg + ">" + ecrit.join(" ") + "</span></p>"
+        + '<p class="cp-dic-juste"><span class="cp-dic-lib">' + echapperHtml(t("cp_reponse")) + '</span> <span class="cp-dic-phrase"' + lg + ">" + juste.join(" ") + "</span></p>"
+        + "</div>";
+}
+
 function melangerPhrase(t){
     const a = t.slice();
     for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const x = a[i]; a[i] = a[j]; a[j] = x; }
@@ -65235,8 +65359,10 @@ function montrerCartePhrase(item){
             if(!v){ champ.focus(); return; }
             const n = normaliserSaisie(v);
             const na = normaliserSaisie(attendu);
-            // v826 : une faute de frappe dans une phrase ne la fait pas rater.
-            const presque = !motSeul && n !== na && na.length >= 20 && ecartLettres(n, na) <= 1;
+            // 7 nov. 2026 : la phrase se compare mot par mot (alignerDictee) ; un mot de quatre lettres ou plus a une
+            // lettre pres compte juste. v826 : une faute de frappe dans une phrase ne la fait pas rater.
+            const al = motSeul ? null : alignerDictee(v, attendu);
+            const presque = !motSeul && n !== na && ((al && al.juste) || (na.length >= 20 && ecartLettres(n, na) <= 1));
             // Un nom s'accepte avec ou sans son article.
             const juste = n === na || presque
                 || (motSeul && item.cible.mode === "nomen" && n === normaliserSaisie(w[0]));
@@ -65250,8 +65376,15 @@ function montrerCartePhrase(item){
                 try{ sensMot = item.cible.mode === "verben" ? texteTraduit(item.cible.word, "traduction")
                                                            : texteCarte(item.cible.word, item.cible.mode, "traduction"); }catch(e){}
             }
-            conclure(juste, sensMot ? attendu + " (" + sensMot + ")" : attendu, presque ? echapperHtml(t("cp_presque"))
-                : (!juste && !motSeul ? ecartDictee(v, attendu) : ""));
+            conclure(juste, sensMot ? attendu + " (" + sensMot + ")" : attendu, presque ? echapperHtml(t("cp_presque")) : "");
+            // La dictee d'une phrase, pas tout a fait juste : le retour mot par mot (rendreDictee), sans le rouge sur
+            // ce qui est juste. « Presque ! » en orange quand elle compte juste.
+            if(!motSeul && n !== na){
+                retour.className = "cp-retour " + (presque ? "presque" : "dictee-faux");
+                retour.innerHTML = (presque ? '<p class="cp-dic-titre">' + echapperHtml(t("or_presque")) + '</p><p class="cp-dic-sous">'
+                                              + echapperHtml(t("cp_presque")) + "</p>" : "")
+                    + rendreDictee(al || alignerDictee(v, attendu), langueDe);
+            }
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
