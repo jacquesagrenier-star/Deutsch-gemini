@@ -49273,26 +49273,33 @@ function majPaliersAccueil(){
     }
     try{ majGrilleAccueil(); }catch(e){}
 }
-// 6 nov. 2026 : L'ACCUEIL EN TUILES (essai accueil_grille, decision de Jacques). Chaque tuile suit l'element qu'elle
-// remplace : elle s'affiche s'il s'afficherait sans la grille. On le demande au navigateur plutot que de recopier
-// ses regles, car elles sont nombreuses (« hidden », listes blanches de l'anglais, du japonais et du portugais).
+// 6 nov. 2026 : L'ACCUEIL EN TUILES (essai accueil_grille, decision de Jacques). Chaque tuile remplace un element de
+// l'accueil (ruban, ligne) et s'affiche quand il aurait ete propose -- par des REGLES, pas par une mesure du style :
+// la mesure (retirer les classes, lire getComputedStyle) laissait parfois la tuile Ecouter cachee au retour a
+// l'accueil, et le defaut disparaissait des qu'on l'observait (parcours du 6-7 nov.).
+// ⚠️ Les exceptions par langue recopient les listes blanches CSS : le japonais n'a ni themes ni Ecouter, le portugais
+// pas de themes, l'anglais pas d'episodes. Une liste blanche qui change doit changer ici aussi.
 // Les paliers 1 et 2 cachent les rubans et Ecouter a qui commence : la grille, elle, les montre des le premier jour
 // (c'est ce que Jacques a choisi sur la maquette), sauf Mis de cote tant qu'il est vide, comme avant.
 const GRILLE_SOURCES = {scenes:"explorerScenes", themes:"explorerThemes", ecouter:"ecouteLigneAccueil",
     episodes:"episodeLigne", gardes:"seanceGardes", tout:"tuileToutContenu"};
 let grilleObservee = false, grilleMajPrevue = false, grilleEmpreinte = "";
-// Ce qui decide de la grille : les classes de #home (sans grille-c, que la grille pose elle-meme) et celles des
-// elements suivis. Une mutation qui ne change pas cette empreinte -- nos propres retouches -- ne relance rien.
 function empreinteGrille(home){
     return String(home.className).replace(/\bgrille-c\b/g, "").replace(/\s+/g, " ").trim() + "|" +
-        Object.values(GRILLE_SOURCES).map(id => { const el = document.getElementById(id); return el ? el.className + "@" + ((el.parentNode && el.parentNode.id) || "") : "-"; }).join("|");
+        Object.values(GRILLE_SOURCES).map(id => { const el = document.getElementById(id); return el ? el.className : "-"; }).join("|");
 }
-function sourceAffichee(el, home){
-    // Seule compte la regle de l'element lui-meme : les paliers, la vue Tout le contenu, les listes blanches de
-    // l'anglais, du japonais et du portugais, et « hidden » le visent tous directement. Ses conteneurs, eux, peuvent
-    // etre caches un instant (un autre ecran, la decouverte des premiers jours qui emprunte la ligne Ecouter) : vu au
-    // parcours du 6 nov., la tuile Ecouter manquait alors au retour a l'accueil.
-    return !!el && getComputedStyle(el).display !== "none";
+function tuilesProposees(home){
+    const sans = id => { const el = document.getElementById(id); return !!el && !el.classList.contains("hidden"); };
+    const L = LANGUE_APPRISE;
+    const debut = home.classList.contains("palier-1") || home.classList.contains("palier-2");
+    return {
+        scenes: sans("explorerScenes"),
+        themes: sans("explorerThemes") && L !== "ja" && L !== "pt",
+        ecouter: !!document.getElementById("ecouteLigneAccueil") && L !== "ja",
+        episodes: sans("episodeLigne") && L !== "en",
+        gardes: !!document.getElementById("seanceGardes") && !(debut && home.classList.contains("sans-gardes")),
+        tout: !!document.getElementById("tuileToutContenu")
+    };
 }
 function majGrilleAccueil(){
     const home = document.getElementById("home"), g = document.getElementById("grilleAccueil");
@@ -49300,19 +49307,8 @@ function majGrilleAccueil(){
     let actif = false;
     try{ actif = essaiActif("accueil_grille"); }catch(e){}
     if(!actif){ home.classList.remove("grille-c"); g.classList.add("hidden"); return; }
-    // Pendant Tout le contenu, la grille est cachee et la vue cache ou deplace ce qu'elle suit : on ne mesure rien,
-    // appliquerVueContenu() relance le calcul en sortant.
-    if(home.classList.contains("vue-contenu")) return;
-    const paliers = ["palier-1", "palier-2"].filter(c => home.classList.contains(c));
-    const vide = paliers.length > 0 && home.classList.contains("sans-gardes");
-    home.classList.remove("grille-c", ...paliers);
-    const vis = {};
-    Object.keys(GRILLE_SOURCES).forEach(k => {
-        const el = document.getElementById(GRILLE_SOURCES[k]);
-        vis[k] = !!el && sourceAffichee(el, home);
-    });
-    home.classList.add("grille-c", ...paliers);
-    if(vide) vis.gardes = false;
+    home.classList.add("grille-c");
+    const vis = tuilesProposees(home);
     let i = 0;
     g.querySelectorAll(".tg").forEach(b => {
         const v = !!vis[b.dataset.tg];
