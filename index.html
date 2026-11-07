@@ -44461,10 +44461,23 @@ function renderDailyGoalSetting(){
 // v799 : le nombre de questions de la scene du jour (-/+, de 3 a 20, 8 par defaut).
 // 7 nov. 2026 (decision de Jacques) : UN SEUL REGLAGE, « Questions par scene et par theme », 5 · 8 · 12, 5 par
 // defaut, pour la scene ET le theme illustre de la seance du jour (arret de scene, scene de Premiers pas, theme
-// du jour ; la seance legere lit le meme). Une cle neuve : l'ancienne (questionsScene, des valeurs de 3 a 20)
-// n'est plus lue, et tout le monde part du 5 decide. Ouverts depuis les tuiles, la scene et le theme ne le lisent pas.
+// du jour ; la seance legere lit le meme). Une cle neuve, 5 par defaut ; l'ancienne (questionsScene, de 3 a 20,
+// sur l'appareil seulement) est reprise UNE fois vers le choix le plus proche -- 6 ou moins -> 5, 7 a 10 -> 8,
+// plus de 10 -> 12 (condition du chef, 7 nov.) -- puis effacee. Ouverts depuis les tuiles, la scene et le theme
+// ne lisent pas ce reglage.
 const QUESTIONS_SEANCE_KEY = PREFIXE_STOCKAGE + "questionsSeance";
 const QUESTIONS_SEANCE_CHOIX = [5, 8, 12], QUESTIONS_SEANCE_DEFAUT = 5;
+(function repriseQuestionsScene(){
+    try{
+        const ancienne = PREFIXE_STOCKAGE + "questionsScene";
+        const brut = localStorage.getItem(ancienne);
+        if(brut === null) return;
+        const v = parseInt(brut, 10);
+        if(localStorage.getItem(QUESTIONS_SEANCE_KEY) === null && v > 0)
+            localStorage.setItem(QUESTIONS_SEANCE_KEY, String(v <= 6 ? 5 : (v <= 10 ? 8 : 12)));
+        localStorage.removeItem(ancienne);
+    }catch(e){}
+})();
 function questionsSeance(){
     let v = QUESTIONS_SEANCE_DEFAUT;
     try{ v = parseInt(localStorage.getItem(QUESTIONS_SEANCE_KEY), 10) || QUESTIONS_SEANCE_DEFAUT; }catch(e){}
