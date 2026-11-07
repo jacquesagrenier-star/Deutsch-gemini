@@ -49226,6 +49226,7 @@ function appliquerVueContenu(){
     // le temps de Tout le contenu, puis reviennent sous la seance.
     try{ rangerRubansContenu(VUE_CONTENU); }catch(e){}
     if(!VUE_CONTENU){ try{ const c = document.getElementById("contenuRechercheInput"); if(c && c.value){ c.value = ""; filtrerContenu(""); } }catch(e){} }
+    if(!VUE_CONTENU){ try{ majGrilleAccueil(); }catch(e){} }   // 6 nov. 2026 : l'accueil en tuiles, au retour
 }
 // ============ L'ACCUEIL PAR PALIERS ET TOUT LE CONTENU PAR BUT (6 nov. 2026) ============
 // Decision 34d02c3 (Jacques : « Vas-y pour les recommandations »), apres l'evaluation du
@@ -49301,6 +49302,9 @@ function majGrilleAccueil(){
     let actif = false;
     try{ actif = essaiActif("accueil_grille"); }catch(e){}
     if(!actif){ home.classList.remove("grille-c"); g.classList.add("hidden"); return; }
+    // Pendant Tout le contenu, la grille est cachee et la vue cache ou deplace ce qu'elle suit : on ne mesure rien,
+    // appliquerVueContenu() relance le calcul en sortant.
+    if(home.classList.contains("vue-contenu")) return;
     const paliers = ["palier-1", "palier-2"].filter(c => home.classList.contains(c));
     const vide = paliers.length > 0 && home.classList.contains("sans-gardes");
     home.classList.remove("grille-c", ...paliers);
