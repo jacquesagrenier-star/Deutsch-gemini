@@ -7169,7 +7169,14 @@ body[data-theme="dark"] .cp-saisie{background:#273041; color:#F2F2F6; border-col
 .cp-indice{color:#8a5a0e; font-size:14px; margin-top:4px;}
 /* LE RAPPEL ACTIF (essai rappel_actif, 6 nov. 2026) : une carte sur trois demande le mot.
    Elle prend la place de la carte retournable, comme la carte-phrase. */
-#flashcards.en-rappel .flashcard-wrapper, #flashcards.en-rappel #flashcardActions{display:none !important;}
+#flashcards.en-rappel .flashcard-wrapper{display:none !important;}
+/* Les boutons du verso (#flashcardActions, v923) reviennent apres le choix, les memes
+   et a la meme place (decision du 7 nov.) ; sur un choix faux, ni « Encore » ni les
+   points de « Continuer » : le mot revient de toute facon. */
+#flashcards.en-rappel:not(.ra-juge) #flashcardActions{display:none !important;}
+#flashcards.ra-faux #flashcardActions .judge-again{display:none !important;}
+#flashcards.ra-faux #flashcardActions .judge-good .srs-ladder{display:none !important;}
+#flashcards.ra-faux #flashcardActions .judge-row{grid-template-columns:1fr;}
 #flashcards.fin-paquet #rappelActif{display:none !important;}
 .rappel-actif{text-align:center;}
 .rappel-actif .cp-type{justify-content:center;}
@@ -7178,10 +7185,6 @@ body[data-theme="dark"] .cp-saisie{background:#273041; color:#F2F2F6; border-col
 .cp-choix button.pale{opacity:.5;}
 body[data-theme="dark"] .ra-choix button.bon{border-color:#5cc08a; background:rgba(46,139,87,.24); color:#d8f3e4;}
 body[data-theme="dark"] .ra-choix button.faux{border-color:#e2725f; background:rgba(192,57,43,.22); color:#fbe1dc;}
-.ra-suite{width:100%; margin-top:12px;}
-.ra-lien{background:none; border:0; color:#8a5a0e; font:inherit; font-weight:700; font-size:14.5px; padding:10px 12px; margin-top:4px; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
-body[data-theme="dark"] .ra-lien{color:#f2c27a;}
-.ra-lien:disabled{opacity:.45; cursor:default;}
 .ra-verdict{text-align:center;}
 .ra-verdict .ra-titre{display:block;}
 .ra-rep{font-size:22px; font-weight:900; margin:4px 0 2px; overflow-wrap:anywhere;}
@@ -7192,7 +7195,6 @@ body[data-theme="dark"] .ra-lien{color:#f2c27a;}
 body[data-theme="dark"] .ra-echeance{color:#8ed3aa;}
 .ra-points.faux .ra-echeance{color:#9b2c20;}
 body[data-theme="dark"] .ra-points.faux .ra-echeance{color:#f2a197;}
-.ra-pied{display:flex; justify-content:center;}
 .seance-niveau.seance-pp{font-size:14px; padding:0 5px;}
 .cp-type b.cp-pp{background:#d9f0e6; color:#0F6E56;}
 .cp-mot-pp{font-size:30px; font-weight:900; text-align:center; margin:14px 0 4px; line-height:1.2;}
@@ -54904,6 +54906,20 @@ function ordreDesChoix(cleCible, bonne, autres){
     return tous.map(c => ({ c: c, k: empreinteRappel(cleCible + "#" + c.texte) }))
         .sort((a, b) => a.k - b.k).map(x => x.c);
 }
+// LES BOUTONS APRES LE CHOIX (decision du 7 nov. : « les memes boutons que le
+// verso »). Choix juste : « Encore » (j'ai devine : comme le Encore de la carte
+// normale), « Continuer » (le point avance, comme « Je savais ») et « Mettre de
+// cote ». Choix faux : le mot revient de toute facon, donc « Continuer » fait ce
+// que fait « Encore », et « Mettre de cote » reste.
+function boutonsApresChoix(juste){
+    return juste ? ["encore", "continuer", "garde"] : ["continuer", "garde"];
+}
+function jugementDuBouton(juste, bouton){
+    if(boutonsApresChoix(juste).indexOf(bouton) < 0) return null;
+    if(bouton === "garde") return "garde";
+    if(bouton === "encore") return "encore";
+    return juste ? "je_savais" : "encore";
+}
 // ---- RAPPEL ACTIF : LOGIQUE PURE (fin) ----
 
 // ---- Ce qui lit l'etat de l'app ----
@@ -54991,7 +55007,7 @@ function choixAutresRappel(item, forme, cleCarte){
 
 function cacherRappelActif(){
     const zone = document.getElementById("flashcards");
-    if(zone) zone.classList.remove("en-rappel");
+    if(zone) zone.classList.remove("en-rappel", "ra-juge", "ra-faux");
     const el = document.getElementById("rappelActif");
     if(el){ el.classList.add("hidden"); el.textContent = ""; }
 }
@@ -55048,19 +55064,10 @@ function montrerRappelActif(item, dec){
     el.appendChild(motQ);
     const corps = creer("div", "ra-corps");
     el.appendChild(corps);
-    const pied = creer("div", "ra-pied");
-    el.appendChild(pied);
-    const lienGarde = creer("button", "ra-lien", t(estGardee(item) ? "garder_fait" : "garder_action"));
-    lienGarde.type = "button";
-    lienGarde.addEventListener("click", () => {
-        dec.fait = true;
-        el.querySelectorAll("button").forEach(n => { n.disabled = true; });
-        basculerGardeCarte();
-    });
+    installerBoutonsRappel();
 
-    // Le verdict : la reponse, l'ecart s'il s'agissait d'orthographe, les points
-    // tels qu'ils seront, et le seul bouton qui fait passer -- celui qui
-    // enregistre le jugement.
+    // Le verdict : la reponse, l'ecart s'il s'agissait d'orthographe, puis les
+    // boutons du verso (#flashcardActions), les memes et a la meme place.
     const conclure = (juste, choisi) => {
         if(dec.fait) return;
         dec.fait = true;
@@ -55085,29 +55092,24 @@ function montrerRappelActif(item, dec){
             v.appendChild(expl);
         }
         corps.appendChild(v);
-        // Les pastilles : allumees comme apres le jugement, la nouvelle en train
-        // de s'allumer (« le point s'allume sous les yeux »).
-        const atteints = juste ? Math.min(pointsRappel(st) + 1, SRS_PALIERS) : 0;
-        const ligne = creer("div", "ra-points" + (juste ? "" : " faux"));
-        const pips = creer("span", "srs-pips");
-        for(let i = 0; i < SRS_PALIERS; i++){
-            let cls = i < atteints ? "srs-pip on" : (i === atteints && atteints < SRS_PALIERS ? "srs-pip next" : "srs-pip");
-            if(juste && i === atteints - 1) cls += " frais";
-            pips.appendChild(creer("span", cls));
+        // Sur un choix faux, les points de « Continuer » sont caches (il remet le mot
+        // dans 2 minutes) : l'echeance se lit ici.
+        if(!juste){
+            const ligne = creer("div", "ra-points faux");
+            ligne.appendChild(creer("span", "ra-echeance", tf("echeance_encore", { n: SRS_ENCORE_MINUTES })));
+            corps.appendChild(ligne);
         }
-        ligne.appendChild(pips);
-        ligne.appendChild(creer("span", "ra-echeance", juste ? echeanceProchaineReussite(st)
-                                                           : tf("echeance_encore", { n: SRS_ENCORE_MINUTES })));
-        corps.appendChild(ligne);
-        const suite = creer("button", "primary ra-suite", juste ? t("review_continuer") : t("review_again"));
-        suite.type = "button";
-        suite.addEventListener("click", () => {
-            suite.disabled = true;
-            lienGarde.disabled = true;
-            if(juste) reviewGood(); else reviewAgain();
-        }, { once: true });
-        corps.appendChild(suite);
-        try{ suite.focus({ preventScroll: true }); }catch(e){}
+        zone.classList.add("ra-juge");
+        zone.classList.toggle("ra-faux", !juste);
+        const actions = document.getElementById("flashcardActions");
+        if(actions){
+            actions.dataset.raJuste = juste ? "1" : "0";
+            try{ majEcheances(); }catch(e){}
+            actions.classList.remove("hidden");
+            try{ resizeFlashcard(); }catch(e){}
+            const bon = actions.querySelector(".judge-good");
+            try{ if(bon) bon.focus({ preventScroll: true }); }catch(e){}
+        }
         // Le mot dit par la voix de l'app. (Les confettis et leur son viennent au
         // « Continuer », avec reviewGood().)
         setTimeout(() => { if(el.isConnected && !el.classList.contains("hidden")){ try{ direAllemand(bonne); }catch(e){} } }, 150);
@@ -55131,7 +55133,35 @@ function montrerRappelActif(item, dec){
         box.appendChild(b);
     });
     corps.appendChild(box);
-    pied.appendChild(lienGarde);
+}
+
+// Les boutons du verso, sur une carte active : ils gardent leurs fonctions
+// (reviewAgain, reviewGood, basculerGardeCarte) ; seul « Continuer » apres un choix
+// faux agit comme « Encore ». Un ecouteur pose une fois, en capture, sur
+// #flashcardActions : il passe avant le onclick du bouton et ne fait rien hors
+// d'une carte active.
+let BOUTONS_RAPPEL_POSES = false;
+function installerBoutonsRappel(){
+    if(BOUTONS_RAPPEL_POSES) return;
+    const actions = document.getElementById("flashcardActions");
+    if(!actions) return;
+    BOUTONS_RAPPEL_POSES = true;
+    actions.addEventListener("click", e => {
+        const zone = document.getElementById("flashcards");
+        if(!zone || !zone.classList.contains("ra-juge")) return;
+        const b = e.target && e.target.closest ? e.target.closest(".judge-button") : null;
+        if(!b) return;
+        const bouton = b.classList.contains("judge-again") ? "encore"
+                     : b.classList.contains("judge-good") ? "continuer"
+                     : b.classList.contains("judge-garde") ? "garde" : null;
+        if(!bouton) return;
+        const j = jugementDuBouton(actions.dataset.raJuste === "1", bouton);
+        // Le bouton fait deja ce qu'il faut : on le laisse faire.
+        if(j === "garde" || (j === "encore" && bouton === "encore") || (j === "je_savais" && bouton === "continuer")) return;
+        e.stopPropagation();
+        e.preventDefault();
+        if(j === "encore") reviewAgain();
+    }, true);
 }
 
 // LE PAQUET EST-IL DEJA FINI ? La carte reste a l'ecran quand showFlashcardEnd()

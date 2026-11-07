@@ -28,7 +28,7 @@ const ctx = {};
 vm.createContext(ctx);
 // Les « const » d'un script ne deviennent pas des proprietes du contexte : on
 // les exporte a la main.
-vm.runInContext(source.slice(a, b) + "\n;this.R = { RAPPEL_ECART, RAPPEL_ARTICLES, empreinteRappel, dejaVuRappel, pointsRappel, formeSelonPoints, tourDuRappel, normRappel, plierRappel, sensPlieRappel, ecartLettresRappel, debutCommunRappel, leurresDejaVus, variantesMot, fautesOrthographe, ordreDesChoix };", ctx);
+vm.runInContext(source.slice(a, b) + "\n;this.R = { RAPPEL_ECART, RAPPEL_ARTICLES, empreinteRappel, dejaVuRappel, pointsRappel, formeSelonPoints, tourDuRappel, normRappel, plierRappel, sensPlieRappel, ecartLettresRappel, debutCommunRappel, leurresDejaVus, variantesMot, fautesOrthographe, ordreDesChoix, boutonsApresChoix, jugementDuBouton };", ctx);
 const R = ctx.R;
 
 let ok = 0, ko = 0;
@@ -72,6 +72,18 @@ function jouer(eligibles, possibles){
 egal(jouer([1,1,1,1,1,1,1,1,1].map(Boolean)), "100100100", "neuf cartes eligibles : la 1re, la 4e, la 7e");
 egal(jouer([0,1,0,1,1,0,1,1,1].map(Boolean)), "010000100", "les cartes neuves ne comptent pas dans le tour");
 egal(jouer([1,1,1,1,1].map(Boolean), [false, true, true, true, true]), "01001", "pas de choix possibles : la suivante prend le tour");
+
+// ---------- 2b. Les boutons apres le choix (les memes que le verso, 7 nov.) ----------
+egal(R.boutonsApresChoix(true).join(","), "encore,continuer,garde", "choix juste : Encore, Continuer, Mettre de cote");
+egal(R.boutonsApresChoix(false).join(","), "continuer,garde", "choix faux : Continuer et Mettre de cote, sans Encore");
+egal(R.jugementDuBouton(true, "continuer"), "je_savais", "juste + Continuer : le point avance, comme Je savais");
+egal(R.jugementDuBouton(true, "encore"), "encore", "juste + Encore (j'ai devine) : comme le Encore de la carte normale");
+egal(R.jugementDuBouton(true, "garde"), "garde", "juste + Mettre de cote : comme sur la carte normale");
+egal(R.jugementDuBouton(false, "continuer"), "encore", "faux + Continuer : le mot revient, comme Encore");
+egal(R.jugementDuBouton(false, "garde"), "garde", "faux + Mettre de cote : comme sur la carte normale");
+egal(R.jugementDuBouton(false, "encore"), null, "faux : pas de bouton Encore");
+verifier([true, false].every(j => R.boutonsApresChoix(j).every(b => R.jugementDuBouton(j, b) !== "je_savais" || j)),
+         "un choix faux ne fait jamais avancer le point");
 
 // ---------- 3. Les fausses orthographes, a la main ----------
 const F = (langue, mode, mot, article, mots) => R.fautesOrthographe({ langue, mode, mot, article, cle: "t:" + mot },
