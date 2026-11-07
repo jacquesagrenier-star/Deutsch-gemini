@@ -1174,11 +1174,21 @@ function etiquette(id, quel){
   e.innerHTML = (p.personne ? `<b>${p.personne}</b> · ` : "") + groupe(n)
               + `<span class="fr">${sensDe(n)}${n.pluriel ? " · " + T("pluriel") + ` <span lang="${LANG_CIBLE}">${plurielDe(n)}</span>` : ""}</span>`;
   calquePlan.appendChild(e);
-  // Une etiquette centree sur un objet du bord sortait de l'ecran (das Handy) :
-  // on la ramene dans le cadre apres l'avoir mesuree.
+  rentrer(e);
+}
+/* Une etiquette centree sur un objet du bord sortait de l'ecran (das Handy) :
+   on la ramene dans le cadre apres l'avoir mesuree. Le 7 nov. 2026, la mesure
+   de toutes les etiquettes a 375 px (ru, pt, uk, pl) en a trouve deux autres
+   sorties : sous un grand objet qui part du haut (die Tuer, die U-Bahn, die
+   Aerztin), l'etiquette posee dessous tombait 54 px sous la scene ; et celles
+   des gros plans, que rien ne ramenait, sortaient de 2 a 33 px sur le cote
+   (die Wirbelsaeule en portugais). On ramene donc aussi en hauteur, et partout. */
+function rentrer(e){
   const r = e.getBoundingClientRect(), c = scene.getBoundingClientRect(), marge = 6;
   if (r.left < c.left + marge) e.style.left = `calc(${e.style.left} + ${c.left + marge - r.left}px)`;
   else if (r.right > c.right - marge) e.style.left = `calc(${e.style.left} - ${r.right - c.right + marge}px)`;
+  if (r.bottom > c.bottom - marge) e.style.top = `calc(${e.style.top} - ${r.bottom - c.bottom + marge}px)`;
+  else if (r.top < c.top + marge) e.style.top = `calc(${e.style.top} + ${c.top + marge - r.top}px)`;
 }
 
 /* ---------- le gros plan d'un visage ---------- */
@@ -1293,6 +1303,7 @@ function etiquetteGros(id){
   e.style.top = (dessous ? (cy + ry - y) / h * 100 + 1 : haut - 1) + "%";
   e.innerHTML = groupe(p) + `<span class="fr">${sensDe(p)}${p.pluriel ? " · " + T("pluriel") + ` <span lang="${LANG_CIBLE}">${plurielDe(p)}</span>` : ""}</span>`;
   zoom.el.appendChild(e);
+  rentrer(e);
 }
 
 /* ---------- les couches ---------- */
