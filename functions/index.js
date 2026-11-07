@@ -53,18 +53,37 @@ exports.dailyGoalReminder = onSchedule({ schedule: SCHEDULE, timeZone: TIMEZONE 
         const token = data.fcmToken;
         if(!token) return;
 
+        // La séance légère (décisions 96e3fa0 et d9d9dbd, préparé le 6 nov. 2026, PAS ENCORE
+        // DÉPLOYÉ) : plus d'objectif chiffré. Le client écrit seanceFinieDate (le jour où la
+        // séance-leçon est finie) et seancePartiesDate / seancePartiesFaites / seancePartiesTotal
+        // (où l'on s'est arrêté). On ne relance pas quelqu'un qui a fini sa séance du jour.
+        const seanceFinie = data.seanceFinieDate === today;
+
+        // L'ancienne règle reste vraie pour les comptes qui ont encore l'objectif « N / 20 »
+        // (tout le monde tant que la séance légère est en essai admin) : déployer cette version
+        // avant la mise en service ne change rien pour eux.
         const goalMetToday = data.dailyActivityDate === today
             && typeof data.dailyActivityToday === "number"
             && typeof data.dailyGoalTarget === "number"
             && data.dailyActivityToday >= data.dailyGoalTarget;
 
-        if(goalMetToday) return; // déjà atteint aujourd'hui, pas de rappel
+        if(seanceFinie || goalMetToday) return; // fait aujourd'hui, pas de rappel
+
+        const enCours = data.seancePartiesDate === today
+            && typeof data.seancePartiesFaites === "number" && data.seancePartiesFaites > 0
+            && typeof data.seancePartiesTotal === "number" && data.seancePartiesTotal > data.seancePartiesFaites;
+        const seanceLegere = typeof data.seanceFinieDate === "string" || typeof data.seancePartiesDate === "string";
+        const body = enCours
+            ? `Tu as fait ${data.seancePartiesFaites} partie${data.seancePartiesFaites > 1 ? "s" : ""} sur ${data.seancePartiesTotal} de ta séance : tu reprends là où tu t'es arrêté.`
+            : seanceLegere
+                ? "Ta séance du jour t'attend : environ 15 minutes."
+                : "Tu n'as pas encore atteint ton objectif du jour — quelques minutes suffisent !";
 
         const message = {
             token,
             notification: {
                 title: "Wortando",
-                body: "Tu n'as pas encore atteint ton objectif du jour — quelques minutes suffisent !"
+                body
             }
         };
 
