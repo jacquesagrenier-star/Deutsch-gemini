@@ -43004,6 +43004,9 @@ async function syncProgressToCloud(){
             // Android, iPhone, iPad ou ordinateur, rien de plus (v686) : pour
             // savoir qui peut tester sur Google Play. Voir typeAppareil().
             appareil: typeAppareil(),
+            // Le numero de compilation de l'app des magasins (« 16 »), vide sur
+            // le web. Voir versionNative().
+            versionNative: versionNative(),
             // Les ouvertures et les verifications de version (v684), voir
             // noterVersion() -- lu par `node tests/versions.js`.
             journalVersionJson: (function(){
@@ -43114,6 +43117,7 @@ async function syncProgressToCloud(){
                 synonymesEcartes: aEcrire.synonymesEcartes || "",
                 langueInterface: aEcrire.langueInterface || "",
                 appareil: aEcrire.appareil || "",
+                versionNative: aEcrire.versionNative || "",
                 updatedAt: window.fsServerTimestamp()
             }, { merge: true });
             marquerGel(null);
@@ -52086,6 +52090,21 @@ function typeAppareil(){
     }catch(e){ return ""; }
 }
 
+// LA VERSION DE L'APP DES MAGASINS (7 nov. 2026, Jacques : « Oui, ajoute-le »).
+// Le tableau de bord dit « Android · version 16 ». versionName vaut « 1.0 »
+// pour toutes les compilations ; le seul nombre qui change est le numero de
+// build (versionCode Android, numero TestFlight iOS), que Codemagic ecrit dans
+// le user agent de la vue web : « ... WortandoNatif/16 » (wortando-ios,
+// outils/version_user_agent.js). Une compilation plus ancienne, ou locale,
+// dit « WortandoNatif » sans numero, ou rien : le champ reste vide. C'est le
+// numero de NOTRE app, pas la version du systeme du telephone.
+function versionNative(){
+    try{
+        const m = /WortandoNatif\/(\d+)/.exec(navigator.userAgent || "");
+        return m ? m[1] : "";
+    }catch(e){ return ""; }
+}
+
 function repartitionAppareils(users){
     const n = {};
     let inconnus = 0;
@@ -52212,7 +52231,7 @@ async function renderAdminUsersList(){
                 </summary>
                 <div class="admin-detail">
                     <small>${tf('admin_user_stats', { vus: mots, mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small><br>
-                    <small>${u.email || ""}${u.langueInterface ? " · interface en " + (NOMS_LANGUE[u.langueInterface] || u.langueInterface) : ""}${u.appareil ? " · " + u.appareil : ""}</small>
+                    <small>${u.email || ""}${u.langueInterface ? " · interface en " + (NOMS_LANGUE[u.langueInterface] || u.langueInterface) : ""}${u.appareil ? " · " + u.appareil + (u.versionNative ? " · version " + u.versionNative : "") : ""}</small>
                     ${retour}
                     ${u._coll === RESUMES_COLL ? `<button class="secondary admin-vhs" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
                         ${vhsOn ? t('admin_vhs_access_on') : t('admin_vhs_access_off')}
@@ -52293,6 +52312,7 @@ async function reconstruireResumes(){
                 essais: Array.isArray(u.essais) ? u.essais : [],
                 langueInterface: u.langueInterface || "",
                 appareil: u.appareil || "",
+                versionNative: u.versionNative || "",
                 // La date du document complet, PAS l'heure de la
                 // reconstruction : sinon tous les testeurs paraitraient
                 // actifs a l'instant.
