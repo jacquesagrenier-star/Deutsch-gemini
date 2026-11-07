@@ -259,10 +259,18 @@ const Voix = (() => {
     const tel = () => { if (!repli){ repli = true; if (s === son) telephone(texte); } };
     s.addEventListener("error", tel, {once: true});
     if (!attente){ s.play().catch(tel); return; }
-    s.muted = true;
+    // 7 nov. 2026 : PLUS DE SECOND play() HORS DU GESTE. Le fichier part muet ET EN BOUCLE dans le toucher ; a la fin
+    // du son de reussite, on le ramene au debut et on lui rend le son, sans le mettre en pause ni le relancer. Avant,
+    // pause() puis play() dans un setTimeout : si iOS refusait ce second play(), .catch(tel) passait au telephone alors
+    // que le fichier existait (hypothese de la session des emotions, invisible dans Chromium). La boucle empeche un
+    // fichier plus court que le son de reussite (« Si. ») de s'arreter avant d'etre entendu.
+    s.muted = true; s.loop = true;
     const p = s.play();
-    const reprendre = () => { if (s !== son) return; try{ s.pause(); s.currentTime = 0; s.muted = false; s.play().catch(tel); }catch(e){ tel(); } };
-    if (p && p.then) p.then(() => setTimeout(reprendre, attente)).catch(() => setTimeout(() => { if (s === son){ s.muted = false; s.play().catch(tel); } }, attente));
+    const reprendre = () => {
+      if (s !== son) return;
+      try{ s.loop = false; s.currentTime = 0; s.muted = false; if (s.paused) s.play().catch(tel); }catch(e){ tel(); }
+    };
+    if (p && p.then) p.then(() => setTimeout(reprendre, attente)).catch(() => setTimeout(() => { if (s === son){ s.loop = false; s.muted = false; s.play().catch(tel); } }, attente));
     else setTimeout(reprendre, attente);
   }
   return {dire, arreter, bravo, aUnFichier: texte => connus.has(sha1(texte)), sha1};
