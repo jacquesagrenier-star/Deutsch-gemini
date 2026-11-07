@@ -72122,8 +72122,10 @@ function startTuiles(niveau){
             topic: "Construire \u00b7 " + ph.source,
             question: libelle(ph),
             question_en: ph.en,
-            translation: ph.source,
-            translation_en: ph.source,
+            // Pas de ligne « Traduction : » : la consigne EST la phrase a traduire, et ph.source est le nom du
+            // theme d'ou elle vient (« Traduction : Expressions », capture de l'audit du 7 nov.).
+            translation: "",
+            translation_en: "",
             hint: t("tuiles_hint"),
             hint_en: t("tuiles_hint"),
             chunks: tokens,
@@ -72177,8 +72179,9 @@ function startSchreiben(niveau){
         topic: "\u00c9crire \u00b7 " + ph.source,
         question: ph.fr,
         question_en: ph.en,
-        translation: ph.source,
-        translation_en: ph.source,
+        // Pas de ligne « Traduction : » : voir startTuiles (ph.source est le nom du theme, pas une traduction).
+        translation: "",
+        translation_en: "",
         hint: t('schreiben_hint'),
         hint_en: t('schreiben_hint'),
         answers: [ph.de],
