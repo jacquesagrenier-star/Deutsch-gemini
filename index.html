@@ -54960,6 +54960,9 @@ function carteEligibleRappel(item){
     if(!frontIsFrench || getLearningDirection() === "en") return false;
     if(dansLePaquetGarde() || decouverteEnCours() || paquetTermine()) return false;
     if(!item || !item.word || RAPPEL_MODES.indexOf(modeDeLaCarteRappel(item)) < 0) return false;
+    // Une carte d'une serie de Tout le contenu (item.exo, harmonisation des exercices,
+    // 7 nov.) garde le geste de sa serie.
+    if(item.exo) return false;
     // Une paire de contraires (« ehrlich/unehrlich ») ne se choisit pas.
     if(/\//.test(reponseRappel(item))) return false;
     return !!formeSelonPoints(pointsRappel(getWordState(item.themeId, item.index)));
