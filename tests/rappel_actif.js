@@ -28,7 +28,7 @@ const ctx = {};
 vm.createContext(ctx);
 // Les « const » d'un script ne deviennent pas des proprietes du contexte : on
 // les exporte a la main.
-vm.runInContext(source.slice(a, b) + "\n;this.R = { RAPPEL_ECART, RAPPEL_ARTICLES, empreinteRappel, dejaVuRappel, pointsRappel, formeSelonPoints, tourDuRappel, normRappel, plierRappel, sensPlieRappel, ecartLettresRappel, debutCommunRappel, leurresDejaVus, variantesMot, fautesOrthographe, ordreDesChoix, boutonsApresChoix, jugementDuBouton };", ctx);
+vm.runInContext(source.slice(a, b) + "\n;this.R = { RAPPEL_ECART, RAPPEL_ARTICLES, empreinteRappel, dejaVuRappel, pointsRappel, formeSelonPoints, tourDuRappel, normRappel, plierRappel, sensPlieRappel, ecartLettresRappel, debutCommunRappel, leurresDejaVus, variantesMot, fautesOrthographe, ordreDesChoix, boutonsApresChoix, jugementDuBouton, numeroBravo, RAPPEL_NB_BRAVOS };", ctx);
 const R = ctx.R;
 
 let ok = 0, ko = 0;
@@ -84,6 +84,26 @@ egal(R.jugementDuBouton(false, "garde"), "garde", "faux + Mettre de cote : comme
 egal(R.jugementDuBouton(false, "encore"), null, "faux : pas de bouton Encore");
 verifier([true, false].every(j => R.boutonsApresChoix(j).every(b => R.jugementDuBouton(j, b) !== "je_savais" || j)),
          "un choix faux ne fait jamais avancer le point");
+
+// ---------- 2c. Le mot d'encouragement d'un choix juste ----------
+{
+    const vus = new Set();
+    for(let i = 0; i < 400; i++){
+        const n = R.numeroBravo("theme:" + i);
+        verifier(n >= 1 && n <= R.RAPPEL_NB_BRAVOS, "le numero du bravo reste entre 1 et " + R.RAPPEL_NB_BRAVOS + " (" + n + ")");
+        egal(R.numeroBravo("theme:" + i), n, "la meme carte dit toujours le meme bravo");
+        vus.add(n);
+    }
+    egal(vus.size, R.RAPPEL_NB_BRAVOS, "les quatre bravos tournent");
+    // Chaque variante existe dans les onze blocs d'I18N.
+    const debut = source.indexOf("const I18N = {");
+    ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de", "es"].forEach(lang => {
+        const i = source.indexOf("\n    " + lang + ": {", debut);
+        const bloc = source.slice(i, source.indexOf("\n    },", i));
+        for(let k = 1; k <= R.RAPPEL_NB_BRAVOS; k++)
+            verifier(bloc.indexOf("\n        ra_bravo_" + k + ": ") >= 0, "ra_bravo_" + k + " manque dans le bloc " + lang);
+    });
+}
 
 // ---------- 3. Les fausses orthographes, a la main ----------
 const F = (langue, mode, mot, article, mots) => R.fautesOrthographe({ langue, mode, mot, article, cle: "t:" + mot },

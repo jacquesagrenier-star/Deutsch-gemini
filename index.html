@@ -7187,6 +7187,7 @@ body[data-theme="dark"] .ra-choix button.bon{border-color:#5cc08a; background:rg
 body[data-theme="dark"] .ra-choix button.faux{border-color:#e2725f; background:rgba(192,57,43,.22); color:#fbe1dc;}
 .ra-verdict{text-align:center;}
 .ra-verdict .ra-titre{display:block;}
+.ra-verdict.bon .ra-titre{font-size:19px;}
 .ra-rep{font-size:22px; font-weight:900; margin:4px 0 2px; overflow-wrap:anywhere;}
 .ra-rep u{text-decoration:none; background:rgba(232,162,58,.38); border-radius:4px; padding:0 1px;}
 .ra-verdict small{display:block; font-weight:600; font-size:13.5px; opacity:.92;}
@@ -15129,7 +15130,10 @@ const I18N = {
         cp_tu_as_ecrit: "Tu as écrit :",
         cp_presque: "Une petite faute de frappe : on la compte juste.",
         ra_consigne_choisir: "Comment dit-on…",
-        ra_juste: "Juste !",
+        ra_bravo_1: "Bravo !",
+        ra_bravo_2: "Exact !",
+        ra_bravo_3: "Parfait !",
+        ra_bravo_4: "Bien vu !",
         ra_faux: "Pas tout à fait. La bonne réponse :",
         ra_consigne_orthographe: "Lequel est bien écrit ?",
         ra_tu_as_choisi: "Tu as choisi « {s} ».",
@@ -16835,7 +16839,10 @@ const I18N = {
         cp_tu_as_ecrit: "You wrote:",
         cp_presque: "Just a small typo: we count it as right.",
         ra_consigne_choisir: "How do you say…",
-        ra_juste: "Right!",
+        ra_bravo_1: "Well done!",
+        ra_bravo_2: "Exactly!",
+        ra_bravo_3: "Perfect!",
+        ra_bravo_4: "Nice one!",
         ra_faux: "Not quite. The right answer:",
         ra_consigne_orthographe: "Which one is spelled right?",
         ra_tu_as_choisi: "You chose “{s}”.",
@@ -18542,7 +18549,10 @@ const I18N = {
         cp_tu_as_ecrit: "Senin yazdığın:",
         cp_presque: "Küçük bir yazım hatası: doğru sayıyoruz.",
         ra_consigne_choisir: "Nasıl denir…",
-        ra_juste: "Doğru!",
+        ra_bravo_1: "Aferin!",
+        ra_bravo_2: "Tam olarak!",
+        ra_bravo_3: "Mükemmel!",
+        ra_bravo_4: "Harika!",
         ra_faux: "Tam değil. Doğru cevap:",
         ra_consigne_orthographe: "Hangisi doğru yazılmış?",
         ra_tu_as_choisi: "“{s}” seçtin.",
@@ -20616,7 +20626,10 @@ const I18N = {
         cp_tu_as_ecrit: "Ти написав(-ла):",
         cp_presque: "Невелика описка: зараховуємо як правильно.",
         ra_consigne_choisir: "Як сказати…",
-        ra_juste: "Правильно!",
+        ra_bravo_1: "Браво!",
+        ra_bravo_2: "Саме так!",
+        ra_bravo_3: "Чудово!",
+        ra_bravo_4: "Влучно!",
         ra_faux: "Не зовсім. Правильна відповідь:",
         ra_consigne_orthographe: "Яке написано правильно?",
         ra_tu_as_choisi: "Ти вибрав(-ла) «{s}».",
@@ -23019,7 +23032,10 @@ const I18N = {
         cp_tu_as_ecrit: "نوشتهٔ تو:",
         cp_presque: "یک غلط تایپی کوچک: درست حساب می‌کنیم.",
         ra_consigne_choisir: "چطور می‌گویند…",
-        ra_juste: "درست است!",
+        ra_bravo_1: "آفرین!",
+        ra_bravo_2: "دقیقاً!",
+        ra_bravo_3: "عالی!",
+        ra_bravo_4: "درست زدی!",
         ra_faux: "نه کاملاً. پاسخ درست:",
         ra_consigne_orthographe: "کدام درست نوشته شده است؟",
         ra_tu_as_choisi: "«{s}» را انتخاب کردی.",
@@ -24833,7 +24849,10 @@ const I18N = {
         cp_tu_as_ecrit: "ما كتبته:",
         cp_presque: "خطأ مطبعي صغير: نحسبه صحيحًا.",
         ra_consigne_choisir: "كيف نقول…",
-        ra_juste: "صحيح!",
+        ra_bravo_1: "أحسنت!",
+        ra_bravo_2: "بالضبط!",
+        ra_bravo_3: "ممتاز!",
+        ra_bravo_4: "إجابة موفقة!",
         ra_faux: "ليس تمامًا. الإجابة الصحيحة:",
         ra_consigne_orthographe: "أيّها مكتوب بشكل صحيح؟",
         ra_tu_as_choisi: "اخترت: «{s}».",
@@ -25278,7 +25297,10 @@ const I18N = {
         cp_tu_as_ecrit: "Você escreveu:",
         cp_presque: "Só um pequeno erro de digitação: conta como certo.",
         ra_consigne_choisir: "Como se diz…",
-        ra_juste: "Certo!",
+        ra_bravo_1: "Muito bem!",
+        ra_bravo_2: "Exato!",
+        ra_bravo_3: "Perfeito!",
+        ra_bravo_4: "Mandou bem!",
         ra_faux: "Não exatamente. A resposta certa:",
         ra_consigne_orthographe: "Qual está escrito certo?",
         ra_tu_as_choisi: "Você escolheu “{s}”.",
@@ -26982,7 +27004,10 @@ const I18N = {
         cp_tu_as_ecrit: "Napisałeś(-aś):",
         cp_presque: "Mała literówka: liczymy jako dobrze.",
         ra_consigne_choisir: "Jak się mówi…",
-        ra_juste: "Dobrze!",
+        ra_bravo_1: "Brawo!",
+        ra_bravo_2: "Dokładnie!",
+        ra_bravo_3: "Świetnie!",
+        ra_bravo_4: "Trafione!",
         ra_faux: "Nie całkiem. Prawidłowa odpowiedź:",
         ra_consigne_orthographe: "Które jest napisane poprawnie?",
         ra_tu_as_choisi: "Wybrałeś(-aś) „{s}”.",
@@ -28686,7 +28711,10 @@ const I18N = {
         cp_tu_as_ecrit: "Ты написал(а):",
         cp_presque: "Небольшая опечатка: засчитываем как верно.",
         ra_consigne_choisir: "Как сказать…",
-        ra_juste: "Верно!",
+        ra_bravo_1: "Молодец!",
+        ra_bravo_2: "Именно!",
+        ra_bravo_3: "Отлично!",
+        ra_bravo_4: "В точку!",
         ra_faux: "Не совсем. Правильный ответ:",
         ra_consigne_orthographe: "Какое написано правильно?",
         ra_tu_as_choisi: "Ты выбрал(а) «{s}».",
@@ -30393,7 +30421,10 @@ const I18N = {
         cp_tu_as_ecrit: "Du hast geschrieben:",
         cp_presque: "Ein kleiner Tippfehler: Wir zählen es trotzdem als richtig.",
         ra_consigne_choisir: "Wie sagt man…",
-        ra_juste: "Richtig!",
+        ra_bravo_1: "Super!",
+        ra_bravo_2: "Genau!",
+        ra_bravo_3: "Perfekt!",
+        ra_bravo_4: "Gut gemacht!",
         ra_faux: "Nicht ganz. Die richtige Antwort:",
         ra_consigne_orthographe: "Welches ist richtig geschrieben?",
         ra_tu_as_choisi: "Du hast „{s}“ gewählt.",
@@ -32110,7 +32141,10 @@ const I18N = {
         cp_tu_as_ecrit: "Escribiste:",
         cp_presque: "Solo un pequeño error al teclear: la contamos como correcta.",
         ra_consigne_choisir: "¿Cómo se dice…?",
-        ra_juste: "¡Correcto!",
+        ra_bravo_1: "¡Muy bien!",
+        ra_bravo_2: "¡Exacto!",
+        ra_bravo_3: "¡Perfecto!",
+        ra_bravo_4: "¡Bien hecho!",
         ra_faux: "No del todo. La respuesta correcta:",
         ra_consigne_orthographe: "¿Cuál está bien escrito?",
         ra_tu_as_choisi: "Elegiste «{s}».",
@@ -54906,6 +54940,16 @@ function ordreDesChoix(cleCible, bonne, autres){
     return tous.map(c => ({ c: c, k: empreinteRappel(cleCible + "#" + c.texte) }))
         .sort((a, b) => a.k - b.k).map(x => x.c);
 }
+// LE MOT D'ENCOURAGEMENT (Jacques, 7 nov. : « j'inclurais juste bravo ou quelque
+// chose comme ca. Mais je ne reecrirais pas la computadora. On l'a deja a
+// l'ecran. ») Quatre variantes, ra_bravo_1 a ra_bravo_4, choisies par l'empreinte
+// de la carte : la meme carte dit toujours la meme chose, deux cartes voisines
+// rarement.
+const RAPPEL_NB_BRAVOS = 4;
+function numeroBravo(cle){
+    return 1 + (empreinteRappel("bravo|" + cle) % RAPPEL_NB_BRAVOS);
+}
+
 // LES BOUTONS APRES LE CHOIX (decision du 7 nov. : « les memes boutons que le
 // verso »). Choix juste : « Encore » (j'ai devine : comme le Encore de la carte
 // normale), « Continuer » (le point avance, comme « Je savais ») et « Mettre de
@@ -55073,19 +55117,23 @@ function montrerRappelActif(item, dec){
         dec.fait = true;
         corps.querySelectorAll("button").forEach(n => { n.disabled = true; });
         const v = creer("div", "cp-retour ra-verdict " + (juste ? "bon" : "faux"));
-        const titre = creer("b", "ra-titre", t(juste ? "ra_juste" : "ra_faux"));
+        // Juste : le bouton choisi est deja vert, la reponse deja a l'ecran -- un mot
+        // court suffit. Faux : la bonne reponse, ecrite, avec l'ecart surligne.
+        const titre = creer("b", "ra-titre", t(juste ? "ra_bravo_" + numeroBravo(dec.cle) : "ra_faux"));
         titre.setAttribute("dir", "auto");
         v.appendChild(titre);
-        const rep = creer("div", "ra-rep");
-        rep.setAttribute("lang", langue);
-        rep.setAttribute("dir", "ltr");
-        if(!juste && dec.forme === "orthographe" && choisi){
-            ecartLettresRappel(choisi, bonne).forEach(x => {
-                if(x.diff) rep.appendChild(creer("u", "", x.c));
-                else rep.appendChild(document.createTextNode(x.c));
-            });
-        } else rep.textContent = bonne;
-        v.appendChild(rep);
+        if(!juste){
+            const rep = creer("div", "ra-rep");
+            rep.setAttribute("lang", langue);
+            rep.setAttribute("dir", "ltr");
+            if(dec.forme === "orthographe" && choisi){
+                ecartLettresRappel(choisi, bonne).forEach(x => {
+                    if(x.diff) rep.appendChild(creer("u", "", x.c));
+                    else rep.appendChild(document.createTextNode(x.c));
+                });
+            } else rep.textContent = bonne;
+            v.appendChild(rep);
+        }
         if(!juste && choisi){
             const expl = creer("small", "", tf("ra_tu_as_choisi", { s: choisi }));
             expl.setAttribute("dir", "auto");
