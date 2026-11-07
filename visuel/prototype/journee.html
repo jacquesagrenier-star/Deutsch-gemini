@@ -155,7 +155,7 @@ Zoom.init({direct: ".photo img, .duo img, .visages img", loupe: ".ordre button, 
 document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
-const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(6, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le theme court de la seance legere (4 questions), essai seance_legere
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
 
 const TEXTES = {
   titre:     {fr:"La journée", en:"Daily routine", tr:"Günlük rutin", uk:"Розпорядок дня", fa:"کارهای روزانه", ar:"الروتين اليومي", pt:"A rotina do dia", pl:"Plan dnia", ru:"Распорядок дня", de:"Der Tagesablauf"},

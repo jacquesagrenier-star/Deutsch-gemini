@@ -13325,6 +13325,20 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
         <button class="secondary hidden" id="resetDailyBtn" onclick="resetDailyActivityConfirm()" data-i18n="settings_reset_daily">RÉINITIALISER LE COMPTE DU JOUR (TESTS)</button>
     </div>
 
+    <!-- 7 nov. 2026 (decision de Jacques, DECISIONS.md) : UN SEUL REGLAGE pour la scene et le theme illustre
+         de la seance du jour, 5 · 8 · 12, 5 par defaut (« etre capable de dire qu'on veut plus que 5 questions
+         par theme ou 5 questions par scene »). Ouverts depuis les tuiles, rien ne change. Remplace le reglage
+         -/+ de la scene du jour (v799). Voir questionsSeance(). -->
+    <div class="card">
+        <strong data-i18n="reglage_questions_titre">Questions par scène et par thème</strong>
+        <div class="pron-vitesse" role="group" style="margin-top:10px;">
+            <button type="button" data-questions-seance="5" onclick="choisirQuestionsSeance(5)">5</button>
+            <button type="button" data-questions-seance="8" onclick="choisirQuestionsSeance(8)">8</button>
+            <button type="button" data-questions-seance="12" onclick="choisirQuestionsSeance(12)">12</button>
+        </div>
+        <small style="color:#4C566B;" data-i18n="reglage_questions_desc">Pour la scène et le thème illustré de ta séance du jour. Ouverts depuis les tuiles, ils continuent aussi longtemps que tu veux.</small>
+    </div>
+
     <!-- LE TEST DE NIVEAU (essai « placement », 6 nov. 2026) : la carte « Mon niveau ».
          Voir majCartePlacement(). -->
     <div class="card hidden" id="cartePlacement">
@@ -13335,18 +13349,6 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
         <button class="secondary" id="plcCarteBouton" onclick="ouvrirPlacement('reglages')">Faire le test de niveau · 5 min</button>
         <small style="color:#4C566B; display:block; margin-top:6px;" data-i18n="plc_carte_note">Chaque langue a son niveau. Le test ne retire rien : tes mots déjà appris restent appris.</small>
         <button class="secondary hidden" id="plcCarteBienvenue" onclick="ouvrirBienvenue()" data-i18n="plc_carte_bienvenue">Voir la bienvenue à deux portes (essai)</button>
-    </div>
-
-    <!-- v799 : le nombre de questions de la scene du jour (Jacques : « on pourrait
-         changer le nombre de cartes, mais aussi le nombre de questions »). -->
-    <div class="card">
-        <strong data-i18n="reglage_questions_titre">Questions de la scène du jour</strong>
-        <div class="info-box" style="display:flex; align-items:center; justify-content:center; gap:18px;">
-            <button class="secondary" style="width:48px; padding:10px 0;" onclick="ajusterQuestionsScene(-1)">−</button>
-            <span id="questionsSceneReglage" style="font-size:22px; font-weight:800; min-width:44px; text-align:center;">8</span>
-            <button class="secondary" style="width:48px; padding:10px 0;" onclick="ajusterQuestionsScene(1)">+</button>
-        </div>
-        <small style="color:#4C566B;" data-i18n="reglage_questions_desc">Nombre de questions posées dans la scène du jour. Si la scène n'en a pas assez à ton niveau, elle ajoute celles du niveau d'avant, en révision.</small>
     </div>
 
     <!-- v796 : les points de decouverte de l'accueil (installerReperes), a revoir. -->
@@ -15353,8 +15355,8 @@ const I18N = {
         son_badge: "Le son du jour",
         son_q: "Écoute chaque mot et regarde les lettres",
         son_q_dire: "À toi : dis ce mot",
-        reglage_questions_titre: "Questions de la scène du jour",
-        reglage_questions_desc: "Nombre de questions posées dans la scène du jour. Si la scène n'en a pas assez à ton niveau, elle ajoute celles du niveau d'avant, en révision.",
+        reglage_questions_titre: "Questions par scène et par thème",
+        reglage_questions_desc: "Pour la scène et le thème illustré de ta séance du jour. Ouverts depuis les tuiles, ils continuent aussi longtemps que tu veux.",
         seance_sous: "Révisions et mots nouveaux",
         seance_carte: "{n} carte",
         seance_cartes: "{n} cartes",
@@ -17062,8 +17064,8 @@ const I18N = {
         son_badge: "Sound of the day",
         son_q: "Listen to each word and look at the letters",
         son_q_dire: "Your turn: say this word",
-        reglage_questions_titre: "Questions in today's scene",
-        reglage_questions_desc: "Number of questions in today's scene. If the scene doesn't have enough at your level, it adds some from the level below, as review.",
+        reglage_questions_titre: "Questions per scene and per topic",
+        reglage_questions_desc: "For the scene and the illustrated topic in today's session. Opened from the tiles, they go on as long as you like.",
         seance_sous: "Reviews and new words",
         seance_carte: "{n} card",
         seance_cartes: "{n} cards",
@@ -18717,8 +18719,8 @@ const I18N = {
         son_badge: "Günün sesi",
         son_q: "Her kelimeyi dinle ve harflere bak",
         son_q_dire: "Sıra sende: bu kelimeyi söyle",
-        reglage_questions_titre: "Günün sahnesindeki sorular",
-        reglage_questions_desc: "Günün sahnesinde sorulan soru sayısı. Sahnede senin seviyende yeterince soru yoksa, bir önceki seviyeden tekrar soruları ekler.",
+        reglage_questions_titre: "Sahne ve konu başına soru",
+        reglage_questions_desc: "Bugünkü oturumundaki sahne ve resimli konu için. Kutucuklardan açtığında istediğin kadar devam eder.",
         seance_sous: "Tekrarlar ve yeni kelimeler",
         seance_carte: "{n} kart",
         seance_cartes: "{n} kart",
@@ -20795,8 +20797,8 @@ const I18N = {
         son_badge: "Звук дня",
         son_q: "Послухай кожне слово й подивись на літери",
         son_q_dire: "Твоя черга: скажи це слово",
-        reglage_questions_titre: "Запитання сцени дня",
-        reglage_questions_desc: "Кількість запитань у сцені дня. Якщо на твоєму рівні їх замало, сцена додає запитання з попереднього рівня для повторення.",
+        reglage_questions_titre: "Запитань на сцену й на тему",
+        reglage_questions_desc: "Для сцени й теми в картинках у сеансі на сьогодні. Якщо відкрити їх із плиток, вони тривають скільки захочеш.",
         seance_sous: "Повторення та нові слова",
         seance_carte: "{n} картка",
         seance_cartes: "{n} карток",
@@ -23203,8 +23205,8 @@ const I18N = {
         son_badge: "صدای امروز",
         son_q: "هر واژه را بشنو و به حروف نگاه کن",
         son_q_dire: "نوبت توست: این واژه را بگو",
-        reglage_questions_titre: "پرسش‌های صحنهٔ امروز",
-        reglage_questions_desc: "تعداد پرسش‌های صحنهٔ امروز. اگر صحنه در سطح تو پرسش کافی نداشته باشد، از سطح قبلی برای مرور اضافه می‌کند.",
+        reglage_questions_titre: "پرسش برای هر صحنه و هر موضوع",
+        reglage_questions_desc: "برای صحنه و موضوع مصورِ جلسهٔ امروز تو. اگر از کاشی‌ها بازشان کنی، هر قدر بخواهی ادامه پیدا می‌کنند.",
         seance_sous: "مرور و واژه‌های تازه",
         seance_carte: "{n} کارت",
         seance_cartes: "{n} کارت",
@@ -25021,8 +25023,8 @@ const I18N = {
         son_badge: "صوت اليوم",
         son_q: "استمع إلى كل كلمة وانظر إلى الحروف",
         son_q_dire: "دورك: قل هذه الكلمة",
-        reglage_questions_titre: "أسئلة مشهد اليوم",
-        reglage_questions_desc: "عدد الأسئلة في مشهد اليوم. إذا لم يكن في المشهد ما يكفي من أسئلة مستواك، يضيف أسئلة من المستوى السابق للمراجعة.",
+        reglage_questions_titre: "عدد الأسئلة لكل مشهد ولكل موضوع",
+        reglage_questions_desc: "للمشهد وللموضوع المصوّر في جلستك اليوم. إذا فتحتهما من البطاقات، يستمران قدر ما تشاء.",
         seance_sous: "مراجعات وكلمات جديدة",
         seance_carte: "{n} بطاقة",
         seance_cartes: "{n} بطاقات",
@@ -25469,8 +25471,8 @@ const I18N = {
         son_badge: "O som do dia",
         son_q: "Ouça cada palavra e olhe as letras",
         son_q_dire: "Sua vez: diga esta palavra",
-        reglage_questions_titre: "Perguntas da cena do dia",
-        reglage_questions_desc: "Número de perguntas na cena do dia. Se a cena não tiver o bastante no seu nível, ela acrescenta perguntas do nível anterior, como revisão.",
+        reglage_questions_titre: "Perguntas por cena e por tema",
+        reglage_questions_desc: "Para a cena e o tema ilustrado da sua sessão do dia. Abertos pelos blocos, eles continuam o quanto você quiser.",
         seance_sous: "Revisões e palavras novas",
         seance_carte: "{n} carta",
         seance_cartes: "{n} cartas",
@@ -27177,8 +27179,8 @@ const I18N = {
         son_badge: "Dźwięk dnia",
         son_q: "Posłuchaj każdego słowa i spójrz na litery",
         son_q_dire: "Twoja kolej: powiedz to słowo",
-        reglage_questions_titre: "Pytania w scenie dnia",
-        reglage_questions_desc: "Liczba pytań w scenie dnia. Jeśli na twoim poziomie jest ich za mało, scena dodaje pytania z poprzedniego poziomu jako powtórkę.",
+        reglage_questions_titre: "Pytania na scenę i na temat",
+        reglage_questions_desc: "Dla sceny i tematu ilustrowanego w twojej dzisiejszej sesji. Otwarte z kafelków trwają, ile tylko chcesz.",
         seance_sous: "Powtórki i nowe słowa",
         seance_carte: "{n} karta",
         seance_cartes: "Karty: {n}",
@@ -28885,8 +28887,8 @@ const I18N = {
         son_badge: "Звук дня",
         son_q: "Послушай каждое слово и посмотри на буквы",
         son_q_dire: "Твоя очередь: скажи это слово",
-        reglage_questions_titre: "Вопросы сцены дня",
-        reglage_questions_desc: "Количество вопросов в сцене дня. Если на твоём уровне их не хватает, сцена добавляет вопросы с предыдущего уровня для повторения.",
+        reglage_questions_titre: "Вопросов на сцену и на тему",
+        reglage_questions_desc: "Для сцены и темы в картинках в твоём занятии на сегодня. Если открыть их с плиток, они продолжаются сколько захочешь.",
         seance_sous: "Повторение и новые слова",
         seance_carte: "{n} карточка",
         seance_cartes: "Карточек: {n}",
@@ -30595,8 +30597,8 @@ const I18N = {
         son_badge: "Der Laut des Tages",
         son_q: "Hör dir jedes Wort an und schau auf die Buchstaben",
         son_q_dire: "Jetzt du: Sag dieses Wort",
-        reglage_questions_titre: "Fragen in der Szene des Tages",
-        reglage_questions_desc: "Anzahl der Fragen in der Szene des Tages. Hat die Szene auf deinem Niveau nicht genug, nimmt sie zur Wiederholung die des Niveaus davor dazu.",
+        reglage_questions_titre: "Fragen pro Szene und pro Thema",
+        reglage_questions_desc: "Für die Szene und das bebilderte Thema deiner heutigen Lerneinheit. Über die Kacheln geöffnet, geht es so lange weiter, wie du willst.",
         seance_sous: "Wiederholung und neue Wörter",
         seance_carte: "{n} Karte",
         seance_cartes: "{n} Karten",
@@ -32315,8 +32317,8 @@ const I18N = {
         son_badge: "El sonido del día",
         son_q: "Escucha cada palabra y mira las letras",
         son_q_dire: "Te toca: di esta palabra",
-        reglage_questions_titre: "Preguntas de la escena del día",
-        reglage_questions_desc: "Número de preguntas en la escena del día. Si la escena no tiene suficientes a tu nivel, agrega las del nivel anterior, como repaso.",
+        reglage_questions_titre: "Preguntas por escena y por tema",
+        reglage_questions_desc: "Para la escena y el tema ilustrado de tu práctica de hoy. Abiertos desde los mosaicos, siguen todo lo que quieras.",
         seance_sous: "Repasos y palabras nuevas",
         seance_carte: "{n} tarjeta",
         seance_cartes: "{n} tarjetas",
@@ -34758,7 +34760,7 @@ const I18N_ES_ESPAGNE = {
     "parler_micro_refuse": "No se autorizó el micrófono. Puedes permitirlo en los ajustes del navegador.",
     "voice_none": "No hay ninguna voz instalada para este idioma en este dispositivo. Las frases se leerán con la voz predeterminada, es decir, con mal acento. Añádela en los ajustes de tu teléfono (Accesibilidad › Contenido hablado › Voces).",
     "voice_only_one": "Solo hay una voz instalada. Puedes añadir una mejorada en los ajustes de tu teléfono y luego volver a elegirla aquí.",
-    "reglage_questions_desc": "Número de preguntas en la escena del día. Si la escena no tiene suficientes a tu nivel, añade las del nivel anterior, como repaso.",
+    "reglage_questions_desc": "Para la escena y el tema ilustrado de tu práctica de hoy. Abiertos desde los mosaicos, siguen todo lo que quieras.",
     "myvocab_add_title": "Añadir a mis tarjetas",
     "myvocab_added": "«{mot}» añadida a tus tarjetas.",
     "myvocab_deja_cours": "«{mot}» ya es una tarjeta del curso — no hace falta añadirla.",
@@ -42898,6 +42900,8 @@ async function syncProgressToCloud(){
             // premiere semaine, 10 le premier jour) restauree sur un autre appareil y
             // deviendrait un choix, et l'y figerait.
             dailyGoalTarget: (function(){ const v = parseInt(localStorage.getItem(DAILY_GOAL_STORAGE_KEY), 10); return Number.isFinite(v) && v > 0 ? v : null; })(),
+            // 7 nov. 2026 : les questions par scene et par theme (5 · 8 · 12), un reglage comme l'objectif.
+            questionsSeance: (function(){ const v = parseInt(localStorage.getItem(QUESTIONS_SEANCE_KEY), 10); return QUESTIONS_SEANCE_CHOIX.indexOf(v) >= 0 ? v : null; })(),
             // Utilisés côté serveur (Cloud Function de rappel quotidien) pour savoir
             // si l'objectif du jour est déjà atteint sans avoir à tout recalculer :
             // dailyActivityDate permet de détecter une valeur d'hier restée en cache
@@ -43383,6 +43387,10 @@ async function restoreProgressFromCloud(){
             if(typeof data.dailyGoalTarget === "number"
                && localStorage.getItem(DAILY_GOAL_STORAGE_KEY) === null){
                 localStorage.setItem(DAILY_GOAL_STORAGE_KEY, String(data.dailyGoalTarget));
+            }
+            if(typeof data.questionsSeance === "number" && QUESTIONS_SEANCE_CHOIX.indexOf(data.questionsSeance) >= 0
+               && localStorage.getItem(QUESTIONS_SEANCE_KEY) === null){
+                localStorage.setItem(QUESTIONS_SEANCE_KEY, String(data.questionsSeance));
             }
         }catch(e){}
         try{
@@ -44424,23 +44432,28 @@ function setDailyGoalTarget(v){
 function renderDailyGoalSetting(){
     const el = document.getElementById("dailyGoalSetting");
     if(el) el.textContent = getDailyGoalTarget();
-    const q = document.getElementById("questionsSceneReglage");
-    if(q) q.textContent = questionsScene();
+    document.querySelectorAll("button[data-questions-seance]").forEach(b =>
+        b.classList.toggle("actif", parseInt(b.dataset.questionsSeance, 10) === questionsSeance()));
 }
 
-// v799 : le nombre de questions de la scene du jour. 8 par defaut : une scene en
-// a 4 a 10 par niveau ; au-dela, le prototype ajoute celles du niveau d'avant.
-const QUESTIONS_SCENE_KEY = PREFIXE_STOCKAGE + "questionsScene";
-const QUESTIONS_SCENE_MIN = 3, QUESTIONS_SCENE_MAX = 20, QUESTIONS_SCENE_DEFAUT = 8;
-function questionsScene(){
-    let v = QUESTIONS_SCENE_DEFAUT;
-    try{ v = parseInt(localStorage.getItem(QUESTIONS_SCENE_KEY), 10) || QUESTIONS_SCENE_DEFAUT; }catch(e){}
-    return Math.max(QUESTIONS_SCENE_MIN, Math.min(QUESTIONS_SCENE_MAX, v));
+// v799 : le nombre de questions de la scene du jour (-/+, de 3 a 20, 8 par defaut).
+// 7 nov. 2026 (decision de Jacques) : UN SEUL REGLAGE, « Questions par scene et par theme », 5 · 8 · 12, 5 par
+// defaut, pour la scene ET le theme illustre de la seance du jour (arret de scene, scene de Premiers pas, theme
+// du jour ; la seance legere lit le meme). Une cle neuve : l'ancienne (questionsScene, des valeurs de 3 a 20)
+// n'est plus lue, et tout le monde part du 5 decide. Ouverts depuis les tuiles, la scene et le theme ne le lisent pas.
+const QUESTIONS_SEANCE_KEY = PREFIXE_STOCKAGE + "questionsSeance";
+const QUESTIONS_SEANCE_CHOIX = [5, 8, 12], QUESTIONS_SEANCE_DEFAUT = 5;
+function questionsSeance(){
+    let v = QUESTIONS_SEANCE_DEFAUT;
+    try{ v = parseInt(localStorage.getItem(QUESTIONS_SEANCE_KEY), 10) || QUESTIONS_SEANCE_DEFAUT; }catch(e){}
+    return QUESTIONS_SEANCE_CHOIX.indexOf(v) >= 0 ? v : QUESTIONS_SEANCE_DEFAUT;
 }
-function ajusterQuestionsScene(delta){
-    const v = Math.max(QUESTIONS_SCENE_MIN, Math.min(QUESTIONS_SCENE_MAX, questionsScene() + delta));
-    try{ localStorage.setItem(QUESTIONS_SCENE_KEY, String(v)); }catch(e){}
+const questionsScene = questionsSeance;   // la porte de la scene du jour (v799) lit le meme reglage
+function choisirQuestionsSeance(v){
+    if(QUESTIONS_SEANCE_CHOIX.indexOf(v) < 0) return;
+    try{ localStorage.setItem(QUESTIONS_SEANCE_KEY, String(v)); }catch(e){}
     renderDailyGoalSetting();
+    try{ if(typeof scheduleCloudSync === "function") scheduleCloudSync(); }catch(e){}
     try{ majTuileSeance(); }catch(e){}
 }
 
@@ -62767,6 +62780,7 @@ function ouvrirScenePremiersPas(nom, dernier){
     if(cadre){
         cadre.title = t("seance_scene_cadre");
         cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(nom) + "&pp=1" + (dernier ? "&dernier=1" : "")
+                  + "&nb=" + questionsSeance()
                   + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse + "&t=" + Date.now();
     }
     showScreen("sceneSeance");
@@ -66155,8 +66169,8 @@ async function ouvrirPremiersPas(taille){
         // la position du parcours sur la derniere carte.
         try{ items = await preparerArretScene(items, null, true); }catch(e){}
         // 7 nov. 2026 (decision 6fda9e0, Jacques : « une scene ET un theme », y compris en Premiers pas) :
-        // le theme illustre court (quatre questions) vers la fin, jamais en derniere position.
-        try{ items = insererThemeIllustre(items, true); }catch(e){}
+        // le theme illustre vers la fin, jamais en derniere position.
+        try{ items = insererThemeIllustre(items); }catch(e){}
     }
     PHRASES_POSEES.clear();
     RETOURS_FIN_SEANCE.length = 0;
@@ -67614,12 +67628,15 @@ async function arretDeScene(s, completer, niveauImpose){
         if(vus.size < ARRET_NB && !completer) return null;
         // Trois mots tires parmi ceux deja vus : ce sont eux que la carte
         // annonce, et eux seuls que la scene demande.
-        mots = melangerPhrase(Array.from(vus.entries())).slice(0, ARRET_NB);
+        // 7 nov. 2026 : autant de mots que le reglage « Questions par scene et par theme » (5 · 8 · 12) ;
+        // trois vus suffisent toujours pour s'arreter, les autres completent.
+        const nb = questionsSeance();
+        mots = melangerPhrase(Array.from(vus.entries())).slice(0, nb);
         // v912 : « completer » -- les vus d'abord, puis d'autres mots A1 de la
         // scene, comme les scenes de Premiers pas (la scene dit le mot, 🔈).
-        if(mots.length < ARRET_NB && vus.tous){
+        if(mots.length < nb && vus.tous){
             const autres = melangerPhrase(Array.from(vus.tous.entries()).filter(([m]) => !vus.has(m)));
-            mots = mots.concat(autres.slice(0, ARRET_NB - mots.length));
+            mots = mots.concat(autres.slice(0, nb - mots.length));
         }
         if(!mots.length) return null;
     }
@@ -67634,7 +67651,7 @@ function ouvrirArretScene(item){
         cadre.title = t("seance_scene_cadre");
         cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(item.scene.nom)
                   + "&seance=1&niveau=" + encodeURIComponent(item.niveau || "A1")
-                  + "&nb=" + ARRET_NB
+                  + "&nb=" + questionsSeance()
                   + (mots ? "&mots=" + encodeURIComponent(mots) : "")
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + langueDeScene()
@@ -67655,7 +67672,6 @@ function ouvrirArretScene(item){
 // Les themes a tour de role au numero du jour ; « Encore une seance » (essai seance_legere) prend le suivant.
 // En Premiers pas, les huit premiers du ruban (la famille d'abord), un par etape du parcours.
 const THEMES_PREMIERS_PAS_NB = 8;
-const SEANCE_COURTE_THEME = 15;    // sous quinze cartes, le theme court (THEME_COURT_NB questions)
 function themeDuJour(){
     if(LANGUE_APPRISE !== "es" && LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "en") return null;
     const ouverts = themesIllustresOuverts();
@@ -67675,15 +67691,13 @@ function themeDuJour(){
 }
 // Le theme du jour, apres la scene : vers la fin, jamais en derniere position (en Premiers pas, la fin de
 // seance lit la position du parcours sur la derniere carte). Dans la seance du jour, il a sa partie a lui,
-// « theme », apres les revisions (ORDRE_PARTS). Court (quatre questions) en Premiers pas, dans la seance
-// legere, et des que la seance a moins de SEANCE_COURTE_THEME cartes.
-function insererThemeIllustre(seance, enPremiersPas){
+// « theme », apres les revisions (ORDRE_PARTS). Autant de questions que le reglage « Questions par scene et
+// par theme » (5 · 8 · 12, 5 par defaut), en Premiers pas et dans la seance legere aussi.
+function insererThemeIllustre(seance){
     const nom = themeDuJour();
     if(!nom || !seance || seance.length < 2) return seance;   // v1127 : comme la scene (preparerArretScene)
-    let court = !!enPremiersPas || seance.length < SEANCE_COURTE_THEME;
-    try{ if(seanceLegere()) court = true; }catch(e){}
     const item = { mode: "phrase", forme: "theme_arret", cible: null, themeId: "theme_arret", index: 0,
-                   theme: nom, nb: court ? THEME_COURT_NB : 0, phrase: null, word: "" };
+                   theme: nom, nb: questionsSeance(), phrase: null, word: "" };
     const sortie = seance.slice();
     // Avant la derniere carte, et en Premiers pas avant la fin du parcours et la scene de l'etape qui le ferment.
     let i = sortie.length - 1;

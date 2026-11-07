@@ -138,7 +138,7 @@ document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
 // agrandir (themes/zoom.js) : la photo de la question s'ouvre au toucher, la loupe sur les photos a choisir
 Zoom.init({direct: ".cadre img, .qui img", loupe: ".rangee button", langue: LANGUE});
-const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(6, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le theme court de la seance legere (4 questions), essai seance_legere
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
 
 const TEXTES = {
   titre:     {fr:"Le logement", en:"Home and housing", tr:"Ev ve konut", uk:"Житло", fa:"خانه و مسکن", ar:"السكن", pt:"A moradia", pl:"Mieszkanie", ru:"Жильё", de:"Wohnen"},

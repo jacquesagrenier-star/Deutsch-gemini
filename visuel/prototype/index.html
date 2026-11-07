@@ -1358,7 +1358,8 @@ function activerVue(v, annoncer){
 const PARAMS = new URLSearchParams(location.search);
 const EN_SEANCE = PARAMS.get("seance") === "1";
 /* v799 : l'app envoie le nombre de questions (reglage « Questions de la scene du
-   jour », 8 par defaut). Sans parametre, l'ancien nombre : 3. */
+   jour », 8 par defaut ; depuis le 7 nov. 2026 « Questions par scene et par theme »,
+   5 · 8 · 12, 5 par defaut). Sans parametre, l'ancien nombre : 3. */
 const NB_SEANCE = Math.max(1, Math.min(30, parseInt(PARAMS.get("nb"), 10) || 3));
 /* v830 : ouverte depuis « Premiers pas » (?pp=1). Decouvrir et Trouver restent
    au choix, mais Trouver s'arrete apres 5 objets du niveau A1, et la fin rend la
@@ -1370,7 +1371,9 @@ const PP = PARAMS.get("pp") === "1";
    devinette sur un mot jamais entendu. */
 const MOTS_PERMIS = (() => { const v = PARAMS.get("mots"); return v ? new Set(v.split("|")) : null; })();
 const PP_DERNIER = PARAMS.get("dernier") === "1";
-const NB_PP = 5;
+/* 7 nov. 2026 : le reglage « Questions par scene et par theme » de l'app (5 · 8 · 12) vaut aussi pour la scene
+   de Premiers pas ; sans parametre (une app d'avant), 5 comme avant. */
+const NB_PP = Math.max(1, Math.min(30, parseInt(PARAMS.get("nb"), 10) || 5));
 function envoyer(type, donnees){
   if (window.parent !== window)
     window.parent.postMessage(Object.assign({source: "wortando-scene", type, scene: NOM_SCENE}, donnees || {}), "*");

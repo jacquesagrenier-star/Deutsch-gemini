@@ -136,7 +136,7 @@ document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "l
 // sur ce qu'on touche pour repondre (les images a choisir) et sur les animaux de la decouverte
 Zoom.init({direct: "img.photo, .duo img, .fiche img", loupe: ".rangee button, .grille button", langue: LANGUE});
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
-const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(6, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le theme court de la seance legere (4 questions), essai seance_legere
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
 
 const TEXTES = {
   titre:     {fr:"Les animaux", en:"Animals", tr:"Hayvanlar", uk:"Тварини", fa:"حیوانات", ar:"الحيوانات", pt:"Os animais", pl:"Zwierzęta", ru:"Животные", de:"Die Tiere"},

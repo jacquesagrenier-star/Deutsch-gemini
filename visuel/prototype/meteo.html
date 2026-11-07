@@ -137,7 +137,7 @@ document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "l
 // agrandir (themes/zoom.js) : un toucher sur la photo de la question ou de la decouverte, la loupe sur les images a choisir
 Zoom.init({direct: ".cadre img", loupe: ".rangee button:not(.th)", langue: LANGUE});
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
-const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(6, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le theme court de la seance legere (4 questions), essai seance_legere
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
 
 const TEXTES = {
   titre:      {fr:"La météo et les saisons", en:"Weather and seasons", tr:"Hava durumu ve mevsimler", uk:"Погода і пори року", fa:"آب‌وهوا و فصل‌ها", ar:"الطقس والفصول", pt:"O tempo e as estações", pl:"Pogoda i pory roku", ru:"Погода и времена года", de:"Das Wetter und die Jahreszeiten"},

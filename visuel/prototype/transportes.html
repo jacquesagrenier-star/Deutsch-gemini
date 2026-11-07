@@ -146,7 +146,7 @@ document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "l
 // agrandir (themes/zoom.js) : un toucher sur la photo, le plan ou le tableau de la question ; la loupe sur les images a choisir
 Zoom.init({direct: ".cadre img, .plan svg", loupe: ".rangee button", langue: LANGUE});
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
-const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(6, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le theme court de la seance legere (4 questions), essai seance_legere
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
 const DE_APP = APPRENDRE === "de";
 // LA VARIANTE : en Amerique latine, « el carro » et « el boleto » (espanol/datos/variantes.json). La donnee garde la
 // forme du corpus (el coche, el billete : la cle de la progression), l'ecran et la voix disent celle de la variante.
