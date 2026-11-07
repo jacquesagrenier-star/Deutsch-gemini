@@ -47965,8 +47965,10 @@ function ouvrirTelc(partie){
     showScreen("sceneSeance");
 }
 // Les langues d'interface dans lesquelles les pages du telc (visuel/prototype/telc/) sont traduites. Une langue
-// s'ajoute ici le jour ou toutes ses pages et ses donnees le sont (controle : tests/telc_langues.py, a venir).
-const LANGUES_PAGES_TELC = ["fr", "en"];
+// s'ajoute ici le jour ou toutes ses pages et ses donnees le sont (controle : node tests/telc_langues.js, qui
+// refuse une langue de cette liste a qui il manque un texte). Les sept autres le 7 nov. 2026, traduites depuis
+// l'anglais et le francais (visuel/prototype/telc/langues/), relecture native a venir.
+const LANGUES_PAGES_TELC = ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"];
 // LA VERSION GRATUITE DANS LES BLOCS (7 nov. 2026, demande du chef) : l'echantillon gratuit des epreuves est a UN
 // niveau (GRATUIT.examenNiveau, d'apres celui de l'eleve). Un bloc qui n'a pas ce niveau (le Goethe B1 pour un
 // eleve A2, le C1 pour un eleve B1…) n'aurait que des listes vides, « rien a ce niveau », qui ressemblent a une
