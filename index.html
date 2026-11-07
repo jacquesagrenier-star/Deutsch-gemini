@@ -66154,6 +66154,9 @@ async function ouvrirPremiersPas(taille){
         // preparerArretScene). Jamais en derniere position : la fin de seance lit
         // la position du parcours sur la derniere carte.
         try{ items = await preparerArretScene(items, null, true); }catch(e){}
+        // 7 nov. 2026 (decision 6fda9e0, Jacques : « une scene ET un theme », y compris en Premiers pas) :
+        // le theme illustre court (quatre questions) vers la fin, jamais en derniere position.
+        try{ items = insererThemeIllustre(items, true); }catch(e){}
     }
     PHRASES_POSEES.clear();
     RETOURS_FIN_SEANCE.length = 0;
@@ -67590,9 +67593,12 @@ async function preparerArretScene(seance, sceneImposee, enPremiersPas){
         if(!choisis.length) return seance;
         const sortie = seance.slice();
         const n = choisis.length;
-        // Des positions reparties : 30 cartes et 3 scenes -> apres la 7e, la 15e, la 22e.
+        // Des positions reparties : 30 cartes et 3 scenes -> apres la 4e, la 13e, la 21e.
+        // 7 nov. 2026 (decision 6fda9e0) : la premiere scene dans la premiere moitie, le theme vers la fin
+        // (insererThemeIllustre) -- une seule scene tombe au tiers, et non plus au milieu. Dans la seance
+        // du jour, regrouperSeance range ensuite chaque carte dans sa partie (ORDRE_PARTS).
         for(let k = n; k >= 1; k--){
-            const pos = Math.max(2, Math.min(sortie.length - 1, Math.round(seance.length * k / (n + 1))));
+            const pos = Math.max(2, Math.min(sortie.length - 1, Math.round(seance.length * (2 * k - 1) / (2 * n + 1))));
             sortie.splice(pos, 0, choisis[k - 1]);
         }
         return sortie;
@@ -67637,41 +67643,52 @@ function ouvrirArretScene(item){
     }
     showScreen("sceneSeance");
 }
-// ============ LES THEMES ILLUSTRES DANS LA SEANCE (3 nov. 2026) ============
+// ============ LES THEMES ILLUSTRES DANS LA SEANCE (3 nov. 2026 ; regle du 7 nov. plus bas) ============
 // Jacques : « ca serait interessant de pouvoir les avoir dans la seance du jour, effectivement ». La regle
 // proposee et acceptee : UN JOUR SUR TROIS, le theme illustre prend la place de l'arret de scene (meme place,
 // la seance n'en est pas plus longue) ; A1 et A2 seulement ; ni pendant Premiers pas, ni pendant la premiere
 // semaine d'un vrai debutant (la rampe de l'objectif, v882) ; six questions, sans la decouverte (?seance=1) ;
 // les themes a tour de role, au numero du jour, donc le meme toute la journee.
+// 7 nov. 2026 (decision 6fda9e0, Jacques : la seance du jour montre « une scene et un theme », y compris en
+// Premiers pas ; la regle de la seance legere, d9d9dbd, etendue a tous) : le theme ne remplace plus la scene,
+// il s'y AJOUTE, CHAQUE jour, a tous les niveaux, des la premiere seance (plus d'attente d'une semaine).
+// Les themes a tour de role au numero du jour ; « Encore une seance » (essai seance_legere) prend le suivant.
+// En Premiers pas, les huit premiers du ruban (la famille d'abord), un par etape du parcours.
+const THEMES_PREMIERS_PAS_NB = 8;
+const SEANCE_COURTE_THEME = 15;    // sous quinze cartes, le theme court (THEME_COURT_NB questions)
 function themeDuJour(){
     if(LANGUE_APPRISE !== "es" && LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "en") return null;
-    const jour = Math.floor(Date.now() / 86400000);
-    // Essai « seance_legere » (decision d9d9dbd) : un theme court CHAQUE jour, a tous les niveaux, en plus de
-    // la scene ; « Encore une seance » prend le theme suivant (un par seance finie aujourd'hui).
-    if(seanceLegere()){
-        try{ if(premiersPasEnCours()) return null; }catch(e){}
-        const ouverts = themesIllustresOuverts();
-        return ouverts.length ? ouverts[(jour + seancesFiniesAujourdhui()) % ouverts.length] : null;
+    const ouverts = themesIllustresOuverts();
+    if(!ouverts.length) return null;
+    let pp = false;
+    try{ pp = premiersPasEnCours(); }catch(e){}
+    if(pp){
+        const premiers = ouverts.slice(0, THEMES_PREMIERS_PAS_NB);
+        let d = 0;
+        try{ d = jourPremiersPas() || 0; }catch(e){}
+        return premiers[d % premiers.length];
     }
-    if(jour % 3 !== 0) return null;
-    try{ if(premiersPasEnCours()) return null; }catch(e){}
-    try{ if(jourDApprentissage() <= 7 && nbMotsVus() < 100) return null; }catch(e){}
-    const niv = niveauSeance();
-    if(niv !== "A1" && niv !== "A2") return null;
-    const noms = themesIllustresOuverts();
-    return noms.length ? noms[Math.floor(jour / 3) % noms.length] : null;
+    const jour = Math.floor(Date.now() / 86400000);
+    let encore = 0;
+    try{ encore = seanceLegere() ? seancesFiniesAujourdhui() : 0; }catch(e){}
+    return ouverts[(jour + encore) % ouverts.length];
 }
-function insererThemeIllustre(seance){
+// Le theme du jour, apres la scene : vers la fin, jamais en derniere position (en Premiers pas, la fin de
+// seance lit la position du parcours sur la derniere carte). Dans la seance du jour, il a sa partie a lui,
+// « theme », apres les revisions (ORDRE_PARTS). Court (quatre questions) en Premiers pas, dans la seance
+// legere, et des que la seance a moins de SEANCE_COURTE_THEME cartes.
+function insererThemeIllustre(seance, enPremiersPas){
     const nom = themeDuJour();
     if(!nom || !seance || seance.length < 2) return seance;   // v1127 : comme la scene (preparerArretScene)
+    let court = !!enPremiersPas || seance.length < SEANCE_COURTE_THEME;
+    try{ if(seanceLegere()) court = true; }catch(e){}
     const item = { mode: "phrase", forme: "theme_arret", cible: null, themeId: "theme_arret", index: 0,
-                   theme: nom, phrase: null, word: "" };
+                   theme: nom, nb: court ? THEME_COURT_NB : 0, phrase: null, word: "" };
     const sortie = seance.slice();
-    const i = sortie.findIndex(c => c && c.forme === "scene_arret");
-    // Essai « seance_legere » : la scene ET le theme -- le theme juste apres la scene, dans sa partie a lui.
-    if(i >= 0 && seanceLegere()){ sortie.splice(i + 1, 0, item); return sortie; }
-    if(i >= 0) sortie[i] = item;                       // a la place de la scene
-    else sortie.splice(Math.max(2, Math.round(sortie.length / 2)), 0, item);   // pas de scene ce jour-la : au milieu
+    // Avant la derniere carte, et en Premiers pas avant la fin du parcours et la scene de l'etape qui le ferment.
+    let i = sortie.length - 1;
+    while(i > 1 && sortie[i - 1] && /^pp_(scene|fin)$/.test(sortie[i - 1].forme || "")) i--;
+    sortie.splice(Math.max(1, i), 0, item);
     return sortie;
 }
 function ouvrirArretTheme(item){
@@ -67681,7 +67698,7 @@ function ouvrirArretTheme(item){
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t(th.titre);
-        cadre.src = baseScenes() + th.page + "?seance=1" + (seanceLegere() ? "&nb=" + THEME_COURT_NB : "") + "&apprendre=" + apprendreThemeIllustre()
+        cadre.src = baseScenes() + th.page + "?seance=1" + (item.nb ? "&nb=" + item.nb : "") + "&apprendre=" + apprendreThemeIllustre()
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
                   + voixThemeIllustre() + "&t=" + Date.now();
@@ -67807,8 +67824,8 @@ async function ouvrirSeanceDuJour(sansScene){
     // v862 : pendant les escales, la scene de l'escale.
     try{ if(LANGUE_APPRISE !== "ja") seance = await preparerArretScene(seance, av ? av.scene : null); }catch(e){}
     // 3 nov. 2026 : un jour sur trois, un theme illustre a la place de cet arret (themeDuJour).
-    // Essai « seance_legere » : le theme court tous les jours, A1 voyage compris (« a tous les niveaux »).
-    try{ if(!av || seanceLegere()) seance = insererThemeIllustre(seance); }catch(e){}
+    // 7 nov. 2026 (decision 6fda9e0) : le theme EN PLUS de la scene, chaque jour, A1 voyage compris.
+    try{ seance = insererThemeIllustre(seance); }catch(e){}
     try{ if(av) seance = insererA1Voyage(seance, av); }catch(e){}
     try{ if(fc && seance.length) seance = insererFeuille(seance, fc, tout); }catch(e){}
     // v879 : les reperes (jours, mois, nombres), tot dans l'A1.
@@ -67894,9 +67911,11 @@ function glisserPhrasesPlusTard(paquet, tout){
 //   (planSeanceDuJour) au lieu de « mots, grammaire et scenes ».
 // Les cartes-phrases vont dans la partie du mot qu'elles font travailler s'il est
 // dans la seance, sinon dans les revisions : elles restent APRES ce mot.
-const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "scene", "theme", "son", "revisions", "fin"];
+// 7 nov. 2026 (decision 6fda9e0) : le theme illustre a sa partie, apres les revisions -- la scene dans la
+// premiere moitie, le theme vers la fin, les deux avant la fin de la seance.
+const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "scene", "son", "revisions", "theme", "fin"];
 // Essai « seance_legere » (decision d9d9dbd) : la lecon dans l'ordre de la maquette -- « Revisions · Mots ·
-// Grammaire · Scene · Theme ». Hors essai, aucune carte ne va dans « theme » : ORDRE_PARTS ne change rien.
+// Grammaire · Scene · Theme ».
 const ORDRE_PARTS_LEGERE = ["revisions", "lieu", "neufs", "feuille", "reperes", "scene", "theme", "son", "fin"];
 function ordreParts(){ return seanceLegere() ? ORDRE_PARTS_LEGERE : ORDRE_PARTS; }
 let SEANCE_PARTS = null;           // { paquet, parts (Map carte -> partie), themeId, niveau, etape }
@@ -67905,8 +67924,8 @@ function partDeCarteSeance(c, av, parCle){
     if(!c) return "revisions";
     const forme = c.forme || "";
     if(c.av) return /^(av_escale_fin|av_jalon|av_fin_a1)$/.test(forme) ? "fin" : "lieu";
-    if(forme === "theme_arret" && seanceLegere()) return "theme";
-    if(forme === "scene_arret" || forme === "theme_arret") return "scene";
+    if(forme === "theme_arret") return "theme";
+    if(forme === "scene_arret") return "scene";
     const tid = String(c.themeId || "");
     if(tid.indexOf("son_") === 0) return "son";
     if(c.rpBadge || c.rpTableau || tid.indexOf("rp_") === 0) return "reperes";
@@ -68177,11 +68196,12 @@ function planSeanceDuJour(){
             else attendrePourLePlan("reperes", chargerReperes());
         }
     }catch(e){}
-    let scene = null;
+    // 7 nov. 2026 (decision 6fda9e0) : la scene ET le theme, chacun annonce.
+    const scene = [];
     try{
         if(total >= 2){   // v1127 : le seuil de preparerArretScene dans la seance du jour
-            if(!av && themeDuJour()) scene = "seance_plan_theme";
-            else if(arretSceneActif()) scene = "seance_plan_scene";
+            if(arretSceneActif()) scene.push("seance_plan_scene");
+            if(themeDuJour()) scene.push("seance_plan_theme");
         }
     }catch(e){}
     let son = false;
@@ -68196,7 +68216,7 @@ function planSeanceDuJour(){
     if(feuille) morceaux.push(t("seance_plan_feuille"));
     if(neufs) morceaux.push(neufs === 1 ? t("seance_plan_neufs_un") : tf("seance_plan_neufs", { n: neufs }));
     if(reperes) morceaux.push(t("seance_plan_reperes"));
-    if(scene) morceaux.push(t(scene));
+    scene.forEach(k => morceaux.push(t(k)));
     if(son) morceaux.push(t("seance_plan_son"));
     if(dues) morceaux.push(dues === 1 ? t("seance_plan_revisions_un") : tf("seance_plan_revisions", { n: dues }));
     const texte = morceaux.length ? morceaux.join(" · ") : null;
