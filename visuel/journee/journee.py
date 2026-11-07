@@ -187,12 +187,14 @@ VERBES = {
         "en": ["I brush Mia's hair {H}", "you brush Mia's hair {H}", "{S} brushes Mia's hair {H}", "we brush Mia's hair {H}", "{S} brush Mia's hair {H}"],
         "pt": ["eu penteio a Mia {H}", "você penteia a Mia {H}", "{S} penteia a Mia {H}", "nós penteamos a Mia {H}", "{S} penteiam a Mia {H}"],
         "groupe": "habit", "leurre": False},
+    # 6 nov. 2026 (decision de Jacques : l'age commande le lieu) : Mia a 4 ans, elle va a la Kita, pas a l'ecole ;
+    # Jan emmene Ben a l'ecole ET Mia a la Kita (l'image : les deux enfants en chemin, le matin)
     "llevar-colegio": {
-        "es": {"mot": "llevar", "v": ["llevo", "llevas", "lleva", "llevamos", "llevan"], "c": "a los niños al colegio", "latam": {"c": "a los niños a la escuela"}},
-        "de": {"mot": "bringen", "v": ["bringe", "bringst", "bringt", "bringen", "bringen"], "o": "die Kinder", "c": "zur Schule"},
-        "fr": ["j'emmène les enfants à l'école {H}", "tu emmènes les enfants à l'école {H}", "{S} emmène les enfants à l'école {H}", "nous emmenons les enfants à l'école {H}", "{S} emmènent les enfants à l'école {H}"],
-        "en": ["I take the children to school {H}", "you take the children to school {H}", "{S} takes the children to school {H}", "we take the children to school {H}", "{S} take the children to school {H}"],
-        "pt": ["eu levo as crianças para a escola {H}", "você leva as crianças para a escola {H}", "{S} leva as crianças para a escola {H}", "nós levamos as crianças para a escola {H}", "{S} levam as crianças para a escola {H}"],
+        "es": {"mot": "llevar", "v": ["llevo", "llevas", "lleva", "llevamos", "llevan"], "c": "a Ben al colegio y a Mia a la guardería", "latam": {"c": "a Ben a la escuela y a Mia a la guardería"}},
+        "de": {"mot": "bringen", "v": ["bringe", "bringst", "bringt", "bringen", "bringen"], "o": "Ben", "c": "zur Schule und Mia in die Kita"},
+        "fr": ["j'emmène Ben à l'école et Mia à la garderie {H}", "tu emmènes Ben à l'école et Mia à la garderie {H}", "{S} emmène Ben à l'école et Mia à la garderie {H}", "nous emmenons Ben à l'école et Mia à la garderie {H}", "{S} emmènent Ben à l'école et Mia à la garderie {H}"],
+        "en": ["I take Ben to school and Mia to day care {H}", "you take Ben to school and Mia to day care {H}", "{S} takes Ben to school and Mia to day care {H}", "we take Ben to school and Mia to day care {H}", "{S} take Ben to school and Mia to day care {H}"],
+        "pt": ["eu levo o Ben para a escola e a Mia para a creche {H}", "você leva o Ben para a escola e a Mia para a creche {H}", "{S} leva o Ben para a escola e a Mia para a creche {H}", "nós levamos o Ben para a escola e a Mia para a creche {H}", "{S} levam o Ben para a escola e a Mia para a creche {H}"],
         "groupe": "trajet", "leurre": False},
     "ponerse-pijama": {
         "es": {"mot": "ponerse", "pr": REFL_ES, "v": ["pongo", "pones", "pone", "ponemos", "ponen"], "c": "el pijama", "piege": ["pono", "pones", "pone", "ponemos", "ponen"]},
@@ -242,8 +244,8 @@ FREQUENCES = [
      "fr": "Ben et Mia se brossent toujours les dents.", "en": "Ben and Mia always brush their teeth.", "pt": "Ben e Mia sempre escovam os dentes.", "dei": "Ben und Mia putzen sich immer die Zähne."},
     {"qui": "Mia", "f": "nunca", "es": "Mia {A} se peina sola.", "de": "Mia kämmt sich {A} allein.",
      "fr": "Mia ne se coiffe jamais seule.", "en": "Mia never brushes her hair by herself.", "pt": "Mia nunca se penteia sozinha.", "dei": "Mia kämmt sich nie allein."},
-    {"qui": "Jan", "f": "a veces", "jours": [1, 0, 1, 0, 0, 0, 0], "es": "Jan {A} lleva a los niños al colegio.", "es_latam": "Jan {A} lleva a los niños a la escuela.", "de": "Jan bringt die Kinder {A} zur Schule.",
-     "fr": "Jan emmène parfois les enfants à l'école.", "en": "Jan sometimes takes the children to school.", "pt": "Jan às vezes leva as crianças para a escola.", "dei": "Jan bringt die Kinder manchmal zur Schule."},
+    {"qui": "Jan", "f": "a veces", "jours": [1, 0, 1, 0, 0, 0, 0], "es": "Jan {A} lleva a Ben al colegio y a Mia a la guardería.", "es_latam": "Jan {A} lleva a Ben a la escuela y a Mia a la guardería.", "de": "Jan bringt Ben {A} zur Schule und Mia in die Kita.",
+     "fr": "Jan emmène parfois Ben à l'école et Mia à la garderie.", "en": "Jan sometimes takes Ben to school and Mia to day care.", "pt": "Jan às vezes leva o Ben para a escola e a Mia para a creche.", "dei": "Jan bringt Ben manchmal zur Schule und Mia in die Kita."},
     {"qui": "Katrin", "f": "siempre", "es": "Katrin {A} despierta a Mia.", "de": "Katrin weckt Mia {A}.",
      "fr": "Katrin réveille toujours Mia.", "en": "Katrin always wakes Mia up.", "pt": "Katrin sempre acorda a Mia.", "dei": "Katrin weckt Mia immer."},
     {"qui": "BenMia", "f": "nunca", "es": "Ben y Mia {A} se acuestan tarde.", "de": "Ben und Mia gehen {A} spät ins Bett.",

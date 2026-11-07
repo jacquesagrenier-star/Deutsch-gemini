@@ -140,7 +140,7 @@ document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "l
 // choisir et sur celles de la galerie
 Zoom.init({direct: ".photo img, .fiche img", loupe: ".rangee button, .galerie button", langue: LANGUE});
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
-const NB = Q.get("seance") === "1" ? 6 : 20;
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(6, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le theme court de la seance legere (4 questions), essai seance_legere
 
 const TEXTES = {
   titre:     {fr:"Les métiers", en:"Jobs", tr:"Meslekler", uk:"Професії", fa:"شغل‌ها", ar:"المهن", pt:"As profissões", pl:"Zawody", ru:"Профессии", de:"Berufe"},
@@ -659,8 +659,8 @@ const EN_V3 = {bakes: "fait cuire", repairs: "répare", sells: "vend", examines:
 // les adjectifs devant le metier (a ou an change avec eux) : [anglais, francais m, f, avant le nom en francais, metiers]
 const EN_ADJ = [["good", "bon", "bonne", true], ["friendly", "sympathique", "sympathique", false], ["excellent", "excellent", "excellente", true],
                 ["experienced", "expérimenté", "expérimentée", false], ["honest", "honnête", "honnête", false, ["lawyer", "mechaniker", "verkaeufer", "mail"]]];
-// des personnes sans image, a Boston ; et les proches de la question « What does your sister do? »
-const EN_NOMS = {f: ["Emma", "Kate", "Lisa", "Megan"], m: ["Tom", "Ben", "Mike", "Ryan"]};
+// des personnes sans image, a Boston (jamais un prenom de visuel/personnes.json : « Ben » etait le neveu d Anna, 7 nov.) ; et les proches de la question « What does your sister do? »
+const EN_NOMS = {f: ["Emma", "Kate", "Lisa", "Megan"], m: ["Tom", "Jack", "Mike", "Ryan"]};
 const EN_REL = [["sister", "f", "ta sœur"], ["brother", "m", "ton frère"], [GB ? "mum" : "mom", "f", "ta mère"], ["dad", "m", "ton père"],
                 ["aunt", "f", "ta tante"], ["uncle", "m", "ton oncle"], [GB ? "neighbour" : "neighbor", "f", "ta voisine"], [GB ? "neighbour" : "neighbor", "m", "ton voisin"],
                 ["wife", "f", "ta femme"], ["husband", "m", "ton mari"]];

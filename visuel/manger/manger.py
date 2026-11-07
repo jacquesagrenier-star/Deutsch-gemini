@@ -28,6 +28,8 @@ import hashlib, io, json, os, sys, time
 sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
+sys.path.insert(0, os.path.dirname(ICI))
+import personnes as PERS                                     # noqa: E402 -- la fiche commune (6 nov. 2026)
 SORTIE = os.path.join(RACINE, "visuel", "prototype", "manger")
 
 EDIT, T2I, PRIX = "fal-ai/nano-banana-pro/edit", "fal-ai/nano-banana-pro", 0.15
@@ -43,7 +45,7 @@ for n in ("Carmen", "Diego", "Marta", "Javier", "Rosa", "Lucas", "Tomas", "Elena
 SEXE = {"Anna": "f", "Carmen": "f", "Gisela": "f", "Mark": "m", "Diego": "m", "Ben": "m", "Mia": "f", "Marta": "f",
         "Javier": "m", "Rosa": "f", "Lucas": "m", "Tomas": "m", "Elena": "f", "Ines": "f", "Pablo": "m", "Heinz": "m",
         "Peter": "m", "Felix": "m"}
-NOMS = {"Ines": "Inés", "Tomas": "Tomás"}
+NOMS = PERS.noms()                                           # Ines -> Inés, Tomas -> Tomás (visuel/personnes.json)
 ENFANTS = {"Ben", "Mia"}
 
 # ---------- LES MOTS ----------
@@ -199,7 +201,8 @@ QUANTITES = [
     ("poco",    "azucar",  "A teaspoon with a small amount of white sugar, next to a small white sugar bowl."),
 ]
 
-# LES MOMENTS AU CAFE : Mark et Tomas, clients ; Javier, le serveur ; Ines, la serveuse. Le meme cafe tout du long.
+# LES MOMENTS AU CAFE : Mark et Tomas, clients ; le serveur et la serveuse (les visages de Javier et d'Ines, SANS
+# leur prenom dans les phrases : ANONYMES, 6 nov. 2026). Le meme cafe tout du long.
 # Pas Anna : le cafe a deux avec Mark est un moment de l'histoire a ne pas depenser (scenes/personnages.json, _arc).
 # Chaque moment : la personne qui parle, ce qu'elle dit (es, de), la phrase qui decrit le moment, le mot qu'il porte.
 CAFE = [
@@ -253,6 +256,19 @@ ROLES = {"Javier": {"es": {"mot": "camarero", "genre": "el"}, "de": {"mot": "Kel
          "Ines":   {"es": {"mot": "camarera", "genre": "la"}, "de": {"mot": "Kellnerin", "genre": "die"}},
          "Mark":   {"es": {"mot": "cliente", "genre": "el"}, "de": None},
          "Tomas":  {"es": {"mot": "cliente", "genre": "el"}, "de": None}}
+# 6 nov. 2026 (decision de Jacques, la coherence des personnages) : Javier est cuisinier et Ines coiffeuse dans « Les
+# metiers » (visuel/personnes.json). Au cafe, les images les montrent en serveurs ; les PHRASES ne les nomment donc
+# plus : ce sont « l'homme a la moustache » et « la femme aux cheveux roux », sans prenom (les images restent, rien de
+# paye). La page les dit a la place du prenom, dans la question (« ___ ist der Kellner »), « Was sagt ... ? » et la
+# traduction. En minuscules : la page met la majuscule en tete de phrase.
+ANONYMES = {
+    "Javier": {"es": "el hombre del bigote", "de": "der Mann mit dem Schnurrbart", "en": "the man with the mustache",
+               "en_gb": "the man with the moustache", "fr": "l'homme à la moustache", "pt": "o homem de bigode"},
+    "Ines":   {"es": "la mujer pelirroja", "de": "die Frau mit den roten Haaren", "en": "the woman with red hair",
+               "en_gb": "the woman with red hair", "fr": "la femme aux cheveux roux", "pt": "a mulher ruiva"},
+}
+for _p in ANONYMES:
+    assert ROLES[_p]["de"] and PERS.metier(_p) not in ("kellner",), _p
 
 # LA CARTE DU CAFE, dessinee dans la page (prix en euros, comme un cafe de Madrid et un cafe de Berlin). Les articles
 # a l'accusatif allemand (einen Kaffee) ; es « un trozo de tarta » ; [un, deux] en fr/en/pt/de.
@@ -502,7 +518,7 @@ def ecrire_json():
          "aliments": ALIMENTS, "tradAliments": TRAD_ALIMENTS, "saveurs": SAVEURS, "gouts": gouts,
          "contenants": CONTENANTS, "voisinsContenants": VOISINS_CONTENANTS, "contenus": CONTENUS,
          "tradContenants": TRAD_CONTENANTS, "quantites": qtes,
-         "cafe": [{k: v for k, v in m.items() if k not in ("scene", "decor")} for m in CAFE], "roles": ROLES, "rolesChoix": ROLES_CHOIX,
+         "cafe": [{k: v for k, v in m.items() if k not in ("scene", "decor")} for m in CAFE], "roles": ROLES, "rolesChoix": ROLES_CHOIX, "anonymes": ANONYMES,
          "carte": CARTE, "tradCarte": TRAD_CARTE, "tradCarteDe": TRAD_CARTE_DE,
          "liste": LISTE, "unites": UNITES, "produits": PRODUITS, "latam": LATAM, "sens": SENS,
          "decouverte": dec}
