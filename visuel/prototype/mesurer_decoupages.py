@@ -30,6 +30,16 @@ CE QU'IL MESURE (ne lit que les masques-<scene>.js et les points.json)
     hors_boite     la part du masque hors des boites de la zone (elargies d'un
                    quart) : SAM a pris un autre objet, ou un voisin avec (la
                    cravate du musee emportait la moustache). A regarder a l'oeil.
+                   Il ne voit PAS une zone tombee sur le mauvais objet : SAM rend
+                   toujours son masque dans la boite qu'on lui donne (essai du
+                   6 nov. : 17 zones fausses, toutes a plus de 80 % dans leur
+                   boite). Celles-la, seule la planche de controle les montre.
+    doigt          trop petite pour un doigt : sur un iPhone de 375 px, sans
+                   zoom, le cadre de la zone fait moins de 44 px de cote dans
+                   les deux sens, meme avec la marge que l'app ajoute aux
+                   petits objets (7 pixels du masque de chaque cote, sous
+                   0,4 % de l'image). Jacques, 6 nov. : « des objets mal
+                   decoupes » -- dont ceux qu'on ne touche qu'en zoomant.
 """
 import io
 import json
@@ -146,7 +156,12 @@ def mesurer(nom):
             x1, y1 = int(min(w, (b[0] + b[2] + mx) / 100 * w + 1)), int(min(h, (b[1] + b[3] + my) / 100 * h + 1))
             bx[y0:y1, x0:x1] = True
         hors = float((m & ~bx).sum() / max(m.sum(), 1))
-        zones.append({"hors_boite": round(hors, 3),
+        ys, xs = np.nonzero(m)
+        marge = 14 if m.sum() < w * h * 0.004 else 0          # sous() : 7 px de chaque cote
+        ecran = [round(float((xs.max() - xs.min() + 1 + marge) * 375 / w)),
+                 round(float((ys.max() - ys.min() + 1 + marge) * 375 / w))]
+        zones.append({"hors_boite": round(hors, 3), "ecran": ecran,
+                      "doigt": bool(ecran[0] < 44 and ecran[1] < 44),
             "scene": nom, "id": i, "mot": z["mot"], "pixels": int(m.sum()),
             "polys": len(polys), "miettes": sum(1 for a in aires if a < 0.08 * grand),
             "boucles": boucles, "cote_moyen": round(lm, 1),
@@ -216,6 +231,7 @@ def main():
         "chevauchements_vetements": len(vet), "chevauchements_autres": len(autres),
         "zones_grossieres": len(grossiers), "zones_a_miettes": len(morceaux),
         "zones_a_boucles": len(boucles), "zones_qui_debordent": len(debords),
+        "trop_petites_pour_un_doigt": sum(1 for z in Z if z["doigt"]),
         "sommets": sum(z["sommets"] for z in Z),
         "angles_vus": sum(z["angles_vus"] for z in Z if not z["volontaire"]),
         "finesse_mediane": round(float(np.median([z["finesse"] for z in Z if not z["volontaire"] and z["finesse"]])), 3),
