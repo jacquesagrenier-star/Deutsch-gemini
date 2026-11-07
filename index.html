@@ -9016,6 +9016,93 @@ body[data-theme="dark"] .fete-tableau{background:linear-gradient(180deg, #0E1C26
 .ft-sous{bottom:calc(5% + env(safe-area-inset-bottom, 0px)); font-weight:800; font-size:14px;}
 body[data-theme="dark"] .ft-titre, body[data-theme="dark"] .ft-sous{color:#F6C46A; text-shadow:none;}
 .fete-tableau.ft-fini .ft-titre, .fete-tableau.ft-fini .ft-sous{opacity:1; transform:none;}
+/* LA NOUVELLE ETOILE (essai seance_legere, voir feteEtoile) : la variante A de la maquette du 7 nov. -- le soir en
+   mode clair, la nuit en mode sombre ; l'ecran de 375 x 720 de la maquette, mis a l'echelle du telephone. */
+.fete-etoile{position:fixed; inset:0; z-index:100001; overflow:hidden; font-family:Nunito, system-ui, sans-serif;
+    background:linear-gradient(180deg,#18223F 0%,#26345A 34%,#3E4B78 56%,#6A6F96 74%,#B98A80 90%,#DDA477 100%);
+    --fe-ombre:rgba(255,236,200,.9); --fe-sur:#F6CE84; --fe-titre:#FFF6E8; --fe-ligne:rgba(255,246,232,.9); --fe-gras:#FFE3A8;
+    --fe-btn-fond:#1C2430; --fe-btn-txt:#FFF6E8; --fe-btn-ombre:0 6px 16px rgba(28,36,48,.35); --fe-cnom:rgba(255,246,232,.62);
+    --fe-pastille:#E8A23A; animation:feEntre .35s ease-out both;}
+body[data-theme="dark"] .fete-etoile{background:linear-gradient(180deg,#050A13 0%,#0A1222 40%,#111A30 70%,#1A1D33 88%,#2A2236 100%);
+    --fe-ombre:rgba(255,236,200,.85); --fe-sur:#F0B456; --fe-titre:#F3F5F8; --fe-ligne:rgba(236,239,242,.86); --fe-gras:#F6CE84;
+    --fe-btn-fond:#F0B456; --fe-btn-txt:#1C2430; --fe-btn-ombre:0 6px 16px rgba(0,0,0,.4); --fe-cnom:rgba(236,239,242,.5); --fe-pastille:#F0B456;}
+.fete-etoile.fe-part{opacity:0; transition:opacity .35s;}
+@keyframes feEntre{from{opacity:0} to{opacity:1}}
+.fe-fond{position:absolute; inset:0; width:100%; height:100%;}
+.fe-loin{fill:#FFF6E2; opacity:var(--m); animation:feScint var(--d) ease-in-out var(--o) infinite;}
+@keyframes feScint{0%,100%{opacity:var(--m)} 50%{opacity:calc(var(--m) * .35)}}
+.fe-scene{position:absolute; left:50%; top:50%; width:375px; height:720px; transform-origin:50% 50%;
+    --t-trait:.5s; --t-allume:1.3s; --t-texte:2.0s; --t-btn:2.75s;}
+.fe-cst{position:absolute; left:0; top:34px; width:375px; height:372px;}
+.fe-svg{display:block; width:375px; height:372px; overflow:visible;}
+.fe-avenir{stroke:rgba(255,246,232,.16); stroke-width:1.2; stroke-dasharray:2 5; stroke-linecap:round;}
+.fe-trait{stroke:#FFF1D6; stroke-opacity:.55; stroke-width:1.6; stroke-linecap:round;}
+.fe-place{fill:rgba(255,246,232,.34);}
+.fe-halo{fill:#FFF3D6;}
+.fe-astre .fe-h1{opacity:calc(var(--lum) * .07);} .fe-astre .fe-h2{opacity:calc(var(--lum) * .16);}
+.fe-astre .fe-coeur{opacity:var(--lum); animation:feScint2 var(--d) ease-in-out var(--o) infinite;}
+@keyframes feScint2{0%,100%{opacity:var(--lum)} 50%{opacity:calc(var(--lum) * .78)}}
+.fe-neuve .fe-h1{opacity:.10;} .fe-neuve .fe-h2{opacity:.22;} .fe-neuve .fe-h3{opacity:.40;}
+.fe-neuve .fe-coeur{filter:drop-shadow(0 0 6px var(--fe-ombre));}
+.fe-rayons{fill:#FFF6E2; opacity:.30; transform-box:fill-box; transform-origin:center; transform:scale(.55);}
+.fe-onde{fill:none; stroke:#FFE7B8; stroke-width:2; opacity:0; transform-box:fill-box; transform-origin:center;}
+.fe-pouls{fill:none; stroke:#FFE7B8; stroke-width:1.4; transform-box:fill-box; transform-origin:center; animation:fePouls 2.8s ease-in-out infinite;}
+@keyframes fePouls{0%,100%{opacity:0; transform:scale(.8)} 50%{opacity:.55; transform:scale(1.15)}}
+.fe-tete{opacity:0;} .fe-tete-h{fill:#FFE7B8; opacity:.35;} .fe-tete-c{fill:#FFFDF6;}
+.fe-nom-et{font:800 14px Nunito, system-ui, sans-serif; fill:#FFF1D6; letter-spacing:.02em;
+    paint-order:stroke; stroke:rgba(8,14,30,.55); stroke-width:3px; stroke-linejoin:round;}
+.fe-ne-nom{font-weight:900;} .fe-ne-dist{font-weight:700; fill-opacity:.82;}
+.fe-cnom{position:absolute; left:0; right:0; top:386px; margin:0; text-align:center; font-size:11.5px; font-weight:800;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--fe-cnom);}
+.fe-cnom i{font-style:normal; font-weight:700; letter-spacing:.08em; text-transform:none;}
+.fete-etoile.fe-fin .fe-cnom{font-size:15px; letter-spacing:.12em; color:var(--fe-titre); top:384px;}
+.fe-compte{position:absolute; left:50%; top:410px; transform:translateX(-50%); margin:0; white-space:nowrap;
+    display:flex; align-items:center; gap:6px; padding:4px 13px 4px 11px; border-radius:999px;
+    background:var(--fe-pastille); color:#1C2430; box-shadow:0 3px 0 #A86A0E; font-weight:900; font-size:16px; font-variant-numeric:tabular-nums;}
+.fe-cp-et{width:13px; height:13px; fill:#1C2430;}
+.fe-txt{position:absolute; left:28px; right:28px; top:458px; display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center;}
+.fe-txt p{margin:0;}
+.fe-sur{font-size:13px; font-weight:800; color:var(--fe-sur); letter-spacing:.02em;}
+.fe-titre{font-size:30px; font-weight:900; color:var(--fe-titre); line-height:1.1; text-wrap:balance;}
+.fe-ligne{font-size:17.5px; font-weight:700; color:var(--fe-ligne); line-height:1.4; text-wrap:balance; margin-top:4px !important;}
+.fe-ligne:empty{display:none;}
+.fe-ligne b{color:var(--fe-gras); font-weight:900;}
+/* les boutons de l'app ont leur verre (position, largeur, fond) : celui-ci garde le sien */
+.fete-etoile .fe-btn{position:absolute !important; left:24px !important; right:24px !important; top:auto !important; bottom:34px !important;
+    width:auto !important; height:54px !important; margin:0 !important; padding:0 !important; border:0 !important; border-radius:999px !important;
+    font:900 17px Nunito, system-ui, sans-serif !important; background:var(--fe-btn-fond) !important; color:var(--fe-btn-txt) !important;
+    box-shadow:var(--fe-btn-ombre) !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; cursor:pointer;}
+.fete-etoile .fe-btn::before, .fete-etoile .fe-btn::after{display:none !important;}
+.fe-btn:focus-visible{outline:3px solid #F6CE84; outline-offset:3px;}
+/* l'animation, seulement sous .fe-joue : sans elle (mouvement reduit), l'ecran est dans son etat final */
+.fe-joue .fe-n-trait{stroke-dasharray:1; animation:feDessin .8s cubic-bezier(.55,0,.35,1) var(--t-trait) both;}
+@keyframes feDessin{from{stroke-dashoffset:1} to{stroke-dashoffset:0}}
+.fe-joue .fe-tete{animation:feFile .8s cubic-bezier(.55,0,.35,1) var(--t-trait) both;}
+@keyframes feFile{0%{transform:translate(var(--x1),var(--y1)); opacity:0} 12%{opacity:1} 88%{opacity:1} 100%{transform:translate(var(--x2),var(--y2)); opacity:0}}
+.fe-joue .fe-astre-n{animation:feAllume .75s cubic-bezier(.2,1.5,.4,1) var(--t-allume) both;}
+@keyframes feAllume{0%{transform:scale(0); opacity:0} 30%{opacity:1} 55%{transform:scale(1.5)} 100%{transform:scale(1); opacity:1}}
+.fe-joue .fe-rayons{animation:feRayons 1.5s ease-out var(--t-allume) both;}
+@keyframes feRayons{0%{opacity:0; transform:scale(.2) rotate(0deg)} 25%{opacity:1; transform:scale(1.15) rotate(18deg)} 100%{opacity:.30; transform:scale(.55) rotate(45deg)}}
+.fe-joue .fe-onde{animation:feOnde 1.1s ease-out var(--t-allume) both;}
+.fe-joue .fe-onde.fe-o2{animation-delay:calc(var(--t-allume) + .12s); animation-duration:.9s;}
+@keyframes feOnde{0%{opacity:0; transform:scale(.08)} 6%{opacity:.9} 100%{opacity:0; transform:scale(1)}}
+.fe-joue .fe-pouls{animation:feApparait .01s linear var(--t-allume) both, fePouls 2.8s ease-in-out calc(var(--t-allume) + .9s) infinite;}
+.fe-joue .fe-compte{animation:fePop .6s cubic-bezier(.2,1.8,.4,1) calc(var(--t-allume) + .22s) both;}
+@keyframes fePop{0%{opacity:0; transform:translateX(-50%) scale(.3)} 100%{opacity:1; transform:translateX(-50%) scale(1)}}
+.fe-joue .fe-nom-et{animation:feApparait .45s ease calc(var(--t-allume) + .22s) both;}
+.fe-joue .fe-cnom{animation:feMonte .5s ease-out calc(var(--t-allume) + .22s) both;}
+.fe-joue .fe-txt > *{animation:feMonte .55s ease-out both;}
+.fe-joue .fe-txt > :nth-child(1){animation-delay:var(--t-texte);}
+.fe-joue .fe-txt > :nth-child(2){animation-delay:calc(var(--t-texte) + .12s);}
+.fe-joue .fe-txt > :nth-child(3){animation-delay:calc(var(--t-texte) + .3s);}
+.fe-joue .fe-btn{animation:feMonte .5s ease-out var(--t-btn) both;}
+.fete-etoile.fe-fin .fe-astre{transform-box:fill-box; transform-origin:center;}
+.fe-joue.fe-fin .fe-astre{animation:feVague .8s ease-in-out calc(2.05s + var(--i) * .08s) both;}
+.fete-etoile.fe-fin .fe-scene{--t-texte:3.1s; --t-btn:3.8s;}
+@keyframes feVague{0%,100%{transform:scale(1)} 45%{transform:scale(1.55)}}
+@keyframes feMonte{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+@keyframes feApparait{from{opacity:0} to{opacity:1}}
+@media (prefers-reduced-motion: reduce){ .fete-etoile, .fete-etoile *{animation:none !important;} }
 /* v1061 (suite) : LE CARTEL A COTE DU TABLEAU, PAS DESSOUS (Jacques : « que ca prenne moins de place en [hauteur] »).
    Le tableau a gauche (170 px de haut au plus), la plaque a droite, empilee : annee, peintre, titre, jours, galerie. */
 #home #carteMosaique:not(.replie){display:grid; grid-template-columns:auto minmax(0, 1fr); align-items:center; column-gap:14px; padding:14px;}
@@ -15421,6 +15508,9 @@ const I18N = {
         legere_encore: "Encore une séance",
         legere_fin_une: "Ta séance du jour est faite.",
         legere_fin_n: "{n} séances aujourd'hui",
+        etoile_aria: "Une nouvelle étoile",
+        etoile_compte: "{n} étoiles sur {t}",
+        etoile_groupe_complet: "groupe complet",
         dict_section_title: "Dictionnaire",
         dict_section_note: "Touche le + pour faire une carte d'un mot et la retrouver dans Mon vocabulaire. La flèche → mène à la carte du cours quand elle existe déjà.",
         search_head_cours: "Cartes de l'app",
@@ -17135,6 +17225,9 @@ const I18N = {
         legere_encore: "One more session",
         legere_fin_une: "Today's session is done.",
         legere_fin_n: "{n} sessions today",
+        etoile_aria: "A new star",
+        etoile_compte: "{n} stars out of {t}",
+        etoile_groupe_complet: "group complete",
         dict_section_title: "Dictionary",
         dict_section_note: "Tap + to turn a word into a card and find it in My vocabulary. The arrow → opens the course card when there already is one.",
         search_head_cours: "Cards in the app",
@@ -51312,7 +51405,7 @@ const ESSAIS = {
     seance_legere: {
         etat: "admin",
         titre: "La séance légère (une leçon par jour, sans objectif chiffré)",
-        desc: "La séance du jour fait toujours la même taille, quel que soit l'objectif réglé ; à la fin, « Encore une séance » en ouvre une autre, sans limite, et l'écran de fin dit combien de séances sont faites aujourd'hui. Les autres comptes gardent l'objectif « N / 20 »."
+        desc: "La séance du jour fait toujours la même taille, quel que soit l'objectif réglé ; à la fin, « Encore une séance » en ouvre une autre, sans limite, et l'écran de fin dit combien de séances sont faites aujourd'hui. Une étape de l'A1 finie allume son étoile en plein écran à la fin de la séance (une seule fête par séance : l'étoile d'abord, le tableau le lendemain). Les autres comptes gardent l'objectif « N / 20 »."
     },
     premiers_pas: {
         etat: "tous",
@@ -59427,6 +59520,324 @@ function encoreUneSeance(){
     try{ ouvrirSeanceDuJour(true); }catch(e){}
 }
 
+// ============ LA NOUVELLE ETOILE (essai seance_legere, 7 nov. 2026) ============
+// Jacques trouvait la constellation de la carte trop petite pour qu'on la remarque. La carte reste discrete ;
+// quand une etape se termine, un plein ecran au modele de la fete du tableau. Variante A retenue le 7 nov.
+// (« Pour l'etoile, je mettrai le A ») sur la maquette https://claude.ai/artifact/7r3z85teAW1gAfz8NxXFhJ :
+//   - le ciel du soir (mode clair) ou la nuit (mode sombre), la constellation en grand, la figure a venir en
+//     pointille ; le trait se dessine jusqu'a l'etoile, l'etoile s'allume ;
+//   - au moment ou elle prend son ampleur : « N / M » dans la pastille ambree, le nom de la constellation,
+//     et a cote de l'etoile son nom avec sa distance dessous (« Pollux », « a 34 annees-lumiere ») ;
+//   - le groupe, le nom de l'etape, « Tu sais maintenant… » (je-sais.json), un seul bouton « Continuer » ;
+//   - la derniere etoile du groupe : une vague de lumiere et le nom de la figure dans la langue apprise.
+// UNE SEULE FETE PAR FIN DE SEANCE : l'etoile passe d'abord ; un tableau complete pendant la seance attend
+// la fin de la seance, et le lendemain si l'etoile a eu la sienne ce jour-la.
+// Les donnees : etoiles/ciel.json (DERIVE : python etoiles/outils/construire.py ; mesures de SIMBAD, chaque
+// etoile avec sa reference). Seuls les groupes de l'A1 voyage ont leur figure pour l'instant (les 12 escales :
+// les Gemeaux ; la suite de 10 etapes : Orion). La fete de la planete (le dernier jour d'un niveau, un seul
+// ecran en deux temps) viendra avec les planetes (version 4).
+const ETOILE_ATTENTE_KEY = PREFIXE_STOCKAGE + "etoileAttente";
+const TABLEAU_ATTENTE_KEY = PREFIXE_STOCKAGE + "tableauAttente";
+const ETOILE_FETEE_KEY = PREFIXE_STOCKAGE + "etoileFetee";
+function etoileLire(k){
+    try{ const v = JSON.parse(localStorage.getItem(k) || "null"); return (v && typeof v === "object") ? v : null; }
+    catch(e){ return null; }
+}
+function etoileEcrire(k, v){
+    try{ if(v) localStorage.setItem(k, JSON.stringify(v)); else localStorage.removeItem(k); }catch(e){}
+}
+function seanceLegereDuJour(){
+    try{ return seanceLegere() && estSeanceDuJourOuverte(); }catch(e){ return false; }
+}
+// La carte « fin d'escale » (ou le jalon de la 12e) vient de s'afficher : l'etape est faite, son etoile
+// attend la fin de la seance.
+function noterEtoileFinEtape(item){
+    if(!item || !item.lieu || typeof item.n !== "number") return;
+    const total = item.enSuite ? suiteA1Voyage().length : escalesA1Voyage().length;
+    etoileEcrire(ETOILE_ATTENTE_KEY, { g: item.enSuite ? "a1_suite" : "a1_escales", n: item.n, total: total,
+                                       id: item.lieu.id || "", s: item.lieu.s || "", j: getTodayStr() });
+}
+// Le dernier carreau d'un tableau pose pendant la seance legere : sa fete attend la fin de la seance.
+function differerFeteTableau(v){
+    if(!(seanceSuivie && seanceLegereDuJour())) return false;
+    etoileEcrire(TABLEAU_ATTENTE_KEY, { r: v.r, numero: ((v && v.g) || []).length + 1, t: Date.now() });
+    return true;
+}
+function montrerTableauDiffere(tb){
+    chargerMosaiques().then(() => {
+        if(!MOSAIQUES || !MOSAIQUES.length) return;
+        const m = MOSAIQUES[(Math.max(1, tb.r) - 1) % MOSAIQUES.length];
+        if(m) imageMosaique(m).then(img => feteTableau(m, img, tb.numero), () => {});
+    }).catch(() => {});
+}
+// L'ecran de fin de la seance legere : l'etoile, sinon le tableau qui attend (pas le jour d'une etoile).
+function fetesFinSeanceLegere(){
+    const auj = getTodayStr();
+    const et = etoileLire(ETOILE_ATTENTE_KEY);
+    if(et){
+        etoileEcrire(ETOILE_ATTENTE_KEY, null);
+        etoileEcrire(ETOILE_FETEE_KEY, { j: auj });
+        feteEtoile(et);
+        return;
+    }
+    const tb = etoileLire(TABLEAU_ATTENTE_KEY);
+    const fetee = etoileLire(ETOILE_FETEE_KEY);
+    if(tb && !(fetee && fetee.j === auj)){
+        etoileEcrire(TABLEAU_ATTENTE_KEY, null);
+        montrerTableauDiffere(tb);
+    }
+}
+
+let CIEL = null, chargementCiel = null, JE_SAIS = null, chargementJeSais = null;
+function chargerCiel(){
+    if(CIEL) return Promise.resolve(CIEL);
+    if(!chargementCiel){
+        chargementCiel = fetch(cacheBustedUrl(RACINE_DEPOT + "etoiles/ciel.json"), { cache: "no-cache" })
+            .then(r => r.ok ? r.json() : null)
+            .then(d => { CIEL = (d && d.constellations) ? d : null; return CIEL; })
+            .catch(() => null)
+            .finally(() => { if(!CIEL) chargementCiel = null; });
+    }
+    return chargementCiel;
+}
+function chargerJeSais(){
+    if(JE_SAIS) return Promise.resolve(JE_SAIS);
+    if(!chargementJeSais){
+        chargementJeSais = fetch(urlDonnees("je-sais.json"), { cache: "no-cache" })
+            .then(r => r.ok ? r.json() : null)
+            .then(d => { JE_SAIS = (d && d.amorces) ? d : null; return JE_SAIS; })
+            .catch(() => null)
+            .finally(() => { if(!JE_SAIS) chargementJeSais = null; });
+    }
+    return chargementJeSais;
+}
+// « a 34 annees-lumiere » dans la langue d'interface : le pluriel et les chiffres viennent du navigateur.
+function phraseDistanceEtoile(e){
+    const lg = getUiLang();
+    const T = (CIEL.textes_distance && (CIEL.textes_distance[lg] || CIEL.textes_distance.en)) || null;
+    if(!T || !e || !e.affiche) return "";
+    let n = String(e.affiche);
+    try{ n = new Intl.NumberFormat(lg).format(e.affiche); }catch(x){}
+    let f = T.other;
+    if(e.environ) f = T.environ || T.other;
+    else { try{ f = T[new Intl.PluralRules(lg).select(e.affiche)] || T.other; }catch(x){} }
+    return f.replace("{n}", n);
+}
+function nomFigure(c, lg){ return (c.noms && (c.noms[lg] || c.noms.en || c.noms.fr)) || ""; }
+function etincelleChemin(x, y, R){
+    const ri = R * .3, f = v => v.toFixed(1);
+    return "M" + f(x) + " " + f(y - R) + "L" + f(x + ri) + " " + f(y - ri) + "L" + f(x + R) + " " + f(y) + "L" + f(x + ri) + " " + f(y + ri)
+         + "L" + f(x) + " " + f(y + R) + "L" + f(x - ri) + " " + f(y + ri) + "L" + f(x - R) + " " + f(y) + "L" + f(x - ri) + " " + f(y - ri) + "Z";
+}
+// Le nom et la distance a cote de l'etoile, la ou ils ne coupent aucun trait allume et ne touchent aucune etoile
+// (ils peuvent passer sur les pointilles de la figure a venir) : a droite, au-dessus, au-dessous, a gauche, en
+// diagonale, et a defaut la place libre la plus proche (90 px au plus). Les largeurs sont mesurees.
+function placerEtiquetteEtoile(P, rayons, traits, i, largeur, hauteur, marge, W, H){
+    const x = P[i].x, y = P[i].y, w = largeur, h = hauteur, d = marge;
+    function coupe(a, b, bb){
+        const dx = b.x - a.x, dy = b.y - a.y;
+        let t0 = 0, t1 = 1;
+        const pq = [[-dx, a.x - bb[0]], [dx, bb[2] - a.x], [-dy, a.y - bb[1]], [dy, bb[3] - a.y]];
+        for(const [p, q] of pq){
+            if(p === 0){ if(q < 0) return false; }
+            else { const t = q / p; if(p < 0) t0 = Math.max(t0, t); else t1 = Math.min(t1, t); if(t0 > t1) return false; }
+        }
+        return true;
+    }
+    function touche(cx, cy, r, bb){
+        const nx = Math.min(Math.max(cx, bb[0]), bb[2]), ny = Math.min(Math.max(cy, bb[1]), bb[3]);
+        return (nx - cx) * (nx - cx) + (ny - cy) * (ny - cy) < r * r;
+    }
+    function collisions(bx, by){
+        const bb = [bx - 3, by - 3, bx + w + 3, by + h + 3];
+        let n = 0;
+        traits.forEach(([a, b]) => { if(coupe(P[a], P[b], bb)) n++; });
+        P.forEach((p, j) => { if(j !== i && touche(p.x, p.y, rayons[j] + 5, bb)) n++; });
+        return n;
+    }
+    const dans = (bx, by) => bx >= 8 && bx + w <= W - 8 && by >= 6 && by + h <= H - 36;
+    const cands = [["start", x + d, y - h / 2], ["middle", x - w / 2, y - d - h], ["middle", x - w / 2, y + d], ["end", x - d - w, y - h / 2],
+                   ["start", x + d * .7, y + d * .7], ["start", x + d * .7, y - d * .7 - h], ["end", x - d * .7 - w, y + d * .7], ["end", x - d * .7 - w, y - d * .7 - h]];
+    let choix = null;
+    for(let [ancre, bx, by] of cands){
+        if(ancre === "middle") bx = Math.min(Math.max(bx, 8), W - 8 - w);
+        if(!dans(bx, by)) continue;
+        const n = collisions(bx, by);
+        if(!choix || n < choix.n) choix = { n: n, bx: bx, by: by, ancre: ancre };
+        if(n === 0) break;
+    }
+    if(!choix || choix.n > 0){
+        let mieux = null;
+        for(let gy = 6; gy + h <= H - 36; gy += 3){
+            for(let gx = 8; gx + w <= W - 8; gx += 3){
+                const nx = Math.min(Math.max(x, gx - 3), gx + w + 3), ny = Math.min(Math.max(y, gy - 3), gy + h + 3);
+                const dist = Math.hypot(nx - x, ny - y);
+                if(dist < d * .8 || dist > 90 || (mieux && dist >= mieux.dist)) continue;
+                if(collisions(gx, gy) === 0) mieux = { dist: dist, bx: gx, by: gy };
+            }
+        }
+        if(mieux) choix = { n: 0, bx: mieux.bx, by: mieux.by, ancre: mieux.bx >= x ? "start" : (mieux.bx + w <= x ? "end" : "middle") };
+    }
+    if(!choix) choix = { bx: Math.min(Math.max(x - w / 2, 8), W - 8 - w), by: Math.max(6, y - d - h), ancre: "middle" };
+    const tx = choix.ancre === "start" ? choix.bx : (choix.ancre === "end" ? choix.bx + w : choix.bx + w / 2);
+    return { x: tx, y: choix.by + 14 * .8, ancre: choix.ancre };
+}
+function svgConstellationFete(c, n, fin, nomEt, distEt){
+    const W = (CIEL.boite && CIEL.boite[0]) || 375, H = (CIEL.boite && CIEL.boite[1]) || 372;
+    const P = c.etoiles, lit = i => i <= n;
+    const f = v => (+v).toFixed(1);
+    const out = ['<svg class="fe-svg" viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true">'];
+    c.traits.forEach(([a, b]) => out.push('<line class="fe-avenir" x1="' + f(P[a].x) + '" y1="' + f(P[a].y) + '" x2="' + f(P[b].x) + '" y2="' + f(P[b].y) + '"/>'));
+    c.traits.forEach(([a, b]) => {
+        if(a < n && b < n) out.push('<line class="fe-trait" x1="' + f(P[a].x) + '" y1="' + f(P[a].y) + '" x2="' + f(P[b].x) + '" y2="' + f(P[b].y) + '"/>');
+    });
+    // le trait qui mene a l'etoile neuve, depuis une etoile deja allumee
+    c.traits.forEach(([a, b]) => {
+        if((a === n && b < n) || (b === n && a < n)){
+            const o = a === n ? b : a;
+            out.push('<line class="fe-trait fe-n-trait" pathLength="1" x1="' + f(P[o].x) + '" y1="' + f(P[o].y) + '" x2="' + f(P[n].x) + '" y2="' + f(P[n].y) + '"/>');
+            out.push('<g class="fe-tete" style="--x1:' + f(P[o].x) + 'px;--y1:' + f(P[o].y) + 'px;--x2:' + f(P[n].x) + 'px;--y2:' + f(P[n].y) + 'px">'
+                     + '<circle class="fe-tete-h" r="7"/><circle class="fe-tete-c" r="2.2"/></g>');
+        }
+    });
+    const rayons = P.map((e, i) => e.r * (lit(i) ? 3.0 : 1.4));
+    let etiq = "";
+    P.forEach((e, i) => {
+        const x = e.x, y = e.y;
+        if(i === n){
+            const R = e.r * 1.25;
+            out.push('<g class="fe-neuve"><circle class="fe-onde" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 7) + '"/>'
+                     + '<circle class="fe-onde fe-o2" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 4.4) + '"/>'
+                     + '<g class="fe-astre-n" style="transform-origin:' + f(x) + 'px ' + f(y) + 'px">'
+                     + '<circle class="fe-halo fe-h1" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 5.4) + '"/>'
+                     + '<circle class="fe-halo fe-h2" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 3) + '"/>'
+                     + '<circle class="fe-halo fe-h3" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 1.8) + '"/>'
+                     + '<path class="fe-rayons" d="' + etincelleChemin(x, y, R * 5.2) + '"/>'
+                     + '<circle class="fe-coeur" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R) + '" style="fill:' + e.couleur + '"/></g>'
+                     + '<circle class="fe-pouls" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 2.6) + '"/></g>');
+            // la place du nom et de la distance, mesures dans la police de l'app
+            let w = 150;
+            try{
+                const cv = document.createElement("canvas").getContext("2d");
+                cv.font = "900 14px Nunito, system-ui, sans-serif"; const w1 = cv.measureText(nomEt).width;
+                cv.font = "700 14px Nunito, system-ui, sans-serif"; const w2 = distEt ? cv.measureText(distEt).width : 0;
+                w = Math.max(w1, w2);
+            }catch(x2){}
+            const hh = distEt ? 17 + 14 : 14;
+            const pl = placerEtiquetteEtoile(P, rayons, c.traits.filter(([a, b]) => lit(a) && lit(b)), i, w, hh, R * 2.4, W, H);
+            etiq = '<text class="fe-nom-et" x="' + f(pl.x) + '" y="' + f(pl.y) + '" text-anchor="' + pl.ancre + '">'
+                 + '<tspan class="fe-ne-nom" x="' + f(pl.x) + '"></tspan>'
+                 + (distEt ? '<tspan class="fe-ne-dist" x="' + f(pl.x) + '" dy="17"></tspan>' : '') + '</text>';
+        } else if(lit(i)){
+            const d = (2.6 + ((i * 37) % 38) / 10).toFixed(2), o = ((i * 53) % 60 / 10).toFixed(2);
+            out.push('<g class="fe-astre" style="--d:' + d + 's;--o:-' + o + 's;--lum:' + e.lum + ';--i:' + i + '">'
+                     + '<circle class="fe-halo fe-h1" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(e.r * 4.6) + '"/>'
+                     + '<circle class="fe-halo fe-h2" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(e.r * 2.6) + '"/>'
+                     + '<circle class="fe-coeur" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(e.r) + '" style="fill:' + e.couleur + '"/></g>');
+        } else {
+            out.push('<circle class="fe-place" cx="' + f(x) + '" cy="' + f(y) + '" r="2.3"/>');
+        }
+    });
+    out.push(etiq, '</svg>');
+    return out.join("");
+}
+function fondEtoilesFete(Wp, Hp){
+    const n = Math.round(150 * (Wp * Hp) / (375 * 720));
+    const out = ['<svg class="fe-fond" viewBox="0 0 ' + Wp + ' ' + Hp + '" preserveAspectRatio="none" aria-hidden="true">'];
+    for(let k = 0; k < n; k++){
+        const x = 3 + Math.random() * (Wp - 6), y = 3 + Math.random() * (Hp * .78);
+        const r = .3 + 1.15 * Math.pow(Math.random(), 2.6), m = .14 + .55 * Math.pow(Math.random(), 1.7) * (1 - y / Hp * .7);
+        out.push('<circle class="fe-loin" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + r.toFixed(2) + '" style="--d:'
+                 + (4 + Math.random() * 6).toFixed(1) + 's;--o:-' + (Math.random() * 10).toFixed(1) + 's;--m:' + m.toFixed(2) + '"/>');
+    }
+    out.push('</svg>');
+    return out.join("");
+}
+// Le son de l'etoile (decision ba2ffde) : une cloche douce ; a la fin du groupe, l'arpege par-dessus.
+function sonEtoile(delai, fin){
+    if(transitSansSon()) return;
+    const c = getAudioCtx();
+    if(!c) return;
+    try{ c.resume(); }catch(e){}
+    const bus = c.createGain(); bus.gain.value = .16; bus.connect(c.destination);
+    const cloche = (t0, fq, dur) => [[1, .55, 1], [2.0, .22, .7], [3.01, .12, .5], [4.16, .06, .35]].forEach(p => {
+        const o = c.createOscillator(), g = c.createGain();
+        o.type = "sine"; o.frequency.value = fq * p[0];
+        g.gain.setValueAtTime(.0001, t0); g.gain.exponentialRampToValueAtTime(p[1], t0 + .006);
+        g.gain.exponentialRampToValueAtTime(.0001, t0 + dur * p[2]);
+        o.connect(g); g.connect(bus); o.start(t0); o.stop(t0 + dur + .05);
+    });
+    const t = c.currentTime + delai;
+    cloche(t, 1046.5, 1.1);
+    if(fin) [523.25, 659.25, 783.99, 1046.5, 1318.5].forEach((fq, k) => cloche(t + .9 + k * .16, fq, 1.0));
+}
+let feteEtoileOuverte = null;
+function fermerFeteEtoile(){
+    if(!feteEtoileOuverte) return;
+    const f = feteEtoileOuverte; feteEtoileOuverte = null;
+    f.classList.add("fe-part");
+    setTimeout(() => f.remove(), 350);
+}
+async function feteEtoile(et){
+    await Promise.all([chargerCiel(), chargerJeSais()]);
+    if(!CIEL) return;
+    const cle = CIEL.groupes && CIEL.groupes[et.g];
+    const c = cle && CIEL.constellations[cle];
+    if(!c || !(et.n >= 0) || et.n >= c.etoiles.length) return;
+    const n = et.n, total = c.etoiles.length, fin = n === total - 1;
+    const etoile = c.etoiles[n];
+    const lg = getUiLang();
+    const distance = phraseDistanceEtoile(etoile);
+    const voile = document.createElement("div");
+    voile.className = "fete-etoile" + (fin ? " fe-fin" : "");
+    voile.setAttribute("role", "dialog");
+    voile.setAttribute("aria-modal", "true");
+    voile.setAttribute("aria-label", t("etoile_aria"));
+    const Wp = Math.max(320, window.innerWidth || 375), Hp = Math.max(480, window.innerHeight || 720);
+    voile.innerHTML = fondEtoilesFete(Wp, Hp)
+        + '<div class="fe-scene"><div class="fe-cst">' + svgConstellationFete(c, n, fin, etoile.nom, distance) + '</div>'
+        + '<p class="fe-cnom"></p><p class="fe-compte"><svg class="fe-cp-et" viewBox="0 0 20 20" aria-hidden="true">'
+        + '<path d="M10 0L12.6 7.4L20 10L12.6 12.6L10 20L7.4 12.6L0 10L7.4 7.4Z"/></svg><span class="fe-cp-n"></span></p>'
+        + '<div class="fe-txt"><p class="fe-sur"></p><p class="fe-titre"></p><p class="fe-ligne"></p></div>'
+        + '<button class="fe-btn" type="button"></button></div>';
+    // les textes, par textContent (aucun texte de donnees dans le HTML)
+    const q = s => voile.querySelector(s);
+    const nomUi = nomFigure(c, lg), nomAppris = nomFigure(c, LANGUE_APPRISE);
+    q(".fe-cnom").textContent = nomUi;
+    if(fin && nomAppris && nomAppris !== nomUi){ const i = document.createElement("i"); i.textContent = " · " + nomAppris; q(".fe-cnom").appendChild(i); }
+    q(".fe-cp-n").textContent = (n + 1) + " / " + total;
+    q(".fe-compte").setAttribute("aria-label", tf("etoile_compte", { n: n + 1, t: total }));
+    const nomEt = q(".fe-ne-nom"); if(nomEt) nomEt.textContent = etoile.nom;
+    const distEt = q(".fe-ne-dist"); if(distEt) distEt.textContent = distance;
+    const groupe = t(et.g === "a1_suite" ? "av_moitie_2" : "av_moitie_1");
+    q(".fe-sur").textContent = fin ? groupe + " · " + t("etoile_groupe_complet") : groupe;
+    q(".fe-titre").textContent = sensPremiersPas(et.s);
+    const sais = JE_SAIS && JE_SAIS.a1 && JE_SAIS.a1[et.id];
+    const amorce = JE_SAIS && JE_SAIS.amorces && JE_SAIS.amorces.maintenant;
+    if(sais && amorce){
+        const l = q(".fe-ligne");
+        l.appendChild(document.createTextNode(sensPremiersPas(amorce).replace(/[\s…]+$/, "").replace(/\.\.\.$/, "") + " "));
+        const b = document.createElement("b"); b.textContent = sensPremiersPas(sais); l.appendChild(b);
+        l.appendChild(document.createTextNode("."));
+    }
+    const btn = q(".fe-btn");
+    btn.textContent = t("pp_fin_bouton");
+    btn.addEventListener("click", fermerFeteEtoile);
+    voile.addEventListener("keydown", e => { if(e.key === "Escape") fermerFeteEtoile(); });
+    // l'ecran de la maquette (375 x 720) mis a la taille du telephone
+    const k = Math.min(Wp / 375, Hp / 720);
+    const sc = q(".fe-scene");
+    sc.style.transform = "translate(-50%, -50%) scale(" + k.toFixed(3) + ")";
+    fermerFeteEtoile();
+    document.body.appendChild(voile);
+    feteEtoileOuverte = voile;
+    try{ noterInterruptionSeance(); }catch(e){}
+    const reduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(!reduit) requestAnimationFrame(() => voile.classList.add("fe-joue"));
+    try{ sonEtoile(reduit ? 0 : 1.3, fin); }catch(e){}
+    setTimeout(() => { try{ btn.focus({ preventScroll: true }); }catch(e){} }, reduit ? 0 : 2800);
+}
+
 function cle(it){ return it.themeId + ":" + it.index; }
 
 // Les echues, LES PLUS EN RETARD D'ABORD. L'ordre est tout ce qui reste de la
@@ -60256,7 +60667,7 @@ function poserCarreau(sansSon){
     ecrireMosaique(v);
     majMosaiqueAccueil();
     // v1062 : LE DERNIER CARREAU LANCE LA FETE, sous les yeux, la ou on est (voir feteTableau).
-    if(v.c === MOSAIQUE_CARREAUX && v.g.indexOf(v.r) < 0){ try{ lancerFeteTableau(v); }catch(e){} }
+    if(v.c === MOSAIQUE_CARREAUX && v.g.indexOf(v.r) < 0){ try{ if(!differerFeteTableau(v)) lancerFeteTableau(v); }catch(e){} }
     // v849-v855 : une petite mosaique se montrait ici, a chaque carreau (essai
     // carreau_partout). RETIREE EN v856. Jacques : « a chaque fois qu'on tourne
     // une carte, ca peut devenir irritant » -- puis « je reviendrais aux
@@ -64144,7 +64555,9 @@ function montrerCartePhrase(item){
         el.appendChild(f);
         fait.repondu = true;
         suite.classList.remove("hidden");
-        try{ launchConfetti(); playMasteredSound(); }catch(e){}
+        // Essai seance_legere : la fete est l'etoile, en plein ecran a la fin de la seance (voir feteEtoile).
+        if(seanceLegereDuJour()) noterEtoileFinEtape(item);
+        else { try{ launchConfetti(); playMasteredSound(); }catch(e){} }
     } else if(item.forme === "av_jalon"){
         // Le jalon (maquette, ecran 6) : ce qui est fait, et CE QUI CHANGE --
         // c'est lui qui donne envie de continuer apres les escales.
@@ -64170,7 +64583,8 @@ function montrerCartePhrase(item){
         el.appendChild(ch);
         fait.repondu = true;
         suite.classList.remove("hidden");
-        try{ celebrateMastery(0, false); }catch(e){}
+        if(seanceLegereDuJour() && item.lieu) noterEtoileFinEtape(item);
+        else { try{ celebrateMastery(0, false); }catch(e){} }
     } else if(item.forme === "av_fin_a1"){
         const f = creer("div", "cp-fete-pp");
         f.appendChild(creer("div", "cp-fete-emoji", "🏅"));
@@ -69265,6 +69679,8 @@ function showFlashcardEnd(){
     }catch(e){}
     fin.classList.remove("hidden");
     sessionVues = 0; sessionSues = 0;
+    // Essai seance_legere : une seule fete par fin de seance, l'etoile d'abord (voir fetesFinSeanceLegere).
+    if(seanceLegereDuJour()){ try{ fetesFinSeanceLegere(); }catch(e){} }
     return true;
 }
 
