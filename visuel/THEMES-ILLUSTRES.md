@@ -58,10 +58,13 @@ que les générateurs LISENT au lieu de choisir chacun un métier :
   histoire). Le médecin du Corps est donc Diego, et la médecin Alicia (le visage de la médecin du cabinet) ;
 - **aucun trait de la liste noire** (pauvre, riche, radin, paresseux, impoli, désordonné, antipathique) sur Mark,
   Anna, la famille d'Anna et les 12 de Descripción : ces traits vont aux **prénoms réservés** de la fiche (Hugo,
-  Sergio, Bruno, Mario, Carlos, Nuria, Paula, Silvia, Irene), qu'aucun autre thème n'emploie ; un prénom réservé
-  reprend l'image d'un visage déjà photographié (`visage`), rien n'est payé ;
-- **une image ne donne jamais un autre métier que la fiche** : on change la phrase ou le prénom (le serveur du café
-  de Manger est « l'homme à la moustache », sans prénom), pas l'image ;
+  Sergio, Bruno, Mario, Carlos, Nuria, Paula, Silvia, Irene), qu'aucun autre thème n'emploie ; depuis le 7 nov.,
+  chacun a **son visage** (`description` dans la fiche, image faite par `visuel/personnes_images.py`, dans
+  `~/.wortando/personnes/img/`) : un visage, un prénom ;
+- **une image ne donne jamais un autre métier que la fiche** : on change d'abord la phrase ou le prénom, sans payer ;
+  si l'image contredit encore, on la refait avec l'accord de Jacques. Le serveur et la serveuse du café de Manger
+  sont des **figurants** (`figurants` dans la fiche) : un visage à eux, sans prénom, désignés par ce qu'on voit
+  (« der Mann mit den grauen Haaren », « la mujer del pelo rizado ») ;
 - les générateurs combinatoires respectent les faits (« jamais » : Anna ne va jamais au travail en voiture) ;
 - l'âge commande le lieu : avant 6 ans la Kita, jamais « zur Schule » (Mia, 4 ans) ; Mark apprend l'allemand.
 Le contrôle : `python tests/themes_illustres.py --coherence` (sans navigateur, quelques secondes), aussi en tête du

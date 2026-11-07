@@ -42,9 +42,12 @@ for n in ("Gisela", "Ben", "Mia", "Heinz", "Peter", "Monika", "Sabine", "Frank",
     SOURCES[n] = FAMILLE + "/" + n + ".png"
 for n in ("Carmen", "Diego", "Marta", "Javier", "Rosa", "Lucas", "Tomas", "Elena", "Ines", "Pablo"):
     SOURCES[n] = PRINCIPAL + "/visuel/descripcion/img/" + n + ".png"
+# le serveur et la serveuse du cafe : deux figurants SANS prenom, a leur propre visage (7 nov. 2026, visuel/personnes.json)
+for n in PERS.FIGURANTS:
+    SOURCES[n] = PERS.image_propre(n)
 SEXE = {"Anna": "f", "Carmen": "f", "Gisela": "f", "Mark": "m", "Diego": "m", "Ben": "m", "Mia": "f", "Marta": "f",
         "Javier": "m", "Rosa": "f", "Lucas": "m", "Tomas": "m", "Elena": "f", "Ines": "f", "Pablo": "m", "Heinz": "m",
-        "Peter": "m", "Felix": "m"}
+        "Peter": "m", "Felix": "m", "Kellner": "m", "Kellnerin": "f"}
 NOMS = PERS.noms()                                           # Ines -> Inés, Tomas -> Tomás (visuel/personnes.json)
 ENFANTS = {"Ben", "Mia"}
 
@@ -201,74 +204,76 @@ QUANTITES = [
     ("poco",    "azucar",  "A teaspoon with a small amount of white sugar, next to a small white sugar bowl."),
 ]
 
-# LES MOMENTS AU CAFE : Mark et Tomas, clients ; le serveur et la serveuse (les visages de Javier et d'Ines, SANS
-# leur prenom dans les phrases : ANONYMES, 6 nov. 2026). Le meme cafe tout du long.
+# LES MOMENTS AU CAFE : Mark et Tomas, clients ; le serveur et la serveuse, deux figurants sans prenom (visuel/
+# personnes.json, « figurants » : 7 nov. 2026, accord de Jacques « Oui, fais-les » ; avant, les visages de Javier et
+# d'Ines, qui ont un autre metier). Les phrases les designent par ce qu'on voit (ANONYMES). Le meme cafe tout du long.
 # Pas Anna : le cafe a deux avec Mark est un moment de l'histoire a ne pas depenser (scenes/personnages.json, _arc).
 # Chaque moment : la personne qui parle, ce qu'elle dit (es, de), la phrase qui decrit le moment, le mot qu'il porte.
 CAFE = [
-    {"id": "carta", "qui": "Mark", "gens": ["Mark", "Tomas", "Javier"],
-     "scene": "Mark and Tomas have just sat down at a small round table by the window; there is nothing on the table yet. Mark raises his hand with a friendly smile to call the waiter Javier, who is walking towards them with two menus under his arm.",
+    {"id": "carta", "qui": "Mark", "gens": ["Mark", "Tomas", "Kellner"],
+     "scene": "Mark and Tomas have just sat down at a small round table by the window; there is nothing on the table yet. Mark raises his hand with a friendly smile to call the waiter, the grey-haired man with glasses, who is walking towards them with two menus under his arm.",
      "es": {"dit": "La carta, por favor.", "fait": "Mark pide la carta.", "mot": {"mot": "carta", "genre": "la"}},
      "de": {"dit": "Die Speisekarte, bitte.", "fait": "Mark möchte die Speisekarte.", "mot": {"mot": "Speisekarte", "genre": "die"}},
      "tr": {"fr": ["La carte, s'il vous plaît.", "Mark demande la carte."], "en": ["The menu, please.", "Mark asks for the menu."],
             "pt": ["O cardápio, por favor.", "Mark pede o cardápio."], "de": ["Die Speisekarte, bitte.", "Mark möchte die Speisekarte."]}},
-    {"id": "pedir", "qui": "Mark", "gens": ["Mark", "Tomas", "Javier"],
-     "scene": "Mark and Tomas sit at the same table, each holding an open menu. The waiter Javier stands beside the table writing the order on a small notepad; Mark speaks to him, pointing at a line on his menu.",
+    {"id": "pedir", "qui": "Mark", "gens": ["Mark", "Tomas", "Kellner"],
+     "scene": "Mark and Tomas sit at the same table, each holding an open menu. The waiter, the grey-haired man with glasses, stands beside the table writing the order on a small notepad; Mark speaks to him, pointing at a line on his menu.",
      "es": {"dit": "Quisiera un café, por favor.", "fait": "Mark pide un café.", "mot": {"mot": "pedir", "cat": "verbe"}},
      "de": {"dit": "Ich hätte gern einen Kaffee, bitte.", "fait": "Mark bestellt einen Kaffee.", "mot": {"mot": "bestellen", "cat": "verbe"}},
      "tr": {"fr": ["Je voudrais un café, s'il vous plaît.", "Mark commande un café."], "en": ["I'd like a coffee, please.", "Mark orders a coffee."],
             "pt": ["Eu queria um café, por favor.", "Mark pede um café."], "de": ["Ich hätte gern einen Kaffee, bitte.", "Mark bestellt einen Kaffee."]}},
-    {"id": "camarera", "qui": "Ines", "gens": ["Ines", "Mark", "Tomas"],
-     "scene": "At the same table, the waitress Ines arrives with a tray and puts down a cup of coffee, a glass of orange juice and a slice of cake in front of Mark and Tomas, smiling.",
+    {"id": "camarera", "qui": "Kellnerin", "gens": ["Kellnerin", "Mark", "Tomas"],
+     "scene": "At the same table, the waitress, the young woman with short curly black hair, arrives with a tray and puts down a cup of coffee, a glass of orange juice and a slice of cake in front of Mark and Tomas, smiling.",
      "es": {"dit": "Aquí tienen.", "fait": "La camarera trae el café.", "mot": {"mot": "camarera", "genre": "la"}},
      "de": {"dit": "Bitte schön.", "fait": "Die Kellnerin bringt den Kaffee.", "mot": {"mot": "Kellnerin", "genre": "die"}},
      "tr": {"fr": ["Voilà.", "La serveuse apporte le café."], "en": ["Here you are.", "The waitress brings the coffee."],
             "pt": ["Aqui está.", "A garçonete traz o café."], "de": ["Bitte schön.", "Die Kellnerin bringt den Kaffee."]}},
-    # 3 nov. : l'image faite montre MARK la main levee (le prompt disait Tomas) ; les phrases suivent l'image
-    {"id": "cuenta", "qui": "Mark", "gens": ["Tomas", "Mark", "Javier"],
-     "scene": "Later, at the same table, the cups are empty. Tomas raises his hand towards the waiter Javier, who is at the counter in the background, making the small writing gesture in the air that means 'the bill, please'.",
+    # 3 nov. : l'image faite montrait MARK la main levee (le prompt disait Tomas) et les phrases l'ont suivie ; 7 nov. :
+    # le prompt dit Mark, comme les phrases
+    {"id": "cuenta", "qui": "Mark", "gens": ["Mark", "Tomas", "Kellner"],
+     "scene": "Later, at the same table, the cups are empty. Mark raises his hand towards the waiter, the grey-haired man with glasses, who is at the counter in the background, making the small writing gesture in the air that means 'the bill, please'.",
      "es": {"dit": "La cuenta, por favor.", "fait": "Mark pide la cuenta.", "mot": {"mot": "cuenta", "genre": "la"}},
      "de": {"dit": "Die Rechnung, bitte.", "fait": "Mark möchte die Rechnung.", "mot": {"mot": "Rechnung", "genre": "die"}},
      "tr": {"fr": ["L'addition, s'il vous plaît.", "Mark demande l'addition."], "en": ["The bill, please.", "Mark asks for the bill."],
             "pt": ["A conta, por favor.", "Mark pede a conta."], "de": ["Die Rechnung, bitte.", "Mark möchte die Rechnung."]}},
-    {"id": "pagar", "qui": "Mark", "gens": ["Mark", "Ines", "Tomas"],
-     "scene": "At the same table, the waitress Ines holds out a card payment terminal and Mark pays by holding his bank card against it, smiling; the empty cups are still on the table.",
+    {"id": "pagar", "qui": "Mark", "gens": ["Mark", "Kellnerin", "Tomas"],
+     "scene": "At the same table, the waitress, the young woman with short curly black hair, holds out a card payment terminal and Mark pays by holding his bank card against it, smiling; the empty cups are still on the table.",
      "es": {"dit": "¿Puedo pagar con tarjeta?", "fait": "Mark paga con tarjeta.", "mot": {"mot": "pagar", "cat": "verbe"}},
      "de": {"dit": "Kann ich mit Karte bezahlen?", "fait": "Mark bezahlt mit Karte.", "mot": {"mot": "bezahlen", "cat": "verbe"}},
      "tr": {"fr": ["Je peux payer par carte ?", "Mark paie par carte."], "en": ["Can I pay by card?", "Mark pays by card."],
             "pt": ["Posso pagar com cartão?", "Mark paga com cartão."], "de": ["Kann ich mit Karte bezahlen?", "Mark bezahlt mit Karte."]}},
-    {"id": "propina", "qui": "Tomas", "gens": ["Tomas", "Javier", "Mark"],
-     # 3 nov., premiere prise ratee : Tomas portait le tablier et Javier son polo rouge. Le decor vient donc de
-     # cafe-cuenta, ou Javier porte deja le tablier, et chaque tenue est nommee.
+    {"id": "propina", "qui": "Tomas", "gens": ["Tomas", "Kellner", "Mark"],
+     # 3 nov., premiere prise ratee : Tomas portait le tablier. Le decor vient donc de cafe-cuenta, ou le serveur porte
+     # deja le tablier, et chaque tenue est nommee.
      "decor": "cafe-cuenta",
-     "scene": "Standing up to leave the same table, Tomas, the blond customer in his teal t-shirt exactly as in the last reference picture, leaves a few coins on the small saucer on the table and nods kindly to the waiter Javier; Javier, the man with the black moustache, wears the white shirt and the black apron of the waiter exactly as in the last reference picture (not his red polo shirt), and smiles and thanks him; Mark, in his grey jacket, stands beside Tomas. Only Javier wears an apron.",
+     "scene": "Standing up to leave the same table, Tomas, the blond customer in his teal t-shirt exactly as in the last reference picture, leaves a few coins on the small saucer on the table and nods kindly to the waiter; the waiter, the grey-haired man with glasses, wears his white shirt and black apron exactly as in the last reference picture, and smiles and thanks him; Mark, in his grey jacket, stands beside Tomas. Only the waiter wears an apron.",
      "es": {"dit": "Esto es para usted.", "fait": "Tomás deja una propina.", "mot": {"mot": "propina", "genre": "la"}},
      "de": {"dit": "Stimmt so.", "fait": "Tomás gibt Trinkgeld.", "mot": {"mot": "Trinkgeld", "genre": "das"}},
      "tr": {"fr": ["C'est pour vous.", "Tomás laisse un pourboire."], "en": ["This is for you.", "Tomás leaves a tip."],
             "pt": ["Isto é para o senhor.", "Tomás deixa uma gorjeta."], "de": ["Das ist für Sie.", "Tomás gibt Trinkgeld."]}},
 ]
-# Qui est qui au cafe (la question « Javier es... ») : le mot du corpus pour chacun.
-# Les reponses possibles a « Javier es ___. », au genre de la personne (jamais « Tomas es la camarera ») : le cuisinier
+# Qui est qui au cafe (la question « ___ es el camarero ») : le mot du corpus pour chacun.
+# Les reponses possibles, au genre de la personne (jamais « Tomas es la camarera ») : le cuisinier
 # (el cocinero, au corpus) sert de troisieme choix.
 ROLES_CHOIX = {"es": {"m": ["el camarero", "el cliente", "el cocinero"], "f": ["la camarera", "la cliente", "la cocinera"]},
                "de": {"m": ["der Kellner", "der Gast", "der Koch"], "f": ["die Kellnerin", "der Gast", "die Köchin"]}}
-ROLES = {"Javier": {"es": {"mot": "camarero", "genre": "el"}, "de": {"mot": "Kellner", "genre": "der"}},
-         "Ines":   {"es": {"mot": "camarera", "genre": "la"}, "de": {"mot": "Kellnerin", "genre": "die"}},
+ROLES = {"Kellner":   {"es": {"mot": "camarero", "genre": "el"}, "de": {"mot": "Kellner", "genre": "der"}},
+         "Kellnerin": {"es": {"mot": "camarera", "genre": "la"}, "de": {"mot": "Kellnerin", "genre": "die"}},
          "Mark":   {"es": {"mot": "cliente", "genre": "el"}, "de": None},
          "Tomas":  {"es": {"mot": "cliente", "genre": "el"}, "de": None}}
-# 6 nov. 2026 (decision de Jacques, la coherence des personnages) : Javier est cuisinier et Ines coiffeuse dans « Les
-# metiers » (visuel/personnes.json). Au cafe, les images les montrent en serveurs ; les PHRASES ne les nomment donc
-# plus : ce sont « l'homme a la moustache » et « la femme aux cheveux roux », sans prenom (les images restent, rien de
-# paye). La page les dit a la place du prenom, dans la question (« ___ ist der Kellner »), « Was sagt ... ? » et la
-# traduction. En minuscules : la page met la majuscule en tete de phrase.
+# Le serveur et la serveuse n'ont pas de prenom (des figurants, visuel/personnes.json) : la page dit ce qu'on voit a la
+# place du prenom, dans la question (« ___ ist der Kellner »), « Was sagt ... ? » et la traduction, avec les mots de
+# « Decrire une personne » (el pelo gris, rizado / grau, lockig ; pas « las gafas », qui serait « los lentes » en Amerique latine). En minuscules : la page met la majuscule en tete
+# de phrase. 6 nov. : « der Mann mit dem Schnurrbart » et « die Frau mit den roten Haaren », les visages de Javier et
+# d'Ines ; 7 nov. : deux visages neufs, ceux-ci.
 ANONYMES = {
-    "Javier": {"es": "el hombre del bigote", "de": "der Mann mit dem Schnurrbart", "en": "the man with the mustache",
-               "en_gb": "the man with the moustache", "fr": "l'homme à la moustache", "pt": "o homem de bigode"},
-    "Ines":   {"es": "la mujer pelirroja", "de": "die Frau mit den roten Haaren", "en": "the woman with red hair",
-               "en_gb": "the woman with red hair", "fr": "la femme aux cheveux roux", "pt": "a mulher ruiva"},
+    "Kellner":   {"es": "el hombre del pelo gris", "de": "der Mann mit den grauen Haaren", "en": "the man with gray hair",
+                  "en_gb": "the man with grey hair", "fr": "l'homme aux cheveux gris", "pt": "o homem de cabelo grisalho"},
+    "Kellnerin": {"es": "la mujer del pelo rizado", "de": "die Frau mit den lockigen Haaren", "en": "the woman with curly hair",
+                  "en_gb": "the woman with curly hair", "fr": "la femme aux cheveux bouclés", "pt": "a mulher de cabelo cacheado"},
 }
 for _p in ANONYMES:
-    assert ROLES[_p]["de"] and PERS.metier(_p) not in ("kellner",), _p
+    assert ROLES[_p]["de"] and _p in PERS.FIGURANTS, _p
 
 # LA CARTE DU CAFE, dessinee dans la page (prix en euros, comme un cafe de Madrid et un cafe de Berlin). Les articles
 # a l'accusatif allemand (einen Kaffee) ; es « un trozo de tarta » ; [un, deux] en fr/en/pt/de.
@@ -484,8 +489,8 @@ def images():
         out["qte-%s-%s" % (cont, contenu)] = ([], NATURE + quoi, "4:3", None)
     avant = None
     for m in CAFE:
-        roles = " Javier is the waiter: a white shirt and a black apron." if "Javier" in m["gens"] else ""
-        roles += " Ines is the waitress: a white shirt and a black apron." if "Ines" in m["gens"] else ""
+        roles = " The waiter is the grey-haired man with glasses: a white shirt and a black apron." if "Kellner" in m["gens"] else ""
+        roles += " The waitress is the young woman with short curly black hair: a white shirt and a black apron." if "Kellnerin" in m["gens"] else ""
         decor = " The same cafe, the same table, the same light as in the last reference picture." if avant else ""
         depart = m.get("decor", avant)
         out["cafe-" + m["id"]] = (m["gens"], CAFE_ + roles + decor + " " + m["scene"], "4:3", depart)

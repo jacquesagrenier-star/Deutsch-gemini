@@ -20,6 +20,18 @@ def _lire(*p):
 FICHE = _lire("visuel", "personnes.json")
 RECURRENTS = FICHE["recurrents"]
 RESERVES = FICHE["reserves"]
+FIGURANTS = FICHE.get("figurants", {})           # sans prenom : le serveur et la serveuse du cafe (7 nov. 2026)
+# Les visages faits pour la fiche (les prenoms reserves, les figurants) : hors du depot et de OneDrive, comme les
+# originaux des themes. visuel/personnes_images.py les fait d'apres leur « description ».
+VISAGES = os.path.join(os.path.expanduser("~"), ".wortando", "personnes", "img")
+
+
+def image_propre(cle):
+    """Le fichier du visage fait pour la fiche (un prenom reserve qui a SON visage, un figurant), ou None."""
+    f = RESERVES.get(cle) or FIGURANTS.get(cle)
+    if f and f.get("description") is not None and (cle in FIGURANTS or f.get("visage") == cle):
+        return os.path.join(VISAGES, cle + ".png")
+    return None
 TRAITS_INTERDITS = set(FICHE["traits_interdits"])
 MOTS_INTERDITS = {l: set(v) for l, v in FICHE["mots_interdits"].items()}
 
@@ -96,7 +108,10 @@ def verifier():
         if k in RECURRENTS:
             fautes.append("%s : prenom reserve ET recurrent" % k)
         v = f["visage"]
-        if v not in RECURRENTS and not v.startswith("s-"):
+        if v == k:                                    # son propre visage (7 nov. 2026) : il faut sa description
+            if not f.get("description"):
+                fautes.append("%s : son visage sans description" % k)
+        elif v not in RECURRENTS and not v.startswith("s-"):
             fautes.append("%s : visage inconnu %s" % (k, v))
         elif v in RECURRENTS and RECURRENTS[v]["sexe"] != f["sexe"]:
             fautes.append("%s : pas le sexe de son visage %s" % (k, v))

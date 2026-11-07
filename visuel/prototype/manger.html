@@ -198,8 +198,8 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 let D = null;
 const nom = p => (D.noms || {})[p] || p;
 const maj = s => s.charAt(0).toUpperCase() + s.slice(1);
-// au cafe, le serveur et la serveuse sans prenom (6 nov. 2026 : Javier est cuisinier, Ines coiffeuse) : « der Mann mit dem
-// Schnurrbart » ; les autres, leur prenom. l : la langue (apprise par defaut, celle de l'interface pour la traduction).
+// au cafe, le serveur et la serveuse sont des figurants sans prenom (7 nov. 2026, visuel/personnes.json) : « der Mann
+// mit den grauen Haaren » ; les autres, leur prenom. l : la langue (apprise par defaut, celle de l'interface pour la traduction).
 const quiCafe = (p, l) => { const a = (D.anonymes || {})[p]; if (!a) return nom(p); l = l || APPRENDRE; return (l === "en" && GB && a.en_gb) || a[l] || nom(p); };
 // l'Amerique latine : jugo, mesero, sandwich, papas -- a l'ecran et dans la voix ; la carte du corpus reste zumo
 const latam = s => !LATAM || !s ? s : s.replace(/[A-Za-zÁÉÍÓÚáéíóúñÑ]+/g, w => D.latam[w] || w);
@@ -384,7 +384,7 @@ const EN_CAFE = {
   pagar:    {dit: "Can I pay by card?", fait: "Mark pays by card.", mot: {mot: "pay", cat: "verbe"}, fr: ["Je peux payer par carte ?", "Mark paie par carte."]},
   propina:  {dit: "This is for you.", fait: "Tomás leaves a tip.", mot: {mot: "tip", genre: ""}, fr: ["C'est pour vous.", "Tomás laisse un pourboire."]}
 };
-const EN_ROLES = {Javier: {mot: "waiter", art: "the waiter", fr: "le serveur"}, Ines: {mot: "waitress", art: "the waitress", fr: "la serveuse"},
+const EN_ROLES = {Kellner: {mot: "waiter", art: "the waiter", fr: "le serveur"}, Kellnerin: {mot: "waitress", art: "the waitress", fr: "la serveuse"},
                   Mark: {mot: "customer", art: "a customer", fr: "un client"}, Tomas: {mot: "customer", art: "a customer", fr: "un client"}};
 const EN_ROLES_CHOIX = {m: ["the waiter", "a customer", "the cook"], f: ["the waitress", "a customer", "the cook"]};
 const EN_ROLES_TR = {m: {"the waiter": "le serveur", "a customer": "un client", "the cook": "le cuisinier"}, f: {"the waitress": "la serveuse", "a customer": "une cliente", "the cook": "la cuisinière"}};

@@ -34,6 +34,10 @@ for n in ("Gisela", "Ben", "Mia", "Heinz", "Peter", "Monika", "Sabine", "Frank",
     SOURCES[n] = FAMILLE + "/" + n + ".png"
 for n in ("Carmen", "Diego", "Marta", "Javier", "Rosa", "Lucas", "Tomas", "Elena", "Ines", "Pablo"):
     SOURCES[n] = PRINCIPAL + "/visuel/descripcion/img/" + n + ".png"
+# les prenoms reserves ont LEUR visage depuis le 7 nov. 2026 (visuel/personnes_images.py, ~/.wortando/personnes/img)
+for _k in PERS.RESERVES:
+    if PERS.image_propre(_k):
+        SOURCES[_k] = PERS.image_propre(_k)
 SEXE = {"Anna": "f", "Carmen": "f", "Gisela": "f", "Mark": "m", "Diego": "m", "Ben": "m", "Marta": "f", "Javier": "m",
         "Rosa": "f", "Lucas": "m", "Tomas": "m", "Elena": "f", "Ines": "f", "Pablo": "m",
         "Heinz": "m", "Peter": "m", "Monika": "f", "Sabine": "f", "Frank": "m", "Jan": "m", "Katrin": "f", "Lena": "f",
@@ -86,12 +90,14 @@ PORTRAITS = {
 # (radin, paresseux, grossier, desordonne, antipathique, riche, pauvre) sur Mark, Anna, la famille d'Anna ni les douze
 # de Descripcion, qui ont un metier dans « Les metiers » ; ni une situation qui leur donnerait un autre metier
 # (l'enseignante severe, l'entraineur, le bureau). Ces images gardent leur visage, mais la personne porte un PRENOM
-# RESERVE (Hugo, Sergio, Bruno, Mario, Carlos, Nuria, Paula, Silvia, Irene), qu'aucun autre theme n'emploie : un
-# visage, un prenom reserve. visage() donne l'image (trait-<trait>-<visage>.webp) : rien n'est refait ni paye.
+# RESERVE (Hugo, Sergio, Bruno, Mario, Carlos, Nuria, Paula, Silvia, Irene), qu'aucun autre theme n'emploie. D'abord
+# avec le visage d'une des douze (6 nov.) ; depuis le 7 nov. (« Oui, fais-les », Jacques), chacun a SON visage, et ses
+# situations sont refaites avec lui : un visage, un prenom. visage() donne l'image (trait-<trait>-<visage>.webp).
+# Monika : sa porte est celle de la maison de Peter (un couple, une maison), plus « son appartement » (7 nov.).
 TRAITS = {
     "generoso":     [("Marta", "In a cafe, she happily pays the bill for the whole table of friends, handing her card to the waiter while the friends thank her, smiling."),
                      ("Heinz", "In a sunny park, the elderly man happily buys two ice-cream cones from an ice-cream cart and hands them to a small boy and a little girl, who smile up at him delighted."),
-                     ("Monika", "At the door of her flat, she hands a big homemade cake and a full bag of groceries to a young neighbour, smiling warmly; the neighbour is touched and thanks her.")],
+                     ("Monika", "At the front door of her house (the house she shares with her husband Peter), she hands a big homemade cake and a full bag of groceries to a young neighbour, smiling warmly; the neighbour is touched and thanks her.")],
     "tacano":       [("Sergio", "At a restaurant table with friends, the bill arrives: he hides his wallet behind his back and looks away, pretending not to see the bill, while the friends look at him annoyed."),
                      ("Bruno", "On a sofa with friends watching a film, he hides a big bag of crisps behind his back and shakes his head while a friend reaches out asking for some."),
                      ("Paula", "In an office, colleagues collect money in an envelope for a birthday present; she clutches her purse to her chest and shakes her head, refusing to give anything, while a colleague holds out the envelope, disappointed.")],
@@ -118,8 +124,8 @@ TRAITS = {
                      ("Frank", "In a garage, he hangs the last tool on a perfectly organised wall where every tool has its outlined place, with labelled boxes on the shelves and a clean floor; he looks satisfied.")],
     "desordenado":  [("Hugo", "He stands in the middle of a very messy bedroom, scratching his head: clothes all over the floor and the unmade bed, open drawers, books and empty cups everywhere."),
                      ("Nuria", "At a cafe table, she has emptied her overflowing handbag looking for her keys: papers, make-up, receipts, sweets, cables and coins are spread everywhere in a mess, and she rummages through it, confused.")],
-    # 6 nov. 2026 : Mark sur sa valise debordante (trait-desordenado-Mark.webp) est retire : Mark, le heros, ne porte
-    # aucun trait de la liste noire, et son visage ne se rebaptise pas. L'image reste dans le depot, inutilisee.
+    # 6 nov. 2026 : Mark sur sa valise debordante est retire : Mark, le heros, ne porte
+    # aucun trait de la liste noire, et son visage ne se rebaptise pas (l'image a quitte le depot le 7 nov.).
     "simpatico":    [("Anna", "On a city street, she kindly helps a lost tourist couple, pointing the way on their paper map with a warm, friendly smile."),
                      ("Peter", "On the doorstep of his house, he warmly welcomes a new young neighbour, shaking her hand with a big friendly smile and chatting cheerfully."),
                      ("Felix", "In a cafe, he laughs warmly with an elderly lady at the next table who is showing him photos on her phone; both smile, a friendly chat.")],
