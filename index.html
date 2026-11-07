@@ -69418,12 +69418,9 @@ function deuxiemeToucher(){
         oublierCarteJugee();
         return false;
     }
+    // (une ligne : verifier.py lit un « suite(); » seul sur sa ligne comme l'appel d'une fonction globale)
     const suite = suiteDeLaCarte;
-    if(suite){
-        clearTimeout(attentePalier);
-        suiteDeLaCarte = null;
-        suite();
-    }
+    if(suite){ clearTimeout(attentePalier); suiteDeLaCarte = null; suite(); }
     return true;
 }
 // ============ LE REGARD EN ARRIERE EST RETIRE (v575) ============
