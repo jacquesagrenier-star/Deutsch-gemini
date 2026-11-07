@@ -49278,7 +49278,7 @@ function majPaliersAccueil(){
 // la mesure (retirer les classes, lire getComputedStyle) laissait parfois la tuile Ecouter cachee au retour a
 // l'accueil, et le defaut disparaissait des qu'on l'observait (parcours du 6-7 nov.).
 // ⚠️ Les exceptions par langue recopient les listes blanches CSS : le japonais n'a ni themes ni Ecouter, le portugais
-// pas de themes, l'anglais pas d'episodes. Une liste blanche qui change doit changer ici aussi.
+// pas de themes ; les episodes n'existent qu'en allemand et en espagnol. Une liste blanche qui change doit changer ici aussi.
 // Les paliers 1 et 2 cachent les rubans et Ecouter a qui commence : la grille, elle, les montre des le premier jour
 // (c'est ce que Jacques a choisi sur la maquette), sauf Mis de cote tant qu'il est vide, comme avant.
 const GRILLE_SOURCES = {scenes:"explorerScenes", themes:"explorerThemes", ecouter:"ecouteLigneAccueil",
@@ -49296,7 +49296,7 @@ function tuilesProposees(home){
         scenes: sans("explorerScenes"),
         themes: sans("explorerThemes") && L !== "ja" && L !== "pt",
         ecouter: !!document.getElementById("ecouteLigneAccueil") && L !== "ja",
-        episodes: sans("episodeLigne") && L !== "en",
+        episodes: sans("episodeLigne") && (L === "de" || L === "es"),
         gardes: !!document.getElementById("seanceGardes") && !(debut && home.classList.contains("sans-gardes")),
         tout: !!document.getElementById("tuileToutContenu")
     };
