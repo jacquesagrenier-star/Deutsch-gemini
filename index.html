@@ -51999,7 +51999,10 @@ async function renderAdminUsersList(){
                     ${(() => {
                         // Les blocs par examen (essai examens_blocs) ouverts a ce compte, 6 nov. 2026 (« Oui, son
                         // compte »). Lignes allemandes seulement : la preparation aux examens n'existe qu'en allemand.
-                        if(u._coll !== RESUMES_COLL) return "";
+                        // ⚠️ « resumes » en toutes lettres, pas RESUMES_COLL : celle-ci suit la langue que l'ADMIN
+                        // apprend, et le bouton disparaissait des lignes allemandes quand Jacques etait en espagnol
+                        // (7 nov., la ligne de Marina). Le bouton VHS, lui, suit cette langue a dessein.
+                        if(u._coll !== "resumes") return "";
                         const examensOn = Array.isArray(u.essais) && u.essais.includes("examens");
                         return `<button class="secondary admin-vhs" onclick="basculerEssaiCompte('${u.id}', 'examens', ${!examensOn}, '${u._coll}')">
                         ${examensOn ? "EXAMENS OUVERTS ✓ — RETIRER" : "OUVRIR LES EXAMENS"}
