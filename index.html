@@ -66194,7 +66194,7 @@ async function ouvrirPremiersPas(taille){
         // la position du parcours sur la derniere carte.
         try{ items = await preparerArretScene(items, null, true); }catch(e){}
         // 7 nov. 2026 (decision 6fda9e0, Jacques : « une scene ET un theme », y compris en Premiers pas) :
-        // le theme illustre vers la fin, jamais en derniere position.
+        // le theme illustre en derniere carte, sauf devant la fin du parcours.
         try{ items = insererThemeIllustre(items); }catch(e){}
     }
     PHRASES_POSEES.clear();
@@ -67724,9 +67724,10 @@ function insererThemeIllustre(seance){
     const item = { mode: "phrase", forme: "theme_arret", cible: null, themeId: "theme_arret", index: 0,
                    theme: nom, nb: questionsSeance(), phrase: null, word: "" };
     const sortie = seance.slice();
-    // Avant la derniere carte, et en Premiers pas avant la fin du parcours et la scene de l'etape qui le ferment
-    // -- meme quand il ne reste qu'elles (la sonde du 7 nov. : [pp_fin, pp_scene] mettait le theme apres la fete).
-    let i = sortie.length - 1;
+    // La derniere carte (Jacques, 7 nov. : « le theme reste la derniere carte ») ; en Premiers pas, avant la fin
+    // du parcours et la scene de l'etape qui le ferment (la sonde du 7 nov. : [pp_fin, pp_scene] mettait le theme
+    // apres la fete). La fin de seance lit la position du parcours sur la derniere carte QUI EN PORTE UNE.
+    let i = sortie.length;
     while(i > 0 && sortie[i - 1] && /^pp_(scene|fin)$/.test(sortie[i - 1].forme || "")) i--;
     sortie.splice(i, 0, item);
     return sortie;
@@ -69910,8 +69911,9 @@ function showFlashcardEnd(){
     if(enPP && dictee) dictee.classList.add("hidden");
     const encore = document.getElementById("encoreNeufsBtn");
     if(enPP){
-        const der = currentCards[currentCards.length - 1];
-        if(der && typeof der.ppPos === "number") marquerPositionPremiersPas(der.ppPos + 1);
+        // La derniere carte du parcours, pas forcement la derniere de la seance : le theme illustre la suit.
+        const der = currentCards.slice().reverse().find(c => c && typeof c.ppPos === "number");
+        if(der) marquerPositionPremiersPas(der.ppPos + 1);
     }
     if(encore && enPP){
         // « Encore » continue le parcours, comme ailleurs il ajoute des mots.
