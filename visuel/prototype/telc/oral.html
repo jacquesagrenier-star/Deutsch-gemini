@@ -53,6 +53,7 @@ body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-att
   padding:calc(env(safe-area-inset-top,0px) + 10px) max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(12px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
 .retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+[dir="rtl"] .retour{transform:scaleX(-1)} /* la fleche du retour pointe vers la droite en fa / ar */
 .titre{flex:1;font-weight:900;font-size:18px;line-height:1.2}
 .titre small{display:block;font-size:12px;font-weight:800;color:var(--gris);letter-spacing:.04em;text-transform:uppercase}
 .chrono{font-weight:900;font-size:15px;background:var(--verre);border:1px solid var(--bord);border-radius:999px;padding:6px 12px;font-variant-numeric:tabular-nums;flex:0 0 auto}
@@ -924,7 +925,11 @@ function ecouter(surTexte, surFin){
 // ---------------------------------------------------------------- l'ecran
 const zone = document.getElementById("zone"), suite = document.getElementById("suite");
 function el(tag, cls, texte){ const e = document.createElement(tag); if (cls) e.className = cls; if (texte != null) e.textContent = texte; return e; }
-function entete(petit, grand){ document.getElementById("titrePetit").textContent = petit; document.getElementById("titreGrand").textContent = grand; }
+// En fa / ar, chaque morceau entre deux « · » est isole (U+2068 ... U+2069) : sinon l'algorithme bidirectionnel colle
+// un nombre au mot allemand qui le precede (« Teil 1 · … »). Rien ne change en ecriture de gauche a droite.
+const isolerMorceaux = s => document.documentElement.dir !== "rtl" || typeof s !== "string" || s.indexOf(" · ") < 0 ? s
+  : s.split(" · ").map(m => "⁨" + m + "⁩").join(" · ");
+function entete(petit, grand){ document.getElementById("titrePetit").textContent = isolerMorceaux(petit); document.getElementById("titreGrand").textContent = isolerMorceaux(grand); }
 function petitTitre(){ return u(BLANC ? "petit_blanc" : "petit"); }
 // Un point par exercice de la section : plein quand il est fait, ambre pour celui-ci ; on le touche pour y sauter
 // (pas pendant l'examen complet : on ne saute pas une partie de l'examen).
@@ -1249,7 +1254,7 @@ function exercice(s, e){
   vider();
   entete((examen ? u("examen_complet") + " · " : "") + u("exo_n", {n: e + 1, sur: ex.length}), u("section_n", {n: s + 1}) + " · " + u(S.titre));
   points(s, e);
-  const p = el("p", "partie", X.teil || S.teil + " · " + S.de); zone.appendChild(p);
+  const p = el("p", "partie", isolerMorceaux(X.teil || S.teil + " · " + S.de)); zone.appendChild(p);
   zone.appendChild(el("h2", "", X.titre));
   // Le conseil de Mark et ce qu'attend l'examinateur ouvrent la section ; ensuite, seules les tournures qui aident.
   // A l'examen complet : rien de tout cela.

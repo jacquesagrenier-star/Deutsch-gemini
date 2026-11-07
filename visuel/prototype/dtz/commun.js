@@ -24,6 +24,28 @@ const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"].incl
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// LES TITRES MIXTES EN ECRITURE DE DROITE A GAUCHE (7 nov. 2026, retours/A-RELIRE-TELC-LANGUES.md) : dans
+// « Lesen · 4 بخش · 45 دقیقه », l'algorithme bidirectionnel colle le « 4 » au mot allemand qui le precede et range les
+// morceaux dans le desordre. Chaque morceau entre deux « · » est donc isole (U+2068 ... U+2069), dans les titres, les
+// tuiles et les en-tetes seulement, et en fa / ar seulement : le francais et l'anglais ne recoivent aucun caractere.
+const RTL = document.documentElement.dir === "rtl";
+const isolerMorceaux = s => !RTL || typeof s !== "string" || s.indexOf(" · ") < 0 || s.indexOf("⁨") >= 0 ? s
+  : s.split(" · ").map(m => "⁨" + m + "⁩").join(" · ");
+if (RTL){
+  const CIBLES = ".titre, .tuile small, .mode b, .mode span, h2, h3, .partie, .petit";
+  const isolerNoeud = n => {
+    const p = n.parentElement;
+    if (!p || !p.closest(CIBLES) || p.closest('[dir="ltr"], textarea, input')) return;
+    const v = isolerMorceaux(n.nodeValue); if (v !== n.nodeValue) n.nodeValue = v;
+  };
+  const parcourir = r => {
+    if (r.nodeType === 3){ isolerNoeud(r); return; }
+    const it = document.createTreeWalker(r, NodeFilter.SHOW_TEXT); let n;
+    while ((n = it.nextNode())) isolerNoeud(n);
+  };
+  new MutationObserver(ms => ms.forEach(m => m.type === "characterData" ? isolerNoeud(m.target) : m.addedNodes.forEach(parcourir)))
+    .observe(document.body || document.documentElement, {childList: true, subtree: true, characterData: true});
+}
 const RAPIDE = Q.get("rapide") === "1";          // pauses raccourcies : pour les essais seulement
 const MARK_IMG = "../descripcion/Mark-visage.webp";
 
