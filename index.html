@@ -49281,6 +49281,9 @@ const GRILLE_SOURCES = {scenes:"explorerScenes", themes:"explorerThemes", ecoute
     episodes:"episodeLigne", gardes:"seanceGardes", tout:"tuileToutContenu"};
 let grilleObservee = false, grilleMajPrevue = false;
 function sourceAffichee(el, home){
+    // La decouverte des premiers jours emprunte la ligne Ecouter (emprunterBlocDecouverte) : hors de l'accueil,
+    // seule compte la regle de la ligne elle-meme (la liste blanche du japonais la cache ou qu'elle soit).
+    if(!home.contains(el)) return getComputedStyle(el).display !== "none" && !el.classList.contains("hidden");
     for(let n = el; n && n !== home; n = n.parentElement){
         if(getComputedStyle(n).display === "none") return false;
     }
