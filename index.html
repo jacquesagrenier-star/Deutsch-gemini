@@ -49288,13 +49288,11 @@ function empreinteGrille(home){
         Object.values(GRILLE_SOURCES).map(id => { const el = document.getElementById(id); return el ? el.className + "@" + ((el.parentNode && el.parentNode.id) || "") : "-"; }).join("|");
 }
 function sourceAffichee(el, home){
-    // La decouverte des premiers jours emprunte la ligne Ecouter (emprunterBlocDecouverte) : hors de l'accueil,
-    // seule compte la regle de la ligne elle-meme (la liste blanche du japonais la cache ou qu'elle soit).
-    if(!home.contains(el)) return getComputedStyle(el).display !== "none" && !el.classList.contains("hidden");
-    for(let n = el; n && n !== home; n = n.parentElement){
-        if(getComputedStyle(n).display === "none") return false;
-    }
-    return true;
+    // Seule compte la regle de l'element lui-meme : les paliers, la vue Tout le contenu, les listes blanches de
+    // l'anglais, du japonais et du portugais, et « hidden » le visent tous directement. Ses conteneurs, eux, peuvent
+    // etre caches un instant (un autre ecran, la decouverte des premiers jours qui emprunte la ligne Ecouter) : vu au
+    // parcours du 6 nov., la tuile Ecouter manquait alors au retour a l'accueil.
+    return !!el && getComputedStyle(el).display !== "none";
 }
 function majGrilleAccueil(){
     const home = document.getElementById("home"), g = document.getElementById("grilleAccueil");
