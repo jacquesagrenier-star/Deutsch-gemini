@@ -254,7 +254,7 @@ function partieSuivante(id){ const o = DTZ.parties, k = o.findIndex(p => p.id ==
 function boutonsFin(id, refaire){
   const suivante = partieSuivante(id);
   return {h: '<div class="bloc boutons"><button class="secondaire" id="fRefaire">' + esc(T("ho_refaire")) + '</button>' +
-      (suivante ? '<button class="secondaire" id="fSuivante">' + esc(T("ho_suivante")) + ' : ' + esc(suivante.titre) + '</button>' : "") +
+      (suivante ? '<button class="secondaire" id="fSuivante">' + esc(T("ho_suivante")) + DEUX_POINTS_TELC + esc(suivante.titre) + '</button>' : "") +
       '<button class="secondaire" id="fToutes">' + esc(T("ho_toutes")) + '</button></div>',
     brancher(){ $("fRefaire").onclick = refaire; if (suivante) $("fSuivante").onclick = () => suivante.ouvrir(); $("fToutes").onclick = toutesLesSections;
       DTZ.surRetour(() => { toutesLesSections(); return true; }); }};
@@ -324,7 +324,7 @@ function pageH(garderScroll){
   h += '<div class="bloc">';
   if (premiere) h += consigne(d.consignes[u.teil]) + mark(champTelc(d.conseils[u.teil], "text"));
   h += bandeau(u);
-  if (u.teil === "T1" || u.teil === "T2") h += '<p class="petit"><b>' + esc(T("ho_situation")) + ' :</b> ' + esc(champTelc(u.data, "situation")) + '</p>';
+  if (u.teil === "T1" || u.teil === "T2") h += '<p class="petit"><b>' + esc(T("ho_situation")) + DEUX_POINTS_TELC.trimEnd() + '</b> ' + esc(champTelc(u.data, "situation")) + '</p>';
   if (u.teil === "T3") h += '<p class="petit" lang="de">' + esc(u.data.typ) + '</p>';
   if (u.teil === "T1") h += '<p class="consigne" lang="de">' + esc(u.data.frage) + (fini ? '<span class="fr">' + esc(champTelc(u.data, "frage")) + '</span>' : "") + '</p>' +
     '<p class="petit">' + esc(T("ho_solutions")) + '</p>' + listeSolutions(u.data.loesungen, fini, u.questions.map(q => q.bon));

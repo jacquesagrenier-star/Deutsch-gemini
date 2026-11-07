@@ -148,7 +148,7 @@ function blancUrl(page, extra){
   for (const k in (extra || {})) p.set(k, extra[k]);
   return page + "?" + p.toString();
 }
-const vir = n => { const x = String(Math.round(n * 10) / 10); return LANGUE === "fr" ? x.replace(".", ",") : x; };
+const vir = n => { const x = String(Math.round(n * 10) / 10); return ["fr", "tr", "uk", "ru", "pl", "pt"].includes(LANGUE) ? x.replace(".", ",") : x; };
 function blancEcran(titre){ silence(); fermerPanneau(); $("titre").textContent = titre || T("bl_titre"); $("suite").hidden = true; window.scrollTo(0, 0); }
 function blancBouton(texte, action){ const s = $("suite"); s.hidden = false; s.disabled = false; s.textContent = texte; s.onclick = action; }
 const blancMark = texte => '<div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(texte) + '</div></div>';
@@ -166,7 +166,7 @@ function blancIntro(){
   const enCours = BL && !BL.fini && BL.etape < BLANC_ETAPES.length;
   const lignes = BLANC_ETAPES.map((E, k) => {
     const parties = E.pause ? "" : (E.oral ? ["Sp"] : E.parties).map(id =>
-      '<span class="petit" style="display:block">· ' + esc(T("bl_p_" + id)) + esc(T("bl_deux_points")) + esc(blancPrete(id) ? T("bl_pret") : T("bl_pas_pret")) + '</span>').join("");
+      '<span class="petit" style="display:block">· ' + esc(T("bl_p_" + id)) + esc(DEUX_POINTS_TELC) + esc(blancPrete(id) ? T("bl_pret") : T("bl_pas_pret")) + '</span>').join("");
     return '<div class="mode" style="cursor:default"><b>' + (k + 1) + '. ' + esc(T("bl_e_" + E.id)) + '</b><span>' + esc(T("bl_e_" + E.id + "_s")) + '</span>' +
       '<span style="font-weight:600;color:var(--encre)">' + esc(T("bl_e_" + E.id + "_q")) + '</span>' + parties + '</div>';
   }).join("");
@@ -334,7 +334,7 @@ function blancVerdict(){
   if (!BL.fini){
     BL.fini = true; blancSauver();
     ecrire("blancs_faits", (BL.numero || 0) + 1);
-    ecrire("dernier", { date: new Date().toLocaleDateString(LANGUE === "en" ? "en-GB" : "fr-FR"),
+    ecrire("dernier", { date: new Date().toLocaleDateString(DATE_TELC),
       texte: complet ? T("bl_dernier", {n: vir(total), niv: T("niv_" + niv)}) : T("bl_dernier_partiel", {n: vir(total)}) });
     resultat("blanc", { points: total, niveau: niv, competences: comp });
     parler("resultat", { mode: "examen_blanc_telc", points: total, sur: 240, niveau: niv, competences: comp });

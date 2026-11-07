@@ -158,14 +158,32 @@ button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="../themes/zoom.js?v=4"></script>
 <script>
+// LES AUTRES LANGUES D'INTERFACE (7 nov. 2026) : le dictionnaire anglais -> langue de langues/<langue>.js
+// (outils/langues.js), lu ci-dessous par u(), tr(), trRep() et trModele().
+(() => {
+  const l = ((new URLSearchParams(location.search).get("lang")) || "fr").toLowerCase().split(/[-_]/)[0];
+  if (["tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l)) document.write('<script src="langues/' + l + '.js?v=1"><\/script>');
+})();
+</script>
+<script>
 "use strict";
 const Q = new URLSearchParams(location.search);
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
-// L'interface : francais et anglais (une testeuse anglophone B1 l'essaie la premiere, 6 nov.) ; les autres langues
-// d'interface retombent sur le francais, comme commun.js.
-const LANG = ((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]) === "en" ? "en" : "fr";
-const TR = LANG === "en" ? 3 : 2;   // l'indice de la traduction dans les repliques [qui, de, fr, en]
+// L'interface : francais et anglais dans la page (une testeuse anglophone B1 l'essaie la premiere, 6 nov.) ; les
+// autres langues d'interface (7 nov.) par le dictionnaire anglais -> langue de langues/<langue>.js (TELC_DICO), le
+// francais pour ce qui y manquerait.
+const LANG = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l) ? l : "fr")((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]);
+const DICO = (LANG !== "fr" && LANG !== "en" && window.TELC_DICO) || null;
+function dico(en){
+  if (!DICO || en == null) return null;
+  if (Array.isArray(en)){ const r = en.map(dico); return r.every(x => x != null) ? r : null; }
+  return Object.prototype.hasOwnProperty.call(DICO, en) ? DICO[en] : null;
+}
+// la traduction d'une replique [qui, de, fr, en] et d'une reponse modele [de, fr, en]
+const trRep = r => LANG === "en" ? r[3] : LANG === "fr" ? r[2] : (dico(r[3]) || r[2]);
+const trModele = d => LANG === "en" ? d[2] : LANG === "fr" ? d[1] : (dico(d[2]) || d[1]);
 document.documentElement.lang = LANG;
+document.documentElement.dir = (LANG === "fa" || LANG === "ar") ? "rtl" : "ltr";
 const DANS_APP = window.parent && window.parent !== window;
 const BLANC = Q.get("examen") === "blanc";
 const DEPUIS_TELC = BLANC || Q.get("depuis") === "telc";
@@ -188,7 +206,7 @@ const IMG = { anna: "../descripcion/Anna-visage.webp", mark: "../descripcion/Mar
 // ---------------------------------------------------------------- l'interface (fr, en)
 const UI = {
 fr: {
-  titre: "L’oral du telc A2·B1", petit: "telc A2·B1 · Parler", petit_blanc: "telc A2·B1 · examen blanc",
+  retour: "Retour", titre: "L’oral du telc A2·B1", petit: "telc A2·B1 · Parler", petit_blanc: "telc A2·B1 · examen blanc",
   nom_anna: "Anna · examinatrice", nom_mark: "Mark · l’autre candidat", nom_coach: "Mark · ton coach",
   h_accueil: "L’oral du telc A2·B1, en répétition",
   format_titre: "L’épreuve en bref",
@@ -251,6 +269,7 @@ fr: {
   c_conclus: "Tu conclus ou tu proposes un compromis (trotzdem, vielleicht, beides…)", c_reac_long: "Assez développé : {n} mots (visé : {v} et plus)"
 },
 en: {
+  retour: "Back",
   titre: "The telc A2·B1 speaking test", petit: "telc A2·B1 · Speaking", petit_blanc: "telc A2·B1 · mock exam",
   nom_anna: "Anna · examiner", nom_mark: "Mark · the other candidate", nom_coach: "Mark · your coach",
   h_accueil: "The telc A2·B1 speaking test: a rehearsal",
@@ -312,8 +331,8 @@ en: {
   c_reaction: "You react to Mark (Da hast du recht, aber… / Das sehe ich anders…)", c_defends: "You defend your opinion with a reason (weil, denn…)",
   c_conclus: "You conclude or suggest a compromise (trotzdem, vielleicht, beides…)", c_reac_long: "Developed enough: {n} words (target: {v} or more)"
 }};
-function u(cle, v){ let s = (UI[LANG] && UI[LANG][cle]) || UI.fr[cle] || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
-const tr = o => (o && (o[LANG] || o.fr)) || "";
+function u(cle, v){ let s = (UI[LANG] && UI[LANG][cle]) || dico(UI.en[cle]) || UI.fr[cle] || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+const tr = o => (o && (o[LANG] || dico(o.en) || o.fr)) || "";
 
 // Mark, coach (texte seul, dans la langue d'interface : sa voix enregistree parle allemand).
 const COACH = {
@@ -925,7 +944,7 @@ function points(s, e){
   });
 }
 function bulle(id, dejaDit){
-  const [qui, de] = L[id], trad = L[id][TR];
+  const [qui, de] = L[id], trad = trRep(L[id]);
   const ligne = el("div", "qui");
   let cadre = null;
   if ((ENREGISTRE[id] || {}).video){
@@ -989,7 +1008,7 @@ function modeles(liste, note, ouvert){
   liste.forEach(m => {
     const b = el("div", "modele");
     b.appendChild(el("span", "tag " + m.niv, u("modele_niv", {n: m.niv})));
-    const texte = m.id ? L[m.id][1] : m.de[0], trad = m.id ? L[m.id][TR] : m.de[TR - 1];
+    const texte = m.id ? L[m.id][1] : m.de[0], trad = m.id ? trRep(L[m.id]) : trModele(m.de);
     const de = el("div", "de", texte); de.lang = "de"; b.appendChild(de);
     const t = el("div", "tr", trad); t.hidden = true; b.appendChild(t);
     const hp = el("button", "hp", u("reecouter")); hp.type = "button"; hp.onclick = () => m.id ? dire(m.id, null) : direTexte(texte, "mark");
@@ -1418,7 +1437,7 @@ async function fin(){
 
 // « ‹ » : d'une section (ou du verdict) vers la liste des sections ; de la liste, vers le bloc telc (ou on quitte).
 // Pendant l'examen blanc, la liste n'existe pas : « ‹ » ramene a l'examen blanc.
-document.getElementById("retour").setAttribute("aria-label", LANG === "en" ? "Back" : "Retour");
+document.getElementById("retour").setAttribute("aria-label", u("retour"));
 document.getElementById("retour").onclick = () => {
   taire();
   if (BLANC){ versTelc({ partie: "BLANC" }); return; }

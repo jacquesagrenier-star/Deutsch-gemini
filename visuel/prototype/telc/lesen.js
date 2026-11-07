@@ -204,12 +204,12 @@ const TELC_LESEN = (() => {
   const EN = LANGUE === "en";
   // le champ traduit d'un objet : tr(it, "erkl") lit erkl_en ou erkl_fr ; tr(p, "") lit p.en ou p.fr (les consignes
   // et les phrases du Teil 3) ; sans traduction anglaise, le francais
-  const tr = (o, k) => k ? champTelc(o, k) : ((o && (o[LANGUE] || o.fr)) || "");
+  const tr = (o, k) => k ? champTelc(o, k) : objetTelc(o);
   const deS = s => '<span lang="de" dir="ltr">' + esc(s) + '</span>';
   const TEILE = ["T1", "T2", "T3", "T4"];
   const titreTeil = t => T("l_" + t.toLowerCase());
   const RF = ["richtig", "falsch"];
-  const DEUX_POINTS = EN ? ": " : " : ";   // l'espace avant les deux-points est francaise
+  const DEUX_POINTS = DEUX_POINTS_TELC;   // l'espace avant les deux-points est francaise (telc-commun.js)
 
   // le peu de mise en page propre a cette partie (le reste vient de ../dtz/commun.css et de telc.html)
   const style = document.createElement("style");

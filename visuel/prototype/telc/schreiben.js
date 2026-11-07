@@ -668,7 +668,7 @@ function modeleHtml(m, prefixe){
     });
     return '<p lang="de">' + h + esc(ligne.slice(cur)) + '</p>';
   }).join("");
-  const g = SCH_EN ? ["“", "”"] : ["« ", " »"];
+  const g = GUILLEMETS_TELC;
   return { lettre: '<div class="doc lettre sch-modele" dir="ltr">' + html + '</div>',
     notes: '<ol class="sch-notes">' + m.notes.map((n, j) => '<li data-li="' + prefixe + j + '"><span class="ex" lang="de">' + g[0] + esc(n.de) + g[1] + '</span> — ' + esc(champTelc(n, "note")) + '</li>').join("") + '</ol>' };
 }
@@ -717,7 +717,7 @@ function recapSch(){
     '<div class="bloc boutons">' +
       '<button class="secondaire" id="schRefaire">' + esc(T("sch_refaire")) + '</button>' +
       '<button class="secondaire" id="schAutre">' + esc(T("sch_autre")) + '</button>' +
-      (suivante ? '<button class="secondaire" id="schSuivante">' + esc(T("sch_suivante")) + ' : ' + esc(suivante.titre) + '</button>' : "") +
+      (suivante ? '<button class="secondaire" id="schSuivante">' + esc(T("sch_suivante")) + DEUX_POINTS_TELC + esc(suivante.titre) + '</button>' : "") +
       '<button class="secondaire" id="schToutes">' + esc(T("sch_toutes")) + '</button></div>';
   // refaire : le meme sujet, page blanche ; un autre sujet : choisirSerie() prend le moins recemment fait
   $("schRefaire").onclick = () => { ecrire("sch_" + SCH.mode + "_" + s.id, {}); ouvrirSchreiben(SCH.mode, s); };
