@@ -8516,15 +8516,17 @@ body[data-theme="dark"] .cp-passage-ok svg{stroke:#8ED3AA;}
 #home.grille-c:not(.vue-contenu) #suggAccueil, #home.grille-c:not(.vue-contenu) #explorerScenes,
 #home.grille-c:not(.vue-contenu) #explorerThemes, #home.grille-c:not(.vue-contenu) #ecouteLigneAccueil,
 #home.grille-c:not(.vue-contenu) #episodeLigne, #home.grille-c:not(.vue-contenu) #seanceGardes,
-#home.grille-c:not(.vue-contenu) #tuileToutContenu{display:none !important;}
+#home.grille-c:not(.vue-contenu) #tuileToutContenu, #home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau{display:none !important;}
 .tg{position:relative; display:block; flex:0 0 auto; width:calc((100% - 24px) / 3); aspect-ratio:1 / 1; padding:0; border:0; cursor:pointer;
     border-radius:5.6%; overflow:hidden; color:#fff; font:inherit; -webkit-tap-highlight-color:transparent;
-    background:linear-gradient(150deg, rgba(249,169,19,0.75) 0%, rgba(239,144,23,0.81) 28%, rgba(227,114,27,0.86) 55%, rgba(219,94,26,0.91) 78%, rgba(212,76,21,0.95) 100%);
+    /* 7 nov. 2026 (accord de Jacques, « oui, transparent ») : le haut aussi transparent que la carte de la seance
+       (66 %, son flou), le bas qui fonce jusqu'a 96 % sous le titre ; blanc au pire point 5,0 le jour, 5,9 la nuit. */
+    background:linear-gradient(180deg, rgba(249,169,19,.66) 0%, rgba(236,134,22,.76) 36%, rgba(196,74,16,.92) 66%, rgba(160,46,10,.96) 100%);
     box-shadow:0 10px 20px -6px rgba(20,28,40,.30), 0 3px 6px rgba(20,28,40,.12),
                inset 0 1px 0 rgba(255,255,255,.35), inset 0 -1px 0 rgba(0,0,0,.18), inset 1px 0 0 rgba(255,255,255,.10), inset -1px 0 0 rgba(0,0,0,.08);
-    -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
+    -webkit-backdrop-filter:blur(8px) saturate(1.6); backdrop-filter:blur(8px) saturate(1.6);
     transition:transform .12s ease;}
-.tg.tg-ardoise{background:linear-gradient(180deg, rgba(86,93,101,0.78) 0%, rgba(58,65,75,0.87) 50%, rgba(42,49,59,0.96) 100%);}
+.tg.tg-ardoise{background:linear-gradient(180deg, rgba(92,99,108,.66) 0%, rgba(64,71,81,.76) 40%, rgba(38,44,54,.92) 74%, rgba(24,29,37,.95) 100%);}
 .tg.hidden{display:none !important;}
 .tg:active{transform:scale(.97);}
 .tg:focus-visible{outline:2px solid #E8A23A; outline-offset:3px;}
@@ -8537,29 +8539,23 @@ body[data-theme="dark"] .cp-passage-ok svg{stroke:#8ED3AA;}
 .tg-ambre .tg-ico svg{filter:drop-shadow(0 1px 1px rgba(120,40,0,.30));}
 .tg-lib{position:absolute; left:5.6%; right:5.6%; bottom:5.6%; min-height:26%; box-sizing:border-box; z-index:2;
     display:flex; align-items:center; justify-content:center; text-align:center; padding:3px 5px;
-    background:rgba(0,0,0,.20); box-shadow:inset 0 1px 0 rgba(255,255,255,.42);
     font-size:9.5px; font-weight:700; letter-spacing:.05em; line-height:1.15; text-transform:uppercase; overflow-wrap:anywhere; hyphens:auto;}
-.tg-ambre .tg-lib{text-shadow:0 1px 1px rgba(110,35,0,.30);}
-.tg-ardoise .tg-lib{background:rgba(255,255,255,.12);}
-html[lang="fa"] .tg-lib, html[lang="ar"] .tg-lib, html[dir="rtl"] .tg-lib{letter-spacing:0; text-transform:none; font-size:11px;}
+.tg-ambre .tg-lib, .tg-ambre .tg-tab-texte{text-shadow:0 1px 2px rgba(90,25,0,.45);}
+html[lang="fa"] .tg-lib, html[lang="ar"] .tg-lib, html[dir="rtl"] .tg-lib,
+html[lang="fa"] .tg-tab-titre, html[lang="ar"] .tg-tab-titre, html[dir="rtl"] .tg-tab-titre{letter-spacing:0; text-transform:none; font-size:12px;}
 body[data-theme="dark"] .tg{box-shadow:0 10px 22px -6px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.10), inset 0 1px 0 rgba(255,255,255,.30), inset 0 -1px 0 rgba(0,0,0,.25);}
-/* le tableau en bande courte : la vignette, son titre, le rond › */
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau:not(.hidden){display:flex !important; flex-direction:row !important; align-items:center !important;
-    gap:12px !important; padding:8px 10px 8px 8px !important; border-radius:22px !important; overflow:visible !important;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau .vignette-tableau{flex:0 0 64px !important; width:64px !important; height:52px !important;
-    padding:2px !important; border-radius:12px !important;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau .vignette-tableau img{height:48px !important; border-radius:10px !important;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau .vignette-pct{display:none !important;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau > div:not([class]){display:flex !important; flex-direction:column; justify-content:center; gap:1px; min-width:0; flex:1 1 auto;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau > div:not([class]) strong{display:block; font-size:14.5px;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau .raccourci-sous{display:block; font-size:11.5px; opacity:.75;}
-#home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau::after{content:"›"; flex:0 0 40px; width:40px; height:40px; margin-inline-start:auto; border-radius:50%;
-    display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:600; line-height:1; padding-bottom:3px; box-sizing:border-box; color:#fff;
-    background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%);
-    box-shadow:inset 0 0 0 2px rgba(0,0,0,.35), inset 0 0 14px rgba(255,255,255,.16), inset 0 1.5px 0 rgba(255,255,255,.55), 0 8px 18px rgba(20,16,10,.25);}
-html[dir="rtl"] #home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau::after{content:"‹";}
-body[data-theme="dark"] #home.grille-c:not(.vue-contenu) #accueilRaccourcis #tuileTableau::after{color:#2A1A05;
-    background:linear-gradient(180deg, rgba(250,206,128,.86) 0%, rgba(237,169,60,.80) 52%, rgba(208,138,28,.88) 100%);}
+/* 7 nov. 2026 : LA TUILE DU TABLEAU (piste 2 retouchee, accord de Jacques). « Je preferais lorsqu'on avait un
+   tableau complet dans l'image » : pleine largeur, de la meme famille que les autres, la toile ENTIERE a gauche
+   (sa forme gardee, en largeur comme en hauteur), « N % » et « Ton tableau » a droite, en bas, sur le plus fonce. */
+.tg.tg-tab{width:100%; aspect-ratio:auto; height:156px; border-radius:16px;}
+.tg.tg-tab .tg-filet{inset:7px; border-radius:11px;}
+.tg-tab-corps{position:absolute; inset:7px; z-index:2; display:flex; align-items:center; gap:16px; padding:14px 16px 14px 14px; box-sizing:border-box;}
+.tg-tab-corps img{display:block; height:100%; width:auto; max-width:58%; object-fit:contain; flex:0 0 auto; border-radius:4px;
+    box-shadow:0 0 0 2px rgba(255,255,255,.9), 0 6px 14px rgba(0,0,0,.30);}
+.tg-tab-corps img[hidden]{display:none;}
+.tg-tab-texte{display:flex; flex-direction:column; justify-content:flex-end; align-self:stretch; gap:2px; min-width:0; text-align:start;}
+.tg-tab-pct{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight:800; font-size:30px; line-height:1;}
+.tg-tab-titre{font-size:11px; font-weight:700; letter-spacing:.05em; line-height:1.15; text-transform:uppercase; padding-bottom:2px; overflow-wrap:anywhere;}
 #home #seancePilule.niveaux-replies > .pa-niveaux{display:none !important;}
 #home #seancePilule .pa-changer{order:3; justify-self:center; border:0; background:none; font:inherit; font-size:13px; font-weight:700;
     color:var(--encre-v); padding:4px 10px; border-radius:999px; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
@@ -9991,6 +9987,7 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
             <button type="button" class="tg" data-tg="episodes" onclick="episodeDepuisAccueil()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="10.4" width="18" height="10.1" rx="1.6"/><path d="M3 13.6h18"/><path d="M7.4 10.4 5.6 13.6M11.8 10.4 10 13.6M16.2 10.4 14.4 13.6M20.6 10.4 18.8 13.6"/><g transform="rotate(-13 3.2 10)"><rect x="3.2" y="6.7" width="17.8" height="3.3" rx=".7"/><path d="M7.4 6.7 5.7 10M11.8 6.7 10.1 10M16.2 6.7 14.5 10"/></g></svg></span><span class="tg-lib" data-i18n="ep_tuile">Mes épisodes</span><span class="tg-filet" aria-hidden="true"></span></button>
             <button type="button" class="tg" data-tg="gardes" data-orbid="gardes" onclick="ouvrirGardes()"><span class="tg-ico"><svg viewBox="40 60 450 450" fill="none" stroke="currentColor" stroke-width="28.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M265 253C228 222 172 208 110 214V421C172 415 228 428 265 455 302 428 358 415 420 421V214C358 208 302 222 265 253z"/><path d="M265 253V455"/><path d="M110 245H78V463C150 459 222 467 265 497 308 467 380 459 452 463V245H420"/><path d="M265.00 76.00 L279.69 111.77 L318.26 114.70 L288.78 139.73 L297.92 177.30 L265.00 157.00 L232.08 177.30 L241.22 139.73 L211.74 114.70 L250.31 111.77Z"/></svg></span><span class="tg-lib" data-i18n="gardes_titre">Mis de côté</span><span class="tg-filet" aria-hidden="true"></span></button>
             <button type="button" class="tg" data-tg="tout" onclick="ouvrirToutLeContenu()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="4" width="7" height="7" rx="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.8"/></svg></span><span class="tg-lib" data-i18n="accueil_tout_titre">Tout le contenu</span><span class="tg-filet" aria-hidden="true"></span></button>
+            <button type="button" class="tg tg-tab hidden" data-tg="tableau" onclick="ouvrirGalerieMosaiques()" data-i18n-aria-label="tableau_tuile" aria-label="Ton tableau"><span class="tg-filet"></span><span class="tg-tab-corps"><img id="grilleTableauImg" alt="" hidden><span class="tg-tab-texte"><span class="tg-tab-pct" id="grilleTableauPct"></span><span class="tg-tab-titre" data-i18n="tableau_tuile">Ton tableau</span></span></span></button>
         </div>
         <!-- v799 : EXPLORER LES SCENES, a part de la seance. Jacques voulait voir
              qu'il y a beaucoup de scenes (« peut-etre une cinquantaine ») et
@@ -49282,7 +49279,7 @@ function majPaliersAccueil(){
 // Les paliers 1 et 2 cachent les rubans et Ecouter a qui commence : la grille, elle, les montre des le premier jour
 // (c'est ce que Jacques a choisi sur la maquette), sauf Mis de cote tant qu'il est vide, comme avant.
 const GRILLE_SOURCES = {scenes:"explorerScenes", themes:"explorerThemes", ecouter:"ecouteLigneAccueil",
-    episodes:"episodeLigne", gardes:"seanceGardes", tout:"tuileToutContenu"};
+    episodes:"episodeLigne", gardes:"seanceGardes", tout:"tuileToutContenu", tableau:"tuileTableau"};
 let grilleObservee = false, grilleMajPrevue = false, grilleEmpreinte = "";
 function empreinteGrille(home){
     return String(home.className).replace(/\bgrille-c\b/g, "").replace(/\s+/g, " ").trim() + "|" +
@@ -49298,7 +49295,8 @@ function tuilesProposees(home){
         ecouter: !!document.getElementById("ecouteLigneAccueil") && L !== "ja",
         episodes: sans("episodeLigne") && (L === "de" || L === "es"),
         gardes: !!document.getElementById("seanceGardes") && !(debut && home.classList.contains("sans-gardes")),
-        tout: !!document.getElementById("tuileToutContenu")
+        tout: !!document.getElementById("tuileToutContenu"),
+        tableau: sans("tuileTableau")
     };
 }
 function majGrilleAccueil(){
@@ -60132,6 +60130,10 @@ function majVignetteTableau(canvas, faits, total, fini){
     const sous = document.getElementById("tableauSous");
     const pct = tf("tableau_pct", { p: Math.round(Math.min(1, faits / Math.max(1, total)) * 100) });
     if(sous) sous.textContent = pct;
+    // 7 nov. 2026 : la meme image et le meme pourcentage dans la tuile de la grille de l'accueil.
+    const gi = document.getElementById("grilleTableauImg"), gp = document.getElementById("grilleTableauPct");
+    if(gi && img && img.getAttribute("src")){ gi.src = img.getAttribute("src"); gi.hidden = false; }
+    if(gp) gp.textContent = pct;
     // v1000 : dans le coin de la vignette, plus sur une ligne a lui (« gagner de l'espace »).
     const coin = document.getElementById("vignettePct");
     if(coin) coin.textContent = t("tableau_tuile") + " · " + pct;   // v1003 : « Ton tableau · 55 % » sur le bandeau
