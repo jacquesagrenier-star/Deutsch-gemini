@@ -142,6 +142,35 @@ function arretsParActivite(toutes){
     return lignes;
 }
 
+// LES OUVERTURES DE TUILES (harmonisation des exercices, 7 nov. 2026). Champ `tuilesJson` : { "AAAA-MM-JJ" :
+// { data-orbid : nombre } }, quatorze jours au plus. Des nombres seulement : quelle tuile de Tout le contenu sert le
+// plus, sur sept jours, et combien de comptes l'ont ouverte.
+function tuilesRecentes(json, maintenant){
+    let v = {};
+    try{ v = JSON.parse(json || "{}") || {}; }catch(e){}
+    if(!v || typeof v !== "object" || Array.isArray(v)) return {};
+    const limite = new Date(maintenant - SEANCES_JOURS * 86400000).toISOString().slice(0, 10);
+    const total = {};
+    Object.keys(v).forEach(jour => {
+        if(!/^\d{4}-\d{2}-\d{2}$/.test(jour) || jour < limite || !v[jour] || typeof v[jour] !== "object") return;
+        Object.keys(v[jour]).forEach(id => { total[id] = (total[id] || 0) + (Number(v[jour][id]) || 0); });
+    });
+    return total;
+}
+function bilanTuiles(listes){
+    const total = {}, comptes = {};
+    listes.forEach(t => Object.keys(t).forEach(id => {
+        if(!t[id]) return;
+        total[id] = (total[id] || 0) + t[id];
+        comptes[id] = (comptes[id] || 0) + 1;
+    }));
+    const ids = Object.keys(total).sort((a, b) => total[b] - total[a]);
+    const lignes = ["tuiles ouvertes, " + SEANCES_JOURS + " derniers jours : " + ids.length + " tuile(s), "
+                    + listes.filter(t => Object.keys(t).length).length + " compte(s)"];
+    ids.forEach(id => lignes.push(("  " + id).padEnd(26) + String(total[id]).padStart(5) + "  (" + comptes[id] + " compte(s))"));
+    return lignes;
+}
+
 async function main(){
     const { initializeApp, cert } = require(path.join(FBA, "app"));
     const { getFirestore } = require(path.join(FBA, "firestore"));
@@ -162,7 +191,7 @@ async function main(){
         try{ p = JSON.parse(x.parcoursJson || "{}") || {}; }catch(e){}
         const cree = x.createdAt && x.createdAt.toDate ? x.createdAt.toDate().toISOString() : "";
         lignes.push({ cree, p, langue: marque + (x.langueInterface || "?"), vus: x.vusCount || 0, suivi: !!x.parcoursJson,
-                      seances: seancesRecentes(x.seancesJson, maintenant) });
+                      seances: seancesRecentes(x.seancesJson, maintenant), tuiles: tuilesRecentes(x.tuilesJson, maintenant) });
     }
     lignes.sort((a, b) => (b.cree || "").localeCompare(a.cree || ""));
 
@@ -191,10 +220,11 @@ async function main(){
                         + vues.filter(l => l.p["decouverte_passee_etape" + n]).length).join(", ") + ")");
     }
     console.log("\n" + bilanSeances(lignes.map(l => l.seances)).join("\n"));
+    console.log("\n" + bilanTuiles(lignes.map(l => l.tuiles)).join("\n"));
 }
 
 // Les fonctions de lecture s'essaient sans cle ni reseau (voir le test de la v712).
-module.exports = { seancesRecentes, colonneSeances, bilanSeances };
+module.exports = { seancesRecentes, colonneSeances, bilanSeances, tuilesRecentes, bilanTuiles };
 if(require.main === module){
     main().catch(e => { console.error(e.message || e); process.exit(1); });
 }

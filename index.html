@@ -13117,6 +13117,8 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         </div>
 
         <p id="resultSitue" style="color:#4C566B; font-size:13px; margin:10px 0 0" hidden></p>
+        <!-- Harmonisation des exercices (7 nov. 2026) : les fetes gagnees pendant la serie, comme a la fin de la seance. -->
+        <div id="resultFetes" class="fin-fetes hidden"></div>
         <div id="finGratuiteResult" class="fin-gratuite hidden"></div>
 
         <div class="spacer"></div>
@@ -35649,6 +35651,36 @@ function ecrireSeances(maj){
     try{ localStorage.setItem(SEANCES_KEY, JSON.stringify(l)); }catch(e){}
 }
 
+// LES OUVERTURES DE TUILES (harmonisation des exercices, etape 1, 7 nov. 2026). Rien ne disait quelle tuile de
+// Tout le contenu sert le plus : l'harmonisation commence par la plus utilisee. Des NOMBRES seulement -- par jour,
+// combien de fois chaque tuile a ete ouverte, sous son data-orbid (un nom interne qui existe deja, aucun texte
+// tape, aucun identifiant nouveau) --, quatorze jours au plus, dans la sauvegarde comme seancesJson.
+// `node tests/parcours.js` en fait le total.
+const TUILES_OUVERTES_KEY = PREFIXE_STOCKAGE + "tuilesOuvertes";
+const TUILES_OUVERTES_JOURS = 14;
+function lireTuilesOuvertes(){
+    try{
+        const v = JSON.parse(localStorage.getItem(TUILES_OUVERTES_KEY) || "{}");
+        return (v && typeof v === "object" && !Array.isArray(v)) ? v : {};
+    }catch(e){ return {}; }
+}
+function noterTuileOuverte(id){
+    if(!id || !/^[A-Za-z0-9_]{1,40}$/.test(id)) return;
+    const v = lireTuilesOuvertes();
+    const jour = getTodayStr();
+    const j = (v[jour] && typeof v[jour] === "object") ? v[jour] : {};
+    j[id] = Math.min(999, (j[id] || 0) + 1);
+    v[jour] = j;
+    Object.keys(v).sort().reverse().slice(TUILES_OUVERTES_JOURS).forEach(k => { delete v[k]; });
+    try{ localStorage.setItem(TUILES_OUVERTES_KEY, JSON.stringify(v)); }catch(e){}
+}
+document.addEventListener("click", ev => {
+    try{
+        const o = ev.target && ev.target.closest ? ev.target.closest("#home [data-orbid]") : null;
+        if(o) noterTuileOuverte(o.getAttribute("data-orbid"));
+    }catch(e){}
+}, true);
+
 function seanceCourante(){
     if(!seanceSuivie) return null;
     return lireSeances().find(s => s.d === seanceSuivie.d) || null;
@@ -42995,6 +43027,11 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem(SEANCES_KEY) || ""; }
                 catch(e){ return ""; }
             })(),
+            // Les ouvertures de tuiles, par jour (harmonisation des exercices, 7 nov. 2026) : des nombres seulement.
+            tuilesJson: (function(){
+                try{ return localStorage.getItem(TUILES_OUVERTES_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
             // Les phrases ratees a revoir (v827).
             phrasesRateesJson: (function(){
                 try{ return localStorage.getItem(PHRASES_RATEES_KEY) || ""; }
@@ -43538,6 +43575,25 @@ async function restoreProgressFromCloud(){
                && !localStorage.getItem(A1_VOYAGE_KEY)){
                 const d = JSON.parse(data.a1VoyageJson);
                 if(d && typeof d === "object") ecrireA1Voyage(d);
+            }
+        }catch(e){}
+        try{
+            // Les ouvertures de tuiles : par jour et par tuile, le plus grand des deux comptes.
+            if(typeof data.tuilesJson === "string" && data.tuilesJson){
+                const d = JSON.parse(data.tuilesJson);
+                if(d && typeof d === "object" && !Array.isArray(d)){
+                    const v = lireTuilesOuvertes();
+                    Object.keys(d).forEach(jour => {
+                        if(!/^\d{4}-\d{2}-\d{2}$/.test(jour) || !d[jour] || typeof d[jour] !== "object") return;
+                        const j = v[jour] = (v[jour] && typeof v[jour] === "object") ? v[jour] : {};
+                        Object.keys(d[jour]).forEach(id => {
+                            const n = Number(d[jour][id]) || 0;
+                            if(/^[A-Za-z0-9_]{1,40}$/.test(id) && n > (j[id] || 0)) j[id] = Math.min(999, n);
+                        });
+                    });
+                    Object.keys(v).sort().reverse().slice(TUILES_OUVERTES_JOURS).forEach(k => { delete v[k]; });
+                    localStorage.setItem(TUILES_OUVERTES_KEY, JSON.stringify(v));
+                }
             }
         }catch(e){}
         try{
@@ -53883,6 +53939,15 @@ const FLASHCARD_RETURN_SCREENS = {
 };
 
 function handleFlashcardBack(){
+    // Une serie de Tout le contenu (le lanceur commun) revient d'ou elle est partie, comme l'ecran d'exercices.
+    if(serieEnCartesActive()){
+        SERIE_CARTES = null;
+        try{ cacherCartePhrase(); }catch(e){}
+        try{ fermerFinCourte(); }catch(e){}
+        hideFlashcardEnd();
+        exerciseGoBack();
+        return;
+    }
     // Lot de l'evaluation (6 nov. 2026) : « ‹ » au milieu de la seance du jour ouvre d'abord l'ecran
     // court (« 12 sur 20 aujourd'hui », les fetes, les erreurs). « Terminer », ou un second « ‹ », sort.
     if(!sortieSansFinCourte && finCourteAMontrer()){ montrerFinCourte(); return; }
@@ -65321,7 +65386,8 @@ function montrerCartePhrase(item){
             const juste = dit === item.phrase.de;
             ligne.classList.add(juste ? "bon" : "faux");
             Array.from(ligne.children).forEach(x => { x.disabled = true; });
-            conclure(juste);
+            // Une carte d'une serie (le lanceur commun) a son explication, comme dans l'ecran d'exercices.
+            conclure(juste, null, item.ex ? texteTraduit(item.ex, "explanation") : undefined);
         });
         ordre.forEach(x => {
             const tuile = creer("button", "cp-tuile", x.m);
@@ -66148,6 +66214,12 @@ function palierApresPhrase(palier){
     if(palier > 0){ try{ triggerDailyGoalCelebration(palier); }catch(e){} }
 }
 function repondrePhrase(item, juste){
+    // Une carte d'une serie de Tout le contenu (le lanceur commun) : sa reponse va a la serie, pas au cours de la
+    // seance (noterGrammaireSeance), et compte dans l'objectif du jour (decision du 7 nov. 2026).
+    if(item && item.exo !== undefined){
+        try{ noterReponseSerieEnCartes(item, juste); }catch(e){}
+        try{ return recordDailyActivity(); }catch(e){ return 0; }
+    }
     try{
         const it = item.cible;
         if(item.forme === "gram" && juste !== null) noterGrammaireSeance(item.jeu, juste);
@@ -70211,7 +70283,8 @@ function ecrireFetesAttente(l){
 // Rend true si la fete est mise de cote (une seance du jour est ouverte), false sinon : elle s'affiche alors
 // tout de suite, comme avant.
 function mettreFeteDeCote(f){
-    if(!seanceSuivie) return false;
+    // Aussi pendant une serie de Tout le contenu en cartes : la fete attend son ecran de resultat (showResults).
+    if(!seanceSuivie && !serieEnCartesActive()) return false;
     const l = lireFetesAttente();
     if(!l.some(x => x && x.k === f.k && x.id === f.id)) l.push(Object.assign({ t: Date.now() }, f));
     ecrireFetesAttente(l);
@@ -71329,6 +71402,8 @@ function nextFlashcard(){
     carreauAuDepart(currentCards[currentFlashcard - 1]);
     updateOrbBadges();
     if(currentFlashcard >= currentCards.length){
+        // Une serie de Tout le contenu (le lanceur commun) finit sur son ecran de resultat.
+        if(serieEnCartesActive()){ finirSerieEnCartes(); return; }
         // La decouverte guidee (v700) garde la main a la fin de SON paquet :
         // ni rattrapage des cartes revenues, ni ecran « Paquet termine ».
         if(decouverteEnCours()){ decouverteCartesFaites(); return; }
@@ -72330,10 +72405,92 @@ async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
     currentExercise = 0;
     scoreValue = 0;
     exerciseResults = [];
+    // HARMONISATION, ETAPE 1 (decision du 7 nov. 2026, « Oui, harmonise ») : une serie de grammaire se fait dans
+    // le composant de la seance du jour -- les cartes-phrases de #flashcards --, avec tout ce qu'il a recu. La
+    // selection (le jeu, le bloc, le niveau, le melange, la version gratuite) reste celle d'ici : seul l'interieur
+    // de l'exercice change. Voir serieEnCartesPossible() et ouvrirSerieEnCartes().
+    if(serieEnCartesPossible(activeExercises, kickerKey)){ ouvrirSerieEnCartes(); return; }
     // Pendant la decouverte guidee (v700), la carte d'exercice est dans SON
     // ecran : en ouvrir un autre la ferait disparaitre.
     if(!decouverteEnCours()) showScreen("exercise");
     loadExercise();
+}
+
+// ============ LE LANCEUR COMMUN (harmonisation des exercices, 7 nov. 2026) ============
+// Decision de Jacques : « ce qu'on developpe dans la seance du jour, on doit s'assurer de le ramener dans tout le
+// contenu » ; audit https://claude.ai/artifact/9vfekiLPbBUPFRfi635bEi. Une serie ouverte depuis Tout le contenu
+// devient une liste de cartes-phrases, rendues par montrerCartePhrase() comme dans la seance : le rond a fleche,
+// les boutons en verre, le retour juste / faux et l'explication, les confettis, le +1, l'objectif du jour (il compte,
+// decision du 7 nov.). Une question a choix ou a saisie est une carte « gram » (la forme qui rend deja ces jeux
+// dans la seance) ; une phrase a remettre en ordre est une carte « ordre », ses leurres ecrits dans les donnees.
+// Les blocs de 10, l'ecran de resultat et « Revoir mes erreurs » restent ceux de la serie (showResults).
+// ⚠️ GARANTIE DE JACQUES : aucun choix de contenu, filtre ni categorie ne disparait. Cette fonction ne choisit rien :
+// elle prend la liste que la tuile a deja faite.
+// Les series qui gardent leur ecran a ce stade (les etapes suivantes les amenent une a une) : la decouverte guidee,
+// l'ancien module anglais, la dictee, les quiz d'articles et de terminaisons, Comprendre a l'oreille, Construire la
+// phrase, Ecrire, les feuilles de conjugaison (etape 2) et l'examen. Le japonais aussi : ses phrases n'ont pas
+// d'espaces, une carte « ordre » ne saurait pas les recoller.
+const SERIES_HORS_CARTES = ["dec_t3_titre", "kicker_english_artikel_exercise", "kicker_dictation_exercise",
+    "kicker_quiz_terminaisons", "kicker_quiz_article", "ecoute_phrase_topic", "kicker_tuiles", "kicker_schreiben",
+    "fc_kicker"];
+let SERIE_CARTES = null;   // la liste de cartes de la serie en cours, tant qu'elle est a l'ecran
+function serieEnCartesPossible(liste, kickerKey){
+    if(LANGUE_APPRISE === "ja") return false;
+    try{ if(decouverteEnCours()) return false; }catch(e){}
+    const k = String(kickerKey || "");
+    if(!k || SERIES_HORS_CARTES.indexOf(k) >= 0 || k.indexOf("kicker_pruefung") === 0) return false;
+    return Array.isArray(liste) && liste.length > 0 && liste.every(ex => ex && !ex.dictation && !ex.rattrapage && !ex.tolerant
+        && ((Array.isArray(ex.chunks) && ex.chunks.length > 1) || (ex.question && Array.isArray(ex.answers) && ex.answers.length)));
+}
+function serieEnCartesActive(){ return !!(SERIE_CARTES && currentCards === SERIE_CARTES); }
+function carteDeExercice(ex, i){
+    const base = { mode: "phrase", exo: i, ex: ex, jeu: revisionErreursEnCours ? null : exerciseJeuNom,
+                   cible: null, themeId: "exo", index: i, word: "" };
+    if(Array.isArray(ex.chunks) && ex.chunks.length > 1){
+        const mots = ex.chunks.map(String);
+        const leurres = (Array.isArray(ex.leurres) ? ex.leurres : []).map(String).filter(m => mots.indexOf(m) < 0).slice(0, 2);
+        return Object.assign(base, { forme: "ordre", vise: -1, intrus: leurres,
+            phrase: { de: mots.join(" "), sens: texteTraduit(ex, "translation") || "", mots: mots } });
+    }
+    return Object.assign(base, { forme: "gram" });
+}
+function ouvrirSerieEnCartes(){
+    try{ fermerFinCourte(); }catch(e){}
+    try{ hideFlashcardEnd(); }catch(e){}
+    const cartes = activeExercises.map(carteDeExercice);
+    SERIE_CARTES = cartes;
+    // Le titre de la serie, et « bloc 2 / 5 » au-dessus, comme les deux lignes de l'ecran d'exercices.
+    const bloc = (!revisionErreursEnCours && exerciseBlocTotal > 1)
+        ? tf("exo_bloc", { n: exerciseBlocNo + 1, total: exerciseBlocTotal }) : "";
+    currentTheme = { id: "exo_" + (exerciseJeuNom || exerciseKickerKey || "serie"), name: t(exerciseKickerKey) };
+    currentCards = cartes;
+    currentCardsFull = [];
+    currentFlashcard = 0;
+    retourSeanceAccueil = false;
+    panneauAvantFlashcards = null;
+    flashcardFromSearch = false;
+    sessionVues = 0; sessionSues = 0;
+    showScreen("flashcards");
+    setFlashHeader(exerciseKickerKey, null);
+    try{ document.getElementById("flashKicker").textContent = bloc; }catch(e){}
+    loadFlashcard();
+}
+// Une reponse d'une carte de serie : le score et la liste des fautes de showResults(), le bilan de la semaine
+// (comme checkAnswer, v920), et l'objectif du jour par le retour de repondrePhrase().
+function noterReponseSerieEnCartes(item, juste){
+    const ex = item.ex;
+    exerciseResults.push({ topic: ex.topic, correct: !!juste, ex: ex });
+    if(juste) scoreValue++;
+    else { try{ resetCombo(); }catch(e){} }
+    if(juste){ try{ logMasteryEvent(); }catch(e){} }
+    noterGrammaireBilan(revisionErreursEnCours ? null : exerciseJeuNom, !!juste);
+}
+// La derniere carte passee : l'ecran de resultat de la serie, avec ses blocs, ses fautes et les fetes.
+function finirSerieEnCartes(){
+    SERIE_CARTES = null;
+    try{ cacherCartePhrase(); }catch(e){}
+    currentExercise = activeExercises.length;
+    showResults();
 }
 
 // Le titre de l'ecran dit AUSSI ou l'on en est dans le jeu. Sans ca, « bloc
@@ -73034,6 +73191,8 @@ function showResults(){
         reprise.textContent = t(cleReprise());
     }
     majCartesRevision();
+    // Harmonisation des exercices : les fetes gagnees pendant la serie (badges, episode), comme a la fin de la seance.
+    try{ rendreFetes(document.getElementById("resultFetes"), prendreFetesAttente()); }catch(e){}
     // Version gratuite (v698) : « tu as fait les 3 exercices gratuits, sur 50 ».
     afficherFinGratuite("finGratuiteResult",
         apercuExos ? tf("gratuit_fin_exos", apercuExos) : null);
