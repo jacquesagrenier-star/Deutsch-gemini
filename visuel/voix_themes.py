@@ -36,31 +36,45 @@ THEMES_EN = []                                   # (ancien : l'anglais seul pour
 # de contraste et des pieges, qui partaient donc au telephone). Chaque SORTE de question (EX) est tiree TIRAGES fois,
 # une reponse touchee au hasard (juste ou fausse : les deux font dire quelque chose), et tout ce que Voix.dire recoit
 # est releve. `tard` : les phrases neuves des 20 % derniers tirages d'une sorte (0 = la sorte est epuisee).
+# PAR MOT (7 nov. 2026, la session de la coherence des personnages : les phrases du medecin de cuerpo, « Diego
+# arbeitet in dieser Praxis. Er ist Arzt. », n'etaient jamais relevees). L'app ne pose JAMAIS une question sans mot :
+# montrer() appelle EX[sorte](mot) pour chaque mot de la partie (Tirage.plan), dans les 22 pages. Appeler EX[sorte]()
+# a vide prenait les branches au hasard -- et ratait celles qui dependent du mot (w.doc, w.c...), tout en comptant
+# des phrases que l'app ne dit pas. On fait donc comme montrer() : chaque mot de motsDuTheme(), chaque sorte qui
+# l'accepte (EX rend faux sinon), TIRAGES / nombre de mots fois (au moins 20).
 TIRAGES = int(os.environ.get("TIRAGES_VOIX", "2000"))
 ENUMERER = """async (n) => {
   const dits = new Set(), orig = Voix.dire;
   Voix.dire = t => { if (t) dits.add(t); };
   const liste = Object.keys(EX).filter(x => typeof SORTES === 'undefined' || SORTES.includes(x));
+  const mots = typeof motsDuTheme === 'function' ? motsDuTheme() : [];
   const hasard = a => a[Math.floor(Math.random() * a.length)], sortes = {};
+  const k = Math.max(20, Math.ceil(n / Math.max(1, mots.length)));
+  const vider = () => { for (const v of ['motQ', 'vuQ', 'sensQ']) { try { eval(v + ' = null'); } catch (e) {} } };
   for (const t of liste) {
-    const avant = dits.size; let tard = 0;
-    for (let i = 0; i < n; i++) {
-      const s0 = dits.size;
-      try {
-        repondu = false; EX[t]();
-        const z = document.getElementById('zone');
-        const c = Array.from(z.querySelectorAll('#choix button'));
-        if (c.length) hasard(c).click();
-        else if (typeof testerOrdre === 'function' && z.querySelector('.ordre')) testerOrdre();
-        else { const a = Array.from(z.querySelectorAll('.arbre g.p:not(.ego), .rangee button, .corps .zone, .plan .cible'));
-               if (a.length) hasard(a).dispatchEvent(new MouseEvent('click', {bubbles: true})); }
-      } catch (e) {}
-      if (i >= n * 0.8) tard += dits.size - s0;
+    const avant = dits.size; let tard = 0, poses = 0, erreurs = 0;
+    try { sorteCourante = t; } catch (e) {}
+    for (const w of mots) {
+      for (let i = 0; i < k; i++) {
+        const s0 = dits.size;
+        try {
+          repondu = false; vider();
+          if (!EX[t](w)) break;
+          poses++;
+          const z = document.getElementById('zone');
+          const c = Array.from(z.querySelectorAll('#choix button'));
+          if (c.length) hasard(c).click();
+          else if (typeof testerOrdre === 'function' && z.querySelector('.ordre')) testerOrdre();
+          else { const a = Array.from(z.querySelectorAll('.arbre g.p:not(.ego), .rangee button, .corps .zone, .plan .cible'));
+                 if (a.length) hasard(a).dispatchEvent(new MouseEvent('click', {bubbles: true})); }
+        } catch (e) { erreurs++; break; }
+        if (i >= k * 0.8) tard += dits.size - s0;
+      }
     }
-    sortes[t] = {phrases: dits.size - avant, tard};
+    sortes[t] = {phrases: dits.size - avant, tard, poses, erreurs};
   }
   Voix.dire = orig;
-  return {dits: [...dits], sortes};
+  return {dits: [...dits], sortes, mots: mots.length};
 }"""
 CAS = {"es": ("es", "es"), "latam": ("es", "latam"), "de": ("de", ""), "en": ("en", "us")}       # cle de voix.json -> (apprendre, variante)
 DOSSIER = {"es": "es-es", "latam": "es-419", "de": "", "en": "en-us"}
