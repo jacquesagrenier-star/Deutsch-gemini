@@ -66872,7 +66872,7 @@ function planSeanceDuJour(){
     }catch(e){}
     let scene = null;
     try{
-        if(total >= 6){
+        if(total >= 2){   // v1127 : le seuil de preparerArretScene dans la seance du jour
             if(!av && themeDuJour()) scene = "seance_plan_theme";
             else if(arretSceneActif()) scene = "seance_plan_scene";
         }
