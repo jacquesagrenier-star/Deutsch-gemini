@@ -23,7 +23,7 @@ import json, math, os, sys
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(ICI)
 sys.path.insert(0, ICI)
-from figures import DESIGNATIONS, V_USUELLE, FIGURES, GROUPES, TEXTES_DISTANCE
+from figures import DESIGNATIONS, V_USUELLE, FIGURES, GROUPES, TEXTES_DISTANCE, noms_sans_nom
 
 AL_PAR_PC = 3.261563777
 BOITE = (375, 372)
@@ -129,7 +129,12 @@ def construire():
             e = E[n]
             bv = (e["B"] - e["V"]) if (e["B"] is not None and not e["v_usuelle"]) else None
             al, aff, env = distance(e)
-            et.append(dict(nom=n, x=x, y=y, r=round(rayon(e["V"], mmin), 2), lum=round(luminosite(e["V"], mmin), 2),
+            ns = noms_sans_nom(n)
+            if ns:
+                extra = dict(noms=ns)
+            else:
+                extra = {}
+            et.append(dict(nom=n, **extra, x=x, y=y, r=round(rayon(e["V"], mmin), 2), lum=round(luminosite(e["V"], mmin), 2),
                            couleur=teinte(bv), al=round(al, 1), affiche=aff, environ=env,
                            source=dict(simbad=e["simbad"], ra=e["ra"], de=e["de"], V=e["V"], B=e["B"],
                                        parallaxe_mas=e["plx"], erreur_mas=e["err"], reference=e["ref"],
@@ -142,6 +147,7 @@ def construire():
             "les mesures dans etoiles/sources/ (SIMBAD, CDS Strasbourg, relevé du 7 nov. 2026).",
             "x, y : la position dans une boîte de 375 x 372 px ; r : le rayon du cœur de l'étoile ; lum : son éclat (0,55 à 1) ; "
             "couleur : sa teinte selon B-V. al : la distance en années-lumière ; affiche : ce qu'on écrit ; environ : arrondie.",
+            "noms : le nom affiché d'une étoile sans nom propre, par langue d'interface (« Tau des Gémeaux », « Tau Geminorum »).",
             "Chaque étoile garde sa source : la désignation SIMBAD, la parallaxe, son erreur et sa référence.",
         ],
         "boite": list(BOITE),

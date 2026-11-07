@@ -92,6 +92,60 @@ FIGURES = {
    noms=dict(fr="la Croix du Sud", de="das Kreuz des Südens", es="la Cruz del Sur", en="the Southern Cross")),
 }
 
+# LES ETOILES SANS NOM PROPRE (Jacques, 7 nov. : « c'est bon pour ce que tu proposes ») : la lettre grecque en
+# toutes lettres et la constellation, selon l'usage de chaque langue d'interface -- en francais la lettre et le
+# nom (« Tau des Gemeaux ») ; en anglais, allemand, espagnol, portugais, polonais et turc le genitif latin
+# (« Tau Geminorum ») ; en russe et en ukrainien la lettre et le genitif de la langue (« Тау Близнецов »).
+# L'arabe et le persan prennent pour l'instant la forme latine. Tout est a relire par un natif
+# (retours/A-RELIRE-ETOILES.md).
+SANS_NOM = {  # notre nom -> (la lettre, l'exposant, la constellation)
+ "tau Gem": ("tau", "", "gemeaux"), "iota Gem": ("iota", "", "gemeaux"), "kappa Gem": ("kappa", "", "gemeaux"),
+ "eps Lyr": ("epsilon", "", "lyre"), "zeta Lyr": ("zeta", "", "lyre"), "delta Lyr": ("delta", "", "lyre"),
+ "eta Cyg": ("eta", "", "cygne"),
+ "beta Sge": ("beta", "", "fleche"), "delta Sge": ("delta", "", "fleche"), "gamma Sge": ("gamma", "", "fleche"),
+ "theta2 Tau": ("theta", "²", "taureau"), "delta1 Tau": ("delta", "¹", "taureau"),
+ "theta CrB": ("theta", "", "couronne"), "gamma CrB": ("gamma", "", "couronne"), "delta CrB": ("delta", "", "couronne"),
+ "eps CrB": ("epsilon", "", "couronne"),
+ "iota Cep": ("iota", "", "cephee"), "zeta Cep": ("zeta", "", "cephee"),
+ "gamma Del": ("gamma", "", "dauphin"), "delta Del": ("delta", "", "dauphin"),
+ "delta Cru": ("delta", "", "croix"),
+}
+LETTRES = {
+ "fr": dict(beta="Bêta", gamma="Gamma", delta="Delta", epsilon="Epsilon", zeta="Zêta", eta="Êta", theta="Thêta",
+            iota="Iota", kappa="Kappa", tau="Tau"),
+ "latin": dict(beta="Beta", gamma="Gamma", delta="Delta", epsilon="Epsilon", zeta="Zeta", eta="Eta", theta="Theta",
+               iota="Iota", kappa="Kappa", tau="Tau"),
+ "es": dict(beta="Beta", gamma="Gamma", delta="Delta", epsilon="Épsilon", zeta="Zeta", eta="Eta", theta="Theta",
+            iota="Iota", kappa="Kappa", tau="Tau"),
+ "ru": dict(beta="Бета", gamma="Гамма", delta="Дельта", epsilon="Эпсилон", zeta="Дзета", eta="Эта", theta="Тета",
+            iota="Йота", kappa="Каппа", tau="Тау"),
+ "uk": dict(beta="Бета", gamma="Гамма", delta="Дельта", epsilon="Епсилон", zeta="Дзета", eta="Ета", theta="Тета",
+            iota="Йота", kappa="Каппа", tau="Тау"),
+}
+GENITIFS = {
+ "fr": dict(gemeaux="des Gémeaux", lyre="de la Lyre", cygne="du Cygne", fleche="de la Flèche", taureau="du Taureau",
+            couronne="de la Couronne boréale", cephee="de Céphée", dauphin="du Dauphin", croix="de la Croix du Sud"),
+ "latin": dict(gemeaux="Geminorum", lyre="Lyrae", cygne="Cygni", fleche="Sagittae", taureau="Tauri",
+               couronne="Coronae Borealis", cephee="Cephei", dauphin="Delphini", croix="Crucis"),
+ "ru": dict(gemeaux="Близнецов", lyre="Лиры", cygne="Лебедя", fleche="Стрелы", taureau="Тельца",
+            couronne="Северной Короны", cephee="Цефея", dauphin="Дельфина", croix="Южного Креста"),
+ "uk": dict(gemeaux="Близнят", lyre="Ліри", cygne="Лебедя", fleche="Стріли", taureau="Тельця",
+            couronne="Північної Корони", cephee="Цефея", dauphin="Дельфіна", croix="Південного Хреста"),
+}
+# langue d'interface -> (ses lettres, ses genitifs)
+USAGE_SANS_NOM = {"fr": ("fr", "fr"), "en": ("latin", "latin"), "de": ("latin", "latin"), "es": ("es", "latin"),
+                  "pt": ("latin", "latin"), "pl": ("latin", "latin"), "tr": ("latin", "latin"), "ru": ("ru", "ru"),
+                  "uk": ("uk", "uk"), "ar": ("latin", "latin"), "fa": ("latin", "latin")}
+
+
+def noms_sans_nom(nom):
+    """Le nom affiche d'une etoile sans nom propre, par langue d'interface (None si elle a un nom propre)."""
+    if nom not in SANS_NOM:
+        return None
+    lettre, exp, cons = SANS_NOM[nom]
+    return {lg: LETTRES[l][lettre] + exp + " " + GENITIFS[g][cons] for lg, (l, g) in USAGE_SANS_NOM.items()}
+
+
 # Les groupes d'etapes de l'app qui ont deja leur figure (A1 voyage : les 12 escales, puis la suite de 10 etapes).
 # Les groupes A2-C1 (etapes.json) les recevront quand l'app suivra leurs etapes.
 GROUPES = {"a1_escales": "gemeaux", "a1_suite": "orion", "premiers_pas": "ourse"}

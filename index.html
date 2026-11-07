@@ -59624,6 +59624,9 @@ function phraseDistanceEtoile(e){
     return f.replace("{n}", n);
 }
 function nomFigure(c, lg){ return (c.noms && (c.noms[lg] || c.noms.en || c.noms.fr)) || ""; }
+// Une etoile sans nom propre : la lettre grecque et la constellation, selon l'usage de la langue (« Tau des
+// Gemeaux », « Tau Geminorum ») ; voir SANS_NOM dans etoiles/outils/figures.py.
+function nomEtoileAffiche(e, lg){ return (e.noms && (e.noms[lg] || e.noms.en)) || e.nom; }
 function etincelleChemin(x, y, R){
     const ri = R * .3, f = v => v.toFixed(1);
     return "M" + f(x) + " " + f(y - R) + "L" + f(x + ri) + " " + f(y - ri) + "L" + f(x + R) + " " + f(y) + "L" + f(x + ri) + " " + f(y + ri)
@@ -59787,6 +59790,7 @@ async function feteEtoile(et){
     const n = et.n, total = c.etoiles.length, fin = n === total - 1;
     const etoile = c.etoiles[n];
     const lg = getUiLang();
+    const nomEtoile = nomEtoileAffiche(etoile, lg);
     const distance = phraseDistanceEtoile(etoile);
     const voile = document.createElement("div");
     voile.className = "fete-etoile" + (fin ? " fe-fin" : "");
@@ -59795,7 +59799,7 @@ async function feteEtoile(et){
     voile.setAttribute("aria-label", t("etoile_aria"));
     const Wp = Math.max(320, window.innerWidth || 375), Hp = Math.max(480, window.innerHeight || 720);
     voile.innerHTML = fondEtoilesFete(Wp, Hp)
-        + '<div class="fe-scene"><div class="fe-cst">' + svgConstellationFete(c, n, fin, etoile.nom, distance) + '</div>'
+        + '<div class="fe-scene"><div class="fe-cst">' + svgConstellationFete(c, n, fin, nomEtoile, distance) + '</div>'
         + '<p class="fe-cnom"></p><p class="fe-compte"><svg class="fe-cp-et" viewBox="0 0 20 20" aria-hidden="true">'
         + '<path d="M10 0L12.6 7.4L20 10L12.6 12.6L10 20L7.4 12.6L0 10L7.4 7.4Z"/></svg><span class="fe-cp-n"></span></p>'
         + '<div class="fe-txt"><p class="fe-sur"></p><p class="fe-titre"></p><p class="fe-ligne"></p></div>'
@@ -59807,7 +59811,7 @@ async function feteEtoile(et){
     if(fin && nomAppris && nomAppris !== nomUi){ const i = document.createElement("i"); i.textContent = " · " + nomAppris; q(".fe-cnom").appendChild(i); }
     q(".fe-cp-n").textContent = (n + 1) + " / " + total;
     q(".fe-compte").setAttribute("aria-label", tf("etoile_compte", { n: n + 1, t: total }));
-    const nomEt = q(".fe-ne-nom"); if(nomEt) nomEt.textContent = etoile.nom;
+    const nomEt = q(".fe-ne-nom"); if(nomEt) nomEt.textContent = nomEtoile;
     const distEt = q(".fe-ne-dist"); if(distEt) distEt.textContent = distance;
     const groupe = t(et.g === "a1_suite" ? "av_moitie_2" : "av_moitie_1");
     q(".fe-sur").textContent = fin ? groupe + " · " + t("etoile_groupe_complet") : groupe;
