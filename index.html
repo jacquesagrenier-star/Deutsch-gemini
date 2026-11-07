@@ -64129,6 +64129,9 @@ function ecartDictee(saisi, attendu){
 //    (« computa**d**ora ») ;
 //  - un mot de quatre lettres ou plus a UNE lettre pres compte juste : « Presque ! », en orange, avec la correction.
 //    Moins de quatre lettres, non : « la » et « le », « con » et « son » sont d'autres mots.
+//    Et jamais quand ce qui est tape est un AUTRE vrai mot du corpus (« cosa » pour « casa ») : la meme garde que le
+//    rappel actif. En allemand, un Umlaut oublie qui donne un autre mot (« Mutter » pour « Mütter ») est faux aussi ;
+//    ailleurs, les accents ne comptent toujours pas.
 // Casse, accents, ß et ponctuation ne comptent pas, comme partout (normaliserSaisie). Controle : tests/dictee_ecart.js.
 const DICTEE_MOT_TOLERE = 4;   // longueur a partir de laquelle une lettre de travers est pardonnee
 function distanceMots(a, b){
@@ -64141,8 +64144,51 @@ function distanceMots(a, b){
     }
     return prec[b.length];
 }
+// La forme allemande d'un mot, Umlauts gardes : minuscules, ß -> ss, sans la ponctuation.
+function formeUmlaut(m){
+    return String(m || "").toLowerCase().replace(/\u00df/g, "ss").replace(/[^a-z\u00e0-\u00ff]/g, "");
+}
+// Les mots du corpus (quatre lettres ou plus), pour la garde de la dictee : { plies, umlauts }. Calcules une fois,
+// des que les themes, les verbes et les adjectifs sont la.
+let MOTS_CORPUS_DICTEE = null;
+function motsDuCorpusDictee(){
+    if(MOTS_CORPUS_DICTEE) return MOTS_CORPUS_DICTEE;
+    const plies = new Set(), umlauts = new Set();
+    const ajouter = txt => String(txt || "").split(/[\s\/,;()]+/).forEach(m => {
+        const p = normaliserSaisie(m);
+        if(p.length < DICTEE_MOT_TOLERE || p.indexOf(" ") >= 0) return;
+        plies.add(p);
+        umlauts.add(formeUmlaut(m));
+    });
+    try{
+        themesComptes().forEach(th => Object.keys(th.levels || {}).forEach(n => {
+            const lv = th.levels[n] || {};
+            (lv.words || []).forEach(w => { if(Array.isArray(w)){ ajouter(w[0]); ajouter(w[2]); ajouter(w[8]); } });
+            (lv.adjektive || []).forEach(a => { if(Array.isArray(a)) ajouter(a[0]); });
+            (lv.verben || []).forEach(v => { if(v) ajouter(v.infinitif); });
+        }));
+    }catch(e){}
+    try{
+        (verbeTheme.words || []).forEach(v => {
+            if(!v) return;
+            ajouter(v.infinitif);
+            ["praesens", "praeteritum"].forEach(k => {
+                const x = v[k];
+                if(x && typeof x === "object") Object.values(x).forEach(ajouter); else ajouter(x);
+            });
+        });
+    }catch(e){}
+    try{ (adjektiveTheme.words || []).forEach(a => { if(Array.isArray(a)) ajouter(a[0]); }); }catch(e){}
+    try{ [praepTheme, adverbienTheme, konjunktionenTheme].forEach(th => ((th && th.words) || []).forEach(w => { if(Array.isArray(w)) ajouter(w[0]); })); }catch(e){}
+    const res = { plies: plies, umlauts: umlauts };
+    if(plies.size > 200) MOTS_CORPUS_DICTEE = res;
+    return res;
+}
 // Les paires, dans l'ordre : { t: "juste" | "presque" | "faux" | "trop" | "manque", s: mot ecrit, a: mot attendu }.
-function alignerDictee(saisi, attendu){
+// opts : { autres: { plies, umlauts } (motsDuCorpusDictee), langue: "de" | "es" ... }.
+function alignerDictee(saisi, attendu, opts){
+    opts = opts || {};
+    const autres = opts.autres || null;
     const a = String(saisi || "").trim().split(/\s+/).filter(m => normaliserSaisie(m));
     const b = String(attendu || "").trim().split(/\s+/).filter(m => normaliserSaisie(m));
     const na = a.map(normaliserSaisie), nb = b.map(normaliserSaisie);
@@ -64161,9 +64207,17 @@ function alignerDictee(saisi, attendu){
     while(i > 0 || j > 0){
         if(i > 0 && j > 0 && D[i][j] === D[i - 1][j - 1] + cout(i - 1, j - 1)){
             const x = na[i - 1], y = nb[j - 1];
-            const tp = x === y ? "juste"
+            let tp = x === y ? "juste"
                 : (x.length >= DICTEE_MOT_TOLERE && y.length >= DICTEE_MOT_TOLERE && distanceMots(x, y) <= 1) ? "presque" : "faux";
-            paires.push({ t: tp, s: a[i - 1], a: b[j - 1] }); i--; j--;
+            let umlaut = false;
+            // Un autre vrai mot n'est pas une faute de frappe (« cosa » pour « casa »).
+            if(tp === "presque" && autres && autres.plies && autres.plies.has(x)) tp = "faux";
+            // En allemand, l'Umlaut oublie qui fait un autre mot (« Mutter » pour « Mütter »).
+            if(tp === "juste" && opts.langue === "de" && autres && autres.umlauts){
+                const fs = formeUmlaut(a[i - 1]), fa = formeUmlaut(b[j - 1]);
+                if(fs !== fa && autres.umlauts.has(fs)){ tp = "faux"; umlaut = true; }
+            }
+            paires.push({ t: tp, s: a[i - 1], a: b[j - 1], umlaut: umlaut }); i--; j--;
         } else if(j > 0 && (i === 0 || D[i][j] === D[i][j - 1] + 2)){
             paires.push({ t: "manque", s: "", a: b[j - 1] }); j--;
         } else {
@@ -64176,8 +64230,9 @@ function alignerDictee(saisi, attendu){
 }
 // Le mot attendu, les lettres a corriger entourees de <b> : celles qui manquent ou different dans le mot ecrit.
 // Comparees sans casse ni accents (une lettre a la fois), comme la saisie.
-function lettresCorrigees(ecrit, attendu){
-    const base = c => normaliserSaisie(c) || c.toLowerCase();
+function lettresCorrigees(ecrit, attendu, umlaut){
+    // `umlaut` : la faute est un Umlaut (« Mutter » pour « Mütter ») -- ä, ö et ü comptent alors comme des lettres.
+    const base = c => (umlaut && /[\u00e4\u00f6\u00fc\u00c4\u00d6\u00dc]/.test(c)) ? c.toLowerCase() : (normaliserSaisie(c) || c.toLowerCase());
     const A = Array.from(String(ecrit || "")), B = Array.from(String(attendu || ""));
     const ba = A.map(base), bb = B.map(base);
     const D = Array.from({ length: A.length + 1 }, (_, i) => { const r = new Array(B.length + 1).fill(0); r[0] = i; return r; });
@@ -64210,7 +64265,7 @@ function rendreDictee(al, langue){
     al.paires.forEach(p => {
         if(p.t === "juste"){ ecrit.push(echapperHtml(p.s)); juste.push(echapperHtml(p.a)); }
         else if(p.t === "presque"){ ecrit.push('<span class="cp-dic-presque">' + echapperHtml(p.s) + "</span>"); juste.push(lettresCorrigees(p.s, p.a)); }
-        else if(p.t === "faux"){ ecrit.push('<span class="cp-faute">' + echapperHtml(p.s) + "</span>"); juste.push(lettresCorrigees(p.s, p.a)); }
+        else if(p.t === "faux"){ ecrit.push('<span class="cp-faute">' + echapperHtml(p.s) + "</span>"); juste.push(lettresCorrigees(p.s, p.a, p.umlaut)); }
         else if(p.t === "trop"){ ecrit.push('<span class="cp-faute">' + echapperHtml(p.s) + "</span>"); }
         else { ecrit.push('<span class="cp-faute cp-dic-manque">…</span>'); juste.push("<b>" + echapperHtml(p.a) + "</b>"); }
     });
@@ -65361,10 +65416,14 @@ function montrerCartePhrase(item){
             const na = normaliserSaisie(attendu);
             // 7 nov. 2026 : la phrase se compare mot par mot (alignerDictee) ; un mot de quatre lettres ou plus a une
             // lettre pres compte juste. v826 : une faute de frappe dans une phrase ne la fait pas rater.
-            const al = motSeul ? null : alignerDictee(v, attendu);
-            const presque = !motSeul && n !== na && ((al && al.juste) || (na.length >= 20 && ecartLettres(n, na) <= 1));
+            const al = motSeul ? null : alignerDictee(v, attendu, { autres: motsDuCorpusDictee(), langue: LANGUE_APPRISE });
+            // Le repli de la v826 (une lettre sur toute la phrase) ne vaut que si aucun mot n'est un autre vrai mot.
+            const presque = !motSeul && n !== na && ((al && al.juste)
+                || (al && !al.paires.some(p => p.t === "faux") && na.length >= 20 && ecartLettres(n, na) <= 1));
+            // Egal une fois plie, mais un Umlaut oublie qui fait un autre mot (« Mutter » / « Mütter ») : faux.
+            const exact = n === na && !(al && al.paires.some(p => p.t === "faux"));
             // Un nom s'accepte avec ou sans son article.
-            const juste = n === na || presque
+            const juste = exact || presque
                 || (motSeul && item.cible.mode === "nomen" && n === normaliserSaisie(w[0]));
             champ.disabled = true;
             verif.classList.add("hidden");
@@ -65379,11 +65438,11 @@ function montrerCartePhrase(item){
             conclure(juste, sensMot ? attendu + " (" + sensMot + ")" : attendu, presque ? echapperHtml(t("cp_presque")) : "");
             // La dictee d'une phrase, pas tout a fait juste : le retour mot par mot (rendreDictee), sans le rouge sur
             // ce qui est juste. « Presque ! » en orange quand elle compte juste.
-            if(!motSeul && n !== na){
+            if(!motSeul && !exact){
                 retour.className = "cp-retour " + (presque ? "presque" : "dictee-faux");
                 retour.innerHTML = (presque ? '<p class="cp-dic-titre">' + echapperHtml(t("or_presque")) + '</p><p class="cp-dic-sous">'
                                               + echapperHtml(t("cp_presque")) + "</p>" : "")
-                    + rendreDictee(al || alignerDictee(v, attendu), langueDe);
+                    + rendreDictee(al, langueDe);
             }
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });

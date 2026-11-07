@@ -30,7 +30,7 @@ const constante = (nom) => {
     return m[0];
 };
 const code = [constante("DICTEE_MOT_TOLERE"), "const t = k => k;",
-    ...["normaliserSaisie", "echapperHtml", "distanceMots", "alignerDictee", "lettresCorrigees"].map(extraire),
+    ...["normaliserSaisie", "echapperHtml", "distanceMots", "formeUmlaut", "alignerDictee", "lettresCorrigees"].map(extraire),
     "module.exports = { alignerDictee, lettresCorrigees };"].join("\n");
 const m = { exports: {} };
 new Function("module", code)(m);
@@ -78,6 +78,19 @@ al = alignerDictee("ich weiss nicht, wo die strasse ist", "Ich weiß nicht, wo d
 verifier("allemand : ß et majuscules ignores, tout juste", types(al) === "juste juste juste juste juste juste juste", types(al));
 al = alignerDictee("Ich habe heute keine Zeit", "Ich habe heute keine Zeit mehr.");
 verifier("allemand : mot oublie en fin de phrase", types(al) === "juste juste juste juste juste manque", types(al));
+
+// 7. La garde du rappel actif : un autre vrai mot du corpus n'est pas une faute de frappe.
+const CORPUS = { plies: new Set(["casa", "cosa", "mesa", "mutter"]), umlauts: new Set(["casa", "cosa", "mesa", "mutter", "mütter"]) };
+al = alignerDictee("Trabajo con la computadora en cosa", ATTENDU, { autres: CORPUS, langue: "es" });
+verifier("« cosa » pour « casa » : un autre vrai mot, faux", types(al) === "juste juste juste juste juste faux" && !al.juste, types(al));
+al = alignerDictee("Trabajo con la computatora en casa", ATTENDU, { autres: CORPUS, langue: "es" });
+verifier("« computatora » n'est pas un mot du corpus : toujours « Presque ! »", al.juste && al.presque, types(al));
+al = alignerDictee("Die Mutter sind hier", "Die Mütter sind hier.", { autres: CORPUS, langue: "de" });
+verifier("« Mutter » pour « Mütter » (un autre mot) : faux, le ü en gras",
+    types(al) === "juste faux juste juste" && !al.juste && lettresCorrigees("Mutter", "Mütter", al.paires[1].umlaut) === "M<b>ü</b>tter",
+    types(al) + " " + lettresCorrigees("Mutter", "Mütter", al.paires[1].umlaut));
+al = alignerDictee("Ich bin mude", "Ich bin müde.", { autres: CORPUS, langue: "de" });
+verifier("« mude » pour « müde » (pas un autre mot) : l'accent ne compte pas, juste", types(al) === "juste juste juste" && al.juste, types(al));
 
 console.log(echecs ? "\n" + echecs + " echec(s)." : "\nTout passe.");
 process.exit(echecs ? 1 : 0);
