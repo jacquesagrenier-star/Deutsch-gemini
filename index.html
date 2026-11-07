@@ -59397,6 +59397,7 @@ const SUPPLEMENT_SEANCE = 20;
 // ⚠️ La scene ET le theme dans chaque lecon attendent le correctif de l'insertion (ORDRE_PARTS,
 // insererThemeIllustre) de la session du plan de seance : cette version n'y touche pas.
 const TAILLE_LECON = 20;
+const THEME_COURT_NB = 4;   // le theme court de la lecon : quatre questions (parametre nb des pages de themes)
 const SEANCES_LEGERES_KEY = PREFIXE_STOCKAGE + "seancesLegeres";
 function seanceLegere(){
     try{ return essaiActif("seance_legere") && !seanceJaponaise(); }catch(e){ return false; }
@@ -66967,8 +66968,16 @@ async function preparerArretScene(seance, sceneImposee, enPremiersPas){
         let p = null;
         try{ p = profilActif(); }catch(e){}
         const ecart = (p && p.f === "images") ? 4 : (p && (p.f === "oreille" || p.f === "regles")) ? 12 : 8;
-        const nb = Math.max(1, Math.floor(seance.length / ecart));
-        const prevue = sceneImposee || sceneDuJour();
+        // Essai « seance_legere » : UNE scene par lecon (le theme court suit), et « Encore une seance »
+        // prend une autre scene que la precedente (la N-ieme suivante, N = seances finies aujourd'hui).
+        const legere = !enPremiersPas && seanceLegere();
+        const nb = legere ? 1 : Math.max(1, Math.floor(seance.length / ecart));
+        let prevue = sceneImposee || sceneDuJour();
+        // (la scene imposee d'une etape de l'A1 garde la premiere seance ; les suivantes changent de lieu)
+        if(legere){
+            const n = seancesFiniesAujourdhui();
+            for(let k = 0; k < n; k++) prevue = autreSceneQue(prevue) || prevue;
+        }
         const candidates = [prevue];
         const ajouter = x => { if(x && !candidates.some(c => c.nom === x.nom)) candidates.push(x); };
         ajouter(sceneDuJour());
@@ -67051,6 +67060,13 @@ function ouvrirArretScene(item){
 function themeDuJour(){
     if(LANGUE_APPRISE !== "es" && LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "en") return null;
     const jour = Math.floor(Date.now() / 86400000);
+    // Essai « seance_legere » (decision d9d9dbd) : un theme court CHAQUE jour, a tous les niveaux, en plus de
+    // la scene ; « Encore une seance » prend le theme suivant (un par seance finie aujourd'hui).
+    if(seanceLegere()){
+        try{ if(premiersPasEnCours()) return null; }catch(e){}
+        const ouverts = themesIllustresOuverts();
+        return ouverts.length ? ouverts[(jour + seancesFiniesAujourdhui()) % ouverts.length] : null;
+    }
     if(jour % 3 !== 0) return null;
     try{ if(premiersPasEnCours()) return null; }catch(e){}
     try{ if(jourDApprentissage() <= 7 && nbMotsVus() < 100) return null; }catch(e){}
@@ -67066,6 +67082,8 @@ function insererThemeIllustre(seance){
                    theme: nom, phrase: null, word: "" };
     const sortie = seance.slice();
     const i = sortie.findIndex(c => c && c.forme === "scene_arret");
+    // Essai « seance_legere » : la scene ET le theme -- le theme juste apres la scene, dans sa partie a lui.
+    if(i >= 0 && seanceLegere()){ sortie.splice(i + 1, 0, item); return sortie; }
     if(i >= 0) sortie[i] = item;                       // a la place de la scene
     else sortie.splice(Math.max(2, Math.round(sortie.length / 2)), 0, item);   // pas de scene ce jour-la : au milieu
     return sortie;
@@ -67077,7 +67095,7 @@ function ouvrirArretTheme(item){
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t(th.titre);
-        cadre.src = baseScenes() + th.page + "?seance=1&apprendre=" + apprendreThemeIllustre()
+        cadre.src = baseScenes() + th.page + "?seance=1" + (seanceLegere() ? "&nb=" + THEME_COURT_NB : "") + "&apprendre=" + apprendreThemeIllustre()
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
                   + voixThemeIllustre() + "&t=" + Date.now();
@@ -67203,7 +67221,8 @@ async function ouvrirSeanceDuJour(sansScene){
     // v862 : pendant les escales, la scene de l'escale.
     try{ if(LANGUE_APPRISE !== "ja") seance = await preparerArretScene(seance, av ? av.scene : null); }catch(e){}
     // 3 nov. 2026 : un jour sur trois, un theme illustre a la place de cet arret (themeDuJour).
-    try{ if(!av) seance = insererThemeIllustre(seance); }catch(e){}
+    // Essai « seance_legere » : le theme court tous les jours, A1 voyage compris (« a tous les niveaux »).
+    try{ if(!av || seanceLegere()) seance = insererThemeIllustre(seance); }catch(e){}
     try{ if(av) seance = insererA1Voyage(seance, av); }catch(e){}
     try{ if(fc && seance.length) seance = insererFeuille(seance, fc, tout); }catch(e){}
     // v879 : les reperes (jours, mois, nombres), tot dans l'A1.
@@ -67289,13 +67308,18 @@ function glisserPhrasesPlusTard(paquet, tout){
 //   (planSeanceDuJour) au lieu de « mots, grammaire et scenes ».
 // Les cartes-phrases vont dans la partie du mot qu'elles font travailler s'il est
 // dans la seance, sinon dans les revisions : elles restent APRES ce mot.
-const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "scene", "son", "revisions", "fin"];
+const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "scene", "theme", "son", "revisions", "fin"];
+// Essai « seance_legere » (decision d9d9dbd) : la lecon dans l'ordre de la maquette -- « Revisions · Mots ·
+// Grammaire · Scene · Theme ». Hors essai, aucune carte ne va dans « theme » : ORDRE_PARTS ne change rien.
+const ORDRE_PARTS_LEGERE = ["revisions", "lieu", "neufs", "feuille", "reperes", "scene", "theme", "son", "fin"];
+function ordreParts(){ return seanceLegere() ? ORDRE_PARTS_LEGERE : ORDRE_PARTS; }
 let SEANCE_PARTS = null;           // { paquet, parts (Map carte -> partie), themeId, niveau, etape }
 const PASSAGES_VUS = new Set();    // les parties dont l'ecran de passage a ete montre (v1122 : par partie)
 function partDeCarteSeance(c, av, parCle){
     if(!c) return "revisions";
     const forme = c.forme || "";
     if(c.av) return /^(av_escale_fin|av_jalon|av_fin_a1)$/.test(forme) ? "fin" : "lieu";
+    if(forme === "theme_arret" && seanceLegere()) return "theme";
     if(forme === "scene_arret" || forme === "theme_arret") return "scene";
     const tid = String(c.themeId || "");
     if(tid.indexOf("son_") === 0) return "son";
@@ -67319,7 +67343,8 @@ function regrouperSeance(seance, av){
         parCle.set(c.themeId + ":" + c.index, p);
     });
     seance.forEach(c => { if(c && c.mode === "phrase") parts.set(c, partDeCarteSeance(c, av, parCle)); });
-    const rang = c => { const i = ORDRE_PARTS.indexOf(parts.get(c)); return i < 0 ? ORDRE_PARTS.length : i; };
+    const ordre = ordreParts();
+    const rang = c => { const i = ordre.indexOf(parts.get(c)); return i < 0 ? ordre.length : i; };
     const cartes = seance.map((c, i) => [c, i]).sort((a, b) => rang(a[0]) - rang(b[0]) || a[1] - b[1]).map(x => x[0]);
     return { cartes: espacerPhrasesEtape(cartes, parts), parts: parts };
 }

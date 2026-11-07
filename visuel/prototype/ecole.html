@@ -139,7 +139,7 @@ const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
-const NB = Q.get("seance") === "1" ? 6 : 20;
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(6, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le theme court de la seance legere (4 questions), essai seance_legere
 Zoom.init({direct: "img.photo, .fiche img", loupe: ".rangee button", langue: LANGUE});
 
 const TEXTES = {
