@@ -43011,6 +43011,14 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem(NIVEAU_SEANCE_KEY) || ""; }
                 catch(e){ return ""; }
             })(),
+            // 7 nov. 2026 (retour d'une testeuse : « Recommencer » a la fin de Premiers pas, et la seance
+            // restait en A1) : l'etat de Premiers pas ne quittait pas l'appareil, alors que le niveau A1 pose
+            // par « Continuer » partait dans le nuage. Recommencer sur le lien, puis ouvrir l'app (ou un
+            // appareil neuf) : l'A1. Relu a la restauration, le plus recent l'emporte (champ « t »).
+            premiersPasJson: (function(){
+                try{ return localStorage.getItem(PREMIERS_PAS_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
             // Android, iPhone, iPad ou ordinateur, rien de plus (v686) : pour
             // savoir qui peut tester sur Google Play. Voir typeAppareil().
             appareil: typeAppareil(),
@@ -43572,6 +43580,20 @@ async function restoreProgressFromCloud(){
             if(typeof data.niveauSeance === "string" && NIVEAUX_CECR.indexOf(data.niveauSeance) >= 0
                && localStorage.getItem(NIVEAU_SEANCE_KEY) === null){
                 fixerNiveauSeance(data.niveauSeance);
+            }
+        }catch(e){}
+        try{
+            // Premiers pas (7 nov. 2026) : le plus recent des deux, l'appareil ou le nuage.
+            if(typeof data.premiersPasJson === "string" && data.premiersPasJson){
+                const nuage = JSON.parse(data.premiersPasJson);
+                const brut = localStorage.getItem(PREMIERS_PAS_KEY);
+                let ici = null;
+                try{ ici = brut ? JSON.parse(brut) : null; }catch(e2){ ici = null; }
+                if(nuage && typeof nuage === "object" && !Array.isArray(nuage)
+                   && (!ici || typeof ici !== "object" || (nuage.t || 0) > (ici.t || 0))){
+                    localStorage.setItem(PREMIERS_PAS_KEY, data.premiersPasJson);
+                    try{ majTuileSeance(); }catch(e3){}
+                }
             }
         }catch(e){}
         try{
@@ -65996,6 +66018,9 @@ function lirePremiersPas(){
     return v;
 }
 function ecrirePremiersPas(v){
+    // 7 nov. 2026 : « t », l'heure de l'ecriture -- l'etat part dans le nuage (premiersPasJson) et le plus
+    // recent des deux appareils l'emporte a la restauration.
+    try{ if(v && typeof v === "object") v.t = Date.now(); }catch(e){}
     try{ localStorage.setItem(PREMIERS_PAS_KEY, JSON.stringify(v)); }catch(e){}
 }
 function premiersPasEnCours(){
@@ -66180,7 +66205,7 @@ async function ouvrirPremiersPas(taille){
     retourSeanceAccueil = true;
     panneauAvantFlashcards = null;
     flashcardFromSearch = false;
-    const jour = joursPremiersPas()[items[0].jourPP] || {};
+    const jour = joursPremiersPas()[(items.find(x => x && typeof x.jourPP === "number") || {}).jourPP] || {};
     currentTheme = { id: "seance_premiers_pas", name: sensPremiersPas(jour.s) };
     currentFlashcard = 0;
     flashcardMode = "phrase";
@@ -67699,10 +67724,11 @@ function insererThemeIllustre(seance){
     const item = { mode: "phrase", forme: "theme_arret", cible: null, themeId: "theme_arret", index: 0,
                    theme: nom, nb: questionsSeance(), phrase: null, word: "" };
     const sortie = seance.slice();
-    // Avant la derniere carte, et en Premiers pas avant la fin du parcours et la scene de l'etape qui le ferment.
+    // Avant la derniere carte, et en Premiers pas avant la fin du parcours et la scene de l'etape qui le ferment
+    // -- meme quand il ne reste qu'elles (la sonde du 7 nov. : [pp_fin, pp_scene] mettait le theme apres la fete).
     let i = sortie.length - 1;
-    while(i > 1 && sortie[i - 1] && /^pp_(scene|fin)$/.test(sortie[i - 1].forme || "")) i--;
-    sortie.splice(Math.max(1, i), 0, item);
+    while(i > 0 && sortie[i - 1] && /^pp_(scene|fin)$/.test(sortie[i - 1].forme || "")) i--;
+    sortie.splice(i, 0, item);
     return sortie;
 }
 function ouvrirArretTheme(item){
