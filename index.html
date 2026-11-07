@@ -66245,7 +66245,13 @@ async function motsVusDeScene(nom){
 async function preparerArretScene(seance, sceneImposee, enPremiersPas){
     let permis = false;
     try{ permis = enPremiersPas ? (essaiActif("scene_arret") && essaiActif("scenes")) : arretSceneActif(); }catch(e){}
-    if(!permis || !seance || seance.length < 6) return seance;
+    // v1126 : LA SCENE DANS TOUTE SEANCE DU JOUR, MEME COURTE. Jacques, 6 nov. 2026 (iPhone, v1125) :
+    // « j'ai pas vu de scene ni de theme. Il devrait y en avoir. » La seance d'avant les modules a la
+    // taille de ce qui RESTE de l'objectif, cinq cartes au moins (tailleSeance) : un objectif de 5, ou
+    // un objectif deja atteint (147 cartes sur 20 ce jour-la), et elle n'en avait que cinq -- sous le
+    // seuil de six, qui retirait la scene (et le theme, insererThemeIllustre) sans rien dire, alors que
+    // l'accueil annoncait « une scene ». Le seuil de six ne reste qu'en Premiers pas.
+    if(!permis || !seance || seance.length < (enPremiersPas ? 6 : 2)) return seance;
     try{
         // v912 : SI LA SCENE PREVUE N'EST PAS PRETE, UNE AUTRE. Jacques, 21 oct.
         // 2026 : « je suis en train de faire A1, et j'obtiens jamais de scene ».
@@ -66359,7 +66365,7 @@ function themeDuJour(){
 }
 function insererThemeIllustre(seance){
     const nom = themeDuJour();
-    if(!nom || !seance || seance.length < 6) return seance;
+    if(!nom || !seance || seance.length < 2) return seance;   // v1126 : comme la scene (preparerArretScene)
     const item = { mode: "phrase", forme: "theme_arret", cible: null, themeId: "theme_arret", index: 0,
                    theme: nom, phrase: null, word: "" };
     const sortie = seance.slice();
