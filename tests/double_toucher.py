@@ -83,9 +83,13 @@ async () => {
 """
 
 
+class Muet(http.server.SimpleHTTPRequestHandler):
+    def log_message(self, *a):
+        pass
+
+
 def serveur():
-    gestion = functools.partial(http.server.SimpleHTTPRequestHandler, directory=RACINE)
-    gestion.log_message = lambda *a, **k: None
+    gestion = functools.partial(Muet, directory=RACINE)
     socketserver.TCPServer.allow_reuse_address = True
     srv = socketserver.ThreadingTCPServer(("127.0.0.1", PORT), gestion)
     threading.Thread(target=srv.serve_forever, daemon=True).start()
