@@ -49279,7 +49279,13 @@ function majPaliersAccueil(){
 // (c'est ce que Jacques a choisi sur la maquette), sauf Mis de cote tant qu'il est vide, comme avant.
 const GRILLE_SOURCES = {scenes:"explorerScenes", themes:"explorerThemes", ecouter:"ecouteLigneAccueil",
     episodes:"episodeLigne", gardes:"seanceGardes", tout:"tuileToutContenu"};
-let grilleObservee = false, grilleMajPrevue = false;
+let grilleObservee = false, grilleMajPrevue = false, grilleEmpreinte = "";
+// Ce qui decide de la grille : les classes de #home (sans grille-c, que la grille pose elle-meme) et celles des
+// elements suivis. Une mutation qui ne change pas cette empreinte -- nos propres retouches -- ne relance rien.
+function empreinteGrille(home){
+    return String(home.className).replace(/\bgrille-c\b/g, "").replace(/\s+/g, " ").trim() + "|" +
+        Object.values(GRILLE_SOURCES).map(id => { const el = document.getElementById(id); return el ? el.className + "@" + ((el.parentNode && el.parentNode.id) || "") : "-"; }).join("|");
+}
 function sourceAffichee(el, home){
     // La decouverte des premiers jours emprunte la ligne Ecouter (emprunterBlocDecouverte) : hors de l'accueil,
     // seule compte la regle de la ligne elle-meme (la liste blanche du japonais la cache ou qu'elle soit).
@@ -49312,14 +49318,16 @@ function majGrilleAccueil(){
         if(v){ b.classList.toggle("tg-ambre", i % 2 === 0); b.classList.toggle("tg-ardoise", i % 2 === 1); i++; }
     });
     g.classList.toggle("hidden", !i);
+    grilleEmpreinte = empreinteGrille(home);
     if(!grilleObservee && typeof MutationObserver === "function"){
         grilleObservee = true;
         const mo = new MutationObserver(() => {
-            if(grilleMajPrevue) return;
+            if(grilleMajPrevue || empreinteGrille(home) === grilleEmpreinte) return;
             grilleMajPrevue = true;
             requestAnimationFrame(() => { grilleMajPrevue = false; try{ majGrilleAccueil(); }catch(e){} });
         });
         Object.values(GRILLE_SOURCES).forEach(id => { const el = document.getElementById(id); if(el) mo.observe(el, {attributes:true, attributeFilter:["class"]}); });
+        mo.observe(home, {attributes:true, attributeFilter:["class"]});
     }
 }
 // « Changer de niveau » : la rangee 🌱 A1 ... C1 repliee aux paliers 1 et 2.
