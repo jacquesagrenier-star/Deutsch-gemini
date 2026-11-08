@@ -72436,11 +72436,14 @@ async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
 // elle prend la liste que la tuile a deja faite.
 // Les series qui gardent leur ecran a ce stade (les etapes suivantes les amenent une a une) : la decouverte guidee,
 // l'ancien module anglais, la dictee, les quiz d'articles et de terminaisons, Comprendre a l'oreille, Construire la
-// phrase, Ecrire, les feuilles de conjugaison (etape 2) et l'examen. Le japonais aussi : ses phrases n'ont pas
-// d'espaces, une carte « ordre » ne saurait pas les recoller.
+// phrase, Ecrire et l'examen. Le japonais aussi : ses phrases n'ont pas d'espaces, une carte « ordre » ne saurait
+// pas les recoller.
+// ETAPE 2 (8 nov. 2026) : « M'ENTRAINER » DES FEUILLES DE CONJUGAISON (lancerSerieFeuille, titre « fc_kicker ») passe
+// par les cartes. Ses 21 series (10 en allemand, a choix ; 11 en espagnol, a saisie sauf les periphrases) sont des
+// questions « gram » : la carte les juge comme checkAnswer (casse ignoree, normaliserSaisie si tolerant). Le retour
+// rouvre « Mes feuilles », « Serie suivante » relance la meme feuille au bloc suivant.
 const SERIES_HORS_CARTES = ["dec_t3_titre", "kicker_english_artikel_exercise", "kicker_dictation_exercise",
-    "kicker_quiz_terminaisons", "kicker_quiz_article", "ecoute_phrase_topic", "kicker_tuiles", "kicker_schreiben",
-    "fc_kicker"];
+    "kicker_quiz_terminaisons", "kicker_quiz_article", "ecoute_phrase_topic", "kicker_tuiles", "kicker_schreiben"];
 let SERIE_CARTES = null;   // la liste de cartes de la serie en cours, tant qu'elle est a l'ecran
 // LA FETE DE L'OBJECTIF ATTEND LA FIN DE LA SERIE (chef, 7 nov. 2026, regle de Jacques « une seule fete a la
 // fois ») : franchi pendant une serie, le palier passait devant l'ecran de resultat, sur ses fetes a lui. Il est
