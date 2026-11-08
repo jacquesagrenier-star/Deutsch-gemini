@@ -84,12 +84,17 @@ Vérifications déjà faites par la session des examens :
 - Les institutions : « центр образования для взрослых (Volkshochschule) », « профессиональное училище », « квартира
   на несколько жильцов » (WG).
 
-## Deux défauts d'affichage, en persan et en arabe
+## Deux défauts d'affichage, en persan et en arabe : corrigés (7 nov., ligne 24)
 
-1. **La flèche du bouton retour « ‹ »** pointe vers la gauche, même en écriture de droite à gauche. Le bouton est bien
-   placé à droite, mais il faudrait « › ». Le bouton vient de `visuel/prototype/dtz/commun.css` et `dtz.html`, communs
-   avec le DTZ, et de `oral.html`.
-2. **Les sous-titres qui mêlent allemand et persan** (« Lesen · 4 بخش · 45 دقیقه ») s'enchaînent dans un ordre peu
-   naturel : l'algorithme bidirectionnel place le mot allemand du mauvais côté. Remède : isoler l'allemand dans un
-   `<bdi>` ou un `<span dir="ltr">` là où ces sous-titres sont construits (les tuiles de l'accueil de commun.js, les
-   en-têtes des parties).
+1. **La flèche du bouton retour** pointait vers la gauche, même en écriture de droite à gauche. Elle est retournée
+   en persan et en arabe (`[dir="rtl"] .retour{transform:scaleX(-1)}` dans `visuel/prototype/dtz/commun.css` et
+   `telc/oral.html`) et pointe maintenant vers la droite.
+2. **Les sous-titres qui mêlent allemand et persan ou arabe** (« Lesen · 4 بخش · 45 دقیقه ») : l'algorithme
+   bidirectionnel plaçait le mot allemand du mauvais côté. Chaque morceau entre deux « · » est maintenant isolé
+   (U+2068 … U+2069) dans les titres, les tuiles, les modes et les en-têtes des parties (`commun.js`, `entete()` et
+   `.partie` d'`oral.html`), en persan et en arabe seulement : le français, l'anglais et les autres langues ne
+   reçoivent aucun caractère de plus.
+
+Vérifié à l'écran au format téléphone, avant et après : telc.html en fa, oral.html en ar (accueil et Teil 1A). La
+page dtz.html n'est pas ouverte par l'app ; le correctif s'y applique aussi sans rien changer d'autre. À un natif de
+dire si l'ordre lu est désormais naturel.
