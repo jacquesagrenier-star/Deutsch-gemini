@@ -807,6 +807,24 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"Une planche de 8 images ne voit pas ce qui dure moins d'une seconde : passer video/apparition_sur_mur.py",
+     u"8 nov. 2026",
+     u"Oral du telc, 35 clips Kling : un faux caractere noir, grand comme une main, sur le mur du plan 12 (0,7 s, a cheval "
+     u"sur la fin de la voix), et une tete fantome au bord gauche du plan 34 (a partir de 12,8 s, juste avant la fin de "
+     u"la voix). Ni texte_incruste.py (il cherche du blanc, sur la poitrine) ni intrus_au_bord.py (les bords, deux fois "
+     u"par seconde) n'ont vu le caractere ; la planche ne l'a montre que parce qu'une de ses 8 images tombait dessus. "
+     u"Les deux effaces gratuitement : le mur est fixe, on y recolle le mur d'un autre instant, seulement pendant ces "
+     u"images (RETOUCHES de video/episode-telc-oral/publier_medias.py).",
+     u"Sur chaque prise Kling a fond de mur : apparition_sur_mur.py, puis regarder les temps qu'il donne (une tete penchee "
+     u"ou une main le declenchent aussi). Un intrus sur un mur se corrige en montage, il ne se rachete pas."),
+    (u"Une replique longue : pas de doigt leve, et jamais une main accrochee au haut du corps",
+     u"8 nov. 2026",
+     u"Oral du telc. << lifts its index finger and holds it there >> sur une replique de 17 s (plan 13, 0,97 $) : Anna "
+     u"garde le doigt en l'air tout du long, une maitresse d'ecole -- la regle << le geste se tient jusqu'a la fin >> vaut "
+     u"pour un geste qui peut durer. << slide apart until each is under one of his shoulders >> (plan 09, 0,43 $) : Kling "
+     u"a lu << shoulders >> et monte les deux mains aux epaules.",
+     u"Au-dela de huit secondes, une pose de repos : mains jointes, l'une sur l'autre, a plat. Situer une main par la "
+     u"table (<< a forearm's length apart >>), jamais par une partie du corps qu'elle n'a pas a toucher."),
     (u"La queue muette du panier ne FERME pas la bouche : COUPER le clip a la fin de la voix, gratuit",
      u"4 nov. 2026",
      u"DTZ oral, Jacques sur l'essai : << la bouche d'Anna continue de bouger apres la fin de sa replique >>. "

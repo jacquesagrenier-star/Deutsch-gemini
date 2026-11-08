@@ -234,6 +234,10 @@ exception — et c'est la réplique deux fois plus longue que les autres.
 d'un facteur **2,8** entre Seedance et l'avatar (480p natif remonté en
 1080p), et chaque raccord se verrait. C'est tout l'un ou tout l'autre.
 
+### Ce qui apparaît sur le mur — contrôle obligatoire sur les prises Kling
+
+`python video/apparition_sur_mur.py <les prises>.mp4`, puis regarder les temps qu'il donne. Né le 8 nov. 2026 (oral du telc) : un faux caractère noir sur le mur, 0,7 s, et une tête fantôme au bord ; ni `texte_incruste.py` ni une planche de 8 images ne les voient à coup sûr. Le mur est fixe : on efface gratuitement en y recollant le mur d'un autre instant, seulement pendant ces images (`RETOUCHES` de `video/episode-telc-oral/publier_medias.py`).
+
 ### La bouche s'arrête avec la voix — contrôle obligatoire avant toute publication
 
 ```bash
