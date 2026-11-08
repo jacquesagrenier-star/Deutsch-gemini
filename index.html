@@ -64180,8 +64180,12 @@ function motsDuCorpusDictee(){
     }catch(e){}
     try{ (adjektiveTheme.words || []).forEach(a => { if(Array.isArray(a)) ajouter(a[0]); }); }catch(e){}
     try{ [praepTheme, adverbienTheme, konjunktionenTheme].forEach(th => ((th && th.words) || []).forEach(w => { if(Array.isArray(w)) ajouter(w[0]); })); }catch(e){}
+    // Et les mots des phrases d'exemple (decision du chef, 7 nov.) : « cosa » n'est pas une entree du corpus espagnol,
+    // mais il est dans ses phrases ; sans elles, « cosa » pour « casa » passait en « Presque ! ».
+    try{ phrasesTraduisibles("ALL").forEach(ph => ajouter(ph.de)); }catch(e){}
     const res = { plies: plies, umlauts: umlauts };
-    if(plies.size > 200) MOTS_CORPUS_DICTEE = res;
+    // Garde en memoire seulement quand themes.json est la : avant, les phrases et les mots des themes manquent.
+    if(themesLoaded && plies.size > 200) MOTS_CORPUS_DICTEE = res;
     return res;
 }
 // Les paires, dans l'ordre : { t: "juste" | "presque" | "faux" | "trop" | "manque", s: mot ecrit, a: mot attendu }.

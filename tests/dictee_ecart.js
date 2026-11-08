@@ -92,5 +92,23 @@ verifier("« Mutter » pour « Mütter » (un autre mot) : faux, le ü en gras",
 al = alignerDictee("Ich bin mude", "Ich bin müde.", { autres: CORPUS, langue: "de" });
 verifier("« mude » pour « müde » (pas un autre mot) : l'accent ne compte pas, juste", types(al) === "juste juste juste" && al.juste, types(al));
 
+// 8. Le corpus de la garde prend aussi les mots des phrases d'exemple (decision du chef, 7 nov.) : « cosa » n'est pas
+// une entree du vocabulaire espagnol, mais il est dans ses phrases. motsDuCorpusDictee tel qu'il est dans index.html,
+// avec des donnees de remplacement.
+const codeCorpus = [constante("DICTEE_MOT_TOLERE"),
+    "let MOTS_CORPUS_DICTEE = null, themesLoaded = true;",
+    "const themesComptes = () => [{ levels: { A1: { words: [['casa', 'maison', 'la casa es grande', '', '', '', '', '', '']] } } }];",
+    "const verbeTheme = { words: [] }, adjektiveTheme = { words: [] }, praepTheme = null, adverbienTheme = null, konjunktionenTheme = null;",
+    "const phrasesTraduisibles = () => [{ de: 'Es una cosa importante.', fr: \"C'est une chose importante.\" }];",
+    ...["normaliserSaisie", "formeUmlaut", "motsDuCorpusDictee"].map(extraire),
+    "module.exports = { motsDuCorpusDictee };"].join("\n");
+const mc = { exports: {} };
+new Function("module", codeCorpus)(mc);
+const corpusPhrases = mc.exports.motsDuCorpusDictee();
+verifier("le corpus prend « cosa » dans une phrase d'exemple", corpusPhrases.plies.has("cosa") && corpusPhrases.plies.has("casa"),
+    [...corpusPhrases.plies].join(","));
+al = alignerDictee("Trabajo con la computadora en cosa", ATTENDU, { autres: corpusPhrases, langue: "es" });
+verifier("« cosa » pour « casa », corpus des phrases : faux", types(al) === "juste juste juste juste juste faux" && !al.juste, types(al));
+
 console.log(echecs ? "\n" + echecs + " echec(s)." : "\nTout passe.");
 process.exit(echecs ? 1 : 0);
