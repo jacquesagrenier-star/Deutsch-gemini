@@ -7176,9 +7176,19 @@ body[data-theme="dark"] .cp-saisie{background:#273041; color:#F2F2F6; border-col
    et a la meme place (decision du 7 nov.) ; sur un choix faux, ni « Encore » ni les
    points de « Continuer » : le mot revient de toute facon. */
 #flashcards.en-rappel:not(.ra-juge) #flashcardActions{display:none !important;}
-#flashcards.ra-faux #flashcardActions .judge-again{display:none !important;}
+/* Un mauvais choix (decisions du 8 nov., piste B : « j'aime pas le fait qu'on change de layout quand on ne sait pas
+   le mot ») : une seule action, le bouton a sa place et a sa hauteur habituelles, en verre sans vert, une fleche au lieu
+   du crochet, sans points. « Encore » et « Mettre de cote » s'effacent sans deplacer le reste (visibility). */
+#flashcards.ra-faux #flashcardActions .judge-again,
+#flashcards.ra-faux #flashcardActions .judge-row2{visibility:hidden !important;}
 #flashcards.ra-faux #flashcardActions .judge-good .srs-ladder{display:none !important;}
-#flashcards.ra-faux #flashcardActions .judge-row{grid-template-columns:1fr;}
+#flashcards.ra-faux #flashcardActions .judge-good .judge-bille{background:none !important; box-shadow:none !important;}
+#flashcards.ra-faux #flashcardActions .judge-good .judge-bille::before{display:none !important;}
+#flashcards.ra-faux #flashcardActions .judge-good .judge-bille svg:not(.ra-fleche){display:none !important;}
+.judge-bille .ra-fleche{display:none;}
+#flashcards.ra-faux #flashcardActions .judge-good .judge-bille .ra-fleche{display:block !important; width:30px; height:30px; fill:none;
+    stroke:var(--va-encre, #1C2430) !important; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; filter:none;}
+html[dir="rtl"] #flashcards.ra-faux #flashcardActions .judge-good .judge-bille .ra-fleche{transform:scaleX(-1);}
 #flashcards.fin-paquet #rappelActif{display:none !important;}
 .rappel-actif{text-align:center;}
 .rappel-actif .cp-type{justify-content:center;}
@@ -12768,7 +12778,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
                  les quatre points de progression ». Le nom reste pour les lecteurs
                  d'ecran (aria-label), et les aides disent « ✓ ». -->
             <button class="judge-button judge-good" onclick="reviewGood()" data-i18n-aria-label="review_good" aria-label="OK">
-                <span class="judge-titre judge-bille" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></span>
+                <span class="judge-titre judge-bille" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg><svg class="ra-fleche" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
                 <!-- v923 : « CONTINUER ». Jacques : « les gens peuvent avoir l'impression que
                      s'ils cliquent sur continuer, ils ne reverront pas -- c'est le danger ».
                      Les QUATRE POINTS y repondent sans un mot : un mot se gagne en plusieurs
@@ -55166,10 +55176,10 @@ function numeroBravo(cle){
 // LES BOUTONS APRES LE CHOIX (decision du 7 nov. : « les memes boutons que le
 // verso »). Choix juste : « Encore » (j'ai devine : comme le Encore de la carte
 // normale), « Continuer » (le point avance, comme « Je savais ») et « Mettre de
-// cote ». Choix faux : le mot revient de toute facon, donc « Continuer » fait ce
-// que fait « Encore », et « Mettre de cote » reste.
+// cote ». Choix faux (decisions du 8 nov.) : une seule action, le bouton a la
+// fleche, qui fait ce que fait « Encore » : le mot revient de toute facon.
 function boutonsApresChoix(juste){
-    return juste ? ["encore", "continuer", "garde"] : ["continuer", "garde"];
+    return juste ? ["encore", "continuer", "garde"] : ["continuer"];
 }
 function jugementDuBouton(juste, bouton){
     if(boutonsApresChoix(juste).indexOf(bouton) < 0) return null;
@@ -55264,6 +55274,10 @@ function choixAutresRappel(item, forme, cleCarte){
 
 function cacherRappelActif(){
     const zone = document.getElementById("flashcards");
+    if(zone && zone.classList.contains("ra-faux")){
+        const bon = document.querySelector("#flashcardActions .judge-good");
+        if(bon) bon.setAttribute("aria-label", t("review_good"));
+    }
     if(zone) zone.classList.remove("en-rappel", "ra-juge", "ra-faux");
     const el = document.getElementById("rappelActif");
     if(el){ el.classList.add("hidden"); el.textContent = ""; }
@@ -55369,6 +55383,8 @@ function montrerRappelActif(item, dec){
             actions.classList.remove("hidden");
             try{ resizeFlashcard(); }catch(e){}
             const bon = actions.querySelector(".judge-good");
+            // Sur un mauvais choix, ce bouton fait « Encore » : les lecteurs d'ecran le disent.
+            if(bon && !juste) bon.setAttribute("aria-label", t("review_again"));
             try{ if(bon) bon.focus({ preventScroll: true }); }catch(e){}
         }
         // Le mot dit par la voix de l'app. (Les confettis et leur son viennent au

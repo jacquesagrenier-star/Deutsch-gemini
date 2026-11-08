@@ -105,12 +105,12 @@ egal(jouer([1,1,1,1,1].map(Boolean), [false, true, true, true, true]), "01001", 
 
 // ---------- 2b. Les boutons apres le choix (les memes que le verso, 7 nov.) ----------
 egal(R.boutonsApresChoix(true).join(","), "encore,continuer,garde", "choix juste : Encore, Continuer, Mettre de cote");
-egal(R.boutonsApresChoix(false).join(","), "continuer,garde", "choix faux : Continuer et Mettre de cote, sans Encore");
+egal(R.boutonsApresChoix(false).join(","), "continuer", "choix faux : une seule action, la fleche (decisions du 8 nov.)");
 egal(R.jugementDuBouton(true, "continuer"), "je_savais", "juste + Continuer : le point avance, comme Je savais");
 egal(R.jugementDuBouton(true, "encore"), "encore", "juste + Encore (j'ai devine) : comme le Encore de la carte normale");
 egal(R.jugementDuBouton(true, "garde"), "garde", "juste + Mettre de cote : comme sur la carte normale");
 egal(R.jugementDuBouton(false, "continuer"), "encore", "faux + Continuer : le mot revient, comme Encore");
-egal(R.jugementDuBouton(false, "garde"), "garde", "faux + Mettre de cote : comme sur la carte normale");
+egal(R.jugementDuBouton(false, "garde"), null, "faux : pas de Mettre de cote");
 egal(R.jugementDuBouton(false, "encore"), null, "faux : pas de bouton Encore");
 verifier([true, false].every(j => R.boutonsApresChoix(j).every(b => R.jugementDuBouton(j, b) !== "je_savais" || j)),
          "un choix faux ne fait jamais avancer le point");
