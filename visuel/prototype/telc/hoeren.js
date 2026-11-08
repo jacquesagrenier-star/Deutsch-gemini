@@ -182,6 +182,8 @@ function bandeau(u){
     (u.lecture ? '<span>' + esc(T("ho_lecture", {s: u.lecture})) + '</span>' : "") + '</div>';
 }
 function consigne(c){ return '<p class="consigne"><span lang="de">' + esc(c.text) + '</span><span class="fr">' + esc(champTelc(c, "text")) + '</span></p>'; }
+// la mention « voix du telephone » : seulement tant qu'aucune piste enregistree n'est chargee
+function mentionVoix(){ return Object.keys(DTZ_PISTES).some(k => k.indexOf("telc") === 0) ? "" : '<p class="petit" style="text-align:center">' + esc(T("ho_voix_tel")) + '</p>'; }
 function mark(texte){ return '<div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(texte) + '</div></div>'; }
 // qui parle : le role donne par le texte, sinon Mark, Anna, Sprecher ou Sprecherin -- jamais le nom de la voix
 function qui(wer, rollen){ return (rollen && rollen[wer]) || (wer === "mark" ? "Mark" : wer === "anna" ? "Anna" : ((E.d.voix[wer] || {}).sexe === "m" ? "Sprecher" : "Sprecherin")); }
@@ -334,7 +336,7 @@ function pageH(garderScroll){
   h += lec.h;
   h += u.questions.map(q => carte(q, {choisi: H.rep[q.nr], montrer: H.rep[q.nr] !== undefined, fige: H.rep[q.nr] !== undefined})).join("");
   if (fini) h += '<p class="petit">' + esc(T("ho_transcription")) + '</p>' + transcription(u);
-  h += '</div><p class="petit" style="text-align:center">' + esc(T("ho_voix_tel")) + '</p>';
+  h += '</div>' + mentionVoix();
   const y = window.scrollY;
   $("zone").innerHTML = h;
   lec.brancher();
@@ -470,6 +472,6 @@ function corrigeH(x){
 }
 
 // ce qui sert aussi a hoeren-schreiben.js
-window.TELC_ECOUTE = {E, stopSon, direLigne, jouerSegments, bandeau, consigne, mark, transcription, blocFormat, montrerFormat,
+window.TELC_ECOUTE = {E, mentionVoix, stopSon, direLigne, jouerSegments, bandeau, consigne, mark, transcription, blocFormat, montrerFormat,
   pointsDe, toutesLesSections, boutonsFin, lecteur, deroulement, marquerEx, etatExamen, examenH, detailTeils, ouvrirH};
 })();

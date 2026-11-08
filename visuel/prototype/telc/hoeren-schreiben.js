@@ -129,7 +129,7 @@ function pageHS(garderScroll){
   const lec = O.lecteur("HS" + HS.page, u, fini, () => pageHS(true));
   h += lec.h;
   if (fini) h += aideNote(m, HS.saisie[m.nr], etat) + '<p class="petit">' + esc(T("ho_transcription")) + '</p>' + O.transcription(u);
-  h += '</div><p class="petit" style="text-align:center">' + esc(T("ho_voix_tel")) + '</p>';
+  h += '</div>' + O.mentionVoix();
   const y = window.scrollY;
   $("zone").innerHTML = h;
   lec.brancher();
