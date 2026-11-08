@@ -59557,16 +59557,37 @@ function buildDictationExercises(cartes, mode){
                 ["explanation" + SUFFIXE_LANGUE[c], `${(I18N[c] && I18N[c].dictation_explanation_prefix) || I18N.en.dictation_explanation_prefix} ${targetWord}`])),
             dictation: true,
             dictationText: targetWord,
-            dictationLang: learningEnglish ? "en" : "de"
+            dictationLang: learningEnglish ? "en" : "de",
+            // Harmonisation, etape 3 : de quoi faire une carte « dictee_mot » de la seance (carteDeExercice). Pas pour
+            // l'ancien module anglais, qui garde son ecran.
+            carteDictee: learningEnglish ? null : {
+                word: card,
+                mode: (modeCarte === "verben" || modeCarte === "vhskapitelverben") ? "verben"
+                      : (TYPE_CARTE_PAR_MODE[modeCarte] || "funktionswort"),
+                themeId: item.themeId, index: item.index }
         });
     });
     return list;
 }
 
-function startDictationExercise(){
-    const list = buildDictationExercises();
+// Le bouton de l'ecran de fin de paquet. La dictee se joue maintenant dans les cartes (harmonisation, etape 3) :
+// ouvrirSerieEnCartes() prend la place du paquet dans currentCards. Le paquet est donc garde ici, pour que « Serie
+// suivante » dicte le meme paquet et que le retour reparte d'ou il serait parti (seance, panneau, recherche).
+function startDictationExercise(paquetGarde){
+    const paquet = (paquetGarde && paquetGarde.cartes) ? paquetGarde : {
+        cartes: currentCards, tout: currentCardsFull, mode: flashcardMode, theme: currentTheme, rang: currentFlashcard,
+        accueil: retourSeanceAccueil, panneau: panneauAvantFlashcards, recherche: flashcardFromSearch,
+        vues: sessionVues, sues: sessionSues };
+    const list = buildDictationExercises(paquet.cartes, paquet.mode);
     if(!list.length){ showInfoToast(t("alert_no_dictation_available")); return; }
-    startExerciseSet(shuffleArray(list.slice()), "kicker_dictation_exercise", handleFlashcardBack, startDictationExercise);
+    const retour = () => {
+        currentCards = paquet.cartes; currentCardsFull = paquet.tout; currentTheme = paquet.theme;
+        currentFlashcard = paquet.rang; retourSeanceAccueil = paquet.accueil;
+        panneauAvantFlashcards = paquet.panneau; flashcardFromSearch = paquet.recherche;
+        sessionVues = paquet.vues; sessionSues = paquet.sues;
+        handleFlashcardBack();
+    };
+    startExerciseSet(shuffleArray(list.slice()), "kicker_dictation_exercise", retour, () => startDictationExercise(paquet));
 }
 
 // Markup du petit bouton d'écoute inline placé juste après une phrase
@@ -63984,7 +64005,7 @@ function ecrirePhrasesRatees(l){
     try{ localStorage.setItem(PHRASES_RATEES_KEY, JSON.stringify(l.slice(-PHRASES_RATEES_MAX))); }catch(e){}
 }
 function noterPhraseRatee(item, juste){
-    if(!item || !item.phrase || !item.cible || juste === null || item.forme === "gram") return;
+    if(!item || !item.phrase || !item.cible || juste === null || item.forme === "gram" || item.exo !== undefined) return;
     const jour = getTodayStr();
     const l = lirePhrasesRatees();
     const avant = l.find(x => x.de === item.phrase.de);
@@ -65502,6 +65523,8 @@ function montrerCartePhrase(item){
         if(item.prepa) el.appendChild(annonceDuo(creer, item, true));
         el.appendChild(rangeeEcoute);
         if(!motSeul) el.appendChild(creer("p", "cp-sens", item.phrase.sens));
+        // Une dictee de Tout le contenu, le son coupe : rien a entendre, le sens du mot reste a ecrire de memoire.
+        else if(item.exo !== undefined && transitSansSon()) el.appendChild(creer("p", "cp-sens", texteTraduit(item.ex, "translation")));
         const champ = saisie();
         el.appendChild(champ);
         const verif = boutonVerifier(() => {
@@ -72532,7 +72555,9 @@ async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
 // par les cartes. Ses 21 series (10 en allemand, a choix ; 11 en espagnol, a saisie sauf les periphrases) sont des
 // questions « gram » : la carte les juge comme checkAnswer (casse ignoree, normaliserSaisie si tolerant). Le retour
 // rouvre « Mes feuilles », « Serie suivante » relance la meme feuille au bloc suivant.
-const SERIES_HORS_CARTES = ["dec_t3_titre", "kicker_english_artikel_exercise", "kicker_dictation_exercise",
+// ETAPE 3 (8 nov. 2026) : LA DICTEE DE MOTS (noms, verbes, adjectifs, adverbes, et le bouton de fin de paquet) devient une
+// carte « dictee_mot ». Juge comme la seance : accents et casse ne comptent pas, un nom se donne avec ou sans article.
+const SERIES_HORS_CARTES = ["dec_t3_titre", "kicker_english_artikel_exercise",
     "kicker_quiz_terminaisons", "kicker_quiz_article", "ecoute_phrase_topic", "kicker_tuiles", "kicker_schreiben"];
 let SERIE_CARTES = null;   // la liste de cartes de la serie en cours, tant qu'elle est a l'ecran
 // LA FETE DE L'OBJECTIF ATTEND LA FIN DE LA SERIE (chef, 7 nov. 2026, regle de Jacques « une seule fete a la
@@ -72557,13 +72582,19 @@ function serieEnCartesPossible(liste, kickerKey){
     try{ if(decouverteEnCours()) return false; }catch(e){}
     const k = String(kickerKey || "");
     if(!k || SERIES_HORS_CARTES.indexOf(k) >= 0 || k.indexOf("kicker_pruefung") === 0) return false;
-    return Array.isArray(liste) && liste.length > 0 && liste.every(ex => ex && !ex.dictation && !ex.rattrapage && !ex.tolerant
-        && ((Array.isArray(ex.chunks) && ex.chunks.length > 1) || (ex.question && Array.isArray(ex.answers) && ex.answers.length)));
+    return Array.isArray(liste) && liste.length > 0 && liste.every(ex => ex && !ex.rattrapage && !ex.tolerant
+        && (ex.dictation ? !!(ex.carteDictee && motDictee(ex.carteDictee))
+            : ((Array.isArray(ex.chunks) && ex.chunks.length > 1) || (ex.question && Array.isArray(ex.answers) && ex.answers.length))));
 }
 function serieEnCartesActive(){ return !!(SERIE_CARTES && currentCards === SERIE_CARTES); }
 function carteDeExercice(ex, i){
     const base = { mode: "phrase", exo: i, ex: ex, jeu: revisionErreursEnCours ? null : exerciseJeuNom,
                    cible: null, themeId: "exo", index: i, word: "" };
+    // Une dictee de mot : la carte de la seance. themeId reste « exo » : la reponse va a la serie, pas au mot (repondrePhrase).
+    if(ex.dictation && ex.carteDictee){
+        return Object.assign(base, { forme: "dictee_mot", cible: ex.carteDictee, fcBadge: t("kicker_dictation_exercise"),
+            phrase: { de: motDictee(ex.carteDictee), sens: "", mots: [] } });
+    }
     if(Array.isArray(ex.chunks) && ex.chunks.length > 1){
         const mots = ex.chunks.map(String);
         const leurres = (Array.isArray(ex.leurres) ? ex.leurres : []).map(String).filter(m => mots.indexOf(m) < 0).slice(0, 2);
