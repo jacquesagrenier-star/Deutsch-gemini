@@ -64242,9 +64242,11 @@ function ecartDictee(saisi, attendu){
 //  - un mot de quatre lettres ou plus a UNE lettre pres compte juste : « Presque ! », en orange, avec la correction.
 //    Moins de quatre lettres, non : « la » et « le », « con » et « son » sont d'autres mots.
 //    Et jamais quand ce qui est tape est un AUTRE vrai mot du corpus (« cosa » pour « casa ») : la meme garde que le
-//    rappel actif. En allemand, un Umlaut oublie qui donne un autre mot (« Mutter » pour « Mütter ») est faux aussi ;
-//    ailleurs, les accents ne comptent toujours pas.
-// Casse, accents, ß et ponctuation ne comptent pas, comme partout (normaliserSaisie). Controle : tests/dictee_ecart.js.
+//    rappel actif.
+//  - un accent, un Umlaut ou un ß oublie est accepte, SAUF s'il donne un autre vrai mot (« Mutter » pour « Mütter »,
+//    « schon » pour « schön », « esta » pour « está », « Masse » pour « Maße ») : accentFaitUnAutreMot, commune aux
+//    phrases et aux mots dictes (8 nov. 2026, ligne 27).
+// Casse et ponctuation ne comptent pas, comme partout (normaliserSaisie). Controle : tests/dictee_ecart.js.
 const DICTEE_MOT_TOLERE = 4;   // longueur a partir de laquelle une lettre de travers est pardonnee
 function distanceMots(a, b){
     let prec = Array.from({ length: b.length + 1 }, (_, j) => j);
@@ -64256,21 +64258,28 @@ function distanceMots(a, b){
     }
     return prec[b.length];
 }
-// La forme allemande d'un mot, Umlauts gardes : minuscules, ß -> ss, sans la ponctuation.
-function formeUmlaut(m){
-    return String(m || "").toLowerCase().replace(/\u00df/g, "ss").replace(/[^a-z\u00e0-\u00ff]/g, "");
+// La forme ecrite d'un mot, accents, Umlauts et ß gardes : minuscules, sans la ponctuation.
+function formeAccents(m){
+    return String(m || "").normalize("NFC").toLowerCase().replace(/[^a-z\u00df-\u00ff]/g, "");
 }
-// Les mots du corpus (quatre lettres ou plus), pour la garde de la dictee : { plies, umlauts }. Calcules une fois,
-// des que les themes, les verbes et les adjectifs sont la.
+// LA REGLE, commune aux mots et aux phrases dictes : deux mots egaux une fois plies (normaliserSaisie), dont la forme
+// ecrite differe, et ce qui est tape est un autre vrai mot du corpus. `autres` : motsDuCorpusDictee().
+function accentFaitUnAutreMot(saisi, attendu, autres){
+    if(!autres || !autres.formes) return false;
+    const fs = formeAccents(saisi);
+    return fs !== formeAccents(attendu) && autres.formes.has(fs);
+}
+// Les mots du corpus, pour la garde de la dictee : { plies (quatre lettres ou plus), formes (toutes longueurs : « él »,
+// « sí », « Bär » comptent) }. Calcules une fois, des que les themes, les verbes et les adjectifs sont la.
 let MOTS_CORPUS_DICTEE = null;
 function motsDuCorpusDictee(){
     if(MOTS_CORPUS_DICTEE) return MOTS_CORPUS_DICTEE;
-    const plies = new Set(), umlauts = new Set();
+    const plies = new Set(), formes = new Set();
     const ajouter = txt => String(txt || "").split(/[\s\/,;()]+/).forEach(m => {
         const p = normaliserSaisie(m);
-        if(p.length < DICTEE_MOT_TOLERE || p.indexOf(" ") >= 0) return;
-        plies.add(p);
-        umlauts.add(formeUmlaut(m));
+        if(!p || p.indexOf(" ") >= 0) return;
+        formes.add(formeAccents(m));
+        if(p.length >= DICTEE_MOT_TOLERE) plies.add(p);
     });
     try{
         themesComptes().forEach(th => Object.keys(th.levels || {}).forEach(n => {
@@ -64295,13 +64304,13 @@ function motsDuCorpusDictee(){
     // Et les mots des phrases d'exemple (decision du chef, 7 nov.) : « cosa » n'est pas une entree du corpus espagnol,
     // mais il est dans ses phrases ; sans elles, « cosa » pour « casa » passait en « Presque ! ».
     try{ phrasesTraduisibles("ALL").forEach(ph => ajouter(ph.de)); }catch(e){}
-    const res = { plies: plies, umlauts: umlauts };
+    const res = { plies: plies, formes: formes };
     // Garde en memoire seulement quand themes.json est la : avant, les phrases et les mots des themes manquent.
     if(themesLoaded && plies.size > 200) MOTS_CORPUS_DICTEE = res;
     return res;
 }
 // Les paires, dans l'ordre : { t: "juste" | "presque" | "faux" | "trop" | "manque", s: mot ecrit, a: mot attendu }.
-// opts : { autres: { plies, umlauts } (motsDuCorpusDictee), langue: "de" | "es" ... }.
+// opts : { autres: { plies, formes } (motsDuCorpusDictee) }. `umlaut` : la paire est fausse par son seul accent.
 function alignerDictee(saisi, attendu, opts){
     opts = opts || {};
     const autres = opts.autres || null;
@@ -64328,11 +64337,8 @@ function alignerDictee(saisi, attendu, opts){
             let umlaut = false;
             // Un autre vrai mot n'est pas une faute de frappe (« cosa » pour « casa »).
             if(tp === "presque" && autres && autres.plies && autres.plies.has(x)) tp = "faux";
-            // En allemand, l'Umlaut oublie qui fait un autre mot (« Mutter » pour « Mütter »).
-            if(tp === "juste" && opts.langue === "de" && autres && autres.umlauts){
-                const fs = formeUmlaut(a[i - 1]), fa = formeUmlaut(b[j - 1]);
-                if(fs !== fa && autres.umlauts.has(fs)){ tp = "faux"; umlaut = true; }
-            }
+            // L'accent oublie qui fait un autre mot (« Mutter » pour « Mütter », « esta » pour « está »).
+            if(tp === "juste" && accentFaitUnAutreMot(a[i - 1], b[j - 1], autres)){ tp = "faux"; umlaut = true; }
             paires.push({ t: tp, s: a[i - 1], a: b[j - 1], umlaut: umlaut }); i--; j--;
         } else if(j > 0 && (i === 0 || D[i][j] === D[i][j - 1] + 2)){
             paires.push({ t: "manque", s: "", a: b[j - 1] }); j--;
@@ -64347,8 +64353,9 @@ function alignerDictee(saisi, attendu, opts){
 // Le mot attendu, les lettres a corriger entourees de <b> : celles qui manquent ou different dans le mot ecrit.
 // Comparees sans casse ni accents (une lettre a la fois), comme la saisie.
 function lettresCorrigees(ecrit, attendu, umlaut){
-    // `umlaut` : la faute est un Umlaut (« Mutter » pour « Mütter ») -- ä, ö et ü comptent alors comme des lettres.
-    const base = c => (umlaut && /[\u00e4\u00f6\u00fc\u00c4\u00d6\u00dc]/.test(c)) ? c.toLowerCase() : (normaliserSaisie(c) || c.toLowerCase());
+    // `umlaut` : la faute est un accent (« Mutter » pour « Mütter », « esta » pour « está ») -- les lettres accentuees
+    // et le ß comptent alors comme des lettres.
+    const base = c => (umlaut && /[\u00c0-\u00ff]/.test(c)) ? c.toLowerCase() : (normaliserSaisie(c) || c.toLowerCase());
     const A = Array.from(String(ecrit || "")), B = Array.from(String(attendu || ""));
     const ba = A.map(base), bb = B.map(base);
     const D = Array.from({ length: A.length + 1 }, (_, i) => { const r = new Array(B.length + 1).fill(0); r[0] = i; return r; });
@@ -65516,7 +65523,8 @@ function montrerCartePhrase(item){
     } else if(item.forme === "dictee" || item.forme === "dictee_mot"){
         // La dictee : un mot (palier 2) ou la phrase entiere (palier 3), deja
         // rencontres. Casse, ponctuation et accents ne comptent pas
-        // (normaliserSaisie) : on juge l'oreille, pas le clavier.
+        // (normaliserSaisie) : on juge l'oreille, pas le clavier -- sauf l'accent
+        // oublie qui donne un autre vrai mot (accentFaitUnAutreMot, mots et phrases).
         const motSeul = item.forme === "dictee_mot";
         const w = item.cible.word;
         const attendu = motSeul ? motDictee(item.cible) : item.phrase.de;
@@ -65532,18 +65540,19 @@ function montrerCartePhrase(item){
             const v = champ.value.trim();
             if(!v){ champ.focus(); return; }
             const n = normaliserSaisie(v);
-            const na = normaliserSaisie(attendu);
+            // Un nom s'accepte avec ou sans son article : il se compare alors a la forme que la personne a ecrite.
+            const cible = (motSeul && item.cible.mode === "nomen" && n === normaliserSaisie(w[0])) ? w[0] : attendu;
+            const na = normaliserSaisie(cible);
             // 7 nov. 2026 : la phrase se compare mot par mot (alignerDictee) ; un mot de quatre lettres ou plus a une
             // lettre pres compte juste. v826 : une faute de frappe dans une phrase ne la fait pas rater.
-            const al = motSeul ? null : alignerDictee(v, attendu, { autres: motsDuCorpusDictee(), langue: LANGUE_APPRISE });
+            const al = alignerDictee(v, cible, { autres: motsDuCorpusDictee() });
             // Le repli de la v826 (une lettre sur toute la phrase) ne vaut que si aucun mot n'est un autre vrai mot.
-            const presque = !motSeul && n !== na && ((al && al.juste)
-                || (al && !al.paires.some(p => p.t === "faux") && na.length >= 20 && ecartLettres(n, na) <= 1));
-            // Egal une fois plie, mais un Umlaut oublie qui fait un autre mot (« Mutter » / « Mütter ») : faux.
-            const exact = n === na && !(al && al.paires.some(p => p.t === "faux"));
-            // Un nom s'accepte avec ou sans son article.
-            const juste = exact || presque
-                || (motSeul && item.cible.mode === "nomen" && n === normaliserSaisie(w[0]));
+            const presque = !motSeul && n !== na && (al.juste
+                || (!al.paires.some(p => p.t === "faux") && na.length >= 20 && ecartLettres(n, na) <= 1));
+            // Egal une fois plie, mais un accent oublie qui fait un autre mot (« Mutter » / « Mütter ») : faux.
+            const accentFaux = n === na && al.paires.some(p => p.umlaut);
+            const exact = n === na && !accentFaux;
+            const juste = exact || presque;
             champ.disabled = true;
             verif.classList.add("hidden");
             // v913 : la dictee d'un mot donne aussi son sens. Jacques, 21 oct.
@@ -65557,11 +65566,13 @@ function montrerCartePhrase(item){
             conclure(juste, sensMot ? attendu + " (" + sensMot + ")" : attendu, presque ? echapperHtml(t("cp_presque")) : "");
             // La dictee d'une phrase, pas tout a fait juste : le retour mot par mot (rendreDictee), sans le rouge sur
             // ce qui est juste. « Presque ! » en orange quand elle compte juste.
-            if(!motSeul && !exact){
+            // Et un mot seul faux par son accent : sans la lettre en gras, on ne verrait pas ce qui ne va pas.
+            if((!motSeul && !exact) || accentFaux){
                 retour.className = "cp-retour " + (presque ? "presque" : "dictee-faux");
                 retour.innerHTML = (presque ? '<p class="cp-dic-titre">' + echapperHtml(t("or_presque")) + '</p><p class="cp-dic-sous">'
                                               + echapperHtml(t("cp_presque")) + "</p>" : "")
-                    + rendreDictee(al, langueDe);
+                    + rendreDictee(al, langueDe)
+                    + (motSeul && sensMot ? '<p class="cp-dic-ecrit">' + echapperHtml(sensMot) + "</p>" : "");
             }
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
