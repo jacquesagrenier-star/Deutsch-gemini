@@ -25,18 +25,22 @@
   const APPLE = {f:{tc:BLANC, ink:PETROLE}, w:{tc:NUIT, ink:CLAIR}, min:.05, max:.60};
   const SEUIL_TEXTE = 4.5, SEUIL_ICONE = 3;
   const PAS = .03, LARGEUR_LUE = 32;
-  const fleche = (c, gauche) => 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="'
-      + (gauche ? "M25 16H8M14 9.5L7.5 16l6.5 6.5" : "M7 16h17M18 9.5l6.5 6.5-6.5 6.5")
-      + '" fill="none" stroke="rgb(' + c.join(",") + ')" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>') + '")';
+  /* LA FLECHE EST UN VRAI <svg> DANS LE BOUTON (8 nov. 2026, Jacques : « C'est encore la meme chose » : la pastille
+     d'abord, la fleche ensuite). Une image SVG en data URI, dans le fond du ::before, se decode a part du verre, peint
+     lui tout de suite, et chaque nouvelle encre etait une nouvelle image a decoder. Ici rien a charger : le trait est
+     dessine avec le bouton, et son encre est une couleur (var(--v-encre)). */
+  const FLECHE = (() => {
+    const d = document.createElement("div");
+    d.innerHTML = '<svg class="v-fleche" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M7 16h17M18 9.5l6.5 6.5-6.5 6.5" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    return d.firstChild;
+  })();
 
   /* ---------- la feuille ---------- */
   const css = `
 @property --v-haut{syntax:"<color>"; inherits:false; initial-value:transparent}
 @property --v-bas{syntax:"<color>"; inherits:false; initial-value:transparent}
-.verre-v{--v-haut:rgba(255,255,255,.08); --v-bas:rgba(255,255,255,.05); --v-encre:rgb(23,58,78); --v-fleche:${fleche(PETROLE, false)}}
-html.nuit .verre-v{--v-haut:rgba(18,26,36,.08); --v-bas:rgba(18,26,36,.05); --v-encre:rgb(243,245,248); --v-fleche:${fleche(CLAIR, false)}}
-html[dir="rtl"] .verre-v{--v-fleche:${fleche(PETROLE, true)}}
-html.nuit[dir="rtl"] .verre-v{--v-fleche:${fleche(CLAIR, true)}}
+.verre-v{--v-haut:rgba(255,255,255,.08); --v-bas:rgba(255,255,255,.05); --v-encre:rgb(23,58,78)}
+html.nuit .verre-v{--v-haut:rgba(18,26,36,.08); --v-bas:rgba(18,26,36,.05); --v-encre:rgb(243,245,248)}
 .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.05) 30%, rgba(255,255,255,0) 48%), radial-gradient(60% 40% at 50% 110%, rgba(255,255,255,.22), rgba(255,255,255,0) 70%);
   background:var(--v-reflet), linear-gradient(180deg, var(--v-haut), var(--v-bas)) !important; color:var(--v-encre) !important;
   border-color:transparent !important; overflow:hidden !important; isolation:isolate;
@@ -58,11 +62,13 @@ html.nuit .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, 
   padding:0 !important; border-radius:50% !important; font-size:0 !important; color:transparent !important; text-shadow:none !important;
   background:none !important; box-shadow:none !important; -webkit-backdrop-filter:none !important; backdrop-filter:none !important}
 .verre-v.v-rond::before{content:"" !important; position:absolute; inset:4px; border-radius:50%; z-index:-1; pointer-events:none;
-  background:var(--v-fleche) center / 26px 26px no-repeat, var(--v-reflet), linear-gradient(180deg, var(--v-haut), var(--v-bas));
+  background:var(--v-reflet), linear-gradient(180deg, var(--v-haut), var(--v-bas));
   -webkit-backdrop-filter:blur(12px) saturate(1.15) brightness(1.04); backdrop-filter:blur(12px) saturate(1.15) brightness(1.04);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(255,255,255,.18), 0 8px 22px rgba(20,30,40,.14);
   transition:--v-haut .35s ease, --v-bas .35s ease}
 .verre-v.v-rond::after{inset:4px !important}
+.verre-v.v-rond > .v-fleche{position:absolute; left:50%; top:50%; width:26px; height:26px; margin:-13px 0 0 -13px; pointer-events:none; fill:none !important; stroke:var(--v-encre)}
+html[dir="rtl"] .verre-v.v-rond > .v-fleche{transform:scaleX(-1)}
 .verre-v.v-rond:focus-visible{outline:2px solid #E8A23A; outline-offset:-2px}
 /* 6 nov. : dans les pages a #zone (themes illustres, DTZ oral), le rond fixe descend dans la bande du bas */
 html.v-zone .verre-v.v-rond.v-fixe{bottom:calc(6px + env(safe-area-inset-bottom,0px)) !important}
@@ -179,7 +185,6 @@ html.v-zone .verre-v.v-rond.v-fixe{bottom:calc(6px + env(safe-area-inset-bottom,
     b.style.setProperty("--v-haut", rgba(t.tc, Math.min(1, a + .03)));
     b.style.setProperty("--v-bas", rgba(t.tc, a));
     b.style.setProperty("--v-encre", rgba(t.ink, 1));
-    b.style.setProperty("--v-fleche", fleche(t.ink, document.documentElement.dir === "rtl"));
     b.classList.toggle("v-blanc", k === "w"); b.classList.toggle("v-fonce", k === "f");
   }
 
@@ -201,12 +206,19 @@ html.v-zone .verre-v.v-rond.v-fixe{bottom:calc(6px + env(safe-area-inset-bottom,
       const r = enRond(b);
       if (b.classList.contains("v-rond") !== r) b.classList.toggle("v-rond", r);
       if (r && b.getAttribute("aria-label") !== b.textContent.trim()) b.setAttribute("aria-label", b.textContent.trim());
+      const dessin = b.querySelector(":scope > .v-fleche");
+      if (r && !dessin) b.appendChild(FLECHE.cloneNode(true)); else if (!r && dessin) dessin.remove();
       if (r){
         const fixe = getComputedStyle(b).position === "fixed";
         if (b.classList.contains("v-fixe") !== fixe) b.classList.toggle("v-fixe", fixe);
         const vu = fixe && !b.hidden && getComputedStyle(b).display !== "none";
         if (vu && b.dataset.verreVu !== "1") degagerBientot(b);
         b.dataset.verreVu = vu ? "1" : "";
+        /* L'ENCRE AVANT LA PREMIERE IMAGE (8 nov.) : le calcul regroupe attend jusqu'a 1,2 s derriere les confettis, et
+           d'ici la la fleche petrole d'origine ne se lit pas sur une image sombre. Une seule lecture, a l'apparition. */
+        const visible = !b.hidden && getComputedStyle(b).display !== "none";
+        if (visible && b.dataset.verreLu !== "1"){ try{ choisir(b, APPLE); }catch(e){} }
+        b.dataset.verreLu = visible ? "1" : "";
       }
     });
   }
@@ -287,8 +299,9 @@ html.v-zone .verre-v.v-rond.v-fixe{bottom:calc(6px + env(safe-area-inset-bottom,
   document.addEventListener("visibilitychange", () => { if (!document.hidden) demander(); });
   function observer(){
     // ⚠️ Nos propres retouches (le style, la classe et le nom des boutons) ne relancent pas le calcul : sinon il tournerait sans fin.
+    const notreFleche = r => r.type === "childList" && [...r.addedNodes, ...r.removedNodes].every(n => n.classList && n.classList.contains("v-fleche"));
     new MutationObserver(recs => {
-      if (recs.some(r => r.type !== "attributes" || !(r.target.classList && r.target.classList.contains("verre-v")))){ classer(); demander(); }
+      if (recs.some(r => !notreFleche(r) && (r.type !== "attributes" || !(r.target.classList && r.target.classList.contains("verre-v"))))){ classer(); demander(); }
     }).observe(document.body, {childList:true, subtree:true, characterData:true, attributes:true, attributeFilter:["hidden", "class", "style", "src"]});
     classer(); demander();
   }
