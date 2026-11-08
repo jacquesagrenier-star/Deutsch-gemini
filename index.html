@@ -68430,14 +68430,26 @@ function majPartsSeance(){
     const box = document.getElementById("seanceParts");
     const zone = document.getElementById("flashcards");
     const actif = seancePartsActive();
-    if(zone) zone.classList.toggle("seance-en-parts", actif);
+    // Une reprise dans la seance du jour : un autre paquet que celui de l'ouverture (« en faire 20 de plus »,
+    // le rattrapage des cartes « Encore », les mots rates a refaire...).
+    const reprise = !actif && !!(SEANCE_PARTS && currentTheme && currentTheme.id === SEANCE_PARTS.themeId && currentCards.length);
+    if(zone) zone.classList.toggle("seance-en-parts", actif || reprise);
     if(!actif){
         if(box){ box.classList.add("hidden"); box.textContent = ""; }
-        // Les reprises (« Encore », « en faire 20 de plus ») gardent l'en-tete d'avant.
-        if(SEANCE_PARTS && currentTheme && currentTheme.id === SEANCE_PARTS.themeId){
+        // Les reprises gardent l'en-tete d'avant et ont une barre d'un seul tenant, sur CE paquet : elles n'ont pas
+        // de parties, mais on voit ou l'on en est (Jacques, 8 nov., v1139 : « tout a coup, j'ai des cartes, mais je
+        // ne vois plus de progression »).
+        if(reprise){
             const k = document.getElementById("flashKicker"), h = document.getElementById("flashThemeTitle");
             if(k) k.textContent = t("seance_titre");
             if(h) h.textContent = currentTheme.name || "";
+            if(box){
+                const b = document.createElement("i");
+                b.className = "ici";
+                b.style.setProperty("--q", Math.round(100 * Math.min(currentFlashcard, currentCards.length) / currentCards.length) + "%");
+                box.appendChild(b);
+                box.classList.remove("hidden");
+            }
         }
         return;
     }
