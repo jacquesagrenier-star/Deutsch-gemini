@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>En ville : s'orienter</title>
+<!--
+  « EN VILLE : S'ORIENTER » (theme illustre, vague 3, 4 nov. 2026) : les lieux de la ville, demander et donner son
+  chemin, situer un lieu sur un petit plan. Allemand : le quartier de Mark a Berlin (la Gartenstrasse) ; espagnol : un
+  quartier de Madrid. Le PLAN est dessine ici depuis la donnee (ciudad/ciudad.json) ; les photos des lieux sont
+  celles de la rue de la scene Kreuzung. Pas les moyens de transport (le theme « Les transports ») : le chemin a pied.
+  Ce que la page enseigne : neben / gegenueber / zwischen + datif, zum / zur, « Gibt es hier eine ...? », l'imperatif
+  de politesse (Gehen Sie, Nehmen Sie, Biegen Sie ... ab, Ueberqueren Sie) ; en espagnol del / al, hay / esta,
+  l'imperatif d'usted (siga, tome, gire -- doble en Amerique latine --, cruce). Et lire un plan : la gauche de celui
+  qui marche n'est pas la gauche du plan.
+  Toute la donnee vient de visuel/ciudad/ciudad.py : aucune phrase n'est ecrite ici.
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice », « bonne »,
+  « reponse » {mot, genre, cat, juste}, « fini », « fermer ». Parametres : apprendre=es|de, lang=<interface>, nuit=1,
+  seance=1 (six questions, pas de decouverte), variante=latam (doble, derecho ; et la voix), r=<AUDIO_REVISION>.
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --papier:#F3EFE6;--bloc:#E4DDCF;--maison:#FFFFFF;--habit:#D9D4CA;--rue:#FDFCF8;--trait:#B9B1A2;--parc:#BFE0B2;--texte-plan:#2B3240;--route:#E8A23A;--ici:#C8473A}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A;
+  --papier:#1B2A36;--bloc:#26394A;--maison:#33495C;--habit:#2A3C4C;--rue:#3D5467;--trait:#4F667A;--parc:#2F5A3C;--texte-plan:#EEF2F5;--route:#F0B45A;--ici:#F07F72}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (3 nov. 2026, voir THEMES-ILLUSTRES.md) */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.trou{display:inline-block;min-width:56px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+/* LE PLAN : dessine depuis la donnee ; la gauche reste a gauche en arabe et en persan */
+.plan{position:relative;width:100%;max-width:420px;margin:0 auto;direction:ltr;border-radius:16px;overflow:hidden;background:var(--papier)}
+.plan svg{display:block;width:100%;height:auto}
+.plan .etiq{font:800 10px var(--police);fill:var(--texte-plan)}
+.plan .nomrue{font:700 8.5px var(--police);fill:var(--gris);letter-spacing:.02em}
+.plan .cible{cursor:pointer}
+.plan .cible circle{fill:var(--ambre);stroke:#fff;stroke-width:2}
+.plan .cible text{font:900 13px var(--police);fill:#fff}
+.plan .cible.juste circle{fill:var(--vert)} .plan .cible.faux circle{fill:var(--rouge)}
+.plan .vise rect{stroke:var(--ambre);stroke-width:3}
+/* les photos des lieux */
+.photo{width:100%;max-width:560px;margin:0 auto;border-radius:16px;overflow:hidden;background:var(--carte);aspect-ratio:4/3}
+.photo img{display:block;width:100%;height:100%;object-fit:cover}
+.rangee{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;direction:ltr}
+.rangee button{border:3px solid transparent;border-radius:14px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block;position:relative;aspect-ratio:4/3}
+.rangee button img{display:block;width:100%;height:100%;object-fit:cover}
+.rangee button.juste{border-color:var(--vert)} .rangee button.faux{border-color:var(--rouge)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.choix.long{flex-direction:column}
+.choix.long button{border-radius:14px;text-align:left;line-height:1.4;font-weight:700}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.ecoute{width:48px;height:48px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ecoute svg{width:24px;height:24px}
+.ecoute.grand{width:64px;height:64px;margin:0 auto} .ecoute.grand svg{width:32px;height:32px}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+.trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
+.retourMsg .mot{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
+.retourMsg .mot .ecoute{width:38px;height:38px} .retourMsg .mot .ecoute svg{width:19px;height:19px}
+.trad.faux{color:var(--rouge);font-style:italic}
+/* la decouverte */
+.onglets{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--carte);border-radius:999px;padding:4px}
+.onglets button{border:0;border-radius:999px;background:none;color:var(--gris);font:800 14px var(--police);padding:9px 6px;cursor:pointer}
+.onglets button.actif{background:var(--verre);color:var(--encre);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.dit{display:flex;align-items:center;gap:10px;background:var(--carte);border-radius:14px;padding:10px 12px}
+.dit .texte{flex:1;font-weight:800;font-size:16px;line-height:1.45}
+.dit .texte .ligne{display:block}
+.puces{display:flex;flex-wrap:wrap;gap:7px;direction:ltr}
+.puces button{border:2px solid var(--bord);background:var(--carte);color:var(--encre);border-radius:12px;padding:7px 11px;font:700 14px var(--police);cursor:pointer}
+.puces button.choisi{border-color:var(--ambre);background:var(--verre)}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.5;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.regle b{color:var(--encre)}
+.regle .exemples{display:block;margin-top:6px;color:var(--encre);font-weight:700;text-align:left}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite{z-index:5000}
+.suite[hidden]{display:none}
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  display:flex;gap:10px;z-index:5000}
+.bas[hidden]{display:none}
+.bas button{flex:1;height:54px;border-radius:27px;font:800 16px var(--police);cursor:pointer;padding:0 10px}
+.bas .principal{border:0;color:#fff;background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28)}
+.bas .second{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+[lang]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<div class="bas" id="bas" hidden></div>
+<script src="themes/tirage.js?v=2"></script>
+<script src="themes/voix.js?v=7"></script>
+<script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=6"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const DE_APP = APPRENDRE === "de";
+const LATAM = !DE_APP && Q.get("variante") === "latam";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// agrandir (themes/zoom.js) : la photo d'un lieu au toucher, le plan aussi ; la loupe sur les photos a choisir
+Zoom.init({direct: ".photo img", loupe: ".rangee button", langue: LANGUE});
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
+
+const TEXTES = {
+  titre:     {fr:"En ville : s'orienter", en:"In town: finding your way", tr:"Şehirde: yolunu bulmak", uk:"У місті: орієнтуватися", fa:"در شهر: پیدا کردن راه", ar:"في المدينة: معرفة الطريق", pt:"Na cidade: se orientar", pl:"W mieście: jak trafić", ru:"В городе: найти дорогу", de:"In der Stadt: sich orientieren"},
+  introDe:   {fr:"Voici le quartier de Mark, à Berlin. Touche un lieu : tu le vois, tu entends son nom.", en:"This is Mark's neighbourhood in Berlin. Tap a place: you see it and hear its name.", tr:"Burası Mark'ın Berlin'deki mahallesi. Bir yere dokun: onu görür, adını duyarsın.", uk:"Це район Марка в Берліні. Торкнися місця: ти його бачиш і чуєш назву.", fa:"این محلهٔ مارک در برلین است. روی یک مکان بزن: آن را می‌بینی و نامش را می‌شنوی.", ar:"هذا حيّ مارك في برلين. المس مكانًا: تراه وتسمع اسمه.", pt:"Este é o bairro do Mark, em Berlim. Toque em um lugar: você o vê e ouve o nome.", pl:"To dzielnica Marka w Berlinie. Dotknij miejsca: zobaczysz je i usłyszysz nazwę.", ru:"Это район Марка в Берлине. Нажми на место: ты его увидишь и услышишь название.", de:"Das ist Marks Viertel in Berlin. Tippe auf einen Ort: Du siehst ihn und hörst seinen Namen."},
+  introEs:   {fr:"Voici un quartier de Madrid. Touche un lieu : tu le vois, tu entends son nom.", en:"This is a neighbourhood in Madrid. Tap a place: you see it and hear its name.", tr:"Burası Madrid'de bir mahalle. Bir yere dokun: onu görür, adını duyarsın.", uk:"Це район Мадрида. Торкнися місця: ти його бачиш і чуєш назву.", fa:"این یک محله در مادرید است. روی یک مکان بزن: آن را می‌بینی و نامش را می‌شنوی.", ar:"هذا حيّ في مدريد. المس مكانًا: تراه وتسمع اسمه.", pt:"Este é um bairro de Madri. Toque em um lugar: você o vê e ouve o nome.", pl:"To dzielnica Madrytu. Dotknij miejsca: zobaczysz je i usłyszysz nazwę.", ru:"Это район Мадрида. Нажми на место: ты его увидишь и услышишь название.", de:"Das ist ein Viertel in Madrid. Tippe auf einen Ort: Du siehst ihn und hörst seinen Namen."},
+  ongletLieux:{fr:"Les lieux", en:"Places", tr:"Yerler", uk:"Місця", fa:"مکان‌ها", ar:"الأماكن", pt:"Os lugares", pl:"Miejsca", ru:"Места", de:"Die Orte"},
+  ongletChemin:{fr:"Le chemin", en:"The way", tr:"Yol", uk:"Дорога", fa:"راه", ar:"الطريق", pt:"O caminho", pl:"Droga", ru:"Дорога", de:"Der Weg"},
+  introChemin:{fr:"Tu pars du point rouge. Choisis où tu vas : tu entends la question, puis le chemin.", en:"You start at the red dot. Choose where you are going: you hear the question, then the way.", tr:"Kırmızı noktadan başlıyorsun. Nereye gideceğini seç: önce soruyu, sonra yolu duyarsın.", uk:"Ти починаєш від червоної точки. Обери, куди йдеш: почуєш запитання, а потім дорогу.", fa:"از نقطهٔ قرمز شروع می‌کنی. انتخاب کن کجا می‌روی: اول سؤال را می‌شنوی، بعد راه را.", ar:"تبدأ من النقطة الحمراء. اختر إلى أين تذهب: تسمع السؤال ثم الطريق.", pt:"Você parte do ponto vermelho. Escolha aonde vai: você ouve a pergunta e depois o caminho.", pl:"Zaczynasz od czerwonej kropki. Wybierz, dokąd idziesz: usłyszysz pytanie, a potem drogę.", ru:"Ты начинаешь от красной точки. Выбери, куда идёшь: услышишь вопрос, а потом дорогу.", de:"Du startest am roten Punkt. Wähle, wohin du gehst: Du hörst die Frage und dann den Weg."},
+  regleDe:   {fr:"Où est-ce ? <b>neben, gegenüber, zwischen, an</b> + <b>datif</b>. Pour y aller : <b>zu</b> + datif, en un mot :", en:"Where is it? <b>neben, gegenüber, zwischen, an</b> + <b>dative</b>. To get there: <b>zu</b> + dative, in one word:", tr:"Nerede? <b>neben, gegenüber, zwischen, an</b> + <b>Dativ</b>. Oraya gitmek için: <b>zu</b> + Dativ, tek kelime:", uk:"Де це? <b>neben, gegenüber, zwischen, an</b> + <b>давальний (Dativ)</b>. Щоб туди дійти: <b>zu</b> + Dativ, одним словом:", fa:"کجاست؟ <b>neben, gegenüber, zwischen, an</b> + <b>Dativ</b>. برای رفتن به آنجا: <b>zu</b> + Dativ، در یک کلمه:", ar:"أين هو؟ <b>neben, gegenüber, zwischen, an</b> + <b>Dativ</b>. للذهاب إليه: <b>zu</b> + Dativ، في كلمة واحدة:", pt:"Onde fica? <b>neben, gegenüber, zwischen, an</b> + <b>dativo</b>. Para ir até lá: <b>zu</b> + dativo, numa palavra só:", pl:"Gdzie to jest? <b>neben, gegenüber, zwischen, an</b> + <b>celownik (Dativ)</b>. Żeby tam dojść: <b>zu</b> + Dativ, w jednym słowie:", ru:"Где это? <b>neben, gegenüber, zwischen, an</b> + <b>дательный (Dativ)</b>. Чтобы туда дойти: <b>zu</b> + Dativ, одним словом:", de:"Wo ist es? <b>neben, gegenüber, zwischen, an</b> + <b>Dativ</b>. Um hinzukommen: <b>zu</b> + Dativ, in einem Wort:"},
+  regleEs:   {fr:"<b>de + el = del</b>, <b>a + el = al</b>. Et pour demander : <b>hay</b> + un / una (y en a-t-il un ?), <b>está</b> + el / la (où est celui-là ?) :", en:"<b>de + el = del</b>, <b>a + el = al</b>. And to ask: <b>hay</b> + un / una (is there one?), <b>está</b> + el / la (where is that one?):", tr:"<b>de + el = del</b>, <b>a + el = al</b>. Sormak için: <b>hay</b> + un / una (bir tane var mı?), <b>está</b> + el / la (o nerede?):", uk:"<b>de + el = del</b>, <b>a + el = al</b>. А щоб спитати: <b>hay</b> + un / una (чи є тут?), <b>está</b> + el / la (де саме той?):", fa:"<b>de + el = del</b>، <b>a + el = al</b>. و برای پرسیدن: <b>hay</b> + un / una (آیا یکی هست؟)، <b>está</b> + el / la (آن یکی کجاست؟):", ar:"<b>de + el = del</b>، <b>a + el = al</b>. وللسؤال: <b>hay</b> + un / una (هل يوجد؟)، <b>está</b> + el / la (أين ذلك المكان؟):", pt:"<b>de + el = del</b>, <b>a + el = al</b>. E para perguntar: <b>hay</b> + un / una (tem algum?), <b>está</b> + el / la (onde fica aquele?):", pl:"<b>de + el = del</b>, <b>a + el = al</b>. A żeby zapytać: <b>hay</b> + un / una (czy jest jakiś?), <b>está</b> + el / la (gdzie jest ten?):", ru:"<b>de + el = del</b>, <b>a + el = al</b>. А чтобы спросить: <b>hay</b> + un / una (есть ли?), <b>está</b> + el / la (где именно он?):", de:"<b>de + el = del</b>, <b>a + el = al</b>. Und zum Fragen: <b>hay</b> + un / una (gibt es eins?), <b>está</b> + el / la (wo ist das bestimmte?):"},
+  regleWeg:  {fr:"La <b>gauche</b> et la <b>droite</b> sont celles de la personne qui marche, pas celles du plan :", en:"<b>Left</b> and <b>right</b> are those of the person walking, not of the map:", tr:"<b>Sol</b> ve <b>sağ</b>, haritanın değil yürüyen kişinin solu ve sağıdır:", uk:"<b>Ліво</b> і <b>право</b> — це сторони того, хто йде, а не плану:", fa:"<b>چپ</b> و <b>راست</b> مال کسی است که راه می‌رود، نه مال نقشه:", ar:"<b>اليسار</b> و<b>اليمين</b> هما يسار ويمين الماشي، لا الخريطة:", pt:"A <b>esquerda</b> e a <b>direita</b> são as de quem anda, não as do mapa:", pl:"<b>Lewo</b> i <b>prawo</b> to strony idącego, a nie planu:", ru:"<b>Лево</b> и <b>право</b> — это стороны идущего, а не плана:", de:"<b>Links</b> und <b>rechts</b> sind die der Person, die geht, nicht die des Plans:"},
+  ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
+  wo:        {fr:"Regarde le plan : où est-ce ?", en:"Look at the map: where is it?", tr:"Haritaya bak: nerede?", uk:"Подивися на план: де це?", fa:"به نقشه نگاه کن: کجاست؟", ar:"انظر إلى الخريطة: أين هو؟", pt:"Olhe o mapa: onde fica?", pl:"Spójrz na plan: gdzie to jest?", ru:"Посмотри на план: где это?", de:"Sieh dir den Plan an: Wo ist es?"},
+  zeigen:    {fr:"Lis la phrase et touche le bon endroit sur le plan.", en:"Read the sentence and tap the right spot on the map.", tr:"Cümleyi oku ve haritada doğru yere dokun.", uk:"Прочитай речення й торкнися правильного місця на плані.", fa:"جمله را بخوان و روی جای درست در نقشه بزن.", ar:"اقرأ الجملة والمس المكان الصحيح على الخريطة.", pt:"Leia a frase e toque no lugar certo do mapa.", pl:"Przeczytaj zdanie i dotknij właściwego miejsca na planie.", ru:"Прочитай фразу и нажми на нужное место на плане.", de:"Lies den Satz und tippe auf die richtige Stelle im Plan."},
+  dativ:     {fr:"Choisis l'article (datif).", en:"Choose the article (dative).", tr:"Artikeli seç (Dativ).", uk:"Обери артикль (Dativ).", fa:"حرف تعریف را انتخاب کن (Dativ).", ar:"اختر أداة التعريف (Dativ).", pt:"Escolha o artigo (dativo).", pl:"Wybierz rodzajnik (Dativ).", ru:"Выбери артикль (Dativ).", de:"Wähle den Artikel (Dativ)."},
+  del:       {fr:"del, de la ou de el ? Choisis la bonne forme.", en:"del, de la or de el? Choose the right form.", tr:"del mi, de la mı, de el mi? Doğru biçimi seç.", uk:"del, de la чи de el? Обери правильну форму.", fa:"del، de la یا de el؟ شکل درست را انتخاب کن.", ar:"del أم de la أم de el؟ اختر الصيغة الصحيحة.", pt:"del, de la ou de el? Escolha a forma certa.", pl:"del, de la czy de el? Wybierz właściwą formę.", ru:"del, de la или de el? Выбери правильную форму.", de:"del, de la oder de el? Wähle die richtige Form."},
+  zum:       {fr:"zum, zur ou zu ? Choisis la bonne forme.", en:"zum, zur or zu? Choose the right form.", tr:"zum mu, zur mu, zu mu? Doğru biçimi seç.", uk:"zum, zur чи zu? Обери правильну форму.", fa:"zum، zur یا zu؟ شکل درست را انتخاب کن.", ar:"zum أم zur أم zu؟ اختر الصيغة الصحيحة.", pt:"zum, zur ou zu? Escolha a forma certa.", pl:"zum, zur czy zu? Wybierz właściwą formę.", ru:"zum, zur или zu? Выбери правильную форму.", de:"zum, zur oder zu? Wähle die richtige Form."},
+  al:        {fr:"al, a la ou a el ? Choisis la bonne forme.", en:"al, a la or a el? Choose the right form.", tr:"al mı, a la mı, a el mi? Doğru biçimi seç.", uk:"al, a la чи a el? Обери правильну форму.", fa:"al، a la یا a el؟ شکل درست را انتخاب کن.", ar:"al أم a la أم a el؟ اختر الصيغة الصحيحة.", pt:"al, a la ou a el? Escolha a forma certa.", pl:"al, a la czy a el? Wybierz właściwą formę.", ru:"al, a la или a el? Выбери правильную форму.", de:"al, a la oder a el? Wähle die richtige Form."},
+  gibt:      {fr:"ein, eine ou einen ? Choisis l'article.", en:"ein, eine or einen? Choose the article.", tr:"ein mi, eine mi, einen mi? Artikeli seç.", uk:"ein, eine чи einen? Обери артикль.", fa:"ein، eine یا einen؟ حرف تعریف را انتخاب کن.", ar:"ein أم eine أم einen؟ اختر الأداة.", pt:"ein, eine ou einen? Escolha o artigo.", pl:"ein, eine czy einen? Wybierz rodzajnik.", ru:"ein, eine или einen? Выбери артикль.", de:"ein, eine oder einen? Wähle den Artikel."},
+  hayEsta:   {fr:"Après hay : un / una ; après está : el / la. Choisis.", en:"After hay: un / una; after está: el / la. Choose.", tr:"hay'den sonra: un / una; está'dan sonra: el / la. Seç.", uk:"Після hay: un / una; після está: el / la. Обери.", fa:"بعد از hay: un / una؛ بعد از está: el / la. انتخاب کن.", ar:"بعد hay: un / una؛ وبعد está: el / la. اختر.", pt:"Depois de hay: un / una; depois de está: el / la. Escolha.", pl:"Po hay: un / una; po está: el / la. Wybierz.", ru:"После hay: un / una; после está: el / la. Выбери.", de:"Nach hay: un / una; nach está: el / la. Wähle."},
+  lieu:      {fr:"Qu'est-ce que c'est ?", en:"What is it?", tr:"Bu ne?", uk:"Що це?", fa:"این چیست؟", ar:"ما هذا؟", pt:"O que é isto?", pl:"Co to jest?", ru:"Что это?", de:"Was ist das?"},
+  lieuImg:   {fr:"Touche la bonne photo.", en:"Tap the right photo.", tr:"Doğru fotoğrafa dokun.", uk:"Торкнися правильного фото.", fa:"روی عکس درست بزن.", ar:"المس الصورة الصحيحة.", pt:"Toque na foto certa.", pl:"Dotknij właściwego zdjęcia.", ru:"Нажми на нужное фото.", de:"Tippe auf das richtige Foto."},
+  richtung:  {fr:"Tu arrives par le trait. Suis la flèche : que dit-on ici ?", en:"You come along the line. Follow the arrow: what do you say here?", tr:"Çizgiden geliyorsun. Oku takip et: burada ne denir?", uk:"Ти йдеш по лінії. Стеж за стрілкою: що тут кажуть?", fa:"از روی خط می‌آیی. فلش را دنبال کن: اینجا چه می‌گویند؟", ar:"أنت قادم على الخط. اتبع السهم: ماذا يقال هنا؟", pt:"Você vem pela linha. Siga a seta: o que se diz aqui?", pl:"Idziesz wzdłuż linii. Podążaj za strzałką: co się tu mówi?", ru:"Ты идёшь по линии. Следи за стрелкой: что здесь говорят?", de:"Du kommst auf der Linie. Folge dem Pfeil: Was sagt man hier?"},
+  weg:       {fr:"Pars du point rouge et suis le chemin sur le plan : où arrives-tu ?", en:"Start at the red dot and follow the way on the map: where do you arrive?", tr:"Kırmızı noktadan başla ve haritada yolu takip et: nereye varırsın?", uk:"Почни від червоної точки й пройди дорогою на плані: куди ти прийдеш?", fa:"از نقطهٔ قرمز شروع کن و راه را روی نقشه دنبال کن: به کجا می‌رسی؟", ar:"ابدأ من النقطة الحمراء واتبع الطريق على الخريطة: إلى أين تصل؟", pt:"Parta do ponto vermelho e siga o caminho no mapa: aonde você chega?", pl:"Zacznij od czerwonej kropki i idź drogą na planie: dokąd dojdziesz?", ru:"Начни от красной точки и пройди дорогу по плану: куда ты придёшь?", de:"Starte am roten Punkt und folge dem Weg im Plan: Wo kommst du an?"},
+  beschreibung:{fr:"Le chemin est tracé : quelle description est juste ?", en:"The way is drawn: which description is right?", tr:"Yol çizilmiş: hangi tarif doğru?", uk:"Дорогу накреслено: який опис правильний?", fa:"راه کشیده شده است: کدام توضیح درست است؟", ar:"الطريق مرسوم: أيّ وصف صحيح؟", pt:"O caminho está desenhado: qual descrição está certa?", pl:"Droga jest narysowana: który opis jest dobry?", ru:"Дорога нарисована: какое описание верное?", de:"Der Weg ist eingezeichnet: Welche Beschreibung stimmt?"},
+  entendre:  {fr:"Écoute le chemin et touche l'endroit où tu arrives.", en:"Listen to the way and tap where you arrive.", tr:"Yolu dinle ve vardığın yere dokun.", uk:"Послухай дорогу й торкнися місця, куди ти прийдеш.", fa:"راه را گوش کن و روی جایی که می‌رسی بزن.", ar:"استمع إلى الطريق والمس المكان الذي تصل إليه.", pt:"Ouça o caminho e toque no lugar aonde você chega.", pl:"Posłuchaj drogi i dotknij miejsca, do którego dojdziesz.", ru:"Послушай дорогу и нажми на место, куда ты придёшь.", de:"Hör dir den Weg an und tippe auf den Ort, an dem du ankommst."},
+  vraifaux:  {fr:"Regarde le plan : vrai ou faux ?", en:"Look at the map: true or false?", tr:"Haritaya bak: doğru mu, yanlış mı?", uk:"Подивися на план: правда чи ні?", fa:"به نقشه نگاه کن: درست یا نادرست؟", ar:"انظر إلى الخريطة: صحيح أم خطأ؟", pt:"Olhe o mapa: verdadeiro ou falso?", pl:"Spójrz na plan: prawda czy fałsz?", ru:"Посмотри на план: правда или нет?", de:"Sieh dir den Plan an: richtig oder falsch?"},
+  verbe:     {fr:"Choisis le bon mot.", en:"Choose the right word.", tr:"Doğru kelimeyi seç.", uk:"Обери правильне слово.", fa:"کلمهٔ درست را انتخاب کن.", ar:"اختر الكلمة الصحيحة.", pt:"Escolha a palavra certa.", pl:"Wybierz właściwe słowo.", ru:"Выбери правильное слово.", de:"Wähle das richtige Wort."},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
+  reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+};
+// les exemples des regles, dans la langue apprise
+const EXEMPLES = {
+  regleDe: "der Bahnhof → neben <b>dem</b> Bahnhof · die Post → gegenüber <b>der</b> Post · das Kino → <b>zum</b> Kino · die Bank → <b>zur</b> Bank",
+  regleEs: "al lado <b>del</b> banco · enfrente <b>de la</b> estación · ¿cómo llego <b>al</b> museo? · ¿<b>hay una</b> farmacia por aquí? · ¿dónde <b>está la</b> farmacia?",
+  regleWeg: DE_APP ? "geradeaus · links · rechts · die erste Straße links · bis zur zweiten Kreuzung · überqueren Sie die Straße"
+                   : "todo recto · a la izquierda · a la derecha · tome la primera calle a la izquierda · gire · cruce la calle"
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+// l'Amerique latine : « doble » et « derecho » (la donnee est en espagnol d'Espagne ; la traduction se cherche sur elle)
+const latam = s => !LATAM || !s ? s : s.replace(/todo recto/g, "derecho").replace(/\bgire\b/g, "doble").replace(/\bGire\b/g, "Doble");
+const regle = cle => isoler(T(cle)) + '<span class="exemples" lang="' + APPRENDRE + '" dir="ltr">' + latam(EXEMPLES[cle]) + '</span>';
+
+// ---------- la donnee (ciudad.json, fabrique par visuel/ciudad/ciudad.py) ----------
+let D = null;
+const LIEUX = () => Object.keys(D.lieux);
+const nomDe = id => ({mot: D.lieux[id][APPRENDRE].mot, genre: D.lieux[id][APPRENDRE].genre});
+const nomAff = id => D.lieux[id][APPRENDRE].genre + " " + D.lieux[id][APPRENDRE].mot;   // « die Apotheke », « la farmacia »
+const CAP = s => s.charAt(0).toUpperCase() + s.slice(1);
+const etiquette = id => DE_APP ? D.lieux[id].de.mot : D.lieux[id].es.etiquette;
+const faits = id => D.faits[APPRENDRE][id];
+const lotsDu = id => D.plan.lots.filter(l => l.lieu === id);
+const lotPrincipal = id => { const l = lotsDu(id); return l[Math.floor(l.length / 2)]; };
+const memeRel = (a, b) => JSON.stringify(a) === JSON.stringify(b) || (a[0] === "zwischen" && b[0] === "zwischen" && a[1] === b[2] && a[2] === b[1]);
+const vraiPourLot = (rel, l) => l.rels.some(r => memeRel(r, rel));
+const vraiPourLieu = (rel, id) => lotsDu(id).some(l => vraiPourLot(rel, l));
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+const tradPhrase = p => PHRASE_TRADUITE ? (((D.trad[APPRENDRE] || {})[p] || {})[LANGUE] || null) : null;
+const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
+const glose = m => { const g = (D.gloses[APPRENDRE] || {})[m] || {}; return LANGUE === APPRENDRE ? "" : (g[LANGUE] || g.fr || ""); };
+
+// ---------- la voix : le fichier enregistre s'il existe, sinon le telephone (themes/voix.js) ----------
+let dire = t => Voix.dire(latam(t));
+const taire = () => Voix.arreter();
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const uniques = a => a.filter((x, i) => a.indexOf(x) === i);
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + latam(t) + '</span>';
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.split(/(<[^>]+>)/).map(x => x.charAt(0) === "<" ? x
+  : x.replace(/[A-Za-zÀ-ÿñÑßäöüÄÖÜ?+=]+(?:[ +=/]+[A-Za-zÀ-ÿñÑßäöüÄÖÜ?]+)*/g, m => '<span dir="ltr">' + m + '</span>')).join("");
+const echapper = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+
+// ---------- LE PLAN ----------
+// o.caches : lieux dont le nom est cache ; o.cibles : [{lot, n}] les ronds a toucher ; o.vise : lieux entoures ;
+// o.depart : le point rouge ; o.route : les points du chemin (o.jusque : le dernier point trace, puis une fleche)
+const ICI = {de: "Sie sind hier", es: "Usted está aquí"};
+function plan(o){
+  o = o || {};
+  const P = D.plan, W = 360, H = 480, d = P.demi;
+  let s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect width="' + W + '" height="' + H + '" fill="var(--bloc)"/>';
+  // les rues
+  P.lx.forEach(x => { s += '<rect x="' + (x - d) + '" y="0" width="' + (2 * d) + '" height="' + H + '" fill="var(--rue)" stroke="var(--trait)" stroke-width=".6"/>'; });
+  P.qy.forEach(y => { s += '<rect x="0" y="' + (y - d) + '" width="' + W + '" height="' + (2 * d) + '" fill="var(--rue)" stroke="var(--trait)" stroke-width=".6"/>'; });
+  P.lx.forEach(x => P.qy.forEach(y => { s += '<rect x="' + (x - d) + '" y="' + (y - d) + '" width="' + (2 * d) + '" height="' + (2 * d) + '" fill="var(--rue)"/>'; }));
+  // les noms des rues
+  const nom = k => echapper(DE_APP ? P.rues[k].de : CAP(P.rues[k].es));
+  P.lx.forEach((x, i) => { s += '<text class="nomrue" x="' + (x + 3) + '" y="460" transform="rotate(-90 ' + (x + 3) + ' 460)">' + nom("L" + i) + '</text>'; });
+  P.qy.forEach((y, j) => { s += '<text class="nomrue" x="' + (j === 1 ? 128 : 290) + '" y="' + (y + 3) + '" text-anchor="middle">' + nom("Q" + j) + '</text>'; });
+  // les maisons ; le parc est un seul rectangle vert
+  const caches = new Set(o.caches || []), vise = new Set(o.vise || []);
+  const parc = P.lots.filter(l => l.lieu === "park");
+  P.lots.forEach(l => {
+    if (l.lieu === "park") return;
+    const [x, y, w, h] = l.rect;
+    s += '<g data-lot="' + l.id + '"' + (vise.has(l.lieu) ? ' class="vise"' : '') + '><rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="4" fill="' + (l.lieu ? "var(--maison)" : "var(--habit)") + '" stroke="var(--trait)" stroke-width=".8"/>';
+    if (l.lieu && !caches.has(l.lieu)) s += etiq(etiquette(l.lieu), x + w / 2, y + h / 2, w);
+    s += '</g>';
+  });
+  if (parc.length){
+    const ys = parc.map(l => l.rect[1]), x = parc[0].rect[0], w = parc[0].rect[2];
+    const y0 = Math.min(...ys), y1 = Math.max(...parc.map(l => l.rect[1] + l.rect[3]));
+    s += '<g data-lot="parc"' + (vise.has("park") ? ' class="vise"' : '') + '><rect x="' + x + '" y="' + y0 + '" width="' + w + '" height="' + (y1 - y0) + '" rx="6" fill="var(--parc)" stroke="var(--trait)" stroke-width=".8"/>';
+    [[.3, .25], [.7, .4], [.35, .7], [.72, .8]].forEach(([a, b]) => { s += '<circle cx="' + (x + a * w) + '" cy="' + (y0 + b * (y1 - y0)) + '" r="7" fill="#7DBB6A" opacity=".75"/>'; });
+    if (!caches.has("park")) s += etiq(etiquette("park"), x + w / 2, (y0 + y1) / 2, w);
+    s += '</g>';
+  }
+  // le chemin
+  if (o.route){
+    const pts = o.route.slice(0, (o.jusque == null ? o.route.length - 1 : o.jusque) + 1);
+    s += '<polyline points="' + pts.map(p => p.join(",")).join(" ") + '" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>'
+      + '<polyline points="' + pts.map(p => p.join(",")).join(" ") + '" fill="none" stroke="var(--route)" stroke-width="3.2" stroke-dasharray="' + (o.jusque == null ? "7 4" : "none") + '" stroke-linecap="round" stroke-linejoin="round"/>';
+    if (o.jusque == null){ const f = pts[pts.length - 1]; s += '<circle cx="' + f[0] + '" cy="' + f[1] + '" r="5" fill="var(--route)" stroke="#fff" stroke-width="2"/>'; }
+  }
+  if (o.fleche){
+    const [a, b] = o.fleche, dx = b[0] - a[0], dy = b[1] - a[1], n = Math.hypot(dx, dy) || 1, L = Math.min(52, n);
+    const e = [a[0] + dx / n * L, a[1] + dy / n * L], px = -dy / n, py = dx / n;
+    s += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + e[0] + '" y2="' + e[1] + '" stroke="#fff" stroke-width="9" stroke-linecap="round"/>'
+      + '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + (e[0] - dx / n * 8) + '" y2="' + (e[1] - dy / n * 8) + '" stroke="var(--rouge)" stroke-width="5" stroke-linecap="round"/>'
+      + '<polygon points="' + e[0] + ',' + e[1] + ' ' + (e[0] - dx / n * 14 + px * 9) + ',' + (e[1] - dy / n * 14 + py * 9) + ' ' + (e[0] - dx / n * 14 - px * 9) + ',' + (e[1] - dy / n * 14 - py * 9) + '" fill="var(--rouge)" stroke="#fff" stroke-width="1.5"/>';
+  }
+  // « Sie sind hier » : le point rouge et le sens de la marche
+  if (o.depart){
+    const dp = P.departs[o.depart], [x, y] = dp.pt, v = {N: [0, -1], S: [0, 1], E: [1, 0], W: [-1, 0]}[dp.cap];
+    s += '<circle cx="' + x + '" cy="' + y + '" r="8" fill="var(--ici)" stroke="#fff" stroke-width="2.5"/>'
+      + '<polygon points="' + (x + v[0] * 18) + ',' + (y + v[1] * 18) + ' ' + (x + v[0] * 9 - v[1] * 6) + ',' + (y + v[1] * 9 + v[0] * 6) + ' ' + (x + v[0] * 9 + v[1] * 6) + ',' + (y + v[1] * 9 - v[0] * 6) + '" fill="var(--ici)"/>';
+    const tx = Math.min(W - 60, Math.max(60, x + (v[0] ? 0 : 0))), ty = y > H / 2 ? y - 16 : y + 24;
+    s += '<text x="' + (dp.cap === "E" ? 46 : dp.cap === "W" ? W - 46 : tx) + '" y="' + (dp.cap === "E" || dp.cap === "W" ? y - 15 : ty) + '" text-anchor="middle" class="etiq" style="fill:var(--ici)">' + ICI[APPRENDRE] + '</text>';
+  }
+  // les ronds a toucher
+  (o.cibles || []).forEach(c => {
+    const l = c.lot === "parc" ? null : D.plan.lots.find(x => x.id === c.lot);
+    const r = l ? l.rect : (() => { const p = D.plan.lots.filter(x => x.lieu === "park"); const y0 = Math.min(...p.map(x => x.rect[1])), y1 = Math.max(...p.map(x => x.rect[1] + x.rect[3])); return [p[0].rect[0], y0, p[0].rect[2], y1 - y0]; })();
+    s += '<g class="cible" data-id="' + c.lot + '" role="button" tabindex="0"><circle cx="' + (r[0] + r[2] / 2) + '" cy="' + (r[1] + r[3] / 2) + '" r="13"/><text x="' + (r[0] + r[2] / 2) + '" y="' + (r[1] + r[3] / 2 + 4.5) + '" text-anchor="middle">' + c.n + '</text></g>';
+  });
+  return '<div class="plan">' + s + '</svg></div>';
+}
+// le nom d'un lieu dans sa maison, sur une ou deux lignes, a la taille qui tient
+function etiq(t, cx, cy, w){
+  const mots = t.split(" "), lignes = mots.length > 1 && t.length > 11 ? [mots.slice(0, Math.ceil(mots.length / 2)).join(" "), mots.slice(Math.ceil(mots.length / 2)).join(" ")] : [t];
+  const long = Math.max(...lignes.map(x => x.length));
+  const taille = Math.min(10.5, (w - 6) / (long * 0.58));
+  return '<text class="etiq" text-anchor="middle" style="font-size:' + taille.toFixed(1) + 'px">' + lignes.map((x, i) =>
+    '<tspan x="' + cx + '" y="' + (cy + (i - (lignes.length - 1) / 2) * taille * 1.15 + taille * .35).toFixed(1) + '">' + echapper(x) + '</tspan>').join("") + '</text>';
+}
+// les ronds : un toucher juge la reponse ; data-id pour les controles (tests/themes_illustres.py)
+function cibles(bonne, apres){
+  const g = Array.from(document.querySelectorAll(".plan .cible"));
+  g.forEach(x => x.addEventListener("click", () => {
+    if (repondu) return;
+    g.forEach(y => { if (y.dataset.id === bonne) y.classList.add("juste"); });
+    if (x.dataset.id !== bonne) x.classList.add("faux");
+    const l = D.plan.lots.find(z => z.id === x.dataset.id);
+    choixQ = {lieu: x.dataset.id === "parc" ? "park" : (l && l.lieu)};
+    // le nom cache se montre : la bonne maison et celle qu'on a touchee
+    apres(x.dataset.id === bonne);
+  }));
+}
+
+let file = [], rang = 0, bons = 0, repondu = false;
+let motQ = null, tradQ = null, choixQ = null;
+
+// ---------- LES MOTS DU THEME, a la forme du corpus ----------
+let MOTS = null;
+function motsDuTheme(){
+  if (MOTS) return MOTS;
+  const M = D.mots[APPRENDRE];
+  MOTS = LIEUX().map(id => Object.assign({k: "l:" + id, lieu: id}, nomDe(id)));
+  if (DE_APP) MOTS = MOTS.concat(M.noms.map(n => ({k: "n:" + n, mot: n, genre: "die"})));
+  else MOTS = MOTS.concat(Object.keys(M.noms).map(n => ({k: "n:" + n, mot: n, genre: M.noms[n]})));
+  MOTS = MOTS.concat(M.praep.map(p => ({k: "p:" + p, mot: p, cat: "praep"})))
+    .concat(M.adverbes.map(a => ({k: "a:" + a, mot: a, cat: "adverbe"})))
+    .concat(M.verbes.filter(v => DE_APP || (LATAM ? v !== "girar" : v !== "doblar")).map(v => ({k: "v:" + v, mot: v, cat: "verbe"})));
+  return MOTS;
+}
+const motDe = w => ({mot: w.mot, genre: w.genre || null, cat: w.cat || null});
+function viser(w, defaut){ motQ = w ? motDe(w) : defaut; }
+const motLieu = id => nomDe(id);
+const estLieu = w => w && w.lieu, estPrep = w => w && w.cat === "praep";
+// la preposition d'une relation, et le nom qu'elle contient (Ecke / esquina)
+const PREP_REL = DE_APP ? {neben: "neben", gegenueber: "gegenüber", zwischen: "zwischen", ecke: "an"}
+                        : {neben: "al lado de", gegenueber: "enfrente de", zwischen: "entre"};
+const NOM_REL = DE_APP ? {ecke: "Ecke"} : {ecke: "esquina"};
+// un fait (lieu, relation) pour le mot vise
+function faitPour(w, filtre){
+  const c = [];
+  LIEUX().forEach(id => faits(id).forEach(f => {
+    if (filtre && !filtre(f, id)) return;
+    if (w){
+      if (estLieu(w) && id !== w.lieu) return;
+      if (estPrep(w) && PREP_REL[f.rel[0]] !== w.mot) return;
+      if (!estLieu(w) && !estPrep(w) && NOM_REL[f.rel[0]] !== w.mot) return;
+    }
+    c.push([id, f]);
+  }));
+  return c.length ? hasard(c) : null;
+}
+// le mot teste par un fait : celui qu'on vise, sinon le lieu
+function motDuFait(w, id){ return w ? motDe(w) : motLieu(id); }
+// les groupes FAUX pour un lieu : la meme relation avec un autre lieu d'abord, puis d'autres relations
+function groupesFaux(id, rel, n){
+  const tous = D.relations.filter(r => !vraiPourLieu(r, id) && !r.slice(1).includes(id));
+  const meme = melanger(tous.filter(r => r[0] === rel[0])), autres = melanger(tous.filter(r => r[0] !== rel[0]));
+  const g = r => Object.keys(D.groupes[APPRENDRE]).find(k => memeRel(D.groupes[APPRENDRE][k], r));
+  return uniques(meme.slice(0, 1).concat(autres, meme.slice(1)).map(g).filter(Boolean)).slice(0, n);
+}
+
+// LE MAUVAIS CHOIX TRADUIT (regle commune des themes, 3 nov.) : un groupe ou une phrase -> sa traduction (fr, en, pt,
+// de) ; un lieu -> sa glose (le corpus) ; un article, Richtig / Falsch : rien
+function choixTraduit(c){
+  if (!c || LANGUE === APPRENDRE) return null;
+  if (c.lieu) return {aff: nomAff(c.lieu), sens: glose(D.lieux[c.lieu][APPRENDRE].mot)};
+  if (c.texte){
+    const lieu = LIEUX().find(id => nomAff(id).toLowerCase() === c.texte.toLowerCase());
+    if (lieu) return {aff: c.texte, sens: glose(D.lieux[lieu][APPRENDRE].mot)};
+    const t = tradPhrase(c.texte);
+    if (t) return {aff: c.texte, sens: t};
+  }
+  return null;
+}
+
+// apres la reponse : la phrase juste et sa traduction, le mot teste et sa voix ; la phrase entiere dite
+function juger(ok, bonneTexte, phrase){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);
+  // les noms caches du plan se montrent
+  document.querySelectorAll(".plan .cible").forEach(g => {
+    const l = D.plan.lots.find(z => z.id === g.dataset.id), id = g.dataset.id === "parc" ? "park" : (l && l.lieu);
+    if (id && (g.classList.contains("juste") || g.classList.contains("faux"))){
+      const t = g.querySelector("text"); if (t){ t.textContent = ""; }
+      const c = g.querySelector("circle"); if (c) c.setAttribute("r", "6");
+      const r = l ? l.rect : null;
+      if (r) g.insertAdjacentHTML("afterend", etiq(etiquette(id), r[0] + r[2] / 2, r[1] + r[3] / 2 + 10, r[2]));
+    }
+  });
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  const aff = motQ ? (motQ.genre ? motQ.genre + " " + motQ.mot : motQ.mot) : null, sens = motQ ? glose(motQ.mot) : "";
+  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
+    + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
+    + traduction(tradQ || tradPhrase(phrase || bonneTexte))
+    + (!ok && (c => c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")(choixTraduit(choixQ)) || "")
+    + (aff ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(aff) + (sens ? ' · <span dir="auto">' + sens + '</span>' : "") + '</span>' : "");
+  if (aff) $("redire").addEventListener("click", () => dire(phrase || bonneTexte));
+  dire(phrase || bonneTexte);
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = latam(o); if (o === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = {texte: o}; apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+function ecran(consigne, image, enonce, centre, long){
+  $("zone").innerHTML = '<p class="consigne">' + T(consigne) + '</p>' + (image || "")
+    + (enonce ? '<div class="enonce' + (centre ? " centre" : "") + '">' + cible(enonce) + '</div>' : "")
+    + '<div class="choix' + (centre ? " centre" : "") + (long ? " long" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = () => '<span class="trou" id="trou">?</span>';
+const avecTrou = s => cible(s).replace("___", trou());
+function ecranTrou(consigne, image, phrase){
+  $("zone").innerHTML = '<p class="consigne">' + T(consigne) + '</p>' + (image || "")
+    + '<div class="enonce">' + avecTrou(phrase) + '</div><div class="choix" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const remplir = rep => { const t = $("trou"); if (t) t.textContent = latam(rep); };
+const photoDe = id => D.photos.includes(id) ? '<div class="photo"><img alt="" src="ciudad/' + id + '.webp"></div>' : "";
+const R_GESTE = {links: "links", rechts: "rechts", geradeaus: "geradeaus"};
+
+// ---------- les itineraires ----------
+// le mot qu'une phrase d'itineraire contient (pour viser un mot) : regex sur la phrase de la langue apprise
+const DANS = DE_APP ? {"Straße": /\bStraße\b/, "Kreuzung": /Kreuzung/, "links": /\blinks\b|linken/, "rechts": /\brechts\b|rechten/,
+                       "geradeaus": /geradeaus/, "nehmen": /Nehmen|nehmen/, "abbiegen": /biegen/, "überqueren": /überqueren/, "gehen": /Gehen/, "zu": /\bzur\b|\bzum\b/}
+                    : {"calle": /\bcalle\b/, "cruce": /\b(primer|segundo|tercer) cruce\b/, "derecha": /derecha/, "izquierda": /izquierda/,
+                       "todo recto": /todo recto/, "tomar": /\b[Tt]ome\b/, "girar": /\bgire\b/, "doblar": /\bgire\b/, "cruzar": /\bcruce la\b/, "seguir": /\bSiga\b/};
+function routePour(w, filtre){
+  const c = [];
+  D.routes[APPRENDRE].forEach(r => Object.keys(r.formes).forEach(f => {
+    const ph = r.formes[f].phrases.join(" ");
+    if (filtre && !filtre(r, f)) return;
+    if (w){
+      if (estLieu(w)){ if (r.lieu !== w.lieu) return; }
+      else if (!DANS[w.mot] || !DANS[w.mot].test(ph)) return;
+    }
+    c.push([r, f]);
+  }));
+  return c.length ? hasard(c) : null;
+}
+const lotDe = id => D.plan.lots.find(l => l.id === id);
+// les lieux qui ne sont PAS au bout de ce chemin (ni dans le meme troncon du meme cote) ; les plus proches d'abord
+function ailleurs(r, n){
+  const b = lotDe(r.lot);
+  const ok = id => id !== r.lieu && !lotsDu(id).some(l => l.col === b.col && l.tr === b.tr);
+  const pres = melanger(LIEUX().filter(id => ok(id) && lotsDu(id).some(l => l.tr === b.tr || l.col === b.col)));
+  return uniques(pres.concat(melanger(LIEUX().filter(ok)))).slice(0, n);
+}
+function lotsAilleurs(r, n){
+  const b = lotDe(r.lot);
+  const c = melanger(D.plan.lots.filter(l => l.lieu !== "park" && !(l.col === b.col && l.tr === b.tr)));
+  const pres = c.filter(l => l.tr === b.tr || l.col === b.col);
+  return uniques(pres.concat(c)).slice(0, n);
+}
+function motDuChemin(w, r){ return w ? motDe(w) : motLieu(r.lieu); }
+
+// ---------- les exercices ----------
+const EX = {
+  // « Wo ist die Apotheke? » : le plan, le lieu entoure ; le bon groupe et deux faux
+  wo(w){
+    if (w && !(estLieu(w) || estPrep(w) || NOM_REL.ecke === w.mot)) return false;
+    const x = faitPour(w); if (!x) return false;
+    const [id, f] = x;
+    motQ = motDuFait(w, id);
+    const q = DE_APP ? "Wo ist " + nomAff(id) + "?" : "¿Dónde está " + nomAff(id) + "?";
+    ecran("wo", plan({vise: [id]}), q, true);
+    boutons($("choix"), melanger([f.groupe, ...groupesFaux(id, f.rel, 2)]), f.groupe, ok => juger(ok, f.groupe, f.phrase));
+    return true;
+  },
+  // « Die Apotheke ist neben der Bank. » : touche la bonne maison (le nom du lieu cache)
+  zeigen(w){
+    if (w && !(estLieu(w) || estPrep(w) || NOM_REL.ecke === w.mot)) return false;
+    const x = faitPour(w, f => f.rel[0] !== "strasse"); if (!x) return false;
+    const [id, f] = x;
+    motQ = motDuFait(w, id);
+    const bon = id === "park" ? "parc" : lotPrincipal(id).id;
+    const refs = f.rel.slice(1);
+    const autres = melanger(D.plan.lots.filter(l => l.lieu !== "park" && l.lieu !== id && !refs.includes(l.lieu) && !vraiPourLot(f.rel, l)));
+    const pres = autres.filter(l => { const b = lotPrincipal(id); return l.tr === b.tr || l.col === b.col; });
+    const ids = melanger([bon, ...uniques(pres.concat(autres)).slice(0, 3).map(l => l.id)]);
+    const caches = ids.map(i => i === "parc" ? "park" : lotDe(i).lieu).filter(Boolean);
+    $("zone").innerHTML = '<p class="consigne">' + T("zeigen") + '</p><div class="enonce centre">' + cible(f.phrase) + '</div>'
+      + plan({caches, cibles: ids.map((i, n) => ({lot: i, n: n + 1}))}) + '<p class="retourMsg" id="msg"></p>';
+    cibles(bon, ok => juger(ok, f.phrase, f.phrase));
+    return true;
+  },
+  // « Die Apotheke ist neben ___ Bank. » der / dem / den / die -- l'article du lieu de reference
+  dativ(w){
+    if (!DE_APP || (w && !(estLieu(w) || estPrep(w)))) return false;
+    const c = [];
+    LIEUX().forEach(id => faits(id).forEach(f => {
+      if (!["neben", "gegenueber", "zwischen"].includes(f.rel[0])) return;
+      f.rel.slice(1).forEach((ref, k) => {
+        if (w && estLieu(w) && ref !== w.lieu) return;
+        if (w && estPrep(w) && PREP_REL[f.rel[0]] !== w.mot) return;
+        c.push([id, f, ref]);
+      });
+    }));
+    if (!c.length) return false;
+    const [id, f, ref] = hasard(c);
+    motQ = w ? motDe(w) : motLieu(ref);
+    const g = D.lieux[ref].de, art = {der: "dem", die: "der", das: "dem"}[g.genre];
+    const phrase = f.phrase.replace(art + " " + g.mot, "___ " + g.mot);
+    ecranTrou("dativ", plan({vise: [id, ref]}), phrase);
+    boutons($("choix"), melanger(["dem", "der", "den", "die"]), art, ok => { remplir(art); juger(ok, art, f.phrase); });
+    return true;
+  },
+  // « La farmacia está al lado ___ banco. » del / de la / de el ; « entre ___ panadería y el banco » la / de la
+  del(w){
+    if (DE_APP || (w && !(estLieu(w) || estPrep(w)))) return false;
+    const c = [];
+    LIEUX().forEach(id => faits(id).forEach(f => {
+      if (!["neben", "gegenueber", "zwischen"].includes(f.rel[0])) return;
+      f.rel.slice(1).forEach(ref => {
+        if (w && estLieu(w) && ref !== w.lieu) return;
+        if (w && estPrep(w) && PREP_REL[f.rel[0]] !== w.mot) return;
+        c.push([id, f, ref]);
+      });
+    }));
+    if (!c.length) return false;
+    const [id, f, ref] = hasard(c);
+    motQ = w ? motDe(w) : motLieu(ref);
+    const g = D.lieux[ref].es;
+    let phrase, rep, opts;
+    if (f.rel[0] === "zwischen"){
+      rep = g.genre; phrase = f.phrase.replace(new RegExp("(entre |y )" + g.genre + " " + g.mot), "$1___ " + g.mot);
+      opts = g.genre === "el" ? ["el", "del", "al"] : ["la", "de la", "a la"];
+    } else {
+      rep = g.genre === "el" ? "del" : "de la"; phrase = f.phrase.replace(rep + " " + g.mot, "___ " + g.mot);
+      opts = ["del", "de la", "de el"];
+    }
+    if (phrase === f.phrase) return false;
+    ecranTrou("del", plan({vise: [id, ref]}), phrase);
+    boutons($("choix"), melanger(opts), rep, ok => { remplir(rep); juger(ok, rep, f.phrase); });
+    return true;
+  },
+  // « Entschuldigung, wie komme ich ___ Bahnhof? » zum / zur / zu
+  zum(w){
+    if (!DE_APP || (w && !(estLieu(w) || (estPrep(w) && w.mot === "zu")))) return false;
+    const id = estLieu(w) ? w.lieu : hasard(LIEUX());
+    motQ = w ? motDe(w) : motLieu(id);
+    const g = D.lieux[id].de, zu = {der: "zum", die: "zur", das: "zum"}[g.genre];
+    const phrase = hasard(["Entschuldigung, wie komme ich " + zu + " " + g.mot + "?", "Ich suche den Weg " + zu + " " + g.mot + "."]);
+    ecranTrou("zum", photoDe(id) || plan({vise: [id]}), phrase.replace(zu + " ", "___ "));
+    boutons($("choix"), melanger(["zum", "zur", "zu"]), zu, ok => { remplir(zu); juger(ok, zu, phrase); });
+    return true;
+  },
+  // « Perdone, ¿cómo llego ___ estación? » al / a la / a el
+  al(w){
+    if (DE_APP || (w && !(estLieu(w) || w.mot === "llegar"))) return false;
+    const id = estLieu(w) ? w.lieu : hasard(LIEUX());
+    motQ = w && w.mot === "llegar" ? motDe(w) : motLieu(id);
+    const g = D.lieux[id].es, a = g.genre === "el" ? "al" : "a la";
+    const phrase = "Perdone, ¿cómo llego " + a + " " + g.mot + "?";
+    ecranTrou("al", photoDe(id) || plan({vise: [id]}), phrase.replace(a + " " + g.mot, "___ " + g.mot));
+    boutons($("choix"), melanger(["al", "a la", "a el"]), a, ok => { remplir(a); juger(ok, a, phrase); });
+    return true;
+  },
+  // « Entschuldigung, gibt es hier ___ Apotheke? » eine / einen / ein (l'accusatif)
+  gibt(w){
+    if (!DE_APP || (w && !estLieu(w))) return false;
+    const c = LIEUX().filter(id => D.lieux[id].gibt && (!w || id === w.lieu)); if (!c.length) return false;
+    const id = hasard(c); motQ = motLieu(id);
+    const g = D.lieux[id].de, ein = {der: "einen", die: "eine", das: "ein"}[g.genre];
+    const phrase = "Entschuldigung, gibt es hier " + ein + " " + g.mot + "?";
+    ecranTrou("gibt", photoDe(id), phrase.replace(ein + " " + g.mot, "___ " + g.mot));
+    boutons($("choix"), melanger(["ein", "eine", "einen"]), ein, ok => { remplir(ein); juger(ok, ein, phrase); });
+    return true;
+  },
+  // « ¿Hay ___ farmacia por aquí? » una ; « ¿Dónde está ___ farmacia? » la
+  hayEsta(w){
+    if (DE_APP || (w && !(estLieu(w) || w.mot === "estar"))) return false;
+    const esta = (w && w.mot === "estar") || Math.random() < .5;
+    const c = LIEUX().filter(id => (esta || D.lieux[id].gibt) && (!estLieu(w) || id === w.lieu)); if (!c.length) return false;
+    const id = hasard(c); motQ = w && w.mot === "estar" ? motDe(w) : motLieu(id);
+    const g = D.lieux[id].es, un = g.genre === "el" ? "un" : "una", autre = g.genre === "el" ? "una" : "un";
+    const phrase = esta ? "Perdone, ¿dónde está " + g.genre + " " + g.mot + "?" : "Perdone, ¿hay " + un + " " + g.mot + " por aquí?";
+    const rep = esta ? g.genre : un;
+    ecranTrou("hayEsta", photoDe(id), phrase.replace(rep + " " + g.mot, "___ " + g.mot));
+    boutons($("choix"), melanger(esta ? [g.genre, un, g.genre === "el" ? "la" : "el"] : [un, g.genre, autre]), rep, ok => { remplir(rep); juger(ok, rep, phrase); });
+    return true;
+  },
+  // la photo d'un lieu : « Was ist das? » ; ou le nom, et trois photos
+  lieu(w){
+    if (w && !estLieu(w)) return false;
+    const c = D.photos.filter(id => !w || id === w.lieu); if (!c.length || D.photos.length < 3) return false;
+    const id = hasard(c); motQ = motLieu(id);
+    const autres = melanger(D.photos.filter(x => x !== id));
+    const phrase = (DE_APP ? "Das ist " : "Es ") + nomAff(id) + ".";
+    if (Math.random() < .5){
+      ecran("lieu", photoDe(id), DE_APP ? "Was ist das?" : "¿Qué es esto?", true);
+      boutons($("choix"), melanger([nomAff(id), ...autres.slice(0, 2).map(nomAff)]), nomAff(id), ok => juger(ok, nomAff(id), phrase));
+    } else {
+      $("zone").innerHTML = '<p class="consigne">' + T("lieuImg") + '</p><div class="enonce centre">' + cible(nomAff(id)) + '</div><div class="rangee" id="rang"></div><p class="retourMsg" id="msg"></p>';
+      const r = $("rang");
+      melanger([id, ...autres.slice(0, 2)]).forEach(x => {
+        const b = document.createElement("button"); b.type = "button"; b.dataset.id = x;
+        b.innerHTML = '<img alt="" src="ciudad/' + x + '.webp">';
+        b.addEventListener("click", () => {
+          r.querySelectorAll("button").forEach(y => { y.disabled = true; if (y.dataset.id === id) y.classList.add("juste"); });
+          if (x !== id) b.classList.add("faux");
+          choixQ = {lieu: x}; juger(x === id, nomAff(id), phrase);
+        });
+        r.appendChild(b);
+      });
+    }
+    return true;
+  },
+  // un carrefour du chemin : on arrive par le trait, la fleche montre ou l'on va -- « Biegen Sie hier links ab. »
+  richtung(w){
+    const G = D.gestes[APPRENDRE];
+    const veut = !w ? null : DE_APP ? ({links: ["links"], rechts: ["rechts"], geradeaus: ["geradeaus"], abbiegen: ["links", "rechts"], gehen: ["geradeaus"]})[w.mot]
+                                    : ({izquierda: ["links"], derecha: ["rechts"], "todo recto": ["geradeaus"], girar: ["links", "rechts"], doblar: ["links", "rechts"], seguir: ["geradeaus"]})[w.mot];
+    if (w && !veut) return false;
+    const c = [];
+    D.routes[APPRENDRE].forEach(r => r.gestes.forEach(g => { if (!veut || veut.includes(g.fait)) c.push([r, g]); }));
+    if (!c.length) return false;
+    const [r, g] = hasard(c);
+    motQ = w ? motDe(w) : (DE_APP ? {mot: g.fait, cat: "adverbe"} : (g.fait === "geradeaus" ? {mot: "todo recto", cat: "adverbe"} : {mot: g.fait === "links" ? "izquierda" : "derecha", genre: "la"}));
+    const phrase = G[g.fait];
+    ecran("richtung", plan({route: r.points, jusque: g.i, fleche: [r.points[g.i], r.points[g.i + 1]], depart: r.depart}), null, false);
+    boutons($("choix"), melanger([G.links, G.rechts, G.geradeaus]), phrase, ok => juger(ok, phrase, phrase));
+    return true;
+  },
+  // le chemin ecrit, depuis le point rouge : « ... ___ ist auf der linken Seite. »
+  weg(w){
+    const x = routePour(w); if (!x) return false;
+    const [r, f] = x, F = r.formes[f];
+    motQ = motDuChemin(w, r);
+    const bonne = CAP(nomAff(r.lieu));
+    ecranTrou("weg", plan({depart: r.depart}), F.trou.join(" "));
+    boutons($("choix"), melanger([bonne, ...ailleurs(r, 2).map(id => CAP(nomAff(id)))]), bonne, ok => { remplir(bonne); juger(ok, bonne, F.phrases.join(" ")); });
+    return true;
+  },
+  // le chemin trace : la bonne description et deux fausses
+  beschreibung(w){
+    const x = routePour(w, (r, f) => r.formes[f].faux.length >= 1); if (!x) return false;
+    const [r, f] = x, F = r.formes[f], bonne = F.phrases.join(" ");
+    motQ = motDuChemin(w, r);
+    ecran("beschreibung", plan({depart: r.depart, route: r.points, vise: [r.lieu]}), null, false, true);
+    boutons($("choix"), melanger(uniques([bonne, ...melanger(F.faux)]).slice(0, 3)), bonne, ok => juger(ok, bonne, bonne));
+    return true;
+  },
+  // le chemin dit (sans le nom du lieu) : touche ou tu arrives
+  entendre(w){
+    const x = routePour(w); if (!x) return false;
+    const [r, f] = x, F = r.formes[f];
+    motQ = motDuChemin(w, r);
+    const bon = r.lieu === "park" ? "parc" : r.lot;
+    const ids = melanger([bon, ...lotsAilleurs(r, 2).map(l => l.id)]);
+    const caches = ids.map(i => i === "parc" ? "park" : lotDe(i).lieu).filter(Boolean);
+    const dit = F.neutre.join(" ");
+    $("zone").innerHTML = '<p class="consigne">' + T("entendre") + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
+      + plan({depart: r.depart, caches, cibles: ids.map((i, n) => ({lot: i, n: n + 1}))}) + '<p class="retourMsg" id="msg"></p>';
+    $("ecoute").addEventListener("click", () => dire(dit));
+    cibles(bon, ok => juger(ok, F.phrases.join(" "), F.phrases.join(" ")));
+    dire(dit);
+    return true;
+  },
+  // vrai ou faux : le fait du plan, ou un groupe faux a sa place ; en espagnol, aussi hay / esta
+  vraifaux(w){
+    const V = DE_APP ? "Richtig" : "Verdadero", F = DE_APP ? "Falsch" : "Falso";
+    if (w && w.mot === "estar" && !DE_APP){
+      const x = faitPour(null, f => f.rel[0] !== "zwischen"); if (!x) return false;
+      const [id, f] = x; motQ = motDe(w);
+      const g = D.lieux[id].es, un = g.genre === "el" ? "un" : "una", gr = f.groupe;
+      const choix = hasard(["hay", "esta", "malHay", "malEsta"]);
+      const phrase = {hay: "Hay " + un + " " + g.mot + " " + gr + ".", esta: CAP(nomAff(id)) + " está " + gr + ".",
+                      malHay: "Hay " + nomAff(id) + " " + gr + ".", malEsta: "Está " + un + " " + g.mot + " " + gr + "."}[choix];
+      const juste = choix === "malHay" || choix === "esta" ? CAP(nomAff(id)) + " está " + gr + "." : "Hay " + un + " " + g.mot + " " + gr + ".";
+      ecran("vraifaux", plan({vise: [id]}), phrase, true);
+      const rep = choix.startsWith("mal") ? F : V;
+      boutons($("choix"), [V, F], rep, ok => juger(ok, rep, juste));
+      return true;
+    }
+    if (w && !(estLieu(w) || estPrep(w) || NOM_REL.ecke === w.mot)) return false;
+    const x = faitPour(w); if (!x) return false;
+    const [id, f] = x;
+    motQ = motDuFait(w, id);
+    const vrai = Math.random() < .5, faux = groupesFaux(id, f.rel, 1)[0];
+    const phrase = vrai || !faux ? f.phrase : f.phrase.replace(f.groupe, faux);
+    ecran("vraifaux", plan({vise: [id]}), phrase, true);
+    const rep = vrai || !faux ? V : F;
+    boutons($("choix"), [V, F], rep, ok => juger(ok, rep, f.phrase));
+    return true;
+  },
+  // le verbe de la phrase : « ___ Sie die zweite Straße links. » Nehmen ; « ... biegen Sie dort links ___. » ab ;
+  // « Siga todo recto y ___ la calle de la Paz. » cruce ; « Perdone, ¿cómo ___ a la estación? » llego
+  verbe(w){
+    const MODELES = DE_APP ? [
+      [/^Nehmen Sie/, "Nehmen", "nehmen", ["Nehmen", "Gehen", "Biegen"]],
+      [/^Gehen Sie/, "Gehen", "gehen", ["Gehen", "Nehmen", "Biegen"]],
+      [/nehmen Sie/, "nehmen", "nehmen", ["nehmen", "gehen", "biegen"]],
+      [/überqueren Sie/, "überqueren", "überqueren", ["überqueren", "nehmen", "biegen"]],
+      [/ ab\.$/, "ab", "abbiegen", ["ab", "an", "um"]]
+    ] : [
+      [/^Tome /, "Tome", "tomar", ["Tome", "Siga", "Cruce"]],
+      [/tome /, "tome", "tomar", ["tome", "siga", "cruce"]],
+      [/^Siga /, "Siga", "seguir", ["Siga", "Tome", "Cruce"]],
+      [/\bcruce la\b/, "cruce", "cruzar", ["cruce", "tome", "gire"]],
+      [/\bgire\b/, "gire", LATAM ? "doblar" : "girar", ["gire", "tome", "cruce"]]
+    ];
+    const c = [];
+    if (!DE_APP && (!w || w.mot === "llegar")) LIEUX().forEach(id => c.push({phrase: "Perdone, ¿cómo llego " + (D.lieux[id].es.genre === "el" ? "al " : "a la ") + D.lieux[id].es.mot + "?", mot: "llego", inf: "llegar", opts: ["llego", "llega", "llegar"], r: null}));
+    const vus = new Set();
+    D.routes[APPRENDRE].forEach(r => Object.keys(r.formes).forEach(f => r.formes[f].phrases.forEach(p => {
+      MODELES.forEach(([re, mot, inf, opts]) => {
+        if (!re.test(p) || (w && w.mot !== inf) || vus.has(p + mot)) return;
+        vus.add(p + mot); c.push({phrase: p, mot, inf, opts, r, re});
+      });
+    })));
+    if (!c.length) return false;
+    const x = hasard(c);
+    motQ = {mot: x.inf, cat: "verbe"};
+    // l'endroit du mot : la ou le modele le trouve (un \b ne voit pas le « ü » d'« überqueren »)
+    const i = x.re ? x.phrase.search(x.re) + (x.mot === "ab" ? 1 : 0) : x.phrase.indexOf(x.mot);
+    const trouee = x.phrase.slice(0, i) + "___" + x.phrase.slice(i + x.mot.length);
+    ecranTrou("verbe", x.r ? plan({depart: x.r.depart, route: x.r.points, vise: [x.r.lieu]}) : photoDe(LIEUX().find(id => x.phrase.includes(D.lieux[id].es.mot))), trouee);
+    boutons($("choix"), melanger(x.opts), x.mot, ok => { remplir(x.mot); juger(ok, x.mot, x.phrase); });
+    return true;
+  }
+};
+const SORTES = DE_APP ? ["lieu", "wo", "zeigen", "dativ", "zum", "gibt", "richtung", "weg", "beschreibung", "entendre", "vraifaux", "verbe"]
+                      : ["lieu", "wo", "zeigen", "del", "al", "hayEsta", "richtung", "weg", "beschreibung", "entendre", "vraifaux", "verbe"];
+
+// ---------- la decouverte : le plan, deux onglets ----------
+function decouvrir(){
+  $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone");
+  z.innerHTML = '<div class="onglets" role="tablist"><button type="button" id="oLieux" role="tab">' + T("ongletLieux") + '</button><button type="button" id="oChemin" role="tab">' + T("ongletChemin") + '</button></div>'
+    + '<p class="consigne" id="intro"></p><div id="vue"></div><div id="photo"></div>'
+    + '<div class="dit"><div class="texte" id="dit"></div><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>'
+    + '<div class="puces" id="puces"></div><p class="regle" id="regle"></p>';
+  let dites = [];
+  const montrerDit = lignes => { dites = lignes; $("dit").innerHTML = lignes.map(p => '<span class="ligne">' + cible(p) + traduction(tradPhrase(p)) + '</span>').join(""); };
+  $("ecoute").addEventListener("click", () => dire(dites.join(" ")));
+  const lieux = () => {
+    $("oLieux").classList.add("actif"); $("oChemin").classList.remove("actif");
+    $("intro").textContent = T(DE_APP ? "introDe" : "introEs");
+    $("regle").innerHTML = regle(DE_APP ? "regleDe" : "regleEs");
+    $("vue").innerHTML = plan(); $("photo").innerHTML = "";
+    const pu = $("puces"); pu.innerHTML = "";
+    const choisir = id => {
+      pu.querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x.dataset.id === id));
+      $("vue").innerHTML = plan({vise: [id]}); attacherPlan();
+      $("photo").innerHTML = photoDe(id);
+      const f = faits(id).filter(x => x.rel[0] !== "strasse");
+      const ph = (f.length ? hasard(f) : faits(id)[0]).phrase;
+      montrerDit([CAP(nomAff(id)), ph].filter(Boolean));
+      $("dit").querySelector(".ligne").insertAdjacentHTML("beforeend", traduction(glose(D.lieux[id][APPRENDRE].mot)));
+      dire(nomAff(id) + ". " + ph);
+    };
+    const attacherPlan = () => document.querySelectorAll("#vue [data-lot]").forEach(g => g.addEventListener("click", () => {
+      const l = lotDe(g.dataset.lot), id = g.dataset.lot === "parc" ? "park" : (l && l.lieu); if (id) choisir(id);
+    }));
+    attacherPlan();
+    LIEUX().forEach(id => {
+      const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dataset.id = id; b.textContent = nomAff(id);
+      b.addEventListener("click", () => choisir(id)); pu.appendChild(b);
+    });
+    montrerDit([]);
+  };
+  const chemin = () => {
+    $("oChemin").classList.add("actif"); $("oLieux").classList.remove("actif");
+    $("intro").textContent = T("introChemin");
+    $("regle").innerHTML = regle("regleWeg");
+    $("vue").innerHTML = plan({depart: "sud"}); $("photo").innerHTML = D.personnes.includes("mark-demande") && DE_APP ? '<div class="photo"><img alt="" src="ciudad/mark-demande.webp"></div>' : "";
+    const pu = $("puces"); pu.innerHTML = "";
+    LIEUX().forEach(id => {
+      const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dataset.id = id; b.textContent = nomAff(id);
+      b.addEventListener("click", () => {
+        pu.querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b));
+        const r = D.routes[APPRENDRE].find(x => x.depart === "sud" && x.lieu === id), F = r.formes.A;
+        const g = D.lieux[id][APPRENDRE];
+        const q = DE_APP ? "Entschuldigung, wie komme ich " + ({der: "zum", die: "zur", das: "zum"})[g.genre] + " " + g.mot + "?" : "Perdone, ¿cómo llego " + (g.genre === "el" ? "al " : "a la ") + g.mot + "?";
+        $("vue").innerHTML = plan({depart: "sud", route: r.points, vise: [id]});
+        // la reponse : la dame montre le chemin (sans dire de quel cote : sur la photo, son geste ne le dit pas surement)
+        if (DE_APP && D.personnes.includes("mark-gauche")) $("photo").innerHTML = '<div class="photo"><img alt="" src="ciudad/mark-gauche.webp"></div>';
+        montrerDit([q].concat(F.phrases)); dire([q].concat(F.phrases).join(" "));
+      });
+      pu.appendChild(b);
+    });
+    montrerDit([]);
+  };
+  $("oLieux").addEventListener("click", lieux); $("oChemin").addEventListener("click", chemin);
+  lieux();
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; taire(); demarrer(); };
+}
+
+// LA PARTIE (« le tirage suit les mots ») : recopie de familia.html (THEMES-ILLUSTRES.md : identique d'un theme a l'autre)
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  const plans = Array.from(z.querySelectorAll(".plan polyline, .plan .cible, .plan .vise")).map(e => e.getAttribute("points") || e.dataset.id || e.dataset.lot).join(",");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",") + "|" + plans;
+}
+function montrer(){
+  repondu = false; $("suite").hidden = true; $("bas").hidden = true;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  const garde = dire; dire = () => {};
+  const raz = so => { motQ = null; tradQ = null; choixQ = null; sorteCourante = so; };
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let n = 0; n < 25; n++){
+        raz(so);
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){
+      raz(derniereSorte);
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){
+      raz(so);
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+  }
+  if (!fait) fait = essai(file[rang], false);
+  dire = garde;
+  if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
+  vus.add(cleQuestion()); derniereSorte = fait;
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>';
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
+}
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + '</div>';
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+function basDePartie(){
+  const b = $("bas"); b.innerHTML = boutonEncore() + '<button type="button" class="principal" id="terminer">' + T("terminer") + '</button>'; b.hidden = false;
+  const e = $("encore"); if (e) e.addEventListener("click", () => { b.hidden = true; encoreDesQuestions(); });
+}
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan_ = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan_.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan_.prochaine);
+  montrer();
+}
+// les textes que dit la page (visuel/voix_themes.py) : les noms des lieux, les phrases des faits et des chemins
+function textesAVoix(){
+  const t = [];
+  LIEUX().forEach(id => { t.push(nomAff(id)); faits(id).forEach(f => t.push(f.phrase)); });
+  D.routes[APPRENDRE].filter(r => r.depart === "sud").forEach(r => t.push(r.formes.A.phrases.join(" ")));
+  return uniques(t.map(latam));
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("ciudad/ciudad.json?v=1").then(r => r.json()).then(d => {
+  D = d;
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>

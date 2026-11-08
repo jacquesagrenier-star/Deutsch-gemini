@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le travail et l'emploi</title>
+<!--
+  LE TRAVAIL ET LA RECHERCHE D'EMPLOI (theme illustre, vague 4, 5 nov. 2026). Au coeur du DTZ et de l'A2-B1 : lire une
+  annonce (Vollzeit, Teilzeit, Minijob ; jornada completa, media jornada), le CV et la lettre, l'entretien, le contrat
+  (Probezeit, Urlaub), le premier jour, les collegues et la cheffe, se declarer malade (sich krankmelden).
+  En allemand, Mark Garnier a Berlin, sa cheffe Frau Schneider (Sonnenweg Reisen), ses collegues Jonas et Lisa ; en
+  espagnol, le Mark de « Mark en Madrid », la senora Navarro (Viajes Solano), Jorge et Lucia. Les images n'ont AUCUN
+  texte : annonces, CV, lettre, contrat et appel sont dessines ici, en HTML.
+  TOUTES LES QUESTIONS SONT FABRIQUEES par visuel/travail/travail.py depuis ses tables, et rangees dans
+  travail/travail.json : la page ne fait que les tirer (une question = sa sorte, son mot, son enonce, sa reponse, une
+  reserve de leurres clairement faux, la phrase juste et sa traduction). On corrige le script, jamais le JSON.
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne » a
+  chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin.
+  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte), variante=latam.
+  Le tirage suit les mots (themes/tirage.js).
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--papier:#FFFDF7;--trait:#C9CFD8;--bulle:#E9F1FB;--bulle2:#FFF3DF;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A;--papier:#1D2F3D;--trait:#40576A;--bulle:#203A52;--bulle2:#3A2E1C}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+/* la page a la hauteur de l'ecran, comme une scene (visuel/THEMES-ILLUSTRES.md) : le contenu defile DANS le body */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 156px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.trou{display:inline-block;min-width:64px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+/* les images sont en 4:3 ; une image pas encore faite garde sa place (fond uni), la page marche sans elle */
+.photo{display:block;width:100%;max-width:420px;margin:0 auto;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:16px;background:var(--carte)}
+.rangee{display:grid;grid-template-columns:1fr 1fr;gap:8px;direction:ltr}
+.rangee.trois{grid-template-columns:1fr 1fr 1fr}
+.rangee button{border:3px solid transparent;border-radius:14px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block}
+.rangee img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.rangee button.juste{border-color:var(--vert)} .rangee button.faux{border-color:var(--rouge)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix.liste{flex-direction:column}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer;text-align:center}
+.choix.liste button{border-radius:14px;text-align:left}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.ecoute{width:48px;height:48px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ecoute svg{width:24px;height:24px}
+.ecoute.grand{width:64px;height:64px;margin:0 auto} .ecoute.grand svg{width:32px;height:32px}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+.trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
+.trad.faux{color:var(--rouge);font-style:normal}
+.retourMsg .mot{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
+.retourMsg .mot .ecoute{width:38px;height:38px} .retourMsg .mot .ecoute svg{width:19px;height:19px}
+/* LES PAPIERS, dessines ici (aucun texte dans les images) : l'annonce, le CV, la lettre, le contrat, l'appel */
+.papier{direction:ltr;text-align:left;background:var(--papier);border:1px solid var(--trait);border-radius:6px;padding:12px 12px 10px;box-shadow:0 6px 16px rgba(28,36,48,.12);
+  font-size:14px;line-height:1.4;color:var(--encre);position:relative}
+.papier .entete{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--gris);border-bottom:2px solid var(--encre);padding-bottom:5px;margin-bottom:8px}
+.papier h3{margin:0 0 6px;font-size:17px;font-weight:900}
+.papier .intro{font-weight:700;margin-bottom:4px}
+.papier table{border-collapse:collapse;width:100%;font-size:14px}
+.papier td{padding:3px 4px;border-bottom:1px dotted var(--trait);vertical-align:top} .papier td:first-child{font-weight:800;width:36%}
+.papier td.seul{font-weight:700;width:auto}
+.papier tr.vise td,.papier .vise{background:rgba(232,162,58,.16);outline:2px solid var(--ambre);outline-offset:-1px;border-radius:3px}
+.papier .cache{color:var(--ambre-f);font-weight:900}
+.papier .rub{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;color:var(--gris);margin:8px 0 2px;border-bottom:1px solid var(--trait)}
+.papier .rub.cache{color:var(--ambre-f)}
+.papier .lig{padding:1px 3px}
+.papier .photoCv{float:right;width:54px;height:66px;border-radius:4px;background:linear-gradient(160deg,#C9D3DE,#9AA8B8);margin:0 0 4px 8px}
+.papier .lettre div{min-height:1.1em;padding:1px 3px}
+.papier .lettre .betreff{font-weight:900}
+.papier .lettre .signe{font-family:"Segoe Script","Brush Script MT","Snell Roundhand",cursive;font-size:19px;color:#1D4E9E}
+html.nuit .papier .lettre .signe{color:#9CC3FF}
+.papier .note{font-size:12.5px;color:var(--gris);margin:6px 0 0;font-weight:700}
+.appel{direction:ltr;display:flex;flex-direction:column;gap:6px;background:var(--carte);border-radius:14px;padding:10px}
+.appel .b{max-width:86%;padding:7px 11px;border-radius:14px;font-weight:700;line-height:1.35;font-size:14.5px}
+.appel .b.chef{align-self:flex-start;background:var(--bulle);border-bottom-left-radius:4px}
+.appel .b.mark{align-self:flex-end;background:var(--bulle2);border-bottom-right-radius:4px}
+.appel .b .qui{display:block;font-size:11px;font-weight:900;color:var(--gris);text-transform:uppercase;letter-spacing:.03em}
+.appel .b.vise{outline:2px solid var(--ambre)}
+.appel .tel{align-self:center;font-size:12px;font-weight:800;color:var(--gris)}
+/* la decouverte */
+.section{font-weight:900;font-size:15px;margin:4px 0 -4px}
+.fiche{background:var(--carte);border-radius:14px;padding:10px;display:grid;grid-template-columns:minmax(120px,48%) 1fr;gap:12px;align-items:center}
+.fiche.sans{grid-template-columns:1fr}
+.fiche img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block;background:var(--verre)}
+.fiche .mot{font-weight:900;font-size:21px;color:var(--ambre-f);line-height:1.15}
+.fiche .sens{font-weight:700;font-size:14px;color:var(--gris);margin-top:2px}
+.fiche .dit{font-weight:800;font-size:16px;line-height:1.4;margin-top:6px}
+.fiche .ligne{display:flex;align-items:center;gap:10px;margin-top:8px}
+.planche{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;direction:ltr}
+.planche button{border:3px solid transparent;border-radius:10px;padding:0;background:var(--carte);cursor:pointer;overflow:hidden;display:block}
+.planche img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.planche button.choisi{border-color:var(--ambre)}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.45;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+/* TOUS LES BOUTONS D'ACTION TOUT EN BAS DE L'ECRAN, comme dans les scenes (Jacques, 3 nov. 2026) */
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;z-index:5000;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite[hidden]{display:none}
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:5000;display:flex;flex-direction:column;gap:8px}
+.bas button{height:54px;border:0;border-radius:27px;font:800 17px var(--police);cursor:pointer;
+  color:#fff;background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28)}
+.bas button.second{background:var(--verre);color:var(--encre);border:2px solid var(--ambre);box-shadow:0 6px 16px rgba(28,36,48,.14)}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+[lang]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<script src="themes/tirage.js?v=2"></script>
+<script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=6"></script>
+<script src="themes/voix.js?v=7"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
+Zoom.init({direct: "img.photo, .fiche img", loupe: ".rangee button", langue: LANGUE});
+
+const TEXTES = {
+  titre:     {fr:"Le travail et l'emploi", en:"Work and jobs", tr:"İş ve iş arama", uk:"Робота і пошук роботи", fa:"کار و کاریابی", ar:"العمل والبحث عن وظيفة", pt:"O trabalho e o emprego", pl:"Praca i szukanie pracy", ru:"Работа и поиск работы", de:"Arbeit und Jobsuche"},
+  intro:     {fr:"Suis Mark, de l'annonce jusqu'au premier jour : touche une image pour la voir et l'entendre. En bas, une annonce à lire.", en:"Follow Mark from the job advert to his first day: tap a picture to see and hear it. Below is an advert to read.", tr:"İlandan ilk iş gününe kadar Mark'ı takip et: bir resme dokun, gör ve dinle. Aşağıda okunacak bir ilan var.", uk:"Пройди з Марком шлях від оголошення до першого робочого дня: торкнися зображення, щоб побачити й почути. Нижче — оголошення для читання.", fa:"مارک را از آگهی تا اولین روز کار دنبال کن: روی یک تصویر بزن تا آن را ببینی و بشنوی. پایین، یک آگهی برای خواندن است.", ar:"رافق مارك من إعلان الوظيفة حتى يومه الأول: المس صورة لتراها وتسمعها. في الأسفل إعلان للقراءة.", pt:"Acompanhe o Mark do anúncio até o primeiro dia: toque em uma imagem para ver e ouvir. Embaixo, um anúncio para ler.", pl:"Idź z Markiem od ogłoszenia do pierwszego dnia pracy: dotknij obrazka, aby go zobaczyć i usłyszeć. Niżej ogłoszenie do przeczytania.", ru:"Пройди с Марком путь от объявления до первого рабочего дня: нажми на картинку, чтобы увидеть и услышать. Ниже — объявление для чтения.", de:"Begleite Mark von der Anzeige bis zum ersten Arbeitstag: Tippe auf ein Bild, dann siehst und hörst du es. Unten steht eine Anzeige zum Lesen."},
+  secEtapes: {fr:"Les étapes", en:"The steps", tr:"Adımlar", uk:"Етапи", fa:"مرحله‌ها", ar:"المراحل", pt:"As etapas", pl:"Etapy", ru:"Этапы", de:"Die Schritte"},
+  secDocs:   {fr:"Les papiers", en:"The papers", tr:"Belgeler", uk:"Документи", fa:"مدارک", ar:"الأوراق", pt:"Os papéis", pl:"Dokumenty", ru:"Документы", de:"Die Unterlagen"},
+  secAnnonce:{fr:"Une annonce", en:"A job advert", tr:"Bir iş ilanı", uk:"Оголошення", fa:"یک آگهی", ar:"إعلان وظيفة", pt:"Um anúncio", pl:"Ogłoszenie", ru:"Объявление", de:"Eine Anzeige"},
+  regleDe:   {fr:"Vollzeit : environ 40 heures par semaine ; Teilzeit : moins, souvent 20 à 30 ; Minijob : quelques heures, au plus 603 € par mois (2026). On pose sa candidature avec sich bewerben um : Ich bewerbe mich um die Stelle als Kellner — als, jamais wie, et sans article. La lettre commence par Sehr geehrte Frau … / Sehr geehrter Herr … et finit par Mit freundlichen Grüßen. En entretien et avec la cheffe, on dit Sie ; entre collègues, souvent du. Se déclarer malade : Mark meldet sich krank — sich juste après le verbe, krank à la fin.",
+              en:"Vollzeit: about 40 hours a week; Teilzeit: fewer, often 20 to 30; Minijob: a few hours, at most €603 a month (2026). You apply with sich bewerben um: Ich bewerbe mich um die Stelle als Kellner — als, never wie, and no article. The letter starts with Sehr geehrte Frau … / Sehr geehrter Herr … and ends with Mit freundlichen Grüßen. In the interview and with the boss you say Sie; between colleagues, often du. Calling in sick: Mark meldet sich krank — sich right after the verb, krank at the end.",
+              tr:"Vollzeit: haftada yaklaşık 40 saat; Teilzeit: daha az, çoğu zaman 20–30 saat; Minijob: birkaç saat, ayda en fazla 603 € (2026). Başvuru sich bewerben um ile yapılır: Ich bewerbe mich um die Stelle als Kellner — als kullanılır, asla wie değil, artikel de yok. Mektup Sehr geehrte Frau … / Sehr geehrter Herr … ile başlar ve Mit freundlichen Grüßen ile biter. Görüşmede ve şefle Sie denir; iş arkadaşları arasında çoğu zaman du. Hastalık bildirmek: Mark meldet sich krank — sich fiilden hemen sonra, krank en sonda.",
+              uk:"Vollzeit — приблизно 40 годин на тиждень; Teilzeit — менше, часто 20–30; Minijob — кілька годин, не більше 603 € на місяць (2026). Подають заявку зі sich bewerben um: Ich bewerbe mich um die Stelle als Kellner — als, ніколи не wie, і без артикля. Лист починається з Sehr geehrte Frau … / Sehr geehrter Herr … і закінчується Mit freundlichen Grüßen. На співбесіді й з керівницею кажуть Sie; між колегами часто du. Повідомити про хворобу: Mark meldet sich krank — sich одразу після дієслова, krank у кінці.",
+              fa:"Vollzeit: حدود ۴۰ ساعت در هفته؛ Teilzeit: کمتر، اغلب ۲۰ تا ۳۰ ساعت؛ Minijob: چند ساعت، حداکثر ۶۰۳ یورو در ماه (۲۰۲۶). برای درخواست کار از sich bewerben um استفاده می‌کنیم: Ich bewerbe mich um die Stelle als Kellner — als، هرگز wie، و بدون حرف تعریف. نامه با Sehr geehrte Frau … / Sehr geehrter Herr … شروع می‌شود و با Mit freundlichen Grüßen تمام می‌شود. در مصاحبه و با رئیس Sie می‌گوییم؛ میان همکاران اغلب du. اعلام بیماری: Mark meldet sich krank — sich درست بعد از فعل، krank در آخر.",
+              ar:"Vollzeit: نحو 40 ساعة في الأسبوع؛ Teilzeit: أقل، غالبًا من 20 إلى 30؛ Minijob: بضع ساعات، بحد أقصى 603 يورو في الشهر (2026). نتقدم للوظيفة بـ sich bewerben um: Ich bewerbe mich um die Stelle als Kellner — نقول als وليس wie أبدًا، ومن دون أداة تعريف. تبدأ الرسالة بـ Sehr geehrte Frau … / Sehr geehrter Herr … وتنتهي بـ Mit freundlichen Grüßen. في المقابلة ومع المديرة نقول Sie؛ وبين الزملاء غالبًا du. إبلاغ المرض: Mark meldet sich krank — تأتي sich بعد الفعل مباشرة، وkrank في آخر الجملة.",
+              pt:"Vollzeit: cerca de 40 horas por semana; Teilzeit: menos, muitas vezes de 20 a 30; Minijob: poucas horas, no máximo 603 € por mês (2026). Candidata-se com sich bewerben um: Ich bewerbe mich um die Stelle als Kellner — als, nunca wie, e sem artigo. A carta começa com Sehr geehrte Frau … / Sehr geehrter Herr … e termina com Mit freundlichen Grüßen. Na entrevista e com a chefe, usa-se Sie; entre colegas, muitas vezes du. Avisar que está doente: Mark meldet sich krank — sich logo depois do verbo, krank no fim.",
+              pl:"Vollzeit: około 40 godzin tygodniowo; Teilzeit: mniej, często 20–30; Minijob: kilka godzin, najwyżej 603 € miesięcznie (2026). O pracę ubiega się z sich bewerben um: Ich bewerbe mich um die Stelle als Kellner — als, nigdy wie, i bez rodzajnika. List zaczyna się od Sehr geehrte Frau … / Sehr geehrter Herr …, a kończy na Mit freundlichen Grüßen. Na rozmowie i z szefową mówi się Sie; między współpracownikami często du. Zgłoszenie choroby: Mark meldet sich krank — sich zaraz po czasowniku, krank na końcu.",
+              ru:"Vollzeit — около 40 часов в неделю; Teilzeit — меньше, часто 20–30; Minijob — несколько часов, не больше 603 € в месяц (2026). На работу подают с sich bewerben um: Ich bewerbe mich um die Stelle als Kellner — als, никогда не wie, и без артикля. Письмо начинается с Sehr geehrte Frau … / Sehr geehrter Herr … и заканчивается Mit freundlichen Grüßen. На собеседовании и с начальницей говорят Sie; между коллегами часто du. Сообщить о болезни: Mark meldet sich krank — sich сразу после глагола, krank в конце."},
+  regleEs:   {fr:"Jornada completa : 40 heures par semaine ; media jornada : environ 20 ; por horas : quelques heures payées à l'heure. On pose sa candidature avec solicitar : solicitar el puesto de camarero. La lettre commence par Estimada señora … : (avec deux-points) et finit par Un cordial saludo. En entretien, on dit usted : ¿Puede usted empezar el lunes? ; entre collègues, tú : ¿Me puedes ayudar? Une qualité se dit avec ser (Lucía es trabajadora) ; un état du moment avec estar (Mark está enfermo).",
+              en:"Jornada completa: 40 hours a week; media jornada: about 20; por horas: a few hours paid by the hour. You apply with solicitar: solicitar el puesto de camarero. The letter starts with Estimada señora …: (with a colon) and ends with Un cordial saludo. In the interview you say usted: ¿Puede usted empezar el lunes?; between colleagues, tú: ¿Me puedes ayudar? A quality takes ser (Lucía es trabajadora); a state right now takes estar (Mark está enfermo).",
+              pt:"Jornada completa: 40 horas por semana; media jornada: cerca de 20; por horas: poucas horas pagas por hora. Candidata-se com solicitar: solicitar el puesto de camarero. A carta começa com Estimada señora …: (com dois-pontos) e termina com Un cordial saludo. Na entrevista, usa-se usted: ¿Puede usted empezar el lunes?; entre colegas, tú: ¿Me puedes ayudar? Uma qualidade leva ser (Lucía es trabajadora); um estado do momento, estar (Mark está enfermo).",
+              ar:"Jornada completa: ‏40 ساعة في الأسبوع؛ media jornada: نحو 20؛ por horas: بضع ساعات مدفوعة بالساعة. نتقدم للوظيفة بـ solicitar: solicitar el puesto de camarero. تبدأ الرسالة بـ Estimada señora …: (مع نقطتين) وتنتهي بـ Un cordial saludo. في المقابلة نقول usted: ¿Puede usted empezar el lunes?؛ وبين الزملاء tú: ¿Me puedes ayudar? الصفة الدائمة مع ser ‏(Lucía es trabajadora)، والحالة المؤقتة مع estar ‏(Mark está enfermo).",
+              de:"Jornada completa: 40 Stunden pro Woche; media jornada: etwa 20; por horas: ein paar Stunden, pro Stunde bezahlt. Man bewirbt sich mit solicitar: solicitar el puesto de camarero. Der Brief beginnt mit Estimada señora …: (mit Doppelpunkt) und endet mit Un cordial saludo. Im Vorstellungsgespräch sagt man usted: ¿Puede usted empezar el lunes?; unter Kollegen tú: ¿Me puedes ayudar? Eine Eigenschaft steht mit ser (Lucía es trabajadora), ein Zustand im Moment mit estar (Mark está enfermo)."},
+  c_umfang:  {fr:"Lis l'annonce : quel type de poste est-ce ?", en:"Read the advert: what kind of job is it?", tr:"İlanı oku: bu ne tür bir iş?", uk:"Прочитай оголошення: яка це робота?", fa:"آگهی را بخوان: این چه نوع کاری است؟", ar:"اقرأ الإعلان: ما نوع هذه الوظيفة؟", pt:"Leia o anúncio: que tipo de vaga é?", pl:"Przeczytaj ogłoszenie: jaki to rodzaj pracy?", ru:"Прочитай объявление: что это за работа?", de:"Lies die Anzeige: Was für eine Stelle ist das?"},
+  c_annonce: {fr:"Lis l'annonce et réponds.", en:"Read the advert and answer.", tr:"İlanı oku ve cevap ver.", uk:"Прочитай оголошення й дай відповідь.", fa:"آگهی را بخوان و جواب بده.", ar:"اقرأ الإعلان وأجب.", pt:"Leia o anúncio e responda.", pl:"Przeczytaj ogłoszenie i odpowiedz.", ru:"Прочитай объявление и ответь.", de:"Lies die Anzeige und antworte."},
+  c_qualite: {fr:"Que fait cette personne ? Choisis la qualité qui va avec.", en:"What does this person do? Choose the quality that fits.", tr:"Bu kişi ne yapıyor? Uygun özelliği seç.", uk:"Що робить ця людина? Обери відповідну рису.", fa:"این شخص چه می‌کند؟ ویژگی مناسب را انتخاب کن.", ar:"ماذا يفعل هذا الشخص؟ اختر الصفة المناسبة.", pt:"O que essa pessoa faz? Escolha a qualidade certa.", pl:"Co robi ta osoba? Wybierz pasującą cechę.", ru:"Что делает этот человек? Выбери подходящее качество.", de:"Was macht diese Person? Wähle die passende Eigenschaft."},
+  c_entretien:{fr:"L'entretien d'embauche : choisis la réponse de Mark.", en:"The job interview: choose Mark's answer.", tr:"İş görüşmesi: Mark'ın cevabını seç.", uk:"Співбесіда: обери відповідь Марка.", fa:"مصاحبهٔ کاری: جواب مارک را انتخاب کن.", ar:"مقابلة العمل: اختر جواب مارك.", pt:"A entrevista de emprego: escolha a resposta do Mark.", pl:"Rozmowa o pracę: wybierz odpowiedź Marka.", ru:"Собеседование: выбери ответ Марка.", de:"Das Vorstellungsgespräch: Wähle Marks Antwort."},
+  c_lettreDebut:{fr:"La lettre de candidature : comment commence-t-elle ?", en:"The cover letter: how does it begin?", tr:"Başvuru mektubu: nasıl başlıyor?", uk:"Мотиваційний лист: як він починається?", fa:"نامهٔ درخواست کار: چطور شروع می‌شود؟", ar:"رسالة التقديم: كيف تبدأ؟", pt:"A carta de apresentação: como ela começa?", pl:"List motywacyjny: jak się zaczyna?", ru:"Сопроводительное письмо: как оно начинается?", de:"Das Anschreiben: Wie fängt es an?"},
+  c_lettreFin:{fr:"La lettre de candidature : comment finit-elle ?", en:"The cover letter: how does it end?", tr:"Başvuru mektubu: nasıl bitiyor?", uk:"Мотиваційний лист: як він закінчується?", fa:"نامهٔ درخواست کار: چطور تمام می‌شود؟", ar:"رسالة التقديم: كيف تنتهي؟", pt:"A carta de apresentação: como ela termina?", pl:"List motywacyjny: jak się kończy?", ru:"Сопроводительное письмо: как оно заканчивается?", de:"Das Anschreiben: Wie hört es auf?"},
+  c_lettreMot:{fr:"Lis la lettre et complète.", en:"Read the letter and fill the gap.", tr:"Mektubu oku ve boşluğu doldur.", uk:"Прочитай лист і доповни.", fa:"نامه را بخوان و کامل کن.", ar:"اقرأ الرسالة وأكمل.", pt:"Leia a carta e complete.", pl:"Przeczytaj list i uzupełnij.", ru:"Прочитай письмо и дополни.", de:"Lies den Brief und ergänze."},
+  c_cv:      {fr:"Lis le CV de Mark : sous quel titre est la ligne marquée ?", en:"Read Mark's CV: under which heading is the marked line?", tr:"Mark'ın özgeçmişini oku: işaretli satır hangi başlığın altında?", uk:"Прочитай резюме Марка: під яким заголовком позначений рядок?", fa:"رزومهٔ مارک را بخوان: سطر مشخص‌شده زیر کدام عنوان است؟", ar:"اقرأ السيرة الذاتية لمارك: تحت أي عنوان يقع السطر المحدد؟", pt:"Leia o currículo do Mark: em qual título está a linha marcada?", pl:"Przeczytaj CV Marka: pod jakim nagłówkiem jest zaznaczona linijka?", ru:"Прочитай резюме Марка: под каким заголовком отмеченная строка?", de:"Lies Marks Lebenslauf: Unter welcher Überschrift steht die markierte Zeile?"},
+  c_contrat: {fr:"Lis le contrat de travail de Mark et réponds.", en:"Read Mark's employment contract and answer.", tr:"Mark'ın iş sözleşmesini oku ve cevap ver.", uk:"Прочитай трудовий договір Марка й дай відповідь.", fa:"قرارداد کاری مارک را بخوان و جواب بده.", ar:"اقرأ عقد عمل مارك وأجب.", pt:"Leia o contrato de trabalho do Mark e responda.", pl:"Przeczytaj umowę o pracę Marka i odpowiedz.", ru:"Прочитай трудовой договор Марка и ответь.", de:"Lies Marks Arbeitsvertrag und antworte."},
+  c_contratLabel:{fr:"Lis le contrat : quel est le nom de la case marquée ?", en:"Read the contract: what is the name of the marked box?", tr:"Sözleşmeyi oku: işaretli kutunun adı ne?", uk:"Прочитай договір: як називається позначене поле?", fa:"قرارداد را بخوان: نام خانهٔ مشخص‌شده چیست؟", ar:"اقرأ العقد: ما اسم الخانة المحددة؟", pt:"Leia o contrato: qual é o nome do campo marcado?", pl:"Przeczytaj umowę: jak nazywa się zaznaczone pole?", ru:"Прочитай договор: как называется отмеченное поле?", de:"Lies den Vertrag: Wie heißt das markierte Feld?"},
+  c_quoi:    {fr:"Regarde l'image : que se passe-t-il ?", en:"Look at the picture: what is happening?", tr:"Resme bak: ne oluyor?", uk:"Подивися на зображення: що відбувається?", fa:"به تصویر نگاه کن: چه اتفاقی می‌افتد؟", ar:"انظر إلى الصورة: ماذا يحدث؟", pt:"Olhe a imagem: o que está acontecendo?", pl:"Spójrz na obrazek: co się dzieje?", ru:"Посмотри на картинку: что происходит?", de:"Sieh dir das Bild an: Was passiert?"},
+  c_verbe:   {fr:"Quel verbe va avec ces mots ?", en:"Which verb goes with these words?", tr:"Bu kelimelerle hangi fiil kullanılır?", uk:"Яке дієслово пасує до цих слів?", fa:"کدام فعل با این واژه‌ها می‌آید؟", ar:"أي فعل يناسب هذه الكلمات؟", pt:"Que verbo combina com estas palavras?", pl:"Który czasownik pasuje do tych słów?", ru:"Какой глагол подходит к этим словам?", de:"Welches Verb passt zu diesen Wörtern?"},
+  c_ordre:   {fr:"Quelle phrase est correcte ? Regarde où vont les petits mots.", en:"Which sentence is correct? Look where the small words go.", tr:"Hangi cümle doğru? Küçük kelimelerin nereye gittiğine bak.", uk:"Яке речення правильне? Подивися, куди йдуть маленькі слова.", fa:"کدام جمله درست است؟ ببین واژه‌های کوچک کجا می‌روند.", ar:"أي جملة صحيحة؟ انظر أين تذهب الكلمات الصغيرة.", pt:"Qual frase está correta? Veja para onde vão as palavrinhas.", pl:"Które zdanie jest poprawne? Zobacz, gdzie idą małe słowa.", ru:"Какое предложение правильное? Посмотри, куда идут маленькие слова.", de:"Welcher Satz ist richtig? Achte darauf, wo die kleinen Wörter stehen."},
+  c_registre:{fr:"Vouvoiement ou tutoiement ? Choisis la bonne forme du verbe.", en:"Formal or informal? Choose the right form of the verb.", tr:"Resmî mi, samimi mi? Fiilin doğru biçimini seç.", uk:"На «ви» чи на «ти»? Обери правильну форму дієслова.", fa:"رسمی یا خودمانی؟ شکل درست فعل را انتخاب کن.", ar:"رسمي أم غير رسمي؟ اختر صيغة الفعل الصحيحة.", pt:"Formal ou informal? Escolha a forma certa do verbo.", pl:"Na „pan/pani” czy na „ty”? Wybierz właściwą formę czasownika.", ru:"На «вы» или на «ты»? Выбери правильную форму глагола.", de:"Siezen oder duzen? Wähle die richtige Verbform."},
+  c_telefon: {fr:"Mark appelle pour dire qu'il est malade. Complète.", en:"Mark calls in sick. Fill the gap.", tr:"Mark hasta olduğunu söylemek için arıyor. Tamamla.", uk:"Марк телефонує, щоб сказати, що захворів. Доповни.", fa:"مارک زنگ می‌زند تا بگوید بیمار است. کامل کن.", ar:"يتصل مارك ليقول إنه مريض. أكمل.", pt:"O Mark liga para avisar que está doente. Complete.", pl:"Mark dzwoni, żeby powiedzieć, że jest chory. Uzupełnij.", ru:"Марк звонит сказать, что заболел. Дополни.", de:"Mark ruft an und meldet sich krank. Ergänze."},
+  c_qui:     {fr:"Qui est qui au travail ? Complète.", en:"Who is who at work? Fill the gap.", tr:"İşte kim kimdir? Tamamla.", uk:"Хто є хто на роботі? Доповни.", fa:"در محل کار چه کسی چه نقشی دارد؟ کامل کن.", ar:"من هو من في العمل؟ أكمل.", pt:"Quem é quem no trabalho? Complete.", pl:"Kto jest kim w pracy? Uzupełnij.", ru:"Кто есть кто на работе? Дополни.", de:"Wer ist wer bei der Arbeit? Ergänze."},
+  c_serEstar:{fr:"Ser ou estar ? Une qualité, ou un état du moment ?", en:"Ser or estar? A quality, or a state right now?", pt:"Ser ou estar? Uma qualidade ou um estado do momento?", ar:"ser أم estar؟ صفة دائمة أم حالة الآن؟", de:"Ser oder estar? Eine Eigenschaft oder ein Zustand im Moment?"},
+  c_document:{fr:"Regarde l'image : quel papier est-ce ?", en:"Look at the picture: which paper is it?", tr:"Resme bak: bu hangi belge?", uk:"Подивися на зображення: що це за документ?", fa:"به تصویر نگاه کن: این کدام مدرک است؟", ar:"انظر إلى الصورة: ما هذه الورقة؟", pt:"Olhe a imagem: que papel é este?", pl:"Spójrz na obrazek: co to za dokument?", ru:"Посмотри на картинку: что это за документ?", de:"Sieh dir das Bild an: Was ist das?"},
+  c_papier:  {fr:"Regarde ce papier : qu'est-ce que c'est ?", en:"Look at this paper: what is it?", tr:"Bu belgeye bak: bu ne?", uk:"Подивися на цей папір: що це?", fa:"به این برگه نگاه کن: این چیست؟", ar:"انظر إلى هذه الورقة: ما هي؟", pt:"Olhe este papel: o que é?", pl:"Spójrz na ten dokument: co to jest?", ru:"Посмотри на этот документ: что это?", de:"Sieh dir das Papier an: Was ist das?"},
+  c_entendre:{fr:"Écoute le mot et touche le bon papier.", en:"Listen to the word and tap the right paper.", tr:"Kelimeyi dinle ve doğru belgeye dokun.", uk:"Послухай слово й торкнися потрібного документа.", fa:"واژه را گوش کن و روی مدرک درست بزن.", ar:"استمع إلى الكلمة والمس الورقة الصحيحة.", pt:"Ouça a palavra e toque no papel certo.", pl:"Posłuchaj słowa i dotknij właściwego dokumentu.", ru:"Послушай слово и нажми на нужный документ.", de:"Hör dir das Wort an und tippe auf das richtige Papier."},
+  c_vraifauxAnnonce:{fr:"Lis l'annonce : vrai ou faux ?", en:"Read the advert: true or false?", tr:"İlanı oku: doğru mu, yanlış mı?", uk:"Прочитай оголошення: правда чи ні?", fa:"آگهی را بخوان: درست یا نادرست؟", ar:"اقرأ الإعلان: صحيح أم خطأ؟", pt:"Leia o anúncio: verdadeiro ou falso?", pl:"Przeczytaj ogłoszenie: prawda czy fałsz?", ru:"Прочитай объявление: правда или нет?", de:"Lies die Anzeige: richtig oder falsch?"},
+  c_vraifauxCv:{fr:"Lis le CV de Mark : vrai ou faux ?", en:"Read Mark's CV: true or false?", tr:"Mark'ın özgeçmişini oku: doğru mu, yanlış mı?", uk:"Прочитай резюме Марка: правда чи ні?", fa:"رزومهٔ مارک را بخوان: درست یا نادرست؟", ar:"اقرأ السيرة الذاتية لمارك: صحيح أم خطأ؟", pt:"Leia o currículo do Mark: verdadeiro ou falso?", pl:"Przeczytaj CV Marka: prawda czy fałsz?", ru:"Прочитай резюме Марка: правда или нет?", de:"Lies Marks Lebenslauf: richtig oder falsch?"},
+  c_vraifauxContrat:{fr:"Lis le contrat de Mark : vrai ou faux ?", en:"Read Mark's contract: true or false?", tr:"Mark'ın sözleşmesini oku: doğru mu, yanlış mı?", uk:"Прочитай договір Марка: правда чи ні?", fa:"قرارداد مارک را بخوان: درست یا نادرست؟", ar:"اقرأ عقد مارك: صحيح أم خطأ؟", pt:"Leia o contrato do Mark: verdadeiro ou falso?", pl:"Przeczytaj umowę Marka: prawda czy fałsz?", ru:"Прочитай договор Марка: правда или нет?", de:"Lies Marks Vertrag: richtig oder falsch?"},
+  c_vraifauxQualite:{fr:"La qualité va-t-elle avec ce que fait la personne ?", en:"Does the quality match what the person does?", tr:"Özellik, kişinin yaptığına uyuyor mu?", uk:"Чи пасує риса до того, що робить людина?", fa:"آیا این ویژگی با کاری که شخص می‌کند جور است؟", ar:"هل تناسب الصفة ما يفعله الشخص؟", pt:"A qualidade combina com o que a pessoa faz?", pl:"Czy cecha pasuje do tego, co robi ta osoba?", ru:"Подходит ли качество к тому, что делает человек?", de:"Passt die Eigenschaft zu dem, was die Person macht?"},
+  c_vraifauxEntretien:{fr:"La réponse de Mark va-t-elle avec la question ?", en:"Does Mark's answer fit the question?", tr:"Mark'ın cevabı soruya uyuyor mu?", uk:"Чи пасує відповідь Марка до запитання?", fa:"آیا جواب مارک با سؤال جور است؟", ar:"هل يناسب جواب مارك السؤال؟", pt:"A resposta do Mark combina com a pergunta?", pl:"Czy odpowiedź Marka pasuje do pytania?", ru:"Подходит ли ответ Марка к вопросу?", de:"Passt Marks Antwort zur Frage?"},
+  c_vraifauxLettre:{fr:"Cette ligne de la lettre est-elle correcte ?", en:"Is this line of the letter correct?", tr:"Mektuptaki bu satır doğru mu?", uk:"Чи правильний цей рядок листа?", fa:"آیا این سطر نامه درست است؟", ar:"هل هذا السطر من الرسالة صحيح؟", pt:"Esta linha da carta está correta?", pl:"Czy ta linijka listu jest poprawna?", ru:"Правильна ли эта строка письма?", de:"Ist diese Zeile im Brief richtig?"},
+  c_vraifauxAppel:{fr:"Lis l'appel : la phrase marquée est-elle juste ?", en:"Read the call: is the marked sentence right?", tr:"Görüşmeyi oku: işaretli cümle doğru mu?", uk:"Прочитай розмову: чи правильне позначене речення?", fa:"تماس را بخوان: آیا جملهٔ مشخص‌شده درست است؟", ar:"اقرأ المكالمة: هل الجملة المحددة صحيحة؟", pt:"Leia a ligação: a frase marcada está certa?", pl:"Przeczytaj rozmowę: czy zaznaczone zdanie jest poprawne?", ru:"Прочитай разговор: правильно ли отмеченное предложение?", de:"Lies das Telefonat: Ist der markierte Satz richtig?"},
+  c_vraifauxQui:{fr:"Lis bien : vrai ou faux ?", en:"Read carefully: true or false?", tr:"Dikkatle oku: doğru mu, yanlış mı?", uk:"Уважно прочитай: правда чи ні?", fa:"با دقت بخوان: درست یا نادرست؟", ar:"اقرأ جيدًا: صحيح أم خطأ؟", pt:"Leia com atenção: verdadeiro ou falso?", pl:"Przeczytaj uważnie: prawda czy fałsz?", ru:"Прочитай внимательно: правда или нет?", de:"Lies genau: richtig oder falsch?"},
+  ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  choix:     {fr:"Tu as choisi : {c}", en:"You chose: {c}", tr:"Seçtiğin: {c}", uk:"Ти обрав(-ла): {c}", fa:"انتخاب تو: {c}", ar:"اخترتَ: {c}", pt:"Você escolheu: {c}", pl:"Wybrano: {c}", ru:"Ты выбрал(а): {c}", de:"Du hast gewählt: {c}"},
+  score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"},
+  appelTel:  {fr:"Au téléphone, 7 h 30", en:"On the phone, 7:30 a.m.", tr:"Telefonda, saat 7.30", uk:"Телефонна розмова, 7:30", fa:"پشت تلفن، ساعت ۷:۳۰", ar:"على الهاتف، الساعة 7:30", pt:"Ao telefone, 7h30", pl:"Przez telefon, 7:30", ru:"По телефону, 7:30", de:"Am Telefon, 7:30 Uhr"}
+};
+TEXTES.c_vraifauxPhrase = TEXTES.c_vraifauxQui;
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- la donnee (travail.json) ----------
+let D = null, QS = [], GENS = null;
+const ES_ = APPRENDRE === "es";
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && ES_));
+const TL = PHRASE_TRADUITE ? LANGUE : null;                  // la langue des phrases traduites, sinon rien
+const traduction = t => t ? '<span class="trad" dir="auto">' + esc(t) + '</span>' : "";
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.replace(/[A-Za-zÀ-ÿñÑßäöüÄÖÜ¿¡]+(?:[ ()?!,:.'’-]+[A-Za-zÀ-ÿñÑßäöüÄÖÜ¿¡]+)*[?!.]?/g, m => '<span dir="ltr">' + m + '</span>');
+const existe = i => !!(D && D.images_existent[i]);
+const imgSrc = i => D.images[i];
+const photo = i => '<img class="photo" alt="" src="' + imgSrc(i) + '">';
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+function dire(texte){ Voix.dire(texte); }
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+const avecTrou = s => esc(s).split("___").join('<span class="trou">?</span>');
+
+// ---------- les mots du theme (la forme du corpus) et leur traduction ----------
+const MOTS = () => D.mots[APPRENDRE];
+const memeMot = (a, b) => a && b && a.mot === b.mot && (a.genre || null) === (b.genre || null) && (a.cat || null) === (b.cat || null);
+const glose = w => { const m = MOTS().find(x => memeMot(x, w)); return m ? (m.g[LANGUE] || m.g.fr || "") : ""; };
+let MOTS_THEME = null;
+function motsDuTheme(){ return MOTS_THEME || (MOTS_THEME = MOTS().map(m => { const w = {mot: m.mot}; if (m.genre) w.genre = m.genre; if (m.cat) w.cat = m.cat; return w; })); }
+const tradChoix = o => { const g = (D.tc[APPRENDRE] || {})[o]; return g ? (g[LANGUE] || g.fr || null) : null; };
+
+// ---------- les papiers (HTML) ----------
+const entete = t => '<div class="entete">' + esc(t) + '</div>';
+// anon : le papier sans le mot qui dirait ce qu'il est (« Stellenanzeige », « Lebenslauf », « Arbeitsvertrag »)
+function papierAnnonce(id, champ, cache, anon){
+  const a = D.annonces[APPRENDRE][id];
+  const lignes = a.lignes.map(([k, lab, val]) => {
+    const v = k === champ && cache ? '<span class="cache">?</span>' : esc(val);
+    return '<tr' + (k === champ ? ' class="vise"' : "") + '>' + (lab ? '<td>' + esc(lab) + '</td><td>' + v + '</td>' : '<td class="seul" colspan="2">' + v + '</td>') + '</tr>';
+  }).join("");
+  return '<div class="papier" lang="' + APPRENDRE + '">' + entete((anon ? "" : (ES_ ? "Oferta de empleo · " : "Stellenanzeige · ")) + a.firma) + '<h3>' + esc(a.titre) + '</h3>'
+    + '<div class="intro">' + esc(a.intro) + '</div><table>' + lignes + '</table></div>';
+}
+function papierCv(ri, li, cache, anon){
+  const cv = D.cv[APPRENDRE];
+  const corps = cv.rubriques.map((r, i) => '<div class="rub' + (i === ri && cache ? " cache" : "") + '">' + (i === ri && cache ? "?" : esc(r.titre)) + '</div>'
+    + r.lignes.map((l, j) => '<div class="lig' + (i === ri && j === li ? " vise" : "") + '">' + esc(l) + '</div>').join("")).join("");
+  return '<div class="papier" lang="' + APPRENDRE + '">' + entete(anon ? "Mark Garnier" : cv.titre) + '<div class="photoCv" aria-hidden="true"></div>' + corps + '</div>';
+}
+function papierLettre(id, i, ligne){
+  const L = D.lettres[APPRENDRE][id];
+  const lignes = L.lignes.map((t, j) => {
+    const texte = j === i && ligne !== null && ligne !== undefined ? ligne : t;
+    const cls = (j === 0 ? "betreff" : "") + (j === L.lignes.length - 1 ? " signe" : "") + (j === i ? " vise" : "");
+    return '<div class="' + cls.trim() + '">' + (j === 0 ? esc(L.betreff) + ": " : "") + avecTrou(texte) + '</div>' + (j === 0 || j === 4 ? "<div></div>" : "");
+  }).join("");
+  return '<div class="papier" lang="' + APPRENDRE + '">' + entete(L.expediteur) + '<div class="lettre">' + lignes + '</div></div>';
+}
+function papierContrat(vise, cache, anon){
+  const c = D.contrat[APPRENDRE];
+  const lignes = c.cases.map(x => '<tr' + (x.id === vise || x.id === cache ? ' class="vise"' : "") + '><td>' + (x.id === cache ? '<span class="cache">?</span>' : esc(x.label)) + '</td><td>' + esc(x.v) + '</td></tr>').join("");
+  return '<div class="papier" lang="' + APPRENDRE + '">' + entete(c.parties[0]) + (anon ? "" : '<h3>' + esc(c.titre) + '</h3>') + '<div class="intro">' + esc(c.parties[1]) + '</div><table>' + lignes + '</table></div>';
+}
+function papierAppel(sym, i, ligne){
+  const lignes = D.appels[APPRENDRE][sym].slice(0, i + 1);
+  const nomDe = qui => qui === "mark" ? "Mark" : (ES_ ? "Sra. Navarro" : "Frau Schneider");
+  return '<div class="appel" lang="' + APPRENDRE + '"><div class="tel">' + esc(T("appelTel")) + '</div>' + lignes.map(([qui, t], j) =>
+    '<div class="b ' + qui + (j === i ? " vise" : "") + '"><span class="qui">' + esc(nomDe(qui)) + '</span>' + avecTrou(j === i && ligne ? ligne : t) + '</div>').join("") + '</div>';
+}
+function avant(av){
+  if (!av) return "";
+  if (av[0] === "img") return existe(av[1]) ? photo(av[1]) : "";
+  if (av[0] === "annonce") return papierAnnonce(av[1], av[2], av[3] === "cache", av[3] === "anon");
+  if (av[0] === "cv") return papierCv(av[1], av[2], av[3] === "cache", av[3] === "anon");
+  if (av[0] === "lettre") return papierLettre(av[1], av[2], av[3]);
+  if (av[0] === "contrat") return papierContrat(av[1], av[2], av[3] === "anon");
+  if (av[0] === "appel") return papierAppel(av[1], av[2], av[3]);
+  return "";
+}
+
+// ---------- les reponses ----------
+let file = [], rang = 0, bons = 0, repondu = false;
+let motQ = null, tradQ = null, choixFaux = null, dirQ = null;
+function juger(ok, bonneTexte, phrase){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  const g = motQ ? glose(motQ) : "";
+  m.innerHTML = (ok ? cible(ES_ ? "¡Muy bien!" : "Sehr gut!") : T("bonne", {r: cible(esc(bonneTexte))}))
+    + (phrase && (ok || phrase !== bonneTexte) ? '<span class="phrase">' + cible(esc(phrase)) + '</span>' : "")
+    + traduction(tradQ)
+    + (!ok && choixFaux && choixFaux.trad ? '<span class="trad faux" dir="auto">' + T("choix", {c: cible(esc(choixFaux.texte)) + " — " + esc(choixFaux.trad)}) + '</span>' : "")
+    + (motQ && g ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(esc(dirQ || motQ.mot)) + ' · <span>' + esc(g) + '</span></span>' : "");
+  const r = $("redire"); if (r) r.addEventListener("click", () => dire(dirQ || motQ.mot));
+  dire(phrase || bonneTexte);
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = o; if (o === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixFaux = o === bonne ? null : {texte: o, trad: tradChoix(o)};
+      apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+function images(conteneur, ids, bonne, apres){
+  let bon;
+  conteneur.className = "rangee" + (ids.length === 3 ? " trois" : "");
+  ids.forEach(i => {
+    const b = document.createElement("button"); b.type = "button"; b.dataset.id = i;
+    b.innerHTML = '<img alt="" src="' + imgSrc(i) + '">'; if (i === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      const d = D.docs[APPRENDRE][i];
+      choixFaux = i === bonne || !d ? null : {texte: d[1] + " " + d[0], trad: glose({mot: d[0], genre: d[1]}) || null};
+      apres(i === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// vrai / faux, oui / non : toujours dans cet ordre
+const PAIRES_VF = [["Richtig", "Falsch"], ["Ja", "Nein"], ["Verdadero", "Falso"], ["Sí", "No"]];
+
+// UNE QUESTION : elle vient toute faite de travail.json ; la page la dessine
+function poser(q){
+  motQ = q.w ? {mot: q.w.mot, genre: q.w.genre || null, cat: q.w.cat || null} : null;
+  tradQ = TL ? (q.t || {})[TL] || null : null;
+  dirQ = q.d || (q.w && q.w.mot);
+  const z = $("zone");
+  if (q.images){
+    z.innerHTML = '<p class="consigne">' + T(q.c) + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
+      + '<div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    $("ecoute").addEventListener("click", () => dire(q.d));
+    images($("rang"), melanger([q.r, ...melanger(q.l).slice(0, q.n)]), q.r, ok => juger(ok, q.ph, q.ph));
+    dire(q.d);
+    return;
+  }
+  const centre = !q.liste && q.e.length < 70;
+  z.innerHTML = '<p class="consigne">' + T(q.c) + '</p>' + avant(q.av)
+    + (q.e ? '<div class="enonce' + (centre ? " centre" : "") + '">' + cible(avecTrou(q.e)) + '</div>' : "")
+    + '<div class="choix' + (q.liste ? " liste" : " centre") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+  let options;
+  if (q.vf){ options = PAIRES_VF.find(p => p.includes(q.r)); }
+  else options = melanger([q.r, ...melanger(q.l).slice(0, q.n)]);
+  boutons($("choix"), options, q.r, ok => {
+    if (!q.vf) z.querySelectorAll(".trou").forEach(t => { t.textContent = q.r; });
+    juger(ok, q.r, q.ph);
+  });
+}
+
+// ---------- les sortes : chacune sait viser un mot w (false si elle ne le peut pas) ----------
+const SORTES_TOUTES = ["umfang", "annonce", "qualite", "entretien", "lettre", "cv", "contrat", "quoi", "verbe", "ordre", "registre", "telefon", "qui", "serEstar", "document", "entendre", "vraifaux"];
+const EX = {};
+SORTES_TOUTES.forEach(s => {
+  EX[s] = function(w){
+    const cand = QS.filter(q => q.s === s && (!w || memeMot(q.w, w)));
+    if (!cand.length) return false;
+    poser(hasard(cand));
+    return true;
+  };
+});
+let SORTES = [];
+// une question qui a besoin d'une image pas encore faite : sans l'image si elle n'est qu'un decor, ecartee si elle EST la question
+function utilisable(q){
+  if (q.images) return [q.r, ...q.l].every(existe);
+  if (q.av && q.av[0] === "img" && !existe(q.av[1])){
+    if (["quoi", "document"].includes(q.s) || q.req) return false;
+    q.av = null;
+  }
+  return true;
+}
+
+// ---------- la decouverte ----------
+function textesAVoix(){
+  if (!D) return [];
+  const t = D.actions[APPRENDRE].map(a => a.ph).concat(Object.values(D.docs[APPRENDRE]).map(d => d[1] + " " + d[0]));
+  return [...new Set(t)];
+}
+function decouvrir(){
+  $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone");
+  const etapes = D.actions[APPRENDRE].filter(a => a.img && existe(a.img)).filter((a, i, l) => l.findIndex(b => b.img === a.img) === i);
+  const ORDRE = ["suchen", "bewerbung", "gespraech", "unterschreiben", "begruessen", "kollegen", "arbeitsplatz", "arbeiten", "kantine", "krank"];
+  etapes.sort((a, b) => ORDRE.indexOf(a.img) - ORDRE.indexOf(b.img));
+  const docs = Object.keys(D.docs[APPRENDRE]).filter(existe);
+  const planche = (id, items) => items.length ? '<div class="planche" id="' + id + '">' + items.map(([k, img, label]) => '<button type="button" data-k="' + k + '" aria-label="' + esc(label) + '"><img alt="" src="' + imgSrc(img) + '"></button>').join("") + '</div>' : "";
+  z.innerHTML = '<p class="consigne">' + T("intro") + '</p><div class="fiche" id="fiche"></div>'
+    + (etapes.length ? '<div class="section">' + T("secEtapes") + '</div>' + planche("pEt", etapes.map(a => ["a:" + a.id, a.img, a.ph])) : "")
+    + (docs.length ? '<div class="section">' + T("secDocs") + '</div>' + planche("pDoc", docs.map(k => ["d:" + k, k, D.docs[APPRENDRE][k][0]])) : "")
+    + '<div class="section">' + T("secAnnonce") + '</div>' + papierAnnonce("sonnenweg", null, false)
+    + '<p class="regle">' + isoler(T(ES_ ? "regleEs" : "regleDe")) + '</p>';
+  const fiche = (img, mot, sens, dit, trad) => {
+    const f = $("fiche"); f.className = "fiche" + (img ? "" : " sans");
+    f.innerHTML = (img ? '<img alt="" src="' + imgSrc(img) + '">' : "") + '<div><div class="mot">' + cible(esc(mot)) + '</div><div class="sens">' + esc(sens || "") + '</div>'
+      + '<div class="dit">' + cible(esc(dit)) + '</div>' + traduction(trad) + '<div class="ligne"><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div></div>';
+    $("ecoute").addEventListener("click", () => dire(dit));
+    dire(dit);
+  };
+  const choisir = cle => {
+    document.querySelectorAll(".planche button").forEach(b => b.classList.toggle("choisi", b.dataset.k === cle));
+    const [t, id] = cle.split(":");
+    if (t === "a"){ const a = D.actions[APPRENDRE].find(x => x.id === id); fiche(a.img, a.v, glose({mot: a.v, cat: "verbe"}), a.ph, TL ? a.t[TL] : null); }
+    else { const d = D.docs[APPRENDRE][id]; fiche(id, d[1] + " " + d[0], glose({mot: d[0], genre: d[1]}), (ES_ ? "Es " : "Das ist ") + d[1] + " " + d[0] + ".", TL ? ({fr: "C'est ", en: "This is ", pt: "É ", de: "Das ist "}[TL] + d[2][TL] + ".") : null); }
+  };
+  document.querySelectorAll(".planche button").forEach(b => b.addEventListener("click", () => choisir(b.dataset.k)));
+  const garde = dire; dire = () => {};
+  if (etapes.length) choisir("a:" + etapes[0].id);
+  else { const a = D.actions[APPRENDRE][0]; fiche(null, a.v, glose({mot: a.v, cat: "verbe"}), a.ph, TL ? a.t[TL] : null); }
+  dire = garde;
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; Voix.arreter(); demarrer(); };
+}
+
+// ---------- LA PARTIE : recopiee de demarches.html (identique d'un theme a l'autre) ----------
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce"), pa = z.querySelector(".papier, .appel");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + (pa ? pa.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
+}
+function remise(){ motQ = null; tradQ = null; choixFaux = null; dirQ = null; }
+// jamais deux documents du meme genre de suite (themes/tirage.js, 8 nov. 2026)
+papierAnnonce = Tirage.doc("annonce", papierAnnonce); papierCv = Tirage.doc("cv", papierCv); papierLettre = Tirage.doc("lettre", papierLettre); papierContrat = Tirage.doc("contrat", papierContrat); papierAppel = Tirage.doc("appel", papierAppel);
+function montrer(){
+  repondu = false; $("suite").hidden = true;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  const garde = dire; dire = () => {};
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let n = 0; n < 25; n++){
+        remise(); sorteCourante = so;
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion()) && !(strict && Tirage.docRepete($("zone")))) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){
+      remise(); sorteCourante = derniereSorte;
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){
+      remise(); sorteCourante = so;
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = null;
+  for (const j of Tirage.ordreDocs(file, rang)){ if (fait) break;
+    fait = essai(file[j], true);
+    if (fait && j !== rang){ Tirage.docReporte(file[rang]); [file[rang], file[j]] = [file[j], file[rang]]; }
+  }
+  if (!fait) fait = essai(file[rang], false);
+  dire = garde;
+  if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
+  vus.add(cleQuestion()); derniereSorte = fait; Tirage.docPose($("zone"));
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>' + boutonsBas();
+  brancherEncore();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
+}
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + '</div>' + boutonsBas();
+  brancherEncore();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+const boutonsBas = () => '<div class="bas">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("travail/travail.json?v=1").then(r => r.json()).then(d => {
+  D = d; GENS = D.gens[APPRENDRE];
+  QS = D.questions[APPRENDRE].filter(utilisable);
+  // un mot sans aucune question utilisable (son image n'est pas encore faite) ne sort pas du tirage
+  MOTS_THEME = motsDuTheme().filter(w => QS.some(q => memeMot(q.w, w)));
+  SORTES = SORTES_TOUTES.filter(s => QS.some(q => q.s === s));
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>

@@ -20,6 +20,11 @@
   A chaque reponse, « reponse » {mot, genre, cat, juste} : le mot teste avance dans la progression commune aux cartes.
   Le tirage suit les mots (themes/tirage.js, commun aux themes) : les dus, les rates, puis les nouveaux.
   Les phrases sont FABRIQUEES depuis emociones.json : une image ne dit que ce qu'elle montre.
+  L'ANGLAIS (4 nov. 2026, apprendre=en, variante=gb ; « il manque beaucoup de themes en anglais ») : les memes images,
+  des phrases ecrites pour l'anglais -- be + adjectif partout (she is afraid, jamais « she has fear » ; has a cold, la
+  seule tournure avec have), feel + adjectif (jamais un adverbe), -ed / -ing (bored / boring), et le caractere
+  (« What is she like? » -- She is shy.) face a l'emotion du moment (« How is she feeling? » -- She is nervous today.).
+  Le britannique : ill, untidy, film, flat, shop (tables EN_* ci-dessous).
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -93,12 +98,18 @@ button:disabled{cursor:default}
 /* « Suivant », « Commencer » tout en bas ET au-dessus de tout (Jacques, 3 nov. 2026, la regle des scenes) : sans
    z-index, une image ou une loupe (z-index 2) qui defile passait devant le bouton fixe */
 .suite{z-index:5000}
+/* les boutons de la fin (« Encore des questions », « Terminer ») : fixes en bas, cote a cote, comme familia.html */
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:5000}
+.bas button{flex:1 1 0;min-width:0;height:54px;border:0;border-radius:27px;padding:0 12px;color:#fff;font:800 16px/1.15 var(--police);
+  background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
 .fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
 .fin .score{font-size:22px;font-weight:900}
 .fin button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:10px 18px;font:800 16px var(--police);cursor:pointer}
 [lang]{unicode-bidi:isolate}
 /* la traduction dans la langue d'interface : une ligne, plus petite, en gris (3 nov. 2026) */
 .trad{display:block;font-size:13px;font-weight:600;color:var(--gris);line-height:1.35;margin-top:2px}
+/* le mot choisi, quand il est faux (l'anglais) : sa traduction, en rouge */
+.trad.faux{color:var(--rouge);font-style:italic}
 </style>
 </head>
 <body>
@@ -106,19 +117,22 @@ button:disabled{cursor:default}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=2"></script>
+<script src="themes/tirage.js?v=2"></script>
+<script src="themes/voix.js?v=7"></script>
 <script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=6"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+// l'anglais (4 nov. 2026) : les memes images, ses phrases a lui ; variante=gb, le britannique (ill, untidy, film)
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
 const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
-const NB = Q.get("seance") === "1" ? 6 : 20;
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
 // agrandir (themes/zoom.js) : un toucher sur un portrait, une scene ou une fiche, la loupe sur les visages a choisir
 Zoom.init({direct: "img.photo, .duo img, .fiche img", loupe: ".visages button", langue: LANGUE});
 
@@ -128,7 +142,7 @@ const TEXTES = {
   ongletCar: {fr:"Le caractère", en:"Personality", tr:"Karakter", uk:"Характер", fa:"منش", ar:"الطباع", pt:"A personalidade", pl:"Charakter", ru:"Характер", de:"Charakter"},
   introEmo:  {fr:"Touche un visage : tu vois comment la personne se sent, et tu l'entends.", en:"Tap a face to see and hear how the person feels.", tr:"Bir yüze dokun: kişinin nasıl hissettiğini gör ve dinle.", uk:"Торкнися обличчя: побачиш і почуєш, як почувається людина.", fa:"روی یک چهره بزن تا ببینی و بشنوی آن شخص چه حسی دارد.", ar:"المس وجهًا لترى وتسمع ما يشعر به الشخص.", pt:"Toque em um rosto para ver e ouvir como a pessoa se sente.", pl:"Dotknij twarzy, aby zobaczyć i usłyszeć, jak czuje się ta osoba.", ru:"Нажми на лицо, чтобы увидеть и услышать, что чувствует человек.", de:"Tippe auf ein Gesicht: Du siehst und hörst, wie sich die Person fühlt."},
   introCar:  {fr:"Touche une image : tu vois comment est la personne, et tu l'entends.", en:"Tap a picture to see and hear what the person is like.", tr:"Bir resme dokun: kişinin nasıl biri olduğunu gör ve dinle.", uk:"Торкнися зображення: побачиш і почуєш, яка це людина.", fa:"روی یک تصویر بزن تا ببینی و بشنوی آن شخص چه منشی دارد.", ar:"المس صورة لترى وتسمع كيف هو طبع الشخص.", pt:"Toque em uma imagem para ver e ouvir como a pessoa é.", pl:"Dotknij obrazka, aby zobaczyć i usłyszeć, jaka jest ta osoba.", ru:"Нажми на картинку, чтобы увидеть и услышать, какой это человек.", de:"Tippe auf ein Bild: Du siehst und hörst, wie die Person ist."},
-  regleEs:   {fr:"Une émotion passe : estar (está triste). Le caractère reste : ser (es tímido). La peur se dit avec tener : tiene miedo.", en:"A feeling passes: estar (está triste). Personality stays: ser (es tímido). Fear takes tener: tiene miedo.", tr:"Duygu geçicidir: estar (está triste). Karakter kalıcıdır: ser (es tímido). Korku tener ile söylenir: tiene miedo.", uk:"Емоція минає: estar (está triste). Характер лишається: ser (es tímido). Страх кажуть із tener: tiene miedo.", fa:"احساس گذراست: estar (está triste). منش می‌ماند: ser (es tímido). ترس را با tener می‌گویند: tiene miedo.", ar:"الشعور عابر: estar (está triste). الطبع ثابت: ser (es tímido). والخوف يُقال مع tener: tiene miedo.", pt:"Uma emoção passa: estar (está triste). A personalidade fica: ser (es tímido). O medo se diz com tener: tiene miedo.", pl:"Emocja mija: estar (está triste). Charakter zostaje: ser (es tímido). Strach mówi się z tener: tiene miedo.", ru:"Эмоция проходит: estar (está triste). Характер остаётся: ser (es tímido). Страх говорят с tener: tiene miedo.", de:"Ein Gefühl vergeht: estar (está triste). Der Charakter bleibt: ser (es tímido). Angst sagt man mit tener: tiene miedo."},
+  regleEs:   {fr:"Une émotion passe : estar (está triste). Le caractère reste : ser (es tímido). La peur se dit avec tener : tiene miedo.", en:"A feeling passes: estar (está triste). Personality stays: ser (es tímido). Fear takes tener: tiene miedo.", tr:"Duygu geçicidir: estar (está triste). Karakter kalıcıdır: ser (es tímido). Korku tener ile söylenir: tiene miedo.", uk:"Емоція минає: estar (está triste). Характер лишається: ser (es tímido). Страх кажуть із tener: tiene miedo.", fa:"احساس گذراست: estar (está triste). منش می‌ماند: ser (es tímido). ترس را با tener می‌گویند: tiene miedo.", ar:"الشعور عابر: estar (está triste). الطبع ثابت: ser (es tímido). والخوف يُقال مع tener: tiene miedo.", pt:"Uma emoção passa: estar (está triste). A personalidade fica: ser (es tímido). O medo se diz com tener: tiene miedo.", pl:"Emocja mija: estar (está triste). Charakter zostaje: ser (es tímido). Strach wyraża się czasownikiem tener: tiene miedo.", ru:"Эмоция проходит: estar (está triste). Характер остаётся: ser (es tímido). Страх говорят с tener: tiene miedo.", de:"Ein Gefühl vergeht: estar (está triste). Der Charakter bleibt: ser (es tímido). Angst sagt man mit tener: tiene miedo."},
   regleDe:   {fr:"En allemand, une émotion comme un trait de caractère se dit avec sein : ist traurig, ist schüchtern. La peur, elle, se dit avec haben : hat Angst.", en:"In German, a feeling and a personality trait both take sein: ist traurig, ist schüchtern. Fear takes haben: hat Angst.", tr:"Almancada duygu da karakter de sein ile söylenir: ist traurig, ist schüchtern. Korku ise haben ile: hat Angst.", uk:"У німецькій і емоцію, і рису характеру кажуть із sein: ist traurig, ist schüchtern. А страх — із haben: hat Angst.", fa:"در آلمانی، هم احساس و هم منش با sein گفته می‌شود: ist traurig، ist schüchtern. اما ترس با haben: hat Angst.", ar:"في الألمانية يُقال الشعور والطبع كلاهما مع sein: ‏ist traurig، ‏ist schüchtern. أما الخوف فمع haben: ‏hat Angst.", pt:"Em alemão, uma emoção e um traço de personalidade se dizem com sein: ist traurig, ist schüchtern. Já o medo se diz com haben: hat Angst.", pl:"Po niemiecku i emocję, i cechę charakteru mówi się z sein: ist traurig, ist schüchtern. Strach natomiast z haben: hat Angst.", ru:"По-немецки и эмоцию, и черту характера говорят с sein: ist traurig, ist schüchtern. А страх — с haben: hat Angst.", de:"Gefühle und Charaktereigenschaften sagt man mit sein: ist traurig, ist schüchtern. Angst sagt man mit haben: hat Angst."},
   ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
   commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
@@ -146,7 +160,18 @@ const TEXTES = {
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
-  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"},
+  // l'anglais seulement (son interface est en francais) : la regle, deux choses bonnes a savoir, et les consignes des sortes anglaises
+  regleEn:   {fr:"En anglais, l'émotion comme le caractère se disent avec <b>be</b> : <b>she is sad</b>, <b>he is shy</b>. Même la peur : <b>she is afraid</b> (on dit aussi <b>scared</b>), jamais « she has fear ». Ici, une seule tournure avec <b>have</b> : <b>he has a cold</b>. Le moment se marque par le temps : <b>She is nervous today.</b> Le caractère, lui, reste : <b>She is shy.</b> Pour demander : <b>How is she feeling?</b> (l'humeur) et <b>What is she like?</b> (le caractère)."},
+  bonEdIng:  {fr:"Bon à savoir : <b>-ed</b> pour ce qu'on ressent, <b>-ing</b> pour ce qui le provoque : <b>I'm bored</b>, <b>the {film} is boring</b>. De même <b>tired / tiring</b>, <b>surprised / surprising</b>, <b>embarrassed / embarrassing</b>, <b>worried / worrying</b>. Et après <b>feel</b>, un adjectif, jamais un adverbe : <b>I feel sad</b> (pas « sadly »)."},
+  bonUs:     {fr:"Tu apprends l'anglais américain : <b>sick</b> (malade), <b>messy</b> (désordonné), <b>movie</b>, <b>apartment</b>, <b>store</b>. En Grande-Bretagne : ill, untidy, film, flat, shop. Et <b>mean</b> change de sens : aux États-Unis, méchant ; en Grande-Bretagne, surtout radin (stingy)."},
+  bonGb:     {fr:"Tu apprends l'anglais britannique : <b>ill</b> (malade), <b>untidy</b> (désordonné), <b>film</b>, <b>flat</b>, <b>shop</b>. Aux États-Unis : sick, messy, movie, apartment, store. Et <b>mean</b> change de sens : en Grande-Bretagne, surtout radin (stingy) ; aux États-Unis, méchant."},
+  beHave:    {fr:"Choisis le bon verbe : is ou has ?"},
+  feel:      {fr:"Regarde le visage et complète la phrase avec feel."},
+  edIng:     {fr:"-ed ou -ing ? Ce qu'on ressent, ou ce qui le provoque ?"},
+  edIngVf:   {fr:"Cette phrase est-elle correcte ? Attention à -ed et -ing."},
+  question:  {fr:"Quelle question va avec cette réponse ?"},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
 
@@ -159,10 +184,11 @@ const EMOS = () => Object.keys(D.emotions), TRAITS = () => Object.keys(D.caracte
 // fatigue s'ennuyer. Une question n'a qu'une bonne reponse, ou elle n'est pas posee.
 const VOISINS = {triste:["preocupado"], preocupado:["triste", "nervioso", "miedo"], nervioso:["preocupado", "miedo"], miedo:["nervioso", "preocupado", "sorprendido"],
                  sorprendido:["miedo"], cansado:["aburrido", "enfermo"], aburrido:["cansado"], enfermo:["cansado"]};
-// Les traits que la meme scene pourrait aussi montrer : Pablo qui tourne le dos est antipathique ET grossier, Lucas
+// Les traits que la meme scene pourrait aussi montrer : Carlos qui tourne le dos est antipathique ET grossier, Bruno
 // sur le canape paresseux ET desordonne, Anna qui aide le touriste sympathique ET polie.
-const VOISINS_T = {antipatico:["grosero"], grosero:["antipatico"], simpatico:["educado", "generoso"], educado:["simpatico"], generoso:["simpatico"],
-                   perezoso:["desordenado"], desordenado:["perezoso"]};
+const VOISINS_T = {antipatico:["grosero"], grosero:["antipatico"], simpatico:["educado", "generoso", "carinoso", "feliz"], educado:["simpatico"], generoso:["simpatico", "carinoso"],
+                   perezoso:["desordenado"], desordenado:["perezoso"], estudioso:["trabajador", "inteligente"], trabajador:["estudioso"], inteligente:["estudioso"],
+                   carinoso:["simpatico", "generoso"], feliz:["simpatico"]};
 const loin = (a, b, v) => a !== b && !(v[a] || []).includes(b) && !(v[b] || []).includes(a);
 
 // ---------- la langue apprise : les phrases, fabriquees comme celles de la decouverte (emociones.py, phrase()) ----------
@@ -191,7 +217,58 @@ const DE = {
   contraire: (a, ma, b) => nom(a) + " ist " + ma.de + ". " + nom(b) + " ist das Gegenteil: " + (fem(b) ? "Sie" : "Er") + " ist ___.",
   gefuehl: "Gefühl", charakter: "Charakter"
 };
-const L = APPRENDRE === "de" ? DE : ES;
+// L'ANGLAIS (4 nov. 2026). Les mots a la forme du corpus anglais (anglais/datos/, le britannique dans datos-gb/ : ill,
+// untidy). Tout se dit avec be ; la seule tournure avec have est « has a cold » (EN_H). Les mots absents du corpus
+// (outgoing, rude, messy, tiring, worrying) restent « hors jeu » jusqu'a leur ajout : la page n'a rien a prevoir.
+const EN_E = {contento:"happy", triste:"sad", enfadado:"angry", miedo:"afraid", sorprendido:"surprised", cansado:"tired", aburrido:"bored",
+              nervioso:"nervous", preocupado:"worried", orgulloso:"proud", avergonzado:"embarrassed", enfermo: GB ? "ill" : "sick"};
+const EN_T = {generoso:"generous", tacano:"stingy", trabajador:"hardworking", perezoso:"lazy", extrovertido:"outgoing", timido:"shy", educado:"polite",
+              grosero:"rude", ordenado:"tidy", desordenado: GB ? "untidy" : "messy", simpatico:"friendly", antipatico:"unfriendly", feliz:"cheerful",
+              carinoso:"affectionate", estricto:"strict", estudioso:"studious", inteligente:"intelligent", independiente:"independent", rico:"rich", pobre:"poor"};
+// la mauvaise humeur (be) et le rhume (have) : deux noms du corpus, mood et cold
+const EN_H = {enfadado: {v: "is", x: "in a bad mood", mot: "mood"}, enfermo: {v: "has", x: "a cold", mot: "cold"}};
+// feel + adjectif : l'adverbe sert de piege, seulement la ou il existe vraiment (sadly, happily...)
+const EN_ADV = {triste:"sadly", contento:"happily", enfadado:"angrily", nervioso:"nervously", orgulloso:"proudly"};
+const MOVIE = GB ? "film" : "movie", APT = GB ? "flat" : "apartment", STORE = GB ? "shop" : "store";
+// -ED / -ING : ce qu'on ressent (une personne, son visage) et ce qui le provoque (une chose, sans image).
+// gens : [phrase, suite francaise] ({P} le nom, {He} / {he} / {him} le pronom ; {il} / {le} en francais) ;
+// choses : [phrase, traduction francaise]. « ___ » prend la forme juste.
+const EN_EDING = {
+  aburrido:    {ed: "bored", ing: "boring", gens: ["{P} is ___. {He} has nothing to do.", " : {il} n'a rien à faire."],
+                choses: [["The " + MOVIE + " is ___. Nothing happens.", "Le film est ennuyeux : il ne se passe rien."], ["The class is really ___ today.", "Le cours est vraiment ennuyeux aujourd'hui."]]},
+  cansado:     {ed: "tired", ing: "tiring", gens: ["{P} is ___ after a long day at work.", " après une longue journée de travail."],
+                choses: [["The trip from Boston to New York is long and ___.", "Le voyage de Boston à New York est long et fatigant."], ["Moving to a new " + APT + " is really ___.", "Déménager dans un nouvel appartement, c'est vraiment fatigant."]]},
+  sorprendido: {ed: "surprised", ing: "surprising", gens: ["{P} is ___. {He} didn't expect that.", " : {il} ne s'y attendait pas."],
+                choses: [["The end of the book is really ___.", "La fin du livre est vraiment surprenante."], ["The news is ___: the " + STORE + " is closing.", "La nouvelle est surprenante : le magasin ferme."]]},
+  avergonzado: {ed: "embarrassed", ing: "embarrassing", gens: ["{P} is ___. Everybody is looking at {him}.", " : tout le monde {le} regarde."],
+                choses: [["That mistake was really ___.", "Cette erreur était vraiment gênante."], ["Singing in front of the whole class is ___.", "Chanter devant toute la classe, c'est gênant."]]},
+  preocupado:  {ed: "worried", ing: "worrying", gens: ["{P} is ___. {He} doesn't know what to do.", " : {il} ne sait pas quoi faire."],
+                choses: [["The weather forecast is ___: a big storm is coming.", "La météo est inquiétante : une grosse tempête arrive."], ["The news from the doctor is ___.", "Les nouvelles du médecin sont inquiétantes."]]}
+};
+// le mot choisi, quand il est faux : sa traduction francaise (le sens du corpus anglais)
+const EN_FR = {happy:"content", sad:"triste", angry:"en colère", afraid:"qui a peur", surprised:"surpris", tired:"fatigué", bored:"qui s'ennuie", nervous:"nerveux",
+               worried:"inquiet", proud:"fier", embarrassed:"gêné", sick:"malade", ill:"malade", sadly:"tristement", happily:"joyeusement", angrily:"avec colère",
+               nervously:"nerveusement", proudly:"fièrement", boring:"ennuyeux", tiring:"fatigant", surprising:"surprenant", embarrassing:"gênant", worrying:"inquiétant",
+               generous:"généreux", stingy:"radin", hardworking:"travailleur", lazy:"paresseux", outgoing:"sociable, extraverti", shy:"timide", polite:"poli", rude:"impoli",
+               tidy:"ordonné", messy:"désordonné", untidy:"désordonné", friendly:"sympathique", unfriendly:"peu aimable", cheerful:"d'un naturel joyeux",
+               affectionate:"affectueux", strict:"strict", studious:"studieux", intelligent:"intelligent", independent:"indépendant", rich:"riche", poor:"pauvre"};
+const EN = {
+  bravo: "Well done!", vrai: "True", faux: "False", correct: "Correct", incorrect: "Incorrect",
+  pron: p => fem(p) ? "She" : "He",
+  // « How is Carmen feeling? » -- l'humeur du moment ; « What is Javier like? » -- le caractere
+  commentEst: p => "How is " + nom(p) + " feeling?",
+  quien: m => "Who is " + m.en + "?",
+  commentEs: p => "What is " + nom(p) + " like?",
+  contraire: (a, ma, b) => nom(a) + " is " + ma.en + ". " + nom(b) + " is the opposite: " + (fem(b) ? "she" : "he") + " is ___.",
+  // une personne de la phrase : le nom et les pronoms ; en francais, il / elle, le / la
+  gens: (s, p) => s.replace("{P}", nom(p)).replace("{He}", fem(p) ? "She" : "He").replace("{him}", fem(p) ? "her" : "him")
+                   .replace("{il}", fem(p) ? "elle" : "il").replace("{le}", fem(p) ? "la" : "le")
+};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
+// les traits que la meme scene pourrait aussi montrer, EN PLUS en anglais : cheerful et outgoing se recouvrent (Gisela
+// qui rit au marche) ; friendly et cheerful le sont deja (simpatico / feliz)
+const VOISINS_T_EN = {feliz:["extrovertido"], extrovertido:["feliz"]};
+if (APPRENDRE === "en") Object.keys(VOISINS_T_EN).forEach(k => { VOISINS_T[k] = (VOISINS_T[k] || []).concat(VOISINS_T_EN[k]); });
 
 // ---------- la traduction dans la langue d'interface (Jacques, 3 nov. 2026) ----------
 // « Il n'y a pas la traduction française. Qui serait importante. » Sous la phrase de la decouverte, et APRES la
@@ -206,7 +283,8 @@ const TRADS = {
         preocupado:["est inquiet","est inquiète"], orgulloso:["est fier","est fière"], avergonzado:["est gêné","est gênée"], enfermo:["est malade","est malade"]},
     t: {generoso:["est généreux","est généreuse"], tacano:["est radin","est radine"], trabajador:["est travailleur","est travailleuse"], perezoso:["est paresseux","est paresseuse"],
         extrovertido:["est extraverti","est extravertie"], timido:["est timide","est timide"], educado:["est poli","est polie"], grosero:["est grossier","est grossière"],
-        ordenado:["est ordonné","est ordonnée"], desordenado:["est désordonné","est désordonnée"], simpatico:["est sympathique","est sympathique"], antipatico:["est antipathique","est antipathique"]},
+        ordenado:["est ordonné","est ordonnée"], desordenado:["est désordonné","est désordonnée"], simpatico:["est sympathique","est sympathique"], antipatico:["est antipathique","est antipathique"], feliz:["est heureux","est heureuse"], carinoso:["est affectueux","est affectueuse"], estricto:["est strict","est stricte"], estudioso:["est studieux","est studieuse"],
+        inteligente:["est intelligent","est intelligente"], independiente:["est indépendant","est indépendante"], rico:["est riche"], pobre:["est pauvre"]},
     h: {enfadado:["est de mauvaise humeur","est de mauvaise humeur"], enfermo:["a un rhume","a un rhume"]},
     contraire: (a, pa, b, pb) => a + " " + pa + ". " + b + ", au contraire, " + pb + ".",
     pieges: {"Esta película ___ aburrida.":"Ce film est ennuyeux.", "La clase de hoy ___ muy aburrida.":"Le cours d'aujourd'hui est très ennuyeux.", "Ben ___ aburrido: no tiene nada que hacer.":"Ben s'ennuie : il n'a rien à faire."}
@@ -215,7 +293,8 @@ const TRADS = {
     e: {contento:["is happy"], triste:["is sad"], enfadado:["is angry"], miedo:["is afraid"], sorprendido:["is surprised"], cansado:["is tired"], aburrido:["is bored"],
         nervioso:["is nervous"], preocupado:["is worried"], orgulloso:["is proud"], avergonzado:["is embarrassed"], enfermo:["is sick"]},
     t: {generoso:["is generous"], tacano:["is stingy"], trabajador:["is hard-working"], perezoso:["is lazy"], extrovertido:["is outgoing"], timido:["is shy"],
-        educado:["is polite"], grosero:["is rude"], ordenado:["is tidy"], desordenado:["is messy"], simpatico:["is nice"], antipatico:["is unfriendly"]},
+        educado:["is polite"], grosero:["is rude"], ordenado:["is tidy"], desordenado:["is messy"], simpatico:["is nice"], antipatico:["is unfriendly"], feliz:["is happy"], carinoso:["is affectionate"], estricto:["is strict"], estudioso:["is studious"], inteligente:["is intelligent"],
+        independiente:["is independent"], rico:["is rich"], pobre:["is poor"]},
     h: {enfadado:["is in a bad mood"], enfermo:["has a cold"]},
     contraire: (a, pa, b, pb) => a + " " + pa + ". " + b + ", on the other hand, " + pb + ".",
     pieges: {"Esta película ___ aburrida.":"This film is boring.", "La clase de hoy ___ muy aburrida.":"Today's class is very boring.", "Ben ___ aburrido: no tiene nada que hacer.":"Ben is bored: he has nothing to do."}
@@ -224,25 +303,36 @@ const TRADS = {
     e: {contento:["está contente"], triste:["está triste"], enfadado:["está bravo","está brava"], miedo:["está com medo"], sorprendido:["está surpreso","está surpresa"],
         cansado:["está cansado","está cansada"], aburrido:["está entediado","está entediada"], nervioso:["está nervoso","está nervosa"], preocupado:["está preocupado","está preocupada"],
         orgulloso:["está orgulhoso","está orgulhosa"], avergonzado:["está envergonhado","está envergonhada"], enfermo:["está doente"]},
-    t: {generoso:["é generoso","é generosa"], tacano:["é pão-duro","é pão-dura"], trabajador:["é trabalhador","é trabalhadora"], perezoso:["é preguiçoso","é preguiçosa"],
+    t: {generoso:["é generoso","é generosa"], tacano:["é pão-duro"], trabajador:["é trabalhador","é trabalhadora"], perezoso:["é preguiçoso","é preguiçosa"],
         extrovertido:["é extrovertido","é extrovertida"], timido:["é tímido","é tímida"], educado:["é educado","é educada"], grosero:["é grosseiro","é grosseira"],
-        ordenado:["é organizado","é organizada"], desordenado:["é bagunceiro","é bagunceira"], simpatico:["é simpático","é simpática"], antipatico:["é antipático","é antipática"]},
+        ordenado:["é organizado","é organizada"], desordenado:["é bagunceiro","é bagunceira"], simpatico:["é simpático","é simpática"], antipatico:["é antipático","é antipática"], feliz:["é feliz"], carinoso:["é carinhoso","é carinhosa"], estricto:["é rigoroso","é rigorosa"], estudioso:["é estudioso","é estudiosa"],
+        inteligente:["é inteligente"], independiente:["é independente"], rico:["é rico","é rica"], pobre:["é pobre"]},
     h: {enfadado:["está de mau humor"], enfermo:["está resfriado","está resfriada"]},
     contraire: (a, pa, b, pb) => a + " " + pa + ". " + b + ", ao contrário, " + pb + ".",
     pieges: {"Esta película ___ aburrida.":"Este filme é chato.", "La clase de hoy ___ muy aburrida.":"A aula de hoje é muito chata.", "Ben ___ aburrido: no tiene nada que hacer.":"Ben está entediado: não tem nada para fazer."}
   },
   // l'allemand, langue d'interface de l'espagnol seulement (jamais pour qui apprend l'allemand)
   de: {
-    e: {contento:["ist glücklich"], triste:["ist traurig"], enfadado:["ist wütend"], miedo:["hat Angst"], sorprendido:["ist überrascht"], cansado:["ist müde"],
+    e: {contento:["ist froh"], triste:["ist traurig"], enfadado:["ist wütend"], miedo:["hat Angst"], sorprendido:["ist überrascht"], cansado:["ist müde"],
         aburrido:["langweilt sich"], nervioso:["ist nervös"], preocupado:["ist besorgt"], orgulloso:["ist stolz"], avergonzado:["ist verlegen"], enfermo:["ist krank"]},
     t: {generoso:["ist großzügig"], tacano:["ist geizig"], trabajador:["ist fleißig"], perezoso:["ist faul"], extrovertido:["ist kontaktfreudig"], timido:["ist schüchtern"],
-        educado:["ist höflich"], grosero:["ist unhöflich"], ordenado:["ist ordentlich"], desordenado:["ist unordentlich"], simpatico:["ist sympathisch"], antipatico:["ist unsympathisch"]},
+        educado:["ist höflich"], grosero:["ist unhöflich"], ordenado:["ist ordentlich"], desordenado:["ist unordentlich"], simpatico:["ist sympathisch"], antipatico:["ist unsympathisch"], feliz:["ist glücklich"], carinoso:["ist liebevoll"], estricto:["ist streng"], estudioso:["ist lerneifrig"], inteligente:["ist intelligent"],
+        independiente:["ist selbstständig"], rico:["ist reich"], pobre:["ist arm"]},
     h: {},
     contraire: (a, pa, b, pb, fb) => a + " " + pa + ". " + b + " ist das Gegenteil: " + (fb ? "Sie " : "Er ") + pb + ".",
     pieges: {"Esta película ___ aburrida.":"Dieser Film ist langweilig.", "La clase de hoy ___ muy aburrida.":"Der Unterricht heute ist sehr langweilig.", "Ben ___ aburrido: no tiene nada que hacer.":"Ben langweilt sich: Er hat nichts zu tun."}
   }
 };
-const TR = (LANGUE === APPRENDRE) ? null : (TRADS[LANGUE] && (LANGUE !== "de" || APPRENDRE === "es") ? TRADS[LANGUE] : null);
+let TR = (LANGUE === APPRENDRE) ? null : (TRADS[LANGUE] && (LANGUE !== "de" || APPRENDRE === "es") ? TRADS[LANGUE] : null);
+// l'anglais (interface en francais) : cheerful, unfriendly et rude ne disent pas tout a fait « heureux », « antipathique »
+// et « grossier »
+const FR_EN = APPRENDRE === "en" && LANGUE === "fr";
+if (TR && FR_EN) TR = Object.assign({}, TR, {t: Object.assign({}, TR.t, {feliz: ["est d'un naturel joyeux"], antipatico: ["est peu aimable"], grosero: ["est impoli", "est impolie"]})});
+// l'anglais : la traduction de la phrase juste quand traduire() ne la sait pas (feel, -ed / -ing, la question), et
+// celle de chaque choix (le mot choisi, quand il est faux)
+let tradQ = null, tradsOpts = {}, choixFaux = null;
+// « Elle est triste. », « Il a un rhume. » : une option anglaise a pronom, en francais
+const frOpt = (p, f) => f ? (fem(p) ? "Elle " : "Il ") + forme2(f, p) + "." : null;
 const forme2 = (f, p) => f[fem(p) && f.length > 1 ? 1 : 0];
 // ce que la question montre, pour la traduire : {p, e, h} un visage, {p, t} une scene, {a, t, b, c} une paire, {piege}
 let sensQ = null;
@@ -260,27 +350,39 @@ fetch("emociones/gloses.json?v=1").then(r => r.json()).then(d => { GLOSES = d[AP
 function glose(m){
   if (!m) return null;
   // aburrido : le corpus ne le traduit que par « ennuyeux » (ce qui ennuie) ; sous « Ben está aburrido » (il s'ennuie),
-  // la glose dirait le contraire de l'image. Seul le piege d'aburrido (la pelicula es aburrida) la garde.
-  if (m.mot === "aburrido" && !(sensQ && sensQ.piege)) return null;
+  // la glose dirait le contraire de l'image. Seuls les pieges a « es » (la pelicula es aburrida) la gardent -- pas
+  // « Ben ___ aburrido: no tiene nada que hacer », dont la reponse est « está » (relecture qualite, 3 nov.).
+  if (m.mot === "aburrido" && !(sensQ && sensQ.piege && (ES.pieges.find(x => x[0] === sensQ.piege) || [])[1] === "es")) return null;
   const cle = ((m.genre || "") + " " + m.mot).trim(), g = (GLOSES[cle] || {})[LANGUE];
   return g ? cle + " — " + g : null;
 }
 const traduction = t => '<span class="trad" dir="auto">' + t + '</span>';
-const pred = (p, e) => APPRENDRE === "de" ? DE.predicat(D.emotions[e], p) : ES.predicat(D.emotions[e], p, true);
-const predT = (p, t) => APPRENDRE === "de" ? "ist " + D.caracteres[t].de : ES.predicat(D.caracteres[t], p, false);
+const pred = (p, e) => APPRENDRE === "de" ? DE.predicat(D.emotions[e], p) : APPRENDRE === "en" ? "is " + EN_E[e] : ES.predicat(D.emotions[e], p, true);
+const predT = (p, t) => APPRENDRE === "de" ? "ist " + D.caracteres[t].de : APPRENDRE === "en" ? "is " + EN_T[t] : ES.predicat(D.caracteres[t], p, false);
+// l'anglais : « has a cold », « is in a bad mood »
+const predH = e => EN_H[e].v + " " + EN_H[e].x;
 const phraseE = (p, e) => nom(p) + " " + pred(p, e) + ".";
 const phraseT = (p, t) => nom(p) + " " + predT(p, t) + ".";
 
 // ---------- les images et les sons ----------
 const imgP = (p, e) => "emociones/" + p + "-" + e + ".webp";
-const imgT = (t, p) => "emociones/trait-" + t + "-" + p + ".webp";
-// Les memes fichiers que l'app (sha1 du texte, audio/manifest.py) : Aurora pour l'allemand, Lolita (Espagne) et
-// Monica (Amerique latine) pour l'espagnol. Sans son (hors ligne, fichier absent) : la voix du telephone.
-const AUDIO = "https://deutschai-b6fbb.web.app/" + (APPRENDRE === "de" ? "" : LATAM ? "es-419/" : "es-es/");
-let son = null;
-// la voix commune (themes/voix.js, 3 nov. 2026) : le fichier enregistre s'il existe pour ce texte (themes/sons.json),
-// sinon le telephone ; et la phrase attend la fin du son de reussite. L'id n'est plus utile : voix.js le calcule.
-function dire(texte){ Voix.dire(texte); }
+// un prenom reserve (6 nov. 2026 : Hugo, Nuria...) garde l'image du visage photographie (D.visages, visuel/personnes.json)
+const imgT = (t, p) => "emociones/trait-" + t + "-" + ((D.visages || {})[p] || p) + ".webp";
+// LA VOIX : la fonction commune des themes (themes/voix.js) -- le fichier enregistre s'il existe (Aurora, Lolita,
+// Monica ; themes/sons.json le sait avant de jouer), sinon la voix du telephone (3 nov. 2026 : « Pour le moment, on
+// va mettre les voix du téléphone. Quand il n'y a pas de voix. »). « let » : la decouverte la fait taire un instant.
+let dire = t => Voix.dire(t);
+// tout ce que la page peut dire et qui s'enregistre : les fiches de la decouverte (audio/manifest.py, source
+// « emociones », les lit dans emociones.json) ; les phrases d'apres la reponse passent par le telephone
+function textesAVoix(){ return Object.values(phrasesDecouverte()).map(x => x.texte); }
+// les phrases de la decouverte : celles d'emociones.json, et en anglais, fabriquees ici (« Carmen is afraid. »)
+function phrasesDecouverte(){
+  if (APPRENDRE !== "en") return D.decouverte.phrases[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  const dec = D.decouverte, ph = {};
+  EMOS().forEach(e => { ph[e] = {texte: nom(dec.visages[e]) + " " + pred(dec.visages[e], e) + "."}; });
+  TRAITS().forEach(t => { ph[t] = {texte: nom(dec.caracteres[t]) + " " + predT(dec.caracteres[t], t) + "."}; });
+  return ph;
+}
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
 // ---------- utilitaires ----------
@@ -299,19 +401,31 @@ let file = [], rang = 0, bons = 0, repondu = false;
 // enojado) ; la peur est un nom (el miedo, die Angst), comme la mauvaise humeur et le rhume en allemand.
 let motQ = null;
 const MOT_NOM = {es: {miedo: {mot: "miedo", genre: "el"}}, de: {miedo: {mot: "Angst", genre: "die"}, enfadado: {mot: "Laune", genre: "die"}, enfermo: {mot: "Erkältung", genre: "die"}}};
-const motE = (e, haben) => (haben || D.emotions[e].tener) ? MOT_NOM[APPRENDRE][e] : {mot: APPRENDRE === "de" ? D.emotions[e].de : D.emotions[e].es[0], cat: "adjectif"};
-const motT = t => ({mot: APPRENDRE === "de" ? D.caracteres[t].de : D.caracteres[t].es[0], cat: "adjectif"});
+// LE SENS (3 nov. 2026) : la traduction francaise de l'entree du corpus que le theme enseigne (emociones.json, « sens »).
+// Un mot a deux entrees (rico : delicieux / riche) a deux cartes : l'app fait avancer celle de ce sens (carteDeScene).
+const avecSens = m => { const s = ((D.sens || {})[APPRENDRE] || {})[((m.genre || "") + " " + m.mot).trim()]; return s ? Object.assign({}, m, {sens: s}) : m; };
+// L'anglais : la peur est un adjectif (afraid) ; le rhume et la mauvaise humeur des noms du corpus (cold, mood)
+const motE = (e, haben) => APPRENDRE === "en" ? (haben ? {mot: EN_H[e].mot, genre: ""} : {mot: EN_E[e], cat: "adjectif"})
+  : avecSens((haben || D.emotions[e].tener) ? MOT_NOM[APPRENDRE][e] : {mot: APPRENDRE === "de" ? D.emotions[e].de : D.emotions[e].es[0], cat: "adjectif"});
+const motT = t => APPRENDRE === "en" ? {mot: EN_T[t], cat: "adjectif"} : avecSens({mot: APPRENDRE === "de" ? D.caracteres[t].de : D.caracteres[t].es[0], cat: "adjectif"});
+// l'anglais : l'adjectif en -ing (boring, tiring...), un mot du theme a lui seul
+const motIng = e => ({mot: EN_EDING[e].ing, cat: "adjectif"});
 
 function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
   parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
-  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, sens: motQ.sens || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
-  const tl = traduire(sensQ) || (TR ? null : glose(motQ));
+  const tl = tradQ || traduire(sensQ) || (TR ? null : glose(motQ));
   if (tl) m.insertAdjacentHTML("beforeend", traduction(tl));
+  // l'anglais : le mot choisi, quand il est faux, et sa traduction (comme familia.html)
+  if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad + '</span>');
+  // LA PHRASE ENTIERE, dite apres chaque reponse (Jacques, 3 nov. 2026, « Oui, partout » : comme Decrire depuis la
+  // v1087) -- celle qu'affiche le message, la bonne, jamais le choix fait
+  dire(phrase || bonneTexte);
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
 function boutons(conteneur, options, bonne, apres){
@@ -321,6 +435,7 @@ function boutons(conteneur, options, bonne, apres){
     b.addEventListener("click", () => {
       conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
       if (b !== bon) b.classList.add("faux");
+      if (FR_EN) choixFaux = o === bonne ? null : {texte: String(o), trad: tradsOpts[o] || EN_FR[o] || null};
       apres(o === bonne);
     });
     conteneur.appendChild(b);
@@ -348,6 +463,11 @@ function motsDuTheme(){
   if (MOTS) return MOTS;
   MOTS = EMOS().map(e => Object.assign({e}, motE(e))).concat(TRAITS().map(t => Object.assign({t}, motT(t))));
   if (APPRENDRE === "de") Object.keys(D.haben).forEach(h => MOTS.push(Object.assign({h}, motE(h, true))));
+  // l'anglais : mood et cold (be in a bad mood, have a cold), et les cinq adjectifs en -ing (boring, tiring...)
+  if (APPRENDRE === "en"){
+    Object.keys(EN_H).forEach(h => MOTS.push(Object.assign({h}, motE(h, true))));
+    Object.keys(EN_EDING).forEach(e => MOTS.push(Object.assign({ing: e}, motIng(e))));
+  }
   return MOTS;
 }
 // LA ROTATION (Jacques, 3 nov. : « Anna est sympathique [...] revient tres souvent ») : chaque mot a plusieurs
@@ -373,6 +493,16 @@ const EX = {
   // « ¿Cómo está Carmen? » / « Wie geht es Carmen? » : un visage, quatre etats a la bonne forme
   commentEst(w){
     if (w && !w.e && !w.h) return false;
+    // l'anglais : « How is Carmen feeling? » -- « She is sad. » ; le pronom dans la reponse, has a cold, in a bad mood
+    if (APPRENDRE === "en"){
+      const [p, e] = unPortrait(w && (w.e || w.h)), h = !!(w && w.h), P = EN.pron(p); motQ = w || motE(e); sensQ = {p, e, h};
+      const rep = P + " " + (h ? predH(e) : pred(p, e)) + ".";
+      tradsOpts[rep] = TR ? frOpt(p, h ? TR.h[e] : TR.e[e]) : null;
+      const leurres = leurresE(e, 3).map(x => { const o = P + " " + pred(p, x) + "."; tradsOpts[o] = TR ? frOpt(p, TR.e[x]) : null; return o; });
+      ecran("commentEst", portrait(p, e), EN.commentEst(p), true);
+      boutons($("choix"), melanger([rep, ...leurres]), rep, ok => juger(ok, rep, nom(p) + " " + (h ? predH(e) : pred(p, e)) + "."));
+      return true;
+    }
     const [p, e] = unPortrait(w && (w.e || w.h)), rep = w && w.h ? "hat " + D.haben[e] : pred(p, e); motQ = w || motE(e); sensQ = {p, e, h: !!(w && w.h)};
     ecran("commentEst", portrait(p, e), L.commentEst(p), true);
     const opts = melanger([rep, ...leurresE(e, 3).map(x => pred(p, x))]);
@@ -432,7 +562,7 @@ const EX = {
     const variable = e => !D.emotions[e].tener && D.emotions[e].es[0] !== D.emotions[e].es[1];
     if (w && w.e && !variable(w.e)) return false;
     const cand = PORTRAITS.filter(([, e]) => variable(e) && (!w || e === w.e)).map(([p, e]) => ["e", p, e])
-                 .concat(TRAITS().filter(t => !w || t === w.t).map(t => ["t", null, t]));
+                 .concat(TRAITS().filter(t => (!w || t === w.t) && D.caracteres[t].es[0] !== D.caracteres[t].es[1]).map(t => ["t", null, t]));   // pas feliz, inteligente, pobre...
     if (!cand.length) return false;
     const [k, , x] = hasard(cand), p = k === "t" ? unePersonne(x) : unPortrait(x)[0], m = k === "e" ? D.emotions[x] : D.caracteres[x], formes = (LATAM && m.latam) || m.es;
     const rep = formes[fem(p) ? 1 : 0], verbe = k === "e" ? "está" : "es"; motQ = w || (k === "e" ? motE(x) : motT(x)); sensQ = k === "e" ? {p, e: x} : {p, t: x};
@@ -440,19 +570,28 @@ const EX = {
     boutons($("choix"), melanger([formes[0], formes[1]]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, nom(p) + " " + verbe + " " + rep + "."); });
     return true;
   },
-  // « ¿Cómo es Javier? » / « Wie ist Javier? » : une scene, quatre traits
+  // « ¿Cómo es Sergio? » / « Wie ist Sergio? » : une scene, quatre traits
   commentEs(w){
     if (w && !w.t) return false;
+    // l'anglais : « What is Sergio like? » -- « He is stingy. »
+    if (APPRENDRE === "en"){
+      const t = w ? w.t : hasard(TRAITS()), p = unePersonne(t), P = EN.pron(p), rep = P + " " + predT(p, t) + "."; motQ = w || motT(t); sensQ = {p, t};
+      tradsOpts[rep] = TR ? frOpt(p, TR.t[t]) : null;
+      const leurres = leurresT(t, 3).map(x => { const o = P + " " + predT(p, x) + "."; tradsOpts[o] = TR ? frOpt(p, TR.t[x]) : null; return o; });
+      ecran("commentCar", scene(t, p), EN.commentEs(p), true);
+      boutons($("choix"), melanger([rep, ...leurres]), rep, ok => juger(ok, rep, phraseT(p, t)));
+      return true;
+    }
     const t = w ? w.t : hasard(TRAITS()), p = unePersonne(t), rep = predT(p, t); motQ = w || motT(t); sensQ = {p, t};
     ecran("commentCar", scene(t, p), L.commentEs(p), true);
     boutons($("choix"), melanger([rep, ...leurresT(t, 3).map(x => predT(p, x))]), rep, ok => juger(ok, rep, phraseT(p, t)));
     return true;
   },
-  // « Javier es tacaño. Marta, al contrario, es ___. » : la paire d'images ; le mot vise est celui de la reponse
+  // « Sergio es tacaño. Marta, al contrario, es ___. » : la paire d'images ; le mot vise est celui de la reponse
   contraire(w){
-    if (w && !w.t) return false;
-    const c = w ? w.t : hasard(TRAITS()), t = D.caracteres[c].contraire, a = unePersonne(t), b = unePersonne(c);   // b en dernier : la rotation retient le mot vise
-    const forme = (x, p) => APPRENDRE === "de" ? D.caracteres[x].de : ES.forme(D.caracteres[x], p);
+    if (w && !(w.t && D.caracteres[w.t].contraire)) return false;
+    const c = w ? w.t : hasard(TRAITS().filter(x => D.caracteres[x].contraire)), t = D.caracteres[c].contraire, a = unePersonne(t), b = unePersonne(c);   // b en dernier : la rotation retient le mot vise
+    const forme = (x, p) => APPRENDRE === "de" ? D.caracteres[x].de : APPRENDRE === "en" ? EN_T[x] : ES.forme(D.caracteres[x], p);
     const rep = forme(c, b); motQ = w || motT(c); sensQ = {a, t, b, c};
     const leurres = melanger(TRAITS().filter(x => x !== c && x !== t && loin(x, c, VOISINS_T))).slice(0, 3).map(x => forme(x, b));
     const duo = '<div class="duo"><figure><img alt="" src="' + imgT(t, a) + '">' + nom(a) + '</figure><figure><img alt="" src="' + imgT(c, b) + '">' + nom(b) + '</figure></div>';
@@ -465,7 +604,7 @@ const EX = {
   vraifaux(w){
     if (w && !w.e && !w.h) return false;
     const [p, e] = unPortrait(w && (w.e || w.h)), vrai = Math.random() < 0.5; motQ = w || motE(e); sensQ = {p, e, h: !!(w && w.h)};
-    const juste = w && w.h ? nom(p) + " hat " + D.haben[e] + "." : phraseE(p, e);
+    const juste = w && w.h ? (APPRENDRE === "en" ? nom(p) + " " + predH(e) + "." : nom(p) + " hat " + D.haben[e] + ".") : phraseE(p, e);
     const phrase = vrai ? juste : phraseE(p, hasard(EMOS().filter(x => loin(x, e, VOISINS))));
     ecran("vraifaux", portrait(p, e), phrase, true);
     const rep = vrai ? L.vrai : L.faux;
@@ -483,28 +622,113 @@ const EX = {
     const rep = emotion ? DE.gefuehl : DE.charakter;
     boutons($("choix"), [DE.gefuehl, DE.charakter], rep, ok => juger(ok, rep, phrase));
     return true;
+  },
+  // L'ANGLAIS SEULEMENT : « Carmen ___ afraid. » is / has -- tout se dit avec be (la peur aussi, le piege du francais
+  // « elle a peur »), sauf « has a cold » ; et « Diego ___ in a bad mood. »
+  beHave(w){
+    if (APPRENDRE !== "en" || (w && w.ing)) return false;
+    let image, phrase, rep;
+    const r = Math.random();
+    if (w ? !!w.h : r < 0.35){
+      const e = w ? w.h : hasard(Object.keys(EN_H)), p = unPortrait(e)[0]; motQ = w || motE(e, true); sensQ = {p, e, h: true};
+      image = portrait(p, e); rep = EN_H[e].v; phrase = nom(p) + " ___ " + EN_H[e].x + ".";
+    } else if (w ? !!w.t : r < 0.6){ const t = w ? w.t : hasard(TRAITS()), p = unePersonne(t); motQ = w || motT(t); sensQ = {p, t}; image = scene(t, p); rep = "is"; phrase = nom(p) + " ___ " + EN_T[t] + "."; }
+    else { const [p, e] = unPortrait(w ? w.e : (r < 0.75 ? "miedo" : null)); motQ = w || motE(e); sensQ = {p, e}; image = portrait(p, e); rep = "is"; phrase = nom(p) + " ___ " + EN_E[e] + "."; }
+    ecran("beHave", image, avecTrou(phrase));
+    boutons($("choix"), ["is", "has"], rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep)); });
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT : feel + adjectif (« Carmen feels sad. »), jamais l'adverbe (sadly), qui sert de piege
+  feel(w){
+    if (APPRENDRE !== "en" || (w && !w.e)) return false;
+    const [p, e] = unPortrait(w && w.e), adj = EN_E[e], adv = EN_ADV[e]; motQ = w || motE(e); sensQ = {p, e};
+    const leurres = melanger(EMOS().filter(x => loin(x, e, VOISINS))).slice(0, adv ? 2 : 3).map(x => EN_E[x]);
+    const phrase = nom(p) + " feels ___.";
+    if (FR_EN && TR){ const f = forme2(TR.e[e], p); tradQ = nom(p) + " " + (f.indexOf("est ") === 0 ? "se sent " + f.slice(4) : f) + "."; }
+    ecran("feel", portrait(p, e), avecTrou(phrase));
+    boutons($("choix"), melanger([adj].concat(adv ? [adv] : [], leurres)), adj, ok => { $("trou").textContent = adj; juger(ok, adj, phrase.replace("___", adj)); });
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT : -ed ou -ing ? « Ben is ___. He has nothing to do. » (bored), « The movie is ___. » (boring)
+  edIng(w){
+    if (APPRENDRE !== "en") return false;
+    const q = questionEdIng(w); if (!q) return false;
+    ecran("edIng", q.image, avecTrou(q.phrase));
+    boutons($("choix"), melanger([q.d.ed, q.d.ing]), q.rep, ok => { $("trou").textContent = q.rep; juger(ok, q.rep, q.phrase.replace("___", q.rep)); });
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT : la meme phrase, juste ou avec l'autre forme (« The movie is bored. ») : correcte ou non ?
+  edIngVf(w){
+    if (APPRENDRE !== "en") return false;
+    const q = questionEdIng(w); if (!q) return false;
+    const vrai = Math.random() < 0.5, autre = q.rep === q.d.ed ? q.d.ing : q.d.ed;
+    const juste = q.phrase.replace("___", q.rep), montree = vrai ? juste : q.phrase.replace("___", autre);
+    ecran("edIngVf", q.image, montree, true);
+    const rep = vrai ? EN.correct : EN.incorrect;
+    boutons($("choix"), [EN.correct, EN.incorrect], rep, ok => juger(ok, rep, juste));
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT : la question qui va avec la reponse. L'humeur du moment : « How is Mark feeling? » -- « He is
+  // worried today. » ; le caractere : « What is Elena like? » -- « She is shy. » Les pieges : « What does Elena like? »
+  // (ce qu'elle aime) et « How is Elena like? » (le calque du francais « Comment est-elle ? »)
+  question(w){
+    if (APPRENDRE !== "en" || (w && !w.e && !w.t) || (w && SANS_QUESTION.includes(w.t))) return false;
+    const emotion = w ? !!w.e : Math.random() < 0.5;
+    let p, x, image, reponse, frRep = null;
+    if (emotion){ [p, x] = unPortrait(w && w.e); motQ = w || motE(x); sensQ = {p, e: x}; image = portrait(p, x); reponse = EN.pron(p) + " " + pred(p, x) + " today.";
+                  if (TR) frRep = frOpt(p, TR.e[x]).replace(/\.$/, " aujourd'hui."); }
+    else { x = w ? w.t : hasard(TRAITS().filter(t => !SANS_QUESTION.includes(t))); p = unePersonne(x); motQ = w || motT(x); sensQ = {p, t: x}; image = scene(x, p);
+           reponse = EN.pron(p) + " " + predT(p, x) + "."; if (TR) frRep = frOpt(p, TR.t[x]); }
+    const n = nom(p), qE = "How is " + n + " feeling?", qT = "What is " + n + " like?", qX = "How is " + n + " like?", qL = "What does " + n + " like?";
+    const rep = emotion ? qE : qT;
+    tradsOpts[qE] = "Comment " + n + " se sent-" + (fem(p) ? "elle" : "il") + " ?";
+    tradsOpts[qT] = "Comment est " + n + " ? (son caractère)";
+    tradsOpts[qX] = "une phrase fautive : on dit What is " + n + " like?";
+    tradsOpts[qL] = "Qu'est-ce qu" + (/^[AEIOUÉ]/.test(n) ? "'" : "e ") + n + " aime ?";
+    if (FR_EN && frRep) tradQ = tradsOpts[rep] + " — " + frRep;
+    ecran("question", image, avecTrou("– ___<br>– " + reponse));
+    boutons($("choix"), melanger([qE, qT, qX, qL]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, rep + " " + reponse); });
+    return true;
   }
 };
-// les sortes de la langue apprise : ser / estar et l'accord en espagnol ; ist / hat et Gefuehl / Charakter en allemand
-const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" ? !["istHat", "gefuehl"].includes(x) : !["serEstar", "accord"].includes(x));
+// l'anglais : la phrase a trou des -ed / -ing, sur une personne (son visage, le mot en -ed) ou une chose (sans image,
+// le mot en -ing) ; null si le mot vise n'en a pas
+const SANS_QUESTION = ["rico", "pobre"];          // riche, pauvre : une situation, pas un caractere (« What is he like? »)
+function questionEdIng(w){
+  if (w && !(w.ing || (w.e && EN_EDING[w.e]))) return null;
+  const choses = w ? !!w.ing : Math.random() < 0.4;
+  const e = w ? (w.ing || w.e) : hasard(Object.keys(EN_EDING)), d = EN_EDING[e];
+  if (choses){ const [phrase, fr] = hasard(d.choses); motQ = w || motIng(e); sensQ = null; tradQ = FR_EN ? fr : null; return {d, image: "", phrase, rep: d.ing}; }
+  const [p] = unPortrait(e); motQ = w || motE(e); sensQ = {p, e};
+  tradQ = FR_EN && TR ? nom(p) + " " + forme2(TR.e[e], p) + EN.gens(d.gens[1], p) : null;
+  return {d, image: portrait(p, e), phrase: EN.gens(d.gens[0], p), rep: d.ed};
+}
+// les sortes de la langue apprise : ser / estar et l'accord en espagnol ; ist / hat et Gefuehl / Charakter en allemand ;
+// en anglais, is / has, feel, -ed / -ing et la question (How is she feeling? / What is she like?)
+const SEULES_EN = ["beHave", "feel", "edIng", "edIngVf", "question"];
+const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" ? !["istHat", "gefuehl"].concat(SEULES_EN).includes(x)
+                                          : APPRENDRE === "de" ? !["serEstar", "accord"].concat(SEULES_EN).includes(x) : !["serEstar", "accord", "istHat", "gefuehl"].includes(x));
 
 // ---------- la decouverte : deux planches a toucher, le mot se voit et s'entend ----------
 function decouvrir(){
   $("compte").textContent = ""; $("barre").style.width = "0%";
-  const z = $("zone"), dec = D.decouverte, phrases = dec.phrases[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  const z = $("zone"), dec = D.decouverte, phrases = phrasesDecouverte();
   z.innerHTML = '<div class="onglets" role="tablist"><button type="button" role="tab" id="oE">' + T("ongletEmo") + '</button><button type="button" role="tab" id="oC">' + T("ongletCar") + '</button></div>'
               + '<p class="consigne" id="intro"></p><div class="planche" id="planche"></div><div class="fiche" id="fiche"></div>'
-              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : "regleEs")) + '</p>';
+              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : APPRENDRE === "en" ? "regleEn" : "regleEs")) + '</p>'
+              // l'anglais : -ed / -ing et feel, puis l'americain et le britannique
+              + (APPRENDRE === "en" ? '<p class="regle">' + T("bonEdIng", {film: MOVIE}) + '</p><p class="regle">' + T(GB ? "bonGb" : "bonUs") + '</p>' : "");
   const montrer = (cle, emotion) => {
     const p = emotion ? dec.visages[cle] : dec.caracteres[cle], m = emotion ? D.emotions[cle] : D.caracteres[cle];
-    const motVu = APPRENDRE === "de" ? (emotion ? pred(p, cle) : "ist " + m.de).replace(/^ist /, "") : (emotion ? pred(p, cle) : predT(p, cle)).replace(/^(está|es) /, "");
+    const motVu = APPRENDRE === "en" ? (emotion ? EN_E[cle] : EN_T[cle])
+                : APPRENDRE === "de" ? (emotion ? pred(p, cle) : "ist " + m.de).replace(/^ist /, "") : (emotion ? pred(p, cle) : predT(p, cle)).replace(/^(está|es) /, "");
     const ph = phrases[cle];
     $("planche").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.cle === cle));
     $("fiche").innerHTML = '<img alt="" src="' + (emotion ? imgP(p, cle) : imgT(cle, p)) + '"><div><div class="mot">' + cible(motVu) + '</div><div class="dit">' + cible(ph.texte) + '</div>'
                          + ((t => t ? traduction(t) : "")(traduire(emotion ? {p, e: cle} : {p, t: cle}) || (TR ? null : glose(emotion ? motE(cle) : motT(cle)))))
                          + '<button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>';
-    $("ecoute").addEventListener("click", () => dire(ph.texte, ph.son));
-    dire(ph.texte, ph.son);
+    $("ecoute").addEventListener("click", () => dire(ph.texte));
+    dire(ph.texte);
   };
   const onglet = emotion => {
     $("oE").setAttribute("aria-selected", emotion); $("oC").setAttribute("aria-selected", !emotion);
@@ -540,7 +764,7 @@ function cleQuestion(){
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
 }
 function montrer(){
-  repondu = false; $("suite").hidden = true;
+  repondu = false; $("suite").hidden = true; choixFaux = null;
   $("compte").textContent = (rang + 1) + " / " + file.length;
   $("barre").style.width = (rang / file.length * 100) + "%";
   // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
@@ -550,19 +774,19 @@ function montrer(){
     const autres = melanger(SORTES.filter(x => x !== derniereSorte));
     for (const so of autres){
       for (let n = 0; n < 25; n++){
-        motQ = null; vuQ = null; sensQ = null; sorteCourante = so;
+        motQ = null; vuQ = null; sensQ = null; tradQ = null; tradsOpts = {}; sorteCourante = so;
         if (!EX[so](w)) break;
         if (!vus.has(cleQuestion())) return so;
       }
     }
     if (strict) return null;
     if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
-      motQ = null; vuQ = null; sensQ = null; sorteCourante = derniereSorte;
+      motQ = null; vuQ = null; sensQ = null; tradQ = null; tradsOpts = {}; sorteCourante = derniereSorte;
       if (!EX[derniereSorte](w)) break;
       if (!vus.has(cleQuestion())) return derniereSorte;
     }
     for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
-      motQ = null; vuQ = null; sensQ = null; sorteCourante = so;
+      motQ = null; vuQ = null; sensQ = null; tradQ = null; tradsOpts = {}; sorteCourante = so;
       if (EX[so](w)) return so;
     }
     return null;
@@ -578,7 +802,8 @@ function montrer(){
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
-  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div>' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>'
+    + '<div class="bas">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
   brancherEncore();
   $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
 }
@@ -588,7 +813,7 @@ function toutRevu(prochaine){
   const quand = Tirage.revu(prochaine, LANGUE);
   $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
     + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
-    + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+    + '</div><div class="bas">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
   brancherEncore();
   $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
 }
@@ -615,6 +840,8 @@ $("titre").textContent = T("titre");
 document.title = T("titre");
 fetch("emociones/emociones.json?v=1").then(r => r.json()).then(d => {
   D = d; PORTRAITS = Object.entries(d.portraits).flatMap(([p, es]) => es.map(e => [p, e]));
+  // l'anglais : le mot de chaque emotion et de chaque trait, la ou les phrases le cherchent (m.en)
+  if (APPRENDRE === "en"){ Object.keys(D.emotions).forEach(k => { D.emotions[k].en = EN_E[k]; }); Object.keys(D.caracteres).forEach(k => { D.caracteres[k].en = EN_T[k]; }); }
   if (Q.get("seance") === "1") demarrer(); else decouvrir();
 });
 </script>

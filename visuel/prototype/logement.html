@@ -1,0 +1,1302 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le logement</title>
+<!--
+  « LE LOGEMENT » (theme illustre, 4 nov. 2026, vague 3) : les PIECES, les MEUBLES et la RECHERCHE D'UN APPARTEMENT,
+  en allemand et en espagnol. Trois logements connus (la colocation de Mark, l'appartement d'Anna, celui de Jan et
+  Katrin), leurs pieces en photo (reprises des scenes, de « La journee » et de « Ou est le chat ? ») et leurs plans,
+  dessines ici ; puis l'appartement que visite Lena, la soeur d'Anna, et les annonces (DTZ, Lesen : KM, NK, Kaution,
+  « welche Anzeige passt ? »). Toute la donnee vient de visuel/logement/logement.py -> logement/logement.json : aucune
+  phrase n'est ecrite ici. Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene :
+  « exercice » et « bonne » a chaque reponse, « reponse » {mot, genre, cat, sens, juste} pour le mot teste, « fini » et
+  « fermer ». Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
+  variante=latam (la voix), r=<AUDIO_REVISION>. Le tirage suit les mots (themes/tirage.js).
+  L'ANGLAIS (apprendre=en, essai admin, 4 nov. 2026) : les memes photos et les memes plans, des phrases ECRITES POUR
+  L'ANGLAIS, fabriquees dans la page (construireAnglais) depuis la meme donnee : there is / there are, les prepositions
+  de lieu, How many bedrooms does it have?, Does / Is / Has en tete de question, la visite au present continu, une
+  annonce de Boston ($ a month, utilities, security deposit, 2BR/1BA, sq ft). variante=gb : Londres (£ pcm, bills,
+  deposit, flat, m²), have got, lift, wardrobe, cooker, bath, ground floor.
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--papier:#FFFDF6;--trait:#5B6475;--piece:#FFFFFF;--marque:#FBE3B6;
+  --police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A;--papier:#1D2F3D;--trait:#A9B8C4;--piece:#2A4152;--marque:#6B5320}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (regle commune des themes, 3 nov. 2026) */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.trou{display:inline-block;min-width:56px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+.cadre{position:relative;width:100%;margin:0 auto;border-radius:16px;overflow:hidden;background:var(--carte);aspect-ratio:4/3}
+.cadre img{display:block;width:100%;height:100%;object-fit:cover}
+.rangee{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;direction:ltr}
+.rangee button{border:3px solid transparent;border-radius:14px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block;position:relative;aspect-ratio:4/3}
+.rangee button img{display:block;width:100%;height:100%;object-fit:cover}
+.rangee button.juste{border-color:var(--vert)} .rangee button.faux{border-color:var(--rouge)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.choix.long{flex-direction:column} .choix.long button{border-radius:14px;text-align:left;font-weight:700;line-height:1.4}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.ecoute{width:48px;height:48px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ecoute svg{width:24px;height:24px}
+.ecoute.grand{width:64px;height:64px;margin:0 auto} .ecoute.grand svg{width:32px;height:32px}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+.trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
+.trad.faux{color:var(--rouge)}
+.retourMsg .mot{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
+.retourMsg .mot .ecoute{width:38px;height:38px} .retourMsg .mot .ecoute svg{width:19px;height:19px}
+/* l'annonce : un petit encart de journal */
+.annonce{direction:ltr;text-align:left;background:var(--papier);border:1px solid rgba(91,100,117,.35);border-radius:6px;padding:10px 12px;font:600 15px/1.45 Georgia,"Times New Roman",serif;color:var(--encre);box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.annonce b{font-family:var(--police);font-weight:900}
+.choix.annonces{flex-direction:column} .choix.annonces button{border-radius:8px;text-align:left;font:600 14px/1.4 Georgia,"Times New Roman",serif;background:var(--papier);border-color:rgba(91,100,117,.4)}
+.choix.annonces button.juste{background:var(--vert);color:#fff} .choix.annonces button.faux{background:var(--rouge);color:#fff}
+.qui{display:flex;gap:12px;align-items:center}
+.qui img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:0 0 auto;background:var(--carte)}
+.qui .enonce{flex:1;font-size:15px}
+/* le plan, dessine : il garde sa gauche et sa droite en arabe et en persan */
+.plan{direction:ltr;background:var(--carte);border-radius:14px;padding:8px}
+.plan svg{display:block;width:100%;height:auto}
+.plan .p{fill:var(--piece);stroke:var(--trait);stroke-width:.5}
+.plan .p.marque{fill:var(--marque);stroke:var(--ambre-f);stroke-width:.9}
+.plan .p.balkon{stroke-dasharray:1.4 1}
+.plan .p.actif{fill:var(--marque)}
+.plan text{fill:var(--encre);font:800 3.1px var(--police);text-anchor:middle;dominant-baseline:middle;pointer-events:none}
+.plan .m{fill:none;stroke:var(--trait);stroke-width:.35;opacity:.75;pointer-events:none}
+.plan .mf{fill:var(--trait);opacity:.35;pointer-events:none}
+.plan .t{font-size:3.4px;fill:var(--gris)}
+/* la decouverte */
+.onglets{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--carte);border-radius:999px;padding:4px}
+.onglets button{border:0;border-radius:999px;background:none;color:var(--gris);font:800 14px var(--police);padding:9px 6px;cursor:pointer}
+.onglets button.actif{background:var(--verre);color:var(--encre);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.dit{display:flex;align-items:center;gap:10px;background:var(--carte);border-radius:14px;padding:10px 12px}
+.dit .texte{flex:1;font-weight:800;font-size:17px;line-height:1.4}
+.puces{display:flex;flex-wrap:wrap;gap:7px;direction:ltr}
+.puces button{border:2px solid var(--bord);background:var(--carte);color:var(--encre);border-radius:12px;padding:7px 11px;font:700 14px var(--police);cursor:pointer}
+.puces button.choisi{border-color:var(--ambre);background:var(--verre)}
+/* une puce qui fait entendre sa phrase porte le haut-parleur de l'app (v919), petit, apres le mot (Jacques, 5 nov. :
+   un haut-parleur partout ou l'on peut faire entendre quelque chose en le touchant) */
+.puces button.parle{display:inline-flex;align-items:center;gap:6px}
+.puces button.parle .ic-hp{width:14px;height:14px;flex:0 0 auto;color:var(--ambre-f)}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.5;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.regle b{color:var(--encre)}
+.regle .exemples{display:block;margin-top:6px;color:var(--encre);font-weight:700;text-align:left}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer;z-index:5000}
+.suite[hidden]{display:none}
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:5000}
+.bas[hidden]{display:none}
+.bas button{flex:1;height:54px;border-radius:27px;font:800 16px var(--police);cursor:pointer;padding:0 10px}
+.bas .principal{border:0;color:#fff;background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28)}
+.bas .second{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+[lang]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<div class="bas" id="bas" hidden></div>
+<script src="themes/tirage.js?v=2"></script>
+<script src="themes/voix.js?v=7"></script>
+<script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=6"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const DE_APP = APPRENDRE === "de";
+const EN_APP = APPRENDRE === "en", GB = EN_APP && Q.get("variante") === "gb";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// agrandir (themes/zoom.js) : la photo de la question s'ouvre au toucher, la loupe sur les photos a choisir
+Zoom.init({direct: ".cadre img, .qui img", loupe: ".rangee button", langue: LANGUE});
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
+
+const TEXTES = {
+  titre:     {fr:"Le logement", en:"Home and housing", tr:"Ev ve konut", uk:"Житло", fa:"خانه و مسکن", ar:"السكن", pt:"A moradia", pl:"Mieszkanie", ru:"Жильё", de:"Wohnen"},
+  intro:     {fr:"Trois logements : la colocation de Mark, l'appartement d'Anna, celui de Jan et Katrin. Choisis-en un, puis touche une pièce du plan.",
+              en:"Three homes: Mark's shared apartment, Anna's apartment, and Jan and Katrin's. Choose one, then tap a room on the plan.",
+              tr:"Üç ev: Mark'ın paylaşımlı dairesi, Anna'nın dairesi, Jan ile Katrin'in dairesi. Birini seç, sonra plandaki bir odaya dokun.",
+              uk:"Три помешкання: квартира, яку Марк ділить із сусідами, квартира Анни і квартира Яна та Катрін. Обери одне й торкнися кімнати на плані.",
+              fa:"سه خانه: آپارتمان اشتراکی مارک، آپارتمان آنا و آپارتمان یان و کاترین. یکی را انتخاب کن و روی یک اتاق در نقشه بزن.",
+              ar:"ثلاثة مساكن: الشقة المشتركة لمارك، وشقة آنا، وشقة يان وكاترين. اختر واحدًا ثم المس غرفة في المخطط.",
+              pt:"Três moradias: o apartamento compartilhado do Mark, o apartamento da Anna e o do Jan e da Katrin. Escolha um e toque em um cômodo da planta.",
+              pl:"Trzy mieszkania: mieszkanie Marka ze współlokatorami, mieszkanie Anny oraz Jana i Katrin. Wybierz jedno i dotknij pokoju na planie.",
+              ru:"Три жилья: квартира, которую Марк снимает с соседями, квартира Анны и квартира Яна и Катрин. Выбери одно и нажми на комнату на плане.",
+              de:"Drei Wohnungen: Marks WG, Annas Wohnung und die Wohnung von Jan und Katrin. Wähle eine und tippe auf ein Zimmer im Grundriss."},
+  ongletPieces:{fr:"Les pièces", en:"The rooms", tr:"Odalar", uk:"Кімнати", fa:"اتاق‌ها", ar:"الغرف", pt:"Os cômodos", pl:"Pokoje", ru:"Комнаты", de:"Die Zimmer"},
+  ongletCherche:{fr:"Chercher un appartement", en:"Looking for an apartment", tr:"Daire aramak", uk:"Шукати квартиру", fa:"دنبال آپارتمان", ar:"البحث عن شقة", pt:"Procurar apartamento", pl:"Szukanie mieszkania", ru:"Искать квартиру", de:"Eine Wohnung suchen"},
+  objets:    {fr:"Sur la photo, touche un mot :", en:"In the photo, tap a word:", tr:"Fotoğrafta bir kelimeye dokun:", uk:"На фото торкнися слова:", fa:"در عکس، روی یک کلمه بزن:", ar:"في الصورة، المس كلمة:", pt:"Na foto, toque em uma palavra:", pl:"Na zdjęciu dotknij słowa:", ru:"На фото нажми на слово:", de:"Auf dem Foto: Tippe auf ein Wort:"},
+  pasPhoto:  {fr:"Pas encore de photo de cette pièce.", en:"No photo of this room yet.", tr:"Bu odanın henüz fotoğrafı yok.", uk:"Фото цієї кімнати ще немає.", fa:"هنوز عکسی از این اتاق نیست.", ar:"لا توجد صورة لهذه الغرفة بعد.", pt:"Ainda não há foto deste cômodo.", pl:"Nie ma jeszcze zdjęcia tego pokoju.", ru:"Фото этой комнаты пока нет.", de:"Von diesem Zimmer gibt es noch kein Foto."},
+  zaehlenDe: {fr:"<b>Compter les « Zimmer »</b> : le salon et les chambres comptent, la cuisine, la salle de bains et le couloir non. L'appartement d'Anna est une <b>2-Zimmer-Wohnung</b>.",
+              en:"<b>Counting “Zimmer”</b>: the living room and bedrooms count; the kitchen, bathroom and hallway don't. Anna's apartment is a <b>2-Zimmer-Wohnung</b>.",
+              tr:"<b>“Zimmer” saymak</b>: oturma odası ve yatak odaları sayılır; mutfak, banyo ve koridor sayılmaz. Anna'nın dairesi bir <b>2-Zimmer-Wohnung</b>.",
+              uk:"<b>Як рахують «Zimmer»</b>: вітальня і спальні рахуються, кухня, ванна й коридор — ні. Квартира Анни — <b>2-Zimmer-Wohnung</b>.",
+              fa:"<b>شمردن «Zimmer»</b>: اتاق نشیمن و اتاق‌خواب‌ها حساب می‌شوند؛ آشپزخانه، حمام و راهرو نه. آپارتمان آنا یک <b>2-Zimmer-Wohnung</b> است.",
+              ar:"<b>عدّ «Zimmer»</b>: تُحسب غرفة الجلوس وغرف النوم، ولا يُحسب المطبخ والحمّام والممر. شقة آنا هي <b>2-Zimmer-Wohnung</b>.",
+              pt:"<b>Contar os “Zimmer”</b>: a sala e os quartos contam; a cozinha, o banheiro e o corredor, não. O apartamento da Anna é um <b>2-Zimmer-Wohnung</b>.",
+              pl:"<b>Liczenie „Zimmer”</b>: salon i sypialnie się liczą, kuchnia, łazienka i korytarz nie. Mieszkanie Anny to <b>2-Zimmer-Wohnung</b>.",
+              ru:"<b>Как считают «Zimmer»</b>: гостиная и спальни считаются, кухня, ванная и коридор — нет. Квартира Анны — <b>2-Zimmer-Wohnung</b>.",
+              de:"<b>Zimmer zählen</b>: Wohnzimmer und Schlafzimmer zählen, Küche, Bad und Flur nicht. Annas Wohnung ist eine <b>2-Zimmer-Wohnung</b>."},
+  zaehlenEs: {fr:"<b>Compter les « habitaciones »</b> : en Espagne, ce sont les chambres. Le salon ne compte pas : l'appartement d'Anna est un <b>piso de una habitación</b>.",
+              en:"<b>Counting “habitaciones”</b>: in Spain these are the bedrooms. The living room doesn't count: Anna's apartment is a <b>piso de una habitación</b>.",
+              tr:"<b>“habitaciones” saymak</b>: İspanya'da bunlar yatak odalarıdır. Oturma odası sayılmaz: Anna'nın dairesi bir <b>piso de una habitación</b>.",
+              uk:"<b>Як рахують «habitaciones»</b>: в Іспанії це спальні. Вітальня не рахується: квартира Анни — <b>piso de una habitación</b>.",
+              fa:"<b>شمردن «habitaciones»</b>: در اسپانیا یعنی اتاق‌خواب‌ها. اتاق نشیمن حساب نمی‌شود: آپارتمان آنا یک <b>piso de una habitación</b> است.",
+              ar:"<b>عدّ «habitaciones»</b>: في إسبانيا هي غرف النوم. لا تُحسب غرفة الجلوس: شقة آنا هي <b>piso de una habitación</b>.",
+              pt:"<b>Contar as “habitaciones”</b>: na Espanha, são os quartos. A sala não conta: o apartamento da Anna é um <b>piso de una habitación</b>.",
+              pl:"<b>Liczenie „habitaciones”</b>: w Hiszpanii to sypialnie. Salon się nie liczy: mieszkanie Anny to <b>piso de una habitación</b>.",
+              ru:"<b>Как считают «habitaciones»</b>: в Испании это спальни. Гостиная не считается: квартира Анны — <b>piso de una habitación</b>.",
+              de:"<b>„habitaciones“ zählen</b>: In Spanien sind das die Schlafzimmer. Das Wohnzimmer zählt nicht: Annas Wohnung ist ein <b>piso de una habitación</b>."},
+  verbesDe:  {fr:"<b>stehen, liegen, hängen</b> : debout (le canapé, le lit), à plat (le tapis, le coussin), accroché (le tableau, la lampe au plafond).",
+              en:"<b>stehen, liegen, hängen</b>: standing (the sofa, the bed), lying flat (the rug, the cushion), hanging (the picture, the ceiling lamp).",
+              tr:"<b>stehen, liegen, hängen</b>: dik duran (kanepe, yatak), yatay duran (halı, yastık), asılı (tablo, tavan lambası).",
+              uk:"<b>stehen, liegen, hängen</b>: стоїть (диван, ліжко), лежить (килим, подушка), висить (картина, лампа під стелею).",
+              fa:"<b>stehen, liegen, hängen</b>: ایستاده (مبل، تخت)، خوابیده (فرش، کوسن)، آویزان (تابلو، چراغ سقفی).",
+              ar:"<b>stehen, liegen, hängen</b>: قائم (الأريكة، السرير)، ممدود (السجادة، الوسادة)، معلّق (اللوحة، مصباح السقف).",
+              pt:"<b>stehen, liegen, hängen</b>: em pé (o sofá, a cama), deitado (o tapete, a almofada), pendurado (o quadro, a luminária do teto).",
+              pl:"<b>stehen, liegen, hängen</b>: stoi (kanapa, łóżko), leży (dywan, poduszka), wisi (obraz, lampa pod sufitem).",
+              ru:"<b>stehen, liegen, hängen</b>: стоит (диван, кровать), лежит (ковёр, подушка), висит (картина, лампа под потолком).",
+              de:"<b>stehen, liegen, hängen</b>: Das Sofa und das Bett stehen, der Teppich und das Kissen liegen, das Bild und die Deckenlampe hängen."},
+  verbesEs:  {fr:"<b>hay ou está</b> : « hay » présente une chose (hay una nevera), « está » dit où est une chose connue (la nevera está en la cocina).",
+              en:"<b>hay or está</b>: “hay” introduces something (hay una nevera), “está” says where a known thing is (la nevera está en la cocina).",
+              tr:"<b>hay mı, está mı</b>: “hay” bir şeyi tanıtır (hay una nevera), “está” bilinen bir şeyin yerini söyler (la nevera está en la cocina).",
+              uk:"<b>hay чи está</b>: «hay» називає річ уперше (hay una nevera), «está» каже, де відома річ (la nevera está en la cocina).",
+              fa:"<b>hay یا está</b>: «hay» چیزی را معرفی می‌کند (hay una nevera)، «está» می‌گوید چیز شناخته‌شده کجاست (la nevera está en la cocina).",
+              ar:"<b>hay أم está</b>: «hay» تقدّم شيئًا (hay una nevera)، و«está» تقول أين يوجد شيء معروف (la nevera está en la cocina).",
+              pt:"<b>hay ou está</b>: “hay” apresenta uma coisa (hay una nevera), “está” diz onde está uma coisa conhecida (la nevera está en la cocina).",
+              pl:"<b>hay czy está</b>: „hay” przedstawia rzecz (hay una nevera), „está” mówi, gdzie jest znana rzecz (la nevera está en la cocina).",
+              ru:"<b>hay или está</b>: «hay» называет вещь впервые (hay una nevera), «está» говорит, где известная вещь (la nevera está en la cocina).",
+              de:"<b>hay oder está</b>: „hay“ stellt etwas vor (hay una nevera), „está“ sagt, wo etwas Bekanntes ist (la nevera está en la cocina)."},
+  chercheDe: {fr:"Une annonce allemande abrège tout. Touche une abréviation :", en:"A German ad abbreviates everything. Tap an abbreviation:", tr:"Almanca bir ilan her şeyi kısaltır. Bir kısaltmaya dokun:", uk:"Німецьке оголошення все скорочує. Торкнися скорочення:", fa:"آگهی آلمانی همه‌چیز را کوتاه می‌کند. روی یک کوته‌نوشت بزن:", ar:"الإعلان الألماني يختصر كل شيء. المس اختصارًا:", pt:"Um anúncio alemão abrevia tudo. Toque em uma abreviação:", pl:"Niemieckie ogłoszenie wszystko skraca. Dotknij skrótu:", ru:"Немецкое объявление всё сокращает. Нажми на сокращение:", de:"Eine Anzeige kürzt alles ab. Tippe auf eine Abkürzung:"},
+  chercheEs: {fr:"Une annonce espagnole : le loyer, les charges (gastos), la caution (fianza).", en:"A Spanish ad: the rent, the bills (gastos), the deposit (fianza).", tr:"İspanyolca bir ilan: kira, giderler (gastos), depozito (fianza).", uk:"Іспанське оголошення: оренда, комунальні (gastos), застава (fianza).", fa:"یک آگهی اسپانیایی: اجاره، هزینه‌ها (gastos)، ودیعه (fianza).", ar:"إعلان إسباني: الإيجار، المصاريف (gastos)، التأمين (fianza).", pt:"Um anúncio espanhol: o aluguel, as despesas (gastos), a caução (fianza).", pl:"Hiszpańskie ogłoszenie: czynsz, opłaty (gastos), kaucja (fianza).", ru:"Испанское объявление: аренда, расходы (gastos), залог (fianza).", de:"Eine spanische Anzeige: die Miete, die Nebenkosten (gastos), die Kaution (fianza)."},
+  calculDe:  {fr:"<b>KM + NK = Warmmiete</b> (le loyer hors charges plus les charges). La <b>Kaution</b> se compte en mois de loyer hors charges : 3 MM = 3 × KM.",
+              en:"<b>KM + NK = Warmmiete</b> (basic rent plus bills). The <b>Kaution</b> is counted in months of basic rent: 3 MM = 3 × KM.",
+              tr:"<b>KM + NK = Warmmiete</b> (çıplak kira artı giderler). <b>Kaution</b> çıplak kira ayı olarak sayılır: 3 MM = 3 × KM.",
+              uk:"<b>KM + NK = Warmmiete</b> (оренда без комунальних плюс комунальні). <b>Kaution</b> рахують у місяцях оренди: 3 MM = 3 × KM.",
+              fa:"<b>KM + NK = Warmmiete</b> (اجاره بدون هزینه‌ها به‌علاوه هزینه‌ها). <b>Kaution</b> به ماه‌های اجاره شمرده می‌شود: 3 MM = 3 × KM.",
+              ar:"<b>KM + NK = Warmmiete</b> (الإيجار الأساسي زائد المصاريف). تُحسب <b>Kaution</b> بأشهر الإيجار الأساسي: 3 MM = 3 × KM.",
+              pt:"<b>KM + NK = Warmmiete</b> (aluguel sem despesas mais as despesas). A <b>Kaution</b> se conta em meses de aluguel: 3 MM = 3 × KM.",
+              pl:"<b>KM + NK = Warmmiete</b> (czynsz bez opłat plus opłaty). <b>Kaution</b> liczy się w miesiącach czynszu: 3 MM = 3 × KM.",
+              ru:"<b>KM + NK = Warmmiete</b> (аренда без расходов плюс расходы). <b>Kaution</b> считают в месяцах аренды: 3 MM = 3 × KM.",
+              de:"<b>KM + NK = Warmmiete</b>. Die <b>Kaution</b> zählt man in Monatsmieten (kalt): 3 MM = 3 × KM."},
+  calculEs:  {fr:"<b>alquiler + gastos = total par mois</b>. La <b>fianza</b> se compte en mois de loyer : 2 meses = 2 × alquiler.",
+              en:"<b>alquiler + gastos = total a month</b>. The <b>fianza</b> is counted in months of rent: 2 meses = 2 × alquiler.",
+              tr:"<b>alquiler + gastos = aylık toplam</b>. <b>fianza</b> kira ayı olarak sayılır: 2 meses = 2 × alquiler.",
+              uk:"<b>alquiler + gastos = усього на місяць</b>. <b>fianza</b> рахують у місяцях оренди: 2 meses = 2 × alquiler.",
+              fa:"<b>alquiler + gastos = جمع ماهانه</b>. <b>fianza</b> به ماه‌های اجاره شمرده می‌شود: 2 meses = 2 × alquiler.",
+              ar:"<b>alquiler + gastos = المجموع الشهري</b>. تُحسب <b>fianza</b> بأشهر الإيجار: 2 meses = 2 × alquiler.",
+              pt:"<b>alquiler + gastos = total por mês</b>. A <b>fianza</b> se conta em meses de aluguel: 2 meses = 2 × alquiler.",
+              pl:"<b>alquiler + gastos = razem na miesiąc</b>. <b>fianza</b> liczy się w miesiącach czynszu: 2 meses = 2 × alquiler.",
+              ru:"<b>alquiler + gastos = всего в месяц</b>. <b>fianza</b> считают в месяцах аренды: 2 meses = 2 × alquiler.",
+              de:"<b>alquiler + gastos = Gesamtmiete im Monat</b>. Die <b>fianza</b> zählt man in Monatsmieten: 2 meses = 2 × alquiler."},
+  ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
+  zimmer:    {fr:"Regarde la photo : quelle pièce est-ce ?", en:"Look at the photo: which room is it?", tr:"Fotoğrafa bak: hangi oda?", uk:"Подивися на фото: яка це кімната?", fa:"به عکس نگاه کن: کدام اتاق است؟", ar:"انظر إلى الصورة: أي غرفة هذه؟", pt:"Olhe a foto: que cômodo é?", pl:"Spójrz na zdjęcie: jaki to pokój?", ru:"Посмотри на фото: какая это комната?", de:"Sieh dir das Foto an: Welches Zimmer ist das?"},
+  wo:        {fr:"Regarde la photo : où est-on ?", en:"Look at the photo: where are they?", tr:"Fotoğrafa bak: neredeler?", uk:"Подивися на фото: де вони?", fa:"به عکس نگاه کن: کجا هستند؟", ar:"انظر إلى الصورة: أين هم؟", pt:"Olhe a foto: onde estão?", pl:"Spójrz na zdjęcie: gdzie są?", ru:"Посмотри на фото: где они?", de:"Sieh dir das Foto an: Wo sind sie?"},
+  im:        {fr:"Choisis la bonne forme (où l'on est : datif).", en:"Choose the right form (where it is: dative).", tr:"Doğru biçimi seç (nerede: Dativ).", uk:"Обери правильну форму (де: Dativ).", fa:"شکل درست را انتخاب کن (کجا: Dativ).", ar:"اختر الصيغة الصحيحة (أين: Dativ).", pt:"Escolha a forma certa (onde está: dativo).", pl:"Wybierz właściwą formę (gdzie: Dativ).", ru:"Выбери правильную форму (где: Dativ).", de:"Wähle die richtige Form (Wo? → Dativ)."},
+  ding:      {fr:"Lis la question et touche la bonne photo.", en:"Read the question and tap the right photo.", tr:"Soruyu oku ve doğru fotoğrafa dokun.", uk:"Прочитай питання й торкнися потрібного фото.", fa:"سؤال را بخوان و روی عکس درست بزن.", ar:"اقرأ السؤال والمس الصورة الصحيحة.", pt:"Leia a pergunta e toque na foto certa.", pl:"Przeczytaj pytanie i dotknij właściwego zdjęcia.", ru:"Прочитай вопрос и нажми на нужное фото.", de:"Lies die Frage und tippe auf das richtige Foto."},
+  artikel:   {fr:"Choisis l'article.", en:"Choose the article.", tr:"Artikeli seç.", uk:"Обери артикль.", fa:"حرف تعریف را انتخاب کن.", ar:"اختر أداة التعريف.", pt:"Escolha o artigo.", pl:"Wybierz rodzajnik.", ru:"Выбери артикль.", de:"Wähle den Artikel."},
+  verbe:     {fr:"Debout, à plat ou accroché ? Choisis le verbe.", en:"Standing, lying or hanging? Choose the verb.", tr:"Dik mi, yatay mı, asılı mı? Fiili seç.", uk:"Стоїть, лежить чи висить? Обери дієслово.", fa:"ایستاده، خوابیده یا آویزان؟ فعل را انتخاب کن.", ar:"قائم أم ممدود أم معلّق؟ اختر الفعل.", pt:"Em pé, deitado ou pendurado? Escolha o verbo.", pl:"Stoi, leży czy wisi? Wybierz czasownik.", ru:"Стоит, лежит или висит? Выбери глагол.", de:"Stehen, liegen oder hängen? Wähle das Verb."},
+  hayEsta:   {fr:"hay ou está ? Regarde la photo.", en:"hay or está? Look at the photo.", tr:"hay mı, está mı? Fotoğrafa bak.", uk:"hay чи está? Подивися на фото.", fa:"hay یا está؟ به عکس نگاه کن.", ar:"hay أم está؟ انظر إلى الصورة.", pt:"hay ou está? Olhe a foto.", pl:"hay czy está? Spójrz na zdjęcie.", ru:"hay или está? Посмотри на фото.", de:"hay oder está? Sieh dir das Foto an."},
+  vraifaux:  {fr:"Regarde la photo : vrai ou faux ?", en:"Look at the photo: true or false?", tr:"Fotoğrafa bak: doğru mu, yanlış mı?", uk:"Подивися на фото: правда чи ні?", fa:"به عکس نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a foto: verdadeiro ou falso?", pl:"Spójrz na zdjęcie: prawda czy fałsz?", ru:"Посмотри на фото: правда или нет?", de:"Sieh dir das Foto an: richtig oder falsch?"},
+  entendre:  {fr:"Écoute la phrase et touche la bonne photo.", en:"Listen to the sentence and tap the right photo.", tr:"Cümleyi dinle ve doğru fotoğrafa dokun.", uk:"Послухай речення й торкнися потрібного фото.", fa:"جمله را گوش کن و روی عکس درست بزن.", ar:"استمع إلى الجملة والمس الصورة الصحيحة.", pt:"Ouça a frase e toque na foto certa.", pl:"Posłuchaj zdania i dotknij właściwego zdjęcia.", ru:"Послушай фразу и нажми на нужное фото.", de:"Hör dir den Satz an und tippe auf das richtige Foto."},
+  plan:      {fr:"Regarde le plan et réponds.", en:"Look at the plan and answer.", tr:"Plana bak ve cevap ver.", uk:"Подивися на план і відповідай.", fa:"به نقشه نگاه کن و پاسخ بده.", ar:"انظر إلى المخطط وأجب.", pt:"Olhe a planta e responda.", pl:"Spójrz na plan i odpowiedz.", ru:"Посмотри на план и ответь.", de:"Sieh dir den Grundriss an und antworte."},
+  planZimmer:{fr:"Sur le plan, une pièce est en couleur : laquelle ?", en:"One room on the plan is coloured: which one?", tr:"Planda bir oda renkli: hangisi?", uk:"На плані одна кімната кольорова: яка?", fa:"در نقشه یک اتاق رنگی است: کدام؟", ar:"في المخطط غرفة ملوّنة: أيّها؟", pt:"Na planta, um cômodo está colorido: qual?", pl:"Na planie jeden pokój jest kolorowy: który?", ru:"На плане одна комната выделена: какая?", de:"Im Grundriss ist ein Zimmer markiert: Welches?"},
+  zaehlen:   {fr:"Compte les pièces sur le plan.", en:"Count the rooms on the plan.", tr:"Plandaki odaları say.", uk:"Порахуй кімнати на плані.", fa:"اتاق‌های نقشه را بشمار.", ar:"عُدّ الغرف في المخطط.", pt:"Conte os cômodos na planta.", pl:"Policz pokoje na planie.", ru:"Посчитай комнаты на плане.", de:"Zähle die Zimmer im Grundriss."},
+  annonce:   {fr:"Lis l'annonce et réponds.", en:"Read the ad and answer.", tr:"İlanı oku ve cevap ver.", uk:"Прочитай оголошення й відповідай.", fa:"آگهی را بخوان و پاسخ بده.", ar:"اقرأ الإعلان وأجب.", pt:"Leia o anúncio e responda.", pl:"Przeczytaj ogłoszenie i odpowiedz.", ru:"Прочитай объявление и ответь.", de:"Lies die Anzeige und antworte."},
+  abk:       {fr:"Que veut dire l'abréviation ?", en:"What does the abbreviation mean?", tr:"Kısaltma ne anlama geliyor?", uk:"Що означає скорочення?", fa:"این کوته‌نوشت یعنی چه؟", ar:"ماذا يعني الاختصار؟", pt:"O que quer dizer a abreviação?", pl:"Co znaczy skrót?", ru:"Что значит сокращение?", de:"Was bedeutet die Abkürzung?"},
+  abkRev:    {fr:"Comment l'annonce l'abrège-t-elle ?", en:"How does the ad abbreviate it?", tr:"İlan bunu nasıl kısaltır?", uk:"Як це скорочують в оголошенні?", fa:"آگهی این را چطور کوتاه می‌نویسد؟", ar:"كيف يختصره الإعلان؟", pt:"Como o anúncio abrevia isso?", pl:"Jak ogłoszenie to skraca?", ru:"Как это сокращают в объявлении?", de:"Wie kürzt die Anzeige das ab?"},
+  passt:     {fr:"Quelle annonce convient ? Une seule remplit tout.", en:"Which ad fits? Only one meets everything.", tr:"Hangi ilan uygun? Yalnızca biri hepsini karşılıyor.", uk:"Яке оголошення підходить? Лише одне відповідає всьому.", fa:"کدام آگهی مناسب است؟ فقط یکی همه را دارد.", ar:"أي إعلان يناسب؟ واحد فقط يحقق كل شيء.", pt:"Qual anúncio serve? Só um atende a tudo.", pl:"Które ogłoszenie pasuje? Tylko jedno spełnia wszystko.", ru:"Какое объявление подходит? Только одно отвечает всему.", de:"Welche Anzeige passt? Nur eine passt in allem."},
+  wort:      {fr:"Quel mot correspond ?", en:"Which word matches?", tr:"Hangi kelime uyuyor?", uk:"Яке слово підходить?", fa:"کدام کلمه مناسب است؟", ar:"أي كلمة تناسب؟", pt:"Qual palavra corresponde?", pl:"Które słowo pasuje?", ru:"Какое слово подходит?", de:"Welches Wort passt?"},
+  sens:      {fr:"Que veut dire ce mot ?", en:"What does this word mean?", tr:"Bu kelime ne demek?", uk:"Що означає це слово?", fa:"این کلمه یعنی چه؟", ar:"ماذا تعني هذه الكلمة؟", pt:"O que quer dizer esta palavra?", pl:"Co znaczy to słowo?", ru:"Что значит это слово?", de:"Was bedeutet das Wort?"},
+  visite:    {fr:"La visite : regarde la photo.", en:"The viewing: look at the photo.", tr:"Daire gezisi: fotoğrafa bak.", uk:"Огляд квартири: подивися на фото.", fa:"بازدید: به عکس نگاه کن.", ar:"المعاينة: انظر إلى الصورة.", pt:"A visita: olhe a foto.", pl:"Oglądanie mieszkania: spójrz na zdjęcie.", ru:"Осмотр квартиры: посмотри на фото.", de:"Die Besichtigung: Sieh dir das Foto an."},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
+  reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"},
+  // l'anglais (interface en francais seulement : T() retombe sur fr)
+  zaehlenEn: {fr:"<b>Compter les pièces</b> : une annonce américaine compte les chambres. <b>2BR/1BA</b> = deux chambres (bedrooms), une salle de bains (bathroom) ; le salon ne compte pas. L'appartement d'Anna est un <b>one-bedroom apartment</b>. Pour demander : <b>How many bedrooms does it have?</b>"},
+  zaehlenGb: {fr:"<b>Compter les pièces</b> : une annonce britannique compte les chambres. Un <b>2-bed flat</b> a deux chambres (bedrooms) ; le salon ne compte pas. L'appartement d'Anna est un <b>one-bedroom flat</b>. En britannique, on dit volontiers <b>have got</b> : <b>How many bedrooms has it got?</b> — <b>It's got one bedroom.</b>"},
+  thereEn:   {fr:"<b>there is / there are</b> : <b>There's</b> a sofa in the living room (une chose), <b>there are</b> two bedrooms (plusieurs). Et les prépositions : <b>in</b> the kitchen, mais <b>on</b> the balcony ; <b>on</b> the wall, <b>on</b> the floor, <b>above</b> the table (accrochée au-dessus : pas <i>on</i>), <b>under</b> the window, <b>next to</b> the bed, <b>between</b> the kitchen and the bedroom."},
+  bonUs:     {fr:"Bon à savoir : tu apprends l'anglais américain. On y dit <b>apartment</b>, <b>elevator</b>, <b>closet</b>, <b>stove</b>, <b>bathtub</b>, <b>faucet</b> (le robinet), <b>roommate</b>, <b>for rent</b> (à louer). Et les étages : le <b>first floor</b> est le rez-de-chaussée, le <b>second floor</b> notre premier étage. En Grande-Bretagne : flat, lift, wardrobe, cooker, bath, tap, flatmate, to let ; ground floor (rez-de-chaussée), first floor (1er étage)."},
+  bonGb:     {fr:"Bon à savoir : tu apprends l'anglais britannique. On y dit <b>flat</b>, <b>lift</b>, <b>wardrobe</b>, <b>cooker</b>, <b>bath</b>, <b>tap</b> (le robinet), <b>flatmate</b>, <b>to let</b> (à louer). Les étages se comptent comme en français : <b>ground floor</b> (rez-de-chaussée), <b>first floor</b> (1er étage). Aux États-Unis : apartment, elevator, closet, stove, bathtub, faucet, roommate, for rent ; et le first floor y est le rez-de-chaussée."},
+  chercheEn: {fr:"Une annonce de Boston abrège tout. Touche une abréviation :"},
+  chercheGb: {fr:"Une annonce de Londres abrège tout. Touche une abréviation :"},
+  calculEn:  {fr:"<b>$2,400/mo.</b> : le loyer par mois. « <b>heat &amp; hot water incl.</b> » : le chauffage et l'eau chaude sont compris ; « <b>utilities not incl.</b> » : l'électricité, le gaz, etc. se paient en plus. Le <b>security deposit</b> (le dépôt de garantie) ne peut pas dépasser un mois de loyer dans le Massachusetts. La surface est en pieds carrés : 850 sq ft ≈ 79 m²."},
+  calculGb:  {fr:"<b>£2,200 pcm</b> : par mois (per calendar month). « <b>bills incl.</b> » : les charges (eau, électricité, gaz, chauffage) sont comprises. Le <b>deposit</b> (le dépôt de garantie) ne peut pas dépasser cinq semaines de loyer en Angleterre. La surface est en m²."},
+  thereIs:   {fr:"There is ou there are ? Regarde l'image."},
+  prep:      {fr:"Choisis la bonne préposition."},
+  aux:       {fr:"Lis l'annonce, puis choisis le mot qui commence la question."},
+  vraifauxPlan:{fr:"Regarde le plan : vrai ou faux ?"}
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- la donnee (logement.json, fabrique par visuel/logement/logement.py) ----------
+let D = null;
+const IT = sorte => (D.items[APPRENDRE][sorte] || []);
+// la phrase entiere traduite en francais, anglais, portugais (et en allemand pour qui apprend l'espagnol) ; ailleurs,
+// le mot teste et sa traduction tiree du corpus (gloses)
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
+
+// en anglais, la voix du telephone recoit les nombres en lettres (lireEn) quand le texte n'a pas de fichier enregistre
+let dire = t => { if (t) Voix.dire(EN_APP && !(Voix.aUnFichier && Voix.aUnFichier(t)) ? lireEn(t) : t); };
+// le haut-parleur de l'app (v919, HP_SVG d'index.html) : celui des puces qui parlent, comme les repliques de cuerpo.html
+const HP_APP = '<svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
+// une puce qui dit une phrase quand on la touche : le mot, puis le haut-parleur ; le lecteur d'ecran entend « Ecouter : phrase »
+const puceParlante = (b, mot, phrase) => {
+  b.classList.add("parle");
+  b.innerHTML = '<span></span>' + HP_APP; b.firstChild.textContent = mot;
+  b.setAttribute("aria-label", T("ecouter") + " : " + phrase);
+};
+const taire = () => Voix.arreter();
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const uniques = a => a.filter((x, i) => a.indexOf(x) === i);
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
+const imgSrc = i => "logement/" + i + ".webp";
+const photo = i => '<div class="cadre"><img id="photo" alt="" src="' + imgSrc(i) + '"></div>';
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+let file = [], rang = 0, bons = 0, repondu = false;
+// le mot de la question (regle 3 : « un mot appris compte partout »), envoye par juger() ; tradQ : la traduction
+// de la phrase juste ; choixQ : ce que l'eleve a touche
+let motQ = null, tradQ = null, choixQ = null, itemQ = null;
+
+// ---------- les mots du theme, a la forme du corpus ----------
+let MOTS = null;
+function motsDuTheme(){ return MOTS || (MOTS = D.mots[APPRENDRE]); }
+const motDeCle = k => motsDuTheme().find(m => m.k === k) || null;
+function viser(w, it){ itemQ = it; motQ = w || motDeCle(it.mot); tradQ = PHRASE_TRADUITE ? (it.trad || {})[LANGUE] || null : null; }
+// un item de la sorte pour le mot w (sinon au hasard), filtre en plus
+function prendre(sorte, w, filtre){
+  const c = IT(sorte).filter(it => (!w || it.mots.includes(w.k)) && (!filtre || filtre(it)));
+  return c.length ? hasard(c) : null;
+}
+// le mot montre sous la reponse : « die Küche », « hängen », et sa traduction (le corpus)
+function montreDe(m){
+  if (!m) return null;
+  const aff = m.genre ? m.genre + " " + m.mot : m.mot;
+  const g = (D.gloses[APPRENDRE] || {})[m.mot + (m.sens ? "|" + m.sens : "")] || {};
+  return {aff, sens: LANGUE === APPRENDRE ? "" : (g[LANGUE] || g.fr || "")};
+}
+// LE MAUVAIS CHOIX TRADUIT (regle commune) : une piece, un groupe au datif, un verbe, un mot des definitions ; une
+// photo touchee : la phrase de sa piece. Rien pour un chiffre, un article, oui / non, une annonce.
+function choixTraduit(c){
+  if (!c || LANGUE === APPRENDRE) return null;
+  if (D.photos[c]){
+    const z = IT("zimmer").find(it => it.img === c);
+    return z ? {aff: z.phrase, sens: PHRASE_TRADUITE ? (z.trad[LANGUE] || "") : (montreDe(motDeCle(z.mot)) || {}).sens} : null;
+  }
+  const e = (D.choix[APPRENDRE] || {})[c];
+  if (!e) return null;
+  const s = e[LANGUE] || (PHRASE_TRADUITE ? "" : e.fr);
+  return s ? {aff: c, sens: s} : null;
+}
+
+function juger(ok, bonneTexte, phrase){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, sens: motQ.sens || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  const mt = montreDe(motQ);
+  const cf = !ok ? choixTraduit(choixQ) : null;
+  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : EN_APP ? "Well done!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
+    + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
+    + traduction(tradQ)
+    + (cf && cf.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(cf.aff)}) + " — " + cf.sens + '</span>' : "")
+    + (mt ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(mt.aff) + (mt.sens ? ' · <span dir="auto">' + mt.sens + '</span>' : "") + '</span>' : "");
+  if (mt) $("redire").addEventListener("click", () => dire(phrase || bonneTexte));
+  dire(phrase || bonneTexte);
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+function boutons(conteneur, options, bonne, apres, textes){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr";
+    b.textContent = textes ? textes(o) : o; if (o === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = o; apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+function images(conteneur, ids, bonne, apres){
+  let bon;
+  conteneur.className = "rangee";
+  ids.forEach(i => {
+    const b = document.createElement("button"); b.type = "button"; b.dataset.id = i;
+    b.innerHTML = '<img alt="" src="' + imgSrc(i) + '">'; if (i === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = i; apres(i === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+function ecran(consigne, haut, enonce, centre, classe){
+  $("zone").innerHTML = '<p class="consigne">' + T(consigne) + '</p>' + (haut || "")
+    + (enonce ? '<div class="enonce' + (centre ? " centre" : "") + '">' + cible(enonce) + '</div>' : "")
+    + '<div class="choix' + (centre ? " centre" : "") + (classe ? " " + classe : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = () => '<span class="trou" id="trou">?</span>';
+const avecTrou = s => cible(s).replace("___", trou());
+const remplir = rep => { const t = $("trou"); if (t) t.textContent = rep; };
+// une question a choix : la bonne et deux leurres (trois au plus), melanges
+const options = (rep, leurres, n) => melanger([rep, ...melanger(uniques(leurres.filter(x => x !== rep))).slice(0, n || 2)]);
+
+// ---------- le plan, dessine ----------
+// les meubles dessines de chaque piece (un trait, pour lire le plan sans les noms)
+function meubles(r){
+  const x = r.x * 10, y = r.y * 10, w = r.w * 10, h = r.h * 10, cx = x + w / 2, cy = y + h / 2;
+  const rect = (a, b, c, d, f) => '<rect class="' + (f ? "mf" : "m") + '" x="' + a.toFixed(1) + '" y="' + b.toFixed(1) + '" width="' + c.toFixed(1) + '" height="' + d.toFixed(1) + '" rx=".6"/>';
+  const rond = (a, b, rr) => '<circle class="m" cx="' + a.toFixed(1) + '" cy="' + b.toFixed(1) + '" r="' + rr + '"/>';
+  switch (r.piece){
+    case "wohnzimmer": return rect(x + 3, y + h - 9, Math.min(18, w - 6), 6) + rect(x + 3, y + h - 9, 3, 6, 1) + rect(x + 5, y + h - 17, Math.min(10, w - 10), 5);
+    case "schlafzimmer": case "zimmer": return rect(x + w - 14, y + 3, 11, 15) + rect(x + w - 13, y + 4, 9, 3, 1);
+    case "kinderzimmer": return rect(x + 3, y + 3, 7, 12) + rect(x + 3.5, y + 3.5, 6, 2, 1) + rect(x + w - 10, y + 3, 7, 12) + rect(x + w - 9.5, y + 3.5, 6, 2, 1) + rond(cx, y + h - 6, 2.2);
+    case "kueche": return rect(x + 2, y + 2, w - 4, 5) + rond(x + 6, y + 4.5, 1.2) + rond(x + 9.5, y + 4.5, 1.2) + rect(x + w - 10, y + 3, 6, 3, 1) + rond(cx, y + h - 9, 4);
+    case "bad": return rect(x + 2, y + 2, Math.min(8, w - 4), 15) + rond(x + w - 5, y + h - 6, 2.4);
+    case "balkon": return rond(x + 5, cy, 2) + rond(x + 10, cy, 1.6);
+  }
+  return "";
+}
+// le nom d'une piece sur le plan, dans la langue apprise (« Küche », « Marks Zimmer »)
+function etiquette(r){
+  if (EN_APP) return r.id === "zimmer-2" ? "bedroom" : EN_PIECES[r.id === "zimmer-mark" ? "zimmer" : r.piece].court;
+  if (r.id === "zimmer-mark") return DE_APP ? "Marks Zimmer" : "hab. de Mark";
+  if (r.id === "zimmer-2") return DE_APP ? "Zimmer" : "habitación";
+  const p = D.pieces[r.piece][APPRENDRE];
+  return DE_APP ? p.replace(/^(der|die|das) /, "") : p.replace(/^(el|la) /, "").replace("habitación de los niños", "hab. niños");
+}
+function dessinerPlan(lid, marques, anonyme, actif){
+  const pl = D.logements[lid].plan, H = Math.max(...pl.map(r => (r.y + r.h) * 10)) + 1;
+  let s = '<svg viewBox="-1 -1 102 ' + (H + 1) + '" role="img" aria-label="' + titreLogement(lid) + '">';
+  pl.forEach(r => {
+    const cl = "p" + (r.piece === "balkon" ? " balkon" : "") + ((marques || []).includes(r.id) ? " marque" : "") + (actif === r.id ? " actif" : "");
+    s += '<g data-id="' + r.id + '"><rect class="' + cl + '" x="' + r.x * 10 + '" y="' + r.y * 10 + '" width="' + r.w * 10 + '" height="' + r.h * 10 + '"/>' + meubles(r);
+    if (!anonyme) s += '<text x="' + (r.x * 10 + r.w * 5) + '" y="' + (r.y * 10 + r.h * 5) + '">' + etiquette(r) + '</text>';
+    s += '</g>';
+  });
+  return s + '</svg>';
+}
+const plan = (lid, marques, anonyme) => '<div class="plan" lang="' + APPRENDRE + '" data-cle="' + lid + ':' + (marques || []).join("+") + '">' + dessinerPlan(lid, marques, anonyme) + '</div>';
+// l'annonce, avec ses abreviations en gras
+const encart = id => '<div class="annonce" lang="' + APPRENDRE + '">' + D.annonces[APPRENDRE][id].texte.replace(/^([^:]+):/, "<b>$1</b>:") + '</div>';
+
+// ---------- L'ANGLAIS (essai admin, 4 nov. 2026) ----------
+// La meme page, les memes photos et les memes plans ; les phrases sont ECRITES POUR L'ANGLAIS, fabriquees ici depuis la
+// meme donnee (logement.json : les pieces, les objets de chaque photo, les plans) et depuis les tables ci-dessous. Ce
+// qu'elles enseignent : there is / there are, les prepositions de lieu (in the kitchen, on the balcony, on the wall,
+// above the table, next to, between, on the third floor), How many bedrooms does it have? / has it got?, Does / Is /
+// Has (got) en tete de question, les reponses courtes, le present continu de la visite (Mrs. Becker is showing Lena
+// the kitchen) et une annonce de Boston (rent $2,400 a month, utilities not included, security deposit, 2BR/1BA,
+// 850 sq ft, heat included, laundry in building) ; en britannique une annonce de Londres (£ pcm, bills included,
+// deposit, flat, m²), have got, Mrs sans point, ground floor / first floor.
+// LES PHOTOS (regardees une a une le 4 nov.) : aucune enseigne, aucun document ni ecriteau allemand ; le cadre du couloir
+// de Jan et Katrin porte un mot illisible au format du telephone. Rien n'est ecarte ; une photo a ecarter s'ajoute ici.
+const ECARTEES_EN = [];
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+// les pieces : le nom (avec the), la preposition du lieu (on the balcony), le mot du corpus, le francais
+const EN_PIECES = {
+  wohnzimmer:   {nom: "the living room", prep: "in", mot: "living room", court: "living room", fr: "le salon", frLieu: "dans le salon"},
+  schlafzimmer: {nom: "the bedroom", prep: "in", mot: "bedroom", court: "bedroom", fr: "la chambre", frLieu: "dans la chambre"},
+  kinderzimmer: {nom: "the children's room", prep: "in", mot: "children's room", court: "children's room", fr: "la chambre des enfants", frLieu: "dans la chambre des enfants"},
+  kueche:       {nom: "the kitchen", prep: "in", mot: "kitchen", court: "kitchen", fr: "la cuisine", frLieu: "dans la cuisine"},
+  bad:          {nom: "the bathroom", prep: "in", mot: "bathroom", court: "bathroom", fr: "la salle de bains", frLieu: "dans la salle de bains"},
+  flur:         {nom: "the hallway", prep: "in", mot: "hallway", court: "hallway", fr: "le couloir", frLieu: "dans le couloir"},
+  balkon:       {nom: "the balcony", prep: "on", mot: "balcony", court: "balcony", fr: "le balcon", frLieu: "sur le balcon"},
+  zimmer:       {nom: "Mark's room", prep: "in", mot: "room", court: "Mark's room", fr: "la chambre de Mark", frLieu: "dans la chambre de Mark"}
+};
+const lieuEn = pid => EN_PIECES[pid].prep + " " + EN_PIECES[pid].nom;
+// les pieces qui se ressemblent (les leurres de « Which room is this? »), comme visuel/logement/logement.py
+const VOISINES_EN = {wohnzimmer: ["schlafzimmer", "kueche", "kinderzimmer"], schlafzimmer: ["kinderzimmer", "wohnzimmer", "bad"],
+                     kinderzimmer: ["schlafzimmer", "wohnzimmer", "bad"], kueche: ["wohnzimmer", "bad", "flur"],
+                     bad: ["kueche", "flur", "schlafzimmer"], flur: ["bad", "wohnzimmer", "kueche"], balkon: ["wohnzimmer", "flur", "kueche"],
+                     zimmer: ["kueche", "bad", "wohnzimmer"]};
+const APT = GB ? "flat" : "apartment";
+const EN_LOG = {
+  mark: {titre: GB ? "Mark's shared flat" : "Mark's shared apartment", dans: "in Mark's " + APT, fr: "de la colocation de Mark", frTitre: "La colocation de Mark"},
+  anna: {titre: "Anna's " + APT, dans: "in Anna's " + APT, fr: "de l'appartement d'Anna", frTitre: "L'appartement d'Anna"},
+  jk:   {titre: "Jan and Katrin's " + APT, dans: "in Jan and Katrin's " + APT, fr: "de l'appartement de Jan et Katrin", frTitre: "L'appartement de Jan et Katrin"},
+  lena: {titre: "The " + APT + " for Lena", dans: "in the new " + APT, fr: "du nouvel appartement", frTitre: "L'appartement pour Lena"}
+};
+// les objets : le mot du corpus en americain et en britannique, le francais (defini, indefini). Le placard depend de
+// la piece : closet / wardrobe dans la chambre, cabinet / cupboard a la cuisine ; l'armoire du salon (mark-salon,
+// jk-salon) n'est ni un closet ni un cabinet : elle n'est pas nommee en anglais.
+const EN_OBJ = {
+  sofa: ["sofa", "sofa", "le canapé", "un canapé"], bett: ["bed", "bed", "le lit", "un lit"], tisch: ["table", "table", "la table", "une table"],
+  stuhl: ["chair", "chair", "la chaise", "une chaise"], lampe: ["lamp", "lamp", "la lampe", "une lampe"], regal: ["shelf", "shelf", "l'étagère", "une étagère"],
+  spiegel: ["mirror", "mirror", "le miroir", "un miroir"], teppich: ["rug", "rug", "le tapis", "un tapis"], bild: ["picture", "picture", "le tableau", "un tableau"],
+  vorhang: ["curtain", "curtain", "le rideau", "un rideau"], kissen: ["cushion", "cushion", "le coussin", "un coussin"],
+  kopfkissen: ["pillow", "pillow", "l'oreiller", "un oreiller"], pflanze: ["plant", "plant", "la plante", "une plante"],
+  kuehlschrank: ["fridge", "fridge", "le frigo", "un frigo"], herd: ["stove", "cooker", "la cuisinière", "une cuisinière"],
+  spuele: ["sink", "sink", "l'évier", "un évier"], dusche: ["shower", "shower", "la douche", "une douche"],
+  badewanne: ["bathtub", "bath", "la baignoire", "une baignoire"], heizung: ["radiator", "radiator", "le radiateur", "un radiateur"],
+  fernseher: ["TV", "TV", "la télé", "une télé"], fahrrad: ["bike", "bike", "le vélo", "un vélo"], handtuch: ["towel", "towel", "la serviette", "une serviette"],
+  karton: ["box", "box", "le carton", "un carton"], uhr: ["clock", "clock", "l'horloge", "une horloge"], korb: ["basket", "basket", "le panier", "un panier"]
+};
+function objEn(oid, pid){
+  let o = EN_OBJ[oid];
+  if (oid === "schrank") o = pid === "kueche" ? ["cabinet", "cupboard", "le placard", "un placard"] : pid === "schlafzimmer" ? ["closet", "wardrobe", "le placard", "un placard"] : null;
+  return o ? {mot: o[GB ? 1 : 0], fr: o[2], frUn: o[3]} : null;
+}
+const unEn = m => (/^[aeiou]/i.test(m) ? "an " : "a ") + m;
+// LES PLACES PRECISES, celles de visuel/logement/logement.py (PHOTOS, verifiees sur chaque photo) ; sinon l'objet est
+// dans la piece de la photo. faux : une place fausse pour cette photo (le « vrai ou faux »), leurres : des prepositions
+// fausses pour elle (jamais over pour above, ni at the window : deux justes)
+const EN_ORTS = {
+  "wand":          {p: "on", n: "the wall", fr: "au mur", leurres: ["in", "under"], faux: "on the floor"},
+  "boden":         {p: "on", n: "the floor", fr: "par terre", leurres: ["under", "above"], faux: "on the wall"},
+  "ueber-tisch":   {p: "above", n: "the table", fr: "au-dessus de la table", leurres: ["under", "on"], faux: "under the table"},
+  "auf-bett":      {p: "on", n: "the bed", fr: "sur le lit", leurres: ["under", "above"], faux: "under the bed"},
+  "auf-sofa":      {p: "on", n: "the sofa", fr: "sur le canapé", leurres: ["under", "above"], faux: "under the sofa"},
+  "vor-fenster":   {p: "in front of", n: "the window", fr: "devant la fenêtre", leurres: ["under", "behind"], faux: "under the window"},
+  "unter-fenster": {p: "under", n: "the window", fr: "sous la fenêtre", leurres: ["above", "on"], faux: "above the window"},
+  "neben-bett":    {p: "next to", n: "the bed", fr: "à côté du lit", leurres: ["under", "on"], faux: "on the bed"},
+  "ueber-spiegel": {p: "above", n: "the mirror", fr: "au-dessus du miroir", leurres: ["under", "behind"], faux: "under the mirror"},
+  "vor-sofa":      {p: "in front of", n: "the sofa", fr: "devant le canapé", leurres: ["behind", "on"], faux: "behind the sofa"}
+};
+const EN_PLACES = {
+  "mark-salon": {tisch: "vor-sofa"}, "mark-salon-2": {bild: "wand"}, "mark-kueche-2": {regal: "wand"},
+  "mark-zimmer": {vorhang: "vor-fenster", kopfkissen: "auf-bett"}, "mark-bad": {spiegel: "wand", lampe: "ueber-spiegel"},
+  "mark-flur": {spiegel: "wand", teppich: "boden"},
+  "anna-salon": {kissen: "auf-sofa", bild: "wand", uhr: "boden", karton: "boden", heizung: "unter-fenster"},
+  "anna-chambre": {lampe: "neben-bett", kopfkissen: "auf-bett"}, "anna-chambre-2": {lampe: "neben-bett", kopfkissen: "auf-bett"},
+  "anna-chambre-3": {lampe: "neben-bett"},
+  "anna-cuisine": {lampe: "ueber-tisch", regal: "wand", heizung: "unter-fenster"}, "anna-cuisine-2": {lampe: "ueber-tisch", regal: "wand", heizung: "unter-fenster"},
+  "jk-salon": {bild: "wand", kissen: "auf-sofa", karton: "boden"}, "jk-enfants": {teppich: "boden"},
+  "jk-enfants-2": {teppich: "boden", heizung: "unter-fenster"}, "jk-enfants-3": {teppich: "boden"},
+  "jk-cuisine": {lampe: "ueber-tisch"}, "jk-cuisine-2": {lampe: "ueber-tisch"}, "jk-bad": {spiegel: "wand"}, "jk-flur": {bild: "wand"},
+  "visite-cuisine": {schrank: "wand"}, "visite-bad": {spiegel: "wand"}
+};
+// LE FRANCAIS DES MOTS (la traduction du corpus anglais, anglais/datos/ et datos-gb/ ; les quatre mots absents du
+// corpus, children's room, cabinet / cupboard, square foot et bills, ecrits ici)
+const EN_GLOSES = {"living room": "le salon", "bedroom": "la chambre", "kitchen": "la cuisine", "bathroom": "la salle de bain", "hallway": "le couloir",
+  "balcony": "le balcon", "room": "la pièce", "children's room": "la chambre des enfants", "sofa": "le canapé", "bed": "le lit",
+  "closet": "le placard, la penderie", "wardrobe": "le placard, la penderie", "cabinet": "le placard (de cuisine)", "cupboard": "le placard (de cuisine)",
+  "table": "la table", "chair": "la chaise", "lamp": "la lampe", "shelf": "l'étagère", "mirror": "le miroir", "rug": "le tapis",
+  "picture": "le tableau, l'image", "curtain": "le rideau", "cushion": "le coussin", "pillow": "l'oreiller", "plant": "la plante", "fridge": "le frigo",
+  "stove": "la cuisinière", "cooker": "la cuisinière", "sink": "l'évier, le lavabo", "shower": "la douche", "bathtub": "la baignoire", "bath": "la baignoire",
+  "radiator": "le radiateur", "TV": "la télé", "bike": "le vélo", "towel": "la serviette (de bain)", "box": "la boîte", "clock": "l'horloge, la pendule",
+  "basket": "le panier", "rent": "le loyer", "deposit": "le dépôt, la caution", "landlady": "la propriétaire (bailleuse)", "tenant": "le locataire",
+  "lease": "le bail", "elevator": "l'ascenseur", "lift": "l'ascenseur", "basement": "la cave, le sous-sol", "cellar": "la cave, le sous-sol",
+  "neighbor": "le voisin, la voisine", "neighbour": "le voisin, la voisine", "key": "la clé", "mailbox": "la boîte aux lettres", "letterbox": "la boîte aux lettres",
+  "roommate": "le, la colocataire", "flatmate": "le, la colocataire", "utilities": "les charges (eau, électricité)", "bills": "les charges (eau, électricité, chauffage)",
+  "first floor": "le rez-de-chaussée", "ground floor": "le rez-de-chaussée", "floor": "le sol, l'étage", "apartment": "l'appartement", "flat": "l'appartement",
+  "building": "le bâtiment, l'immeuble", "month": "le mois", "square foot": "le pied carré (0,09 m²)", "furnished": "meublé", "included": "inclus",
+  "available": "disponible", "on": "sur", "above": "au-dessus de", "under": "sous", "in front of": "devant", "next to": "à côté de", "between": "entre"};
+// les nombres et les etages
+const NB_EN = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+               "sixteen", "seventeen", "eighteen", "nineteen"];
+const NB_FR = ["zéro", "une", "deux", "trois", "quatre", "cinq"];
+const ORD_EN = ["ground", "first", "second", "third", "fourth", "fifth", "sixth"];
+const ORDC_EN = ["", "1st", "2nd", "3rd", "4th", "5th", "6th"];
+const ORD_FR = ["", "premier", "deuxième", "troisième", "quatrième", "cinquième", "sixième"];
+const MOIS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const MOIS_FR = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+// l'etage : en americain, le first floor est le rez-de-chaussee (n = 1), le third floor notre deuxieme etage ; en
+// britannique, ground floor (n = 0), first floor (1er etage), comme en francais
+const etageFr = n => { const f = GB ? n : n - 1; return f === 0 ? "au rez-de-chaussée" : "au " + ORD_FR[f] + " étage"; };
+const etageEn = n => "the " + ORD_EN[n] + " floor";
+const groupe3 = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+const argent = n => (GB ? "£" : "$") + groupe3(n);
+const argentFr = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + (GB ? " livres" : " dollars");
+const dateEn = f => f === "now" ? null : GB ? f[1] + " " + MOIS_EN[f[0] - 1] : MOIS_EN[f[0] - 1] + " " + f[1];
+const dateCourte = f => f === "now" ? "now" : GB ? f[1] + " " + MOIS_EN[f[0] - 1].slice(0, 3) : MOIS_EN[f[0] - 1].slice(0, 3) + " " + f[1];
+const dateFr = f => "à partir du " + (f[1] === 1 ? "1er" : f[1]) + " " + MOIS_FR[f[0] - 1];
+// la voix du telephone dit les nombres en lettres (regle des nombres, 28 oct.) : $2,400, 850 square feet, December 1
+function enLettres(n){
+  const et = GB ? " and " : " ";
+  if (n < 20) return NB_EN[n];
+  if (n < 100) return ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"][Math.floor(n / 10)] + (n % 10 ? "-" + NB_EN[n % 10] : "");
+  if (n < 1000) return NB_EN[Math.floor(n / 100)] + " hundred" + (n % 100 ? et + enLettres(n % 100) : "");
+  return enLettres(Math.floor(n / 1000)) + " thousand" + (n % 1000 ? (n % 1000 < 100 ? et : " ") + enLettres(n % 1000) : "");
+}
+const ORDINAUX_EN = {1: "first", 15: "fifteenth"};
+function lireEn(t){
+  return t.replace(/([$£])(\d{1,3}(?:,\d{3})*)/g, (x, d, n) => enLettres(+n.replace(/,/g, "")) + (d === "$" ? " dollars" : " pounds"))
+          .replace(/\b(\d+) square feet/g, (x, n) => enLettres(+n) + " square feet")
+          .replace(new RegExp("\\b(" + MOIS_EN.join("|") + ") (\\d{1,2})\\b", "g"), (x, m, j) => m + " " + (ORDINAUX_EN[j] || enLettres(+j)))
+          .replace(new RegExp("\\b(\\d{1,2}) (" + MOIS_EN.join("|") + ")\\b", "g"), (x, j, m) => "the " + (ORDINAUX_EN[j] || enLettres(+j)) + " of " + m);
+}
+// LES ANNONCES. Boston en americain : br / ba (bedrooms, bathrooms), sqft, et (l'etage AMERICAIN : 1 = rez-de-chaussee),
+// rent, dep (security deposit : au plus un mois de loyer dans le Massachusetts), heat (heat & hot water incl.), util
+// (all utilities incl.), elev, laundry (in building), balc, furn, avail (« now » ou [mois, jour]) ; room : une chambre en
+// colocation, le nombre de personnes. Londres en britannique : bed / bath, m2, et (0 = ground floor), rent pcm, bills,
+// lift, balc, furn ; le deposit (au plus cinq semaines de loyer en Angleterre) se calcule : rent x 12 / 52 x 5.
+const ANNONCES_US = [
+  {id: "backbay", ort: "Back Bay", br: 2, ba: 1, sqft: 850, et: 3, rent: 2400, dep: 2400, heat: 1, util: 0, elev: 1, laundry: 1, balc: 0, furn: 0, avail: [12, 1]},
+  {id: "southend", ort: "South End", br: 1, ba: 1, sqft: 650, et: 2, rent: 2650, dep: 2650, heat: 1, util: 0, elev: 0, laundry: 1, balc: 1, furn: 0, avail: "now"},
+  {id: "jp", ort: "Jamaica Plain", br: 3, ba: 2, sqft: 1250, et: 2, rent: 3600, dep: 3600, heat: 0, util: 0, elev: 0, laundry: 1, balc: 1, furn: 0, avail: [1, 1]},
+  {id: "allston", ort: "Allston", br: 2, ba: 1, sqft: 800, et: 1, rent: 2500, dep: 2500, heat: 1, util: 0, elev: 0, laundry: 0, balc: 0, furn: 0, avail: [12, 1]},
+  {id: "beaconhill", ort: "Beacon Hill", br: 1, ba: 1, sqft: 500, et: 4, rent: 2900, dep: 2900, heat: 1, util: 1, elev: 0, laundry: 0, balc: 0, furn: 1, avail: "now"},
+  {id: "charlestown", ort: "Charlestown", br: 2, ba: 2, sqft: 1000, et: 3, rent: 3400, dep: 3400, heat: 0, util: 0, elev: 1, laundry: 1, balc: 1, furn: 0, avail: [2, 1]},
+  {id: "dorchester", ort: "Dorchester", br: 3, ba: 1, sqft: 1100, et: 2, rent: 2900, dep: 2900, heat: 0, util: 0, elev: 0, laundry: 1, balc: 1, furn: 0, avail: [12, 15]},
+  {id: "brighton", ort: "Brighton", br: 1, ba: 1, sqft: 600, et: 5, rent: 2200, dep: 2200, heat: 1, util: 0, elev: 1, laundry: 1, balc: 0, furn: 1, avail: "now"},
+  {id: "eastboston", ort: "East Boston", br: 2, ba: 1, sqft: 900, et: 1, rent: 2700, dep: 2700, heat: 0, util: 0, elev: 0, laundry: 0, balc: 1, furn: 0, avail: [1, 1]},
+  {id: "fenway", ort: "Fenway", br: 1, ba: 1, sqft: 550, et: 6, rent: 2600, dep: 2600, heat: 1, util: 1, elev: 1, laundry: 1, balc: 0, furn: 1, avail: [2, 1]},
+  {id: "room-allston", ort: "Allston", room: 3, et: 2, rent: 1150, dep: 1150, util: 1, avail: "now"},
+  {id: "room-missionhill", ort: "Mission Hill", room: 4, et: 3, rent: 1050, dep: 1050, util: 1, avail: [1, 1]},
+  {id: "room-somerville", ort: "Somerville", room: 2, et: 1, rent: 1300, dep: 1300, util: 0, avail: [12, 1]}
+];
+const ANNONCES_GB = [
+  {id: "camden", ort: "Camden", bed: 2, bath: 1, m2: 62, et: 2, rent: 2200, bills: 0, lift: 1, balc: 1, furn: 1, avail: "now"},
+  {id: "hackney", ort: "Hackney", bed: 1, bath: 1, m2: 45, et: 3, rent: 1750, bills: 0, lift: 0, balc: 0, furn: 1, avail: [12, 1]},
+  {id: "brixton", ort: "Brixton", bed: 2, bath: 1, m2: 68, et: 1, rent: 1950, bills: 0, lift: 0, balc: 1, furn: 0, avail: [1, 1]},
+  {id: "islington", ort: "Islington", bed: 1, bath: 1, m2: 48, et: 4, rent: 1700, bills: 1, lift: 1, balc: 0, furn: 1, avail: "now"},
+  {id: "clapham", ort: "Clapham", bed: 3, bath: 2, m2: 90, et: 0, rent: 2900, bills: 0, lift: 0, balc: 0, furn: 0, avail: [2, 1]},
+  {id: "greenwich", ort: "Greenwich", bed: 2, bath: 2, m2: 75, et: 5, rent: 2400, bills: 0, lift: 1, balc: 1, furn: 0, avail: [12, 15]},
+  {id: "walthamstow", ort: "Walthamstow", bed: 2, bath: 1, m2: 63, et: 0, rent: 1800, bills: 0, lift: 0, balc: 0, furn: 1, avail: "now"},
+  {id: "ealing", ort: "Ealing", bed: 1, bath: 1, m2: 42, et: 2, rent: 1500, bills: 1, lift: 1, balc: 1, furn: 1, avail: [1, 1]},
+  {id: "peckham", ort: "Peckham", bed: 3, bath: 1, m2: 80, et: 1, rent: 2300, bills: 0, lift: 0, balc: 1, furn: 0, avail: [12, 1]},
+  {id: "shoreditch", ort: "Shoreditch", bed: 1, bath: 1, m2: 40, et: 6, rent: 2050, bills: 0, lift: 1, balc: 1, furn: 1, avail: [2, 1]},
+  {id: "room-hackney", ort: "Hackney", room: 3, et: 1, rent: 850, bills: 1, avail: "now"},
+  {id: "room-brixton", ort: "Brixton", room: 4, et: 2, rent: 780, bills: 1, avail: [1, 1]},
+  {id: "room-tooting", ort: "Tooting", room: 2, et: 0, rent: 950, bills: 0, avail: [12, 1]}
+].map(a => Object.assign(a, {dep: Math.floor(a.rent * 60 / 52)}));
+// les personnes qui cherchent (« Which ad is right for her? ») : des visages de la famille et de « Decrire »
+const CHERCHENT_EN = [
+  {nom: "Sophie", il: "She", fr: "Elle", visage: "familia/Sophie-visage.webp", room: 1, max: GB ? 900 : 1200},
+  {nom: "Lucas", il: "He", fr: "Il", visage: "descripcion/Lucas-visage.webp", br: 2, laundry: !GB, balc: GB, max: GB ? 2000 : 2800},
+  {nom: "Rosa", il: "She", fr: "Elle", visage: "descripcion/Rosa-visage.webp", elev: 1, max: GB ? 1800 : 2700}
+];
+// LES ABREVIATIONS des annonces : [abreviation, ce qu'elle veut dire, le mot du corpus, son francais]
+const ABK_EN = GB ? [["pcm", "per calendar month", "month", "par mois"], ["incl.", "included", "included", "inclus"], ["avail.", "available", "available", "disponible"],
+                     ["furn.", "furnished", "furnished", "meublé"], ["bed", "bedroom", "bedroom", "chambre"]]
+                  : [["BR", "bedroom", "bedroom", "chambre"], ["BA", "bathroom", "bathroom", "salle de bains"], ["apt.", "apartment", "apartment", "appartement"],
+                     ["bldg", "building", "building", "immeuble"], ["mo.", "month", "month", "mois"], ["incl.", "included", "included", "inclus"],
+                     ["avail.", "available", "available", "disponible"], ["sq ft", "square feet", "square foot", "pieds carrés (1 sq ft ≈ 0,09 m²)"]];
+// LES DEFINITIONS (« Which word matches? » et l'inverse) : [mot du corpus, forme affichee, definition, question, francais]
+const DEFS_EN = [
+  ["rent", "the rent", "The money you pay every month for your " + APT + ".", "What is the rent?", "L'argent qu'on paie chaque mois pour son appartement."],
+  ["deposit", "the deposit", "The money you pay before you move in and get back when you move out.", "What is the deposit?", "L'argent qu'on paie avant d'emménager et qu'on récupère en partant."],
+  ["landlady", "the landlady", GB ? "She owns the flat and lets it to you." : "She owns the apartment and rents it to you.", "What is a landlady?", "L'appartement est à elle, et elle te le loue."],
+  ["tenant", "the tenant", "He lives in the " + APT + " and pays the rent.", "What is a tenant?", "Il habite l'appartement et paie le loyer."],
+  ["lease", "the lease", "The contract that the tenant and the landlord sign.", "What is a lease?", "Le contrat que le locataire et le propriétaire signent."],
+  [GB ? "lift" : "elevator", GB ? "the lift" : "the elevator", "It takes you up and down, so you don't need the stairs.", GB ? "What is a lift?" : "What is an elevator?", "Il te monte et te descend : pas besoin de l'escalier."],
+  [GB ? "cellar" : "basement", GB ? "the cellar" : "the basement", "The part of the building under the " + (GB ? "ground" : "first") + " floor.", GB ? "What is a cellar?" : "What is a basement?", "La partie de l'immeuble sous le rez-de-chaussée."],
+  [GB ? "neighbour" : "neighbor", GB ? "the neighbour" : "the neighbor", "He lives in the same building, in the " + APT + " next door.", GB ? "What is a neighbour?" : "What is a neighbor?", "Il habite le même immeuble, dans l'appartement d'à côté."],
+  ["key", "the key", "You use it to open the door.", "What is a key?", "Elle sert à ouvrir la porte."],
+  [GB ? "letterbox" : "mailbox", GB ? "the letterbox" : "the mailbox", "Your letters arrive here.", GB ? "What is a letterbox?" : "What is a mailbox?", "C'est là qu'arrivent tes lettres."],
+  [GB ? "flatmate" : "roommate", GB ? "the flatmate" : "the roommate", "Someone who shares the " + APT + " with you.", GB ? "What is a flatmate?" : "What is a roommate?", "Quelqu'un qui partage l'appartement avec toi."],
+  ["balcony", "the balcony", "Here you are outside, but still in your " + APT + ".", "What is a balcony?", "Là, on est dehors, mais encore dans l'appartement."],
+  [GB ? "bills" : "utilities", GB ? "bills" : "utilities", "Electricity, gas, water and heat: you pay for them on top of the rent.", GB ? "What are bills?" : "What are utilities?", "L'électricité, le gaz, l'eau et le chauffage : on les paie en plus du loyer."],
+  [GB ? "ground floor" : "first floor", GB ? "the ground floor" : "the first floor", "The floor at street level.", GB ? "What is the ground floor?" : "What is the first floor?", "L'étage au niveau de la rue."]
+];
+const MRS = GB ? "Mrs Becker" : "Mrs. Becker";
+// la visite : ce que Mrs. Becker montre a Lena, ce que Lena signe, ce qu'elle recoit (le present continu)
+const VISITE_EN = {
+  "visite-cuisine": [["What is " + MRS + " showing Lena?", "kueche", MRS + " is showing Lena the kitchen.", "Mme Becker montre la cuisine à Lena."]],
+  "visite-bad":     [["What is " + MRS + " showing Lena?", "bad", MRS + " is showing Lena the bathroom.", "Mme Becker montre la salle de bains à Lena."]],
+  "visite-balkon":  [["What is " + MRS + " showing Lena?", "balkon", MRS + " is showing Lena the balcony.", "Mme Becker montre le balcon à Lena."]],
+  "visite-vertrag": [["What is Lena signing?", "lease", "Lena is signing the lease.", "Lena signe le bail."],
+                     ["What is " + MRS + " giving Lena?", "key", MRS + " is giving Lena the keys.", "Mme Becker donne les clés à Lena."]]
+};
+
+// tout ce que la page joue en anglais, fabrique une fois au chargement, dans la forme de logement.json (items, mots,
+// gloses, choix, annonces) : le reste de la page n'a rien a savoir de plus
+function construireAnglais(D){
+  const I = {}, mots = [], vus = {}, gloses = {}, choix = {}, ann = {};
+  const ajouter = (s, it) => (I[s] = I[s] || []).push(it);
+  const motEn = (m, cat) => {
+    const k = (cat === "praep" ? "p" : cat === "adjectif" ? "a" : "n") + ":" + m;
+    if (!vus[k]){ const e = {k, mot: m, genre: ""}; if (cat) e.cat = cat; vus[k] = e; mots.push(e); gloses[m] = {fr: EN_GLOSES[m] || ""}; }
+    return k;
+  };
+  const P = EN_PIECES, kp = pid => motEn(P[pid].mot);
+  // la piece propre a un objet : en anglais, le sink est aussi le lavabo de la salle de bains (l'evier allemand ou
+  // espagnol n'est qu'a la cuisine) -- une salle de bains n'est donc jamais un leurre ni un « faux » pour lui
+  const piecesEn = oid => oid === "spuele" ? ["kueche", "bad"] : D.objets[oid].piece;
+  // « de » devant un nom de quartier : d'Allston, d'Islington
+  const deFr = s => (/^[AEIOUÉH]/.test(s) ? "d'" : "de ") + s;
+  const melangeOpts = a => melanger(a);
+  // le mot choisi, traduit (quand il est faux)
+  Object.keys(P).forEach(pid => { choix[P[pid].nom] = {fr: P[pid].fr}; choix[cap(lieuEn(pid)) + "."] = {fr: P[pid].frLieu}; });
+  [["on", "sur"], ["in", "dans"], ["under", "sous"], ["above", "au-dessus de"], ["next to", "à côté de"], ["in front of", "devant"], ["behind", "derrière"], ["between", "entre"]]
+    .forEach(([p, f]) => { choix[p] = {fr: f}; });
+  ECARTEES_EN.forEach(i => { if (D.photos[i]) D.photos[i].pret = false; });
+
+  // ---- les photos ----
+  Object.keys(D.photos).forEach(iid => {
+    const ph = D.photos[iid];
+    if (!ph.pret) return;
+    const pid = ph.piece, lo = EN_LOG[ph.logement], rec = ph.reconnaissable, k = kp(pid);
+    const ceci = pid === "zimmer" ? "This is Mark's room." : "This is " + P[pid].nom + ".";
+    const ceciFr = "C'est " + P[pid].fr + ".";
+    // 1. « Which room is this? » et l'ecoute
+    if (rec){
+      const phrase = pid === "zimmer" ? "This is Mark's room." : "This is " + P[pid].nom + " " + lo.dans + ".";
+      const fr = pid === "zimmer" ? "C'est la chambre de Mark." : "C'est " + P[pid].fr + " " + lo.fr + ".";
+      ajouter("zimmer", {img: iid, q: "Which room is this?", rep: P[pid].nom, leurres: VOISINES_EN[pid].filter(v => v !== "zimmer").map(v => P[v].nom),
+                         phrase, trad: {fr}, mots: [k], mot: k});
+      ajouter("entendre", {img: iid, piece: pid, phrase, trad: {fr}, mots: [k], mot: k});
+      // vrai ou faux : la piece, puis deux voisines
+      ajouter("vraifaux", {img: iid, phrase: ceci, vrai: true, juste: ceci, trad: {fr: ceciFr}, mots: [k], mot: k});
+      VOISINES_EN[pid].slice(0, 2).filter(v => v !== "zimmer").forEach(v => {
+        ajouter("vraifaux", {img: iid, phrase: "This is " + P[v].nom + ".", vrai: false, juste: ceci, trad: {fr: ceciFr}, mots: [kp(v), k], mot: k});
+      });
+    }
+    // 2. « Where is Mark? » ; et « There are two children in the bathroom. »
+    const parPiece = {};
+    Object.entries(ph.personnes).forEach(([n, p]) => (parPiece[p] = parPiece[p] || []).push(n));
+    Object.entries(parPiece).forEach(([p, noms]) => {
+      const famille = noms.length === 4, pl = noms.length > 1 && !famille;
+      const S = famille ? "The family" : noms.length === 1 ? noms[0] : noms.slice(0, -1).join(", ") + " and " + noms[noms.length - 1];
+      const Sfr = famille ? "La famille" : noms.length === 1 ? noms[0] : noms.slice(0, -1).join(", ") + " et " + noms[noms.length - 1];
+      const kk = kp(p);
+      // Mark dans sa chambre : « Mark is in his room », jamais « in Mark's room »
+      const sienne = p === "zimmer" && S === "Mark", nomP = sienne ? "his room" : P[p].nom, lieuP = P[p].prep + " " + nomP, frLieuP = sienne ? "dans sa chambre" : P[p].frLieu;
+      if (sienne) choix["In his room."] = {fr: "dans sa chambre"};
+      ajouter("wo", {img: iid, q: "Where " + (pl ? "are " : "is ") + (famille ? "the family" : S) + "?", rep: cap(lieuP) + ".",
+                     leurres: VOISINES_EN[p].filter(v => v !== "zimmer").map(v => cap(lieuEn(v)) + "."),
+                     phrase: S + (pl ? " are " : " is ") + lieuP + ".", trad: {fr: Sfr + (pl ? " sont " : " est ") + frLieuP + "."}, mots: [kk], mot: kk});
+      // prep : in the kitchen / on the balcony
+      ajouter("prep", {img: iid, trou: S + (pl ? " are" : " is") + " ___ " + nomP + ".", rep: P[p].prep, opts: melangeOpts(P[p].prep === "on" ? ["on", "in", "at"] : ["in", "on", "at"]),
+                       phrase: S + (pl ? " are " : " is ") + lieuP + ".", trad: {fr: Sfr + (pl ? " sont " : " est ") + frLieuP + "."}, mots: [kk], mot: kk});
+      if (noms.length > 1 && !ph.becker){
+        const enfants = noms.every(n => n === "Ben" || n === "Mia");
+        const g = NB_EN[noms.length] + (enfants ? " children" : " people"), gFr = NB_FR[noms.length] + (enfants ? " enfants" : " personnes");
+        ajouter("thereIs", {img: iid, trou: "There ___ " + g + " " + lieuEn(p) + ".", rep: "are", opts: ["is", "are"], phrase: "There are " + g + " " + lieuEn(p) + ".",
+                            trad: {fr: "Il y a " + gFr + " " + P[p].frLieu + "."}, mots: [kk], mot: kk});
+      }
+    });
+    // 3. les objets : there is, la preposition, vrai ou faux
+    const places = EN_PLACES[iid] || {};
+    ph.objets.forEach(oid => {
+      const o = objEn(oid, pid); if (!o) return;
+      const ko = motEn(o.mot), ort = places[oid] ? EN_ORTS[places[oid]] : null;
+      const lieu = ort ? ort.p + " " + ort.n : lieuEn(pid), lieuFr = ort ? ort.fr : P[pid].frLieu;
+      const phrase = "The " + o.mot + " is " + lieu + ".", fr = cap(o.fr) + " est " + lieuFr + ".";
+      ajouter("thereIs", {img: iid, objet: oid, trou: "There ___ " + unEn(o.mot) + " " + lieu + ".", rep: "is", opts: ["is", "are"],
+                          phrase: "There is " + unEn(o.mot) + " " + lieu + ".", trad: {fr: "Il y a " + o.frUn + " " + lieuFr + "."}, mots: [ko], mot: ko});
+      if (ort){
+        const kpr = motEn(ort.p, "praep");
+        ajouter("prep", {img: iid, trou: "The " + o.mot + " is ___ " + ort.n + ".", rep: ort.p, opts: melangeOpts([ort.p].concat(ort.leurres)), phrase, trad: {fr}, mots: [kpr, ko], mot: kpr});
+        ajouter("vraifaux", {img: iid, phrase, vrai: true, juste: phrase, trad: {fr}, mots: [kpr, ko], mot: kpr});
+        // la place fausse ; pas pour le placard de la cuisine (des placards sont aussi en bas)
+        if (oid !== "schrank") ajouter("vraifaux", {img: iid, phrase: "The " + o.mot + " is " + ort.faux + ".", vrai: false, juste: phrase, trad: {fr}, mots: [kpr, ko], mot: kpr});
+      } else {
+        ajouter("prep", {img: iid, trou: "The " + o.mot + " is ___ " + P[pid].nom + ".", rep: P[pid].prep, opts: melangeOpts(P[pid].prep === "on" ? ["on", "in", "at"] : ["in", "on", "at"]),
+                         phrase, trad: {fr}, mots: [ko], mot: ko});
+      }
+      const ici = "There is " + unEn(o.mot) + " here.";
+      ajouter("vraifaux", {img: iid, phrase: ici, vrai: true, juste: ici, trad: {fr: "Ici, il y a " + o.frUn + "."}, mots: [ko], mot: ko});
+    });
+    // faux : un objet PROPRE a une autre sorte de piece (« There is a stove here. » dans une chambre)
+    if (rec && pid !== "balkon"){
+      const types = new Set([pid].concat(pid === "zimmer" ? ["schlafzimmer"] : []));
+      Object.keys(D.objets).forEach(oid => {
+        const pr = piecesEn(oid);
+        if (!pr || pr.some(x => types.has(x)) || ph.objets.includes(oid)) return;
+        const o = objEn(oid, pr[0]); if (!o) return;
+        const ko = motEn(o.mot);
+        ajouter("vraifaux", {img: iid, phrase: "There is " + unEn(o.mot) + " here.", vrai: false, juste: ceci, trad: {fr: ceciFr}, mots: [ko], mot: ko});
+      });
+    }
+    // la visite
+    (VISITE_EN[iid] || []).forEach(([q, cle, phrase, fr]) => {
+      let rep, leurres, kk;
+      if (P[cle]){ rep = P[cle].nom; leurres = ["kueche", "bad", "balkon"].filter(x => x !== cle).map(x => P[x].nom); kk = kp(cle); }
+      else if (cle === "lease"){ rep = "the lease"; leurres = ["the key", "the rent"]; kk = motEn("lease"); }
+      else { rep = "the keys"; leurres = ["the rent", GB ? "the letterbox" : "the mailbox"]; kk = motEn("key"); }
+      ajouter("visite", {img: iid, q, rep, leurres, phrase, trad: {fr}, mots: [kk], mot: kk});
+    });
+  });
+  choix["the keys"] = {fr: "les clés"};
+
+  // ---- « Where is the stove? » : touche la photo ; les leurres sont des pieces ou l'objet n'est surement pas ----
+  Object.keys(D.objets).forEach(oid => {
+    const pr = piecesEn(oid); if (!pr) return;
+    const photos =Object.keys(D.photos).filter(i => D.photos[i].pret && D.photos[i].reconnaissable);
+    const bons = photos.filter(i => D.photos[i].objets.includes(oid));
+    const faux = photos.filter(i => !pr.includes(D.photos[i].piece) && !(D.photos[i].piece === "zimmer" && pr.includes("schlafzimmer")) && !D.photos[i].objets.includes(oid));
+    bons.forEach(i => {
+      const pid = D.photos[i].piece, o = objEn(oid, pid); if (!o) return;
+      const ko = motEn(o.mot);
+      ajouter("ding", {img: i, q: "Where is the " + o.mot + "?", faux, phrase: "The " + o.mot + " is " + lieuEn(pid) + ".",
+                       trad: {fr: cap(o.fr) + " est " + P[pid].frLieu + "."}, mots: [ko], mot: ko});
+    });
+  });
+
+  // ---- les plans : next to, between, la piece en couleur, compter les chambres, there is / there are ----
+  const kNext = motEn("next to", "praep"), kEntre = motEn("between", "praep"), kChambre = motEn("bedroom");
+  Object.keys(D.logements).forEach(lid => {
+    const pl = D.logements[lid].plan, lo = EN_LOG[lid];
+    const nomR = r => r.id === "zimmer-mark" ? "Mark's room" : P[r.piece].nom;
+    const frR = r => r.id === "zimmer-mark" ? "la chambre de Mark" : P[r.piece].fr;
+    const frDe = s => s.startsWith("le ") ? "du " + s.slice(3) : "de " + s;
+    const kR = r => kp(r.id === "zimmer-mark" ? "zimmer" : r.piece);
+    const utiles = pl.filter(r => r.piece !== "flur" && r.id !== "zimmer-2");
+    const lat = r => utiles.filter(s => s !== r && Math.abs(s.y - r.y) < .01 && (Math.abs(s.x - (r.x + r.w)) < .01 || Math.abs(r.x - (s.x + s.w)) < .01)).sort((a, b) => a.x - b.x);
+    // deux pieces se touchent si elles partagent un bord (le balcon touche le salon, meme decale)
+    const touche = (a, b) => { const hx = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x), hy = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+                               return (hx > .01 && Math.abs(hy) < .01) || (hy > .01 && Math.abs(hx) < .01); };
+    utiles.forEach(r => {
+      const vs = lat(r); if (!vs.length) return;
+      const non = utiles.filter(s => s !== r && !vs.includes(s));
+      vs.forEach(v => {
+        const phrase = cap(nomR(v)) + " is next to " + nomR(r) + ".", fr = cap(frR(v)) + " est à côté " + frDe(frR(r)) + ".";
+        ajouter("plan", {plan: lid, marque: [r.id], q: "What is next to " + nomR(r) + "?", rep: nomR(v), leurres: non.map(nomR), phrase, trad: {fr}, mots: [kR(v), kR(r)], mot: kR(v)});
+        ajouter("prep", {plan: lid, marque: [r.id, v.id], trou: cap(nomR(v)) + " is ___ " + nomR(r) + ".", rep: "next to", opts: melangeOpts(["next to", "in", "under"]),
+                         phrase, trad: {fr}, mots: [kNext, kR(v)], mot: kNext});
+        ajouter("vraifaux", {plan: lid, phrase, vrai: true, juste: phrase, trad: {fr}, mots: [kNext, kR(v)], mot: kNext});
+      });
+      // faux : une piece qui ne la touche pas
+      utiles.filter(s => s !== r && !touche(s, r)).forEach(s => {
+        const v = vs[0], juste = cap(nomR(v)) + " is next to " + nomR(r) + ".";
+        ajouter("vraifaux", {plan: lid, phrase: cap(nomR(s)) + " is next to " + nomR(r) + ".", vrai: false, juste,
+                             trad: {fr: cap(frR(v)) + " est à côté " + frDe(frR(r)) + "."}, mots: [kNext, kR(r)], mot: kNext});
+      });
+      if (vs.length === 2){
+        const [a, b] = vs, phrase = cap(nomR(r)) + " is between " + nomR(a) + " and " + nomR(b) + ".", fr = cap(frR(r)) + " est entre " + frR(a) + " et " + frR(b) + ".";
+        ajouter("plan", {plan: lid, marque: [a.id, b.id], q: "What is between " + nomR(a) + " and " + nomR(b) + "?", rep: nomR(r), leurres: non.map(nomR), phrase, trad: {fr}, mots: [kR(r)], mot: kR(r)});
+        ajouter("prep", {plan: lid, marque: [a.id, b.id], trou: cap(nomR(r)) + " is ___ " + nomR(a) + " and " + nomR(b) + ".", rep: "between", opts: melangeOpts(["between", "in", "under"]),
+                         phrase, trad: {fr}, mots: [kEntre, kR(r)], mot: kEntre});
+        ajouter("vraifaux", {plan: lid, phrase, vrai: true, juste: phrase, trad: {fr}, mots: [kEntre, kR(r)], mot: kEntre});
+      }
+    });
+    // la piece en couleur, sans son nom
+    pl.forEach(r => {
+      if (r.id === "zimmer-2" || r.id === "zimmer-mark") return;
+      ajouter("planZimmer", {plan: lid, marque: [r.id], anonyme: true, q: GB ? "Which room is coloured?" : "Which room is colored?", rep: nomR(r),
+                             leurres: VOISINES_EN[r.piece].filter(v => v !== "zimmer").map(v => P[v].nom), phrase: "This is " + nomR(r) + ".",
+                             trad: {fr: "C'est " + frR(r) + "."}, mots: [kR(r)], mot: kR(r)});
+    });
+    // compter les chambres (les bedrooms : le salon ne compte pas)
+    const n = pl.filter(r => ["schlafzimmer", "kinderzimmer", "zimmer"].includes(r.piece)).length;
+    const ch = x => cap(NB_EN[x]) + (x === 1 ? " bedroom" : " bedrooms");
+    ajouter("zaehlen", {plan: lid, q: GB ? "How many bedrooms has the flat got?" : "How many bedrooms does the apartment have?", titre: lo.titre, rep: ch(n),
+                        opts: [ch(n)].concat([1, 2, 3, 4].filter(x => x !== n).slice(0, 2).map(ch)),
+                        phrase: lo.titre + (GB ? " has got " : " has ") + NB_EN[n] + (n === 1 ? " bedroom." : " bedrooms."),
+                        trad: {fr: lo.frTitre + " a " + NB_FR[n] + (n === 1 ? " chambre." : " chambres.")}, mots: [kChambre], mot: kChambre, note: GB ? "zaehlenGb" : "zaehlenEn"});
+    ajouter("thereIs", {plan: lid, marque: [], trou: "There ___ " + NB_EN[n] + (n === 1 ? " bedroom " : " bedrooms ") + lo.dans + ".", rep: n === 1 ? "is" : "are", opts: ["is", "are"],
+                        phrase: "There " + (n === 1 ? "is one bedroom " : "are " + NB_EN[n] + " bedrooms ") + lo.dans + ".",
+                        trad: {fr: "Il y a " + NB_FR[n] + (n === 1 ? " chambre " : " chambres ") + lo.fr.replace(/^de l'/, "dans l'").replace(/^de la /, "dans la ").replace(/^du /, "dans le ") + "."},
+                        mots: [kChambre], mot: kChambre});
+    if (pl.some(r => r.piece === "balkon")){
+      const kb = kp("balkon");
+      ajouter("thereIs", {plan: lid, marque: [], trou: "There ___ a balcony " + lo.dans + ".", rep: "is", opts: ["is", "are"], phrase: "There is a balcony " + lo.dans + ".",
+                          trad: {fr: "Il y a un balcon " + lo.fr.replace(/^de l'/, "dans l'").replace(/^de la /, "dans la ").replace(/^du /, "dans le ") + "."}, mots: [kb], mot: kb});
+    }
+  });
+
+  // ---- les annonces : Boston (americain) ou Londres (britannique) ----
+  const A = GB ? ANNONCES_GB : ANNONCES_US;
+  const kRent = motEn("rent"), kDep = motEn("deposit"), kApt = motEn(APT), kMois = motEn("month"), kBat = motEn("building"), kBain = motEn("bathroom");
+  const kCharges = motEn(GB ? "bills" : "utilities"), kIncl = motEn("included", "adjectif"), kDispo = motEn("available", "adjectif"), kMeuble = motEn("furnished", "adjectif");
+  const kAsc = motEn(GB ? "lift" : "elevator"), kBalc = kp("balkon"), kEtage = motEn("floor"), kRez = motEn(GB ? "ground floor" : "first floor"), kPiece = motEn("room");
+  const ASC = GB ? "lift" : "elevator", ascFr = "un ascenseur";
+  const oui = (x, a, b) => x ? a : b;
+  A.forEach(a => {
+    const et = a.et === 0 ? "ground floor" : ORDC_EN[a.et] + " floor";
+    const dispo = a.avail === "now" ? (GB ? "Avail. now." : "Avail. now.") : "Avail. " + dateCourte(a.avail) + ".";
+    let texte;
+    if (GB){
+      texte = a.room ? a.ort + ": room in a flatshare (" + a.room + " people), " + et + ". " + argent(a.rent) + " pcm, " + (a.bills ? "bills incl." : "bills not incl.") + " Deposit: " + argent(a.dep) + ". " + dispo
+                     : a.ort + ": " + a.bed + "-bed flat, " + (a.furn ? "furn." : "unfurn.") + ", " + a.bath + " bath, " + a.m2 + " m², " + et + ", " + [a.lift ? "lift" : "no lift", a.balc ? "balcony" : "no balcony"].join(", ")
+                       + ". " + argent(a.rent) + " pcm, " + (a.bills ? "bills incl." : "bills not incl.") + " Deposit: " + argent(a.dep) + ". " + dispo;
+    } else {
+      texte = a.room ? a.ort + ": room in shared apt. (" + a.room + " people), " + et + ". " + argent(a.rent) + "/mo., " + (a.util ? "all utilities incl." : "utilities not incl.") + " Security deposit: " + argent(a.dep) + ". " + dispo
+                     : a.ort + ": " + a.br + "BR/" + a.ba + "BA apt., " + a.sqft + " sq ft, " + et + ", " + [a.elev ? "elevator" : "no elevator", a.laundry ? "laundry in bldg" : "no laundry", a.balc ? "balcony" : "no balcony", a.furn ? "furnished" : "unfurnished"].join(", ")
+                       + ". " + argent(a.rent) + "/mo., " + (a.util ? "all utilities incl." : a.heat ? "heat & hot water incl." : "utilities not incl.") + " Security deposit: " + argent(a.dep) + ". " + dispo;
+    }
+    ann[a.id] = {texte, ort: a.ort};
+    const lui = a.room ? "the room" : "the " + APT, Lui = cap(lui), luiFr = a.room ? "La chambre" : "L'appartement";
+    const Q = [];   // [q, rep, leurres, phrase, fr, mots]
+    const parMois = GB ? " per month" : " a month";
+    const inclus = GB ? a.bills : a.util;
+    Q.push(["How much is the rent?", argent(a.rent), [argent(a.rent + 250), argent(a.rent - 250)],
+            "The rent is " + argent(a.rent) + parMois + (a.room ? ", " + (GB ? "bills" : "utilities") + (inclus ? " included." : " not included.") : "."),
+            "Le loyer est de " + argentFr(a.rent) + " par mois" + (a.room ? (inclus ? ", charges comprises." : ", sans les charges.") : "."), [kRent, kMois]]);
+    Q.push([(GB ? "How much is the deposit?" : "How much is the security deposit?"), argent(a.dep), [argent(a.dep * 2), argent(a.dep * 3)],
+            (GB ? "The deposit is " : "The security deposit is ") + argent(a.dep) + ".", "Le dépôt de garantie est de " + argentFr(a.dep) + ".", [kDep]]);
+    // les charges : utilities (americain), bills (britannique) ; et le chauffage a Boston
+    if (GB || a.util || !a.heat)
+      Q.push([GB ? "Are bills included?" : "Are utilities included?", inclus ? "Yes" : "No", [inclus ? "No" : "Yes"],
+              (inclus ? "Yes, " : "No, ") + (GB ? "bills are" : "utilities are") + (inclus ? " included." : " not included."),
+              inclus ? "Oui, les charges sont comprises." : "Non, les charges ne sont pas comprises.", [kCharges, kIncl]]);
+    if (!GB && !a.room){
+      const h = a.util || a.heat;
+      Q.push(["Is heat included?", h ? "Yes" : "No", [h ? "No" : "Yes"], h ? "Yes, heat is included." : "No, heat is not included.",
+              h ? "Oui, le chauffage est compris." : "Non, le chauffage n'est pas compris.", [kIncl]]);
+    }
+    // l'etage : on the third floor (americain : notre deuxieme etage)
+    const etg = a.et === 0 || (!GB && a.et === 1) ? kRez : kEtage;
+    const rangs = GB ? [0, 1, 2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6];
+    Q.push(["Which floor is " + (a.room ? "the room" : "it") + " on?", "On " + etageEn(a.et) + ".", rangs.filter(x => x !== a.et && Math.abs(x - a.et) <= 2).map(x => "On " + etageEn(x) + "."),
+            Lui + " is on " + etageEn(a.et) + ".", luiFr + " est " + etageFr(a.et) + ".", [etg]]);
+    rangs.forEach(x => { choix["On " + etageEn(x) + "."] = {fr: etageFr(x)}; });
+    const date = dateEn(a.avail);
+    Q.push(["When is " + lui + " available?", date ? "From " + date + "." : "Now.",
+            ["Now.", "From " + dateEn([12, 1]) + ".", "From " + dateEn([1, 1]) + ".", "From " + dateEn([2, 1]) + ".", "From " + dateEn([12, 15]) + "."].filter(x => x !== (date ? "From " + date + "." : "Now.")),
+            "It is available " + (date ? "from " + date : "now") + ".", (a.room ? "Elle" : "Il") + " est libre " + (date ? dateFr(a.avail) : "tout de suite") + ".", [kDispo]]);
+    if (a.room){
+      Q.push(["How many people live in the " + (GB ? "flat" : "apartment") + "?", String(a.room), [String(a.room + 1), String(a.room > 2 ? a.room - 1 : a.room + 2)],
+              cap(NB_EN[a.room]) + " people live in the " + APT + ".", cap(NB_FR[a.room].replace("une", "un")) + " personnes habitent dans l'appartement.", [kApt]]);
+    } else {
+      const nb = GB ? a.bed : a.br, ba = GB ? a.bath : a.ba;
+      Q.push([GB ? "How many bedrooms has the flat got?" : "How many bedrooms does the apartment have?", String(nb), [String(nb + 1), String(nb > 1 ? nb - 1 : nb + 2)],
+              (GB ? "The flat has got " : "The apartment has ") + NB_EN[nb] + (nb === 1 ? " bedroom." : " bedrooms."),
+              "L'appartement a " + NB_FR[nb] + (nb === 1 ? " chambre." : " chambres."), [kChambre, kApt]]);
+      Q.push(["How many bathrooms are there?", String(ba), [String(ba + 1), String(ba > 1 ? ba - 1 : ba + 2)],
+              ba === 1 ? "There is one bathroom." : "There are " + NB_EN[ba] + " bathrooms.", "Il y a " + NB_FR[ba] + (ba === 1 ? " salle de bains." : " salles de bains."), [kBain]]);
+      const asc = GB ? a.lift : a.elev;
+      Q.push(["Is there " + unEn(ASC) + " in the building?", asc ? "Yes" : "No", [asc ? "No" : "Yes"], asc ? "Yes, there is " + unEn(ASC) + " in the building." : "No, there is no " + ASC + " in the building.",
+              asc ? "Oui, il y a un ascenseur dans l'immeuble." : "Non, il n'y a pas d'ascenseur dans l'immeuble.", [kAsc, kBat]]);
+      Q.push(["Is the " + APT + " furnished?", a.furn ? "Yes" : "No", [a.furn ? "No" : "Yes"], a.furn ? "Yes, it is furnished." : "No, it isn't furnished.",
+              a.furn ? "Oui, il est meublé." : "Non, il n'est pas meublé.", [kMeuble]]);
+      if (!GB){
+        Q.push(["Is there laundry in the building?", a.laundry ? "Yes" : "No", [a.laundry ? "No" : "Yes"],
+                a.laundry ? "Yes, there is laundry in the building." : "No, there is no laundry in the building.",
+                a.laundry ? "Oui, il y a une buanderie dans l'immeuble." : "Non, il n'y a pas de buanderie dans l'immeuble.", [kBat]]);
+        Q.push(["How big is the apartment?", a.sqft + " sq ft", [(a.sqft + 150) + " sq ft", (a.sqft - 150) + " sq ft"], "The apartment is " + a.sqft + " square feet.",
+                "L'appartement fait " + a.sqft + " pieds carrés, environ " + Math.round(a.sqft * 0.0929) + " m².", [kApt]]);
+      }
+      // there is / there are : les salles de bains de l'annonce
+      ajouter("thereIs", {annonce: a.id, trou: "There ___ " + NB_EN[ba] + (ba === 1 ? " bathroom" : " bathrooms") + " in the " + APT + ".", rep: ba === 1 ? "is" : "are", opts: ["is", "are"],
+                          phrase: "There " + (ba === 1 ? "is one bathroom" : "are " + NB_EN[ba] + " bathrooms") + " in the " + APT + ".",
+                          trad: {fr: "Il y a " + NB_FR[ba] + (ba === 1 ? " salle de bains" : " salles de bains") + " dans l'appartement."}, mots: [kBain, kApt], mot: kBain});
+      ajouter("thereIs", {annonce: a.id, trou: "There ___ " + NB_EN[nb] + (nb === 1 ? " bedroom" : " bedrooms") + " in the " + APT + ".", rep: nb === 1 ? "is" : "are", opts: ["is", "are"],
+                          phrase: "There " + (nb === 1 ? "is one bedroom" : "are " + NB_EN[nb] + " bedrooms") + " in the " + APT + ".",
+                          trad: {fr: "Il y a " + NB_FR[nb] + (nb === 1 ? " chambre" : " chambres") + " dans l'appartement."}, mots: [kChambre], mot: kChambre});
+      // Does / Is / Has en tete de question, et la reponse courte : Does it have... ? Yes, it does. / Has it got... ? Yes, it has.
+      const AUX = GB ? ["Has", "Is", "Does"] : ["Does", "Is", "Has"];
+      const qBalc = GB ? "the flat got a balcony?" : "the apartment have a balcony?";
+      ajouter("aux", {annonce: a.id, trou: "___ " + qBalc, rep: GB ? "Has" : "Does", opts: AUX,
+                      phrase: (GB ? "Has " : "Does ") + qBalc + " " + (a.balc ? (GB ? "Yes, it has." : "Yes, it does.") : (GB ? "No, it hasn't." : "No, it doesn't.")),
+                      trad: {fr: "L'appartement a-t-il un balcon ? " + (a.balc ? "Oui." : "Non.")}, mots: [kBalc], mot: kBalc});
+      ajouter("aux", {annonce: a.id, trou: "___ there " + unEn(ASC) + " in the building?", rep: "Is", opts: AUX,
+                      phrase: "Is there " + unEn(ASC) + " in the building? " + (asc ? "Yes, there is." : "No, there isn't."),
+                      trad: {fr: "Y a-t-il un ascenseur dans l'immeuble ? " + (asc ? "Oui." : "Non.")}, mots: [kAsc, kBat], mot: kAsc});
+      ajouter("aux", {annonce: a.id, trou: "___ the " + APT + " furnished?", rep: "Is", opts: AUX,
+                      phrase: "Is the " + APT + " furnished? " + (a.furn ? "Yes, it is." : "No, it isn't."),
+                      trad: {fr: "L'appartement est-il meublé ? " + (a.furn ? "Oui." : "Non.")}, mots: [kMeuble, kApt], mot: kMeuble});
+    }
+    // la preposition de l'etage : on the third floor
+    ajouter("prep", {annonce: a.id, trou: Lui + " is ___ " + etageEn(a.et) + ".", rep: "on", opts: melangeOpts(["on", "in", "at"]), phrase: Lui + " is on " + etageEn(a.et) + ".",
+                     trad: {fr: luiFr + " est " + etageFr(a.et) + "."}, mots: [etg], mot: etg});
+    Q.forEach(([q, rep, leurres, phrase, fr, ks]) => ajouter("annonce", {annonce: a.id, q, rep, leurres, phrase, trad: {fr}, mots: ks, mot: ks[0]}));
+  });
+  // « Which ad is right for her? » : une seule annonce sur trois remplit TOUT
+  CHERCHENT_EN.forEach(s => {
+    const passe = a => s.room ? !!a.room && a.rent <= s.max
+                     : !a.room && a.rent <= s.max && (GB ? a.bed : a.br) >= (s.br || 1) && (!s.laundry || a.laundry) && (!s.balc || a.balc) && (!s.elev || (GB ? a.lift : a.elev));
+    const bons = A.filter(passe).map(a => a.id), faux = A.filter(a => !passe(a)).map(a => a.id);
+    if (!bons.length || faux.length < 2) throw new Error("passt : " + s.nom);
+    let besoin, fr, ks;
+    if (s.room){
+      besoin = s.nom + " is looking for a room in " + (GB ? "a flatshare" : "a shared apartment") + ". " + s.il + " can pay up to " + argent(s.max) + " a month.";
+      fr = s.nom + " cherche une chambre en colocation. " + s.fr + " peut payer jusqu'à " + argentFr(s.max) + " par mois.";
+      ks = [kPiece, kRent];
+    } else {
+      const c = [s.br ? "at least " + NB_EN[s.br] + " bedrooms" : null, s.laundry ? "laundry in the building" : null, s.balc ? "a balcony" : null].filter(Boolean);
+      const cFr = [s.br ? "au moins " + NB_FR[s.br] + " chambres" : null, s.laundry ? "une buanderie dans l'immeuble" : null, s.balc ? "un balcon" : null].filter(Boolean);
+      besoin = s.nom + " is looking for " + unEn(APT) + (s.elev ? " in a building with " + unEn(ASC) : " with " + c.join(" and ")) + ". " + s.il + " can pay up to " + argent(s.max) + " a month.";
+      fr = s.nom + " cherche un appartement " + (s.elev ? "dans un immeuble avec ascenseur" : "avec " + cFr.join(" et ")) + ". " + s.fr + " peut payer jusqu'à " + argentFr(s.max) + " par mois.";
+      ks = s.elev ? [kAsc, kRent] : [kChambre].concat(s.laundry ? [kBat] : [], s.balc ? [kBalc] : [], [kRent]);
+    }
+    bons.forEach(b => {
+      const a = A.find(x => x.id === b);
+      const phrase = a.room ? "The room in " + a.ort + " is right for " + s.nom + "." : "The " + a.ort + " " + APT + " is right for " + s.nom + ".";
+      const pFr = (a.room ? "La chambre " : "L'appartement ") + deFr(a.ort) + " convient à " + s.nom + ". (" + fr + ")";
+      ajouter("passt", {visage: s.visage, q: besoin, rep: b, faux, phrase, trad: {fr: pFr}, mots: ks, mot: ks[0]});
+    });
+  });
+  // ---- les definitions, dans les deux sens ----
+  DEFS_EN.forEach(([m, aff, def, q, fr]) => {
+    const k = motEn(m), autres = DEFS_EN.filter(x => x[0] !== m);
+    choix[aff] = {fr: EN_GLOSES[m] || ""};
+    ajouter("wort", {q: def, rep: aff, leurres: autres.map(x => x[1]), phrase: def, trad: {fr}, mots: [k], mot: k});
+    ajouter("sens", {q, rep: def, leurres: autres.map(x => x[2]), phrase: def, trad: {fr}, mots: [k], mot: k, long: true});
+  });
+  // ---- les abreviations des annonces ----
+  ABK_EN.forEach(([a, sens, m, fr]) => {
+    const k = motEn(m, ["included", "available", "furnished"].includes(m) ? "adjectif" : null), autres = ABK_EN.filter(x => x[0] !== a);
+    const phrase = a + " means " + sens + ".", t = {fr: a + " veut dire « " + sens + " » : " + fr + "."};
+    choix[sens] = {fr};
+    ajouter("abk", {abk: a, q: a === "bed" ? "What does “bed” mean in “2-bed flat”?" : "What does “" + a + "” mean?", rep: sens, leurres: autres.map(x => x[1]), phrase, trad: t, mots: [k], mot: k});
+    ajouter("abkRev", {q: "How do you write “" + sens + "” in an ad?", rep: a, leurres: autres.map(x => x[0]), phrase, trad: t, mots: [k], mot: k});
+  });
+  D.items.en = I; D.mots.en = mots; D.gloses.en = gloses; D.choix.en = choix; D.annonces.en = ann;
+}
+
+// le titre d'un logement dans la langue apprise
+const titreLogement = lid => EN_APP ? EN_LOG[lid].titre : D.logements[lid].titre[DE_APP ? "de" : "es"];
+
+// ---------- les exercices ----------
+// Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+const EX = {
+  zimmer(w){
+    const it = prendre("zimmer", w); if (!it) return false;
+    viser(w, it);
+    ecran("zimmer", photo(it.img), it.q, true);
+    boutons($("choix"), options(it.rep, it.leurres), it.rep, ok => juger(ok, it.rep, it.phrase));
+    return true;
+  },
+  wo(w){
+    const it = prendre("wo", w); if (!it) return false;
+    viser(w, it);
+    ecran("wo", photo(it.img), it.q, true);
+    boutons($("choix"), options(it.rep, it.leurres), it.rep, ok => juger(ok, it.rep, it.phrase));
+    return true;
+  },
+  // les formes a trou (le datif, l'article, le verbe, hay / esta) : la photo, la phrase a trou, les formes
+  im(w){ return trouEx("im", w); },
+  artikel(w){ return trouEx("artikel", w); },
+  verbe(w){ return trouEx("verbe", w); },
+  hayEsta(w){ return trouEx("hayEsta", w); },
+  // l'anglais : there is / there are, la preposition de lieu, Does / Is / Has en tete de question
+  thereIs(w){ return EN_APP && trouEx("thereIs", w); },
+  prep(w){ return EN_APP && trouEx("prep", w); },
+  aux(w){ return EN_APP && trouEx("aux", w); },
+  // « Wo steht der Herd? » : trois photos, une seule montre l'objet (les autres sont d'une piece ou il n'est pas)
+  ding(w){
+    const it = prendre("ding", w); if (!it) return false;
+    const faux = melanger(it.faux.filter(i => D.photos[i] && D.photos[i].pret));
+    // deux pieces DIFFERENTES pour leurres
+    const vus = new Set([D.photos[it.img].piece]), lr = [];
+    for (const i of faux){ const p = D.photos[i].piece; if (!vus.has(p)){ vus.add(p); lr.push(i); } if (lr.length === 2) break; }
+    if (lr.length < 2) return false;
+    viser(w, it);
+    $("zone").innerHTML = '<p class="consigne">' + T("ding") + '</p><div class="enonce centre">' + cible(it.q) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    images($("rang"), melanger([it.img, ...lr]), it.img, ok => juger(ok, it.phrase, it.phrase));
+    return true;
+  },
+  vraifaux(w){
+    const it = prendre("vraifaux", w); if (!it) return false;
+    viser(w, it);
+    // en anglais, un vrai ou faux peut porter sur un plan (« The kitchen is next to the bathroom. »)
+    if (it.plan) ecran("vraifauxPlan", plan(it.plan, [], false), it.phrase, true);
+    else ecran("vraifaux", photo(it.img), it.phrase, true);
+    const V = DE_APP ? "Richtig" : EN_APP ? "True" : "Verdadero", F = DE_APP ? "Falsch" : EN_APP ? "False" : "Falso", rep = it.vrai ? V : F;
+    boutons($("choix"), [V, F], rep, ok => juger(ok, rep, it.juste));
+    return true;
+  },
+  // l'ecoute : la phrase dite, trois photos de pieces differentes
+  entendre(w){
+    const it = prendre("entendre", w); if (!it) return false;
+    const autres = melanger(IT("entendre").filter(x => x.piece !== it.piece));
+    const vus = new Set([it.piece]), lr = [];
+    for (const x of autres){ if (!vus.has(x.piece)){ vus.add(x.piece); lr.push(x.img); } if (lr.length === 2) break; }
+    viser(w, it);
+    $("zone").innerHTML = '<p class="consigne">' + T("entendre") + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
+      + '<div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    $("ecoute").addEventListener("click", () => dire(it.phrase));
+    images($("rang"), melanger([it.img, ...lr]), it.img, ok => juger(ok, it.phrase, it.phrase));
+    dire(it.phrase);
+    return true;
+  },
+  // le plan : « Was ist neben dem Bad? » (la piece marquee), « zwischen … und … »
+  plan(w){
+    const it = prendre("plan", w); if (!it) return false;
+    viser(w, it);
+    ecran("plan", plan(it.plan, it.marque, false), it.q, true);
+    boutons($("choix"), options(it.rep, it.leurres), it.rep, ok => juger(ok, it.rep, it.phrase));
+    return true;
+  },
+  planZimmer(w){
+    const it = prendre("planZimmer", w); if (!it) return false;
+    viser(w, it);
+    ecran("planZimmer", plan(it.plan, it.marque, true), it.q, true);
+    boutons($("choix"), options(it.rep, it.leurres), it.rep, ok => juger(ok, it.rep, it.phrase));
+    return true;
+  },
+  zaehlen(w){
+    const it = prendre("zaehlen", w); if (!it) return false;
+    viser(w, it);
+    ecran("zaehlen", '<div class="enonce centre">' + cible(it.titre) + '</div>' + plan(it.plan, [], false), it.q, true);
+    boutons($("choix"), melanger(it.opts), it.rep, ok => { juger(ok, it.rep, it.phrase); $("msg").insertAdjacentHTML("beforeend", '<span class="trad" dir="auto">' + T(it.note) + '</span>'); });
+    return true;
+  },
+  annonce(w){
+    const it = prendre("annonce", w); if (!it) return false;
+    viser(w, it);
+    ecran("annonce", encart(it.annonce), it.q, true);
+    boutons($("choix"), options(it.rep, it.leurres), it.rep, ok => juger(ok, it.rep, it.phrase));
+    return true;
+  },
+  // les abreviations des annonces : allemandes (Zi., KM, NK), americaines (BR, BA, sq ft) ou britanniques (pcm, furn.)
+  abk(w){
+    if (!DE_APP && !EN_APP) return false;
+    const it = prendre("abk", w); if (!it) return false;
+    viser(w, it);
+    ecran("abk", "", it.q, true);
+    boutons($("choix"), options(it.rep, it.leurres), it.rep, ok => juger(ok, it.rep, it.phrase));
+    return true;
+  },
+  abkRev(w){
+    if (!DE_APP && !EN_APP) return false;
+    const it = prendre("abkRev", w); if (!it) return false;
+    viser(w, it);
+    ecran("abkRev", "", it.q, true);
+    boutons($("choix"), options(it.rep, it.leurres), it.rep, ok => juger(ok, it.rep, it.phrase));
+    return true;
+  },
+  // « Welche Anzeige passt? » : le visage, ce qu'il ou elle cherche, trois annonces (une seule remplit tout)
+  passt(w){
+    const it = prendre("passt", w); if (!it) return false;
+    viser(w, it);
+    const A = D.annonces[APPRENDRE], ids = melanger([it.rep, ...melanger(it.faux).slice(0, 2)]);
+    $("zone").innerHTML = '<p class="consigne">' + T("passt") + '</p><div class="qui"><img alt="" src="' + it.visage + '"><div class="enonce">' + cible(it.q) + '</div></div>'
+      + '<div class="choix annonces" id="choix"></div><p class="retourMsg" id="msg"></p>';
+    boutons($("choix"), ids, it.rep, ok => juger(ok, A[it.rep].texte, it.phrase), id => A[id].texte);
+    return true;
+  },
+  wort(w){
+    const it = prendre("wort", w); if (!it) return false;
+    viser(w, it);
+    ecran("wort", "", it.q, true);
+    boutons($("choix"), options(it.rep, it.leurres), it.rep, ok => juger(ok, it.rep, it.phrase));
+    return true;
+  },
+  sens(w){
+    const it = prendre("sens", w); if (!it) return false;
+    viser(w, it);
+    ecran("sens", "", it.q, true, "long");
+    boutons($("choix"), options(it.rep, it.leurres), it.rep, ok => juger(ok, it.rep, it.phrase));
+    return true;
+  },
+  visite(w){
+    const it = prendre("visite", w); if (!it) return false;
+    viser(w, it);
+    ecran("visite", photo(it.img), it.q, true);
+    boutons($("choix"), options(it.rep, it.leurres), it.rep, ok => juger(ok, it.rep, it.phrase));
+    return true;
+  }
+};
+function trouEx(sorte, w){
+  const it = prendre(sorte, w); if (!it) return false;
+  viser(w, it);
+  // ce qu'on regarde : la photo ; en anglais aussi un plan ou une annonce
+  const haut = it.img ? photo(it.img) : it.plan ? plan(it.plan, it.marque || [], false) : it.annonce ? encart(it.annonce) : "";
+  $("zone").innerHTML = '<p class="consigne">' + T(sorte) + '</p>' + haut + '<div class="enonce">' + avecTrou(it.trou) + '</div><div class="choix" id="choix"></div><p class="retourMsg" id="msg"></p>';
+  boutons($("choix"), it.opts.slice(), it.rep, ok => { remplir(it.rep); juger(ok, it.rep, it.phrase); });
+  return true;
+}
+// l'anglais : ni le datif, ni l'article, ni stehen / liegen / haengen, ni hay / esta ; en plus there is / there are,
+// la preposition (prep) et le mot qui commence la question (aux)
+const SORTES = DE_APP ? ["zimmer", "wo", "im", "ding", "artikel", "verbe", "vraifaux", "entendre", "plan", "planZimmer", "zaehlen", "annonce", "abk", "abkRev", "passt", "wort", "sens", "visite"]
+             : EN_APP ? ["zimmer", "wo", "ding", "thereIs", "prep", "vraifaux", "entendre", "plan", "planZimmer", "zaehlen", "annonce", "aux", "abk", "abkRev", "passt", "wort", "sens", "visite"]
+                      : ["zimmer", "wo", "ding", "artikel", "hayEsta", "vraifaux", "entendre", "plan", "planZimmer", "zaehlen", "annonce", "passt", "wort", "sens", "visite"];
+
+// ---------- la decouverte : deux onglets, les pieces (un plan, ses photos, ses objets) et la recherche ----------
+function decouvrir(){
+  $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone");
+  z.innerHTML = '<div class="onglets" role="tablist"><button type="button" id="oP" role="tab">' + T("ongletPieces") + '</button><button type="button" id="oC" role="tab">' + T("ongletCherche") + '</button></div><div id="volet"></div>';
+  let phraseDite = "";
+  const montrerPhrase = (phrase, trad) => {
+    phraseDite = phrase;
+    $("dit").innerHTML = cible(phrase) + traduction(PHRASE_TRADUITE ? trad : null);
+  };
+  const pieces = (lid) => {
+    $("oP").classList.add("actif"); $("oC").classList.remove("actif");
+    const v = $("volet");
+    v.innerHTML = '<p class="consigne">' + T("intro") + '</p><div class="puces" id="logs"></div><div class="plan" id="plan" lang="' + APPRENDRE + '"></div><div id="vue"></div>'
+      + '<div class="dit"><div class="texte" id="dit"></div><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>'
+      + (EN_APP ? '<div id="objets"></div><p class="regle">' + T(GB ? "zaehlenGb" : "zaehlenEn") + '</p><p class="regle">' + T("thereEn") + '</p><p class="consigne">' + T(GB ? "bonGb" : "bonUs") + '</p>'
+                : '<div id="objets"></div><p class="regle">' + T(DE_APP ? "zaehlenDe" : "zaehlenEs") + '</p><p class="regle">' + T(DE_APP ? "verbesDe" : "verbesEs") + '</p>');
+    $("ecoute").addEventListener("click", () => dire(phraseDite));
+    const logs = Object.keys(D.logements).filter(l => l !== "lena" || Object.values(D.photos).some(p => p.logement === "lena" && p.pret));
+    logs.forEach(l => {
+      const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.textContent = titreLogement(l);
+      b.classList.toggle("choisi", l === lid);
+      b.addEventListener("click", () => pieces(l));
+      $("logs").appendChild(b);
+    });
+    const choisirPiece = (rid) => {
+      const r = D.logements[lid].plan.find(x => x.id === rid);
+      $("plan").innerHTML = dessinerPlan(lid, [], false, rid);
+      brancherPlan();
+      const pid = rid === "zimmer-mark" ? "zimmer" : r.piece;
+      const ph = Object.keys(D.photos).filter(i => D.photos[i].logement === lid && D.photos[i].piece === pid && D.photos[i].pret && D.photos[i].reconnaissable);
+      const z = ph.length ? IT("zimmer").find(it => it.img === ph[0]) : null;
+      $("vue").innerHTML = ph.length ? photo(ph[0]) : '<p class="consigne">' + T("pasPhoto") + '</p>';
+      if (z){ montrerPhrase(z.phrase, z.trad[LANGUE]); dire(z.phrase); }
+      else if (EN_APP){ montrerPhrase(rid === "zimmer-2" ? "This is a bedroom." : "This is " + EN_PIECES[pid].nom + ".", null); dire(phraseDite); }
+      else { const nom = rid === "zimmer-2" ? (DE_APP ? "das Zimmer" : "la habitación") : D.pieces[pid][APPRENDRE]; montrerPhrase((DE_APP ? "Das ist " : "Es ") + nom + ".", null); dire(phraseDite); }
+      // les objets de la photo : un mot a toucher, sa phrase (en anglais : « There is a sofa in the living room. »)
+      const o = $("objets"); o.innerHTML = "";
+      if (!ph.length) return;
+      const phrases = {};
+      (EN_APP ? IT("thereIs").filter(it => it.img === ph[0] && it.objet)
+              : IT(DE_APP ? "artikel" : "hayEsta").filter(it => it.img === ph[0] && (DE_APP || /^(El|La) /.test(it.phrase)))).forEach(it => { phrases[it.phrase] = it; });
+      const liste = Object.values(phrases);
+      if (!liste.length) return;
+      o.innerHTML = '<p class="consigne">' + T("objets") + '</p><div class="puces" id="pu"></div>';
+      liste.forEach(it => {
+        const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE;
+        // le nom de l'objet (en espagnol, le mot de la question est le verbe estar : le nom est dans « mots »)
+        const cle = (it.mots || []).find(k => k.startsWith("n:")) || it.mot;
+        const m = motDeCle(cle) || {mot: cle.split(":")[1].split("|")[0]}; puceParlante(b, (m.genre ? m.genre + " " : "") + m.mot, it.phrase);
+        b.addEventListener("click", () => { $("pu").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b)); montrerPhrase(it.phrase, it.trad[LANGUE]); dire(it.phrase); });
+        $("pu").appendChild(b);
+      });
+    };
+    const brancherPlan = () => $("plan").querySelectorAll("g[data-id]").forEach(g => g.addEventListener("click", () => choisirPiece(g.dataset.id)));
+    $("plan").innerHTML = dessinerPlan(lid, [], false);
+    brancherPlan();
+    const premiere = D.logements[lid].plan.find(r => r.piece === "wohnzimmer");
+    // sans parler : le son ne vient que d'un geste
+    const garde = dire; dire = () => {}; choisirPiece(premiere.id); dire = garde;
+  };
+  const chercher = () => {
+    $("oC").classList.add("actif"); $("oP").classList.remove("actif");
+    const v = $("volet"), A = D.annonces[APPRENDRE], ex = DE_APP ? "pankow" : EN_APP ? (GB ? "camden" : "backbay") : "chamberi";
+    v.innerHTML = '<p class="consigne">' + T(DE_APP ? "chercheDe" : EN_APP ? (GB ? "chercheGb" : "chercheEn") : "chercheEs") + '</p>' + encart(ex)
+      + (DE_APP || EN_APP ? '<div class="puces" id="abk"></div>' : "")
+      + '<div class="dit"><div class="texte" id="dit"></div><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>'
+      + '<p class="regle">' + T(DE_APP ? "calculDe" : EN_APP ? (GB ? "calculGb" : "calculEn") : "calculEs") + '</p>';
+    $("ecoute").addEventListener("click", () => dire(phraseDite));
+    if (DE_APP || EN_APP) IT("abk").forEach(it => {
+      const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; puceParlante(b, it.abk || it.q.replace(/^Was bedeutet „(.+)“\?$/, "$1"), it.phrase);
+      b.addEventListener("click", () => { $("abk").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b)); montrerPhrase(it.phrase, it.trad[LANGUE]); dire(it.phrase); });
+      $("abk").appendChild(b);
+    });
+    const q = IT("annonce").find(it => it.annonce === ex && (EN_APP ? it.q === "How much is the rent?" : /Warmmiete|en total/.test(it.q)));
+    montrerPhrase(q.phrase, q.trad[LANGUE]);
+  };
+  $("oP").addEventListener("click", () => pieces("anna")); $("oC").addEventListener("click", chercher);
+  pieces("anna");
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; taire(); demarrer(); };
+}
+
+// LA PARTIE (« le tirage suit les mots ») -- recopie de familia.html / gato.html, identique d'un theme a l'autre
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone");
+  const pl = z.querySelector(".plan[data-cle]");
+  return sorteCourante + "|" + Array.from(z.querySelectorAll(".enonce, .annonce")).map(e => e.textContent).join("|") + "|" + (pl ? pl.dataset.cle : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
+}
+function montrer(){
+  repondu = false; $("suite").hidden = true; $("bas").hidden = true;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  const garde = dire; dire = () => {};
+  const raz = so => { motQ = null; tradQ = null; choixQ = null; itemQ = null; sorteCourante = so; };
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let n = 0; n < 25; n++){
+        raz(so);
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){
+      raz(derniereSorte);
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){
+      raz(so);
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+  }
+  if (!fait) fait = essai(file[rang], false);
+  dire = garde;
+  if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
+  vus.add(cleQuestion()); derniereSorte = fait;
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>';
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
+}
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + '</div>';
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+function basDePartie(){
+  const b = $("bas"); b.innerHTML = boutonEncore() + '<button type="button" class="principal" id="terminer">' + T("terminer") + '</button>'; b.hidden = false;
+  const e = $("encore"); if (e) e.addEventListener("click", () => { b.hidden = true; encoreDesQuestions(); });
+}
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+// les textes que la page peut dire (visuel/voix_themes.py) : les phrases de la decouverte et des questions
+function textesAVoix(){
+  const out = [];
+  Object.values(D.items[APPRENDRE]).forEach(L => L.forEach(it => { if (it.phrase) out.push(it.phrase); if (it.juste) out.push(it.juste); }));
+  return uniques(out);
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("logement/logement.json?v=1").then(r => r.json()).then(d => {
+  D = d;
+  if (EN_APP) construireAnglais(D);
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>

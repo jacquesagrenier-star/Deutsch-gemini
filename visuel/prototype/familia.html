@@ -101,9 +101,10 @@ button:disabled{cursor:default}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=2"></script>
+<script src="themes/tirage.js?v=2"></script>
+<script src="themes/voix.js?v=7"></script>
 <script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=6"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (3 nov. 2026, « pour que l'anglais suive aussi ») : le meme arbre, ses phrases a lui ; variante=gb, le britannique
@@ -115,7 +116,7 @@ document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
 // vingt questions seule (Jacques, 3 nov.) ; dans la seance du jour (seance=1), un jour sur trois a la place de la scene :
 // six questions et pas de decouverte (themeDuJour() dans index.html)
-const NB = Q.get("seance") === "1" ? 6 : 20;
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
 // agrandir (themes/zoom.js) : un toucher sur un visage ou une fiche, la loupe sur l'arbre qu'on touche pour repondre
 Zoom.init({direct: ".duo img, .fiche img", loupe: ".arbre", langue: LANGUE});
 

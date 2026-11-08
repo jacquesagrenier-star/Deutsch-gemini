@@ -16,7 +16,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
 sys.path.insert(0, ICI)
-from emociones import DOSSIER, PORTRAITS, TRAITS, ecrire_json   # noqa: E402
+from emociones import DOSSIER, PORTRAITS, TRAITS, PERS, ecrire_json   # noqa: E402
 SORTIE = os.path.join(RACINE, "visuel", "prototype", "emociones")
 
 
@@ -36,7 +36,8 @@ def main():
     for f in os.listdir(SORTIE):
         if f.startswith("trait-") and f.count("-") == 1:
             os.remove(os.path.join(SORTIE, f))
-    for t, qui in ((t, p) for t, scenes in TRAITS.items() for p, _ in scenes):
+    # un prenom reserve (Hugo, Nuria... : visuel/personnes.json) garde l'image de son visage : trait-<trait>-<visage>
+    for t, qui in ((t, PERS.visage(p)) for t, scenes in TRAITS.items() for p, *_ in scenes):
         src = os.path.join(DOSSIER, "trait-" + t + "-" + qui + ".png")
         if not os.path.exists(src):
             manque.append("trait-" + t + "-" + qui)

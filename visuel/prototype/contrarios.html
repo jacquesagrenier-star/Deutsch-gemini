@@ -114,9 +114,10 @@ button:disabled{cursor:default}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/tirage.js?v=1"></script>
+<script src="themes/tirage.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
-<script src="themes/voix.js?v=2"></script>
+<script src="themes/verre.js?v=6"></script>
+<script src="themes/voix.js?v=7"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (3 nov. 2026, « pour que l'anglais suive aussi ») : les memes images, ses phrases a lui ; variante=gb
@@ -128,7 +129,7 @@ if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
-const NB = Q.get("seance") === "1" ? 6 : 20;
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
 // agrandir (themes/zoom.js) : un toucher sur une photo, une paire ou la fiche, la loupe sur les images a choisir
 Zoom.init({direct: "img.photo, .duo img, .fiche img", loupe: ".rangee button", langue: LANGUE});
 

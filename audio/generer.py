@@ -267,6 +267,10 @@ def main():
     p.add_argument("--sources", default="",
                    help="ne produire que ces sources (prefixes, ex. scene,nomen) : "
                         "une depense approuvee pour un lot ne couvre pas le reste")
+    # 4 nov. 2026 : comme generer_es.py -- les mots ajoutes au corpus pour un theme (das Kilo, das Pfund...),
+    # sans le reste du meme niveau, que l'accord ne couvre pas.
+    p.add_argument("--textes", default="",
+                   help="ne produire que ces textes exacts, separes par |")
     a = p.parse_args()
 
     if a.essai:
@@ -283,6 +287,10 @@ def main():
         garder = lambda e: any(s.startswith(prefixes) for s in e["sources"])
         voulus = [e for e in voulus if garder(e)]
         restants = [e for e in restants if garder(e)]
+    if a.textes:
+        voulus_t = {t.strip() for t in a.textes.split("|") if t.strip()}
+        voulus = [e for e in voulus if e["texte"] in voulus_t]
+        restants = [e for e in restants if e["texte"] in voulus_t]
     cout = int(sum(len(e["texte"]) for e in restants) * taux)
 
     print("  niveaux %s | modele %s | %d entrees, %d deja faites"

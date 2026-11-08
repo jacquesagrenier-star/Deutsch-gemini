@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Les vacances et le voyage</title>
+<!--
+  LES VACANCES ET LE VOYAGE (theme illustre, vague 4 de Jacques, 5 nov. 2026 : « les vacances et le voyage (Perfekt /
+  preterito) »). LE POINT CENTRAL : RACONTER AU PASSE. En allemand le Perfekt (haben ou sein, le participe a la fin :
+  Anna ist nach Malaga geflogen, Anna hat ein Eis gegessen), en espagnol le preterito indefinido (fui, visito, hizo).
+  On suit trois voyages, une frise chacun : Anna a Malaga, Mark a Hambourg, la famille d'Anna a la mer Baltique. Et
+  autour : faire sa valise (ce qui est sur le lit), reserver une chambre et parler a la reception (la confirmation
+  de reservation se DESSINE ici), le temps qu'il a fait (au passe seulement, le theme de la meteo a le reste).
+  Toute la donnee vient de vacances/vacances.json (visuel/vacances/vacances.py) : aucune phrase ecrite a la main.
+  L'auxiliaire et le participe allemands sont LUS dans le Perfekt du corpus ; le preterito espagnol est celui du corpus.
+  LA FRISE DANS LA QUESTION (decision du 5 nov. sur La journee) : une question sur l'ordre des evenements montre la
+  frise du voyage, elle ne teste jamais la memoire de la decouverte.
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne »
+  a chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin.
+  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
+  variante=latam (en carro, un sandwich, el sueter), r=<AUDIO_REVISION>.
+  Le tirage suit les mots (themes/tirage.js) ; la voix : le fichier enregistre, sinon le telephone (themes/voix.js).
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--papier:#FFFDF7;--trait:#C9CFD8;--stylo:#1D4E9E;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A;--papier:#1D2F3D;--trait:#40576A;--stylo:#9CC3FF}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (visuel/THEMES-ILLUSTRES.md) : le contenu defile DANS le body */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.trou{display:inline-block;min-width:56px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+.photo{position:relative;width:100%;max-width:480px;margin:0 auto;border-radius:16px;overflow:hidden;background:var(--carte)}
+.photo img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+/* la frise d'un voyage, dans la decouverte ET dans les questions sur l'ordre : les photos dans l'ordre, numerotees */
+.frise{direction:ltr;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.frise > div, .frise > button{position:relative;border:3px solid transparent;border-radius:12px;padding:0;background:var(--carte);overflow:hidden;display:block}
+.frise > button{cursor:pointer}
+.frise img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.frise .num{position:absolute;top:3px;left:3px;min-width:22px;height:22px;border-radius:11px;background:rgba(28,36,48,.78);color:#fff;font:900 13px/22px var(--police);text-align:center;padding:0 5px}
+.frise .marque{border-color:var(--ambre)} .frise .marque .num{background:var(--ambre);color:#1C2430}
+.frise .choisi{border-color:var(--ambre)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix.liste{flex-direction:column}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer;text-align:left}
+.choix.liste button{border-radius:14px}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+/* remettre dans l'ordre : quatre phrases a toucher de la premiere a la derniere, la frise au-dessus */
+.ordre{display:flex;flex-direction:column;gap:8px}
+.ordre button{position:relative;border:2px solid var(--ambre);border-radius:14px;background:var(--verre);padding:10px 12px 10px 46px;cursor:pointer;text-align:left;color:var(--encre);font:800 15px/1.35 var(--police);min-height:46px}
+.ordre button span.t{display:block;direction:ltr;text-align:left}
+.ordre button i{position:absolute;top:50%;left:8px;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;background:var(--ambre);color:#1C2430;font:900 17px/30px var(--police);font-style:normal;text-align:center;display:none}
+.ordre button.pris i{display:block}
+.ordre button.juste{border-color:var(--vert)} .ordre button.juste i{background:var(--vert);color:#fff;display:block}
+.ordre button.faux{border-color:var(--rouge)}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+/* la decouverte : les onglets (trois voyages, les valises, l'hotel), la frise, la fiche */
+.onglets{display:flex;flex-wrap:wrap;gap:4px;background:var(--carte);border-radius:18px;padding:4px}
+.onglets button{flex:1 1 auto;border:0;border-radius:999px;background:none;color:var(--gris);font:800 13px var(--police);padding:7px 6px;cursor:pointer}
+.onglets button[aria-selected="true"]{background:var(--ambre);color:#1C2430}
+.fiche{background:var(--carte);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.fiche .dit{font-weight:800;font-size:18px;line-height:1.4}
+.fiche .temps{font-weight:700;font-size:15px;color:var(--gris)}
+.fiche .ligne{display:flex;align-items:flex-start;gap:10px}
+.fiche .ligne > div{flex:1}
+.ecoute{width:44px;height:44px;flex:0 0 auto;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.ecoute svg{width:22px;height:22px}
+.puces{display:flex;flex-wrap:wrap;gap:6px}
+.puces button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:6px 12px;font:800 14px var(--police);cursor:pointer}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.45;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.regle b{color:var(--encre)}
+/* LA CONFIRMATION DE RESERVATION, dessinee ici (aucun texte dans les images) */
+.papier{direction:ltr;text-align:left;background:var(--papier);border:1px solid var(--trait);border-radius:6px;padding:12px 12px 10px;box-shadow:0 6px 16px rgba(28,36,48,.12);font-size:14px;line-height:1.4;color:var(--encre)}
+.papier .entete{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--gris);border-bottom:2px solid var(--encre);padding-bottom:5px;margin-bottom:8px}
+.papier h3{margin:0 0 8px;font-size:17px;font-weight:900}
+.papier .cases{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.papier .case{border:1px solid var(--trait);border-radius:4px;padding:3px 6px 4px;min-height:42px;background:rgba(255,255,255,.35)}
+html.nuit .papier .case{background:rgba(255,255,255,.03)}
+.papier .case .lab{display:block;font-size:10.5px;font-weight:800;color:var(--gris);text-transform:uppercase;letter-spacing:.02em}
+.papier .case .val{display:block;font-size:15px;font-weight:800;color:var(--stylo)}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite[hidden]{display:none}
+/* Jacques, 3 nov. 2026, comme dans les scenes : « commencer les exercices ou continuer soit toujours en bas
+   completement de l'ecran ». Tous les boutons d'action sont fixes en bas, jamais dans le flux. */
+.suite{z-index:5000}
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:5000}
+.bas button{flex:1 1 0;min-width:0;height:54px;border:0;border-radius:27px;padding:0 12px;color:#fff;font:800 16px/1.15 var(--police);
+  background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+[lang]{unicode-bidi:isolate}
+/* la traduction dans la langue d'interface : une ligne, plus petite, en gris (3 nov. 2026) */
+.trad.faux{color:var(--rouge);font-style:italic}
+.trad{display:block;font-size:13px;font-weight:600;color:var(--gris);line-height:1.35;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<script src="themes/tirage.js?v=2"></script>
+<script src="themes/voix.js?v=7"></script>
+<script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=6"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const DE_APP = APPRENDRE === "de";
+const LATAM = !DE_APP && Q.get("variante") === "latam";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+// agrandir (themes/zoom.js) : un toucher sur une photo, une case de frise ou une reservation ; la loupe sur la frise
+// de la decouverte (on la touche pour choisir une etape)
+Zoom.init({direct: ".photo img, .frise > div img, .papier", loupe: ".frise > button", langue: LANGUE});
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
+
+const TEXTES = {
+  titre:     {fr:"Les vacances et le voyage", en:"Holidays and travel", tr:"Tatil ve seyahat", uk:"Відпустка й подорожі", fa:"تعطیلات و سفر", ar:"العطلة والسفر", pt:"As férias e a viagem", pl:"Wakacje i podróże", ru:"Отпуск и путешествия", de:"Urlaub und Reisen"},
+  intro:     {fr:"Touche une photo du voyage : tu lis et tu entends ce qui s'est passé.", en:"Tap a photo of the trip: you read and hear what happened.", tr:"Yolculuğun bir fotoğrafına dokun: ne olduğunu oku ve dinle.", uk:"Торкнися фото з подорожі: прочитаєш і почуєш, що сталося.", fa:"روی یکی از عکس‌های سفر بزن: می‌خوانی و می‌شنوی چه اتفاقی افتاد.", ar:"المس صورة من الرحلة: تقرأ وتسمع ما حدث.", pt:"Toque em uma foto da viagem: você lê e ouve o que aconteceu.", pl:"Dotknij zdjęcia z podróży: przeczytasz i usłyszysz, co się wydarzyło.", ru:"Нажми на фото из поездки: прочитаешь и услышишь, что произошло.", de:"Tippe auf ein Foto der Reise: Du liest und hörst, was passiert ist."},
+  introValise:{fr:"Ce qui est sur le lit avant le départ. Touche un objet pour l'entendre.", en:"What is on the bed before leaving. Tap an object to hear it.", tr:"Yola çıkmadan önce yatağın üstünde olanlar. Duymak için bir nesneye dokun.", uk:"Що лежить на ліжку перед від'їздом. Торкнися предмета, щоб почути його.", fa:"چیزهایی که پیش از رفتن روی تخت است. روی یک وسیله بزن تا آن را بشنوی.", ar:"ما على السرير قبل السفر. المس شيئًا لتسمعه.", pt:"O que está na cama antes da partida. Toque em um objeto para ouvi-lo.", pl:"Co leży na łóżku przed wyjazdem. Dotknij przedmiotu, żeby go usłyszeć.", ru:"Что лежит на кровати перед отъездом. Нажми на предмет, чтобы его услышать.", de:"Was vor der Abreise auf dem Bett liegt. Tippe auf einen Gegenstand, um ihn zu hören."},
+  introHotel:{fr:"Une confirmation de réservation, et ce qu'on dit à la réception.", en:"A booking confirmation, and what you say at the reception desk.", tr:"Bir rezervasyon onayı ve resepsiyonda söylenenler.", uk:"Підтвердження бронювання і що кажуть на рецепції.", fa:"یک تأیید رزرو و آنچه در پذیرش گفته می‌شود.", ar:"تأكيد حجز، وما يُقال في الاستقبال.", pt:"Uma confirmação de reserva e o que se diz na recepção.", pl:"Potwierdzenie rezerwacji i to, co mówi się w recepcji.", ru:"Подтверждение бронирования и то, что говорят на ресепшене.", de:"Eine Buchungsbestätigung und was man an der Rezeption sagt."},
+  regleDe:   {fr:"Pour raconter, l'allemand prend le <b>Perfekt</b> : haben ou sein conjugué en 2<sup>e</sup> place, le participe à la <b>fin</b>. <b>Sein</b> quand on se déplace ou qu'on arrive : Anna <b>ist</b> nach Málaga <b>geflogen</b>, Mark <b>ist</b> im Hotel <b>angekommen</b>. <b>Haben</b> pour le reste : Anna <b>hat</b> ein Eis <b>gegessen</b>. Le participe : ge…t (gekauft), ge…en pour les verbes forts (gegessen, geflogen), sans ge- après be- et pour -ieren (besichtigt, reserviert), ge- au milieu des séparables (angekommen). Sein lui-même se dit au prétérit : es <b>war</b> warm.",
+              en:"To tell a story, German uses the <b>Perfekt</b>: haben or sein, conjugated in 2nd place, and the participle at the <b>end</b>. <b>Sein</b> for moving or arriving: Anna <b>ist</b> nach Málaga <b>geflogen</b>, Mark <b>ist</b> im Hotel <b>angekommen</b>. <b>Haben</b> for the rest: Anna <b>hat</b> ein Eis <b>gegessen</b>. The participle: ge…t (gekauft), ge…en for strong verbs (gegessen, geflogen), no ge- after be- and for -ieren (besichtigt, reserviert), ge- in the middle of separable verbs (angekommen). Sein itself goes into the simple past: es <b>war</b> warm.",
+              tr:"Anlatırken Almanca <b>Perfekt</b> kullanır: haben ya da sein 2. sırada çekimlenir, ortaç <b>sonda</b> durur. Yer değiştirirken ya da varırken <b>sein</b>: Anna <b>ist</b> nach Málaga <b>geflogen</b>, Mark <b>ist</b> im Hotel <b>angekommen</b>. Geri kalanı için <b>haben</b>: Anna <b>hat</b> ein Eis <b>gegessen</b>. Ortaç: ge…t (gekauft), güçlü fiillerde ge…en (gegessen, geflogen), be- ve -ieren ile ge- yok (besichtigt, reserviert), ayrılabilen fiillerde ge- ortada (angekommen). Sein'in kendisi geçmiş zamanda söylenir: es <b>war</b> warm.",
+              uk:"Щоб розповідати, німецька вживає <b>Perfekt</b>: haben або sein на 2-му місці, дієприкметник у <b>кінці</b>. <b>Sein</b> — коли рухаються чи прибувають: Anna <b>ist</b> nach Málaga <b>geflogen</b>, Mark <b>ist</b> im Hotel <b>angekommen</b>. <b>Haben</b> — для решти: Anna <b>hat</b> ein Eis <b>gegessen</b>. Дієприкметник: ge…t (gekauft), ge…en у сильних дієсловах (gegessen, geflogen), без ge- після be- і в -ieren (besichtigt, reserviert), ge- посередині у відокремлюваних (angekommen). Саме sein кажуть у претериті: es <b>war</b> warm.",
+              fa:"برای تعریف کردن، آلمانی از <b>Perfekt</b> استفاده می‌کند: haben یا sein صرف‌شده در جایگاه دوم و اسم مفعول در <b>آخر</b> جمله. <b>sein</b> برای جابه‌جا شدن یا رسیدن: Anna <b>ist</b> nach Málaga <b>geflogen</b>، Mark <b>ist</b> im Hotel <b>angekommen</b>. <b>haben</b> برای بقیه: Anna <b>hat</b> ein Eis <b>gegessen</b>. اسم مفعول: ge…t (gekauft)، در فعل‌های قوی ge…en (gegessen، geflogen)، بدون ge- بعد از be- و در -ieren (besichtigt، reserviert)، و ge- در وسط فعل‌های جداشدنی (angekommen). خود sein در گذشتهٔ ساده می‌آید: es <b>war</b> warm.",
+              ar:"للحكي تستعمل الألمانية <b>Perfekt</b>: haben أو sein مصرّفًا في المرتبة الثانية، واسم المفعول في <b>آخر</b> الجملة. <b>sein</b> عند التنقل أو الوصول: Anna <b>ist</b> nach Málaga <b>geflogen</b>، Mark <b>ist</b> im Hotel <b>angekommen</b>. <b>haben</b> لما تبقى: Anna <b>hat</b> ein Eis <b>gegessen</b>. اسم المفعول: ge…t (gekauft)، وge…en في الأفعال القوية (gegessen، geflogen)، ومن غير ge- بعد be- ومع -ieren (besichtigt، reserviert)، وge- في الوسط مع الأفعال المنفصلة (angekommen). أما sein نفسه فيُقال في الماضي البسيط: es <b>war</b> warm.",
+              pt:"Para contar, o alemão usa o <b>Perfekt</b>: haben ou sein conjugado em 2º lugar e o particípio no <b>fim</b>. <b>Sein</b> quando alguém se desloca ou chega: Anna <b>ist</b> nach Málaga <b>geflogen</b>, Mark <b>ist</b> im Hotel <b>angekommen</b>. <b>Haben</b> para o resto: Anna <b>hat</b> ein Eis <b>gegessen</b>. O particípio: ge…t (gekauft), ge…en nos verbos fortes (gegessen, geflogen), sem ge- depois de be- e em -ieren (besichtigt, reserviert), ge- no meio dos separáveis (angekommen). O próprio sein vai para o pretérito: es <b>war</b> warm.",
+              pl:"Opowiadając, niemiecki używa <b>Perfekt</b>: haben lub sein odmienione na 2. miejscu, imiesłów na <b>końcu</b>. <b>Sein</b>, gdy ktoś się przemieszcza lub dociera: Anna <b>ist</b> nach Málaga <b>geflogen</b>, Mark <b>ist</b> im Hotel <b>angekommen</b>. <b>Haben</b> w pozostałych przypadkach: Anna <b>hat</b> ein Eis <b>gegessen</b>. Imiesłów: ge…t (gekauft), ge…en w czasownikach mocnych (gegessen, geflogen), bez ge- po be- i w -ieren (besichtigt, reserviert), ge- w środku czasowników rozdzielnych (angekommen). Samo sein mówi się w czasie przeszłym prostym: es <b>war</b> warm.",
+              ru:"Чтобы рассказывать, немецкий использует <b>Perfekt</b>: haben или sein на 2-м месте, причастие в <b>конце</b>. <b>Sein</b> — когда перемещаются или прибывают: Anna <b>ist</b> nach Málaga <b>geflogen</b>, Mark <b>ist</b> im Hotel <b>angekommen</b>. <b>Haben</b> — для остального: Anna <b>hat</b> ein Eis <b>gegessen</b>. Причастие: ge…t (gekauft), ge…en у сильных глаголов (gegessen, geflogen), без ge- после be- и у -ieren (besichtigt, reserviert), ge- в середине у отделяемых (angekommen). Сам sein говорят в претерите: es <b>war</b> warm.",
+              de:"Beim Erzählen benutzt man das <b>Perfekt</b>: haben oder sein an 2. Stelle, das Partizip am <b>Ende</b>. <b>Sein</b> bei Bewegung und Ankunft (Anna ist nach Málaga geflogen), <b>haben</b> sonst (Anna hat ein Eis gegessen). Sein selbst steht im Präteritum: es war warm."},
+  regleEs:   {fr:"Pour raconter un voyage fini, l'espagnol prend le <b>pretérito indefinido</b> : visit<b>é</b>, visit<b>aste</b>, visit<b>ó</b>, visit<b>amos</b>, visit<b>aron</b> ; com<b>í</b>, com<b>ió</b>, com<b>ieron</b>. L'accent compte : <b>visito</b> (je visite) n'est pas <b>visitó</b> (il, elle a visité). Les plus fréquents sont irréguliers : <b>fui, fue, fueron</b> (ir, et aussi ser), <b>hice, hizo, hicieron</b> (hacer). Les verbes en -gar prennent un u à la 1<sup>re</sup> personne : lle<b>gué</b>, ju<b>gué</b>. Le temps qu'il a fait : <b>hizo sol</b>, <b>hizo calor</b>, <b>llovió</b>.",
+              en:"To tell about a finished trip, Spanish uses the <b>pretérito indefinido</b>: visit<b>é</b>, visit<b>aste</b>, visit<b>ó</b>, visit<b>amos</b>, visit<b>aron</b>; com<b>í</b>, com<b>ió</b>, com<b>ieron</b>. The accent matters: <b>visito</b> (I visit) is not <b>visitó</b> (he, she visited). The most frequent ones are irregular: <b>fui, fue, fueron</b> (ir, and ser too), <b>hice, hizo, hicieron</b> (hacer). Verbs in -gar take a u in the 1st person: lle<b>gué</b>, ju<b>gué</b>. The weather: <b>hizo sol</b>, <b>hizo calor</b>, <b>llovió</b>.",
+              tr:"Bitmiş bir yolculuğu anlatırken İspanyolca <b>pretérito indefinido</b> kullanır: visit<b>é</b>, visit<b>aste</b>, visit<b>ó</b>, visit<b>amos</b>, visit<b>aron</b>; com<b>í</b>, com<b>ió</b>, com<b>ieron</b>. Vurgu önemlidir: <b>visito</b> (ziyaret ederim) ile <b>visitó</b> (ziyaret etti) aynı değildir. En sık olanlar düzensizdir: <b>fui, fue, fueron</b> (ir, ayrıca ser), <b>hice, hizo, hicieron</b> (hacer). -gar ile biten fiiller 1. tekil kişide u alır: lle<b>gué</b>, ju<b>gué</b>. Hava: <b>hizo sol</b>, <b>hizo calor</b>, <b>llovió</b>.",
+              uk:"Щоб розповісти про завершену подорож, іспанська вживає <b>pretérito indefinido</b>: visit<b>é</b>, visit<b>aste</b>, visit<b>ó</b>, visit<b>amos</b>, visit<b>aron</b>; com<b>í</b>, com<b>ió</b>, com<b>ieron</b>. Наголос важливий: <b>visito</b> (я відвідую) — не <b>visitó</b> (він, вона відвідав(-ла)). Найчастіші — неправильні: <b>fui, fue, fueron</b> (ir, а також ser), <b>hice, hizo, hicieron</b> (hacer). Дієслова на -gar мають u в 1-й особі: lle<b>gué</b>, ju<b>gué</b>. Погода: <b>hizo sol</b>, <b>hizo calor</b>, <b>llovió</b>.",
+              fa:"برای تعریف یک سفر تمام‌شده، اسپانیایی از <b>pretérito indefinido</b> استفاده می‌کند: visit<b>é</b>، visit<b>aste</b>، visit<b>ó</b>، visit<b>amos</b>، visit<b>aron</b>؛ com<b>í</b>، com<b>ió</b>، com<b>ieron</b>. تکیه مهم است: <b>visito</b> (بازدید می‌کنم) با <b>visitó</b> (بازدید کرد) فرق دارد. پرکاربردترین‌ها بی‌قاعده‌اند: <b>fui، fue، fueron</b> (ir و همچنین ser)، <b>hice، hizo، hicieron</b> (hacer). فعل‌های -gar در اول شخص u می‌گیرند: lle<b>gué</b>، ju<b>gué</b>. هوا: <b>hizo sol</b>، <b>hizo calor</b>، <b>llovió</b>.",
+              ar:"للحديث عن رحلة انتهت تستعمل الإسبانية <b>pretérito indefinido</b>: visit<b>é</b>، visit<b>aste</b>، visit<b>ó</b>، visit<b>amos</b>، visit<b>aron</b>؛ com<b>í</b>، com<b>ió</b>، com<b>ieron</b>. للنبرة أهمية: <b>visito</b> (أزور) ليست <b>visitó</b> (زار، زارت). الأكثر استعمالًا شاذة: <b>fui، fue، fueron</b> (ir وكذلك ser)، <b>hice، hizo، hicieron</b> (hacer). الأفعال المنتهية بـ -gar تأخذ u مع المتكلم: lle<b>gué</b>، ju<b>gué</b>. الطقس: <b>hizo sol</b>، <b>hizo calor</b>، <b>llovió</b>.",
+              pt:"Para contar uma viagem que terminou, o espanhol usa o <b>pretérito indefinido</b>: visit<b>é</b>, visit<b>aste</b>, visit<b>ó</b>, visit<b>amos</b>, visit<b>aron</b>; com<b>í</b>, com<b>ió</b>, com<b>ieron</b>. O acento conta: <b>visito</b> (eu visito) não é <b>visitó</b> (ele, ela visitou). Os mais frequentes são irregulares: <b>fui, fue, fueron</b> (ir, e também ser), <b>hice, hizo, hicieron</b> (hacer). Os verbos em -gar ganham um u na 1ª pessoa: lle<b>gué</b>, ju<b>gué</b>. O tempo que fez: <b>hizo sol</b>, <b>hizo calor</b>, <b>llovió</b>.",
+              pl:"Opowiadając o zakończonej podróży, hiszpański używa <b>pretérito indefinido</b>: visit<b>é</b>, visit<b>aste</b>, visit<b>ó</b>, visit<b>amos</b>, visit<b>aron</b>; com<b>í</b>, com<b>ió</b>, com<b>ieron</b>. Akcent ma znaczenie: <b>visito</b> (zwiedzam) to nie <b>visitó</b> (zwiedził, zwiedziła). Najczęstsze są nieregularne: <b>fui, fue, fueron</b> (ir, a także ser), <b>hice, hizo, hicieron</b> (hacer). Czasowniki na -gar mają u w 1. osobie: lle<b>gué</b>, ju<b>gué</b>. Pogoda: <b>hizo sol</b>, <b>hizo calor</b>, <b>llovió</b>.",
+              ru:"Чтобы рассказать о законченной поездке, испанский использует <b>pretérito indefinido</b>: visit<b>é</b>, visit<b>aste</b>, visit<b>ó</b>, visit<b>amos</b>, visit<b>aron</b>; com<b>í</b>, com<b>ió</b>, com<b>ieron</b>. Ударение важно: <b>visito</b> (я посещаю) — это не <b>visitó</b> (он, она посетил(а)). Самые частые — неправильные: <b>fui, fue, fueron</b> (ir, а также ser), <b>hice, hizo, hicieron</b> (hacer). Глаголы на -gar получают u в 1-м лице: lle<b>gué</b>, ju<b>gué</b>. Погода: <b>hizo sol</b>, <b>hizo calor</b>, <b>llovió</b>.",
+              de:"Um von einer abgeschlossenen Reise zu erzählen, benutzt das Spanische das <b>pretérito indefinido</b>: visit<b>é</b>, visit<b>aste</b>, visit<b>ó</b>, visit<b>amos</b>, visit<b>aron</b>; com<b>í</b>, com<b>ió</b>, com<b>ieron</b>. Der Akzent zählt: <b>visito</b> (ich besichtige) ist nicht <b>visitó</b> (er, sie hat besichtigt). Die häufigsten sind unregelmäßig: <b>fui, fue, fueron</b> (ir, auch ser), <b>hice, hizo, hicieron</b> (hacer). Verben auf -gar bekommen in der 1. Person ein u: lle<b>gué</b>, ju<b>gué</b>. Das Wetter: <b>hizo sol</b>, <b>hizo calor</b>, <b>llovió</b>."},
+  ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"},
+  queHace:   {fr:"Regarde la photo : qu'est-ce qui s'est passé ?", en:"Look at the photo: what happened?", tr:"Fotoğrafa bak: ne oldu?", uk:"Подивися на фото: що сталося?", fa:"به عکس نگاه کن: چه اتفاقی افتاد؟", ar:"انظر إلى الصورة: ماذا حدث؟", pt:"Olhe a foto: o que aconteceu?", pl:"Spójrz na zdjęcie: co się wydarzyło?", ru:"Посмотри на фото: что произошло?", de:"Sieh dir das Foto an: Was ist passiert?"},
+  vraifaux:  {fr:"Regarde la photo : vrai ou faux ?", en:"Look at the photo: true or false?", tr:"Fotoğrafa bak: doğru mu, yanlış mı?", uk:"Подивися на фото: правда чи ні?", fa:"به عکس نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a foto: verdadeiro ou falso?", pl:"Spójrz na zdjęcie: prawda czy fałsz?", ru:"Посмотри на фото: правда или нет?", de:"Sieh dir das Foto an: richtig oder falsch?"},
+  hilfsverb: {fr:"Haben ou sein ? Choisis le bon auxiliaire.", en:"Haben or sein? Choose the right auxiliary.", tr:"Haben mi sein mi? Doğru yardımcı fiili seç.", uk:"Haben чи sein? Обери правильне допоміжне дієслово.", fa:"haben یا sein؟ فعل کمکی درست را انتخاب کن.", ar:"haben أم sein؟ اختر الفعل المساعد الصحيح.", pt:"Haben ou sein? Escolha o auxiliar certo.", pl:"Haben czy sein? Wybierz właściwy czasownik posiłkowy.", ru:"Haben или sein? Выбери правильный вспомогательный глагол.", de:"Haben oder sein? Wähle das richtige Hilfsverb."},
+  partizip:  {fr:"Choisis le bon participe.", en:"Choose the right participle.", tr:"Doğru ortacı seç.", uk:"Обери правильний дієприкметник.", fa:"اسم مفعول درست را انتخاب کن.", ar:"اختر اسم المفعول الصحيح.", pt:"Escolha o particípio certo.", pl:"Wybierz właściwy imiesłów.", ru:"Выбери правильное причастие.", de:"Wähle das richtige Partizip."},
+  satzbau:   {fr:"Le verbe en 2ᵉ place, le participe à la fin : choisis la phrase correcte.", en:"The verb in 2nd place, the participle at the end: choose the correct sentence.", tr:"Fiil 2. sırada, ortaç sonda: doğru cümleyi seç.", uk:"Дієслово на 2-му місці, дієприкметник у кінці: обери правильне речення.", fa:"فعل در جایگاه دوم، اسم مفعول در آخر: جملهٔ درست را انتخاب کن.", ar:"الفعل في المرتبة الثانية واسم المفعول في الآخر: اختر الجملة الصحيحة.", pt:"O verbo em 2º lugar, o particípio no fim: escolha a frase correta.", pl:"Czasownik na 2. miejscu, imiesłów na końcu: wybierz poprawne zdanie.", ru:"Глагол на 2-м месте, причастие в конце: выбери правильное предложение.", de:"Das Verb an 2. Stelle, das Partizip am Ende: Wähle den richtigen Satz."},
+  forma:     {fr:"Choisis la bonne forme du passé.", en:"Choose the right past form.", tr:"Geçmiş zamanın doğru biçimini seç.", uk:"Обери правильну форму минулого часу.", fa:"شکل درست گذشته را انتخاب کن.", ar:"اختر صيغة الماضي الصحيحة.", pt:"Escolha a forma certa do passado.", pl:"Wybierz właściwą formę czasu przeszłego.", ru:"Выбери правильную форму прошедшего времени.", de:"Wähle die richtige Vergangenheitsform."},
+  ordre:     {fr:"Regarde la frise et remets les phrases dans l'ordre : touche d'abord ce qui s'est passé en premier.", en:"Look at the timeline and put the sentences in order: tap first what happened first.", tr:"Zaman şeridine bak ve cümleleri sıraya koy: önce ilk olana dokun.", uk:"Подивися на стрічку подій і розстав речення по порядку: спершу торкнися того, що сталося першим.", fa:"به نوار زمانی نگاه کن و جمله‌ها را مرتب کن: اول روی چیزی بزن که اول اتفاق افتاد.", ar:"انظر إلى الشريط الزمني ورتّب الجمل: المس أولًا ما حدث أولًا.", pt:"Olhe a linha do tempo e coloque as frases em ordem: toque primeiro no que aconteceu primeiro.", pl:"Spójrz na oś czasu i ułóż zdania po kolei: najpierw dotknij tego, co wydarzyło się najpierw.", ru:"Посмотри на ленту событий и расставь предложения по порядку: сначала нажми на то, что произошло первым.", de:"Sieh dir die Zeitleiste an und bring die Sätze in die richtige Reihenfolge: Tippe zuerst auf das, was zuerst passiert ist."},
+  danach:    {fr:"Regarde la frise : qu'est-ce qui s'est passé juste après la photo encadrée ?", en:"Look at the timeline: what happened right after the framed photo?", tr:"Zaman şeridine bak: çerçeveli fotoğraftan hemen sonra ne oldu?", uk:"Подивися на стрічку подій: що сталося одразу після виділеного фото?", fa:"به نوار زمانی نگاه کن: درست بعد از عکسِ قاب‌دار چه اتفاقی افتاد؟", ar:"انظر إلى الشريط الزمني: ماذا حدث مباشرة بعد الصورة المؤطرة؟", pt:"Olhe a linha do tempo: o que aconteceu logo depois da foto destacada?", pl:"Spójrz na oś czasu: co wydarzyło się zaraz po zaznaczonym zdjęciu?", ru:"Посмотри на ленту событий: что произошло сразу после выделенного фото?", de:"Sieh dir die Zeitleiste an: Was ist direkt nach dem markierten Foto passiert?"},
+  zuerst:    {fr:"Regarde la frise : qu'est-ce qui s'est passé en premier ?", en:"Look at the timeline: what happened first?", tr:"Zaman şeridine bak: önce ne oldu?", uk:"Подивися на стрічку подій: що сталося першим?", fa:"به نوار زمانی نگاه کن: اول چه اتفاقی افتاد؟", ar:"انظر إلى الشريط الزمني: ماذا حدث أولًا؟", pt:"Olhe a linha do tempo: o que aconteceu primeiro?", pl:"Spójrz na oś czasu: co wydarzyło się najpierw?", ru:"Посмотри на ленту событий: что произошло первым?", de:"Sieh dir die Zeitleiste an: Was ist zuerst passiert?"},
+  zuletzt:   {fr:"Regarde la frise : qu'est-ce qui s'est passé en dernier ?", en:"Look at the timeline: what happened last?", tr:"Zaman şeridine bak: en son ne oldu?", uk:"Подивися на стрічку подій: що сталося останнім?", fa:"به نوار زمانی نگاه کن: آخر از همه چه اتفاقی افتاد؟", ar:"انظر إلى الشريط الزمني: ماذا حدث في الأخير؟", pt:"Olhe a linha do tempo: o que aconteceu por último?", pl:"Spójrz na oś czasu: co wydarzyło się na końcu?", ru:"Посмотри на ленту событий: что произошло последним?", de:"Sieh dir die Zeitleiste an: Was ist zuletzt passiert?"},
+  wetter:    {fr:"Regarde la photo : quel temps a-t-il fait ?", en:"Look at the photo: what was the weather like?", tr:"Fotoğrafa bak: hava nasıldı?", uk:"Подивися на фото: яка була погода?", fa:"به عکس نگاه کن: هوا چطور بود؟", ar:"انظر إلى الصورة: كيف كان الطقس؟", pt:"Olhe a foto: como estava o tempo?", pl:"Spójrz na zdjęcie: jaka była pogoda?", ru:"Посмотри на фото: какая была погода?", de:"Sieh dir das Foto an: Wie war das Wetter?"},
+  bett:      {fr:"Regarde la photo : qu'est-ce qu'il y a sur le lit ?", en:"Look at the photo: what is on the bed?", tr:"Fotoğrafa bak: yatağın üstünde ne var?", uk:"Подивися на фото: що лежить на ліжку?", fa:"به عکس نگاه کن: روی تخت چه هست؟", ar:"انظر إلى الصورة: ماذا يوجد على السرير؟", pt:"Olhe a foto: o que há na cama?", pl:"Spójrz na zdjęcie: co leży na łóżku?", ru:"Посмотри на фото: что лежит на кровати?", de:"Sieh dir das Foto an: Was liegt auf dem Bett?"},
+  carte:     {fr:"Lis la confirmation de réservation et choisis la bonne réponse.", en:"Read the booking confirmation and choose the right answer.", tr:"Rezervasyon onayını oku ve doğru cevabı seç.", uk:"Прочитай підтвердження бронювання й обери правильну відповідь.", fa:"تأیید رزرو را بخوان و پاسخ درست را انتخاب کن.", ar:"اقرأ تأكيد الحجز واختر الإجابة الصحيحة.", pt:"Leia a confirmação de reserva e escolha a resposta certa.", pl:"Przeczytaj potwierdzenie rezerwacji i wybierz właściwą odpowiedź.", ru:"Прочитай подтверждение бронирования и выбери правильный ответ.", de:"Lies die Buchungsbestätigung und wähle die richtige Antwort."},
+  carteVF:   {fr:"Lis la confirmation de réservation : vrai ou faux ?", en:"Read the booking confirmation: true or false?", tr:"Rezervasyon onayını oku: doğru mu, yanlış mı?", uk:"Прочитай підтвердження бронювання: правда чи ні?", fa:"تأیید رزرو را بخوان: درست یا نادرست؟", ar:"اقرأ تأكيد الحجز: صحيح أم خطأ؟", pt:"Leia a confirmação de reserva: verdadeiro ou falso?", pl:"Przeczytaj potwierdzenie rezerwacji: prawda czy fałsz?", ru:"Прочитай подтверждение бронирования: правда или нет?", de:"Lies die Buchungsbestätigung: richtig oder falsch?"},
+  rezeption: {fr:"Lis la réservation : que dit cette personne à la réception ?", en:"Read the booking: what does this person say at the reception desk?", tr:"Rezervasyonu oku: bu kişi resepsiyonda ne der?", uk:"Прочитай бронювання: що каже ця людина на рецепції?", fa:"رزرو را بخوان: این شخص در پذیرش چه می‌گوید؟", ar:"اقرأ الحجز: ماذا يقول هذا الشخص في الاستقبال؟", pt:"Leia a reserva: o que essa pessoa diz na recepção?", pl:"Przeczytaj rezerwację: co ta osoba mówi w recepcji?", ru:"Прочитай бронирование: что этот человек говорит на ресепшене?", de:"Lies die Buchung: Was sagt diese Person an der Rezeption?"}
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- la donnee (vacances.json) ----------
+let D = null, ETAPES = [];                  // ETAPES : les etapes du json, avec rang (dans le voyage)
+const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+const n = s => D.sujets[s].n;               // l'indice des formes : 2 (il, elle), 4 (ils)
+const etapesDu = v => ETAPES.filter(e => e.voyage === v);
+const img = cle => "vacances/" + cle + ".webp";
+
+// ---------- la langue apprise : les phrases, fabriquees comme dans vacances.py ----------
+// le possessif allemand a l'accusatif : {P:m} -> seinen / ihren / meinen... selon la personne et le genre du sujet
+function possDe(c, k, g){
+  return c.replace(/\{P:(m|f|n|pl)\}/g, (_, genre) => ["mein", "dein", g === "m" ? "sein" : "ihr", "unser", "ihr"][k] + ({m: "en", f: "e", n: "", pl: "e"})[genre]);
+}
+const DE = {
+  bravo: "Sehr gut!", vrai: "Richtig", faux: "Falsch",
+  sujet: (s, debut) => debut ? D.sujets[s].de : D.sujets[s].de.replace(/^Die /, "die "),
+  verbe: e => D.verbes.de[e.de[0]],
+  aux: (e, k) => (DE.verbe(e).aux === "sein" ? D.sein : D.haben)[k],
+  milieu: (e, k, g) => possDe(e.de[1], k, g),
+  // « Anna ist nach Málaga geflogen. » ; S, k, g : une autre personne (« Ich bin nach Málaga geflogen. »)
+  phrase(e, S, k, g){ const s = D.sujets[e.sujet]; k = k == null ? s.n : k; g = g || s.g;
+    return [S || s.de, DE.aux(e, k), DE.milieu(e, k, g), DE.verbe(e).pp].filter(Boolean).join(" ") + "."; },
+  etape: e => DE.phrase(e),
+  // le verbe en 2e place apres un lien ou un moment : « Danach ist sie zum Flughafen gefahren. »
+  v2(debut, e, S){ const s = D.sujets[e.sujet]; return [debut, DE.aux(e, s.n), S || DE.sujet(e.sujet, false), DE.milieu(e, s.n, s.g), DE.verbe(e).pp].filter(Boolean).join(" ") + "."; },
+  // « Sie ist nach Málaga geflogen. » : le pronom du sujet
+  pron: (e, s) => DE.phrase(e, cap(D.sujets[s || e.sujet].pron), n(s || e.sujet), D.sujets[s || e.sujet].g),
+  // une etape dite d'un autre sujet (les leurres) : « Sie hat ihren Rucksack gepackt. »
+  pronDe: (e, s) => { const x = D.sujets[s]; return [cap(x.pron), DE.aux(e, x.n), DE.milieu(e, x.n, x.g), DE.verbe(e).pp].filter(Boolean).join(" ") + "."; },
+  queHace: s => (n(s) === 4 ? "Was haben " : "Was hat ") + DE.sujet(s) + " gemacht?",
+  quoiEnsuite: l => "Und " + l + "?",
+  zuerst: s => (n(s) === 4 ? "Was haben " : "Was hat ") + DE.sujet(s) + " zuerst gemacht?",
+  zuletzt: s => (n(s) === 4 ? "Was haben " : "Was hat ") + DE.sujet(s) + " zum Schluss gemacht?",
+  wetter: "Wie war das Wetter?",
+  bett: "Was liegt auf dem Bett?",
+  // un objet : « der Pass », « die Sandalen » ; dans une phrase : « Auf dem Bett liegt ein Pass. »
+  objet: o => o.de[2] ? "die " + o.de[2] : o.de[0] + " " + o.de[1],
+  surLit: o => o.de[2] ? "Auf dem Bett liegen " + o.de[2] + "." : "Auf dem Bett liegt " + ({der: "ein", die: "eine", das: "ein"})[o.de[0]] + " " + o.de[1] + ".",
+  chambre: r => r.chambre === "doppel" ? "Doppelzimmer" : "Einzelzimmer",
+  nuits: x => x === 1 ? "eine Nacht" : D.nombres.de[x] + " Nächte",
+  reserve: (r, ch, nu) => "Ein " + DE.chambre({chambre: ch || r.chambre}) + " für " + DE.nuits(nu || r.nuits) + ".",
+  qReserve: r => "Was hat " + r.qui + " gebucht?",
+  qNuits: r => "Wie viele Nächte bleibt " + r.qui + " im Hotel?",
+  rNuits: x => cap(DE.nuits(x)) + ".",
+  qPetitdej: r => "Ist das Frühstück bei " + r.qui + " inklusive?",
+  rPetitdej: oui => oui ? "Ja, das Frühstück ist inklusive." : "Nein, das Frühstück ist nicht inklusive.",
+  // « Guten Tag, ich habe ein Doppelzimmer für drei Nächte reserviert. » ; aux : la faute « ich bin ... reserviert »
+  accueil: (r, ch, nu, aux) => "Guten Tag, ich " + (aux || "habe") + " ein " + DE.chambre({chambre: ch || r.chambre}) + " für " + DE.nuits(nu || r.nuits) + " reserviert.",
+  vfChambre: (r, ch) => r.qui + " hat ein " + DE.chambre({chambre: ch}) + " gebucht.",
+  vfNuits: (r, x) => r.qui + " bleibt " + DE.nuits(x) + ".",
+  vfPetitdej: oui => oui ? "Das Frühstück ist inklusive." : "Das Frühstück ist nicht inklusive.",
+  carteTitres: {entete: "Buchungsbestätigung", gast: "Gast", zimmer: "Zimmer", naechte: "Nächte", fruehstueck: "Frühstück", oui: "inklusive", non: "nicht inklusive"}
+};
+const ES = {
+  bravo: "¡Muy bien!", vrai: "Verdadero", faux: "Falso",
+  sujet: (s, debut) => debut ? D.sujets[s].es : D.sujets[s].es.replace(/^La /, "la "),
+  verbe: e => D.verbes.es[e.es[0]],
+  suite: e => (LATAM && e.latam && e.latam.es) || e.es[1],
+  // « Anna voló a Málaga. » ; S, k : une autre personne (« Yo volé a Málaga. »)
+  phrase(e, S, k){ const s = D.sujets[e.sujet]; k = k == null ? s.n : k; return [S || s.es, ES.verbe(e).pret[k], ES.suite(e)].join(" ") + "."; },
+  etape: e => ES.phrase(e),
+  // sans sujet (l'espagnol le tait) : « Voló a Málaga. »
+  pron: (e, s) => cap(ES.verbe(e).pret[n(s || e.sujet)] + " " + ES.suite(e)) + ".",
+  pronDe: (e, s) => cap(ES.verbe(e).pret[n(s)] + " " + ES.suite(e)) + ".",
+  queHace: s => (n(s) === 4 ? "¿Qué hicieron " : "¿Qué hizo ") + ES.sujet(s) + "?",
+  quoiEnsuite: l => "¿Y " + l + "?",
+  zuerst: s => (n(s) === 4 ? "¿Qué hicieron " : "¿Qué hizo ") + ES.sujet(s) + " primero?",
+  zuletzt: s => (n(s) === 4 ? "¿Qué hicieron " : "¿Qué hizo ") + ES.sujet(s) + " al final?",
+  wetter: "¿Qué tiempo hizo?",
+  bett: "¿Qué hay en la cama?",
+  nomEs: o => (LATAM && o.latam) || o.es[1],
+  objet: o => (o.es[2] ? (o.es[0] === "la" ? "las " : "los ") + o.es[2] : o.es[0] + " " + ES.nomEs(o)),
+  surLit: o => "En la cama hay " + (o.es[2] ? (o.es[0] === "la" ? "unas " : "unos ") + o.es[2]
+            : o.es[0] === "las" ? "unas " + o.es[1] : ({el: "un", la: "una"})[o.es[0]] + " " + ES.nomEs(o)) + ".",
+  chambre: r => r.chambre === "doppel" ? "habitación doble" : "habitación individual",
+  nuits: x => x === 1 ? "una noche" : D.nombres.es[x] + " noches",
+  reserve: (r, ch, nu) => "Una " + ES.chambre({chambre: ch || r.chambre}) + " para " + ES.nuits(nu || r.nuits) + ".",
+  qReserve: r => "¿Qué reservó " + r.qui + "?",
+  qNuits: r => "¿Cuántas noches se queda " + r.qui + " en el hotel?",
+  rNuits: x => cap(ES.nuits(x)) + ".",
+  qPetitdej: r => "¿" + r.qui + " tiene el desayuno incluido?",
+  rPetitdej: oui => oui ? "Sí, el desayuno está incluido." : "No, el desayuno no está incluido.",
+  // « Buenas tardes, reservé una habitación doble para tres noches. » ; aux : la faute de personne « reservó »
+  accueil: (r, ch, nu, aux) => "Buenas tardes, " + (aux || "reservé") + " una " + ES.chambre({chambre: ch || r.chambre}) + " para " + ES.nuits(nu || r.nuits) + ".",
+  vfChambre: (r, ch) => r.qui + " reservó una " + ES.chambre({chambre: ch}) + ".",
+  vfNuits: (r, x) => r.qui + " se queda " + ES.nuits(x) + ".",
+  vfPetitdej: oui => oui ? "El desayuno está incluido." : "El desayuno no está incluido.",
+  carteTitres: {entete: "Confirmación de reserva", gast: "Huésped", zimmer: "Habitación", naechte: "Noches", fruehstueck: "Desayuno", oui: "incluido", non: "no incluido"}
+};
+const L = DE_APP ? DE : ES;
+// la suite racontee avec ses liens : « Zuerst hat Anna ihren Koffer gepackt. Dann ist sie zum Flughafen gefahren. »
+// le pronom quand le sujet est celui d'avant, sinon le sujet nomme
+function suiteDite(etapes){
+  return etapes.map((e, i) => {
+    const lien = cap(D.liens[APPRENDRE][i]), meme = i && etapes[i - 1].sujet === e.sujet;
+    if (DE_APP) return DE.v2(lien, e, meme ? D.sujets[e.sujet].pron : DE.sujet(e.sujet, false));
+    return lien + ", " + (meme ? ES.verbe(e).pret[n(e.sujet)] + " " + ES.suite(e) + "." : ES.phrase(e, ES.sujet(e.sujet, false)));
+  }).join(" ");
+}
+
+// ---------- la traduction dans la langue d'interface (Jacques, 3 nov. 2026) ----------
+// APRES la reponse, sous la phrase juste -- jamais avant. En francais, anglais, portugais (et en allemand pour qui
+// apprend l'espagnol), la phrase entiere, fabriquee avec les MEMES choix que la question ; ailleurs, le mot et sa
+// traduction du corpus (gloses.json).
+const TR = (LANGUE === APPRENDRE) ? null : (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && !DE_APP)) ? LANGUE : null;
+const AV_FR = ["ai", "as", "a", "avons", "ont"], ETRE_FR = ["suis", "es", "est", "sommes", "sont"], REFL_FR = ["me", "t'", "s'", "nous", "se"];
+function possTr(c, k, g, l){
+  if (l === "en") return c.replace("{P}", ["my", "your", g === "m" ? "his" : g === "f" ? "her" : "their", "our", "their"][k]);
+  return c.replace(/\{P:(m|f|n|pl)\}/g, (_, genre) => (genre === "pl" ? ["mes", "tes", "ses", "nos", "leurs"] : genre === "f" ? ["ma", "ta", "sa", "notre", "leur"] : ["mon", "ton", "son", "notre", "leur"])[k]);
+}
+// une etape traduite, a la personne k (sujet s, ou je / tu / nous)
+function traduire(e, k, s){
+  if (!TR) return null;
+  const sj = s ? D.sujets[s] : null, g = sj ? sj.g : "m";
+  k = k == null ? sj.n : k;
+  if (TR === "de") return DE.phrase(e, sj ? sj.de : D.personnes.de[k], k, g);
+  const S = sj ? sj[TR] : D.personnes[TR][k];
+  let t;
+  if (TR === "fr"){
+    const [aux, pp, c, refl] = e.fr;
+    let acc = "";
+    if (aux === "etre") acc = k === 3 || k === 4 || g === "pl" ? (g === "f" && k !== 3 ? "es" : "s") : k < 2 ? "(e)" : g === "f" ? "e" : "";
+    const a = aux === "etre" ? ETRE_FR[k] : AV_FR[k];
+    const v = refl ? REFL_FR[k] + (REFL_FR[k].endsWith("'") ? "" : " ") + a : a;
+    t = (S + " " + v).replace(/^Je ([aeiouyh])/i, "J'$1") + " " + pp + acc + " " + possTr(c, k, g, "fr");
+  } else if (TR === "en") t = S + " " + e.en[0] + " " + possTr(e.en[1], k, g, "en");
+  else t = S + " " + e.pt[2][k] + " " + e.pt[1];
+  return cap(t.trim()) + ".";
+}
+const tradEtape = e => traduire(e, null, e.sujet);
+const LIENS_TR = {fr: ["D'abord", "Ensuite", "Puis", "Enfin"], en: ["First", "Then", "After that", "Finally"], pt: ["Primeiro", "Depois", "Em seguida", "Por fim"], de: ["Zuerst", "Dann", "Danach", "Schließlich"]};
+function tradSuite(etapes){
+  if (!TR) return null;
+  if (TR === "de") return etapes.map((e, i) => DE.v2(LIENS_TR.de[i], e, D.sujets[e.sujet].de)).join(" ");
+  const PRON = {fr: {f: "elle", m: "il", pl: "ils"}, en: {f: "she", m: "he", pl: "they"}, pt: {f: "ela", m: "ele", pl: "eles"}}[TR];
+  return etapes.map((e, i) => { let t = tradEtape(e);
+    // le meme sujet qu'avant : son pronom (« Ensuite, il est arrive a l'hotel ») ; la famille garde son nom
+    if (i && etapes[i - 1].sujet === e.sujet && e.sujet !== "familia") t = t.replace(D.sujets[e.sujet][TR], PRON[D.sujets[e.sujet].g]);
+    return LIENS_TR[TR][i] + ", " + t.replace(/^(La|A|The) /, m => m.toLowerCase()); }).join(" ");
+}
+const tradMeteo = f => TR ? D.meteo[f][TR] : null;
+const tradObjet = o => TR ? (TR === "de" ? DE.objet(o) : o[TR]) : null;
+const NUITS_TR = {fr: x => x === 1 ? "une nuit" : ["", "", "deux", "trois", "quatre", "cinq", "six", "sept", "huit"][x] + " nuits",
+                  en: x => x === 1 ? "one night" : ["", "", "two", "three", "four", "five", "six", "seven", "eight"][x] + " nights",
+                  pt: x => x === 1 ? "uma noite" : ["", "", "duas", "três", "quatro", "cinco", "seis", "sete", "oito"][x] + " noites"};
+function tradReserve(ch, nu){
+  if (!TR) return null;
+  if (TR === "de") return DE.reserve({}, ch, nu);
+  return cap(({fr: ch === "doppel" ? "une chambre double" : "une chambre simple", en: ch === "doppel" ? "a double room" : "a single room", pt: ch === "doppel" ? "um quarto duplo" : "um quarto individual"})[TR]
+         + ({fr: " pour ", en: " for ", pt: " por "})[TR] + NUITS_TR[TR](nu)) + ".";
+}
+const tradPetitdej = oui => !TR ? null : TR === "de" ? DE.rPetitdej(oui) : ({fr: oui ? "Oui, le petit-déjeuner est compris." : "Non, le petit-déjeuner n'est pas compris.",
+  en: oui ? "Yes, breakfast is included." : "No, breakfast is not included.", pt: oui ? "Sim, o café da manhã está incluído." : "Não, o café da manhã não está incluído."})[TR];
+const tradAccueil = (ch, nu) => !TR ? null : TR === "de" ? DE.accueil({}, ch, nu) : ({fr: "Bonjour, j'ai réservé ", en: "Hello, I booked ", pt: "Boa tarde, eu reservei "})[TR] + tradReserve(ch, nu).replace(/^./, c => c.toLowerCase());
+let GLOSES = {};
+fetch("vacances/gloses.json?v=1").then(r => r.json()).then(d => { GLOSES = d[APPRENDRE] || {}; }).catch(() => {});
+function glose(m){
+  if (!m) return null;
+  const cle = ((m.genre || "") + " " + m.mot).trim(), g = (GLOSES[cle] || {})[LANGUE];
+  return g ? cle + " — " + g : null;
+}
+const tradMot = w => w ? ((GLOSES[((w.genre || "") + " " + w.mot).trim()] || {})[LANGUE] || null) : null;
+const traduction = t => '<span class="trad" dir="auto">' + t + '</span>';
+
+// ---------- les sons : themes/voix.js (le fichier enregistre, sinon le telephone) ----------
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+let dire = texte => { try { Voix.dire(texte); } catch(e){} };
+// pour visuel/voix_themes.py : les phrases de la decouverte et les objets des valises
+function textesAVoix(){
+  const dec = D.decouverte[DE_APP ? "de" : LATAM ? "latam" : "es"];
+  return ETAPES.map(e => dec[e.cle].texte).concat(Object.values(D.objets).map(o => L.objet(o)), Object.keys(D.meteo).map(f => D.meteo[f][APPRENDRE]));
+}
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const unique = a => Array.from(new Set(a));
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
+// en persan et en arabe, chaque passage en lettres latines s'isole : sinon l'algorithme bidi en retourne les mots
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.replace(/[A-Za-zÀ-ÿñÑßäöüÄÖÜ][A-Za-zÀ-ÿñÑßäöüÄÖÜ0-9:.,()'…\- ]*[A-Za-zÀ-ÿñÑßäöüÄÖÜ0-9)…]/g, m => '<span dir="ltr">' + m + '</span>');
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+let file = [], rang = 0, bons = 0, repondu = false;
+// LE MOT DE LA QUESTION (regle 3 de Jacques : « un mot appris compte partout ») : juger() l'envoie (« reponse »)
+let motQ = null, tradQ = null;
+
+function juger(ok, bonneTexte, phrase){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
+  const tl = tradQ || (TR ? null : glose(motQ));
+  if (tl) m.insertAdjacentHTML("beforeend", traduction(tl));
+  if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad + '</span>');
+  // la phrase affichee se dit EN ENTIER apres chaque reponse (Jacques, « Oui, partout ») ; l'ordre : la suite et ses liens
+  dire(phrase || bonneTexte);
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+// LE MOT CHOISI, QUAND IL EST FAUX (Jacques, 3 nov.) : chaque sorte qui le peut pose tradsChoix {option: traduction}
+// avant ses boutons -- un geste (TRADS), un objet, un temps, une reservation. Rien pour un auxiliaire, un participe,
+// une forme du verbe, un ordre des mots, vrai / faux : pas de traduction sure. ecran() le remet a null.
+let tradsChoix = null, choixFaux = null;
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = o; if (o === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixFaux = o === bonne || !tradsChoix || !tradsChoix[o] ? null : {texte: String(o), trad: tradsChoix[o]};
+      apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// l'ecran d'une question : la consigne, une image (ou rien), l'enonce, les choix, le message
+function ecran(consigne, image, enonce, centre, liste){
+  tradsChoix = null;
+  $("zone").innerHTML = '<p class="consigne">' + isoler(T(consigne)) + '</p>' + (image || "")
+    + (enonce ? '<div class="enonce' + (centre ? " centre" : "") + '">' + cible(enonce) + '</div>' : "")
+    + '<div class="choix' + (centre ? " centre" : "") + (liste ? " liste" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = () => '<span class="trou" id="trou">?</span>';
+const avecTrou = s => cible(s).replace("___", trou());
+const remplir = rep => { const x = $("trou"); if (x) x.textContent = rep; };
+const photo = cle => '<div class="photo"><img alt="" src="' + img(cle) + '"></div>';
+// la frise d'un voyage : les photos dans l'ordre, numerotees ; marque : l'etape encadree
+const friseHTML = (v, marque) => '<div class="frise">' + etapesDu(v).map(e => '<div' + (e.cle === marque ? ' class="marque"' : "") + '><span class="num">' + (e.rang + 1) + '</span><img alt="" src="' + img(e.cle) + '"></div>').join("") + '</div>';
+// la confirmation de reservation, dessinee (les chiffres y sont ecrits ; on ne les dit jamais : les reponses sont en lettres)
+function carteHTML(r){
+  const t = L.carteTitres, ville = r.ville[APPRENDRE];
+  return '<div class="papier" lang="' + APPRENDRE + '"><div class="entete">' + t.entete + '</div><h3>' + r.hotel + ', ' + ville + '</h3><div class="cases">'
+    + '<div class="case"><span class="lab">' + t.gast + '</span><span class="val">' + r.qui + '</span></div>'
+    + '<div class="case"><span class="lab">' + t.zimmer + '</span><span class="val">' + (DE_APP ? DE.chambre(r) : cap(ES.chambre(r).replace("habitación ", ""))) + '</span></div>'
+    + '<div class="case"><span class="lab">' + t.naechte + '</span><span class="val">' + r.nuits + '</span></div>'
+    + '<div class="case"><span class="lab">' + t.fruehstueck + '</span><span class="val">' + (r.petitdej ? t.oui : t.non) + '</span></div></div></div>';
+}
+
+// ---------- les mots du theme (le tirage suit les mots, 3 nov. 2026) ----------
+// A la forme du CORPUS, cles de la progression commune : chaque verbe (son infinitif), les objets des valises (avec
+// leur genre), les mots du temps qu'il a fait, ceux de la reservation, et les liens de l'ordre (zuerst, primero...).
+// Tous au corpus depuis le 6 nov. 2026 (die Sonnencreme, das Einzelzimmer, la habitación doble... : decision fe14b7d).
+// La chambre de la confirmation a son mot, double (doppel) ou simple (einzel), dans les deux langues.
+const MOTS_RESA = {de: [{mot: "Doppelzimmer", genre: "das", resa: "doppel"}, {mot: "Einzelzimmer", genre: "das", resa: "einzel"},
+                        {mot: "Nacht", genre: "die", resa: "nuit"}, {mot: "Frühstück", genre: "das", resa: "petitdej"},
+                        {mot: "reservieren", cat: "verbe", resa: "accueil"}, {mot: "buchen", cat: "verbe", resa: "buchen"}],
+                   es: [{mot: "habitación", genre: "la", resa: "chambre"}, {mot: "habitación doble", genre: "la", resa: "doppel"},
+                        {mot: "habitación individual", genre: "la", resa: "einzel"}, {mot: "noche", genre: "la", resa: "nuit"},
+                        {mot: "desayuno", genre: "el", resa: "petitdej"}, {mot: "reservar", cat: "verbe", resa: "accueil"}]};
+// le mot vise est une chambre (double ou simple) : la confirmation tiree doit etre de cette chambre
+const chambreVisee = w => w && (w.resa === "doppel" || w.resa === "einzel") ? w.resa : null;
+const resasPour = w => D.reservations.filter(x => !chambreVisee(w) || x.chambre === chambreVisee(w));
+let MOTS = null;
+function motsDuTheme(){
+  if (MOTS) return MOTS;
+  MOTS = []; const vus = {};
+  ETAPES.forEach(e => {
+    const mot = e[APPRENDRE][0];
+    if (!vus[mot]){ vus[mot] = {mot, cat: "verbe", etapes: []}; MOTS.push(vus[mot]); }
+    vus[mot].etapes.push(e.cle);
+  });
+  Object.keys(D.objets).forEach(k => { const o = D.objets[k][APPRENDRE]; MOTS.push({mot: o[1], genre: o[0], objet: k}); });
+  // le temps : seulement les faits qu'une image montre (le froid et la neige ne sont que des leurres)
+  ["sonne", "warm", "regen"].forEach(f => MOTS.push(Object.assign({meteo: f}, D.meteo[f]["mot_" + APPRENDRE])));
+  MOTS.push(...MOTS_RESA[APPRENDRE].map(x => Object.assign({}, x)));
+  D.liens[APPRENDRE].forEach((l, i) => MOTS.push({mot: l, cat: "adverbe", lien: i}));
+  return MOTS;
+}
+const motDe = e => motsDuTheme().find(w => w.etapes && w.etapes.includes(e.cle));
+const motObjet = k => motsDuTheme().find(w => w.objet === k);
+const motMeteo = f => motsDuTheme().find(w => w.meteo === f);
+const motResa = r => motsDuTheme().find(w => w.resa === r);
+const motLien = i => motsDuTheme().find(w => w.lien === i);
+const estVerbe = w => !w || !!w.etapes;
+const etapesDe = w => w && w.etapes ? ETAPES.filter(e => w.etapes.includes(e.cle)) : ETAPES;
+// les leurres et les faux d'une etape : les gestes des AUTRES voyages (ce que cette personne n'a pas fait : Mark n'a pas
+// nage, Anna n'est pas allee au musee), et jamais un geste qui se ressemble a l'image (le meme groupe)
+const autresQue = e => ETAPES.filter(x => x.voyage !== e.voyage && x.groupe !== e.groupe);
+// la personne d'un exercice de conjugaison : je / tu / nous (sans image), ou le sujet de l'etape (avec son image)
+function personne(e){
+  const k = hasard([0, 1, 3, n(e.sujet), n(e.sujet)]);
+  if (k === n(e.sujet)) return {k, s: e.sujet, S: L.sujet(e.sujet, true), g: D.sujets[e.sujet].g};
+  return {k, s: null, S: D.personnes[APPRENDRE][k], g: "m"};
+}
+const meteoDe = e => e.meteo || null;
+const FAITS = () => Object.keys(D.meteo);
+
+// ---------- les exercices ----------
+// Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+const EX = {
+  // « Was hat Anna gemacht? » / « ¿Qué hizo Anna? » : la photo, quatre gestes au passe, au bon sujet
+  queHace(w){
+    if (!estVerbe(w)) return false;
+    const e = hasard(etapesDe(w)); motQ = w || motDe(e); tradQ = tradEtape(e);
+    const dit = x => L.pronDe(x, e.sujet);
+    const rep = dit(e);
+    const autres = melanger(unique(autresQue(e).map(dit).filter(t => t !== rep))).slice(0, 3);
+    ecran("queHace", photo(e.cle), L.queHace(e.sujet), true, true);
+    tradsChoix = {}; ETAPES.forEach(x => { tradsChoix[dit(x)] = traduire(x, n(e.sujet), e.sujet) || tradMot(motDe(x)); });
+    boutons($("choix"), melanger([rep, ...autres]), rep, ok => juger(ok, rep, L.etape(e)));
+    return true;
+  },
+  // « Anna hat Souvenirs gekauft. » vrai ou faux -- le faux est un geste d'un autre groupe, dit du meme sujet
+  vraifaux(w){
+    if (w && w.meteo) return meteoVF(w);
+    if (w && w.objet) return litVF(w);
+    if (!estVerbe(w)) return false;
+    const e = hasard(etapesDe(w)); motQ = w || motDe(e); tradQ = tradEtape(e);
+    const juste = L.etape(e), vrai = Math.random() < 0.5;
+    const phrase = vrai ? juste : DE_APP ? DE.phrase(hasard(autresQue(e)), DE.sujet(e.sujet, true), n(e.sujet), D.sujets[e.sujet].g)
+                                        : (x => [ES.sujet(e.sujet, true), ES.verbe(x).pret[n(e.sujet)], ES.suite(x)].join(" ") + ".")(hasard(autresQue(e)));
+    ecran("vraifaux", photo(e.cle), phrase, true);
+    const rep = vrai ? L.vrai : L.faux;
+    boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste));
+    return true;
+  },
+  // ALLEMAND : « Anna ___ nach Málaga geflogen. » ist / hat -- et avec ich, du, wir (bin, habe, bist, hast...)
+  hilfsverb(w){
+    if (!DE_APP || !estVerbe(w)) return false;
+    const cand = etapesDe(w).filter(e => e.aux !== false);
+    if (!cand.length) return false;
+    const e = hasard(cand), q = personne(e), v = DE.verbe(e);
+    motQ = w || motDe(e); tradQ = traduire(e, q.k, q.s);
+    const rep = DE.aux(e, q.k), autre = (v.aux === "sein" ? D.haben : D.sein)[q.k];
+    const k2 = hasard([0, 1, 2, 3].filter(k => D.sein[k] !== D.sein[q.k] && D.haben[k] !== D.haben[q.k]));
+    const opts = unique([rep, autre, D.sein[k2], D.haben[k2]]);
+    const phrase = [q.S, "___", DE.milieu(e, q.k, q.g), v.pp].filter(Boolean).join(" ") + ".";
+    ecran("hilfsverb", q.s ? photo(e.cle) : "", "", true);
+    $("zone").querySelector("#choix").insertAdjacentHTML("beforebegin", '<div class="enonce">' + avecTrou(phrase) + '</div>');
+    boutons($("choix"), melanger(opts), rep, ok => { remplir(rep); juger(ok, rep, phrase.replace("___", rep)); });
+    return true;
+  },
+  // ALLEMAND : « Anna hat die Altstadt ___. » besichtigt / gebesichtigt / besichtigen -- les fautes calculees (vacances.py)
+  partizip(w){
+    if (!DE_APP || !estVerbe(w)) return false;
+    const e = hasard(etapesDe(w)), q = personne(e), v = DE.verbe(e);
+    motQ = w || motDe(e); tradQ = traduire(e, q.k, q.s);
+    const rep = v.pp, opts = unique([rep, ...melanger(v.faux).slice(0, 3)]);
+    if (opts.length < 3) return false;
+    const phrase = [q.S, DE.aux(e, q.k), DE.milieu(e, q.k, q.g), "___"].filter(Boolean).join(" ") + ".";
+    ecran("partizip", q.s ? photo(e.cle) : "", "", true);
+    $("zone").querySelector("#choix").insertAdjacentHTML("beforebegin", '<div class="enonce">' + avecTrou(phrase) + '</div>');
+    boutons($("choix"), melanger(opts), rep, ok => { remplir(rep); juger(ok, rep, phrase.replace("___", rep)); });
+    return true;
+  },
+  // ALLEMAND : « Im Oktober ist Anna nach Málaga geflogen. » / « Im Oktober Anna ist ... » / « ... geflogen nach Málaga. »
+  satzbau(w){
+    if (!DE_APP || !estVerbe(w)) return false;
+    const e = hasard(etapesDe(w)), s = D.sujets[e.sujet], v = DE.verbe(e);
+    const tete = D.voyages[e.voyage].quand.de, S = DE.sujet(e.sujet, false), aux = DE.aux(e, s.n), mil = DE.milieu(e, s.n, s.g);
+    const rep = [tete, aux, S, mil, v.pp].join(" ") + ".";
+    const opts = unique([rep, [tete, S, aux, mil, v.pp].join(" ") + ".", [tete, aux, S, v.pp, mil].join(" ") + "."]);
+    motQ = w || motDe(e);
+    tradQ = TR ? (D.voyages[e.voyage].quand[TR] + ", " + tradEtape(e).replace(/^(La|A|The) /, m => m.toLowerCase())) : null;
+    ecran("satzbau", photo(e.cle), "", true, true);
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep));
+    return true;
+  },
+  // ESPAGNOL : « Anna ___ a Málaga. » volo / vuela / volé / voló -- l'accent, la personne, le present, la forme
+  // reguliere fautive d'un irregulier (« hació », « llegé »)
+  forma(w){
+    if (DE_APP || !estVerbe(w)) return false;
+    const e = hasard(etapesDe(w)), q = personne(e), v = ES.verbe(e), inf = e.es[0];
+    const rep = v.pret[q.k];
+    const leurres = [v.pres[q.k], v.pret[q.k === 0 ? 2 : 0], regulier(inf, q.k, rep), v.pret[hasard([1, 3, 4].filter(k => k !== q.k))]];
+    const opts = unique([rep, ...unique(leurres.filter(x => x && x !== rep)).slice(0, 3)]);
+    if (opts.length < 3) return false;
+    motQ = w || motDe(e); tradQ = traduire(e, q.k, q.s);
+    const phrase = [q.S, "___", ES.suite(e)].join(" ") + ".";
+    ecran("forma", q.s ? photo(e.cle) : "", "", true);
+    $("zone").querySelector("#choix").insertAdjacentHTML("beforebegin", '<div class="enonce">' + avecTrou(phrase) + '</div>');
+    boutons($("choix"), melanger(opts), rep, ok => { remplir(rep); juger(ok, rep, phrase.replace("___", rep)); });
+    return true;
+  },
+  // REMETTRE LE VOYAGE DANS L'ORDRE : la frise du voyage au-dessus (decision du 5 nov. : on montre, on ne teste pas la
+  // memoire), quatre phrases a toucher de la premiere a la derniere. Le mot vise : un verbe de l'une, ou un lien.
+  ordre(w){
+    if (w && !w.etapes && w.lien == null) return false;
+    const voyages = Object.keys(D.voyages).filter(v => !w || !w.etapes || etapesDu(v).some(e => w.etapes.includes(e.cle)));
+    const v = hasard(voyages), toutes = etapesDu(v);
+    let pris = melanger(toutes).slice(0, 4);
+    if (w && w.etapes && !pris.some(e => w.etapes.includes(e.cle))) pris[0] = hasard(toutes.filter(e => w.etapes.includes(e.cle)));
+    pris = unique(pris);
+    while (pris.length < 4){ const x = hasard(toutes); if (!pris.includes(x)) pris.push(x); }
+    const ordre = pris.slice().sort((a, b) => a.rang - b.rang);
+    motQ = w || (Math.random() < 0.3 ? motLien(hasard([0, 1, 2, 3])) : motDe(hasard(pris)));
+    const suite = suiteDite(ordre);
+    tradQ = tradSuite(ordre);
+    $("zone").innerHTML = '<p class="consigne">' + isoler(T("ordre")) + '</p>' + friseHTML(v) + '<div class="ordre" id="ordre"></div><p class="retourMsg" id="msg"></p>';
+    const z = $("ordre"); let k = 0;
+    melanger(pris).forEach(e => {
+      const b = document.createElement("button"); b.type = "button"; b.dataset.rang = ordre.indexOf(e);
+      b.innerHTML = '<i></i><span class="t" lang="' + APPRENDRE + '">' + L.etape(e) + '</span>';
+      b.addEventListener("click", () => {
+        if (repondu || b.classList.contains("pris")) return;
+        if (+b.dataset.rang === k){
+          b.classList.add("pris"); b.querySelector("i").textContent = ++k;
+          if (k === 4){ z.querySelectorAll("button").forEach(x => { x.classList.add("juste"); x.disabled = true; }); juger(true, "", suite); }
+        } else {
+          b.classList.add("faux");
+          z.querySelectorAll("button").forEach(x => { x.disabled = true; x.querySelector("i").textContent = +x.dataset.rang + 1; x.classList.add("pris"); });
+          juger(false, suite);
+        }
+      });
+      z.appendChild(b);
+    });
+    return true;
+  },
+  // LA FRISE, L'ETAPE ENCADREE : « Anna ist zum Flughafen gefahren. Und danach? » -- la photo suivante dans la frise ;
+  // les leurres viennent d'AVANT (rien d'autre n'est « juste apres »)
+  danach(w){
+    if (w && (w.lien === 0 || w.lien === 3)) return premierDernier(w);
+    if (w && !w.etapes && w.lien == null) return false;
+    const cand = (w && w.etapes ? etapesDe(w) : ETAPES).filter(e => e.rang >= 2);
+    if (!cand.length) return false;
+    const r = hasard(cand), d = etapesDu(r.voyage), montree = d[r.rang - 1];
+    const lien = w && w.lien != null ? D.liens[APPRENDRE][w.lien] : hasard([D.liens[APPRENDRE][1], D.liens[APPRENDRE][2]]);
+    const dit = e => e.sujet === montree.sujet ? L.pron(e) : L.etape(e);
+    const leurres = melanger(d.slice(0, r.rang)).slice(0, 3);
+    const rep = dit(r), opts = unique([rep, ...leurres.map(dit)]);
+    if (opts.length < 3) return false;
+    motQ = w || (Math.random() < 0.35 ? motsDuTheme().find(x => x.mot === lien) : motDe(r));
+    tradQ = tradEtape(r);
+    ecran("danach", friseHTML(r.voyage, montree.cle), L.etape(montree) + " " + L.quoiEnsuite(lien), true, true);
+    tradsChoix = {}; [r, ...leurres].forEach(e => { tradsChoix[dit(e)] = tradEtape(e); });
+    const phrase = DE_APP ? DE.v2(cap(lien), r, r.sujet === montree.sujet ? D.sujets[r.sujet].pron : DE.sujet(r.sujet, false))
+                          : cap(lien) + ", " + (r.sujet === montree.sujet ? ES.verbe(r).pret[n(r.sujet)] + " " + ES.suite(r) + "." : ES.phrase(r, ES.sujet(r.sujet, false)));
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, phrase));
+    return true;
+  },
+  // LE TEMPS QU'IL A FAIT : « Wie war das Wetter? » -- la photo ; un seul fait vrai parmi les choix, jamais un douteux
+  wetter(w){
+    if (w && !w.meteo) return false;
+    const cand = ETAPES.filter(e => e.meteo && (!w || e.meteo.vrais.includes(w.meteo)));
+    if (!cand.length) return false;
+    const e = hasard(cand), f = w ? w.meteo : hasard(e.meteo.vrais);
+    const faux = FAITS().filter(x => !e.meteo.vrais.includes(x) && !e.meteo.douteux.includes(x));
+    const rep = D.meteo[f][APPRENDRE], opts = [rep, ...melanger(faux).slice(0, 3).map(x => D.meteo[x][APPRENDRE])];
+    motQ = w || motMeteo(f); tradQ = tradMeteo(f);
+    ecran("wetter", photo(e.cle), L.wetter, true);
+    tradsChoix = {}; FAITS().forEach(x => { tradsChoix[D.meteo[x][APPRENDRE]] = tradMeteo(x); });
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep));
+    return true;
+  },
+  // CE QUI EST SUR LE LIT : la photo de la valise ; un objet visible, et trois de l'autre valise (absents de ce lit)
+  bett(w){
+    if (w && !w.objet) return false;
+    const cles = Object.keys(D.valises).filter(v => !w || D.valises[v].vus.includes(w.objet));
+    if (!cles.length) return false;
+    const v = hasard(cles), autre = Object.keys(D.valises).find(x => x !== v);
+    const k = w ? w.objet : hasard(D.valises[v].vus), o = D.objets[k];
+    const rep = L.objet(o), opts = [rep, ...melanger(D.valises[autre].vus.filter(x => !D.valises[v].vus.includes(x))).slice(0, 3).map(x => L.objet(D.objets[x]))];
+    motQ = w || motObjet(k); tradQ = tradObjet(o);
+    ecran("bett", photo(v), L.bett, true);
+    tradsChoix = {}; Object.values(D.objets).forEach(x => { tradsChoix[L.objet(x)] = tradObjet(x) || tradMot({mot: x[APPRENDRE][1], genre: x[APPRENDRE][0]}); });
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, L.surLit(o)));
+    return true;
+  },
+  // LA RESERVATION : « Was hat Lena gebucht? » -- « Ein Doppelzimmer für drei Nächte. » ; et « Wie viele Nächte...? »
+  buchung(w){
+    if (w && !["doppel", "einzel", "chambre", "nuit", "buchen", "accueil"].includes(w.resa)) return false;
+    if (w && w.resa === "accueil" && DE_APP) return false;       // reservieren : la reception (« ich habe ... reserviert »)
+    const r = hasard(resasPour(w));
+    const autreCh = r.chambre === "doppel" ? "einzel" : "doppel";
+    if (w && w.resa === "nuit" || (!w && Math.random() < 0.35)){
+      const rep = L.rNuits(r.nuits), opts = unique([rep, ...melanger([1, 2, 3, 4, 5, 6, 7].filter(x => x !== r.nuits)).slice(0, 3).map(L.rNuits)]);
+      motQ = motResa("nuit"); tradQ = TR ? cap((TR === "de" ? DE.nuits(r.nuits) : NUITS_TR[TR](r.nuits))) + "." : null;
+      ecran("carte", carteHTML(r), L.qNuits(r), true);
+      boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep));
+      return true;
+    }
+    const nAutre = hasard([r.nuits + 1, Math.max(1, r.nuits - 1) === r.nuits ? r.nuits + 2 : Math.max(1, r.nuits - 1)]);
+    const rep = L.reserve(r), opts = unique([rep, L.reserve(r, autreCh), L.reserve(r, null, nAutre), L.reserve(r, autreCh, nAutre)]);
+    motQ = w || (Math.random() < 0.5 ? motResa(r.chambre) : DE_APP ? motResa("buchen") : motResa(Math.random() < 0.5 ? "accueil" : "chambre"));
+    tradQ = tradReserve(r.chambre, r.nuits);
+    ecran("carte", carteHTML(r), L.qReserve(r), true, true);
+    tradsChoix = {}; [[r.chambre, r.nuits], [autreCh, r.nuits], [r.chambre, nAutre], [autreCh, nAutre]].forEach(([c, x]) => { tradsChoix[L.reserve(r, c, x)] = tradReserve(c, x); });
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep));
+    return true;
+  },
+  // A LA RECEPTION : « Guten Tag, ich habe ein Doppelzimmer für drei Nächte reserviert. » -- et la faute « ich bin »
+  // (« reservó » en espagnol : la personne)
+  rezeption(w){
+    if (w && !["doppel", "einzel", "chambre", "nuit", "accueil"].includes(w.resa)) return false;
+    const r = hasard(resasPour(w));
+    const autreCh = r.chambre === "doppel" ? "einzel" : "doppel", nAutre = r.nuits === 1 ? 2 : hasard([r.nuits - 1, r.nuits + 1]);
+    const rep = L.accueil(r), opts = unique([rep, L.accueil(r, autreCh), L.accueil(r, null, nAutre), L.accueil(r, null, null, DE_APP ? "bin" : "reservó")]);
+    motQ = w || motResa(hasard(["accueil", "accueil", "nuit", r.chambre]));
+    tradQ = tradAccueil(r.chambre, r.nuits);
+    ecran("rezeption", carteHTML(r), "", false, true);
+    tradsChoix = {}; tradsChoix[L.accueil(r, autreCh)] = tradAccueil(autreCh, r.nuits); tradsChoix[L.accueil(r, null, nAutre)] = tradAccueil(r.chambre, nAutre);
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep));
+    return true;
+  },
+  // LE PETIT-DEJEUNER : « Ist das Frühstück bei Lena inklusive? » -- « Ja, ... » / « Nein, ... »
+  petitdej(w){
+    if (w && w.resa !== "petitdej") return false;
+    const r = hasard(D.reservations), rep = L.rPetitdej(r.petitdej);
+    motQ = w || motResa("petitdej"); tradQ = tradPetitdej(r.petitdej);
+    ecran("carte", carteHTML(r), L.qPetitdej(r), true);
+    tradsChoix = {}; tradsChoix[L.rPetitdej(!r.petitdej)] = tradPetitdej(!r.petitdej);
+    boutons($("choix"), [L.rPetitdej(true), L.rPetitdej(false)], rep, ok => juger(ok, rep));
+    return true;
+  },
+  // LA RESERVATION, VRAI OU FAUX : la chambre, les nuits ou le petit-dejeuner, un fait change une fois sur deux
+  carteVF(w){
+    if (w && !["doppel", "einzel", "chambre", "nuit", "petitdej", "buchen", "accueil"].includes(w.resa)) return false;
+    const r = hasard(resasPour(w));
+    const quoi = w ? ({doppel: "chambre", einzel: "chambre", chambre: "chambre", buchen: "chambre", accueil: "chambre", nuit: "nuit", petitdej: "petitdej"})[w.resa] : hasard(["chambre", "nuit", "petitdej"]);
+    const vrai = Math.random() < 0.5;
+    let phrase, juste;
+    if (quoi === "chambre"){ juste = L.vfChambre(r, r.chambre); phrase = vrai ? juste : L.vfChambre(r, r.chambre === "doppel" ? "einzel" : "doppel"); }
+    else if (quoi === "nuit"){ juste = L.vfNuits(r, r.nuits); phrase = vrai ? juste : L.vfNuits(r, r.nuits === 1 ? 2 : hasard([r.nuits - 1, r.nuits + 1])); }
+    else { juste = L.vfPetitdej(r.petitdej); phrase = vrai ? juste : L.vfPetitdej(!r.petitdej); }
+    motQ = w || motResa(quoi === "chambre" ? (Math.random() < 0.5 ? r.chambre : DE_APP ? "buchen" : "accueil") : quoi);
+    tradQ = quoi === "petitdej" ? tradPetitdej(r.petitdej) : null;
+    ecran("carteVF", carteHTML(r), phrase, true);
+    const rep = vrai ? L.vrai : L.faux;
+    boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste));
+    return true;
+  }
+};
+// ESPAGNOL : la forme reguliere qu'un apprenant fabrique pour un irregulier (« hació », « llegé », « jugé ») ; rien
+// quand elle est juste (le verbe est regulier) ou qu'elle n'a pas de sens (ir : pas de radical)
+function regulier(inf, k, juste){
+  const refl = inf.endsWith("se"), base = refl ? inf.slice(0, -2) : inf, rad = base.slice(0, -2), fin = base.slice(-2);
+  if (!rad) return null;
+  const f = (fin === "ar" ? ["é", "aste", "ó", "amos", "aron"] : ["í", "iste", "ió", "imos", "ieron"])[k];
+  const t = (refl ? ["me", "te", "se", "nos", "se"][k] + " " : "") + rad + f;
+  return t === juste ? null : t;
+}
+// « Was hat Anna zuerst gemacht? » / « ... zum Schluss? » -- la frise entiere ; les leurres loin du bout demande
+function premierDernier(w){
+  const der = w ? w.lien === 3 : Math.random() < 0.4, v = hasard(Object.keys(D.voyages)), d = etapesDu(v);
+  const r = der ? d[d.length - 1] : d[0], s = d[0].sujet;
+  const dit = e => e.sujet === s ? L.pron(e) : L.etape(e);
+  const loin = der ? d.slice(0, d.length - 2) : d.slice(2);
+  const rep = dit(r), opts = unique([rep, ...melanger(loin).slice(0, 3).map(dit)]);
+  motQ = w || motLien(der ? 3 : 0); tradQ = tradEtape(r);
+  ecran(der ? "zuletzt" : "zuerst", friseHTML(v), der ? L.zuletzt(s) : L.zuerst(s), true, true);
+  tradsChoix = {}; d.forEach(e => { tradsChoix[dit(e)] = tradEtape(e); });
+  const lien = cap(D.liens[APPRENDRE][der ? 3 : 0]);
+  const phrase = DE_APP ? DE.v2(lien, r, DE.sujet(r.sujet, false)) : lien + ", " + ES.phrase(r, ES.sujet(r.sujet, false));
+  boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, phrase));
+  return true;
+}
+// « Es hat geregnet. » vrai ou faux sur la photo ; le faux n'est jamais un fait douteux
+function meteoVF(w){
+  const cand = ETAPES.filter(e => e.meteo && e.meteo.vrais.includes(w.meteo));
+  if (!cand.length) return false;
+  const e = hasard(cand), vrai = Math.random() < 0.5;
+  const faux = FAITS().filter(x => !e.meteo.vrais.includes(x) && !e.meteo.douteux.includes(x));
+  const phrase = D.meteo[vrai ? w.meteo : hasard(faux)][APPRENDRE];
+  motQ = w; tradQ = tradMeteo(w.meteo);
+  ecran("vraifaux", photo(e.cle), phrase, true);
+  const rep = vrai ? L.vrai : L.faux;
+  boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, D.meteo[w.meteo][APPRENDRE]));
+  return true;
+}
+// « Auf dem Bett liegt ein Hut. » vrai ou faux ; le faux : un objet de l'autre valise
+function litVF(w){
+  const cles = Object.keys(D.valises).filter(v => D.valises[v].vus.includes(w.objet));
+  if (!cles.length) return false;
+  const v = hasard(cles), autre = Object.keys(D.valises).find(x => x !== v), vrai = Math.random() < 0.5;
+  const absents = D.valises[autre].vus.filter(x => !D.valises[v].vus.includes(x));
+  const o = D.objets[w.objet], phrase = L.surLit(vrai ? o : D.objets[hasard(absents)]);
+  motQ = w; tradQ = tradObjet(o);
+  ecran("vraifaux", photo(v), phrase, true);
+  const rep = vrai ? L.vrai : L.faux;
+  boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, L.surLit(o)));
+  return true;
+}
+// les sortes de la langue apprise
+const SORTES = Object.keys(EX).filter(x => DE_APP ? x !== "forma" : !["hilfsverb", "partizip", "satzbau"].includes(x));
+// pour tests/themes_illustres.py : remettre dans l'ordre se resout en quatre gestes, pas en un
+function testerOrdre(){
+  const z = $("ordre"); if (!z) return "";
+  const bs = Array.from(z.querySelectorAll("button")).sort((a, b) => a.dataset.rang - b.dataset.rang);
+  bs.forEach(b => b.click());
+  return bs.map(b => b.querySelector(".t").textContent).join(" | ");
+}
+
+// ---------- la decouverte : les trois voyages, les valises, l'hotel ----------
+const ONGLETS = {de: {anna: "Anna", mark: "Mark", familia: "Die Familie", valises: "Koffer", hotel: "Hotel"},
+                 es: {anna: "Anna", mark: "Mark", familia: "La familia", valises: "Maletas", hotel: "Hotel"}};
+function decouvrir(){
+  $("compte").textContent = ""; $("barre").style.width = "0%";
+  const dec = D.decouverte[DE_APP ? "de" : LATAM ? "latam" : "es"];
+  const z = $("zone");
+  z.innerHTML = '<div class="onglets" role="tablist">' + Object.keys(ONGLETS[APPRENDRE]).map(j => '<button type="button" role="tab" data-j="' + j + '" lang="' + APPRENDRE + '" dir="ltr">' + ONGLETS[APPRENDRE][j] + '</button>').join("") + '</div>'
+              + '<div id="page"></div><p class="regle">' + isoler(T(DE_APP ? "regleDe" : "regleEs")) + '</p>';
+  const montrer = e => {
+    const ph = dec[e.cle], t = tradEtape(e) || (TR ? null : glose(motDe(e)));
+    const temps = e.meteo ? e.meteo.vrais.map(f => D.meteo[f][APPRENDRE]).join(" ") : "";
+    $("frise").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.cle === e.cle));
+    $("fiche").innerHTML = photo(e.cle) + '<div class="ligne"><div><div class="dit">' + cible(ph.texte) + '</div>' + (t ? traduction(t) : "")
+                         + (temps ? '<div class="temps">' + cible(temps) + '</div>' : "") + '</div>'
+                         + '<button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>';
+    $("ecoute").addEventListener("click", () => dire(ph.texte + (temps ? " " + temps : "")));
+    dire(ph.texte);
+  };
+  const voyage = v => {
+    $("page").innerHTML = '<p class="consigne">' + isoler(T("intro")) + '</p><div class="enonce centre">' + cible(D.voyages[v].titre[APPRENDRE]) + '</div><div class="fiche" id="fiche"></div><div class="frise" id="frise"></div>';
+    const fr = $("frise");
+    etapesDu(v).forEach(e => {
+      const b = document.createElement("button"); b.type = "button"; b.dataset.cle = e.cle;
+      b.setAttribute("aria-label", dec[e.cle].texte);
+      b.innerHTML = '<span class="num">' + (e.rang + 1) + '</span><img alt="" src="' + img(e.cle) + '">';
+      b.addEventListener("click", () => montrer(e));
+      fr.appendChild(b);
+    });
+    // la fiche s'ouvre sur la premiere etape, sans parler : le son ne vient que d'un geste
+    const garde = dire; dire = () => {}; montrer(etapesDu(v)[0]); dire = garde;
+  };
+  const valises = () => {
+    $("page").innerHTML = '<p class="consigne">' + isoler(T("introValise")) + '</p>' + Object.keys(D.valises).map(v =>
+      '<div class="fiche">' + photo(v) + '<div class="puces" data-v="' + v + '"></div></div>').join("") + '<p class="retourMsg" id="msg"></p>';
+    document.querySelectorAll(".puces").forEach(p => D.valises[p.dataset.v].vus.forEach(k => {
+      const o = D.objets[k], b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = L.objet(o);
+      b.addEventListener("click", () => { const t = tradObjet(o) || tradMot({mot: o[APPRENDRE][1], genre: o[APPRENDRE][0]});
+        $("msg").className = "retourMsg"; $("msg").innerHTML = '<span class="phrase">' + cible(L.surLit(o)) + '</span>' + (t ? traduction(t) : ""); dire(L.objet(o)); });
+      p.appendChild(b);
+    }));
+  };
+  const hotel = () => {
+    const r = D.reservations[0], dit = L.accueil(r);
+    $("page").innerHTML = '<p class="consigne">' + isoler(T("introHotel")) + '</p>' + photo("mark-hotel") + carteHTML(r)
+      + '<div class="fiche"><div class="ligne"><div><div class="dit">' + cible(dit) + '</div>' + (tradAccueil(r.chambre, r.nuits) ? traduction(tradAccueil(r.chambre, r.nuits)) : "")
+      + '<div class="temps">' + cible(L.rPetitdej(r.petitdej)) + '</div></div><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div></div>';
+    $("ecoute").addEventListener("click", () => dire(dit));
+  };
+  const onglet = j => {
+    z.querySelectorAll(".onglets button").forEach(b => b.setAttribute("aria-selected", b.dataset.j === j));
+    if (j === "valises") valises(); else if (j === "hotel") hotel(); else voyage(j);
+  };
+  z.querySelectorAll(".onglets button").forEach(b => b.addEventListener("click", () => onglet(b.dataset.j)));
+  onglet("anna");
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; try { Voix.arreter(); } catch(e){} demarrer(); };
+}
+
+// LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : recopie de familia.html et journee.html (visuel/THEMES-ILLUSTRES.md :
+// ces fonctions sont identiques d'un theme a l'autre). La cle d'une question compte aussi ses choix : la meme photo de
+// valise avec un autre objet a trouver est une autre question.
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  const choix = Array.from(z.querySelectorAll("#choix button, .ordre button .t")).map(b => b.textContent).sort().join(",");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + choix + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",") + "|" + (z.querySelector(".marque img") || {getAttribute: () => ""}).getAttribute("src");
+}
+// jamais deux documents du meme genre de suite (themes/tirage.js, 8 nov. 2026)
+carteHTML = Tirage.doc("reservation", carteHTML);
+function montrer(){
+  repondu = false; $("suite").hidden = true; choixFaux = null;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let k = 0; k < 25; k++){
+        motQ = null; tradQ = null; sorteCourante = so;
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion()) && !(strict && Tirage.docRepete($("zone")))) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let k = 0; k < 25; k++){           // la meme sorte, avec une question fraiche
+      motQ = null; tradQ = null; sorteCourante = derniereSorte;
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
+      motQ = null; tradQ = null; sorteCourante = so;
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = null;
+  for (const j of Tirage.ordreDocs(file, rang)){ if (fait) break;
+    fait = essai(file[j], true);
+    if (fait && j !== rang){ Tirage.docReporte(file[rang]); [file[rang], file[j]] = [file[j], file[rang]]; }
+  }
+  if (!fait) fait = essai(file[rang], false);
+  vus.add(cleQuestion()); derniereSorte = fait; Tirage.docPose($("zone"));
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>' + boutonsFin();
+  brancherEncore();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
+}
+// plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + '</div>' + boutonsFin();
+  brancherEncore();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+// « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+const boutonsFin = () => '<div class="bas">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("vacances/vacances.json?v=1").then(r => r.json()).then(d => {
+  D = d;
+  const rangs = {};
+  ETAPES = d.etapes.map(e => Object.assign({}, e, {rang: rangs[e.voyage] = (e.voyage in rangs) ? rangs[e.voyage] + 1 : 0}));
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>

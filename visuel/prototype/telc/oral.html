@@ -1,0 +1,1459 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>L’oral du telc A2·B1</title>
+<!--
+  L'ORAL DU TELC DEUTSCH A2·B1 AVEC MARK ET ANNA -- oral.html, ouverte par sprechen.js (la tuile « Sp » de telc.html) (6 nov. 2026, session « telc : Parler + examen blanc », decision de
+  Jacques du 6 nov. : le telc en quatre sessions paralleles). Le FORMAT de l'epreuve (preparation-examens/FORMAT-TELC.md,
+  releve dans l'Uebungstest gratuit du telc) : environ 15 minutes, a deux, deux examinateurs, sans image et sans
+  preparation, sauf une minute de reflexion avant la partie 3.
+    Teil 1A  Sich vorstellen        ≈ 1,5 min    } 6 points (critere I, 1A et 1B ensemble)
+    Teil 1B  Anschlussfragen        ≈ 1 min      }
+    Teil 2   Gemeinsam etwas planen ≈ 5 min a deux, 12 points
+    Teil 3   Meinung begruenden     ≈ 5 min a deux, 12 points
+  plus trois criteres d'ensemble sur 10 : prononciation et intonation, correction, etendue. Total : 60.
+  TOUS LES TEXTES SONT A NOUS : sujets, repliques, reponses modeles. Rien du telc n'est repris, sauf le format.
+
+  RIEN AU-DESSUS DU B1 (retour d'une testeuse B1 du 6 nov., journal 86595a5 : des reponses C1 dans un oral B1
+  decouragent). Chaque exercice a deux reponses modeles, une A2 et une B1, et aucune autre. tests/telc_oral.js le
+  verifie.
+
+  LE MOTEUR EST CELUI DE L'ORAL DU DTZ (visuel/prototype/dtz-oral.html sur main, organisation decidee le 4 nov. :
+  « Meme organisation pour le futur bloc telc ») : la liste des sections, une page par exercice avec ses points,
+  le recapitulatif de fin de section, l'examen complet. Copie, pas reecriture : SECTIONS, exercice(), points(),
+  apres(), recap(), fin(), resultatSection(), l'etat ETAT (autre CLE_ETAT), le micro, la voix, la video.
+  Ce qui est propre au telc : TROIS sections, comme les trois parties de l'epreuve (1A et 1B dans la premiere, demande
+  de l'assemblage du 6 nov.), les sujets (trois a planifier, cinq a debattre : l'avis argumente est le coeur de la page,
+  retour de Marina du 1er nov.), les juges
+  p3a / p3b (l'avis, la reaction), Mark qui defend le cote oppose, la minute de reflexion, le bareme sur 60.
+
+  LES VIDEOS ET LES VOIX DU DTZ SONT REPRISES TELLES QUELLES (aucune depense) : les repliques qui gardent le meme
+  texte allemand gardent leur id et donc leur clip (../dtz/video/<id>.mp4) ou leur voix (../dtz/voix/<id>.mp3) :
+  l'accueil d'Anna, la presentation de Mark, les quatre questions de la partie 1B, les reactions de Mark et les trois
+  verdicts d'Anna. Les repliques nouvelles (id « t_... ») passent par la voix du telephone ; leurs fichiers, s'ils
+  sont un jour produits, se poseront au meme endroit sans changer de code (accord de Jacques necessaire).
+
+  LE VERDICT EST UNE ESTIMATION, et la page le dit : l'app mesure le contenu (critere I), pas la prononciation, la
+  correction ni l'etendue (criteres II a IV), qu'elle suppose au meme niveau.
+
+  Parametres : lang (fr, en ; les autres langues retombent sur le francais), nuit=1, depuis=telc (le « ‹ » de la liste
+  ramene a telc.html), examen=blanc (ouverte par l'examen blanc de telc.html : l'examen complet tout de suite, puis
+  retour au verdict), rapide=1 (minute de reflexion raccourcie, pour les essais).
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;--turq:#14807A;
+  --verre:rgba(255,255,255,.9);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--bulle-mark:#FFF6E6;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;--turq:#4FC7BD;
+  --verre:rgba(20,36,50,.9);--bord:rgba(255,255,255,.14);--carte:#22384A;--bulle-mark:#3A3222}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(12px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+[dir="rtl"] .retour{transform:scaleX(-1)} /* la fleche du retour pointe vers la droite en fa / ar */
+.titre{flex:1;font-weight:900;font-size:18px;line-height:1.2}
+.titre small{display:block;font-size:12px;font-weight:800;color:var(--gris);letter-spacing:.04em;text-transform:uppercase}
+.chrono{font-weight:900;font-size:15px;background:var(--verre);border:1px solid var(--bord);border-radius:999px;padding:6px 12px;font-variant-numeric:tabular-nums;flex:0 0 auto}
+.chrono[hidden]{display:none}
+.etapes{max-width:560px;margin:-4px auto 8px;display:flex;justify-content:center;gap:2px}
+.etapes[hidden]{display:none}
+.point{width:30px;height:30px;border:0;background:none;padding:0;cursor:pointer;display:grid;place-items:center}
+.point::before{content:"";width:12px;height:12px;border-radius:50%;border:2px solid var(--turq);box-sizing:border-box}
+.point.fait::before{background:var(--turq)}
+.point.ici::before{width:16px;height:16px;border-color:var(--ambre);background:var(--ambre)}
+.sections{display:flex;flex-direction:column;gap:8px}
+.sections > b{font-size:13px;color:var(--gris)}
+.section{display:flex;align-items:center;gap:12px;width:100%;text-align:start;border:1px solid rgba(76,86,107,.25);background:var(--carte);color:var(--encre);border-radius:14px;padding:10px 12px;font:inherit;cursor:pointer}
+.section .num{min-width:30px;height:30px;padding:0 6px;border-radius:15px;background:var(--turq);color:#fff;display:grid;place-items:center;font-weight:900;font-size:13px;flex:0 0 auto}
+html.nuit .section .num{color:#0E1C26}
+.section .nomsec{flex:1;display:flex;flex-direction:column;line-height:1.3}
+.section .nomsec b{font-size:16px}
+.section .nomsec small{font-size:13px;color:var(--gris);font-weight:700}
+.section .etat{font-weight:900;color:var(--gris);font-size:14px;white-space:nowrap}
+.section .etat.fait{color:var(--vert);font-size:18px}
+.puces span.ici{border-color:var(--ambre);box-shadow:0 0 0 2px var(--ambre) inset}
+.verdict .question{font-weight:800;line-height:1.45;margin:0 0 6px}
+.verdict .micro-info{text-align:start;margin-top:8px}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:12px}
+h2{margin:0;font-size:19px;font-weight:900}
+.partie{font-size:12px;font-weight:900;color:var(--ambre-f);letter-spacing:.05em;text-transform:uppercase;margin:0}
+.qui{display:flex;gap:10px;align-items:flex-start}
+.qui img{width:54px;height:54px;border-radius:50%;object-fit:cover;object-position:50% 30%;flex:0 0 auto;background:var(--carte);border:2px solid var(--bord)}
+.bulle{flex:1;background:var(--carte);border-radius:4px 16px 16px 16px;padding:10px 12px;line-height:1.45}
+.bulle .nom{font-size:12px;font-weight:900;color:var(--gris);margin-bottom:2px}
+.bulle .de{font-weight:800;font-size:16px}
+.bulle .fr{font-size:13px;color:var(--gris);margin-top:4px}
+.bulle.mark{background:var(--bulle-mark)}
+.bulle.mark .texte{font-size:15px}
+.bulle button.hp,.modele button.hp{border:0;background:none;color:var(--turq);font:800 13px var(--police);padding:4px 0 0;margin-inline-end:10px;cursor:pointer}
+.feuille{background:var(--carte);border:2px dashed rgba(76,86,107,.35);border-radius:14px;padding:10px 12px}
+.feuille b{display:block;font-size:13px;color:var(--gris);margin-bottom:6px}
+.feuille .de{font-weight:800;line-height:1.45;margin-bottom:6px}
+.puces{display:flex;flex-wrap:wrap;gap:6px}
+.puces span{background:var(--verre);border:1px solid rgba(76,86,107,.25);border-radius:999px;padding:5px 11px;font-weight:800;font-size:14px}
+.puces span.ok{background:var(--vert);border-color:var(--vert);color:#fff}
+.aide{border-inline-start:4px solid var(--ambre);padding:4px 10px;font-size:14px;line-height:1.45}
+.aide .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.aide .tags span{border:1px solid var(--ambre);color:var(--encre);border-radius:999px;padding:5px 10px;font:700 13px var(--police)}
+.clip{position:relative;width:100%;aspect-ratio:4/5;max-height:56vh;border-radius:16px;overflow:hidden;background:var(--carte)}
+.clip video{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block}
+.clip .lancer{position:absolute;inset:0;margin:auto;width:72px;height:72px;border-radius:50%;border:0;background:rgba(28,36,48,.6);color:#fff;font-size:30px;cursor:pointer}
+.clip .lancer[hidden]{display:none}
+.micro-zone{display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 0}
+.micro{width:76px;height:76px;border-radius:50%;border:0;background:linear-gradient(180deg,#E25B4C,#B83A2D);color:#fff;font-size:30px;cursor:pointer;box-shadow:0 8px 20px rgba(184,58,45,.3)}
+.micro.ecoute{animation:pouls 1.2s ease-in-out infinite}
+@keyframes pouls{50%{transform:scale(1.08)}}
+.micro-info{font-weight:800;font-size:14px;color:var(--gris);text-align:center}
+.entendu{background:var(--carte);border-radius:12px;padding:10px 12px;font-style:italic;line-height:1.45;min-height:2.6em;width:100%}
+.entendu:empty::before{content:"…";color:var(--gris)}
+textarea{width:100%;min-height:90px;border-radius:12px;border:1px solid rgba(76,86,107,.35);padding:10px;font:600 15px var(--police);background:var(--carte);color:var(--encre)}
+.lien{border:0;background:none;color:var(--turq);font:800 14px var(--police);cursor:pointer;padding:2px}
+.verdict{border-radius:14px;padding:12px;background:var(--carte)}
+.verdict h3{margin:0 0 6px;font-size:18px}
+.niv{display:inline-block;border-radius:999px;padding:2px 10px;font-weight:900;color:#fff;margin-inline-start:6px;font-size:14px}
+.niv.B1{background:var(--vert)} .niv.A2{background:var(--ambre-f)} .niv.moins{background:var(--gris)}
+html.nuit .niv.A2,html.nuit .niv.B1,html.nuit .niv.moins{color:#0E1C26}
+.crit{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.4}
+.crit li::before{content:"·";display:inline-block;width:1.3em;font-weight:900;color:var(--gris)}
+.crit li.ok::before{content:"✓";color:var(--vert)}
+.limite{font-size:12px;color:var(--gris);margin:8px 0 0}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.actions button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.tableau{width:100%;border-collapse:collapse;font-size:14px}
+.tableau th,.tableau td{padding:6px 4px;border-bottom:1px solid rgba(76,86,107,.18);text-align:start;vertical-align:top}
+.tableau th{font-size:12px;color:var(--gris);font-weight:900;text-transform:uppercase;letter-spacing:.04em}
+.tableau td.pts,.tableau th.pts{text-align:end;white-space:nowrap;font-weight:800}
+.tableau tr.total td{font-weight:900;border-bottom:0}
+details.boite{background:var(--carte);border-radius:14px;padding:10px 12px;line-height:1.45;font-size:14px}
+details.boite summary{font-weight:900;cursor:pointer;font-size:15px}
+details.boite p{margin:8px 0 0}
+details.boite ul{margin:6px 0 0;padding-inline-start:20px}
+.modele{border-top:1px solid rgba(76,86,107,.18);padding-top:8px;margin-top:8px}
+.modele .tag{display:inline-block;border-radius:999px;padding:1px 9px;font-weight:900;color:#fff;font-size:13px}
+.modele .tag.A2{background:var(--ambre-f)} .modele .tag.B1{background:var(--vert)}
+html.nuit .modele .tag{color:#0E1C26}
+.modele .de{font-weight:700;line-height:1.5;margin:6px 0 2px}
+.modele .tr{font-size:13px;color:var(--gris)}
+.reflexion{display:flex;flex-direction:column;align-items:center;gap:8px;background:var(--carte);border-radius:14px;padding:14px}
+.reflexion .reste{font-size:34px;font-weight:900;font-variant-numeric:tabular-nums}
+.sujet{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px;font-weight:800;color:var(--gris)}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite[hidden]{display:none}
+/* « Suivant », « Commencer » tout en bas ET au-dessus de tout (la regle des scenes, Jacques, 3 nov. 2026) */
+.suite{z-index:5000}
+.suite:disabled{opacity:.45;cursor:default}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+[lang="de"]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button" aria-label="Retour">‹</button>
+  <div class="titre"><small id="titrePetit"></small><span id="titreGrand"></span></div>
+  <div class="chrono" id="chrono" dir="ltr" hidden></div></div>
+<div class="etapes" id="etapes" hidden></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<script src="../themes/zoom.js?v=4"></script>
+<script>
+// LES AUTRES LANGUES D'INTERFACE (7 nov. 2026) : le dictionnaire anglais -> langue de langues/<langue>.js
+// (outils/langues.js), lu ci-dessous par u(), tr(), trRep() et trModele().
+(() => {
+  const l = ((new URLSearchParams(location.search).get("lang")) || "fr").toLowerCase().split(/[-_]/)[0];
+  if (["tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l)) document.write('<script src="langues/' + l + '.js?v=1"><\/script>');
+})();
+</script>
+<script>
+"use strict";
+const Q = new URLSearchParams(location.search);
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+// L'interface : francais et anglais dans la page (une testeuse anglophone B1 l'essaie la premiere, 6 nov.) ; les
+// autres langues d'interface (7 nov.) par le dictionnaire anglais -> langue de langues/<langue>.js (TELC_DICO), le
+// francais pour ce qui y manquerait.
+const LANG = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l) ? l : "fr")((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]);
+const DICO = (LANG !== "fr" && LANG !== "en" && window.TELC_DICO) || null;
+function dico(en){
+  if (!DICO || en == null) return null;
+  if (Array.isArray(en)){ const r = en.map(dico); return r.every(x => x != null) ? r : null; }
+  return Object.prototype.hasOwnProperty.call(DICO, en) ? DICO[en] : null;
+}
+// la traduction d'une replique [qui, de, fr, en] et d'une reponse modele [de, fr, en]
+const trRep = r => LANG === "en" ? r[3] : LANG === "fr" ? r[2] : (dico(r[3]) || r[2]);
+const trModele = d => LANG === "en" ? d[2] : LANG === "fr" ? d[1] : (dico(d[2]) || d[1]);
+document.documentElement.lang = LANG;
+document.documentElement.dir = (LANG === "fa" || LANG === "ar") ? "rtl" : "ltr";
+const DANS_APP = window.parent && window.parent !== window;
+const BLANC = Q.get("examen") === "blanc";
+const DEPUIS_TELC = BLANC || Q.get("depuis") === "telc";
+const RAPIDE = Q.get("rapide") === "1";
+const MEDIAS = "../dtz/";          // les clips et les voix de l'oral du DTZ, repris tels quels
+// UN SEUL INTERRUPTEUR. La consigne du chef (6 nov.) permet de reprendre les videos du DTZ ; le plan de l'assemblage
+// (PLAN-DTZ-TELC.md 3.5) ne les reprenait pas. false : toutes les repliques passent par la voix du telephone.
+const MEDIAS_DTZ = true;
+function parler(type, extra){ try{ if (DANS_APP) parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+// vers la page du bloc telc, en gardant la langue et le mode nuit
+function versTelc(extra){
+  const p = new URLSearchParams();
+  ["apprendre", "lang", "nuit", "rapide"].forEach(k => { if (Q.get(k)) p.set(k, Q.get(k)); });
+  for (const k in (extra || {})) p.set(k, extra[k]);
+  location.href = "telc.html?" + p.toString();
+}
+
+const IMG = { anna: "../descripcion/Anna-visage.webp", mark: "../descripcion/Mark-visage.webp" };
+
+// ---------------------------------------------------------------- l'interface (fr, en)
+const UI = {
+fr: {
+  retour: "Retour", titre: "L’oral du telc A2·B1", petit: "telc A2·B1 · Parler", petit_blanc: "telc A2·B1 · examen blanc",
+  nom_anna: "Anna · examinatrice", nom_mark: "Mark · l’autre candidat", nom_coach: "Mark · ton coach",
+  h_accueil: "L’oral du telc A2·B1, en répétition",
+  format_titre: "L’épreuve en bref",
+  format_intro: "Environ 15 minutes, à deux, devant deux examinateurs. Pas d’image, pas de préparation, sauf une minute de réflexion avant la partie 3.",
+  f_partie: "Partie", f_duree: "Durée", f_points: "Points",
+  f_1a: "1A · Se présenter", f_1b: "1B · Répondre aux questions", f_2: "2 · Planifier ensemble", f_3: "3 · Donner son avis",
+  f_1a_d: "≈ 1 min 30 chacun", f_1b_d: "≈ 1 min chacun", f_2_d: "≈ 5 min à deux", f_3_d: "≈ 5 min à deux",
+  f_1_p: "6 (1A + 1B)", f_criteres: "Prononciation et intonation, correction, richesse de la langue : sur toute l’épreuve", f_criteres_p: "3 × 10",
+  f_total: "Total de l’oral", f_resultat: "Au telc, l’oral compte pour un quart du résultat (60 points sur 240). Le B1 demande 70 % du total, 70 % dans trois des quatre compétences et au moins 40 % dans chacune.",
+  sections_titre: "Les trois parties",
+  accueil_note: "Touche une section pour t’y entraîner seule, ou fais l’examen complet : les trois parties à la suite, sans aide, puis l’estimation d’Anna. Ici, tout est au niveau A2 ou B1, rien au-dessus.",
+  examen_complet: "Examen complet", examen_btn: "▶ Examen complet",
+  exo_n: "Exercice {n} sur {sur}", section_n: "Section {n}",
+  s1: "Se présenter et répondre", s2: "Planifier ensemble", s3: "Donner son avis",
+  ex_ecoute: "Écoute Mark", ex_atoi: "À toi", ex_q1: "Première question", ex_q2: "Deuxième question",
+  ex_avis: "Ton avis", ex_reaction: "Réponds à Mark",
+  ecouter_anna: "Écouter Anna", ecouter_mark: "Écouter Mark", continuer: "Continuer", commencer: "Commencer",
+  reecouter: "🔊 Réécouter", traduire: "Traduire",
+  pour_aider: "Pour t’aider :", attend: "La partie en bref : ce qu’on te demande, le temps, les points",
+  modeles_titre: "Les réponses modèles (A2 et B1)", modele_niv: "Modèle {n}",
+  modele_1a_note: "La même présentation, aux deux niveaux. Le modèle B1 est celui que Mark vient de dire.",
+  sujet: "Sujet : {s}", autre_sujet: "Autre sujet ↻",
+  cons_p1a: "À toi : présente-toi, environ une minute et demie", cons_p1b: "À toi : réponds en quelques phrases",
+  cons_p3a: "À toi : donne ton avis et justifie-le", cons_p3b: "À toi : réponds à Mark",
+  cons_tour: "À toi : réponds à Mark ({p})",
+  reflexion_titre: "Une minute pour réfléchir", reflexion_note: "Comme à l’examen : pense à ton avis, à deux raisons et à un exemple. Pas de notes à lire.",
+  pret: "Je suis prêt", reste: "{s} s",
+  parler: "Parler", ecrire_place: "⌨ Écrire ma réponse à la place", valider: "Valider ma réponse ✓", reflechis: "Je réfléchis…",
+  ecoute_tic: "Je t’écoute · {t} · touche ■ pour finir", micro_ko: "Le micro ne répond pas ici. Écris ta réponse ci-dessous.",
+  placeholder: "Écris ici ce que tu dirais, en allemand…",
+  entendu: "Ce que j’ai entendu :", rien: "(rien entendu)",
+  retour_anna: "Le retour d’Anna", retour_mark: "Le retour de Mark", recommencer_ex: "🎙 Recommencer cet exercice",
+  pas_a2: "pas encore A2",
+  limite: "Ce que l’app ne juge pas : la justesse de ta grammaire et ta prononciation. Au vrai examen, deux examinateurs les écoutent ; ici, réécoute les modèles et compare.",
+  fin_section: "Fin de la section", recap: "Ton récapitulatif", ta_reponse: "Ta réponse :", pas_fait: "Pas encore fait : touche son point en haut pour y aller.",
+  toute_section: "Toute la section", toute_conv: "Toute la conversation", toute_disc: "Toute la discussion",
+  refaire_section: "Refaire la section", toutes: "Toutes les sections", suivante: "Section suivante",
+  verdict_anna: "Le verdict d’Anna",
+  v_partie: "Partie", v_points: "Points (estimation)",
+  v_t1: "1 · Se présenter et répondre", v_t2: "2 · Planifier ensemble", v_t3: "3 · Donner son avis",
+  v_contenu: "Contenu (partie I)", v_oral: "L’oral entier, estimé",
+  v_note: "Sur 60, l’oral compte la partie I (le contenu, 30 points) et trois critères sur 10 : prononciation, correction, richesse de la langue. L’app ne mesure que le contenu ; elle suppose les trois autres au même niveau, d’où « × 2 ». Au telc, l’oral atteint le B1 à partir de 42 points sur 60 (70 %) ; 24 points (40 %) pour l’A2.",
+  refaire_examen: "Refaire l’examen", terminer: "Terminer",
+  vers_blanc: "Voir le résultat de l’examen blanc",
+  blanc_note: "Ton oral est enregistré. Le résultat de l’examen blanc t’attend, avec les quatre compétences.",
+  // les criteres des juges
+  c_points: "Points de la feuille traités : {n} sur {sur}{liste}", c_duree: "Une vraie présentation : {n} mots entendus (visé : {v} et plus)",
+  c_liens: "Des phrases liées (weil, denn, deshalb, dass…)", c_phrases: "Plusieurs phrases : {n} mots (visé : {v} et plus)",
+  c_raison: "Une raison ou une suite (weil, denn, deshalb, dass…)", c_detail: "Un détail concret (zum Beispiel, oft, am liebsten…)",
+  c_tours: "Tu as répondu aux 5 points de la feuille : {n} sur 5", c_propose: "Tu proposes (Wir könnten…, Wie wäre es…, Ich schlage vor…) : {n}",
+  c_reagis: "Tu réagis à ce que je dis (Gute Idee, lieber…, einverstanden) : {n}", c_questions: "Tu me poses des questions (Was meinst du ?, Hast du…?) : {n}",
+  c_raisons: "Tu donnes des raisons (weil, denn, deshalb…) : {n}",
+  c_t_phrase: "Tu réponds en une phrase ({n} mots)", c_t_propose: "Tu proposes (Wir könnten…, Wie wäre es…, Ich bringe…)",
+  c_t_reagis: "Tu réagis (Gute Idee, lieber…, einverstanden)", c_t_question: "Tu poses une question à Mark (Was meinst du ?, … oder …?)",
+  c_t_raison: "Tu donnes une raison (weil, denn, deshalb…)",
+  c_avis: "Un avis clair (Ich finde…, Meiner Meinung nach…)", c_avis_raison: "Au moins une raison (weil, denn, deshalb…)",
+  c_exemple: "Un exemple (zum Beispiel, bei mir…, ich kenne…)", c_nuance: "Tu vois aussi l’autre côté (aber, natürlich, andererseits…)",
+  c_avis_long: "Assez développé : {n} mots (visé : {v} et plus)",
+  c_reaction: "Tu réagis à Mark (Da hast du recht, aber… / Das sehe ich anders…)", c_defends: "Tu défends ton avis avec une raison (weil, denn…)",
+  c_conclus: "Tu conclus ou tu proposes un compromis (trotzdem, vielleicht, beides…)", c_reac_long: "Assez développé : {n} mots (visé : {v} et plus)"
+},
+en: {
+  retour: "Back",
+  titre: "The telc A2·B1 speaking test", petit: "telc A2·B1 · Speaking", petit_blanc: "telc A2·B1 · mock exam",
+  nom_anna: "Anna · examiner", nom_mark: "Mark · the other candidate", nom_coach: "Mark · your coach",
+  h_accueil: "The telc A2·B1 speaking test: a rehearsal",
+  format_titre: "The test at a glance",
+  format_intro: "About 15 minutes, in pairs, with two examiners. No picture and no preparation time, except one minute to think before part 3.",
+  f_partie: "Part", f_duree: "Time", f_points: "Points",
+  f_1a: "1A · Introduce yourself", f_1b: "1B · Answer questions", f_2: "2 · Plan together", f_3: "3 · Give your opinion",
+  f_1a_d: "≈ 1.5 min each", f_1b_d: "≈ 1 min each", f_2_d: "≈ 5 min together", f_3_d: "≈ 5 min together",
+  f_1_p: "6 (1A + 1B)", f_criteres: "Pronunciation and intonation, accuracy, range of language: across the whole test", f_criteres_p: "3 × 10",
+  f_total: "Speaking total", f_resultat: "In the telc, speaking is a quarter of the result (60 points out of 240). B1 requires 70% overall, 70% in three of the four skills and at least 40% in each.",
+  sections_titre: "The three parts",
+  accueil_note: "Tap a section to practise it on its own, or take the full exam: all three parts in a row, without help, then Anna's estimate. Everything here is at A2 or B1 level, nothing above.",
+  examen_complet: "Full exam", examen_btn: "▶ Full exam",
+  exo_n: "Exercise {n} of {sur}", section_n: "Section {n}",
+  s1: "Introduce yourself and answer", s2: "Plan together", s3: "Give your opinion",
+  ex_ecoute: "Listen to Mark", ex_atoi: "Your turn", ex_q1: "First question", ex_q2: "Second question",
+  ex_avis: "Your opinion", ex_reaction: "Answer Mark",
+  ecouter_anna: "Listen to Anna", ecouter_mark: "Listen to Mark", continuer: "Continue", commencer: "Start",
+  reecouter: "🔊 Listen again", traduire: "Translate",
+  pour_aider: "To help you:", attend: "This part at a glance: the task, the time, the points",
+  modeles_titre: "Model answers (A2 and B1)", modele_niv: "{n} model",
+  modele_1a_note: "The same introduction at both levels. The B1 model is the one Mark has just given.",
+  sujet: "Topic: {s}", autre_sujet: "Another topic ↻",
+  cons_p1a: "Your turn: introduce yourself, about a minute and a half", cons_p1b: "Your turn: answer in a few sentences",
+  cons_p3a: "Your turn: give your opinion and explain it", cons_p3b: "Your turn: answer Mark",
+  cons_tour: "Your turn: answer Mark ({p})",
+  reflexion_titre: "One minute to think", reflexion_note: "As in the exam: think of your opinion, two reasons and one example. No notes to read from.",
+  pret: "I'm ready", reste: "{s} s",
+  parler: "Speak", ecrire_place: "⌨ Type my answer instead", valider: "Submit my answer ✓", reflechis: "Thinking…",
+  ecoute_tic: "Listening · {t} · tap ■ to finish", micro_ko: "The microphone isn't available here. Type your answer below.",
+  placeholder: "Type here what you would say, in German…",
+  entendu: "What I heard:", rien: "(nothing heard)",
+  retour_anna: "Anna's feedback", retour_mark: "Mark's feedback", recommencer_ex: "🎙 Try this exercise again",
+  pas_a2: "not yet A2",
+  limite: "What the app doesn't assess: your grammar and your pronunciation. In the real exam, two examiners listen for them; here, listen to the models again and compare.",
+  fin_section: "End of section", recap: "Your summary", ta_reponse: "Your answer:", pas_fait: "Not done yet: tap its dot at the top to go there.",
+  toute_section: "The whole section", toute_conv: "The whole conversation", toute_disc: "The whole discussion",
+  refaire_section: "Redo the section", toutes: "All sections", suivante: "Next section",
+  verdict_anna: "Anna's verdict",
+  v_partie: "Part", v_points: "Points (estimate)",
+  v_t1: "1 · Introduce yourself and answer", v_t2: "2 · Plan together", v_t3: "3 · Give your opinion",
+  v_contenu: "Content (criterion I)", v_oral: "The whole speaking test, estimated",
+  v_note: "Out of 60, speaking counts criterion I (content, 30 points) and three criteria out of 10: pronunciation, accuracy, range of language. The app only measures content; it assumes the other three are at the same level, hence “× 2”. In the telc, speaking reaches B1 from 42 points out of 60 (70%); 24 points (40%) for A2.",
+  refaire_examen: "Retake the exam", terminer: "Finish",
+  vers_blanc: "See the mock exam result",
+  blanc_note: "Your speaking test has been saved. The mock exam result is waiting for you, with all four skills.",
+  c_points: "Points on the sheet covered: {n} of {sur}{liste}", c_duree: "A real introduction: {n} words heard (target: {v} or more)",
+  c_liens: "Linked sentences (weil, denn, deshalb, dass…)", c_phrases: "Several sentences: {n} words (target: {v} or more)",
+  c_raison: "A reason or a follow-up (weil, denn, deshalb, dass…)", c_detail: "A concrete detail (zum Beispiel, oft, am liebsten…)",
+  c_tours: "You answered the 5 points on the sheet: {n} of 5", c_propose: "You make suggestions (Wir könnten…, Wie wäre es…, Ich schlage vor…): {n}",
+  c_reagis: "You react to what I say (Gute Idee, lieber…, einverstanden): {n}", c_questions: "You ask me questions (Was meinst du?, Hast du…?): {n}",
+  c_raisons: "You give reasons (weil, denn, deshalb…): {n}",
+  c_t_phrase: "You answer in a full sentence ({n} words)", c_t_propose: "You make a suggestion (Wir könnten…, Wie wäre es…, Ich bringe…)",
+  c_t_reagis: "You react (Gute Idee, lieber…, einverstanden)", c_t_question: "You ask Mark a question (Was meinst du?, … oder …?)",
+  c_t_raison: "You give a reason (weil, denn, deshalb…)",
+  c_avis: "A clear opinion (Ich finde…, Meiner Meinung nach…)", c_avis_raison: "At least one reason (weil, denn, deshalb…)",
+  c_exemple: "An example (zum Beispiel, bei mir…, ich kenne…)", c_nuance: "You also see the other side (aber, natürlich, andererseits…)",
+  c_avis_long: "Developed enough: {n} words (target: {v} or more)",
+  c_reaction: "You react to Mark (Da hast du recht, aber… / Das sehe ich anders…)", c_defends: "You defend your opinion with a reason (weil, denn…)",
+  c_conclus: "You conclude or suggest a compromise (trotzdem, vielleicht, beides…)", c_reac_long: "Developed enough: {n} words (target: {v} or more)"
+}};
+function u(cle, v){ let s = (UI[LANG] && UI[LANG][cle]) || dico(UI.en[cle]) || UI.fr[cle] || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+const tr = o => (o && (o[LANG] || dico(o.en) || o.fr)) || "";
+
+// Mark, coach (texte seul, dans la langue d'interface : sa voix enregistree parle allemand).
+const COACH = {
+  accueil: { fr: "Salut ! Moi, c’est Mark. Au telc Deutsch A2·B1, l’oral se passe à deux, devant deux examinateurs, sans image et sans préparation : environ 15 minutes en tout. On le répète ensemble : Anna joue l’examinatrice, moi l’autre candidat. Toi, tu parles pour toi, à voix haute.",
+    en: "Hi! I'm Mark. In the telc Deutsch A2·B1, the speaking test is done in pairs, in front of two examiners, with no picture and no preparation time: about 15 minutes in all. Let's rehearse it together: Anna plays the examiner, I'm the other candidate. You speak for yourself, out loud." },
+  p1a: { fr: "Partie 1A : se présenter, environ une minute et demie. Les mots-clés de la feuille t’aident, tu n’es pas obligé de tous les traiter. Je passe en premier. Ensuite, regarde les deux réponses modèles : la même présentation au niveau A2, puis au niveau B1.",
+    en: "Part 1A: introduce yourself, for about a minute and a half. The keywords on the sheet help you, but you don't have to cover them all. I'll go first. Then look at the two model answers: the same introduction at A2 level, then at B1 level." },
+  p1b: { fr: "Partie 1B : Anna te pose une ou deux questions sur ce que tu as dit. Réponds en plusieurs phrases, avec une raison (« weil… », « deshalb… ») : une réponse d’un mot ne montre rien.",
+    en: "Part 1B: Anna asks you one or two questions about what you said. Answer in several sentences, with a reason (“weil…”, “deshalb…”): a one-word answer shows nothing." },
+  p2: { fr: "Partie 2 : on prépare quelque chose ensemble. Je fais une proposition sur chaque point de la feuille ; toi, tu réagis et tu proposes aussi. Dire « non » avec une raison, c’est très bien. On n’est pas obligés d’être d’accord à la fin.",
+    en: "Part 2: we plan something together. I make a suggestion for each point on the sheet; you react and make suggestions too. Saying “no” with a reason is great. We don't have to agree in the end." },
+  p3: { fr: "Partie 3 : ton avis. Anna pose une question qui a deux côtés. Tu as une minute pour réfléchir, puis tu dis ce que tu penses, pourquoi, avec un exemple. Moi, je défends l’autre côté, exprès : réponds-moi. Tu n’as pas à me convaincre.",
+    en: "Part 3: your opinion. Anna asks a question with two sides. You get one minute to think, then you say what you think, why, with an example. I'll argue the other side, on purpose: answer me. You don't have to convince me." },
+  fin: { fr: "Bravo d’être allé jusqu’au bout ! Le résultat ci-dessous est une estimation : l’app entend ce que tu dis, pas comment tu le dis.",
+    en: "Well done for going all the way! The result below is an estimate: the app hears what you say, not how you say it." }
+};
+// Ce que l'examinateur attend, par section (le bareme : FORMAT-TELC.md). A2 et B1 seulement.
+// Le groupe de Marina (retour du 1er nov.) : le cahier du commerce a de bons exercices, mais n'explique pas le
+// format. D'ou, en tete de chaque section : ce qu'on demande, le temps, les points, puis comment s'y prendre.
+const ATTEND = {
+  p1a: { fr: ["Ce qu’on te demande : te présenter seul, environ une minute et demie, sans lire. Une feuille de mots-clés est posée sur la table.", "La partie 1 (1A et 1B ensemble) vaut 6 points pour le contenu.", "B1 : tu traites la plupart des mots-clés, tu relies tes phrases (weil, deshalb, aber) et tu donnes des détails.", "A2 : des phrases simples et courtes sur les points principaux (nom, pays, ville, travail, famille) suffisent.", "Parle sans lire : la feuille aide, elle n’est pas un texte."],
+    en: ["The task: introduce yourself on your own, for about a minute and a half, without reading. A sheet of keywords is on the table.", "Part 1 (1A and 1B together) is worth 6 points for content.", "B1: you cover most of the keywords, link your sentences (weil, deshalb, aber) and give details.", "A2: short, simple sentences on the main points (name, country, city, work, family) are enough.", "Speak without reading: the sheet helps, it isn't a script."] },
+  p1b: { fr: ["Ce qu’on te demande : répondre à une ou deux questions de l’examinatrice sur ce que tu viens de dire, environ une minute.", "Toujours la partie 1 : l’examinatrice rebondit sur ce que tu as dit.", "B1 : tu réponds en plusieurs phrases, avec une raison ou un exemple.", "A2 : une réponse courte mais complète, en phrase.", "Si tu n’as pas compris : « Können Sie die Frage bitte wiederholen? » est permis."],
+    en: ["The task: answer one or two of the examiner's questions about what you've just said, for about a minute.", "Still part 1: the examiner follows up on what you said.", "B1: you answer in several sentences, with a reason or an example.", "A2: a short but complete answer, in a sentence.", "If you didn't understand: “Können Sie die Frage bitte wiederholen?” is allowed."] },
+  p2: { fr: ["Ce qu’on te demande : organiser quelque chose avec l’autre candidat, environ cinq minutes à deux. La feuille donne la situation et quelques points à discuter.", "La partie 2 vaut 12 points. On ne note pas un exposé : on note la conversation.", "B1 : tu proposes en justifiant, tu acceptes ou tu refuses avec une raison, tu fais une contre-proposition, tu poses des questions.", "A2 : des propositions simples et des réactions courtes (Gute Idee! Lieber … ; Wann? Wo?).", "Vous n’êtes pas obligés de tomber d’accord. Laisse aussi parler l’autre."],
+    en: ["The task: organise something with the other candidate, about five minutes together. The sheet gives the situation and a few points to discuss.", "Part 2 is worth 12 points. It isn't a presentation that's marked: it's the conversation.", "B1: you make suggestions with reasons, accept or refuse with a reason, make counter-suggestions and ask questions.", "A2: simple suggestions and short reactions (Gute Idee! Lieber …; Wann? Wo?).", "You don't have to agree. Let your partner speak too."] },
+  p3: { fr: ["Ce qu’on te demande : donner ton avis sur une question qui a deux côtés, le justifier et en discuter avec l’autre candidat, environ cinq minutes à deux.", "La partie 3 vaut 12 points. Tu as une minute pour réfléchir avant de commencer.", "B1 : un avis clair, deux raisons, un exemple de ta vie, une réponse à l’objection de l’autre, et une conclusion.", "A2 : un avis simple avec une raison (Ich finde …, weil …).", "Le but n’est pas de convaincre l’autre, mais de défendre ton avis et de réagir au sien."],
+    en: ["The task: give your opinion on a question with two sides, justify it and discuss it with the other candidate, about five minutes together.", "Part 3 is worth 12 points. You get one minute to think before you start.", "B1: a clear opinion, two reasons, an example from your life, an answer to your partner's objection, and a conclusion.", "A2: a simple opinion with a reason (Ich finde …, weil …).", "The aim isn't to convince your partner, but to defend your opinion and react to theirs."] }
+};
+const AIDE = {
+  p1a: ["Ich heiße …", "Ich bin … Jahre alt.", "Ich komme aus …", "Ich wohne seit … in …", "Ich arbeite als … / Ich suche Arbeit.", "Ich spreche …", "In meiner Freizeit …"],
+  p1b: ["… weil …", "Deshalb …", "Zum Beispiel …", "Am liebsten …"],
+  p2: ["Wir könnten …", "Wie wäre es mit …?", "Ich schlage vor, …", "Gute Idee!", "Lieber …, weil …", "Was meinst du?", "Einverstanden."],
+  p3: ["Ich finde, …", "Meiner Meinung nach …", "…, weil …", "Zum Beispiel …", "Da hast du recht, aber …", "Das sehe ich anders, weil …", "Trotzdem …"]
+};
+const STICHWORTE = ["Name", "Alter", "Herkunft", "Wohnort", "Familie", "Beruf / Arbeit", "Sprachen", "Freizeit"];
+
+// ---------------------------------------------------------------- les repliques [qui, allemand, francais, anglais]
+// Les id repris du DTZ gardent EXACTEMENT leur texte allemand : c'est ce qui permet de rejouer leur clip ou leur voix.
+const L = {
+  // Partie 1 : les repliques du DTZ, valables telles quelles au telc
+  a_bienvenue: ["anna", "Guten Tag und herzlich willkommen! Ich führe heute das Gespräch. Wir beginnen mit einer kurzen Vorstellung. Auf dem Blatt stehen ein paar Stichwörter. Herr Garnier, fangen Sie bitte an.",
+    "Bonjour et bienvenue ! C’est moi qui mène l’entretien aujourd’hui. Nous commençons par une courte présentation. Sur la feuille, il y a quelques mots-clés. Monsieur Garnier, commencez, s’il vous plaît.",
+    "Hello and welcome! I'm leading the conversation today. We'll start with a short introduction. There are a few keywords on the sheet. Mr Garnier, please begin."],
+  m_vorstellung: ["mark", "Gern. Mein Name ist Mark Garnier, ich bin fünfundzwanzig Jahre alt. Ich komme aus Montréal, das ist in Kanada. Mein Vater ist Frankokanadier und meine Mutter ist Deutsche, deshalb spreche ich Französisch, Englisch und Deutsch. Seit ein paar Monaten wohne ich in Berlin, in einer kleinen Wohnung. Im Moment mache ich ein Praktikum in einem Büro. Meine Familie lebt noch in Kanada, aber wir telefonieren jede Woche.",
+    "Volontiers. Je m’appelle Mark Garnier, j’ai vingt-cinq ans. Je viens de Montréal, au Canada. Mon père est franco-canadien et ma mère est allemande : c’est pour ça que je parle français, anglais et allemand. J’habite à Berlin depuis quelques mois, dans un petit appartement. En ce moment, je fais un stage dans un bureau. Ma famille vit encore au Canada, mais on se téléphone chaque semaine.",
+    "Sure. My name is Mark Garnier, I'm twenty-five. I come from Montréal, in Canada. My father is French-Canadian and my mother is German, so I speak French, English and German. I've been living in Berlin for a few months, in a small flat. At the moment I'm doing an internship in an office. My family still lives in Canada, but we call each other every week."],
+  a_danke_mark: ["anna", "Vielen Dank. Und jetzt Sie, bitte. Stellen Sie sich vor.",
+    "Merci beaucoup. Et maintenant vous, s’il vous plaît. Présentez-vous.",
+    "Thank you very much. And now you, please. Introduce yourself."],
+  a_frage_familie: ["anna", "Danke schön. Erzählen Sie doch noch etwas über Ihre Familie. Wer gehört dazu, und wo leben die anderen?",
+    "Merci. Parlez-nous encore un peu de votre famille. Qui en fait partie, et où vivent les autres ?",
+    "Thank you. Tell us a bit more about your family. Who belongs to it, and where do the others live?"],
+  a_frage_beruf: ["anna", "Danke schön. Was machen Sie beruflich, oder was möchten Sie später in Deutschland arbeiten?",
+    "Merci. Que faites-vous comme métier, ou quel travail aimeriez-vous faire plus tard en Allemagne ?",
+    "Thank you. What do you do for a living, or what work would you like to do in Germany later?"],
+  a_frage_freizeit: ["anna", "Danke schön. Und was machen Sie gern in Ihrer Freizeit? Erzählen Sie ein bisschen.",
+    "Merci. Et que faites-vous volontiers pendant votre temps libre ? Racontez un peu.",
+    "Thank you. And what do you like doing in your free time? Tell us a little."],
+  a_frage_deutsch: ["anna", "Danke schön. Warum lernen Sie Deutsch, und was ist für Sie dabei am schwierigsten?",
+    "Merci. Pourquoi apprenez-vous l’allemand, et qu’est-ce qui est le plus difficile pour vous ?",
+    "Thank you. Why are you learning German, and what do you find hardest about it?"],
+  // Les reactions de Mark (DTZ, valables pour toute planification)
+  m_ok: ["mark", "Gute Idee, einverstanden!", "Bonne idée, d’accord !", "Good idea, agreed!"],
+  m_ok2: ["mark", "Okay, das passt mir.", "D’accord, ça me va.", "Okay, that works for me."],
+  m_nein: ["mark", "Hm, stimmt, da hast du recht. Dann machen wir es so.", "Hum, c’est vrai, tu as raison. Alors on fait comme ça.", "Hm, true, you're right. Let's do it that way, then."],
+  m_nachfrage: ["mark", "Wie meinst du das? Sag ruhig, was du denkst.", "Tu veux dire quoi ? Dis-moi ce que tu en penses.", "What do you mean? Go ahead, tell me what you think."],
+  m_ende: ["mark", "Super, dann haben wir alles geplant. Ich freue mich schon!", "Super, alors on a tout prévu. J’ai déjà hâte !", "Great, so we've planned everything. I'm already looking forward to it!"],
+  // Les verdicts d'Anna (DTZ : « im Sprechen », valables au telc)
+  a_ende_B1: ["anna", "Vielen Dank, wir sind am Ende. Wenn das heute die Prüfung gewesen wäre, hätten Sie im Sprechen wahrscheinlich B1 erreicht. Sehr schön!",
+    "Merci beaucoup, nous avons terminé. Si c’était l’examen aujourd’hui, vous auriez probablement obtenu le B1 à l’oral. Très bien !",
+    "Thank you very much, we've finished. If this had been the exam today, you would probably have reached B1 in speaking. Very good!"],
+  a_ende_A2: ["anna", "Vielen Dank, wir sind am Ende. Wenn das heute die Prüfung gewesen wäre, hätten Sie im Sprechen wahrscheinlich A2 erreicht. Bis B1 fehlt nicht mehr viel.",
+    "Merci beaucoup, nous avons terminé. Si c’était l’examen aujourd’hui, vous auriez probablement obtenu l’A2 à l’oral. Il ne manque plus grand-chose pour le B1.",
+    "Thank you very much, we've finished. If this had been the exam today, you would probably have reached A2 in speaking. B1 isn't far off."],
+  a_ende_moins: ["anna", "Vielen Dank, wir sind am Ende. Für A2 war es heute noch etwas knapp. Üben Sie weiter, das lohnt sich!",
+    "Merci beaucoup, nous avons terminé. Pour l’A2, c’était encore un peu juste aujourd’hui. Continuez à vous entraîner, ça vaut la peine !",
+    "Thank you very much, we've finished. For A2 it was still a little short today. Keep practising, it's worth it!"],
+
+  // ---- Teil 2, ecrit pour le telc (voix du telephone)
+  t_plan_fest: ["anna", "Vielen Dank. Jetzt kommt Teil zwei. Ihr Deutschkurs ist bald zu Ende, und Sie möchten zusammen ein kleines Abschiedsfest organisieren. Auf dem Blatt stehen ein paar Punkte. Machen Sie Vorschläge und reagieren Sie auf die Vorschläge Ihres Partners. Herr Garnier, fangen Sie bitte an.",
+    "Merci beaucoup. Voici la partie deux. Votre cours d’allemand se termine bientôt, et vous voulez organiser ensemble une petite fête d’au revoir. Sur la feuille, il y a quelques points. Faites des propositions et réagissez à celles de votre partenaire. Monsieur Garnier, commencez, s’il vous plaît.",
+    "Thank you very much. Now comes part two. Your German course ends soon, and you want to organise a small farewell party together. There are a few points on the sheet. Make suggestions and react to your partner's suggestions. Mr Garnier, please begin."],
+  t_fest_1: ["mark", "Also, wann machen wir das Fest? Ich würde sagen, am letzten Kurstag, direkt nach dem Unterricht. Was meinst du?",
+    "Alors, on fait la fête quand ? Je dirais le dernier jour du cours, juste après la leçon. Qu’est-ce que tu en penses ?",
+    "So, when shall we have the party? I'd say on the last day of the course, right after class. What do you think?"],
+  t_fest_2: ["mark", "Und wo feiern wir? Wir könnten im Kursraum bleiben, oder wir gehen in ein Café in der Nähe. Was ist dir lieber?",
+    "Et on fait ça où ? On pourrait rester dans la salle de cours, ou aller dans un café pas loin. Tu préfères quoi ?",
+    "And where shall we celebrate? We could stay in the classroom, or go to a café nearby. Which do you prefer?"],
+  t_fest_3: ["mark", "Was machen wir mit dem Essen? Ich finde, jeder bringt etwas mit, das ist einfach und billig. Ich kann einen Salat machen. Und du?",
+    "Et pour la nourriture ? Je trouve que chacun apporte quelque chose, c’est simple et pas cher. Je peux faire une salade. Et toi ?",
+    "What about the food? I think everyone should bring something, it's easy and cheap. I can make a salad. What about you?"],
+  t_fest_4: ["mark", "Brauchen wir Musik, oder vielleicht ein Spiel? Ich könnte meine kleine Musikbox mitbringen. Was denkst du?",
+    "Il nous faut de la musique, ou peut-être un jeu ? Je pourrais apporter ma petite enceinte. Qu’en penses-tu ?",
+    "Do we need music, or maybe a game? I could bring my little speaker. What do you think?"],
+  t_fest_5: ["mark", "Und unsere Kursleiterin? Sollen wir ihr etwas schenken? Vielleicht Blumen und eine Karte von allen. Was hältst du davon?",
+    "Et notre professeure ? On lui offre quelque chose ? Peut-être des fleurs et une carte signée par tout le monde. Qu’en dis-tu ?",
+    "And our teacher? Shall we give her something? Maybe flowers and a card from everyone. What do you think of that?"],
+  t_plan_umzug: ["anna", "Vielen Dank. Jetzt kommt Teil zwei. Ihre Freundin Lena zieht am Samstag in eine neue Wohnung, und Sie möchten ihr zusammen helfen. Auf dem Blatt stehen ein paar Punkte. Machen Sie Vorschläge und reagieren Sie auf die Vorschläge Ihres Partners. Herr Garnier, fangen Sie bitte an.",
+    "Merci beaucoup. Voici la partie deux. Votre amie Lena déménage samedi dans un nouvel appartement, et vous voulez l’aider ensemble. Sur la feuille, il y a quelques points. Faites des propositions et réagissez à celles de votre partenaire. Monsieur Garnier, commencez, s’il vous plaît.",
+    "Thank you very much. Now comes part two. Your friend Lena is moving into a new flat on Saturday, and you want to help her together. There are a few points on the sheet. Make suggestions and react to your partner's suggestions. Mr Garnier, please begin."],
+  t_umzug_1: ["mark", "Also, wann treffen wir uns am Samstag? Ich finde, früh ist besser, zum Beispiel um acht Uhr. Was meinst du?",
+    "Alors, on se retrouve à quelle heure samedi ? Je trouve que tôt, c’est mieux, par exemple à huit heures. Qu’en penses-tu ?",
+    "So, when shall we meet on Saturday? I think early is better, for example at eight o'clock. What do you think?"],
+  t_umzug_2: ["mark", "Lena hat viele Möbel. Wie bringen wir alles in die neue Wohnung? Wir könnten einen Transporter mieten. Was denkst du?",
+    "Lena a beaucoup de meubles. Comment on transporte tout dans le nouvel appartement ? On pourrait louer une camionnette. Qu’en penses-tu ?",
+    "Lena has a lot of furniture. How do we get everything to the new flat? We could rent a van. What do you think?"],
+  t_umzug_3: ["mark", "Was sollen wir mitbringen? Ich nehme Werkzeug mit, für das Bett und die Schränke. Was bringst du mit?",
+    "Qu’est-ce qu’on apporte ? Moi, je prends des outils, pour le lit et les armoires. Et toi, tu apportes quoi ?",
+    "What should we bring? I'll take some tools, for the bed and the wardrobes. What will you bring?"],
+  t_umzug_4: ["mark", "Umziehen macht hungrig. Was machen wir mit dem Essen? Vielleicht bestellen wir Pizza für alle. Oder hast du eine andere Idee?",
+    "Déménager, ça donne faim. On fait comment pour manger ? On commande peut-être des pizzas pour tout le monde. Ou tu as une autre idée ?",
+    "Moving makes you hungry. What do we do about food? Maybe we order pizza for everyone. Or do you have another idea?"],
+  t_umzug_5: ["mark", "Und am Abend, wenn alles fertig ist? Wir könnten zusammen auf die neue Wohnung anstoßen. Was hältst du davon?",
+    "Et le soir, quand tout est fini ? On pourrait trinquer ensemble au nouvel appartement. Qu’en dis-tu ?",
+    "And in the evening, when everything is done? We could raise a glass together to the new flat. What do you think of that?"],
+  t_plan_geschenk: ["anna", "Vielen Dank. Jetzt kommt Teil zwei. Ihre Kollegin Sara hat nächste Woche Geburtstag, und Sie möchten ihr zusammen ein Geschenk machen. Auf dem Blatt stehen ein paar Punkte. Machen Sie Vorschläge und reagieren Sie auf die Vorschläge Ihres Partners. Herr Garnier, fangen Sie bitte an.",
+    "Merci beaucoup. Voici la partie deux. Votre collègue Sara a son anniversaire la semaine prochaine, et vous voulez lui faire un cadeau ensemble. Sur la feuille, il y a quelques points. Faites des propositions et réagissez à celles de votre partenaire. Monsieur Garnier, commencez, s’il vous plaît.",
+    "Thank you very much. Now comes part two. Your colleague Sara has her birthday next week, and you want to give her a present together. There are a few points on the sheet. Make suggestions and react to your partner's suggestions. Mr Garnier, please begin."],
+  t_geschenk_1: ["mark", "Also, was schenken wir Sara? Sie liest sehr gern. Wie wäre es mit einem Buch?",
+    "Alors, qu’est-ce qu’on offre à Sara ? Elle adore lire. Que dirais-tu d’un livre ?",
+    "So, what shall we give Sara? She loves reading. How about a book?"],
+  t_geschenk_2: ["mark", "Und wie viel Geld geben wir aus? Ich denke, jeder gibt zehn Euro. Ist das okay für dich?",
+    "Et on dépense combien ? Je pense que chacun donne dix euros. Ça te va ?",
+    "And how much shall we spend? I think everyone gives ten euros. Is that okay for you?"],
+  t_geschenk_3: ["mark", "Wo kaufen wir das Geschenk? Ich kenne eine kleine Buchhandlung in der Nähe vom Büro. Oder bestellen wir es lieber im Internet?",
+    "On achète le cadeau où ? Je connais une petite librairie près du bureau. Ou on préfère le commander sur Internet ?",
+    "Where shall we buy the present? I know a little bookshop near the office. Or would we rather order it online?"],
+  t_geschenk_4: ["mark", "Wann geben wir ihr das Geschenk? Vielleicht am Montag in der Mittagspause. Was meinst du?",
+    "Quand est-ce qu’on lui donne le cadeau ? Peut-être lundi, à la pause de midi. Qu’en penses-tu ?",
+    "When do we give her the present? Maybe on Monday in the lunch break. What do you think?"],
+  t_geschenk_5: ["mark", "Wir brauchen auch noch eine Karte. Schreibst du sie, oder soll ich das machen?",
+    "Il nous faut aussi une carte. Tu l’écris, ou je m’en occupe ?",
+    "We also need a card. Will you write it, or shall I do it?"],
+
+  // ---- Teil 3, ecrit pour le telc (voix du telephone)
+  t_avis_auto: ["anna", "Danke schön. Jetzt kommt der letzte Teil. Es geht um die Frage: Braucht man in einer großen Stadt wie Berlin ein eigenes Auto? Sagen Sie Ihre Meinung und begründen Sie sie. Reagieren Sie auch auf die Meinung Ihres Partners. Sie haben jetzt eine Minute Zeit zum Nachdenken.",
+    "Merci. Voici la dernière partie. La question est : dans une grande ville comme Berlin, a-t-on besoin d’une voiture à soi ? Donnez votre avis et justifiez-le. Réagissez aussi à l’avis de votre partenaire. Vous avez maintenant une minute pour réfléchir.",
+    "Thank you. Now comes the last part. The question is: in a big city like Berlin, do you need a car of your own? Give your opinion and explain it. React to your partner's opinion too. You now have one minute to think."],
+  t_avis_lernen: ["anna", "Danke schön. Jetzt kommt der letzte Teil. Es geht um die Frage: Lernt man eine Sprache besser in einem Kurs oder allein mit dem Handy? Sagen Sie Ihre Meinung und begründen Sie sie. Reagieren Sie auch auf die Meinung Ihres Partners. Sie haben jetzt eine Minute Zeit zum Nachdenken.",
+    "Merci. Voici la dernière partie. La question est : apprend-on mieux une langue dans un cours ou seul avec son téléphone ? Donnez votre avis et justifiez-le. Réagissez aussi à l’avis de votre partenaire. Vous avez maintenant une minute pour réfléchir.",
+    "Thank you. Now comes the last part. The question is: do you learn a language better in a course or on your own with your phone? Give your opinion and explain it. React to your partner's opinion too. You now have one minute to think."],
+  t_avis_land: ["anna", "Danke schön. Jetzt kommt der letzte Teil. Es geht um die Frage: Lebt man besser in der Stadt oder auf dem Land? Sagen Sie Ihre Meinung und begründen Sie sie. Reagieren Sie auch auf die Meinung Ihres Partners. Sie haben jetzt eine Minute Zeit zum Nachdenken.",
+    "Merci. Voici la dernière partie. La question est : vit-on mieux en ville ou à la campagne ? Donnez votre avis et justifiez-le. Réagissez aussi à l’avis de votre partenaire. Vous avez maintenant une minute pour réfléchir.",
+    "Thank you. Now comes the last part. The question is: is life better in the city or in the countryside? Give your opinion and explain it. React to your partner's opinion too. You now have one minute to think."],
+  t_a_los: ["anna", "So, die Minute ist um. Sie fangen bitte an.", "Voilà, la minute est passée. Commencez, s’il vous plaît.", "Right, the minute is up. Please begin."],
+  // Mark defend le cote oppose : « gegenA » repond a un avis du cote A, « gegenB » a un avis du cote B
+  t_auto_gegenA: ["mark", "Ich sehe das ein bisschen anders. In Berlin fahren Busse und Bahnen fast überall hin, und ein Parkplatz ist teuer und schwer zu finden. Ich habe zum Beispiel kein Auto, und ich komme mit dem Fahrrad überall hin. Was sagst du dazu?",
+    "Moi, je vois ça un peu autrement. À Berlin, les bus et les trains vont presque partout, et une place de parking est chère et difficile à trouver. Moi, par exemple, je n’ai pas de voiture, et je vais partout à vélo. Qu’est-ce que tu en dis ?",
+    "I see it a bit differently. In Berlin, buses and trains go almost everywhere, and a parking space is expensive and hard to find. I don't have a car, for example, and I get everywhere by bike. What do you say to that?"],
+  t_auto_gegenB: ["mark", "Da bin ich nicht ganz deiner Meinung. Mit Kindern oder mit vielen Einkäufen ist ein Auto sehr praktisch. Meine Kollegin wohnt zum Beispiel am Stadtrand, und ohne Auto braucht sie über eine Stunde zur Arbeit. Was meinst du?",
+    "Là, je ne suis pas tout à fait d’accord avec toi. Avec des enfants ou avec beaucoup de courses, une voiture est très pratique. Ma collègue, par exemple, habite en périphérie, et sans voiture elle met plus d’une heure pour aller au travail. Qu’en penses-tu ?",
+    "I don't quite agree with you there. With children or with a lot of shopping, a car is very practical. My colleague, for example, lives on the edge of the city, and without a car it takes her over an hour to get to work. What do you think?"],
+  t_lernen_gegenA: ["mark", "Ich sehe das anders. Mit einer App kann ich lernen, wann ich will: im Bus, in der Pause oder am Abend. Und ein Kurs kostet viel Geld. Ich lerne zum Beispiel gerade Spanisch, jeden Morgen zehn Minuten mit dem Handy, und das klappt gut. Was sagst du dazu?",
+    "Moi, je vois ça autrement. Avec une appli, je peux apprendre quand je veux : dans le bus, à la pause ou le soir. Et un cours coûte cher. Moi, par exemple, j’apprends l’espagnol en ce moment, dix minutes chaque matin avec mon téléphone, et ça marche bien. Qu’est-ce que tu en dis ?",
+    "I see it differently. With an app I can learn whenever I want: on the bus, during a break or in the evening. And a course costs a lot of money. For example, I'm learning Spanish at the moment, ten minutes every morning on my phone, and it works well. What do you say to that?"],
+  t_lernen_gegenB: ["mark", "Da bin ich nicht ganz deiner Meinung. Allein mit dem Handy spricht man fast nie. Im Kurs muss man sprechen, und die Lehrerin korrigiert die Fehler. Eine Freundin von mir hat zum Beispiel in ihrem Kurs viele nette Leute kennengelernt. Was meinst du?",
+    "Là, je ne suis pas tout à fait d’accord avec toi. Seul avec son téléphone, on ne parle presque jamais. En cours, on est obligé de parler, et la prof corrige les fautes. Une amie à moi, par exemple, a rencontré plein de gens sympas dans son cours. Qu’en penses-tu ?",
+    "I don't quite agree with you there. On your own with your phone, you almost never speak. In a course you have to speak, and the teacher corrects your mistakes. A friend of mine, for example, met lots of nice people in her course. What do you think?"],
+  t_land_gegenA: ["mark", "Ich sehe das anders. In der Stadt ist es laut, und die Mieten sind sehr hoch. Auf dem Land hat man Ruhe, Natur und oft einen Garten. Ich war zum Beispiel letzten Sommer zwei Wochen in einem kleinen Dorf, und ich habe so gut geschlafen wie nie. Was sagst du dazu?",
+    "Moi, je vois ça autrement. En ville, c’est bruyant, et les loyers sont très élevés. À la campagne, on a le calme, la nature et souvent un jardin. Par exemple, l’été dernier, j’ai passé deux semaines dans un petit village, et j’ai dormi comme jamais. Qu’est-ce que tu en dis ?",
+    "I see it differently. The city is noisy, and the rents are very high. In the countryside you have peace and quiet, nature and often a garden. Last summer, for example, I spent two weeks in a small village, and I slept better than ever. What do you say to that?"],
+  t_land_gegenB: ["mark", "Da bin ich nicht ganz deiner Meinung. Auf dem Land fährt der Bus vielleicht nur zweimal am Tag, und ohne Auto ist man nicht flexibel. In der Stadt sind Arbeit, Ärzte und Geschäfte ganz nah. Ich gehe zum Beispiel zu Fuß zur Arbeit und abends noch ins Kino. Was meinst du?",
+    "Là, je ne suis pas tout à fait d’accord avec toi. À la campagne, le bus passe peut-être deux fois par jour, et sans voiture on n’est pas libre de ses mouvements. En ville, le travail, les médecins et les magasins sont tout près. Moi, par exemple, je vais au travail à pied, et le soir je vais encore au cinéma. Qu’en penses-tu ?",
+    "I don't quite agree with you there. In the countryside the bus may only run twice a day, and without a car you're not flexible. In the city, work, doctors and shops are all close by. I walk to work, for example, and still go to the cinema in the evening. What do you think?"],
+  t_avis_buero: ["anna", "Danke schön. Jetzt kommt der letzte Teil. Es geht um die Frage: Arbeitet man besser von zu Hause oder im Büro? Sagen Sie Ihre Meinung und begründen Sie sie. Reagieren Sie auch auf die Meinung Ihres Partners. Sie haben jetzt eine Minute Zeit zum Nachdenken.",
+    "Merci. Voici la dernière partie. La question est : travaille-t-on mieux depuis chez soi ou au bureau ? Donnez votre avis et justifiez-le. Réagissez aussi à l’avis de votre partenaire. Vous avez maintenant une minute pour réfléchir.",
+    "Thank you. Now comes the last part. The question is: do you work better from home or in the office? Give your opinion and explain it. React to your partner's opinion too. You now have one minute to think."],
+  t_avis_handy: ["anna", "Danke schön. Jetzt kommt der letzte Teil. Es geht um die Frage: Sollen Kinder unter zwölf Jahren schon ein eigenes Handy haben? Sagen Sie Ihre Meinung und begründen Sie sie. Reagieren Sie auch auf die Meinung Ihres Partners. Sie haben jetzt eine Minute Zeit zum Nachdenken.",
+    "Merci. Voici la dernière partie. La question est : les enfants de moins de douze ans doivent-ils déjà avoir leur propre téléphone portable ? Donnez votre avis et justifiez-le. Réagissez aussi à l’avis de votre partenaire. Vous avez maintenant une minute pour réfléchir.",
+    "Thank you. Now comes the last part. The question is: should children under twelve already have their own mobile phone? Give your opinion and explain it. React to your partner's opinion too. You now have one minute to think."],
+  t_buero_gegenA: ["mark", "Ich sehe das anders. Im Büro sehe ich meine Kollegen, und wir lösen Probleme oft schneller zusammen. Zu Hause bin ich allein, und abends höre ich nicht auf zu arbeiten. Bei meinem Praktikum gehe ich zum Beispiel jeden Tag ins Büro, und das gefällt mir. Was sagst du dazu?",
+    "Moi, je vois ça autrement. Au bureau, je vois mes collègues, et on résout souvent les problèmes plus vite ensemble. Chez moi, je suis seul, et le soir je n’arrête pas de travailler. Pendant mon stage, par exemple, je vais au bureau tous les jours, et ça me plaît. Qu’est-ce que tu en dis ?",
+    "I see it differently. In the office I see my colleagues, and we often solve problems faster together. At home I'm on my own, and in the evening I don't stop working. In my internship, for example, I go to the office every day, and I like it. What do you say to that?"],
+  t_buero_gegenB: ["mark", "Da bin ich nicht ganz deiner Meinung. Wer zu Hause arbeitet, spart jeden Tag Zeit und Geld für den Weg. Und man kann sich die Zeit besser einteilen. Eine Freundin von mir arbeitet zum Beispiel zweimal pro Woche zu Hause, und sie hat jetzt mehr Zeit für ihre Kinder. Was meinst du?",
+    "Là, je ne suis pas tout à fait d’accord avec toi. Quand on travaille chez soi, on gagne chaque jour du temps et de l’argent sur le trajet. Et on peut mieux organiser son temps. Une amie à moi, par exemple, travaille deux fois par semaine depuis chez elle, et maintenant elle a plus de temps pour ses enfants. Qu’en penses-tu ?",
+    "I don't quite agree with you there. If you work from home, you save time and money on the journey every day. And you can organise your time better. A friend of mine, for example, works from home twice a week, and now she has more time for her children. What do you think?"],
+  t_handy_gegenA: ["mark", "Ich sehe das anders. Mit einem Handy sitzen Kinder oft stundenlang vor dem Bildschirm und spielen weniger draußen. Und im Internet sehen sie Dinge, die nicht für Kinder sind. Ein Kollege von mir hat seiner Tochter zum Beispiel erst mit dreizehn ein Handy gegeben, und das war kein Problem. Was sagst du dazu?",
+    "Moi, je vois ça autrement. Avec un téléphone, les enfants restent souvent des heures devant l’écran et jouent moins dehors. Et sur Internet, ils voient des choses qui ne sont pas pour les enfants. Un collègue à moi, par exemple, n’a donné un téléphone à sa fille qu’à treize ans, et ça n’a posé aucun problème. Qu’est-ce que tu en dis ?",
+    "I see it differently. With a phone, children often sit in front of the screen for hours and play outside less. And on the internet they see things that aren't meant for children. A colleague of mine, for example, only gave his daughter a phone at thirteen, and it wasn't a problem. What do you say to that?"],
+  t_handy_gegenB: ["mark", "Da bin ich nicht ganz deiner Meinung. Mit einem Handy können die Eltern ihr Kind immer erreichen, zum Beispiel wenn der Bus nicht kommt. Und heute schreiben fast alle Kinder einer Klasse in einer Gruppe. Ohne Handy ist man da schnell allein. Was meinst du?",
+    "Là, je ne suis pas tout à fait d’accord avec toi. Avec un téléphone, les parents peuvent toujours joindre leur enfant, par exemple quand le bus ne vient pas. Et aujourd’hui, presque tous les enfants d’une classe s’écrivent dans un groupe. Sans téléphone, on se retrouve vite seul. Qu’en penses-tu ?",
+    "I don't quite agree with you there. With a phone, parents can always reach their child, for example when the bus doesn't come. And nowadays almost all the children in a class write to each other in a group chat. Without a phone you quickly end up on your own. What do you think?"],
+  t_m_schluss: ["mark", "Okay, wir sehen das nicht ganz gleich, aber ich verstehe deine Argumente gut.",
+    "D’accord, on ne voit pas ça tout à fait pareil, mais je comprends bien tes arguments.",
+    "Okay, we don't see it quite the same way, but I understand your arguments well."]
+};
+
+// ---------------------------------------------------------------- les reponses modeles, A2 et B1 SEULEMENT
+// [allemand, francais, anglais] ; { id } rejoue une replique deja enregistree.
+const MODELES_1A = [
+  { niv: "A2", de: ["Ich heiße Mark Garnier. Ich bin fünfundzwanzig Jahre alt. Ich komme aus Kanada, aus Montréal. Jetzt wohne ich in Berlin. Ich mache ein Praktikum in einem Büro. Meine Familie wohnt in Kanada. Ich spreche Französisch, Englisch und Deutsch. In meiner Freizeit gehe ich gern laufen.",
+    "Je m’appelle Mark Garnier. J’ai vingt-cinq ans. Je viens du Canada, de Montréal. Maintenant, j’habite à Berlin. Je fais un stage dans un bureau. Ma famille habite au Canada. Je parle français, anglais et allemand. Pendant mon temps libre, j’aime courir.",
+    "My name is Mark Garnier. I'm twenty-five. I come from Canada, from Montréal. Now I live in Berlin. I'm doing an internship in an office. My family lives in Canada. I speak French, English and German. In my free time I like going running."] },
+  { niv: "B1", id: "m_vorstellung" }
+];
+const MODELES_1B = {
+  a_frage_familie: [
+    { niv: "A2", de: ["Ich bin verheiratet. Ich habe zwei Kinder, einen Sohn und eine Tochter. Meine Eltern wohnen in meinem Heimatland.",
+      "Je suis marié. J’ai deux enfants, un fils et une fille. Mes parents habitent dans mon pays d’origine.",
+      "I'm married. I have two children, a son and a daughter. My parents live in my home country."] },
+    { niv: "B1", de: ["Ich bin verheiratet, und wir haben zwei Kinder: Unser Sohn ist sieben und geht schon in die Schule, unsere Tochter ist drei. Meine Eltern und meine Schwester leben noch in meinem Heimatland. Wir telefonieren fast jeden Tag, aber ich vermisse sie natürlich, denn wir sehen uns nur einmal im Jahr.",
+      "Je suis marié et nous avons deux enfants : notre fils a sept ans et va déjà à l’école, notre fille a trois ans. Mes parents et ma sœur vivent encore dans mon pays d’origine. On se téléphone presque tous les jours, mais bien sûr ils me manquent, car on ne se voit qu’une fois par an.",
+      "I'm married and we have two children: our son is seven and already goes to school, our daughter is three. My parents and my sister still live in my home country. We talk on the phone almost every day, but of course I miss them, because we only see each other once a year."] }
+  ],
+  a_frage_beruf: [
+    { niv: "A2", de: ["In meinem Land war ich Verkäuferin. Hier suche ich Arbeit. Ich möchte gern in einem Geschäft arbeiten.",
+      "Dans mon pays, j’étais vendeuse. Ici, je cherche du travail. J’aimerais bien travailler dans un magasin.",
+      "In my country I was a shop assistant. Here I'm looking for work. I'd like to work in a shop."] },
+    { niv: "B1", de: ["In meinem Heimatland habe ich zehn Jahre als Krankenpfleger gearbeitet. Hier in Deutschland möchte ich wieder in einem Krankenhaus arbeiten, aber zuerst muss ich meine Deutschprüfung bestehen. Deshalb lerne ich jeden Tag zwei Stunden, auch am Wochenende.",
+      "Dans mon pays, j’ai travaillé dix ans comme infirmier. Ici, en Allemagne, je voudrais retravailler dans un hôpital, mais d’abord je dois réussir mon examen d’allemand. C’est pour ça que j’étudie deux heures par jour, même le week-end.",
+      "In my home country I worked as a nurse for ten years. Here in Germany I'd like to work in a hospital again, but first I have to pass my German exam. That's why I study for two hours every day, even at the weekend."] }
+  ],
+  a_frage_freizeit: [
+    { niv: "A2", de: ["In meiner Freizeit spiele ich Fußball. Ich koche auch gern. Am Wochenende gehe ich in den Park.",
+      "Pendant mon temps libre, je joue au foot. J’aime aussi cuisiner. Le week-end, je vais au parc.",
+      "In my free time I play football. I also like cooking. At the weekend I go to the park."] },
+    { niv: "B1", de: ["Wenn ich Zeit habe, spiele ich mit Freunden Fußball, meistens am Sonntagvormittag. Außerdem koche ich sehr gern, vor allem Gerichte aus meinem Land. Letzte Woche habe ich zum Beispiel für meine Nachbarn gekocht, und sie waren begeistert.",
+      "Quand j’ai le temps, je joue au foot avec des amis, le plus souvent le dimanche matin. En plus, j’adore cuisiner, surtout des plats de mon pays. La semaine dernière, par exemple, j’ai cuisiné pour mes voisins, et ils ont adoré.",
+      "When I have time, I play football with friends, usually on Sunday mornings. I also love cooking, especially dishes from my country. Last week, for example, I cooked for my neighbours, and they loved it."] }
+  ],
+  a_frage_deutsch: [
+    { niv: "A2", de: ["Ich lerne Deutsch, weil ich hier wohne und arbeite. Die Artikel sind sehr schwer für mich.",
+      "J’apprends l’allemand parce que j’habite et je travaille ici. Les articles sont très difficiles pour moi.",
+      "I'm learning German because I live and work here. The articles are very hard for me."] },
+    { niv: "B1", de: ["Ich lerne Deutsch, weil ich hier arbeiten und mit meinen Nachbarn sprechen möchte. Am schwierigsten finde ich die Artikel: der, die, das. Deshalb lerne ich jedes Nomen mit seinem Artikel, und ich höre jeden Tag deutsches Radio.",
+      "J’apprends l’allemand parce que je veux travailler ici et parler avec mes voisins. Ce que je trouve le plus difficile, ce sont les articles : der, die, das. C’est pour ça que j’apprends chaque nom avec son article, et j’écoute la radio allemande tous les jours.",
+      "I'm learning German because I want to work here and talk to my neighbours. What I find hardest are the articles: der, die, das. That's why I learn every noun with its article, and I listen to German radio every day."] }
+  ]
+};
+
+// ---------------------------------------------------------------- les sujets
+// Teil 2 : planifier. Chaque point : la proposition de Mark et deux reponses modeles (A2, B1) de l'eleve.
+const PLAN = {
+  fest: { titre: { fr: "une fête de fin de cours", en: "an end-of-course party" }, intro: "t_plan_fest",
+    blatt: "Ihr Deutschkurs ist bald zu Ende. Sie möchten zusammen ein kleines Abschiedsfest organisieren.",
+    punkte: ["Wann?", "Wo?", "Essen und Getränke?", "Musik oder Spiele?", "Geschenk für die Kursleiterin?"],
+    tours: [
+      { m: "t_fest_1", a2: ["Ja, gute Idee. Nach dem Unterricht haben alle Zeit.", "Oui, bonne idée. Après la leçon, tout le monde a le temps.", "Yes, good idea. After class everyone has time."],
+        b1: ["Der letzte Kurstag ist gut, aber nach dem Unterricht sind viele müde. Wie wäre es mit Freitagabend? Dann können alle länger bleiben.", "Le dernier jour du cours, c’est bien, mais après la leçon, beaucoup sont fatigués. Que dirais-tu du vendredi soir ? Comme ça, tout le monde peut rester plus longtemps.", "The last day of the course is good, but after class a lot of people are tired. How about Friday evening? Then everyone can stay longer."] },
+      { m: "t_fest_2", a2: ["Ich möchte lieber ins Café gehen. Das ist schön.", "Je préférerais aller au café. C’est joli.", "I'd rather go to the café. It's nice."],
+        b1: ["Ein Café ist gemütlich, aber für so viele Leute ist es teuer. Ich schlage vor, wir bleiben im Kursraum. Dort können wir auch Musik hören.", "Un café, c’est agréable, mais pour autant de monde, c’est cher. Je propose qu’on reste dans la salle de cours. Là, on peut aussi écouter de la musique.", "A café is cosy, but for so many people it's expensive. I suggest we stay in the classroom. We can listen to music there too."] },
+      { m: "t_fest_3", a2: ["Ich bringe Kuchen mit. Ich backe gern.", "J’apporte un gâteau. J’aime faire des gâteaux.", "I'll bring a cake. I like baking."],
+        b1: ["Einverstanden, jeder bringt etwas mit. Ich backe einen Kuchen. Wir sollten aber eine Liste machen, damit nicht alle Salat mitbringen.", "D’accord, chacun apporte quelque chose. Moi, je fais un gâteau. Mais on devrait faire une liste, pour que tout le monde n’apporte pas de la salade.", "Agreed, everyone brings something. I'll bake a cake. But we should make a list, so that not everyone brings salad."] },
+      { m: "t_fest_4", a2: ["Musik ist gut. Ein Spiel ist auch lustig.", "La musique, c’est bien. Un jeu, c’est drôle aussi.", "Music is good. A game is fun too."],
+        b1: ["Musik finde ich super. Wir könnten auch ein kleines Quiz über unseren Kurs machen, das macht bestimmt Spaß. Hast du Lust, die Fragen mit mir zu schreiben?", "La musique, je trouve ça super. On pourrait aussi faire un petit quiz sur notre cours, ce sera sûrement drôle. Tu as envie d’écrire les questions avec moi ?", "I think music is great. We could also do a little quiz about our course, that would definitely be fun. Do you fancy writing the questions with me?"] },
+      { m: "t_fest_5", a2: ["Ja, Blumen sind gut. Ich kaufe sie.", "Oui, des fleurs, c’est bien. Je les achète.", "Yes, flowers are good. I'll buy them."],
+        b1: ["Blumen und eine Karte finde ich schön. Ich kann die Karte kaufen, und alle schreiben etwas hinein. Sammelst du das Geld für die Blumen?", "Des fleurs et une carte, je trouve ça joli. Je peux acheter la carte, et chacun écrit quelque chose dedans. Tu ramasses l’argent pour les fleurs ?", "I think flowers and a card are nice. I can buy the card, and everyone writes something in it. Will you collect the money for the flowers?"] }
+    ] },
+  umzug: { titre: { fr: "aider une amie à déménager", en: "helping a friend move house" }, intro: "t_plan_umzug",
+    blatt: "Ihre Freundin Lena zieht am Samstag in eine neue Wohnung. Sie möchten ihr zusammen helfen.",
+    punkte: ["Wann treffen?", "Wie transportieren?", "Was mitbringen?", "Essen für die Helfer?", "Am Abend?"],
+    tours: [
+      { m: "t_umzug_1", a2: ["Acht Uhr ist zu früh für mich. Ich komme um neun Uhr.", "Huit heures, c’est trop tôt pour moi. Je viens à neuf heures.", "Eight o'clock is too early for me. I'll come at nine."],
+        b1: ["Acht Uhr ist mir ein bisschen zu früh, weil ich am Samstag erst um halb acht aufstehe. Wie wäre es mit neun Uhr? Dann bin ich sicher pünktlich.", "Huit heures, c’est un peu tôt pour moi, parce que le samedi je ne me lève qu’à sept heures et demie. Que dirais-tu de neuf heures ? Comme ça, je serai sûrement à l’heure.", "Eight is a bit early for me, because on Saturdays I don't get up until half past seven. How about nine? Then I'll definitely be on time."] },
+      { m: "t_umzug_2", a2: ["Ein Transporter ist gut. Ich kann fahren.", "Une camionnette, c’est bien. Je peux conduire.", "A van is good. I can drive."],
+        b1: ["Ein Transporter ist eine gute Idee, aber er kostet ziemlich viel. Vielleicht kann uns jemand ein großes Auto leihen. Ich frage heute Abend meinen Nachbarn.", "Une camionnette, c’est une bonne idée, mais ça coûte assez cher. Quelqu’un peut peut-être nous prêter une grande voiture. Je demande à mon voisin ce soir.", "A van is a good idea, but it costs quite a lot. Maybe someone can lend us a big car. I'll ask my neighbour this evening."] },
+      { m: "t_umzug_3", a2: ["Ich bringe Kartons mit. Ich habe viele.", "J’apporte des cartons. J’en ai beaucoup.", "I'll bring boxes. I have a lot."],
+        b1: ["Gut, dann nehme ich Kartons und Klebeband mit. Ich habe noch viele vom letzten Umzug. Brauchen wir auch Decken für die Möbel?", "Bien, alors je prends des cartons et du ruban adhésif. Il m’en reste beaucoup de mon dernier déménagement. Est-ce qu’il nous faut aussi des couvertures pour les meubles ?", "Good, then I'll bring boxes and tape. I still have lots from my last move. Do we need blankets for the furniture too?"] },
+      { m: "t_umzug_4", a2: ["Pizza ist gut. Ich bezahle die Getränke.", "Des pizzas, c’est bien. Je paie les boissons.", "Pizza is good. I'll pay for the drinks."],
+        b1: ["Pizza ist praktisch, aber ich würde lieber belegte Brötchen machen, das ist billiger und gesünder. Ich kann sie am Morgen vorbereiten.", "Les pizzas, c’est pratique, mais je préférerais faire des petits pains garnis, c’est moins cher et plus sain. Je peux les préparer le matin.", "Pizza is practical, but I'd rather make filled rolls, it's cheaper and healthier. I can prepare them in the morning."] },
+      { m: "t_umzug_5", a2: ["Ja, gern. Ich bringe Saft mit.", "Oui, volontiers. J’apporte du jus.", "Yes, I'd like that. I'll bring some juice."],
+        b1: ["Das finde ich schön, aber nach so einem Tag sind alle bestimmt sehr müde. Vielleicht trinken wir nur kurz etwas zusammen und feiern dann am nächsten Wochenende richtig.", "Je trouve ça bien, mais après une journée pareille, tout le monde sera sûrement très fatigué. On peut peut-être juste boire un verre ensemble et faire vraiment la fête le week-end suivant.", "I like that, but after a day like that everyone will surely be very tired. Maybe we just have a quick drink together and then celebrate properly the next weekend."] }
+    ] },
+  geschenk: { titre: { fr: "un cadeau pour une collègue", en: "a present for a colleague" }, intro: "t_plan_geschenk",
+    blatt: "Ihre Kollegin Sara hat nächste Woche Geburtstag. Sie möchten ihr zusammen ein Geschenk machen.",
+    punkte: ["Was schenken?", "Wie viel Geld?", "Wo kaufen?", "Wann übergeben?", "Wer schreibt die Karte?"],
+    tours: [
+      { m: "t_geschenk_1", a2: ["Ein Buch ist gut. Aber welches Buch?", "Un livre, c’est bien. Mais quel livre ?", "A book is good. But which book?"],
+        b1: ["Ein Buch ist eine schöne Idee, aber wir wissen nicht, welche Bücher sie schon hat. Wie wäre es mit einem Gutschein für die Buchhandlung? Dann kann sie selbst wählen.", "Un livre, c’est une jolie idée, mais on ne sait pas quels livres elle a déjà. Que dirais-tu d’un bon d’achat pour la librairie ? Comme ça, elle peut choisir elle-même.", "A book is a nice idea, but we don't know which books she already has. How about a voucher for the bookshop? Then she can choose herself."] },
+      { m: "t_geschenk_2", a2: ["Ja, zehn Euro ist okay.", "Oui, dix euros, ça va.", "Yes, ten euros is okay."],
+        b1: ["Zehn Euro finde ich in Ordnung. Wir könnten auch die anderen Kollegen fragen, ob sie mitmachen möchten. Dann wird das Geschenk größer.", "Dix euros, je trouve ça correct. On pourrait aussi demander aux autres collègues s’ils veulent participer. Comme ça, le cadeau sera plus grand.", "Ten euros sounds fine to me. We could also ask the other colleagues if they'd like to join in. Then the present will be bigger."] },
+      { m: "t_geschenk_3", a2: ["Die Buchhandlung ist gut. Ich gehe morgen hin.", "La librairie, c’est bien. J’y vais demain.", "The bookshop is good. I'll go there tomorrow."],
+        b1: ["Lieber in der Buchhandlung, weil es im Internet zu lange dauern kann. Ich habe am Donnerstag frei, dann kann ich hingehen.", "Plutôt à la librairie, parce que sur Internet, ça peut prendre trop de temps. J’ai congé jeudi, je peux y aller ce jour-là.", "Better the bookshop, because online it can take too long. I have Thursday off, so I can go then."] },
+      { m: "t_geschenk_4", a2: ["Am Montag ist gut. Ich bringe einen Kuchen mit.", "Lundi, c’est bien. J’apporte un gâteau.", "Monday is good. I'll bring a cake."],
+        b1: ["Ihr Geburtstag ist doch am Mittwoch. Ich finde, wir sollten ihr das Geschenk an diesem Tag geben, zum Beispiel mit einem kleinen Kuchen in der Pause.", "Mais son anniversaire, c’est mercredi. Je trouve qu’on devrait lui donner le cadeau ce jour-là, par exemple avec un petit gâteau à la pause.", "But her birthday is on Wednesday. I think we should give her the present on that day, for example with a little cake in the break."] },
+      { m: "t_geschenk_5", a2: ["Ich schreibe die Karte. Ich schreibe gern.", "J’écris la carte. J’aime écrire.", "I'll write the card. I like writing."],
+        b1: ["Ich kann die Karte schreiben, aber meine Schrift ist nicht so schön. Vielleicht schreibst du den Text, und alle unterschreiben danach.", "Je peux écrire la carte, mais mon écriture n’est pas très jolie. Tu écris peut-être le texte, et tout le monde signe après.", "I can write the card, but my handwriting isn't very nice. Maybe you write the text, and everyone signs it afterwards."] }
+    ] }
+};
+// Teil 3 : l'avis. Deux cotes (A, B) ; reA / reB reperent le cote choisi par l'eleve ; Mark defend l'autre.
+// avis : deux modeles, un par cote (A2 d'un cote, B1 de l'autre) ; reaction : les modeles de reponse a Mark, selon
+// le cote de l'eleve (A : Mark a dit gegenA).
+const AVIS = {
+  auto: { titre: { fr: "une voiture en ville ?", en: "a car in the city?" }, frage: "t_avis_auto",
+    blatt: "Braucht man in einer großen Stadt wie Berlin ein eigenes Auto?",
+    reA: /\b(brauche (ein|mein|das) auto|braucht man (schon |doch )?ein auto|ein auto ist (sehr |schon )?(praktisch|bequem|wichtig|gut|nützlich)|mit dem auto|für das auto|ohne auto (geht|ist) es nicht|ich bin für (ein|das) auto|auto ist schneller)\b/g,
+    reB: /\b(kein auto|keinen parkplatz|brauche(n)? (man )?kein|nicht nötig|nicht notwendig|bus|busse|bahn|bahnen|u-bahn|s-bahn|fahrrad|rad|zu fuß|parkplatz|parkplätze|zu teuer|umwelt|ich bin gegen)\b/g,
+    gegenA: "t_auto_gegenA", gegenB: "t_auto_gegenB",
+    avis: [
+      { niv: "A2", de: ["Ich finde, ein Auto ist gut. Mit dem Auto bin ich schnell. Am Samstag kaufe ich viel ein, dann brauche ich das Auto. Die Busse sind oft voll.",
+        "Je trouve qu’une voiture, c’est bien. En voiture, je vais vite. Le samedi, je fais beaucoup de courses, alors j’ai besoin de la voiture. Les bus sont souvent pleins.",
+        "I think a car is good. By car I'm fast. On Saturdays I do a lot of shopping, so I need the car. The buses are often full."] },
+      { niv: "B1", de: ["Meiner Meinung nach braucht man in Berlin kein eigenes Auto. Erstens fahren Busse und Bahnen sehr oft, auch am Abend. Zweitens ist ein Auto teuer: Benzin, Versicherung, Parkplatz. Ich fahre zum Beispiel jeden Tag mit der U-Bahn zur Arbeit und brauche nur zwanzig Minuten. Natürlich ist ein Auto manchmal praktisch, aber dann kann man eins mieten.",
+        "À mon avis, à Berlin, on n’a pas besoin d’une voiture à soi. D’abord, les bus et les trains passent très souvent, même le soir. Ensuite, une voiture coûte cher : l’essence, l’assurance, le parking. Moi, par exemple, je vais au travail en métro tous les jours et je ne mets que vingt minutes. Bien sûr, une voiture est parfois pratique, mais dans ce cas on peut en louer une.",
+        "In my opinion, you don't need a car of your own in Berlin. Firstly, buses and trains run very often, even in the evening. Secondly, a car is expensive: petrol, insurance, parking. I take the underground to work every day, for example, and it only takes twenty minutes. Of course a car is sometimes practical, but then you can rent one."] }
+    ],
+    reaction: {
+      A: [ { niv: "A2", de: ["Ja, das stimmt, ein Parkplatz ist teuer. Aber mit dem Auto bin ich schneller. Ich fahre nicht gern Fahrrad.", "Oui, c’est vrai, une place de parking coûte cher. Mais en voiture, je vais plus vite. Je n’aime pas faire du vélo.", "Yes, that's true, a parking space is expensive. But by car I'm faster. I don't like cycling."] },
+           { niv: "B1", de: ["Da hast du recht, mit dem Fahrrad ist man in Berlin oft schnell. Trotzdem brauche ich das Auto, weil ich am Wochenende meine Eltern besuche, und sie wohnen weit weg auf dem Land. Vielleicht ist ein Carsharing-Auto für mich ein guter Kompromiss.", "Tu as raison, à Berlin, on va souvent vite à vélo. Pourtant, j’ai besoin de la voiture, parce que le week-end je rends visite à mes parents, et ils habitent loin, à la campagne. Une voiture en autopartage serait peut-être un bon compromis pour moi.", "You're right, in Berlin you're often quick by bike. Still, I need the car, because at the weekend I visit my parents, and they live far away in the countryside. Maybe a car-sharing car would be a good compromise for me."] } ],
+      B: [ { niv: "A2", de: ["Das stimmt, mit Kindern ist ein Auto praktisch. Aber ich habe keine Kinder. Für mich ist die U-Bahn genug.", "C’est vrai, avec des enfants, une voiture est pratique. Mais je n’ai pas d’enfants. Pour moi, le métro suffit.", "That's true, with children a car is practical. But I don't have children. For me the underground is enough."] },
+           { niv: "B1", de: ["Ich verstehe, was du meinst: Am Stadtrand ist es ohne Auto schwieriger. Aber ich bleibe bei meiner Meinung, denn in der Innenstadt findet man kaum einen Parkplatz, und Autos machen die Luft schlechter. Für große Einkäufe kann man sich ja auch einmal ein Auto leihen.", "Je comprends ce que tu veux dire : en périphérie, sans voiture, c’est plus difficile. Mais je reste sur mon avis, car dans le centre on ne trouve presque pas de place de parking, et les voitures polluent l’air. Pour les grosses courses, on peut bien emprunter une voiture de temps en temps.", "I understand what you mean: on the edge of the city it's harder without a car. But I'm sticking to my opinion, because in the city centre you can hardly find a parking space, and cars make the air worse. For big shopping trips you can always borrow a car now and then."] } ]
+    } },
+  lernen: { titre: { fr: "un cours ou une appli ?", en: "a course or an app?" }, frage: "t_avis_lernen",
+    blatt: "Lernt man eine Sprache besser in einem Kurs oder allein mit dem Handy?",
+    reA: /\b(im kurs|in einem kurs|ein kurs ist|der kurs|kurs ist besser|lehrer|lehrerin|kursleiter|kursleiterin|in der gruppe|mit anderen|mit leuten|in der klasse)\b/g,
+    reB: /\b(allein|alleine|handy|app|apps|internet|online|zu hause|selbst lernen|wann ich will|billiger|kostenlos|podcast|podcasts|videos)\b/g,
+    gegenA: "t_lernen_gegenA", gegenB: "t_lernen_gegenB",
+    avis: [
+      { niv: "A2", de: ["Ich finde, ein Kurs ist besser. Im Kurs kann ich fragen. Die Lehrerin hilft mir. Und ich spreche mit anderen Leuten. Allein ist es schwer für mich.",
+        "Je trouve qu’un cours, c’est mieux. En cours, je peux poser des questions. La prof m’aide. Et je parle avec d’autres gens. Seul, c’est difficile pour moi.",
+        "I think a course is better. In a course I can ask questions. The teacher helps me. And I talk to other people. On my own it's hard for me."] },
+      { niv: "B1", de: ["Ich bin der Meinung, dass man heute auch allein gut lernen kann. Mit einer App kann man jeden Tag ein bisschen üben, auch im Bus oder in der Pause, und das kostet fast nichts. Ich höre zum Beispiel jeden Morgen deutsche Podcasts. Natürlich ist ein Kurs gut, wenn man sprechen üben möchte. Aber für Wörter und Grammatik reicht oft das Handy.",
+        "Je pense qu’aujourd’hui, on peut aussi bien apprendre seul. Avec une appli, on peut s’entraîner un peu chaque jour, même dans le bus ou à la pause, et ça ne coûte presque rien. Moi, par exemple, j’écoute des podcasts allemands tous les matins. Bien sûr, un cours, c’est bien si on veut s’entraîner à parler. Mais pour le vocabulaire et la grammaire, le téléphone suffit souvent.",
+        "I believe that today you can also learn well on your own. With an app you can practise a little every day, even on the bus or during a break, and it costs almost nothing. I listen to German podcasts every morning, for example. Of course a course is good if you want to practise speaking. But for vocabulary and grammar, your phone is often enough."] }
+    ],
+    reaction: {
+      A: [ { niv: "A2", de: ["Ja, das stimmt, eine App ist praktisch. Aber ich brauche eine Lehrerin. Im Kurs kann ich sprechen. Das ist für mich wichtig.", "Oui, c’est vrai, une appli, c’est pratique. Mais j’ai besoin d’une prof. En cours, je peux parler. C’est important pour moi.", "Yes, that's true, an app is practical. But I need a teacher. In a course I can speak. That's important for me."] },
+           { niv: "B1", de: ["Da hast du recht, eine App ist flexibel und billig. Aber ich glaube, dass man allein zu wenig spricht. Im Kurs muss ich jede Woche reden, auch wenn ich Fehler mache, und genau das hilft mir. Vielleicht ist beides zusammen am besten: der Kurs zum Sprechen und die App für die Wörter.", "Tu as raison, une appli, c’est souple et pas cher. Mais je crois que seul, on ne parle pas assez. En cours, je suis obligé de parler chaque semaine, même si je fais des fautes, et c’est justement ça qui m’aide. Le mieux, c’est peut-être les deux : le cours pour parler et l’appli pour le vocabulaire.", "You're right, an app is flexible and cheap. But I think that on your own you speak too little. In a course I have to talk every week, even if I make mistakes, and that's exactly what helps me. Maybe both together is best: the course for speaking and the app for vocabulary."] } ],
+      B: [ { niv: "A2", de: ["Das stimmt, im Kurs spricht man mehr. Aber ein Kurs ist teuer. Und ich habe am Abend keine Zeit.", "C’est vrai, en cours, on parle plus. Mais un cours coûte cher. Et le soir, je n’ai pas le temps.", "That's true, in a course you speak more. But a course is expensive. And I don't have time in the evening."] },
+           { niv: "B1", de: ["Ich verstehe, was du meinst: Sprechen lernt man am besten mit anderen. Trotzdem bleibe ich bei meiner Meinung, denn ich arbeite im Schichtdienst und kann nicht jede Woche zur gleichen Zeit in einen Kurs gehen. Zum Sprechen kann ich ja auch einen Tandempartner suchen.", "Je comprends ce que tu veux dire : on apprend le mieux à parler avec d’autres. Pourtant, je reste sur mon avis, car je travaille en horaires décalés et je ne peux pas aller à un cours chaque semaine à la même heure. Pour parler, je peux aussi chercher un partenaire d’échange linguistique.", "I understand what you mean: you learn to speak best with other people. Still, I'm sticking to my opinion, because I work shifts and can't go to a course at the same time every week. For speaking, I can always look for a tandem partner."] } ]
+    } },
+  land: { titre: { fr: "la ville ou la campagne ?", en: "city or countryside?" }, frage: "t_avis_land",
+    blatt: "Lebt man besser in der Stadt oder auf dem Land?",
+    reA: /\b(in der stadt (ist|lebt|wohnt|leben|wohnen)|lieber in der stadt|stadtleben|großstadt|kino|kinos|restaurants|geschäfte|museum|museen|kultur|arbeit ist nah|alles ist nah|ganz nah)\b/g,
+    reB: /\b(auf dem land (ist|lebt|wohnt|leben|wohnen)|lieber auf dem land|aufs land|dorf|natur|ruhig|ruhe|garten|wald|frische luft|die luft|leiser|billiger)\b/g,
+    gegenA: "t_land_gegenA", gegenB: "t_land_gegenB",
+    avis: [
+      { niv: "A2", de: ["Ich wohne lieber in der Stadt. In der Stadt gibt es viele Geschäfte und Restaurants. Ich kann mit dem Bus fahren. Auf dem Land ist es langweilig für mich.",
+        "Je préfère habiter en ville. En ville, il y a beaucoup de magasins et de restaurants. Je peux prendre le bus. À la campagne, je m’ennuie.",
+        "I prefer living in the city. In the city there are lots of shops and restaurants. I can take the bus. The countryside is boring for me."] },
+      { niv: "B1", de: ["Für mich ist das Leben auf dem Land besser, vor allem für Familien. Dort ist es ruhiger, die Luft ist besser und die Wohnungen sind billiger als in der Stadt. Meine Nachbarn sind zum Beispiel letztes Jahr in ein Dorf gezogen, und ihre Kinder können jetzt draußen spielen. Natürlich braucht man dort oft ein Auto, aber das ist für mich kein großes Problem.",
+        "Pour moi, la vie à la campagne est meilleure, surtout pour les familles. C’est plus calme, l’air est meilleur et les logements sont moins chers qu’en ville. Mes voisins, par exemple, ont déménagé dans un village l’année dernière, et maintenant leurs enfants peuvent jouer dehors. Bien sûr, là-bas, on a souvent besoin d’une voiture, mais pour moi, ce n’est pas un gros problème.",
+        "For me, life in the countryside is better, especially for families. It's quieter there, the air is better and flats are cheaper than in the city. My neighbours, for example, moved to a village last year, and now their children can play outside. Of course you often need a car there, but for me that's not a big problem."] }
+    ],
+    reaction: {
+      A: [ { niv: "A2", de: ["Ja, das stimmt, die Stadt ist laut. Aber ich mag das, denn ich gehe gern aus. Auf dem Land kenne ich niemanden.", "Oui, c’est vrai, la ville est bruyante. Mais j’aime ça, parce que j’aime sortir. À la campagne, je ne connais personne.", "Yes, that's true, the city is noisy. But I like that, because I like going out. In the countryside I don't know anyone."] },
+           { niv: "B1", de: ["Da hast du recht, die Mieten in der Stadt sind wirklich hoch. Aber für mich ist es wichtig, dass ich schnell bei der Arbeit bin und am Abend Freunde treffen kann. Auf dem Land würde ich mich allein fühlen. Vielleicht ziehe ich später aufs Land, wenn ich Kinder habe.", "Tu as raison, les loyers en ville sont vraiment élevés. Mais pour moi, c’est important d’être vite au travail et de pouvoir voir des amis le soir. À la campagne, je me sentirais seul. Je déménagerai peut-être à la campagne plus tard, quand j’aurai des enfants.", "You're right, rents in the city really are high. But for me it's important to get to work quickly and to be able to meet friends in the evening. In the countryside I'd feel lonely. Maybe I'll move to the countryside later, when I have children."] } ],
+      B: [ { niv: "A2", de: ["Das stimmt, der Bus fährt nicht oft. Aber ich habe ein Auto. Und ich liebe die Natur.", "C’est vrai, le bus ne passe pas souvent. Mais j’ai une voiture. Et j’adore la nature.", "That's true, the bus doesn't run often. But I have a car. And I love nature."] },
+           { niv: "B1", de: ["Ich verstehe dein Argument, in der Stadt ist alles ganz nah. Trotzdem finde ich die Ruhe wichtiger. Viele Leute arbeiten heute auch von zu Hause, deshalb muss man nicht jeden Tag in die Stadt fahren. Und am Wochenende kann man ja die Stadt besuchen.", "Je comprends ton argument, en ville tout est tout près. Pourtant, je trouve le calme plus important. Aujourd’hui, beaucoup de gens travaillent aussi depuis chez eux, donc on n’est pas obligé d’aller en ville tous les jours. Et le week-end, on peut toujours aller visiter la ville.", "I understand your argument, in the city everything is close by. Still, I think peace and quiet is more important. Nowadays a lot of people also work from home, so you don't have to go into the city every day. And at the weekend you can always visit the city."] } ]
+    } },
+  buero: { titre: { fr: "travailler chez soi ou au bureau ?", en: "working from home or in the office?" }, frage: "t_avis_buero",
+    blatt: "Arbeitet man besser von zu Hause oder im Büro?",
+    reA: /\b(von zu hause|zu hause arbeiten|arbeite (gern |lieber )?zu hause|homeoffice|home office|kein weg|keine fahrt|spare|spart|flexibel|ruhiger|mehr zeit)\b/g,
+    reB: /\b(im büro|ins büro|lieber im büro|kollegen|kolleginnen|team|zusammen|allein|einsam|feierabend|kontakt|trennen)\b/g,
+    gegenA: "t_buero_gegenA", gegenB: "t_buero_gegenB",
+    avis: [
+      { niv: "A2", de: ["Ich finde, zu Hause ist es besser, weil ich nicht mit dem Bus fahren muss. Ich kann länger schlafen. Und zu Hause ist es ruhig.",
+        "Je trouve que chez moi, c’est mieux, parce que je n’ai pas besoin de prendre le bus. Je peux dormir plus longtemps. Et chez moi, c’est calme.",
+        "I think home is better, because I don't have to take the bus. I can sleep longer. And it's quiet at home."] },
+      { niv: "B1", de: ["Meiner Meinung nach ist das Büro besser, jedenfalls für mich. Im Büro kann ich direkt mit meinen Kollegen sprechen, und ich lerne viel von ihnen. Außerdem trenne ich so Arbeit und Freizeit: Wenn ich nach Hause komme, habe ich Feierabend. Ich habe zum Beispiel letztes Jahr einen Monat zu Hause gearbeitet und mich oft allein gefühlt. Natürlich ist Homeoffice praktisch, wenn man Kinder hat.",
+        "À mon avis, le bureau, c’est mieux, en tout cas pour moi. Au bureau, je peux parler directement avec mes collègues, et j’apprends beaucoup d’eux. En plus, comme ça, je sépare le travail et le temps libre : quand je rentre chez moi, ma journée est finie. L’année dernière, par exemple, j’ai travaillé un mois chez moi et je me suis souvent senti seul. Bien sûr, le télétravail, c’est pratique quand on a des enfants.",
+        "In my opinion the office is better, at least for me. In the office I can talk to my colleagues directly, and I learn a lot from them. Also, that way I keep work and free time apart: when I get home, my working day is over. Last year, for example, I worked from home for a month and often felt lonely. Of course working from home is practical if you have children."] }
+    ],
+    reaction: {
+      A: [ { niv: "A2", de: ["Das stimmt, im Büro sind die Kollegen. Aber ich kann sie auch anrufen. Zu Hause arbeite ich besser.", "C’est vrai, au bureau, il y a les collègues. Mais je peux aussi les appeler. Chez moi, je travaille mieux.", "That's true, the colleagues are in the office. But I can call them too. I work better at home."] },
+           { niv: "B1", de: ["Da hast du recht, im Büro geht vieles schneller. Trotzdem arbeite ich lieber zu Hause, weil ich dort viel ruhiger bin und mich besser konzentrieren kann. Vielleicht ist eine Mischung am besten: zwei Tage im Büro und drei Tage zu Hause.", "Tu as raison, au bureau, beaucoup de choses vont plus vite. Pourtant, je préfère travailler chez moi, parce que j’y suis beaucoup plus au calme et que je me concentre mieux. Le mieux, c’est peut-être un mélange : deux jours au bureau et trois jours à la maison.", "You're right, a lot of things go faster in the office. Still, I prefer working from home, because it's much quieter there and I can concentrate better. Maybe a mix is best: two days in the office and three days at home."] } ],
+      B: [ { niv: "A2", de: ["Ja, das stimmt, man spart Zeit. Aber ich bin nicht gern allein. Ich gehe lieber ins Büro.", "Oui, c’est vrai, on gagne du temps. Mais je n’aime pas être seul. Je préfère aller au bureau.", "Yes, that's true, you save time. But I don't like being alone. I'd rather go to the office."] },
+           { niv: "B1", de: ["Ich verstehe, was du meinst: Der Weg zur Arbeit kostet viel Zeit. Aber ich bleibe bei meiner Meinung, denn zu Hause habe ich keinen ruhigen Platz zum Arbeiten. Meine Wohnung ist klein, und meine Nachbarn sind oft laut. Deshalb ist das Büro für mich besser.", "Je comprends ce que tu veux dire : le trajet jusqu’au travail prend beaucoup de temps. Mais je reste sur mon avis, car chez moi je n’ai pas d’endroit calme pour travailler. Mon appartement est petit, et mes voisins font souvent du bruit. C’est pour ça que le bureau est mieux pour moi.", "I understand what you mean: the journey to work takes a lot of time. But I'm sticking to my opinion, because at home I don't have a quiet place to work. My flat is small, and my neighbours are often noisy. That's why the office is better for me."] } ]
+    } },
+  handy: { titre: { fr: "un téléphone pour les enfants ?", en: "a phone for children?" }, frage: "t_avis_handy",
+    blatt: "Sollen Kinder unter zwölf Jahren schon ein eigenes Handy haben?",
+    reA: /\b(braucht ein handy|brauchen ein handy|ein handy ist (wichtig|gut|praktisch)|anrufen|erreichen|sicherheit|sicher|notfall|alle freunde|in der gruppe)\b/g,
+    reB: /\b(kein handy|kein eigenes handy|zu früh|zu jung|draußen spielen|bücher|lesen|gefährlich|zu viel zeit|bildschirm|erst ab|später)\b/g,
+    gegenA: "t_handy_gegenA", gegenB: "t_handy_gegenB",
+    avis: [
+      { niv: "A2", de: ["Ich finde, ein Kind braucht ein Handy. Dann kann es die Eltern anrufen. Das ist sicher. Meine Tochter hat auch ein Handy.",
+        "Je trouve qu’un enfant a besoin d’un téléphone. Comme ça, il peut appeler ses parents. C’est plus sûr. Ma fille aussi a un téléphone.",
+        "I think a child needs a phone. Then they can call their parents. It's safer. My daughter has a phone too."] },
+      { niv: "B1", de: ["Ich bin der Meinung, dass Kinder unter zwölf noch kein eigenes Handy brauchen. Sie sollten lieber draußen spielen, Sport machen oder Bücher lesen. Außerdem ist das Internet für kleine Kinder oft gefährlich. Unsere Nachbarn haben ihrem Sohn zum Beispiel ein einfaches Telefon ohne Internet gegeben: Er kann anrufen, aber nicht stundenlang spielen. Das finde ich einen guten Kompromiss.",
+        "Je pense que les enfants de moins de douze ans n’ont pas encore besoin de leur propre téléphone. Ils feraient mieux de jouer dehors, de faire du sport ou de lire des livres. En plus, Internet est souvent dangereux pour les jeunes enfants. Nos voisins, par exemple, ont donné à leur fils un simple téléphone sans Internet : il peut appeler, mais pas jouer pendant des heures. Je trouve que c’est un bon compromis.",
+        "I believe that children under twelve don't need their own phone yet. They'd be better off playing outside, doing sport or reading books. Also, the internet is often dangerous for young children. Our neighbours, for example, gave their son a simple phone without internet: he can make calls, but he can't play for hours. I think that's a good compromise."] }
+    ],
+    reaction: {
+      A: [ { niv: "A2", de: ["Das stimmt, Kinder spielen zu viel. Aber mit dem Handy kann mein Kind mich anrufen. Das ist für mich wichtig.", "C’est vrai, les enfants jouent trop. Mais avec le téléphone, mon enfant peut m’appeler. C’est important pour moi.", "That's true, children play too much. But with a phone my child can call me. That's important for me."] },
+           { niv: "B1", de: ["Da hast du recht, zu viel Zeit vor dem Bildschirm ist nicht gut. Aber die Eltern können das Handy ja kontrollieren, zum Beispiel mit einer Stunde pro Tag. Trotzdem bleibe ich dabei: Ein Handy ist heute wichtig für die Sicherheit, weil viele Kinder allein zur Schule fahren.", "Tu as raison, trop de temps devant l’écran, ce n’est pas bien. Mais les parents peuvent contrôler le téléphone, par exemple avec une heure par jour. Pourtant, je maintiens mon avis : aujourd’hui, un téléphone est important pour la sécurité, parce que beaucoup d’enfants vont seuls à l’école.", "You're right, too much screen time isn't good. But parents can control the phone, for example with one hour a day. Still, I stand by my opinion: a phone is important for safety nowadays, because a lot of children travel to school on their own."] } ],
+      B: [ { niv: "A2", de: ["Ja, das stimmt, die Eltern können anrufen. Aber die Kinder sind zu jung. Sie sollen draußen spielen.", "Oui, c’est vrai, les parents peuvent appeler. Mais les enfants sont trop jeunes. Ils doivent jouer dehors.", "Yes, that's true, parents can call. But the children are too young. They should play outside."] },
+           { niv: "B1", de: ["Ich verstehe dein Argument, die Eltern möchten ihr Kind erreichen. Aber dafür reicht ein einfaches Telefon ohne Internet. Ich bleibe bei meiner Meinung, denn kleine Kinder können noch nicht gut mit dem Internet umgehen, und Gruppen mit der ganzen Klasse machen oft mehr Stress als Freude.", "Je comprends ton argument, les parents veulent pouvoir joindre leur enfant. Mais pour ça, un simple téléphone sans Internet suffit. Je reste sur mon avis, car les jeunes enfants ne savent pas encore bien se servir d’Internet, et les groupes avec toute la classe font souvent plus de stress que de plaisir.", "I understand your argument, parents want to be able to reach their child. But a simple phone without internet is enough for that. I'm sticking to my opinion, because young children can't handle the internet well yet, and group chats with the whole class often cause more stress than fun."] } ]
+    } }
+};
+const ORDRE_PLAN = ["fest", "umzug", "geschenk"], ORDRE_AVIS = ["auto", "lernen", "land", "buero", "handy"];
+
+// ---------------------------------------------------------------- la mesure
+const norm = s => String(s || "").toLowerCase().replace(/[.,!?;:«»"„“()]/g, " ").replace(/\s+/g, " ").trim();
+const nbMots = s => norm(s).split(" ").filter(Boolean).length;
+const a = (re, s) => { re.lastIndex = 0; const r = re.test(norm(s)); re.lastIndex = 0; return r; };
+const LIENS = /\b(weil|dass|wenn|obwohl|als|damit|deshalb|darum|deswegen|trotzdem|außerdem|denn|ob|zum beispiel)\b/;
+const PROPOSE = /\b(wir könnten|können wir|wie wäre es|wollen wir|lass uns|lasst uns|ich schlage vor|vielleicht|wir sollten|ich würde|was hältst du|treffen wir uns|ich bringe|ich kann|ich nehme|ich mache|ich kaufe)\b/;
+const REAGIT = /\b(gute idee|einverstanden|okay|ok|genau|stimmt|super|prima|toll|ich finde|lieber|nicht so gut|ich weiß nicht|klingt gut|das passt|passt mir|gerne|gern|ja|nein)\b/;
+const DEMANDE = /\b(was meinst du|was denkst du|oder|passt (dir|es dir)|hast du|kannst du|willst du|möchtest du|wie findest du|bringst du|machst du|und du|sammelst du|schreibst du)\b/;
+const AVIS_RE = /\b(ich finde|meiner meinung nach|ich denke|ich glaube|ich meine|für mich|ich bin der meinung|ich bin (für|gegen)|ich bin dafür|ich bin dagegen|ich wohne lieber|ich lerne lieber)\b/;
+const EXEMPLE_RE = /\b(zum beispiel|z b|bei mir|ich kenne|mein freund|meine freundin|meine nachbarn|mein nachbar|meine kollegin|mein kollege|meine eltern|letzte woche|letztes jahr|letzten sommer|früher|jeden tag|jeden morgen)\b/;
+const NUANCE_RE = /\b(aber|natürlich|andererseits|einerseits|auf der anderen seite|zwar|vorteil|vorteile|nachteil|nachteile|manchmal)\b/;
+const REACTION_RE = /\b(da hast du recht|du hast recht|stimmt|das stimmt|das sehe ich anders|ich sehe das anders|ich verstehe|das ist richtig|genau|einverstanden|da bin ich nicht|nicht deiner meinung|ja aber|okay aber|das ist ein gutes argument|gutes argument)\b/;
+const CONCLUT_RE = /\b(trotzdem|also|ich bleibe|bleibe bei|am ende|vielleicht|beides|kompromiss|es kommt darauf an|für mich|am besten)\b/;
+const POINTS_1A = [
+  ["Name", /\b(heiße|heisse|mein name|name ist)\b/],
+  ["Alter", /\bjahre alt\b|\bbin \w+ jahre\b/],
+  ["Herkunft", /\b(komme|komm) (aus|ursprünglich)|\b(geboren|stamme aus|bin aus)\b/],
+  ["Wohnort", /\b(wohne|lebe (in|seit|hier|jetzt|mit)|wohnort)\b/],
+  ["Familie", /\b(verheiratet|ledig|geschieden|kinder|kind|sohn|söhne|tochter|töchter|frau|mann|familie|eltern|mutter|vater|bruder|schwester|geschwister|allein|single|partner|partnerin)\b/],
+  ["Beruf / Arbeit", /\b(arbeite|arbeit|beruf|beruflich|studiere|student|studentin|praktikum|ausbildung|job|stelle|arbeitslos|rente|rentner|rentnerin|hausfrau|hausmann)\b/],
+  ["Sprachen", /\b(spreche|sprache|sprachen|muttersprache)\b/],
+  ["Freizeit", /\b(freizeit|hobby|hobbys|sport|fußball|musik|laufen|schwimme|schwimmen|wandern|lese gern|koche gern|tanze|spiele gern|gehe gern)\b/]
+];
+
+function crit(label, ok){ return { label, ok: !!ok }; }
+function niveauDe(okB1, okA2){ return okB1 ? "B1" : okA2 ? "A2" : "moins"; }
+
+const JUGES = {
+  p1a(t){
+    const pts = POINTS_1A.filter(p => a(p[1], t)).map(p => p[0]);
+    const n = nbMots(t), lien = a(LIENS, t);
+    return { points: pts, niveau: niveauDe(pts.length >= 6 && n >= 55 && lien, pts.length >= 4 && n >= 25), crit: [
+      crit(u("c_points", {n: pts.length, sur: 8, liste: pts.length ? " (" + pts.join(", ") + ")" : ""}), pts.length >= 5),
+      crit(u("c_duree", {n, v: 60}), n >= 60),
+      crit(u("c_liens"), lien)
+    ]};
+  },
+  p1b(t){
+    const n = nbMots(t), lien = a(LIENS, t), ex = a(/\b(zum beispiel|z b|am liebsten|oft|jeden|jede|manchmal|meistens)\b/, t);
+    return { niveau: niveauDe(n >= 35 && lien, n >= 15), crit: [
+      crit(u("c_phrases", {n, v: 35}), n >= 35),
+      crit(u("c_raison"), lien),
+      crit(u("c_detail"), ex)
+    ]};
+  },
+  p2(tours){
+    const compte = re => tours.filter(t => a(re, t)).length;
+    const pris = tours.filter(t => nbMots(t) >= 4).length;
+    const prop = compte(PROPOSE), reac = compte(REAGIT), frage = compte(DEMANDE), raison = compte(LIENS);
+    const c = [
+      crit(u("c_tours", {n: pris}), pris >= 4),
+      crit(u("c_propose", {n: prop}), prop >= 2),
+      crit(u("c_reagis", {n: reac}), reac >= 2),
+      crit(u("c_questions", {n: frage}), frage >= 1),
+      crit(u("c_raisons", {n: raison}), raison >= 1)
+    ];
+    const ok = c.filter(x => x.ok).length;
+    return { niveau: niveauDe(ok >= 4 && c[0].ok, pris >= 3 && ok >= 2), crit: c };
+  },
+  p3a(t){
+    const n = nbMots(t);
+    const c = [
+      crit(u("c_avis"), a(AVIS_RE, t)),
+      crit(u("c_avis_raison"), a(LIENS, t)),
+      crit(u("c_exemple"), a(EXEMPLE_RE, t)),
+      crit(u("c_nuance"), a(NUANCE_RE, t)),
+      crit(u("c_avis_long", {n, v: 40}), n >= 40)
+    ];
+    const ok = c.filter(x => x.ok).length;
+    return { niveau: niveauDe(c[0].ok && c[1].ok && ok >= 4 && n >= 35, (c[0].ok || c[1].ok) && n >= 15), crit: c };
+  },
+  p3b(t){
+    const n = nbMots(t);
+    const c = [
+      crit(u("c_reaction"), a(REACTION_RE, t)),
+      crit(u("c_defends"), a(LIENS, t)),
+      crit(u("c_conclus"), a(CONCLUT_RE, t)),
+      crit(u("c_reac_long", {n, v: 30}), n >= 30)
+    ];
+    const ok = c.filter(x => x.ok).length;
+    return { niveau: niveauDe(c[0].ok && ok >= 3 && n >= 25, n >= 12 && (c[0].ok || c[1].ok)), crit: c };
+  }
+};
+// Ce que vaut un tour de la planification, pris seul (la section entiere se juge sur les cinq : JUGES.p2).
+function critTour(t){
+  return [
+    crit(u("c_t_phrase", {n: nbMots(t)}), nbMots(t) >= 4),
+    crit(u("c_t_propose"), a(PROPOSE, t)),
+    crit(u("c_t_reagis"), a(REAGIT, t)),
+    crit(u("c_t_question"), a(DEMANDE, t)),
+    crit(u("c_t_raison"), a(LIENS, t))
+  ];
+}
+// Le cote que l'eleve a pris dans la partie 3 : celui dont les mots reviennent le plus ; a egalite, au hasard.
+function coteDe(sujet, t){
+  const n = norm(t);
+  const sa = (n.match(sujet.reA) || []).length, sb = (n.match(sujet.reB) || []).length;
+  return sa > sb ? "A" : sb > sa ? "B" : (Math.random() < 0.5 ? "A" : "B");
+}
+
+// ---------------------------------------------------------------- la voix
+const VOIX_A_FUIR = ["albert","bad news","bahh","bells","boing","bubbles","cellos","good news","jester","organ","superstar","trinoids","whisper","wobble","zarvox","deranged","hysterical","junior","ralph","kathy","fred","princess","bruce","agnes","vicki","eddy","flo","grandma","grandpa","reed","rocko","sandy","shelley"];
+let ENREGISTRE = {};
+if (MEDIAS_DTZ) fetch(MEDIAS + "voix/manifest.json", {cache: "no-store"}).then(r => r.ok ? r.json() : {}).then(m => { ENREGISTRE = m || {}; }).catch(() => {});
+let voixDe = { anna: null, mark: null };
+function choisirVoix(){
+  const toutes = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
+  const de = toutes.filter(v => /^de/i.test(v.lang) && !VOIX_A_FUIR.some(f => (v.name || "").toLowerCase().includes(f)));
+  const trouve = re => de.find(v => re.test(v.name));
+  voixDe.anna = trouve(/anna|petra|helena|katja|marlene|google deutsch|hedda|female|frau/i) || de[0] || null;
+  voixDe.mark = trouve(/markus|yannick|martin|conrad|stefan|hans|killian|male|mann/i) || de.find(v => v !== voixDe.anna) || de[0] || null;
+}
+try{ choisirVoix(); if (window.speechSynthesis) speechSynthesis.onvoiceschanged = choisirVoix; }catch(e){}
+let audioEnCours = null;
+function taire(){
+  try{ if (audioEnCours){ audioEnCours.pause(); audioEnCours = null; } }catch(e){}
+  try{ if (window.speechSynthesis) speechSynthesis.cancel(); }catch(e){}
+}
+// La voix du telephone pour un texte libre (les reponses modeles qui n'ont pas de fichier).
+function direTexte(texte, qui){
+  return new Promise(fini => {
+    taire();
+    if (!window.speechSynthesis){ fini(); return; }
+    const u0 = new SpeechSynthesisUtterance(texte);
+    u0.lang = "de-DE"; u0.rate = 0.92;
+    const v = voixDe[qui]; if (v) u0.voice = v;
+    if (voixDe.anna === voixDe.mark) u0.pitch = qui === "mark" ? 0.85 : 1.1;
+    u0.onend = u0.onerror = () => fini();
+    speechSynthesis.speak(u0);
+    setTimeout(fini, 400 + texte.length * 110);   // filet : certains moteurs n'appellent jamais onend
+  });
+}
+// LA VIDEO D'ABORD (comme l'oral du DTZ) : une replique qui a son clip (manifeste : {video: 1}) se joue dans le cadre
+// de sa bulle ; sinon sa voix enregistree ({son: 1}) ; sinon la voix du telephone.
+function dire(id, cadre){
+  return new Promise(fini => {
+    taire();
+    const [qui, texte] = L[id];
+    const e = ENREGISTRE[id] || {};
+    if (e.video && cadre){
+      const v = cadre.querySelector("video");
+      const lancer = cadre.querySelector(".lancer");
+      audioEnCours = v;
+      let rendu = false;
+      const fin = () => { if (rendu) return; rendu = true; lancer.hidden = true; fini(); };
+      v.onended = fin; v.onerror = fin;
+      lancer.onclick = () => { lancer.hidden = true; v.play().catch(fin); };
+      try{ v.currentTime = 0; }catch(err){}
+      v.play().then(() => { lancer.hidden = true; }).catch(() => { lancer.hidden = false; });
+      return;
+    }
+    if (e === 1 || e.son){
+      const au = new Audio(MEDIAS + "voix/" + id + ".mp3");
+      audioEnCours = au;
+      au.onended = au.onerror = () => fini();
+      au.play().catch(() => fini());
+      return;
+    }
+    direTexte(texte, qui).then(fini);
+  });
+}
+
+// ---------------------------------------------------------------- le micro
+// ecouter() rend un objet { arreter() } ; surTexte(texte) a chaque resultat ; surFin(texte) a la fin (null : pas de micro).
+const Reco = window.SpeechRecognition || window.webkitSpeechRecognition;
+let ecouteApp = null;   // la reponse de l'app, quand c'est elle qui ecoute
+window.addEventListener("message", e => {
+  const d = e.data;
+  if (!d || d.source !== "wortando-app" || d.type !== "micro" || !ecouteApp) return;
+  if (d.etat === "texte") ecouteApp.surTexte(d.texte || "");
+  else if (d.etat === "fin") { const f = ecouteApp; ecouteApp = null; f.surFin(d.texte || ""); }
+  else if (d.etat === "indisponible") { const f = ecouteApp; ecouteApp = null; f.surFin(null); }
+});
+function ecouter(surTexte, surFin){
+  if (Reco){
+    let actif = true, finals = "", provisoire = "", reco = null, fini = false;
+    const total = () => (finals + " " + provisoire).replace(/\s+/g, " ").trim();
+    const terminer = () => { if (fini) return; fini = true; surFin(total()); };
+    const lancer = () => {
+      reco = new Reco();
+      reco.lang = "de-DE"; reco.continuous = true; reco.interimResults = true;
+      reco.onresult = ev => {
+        provisoire = "";
+        for (let i = ev.resultIndex; i < ev.results.length; i++){
+          const r = ev.results[i];
+          if (r.isFinal) finals += " " + r[0].transcript; else provisoire += " " + r[0].transcript;
+        }
+        surTexte(total());
+      };
+      reco.onerror = ev => { if (ev && (ev.error === "not-allowed" || ev.error === "service-not-allowed")){ actif = false; if (!finals){ fini = true; surFin(null); } } };
+      // Une longue reponse : le moteur s'arrete apres un silence, on le relance tant qu'on ecoute.
+      reco.onend = () => { if (actif) { try{ lancer(); }catch(e){ terminer(); } } else setTimeout(terminer, 150); };
+      reco.start();
+    };
+    try{ lancer(); }catch(e){ setTimeout(() => surFin(null), 0); return { arreter(){} }; }
+    return { arreter(){ actif = false; try{ reco.stop(); }catch(e){} setTimeout(terminer, 1800); } };
+  }
+  if (DANS_APP){
+    ecouteApp = { surTexte, surFin };
+    parler("micro", { action: "start", langue: "de-DE" });
+    return { arreter(){ parler("micro", { action: "stop" }); } };
+  }
+  setTimeout(() => surFin(null), 0);
+  return { arreter(){} };
+}
+
+// ---------------------------------------------------------------- l'ecran
+const zone = document.getElementById("zone"), suite = document.getElementById("suite");
+function el(tag, cls, texte){ const e = document.createElement(tag); if (cls) e.className = cls; if (texte != null) e.textContent = texte; return e; }
+// En fa / ar, chaque morceau entre deux « · » est isole (U+2068 ... U+2069) : sinon l'algorithme bidirectionnel colle
+// un nombre au mot allemand qui le precede (« Teil 1 · … »). Rien ne change en ecriture de gauche a droite.
+const isolerMorceaux = s => document.documentElement.dir !== "rtl" || typeof s !== "string" || s.indexOf(" · ") < 0 ? s
+  : s.split(" · ").map(m => "⁨" + m + "⁩").join(" · ");
+function entete(petit, grand){ document.getElementById("titrePetit").textContent = isolerMorceaux(petit); document.getElementById("titreGrand").textContent = isolerMorceaux(grand); }
+function petitTitre(){ return u(BLANC ? "petit_blanc" : "petit"); }
+// Un point par exercice de la section : plein quand il est fait, ambre pour celui-ci ; on le touche pour y sauter
+// (pas pendant l'examen complet : on ne saute pas une partie de l'examen).
+function points(s, e){
+  const b = document.getElementById("etapes"); b.textContent = "";
+  b.hidden = s < 0;
+  if (s < 0) return;
+  const st = etatSection(s), ex = exercices(s);
+  ex.forEach((x, k) => {
+    const p = el("button", "point" + (st.fait[k] ? " fait" : "") + (k === e ? " ici" : ""));
+    p.type = "button";
+    p.setAttribute("aria-label", u("exo_n", {n: k + 1, sur: ex.length}) + " : " + x.titre + (st.fait[k] ? " ✓" : ""));
+    if (k === e) p.setAttribute("aria-current", "step");
+    p.disabled = examen;
+    p.onclick = () => exercice(s, k);
+    b.appendChild(p);
+  });
+}
+function bulle(id, dejaDit){
+  const [qui, de] = L[id], trad = trRep(L[id]);
+  const ligne = el("div", "qui");
+  let cadre = null;
+  if ((ENREGISTRE[id] || {}).video){
+    // Le clip remplace le petit portrait, au-dessus de la bulle : c'est le visage qui parle qu'on regarde.
+    cadre = el("div", "clip");
+    const v = el("video"); v.src = MEDIAS + "video/" + id + ".mp4"; v.preload = "auto";
+    v.setAttribute("playsinline", ""); v.setAttribute("webkit-playsinline", ""); v.poster = MEDIAS + "video/" + id + ".jpg";
+    const lancer = el("button", "lancer", "▶"); lancer.type = "button"; lancer.hidden = true; lancer.setAttribute("aria-label", "▶");
+    cadre.append(v, lancer);
+    zone.appendChild(cadre);
+  } else {
+    const img = el("img"); img.src = IMG[qui]; img.alt = ""; ligne.appendChild(img);
+  }
+  const b = el("div", "bulle");
+  b.appendChild(el("div", "nom", u("nom_" + qui)));
+  const d = el("div", "de", de); d.lang = "de"; b.appendChild(d);
+  const f = el("div", "fr", trad); f.hidden = true; b.appendChild(f);
+  const outils = el("div");
+  const hp = el("button", "hp", u("reecouter")); hp.type = "button"; hp.onclick = () => dire(id, cadre);
+  outils.appendChild(hp);
+  // a l'examen complet, pas de traduction : comme le jour de l'examen
+  if (!examen){ const t = el("button", "hp", u("traduire")); t.type = "button"; t.onclick = () => { f.hidden = !f.hidden; }; outils.appendChild(t); }
+  b.appendChild(outils);
+  ligne.appendChild(b);
+  zone.appendChild(ligne);
+  if (cadre) cadre.scrollIntoView({ behavior: "smooth", block: "start" });
+  return dejaDit ? Promise.resolve() : dire(id, cadre);
+}
+function coach(cle, aideSeule){
+  if (!aideSeule){
+    const ligne = el("div", "qui");
+    const img = el("img"); img.src = IMG.mark; img.alt = ""; ligne.appendChild(img);
+    const b = el("div", "bulle mark");
+    b.appendChild(el("div", "nom", u("nom_coach")));
+    b.appendChild(el("div", "texte", tr(COACH[cle])));
+    ligne.appendChild(b);
+    zone.appendChild(ligne);
+  }
+  if (AIDE[cle]){
+    const aide = el("div", "aide");
+    aide.appendChild(el("div", "", u("pour_aider")));
+    const tags = el("div", "tags");
+    AIDE[cle].forEach(x => { const t = el("span", "", x); t.lang = "de"; tags.appendChild(t); });
+    aide.appendChild(tags);
+    zone.appendChild(aide);
+  }
+}
+function attend(cle){
+  // ouverte d'emblee : expliquer le format est la demande du groupe de Marina (le cahier du commerce ne le fait pas)
+  const d = el("details", "boite"); d.open = true;
+  d.appendChild(el("summary", "", u("attend")));
+  const ul = el("ul"); tr(ATTEND[cle]).forEach(x => ul.appendChild(el("li", "", x))); d.appendChild(ul);
+  zone.appendChild(d);
+}
+// Les reponses modeles : A2 puis B1, chacune avec son ecoute et sa traduction. Jamais d'autre niveau.
+function modeles(liste, note, ouvert){
+  const d = el("details", "boite");
+  if (ouvert) d.open = true;
+  d.appendChild(el("summary", "", u("modeles_titre")));
+  if (note) d.appendChild(el("p", "limite", note));
+  liste.forEach(m => {
+    const b = el("div", "modele");
+    b.appendChild(el("span", "tag " + m.niv, u("modele_niv", {n: m.niv})));
+    const texte = m.id ? L[m.id][1] : m.de[0], trad = m.id ? trRep(L[m.id]) : trModele(m.de);
+    const de = el("div", "de", texte); de.lang = "de"; b.appendChild(de);
+    const t = el("div", "tr", trad); t.hidden = true; b.appendChild(t);
+    const hp = el("button", "hp", u("reecouter")); hp.type = "button"; hp.onclick = () => m.id ? dire(m.id, null) : direTexte(texte, "mark");
+    const tb = el("button", "hp", u("traduire")); tb.type = "button"; tb.onclick = () => { t.hidden = !t.hidden; };
+    const o = el("div"); o.append(hp, tb); b.appendChild(o);
+    d.appendChild(b);
+  });
+  zone.appendChild(d);
+}
+function feuille(titre, items, texteDe){
+  const f = el("div", "feuille");
+  f.appendChild(el("b", "", titre));
+  if (texteDe){ const d = el("div", "de", texteDe); d.lang = "de"; f.appendChild(d); }
+  if (items){ const p = el("div", "puces"); items.forEach(x => { const s = el("span", "", x); s.lang = "de"; p.appendChild(s); }); f.appendChild(p); }
+  zone.appendChild(f);
+  return f;
+}
+function bouton(texte, action){ suite.hidden = false; suite.disabled = false; suite.textContent = texte; suite.onclick = () => { taire(); action(); }; }
+function vider(){ taire(); zone.textContent = ""; suite.hidden = true; window.scrollTo(0, 0); }
+
+// Le tour de parole de l'eleve : micro, texte entendu, ou saisie au clavier.
+function aToi(consigne, limiteS, quandFini){
+  const z = el("div", "micro-zone");
+  const m = el("button", "micro", "🎙"); m.type = "button"; m.setAttribute("aria-label", u("parler"));
+  const info = el("div", "micro-info", consigne);
+  const entendu = el("div", "entendu"); entendu.lang = "de"; entendu.hidden = true;
+  const clavier = el("button", "lien", u("ecrire_place")); clavier.type = "button";
+  z.append(m, info, entendu, clavier);
+  zone.appendChild(z);
+  let ec = null, debut = 0, minuterie = null, coupe = null, rendu = false;
+  const rendre = t => { if (rendu) return; rendu = true; z.remove(); quandFini(t || ""); };
+  const arreter = () => { if (!ec) return; clearInterval(minuterie); clearTimeout(coupe); m.classList.remove("ecoute"); m.textContent = "…"; m.disabled = true; info.textContent = u("reflechis"); ec.arreter(); ec = null; };
+  m.onclick = () => {
+    if (ec){ arreter(); return; }
+    taire();
+    entendu.hidden = false; entendu.textContent = "";
+    m.classList.add("ecoute"); m.textContent = "■"; debut = Date.now();
+    const tic = () => { const s = Math.floor((Date.now() - debut) / 1000); info.textContent = u("ecoute_tic", {t: Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0")}); };
+    tic(); minuterie = setInterval(tic, 500);
+    coupe = setTimeout(arreter, limiteS * 1000);
+    ec = ecouter(t => { entendu.textContent = t; }, t => {
+      clearInterval(minuterie); clearTimeout(coupe); ec = null;
+      if (t === null){ m.classList.remove("ecoute"); m.textContent = "🎙"; m.disabled = false; info.textContent = u("micro_ko"); clavier.click(); return; }
+      rendre(t);
+    });
+  };
+  clavier.onclick = () => {
+    if (ec) return;
+    clavier.remove();
+    const ta = el("textarea"); ta.lang = "de"; ta.placeholder = u("placeholder");
+    const ok = el("button", "lien", u("valider")); ok.type = "button";
+    ok.onclick = () => { if (ta.value.trim()) rendre(ta.value.trim()); };
+    z.append(ta, ok); ta.focus();
+  };
+}
+function chip(n){ return el("span", "niv " + n, n === "moins" ? u("pas_a2") : n); }
+function montrerVerdict(res, texte, refaire, continuer, titre, apres){
+  if (texte){ const e = el("div", "entendu", texte); e.lang = "de"; zone.appendChild(el("div", "micro-info", u("entendu"))); zone.appendChild(e); }
+  const v = el("div", "verdict");
+  const h = el("h3", "", titre || u("retour_anna")); if (res.niveau) h.appendChild(chip(res.niveau)); v.appendChild(h);
+  const ul = el("ul", "crit"); res.crit.forEach(c => ul.appendChild(el("li", c.ok ? "ok" : "", c.label))); v.appendChild(ul);
+  v.appendChild(el("p", "limite", u("limite")));
+  zone.appendChild(v);
+  if (apres) apres();
+  const act = el("div", "actions"); const r = el("button", "", u("recommencer_ex")); r.type = "button"; r.onclick = refaire; act.appendChild(r); zone.appendChild(act);
+  bouton(u("continuer"), continuer);
+  v.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+// La minute de reflexion avant la partie 3 (le seul temps de preparation de l'oral du telc). A l'entrainement, on
+// peut la passer ; a l'examen complet, non.
+function reflexion(){
+  return new Promise(fin => {
+    const z = el("div", "reflexion");
+    z.appendChild(el("b", "", u("reflexion_titre")));
+    const reste = el("div", "reste"); z.appendChild(reste);
+    z.appendChild(el("p", "limite", u("reflexion_note")));
+    let fait = false, s = RAPIDE ? 3 : 60;
+    const finir = () => { if (fait) return; fait = true; clearInterval(id); z.remove(); fin(); };
+    if (!examen){ const b = el("button", "lien", u("pret")); b.type = "button"; b.onclick = finir; z.appendChild(b); }
+    zone.appendChild(z);
+    const tic = () => { reste.textContent = u("reste", {s}); if (s-- <= 0) finir(); };
+    const id = setInterval(tic, 1000); tic();
+    z.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+}
+
+// ---------------------------------------------------------------- le chronometre de l'examen complet
+let chronoId = null, chronoDebut = 0;
+function chronoLancer(){ chronoArreter(); chronoDebut = Date.now(); const c = document.getElementById("chrono"); c.hidden = false;
+  const tic = () => { const s = Math.floor((Date.now() - chronoDebut) / 1000); c.textContent = Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
+  tic(); chronoId = setInterval(tic, 1000); }
+function chronoArreter(){ if (chronoId) clearInterval(chronoId); chronoId = null; document.getElementById("chrono").hidden = true; }
+
+// ---------------------------------------------------------------- l'etat, les sujets
+// L'etat des sections reste d'une visite a l'autre. Stockage du navigateur, enveloppe : une fenetre privee le refuse,
+// la page marche sans.
+const CLE_ETAT = "wortando_telcOral";
+let ETAT = {};
+try{ ETAT = JSON.parse(localStorage.getItem(CLE_ETAT) || "{}") || {}; }catch(e){ ETAT = {}; }
+if (!ETAT.sujets) ETAT.sujets = { p2: ORDRE_PLAN[0], p3: ORDRE_AVIS[0] };
+function sauver(){ try{ localStorage.setItem(CLE_ETAT, JSON.stringify(ETAT)); }catch(e){} }
+const sujetPlan = () => PLAN[ETAT.sujets.p2] || PLAN.fest;
+const sujetAvis = () => AVIS[ETAT.sujets.p3] || AVIS.auto;
+function changerSujet(cle){
+  const ordre = cle === "p2" ? ORDRE_PLAN : ORDRE_AVIS;
+  ETAT.sujets[cle] = ordre[(ordre.indexOf(ETAT.sujets[cle]) + 1) % ordre.length];
+  delete ETAT[cle];   // un nouveau sujet : la section repart de zero
+  sauver();
+}
+let examen = false, ici = { s: -1, e: -1 };
+
+// ---------------------------------------------------------------- les sections
+// LES MEMES TROIS NIVEAUX QUE L'ORAL DU DTZ (decision de Jacques du 4 nov.) : (1) la liste des sections avec leur
+// etat et l'examen complet ; (2) une page par exercice, des points qu'on touche pour sauter, « ‹ » vers la liste ;
+// (3) en fin de section, le recapitulatif, puis Refaire / Section suivante / Toutes les sections.
+const QUESTIONS_1B = ["a_frage_familie", "a_frage_beruf", "a_frage_freizeit", "a_frage_deutsch"];
+const SECTIONS = [
+  { cle: "p1", teil: "Teil 1", titre: "s1", de: "Sich vorstellen · Anschlussfragen" },
+  { cle: "p2", teil: "Teil 2", titre: "s2", de: "Gemeinsam etwas planen" },
+  { cle: "p3", teil: "Teil 3", titre: "s3", de: "Meinung begründen" }
+];
+// Les exercices d'une section ; ceux de la partie 2 viennent du sujet choisi.
+function exercices(s){
+  const cle = SECTIONS[s].cle;
+  // la partie 1 : 1A (se presenter) puis 1B (les questions de suite) ; « cle » choisit le conseil, l'aide et les modeles
+  if (cle === "p1") return [
+    { titre: u("ex_ecoute"), cle: "p1a", teil: "Teil 1A · Sich vorstellen", modele: true, jouer: [["a_bienvenue"], ["m_vorstellung"]], feuille: "stichworte" },
+    { titre: u("ex_atoi"), cle: "p1a", teil: "Teil 1A · Sich vorstellen", jouer: [["a_danke_mark"]], feuille: "stichworte", juge: "p1a", limite: 120, consigne: u("cons_p1a") },
+    { titre: u("ex_q1"), cle: "p1b", teil: "Teil 1B · Anschlussfragen", question: 0, juge: "p1b", limite: 80, consigne: u("cons_p1b") },
+    { titre: u("ex_q2"), cle: "p1b", teil: "Teil 1B · Anschlussfragen", question: 1, juge: "p1b", limite: 80, consigne: u("cons_p1b") }
+  ];
+  if (cle === "p2"){ const P = sujetPlan(); return P.punkte.map((q, k) => ({ titre: q, tour: k, feuille: "plan", limite: 60 })); }
+  return [
+    { titre: u("ex_avis"), avis: 0, feuille: "avis", juge: "p3a", limite: 100, consigne: u("cons_p3a") },
+    { titre: u("ex_reaction"), avis: 1, feuille: "avis", juge: "p3b", limite: 80, consigne: u("cons_p3b") }
+  ];
+}
+const RANG = { moins: 0, A2: 1, B1: 2 }, NIV = ["moins", "A2", "B1"];
+function etatSection(s){ const c = SECTIONS[s].cle; if (!ETAT[c]) ETAT[c] = { fait: [], rep: [], res: [] }; return ETAT[c]; }
+
+// Les deux questions de la partie 1B portent d'abord sur ce que l'eleve n'a pas dit en se presentant (comme le
+// ferait l'examinatrice) ; tirees une fois par passage de la section.
+function questions1b(){
+  const st = etatSection(0);
+  if (!st.questions){
+    const pts = (st.res[1] || {}).points || [];
+    const prio = QUESTIONS_1B.filter(id => (id === "a_frage_familie" && !pts.includes("Familie")) || (id === "a_frage_beruf" && !pts.includes("Beruf / Arbeit")) || (id === "a_frage_freizeit" && !pts.includes("Freizeit")));
+    const reste = QUESTIONS_1B.filter(id => !prio.includes(id)).sort(() => Math.random() - 0.5);
+    st.questions = prio.sort(() => Math.random() - 0.5).concat(reste).slice(0, 2);
+    sauver();
+  }
+  return st.questions;
+}
+// Ce que dit Anna ou Mark avant le tour de l'eleve.
+function aJouer(s, e){
+  const S = SECTIONS[s], X = exercices(s)[e], st = etatSection(s);
+  if (X.question != null) return [[questions1b()[X.question]]];
+  if (S.cle === "p2"){ const P = sujetPlan(); return e === 0 ? [[P.intro], [P.tours[0].m]] : [[P.tours[e].m]]; }
+  if (S.cle === "p3"){
+    const A = sujetAvis();
+    if (e === 0) return [[A.frage]];
+    if (!st.cote) st.cote = Math.random() < 0.5 ? "A" : "B";
+    return [[st.cote === "A" ? A.gegenA : A.gegenB]];
+  }
+  return X.jouer;
+}
+function modelesDe(s, e){
+  const S = SECTIONS[s], st = etatSection(s), X = exercices(s)[e];
+  if (X.cle === "p1a") return { liste: MODELES_1A, note: u("modele_1a_note") };
+  if (X.cle === "p1b") return { liste: MODELES_1B[questions1b()[X.question]] };
+  if (S.cle === "p2"){ const t = sujetPlan().tours[e]; return { liste: [{ niv: "A2", de: t.a2 }, { niv: "B1", de: t.b1 }] }; }
+  const A = sujetAvis();
+  return { liste: e === 0 ? A.avis : A.reaction[st.cote || "A"] };
+}
+// cle : seulement les exercices de 1A ou de 1B (la partie 1 en reunit deux, notees ensemble sur 6)
+function resultatSection(s, cle){
+  const S = SECTIONS[s], st = etatSection(s), ex = exercices(s);
+  if (S.cle === "p2") return ex.some((x, k) => st.rep[k] != null) ? JUGES.p2(ex.map((x, k) => st.rep[k] || "")) : null;
+  const rs = ex.map((x, k) => x.juge && (!cle || x.cle === cle) ? st.res[k] : null).filter(Boolean);
+  if (!rs.length) return null;
+  if (rs.length === 1) return rs[0];
+  const r = Math.floor(rs.reduce((n, x) => n + RANG[x.niveau], 0) / rs.length);
+  return { niveau: NIV[r], crit: [].concat(...rs.map(x => x.crit)) };
+}
+
+// ---------------------------------------------------------------- les ecrans
+function accueil(){
+  examen = false; ici = { s: -1, e: -1 }; chronoArreter();
+  vider(); entete(petitTitre(), u("titre")); points(-1);
+  zone.appendChild(el("h2", "", u("h_accueil")));
+  coach("accueil");
+  // L'epreuve en bref : la duree, la preparation, le bareme
+  const f = el("div", "verdict");
+  f.appendChild(el("h3", "", u("format_titre")));
+  f.appendChild(el("p", "", u("format_intro")));
+  const tab = el("table", "tableau");
+  const tete = el("tr"); [u("f_partie"), u("f_duree"), u("f_points")].forEach((x, k) => { const th = el("th", k === 2 ? "pts" : "", x); tete.appendChild(th); }); tab.appendChild(tete);
+  [[u("f_1a"), u("f_1a_d"), u("f_1_p")], [u("f_1b"), u("f_1b_d"), ""], [u("f_2"), u("f_2_d"), "12"], [u("f_3"), u("f_3_d"), "12"], [u("f_criteres"), "", u("f_criteres_p")]].forEach(r => {
+    const tr0 = el("tr"); r.forEach((x, k) => tr0.appendChild(el("td", k === 2 ? "pts" : "", x))); tab.appendChild(tr0);
+  });
+  const tot = el("tr", "total"); [u("f_total"), "≈ 15 min", "60"].forEach((x, k) => tot.appendChild(el("td", k === 2 ? "pts" : "", x))); tab.appendChild(tot);
+  f.appendChild(tab);
+  f.appendChild(el("p", "limite", u("f_resultat")));
+  zone.appendChild(f);
+  // Les sections
+  const liste = el("div", "sections");
+  liste.appendChild(el("b", "", u("sections_titre")));
+  SECTIONS.forEach((S, s) => {
+    const st = etatSection(s), ex = exercices(s), n = ex.length, fa = ex.filter((x, k) => st.fait[k]).length;
+    const b = el("button", "section"); b.type = "button";
+    b.appendChild(el("span", "num", S.teil.replace("Teil ", "")));
+    const t = el("span", "nomsec"); t.appendChild(el("b", "", u(S.titre)));
+    const sous = S.cle === "p2" ? S.de + " · " + tr(sujetPlan().titre) : S.cle === "p3" ? S.de + " · " + tr(sujetAvis().titre) : S.de;
+    const d = el("small", "", sous); t.appendChild(d); b.appendChild(t);
+    const etat = el("span", "etat" + (fa === n ? " fait" : ""), fa === n ? "✓" : fa ? fa + " / " + n : "");
+    b.appendChild(etat);
+    b.onclick = () => { examen = false; exercice(s, 0); };
+    liste.appendChild(b);
+  });
+  zone.appendChild(liste);
+  zone.appendChild(el("p", "limite", u("accueil_note")));
+  bouton(u("examen_btn"), lancerExamen);
+}
+
+// L'examen complet : un sujet neuf pour les parties 2 et 3, les trois sections remises a zero, sans aide.
+function lancerExamen(){
+  changerSujet("p2"); changerSujet("p3");
+  SECTIONS.forEach(S => { delete ETAT[S.cle]; });
+  sauver();
+  examen = true; chronoLancer();
+  exercice(0, 0);
+}
+
+function exercice(s, e){
+  ici = { s, e };
+  const S = SECTIONS[s], ex = exercices(s), X = ex[e], st = etatSection(s);
+  if (X.question != null) questions1b();
+  vider();
+  entete((examen ? u("examen_complet") + " · " : "") + u("exo_n", {n: e + 1, sur: ex.length}), u("section_n", {n: s + 1}) + " · " + u(S.titre));
+  points(s, e);
+  const p = el("p", "partie", isolerMorceaux(X.teil || S.teil + " · " + S.de)); zone.appendChild(p);
+  zone.appendChild(el("h2", "", X.titre));
+  // Le conseil de Mark et ce qu'attend l'examinateur ouvrent la section ; ensuite, seules les tournures qui aident.
+  // A l'examen complet : rien de tout cela.
+  // dans la partie 1, le conseil et « la partie en bref » reviennent quand on passe de 1A a 1B
+  const ck = X.cle || S.cle, debut = e === 0 || (ex[e - 1].cle || S.cle) !== ck;
+  if (!examen){
+    coach(ck, !debut);
+    if (debut) attend(ck);
+    if (e === 0 && (S.cle === "p2" || S.cle === "p3")){
+      const l = el("div", "sujet");
+      l.appendChild(el("span", "", u("sujet", {s: tr((S.cle === "p2" ? sujetPlan() : sujetAvis()).titre)})));
+      const b = el("button", "lien", u("autre_sujet")); b.type = "button"; b.onclick = () => { changerSujet(S.cle); exercice(s, 0); };
+      l.appendChild(b); zone.appendChild(l);
+    }
+  }
+  let f = null;
+  if (X.feuille === "stichworte") f = feuille("Ihr Aufgabenblatt", STICHWORTE);
+  if (X.feuille === "plan"){
+    const P = sujetPlan();
+    f = feuille("Gemeinsames Aufgabenblatt", P.punkte, P.blatt);
+    f.querySelectorAll(".puces span").forEach((x, k) => { if (st.fait[k]) x.classList.add("ok"); if (k === e) x.classList.add("ici"); });
+  }
+  if (X.feuille === "avis") feuille("Ihre Aufgabe", null, sujetAvis().blatt);
+  const jouer = aJouer(s, e);
+  const premier = L[jouer[0][0]][0];
+  bouton(premier === "mark" ? u("ecouter_mark") : u("ecouter_anna"), async () => {
+    suite.hidden = true;
+    for (const j of jouer) await bulle(j[0]);
+    if (X.modele){
+      st.fait[e] = true; sauver(); points(s, e);
+      if (!examen) modeles(modelesDe(s, e).liste, modelesDe(s, e).note, true);
+      bouton(u("continuer"), () => apres(s, e));
+      return;
+    }
+    if (X.tour != null){ tourPlan(s, e, false, f); return; }
+    // la partie 3 commence par la minute de reflexion
+    if (S.cle === "p3" && e === 0){ await reflexion(); await bulle("t_a_los"); }
+    aToi(X.consigne, X.limite, async t => {
+      const res = JUGES[X.juge](t);
+      st.rep[e] = t; st.res[e] = res; st.fait[e] = true;
+      if (S.cle === "p3" && e === 0) st.cote = coteDe(sujetAvis(), t);
+      sauver(); points(s, e);
+      if (X.juge === "p1a" && f) f.querySelectorAll(".puces span").forEach(x => { if ((res.points || []).includes(x.textContent)) x.classList.add("ok"); });
+      if (S.cle === "p3" && e === 1) await bulle("t_m_schluss");
+      if (examen) return apres(s, e);
+      montrerVerdict(res, t, () => exercice(s, e), () => apres(s, e), null, () => modeles(modelesDe(s, e).liste, modelesDe(s, e).note, false));
+    });
+  });
+}
+// Un tour de la planification : Mark propose, l'eleve repond, Mark reagit. Trop court, il relance une fois ; un refus,
+// il se range ; sinon il accepte. Au dernier tour, il conclut.
+function tourPlan(s, e, relance, f){
+  const st = etatSection(s), P = sujetPlan();
+  aToi(u("cons_tour", {p: P.punkte[e]}), 60, async t => {
+    const ligne = el("div", "entendu", t || u("rien")); ligne.lang = "de"; zone.appendChild(ligne);
+    if (nbMots(t) < 4 && !relance){ await bulle("m_nachfrage"); tourPlan(s, e, true, f); return; }
+    st.rep[e] = t; st.fait[e] = true; sauver(); points(s, e);
+    if (f && nbMots(t) >= 4) f.querySelectorAll(".puces span")[e].classList.add("ok");
+    const refus = /\b(nicht|lieber|keine lust|zu früh|zu spät|zu weit|zu teuer|schlecht|leider|aber)\b/.test(norm(t));
+    await bulle(e < P.tours.length - 1 ? (refus ? "m_nein" : (e % 2 ? "m_ok2" : "m_ok")) : "m_ende");
+    if (examen) return apres(s, e);
+    montrerVerdict({ crit: critTour(t) }, null, () => exercice(s, e), () => apres(s, e), u("retour_mark"),
+      () => modeles(modelesDe(s, e).liste, null, false));
+  });
+}
+function apres(s, e){
+  if (e + 1 < exercices(s).length) return exercice(s, e + 1);
+  if (examen) return s + 1 < SECTIONS.length ? exercice(s + 1, 0) : fin();
+  recap(s);
+}
+
+function recap(s){
+  const S = SECTIONS[s], st = etatSection(s), ex = exercices(s);
+  ici = { s, e: "recap" };
+  vider(); entete(u("fin_section"), u("section_n", {n: s + 1}) + " · " + u(S.titre)); points(s, -1);
+  zone.appendChild(el("h2", "", u("recap")));
+  ex.forEach((X, k) => {
+    if (X.modele) return;
+    const c = el("div", "verdict");
+    const r = X.juge ? st.res[k] : null;
+    const h = el("h3", "", X.titre); if (r) h.appendChild(chip(r.niveau)); c.appendChild(h);
+    const j = aJouer(s, k).slice(-1)[0];
+    if (j){ const q = el("div", "question", L[j[0]][1]); q.lang = "de"; c.appendChild(q); }
+    if (st.rep[k] != null){
+      c.appendChild(el("div", "micro-info", u("ta_reponse")));
+      const e = el("div", "entendu", st.rep[k] || u("rien")); e.lang = "de"; c.appendChild(e);
+      c.appendChild(el("div", "micro-info", X.tour != null ? u("retour_mark") : u("retour_anna")));
+      const ul = el("ul", "crit"); (r ? r.crit : critTour(st.rep[k])).forEach(x => ul.appendChild(el("li", x.ok ? "ok" : "", x.label))); c.appendChild(ul);
+    } else c.appendChild(el("p", "limite", u("pas_fait")));
+    zone.appendChild(c);
+  });
+  const r = resultatSection(s);
+  if (r && ex.filter(x => !x.modele).length > 1){
+    const c = el("div", "verdict");
+    const h = el("h3", "", S.cle === "p2" ? u("toute_conv") : S.cle === "p3" ? u("toute_disc") : u("toute_section")); h.appendChild(chip(r.niveau)); c.appendChild(h);
+    if (S.cle === "p2"){ const ul = el("ul", "crit"); r.crit.forEach(x => ul.appendChild(el("li", x.ok ? "ok" : "", x.label))); c.appendChild(ul); }
+    zone.appendChild(c);
+  }
+  zone.appendChild(el("p", "limite", u("limite")));
+  const act = el("div", "actions");
+  const refaire = el("button", "", u("refaire_section")); refaire.type = "button";
+  refaire.onclick = () => { if (S.cle === "p1") st.questions = null; if (S.cle === "p3") st.cote = null; exercice(s, 0); };
+  const toutes = el("button", "", u("toutes")); toutes.type = "button"; toutes.onclick = accueil;
+  act.append(refaire, toutes); zone.appendChild(act);
+  if (s + 1 < SECTIONS.length) bouton(u("suivante"), () => exercice(s + 1, 0));
+  else { toutes.remove(); bouton(u("toutes"), accueil); }
+}
+
+// ---------------------------------------------------------------- le verdict
+// Le critere I (le contenu) par partie, sur l'echelle du telc pour une partie de l'oral (FORMAT-TELC.md) :
+// B1 bien rempli 12, B1 rempli 9, A2 bien rempli 6, A2 rempli 4, sous A2 2, rien 0. La partie 1 vaut 6 : la moitie.
+function points12(res){
+  if (!res) return 0;
+  const ok = res.crit.filter(c => c.ok).length, n = res.crit.length;
+  if (res.niveau === "B1") return ok === n ? 12 : 9;
+  if (res.niveau === "A2") return ok * 2 >= n ? 6 : 4;
+  return 2;
+}
+function estimation(){
+  const r = [resultatSection(0, "p1a"), resultatSection(0, "p1b"), resultatSection(1), resultatSection(2)];
+  const p1 = (points12(r[0]) + points12(r[1])) / 4, p2 = points12(r[2]), p3 = points12(r[3]);
+  const I = p1 + p2 + p3;
+  // Les criteres II a IV (prononciation, correction, etendue : 30 points) ne se mesurent pas ici : on les suppose au
+  // niveau du contenu. Seuils du telc pour une competence : 70 % (42) pour le B1, 40 % (24) pour l'A2.
+  const sprechen = Math.round(I * 2);
+  const niveau = sprechen >= 42 ? "B1" : sprechen >= 24 ? "A2" : "moins";
+  // le niveau d'une partie, pour le tableau : la partie 1 reunit 1A et 1B
+  const nivP = (...rs) => { const v = rs.filter(Boolean); return v.length ? NIV[Math.floor(v.reduce((n, x) => n + RANG[x.niveau], 0) / v.length)] : "moins"; };
+  return { p1, p2, p3, I, sprechen, niveau, niv: [nivP(r[0], r[1]), nivP(r[2]), nivP(r[3])] };
+}
+const virgule = n => LANG === "fr" ? String(n).replace(".", ",") : String(n);
+function enregistrer(est){
+  // le dernier resultat de l'oral, sous la cle de commun.js (wortando_telc_resultats), pour l'accueil et le verdict
+  try{
+    const k = "wortando_telc_resultats", r = JSON.parse(localStorage.getItem(k) || "{}") || {};
+    r.Sp = { quand: Date.now(), points: est.sprechen, sur: 60, niveau: est.niveau, partieI: est.I };
+    localStorage.setItem(k, JSON.stringify(r));
+  }catch(e){}
+  ETAT.resultat = { quand: Date.now(), pts: { Sprechen: est.sprechen }, niveau: est.niveau, partieI: est.I, examen: !!examen };
+  sauver();
+  // l'examen blanc en cours (telc/examen-blanc.js) : la part de l'oral
+  if (BLANC){
+    try{
+      const k = "wortando_telc_blanc", b = JSON.parse(localStorage.getItem(k) || "null");
+      if (b && b.res){ b.res.Sp = { pts: { Sprechen: est.sprechen }, detail: { partieI: est.I, niveau: est.niveau } }; localStorage.setItem(k, JSON.stringify(b)); }
+    }catch(e){}
+  }
+  parler("resultat", { mode: "oral_telc", points: est.sprechen, sur: 60, niveau: est.niveau });
+}
+
+async function fin(){
+  ici = { s: -1, e: "fin" };
+  chronoArreter();
+  vider(); entete(u("examen_complet"), u("verdict_anna")); points(-1);
+  const est = estimation();
+  enregistrer(est);
+  zone.appendChild(el("h2", "", u("verdict_anna")));
+  await bulle("a_ende_" + est.niveau, true);
+  // Le cadre du clip, pour que dire() joue la VIDEO (sinon la voix seule passe sous l'image fixe).
+  const cadreVerdict = [...zone.querySelectorAll(".clip")].pop() || null;
+  const tab = el("table", "tableau");
+  const tete = el("tr"); [u("v_partie"), "", u("v_points")].forEach((x, k) => tete.appendChild(el("th", k === 2 ? "pts" : "", x))); tab.appendChild(tete);
+  [[u("v_t1"), est.niv[0], est.p1, 6], [u("v_t2"), est.niv[1], est.p2, 12], [u("v_t3"), est.niv[2], est.p3, 12]].forEach(r => {
+    const tr0 = el("tr"); tr0.appendChild(el("td", "", r[0])); const td = el("td"); td.appendChild(chip(r[1])); tr0.appendChild(td);
+    tr0.appendChild(el("td", "pts", virgule(r[2]) + " / " + r[3])); tab.appendChild(tr0);
+  });
+  const t1 = el("tr"); t1.appendChild(el("td", "", u("v_contenu"))); t1.appendChild(el("td")); t1.appendChild(el("td", "pts", virgule(est.I) + " / 30")); tab.appendChild(t1);
+  const t2 = el("tr", "total"); t2.appendChild(el("td", "", u("v_oral"))); const tdn = el("td"); tdn.appendChild(chip(est.niveau)); t2.appendChild(tdn);
+  t2.appendChild(el("td", "pts", est.sprechen + " / 60")); tab.appendChild(t2);
+  zone.appendChild(tab);
+  zone.appendChild(el("p", "limite", u("v_note") + " " + u("limite")));
+  if (BLANC){
+    zone.appendChild(el("p", "", u("blanc_note")));
+    bouton(u("vers_blanc"), () => versTelc({ partie: "BLANC", etape: "verdict" }));
+  } else {
+    coach("fin");
+    const act = el("div", "actions");
+    const r = el("button", "", u("refaire_examen")); r.type = "button"; r.onclick = lancerExamen;
+    const t = el("button", "", u("toutes")); t.type = "button"; t.onclick = accueil;
+    act.append(r, t); zone.appendChild(act);
+    bouton(u("terminer"), () => { if (DEPUIS_TELC) versTelc(); else parler("fini", { faits: 0, bons: 0 }); });
+  }
+  dire("a_ende_" + est.niveau, cadreVerdict);
+}
+
+// « ‹ » : d'une section (ou du verdict) vers la liste des sections ; de la liste, vers le bloc telc (ou on quitte).
+// Pendant l'examen blanc, la liste n'existe pas : « ‹ » ramene a l'examen blanc.
+document.getElementById("retour").setAttribute("aria-label", u("retour"));
+document.getElementById("retour").onclick = () => {
+  taire();
+  if (BLANC){ versTelc({ partie: "BLANC" }); return; }
+  if (ici.s >= 0 || ici.e === "fin"){ accueil(); return; }
+  if (DEPUIS_TELC){ versTelc(); return; }
+  if (DANS_APP) parler("fermer"); else history.back();
+};
+// Agrandir les portraits d'Anna et de Mark (themes/zoom.js), comme l'oral du DTZ.
+try{ Zoom.init({direct: ".qui img", loupe: "", langue: LANG}); }catch(e){}
+document.title = u("titre");
+if (BLANC) lancerExamen(); else accueil();
+</script>
+</body>
+</html>

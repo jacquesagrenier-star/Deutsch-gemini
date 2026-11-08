@@ -1,0 +1,342 @@
+{
+  "_note": "Lire (Leseverstehen) du telc Deutsch A2·B1, ecrit pour Wortando (6 nov. 2026, session « telc Lire »). Le FORMAT du telc (Testformat de l'Uebungstest telc Deutsch A2·B1, voir preparation-examens/FORMAT-TELC.md) : 45 min, Teil 1 = 5 petites annonces a associer a des situations (1-5), Teil 2 = un texte court, 1 Richtig/Falsch et 3 choix a/b/c (6-9), Teil 3 = des courriels, le sens global, 4 associations (10-13), Teil 4 = un texte plus long, 5 choix a/b/c (14-18), 3 points par item. Le nombre d'annonces (8, dont 3 sans situation) et de phrases du Teil 3 (6, dont 2 sans courriel) est un choix de Wortando : le Testformat ne le donne pas. Jamais le contenu du telc. Les textes viennent de la vie de Mark Garnier a Berlin-Pankow (Gartenstrasse 12, Hausverwaltung Kern, Frau Brandt, sa voisine Frau Yilmaz, son collegue Tobias). « bon » : une lettre (Teil 1 et 3), ou l'indice dans « optionen » (0 = a ; Richtig/Falsch : 0 = richtig, 1 = falsch). Controle : tests/telc.py. Relecture germanophone a faire avant l'ouverture aux eleves (retours/A-RELIRE-TELC.md).",
+  "consignes": {
+    "T1": {
+      "de": "Lesen Sie die Situationen 1 bis 5 und die Anzeigen a bis h. Welche Anzeige passt zu welcher Situation? Jede Anzeige passt nur einmal. Drei Anzeigen passen zu keiner Situation.",
+      "fr": "Lis les situations 1 à 5 et les annonces a à h. Quelle annonce correspond à quelle situation ? Chaque annonce ne sert qu'une fois, et trois annonces ne correspondent à aucune situation.",
+      "en": "Read situations 1 to 5 and adverts a to h. Which advert matches which situation? Each advert is used only once, and three adverts match no situation."
+    },
+    "T2": {
+      "de": "Lesen Sie den Text und die Aufgaben 6 bis 9. Ist die Aussage 6 richtig oder falsch? Welche Lösung passt bei den Aufgaben 7 bis 9: a, b oder c?",
+      "fr": "Lis le texte et les questions 6 à 9. L'affirmation 6 est-elle vraie ou fausse ? Pour les questions 7 à 9, quelle réponse convient : a, b ou c ?",
+      "en": "Read the text and questions 6 to 9. Is statement 6 true or false? For questions 7 to 9, which answer is right: a, b or c?"
+    },
+    "T3": {
+      "de": "Lesen Sie die E-Mails 10 bis 13 und die Sätze a bis f. Welcher Satz sagt, worum es in der E-Mail geht? Zwei Sätze passen zu keiner E-Mail.",
+      "fr": "Lis les courriels 10 à 13 et les phrases a à f. Quelle phrase dit de quoi parle le courriel ? Deux phrases ne correspondent à aucun courriel.",
+      "en": "Read e-mails 10 to 13 and sentences a to f. Which sentence says what the e-mail is about? Two sentences match no e-mail."
+    },
+    "T4": {
+      "de": "Lesen Sie zuerst die Aufgaben 14 bis 18 und dann den Text. Welche Lösung ist richtig: a, b oder c?",
+      "fr": "Lis d'abord les questions 14 à 18, puis le texte. Quelle réponse est la bonne : a, b ou c ?",
+      "en": "First read questions 14 to 18, then the text. Which answer is right: a, b or c?"
+    }
+  },
+  "series": [
+    {
+      "id": 1,
+      "T1": {
+        "anzeigen": [
+          {"b": "a", "titel": "Gitarre lernen – mit Spaß!", "text": "Musikstudent gibt Gitarrenunterricht für Anfänger und Fortgeschrittene, auch für Kinder ab 8 Jahren. Bei Ihnen zu Hause oder bei mir in Friedrichshain. 25 € pro Stunde. Tel. 0157 339 20 41"},
+          {"b": "b", "titel": "Damenrad zu verkaufen", "text": "28 Zoll, 7 Gänge, neue Reifen, mit Korb. Sehr guter Zustand, 120 €. Nur Abholung in Wedding. Tel. 0176 204 88 15"},
+          {"b": "c", "titel": "Babysitterin gesucht", "text": "Familie in Pankow sucht eine zuverlässige Babysitterin für zwei Kinder (4 und 7 Jahre), dienstags und donnerstags von 15 bis 18 Uhr. 13 € pro Stunde."},
+          {"b": "d", "titel": "Umzug? Wir tragen für Sie!", "text": "Zwei starke Studenten helfen beim Umzug: Möbel tragen, Schränke abbauen und wieder aufbauen. Mit Transporter. Abends und am Wochenende. Preis nach Absprache. Tel. 0152 771 03 66"},
+          {"b": "e", "titel": "Tandempartner gesucht", "text": "Spanierin (29) sucht Tandempartner: Ich helfe dir mit Spanisch, du hilfst mir mit Deutsch. Wir treffen uns einmal pro Woche in einem Café in Mitte. Schreib mir: lucia.tandem@post.de"},
+          {"b": "f", "titel": "Fahrradwerkstatt Speiche", "text": "Ihr Rad ist kaputt? Bremsen, Licht, Schaltung: Wir reparieren schnell und günstig, oft am selben Tag. Montag bis Samstag 10–19 Uhr, Schönhauser Allee 80."},
+          {"b": "g", "titel": "Nachhilfe in Mathematik", "text": "Lehrerin im Ruhestand gibt Nachhilfe in Mathe für Schülerinnen und Schüler der Klassen 5 bis 10. Bei Ihnen zu Hause, 20 € für 60 Minuten. Tel. 030 48 22 91 07"},
+          {"b": "h", "titel": "Waschmaschine zu verschenken", "text": "Alte Waschmaschine, funktioniert noch. Muss am Samstag abgeholt werden – 4. Stock ohne Aufzug! Kostenlos. Tel. 0170 593 12 80"}
+        ],
+        "items": [
+          {"nr": 1, "situation": "Mark möchte Spanisch üben. Dafür kann er jemandem mit Deutsch helfen.", "situation_fr": "Mark veut pratiquer l'espagnol. En échange, il peut aider quelqu'un en allemand.", "situation_en": "Mark wants to practise Spanish. In return, he can help someone with German.", "bon": "e",
+            "erkl_fr": "« Ich helfe dir mit Spanisch, du hilfst mir mit Deutsch » : c'est exactement l'échange que cherche Mark. Un « Tandem », c'est deux personnes qui s'apprennent leur langue l'une à l'autre.",
+            "erkl_en": "“Ich helfe dir mit Spanisch, du hilfst mir mit Deutsch”: that is exactly the exchange Mark is looking for. A “Tandem” is two people teaching each other their languages."},
+          {"nr": 2, "situation": "Die Bremsen an Marks Fahrrad funktionieren nicht mehr.", "situation_fr": "Les freins du vélo de Mark ne marchent plus.", "situation_en": "The brakes on Mark's bike no longer work.", "bon": "f",
+            "erkl_fr": "La Fahrradwerkstatt répare « Bremsen, Licht, Schaltung ». Le piège, c'est l'annonce b : elle parle aussi de vélo, mais elle en vend un — Mark veut faire réparer le sien.",
+            "erkl_en": "The Fahrradwerkstatt repairs “Bremsen, Licht, Schaltung”. The trap is advert b: it is also about a bike, but it sells one, and Mark wants his own repaired."},
+          {"nr": 3, "situation": "Marks Nachbarin sucht jemanden, der ihrem Sohn (12) bei den Mathe-Hausaufgaben hilft.", "situation_fr": "La voisine de Mark cherche quelqu'un pour aider son fils (12 ans) à faire ses devoirs de maths.", "situation_en": "Mark's neighbour is looking for someone to help her son (12) with his maths homework.", "bon": "g",
+            "erkl_fr": "La « Nachhilfe in Mathematik » est pour les classes 5 à 10 : à 12 ans, son fils y est. L'annonce c parle bien d'enfants, mais c'est une famille qui CHERCHE quelqu'un, pas quelqu'un qui propose de l'aide.",
+            "erkl_en": "The “Nachhilfe in Mathematik” is for school years 5 to 10, which fits a 12-year-old. Advert c is about children too, but there a family is LOOKING for someone; nobody is offering help."},
+          {"nr": 4, "situation": "Ein Kollege von Mark zieht nächsten Samstag um und braucht Hilfe mit seinen Möbeln.", "situation_fr": "Un collègue de Mark déménage samedi prochain et a besoin d'aide pour ses meubles.", "situation_en": "A colleague of Mark's is moving next Saturday and needs help with his furniture.", "bon": "d",
+            "erkl_fr": "« helfen beim Umzug: Möbel tragen … am Wochenende » : tout y est. L'annonce h dit aussi « am Samstag », mais c'est une machine à laver à donner.",
+            "erkl_en": "“helfen beim Umzug: Möbel tragen … am Wochenende”: everything fits. Advert h also says “am Samstag”, but it is a washing machine being given away."},
+          {"nr": 5, "situation": "Eine Freundin von Mark möchte, dass ihre Tochter (9) ein Instrument lernt.", "situation_fr": "Une amie de Mark aimerait que sa fille (9 ans) apprenne un instrument.", "situation_en": "A friend of Mark's would like her daughter (9) to learn an instrument.", "bon": "a",
+            "erkl_fr": "Les cours de guitare sont « auch für Kinder ab 8 Jahren » : une fille de 9 ans peut y aller. Lis toujours les petites conditions (l'âge, les jours, le lieu) : c'est souvent là que tout se joue.",
+            "erkl_en": "The guitar lessons are “auch für Kinder ab 8 Jahren”, so a 9-year-old can go. Always read the small conditions (age, days, place): that is often where the answer lies."}
+        ]
+      },
+      "T2": {
+        "text": {"typ": "aushang", "kopf": "Hausverwaltung Kern · Gartenstraße 12", "titel": "Wichtig: Kein Wasser am Dienstag, 18. November", "absaetze": [
+          "Liebe Mieterinnen und Mieter,",
+          "am Dienstag, 18. November, werden im Keller die alten Wasserleitungen erneuert. Deshalb gibt es von 8 bis etwa 14 Uhr in allen Wohnungen kein Wasser. Wenn Sie an diesem Vormittag Wasser zum Kochen brauchen, füllen Sie es bitte vorher in Flaschen oder Töpfe.",
+          "Auch die Toiletten können in dieser Zeit nicht benutzt werden. Im Hof steht deshalb eine mobile Toilette für alle Mieter.",
+          "Am Montag, 17. November, sehen sich die Handwerker zwischen 16 und 18 Uhr den Keller an. Die Hausmeisterin öffnet ihnen die Türen. Bitte räumen Sie bis Montag Fahrräder und Kisten vor Ihrer Kellertür weg.",
+          "Nach den Arbeiten kann das Wasser am Anfang braun sein. Lassen Sie es dann ein bis zwei Minuten laufen, bis es wieder klar ist.",
+          "Bei Fragen erreichen Sie Frau Brandt unter 030 44 21 87 60. Vielen Dank für Ihr Verständnis!",
+          "Ihre Hausverwaltung Kern"
+        ]},
+        "items": [
+          {"nr": 6, "rf": true, "frage": "Am 18. November gibt es den ganzen Tag kein Wasser.", "frage_fr": "Le 18 novembre, il n'y a pas d'eau de toute la journée.", "frage_en": "On 18 November there is no water all day.", "bon": 1,
+            "erkl_fr": "Faux : l'eau est coupée « von 8 bis etwa 14 Uhr », donc seulement le matin et le début de l'après-midi. Méfie-toi des mots absolus comme « den ganzen Tag », « immer », « nie ».",
+            "erkl_en": "False: the water is off “von 8 bis etwa 14 Uhr”, so only in the morning and early afternoon. Watch out for absolute words such as “den ganzen Tag”, “immer”, “nie”."},
+          {"nr": 7, "frage": "Während der Arbeiten …", "optionen": ["können die Mieter eine Toilette im Hof benutzen.", "können die Mieter im Keller Wasser holen.", "ist das Wasser in den Wohnungen braun."], "frage_fr": "Pendant les travaux…", "frage_en": "During the work…", "optionen_fr": ["les locataires peuvent utiliser des toilettes dans la cour.", "les locataires peuvent aller chercher de l'eau à la cave.", "l'eau est brune dans les appartements."], "optionen_en": ["tenants can use a toilet in the courtyard.", "tenants can fetch water in the cellar.", "the water in the flats is brown."], "bon": 0,
+            "erkl_fr": "« Im Hof steht deshalb eine mobile Toilette für alle Mieter » : la réponse a. L'eau brune, c'est APRÈS les travaux (« Nach den Arbeiten »), pas pendant.",
+            "erkl_en": "“Im Hof steht deshalb eine mobile Toilette für alle Mieter”: answer a. The brown water comes AFTER the work (“Nach den Arbeiten”), not during it."},
+          {"nr": 8, "frage": "Bis Montag sollen die Mieter …", "optionen": ["den Handwerkern die Kellertür öffnen.", "zwischen 16 und 18 Uhr zu Hause bleiben.", "den Platz vor ihrem Keller frei machen."], "frage_fr": "D'ici lundi, les locataires doivent…", "frage_en": "By Monday, tenants should…", "optionen_fr": ["ouvrir la porte de la cave aux artisans.", "rester chez eux entre 16 h et 18 h.", "libérer l'espace devant leur cave."], "optionen_en": ["open the cellar door for the workers.", "stay at home between 4 and 6 pm.", "clear the space in front of their cellar."], "bon": 2,
+            "erkl_fr": "« Bitte räumen Sie … Fahrräder und Kisten vor Ihrer Kellertür weg » : on dégage la place devant sa cave. Ce n'est pas aux locataires d'ouvrir : « Die Hausmeisterin öffnet ihnen die Türen ».",
+            "erkl_en": "“Bitte räumen Sie … Fahrräder und Kisten vor Ihrer Kellertür weg”: you clear the space in front of your cellar. Tenants do not open the doors: “Die Hausmeisterin öffnet ihnen die Türen”."},
+          {"nr": 9, "frage": "Wenn das Wasser nach den Arbeiten braun ist, …", "optionen": ["soll man Frau Brandt anrufen.", "soll man es kurz laufen lassen.", "darf man es eine Woche nicht trinken."], "frage_fr": "Si l'eau est brune après les travaux…", "frage_en": "If the water is brown after the work…", "optionen_fr": ["il faut appeler Mme Brandt.", "il faut la laisser couler un moment.", "il ne faut pas la boire pendant une semaine."], "optionen_en": ["you should call Ms Brandt.", "you should let it run for a short while.", "you must not drink it for a week."], "bon": 1,
+            "erkl_fr": "« Lassen Sie es dann ein bis zwei Minuten laufen » : laisser couler l'eau une ou deux minutes. Le numéro de Mme Brandt sert pour les questions en général, pas pour l'eau brune.",
+            "erkl_en": "“Lassen Sie es dann ein bis zwei Minuten laufen”: let it run for one or two minutes. Ms Brandt's number is for questions in general, not for brown water."}
+        ]
+      },
+      "T3": {
+        "saetze": [
+          {"b": "a", "de": "Jemand sagt einen Termin ab und schlägt einen anderen vor.", "fr": "Quelqu'un annule un rendez-vous et en propose un autre.", "en": "Someone cancels an appointment and suggests another one."},
+          {"b": "b", "de": "Jemand bedankt sich für eine Hilfe.", "fr": "Quelqu'un remercie pour un coup de main.", "en": "Someone says thank you for some help."},
+          {"b": "c", "de": "Jemand beschwert sich über eine Lieferung.", "fr": "Quelqu'un se plaint d'une livraison.", "en": "Someone complains about a delivery."},
+          {"b": "d", "de": "Jemand lädt zu einem Fest ein.", "fr": "Quelqu'un invite à une fête.", "en": "Someone invites people to a party."},
+          {"b": "e", "de": "Jemand möchte Informationen über einen Kurs.", "fr": "Quelqu'un veut des renseignements sur un cours.", "en": "Someone wants information about a course."},
+          {"b": "f", "de": "Jemand möchte etwas verkaufen.", "fr": "Quelqu'un veut vendre quelque chose.", "en": "Someone wants to sell something."}
+        ],
+        "mails": [
+          {"nr": 10, "von": "Tobias Lang", "an": "Mark Garnier", "absaetze": ["Hallo Mark,", "leider kann ich am Donnerstag nicht zum Squash kommen. Mein Chef hat für Donnerstagabend ein Meeting angesetzt, und das dauert sicher bis acht. Hast du vielleicht am Freitag nach der Arbeit Zeit? Ich könnte ab 18 Uhr.", "Sag mir Bescheid!", "Gruß, Tobias"], "bon": "a",
+            "erkl_fr": "Tobias ne peut pas venir jeudi (« leider kann ich am Donnerstag nicht ») et propose vendredi (« Hast du … am Freitag … Zeit? ») : il annule et propose une autre date.",
+            "erkl_en": "Tobias can't come on Thursday (“leider kann ich am Donnerstag nicht”) and suggests Friday (“Hast du … am Freitag … Zeit?”): he cancels and offers another date."},
+          {"nr": 11, "von": "Mark Garnier", "an": "Möbelhaus Nordlicht, Kundenservice", "absaetze": ["Sehr geehrte Damen und Herren,", "am Montag habe ich das Regal „Oslo“ bekommen, das ich vor drei Wochen bei Ihnen bestellt und schon bezahlt habe. Leider war der Karton nass, und zwei Bretter sind kaputt. Außerdem fehlen die Schrauben.", "Bitte schicken Sie mir so schnell wie möglich die fehlenden und die kaputten Teile.", "Mit freundlichen Grüßen", "Mark Garnier"], "bon": "c",
+            "erkl_fr": "Carton mouillé, planches cassées, vis manquantes : Mark se plaint de ce qu'il a reçu. Le sens global se lit dans les mots « Leider », « kaputt », « fehlen ».",
+            "erkl_en": "Wet box, broken boards, missing screws: Mark is complaining about what he received. The overall meaning shows in the words “Leider”, “kaputt”, “fehlen”."},
+          {"nr": 12, "von": "Hatice Yilmaz", "an": "Mark Garnier", "absaetze": ["Lieber Herr Garnier,", "vielen Dank noch einmal, dass Sie mir am Samstag die schweren Einkaufstaschen in den vierten Stock getragen haben! Mit meinem kranken Knie wäre das sehr schwer für mich gewesen.", "Als kleines Dankeschön habe ich Ihnen einen Apfelkuchen gebacken. Sie können ihn heute Abend bei mir abholen.", "Herzliche Grüße", "Ihre Nachbarin Hatice Yilmaz"], "bon": "b",
+            "erkl_fr": "« vielen Dank … dass Sie mir … getragen haben » et « als kleines Dankeschön » : elle remercie. Le gâteau n'est pas une invitation à une fête, c'est un merci.",
+            "erkl_en": "“vielen Dank … dass Sie mir … getragen haben” and “als kleines Dankeschön”: she is saying thank you. The cake is not a party invitation; it is a thank-you."},
+          {"nr": 13, "von": "Mark Garnier", "an": "Kletterhalle Nordwand", "absaetze": ["Hallo,", "auf Ihrer Internetseite habe ich gesehen, dass Sie Kletterkurse für Anfänger anbieten. Ich bin noch nie geklettert, mache aber viel Sport.", "Wie lange dauert so ein Kurs, und an welchen Tagen findet er statt? Muss ich eigene Kletterschuhe mitbringen, oder kann man sie bei Ihnen leihen?", "Viele Grüße", "Mark Garnier"], "bon": "e",
+            "erkl_fr": "Mark pose trois questions sur le cours d'escalade (« Wie lange dauert so ein Kurs », les jours, les chaussures) : il demande des renseignements. Repère les points d'interrogation, ils disent souvent le but du courriel.",
+            "erkl_en": "Mark asks three questions about the climbing course (“Wie lange dauert so ein Kurs”, the days, the shoes): he is asking for information. Spot the question marks; they often show the purpose of the e-mail."}
+        ]
+      },
+      "T4": {
+        "text": {"typ": "zeitung", "kopf": "Berliner Kiezblatt · Pankow", "titel": "Reparieren statt wegwerfen: Das Repair-Café wird drei Jahre alt", "absaetze": [
+          "Jeden ersten Samstag im Monat ist der Gemeinschaftsraum der Kirchengemeinde in der Breiten Straße voll. Auf langen Tischen liegen Toaster, Lampen, Kaffeemaschinen und Kinderspielzeug, daneben sitzen Menschen mit Schraubenziehern. Seit drei Jahren gibt es hier das Repair-Café Pankow. Die Idee ist einfach: Wer etwas Kaputtes hat, bringt es mit und repariert es zusammen mit einem Helfer oder einer Helferin.",
+          "„Wir reparieren nicht für die Leute, sondern mit ihnen“, erklärt Ingrid Hoffmann, die das Café gegründet hat. Die 64-Jährige war früher Elektrikerin. „Viele Besucher haben am Anfang Angst, etwas falsch zu machen. Aber wenn ihr altes Radio dann wieder spielt, sind sie richtig stolz.“ Etwa zwei Drittel der Geräte können repariert werden. Bei den anderen fehlt oft ein Ersatzteil, das man nicht mehr kaufen kann.",
+          "Die Reparatur ist kostenlos. Die Helferinnen und Helfer arbeiten ehrenamtlich, das heißt, sie bekommen kein Geld. Am Eingang steht aber eine Spendenbox. Von dem Geld kauft das Team Werkzeug und Kaffee. Kuchen bringen die Besucher oft selbst mit.",
+          "Inzwischen kommen jeden Monat etwa 60 Menschen: ältere Leute aus dem Kiez, aber auch Studierende und junge Familien. Deshalb muss man sich seit diesem Jahr vorher anmelden, per Telefon oder im Internet. „Früher haben die Leute manchmal drei Stunden gewartet“, sagt Ingrid Hoffmann. „Das war für alle zu lang.“",
+          "Das Team sucht noch Verstärkung, vor allem Menschen, die Kleidung nähen oder Fahrräder reparieren können. Besondere Kenntnisse braucht man aber nicht unbedingt: Auch beim Empfang der Gäste und in der Küche freut man sich über Hilfe. Das nächste Repair-Café findet am 6. Dezember von 10 bis 15 Uhr statt."
+        ]},
+        "items": [
+          {"nr": 14, "frage": "Im Repair-Café …", "optionen": ["reparieren Fachleute die Geräte allein.", "reparieren die Besucher ihre Sachen mit Hilfe.", "kann man gebrauchte Geräte kaufen."], "frage_fr": "Au Repair-Café…", "frage_en": "At the Repair Café…", "optionen_fr": ["des spécialistes réparent les appareils seuls.", "les visiteurs réparent leurs affaires avec de l'aide.", "on peut acheter des appareils d'occasion."], "optionen_en": ["experts repair the devices on their own.", "visitors repair their things with some help.", "you can buy second-hand devices."], "bon": 1,
+            "erkl_fr": "« repariert es zusammen mit einem Helfer » et « nicht für die Leute, sondern mit ihnen » : on répare soi-même, avec de l'aide. La réponse a dit le contraire.",
+            "erkl_en": "“repariert es zusammen mit einem Helfer” and “nicht für die Leute, sondern mit ihnen”: you repair things yourself, with help. Answer a says the opposite."},
+          {"nr": 15, "frage": "Ingrid Hoffmann …", "optionen": ["hat früher als Elektrikerin gearbeitet.", "repariert vor allem alte Radios.", "arbeitet für die Kirchengemeinde."], "frage_fr": "Ingrid Hoffmann…", "frage_en": "Ingrid Hoffmann…", "optionen_fr": ["a été électricienne.", "répare surtout de vieilles radios.", "travaille pour la paroisse."], "optionen_en": ["used to work as an electrician.", "mainly repairs old radios.", "works for the parish."], "bon": 0,
+            "erkl_fr": "« Die 64-Jährige war früher Elektrikerin » : « war früher » = elle était autrefois. La radio n'est qu'un exemple dans sa phrase, et la paroisse prête seulement la salle.",
+            "erkl_en": "“Die 64-Jährige war früher Elektrikerin”: “war früher” means she used to be. The radio is just an example she gives, and the parish only lends the room."},
+          {"nr": 16, "frage": "Manche Geräte kann man nicht reparieren, weil …", "optionen": ["die Helfer zu wenig Zeit haben.", "es bestimmte Teile nicht mehr gibt.", "die Reparatur zu teuer ist."], "frage_fr": "Certains appareils ne peuvent pas être réparés, parce que…", "frage_en": "Some devices cannot be repaired because…", "optionen_fr": ["les bénévoles ont trop peu de temps.", "certaines pièces n'existent plus.", "la réparation coûte trop cher."], "optionen_en": ["the helpers have too little time.", "certain parts no longer exist.", "the repair is too expensive."], "bon": 1,
+            "erkl_fr": "« Bei den anderen fehlt oft ein Ersatzteil, das man nicht mehr kaufen kann » : la pièce de rechange n'existe plus. Le texte dit d'ailleurs que la réparation est gratuite (« kostenlos »).",
+            "erkl_en": "“Bei den anderen fehlt oft ein Ersatzteil, das man nicht mehr kaufen kann”: the spare part is no longer available. The text also says the repair is free (“kostenlos”)."},
+          {"nr": 17, "frage": "Das Geld aus der Spendenbox …", "optionen": ["bekommen die Helferinnen und Helfer.", "ist für die Miete des Raums.", "braucht das Team für Werkzeug und Kaffee."], "frage_fr": "L'argent de la boîte à dons…", "frage_en": "The money from the donation box…", "optionen_fr": ["va aux bénévoles.", "sert à payer la location de la salle.", "sert à l'équipe pour les outils et le café."], "optionen_en": ["goes to the helpers.", "pays the rent for the room.", "is used by the team for tools and coffee."], "bon": 2,
+            "erkl_fr": "« Von dem Geld kauft das Team Werkzeug und Kaffee ». Les bénévoles, eux, « bekommen kein Geld » : la réponse a est fausse. Le texte ne parle pas de loyer.",
+            "erkl_en": "“Von dem Geld kauft das Team Werkzeug und Kaffee”. The helpers themselves “bekommen kein Geld”, so answer a is wrong. The text says nothing about rent."},
+          {"nr": 18, "frage": "Seit diesem Jahr …", "optionen": ["muss man sich vorher anmelden.", "ist das Café jeden Samstag geöffnet.", "kommen weniger Besucher als früher."], "frage_fr": "Depuis cette année…", "frage_en": "Since this year…", "optionen_fr": ["il faut s'inscrire à l'avance.", "le café est ouvert tous les samedis.", "il y a moins de visiteurs qu'avant."], "optionen_en": ["you have to register in advance.", "the café is open every Saturday.", "fewer visitors come than before."], "bon": 0,
+            "erkl_fr": "« Deshalb muss man sich seit diesem Jahr vorher anmelden » : l'inscription est obligatoire. Le café ouvre toujours le PREMIER samedi du mois, et il y a plus de monde, pas moins.",
+            "erkl_en": "“Deshalb muss man sich seit diesem Jahr vorher anmelden”: you must register first. The café still opens on the FIRST Saturday of the month, and there are more people, not fewer."}
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "T1": {
+        "anzeigen": [
+          {"b": "a", "titel": "Nachmieter gesucht", "text": "1-Zimmer-Wohnung in Prenzlauer Berg, 35 m², 2. Stock, frei ab 1. Februar. Kaltmiete 520 €. Keine Haustiere. Besichtigung nach Vereinbarung, Tel. 0177 610 44 09"},
+          {"b": "b", "titel": "Zimmer in netter WG frei", "text": "Wir (zwei Studentinnen, ein Koch) suchen für unsere WG in Wedding einen neuen Mitbewohner oder eine neue Mitbewohnerin. 16 m², möbliert, 450 € warm. Wir kochen oft zusammen!"},
+          {"b": "c", "titel": "Ihr Hund ist nicht gern allein?", "text": "Ich gehe mit Ihrem Hund spazieren, während Sie arbeiten: Montag bis Freitag, auch mittags. 10 € pro Stunde. Viel Erfahrung mit großen und kleinen Hunden. Tel. 0151 288 73 40"},
+          {"b": "d", "titel": "Laufen im Bürgerpark", "text": "Unsere Laufgruppe trifft sich jeden Sonntag um 9 Uhr am Eingang des Bürgerparks. 5 oder 10 Kilometer, langsam oder schnell. Anfänger willkommen, kostenlos, ohne Anmeldung."},
+          {"b": "e", "titel": "Hobbymannschaft sucht Spieler", "text": "Unsere Fußballmannschaft (Männer, 25–40 Jahre) sucht Verstärkung. Training jeden Mittwoch um 19 Uhr auf dem Sportplatz Pankow, Spiele samstags. Mitgliedsbeitrag 15 € im Monat."},
+          {"b": "f", "titel": "Salsa für Anfänger", "text": "Tanzkurs für Paare: 8 Abende, immer freitags um 20 Uhr, Tanzschule Rhythmus, Berliner Straße 9. Anmeldung nur zu zweit, 140 € pro Paar."},
+          {"b": "g", "titel": "Kinderflohmarkt", "text": "Kleidung, Schuhe und Spielzeug für Kinder von 0 bis 10 Jahren – alles gebraucht und günstig. Samstag, 22. November, 10–16 Uhr, Turnhalle der Grundschule am Weinberg."},
+          {"b": "h", "titel": "Nähmaschine zu verkaufen", "text": "Fast neu, nur zweimal benutzt, mit Anleitung und Koffer. 60 €. Abholung in Pankow. Tel. 030 47 91 62 33"}
+        ],
+        "items": [
+          {"nr": 1, "situation": "Eine Kollegin von Mark sucht für zwei Monate jemanden, der in der Mittagspause mit ihrem Hund rausgeht.", "situation_fr": "Une collègue de Mark cherche, pour deux mois, quelqu'un qui sorte son chien à midi.", "situation_en": "A colleague of Mark's is looking for someone to take her dog out at lunchtime for two months.", "bon": "c",
+            "erkl_fr": "« Ich gehe mit Ihrem Hund spazieren, während Sie arbeiten … auch mittags » : la promenade du chien, à midi, pendant qu'elle travaille.",
+            "erkl_en": "“Ich gehe mit Ihrem Hund spazieren, während Sie arbeiten … auch mittags”: walking the dog, at lunchtime, while she is at work."},
+          {"nr": 2, "situation": "Mark möchte am Wochenende Sport machen, aber kein Mitglied in einem Verein werden.", "situation_fr": "Mark veut faire du sport le week-end, mais sans devenir membre d'un club.", "situation_en": "Mark wants to do sport at the weekend, but without joining a club.", "bon": "d",
+            "erkl_fr": "La course du dimanche est « kostenlos, ohne Anmeldung » : pas de club. L'équipe de foot (e) a une cotisation (« Mitgliedsbeitrag »), c'est un club.",
+            "erkl_en": "The Sunday run is “kostenlos, ohne Anmeldung”: no club. The football team (e) has a membership fee (“Mitgliedsbeitrag”), so it is a club."},
+          {"nr": 3, "situation": "Ein Bekannter von Mark sucht ein günstiges Zimmer. Er möchte nicht allein wohnen.", "situation_fr": "Une connaissance de Mark cherche une chambre pas chère. Il ne veut pas vivre seul.", "situation_en": "An acquaintance of Mark's is looking for a cheap room. He doesn't want to live alone.", "bon": "b",
+            "erkl_fr": "Une WG (colocation), c'est vivre avec d'autres : « Wir kochen oft zusammen! ». L'annonce a est un appartement d'une pièce, pour une personne seule.",
+            "erkl_en": "A WG (flat share) means living with others: “Wir kochen oft zusammen!”. Advert a is a one-room flat for one person on their own."},
+          {"nr": 4, "situation": "Marks Nachbarin braucht für ihre Tochter (3) billige Winterkleidung.", "situation_fr": "La voisine de Mark a besoin de vêtements d'hiver pas chers pour sa fille (3 ans).", "situation_en": "Mark's neighbour needs cheap winter clothes for her daughter (3).", "bon": "g",
+            "erkl_fr": "Le marché aux puces pour enfants vend « Kleidung … für Kinder von 0 bis 10 Jahren – alles gebraucht und günstig » : d'occasion, donc bon marché.",
+            "erkl_en": "The children's flea market sells “Kleidung … für Kinder von 0 bis 10 Jahren – alles gebraucht und günstig”: second-hand, so cheap."},
+          {"nr": 5, "situation": "Marks Nachbarn, ein Ehepaar, möchten am Freitagabend zusammen etwas Neues lernen.", "situation_fr": "Les voisins de Mark, un couple marié, veulent apprendre quelque chose de nouveau ensemble le vendredi soir.", "situation_en": "Mark's neighbours, a married couple, want to learn something new together on Friday evenings.", "bon": "f",
+            "erkl_fr": "Le cours de salsa est « für Paare », « freitags um 20 Uhr », et « für Anfänger » : un couple, le vendredi soir, quelque chose de nouveau.",
+            "erkl_en": "The salsa course is “für Paare”, “freitags um 20 Uhr” and “für Anfänger”: a couple, on Friday evenings, something new."}
+        ]
+      },
+      "T2": {
+        "text": {"typ": "zeitung", "kopf": "Berliner Kiezblatt · Pankow", "titel": "Das Hallenbad ist wieder offen", "absaetze": [
+          "Nach acht Monaten Renovierung ist das Hallenbad in der Wolfshagener Straße seit Montag wieder geöffnet. Neu sind ein Becken für kleine Kinder und eine größere Sauna. Auch die Duschen und die Umkleiden sind jetzt modern.",
+          "Die Eintrittspreise sind gleich geblieben: Erwachsene zahlen 5,50 Euro, Kinder und Jugendliche bis 17 Jahre 3,50 Euro. Neu ist aber, dass man die Tickets jetzt auch im Internet kaufen kann. Wer online bucht, wählt eine feste Zeit von zwei Stunden. An der Kasse gibt es weiterhin Tageskarten.",
+          "Von Montag bis Freitag ist das Bad von 6.30 bis 22 Uhr geöffnet, am Wochenende von 8 bis 20 Uhr. Am Dienstag von 18 bis 20 Uhr ist das Bad nur für Frauen geöffnet. Die Sauna kostet 4 Euro extra und ist erst ab 16 Jahren erlaubt."
+        ]},
+        "items": [
+          {"nr": 6, "rf": true, "frage": "Nach der Renovierung ist der Eintritt teurer.", "frage_fr": "Après la rénovation, l'entrée est plus chère.", "frage_en": "After the renovation, admission is more expensive.", "bon": 1,
+            "erkl_fr": "Faux : « Die Eintrittspreise sind gleich geblieben » — les prix n'ont pas changé. Seule la sauna coûte un supplément, et c'était déjà le cas.",
+            "erkl_en": "False: “Die Eintrittspreise sind gleich geblieben”, the prices have stayed the same. Only the sauna costs extra."},
+          {"nr": 7, "frage": "Neu im Hallenbad ist …", "optionen": ["ein Becken für kleine Kinder.", "ein Café für die Eltern.", "ein Schwimmbecken draußen."], "frage_fr": "Ce qui est nouveau à la piscine, c'est…", "frage_en": "What is new at the pool is…", "optionen_fr": ["un bassin pour les petits enfants.", "un café pour les parents.", "un bassin extérieur."], "optionen_en": ["a pool for small children.", "a café for parents.", "an outdoor pool."], "bon": 0,
+            "erkl_fr": "« Neu sind ein Becken für kleine Kinder und eine größere Sauna ». Le texte ne parle ni de café ni de bassin dehors (« draußen »).",
+            "erkl_en": "“Neu sind ein Becken für kleine Kinder und eine größere Sauna”. The text mentions neither a café nor an outdoor pool (“draußen”)."},
+          {"nr": 8, "frage": "Wer sein Ticket im Internet kauft, …", "optionen": ["bezahlt weniger.", "schwimmt zu einer festen Zeit.", "bekommt eine Tageskarte."], "frage_fr": "Qui achète son billet sur Internet…", "frage_en": "Anyone who buys their ticket online…", "optionen_fr": ["paie moins cher.", "nage à une heure fixée.", "reçoit un billet pour la journée."], "optionen_en": ["pays less.", "swims at a fixed time.", "gets a day ticket."], "bon": 1,
+            "erkl_fr": "« Wer online bucht, wählt eine feste Zeit von zwei Stunden » : un créneau fixe. Les cartes pour la journée, c'est « an der Kasse », à la caisse.",
+            "erkl_en": "“Wer online bucht, wählt eine feste Zeit von zwei Stunden”: a fixed time slot. Day tickets are sold “an der Kasse”, at the desk."},
+          {"nr": 9, "frage": "Am Dienstagabend …", "optionen": ["ist das Bad geschlossen.", "kostet die Sauna nichts.", "dürfen nur Frauen schwimmen."], "frage_fr": "Le mardi soir…", "frage_en": "On Tuesday evenings…", "optionen_fr": ["la piscine est fermée.", "la sauna est gratuite.", "seules les femmes peuvent nager."], "optionen_en": ["the pool is closed.", "the sauna is free.", "only women may swim."], "bon": 2,
+            "erkl_fr": "« Am Dienstag von 18 bis 20 Uhr ist das Bad nur für Frauen geöffnet » : la piscine est ouverte, mais seulement aux femmes.",
+            "erkl_en": "“Am Dienstag von 18 bis 20 Uhr ist das Bad nur für Frauen geöffnet”: the pool is open, but only to women."}
+        ]
+      },
+      "T3": {
+        "saetze": [
+          {"b": "a", "de": "Jemand möchte, dass eine Rechnung korrigiert wird.", "fr": "Quelqu'un veut faire corriger une facture.", "en": "Someone wants a bill to be corrected."},
+          {"b": "b", "de": "Jemand fragt, ob er etwas ausleihen darf.", "fr": "Quelqu'un demande s'il peut emprunter quelque chose.", "en": "Someone asks whether he may borrow something."},
+          {"b": "c", "de": "Jemand gratuliert zu einem Erfolg.", "fr": "Quelqu'un félicite pour une réussite.", "en": "Someone offers congratulations on a success."},
+          {"b": "d", "de": "Jemand sagt, dass ein Treffen an einem anderen Ort stattfindet.", "fr": "Quelqu'un annonce qu'une rencontre aura lieu à un autre endroit.", "en": "Someone says that a meeting will take place somewhere else."},
+          {"b": "e", "de": "Jemand entschuldigt sich, weil er etwas vergessen hat.", "fr": "Quelqu'un s'excuse parce qu'il a oublié quelque chose.", "en": "Someone apologises because he forgot something."},
+          {"b": "f", "de": "Jemand sucht eine neue Arbeit.", "fr": "Quelqu'un cherche un nouveau travail.", "en": "Someone is looking for a new job."}
+        ],
+        "mails": [
+          {"nr": 10, "von": "Mark Garnier", "an": "Stadtwerke Berlin-Nord, Kundenservice", "absaetze": ["Sehr geehrte Damen und Herren,", "heute habe ich Ihre Stromrechnung für Oktober bekommen. Sie haben 420 Kilowattstunden berechnet, aber auf meinem Zähler stehen nur 240. Ich glaube, die Zahlen wurden vertauscht. Ein Foto von meinem Zähler schicke ich mit.", "Bitte schicken Sie mir eine neue Rechnung.", "Mit freundlichen Grüßen", "Mark Garnier"], "bon": "a",
+            "erkl_fr": "420 facturés au lieu de 240 : la facture est fausse, et Mark demande « eine neue Rechnung ». Il veut qu'on la corrige.",
+            "erkl_en": "420 billed instead of 240: the bill is wrong, and Mark asks for “eine neue Rechnung”. He wants it corrected."},
+          {"nr": 11, "von": "Mark Garnier", "an": "Herbert Schulz", "absaetze": ["Hallo Herr Schulz,", "ich möchte am Wochenende in meinem Wohnzimmer ein Regal an die Wand hängen, aber ich habe leider keine Bohrmaschine. Sie haben mir einmal erzählt, dass Sie viel Werkzeug haben.", "Könnte ich mir Ihre Bohrmaschine für einen Tag leihen? Am Sonntagabend bringe ich sie zurück.", "Viele Grüße", "Mark Garnier (3. Stock)"], "bon": "b",
+            "erkl_fr": "« Könnte ich mir Ihre Bohrmaschine für einen Tag leihen? » : Mark demande s'il peut emprunter la perceuse. « sich etwas leihen », c'est emprunter.",
+            "erkl_en": "“Könnte ich mir Ihre Bohrmaschine für einen Tag leihen?”: Mark asks if he may borrow the drill. “sich etwas leihen” means to borrow."},
+          {"nr": 12, "von": "Tobias Lang", "an": "Team Kundenbetreuung", "absaetze": ["Liebe Kolleginnen und Kollegen,", "unser Teamessen am Freitag findet nicht im Restaurant Lindenhof statt, weil das Restaurant an diesem Abend geschlossen ist. Wir treffen uns stattdessen in der Pizzeria Da Gino, Schönhauser Allee 12. Die Uhrzeit bleibt gleich: 19 Uhr.", "Bis Freitag!", "Tobias"], "bon": "d",
+            "erkl_fr": "Le repas a toujours lieu vendredi à 19 h, mais « stattdessen in der Pizzeria » : seul l'endroit change.",
+            "erkl_en": "The meal is still on Friday at 7 pm, but “stattdessen in der Pizzeria”: only the place changes."},
+          {"nr": 13, "von": "Mark Garnier", "an": "Sabine Roth", "absaetze": ["Liebe Sabine,", "es tut mir so leid! Gestern war dein Geburtstag, und ich habe nicht daran gedacht. Diese Woche war bei mir so viel los, dass ich es einfach vergessen habe.", "Ich hoffe, du hattest trotzdem einen schönen Tag! Darf ich dich nächste Woche zu einem Kaffee einladen?", "Liebe Grüße", "Mark"], "bon": "e",
+            "erkl_fr": "« es tut mir so leid » et « ich habe es einfach vergessen » : Mark s'excuse d'avoir oublié l'anniversaire. Le piège, c'est la phrase c : un anniversaire fait penser à « gratulieren », mais le courriel est d'abord une excuse.",
+            "erkl_en": "“es tut mir so leid” and “ich habe es einfach vergessen”: Mark apologises for forgetting the birthday. The trap is sentence c: a birthday suggests “gratulieren”, but the e-mail is above all an apology."}
+        ]
+      },
+      "T4": {
+        "text": {"typ": "zeitung", "kopf": "Berliner Kiezblatt · Pankow", "titel": "Ein Lastenrad für alle: Das Projekt „Kiezrad“", "absaetze": [
+          "Einen Kühlschrank transportieren, den Wocheneinkauf für die ganze Familie nach Hause bringen oder zwei Kinder in den Kindergarten fahren – dafür braucht man in der Stadt nicht unbedingt ein Auto. Das zeigt das Projekt „Kiezrad“ in Pankow. Seit dem Frühling kann man hier an sechs Stationen ein Lastenrad ausleihen: ein Fahrrad mit einer großen Kiste vorne, in die bis zu 80 Kilo passen.",
+          "Die Stationen sind in Geschäften, Cafés und einer Bibliothek. Wer ein Rad ausleihen möchte, reserviert es zuerst im Internet. Dann holt man es zur gebuchten Zeit an der Station ab und zeigt dort seinen Ausweis. Man kann das Rad bis zu drei Tage behalten. Die Ausleihe ist kostenlos, aber der Verein freut sich über eine Spende.",
+          "„Am Anfang hatten wir Angst, dass die Räder kaputtgehen oder gestohlen werden“, sagt Stefan Wolff vom Verein Kiezrad. „Aber die Leute sind sehr vorsichtig. In einem halben Jahr ist kein einziges Rad verschwunden.“ Kleine Schäden repariert der Verein selbst. Dafür braucht er Geld für Ersatzteile, und darum bittet er um Spenden.",
+          "Besonders beliebt sind die Räder am Wochenende. Dann sind sie oft schon eine Woche vorher reserviert. Unter der Woche ist es leichter, ein Rad zu bekommen. Viele Nutzer sind junge Familien, aber auch Menschen, die umziehen, oder kleine Geschäfte, die ihre Waren ausliefern.",
+          "Wer zum ersten Mal mit einem Lastenrad fährt, ist oft unsicher: Das Rad ist lang und schwer, und in den Kurven muss man langsam fahren. Deshalb bietet der Verein jeden ersten Sonntag im Monat eine kostenlose Probefahrt an. Ein Helfer erklärt dann, wie man richtig bremst und lenkt. Im nächsten Jahr sollen vier neue Stationen dazukommen."
+        ]},
+        "items": [
+          {"nr": 14, "frage": "Ein Lastenrad …", "optionen": ["kann man nur für einen Tag ausleihen.", "gibt es in jedem Geschäft in Pankow.", "hat vorne viel Platz für schwere Sachen."], "frage_fr": "Un vélo cargo…", "frage_en": "A cargo bike…", "optionen_fr": ["ne s'emprunte que pour une journée.", "se trouve dans chaque magasin de Pankow.", "a beaucoup de place à l'avant pour des choses lourdes."], "optionen_en": ["can only be borrowed for one day.", "is available in every shop in Pankow.", "has a lot of room at the front for heavy things."], "bon": 2,
+            "erkl_fr": "« ein Fahrrad mit einer großen Kiste vorne, in die bis zu 80 Kilo passen ». On peut le garder « bis zu drei Tage », et il n'y a que six stations, pas un vélo par magasin.",
+            "erkl_en": "“ein Fahrrad mit einer großen Kiste vorne, in die bis zu 80 Kilo passen”. You can keep it “bis zu drei Tage”, and there are only six stations, not one bike per shop."},
+          {"nr": 15, "frage": "Wer ein Rad ausleihen möchte, muss …", "optionen": ["es zuerst im Internet reservieren.", "eine Gebühr bezahlen.", "Mitglied im Verein werden."], "frage_fr": "Qui veut emprunter un vélo doit…", "frage_en": "Anyone who wants to borrow a bike has to…", "optionen_fr": ["d'abord le réserver sur Internet.", "payer des frais.", "devenir membre de l'association."], "optionen_en": ["book it online first.", "pay a fee.", "become a member of the association."], "bon": 0,
+            "erkl_fr": "« Wer ein Rad ausleihen möchte, reserviert es zuerst im Internet ». Le prêt est gratuit (« kostenlos ») : un don est bienvenu, mais pas obligatoire.",
+            "erkl_en": "“Wer ein Rad ausleihen möchte, reserviert es zuerst im Internet”. Borrowing is free (“kostenlos”): a donation is welcome, but not required."},
+          {"nr": 16, "frage": "Stefan Wolff sagt, dass …", "optionen": ["schon mehrere Räder gestohlen wurden.", "die Nutzer gut auf die Räder aufpassen.", "die Reparaturen sehr teuer sind."], "frage_fr": "Stefan Wolff dit que…", "frage_en": "Stefan Wolff says that…", "optionen_fr": ["plusieurs vélos ont déjà été volés.", "les usagers font bien attention aux vélos.", "les réparations coûtent très cher."], "optionen_en": ["several bikes have already been stolen.", "the users take good care of the bikes.", "the repairs are very expensive."], "bon": 1,
+            "erkl_fr": "« die Leute sind sehr vorsichtig. In einem halben Jahr ist kein einziges Rad verschwunden » : aucun vol, les gens font attention. La peur du vol, c'était « am Anfang », au début seulement.",
+            "erkl_en": "“die Leute sind sehr vorsichtig. In einem halben Jahr ist kein einziges Rad verschwunden”: no thefts, people are careful. The fear of theft was only “am Anfang”, at the start."},
+          {"nr": 17, "frage": "Am Wochenende …", "optionen": ["ist es schwer, kurzfristig ein Rad zu bekommen.", "kostet die Ausleihe mehr.", "sind die Stationen geschlossen."], "frage_fr": "Le week-end…", "frage_en": "At the weekend…", "optionen_fr": ["il est difficile d'avoir un vélo à la dernière minute.", "le prêt coûte plus cher.", "les stations sont fermées."], "optionen_en": ["it is hard to get a bike at short notice.", "borrowing costs more.", "the stations are closed."], "bon": 0,
+            "erkl_fr": "« Dann sind sie oft schon eine Woche vorher reserviert » : le week-end, il faut réserver longtemps à l'avance. « kurzfristig » veut dire à la dernière minute.",
+            "erkl_en": "“Dann sind sie oft schon eine Woche vorher reserviert”: at weekends you have to book well ahead. “kurzfristig” means at short notice."},
+          {"nr": 18, "frage": "Bei der Probefahrt …", "optionen": ["kann man ein Lastenrad kaufen.", "fährt man zu einer neuen Station.", "lernt man, wie man das Rad sicher fährt."], "frage_fr": "Pendant l'essai…", "frage_en": "On the test ride…", "optionen_fr": ["on peut acheter un vélo cargo.", "on va jusqu'à une nouvelle station.", "on apprend à conduire le vélo en sécurité."], "optionen_en": ["you can buy a cargo bike.", "you ride to a new station.", "you learn how to ride the bike safely."], "bon": 2,
+            "erkl_fr": "« Ein Helfer erklärt dann, wie man richtig bremst und lenkt » : bien freiner et bien tourner, c'est rouler en sécurité. Les nouvelles stations sont pour l'an prochain, sans lien avec l'essai.",
+            "erkl_en": "“Ein Helfer erklärt dann, wie man richtig bremst und lenkt”: braking and steering properly means riding safely. The new stations are for next year and have nothing to do with the test ride."}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "T1": {
+        "anzeigen": [
+          {"b": "a", "titel": "Aushilfe am Wochenende", "text": "Café Morgenrot in Pankow sucht eine Aushilfe für Samstag und Sonntag, jeweils 8–14 Uhr. Erfahrung nicht nötig, gute Laune schon! Bewerbung an: job@cafe-morgenrot.de"},
+          {"b": "b", "titel": "Buchhaltung für Selbstständige", "text": "Abendkurs an der Volkshochschule Pankow: Rechnungen schreiben, Steuern verstehen, Belege ordnen. 6 Abende, montags 18–21 Uhr, 85 €."},
+          {"b": "c", "titel": "Hilfe am Computer", "text": "Informatikstudent hilft bei Problemen mit Laptop, Handy und Drucker – gern auch bei Ihnen zu Hause. 15 € pro Stunde. Termine jeden Tag, auch sonntags. Tel. 0163 918 27 55"},
+          {"b": "d", "titel": "Bewerbungsfotos sofort", "text": "Fotostudio Licht: professionelle Fotos für Ihre Bewerbung in 15 Minuten, ohne Termin. 6 Fotos und eine digitale Datei für 29 €. Breite Straße 31."},
+          {"b": "e", "titel": "Übersetzungsbüro Lefèvre", "text": "Beglaubigte Übersetzungen Französisch–Deutsch: Zeugnisse, Urkunden, Verträge. Für Ämter und Behörden anerkannt. Schnell und zuverlässig. Tel. 030 42 08 19 64"},
+          {"b": "f", "titel": "Fahrer gesucht", "text": "Bäckerei Krume sucht einen Fahrer mit Führerschein Klasse B für die Lieferung am frühen Morgen, Montag bis Freitag 4–8 Uhr. Gute Bezahlung."},
+          {"b": "g", "titel": "Ruhiger Arbeitsplatz", "text": "Gemeinschaftsbüro in Prenzlauer Berg: Schreibtisch mit WLAN, Drucker und Kaffee. Ruhige Atmosphäre. Ab 9 € pro Tag, auch für einen Monat."},
+          {"b": "h", "titel": "Reinigungskraft gesucht", "text": "Arztpraxis in Pankow sucht eine Reinigungskraft, zweimal pro Woche abends, je 3 Stunden. 14 € pro Stunde. Tel. 030 47 30 18 20"}
+        ],
+        "items": [
+          {"nr": 1, "situation": "Mark braucht für eine Bewerbung schnell ein gutes Foto.", "situation_fr": "Mark a vite besoin d'une bonne photo pour une candidature.", "situation_en": "Mark quickly needs a good photo for a job application.", "bon": "d",
+            "erkl_fr": "« Fotos für Ihre Bewerbung in 15 Minuten, ohne Termin » : vite, et pour une candidature.",
+            "erkl_en": "“Fotos für Ihre Bewerbung in 15 Minuten, ohne Termin”: quick, and for a job application."},
+          {"nr": 2, "situation": "Marks Schulzeugnisse aus Montréal sind auf Französisch. Das Amt möchte eine offizielle deutsche Version.", "situation_fr": "Les bulletins scolaires de Mark, de Montréal, sont en français. L'administration veut une version allemande officielle.", "situation_en": "Mark's school certificates from Montréal are in French. The authorities want an official German version.", "bon": "e",
+            "erkl_fr": "« Beglaubigte Übersetzungen Französisch–Deutsch: Zeugnisse … Für Ämter … anerkannt » : une traduction certifiée, reconnue par l'administration.",
+            "erkl_en": "“Beglaubigte Übersetzungen Französisch–Deutsch: Zeugnisse … Für Ämter … anerkannt”: a certified translation, accepted by the authorities."},
+          {"nr": 3, "situation": "Eine Studentin sucht einen Job nur am Wochenende.", "situation_fr": "Une étudiante cherche un petit boulot uniquement le week-end.", "situation_en": "A student is looking for a job at weekends only.", "bon": "a",
+            "erkl_fr": "Le café cherche quelqu'un « für Samstag und Sonntag ». Les autres offres d'emploi tombent en semaine : « Montag bis Freitag » (f) ou le soir (h).",
+            "erkl_en": "The café is looking for someone “für Samstag und Sonntag”. The other job offers are on weekdays: “Montag bis Freitag” (f) or in the evening (h)."},
+          {"nr": 4, "situation": "Marks Drucker funktioniert nicht, und Mark hat nur am Sonntag Zeit.", "situation_fr": "L'imprimante de Mark ne marche pas, et Mark n'a du temps que le dimanche.", "situation_en": "Mark's printer isn't working, and Mark only has time on Sunday.", "bon": "c",
+            "erkl_fr": "L'étudiant aide pour « Laptop, Handy und Drucker », « auch sonntags » : les deux conditions sont remplies. L'annonce g a bien une imprimante, mais c'est un bureau à louer.",
+            "erkl_en": "The student helps with “Laptop, Handy und Drucker”, “auch sonntags”: both conditions are met. Advert g does have a printer, but it is a desk to rent."},
+          {"nr": 5, "situation": "Mark arbeitet von zu Hause, aber dort ist es zu laut. Er sucht einen anderen Ort zum Arbeiten.", "situation_fr": "Mark travaille chez lui, mais c'est trop bruyant. Il cherche un autre endroit pour travailler.", "situation_en": "Mark works from home, but it's too noisy there. He is looking for another place to work.", "bon": "g",
+            "erkl_fr": "Un « Gemeinschaftsbüro » (bureau partagé) avec une « ruhige Atmosphäre » : un endroit calme pour travailler, à la journée ou au mois.",
+            "erkl_en": "A “Gemeinschaftsbüro” (shared office) with a “ruhige Atmosphäre”: a quiet place to work, by the day or by the month."}
+        ]
+      },
+      "T2": {
+        "text": {"typ": "aushang", "kopf": "Praxis Dr. med. Julia Albers · Allgemeinmedizin", "titel": "Liebe Patientinnen und Patienten", "absaetze": [
+          "vom 22. Dezember bis zum 2. Januar ist unsere Praxis wegen Urlaub geschlossen. In dringenden Fällen gehen Sie bitte zu unserer Vertretung, der Praxis Dr. Kaya in der Florastraße 14 (Tel. 030 47 30 55 21). Nachts und an den Feiertagen erreichen Sie den ärztlichen Bereitschaftsdienst unter der Nummer 116 117.",
+          "Rezepte für Medikamente, die Sie regelmäßig nehmen, bestellen Sie bitte bis zum 19. Dezember, am besten über unsere Internetseite.",
+          "Ab dem 5. Januar haben wir neue Sprechzeiten: Am Mittwochnachmittag ist die Praxis dann geschlossen, dafür ist sie am Donnerstag bis 19 Uhr geöffnet. Die offene Sprechstunde ohne Termin bleibt wie bisher montags von 8 bis 10 Uhr.",
+          "Wir wünschen Ihnen schöne Feiertage!",
+          "Ihr Praxisteam"
+        ]},
+        "items": [
+          {"nr": 6, "rf": true, "frage": "Während des Urlaubs bekommt man in dringenden Fällen bei Dr. Kaya Hilfe.", "frage_fr": "Pendant les vacances, en cas d'urgence, on peut se faire soigner chez le Dr Kaya.", "frage_en": "During the holiday, in urgent cases, you can get help from Dr Kaya.", "bon": 0,
+            "erkl_fr": "Vrai : « In dringenden Fällen gehen Sie bitte zu unserer Vertretung, der Praxis Dr. Kaya ». Une « Vertretung », c'est le médecin qui remplace.",
+            "erkl_en": "True: “In dringenden Fällen gehen Sie bitte zu unserer Vertretung, der Praxis Dr. Kaya”. A “Vertretung” is the doctor who stands in."},
+          {"nr": 7, "frage": "Rezepte sollen die Patienten …", "optionen": ["bei Dr. Kaya abholen.", "nur am Telefon bestellen.", "vor dem 20. Dezember bestellen."], "frage_fr": "Les ordonnances, les patients doivent…", "frage_en": "Patients should…", "optionen_fr": ["aller les chercher chez le Dr Kaya.", "les demander seulement par téléphone.", "les demander avant le 20 décembre."], "optionen_en": ["collect their prescriptions from Dr Kaya.", "order prescriptions by phone only.", "order prescriptions before 20 December."], "bon": 2,
+            "erkl_fr": "« bis zum 19. Dezember » = au plus tard le 19, donc avant le 20 : la réponse c dit la même chose avec d'autres mots. C'est très fréquent au telc. Le texte conseille Internet, pas le téléphone.",
+            "erkl_en": "“bis zum 19. Dezember” means by the 19th at the latest, so before the 20th: answer c says the same thing in other words, which is very common in the telc. The text recommends the website, not the phone."},
+          {"nr": 8, "frage": "Ab Januar …", "optionen": ["ist die Praxis am Donnerstag länger offen.", "gibt es keine offene Sprechstunde mehr.", "ist die Praxis mittwochs den ganzen Tag zu."], "frage_fr": "À partir de janvier…", "frage_en": "From January…", "optionen_fr": ["le cabinet est ouvert plus tard le jeudi.", "il n'y a plus de consultation sans rendez-vous.", "le cabinet est fermé toute la journée le mercredi."], "optionen_en": ["the practice is open longer on Thursdays.", "there is no more walk-in consultation.", "the practice is closed all day on Wednesdays."], "bon": 0,
+            "erkl_fr": "« dafür ist sie am Donnerstag bis 19 Uhr geöffnet ». Le mercredi, seul l'APRÈS-MIDI est fermé (« Mittwochnachmittag »), et la consultation libre du lundi reste « wie bisher ».",
+            "erkl_en": "“dafür ist sie am Donnerstag bis 19 Uhr geöffnet”. On Wednesdays only the AFTERNOON is closed (“Mittwochnachmittag”), and the Monday walk-in hours stay “wie bisher”."},
+          {"nr": 9, "frage": "Die Nummer 116 117 …", "optionen": ["ist die Nummer von Dr. Kaya.", "kann man auch nachts anrufen.", "ist nur für Rezepte."], "frage_fr": "Le numéro 116 117…", "frage_en": "The number 116 117…", "optionen_fr": ["est celui du Dr Kaya.", "peut aussi s'appeler la nuit.", "ne sert que pour les ordonnances."], "optionen_en": ["is Dr Kaya's number.", "can also be called at night.", "is only for prescriptions."], "bon": 1,
+            "erkl_fr": "« Nachts und an den Feiertagen erreichen Sie den ärztlichen Bereitschaftsdienst unter der Nummer 116 117 » : le service médical de garde, joignable la nuit.",
+            "erkl_en": "“Nachts und an den Feiertagen erreichen Sie den ärztlichen Bereitschaftsdienst unter der Nummer 116 117”: the out-of-hours medical service, which you can call at night."}
+        ]
+      },
+      "T3": {
+        "saetze": [
+          {"b": "a", "de": "Jemand bittet eine Nachbarin, ein Paket anzunehmen.", "fr": "Quelqu'un demande à une voisine de réceptionner un colis.", "en": "Someone asks a neighbour to take in a parcel."},
+          {"b": "b", "de": "Jemand bestätigt einen Termin.", "fr": "Quelqu'un confirme un rendez-vous.", "en": "Someone confirms an appointment."},
+          {"b": "c", "de": "Jemand bewirbt sich um eine Stelle.", "fr": "Quelqu'un pose sa candidature à un poste.", "en": "Someone applies for a job."},
+          {"b": "d", "de": "Jemand möchte einen Vertrag beenden.", "fr": "Quelqu'un veut mettre fin à un contrat.", "en": "Someone wants to end a contract."},
+          {"b": "e", "de": "Jemand erzählt von einer Reise.", "fr": "Quelqu'un raconte un voyage.", "en": "Someone talks about a trip."},
+          {"b": "f", "de": "Jemand fragt nach dem Weg.", "fr": "Quelqu'un demande son chemin.", "en": "Someone asks the way."}
+        ],
+        "mails": [
+          {"nr": 10, "von": "Mark Garnier", "an": "Funkstark Mobilfunk, Kundenservice", "absaetze": ["Sehr geehrte Damen und Herren,", "hiermit kündige ich meinen Handyvertrag mit der Kundennummer 4471 0938 zum nächstmöglichen Termin. Ich habe einen anderen Anbieter gefunden.", "Bitte bestätigen Sie mir die Kündigung schriftlich.", "Mit freundlichen Grüßen", "Mark Garnier"], "bon": "d",
+            "erkl_fr": "« hiermit kündige ich meinen Handyvertrag » : « kündigen » un contrat, c'est le résilier, y mettre fin. Le mot « bestätigen » apparaît aussi, mais c'est Mark qui DEMANDE une confirmation : le but du courriel est la résiliation.",
+            "erkl_en": "“hiermit kündige ich meinen Handyvertrag”: to “kündigen” a contract is to cancel it, to end it. The word “bestätigen” appears too, but Mark is ASKING for confirmation: the purpose of the e-mail is the cancellation."},
+          {"nr": 11, "von": "Praxis Dr. Albers", "an": "Mark Garnier", "absaetze": ["Sehr geehrter Herr Garnier,", "hiermit bestätigen wir Ihren Termin bei Frau Dr. Albers am Mittwoch, 12. November, um 9.15 Uhr. Bitte bringen Sie Ihre Versichertenkarte mit und kommen Sie zehn Minuten früher.", "Wenn Sie den Termin nicht wahrnehmen können, sagen Sie bitte mindestens 24 Stunden vorher ab.", "Mit freundlichen Grüßen", "Ihr Praxisteam"], "bon": "b",
+            "erkl_fr": "« hiermit bestätigen wir Ihren Termin » : le cabinet confirme le rendez-vous de Mark. La phrase sur l'annulation n'est qu'une consigne en plus.",
+            "erkl_en": "“hiermit bestätigen wir Ihren Termin”: the practice confirms Mark's appointment. The sentence about cancelling is just an extra instruction."},
+          {"nr": 12, "von": "Mark Garnier", "an": "Hatice Yilmaz", "absaetze": ["Liebe Frau Yilmaz,", "morgen kommt ein Paket für mich, aber ich bin den ganzen Tag bei der Arbeit. Wären Sie so nett und würden es für mich annehmen? Ich habe dem Paketdienst geschrieben, dass er bei Ihnen klingeln soll.", "Ich hole das Paket morgen gegen 19 Uhr bei Ihnen ab. Vielen Dank!", "Viele Grüße", "Mark Garnier"], "bon": "a",
+            "erkl_fr": "« Wären Sie so nett und würden es für mich annehmen? » : Mark demande à sa voisine de prendre son colis. C'est une demande polie, au Konjunktiv II.",
+            "erkl_en": "“Wären Sie so nett und würden es für mich annehmen?”: Mark asks his neighbour to take in his parcel. It is a polite request, in the Konjunktiv II."},
+          {"nr": 13, "von": "Tobias Lang", "an": "Mark Garnier", "absaetze": ["Hallo Mark,", "wir sind gestern Abend aus Hamburg zurückgekommen. Es war toll! Wir haben eine Hafenrundfahrt gemacht und waren im Musical. Nur das Wetter war schlecht: Es hat jeden Tag geregnet.", "Ich zeige dir die Fotos am Montag in der Mittagspause.", "Bis dann, Tobias"], "bon": "e",
+            "erkl_fr": "Tobias raconte son séjour à Hambourg : « Wir haben eine Hafenrundfahrt gemacht und waren im Musical », et la pluie. Tout est au passé (Perfekt, Präteritum) : c'est un récit de voyage.",
+            "erkl_en": "Tobias describes his trip to Hamburg: “Wir haben eine Hafenrundfahrt gemacht und waren im Musical”, and the rain. It is all in the past (Perfekt, Präteritum): an account of a trip."}
+        ]
+      },
+      "T4": {
+        "text": {"typ": "zeitung", "kopf": "Berliner Kiezblatt · Pankow", "titel": "Tomaten über den Dächern: Ein Garten auf dem Supermarkt", "absaetze": [
+          "Wer mit dem Aufzug auf das Dach des Supermarkts in der Schönholzer Straße fährt, steht plötzlich in einem Garten. Zwischen Holzkisten wachsen Tomaten, Salat, Kräuter und Erdbeeren. Vor zwei Jahren war hier nur grauer Beton. Dann hatte eine Gruppe von Nachbarinnen und Nachbarn die Idee, das Dach zu nutzen. Der Besitzer des Supermarkts war sofort einverstanden: Er stellt das Dach kostenlos zur Verfügung und bezahlt sogar das Wasser.",
+          "Heute gärtnern hier etwa 40 Menschen aus dem Viertel. Jede Familie oder jede Person hat eine eigene Kiste, um die sie sich kümmert. Die großen Beete in der Mitte gehören allen. „Ich wohne im fünften Stock und habe keinen Balkon“, erzählt Merve Aydın, 34. „Hier oben kann ich mit meinen Kindern Gemüse pflanzen. Jetzt wissen sie, dass Tomaten nicht im Supermarkt wachsen.“",
+          "Die Arbeit wird geteilt. Im Sommer muss jeden Tag jemand gießen. Deshalb gibt es einen Plan, in den sich alle eintragen. Einmal im Monat treffen sich die Gärtnerinnen und Gärtner und besprechen, was zu tun ist. Wer nicht mitarbeitet, bekommt zuerst eine Warnung. Beim zweiten Mal verliert er seine Kiste.",
+          "Was im Garten wächst, essen die Gärtner selbst. Verkaufen dürfen sie es nicht. Wenn es zu viel gibt, stellen sie das Gemüse in Kisten vor den Eingang des Supermarkts, und jeder darf sich etwas mitnehmen. Im letzten Sommer gab es so viele Zucchini, dass sogar die Kassiererinnen welche mit nach Hause genommen haben.",
+          "Zurzeit sind alle Kisten vergeben, und auf der Warteliste stehen über 30 Namen. Die Gruppe sucht deshalb weitere Dächer im Viertel. Wer trotzdem mitmachen möchte, kann zum offenen Gartentag kommen: Jeden Samstag von 14 bis 17 Uhr dürfen alle auf das Dach, mithelfen und Fragen stellen."
+        ]},
+        "items": [
+          {"nr": 14, "frage": "Das Dach des Supermarkts …", "optionen": ["war früher ein Parkplatz.", "dürfen die Gärtner kostenlos nutzen.", "gehört jetzt den Nachbarn."], "frage_fr": "Le toit du supermarché…", "frage_en": "The supermarket roof…", "optionen_fr": ["était autrefois un parking.", "peut être utilisé gratuitement par les jardiniers.", "appartient maintenant aux voisins."], "optionen_en": ["used to be a car park.", "can be used by the gardeners for free.", "now belongs to the neighbours."], "bon": 1,
+            "erkl_fr": "« Er stellt das Dach kostenlos zur Verfügung » : le propriétaire prête le toit gratuitement. Il en reste propriétaire : le toit n'appartient pas aux voisins. Et le texte dit « grauer Beton », pas un parking.",
+            "erkl_en": "“Er stellt das Dach kostenlos zur Verfügung”: the owner lets them use the roof for free. He still owns it, so it does not belong to the neighbours. And the text says “grauer Beton”, not a car park."},
+          {"nr": 15, "frage": "Merve Aydın …", "optionen": ["hat zu Hause keinen Platz für Pflanzen.", "arbeitet im Supermarkt.", "verkauft ihr Gemüse."], "frage_fr": "Merve Aydın…", "frage_en": "Merve Aydın…", "optionen_fr": ["n'a pas de place pour des plantes chez elle.", "travaille au supermarché.", "vend ses légumes."], "optionen_en": ["has no room for plants at home.", "works at the supermarket.", "sells her vegetables."], "bon": 0,
+            "erkl_fr": "« Ich wohne im fünften Stock und habe keinen Balkon » : pas de balcon, donc pas de place pour planter chez elle. Vendre les légumes est interdit (« Verkaufen dürfen sie es nicht »).",
+            "erkl_en": "“Ich wohne im fünften Stock und habe keinen Balkon”: no balcony, so no room to plant anything at home. Selling the vegetables is not allowed (“Verkaufen dürfen sie es nicht”)."},
+          {"nr": 16, "frage": "Wer nicht mitarbeitet, …", "optionen": ["muss eine Strafe bezahlen.", "bekommt zuerst eine Warnung.", "muss den Garten sofort verlassen."], "frage_fr": "Qui ne participe pas au travail…", "frage_en": "Anyone who doesn't help…", "optionen_fr": ["doit payer une amende.", "reçoit d'abord un avertissement.", "doit quitter le jardin tout de suite."], "optionen_en": ["has to pay a fine.", "first gets a warning.", "has to leave the garden at once."], "bon": 1,
+            "erkl_fr": "« Wer nicht mitarbeitet, bekommt zuerst eine Warnung. Beim zweiten Mal verliert er seine Kiste » : d'abord un avertissement, pas un départ immédiat (« sofort »).",
+            "erkl_en": "“Wer nicht mitarbeitet, bekommt zuerst eine Warnung. Beim zweiten Mal verliert er seine Kiste”: first a warning, not leaving at once (“sofort”)."},
+          {"nr": 17, "frage": "Das Gemüse aus dem Garten …", "optionen": ["wird im Supermarkt verkauft.", "bekommen nur die Kassiererinnen.", "wird manchmal verschenkt."], "frage_fr": "Les légumes du jardin…", "frage_en": "The vegetables from the garden…", "optionen_fr": ["sont vendus au supermarché.", "vont seulement aux caissières.", "sont parfois donnés."], "optionen_en": ["are sold in the supermarket.", "only go to the cashiers.", "are sometimes given away."], "bon": 2,
+            "erkl_fr": "Quand il y en a trop, on les pose devant l'entrée « und jeder darf sich etwas mitnehmen » : ils sont donnés. Les caissières ne sont qu'un exemple (« sogar »), pas les seules.",
+            "erkl_en": "When there is too much, it is put in front of the entrance “und jeder darf sich etwas mitnehmen”: it is given away. The cashiers are just an example (“sogar”), not the only ones."},
+          {"nr": 18, "frage": "Wer noch keine Kiste hat, …", "optionen": ["kann samstags trotzdem im Garten helfen.", "bekommt im nächsten Monat eine.", "kann eine Kiste kaufen."], "frage_fr": "Qui n'a pas encore de bac…", "frage_en": "Anyone who doesn't have a box yet…", "optionen_fr": ["peut quand même aider au jardin le samedi.", "en aura un le mois prochain.", "peut acheter un bac."], "optionen_en": ["can still help in the garden on Saturdays.", "will get one next month.", "can buy a box."], "bon": 0,
+            "erkl_fr": "« Jeden Samstag von 14 bis 17 Uhr dürfen alle auf das Dach, mithelfen und Fragen stellen » : tout le monde peut venir aider le samedi. Avec plus de 30 noms sur la liste d'attente, personne ne promet un bac pour le mois prochain.",
+            "erkl_en": "“Jeden Samstag von 14 bis 17 Uhr dürfen alle auf das Dach, mithelfen und Fragen stellen”: anyone can come and help on Saturdays. With over 30 names on the waiting list, nobody is promising a box next month."}
+        ]
+      }
+    }
+  ]
+}

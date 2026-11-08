@@ -27,13 +27,34 @@
 
 "use strict";
 
+// LES AUTRES LANGUES D'INTERFACE (7 nov. 2026, Jacques : « s'assurer qu'ils sont traduits dans toutes les langues »).
+// Les modules ecrivent en francais et en anglais ; pour tr, uk, fa, ar, pt, pl et ru, telc.html charge
+// langues/<langue>.js, un dictionnaire de l'anglais vers la langue (window.TELC_DICO), derive de langues/<langue>.json
+// par outils/langues.js. Un texte absent du dictionnaire retombe sur le francais.
+const TELC_DICO = (LANGUE !== "fr" && LANGUE !== "en" && window.TELC_DICO) || null;
+function dicoTelc(en){
+  if (!TELC_DICO || en == null) return null;
+  if (Array.isArray(en)){ const r = en.map(dicoTelc); return r.every(x => x != null) ? r : null; }
+  return Object.prototype.hasOwnProperty.call(TELC_DICO, en) ? TELC_DICO[en] : null;
+}
 function textesTelc(t){
   Object.assign(TXT, (t && t.fr) || {}, (t && t[LANGUE]) || {});
+  if (TELC_DICO && t && t.en && !t[LANGUE]) for (const k in t.en){ const v = dicoTelc(t.en[k]); if (v != null) TXT[k] = v; }
 }
 function champTelc(o, nom){
   if (!o) return "";
-  return o[nom + "_" + LANGUE] || o[nom + "_fr"] || o[nom] || "";
+  return o[nom + "_" + LANGUE] || dicoTelc(o[nom + "_en"]) || o[nom + "_fr"] || o[nom] || "";
 }
+// un objet {fr, en} (une consigne, une phrase) dans la langue d'interface
+function objetTelc(o){
+  return (o && (o[LANGUE] || dicoTelc(o.en) || o.fr)) || "";
+}
+// les deux-points, les guillemets et les dates selon la langue d'interface
+const DEUX_POINTS_TELC = LANGUE === "fr" ? " : " : ": ";
+const GUILLEMETS_TELC = ({ fr: ["« ", " »"], en: ["“", "”"], pt: ["“", "”"], tr: ["“", "”"], pl: ["„", "”"],
+                           uk: ["«", "»"], ru: ["«", "»"], fa: ["«", "»"], ar: ["«", "»"] })[LANGUE] || ["“", "”"];
+const DATE_TELC = ({ fr: "fr-FR", en: "en-GB", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar", pt: "pt-BR",
+                     pl: "pl-PL", ru: "ru-RU" })[LANGUE] || "fr-FR";
 
 const TELC = {
   epreuves: [],
@@ -72,8 +93,8 @@ textesTelc({ en: {
   maquette: "Prototype: few series for now.",
   quitter_q: "Leave the mock exam? It won't count.", quitter: "Leave"
 }});
-if (LANGUE === "en" && PROFIL.tuiles){
+if (LANGUE !== "fr" && PROFIL.tuiles){
   const EN = {L: "Reading", SB: "Sprachbausteine", LS: "Reading and writing", H: "Listening",
               HS: "Listening and notes", S: "Writing", Sp: "Speaking"};
-  PROFIL.tuiles.forEach(t => { if (EN[t.id]) t.titre = EN[t.id]; });
+  PROFIL.tuiles.forEach(t => { if (EN[t.id]) t.titre = LANGUE === "en" ? EN[t.id] : (dicoTelc(EN[t.id]) || t.titre); });
 }

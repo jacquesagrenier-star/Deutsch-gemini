@@ -67,6 +67,14 @@ HASARD_FIGE = r"""
 })();
 """
 
+ACCUEIL_COMPLET = r"""
+(() => { try{ ["deutschAI_", "wortando_", "wortandoEs_", "wortandoEn_", "wortandoPt_", "wortandoJa_"].forEach(p =>
+    localStorage.setItem(p + "accueilComplet", "1")); }catch(e){} })();
+"""
+ACCUEIL_SANS_CLE = r"""
+() => { try{ Object.keys(localStorage).filter(k => /accueilComplet$/.test(k)).forEach(k => localStorage.removeItem(k)); }catch(e){} }
+"""
+
 ETAT_ECRAN = r"""
 () => {
   const s = document.querySelector(".screen.active");
@@ -104,6 +112,11 @@ def releve(app, page_app=None):
             ctx = nav.new_context(locale="fr-FR", viewport={"width": 390, "height": 844},
                                   service_workers="block")
             ctx.add_init_script(HASARD_FIGE)
+            # 6 nov. 2026 : l'accueil par paliers montre moins a qui commence, et ce
+            # releve part d'un compte neuf. La cle force l'accueil COMPLET, pour que les
+            # chemins d'avant restent comparables ; les deux derniers chemins (accueil
+            # debutant, accueil B1) la retirent. Une version plus ancienne l'ignore.
+            ctx.add_init_script(ACCUEIL_COMPLET)
             page = ctx.new_page()
             page.clock.set_fixed_time(HEURE_FIGEE)
             erreurs = []
@@ -178,16 +191,22 @@ def releve(app, page_app=None):
                 page.evaluate("(id) => document.querySelector('#home [data-orbid=\"' + id + '\"]').click()", orb)
                 attendre()
                 verso(orb, noter(orb))
-                n = page.evaluate("""() => document.querySelector('.screen.active') &&
-                    document.querySelector('.screen.active').id === 'orbPanel'
-                    ? document.querySelectorAll('#orbPanel .orb-opt').length : 0""")
+                # Les options d'un panneau ; et, depuis la v1124, les fiches de « Toutes
+                # les fiches » (gramaticaIndice), une a une : en espagnol, la v1123 a
+                # retire leurs tuiles en double, et ce chemin rend leur couverture.
+                options = page.evaluate("""() => { const s = document.querySelector('.screen.active');
+                    if(!s) return null;
+                    if(s.id === 'orbPanel') return '#orbPanel .orb-opt';
+                    if(s.id === 'gramaticaIndice') return '#gramIndiceListe .orb-opt';
+                    return null; }""")
+                n = page.evaluate("(sel) => document.querySelectorAll(sel).length", options) if options else 0
                 for i in range(n):
                     accueil()
                     page.evaluate("(id) => document.querySelector('#home [data-orbid=\"' + id + '\"]').click()", orb)
                     attendre()
-                    nom = page.evaluate("(i) => document.querySelectorAll('#orbPanel .orb-opt')[i].innerText.split('\\n')[0].trim()", i)
+                    nom = page.evaluate("([sel, i]) => document.querySelectorAll(sel)[i].innerText.split('\\n')[0].trim()", [options, i])
                     erreurs.clear()
-                    page.evaluate("(i) => document.querySelectorAll('#orbPanel .orb-opt')[i].click()", i)
+                    page.evaluate("([sel, i]) => document.querySelectorAll(sel)[i].click()", [options, i])
                     attendre()
                     ch = "%s > %d %s" % (orb, i + 1, nom)
                     verso(ch, noter(ch))
@@ -201,6 +220,17 @@ def releve(app, page_app=None):
                 page.evaluate("() => { " + appel + "; }")
                 attendre()
                 verso(nom, noter(nom))
+            # 6 nov. 2026 : l'accueil tel que le voit un debutant (palier 1), puis un
+            # eleve de B1, sans la cle de l'accueil complet. En dernier : ils changent
+            # l'etat (la cle, le niveau), aucun chemin ne passe apres eux.
+            if page.evaluate("() => typeof palierAccueil === 'function'"):
+                page.evaluate(ACCUEIL_SANS_CLE)
+                accueil()
+                erreurs.clear()
+                noter("accueil debutant")
+                page.evaluate("() => { try{ fixerNiveauSeance('B1'); }catch(e){} }")
+                accueil()
+                noter("accueil B1")
             nav.close()
     finally:
         srv.shutdown()

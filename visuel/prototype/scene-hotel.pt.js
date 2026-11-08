@@ -425,14 +425,26 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
-     11,
-     36.5,
-     5,
-     4
+     8.6,
+     35.7,
+     7,
+     4.6
+    ],
+    [
+     15.7,
+     40.4,
+     3.4,
+     5.3
+    ],
+    [
+     27,
+     44,
+     2.6,
+     3.1
     ]
    ],
    "fr": "chemise"
@@ -446,7 +458,7 @@ window.SCENE = {
    "theme": "roupa_a2_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -466,7 +478,7 @@ window.SCENE = {
    "niveau": "A1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mann",
    "devant": 0,
    "boites": [
     [
@@ -608,7 +620,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 0,
    "boites": [
     [
@@ -685,7 +697,7 @@ window.SCENE = {
      }
     }
    ],
-   "sur": null,
+   "sur": "mark",
    "devant": 0,
    "boites": [
     [
@@ -706,7 +718,7 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "mark",
    "devant": 0,
    "boites": [
     [
@@ -857,14 +869,20 @@ window.SCENE = {
    "theme": "roupa_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "frau",
    "devant": 0,
    "boites": [
     [
-     92,
-     44,
-     4.5,
-     1.6
+     89.9,
+     45.35,
+     2.0,
+     1.0
+    ],
+    [
+     92.25,
+     45.25,
+     1.7,
+     0.9
     ]
    ],
    "fr": "lunettes"
@@ -898,7 +916,7 @@ window.SCENE = {
    "niveau": "A1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "frau",
    "devant": 0,
    "boites": [
     [

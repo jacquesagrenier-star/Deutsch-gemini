@@ -30,6 +30,22 @@ CE QU'IL MESURE (ne lit que les masques-<scene>.js et les points.json)
     hors_boite     la part du masque hors des boites de la zone (elargies d'un
                    quart) : SAM a pris un autre objet, ou un voisin avec (la
                    cravate du musee emportait la moustache). A regarder a l'oeil.
+                   Au-dela de HORS_BOITE, la zone est listee : le 7 nov., il a
+                   trouve trois zones tombees sur autre chose (le coquillage de
+                   la plage sur les pieds et les lunettes, les pommes de terre
+                   sur la soupe et la salade, les lampes de l'aeroport sur le
+                   plafond) ; les cles de l'hotel, sur tout le casier, n'avaient
+                   que 15 % hors de leurs boites, sous le seuil.
+                   Il ne voit PAS une zone dont les boites elles-memes sont sur
+                   le mauvais objet : SAM rend alors son masque dans la boite
+                   (essai du 6 nov. : 17 zones fausses, toutes a plus de 80 %
+                   dans leur boite). Celles-la, seule la planche les montre.
+    doigt          trop petite pour un doigt : sur un iPhone de 375 px, sans
+                   zoom, le cadre de la zone fait moins de 44 px de cote dans
+                   les deux sens, meme avec la marge que l'app ajoute aux
+                   petits objets (7 pixels du masque de chaque cote, sous
+                   0,4 % de l'image). Jacques, 6 nov. : « des objets mal
+                   decoupes » -- dont ceux qu'on ne touche qu'en zoomant.
 """
 import io
 import json
@@ -46,6 +62,12 @@ import detourer as D
 
 # Les couches des vetements : celles de detourer.py (etape 2).
 COUCHES = D.VETEMENTS
+# Au-dela, une zone est listee « hors de ses boites ». Mesure du 7 nov. sur les
+# masques d'avant la correction : le coquillage de la plage 82 %, les lampes de
+# l'aeroport 46 %, les pommes de terre 41 % ; les pierres du camping, justes mais
+# plus grandes que leurs boites, 26 % (fausse alerte acceptee) ; les cles de
+# l'hotel, fausses, 15 % seulement : elles passent dessous.
+HORS_BOITE = 0.20
 
 
 def lire_masques(nom):
@@ -146,7 +168,12 @@ def mesurer(nom):
             x1, y1 = int(min(w, (b[0] + b[2] + mx) / 100 * w + 1)), int(min(h, (b[1] + b[3] + my) / 100 * h + 1))
             bx[y0:y1, x0:x1] = True
         hors = float((m & ~bx).sum() / max(m.sum(), 1))
-        zones.append({"hors_boite": round(hors, 3),
+        ys, xs = np.nonzero(m)
+        marge = 14 if m.sum() < w * h * 0.004 else 0          # sous() : 7 px de chaque cote
+        ecran = [round(float((xs.max() - xs.min() + 1 + marge) * 375 / w)),
+                 round(float((ys.max() - ys.min() + 1 + marge) * 375 / w))]
+        zones.append({"hors_boite": round(hors, 3), "ecran": ecran,
+                      "doigt": bool(ecran[0] < 44 and ecran[1] < 44),
             "scene": nom, "id": i, "mot": z["mot"], "pixels": int(m.sum()),
             "polys": len(polys), "miettes": sum(1 for a in aires if a < 0.08 * grand),
             "boucles": boucles, "cote_moyen": round(lm, 1),
@@ -211,11 +238,15 @@ def main():
     morceaux = [z for z in Z if z["miettes"]]
     boucles = [z for z in Z if z["boucles"]]
     debords = [z for z in Z if not z["volontaire"] and z["debord"] > 0.04]
+    hors = [z for z in Z if not z["volontaire"] and z["hors_boite"] > HORS_BOITE]
+    doigts = [z for z in Z if z["doigt"]]
     bilan = {
         "scenes": len(noms), "zones": len(Z),
         "chevauchements_vetements": len(vet), "chevauchements_autres": len(autres),
         "zones_grossieres": len(grossiers), "zones_a_miettes": len(morceaux),
         "zones_a_boucles": len(boucles), "zones_qui_debordent": len(debords),
+        "zones_hors_de_leurs_boites": len(hors),
+        "trop_petites_pour_un_doigt": len(doigts),
         "sommets": sum(z["sommets"] for z in Z),
         "angles_vus": sum(z["angles_vus"] for z in Z if not z["volontaire"]),
         "finesse_mediane": round(float(np.median([z["finesse"] for z in Z if not z["volontaire"] and z["finesse"]])), 3),
@@ -238,6 +269,12 @@ def main():
     print("\nDEBORDS (part du trace hors du masque)")
     for z in sorted(debords, key=lambda z: -z["debord"])[:25]:
         print("  %-18s %-14s %4.0f %%" % (z["scene"], z["id"], 100 * z["debord"]))
+    print("\nHORS DE LEURS BOITES (part du masque hors des boites elargies d'un quart)")
+    for z in sorted(hors, key=lambda z: -z["hors_boite"])[:25]:
+        print("  %-18s %-14s %4.0f %%  %6d px" % (z["scene"], z["id"], 100 * z["hors_boite"], z["pixels"]))
+    print("\nTROP PETITES POUR UN DOIGT (cadre a l'ecran de 375 px, en px)")
+    for z in sorted(doigts, key=lambda z: z["ecran"][0] * z["ecran"][1])[:25]:
+        print("  %-18s %-14s %3d x %3d px" % (z["scene"], z["id"], z["ecran"][0], z["ecran"][1]))
     if sortie:
         json.dump({"bilan": bilan, "zones": Z, "paires": PA}, io.open(sortie, "w", encoding="utf-8"),
                   ensure_ascii=False, indent=1)

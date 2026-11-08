@@ -50,6 +50,27 @@ S'y ajoutent les décisions qui les précèdent :
 - **la vignette dit le sujet autrement qu'une rangée de personnes** (Jacques : « On dirait deux groupes de
   familles ») : l'arbre pour la famille, la toise pour Décrire.
 
+**La cohérence des personnes** (décision de Jacques du 6 nov. 2026, après « Diego est pauvre » alors qu'il est
+médecin) : **une seule fiche par personne récurrente**, `visuel/personnes.json` (lue par `visuel/personnes.py`),
+que les générateurs LISENT au lieu de choisir chacun un métier :
+- un métier par personne, celui de la fiche (Diego médecin, Pablo boulanger, Inés coiffeuse, Marta professeure,
+  Javier et Carmen cuisiniers, Elena et Tomás policiers, Rosa mécanicienne, Lucas infirmier ; Mark et Anna : leur
+  histoire). Le médecin du Corps est donc Diego, et la médecin Alicia (le visage de la médecin du cabinet) ;
+- **aucun trait de la liste noire** (pauvre, riche, radin, paresseux, impoli, désordonné, antipathique) sur Mark,
+  Anna, la famille d'Anna et les 12 de Descripción : ces traits vont aux **prénoms réservés** de la fiche (Hugo,
+  Sergio, Bruno, Mario, Carlos, Nuria, Paula, Silvia, Irene), qu'aucun autre thème n'emploie ; depuis le 7 nov.,
+  chacun a **son visage** (`description` dans la fiche, image faite par `visuel/personnes_images.py`, dans
+  `~/.wortando/personnes/img/`) : un visage, un prénom ;
+- **une image ne donne jamais un autre métier que la fiche** : on change d'abord la phrase ou le prénom, sans payer ;
+  si l'image contredit encore, on la refait avec l'accord de Jacques. Le serveur et la serveuse du café de Manger
+  sont des **figurants** (`figurants` dans la fiche) : un visage à eux, sans prénom, désignés par ce qu'on voit
+  (« der Mann mit den grauen Haaren », « la mujer del pelo rizado ») ;
+- les générateurs combinatoires respectent les faits (« jamais » : Anna ne va jamais au travail en voiture) ;
+- l'âge commande le lieu : avant 6 ans la Kita, jamais « zur Schule » (Mia, 4 ans) ; Mark apprend l'allemand.
+Le contrôle : `python tests/themes_illustres.py --coherence` (sans navigateur, quelques secondes), aussi en tête du
+contrôle complet. Il lit la donnée des pages et les `voix.json` : après un changement de phrases, refaire ces
+relevés (`VOIX_THEMES=<thèmes> python visuel/voix_themes.py`, sous le verrou du navigateur) avant de le croire.
+
 ## Ce qu'est un thème
 
 Une page autonome `visuel/prototype/<thème>.html`, ses images dans `visuel/prototype/<thème>/`, ouverte par l'app
@@ -187,7 +208,8 @@ Jacques (« Ça me convient », 3 nov.) : 8 sortes pour la famille, 7 pour Décr
 **La réserve : au moins 100 questions différentes par thème et par langue** (« J'irais une centaine de questions
 par thème »), mesurées, jamais supposées : `python tests/themes_illustres.py`. Au 3 nov. : famille ≈ 2 400 (es et
 de) ; Décrire ≈ 650 (es), 625 (de) ; les contraires 215 (es), 200 (de) ; « Où est le chat ? » 606 (es), 582 (de), dont 235 et 212 sans compter les
-départs des questions de mouvement. On élargit par de nouvelles combinaisons dans les sortes validées, jamais par du
+départs des questions de mouvement ; Manger et goûter ≈ 1 560 (es), 1 580 (de), dont ≈ 1 110 additions de la carte
+du café (« ¿Cuánto es? », autant de commandes différentes) et ≈ 440-470 pour tout le reste ; les métiers 589 (es), 636 (de), dont ≈ 220 hors du vrai ou faux ; les transports 985 (es), 977 (de), dont ≈ 420 trajets du plan de métro et 192 situations de guichet ; les loisirs 1 009 (es), 939 (de), dont ≈ 480 et 415 hors du vrai ou faux. On élargit par de nouvelles combinaisons dans les sortes validées, jamais par du
 remplissage ni des quasi-doublons : la même question avec d'autres leurres n'en est pas une nouvelle (c'est pourquoi
 « completa » avec le visage ne s'ajoute pas à « yeux »). Une description partielle doit désigner **une seule**
 personne parmi celles montrées ; un trait inconnu (les yeux d'Anna) n'exclut jamais personne.
@@ -242,6 +264,42 @@ Les prépositions de lieu (`gato.html`, `visuel/gato/gato.py`, la seule source).
 - deux places vraies sur une même image (le sac d'Anna est devant le canapé) : `AUSSI` dans `gato.py`, jamais l'une
   pour leurre de l'autre ; en espagnol, toutes les formes justes d'une place (encima de / sobre / en la mesa) ;
 - les voix à enregistrer : `visuel/gato/voix.json` (fait par `gato.py`).
+
+## Un thème de gestes et de documents : « Les transports » (3 nov. 2026, vague 2)
+
+Se déplacer (`transportes.html`, `visuel/transportes/transportes.py`, la seule source). Ce qu'il apprend aux thèmes suivants :
+- **l'angle** (règle 2) : les scènes U-Bahn, Zug, Kreuzung et Flughafen font nommer leurs objets ; ici, des personnes
+  qui se déplacent et les gestes du voyage (mit dem Bus / en autobús, ein-, aus-, umsteigen / subir al, bajar del,
+  cambiar de línea, l'heure du départ, le billet) ;
+- **ce qui a du texte se DESSINE**, jamais ne se demande à un modèle d'image : le tableau des départs, le plan du
+  métro (trois lignes qui se croisent deux à deux une seule fois, d'où une seule correspondance par trajet) et les
+  billets sont tracés par la page depuis la donnée, lisibles à 375 px, et gratuits ;
+- **les lieux des scènes** (décision du 3 nov. sur la continuité) : une photo prise à l'arrêt de bus ou dans la station
+  reçoit l'image de la scène « pour le lieu » (`LIEUX`, `LIEU_TXT`), et une image de scène qui montre déjà le geste se
+  **recadre** au lieu de se payer (`ubahn-ein` : Mark à la porte de la rame) ; les lieux neufs sont dans `video/LIEUX.md` ;
+- **les nombres** : chaque texte à chiffres a sa lecture en lettres dans `transportes.json` (`lectures`), que la page
+  donne à la voix du téléphone (« acht Uhr fünfzehn », « veintinueve euros con noventa ») ; à recopier dans
+  `audio/lectures/<langue>.json` le jour où l'on enregistre. La sorte `prix` fait choisir le prix écrit en lettres, avec
+  des leurres qui ressemblent (29 / 92, 16 / 60, sesenta / setenta ; « sesenta y un euros », jamais « y uno ») ;
+- **l'heure en mots** : les leurres sont toujours faux pour l'heure montrée (halb acht pour 8 h 30, jamais « drei
+  Viertel neun », régional mais juste) ; ni midi ni 13 h (halb eins, la una) ;
+- le relevé exhaustif des phrases (`visuel/transportes/toutes-les-phrases.json`, ~61 000 caractères en allemand) est un
+  plafond ; ce qui s'enregistre est l'inventaire de `visuel/voix_themes.py` (`voix.json`).
+## Un thème du temps qu'il fait : « La météo et les saisons » (vague 2, 3 nov. 2026)
+
+`meteo.html`, `visuel/meteo/meteo.py` (la seule source), `visuel/meteo/web.py`. Ce qu'il apprend aux thèmes suivants :
+- **des faits, pas des légendes** : chaque image a ses faits `vrais` (il pleut, le ciel est couvert) et ses
+  `douteux` (un jour de pluie est-il frais ?) ; tout autre fait est **faux** pour elle, et seul un fait faux sert de
+  leurre ou de faux d'un « vrai ou faux ». Chaque fait a ses phrases (hace sol / está soleado ; die Sonne scheint /
+  es ist sonnig), chacune avec le mot du corpus qu'elle fait travailler ;
+- **ce qui se dessine ne se paie pas** : le thermomètre (degrés en lettres, des bandes de ressenti séparées pour
+  qu'un seul mot soit juste : 19 °C n'est ni chaud ni frais), les mois (seulement ceux qui tiennent dans UNE
+  saison : ni mars, ni juin, ni septembre, ni décembre), et un pictogramme tant qu'une photo manque ;
+- **chaque mot a au moins deux sortes de questions**, sinon la partie finit par deux fois la même sorte de suite ou
+  par une question déjà posée (vécu : les mois, `grado`, `nube`, `warm`) ; le « vrai ou faux » sert de seconde sorte
+  (le thermomètre, le mois, la phrase de la famille du mot sur une autre photo) ;
+- **ce qu'on n'y fait pas** : aucun vêtement (le thème Vêtements), pas de bonhomme de neige (la scène de l'hiver) ;
+  les mois ne sont demandés que rattachés à leur saison (les Repères ont les mois seuls).
 
 ## La séance
 
@@ -312,6 +370,22 @@ tirage :
 Le protocole avec l'app : `etats` (la page demande, l'app répond avec l'état de chaque mot, `etatsDesMots()`),
 `exercice`, `bonne`, `reponse` (le mot testé), `fini`, `fermer`.
 
+**Un mot à deux sens : `sens`** (3 nov. 2026, v1082). Quand le corpus a deux entrées pour le même mot, chacune a sa
+carte : « rico » est « délicieux » (la comida está rica) ET « riche » (es rico). Sans précaution, une réponse sur
+« es rico » ferait avancer la carte « délicieux ». Le même piège existait pour « sauer » (acide / fâché) et pour
+« aburrido » (ennuyeux / qui s'ennuie). La règle, générale :
+- le mot porte **`sens`**, la traduction française EXACTE de l'entrée du corpus que le thème enseigne
+  (`{mot: "rico", cat: "adjectif", sens: "riche"}`) ; la page l'envoie dans `reponse`, et `tirage.js` dans `etats` ;
+- `carteDeScene()` (`index.html`) prend alors la carte qui porte cette traduction (rang 1 d'un adjectif, rang 3 d'un nom,
+  `traduction` d'un verbe) ; **sans `sens`, ou si aucune carte ne le porte, rien ne change** : la première, comme
+  avant, pour les scènes comme pour les autres thèmes ;
+- au corpus espagnol, un second sens d'un adjectif entre par `espanol/ajouter_mots.py` avec `"_second_sens": true`
+  sur sa ligne (sans cette marque, un mot déjà présent n'est jamais rajouté) ;
+- dans `emociones.html`, `sens` vient d'`emociones.json` (clé `sens`, tirée du corpus par `visuel/emociones/emociones.py`,
+  `SENS_VOULU` pour les mots dont le thème ne prend pas la première entrée) ; les gloses suivent la même entrée.
+Vérifié sur un profil vierge : une bonne réponse sur « rico » (riche) fait avancer la carte riche et laisse
+« délicieux » neuve, et l'inverse ; sans sens, la carte rendue est celle d'avant.
+
 **Contrôle** : ajouter le thème à `THEMES` dans `tests/themes_illustres.py`, puis le lancer.
 
 ## L'anglais (essai admin, 3 nov. 2026)
@@ -348,7 +422,76 @@ l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire angl
     comparatif *more bigger*, *beautifuler*, le superlatif) et `article` (*a* ou *an* devant l'adjectif : *an old
     bike*, *an ugly vase*). Le britannique change les noms des phrases sans image (flat, film, jumper, High Street).
     Le sens du mot et la traduction des phrases de l'image viennent de l'espagnol de la même image.
+  - **Émotions et caractère** : be + adjectif partout (« She is afraid », jamais « has fear » ; « has a cold », la seule
+    tournure avec have), feel + adjectif (l'adverbe sadly en piège), -ed / -ing (bored / boring), « How is she
+    feeling? » face à « What is she like? ». Britannique : ill, untidy, film, flat, shop.
+  - **Où est le chat ?** : les prépositions elles-mêmes (on, on top of, under, behind, in front of, next to, between,
+    above, at the window), le mouvement en into / onto / over, there is / there are face à It's. En anglais,
+    `praepTheme` prend les prépositions ANGLAISES (`fonctionnels.json`) : une préposition envoyée en `cat: "praep"`
+    est une carte anglaise. Britannique : handbag, opposite.
+  - **Le corps et la santé** : my / his / her devant le corps (jamais the), hurts / hurt, have a fever / a cold,
+    -ache (headache, toothache…), should + verbe, for / since, foot / feet. Britannique : a temperature (la carte
+    reste fever), ill, stomach ache, plaster, chemist's, doctor's surgery.
+  - **Les vêtements** : is wearing / wears, put on / take off, les noms pluriels (a pair of, are), l'ordre des
+    adjectifs, should, les réponses courtes. Britannique : trousers, jumper, trainers, swimming trunks, woolly hat.
+  - **La journée** : le present simple de la routine (-s, does / doesn't), wake up / get up / get dressed, l'heure
+    (a quarter past, half past ; seven thirty en américain), la place des adverbes de fréquence, first / then /
+    finally. Britannique : have a shower, have breakfast. L'image d'Anna dans le U-Bahn est écartée (`ECARTEES_EN`).
+  - **Manger et goûter** : like / love / hate + -ing, tastes + adjectif, too, much / many, some, a piece / glass of,
+    I'd like / Can I have. Dollars et livres (lb, gal) à Boston ; livres sterling, kg et pints en britannique ;
+    check / bill, fries / chips, cookie / biscuit.
+  - **Les métiers** : « She's a doctor », l'article obligatoire (a / an, an excellent teacher), What does she do?,
+    work as / at / in / for, un seul mot pour les deux sexes (police officer, firefighter). Britannique : postman,
+    shop assistant, chemist's. Les deux uniformes « POLIZEI » (Elena, Tomás) sont écartés en anglais.
+  - **Les loisirs** : play / go / ride, play the guitar, like / love / enjoy + -ing, How often? (twice a week), la
+    place des adverbes, Let's / How about -ing / Why don't we. Britannique : football, et la semaine qui commence le lundi.
+  - **Les animaux** : les pluriels irréguliers (mice, geese, sheep, fish), there is / there are, on a farm / in the
+    forest, eats / eat et le générique sans article (Cats eat fish), doesn't, bigger / the biggest, has / has got
+    (britannique), its / it's.
+  - **La météo et les saisons** : It's sunny, It's raining (jamais « It makes »), There's a storm, it's cold / I'm
+    cold, les degrés en lettres, en °F à Boston (le thermomètre aussi) et en °C en britannique, in + mois et
+    saisons, fall / autumn. L'image du parc (la tour de la télévision de Berlin) est écartée.
+  - **Le logement** : there is / there are, in / on / above, How many bedrooms does it have? / has it got?, les
+    annonces de Boston (rent $2,400/mo., security deposit, 2BR/1BA, sq ft) et, en britannique, de Londres (£ pcm,
+    bills incl., m²) ; apartment / flat, elevator / lift, first floor / ground floor.
+  - **Les démarches, réduites à Boston** : la banque, le cabinet médical et les papiers (make an appointment,
+    Please fill out this form, Could you spell that?, on / at / in, les dates MM/DD/YYYY). Le Bürgeramt,
+    l'Anmeldung, la Krankenkasse et deux images (des euros, une carte d'assurance allemande) sont écartés.
+  - **Les transports : FERMÉ en anglais** (4 nov.) : 11 images sur 13 montrent Berlin (rames jaunes de la BVG, ICE,
+    panneaux « H », taxi allemand). Jacques décide : une version réduite en HTML, des images de Boston, ou rien.
 - **Contrôle** : `ANGLAIS` dans `tests/themes_illustres.py` (le thème y passe en `en` et en `en&variante=gb`).
+- **Mots ajoutés au corpus anglais le 4 nov.** : outgoing, rude, messy, tiring, scared, worrying (adjectifs) ; throat,
+  sore throat, toothache, backache, stomachache (stomach ache), earache, winter hat (woolly hat), swim trunks
+  (swimming trunks), fries (chips), pretzel, pound, pharmacist, bus driver, mail carrier, bike shop (noms) ; crawl ;
+  on top of, over, onto, across from, opposite (prépositions) ; puis foggy, puppy, children's room, cabinet (cupboard),
+  square foot, date of birth, place of birth, fill out (le lot 2).
+
+### Mettre un thème en anglais : la marche à suivre (4 nov. 2026, les treize thèmes suivants)
+
+Jacques, 4 nov. : « il manque beaucoup de themes en anglais ». Pour chaque page, dans cet ordre :
+1. **`APPRENDRE` accepte `en`** (`["de", "en"].includes(…) ? … : "es"`) et `GB = APPRENDRE === "en" && variante === "gb"`.
+   Puis **relire chaque test de langue de la page** : `APPRENDRE === "de" ? X : Y`, `DE_APP ? … : …`, `ES_`,
+   `APPRENDRE === "es"`. L'anglais tombe sinon dans la branche espagnole (ser / estar, l'accord, el / la) : chaque
+   test reçoit sa branche anglaise ou exclut l'anglais.
+2. **Un objet `EN`** à côté de `ES` et `DE`, et `L` qui le choisit. Les phrases sont fabriquées depuis les mêmes données
+   que l'espagnol et l'allemand (une image ne dit que ce qu'elle montre). Les sortes propres à l'espagnol ou à
+   l'allemand sont retirées de `SORTES` en anglais ; une sorte propre à l'anglais (`genitif`, `ordre`, `comparatif`,
+   `article`…) enseigne un point de grammaire anglaise, jamais une traduction.
+3. **Les mots, à la forme du corpus anglais** (`anglais/datos/` : `themes.json` `mot` avec `genre: ""`,
+   `adjectifs.json`, `verbes.json` `infinitif`, `adverbes.json`) ; en britannique, le mot de `anglais/datos-gb/`
+   (mum, grey, moustache). Un mot à deux cartes reçoit `sens` (sa traduction française du corpus). Un mot absent du
+   corpus : le noter, il s'ajoute par `anglais/outils/` (jamais à la main dans `anglais/datos/`).
+4. **La traduction** (`TRADS.fr`, ou la traduction de la phrase espagnole de la même image quand c'est la même
+   phrase) : après la réponse seulement, et le mot choisi traduit après une erreur.
+5. **La voix** : `Voix.dire()` (themes/voix.js), la phrase affichée dite en entier après la réponse (« Oui,
+   partout », 4 nov.), et `textesAVoix()` qui rend aussi les textes anglais (`visuel/voix_themes.py`, clé `en`).
+   Aucune voix nouvelle.
+6. **Boston** : l'argent en dollars, les distances en miles, les températures en °F si la page en montre (le
+   britannique : livres, °C). Une image trop allemande ou trop européenne (une enseigne, des euros, un document
+   allemand) ne se force pas : le thème est signalé au chef.
+7. **L'espagnol et l'allemand ne changent pas** : leurs branches de code restent les mêmes.
+8. **Contrôle** : `THEMES_APPS="en,en&variante=gb" python tests/themes_illustres.py <thème>` (sous le verrou du
+   navigateur), au moins 100 questions, 0 défaut ; puis le thème dans `ANGLAIS` et `en: true` dans `THEMES_ILLUSTRES`.
 
 Deux ajouts de « La journée » (3 nov. 2026), utiles aux thèmes suivants :
 - **un adverbe compte aussi** : `carteDeScene()` accepte `{mot, cat: "adverbe"}` (la carte d'`adverbienTheme`,
@@ -357,3 +500,42 @@ Deux ajouts de « La journée » (3 nov. 2026), utiles aux thèmes suivants :
   la résout et rend la réponse ; le contrôle l'appelle quand la question a un `.ordre`.
 - **chaque mot a au moins deux sortes** : un mot qu'une seule sorte sait viser (les adverbes de fréquence, les moments
   de la journée) fait se suivre deux fois la même sorte dès que deux de ces mots se suivent dans la file.
+
+## Un thème de papiers : « Les démarches » (vague 3, 4 nov. 2026)
+
+L'administration et la vie pratique, au cœur du DTZ (`demarches.html`, `visuel/demarches/demarches.py`, la seule
+source). Ce qu'il apprend aux thèmes suivants :
+- **les papiers se dessinent en HTML, jamais dans l'image** (la règle des documents du DTZ) : le formulaire de Mark,
+  l'avis « Bitte bringen Sie mit », les heures d'ouverture et la confirmation de rendez-vous sont des `.papier` de la
+  page, dans la langue apprise (`lang`, `dir="ltr"`) ; les images n'ont aucun texte lisible ;
+- **deux mondes, les mêmes images** : en allemand Mark Garnier à Berlin-Pankow (Gartenstraße 12, l'adresse des
+  documents du DTZ), en espagnol le Mark de « Mark en Madrid » (mexicain, l'empadronamiento) ; chaque langue a ses
+  lieux, ses démarches et ses formulaires, écrits pour elle ;
+- **un leurre n'est jamais une réponse possible** : chaque démarche dit où elle peut AUSSI se faire (`aussi`, `"*"` :
+  partout, donc pas de « Wo? ») et quels verbes iraient aussi avec son objet (`aussi_v`) ; chaque image de document dit
+  les documents clairement faux pour elle (`FAUX_IMG` : deux cartes avec photo ne se servent jamais de leurre) ;
+- **un rendez-vous tombe un jour d'ouverture** : la confirmation tire une date réelle (nov.-déc. 2026) où le lieu est
+  ouvert, à une heure de ses plages ; les heures des questions évitent les bornes (« um 13 Uhr » à la fermeture) ;
+- **la phrase polie vient du corpus** : la forme `sie_Sie` (« Füllen Sie bitte das Formular aus! ») et le subjonctif
+  « usted » (« Rellene el formulario, por favor. »), leurres : les formes du / tú et ich / yo ;
+- les mots absents du corpus sont préparés par paires (`ajouts/demarches.json`, `espanol/ajouts/demarches.json`) et
+  restent « hors jeu » jusqu'à l'accord de Jacques.
+
+## Un thème au passé : « Les vacances et le voyage » (vague 4, 5 nov. 2026)
+
+Raconter au passé (`vacances.html`, `visuel/vacances/vacances.py`, la seule source). Ce qu'il apprend aux thèmes suivants :
+- **la conjugaison vient du corpus, jamais d'une table écrite à la main** : l'auxiliaire et le participe allemands sont LUS dans la
+  phrase `perfekt` de `verbe.json` (« Wir sind nach Spanien geflogen. » → sein, geflogen), l'auxiliaire se conjugue par personne ; le
+  pretérito espagnol est la clé `preterito` de `verbos.json`. Les formes FAUSSES se calculent aussi : le participe faible d'un verbe fort
+  (gefliegt), le ge- de trop (gebesichtigt, gereserviert), le ge- mal placé (geankommen) ; en espagnol la forme régulière d'un irrégulier
+  (hació, llegé) et l'accent (visito / visitó). La traduction se fabrique de même : passé composé français avec l'accord du participe
+  après être, prétérit anglais, preterito perfeito brésilien calculé ;
+- **la frise dans la question** (décision du 5 nov. sur La journée) : toute question sur l'ordre (remettre dans l'ordre, « Und danach? »,
+  « zuerst », « zum Schluss ») montre la frise du voyage, numérotée ; elle ne teste jamais la mémoire de la découverte ;
+- **un faux est faux dans l'histoire, pas seulement sur la photo** : le faux d'un vrai ou faux et les leurres de « qu'est-ce qui s'est
+  passé ? » viennent des AUTRES voyages (Mark n'a pas nagé), jamais d'une étape du même voyage, qui serait vraie ailleurs dans le récit ;
+- **une valise ne montre que ce qui est sur le lit** : ce qui est rangé ne se voit pas, donc la question est « qu'est-ce qu'il y a sur le
+  lit ? », et les leurres viennent de l'autre valise ;
+- **le temps qu'il fait renvoie à la météo sans la refaire** : cinq faits au passé seulement (die Sonne hat geschienen, es war warm,
+  es hat geregnet ; hizo sol, llovió), avec les faits vrais et douteux de chaque photo, comme `meteo.py` ;
+- **la réservation se dessine** (la règle des papiers) : une confirmation en HTML, ses chiffres écrits, ses réponses dites en lettres.

@@ -915,6 +915,34 @@ function sha1Hex(texte){
         .map(x => x.toString(16).padStart(8, "0")).join("");
 }
 function empreinte(t){ return sha1Hex(t).slice(0, 16); }
+/* COUPER EN FONDU (5 nov. 2026, Jacques : passer a la question suivante pendant
+   qu'une phrase est dite, la voix continuait). Comme les themes illustres
+   (themes/voix.js) : tout bouton touche coupe la phrase, en phase de capture,
+   avant le geste de la page ; ~120 ms de fondu sur le fichier, arret net sur
+   iPhone (volume en lecture seule), cancel() pour la voix du telephone. Un
+   bouton qui parle relance ensuite sa phrase par dire(). Le son de reussite
+   (bravoAudio) n'est pas touche. Le bouton 1:1 du zoom ne coupe rien. */
+function fondreVoix(a){
+  try {
+    if (a.paused){ return; }
+    const v0 = a.volume; a.volume = v0 * 0.98;
+    if (Math.abs(a.volume - v0) < 1e-6){ a.pause(); return; }
+    const t0 = Date.now();
+    const pas = () => {
+      const k = (Date.now() - t0) / 120;
+      if (k >= 1 || a.paused){ try { a.pause(); } catch (e) {} return; }
+      a.volume = v0 * (1 - k); setTimeout(pas, 16);
+    };
+    pas();
+  } catch (e) { try { a.pause(); } catch (_) {} }
+}
+document.addEventListener("click", e => {
+  const b = e.target && e.target.closest ? e.target.closest("button") : null;
+  if (!b || b.id === "zoomRetour") return;
+  const a = audioEnCours; audioEnCours = null;
+  if (a) fondreVoix(a);
+  try { if ("speechSynthesis" in window && (speechSynthesis.speaking || speechSynthesis.pending)) speechSynthesis.cancel(); } catch (e) {}
+}, true);
 function dire(t){
   if (audioEnCours){ audioEnCours.pause(); audioEnCours = null; }
   if ("speechSynthesis" in window) speechSynthesis.cancel();
@@ -1146,11 +1174,21 @@ function etiquette(id, quel){
   e.innerHTML = (p.personne ? `<b>${p.personne}</b> · ` : "") + groupe(n)
               + `<span class="fr">${sensDe(n)}${n.pluriel ? " · " + T("pluriel") + ` <span lang="${LANG_CIBLE}">${plurielDe(n)}</span>` : ""}</span>`;
   calquePlan.appendChild(e);
-  // Une etiquette centree sur un objet du bord sortait de l'ecran (das Handy) :
-  // on la ramene dans le cadre apres l'avoir mesuree.
+  rentrer(e);
+}
+/* Une etiquette centree sur un objet du bord sortait de l'ecran (das Handy) :
+   on la ramene dans le cadre apres l'avoir mesuree. Le 7 nov. 2026, la mesure
+   de toutes les etiquettes a 375 px (ru, pt, uk, pl) en a trouve deux autres
+   sorties : sous un grand objet qui part du haut (die Tuer, die U-Bahn, die
+   Aerztin), l'etiquette posee dessous tombait 54 px sous la scene ; et celles
+   des gros plans, que rien ne ramenait, sortaient de 2 a 33 px sur le cote
+   (die Wirbelsaeule en portugais). On ramene donc aussi en hauteur, et partout. */
+function rentrer(e){
   const r = e.getBoundingClientRect(), c = scene.getBoundingClientRect(), marge = 6;
   if (r.left < c.left + marge) e.style.left = `calc(${e.style.left} + ${c.left + marge - r.left}px)`;
   else if (r.right > c.right - marge) e.style.left = `calc(${e.style.left} - ${r.right - c.right + marge}px)`;
+  if (r.bottom > c.bottom - marge) e.style.top = `calc(${e.style.top} - ${r.bottom - c.bottom + marge}px)`;
+  else if (r.top < c.top + marge) e.style.top = `calc(${e.style.top} + ${c.top + marge - r.top}px)`;
 }
 
 /* ---------- le gros plan d'un visage ---------- */
@@ -1265,6 +1303,7 @@ function etiquetteGros(id){
   e.style.top = (dessous ? (cy + ry - y) / h * 100 + 1 : haut - 1) + "%";
   e.innerHTML = groupe(p) + `<span class="fr">${sensDe(p)}${p.pluriel ? " · " + T("pluriel") + ` <span lang="${LANG_CIBLE}">${plurielDe(p)}</span>` : ""}</span>`;
   zoom.el.appendChild(e);
+  rentrer(e);
 }
 
 /* ---------- les couches ---------- */
@@ -1319,7 +1358,8 @@ function activerVue(v, annoncer){
 const PARAMS = new URLSearchParams(location.search);
 const EN_SEANCE = PARAMS.get("seance") === "1";
 /* v799 : l'app envoie le nombre de questions (reglage « Questions de la scene du
-   jour », 8 par defaut). Sans parametre, l'ancien nombre : 3. */
+   jour », 8 par defaut ; depuis le 7 nov. 2026 « Questions par scene et par theme »,
+   5 · 8 · 12, 5 par defaut). Sans parametre, l'ancien nombre : 3. */
 const NB_SEANCE = Math.max(1, Math.min(30, parseInt(PARAMS.get("nb"), 10) || 3));
 /* v830 : ouverte depuis « Premiers pas » (?pp=1). Decouvrir et Trouver restent
    au choix, mais Trouver s'arrete apres 5 objets du niveau A1, et la fin rend la
@@ -1331,7 +1371,9 @@ const PP = PARAMS.get("pp") === "1";
    devinette sur un mot jamais entendu. */
 const MOTS_PERMIS = (() => { const v = PARAMS.get("mots"); return v ? new Set(v.split("|")) : null; })();
 const PP_DERNIER = PARAMS.get("dernier") === "1";
-const NB_PP = 5;
+/* 7 nov. 2026 : le reglage « Questions par scene et par theme » de l'app (5 · 8 · 12) vaut aussi pour la scene
+   de Premiers pas ; sans parametre (une app d'avant), 5 comme avant. */
+const NB_PP = Math.max(1, Math.min(30, parseInt(PARAMS.get("nb"), 10) || 5));
 function envoyer(type, donnees){
   if (window.parent !== window)
     window.parent.postMessage(Object.assign({source: "wortando-scene", type, scene: NOM_SCENE}, donnees || {}), "*");
@@ -1763,7 +1805,7 @@ function fin(){
     return;
   }
   entete(niveau + " · " + T("termine"), bilan(), niveau === "A1");
-  $("bas").innerHTML = `<button class="suite" id="encore">${T("encore")}</button>`;
+  $("bas").innerHTML = `<button class="suite" id="encore" data-rond="non">${T("encore")}</button>`;
   $("encore").addEventListener("click", demarrer);
 }
 
@@ -1865,5 +1907,6 @@ $("zoomRetour").addEventListener("click", e => { e.stopPropagation(); zoomRemett
 addEventListener("resize", () => zoomRemettre());
 
 </script>
+<script src="themes/verre.js?v=6"></script>
 </body>
 </html>

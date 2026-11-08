@@ -1,0 +1,1240 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Les loisirs</title>
+<!--
+  « LES LOISIRS » (theme illustre, vague 2, 3 nov. 2026), en espagnol et en allemand. Quinze activites, chacune
+  photographiee avec une personne deja connue (Decrire une personne, la famille d'Anna) ; ce que la photo ne montre
+  pas est DESSINE depuis la donnee : la FICHE de la personne (♥ elle aime, ✗ elle n'aime pas) et un CALENDRIER de
+  quatre semaines (la frequence : 28, 16, 6, 1 ou 0 jours). On y apprend :
+    - me gusta + infinitif (le / les, toujours gusta) ; gern apres le verbe, nicht gern ;
+    - jugar a (al futbol) ou tocar (la guitarra), hacer deporte, montar en bicicleta, sacar fotos ;
+      spielen (Fussball, Gitarre : sans article), machen (Sport, Fotos), fahren (Rad) ;
+    - siempre, a menudo, a veces, rara vez, nunca ; immer, oft, manchmal, selten, nie ;
+    - proposer et repondre : ¿Quieres...? ¿Vamos a...? ; Hast du Lust, ... zu ...? Wollen wir ...?
+  Les instruments sont ceux de la scene de la musique. Toute la donnee vient de visuel/loisirs/loisirs.py ->
+  loisirs/loisirs.json ; les phrases se fabriquent ici, dans la langue apprise et dans la langue de traduction, a
+  partir des MEMES choix (la personne, l'activite, la frequence, aimer ou non) : aucune n'est ecrite a la main.
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne » a
+  chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer ». Parametres :
+  apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte), variante=latam (la voix),
+  r=<AUDIO_REVISION>. Le tirage suit les mots (themes/tirage.js).
+  L'ANGLAIS (apprendre=en, 4 nov. 2026, Jacques : « il manque beaucoup de themes en anglais ») : les memes photos,
+  fiches et calendriers, des phrases ecrites pour l'anglais (ACT_EN, PE). On y apprend like / love / enjoy + -ing
+  (« Heinz likes reading », jamais « enjoys to read »), play / go / ride / take (play soccer sans article, play THE
+  guitar, go running, ride a bike, take photos, et work out), la place des adverbes de frequence (avant le verbe :
+  « Felix often plays soccer ») et How often ... ? -- every day, four times a week, twice a week, once a month --, puis
+  proposer et repondre (Do you want to...? Let's...! How about + -ing? Why don't we...? ; Sure! Sounds good! No,
+  thanks.). Le calendrier anglais a « sometimes » a deux jours par semaine, pour que twice a week soit exact, et
+  commence le dimanche en americain. variante=gb : football, le calendrier du lundi ; la note « Bon a savoir » dit le
+  reste (play sports / do sport, the movies / the cinema, vacation / holiday). Toutes les photos sont en studio :
+  aucune n'est ecartee a Boston (ECARTEES_EN vide).
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --coeur:#D2486A;--croix:#5B6578;--case:#E4E8EE;--verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --coeur:#F2789A;--croix:#A9B8C4;--case:#2C4558;--verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+/* la page a la hauteur de l'ecran, comme une scene (regle commune, 3 nov. : sur iPhone, un bouton fixe dans un cadre
+   dont le document deborde ne tombe pas au bas de l'ecran) : le contenu defile DANS le body */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.trou{display:inline-block;min-width:56px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+/* la photo d'une activite (3:4) : assez haute pour voir le geste, assez basse pour laisser la question a l'ecran */
+.photo{width:min(100%,31vh,250px);margin:0 auto;border-radius:16px;overflow:hidden;background:var(--carte);aspect-ratio:3/4}
+.photo img{display:block;width:100%;height:100%;object-fit:cover}
+/* des images a toucher (« touche la bonne photo », l'ecoute, le bon calendrier) */
+.rangee{display:grid;grid-template-columns:1fr 1fr;gap:8px;direction:ltr}
+.rangee.trois{grid-template-columns:1fr 1fr 1fr}
+.rangee button{border:3px solid transparent;border-radius:14px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block;position:relative;color:var(--encre)}
+.rangee button.img{aspect-ratio:3/4}
+.rangee button img{display:block;width:100%;height:100%;object-fit:cover}
+.rangee button.juste{border-color:var(--vert)} .rangee button.faux{border-color:var(--rouge)}
+.rangee button .cal{border-radius:0;padding:6px}
+/* LE PICTOGRAMME d'une activite (dessine ici, viewBox 48) */
+.picto{display:inline-flex;width:36px;height:36px;flex:0 0 auto;color:var(--encre)}
+.picto svg{width:100%;height:100%}
+/* LA FICHE : le visage, le nom, et une ligne par activite (pictogramme, ♥ ou ✗) */
+.fiche{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;background:var(--carte);border-radius:16px;padding:12px;direction:ltr}
+.fiche .qui{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:84px}
+.visage{width:84px;height:84px;border-radius:50%;object-fit:cover;background:var(--case);display:block}
+.fiche .nom{font-weight:900;font-size:15px}
+.lignes{display:flex;flex-direction:column;gap:8px}
+.ligne{display:flex;align-items:center;gap:8px;background:var(--verre);border-radius:12px;padding:5px 9px}
+.avis{width:30px;height:30px;display:inline-flex}
+.avis svg{width:100%;height:100%}
+.avis.oui{color:var(--coeur)} .avis.non{color:var(--croix)}
+/* LE CALENDRIER : quatre semaines, une case cochee par jour ou la personne le fait */
+.cal{background:var(--carte);border-radius:16px;padding:10px;direction:ltr}
+.cal .tete{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px}
+.cal .tete .visage{width:52px;height:52px}
+.grille{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;max-width:250px;margin:0 auto}
+.grille span{aspect-ratio:1;border-radius:6px;background:var(--case);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--gris)}
+.grille span.j{background:none;aspect-ratio:auto;padding-bottom:2px}
+.grille span.on{background:var(--ambre);color:#fff}
+.grille span.on::after{content:"";width:40%;height:22%;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.rangee .grille{gap:2px} .rangee .grille span{border-radius:3px;font-size:8px} .rangee .grille span.j{display:none}
+.rangee .cal .tete{display:none}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix.colonne{flex-direction:column}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer;text-align:center}
+.choix.colonne button{border-radius:16px;text-align:left}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.ecoute{width:48px;height:48px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ecoute svg{width:24px;height:24px}
+.ecoute.grand{width:64px;height:64px;margin:0 auto} .ecoute.grand svg{width:32px;height:32px}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+.trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
+.retourMsg .mot{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
+.retourMsg .mot .ecoute{width:38px;height:38px} .retourMsg .mot .ecoute svg{width:19px;height:19px}
+.trad.faux{color:var(--rouge);font-style:italic}
+.dialogue{display:block;color:var(--gris);font-weight:700;font-size:15px;margin-bottom:4px}
+/* la decouverte : trois onglets (les activites, aimer et la frequence, proposer) */
+.onglets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;background:var(--carte);border-radius:999px;padding:4px}
+.onglets button{border:0;border-radius:999px;background:none;color:var(--gris);font:800 13px var(--police);padding:9px 4px;cursor:pointer;line-height:1.15}
+.onglets button.actif{background:var(--verre);color:var(--encre);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.dit{display:flex;align-items:center;gap:10px;background:var(--carte);border-radius:14px;padding:10px 12px}
+.dit .texte{flex:1;font-weight:800;font-size:17px;line-height:1.4}
+.vignettes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;direction:ltr}
+.vignettes button{border:2px solid transparent;border-radius:12px;padding:0;background:var(--carte);cursor:pointer;overflow:hidden;aspect-ratio:3/4}
+.vignettes button img{display:block;width:100%;height:100%;object-fit:cover}
+.vignettes button.choisi{border-color:var(--ambre)}
+.visages{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;direction:ltr}
+.visages button{border:2px solid transparent;border-radius:50%;padding:0;background:none;cursor:pointer;width:50px;height:50px}
+.visages button img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.visages button.choisi{border-color:var(--ambre)}
+.fiche .ligne{cursor:pointer;border:2px solid transparent}
+.fiche .ligne.choisi{border-color:var(--ambre)}
+.echelle{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;direction:ltr}
+.echelle div{background:var(--carte);border-radius:10px;padding:6px 4px;text-align:center;font-weight:800;font-size:12px}
+.echelle .grille{gap:1px;margin:4px auto 0} .echelle .grille span{border-radius:2px} .echelle .grille span.j{display:none}
+.echelle .grille span.on::after{display:none}
+.dialogues{display:flex;flex-direction:column;gap:8px}
+.dialogues button{border:2px solid var(--bord);background:var(--carte);color:var(--encre);border-radius:14px;padding:9px 12px;font:700 15px var(--police);cursor:pointer;text-align:left;direction:ltr;display:flex;gap:10px;align-items:center}
+.dialogues .dit-l{flex:1 1 auto;min-width:0}
+/* le haut-parleur d'une ligne qui se fait entendre (Jacques, 5 nov. : « il faudrait qu'il y ait des petits haut-parleurs
+   pour les lignes, pour qu'on puisse voir qu'on peut cliquer pour entendre ») : celui de l'app (v919), dans un rond
+   ambre, au bout de la ligne ; il s'allume le temps du geste. Le meme que dans cuerpo.html. */
+.hp-ligne{flex:0 0 auto;align-self:center;width:34px;height:34px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);
+  color:var(--encre);display:inline-flex;align-items:center;justify-content:center}
+.hp-ligne .ic-hp{width:18px;height:18px;display:block}
+.dialogues button:active .hp-ligne,.dialogues button.joue .hp-ligne,.fiche .ligne:active .hp-ligne,.fiche .ligne.joue .hp-ligne{background:var(--ambre);color:#1C2430}
+.dialogues button.choisi{border-color:var(--ambre)}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.5;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.regle b{color:var(--encre)}
+.regle .exemples{display:block;margin-top:6px;color:var(--encre);font-weight:700;text-align:left}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite{z-index:5000}
+.suite[hidden]{display:none}
+/* la fin de partie : « Encore des questions » et « Terminer », fixes en bas comme .suite (regle des scenes, 3 nov.) */
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  display:flex;gap:10px;z-index:5000}
+.bas[hidden]{display:none}
+.bas button{flex:1;height:54px;border-radius:27px;font:800 16px var(--police);cursor:pointer;padding:0 10px}
+.bas .principal{border:0;color:#fff;background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28)}
+.bas .second{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+[lang]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<div class="bas" id="bas" hidden></div>
+<script src="themes/tirage.js?v=2"></script>
+<script src="themes/voix.js?v=7"></script>
+<script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=6"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
+const EN_APP = APPRENDRE === "en";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// agrandir (themes/zoom.js) : un toucher sur la photo de la question ; la loupe sur les photos a choisir
+Zoom.init({direct: ".photo img, .fiche .visage, .cal .visage", loupe: ".rangee button.img", langue: LANGUE});
+// vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour (5 · 8 · 12, 7 nov. 2026)
+const DE_APP = APPRENDRE === "de";
+
+const TEXTES = {
+  titre:     {fr:"Les loisirs", en:"Free time", tr:"Boş zaman", uk:"Дозвілля", fa:"اوقات فراغت", ar:"أوقات الفراغ", pt:"Lazer", pl:"Czas wolny", ru:"Досуг", de:"Freizeit"},
+  ongletAct: {fr:"Les activités", en:"Activities", tr:"Etkinlikler", uk:"Заняття", fa:"فعالیت‌ها", ar:"الأنشطة", pt:"Atividades", pl:"Zajęcia", ru:"Занятия", de:"Aktivitäten"},
+  ongletAime:{fr:"Aimer, la fréquence", en:"Likes, how often", tr:"Sevmek, sıklık", uk:"Любити, як часто", fa:"دوست داشتن، چند وقت یک‌بار", ar:"الحبّ، وكم مرّة", pt:"Gostar, a frequência", pl:"Lubić, jak często", ru:"Любить, как часто", de:"Mögen, wie oft"},
+  ongletProp:{fr:"Proposer", en:"Suggesting", tr:"Teklif etmek", uk:"Запропонувати", fa:"پیشنهاد دادن", ar:"الاقتراح", pt:"Propor", pl:"Proponować", ru:"Предложить", de:"Vorschlagen"},
+  introAct:  {fr:"Touche une photo : tu vois et tu entends ce que fait la personne.", en:"Tap a photo: you see and hear what the person is doing.", tr:"Bir fotoğrafa dokun: kişinin ne yaptığını görür ve duyarsın.", uk:"Торкнися фото: ти бачиш і чуєш, що робить людина.", fa:"روی یک عکس بزن: می‌بینی و می‌شنوی آن شخص چه می‌کند.", ar:"المس صورة: ترى وتسمع ما يفعله الشخص.", pt:"Toque numa foto: você vê e ouve o que a pessoa está fazendo.", pl:"Dotknij zdjęcia: widzisz i słyszysz, co robi ta osoba.", ru:"Нажми на фото: ты видишь и слышишь, что делает человек.", de:"Tippe auf ein Foto: Du siehst und hörst, was die Person macht."},
+  introAime: {fr:"Touche une personne, puis une ligne de sa fiche : ♥ elle aime, ✗ elle n'aime pas. Le calendrier montre combien de jours elle le fait en quatre semaines.", en:"Tap a person, then a line of their card: ♥ they like it, ✗ they don't. The calendar shows on how many days they do it in four weeks.", tr:"Bir kişiye, sonra kartındaki bir satıra dokun: ♥ seviyor, ✗ sevmiyor. Takvim, dört haftada kaç gün yaptığını gösterir.", uk:"Торкнися людини, потім рядка її картки: ♥ любить, ✗ не любить. Календар показує, скільки днів за чотири тижні вона це робить.", fa:"روی یک نفر و بعد روی یک سطر کارتش بزن: ♥ دوست دارد، ✗ دوست ندارد. تقویم نشان می‌دهد در چهار هفته چند روز این کار را می‌کند.", ar:"المس شخصًا، ثم سطرًا من بطاقته: ♥ يحبّ، ✗ لا يحبّ. يُظهر التقويم في كم يومًا يفعل ذلك خلال أربعة أسابيع.", pt:"Toque numa pessoa e depois numa linha da ficha dela: ♥ gosta, ✗ não gosta. O calendário mostra em quantos dias ela faz isso em quatro semanas.", pl:"Dotknij osoby, a potem wiersza jej karty: ♥ lubi, ✗ nie lubi. Kalendarz pokazuje, w ile dni w ciągu czterech tygodni to robi.", ru:"Нажми на человека, потом на строку его карточки: ♥ любит, ✗ не любит. Календарь показывает, сколько дней за четыре недели он этим занимается.", de:"Tippe auf eine Person, dann auf eine Zeile ihrer Karte: ♥ mag es, ✗ mag es nicht. Der Kalender zeigt, an wie vielen Tagen in vier Wochen sie es macht."},
+  introProp: {fr:"Pour proposer une activité, et pour répondre. Touche une ligne pour l'entendre.", en:"How to suggest an activity, and how to answer. Tap a line to hear it.", tr:"Bir etkinlik önermek ve cevap vermek için. Duymak için bir satıra dokun.", uk:"Як запропонувати заняття і як відповісти. Торкнися рядка, щоб почути.", fa:"برای پیشنهاد یک فعالیت و پاسخ دادن. روی یک سطر بزن تا آن را بشنوی.", ar:"لاقتراح نشاط وللردّ. المس سطرًا لتسمعه.", pt:"Para propor uma atividade e para responder. Toque numa linha para ouvir.", pl:"Jak zaproponować zajęcie i jak odpowiedzieć. Dotknij wiersza, aby go usłyszeć.", ru:"Как предложить занятие и как ответить. Нажми на строку, чтобы услышать.", de:"So schlägst du etwas vor, und so antwortest du. Tippe auf eine Zeile, um sie zu hören."},
+  regleAct:  {es:{fr:"<b>jugar a</b> pour un sport (a + el = <b>al</b>), <b>tocar</b> pour un instrument, sans « a » :", en:"<b>jugar a</b> for a sport (a + el = <b>al</b>), <b>tocar</b> for an instrument, without “a”:", pt:"<b>jugar a</b> para um esporte (a + el = <b>al</b>), <b>tocar</b> para um instrumento, sem “a”:", ar:"<b>jugar a</b> للرياضة (a + el = <b>al</b>)، و<b>tocar</b> للآلة الموسيقية، بدون «a»:", de:"<b>jugar a</b> für eine Sportart (a + el = <b>al</b>), <b>tocar</b> für ein Instrument, ohne „a“:"},
+              de:{fr:"<b>spielen</b> pour un sport ou un instrument, sans article ; <b>machen</b> et <b>fahren</b> pour d'autres :", en:"<b>spielen</b> for a sport or an instrument, without an article; <b>machen</b> and <b>fahren</b> for others:", tr:"Spor ya da çalgı için artikelsiz <b>spielen</b>; diğerleri için <b>machen</b> ve <b>fahren</b>:", uk:"<b>spielen</b> — для спорту чи інструмента, без артикля; <b>machen</b> і <b>fahren</b> — для інших:", fa:"<b>spielen</b> برای ورزش یا ساز، بدون حرف تعریف؛ <b>machen</b> و <b>fahren</b> برای بقیه:", ar:"<b>spielen</b> للرياضة أو الآلة الموسيقية بلا أداة تعريف؛ و<b>machen</b> و<b>fahren</b> لغيرها:", pt:"<b>spielen</b> para um esporte ou um instrumento, sem artigo; <b>machen</b> e <b>fahren</b> para outros:", pl:"<b>spielen</b> — sport lub instrument, bez rodzajnika; <b>machen</b> i <b>fahren</b> — inne:", ru:"<b>spielen</b> — для спорта или инструмента, без артикля; <b>machen</b> и <b>fahren</b> — для других:"}},
+  regleAime: {es:{fr:"Ce qu'on aime faire : <b>gustar</b> + l'infinitif, toujours <b>gusta</b> ; le pronom dit qui aime :", en:"What you like doing: <b>gustar</b> + the infinitive, always <b>gusta</b>; the pronoun says who likes it:", pt:"O que se gosta de fazer: <b>gustar</b> + infinitivo, sempre <b>gusta</b>; o pronome diz quem gosta:", ar:"ما نحبّ فعله: <b>gustar</b> + المصدر، دائمًا <b>gusta</b>؛ والضمير يدلّ على من يحبّ:", de:"Was man gern macht: <b>gustar</b> + Infinitiv, immer <b>gusta</b>; das Pronomen sagt, wer es mag:"},
+              de:{fr:"Ce qu'on aime faire : <b>gern</b> juste après le verbe, <b>nicht gern</b> pour ce qu'on n'aime pas :", en:"What you like doing: <b>gern</b> right after the verb, <b>nicht gern</b> for what you don't like:", tr:"Sevdiğin şeyler: fiilden hemen sonra <b>gern</b>, sevmediklerin için <b>nicht gern</b>:", uk:"Що любиш робити: <b>gern</b> одразу після дієслова, <b>nicht gern</b> — що не любиш:", fa:"کاری که دوست داری: <b>gern</b> درست بعد از فعل، و <b>nicht gern</b> برای چیزی که دوست نداری:", ar:"ما تحبّ فعله: <b>gern</b> بعد الفعل مباشرة، و<b>nicht gern</b> لما لا تحبّ:", pt:"O que se gosta de fazer: <b>gern</b> logo depois do verbo, <b>nicht gern</b> para o que não se gosta:", pl:"Co lubisz robić: <b>gern</b> zaraz po czasowniku, <b>nicht gern</b> — czego nie lubisz:", ru:"Что любишь делать: <b>gern</b> сразу после глагола, <b>nicht gern</b> — что не любишь:"}},
+  regleFreq: {es:{fr:"Combien de fois, en quatre semaines. <b>siempre</b>, <b>rara vez</b> et <b>nunca</b> se mettent avant le verbe ; <b>a menudo</b> et <b>a veces</b>, plutôt à la fin :", en:"How often, in four weeks. <b>siempre</b>, <b>rara vez</b> and <b>nunca</b> go before the verb; <b>a menudo</b> and <b>a veces</b>, rather at the end:", pt:"Quantas vezes, em quatro semanas. <b>siempre</b>, <b>rara vez</b> e <b>nunca</b> vêm antes do verbo; <b>a menudo</b> e <b>a veces</b>, de preferência no fim:", ar:"كم مرّة خلال أربعة أسابيع. <b>siempre</b> و<b>rara vez</b> و<b>nunca</b> قبل الفعل؛ و<b>a menudo</b> و<b>a veces</b> في الآخر غالبًا:", de:"Wie oft, in vier Wochen. <b>siempre</b>, <b>rara vez</b> und <b>nunca</b> stehen vor dem Verb; <b>a menudo</b> und <b>a veces</b> eher am Ende:"},
+              de:{fr:"Combien de fois, en quatre semaines. L'adverbe se met juste après le verbe, comme gern :", en:"How often, in four weeks. The adverb goes right after the verb, like gern:", tr:"Dört haftada kaç kez. Zarf, gern gibi fiilden hemen sonra gelir:", uk:"Як часто, за чотири тижні. Прислівник стоїть одразу після дієслова, як gern:", fa:"چند بار، در چهار هفته. قید درست بعد از فعل می‌آید، مثل gern:", ar:"كم مرّة خلال أربعة أسابيع. يأتي الظرف بعد الفعل مباشرة، مثل gern:", pt:"Quantas vezes, em quatro semanas. O advérbio vem logo depois do verbo, como gern:", pl:"Jak często, w ciągu czterech tygodni. Przysłówek stoi zaraz po czasowniku, jak gern:", ru:"Как часто, за четыре недели. Наречие стоит сразу после глагола, как gern:"}},
+  regleProp: {es:{fr:"Proposer : <b>¿Quieres</b> + infinitif ? ou <b>¿Vamos a</b> + infinitif ? Répondre selon ce qu'on aime :", en:"Suggesting: <b>¿Quieres</b> + infinitive? or <b>¿Vamos a</b> + infinitive? Answering according to what you like:", pt:"Propor: <b>¿Quieres</b> + infinitivo? ou <b>¿Vamos a</b> + infinitivo? Responder conforme o que se gosta:", ar:"الاقتراح: <b>¿Quieres</b> + المصدر؟ أو <b>¿Vamos a</b> + المصدر؟ والردّ بحسب ما نحبّ:", de:"Vorschlagen: <b>¿Quieres</b> + Infinitiv? oder <b>¿Vamos a</b> + Infinitiv? Antworten, je nachdem, was man mag:"},
+              de:{fr:"Proposer : <b>Hast du Lust</b>, … <b>zu</b> + infinitif ? ou <b>Wollen wir</b> … + infinitif ? Répondre selon ce qu'on aime :", en:"Suggesting: <b>Hast du Lust</b>, … <b>zu</b> + infinitive? or <b>Wollen wir</b> … + infinitive? Answering according to what you like:", tr:"Teklif: <b>Hast du Lust</b>, … <b>zu</b> + mastar? ya da <b>Wollen wir</b> … + mastar? Sevdiğine göre cevap ver:", uk:"Запропонувати: <b>Hast du Lust</b>, … <b>zu</b> + інфінітив? або <b>Wollen wir</b> … + інфінітив? Відповісти — залежно від того, що любиш:", fa:"پیشنهاد: <b>Hast du Lust</b>، … <b>zu</b> + مصدر؟ یا <b>Wollen wir</b> … + مصدر؟ و پاسخ بر اساس آنچه دوست داری:", ar:"الاقتراح: <b>Hast du Lust</b>، … <b>zu</b> + المصدر؟ أو <b>Wollen wir</b> … + المصدر؟ والردّ بحسب ما تحبّ:", pt:"Propor: <b>Hast du Lust</b>, … <b>zu</b> + infinitivo? ou <b>Wollen wir</b> … + infinitivo? Responder conforme o que se gosta:", pl:"Proponowanie: <b>Hast du Lust</b>, … <b>zu</b> + bezokolicznik? albo <b>Wollen wir</b> … + bezokolicznik? Odpowiedź zależy od tego, co lubisz:", ru:"Предложить: <b>Hast du Lust</b>, … <b>zu</b> + инфинитив? или <b>Wollen wir</b> … + инфинитив? Ответить — смотря что любишь:"}},
+  ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  // les noms des boutons, les memes partout (regle commune, 3 nov.)
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
+  quoi:      {fr:"Que fait cette personne ? Choisis la bonne phrase.", en:"What is this person doing? Choose the right sentence.", tr:"Bu kişi ne yapıyor? Doğru cümleyi seç.", uk:"Що робить ця людина? Обери правильне речення.", fa:"این شخص چه می‌کند؟ جملهٔ درست را انتخاب کن.", ar:"ماذا يفعل هذا الشخص؟ اختر الجملة الصحيحة.", pt:"O que essa pessoa está fazendo? Escolha a frase certa.", pl:"Co robi ta osoba? Wybierz właściwe zdanie.", ru:"Что делает этот человек? Выбери правильную фразу.", de:"Was macht diese Person? Wähle den richtigen Satz."},
+  verbe:     {fr:"Choisis le bon verbe.", en:"Choose the right verb.", tr:"Doğru fiili seç.", uk:"Обери правильне дієслово.", fa:"فعل درست را انتخاب کن.", ar:"اختر الفعل الصحيح.", pt:"Escolha o verbo certo.", pl:"Wybierz właściwy czasownik.", ru:"Выбери правильный глагол.", de:"Wähle das richtige Verb."},
+  art:       {fr:"Avec ou sans « a » ? Choisis la bonne forme.", en:"With or without “a”? Choose the right form.", pt:"Com ou sem “a”? Escolha a forma certa.", ar:"مع «a» أم بدونها؟ اختر الصيغة الصحيحة.", de:"Mit oder ohne „a“? Wähle die richtige Form."},
+  forme:     {fr:"Choisis la bonne forme du verbe.", en:"Choose the right form of the verb.", tr:"Fiilin doğru biçimini seç.", uk:"Обери правильну форму дієслова.", fa:"شکل درست فعل را انتخاب کن.", ar:"اختر صيغة الفعل الصحيحة.", pt:"Escolha a forma certa do verbo.", pl:"Wybierz właściwą formę czasownika.", ru:"Выбери правильную форму глагола.", de:"Wähle die richtige Verbform."},
+  ficheTrou: {fr:"Regarde la fiche (♥ aime, ✗ n'aime pas) et complète la phrase.", en:"Look at the card (♥ likes, ✗ doesn't like) and complete the sentence.", tr:"Karta bak (♥ seviyor, ✗ sevmiyor) ve cümleyi tamamla.", uk:"Подивися на картку (♥ любить, ✗ не любить) і доповни речення.", fa:"به کارت نگاه کن (♥ دوست دارد، ✗ دوست ندارد) و جمله را کامل کن.", ar:"انظر إلى البطاقة (♥ يحبّ، ✗ لا يحبّ) وأكمل الجملة.", pt:"Olhe a ficha (♥ gosta, ✗ não gosta) e complete a frase.", pl:"Spójrz na kartę (♥ lubi, ✗ nie lubi) i uzupełnij zdanie.", ru:"Посмотри на карточку (♥ любит, ✗ не любит) и дополни фразу.", de:"Sieh dir die Karte an (♥ mag es, ✗ mag es nicht) und ergänze den Satz."},
+  fichePhrase:{fr:"Regarde et choisis la phrase correcte.", en:"Look and choose the correct sentence.", tr:"Bak ve doğru cümleyi seç.", uk:"Подивися й обери правильне речення.", fa:"نگاه کن و جملهٔ درست را انتخاب کن.", ar:"انظر واختر الجملة الصحيحة.", pt:"Olhe e escolha a frase correta.", pl:"Spójrz i wybierz poprawne zdanie.", ru:"Посмотри и выбери правильную фразу.", de:"Sieh hin und wähle den richtigen Satz."},
+  freq:      {fr:"Regarde le calendrier (quatre semaines) : combien de fois ?", en:"Look at the calendar (four weeks): how often?", tr:"Takvime bak (dört hafta): ne sıklıkla?", uk:"Подивися на календар (чотири тижні): як часто?", fa:"به تقویم نگاه کن (چهار هفته): چند وقت یک‌بار؟", ar:"انظر إلى التقويم (أربعة أسابيع): كم مرّة؟", pt:"Olhe o calendário (quatro semanas): com que frequência?", pl:"Spójrz na kalendarz (cztery tygodnie): jak często?", ru:"Посмотри на календарь (четыре недели): как часто?", de:"Sieh dir den Kalender an (vier Wochen): Wie oft?"},
+  freqCal:   {fr:"Lis la phrase et touche le bon calendrier.", en:"Read the sentence and tap the right calendar.", tr:"Cümleyi oku ve doğru takvime dokun.", uk:"Прочитай речення й торкнися потрібного календаря.", fa:"جمله را بخوان و روی تقویم درست بزن.", ar:"اقرأ الجملة والمس التقويم الصحيح.", pt:"Leia a frase e toque no calendário certo.", pl:"Przeczytaj zdanie i dotknij właściwego kalendarza.", ru:"Прочитай фразу и нажми на нужный календарь.", de:"Lies den Satz und tippe auf den richtigen Kalender."},
+  cual:      {fr:"Lis la phrase et touche la bonne photo.", en:"Read the sentence and tap the right photo.", tr:"Cümleyi oku ve doğru fotoğrafa dokun.", uk:"Прочитай речення й торкнися потрібного фото.", fa:"جمله را بخوان و روی عکس درست بزن.", ar:"اقرأ الجملة والمس الصورة الصحيحة.", pt:"Leia a frase e toque na foto certa.", pl:"Przeczytaj zdanie i dotknij właściwego zdjęcia.", ru:"Прочитай фразу и нажми на нужное фото.", de:"Lies den Satz und tippe auf das richtige Foto."},
+  entendre:  {fr:"Écoute la phrase et touche la bonne photo.", en:"Listen to the sentence and tap the right photo.", tr:"Cümleyi dinle ve doğru fotoğrafa dokun.", uk:"Послухай речення й торкнися потрібного фото.", fa:"جمله را گوش کن و روی عکس درست بزن.", ar:"استمع إلى الجملة والمس الصورة الصحيحة.", pt:"Ouça a frase e toque na foto certa.", pl:"Posłuchaj zdania i dotknij właściwego zdjęcia.", ru:"Послушай фразу и нажми на нужное фото.", de:"Hör dir den Satz an und tippe auf das richtige Foto."},
+  vraifaux:  {fr:"Regarde : vrai ou faux ?", en:"Look: true or false?", tr:"Bak: doğru mu, yanlış mı?", uk:"Подивися: правда чи ні?", fa:"نگاه کن: درست یا نادرست؟", ar:"انظر: صحيح أم خطأ؟", pt:"Olhe: verdadeiro ou falso?", pl:"Spójrz: prawda czy fałsz?", ru:"Посмотри: правда или нет?", de:"Sieh hin: richtig oder falsch?"},
+  proposer:  {fr:"Tu proposes cette activité à un ami. Choisis la phrase correcte.", en:"You suggest this activity to a friend. Choose the correct sentence.", tr:"Bir arkadaşına bu etkinliği öneriyorsun. Doğru cümleyi seç.", uk:"Ти пропонуєш це заняття другові. Обери правильне речення.", fa:"این فعالیت را به یک دوست پیشنهاد می‌کنی. جملهٔ درست را انتخاب کن.", ar:"تقترح هذا النشاط على صديق. اختر الجملة الصحيحة.", pt:"Você propõe essa atividade a um amigo. Escolha a frase correta.", pl:"Proponujesz to zajęcie przyjacielowi. Wybierz poprawne zdanie.", ru:"Ты предлагаешь другу это занятие. Выбери правильную фразу.", de:"Du schlägst einem Freund diese Aktivität vor. Wähle den richtigen Satz."},
+  repondre:  {fr:"{n} répond. Regarde sa fiche (♥ aime, ✗ n'aime pas).", en:"{n} answers. Look at the card (♥ likes, ✗ doesn't like).", tr:"{n} cevap veriyor. Kartına bak (♥ seviyor, ✗ sevmiyor).", uk:"{n} відповідає. Подивися на картку (♥ любить, ✗ не любить).", fa:"{n} پاسخ می‌دهد. به کارتش نگاه کن (♥ دوست دارد، ✗ دوست ندارد).", ar:"{n} يردّ. انظر إلى بطاقته (♥ يحبّ، ✗ لا يحبّ).", pt:"{n} responde. Olhe a ficha (♥ gosta, ✗ não gosta).", pl:"{n} odpowiada. Spójrz na kartę (♥ lubi, ✗ nie lubi).", ru:"{n} отвечает. Посмотри на карточку (♥ любит, ✗ не любит).", de:"{n} antwortet. Sieh dir die Karte an (♥ mag es, ✗ mag es nicht)."},
+  ami:       {fr:"Un ami", en:"A friend", tr:"Bir arkadaş", uk:"Друг", fa:"یک دوست", ar:"صديق", pt:"Um amigo", pl:"Przyjaciel", ru:"Друг", de:"Ein Freund"},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
+  reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
+  // « Continuer », pas « Suivant » (decision de Jacques, 3 nov. : les memes noms de controles partout, comme les scenes)
+  continuer: {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"},
+  aime:      {fr:"aime", en:"likes", tr:"seviyor", uk:"любить", fa:"دوست دارد", ar:"يحبّ", pt:"gosta", pl:"lubi", ru:"любит", de:"mag es"},
+  aimePas:   {fr:"n'aime pas", en:"doesn't like", tr:"sevmiyor", uk:"не любить", fa:"دوست ندارد", ar:"لا يحبّ", pt:"não gosta", pl:"nie lubi", ru:"не любит", de:"mag es nicht"}
+};
+// L'ANGLAIS (son interface est en francais seulement) : ses regles, ses consignes, la note americain / britannique
+TEXTES.regleAct.en = {fr:"<b>play</b> pour les jeux de balle, sans article, et pour les instruments, avec <b>the</b> ; <b>go</b> + -ing pour une activité en -ing (go running, go swimming) ; <b>do</b> pour d'autres (do yoga, do karate). Et des verbes à eux : ride a bike, take photos (jamais make), work out :"};
+TEXTES.regleAime.en = {fr:"Ce qu'on aime faire : <b>like</b>, <b>love</b> (plus fort) ou <b>enjoy</b> + le verbe en <b>-ing</b>. Après like et love, on entend aussi to + verbe (I like to dance) ; après enjoy, jamais (I enjoy dancing). Le -s à la troisième personne, et au négatif <b>doesn't like</b>, <b>don't like</b> :"};
+TEXTES.regleFreq.en = {fr:"Combien de fois, en quatre semaines. <b>always</b>, <b>often</b>, <b>sometimes</b>, <b>rarely</b> et <b>never</b> se mettent juste avant le verbe (mais après be : She is always happy), jamais entre le verbe et ce qui suit. La question : <b>How often</b> … ? On y répond aussi par every day, twice a week, once a month :"};
+TEXTES.regleProp.en = {fr:"Proposer : <b>Do you want to</b> + verbe ? <b>Let's</b> + verbe ! <b>How about</b> + -ing ? <b>Why don't we</b> + verbe ? Répondre selon ce qu'on aime : <b>Sure!</b> ou <b>Sounds good!</b>, sinon <b>No, thanks.</b> Et si on n'est pas libre : <b>Sorry, I can't.</b>"};
+Object.assign(TEXTES, {
+  article:  {fr:"Avec « the », avec « a » ou sans article ? Choisis la phrase correcte."},
+  placeAdv: {fr:"Regarde le calendrier. Où va l'adverbe ? Choisis la phrase correcte."},
+  howOften: {fr:"Regarde le calendrier (quatre semaines) et réponds à la question."},
+  formeEn:  {fr:"Choisis la bonne forme."},
+  bonUs:    {fr:"Bon à savoir : tu apprends l'anglais américain. On y dit <b>soccer</b> (le football), <b>play sports</b> (faire du sport), <b>go to the movies</b> (aller au cinéma), <b>vacation</b> (les vacances), et l'on entend aussi <b>play guitar</b>, sans the. Le calendrier commence le dimanche. En Grande-Bretagne : football, do sport, go to the cinema, holiday."},
+  bonGb:    {fr:"Bon à savoir : tu apprends l'anglais britannique. On y dit <b>football</b> (soccer est américain), <b>do sport</b> (faire du sport), <b>go to the cinema</b> (aller au cinéma), <b>holiday</b> (les vacances). Le calendrier commence le lundi. Aux États-Unis : soccer, play sports, go to the movies, vacation."}
+});
+function T(cle, v){
+  let e = TEXTES[cle] || {};
+  if (e.es && e.de && !e.fr) e = e[APPRENDRE];        // une regle propre a la langue apprise
+  let s = e[LANGUE] || e.fr || cle;
+  for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]);
+  return s;
+}
+// les exemples des regles, dans la langue apprise (une ligne de gauche a droite)
+const EXEMPLES = {
+  regleAct: {es: "jugar <b>al</b> fútbol · jugar <b>al</b> tenis · tocar <b>la</b> guitarra · tocar <b>el</b> piano · montar en bicicleta · hacer deporte · sacar fotos",
+             de: "Fußball <b>spielen</b> · Gitarre <b>spielen</b> · Klavier <b>spielen</b> · Sport <b>machen</b> · Fotos <b>machen</b> · Rad <b>fahren</b>"},
+  regleAime: {es: "<b>me</b> gusta bailar · <b>te</b> gusta · a Heinz <b>le</b> gusta leer · a Felix y a Pablo <b>les</b> gusta jugar al fútbol · <b>no le</b> gusta bailar",
+              de: "Heinz liest <b>gern</b>. · Felix spielt <b>gern</b> Fußball. · Felix tanzt <b>nicht gern</b>."},
+  regleFreq: {es: "Heinz <b>siempre</b> lee. · Felix juega al fútbol <b>a menudo</b>. · Javier <b>nunca</b> baila.",
+              de: "Heinz liest <b>immer</b>. · Felix spielt <b>oft</b> Fußball. · Javier tanzt <b>nie</b>."}
+};
+// en anglais : les memes personnes et les memes fiches (Felix et Pablo aiment le football, Sophie la danse ; Felix prend
+// des photos deux jours par semaine sur le calendrier anglais)
+EXEMPLES.regleAct.en = "<b>play</b> " + (GB ? "football" : "soccer") + " · <b>play</b> tennis · <b>play the</b> guitar · <b>play the</b> piano · <b>go</b> running · <b>ride</b> a bike · <b>take</b> photos · <b>work out</b>";
+EXEMPLES.regleAime.en = "Heinz <b>likes</b> read<b>ing</b>. · Felix <b>loves</b> play<b>ing</b> " + (GB ? "football" : "soccer") + ". · Sophie <b>enjoys</b> danc<b>ing</b>. · Felix <b>doesn't like</b> danc<b>ing</b>. · Felix and Pablo <b>like</b> play<b>ing</b> " + (GB ? "football" : "soccer") + ".";
+EXEMPLES.regleFreq.en = "Heinz <b>always</b> reads. · Felix <b>often</b> plays " + (GB ? "football" : "soccer") + ". · Javier <b>never</b> dances. · How often does Felix take photos? <b>Twice a week.</b>";
+const regle = cle => isoler(T(cle)) + (EXEMPLES[cle] ? '<span class="exemples" lang="' + APPRENDRE + '" dir="ltr">' + EXEMPLES[cle][APPRENDRE] + '</span>' : "");
+
+// ---------- la donnee (loisirs.json, fabrique par visuel/loisirs/loisirs.py) ----------
+let D = null;
+// les photos qu'on ne montre pas a Boston (une enseigne, une rame, un monument de Berlin) : aucune, toutes sont en studio
+const ECARTEES_EN = [];
+const ACTS = () => Object.keys(D.activites).filter(a => !EN_APP || !ECARTEES_EN.includes(a));
+// L'ANGLAIS APPRIS : chaque activite au present simple -- v (he, she : le -s), vpl (they), b (la base), ing, reste (ce
+// qui suit le verbe), ger (le -ing apres like / enjoy, quand il differe : « running », pas « going running ») ;
+// verbe : l'infinitif du CORPUS du verbe conjugue (anglais/datos/verbes.json), nom : le nom du corpus (genre "") ;
+// mot : le mot du corpus d'une activite sans nom (go running -> run) ; sorte : play, go, ride, take (« le bon verbe »),
+// faux : ses leurres (« makes photos », le calque de l'allemand ; « does soccer », celui de « faire du foot ») ; jeu,
+// inst : le jeu de balle (sans article) et l'instrument (avec the). nomAussi : la base est aussi un nom (« I like
+// dance », « I love paint » sont justes) : jamais proposee comme faute. Ces mots ne viennent pas de loisirs.json, dont
+// le bloc « en » reste la TRADUCTION pour qui apprend l'espagnol ou l'allemand avec l'interface anglaise.
+const FOOT_EN = GB ? "football" : "soccer";
+const ACT_EN = {
+  futbol:     {v: "plays", vpl: "play", b: "play", ing: "playing", reste: FOOT_EN, verbe: "play", nom: [FOOT_EN, ""], sorte: "play", faux: ["go", "do"], jeu: true},
+  tenis:      {v: "plays", vpl: "play", b: "play", ing: "playing", reste: "tennis", verbe: "play", nom: ["tennis", ""], sorte: "play", faux: ["go", "do"], jeu: true},
+  baloncesto: {v: "plays", vpl: "play", b: "play", ing: "playing", reste: "basketball", verbe: "play", nom: ["basketball", ""], sorte: "play", faux: ["go", "do"], jeu: true},
+  guitarra:   {v: "plays", vpl: "play", b: "play", ing: "playing", reste: "the guitar", verbe: "play", nom: ["guitar", ""], sorte: "play", faux: ["do", "go"], inst: true},
+  piano:      {v: "plays", vpl: "play", b: "play", ing: "playing", reste: "the piano", verbe: "play", nom: ["piano", ""], sorte: "play", faux: ["do", "go"], inst: true},
+  violin:     {v: "plays", vpl: "play", b: "play", ing: "playing", reste: "the violin", verbe: "play", nom: ["violin", ""], sorte: "play", faux: ["do", "go"], inst: true},
+  bici:       {v: "rides", vpl: "ride", b: "ride", ing: "riding", reste: "a bike", verbe: "ride", nom: ["bike", ""], sorte: "ride", faux: ["do", "play"], velo: true},
+  deporte:    {v: "works", vpl: "work", b: "work", ing: "working", reste: "out", verbe: "work out", nom: null, sorte: null},
+  fotos:      {v: "takes", vpl: "take", b: "take", ing: "taking", reste: "photos", verbe: "take", nom: ["photo", ""], sorte: "take", faux: ["make", "do"]},
+  bailar:     {v: "dances", vpl: "dance", b: "dance", ing: "dancing", reste: "", verbe: "dance", nom: null, sorte: null, nomAussi: true},
+  cantar:     {v: "sings", vpl: "sing", b: "sing", ing: "singing", reste: "", verbe: "sing", nom: null, sorte: null},
+  leer:       {v: "reads", vpl: "read", b: "read", ing: "reading", reste: "", verbe: "read", nom: null, sorte: null},
+  cocinar:    {v: "cooks", vpl: "cook", b: "cook", ing: "cooking", reste: "", verbe: "cook", nom: null, sorte: null},
+  pintar:     {v: "paints", vpl: "paint", b: "paint", ing: "painting", reste: "", verbe: "paint", nom: null, sorte: null, nomAussi: true},
+  correr:     {v: "goes", vpl: "go", b: "go", ing: "going", reste: "running", ger: "running", verbe: "go", mot: "run", nom: null, sorte: "go", faux: ["do", "play"]}
+};
+// sans langue demandee, l'activite de la langue apprise (en anglais : ACT_EN) ; une langue demandee : loisirs.json
+const act = (a, l) => !l && EN_APP ? ACT_EN[a] : D.activites[a][l || APPRENDRE];
+const PERS = () => Object.keys(D.fiches);
+const nom = p => D.personnes[p].nom;
+const photoDe = a => "loisirs/" + a + ".webp";
+const quiFait = a => D.activites[a].qui;
+const visage = p => D.personnes[p].visage;
+// les faits : {p, a, gern, freq} ; un fait de la fiche de p
+let FAITS = null;
+const faits = () => FAITS || (FAITS = PERS().flatMap(p => D.fiches[p].map(f => ({p, a: f.a, gern: f.gern, freq: f.freq}))));
+const faitDe = (p, a) => faits().find(f => f.p === p && f.a === a) || null;
+// deux personnes qui aiment (ou n'aiment pas) la meme activite : « A Felix y a Pablo les gusta jugar al fútbol »
+let PAIRES = null;
+function paires(){
+  if (PAIRES) return PAIRES;
+  PAIRES = [];
+  faits().forEach((f, i) => faits().slice(i + 1).forEach(g => { if (g.a === f.a && g.gern === f.gern && g.p !== f.p) PAIRES.push({ps: [f.p, g.p], a: f.a, gern: f.gern}); }));
+  return PAIRES;
+}
+
+// ---------- LES PHRASES, fabriquees dans chaque langue a partir des memes choix ----------
+// L : es, de (les langues apprises, et l'allemand traduction de l'espagnol), fr, en, pt (le Bresil)
+const r = (s) => s ? " " + s : "";
+const et = (L, ps) => ps.length === 1 ? nom(ps[0]) : nom(ps[0]) + {es: " y a ", de: " und ", fr: " et ", en: " and ", pt: " e "}[L] + nom(ps[1]);
+const P = {
+  // « Felix juega al fútbol. »
+  fait(L, p, a){ if (EN_APP && L === "en") return PE.fait(p, a); const x = act(a, L);
+    return L === "en" || L === "pt" ? nom(p) + " " + x.v3 + "." : nom(p) + " " + x.v + r(x.reste) + "."; },
+  // « A Felix le gusta jugar al fútbol. » / « Felix spielt gern Fußball. » ; ps : une ou deux personnes
+  aime(L, ps, a, oui, verbe){ if (EN_APP && L === "en") return PE.aime(ps, a, oui, verbe); const x = act(a, L), n = et(L, ps), deux = ps.length > 1;
+    if (L === "es") return "A " + n + (oui ? "" : " no") + (deux ? " les" : " le") + " gusta " + x.inf + ".";
+    if (L === "de") return n + " " + (deux ? x.vpl : x.v) + (oui ? " gern" : " nicht gern") + r(x.reste) + ".";
+    if (L === "fr") return n + (oui ? (deux ? " aiment " : " aime ") : (deux ? " n'aiment pas " : " n'aime pas ")) + x.inf + ".";
+    if (L === "en") return n + (oui ? (deux ? " like " : " likes ") : (deux ? " don't like " : " doesn't like ")) + x.ing + ".";
+    return n + (oui ? (deux ? " gostam de " : " gosta de ") : (deux ? " não gostam de " : " não gosta de ")) + x.inf + "."; },
+  // « Felix juega al fútbol a menudo. » / « Felix spielt oft Fußball. »
+  freq(L, p, a, q){ if (EN_APP && L === "en") return PE.freq(p, a, q); const x = act(a, L), adv = D.adv[L][q], n = nom(p);
+    if (L === "es") return ["immer", "selten", "nie"].includes(q) ? n + " " + adv + " " + x.v + r(x.reste) + "." : n + " " + x.v + r(x.reste) + " " + adv + ".";
+    if (L === "de") return n + " " + x.v + " " + adv + r(x.reste) + ".";
+    if (L === "fr") return q === "nie" ? n + " ne " + x.v + " jamais" + r(x.neg) + "." : n + " " + x.v + " " + adv + r(x.reste) + ".";
+    if (L === "en") return n + " " + adv + " " + x.v3 + ".";
+    return q === "oft" ? n + " " + x.v3 + " " + adv + "." : n + " " + adv + " " + x.v3 + "."; },
+  // « ¿Con qué frecuencia juega Felix al fútbol? » / « Wie oft spielt Felix Fußball? »
+  qFreq(L, p, a){ if (EN_APP && L === "en") return PE.qFreq(p, a); const x = act(a, L);
+    return L === "es" ? "¿Con qué frecuencia " + x.v + " " + nom(p) + r(x.reste) + "?" : "Wie oft " + x.v + " " + nom(p) + r(x.reste) + "?"; },
+  qQuoi(L, p){ if (EN_APP && L === "en") return PE.qQuoi(p); return L === "es" ? "¿Qué hace " + nom(p) + "?" : "Was macht " + nom(p) + "?"; },
+  // proposer : f = 0 (¿Quieres…? / Hast du Lust…?), 1 (¿Vamos a…? / Wollen wir…?) ; app : la langue apprise de la
+  // question, dont la traduction suit la tournure (« Tu veux… » pour ¿Quieres…?, « Tu as envie de… » pour Lust)
+  propose(L, a, f, app){ if (EN_APP && L === "en") return PE.propose(a, f); const x = act(a, L);
+    if (L === "es") return f ? "¿Vamos a " + x.inf + "?" : "¿Quieres " + x.inf + "?";
+    if (L === "de") return f ? "Wollen wir " + (x.reste ? x.reste + " " : "") + x.inf + "?" : (x.reste ? "Hast du Lust, " + x.reste + " zu " + x.inf + "?" : "Hast du Lust zu " + x.inf + "?");
+    if (L === "fr") return f ? "On " + x.v + r(x.reste) + " ?" : (app === "de" ? "Tu as envie de " + x.inf + " ?" : "Tu veux " + x.inf + " ?");
+    if (L === "en") return f ? "Shall we " + x.inf + "?" : (app === "de" ? "Do you feel like " + x.ing + "?" : "Do you want to " + x.inf + "?");
+    return f ? "Vamos " + x.inf + "?" : (app === "de" ? "Você está a fim de " + x.inf + "?" : "Você quer " + x.inf + "?"); },
+  // repondre : oui (la fiche dit ♥) ou non (✗) ; sexe pour « obrigado / obrigada »
+  repond(L, a, oui, sexe, pf, verbe){ if (EN_APP && L === "en") return PE.repond(a, oui, pf, verbe); const x = act(a, L);
+    if (L === "es") return oui ? "¡Sí, claro! Me gusta mucho " + x.inf + "." : "No, gracias. No me gusta " + x.inf + ".";
+    if (L === "de") return oui ? "Ja, gern! Ich " + x.ich + " gern" + r(x.reste) + "." : "Nein, danke. Ich " + x.ich + " nicht gern" + r(x.reste) + ".";
+    if (L === "fr") return oui ? "Oui, avec plaisir ! J'aime beaucoup " + x.inf + "." : "Non, merci. Je n'aime pas " + x.inf + ".";
+    if (L === "en") return oui ? "Yes, sure! I really like " + x.ing + "." : "No, thanks. I don't like " + x.ing + ".";
+    return oui ? "Sim, claro! Eu gosto muito de " + x.inf + "." : "Não, " + (sexe === "f" ? "obrigada" : "obrigado") + ". Eu não gosto de " + x.inf + "."; }
+};
+const A_ = APPRENDRE;
+// ---------- L'ANGLAIS APPRIS : ses phrases a lui (P y renvoie quand on apprend l'anglais) ----------
+const nuEn = x => x.b + r(x.reste);                       // play soccer, go running, work out
+const gerEn = x => x.ger || x.ing + r(x.reste);          // playing soccer, running, working out
+const PE = {
+  sujet: ps => ps.map(nom).join(" and "),
+  // « Felix plays soccer. » : le present simple de ce qu'on fait d'habitude
+  fait: (p, a) => nom(p) + " " + act(a).v + r(act(a).reste) + ".",
+  // « Felix likes playing soccer. », « Felix and Pablo love playing soccer. », « Felix doesn't like dancing. » ; verbe :
+  // like (par defaut), love, enjoy -- love seulement pour un ♥ (le non de love est « doesn't like »)
+  aime(ps, a, oui, verbe){ const v = verbe || "like", deux = ps.length > 1, x = act(a);
+    if (oui) return PE.sujet(ps) + " " + (deux ? v : v + "s") + " " + gerEn(x) + ".";
+    return PE.sujet(ps) + (deux ? " don't " : " doesn't ") + (v === "enjoy" ? "enjoy" : "like") + " " + gerEn(x) + "."; },
+  // « Felix often plays soccer. » : l'adverbe juste avant le verbe
+  freq: (p, a, q) => nom(p) + " " + D.adv.en[q] + " " + act(a).v + r(act(a).reste) + ".",
+  qFreq: (p, a) => "How often does " + nom(p) + " " + nuEn(act(a)) + "?",
+  qQuoi: p => "What does " + nom(p) + " do in " + (D.personnes[p].sexe === "f" ? "her" : "his") + " free time?",
+  // proposer : f = 0 Do you want to...? 1 Let's...! 2 How about + -ing? 3 Why don't we...?
+  propose(a, f){ const x = act(a);
+    return [() => "Do you want to " + nuEn(x) + "?", () => "Let's " + nuEn(x) + "!", () => "How about " + x.ing + r(x.reste) + "?", () => "Why don't we " + nuEn(x) + "?"][f || 0](); },
+  // repondre selon la fiche : « Sure! I love playing tennis. » (a Do you want to), « Sounds good! ... » (aux autres),
+  // « No, thanks. I don't like dancing. »
+  repond(a, oui, f, verbe){ const x = act(a), v = verbe || "love";
+    if (oui) return (f ? "Sounds good!" : "Sure!") + " I " + (v === "like" ? "really like" : v) + " " + gerEn(x) + ".";
+    return "No, thanks. I don't " + (v === "enjoy" ? "enjoy" : "like") + " " + gerEn(x) + "."; },
+  // How often...? -- la reponse du calendrier anglais (MOTIFS_EN : 28, 16, 8, 1, 0 jours en quatre semaines)
+  fois: {immer: "every day", oft: "four times a week", manchmal: "twice a week", selten: "once a month", nie: "never"},
+  phraseFois: (p, a, q) => q === "nie" ? PE.freq(p, a, q) : nom(p) + " " + act(a).v + r(act(a).reste) + " " + PE.fois[q] + "."
+};
+const FOIS_FR = {immer: "tous les jours", oft: "quatre fois par semaine", manchmal: "deux fois par semaine", selten: "une fois par mois", nie: "jamais"};
+// la traduction francaise des tournures propres a l'anglais (le reste : P en francais, depuis loisirs.json)
+const TRF = {
+  aime(ps, a, oui, verbe){ const s = P.aime("fr", ps, a, oui); return oui && verbe === "love" ? s.replace(" aiment ", " adorent ").replace(" aime ", " adore ") : s; },
+  propose(a, f){ const x = act(a, "fr");
+    return [() => "Tu veux " + x.inf + " ?", () => "On " + x.v + r(x.reste) + " !", () => "Ça te dit de " + x.inf + " ?", () => "Pourquoi ne pas " + x.inf + " ?"][f || 0](); },
+  repond(a, oui, sexe, f, verbe){ const x = act(a, "fr");
+    if (oui) return (f ? "Bonne idée !" : "Oui, bien sûr !") + (verbe === "like" ? " J'aime beaucoup " : verbe === "enjoy" ? " J'aime bien " : " J'adore ") + x.inf + ".";
+    return "Non, merci. Je n'aime pas " + x.inf + "."; },
+  phraseFois: (p, a, q) => q === "nie" ? P.freq("fr", p, a, q) : P.fait("fr", p, a).replace(/\.$/, " " + FOIS_FR[q] + ".")
+};
+// la traduction d'une phrase fabriquee : la meme fonction, dans la langue d'interface (fr, en, pt ; de pour qui apprend
+// l'espagnol) ; ailleurs rien, la ligne du mot teste et sa glose (le corpus) suffit
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+const tr = (fn, ...args) => !PHRASE_TRADUITE ? null : EN_APP && TRF[fn] ? TRF[fn](...args) : P[fn](LANGUE, ...args);
+const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
+
+// ---------- la voix : le fichier enregistre s'il existe, sinon le telephone (themes/voix.js) ----------
+let dire = t => Voix.dire(t);
+const taire = () => Voix.arreter();
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+// le haut-parleur de l'app (v919, HP_SVG d'index.html), au bout des lignes qu'on touche pour les entendre
+const HP_APP = '<svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
+const hpLigne = () => '<span class="hp-ligne" aria-hidden="true">' + HP_APP + '</span>';
+// le rond s'allume le temps du geste
+const allumer = el => { document.querySelectorAll(".joue").forEach(x => x.classList.remove("joue")); el.classList.add("joue"); setTimeout(() => el.classList.remove("joue"), 1200); };
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const uniques = a => a.filter((x, i) => a.indexOf(x) === i);
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
+// en persan et en arabe, chaque passage en lettres latines s'isole, sinon l'algorithme bidi en retourne les mots
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.split(/(<[^>]+>)/).map(x => x.charAt(0) === "<" ? x
+  : x.replace(/[A-Za-zÀ-ÿñÑßäöüÄÖÜ¿?¡!]+(?:[ +=,…]+[A-Za-zÀ-ÿñÑßäöüÄÖÜ¿?¡!]+)*/g, m => '<span dir="ltr">' + m + '</span>')).join("");
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+
+// ---------- LES DESSINS : les pictogrammes, le coeur et la croix, la fiche, le calendrier ----------
+const SV = c => '<svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">' + c + '</svg>';
+const PICTOS = {
+  futbol: SV('<circle cx="24" cy="24" r="18"/><path d="M24 15l7 5-3 8h-8l-3-8z" fill="currentColor"/><path d="M24 15V6M31 20l9-3M28 28l5 8M20 28l-5 8M17 20l-9-3"/>'),
+  tenis: SV('<ellipse cx="19" cy="18" rx="11" ry="13" transform="rotate(-35 19 18)"/><path d="M12 12l14 12M15 8l14 12M10 17l12 10M27 28l12 12"/><circle cx="38" cy="12" r="4" fill="currentColor"/>'),
+  baloncesto: SV('<circle cx="24" cy="24" r="18"/><path d="M6 24h36M24 6v36M11 11c7 7 7 19 0 26M37 11c-7 7-7 19 0 26"/>'),
+  guitarra: SV('<path d="M30 18l10-10M37 5l6 6"/><path d="M22 20c-3-3-9-3-12 1s-2 8 0 9c-3 2-3 7 0 10s9 2 11-1 2-5 1-6c3 0 7-1 9-4s1-7-2-9-5-2-7 0z"/><circle cx="20" cy="30" r="3"/>'),
+  piano: SV('<rect x="5" y="12" width="38" height="24" rx="2"/><path d="M12 12v24M19 12v24M26 12v24M33 12v24M40 12v24" stroke-width="1.6"/><path d="M10 12h4v13h-4zM17 12h4v13h-4zM31 12h4v13h-4zM38 12h3v13h-3z" fill="currentColor" stroke-width="1"/>'),
+  violin: SV('<path d="M22 40c-6 0-9-4-7-8 1-2 3-3 2-5s-2-3 0-6 7-3 9 0 1 4 0 6 1 3 2 5c2 4-1 8-6 8z"/><path d="M24 21V6M21 6h6M20 31h8"/><path d="M8 42L40 10" stroke-width="1.8"/>'),
+  bici: SV('<circle cx="12" cy="32" r="8"/><circle cx="36" cy="32" r="8"/><path d="M12 32l7-13h12l5 13M19 19l7 13h-14M26 32l5-13M17 15h5M29 15l2 4"/>'),
+  deporte: SV('<path d="M14 24h20"/><rect x="7" y="15" width="6" height="18" rx="2" fill="currentColor"/><rect x="35" y="15" width="6" height="18" rx="2" fill="currentColor"/><path d="M4 20v8M44 20v8"/>'),
+  fotos: SV('<rect x="5" y="14" width="38" height="26" rx="4"/><path d="M16 14l3-5h10l3 5"/><circle cx="24" cy="27" r="7"/><circle cx="37" cy="19" r="1.5" fill="currentColor"/>'),
+  bailar: SV('<circle cx="26" cy="8" r="4"/><path d="M26 13l-2 13M24 26l-7 14M24 26l9 7 4 7M25 16l11-8M25 17l-12 5"/><path d="M8 34l2-2M38 18l3-1" stroke-width="2"/>'),
+  cantar: SV('<rect x="15" y="5" width="12" height="20" rx="6"/><path d="M10 20c0 7 5 11 11 11s11-4 11-11M21 31v9M14 41h14"/><path d="M36 8v12" /><circle cx="33" cy="20" r="3" fill="currentColor"/><path d="M36 8l6 2"/>'),
+  leer: SV('<path d="M24 12c-5-4-12-4-18-2v26c6-2 13-2 18 2 5-4 12-4 18-2V10c-6-2-13-2-18 2zM24 12v26"/>'),
+  cocinar: SV('<path d="M6 26h28v4a8 8 0 0 1-8 8H14a8 8 0 0 1-8-8z"/><path d="M34 28h9"/><path d="M14 20c-2-3 2-5 0-8M21 20c-2-3 2-5 0-8M28 20c-2-3 2-5 0-8" stroke-width="2"/>'),
+  pintar: SV('<path d="M24 6C12 6 5 14 5 23s7 17 15 17c4 0 4-4 2-6s0-6 4-6h6c6 0 11-4 11-10C43 12 35 6 24 6z"/><circle cx="15" cy="20" r="2.5" fill="currentColor"/><circle cx="22" cy="13" r="2.5" fill="currentColor"/><circle cx="31" cy="14" r="2.5" fill="currentColor"/><circle cx="36" cy="21" r="2.5" fill="currentColor"/>'),
+  correr: SV('<circle cx="29" cy="7" r="4"/><path d="M28 13l-5 12 8 6-3 10M23 25l-9 8-5-2M26 16l-9 1-4 6M27 16l7 7 7-2"/>')
+};
+const picto = a => '<span class="picto">' + (PICTOS[a] || "") + '</span>';
+const COEUR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 2.8C20 15.8 12 21 12 21z" fill="currentColor"/></svg>';
+const CROIX = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M8 8l8 8M16 8l-8 8" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>';
+const avis = oui => '<span class="avis ' + (oui ? "oui" : "non") + '" role="img" aria-label="' + T(oui ? "aime" : "aimePas") + '">' + (oui ? COEUR : CROIX) + '</span>';
+const imgVisage = p => '<img class="visage" alt="" src="' + visage(p) + '">';
+// la fiche d'une ou deux personnes, avec les lignes donnees (l'activite et ♥ ou ✗)
+function fiche(ps, lignes){
+  return '<div class="fiche">' + ps.map(p => '<div class="qui">' + imgVisage(p) + '<span class="nom" dir="ltr">' + nom(p) + '</span></div>').join("")
+    + '<div class="lignes">' + lignes.map(([a, oui]) => '<div class="ligne" data-a="' + a + '">' + picto(a) + avis(oui) + '</div>').join("") + '</div></div>';
+}
+// LE CALENDRIER : quatre semaines ; les jours ou la personne le fait, selon la frequence (28, 16, 6, 1, 0)
+const MOTIFS = {immer: [[0,1,2,3,4,5,6],[0,1,2,3,4,5,6],[0,1,2,3,4,5,6],[0,1,2,3,4,5,6]], oft: [[0,2,4,5],[1,2,4,6],[0,2,3,5],[1,3,4,6]],
+                manchmal: [[1,5],[3],[2,6],[4]], selten: [[],[],[5],[]], nie: [[],[],[],[]]};
+const JOURS_COURTS = {es: ["L", "M", "X", "J", "V", "S", "D"], de: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+                      // l'anglais : la semaine americaine commence le dimanche, la britannique le lundi
+                      en: GB ? ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"] : ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]};
+// L'ANGLAIS : « sometimes » a deux jours chaque semaine, pour que « twice a week » soit exact (How often...?) ;
+// often a quatre jours (four times a week), rarely un jour (once a month), comme en espagnol et en allemand
+const MOTIFS_EN = Object.assign({}, MOTIFS, {manchmal: [[1,4],[2,5],[1,4],[3,6]]});
+function grille(q){
+  return '<div class="grille">' + JOURS_COURTS[APPRENDRE].map(j => '<span class="j" lang="' + APPRENDRE + '">' + j + '</span>').join("")
+    + (EN_APP ? MOTIFS_EN : MOTIFS)[q].map(s => [0,1,2,3,4,5,6].map(i => '<span' + (s.includes(i) ? ' class="on"' : "") + '></span>').join("")).join("") + '</div>';
+}
+const calendrier = (p, a, q) => '<div class="cal"><div class="tete">' + imgVisage(p) + picto(a) + '</div>' + grille(q) + '</div>';
+const photo = a => '<div class="photo"><img id="photo" alt="" src="' + photoDe(a) + '"></div>';
+
+let file = [], rang = 0, bons = 0, repondu = false;
+// LE MOT DE LA QUESTION (regle 3, 3 nov. : « un mot appris compte partout ») : juger() l'envoie (« reponse »), l'app
+// fait avancer sa carte (revisionDeScene). Un nom : {mot: "Gitarre", genre: "die"} ; un verbe : {mot: "spielen",
+// cat: "verbe"} ; un adverbe : {mot: "oft", cat: "adverbe"}.
+let motQ = null, tradQ = null, choixQ = null;
+// LES MOTS DU THEME, a la forme du corpus
+let MOTS = null;
+function motsDuTheme(){
+  if (MOTS) return MOTS;
+  const noms = [], verbes = [];
+  ACTS().forEach(a => { const x = act(a);
+    if (x.nom && !noms.some(n => n.mot === x.nom[0])) noms.push({k: "n:" + x.nom[0], mot: x.nom[0], genre: x.nom[1]});
+    if (!verbes.some(v => v.mot === x.verbe)) verbes.push({k: "v:" + x.verbe, mot: x.verbe, cat: "verbe"});
+    if (x.mot && !verbes.some(v => v.mot === x.mot)) verbes.push({k: "v:" + x.mot, mot: x.mot, cat: "verbe"}); });   // l'anglais : go running -> run
+  const autres = (EN_APP ? AUTRES_EN : D.autres[APPRENDRE]).map(([m, c]) => c === "die" ? {k: "n:" + m, mot: m, genre: c} : {k: (c === "verbe" ? "v:" : "a:") + m, mot: m, cat: c});
+  MOTS = noms.concat(verbes, autres);
+  return MOTS;
+}
+const motDe = w => ({mot: w.mot, genre: w.genre || null, cat: w.cat || null});
+function viser(w, defaut){ motQ = w ? motDe(w) : defaut; }
+// l'anglais : les adverbes du corpus, et like / love / enjoy, want ; once et twice ne sont pas une frequence du
+// calendrier mais la reponse a How often (once a month, twice a week)
+const AUTRES_EN = [["always", "adverbe"], ["often", "adverbe"], ["sometimes", "adverbe"], ["rarely", "adverbe"], ["never", "adverbe"],
+                   ["once", "adverbe"], ["twice", "adverbe"], ["like", "verbe"], ["love", "verbe"], ["enjoy", "verbe"], ["want", "verbe"]];
+const AIME_EN = ["like", "love", "enjoy"], FOIS_EN = {once: "selten", twice: "manchmal"};
+const estFois = w => EN_APP && w && w.cat === "adverbe" && !!FOIS_EN[w.mot];
+const estAdv = w => w && w.cat === "adverbe" && w.mot !== "gern" && !estFois(w);
+const advFreq = w => estAdv(w) ? D.freq.find(f => D.adv[APPRENDRE][f] === w.mot) : null;
+const estAime = w => w && (w.mot === "gustar" || w.mot === "gern" || (EN_APP && AIME_EN.includes(w.mot)));
+const estPropose = w => w && (w.mot === "querer" || w.mot === "Lust" || (EN_APP && w.mot === "want"));
+// le verbe d'aimer d'une question anglaise qui vise like, love ou enjoy (sinon like)
+const vAime = w => EN_APP && estAime(w) ? w.mot : undefined;
+// les activites que vise un mot (son nom ou son verbe) ; tout, sans mot ; rien pour un adverbe ou « gustar »
+function actsPour(w){
+  if (!w) return ACTS();
+  if (w.k && w.k.startsWith("n:")) return ACTS().filter(a => act(a).nom && act(a).nom[0] === w.mot);
+  if (w.cat === "verbe") return ACTS().filter(a => act(a).verbe === w.mot || act(a).mot === w.mot);
+  return [];
+}
+const estMotAct = w => w && actsPour(w).length > 0;
+// le mot d'une activite qui porte la question : son nom s'il en a un (Gitarre), sinon son verbe (tanzen)
+const motAct = a => act(a).nom ? {mot: act(a).nom[0], genre: act(a).nom[1], cat: null} : {mot: act(a).mot || act(a).verbe, genre: null, cat: "verbe"};
+const motVerbe = a => ({mot: act(a).verbe, genre: null, cat: "verbe"});
+const motAdv = q => ({mot: D.adv[APPRENDRE][q], genre: null, cat: "adverbe"});
+const motAime = v => DE_APP ? {mot: "gern", genre: null, cat: "adverbe"} : EN_APP ? {mot: v || "like", genre: null, cat: "verbe"} : {mot: "gustar", genre: null, cat: "verbe"};
+const motPropose = () => DE_APP ? {mot: "Lust", genre: "die", cat: null} : EN_APP ? {mot: "want", genre: null, cat: "verbe"} : {mot: "querer", genre: null, cat: "verbe"};
+// les faits que vise un mot : une activite, une frequence, aimer
+function faitsPour(w){
+  if (EN_APP && w && w.mot === "love") return faits().filter(f => f.gern);   // love : seulement un ♥
+  if (estFois(w)) return faits().filter(f => f.freq === FOIS_EN[w.mot]);
+  if (!w || estAime(w)) return faits();
+  if (estAdv(w)) return faits().filter(f => f.freq === advFreq(w));
+  const as = actsPour(w); return faits().filter(f => as.includes(f.a));
+}
+// le mot montre sous la reponse : « die Gitarre », « jugar », « a menudo », et sa traduction (le corpus)
+function montreDe(m){
+  if (!m) return null;
+  const g = (EN_APP ? GLOSES_EN : D.gloses[APPRENDRE] || {})[m.mot] || {};
+  return {aff: m.genre ? m.genre + " " + m.mot : m.mot, sens: LANGUE === APPRENDRE ? "" : (g[LANGUE] || g.fr || "")};
+}
+// l'anglais n'est pas dans loisirs.json : ses gloses, d'apres les traductions du corpus anglais
+const GLOSES_EN = {soccer: {fr: "le football"}, football: {fr: "le football"}, tennis: {fr: "le tennis"}, basketball: {fr: "le basket"},
+  guitar: {fr: "la guitare"}, piano: {fr: "le piano"}, violin: {fr: "le violon"}, bike: {fr: "le vélo"}, photo: {fr: "la photo"},
+  play: {fr: "jouer"}, ride: {fr: "faire du (vélo, cheval)"}, take: {fr: "prendre"}, go: {fr: "aller"}, do: {fr: "faire"}, make: {fr: "fabriquer, faire"},
+  "work out": {fr: "s'entraîner"}, dance: {fr: "danser"}, sing: {fr: "chanter"}, read: {fr: "lire"}, cook: {fr: "cuisiner"}, paint: {fr: "peindre"},
+  run: {fr: "courir"}, like: {fr: "aimer (bien)"}, love: {fr: "aimer, adorer"}, enjoy: {fr: "aimer, apprécier"}, want: {fr: "vouloir"},
+  always: {fr: "toujours"}, often: {fr: "souvent"}, sometimes: {fr: "parfois"}, rarely: {fr: "rarement"}, never: {fr: "jamais"},
+  once: {fr: "une fois"}, twice: {fr: "deux fois"}};
+const glose = m => { const g = (EN_APP ? GLOSES_EN : D.gloses[APPRENDRE] || {})[m] || {}; return LANGUE === APPRENDRE ? "" : (g[LANGUE] || g.fr || ""); };
+// LE MAUVAIS CHOIX TRADUIT (regle commune, 3 nov.) : choixQ = {texte, trad} pose par la question pour chaque choix qui
+// a une traduction sure (une phrase fabriquee, un verbe, un adverbe) ; rien pour une phrase fautive, un article
+let choixTrad = {};
+
+// apres la reponse : la phrase juste et sa traduction, le mot teste et sa voix
+function juger(ok, bonneTexte, phrase){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  const mt = montreDe(motQ), c = !ok && choixQ != null ? choixTrad[choixQ] : null;
+  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : EN_APP ? "Well done!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
+    // la phrase juste, ECRITE, apres toute reponse (Jacques, 5 nov. : une ecoute reussie ne montrait que « ¡Muy
+    // bien! » -- « il faudrait le voir ecrit aussi ») ; apres une erreur, « La bonne reponse » l'a deja ; sa traduction
+    // dessous (tradQ), et le haut-parleur de la ligne du mot la redit. Pendant la question, elle reste cachee.
+    + ((ok || (phrase && phrase !== bonneTexte)) ? '<span class="phrase">' + cible(phrase || bonneTexte) + '</span>' : "")
+    + traduction(tradQ)
+    + (c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")
+    + (mt ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(mt.aff) + (mt.sens ? ' · <span dir="auto">' + mt.sens + '</span>' : "") + '</span>' : "");
+  if (mt) $("redire").addEventListener("click", () => dire(phrase || bonneTexte));
+  dire(phrase || bonneTexte);
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("continuer"); s.hidden = false;
+}
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = o; if (o === bonne){ bon = b; b.dataset.bon = "1"; }
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = o; apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// des images (ou des calendriers) a toucher : ids, le dessin de chacun, la bonne ; data-id pour les controles
+function aToucher(conteneur, ids, dessin, bonne, apres, img){
+  let bon;
+  conteneur.className = "rangee" + (ids.length === 3 ? " trois" : "");
+  ids.forEach(i => {
+    const b = document.createElement("button"); b.type = "button"; b.dataset.id = i; if (img) b.className = "img";
+    b.innerHTML = dessin(i); if (i === bonne){ bon = b; b.dataset.bon = "1"; }
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = i; apres(i === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+const vignette = a => '<img alt="" src="' + photoDe(a) + '">';
+// l'ecran d'une question : la consigne, une image (ou rien), l'enonce, les choix, le message
+function ecran(consigne, image, enonce, centre, colonne){
+  $("zone").innerHTML = '<p class="consigne">' + isoler(consigne) + '</p>' + (image || "")
+    + '<div class="enonce' + (centre ? " centre" : "") + '">' + enonce + '</div><div class="choix' + (colonne ? " colonne" : centre ? " centre" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = () => '<span class="trou" id="trou">?</span>';
+const avecTrou = s => cible(s.replace("___", trou()));
+const remplir = rep => { const t = $("trou"); if (t) t.textContent = rep; };
+// les activites qu'on peut opposer a a pour p sans contredire sa fiche : une qu'il ne fait jamais (nie) ou qui n'est
+// pas sur sa fiche -- jamais une qu'il fait, meme rarement
+const autresPour = (p, a) => ACTS().filter(b => b !== a && (!faitDe(p, b) || faitDe(p, b).freq === "nie"));
+const SORTE_VERBE = DE_APP ? ["spielen", "machen", "fahren"] : EN_APP ? ["play", "go", "ride", "take"] : ["jugar", "tocar", "hacer", "montar", "sacar"];
+
+// ---------- les exercices ----------
+// Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+const EX = {
+  // « ¿Qué hace Inés? » : la photo, la bonne phrase et deux phrases d'autres activites
+  quoi(w){
+    if (w && !estMotAct(w)) return false;
+    const a = hasard(actsPour(w)), p = quiFait(a);
+    viser(w, motAct(a));
+    const autres = melanger(autresPour(p, a));
+    // d'abord une activite du meme verbe (tocar el piano contre tocar la guitarra), puis de l'autre (jugar)
+    const meme = autres.filter(b => act(b).verbe === act(a).verbe), diff = autres.filter(b => act(b).sorte && act(b).sorte !== act(a).sorte);
+    const leurres = uniques(meme.slice(0, 1).concat(diff.slice(0, 1), autres)).slice(0, 2);
+    const bonne = P.fait(A_, p, a);
+    choixTrad = {}; leurres.forEach(b => choixTrad[P.fait(A_, p, b)] = {aff: P.fait(A_, p, b), sens: tr("fait", p, b) || glose(act(b).nom ? act(b).nom[0] : act(b).verbe)});
+    tradQ = tr("fait", p, a);
+    ecran(T("quoi"), photo(a), cible(P.qQuoi(A_, p)), true, true);
+    boutons($("choix"), melanger([bonne, ...leurres.map(b => P.fait(A_, p, b))]), bonne, ok => juger(ok, bonne));
+    return true;
+  },
+  // « Inés ___ la guitarra. » toca / juega / hace ; « Felix ___ Fußball. » spielt / macht / fährt
+  verbe(w){
+    if (w && !estMotAct(w)) return false;
+    const c = actsPour(w).filter(a => SORTE_VERBE.includes(act(a).sorte));
+    if (!c.length) return false;
+    const a = hasard(c), x = act(a), p = quiFait(a);
+    viser(w, w && w.cat === "verbe" ? motVerbe(a) : motAct(a));
+    const formes = DE_APP ? {spielen: "spielt", machen: "macht", fahren: "fährt"} : EN_APP ? {play: "plays", go: "goes", do: "does", ride: "rides", take: "takes", make: "makes"} : {jugar: "juega", tocar: "toca", hacer: "hace", montar: "monta", sacar: "saca"};
+    const autres = SORTE_VERBE.filter(s => s !== x.sorte);
+    // en espagnol, jugar et tocar sont toujours la : c'est la confusion du francais (jouer)
+    const leurres = DE_APP ? autres : EN_APP ? x.faux : uniques(autres.filter(s => s === "jugar" || s === "tocar").concat(melanger(autres))).slice(0, 2);
+    choixTrad = {}; leurres.forEach(s => choixTrad[formes[s]] = {aff: formes[s] + " (" + s + ")", sens: glose(s)});
+    tradQ = tr("fait", p, a);
+    ecran(T("verbe"), photo(a), avecTrou(nom(p) + " ___" + r(x.reste) + "."));
+    boutons($("choix"), melanger([x.v, ...leurres.map(s => formes[s])]), x.v, ok => { remplir(x.v); juger(ok, x.v, P.fait(A_, p, a)); });
+    return true;
+  },
+  // « Felix juega ___ fútbol. » al / el / a el ; « Inés toca ___ guitarra. » la / a la / al
+  art(w){
+    if (DE_APP || (w && !estMotAct(w))) return false;
+    const c = actsPour(w).filter(a => act(a).art);
+    if (!c.length) return false;
+    const a = hasard(c), x = act(a), p = quiFait(a);
+    viser(w, w && w.cat === "verbe" ? motVerbe(a) : motAct(a));
+    const opts = x.art === "al" ? ["al", "el", "a el"] : x.art === "la" ? ["la", "a la", "al"] : ["el", "al", "a el"];
+    choixTrad = {}; tradQ = tr("fait", p, a);
+    ecran(T("art"), photo(a), avecTrou(nom(p) + " " + x.v + " ___ " + x.nom[0] + "."));
+    boutons($("choix"), melanger(opts), x.art, ok => { remplir(x.art); juger(ok, x.art, P.fait(A_, p, a)); });
+    return true;
+  },
+  // la conjugaison : « Heinz ___. » liest / lest / lesen ; « Felix und Pablo ___ gern Fußball. » spielen / spielt ;
+  // « Felix ___ al fútbol. » juega / juegas / juga (u -> ue)
+  forme(w){
+    if (EN_APP) return formeEn(w);
+    if (w && !estMotAct(w)) return false;
+    const as = actsPour(w);
+    const pl = DE_APP ? paires().filter(x => x.gern && as.includes(x.a)) : [];
+    const deux = pl.length && Math.random() < 0.4;
+    const a = deux ? null : hasard(as);
+    const f = deux ? hasard(pl) : null, aa = deux ? f.a : a, x = act(aa), conj = D.formes[APPRENDRE][x.verbe];
+    viser(w, motVerbe(aa));
+    let image, enonce, bonne, juste, leurres;
+    if (deux){
+      image = fiche(f.ps, [[aa, true]]);
+      bonne = x.vpl; juste = P.aime(A_, f.ps, aa, true); tradQ = tr("aime", f.ps, aa, true);
+      enonce = et(A_, f.ps) + " ___ gern" + r(x.reste) + ".";
+      leurres = uniques([conj.er_sie_es, conj.du].filter(v => v !== bonne));
+    } else {
+      const p = quiFait(aa);
+      image = photo(aa); bonne = x.v; juste = P.fait(A_, p, aa); tradQ = tr("fait", p, aa);
+      enonce = nom(p) + " ___" + r(x.reste) + ".";
+      const cand = DE_APP ? [conj.ich, conj.wir, conj.ihr, conj.du] : [conj.du, x.verbe, conj.sie_Sie].concat(x.verbe === "jugar" ? ["juga"] : []);
+      leurres = melanger(uniques(cand.filter(v => v && v !== bonne)));
+      if (!DE_APP && x.verbe === "jugar") leurres = ["juga"].concat(leurres.filter(v => v !== "juga"));
+    }
+    leurres = leurres.slice(0, 2);
+    choixTrad = {};
+    ecran(T("forme"), image, avecTrou(enonce));
+    boutons($("choix"), melanger([bonne, ...leurres]), bonne, ok => { remplir(bonne); juger(ok, bonne, juste); });
+    return true;
+  },
+  // ESPAGNOL, aimer : (a) le pronom -- « A Heinz ___ gusta leer. » le / les / me ; (b) la phrase de la fiche --
+  // « A Felix no le gusta bailar. » contre le contraire et la faute (« A Felix no gusta bailar. »)
+  gusta(w){
+    if (DE_APP) return false;
+    if (w && !estAime(w) && !estMotAct(w)) return false;
+    const as = w && estMotAct(w) ? actsPour(w) : ACTS();
+    const pl = paires().filter(x => as.includes(x.a)), fs = faits().filter(f => as.includes(f.a));
+    const variante = !w || estAime(w) ? hasard(["pronom", "pronom", "phrase"]) : "phrase";
+    const deux = pl.length && Math.random() < 0.35;
+    const f = deux ? hasard(pl) : hasard(fs), ps = deux ? f.ps : [f.p], x = act(f.a);
+    viser(w, w && estMotAct(w) ? motAct(f.a) : motAime());
+    const juste = P.aime("es", ps, f.a, f.gern);
+    tradQ = tr("aime", ps, f.a, f.gern); choixTrad = {};
+    const image = fiche(ps, [[f.a, f.gern]]);
+    if (variante === "pronom"){
+      const bonne = deux ? "les" : "le";
+      ecran(T("ficheTrou"), image, avecTrou("A " + et("es", ps) + (f.gern ? "" : " no") + " ___ gusta " + x.inf + "."));
+      boutons($("choix"), melanger(deux ? ["les", "le", "se"] : ["le", "les", "me"]), bonne, ok => { remplir(bonne); juger(ok, bonne, juste); });
+    } else {
+      const contraire = P.aime("es", ps, f.a, !f.gern);
+      const faute = "A " + et("es", ps) + (f.gern ? "" : " no") + " gusta " + x.inf + ".";
+      choixTrad[contraire] = {aff: contraire, sens: tr("aime", ps, f.a, !f.gern)};
+      ecran(T("fichePhrase"), image, "", true, true);
+      $("zone").querySelector(".enonce").remove();
+      boutons($("choix"), melanger([juste, contraire, faute]), juste, ok => juger(ok, juste));
+    }
+    return true;
+  },
+  // ALLEMAND, l'ordre des mots : gern / nicht gern (la fiche) ou un adverbe de frequence (le calendrier), juste apres
+  // le verbe -- « Felix spielt oft Fußball. » contre « Felix oft spielt Fußball. » et une autre frequence
+  ordre(w){
+    if (!DE_APP) return false;
+    if (w && !estAime(w) && !estAdv(w) && !estMotAct(w)) return false;
+    let mode = estAime(w) ? "gern" : estAdv(w) ? "freq" : hasard(["gern", "freq"]);
+    const f = hasard(faitsPour(w)), x = act(f.a), n = nom(f.p);
+    choixTrad = {};
+    let image, juste, leurres;
+    if (mode === "gern"){
+      viser(w, w && estMotAct(w) ? motAct(f.a) : motAime());
+      image = fiche([f.p], [[f.a, f.gern]]);
+      juste = P.aime("de", [f.p], f.a, f.gern); tradQ = tr("aime", [f.p], f.a, f.gern);
+      const contraire = P.aime("de", [f.p], f.a, !f.gern);
+      choixTrad[contraire] = {aff: contraire, sens: tr("aime", [f.p], f.a, !f.gern)};
+      leurres = [contraire, n + (f.gern ? " gern " : " nicht gern ") + x.v + r(x.reste) + "."];
+    } else {
+      viser(w, w && estMotAct(w) ? motAct(f.a) : motAdv(f.freq));
+      image = calendrier(f.p, f.a, f.freq);
+      juste = P.freq("de", f.p, f.a, f.freq); tradQ = tr("freq", f.p, f.a, f.freq);
+      const loin = {immer: "nie", oft: "selten", manchmal: "immer", selten: "oft", nie: "immer"}[f.freq];
+      const autre = P.freq("de", f.p, f.a, loin);
+      choixTrad[autre] = {aff: autre, sens: tr("freq", f.p, f.a, loin)};
+      leurres = [autre, n + " " + f.freq + " " + x.v + r(x.reste) + "."];
+    }
+    ecran(T("fichePhrase"), image, "", true, true);
+    $("zone").querySelector(".enonce").remove();
+    boutons($("choix"), melanger([juste, ...leurres]), juste, ok => juger(ok, juste));
+    return true;
+  },
+  // la frequence : (a) le calendrier, « ¿Con qué frecuencia juega Felix al fútbol? » -> a menudo / siempre / nunca ;
+  // (b) la phrase, et trois calendriers de la meme personne
+  frequence(w){
+    if (w && !estAdv(w) && !estMotAct(w)) return false;
+    const f = hasard(faitsPour(w));
+    viser(w, w && estMotAct(w) ? motAct(f.a) : motAdv(f.freq));
+    const juste = P.freq(A_, f.p, f.a, f.freq); tradQ = tr("freq", f.p, f.a, f.freq);
+    const autres = melanger(D.freq.filter(q => q !== f.freq)).slice(0, 2);
+    choixTrad = {}; autres.forEach(q => choixTrad[D.adv[APPRENDRE][q]] = {aff: D.adv[APPRENDRE][q], sens: glose(D.adv[APPRENDRE][q])});
+    if (Math.random() < 0.6){
+      ecran(T("freq"), calendrier(f.p, f.a, f.freq), cible(P.qFreq(A_, f.p, f.a)), true);
+      boutons($("choix"), melanger([f.freq, ...autres].map(q => D.adv[APPRENDRE][q])), D.adv[APPRENDRE][f.freq], ok => juger(ok, D.adv[APPRENDRE][f.freq], juste));
+    } else {
+      autres.forEach(q => choixTrad[q] = {aff: P.freq(A_, f.p, f.a, q), sens: tr("freq", f.p, f.a, q) || glose(D.adv[APPRENDRE][q])});
+      $("zone").innerHTML = '<p class="consigne">' + T("freqCal") + '</p><div class="cal"><div class="tete">' + imgVisage(f.p) + picto(f.a) + '</div></div>'
+        + '<div class="enonce centre">' + cible(juste) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+      aToucher($("rang"), melanger([f.freq, ...autres]), q => '<div class="cal">' + grille(q) + '</div>', f.freq, ok => juger(ok, juste, juste));
+    }
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT, l'article : « Felix plays soccer. » (un jeu de balle, sans article) contre « plays the
+  // soccer » et « plays at the soccer » (le calque de « au ») ; « Inés plays the guitar. » contre « plays of the
+  // guitar » (« de la ») et « plays to the guitar » ; « Tomás rides a bike. » contre « rides bike », « rides on bike ».
+  // Jamais « plays guitar » comme faute : l'americain le dit (la note « Bon a savoir »).
+  article(w){
+    if (!EN_APP || (w && !estMotAct(w))) return false;
+    const c = actsPour(w).filter(a => act(a).jeu || act(a).inst || act(a).velo);
+    if (!c.length) return false;
+    const a = hasard(c), x = act(a), p = quiFait(a), n = nom(p), objet = x.reste.replace(/^(the|a) /, "");
+    viser(w, w && w.cat === "verbe" ? motVerbe(a) : motAct(a));
+    const juste = PE.fait(p, a);
+    const fautes = x.jeu ? [n + " plays the " + objet + ".", n + " plays at the " + objet + "."]
+                 : x.inst ? [n + " plays of the " + objet + ".", n + " plays to the " + objet + "."]
+                 : [n + " rides " + objet + ".", n + " rides on " + objet + "."];
+    choixTrad = {}; tradQ = tr("fait", p, a);
+    ecran(T("article"), photo(a), "", true, true);
+    $("zone").querySelector(".enonce").remove();
+    boutons($("choix"), melanger([juste, ...fautes]), juste, ok => juger(ok, juste));
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT, aimer + -ing : la fiche et « Heinz likes ___. » -- reading / read / to reading ; « Felix
+  // doesn't enjoy ___. » -- dancing / to dance / to dancing. « to + verbe » n'est une faute qu'apres enjoy (I like to
+  // dance est juste) ; la base n'en est pas une quand elle est aussi un nom (I like dance) ; le -s non plus quand il fait
+  // un pluriel (« likes cooks », les cuisiniers).
+  ing(w){
+    if (!EN_APP || (w && !estAime(w) && !estMotAct(w))) return false;
+    const verbes = estAime(w) ? [w.mot] : AIME_EN;
+    const fautesDe = (a, v) => { const x = act(a), l = [];
+      if (!x.nomAussi) l.push(nuEn(x));
+      if (x.reste || a === "cantar") l.push(x.v + r(x.reste));
+      if (v === "enjoy") l.push("to " + nuEn(x));
+      l.push("to " + gerEn(x));
+      return uniques(l); };
+    const combos = [];
+    faitsPour(estMotAct(w) ? w : null).forEach(f => verbes.forEach(v => { if ((f.gern || v !== "love") && fautesDe(f.a, v).length >= 2) combos.push({f, v}); }));
+    if (!combos.length) return false;
+    const {f, v} = hasard(combos), x = act(f.a), n = nom(f.p);
+    viser(w, w && estMotAct(w) ? motAct(f.a) : motAime(f.gern || v === "enjoy" ? v : "like"));
+    const juste = PE.aime([f.p], f.a, f.gern, v), bonne = gerEn(x);
+    const debut = f.gern ? n + " " + v + "s" : n + " doesn't " + (v === "enjoy" ? "enjoy" : "like");
+    tradQ = tr("aime", [f.p], f.a, f.gern, v); choixTrad = {};
+    ecran(T("ficheTrou"), fiche([f.p], [[f.a, f.gern]]), avecTrou(debut + " ___."));
+    const leurres = melanger(fautesDe(f.a, v)).slice(0, 2);
+    boutons($("choix"), melanger([bonne, ...leurres]), bonne, ok => { remplir(bonne); juger(ok, bonne, juste); });
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT, How often...? : le calendrier, et la reponse en mots -- Every day. / Four times a week. /
+  // Twice a week. / Once a month. / Never. Le mot vise : l'activite, ou once / twice.
+  howOften(w){
+    if (!EN_APP || (w && !estFois(w) && !estMotAct(w))) return false;
+    const f = hasard(faitsPour(estFois(w) || estMotAct(w) ? w : null));
+    viser(w, motAct(f.a));
+    if (!w && f.freq === "selten" && Math.random() < 0.5) motQ = {mot: "once", genre: null, cat: "adverbe"};
+    if (!w && f.freq === "manchmal" && Math.random() < 0.5) motQ = {mot: "twice", genre: null, cat: "adverbe"};
+    const rep = q => PE.fois[q].charAt(0).toUpperCase() + PE.fois[q].slice(1) + ".";
+    const autres = melanger(D.freq.filter(q => q !== f.freq)).slice(0, 2);
+    const juste = PE.phraseFois(f.p, f.a, f.freq); tradQ = tr("phraseFois", f.p, f.a, f.freq);
+    choixTrad = {}; autres.forEach(q => choixTrad[rep(q)] = {aff: rep(q), sens: FOIS_FR[q]});
+    ecran(T("howOften"), calendrier(f.p, f.a, f.freq), cible(PE.qFreq(f.p, f.a)), true);
+    boutons($("choix"), melanger([f.freq, ...autres].map(rep)), rep(f.freq), ok => juger(ok, rep(f.freq), juste));
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT, la place de l'adverbe : juste avant le verbe (« Felix often plays soccer. »). Les fautes :
+  // entre le verbe et ce qui suit (« plays often soccer ») ; en tete pour always, rarely, never (« Never Javier
+  // dances. ») ; en fin de phrase pour always et never. Jamais sometimes ou often en tete ou a la fin : c'est juste.
+  placeAdv(w){
+    if (!EN_APP || (w && !estAdv(w) && !estMotAct(w))) return false;
+    const fautesDe = f => { const x = act(f.a), n = nom(f.p), A = D.adv.en[f.freq], l = [];
+      if (x.reste) l.push(n + " " + x.v + " " + A + " " + x.reste + ".");
+      if (["immer", "selten", "nie"].includes(f.freq)) l.push(A.charAt(0).toUpperCase() + A.slice(1) + " " + n + " " + x.v + r(x.reste) + ".");
+      if (["immer", "nie"].includes(f.freq)) l.push(n + " " + x.v + r(x.reste) + " " + A + ".");
+      return uniques(l); };
+    const cands = faitsPour(w).filter(f => fautesDe(f).length);
+    if (!cands.length) return false;
+    const f = hasard(cands);
+    viser(w, w && estMotAct(w) ? motAct(f.a) : motAdv(f.freq));
+    const juste = PE.freq(f.p, f.a, f.freq); tradQ = tr("freq", f.p, f.a, f.freq); choixTrad = {};
+    ecran(T("placeAdv"), calendrier(f.p, f.a, f.freq), "", true, true);
+    $("zone").querySelector(".enonce").remove();
+    boutons($("choix"), melanger([juste, ...melanger(fautesDe(f)).slice(0, 2)]), juste, ok => juger(ok, juste));
+    return true;
+  },
+  // la phrase, et quatre photos : une seule la montre
+  cual(w){
+    if (w && !estMotAct(w)) return false;
+    const a = hasard(actsPour(w)), p = quiFait(a);
+    viser(w, motAct(a));
+    const juste = P.fait(A_, p, a); tradQ = tr("fait", p, a);
+    const autres = melanger(ACTS().filter(b => b !== a));
+    const proches = autres.filter(b => act(b).verbe === act(a).verbe || act(b).sorte === act(a).sorte);
+    choixTrad = {}; autres.forEach(b => choixTrad[b] = {aff: P.fait(A_, quiFait(b), b), sens: tr("fait", quiFait(b), b)});
+    $("zone").innerHTML = '<p class="consigne">' + T("cual") + '</p><div class="enonce centre">' + cible(juste) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    aToucher($("rang"), melanger([a, ...uniques(proches.slice(0, 1).concat(autres)).slice(0, 3)]), vignette, a, ok => juger(ok, juste, juste), true);
+    return true;
+  },
+  // l'ecoute : la phrase dite, trois photos
+  entendre(w){
+    if (w && !estMotAct(w)) return false;
+    const a = hasard(actsPour(w)), p = quiFait(a);
+    viser(w, motAct(a));
+    const juste = P.fait(A_, p, a); tradQ = tr("fait", p, a);
+    const autres = melanger(ACTS().filter(b => b !== a)).slice(0, 2);
+    choixTrad = {}; autres.forEach(b => choixTrad[b] = {aff: P.fait(A_, quiFait(b), b), sens: tr("fait", quiFait(b), b)});
+    $("zone").innerHTML = '<p class="consigne">' + T("entendre") + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
+      + '<div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    $("ecoute").addEventListener("click", () => dire(juste));
+    aToucher($("rang"), melanger([a, ...autres]), vignette, a, ok => juger(ok, juste, juste), true);
+    dire(juste);
+    return true;
+  },
+  // vrai ou faux : la photo (ce qu'il fait), la fiche (ce qu'il aime) ou le calendrier (combien de fois)
+  vraifaux(w){
+    const modes = !w ? ["photo", "fiche", "cal"].concat(EN_APP ? ["fois"] : []) : estFois(w) ? ["fois"] : estAime(w) ? ["fiche"] : estAdv(w) ? ["cal"] : estMotAct(w) ? ["photo", "fiche", "cal"].concat(EN_APP ? ["fois"] : []) : [];
+    if (!modes.length) return false;
+    const mode = hasard(modes), vrai = Math.random() < 0.5;
+    let image, phrase, juste;
+    if (mode === "photo"){
+      const a = hasard(actsPour(w)), p = quiFait(a);
+      // le faux : une activite qu'il n'aime pas ou qui n'est pas sur sa fiche, jamais une qu'il fait aussi
+      const b = hasard(autresPour(p, a));
+      viser(w, motAct(a));
+      image = photo(a); juste = P.fait(A_, p, a); phrase = vrai ? juste : P.fait(A_, p, b); tradQ = tr("fait", p, a);
+    } else if (mode === "fiche"){
+      const f = hasard(faitsPour(w));
+      viser(w, w && estMotAct(w) ? motAct(f.a) : motAime());
+      image = fiche([f.p], [[f.a, f.gern]]); juste = P.aime(A_, [f.p], f.a, f.gern, vAime(w));
+      phrase = vrai ? juste : P.aime(A_, [f.p], f.a, !f.gern, vAime(w)); tradQ = tr("aime", [f.p], f.a, f.gern, vAime(w));
+    } else if (mode === "fois"){
+      // L'ANGLAIS : « Felix takes photos twice a week. » -- le calendrier, et le faux une autre reponse a How often
+      const cands = faitsPour(w).filter(x => x.freq !== "nie");
+      if (!cands.length) return false;
+      const f = hasard(cands);
+      viser(w, motAct(f.a));
+      if (!w && FOIS_EN.once === f.freq) motQ = {mot: "once", genre: null, cat: "adverbe"};
+      if (!w && FOIS_EN.twice === f.freq) motQ = {mot: "twice", genre: null, cat: "adverbe"};
+      const q2 = hasard(D.freq.filter(q => q !== f.freq && q !== "nie"));
+      image = calendrier(f.p, f.a, f.freq); juste = PE.phraseFois(f.p, f.a, f.freq);
+      phrase = vrai ? juste : PE.phraseFois(f.p, f.a, q2); tradQ = tr("phraseFois", f.p, f.a, f.freq);
+    } else {
+      const f = hasard(faitsPour(w));
+      viser(w, w && estMotAct(w) ? motAct(f.a) : motAdv(f.freq));
+      const q2 = hasard(D.freq.filter(q => q !== f.freq));
+      image = calendrier(f.p, f.a, f.freq); juste = P.freq(A_, f.p, f.a, f.freq);
+      phrase = vrai ? juste : P.freq(A_, f.p, f.a, q2); tradQ = tr("freq", f.p, f.a, f.freq);
+    }
+    choixTrad = {};
+    ecran(T("vraifaux"), image, cible(phrase), true);
+    const V = DE_APP ? "Richtig" : EN_APP ? "True" : "Verdadero", F = DE_APP ? "Falsch" : EN_APP ? "False" : "Falso", rep = vrai ? V : F;
+    boutons($("choix"), [V, F], rep, ok => juger(ok, rep, juste));
+    return true;
+  },
+  // proposer : la photo de l'activite, la phrase correcte et deux fautes de construction (pas de traduction : elles
+  // ne veulent rien dire). ¿Quieres + infinitif? ¿Vamos a + infinitif? ; Hast du Lust, … zu …? Wollen wir …?
+  proposer(w){
+    if (EN_APP) return proposerEn(w);
+    if (w && !estPropose(w) && !estMotAct(w)) return false;
+    const a = hasard(actsPour(estMotAct(w) ? w : null)), x = act(a), conj = D.formes[APPRENDRE][x.verbe];
+    const f = estPropose(w) ? 0 : hasard([0, 1]);
+    viser(w, estPropose(w) ? motPropose() : (w ? motAct(a) : (f === 0 ? motPropose() : motAct(a))));
+    const juste = P.propose(A_, a, f); tradQ = tr("propose", a, f, APPRENDRE);
+    let leurres;
+    if (!DE_APP) leurres = f ? ["¿Vamos " + x.inf + "?", "¿Vamos a " + conj.wir + r(x.reste) + "?"] : ["¿Quieres " + conj.du + r(x.reste) + "?", "¿Quieres a " + x.inf + "?"];
+    else if (f) leurres = x.reste ? ["Wollen wir " + x.reste + " zu " + x.inf + "?", "Wollen wir " + x.inf + " " + x.reste + "?"] : ["Wollen wir zu " + x.inf + "?", "Wollen wir " + x.v + "?"];
+    else leurres = x.reste ? ["Hast du Lust, " + x.reste + " " + x.inf + "?", "Hast du Lust, zu " + x.reste + " " + x.inf + "?"] : ["Hast du Lust " + x.inf + "?", "Hast du Lust zu " + x.v + "?"];
+    choixTrad = {};
+    ecran(T("proposer"), photo(a), "", true, true);
+    $("zone").querySelector(".enonce").remove();
+    boutons($("choix"), melanger([juste, ...leurres]), juste, ok => juger(ok, juste));
+    return true;
+  },
+  // repondre : la fiche de la personne et une proposition ; elle repond oui ou non selon ♥ ou ✗
+  repondre(w){
+    if (EN_APP) return repondreEn(w);
+    if (w && !estAime(w) && !estMotAct(w) && !estPropose(w)) return false;
+    const f = hasard(faitsPour(estPropose(w) ? null : w)), x = act(f.a), conj = D.formes[APPRENDRE][x.verbe], sexe = D.personnes[f.p].sexe;
+    const pf = estPropose(w) ? 0 : hasard([0, 1]);
+    viser(w, w && estMotAct(w) ? motAct(f.a) : estPropose(w) ? motPropose() : motAime());
+    const juste = P.repond(A_, f.a, f.gern, sexe), contraire = P.repond(A_, f.a, !f.gern, sexe);
+    tradQ = tr("repond", f.a, f.gern, sexe);
+    let faute;
+    if (DE_APP) faute = f.gern ? "Ja, gern! Ich gern " + x.ich + r(x.reste) + "." : "Nein, danke. Ich nicht gern " + x.ich + r(x.reste) + ".";
+    else faute = f.gern ? "¡Sí, claro! Me gusto mucho " + x.inf + "." : "No, gracias. No gusta " + x.inf + ".";
+    choixTrad = {}; choixTrad[contraire] = {aff: contraire, sens: tr("repond", f.a, !f.gern, sexe)};
+    ecran(T("repondre", {n: nom(f.p)}), fiche([f.p], [[f.a, f.gern]]),
+      '<span class="dialogue">' + T("ami") + ' :</span>' + cible(P.propose(A_, f.a, pf)), false, true);
+    boutons($("choix"), melanger([juste, contraire, faute]), juste, ok => juger(ok, juste));
+    return true;
+  }
+};
+// L'ANGLAIS, la conjugaison : (a) la photo, « Felix ___ soccer. » plays / play / playing -- le -s de he et she ;
+// (b) deux personnes, « Felix and Pablo ___ playing soccer. » like / likes / liking, ou don't like / doesn't like /
+// not like ; (c) une personne et un ✗, « Felix ___ dancing. » doesn't like / don't like / not like.
+function formeEn(w){
+  if (w && !estMotAct(w) && !(estAime(w) && w.mot === "like")) return false;
+  const as = estMotAct(w) ? actsPour(w) : ACTS();
+  const pl = paires().filter(x => as.includes(x.a)), non = faits().filter(f => !f.gern && as.includes(f.a));
+  const modes = (w && !estMotAct(w) ? [] : ["photo", "photo"]).concat(pl.length ? ["deux"] : [], non.length ? ["non"] : []);
+  if (!modes.length) return false;
+  const mode = hasard(modes);
+  let image, enonce, bonne, juste, leurres;
+  if (mode === "photo"){
+    const a = hasard(as), x = act(a), p = quiFait(a);
+    viser(w, motVerbe(a));
+    image = photo(a); bonne = x.v; juste = PE.fait(p, a); tradQ = tr("fait", p, a);
+    enonce = nom(p) + " ___" + r(x.reste) + ".";
+    leurres = [x.b, x.ing];
+  } else if (mode === "deux"){
+    const f = hasard(pl);
+    viser(w, w && estMotAct(w) ? motAct(f.a) : motAime("like"));
+    image = fiche(f.ps, [[f.a, f.gern]]); juste = PE.aime(f.ps, f.a, f.gern); tradQ = tr("aime", f.ps, f.a, f.gern);
+    enonce = PE.sujet(f.ps) + " ___ " + gerEn(act(f.a)) + ".";
+    bonne = f.gern ? "like" : "don't like"; leurres = f.gern ? ["likes", "liking"] : ["doesn't like", "not like"];
+  } else {
+    const f = hasard(non);
+    viser(w, w && estMotAct(w) ? motAct(f.a) : motAime("like"));
+    image = fiche([f.p], [[f.a, false]]); juste = PE.aime([f.p], f.a, false); tradQ = tr("aime", [f.p], f.a, false);
+    enonce = nom(f.p) + " ___ " + gerEn(act(f.a)) + ".";
+    bonne = "doesn't like"; leurres = ["don't like", "not like"];
+  }
+  choixTrad = {};
+  ecran(T("formeEn"), image, avecTrou(enonce));
+  boutons($("choix"), melanger([bonne, ...leurres]), bonne, ok => { remplir(bonne); juger(ok, bonne, juste); });
+  return true;
+}
+// L'ANGLAIS, proposer : la photo, la phrase correcte et deux fautes de construction (pas de traduction : elles ne
+// veulent rien dire). Do you want TO play...? Let's play...! (sans to) How about playING...? Why don't we play...?
+function proposerEn(w){
+  if (w && !estPropose(w) && !estMotAct(w)) return false;
+  const a = hasard(actsPour(estMotAct(w) ? w : null)), x = act(a), nu = nuEn(x), ing = x.ing + r(x.reste);
+  const f = estPropose(w) ? 0 : hasard([0, 1, 2, 3]);
+  viser(w, estPropose(w) ? motPropose() : (w ? motAct(a) : (f === 0 ? motPropose() : motAct(a))));
+  const juste = PE.propose(a, f); tradQ = tr("propose", a, f);
+  const leurres = [["Do you want " + nu + "?", "Do you want " + ing + "?"],
+                   ["Let's to " + nu + "!", "Let's " + ing + "!"],
+                   ["How about " + nu + "?", "How about to " + nu + "?"],
+                   ["Why we don't " + nu + "?", "Why don't we to " + nu + "?"]][f];
+  choixTrad = {};
+  ecran(T("proposer"), photo(a), "", true, true);
+  $("zone").querySelector(".enonce").remove();
+  boutons($("choix"), melanger([juste, ...leurres]), juste, ok => juger(ok, juste));
+  return true;
+}
+// L'ANGLAIS, repondre : la fiche et une proposition d'un ami ; « Sure! I love playing tennis. » ou « No, thanks. I
+// don't like dancing. » selon ♥ ou ✗. Les leurres : la reponse contraire, et une faute (« I love play tennis », le
+// verbe sans -ing ; ou, quand la base est aussi un nom, « I loves dancing », « I doesn't like dancing »).
+function repondreEn(w){
+  if (w && !estAime(w) && !estMotAct(w) && !estPropose(w)) return false;
+  const f = hasard(faitsPour(estPropose(w) ? null : w)), x = act(f.a), sexe = D.personnes[f.p].sexe;
+  const pf = estPropose(w) ? 0 : hasard([0, 1, 2, 3]);
+  // le verbe de la reponse : celui du mot vise ; sinon love ou like pour un oui, like pour un non
+  const v = estAime(w) ? w.mot : f.gern ? hasard(["love", "like"]) : "like";
+  viser(w, w && estMotAct(w) ? motAct(f.a) : estPropose(w) ? motPropose() : motAime(v));
+  const juste = PE.repond(f.a, f.gern, pf, v), contraire = PE.repond(f.a, !f.gern, pf, v);
+  tradQ = tr("repond", f.a, f.gern, sexe, pf, v);
+  const debut = juste.slice(0, juste.indexOf(" I ") + 3), suite = juste.slice(debut.length);   // « Sure! I » / « love playing tennis. »
+  const faute = !x.nomAussi ? juste.replace(gerEn(x), nuEn(x))
+              : f.gern ? debut + suite.replace(/^(really like|love|like|enjoy) /, (m, z) => z.replace(/(\w+)$/, "$1s") + " ")
+              : juste.replace("I don't", "I doesn't");
+  choixTrad = {}; choixTrad[contraire] = {aff: contraire, sens: tr("repond", f.a, !f.gern, sexe, pf, v)};
+  ecran(T("repondre", {n: nom(f.p)}), fiche([f.p], [[f.a, f.gern]]),
+    '<span class="dialogue">' + T("ami") + ' :</span>' + cible(PE.propose(f.a, pf)), false, true);
+  boutons($("choix"), melanger([juste, contraire, faute]), juste, ok => juger(ok, juste));
+  return true;
+}
+// les sortes de la langue apprise
+const SORTES = DE_APP ? ["quoi", "verbe", "forme", "ordre", "frequence", "cual", "entendre", "vraifaux", "proposer", "repondre"]
+             // l'anglais : sans art (al / el) ni gusta (le pronom) ; avec article (play soccer, play the guitar), ing (like +
+             // -ing), placeAdv (la place de l'adverbe), howOften (every day, twice a week...)
+             : EN_APP ? ["quoi", "verbe", "article", "forme", "ing", "frequence", "howOften", "placeAdv", "cual", "entendre", "vraifaux", "proposer", "repondre"]
+                      : ["quoi", "verbe", "art", "forme", "gusta", "frequence", "cual", "entendre", "vraifaux", "proposer", "repondre"];
+
+// ---------- la decouverte : les activites, aimer et la frequence, proposer ----------
+function decouvrir(){
+  $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone");
+  z.innerHTML = '<div class="onglets" role="tablist"><button type="button" id="o1" role="tab">' + T("ongletAct") + '</button><button type="button" id="o2" role="tab">'
+    + T("ongletAime") + '</button><button type="button" id="o3" role="tab">' + T("ongletProp") + '</button></div><div id="volet"></div>';
+  let phraseDite = "";
+  const ligneDite = (texte, trad) => { phraseDite = texte; $("dit").innerHTML = cible(texte) + traduction(trad); };
+  const bandeau = () => '<div class="dit"><div class="texte" id="dit"></div><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>';
+  const ecouteur = () => $("ecoute").addEventListener("click", () => dire(phraseDite));
+  const onglet = i => ["o1", "o2", "o3"].forEach((o, k) => $(o).classList.toggle("actif", k === i));
+  // les activites : la grande photo, la phrase, les quinze vignettes
+  const activites = () => {
+    onglet(0);
+    $("volet").innerHTML = '<p class="consigne">' + T("introAct") + '</p><div id="grand"></div>' + bandeau() + '<div class="vignettes" id="vign"></div><p class="regle">' + regle("regleAct") + '</p>'
+      + (EN_APP ? '<p class="regle">' + T(GB ? "bonGb" : "bonUs") + '</p>' : "");
+    ecouteur();
+    const montrerAct = a => { $("grand").innerHTML = photo(a); ligneDite(P.fait(A_, quiFait(a), a), tr("fait", quiFait(a), a)); };
+    ACTS().forEach(a => {
+      const b = document.createElement("button"); b.type = "button"; b.innerHTML = vignette(a);
+      b.addEventListener("click", () => { $("vign").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b)); montrerAct(a); dire(phraseDite); });
+      $("vign").appendChild(b);
+    });
+    montrerAct(ACTS()[0]); $("vign").firstChild.classList.add("choisi");
+  };
+  // aimer et la frequence : les visages, la fiche, le calendrier de la ligne touchee ; l'echelle des cinq adverbes
+  const aimer = () => {
+    onglet(1);
+    $("volet").innerHTML = '<p class="consigne">' + T("introAime") + '</p><div class="visages" id="vis"></div><div id="laFiche"></div><div id="leCal"></div>' + bandeau()
+      + '<p class="regle">' + regle("regleAime") + '</p><p class="regle">' + regle("regleFreq") + '</p><div class="echelle" id="echelle"></div>';
+    ecouteur();
+    $("echelle").innerHTML = D.freq.map(q => '<div><span lang="' + APPRENDRE + '" dir="ltr">' + D.adv[APPRENDRE][q] + '</span>' + (EN_APP && q !== "nie" ? '<br><span lang="en" dir="ltr" style="font-weight:600">' + PE.fois[q] + '</span>' : "") + grille(q) + '</div>').join("");
+    const montrerLigne = (p, f) => {
+      $("laFiche").querySelectorAll(".ligne").forEach(l => l.classList.toggle("choisi", l.dataset.a === f.a));
+      $("leCal").innerHTML = '<div class="cal">' + grille(f.freq) + '</div>';
+      const t = P.aime(A_, [p], f.a, f.gern) + " " + P.freq(A_, p, f.a, f.freq);
+      const tt = PHRASE_TRADUITE ? tr("aime", [p], f.a, f.gern) + " " + tr("freq", p, f.a, f.freq) : null;
+      ligneDite(t, tt);
+    };
+    const montrerPers = p => {
+      $("vis").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x.dataset.p === p));
+      $("laFiche").innerHTML = fiche([p], D.fiches[p].map(f => [f.a, f.gern]));
+      // chaque ligne de la fiche se fait entendre quand on la touche : son haut-parleur au bout (Jacques, 5 nov.)
+      $("laFiche").querySelectorAll(".ligne").forEach(l => {
+        l.insertAdjacentHTML("beforeend", hpLigne()); l.setAttribute("role", "button"); l.tabIndex = 0;
+        l.setAttribute("aria-label", T("ecouter"));
+        const jouer = () => { allumer(l); montrerLigne(p, faitDe(p, l.dataset.a)); dire(phraseDite); };
+        l.addEventListener("click", jouer);
+        l.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); jouer(); } });
+      });
+      montrerLigne(p, faitDe(p, D.fiches[p][0].a));
+    };
+    PERS().forEach(p => {
+      const b = document.createElement("button"); b.type = "button"; b.dataset.p = p; b.innerHTML = '<img alt="' + nom(p) + '" src="' + visage(p) + '">';
+      b.addEventListener("click", () => { montrerPers(p); dire(phraseDite); });
+      $("vis").appendChild(b);
+    });
+    montrerPers(PERS()[0]);
+  };
+  // proposer : des dialogues faits depuis les fiches (une proposition, la reponse de la personne selon sa fiche)
+  const proposer = () => {
+    onglet(2);
+    $("volet").innerHTML = '<p class="consigne">' + T("introProp") + '</p><p class="regle">' + regle("regleProp") + '</p>' + bandeau() + '<div class="dialogues" id="dial"></div>';
+    ecouteur();
+    const exemples = EN_APP ? [["Rosa", "tenis", 0], ["Felix", "bailar", 1], ["Ines", "cantar", 2], ["Heinz", "baloncesto", 3], ["Elena", "bailar", 1], ["Tomas", "piano", 2]]
+                            : [["Rosa", "tenis", 0], ["Felix", "bailar", 1], ["Ines", "cantar", 0], ["Heinz", "baloncesto", 0], ["Elena", "bailar", 1], ["Tomas", "piano", 1]];
+    exemples.forEach(([p, a, pf]) => {
+      const f = faitDe(p, a), sexe = D.personnes[p].sexe;
+      const q = P.propose(A_, a, pf), rep = P.repond(A_, a, f.gern, sexe, pf);
+      [[q, tr("propose", a, pf, APPRENDRE), null], [rep, tr("repond", a, f.gern, sexe, pf), p]].forEach(([t, tt, qui]) => {
+        const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE;
+        b.innerHTML = (qui ? imgVisage(qui).replace('class="visage"', 'class="visage" style="width:34px;height:34px"') : picto(a)) + '<span class="dit-l">' + t + '</span>' + hpLigne();
+        b.setAttribute("aria-label", T("ecouter") + " : " + t);
+        b.addEventListener("click", () => { $("dial").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b)); allumer(b); ligneDite(t, tt); dire(t); });
+        $("dial").appendChild(b);
+      });
+    });
+    const premier = exemples[0];
+    ligneDite(P.propose(A_, premier[1], premier[2]), tr("propose", premier[1], premier[2], APPRENDRE));
+  };
+  $("o1").addEventListener("click", activites); $("o2").addEventListener("click", aimer); $("o3").addEventListener("click", proposer);
+  activites();
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; taire(); demarrer(); };
+}
+// ce que la page peut dire hors des parties (visuel/voix_themes.py) : les phrases de la decouverte
+function textesAVoix(){
+  const t = [];
+  if (!["es", "de", "en"].includes(Q.get("apprendre") || "es")) return t;
+
+  ACTS().forEach(a => t.push(P.fait(A_, quiFait(a), a)));
+  faits().forEach(f => t.push(P.aime(A_, [f.p], f.a, f.gern) + " " + P.freq(A_, f.p, f.a, f.freq)));
+  ACTS().forEach(a => (EN_APP ? [0, 1, 2, 3] : [0, 1]).forEach(pf => t.push(P.propose(A_, a, pf))));
+  return uniques(t);
+}
+
+// LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : la file des MOTS vient de l'app (Tirage.plan : les dus,
+// les rates recents, puis au plus NEUFS_MAX nouveaux) ; chaque mot recoit une question d'une sorte qui le vise,
+// jamais la meme sorte deux fois de suite, jamais deux fois la meme question. Rate, il revient plus loin.
+// Recopie de familia.html (visuel/THEMES-ILLUSTRES.md : ces fonctions sont identiques d'un theme a l'autre).
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  // la bonne reponse en fait partie (les sortes sans enonce : la phrase a choisir) ; les leurres non : la meme
+  // question avec d'autres leurres n'en est pas une nouvelle
+  const j = z.querySelector("#choix button[data-bon], #rang button[data-bon]");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + (j ? (j.dataset.id || j.textContent) : "")
+    + "|" + Array.from(z.querySelectorAll(".photo img, .fiche img, .cal .tete img")).map(i => i.getAttribute("src")).sort().join(",")
+    + "|" + Array.from(z.querySelectorAll(".fiche .ligne, .cal .tete .picto")).map(l => l.dataset.a || l.innerHTML.length).join(",")
+    + "|" + (z.querySelector("#rang") ? "r" : z.querySelectorAll(".grille span.on").length);
+}
+function montrer(){
+  taire();   // la phrase de la reponse d'avant ne passe jamais sur la question suivante (Jacques, 5 nov.)
+  repondu = false; $("suite").hidden = true; $("bas").hidden = true;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
+  // Si ce mot ne le permet pas, un mot plus loin dans la file passe devant ;
+  // en dernier recours seulement, la meme sorte, puis une question deja vue.
+  // (l'ecoute parle a chaque essai : on la fait taire pendant qu'on cherche, elle parle une fois choisie)
+  const garde = dire; dire = () => {};
+  const raz = so => { motQ = null; tradQ = null; choixQ = null; choixTrad = {}; sorteCourante = so; };
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let n = 0; n < 25; n++){
+        raz(so);
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
+      raz(derniereSorte);
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
+      raz(so);
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+  }
+  if (!fait) fait = essai(file[rang], false);
+  dire = garde;
+  if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
+  vus.add(cleQuestion()); derniereSorte = fait;
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>';
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
+}
+// plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + '</div>';
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+// « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+function basDePartie(){
+  const b = $("bas"); b.innerHTML = boutonEncore() + '<button type="button" class="principal" id="terminer">' + T("terminer") + '</button>'; b.hidden = false;
+  const e = $("encore"); if (e) e.addEventListener("click", () => { b.hidden = true; encoreDesQuestions(); });
+}
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("loisirs/loisirs.json?v=1").then(r => r.json()).then(d => {
+  D = d;
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>

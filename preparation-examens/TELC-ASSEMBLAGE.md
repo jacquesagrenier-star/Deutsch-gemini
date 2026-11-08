@@ -22,8 +22,8 @@ Tout vit dans `visuel/prototype/telc/`.
 | `telc-commun.js` | `textesTelc()`, `champTelc()`, `TELC.epreuve()`, `niveauTelc()`, les textes communs en anglais | assemblage — **ne pas toucher** |
 | `sprachbausteine.js`, `donnees/sprachbausteine.json` | SB, le modèle à suivre | assemblage ; la **relecture** est à telc-lire, qui corrige directement `donnees/sprachbausteine.json` |
 | `lesen.js`, `donnees/lesen.json` | L, Lesen Teile 1-4 (items 1-18) | **telc-lire** (`local_6ceacc3e…`) |
-| `lesen-schreiben.js`, `donnees/lesen-schreiben.json` | LS, le courriel reçu (items 29-30) puis le courriel à écrire (31) | **telc-ecrire** (`local_836e50e6…`) |
-| `schreiben.js`, `donnees/schreiben.json` | S, la réponse courte (57) et les critères II-IV de l'écrit | **telc-ecrire** |
+| `schreiben.js`, `donnees/schreiben.json` | LS, le courriel reçu (items 29-30) puis le courriel à écrire (31), ET S (voir la ligne suivante) | **telc-ecrire** (`local_836e50e6…`), fait le 6 nov. (da5e8ae) |
+| (même fichier) | S, la réponse courte (57) et les critères II-IV de l'écrit | **telc-ecrire** |
 | `hoeren.js`, `donnees/hoeren.json` | H, Hören Teile 1-4 (items 32-51) | **telc-ecouter** (`local_5c7a4eaa…`) |
 | `hoeren-schreiben.js`, `donnees/hoeren-schreiben.json` | HS, les 5 messages de répondeur à noter (52-56) | **telc-ecouter** |
 | `sprechen.js` + `oral.html` | Sp : `sprechen.js` s'inscrit comme partie et ouvre `oral.html` | **telc-parler-blanc** (`local_fe22d1c6…`) |

@@ -17,10 +17,12 @@ fiebre), les silhouettes en pied et les visages de Decrire pour toucher le corps
 LA SEULE SOURCE DES MOTS : la page lit cuerpo.json (questions et decouverte) et en fabrique toutes ses phrases.
 Originaux hors du depot et de OneDrive : C:/Users/jacqu/.wortando/cuerpo/img/.
 """
-import io, json, os, sys, time
+import io, json, os, shutil, sys, time
 sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
+sys.path.insert(0, os.path.dirname(ICI))
+import personnes as PERS                                     # noqa: E402 -- la fiche commune (6 nov. 2026)
 
 EDIT, PRIX = "fal-ai/nano-banana-pro/edit", 0.15
 DOSSIER = os.path.join(os.path.expanduser("~"), ".wortando", "cuerpo", "img")
@@ -35,7 +37,7 @@ SEXE = {"Anna": "f", "Carmen": "f", "Gisela": "f", "Mark": "m", "Diego": "m", "B
         "Rosa": "f", "Lucas": "m", "Tomas": "m", "Elena": "f", "Ines": "f", "Pablo": "m",
         "Heinz": "m", "Peter": "m", "Monika": "f", "Sabine": "f", "Frank": "m", "Jan": "m", "Katrin": "f", "Lena": "f",
         "Felix": "m", "Sophie": "f"}
-NOMS = {"Ines": "Inés", "Tomas": "Tomás"}
+NOMS = PERS.noms()                                           # Ines -> Inés, Tomas -> Tomás (visuel/personnes.json)
 
 # LES PARTIES DU CORPS. es / de : [article, mot] tels qu'on les dit ici (« me duelen los pies », « mir tun die Fuesse
 # weh ») ; ces / cde : le mot du CORPUS, cle de la progression commune aux cartes (pie, el ; Fuss, der) ;
@@ -161,7 +163,12 @@ CONSEJOS = {
 CONSEJO_DECOUVERTE = {"fiebre": "cama", "tos": "jarabe", "gripe": "descansar", "alergia": "pastilla", "resfriado": "te",
                       "cansado": "sentarte", "muela": "dentista", "estomago": "ligero"}
 # Les deux medecins du dialogue : la medica / die Aerztin, el medico / der Arzt (le genre se voit).
-MEDICOS = {"f": "Ines", "m": "Pablo"}
+# 6 nov. 2026 (decision de Jacques, la coherence des personnages) : le medecin est celui dont c'est le METIER dans la
+# fiche commune -- Diego, medecin des « Metiers » -- et la medecin la personne reservee Alicia, la medecin du cabinet de
+# la scene arztpraxis (sans nom ailleurs). Avant : Ines (coiffeuse) et Pablo (boulanger), en blouse. Leurs images sont
+# celles des metiers, reprises telles quelles (medecins(), gratuit) : aucune image payee.
+MEDICOS = {"m": PERS.qui_fait("arzt", "m")[0], "f": next(k for k, f in PERS.RESERVES.items() if f.get("metier") == "arzt" and f["sexe"] == "f")}
+SEXE.update({p: PERS.sexe(p) for p in MEDICOS.values()})
 GESTE_MEDECIN = ("is a doctor: wearing a white doctor's coat over the same clothes, a stethoscope around the neck, "
                  "sitting at a desk in a bright, simple consulting room, facing the camera with a kind, attentive smile; a computer and a few papers on the desk.")
 # LE TOUCHER : les zones a la main (pour-cent de l'image), sur les silhouettes en pied de Decrire et sur deux visages
@@ -214,9 +221,16 @@ def images():
             continue
         for p in d["gens"]:
             out["sintoma-" + s + "-" + p] = (p, MEME + (SITUATION if s == "gripe" else BUSTE) + d["geste"], "3:4")
-    for sexe, p in MEDICOS.items():
-        out["medico-" + p] = (p, MEME + SITUATION + GESTE_MEDECIN, "4:3")
+    # les medecins ne se paient plus : medecins() reprend leurs images des « Metiers »
     return out
+
+
+def medecins():
+    """Les deux medecins : l'image de la personne dans les « Metiers » (Diego.webp ; la medecin du cabinet,
+    s-aerztin.webp), copiee telle quelle en cuerpo/medico-<nom>.webp, 3:4. Gratuit."""
+    for p in MEDICOS.values():
+        src = os.path.join(RACINE, "visuel", "prototype", "metiers", PERS.visage(p) + ".webp")
+        shutil.copyfile(src, os.path.join(RACINE, "visuel", "prototype", "cuerpo", "medico-" + p + ".webp"))
 
 
 def verifier_regles():
@@ -332,6 +346,7 @@ def main():
         sys.exit("  distribution fautive :\n  " + "\n  ".join(fautes))
     ecrire_json()
     ecrire_gloses()
+    medecins()
     if "--json" in sys.argv:
         print("  cuerpo.json et gloses.json ecrits ; %d images au plan (%.2f $)" % (len(tout), len(tout) * PRIX))
         return

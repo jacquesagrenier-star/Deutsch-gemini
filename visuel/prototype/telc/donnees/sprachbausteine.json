@@ -1,10 +1,11 @@
 {
-  "_note": "Sprachbausteine du telc Deutsch A2·B1, ecrits pour Wortando (4 nov. 2026). Le FORMAT du telc (une lettre ou un courriel complet, 10 trous, 3 choix par trou, voir preparation-examens/FORMAT-TELC.md), jamais son contenu. Les lettres viennent de la vie de Mark Garnier a Berlin (Gartenstrasse 12, Hausverwaltung Kern, Frau Brandt). Dans le texte, {n} marque le trou n. « bon » donne l'indice de la bonne reponse dans « o » (0 = a, 1 = b, 2 = c) ; le controle tests/telc.py refuse qu'une lettre porte plus de la moitie des bonnes reponses d'une serie. Series 1-3 : examen blanc d'abord (commun.js, SERIES_EXAMEN) ; tant qu'il y en a peu, toutes servent aussi a l'entrainement. Relecture germanophone a faire avant l'ouverture aux eleves.",
+  "_note": "Sprachbausteine du telc Deutsch A2·B1, ecrits pour Wortando (4 nov. 2026). Le FORMAT du telc (une lettre ou un courriel complet, 10 trous, 3 choix par trou, voir preparation-examens/FORMAT-TELC.md), jamais son contenu. Les lettres viennent de la vie de Mark Garnier a Berlin (Gartenstrasse 12, Hausverwaltung Kern, Frau Brandt). Dans le texte, {n} marque le trou n. « bon » donne l'indice de la bonne reponse dans « o » (0 = a, 1 = b, 2 = c) ; le controle tests/telc.py refuse qu'une lettre porte plus de la moitie des bonnes reponses d'une serie. Le profil du telc (telc.html, seriesExamen) dit combien de series sont gardees pour l'examen blanc : 0 aujourd'hui, les quatre lettres servent a l'entrainement. Personnages (relu le 6 nov., .claude/histoire-personnages.md) : Mark est arrive a Berlin cette annee, sa famille vit a Montreal ; ni Anna (on ne se tutoie pas avant l'arc de la serie) ni Lena (la soeur d'Anna, familia.json) dans la lettre 3. Relecture germanophone a faire avant l'ouverture aux eleves.",
   "series": [
     {
       "id": 1,
       "registre": "formel",
       "situation_fr": "Mark écrit à sa gérance : le chauffage de son appartement ne marche plus.",
+      "situation_en": "Mark writes to his property management company: the heating in his flat has stopped working.",
       "von": "Mark Garnier",
       "an": "Hausverwaltung Kern, Frau Brandt",
       "betreff": "Heizung defekt – Gartenstraße 12, 3. Stock",
@@ -17,22 +18,123 @@
         "Mark Garnier"
       ],
       "luecken": [
-        {"n": 1, "o": ["denn", "weil", "deshalb"], "bon": 1, "erkl_fr": "« weil » envoie le verbe à la fin : « weil die Heizung … nicht mehr funktioniert ». Avec « denn », le verbe resterait en deuxième place (« denn die Heizung funktioniert … ») ; « deshalb » annonce une conséquence, pas une raison."},
-        {"n": 2, "o": ["obwohl", "weil", "damit"], "bon": 0, "erkl_fr": "Le radiateur reste froid MALGRÉ ce que j'ai fait : « obwohl » (bien que). « weil » donnerait une cause qui n'en est pas une, et « damit » exprime un but."},
-        {"n": 3, "o": ["meinen", "meiner", "meinem"], "bon": 2, "erkl_fr": "« in » pour dire où l'on est (Wo ?) demande le datif. « das Schlafzimmer » est neutre : au datif, « meinem »."},
-        {"n": 4, "o": ["er", "ihm", "ihn"], "bon": 1, "erkl_fr": "« bei » est toujours suivi du datif : « bei ihm » (chez lui). « er » est le nominatif, « ihn » l'accusatif."},
-        {"n": 5, "o": ["einen", "einem", "ein"], "bon": 0, "erkl_fr": "« schicken » a un complément à l'accusatif : « der Handwerker » devient « einen Handwerker »."},
-        {"n": 6, "o": ["von", "seit", "zwischen"], "bon": 2, "erkl_fr": "Une plage horaire avec « und » : « zwischen 8 und 17 Uhr ». « von » va avec « bis » (von 8 bis 17 Uhr), et « seit » dit depuis quand."},
-        {"n": 7, "o": ["um", "am", "im"], "bon": 1, "erkl_fr": "Les jours et les moments du jour prennent « am » : am Samstag, am Samstagvormittag. « um » est pour l'heure (um 8 Uhr), « im » pour les mois et les saisons (im März)."},
-        {"n": 8, "o": ["mich", "mein", "mir"], "bon": 2, "erkl_fr": "« sich einen Tag freinehmen » : « einen Tag » est déjà l'accusatif, donc le pronom est au datif. Avec « ich » : « mir »."},
-        {"n": 9, "o": ["oder", "aber", "sondern"], "bon": 0, "erkl_fr": "Deux possibilités, au choix : « oder ». « aber » oppose deux idées, et « sondern » corrige une négation (nicht …, sondern …)."},
-        {"n": 10, "o": ["über", "für", "von"], "bon": 1, "erkl_fr": "On remercie toujours « für » quelque chose : « Vielen Dank für Ihre Hilfe »."}
+        {
+          "n": 1,
+          "o": [
+            "denn",
+            "weil",
+            "deshalb"
+          ],
+          "bon": 1,
+          "erkl_fr": "« weil » envoie le verbe à la fin : « weil die Heizung … nicht mehr funktioniert ». Avec « denn », le verbe resterait en deuxième place (« denn die Heizung funktioniert … ») ; « deshalb » annonce une conséquence, pas une raison.",
+          "erkl_en": "“weil” sends the verb to the end: “weil die Heizung … nicht mehr funktioniert”. With “denn”, the verb would stay in second position (“denn die Heizung funktioniert …”); “deshalb” introduces a consequence, not a reason."
+        },
+        {
+          "n": 2,
+          "o": [
+            "obwohl",
+            "weil",
+            "damit"
+          ],
+          "bon": 0,
+          "erkl_fr": "Le radiateur reste froid MALGRÉ ce que j'ai fait : « obwohl » (bien que). « weil » donnerait une cause qui n'en est pas une, et « damit » exprime un but.",
+          "erkl_en": "The radiator stays cold IN SPITE OF what I did: “obwohl” (although). “weil” would give a cause that isn't one, and “damit” expresses a purpose."
+        },
+        {
+          "n": 3,
+          "o": [
+            "meinen",
+            "meiner",
+            "meinem"
+          ],
+          "bon": 2,
+          "erkl_fr": "« in » pour dire où l'on est (Wo ?) demande le datif. « das Schlafzimmer » est neutre : au datif, « meinem ».",
+          "erkl_en": "“in” for where something is (Wo?) takes the dative. “das Schlafzimmer” is neuter: in the dative, “meinem”."
+        },
+        {
+          "n": 4,
+          "o": [
+            "er",
+            "ihm",
+            "ihn"
+          ],
+          "bon": 1,
+          "erkl_fr": "« bei » est toujours suivi du datif : « bei ihm » (chez lui). « er » est le nominatif, « ihn » l'accusatif.",
+          "erkl_en": "“bei” is always followed by the dative: “bei ihm” (at his place). “er” is the nominative, “ihn” the accusative."
+        },
+        {
+          "n": 5,
+          "o": [
+            "einen",
+            "einem",
+            "ein"
+          ],
+          "bon": 0,
+          "erkl_fr": "« schicken » a un complément à l'accusatif : « der Handwerker » devient « einen Handwerker ».",
+          "erkl_en": "“schicken” takes an accusative object: “der Handwerker” becomes “einen Handwerker”."
+        },
+        {
+          "n": 6,
+          "o": [
+            "von",
+            "seit",
+            "zwischen"
+          ],
+          "bon": 2,
+          "erkl_fr": "Une plage horaire avec « und » : « zwischen 8 und 17 Uhr ». « von » va avec « bis » (von 8 bis 17 Uhr), et « seit » dit depuis quand.",
+          "erkl_en": "A time span with “und”: “zwischen 8 und 17 Uhr”. “von” goes with “bis” (von 8 bis 17 Uhr), and “seit” says since when."
+        },
+        {
+          "n": 7,
+          "o": [
+            "um",
+            "am",
+            "im"
+          ],
+          "bon": 1,
+          "erkl_fr": "Les jours et les moments du jour prennent « am » : am Samstag, am Samstagvormittag. « um » est pour l'heure (um 8 Uhr), « im » pour les mois et les saisons (im März).",
+          "erkl_en": "Days and parts of the day take “am”: am Samstag, am Samstagvormittag. “um” is for clock times (um 8 Uhr), “im” for months and seasons (im März)."
+        },
+        {
+          "n": 8,
+          "o": [
+            "mich",
+            "mein",
+            "mir"
+          ],
+          "bon": 2,
+          "erkl_fr": "« sich einen Tag freinehmen » : « einen Tag » est déjà l'accusatif, donc le pronom est au datif. Avec « ich » : « mir ».",
+          "erkl_en": "“sich einen Tag freinehmen”: “einen Tag” is already the accusative, so the pronoun is dative. With “ich”: “mir”."
+        },
+        {
+          "n": 9,
+          "o": [
+            "oder",
+            "aber",
+            "sondern"
+          ],
+          "bon": 0,
+          "erkl_fr": "Deux possibilités, au choix : « oder ». « aber » oppose deux idées, et « sondern » corrige une négation (nicht …, sondern …).",
+          "erkl_en": "Two options, either one: “oder”. “aber” contrasts two ideas, and “sondern” corrects a negation (nicht …, sondern …)."
+        },
+        {
+          "n": 10,
+          "o": [
+            "über",
+            "für",
+            "von"
+          ],
+          "bon": 1,
+          "erkl_fr": "On remercie toujours « für » quelque chose : « Vielen Dank für Ihre Hilfe ».",
+          "erkl_en": "You always thank someone “für” something: “Vielen Dank für Ihre Hilfe”."
+        }
       ]
     },
     {
       "id": 2,
       "registre": "formel",
       "situation_fr": "Mark veut s'inscrire à un cours de photo de l'université populaire (Volkshochschule).",
+      "situation_en": "Mark wants to sign up for a photography class at the adult education centre (Volkshochschule).",
       "von": "Mark Garnier",
       "an": "Volkshochschule Berlin-Mitte",
       "betreff": "Anmeldung: Fotografie für Anfänger",
@@ -46,73 +148,375 @@
         "Mark Garnier"
       ],
       "luecken": [
-        {"n": 1, "o": ["dem", "den", "der"], "bon": 1, "erkl_fr": "« der Kurs » est masculin et c'est le complément de « gefunden » : accusatif, « den Kurs »."},
-        {"n": 2, "o": ["für", "an", "auf"], "bon": 0, "erkl_fr": "« sich interessieren für » : la préposition fait partie du verbe, toujours « für » + accusatif."},
-        {"n": 3, "o": ["kein", "keinen", "keine"], "bon": 2, "erkl_fr": "« die Kamera » est féminine : « eine Kamera », donc la négation « keine Kamera ». « kein » est pour le masculin ou le neutre au nominatif, « keinen » pour le masculin à l'accusatif."},
-        {"n": 4, "o": ["aber", "oder", "denn"], "bon": 1, "erkl_fr": "Une question entre deux possibilités : « …, oder muss ich … ? »."},
-        {"n": 5, "o": ["weil", "denn", "deshalb"], "bon": 0, "erkl_fr": "Le verbe « arbeite » est à la fin : seul « weil » le permet. Avec « denn », le verbe viendrait juste après le sujet (« denn ich arbeite tagsüber »)."},
-        {"n": 6, "o": ["obwohl", "trotzdem", "deshalb"], "bon": 2, "erkl_fr": "Le cours commence tard, et C'EST POUR ÇA qu'il me convient : « deshalb ». « trotzdem » dirait le contraire (malgré cela), et « obwohl » enverrait le verbe à la fin."},
-        {"n": 7, "o": ["ob", "dass", "wenn"], "bon": 0, "erkl_fr": "Une question fermée (oui ou non ?) rapportée : « Ich möchte wissen, ob … ». « dass » ne pose pas de question, et « wenn » exprime une condition ou un moment."},
-        {"n": 8, "o": ["wäre", "würde", "hätte"], "bon": 1, "erkl_fr": "La demande polie : « Ich würde … gern bezahlen » (je paierais volontiers), « würde » + infinitif. « wäre » et « hätte » ne vont pas avec « bezahlen »."},
-        {"n": 9, "o": ["Ihr", "Ihrer", "Ihre"], "bon": 2, "erkl_fr": "« die Kontonummer » est féminine, à l'accusatif : « Ihre Kontonummer », avec la majuscule du vouvoiement."},
-        {"n": 10, "o": ["am", "in", "im"], "bon": 2, "erkl_fr": "Une formule figée de la lettre : « Vielen Dank im Voraus » (merci d'avance)."}
+        {
+          "n": 1,
+          "o": [
+            "dem",
+            "den",
+            "der"
+          ],
+          "bon": 1,
+          "erkl_fr": "« der Kurs » est masculin et c'est le complément de « gefunden » : accusatif, « den Kurs ».",
+          "erkl_en": "“der Kurs” is masculine and it is the object of “gefunden”: accusative, “den Kurs”."
+        },
+        {
+          "n": 2,
+          "o": [
+            "für",
+            "an",
+            "auf"
+          ],
+          "bon": 0,
+          "erkl_fr": "« sich interessieren für » : la préposition fait partie du verbe, toujours « für » + accusatif.",
+          "erkl_en": "“sich interessieren für”: the preposition belongs to the verb, always “für” + accusative."
+        },
+        {
+          "n": 3,
+          "o": [
+            "kein",
+            "keinen",
+            "keine"
+          ],
+          "bon": 2,
+          "erkl_fr": "« die Kamera » est féminine : « eine Kamera », donc la négation « keine Kamera ». « kein » va avec un nom masculin au nominatif ou avec un nom neutre, « keinen » avec un masculin à l'accusatif.",
+          "erkl_en": "“die Kamera” is feminine: “eine Kamera”, so the negation is “keine Kamera”. “kein” goes with a masculine noun in the nominative or with a neuter noun, “keinen” with a masculine noun in the accusative."
+        },
+        {
+          "n": 4,
+          "o": [
+            "aber",
+            "oder",
+            "denn"
+          ],
+          "bon": 1,
+          "erkl_fr": "Une question entre deux possibilités : « …, oder muss ich … ? ».",
+          "erkl_en": "A question between two options: “…, oder muss ich …?”."
+        },
+        {
+          "n": 5,
+          "o": [
+            "weil",
+            "denn",
+            "deshalb"
+          ],
+          "bon": 0,
+          "erkl_fr": "Le verbe « arbeite » est à la fin : seul « weil » le permet. Avec « denn », le verbe viendrait juste après le sujet (« denn ich arbeite tagsüber »).",
+          "erkl_en": "The verb “arbeite” is at the end: only “weil” allows that. With “denn”, the verb would come right after the subject (“denn ich arbeite tagsüber”)."
+        },
+        {
+          "n": 6,
+          "o": [
+            "obwohl",
+            "trotzdem",
+            "deshalb"
+          ],
+          "bon": 2,
+          "erkl_fr": "Le cours commence tard, et C'EST POUR ÇA qu'il me convient : « deshalb ». « trotzdem » dirait le contraire (malgré cela), et « obwohl » enverrait le verbe à la fin.",
+          "erkl_en": "The class starts late, and THAT IS WHY it suits me: “deshalb”. “trotzdem” would say the opposite (in spite of that), and “obwohl” would send the verb to the end."
+        },
+        {
+          "n": 7,
+          "o": [
+            "ob",
+            "dass",
+            "wenn"
+          ],
+          "bon": 0,
+          "erkl_fr": "Une question fermée (oui ou non ?) rapportée : « Ich möchte wissen, ob … ». « dass » ne pose pas de question, et « wenn » exprime une condition ou un moment.",
+          "erkl_en": "A reported yes/no question: “Ich möchte wissen, ob …”. “dass” doesn't ask anything, and “wenn” expresses a condition or a time."
+        },
+        {
+          "n": 8,
+          "o": [
+            "wäre",
+            "würde",
+            "hätte"
+          ],
+          "bon": 1,
+          "erkl_fr": "La demande polie : « Ich würde … gern bezahlen » (je paierais volontiers), « würde » + infinitif. « wäre » (serais) et « hätte » (aurais) ne se construisent pas avec un infinitif comme « bezahlen ».",
+          "erkl_en": "The polite request: “Ich würde … gern bezahlen” (I would like to pay), “würde” + infinitive. “wäre” (would be) and “hätte” (would have) don't combine with an infinitive like “bezahlen”."
+        },
+        {
+          "n": 9,
+          "o": [
+            "Ihr",
+            "Ihrer",
+            "Ihre"
+          ],
+          "bon": 2,
+          "erkl_fr": "« die Kontonummer » est féminine, à l'accusatif : « Ihre Kontonummer », avec la majuscule du vouvoiement.",
+          "erkl_en": "“die Kontonummer” is feminine, in the accusative: “Ihre Kontonummer”, with the capital letter of the formal “you”."
+        },
+        {
+          "n": 10,
+          "o": [
+            "am",
+            "in",
+            "im"
+          ],
+          "bon": 2,
+          "erkl_fr": "Une formule figée de la lettre : « Vielen Dank im Voraus » (merci d'avance).",
+          "erkl_en": "A fixed phrase in letters: “Vielen Dank im Voraus” (thank you in advance)."
+        }
       ]
     },
     {
       "id": 3,
       "registre": "informel",
-      "situation_fr": "Anna invite Mark à sa fête. Il lui répond.",
+      "situation_fr": "Tobias, un collègue, invite Mark à sa fête. Mark lui répond.",
+      "situation_en": "Tobias, a colleague, invites Mark to his party. Mark replies.",
       "von": "Mark",
-      "an": "Anna",
+      "an": "Tobias",
       "betreff": "Re: Party am Samstag",
       "absaetze": [
-        "Liebe Anna,",
+        "Lieber Tobias,",
         "vielen Dank für deine Nachricht! Entschuldige, {1} ich erst heute antworte: Letzte Woche hatte ich sehr viel Arbeit.",
         "Natürlich komme ich gern {2} deiner Party am Samstag! Soll ich etwas mitbringen? Ich kann einen Kuchen backen {3} einen Salat machen, wie du möchtest. Ich komme {4} dem Fahrrad, deshalb kann ich leider keine Getränke tragen. Weißt du schon, {5} die Party anfängt? Ich muss am Samstag bis 16 Uhr arbeiten.",
-        "Und noch eine Frage: Darf ich {6} Kollegin mitbringen? Sie heißt Lena und ist erst {7} zwei Wochen in Berlin. Sie kennt hier noch {8} Leute und würde {9} sehr freuen.",
+        "Und noch eine Frage: Darf ich {6} Nachbarin mitbringen? Sie heißt Clara und ist erst {7} zwei Wochen in Berlin. Sie kennt hier noch {8} Leute und würde {9} sehr freuen.",
         "Ich freue mich schon {10} den Abend!",
         "Viele Grüße",
         "Mark"
       ],
       "luecken": [
-        {"n": 1, "o": ["dass", "ob", "weil"], "bon": 0, "erkl_fr": "« Entschuldige, dass … » : « dass » introduit ce dont on s'excuse. « ob » pose une question, « weil » donne une raison."},
-        {"n": 2, "o": ["nach", "zu", "auf"], "bon": 1, "erkl_fr": "On va à une fête : « zu » + datif (zu deiner Party). « nach » est pour les villes et les pays (nach Berlin) ; « auf » demanderait l'accusatif (auf deine Party)."},
-        {"n": 3, "o": ["sondern", "aber", "oder"], "bon": 2, "erkl_fr": "Deux possibilités, au choix : « oder ». « aber » oppose deux idées, « sondern » corrige une négation."},
-        {"n": 4, "o": ["mit", "von", "bei"], "bon": 0, "erkl_fr": "Le moyen de transport : « mit » + datif — mit dem Fahrrad, mit dem Bus, mit der U-Bahn."},
-        {"n": 5, "o": ["wenn", "wann", "als"], "bon": 1, "erkl_fr": "Une question sur le moment : « Weißt du, wann … ? » (quand ?). « wenn » n'est pas une question (si, chaque fois que), et « als » parle d'une seule fois dans le passé."},
-        {"n": 6, "o": ["einen", "einer", "eine"], "bon": 2, "erkl_fr": "« die Kollegin » est féminine, complément de « mitbringen » : accusatif, « eine Kollegin »."},
-        {"n": 7, "o": ["vor", "seit", "ab"], "bon": 1, "erkl_fr": "Elle est arrivée il y a deux semaines et elle y est toujours : « seit » + datif. « vor zwei Wochen » irait avec un passé (« sie ist vor zwei Wochen gekommen »)."},
-        {"n": 8, "o": ["kein", "nicht", "keine"], "bon": 2, "erkl_fr": "« Leute » est un pluriel sans article : sa négation est « keine » (keine Leute). « nicht » nie un verbe ou une phrase, pas un nom."},
-        {"n": 9, "o": ["sich", "sie", "ihr"], "bon": 0, "erkl_fr": "« sich freuen » est pronominal : avec « sie » (Lena), le pronom est « sich »."},
-        {"n": 10, "o": ["für", "auf", "an"], "bon": 1, "erkl_fr": "On se réjouit d'une chose à venir : « sich freuen auf » + accusatif (auf den Abend). Pour une chose déjà là, ce serait « sich freuen über »."}
+        {
+          "n": 1,
+          "o": [
+            "dass",
+            "ob",
+            "weil"
+          ],
+          "bon": 0,
+          "erkl_fr": "« Entschuldige, dass … » : « dass » introduit ce dont on s'excuse. « ob » pose une question, « weil » donne une raison.",
+          "erkl_en": "“Entschuldige, dass …”: “dass” introduces what you are apologising for. “ob” asks a question, “weil” gives a reason."
+        },
+        {
+          "n": 2,
+          "o": [
+            "nach",
+            "zu",
+            "auf"
+          ],
+          "bon": 1,
+          "erkl_fr": "On va à une fête : « zu » + datif (zu deiner Party). « nach » est pour les villes et les pays (nach Berlin) ; « auf » demanderait l'accusatif (auf deine Party).",
+          "erkl_en": "You go to a party: “zu” + dative (zu deiner Party). “nach” is for cities and countries (nach Berlin); “auf” would need the accusative (auf deine Party)."
+        },
+        {
+          "n": 3,
+          "o": [
+            "sondern",
+            "aber",
+            "oder"
+          ],
+          "bon": 2,
+          "erkl_fr": "Deux possibilités, au choix : « oder ». « aber » oppose deux idées, « sondern » corrige une négation.",
+          "erkl_en": "Two options, either one: “oder”. “aber” contrasts two ideas, “sondern” corrects a negation."
+        },
+        {
+          "n": 4,
+          "o": [
+            "mit",
+            "von",
+            "bei"
+          ],
+          "bon": 0,
+          "erkl_fr": "Le moyen de transport : « mit » + datif — mit dem Fahrrad, mit dem Bus, mit der U-Bahn.",
+          "erkl_en": "The means of transport: “mit” + dative — mit dem Fahrrad, mit dem Bus, mit der U-Bahn."
+        },
+        {
+          "n": 5,
+          "o": [
+            "wenn",
+            "wann",
+            "als"
+          ],
+          "bon": 1,
+          "erkl_fr": "Une question sur le moment : « Weißt du, wann … ? » (quand ?). « wenn » n'est pas une question (si, chaque fois que), et « als » parle d'une seule fois dans le passé.",
+          "erkl_en": "A question about the time: “Weißt du, wann …?” (when?). “wenn” isn't a question (if, whenever), and “als” talks about a single time in the past."
+        },
+        {
+          "n": 6,
+          "o": [
+            "einen",
+            "einer",
+            "eine"
+          ],
+          "bon": 2,
+          "erkl_fr": "« die Nachbarin » est féminine, complément de « mitbringen » : accusatif, « eine Nachbarin ».",
+          "erkl_en": "“die Nachbarin” is feminine and the object of “mitbringen”: accusative, “eine Nachbarin”."
+        },
+        {
+          "n": 7,
+          "o": [
+            "vor",
+            "seit",
+            "ab"
+          ],
+          "bon": 1,
+          "erkl_fr": "Elle est arrivée il y a deux semaines et elle y est toujours : « seit » + datif. « vor zwei Wochen » irait avec un passé (« sie ist vor zwei Wochen gekommen »).",
+          "erkl_en": "She arrived two weeks ago and she is still here: “seit” + dative. “vor zwei Wochen” would go with a past tense (“sie ist vor zwei Wochen gekommen”)."
+        },
+        {
+          "n": 8,
+          "o": [
+            "kein",
+            "nicht",
+            "keine"
+          ],
+          "bon": 2,
+          "erkl_fr": "« Leute » est un pluriel sans article : sa négation est « keine » (keine Leute). « nicht » nie un verbe ou une phrase, pas un nom.",
+          "erkl_en": "“Leute” is a plural without an article: its negation is “keine” (keine Leute). “nicht” negates a verb or a sentence, not a noun."
+        },
+        {
+          "n": 9,
+          "o": [
+            "sich",
+            "sie",
+            "ihr"
+          ],
+          "bon": 0,
+          "erkl_fr": "« sich freuen » est pronominal : avec « sie » (Clara), le pronom est « sich ».",
+          "erkl_en": "“sich freuen” is reflexive: with “sie” (Clara), the pronoun is “sich”."
+        },
+        {
+          "n": 10,
+          "o": [
+            "für",
+            "auf",
+            "an"
+          ],
+          "bon": 1,
+          "erkl_fr": "On se réjouit d'une chose à venir : « sich freuen auf » + accusatif (auf den Abend). Pour une chose déjà là, ce serait « sich freuen über ».",
+          "erkl_en": "You look forward to something to come: “sich freuen auf” + accusative (auf den Abend). For something already here, it would be “sich freuen über”."
+        }
       ]
     },
     {
       "id": 4,
       "registre": "formel",
       "situation_fr": "Mark part deux mois au Canada : il demande à son club de sport de suspendre son abonnement.",
+      "situation_en": "Mark is going to Canada for two months: he asks his gym to put his membership on hold.",
       "von": "Mark Garnier",
       "an": "Fitnessstudio FitPunkt",
       "betreff": "Mitgliedschaft unterbrechen",
       "absaetze": [
         "Sehr geehrte Damen und Herren,",
-        "ich trainiere seit einem Jahr {1} Ihrem Fitnessstudio in der Torstraße. Ich bin sehr zufrieden, {2} ich habe jetzt ein Problem: Von Dezember bis Ende Januar besuche ich meine Familie in Kanada. In {3} Zeit kann ich nicht trainieren.",
+        "ich trainiere seit April {1} Ihrem Fitnessstudio in der Torstraße. Ich bin sehr zufrieden, {2} ich habe jetzt ein Problem: Von Dezember bis Ende Januar besuche ich meine Familie in Kanada. In {3} Zeit kann ich nicht trainieren.",
         "Ist es möglich, die Mitgliedschaft für zwei Monate zu unterbrechen? Ich habe auf Ihrer Internetseite gelesen, {4} das gegen eine kleine Gebühr geht. Kündigen möchte ich {5} Mitgliedschaft auf keinen Fall. Wie viel kostet die Pause genau? Ich hoffe, die Gebühr ist nicht so hoch {6} der Monatsbeitrag.",
         "Bitte schicken Sie mir das Formular {7} E-Mail. Ich fülle es dann sofort aus und schicke es {8} zurück. Ich danke Ihnen für Ihre Hilfe und hoffe, Sie können mir bald {9}.",
         "Mit freundlichen {10}",
         "Mark Garnier"
       ],
       "luecken": [
-        {"n": 1, "o": ["in", "auf", "zu"], "bon": 0, "erkl_fr": "On s'entraîne DANS un lieu : « in » + datif (in Ihrem Fitnessstudio)."},
-        {"n": 2, "o": ["sondern", "aber", "obwohl"], "bon": 1, "erkl_fr": "Une opposition simple, le verbe en deuxième place ensuite : « …, aber ich habe … ». « sondern » corrige une négation ; « obwohl » enverrait le verbe à la fin."},
-        {"n": 3, "o": ["diesem", "diesen", "dieser"], "bon": 2, "erkl_fr": "« die Zeit » est féminine ; avec « in » pour dire quand, c'est le datif : « in dieser Zeit »."},
-        {"n": 4, "o": ["was", "dass", "ob"], "bon": 1, "erkl_fr": "« Ich habe gelesen, dass … » : « dass » rapporte une information. « ob » poserait une question, et « was » ne relie pas une phrase entière."},
-        {"n": 5, "o": ["mein", "meinen", "meine"], "bon": 2, "erkl_fr": "« die Mitgliedschaft » est féminine, à l'accusatif (complément de « kündigen ») : « meine »."},
-        {"n": 6, "o": ["als", "wie", "dass"], "bon": 1, "erkl_fr": "La comparaison d'égalité : « so hoch wie » (aussi élevé que). « als » va avec le comparatif : « höher als »."},
-        {"n": 7, "o": ["per", "mit", "durch"], "bon": 0, "erkl_fr": "Le moyen d'envoi, sans article : « per E-Mail », « per Post »."},
-        {"n": 8, "o": ["Sie", "Ihnen", "Ihr"], "bon": 1, "erkl_fr": "On envoie quelque chose (es) À quelqu'un : le datif, « Ihnen ». « Sie » est le nominatif ou l'accusatif."},
-        {"n": 9, "o": ["antworten", "antwortet", "geantwortet"], "bon": 0, "erkl_fr": "Après « können », l'infinitif à la fin : « Sie können mir bald antworten »."},
-        {"n": 10, "o": ["Gruß", "Grüße", "Grüßen"], "bon": 2, "erkl_fr": "La formule de fin, figée : « Mit freundlichen Grüßen » (datif pluriel, avec -n). Une formule de fin qui manque ou qui est fausse coûte des points à l'écrit."}
+        {
+          "n": 1,
+          "o": [
+            "in",
+            "auf",
+            "zu"
+          ],
+          "bon": 0,
+          "erkl_fr": "On s'entraîne DANS un lieu : « in » + datif (in Ihrem Fitnessstudio).",
+          "erkl_en": "You train IN a place: “in” + dative (in Ihrem Fitnessstudio)."
+        },
+        {
+          "n": 2,
+          "o": [
+            "sondern",
+            "aber",
+            "obwohl"
+          ],
+          "bon": 1,
+          "erkl_fr": "Une opposition simple, le verbe en deuxième place ensuite : « …, aber ich habe … ». « sondern » corrige une négation ; « obwohl » enverrait le verbe à la fin.",
+          "erkl_en": "A simple contrast, with the verb in second position afterwards: “…, aber ich habe …”. “sondern” corrects a negation; “obwohl” would send the verb to the end."
+        },
+        {
+          "n": 3,
+          "o": [
+            "diesem",
+            "diesen",
+            "dieser"
+          ],
+          "bon": 2,
+          "erkl_fr": "« die Zeit » est féminine ; avec « in » pour dire quand, c'est le datif : « in dieser Zeit ».",
+          "erkl_en": "“die Zeit” is feminine; with “in” to say when, it takes the dative: “in dieser Zeit”."
+        },
+        {
+          "n": 4,
+          "o": [
+            "was",
+            "dass",
+            "ob"
+          ],
+          "bon": 1,
+          "erkl_fr": "« Ich habe gelesen, dass … » : « dass » rapporte une information. « ob » poserait une question (si oui ou non), et « was » demanderait « ce que » (Ich habe gelesen, was … kostet).",
+          "erkl_en": "“Ich habe gelesen, dass …”: “dass” reports a piece of information. “ob” would ask a question (whether or not), and “was” would ask “what” (Ich habe gelesen, was … kostet)."
+        },
+        {
+          "n": 5,
+          "o": [
+            "mein",
+            "meinen",
+            "meine"
+          ],
+          "bon": 2,
+          "erkl_fr": "« die Mitgliedschaft » est féminine, à l'accusatif (complément de « kündigen ») : « meine ».",
+          "erkl_en": "“die Mitgliedschaft” is feminine, in the accusative (object of “kündigen”): “meine”."
+        },
+        {
+          "n": 6,
+          "o": [
+            "als",
+            "wie",
+            "dass"
+          ],
+          "bon": 1,
+          "erkl_fr": "La comparaison d'égalité : « so hoch wie » (aussi élevé que). « als » va avec le comparatif : « höher als ».",
+          "erkl_en": "A comparison of equality: “so hoch wie” (as high as). “als” goes with the comparative: “höher als”."
+        },
+        {
+          "n": 7,
+          "o": [
+            "per",
+            "mit",
+            "durch"
+          ],
+          "bon": 0,
+          "erkl_fr": "Le moyen d'envoi, sans article : « per E-Mail », « per Post ».",
+          "erkl_en": "The way of sending, without an article: “per E-Mail”, “per Post”."
+        },
+        {
+          "n": 8,
+          "o": [
+            "Sie",
+            "Ihnen",
+            "Ihr"
+          ],
+          "bon": 1,
+          "erkl_fr": "On envoie quelque chose (es) À quelqu'un : le datif, « Ihnen ». « Sie » est le nominatif ou l'accusatif.",
+          "erkl_en": "You send something (es) TO someone: the dative, “Ihnen”. “Sie” is the nominative or the accusative."
+        },
+        {
+          "n": 9,
+          "o": [
+            "antworten",
+            "antwortet",
+            "geantwortet"
+          ],
+          "bon": 0,
+          "erkl_fr": "Après « können », l'infinitif à la fin : « Sie können mir bald antworten ».",
+          "erkl_en": "After “können”, the infinitive goes at the end: “Sie können mir bald antworten”."
+        },
+        {
+          "n": 10,
+          "o": [
+            "Gruß",
+            "Grüße",
+            "Grüßen"
+          ],
+          "bon": 2,
+          "erkl_fr": "La formule de fin, figée : « Mit freundlichen Grüßen » (datif pluriel, avec -n). Une formule de fin qui manque ou qui est fausse coûte des points à l'écrit.",
+          "erkl_en": "The fixed closing formula: “Mit freundlichen Grüßen” (dative plural, with -n). A missing or wrong closing formula costs points in the written exam."
+        }
       ]
     }
   ]

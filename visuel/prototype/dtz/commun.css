@@ -12,6 +12,7 @@ body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-att
   padding:calc(env(safe-area-inset-top,0px) + 10px) max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 96px) max(12px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:640px;margin:0 auto 10px}
 .retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+[dir="rtl"] .retour{transform:scaleX(-1)} /* la fleche du retour pointe vers la droite en fa / ar */
 .titre{flex:1;font-weight:900;font-size:18px;line-height:1.2}
 .chrono{font-weight:900;font-size:15px;color:var(--encre);background:var(--verre);border:1px solid var(--bord);border-radius:999px;padding:6px 12px;font-variant-numeric:tabular-nums}
 .chrono[hidden]{display:none}
