@@ -74,6 +74,7 @@ h2{margin:0;font-size:19px;font-weight:900}
 .bulle.mark{background:var(--bulle-mark)}
 .bulle.mark .texte{font-size:15px}
 .bulle button.hp{border:0;background:none;color:var(--turq);font:800 13px var(--police);padding:4px 0 0;margin-inline-end:10px;cursor:pointer}
+.ic-hp{display:inline-block;width:1.05em;height:1.05em;vertical-align:-0.17em;flex:0 0 auto}
 .feuille{background:var(--carte);border:2px dashed rgba(76,86,107,.35);border-radius:14px;padding:10px 12px}
 .feuille b{display:block;font-size:13px;color:var(--gris);margin-bottom:6px}
 .feuille .de{font-weight:800;line-height:1.45}
@@ -401,6 +402,10 @@ function ecouter(surTexte, surFin){
 // ---------------------------------------------------------------- l'ecran
 const zone = document.getElementById("zone"), suite = document.getElementById("suite");
 function el(tag, cls, texte){ const e = document.createElement(tag); if (cls) e.className = cls; if (texte != null) e.textContent = texte; return e; }
+// Le haut-parleur dessine de l'app (v919, iconeHP d'index.html : Heroicons « speaker-wave », plein, MIT) a la place
+// de l'emoji 🔊 ; il prend la couleur du texte du bouton.
+const HP_SVG = '<svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
+function iconeHP(){ const t = document.createElement("template"); t.innerHTML = HP_SVG; return t.content.firstChild; }
 function entete(petit, grand){ document.getElementById("titrePetit").textContent = petit; document.getElementById("titreGrand").textContent = grand; }
 // Un point par exercice de la section : plein quand il est fait, ambre pour celui-ci ; on le touche pour y sauter.
 function points(s, e){
@@ -437,7 +442,8 @@ function bulle(id, dejaDit){
   const d = el("div", "de", de); d.lang = "de"; b.appendChild(d);
   const f = el("div", "fr", fr); f.hidden = true; b.appendChild(f);
   const outils = el("div");
-  const hp = el("button", "hp", "🔊 Réécouter"); hp.type = "button"; hp.onclick = () => dire(id, cadre);
+  const hp = el("button", "hp", " Réécouter"); hp.type = "button"; hp.onclick = () => dire(id, cadre);
+  hp.prepend(iconeHP());
   const tr = el("button", "hp", "Traduire"); tr.type = "button"; tr.onclick = () => { f.hidden = !f.hidden; };
   outils.append(hp, tr); b.appendChild(outils);
   ligne.appendChild(b);
