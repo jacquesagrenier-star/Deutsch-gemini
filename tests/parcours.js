@@ -96,7 +96,7 @@ function bilanSeances(listes){
 // LE BILAN PAR VERSION (lot de l'evaluation, 6 nov. 2026, champs proposes par la session des maquettes).
 // Chaque seance porte depuis ce lot :
 //   v la version a l'ouverture ; q "f" (la fin) ou "r" (« ‹ »), absent = fermee sans l'un ni l'autre ;
-//   o 1 si une seance etait deja finie ce jour-la (avant la v1140 : l'objectif du jour atteint) ; i les fenetres et bulles montrees pendant la seance ;
+//   o 1 si une seance etait deja finie ce jour-la (avant la v1143 : l'objectif du jour atteint) ; i les fenetres et bulles montrees pendant la seance ;
 //   e / er les mots rates proposes a la fin et ceux refaits ; t la duree en secondes ; a l'activite a l'ecran
 //   quand on s'arrete (« carte », « ecoute », « parler », « gram », « scene », « reprise »...).
 // Les seances d'avant le lot n'ont pas `v` : elles forment le groupe « avant ».
