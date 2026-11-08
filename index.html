@@ -2940,6 +2940,8 @@ body[data-theme="dark"] .echelle-intro{ color:#B9BFCC; }
     margin:0 0 8px;
 }
 .echelle-maitrise .ligne:last-child{ margin-bottom:0; }
+.echelle-maitrise .echelle-note{ margin:8px 0 0; font-size:13px; line-height:1.4; color:#4C566B; }
+body[data-theme="dark"] .echelle-maitrise .echelle-note{ color:#B9BFCC; }
 .echelle-maitrise .srs-pips{ flex:0 0 auto; }
 .echelle-maitrise .quand{
     font-size:13px; line-height:1.4; color:#4C566B;
@@ -15610,6 +15612,7 @@ const I18N = {
         carte_maitrise_titre: "Mot maîtrisé — il revient dans {n} jours pour vérifier, puis de plus en plus rarement",
         srs_aide_encore: "Le mot repart de zéro et revient {n} cartes plus loin, dans cette séance.",
         srs_aide_pastilles: "Les {n} pastilles comptent ces réussites d'affilée.",
+        srs_aide_premier_coup: "Un mot nouveau su du premier coup gagne deux pastilles d'un coup et ne revient qu'à ta prochaine séance. Un mot raté puis réussi revient {n} minutes plus tard.",
         srs_aide_connu: "Le mot passe directement à « maîtrisé », sans faire les quatre étapes. Utile pour un mot déjà su : il sort du paquet sans qu'il faille le juger quatre fois.",
         srs_aide_apres: "Par les quatre « ✓ » comme par l'étoile, un mot maîtrisé n'est pas rangé pour de bon : il revient dans {n} jours pour vérifier. Chaque fois que tu le confirmes, il s'éloigne davantage — 35 jours, puis 3 mois, puis 6, puis un an. Un mot comme « Hallo » finit par ne plus revenir du tout.",
         srs_etat_1: "je commence",
@@ -17319,6 +17322,7 @@ const I18N = {
         carte_maitrise_titre: "Word mastered — it comes back in {n} days to check, then less and less often",
         srs_aide_encore: "The word starts over and comes back {n} cards later, in this session.",
         srs_aide_pastilles: "The {n} dots count those successes in a row.",
+        srs_aide_premier_coup: "A new word you know the first time earns two dots at once and only comes back next session. A word you missed and then got right comes back {n} minutes later.",
         srs_aide_connu: "The word jumps straight to « mastered », skipping the four steps. Handy for a word you already know: it leaves the deck without being judged four times.",
         srs_aide_apres: "Through four “✓”s or straight through the star, a mastered word isn't put away for good: it comes back in {n} days as a check. Each time you confirm it, it moves further away — 35 days, then 3 months, then 6, then a year. A word like “Hallo” eventually stops coming back at all.",
         srs_etat_1: "getting started",
@@ -18968,6 +18972,7 @@ const I18N = {
         carte_maitrise_titre: "Kelime öğrenildi — kontrol için {n} gün sonra geri gelir, sonra giderek daha seyrek",
         srs_aide_encore: "Kelime sıfırdan başlar ve bu oturumda {n} kart sonra geri gelir.",
         srs_aide_pastilles: "{n} nokta, üst üste gelen bu başarıları sayar.",
+        srs_aide_premier_coup: "İlk seferde bildiğin yeni bir kelime bir anda iki nokta kazanır ve ancak bir sonraki oturumda geri gelir. Önce yanlış yapıp sonra bildiğin kelime {n} dakika sonra döner.",
         srs_aide_connu: "Kelime dört adımı atlayıp doğrudan « öğrenildi » olur. Zaten bildiğin bir kelime için pratik: dört kez değerlendirilmeden desteden çıkar.",
         srs_aide_apres: "İster dört “✓” ile ister doğrudan yıldızla olsun, öğrenilen kelime büsbütün kaldırılmaz: kontrol için {n} gün sonra geri gelir. Her doğruladığında biraz daha uzaklaşır — 35 gün, sonra 3 ay, sonra 6 ay, sonra bir yıl. « Hallo » gibi bir kelime sonunda hiç geri gelmez.",
         srs_etat_1: "başlıyor",
@@ -21035,6 +21040,7 @@ const I18N = {
         srs_aide_maitrise: "засвоєно",
         srs_aide_encore: "Слово починає спочатку і повертається через {n} карток, у цьому ж сеансі.",
         srs_aide_pastilles: "{n} кружечки рахують ці успіхи поспіль.",
+        srs_aide_premier_coup: "Нове слово, яке ти знаєш з першого разу, отримує одразу дві позначки й повертається лише на наступному занятті. Слово, яке ти спершу не згадав(-ла), а потім згадав(-ла), повернеться через {n} хв.",
         srs_aide_connu: "Слово одразу стає «засвоєним», без чотирьох кроків. Зручно для слова, яке ти вже знаєш: воно виходить з колоди без чотирьох оцінювань.",
         srs_aide_apres: "Чи через чотири «✓», чи одразу через зірку, засвоєне слово не відкладається назавжди: воно повернеться через {n} днів для перевірки. Щоразу, коли ти його підтверджуєш, воно віддаляється ще більше — 35 днів, потім 3 місяці, далі 6, далі рік. Слово на кшталт « Hallo » зрештою перестає повертатися зовсім.",
         qual_0: "Ти починаєш!",
@@ -23450,6 +23456,7 @@ const I18N = {
         carte_maitrise_titre: "واژهٔ آموخته — {n} روز دیگر برای بررسی برمی‌گردد، و بعد هر بار دیرتر",
         srs_aide_encore: "واژه از نو آغاز می‌کند و {n} کارت بعدتر، در همین نشست، بازمی‌گردد.",
         srs_aide_pastilles: "{n} نشانه این موفقیت‌های پشت‌سرهم را می‌شمارند.",
+        srs_aide_premier_coup: "واژهٔ تازه‌ای که همان بار اول بلدی یک‌باره دو نقطه می‌گیرد و فقط در جلسهٔ بعد برمی‌گردد. واژه‌ای که اول اشتباه کرده‌ای و بعد درست گفته‌ای، {n} دقیقه بعد برمی‌گردد.",
         srs_etat_1: "تازه آغاز کرده‌ام",
         srs_etat_2: "دارم پیش می‌روم",
         srs_etat_3: "نزدیکم",
@@ -24671,6 +24678,7 @@ const I18N = {
         carte_maitrise_titre: "كلمة متقَنة — تعود بعد {n} يوماً للتحقّق، ثم على فترات أطول فأطول",
         srs_aide_encore: "تعود الكلمة إلى الصفر وتظهر بعد {n} بطاقات، في هذه الجلسة نفسها.",
         srs_aide_pastilles: "النقاط الـ{n} تعدّ هذه النجاحات المتتالية.",
+        srs_aide_premier_coup: "الكلمة الجديدة التي تعرفها من المرة الأولى تحصل على نقطتين دفعة واحدة ولا تعود إلا في الحصة التالية. أما الكلمة التي أخطأت فيها ثم أصبت فتعود بعد {n} دقائق.",
         srs_aide_connu: "تنتقل الكلمة مباشرة إلى «متقَنة»، دون المرور بالمراحل الأربع. مفيد لكلمة تعرفها أصلاً: تخرج من المجموعة دون الحاجة إلى الحكم عليها أربع مرات.",
         srs_aide_apres: "سواء عبر «✓» أربع مرات أو عبر النجمة، الكلمة المتقَنة ليست مطويّة إلى الأبد: تعود بعد {n} يوماً للتحقّق. وكلما أكّدتها ابتعدت أكثر — 35 يوماً، ثم 3 أشهر، ثم 6، ثم سنة. وكلمة مثل «Hallo» تنتهي إلى ألّا تعود أبداً.",
         srs_etat_1: "بدأت",
@@ -25723,6 +25731,7 @@ const I18N = {
         carte_maitrise_titre: "Palavra dominada — ela volta em {n} dias para conferir, depois cada vez mais raramente",
         srs_aide_encore: "A palavra recomeça do zero e volta {n} cartas depois, nesta sessão.",
         srs_aide_pastilles: "As {n} bolinhas contam esses acertos seguidos.",
+        srs_aide_premier_coup: "Uma palavra nova que você sabe de primeira ganha dois pontos de uma vez e só volta na próxima sessão. Uma palavra que você errou e depois acertou volta {n} minutos depois.",
         srs_aide_connu: "A palavra passa direto para “dominada”, sem fazer as quatro etapas. Útil para uma palavra que você já sabe: ela sai do baralho sem precisar ser avaliada quatro vezes.",
         srs_aide_apres: "Pelos quatro “✓” ou direto pela estrela, uma palavra dominada não é guardada para sempre: ela volta em {n} dias para conferir. Cada vez que você confirma, ela se afasta mais — 35 dias, depois 3 meses, depois 6, depois um ano. Uma palavra como “Hallo” acaba não voltando mais.",
         srs_etat_1: "estou começando",
@@ -27431,6 +27440,7 @@ const I18N = {
         carte_maitrise_titre: "Słowo opanowane — wróci za {n} dni na sprawdzenie, potem coraz rzadziej",
         srs_aide_encore: "Słowo zaczyna od zera i wraca {n} kart dalej, w tej samej sesji.",
         srs_aide_pastilles: "{n} kropki liczą te trafienia z rzędu.",
+        srs_aide_premier_coup: "Nowe słowo, które znasz za pierwszym razem, dostaje od razu dwie kropki i wraca dopiero na następnej sesji. Słowo, które najpierw pomyliłeś(-aś), a potem znałeś(-aś), wraca po {n} min.",
         srs_aide_connu: "Słowo od razu przechodzi do „opanowanych”, bez czterech etapów. Przydatne przy słowie, które już znasz: wychodzi z talii bez czterokrotnej oceny.",
         srs_aide_apres: "Czy przez cztery „✓”, czy prosto przez gwiazdkę — opanowane słowo nie jest odłożone na zawsze: wraca za {n} dni na sprawdzenie. Za każdym razem, gdy je potwierdzisz, oddala się bardziej — 35 dni, potem 3 miesiące, potem 6, potem rok. Słowo takie jak „Hallo” w końcu przestaje wracać.",
         srs_etat_1: "zaczynam",
@@ -29139,6 +29149,7 @@ const I18N = {
         carte_maitrise_titre: "Слово выучено — оно вернётся через {n} дн. для проверки, потом всё реже и реже",
         srs_aide_encore: "Слово начинает с нуля и вернётся через {n} карточек, на этом же занятии.",
         srs_aide_pastilles: "Кружки ({n}) отмечают эти успехи подряд.",
+        srs_aide_premier_coup: "Новое слово, которое ты знаешь с первого раза, сразу получает две точки и вернётся только на следующем занятии. Слово, которое ты сначала не вспомнил(а), а потом вспомнил(а), вернётся через {n} мин.",
         srs_aide_connu: "Слово сразу становится «выученным», минуя четыре ступени. Удобно для слова, которое ты уже знаешь: оно уходит из колоды, и его не нужно оценивать четыре раза.",
         srs_aide_apres: "Через четыре «✓» или сразу через звёздочку — выученное слово не убирается навсегда: оно вернётся через {n} дн. для проверки. Каждый раз, когда ты его подтверждаешь, оно отодвигается дальше — 35 дней, потом 3 месяца, потом 6, потом год. Слово вроде «Hallo» в конце концов перестаёт возвращаться совсем.",
         srs_etat_1: "только начинаю",
@@ -30849,6 +30860,7 @@ const I18N = {
         carte_maitrise_titre: "Sicheres Wort – es kommt in {n} Tagen zur Kontrolle wieder, dann immer seltener",
         srs_aide_encore: "Das Wort fängt wieder bei null an und kommt {n} Karten später wieder, in dieser Lerneinheit.",
         srs_aide_pastilles: "Die {n} Punkte zählen diese Erfolge in Folge.",
+        srs_aide_premier_coup: "Ein neues Wort, das du auf Anhieb kannst, bekommt gleich zwei Punkte und kommt erst in der nächsten Sitzung wieder. Ein Wort, das du erst falsch und dann richtig hattest, kommt {n} Minuten später wieder.",
         srs_aide_connu: "Das Wort springt direkt auf „sicher“, ohne die vier Stufen zu durchlaufen. Praktisch für ein Wort, das du schon kennst: Es verlässt den Stapel, ohne dass du es viermal bewerten musst.",
         srs_aide_apres: "Ob durch die vier „✓“ oder durch den Stern: Ein sicheres Wort ist nicht für immer weggeräumt. Es kommt in {n} Tagen zur Kontrolle wieder. Jedes Mal, wenn du es bestätigst, rückt es weiter weg – 35 Tage, dann 3 Monate, dann 6, dann ein Jahr. Ein Wort wie „Hallo“ kommt am Ende gar nicht mehr.",
         srs_etat_1: "ich fange an",
@@ -32569,6 +32581,7 @@ const I18N = {
         carte_maitrise_titre: "Palabra dominada — vuelve en {n} días para comprobar, y luego cada vez menos",
         srs_aide_encore: "La palabra vuelve a empezar de cero y regresa {n} tarjetas más adelante, en esta práctica.",
         srs_aide_pastilles: "Los {n} puntos cuentan esos aciertos seguidos.",
+        srs_aide_premier_coup: "Una palabra nueva que sabes a la primera gana dos puntos de golpe y solo vuelve en la próxima sesión. Una palabra que fallaste y luego acertaste vuelve {n} minutos después.",
         srs_aide_connu: "La palabra pasa directamente a «dominada», sin hacer los cuatro pasos. Útil para una palabra que ya sabes: sale del mazo sin que haya que juzgarla cuatro veces.",
         srs_aide_apres: "Con los cuatro «✓» como con la estrella, una palabra dominada no queda guardada para siempre: vuelve en {n} días para comprobar. Cada vez que la confirmas, se aleja más — 35 días, luego 3 meses, luego 6, luego un año. Una palabra como «Hallo» acaba por no volver nunca.",
         srs_etat_1: "empiezo",
@@ -38249,11 +38262,7 @@ async function recollerHorsLigne(){
                 st.rate = (st.rate || 0) + 1;   // v1114 : la trace de l'echec, voir motRate()
                 programmerEcheance(st, SRS_ENCORE_MINUTES);
             } else {
-                const reussites = st.srsHits || 0;
-                st.srsHits = reussites + 1;
-                if(reussites === 0) programmerEcheance(st, SRS_PREMIERE_MINUTES);
-                else if(reussites + 1 >= SRS_PALIERS){ programmerMaitrise(st); try{ logMasteryEvent(); }catch(err){} }
-                else programmerEcheance(st, 1440);
+                if(appliquerReussite(st)){ try{ logMasteryEvent(); }catch(err){} }
             }
             setWordState(e.k, e.i, st);
             const jour = getTodayStr(new Date(e.t));
@@ -44763,6 +44772,8 @@ function echelleMaitriseHtml(){
               +   '<span class="quand">' + (quand[i] || "") + '</span>'
               + '</div>';
     }
+    // Le premier coup a sa phrase (decision du 8 nov.) : la premiere ligne, « 10 min », est celle d'un mot rate.
+    html += '<p class="echelle-note">' + tf("srs_aide_premier_coup", { n: SRS_PREMIERE_MINUTES }) + '</p>';
     return html;
 }
 
@@ -63492,11 +63503,7 @@ function revisionDeScene(d){
             st.rate = (st.rate || 0) + 1;   // v1114 : la trace de l'echec, voir motRate()
             programmerEcheance(st, SRS_ENCORE_MINUTES);
         } else {
-            const reussites = st.srsHits || 0;
-            st.srsHits = reussites + 1;
-            if(reussites === 0) programmerEcheance(st, SRS_PREMIERE_MINUTES);
-            else if(reussites + 1 >= SRS_PALIERS){ programmerMaitrise(st); maitrise = true; }
-            else programmerEcheance(st, 1440);
+            maitrise = appliquerReussite(st);
         }
         setWordState(it.themeId, it.index, st);
         // L'objectif du jour et la serie, comme une carte -- mais sans la fete
@@ -66246,11 +66253,7 @@ function repondrePhrase(item, juste){
             st.rate = (st.rate || 0) + 1;   // v1114 : la trace de l'echec, voir motRate()
             programmerEcheance(st, SRS_ENCORE_MINUTES);
         } else {
-            const reussites = st.srsHits || 0;
-            st.srsHits = reussites + 1;
-            if(reussites === 0) programmerEcheance(st, SRS_PREMIERE_MINUTES);
-            else if(reussites + 1 >= SRS_PALIERS){ programmerMaitrise(st); maitrise = true; }
-            else programmerEcheance(st, 1440);
+            maitrise = appliquerReussite(st);
         }
         setWordState(it.themeId, it.index, st);
         const palier = recordDailyActivity();
@@ -68136,6 +68139,7 @@ async function ouvrirSeanceDuJour(sansScene){
     let fc = null;
     try{ fc = await preparerFeuille(niveau); }catch(e){ fc = null; }
     let seance = aRevoir ? cartesDeSeanceRevoir(tout, aRevoir) : cartesDeSeance(tout, av ? av.pool : pool);
+    POOL_NEUFS_SEANCE = aRevoir ? null : (av ? av.pool : pool);   // voir remplacerRetourSeance()
     // LES CARTES-PHRASES (essai v810) : une carte sur cinq devient une phrase.
     // v902 (Jacques : « au premier clic il y a encore un petit delai, puis plus
     // rien ») : les questions de grammaire viennent d'exercices.json, 8,5 Mo. Au
@@ -69514,6 +69518,33 @@ function programmerEcheance(state, minutes){
     state.reviews = (state.reviews || 0) + 1;
 }
 
+// LE PREMIER « JE SAVAIS » D'UN MOT NEUF (decision de Jacques du 8 nov. 2026 : « si c'est un nouveau mot, puis
+// qu'on fait deja "je sais", il devrait pas revenir avant la prochaine seance [...] on devrait sauter deux dots a
+// ce moment-la »). UNE SEULE REGLE pour les cartes, les scenes, les themes, les exercices de la seance et le
+// journal hors ligne : deux calculs paralleles finiraient par diverger.
+//   jamais rate, zero pastille  -> DEUX pastilles, retour a la seance suivante (le premier barreau des jours) ;
+//   rate puis reussi            -> une pastille, retour dans 10 minutes (SRS_PREMIERE_MINUTES), comme avant ;
+//   ensuite                     -> une pastille, l'echelle des jours, puis la maitrise.
+// Rend { hits, minutes, premierCoup } ; minutes vaut null pour la maitrise. A LIRE AVANT de toucher a l'etat :
+// motRate() compare reviews a srsHits. Ne touche a rien (tests/rappel_actif.js l'execute sous Node).
+function issueReussite(st){
+    const reussites = st.srsHits || 0;
+    if(reussites === 0 && !motRate(st)) return { hits: 2, minutes: 1440, premierCoup: true };
+    const hits = reussites + 1;
+    if(reussites === 0) return { hits: hits, minutes: SRS_PREMIERE_MINUTES, premierCoup: false };
+    if(hits >= SRS_PALIERS) return { hits: hits, minutes: null, premierCoup: false };
+    return { hits: hits, minutes: 1440, premierCoup: false };
+}
+// La meme regle appliquee a l'etat, pour ce qui juge un mot sans carte a l'ecran (scene, theme, exercice de la
+// seance, journal hors ligne). Rend true si le mot vient d'etre maitrise.
+function appliquerReussite(st){
+    const issue = issueReussite(st);
+    st.srsHits = issue.hits;
+    if(issue.minutes === null){ programmerMaitrise(st); return true; }
+    programmerEcheance(st, issue.minutes);
+    return false;
+}
+
 // Une seule question est posee a l'usager -- "je savais" ou non -- et c'est
 // l'app qui en deduit l'echeance. Avant v227 il fallait choisir soi-meme entre
 // 2 min, 10 min, demain et "maitrise" : quatre decisions de planification a
@@ -69521,7 +69552,8 @@ function programmerEcheance(state, minutes){
 // si le mot lui est revenu.
 //
 // Echelle parcourue par "Je savais" :
-//   1re reussite      -> 10 minutes (on reste dans la session, pour consolider)
+//   1re reussite      -> 10 minutes si le mot a ete rate ; deux pastilles et la
+//                        seance suivante s'il est su du premier coup (issueReussite)
 //   2e               -> 1 jour
 //   3e               -> 3 jours
 //   4e               -> maitrise
@@ -69609,9 +69641,12 @@ function majEcheances(animerDernier){
     const atteints = Math.min(reussites, SRS_PALIERS);
     const fini     = atteints >= SRS_PALIERS;
     let pips = "";
+    // Le mot su du premier coup gagne deux pastilles : les deux sont annoncees, les deux s'allument ensemble.
+    let gain = 1;
+    try{ if(issueReussite(state).premierCoup) gain = 2; }catch(e){}
     for(let i = 0; i < SRS_PALIERS; i++){
-        let cls = i < atteints ? "srs-pip on" : (i === atteints && !fini ? "srs-pip next" : "srs-pip");
-        if(animerDernier && i === atteints - 1) cls += " frais";
+        let cls = i < atteints ? "srs-pip on" : (i >= atteints && i < atteints + gain && !fini ? "srs-pip next" : "srs-pip");
+        if(animerDernier && i < atteints && i >= atteints - (animerDernier === 2 ? 2 : 1)) cls += " frais";
         pips += '<span class="' + cls + '"></span>';
     }
     pipsBox.innerHTML = pips;
@@ -69637,9 +69672,11 @@ function texteAideSrs(){
     // « 1 jour » ici pendant que le bouton dit « pas avant la prochaine
     // seance » n'est pas une nuance de style : c'est une aide qui decrit une
     // autre application que celle qu'on a sous les yeux. Signale par Jacques.
+    // rate: 1 : l'echelle pas a pas est celle d'un mot rate puis reussi ; le premier coup a sa phrase, plus bas.
     const etape = n => echeanceProchaineReussite({
         srsHits: n,
-        srsDailyStreak: Math.max(0, n - 1)
+        srsDailyStreak: Math.max(0, n - 1),
+        rate: 1
     });
     return '<p>' + t("srs_aide_intro") + '</p>'
         // Une section par bouton, dans l'ordre ou ils sont a l'ecran. Le titre
@@ -69659,6 +69696,7 @@ function texteAideSrs(){
         +     '<span class="fleche">\u2192</span><span class="etape fin">' + etape(3) + '</span>'
         +   '</div>'
         +   '<p>' + tf("srs_aide_pastilles", { n: SRS_PALIERS }) + '</p>'
+        +   '<p>' + tf("srs_aide_premier_coup", { n: SRS_PREMIERE_MINUTES }) + '</p>'
         + '</div>'
         // ⚠️ LE COFFRE DIT LA SEULE CHOSE QU'ON NE PEUT PAS DEVINER : il fait
         // avancer la carte SANS rien juger. Les trois autres repondent a
@@ -69695,6 +69733,8 @@ function echeanceProchaineReussite(state){
     // sans etre clair -- rien ne disait que ces dix minutes tombent
     // aujourd'hui, alors que « demain » et « dans 3 jours » annoncent
     // d'eux-memes un depart. Remarque de Jacques.
+    // Su du premier coup : la seance suivante, plus 10 minutes (issueReussite).
+    if(reussites === 0 && issueReussite(state).premierCoup) return t("echeance_demain");
     if(reussites === 0) return tf("echeance_dans_seance", { n: SRS_PREMIERE_MINUTES });
     const barreau = Math.min(state.srsDailyStreak || 0, SRS_DAILY_LADDER_DAYS.length - 1);
     const jours = SRS_DAILY_LADDER_DAYS[barreau];
@@ -69833,8 +69873,8 @@ function deuxiemeToucher(){
 // plein ecran #cartePrecedente, son CSS, et les cles flash_revoir /
 // flash_revoir_court / flash_fermer dans les cinq langues.
 
-function celebrerPalier(pointGagne){
-    majEcheances(true);
+function celebrerPalier(pointGagne, nbPastilles){
+    majEcheances(nbPastilles === 2 ? 2 : true);
     if(pointGagne){ launchConfetti(); playMasteredSound(); }
     // v853 : le +1 avec les confettis, pas sur la carte suivante.
     try{ poserCarreauDeLaCarte(carteCourante()); }catch(e){}
@@ -69876,28 +69916,62 @@ function reviewGood(){
     const item = currentCards[currentFlashcard];
     const state = getWordState(item.themeId, item.index);
     if(estNeuf(state)) noterMotNeuf();
-    const reussites = state.srsHits || 0;
-    state.srsHits = reussites + 1;
+    // Lue AVANT d'ecrire : la regle regarde l'etat du mot tel qu'il etait (issueReussite).
+    const issue = issueReussite(state);
+    state.srsHits = issue.hits;
     setWordState(item.themeId, item.index, state);
     sessionVues++;
     sessionSues++;
 
-    if(reussites === 0){
-        // Premiere reussite : on la revoit avant la fin de la session, ce que
-        // faisait l'ancien bouton "10 min". Aucun palier gagne ici -- donc pas
-        // de confettis : une recompense qui ne correspond a rien se decouvre
-        // vite, et devient du bruit.
-        scheduleReview(SRS_PREMIERE_MINUTES, true);
-        celebrerPalier(true);
-        return;
-    }
-    // Ensuite on monte l'echelle des jours (voir SRS_DAILY_LADDER_DAYS).
-    if(reussites + 1 >= SRS_PALIERS){
+    // La maitrise au bout de l'echelle.
+    if(issue.minutes === null){
         markMastered();
         return;
     }
-    scheduleReview(1440, true);
-    celebrerPalier(true);
+    // Rate puis reussi : 10 minutes, on la revoit avant la fin de la session. Su du premier coup : deux pastilles,
+    // la seance suivante, et une autre carte prend sa place. Sinon, l'echelle des jours (SRS_DAILY_LADDER_DAYS).
+    scheduleReview(issue.minutes, true);
+    if(issue.premierCoup){ try{ remplacerRetourSeance(item); }catch(e){} }
+    celebrerPalier(true, issue.premierCoup ? 2 : 1);
+}
+
+// LA SEANCE GARDE SA TAILLE (decision du 8 nov. : « j'ajouterais peut-etre des cartes au lieu de dire qu'on aurait
+// moins de cartes »). Un mot su du premier coup ne revient plus dans la seance : une autre carte prend la place de
+// ce retour -- un mot du d'abord, sinon un mot neuf si la dose du jour le permet. Seulement dans la seance du jour,
+// et une seule fois par carte du paquet d'origine : un mot de remplacement su du premier coup ne se remplace pas,
+// sinon quelqu'un qui connait tout ne finirait jamais.
+let POOL_NEUFS_SEANCE = null;
+function remplacerRetourSeance(item){
+    if(!estSeanceDuJourOuverte() || !item || item.remplacant) return;
+    const cle = it => it.themeId + ":" + it.index;
+    const deja = new Set(currentCards.map(cle));
+    let suite = cartesEchuesTriees((currentCardsFull || []).filter(it =>
+        !deja.has(cle(it)) && !estNeuf(getWordState(it.themeId, it.index))))[0];
+    if(!suite){
+        // La dose du jour compte les neufs deja juges ; ceux qui restent a venir dans le paquet la prennent aussi.
+        let aVenir = 0;
+        for(let i = currentFlashcard + 1; i < currentCards.length; i++){
+            const c = currentCards[i];
+            if(c && c.mode !== "phrase" && estNeuf(getWordState(c.themeId, c.index))) aVenir++;
+        }
+        if(placeNeufsRestante() - aVenir <= 0) return;
+        const neufs = (POOL_NEUFS_SEANCE || []).filter(it => !deja.has(cle(it)) && estNeuf(getWordState(it.themeId, it.index)));
+        if(!neufs.length) return;
+        suite = (kanaDabord(neufs) || ordonnerParFrequence(neufs))[0];
+    }
+    if(!suite) return;
+    const carte = Object.assign({}, suite, { remplacant: true });
+    // Apres le dernier mot de la partie en cours (avant le dialogue d'une etape, la scene ou le theme), pour ne pas
+    // ouvrir une partie de plus : le meme tableau, seancesJson et les parties le lisent.
+    const actives = seancePartsActive();
+    const partie = actives ? SEANCE_PARTS.parts.get(item) : null;
+    let place = currentFlashcard + 1;
+    for(let i = currentFlashcard + 1; i < currentCards.length; i++){
+        const c = currentCards[i];
+        if(c && c.mode !== "phrase" && (!actives || SEANCE_PARTS.parts.get(c) === partie)) place = i + 1;
+    }
+    currentCards.splice(place, 0, carte);
+    if(actives) SEANCE_PARTS.parts.set(carte, partie || "revisions");
 }
 
 // Echappatoire pour les mots deja connus : sans elle, quelqu'un qui ouvre un

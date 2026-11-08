@@ -73,6 +73,36 @@ egal(jouer([1,1,1,1,1,1,1,1,1].map(Boolean)), "100100100", "neuf cartes eligible
 egal(jouer([0,1,0,1,1,0,1,1,1].map(Boolean)), "010000100", "les cartes neuves ne comptent pas dans le tour");
 egal(jouer([1,1,1,1,1].map(Boolean), [false, true, true, true, true]), "01001", "pas de choix possibles : la suivante prend le tour");
 
+// ---------- 1b. Le premier « Je savais » d'un mot neuf (decision du 8 nov.) ----------
+{
+    const extraire = nom => { const m = source.match(new RegExp("function " + nom + "\\(st\\)\\{[\\s\\S]*?\\r?\\n\\}")); verifier(!!m, nom + "() introuvable"); return m ? m[0] : ""; };
+    const c2 = {};
+    vm.createContext(c2);
+    vm.runInContext("const SRS_PALIERS = 4; const SRS_PREMIERE_MINUTES = 10;\n" + extraire("motRate") + "\n" + extraire("issueReussite") + "\nthis.issue = issueReussite;", c2);
+    const I = st => JSON.stringify(c2.issue(st));
+    egal(I({ mastered: false, due: 0, reviews: 0 }), '{"hits":2,"minutes":1440,"premierCoup":true}', "neuf, su du premier coup : 2 pastilles, la seance suivante");
+    egal(I({}), '{"hits":2,"minutes":1440,"premierCoup":true}', "aucun etat : premier coup");
+    egal(I({ vu: 1 }), '{"hits":2,"minutes":1440,"premierCoup":true}', "simplement balaye : premier coup");
+    egal(I({ srsHits: 0, rate: 1, reviews: 1, due: 9 }), '{"hits":1,"minutes":10,"premierCoup":false}', "rate puis reussi : 1 pastille, 10 minutes");
+    egal(I({ srsHits: 0, reviews: 2, due: 9 }), '{"hits":1,"minutes":10,"premierCoup":false}', "rate avant la v1114 (reviews > srsHits, pas de rate) : 10 minutes");
+    egal(I({ srsHits: 1, reviews: 1, due: 9, rate: 1 }), '{"hits":2,"minutes":1440,"premierCoup":false}', "2e reussite : le premier barreau des jours");
+    egal(I({ srsHits: 2, reviews: 1, due: 9, srsDailyStreak: 1 }), '{"hits":3,"minutes":1440,"premierCoup":false}', "apres le premier coup : la 3e pastille, l'echelle des jours");
+    egal(I({ srsHits: 3, reviews: 2, due: 9 }), '{"hits":4,"minutes":null,"premierCoup":false}', "4e pastille : la maitrise");
+    const st = {};
+    c2.issue(st);
+    egal(JSON.stringify(st), "{}", "issueReussite ne touche pas a l'etat");
+    egal(R.formeSelonPoints(R.pointsRappel({ srsHits: 2, due: 9 })), "proches", "un mot a 2 pastilles revient en trois mots proches");
+    // Les trois juges sans carte passent par la regle commune, et aucun 10 minutes ne reste a part.
+    egal((source.match(/appliquerReussite\(st\)/g) || []).length, 4, "la definition + le hors ligne, la scene et la seance appellent appliquerReussite");
+    egal((source.match(/programmerEcheance\(st, SRS_PREMIERE_MINUTES\)/g) || []).length, 0, "plus de 10 minutes programme a part");
+    const debut = source.indexOf("const I18N = {");
+    ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de", "es"].forEach(lang => {
+        const i = source.indexOf("\n    " + lang + ": {", debut);
+        const bloc = source.slice(i, source.indexOf("\n    },", i));
+        verifier(/\n        srs_aide_premier_coup: "[^"]*\{n\}[^"]*",/.test(bloc), "srs_aide_premier_coup manque dans le bloc " + lang);
+    });
+}
+
 // ---------- 2b. Les boutons apres le choix (les memes que le verso, 7 nov.) ----------
 egal(R.boutonsApresChoix(true).join(","), "encore,continuer,garde", "choix juste : Encore, Continuer, Mettre de cote");
 egal(R.boutonsApresChoix(false).join(","), "continuer,garde", "choix faux : Continuer et Mettre de cote, sans Encore");
