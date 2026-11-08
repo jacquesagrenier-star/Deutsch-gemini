@@ -9021,6 +9021,80 @@ body[data-theme="dark"] .fete-tableau{background:linear-gradient(180deg, #0E1C26
 .ft-sous{bottom:calc(5% + env(safe-area-inset-bottom, 0px)); font-weight:800; font-size:14px;}
 body[data-theme="dark"] .ft-titre, body[data-theme="dark"] .ft-sous{color:#F6C46A; text-shadow:none;}
 .fete-tableau.ft-fini .ft-titre, .fete-tableau.ft-fini .ft-sous{opacity:1; transform:none;}
+/* L'objectif du jour est retire (8 nov. 2026) : l'anneau, son reglage ; l'essai japonais les garde. */
+html:not([data-apprendre="ja"]) #spAnneau, html:not([data-apprendre="ja"]) #spObjectif{display:none !important;}
+html:not([data-apprendre="ja"]) #reglageObjectif{display:none !important;}
+#flashcardEnd.avec-ciel #flashEndObjectif{display:none !important;}
+.fin-tableau{display:grid; justify-items:center; gap:4px; margin:8px 0 10px;}
+.fin-tableau canvas{width:min(250px, 80%); height:auto; border-radius:10px; box-shadow:0 6px 18px rgba(20,40,60,.16);}
+.fin-tableau-bas{font-size:14px; color:#4C566B; direction:ltr; font-variant-numeric:tabular-nums;}
+.fin-tableau-bas b{font-weight:800; color:#1C2430;}
+body[data-theme="dark"] .fin-tableau-bas{color:#A9B8C4;}
+body[data-theme="dark"] .fin-tableau-bas b{color:#EEF2F5;}
+/* LE CIEL DE L'ECRAN DE FIN (8 nov. 2026) : proposition B de la maquette, le soir en clair, la nuit en sombre. */
+#flashcardEnd.avec-ciel{padding:12px;}
+#flashcardEnd.avec-ciel #flashEndAnneau, #flashcardEnd.avec-ciel #flashEndTitre{display:none !important;}
+.fin-ciel{position:relative; display:flex; flex-direction:column; min-height:560px; border-radius:20px; overflow:hidden; text-align:center; margin-bottom:12px; padding-bottom:14px;
+    background:linear-gradient(180deg,#18223F 0%,#26345A 30%,#3E4B78 54%,#6A6F96 80%,#B98A80 91%,#DDA477 100%);
+    --fc-titre:#FFF6E8; --fc-ligne:#FFF6E8; --fc-gras:#FFE3A8; --fc-cnom:rgba(255,246,232,.74); --fc-pastille:#E8A23A;
+    --fc-v-haut:rgba(255,255,255,.2); --fc-v-bas:rgba(255,255,255,.2); --fc-v-encre:rgb(23,58,78); --fc-v-halo:0 0 4px rgba(255,255,255,.75), 0 0 1px rgba(255,255,255,.6);
+    --fc-v-reflet:linear-gradient(180deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.05) 30%, rgba(255,255,255,0) 48%), radial-gradient(60% 40% at 50% 110%, rgba(255,255,255,.22), rgba(255,255,255,0) 70%);
+    --fc-v-ombre:inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(255,255,255,.18), 0 8px 22px rgba(20,30,40,.14);}
+body[data-theme="dark"] .fin-ciel{background:linear-gradient(180deg,#050A13 0%,#0A1222 40%,#111A30 70%,#1A1D33 88%,#2A2236 100%);
+    --fc-titre:#F3F5F8; --fc-ligne:rgba(236,239,242,.9); --fc-gras:#F6CE84; --fc-cnom:rgba(236,239,242,.62); --fc-pastille:#F0B456;
+    --fc-v-haut:rgba(18,26,36,.05); --fc-v-bas:rgba(18,26,36,.05); --fc-v-encre:rgb(243,245,248); --fc-v-halo:0 1px 3px rgba(0,0,0,.6);
+    --fc-v-reflet:linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,.02) 30%, rgba(255,255,255,0) 48%);
+    --fc-v-ombre:inset 0 1px 0 rgba(255,255,255,.22), inset 0 -1px 0 rgba(255,255,255,.06), 0 8px 22px rgba(0,0,0,.3);}
+.fin-ciel > *{position:relative;}
+.fin-ciel.hidden{display:none;}
+.fin-ciel .fc-fond{position:absolute; inset:0; width:100%; height:100%;}
+.fc-loin{fill:#FFF6E2;}
+.fc-tete-l{display:flex; justify-content:space-between; padding:10px 14px 0; font-size:11.5px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--fc-cnom);}
+.fc-compte{letter-spacing:.04em; font-variant-numeric:tabular-nums; direction:ltr; unicode-bidi:isolate;}
+.fc-cst{display:block; width:100%; height:272px; direction:ltr; overflow:hidden;}
+.fc-avenir{stroke:rgba(255,246,232,.2); stroke-width:1.2; stroke-dasharray:2 5; stroke-linecap:round;}
+.fc-allume{stroke:#FFF1D6; stroke-opacity:.55; stroke-width:1.6; stroke-linecap:round;}
+.fc-place{fill:rgba(255,246,232,.34);}
+.fc-halo{fill:#FFF3D6;}
+.fc-cible{fill:#FFF3D6; animation:fcPouls 2.8s ease-in-out infinite; transform-box:fill-box; transform-origin:center;}
+@keyframes fcPouls{0%,100%{opacity:.06; transform:scale(.8)} 50%{opacity:.3; transform:scale(1.12)}}
+.fc-nouveau{stroke:#FFE7B8; stroke-opacity:.95; stroke-width:2.4; stroke-linecap:round; stroke-dasharray:1 1;}
+.fc-tete{transform:translate(var(--x1),var(--y1));}
+.fc-tete-h{fill:#FFE7B8; opacity:.32;}
+.fc-tete-c{fill:#FFFDF6;}
+.fc-nom{font-size:11px; font-weight:700; fill:rgba(255,246,232,.82); paint-order:stroke; stroke:rgba(8,14,30,.6); stroke-width:2.5px; stroke-linejoin:round;}
+.fc-joue .fc-nouveau{animation:fcAvance 1.35s cubic-bezier(.4,0,.45,1) .15s both;}
+@keyframes fcAvance{from{stroke-dashoffset:var(--de)} to{stroke-dashoffset:0}}
+.fc-joue .fc-tete{animation:fcFile 1.35s cubic-bezier(.4,0,.45,1) .15s both;}
+@keyframes fcFile{from{transform:translate(var(--x0),var(--y0))} to{transform:translate(var(--x1),var(--y1))}}
+.fc-neuve{transform-box:fill-box; transform-origin:center;}
+.fc-joue .fc-neuve{animation:fcAllume .75s cubic-bezier(.2,1.5,.4,1) 1.5s both;}
+@keyframes fcAllume{0%{transform:scale(0); opacity:0} 30%{opacity:1} 55%{transform:scale(1.5)} 100%{transform:scale(1); opacity:1}}
+.fc-filante{stroke:url(#fcFilante); stroke-width:2; stroke-linecap:round; opacity:0;}
+.fc-joue .fc-filante{animation:fcFiler 1.05s linear 2.5s both;}
+@keyframes fcFiler{0%{opacity:0; transform:translate(70px,-46px)} 10%{opacity:1} 80%{opacity:.9} 100%{opacity:0; transform:translate(-230px,150px)}}
+.fc-proch{display:grid; gap:1px; justify-items:center; padding:0 14px; font-size:14px; font-weight:700; color:var(--fc-ligne);}
+.fc-proch b{color:var(--fc-gras); font-weight:900;}
+.fc-proch small{font-size:12.5px; font-weight:700;}
+.fc-mots{display:grid; justify-items:center; gap:9px; padding:10px 14px 0;}
+.fc-fois{margin:0; display:inline-flex; align-items:baseline; gap:6px; padding:3px 13px; border-radius:999px; background:var(--fc-pastille); color:#1C2430; box-shadow:0 3px 0 #A86A0E; font-weight:900; font-variant-numeric:tabular-nums; line-height:1.25;}
+.fc-fois.hidden{display:none;}
+.fc-fois b{font-weight:900;}
+.fc-fois small{font-size:13px; font-weight:800;}
+.fc-titre{font-size:24px; font-weight:900; line-height:1.15; color:var(--fc-titre);}
+.fc-phrase{margin:0; font-size:17px; font-weight:700; line-height:1.35; color:var(--fc-ligne); text-wrap:balance; max-width:30ch;}
+.fc-phrase b{color:var(--fc-gras); font-weight:900;}
+.fc-pousse{flex:1 1 auto; min-height:28px;}
+#flashcardEnd .fc-verre{position:relative; display:flex; align-items:center; justify-content:center; width:auto !important; margin:0 12px !important; min-height:54px; height:54px; padding:0 12px !important; border:0 !important; border-radius:999px !important; overflow:hidden; isolation:isolate; cursor:pointer;
+    font-weight:900 !important; font-size:17px !important; color:var(--fc-v-encre) !important; text-shadow:var(--fc-v-halo) !important;
+    background:var(--fc-v-reflet), linear-gradient(180deg, var(--fc-v-haut), var(--fc-v-bas)) !important;
+    -webkit-backdrop-filter:blur(12px) saturate(1.15) brightness(1.04); backdrop-filter:blur(12px) saturate(1.15) brightness(1.04);
+    box-shadow:var(--fc-v-ombre) !important;}
+#flashcardEnd .fc-verre::after{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; padding:1.5px; opacity:.8;
+    background:linear-gradient(140deg, #fff 0%, rgba(255,255,255,.55) 22%, rgba(255,255,255,.06) 48%, rgba(255,255,255,.25) 74%, rgba(255,255,255,.95) 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude;}
+#flashcardEnd .fc-verre:focus-visible{outline:3px solid #E8A23A; outline-offset:2px;}
+@media (prefers-reduced-motion:reduce){ .fc-cible{animation:none; opacity:.2;} }
 /* LA NOUVELLE ETOILE (essai seance_legere, voir feteEtoile) : la variante A de la maquette du 7 nov. -- le soir en
    mode clair, la nuit en mode sombre ; l'ecran de 375 x 720 de la maquette, mis a l'echelle du telephone. */
 .fete-etoile{position:fixed; inset:0; z-index:100001; overflow:hidden; font-family:Nunito, system-ui, sans-serif;
@@ -13343,7 +13417,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         </details>
     </div>
 
-    <div class="card">
+    <div class="card" id="reglageObjectif">
         <strong data-i18n="settings_daily_goal">Objectif quotidien</strong>
         <div class="info-box" style="display:flex; align-items:center; justify-content:center; gap:18px;">
             <button class="secondary" style="width:48px; padding:10px 0;" onclick="adjustDailyGoal(-5)">−</button>
@@ -15172,6 +15246,15 @@ const I18N = {
         ra_faux: "Pas tout à fait. La bonne réponse :",
         ra_consigne_orthographe: "Lequel est bien écrit ?",
         ra_tu_as_choisi: "Tu as choisi « {s} ».",
+        ciel_aujourdhui: "aujourd'hui",
+        ciel_prochaine: "Prochaine étoile : {s}",
+        ciel_nouvelle: "Nouvelle étoile : {s}",
+        ciel_commence: "Le chemin vers {s} commence.",
+        ciel_rapproche: "Tu te rapproches de {s}.",
+        ciel_tout_pres: "{s} est tout près.",
+        ciel_tiennent: "Tes mots tiennent. {s} t'attend.",
+        fin_court_resume_sans: "{n} cartes aujourd'hui",
+        ciel_une_de_plus: "Une étoile de plus : {s}.",
         flash_end_a_revoir_un: "1 phrase à revoir demain",
         flash_end_a_revoir_n: "{n} phrases à revoir demain",
         pp_badge: "Premiers pas",
@@ -15715,7 +15798,7 @@ const I18N = {
         legende_maitrises: "Mots maîtrisés — quatre bonnes réponses étalées sur onze jours. Il peut redescendre d'un ou deux si un mot est oublié à son contrôle.",
         legende_rencontres: "Mots rencontrés — tous les mots que tu as vus au moins une fois, même sans les savoir. Ce nombre ne redescend jamais.",
         legende_vocab: "Vocabulaire — où tu en es du niveau affiché. Vert : su. Bleu : en cours. Gris : à rencontrer. Touche la flèche pour voir les cinq niveaux.",
-        legende_seance: "Ma séance du jour — le compte à gauche est ton objectif quotidien, que tu peux régler dans les réglages. La séance te sert ce qu'il en reste : les révisions dues d'abord, les mots nouveaux ensuite s'il reste de la place.",
+        legende_seance: "Ma séance du jour — 20 cartes : les révisions dues d'abord, puis les mots nouveaux. « Encore une séance » en ouvre une autre, sans limite.",
         carte_info_kicker: "Ta progression",
         info_partie_accueil: "Sur l'accueil",
         info_partie_ici: "Rangé ici",
@@ -15725,7 +15808,7 @@ const I18N = {
         ip_seance_gardes: "« Gardés » ouvre ton coffre : les mots que tu y as mis avec « Garder ». Tu peux y tourner autant que tu veux — rien de ce que tu y fais ne change une échéance ni l'objectif du jour.",
         ip_seance_theme: "« par thème » est l'autre porte : tu choisis toi-même un thème, au lieu de laisser l'app composer la séance.",
         ip_seance_t: "Le compte de la séance",
-        ip_seance_p: "Les cartes que tu as jugées aujourd'hui, sur ton objectif. Une carte demande une réponse — « Encore » ou « ✓ » — pour compter.",
+        ip_seance_p: "Les cartes que tu as jugées aujourd'hui. Une carte demande une réponse — « Encore » ou « ✓ » — pour compter.",
         ip_vocab_t: "La progression du vocabulaire",
         ip_vocab_p: "Où tu en es du niveau affiché. Touche la flèche pour voir les cinq niveaux.",
         ip_partie_tableau: "Le tableau",
@@ -15756,7 +15839,7 @@ const I18N = {
         combo_info: "⚡ Bonnes réponses de suite, dans cette séance. Une réponse fausse remet le compteur à zéro. (La 🔥 de l'accueil, elle, compte les jours d'affilée.)",
         legende_cercle: "◯ le cercle ci-dessus — où tu en es d'un niveau entier. Il avance d'une fraction de pour cent par mot et ne bouge pas avant le 11ᵉ jour : c'est normal, et c'est pour ça qu'il est rangé ici plutôt qu'à l'accueil. Touche-le pour changer de niveau.",
         legende_semaine: "📈 cette semaine — les mots devenus maîtrisés dans les sept derniers jours. C'est ta vitesse récente, pas un total.",
-        legende_objectif: "La barre « Aujourd'hui » — les cartes faites depuis ce matin, sur ton objectif. Elle repart à zéro chaque jour. Le nombre visé se change dans les réglages, et il donne aussi la taille de ta séance.",
+        legende_objectif: "La barre « Aujourd'hui » — les cartes faites depuis ce matin. Elle repart à zéro chaque jour.",
         progress_info_titre: "Ce qui fait bouger ce pourcentage",
         progress_info_compte: "Le pourcentage compte tes mots maîtrisés sur tous les mots du niveau affiché : les mots des thèmes, les verbes et les adjectifs réunis.",
         progress_info_deja: "Sur un mot nouveau, « Je le connais déjà » saute toute l'échelle et le marque maîtrisé tout de suite.",
@@ -16014,7 +16097,7 @@ const I18N = {
         badge_xp_2000_desc: "200 points d'expérience atteints.",
         badge_xp_5000_title: "Polyglotte en herbe",
         badge_xp_5000_desc: "500 points d'expérience atteints.",
-        badges_points_explication: "Tes points : {n}. Tu gagnes 1 point par bonne réponse (carte, exercice, oral) et 5 de plus chaque fois que tu atteins ton objectif du jour. Ce ne sont pas des mots maîtrisés, et ils comptent pour cette langue seulement.",
+        badges_points_explication: "Tes points : {n}. Tu gagnes 1 point par bonne réponse (carte, exercice, oral) et 5 de plus à ta première séance finie de la journée. Ce ne sont pas des mots maîtrisés, et ils comptent pour cette langue seulement.",
         fete_tableau_titre: "Tableau terminé !",
         fete_tableau_numero: "Tableau n° {n}",
         badge_streak_3_title: "3 jours de suite",
@@ -16049,26 +16132,26 @@ const I18N = {
         kicker_dictation_exercise: "Dictée",
         alert_no_dictation_available: "Ouvre d'abord une série de vocabulaire (Wortschatz) pour t'entraîner à la dictée.",
         notif_title: "Rappels quotidiens",
-        notif_desc: "Reçois une notification quand tu n'as pas encore atteint ton objectif du jour.",
+        notif_desc: "Reçois une notification quand ta séance du jour n'est pas encore faite.",
         notif_btn_enable: "ACTIVER LES RAPPELS",
         notif_btn_disable: "DÉSACTIVER LES RAPPELS",
         notif_not_configured: "Cette fonctionnalité n'est pas encore configurée par l'administrateur. Réessaie plus tard.",
         notif_unsupported: "Ton navigateur ne supporte pas les notifications push.",
         notif_denied: "Permission refusée. Tu peux l'autoriser dans les réglages de ton navigateur.",
         notif_token_failed: "Impossible d'activer les rappels pour l'instant. Réessaie plus tard.",
-        notif_enabled_success: "Rappels activés ! Tu recevras une notification si tu n'as pas atteint ton objectif du jour.",
+        notif_enabled_success: "Rappels activés ! Tu recevras une notification si ta séance du jour n'est pas faite.",
         notif_disabled_success: "Rappels désactivés.",
         rappel_heure: "Heure du rappel",
-        rappel_regle: "Rappel réglé : chaque jour à {h}, tant que ton objectif du jour n'est pas atteint.",
+        rappel_regle: "Rappel réglé : chaque jour à {h}, tant que ta séance du jour n'est pas faite.",
         rappel_refuse: "Notifications refusées. Tu peux les autoriser dans les réglages de ton téléphone.",
         rappel_notif_titre: "Ta séance du jour t'attend",
         rappel_notif_texte: "Quelques minutes suffisent pour garder tes jours d'affilée.",
         rappel_propose_titre: "Un rappel chaque jour ?",
-        rappel_propose_texte: "Bravo pour ce palier ! Veux-tu que Wortando te rappelle ta séance chaque jour à {h}, seulement les jours où tu n'as pas encore atteint ton objectif ? L'heure se change dans les réglages.",
+        rappel_propose_texte: "Bravo pour cette séance ! Veux-tu que Wortando te rappelle ta séance chaque jour à {h}, seulement les jours où elle n'est pas encore faite ? L'heure se change dans les réglages.",
         rappel_propose_oui: "Oui, me le rappeler",
         vibrations_titre: "Vibrations",
-        vibrations_desc: "Une courte vibration à chaque palier de ton objectif du jour : +30, +60, +90…",
-        vibrations_bouton: "Vibrer aux paliers de l'objectif",
+        vibrations_desc: "Une courte vibration à la fin de chaque séance.",
+        vibrations_bouton: "Vibrer à la fin des séances",
         hl_titre: "Pas de réseau — ta séance est prête hors ligne",
         hl_sous: "{n} cartes, avec leurs voix. Tes réponses compteront au retour du réseau.",
         hl_commencer: "COMMENCER",
@@ -16197,7 +16280,7 @@ const I18N = {
         dec_te_essai: "▶ Écouter mes premiers mots",
         dec_te_repete: "À toi : répète !",
         dec_t5_titre: "Ta séance du jour",
-        dec_t5_texte: "C'est le cœur de l'application. Chaque jour, une séance : des mots nouveaux, les révisions qui reviennent au bon moment, un peu de grammaire, l'oral, et la scène du jour. Elle a son objectif du jour, et tu peux la prolonger autant que tu veux. Tout fait avancer ton tableau. Sur l'accueil, la flèche la lance. Ton niveau se change ici. Tu pars de zéro ? La petite pousse, c'est Premiers pas : les phrases essentielles pour voyager.",
+        dec_t5_texte: "C'est le cœur de l'application. Chaque jour, une séance : des mots nouveaux, les révisions qui reviennent au bon moment, un peu de grammaire, l'oral, et la scène du jour. Tu peux en enchaîner autant que tu veux. Tout fait avancer ton tableau. Sur l'accueil, la flèche la lance. Ton niveau se change ici. Tu pars de zéro ? La petite pousse, c'est Premiers pas : les phrases essentielles pour voyager.",
         dec_t6_titre: "La visite est terminée !",
         dec_t6_texte: "Sur l'accueil, tout est là : ta séance du jour d'abord, puis les scènes et l'écoute, quand tu veux. Quelques minutes par jour suffisent. Bon apprentissage !",
         dec_t6_bouton: "COMMENCER",
@@ -16883,6 +16966,15 @@ const I18N = {
         ra_faux: "Not quite. The right answer:",
         ra_consigne_orthographe: "Which one is spelled right?",
         ra_tu_as_choisi: "You chose “{s}”.",
+        ciel_aujourdhui: "today",
+        ciel_prochaine: "Next star: {s}",
+        ciel_nouvelle: "New star: {s}",
+        ciel_commence: "The path to {s} begins.",
+        ciel_rapproche: "You're getting closer to {s}.",
+        ciel_tout_pres: "{s} is very close.",
+        ciel_tiennent: "Your words are holding. {s} is waiting.",
+        fin_court_resume_sans: "{n} cards today",
+        ciel_une_de_plus: "One more star: {s}.",
         flash_end_a_revoir_un: "1 sentence to review tomorrow",
         flash_end_a_revoir_n: "{n} sentences to review tomorrow",
         pp_badge: "First steps",
@@ -17425,7 +17517,7 @@ const I18N = {
         legende_maitrises: "Words mastered — four correct answers spread over eleven days. It can drop by one or two if a word is forgotten at its check.",
         legende_rencontres: "Words met — every word you have seen at least once, even without knowing it. This number never goes down.",
         legende_vocab: "Vocabulary — where you stand in the level shown. Green: known. Blue: in progress. Grey: still to meet. Tap the arrow for all five levels.",
-        legende_seance: "My session today — the count on the left is your daily goal, adjustable in the settings. The session serves what's left of it: reviews that are due first, new words after, if there's room.",
+        legende_seance: "My session today — 20 cards: the reviews that are due first, then new words. “One more session” opens another, with no limit.",
         carte_info_kicker: "Your progress",
         info_partie_accueil: "On the home screen",
         info_partie_ici: "Kept here",
@@ -17435,7 +17527,7 @@ const I18N = {
         ip_seance_gardes: "“Kept” opens your chest: the words you put there with “Keep”. You can go round it as often as you like — nothing you do there changes a due date or the daily goal.",
         ip_seance_theme: "“by theme” is the other door: you pick a theme yourself instead of letting the app build the session.",
         ip_seance_t: "The session count",
-        ip_seance_p: "The cards you judged today, against your goal. A card needs an answer — « Again » or « ✓ » — to count.",
+        ip_seance_p: "The cards you've judged today. A card needs an answer — “Again” or “✓” — to count.",
         ip_vocab_t: "Vocabulary progress",
         ip_vocab_p: "How far you are through the level shown. Tap the arrow to see the five levels.",
         ip_partie_tableau: "The painting",
@@ -17466,7 +17558,7 @@ const I18N = {
         combo_info: "⚡ Correct answers in a row, in this session. A wrong answer resets the count. (The 🔥 on the home screen counts days in a row.)",
         legende_cercle: "◯ the circle above — how far you are through a whole level. It moves by a fraction of a percent per word and doesn't budge before day 11: that's normal, and that's why it lives here rather than on the home screen. Tap it to change level.",
         legende_semaine: "📈 this week — the words you have mastered in the last seven days. It is your recent speed, not a total.",
-        legende_objectif: "The “Today” bar — cards done since this morning, out of your goal. It resets every day. The target is set in the settings, and it also sets the size of your session.",
+        legende_objectif: "The “Today” bar — the cards done since this morning. It goes back to zero each day.",
         progress_info_titre: "What moves this percentage",
         progress_info_compte: "The percentage counts the words you have mastered out of every word in the level shown: theme words, verbs and adjectives together.",
         progress_info_deja: "On a new word, “I already know it” skips the whole ladder and marks it mastered straight away.",
@@ -17722,7 +17814,7 @@ const I18N = {
         badge_xp_2000_desc: "Reached 200 experience points.",
         badge_xp_5000_title: "Budding polyglot",
         badge_xp_5000_desc: "Reached 500 experience points.",
-        badges_points_explication: "Your points: {n}. You earn 1 point for each correct answer (card, exercise, speaking) and 5 more each time you reach your daily goal. They are not mastered words, and they count for this language only.",
+        badges_points_explication: "Your points: {n}. You earn 1 point per correct answer (card, exercise, speaking) and 5 more when you finish your first session of the day. These aren't mastered words, and they count for this language only.",
         fete_tableau_titre: "Painting complete!",
         fete_tableau_numero: "Painting no. {n}",
         badge_streak_3_title: "3 days in a row",
@@ -17757,26 +17849,26 @@ const I18N = {
         kicker_dictation_exercise: "Dictation",
         alert_no_dictation_available: "Open a vocabulary set (Wortschatz) first to practice dictation.",
         notif_title: "Daily reminders",
-        notif_desc: "Get a notification when you haven't reached your daily goal yet.",
+        notif_desc: "Get a notification when today's session isn't done yet.",
         notif_btn_enable: "ENABLE REMINDERS",
         notif_btn_disable: "DISABLE REMINDERS",
         notif_not_configured: "This feature isn't configured by the admin yet. Try again later.",
         notif_unsupported: "Your browser doesn't support push notifications.",
         notif_denied: "Permission denied. You can allow it in your browser settings.",
         notif_token_failed: "Couldn't enable reminders right now. Try again later.",
-        notif_enabled_success: "Reminders enabled! You'll get a notification if you haven't reached your daily goal.",
+        notif_enabled_success: "Reminders on! You'll get a notification if today's session isn't done.",
         notif_disabled_success: "Reminders disabled.",
         rappel_heure: "Reminder time",
-        rappel_regle: "Reminder set: every day at {h}, unless you've already reached your daily goal.",
+        rappel_regle: "Reminder set: every day at {h}, as long as today's session isn't done.",
         rappel_refuse: "Notifications are off. You can allow them in your phone's settings.",
         rappel_notif_titre: "Your daily session is waiting",
         rappel_notif_texte: "A few minutes are enough to keep your days in a row going.",
         rappel_propose_titre: "A daily reminder?",
-        rappel_propose_texte: "Well done on this milestone! Would you like Wortando to remind you of your session every day at {h}, only on days when you haven't reached your goal yet? You can change the time in the settings.",
+        rappel_propose_texte: "Well done on this session! Would you like Wortando to remind you of your session every day at {h}, only on days when it isn't done yet? You can change the time in settings.",
         rappel_propose_oui: "Yes, remind me",
         vibrations_titre: "Vibrations",
-        vibrations_desc: "A short vibration at each milestone of your daily goal: +30, +60, +90…",
-        vibrations_bouton: "Vibrate at goal milestones",
+        vibrations_desc: "A short vibration at the end of each session.",
+        vibrations_bouton: "Vibrate at the end of sessions",
         hl_titre: "No network — your session is ready offline",
         hl_sous: "{n} cards, with their audio. Your answers will count once you're back online.",
         hl_commencer: "START",
@@ -17905,7 +17997,7 @@ const I18N = {
         dec_te_essai: "▶ Listen to my first words",
         dec_te_repete: "Your turn: repeat!",
         dec_t5_titre: "Today's session",
-        dec_t5_texte: "This is the heart of the app. Every day, a session: new words, the reviews that come back at just the right time, a little grammar, speaking, and the scene of the day. It has a daily goal, and you can keep going as long as you like. Everything moves your painting forward. On the home screen, the arrow starts it. You change your level here. Starting from zero? The little sprout is First steps: the essential phrases for travelling.",
+        dec_t5_texte: "This is the heart of the app. Every day, a session: new words, the reviews that come back at just the right time, a little grammar, speaking, and the scene of the day. You can do as many in a row as you like. Everything moves your painting forward. On the home screen, the arrow starts it. You change your level here. Starting from zero? The little sprout is First steps: the essential phrases for travelling.",
         dec_t6_titre: "The tour is over!",
         dec_t6_texte: "Everything is on the home screen: today's session first, then the scenes and listening, whenever you like. A few minutes a day is enough. Happy learning!",
         dec_t6_bouton: "LET'S START",
@@ -18595,6 +18687,21 @@ const I18N = {
         ra_faux: "Tam değil. Doğru cevap:",
         ra_consigne_orthographe: "Hangisi doğru yazılmış?",
         ra_tu_as_choisi: "“{s}” seçtin.",
+        legere_encore: "Bir oturum daha",
+        legere_fin_une: "Bugünkü oturumun bitti.",
+        legere_fin_n: "Bugün {n} oturum",
+        etoile_aria: "Yeni bir yıldız",
+        etoile_compte: "{t} yıldızdan {n}",
+        etoile_groupe_complet: "grup tamamlandı",
+        ciel_aujourdhui: "bugün",
+        ciel_prochaine: "Sıradaki yıldız: {s}",
+        ciel_nouvelle: "Yeni yıldız: {s}",
+        ciel_commence: "{s} yolculuğu başlıyor.",
+        ciel_rapproche: "{s} yıldızına yaklaşıyorsun.",
+        ciel_tout_pres: "{s} çok yakın.",
+        ciel_tiennent: "Kelimelerin yerinde. {s} seni bekliyor.",
+        fin_court_resume_sans: "Bugün {n} kart",
+        ciel_une_de_plus: "Bir yıldız daha: {s}.",
         flash_end_a_revoir_un: "Yarın tekrar edilecek 1 cümle",
         flash_end_a_revoir_n: "Yarın tekrar edilecek {n} cümle",
         pp_badge: "İlk adımlar",
@@ -19075,7 +19182,7 @@ const I18N = {
         legende_maitrises: "Öğrenilen kelime — on bir güne yayılmış dört doğru cevap. Bir kelime kontrolünde unutulursa bir iki azalabilir.",
         legende_rencontres: "Karşılaşılan kelime — en az bir kez gördüğün her kelime, bilmesen bile. Bu sayı asla düşmez.",
         legende_vocab: "Kelimeler — gösterilen seviyede neredesin. Yeşil: biliniyor. Mavi: sürüyor. Gri: henüz görülmedi. Beş seviye için oka dokun.",
-        legende_seance: "Bugünkü seansım — soldaki sayı günlük hedefin; ayarlardan değiştirebilirsin. Seans geri kalanını sunar: önce zamanı gelen tekrarlar, yer kalırsa yeni kelimeler.",
+        legende_seance: "Bugünkü oturumum — 20 kart: önce zamanı gelen tekrarlar, sonra yeni kelimeler. “Bir oturum daha” sınırsız yenisini açar.",
         carte_info_kicker: "İlerlemen",
         info_partie_accueil: "Ana ekranda",
         info_partie_ici: "Burada saklı",
@@ -19085,7 +19192,7 @@ const I18N = {
         ip_seance_gardes: "“Saklananlar” sandığını açar: “Sakla” ile oraya koyduğun kelimeler. İstediğin kadar dönebilirsin — orada yaptığın hiçbir şey bir tarihi ya da günlük hedefi değiştirmez.",
         ip_seance_theme: "“temaya göre” diğer kapıdır: seansı uygulamanın kurmasına bırakmak yerine temayı kendin seçersin.",
         ip_seance_t: "Oturum sayacı",
-        ip_seance_p: "Bugün değerlendirdiğin kartlar, hedefine göre. Bir kartın sayılması için yanıt gerekir.",
+        ip_seance_p: "Bugün değerlendirdiğin kartlar. Bir kartın sayılması için yanıt gerekir: “Tekrar” ya da “✓”.",
         ip_vocab_t: "Kelime ilerlemesi",
         ip_vocab_p: "Gösterilen seviyede nerede olduğun. Beş seviyeyi görmek için oka dokun.",
         ip_partie_tableau: "Tablo",
@@ -19116,7 +19223,7 @@ const I18N = {
         combo_info: "⚡ Bu oturumda art arda doğru cevaplar. Yanlış bir cevap sayacı sıfırlar. (Ana ekrandaki 🔥 ise üst üste günleri sayar.)",
         legende_cercle: "◯ yukarıdaki halka — bütün bir seviyede nerede olduğun. Kelime başına yüzdenin küçük bir kesri kadar ilerler ve 11. günden önce kıpırdamaz: bu normaldir, zaten bu yüzden ana ekranda değil burada. Seviye değiştirmek için dokun.",
         legende_semaine: "📈 bu hafta — son yedi günde öğrendiğin kelimeler. Bu, toplam değil, son hızındır.",
-        legende_objectif: "“Bugün” çubuğu — bu sabahtan beri yapılan kartlar, hedefine oranla. Her gün sıfırlanır. Hedef ayarlardan değişir ve oturumunun boyutunu da belirler.",
+        legende_objectif: "“Bugün” çubuğu — bu sabahtan beri yapılan kartlar. Her gün sıfırlanır.",
         progress_info_titre: "Bu yüzdeyi ne değiştirir",
         progress_info_compte: "Yüzde, gösterilen seviyedeki tüm kelimeler içinde öğrendiğin kelimeleri sayar: tema kelimeleri, fiiller ve sıfatlar birlikte.",
         progress_info_deja: "Yeni bir kelimede « Zaten biliyorum » tüm basamakları atlar ve kelimeyi hemen öğrenilmiş sayar.",
@@ -19372,7 +19479,7 @@ const I18N = {
         badge_xp_2000_desc: "200 deneyim puanına ulaşıldı.",
         badge_xp_5000_title: "Yetişen çok dilli",
         badge_xp_5000_desc: "500 deneyim puanına ulaşıldı.",
-        badges_points_explication: "Puanın: {n}. Her doğru cevap için 1 puan (kart, alıştırma, konuşma), günlük hedefine her ulaştığında 5 puan daha kazanırsın. Bunlar öğrenilmiş kelimeler değildir ve yalnızca bu dil için sayılır.",
+        badges_points_explication: "Puanların: {n}. Her doğru yanıt (kart, alıştırma, konuşma) 1 puan, günün ilk oturumunu bitirince 5 puan daha kazandırır. Bunlar öğrenilmiş kelime sayısı değildir ve yalnızca bu dil için geçerlidir.",
         fete_tableau_titre: "Tablo tamamlandı!",
         fete_tableau_numero: "{n}. tablo",
         badge_streak_3_title: "Üst üste 3 gün",
@@ -19407,26 +19514,26 @@ const I18N = {
         kicker_dictation_exercise: "Dikte",
         alert_no_dictation_available: "Dikte alıştırması için önce bir kelime seti (Wortschatz) aç.",
         notif_title: "Günlük hatırlatmalar",
-        notif_desc: "Günlük hedefine henüz ulaşmadığında bildirim al.",
+        notif_desc: "Bugünkü oturumun henüz bitmediyse bildirim al.",
         notif_btn_enable: "HATIRLATMALARI AÇ",
         notif_btn_disable: "HATIRLATMALARI KAPAT",
         notif_not_configured: "Bu özellik yönetici tarafından henüz ayarlanmadı. Daha sonra tekrar dene.",
         notif_unsupported: "Tarayıcın push bildirimlerini desteklemiyor.",
         notif_denied: "İzin reddedildi. Tarayıcı ayarlarından izin verebilirsin.",
         notif_token_failed: "Hatırlatmalar şu anda açılamadı. Daha sonra tekrar dene.",
-        notif_enabled_success: "Hatırlatmalar açıldı! Günlük hedefine ulaşmadıysan bir bildirim alacaksın.",
+        notif_enabled_success: "Hatırlatmalar açık! Bugünkü oturumun bitmediyse bildirim alacaksın.",
         notif_disabled_success: "Hatırlatmalar kapatıldı.",
         rappel_heure: "Hatırlatma saati",
-        rappel_regle: "Hatırlatma ayarlandı: her gün saat {h}, günlük hedefine henüz ulaşmadıysan.",
+        rappel_regle: "Hatırlatma ayarlandı: her gün saat {h}, bugünkü oturumun bitmediyse.",
         rappel_refuse: "Bildirimler kapalı. Telefonunun ayarlarından izin verebilirsin.",
         rappel_notif_titre: "Günlük çalışman seni bekliyor",
         rappel_notif_texte: "Üst üste günlerini sürdürmek için birkaç dakika yeter.",
         rappel_propose_titre: "Her gün bir hatırlatma?",
-        rappel_propose_texte: "Bu aşama için tebrikler! Wortando çalışmanı sana her gün {h} saatinde hatırlatsın mı? Yalnızca günlük hedefine henüz ulaşmadığın günlerde. Saati ayarlardan değiştirebilirsin.",
+        rappel_propose_texte: "Bu oturum için tebrikler! Wortando sana oturumunu her gün saat {h}'de, yalnızca henüz bitmediği günlerde hatırlatsın mı? Saat ayarlardan değiştirilebilir.",
         rappel_propose_oui: "Evet, hatırlat",
         vibrations_titre: "Titreşim",
-        vibrations_desc: "Günlük hedefinin her aşamasında kısa bir titreşim: +30, +60, +90…",
-        vibrations_bouton: "Hedef aşamalarında titre",
+        vibrations_desc: "Her oturumun sonunda kısa bir titreşim.",
+        vibrations_bouton: "Oturum sonunda titret",
         hl_titre: "Ağ yok — çalışman çevrimdışı hazır",
         hl_sous: "{n} kart, sesleriyle. Cevapların bağlantı geri geldiğinde sayılacak.",
         hl_commencer: "BAŞLA",
@@ -19551,7 +19658,7 @@ const I18N = {
         dec_te_essai: "▶ İlk kelimelerimi dinle",
         dec_te_repete: "Sıra sende: tekrarla!",
         dec_t5_titre: "Bugünkü oturumun",
-        dec_t5_texte: "Uygulamanın kalbi burası. Her gün bir oturum: yeni kelimeler, tam zamanında geri gelen tekrarlar, biraz dilbilgisi, konuşma ve günün sahnesi. Bir günlük hedefi var ve istediğin kadar devam edebilirsin. Her şey tablonu ilerletir. Ana ekranda ok onu başlatır. Seviyeni buradan değiştirirsin. Sıfırdan mı başlıyorsun? Küçük filiz İlk adımlar'dır: seyahat için temel cümleler.",
+        dec_t5_texte: "Uygulamanın kalbi burası. Her gün bir oturum: yeni kelimeler, tam zamanında geri gelen tekrarlar, biraz dilbilgisi, konuşma ve günün sahnesi. İstediğin kadar art arda yapabilirsin. Her şey tablonu ilerletir. Ana ekranda ok onu başlatır. Seviyeni buradan değiştirirsin. Sıfırdan mı başlıyorsun? Küçük filiz İlk adımlar'dır: seyahat için temel cümleler.",
         dec_t6_titre: "Tur bitti!",
         dec_t6_texte: "Her şey ana ekranda: önce bugünkü oturumun, sonra istediğin zaman sahneler ve dinleme. Günde birkaç dakika yeter. İyi öğrenmeler!",
         dec_t6_bouton: "BAŞLA",
@@ -20351,7 +20458,7 @@ const I18N = {
         badge_xp_2000_desc: "Досягнуто 200 очок досвіду.",
         badge_xp_5000_title: "Майбутній поліглот",
         badge_xp_5000_desc: "Досягнуто 500 очок досвіду.",
-        badges_points_explication: "Твої очки: {n}. За кожну правильну відповідь (картка, вправа, усно) — 1 очко, і ще 5 щоразу, коли досягаєш денної мети. Це не вивчені слова, і вони рахуються лише для цієї мови.",
+        badges_points_explication: "Твої бали: {n}. За кожну правильну відповідь (картка, вправа, усне мовлення) — 1 бал і ще 5 за перше завершене заняття дня. Це не вивчені слова, і вони рахуються лише для цієї мови.",
         fete_tableau_titre: "Картину завершено!",
         fete_tableau_numero: "Картина № {n}",
         badge_streak_3_title: "3 дні поспіль",
@@ -20370,26 +20477,26 @@ const I18N = {
         dictation_hint: "Артикль (der/die/das) писати не потрібно.",
         dictation_explanation_prefix: "Це було слово:",
         notif_title: "Щоденні нагадування",
-        notif_desc: "Отримуй сповіщення, коли ще не досяг своєї цілі на день.",
+        notif_desc: "Отримуй сповіщення, якщо сьогоднішнє заняття ще не завершено.",
         notif_btn_enable: "УВІМКНУТИ НАГАДУВАННЯ",
         notif_btn_disable: "ВИМКНУТИ НАГАДУВАННЯ",
         notif_not_configured: "Цю функцію адміністратор ще не налаштував. Спробуй пізніше.",
         notif_unsupported: "Твій браузер не підтримує push-сповіщення.",
         notif_denied: "Дозвіл відхилено. Його можна надати в налаштуваннях браузера.",
         notif_token_failed: "Наразі не вдається увімкнути нагадування. Спробуй пізніше.",
-        notif_enabled_success: "Нагадування увімкнено! Ти отримаєш сповіщення, якщо не досягнеш цілі на день.",
+        notif_enabled_success: "Нагадування ввімкнено! Ти отримаєш сповіщення, якщо сьогоднішнє заняття не завершено.",
         notif_disabled_success: "Нагадування вимкнено.",
         rappel_heure: "Час нагадування",
-        rappel_regle: "Нагадування встановлено: щодня о {h}, якщо денну ціль ще не досягнуто.",
+        rappel_regle: "Нагадування налаштовано: щодня о {h}, поки сьогоднішнє заняття не завершено.",
         rappel_refuse: "Сповіщення вимкнено. Їх можна дозволити в налаштуваннях телефона.",
         rappel_notif_titre: "Твоє щоденне заняття чекає",
         rappel_notif_texte: "Кількох хвилин досить, щоб не перервати дні поспіль.",
         rappel_propose_titre: "Нагадування щодня?",
-        rappel_propose_texte: "Вітаємо з цим етапом! Хочеш, щоб Wortando щодня о {h} нагадував тобі про заняття — лише в дні, коли денну ціль ще не досягнуто? Час можна змінити в налаштуваннях.",
+        rappel_propose_texte: "Чудове заняття! Хочеш, щоб Wortando нагадував тобі про заняття щодня о {h}, лише в дні, коли воно ще не завершене? Час можна змінити в налаштуваннях.",
         rappel_propose_oui: "Так, нагадувати",
         vibrations_titre: "Вібрація",
-        vibrations_desc: "Коротка вібрація на кожному етапі денної цілі: +30, +60, +90…",
-        vibrations_bouton: "Вібрувати на етапах цілі",
+        vibrations_desc: "Коротка вібрація наприкінці кожного заняття.",
+        vibrations_bouton: "Вібрувати наприкінці занять",
         hl_titre: "Немає мережі — твоє заняття готове офлайн",
         hl_sous: "{n} карток із озвученням. Відповіді зарахуються, коли мережа повернеться.",
         hl_commencer: "ПОЧАТИ",
@@ -20466,7 +20573,7 @@ const I18N = {
         dec_te_essai: "▶ Послухати мої перші слова",
         dec_te_repete: "Твоя черга: повтори!",
         dec_t5_titre: "Твій сеанс на сьогодні",
-        dec_t5_texte: "Це серце застосунку. Щодня — сеанс: нові слова, повторення, що повертаються саме вчасно, трохи граматики, усне мовлення і сцена дня. У нього є мета на день, а продовжувати можна скільки завгодно. Усе це просуває твою картину. На головному екрані його запускає стрілка. Рівень змінюється тут. Починаєш з нуля? Маленький паросток — це «Перші кроки»: найпотрібніші фрази для подорожі.",
+        dec_t5_texte: "Це серце застосунку. Щодня — сеанс: нові слова, повторення, що повертаються саме вчасно, трохи граматики, усне мовлення і сцена дня. Можна проходити їх одне за одним скільки завгодно. Усе це просуває твою картину. На головному екрані його запускає стрілка. Рівень змінюється тут. Починаєш з нуля? Маленький паросток — це «Перші кроки»: найпотрібніші фрази для подорожі.",
         dec_t6_titre: "Екскурсію завершено!",
         dec_t6_texte: "На головному екрані є все: спершу твій сеанс на сьогодні, а потім сцени й слухання — коли захочеш. Кількох хвилин на день достатньо. Успішного навчання!",
         dec_t6_bouton: "ПОЧАТИ",
@@ -20674,6 +20781,21 @@ const I18N = {
         ra_faux: "Не зовсім. Правильна відповідь:",
         ra_consigne_orthographe: "Яке написано правильно?",
         ra_tu_as_choisi: "Ти вибрав(-ла) «{s}».",
+        legere_encore: "Ще одне заняття",
+        legere_fin_une: "Сьогоднішнє заняття завершено.",
+        legere_fin_n: "Занять сьогодні: {n}",
+        etoile_aria: "Нова зірка",
+        etoile_compte: "Зірок: {n} із {t}",
+        etoile_groupe_complet: "групу завершено",
+        ciel_aujourdhui: "сьогодні",
+        ciel_prochaine: "Наступна зірка: {s}",
+        ciel_nouvelle: "Нова зірка: {s}",
+        ciel_commence: "Шлях до зірки {s} починається.",
+        ciel_rapproche: "Ти наближаєшся до зірки {s}.",
+        ciel_tout_pres: "{s} уже зовсім близько.",
+        ciel_tiennent: "Твої слова тримаються. {s} чекає.",
+        fin_court_resume_sans: "Карток сьогодні: {n}",
+        ciel_une_de_plus: "Ще одна зірка: {s}.",
         flash_end_a_revoir_un: "1 речення на повторення завтра",
         flash_end_a_revoir_n: "Речень на повторення завтра: {n}",
         pp_badge: "Перші кроки",
@@ -21539,7 +21661,7 @@ const I18N = {
         legende_maitrises: "Слів засвоєно — чотири правильні відповіді за одинадцять днів. Може зменшитись на одне-два, якщо слово забуто на перевірці.",
         legende_rencontres: "Слів побачено — усі слова, які ти бачив хоча б раз, навіть не знаючи їх. Це число ніколи не зменшується.",
         legende_vocab: "Лексика — де ти на показаному рівні. Зелений: відомо. Синій: у процесі. Сірий: попереду. Торкнись стрілки, щоб побачити всі п'ять рівнів.",
-        legende_seance: "Моє заняття на сьогодні — число ліворуч це твоя щоденна мета, її можна змінити в налаштуваннях. Заняття подає те, що з неї лишилось: спершу повторення, потім нові слова, якщо є місце.",
+        legende_seance: "Моє заняття на сьогодні — 20 карток: спочатку повторення, на які настав час, потім нові слова. «Ще одне заняття» відкриває наступне, без обмежень.",
         carte_info_kicker: "Твій поступ",
         info_partie_accueil: "На головному екрані",
         info_partie_ici: "Зберігається тут",
@@ -21549,7 +21671,7 @@ const I18N = {
         ip_seance_gardes: "«Збережені» відкриває твою скриню: слова, які ти поклав туди через «Зберегти». Можеш крутитися там скільки завгодно — ніщо з того, що ти там робиш, не змінює ні терміну, ні денної мети.",
         ip_seance_theme: "«за темою» — інші двері: ти сам обираєш тему, замість того щоб застосунок складав заняття.",
         ip_seance_t: "Лічильник сеансу",
-        ip_seance_p: "Картки, які ти оцінив сьогодні, щодо твоєї мети. Картка зараховується лише з відповіддю.",
+        ip_seance_p: "Картки, які ти оцінив(-ла) сьогодні. Щоб картка зарахувалася, потрібна відповідь: «Ще раз» або «✓».",
         ip_vocab_t: "Поступ у лексиці",
         ip_vocab_p: "Де ти на показаному рівні. Торкнись стрілки, щоб побачити п'ять рівнів.",
         ip_partie_tableau: "Картина",
@@ -21580,7 +21702,7 @@ const I18N = {
         combo_info: "⚡ Правильні відповіді поспіль у цьому сеансі. Неправильна відповідь обнуляє лічильник. (🔥 на головному екрані рахує дні поспіль.)",
         legende_cercle: "◯ коло вище — де ти на цілому рівні. Воно рухається на частку відсотка за слово і не зрушить до 11-го дня: це нормально, тому воно тут, а не на головній. Торкнись, щоб змінити рівень.",
         legende_semaine: "📈 цього тижня — слова, які ти засвоїв за останні сім днів. Це твоя нинішня швидкість, а не загальна сума.",
-        legende_objectif: "Смужка «Сьогодні» — картки, зроблені від ранку, з твоєї цілі. Щодня обнуляється. Ціль змінюється в налаштуваннях і водночас задає розмір сеансу.",
+        legende_objectif: "Смужка «Сьогодні» — картки, виконані з самого ранку. Щодня вона починається з нуля.",
         progress_info_titre: "Що змінює цей відсоток",
         progress_info_compte: "Відсоток рахує засвоєні тобою слова з-поміж усіх слів показаного рівня: слова тем, дієслова та прикметники разом.",
         progress_info_deja: "На новому слові « Я вже знаю » пропускає всі щаблі й одразу позначає слово засвоєним.",
@@ -22350,7 +22472,7 @@ const I18N = {
         badge_xp_2000_desc: "200 امتیاز تجربه به دست آمد.",
         badge_xp_5000_title: "چندزبانهٔ نوپا",
         badge_xp_5000_desc: "500 امتیاز تجربه به دست آمد.",
-        badges_points_explication: "امتیازهای تو: {n}. برای هر پاسخ درست (کارت، تمرین، گفتار) ۱ امتیاز می‌گیری و هر بار که به هدف روزانه‌ات برسی ۵ امتیاز دیگر. این‌ها واژه‌های آموخته‌شده نیستند و فقط برای همین زبان حساب می‌شوند.",
+        badges_points_explication: "امتیازهایت: {n}. برای هر پاسخ درست (کارت، تمرین، گفتار) ۱ امتیاز و با پایان نخستین جلسهٔ روز ۵ امتیاز دیگر می‌گیری. این‌ها واژه‌های تثبیت‌شده نیستند و فقط برای همین زبان حساب می‌شوند.",
         fete_tableau_titre: "تابلو کامل شد!",
         fete_tableau_numero: "تابلوی شمارهٔ {n}",
         badge_streak_3_title: "3 روز پیاپی",
@@ -22385,26 +22507,26 @@ const I18N = {
         kicker_dictation_exercise: "املا",
         alert_no_dictation_available: "برای تمرین املا، اول یک مجموعهٔ واژگان (Wortschatz) را باز کن.",
         notif_title: "یادآوری‌های روزانه",
-        notif_desc: "وقتی هنوز به هدف امروزت نرسیده‌ای، یک اعلان دریافت کن.",
+        notif_desc: "وقتی جلسهٔ امروزت هنوز تمام نشده، اعلان بگیر.",
         notif_btn_enable: "روشن کردن یادآوری‌ها",
         notif_btn_disable: "خاموش کردن یادآوری‌ها",
         notif_not_configured: "این قابلیت را مدیر هنوز پیکربندی نکرده است. بعداً دوباره تلاش کن.",
         notif_unsupported: "مرورگر تو از اعلان‌ها پشتیبانی نمی‌کند.",
         notif_denied: "اجازه داده نشد. می‌توانی آن را در تنظیمات مرورگرت مجاز کنی.",
         notif_token_failed: "فعلاً روشن کردن یادآوری‌ها ممکن نیست. بعداً دوباره تلاش کن.",
-        notif_enabled_success: "یادآوری‌ها روشن شد! اگر به هدف امروزت نرسیده باشی، اعلان دریافت می‌کنی.",
+        notif_enabled_success: "یادآوری‌ها روشن شد! اگر جلسهٔ امروزت تمام نشده باشد، اعلان می‌گیری.",
         notif_disabled_success: "یادآوری‌ها خاموش شد.",
         rappel_heure: "ساعت یادآوری",
-        rappel_regle: "یادآوری تنظیم شد: هر روز ساعت {h}، اگر هنوز به هدف امروزت نرسیده باشی.",
+        rappel_regle: "یادآوری تنظیم شد: هر روز ساعت {h}، تا وقتی جلسهٔ امروزت تمام نشده باشد.",
         rappel_refuse: "اعلان‌ها خاموش‌اند. می‌توانی در تنظیمات گوشی‌ات به آن‌ها اجازه بدهی.",
         rappel_notif_titre: "جلسهٔ امروزت منتظر توست",
         rappel_notif_texte: "چند دقیقه کافی است تا روزهای پیاپی‌ات قطع نشود.",
         rappel_propose_titre: "یادآوری روزانه؟",
-        rappel_propose_texte: "آفرین برای این مرحله! می‌خواهی Wortando هر روز ساعت {h} جلسه‌ات را یادت بیندازد، فقط روزهایی که هنوز به هدف امروزت نرسیده‌ای؟ ساعت را در تنظیمات می‌توانی عوض کنی.",
+        rappel_propose_texte: "آفرین برای این جلسه! می‌خواهی Wortando هر روز ساعت {h} جلسه‌ات را یادآوری کند، فقط روزهایی که هنوز تمام نشده؟ ساعت را در تنظیمات می‌توانی تغییر بدهی.",
         rappel_propose_oui: "بله، یادم بینداز",
         vibrations_titre: "لرزش",
-        vibrations_desc: "لرزشی کوتاه در هر مرحلهٔ هدف امروزت: +30، +60، +90…",
-        vibrations_bouton: "لرزش در مرحله‌های هدف",
+        vibrations_desc: "لرزشی کوتاه در پایان هر جلسه.",
+        vibrations_bouton: "لرزش در پایان جلسه‌ها",
         hl_titre: "اینترنت نیست — جلسهٔ امروزت آفلاین آماده است",
         hl_sous: "{n} کارت، همراه با صدا. پاسخ‌هایت وقتی اینترنت برگردد حساب می‌شوند.",
         hl_commencer: "شروع",
@@ -22536,7 +22658,7 @@ const I18N = {
         dec_te_essai: "▶ شنیدن اولین واژه‌هایم",
         dec_te_repete: "نوبت توست: تکرار کن!",
         dec_t5_titre: "جلسهٔ امروزت",
-        dec_t5_texte: "این قلب برنامه است. هر روز یک جلسه: واژه‌های تازه، مرورهایی که درست به‌موقع برمی‌گردند، کمی دستور زبان، گفتار و صحنهٔ روز. هدفی برای هر روز دارد و هر قدر بخواهی می‌توانی ادامه بدهی. همه‌چیز تابلویت را جلو می‌برد. در صفحهٔ اصلی، پیکان آن را شروع می‌کند. سطحت را اینجا عوض می‌کنی. از صفر شروع می‌کنی؟ جوانهٔ کوچک «گام‌های نخست» است: جمله‌های ضروری برای سفر.",
+        dec_t5_texte: "این قلب برنامه است. هر روز یک جلسه: واژه‌های تازه، مرورهایی که درست به‌موقع برمی‌گردند، کمی دستور زبان، گفتار و صحنهٔ روز. هر چند جلسه که بخواهی می‌توانی پشت سر هم انجام بدهی. همه‌چیز تابلویت را جلو می‌برد. در صفحهٔ اصلی، پیکان آن را شروع می‌کند. سطحت را اینجا عوض می‌کنی. از صفر شروع می‌کنی؟ جوانهٔ کوچک «گام‌های نخست» است: جمله‌های ضروری برای سفر.",
         dec_t6_titre: "گشت تمام شد!",
         dec_t6_texte: "همه‌چیز در صفحهٔ اصلی است: اول جلسهٔ امروزت، بعد هر وقت خواستی صحنه‌ها و شنیدن. چند دقیقه در روز کافی است. یادگیری خوبی داشته باشی!",
         dec_t6_bouton: "شروع کنیم",
@@ -22810,7 +22932,7 @@ const I18N = {
         legende_maitrises: "واژه‌های آموخته — چهار پاسخ درست در طول یازده روز. اگر واژه‌ای در بررسی فراموش شود، یکی دو تا کم می‌شود.",
         legende_rencontres: "واژه‌های دیده‌شده — هر واژه‌ای که دست‌کم یک بار دیده‌ای، حتی بدون دانستنش. این عدد هرگز کم نمی‌شود.",
         legende_vocab: "واژگان — جایگاه تو در سطح نمایش‌داده‌شده. سبز: بلد. آبی: در جریان. خاکستری: هنوز ندیده. برای دیدن هر پنج سطح روی فلش بزن.",
-        legende_seance: "جلسهٔ امروز من — عدد سمت چپ هدف روزانهٔ توست و در تنظیمات قابل تغییر است. جلسه باقی‌ماندهٔ آن را ارائه می‌دهد: نخست مرورهای سررسیده، سپس واژه‌های تازه اگر جا بماند.",
+        legende_seance: "جلسهٔ امروز من — ۲۰ کارت: اول مرورهای موعددار، بعد واژه‌های تازه. «یک جلسهٔ دیگر» جلسهٔ دیگری باز می‌کند، بدون محدودیت.",
         carte_info_kicker: "پیشرفت تو",
         info_partie_accueil: "در صفحهٔ خانه",
         info_partie_ici: "نگه‌داشته اینجا",
@@ -22820,7 +22942,7 @@ const I18N = {
         ip_seance_gardes: "«نگه‌داشته‌ها» صندوقت را باز می‌کند: واژه‌هایی که با «نگه‌داشتن» آنجا گذاشته‌ای. هر قدر بخواهی می‌توانی دور بزنی — هیچ‌کدام از کارهایت آنجا سررسیدی یا هدف روزانه را تغییر نمی‌دهد.",
         ip_seance_theme: "«بر پایهٔ موضوع» درِ دیگر است: خودت موضوع را برمی‌گزینی، به‌جای آنکه برنامه جلسه را بچیند.",
         ip_seance_t: "شمارندهٔ جلسه",
-        ip_seance_p: "کارت‌هایی که امروز داوری کرده‌ای، نسبت به هدفت. کارت برای شمرده‌شدن به پاسخ نیاز دارد.",
+        ip_seance_p: "کارت‌هایی که امروز ارزیابی کرده‌ای. هر کارت برای شمرده شدن پاسخی می‌خواهد: «دوباره» یا «✓».",
         ip_vocab_t: "پیشرفت واژگان",
         ip_vocab_p: "جای تو در سطح نمایش‌داده‌شده. برای دیدن پنج سطح، پیکان را لمس کن.",
         ip_partie_tableau: "تابلو",
@@ -22851,7 +22973,7 @@ const I18N = {
         combo_info: "⚡ پاسخ‌های درستِ پشت سر هم در این جلسه. یک پاسخ نادرست شمارنده را صفر می‌کند. (🔥 صفحهٔ اصلی روزهای پیاپی را می‌شمارد.)",
         legende_cercle: "◯ دایرهٔ بالا — جای تو در یک سطح کامل. به ازای هر واژه کسری از درصد پیش می‌رود و پیش از روز یازدهم تکان نمی‌خورد: طبیعی است، و به همین دلیل اینجاست نه در صفحهٔ خانه. برای تغییر سطح لمسش کن.",
         legende_semaine: "📈 این هفته — واژه‌هایی که در هفت روز گذشته آموخته‌ای. این سرعت کنونی توست، نه یک جمع کل.",
-        legende_objectif: "نوار «امروز» — کارت‌هایی که از صبح انجام داده‌ای، از هدف تو. هر روز صفر می‌شود. هدف در تنظیمات تغییر می‌کند و اندازهٔ جلسه را هم تعیین می‌کند.",
+        legende_objectif: "نوار «امروز» — کارت‌هایی که از امروز صبح انجام داده‌ای. هر روز از صفر شروع می‌شود.",
         progress_info_titre: "چه چیزی این درصد را تغییر می‌دهد",
         progress_info_compte: "این درصد واژه‌هایی را که آموخته‌ای، از میان همهٔ واژه‌های سطح نمایش‌داده‌شده می‌شمارد: واژه‌های موضوع‌ها، فعل‌ها و صفت‌ها با هم.",
         progress_info_deja: "روی واژهٔ تازه، «از قبل بلدم» همهٔ پله‌ها را رد می‌کند و واژه را بی‌درنگ آموخته‌شده نشان می‌دهد.",
@@ -23083,6 +23205,21 @@ const I18N = {
         ra_faux: "نه کاملاً. پاسخ درست:",
         ra_consigne_orthographe: "کدام درست نوشته شده است؟",
         ra_tu_as_choisi: "«{s}» را انتخاب کردی.",
+        legere_encore: "یک جلسهٔ دیگر",
+        legere_fin_une: "جلسهٔ امروزت تمام شد.",
+        legere_fin_n: "{n} جلسه امروز",
+        etoile_aria: "ستاره‌ای تازه",
+        etoile_compte: "{n} ستاره از {t}",
+        etoile_groupe_complet: "گروه کامل شد",
+        ciel_aujourdhui: "امروز",
+        ciel_prochaine: "ستارهٔ بعدی: {s}",
+        ciel_nouvelle: "ستارهٔ تازه: {s}",
+        ciel_commence: "راه به سوی {s} آغاز شد.",
+        ciel_rapproche: "به {s} نزدیک‌تر می‌شوی.",
+        ciel_tout_pres: "{s} خیلی نزدیک است.",
+        ciel_tiennent: "واژه‌هایت ماندگار شده‌اند. {s} منتظر است.",
+        fin_court_resume_sans: "{n} کارت امروز",
+        ciel_une_de_plus: "یک ستارهٔ دیگر: {s}.",
         flash_end_a_revoir_un: "۱ جمله برای مرور فردا",
         flash_end_a_revoir_n: "{n} جمله برای مرور فردا",
         pp_badge: "گام‌های نخست",
@@ -24060,7 +24197,7 @@ const I18N = {
         dec_te_essai: "▶ الاستماع إلى كلماتي الأولى",
         dec_te_repete: "دورك: كرّر!",
         dec_t5_titre: "جلستك اليوم",
-        dec_t5_texte: "هذا قلب التطبيق. كل يوم جلسة: كلمات جديدة، ومراجعات تعود في الوقت المناسب تمامًا، وقليل من القواعد، والتحدث، ومشهد اليوم. لها هدف يومي، ويمكنك أن تستمر بقدر ما تشاء. كل ذلك يُقدّم لوحتك. في الصفحة الرئيسية، يبدأها السهم. تغيّر مستواك من هنا. تبدأ من الصفر؟ البرعم الصغير هو «الخطوات الأولى»: العبارات الأساسية للسفر.",
+        dec_t5_texte: "هذا قلب التطبيق. كل يوم جلسة: كلمات جديدة، ومراجعات تعود في الوقت المناسب تمامًا، وقليل من القواعد، والتحدث، ومشهد اليوم. ويمكنك أن تتابع منها بقدر ما تشاء. كل ذلك يُقدّم لوحتك. في الصفحة الرئيسية، يبدأها السهم. تغيّر مستواك من هنا. تبدأ من الصفر؟ البرعم الصغير هو «الخطوات الأولى»: العبارات الأساسية للسفر.",
         dec_t6_titre: "انتهت الجولة!",
         dec_t6_texte: "كل شيء في الصفحة الرئيسية: جلستك اليوم أولًا، ثم المشاهد والاستماع متى شئت. بضع دقائق في اليوم تكفي. تعلّمًا موفقًا!",
         dec_t6_bouton: "لنبدأ",
@@ -24319,7 +24456,7 @@ const I18N = {
         badge_xp_2000_desc: "بلغتَ 200 نقطة خبرة.",
         badge_xp_5000_title: "متعدّد اللغات في طور التكوين",
         badge_xp_5000_desc: "بلغتَ 500 نقطة خبرة.",
-        badges_points_explication: "نقاطك: {n}. تكسب نقطة واحدة عن كل إجابة صحيحة (بطاقة، تمرين، نطق) و5 نقاط إضافية كلما بلغت هدفك اليومي. هذه ليست كلمات متقنة، وهي تُحسب لهذه اللغة فقط.",
+        badges_points_explication: "نقاطك: {n}. تكسب نقطة واحدة عن كل إجابة صحيحة (بطاقة، تمرين، تحدث) و5 نقاط إضافية عند إنهاء أول حصة في اليوم. هذه ليست كلمات متقنة، وهي تُحتسب لهذه اللغة فقط.",
         fete_tableau_titre: "اكتملت اللوحة!",
         fete_tableau_numero: "اللوحة رقم {n}",
         badge_streak_3_title: "3 أيام متتالية",
@@ -24354,26 +24491,26 @@ const I18N = {
         kicker_dictation_exercise: "إملاء",
         alert_no_dictation_available: "افتح أولاً سلسلة مفردات (Wortschatz) لتتدرّب على الإملاء.",
         notif_title: "تذكيرات يومية",
-        notif_desc: "تصلك إشعارات حين لا تكون قد بلغت هدف اليوم بعد.",
+        notif_desc: "تلقَّ إشعارًا عندما لا تكون حصة اليوم قد انتهت بعد.",
         notif_btn_enable: "تفعيل التذكيرات",
         notif_btn_disable: "إيقاف التذكيرات",
         notif_not_configured: "هذه الميزة لم يضبطها المسؤول بعد. أعد المحاولة لاحقاً.",
         notif_unsupported: "متصفّحك لا يدعم الإشعارات.",
         notif_denied: "رُفض الإذن. يمكنك السماح به من إعدادات متصفّحك.",
         notif_token_failed: "تعذّر تفعيل التذكيرات الآن. أعد المحاولة لاحقاً.",
-        notif_enabled_success: "فُعّلت التذكيرات! سيصلك إشعار إن لم تبلغ هدف اليوم.",
+        notif_enabled_success: "تم تفعيل التذكيرات! ستتلقى إشعارًا إذا لم تنته حصة اليوم.",
         notif_disabled_success: "أُوقفت التذكيرات.",
         rappel_heure: "وقت التذكير",
-        rappel_regle: "تم ضبط التذكير: كل يوم الساعة {h}، ما لم تبلغ هدف اليوم.",
+        rappel_regle: "تم ضبط التذكير: كل يوم عند {h}، ما دامت حصة اليوم لم تنته.",
         rappel_refuse: "الإشعارات متوقفة. يمكنك السماح بها من إعدادات هاتفك.",
         rappel_notif_titre: "جلستك اليومية بانتظارك",
         rappel_notif_texte: "بضع دقائق تكفي لتحافظ على أيامك المتتالية.",
         rappel_propose_titre: "تذكير كل يوم؟",
-        rappel_propose_texte: "أحسنت على هذه المرحلة! هل تريد أن يذكّرك Wortando بجلستك كل يوم في الساعة {h}، فقط في الأيام التي لم تبلغ فيها هدف اليوم بعد؟ يمكنك تغيير الوقت من الإعدادات.",
+        rappel_propose_texte: "أحسنت في هذه الحصة! هل تريد أن يذكّرك Wortando بحصتك كل يوم عند {h}، فقط في الأيام التي لم تنتهِ فيها بعد؟ يمكن تغيير الوقت من الإعدادات.",
         rappel_propose_oui: "نعم، ذكّرني",
         vibrations_titre: "الاهتزاز",
-        vibrations_desc: "اهتزاز قصير عند كل مرحلة من هدف اليوم: +30، +60، +90…",
-        vibrations_bouton: "الاهتزاز عند مراحل الهدف",
+        vibrations_desc: "اهتزاز قصير في نهاية كل حصة.",
+        vibrations_bouton: "الاهتزاز في نهاية الحصص",
         hl_titre: "لا توجد شبكة — جلستك جاهزة دون اتصال",
         hl_sous: "{n} بطاقة مع أصواتها. ستُحتسب إجاباتك عند عودة الشبكة.",
         hl_commencer: "ابدأ",
@@ -24522,7 +24659,7 @@ const I18N = {
         voice_lang_de: "الألمانية",
         voice_lang_en: "الإنجليزية",
         legende_vocab: "المفردات — أين أنت من المستوى المعروض. الأخضر: معروفة. الأزرق: قيد التعلّم. الرمادي: لم تصادفها بعد. المس السهم لرؤية المستويات الخمسة.",
-        legende_seance: "جلستي اليوم — العدد على اليسار هو هدفك اليومي، ويمكنك ضبطه في الإعدادات. تقدّم لك الجلسة ما تبقّى منه: المراجعات المستحقّة أولاً، ثم الكلمات الجديدة إن بقي متّسع.",
+        legende_seance: "حصتي اليوم — 20 بطاقة: أولًا المراجعات المستحقة، ثم الكلمات الجديدة. «حصة أخرى» تفتح حصة جديدة، بلا حدود.",
         carte_info_kicker: "تقدّمك",
         info_partie_accueil: "في الصفحة الرئيسية",
         info_partie_ici: "مرتَّب هنا",
@@ -24532,7 +24669,7 @@ const I18N = {
         ip_seance_gardes: "«المحفوظات» يفتح خزانتك: الكلمات التي وضعتها فيها بـ«احتفظ». يمكنك الدوران فيها كما تشاء — لا شيء مما تفعله هناك يغيّر موعداً ولا هدف اليوم.",
         ip_seance_theme: "«حسب الموضوع» هو الباب الآخر: تختار الموضوع بنفسك، بدل أن تدع التطبيق يؤلّف الجلسة.",
         ip_seance_t: "عدّاد الجلسة",
-        ip_seance_p: "البطاقات التي حكمت عليها اليوم، من أصل هدفك. البطاقة تحتاج إلى إجابة — «مرة أخرى» أو «✓» — لتُحتسب.",
+        ip_seance_p: "البطاقات التي قيّمتها اليوم. لكي تُحتسب البطاقة تحتاج إلى إجابة: «مرة أخرى» أو «✓».",
         ip_vocab_t: "تقدّم المفردات",
         ip_vocab_p: "أين أنت من المستوى المعروض. المس السهم لرؤية المستويات الخمسة.",
         ip_partie_tableau: "اللوحة",
@@ -24563,7 +24700,7 @@ const I18N = {
         combo_info: "⚡ إجابات صحيحة متتالية في هذه الجلسة. أي إجابة خاطئة تعيد العدّاد إلى الصفر. (أما 🔥 في الصفحة الرئيسية فتعدّ الأيام المتتالية.)",
         legende_cercle: "◯ الدائرة أعلاه — أين أنت من مستوى كامل. تتقدّم بجزء من المئة عن كل كلمة ولا تتحرّك قبل اليوم الحادي عشر: هذا طبيعي، ولهذا وُضعت هنا لا في الصفحة الرئيسية. المسها لتغيير المستوى.",
         legende_semaine: "📈 هذا الأسبوع — الكلمات التي صارت متقَنة في الأيام السبعة الأخيرة. هذه سرعتك الأخيرة، لا مجموع.",
-        legende_objectif: "شريط «اليوم» — البطاقات المنجزة منذ الصباح، من أصل هدفك. يعود إلى الصفر كل يوم. ويُغيَّر العدد المنشود في الإعدادات، وهو أيضاً ما يحدّد حجم جلستك.",
+        legende_objectif: "شريط «اليوم» — البطاقات المنجزة منذ الصباح. يعود إلى الصفر كل يوم.",
         progress_info_titre: "ما الذي يحرّك هذه النسبة",
         progress_info_compte: "تحسب النسبة كلماتك المتقَنة من مجموع كلمات المستوى المعروض: كلمات المواضيع والأفعال والصفات مجتمعة.",
         progress_info_deja: "في كلمة جديدة، «أعرفها مسبقًا» يتخطّى السلّم كله ويعلّمها متقَنة فوراً.",
@@ -24903,6 +25040,21 @@ const I18N = {
         ra_faux: "ليس تمامًا. الإجابة الصحيحة:",
         ra_consigne_orthographe: "أيّها مكتوب بشكل صحيح؟",
         ra_tu_as_choisi: "اخترت: «{s}».",
+        legere_encore: "حصة أخرى",
+        legere_fin_une: "انتهت حصة اليوم.",
+        legere_fin_n: "عدد الحصص اليوم: {n}",
+        etoile_aria: "نجمة جديدة",
+        etoile_compte: "النجوم: {n} من {t}",
+        etoile_groupe_complet: "اكتملت المجموعة",
+        ciel_aujourdhui: "اليوم",
+        ciel_prochaine: "النجمة التالية: {s}",
+        ciel_nouvelle: "نجمة جديدة: {s}",
+        ciel_commence: "بدأ الطريق إلى {s}.",
+        ciel_rapproche: "أنت تقترب من {s}.",
+        ciel_tout_pres: "{s} قريبة جدًا.",
+        ciel_tiennent: "كلماتك راسخة. {s} تنتظرك.",
+        fin_court_resume_sans: "عدد البطاقات اليوم: {n}",
+        ciel_une_de_plus: "نجمة أخرى: {s}.",
         flash_end_a_revoir_un: "جملة واحدة للمراجعة غدًا",
         flash_end_a_revoir_n: "جمل للمراجعة غدًا: {n}",
         pp_badge: "الخطوات الأولى",
@@ -25351,6 +25503,21 @@ const I18N = {
         ra_faux: "Não exatamente. A resposta certa:",
         ra_consigne_orthographe: "Qual está escrito certo?",
         ra_tu_as_choisi: "Você escolheu “{s}”.",
+        legere_encore: "Mais uma sessão",
+        legere_fin_une: "Sua sessão de hoje está concluída.",
+        legere_fin_n: "{n} sessões hoje",
+        etoile_aria: "Uma nova estrela",
+        etoile_compte: "{n} estrelas de {t}",
+        etoile_groupe_complet: "grupo completo",
+        ciel_aujourdhui: "hoje",
+        ciel_prochaine: "Próxima estrela: {s}",
+        ciel_nouvelle: "Nova estrela: {s}",
+        ciel_commence: "O caminho até {s} começa.",
+        ciel_rapproche: "Você está se aproximando de {s}.",
+        ciel_tout_pres: "{s} está bem perto.",
+        ciel_tiennent: "Suas palavras estão firmes. {s} te espera.",
+        fin_court_resume_sans: "{n} cartões hoje",
+        ciel_une_de_plus: "Mais uma estrela: {s}.",
         flash_end_a_revoir_un: "1 frase para revisar amanhã",
         flash_end_a_revoir_n: "{n} frases para revisar amanhã",
         pp_badge: "Primeiros passos",
@@ -25834,7 +26001,7 @@ const I18N = {
         legende_maitrises: "Palavras dominadas — quatro respostas certas espalhadas por onze dias. O número pode cair um ou dois se uma palavra for esquecida na revisão de controle.",
         legende_rencontres: "Palavras vistas — todas as palavras que você viu pelo menos uma vez, mesmo sem saber. Esse número nunca diminui.",
         legende_vocab: "Vocabulário — onde você está no nível mostrado. Verde: sabida. Azul: em andamento. Cinza: a descobrir. Toque na seta para ver os cinco níveis.",
-        legende_seance: "Minha sessão do dia — o número à esquerda é a sua meta diária, que você pode ajustar nas configurações. A sessão serve o que falta dela: primeiro as revisões pendentes, depois palavras novas, se sobrar espaço.",
+        legende_seance: "Minha sessão de hoje — 20 cartões: primeiro as revisões pendentes, depois as palavras novas. “Mais uma sessão” abre outra, sem limite.",
         carte_info_kicker: "Seu progresso",
         info_partie_accueil: "Na tela inicial",
         info_partie_ici: "Guardado aqui",
@@ -25844,7 +26011,7 @@ const I18N = {
         ip_seance_gardes: "“Guardadas” abre o seu baú: as palavras que você colocou lá com “Guardar”. Você pode passar por elas quantas vezes quiser — nada do que você faz ali muda uma data nem a meta do dia.",
         ip_seance_theme: "“por tema” é a outra porta: você mesmo escolhe um tema, em vez de deixar o app montar a sessão.",
         ip_seance_t: "A contagem da sessão",
-        ip_seance_p: "As cartas que você avaliou hoje, em relação à sua meta. Uma carta precisa de uma resposta — “De novo” ou “✓” — para contar.",
+        ip_seance_p: "Os cartões que você avaliou hoje. Um cartão precisa de uma resposta — “De novo” ou “✓” — para contar.",
         ip_vocab_t: "O progresso do vocabulário",
         ip_vocab_p: "Até onde você chegou no nível mostrado. Toque na seta para ver os cinco níveis.",
         ip_partie_tableau: "O quadro",
@@ -25875,7 +26042,7 @@ const I18N = {
         combo_info: "⚡ Respostas certas seguidas nesta sessão. Uma resposta errada zera o contador. (A 🔥 da tela inicial conta os dias seguidos.)",
         legende_cercle: "◯ o círculo acima — onde você está num nível inteiro. Ele avança uma fração de por cento por palavra e não se mexe antes do 11º dia: é normal, e é por isso que ele fica aqui e não na tela inicial. Toque nele para mudar de nível.",
         legende_semaine: "📈 esta semana — as palavras que você dominou nos últimos sete dias. É a sua velocidade recente, não um total.",
-        legende_objectif: "A barra “Hoje” — as cartas feitas desde a manhã, em relação à sua meta. Ela volta a zero todo dia. O número desejado se muda nas configurações, e ele também define o tamanho da sua sessão.",
+        legende_objectif: "A barra “Hoje” — os cartões feitos desde esta manhã. Ela volta a zero todo dia.",
         progress_info_titre: "O que faz essa porcentagem mudar",
         progress_info_compte: "A porcentagem conta as suas palavras dominadas sobre todas as palavras do nível mostrado: as palavras dos temas, os verbos e os adjetivos juntos.",
         progress_info_deja: "Numa palavra nova, “Já conheço” pula a escada inteira e a marca como dominada na hora.",
@@ -26119,7 +26286,7 @@ const I18N = {
         badge_xp_2000_desc: "200 pontos de experiência alcançados.",
         badge_xp_5000_title: "Poliglota em formação",
         badge_xp_5000_desc: "500 pontos de experiência alcançados.",
-        badges_points_explication: "Seus pontos: {n}. Você ganha 1 ponto por resposta certa (cartão, exercício, oral) e mais 5 cada vez que atinge sua meta do dia. Não são palavras dominadas, e contam só para este idioma.",
+        badges_points_explication: "Seus pontos: {n}. Você ganha 1 ponto por resposta certa (cartão, exercício, fala) e mais 5 ao concluir a primeira sessão do dia. Não são palavras dominadas, e contam só para este idioma.",
         fete_tableau_titre: "Quadro concluído!",
         fete_tableau_numero: "Quadro nº {n}",
         badge_streak_3_title: "3 dias seguidos",
@@ -26154,26 +26321,26 @@ const I18N = {
         kicker_dictation_exercise: "Ditado",
         alert_no_dictation_available: "Abra primeiro uma série de vocabulário (Wortschatz) para praticar o ditado.",
         notif_title: "Lembretes diários",
-        notif_desc: "Receba uma notificação quando ainda não tiver alcançado a sua meta do dia.",
+        notif_desc: "Receba uma notificação quando a sessão de hoje ainda não estiver feita.",
         notif_btn_enable: "ATIVAR OS LEMBRETES",
         notif_btn_disable: "DESATIVAR OS LEMBRETES",
         notif_not_configured: "Este recurso ainda não foi configurado pelo administrador. Tente de novo mais tarde.",
         notif_unsupported: "Seu navegador não é compatível com notificações push.",
         notif_denied: "Permissão negada. Você pode autorizá-la nas configurações do seu navegador.",
         notif_token_failed: "Não foi possível ativar os lembretes agora. Tente de novo mais tarde.",
-        notif_enabled_success: "Lembretes ativados! Você vai receber uma notificação se não tiver alcançado sua meta do dia.",
+        notif_enabled_success: "Lembretes ativados! Você receberá uma notificação se a sessão de hoje não estiver feita.",
         notif_disabled_success: "Lembretes desativados.",
         rappel_heure: "Horário do lembrete",
-        rappel_regle: "Lembrete definido: todos os dias às {h}, se você ainda não tiver alcançado a sua meta do dia.",
+        rappel_regle: "Lembrete definido: todo dia às {h}, enquanto a sessão de hoje não estiver feita.",
         rappel_refuse: "Notificações desativadas. Você pode permiti-las nos ajustes do seu celular.",
         rappel_notif_titre: "Sua sessão do dia está esperando",
         rappel_notif_texte: "Alguns minutos bastam para manter seus dias em sequência.",
         rappel_propose_titre: "Um lembrete todo dia?",
-        rappel_propose_texte: "Parabéns por esta etapa! Quer que o Wortando lembre você da sua sessão todo dia às {h}, só nos dias em que você ainda não alcançou a meta? Dá para mudar o horário nos ajustes.",
+        rappel_propose_texte: "Parabéns por esta sessão! Quer que o Wortando lembre você da sessão todo dia às {h}, só nos dias em que ela ainda não estiver feita? O horário pode ser alterado nos ajustes.",
         rappel_propose_oui: "Sim, me lembre",
         vibrations_titre: "Vibração",
-        vibrations_desc: "Uma vibração curta a cada etapa da sua meta do dia: +30, +60, +90…",
-        vibrations_bouton: "Vibrar nas etapas da meta",
+        vibrations_desc: "Uma vibração curta no fim de cada sessão.",
+        vibrations_bouton: "Vibrar ao fim das sessões",
         hl_titre: "Sem rede — sua sessão está pronta offline",
         hl_sous: "{n} cartões, com os áudios. Suas respostas vão contar quando a rede voltar.",
         hl_commencer: "COMEÇAR",
@@ -26297,7 +26464,7 @@ const I18N = {
         dec_te_essai: "▶ Ouvir minhas primeiras palavras",
         dec_te_repete: "Sua vez: repita!",
         dec_t5_titre: "A sua sessão do dia",
-        dec_t5_texte: "Este é o coração do aplicativo. Todo dia, uma sessão: palavras novas, as revisões que voltam na hora certa, um pouco de gramática, a fala e a cena do dia. Ela tem uma meta diária, e você pode continuar o quanto quiser. Tudo faz o seu quadro avançar. Na tela inicial, a seta a inicia. O seu nível se muda aqui. Começando do zero? O brotinho é Primeiros passos: as frases essenciais para viajar.",
+        dec_t5_texte: "Este é o coração do aplicativo. Todo dia, uma sessão: palavras novas, as revisões que voltam na hora certa, um pouco de gramática, a fala e a cena do dia. Você pode fazer quantas quiser em sequência. Tudo faz o seu quadro avançar. Na tela inicial, a seta a inicia. O seu nível se muda aqui. Começando do zero? O brotinho é Primeiros passos: as frases essenciais para viajar.",
         dec_t6_titre: "A visita terminou!",
         dec_t6_texte: "Está tudo na tela inicial: primeiro a sua sessão do dia, depois as cenas e a escuta, quando quiser. Alguns minutos por dia bastam. Bons estudos!",
         dec_t6_bouton: "COMEÇAR",
@@ -27060,6 +27227,21 @@ const I18N = {
         ra_faux: "Nie całkiem. Prawidłowa odpowiedź:",
         ra_consigne_orthographe: "Które jest napisane poprawnie?",
         ra_tu_as_choisi: "Wybrałeś(-aś) „{s}”.",
+        legere_encore: "Jeszcze jedna sesja",
+        legere_fin_une: "Dzisiejsza sesja gotowa.",
+        legere_fin_n: "Sesji dzisiaj: {n}",
+        etoile_aria: "Nowa gwiazda",
+        etoile_compte: "Gwiazdy: {n} z {t}",
+        etoile_groupe_complet: "grupa ukończona",
+        ciel_aujourdhui: "dziś",
+        ciel_prochaine: "Następna gwiazda: {s}",
+        ciel_nouvelle: "Nowa gwiazda: {s}",
+        ciel_commence: "Zaczyna się droga do gwiazdy {s}.",
+        ciel_rapproche: "Zbliżasz się do gwiazdy {s}.",
+        ciel_tout_pres: "{s} jest już blisko.",
+        ciel_tiennent: "Słowa się trzymają. {s} czeka.",
+        fin_court_resume_sans: "Kart dzisiaj: {n}",
+        ciel_une_de_plus: "Jeszcze jedna gwiazda: {s}.",
         flash_end_a_revoir_un: "1 zdanie do powtórki jutro",
         flash_end_a_revoir_n: "Zdania do powtórki jutro: {n}",
         pp_badge: "Pierwsze kroki",
@@ -27543,7 +27725,7 @@ const I18N = {
         legende_maitrises: "Opanowane słowa — cztery dobre odpowiedzi rozłożone na jedenaście dni. Liczba może spaść o jedno czy dwa, jeśli słowo zostanie zapomniane przy kontroli.",
         legende_rencontres: "Poznane słowa — wszystkie słowa, które widziałeś(-aś) co najmniej raz, nawet jeśli ich nie znałeś(-aś). Ta liczba nigdy nie spada.",
         legende_vocab: "Słownictwo — w którym miejscu pokazanego poziomu jesteś. Zielone: znane. Niebieskie: w trakcie. Szare: do poznania. Dotknij strzałki, żeby zobaczyć pięć poziomów.",
-        legende_seance: "Moja dzisiejsza sesja — liczba po lewej to twój dzienny cel, który możesz zmienić w ustawieniach. Sesja podaje to, co z niego zostało: najpierw zaległe powtórki, potem nowe słowa, jeśli zostało miejsce.",
+        legende_seance: "Moja dzisiejsza sesja — 20 kart: najpierw powtórki, których czas nadszedł, potem nowe słowa. „Jeszcze jedna sesja” otwiera kolejną, bez limitu.",
         carte_info_kicker: "Twoje postępy",
         info_partie_accueil: "Na ekranie głównym",
         info_partie_ici: "Tutaj",
@@ -27553,7 +27735,7 @@ const I18N = {
         ip_seance_gardes: "„Zachowane” otwiera twoją skrzynię: słowa, które tam włożyłeś(-aś) przyciskiem „Zachowaj”. Możesz je przerabiać, ile chcesz — nic, co tam robisz, nie zmienia terminu ani dziennego celu.",
         ip_seance_theme: "„według tematu” to drugie wejście: sam(a) wybierasz temat, zamiast pozwolić aplikacji ułożyć sesję.",
         ip_seance_t: "Licznik sesji",
-        ip_seance_p: "Karty, które dziś oceniłeś(-aś), względem twojego celu. Żeby karta się liczyła, potrzebna jest odpowiedź — „Jeszcze raz” albo „✓”.",
+        ip_seance_p: "Karty, które dziś oceniłeś(-aś). Aby karta się liczyła, potrzebna jest odpowiedź: „Jeszcze raz” albo „✓”.",
         ip_vocab_t: "Postępy w słownictwie",
         ip_vocab_p: "W którym miejscu pokazanego poziomu jesteś. Dotknij strzałki, żeby zobaczyć pięć poziomów.",
         ip_partie_tableau: "Obraz",
@@ -27584,7 +27766,7 @@ const I18N = {
         combo_info: "⚡ Poprawne odpowiedzi z rzędu w tej sesji. Błędna odpowiedź zeruje licznik. (🔥 na ekranie głównym liczy dni z rzędu.)",
         legende_cercle: "◯ koło powyżej — w którym miejscu całego poziomu jesteś. Posuwa się o ułamek procenta na słowo i nie drgnie przed 11. dniem: to normalne i dlatego jest tutaj, a nie na ekranie głównym. Dotknij go, żeby zmienić poziom.",
         legende_semaine: "📈 w tym tygodniu — słowa opanowane w ciągu ostatnich siedmiu dni. To twoje ostatnie tempo, nie suma.",
-        legende_objectif: "Pasek „Dziś” — karty zrobione od rana, względem twojego celu. Codziennie wraca do zera. Docelową liczbę zmienisz w ustawieniach; wyznacza ona też wielkość twojej sesji.",
+        legende_objectif: "Pasek „Dziś” — karty zrobione od rana. Każdego dnia zaczyna od zera.",
         progress_info_titre: "Co zmienia ten procent",
         progress_info_compte: "Procent liczy twoje opanowane słowa spośród wszystkich słów pokazanego poziomu: słowa z tematów, czasowniki i przymiotniki razem.",
         progress_info_deja: "Przy nowym słowie „Już to znam” przeskakuje całą drabinkę i od razu oznacza słowo jako opanowane.",
@@ -27830,7 +28012,7 @@ const I18N = {
         badge_xp_2000_desc: "Zdobyto 200 punktów doświadczenia.",
         badge_xp_5000_title: "Początkujący poliglota",
         badge_xp_5000_desc: "Zdobyto 500 punktów doświadczenia.",
-        badges_points_explication: "Twoje punkty: {n}. Za każdą dobrą odpowiedź (karta, ćwiczenie, mówienie) dostajesz 1 punkt, a za każde osiągnięcie dziennego celu jeszcze 5. To nie są opanowane słowa i liczą się tylko dla tego języka.",
+        badges_points_explication: "Twoje punkty: {n}. Dostajesz 1 punkt za poprawną odpowiedź (karta, ćwiczenie, mówienie) i 5 więcej za ukończenie pierwszej sesji dnia. To nie są opanowane słowa i liczą się tylko dla tego języka.",
         fete_tableau_titre: "Obraz ukończony!",
         fete_tableau_numero: "Obraz nr {n}",
         badge_streak_3_title: "3 dni z rzędu",
@@ -27865,26 +28047,26 @@ const I18N = {
         kicker_dictation_exercise: "Dyktando",
         alert_no_dictation_available: "Najpierw otwórz serię słownictwa (Wortschatz), żeby ćwiczyć dyktando.",
         notif_title: "Codzienne przypomnienia",
-        notif_desc: "Dostaniesz powiadomienie, jeśli nie osiągniesz jeszcze dziennego celu.",
+        notif_desc: "Otrzymuj powiadomienie, gdy dzisiejsza sesja nie jest jeszcze zrobiona.",
         notif_btn_enable: "WŁĄCZ PRZYPOMNIENIA",
         notif_btn_disable: "WYŁĄCZ PRZYPOMNIENIA",
         notif_not_configured: "Ta funkcja nie została jeszcze skonfigurowana przez administratora. Spróbuj później.",
         notif_unsupported: "Twoja przeglądarka nie obsługuje powiadomień push.",
         notif_denied: "Brak zgody. Możesz ją włączyć w ustawieniach przeglądarki.",
         notif_token_failed: "Nie udało się teraz włączyć przypomnień. Spróbuj później.",
-        notif_enabled_success: "Przypomnienia włączone! Dostaniesz powiadomienie, jeśli nie osiągniesz dziennego celu.",
+        notif_enabled_success: "Przypomnienia włączone! Dostaniesz powiadomienie, jeśli dzisiejsza sesja nie będzie zrobiona.",
         notif_disabled_success: "Przypomnienia wyłączone.",
         rappel_heure: "Godzina przypomnienia",
-        rappel_regle: "Przypomnienie ustawione: codziennie o {h}, jeśli dzienny cel nie jest jeszcze osiągnięty.",
+        rappel_regle: "Przypomnienie ustawione: codziennie o {h}, dopóki dzisiejsza sesja nie jest zrobiona.",
         rappel_refuse: "Powiadomienia są wyłączone. Możesz je włączyć w ustawieniach telefonu.",
         rappel_notif_titre: "Twoja dzisiejsza sesja czeka",
         rappel_notif_texte: "Kilka minut wystarczy, by nie przerwać dni z rzędu.",
         rappel_propose_titre: "Przypomnienie codziennie?",
-        rappel_propose_texte: "Brawo za ten próg! Czy Wortando ma ci codziennie o {h} przypominać o sesji — tylko w dni, gdy nie osiągnąłeś jeszcze celu? Godzinę zmienisz w ustawieniach.",
+        rappel_propose_texte: "Brawo za tę sesję! Czy Wortando ma przypominać ci o sesji codziennie o {h}, tylko w dni, gdy nie jest jeszcze zrobiona? Godzinę zmienisz w ustawieniach.",
         rappel_propose_oui: "Tak, przypominaj",
         vibrations_titre: "Wibracje",
-        vibrations_desc: "Krótka wibracja przy każdym progu dziennego celu: +30, +60, +90…",
-        vibrations_bouton: "Wibruj przy progach celu",
+        vibrations_desc: "Krótka wibracja na koniec każdej sesji.",
+        vibrations_bouton: "Wibruj na koniec sesji",
         hl_titre: "Brak sieci — twoja sesja jest gotowa offline",
         hl_sous: "{n} kart z nagraniami. Odpowiedzi zostaną policzone, gdy sieć wróci.",
         hl_commencer: "ZACZNIJ",
@@ -28006,7 +28188,7 @@ const I18N = {
         dec_te_essai: "▶ Posłuchaj moich pierwszych słów",
         dec_te_repete: "Twoja kolej: powtórz!",
         dec_t5_titre: "Twoja dzisiejsza sesja",
-        dec_t5_texte: "To serce aplikacji. Codziennie sesja: nowe słowa, powtórki, które wracają w odpowiednim momencie, trochę gramatyki, mówienie i scena dnia. Ma swój dzienny cel, a ćwiczyć możesz, ile tylko chcesz. Wszystko to posuwa twój obraz do przodu. Na ekranie głównym uruchamia ją strzałka. Poziom zmieniasz tutaj. Zaczynasz od zera? Mały kiełek to „Pierwsze kroki”: najważniejsze zwroty na podróż.",
+        dec_t5_texte: "To serce aplikacji. Codziennie sesja: nowe słowa, powtórki, które wracają w odpowiednim momencie, trochę gramatyki, mówienie i scena dnia. Możesz robić ich tyle, ile tylko chcesz. Wszystko to posuwa twój obraz do przodu. Na ekranie głównym uruchamia ją strzałka. Poziom zmieniasz tutaj. Zaczynasz od zera? Mały kiełek to „Pierwsze kroki”: najważniejsze zwroty na podróż.",
         dec_t6_titre: "Wycieczka skończona!",
         dec_t6_texte: "Wszystko jest na ekranie głównym: najpierw twoja dzisiejsza sesja, potem sceny i słuchanie, kiedy zechcesz. Wystarczy kilka minut dziennie. Owocnej nauki!",
         dec_t6_bouton: "ZACZYNAMY",
@@ -28769,6 +28951,21 @@ const I18N = {
         ra_faux: "Не совсем. Правильный ответ:",
         ra_consigne_orthographe: "Какое написано правильно?",
         ra_tu_as_choisi: "Ты выбрал(а) «{s}».",
+        legere_encore: "Ещё одно занятие",
+        legere_fin_une: "Сегодняшнее занятие завершено.",
+        legere_fin_n: "Занятий сегодня: {n}",
+        etoile_aria: "Новая звезда",
+        etoile_compte: "Звёзд: {n} из {t}",
+        etoile_groupe_complet: "группа завершена",
+        ciel_aujourdhui: "сегодня",
+        ciel_prochaine: "Следующая звезда: {s}",
+        ciel_nouvelle: "Новая звезда: {s}",
+        ciel_commence: "Путь к звезде {s} начинается.",
+        ciel_rapproche: "Ты приближаешься к звезде {s}.",
+        ciel_tout_pres: "{s} уже совсем близко.",
+        ciel_tiennent: "Твои слова держатся. {s} ждёт.",
+        fin_court_resume_sans: "Карточек сегодня: {n}",
+        ciel_une_de_plus: "Ещё одна звезда: {s}.",
         flash_end_a_revoir_un: "1 предложение на повторение завтра",
         flash_end_a_revoir_n: "Предложений на повторение завтра: {n}",
         pp_badge: "Первые шаги",
@@ -29252,7 +29449,7 @@ const I18N = {
         legende_maitrises: "Выученные слова — четыре верных ответа, растянутые на одиннадцать дней. Число может уменьшиться на одно-два, если слово забыто на проверке.",
         legende_rencontres: "Встреченные слова — все слова, которые ты видел(а) хотя бы раз, даже если не знал(а) их. Это число никогда не уменьшается.",
         legende_vocab: "Словарь — где ты сейчас на показанном уровне. Зелёный: выучено. Синий: в процессе. Серый: ещё не встречено. Нажми на стрелку, чтобы увидеть все пять уровней.",
-        legende_seance: "Моё занятие на сегодня — число слева — это твоя цель на день, её можно изменить в настройках. Занятие даёт то, что от неё осталось: сначала повторения, срок которых подошёл, потом новые слова, если осталось место.",
+        legende_seance: "Моё занятие на сегодня — 20 карточек: сначала повторения, для которых пришло время, затем новые слова. «Ещё одно занятие» открывает следующее, без ограничений.",
         carte_info_kicker: "Твой прогресс",
         info_partie_accueil: "На главном экране",
         info_partie_ici: "Здесь",
@@ -29262,7 +29459,7 @@ const I18N = {
         ip_seance_gardes: "«Отложенные» открывает твою копилку: слова, которые ты положил(а) туда кнопкой «Отложить». По ней можно ходить сколько угодно — ничто из того, что ты там делаешь, не меняет ни сроки, ни цель дня.",
         ip_seance_theme: "«по темам» — это другая дверь: ты сам(а) выбираешь тему, а не даёшь приложению составить занятие.",
         ip_seance_t: "Счётчик занятия",
-        ip_seance_p: "Карточки, которые ты оценил(а) сегодня, относительно твоей цели. Чтобы карточка засчиталась, нужен ответ — «Ещё раз» или «✓».",
+        ip_seance_p: "Карточки, которые ты оценил(а) сегодня. Чтобы карточка засчиталась, нужен ответ: «Ещё раз» или «✓».",
         ip_vocab_t: "Прогресс по словарю",
         ip_vocab_p: "Где ты сейчас на показанном уровне. Нажми на стрелку, чтобы увидеть все пять уровней.",
         ip_partie_tableau: "Картина",
@@ -29293,7 +29490,7 @@ const I18N = {
         combo_info: "⚡ Правильные ответы подряд в этом занятии. Неверный ответ обнуляет счётчик. (🔥 на главном экране считает дни подряд.)",
         legende_cercle: "◯ круг выше — где ты сейчас на целом уровне. Он сдвигается на доли процента за слово и не двигается до 11-го дня: это нормально, и поэтому он здесь, а не на главном экране. Нажми на него, чтобы сменить уровень.",
         legende_semaine: "📈 на этой неделе — слова, выученные за последние семь дней. Это твоя скорость в последнее время, а не общий итог.",
-        legende_objectif: "Полоска «Сегодня» — карточки, сделанные с утра, относительно твоей цели. Каждый день она начинается с нуля. Число меняется в настройках, и оно же задаёт размер твоего занятия.",
+        legende_objectif: "Полоска «Сегодня» — карточки, сделанные с утра. Каждый день она начинается с нуля.",
         progress_info_titre: "Что двигает этот процент",
         progress_info_compte: "Процент — это доля выученных слов среди всех слов показанного уровня: слова из тем, глаголы и прилагательные вместе.",
         progress_info_deja: "На новом слове «Я уже знаю» перепрыгивает всю лестницу и сразу отмечает слово как выученное.",
@@ -29540,7 +29737,7 @@ const I18N = {
         badge_xp_2000_desc: "Набрано 200 очков опыта.",
         badge_xp_5000_title: "Начинающий полиглот",
         badge_xp_5000_desc: "Набрано 500 очков опыта.",
-        badges_points_explication: "Твои очки: {n}. За каждый правильный ответ (карточка, упражнение, устно) — 1 очко, и ещё 5 каждый раз, когда достигаешь дневной цели. Это не выученные слова, и они считаются только для этого языка.",
+        badges_points_explication: "Твои очки: {n}. За правильный ответ (карточка, упражнение, устная речь) — 1 очко и ещё 5 за первое завершённое занятие дня. Это не выученные слова, и они считаются только для этого языка.",
         fete_tableau_titre: "Картина готова!",
         fete_tableau_numero: "Картина № {n}",
         badge_streak_3_title: "3 дня подряд",
@@ -29575,26 +29772,26 @@ const I18N = {
         kicker_dictation_exercise: "Диктант",
         alert_no_dictation_available: "Сначала открой набор слов (Wortschatz), чтобы потренироваться в диктанте.",
         notif_title: "Ежедневные напоминания",
-        notif_desc: "Получай уведомление, если ещё не достиг(ла) цели дня.",
+        notif_desc: "Получай уведомление, если сегодняшнее занятие ещё не завершено.",
         notif_btn_enable: "ВКЛЮЧИТЬ НАПОМИНАНИЯ",
         notif_btn_disable: "ВЫКЛЮЧИТЬ НАПОМИНАНИЯ",
         notif_not_configured: "Администратор ещё не настроил эту функцию. Попробуй позже.",
         notif_unsupported: "Твой браузер не поддерживает push-уведомления.",
         notif_denied: "Доступ запрещён. Его можно разрешить в настройках браузера.",
         notif_token_failed: "Сейчас не удаётся включить напоминания. Попробуй позже.",
-        notif_enabled_success: "Напоминания включены! Ты получишь уведомление, если не достигнешь цели дня.",
+        notif_enabled_success: "Напоминания включены! Ты получишь уведомление, если сегодняшнее занятие не завершено.",
         notif_disabled_success: "Напоминания выключены.",
         rappel_heure: "Время напоминания",
-        rappel_regle: "Напоминание установлено: каждый день в {h}, если цель дня ещё не достигнута.",
+        rappel_regle: "Напоминание настроено: каждый день в {h}, пока сегодняшнее занятие не завершено.",
         rappel_refuse: "Уведомления отключены. Их можно разрешить в настройках телефона.",
         rappel_notif_titre: "Твоё ежедневное занятие ждёт",
         rappel_notif_texte: "Нескольких минут достаточно, чтобы не прервать дни подряд.",
         rappel_propose_titre: "Напоминание каждый день?",
-        rappel_propose_texte: "Поздравляем с этим этапом! Хочешь, чтобы Wortando каждый день в {h} напоминал о занятии — только в те дни, когда дневная цель ещё не достигнута? Время можно изменить в настройках.",
+        rappel_propose_texte: "Отличное занятие! Хочешь, чтобы Wortando напоминал о занятии каждый день в {h}, только в те дни, когда оно ещё не завершено? Время можно изменить в настройках.",
         rappel_propose_oui: "Да, напоминать",
         vibrations_titre: "Вибрация",
-        vibrations_desc: "Короткая вибрация на каждом этапе цели дня: +30, +60, +90…",
-        vibrations_bouton: "Вибрировать на этапах цели",
+        vibrations_desc: "Короткая вибрация в конце каждого занятия.",
+        vibrations_bouton: "Вибрировать в конце занятий",
         hl_titre: "Нет сети — твоё занятие готово офлайн",
         hl_sous: "{n} карточек с озвучкой. Ответы засчитаются, когда вернётся сеть.",
         hl_commencer: "НАЧАТЬ",
@@ -29718,7 +29915,7 @@ const I18N = {
         dec_te_essai: "▶ Послушать мои первые слова",
         dec_te_repete: "Твоя очередь: повтори!",
         dec_t5_titre: "Твоё занятие на сегодня",
-        dec_t5_texte: "Это сердце приложения. Каждый день — занятие: новые слова, повторения, которые возвращаются точно вовремя, немного грамматики, устная речь и сцена дня. У него есть цель на день, а продолжать можно сколько угодно. Всё это продвигает твою картину. На главном экране его запускает стрелка. Уровень меняется здесь. Начинаешь с нуля? Маленький росток — это «Первые шаги»: самые нужные фразы для поездки.",
+        dec_t5_texte: "Это сердце приложения. Каждый день — занятие: новые слова, повторения, которые возвращаются точно вовремя, немного грамматики, устная речь и сцена дня. Можно проходить их одно за другим сколько угодно. Всё это продвигает твою картину. На главном экране его запускает стрелка. Уровень меняется здесь. Начинаешь с нуля? Маленький росток — это «Первые шаги»: самые нужные фразы для поездки.",
         dec_t6_titre: "Экскурсия окончена!",
         dec_t6_texte: "Всё есть на главном экране: сначала твоё занятие на сегодня, а потом сцены и слушание — когда захочешь. Нескольких минут в день достаточно. Успешной учёбы!",
         dec_t6_bouton: "НАЧАТЬ",
@@ -30481,6 +30678,21 @@ const I18N = {
         ra_faux: "Nicht ganz. Die richtige Antwort:",
         ra_consigne_orthographe: "Welches ist richtig geschrieben?",
         ra_tu_as_choisi: "Du hast „{s}“ gewählt.",
+        legere_encore: "Noch eine Einheit",
+        legere_fin_une: "Deine heutige Einheit ist geschafft.",
+        legere_fin_n: "{n} Einheiten heute",
+        etoile_aria: "Ein neuer Stern",
+        etoile_compte: "{n} von {t} Sternen",
+        etoile_groupe_complet: "Gruppe vollständig",
+        ciel_aujourdhui: "heute",
+        ciel_prochaine: "Nächster Stern: {s}",
+        ciel_nouvelle: "Neuer Stern: {s}",
+        ciel_commence: "Der Weg zu {s} beginnt.",
+        ciel_rapproche: "Du kommst {s} näher.",
+        ciel_tout_pres: "{s} ist ganz nah.",
+        ciel_tiennent: "Deine Wörter sitzen. {s} wartet.",
+        fin_court_resume_sans: "{n} Karten heute",
+        ciel_une_de_plus: "Noch ein Stern: {s}.",
         flash_end_a_revoir_un: "1 Satz morgen wiederholen",
         flash_end_a_revoir_n: "{n} Sätze morgen wiederholen",
         pp_badge: "Erste Schritte",
@@ -30963,7 +31175,7 @@ const I18N = {
         legende_maitrises: "Sichere Wörter – vier richtige Antworten, verteilt über elf Tage. Die Zahl kann um ein oder zwei sinken, wenn ein Wort bei seiner Kontrolle vergessen ist.",
         legende_rencontres: "Gesehene Wörter – alle Wörter, die du mindestens einmal gesehen hast, auch ohne sie zu können. Diese Zahl sinkt nie.",
         legende_vocab: "Wortschatz – wo du im angezeigten Niveau stehst. Grün: gewusst. Blau: im Lernen. Grau: noch neu. Tippe auf den Pfeil, um die fünf Niveaus zu sehen.",
-        legende_seance: "Meine Lerneinheit heute – die Zahl links ist dein Tagesziel, das du in den Einstellungen festlegen kannst. Die Lerneinheit gibt dir, was davon noch fehlt: zuerst die fälligen Wiederholungen, dann neue Wörter, wenn noch Platz ist.",
+        legende_seance: "Meine heutige Einheit — 20 Karten: zuerst die fälligen Wiederholungen, dann neue Wörter. „Noch eine Einheit“ öffnet eine weitere, ohne Grenze.",
         carte_info_kicker: "Dein Fortschritt",
         info_partie_accueil: "Auf der Startseite",
         info_partie_ici: "Hier abgelegt",
@@ -30973,7 +31185,7 @@ const I18N = {
         ip_seance_gardes: "„Zurückgelegt“ öffnet deine Ablage: die Wörter, die du mit „Zurücklegen“ dort abgelegt hast. Du kannst dort so viel üben, wie du willst – nichts davon ändert eine Fälligkeit oder das Tagesziel.",
         ip_seance_theme: "„nach Thema“ ist die andere Tür: Du wählst selbst ein Thema, statt die App die Lerneinheit zusammenstellen zu lassen.",
         ip_seance_t: "Der Zähler der Lerneinheit",
-        ip_seance_p: "Die Karten, die du heute bewertet hast, gemessen an deinem Ziel. Eine Karte zählt erst mit einer Antwort – „Nochmal“ oder „✓“.",
+        ip_seance_p: "Die Karten, die du heute bewertet hast. Damit eine Karte zählt, braucht sie eine Antwort: „Nochmal“ oder „✓“.",
         ip_vocab_t: "Der Fortschritt im Wortschatz",
         ip_vocab_p: "Wo du im angezeigten Niveau stehst. Tippe auf den Pfeil, um die fünf Niveaus zu sehen.",
         ip_partie_tableau: "Das Gemälde",
@@ -31004,7 +31216,7 @@ const I18N = {
         combo_info: "⚡ Richtige Antworten in Folge, in dieser Lerneinheit. Eine falsche Antwort setzt den Zähler auf null. (Die 🔥 auf der Startseite zählt dagegen die Tage in Folge.)",
         legende_cercle: "◯ der Kreis oben – wo du in einem ganzen Niveau stehst. Er rückt pro Wort um einen Bruchteil eines Prozents vor und bewegt sich vor dem 11. Tag nicht: Das ist normal, und deshalb steht er hier und nicht auf der Startseite. Tippe darauf, um das Niveau zu wechseln.",
         legende_semaine: "📈 diese Woche – die Wörter, die in den letzten sieben Tagen sicher geworden sind. Das ist dein aktuelles Tempo, keine Gesamtsumme.",
-        legende_objectif: "Die Leiste „Heute“ – die seit heute Morgen gemachten Karten, gemessen an deinem Ziel. Sie fängt jeden Tag bei null an. Die Zielzahl änderst du in den Einstellungen, und sie bestimmt auch die Größe deiner Lerneinheit.",
+        legende_objectif: "Der Balken „Heute“ — die Karten seit heute Morgen. Er beginnt jeden Tag bei null.",
         progress_info_titre: "Was diesen Prozentsatz bewegt",
         progress_info_compte: "Der Prozentsatz zählt deine sicheren Wörter, gemessen an allen Wörtern des angezeigten Niveaus: die Wörter der Themen, die Verben und die Adjektive zusammen.",
         progress_info_deja: "Bei einem neuen Wort überspringt „Kenne ich schon“ die ganze Leiter und markiert es sofort als sicher.",
@@ -31248,7 +31460,7 @@ const I18N = {
         badge_xp_2000_desc: "200 Erfahrungspunkte erreicht.",
         badge_xp_5000_title: "Sprachtalent",
         badge_xp_5000_desc: "500 Erfahrungspunkte erreicht.",
-        badges_points_explication: "Deine Punkte: {n}. Du bekommst 1 Punkt pro richtige Antwort (Karte, Übung, Sprechen) und 5 dazu, jedes Mal, wenn du dein Tagesziel erreichst. Das sind keine sicheren Wörter, und sie zählen nur für diese Sprache.",
+        badges_points_explication: "Deine Punkte: {n}. Du bekommst 1 Punkt pro richtiger Antwort (Karte, Übung, Sprechen) und 5 weitere für die erste abgeschlossene Einheit des Tages. Das sind keine gelernten Wörter, und sie zählen nur für diese Sprache.",
         fete_tableau_titre: "Gemälde fertig!",
         fete_tableau_numero: "Gemälde Nr. {n}",
         badge_streak_3_title: "3 Tage in Folge",
@@ -31283,26 +31495,26 @@ const I18N = {
         kicker_dictation_exercise: "Diktat",
         alert_no_dictation_available: "Öffne zuerst eine Wortschatzserie, um das Diktat zu üben.",
         notif_title: "Tägliche Erinnerungen",
-        notif_desc: "Erhalte eine Benachrichtigung, wenn du dein Tagesziel noch nicht erreicht hast.",
+        notif_desc: "Erhalte eine Benachrichtigung, wenn deine heutige Einheit noch nicht geschafft ist.",
         notif_btn_enable: "ERINNERUNGEN EINSCHALTEN",
         notif_btn_disable: "ERINNERUNGEN AUSSCHALTEN",
         notif_not_configured: "Diese Funktion ist vom Administrator noch nicht eingerichtet. Versuch es später noch einmal.",
         notif_unsupported: "Dein Browser unterstützt keine Push-Benachrichtigungen.",
         notif_denied: "Erlaubnis verweigert. Du kannst sie in den Einstellungen deines Browsers erteilen.",
         notif_token_failed: "Die Erinnerungen lassen sich gerade nicht einschalten. Versuch es später noch einmal.",
-        notif_enabled_success: "Erinnerungen eingeschaltet! Du bekommst eine Benachrichtigung, wenn du dein Tagesziel nicht erreicht hast.",
+        notif_enabled_success: "Erinnerungen aktiviert! Du bekommst eine Benachrichtigung, wenn deine heutige Einheit nicht geschafft ist.",
         notif_disabled_success: "Erinnerungen ausgeschaltet.",
         rappel_heure: "Uhrzeit der Erinnerung",
-        rappel_regle: "Erinnerung eingestellt: jeden Tag um {h}, solange dein Tagesziel nicht erreicht ist.",
+        rappel_regle: "Erinnerung eingestellt: jeden Tag um {h}, solange deine heutige Einheit nicht geschafft ist.",
         rappel_refuse: "Benachrichtigungen abgelehnt. Du kannst sie in den Einstellungen deines Handys erlauben.",
         rappel_notif_titre: "Deine Lerneinheit wartet",
         rappel_notif_texte: "Ein paar Minuten reichen, um deine Tage in Folge zu halten.",
         rappel_propose_titre: "Jeden Tag eine Erinnerung?",
-        rappel_propose_texte: "Glückwunsch zu dieser Stufe! Soll Wortando dich jeden Tag um {h} an deine Lerneinheit erinnern, nur an Tagen, an denen du dein Ziel noch nicht erreicht hast? Die Uhrzeit änderst du in den Einstellungen.",
+        rappel_propose_texte: "Gut gemacht! Soll Wortando dich jeden Tag um {h} an deine Einheit erinnern, nur an Tagen, an denen sie noch nicht geschafft ist? Die Uhrzeit änderst du in den Einstellungen.",
         rappel_propose_oui: "Ja, erinnere mich",
         vibrations_titre: "Vibrationen",
-        vibrations_desc: "Eine kurze Vibration bei jeder Stufe deines Tagesziels: +30, +60, +90 …",
-        vibrations_bouton: "Bei den Stufen des Ziels vibrieren",
+        vibrations_desc: "Eine kurze Vibration am Ende jeder Einheit.",
+        vibrations_bouton: "Am Ende der Einheiten vibrieren",
         hl_titre: "Kein Netz – deine Lerneinheit ist offline bereit",
         hl_sous: "{n} Karten, mit ihren Stimmen. Deine Antworten zählen, sobald das Netz wieder da ist.",
         hl_commencer: "STARTEN",
@@ -31429,7 +31641,7 @@ const I18N = {
         dec_te_essai: "▶ Meine ersten Wörter hören",
         dec_te_repete: "Jetzt du: Sprich nach!",
         dec_t5_titre: "Deine Lerneinheit heute",
-        dec_t5_texte: "Das ist das Herz der App. Jeden Tag eine Lerneinheit: neue Wörter, die Wiederholungen, die zur rechten Zeit wiederkommen, etwas Grammatik, Sprechen und die Szene des Tages. Sie hat ihr Tagesziel, und du kannst sie verlängern, so viel du willst. Alles bringt dein Gemälde voran. Auf der Startseite startet sie der Pfeil. Dein Niveau änderst du hier. Du fängst bei null an? Der kleine Keimling ist „Erste Schritte“: die wichtigsten Sätze fürs Reisen.",
+        dec_t5_texte: "Das ist das Herz der App. Jeden Tag eine Lerneinheit: neue Wörter, die Wiederholungen, die zur rechten Zeit wiederkommen, etwas Grammatik, Sprechen und die Szene des Tages. Du kannst so viele hintereinander machen, wie du willst. Alles bringt dein Gemälde voran. Auf der Startseite startet sie der Pfeil. Dein Niveau änderst du hier. Du fängst bei null an? Der kleine Keimling ist „Erste Schritte“: die wichtigsten Sätze fürs Reisen.",
         dec_t6_titre: "Der Rundgang ist zu Ende!",
         dec_t6_texte: "Auf der Startseite ist alles da: zuerst deine Lerneinheit, dann die Szenen und das Hören, wann du willst. Ein paar Minuten am Tag reichen. Viel Spaß beim Lernen!",
         dec_t6_bouton: "STARTEN",
@@ -32202,6 +32414,21 @@ const I18N = {
         ra_faux: "No del todo. La respuesta correcta:",
         ra_consigne_orthographe: "¿Cuál está bien escrito?",
         ra_tu_as_choisi: "Elegiste «{s}».",
+        legere_encore: "Una práctica más",
+        legere_fin_une: "Tu práctica de hoy está hecha.",
+        legere_fin_n: "{n} prácticas hoy",
+        etoile_aria: "Una estrella nueva",
+        etoile_compte: "{n} estrellas de {t}",
+        etoile_groupe_complet: "grupo completo",
+        ciel_aujourdhui: "hoy",
+        ciel_prochaine: "Próxima estrella: {s}",
+        ciel_nouvelle: "Estrella nueva: {s}",
+        ciel_commence: "Empieza el camino hacia {s}.",
+        ciel_rapproche: "Te acercas a {s}.",
+        ciel_tout_pres: "{s} está muy cerca.",
+        ciel_tiennent: "Tus palabras se mantienen. {s} te espera.",
+        fin_court_resume_sans: "{n} tarjetas hoy",
+        ciel_une_de_plus: "Una estrella más: {s}.",
         flash_end_a_revoir_un: "1 frase para repasar mañana",
         flash_end_a_revoir_n: "{n} frases para repasar mañana",
         pp_badge: "Primeros pasos",
@@ -32684,7 +32911,7 @@ const I18N = {
         legende_maitrises: "Palabras dominadas — cuatro respuestas correctas repartidas en once días. Puede bajar una o dos si una palabra se olvida en su comprobación.",
         legende_rencontres: "Palabras vistas — todas las palabras que viste al menos una vez, aunque no las supieras. Este número nunca baja.",
         legende_vocab: "Vocabulario — en qué punto del nivel mostrado estás. Verde: sabida. Azul: en progreso. Gris: por ver. Toca la flecha para ver los cinco niveles.",
-        legende_seance: "Mi práctica de hoy — la cuenta de la izquierda es tu meta diaria, que puedes regular en la configuración. La práctica te sirve lo que falta de ella: primero los repasos pendientes, luego las palabras nuevas si queda espacio.",
+        legende_seance: "Mi práctica de hoy — 20 tarjetas: primero los repasos pendientes, luego las palabras nuevas. «Una práctica más» abre otra, sin límite.",
         carte_info_kicker: "Tu progreso",
         info_partie_accueil: "En la pantalla de inicio",
         info_partie_ici: "Guardado aquí",
@@ -32694,7 +32921,7 @@ const I18N = {
         ip_seance_gardes: "«Apartadas» abre tu cofre: las palabras que pusiste ahí con «Apartar». Puedes recorrerlo tanto como quieras — nada de lo que hagas ahí cambia una fecha de repaso ni la meta del día.",
         ip_seance_theme: "«por tema» es la otra puerta: eliges tú un tema, en vez de dejar que la app componga la práctica.",
         ip_seance_t: "La cuenta de la práctica",
-        ip_seance_p: "Las tarjetas que juzgaste hoy, sobre tu meta. Una tarjeta necesita una respuesta — «Otra vez» o «✓» — para contar.",
+        ip_seance_p: "Las tarjetas que has evaluado hoy. Una tarjeta necesita una respuesta — «Otra vez» o «✓» — para contar.",
         ip_vocab_t: "El progreso del vocabulario",
         ip_vocab_p: "En qué punto del nivel mostrado estás. Toca la flecha para ver los cinco niveles.",
         ip_partie_tableau: "El cuadro",
@@ -32725,7 +32952,7 @@ const I18N = {
         combo_info: "⚡ Respuestas correctas seguidas, en esta práctica. Una respuesta incorrecta pone el contador a cero. (La 🔥 de la pantalla de inicio, en cambio, cuenta los días seguidos.)",
         legende_cercle: "◯ el círculo de arriba — en qué punto de un nivel completo estás. Avanza una fracción de porcentaje por palabra y no se mueve antes del día 11: es normal, y por eso está guardado aquí y no en la pantalla de inicio. Tócalo para cambiar de nivel.",
         legende_semaine: "📈 esta semana — las palabras que pasaron a dominadas en los últimos siete días. Es tu velocidad reciente, no un total.",
-        legende_objectif: "La barra «Hoy» — las tarjetas hechas desde esta mañana, sobre tu meta. Vuelve a cero cada día. El número buscado se cambia en la configuración, y también da el tamaño de tu práctica.",
+        legende_objectif: "La barra «Hoy» — las tarjetas hechas desde esta mañana. Vuelve a cero cada día.",
         progress_info_titre: "Lo que mueve este porcentaje",
         progress_info_compte: "El porcentaje cuenta tus palabras dominadas sobre todas las palabras del nivel mostrado: las palabras de los temas, los verbos y los adjetivos juntos.",
         progress_info_deja: "En una palabra nueva, «Ya lo sé» salta toda la escala y la marca como dominada de inmediato.",
@@ -32969,7 +33196,7 @@ const I18N = {
         badge_xp_2000_desc: "200 puntos de experiencia alcanzados.",
         badge_xp_5000_title: "Políglota en ciernes",
         badge_xp_5000_desc: "500 puntos de experiencia alcanzados.",
-        badges_points_explication: "Tus puntos: {n}. Ganas 1 punto por cada respuesta correcta (tarjeta, ejercicio, oral) y 5 más cada vez que alcanzas tu meta del día. No son palabras dominadas, y cuentan solo para este idioma.",
+        badges_points_explication: "Tus puntos: {n}. Ganas 1 punto por cada respuesta correcta (tarjeta, ejercicio, oral) y 5 más al terminar tu primera práctica del día. No son palabras dominadas, y cuentan solo para este idioma.",
         fete_tableau_titre: "¡Cuadro terminado!",
         fete_tableau_numero: "Cuadro n.º {n}",
         badge_streak_3_title: "3 días seguidos",
@@ -33004,26 +33231,26 @@ const I18N = {
         kicker_dictation_exercise: "Dictado",
         alert_no_dictation_available: "Abre primero una serie de vocabulario (Wortschatz) para practicar el dictado.",
         notif_title: "Recordatorios diarios",
-        notif_desc: "Recibe una notificación cuando todavía no hayas alcanzado tu meta del día.",
+        notif_desc: "Recibe una notificación cuando tu práctica de hoy aún no esté hecha.",
         notif_btn_enable: "ACTIVAR LOS RECORDATORIOS",
         notif_btn_disable: "DESACTIVAR LOS RECORDATORIOS",
         notif_not_configured: "El administrador todavía no ha configurado esta función. Vuelve a intentarlo más tarde.",
         notif_unsupported: "Tu navegador no admite las notificaciones push.",
         notif_denied: "Permiso denegado. Puedes autorizarlo en la configuración de tu navegador.",
         notif_token_failed: "No se pueden activar los recordatorios por ahora. Vuelve a intentarlo más tarde.",
-        notif_enabled_success: "¡Recordatorios activados! Recibirás una notificación si no has alcanzado tu meta del día.",
+        notif_enabled_success: "¡Recordatorios activados! Recibirás una notificación si tu práctica de hoy no está hecha.",
         notif_disabled_success: "Recordatorios desactivados.",
         rappel_heure: "Hora del recordatorio",
-        rappel_regle: "Recordatorio programado: cada día a las {h}, mientras no hayas alcanzado tu meta del día.",
+        rappel_regle: "Recordatorio programado: cada día a las {h}, mientras tu práctica de hoy no esté hecha.",
         rappel_refuse: "Notificaciones rechazadas. Puedes autorizarlas en la configuración de tu teléfono.",
         rappel_notif_titre: "Tu práctica de hoy te espera",
         rappel_notif_texte: "Con unos minutos basta para mantener tu racha.",
         rappel_propose_titre: "¿Un recordatorio cada día?",
-        rappel_propose_texte: "¡Felicidades por este logro! ¿Quieres que Wortando te recuerde tu práctica cada día a las {h}, solo los días en que todavía no hayas alcanzado tu meta? La hora se cambia en la configuración.",
+        rappel_propose_texte: "¡Enhorabuena por esta práctica! ¿Quieres que Wortando te la recuerde cada día a las {h}, solo los días en que aún no esté hecha? La hora se cambia en la configuración.",
         rappel_propose_oui: "Sí, recuérdamelo",
         vibrations_titre: "Vibraciones",
-        vibrations_desc: "Una vibración corta en cada hito de tu meta del día: +30, +60, +90…",
-        vibrations_bouton: "Vibrar en los hitos de la meta",
+        vibrations_desc: "Una vibración corta al final de cada práctica.",
+        vibrations_bouton: "Vibrar al final de las prácticas",
         hl_titre: "Sin red — tu práctica está lista sin conexión",
         hl_sous: "{n} tarjetas, con sus voces. Tus respuestas contarán cuando vuelva la red.",
         hl_commencer: "EMPEZAR",
@@ -33150,7 +33377,7 @@ const I18N = {
         dec_te_essai: "▶ Escuchar mis primeras palabras",
         dec_te_repete: "Tu turno: ¡repite!",
         dec_t5_titre: "Tu práctica de hoy",
-        dec_t5_texte: "Es el corazón de la aplicación. Cada día, una práctica: palabras nuevas, los repasos que vuelven en el momento justo, un poco de gramática, el oral y la escena del día. Tiene su meta del día, y puedes alargarla tanto como quieras. Todo hace avanzar tu cuadro. En la pantalla de inicio, la flecha la lanza. Tu nivel se cambia aquí. ¿Empiezas de cero? El brotecito es Primeros pasos: las frases esenciales para viajar.",
+        dec_t5_texte: "Es el corazón de la aplicación. Cada día, una práctica: palabras nuevas, los repasos que vuelven en el momento justo, un poco de gramática, el oral y la escena del día. Puedes hacer tantas seguidas como quieras. Todo hace avanzar tu cuadro. En la pantalla de inicio, la flecha la lanza. Tu nivel se cambia aquí. ¿Empiezas de cero? El brotecito es Primeros pasos: las frases esenciales para viajar.",
         dec_t6_titre: "¡El recorrido ha terminado!",
         dec_t6_texte: "En la pantalla de inicio está todo: primero tu práctica de hoy, y luego las escenas y la escucha, cuando quieras. Con unos minutos al día basta. ¡Feliz aprendizaje!",
         dec_t6_bouton: "EMPEZAR",
@@ -34799,8 +35026,8 @@ const I18N_ES_ESPAGNE = {
     "ecoute_reglages_title": "Ajustes",
     "reperes_reglages": "Los ajustes: tu idioma, tu nivel y todo lo demás.",
     "cp_micro_muet": "El micrófono no responde. Revisa que Wortando tenga permiso para usar el micrófono (Ajustes del teléfono) y vuelve a intentarlo.",
-    "legende_seance": "Mi práctica de hoy — la cuenta de la izquierda es tu meta diaria, que puedes regular en los ajustes. La práctica te sirve lo que falta de ella: primero los repasos pendientes, luego las palabras nuevas si queda sitio.",
-    "legende_objectif": "La barra «Hoy» — las tarjetas hechas desde esta mañana, sobre tu meta. Vuelve a cero cada día. El número buscado se cambia en los ajustes, y también da el tamaño de tu práctica.",
+    "legende_seance": "Mi práctica de hoy — 20 tarjetas: primero los repasos pendientes, luego las palabras nuevas. «Una práctica más» abre otra, sin límite.",
+    "legende_objectif": "La barra «Hoy» — las tarjetas hechas desde esta mañana. Vuelve a cero cada día.",
     "notif_denied": "Permiso denegado. Puedes autorizarlo en los ajustes de tu navegador.",
     "rappel_refuse": "Notificaciones rechazadas. Puedes autorizarlas en los ajustes de tu teléfono.",
     "abo_annulation": "Puedes cancelar en cualquier momento desde los ajustes de tu teléfono.",
@@ -34822,7 +35049,7 @@ const I18N_ES_ESPAGNE = {
     "verify_button": "COMPROBAR",
     "cp_tu_as_ecrit": "Has escrito:",
     "myvocab_full": "Has llegado a {n} palabras apartadas. Repásalas antes de añadir más.",
-    "rappel_propose_texte": "¡Enhorabuena por este logro! ¿Quieres que Wortando te recuerde tu práctica cada día a las {h}, solo los días en que todavía no hayas alcanzado tu meta? La hora se cambia en los ajustes."
+    "rappel_propose_texte": "¡Enhorabuena por esta práctica! ¿Quieres que Wortando te la recuerde cada día a las {h}, solo los días en que aún no esté hecha? La hora se cambia en los ajustes."
 };
 if(LANGUE_APPRISE === "en"){
     for(const l of Object.keys(I18N_ANGLAIS)) Object.assign(I18N[l], I18N_ANGLAIS[l]);
@@ -35739,7 +35966,7 @@ function noterInterruptionSeance(){
     try{ majSeanceSuivie(s => { s.i = (s.i || 0) + 1; }); }catch(e){}
 }
 function objectifAtteint(){
-    try{ return (getDailyActivityCount() || 0) >= (getDailyGoalTarget() || DEFAULT_DAILY_GOAL_TARGET) ? 1 : 0; }catch(e){ return 0; }
+    try{ return journeeFaite() ? 1 : 0; }catch(e){ return 0; }
 }
 function dureeSeance(s){ return Math.max(0, Math.round((Date.now() - Date.parse(s.d)) / 1000)); }
 // L'activite a l'ecran, pour la mesure (champ `a`).
@@ -37724,7 +37951,7 @@ async function programmerRappels(){
     const [h, m] = r.heure.split(":").map(Number);
     const maintenant = new Date();
     let atteint = false;
-    try{ atteint = getDailyActivityCount() >= getDailyGoalTarget(); }catch(e){}
+    try{ atteint = journeeFaite(); }catch(e){}
     const liste = [];
     for(let j = 0; j <= RAPPEL_JOURS && liste.length < RAPPEL_JOURS; j++){
         const quand = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate() + j, h, m, 0, 0);
@@ -37968,7 +38195,7 @@ function composerSeanceHorsLigne(){
     const total = Math.max(HL_CARTES, tailleSeance());
     const demain = Date.now() + 86400000;
     let atteint = false;
-    try{ atteint = getDailyActivityCount() >= getDailyGoalTarget(); }catch(e){}
+    try{ atteint = journeeFaite(); }catch(e){}
     const plafond = atteint ? PLAFOND_NEUFS : placeNeufsRestante();
     const neufs = pool.filter(it => estNeuf(getWordState(it.themeId, it.index)));
     const reserve = Math.min(Math.round(total * PART_NEUFS_RESERVEE), plafond, neufs.length);
@@ -42972,7 +43199,13 @@ async function syncProgressToCloud(){
             // v882 : seulement un objectif CHOISI. La valeur calculee (la rampe de la
             // premiere semaine, 10 le premier jour) restauree sur un autre appareil y
             // deviendrait un choix, et l'y figerait.
-            dailyGoalTarget: (function(){ const v = parseInt(localStorage.getItem(DAILY_GOAL_STORAGE_KEY), 10); return Number.isFinite(v) && v > 0 ? v : null; })(),
+            // 8 nov. 2026 : la fonction des notifications deployee compare dailyActivityToday a dailyGoalTarget. Tant qu'elle
+            // n'est pas redeployee, cette valeur lui fait dire « fait » quand une seance est finie aujourd'hui.
+            dailyGoalTarget: (function(){
+                if(objectifRetire()) return seancesFiniesAujourdhui() >= 1 ? getDailyActivityCount() : 999;
+                const v = parseInt(localStorage.getItem(DAILY_GOAL_STORAGE_KEY), 10); return Number.isFinite(v) && v > 0 ? v : null;
+            })(),
+            seanceFinieDate: seancesFiniesAujourdhui() >= 1 ? getTodayStr() : "",
             // 7 nov. 2026 : les questions par scene et par theme (5 · 8 · 12), un reglage comme l'objectif.
             questionsSeance: (function(){ const v = parseInt(localStorage.getItem(QUESTIONS_SEANCE_KEY), 10); return QUESTIONS_SEANCE_CHOIX.indexOf(v) >= 0 ? v : null; })(),
             // Utilisés côté serveur (Cloud Function de rappel quotidien) pour savoir
@@ -43096,6 +43329,14 @@ async function syncProgressToCloud(){
             premiersPasJson: (function(){
                 try{ return localStorage.getItem(PREMIERS_PAS_KEY) || ""; }
                 catch(e){ return ""; }
+            })(),
+            // La constellation (8 nov. 2026) : les seances du jour, la part deja dessinee, l'etoile et le tableau qui attendent.
+            etoilesJson: (function(){
+                try{
+                    return JSON.stringify({ s: etoileLire(SEANCES_LEGERES_KEY), p: etoileLire(CIEL_PART_KEY), a: etoileLire(ETOILE_ATTENTE_KEY),
+                                            b: etoileLire(TABLEAU_ATTENTE_KEY), f: etoileLire(ETOILE_FETEE_KEY),
+                                            t: Number(localStorage.getItem(ETOILES_MAJ_KEY)) || 0 });
+                }catch(e){ return ""; }
             })(),
             // Android, iPhone, iPad ou ordinateur, rien de plus (v686) : pour
             // savoir qui peut tester sur Google Play. Voir typeAppareil().
@@ -43470,7 +43711,7 @@ async function restoreProgressFromCloud(){
                 setStreakFreezes(data.gels);
             }
             // L'objectif du jour : meme regle, c'est un reglage.
-            if(typeof data.dailyGoalTarget === "number"
+            if(typeof data.dailyGoalTarget === "number" && !objectifRetire()
                && localStorage.getItem(DAILY_GOAL_STORAGE_KEY) === null){
                 localStorage.setItem(DAILY_GOAL_STORAGE_KEY, String(data.dailyGoalTarget));
             }
@@ -43590,10 +43831,31 @@ async function restoreProgressFromCloud(){
         try{
             // L'A1 voyage (v862) : un appareil qui n'a rien reprend l'etat du
             // cloud ; celui qui a deja avance garde le sien.
-            if(typeof data.a1VoyageJson === "string" && data.a1VoyageJson
-               && !localStorage.getItem(A1_VOYAGE_KEY)){
+            if(typeof data.a1VoyageJson === "string" && data.a1VoyageJson){
                 const d = JSON.parse(data.a1VoyageJson);
-                if(d && typeof d === "object") ecrireA1Voyage(d);
+                let ici = null;
+                try{ ici = JSON.parse(localStorage.getItem(A1_VOYAGE_KEY) || "null"); }catch(e2){ ici = null; }
+                // 8 nov. 2026 : le plus recent l'emporte, sinon un deuxieme appareil restait a son etape.
+                if(d && typeof d === "object" && (!ici || (d.t || 0) > (ici.t || 0))){
+                    try{ localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify(d)); }catch(e2){}
+                }
+            }
+        }catch(e){}
+        try{
+            // La constellation : les seances du jour, le plus grand des deux comptes ; le reste, le plus recent.
+            if(typeof data.etoilesJson === "string" && data.etoilesJson){
+                const d = JSON.parse(data.etoilesJson);
+                if(d && typeof d === "object"){
+                    const auj = getTodayStr();
+                    if(d.s && d.s.j === auj && (d.s.n || 0) > seancesFiniesAujourdhui()) localStorage.setItem(SEANCES_LEGERES_KEY, JSON.stringify(d.s));
+                    const ici = Number(localStorage.getItem(ETOILES_MAJ_KEY)) || 0;
+                    if((d.t || 0) > ici){
+                        [[CIEL_PART_KEY, d.p], [ETOILE_ATTENTE_KEY, d.a], [TABLEAU_ATTENTE_KEY, d.b], [ETOILE_FETEE_KEY, d.f]].forEach(([k, v]) => {
+                            if(v) localStorage.setItem(k, JSON.stringify(v)); else localStorage.removeItem(k);
+                        });
+                        localStorage.setItem(ETOILES_MAJ_KEY, String(d.t));
+                    }
+                }
             }
         }catch(e){}
         try{
@@ -44658,7 +44920,8 @@ function recordDailyActivity(compteDansObjectif){
         daily.milestonesCelebrated = daily.goalCelebrated ? 1 : 0;
     }
     delete daily.goalCelebrated;
-    const target = getDailyGoalTarget();
+    // Plus de palier (8 nov. 2026) : le compte du jour et la flamme restent, ils ne lisaient jamais l'objectif.
+    const target = objectifRetire() ? 0 : getDailyGoalTarget();
     if(compteDansObjectif !== false) daily.count += 1;
     // La grammaire alimente le cumul comme le vocabulaire : quelqu'un qui a
     // passe une heure sur le Perfekt a travaille (meme raison qu'a la v534
@@ -51651,7 +51914,7 @@ const ESSAIS = {
     // crepuscule, les etoiles et les planetes) vient par versions. Maquette :
     // https://claude.ai/artifact/9yd8kUnaXPQSJvf49BEje4 ; plan : seance-legere.md (notes du chef).
     seance_legere: {
-        etat: "admin",
+        etat: "tous",
         titre: "La séance légère (une leçon par jour, sans objectif chiffré)",
         desc: "La séance du jour fait toujours la même taille, quel que soit l'objectif réglé ; à la fin, « Encore une séance » en ouvre une autre, sans limite, et l'écran de fin dit combien de séances sont faites aujourd'hui. Une étape de l'A1 finie allume son étoile en plein écran à la fin de la séance (une seule fête par séance : l'étoile d'abord, le tableau le lendemain). Les autres comptes gardent l'objectif « N / 20 »."
     },
@@ -59845,6 +60108,16 @@ const SEANCES_LEGERES_KEY = PREFIXE_STOCKAGE + "seancesLegeres";
 function seanceLegere(){
     try{ return essaiActif("seance_legere") && !seanceJaponaise(); }catch(e){ return false; }
 }
+// L'OBJECTIF DU JOUR EST RETIRE POUR TOUT LE MONDE (decision du 8 nov. 2026), sauf dans l'essai japonais, que la
+// seance legere n'a jamais couvert. Un objectif regle par un compte existant n'est plus lu, sans effet sur sa progression.
+function objectifRetire(){
+    try{ return !seanceJaponaise(); }catch(e){ return true; }
+}
+// « L'objectif est atteint » devient « une seance est finie aujourd'hui » pour les rappels et le hors-ligne.
+function journeeFaite(){
+    if(objectifRetire()) return seancesFiniesAujourdhui() >= 1;
+    return getDailyActivityCount() >= getDailyGoalTarget();
+}
 function seancesFiniesAujourdhui(){
     let v = null;
     try{ v = JSON.parse(localStorage.getItem(SEANCES_LEGERES_KEY) || "null"); }catch(e){ v = null; }
@@ -59857,17 +60130,33 @@ function noterSeanceLegereFinie(paquet){
     PAQUET_LEGER_COMPTE = paquet;
     const n = seancesFiniesAujourdhui() + 1;
     try{ localStorage.setItem(SEANCES_LEGERES_KEY, JSON.stringify({ j: getTodayStr(), n: n })); }catch(e){}
+    try{ localStorage.setItem(ETOILES_MAJ_KEY, String(Date.now())); }catch(e){}
+    try{ apresSeanceFinie(n); }catch(e){}
     return n;
+}
+// Ce que la fete de l'objectif declenchait, maintenant a la fin d'une seance : la vibration a chaque seance ; les 5
+// points, le silence du rappel du jour, la proposition du rappel et la seance mise de cote a la premiere.
+function apresSeanceFinie(n){
+    setTimeout(() => { try{ vibrerPalier("fin de seance " + n); }catch(e){} }, 2200);
+    if(n !== 1) return;
+    addXp(XP_BONUS_GOAL_MULTIPLE);
+    if(rappelNatif()) programmerRappels();
+    setTimeout(proposerRappel, 5000);
+    if(horsLignePossible()) setTimeout(mettreSeanceDeCote, 8000);
 }
 function estSeanceDuJourOuverte(){
     return !!(currentTheme && String(currentTheme.id).indexOf("seance_") === 0 && currentTheme.id !== "seance_premiers_pas");
 }
 // « Encore une seance » : une lecon entiere de plus, rouverte depuis l'etat du jour. Une dose de mots
 // nouveaux s'ouvre pour elle (le plafond du jour la refuserait sinon) ; les revisions restantes suivent.
-function encoreUneSeance(){
+let ENCORE_EN_COURS = false;
+async function encoreUneSeance(){
+    if(ENCORE_EN_COURS) return;   // le deuxieme toucher ne compte rien
+    ENCORE_EN_COURS = true;
     hideFlashcardEnd();
     try{ ajouterSerieNeufs(); }catch(e){}
-    try{ ouvrirSeanceDuJour(true); }catch(e){}
+    try{ await ouvrirSeanceDuJour(true); }catch(e){}
+    ENCORE_EN_COURS = false;
 }
 
 // ============ LA NOUVELLE ETOILE (essai seance_legere, 7 nov. 2026) ============
@@ -59895,6 +60184,7 @@ function etoileLire(k){
 }
 function etoileEcrire(k, v){
     try{ if(v) localStorage.setItem(k, JSON.stringify(v)); else localStorage.removeItem(k); }catch(e){}
+    try{ localStorage.setItem(ETOILES_MAJ_KEY, String(Date.now())); }catch(e){}
 }
 function seanceLegereDuJour(){
     try{ return seanceLegere() && estSeanceDuJourOuverte(); }catch(e){ return false; }
@@ -60190,6 +60480,337 @@ async function feteEtoile(et){
     if(!reduit) requestAnimationFrame(() => voile.classList.add("fe-joue"));
     try{ sonEtoile(reduit ? 0 : 1.3, fin); }catch(e){}
     setTimeout(() => { try{ btn.focus({ preventScroll: true }); }catch(e){} }, reduit ? 0 : 2800);
+}
+
+// ============ LE CIEL DE L'ECRAN DE FIN (decisions du 8 nov. 2026, proposition B de la maquette) ============
+// Pour tout le monde en Premiers pas (la Grande Ourse) et dans l'A1 voyage (les Gemeaux, puis Orion) ; ailleurs,
+// l'ecran d'avant. Toute la figure en un seul dessin, le trait vers la prochaine etoile selon la part de l'etape
+// deja vue (mots neufs vus + phrases vues), les noms des etoiles atteintes en petit, le son « Montante » pendant
+// le trait, l'etoile filante une seconde apres, des la 2e seance du jour, et « Encore une seance » en verre,
+// touchable du debut a la fin. L'objectif du jour ne change pas.
+const CIEL_PART_KEY = PREFIXE_STOCKAGE + "cielPart";
+const ETOILES_MAJ_KEY = PREFIXE_STOCKAGE + "etoilesMaj";
+const CIEL_PLAFOND = .92;   // l'etape se ferme par son dialogue, qui n'est pas dans le compte : le trait s'arrete avant
+let CIEL_AV = null;         // l'etape de l'A1 voyage de la seance ouverte
+function etoilesDeLaSeance(){
+    try{ return estSeanceDuJourOuverte() && !seanceJaponaise(); }catch(e){ return false; }
+}
+function cielA1Actif(){
+    return !!(etoilesDeLaSeance() && CIEL_AV && !CIEL_AV.finA1 && CIEL_AV.lieu);
+}
+// L'etat a dessiner : la constellation, l'etoile visee, la part vue.
+function etatCielFin(){
+    if(!CIEL) return null;
+    const enPP = !!(currentTheme && currentTheme.id === "seance_premiers_pas");
+    const prec = etoileLire(CIEL_PART_KEY);
+    let g, n, a = 0, lit = false, gStock, nStock, pStock;
+    if(enPP){
+        const seq = sequencePremiersPas(), p = positionPremiersPas();
+        if(!seq.length) return null;
+        const ici = seq[Math.min(p, seq.length - 1)], fini = p >= seq.length, d = ici.jourPP || 0;
+        const pasDe = dd => seq.filter(i => i.jourPP === dd && (i.mode !== "phrase" || ["ecoute", "ordre", "parler"].indexOf(i.forme) >= 0));
+        const cartes = pasDe(d);
+        a = fini ? 1 : (cartes.length ? cartes.filter(i => i.ppPos < p).length / cartes.length : 0);
+        g = gStock = "premiers_pas";
+        n = d; nStock = fini ? d + 1 : d; pStock = a;
+        if(fini){ lit = !(prec && prec.g === g && prec.n > d); }
+        else if(prec && prec.g === g && prec.n === d - 1){ lit = true; n = d - 1; }
+    } else {
+        if(!cielA1Actif()) return null;
+        const av = CIEL_AV, attente = etoileLire(ETOILE_ATTENTE_KEY);
+        g = av.enSuite ? "a1_suite" : "a1_escales";
+        n = av.n;
+        const finie = !!(attente && attente.g === g && attente.n === n);
+        if(finie){
+            n++;
+            const c0 = CIEL.constellations[CIEL.groupes[g]];
+            if(c0 && n >= c0.etoiles.length){
+                if(g === "a1_suite") return null;
+                g = "a1_suite"; n = 0;
+            }
+            a = 0;
+        } else {
+            const blocs = (av.lieu.blocs || []).length, b = Math.min(lireA1Voyage().b || 0, blocs);
+            const pool = av.pool || [], total = pool.length + blocs;
+            a = total ? (pool.filter(it => !estNeuveCarteSure(it)).length + b) / total : 0;
+        }
+        gStock = g; nStock = n; pStock = a;
+    }
+    const c = CIEL.constellations[CIEL.groupes[g]];
+    if(!c || n >= c.etoiles.length) return null;
+    let de = 0;
+    if(lit){ de = CIEL_PLAFOND; a = 1; }
+    else if(prec && prec.g === g && prec.n === n){ de = Math.min(1, prec.p || 0); a = Math.max(a, de); pStock = a; }
+    etoileEcrire(CIEL_PART_KEY, { g: gStock, n: nStock, p: pStock });
+    return { c, g, n, lit, de, a, pp: enPP };
+}
+function estNeuveCarteSure(it){ try{ return estNeuveCarte(it); }catch(e){ return false; } }
+// « Tau », « Iota » autour de la figure ; le plein ecran garde « Tau des Gemeaux ».
+function nomCourtEtoile(e, lg){ return String(nomEtoileAffiche(e, lg) || "").split(/\s+/)[0]; }
+function cielCoupe(a, b, bb){
+    const dx = b.x - a.x, dy = b.y - a.y;
+    let t0 = 0, t1 = 1;
+    for(const [p, q] of [[-dx, a.x - bb[0]], [dx, bb[2] - a.x], [-dy, a.y - bb[1]], [dy, bb[3] - a.y]]){
+        if(p === 0){ if(q < 0) return false; }
+        else { const t = q / p; if(p < 0) t0 = Math.max(t0, t); else t1 = Math.min(t1, t); if(t0 > t1) return false; }
+    }
+    return true;
+}
+function cielTouche(cx, cy, r, bb){
+    const nx = Math.min(Math.max(cx, bb[0]), bb[2]), ny = Math.min(Math.max(cy, bb[1]), bb[3]);
+    return (nx - cx) * (nx - cx) + (ny - cy) * (ny - cy) < r * r;
+}
+// Des dernieres etoiles atteintes aux premieres ; au premier nom qui ne tient pas, on s'arrete.
+function placerNomsCiel(P, rayons, segs, W, H, noms, px){
+    const m = document.createElement("canvas").getContext("2d");
+    const police = getComputedStyle(document.body).fontFamily;
+    m.font = "700 " + px + "px " + police;
+    const DIRS = [[1,0],[-1,0],[0,-1],[0,1],[.72,-.72],[-.72,-.72],[.72,.72],[-.72,.72]];
+    const h = Math.ceil(px * 1.2), pris = [], sortie = [];
+    for(let i = noms.length - 1; i >= 0; i--){
+        const w = Math.ceil(m.measureText(noms[i]).width);
+        let bb = null;
+        for(let d = rayons[i] + 3; d <= rayons[i] + 16 && !bb; d += 3){
+            for(let k = 0; k < DIRS.length && !bb; k++){
+                const cx = P[i].x + DIRS[k][0] * (w / 2 + d), cy = P[i].y + DIRS[k][1] * (h / 2 + d);
+                const b = [cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2], m2 = [b[0] - 2, b[1] - 2, b[2] + 2, b[3] + 2];
+                if(b[0] < 3 || b[2] > W - 3 || b[1] < 2 || b[3] > H - 2) continue;
+                if(pris.some(x => x[0] < m2[2] && m2[0] < x[2] && x[1] < m2[3] && m2[1] < x[3])) continue;
+                if(P.some((p, j) => cielTouche(p.x, p.y, rayons[j] + 2, m2))) continue;
+                if(segs.some(s => cielCoupe(s[0], s[1], m2))) continue;
+                bb = b;
+            }
+        }
+        if(!bb) break;
+        pris.push(bb);
+        sortie.push({ x: bb[0], y: bb[3] - h * .22, t: noms[i] });
+    }
+    return sortie;
+}
+function retirerCielFin(fin){
+    fin.classList.remove("avec-ciel");
+    const el = document.getElementById("finCiel");
+    if(el){ el.classList.add("hidden"); el.classList.remove("fc-joue"); }
+    const encore = document.getElementById("encoreNeufsBtn"), repere = fin.querySelector('[onclick="retryUnmastered()"]');
+    if(encore && repere && encore.parentNode !== fin){ fin.insertBefore(encore, repere); encore.classList.remove("fc-verre"); }
+}
+function rendreCielFin(fin){
+    if(!CIEL){
+        if(cielA1Actif() || (currentTheme && currentTheme.id === "seance_premiers_pas")) chargerCiel();
+        return false;
+    }
+    const e = etatCielFin();
+    if(!e) return false;
+    const lg = getUiLang(), c = e.c, E = c.etoiles, C = e.n;
+    let el = document.getElementById("finCiel");
+    if(!el){
+        el = document.createElement("div");
+        el.id = "finCiel";
+        el.className = "fin-ciel";
+        fin.insertBefore(el, fin.firstChild);
+    }
+    fin.classList.add("avec-ciel");
+    el.classList.remove("hidden", "fc-joue");
+    el.textContent = "";
+    const W = Math.max(260, Math.round(el.clientWidth || fin.clientWidth - 24)), H = 272;
+    const f = v => (+v).toFixed(1);
+    const xs = E.map(s => s.x), ys = E.map(s => s.y), x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+    const s = Math.min((W - 44) / (x1 - x0), (H - 28) / (y1 - y0), 1.05);
+    const ox = (W - (x1 - x0) * s) / 2 - x0 * s, oy = (H - (y1 - y0) * s) / 2 - y0 * s;
+    const P = E.map(a => ({ x: +(a.x * s + ox).toFixed(1), y: +(a.y * s + oy).toFixed(1) }));
+    const atteinte = i => i < C || (e.lit && i === C);
+    const rayons = E.map((a, i) => atteinte(i) ? a.r * 1.15 : (i === C ? 5 : 2.3));
+    // le trait : depuis l'etoile deja atteinte qui mene a la cible (Alcor et la premiere etoile n'en ont pas)
+    const lien = c.traits.find(t => (t[1] === C && t[0] < C) || (t[0] === C && t[1] < C));
+    const D = lien ? (lien[0] === C ? lien[1] : lien[0]) : -1;
+    const segs = [];
+    const o = [];
+    c.traits.forEach(([i, j]) => {
+        const fait = atteinte(i) && atteinte(j) && !(D >= 0 && ((i === D && j === C) || (i === C && j === D)));
+        if(fait) segs.push([P[i], P[j]]);
+        o.push('<line class="' + (fait ? "fc-allume" : "fc-avenir") + '" x1="' + P[i].x + '" y1="' + P[i].y + '" x2="' + P[j].x + '" y2="' + P[j].y + '"/>');
+    });
+    const cap = e.lit ? 1 : CIEL_PLAFOND;
+    if(D >= 0){
+        const A = P[D], B = P[C];
+        const pt = v => { v = Math.min(v, cap); return { x: A.x + (B.x - A.x) * v, y: A.y + (B.y - A.y) * v }; };
+        const fina = pt(e.a), deb = pt(e.de), de = e.a > 0 ? 1 - Math.min(e.de, cap) / Math.min(e.a, cap) : 0;
+        segs.push([A, B]);
+        if(e.a > 0){
+            o.push('<line class="fc-nouveau" pathLength="1" style="--de:' + de.toFixed(3) + '" x1="' + A.x + '" y1="' + A.y + '" x2="' + f(fina.x) + '" y2="' + f(fina.y) + '"/>');
+            if(!e.lit) o.push('<g class="fc-tete" style="--x0:' + f(deb.x) + 'px;--y0:' + f(deb.y) + 'px;--x1:' + f(fina.x) + 'px;--y1:' + f(fina.y) + 'px"><circle class="fc-tete-h" r="6"/><circle class="fc-tete-c" r="2.2"/></g>');
+        }
+    }
+    const astre = (x, y, a, k, cls) => '<g' + (cls ? ' class="' + cls + '"' : '') + '><circle class="fc-halo" cx="' + x + '" cy="' + y + '" r="' + f(a.r * 4.6 * k) + '" opacity="' + (a.lum * .07).toFixed(3) + '"/>'
+        + '<circle class="fc-halo" cx="' + x + '" cy="' + y + '" r="' + f(a.r * 2.6 * k) + '" opacity="' + (a.lum * .16).toFixed(3) + '"/>'
+        + '<circle cx="' + x + '" cy="' + y + '" r="' + f(a.r * k) + '" fill="' + a.couleur + '" opacity="' + a.lum + '"/></g>';
+    E.forEach((a, i) => {
+        if(i === C){
+            if(e.lit) o.push(astre(P[i].x, P[i].y, a, 1.2, "fc-neuve"));
+            else o.push('<circle class="fc-cible" cx="' + P[i].x + '" cy="' + P[i].y + '" r="13"/><circle class="fc-place" cx="' + P[i].x + '" cy="' + P[i].y + '" r="3"/>');
+        } else if(i < C) o.push(astre(P[i].x, P[i].y, a, 1, ""));
+        else o.push('<circle class="fc-place" cx="' + P[i].x + '" cy="' + P[i].y + '" r="2"/>');
+    });
+    const n = seancesFiniesAujourdhui();
+    if(n >= 2) o.push('<defs><linearGradient id="fcFilante" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFF6E2"/><stop offset="1" stop-color="#FFF6E2" stop-opacity="0"/></linearGradient></defs><line class="fc-filante" x1="' + (W - 80) + '" y1="34" x2="' + (W - 28) + '" y2="0"/>');
+    // le fond d'etoiles lointaines, toujours le meme pour une constellation
+    let graine = 4711 + C * 13, fond = "";
+    const alea = () => { graine = (graine * 16807) % 2147483647; return graine / 2147483647; };
+    for(let k = 0; k < 80; k++) fond += '<circle class="fc-loin" cx="' + (alea() * 100).toFixed(1) + '%" cy="' + (alea() * 100).toFixed(1) + '%" r="' + (.3 + alea() * .9).toFixed(2) + '" opacity="' + (.15 + alea() * .4).toFixed(2) + '"/>';
+    el.innerHTML = '<svg class="fc-fond" aria-hidden="true" width="100%" height="100%">' + fond + '</svg>'
+        + '<div class="fc-tete-l"><span class="fc-cnom"></span><span class="fc-compte"></span></div>'
+        + '<svg class="fc-cst" viewBox="0 0 ' + W + ' ' + H + '" role="img">' + o.join("") + '</svg>'
+        + '<div class="fc-proch"><span class="fc-proch-t" dir="auto"></span><small class="fc-proch-d" dir="auto"></small></div>'
+        + '<div class="fc-mots"><p class="fc-fois hidden"><b></b><small></small></p><div class="fc-titre" dir="auto"></div><p class="fc-phrase" dir="auto"></p></div>'
+        + '<div class="fc-pousse"></div>';
+    const q = x => el.querySelector(x);
+    const nomC = nomFigure(c, lg);
+    q(".fc-cnom").textContent = nomC;
+    const atteintes = E.filter((a, i) => atteinte(i)).length;
+    q(".fc-compte").textContent = atteintes + " / " + E.length;
+    q(".fc-cst").setAttribute("aria-label", nomC + " : " + tf("etoile_compte", { n: atteintes, t: E.length }));
+    const svg = q(".fc-cst"), noms = E.map((a, i) => atteinte(i) ? nomCourtEtoile(a, lg) : null).filter(x => x);
+    placerNomsCiel(P, rayons, segs, W, H, noms, 11).forEach(x => {
+        const tx = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tx.setAttribute("class", "fc-nom"); tx.setAttribute("x", f(x.x)); tx.setAttribute("y", f(x.y));
+        tx.textContent = x.t;
+        svg.appendChild(tx);
+    });
+    const vise = E[C], nomV = nomEtoileAffiche(vise, lg);
+    // « Prochaine etoile : Mekbuda » : le nom en gras, le reste en texte.
+    const avecNom = (noeud, cle) => {
+        const lgFr = lg === "fr", brut = t(cle), i = brut.indexOf("{s}");
+        let avant = brut.slice(0, i);
+        const apres = brut.slice(i + 3);
+        if(lgFr && / de $/.test(avant) && /^[aeiouyhéèê]/i.test(nomV)) avant = avant.replace(/ de $/, " d'");
+        noeud.textContent = "";
+        noeud.appendChild(document.createTextNode(avant));
+        const b = document.createElement("b"); b.textContent = nomV; noeud.appendChild(b);
+        noeud.appendChild(document.createTextNode(apres));
+    };
+    avecNom(q(".fc-proch-t"), e.lit ? "ciel_nouvelle" : "ciel_prochaine");
+    q(".fc-proch-d").textContent = phraseDistanceEtoile(vise);
+    if(n >= 2 && !e.pp){
+        const fois = q(".fc-fois");
+        fois.classList.remove("hidden");
+        fois.querySelector("b").textContent = "×" + n;
+        fois.querySelector("small").textContent = t("ciel_aujourdhui");
+        fois.style.fontSize = [0, 0, 15, 18, 21, 24][Math.min(n, 5)] + "px";
+    }
+    q(".fc-titre").textContent = (n <= 1 && !e.pp) ? t("legere_fin_une") : t("fin_seance_titre");
+    const sansAvance = !e.lit && e.de > 0 && e.a <= e.de;
+    avecNom(q(".fc-phrase"), e.lit ? "ciel_une_de_plus" : sansAvance ? "ciel_tiennent" : e.a >= .75 ? "ciel_tout_pres" : e.a < 1 / 3 ? "ciel_commence" : "ciel_rapproche");
+    const encore = document.getElementById("encoreNeufsBtn");
+    if(encore && !encore.classList.contains("hidden")){
+        encore.classList.remove("primary", "secondary");
+        encore.classList.add("fc-verre");
+        el.appendChild(encore);
+    }
+    return true;
+}
+// La ou il n'y a pas de ciel (A2 et plus) : le tableau qui avance, a l'ecran de fin, sans palier (le chef, 8 nov. 2026).
+let CARREAUX_DEBUT = null;
+function noterCarreauxDebut(){
+    try{ const v = etatMosaique(); CARREAUX_DEBUT = { r: v.r, c: v.c, t: v.t, b: v.b, cn: v.cn }; }catch(e){ CARREAUX_DEBUT = null; }
+}
+function rendreTableauFin(fin){
+    if(!(etoilesDeLaSeance() && objectifRetire())) return;
+    const montrer = () => {
+        const v = etatMosaique();
+        const trophee = v.t > 0 || !!v.b;
+        const jusqua = trophee ? (v.cn || 0) : v.c, rang = trophee ? v.r + 1 : v.r;
+        const m = trophee ? (MOSAIQUES && MOSAIQUES.length ? MOSAIQUES[(rang - 1) % MOSAIQUES.length] : null) : mosaiqueCourante();
+        if(!m) return;
+        const d0 = CARREAUX_DEBUT, memeTableau = d0 && d0.r === v.r && !!(d0.t > 0 || d0.b) === trophee;
+        const avant = memeTableau ? (trophee ? (d0.cn || 0) : d0.c) : 0;
+        const depuis = Math.max(avant, jusqua - 60);
+        imageMosaique(m).then(img => {
+            if(fin.classList.contains("hidden") || document.getElementById("finTableau")) return;
+            const bloc = document.createElement("div");
+            bloc.id = "finTableau";
+            bloc.className = "fin-tableau";
+            const toile = document.createElement("canvas");
+            toile.width = 240;
+            toile.height = Math.round(240 * (m.h || 1) / (m.l || 1));
+            bloc.appendChild(toile);
+            const bas = document.createElement("div");
+            bas.className = "fin-tableau-bas";
+            const nb = document.createElement("b"); nb.textContent = String(depuis);
+            const sur = document.createElement("small"); sur.textContent = " / " + MOSAIQUE_CARREAUX;
+            bas.appendChild(nb); bas.appendChild(sur);
+            bloc.appendChild(bas);
+            const titre = document.getElementById("flashEndSummary");
+            titre.parentNode.insertBefore(bloc, titre);
+            dessinerMosaique(toile, img, depuis, MOSAIQUE_CARREAUX, false, rang);
+            const reduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if(reduit || jusqua <= depuis){ dessinerMosaique(toile, img, jusqua, MOSAIQUE_CARREAUX, false, rang); nb.textContent = String(jusqua); return; }
+            let i = depuis;
+            const pas = Math.max(45, Math.min(110, 2200 / (jusqua - depuis)));
+            const tic = setInterval(() => {
+                if(!bloc.isConnected){ clearInterval(tic); return; }
+                i++;
+                dessinerMosaique(toile, img, i, MOSAIQUE_CARREAUX, false, rang);
+                nb.textContent = String(i);
+                if(i >= jusqua) clearInterval(tic);
+            }, pas);
+        }).catch(() => {});
+    };
+    chargerMosaiques().then(montrer).catch(() => {});
+}
+function jouerCielFin(){
+    const el = document.getElementById("finCiel");
+    if(!el || el.classList.contains("hidden")) return;
+    const reduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(!reduit){ void el.offsetWidth; el.classList.add("fc-joue"); }
+    try{ sonCristal(); }catch(e){}
+}
+// Une fete attendue passe d'abord ; le trait se dessine quand elle se ferme. Rien de tout cela ne bloque le bouton.
+function quandPlusDeFete(prevue, fin, cb){
+    if(!prevue){ cb(); return; }
+    const debut = Date.now();
+    let vue = false;
+    const tour = () => {
+        if(fin.classList.contains("hidden")) return;
+        const ouverte = document.querySelector(".fete-etoile, .fete-tableau");
+        if(ouverte) vue = true;
+        if(!ouverte && (vue || Date.now() - debut > 2500)){ cb(); return; }
+        setTimeout(tour, 150);
+    };
+    setTimeout(tour, 150);
+}
+// Le son « Montante » de « Plus court » : des eclats brefs sur do pentatonique, sans note tenue, le temps du trait.
+let cristalBus = null;
+function arreterCristal(){
+    if(!cristalBus) return;
+    const b = cristalBus; cristalBus = null;
+    try{ b.gain.setTargetAtTime(0, b.context.currentTime, .02); }catch(e){}
+    setTimeout(() => { try{ b.disconnect(); }catch(e){} }, 250);
+}
+function sonCristal(){
+    if(transitSansSon()) return;
+    const c = getAudioCtx();
+    if(!c) return;
+    try{ c.resume(); }catch(e){}
+    arreterCristal();
+    const bus = c.createGain(); bus.gain.value = 1;
+    const hp = c.createBiquadFilter(); hp.type = "highpass"; hp.frequency.value = 1500; hp.Q.value = .7;
+    hp.connect(bus); bus.connect(c.destination);
+    cristalBus = bus;
+    const GAMME = [2637, 3136, 3520, 4186, 4699, 5274, 6272], d = 1.35, t = c.currentTime + .17, nb = 26;
+    let graine = 2718;
+    const r = () => { graine = (graine * 16807) % 2147483647; return graine / 2147483647; };
+    for(let i = 0; i < nb; i++){
+        const u = i / (nb - 1), f0 = GAMME[Math.round(u * (GAMME.length - 1))], t0 = t + d * u * .98, tenue = .07 + r() * .07, vol = .03 + r() * .02;
+        [[1, 1, 1], [2, .2, .5]].forEach(q => {
+            const o = c.createOscillator(), g = c.createGain();
+            o.type = "sine"; o.frequency.value = f0 * q[0];
+            g.gain.setValueAtTime(.0001, t0);
+            g.gain.exponentialRampToValueAtTime(vol * q[1], t0 + .006);
+            g.gain.exponentialRampToValueAtTime(.0001, t0 + tenue * q[2]);
+            o.connect(g); g.connect(hp);
+            o.start(t0); o.stop(t0 + tenue * q[2] + .03);
+        });
+    }
 }
 
 function cle(it){ return it.themeId + ":" + it.index; }
@@ -60576,7 +61197,7 @@ function majCarteProgression(){
         try{ cible = getDailyGoalTarget() || cible; }catch(e){}
         fait.textContent = n;
         const c = document.getElementById("jourCible");
-        if(c) c.textContent = " / " + cible;
+        if(c) c.textContent = objectifRetire() ? "" : " / " + cible;
         const f = document.getElementById("jourRemplissage");
         // Plafonne a 100 % : depasser son objectif ne doit pas faire deborder
         // la barre hors de la carte.
@@ -65079,7 +65700,7 @@ function montrerCartePhrase(item){
         fait.repondu = true;
         suite.classList.remove("hidden");
         // Essai seance_legere : la fete est l'etoile, en plein ecran a la fin de la seance (voir feteEtoile).
-        if(seanceLegereDuJour()) noterEtoileFinEtape(item);
+        if(etoilesDeLaSeance()) noterEtoileFinEtape(item);
         else { try{ launchConfetti(); playMasteredSound(); }catch(e){} }
     } else if(item.forme === "av_jalon"){
         // Le jalon (maquette, ecran 6) : ce qui est fait, et CE QUI CHANGE --
@@ -65106,7 +65727,7 @@ function montrerCartePhrase(item){
         el.appendChild(ch);
         fait.repondu = true;
         suite.classList.remove("hidden");
-        if(seanceLegereDuJour() && item.lieu) noterEtoileFinEtape(item);
+        if(etoilesDeLaSeance() && item.lieu) noterEtoileFinEtape(item);
         else { try{ celebrateMastery(0, false); }catch(e){} }
     } else if(item.forme === "av_fin_a1"){
         const f = creer("div", "cp-fete-pp");
@@ -66505,6 +67126,7 @@ function marquerJourPremiersPas(d){
 }
 async function ouvrirPremiersPas(taille){
     await chargerPremiersPas();
+    try{ chargerCiel(); }catch(e){}
     const seq = sequencePremiersPas();
     if(!seq.length){ showInfoToast(t("seance_sous")); return false; }
     const p = positionPremiersPas();
@@ -66602,6 +67224,8 @@ function lireA1Voyage(){
     return v;
 }
 function ecrireA1Voyage(v){
+    // 8 nov. 2026 : « t », l'heure de l'ecriture -- l'etat part dans le nuage et le plus recent l'emporte.
+    v.t = Date.now();
     try{ localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify(v)); }catch(e){}
 }
 function a1VoyageEssai(){
@@ -68175,6 +68799,9 @@ async function ouvrirSeanceDuJour(sansScene){
     // v862 (essai a1_voyage) : le neuf pris dans l'escale du jour au lieu de
     // tout l'A1. v864 : un compte neuf y part sans question.
     let av = null;
+    CIEL_AV = null;
+    try{ chargerCiel(); }catch(e){}
+    try{ noterCarreauxDebut(); }catch(e){}
     // v905 : un niveau fini qu'on revoit -- sa suite remplace le neuf, et les
     // escales de l'A1 voyage n'avancent pas pendant ce temps.
     REVOIR_SEANCE = null;
@@ -68183,6 +68810,7 @@ async function ouvrirSeanceDuJour(sansScene){
     if(!aRevoir){
         try{ if(niveau === "A1" && !seanceJaponaise()) activerA1Voyage(); }catch(e){}
         try{ av = seanceJaponaise() ? null : await preparerA1Voyage(pool); }catch(e){ av = null; }
+        CIEL_AV = av;
     }
     // v867 (essai feuilles_conj) : la feuille de conjugaison du jour, a l'A2 et
     // au B1 -- avant la grammaire, dont elle choisit la serie de conjugaison.
@@ -68671,7 +69299,7 @@ function majCompteurCarte(){
         return;
     }
     // Essai « seance_legere » : plus de « fait / objectif » en seance du jour ; la barre des parties dit ou l'on en est.
-    if(seanceLegere() && estSeanceDuJourOuverte()){
+    if(objectifRetire() || (seanceLegere() && estSeanceDuJourOuverte())){
         el.textContent = "";
         el.classList.add("hidden");
         return;
@@ -68689,8 +69317,8 @@ function majCompteDuJour(){
     let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
     try{ fait = getDailyActivityCount() || 0; }catch(e){}
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
-    cpt.textContent = fait + " / " + cible + (fait >= cible ? " \u2713" : "");
-    cpt.classList.toggle("atteint", fait >= cible);
+    cpt.textContent = objectifRetire() ? String(fait) : fait + " / " + cible + (fait >= cible ? " \u2713" : "");
+    cpt.classList.toggle("atteint", !objectifRetire() && fait >= cible);
     // v828 : en Premiers pas, la porte compte les mots du parcours.
     const unite = cpt.nextElementSibling;
     let pp = false;
@@ -69003,7 +69631,7 @@ function majPiluleSeance(){
 }
 function majAnneauSeance(){
     const a = document.getElementById("spAnneau");
-    if(!a) return;
+    if(!a || objectifRetire()) return;
     let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
     try{ fait = getDailyActivityCount() || 0; }catch(e){}
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
@@ -69439,6 +70067,7 @@ function basculerListeSeance(ev){
 // redessine l'anneau, la carte de progression et la taille de la seance.
 function basculerObjectifSeance(ev){
     if(ev) ev.stopPropagation();
+    if(objectifRetire()) return;
     const o = document.getElementById("spObjectif");
     if(!o) return;
     if(o.classList.contains("ouvert")){ fermerListeSeance(); return; }
@@ -70299,6 +70928,8 @@ function showFlashcardEnd(){
     if(actions) actions.classList.add("hidden");
     const fin = document.getElementById("flashcardEnd");
     if(!fin) return false;
+    try{ retirerCielFin(fin); }catch(e){}
+    try{ const t0 = document.getElementById("finTableau"); if(t0) t0.remove(); }catch(e){}
     const resume = document.getElementById("flashEndSummary");
     if(resume) resume.textContent = tf(sessionVues === 1 ? "flash_end_summary_one" : "flash_end_summary",
                                        { vues: sessionVues, sues: sessionSues });
@@ -70315,7 +70946,8 @@ function showFlashcardEnd(){
     // annoncer que l'objectif ETAIT atteint : rien ne felicitait, et rien ne
     // disait que la suite etait facultative. Signale par Jacques.
     const mot = document.getElementById("flashEndObjectif");
-    if(mot){
+    if(mot && objectifRetire()){ mot.textContent = ""; mot.classList.add("hidden"); mot.classList.remove("atteint"); }
+    else if(mot){
         let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
         try{ fait = getDailyActivityCount() || 0; }catch(e){}
         try{ cible = getDailyGoalTarget() || cible; }catch(e){}
@@ -70345,11 +70977,14 @@ function showFlashcardEnd(){
         const reste = sequencePremiersPas().length - positionPremiersPas();
         encore.classList.toggle("hidden", reste <= 1 || !premiersPasEnCours());
         encore.textContent = tf("encore_neufs", { n: SUPPLEMENT_SEANCE });
+        // La constellation : les seances des Premiers pas comptent aussi (l'etoile filante des la 2e).
+        if(currentCards.some(c => c && typeof c.ppPos === "number")) noterSeanceLegereFinie(currentCards);
     }
     else if(encore && seanceLegere() && estSeanceDuJourOuverte()){
         // Essai « seance_legere » : pas d'objectif a annoncer ; combien de seances aujourd'hui, et
         // « Encore une seance », toujours la, bien visible, sans limite.
-        const n = noterSeanceLegereFinie(currentCards);
+        // Une reprise (mots rates, cartes revues...) n'est pas une seance de plus.
+        const n = (!SEANCE_PARTS || currentCards === SEANCE_PARTS.paquet) ? noterSeanceLegereFinie(currentCards) : seancesFiniesAujourdhui();
         if(mot){
             mot.textContent = n > 1 ? tf("legere_fin_n", { n: n }) : t("legere_fin_une");
             mot.classList.add("atteint");
@@ -70387,12 +71022,18 @@ function showFlashcardEnd(){
     }catch(e){}
     fin.classList.remove("hidden");
     sessionVues = 0; sessionSues = 0;
-    // Essai seance_legere : une seule fete par fin de seance, l'etoile d'abord (voir fetesFinSeanceLegere).
+    // La constellation (8 nov. 2026) : le ciel de l'ecran de fin, puis une seule fete, l'etoile d'abord.
+    const fetePrevue = !!(etoilesDeLaSeance() && (etoileLire(ETOILE_ATTENTE_KEY) || etoileLire(TABLEAU_ATTENTE_KEY)));
+    let ciel = false;
+    try{ ciel = rendreCielFin(fin); }catch(e){ console.warn("ciel", e); }
     if(seanceLegereDuJour()){ try{ fetesFinSeanceLegere(); }catch(e){} }
+    if(ciel) quandPlusDeFete(fetePrevue, fin, jouerCielFin);
+    else { try{ rendreTableauFin(fin); }catch(e){} }
     return true;
 }
 
 function hideFlashcardEnd(){
+    try{ arreterCristal(); }catch(e){}
     const fin = document.getElementById("flashcardEnd");
     if(fin) fin.classList.add("hidden");
     try{ document.getElementById("flashcards").classList.remove("fin-paquet"); }catch(e){}
@@ -70524,7 +71165,18 @@ function majAnneauFin(el, finie){
     if(!el) return;
     // Essai « seance_legere » : l'anneau de FIN est plein, avec un ✓, et « ×2 », « ×3 » quand on enchaine.
     // L'ecran court (« ‹ » en cours) garde l'ancien anneau : ses parties faites viennent avec la version 2.
-    if(finie && seanceLegere() && estSeanceDuJourOuverte()){
+    // Sans objectif, l'ecran court montre la part de la seance deja faite et le compte du jour.
+    if(!finie && objectifRetire()){
+        let f0 = 0;
+        try{ f0 = getDailyActivityCount() || 0; }catch(e){}
+        const tot = (currentCards || []).length;
+        el.style.setProperty("--p", tot ? Math.min(100, Math.round(100 * currentFlashcard / tot)) : 0);
+        el.classList.remove("atteint");
+        el.querySelector("b").textContent = String(f0);
+        el.querySelector("small").textContent = "";
+        return { fait: f0, cible: 0 };
+    }
+    if(finie && objectifRetire()){
         const n = Math.max(1, seancesFiniesAujourdhui());
         el.style.setProperty("--p", 100);
         el.classList.add("atteint");
@@ -70635,7 +71287,7 @@ function montrerFinCourte(){
     if(!fc) return;
     const a = majAnneauFin(document.getElementById("finCourteAnneau")) || { fait: 0, cible: DEFAULT_DAILY_GOAL_TARGET };
     const r = document.getElementById("finCourteResume");
-    if(r) r.textContent = tf("fin_court_resume", { n: a.fait, cible: a.cible });
+    if(r) r.textContent = objectifRetire() ? tf("fin_court_resume_sans", { n: a.fait }) : tf("fin_court_resume", { n: a.fait, cible: a.cible });
     // Ce qui reste du paquet propose (les reprises ne comptent pas, comme p et n).
     const reste = document.getElementById("finCourteReste");
     if(reste){

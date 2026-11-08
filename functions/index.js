@@ -53,8 +53,8 @@ exports.dailyGoalReminder = onSchedule({ schedule: SCHEDULE, timeZone: TIMEZONE 
         const token = data.fcmToken;
         if(!token) return;
 
-        // La séance légère (décisions 96e3fa0 et d9d9dbd, préparé le 6 nov. 2026, PAS ENCORE
-        // DÉPLOYÉ) : plus d'objectif chiffré. Le client écrit seanceFinieDate (le jour où la
+        // La séance légère pour tous (décision du 8 nov. 2026 ; préparé le 6 nov., À DÉPLOYER PAR JACQUES) :
+        // plus d'objectif chiffré. Le client écrit seanceFinieDate (le jour où la
         // séance-leçon est finie) et seancePartiesDate / seancePartiesFaites / seancePartiesTotal
         // (où l'on s'est arrêté). On ne relance pas quelqu'un qui a fini sa séance du jour.
         const seanceFinie = data.seanceFinieDate === today;
