@@ -241,6 +241,15 @@ ORDINAUX = {"de": ["", "ersten", "zweiten", "dritten", "vierten", "fünften", "s
 # LES VACANCES SCOLAIRES 2026-2027 (inventees, vraisemblables pour Berlin) : [cle, debut, fin] en (jour, mois, annee)
 FERIEN = [["herbst", [19, 10, 2026], [31, 10, 2026]], ["weihnachten", [21, 12, 2026], [2, 1, 2027]], ["winter", [1, 2, 2027], [6, 2, 2027]],
           ["ostern", [22, 3, 2027], [2, 4, 2027]], ["sommer", [8, 7, 2027], [20, 8, 2027]]]
+# L'ESPAGNOL A LES VRAIES VACANCES DE MADRID, 2026-2027 (decision de Jacques, 8 nov. 2026). Source officielle : ORDEN 2034/2026,
+# BOCM n. 131 du 4 juin 2026 : premier jour de classe en primaire le 7 sept., dernier le 18 juin ; Navidad du 23 dec. au 6 janv.
+# et 7-8 janv. non lectifs ; Semana Santa du 20 au 28 mars et 19 et 29 mars non lectifs ; l'Orden donne a ces jours « los mismos
+# efectos » que les vacances, d'ou les periodes affichees. L'ete n'a pas de date de fin : elle depend du curso 2027/2028, pas encore fixe.
+FERIEN_ES = [["weihnachten", [23, 12, 2026], [8, 1, 2027]], ["ostern", [19, 3, 2027], [29, 3, 2027]], ["sommer", [19, 6, 2027], None]]
+RENTREE_ES = [7, 9, 2026]
+# jours sans classe absents du calendrier affiche : jamais tires pour « tiene colegio ». Festivites et non lectifs de l'Orden ; 9.11 = la
+# Almudena, a Madrid ville ; 3.5.2027 par prudence : le 2 mai tombe un dimanche et son report eventuel n'est pas fixe par l'Orden.
+SANS_ECOLE_ES = ["12.10.2026", "2.11.2026", "9.11.2026", "7.12.2026", "8.12.2026", "12.2.2027", "15.2.2027", "3.5.2027"]
 FERIEN_NOMS = {"de": {"herbst": "Herbstferien", "weihnachten": "Weihnachtsferien", "winter": "Winterferien", "ostern": "Osterferien", "sommer": "Sommerferien"},
                "es": {"herbst": "vacaciones de otoño", "weihnachten": "vacaciones de Navidad", "winter": "vacaciones de invierno", "ostern": "vacaciones de Semana Santa", "sommer": "vacaciones de verano"},
                "fr": {"herbst": "vacances d'automne", "weihnachten": "vacances de Noël", "winter": "vacances d'hiver", "ostern": "vacances de Pâques", "sommer": "vacances d'été"},
@@ -285,7 +294,7 @@ PAPIERS = {
            "liste": {"mot": None, "genre": None, "aff": "una lista de material", "t": {"fr": "une liste de fournitures", "en": "a list of school supplies", "pt": "uma lista de material escolar", "de": "eine Materialliste"}}},
 }
 NOMS_ECOLE = {"de": {"kita": "Kita Pusteblume", "schule": "Grundschule am Kiez", "lehrerin": "Frau Weber", "erzieherin": "Frau Krüger", "klasse": "2b"},
-              "es": {"kita": "Guardería Pusteblume", "schule": "Colegio Am Kiez", "lehrerin": "la señora Weber", "erzieherin": "la señora Krüger", "klasse": "2.º B"}}
+              "es": {"kita": "Guardería Pusteblume", "schule": "Colegio Am Kiez", "lehrerin": "la señora Ortega", "erzieherin": "la señora Krüger", "klasse": "2.º B"}}
 
 # ---------------------------------------------------------------------------------------------------------------
 # LES MOTS ABSENTS DU CORPUS, a ajouter PAR PAIRES (accord de Jacques), prepares dans ajouts/ecole.json et
@@ -495,7 +504,7 @@ def ecrire_json():
     verifier()
     d = {"lieux": LIEUX, "enfants": ENFANTS, "ages": AGES, "actions": ACTIONS, "objets": OBJETS, "nombres": NOMBRES,
          "heures": HEURES, "pause": PAUSE, "matieres": MATIERES, "matieresTrad": MATIERES_TRAD, "horaire": HORAIRE,
-         "jours": JOURS, "mois": MOIS, "ordinaux": ORDINAUX, "ferien": FERIEN, "ferienNoms": FERIEN_NOMS, "raisons": RAISONS,
+         "jours": JOURS, "mois": MOIS, "ordinaux": ORDINAUX, "ferien": FERIEN, "ferienEs": FERIEN_ES, "rentreeEs": RENTREE_ES, "sansEcoleEs": SANS_ECOLE_ES, "ferienNoms": FERIEN_NOMS, "raisons": RAISONS,
          "elternabend": ELTERNABEND, "abholer": ABHOLER, "abholHeures": ABHOL_HEURES, "papiers": PAPIERS, "noms": NOMS_ECOLE,
          "mots": {}, "absents": {}, "conj": {}}
     for langue in ("de", "es"):

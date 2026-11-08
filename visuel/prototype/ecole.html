@@ -128,7 +128,7 @@ html.nuit .papier .case .val{color:#9CC3FF}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/tirage.js?v=2"></script>
+<script src="themes/tirage.js?v=3"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=6"></script>
 <script src="themes/voix.js?v=7"></script>
@@ -320,7 +320,7 @@ const RA = k => D.raisons[APPRENDRE][k];
 function papierMot(m){
   const d = m.date.getDate(), r = RA(m.r).p;
   const corps = ES_
-    ? '<div>Madrid, ' + NOM_JOUR(m.j) + ', ' + d + ' de noviembre de 2026</div><div class="gros">Estimada señora Weber:</div><div>Mi hijo Ben no puede ir al colegio ' + (m.deux ? "ni hoy ni mañana" : "hoy") + '. ' + esc(r) + '</div><p class="note">Un saludo,<br>Katrin (madre de Ben)</p>'
+    ? '<div>Madrid, ' + NOM_JOUR(m.j) + ', ' + d + ' de noviembre de 2026</div><div class="gros">Estimada señora Ortega:</div><div>Mi hijo Ben no puede ir al colegio ' + (m.deux ? "ni hoy ni mañana" : "hoy") + '. ' + esc(r) + '</div><p class="note">Un saludo,<br>Katrin (madre de Ben)</p>'
     : '<div>Berlin, ' + NOM_JOUR(m.j) + ', ' + d + '. November 2026</div><div class="gros">Sehr geehrte Frau Weber,</div><div>mein Sohn Ben kann ' + (m.deux ? "heute und morgen" : "heute") + ' leider nicht in die Schule kommen. ' + esc(r) + '</div><p class="note">Mit freundlichen Grüßen<br>Katrin (Bens Mutter)</p>';
   return papier(NO.schule + " · " + (ES_ ? "Clase " : "Klasse ") + NO.klasse, ES_ ? "Justificante" : "Entschuldigung", corps);
 }
@@ -347,7 +347,7 @@ const SU = i => D.elternabend.sujets[APPRENDRE][i];
 function papierReunion(r){
   const d = r.date.getDate(), quand = NOM_JOUR(r.j) + ", " + (ES_ ? d + " de noviembre" : "dem " + d + ". November");
   const corps = ES_
-    ? '<div class="gros">Estimadas familias:</div><div>La reunión de padres de ' + NO.klasse + ' es el <b>' + esc(quand) + '</b>, a las <b>' + heure(r.h, r.mi) + '</b>, en el <b>' + esc(r.salle) + '</b>.</div><div>Temas:</div><ul>' + r.sujets.map(i => '<li>' + esc(cap(SU(i))) + '</li>').join("") + '</ul><p class="note">Un saludo,<br>J. Weber, tutora de ' + NO.klasse + '</p>'
+    ? '<div class="gros">Estimadas familias:</div><div>La reunión de padres de ' + NO.klasse + ' es el <b>' + esc(quand) + '</b>, a las <b>' + heure(r.h, r.mi) + '</b>, en el <b>' + esc(r.salle) + '</b>.</div><div>Temas:</div><ul>' + r.sujets.map(i => '<li>' + esc(cap(SU(i))) + '</li>').join("") + '</ul><p class="note">Un saludo,<br>J. Ortega, tutora de ' + NO.klasse + '</p>'
     : '<div class="gros">Liebe Eltern,</div><div>unser Elternabend ist am <b>' + esc(quand) + '</b>, um <b>' + heure(r.h, r.mi) + '</b>, in <b>' + esc(r.salle) + '</b>.</div><div>Themen:</div><ul>' + r.sujets.map(i => '<li>' + esc(cap(SU(i))) + '</li>').join("") + '</ul><p class="note">Mit freundlichen Grüßen<br>J. Weber, Klassenlehrerin</p>';
   return papier(NO.schule + " · " + (ES_ ? "Clase " : "Klasse ") + NO.klasse, ES_ ? "Invitación a la reunión de padres" : "Einladung zum Elternabend", corps);
 }
@@ -359,18 +359,19 @@ function tradReunion(r){
           pt: "A reunião de pais é " + J + " " + H + ", na sala " + s + ".", de: "Der Elternabend ist " + J + " " + H + " in Raum " + s + "."}[TL];
 }
 // LES VACANCES SCOLAIRES
-const FE = () => D.ferien;
+const FE = () => ES_ && D.ferienEs ? D.ferienEs : D.ferien;           // l'espagnol : les vraies vacances de Madrid (ecole.py)
 const FN = (k, l) => D.ferienNoms[l || APPRENDRE][k];
 function papierFerien(){
-  const lignes = FE().map(([k, a, b]) => '<tr><td>' + esc(cap(FN(k))) + '</td><td>' + dateCourte(a[0], a[1]) + " – " + dateCourte(b[0], b[1], b[2]) + '</td></tr>').join("");
+  const lignes = FE().map(([k, a, b]) => '<tr><td>' + esc(cap(FN(k))) + '</td><td>' + (b ? dateCourte(a[0], a[1]) + " – " + dateCourte(b[0], b[1], b[2]) : "desde el " + dateCourte(a[0], a[1], a[2])) + '</td></tr>').join("");
   return papier(ES_ ? "Madrid · Curso 2026/2027" : "Berlin · Schuljahr 2026/2027", ES_ ? "Vacaciones escolares" : "Schulferien", '<table>' + lignes + '</table>');
 }
 const FERIES = ["3.10.2026", "25.12.2026", "1.1.2027", "8.3.2027", "26.3.2027", "29.3.2027", "6.5.2027", "17.5.2027"];
-const enFerien = d => FE().some(([k, a, b]) => d >= new Date(a[2], a[1] - 1, a[0]) && d <= new Date(b[2], b[1] - 1, b[0]));
+const enFerien = d => FE().some(([k, a, b]) => d >= new Date(a[2], a[1] - 1, a[0]) && (!b || d <= new Date(b[2], b[1] - 1, b[0])));
 function tirerJourScolaire(vacances){
   for (let n = 0; n < 400; n++){
     const d = new Date(2026, 8, 1 + Math.floor(Math.random() * 300));
-    if (jourDe(d) > 5 || FERIES.includes(d.getDate() + "." + (d.getMonth() + 1) + "." + d.getFullYear()) || d > new Date(2027, 7, 20)) continue;
+    const sansEcole = ES_ && D.sansEcoleEs ? D.sansEcoleEs : FERIES, rentree = ES_ && D.rentreeEs ? new Date(D.rentreeEs[2], D.rentreeEs[1] - 1, D.rentreeEs[0]) : null;
+    if (jourDe(d) > 5 || sansEcole.includes(d.getDate() + "." + (d.getMonth() + 1) + "." + d.getFullYear()) || d > new Date(2027, 7, 20) || (rentree && d < rentree)) continue;
     if (enFerien(d) === vacances) return d;
   }
   return null;
@@ -890,12 +891,12 @@ function montrer(){
     return null;
   };
   let fait = null;
-  for (const fin of [true, false])      // d'abord en gardant une fin possible, puis sans
-    for (const j of Tirage.ordreDocs(file, rang)){ if (fait) break;
+  for (const [fin, libre] of [[true, false], [true, true], [false, false], [false, true]])      // d'abord en gardant une fin possible, puis sans
+    for (const j of Tirage.ordreDocs(file, rang)){ if (fait) break; Tirage.docLibre = libre;
       fait = essai(file[j], true, fin ? bloquantes(j) : null);
       if (fait && j !== rang){ Tirage.docReporte(file[rang]); [file[rang], file[j]] = [file[j], file[rang]]; }
     }
-  if (!fait) fait = essai(file[rang], false);
+  Tirage.docLibre = false; if (!fait) fait = essai(file[rang], false);
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
   vus.add(cleQuestion()); derniereSorte = fait; Tirage.docPose($("zone"));
@@ -937,7 +938,7 @@ $("retour").addEventListener("click", () => parler("fermer"));
 $("retour").setAttribute("aria-label", T("retourAria"));
 $("titre").textContent = T("titre");
 document.title = T("titre");
-fetch("ecole/ecole.json?v=1").then(r => r.json()).then(d => {
+fetch("ecole/ecole.json?v=2").then(r => r.json()).then(d => {
   D = d; LX = D.lieux[APPRENDRE]; ACT = D.actions[APPRENDRE]; OBJ = D.objets[APPRENDRE]; CJ = D.conj[APPRENDRE]; NO = D.noms[APPRENDRE];
   if (Q.get("seance") === "1") demarrer(); else decouvrir();
 });
