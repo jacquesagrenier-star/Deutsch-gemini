@@ -123,10 +123,10 @@ html.nuit .papier .signe{color:#9CC3FF}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/tirage.js?v=1"></script>
+<script src="themes/tirage.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=6"></script>
-<script src="themes/voix.js?v=6"></script>
+<script src="themes/voix.js?v=7"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
@@ -608,7 +608,7 @@ const EX = {
     const p = gens[i], k = items[i]; viser(w || apMot(k));
     const lignes = gens.map((g, n) => '<tr><td>' + esc(g) + '</td><td>' + esc(cap(AP[items[n]].def)) + '</td></tr>').join("");
     const jour = jourN(hasard([4, 5]));
-    const papier = '<div class="papier" lang="' + APPRENDRE + '"><div class="entete">' + (ES_ ? "Nuestra fiesta del " + jour : "Unsere Party am " + jour) + '</div><h3>' + (ES_ ? "¿Quién trae qué?" : "Wer bringt was mit?") + '</h3><table>' + lignes + '</table></div>';
+    const papier = '<div class="papier" data-doc="liste" lang="' + APPRENDRE + '"><div class="entete">' + (ES_ ? "Nuestra fiesta del " + jour : "Unsere Party am " + jour) + '</div><h3>' + (ES_ ? "¿Quién trae qué?" : "Wer bringt was mit?") + '</h3><table>' + lignes + '</table></div>';
     const juste = apportePhrase(p, k, "def"); tradQ = apporteTrad(p, k, "def"); dirQ = AP[k].def;
     let q, rep, opts, trads = null;
     if (qui){
@@ -873,6 +873,8 @@ function motsDuTheme(){
   dire = garde; remise(); $("zone").innerHTML = "";
   return MOTS_THEME;
 }
+// jamais deux documents du meme genre de suite (themes/tirage.js, 8 nov. 2026)
+papierInvitation = Tirage.doc("invitation", papierInvitation); papierAgenda = Tirage.doc("agenda", papierAgenda);
 function montrer(){
   Voix.arreter();   // la phrase de la reponse d'avant ne passe jamais sur la question suivante (Jacques, 5 nov.)
   repondu = false; $("suite").hidden = true;
@@ -896,7 +898,7 @@ function montrer(){
       for (let n = 0; n < 25; n++){
         remise(); sorteCourante = so;
         if (!EX[so](w)) break;
-        if (!vus.has(cleQuestion())) return so;
+        if (!vus.has(cleQuestion()) && !(strict && Tirage.docRepete($("zone")))) return so;
       }
     }
     if (strict) return null;
@@ -913,14 +915,14 @@ function montrer(){
   };
   let fait = null;
   for (const fin of [true, false])      // d'abord en gardant une fin possible, puis sans
-    for (let j = rang; !fait && j < file.length; j++){
+    for (const j of Tirage.ordreDocs(file, rang)){ if (fait) break;
       fait = essai(file[j], true, fin ? bloquantes(j) : null);
-      if (fait && j !== rang) [file[rang], file[j]] = [file[j], file[rang]];
+      if (fait && j !== rang){ Tirage.docReporte(file[rang]); [file[rang], file[j]] = [file[j], file[rang]]; }
     }
   if (!fait) fait = essai(file[rang], false);
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
-  vus.add(cleQuestion()); derniereSorte = fait;
+  vus.add(cleQuestion()); derniereSorte = fait; Tirage.docPose($("zone"));
   window.scrollTo(0, 0); document.body.scrollTop = 0;
 }
 function fin(){
@@ -943,14 +945,14 @@ const boutonsBas = () => '<div class="bas">' + boutonEncore() + '<button type="b
 function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
 async function encoreDesQuestions(){
   const mots = motsDuTheme();
-  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
   if (!file.length) return toutRevu(null);
   montrer();
 }
 async function demarrer(){
   const mots = motsDuTheme();
   const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
-  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
   if (!file.length) return toutRevu(plan.prochaine);
   montrer();
 }

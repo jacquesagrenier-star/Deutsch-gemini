@@ -14,6 +14,23 @@
 //      ne repose pas des mots deja sus.
 // Hors de l'app (la page ouverte seule, les controles), il n'y a pas d'etats : tous les mots sont neufs.
 const Tirage = {
+  // JAMAIS DEUX DOCUMENTS DU MEME GENRE DE SUITE (8 nov. 2026, Jacques : deux « Lis le mot de Katrin » de suite, au
+  // contenu different, et il a cru revoir la meme carte). Une page marque ce qui fabrique un papier
+  // (papierMot = Tirage.doc("mot", papierMot)) ; montrer() refuse, tant qu'il a le choix, une carte dont un papier est du
+  // genre de la carte d'avant : le mot passe alors un peu plus loin, il n'est pas perdu. Sans autre choix, la carte passe.
+  doc(genre, fabrique){ return (...a) => fabrique(...a).replace("<div", '<div data-doc="' + genre + '"'); },
+  genres(z){ return z ? Array.from(z.querySelectorAll("[data-doc]")).map(e => e.dataset.doc) : []; },
+  docRepete(z){ return Tirage.genres(z).some(g => Tirage.docAvant.includes(g)); },
+  docPose(z){ Tirage.docAvant = Tirage.genres(z); if (!z) Tirage.docReportes = new Set(); },
+  // le mot repousse revient des qu'une carte sans document libere la place : sinon ces mots s'accumulent a la fin,
+  // et il ne reste plus que des documents du meme genre (demarches : 35 parties sur 100 avant ce retour anticipe)
+  docReportes: new Set(),
+  docReporte(w){ if (Tirage.docAvant.length) Tirage.docReportes.add(w); },
+  ordreDocs(file, rang){
+    const ids = file.map((_, i) => i).slice(rang), r = i => Tirage.docReportes.has(file[i]);
+    return Tirage.docAvant.length ? ids : ids.filter(r).concat(ids.filter(i => !r(i)));
+  },
+  docAvant: [],
   // les mots du theme -> l'etat de chacun, dans le meme ordre ; null hors de l'app
   demander(mots){
     if (window.parent === window) return Promise.resolve(null);

@@ -128,10 +128,10 @@ html.nuit .papier .case .val{color:#9CC3FF}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/tirage.js?v=1"></script>
+<script src="themes/tirage.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=6"></script>
-<script src="themes/voix.js?v=6"></script>
+<script src="themes/voix.js?v=7"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
@@ -320,7 +320,7 @@ const RA = k => D.raisons[APPRENDRE][k];
 function papierMot(m){
   const d = m.date.getDate(), r = RA(m.r).p;
   const corps = ES_
-    ? '<div>Berlín, ' + NOM_JOUR(m.j) + ', ' + d + ' de noviembre de 2026</div><div class="gros">Estimada señora Weber:</div><div>Mi hijo Ben no puede ir al colegio ' + (m.deux ? "ni hoy ni mañana" : "hoy") + '. ' + esc(r) + '</div><p class="note">Un saludo,<br>Katrin (madre de Ben)</p>'
+    ? '<div>Madrid, ' + NOM_JOUR(m.j) + ', ' + d + ' de noviembre de 2026</div><div class="gros">Estimada señora Weber:</div><div>Mi hijo Ben no puede ir al colegio ' + (m.deux ? "ni hoy ni mañana" : "hoy") + '. ' + esc(r) + '</div><p class="note">Un saludo,<br>Katrin (madre de Ben)</p>'
     : '<div>Berlin, ' + NOM_JOUR(m.j) + ', ' + d + '. November 2026</div><div class="gros">Sehr geehrte Frau Weber,</div><div>mein Sohn Ben kann ' + (m.deux ? "heute und morgen" : "heute") + ' leider nicht in die Schule kommen. ' + esc(r) + '</div><p class="note">Mit freundlichen Grüßen<br>Katrin (Bens Mutter)</p>';
   return papier(NO.schule + " · " + (ES_ ? "Clase " : "Klasse ") + NO.klasse, ES_ ? "Justificante" : "Entschuldigung", corps);
 }
@@ -363,7 +363,7 @@ const FE = () => D.ferien;
 const FN = (k, l) => D.ferienNoms[l || APPRENDRE][k];
 function papierFerien(){
   const lignes = FE().map(([k, a, b]) => '<tr><td>' + esc(cap(FN(k))) + '</td><td>' + dateCourte(a[0], a[1]) + " – " + dateCourte(b[0], b[1], b[2]) + '</td></tr>').join("");
-  return papier(ES_ ? "Berlín · Curso 2026/2027" : "Berlin · Schuljahr 2026/2027", ES_ ? "Vacaciones escolares" : "Schulferien", '<table>' + lignes + '</table>');
+  return papier(ES_ ? "Madrid · Curso 2026/2027" : "Berlin · Schuljahr 2026/2027", ES_ ? "Vacaciones escolares" : "Schulferien", '<table>' + lignes + '</table>');
 }
 const FERIES = ["3.10.2026", "25.12.2026", "1.1.2027", "8.3.2027", "26.3.2027", "29.3.2027", "6.5.2027", "17.5.2027"];
 const enFerien = d => FE().some(([k, a, b]) => d >= new Date(a[2], a[1] - 1, a[0]) && d <= new Date(b[2], b[1] - 1, b[0]));
@@ -850,6 +850,8 @@ function cleQuestion(){
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + (pa ? pa.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
 }
 function remise(){ motQ = null; tradQ = null; choixFaux = null; dirQ = null; }
+// jamais deux documents du meme genre de suite (themes/tirage.js, 8 nov. 2026)
+papierHoraire = Tirage.doc("horaire", papierHoraire); papierMot = Tirage.doc("mot", papierMot); papierReunion = Tirage.doc("reunion", papierReunion); papierFerien = Tirage.doc("vacances", papierFerien); papierAbholung = Tirage.doc("sortie", papierAbholung); papierListe = Tirage.doc("liste", papierListe);
 function montrer(){
   repondu = false; $("suite").hidden = true;
   $("compte").textContent = (rang + 1) + " / " + file.length;
@@ -872,7 +874,7 @@ function montrer(){
       for (let n = 0; n < 25; n++){
         remise(); sorteCourante = so;
         if (!EX[so](w)) break;
-        if (!vus.has(cleQuestion())) return so;
+        if (!vus.has(cleQuestion()) && !(strict && Tirage.docRepete($("zone")))) return so;
       }
     }
     if (strict) return null;
@@ -889,14 +891,14 @@ function montrer(){
   };
   let fait = null;
   for (const fin of [true, false])      // d'abord en gardant une fin possible, puis sans
-    for (let j = rang; !fait && j < file.length; j++){
+    for (const j of Tirage.ordreDocs(file, rang)){ if (fait) break;
       fait = essai(file[j], true, fin ? bloquantes(j) : null);
-      if (fait && j !== rang) [file[rang], file[j]] = [file[j], file[rang]];
+      if (fait && j !== rang){ Tirage.docReporte(file[rang]); [file[rang], file[j]] = [file[j], file[rang]]; }
     }
   if (!fait) fait = essai(file[rang], false);
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
-  vus.add(cleQuestion()); derniereSorte = fait;
+  vus.add(cleQuestion()); derniereSorte = fait; Tirage.docPose($("zone"));
   window.scrollTo(0, 0); document.body.scrollTop = 0;
 }
 function fin(){
@@ -919,14 +921,14 @@ const boutonsBas = () => '<div class="bas">' + boutonEncore() + '<button type="b
 function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
 async function encoreDesQuestions(){
   const mots = motsDuTheme();
-  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
   if (!file.length) return toutRevu(null);
   montrer();
 }
 async function demarrer(){
   const mots = motsDuTheme();
   const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
-  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
   if (!file.length) return toutRevu(plan.prochaine);
   montrer();
 }

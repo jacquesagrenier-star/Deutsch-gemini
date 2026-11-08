@@ -128,10 +128,10 @@ html.nuit .papier .lettre .signe{color:#9CC3FF}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/tirage.js?v=1"></script>
+<script src="themes/tirage.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=6"></script>
-<script src="themes/voix.js?v=6"></script>
+<script src="themes/voix.js?v=7"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
@@ -433,6 +433,8 @@ function cleQuestion(){
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + (pa ? pa.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
 }
 function remise(){ motQ = null; tradQ = null; choixFaux = null; dirQ = null; }
+// jamais deux documents du meme genre de suite (themes/tirage.js, 8 nov. 2026)
+papierAnnonce = Tirage.doc("annonce", papierAnnonce); papierCv = Tirage.doc("cv", papierCv); papierLettre = Tirage.doc("lettre", papierLettre); papierContrat = Tirage.doc("contrat", papierContrat); papierAppel = Tirage.doc("appel", papierAppel);
 function montrer(){
   repondu = false; $("suite").hidden = true;
   $("compte").textContent = (rang + 1) + " / " + file.length;
@@ -444,7 +446,7 @@ function montrer(){
       for (let n = 0; n < 25; n++){
         remise(); sorteCourante = so;
         if (!EX[so](w)) break;
-        if (!vus.has(cleQuestion())) return so;
+        if (!vus.has(cleQuestion()) && !(strict && Tirage.docRepete($("zone")))) return so;
       }
     }
     if (strict) return null;
@@ -459,15 +461,15 @@ function montrer(){
     }
     return null;
   };
-  let fait = essai(file[rang], true);
-  for (let j = rang + 1; !fait && j < file.length; j++){
+  let fait = null;
+  for (const j of Tirage.ordreDocs(file, rang)){ if (fait) break;
     fait = essai(file[j], true);
-    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+    if (fait && j !== rang){ Tirage.docReporte(file[rang]); [file[rang], file[j]] = [file[j], file[rang]]; }
   }
   if (!fait) fait = essai(file[rang], false);
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
-  vus.add(cleQuestion()); derniereSorte = fait;
+  vus.add(cleQuestion()); derniereSorte = fait; Tirage.docPose($("zone"));
   window.scrollTo(0, 0); document.body.scrollTop = 0;
 }
 function fin(){
@@ -490,14 +492,14 @@ const boutonsBas = () => '<div class="bas">' + boutonEncore() + '<button type="b
 function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
 async function encoreDesQuestions(){
   const mots = motsDuTheme();
-  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
   if (!file.length) return toutRevu(null);
   montrer();
 }
 async function demarrer(){
   const mots = motsDuTheme();
   const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
-  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
   if (!file.length) return toutRevu(plan.prochaine);
   montrer();
 }

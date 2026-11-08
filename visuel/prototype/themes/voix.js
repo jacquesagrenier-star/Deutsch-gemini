@@ -101,17 +101,30 @@ const Voix = (() => {
   // reussite (dire() juste apres bravo()) : on avance quand on veut, sans attendre la fin de rien.
   const FONDU = 120;
   let tour = 0;
+  // LE LECTEUR BENI (8 nov. 2026). La phrase de l'enonce est dite des l'entree dans la carte, donc souvent HORS DU
+  // GESTE : la premiere carte d'une partie vient apres le « await Tirage.demander() » de demarrer(), et iOS refuse alors
+  // un play() sur un <audio> neuf. Une fois qu'un element a joue dans un toucher, iOS le laisse rejouer, meme avec une
+  // autre source : au premier toucher dans la page, on lui fait jouer 50 ms de silence, et un enonce vide debloque la
+  // voix du telephone. Sans aucun toucher dans la page, l'enonce se tait et le haut-parleur reste la.
+  const SILENCE = "data:audio/wav;base64,UklGRrQBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YZABAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA";
+  let beni = null;
+  function benir(){
+    if (beni) return;
+    try{ const a = new Audio(SILENCE); const p = a.play(); if (p && p.catch) p.catch(() => {}); beni = a; }catch(e){}
+    try{ if (!speechSynthesis.speaking && !speechSynthesis.pending) speechSynthesis.speak(new SpeechSynthesisUtterance("")); }catch(e){}
+  }
   // la phrase du telephone qui attend la fin du son de reussite : annulee par arreter() (la meteo, a15f561, 5 nov. :
   // « Llueve » entendu sur la photo d'un jour de printemps, la phrase de la question d'avant)
   let attenteTel = null;
   function fondre(s){
     try{
       if (s.paused || s.muted){ s.pause(); return; }
-      const v0 = s.volume;
+      const v0 = s.volume, reprise = s.vReprise = (s.vReprise || 0) + 1;     // le lecteur beni repart : ce fondu-la s'arrete
       s.volume = v0 * 0.98;
       if (Math.abs(s.volume - v0) < 1e-6){ s.pause(); return; }     // volume fige (iPhone) : arret net
       const t0 = Date.now();
       const pas = () => {
+        if (s.vReprise !== reprise) return;
         const k = (Date.now() - t0) / FONDU;
         if (k >= 1 || s.paused){ try{ s.pause(); }catch(e){} return; }
         s.volume = v0 * (1 - k);
@@ -133,6 +146,7 @@ const Voix = (() => {
   // de reussite ne passe pas par `son` : il n'est jamais coupe. La loupe et son voile (zoom.js) ne coupent rien.
   try{
     document.addEventListener("click", e => {
+      benir();
       const b = e.target && e.target.closest ? e.target.closest("button, [role=tab]") : null;
       if (!b || b.closest(".zoom-voile, .zoom-loupe, [data-garde-voix]")) return;
       arreter(true);
@@ -144,6 +158,11 @@ const Voix = (() => {
   // phrase dite dans cette question (apres la reponse : la phrase juste) ; avant, la phrase de l'enonce quand elle est
   // entiere (pas de trou a remplir) ; sans l'une ni l'autre, il reste cache. Il passe par dire() : le fondu et la
   // phrase en attente derriere le son de reussite s'appliquent comme partout.
+  // A COTE DE LA PHRASE, ET DITE DES L'ENTREE (8 nov. 2026, Jacques, theme ecole : le haut-parleur etait au bout de la
+  // consigne francaise alors qu'il dit « ¿Qué necesita Ben? »). Quand l'enonce se dit (entier, dans la langue apprise),
+  // le rond se pose dans l'enonce et la phrase part a l'entree de la carte, sans toucher. Sinon (enonce vide, phrase a
+  // trou, ecoute qui parle deja) : rien ne part, et le rond reste au bout de la consigne. La place se decide a l'entree
+  // de la carte et ne change plus : une phrase a trou completee apres la reponse ne fait pas sauter le bouton.
   // la phrase dite, et la consigne de la question ou elle l'a ete (une question neuve = une consigne neuve ; pas de
   // remise a zero dans l'observateur, qui passe APRES le code de la page et effacerait une phrase dite au rendu)
   let ditQuestion = "", ditConsigne = null;
@@ -153,36 +172,55 @@ const Voix = (() => {
     const e = z && z.querySelector(".enonce");
     if (!e || e.querySelector("#trou, .trou")) return "";
     const ls = e.querySelectorAll("[lang]");
-    return (ls.length ? Array.from(ls).map(x => x.textContent).join(" ") : "").replace(/\s+/g, " ").trim();
+    const t = (ls.length ? Array.from(ls).map(x => x.textContent).join(" ") : "").replace(/\s+/g, " ").trim();
+    return /_{2,}/.test(t) ? "" : t;
   }
   function majReecoute(){
     const z = document.getElementById("zone"), b = z && z.querySelector(".v-redire");
     if (b) b.hidden = !(dejaDit(z) || phraseEnonce(z));
   }
+  let cartePosee = null, dansEnonce = false;
   function poserReecoute(){
     const z = document.getElementById("zone"); if (!z) return;
     const c = z.querySelector(".consigne");
-    if (!c || c.querySelector(".v-redire") || z.querySelector(".ecoute:not(.v-redire), #ecoute")) return;
-    const b = document.createElement("button");
-    b.type = "button"; b.className = "ecoute v-redire"; b.innerHTML = HP;
-    let nom = "";
-    try{ if (typeof T === "function") nom = T("ecouter"); }catch(e){}
-    b.setAttribute("aria-label", nom && nom !== "ecouter" ? nom : "Réécouter");
-    b.addEventListener("click", () => { const t = dejaDit(z) || phraseEnonce(z); if (t) dire(t); });
-    c.appendChild(b);
+    if (!c || z.querySelector(".ecoute:not(.v-redire), #ecoute")) return;
+    const neuve = c !== cartePosee;
+    if (neuve){ cartePosee = c; dansEnonce = !!phraseEnonce(z); }
+    if (!z.querySelector(".v-redire")){              // a poser, ou a remettre : la page a pu recrire l'enonce
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "ecoute v-redire"; b.innerHTML = HP;
+      let nom = "";
+      try{ if (typeof T === "function") nom = T("ecouter"); }catch(e){}
+      b.setAttribute("aria-label", nom && nom !== "ecouter" ? nom : "Réécouter");
+      b.addEventListener("click", () => { const t = dejaDit(z) || phraseEnonce(z); if (t) dire(t); });
+      const e = dansEnonce && z.querySelector(".enonce");
+      if (e){ e.classList.add("v-hp"); e.appendChild(b); } else c.appendChild(b);
+    }
     majReecoute();
+    if (neuve) direEntree(z);
+  }
+  // la phrase de l'enonce, une fois par carte : jamais apres la reponse (une page qui redessine sa carte), jamais par-
+  // dessus ce que la page vient de dire
+  function direEntree(z){
+    try{ if (typeof repondu !== "undefined" && repondu) return; }catch(e){}
+    if (dejaDit(z)) return;
+    const t = phraseEnonce(z);
+    if (t) dire(t, true);
   }
   function brancherReecoute(){
     const z = document.getElementById("zone"); if (!z) return;
     const st = document.createElement("style");
     st.textContent = ".consigne .v-redire{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;"
       + "min-width:34px;vertical-align:middle;margin:-4px 0 0;margin-inline-start:8px;padding:0}"
-      + ".consigne .v-redire svg{width:18px;height:18px}.consigne .v-redire[hidden]{display:none}";
+      + ".consigne .v-redire svg{width:18px;height:18px}.consigne .v-redire[hidden]{display:none}"
+      // dans l'enonce : hors du flux, et une marge reservee des deux cotes quand le texte est centre -- il ne bouge pas
+      + ".enonce.v-hp{position:relative;padding-right:50px}.enonce.centre.v-hp{padding-left:50px}"
+      + ".enonce .v-redire{position:absolute;right:8px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;"
+      + "justify-content:center;width:34px;height:34px;min-width:34px;margin:0;padding:0}"
+      + ".enonce .v-redire svg{width:18px;height:18px}.enonce .v-redire[hidden]{display:none}";
     (document.head || document.documentElement).appendChild(st);
-    new MutationObserver(recs => {
-      const neuve = recs.some(r => Array.from(r.addedNodes).some(n => n.nodeType === 1 && !n.classList.contains("v-redire")
-        && (n.classList.contains("consigne") || (n.querySelector && n.querySelector(".consigne")))));
-      if (neuve) poserReecoute(); else majReecoute();
+    new MutationObserver(() => {
+      poserReecoute();
     }).observe(z, {childList: true, subtree: true});
     poserReecoute();
   }
@@ -242,7 +280,7 @@ const Voix = (() => {
   // son coupe retire, une fois le bravo fini (l'element a ete lance par le geste, iOS le laisse rejouer) ; la voix du
   // telephone est debloquee de meme par un enonce vide.
   const APRES_BRAVO = 650;
-  function dire(texte){
+  function dire(texte, entree){
     if (!texte) return;
     arreter();
     try{ ditQuestion = texte; ditConsigne = document.querySelector("#zone .consigne"); majReecoute(); }catch(e){}
@@ -254,9 +292,15 @@ const Voix = (() => {
       attenteTel = setTimeout(() => { attenteTel = null; if (ce === tour) telephone(texte); }, attente);
       return;
     }
-    const s = son = new Audio(BASE + id + ".mp3" + (R ? "?r=" + R : ""));
+    const url = BASE + id + ".mp3" + (R ? "?r=" + R : "");
+    let s;
+    if (entree && beni){                             // hors du geste : l'element que le premier toucher a debloque
+      s = beni; s.vReprise = (s.vReprise || 0) + 1;
+      try{ s.pause(); s.loop = false; s.muted = false; s.volume = 1; s.src = url; }catch(e){}
+    } else s = new Audio(url);
+    son = s;
     let repli = false;
-    const tel = () => { if (!repli){ repli = true; if (s === son) telephone(texte); } };
+    const tel = () => { if (!repli && ce === tour){ repli = true; if (s === son) telephone(texte); } };
     s.addEventListener("error", tel, {once: true});
     if (!attente){ s.play().catch(tel); return; }
     // 7 nov. 2026 : PLUS DE SECOND play() HORS DU GESTE. Le fichier part muet ET EN BOUCLE dans le toucher ; a la fin
