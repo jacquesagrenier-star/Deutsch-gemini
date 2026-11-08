@@ -133,6 +133,30 @@ async ([cas]) => {
     const f = document.getElementById('finTableau');
     return { cas, r: { ciel: false, sansCiel: !lire().ciel, tableau: !!f, texte: f ? f.textContent : '', anneau: document.getElementById('flashEndAnneau').textContent, mot: document.getElementById('flashEndObjectif').textContent, bouton: document.getElementById('encoreNeufsBtn').textContent }, note, legere };
   }
+  if(cas === 'dictee_cartes'){
+    // La dictee de la v1141, jouee en cartes : elle compte dans le compte du jour, sans palier ni fete, meme objectif bas.
+    sansPP();
+    localStorage.setItem(DAILY_GOAL_STORAGE_KEY, '5');
+    let fetes = 0;
+    const vraie = triggerDailyGoalCelebration;
+    triggerDailyGoalCelebration = function(m){ fetes++; return vraie(m); };
+    const liste = [0, 1, 2].map(i => ({ dictation: true, topic: 'x', answers: [], question: '',
+      carteDictee: { word: ['Haus' + i, 'das', 'maison'], mode: 'nomen', themeId: 't', index: i } }));
+    activeExercises = liste;
+    exerciseKickerKey = 'kicker_dictation_exercise';
+    exerciseJeuNom = '';
+    const possible = serieEnCartesPossible(liste, exerciseKickerKey);
+    ouvrirSerieEnCartes(); await pause(500);
+    const forme = currentCards[0] && currentCards[0].forme;
+    const avant = getDailyActivityCount();
+    let retours = 0;
+    for(let k = 0; k < 40; k++){ if(repondrePhrase(currentCards[k % 3], true) > 0) retours++; }
+    const compte = getDailyActivityCount() - avant;
+    finirSerieEnCartes(); await pause(300);
+    showScreen('home'); await pause(800);
+    triggerDailyGoalCelebration = vraie;
+    return { cas, r: { ciel: false, possible, forme, retours, fetes, compte }, note: 'objectif garde ' + localStorage.getItem(DAILY_GOAL_STORAGE_KEY), legere };
+  }
   if(cas === 'son'){
     sansPP();
     await ouvrirSeanceDuJour(); await pause(900);
@@ -150,7 +174,7 @@ async ([cas]) => {
 }
 """
 
-CAS = ["pp_chemin", "pp_etoile", "a1_deux_seances", "a1_etoile", "a1_charge", "compte_objectif", "a2_tableau", "son"]
+CAS = ["pp_chemin", "pp_etoile", "a1_deux_seances", "a1_etoile", "a1_charge", "compte_objectif", "dictee_cartes", "a2_tableau", "son"]
 
 
 def main():
@@ -196,6 +220,8 @@ def main():
                     ok = r.get("ciel") and not r.get("chev") and not r.get("coup") and res.get("legere")
                     if cas == "a2_tableau":
                         ok = r.get("sansCiel") and r.get("tableau")
+                    if cas == "dictee_cartes":
+                        ok = r.get("possible") and r.get("forme") == "dictee_mot" and r.get("compte") == 40 and not r.get("retours") and not r.get("fetes")
                     if cas == "a1_deux_seances":
                         ok = ok and res["un"].get("ciel") and not res["un"].get("filante") and r.get("filante")
                     if not ok:

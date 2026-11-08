@@ -49732,9 +49732,6 @@ var accueilDejaOuvert = false;
 // Et pas de restauration automatique de la position par le navigateur au rechargement.
 try{ if("scrollRestoration" in history) history.scrollRestoration = "manual"; }catch(e){}
 function showScreen(id){
-    // La fete de l'objectif gardee pendant une serie de Tout le contenu part quand on quitte son ecran de resultat
-    // (ou la serie avant la fin) : voir PALIER_SERIE_ATTENTE.
-    try{ libererPalierSerie(id); }catch(e){}
     // v1003 : le fond commun se regle sur l'ecran (vif et anime sur l'accueil, pale ailleurs).
     try{ document.body.dataset.ecran = id; }catch(e){}
     try{ eteindreTransitHorsSeance(id); }catch(e){}
@@ -66896,14 +66893,11 @@ function palierApresPhrase(palier){
 }
 function repondrePhrase(item, juste){
     // Une carte d'une serie de Tout le contenu (le lanceur commun) : sa reponse va a la serie, pas au cours de la
-    // seance (noterGrammaireSeance), et compte dans l'objectif du jour (decision du 7 nov. 2026).
-    // Le palier franchi pendant la serie ne se fete pas sur la carte : il attend la sortie de l'ecran de resultat
-    // (regle de Jacques, « une seule fete a la fois » ; voir libererPalierSerie). Les confettis restent.
+    // seance (noterGrammaireSeance), et compte dans le compte du jour. Plus de palier (objectif du jour retire, 8 nov.
+    // 2026 ; le japonais, seul a le garder, ne joue pas ses series en cartes : serieEnCartesPossible). Les confettis restent.
     if(item && item.exo !== undefined){
         try{ noterReponseSerieEnCartes(item, juste); }catch(e){}
-        let palier = 0;
-        try{ palier = recordDailyActivity(); }catch(e){}
-        if(palier > 0) PALIER_SERIE_ATTENTE = Math.max(PALIER_SERIE_ATTENTE, palier);
+        try{ recordDailyActivity(); }catch(e){}
         return 0;
     }
     try{
@@ -73235,23 +73229,6 @@ async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
 const SERIES_HORS_CARTES = ["dec_t3_titre", "kicker_english_artikel_exercise",
     "kicker_quiz_terminaisons", "kicker_quiz_article", "ecoute_phrase_topic", "kicker_tuiles", "kicker_schreiben"];
 let SERIE_CARTES = null;   // la liste de cartes de la serie en cours, tant qu'elle est a l'ecran
-// LA FETE DE L'OBJECTIF ATTEND LA FIN DE LA SERIE (chef, 7 nov. 2026, regle de Jacques « une seule fete a la
-// fois ») : franchi pendant une serie, le palier passait devant l'ecran de resultat, sur ses fetes a lui. Il est
-// garde ici (repondrePhrase) et fete quand on quitte l'ecran de resultat -- « Serie suivante », « Revoir mes
-// erreurs », l'accueil, le retour --, ou la serie avant sa fin ; jamais en allant de la serie a son resultat.
-let PALIER_SERIE_ATTENTE = 0;
-function libererPalierSerie(versId){
-    if(!PALIER_SERIE_ATTENTE) return;
-    const actif = (document.querySelector(".screen.active") || {}).id || "";
-    if(versId === actif) return;
-    const quitteResultat = actif === "result";
-    const quitteSerie = actif === "flashcards" && versId !== "result" && !serieEnCartesActive();
-    if(!quitteResultat && !quitteSerie) return;
-    const palier = PALIER_SERIE_ATTENTE;
-    PALIER_SERIE_ATTENTE = 0;
-    // Le temps que le nouvel ecran se dessine : la fete se pose sur lui, pas sur celui qu'on quitte.
-    setTimeout(() => { try{ triggerDailyGoalCelebration(palier); }catch(e){} }, 400);
-}
 function serieEnCartesPossible(liste, kickerKey){
     if(LANGUE_APPRISE === "ja") return false;
     try{ if(decouverteEnCours()) return false; }catch(e){}
@@ -73300,7 +73277,7 @@ function ouvrirSerieEnCartes(){
     loadFlashcard();
 }
 // Une reponse d'une carte de serie : le score et la liste des fautes de showResults(), le bilan de la semaine
-// (comme checkAnswer, v920), et l'objectif du jour par le retour de repondrePhrase().
+// (comme checkAnswer, v920) ; le compte du jour est dans repondrePhrase().
 function noterReponseSerieEnCartes(item, juste){
     const ex = item.ex;
     exerciseResults.push({ topic: ex.topic, correct: !!juste, ex: ex });
