@@ -56445,6 +56445,97 @@ function renderVoiceSettings(){
     }).join("");
 }
 
+// LA VOIX DU TELEPHONE DANS L'APP ANDROID (8 nov. 2026, Jacques : « je vais
+// recompiler » ; une testeuse en anglais n'entendait rien sur les phrases des
+// themes sans fichier). La vue web Android n'a pas speechSynthesis (MDN,
+// crbug 40417848). Plutot que de retoucher chaque endroit qui parle, on pose
+// ici un speechSynthesis qui passe par le module natif
+// @capacitor-community/text-to-speech (wortando-ios), et SEULEMENT si le vrai
+// est absent et le module present : le web, l'iPhone et les compilations
+// Android 16 et avant ne passent jamais par ce code.
+// Les pages en cadre (themes/voix.js, les scenes) reprennent cet objet par
+// window.parent. Controle : node tests/synthese_native.js
+function installerSyntheseNative(){
+    if("speechSynthesis" in window) return;
+    const tts = pluginNatif("TextToSpeech");
+    if(!tts || typeof tts.speak !== "function") return;
+    let voix = [], file = [], enCours = null, tour = 0;
+    const ecouteurs = new Set();
+    const prevenir = (u, type, detail) => setTimeout(() => {
+        const f = u["on" + type];
+        if(typeof f === "function"){ try{ f.call(u, Object.assign({type, utterance: u}, detail)); }catch(e){} }
+    }, 0);
+    const borne = (v, min, max, defaut) => {
+        const n = Number(v);
+        return isFinite(n) ? Math.max(min, Math.min(max, n)) : defaut;
+    };
+    function suivant(){
+        if(enCours || !file.length) return;
+        const u = file.shift(), ce = ++tour;
+        const fini = (type, detail) => {
+            if(ce !== tour) return;     // coupe entre-temps : stop() natif ne resout jamais sa promesse
+            enCours = null;
+            prevenir(u, type, detail);
+            suivant();
+        };
+        enCours = u;
+        prevenir(u, "start");
+        // Rien a dire (l'amorce de amorcerSynthese, volume 0 ; l'enonce vide de
+        // benir) : ces deux gestes servent iOS, le moteur Android n'a pas a parler.
+        if(!String(u.text || "").trim() || u.volume === 0){ setTimeout(() => fini("end"), 0); return; }
+        const lang = (u.voice && u.voice.lang) || u.lang || document.documentElement.lang || "en-US";
+        Promise.resolve().then(() => tts.speak({
+            text: String(u.text), lang,
+            rate: borne(u.rate, 0.1, 4, 1), pitch: borne(u.pitch, 0, 2, 1), volume: borne(u.volume, 0, 1, 1)
+        })).then(() => fini("end"), () => fini("error", {error: "synthesis-failed"}));
+    }
+    const synthese = {
+        get speaking(){ return !!enCours; },
+        get pending(){ return file.length > 0; },
+        paused: false,
+        onvoiceschanged: null,
+        getVoices(){ return voix.slice(); },
+        speak(u){ if(u){ file.push(u); suivant(); } },
+        cancel(){
+            const coupe = enCours, attente = file;
+            file = []; enCours = null; tour++;
+            attente.forEach(u => prevenir(u, "error", {error: "canceled"}));
+            if(!coupe) return;
+            prevenir(coupe, "error", {error: "interrupted"});
+            try{ const p = tts.stop(); if(p && p.catch) p.catch(() => {}); }catch(e){}
+        },
+        pause(){}, resume(){},
+        addEventListener(type, f){ if(type === "voiceschanged") ecouteurs.add(f); },
+        removeEventListener(type, f){ ecouteurs.delete(f); }
+    };
+    class EnonceNatif {
+        constructor(texte){
+            this.text = texte == null ? "" : String(texte);
+            this.lang = ""; this.voice = null;
+            this.volume = 1; this.rate = 1; this.pitch = 1;
+            this.onstart = this.onend = this.onerror = this.onboundary = null;
+            this.onpause = this.onresume = this.onmark = null;
+        }
+    }
+    window.speechSynthesis = synthese;
+    window.SpeechSynthesisUtterance = EnonceNatif;
+    // Une voix par langue : le module choisit la voix du telephone pour la
+    // langue demandee. Le moteur s'initialise en differe, d'ou les reprises.
+    const chargerVoix = essai => {
+        Promise.resolve().then(() => tts.getSupportedLanguages()).then(r => {
+            const langues = (r && r.languages) || [];
+            if(!langues.length) throw new Error("vide");
+            voix = langues.map(l => ({name: "Android " + l, lang: l, voiceURI: "android:" + l, localService: true, default: false}));
+            const e = {type: "voiceschanged"};
+            try{ if(typeof synthese.onvoiceschanged === "function") synthese.onvoiceschanged(e); }catch(_){}
+            ecouteurs.forEach(f => { try{ f(e); }catch(_){} });
+        }).catch(() => { if(essai < 5) setTimeout(() => chargerVoix(essai + 1), 400 * (essai + 1)); });
+    };
+    chargerVoix(0);
+}
+installerSyntheseNative();
+window.addEventListener("load", installerSyntheseNative);
+
 if('speechSynthesis' in window){
     window.speechSynthesis.onvoiceschanged = () => {
         cachedGermanVoice = findGermanVoice();

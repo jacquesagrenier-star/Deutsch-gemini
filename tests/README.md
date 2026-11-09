@@ -120,6 +120,14 @@ envoyer se retrouve dans le corpus. À relancer après un changement de
 `revisionDeScene()`, de l'échelle de répétition espacée ou d'une scène.
 Playwright : `npm i -g playwright` une fois sur le PC.
 
+# La voix du téléphone dans l'app Android
+
+```
+node tests/synthese_native.js
+```
+
+Sans navigateur : `installerSyntheseNative()` extraite d'`index.html`, contre un faux module de synthèse. Vrai moteur jamais remplacé, rien sans le module, file, `cancel`, amorce muette, refus, voix différées. Il ne prouve pas qu'un téléphone parle.
+
 # La séance hors ligne de l'app installée
 
 ```

@@ -13,6 +13,9 @@
 // Parametres de la page : apprendre=es|de|en, variante=latam|es (espagnol) ou gb (anglais), r=<AUDIO_REVISION>.
 // L'anglais (themes illustres en anglais, 3 nov. 2026) : Sarah (en-us/) quand sons.json connait le texte, sinon la
 // voix du telephone en-US, ou en-GB pour le britannique (jamais Sarah, qui est americaine).
+// L'APP ANDROID (8 nov. 2026) : sa vue web n'a pas speechSynthesis ; index.html en pose un, branche sur le module natif
+// (installerSyntheseNative), et la page le reprend ici de son cadre. Sans ce module, rien : la voix du telephone se tait.
+try{ if (!("speechSynthesis" in window) && window.parent !== window && window.parent.speechSynthesis){ window.speechSynthesis = window.parent.speechSynthesis; window.SpeechSynthesisUtterance = window.parent.SpeechSynthesisUtterance; } }catch(e){}
 const Voix = (() => {
   const Q = new URLSearchParams(location.search);
   const APP = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
