@@ -128,9 +128,9 @@ html.nuit .papier .case .val{color:#9CC3FF}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/tirage.js?v=2"></script>
+<script src="themes/tirage.js?v=3"></script>
 <script src="themes/zoom.js?v=4"></script>
-<script src="themes/verre.js?v=6"></script>
+<script src="themes/verre.js?v=7"></script>
 <script src="themes/voix.js?v=7"></script>
 <script>
 const Q = new URLSearchParams(location.search);
@@ -1131,12 +1131,12 @@ function montrer(){
     return null;
   };
   let fait = null;
-  for (const fin of [true, false])      // d'abord en gardant une fin possible, puis sans
-    for (const j of Tirage.ordreDocs(file, rang)){ if (fait) break;
+  for (const [fin, libre] of [[true, false], [true, true], [false, false], [false, true]])      // d'abord en gardant une fin possible, puis sans
+    for (const j of Tirage.ordreDocs(file, rang)){ if (fait) break; Tirage.docLibre = libre;
       fait = essai(file[j], true, fin ? bloquantes(j) : null);
       if (fait && j !== rang){ Tirage.docReporte(file[rang]); [file[rang], file[j]] = [file[j], file[rang]]; }
     }
-  if (!fait) fait = essai(file[rang], false);
+  Tirage.docLibre = false; if (!fait) fait = essai(file[rang], false);
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
   vus.add(cleQuestion()); derniereSorte = fait; Tirage.docPose($("zone"));

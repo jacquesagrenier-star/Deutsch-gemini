@@ -30,7 +30,7 @@ const constante = (nom) => {
     return m[0];
 };
 const code = [constante("DICTEE_MOT_TOLERE"), "const t = k => k;",
-    ...["normaliserSaisie", "echapperHtml", "distanceMots", "formeUmlaut", "alignerDictee", "lettresCorrigees"].map(extraire),
+    ...["normaliserSaisie", "echapperHtml", "distanceMots", "formeAccents", "accentFaitUnAutreMot", "alignerDictee", "lettresCorrigees"].map(extraire),
     "module.exports = { alignerDictee, lettresCorrigees };"].join("\n");
 const m = { exports: {} };
 new Function("module", code)(m);
@@ -80,7 +80,7 @@ al = alignerDictee("Ich habe heute keine Zeit", "Ich habe heute keine Zeit mehr.
 verifier("allemand : mot oublie en fin de phrase", types(al) === "juste juste juste juste juste manque", types(al));
 
 // 7. La garde du rappel actif : un autre vrai mot du corpus n'est pas une faute de frappe.
-const CORPUS = { plies: new Set(["casa", "cosa", "mesa", "mutter"]), umlauts: new Set(["casa", "cosa", "mesa", "mutter", "mütter"]) };
+const CORPUS = { plies: new Set(["casa", "cosa", "mesa", "mutter"]), formes: new Set(["casa", "cosa", "mesa", "mutter", "mütter", "esta", "está", "masse", "maße", "el", "él", "schon", "schön"]) };
 al = alignerDictee("Trabajo con la computadora en cosa", ATTENDU, { autres: CORPUS, langue: "es" });
 verifier("« cosa » pour « casa » : un autre vrai mot, faux", types(al) === "juste juste juste juste juste faux" && !al.juste, types(al));
 al = alignerDictee("Trabajo con la computatora en casa", ATTENDU, { autres: CORPUS, langue: "es" });
@@ -100,7 +100,7 @@ const codeCorpus = [constante("DICTEE_MOT_TOLERE"),
     "const themesComptes = () => [{ levels: { A1: { words: [['casa', 'maison', 'la casa es grande', '', '', '', '', '', '']] } } }];",
     "const verbeTheme = { words: [] }, adjektiveTheme = { words: [] }, praepTheme = null, adverbienTheme = null, konjunktionenTheme = null;",
     "const phrasesTraduisibles = () => [{ de: 'Es una cosa importante.', fr: \"C'est une chose importante.\" }];",
-    ...["normaliserSaisie", "formeUmlaut", "motsDuCorpusDictee"].map(extraire),
+    ...["normaliserSaisie", "formeAccents", "motsDuCorpusDictee"].map(extraire),
     "module.exports = { motsDuCorpusDictee };"].join("\n");
 const mc = { exports: {} };
 new Function("module", codeCorpus)(mc);
@@ -109,6 +109,22 @@ verifier("le corpus prend « cosa » dans une phrase d'exemple", corpusPhrases.p
     [...corpusPhrases.plies].join(","));
 al = alignerDictee("Trabajo con la computadora en cosa", ATTENDU, { autres: corpusPhrases, langue: "es" });
 verifier("« cosa » pour « casa », corpus des phrases : faux", types(al) === "juste juste juste juste juste faux" && !al.juste, types(al));
+
+// 9. La regle commune (8 nov. 2026, ligne 27) : un accent oublie est accepte, sauf s'il donne un autre vrai mot.
+al = alignerDictee("Ella esta aqui", "Ella está aquí.", { autres: CORPUS });
+verifier("« esta » pour « está » : un autre mot, faux ; « aqui » : pas un autre mot, juste", types(al) === "juste faux juste" && !al.juste, types(al));
+verifier("la lettre accentuee en gras", lettresCorrigees("esta", "está", al.paires[1].umlaut) === "est<b>á</b>", lettresCorrigees("esta", "está", al.paires[1].umlaut));
+al = alignerDictee("El vive aqui", "Él vive aquí.", { autres: CORPUS });
+verifier("un mot de deux lettres compte : « el » pour « él », faux", types(al) === "faux juste juste", types(al));
+al = alignerDictee("Das ist schon", "Das ist schön.", { autres: CORPUS });
+verifier("« schon » pour « schön » : faux", types(al) === "juste juste faux", types(al));
+al = alignerDictee("Die Masse", "Die Maße.", { autres: CORPUS });
+verifier("« Masse » pour « Maße » (un autre mot) : faux", types(al) === "juste faux", types(al));
+al = alignerDictee("die strasse", "die Straße", { autres: CORPUS });
+verifier("« strasse » pour « Straße » (pas un autre mot) : juste", types(al) === "juste juste" && al.juste, types(al));
+al = alignerDictee("Ella está", "Ella está.", { autres: CORPUS });
+verifier("l'accent ecrit : juste", al.juste && !al.presque, types(al));
+verifier("sans corpus : pas de garde", alignerDictee("esta", "está").juste, "");
 
 console.log(echecs ? "\n" + echecs + " echec(s)." : "\nTout passe.");
 process.exit(echecs ? 1 : 0);

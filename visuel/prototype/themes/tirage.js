@@ -20,7 +20,9 @@ const Tirage = {
   // genre de la carte d'avant : le mot passe alors un peu plus loin, il n'est pas perdu. Sans autre choix, la carte passe.
   doc(genre, fabrique){ return (...a) => fabrique(...a).replace("<div", '<div data-doc="' + genre + '"'); },
   genres(z){ return z ? Array.from(z.querySelectorAll("[data-doc]")).map(e => e.dataset.doc) : []; },
-  docRepete(z){ return Tirage.genres(z).some(g => Tirage.docAvant.includes(g)); },
+  // docLibre : dernier passage avant le repli ; une question jamais vue vaut mieux que deux documents evites
+  docLibre: false,
+  docRepete(z){ return !Tirage.docLibre && Tirage.genres(z).some(g => Tirage.docAvant.includes(g)); },
   docPose(z){ Tirage.docAvant = Tirage.genres(z); if (!z) Tirage.docReportes = new Set(); },
   // le mot repousse revient des qu'une carte sans document libere la place : sinon ces mots s'accumulent a la fin,
   // et il ne reste plus que des documents du meme genre (demarches : 35 parties sur 100 avant ce retour anticipe)

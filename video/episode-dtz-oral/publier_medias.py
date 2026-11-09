@@ -43,7 +43,9 @@ def main():
     sc = json.load(io.open(os.path.join(RACINE, "scenes", "dtz-oral.json"), encoding="utf-8"))
     os.makedirs(os.path.join(DTZ, "voix"), exist_ok=True)
     os.makedirs(os.path.join(DTZ, "video"), exist_ok=True)
-    manifeste = {}
+    # COMPLETE, jamais recree : l'oral du telc (video/episode-telc-oral/publier_medias.py) y a ses repliques.
+    chemin_m = os.path.join(DTZ, "voix", "manifest.json")
+    manifeste = json.load(io.open(chemin_m, encoding="utf-8")) if os.path.exists(chemin_m) else {}
     for p in sc["plans"]:
         cle, n = p["id"], p["n"]
         ff("-i", os.path.join(RACINE, "audio", "scenes", "dtz-oral", "%02d-%s.mp3" % (n, p["locuteur"])),
