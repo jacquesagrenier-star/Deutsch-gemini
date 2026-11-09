@@ -264,7 +264,7 @@ function accueil(){
     '<div class="bloc"><h2>' + T("examen") + '</h2><p class="petit">' + T("examen_s") + '</p>' +
       DTZ.examens.map(e => '<button class="mode" data-ex="' + e.id + '"><b>' + esc(e.titre) + '</b><span>' + esc(e.sous) + '</span></button>').join("") +
       (der ? '<p class="dernier">' + T("dernier", {s: esc(der.date), n: esc(der.texte)}) + '</p>' : "") + '</div>' +
-    '<p class="petit" style="text-align:center">' + T("maquette") + '<br>' + T("voix_tel") + '</p>';
+    '<p class="petit" style="text-align:center">' + T("maquette") + (PROFIL.id === "telc" ? "" : '<br>' + T("voix_tel")) + '</p>';
   document.querySelectorAll("[data-ent]").forEach(b => b.onclick = () => DTZ.parties.find(p => p.id === b.dataset.ent).ouvrir());
   document.querySelectorAll("[data-ex]").forEach(b => b.onclick = () => DTZ.examens.find(e => e.id === b.dataset.ex).lancer());
   window.scrollTo(0, 0);
