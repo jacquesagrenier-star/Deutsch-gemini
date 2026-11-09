@@ -76,15 +76,41 @@ function niveauTelc(pts){
 }
 
 // La mention du bas de l'accueil : celle de commun.js est ecrite pour le DTZ (« une seule serie »).
-textesTelc({ fr: { maquette: "Maquette : peu de séries pour l'instant." } });
+textesTelc({ fr: { maquette: "Maquette : peu de séries pour l'instant.", accueil: "Retour au telc",
+  entrainement: "S'entraîner par partie", examen: "Examen blanc complet", examen_s: "Comme le jour de l'examen : minuté, sans aide.",
+  entr_note: "C'est un entraînement sur cette partie seulement. L'examen blanc complet est sur l'accueil du telc.",
+  entr_continuer: "Continuer : {t}" } });
+
+// UNE SEULE PORTE, DEUX CHEMINS (decision de Jacques du 9 nov. 2026, retour de Kirsty : elle a pris une partie pour
+// l'examen entier). L'accueil separe l'examen blanc complet et l'entrainement par partie ; chaque partie dit en
+// entrant que ce n'est qu'un entrainement (TELC.noteEntrainement) et, sur son recapitulatif, le bouton principal
+// mene a la partie suivante (TELC.continuer, TELC.continuerPartie : le grand bouton du bas, « Refaire » restant en
+// secondaire). L'ordre est celui des tuiles du profil : la « partie » BLANC, qui n'a pas de tuile, n'y est pas.
+TELC.suivante = id => {
+  const ordre = PROFIL.tuiles.map(t => t.id);
+  for (let j = ordre.indexOf(id) + 1; j > 0 && j < ordre.length; j++){ const p = DTZ.parties.find(x => x.id === ordre[j]); if (p) return p; }
+  return null;
+};
+TELC.noteEntrainement = () => '<p class="petit">' + esc(T("entr_note")) + '</p>';
+TELC.continuer = (libelle, action) => {
+  const b = $("suite"); b.hidden = false; b.disabled = false;
+  b.textContent = T("entr_continuer", {t: isolerMorceaux(libelle)}); b.onclick = () => { b.hidden = true; action(); };
+};
+TELC.continuerPartie = id => {
+  const p = TELC.suivante(id);
+  if (p){ TELC.continuer(p.titre, () => p.ouvrir()); return; }
+  const b = $("suite"); b.hidden = false; b.disabled = false; b.textContent = T("accueil"); b.onclick = () => accueil();
+};
 
 // LES TEXTES COMMUNS EN ANGLAIS : ceux de commun.js (francais seulement) et les tuiles du profil.
 textesTelc({ en: {
   titre: "telc A2·B1 with Mark and Anna",
   intro: "At telc Deutsch A2·B1 you read first, then come the Sprachbausteine, the emails, the listening and the speaking test in pairs, with no picture. Anna and I will help you get ready, part by part.",
-  entrainement: "Practice with Mark and Anna",
+  entrainement: "Practice part by part",
+  entr_note: "This is practice for this part only. The full mock exam is on the telc home page.",
+  entr_continuer: "Continue: {t}",
   entrainement_s: "One part at a time, with an explanation after every answer.",
-  examen: "Mock exam",
+  examen: "Full mock exam",
   examen_s: "Like on exam day: timed, no help.",
   bientot: "soon",
   dernier: "Last mock exam: {s} — {n}",

@@ -163,7 +163,7 @@ button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
 // (outils/langues.js), lu ci-dessous par u(), tr(), trRep() et trModele().
 (() => {
   const l = ((new URLSearchParams(location.search).get("lang")) || "fr").toLowerCase().split(/[-_]/)[0];
-  if (["tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l)) document.write('<script src="langues/' + l + '.js?v=1"><\/script>');
+  if (["tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l)) document.write('<script src="langues/' + l + '.js?v=2"><\/script>');
 })();
 </script>
 <script>
@@ -244,7 +244,8 @@ fr: {
   limite: "Ce que l’app ne juge pas : la justesse de ta grammaire et ta prononciation. Au vrai examen, deux examinateurs les écoutent ; ici, réécoute les modèles et compare.",
   fin_section: "Fin de la section", recap: "Ton récapitulatif", ta_reponse: "Ta réponse :", pas_fait: "Pas encore fait : touche son point en haut pour y aller.",
   toute_section: "Toute la section", toute_conv: "Toute la conversation", toute_disc: "Toute la discussion",
-  refaire_section: "Refaire la section", toutes: "Toutes les sections", suivante: "Section suivante",
+  refaire_section: "Refaire la section", toutes: "Toutes les sections", continuer_vers: "Continuer : {t}", retour_telc: "Retour à l’accueil du telc",
+  entr_note: "C'est un entraînement sur cette partie seulement. L'examen blanc complet est sur l'accueil du telc.",
   verdict_anna: "Le verdict d’Anna",
   v_partie: "Partie", v_points: "Points (estimation)",
   v_t1: "1 · Se présenter et répondre", v_t2: "2 · Planifier ensemble", v_t3: "3 · Donner son avis",
@@ -308,7 +309,8 @@ en: {
   limite: "What the app doesn't assess: your grammar and your pronunciation. In the real exam, two examiners listen for them; here, listen to the models again and compare.",
   fin_section: "End of section", recap: "Your summary", ta_reponse: "Your answer:", pas_fait: "Not done yet: tap its dot at the top to go there.",
   toute_section: "The whole section", toute_conv: "The whole conversation", toute_disc: "The whole discussion",
-  refaire_section: "Redo the section", toutes: "All sections", suivante: "Next section",
+  refaire_section: "Redo the section", toutes: "All sections", continuer_vers: "Continue: {t}", retour_telc: "Back to the telc home page",
+  entr_note: "This is practice for this part only. The full mock exam is on the telc home page.",
   verdict_anna: "Anna's verdict",
   v_partie: "Part", v_points: "Points (estimate)",
   v_t1: "1 · Introduce yourself and answer", v_t2: "2 · Plan together", v_t3: "3 · Give your opinion",
@@ -1204,6 +1206,7 @@ function accueil(){
   examen = false; ici = { s: -1, e: -1 }; chronoArreter();
   vider(); entete(petitTitre(), u("titre")); points(-1);
   zone.appendChild(el("h2", "", u("h_accueil")));
+  zone.appendChild(el("p", "limite", u("entr_note")));
   coach("accueil");
   // L'epreuve en bref : la duree, la preparation, le bareme
   const f = el("div", "verdict");
@@ -1359,8 +1362,8 @@ function recap(s){
   refaire.onclick = () => { if (S.cle === "p1") st.questions = null; if (S.cle === "p3") st.cote = null; exercice(s, 0); };
   const toutes = el("button", "", u("toutes")); toutes.type = "button"; toutes.onclick = accueil;
   act.append(refaire, toutes); zone.appendChild(act);
-  if (s + 1 < SECTIONS.length) bouton(u("suivante"), () => exercice(s + 1, 0));
-  else { toutes.remove(); bouton(u("toutes"), accueil); }
+  if (s + 1 < SECTIONS.length) bouton(u("continuer_vers", {t: u(SECTIONS[s + 1].titre)}), () => exercice(s + 1, 0));
+  else bouton(u("retour_telc"), () => { if (DEPUIS_TELC) versTelc(); else if (DANS_APP) parler("fermer"); else accueil(); });
 }
 
 // ---------------------------------------------------------------- le verdict

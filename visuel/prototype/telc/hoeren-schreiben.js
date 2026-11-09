@@ -55,7 +55,7 @@ DTZ.charger(fetch("donnees/hoeren-schreiben.json", {cache: "no-cache"})
 
 DTZ.partie({id: "HS", ordre: 50, titre: T("hs_titre"), sous: T("hs_sous"), ouvrir: () => ouvrirHS()});
 TELC.epreuve({id: "HS", ordre: 50, minutes: 0, sur: {Schreiben: 5}, lancer: fini => examenHS(fini)});
-DTZ.examen({id: "telcEcoute", ordre: 40, titre: T("hs_ex_titre"), sous: T("hs_ex_sous"), lancer: () => examenEcoute()});
+DTZ.examen({id: "telcEcoute", ordre: 40, partiel: true, titre: T("hs_ex_titre"), sous: T("hs_ex_sous"), lancer: () => examenEcoute()});
 
 // ============ LA NOTE ============
 function normal(s){
@@ -111,7 +111,7 @@ async function ouvrirHS(serie){
 }
 function introHS(){
   $("titre").textContent = T("hs_titre");
-  $("zone").innerHTML = '<div class="bloc">' + O.mark(T("hs_mark_debut")) + '</div><div class="bloc">' + O.blocFormat("HS") + '</div>';
+  $("zone").innerHTML = '<div class="bloc">' + O.mark(T("hs_mark_debut")) + TELC.noteEntrainement() + '</div><div class="bloc">' + O.blocFormat("HS") + '</div>';
   const suite = $("suite"); suite.hidden = false; suite.textContent = T("hs_commencer");
   suite.onclick = () => pageHS();
   window.scrollTo(0, 0);

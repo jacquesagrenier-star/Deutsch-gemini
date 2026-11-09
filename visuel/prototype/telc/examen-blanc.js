@@ -380,7 +380,7 @@ function examenSB(fini, o){
 if (!blancEpreuve("SB")) TELC.epreuve({ id: "SB", ordre: 20, minutes: 0, sur: { Schreiben: 5 }, lancer: examenSB, secours: true });
 
 // ---------------------------------------------------------------- les inscriptions
-DTZ.examen({ id: "blanc", ordre: 10, titre: T("bl_titre"), sous: T("bl_sous"), lancer: blancIntro });
+DTZ.examen({ id: "blanc", ordre: 10, titre: T("bl_go"), sous: T("bl_sous"), lancer: blancIntro });
 // une « partie » sans tuile (PROFIL.tuiles ne la nomme pas) : c'est par elle que telc.html?partie=BLANC rouvre
 // l'examen blanc, au retour de la page de l'oral (&etape=verdict) ou quand on quitte l'oral en cours
 DTZ.partie({ id: "BLANC", ordre: 99, titre: T("bl_titre"), sous: T("bl_sous"),

@@ -61,6 +61,7 @@
 // n'existe pas encore : ce niveau() ne regarde que le total, en attendant le calcul complet par competence.
 window.PROFIL_EXAMEN = {
   id: "telc",
+  examenDabord: true,   // l'accueil montre d'abord l'examen blanc complet, puis l'entrainement par partie
   titre: "Le telc A2·B1 avec Mark et Anna",
   intro: "Au telc Deutsch A2·B1, on commence par lire, puis viennent les Sprachbausteine, les courriels, l'écoute et l'oral à deux, sans image. Anna et moi, on t'aide à le préparer, partie par partie.",
   sur: 240,
@@ -78,25 +79,25 @@ window.PROFIL_EXAMEN = {
 };
 </script>
 <script src="../themes/tirage.js?v=1"></script>
-<script src="../dtz/commun.js?v=4"></script>
+<script src="../dtz/commun.js?v=5"></script>
 <script>
 // LES AUTRES LANGUES D'INTERFACE (7 nov. 2026) : le dictionnaire anglais -> langue de langues/<langue>.js, derive par
 // outils/langues.js, avant telc-commun.js qui le lit. Le francais et l'anglais sont dans les modules eux-memes.
 (() => {
   const l = ((new URLSearchParams(location.search).get("lang")) || "fr").toLowerCase().split(/[-_]/)[0];
-  if (["tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l)) document.write('<script src="langues/' + l + '.js?v=3"><\/script>');
+  if (["tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l)) document.write('<script src="langues/' + l + '.js?v=4"><\/script>');
 })();
 </script>
-<script src="telc-commun.js?v=3"></script>
+<script src="telc-commun.js?v=4"></script>
 <!-- LES MODULES DES PARTIES, dans l'ordre de l'examen. Un fichier absent laisse sa tuile grisee (« bientot ») :
      chaque session n'ajoute QUE son fichier, ces lignes sont deja la. -->
-<script src="lesen.js?v=1"></script>
-<script src="sprachbausteine.js?v=4"></script>
-<script src="hoeren.js?v=2"></script>
-<script src="hoeren-schreiben.js?v=2"></script>
-<script src="schreiben.js?v=2"></script>
+<script src="lesen.js?v=2"></script>
+<script src="sprachbausteine.js?v=5"></script>
+<script src="hoeren.js?v=3"></script>
+<script src="hoeren-schreiben.js?v=3"></script>
+<script src="schreiben.js?v=3"></script>
 <script src="sprechen.js?v=1"></script>
-<script src="examen-blanc.js?v=1"></script>
+<script src="examen-blanc.js?v=2"></script>
 <script>
 // Ouverte sur une partie (?partie=SB, depuis le panneau du bloc telc de l'app) : directement la partie, et le « ‹ »
 // de la partie ramene alors au panneau de l'app (TELC.direct) ; sinon l'accueil, comme la page du DTZ.

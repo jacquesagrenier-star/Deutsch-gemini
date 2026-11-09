@@ -258,12 +258,14 @@ function accueil(){
     return p ? '<button class="tuile" data-ent="' + t.id + '">' + esc(p.titre) + '<small>' + esc(p.sous) + '</small></button>'
              : '<button class="tuile" disabled>' + esc(t.titre) + '<small>' + esc(t.sous) + ' · ' + T("bientot") + '</small></button>';
   }).join("");
+  // DTZ.examen({partiel: true}) : une repetition d'une partie seulement, rangee avec l'entrainement (le telc)
+  const modes = l => l.map(e => '<button class="mode" data-ex="' + e.id + '"><b>' + esc(e.titre) + '</b><span>' + esc(e.sous) + '</span></button>').join("");
+  const blocEntrainement = '<div class="bloc"><h2>' + T("entrainement") + '</h2><p class="petit">' + T("entrainement_s") + '</p><div class="tuiles">' + tuiles + '</div>' + modes(DTZ.examens.filter(e => e.partiel)) + '</div>';
+  const blocExamen = '<div class="bloc"><h2>' + T("examen") + '</h2><p class="petit">' + T("examen_s") + '</p>' + modes(DTZ.examens.filter(e => !e.partiel)) +
+    (der ? '<p class="dernier">' + T("dernier", {s: esc(der.date), n: esc(der.texte)}) + '</p>' : "") + '</div>';
   $("zone").innerHTML =
     '<div class="bloc"><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T("intro")) + '</div></div></div>' +
-    '<div class="bloc"><h2>' + T("entrainement") + '</h2><p class="petit">' + T("entrainement_s") + '</p><div class="tuiles">' + tuiles + '</div></div>' +
-    '<div class="bloc"><h2>' + T("examen") + '</h2><p class="petit">' + T("examen_s") + '</p>' +
-      DTZ.examens.map(e => '<button class="mode" data-ex="' + e.id + '"><b>' + esc(e.titre) + '</b><span>' + esc(e.sous) + '</span></button>').join("") +
-      (der ? '<p class="dernier">' + T("dernier", {s: esc(der.date), n: esc(der.texte)}) + '</p>' : "") + '</div>' +
+    (PROFIL.examenDabord ? blocExamen + blocEntrainement : blocEntrainement + blocExamen) +
     '<p class="petit" style="text-align:center">' + T("maquette") + (PROFIL.id === "telc" ? "" : '<br>' + T("voix_tel")) + '</p>';
   document.querySelectorAll("[data-ent]").forEach(b => b.onclick = () => DTZ.parties.find(p => p.id === b.dataset.ent).ouvrir());
   document.querySelectorAll("[data-ex]").forEach(b => b.onclick = () => DTZ.examens.find(e => e.id === b.dataset.ex).lancer());

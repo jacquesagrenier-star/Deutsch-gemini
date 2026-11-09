@@ -251,14 +251,11 @@ function toutesLesSections(){
   if (TELC.direct){ parler("fermer"); if (window.parent === window) accueil(); return; }
   accueil();
 }
-function partieSuivante(id){ const o = DTZ.parties, k = o.findIndex(p => p.id === id); return k >= 0 && k + 1 < o.length ? o[k + 1] : null; }
-// Refaire / Section suivante / Toutes les sections, en bas d'un recapitulatif
+// Refaire / Toutes les sections en bas d'un recapitulatif ; le bouton principal mene a la partie suivante
 function boutonsFin(id, refaire){
-  const suivante = partieSuivante(id);
   return {h: '<div class="bloc boutons"><button class="secondaire" id="fRefaire">' + esc(T("ho_refaire")) + '</button>' +
-      (suivante ? '<button class="secondaire" id="fSuivante">' + esc(T("ho_suivante")) + DEUX_POINTS_TELC + esc(suivante.titre) + '</button>' : "") +
       '<button class="secondaire" id="fToutes">' + esc(T("ho_toutes")) + '</button></div>',
-    brancher(){ $("fRefaire").onclick = refaire; if (suivante) $("fSuivante").onclick = () => suivante.ouvrir(); $("fToutes").onclick = toutesLesSections;
+    brancher(){ $("fRefaire").onclick = refaire; TELC.continuerPartie(id); $("fToutes").onclick = toutesLesSections;
       DTZ.surRetour(() => { toutesLesSections(); return true; }); }};
 }
 
@@ -309,7 +306,7 @@ async function ouvrirH(serie){
 }
 function introH(){
   $("titre").textContent = T("ho_titre");
-  $("zone").innerHTML = '<div class="bloc">' + mark(T("ho_mark_debut")) + '</div><div class="bloc">' + blocFormat("T1") + '</div>';
+  $("zone").innerHTML = '<div class="bloc">' + mark(T("ho_mark_debut")) + TELC.noteEntrainement() + '</div><div class="bloc">' + blocFormat("T1") + '</div>';
   const suite = $("suite"); suite.hidden = false; suite.textContent = T("ho_commencer_section");
   suite.onclick = () => pageH();
   window.scrollTo(0, 0);

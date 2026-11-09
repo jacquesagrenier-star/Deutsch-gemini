@@ -98,3 +98,12 @@ Vérifications déjà faites par la session des examens :
 Vérifié à l'écran au format téléphone, avant et après : telc.html en fa, oral.html en ar (accueil et Teil 1A). La
 page dtz.html n'est pas ouverte par l'app ; le correctif s'y applique aussi sans rien changer d'autre. À un natif de
 dire si l'ordre lu est désormais naturel.
+
+## Une seule porte : quatre textes neufs (9 nov., ligne 36)
+
+Traduits depuis l'anglais, sans relecture native, dans les 7 langues : « Practice part by part » (le titre du bloc
+d'entraînement), la phrase du début de chaque partie (« This is practice for this part only. The full mock exam is on
+the telc home page. »), « Continue: {t} » (le bouton du récapitulatif) et « Back to the telc home page » (fin de
+l'oral). À voir : « mock exam » est rendu comme les autres occurrences de chaque langue (« Pełny egzamin próbny »,
+« simulado completo », « الامتحان التجريبي الكامل ») ; le mot « telc » placé dans une phrase persane ou arabe se lit-il bien ?
+La description de l'entrée du panneau (« The full mock exam, or practice part by part ») est dans les blocs d'`index.html`.

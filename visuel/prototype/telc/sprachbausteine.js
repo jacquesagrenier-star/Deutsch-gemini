@@ -144,7 +144,7 @@ function pageTrou(){
   $("zone").innerHTML =
     '<div class="bloc"><div class="section">' + esc(T("sb_section")) + '</div>' + points() + '</div>' +
     (SB.i === 0 && r === null && SB.rep.every(x => x === null)
-      ? '<div class="bloc"><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T("sb_mark_debut")) + '</div></div></div>' : "") +
+      ? '<div class="bloc"><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T("sb_mark_debut")) + '</div></div>' + TELC.noteEntrainement() + '</div>' : "") +
     '<div class="bloc"><p class="consigne" lang="de">' + esc(T("sb_consigne_de")) + '<span class="fr">' + esc(T("sb_consigne_fr")) + '</span></p>' +
     '<p class="petit"><b>' + esc(T("sb_situation")) + DEUXPTS().trimEnd() + '</b> ' + esc(champTelc(s, "situation")) + '</p>' +
     lettre((k, p) => ici.test(p) ? carte() : "") + '</div>';
@@ -188,10 +188,6 @@ function recap(){
   });
   // ce qui est rate d'abord : c'est ce qu'on vient relire
   const rates = lignes.filter((x, k) => SB.rep[k] !== s.luecken[k].bon), justes = lignes.filter((x, k) => SB.rep[k] === s.luecken[k].bon);
-  const suivante = (() => {
-    const ordre = DTZ.parties, k = ordre.findIndex(p => p.id === "SB");
-    return k >= 0 && k + 1 < ordre.length ? ordre[k + 1] : null;
-  })();
   $("titre").textContent = T("sb_titre");
   $("zone").innerHTML =
     '<div class="bloc"><div class="section">' + esc(T("sb_section")) + ' · ' + esc(T("sb_recap")) + '</div>' +
@@ -202,10 +198,9 @@ function recap(){
     '<div class="bloc">' + rates.concat(justes).join("") + '</div>' +
     '<div class="bloc boutons">' +
       '<button class="secondaire" id="sbRefaire">' + esc(T("sb_refaire")) + '</button>' +
-      (suivante ? '<button class="secondaire" id="sbSuivante">' + esc(T("sb_suivante")) + DEUXPTS() + esc(suivante.titre) + '</button>' : "") +
       '<button class="secondaire" id="sbToutes">' + esc(T("sb_toutes")) + '</button></div>';
   $("sbRefaire").onclick = () => ouvrirSB(s);
-  if (suivante) $("sbSuivante").onclick = () => suivante.ouvrir();
+  TELC.continuerPartie("SB");
   $("sbToutes").onclick = toutesLesSections;
   DTZ.surRetour(() => { toutesLesSections(); return true; });
   window.scrollTo(0, 0);

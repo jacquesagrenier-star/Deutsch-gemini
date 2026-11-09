@@ -329,7 +329,7 @@ const TELC_LESEN = (() => {
     $("titre").textContent = T("l_titre") + " · Lesen"; $("suite").hidden = true;
     const faits = lire("lesen_teile", {});
     $("zone").innerHTML =
-      '<div class="bloc"><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T("l_mark_debut")) + '</div></div></div>' +
+      '<div class="bloc"><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T("l_mark_debut")) + '</div></div>' + TELC.noteEntrainement() + '</div>' +
       '<div class="bloc"><h2>' + esc(T("l_bref")) + '</h2>' + ["l_bref_quoi", "l_bref_temps", "l_bref_points", "l_bref_comment"].map(k =>
         '<p class="petit"><b>' + esc(T(k + "_t")) + '</b> ' + esc(T(k)) + '</p>').join("") + '</div>' +
       '<div class="bloc"><h2>' + esc(T("l_parties")) + '</h2><div class="teils">' + TEILE.map(t => {
@@ -416,7 +416,6 @@ const TELC_LESEN = (() => {
     const faits = lire("lesen_teile", {}); faits[E.teil] = {bons, n, serie: E.serie.id, quand: Date.now()}; ecrire("lesen_teile", faits);
     const mot = bons / n >= 0.8 ? "l_mark_bien" : bons / n >= 0.5 ? "l_mark_moyen" : "l_mark_faible";
     const k = TEILE.indexOf(E.teil), teilSuivant = TEILE[k + 1];
-    const partieSuivante = (() => { const o = DTZ.parties, j = o.findIndex(p => p.id === "L"); return j >= 0 && j + 1 < o.length ? o[j + 1] : null; })();
     const teil = E.teil, serie = E.serie;
     $("zone").innerHTML =
       '<div class="bloc"><div class="lsection">' + esc(T("l_section", {n: teil.slice(1)})) + ' · ' + esc(T("l_recap")) + '</div>' +
@@ -426,11 +425,9 @@ const TELC_LESEN = (() => {
       '<div class="bloc">' + lignesCorrige(qs, E.rep) + '</div>' +
       '<div class="bloc lboutons">' +
         '<button class="secondaire" id="lRefaire">' + esc(T("l_refaire")) + '</button>' +
-        (teilSuivant ? '<button class="secondaire" id="lSuivant">' + esc(T("l_suivante", {t: "Teil " + teilSuivant.slice(1) + " · " + titreTeil(teilSuivant)})) + '</button>'
-          : partieSuivante ? '<button class="secondaire" id="lSuivant">' + esc(T("l_section_suivante", {t: partieSuivante.titre})) + '</button>' : "") +
         '<button class="secondaire" id="lToutes">' + esc(T("l_toutes")) + '</button></div>';
     $("lRefaire").onclick = () => ouvrirTeil(teil, serie);
-    if ($("lSuivant")) $("lSuivant").onclick = () => teilSuivant ? ouvrirTeil(teilSuivant) : partieSuivante.ouvrir();
+    if (teilSuivant) TELC.continuer("Teil " + teilSuivant.slice(1) + " · " + titreTeil(teilSuivant), () => ouvrirTeil(teilSuivant)); else TELC.continuerPartie("L");
     $("lToutes").onclick = liste;
     DTZ.surRetour(() => { liste(); return true; });
     window.scrollTo(0, 0);
@@ -516,6 +513,7 @@ const TELC_LESEN = (() => {
       '<div class="bloc lboutons"><button class="secondaire" id="lEncore">' + esc(T("l_refaire_epreuve")) + '</button>' +
         '<button class="secondaire" id="lToutes">' + esc(T("l_toutes")) + '</button></div>';
     $("lEncore").onclick = () => lancer({});
+    TELC.continuerPartie("L");
     $("lToutes").onclick = liste;
     DTZ.surRetour(() => { liste(); return true; });
     window.scrollTo(0, 0);

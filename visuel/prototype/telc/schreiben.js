@@ -387,7 +387,7 @@ function pointsSch(){
 }
 
 function enteteSch(){
-  return '<div class="bloc"><div class="section">' + esc(T(SCH.mode === "LS" ? "ls_section" : "s_section")) + '</div>' + pointsSch() + '</div>';
+  return '<div class="bloc"><div class="section">' + esc(T(SCH.mode === "LS" ? "ls_section" : "s_section")) + '</div>' + pointsSch() + (SCH.i === 0 ? TELC.noteEntrainement() : "") + '</div>';
 }
 
 function bulleMark(texte){
@@ -733,8 +733,6 @@ function recapSch(){
   resultat(SCH.mode, { serie: s.id, bons: ls ? bons : null, mots: motsDe(SCH.etat.texte), points: e ? e.points : null, sur: e ? e.sur : null, niveau: e ? e.niveau : null });
   parler("fini", { bons: ls ? bons : (e && e.niveau !== "moins" ? 1 : 0), faits: ls ? 2 : 1 });
   const mot = !e ? "sch_mark_moins" : e.niveau === "b1" ? "sch_mark_b1" : e.niveau === "a2" ? "sch_mark_a2" : "sch_mark_moins";
-  const ordre = DTZ.parties, k = ordre.findIndex(p => p.id === SCH.mode);
-  const suivante = k >= 0 && k + 1 < ordre.length ? ordre[k + 1] : null;
   $("titre").textContent = T(ls ? "ls_titre" : "s_titre");
   $("zone").innerHTML =
     '<div class="bloc"><div class="section">' + esc(T(ls ? "ls_section" : "s_section")) + ' · ' + esc(T("sch_recap")) + '</div>' +
@@ -746,12 +744,11 @@ function recapSch(){
     '<div class="bloc boutons">' +
       '<button class="secondaire" id="schRefaire">' + esc(T("sch_refaire")) + '</button>' +
       '<button class="secondaire" id="schAutre">' + esc(T("sch_autre")) + '</button>' +
-      (suivante ? '<button class="secondaire" id="schSuivante">' + esc(T("sch_suivante")) + DEUX_POINTS_TELC + esc(suivante.titre) + '</button>' : "") +
       '<button class="secondaire" id="schToutes">' + esc(T("sch_toutes")) + '</button></div>';
   // refaire : le meme sujet, page blanche ; un autre sujet : choisirSerie() prend le moins recemment fait
   $("schRefaire").onclick = () => { ecrire("sch_" + SCH.mode + "_" + s.id, {}); ouvrirSchreiben(SCH.mode, s); };
   $("schAutre").onclick = () => ouvrirSchreiben(SCH.mode);
-  if (suivante) $("schSuivante").onclick = () => suivante.ouvrir();
+  TELC.continuerPartie(SCH.mode);
   $("schToutes").onclick = toutesLesSectionsSch;
   DTZ.surRetour(() => { toutesLesSectionsSch(); return true; });
   window.scrollTo(0, 0);
