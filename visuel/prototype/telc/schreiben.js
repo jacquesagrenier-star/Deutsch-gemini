@@ -536,6 +536,36 @@ function motRe(m, drapeaux){ return new RegExp("(^|[^" + LETTRE + "])(" + m + ")
 const SUBORD = ["weil", "dass", "wenn", "ob", "obwohl", "damit", "als", "bevor", "nachdem", "während", "falls"];
 const COORD = ["und", "aber", "oder", "denn", "deshalb", "trotzdem", "dann", "außerdem", "zwar", "sondern"];
 
+// La salutation de fin : ce que les gens tapent vraiment, pas seulement la forme des manuels (retour du 9 nov. 2026 :
+// « No closing » alors qu'il y en avait une). Clavier sans tréma (Grusse, Gruesse), Grüße ou Gruß seuls, LG, Alles Gute,
+// Bis nächste Woche, Deine Kirsty. On regarde les trois dernières lignes, avant un éventuel P.S.
+const GRUSS_ADJ = "(?:viel|lieb|herzlich|best|sch(?:ö|oe)n|freundlich)e[nms]?";
+const GRUSS_PARTOUT = [
+  "(?:mit\\s+)?" + GRUSS_ADJ + "(?:\\s+" + GRUSS_ADJ + ")?\\s+gr(?:ü|ue|u)(?:ß|ss|β)(?:en?)?[^\\n]*",
+  "bis\\s+(?:bald|morgen|dann|sonntag|samstag|sp(?:ä|ae)ter)",
+  "tsch(?:ü|ue|u)ss?",
+  "ciao|tschau"
+].map(m => motRe(m, "iu"));
+const GRUSS_LIGNE = new RegExp("^(?:" + [
+  "gr(?:(?:ü|ue|u)(?:ß|ss|β)e|u(?:ß|ss|β))(?!" + "\\p{L}).*",
+  "(?:lg|vg|mfg|sg)(?!\\p{L}).*",
+  "alles\\s+(?:gute|liebe)(?!\\p{L}).*",
+  "mach['’]?s\\s+gut.*",
+  "bis(?:\\s+\\p{L}+){1,3}[\\s!.,]*",
+  "(?:dein|deine|euer|eure)(?:\\s+\\p{L}+){1,2}[\\s!.,]*"
+].join("|") + ")$", "iu");
+function salutationDe(lignes){
+  const ps = lignes.findIndex((l, k) => k > 0 && /^p\.?\s?s\b/i.test(l));
+  const dernieres = (ps > 0 ? lignes.slice(0, ps) : lignes).slice(-3);
+  for (const brute of dernieres){
+    const l = brute.normalize("NFC");
+    for (const re of GRUSS_PARTOUT){ const m = l.match(re); if (m) return m[2].trim(); }
+    const m = l.match(GRUSS_LIGNE);
+    if (m) return m[0].trim();
+  }
+  return null;
+}
+
 function analyser(mode, s, texte){
   const ls = mode === "LS";
   const lignes = texte.split(/\n/).map(l => l.trim()).filter(Boolean);
@@ -548,10 +578,9 @@ function analyser(mode, s, texte){
   // la formule d'appel et la salutation
   const anrede = lignes.length ? lignes[0].match(/^(liebe[rs]?|hallo|hi|sehr geehrte[rs]?|guten tag|moin|servus)\b[^,\n]*/i) : null;
   out.push(anrede ? { c: "ok", t: T("sch_v_anrede_ok", {m: anrede[0].trim()}) } : { c: "ko", t: T("sch_v_anrede_ko") });
-  const fin = lignes.slice(-3).join(" \n ");
-  const gruss = fin.match(/(mit freundlichen grüßen|mit freundlichen grüssen|(viele|liebe|herzliche|beste|schöne) grü(ß|ss)e[^\n]*|bis (bald|morgen|dann|sonntag|samstag|später)|tschüss|ciao)/i);
-  out.push(gruss ? { c: "ok", t: T("sch_v_gruss_ok", {m: gruss[0].trim()}) } : { c: "ko", t: T("sch_v_gruss_ko") });
-  if (gruss && s.registre === "informel" && /mit freundlichen/i.test(gruss[0])) out.push({ c: "inf", t: T("sch_v_gruss_froid") });
+  const salut = salutationDe(lignes);
+  out.push(salut ? { c: "ok", t: T("sch_v_gruss_ok", {m: salut}) } : { c: "ko", t: T("sch_v_gruss_ko") });
+  if (salut && s.registre === "informel" && /mit freundlichen/i.test(salut)) out.push({ c: "inf", t: T("sch_v_gruss_froid") });
   // le registre : Sie au milieu d'une phrase dans un texte qui tutoie, du dans un texte qui vouvoie
   if (s.registre === "informel"){
     const m = texte.match(/[^.!?:\n]\s+(Sie|Ihnen|Ihr|Ihre|Ihren|Ihrem|Ihrer)(?![\p{L}])/u);
