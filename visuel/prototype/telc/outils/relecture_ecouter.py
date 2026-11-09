@@ -25,9 +25,13 @@ def _repliques(lignes, audio, rollen):
     lignes.append("")
 
 
-def section(lignes):
+def section(lignes, seulement=None):
+    """seulement : les numeros de series a sortir (tout, si None)."""
     h = _charger("hoeren.json")
     hs = _charger("hoeren-schreiben.json")
+    if seulement:
+        h["series"] = [s for s in h["series"] if s["id"] in seulement]
+        hs["series"] = [s for s in hs["series"] if s["id"] in seulement]
     lignes.append("## Écouter (Hören) et Écouter et noter (Hören und Schreiben)")
     lignes.append("")
     lignes.append("Ces textes sont DITS (des conversations, des annonces, des messages de répondeur) : ils doivent sonner "
