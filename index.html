@@ -8514,14 +8514,16 @@ body[data-theme="dark"] #home .pa-ecoute .pa-play, body[data-theme="dark"] #home
 #flashcards.seance-en-parts #flashThemeTitle{font-size:24px; line-height:1.15; overflow-wrap:anywhere;}
 @media (max-width:349px){ #flashcards.seance-en-parts .title-row{flex-wrap:wrap;} #flashcards.seance-en-parts .title-row-pills{margin-inline-start:auto;} }
 #seanceParts.hidden{display:none;}
-#seanceParts i{display:block; flex:1 1 0; min-width:6px; height:7px; border-radius:4px; background:rgba(28,36,48,.14);}
+/* 9 nov. 2026 (Jacques : « un petit peu plus epaisse », « encore plus visible ») : l'epaisseur et le fond ici seulement. */
+#seanceParts{--sp-epais:10px; --sp-vide:rgba(28,36,48,.18);}
+body[data-theme="dark"] #seanceParts{--sp-vide:rgba(255,255,255,.17);}
+#seanceParts i{display:block; flex:1 1 0; min-width:6px; height:var(--sp-epais); border-radius:calc(var(--sp-epais) / 2); background:var(--sp-vide);}
 #seanceParts i.fait{background:#2C3A4A;}
-#seanceParts i.ici{background:linear-gradient(90deg, #E8A23A 0 var(--q, 0%), rgba(28,36,48,.14) var(--q, 0%) 100%);}
-html[dir="rtl"] #seanceParts i.ici{background:linear-gradient(270deg, #E8A23A 0 var(--q, 0%), rgba(28,36,48,.14) var(--q, 0%) 100%);}
-body[data-theme="dark"] #seanceParts i{background:rgba(255,255,255,.12);}
+#seanceParts i.ici{background:linear-gradient(90deg, #E8A23A 0 var(--q, 0%), var(--sp-vide) var(--q, 0%) 100%);}
+html[dir="rtl"] #seanceParts i.ici{background:linear-gradient(270deg, #E8A23A 0 var(--q, 0%), var(--sp-vide) var(--q, 0%) 100%);}
 body[data-theme="dark"] #seanceParts i.fait{background:#C9D4DD;}
-body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(90deg, #F0A93C 0 var(--q, 0%), rgba(255,255,255,.12) var(--q, 0%) 100%);}
-html[dir="rtl"] body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(270deg, #F0A93C 0 var(--q, 0%), rgba(255,255,255,.12) var(--q, 0%) 100%);}
+body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(90deg, #F0A93C 0 var(--q, 0%), var(--sp-vide) var(--q, 0%) 100%);}
+html[dir="rtl"] body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(270deg, #F0A93C 0 var(--q, 0%), var(--sp-vide) var(--q, 0%) 100%);}
 /* Lot de l'evaluation : sur l'ecran de fin (fin-paquet), toutes les parties sont faites. */
 #flashcards.fin-paquet #seanceParts i{background:#2C3A4A;}
 body[data-theme="dark"] #flashcards.fin-paquet #seanceParts i{background:#C9D4DD;}
@@ -69174,7 +69176,12 @@ function majPartsSeance(){
     // Une reprise dans la seance du jour : un autre paquet que celui de l'ouverture (« en faire 20 de plus »,
     // le rattrapage des cartes « Encore », les mots rates a refaire...).
     const reprise = !actif && !!(SEANCE_PARTS && currentTheme && currentTheme.id === SEANCE_PARTS.themeId && currentCards.length);
-    if(zone) zone.classList.toggle("seance-en-parts", actif || reprise);
+    const enPP = !!(currentTheme && currentTheme.id === "seance_premiers_pas" && currentCards.length > 1);
+    if(zone) zone.classList.toggle("seance-en-parts", actif || reprise || enPP);
+    if(enPP){
+        if(box) dessinerSegmentsSeance(box, segmentsSeance(currentCards, partsPremiersPas(currentCards)));
+        return;
+    }
     if(!actif){
         if(box){ box.classList.add("hidden"); box.textContent = ""; }
         // Les reprises gardent l'en-tete d'avant et ont une barre d'un seul tenant, sur CE paquet : elles n'ont pas
@@ -69206,9 +69213,11 @@ function majPartsSeance(){
     let pTitre = (segmentsSeance(paquet, P.parts).find(s => i >= s.debut && i < s.debut + s.n) || {}).p;
     if(pTitre === "scene" && c && c.forme !== "scene_arret") pTitre = "revisions";
     if(h) h.textContent = titrePartSeance(P.parts.get(c) === "fin" ? "fin" : pTitre, c);
-    if(!box) return;
+    if(box) dessinerSegmentsSeance(box, segmentsSeance(paquet, P.parts));
+}
+function dessinerSegmentsSeance(box, segs){
     box.textContent = "";
-    segmentsSeance(paquet, P.parts).forEach(s => {
+    segs.forEach(s => {
         const b = document.createElement("i");
         b.style.flexGrow = String(s.n);
         if(currentFlashcard >= s.debut + s.n) b.className = "fait";
@@ -69219,6 +69228,18 @@ function majPartsSeance(){
         box.appendChild(b);
     });
     box.classList.remove("hidden");
+}
+// PREMIERS PAS (Jacques, 9 nov. 2026 : « On ne voit pas la barre de progression de seance pour les premiers pas ») :
+// la meme barre, sur le paquet dans son ordre a lui -- un morceau par suite de cartes, un par scene, un pour le theme ;
+// ni regroupement, ni ecran de passage, ni en-tete de partie (il garde le sien).
+function partsPremiersPas(paquet){
+    const parts = new Map();
+    paquet.forEach(c => {
+        if(!c) return;
+        const f = c.forme || "";
+        parts.set(c, f === "theme_arret" ? "theme" : (f === "scene_arret" || f === "pp_scene") ? "scene" : f === "pp_fin" ? "fin" : "neufs");
+    });
+    return parts;
 }
 // L'ecran de passage, a la premiere carte d'une partie. Rend true s'il s'affiche :
 // loadFlashcard s'arrete alors, et « Continuer » la rappelle pour la carte.
