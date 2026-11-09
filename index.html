@@ -3532,7 +3532,7 @@ html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:
 html[data-apprendre="en"] button[onclick*="startExercises"],
 html[data-apprendre="en"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="en"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
-html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]):not([onclick*="tuileEn_"]):not([onclick*="ouvrirThemePanneau_"]){ display:none !important; }
+html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]):not([onclick*="tuileEn_"]):not([onclick*="ouvrirThemePanneau_"]):not([onclick*="ouvrirScene"]){ display:none !important; }
 /* « N › » des themes illustres (5 nov. 2026, Jacques : la 11 n'ouvrait rien en anglais) : le panneau ne propose que
    les themes ouverts a l'anglais (themesIllustresOuverts()), la regle ci-dessus les cachait tous. */
 /* « S'entrainer par temps » (28 oct. 2026) : les cartes allemandes (Prasens,
@@ -3570,7 +3570,7 @@ html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:
 html[data-apprendre="pt"] button[onclick*="startExercises"],
 html[data-apprendre="pt"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="pt"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
-html[data-apprendre="pt"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]){ display:none !important; }
+html[data-apprendre="pt"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]):not([onclick*="ouvrirScene"]){ display:none !important; }
 /* « S'entrainer par temps » (A2-C1, 30 oct. 2026) : la liste portugaise
    (grammaire.json, cle « temps ») a la place des cartes allemandes. */
 html[data-apprendre="pt"] #verbenTempsInfo > .card{ display:none !important; }
@@ -9075,13 +9075,9 @@ body[data-theme="dark"] .fin-ciel{background:linear-gradient(180deg,#050A13 0%,#
 @keyframes fcFiler{0%{opacity:0; transform:translate(70px,-46px)} 10%{opacity:1} 80%{opacity:.9} 100%{opacity:0; transform:translate(-230px,150px)}}
 .fc-proch{display:grid; gap:1px; justify-items:center; padding:0 14px; font-size:14px; font-weight:700; color:var(--fc-ligne);}
 .fc-proch b{color:var(--fc-gras); font-weight:900;}
-.fc-proch small{font-size:12.5px; font-weight:700;}
+.fc-proch small{font-size:12.5px; font-weight:700; text-wrap:balance;}
 .fc-mots{display:grid; justify-items:center; gap:9px; padding:10px 14px 0;}
-.fc-fois{margin:0; display:inline-flex; align-items:baseline; gap:6px; padding:3px 13px; border-radius:999px; background:var(--fc-pastille); color:#1C2430; box-shadow:0 3px 0 #A86A0E; font-weight:900; font-variant-numeric:tabular-nums; line-height:1.25;}
-.fc-fois.hidden{display:none;}
-.fc-fois b{font-weight:900;}
-.fc-fois small{font-size:13px; font-weight:800;}
-.fc-titre{font-size:24px; font-weight:900; line-height:1.15; color:var(--fc-titre);}
+.fc-titre{font-size:clamp(20px,6.5vw,24px); font-weight:900; line-height:1.15; color:var(--fc-titre); text-wrap:balance;}
 .fc-phrase{margin:0; font-size:17px; font-weight:700; line-height:1.35; color:var(--fc-ligne); text-wrap:balance; max-width:30ch;}
 .fc-phrase b{color:var(--fc-gras); font-weight:900;}
 .fc-pousse{flex:1 1 auto; min-height:28px;}
@@ -15246,7 +15242,6 @@ const I18N = {
         ra_faux: "Pas tout à fait. La bonne réponse :",
         ra_consigne_orthographe: "Lequel est bien écrit ?",
         ra_tu_as_choisi: "Tu as choisi « {s} ».",
-        ciel_aujourdhui: "aujourd'hui",
         ciel_prochaine: "Prochaine étoile : {s}",
         ciel_nouvelle: "Nouvelle étoile : {s}",
         ciel_commence: "Le chemin vers {s} commence.",
@@ -15613,7 +15608,7 @@ const I18N = {
         encore_neufs: "{n} cartes de plus",
         legere_encore: "Encore une séance",
         legere_fin_une: "Ta séance du jour est faite.",
-        legere_fin_n: "{n} séances aujourd'hui",
+        legere_fin_n: "Bravo, {n} séances terminées aujourd'hui",
         etoile_aria: "Une nouvelle étoile",
         etoile_compte: "{n} étoiles sur {t}",
         etoile_groupe_complet: "groupe complet",
@@ -16966,7 +16961,6 @@ const I18N = {
         ra_faux: "Not quite. The right answer:",
         ra_consigne_orthographe: "Which one is spelled right?",
         ra_tu_as_choisi: "You chose “{s}”.",
-        ciel_aujourdhui: "today",
         ciel_prochaine: "Next star: {s}",
         ciel_nouvelle: "New star: {s}",
         ciel_commence: "The path to {s} begins.",
@@ -17332,7 +17326,7 @@ const I18N = {
         encore_neufs: "{n} more cards",
         legere_encore: "One more session",
         legere_fin_une: "Today's session is done.",
-        legere_fin_n: "{n} sessions today",
+        legere_fin_n: "Well done, {n} sessions finished today",
         etoile_aria: "A new star",
         etoile_compte: "{n} stars out of {t}",
         etoile_groupe_complet: "group complete",
@@ -18689,11 +18683,10 @@ const I18N = {
         ra_tu_as_choisi: "“{s}” seçtin.",
         legere_encore: "Bir oturum daha",
         legere_fin_une: "Bugünkü oturumun bitti.",
-        legere_fin_n: "Bugün {n} oturum",
+        legere_fin_n: "Bravo, bugün {n} oturum tamamlandı",
         etoile_aria: "Yeni bir yıldız",
         etoile_compte: "{t} yıldızdan {n}",
         etoile_groupe_complet: "grup tamamlandı",
-        ciel_aujourdhui: "bugün",
         ciel_prochaine: "Sıradaki yıldız: {s}",
         ciel_nouvelle: "Yeni yıldız: {s}",
         ciel_commence: "{s} yolculuğu başlıyor.",
@@ -20783,11 +20776,10 @@ const I18N = {
         ra_tu_as_choisi: "Ти вибрав(-ла) «{s}».",
         legere_encore: "Ще одне заняття",
         legere_fin_une: "Сьогоднішнє заняття завершено.",
-        legere_fin_n: "Занять сьогодні: {n}",
+        legere_fin_n: "Браво! Завершених занять сьогодні: {n}",
         etoile_aria: "Нова зірка",
         etoile_compte: "Зірок: {n} із {t}",
         etoile_groupe_complet: "групу завершено",
-        ciel_aujourdhui: "сьогодні",
         ciel_prochaine: "Наступна зірка: {s}",
         ciel_nouvelle: "Нова зірка: {s}",
         ciel_commence: "Шлях до зірки {s} починається.",
@@ -23207,11 +23199,10 @@ const I18N = {
         ra_tu_as_choisi: "«{s}» را انتخاب کردی.",
         legere_encore: "یک جلسهٔ دیگر",
         legere_fin_une: "جلسهٔ امروزت تمام شد.",
-        legere_fin_n: "{n} جلسه امروز",
+        legere_fin_n: "آفرین، امروز {n} جلسه تمام شد",
         etoile_aria: "ستاره‌ای تازه",
         etoile_compte: "{n} ستاره از {t}",
         etoile_groupe_complet: "گروه کامل شد",
-        ciel_aujourdhui: "امروز",
         ciel_prochaine: "ستارهٔ بعدی: {s}",
         ciel_nouvelle: "ستارهٔ تازه: {s}",
         ciel_commence: "راه به سوی {s} آغاز شد.",
@@ -25042,11 +25033,10 @@ const I18N = {
         ra_tu_as_choisi: "اخترت: «{s}».",
         legere_encore: "حصة أخرى",
         legere_fin_une: "انتهت حصة اليوم.",
-        legere_fin_n: "عدد الحصص اليوم: {n}",
+        legere_fin_n: "أحسنت! عدد الحصص المنجزة اليوم: {n}",
         etoile_aria: "نجمة جديدة",
         etoile_compte: "النجوم: {n} من {t}",
         etoile_groupe_complet: "اكتملت المجموعة",
-        ciel_aujourdhui: "اليوم",
         ciel_prochaine: "النجمة التالية: {s}",
         ciel_nouvelle: "نجمة جديدة: {s}",
         ciel_commence: "بدأ الطريق إلى {s}.",
@@ -25505,11 +25495,10 @@ const I18N = {
         ra_tu_as_choisi: "Você escolheu “{s}”.",
         legere_encore: "Mais uma sessão",
         legere_fin_une: "Sua sessão de hoje está concluída.",
-        legere_fin_n: "{n} sessões hoje",
+        legere_fin_n: "Parabéns, {n} sessões concluídas hoje",
         etoile_aria: "Uma nova estrela",
         etoile_compte: "{n} estrelas de {t}",
         etoile_groupe_complet: "grupo completo",
-        ciel_aujourdhui: "hoje",
         ciel_prochaine: "Próxima estrela: {s}",
         ciel_nouvelle: "Nova estrela: {s}",
         ciel_commence: "O caminho até {s} começa.",
@@ -27229,11 +27218,10 @@ const I18N = {
         ra_tu_as_choisi: "Wybrałeś(-aś) „{s}”.",
         legere_encore: "Jeszcze jedna sesja",
         legere_fin_une: "Dzisiejsza sesja gotowa.",
-        legere_fin_n: "Sesji dzisiaj: {n}",
+        legere_fin_n: "Brawo! Ukończonych sesji dzisiaj: {n}",
         etoile_aria: "Nowa gwiazda",
         etoile_compte: "Gwiazdy: {n} z {t}",
         etoile_groupe_complet: "grupa ukończona",
-        ciel_aujourdhui: "dziś",
         ciel_prochaine: "Następna gwiazda: {s}",
         ciel_nouvelle: "Nowa gwiazda: {s}",
         ciel_commence: "Zaczyna się droga do gwiazdy {s}.",
@@ -28953,11 +28941,10 @@ const I18N = {
         ra_tu_as_choisi: "Ты выбрал(а) «{s}».",
         legere_encore: "Ещё одно занятие",
         legere_fin_une: "Сегодняшнее занятие завершено.",
-        legere_fin_n: "Занятий сегодня: {n}",
+        legere_fin_n: "Браво! Завершённых занятий сегодня: {n}",
         etoile_aria: "Новая звезда",
         etoile_compte: "Звёзд: {n} из {t}",
         etoile_groupe_complet: "группа завершена",
-        ciel_aujourdhui: "сегодня",
         ciel_prochaine: "Следующая звезда: {s}",
         ciel_nouvelle: "Новая звезда: {s}",
         ciel_commence: "Путь к звезде {s} начинается.",
@@ -30680,11 +30667,10 @@ const I18N = {
         ra_tu_as_choisi: "Du hast „{s}“ gewählt.",
         legere_encore: "Noch eine Einheit",
         legere_fin_une: "Deine heutige Einheit ist geschafft.",
-        legere_fin_n: "{n} Einheiten heute",
+        legere_fin_n: "Bravo, heute {n} Einheiten geschafft",
         etoile_aria: "Ein neuer Stern",
         etoile_compte: "{n} von {t} Sternen",
         etoile_groupe_complet: "Gruppe vollständig",
-        ciel_aujourdhui: "heute",
         ciel_prochaine: "Nächster Stern: {s}",
         ciel_nouvelle: "Neuer Stern: {s}",
         ciel_commence: "Der Weg zu {s} beginnt.",
@@ -32416,11 +32402,10 @@ const I18N = {
         ra_tu_as_choisi: "Elegiste «{s}».",
         legere_encore: "Una práctica más",
         legere_fin_une: "Tu práctica de hoy está hecha.",
-        legere_fin_n: "{n} prácticas hoy",
+        legere_fin_n: "¡Bravo! {n} prácticas terminadas hoy",
         etoile_aria: "Una estrella nueva",
         etoile_compte: "{n} estrellas de {t}",
         etoile_groupe_complet: "grupo completo",
-        ciel_aujourdhui: "hoy",
         ciel_prochaine: "Próxima estrella: {s}",
         ciel_nouvelle: "Estrella nueva: {s}",
         ciel_commence: "Empieza el camino hacia {s}.",
@@ -46609,8 +46594,8 @@ function orbPanelData(id){
                 { icon:"carte", title:t("seance_scene_stadtplatz"), desc:t("op_scenes_place_d"), action:"ouvrirScenePlace", section:"pratique" },
                 { icon:"carte", title:t("seance_scene_museum"), desc:t("op_scenes_musee_d"), action:"ouvrirSceneMusee", section:"pratique" },
                 { icon:"carte", title:t("seance_scene_ubahn"), desc:t("op_scenes_metro_d"), action:"ouvrirSceneMetro", section:"pratique" }
-            // Le portugais retire ici aussi ses scenes ecartees (l'hiver).
-            ].filter(o => LANGUE_APPRISE !== "pt" || !SCENES_TOUTES.some(s => s.ouvrir === o.action && sceneEcartee(s.nom)))
+            // L'anglais et le portugais retirent ici aussi leurs scenes ecartees (sceneEcartee ne retire rien en allemand ni en espagnol).
+            ].filter(o => !SCENES_TOUTES.some(s => s.ouvrir === o.action && sceneEcartee(s.nom)))
         };
     }
     if(id === "verben"){
@@ -60248,7 +60233,7 @@ function chargerJeSais(){
     }
     return chargementJeSais;
 }
-// « a 34 annees-lumiere » dans la langue d'interface : le pluriel et les chiffres viennent du navigateur.
+// « a 34 annees-lumiere de la Terre » dans la langue d'interface : le pluriel et les chiffres viennent du navigateur.
 function phraseDistanceEtoile(e){
     const lg = getUiLang();
     const T = (CIEL.textes_distance && (CIEL.textes_distance[lg] || CIEL.textes_distance.en)) || null;
@@ -60259,6 +60244,24 @@ function phraseDistanceEtoile(e){
     if(e.environ) f = T.environ || T.other;
     else { try{ f = T[new Intl.PluralRules(lg).select(e.affiche)] || T.other; }catch(x){} }
     return f.replace("{n}", n);
+}
+// Au plein ecran, a cote de l'etoile : la phrase tient sur une ligne si elle est courte, sinon sur deux (« de la Terre »,
+// 8 nov. 2026, l'a allongee au point de couvrir les traits). La coupure qui rend la plus longue des deux lignes la plus courte.
+const LARGEUR_LIGNE_DISTANCE = 175;
+function largeurEtiquette(cv, texte){ return cv.measureText(texte).width + texte.length * .28; }
+function lignesDistanceEtoile(distance){
+    if(!distance) return [];
+    let cv = null;
+    try{ cv = document.createElement("canvas").getContext("2d"); cv.font = "700 14px Nunito, system-ui, sans-serif"; }catch(x){ return [distance]; }
+    if(largeurEtiquette(cv, distance) <= LARGEUR_LIGNE_DISTANCE) return [distance];
+    const mots = distance.split(" ");
+    let mieux = [distance], plus = Infinity;
+    for(let k = 1; k < mots.length; k++){
+        const a = mots.slice(0, k).join(" "), b = mots.slice(k).join(" ");
+        const m = Math.max(largeurEtiquette(cv, a), largeurEtiquette(cv, b));
+        if(m < plus){ plus = m; mieux = [a, b]; }
+    }
+    return mieux;
 }
 function nomFigure(c, lg){ return (c.noms && (c.noms[lg] || c.noms.en || c.noms.fr)) || ""; }
 // Une etoile sans nom propre : la lettre grecque et la constellation, selon l'usage de la langue (« Tau des
@@ -60356,18 +60359,22 @@ function svgConstellationFete(c, n, fin, nomEt, distEt){
                      + '<circle class="fe-coeur" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R) + '" style="fill:' + e.couleur + '"/></g>'
                      + '<circle class="fe-pouls" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 2.6) + '"/></g>');
             // la place du nom et de la distance, mesures dans la police de l'app
+            const lignes = lignesDistanceEtoile(distEt);
             let w = 150;
             try{
                 const cv = document.createElement("canvas").getContext("2d");
-                cv.font = "900 14px Nunito, system-ui, sans-serif"; const w1 = cv.measureText(nomEt).width;
-                cv.font = "700 14px Nunito, system-ui, sans-serif"; const w2 = distEt ? cv.measureText(distEt).width : 0;
-                w = Math.max(w1, w2);
+                cv.font = "900 14px Nunito, system-ui, sans-serif"; const w1 = largeurEtiquette(cv, nomEt);
+                cv.font = "700 14px Nunito, system-ui, sans-serif";
+                w = Math.max(w1, ...lignes.map(l => largeurEtiquette(cv, l)));
             }catch(x2){}
-            const hh = distEt ? 17 + 14 : 14;
+            const hh = 14 + 17 * lignes.length;
             const pl = placerEtiquetteEtoile(P, rayons, c.traits.filter(([a, b]) => lit(a) && lit(b)), i, w, hh, R * 2.4, W, H);
-            etiq = '<text class="fe-nom-et" x="' + f(pl.x) + '" y="' + f(pl.y) + '" text-anchor="' + pl.ancre + '">'
+            // En RTL, « start » est le bord droit du texte : l'etiquette placee a droite de l'etoile partait hors de l'ecran.
+            const rtl = getComputedStyle(document.body).direction === "rtl";
+            const ancre = rtl && pl.ancre !== "middle" ? (pl.ancre === "start" ? "end" : "start") : pl.ancre;
+            etiq = '<text class="fe-nom-et" x="' + f(pl.x) + '" y="' + f(pl.y) + '" text-anchor="' + ancre + '">'
                  + '<tspan class="fe-ne-nom" x="' + f(pl.x) + '"></tspan>'
-                 + (distEt ? '<tspan class="fe-ne-dist" x="' + f(pl.x) + '" dy="17"></tspan>' : '') + '</text>';
+                 + lignes.map(() => '<tspan class="fe-ne-dist" x="' + f(pl.x) + '" dy="17"></tspan>').join("") + '</text>';
         } else if(lit(i)){
             const d = (2.6 + ((i * 37) % 38) / 10).toFixed(2), o = ((i * 53) % 60 / 10).toFixed(2);
             out.push('<g class="fe-astre" style="--d:' + d + 's;--o:-' + o + 's;--lum:' + e.lum + ';--i:' + i + '">'
@@ -60449,7 +60456,8 @@ async function feteEtoile(et){
     q(".fe-cp-n").textContent = (n + 1) + " / " + total;
     q(".fe-compte").setAttribute("aria-label", tf("etoile_compte", { n: n + 1, t: total }));
     const nomEt = q(".fe-ne-nom"); if(nomEt) nomEt.textContent = nomEtoile;
-    const distEt = q(".fe-ne-dist"); if(distEt) distEt.textContent = distance;
+    const lignesD = lignesDistanceEtoile(distance);
+    voile.querySelectorAll(".fe-ne-dist").forEach((x, k) => { x.textContent = lignesD[k] || ""; });
     const groupe = t(et.g === "a1_suite" ? "av_moitie_2" : "av_moitie_1");
     q(".fe-sur").textContent = fin ? groupe + " · " + t("etoile_groupe_complet") : groupe;
     q(".fe-titre").textContent = sensPremiersPas(et.s);
@@ -60658,7 +60666,7 @@ function rendreCielFin(fin){
         + '<div class="fc-tete-l"><span class="fc-cnom"></span><span class="fc-compte"></span></div>'
         + '<svg class="fc-cst" viewBox="0 0 ' + W + ' ' + H + '" role="img">' + o.join("") + '</svg>'
         + '<div class="fc-proch"><span class="fc-proch-t" dir="auto"></span><small class="fc-proch-d" dir="auto"></small></div>'
-        + '<div class="fc-mots"><p class="fc-fois hidden"><b></b><small></small></p><div class="fc-titre" dir="auto"></div><p class="fc-phrase" dir="auto"></p></div>'
+        + '<div class="fc-mots"><div class="fc-titre" dir="auto"></div><p class="fc-phrase" dir="auto"></p></div>'
         + '<div class="fc-pousse"></div>';
     const q = x => el.querySelector(x);
     const nomC = nomFigure(c, lg);
@@ -60687,14 +60695,8 @@ function rendreCielFin(fin){
     };
     avecNom(q(".fc-proch-t"), e.lit ? "ciel_nouvelle" : "ciel_prochaine");
     q(".fc-proch-d").textContent = phraseDistanceEtoile(vise);
-    if(n >= 2 && !e.pp){
-        const fois = q(".fc-fois");
-        fois.classList.remove("hidden");
-        fois.querySelector("b").textContent = "×" + n;
-        fois.querySelector("small").textContent = t("ciel_aujourdhui");
-        fois.style.fontSize = [0, 0, 15, 18, 21, 24][Math.min(n, 5)] + "px";
-    }
-    q(".fc-titre").textContent = (n <= 1 && !e.pp) ? t("legere_fin_une") : t("fin_seance_titre");
+    // A partir de la 2e seance du jour, la phrase le dit (decision du 8 nov. 2026, plus de « ×2 ») ; Premiers pas garde son titre.
+    q(".fc-titre").textContent = e.pp ? t("fin_seance_titre") : n > 1 ? tf("legere_fin_n", { n: n }) : t("legere_fin_une");
     const sansAvance = !e.lit && e.de > 0 && e.a <= e.de;
     avecNom(q(".fc-phrase"), e.lit ? "ciel_une_de_plus" : sansAvance ? "ciel_tiennent" : e.a >= .75 ? "ciel_tout_pres" : e.a < 1 / 3 ? "ciel_commence" : "ciel_rapproche");
     const encore = document.getElementById("encoreNeufsBtn");
@@ -71157,7 +71159,7 @@ function majBandeauFetes(){
 // L'anneau du jour (maquettes a et b) : le compte sur l'objectif.
 function majAnneauFin(el, finie){
     if(!el) return;
-    // Essai « seance_legere » : l'anneau de FIN est plein, avec un ✓, et « ×2 », « ×3 » quand on enchaine.
+    // Sans objectif, l'anneau de FIN est plein, avec un ✓ ; le nombre de seances du jour est dans la phrase (legere_fin_n).
     // L'ecran court (« ‹ » en cours) garde l'ancien anneau : ses parties faites viennent avec la version 2.
     // Sans objectif, l'ecran court montre la part de la seance deja faite et le compte du jour.
     if(!finie && objectifRetire()){
@@ -71175,7 +71177,7 @@ function majAnneauFin(el, finie){
         el.style.setProperty("--p", 100);
         el.classList.add("atteint");
         el.querySelector("b").textContent = "✓";
-        el.querySelector("small").textContent = n > 1 ? "×" + n : "";
+        el.querySelector("small").textContent = "";
         return { fait: n, cible: n };
     }
     let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
