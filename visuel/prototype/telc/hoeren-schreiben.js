@@ -21,7 +21,7 @@ const HS_EN = {
   hs_titre: "Listening and notes", hs_sous: "Hören und Schreiben · 5 messages",
   hs_section: "Section · Listening and notes",
   hs_mark_debut: "Five messages on my voicemail: take the note for me. A word, a time or a number is enough, not a sentence.",
-  hs_commencer: "Start the messages",
+  hs_commencer: "Start the messages", hs_mark_avant: "When you start, you'll have 10 seconds to read each note. Then the message starts by itself.",
   hs_verifier: "Check", hs_ecris: "write here", hs_note: "The note",
   hs_presque: "Counted as correct, but watch the spelling: “{r}”.",
   hs_points: "In the exam, that would be {n} point(s) out of 5, counted in Writing (Schreiben).",
@@ -36,7 +36,7 @@ textesTelc({ en: HS_EN, fr: {
   hs_titre: "Écouter et noter", hs_sous: "Hören und Schreiben · 5 messages",
   hs_section: "Section · Écouter et noter",
   hs_mark_debut: "Cinq messages sur mon répondeur : prends la note à ma place. Un mot, une heure ou un nombre suffit, pas une phrase.",
-  hs_commencer: "Commencer les messages",
+  hs_commencer: "Commencer les messages", hs_mark_avant: "Quand tu commenceras, tu auras 10 secondes pour lire chaque note. Ensuite, le message partira tout seul.",
   hs_verifier: "Vérifier", hs_ecris: "écris ici", hs_note: "La note",
   hs_presque: "Compté juste, mais attention à l'orthographe : « {r} ».",
   hs_points: "À l'examen, cela ferait {n} point(s) sur 5, comptés dans l'écrit (Schreiben).",
@@ -111,7 +111,7 @@ async function ouvrirHS(serie){
 }
 function introHS(){
   $("titre").textContent = T("hs_titre");
-  $("zone").innerHTML = '<div class="bloc">' + O.mark(T("hs_mark_debut")) + TELC.noteEntrainement() + '</div><div class="bloc">' + O.blocFormat("HS") + '</div>';
+  $("zone").innerHTML = '<div class="bloc">' + O.mark(T("hs_mark_debut") + " " + T("hs_mark_avant")) + TELC.noteEntrainement() + '</div><div class="bloc">' + O.blocFormat("HS") + '</div>';
   const suite = $("suite"); suite.hidden = false; suite.textContent = T("hs_commencer");
   suite.onclick = () => pageHS();
   window.scrollTo(0, 0);
@@ -122,11 +122,11 @@ function pageHS(garderScroll){
   let h = '<div class="bloc"><div class="section">' + esc(T("hs_section")) + '</div>' +
     O.pointsDe(HS.us.map(x => x.questions[0]), [m.nr], q => HS.verif[q.nr] ? noteOk(HS.verif[q.nr]) : null) +
     '<button class="lien" id="voirFmt">' + esc(T("ho_format")) + '</button></div>';
-  h += '<div class="bloc">';
+  const lec = O.lecteur("HS" + HS.page, u, fini, () => pageHS(true));
+  h += '<div class="bloc">' + lec.haut;
   if (HS.page === 0) h += O.consigne(d.consigne) + O.mark(champTelc(d.conseil, "text"));
   h += O.bandeau(u);
   h += '<p class="petit">' + esc(T("hs_note")) + '</p>' + rendreNotiz(m, HS.saisie[m.nr], etat, fini);
-  const lec = O.lecteur("HS" + HS.page, u, fini, () => pageHS(true));
   h += lec.h;
   if (fini) h += aideNote(m, HS.saisie[m.nr], etat) + '<p class="petit">' + esc(T("ho_transcription")) + '</p>' + O.transcription(u);
   h += '</div>' + O.mentionVoix();

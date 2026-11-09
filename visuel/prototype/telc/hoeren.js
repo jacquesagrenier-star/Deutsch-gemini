@@ -15,7 +15,7 @@
 //
 // L'ORGANISATION est celle des Sprachbausteine (TELC-ASSEMBLAGE.md) : une page par texte entendu, des points de
 // progression, « Continuer » en bas, un recapitulatif (Refaire / Section suivante / Toutes les sections). A
-// l'entrainement, le son s'entend le nombre de fois de l'examen, apres le temps de lecture ; une fois la page
+// l'entrainement, le temps de lecture part tout seul, annonce par Mark (lecteur()), et le son s'entend le nombre de fois de l'examen ; une fois la page
 // repondue, la correction, l'explication, la transcription, et le son se reecoute librement. A l'examen blanc
 // (TELC.epreuve, sur: {Hoeren: 60}), l'enregistrement deroule tout seul, avec ses pauses.
 //
@@ -41,7 +41,7 @@ const H_EN = {
   ho_points_tot: "Listening counts for 60 of the 240 points (25 %). The 5 notes count in Writing.",
   ho_methode_titre: "How to go about it",
   ho_methode: ["Use the reading time: read the questions and guess what you'll need to catch.", "Heard twice: note what you recognise the first time, check the second time.", "Heard once: decide straight away, then move on to the next question.", "Listen for the meaning, not just the words: something planned that doesn't happen, a day mentioned for something else, an opinion that says the opposite of the word you hear."],
-  ho_commencer_section: "Start part 1", ho_compte_attente: "Read the questions. The sound starts when the countdown ends.",
+  ho_commencer_section: "Start part 1", ho_mark_avant: "When you start, you'll have 30 seconds to read the questions. Then the recording starts by itself.",
   ho_mark_debut: "Here is how the listening works. In practice you get the correction straight away, then the transcript — and you hear each text as many times as in the exam.",
   ho_fois_1: "In the exam you hear it only once.", ho_fois_2: "In the exam you hear it twice.",
   ho_lecture: "{s} seconds to read first.",
@@ -75,7 +75,7 @@ textesTelc({ en: H_EN, fr: {
   ho_points_tot: "L'écoute compte pour 60 des 240 points (25 %). Les 5 notes comptent dans l'écrit.",
   ho_methode_titre: "Comment s'y prendre",
   ho_methode: ["Profite du temps de lecture : lis les questions, devine ce qu'il faudra attraper.", "Entendu deux fois : à la première écoute, note ce que tu reconnais ; à la seconde, vérifie.", "Entendu une seule fois : décide tout de suite, puis passe à la question suivante.", "Écoute le sens, pas seulement les mots : une chose prévue qui ne se fait pas, un jour dit pour autre chose, un avis qui dit le contraire du mot qu'on entend."],
-  ho_commencer_section: "Commencer la partie 1", ho_compte_attente: "Lis les questions. Le son part à la fin du compte à rebours.",
+  ho_commencer_section: "Commencer la partie 1", ho_mark_avant: "Quand tu commenceras, tu auras 30 secondes pour lire les questions. Ensuite, l'enregistrement partira tout seul.",
   ho_mark_debut: "Voici comment se passe l'écoute. À l'entraînement, tu as la correction tout de suite, puis la transcription — et tu entends chaque texte autant de fois qu'à l'examen.",
   ho_fois_1: "À l'examen, on l'entend une seule fois.", ho_fois_2: "À l'examen, on l'entend deux fois.",
   ho_lecture: "{s} secondes pour lire d'abord.",
@@ -128,7 +128,7 @@ Object.assign(HAUTEUR, {anna: 1.06, brandt: 1.02, f_jung: 1.16, f_mittel: 1.0, f
   document.head.appendChild(st); })();
 
 // ============ LES DONNEES ============
-const E = { d: null, jeton: 0, enCours: null, ecoutes: {} };
+const E = { d: null, jeton: 0, enCours: null, ecoutes: {}, compte: null };
 const H = { serie: null, us: [], page: 0, rep: {} };
 DTZ.charger(fetch("donnees/hoeren.json", {cache: "no-cache"})
   .then(r => { if (!r.ok) throw new Error("hoeren.json"); return r.json(); })
@@ -141,7 +141,8 @@ TELC.epreuve({id: "H", ordre: 40, minutes: 35, sur: {Hoeren: 60}, lancer: fini =
 
 // ============ LE SON ============
 // arreter : tout ce qui joue (silence() de commun.js arrete la voix ET le lecteur), et toute sequence en cours
-function stopSon(){ E.jeton++; E.enCours = null; silence(); }
+function arreterCompte(){ if (E.compte){ clearInterval(E.compte.id); E.compte = null; } }
+function stopSon(){ arreterCompte(); E.jeton++; E.enCours = null; silence(); }
 async function direLigne(l){ await dire(l.dit || l.text, l.wer); }
 // des segments (les repliques d'une piste chacun), separes par une pause ; une piste enregistree remplace son segment
 // (cles[k] dans DTZ_PISTES) ; faux si on a ete interrompu
@@ -263,37 +264,52 @@ function boutonsFin(id, refaire){
 // une fois la page faite. rendre() redessine la page.
 function lecteur(cle, u, fini, rendre){
   const n = E.ecoutes[cle] || 0, peut = fini || n < u.fois;
+  // le temps de lecture de l'examen (decision de Jacques du 9 nov.) : Mark l'explique AVANT, sur l'ecran du format (ho_mark_avant : sinon l'eleve perdrait son temps de lecture a lire l'explication) ; il part tout seul en arrivant sur la page,
+  // et le son suit sans autre geste ; « Ecouter maintenant » le saute. Les ecoutes suivantes : un bouton.
+  const aLire = !fini && n === 0 && !!u.lecture && !RAPIDE && E.enCours !== cle;
+  const deja = E.compte && E.compte.cle === cle ? E.compte.reste : u.lecture;
+  const texteCompte = v => "0:" + String(Math.max(0, v)).padStart(2, "0");
+  const haut = !aLire ? "" :
+    '<div id="annonce" style="position:sticky;top:8px;z-index:3;margin-bottom:12px;padding:10px;border-radius:16px;background:var(--carte);box-shadow:0 2px 10px rgba(0,0,0,.15)">' +
+      '<div class="lecteur"><span class="petit" style="margin:0">' + esc(T("ho_ex_lecture")) + '</span><span class="compte" id="compte">' + texteCompte(deja) + '</span><button class="secondaire" id="passer">' + esc(T("ho_commencer")) + '</button></div></div>';
   let h = '<div class="lecteur" id="lecteur">';
   if (E.enCours === cle) h += '<div class="ecoute"><i></i>' + esc(T("ho_en_cours")) + '</div>';
+  else if (aLire) h += "";
   else if (!peut) h += '<p class="petit">' + esc(T("ho_epuise", {f: u.fois})) + '</p>';
   else h += '<button class="jouer" id="jouer">' + ICONE_SON + esc(fini ? T("ho_reecouter") : T("ho_ecoute_n", {n: n + 1, f: u.fois})) + '</button>';
   h += '</div>';
+  const lancer = async () => {
+    const jeton = E.jeton;
+    E.enCours = cle;
+    const a = $("annonce"); if (a) a.remove();
+    $("lecteur").innerHTML = '<div class="ecoute"><i></i>' + esc(T("ho_en_cours")) + '</div>';
+    const fin = await jouerSegments(u.segs, u.cles, 1.2, jeton);
+    if (!fin) return;
+    E.enCours = null;
+    if (!fini) E.ecoutes[cle] = (E.ecoutes[cle] || 0) + 1;
+    rendre(true);
+  };
   const brancher = () => {
-    const b = $("jouer"); if (!b) return;
-    b.onclick = async () => {
+    const b = $("jouer");
+    if (b) b.onclick = () => {
       stopSon();
       debloquerSon();   // dans le geste, APRES l'arret (qui mettrait le lecteur en pause) : iOS laissera ensuite jouer les pistes
-      const jeton = E.jeton;
-      if (!fini && n === 0 && u.lecture && !RAPIDE){
-        // le temps de lecture de l'examen, qu'on peut passer
-        let reste = u.lecture;
-        $("lecteur").innerHTML = '<p class="petit" style="flex-basis:100%;margin:0">' + esc(T("ho_compte_attente")) + '</p><span class="compte" id="compte">0:' + String(reste).padStart(2, "0") + '</span><button class="secondaire" id="passer">' + esc(T("ho_commencer")) + '</button>';
-        await new Promise(ok => {
-          const id = setInterval(() => { reste--; const c = $("compte"); if (c) c.textContent = "0:" + String(Math.max(0, reste)).padStart(2, "0"); if (reste <= 0 || E.jeton !== jeton){ clearInterval(id); ok(); } }, 1000);
-          $("passer").onclick = () => { debloquerSon(); clearInterval(id); ok(); };
-        });
-        if (E.jeton !== jeton) return;
-      }
-      E.enCours = cle;
-      $("lecteur").innerHTML = '<div class="ecoute"><i></i>' + esc(T("ho_en_cours")) + '</div>';
-      const fin = await jouerSegments(u.segs, u.cles, 1.2, jeton);
-      if (!fin) return;
-      E.enCours = null;
-      if (!fini) E.ecoutes[cle] = (E.ecoutes[cle] || 0) + 1;
-      rendre(true);
+      lancer();
     };
+    if (!aLire) return;
+    $("passer").onclick = () => { debloquerSon(); arreterCompte(); lancer(); };
+    if (E.compte && E.compte.cle === cle) return;   // la page redessinee (une reponse donnee) : le compte continue
+    arreterCompte();
+    debloquerSon();   // dans le geste qui a ouvert la page (Commencer, Continuer) : le son partira ensuite sans geste
+    const c = E.compte = {cle, reste: u.lecture, id: setInterval(() => {
+      c.reste--;
+      const el = $("compte");
+      if (!el){ arreterCompte(); return; }   // la page a change
+      el.textContent = texteCompte(c.reste);
+      if (c.reste <= 0){ arreterCompte(); lancer(); }
+    }, 1000)};
   };
-  return {h, brancher};
+  return {h, haut, brancher};
 }
 
 // ============ L'ENTRAINEMENT ============
@@ -307,7 +323,7 @@ async function ouvrirH(serie){
 }
 function introH(){
   $("titre").textContent = T("ho_titre");
-  $("zone").innerHTML = '<div class="bloc">' + mark(T("ho_mark_debut")) + TELC.noteEntrainement() + '</div><div class="bloc">' + blocFormat("T1") + '</div>';
+  $("zone").innerHTML = '<div class="bloc">' + mark(T("ho_mark_debut") + " " + T("ho_mark_avant")) + TELC.noteEntrainement() + '</div><div class="bloc">' + blocFormat("T1") + '</div>';
   const suite = $("suite"); suite.hidden = false; suite.textContent = T("ho_commencer_section");
   suite.onclick = () => pageH();
   window.scrollTo(0, 0);
@@ -321,7 +337,8 @@ function pageH(garderScroll){
   let h = '<div class="bloc"><div class="section">' + esc(T("ho_section", {n})) + ' · ' + esc(T("ho_" + u.teil)) + '</div>' +
     pointsDe(qs, u.questions.map(q => q.nr), q => H.rep[q.nr] === undefined ? null : H.rep[q.nr] === q.bon) +
     '<button class="lien" id="voirFmt">' + esc(T("ho_format")) + '</button></div>';
-  h += '<div class="bloc">';
+  const lec = lecteur("H" + H.page, u, fini, () => pageH(true));
+  h += '<div class="bloc">' + lec.haut;
   if (premiere) h += consigne(d.consignes[u.teil]) + mark(champTelc(d.conseils[u.teil], "text"));
   h += bandeau(u);
   if (u.teil === "T1" || u.teil === "T2") h += '<p class="petit"><b>' + esc(T("ho_situation")) + DEUX_POINTS_TELC.trimEnd() + '</b> ' + esc(champTelc(u.data, "situation")) + '</p>';
@@ -330,7 +347,6 @@ function pageH(garderScroll){
     '<p class="petit">' + esc(T("ho_solutions")) + '</p>' + listeSolutions(u.data.loesungen, fini, u.questions.map(q => q.bon));
   if (u.teil === "T4") h += '<p class="consigne" lang="de">' + esc(u.data.thema) + (fini ? '<span class="fr">' + esc(champTelc(u.data, "thema")) + '</span>' : "") + '</p>' +
     '<p class="petit">' + esc(T("ho_aussagen")) + '</p>' + listeSolutions(u.data.saetze, fini, u.questions.map(q => q.bon));
-  const lec = lecteur("H" + H.page, u, fini, () => pageH(true));
   h += lec.h;
   h += u.questions.map(q => carte(q, {choisi: H.rep[q.nr], montrer: H.rep[q.nr] !== undefined, fige: H.rep[q.nr] !== undefined})).join("");
   if (fini) h += '<p class="petit">' + esc(T("ho_transcription")) + '</p>' + transcription(u);
