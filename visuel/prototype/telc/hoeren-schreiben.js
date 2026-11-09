@@ -105,13 +105,13 @@ function aideNote(m, valeur, etat, corrige){
 async function ouvrirHS(serie){
   O.stopSon(); arreterChrono();
   HS.serie = serie || await choisirSerie(HS.d.series, () => [], "HS");
-  HS.us = unitesHS(HS.serie); HS.page = 0; HS.saisie = {}; HS.verif = {}; E.ecoutes = {};
+  HS.us = unitesHS(HS.serie); HS.page = 0; HS.saisie = {}; HS.verif = {}; E.ecoutes = {}; E.explique = false;
   DTZ.surRetour(() => { O.toutesLesSections(); return true; });
   if (serie) pageHS(); else introHS();
 }
 function introHS(){
   $("titre").textContent = T("hs_titre");
-  $("zone").innerHTML = '<div class="bloc">' + O.mark(T("hs_mark_debut") + " " + T("hs_mark_avant")) + TELC.noteEntrainement() + '</div><div class="bloc">' + O.blocFormat("HS") + '</div>';
+  $("zone").innerHTML = '<div class="bloc">' + O.mark(T("hs_mark_debut")) + TELC.noteEntrainement() + '</div><div class="bloc">' + O.blocFormat("HS") + '</div>';
   const suite = $("suite"); suite.hidden = false; suite.textContent = T("hs_commencer");
   suite.onclick = () => pageHS();
   window.scrollTo(0, 0);

@@ -45,7 +45,7 @@ const H_EN = {
   ho_mark_debut: "Here is how the listening works. In practice you get the correction straight away, then the transcript — and you hear each text as many times as in the exam.",
   ho_fois_1: "In the exam you hear it only once.", ho_fois_2: "In the exam you hear it twice.",
   ho_lecture: "{s} seconds to read first.",
-  ho_commencer: "Listen now",
+  ho_commencer: "Listen now", ho_lancer_compte: "Start the countdown",
   ho_ecoute_n: "Listen · {n} of {f}", ho_reecouter: "Listen again", ho_en_cours: "Playing…",
   ho_epuise: "Heard {f} time(s) out of {f}, as in the exam. Answer, then the transcript appears.",
   ho_juste: "Correct!", ho_faux: "Not quite: it's “{r}”.",
@@ -79,7 +79,7 @@ textesTelc({ en: H_EN, fr: {
   ho_mark_debut: "Voici comment se passe l'écoute. À l'entraînement, tu as la correction tout de suite, puis la transcription — et tu entends chaque texte autant de fois qu'à l'examen.",
   ho_fois_1: "À l'examen, on l'entend une seule fois.", ho_fois_2: "À l'examen, on l'entend deux fois.",
   ho_lecture: "{s} secondes pour lire d'abord.",
-  ho_commencer: "Écouter maintenant",
+  ho_commencer: "Écouter maintenant", ho_lancer_compte: "Lancer le compte à rebours",
   ho_ecoute_n: "Écouter · {n} sur {f}", ho_reecouter: "Réécouter", ho_en_cours: "Écoute…",
   ho_epuise: "Entendu {f} fois sur {f}, comme à l'examen. Réponds, puis la transcription s'affiche.",
   ho_juste: "Juste !", ho_faux: "Pas tout à fait : c'est « {r} ».",
@@ -128,7 +128,7 @@ Object.assign(HAUTEUR, {anna: 1.06, brandt: 1.02, f_jung: 1.16, f_mittel: 1.0, f
   document.head.appendChild(st); })();
 
 // ============ LES DONNEES ============
-const E = { d: null, jeton: 0, enCours: null, ecoutes: {}, compte: null };
+const E = { d: null, jeton: 0, enCours: null, ecoutes: {}, compte: null, explique: false };
 const H = { serie: null, us: [], page: 0, rep: {} };
 DTZ.charger(fetch("donnees/hoeren.json", {cache: "no-cache"})
   .then(r => { if (!r.ok) throw new Error("hoeren.json"); return r.json(); })
@@ -264,14 +264,17 @@ function boutonsFin(id, refaire){
 // une fois la page faite. rendre() redessine la page.
 function lecteur(cle, u, fini, rendre){
   const n = E.ecoutes[cle] || 0, peut = fini || n < u.fois;
-  // le temps de lecture de l'examen (decision de Jacques du 9 nov.) : Mark l'explique AVANT, sur l'ecran du format (ho_mark_avant : sinon l'eleve perdrait son temps de lecture a lire l'explication) ; il part tout seul en arrivant sur la page,
+  // le temps de lecture de l'examen (decision de Jacques du 9 nov.) : Mark l'explique AVANT, en haut de la premiere page d'une partie, avec un bouton qui lance le compte (ho_mark_avant, E.explique : sinon l'eleve perdrait son temps de lecture a lire l'explication) ; aux pages suivantes il part tout seul en arrivant,
   // et le son suit sans autre geste ; « Ecouter maintenant » le saute. Les ecoutes suivantes : un bouton.
   const aLire = !fini && n === 0 && !!u.lecture && !RAPIDE && E.enCours !== cle;
   const deja = E.compte && E.compte.cle === cle ? E.compte.reste : u.lecture;
   const texteCompte = v => "0:" + String(Math.max(0, v)).padStart(2, "0");
-  const haut = !aLire ? "" :
-    '<div id="annonce" style="position:sticky;top:8px;z-index:3;margin-bottom:12px;padding:10px;border-radius:16px;background:var(--carte);box-shadow:0 2px 10px rgba(0,0,0,.15)">' +
-      '<div class="lecteur"><span class="petit" style="margin:0">' + esc(T("ho_ex_lecture")) + '</span><span class="compte" id="compte">' + texteCompte(deja) + '</span><button class="secondaire" id="passer">' + esc(T("ho_commencer")) + '</button></div></div>';
+  const expliquer = aLire && !E.explique && !(E.compte && E.compte.cle === cle);
+  const boite = '<div id="annonce" style="position:sticky;top:8px;z-index:3;margin-bottom:12px;padding:10px;border-radius:16px;background:var(--carte);box-shadow:0 2px 10px rgba(0,0,0,.15)">';
+  const haut = !aLire ? "" : expliquer ?
+    boite + mark(T(u.teil === "HS" ? "hs_mark_avant" : "ho_mark_avant")) +
+      '<div class="lecteur" style="margin-top:8px"><button class="jouer" id="lancerCompte">' + esc(T("ho_lancer_compte")) + '</button></div></div>' :
+    boite + '<div class="lecteur"><span class="petit" style="margin:0">' + esc(T("ho_ex_lecture")) + '</span><span class="compte" id="compte">' + texteCompte(deja) + '</span><button class="secondaire" id="passer">' + esc(T("ho_commencer")) + '</button></div></div>';
   let h = '<div class="lecteur" id="lecteur">';
   if (E.enCours === cle) h += '<div class="ecoute"><i></i>' + esc(T("ho_en_cours")) + '</div>';
   else if (aLire) h += "";
@@ -297,6 +300,7 @@ function lecteur(cle, u, fini, rendre){
       lancer();
     };
     if (!aLire) return;
+    if (expliquer){ $("lancerCompte").onclick = () => { E.explique = true; rendre(true); }; return; }   // dans le geste : le compte part, le son pourra suivre
     $("passer").onclick = () => { debloquerSon(); arreterCompte(); lancer(); };
     if (E.compte && E.compte.cle === cle) return;   // la page redessinee (une reponse donnee) : le compte continue
     arreterCompte();
@@ -316,14 +320,14 @@ function lecteur(cle, u, fini, rendre){
 async function ouvrirH(serie){
   stopSon(); arreterChrono();
   H.serie = serie || await choisirSerie(E.d.series, () => [], "H");
-  H.us = unitesH(H.serie); H.page = 0; H.rep = {}; E.ecoutes = {};
+  H.us = unitesH(H.serie); H.page = 0; H.rep = {}; E.ecoutes = {}; E.explique = false;
   DTZ.surRetour(() => { toutesLesSections(); return true; });
   // en entrant, le format d'abord ; « Refaire la section » va droit au Teil 1
   if (serie) pageH(); else introH();
 }
 function introH(){
   $("titre").textContent = T("ho_titre");
-  $("zone").innerHTML = '<div class="bloc">' + mark(T("ho_mark_debut") + " " + T("ho_mark_avant")) + TELC.noteEntrainement() + '</div><div class="bloc">' + blocFormat("T1") + '</div>';
+  $("zone").innerHTML = '<div class="bloc">' + mark(T("ho_mark_debut")) + TELC.noteEntrainement() + '</div><div class="bloc">' + blocFormat("T1") + '</div>';
   const suite = $("suite"); suite.hidden = false; suite.textContent = T("ho_commencer_section");
   suite.onclick = () => pageH();
   window.scrollTo(0, 0);
