@@ -125,6 +125,7 @@ button:disabled{cursor:default}
 <div class="bas" id="bas" hidden></div>
 <script src="themes/tirage.js?v=3"></script>
 <script src="themes/voix.js?v=7"></script>
+<script src="themes/fin.js?v=1"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=7"></script>
 <script>
@@ -1250,16 +1251,14 @@ function montrer(){
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
-  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>';
+  $("zone").innerHTML = Fin.bilan(LANGUE, bons, file.length, T("score", {b: bons, n: file.length}));
   basDePartie();
   $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
 }
 function toutRevu(prochaine){
   $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
   const quand = Tirage.revu(prochaine, LANGUE);
-  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
-    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
-    + '</div>';
+  $("zone").innerHTML = Fin.revu(TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr, quand ? (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) : "");
   basDePartie();
   $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
 }
