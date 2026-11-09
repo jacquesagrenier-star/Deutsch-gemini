@@ -41,7 +41,7 @@ const H_EN = {
   ho_points_tot: "Listening counts for 60 of the 240 points (25 %). The 5 notes count in Writing.",
   ho_methode_titre: "How to go about it",
   ho_methode: ["Use the reading time: read the questions and guess what you'll need to catch.", "Heard twice: note what you recognise the first time, check the second time.", "Heard once: decide straight away, then move on to the next question.", "Listen for the meaning, not just the words: something planned that doesn't happen, a day mentioned for something else, an opinion that says the opposite of the word you hear."],
-  ho_commencer_section: "Start Teil 1",
+  ho_commencer_section: "Start part 1", ho_compte_attente: "Read the questions. The sound starts when the countdown ends.",
   ho_mark_debut: "Here is how the listening works. In practice you get the correction straight away, then the transcript — and you hear each text as many times as in the exam.",
   ho_fois_1: "In the exam you hear it only once.", ho_fois_2: "In the exam you hear it twice.",
   ho_lecture: "{s} seconds to read first.",
@@ -75,7 +75,7 @@ textesTelc({ en: H_EN, fr: {
   ho_points_tot: "L'écoute compte pour 60 des 240 points (25 %). Les 5 notes comptent dans l'écrit.",
   ho_methode_titre: "Comment s'y prendre",
   ho_methode: ["Profite du temps de lecture : lis les questions, devine ce qu'il faudra attraper.", "Entendu deux fois : à la première écoute, note ce que tu reconnais ; à la seconde, vérifie.", "Entendu une seule fois : décide tout de suite, puis passe à la question suivante.", "Écoute le sens, pas seulement les mots : une chose prévue qui ne se fait pas, un jour dit pour autre chose, un avis qui dit le contraire du mot qu'on entend."],
-  ho_commencer_section: "Commencer le Teil 1",
+  ho_commencer_section: "Commencer la partie 1", ho_compte_attente: "Lis les questions. Le son part à la fin du compte à rebours.",
   ho_mark_debut: "Voici comment se passe l'écoute. À l'entraînement, tu as la correction tout de suite, puis la transcription — et tu entends chaque texte autant de fois qu'à l'examen.",
   ho_fois_1: "À l'examen, on l'entend une seule fois.", ho_fois_2: "À l'examen, on l'entend deux fois.",
   ho_lecture: "{s} secondes pour lire d'abord.",
@@ -271,15 +271,16 @@ function lecteur(cle, u, fini, rendre){
   const brancher = () => {
     const b = $("jouer"); if (!b) return;
     b.onclick = async () => {
-      debloquerSon();   // dans le geste : iOS laissera ensuite jouer les pistes
-      stopSon(); const jeton = E.jeton;
+      stopSon();
+      debloquerSon();   // dans le geste, APRES l'arret (qui mettrait le lecteur en pause) : iOS laissera ensuite jouer les pistes
+      const jeton = E.jeton;
       if (!fini && n === 0 && u.lecture && !RAPIDE){
         // le temps de lecture de l'examen, qu'on peut passer
         let reste = u.lecture;
-        $("lecteur").innerHTML = '<span class="compte" id="compte">0:' + String(reste).padStart(2, "0") + '</span><button class="secondaire" id="passer">' + esc(T("ho_commencer")) + '</button>';
+        $("lecteur").innerHTML = '<p class="petit" style="flex-basis:100%;margin:0">' + esc(T("ho_compte_attente")) + '</p><span class="compte" id="compte">0:' + String(reste).padStart(2, "0") + '</span><button class="secondaire" id="passer">' + esc(T("ho_commencer")) + '</button>';
         await new Promise(ok => {
           const id = setInterval(() => { reste--; const c = $("compte"); if (c) c.textContent = "0:" + String(Math.max(0, reste)).padStart(2, "0"); if (reste <= 0 || E.jeton !== jeton){ clearInterval(id); ok(); } }, 1000);
-          $("passer").onclick = () => { clearInterval(id); ok(); };
+          $("passer").onclick = () => { debloquerSon(); clearInterval(id); ok(); };
         });
         if (E.jeton !== jeton) return;
       }
