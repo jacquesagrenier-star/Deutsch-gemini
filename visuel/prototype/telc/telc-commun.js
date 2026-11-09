@@ -75,6 +75,9 @@ function niveauTelc(pts){
   return regle(0.7, 0.7, 0.4) ? "b1" : regle(0.4, 0.4, 0.1) ? "a2" : "moins";
 }
 
+// La mention du bas de l'accueil : celle de commun.js est ecrite pour le DTZ (« une seule serie »).
+textesTelc({ fr: { maquette: "Maquette : peu de séries pour l'instant." } });
+
 // LES TEXTES COMMUNS EN ANGLAIS : ceux de commun.js (francais seulement) et les tuiles du profil.
 textesTelc({ en: {
   titre: "telc A2·B1 with Mark and Anna",
