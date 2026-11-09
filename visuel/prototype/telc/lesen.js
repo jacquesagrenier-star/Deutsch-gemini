@@ -403,7 +403,7 @@ const TELC_LESEN = (() => {
       return {ok, h: '<div class="q lrecap"><div class="tete"><span class="num">' + q.nr + '</span><span class="frage">' +
         (ok ? '<span class="ok">✓</span> ' : '<span class="ko">✗</span> ' + (rep[k] === null ? esc(T("l_sans")) : '<s lang="de">' + esc(libelle(q, rep[k])) + '</s>') + ' → ') +
         '<b lang="de">' + esc(libelle(q, q.bon)) + '</b></span></div>' +
-        (q.teil === "T1" ? '<p class="petit" lang="de">' + esc(q.frage) + '</p>' : q.teil === "T3" ? '<p class="petit" lang="de">' + esc(q.mail.von + " → " + q.mail.an) + '</p>' : '<p class="petit" lang="de">' + esc(q.frage) + '</p>') +
+        (q.teil === "T1" ? '<p class="petit" lang="de" dir="ltr">' + esc(q.frage) + '</p>' : q.teil === "T3" ? '<p class="petit" lang="de" dir="ltr">' + esc(q.mail.von + " → " + q.mail.an) + '</p>' : '<p class="petit" lang="de" dir="ltr">' + esc(q.frage) + '</p>') +
         '<p class="erkl">' + esc(q.erkl) + '</p></div>'};
     });
     // ce qui est rate d'abord : c'est ce qu'on vient relire
