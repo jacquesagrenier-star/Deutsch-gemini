@@ -23,7 +23,13 @@ const Fin = (() => {
 @keyframes finPoint{from{transform:scale(0)}to{transform:scale(1)}}
 .confetti-piece{position:fixed;top:0;left:0;border-radius:2px;pointer-events:none;z-index:9999;animation-name:confettiBurst;animation-timing-function:cubic-bezier(.15,.7,.4,1);animation-fill-mode:forwards}
 @keyframes confettiBurst{0%{transform:translate(-50%,-50%) rotate(0deg) scale(1);opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--rot)) scale(.4);opacity:0}}
-@media (prefers-reduced-motion:reduce){.confetti-piece{display:none}.fin-points i{animation:none}}`;
+@media (prefers-reduced-motion:reduce){.confetti-piece{display:none}.fin-points i{animation:none}}
+/* LES BOUTONS DU BAS (8 nov. 2026, Jacques) : chaque page avait sa disposition, en colonne ou cote a cote, et « Encore des
+   questions » passait a la ligne. Une seule : en colonne, la meme a toute largeur et dans toutes les langues. Le verre, lui, vient
+   de themes/verre.js (.bas button). */
+html .bas:not([hidden]),html .basFixe:not([hidden]){display:flex;flex-direction:column;gap:8px}
+html .bas button,html .basFixe button{flex:0 0 auto;width:100%;height:54px;min-height:54px;padding:0 14px;border-radius:27px;font:800 16px/1.15 var(--police);cursor:pointer}
+@media (max-height:640px){.fin-image{width:120px}}`;
   document.head.appendChild(style);
 
   // la vignette du theme (celle de l'accueil), chargee d'avance : l'ecran de fin ne doit pas sauter quand elle arrive
