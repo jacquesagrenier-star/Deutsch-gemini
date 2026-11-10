@@ -24,4 +24,4 @@ function urlOral(extra){
 }
 
 DTZ.partie({ id: "Sp", ordre: 70, titre: T("sp_titre"), sous: T("sp_sous"),
-  ouvrir: () => { silence(); location.href = urlOral(TELC.direct ? {} : { depuis: "telc" }); } });
+  ouvrir: () => { silence(); location.replace(urlOral(TELC.direct ? {} : { depuis: "telc" })); } });

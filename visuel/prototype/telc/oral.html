@@ -199,7 +199,7 @@ function versTelc(extra){
   const p = new URLSearchParams();
   ["apprendre", "lang", "nuit", "rapide"].forEach(k => { if (Q.get(k)) p.set(k, Q.get(k)); });
   for (const k in (extra || {})) p.set(k, extra[k]);
-  location.href = "telc.html?" + p.toString();
+  location.replace("telc.html?" + p.toString());   // remplacer : voir chargerCadre() dans index.html
 }
 
 const IMG = { anna: "../descripcion/Anna-visage.webp", mark: "../descripcion/Mark-visage.webp" };

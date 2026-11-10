@@ -199,7 +199,7 @@ function blancEtape(){
     $("zone").innerHTML = '<div class="bloc"><div class="petit">' + esc(n) + '</div><h2>' + esc(T("bl_e_" + E.id)) + '</h2>' +
       '<p>' + esc(T("bl_e_" + E.id + "_q")) + '</p>' + blancMark(T(E.pause ? "bl_pause_texte" : "bl_oral_texte")) + '</div>';
     if (E.pause) blancBouton(T("bl_suite"), () => { BL.etape++; blancSauver(); blancEtape(); });
-    else blancBouton(T("bl_vers_oral"), () => { silence(); location.href = blancUrl("oral.html", { examen: "blanc" }); });
+    else blancBouton(T("bl_vers_oral"), () => { silence(); location.replace(blancUrl("oral.html", { examen: "blanc" })); });
     return;
   }
   const pretes = E.parties.filter(blancPrete);

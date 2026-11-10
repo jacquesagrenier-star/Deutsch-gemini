@@ -240,7 +240,7 @@ html,body{margin:0;background:#DCE6EC;color:var(--encre);
 [dir=rtl] [lang=de],[dir=rtl] [lang=es],[dir=rtl] .explication b{direction:ltr;unicode-bidi:isolate}
 /* Les compteurs « 2 / 3 » : sans strong, ils se liraient « 3 / 2 » en RTL. */
 .compte{direction:ltr;unicode-bidi:isolate}
-[dir=rtl] .score{direction:ltr;text-align:left}
+[dir=rtl] .score{text-align:left}
 /* Le bouton du gros plan reste a gauche (place en px par placerFermer) ;
    son texte, lui, suit la langue. */
 
@@ -601,6 +601,7 @@ const TEXTES = {
   ici:         {fr: "ici", en: "here", tr: "burada", uk: "тут", fa: "اینجا", ar: "هنا", pt: "aqui", pl: "tutaj", ru: "здесь", de: "hier", es: "aquí"},
   unDeCes:     {fr: "à l'un de ces endroits", en: "in one of these places", tr: "bu yerlerden birinde", uk: "в одному з цих місць", fa: "در یکی از این جاها", ar: "في أحد هذه الأماكن", pt: "num destes lugares", pl: "w jednym z tych miejsc", ru: "в одном из этих мест", de: "an einer dieser Stellen", es: "en uno de estos lugares"},
   avaisTouche: {fr: "Tu avais touché :", en: "You tapped:", tr: "Dokunduğun:", uk: "Ти торкнувся:", fa: "تو این را زدی:", ar: "لقد لمست:", pt: "Você tocou:", pl: "Dotknąłeś(-aś):", ru: "Ты нажал(а):", de: "Du hattest getippt auf:", es: "Tocaste:"},
+  scoreCompte: {fr: "Score {a}", en: "Score {a}", tr: "Puan {a}", uk: "Рахунок {a}", fa: "امتیاز {a}", ar: "النتيجة {a}", pt: "Pontuação {a}", pl: "Wynik {a}", ru: "Счёт {a}", de: "Ergebnis {a}", es: "Puntuación {a}"},
   surScore:    {fr: "{b} sur {f}", en: "{b} out of {f}", tr: "{f} sorudan {b}", uk: "{b} з {f}", fa: "{b} از {f}", ar: "{b} من {f}", pt: "{b} de {f}", pl: "{b} z {f}", ru: "{b} из {f}", de: "{b} von {f}", es: "{b} de {f}"},
   sansFaute:   {fr: "sans faute, bravo !", en: "no mistakes, well done!", tr: "hatasız, bravo!", uk: "без помилок, браво!", fa: "بدون اشتباه، آفرین!", ar: "بلا أخطاء، أحسنت!", pt: "sem erros, parabéns!", pl: "bez błędu, brawo!", ru: "без ошибок, браво!", de: "fehlerfrei, super!", es: "¡sin errores, bravo!"},
   bienJoue:    {fr: "bien joué.", en: "well played.", tr: "iyi iş.", uk: "добре.", fa: "خوب بود.", ar: "أحسنت.", pt: "muito bem.", pl: "dobra robota.", ru: "молодец.", de: "gut gemacht.", es: "bien hecho."},
@@ -644,6 +645,8 @@ $("piedZones").textContent = T("piedZones");
 $("piedTexte").textContent = T("piedTexte");
 /* Un compteur « 2 / 3 » isole de gauche a droite (voir .compte). */
 const compte = (a, b) => `<span class="compte">${a} / ${b}</span>`;
+// La ligne du score (« Score 3 / 3 ») : sans son nom, on ne savait pas ce que comptaient ces chiffres (retour d'un testeur, 10 nov. 2026).
+const scoreTexte = (a, b) => T("scoreCompte", {a: compte(a, b)});
 /* Dans la seance, ce lien RAMENE au choix scene / cartes : il dit « Retour »,
    comme les autres retours de l'app. « ‹ Beim Arzt » ressemblait a un titre
    et menait ailleurs (Jacques, 6 oct.). Hors seance, il garde le titre. */
@@ -1623,7 +1626,7 @@ function trouver(){
   entete("A1 · " + T("trouve") + "  " + compte(i+1, fileTrouver.length),
          `${T("touche")} ${groupe(p)}${chez ? " — " + T("sur") + " " + nomDe(chez) : ""} <button class="choix hp-rond" style="margin-left:6px" id="reecouter"><svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg></button>`, !EN_SEANCE && !PP);
   $("reecouter").addEventListener("click", () => dire(motDit(p)));
-  $("bas").innerHTML = `<div class="score">${compte(bons, faits)}</div>`;
+  $("bas").innerHTML = `<div class="score">${scoreTexte(bons, faits)}</div>`;
   dire(motDit(p));
 }
 function toucher(id, pt){
@@ -1665,7 +1668,7 @@ function toucher(id, pt){
       if (r !== chez && estPersonne(r)){
         effacer(); anneau(r.id, true);
         $("bas").innerHTML = `<div class="explication">${T("cestQui", {a: nomDe(r), b: groupe(A_TROUVER.find(t => t.mot === cible)), c: nomDe(chez)})}</div>`
-                           + `<div class="score">${compte(bons, faits)}</div>`;
+                           + `<div class="score">${scoreTexte(bons, faits)}</div>`;
         return;
       }
     }
@@ -1723,7 +1726,7 @@ function poser(){
   entete(niv + " · " + COUCHES[niv].titre + "  " + compte(i+1, c.ordre.length), `<span lang="${LANG_CIBLE}">${q.q}</span>`, false);
   const opts = melanger(q.c.map((t,k) => ({t, ok:k === 0})));
   $("bas").innerHTML = opts.map((o,k) => `<button class="choix" lang="${LANG_CIBLE}" data-k="${k}">${o.t}</button>`).join("")
-                     + `<div class="score">${compte(bons, faits)}</div>`;
+                     + `<div class="score">${scoreTexte(bons, faits)}</div>`;
   $("bas").querySelectorAll(".choix").forEach((b,k) => b.addEventListener("click", () => repondre(q, opts, k)));
 }
 /* Une etape A1 dans la seance A2 : la meme question que « Trouve ! ». */
@@ -1735,7 +1738,7 @@ function poserTrouve(p, total){
   $("bas").classList.remove("en-haut");
   entete("A1 · " + T("trouve") + "  " + compte(i+1, total),
          `${T("touche")} ${groupe(p)}${chez ? " — " + T("sur") + " " + nomDe(chez) : ""}`, false);
-  $("bas").innerHTML = `<div class="score">${compte(bons, faits)}</div>`;
+  $("bas").innerHTML = `<div class="score">${scoreTexte(bons, faits)}</div>`;
   dire(motDit(p));
 }
 function repondre(q, opts, k){
@@ -1774,7 +1777,7 @@ function repondre(q, opts, k){
   const suite = document.createElement("button");
   suite.className = "suite"; suite.removeAttribute("lang"); suite.textContent = T("suite");
   suite.addEventListener("click", () => { i++; verrou = false; poser(); });
-  const sc = $("bas").querySelector(".score"); sc.innerHTML = compte(bons, faits);
+  const sc = $("bas").querySelector(".score"); sc.innerHTML = scoreTexte(bons, faits);
   $("bas").insertBefore(ex, sc); $("bas").insertBefore(suite, sc);
 }
 /* Le mot de la fin suit le score. « 0 sur 3 — bravo ! » sonnait faux

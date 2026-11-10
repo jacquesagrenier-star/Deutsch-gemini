@@ -59,7 +59,7 @@ async ([rang]) => {
   const cadre = document.getElementById('sceneCadre'), actif = (document.querySelector('.screen.active') || {}).id;
   let texte = '';
   try{ texte = cadre.contentDocument.body.innerText.replace(/\s+/g, ' ').slice(0, 90); }catch(e){ texte = 'cadre illisible'; }
-  return { actif, src: cadre.getAttribute('src').replace(/&t=\d+/, ''), texte };
+  return { actif, src: (cadre.dataset.page || '').replace(/&t=\d+/, ''), texte };
 }
 """
 

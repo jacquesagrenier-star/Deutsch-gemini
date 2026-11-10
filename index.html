@@ -6984,7 +6984,7 @@ body[data-theme="dark"] .setup-porte-niv{background:rgba(255,255,255,.1); color:
 body[data-theme="dark"] .setup-porte-niv.on{background:#E8A23A; color:#1C2430;}
 body[data-theme="dark"] .setup-porte-tard{color:#F0B456;}
 /* La ligne sous la rangee des niveaux (apres « Plus tard »). */
-#home #seancePilule > .pa-placement{order:3; width:100%;}
+:is(#home, #decouverteScene) #seancePilule > .pa-placement{order:3; width:100%;}
 .pa-placement{display:flex; align-items:center; gap:6px; border-radius:14px; padding:2px 4px 2px 10px; background:rgba(232,162,58,.16);}
 .pa-placement > button{border:0; margin:0; background:none; font:inherit; cursor:pointer;}
 .pa-placement .pa-plc-ouvrir{flex:1; text-align:start; font-size:13px; font-weight:700; color:#7D4A08; padding:7px 0;}
@@ -7070,7 +7070,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
    sortie que « Passer » ne verrait pas. */
 body.en-decouverte header{display:none;}
 .dec-haut{
-    position:sticky; top:0; z-index:5;
+    position:sticky; top:0; z-index:30;
     display:flex; align-items:center; gap:12px;
     margin:0 -20px 14px; padding:10px 20px;
     padding-top:max(10px, env(safe-area-inset-top, 0px));
@@ -7100,8 +7100,11 @@ body[data-theme="dark"] .dec-etape{color:#aab3c2;}
 }
 body[data-theme="dark"] .dec-passer{color:#F2F2F6; border-color:rgba(242,242,246,.35);}
 .dec-titre{margin:4px 0 6px;}
-.dec-texte{margin:0 0 16px; color:#4C566B; line-height:1.5;}
-body[data-theme="dark"] .dec-texte{color:#aab3c2;}
+/* Le texte de la visite sur son papier (retour d'un testeur, 10 nov. 2026 : gris sur le planisphere bleu, illisible). */
+.dec-lecture{margin:0 0 14px; padding:12px 14px; border-radius:14px; background:rgba(251,250,246,.94); box-shadow:0 2px 10px rgba(28,36,48,.10);}
+body[data-theme="dark"] .dec-lecture{background:rgba(14,28,38,.90); box-shadow:0 0 0 1px rgba(255,255,255,.10);}
+.dec-texte{margin:0; color:#1C2430; line-height:1.5;}
+body[data-theme="dark"] .dec-texte{color:#E6ECF2;}
 .dec-scene{margin-bottom:12px;}
 /* La carte jugee ne repond plus : la suite est au bouton CONTINUER. */
 .dec-scene.fait .flashcard{pointer-events:none;}
@@ -7113,10 +7116,10 @@ body[data-theme="dark"] .dec-texte{color:#aab3c2;}
 }
 .dec-bravo{
     margin:4px 0 14px; padding:10px 14px; border-radius:12px;
-    background:rgba(232,162,58,.16); border:1px solid rgba(232,162,58,.40);
+    background:#FFF3DC; border:1px solid #E8C48A;
     font-weight:700; line-height:1.45; color:#1C2430;
 }
-body[data-theme="dark"] .dec-bravo{color:#F2F2F6;}
+body[data-theme="dark"] .dec-bravo{color:#F2F2F6; background:#2A2418; border-color:rgba(232,162,58,.45);}
 /* L'etiquette de la projection (v701) : elle dit, a chaque arret, que ce
    qu'on voit est un EXEMPLE et a quel rythme. */
 /* La seance du jour montree a l'etape 5 (v702) : la vraie tuile de l'accueil,
@@ -7278,6 +7281,7 @@ body[data-theme="dark"] .cp-astuce{background:#2a2418; color:#e9d6b0;}
 .av-dates label{flex:1 1 130px; display:flex; flex-direction:column; gap:3px; font-size:12px; font-weight:800; color:#566070;}
 .av-date{font:inherit; font-size:15px; padding:8px 9px; border:1.5px solid #e3dccf; border-radius:10px; background:#fff; color:inherit; min-width:0;}
 /* v955 : l'heure du rappel de l'app installee (reglages, #rappelHeureBloc). */
+.rappel-propose-heure{display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 16px; font-weight:700;}
 .rappel-heure{font:inherit; font-size:18px; padding:6px 10px; border:1.5px solid #e3dccf; border-radius:10px; background:#fff; color:#1C2430;}
 /* v967 : « ✓ disponible hors ligne » sous la pilule (app installee seulement). */
 .pa-horsligne{display:inline-block; font-size:11.5px; font-weight:700; color:#2e7d4f; white-space:nowrap;}
@@ -7477,7 +7481,7 @@ body[data-theme="dark"] .cp-or-verdict.rien{color:#c6cdd8;}
    avec le mot : on voit ce que le bouton fait sans avoir a deviner. */
 .dec-ecouter{
     display:inline-flex; align-items:center; gap:8px;
-    width:auto; min-height:40px; padding:8px 16px; margin:-6px 0 14px;
+    width:auto; min-height:40px; padding:8px 16px; margin:10px 0 0;
     border-radius:999px; border:1.5px solid rgba(var(--wt-action-rgb),.35);
     background:rgba(var(--wt-action-rgb),.06); color:var(--wt-encre-texte, #1C2430);
     font-size:14px; font-weight:700; line-height:1; cursor:pointer;
@@ -7486,19 +7490,15 @@ body[data-theme="dark"] .cp-or-verdict.rien{color:#c6cdd8;}
 body[data-theme="dark"] .dec-ecouter{color:#F2F2F6; border-color:rgba(242,242,246,.35); background:rgba(242,242,246,.06);}
 .dec-projection{margin:10px 0 0; font-weight:700; line-height:1.45; color:#8A5A12;}
 body[data-theme="dark"] .dec-projection{color:#E8A23A;}
-/* LE BOUTON DE LA SUITE FLOTTE EN BAS DE L'ECRAN (v706). Demande de Jacques :
-   pendant le tableau, CONTINUER tombait sous le bord de l'ecran, et il a
-   cherche quelques secondes avant de penser a faire defiler. Collant en bas,
-   il reste visible quoi que la scene mesure ; le halo couleur papier,
-   translucide, le detache du tableau qui passe dessous. */
-#decouverte > button.primary{
-    position:sticky; z-index:5;
-    bottom:max(12px, env(safe-area-inset-bottom, 0px));
-    box-shadow:0 0 0 10px rgba(220,230,236,.82), 0 8px 20px rgba(var(--wt-action-rgb),.25);
-}
-body[data-theme="dark"] #decouverte > button.primary{
-    box-shadow:0 0 0 10px rgba(14,28,38,.78), 0 8px 20px rgba(0,0,0,.4);
-}
+/* LE BOUTON DE LA SUITE, EN BAS DE L'ECRAN (v706). Demande de Jacques : pendant le tableau, CONTINUER tombait sous le
+   bord de l'ecran. ⚠️ UNE BANDE FIXE ET OPAQUE, PLUS UN BOUTON COLLANT (retour d'un testeur, 10 nov. 2026) : en verre et
+   collant, il passait par-dessus « Reecouter », la carte du mot et l'image, qu'on lisait a travers. La marge du bas garde
+   tout le contenu au-dessus de la bande. */
+#decouverte{padding-bottom:calc(84px + env(safe-area-inset-bottom, 0px));}
+.dec-bas{position:fixed; z-index:30; left:0; right:0; bottom:0; max-width:620px; margin:0 auto; box-sizing:border-box;
+    padding:10px 20px calc(10px + env(safe-area-inset-bottom, 0px)); background:#DCE6EC; box-shadow:0 -6px 16px rgba(28,36,48,.12);}
+body[data-theme="dark"] .dec-bas{background:#0E1C26; box-shadow:0 -6px 16px rgba(0,0,0,.4);}
+.dec-bas:not(:has(> button:not(.hidden))){display:none;}
 .abo-plus-tard{margin-top:12px;}
 
 /* ===== Fonctions en essai (v713) : la ligne du tableau de bord ===== */
@@ -7854,7 +7854,7 @@ body[data-theme="dark"] .raccourci-sous{color:#a9b2c0;}
    le reflet qui glisse en haut reste. Et de l'air avant les scenes. */
 /* #home devant : la vitre (#seancePilule, plus bas dans ce fichier) pose son
    propre box-shadow, qu'il faut remplacer, de jour comme de nuit. */
-#home #seancePilule, body[data-theme="dark"] #home #seancePilule{box-shadow:inset 0 -10px 14px -10px rgba(160,90,10,.35), 0 12px 14px -9px rgba(170,95,10,.6);}
+:is(#home, #decouverteScene) #seancePilule, body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule{box-shadow:inset 0 -10px 14px -10px rgba(160,90,10,.35), 0 12px 14px -9px rgba(170,95,10,.6);}
 #seancePilule::before{display:none;}
 .orb-seance.pilule-mode{margin-bottom:12px;}
 /* L'en-tete de la vue « Tout le contenu ». */
@@ -8042,7 +8042,7 @@ body[data-theme="dark"] #home .orb .orb-icon{background:linear-gradient(180deg, 
 .pf-etapes i{flex:1; height:4px; border-radius:3px; background:rgba(28,36,48,.12);}
 .pf-etapes i.on{background:#E8A23A;}
 .pf-q{font-size:23px; font-weight:900; line-height:1.2; margin:0 0 6px; letter-spacing:-.01em; color:#1C2430;}
-.pf-sous{font-size:14px; color:#4C566B; margin:0 0 18px; line-height:1.4;}
+.pf-sous{font-size:14px; font-weight:600; color:#1C2430; margin:0 0 18px; line-height:1.4;}
 .pf-raison, .pf-facon{display:flex; align-items:center; gap:12px; width:100%; border:1.5px solid rgba(28,36,48,.14); background:#fff; border-radius:16px;
     margin:0 0 10px; font:inherit; color:#1C2430; text-align:start; cursor:pointer; transition:border-color .15s, background .15s, box-shadow .15s;}
 .pf-raison{padding:13px 14px; font-size:15.5px; font-weight:800;}
@@ -8051,7 +8051,7 @@ body[data-theme="dark"] #home .orb .orb-icon{background:linear-gradient(180deg, 
 .pf-facon{padding:9px 10px;}
 .pf-facon > b{font-size:15px; font-weight:900; line-height:1.25;}
 .pf-raison.on, .pf-facon.on{border-color:#E8A23A; background:#FFF6E6; box-shadow:0 0 0 3px rgba(232,162,58,.22);}
-.pf-pied{font-size:12.5px; color:#4C566B; text-align:center; margin:16px 0 0;}
+.pf-pied{font-size:12.5px; font-weight:600; color:#1C2430; text-align:center; margin:16px 0 0;}
 /* Les apercus : on montre la facon d'apprendre, on ne la nomme pas. */
 .pf-ap{position:relative; width:64px; height:54px; flex:0 0 auto; border-radius:12px; overflow:hidden; display:flex; align-items:center; justify-content:center;}
 .pf-ap-image{background-size:cover; background-position:center 35%; background-color:#d9cdb8;}
@@ -8070,7 +8070,8 @@ body[data-theme="dark"] #home .orb .orb-icon{background:linear-gradient(180deg, 
 .pf-ap-tout span:nth-child(3){background:linear-gradient(135deg,#FFF6E6,#F7E3BF);}
 .pf-ap-tout span:nth-child(4){background:#1C2430; color:#E8A23A; font-weight:900; font-size:16px; display:flex; align-items:center; justify-content:center;}
 body[data-theme="dark"] .pf-q{color:#F2F2F6;}
-body[data-theme="dark"] .pf-sous, body[data-theme="dark"] .pf-pied, body[data-theme="dark"] .pf-raison small{color:#a9b2c0;}
+body[data-theme="dark"] .pf-sous, body[data-theme="dark"] .pf-pied{color:#E6ECF2;}
+body[data-theme="dark"] .pf-raison small{color:#a9b2c0;}
 body[data-theme="dark"] .pf-raison, body[data-theme="dark"] .pf-facon{background:#1d232c; border-color:#2c333d; color:#eef1f5;}
 body[data-theme="dark"] .pf-raison.on, body[data-theme="dark"] .pf-facon.on{background:#2a2418; border-color:#E8A23A;}
 body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
@@ -8178,72 +8179,72 @@ header .theme-icon-btn, header .avatar{background:var(--v-fond) !important; -web
 #home .home-stats-card{background:transparent !important; box-shadow:none !important; border:0 !important; padding:0 !important;}
 
 /* La seance : une grande carte en verre, centree. */
-#home #seancePilule{display:grid !important; grid-template-columns:1fr; justify-items:center; text-align:center; gap:10px;
+:is(#home, #decouverteScene) #seancePilule{display:grid !important; grid-template-columns:1fr; justify-items:center; text-align:center; gap:10px;
     background:var(--v-fond) !important; color:var(--encre-v) !important; border-radius:30px !important; padding:20px 18px 18px !important;
     -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
     box-shadow:inset 1.5px 1.5px 0 var(--v-liser), inset -1px -1px 0 rgba(255,255,255,.25), var(--v-ombre) !important;}
-#home #seancePilule > .pa-aujourdhui{order:0; font-size:12px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--ambre-v);}
-#home #seancePilule > .pa-anneau{order:1; width:136px !important; height:136px !important;
+:is(#home, #decouverteScene) #seancePilule > .pa-aujourdhui{order:0; font-size:12px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--ambre-v);}
+:is(#home, #decouverteScene) #seancePilule > .pa-anneau{order:1; width:136px !important; height:136px !important;
     background:conic-gradient(from 0deg, #F6CF8C 0, #E8A23A calc(var(--p) * .6%), #A86A0E calc(var(--p) * 1%), rgba(28,36,48,.10) calc(var(--p) * 1%) 100%) !important;}
-body[data-theme="dark"] #home #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #FBE0A8 0, #F2B24A calc(var(--p) * .6%), #D98E1E calc(var(--p) * 1%), rgba(255,255,255,.10) calc(var(--p) * 1%) 100%) !important;}
-#home #seancePilule > .pa-anneau::before{inset:12px !important; background:#F3F6F9 !important; -webkit-mask:none !important; mask:none !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #FBE0A8 0, #F2B24A calc(var(--p) * .6%), #D98E1E calc(var(--p) * 1%), rgba(255,255,255,.10) calc(var(--p) * 1%) 100%) !important;}
+:is(#home, #decouverteScene) #seancePilule > .pa-anneau::before{inset:12px !important; background:#F3F6F9 !important; -webkit-mask:none !important; mask:none !important;}
 /* L'objectif atteint : le chiffre en vert ; la nuit, un halo vert au lieu du halo blanc (illisible sur le bleu nuit). */
-#home #seancePilule .pa-anneau.atteint b{color:#1F7A55 !important;}
-body[data-theme="dark"] #home #seancePilule .pa-anneau.atteint b{color:#8ED3AA !important; animation:none; text-shadow:0 0 10px rgba(80,190,130,.55), 0 0 22px rgba(80,190,130,.3) !important;}
-body[data-theme="dark"] #home #seancePilule > .pa-anneau::before{background:#14283A !important;}
-#home #seancePilule .pa-anneau b{font-size:40px !important; color:var(--encre-v) !important;}
-#home #seancePilule .pa-anneau small{font-size:14px !important; color:var(--gris-v) !important;}
-#home #seancePilule .pa-anneau b[data-l="3"]{font-size:32px !important;}
-#home #seancePilule .pa-fois{z-index:1;}
-#home #seancePilule > .pa-txt{order:2; width:100%;}
-#home #seancePilule .pa-titre{text-align:center !important;}
-#home #seancePilule .pa-kick{font-size:23px !important; font-weight:800 !important; letter-spacing:-.02em !important; text-transform:none !important; color:var(--encre-v) !important; line-height:1.15;}
-#home #seancePilule .pa-titre strong{color:var(--encre-v) !important; font-size:23px !important; font-weight:800 !important; letter-spacing:-.02em; text-align:center; white-space:normal; line-height:1.15;}
-#home #seancePilule.pa-etape .pa-kick{font-size:13px !important; font-weight:700 !important; color:var(--gris-v) !important;}
-#home #seancePilule .pa-sous{justify-content:center; flex-wrap:wrap; margin-top:4px;}
-#home #seancePilule .pa-niv{display:none !important;}
-#home #seancePilule .pa-sens{flex:0 1 auto; color:var(--gris-v) !important; font-size:13px !important; font-weight:600;}
-#home #seancePilule .pa-sens::before{content:none !important;}
-#home #seancePilule .pa-sens::after{content:" ·"; color:var(--gris-v);}
-#home #seancePilule .pa-sens:empty::after{content:none;}
-#home #seancePilule .pa-contenu{font-size:13px; color:var(--gris-v);}
-#home #seancePilule .pa-horsligne{flex-basis:100%;}
-#home #seancePilule > .pa-niveaux{order:3; display:flex; justify-content:center; width:100%;}
-#home #seancePilule .seance-niveaux{display:inline-flex !important; gap:3px; padding:4px; border-radius:999px; flex-wrap:nowrap;
+:is(#home, #decouverteScene) #seancePilule .pa-anneau.atteint b{color:#1F7A55 !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .pa-anneau.atteint b{color:#8ED3AA !important; animation:none; text-shadow:0 0 10px rgba(80,190,130,.55), 0 0 22px rgba(80,190,130,.3) !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule > .pa-anneau::before{background:#14283A !important;}
+:is(#home, #decouverteScene) #seancePilule .pa-anneau b{font-size:40px !important; color:var(--encre-v) !important;}
+:is(#home, #decouverteScene) #seancePilule .pa-anneau small{font-size:14px !important; color:var(--gris-v) !important;}
+:is(#home, #decouverteScene) #seancePilule .pa-anneau b[data-l="3"]{font-size:32px !important;}
+:is(#home, #decouverteScene) #seancePilule .pa-fois{z-index:1;}
+:is(#home, #decouverteScene) #seancePilule > .pa-txt{order:2; width:100%;}
+:is(#home, #decouverteScene) #seancePilule .pa-titre{text-align:center !important;}
+:is(#home, #decouverteScene) #seancePilule .pa-kick{font-size:23px !important; font-weight:800 !important; letter-spacing:-.02em !important; text-transform:none !important; color:var(--encre-v) !important; line-height:1.15;}
+:is(#home, #decouverteScene) #seancePilule .pa-titre strong{color:var(--encre-v) !important; font-size:23px !important; font-weight:800 !important; letter-spacing:-.02em; text-align:center; white-space:normal; line-height:1.15;}
+:is(#home, #decouverteScene) #seancePilule.pa-etape .pa-kick{font-size:13px !important; font-weight:700 !important; color:var(--gris-v) !important;}
+:is(#home, #decouverteScene) #seancePilule .pa-sous{justify-content:center; flex-wrap:wrap; margin-top:4px;}
+:is(#home, #decouverteScene) #seancePilule .pa-niv{display:none !important;}
+:is(#home, #decouverteScene) #seancePilule .pa-sens{flex:0 1 auto; color:var(--gris-v) !important; font-size:13px !important; font-weight:600;}
+:is(#home, #decouverteScene) #seancePilule .pa-sens::before{content:none !important;}
+:is(#home, #decouverteScene) #seancePilule .pa-sens::after{content:" ·"; color:var(--gris-v);}
+:is(#home, #decouverteScene) #seancePilule .pa-sens:empty::after{content:none;}
+:is(#home, #decouverteScene) #seancePilule .pa-contenu{font-size:13px; color:var(--gris-v);}
+:is(#home, #decouverteScene) #seancePilule .pa-horsligne{flex-basis:100%;}
+:is(#home, #decouverteScene) #seancePilule > .pa-niveaux{order:3; display:flex; justify-content:center; width:100%;}
+:is(#home, #decouverteScene) #seancePilule .seance-niveaux{display:inline-flex !important; gap:3px; padding:4px; border-radius:999px; flex-wrap:nowrap;
     background:rgba(255,255,255,.55); box-shadow:inset 0 0 0 1px rgba(30,41,59,.10);}
-body[data-theme="dark"] #home #seancePilule .seance-niveaux{background:rgba(255,255,255,.06); box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);}
-#home #seancePilule .seance-niveau{border:0 !important; background:none !important; color:var(--gris-v) !important; font:inherit; font-size:13.5px; font-weight:700;
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .seance-niveaux{background:rgba(255,255,255,.06); box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);}
+:is(#home, #decouverteScene) #seancePilule .seance-niveau{border:0 !important; background:none !important; color:var(--gris-v) !important; font:inherit; font-size:13.5px; font-weight:700;
     min-width:40px; height:34px; padding:0 8px; border-radius:999px; box-shadow:none !important; cursor:pointer;}
-#home #seancePilule .seance-niveau.on{position:relative; overflow:hidden; isolation:isolate; color:#2A1A05 !important;
+:is(#home, #decouverteScene) #seancePilule .seance-niveau.on{position:relative; overflow:hidden; isolation:isolate; color:#2A1A05 !important;
     background:linear-gradient(180deg, #F6CF8C, #E8A23A) !important;
     box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75), inset 0 -4px 8px -4px rgba(150,90,10,.4), 0 3px 10px rgba(200,130,30,.35) !important;}
-#home #seancePilule .seance-niveau.on::before{content:""; position:absolute; inset:2px; border-radius:inherit; z-index:-1;
+:is(#home, #decouverteScene) #seancePilule .seance-niveau.on::before{content:""; position:absolute; inset:2px; border-radius:inherit; z-index:-1;
     background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,0) 55%);}
-#home #seancePilule > .pa-play{order:4; width:100% !important; height:54px !important; border-radius:28px !important; gap:8px;}
-#home #seancePilule .pa-play-txt{position:relative; font-size:16.5px; font-weight:700; letter-spacing:-.01em;}
-#home #seancePilule > .pa-play svg{display:none;}
-#home #seancePilule .pa-liste{inset-inline-start:50% !important; transform:translateX(-50%); top:calc(100% - 40px) !important;}
-html[dir="rtl"] #home #seancePilule .pa-liste{transform:translateX(50%);}
+:is(#home, #decouverteScene) #seancePilule > .pa-play{order:4; width:100% !important; height:54px !important; border-radius:28px !important; gap:8px;}
+:is(#home, #decouverteScene) #seancePilule .pa-play-txt{position:relative; font-size:16.5px; font-weight:700; letter-spacing:-.01em;}
+:is(#home, #decouverteScene) #seancePilule > .pa-play svg{display:none;}
+:is(#home, #decouverteScene) #seancePilule .pa-liste{inset-inline-start:50% !important; transform:translateX(-50%); top:calc(100% - 40px) !important;}
+html[dir="rtl"] :is(#home, #decouverteScene) #seancePilule .pa-liste{transform:translateX(50%);}
 
 /* Les boutons en verre : NOIRS le jour, AMBRES la nuit (couleurs de la video du 29 oct.). */
-#home #seancePilule > .pa-play, #home .pa-ecoute .pa-play{position:relative; overflow:hidden; isolation:isolate; border:0 !important; color:#fff !important;
+:is(#home, #decouverteScene) #seancePilule > .pa-play, :is(#home, #decouverteScene) .pa-ecoute .pa-play{position:relative; overflow:hidden; isolation:isolate; border:0 !important; color:#fff !important;
     background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%) !important;
     box-shadow:inset 0 0 0 3px rgba(0,0,0,.35), inset 0 0 18px rgba(255,255,255,.16), inset 0 -8px 14px -8px rgba(0,0,0,.6),
                0 12px 28px rgba(20,16,10,.30), 0 2px 5px rgba(0,0,0,.15) !important;}
-#home #seancePilule > .pa-play::before, #home .pa-ecoute .pa-play::before{content:""; position:absolute; inset:2px; left:2px !important; top:2px !important; width:auto !important; height:auto !important; border-radius:inherit; z-index:-1; pointer-events:none;
+:is(#home, #decouverteScene) #seancePilule > .pa-play::before, :is(#home, #decouverteScene) .pa-ecoute .pa-play::before{content:""; position:absolute; inset:2px; left:2px !important; top:2px !important; width:auto !important; height:auto !important; border-radius:inherit; z-index:-1; pointer-events:none;
     background:linear-gradient(180deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.18) 38%, rgba(255,255,255,0) 52%),
                radial-gradient(75% 55% at 55% 125%, rgba(255,200,120,.30), rgba(255,255,255,0) 65%);}
-#home #seancePilule > .pa-play::after, #home .pa-ecoute .pa-play::after{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; padding:2.2px;
+:is(#home, #decouverteScene) #seancePilule > .pa-play::after, :is(#home, #decouverteScene) .pa-ecoute .pa-play::after{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; padding:2.2px;
     background:linear-gradient(140deg, #fff 0%, rgba(255,255,255,.55) 22%, rgba(255,255,255,.06) 48%, rgba(255,255,255,.25) 74%, rgba(255,255,255,.95) 100%);
     -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude;}
-#home .pa-ecoute .pa-play svg{position:relative; fill:#fff !important;}
-body[data-theme="dark"] #home #seancePilule > .pa-play, body[data-theme="dark"] #home .pa-ecoute .pa-play{color:#2A1A05 !important;
+:is(#home, #decouverteScene) .pa-ecoute .pa-play svg{position:relative; fill:#fff !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule > .pa-play, body[data-theme="dark"] :is(#home, #decouverteScene) .pa-ecoute .pa-play{color:#2A1A05 !important;
     background:linear-gradient(180deg, rgba(250,206,128,.80) 0%, rgba(237,169,60,.74) 52%, rgba(208,138,28,.84) 100%) !important;
     box-shadow:inset 0 0 0 3px rgba(150,90,10,.28), inset 0 0 18px rgba(255,255,255,.35), inset 0 -10px 16px -8px rgba(140,80,0,.5), 0 10px 26px rgba(237,169,60,.30) !important;}
-body[data-theme="dark"] #home #seancePilule > .pa-play::before, body[data-theme="dark"] #home .pa-ecoute .pa-play::before{
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule > .pa-play::before, body[data-theme="dark"] :is(#home, #decouverteScene) .pa-ecoute .pa-play::before{
     background:linear-gradient(180deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.18) 38%, rgba(255,255,255,0) 52%),
                radial-gradient(75% 55% at 55% 125%, rgba(255,255,255,.45), rgba(255,255,255,0) 65%);}
-body[data-theme="dark"] #home .pa-ecoute .pa-play svg{fill:#2A1A05 !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) .pa-ecoute .pa-play svg{fill:#2A1A05 !important;}
 
 /* Ma progression : une carte en verre, sous la seance, depliee. */
 #home #carteVocab{grid-column:1 / -1; background:var(--v-fond) !important; border-radius:24px !important; border:0 !important; padding:16px 18px !important;
@@ -8255,12 +8256,12 @@ body[data-theme="dark"] #home .pa-ecoute .pa-play svg{fill:#2A1A05 !important;}
 /* v1006 : UN REFLET QUI GLISSE sur « Continuer la seance » (Jacques : « un petit reflet qui circule
    de gauche vers la droite doucement, qui revient vers la gauche »). Une lueur douce sur le haut du
    verre, qui va et vient ; immobile si le telephone demande moins d'animations. */
-#home #seancePilule .pa-lueur{position:absolute; top:3px; left:-30%; width:30%; height:46%; border-radius:999px; pointer-events:none; z-index:0;
+:is(#home, #decouverteScene) #seancePilule .pa-lueur{position:absolute; top:3px; left:-30%; width:30%; height:46%; border-radius:999px; pointer-events:none; z-index:0;
     background:radial-gradient(closest-side, rgba(255,255,255,.55), rgba(255,255,255,0)); filter:blur(1px);
     animation:paLueur 7s ease-in-out infinite alternate;}
-body[data-theme="dark"] #home #seancePilule .pa-lueur{background:radial-gradient(closest-side, rgba(255,255,255,.75), rgba(255,255,255,0));}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .pa-lueur{background:radial-gradient(closest-side, rgba(255,255,255,.75), rgba(255,255,255,0));}
 @keyframes paLueur{0%{left:-30%;} 100%{left:100%;}}
-@media (prefers-reduced-motion: reduce){ #home #seancePilule .pa-lueur{animation:none; left:8%;} }
+@media (prefers-reduced-motion: reduce){ :is(#home, #decouverteScene) #seancePilule .pa-lueur{animation:none; left:8%;} }
 
 /* v1004 : PLUS DE FLOU GEANT DERRIERE L'ACCUEIL. La carte de stats gardait le blur(22px) de
    l'ancienne carte : un grand rectangle laiteux derriere tout (Jacques : « un fond opaque,
@@ -8276,15 +8277,15 @@ body[data-theme="dark"] #home #seancePilule .pa-lueur{background:radial-gradient
     -webkit-backdrop-filter:blur(6px) saturate(1.4) !important; backdrop-filter:blur(6px) saturate(1.4) !important;
     box-shadow:inset 1.5px 1.5px 0 var(--v-liser), inset -1px -1px 0 rgba(255,255,255,.25), 0 4px 12px rgba(20,40,60,.06) !important;}
 /* v1004 : la pousse 🌱 plus grosse (Jacques). */
-#home #seancePilule .seance-pp{font-size:20px !important; min-width:44px;}
+:is(#home, #decouverteScene) #seancePilule .seance-pp{font-size:20px !important; min-width:44px;}
 /* v1004 : LE « ×4 » SOUS LE CHIFFRE, plus gros, en vert (proposition C retenue par Jacques :
    « en dessous de l'objectif du jour, je trouve que c'est bien »). */
-#home #seancePilule .pa-anneau{flex-direction:column;}
-#home #seancePilule .pa-fois{position:relative !important; top:auto !important; right:auto !important; left:auto !important; order:3; margin-top:9px; /* v1022 : 4 -> 9 px, moins colle (Jacques) */
+:is(#home, #decouverteScene) #seancePilule .pa-anneau{flex-direction:column;}
+:is(#home, #decouverteScene) #seancePilule .pa-fois{position:relative !important; top:auto !important; right:auto !important; left:auto !important; order:3; margin-top:9px; /* v1022 : 4 -> 9 px, moins colle (Jacques) */
     font-size:15px !important; font-weight:900 !important; padding:2px 10px !important; line-height:1.2 !important; color:#fff !important;
     border-radius:999px !important; background:linear-gradient(180deg, rgba(120,200,150,.98), rgba(40,128,82,.98)) !important;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 3px 8px rgba(30,90,60,.3) !important;}
-#home #seancePilule .pa-anneau.atteint b{font-size:34px !important;}
+:is(#home, #decouverteScene) #seancePilule .pa-anneau.atteint b{font-size:34px !important;}
 #home #carteVocab .carte-vocab-part.sus, #home #carteVocab .carte-vocab-part.cours{background-image:none;}
 
 /* Les scenes : trois par page, en cartes de verre. */
@@ -8337,18 +8338,18 @@ body[data-theme="dark"] #home .explorer-tout{color:#2A1A05 !important;
 #home .explorer-v span{margin-top:7px !important; padding:0 8px; font-weight:700 !important; font-size:min(13px, calc(140cqw / var(--n, 10))) !important;   /* v1005 : le titre tient sans « … » (« Marché de N… ») ; v1025 : 150 -> 140cqw, « Le déménagement » se coupait encore (Jacques) */ height:16px !important; line-height:16px !important;}
 
 /* Ecouter et Mes episodes : des cartes de verre claires, le bouton a droite. */
-#home .pilule-accueil.pa-ecoute{border:0 !important; background:var(--v-fond) !important; color:var(--encre-v) !important; border-radius:22px !important; padding:12px 12px 12px 14px !important;
+:is(#home, #decouverteScene) .pilule-accueil.pa-ecoute{border:0 !important; background:var(--v-fond) !important; color:var(--encre-v) !important; border-radius:22px !important; padding:12px 12px 12px 14px !important;
     -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
     box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre) !important;}
-#home .pilule-accueil.pa-ecoute .pa-titre strong{color:var(--encre-v) !important; font-size:16px !important;}
-#home .pilule-accueil.pa-ecoute .pa-kick{color:var(--encre-v) !important;}
-#home .pilule-accueil.pa-ecoute .pa-sens{color:var(--gris-v) !important;}
-#home .pilule-accueil.pa-ecoute .pa-sens::before{color:var(--gris-v) !important;}
-#home .pilule-accueil.pa-ecoute .pa-niv{color:var(--encre-v) !important; background:rgba(30,41,59,.06) !important; box-shadow:inset 0 0 0 1.5px rgba(30,41,59,.18) !important;}
-body[data-theme="dark"] #home .pilule-accueil.pa-ecoute .pa-niv{background:rgba(255,255,255,.08) !important; box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25) !important;}
-#home .pilule-accueil.pa-ecoute .ela-onde i{background:#B07A1E !important;}
-#home .pilule-accueil.pa-ecoute .ela-onde i:nth-child(3n){background:#E8A23A !important;}
-#home .pilule-accueil.pa-ecoute .pa-play{width:46px !important; height:46px !important;}
+:is(#home, #decouverteScene) .pilule-accueil.pa-ecoute .pa-titre strong{color:var(--encre-v) !important; font-size:16px !important;}
+:is(#home, #decouverteScene) .pilule-accueil.pa-ecoute .pa-kick{color:var(--encre-v) !important;}
+:is(#home, #decouverteScene) .pilule-accueil.pa-ecoute .pa-sens{color:var(--gris-v) !important;}
+:is(#home, #decouverteScene) .pilule-accueil.pa-ecoute .pa-sens::before{color:var(--gris-v) !important;}
+:is(#home, #decouverteScene) .pilule-accueil.pa-ecoute .pa-niv{color:var(--encre-v) !important; background:rgba(30,41,59,.06) !important; box-shadow:inset 0 0 0 1.5px rgba(30,41,59,.18) !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) .pilule-accueil.pa-ecoute .pa-niv{background:rgba(255,255,255,.08) !important; box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25) !important;}
+:is(#home, #decouverteScene) .pilule-accueil.pa-ecoute .ela-onde i{background:#B07A1E !important;}
+:is(#home, #decouverteScene) .pilule-accueil.pa-ecoute .ela-onde i:nth-child(3n){background:#E8A23A !important;}
+:is(#home, #decouverteScene) .pilule-accueil.pa-ecoute .pa-play{width:46px !important; height:46px !important;}
 
 /* Le bas : le tableau en bandeau, puis « Mis de cote » et « Tout le contenu » ECRITS. */
 #home #accueilRaccourcis{display:grid !important; grid-template-columns:1fr !important; gap:0 !important; border-radius:22px; overflow:hidden;
@@ -8399,13 +8400,13 @@ body[data-theme="dark"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{
    circulation autour du cercle »). Fine et lente (un tour en 6 s), les deux boutons decales pour ne
    pas battre ensemble ; elle s'ajoute au liseré lumineux, sur le meme anneau. */
 @property --tour{syntax:"<angle>"; initial-value:0deg; inherits:false;}
-#home .pa-ecoute .pa-play::after{
+:is(#home, #decouverteScene) .pa-ecoute .pa-play::after{
     background:conic-gradient(from var(--tour), rgba(255,255,255,0) 0deg 290deg, rgba(255,255,255,.95) 335deg, rgba(255,255,255,0) 360deg),
                linear-gradient(140deg, #fff 0%, rgba(255,255,255,.55) 22%, rgba(255,255,255,.06) 48%, rgba(255,255,255,.25) 74%, rgba(255,255,255,.95) 100%) !important;
     padding:2.4px !important; animation:tourLueur 6s linear infinite;}
 #home .pa-episodes .pa-play::after{animation-delay:-3s;}
 @keyframes tourLueur{to{--tour:360deg;}}
-@media (prefers-reduced-motion: reduce){ #home .pa-ecoute .pa-play::after{animation:none;} }
+@media (prefers-reduced-motion: reduce){ :is(#home, #decouverteScene) .pa-ecoute .pa-play::after{animation:none;} }
 
 /* v1007 : « TA SEANCE T'ATTEND » RETIRE, la seance remonte (Jacques, 29 oct. 2026 : « je ne
    mettrai pas ta seance t'attend [...] je remonterai ma seance du jour plus haut »). */
@@ -8415,12 +8416,12 @@ body[data-theme="dark"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{
 /* v1007 : SUR « CONTINUER LA SEANCE », LA LUEUR QUI FAIT LE TOUR, comme sur les ▶ d'Ecouter et des
    episodes, mais beaucoup plus lente (Jacques : « au lieu d'avoir le reflet, je mettrais le contour
    [...] je ferais tourner ca beaucoup plus lentement »). Le reflet qui glissait (v1006) s'en va. */
-#home #seancePilule .pa-lueur{display:none !important;}
-#home #seancePilule > .pa-play::after{
+:is(#home, #decouverteScene) #seancePilule .pa-lueur{display:none !important;}
+:is(#home, #decouverteScene) #seancePilule > .pa-play::after{
     background:conic-gradient(from var(--tour), rgba(255,255,255,0) 0deg 300deg, rgba(255,255,255,.95) 338deg, rgba(255,255,255,0) 360deg),
                linear-gradient(140deg, #fff 0%, rgba(255,255,255,.55) 22%, rgba(255,255,255,.06) 48%, rgba(255,255,255,.25) 74%, rgba(255,255,255,.95) 100%) !important;
     padding:2.4px !important; animation:tourLueur 16s linear infinite;}
-@media (prefers-reduced-motion: reduce){ #home #seancePilule > .pa-play::after{animation:none;} }
+@media (prefers-reduced-motion: reduce){ :is(#home, #decouverteScene) #seancePilule > .pa-play::after{animation:none;} }
 
 /* v1006 : LE CLAP S'ANIME (Jacques : « le clap, monter puis descendre tranquillement, comme pour
    qu'on commence la video »). Le bras se leve doucement, marque un temps, puis se rabat sur
@@ -8441,24 +8442,24 @@ body[data-theme="dark"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{
    - « Continuer la seance » : le haut tout noir -- plus de reflet ni de coin pale en haut a gauche
      (« c'est bizarre que ca soit plus pale ») ; la lueur qui fait le tour reste, un peu plus vite. */
 #home .home-greeting{font-size:18px !important;}
-#home .pa-ecoute .pa-play::after{animation:none !important;
+:is(#home, #decouverteScene) .pa-ecoute .pa-play::after{animation:none !important;
     background:linear-gradient(140deg, #fff 0%, rgba(255,255,255,.55) 22%, rgba(255,255,255,.06) 48%, rgba(255,255,255,.25) 74%, rgba(255,255,255,.95) 100%) !important;}
-#home #seancePilule > .pa-play::before{content:none !important;}
+:is(#home, #decouverteScene) #seancePilule > .pa-play::before{content:none !important;}
 /* Jacques : « la bande du haut noire uniforme, mais plus foncee que l'interieur ; puis le reste,
    un plus pale autour ». Une bande du haut d'un noir profond, un interieur un cran plus clair, et un
    anneau pale tout autour (uniforme, sans coin plus clair), ou passe la lueur. */
-#home #seancePilule > .pa-play{background:linear-gradient(180deg, rgba(3,3,3,.99) 0%, rgba(5,5,5,.99) 40%, rgba(34,32,30,.95) 100%) !important;}
-body[data-theme="dark"] #home #seancePilule > .pa-play{background:linear-gradient(180deg, rgba(190,120,20,.96) 0%, rgba(196,126,24,.95) 40%, rgba(236,168,66,.90) 100%) !important;}
-#home #seancePilule > .pa-play::after{animation-duration:10s !important;
+:is(#home, #decouverteScene) #seancePilule > .pa-play{background:linear-gradient(180deg, rgba(3,3,3,.99) 0%, rgba(5,5,5,.99) 40%, rgba(34,32,30,.95) 100%) !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule > .pa-play{background:linear-gradient(180deg, rgba(190,120,20,.96) 0%, rgba(196,126,24,.95) 40%, rgba(236,168,66,.90) 100%) !important;}
+:is(#home, #decouverteScene) #seancePilule > .pa-play::after{animation-duration:10s !important;
     background:conic-gradient(from var(--tour), rgba(255,255,255,0) 0deg 300deg, rgba(255,255,255,.95) 338deg, rgba(255,255,255,0) 360deg),
                linear-gradient(rgba(255,255,255,.45), rgba(255,255,255,.45)) !important;}
 
 /* v1010 : LES QUATRE BOUTONS RONDS AVEC L'ANNEAU BLANC (Jacques, capture a l'appui : « je prefere ce
    signe, pour les quatre ») -- le disque sombre (ambre la nuit) cerne d'un anneau blanc net, sur
    les ▶ d'Ecouter et des episodes comme sur les « › » de Mis de cote et Tout le contenu. */
-#home .pa-ecoute .pa-play, #home #accueilRaccourcis .orb:not(#tuileTableau)::after{border:2.5px solid rgba(255,255,255,.96) !important;
+:is(#home, #decouverteScene) .pa-ecoute .pa-play, #home #accueilRaccourcis .orb:not(#tuileTableau)::after{border:2.5px solid rgba(255,255,255,.96) !important;
     background-clip:padding-box !important; background-origin:padding-box !important;}
-#home .pa-ecoute .pa-play{
+:is(#home, #decouverteScene) .pa-ecoute .pa-play{
     background:linear-gradient(180deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.18) 38%, rgba(255,255,255,0) 52%),
                radial-gradient(75% 55% at 55% 125%, rgba(255,200,120,.30), rgba(255,255,255,0) 65%),
                linear-gradient(180deg, rgba(52,48,44,.96) 0%, rgba(18,16,14,.98) 50%, rgba(6,5,4,1) 100%) !important;}
@@ -8466,7 +8467,7 @@ body[data-theme="dark"] #home #seancePilule > .pa-play{background:linear-gradien
     background:linear-gradient(180deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.18) 38%, rgba(255,255,255,0) 52%),
                radial-gradient(75% 55% at 55% 125%, rgba(255,200,120,.30), rgba(255,255,255,0) 65%),
                linear-gradient(180deg, rgba(52,48,44,.96) 0%, rgba(18,16,14,.98) 50%, rgba(6,5,4,1) 100%) !important;}
-body[data-theme="dark"] #home .pa-ecoute .pa-play, body[data-theme="dark"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{
+body[data-theme="dark"] :is(#home, #decouverteScene) .pa-ecoute .pa-play, body[data-theme="dark"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{
     border-color:rgba(255,246,230,.92) !important;
     background:linear-gradient(180deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.18) 38%, rgba(255,255,255,0) 52%),
                radial-gradient(75% 55% at 55% 125%, rgba(255,255,255,.45), rgba(255,255,255,0) 65%),
@@ -8493,14 +8494,14 @@ body[data-theme="dark"] .cal-serie-case.auj, body[data-theme="dark"] .cal-serie-
    style pour les quatre » -- celui des « › » de la v1006). Disque sombre en degrade, bord interieur
    sombre, lueur interne, filet clair en haut ; ambre la nuit. Le ▶ reste sur Ecouter et Mes episodes,
    le « › » sur Mis de cote et Tout le contenu. */
-#home .pa-ecoute .pa-play, #home #accueilRaccourcis .orb:not(#tuileTableau)::after{border:0 !important;
+:is(#home, #decouverteScene) .pa-ecoute .pa-play, #home #accueilRaccourcis .orb:not(#tuileTableau)::after{border:0 !important;
     background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%) !important;
     box-shadow:inset 0 0 0 2px rgba(0,0,0,.35), inset 0 0 14px rgba(255,255,255,.16), inset 0 1.5px 0 rgba(255,255,255,.55), 0 8px 18px rgba(20,16,10,.25) !important;}
-body[data-theme="dark"] #home .pa-ecoute .pa-play, body[data-theme="dark"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{
+body[data-theme="dark"] :is(#home, #decouverteScene) .pa-ecoute .pa-play, body[data-theme="dark"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{
     background:linear-gradient(180deg, rgba(250,206,128,.86) 0%, rgba(237,169,60,.80) 52%, rgba(208,138,28,.88) 100%) !important;
     box-shadow:inset 0 0 0 2px rgba(150,90,10,.28), inset 0 0 14px rgba(255,255,255,.35), inset 0 1.5px 0 rgba(255,255,255,.8), 0 8px 20px rgba(237,169,60,.28) !important;}
-#home .pa-ecoute .pa-play::before, #home .pa-ecoute .pa-play::after{content:none !important;}
-#home .pa-ecoute .pa-play svg{width:17px; height:17px;}
+:is(#home, #decouverteScene) .pa-ecoute .pa-play::before, :is(#home, #decouverteScene) .pa-ecoute .pa-play::after{content:none !important;}
+:is(#home, #decouverteScene) .pa-ecoute .pa-play svg{width:17px; height:17px;}
 
 /* 6 nov. 2026 : LA SEANCE EN PARTIES (voir LE PLAN DE LA SEANCE dans le script).
    Une barre sous l'en-tete : une part par partie, faite en encre, en cours en ambre. */
@@ -8508,11 +8509,14 @@ body[data-theme="dark"] #home .pa-ecoute .pa-play, body[data-theme="dark"] #home
 /* Jacques, 6 nov. (iPhone) : la capsule micro / haut-parleur / compteur passait a la ligne sous un en-tete
    long et se posait sur la barre (marge negative). La capsule reste a droite, le texte se replie a cote ;
    sous 350 px elle passe sur sa ligne, et la barre a toujours la sienne dessous. */
-#flashcards.seance-en-parts .title-row{flex-wrap:nowrap; align-items:flex-start;}
-#flashcards.seance-en-parts .title-row > div:first-child{flex:1 1 auto; min-width:0;}
-#flashcards.seance-en-parts .title-row-pills{flex:none; flex-wrap:nowrap; margin-top:2px;}
-#flashcards.seance-en-parts #flashThemeTitle{font-size:24px; line-height:1.15; overflow-wrap:anywhere;}
-@media (max-width:349px){ #flashcards.seance-en-parts .title-row{flex-wrap:wrap;} #flashcards.seance-en-parts .title-row-pills{margin-inline-start:auto;} }
+/* ⚠️ JAMAIS « overflow-wrap:anywhere » ICI (retour d'un testeur, 10 nov. 2026 : « Ne / w / wor / ds », « Rev / iew »).
+   Il ramene la largeur minimale du titre a une lettre : les boutons, de largeur fixe, gardaient leur place et la colonne
+   du titre s'ecrasait d'autant. La base « min-content » lui garantit son mot le plus long ; si ce mot et les boutons ne
+   tiennent pas ensemble, les boutons passent a la ligne, a droite. */
+#flashcards.seance-en-parts .title-row{flex-wrap:wrap; align-items:flex-start;}
+#flashcards.seance-en-parts .title-row > div:first-child{flex:1 1 min-content; min-width:0;}
+#flashcards.seance-en-parts .title-row-pills{flex:none; flex-wrap:nowrap; margin-top:2px; margin-inline-start:auto;}
+#flashcards.seance-en-parts #flashThemeTitle{font-size:24px; line-height:1.15; overflow-wrap:break-word;}
 #seanceParts.hidden{display:none;}
 /* 9 nov. 2026 (Jacques : « un petit peu plus epaisse », « encore plus visible ») : l'epaisseur et le fond ici seulement. */
 #seanceParts{--sp-epais:10px; --sp-vide:rgba(28,36,48,.18);}
@@ -8538,7 +8542,7 @@ body[data-theme="dark"] .cp-passage-ok svg{stroke:#8ED3AA;}
 .cp-passage-n{color:var(--gris-v); font-size:13px;}
 .cp-passage-go{margin-top:10px; min-width:180px;}
 /* Le plan sur la carte de l'accueil : il peut passer sur deux lignes. */
-#home #seancePilule .pa-contenu.pa-plan{white-space:normal; text-wrap:balance;}
+:is(#home, #decouverteScene) #seancePilule .pa-contenu.pa-plan{white-space:normal; text-wrap:balance;}
 
 /* 6 nov. 2026 : L'ACCUEIL PAR PALIERS (palierAccueil). Rien n'est ferme : Tout le contenu
    garde tout ; c'est l'accueil qui montre moins a qui commence. */
@@ -8644,10 +8648,10 @@ body[data-theme="dark"] .tc-total{color:#F6CE84;}
 .tc-proch b{color:#FFE3A8; font-weight:900;}
 body[data-theme="dark"] .tc-proch b{color:#F6CE84;}
 .tc-dist{font-size:13px; font-weight:700;}
-#home #seancePilule.niveaux-replies > .pa-niveaux{display:none !important;}
-#home #seancePilule .pa-changer{order:3; justify-self:center; border:0; background:none; font:inherit; font-size:13px; font-weight:700;
+:is(#home, #decouverteScene) #seancePilule.niveaux-replies > .pa-niveaux{display:none !important;}
+:is(#home, #decouverteScene) #seancePilule .pa-changer{order:3; justify-self:center; border:0; background:none; font:inherit; font-size:13px; font-weight:700;
     color:var(--encre-v); padding:4px 10px; border-radius:999px; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
-#home #seancePilule .pa-changer.hidden{display:none;}
+:is(#home, #decouverteScene) #seancePilule .pa-changer.hidden{display:none;}
 #home.vue-contenu #suggAccueil{display:none !important;}
 /* Les trois suggestions : des cartes de verre, l'image a gauche, le rond a droite. */
 .sugg-accueil{display:grid; gap:10px; grid-column:1 / -1;}
@@ -8737,12 +8741,12 @@ body:not([data-theme="dark"]) .mos-plein-intro strong{color:#1C2430;}
    j'ouvre wortando.com sur mon laptop, ca gele »). Mesure : 22 images/s avec le flou, 49 sans -- le
    flou (backdrop-filter) se recalcule a chaque image, la carte du monde et la lueur bougeant dessous.
    Le verre garde sa transparence, un peu plus opaque pour rester lisible sans flou. */
-#home #seancePilule, #home #carteVocab, #home .pilule-accueil.pa-ecoute, #home #accueilRaccourcis .orb, #home .explorer-v,
+:is(#home, #decouverteScene) #seancePilule, #home #carteVocab, :is(#home, #decouverteScene) .pilule-accueil.pa-ecoute, #home #accueilRaccourcis .orb, #home .explorer-v,
 #home #orbGrid > .orb:not(.orb-seance), #home .orb-section{-webkit-backdrop-filter:none !important; backdrop-filter:none !important;}
-#home #seancePilule{background:rgba(255,255,255,.66) !important;}
-#home #carteVocab, #home .pilule-accueil.pa-ecoute, #home #accueilRaccourcis .orb, #home .explorer-v, #home #orbGrid > .orb:not(.orb-seance){background:rgba(255,255,255,.60) !important;}
-body[data-theme="dark"] #home #seancePilule{background:rgba(20,36,50,.72) !important;}
-body[data-theme="dark"] #home #carteVocab, body[data-theme="dark"] #home .pilule-accueil.pa-ecoute, body[data-theme="dark"] #home #accueilRaccourcis .orb,
+:is(#home, #decouverteScene) #seancePilule{background:rgba(255,255,255,.66) !important;}
+#home #carteVocab, :is(#home, #decouverteScene) .pilule-accueil.pa-ecoute, #home #accueilRaccourcis .orb, #home .explorer-v, #home #orbGrid > .orb:not(.orb-seance){background:rgba(255,255,255,.60) !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule{background:rgba(20,36,50,.72) !important;}
+body[data-theme="dark"] #home #carteVocab, body[data-theme="dark"] :is(#home, #decouverteScene) .pilule-accueil.pa-ecoute, body[data-theme="dark"] #home #accueilRaccourcis .orb,
 body[data-theme="dark"] #home .explorer-v, body[data-theme="dark"] #home #orbGrid > .orb:not(.orb-seance){background:rgba(20,36,50,.66) !important;}
 
 /* --- Les cartes (flashcards) : en verre --- */
@@ -8949,48 +8953,48 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
    chaude : un or en diagonale, transparent dans le coin en haut a gauche (la carte du monde s'y devine)
    et plein en bas a droite. Ce qui marque TA progression est turquoise, la seule couleur froide de la
    carte : l'anneau et le niveau choisi. Le bouton reste noir. La nuit : le meme or, en cognac sombre. */
-#home #seancePilule{background:linear-gradient(145deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.18) 22%,rgba(255,255,255,0) 40%),linear-gradient(145deg,rgba(250,196,96,0.080) 0.0%,rgba(250,191,91,0.094) 8.3%,rgba(249,186,86,0.133) 16.7%,rgba(248,181,81,0.193) 25.0%,rgba(248,176,76,0.267) 33.3%,rgba(247,170,74,0.351) 41.7%,rgba(246,163,71,0.440) 50.0%,rgba(245,156,68,0.529) 58.3%,rgba(244,150,66,0.613) 66.7%,rgba(243,144,64,0.688) 75.0%,rgba(242,139,63,0.747) 83.3%,rgba(241,134,62,0.786) 91.7%,rgba(240,128,60,0.800) 100.0%) !important;
+:is(#home, #decouverteScene) #seancePilule{background:linear-gradient(145deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.18) 22%,rgba(255,255,255,0) 40%),linear-gradient(145deg,rgba(250,196,96,0.080) 0.0%,rgba(250,191,91,0.094) 8.3%,rgba(249,186,86,0.133) 16.7%,rgba(248,181,81,0.193) 25.0%,rgba(248,176,76,0.267) 33.3%,rgba(247,170,74,0.351) 41.7%,rgba(246,163,71,0.440) 50.0%,rgba(245,156,68,0.529) 58.3%,rgba(244,150,66,0.613) 66.7%,rgba(243,144,64,0.688) 75.0%,rgba(242,139,63,0.747) 83.3%,rgba(241,134,62,0.786) 91.7%,rgba(240,128,60,0.800) 100.0%) !important;
     box-shadow:0 18px 40px rgba(220,120,40,.32), inset 0 1.5px 0 rgba(255,255,255,.55) !important;}
-#home #seancePilule .pa-aujourdhui{color:#8A5208 !important;}
-#home #seancePilule #spTitre, #home #seancePilule .pa-kick{color:#1C2430 !important; text-shadow:none;}   /* titre noir : Jacques, 31 oct. */
-body[data-theme="dark"] #home #seancePilule #spTitre, body[data-theme="dark"] #home #seancePilule .pa-kick{color:#FFFFFF !important; text-shadow:0 1px 10px rgba(0,0,0,.30);}
-#home #seancePilule .pa-sens, #home #seancePilule .pa-contenu{color:rgba(28,36,48,.80) !important;}   /* noir aussi : Jacques, 31 oct. */
-body[data-theme="dark"] #home #seancePilule .pa-sens, body[data-theme="dark"] #home #seancePilule .pa-contenu{color:rgba(255,255,255,.92) !important;}
-#home #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #B8F2EC 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), #DCEBEC calc(var(--p) * 1%) 100%) !important;
+:is(#home, #decouverteScene) #seancePilule .pa-aujourdhui{color:#8A5208 !important;}
+:is(#home, #decouverteScene) #seancePilule #spTitre, :is(#home, #decouverteScene) #seancePilule .pa-kick{color:#1C2430 !important; text-shadow:none;}   /* titre noir : Jacques, 31 oct. */
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule #spTitre, body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .pa-kick{color:#FFFFFF !important; text-shadow:0 1px 10px rgba(0,0,0,.30);}
+:is(#home, #decouverteScene) #seancePilule .pa-sens, :is(#home, #decouverteScene) #seancePilule .pa-contenu{color:rgba(28,36,48,.80) !important;}   /* noir aussi : Jacques, 31 oct. */
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .pa-sens, body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .pa-contenu{color:rgba(255,255,255,.92) !important;}
+:is(#home, #decouverteScene) #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #B8F2EC 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), #DCEBEC calc(var(--p) * 1%) 100%) !important;
     box-shadow:0 0 18px rgba(40,180,170,.35) !important;}   /* v1053 : piste vide opaque (« la bande d'anneau est transparente [...] mieux qu'elle ne le soit pas », Jacques, 1er nov.) */
-#home #seancePilule > .pa-anneau::before{background:#F7F9FB !important;}
-#home #seancePilule .seance-niveaux{background:rgba(255,255,255,.82) !important; box-shadow:inset 0 1px 0 #fff, 0 4px 12px rgba(150,80,10,.18) !important;}
-#home #seancePilule .seance-niveau{color:#5B6470 !important;}
-#home #seancePilule .seance-niveau.on{background:linear-gradient(180deg,#4FD1C5,#14807A) !important; color:#FFFFFF !important;
+:is(#home, #decouverteScene) #seancePilule > .pa-anneau::before{background:#F7F9FB !important;}
+:is(#home, #decouverteScene) #seancePilule .seance-niveaux{background:rgba(255,255,255,.82) !important; box-shadow:inset 0 1px 0 #fff, 0 4px 12px rgba(150,80,10,.18) !important;}
+:is(#home, #decouverteScene) #seancePilule .seance-niveau{color:#5B6470 !important;}
+:is(#home, #decouverteScene) #seancePilule .seance-niveau.on{background:linear-gradient(180deg,#4FD1C5,#14807A) !important; color:#FFFFFF !important;
     box-shadow:0 3px 10px rgba(20,128,122,.40), inset 0 1px 0 rgba(255,255,255,.5) !important;}
-#home #seancePilule .seance-niveau.on::before{display:none;}
-body[data-theme="dark"] #home #seancePilule{background:linear-gradient(145deg,rgba(150,92,30,.40) 0%,rgba(140,80,24,.62) 35%,rgba(120,64,18,.88) 65%,rgba(104,52,14,.96) 100%) !important;
+:is(#home, #decouverteScene) #seancePilule .seance-niveau.on::before{display:none;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule{background:linear-gradient(145deg,rgba(150,92,30,.40) 0%,rgba(140,80,24,.62) 35%,rgba(120,64,18,.88) 65%,rgba(104,52,14,.96) 100%) !important;
     box-shadow:0 18px 40px rgba(0,0,0,.40), inset 0 1.5px 0 rgba(255,220,160,.25) !important;}
-body[data-theme="dark"] #home #seancePilule .pa-aujourdhui{color:#F6C46A !important;}
-body[data-theme="dark"] #home #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #8FE3DA 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), #2C4252 calc(var(--p) * 1%) 100%) !important;}
-body[data-theme="dark"] #home #seancePilule > .pa-anneau::before{background:#14283A !important;}
-body[data-theme="dark"] #home #seancePilule .seance-niveaux{background:rgba(255,255,255,.12) !important; box-shadow:inset 0 1px 0 rgba(255,255,255,.18) !important;}
-body[data-theme="dark"] #home #seancePilule .seance-niveau{color:rgba(255,255,255,.80) !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .pa-aujourdhui{color:#F6C46A !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #8FE3DA 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), #2C4252 calc(var(--p) * 1%) 100%) !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule > .pa-anneau::before{background:#14283A !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .seance-niveaux{background:rgba(255,255,255,.12) !important; box-shadow:inset 0 1px 0 rgba(255,255,255,.18) !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .seance-niveau{color:rgba(255,255,255,.80) !important;}
 /* v1046 : le fond en GLACIS (proposition 4 ; Jacques, 31 oct. : « un peu plus de transparence [...] du coin en haut
    a gauche en descendant [...] que ca ait l'air plus glacis » ; « on y va avec la 4 ») : presque transparent en haut a
    gauche (8 %), or a 80 % en bas a droite, et un reflet blanc dans le coin. Remplace le fond de la v1045 ci-dessus. */
 /* v1046 : la nuit, le bouton en blanc creme -- le dore se perdait sur le cognac (Jacques, 31 oct. : « C'est OK pour le blanc creme »). */
-body[data-theme="dark"] #home #seancePilule > .pa-play{background:linear-gradient(180deg,#FFF9EE 0%,#F7EBD3 100%) !important; color:#1C2430 !important;
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule > .pa-play{background:linear-gradient(180deg,#FFF9EE 0%,#F7EBD3 100%) !important; color:#1C2430 !important;
     box-shadow:0 8px 22px rgba(0,0,0,.35), inset 0 1px 0 #fff !important;}
 /* v1046 : la pousse choisie en pastille blanche cerclee de turquoise -- en turquoise plein, le vert de 🌱 s'y perdait
    (Jacques, 31 oct. : « lorsqu'on clique dessus, la pousse ressorte » ; « pastille blanche »). Et « Etape 1 sur 8 »
    en encre, le gris se lisait mal sur l'or. */
-#home #seancePilule .seance-pp.on{background:#FFFFFF !important; box-shadow:inset 0 0 0 2px #2BB5AA, 0 3px 10px rgba(20,128,122,.35) !important;}
-#home #seancePilule.pa-etape .pa-kick{color:rgba(28,36,48,.80) !important;}
-body[data-theme="dark"] #home #seancePilule.pa-etape .pa-kick{color:rgba(255,255,255,.85) !important;}
+:is(#home, #decouverteScene) #seancePilule .seance-pp.on{background:#FFFFFF !important; box-shadow:inset 0 0 0 2px #2BB5AA, 0 3px 10px rgba(20,128,122,.35) !important;}
+:is(#home, #decouverteScene) #seancePilule.pa-etape .pa-kick{color:rgba(28,36,48,.80) !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule.pa-etape .pa-kick{color:rgba(255,255,255,.85) !important;}
 /* 5 nov. 2026 (decision 21d5764) : la ligne de l'etape de l'A1 (« Me debrouiller en allemand · etape 3 sur 12 »),
    le lieu dessous et la frise des etapes. La ligne peut passer sur deux lignes plutot que de finir en points de suspension
    (des langues d'interface plus longues que le francais). Le point du jour : ambre plein, anneau blanc et filet d'encre --
    l'anneau blanc seul ne le detachait pas de l'orange de la carte. */
 #seancePilule.pa-av .pa-kick{white-space:normal !important; text-overflow:clip !important; overflow:visible !important;}
 #seancePilule .pa-lieu{order:3; display:block; font-size:12.5px; font-weight:700; line-height:1.3; margin-top:1px;}
-#home #seancePilule .pa-lieu{color:rgba(28,36,48,.80);}
-body[data-theme="dark"] #home #seancePilule .pa-lieu{color:rgba(255,255,255,.85);}
+:is(#home, #decouverteScene) #seancePilule .pa-lieu{color:rgba(28,36,48,.80);}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .pa-lieu{color:rgba(255,255,255,.85);}
 #seancePilule .pa-frise{order:4; position:relative; display:block; width:min(210px, 78%); height:22px; margin:6px auto 0;}
 #seancePilule .pf-rail{position:absolute; inset-inline:4px; top:10px; height:2px; border-radius:2px; background:rgba(28,36,48,.22);}
 #seancePilule .pf-pts{position:absolute; inset:0; display:flex; justify-content:space-between; align-items:center;}
@@ -9010,9 +9014,9 @@ body[data-theme="dark"] #seancePilule .pf-pt.ici{background:#F0B45A; box-shadow:
    lui sans calcul, y compris pendant le defilement ; le clip-path le decoupe a la forme de la carte (overflow
    ne decoupe pas un element fixe). Memes animations, sous les memes selecteurs : elles repartent ensemble.
    Les continents viennent du MASQUE du SVG (mer transparente), peints de la couleur --fil-carte. */
-#home #seancePilule{z-index:2; --fil-carte:rgba(255,255,255,.32); --fil-lettres:rgba(255,255,255,.24);
+:is(#home, #decouverteScene) #seancePilule{z-index:2; --fil-carte:rgba(255,255,255,.32); --fil-lettres:rgba(255,255,255,.24);
     background:linear-gradient(145deg,rgba(255,255,255,.45) 0%,rgba(255,255,255,0) 35%),linear-gradient(145deg,#F8B95E,#F0863C) !important;}
-body[data-theme="dark"] #home #seancePilule{--fil-carte:rgba(255,214,160,.16); --fil-lettres:rgba(255,214,160,.12);
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule{--fil-carte:rgba(255,214,160,.16); --fil-lettres:rgba(255,214,160,.12);
     background:linear-gradient(145deg,rgba(255,220,170,.14) 0%,rgba(255,220,170,0) 35%),#7A4618 !important;}
 .sp-fili{position:absolute; inset:0; border-radius:inherit; z-index:-1; pointer-events:none; overflow:hidden;
     -webkit-clip-path:inset(0 round 30px); clip-path:inset(0 round 30px);}
@@ -9278,18 +9282,18 @@ body[data-theme="dark"] .spf-pays{opacity:.85;}
    soit un peu moins en evidence »). Dans la copie de la carte, les continents sont blancs a 32 % ; le pays y etait en
    turquoise plein et semblait colle par-dessus l'ambre. A 45 % (40 % la nuit), il se fond dans la pilule comme le
    reste. La grande carte du fond (.fm-pays) ne change pas. Avant / apres : .claude/maquette-choix-verre.html. */
-#home #seancePilule .spf-pays{opacity:.45;}
-body[data-theme="dark"] #home #seancePilule .spf-pays{opacity:.4;}
+:is(#home, #decouverteScene) #seancePilule .spf-pays{opacity:.45;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .spf-pays{opacity:.4;}
 /* La seance laisse voir la carte : le centre de l'anneau s'ouvre, sans voile (« Sans voile blanc sur [...] la
    progression ») ; la rangee des niveaux garde un verre blanc leger. L'anneau passe donc dans le ::before, decoupe
    en couronne par un masque : sur .pa-anneau, le masque couperait aussi le chiffre. */
-#home #seancePilule > .pa-anneau, body[data-theme="dark"] #home #seancePilule > .pa-anneau{background:none !important;}
-#home #seancePilule > .pa-anneau::before{inset:0 !important; background:conic-gradient(from 0deg, #B8F2EC 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), #DCEBEC calc(var(--p) * 1%) 100%) !important;
+:is(#home, #decouverteScene) #seancePilule > .pa-anneau, body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule > .pa-anneau{background:none !important;}
+:is(#home, #decouverteScene) #seancePilule > .pa-anneau::before{inset:0 !important; background:conic-gradient(from 0deg, #B8F2EC 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), #DCEBEC calc(var(--p) * 1%) 100%) !important;
     -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11.5px)) !important; mask:radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11.5px)) !important;}
-body[data-theme="dark"] #home #seancePilule > .pa-anneau::before{background:conic-gradient(from 0deg, #8FE3DA 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), #2C4252 calc(var(--p) * 1%) 100%) !important;}
-#home #seancePilule .pa-anneau b, #home #seancePilule .pa-anneau small{text-shadow:0 0 3px rgba(255,255,255,.95), 0 0 8px rgba(255,255,255,.75);}
-body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"] #home #seancePilule .pa-anneau small{text-shadow:0 0 3px rgba(0,0,0,.7), 0 0 8px rgba(0,0,0,.45);}
-#home #seancePilule .seance-niveaux{background:rgba(255,255,255,.38) !important;}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule > .pa-anneau::before{background:conic-gradient(from 0deg, #8FE3DA 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), #2C4252 calc(var(--p) * 1%) 100%) !important;}
+:is(#home, #decouverteScene) #seancePilule .pa-anneau b, :is(#home, #decouverteScene) #seancePilule .pa-anneau small{text-shadow:0 0 3px rgba(255,255,255,.95), 0 0 8px rgba(255,255,255,.75);}
+body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .pa-anneau b, body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule .pa-anneau small{text-shadow:0 0 3px rgba(0,0,0,.7), 0 0 8px rgba(0,0,0,.45);}
+:is(#home, #decouverteScene) #seancePilule .seance-niveaux{background:rgba(255,255,255,.38) !important;}
 
 /* ============ v1110 : LE VERRE D'APPLE ET LE ROND QUI AVANCE (Jacques, 4 nov. 2026) ============
    Decisions du 4 nov. (decisions/DECISIONS.md), maquette .claude/maquette-choix-verre.html :
@@ -9340,6 +9344,10 @@ body:has(#flashcards.active) .badge-toast{bottom:calc(160px + env(safe-area-inse
     -webkit-backdrop-filter:blur(12px) saturate(1.15) brightness(1.04) !important; backdrop-filter:blur(12px) saturate(1.15) brightness(1.04) !important;
     box-shadow:var(--va-filet), var(--va-ombre) !important; text-shadow:var(--va-halo) !important;}
 .cp-ecouter svg, .tr-btn svg{fill:currentColor;}
+/* Le verre remplit les icones : sans ceci, l'arceau du micro devenait une coupe pleine (retour d'un testeur, 10 nov. 2026)
+   et les ondes du haut-parleur, des croissants. */
+.tr-btn svg .tr-plein{fill:currentColor; stroke:none;}
+.tr-btn svg .tr-trait, .tr-btn svg .tr-ouvert{fill:none; stroke:currentColor;}
 #flashcardActions .judge-good::before, #flashcardActions .judge-good::after, #flashcards .cp-actions button::after{display:none !important;}
 button.primary:disabled, button.secondary:disabled, #flashcards .cp-actions button:disabled{opacity:.55;}
 
@@ -9844,21 +9852,25 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
     </div>
     <div class="kicker" data-i18n="dec_kicker">Découvre Wortando</div>
     <h2 id="decouverteTitre" class="dec-titre"></h2>
+    <div class="dec-lecture">
     <p id="decouverteTexte" class="dec-texte"></p>
     <!-- La voix de la visite (v702) se reecoute d'ici : le texte reste toujours
          a l'ecran, la voix s'y ajoute, et ce bouton la rend a qui avait le
          volume baisse. Cache aux etapes 1 a 3, ou parle la voix allemande. -->
     <button type="button" id="decouverteEcouter" class="dec-ecouter hidden" onclick="rejouerNarrationDecouverte()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg><span data-i18n="dec_ecouter">Réécouter</span></button>
+    </div>
     <div id="decouverteScene" class="dec-scene"></div>
     <div id="decouverteMosaique" class="dec-mosaique hidden">
         <canvas id="decouverteToile" aria-hidden="true"></canvas>
         <p id="decouverteProjection" class="dec-projection hidden" role="status"></p>
     </div>
     <p id="decouverteBravo" class="dec-bravo hidden" role="status"></p>
+    <div class="dec-bas">
     <button type="button" id="decouverteDebut" class="primary hidden" onclick="commencerVisiteDecouverte()" data-i18n="dec_t0_bouton">COMMENCER LA VISITE</button>
     <button type="button" id="decouverteSuite" class="primary hidden" onclick="suiteDecouverte()" data-i18n="setup_continue">CONTINUER</button>
     <button type="button" id="decouverteFin" class="primary hidden" onclick="finVisiteDecouverte()" data-i18n="setup_continue">CONTINUER</button>
     <button type="button" id="decouverteFermer" class="primary hidden" onclick="terminerDecouverte()" data-i18n="dec_t6_bouton">COMMENCER</button>
+    </div>
 </section>
 
 <!-- ================= HOME ================= -->
@@ -12742,7 +12754,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
             <div class="pill combo-pill hidden" id="comboPillFlash" role="button" tabindex="0" onclick="expliquerCombo()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); expliquerCombo();}" data-i18n-aria-label="combo_info" aria-label="Bonnes réponses de suite">⚡ ×<span id="comboCountFlash">0</span></div>
             <!-- v982 : LE MODE TRANSIT, deux boutons. Voir basculerTransit(). -->
             <button type="button" class="tr-btn" id="trMicroBtn" onclick="basculerTransit('micro')" aria-pressed="false"
-                    data-i18n-aria-label="tr_btn_micro" aria-label="Couper ou rétablir le micro" data-i18n-title="tr_btn_micro" title="Couper ou rétablir le micro"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/><path class="tr-coupe" d="M3 3l18 18"/></svg></button>
+                    data-i18n-aria-label="tr_btn_micro" aria-label="Couper ou rétablir le micro" data-i18n-title="tr_btn_micro" title="Couper ou rétablir le micro"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="tr-plein" x="8.75" y="2.5" width="6.5" height="11.5" rx="3.25"/><path class="tr-trait" d="M5.25 11.25a6.75 6.75 0 0 0 13.5 0M12 18v3M8.75 21h6.5"/><path class="tr-trait tr-coupe" d="M3.5 3.5l17 17"/></svg></button>
             <button type="button" class="tr-btn" id="trSonBtn" onclick="basculerTransit('son')" aria-pressed="false"
                     data-i18n-aria-label="tr_btn_son" aria-label="Couper ou rétablir le son" data-i18n-title="tr_btn_son" title="Couper ou rétablir le son"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="tr-ouvert" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="tr-coupe" d="M16 9l5 6M21 9l-5 6"/></svg></button>
             <div class="pill" id="flashCounter">1 / 10</div>
@@ -13526,7 +13538,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
 
     <div class="card">
         <strong data-i18n="notif_title">Rappels quotidiens</strong>
-        <p style="color:#4C566B" data-i18n="notif_desc">Reçois une notification quand tu n'as pas encore atteint ton objectif du jour.</p>
+        <p id="notifDesc" style="color:#4C566B" data-i18n="notif_desc">Reçois une notification quand tu n'as pas encore atteint ton objectif du jour.</p>
         <div class="spacer"></div>
         <button id="notifToggleBtn" class="secondary" onclick="toggleNotifications()" data-i18n="notif_btn_enable">ACTIVER LES RAPPELS</button>
         <!-- v955 : l'heure du rappel LOCAL de l'app installee. Cachee sur le
@@ -15650,6 +15662,7 @@ const I18N = {
         myvocab_full: "Tu as atteint {n} mots mis de côté. Fais-en le tour avant d'en ajouter.",
         myvocab_sans_genre: "« {mot} » n'a pas d'article dans le dictionnaire. On ne peut pas en faire une carte fiable, mais ta demande est notée.",
         carte_nouveau_mot: "Nouveau mot",
+        carte_nouvelle_expression: "Nouvelle expression",
         carte_type_particule: "particule",
         carte_type_adjectif: "adjectif",
         carte_genre_der: "masculin",
@@ -16203,6 +16216,7 @@ const I18N = {
         notif_enabled_success: "Rappels activés ! Tu recevras une notification si ta séance du jour n'est pas faite.",
         notif_disabled_success: "Rappels désactivés.",
         rappel_heure: "Heure du rappel",
+        notif_desc_natif: "Reçois un rappel à l'heure de ton choix, les jours où ta séance n'est pas encore faite.",
         rappel_regle: "Rappel réglé : chaque jour à {h}, tant que ta séance du jour n'est pas faite.",
         rappel_refuse: "Notifications refusées. Tu peux les autoriser dans les réglages de ton téléphone.",
         rappel_notif_titre: "Ta séance du jour t'attend",
@@ -16282,8 +16296,8 @@ const I18N = {
         auth_login_loading: "CONNEXION…",
         auth_signup: "CRÉER UN COMPTE",
         setup_kicker: "Bienvenue",
-        setup_title: "Configurons ton apprentissage",
-        setup_learning_label: "Qu'est-ce que tu apprends ?",
+        setup_title: "Configure ton environnement d'apprentissage",
+        setup_learning_label: "Quelle langue apprends-tu ?",
         setup_learning_de: "Allemand",
         setup_learning_en: "Anglais",
         setup_learning_autre: "Espagnol",
@@ -16292,7 +16306,7 @@ const I18N = {
         passage_vers_en: "Passage à l'anglais…",
         passage_vers_ja: "Passage au japonais…",
         passage_vers_pt: "Passage au portugais…",
-        setup_uilang_label: "Dans quelle langue veux-tu les explications ?",
+        setup_uilang_label: "Dans quelle langue préfères-tu les explications ?",
         setup_continue: "CONTINUER",
         setup_niveau_label: "Tu connais déjà un peu d'allemand ?",
         setup_niveau_zero: "Je pars de zéro",
@@ -16305,15 +16319,15 @@ const I18N = {
         setup_voyage_note: "Facultatif : on te dira chaque jour le rythme pour être prêt.",
         // v903 : le profil d'apprentissage (essai « profil »), voir ouvrirProfil().
         profil_q1: "Pourquoi tu apprends l'allemand ?",
-        profil_q1_sous: "Pour que ta séance parte de ce qui compte pour toi.",
+        profil_q1_sous: "Ce choix décide des lieux de ta scène du jour, un jour sur deux. Le reste de ta séance ne change pas.",
         profil_r_voyager: "Pour voyager",
-        profil_r_voyager_sous: "Se débrouiller sur place, dès le départ",
+        profil_r_voyager_sous: "Aéroport, hôtel, train, restaurant…",
         profil_r_vivre: "Pour vivre en Allemagne",
-        profil_r_vivre_sous: "Le quotidien : rendez-vous, courses, démarches",
+        profil_r_vivre_sous: "Démarches, médecin, pharmacie, supermarché…",
         profil_r_cours: "Pour mon cours ou mes études",
-        profil_r_cours_sous: "Le programme, niveau par niveau",
+        profil_r_cours_sous: "Salle de classe, bibliothèque, bureau, famille…",
         profil_r_plaisir: "Pour le plaisir",
-        profil_r_plaisir_sous: "Un peu de tout, à ton rythme",
+        profil_r_plaisir_sous: "Toutes les scènes, à tour de rôle",
         profil_pied1: "Tu pourras changer d'avis à tout moment, depuis ta séance du jour.",
         profil_q2: "Qu'est-ce qui te ressemble le plus ?",
         profil_q2_sous: "On dosera ta séance en fonction. Tu auras toujours un peu de tout.",
@@ -16342,7 +16356,7 @@ const I18N = {
         dec_te_repete: "À toi : répète !",
         dec_t5_titre: "Ta séance du jour",
         dec_t5_texte: "C'est le cœur de l'application. Chaque jour, une séance : des mots nouveaux, les révisions qui reviennent au bon moment, un peu de grammaire, l'oral, et la scène du jour. Tu peux en enchaîner autant que tu veux. Tout fait avancer ton tableau. Sur l'accueil, la flèche la lance. Ton niveau se change ici. Tu pars de zéro ? La petite pousse, c'est Premiers pas : les phrases essentielles pour voyager.",
-        dec_t6_titre: "La visite est terminée !",
+        dec_t6_titre: "Ta visite est terminée !",
         dec_t6_texte: "Sur l'accueil, tout est là : ta séance du jour d'abord, puis les scènes et l'écoute, quand tu veux. Quelques minutes par jour suffisent. Bon apprentissage !",
         dec_t6_bouton: "COMMENCER",
         dec_t1_titre: "Ton premier mot",
@@ -17372,6 +17386,7 @@ const I18N = {
         myvocab_full: "You have reached {n} saved words. Work through them before adding more.",
         myvocab_sans_genre: "“{mot}” has no article in the dictionary. We can't build a reliable card, but your request is noted.",
         carte_nouveau_mot: "New word",
+        carte_nouvelle_expression: "New phrase",
         carte_type_particule: "particle",
         carte_type_adjectif: "adjective",
         carte_genre_der: "masculine",
@@ -17923,6 +17938,7 @@ const I18N = {
         notif_enabled_success: "Reminders on! You'll get a notification if today's session isn't done.",
         notif_disabled_success: "Reminders disabled.",
         rappel_heure: "Reminder time",
+        notif_desc_natif: "Get a reminder at the time you choose, on days when your session isn't done yet.",
         rappel_regle: "Reminder set: every day at {h}, as long as today's session isn't done.",
         rappel_refuse: "Notifications are off. You can allow them in your phone's settings.",
         rappel_notif_titre: "Your daily session is waiting",
@@ -18002,8 +18018,8 @@ const I18N = {
         auth_login_loading: "SIGNING IN…",
         auth_signup: "CREATE ACCOUNT",
         setup_kicker: "Welcome",
-        setup_title: "Let's set up your learning",
-        setup_learning_label: "What are you learning?",
+        setup_title: "Set up your learning environment",
+        setup_learning_label: "What language are you learning?",
         setup_learning_de: "German",
         setup_learning_en: "English",
         setup_learning_autre: "Spanish",
@@ -18012,7 +18028,7 @@ const I18N = {
         passage_vers_en: "Switching to English…",
         passage_vers_ja: "Switching to Japanese…",
         passage_vers_pt: "Switching to Portuguese…",
-        setup_uilang_label: "Which language for the instructions?",
+        setup_uilang_label: "Which language do you prefer for instructions?",
         setup_continue: "CONTINUE",
         setup_niveau_label: "Do you already know some German?",
         setup_niveau_zero: "I'm starting from zero",
@@ -18025,15 +18041,15 @@ const I18N = {
         setup_voyage_note: "Optional: each day, we'll tell you the pace to be ready.",
         // v903: the learning profile (trial "profil"), see ouvrirProfil().
         profil_q1: "Why are you learning German?",
-        profil_q1_sous: "So your session starts from what matters to you.",
+        profil_q1_sous: "This choice sets where your daily scene takes place, every other day. The rest of your session stays the same.",
         profil_r_voyager: "To travel",
-        profil_r_voyager_sous: "Get by on the spot, from day one",
+        profil_r_voyager_sous: "Airport, hotel, train, restaurant…",
         profil_r_vivre: "To live in Germany",
-        profil_r_vivre_sous: "Everyday life: appointments, shopping, paperwork",
+        profil_r_vivre_sous: "Paperwork, doctor, pharmacy, supermarket…",
         profil_r_cours: "For my course or studies",
-        profil_r_cours_sous: "The curriculum, level by level",
+        profil_r_cours_sous: "Classroom, library, office, family…",
         profil_r_plaisir: "For fun",
-        profil_r_plaisir_sous: "A bit of everything, at your pace",
+        profil_r_plaisir_sous: "All the scenes, in turn",
         profil_pied1: "You can change your mind at any time from your daily session.",
         profil_q2: "Which one sounds most like you?",
         profil_q2_sous: "We'll balance your session accordingly. You'll always get a bit of everything.",
@@ -18062,7 +18078,7 @@ const I18N = {
         dec_te_repete: "Your turn: repeat!",
         dec_t5_titre: "Today's session",
         dec_t5_texte: "This is the heart of the app. Every day, a session: new words, the reviews that come back at just the right time, a little grammar, speaking, and the scene of the day. You can do as many in a row as you like. Everything moves your painting forward. On the home screen, the arrow starts it. You change your level here. Starting from zero? The little sprout is First steps: the essential phrases for travelling.",
-        dec_t6_titre: "The tour is over!",
+        dec_t6_titre: "Your tour is complete!",
         dec_t6_texte: "Everything is on the home screen: today's session first, then the scenes and listening, whenever you like. A few minutes a day is enough. Happy learning!",
         dec_t6_bouton: "LET'S START",
         dec_t1_titre: "Your first word",
@@ -19046,6 +19062,7 @@ const I18N = {
         myvocab_full: "{n} kayıtlı kelimeye ulaştın. Yenilerini eklemeden önce bunları çalış.",
         myvocab_sans_genre: "“{mot}” kelimesinin sözlükte artikeli yok. Güvenilir bir kart oluşturamıyoruz ama isteğin not edildi.",
         carte_nouveau_mot: "Yeni kelime",
+        carte_nouvelle_expression: "Yeni ifade",
         carte_type_particule: "edat",
         carte_type_adjectif: "sıfat",
         carte_genre_der: "eril",
@@ -19591,6 +19608,7 @@ const I18N = {
         notif_enabled_success: "Hatırlatmalar açık! Bugünkü oturumun bitmediyse bildirim alacaksın.",
         notif_disabled_success: "Hatırlatmalar kapatıldı.",
         rappel_heure: "Hatırlatma saati",
+        notif_desc_natif: "Seçtiğin saatte, oturumunun henüz bitmediği günlerde hatırlatma al.",
         rappel_regle: "Hatırlatma ayarlandı: her gün saat {h}, bugünkü oturumun bitmediyse.",
         rappel_refuse: "Bildirimler kapalı. Telefonunun ayarlarından izin verebilirsin.",
         rappel_notif_titre: "Günlük çalışman seni bekliyor",
@@ -19670,14 +19688,14 @@ const I18N = {
         auth_login_loading: "GİRİŞ YAPILIYOR…",
         auth_signup: "HESAP OLUŞTUR",
         setup_kicker: "Hoş geldin",
-        setup_title: "Öğrenmeni ayarlayalım",
-        setup_learning_label: "Ne öğreniyorsun?",
+        setup_title: "Öğrenme ortamını ayarlayalım",
+        setup_learning_label: "Hangi dili öğreniyorsun?",
         setup_learning_de: "Almanca",
         setup_learning_en: "İngilizce",
         setup_learning_autre: "İspanyolca",
         passage_vers_es: "İspanyolcaya geçiliyor…",
         passage_vers_de: "Almancaya geçiliyor…",
-        setup_uilang_label: "Açıklamalar hangi dilde olsun?",
+        setup_uilang_label: "Açıklamaları hangi dilde tercih edersin?",
         setup_continue: "DEVAM",
         setup_niveau_label: "Biraz Almanca biliyor musun?",
         setup_niveau_zero: "Sıfırdan başlıyorum",
@@ -19689,15 +19707,15 @@ const I18N = {
         setup_niveau_note: "Seviyeni istediğin zaman günün oturumundan değiştirebilirsin.",
         setup_voyage_note: "İsteğe bağlı: hazır olman için gereken tempoyu her gün söyleriz.",
         profil_q1: "Neden Almanca öğreniyorsun?",
-        profil_q1_sous: "Oturumun senin için önemli olandan başlasın diye.",
+        profil_q1_sous: "Bu seçim, iki günde bir günün sahnesinin nerede geçeceğini belirler. Oturumunun geri kalanı değişmez.",
         profil_r_voyager: "Seyahat etmek için",
-        profil_r_voyager_sous: "Daha ilk günden orada idare etmek",
+        profil_r_voyager_sous: "Havalimanı, otel, tren, restoran…",
         profil_r_vivre: "Almanya'da yaşamak için",
-        profil_r_vivre_sous: "Günlük hayat: randevular, alışveriş, resmî işler",
+        profil_r_vivre_sous: "Resmî işler, doktor, eczane, süpermarket…",
         profil_r_cours: "Kursum ya da okulum için",
-        profil_r_cours_sous: "Program, seviye seviye",
+        profil_r_cours_sous: "Sınıf, kütüphane, ofis, aile…",
         profil_r_plaisir: "Zevk için",
-        profil_r_plaisir_sous: "Biraz her şeyden, kendi temponda",
+        profil_r_plaisir_sous: "Tüm sahneler, sırayla",
         profil_pied1: "Fikrini istediğin zaman günün oturumundan değiştirebilirsin.",
         profil_q2: "Sana en çok hangisi benziyor?",
         profil_q2_sous: "Oturumunu buna göre ayarlayacağız. Her zaman biraz her şeyden olacak.",
@@ -19726,7 +19744,7 @@ const I18N = {
         dec_te_repete: "Sıra sende: tekrarla!",
         dec_t5_titre: "Bugünkü oturumun",
         dec_t5_texte: "Uygulamanın kalbi burası. Her gün bir oturum: yeni kelimeler, tam zamanında geri gelen tekrarlar, biraz dilbilgisi, konuşma ve günün sahnesi. İstediğin kadar art arda yapabilirsin. Her şey tablonu ilerletir. Ana ekranda ok onu başlatır. Seviyeni buradan değiştirirsin. Sıfırdan mı başlıyorsun? Küçük filiz İlk adımlar'dır: seyahat için temel cümleler.",
-        dec_t6_titre: "Tur bitti!",
+        dec_t6_titre: "Turun tamamlandı!",
         dec_t6_texte: "Her şey ana ekranda: önce bugünkü oturumun, sonra istediğin zaman sahneler ve dinleme. Günde birkaç dakika yeter. İyi öğrenmeler!",
         dec_t6_bouton: "BAŞLA",
         dec_t1_titre: "İlk kelimen",
@@ -20551,6 +20569,7 @@ const I18N = {
         notif_enabled_success: "Нагадування ввімкнено! Ти отримаєш сповіщення, якщо сьогоднішнє заняття не завершено.",
         notif_disabled_success: "Нагадування вимкнено.",
         rappel_heure: "Час нагадування",
+        notif_desc_natif: "Отримуй нагадування в обраний час у дні, коли заняття ще не завершене.",
         rappel_regle: "Нагадування налаштовано: щодня о {h}, поки сьогоднішнє заняття не завершено.",
         rappel_refuse: "Сповіщення вимкнено. Їх можна дозволити в налаштуваннях телефона.",
         rappel_notif_titre: "Твоє щоденне заняття чекає",
@@ -20582,14 +20601,14 @@ const I18N = {
         streak_freeze_earned: "Заморозку серії отримано! Вона захистить серію в день, який ти пропустиш.",
         streak_freeze_hint: "Заморозка серії доступна: захищає серію в пропущений день.",
         setup_kicker: "Ласкаво просимо",
-        setup_title: "Налаштуймо твоє навчання",
-        setup_learning_label: "Що ти вивчаєш?",
+        setup_title: "Налаштуймо твоє навчальне середовище",
+        setup_learning_label: "Яку мову ти вивчаєш?",
         setup_learning_de: "Німецьку",
         setup_learning_en: "Англійську",
         setup_learning_autre: "Іспанську",
         passage_vers_es: "Перехід на іспанську…",
         passage_vers_de: "Перехід на німецьку…",
-        setup_uilang_label: "Якою мовою показувати пояснення?",
+        setup_uilang_label: "Якою мовою тобі зручніше читати пояснення?",
         setup_continue: "ПРОДОВЖИТИ",
         setup_niveau_label: "Ти вже трохи знаєш німецьку?",
         setup_niveau_zero: "Починаю з нуля",
@@ -20601,15 +20620,15 @@ const I18N = {
         setup_niveau_note: "Рівень можна змінити будь-коли в щоденному занятті.",
         setup_voyage_note: "Необов'язково: щодня підкажемо, у якому темпі рухатися, щоб бути готовим.",
         profil_q1: "Чому ти вивчаєш німецьку?",
-        profil_q1_sous: "Щоб твоє заняття починалося з того, що важливо для тебе.",
+        profil_q1_sous: "Цей вибір визначає, де через день відбуватиметься твоя сцена дня. Решта заняття не змінюється.",
         profil_r_voyager: "Щоб подорожувати",
-        profil_r_voyager_sous: "Порозумітися на місці з першого дня",
+        profil_r_voyager_sous: "Аеропорт, готель, потяг, ресторан…",
         profil_r_vivre: "Щоб жити в Німеччині",
-        profil_r_vivre_sous: "Повсякдення: записи на прийом, покупки, документи",
+        profil_r_vivre_sous: "Документи, лікар, аптека, супермаркет…",
         profil_r_cours: "Для мого курсу чи навчання",
-        profil_r_cours_sous: "Програма, рівень за рівнем",
+        profil_r_cours_sous: "Клас, бібліотека, офіс, родина…",
         profil_r_plaisir: "Для задоволення",
-        profil_r_plaisir_sous: "Усього потроху, у своєму темпі",
+        profil_r_plaisir_sous: "Усі сцени по черзі",
         profil_pied1: "Ти можеш змінити думку будь-коли в щоденному занятті.",
         profil_q2: "Що найбільше схоже на тебе?",
         profil_q2_sous: "Ми налаштуємо заняття відповідно. Усього потроху буде завжди.",
@@ -20638,7 +20657,7 @@ const I18N = {
         dec_te_repete: "Твоя черга: повтори!",
         dec_t5_titre: "Твій сеанс на сьогодні",
         dec_t5_texte: "Це серце застосунку. Щодня — сеанс: нові слова, повторення, що повертаються саме вчасно, трохи граматики, усне мовлення і сцена дня. Можна проходити їх одне за одним скільки завгодно. Усе це просуває твою картину. На головному екрані його запускає стрілка. Рівень змінюється тут. Починаєш з нуля? Маленький паросток — це «Перші кроки»: найпотрібніші фрази для подорожі.",
-        dec_t6_titre: "Екскурсію завершено!",
+        dec_t6_titre: "Твою екскурсію завершено!",
         dec_t6_texte: "На головному екрані є все: спершу твій сеанс на сьогодні, а потім сцени й слухання — коли захочеш. Кількох хвилин на день достатньо. Успішного навчання!",
         dec_t6_bouton: "ПОЧАТИ",
         dec_t1_titre: "Твоє перше слово",
@@ -21142,6 +21161,7 @@ const I18N = {
         myvocab_full: "Ти набрав {n} відкладених слів. Пройди їх, перш ніж додавати нові.",
         myvocab_sans_genre: "У словнику «{mot}» без артикля. Надійної картки з нього не зробити, але твій запит записано.",
         carte_nouveau_mot: "Нове слово",
+        carte_nouvelle_expression: "Новий вислів",
         carte_type_particule: "частка",
         carte_type_adjectif: "прикметник",
         carte_genre_der: "чоловічий рід",
@@ -22581,6 +22601,7 @@ const I18N = {
         notif_enabled_success: "یادآوری‌ها روشن شد! اگر جلسهٔ امروزت تمام نشده باشد، اعلان می‌گیری.",
         notif_disabled_success: "یادآوری‌ها خاموش شد.",
         rappel_heure: "ساعت یادآوری",
+        notif_desc_natif: "در ساعتی که انتخاب می‌کنی، روزهایی که جلسه‌ات هنوز تمام نشده، یادآوری بگیر.",
         rappel_regle: "یادآوری تنظیم شد: هر روز ساعت {h}، تا وقتی جلسهٔ امروزت تمام نشده باشد.",
         rappel_refuse: "اعلان‌ها خاموش‌اند. می‌توانی در تنظیمات گوشی‌ات به آن‌ها اجازه بدهی.",
         rappel_notif_titre: "جلسهٔ امروزت منتظر توست",
@@ -22667,14 +22688,14 @@ const I18N = {
         delete_account_error: "حذف انجام نشد. اتصالت را بررسی کن و دوباره تلاش کن.",
         delete_account_wrong_pwd: "رمز عبور نادرست است.",
         setup_kicker: "خوش آمدید",
-        setup_title: "بیایید یادگیری شما را تنظیم کنیم",
-        setup_learning_label: "چه چیزی یاد می‌گیرید؟",
+        setup_title: "محیط یادگیری‌تان را تنظیم کنیم",
+        setup_learning_label: "چه زبانی یاد می‌گیرید؟",
         setup_learning_de: "آلمانی",
         setup_learning_en: "انگلیسی",
         setup_learning_autre: "اسپانیایی",
         passage_vers_es: "در حال رفتن به اسپانیایی…",
         passage_vers_de: "در حال رفتن به آلمانی…",
-        setup_uilang_label: "راهنمایی‌ها به چه زبانی باشد؟",
+        setup_uilang_label: "راهنمایی‌ها را به چه زبانی ترجیح می‌دهید؟",
         setup_continue: "ادامه",
         setup_niveau_label: "از قبل کمی آلمانی بلدی؟",
         setup_niveau_zero: "از صفر شروع می‌کنم",
@@ -22686,15 +22707,15 @@ const I18N = {
         setup_niveau_note: "هر وقت بخواهی می‌توانی سطح را از جلسهٔ امروز عوض کنی.",
         setup_voyage_note: "اختیاری: هر روز می‌گوییم با چه سرعتی پیش بروی تا آماده باشی.",
         profil_q1: "چرا آلمانی یاد می‌گیری؟",
-        profil_q1_sous: "تا جلسه‌ات از چیزی شروع شود که برایت مهم است.",
+        profil_q1_sous: "این انتخاب تعیین می‌کند صحنهٔ روزت، یک روز در میان، کجا باشد. بقیهٔ جلسه‌ات تغییر نمی‌کند.",
         profil_r_voyager: "برای سفر",
-        profil_r_voyager_sous: "از همان روز اول در آنجا از پس کارها برآمدن",
+        profil_r_voyager_sous: "فرودگاه، هتل، قطار، رستوران…",
         profil_r_vivre: "برای زندگی در آلمان",
-        profil_r_vivre_sous: "زندگی روزمره: وقت گرفتن، خرید، کارهای اداری",
+        profil_r_vivre_sous: "کارهای اداری، پزشک، داروخانه، سوپرمارکت…",
         profil_r_cours: "برای کلاس یا تحصیلم",
-        profil_r_cours_sous: "برنامهٔ درسی، سطح به سطح",
+        profil_r_cours_sous: "کلاس درس، کتابخانه، اداره، خانواده…",
         profil_r_plaisir: "برای لذت",
-        profil_r_plaisir_sous: "از هر چیزی کمی، با سرعت خودت",
+        profil_r_plaisir_sous: "همهٔ صحنه‌ها، به نوبت",
         profil_pied1: "هر وقت بخواهی می‌توانی نظرت را از جلسهٔ امروز عوض کنی.",
         profil_q2: "کدام بیشتر شبیه توست؟",
         profil_q2_sous: "جلسه‌ات را بر همین اساس تنظیم می‌کنیم. همیشه از هر چیزی کمی خواهی داشت.",
@@ -22723,7 +22744,7 @@ const I18N = {
         dec_te_repete: "نوبت توست: تکرار کن!",
         dec_t5_titre: "جلسهٔ امروزت",
         dec_t5_texte: "این قلب برنامه است. هر روز یک جلسه: واژه‌های تازه، مرورهایی که درست به‌موقع برمی‌گردند، کمی دستور زبان، گفتار و صحنهٔ روز. هر چند جلسه که بخواهی می‌توانی پشت سر هم انجام بدهی. همه‌چیز تابلویت را جلو می‌برد. در صفحهٔ اصلی، پیکان آن را شروع می‌کند. سطحت را اینجا عوض می‌کنی. از صفر شروع می‌کنی؟ جوانهٔ کوچک «گام‌های نخست» است: جمله‌های ضروری برای سفر.",
-        dec_t6_titre: "گشت تمام شد!",
+        dec_t6_titre: "گشتت کامل شد!",
         dec_t6_texte: "همه‌چیز در صفحهٔ اصلی است: اول جلسهٔ امروزت، بعد هر وقت خواستی صحنه‌ها و شنیدن. چند دقیقه در روز کافی است. یادگیری خوبی داشته باشی!",
         dec_t6_bouton: "شروع کنیم",
         dec_t1_titre: "نخستین واژه‌ات",
@@ -23567,6 +23588,7 @@ const I18N = {
         myvocab_full: "به {n} واژهٔ کنارگذاشته رسیدی. پیش از افزودن واژهٔ تازه، اول همین‌ها را مرور کن.",
         myvocab_sans_genre: "«{mot}» در فرهنگ واژگان حرف تعریف ندارد. نمی‌شود از آن کارت ساخت — بدون حرف تعریف، اسم آلمانی ناقص است.",
         carte_nouveau_mot: "واژهٔ تازه",
+        carte_nouvelle_expression: "عبارت تازه",
         carte_type_particule: "ادات",
         carte_type_adjectif: "صفت",
         carte_genre_der: "مذکر",
@@ -23740,6 +23762,7 @@ const I18N = {
         gardes_sorti_dernier: "الخزانة فارغة: خرجت كل كلماتك منها.",
         myvocab_sans_genre: "«{mot}» بلا أداة تعريف في القاموس. لا يمكن صنع بطاقة موثوقة منها، لكن طلبك مسجَّل.",
         carte_nouveau_mot: "كلمة جديدة",
+        carte_nouvelle_expression: "عبارة جديدة",
         carte_type_particule: "أداة",
         carte_type_adjectif: "صفة",
         carte_genre_der: "مذكر",
@@ -24209,14 +24232,14 @@ const I18N = {
         auth_login_loading: "جارٍ الدخول…",
         auth_signup: "إنشاء حساب",
         setup_kicker: "أهلاً بك",
-        setup_title: "لنضبط تعلّمك",
-        setup_learning_label: "ماذا تتعلّم؟",
+        setup_title: "لنضبط بيئة تعلّمك",
+        setup_learning_label: "ما اللغة التي تتعلّمها؟",
         setup_learning_de: "الألمانية",
         setup_learning_en: "الإنجليزية",
         setup_learning_autre: "الإسبانية",
         passage_vers_es: "جارٍ الانتقال إلى الإسبانية…",
         passage_vers_de: "جارٍ الانتقال إلى الألمانية…",
-        setup_uilang_label: "بأي لغة تريد التعليمات؟",
+        setup_uilang_label: "بأي لغة تفضّل التعليمات؟",
         setup_continue: "متابعة",
         setup_niveau_label: "هل لديك معرفة سابقة بالألمانية؟",
         setup_niveau_zero: "أبدأ من الصفر",
@@ -24228,15 +24251,15 @@ const I18N = {
         setup_niveau_note: "يمكن تغيير المستوى في أي وقت من جلسة اليوم.",
         setup_voyage_note: "اختياري: سنخبرك كل يوم بالوتيرة اللازمة لتكون جاهزاً.",
         profil_q1: "لماذا تتعلّم الألمانية؟",
-        profil_q1_sous: "لتبدأ جلستك ممّا يهمّك.",
+        profil_q1_sous: "يحدّد هذا الاختيار مكان مشهد يومك، يومًا بعد يوم. أما بقية جلستك فلا تتغيّر.",
         profil_r_voyager: "للسفر",
-        profil_r_voyager_sous: "لتتدبّر أمورك هناك من اليوم الأول",
+        profil_r_voyager_sous: "مطار، فندق، قطار، مطعم…",
         profil_r_vivre: "للعيش في ألمانيا",
-        profil_r_vivre_sous: "الحياة اليومية: المواعيد، التسوّق، المعاملات",
+        profil_r_vivre_sous: "معاملات، طبيب، صيدلية، سوبرماركت…",
         profil_r_cours: "من أجل دورتي أو دراستي",
-        profil_r_cours_sous: "المنهج، مستوى بعد مستوى",
+        profil_r_cours_sous: "فصل دراسي، مكتبة، مكتب، عائلة…",
         profil_r_plaisir: "للمتعة",
-        profil_r_plaisir_sous: "قليل من كل شيء، على مهلك",
+        profil_r_plaisir_sous: "كل المشاهد، بالتناوب",
         profil_pied1: "يمكنك تغيير رأيك في أي وقت من جلسة اليوم.",
         profil_q2: "أيّ واحد يشبهك أكثر؟",
         profil_q2_sous: "سنضبط جلستك على هذا الأساس. سيكون فيها دائمًا قليل من كل شيء.",
@@ -24265,7 +24288,7 @@ const I18N = {
         dec_te_repete: "دورك: كرّر!",
         dec_t5_titre: "جلستك اليوم",
         dec_t5_texte: "هذا قلب التطبيق. كل يوم جلسة: كلمات جديدة، ومراجعات تعود في الوقت المناسب تمامًا، وقليل من القواعد، والتحدث، ومشهد اليوم. ويمكنك أن تتابع منها بقدر ما تشاء. كل ذلك يُقدّم لوحتك. في الصفحة الرئيسية، يبدأها السهم. تغيّر مستواك من هنا. تبدأ من الصفر؟ البرعم الصغير هو «الخطوات الأولى»: العبارات الأساسية للسفر.",
-        dec_t6_titre: "انتهت الجولة!",
+        dec_t6_titre: "اكتملت جولتك!",
         dec_t6_texte: "كل شيء في الصفحة الرئيسية: جلستك اليوم أولًا، ثم المشاهد والاستماع متى شئت. بضع دقائق في اليوم تكفي. تعلّمًا موفقًا!",
         dec_t6_bouton: "لنبدأ",
         dec_t1_titre: "كلمتك الأولى",
@@ -24568,6 +24591,7 @@ const I18N = {
         notif_enabled_success: "تم تفعيل التذكيرات! ستتلقى إشعارًا إذا لم تنته حصة اليوم.",
         notif_disabled_success: "أُوقفت التذكيرات.",
         rappel_heure: "وقت التذكير",
+        notif_desc_natif: "احصل على تذكير في الوقت الذي تختاره، في الأيام التي لم تنتهِ فيها جلستك بعد.",
         rappel_regle: "تم ضبط التذكير: كل يوم عند {h}، ما دامت حصة اليوم لم تنته.",
         rappel_refuse: "الإشعارات متوقفة. يمكنك السماح بها من إعدادات هاتفك.",
         rappel_notif_titre: "جلستك اليومية بانتظارك",
@@ -25874,6 +25898,7 @@ const I18N = {
         myvocab_full: "Você chegou a {n} palavras guardadas. Passe por elas antes de adicionar mais.",
         myvocab_sans_genre: "“{mot}” não tem artigo no dicionário. Não dá para fazer uma carta confiável, mas seu pedido foi anotado.",
         carte_nouveau_mot: "Palavra nova",
+        carte_nouvelle_expression: "Expressão nova",
         carte_type_particule: "partícula",
         carte_type_adjectif: "adjetivo",
         carte_genre_der: "masculino",
@@ -26410,6 +26435,7 @@ const I18N = {
         notif_enabled_success: "Lembretes ativados! Você receberá uma notificação se a sessão de hoje não estiver feita.",
         notif_disabled_success: "Lembretes desativados.",
         rappel_heure: "Horário do lembrete",
+        notif_desc_natif: "Receba um lembrete no horário que escolher, nos dias em que sua sessão ainda não estiver feita.",
         rappel_regle: "Lembrete definido: todo dia às {h}, enquanto a sessão de hoje não estiver feita.",
         rappel_refuse: "Notificações desativadas. Você pode permiti-las nos ajustes do seu celular.",
         rappel_notif_titre: "Sua sessão do dia está esperando",
@@ -26488,14 +26514,14 @@ const I18N = {
         auth_login_loading: "ENTRANDO…",
         auth_signup: "CRIAR CONTA",
         setup_kicker: "Bem-vindo",
-        setup_title: "Vamos configurar o seu aprendizado",
-        setup_learning_label: "O que você está aprendendo?",
+        setup_title: "Vamos configurar seu ambiente de aprendizado",
+        setup_learning_label: "Que língua você está aprendendo?",
         setup_learning_de: "Alemão",
         setup_learning_en: "Inglês",
         setup_learning_autre: "Espanhol",
         passage_vers_es: "Mudando para o espanhol…",
         passage_vers_de: "Mudando para o alemão…",
-        setup_uilang_label: "Em que língua você quer as explicações?",
+        setup_uilang_label: "Em que língua você prefere as explicações?",
         setup_continue: "CONTINUAR",
         setup_niveau_label: "Você já sabe um pouco de alemão?",
         setup_niveau_zero: "Estou começando do zero",
@@ -26507,15 +26533,15 @@ const I18N = {
         setup_niveau_note: "Você pode mudar de nível a qualquer momento, pela sua sessão do dia.",
         setup_voyage_note: "Opcional: a cada dia, diremos o ritmo para você estar pronto.",
         profil_q1: "Por que você está aprendendo alemão?",
-        profil_q1_sous: "Para que a sua sessão comece pelo que importa para você.",
+        profil_q1_sous: "Esta escolha define onde a cena do dia acontece, um dia sim, outro não. O resto da sua sessão não muda.",
         profil_r_voyager: "Para viajar",
-        profil_r_voyager_sous: "Se virar no lugar, desde o primeiro dia",
+        profil_r_voyager_sous: "Aeroporto, hotel, trem, restaurante…",
         profil_r_vivre: "Para morar na Alemanha",
-        profil_r_vivre_sous: "O dia a dia: consultas, compras, burocracia",
+        profil_r_vivre_sous: "Burocracia, médico, farmácia, supermercado…",
         profil_r_cours: "Para o meu curso ou os meus estudos",
-        profil_r_cours_sous: "O programa, nível por nível",
+        profil_r_cours_sous: "Sala de aula, biblioteca, escritório, família…",
         profil_r_plaisir: "Por prazer",
-        profil_r_plaisir_sous: "Um pouco de tudo, no seu ritmo",
+        profil_r_plaisir_sous: "Todas as cenas, uma de cada vez",
         profil_pied1: "Você pode mudar de ideia a qualquer momento, pela sua sessão do dia.",
         profil_q2: "O que mais combina com você?",
         profil_q2_sous: "Vamos ajustar a sua sessão. Você sempre terá um pouco de tudo.",
@@ -26544,7 +26570,7 @@ const I18N = {
         dec_te_repete: "Sua vez: repita!",
         dec_t5_titre: "A sua sessão do dia",
         dec_t5_texte: "Este é o coração do aplicativo. Todo dia, uma sessão: palavras novas, as revisões que voltam na hora certa, um pouco de gramática, a fala e a cena do dia. Você pode fazer quantas quiser em sequência. Tudo faz o seu quadro avançar. Na tela inicial, a seta a inicia. O seu nível se muda aqui. Começando do zero? O brotinho é Primeiros passos: as frases essenciais para viajar.",
-        dec_t6_titre: "A visita terminou!",
+        dec_t6_titre: "Sua visita terminou!",
         dec_t6_texte: "Está tudo na tela inicial: primeiro a sua sessão do dia, depois as cenas e a escuta, quando quiser. Alguns minutos por dia bastam. Bons estudos!",
         dec_t6_bouton: "COMEÇAR",
         dec_t1_titre: "Sua primeira palavra",
@@ -27601,6 +27627,7 @@ const I18N = {
         myvocab_full: "Masz już {n} odłożonych słów. Przerób je, zanim dodasz kolejne.",
         myvocab_sans_genre: "„{mot}” nie ma rodzajnika w słowniku. Nie da się z tego zrobić wiarygodnej karty, ale twoja prośba została zapisana.",
         carte_nouveau_mot: "Nowe słowo",
+        carte_nouvelle_expression: "Nowe wyrażenie",
         carte_type_particule: "partykuła",
         carte_type_adjectif: "przymiotnik",
         carte_genre_der: "rodzaj męski",
@@ -28139,6 +28166,7 @@ const I18N = {
         notif_enabled_success: "Przypomnienia włączone! Dostaniesz powiadomienie, jeśli dzisiejsza sesja nie będzie zrobiona.",
         notif_disabled_success: "Przypomnienia wyłączone.",
         rappel_heure: "Godzina przypomnienia",
+        notif_desc_natif: "Otrzymuj przypomnienie o wybranej godzinie w dni, gdy sesja nie jest jeszcze zrobiona.",
         rappel_regle: "Przypomnienie ustawione: codziennie o {h}, dopóki dzisiejsza sesja nie jest zrobiona.",
         rappel_refuse: "Powiadomienia są wyłączone. Możesz je włączyć w ustawieniach telefonu.",
         rappel_notif_titre: "Twoja dzisiejsza sesja czeka",
@@ -28217,12 +28245,12 @@ const I18N = {
         auth_login_loading: "LOGOWANIE…",
         auth_signup: "ZAŁÓŻ KONTO",
         setup_kicker: "Witaj",
-        setup_title: "Ustawmy twoją naukę",
-        setup_learning_label: "Czego się uczysz?",
+        setup_title: "Ustawmy twoje środowisko nauki",
+        setup_learning_label: "Jakiego języka się uczysz?",
         setup_learning_de: "Niemiecki",
         setup_learning_en: "Angielski",
         setup_learning_autre: "Hiszpański",
-        setup_uilang_label: "W jakim języku chcesz wyjaśnienia?",
+        setup_uilang_label: "W jakim języku wolisz wyjaśnienia?",
         setup_continue: "DALEJ",
         setup_niveau_label: "Znasz już trochę niemiecki?",
         setup_niveau_zero: "Zaczynam od zera",
@@ -28234,15 +28262,15 @@ const I18N = {
         setup_niveau_note: "Poziom możesz zmienić w każdej chwili, w swojej dzisiejszej sesji.",
         setup_voyage_note: "Opcjonalnie: codziennie podpowiemy, w jakim tempie iść, żeby być gotowym.",
         profil_q1: "Dlaczego uczysz się niemieckiego?",
-        profil_q1_sous: "Żeby twoja sesja zaczynała się od tego, co dla ciebie ważne.",
+        profil_q1_sous: "Ten wybór decyduje, gdzie co drugi dzień toczy się twoja scena dnia. Reszta sesji się nie zmienia.",
         profil_r_voyager: "Żeby podróżować",
-        profil_r_voyager_sous: "Poradzić sobie na miejscu od pierwszego dnia",
+        profil_r_voyager_sous: "Lotnisko, hotel, pociąg, restauracja…",
         profil_r_vivre: "Żeby mieszkać w Niemczech",
-        profil_r_vivre_sous: "Codzienność: wizyty, zakupy, sprawy urzędowe",
+        profil_r_vivre_sous: "Urzędy, lekarz, apteka, supermarket…",
         profil_r_cours: "Na kurs albo studia",
-        profil_r_cours_sous: "Program, poziom po poziomie",
+        profil_r_cours_sous: "Klasa, biblioteka, biuro, rodzina…",
         profil_r_plaisir: "Dla przyjemności",
-        profil_r_plaisir_sous: "Wszystkiego po trochu, we własnym tempie",
+        profil_r_plaisir_sous: "Wszystkie sceny po kolei",
         profil_pied1: "Zdanie możesz zmienić w każdej chwili, w swojej dzisiejszej sesji.",
         profil_q2: "Co najbardziej do ciebie pasuje?",
         profil_q2_sous: "Dopasujemy do tego twoją sesję. Zawsze będzie w niej wszystkiego po trochu.",
@@ -28271,7 +28299,7 @@ const I18N = {
         dec_te_repete: "Twoja kolej: powtórz!",
         dec_t5_titre: "Twoja dzisiejsza sesja",
         dec_t5_texte: "To serce aplikacji. Codziennie sesja: nowe słowa, powtórki, które wracają w odpowiednim momencie, trochę gramatyki, mówienie i scena dnia. Możesz robić ich tyle, ile tylko chcesz. Wszystko to posuwa twój obraz do przodu. Na ekranie głównym uruchamia ją strzałka. Poziom zmieniasz tutaj. Zaczynasz od zera? Mały kiełek to „Pierwsze kroki”: najważniejsze zwroty na podróż.",
-        dec_t6_titre: "Wycieczka skończona!",
+        dec_t6_titre: "Twoja wycieczka dobiegła końca!",
         dec_t6_texte: "Wszystko jest na ekranie głównym: najpierw twoja dzisiejsza sesja, potem sceny i słuchanie, kiedy zechcesz. Wystarczy kilka minut dziennie. Owocnej nauki!",
         dec_t6_bouton: "ZACZYNAMY",
         dec_t1_titre: "Twoje pierwsze słowo",
@@ -29328,6 +29356,7 @@ const I18N = {
         myvocab_full: "У тебя уже {n} отложенных слов. Сначала пройди их, потом добавляй новые.",
         myvocab_sans_genre: "У «{mot}» в словаре нет артикля. Надёжную карточку из него не сделать, но твой запрос записан.",
         carte_nouveau_mot: "Новое слово",
+        carte_nouvelle_expression: "Новое выражение",
         carte_type_particule: "частица",
         carte_type_adjectif: "прилагательное",
         carte_genre_der: "мужской род",
@@ -29867,6 +29896,7 @@ const I18N = {
         notif_enabled_success: "Напоминания включены! Ты получишь уведомление, если сегодняшнее занятие не завершено.",
         notif_disabled_success: "Напоминания выключены.",
         rappel_heure: "Время напоминания",
+        notif_desc_natif: "Получай напоминание в выбранное время в те дни, когда занятие ещё не завершено.",
         rappel_regle: "Напоминание настроено: каждый день в {h}, пока сегодняшнее занятие не завершено.",
         rappel_refuse: "Уведомления отключены. Их можно разрешить в настройках телефона.",
         rappel_notif_titre: "Твоё ежедневное занятие ждёт",
@@ -29945,14 +29975,14 @@ const I18N = {
         auth_login_loading: "ВХОД…",
         auth_signup: "СОЗДАТЬ АККАУНТ",
         setup_kicker: "Добро пожаловать",
-        setup_title: "Настроим твоё обучение",
-        setup_learning_label: "Что ты учишь?",
+        setup_title: "Настроим твою учебную среду",
+        setup_learning_label: "Какой язык ты учишь?",
         setup_learning_de: "Немецкий",
         setup_learning_en: "Английский",
         setup_learning_autre: "Испанский",
         passage_vers_es: "Переход на испанский…",
         passage_vers_de: "Переход на немецкий…",
-        setup_uilang_label: "На каком языке тебе нужны объяснения?",
+        setup_uilang_label: "На каком языке тебе удобнее читать объяснения?",
         setup_continue: "ДАЛЬШЕ",
         setup_niveau_label: "Ты уже немного знаешь немецкий?",
         setup_niveau_zero: "Начинаю с нуля",
@@ -29964,15 +29994,15 @@ const I18N = {
         setup_niveau_note: "Уровень можно сменить в любой момент — в своём занятии на сегодня.",
         setup_voyage_note: "Необязательно: каждый день подскажем, в каком темпе идти, чтобы быть готовым.",
         profil_q1: "Зачем ты учишь немецкий?",
-        profil_q1_sous: "Чтобы твоё занятие начиналось с того, что важно для тебя.",
+        profil_q1_sous: "Этот выбор определяет, где через день проходит твоя сцена дня. Остальное занятие не меняется.",
         profil_r_voyager: "Чтобы путешествовать",
-        profil_r_voyager_sous: "Справляться на месте с первого дня",
+        profil_r_voyager_sous: "Аэропорт, отель, поезд, ресторан…",
         profil_r_vivre: "Чтобы жить в Германии",
-        profil_r_vivre_sous: "Повседневность: записи на приём, покупки, документы",
+        profil_r_vivre_sous: "Документы, врач, аптека, супермаркет…",
         profil_r_cours: "Для моего курса или учёбы",
-        profil_r_cours_sous: "Программа, уровень за уровнем",
+        profil_r_cours_sous: "Класс, библиотека, офис, семья…",
         profil_r_plaisir: "Для удовольствия",
-        profil_r_plaisir_sous: "Всего понемногу, в своём темпе",
+        profil_r_plaisir_sous: "Все сцены по очереди",
         profil_pied1: "Передумать можно в любой момент — в своём занятии на сегодня.",
         profil_q2: "Что больше всего похоже на тебя?",
         profil_q2_sous: "Мы настроим занятие под это. Всего понемногу будет всегда.",
@@ -30001,7 +30031,7 @@ const I18N = {
         dec_te_repete: "Твоя очередь: повтори!",
         dec_t5_titre: "Твоё занятие на сегодня",
         dec_t5_texte: "Это сердце приложения. Каждый день — занятие: новые слова, повторения, которые возвращаются точно вовремя, немного грамматики, устная речь и сцена дня. Можно проходить их одно за другим сколько угодно. Всё это продвигает твою картину. На главном экране его запускает стрелка. Уровень меняется здесь. Начинаешь с нуля? Маленький росток — это «Первые шаги»: самые нужные фразы для поездки.",
-        dec_t6_titre: "Экскурсия окончена!",
+        dec_t6_titre: "Твоя экскурсия завершена!",
         dec_t6_texte: "Всё есть на главном экране: сначала твоё занятие на сегодня, а потом сцены и слушание — когда захочешь. Нескольких минут в день достаточно. Успешной учёбы!",
         dec_t6_bouton: "НАЧАТЬ",
         dec_t1_titre: "Твоё первое слово",
@@ -31057,6 +31087,7 @@ const I18N = {
         myvocab_full: "Du hast {n} zurückgelegte Wörter erreicht. Geh sie erst durch, bevor du weitere hinzufügst.",
         myvocab_sans_genre: "„{mot}“ hat im Wörterbuch keinen Artikel. Daraus lässt sich keine zuverlässige Karte machen, aber deine Anfrage ist notiert.",
         carte_nouveau_mot: "Neues Wort",
+        carte_nouvelle_expression: "Neuer Ausdruck",
         carte_type_particule: "Partikel",
         carte_type_adjectif: "Adjektiv",
         carte_genre_der: "maskulin",
@@ -31593,6 +31624,7 @@ const I18N = {
         notif_enabled_success: "Erinnerungen aktiviert! Du bekommst eine Benachrichtigung, wenn deine heutige Einheit nicht geschafft ist.",
         notif_disabled_success: "Erinnerungen ausgeschaltet.",
         rappel_heure: "Uhrzeit der Erinnerung",
+        notif_desc_natif: "Erhalte zur gewünschten Uhrzeit eine Erinnerung an Tagen, an denen deine Einheit noch nicht geschafft ist.",
         rappel_regle: "Erinnerung eingestellt: jeden Tag um {h}, solange deine heutige Einheit nicht geschafft ist.",
         rappel_refuse: "Benachrichtigungen abgelehnt. Du kannst sie in den Einstellungen deines Handys erlauben.",
         rappel_notif_titre: "Deine Lerneinheit wartet",
@@ -31671,8 +31703,8 @@ const I18N = {
         auth_login_loading: "ANMELDUNG …",
         auth_signup: "KONTO ERSTELLEN",
         setup_kicker: "Willkommen",
-        setup_title: "Richten wir dein Lernen ein",
-        setup_learning_label: "Was lernst du?",
+        setup_title: "Richten wir deine Lernumgebung ein",
+        setup_learning_label: "Welche Sprache lernst du?",
         setup_learning_de: "Deutsch",
         setup_learning_en: "Englisch",
         setup_learning_autre: "Spanisch",
@@ -31681,7 +31713,7 @@ const I18N = {
         passage_vers_en: "Wechsel zu Englisch …",
         passage_vers_ja: "Wechsel zu Japanisch …",
         passage_vers_pt: "Wechsel zu Portugiesisch …",
-        setup_uilang_label: "In welcher Sprache möchtest du die Erklärungen?",
+        setup_uilang_label: "In welcher Sprache bevorzugst du die Erklärungen?",
         setup_continue: "WEITER",
         setup_niveau_label: "Kannst du schon ein bisschen Deutsch?",
         setup_niveau_zero: "Ich fange bei null an",
@@ -31693,15 +31725,15 @@ const I18N = {
         setup_niveau_note: "Du kannst das Niveau jederzeit ändern, aus deiner Lerneinheit heraus.",
         setup_voyage_note: "Optional: Wir sagen dir jeden Tag das Tempo, um rechtzeitig bereit zu sein.",
         profil_q1: "Warum lernst du Deutsch?",
-        profil_q1_sous: "Damit deine Lerneinheit bei dem anfängt, was für dich zählt.",
+        profil_q1_sous: "Diese Wahl bestimmt, wo deine Szene des Tages jeden zweiten Tag spielt. Der Rest deiner Lerneinheit bleibt gleich.",
         profil_r_voyager: "Zum Reisen",
-        profil_r_voyager_sous: "Vor Ort zurechtkommen, von Anfang an",
+        profil_r_voyager_sous: "Flughafen, Hotel, Zug, Restaurant…",
         profil_r_vivre: "Um in Deutschland zu leben",
-        profil_r_vivre_sous: "Der Alltag: Termine, Einkäufe, Behördengänge",
+        profil_r_vivre_sous: "Behörden, Arzt, Apotheke, Supermarkt…",
         profil_r_cours: "Für meinen Kurs oder mein Studium",
-        profil_r_cours_sous: "Der Lehrplan, Niveau für Niveau",
+        profil_r_cours_sous: "Klassenzimmer, Bibliothek, Büro, Familie…",
         profil_r_plaisir: "Aus Freude",
-        profil_r_plaisir_sous: "Von allem etwas, in deinem Tempo",
+        profil_r_plaisir_sous: "Alle Szenen, der Reihe nach",
         profil_pied1: "Du kannst es dir jederzeit anders überlegen, aus deiner Lerneinheit heraus.",
         profil_q2: "Was passt am besten zu dir?",
         profil_q2_sous: "Danach stimmen wir deine Lerneinheit ab. Von allem etwas bekommst du immer.",
@@ -31730,7 +31762,7 @@ const I18N = {
         dec_te_repete: "Jetzt du: Sprich nach!",
         dec_t5_titre: "Deine Lerneinheit heute",
         dec_t5_texte: "Das ist das Herz der App. Jeden Tag eine Lerneinheit: neue Wörter, die Wiederholungen, die zur rechten Zeit wiederkommen, etwas Grammatik, Sprechen und die Szene des Tages. Du kannst so viele hintereinander machen, wie du willst. Alles bringt dein Gemälde voran. Auf der Startseite startet sie der Pfeil. Dein Niveau änderst du hier. Du fängst bei null an? Der kleine Keimling ist „Erste Schritte“: die wichtigsten Sätze fürs Reisen.",
-        dec_t6_titre: "Der Rundgang ist zu Ende!",
+        dec_t6_titre: "Dein Rundgang ist abgeschlossen!",
         dec_t6_texte: "Auf der Startseite ist alles da: zuerst deine Lerneinheit, dann die Szenen und das Hören, wann du willst. Ein paar Minuten am Tag reichen. Viel Spaß beim Lernen!",
         dec_t6_bouton: "STARTEN",
         dec_t1_titre: "Dein erstes Wort",
@@ -32799,6 +32831,7 @@ const I18N = {
         myvocab_full: "Llegaste a {n} palabras apartadas. Repásalas antes de agregar más.",
         myvocab_sans_genre: "«{mot}» no tiene artículo en el diccionario. No podemos hacer una tarjeta fiable, pero tu solicitud queda anotada.",
         carte_nouveau_mot: "Palabra nueva",
+        carte_nouvelle_expression: "Expresión nueva",
         carte_type_particule: "partícula",
         carte_type_adjectif: "adjetivo",
         carte_genre_der: "masculino",
@@ -33335,6 +33368,7 @@ const I18N = {
         notif_enabled_success: "¡Recordatorios activados! Recibirás una notificación si tu práctica de hoy no está hecha.",
         notif_disabled_success: "Recordatorios desactivados.",
         rappel_heure: "Hora del recordatorio",
+        notif_desc_natif: "Recibe un recordatorio a la hora que elijas, los días en que tu práctica aún no esté hecha.",
         rappel_regle: "Recordatorio programado: cada día a las {h}, mientras tu práctica de hoy no esté hecha.",
         rappel_refuse: "Notificaciones rechazadas. Puedes autorizarlas en la configuración de tu teléfono.",
         rappel_notif_titre: "Tu práctica de hoy te espera",
@@ -33413,8 +33447,8 @@ const I18N = {
         auth_login_loading: "INICIANDO SESIÓN…",
         auth_signup: "CREAR UNA CUENTA",
         setup_kicker: "Te damos la bienvenida",
-        setup_title: "Configuremos tu aprendizaje",
-        setup_learning_label: "¿Qué estás aprendiendo?",
+        setup_title: "Configuremos tu entorno de aprendizaje",
+        setup_learning_label: "¿Qué idioma estás aprendiendo?",
         setup_learning_de: "Alemán",
         setup_learning_en: "Inglés",
         setup_learning_autre: "Español",
@@ -33423,7 +33457,7 @@ const I18N = {
         passage_vers_en: "Cambiando al inglés…",
         passage_vers_ja: "Cambiando al japonés…",
         passage_vers_pt: "Cambiando al portugués…",
-        setup_uilang_label: "¿En qué idioma quieres las explicaciones?",
+        setup_uilang_label: "¿En qué idioma prefieres las explicaciones?",
         setup_continue: "CONTINUAR",
         setup_niveau_label: "¿Ya sabes algo de alemán?",
         setup_niveau_zero: "Empiezo de cero",
@@ -33435,15 +33469,15 @@ const I18N = {
         setup_niveau_note: "Podrás cambiar de nivel en cualquier momento, desde tu práctica de hoy.",
         setup_voyage_note: "Opcional: cada día te diremos el ritmo que necesitas para llegar a tiempo.",
         profil_q1: "¿Por qué aprendes alemán?",
-        profil_q1_sous: "Para que tu práctica empiece por lo que te importa.",
+        profil_q1_sous: "Esta elección decide dónde se desarrolla tu escena del día, un día sí y otro no. El resto de tu práctica no cambia.",
         profil_r_voyager: "Para viajar",
-        profil_r_voyager_sous: "Arreglártelas allí, desde el primer día",
+        profil_r_voyager_sous: "Aeropuerto, hotel, tren, restaurante…",
         profil_r_vivre: "Para vivir en Alemania",
-        profil_r_vivre_sous: "El día a día: citas, compras, trámites",
+        profil_r_vivre_sous: "Trámites, médico, farmacia, supermercado…",
         profil_r_cours: "Para mi curso o mis estudios",
-        profil_r_cours_sous: "El programa, nivel por nivel",
+        profil_r_cours_sous: "Aula, biblioteca, oficina, familia…",
         profil_r_plaisir: "Por gusto",
-        profil_r_plaisir_sous: "Un poco de todo, a tu ritmo",
+        profil_r_plaisir_sous: "Todas las escenas, por turnos",
         profil_pied1: "Podrás cambiar de opinión en cualquier momento, desde tu práctica de hoy.",
         profil_q2: "¿Con cuál te identificas más?",
         profil_q2_sous: "Ajustaremos tu práctica según eso. Siempre tendrás un poco de todo.",
@@ -33472,7 +33506,7 @@ const I18N = {
         dec_te_repete: "Tu turno: ¡repite!",
         dec_t5_titre: "Tu práctica de hoy",
         dec_t5_texte: "Es el corazón de la aplicación. Cada día, una práctica: palabras nuevas, los repasos que vuelven en el momento justo, un poco de gramática, el oral y la escena del día. Puedes hacer tantas seguidas como quieras. Todo hace avanzar tu cuadro. En la pantalla de inicio, la flecha la lanza. Tu nivel se cambia aquí. ¿Empiezas de cero? El brotecito es Primeros pasos: las frases esenciales para viajar.",
-        dec_t6_titre: "¡El recorrido ha terminado!",
+        dec_t6_titre: "¡Tu recorrido ha terminado!",
         dec_t6_texte: "En la pantalla de inicio está todo: primero tu práctica de hoy, y luego las escenas y la escucha, cuando quieras. Con unos minutos al día basta. ¡Feliz aprendizaje!",
         dec_t6_bouton: "EMPEZAR",
         dec_t1_titre: "Tu primera palabra",
@@ -37171,7 +37205,8 @@ function finVisiteDecouverte(){
     decouverte.etape = DECOUVERTE_ETAPES + 1;
     decouverte.passage = (decouverte.passage || 0) + 1;
     rendreBlocsDecouverte();
-    ["decouverteFin", "decouverteBravo", "decouverteMosaique"].forEach(id => {
+    // decouverteSuite aussi : la derniere etape l'affiche, et il restait sous « Commencer » (retour d'un testeur, 10 nov. 2026).
+    ["decouverteSuite", "decouverteFin", "decouverteBravo", "decouverteMosaique"].forEach(id => {
         const el = document.getElementById(id);
         if(el) el.classList.add("hidden");
     });
@@ -37927,6 +37962,9 @@ function updateNotificationsUi(){
     btn.classList.toggle("danger", on);
     const bloc = document.getElementById("rappelHeureBloc");
     if(bloc) bloc.classList.toggle("hidden", !natif);
+    // Le choix de l'heure n'existe que dans l'app installee : son texte le dit, le web garde le sien.
+    const desc = document.getElementById("notifDesc");
+    if(desc){ const cle = natif ? "notif_desc_natif" : "notif_desc"; desc.setAttribute("data-i18n", cle); desc.textContent = t(cle); }
     const champ = document.getElementById("rappelHeure");
     if(natif && champ) champ.value = (lireRappel() || {}).heure || RAPPEL_HEURE_DEFAUT;
 }
@@ -38125,16 +38163,27 @@ function proposerRappel(){
     h.textContent = "🔔 " + t("rappel_propose_titre");
     const p = document.createElement("p");
     p.textContent = tf("rappel_propose_texte", { h: (lireRappel() || {}).heure || RAPPEL_HEURE_DEFAUT });
+    // L'heure se choisit ici, au moment ou la question se pose (retour d'un testeur, 10 nov. 2026 : il ne l'avait pas
+    // trouvee dans les reglages). La phrase au-dessus suit le choix.
+    const ligneHeure = document.createElement("label");
+    ligneHeure.className = "rappel-propose-heure";
+    const titreHeure = document.createElement("span");
+    titreHeure.textContent = t("rappel_heure");
+    const champHeure = document.createElement("input");
+    champHeure.type = "time"; champHeure.step = "300"; champHeure.className = "rappel-heure";
+    champHeure.value = (lireRappel() || {}).heure || RAPPEL_HEURE_DEFAUT;
+    champHeure.addEventListener("input", () => { if(champHeure.value) p.textContent = tf("rappel_propose_texte", { h: champHeure.value }); });
+    ligneHeure.append(titreHeure, champHeure);
     const oui = document.createElement("button");
     oui.type = "button"; oui.className = "primary"; oui.textContent = t("rappel_propose_oui");
-    oui.addEventListener("click", () => { fermerVoileEpisode(); basculerRappelNatif(); });
+    oui.addEventListener("click", () => { fermerVoileEpisode(); changerHeureRappel(champHeure.value); basculerRappelNatif(); });
     const tard = document.createElement("button");
     tard.type = "button"; tard.className = "secondary"; tard.textContent = t("ep_plus_tard");
     tard.addEventListener("click", () => fermerVoileEpisode());
     const actions = document.createElement("div");
     actions.className = "ep-actions";
     actions.append(tard, oui);
-    b.append(h, p, actions);
+    b.append(h, p, ligneHeure, actions);
 }
 
 // Chaque retour dans l'app reprogramme : le jour avance, l'objectif a pu etre
@@ -38472,7 +38521,7 @@ async function mettreSeanceDeCote(){
         cartes.forEach(c => Object.keys(c.s || {}).forEach(k => { if(manquants.has(c.s[k])) c.s[k] = null; }));
         const textes = {};
         ["hl_titre", "hl_sous", "hl_commencer", "hl_en_ligne", "hl_fin_titre", "hl_fin_texte",
-         "hl_recommencer", "hl_encore_sous", "flash_tap_hint", "carte_nouveau_mot",
+         "hl_recommencer", "hl_encore_sous", "flash_tap_hint", "carte_nouveau_mot", "carte_nouvelle_expression",
          "review_again", "review_continuer", "back_button",
          "cp_q_ecoute", "cp_q_trou", "cp_q_ordre", "cp_q_dictee", "cp_q_parler", "cp_q_gram",
          "cp_ecouter", "cp_bravo", "cp_reponse", "cp_presque", "verify_button", "setup_continue"].forEach(k => { textes[k] = t(k); });
@@ -38716,6 +38765,7 @@ function lecteurHorsLigne(){
         $("hlPhrase").hidden = true;
         $("hlCarteBloc").hidden = false;
         $("hlNouveau").hidden = !c.neuf;
+        $("hlNouveau").textContent = txt(c.m === "redewendungen" && String(c.mot || "").trim().indexOf(" ") > 0 ? "carte_nouvelle_expression" : "carte_nouveau_mot");
         $("hlRecto").textContent = c.recto;
         $("hlAide").hidden = false;
         var v = $("hlVerso"); v.innerHTML = ""; v.hidden = true;
@@ -48672,10 +48722,10 @@ function ouvrirTelc(partie){
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t("op_pruefung_telc_title");
-        cadre.src = baseScenes() + "telc/telc.html?apprendre=de&lang=" + encodeURIComponent(getUiLang())
+        chargerCadre(cadre, baseScenes() + "telc/telc.html?apprendre=de&lang=" + encodeURIComponent(getUiLang())
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
                   + (partie ? "&partie=" + encodeURIComponent(partie) : "")
-                  + "&t=" + Date.now();
+                  + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
 }
@@ -49557,6 +49607,10 @@ let panneauAvantFlashcards = null;
 const ECRANS_DES_REGLAGES = new Set(["settings", "adminDashboard"]);
 
 // ---- Le bouton Retour du telephone (v710) ------------------------------
+// ⚠️ CONSTAT DU 10 NOV. 2026 (Capacitor 8.5.2, branche r8-android) : ce qui suit suppose un natif qui rejoue l'historique,
+// or BridgeActivity ne gere pas Retour : c'est le module @capacitor/app qui le fait, et il n'a jamais ete installe. Dans
+// l'app, Retour ferme donc tout ecran tant que ce module n'est pas ajoute (recompilation). Cette pile sert aux navigateurs.
+//
 // ⚠️ L'APP ANDROID SE FERMAIT AU PREMIER « RETOUR ». Capacitor fait
 // history.back() dans la WebView s'il y a un historique, et quitte sinon. Or
 // l'app change d'ecran sans jamais rien poser dans l'historique : il n'y en
@@ -49881,7 +49935,7 @@ function showScreen(id){
         if(cadre && cadre.getAttribute("src") && cadre.getAttribute("src") !== "about:blank"){
             setTimeout(() => {
                 const actif = document.querySelector(".screen.active");
-                if(!actif || actif.id !== "sceneSeance") cadre.src = "about:blank";
+                if(!actif || actif.id !== "sceneSeance") chargerCadre(cadre, "about:blank");
             }, 400);
         }
     }
@@ -50441,10 +50495,10 @@ function ouvrirThemeIllustre(nom, depuis){
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t(th.titre);
-        cadre.src = baseScenes() + th.page + "?apprendre=" + apprendreThemeIllustre()
+        chargerCadre(cadre, baseScenes() + th.page + "?apprendre=" + apprendreThemeIllustre()
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
-                  + voixThemeIllustre() + "&t=" + Date.now();
+                  + voixThemeIllustre() + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
 }
@@ -50456,9 +50510,9 @@ function ouvrirDtzOral(){
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = "Mark et Anna t’aident à préparer le DTZ";
-        cadre.src = baseScenes() + "dtz-oral.html?apprendre=de"
+        chargerCadre(cadre, baseScenes() + "dtz-oral.html?apprendre=de"
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
-                  + "&t=" + Date.now();
+                  + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
 }
@@ -54499,6 +54553,10 @@ function setFlashHeader(kickerKey, titleKey){
     document.getElementById("flashThemeTitle").textContent = titleKey ? t(titleKey) : (currentTheme ? currentTheme.name : "");
 }
 
+// Une carte du fonds des expressions, de plusieurs mots (« Nein » seul reste un mot).
+function estExpressionCarte(mode, texte){
+    return mode === "redewendungen" && /\s/.test(String(texte || "").trim());
+}
 function loadFlashcard(){
     oublierCarteJugee();   // une carte (re)dessinee n'a pas encore ete jugee
     updateXpComboDisplay();
@@ -55179,7 +55237,13 @@ function loadFlashcard(){
     const nouveauEl = document.getElementById("flashNouveau");
     const etatMot = getWordState(item.themeId, item.index) || {};
     const jamaisJuge = !etatMot.reviews && !etatMot.mastered;
-    if(nouveauEl) nouveauEl.classList.toggle("hidden", !jamaisJuge);
+    if(nouveauEl){
+        nouveauEl.classList.toggle("hidden", !jamaisJuge);
+        // Une expression n'est pas un mot (retour d'un testeur, 10 nov. 2026 : « Es geht mir gut » sous « Nouveau mot »).
+        const cleNouveau = estExpressionCarte(flashcardMode, card && card[0]) ? "carte_nouvelle_expression" : "carte_nouveau_mot";
+        nouveauEl.setAttribute("data-i18n", cleNouveau);
+        nouveauEl.textContent = t(cleNouveau);
+    }
     if(jamaisJuge && decouverteEnCours()){
         const indexDeLaCarte = currentFlashcard;
         setTimeout(() => {
@@ -63635,6 +63699,15 @@ const SCENES_TOUTES = [
 const SCENES_SEANCE = SCENES_TOUTES.filter(s => !sceneEcartee(s.nom));
 const SCENE_FAITE_KEY = PREFIXE_STOCKAGE + "sceneFaite";
 
+// ⚠️ LE CADRE DES SCENES NE POSE JAMAIS D'ENTREE D'HISTORIQUE. Poser cadre.src ajoutait une entree, apres le pushState du
+// meme toucher : Chrome la voit sans geste et marque toutes les entrees de la page comme a sauter (voir « UNE ENTREE PAR
+// TOUCHER », installerHistorique), et les history.go() de la pile tombaient sur les entrees du cadre. Un remplacement
+// n'en cree aucune. Vaut dans un navigateur des aujourd'hui, et dans l'app Android le jour ou le natif gerera Retour.
+function chargerCadre(cadre, url){
+    cadre.dataset.page = url;
+    try{ cadre.contentWindow.location.replace(url); return; }catch(e){}
+    cadre.src = url;
+}
 function baseScenes(){
     // Servie par GitHub Pages a cote de l'app ; l'app installee (Capacitor)
     // n'a pas d'adresse http, elle va chercher la version en ligne.
@@ -63968,8 +64041,8 @@ function ouvrirSceneAdmin(nom){
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t("seance_scene_cadre");
-        cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(nom)
-                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse + "&t=" + Date.now();
+        chargerCadre(cadre, baseScenes() + "index.html?scene=" + encodeURIComponent(nom)
+                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
 }
@@ -63984,9 +64057,9 @@ function ouvrirScenePremiersPas(nom, dernier){
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t("seance_scene_cadre");
-        cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(nom) + "&pp=1" + (dernier ? "&dernier=1" : "")
+        chargerCadre(cadre, baseScenes() + "index.html?scene=" + encodeURIComponent(nom) + "&pp=1" + (dernier ? "&dernier=1" : "")
                   + "&nb=" + questionsSeance()
-                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse + "&t=" + Date.now();
+                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
 }
@@ -64292,8 +64365,8 @@ function ouvrirSceneLibre(nom){
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t("seance_scene_cadre");
-        cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(nom)
-                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse + "&t=" + Date.now();
+        chargerCadre(cadre, baseScenes() + "index.html?scene=" + encodeURIComponent(nom)
+                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
 }
@@ -64345,13 +64418,13 @@ function ouvrirSceneSeance(){
     // explications des questions (visuel/prototype/traductions/).
     if(cadre){
         cadre.title = t("seance_scene_cadre");
-        cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(s.nom)
+        chargerCadre(cadre, baseScenes() + "index.html?scene=" + encodeURIComponent(s.nom)
                   + "&seance=1&niveau=" + encodeURIComponent(niveauSeance())
                   + "&nb=" + questionsScene()
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + langueDeScene()
                   + "&vitesse=" + facteurVitesse
-                  + "&t=" + Date.now();
+                  + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
 }
@@ -64635,7 +64708,7 @@ function exerciceDeScene(){
 function themeIllustreOuvert(){
     try{
         const cadre = document.getElementById("sceneCadre");
-        const page = cadre ? new URL(cadre.src, location.href).pathname.split("/").pop() : "";
+        const page = cadre ? new URL(cadre.dataset.page || "about:blank", location.href).pathname.split("/").pop() : "";
         return Object.values(THEMES_ILLUSTRES).some(th => th.page === page);
     }catch(e){ return false; }
 }
@@ -69053,14 +69126,14 @@ function ouvrirArretScene(item){
     if(cadre){
         const mots = (item.mots || []).map(m => m[0]).join("|");
         cadre.title = t("seance_scene_cadre");
-        cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(item.scene.nom)
+        chargerCadre(cadre, baseScenes() + "index.html?scene=" + encodeURIComponent(item.scene.nom)
                   + "&seance=1&niveau=" + encodeURIComponent(item.niveau || "A1")
                   + "&nb=" + questionsSeance()
                   + (mots ? "&mots=" + encodeURIComponent(mots) : "")
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + langueDeScene()
                   + "&vitesse=" + facteurVitesse
-                  + "&t=" + Date.now();
+                  + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
 }
@@ -69118,10 +69191,10 @@ function ouvrirArretTheme(item){
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t(th.titre);
-        cadre.src = baseScenes() + th.page + "?seance=1" + (item.nb ? "&nb=" + item.nb : "") + "&apprendre=" + apprendreThemeIllustre()
+        chargerCadre(cadre, baseScenes() + th.page + "?seance=1" + (item.nb ? "&nb=" + item.nb : "") + "&apprendre=" + apprendreThemeIllustre()
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
-                  + voixThemeIllustre() + "&t=" + Date.now();
+                  + voixThemeIllustre() + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
 }
