@@ -9475,7 +9475,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1148</span>
+        <span class="subtitle-version">v1149</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -49707,6 +49707,7 @@ try{ if("scrollRestoration" in history) history.scrollRestoration = "manual"; }c
 function showScreen(id){
     // v1003 : le fond commun se regle sur l'ecran (vif et anime sur l'accueil, pale ailleurs).
     try{ document.body.dataset.ecran = id; }catch(e){}
+    if(id === "sceneSeance") sessionAvantMicro();
     try{ eteindreTransitHorsSeance(id); }catch(e){}
     // Le panneau d'information de l'accueil ne survit pas a un changement
     // d'ecran : voir fermerInfoProgression().
@@ -51689,6 +51690,13 @@ function fermerLignePlacement(ev){
 // TOUT LE MONDE, essai ou pas. C'est le role de tests/syntaxe.js, avant
 // chaque envoi.
 const ESSAIS = {
+    // 9 nov. 2026, retour d'une personne testeuse (iPhone, app posee sur l'ecran d'accueil) : apres la partie ou elle
+    // parle, la voix enregistree baisse. Admin seul : un faux pas ici couperait le micro, et rien ne se verifie hors d'un iPhone.
+    apres_micro: {
+        etat: "admin",
+        titre: "Volume après le micro (iPhone)",
+        desc: "Après un exercice où l'on parle, l'iPhone repasse en mode lecture, pour que la voix suivante ne soit pas plus faible. À essayer depuis l'app posée sur l'écran d'accueil."
+    },
     // EN PRODUCTION le 6 nov. 2026 -- Jacques : « Oui, je prefere C ». Voir majGrilleAccueil().
     accueil_grille: {
         etat: "tous",
@@ -58060,7 +58068,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1148;
+const APP_VERSION = 1149;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -65414,6 +65422,7 @@ function arreterOralPhrase(){
     try{ if(oralPhrase.flux) oralPhrase.flux.getTracks().forEach(p => p.stop()); }catch(e){}
     try{ if(oralPhrase.url) URL.revokeObjectURL(oralPhrase.url); }catch(e){}
     oralPhrase = null;
+    sessionApresMicro();
 }
 
 // v883 : LA RECONNAISSANCE NATIVE NE SURVIT NI A LA CARTE NI A L'APP. Arreter le
@@ -66525,6 +66534,7 @@ function montrerCartePhrase(item){
         const juger = () => {
             if(!essai || essai.juge) return;
             essai.juge = true;
+            sessionApresMicro();
             clearTimeout(essai.attente);
             (essai.ecouteurs || []).forEach(h => { try{ h.remove(); }catch(e){} });
             micro.classList.remove("ecoute");
@@ -66629,6 +66639,7 @@ function montrerCartePhrase(item){
         micro.addEventListener("click", async () => {
             if(essai && essai.enCours){ journal("arret", "demande par l'usager"); arreter(); return; }
             arreterOralPhrase();
+            sessionAvantMicro();
             verdict.className = "cp-or-verdict hidden";
             outils.classList.add("hidden");
             micro.classList.remove("petit");
@@ -66863,6 +66874,7 @@ function montrerCartePhrase(item){
                 dire("cp_micro_muet");
             }, 8000);
             let flux = null;
+            sessionAvantMicro();
             try{ flux = await navigator.mediaDevices.getUserMedia({ audio: true }); }
             catch(e){
                 clearTimeout(garde);
@@ -66895,6 +66907,7 @@ function montrerCartePhrase(item){
                 const pic = anime ? anime.pic() : 0;
                 arreterOnde();
                 try{ flux.getTracks().forEach(x => x.stop()); }catch(e){}
+                sessionApresMicro();
                 enreg.classList.remove("en-cours");
                 enreg.textContent = "🎙 " + t("cp_enregistrer");
                 const octets = morceaux.reduce((a, b) => a + (b.size || 0), 0);
@@ -71718,6 +71731,21 @@ function renderMusiqueSetting(){
     b.textContent = (on ? "\u2713  " : "\u2014  ") + t("musique_bouton")
                   + (on ? "" : "  \u00b7  " + t("carte_dire_non"));
 }
+
+// LA VOIX QUI BAISSE APRES L'ORAL (essai apres_micro). Pendant la prise de son, iOS met la page en lecture-et-enregistrement,
+// un mode ou ce qui sort est plus faible, et il peut y rester apres l'arret du micro. On demande la lecture seule en
+// sortant du micro et on rend « auto » en y entrant, sinon le micro suivant ne s'ouvrirait pas. Les apps natives ne passent
+// pas ici : leur module remet deja .playback (patch de wortando-ios). Celui qui a choisi de garder sa musique non plus.
+function sessionMicro(voulu){
+    try{
+        if(!essaiActif("apres_micro") || laisserMusiqueJouer() || !("audioSession" in navigator)) return;
+        if(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) return;
+        navigator.audioSession.type = voulu;
+        noterAudio("", "SESSION", "micro : demande « " + voulu + " », retenu « " + navigator.audioSession.type + " »");
+    }catch(e){ try{ noterAudio("", "SESSION", "micro : « " + voulu + " » refuse : " + (e && e.message)); }catch(e2){} }
+}
+function sessionAvantMicro(){ sessionMicro("auto"); }
+function sessionApresMicro(){ sessionMicro("playback"); }
 
 function appliquerSessionSonore(){
     const voulu = laisserMusiqueJouer() ? "ambient" : "";
