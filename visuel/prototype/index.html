@@ -958,9 +958,10 @@ function dire(t){
     const a = new Audio(AUDIO_BASE + empreinte(t) + ".mp3?r=" + AUDIO_REVISION);
     a.playbackRate = VITESSE_VOIX;
     audioEnCours = a;
-    a.addEventListener("error", () => { audioAbsents.add(t); if (audioEnCours === a) direTelephone(t); }, {once: true});
+    // audioEnCours remis a null : un fichier absent declenche « error » ET le refus de play(), et la phrase partait deux fois (mesure du 10 nov. 2026).
+    a.addEventListener("error", () => { audioAbsents.add(t); if (audioEnCours === a){ audioEnCours = null; direTelephone(t); } }, {once: true});
     const p = a.play();
-    if (p && p.catch) p.catch(() => { if (audioEnCours === a) direTelephone(t); });
+    if (p && p.catch) p.catch(() => { if (audioEnCours === a){ audioEnCours = null; direTelephone(t); } });
   } catch (e) { direTelephone(t); }
 }
 
