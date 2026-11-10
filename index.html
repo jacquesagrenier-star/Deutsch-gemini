@@ -60999,10 +60999,15 @@ function rendreTonCiel(){
     const lg = getUiLang();
     const tot = document.getElementById("tcTotal");
     if(tot) tot.textContent = e.somme ? tf("ciel_total", { n: e.somme }) : "";
+    // Seulement ce qu'on a atteint : la constellation en cours et celles deja commencees ou finies. Une figure a
+    // venir n'apparait ni en pastille ni en dessin avant qu'on l'atteigne (Jacques, 10 nov. 2026 : « je les
+    // mettrais seulement au moment ou on les atteint et non a l'avance »).
+    const vues = e.groupes.filter(v => v.n > 0 || v.g === e.courant);
+    if(!vues.some(v => v.g === CIEL_VUE)) CIEL_VUE = e.courant;
     const zone = document.getElementById("tcPastilles");
     if(zone){
         zone.textContent = "";
-        e.groupes.forEach(v => {
+        vues.forEach(v => {
             const b = document.createElement("button");
             b.type = "button";
             b.className = "tc-pastille" + (v.g === CIEL_VUE ? " active" : "") + (!v.n && v.g !== e.courant ? " venir" : "");

@@ -9,8 +9,11 @@ Sur un navigateur vierge, sans compte, l'etat pose dans le stockage :
   pp        : Premiers pas, jour 3 : la Grande Ourse en cours ;
   a1        : A1 voyage, etape 6 : Grande Ourse finie, Gemeaux 5/12, Orion a venir ;
   a2        : A2 et plus : les trois figures finies ;
+  voyage    : A1 voyage, etape 6, sans Premiers pas : les Gemeaux seuls ;
   ancien    : A1 sans le voyage (ancien ordre) : pas de tuile, le tableau garde toute la bande ;
   anglais   : pas de ciel hors de l'allemand et de l'espagnol.
+Dans la page, seulement ce qu'on a atteint (Jacques, 10 nov.) : la figure en cours et celles commencees ou finies, jamais une
+figure a venir, ni en pastille ni en dessin -- neuf et pp : 1 pastille, a1 : 2, a2 : 3, voyage : 1.
 A chaque fois : la bande coupee en deux sans debordement, puis la page, ses pastilles, une etoile touchee (nom et distance « de la
 Terre »), a 320 et 360 px, clair, nuit et RTL. Il ouvre un navigateur : a lancer SOUS LE VERROU (~/.wortando/REGLE-VERROU-PARCOURS.txt).
 """
@@ -38,6 +41,7 @@ POSER = """
   if(cas === 'a1'){ localStorage.setItem(PREMIERS_PAS_KEY, JSON.stringify({ a: false, p: 999, fini: true })); localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify({ a: true, e: 5, t: true, b: 0 }));
                     localStorage.setItem(CIEL_PART_KEY, JSON.stringify({ g: 'a1_escales', n: 5, p: .45 })); }
   if(cas === 'a2'){ localStorage.setItem(NIVEAU_SEANCE_KEY, 'A2'); }
+  if(cas === 'voyage'){ localStorage.setItem(PREMIERS_PAS_KEY, JSON.stringify({ a: false })); localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify({ a: true, e: 5, t: true, b: 0 })); }
   if(cas === 'ancien'){ localStorage.setItem(PREMIERS_PAS_KEY, JSON.stringify({ a: false })); localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify({ a: false, e: 0 })); }
 }
 """
@@ -104,8 +108,14 @@ def juger(cas, r):
         f.append("page non ouverte")
     if p["debord"]:
         f.append("debordement de la page")
-    if len(p["pastilles"]) != 3:
-        f.append("pastilles %s" % p["pastilles"])
+    attendu = {"neuf": 1, "pp": 1, "a1": 2, "a2": 3, "voyage": 1}.get(cas)
+    if len(p["pastilles"]) != attendu:
+        f.append("pastilles %s (attendu %s)" % (p["pastilles"], attendu))
+    for x in r.get("pastilles") or []:
+        if "venir" in x["info"].lower() or "coming" in x["info"].lower():
+            f.append("figure a venir montree : %s" % x["pastille"])
+    if cas == "voyage" and p["pastilles"] and p["pastilles"][0].split(" ")[0] not in ("Gémeaux", "Géminis", "Zwillinge"):
+        f.append("voyage : %s" % p["pastilles"])
     t = r.get("touche")
     if not t or not t["texte"] or not t["dansCadre"]:
         f.append("etoile touchee : %s" % t)
@@ -140,7 +150,8 @@ def main():
     total = 0
     CAS = [("de", "fr", "light", 360, "neuf"), ("de", "fr", "dark", 320, "neuf"), ("de", "fr", "light", 360, "pp"), ("de", "fr", "light", 360, "a1"), ("de", "fr", "dark", 320, "a1"),
            ("de", "ar", "dark", 320, "a1"), ("de", "ar", "light", 360, "a1"), ("de", "fa", "light", 320, "a1"), ("de", "ru", "light", 320, "a1"), ("de", "tr", "dark", 320, "a2"), ("de", "fr", "light", 360, "a2"),
-           ("es", "fr", "light", 360, "a1"), ("es", "fr", "dark", 320, "neuf"), ("es", "de", "light", 320, "a2"), ("de", "fr", "light", 360, "ancien"), ("en", "fr", "light", 360, "anglais")]
+           ("es", "fr", "light", 360, "a1"), ("es", "fr", "dark", 320, "neuf"), ("es", "de", "light", 320, "a2"),
+           ("de", "fr", "light", 360, "voyage"), ("es", "fr", "dark", 320, "voyage"), ("de", "ar", "dark", 320, "pp"), ("es", "ar", "light", 360, "pp"), ("de", "fr", "light", 360, "ancien"), ("en", "fr", "light", 360, "anglais")]
     try:
         with sync_playwright() as p:
             nav = p.chromium.launch()
