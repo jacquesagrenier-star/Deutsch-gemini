@@ -59431,6 +59431,15 @@ function direAllemand(texte, opts){
         // EST ce moment : le premier son qui ne sort pas.
         comparaisonAuto();
     }, DELAI_MUET);
+    // L'APP ANDROID, RESEAU QUI NE REPOND PAS (10 nov. 2026, mesure de la verification du son) : aucun « error » ne vient,
+    // play() reste en attente, et la carte se tait sans limite. Apres 4 s, la voix du telephone (compilation 18 et plus)
+    // dit le mot, sans condamner le fichier (definitif : false). L'iPhone et le web ne passent pas ici.
+    if(/WortandoNatif/.test(navigator.userAgent) && /Android/.test(navigator.userAgent) && "speechSynthesis" in window){
+        setTimeout(() => {
+            if(demarre || bascule || jeton !== lectureCourante) return;
+            versRepli(false, { name: "DELAI-4S" });
+        }, 4000);
+    }
     son.onplaying = () => {
         if(jeton !== lectureCourante) return;
         demarre = true;
