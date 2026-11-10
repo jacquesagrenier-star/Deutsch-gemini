@@ -100,7 +100,7 @@ async () => {
   const n = document.getElementById('seancePartsNoms'), W = innerWidth;
   const lignes = x => { const g = document.createRange(); g.selectNodeContents(x); return new Set([...g.getClientRects()].map(q => Math.round(q.top))).size; };
   const sortants = [...n.children].filter(x => { const g = document.createRange(); g.selectNodeContents(x); const r = g.getBoundingClientRect(), c = x.getBoundingClientRect(); return r.left < c.left - 1 || r.right > c.right + 1; }).map(x => x.textContent);
-  const seules = [...n.children].filter(x => { const g = document.createRange(); g.selectNodeContents(x); return [...g.getClientRects()].some(q => q.width > 0 && q.width < 9); }).map(x => x.textContent);
+  const seules = [...n.children].filter(x => { const g = document.createRange(); g.selectNodeContents(x); const parLigne = {}; [...g.getClientRects()].forEach(q => { if(q.width > 0){ const k = Math.round(q.top); parLigne[k] = (parLigne[k] || 0) + q.width; } }); return Object.values(parLigne).some(w => w < 9); }).map(x => x.textContent);
   return { noms: [...n.children].map(x => x.textContent), max: Math.max(...[...n.children].map(lignes)), sortants, seules, dir: document.documentElement.dir, large: Math.round(n.getBoundingClientRect().width), page: document.documentElement.scrollWidth > W };
 }
 """

@@ -21,5 +21,5 @@ La contrainte : six noms côte à côte sur un téléphone de 320 px, soit envir
 
 - **Repères** (les jours, les mois, les nombres, l'alphabet, le genre) : « Basics », « Basis », « Básicos » disent « les bases » ; est-ce le bon mot pour ces cartes ?
 - **Son** : la partie « le son du jour », une règle de prononciation. « Laut » (allemand) et « آوا » (persan) sont-ils naturels ici ?
-- **Wiederholen** (allemand) : la forme verbale a été préférée à « Wiederholung », plus longue.
+- **Wiederholen** (allemand) : la forme verbale a été préférée à « Wiederholung », plus longue. À six parties sur un petit écran, elle se coupe en « Wieder-holen » (césure douce dans le texte).
 - **Tous** : à l'écran, ce sont des étiquettes, pas des phrases ; les majuscules suivent l'usage de chaque langue.

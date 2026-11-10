@@ -30887,7 +30887,7 @@ const I18N = {
         etoile_compte: "{n} von {t} Sternen",
         etoile_groupe_complet: "Gruppe vollständig",
         ciel_prochaine: "Nächster Stern: {s}",
-        seance_court_revisions: "Wiederholen",
+        seance_court_revisions: "Wieder\u00ADholen",
         seance_court_mots: "Wörter",
         seance_court_feuille: "Verben",
         seance_court_reperes: "Basis",
@@ -69770,6 +69770,26 @@ function nomsSousLaBarre(noms, segs){
         noms.appendChild(n);
     });
     noms.classList.remove("hidden");
+    ajusterNomsSeance(noms);
+}
+// JAMAIS UNE LETTRE SEULE SOUS LA BARRE (Jacques, 10 nov. : le « s » de « Revisions », renvoye seul a la ligne, se lisait
+// comme un 5). Un mot plus large que sa colonne rapetisse jusqu'a tenir, en comptant ses cesures douces (Wieder\u00ADholen) ;
+// la coupure n'importe ou ne reste qu'en dernier recours.
+function ajusterNomsSeance(noms){
+    [...noms.children].forEach(n => {
+        const largeur = n.clientWidth;
+        if(!largeur) return;
+        n.style.fontSize = "";
+        let taille = parseFloat(getComputedStyle(n).fontSize) || 10;
+        const mesure = document.createElement("span");
+        mesure.style.cssText = "position:absolute; visibility:hidden; white-space:nowrap; font:inherit; letter-spacing:inherit;";
+        n.appendChild(mesure);
+        n.textContent.split(/[\s\u00AD]+/).filter(Boolean).forEach(m => {
+            mesure.textContent = m;
+            while(mesure.getBoundingClientRect().width > largeur && taille > 7.2){ taille -= .4; n.style.fontSize = taille.toFixed(1) + "px"; }
+        });
+        mesure.remove();
+    });
 }
 function elementNomsSeance(box){
     let n = document.getElementById("seancePartsNoms");
