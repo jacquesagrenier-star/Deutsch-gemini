@@ -49866,6 +49866,32 @@ function revenirALaBaseHistorique(suite){
     });
 })();
 
+// LE BOUTON RETOUR D'ANDROID (compilation 19, module @capacitor/app, 10 nov. 2026). Sans le module, le retour du
+// telephone fermait l'app depuis n'importe quel ecran : la page n'etait jamais consultee. Avec lui, un retour qui ne
+// trouve plus rien dans l'historique ne fait rien du tout : c'est donc ici qu'on quitte, a l'accueil. Le module n'existe
+// que dans l'app Android 19 et plus : le web, l'iPhone (ios.includePlugins) et Android 18 et avant ne passent pas ici.
+(function installerRetourAndroid(){
+    const App = pluginNatif("App");
+    if(!App || typeof App.addListener !== "function") return;
+    App.addListener("backButton", () => {
+        try{
+            if(!HIST || HIST.ignorer > 0) return;
+            // Le popstate fait le reste : memes fenetres, memes ecrans que le retour d'un navigateur.
+            if(HIST.idx > 0){ history.back(); return; }
+            if(fermerFenetreDessus() || retourSansEffet()) return;
+            const actif = document.querySelector(".screen.active");
+            if(actif && !ECRANS_RACINES.has(actif.id)){
+                HIST.enRetour = true;
+                try{ retourHistorique(""); }
+                finally{ HIST.enRetour = false; }
+                alignerHistorique(true);
+                return;
+            }
+            App.exitApp();
+        }catch(e){}
+    });
+})();
+
 // v980 : la premiere arrivee sur l'accueil depuis le chargement (voir showScreen).
 var accueilDejaOuvert = false;
 // Et pas de restauration automatique de la position par le navigateur au rechargement.
