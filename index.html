@@ -56672,7 +56672,11 @@ function installerSyntheseNative(){
         Promise.resolve().then(() => tts.speak({
             text: String(u.text), lang,
             rate: borne(u.rate, 0.1, 4, 1), pitch: borne(u.pitch, 0, 2, 1), volume: borne(u.volume, 0, 1, 1)
-        })).then(() => fini("end"), () => fini("error", {error: "synthesis-failed"}));
+        })).then(() => fini("end"), err => {
+            // Le refus du module (langue absente du telephone, moteur pas pret) n'avait aucune trace.
+            try{ noterAudio(String(u.text), "NATIF-ERR", lang + " : " + String((err && err.message) || err).slice(0, 80)); }catch(e){}
+            fini("error", {error: "synthesis-failed"});
+        });
     }
     const synthese = {
         get speaking(){ return !!enCours; },
@@ -59314,7 +59318,12 @@ function direAllemand(texte, opts){
     const onEnd = opts.onEnd || null;
 
     const repli = () => {
-        if(!('speechSynthesis' in window)){ if(onEnd) onEnd(); return; }
+        if(!('speechSynthesis' in window)){
+            // L'app Android d'avant la compilation 18 : pas de fichier, pas de voix, et jusqu'ici aucune trace.
+            noterAudio(texte, "SANS-VOIX", "pas de fichier et pas de synthese sur cet appareil");
+            if(onEnd) onEnd();
+            return;
+        }
         const u = new SpeechSynthesisUtterance(texte);
         u.volume = VOLUME_SYNTHESE;
         u.lang = LANGUE_ENSEIGNEE.voix;
