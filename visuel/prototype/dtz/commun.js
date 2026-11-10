@@ -19,6 +19,10 @@
 // DTZ.niveauGlobal() le calcule ; chaque module y verse son resultat par DTZ.resultat().
 
 "use strict";
+// L'APP ANDROID (10 nov. 2026, verification du son) : sa vue web n'a pas speechSynthesis et un cadre ne peut pas appeler
+// le module natif ; on reprend celui qu'index.html a pose (installerSyntheseNative), comme themes/voix.js et les scenes.
+// Sans cette ligne, chaque repli sur la voix du telephone se taisait sans erreur, au DTZ comme au telc.
+try{ if (!("speechSynthesis" in window) && window.parent !== window && window.parent.speechSynthesis){ window.speechSynthesis = window.parent.speechSynthesis; window.SpeechSynthesisUtterance = window.parent.SpeechSynthesisUtterance; } }catch(e){}
 const Q = new URLSearchParams(location.search);
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
