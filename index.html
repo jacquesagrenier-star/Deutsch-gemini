@@ -59567,8 +59567,14 @@ function direAllemand(texte, opts){
     }, DELAI_MUET);
     // L'APP ANDROID, RESEAU QUI NE REPOND PAS (10 nov. 2026, mesure de la verification du son) : aucun « error » ne vient,
     // play() reste en attente, et la carte se tait sans limite. Apres 4 s, la voix du telephone (compilation 18 et plus)
-    // dit le mot, sans condamner le fichier (definitif : false). L'iPhone et le web ne passent pas ici.
-    if(/WortandoNatif/.test(navigator.userAgent) && /Android/.test(navigator.userAgent) && "speechSynthesis" in window){
+    // dit le mot, sans condamner le fichier (definitif : false).
+    // ⚠️ PARTOUT, PAS SEULEMENT SUR ANDROID (10 nov. 2026, verification du son sur iPhone et le web, retour d'un
+    // testeur sur iPhone : « le son met parfois du temps a partir ou ne part pas »). La meme sonde, sur le moteur du
+    // web : un fichier sans reponse laisse la carte muette plus de 12 s, sans erreur ni repli, et la chaine
+    // mot -> pluriel -> phrase s'arrete la ; en 3G, des mots ont mis 9 a 23 s a partir. Rien ne venait de l'app pour
+    // le dire. La condition reste la voix du telephone : sans elle (Android d'avant la compilation 18), couper le
+    // fichier a 4 s donnerait du silence au lieu d'un son en retard.
+    if("speechSynthesis" in window){
         setTimeout(() => {
             if(demarre || bascule || jeton !== lectureCourante) return;
             versRepli(false, { name: "DELAI-4S" });
