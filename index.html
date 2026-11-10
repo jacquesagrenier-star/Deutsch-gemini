@@ -54724,8 +54724,16 @@ function loadFlashcard(){
     if(item.mode) flashcardMode = item.mode;
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
+    // ⚠️ LA CARTE SUIVANTE ARRIVE DEJA AU RECTO, SANS TOURNER (retour d'une testeuse sur Android, 10 nov. 2026 : « on
+    // voit tres brievement le verso », donc la reponse). Retirer « flipped » lancait la rotation de retour (.55 s) pendant
+    // que le contenu de la carte suivante s'ecrivait ici meme : son verso tournait face a l'ecran pendant la premiere
+    // moitie, 8 a 10 images (160 a 200 ms, mesure en de, es et en). La carte jugee repasse donc au recto sans transition,
+    // avant le moindre texte neuf ; la transition revient aussitot pour le geste suivant (toucher, hauteur).
+    const etaitRetournee = flashcardEl.classList.contains("flipped");
+    if(etaitRetournee) flashcardEl.style.transition = "none";
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent",
         "carte-verbe", "rk-akk", "rk-dat", "rk-akkdat", "rk-nom", "rk-aucun", "carte-adjectif", "carte-mot", "rk-gen");
+    if(etaitRetournee){ void flashcardEl.offsetWidth; flashcardEl.style.transition = ""; }
     document.getElementById("flashcardActions").classList.add("hidden");
     sentenceRegistry = [];
     if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'pronomen' || flashcardMode === 'artikelwoerter' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
