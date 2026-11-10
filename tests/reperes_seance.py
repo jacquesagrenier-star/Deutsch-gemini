@@ -7,6 +7,9 @@
 Sur un navigateur vierge, sans compte. A 320 x 568 et 360 x 780, clair, nuit, RTL :
   - les noms sous la barre, un par partie, ne debordent pas, meme a six parties dans la langue la plus longue ;
   - le paysage suit la partie (six paysages), et il s'arrete au-dessus des boutons du verso ;
+  - le fond de tout l'ecran prend la couleur de la partie, et le texte de l'en-tete y reste lisible (4,5:1 au moins) ;
+  - la barre : la partie en cours en encre (blanc la nuit), les parties faites en vert avec le crochet ;
+  - aucun nom sous la barre ne laisse une lettre seule sur sa ligne (le « s » de Revisions lu comme un 5) ;
   - la carte reste au-dessus de lui ; aucun paysage sur l'accueil ni a la fin de la seance ;
   - l'ecran de passage montre deja le paysage de la partie qui vient ;
   - sur une scene de la seance, la bande du repere est au-dessus du cadre, et disparait en quittant la scene.
@@ -38,7 +41,26 @@ POSER = """
 """
 
 MESURE = r"""
-async ([cas]) => {
+async ([cas]) => {
+const LIRE_FOND = () => {
+  const fd = document.getElementById('seanceFond');
+  const vis = !!(fd && !fd.classList.contains('hidden') && getComputedStyle(fd).display !== 'none');
+  if(!vis) return { fond: false };
+  const lum = ([r,g,b]) => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(r) + .7152 * f(g) + .0722 * f(b); };
+  const rapp = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); };
+  const st = (fd.style.background.match(/rgb\(\d+, \d+, \d+\)/g) || []).map(c => c.match(/\d+/g).map(Number));
+  if(st.length < 2) return { fond: true, faute: 'degrade illisible' };
+  const H = innerHeight, rep = [];
+  const els = [document.getElementById('flashKicker'), document.getElementById('flashThemeTitle'), ...document.querySelectorAll('#seancePartsNoms > *')].filter(x => x && x.offsetParent && x.textContent.trim());
+  els.forEach(e => { const r = e.getBoundingClientRect(), f = Math.max(0, Math.min(1, (r.top + r.height / 2) / H)), bg = st[0].map((v, i) => v + (st[1][i] - v) * f), c = getComputedStyle(e).color.match(/[\d.]+/g).map(Number);
+                     rep.push([Math.round(rapp(c, bg) * 10) / 10, e.textContent.trim().slice(0, 18)]); });
+  rep.sort((a, b) => a[0] - b[0]);
+  const box = document.getElementById('seanceParts');
+  const fait = box ? [...box.querySelectorAll('i.fait')].map(i => getComputedStyle(i).backgroundColor)[0] || null : null;
+  const ici = box ? ((getComputedStyle(box.querySelector('i.ici') || box).backgroundImage.match(/rgb\(\d+, \d+, \d+\)/) || [null])[0]) : null;
+  return { fond: true, haut: 'rgb(' + st[0].join(',') + ')', pire: rep[0] || null, fait, ici };
+};
+
   const pause = ms => new Promise(r => setTimeout(r, ms));
   await chargerPremiersPas();
   const lire = () => {
@@ -48,7 +70,7 @@ async ([cas]) => {
     const lignes = x => { const g = document.createRange(); g.selectNodeContents(x); return new Set([...g.getClientRects()].map(q => Math.round(q.top))).size; };
     const debord = noms.filter(x => { const r = x.getBoundingClientRect(); return r.right > W - 2 || r.left < 2 || x.scrollWidth > x.clientWidth + 1; }).map(x => x.textContent);
     return { noms: noms.map(x => x.textContent), ici: noms.filter(x => x.tagName === 'B').map(x => x.textContent), barres: box ? box.children.length : 0, maxLignes: noms.length ? Math.max(...noms.map(lignes)) : 0, debord,
-             paysage: vis, largeurPay: svg ? Math.round(svg.getBoundingClientRect().width) : 0, marque: typeof PAYSAGE_MONTRE === 'undefined' ? null : PAYSAGE_MONTRE, pageDebord: document.documentElement.scrollWidth > W };
+             paysage: vis, largeurPay: svg ? Math.round(svg.getBoundingClientRect().width) : 0, marque: typeof PAYSAGE_MONTRE === 'undefined' ? null : PAYSAGE_MONTRE, pageDebord: document.documentElement.scrollWidth > W, fond: LIRE_FOND() };
   };
   if(cas === 'pp'){ await ouvrirPremiersPas(); await pause(900); return { pp: lire(), titre: document.getElementById('flashThemeTitle').textContent }; }
   await ouvrirSeanceDuJour(); await pause(1500);
@@ -78,12 +100,13 @@ async () => {
   const n = document.getElementById('seancePartsNoms'), W = innerWidth;
   const lignes = x => { const g = document.createRange(); g.selectNodeContents(x); return new Set([...g.getClientRects()].map(q => Math.round(q.top))).size; };
   const sortants = [...n.children].filter(x => { const g = document.createRange(); g.selectNodeContents(x); const r = g.getBoundingClientRect(), c = x.getBoundingClientRect(); return r.left < c.left - 1 || r.right > c.right + 1; }).map(x => x.textContent);
-  return { noms: [...n.children].map(x => x.textContent), max: Math.max(...[...n.children].map(lignes)), sortants, dir: document.documentElement.dir, large: Math.round(n.getBoundingClientRect().width), page: document.documentElement.scrollWidth > W };
+  const seules = [...n.children].filter(x => { const g = document.createRange(); g.selectNodeContents(x); return [...g.getClientRects()].some(q => q.width > 0 && q.width < 9); }).map(x => x.textContent);
+  return { noms: [...n.children].map(x => x.textContent), max: Math.max(...[...n.children].map(lignes)), sortants, seules, dir: document.documentElement.dir, large: Math.round(n.getBoundingClientRect().width), page: document.documentElement.scrollWidth > W };
 }
 """
 
 PAYSAGES = r"""
-async ([k]) => { paysageSeance(k); await new Promise(r => setTimeout(r, 120)); return PAYSAGE_MONTRE; }
+async ([k]) => { paysageSeance(k); await new Promise(r => setTimeout(r, 120)); const fd = document.getElementById("seanceFond"); return { marque: PAYSAGE_MONTRE, fond: fd && !fd.classList.contains("hidden") ? fd.style.background.slice(0, 60) : null }; }
 """
 
 PASSAGE = r"""
@@ -118,7 +141,8 @@ async () => {
   const pause = ms => new Promise(r => setTimeout(r, ms));
   showScreen('home'); await pause(250);
   const p = document.getElementById('seancePaysage');
-  return { accueilCache: !p || getComputedStyle(p).display === 'none', sansBande: !document.getElementById('sceneSeance').classList.contains('avec-repere') };
+  const fd = document.getElementById('seanceFond');
+  return { accueilCache: (!p || getComputedStyle(p).display === 'none') && (!fd || getComputedStyle(fd).display === 'none'), sansBande: !document.getElementById('sceneSeance').classList.contains('avec-repere') };
 }
 """
 
@@ -186,7 +210,9 @@ def main():
                 ctx, page = page_de(nav, appris, ui, theme, w, h)
                 r = page.evaluate(MESURE, ["seance"])
                 d, v = r["depart"], r["verso"]
+                fo = v["etat"]["fond"]
                 ok = d["paysage"] and d["noms"] and len(d["noms"]) == d["barres"] and len(d["ici"]) == 1 and not d["debord"] and not d["pageDebord"] and not v["sousBoutons"]
+                ok = ok and fo.get("fond") and fo.get("pire") and fo["pire"][0] >= 4.5
                 if v["actionsVisibles"] is False:
                     ok = False
                 note("seance " + nom, ok and not js(page), r)
@@ -203,7 +229,7 @@ def main():
             for appris, ui in LANGUES:
                 ctx, page = page_de(nav, appris, ui, "light" if ui != "ar" else "dark", 320, 568)
                 r = page.evaluate(SIX)
-                ok = not r["sortants"] and not r["page"] and r["max"] <= 2 and len(r["noms"]) == 6
+                ok = not r["sortants"] and not r["seules"] and not r["page"] and r["max"] <= 2 and len(r["noms"]) == 6
                 note("six parties %s/%s" % (appris, ui), ok and not js(page), r)
                 capt(page, "six-%s-%s" % (appris, ui))
                 ctx.close()
@@ -213,7 +239,7 @@ def main():
                 page.wait_for_timeout(1400)
                 for k in ("pp", "rev", "mots", "conj", "scene", "theme"):
                     m = page.evaluate(PAYSAGES, [k])
-                    note("paysage %s %s" % (k, theme), m == k + (":n" if theme == "dark" else ":j"), m)
+                    note("paysage %s %s" % (k, theme), m["marque"] == k + (":n" if theme == "dark" else ":j") and bool(m["fond"]), m)
                     capt(page, "paysage-%s-%s" % (k, theme))
                 ctx.close()
             for appris, theme in (("de", "light"), ("es", "dark")):

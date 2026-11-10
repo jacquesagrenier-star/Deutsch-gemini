@@ -8519,36 +8519,41 @@ body[data-theme="dark"] :is(#home, #decouverteScene) .pa-ecoute .pa-play, body[d
 #flashcards.seance-en-parts #flashThemeTitle{font-size:24px; line-height:1.15; overflow-wrap:break-word;}
 #seanceParts.hidden{display:none;}
 /* 9 nov. 2026 (Jacques : « un petit peu plus epaisse », « encore plus visible ») : l'epaisseur et le fond ici seulement. */
-#seanceParts{--sp-epais:10px; --sp-vide:rgba(28,36,48,.18);}
-body[data-theme="dark"] #seanceParts{--sp-vide:rgba(255,255,255,.17);}
+#seanceParts{--sp-epais:7px; --sp-vide:rgba(28,36,48,.16);}
+body[data-theme="dark"] #seanceParts{--sp-vide:rgba(255,255,255,.16);}
 #seanceParts i{display:block; flex:1 1 0; min-width:6px; height:var(--sp-epais); border-radius:calc(var(--sp-epais) / 2); background:var(--sp-vide);}
-#seanceParts i.fait{background:#2C3A4A;}
-#seanceParts i.ici{background:linear-gradient(90deg, #E8A23A 0 var(--q, 0%), var(--sp-vide) var(--q, 0%) 100%);}
-html[dir="rtl"] #seanceParts i.ici{background:linear-gradient(270deg, #E8A23A 0 var(--q, 0%), var(--sp-vide) var(--q, 0%) 100%);}
-body[data-theme="dark"] #seanceParts i.fait{background:#C9D4DD;}
-body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(90deg, #F0A93C 0 var(--q, 0%), var(--sp-vide) var(--q, 0%) 100%);}
-html[dir="rtl"] body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(270deg, #F0A93C 0 var(--q, 0%), var(--sp-vide) var(--q, 0%) 100%);}
+#seanceParts i.fait{background:#1F8A5B url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.4 5.3l1.8 1.8 3.6-4' fill='none' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / auto 100% no-repeat;}
+#seanceParts i.ici{background:linear-gradient(90deg, #1C2430 0 var(--q, 0%), var(--sp-vide) var(--q, 0%) 100%);}
+html[dir="rtl"] #seanceParts i.ici{background:linear-gradient(270deg, #1C2430 0 var(--q, 0%), var(--sp-vide) var(--q, 0%) 100%);}
+body[data-theme="dark"] #seanceParts i.fait{background:#6FD6A6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.4 5.3l1.8 1.8 3.6-4' fill='none' stroke='%230B1626' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / auto 100% no-repeat;}
+body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(90deg, #FFFFFF 0 var(--q, 0%), var(--sp-vide) var(--q, 0%) 100%);}
+html[dir="rtl"] body[data-theme="dark"] #seanceParts i.ici{background:linear-gradient(270deg, #FFFFFF 0 var(--q, 0%), var(--sp-vide) var(--q, 0%) 100%);}
 /* Lot de l'evaluation : sur l'ecran de fin (fin-paquet), toutes les parties sont faites. */
-#flashcards.fin-paquet #seanceParts i{background:#2C3A4A;}
-body[data-theme="dark"] #flashcards.fin-paquet #seanceParts i{background:#C9D4DD;}
+#flashcards.fin-paquet #seanceParts i{background:#1F8A5B url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.4 5.3l1.8 1.8 3.6-4' fill='none' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / auto 100% no-repeat;}
+body[data-theme="dark"] #flashcards.fin-paquet #seanceParts i{background:#6FD6A6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.4 5.3l1.8 1.8 3.6-4' fill='none' stroke='%230B1626' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / auto 100% no-repeat;}
 /* 10 nov. 2026 (choix de Jacques) : les noms des parties sous la barre, et un paysage par partie au bas de l'ecran. */
-#seancePartsNoms{display:grid; gap:4px; margin:-9px 0 12px; font-size:10px; font-weight:800; line-height:1.12; text-align:center; color:#334055;}
+#seancePartsNoms{display:grid; gap:4px; margin:-9px 0 12px; font-size:clamp(8.6px, 2.75vw, 10px); font-weight:800; line-height:1.12; text-align:center; color:#334055;}
 #seancePartsNoms.hidden{display:none;}
-#seancePartsNoms span, #seancePartsNoms b{min-width:0; overflow-wrap:anywhere; hyphens:auto;}
-#seancePartsNoms b{font-size:10.6px; font-weight:900; color:#1C2430;}
+#seancePartsNoms span, #seancePartsNoms b{min-width:0; overflow-wrap:break-word; hyphens:auto;}
+#seancePartsNoms b{font-size:clamp(9px, 2.9vw, 10.6px); font-weight:900; color:#1C2430;}
 body[data-theme="dark"] #seancePartsNoms{color:#B8C2CF;}
 body[data-theme="dark"] #seancePartsNoms b{color:#F6CE84;}
 #seancePaysage{--h:min(31.25vw, 175px); --sol:146px; position:fixed; left:0; right:0; bottom:0; margin:0 auto; max-width:560px; z-index:-1; pointer-events:none; height:calc(var(--h) + var(--sol) + env(safe-area-inset-bottom, 0px));}
 #seancePaysage.hidden, body:not([data-ecran="flashcards"]) #seancePaysage{display:none;}
+#seanceFond{position:fixed; inset:0; z-index:-1; pointer-events:none;}
+#seanceFond.hidden, body:not([data-ecran="flashcards"]) #seanceFond{display:none;}
+body.seance-fond[data-ecran="flashcards"] #flashKicker{color:var(--seance-kick, #7A4A05);}
+body.seance-fond[data-ecran="flashcards"] #seancePartsNoms{color:#1C2430;}
+body.seance-fond[data-ecran="flashcards"][data-theme="dark"] #seancePartsNoms{color:#DCE3EA;}
 #seancePaysage svg{position:absolute; left:0; top:0; width:100%; height:var(--h); display:block;}
 #seancePaysage i{position:absolute; left:0; right:0; top:var(--h); bottom:0; display:block;}
 #sceneRepere{display:none;}
 #sceneSeance.avec-repere #sceneRepere{display:block; box-sizing:border-box; height:calc(50px + env(safe-area-inset-top, 0px)); padding:calc(6px + env(safe-area-inset-top, 0px)) 12px 0; background:#16222F; color:#fff;}
 #sceneSeance.avec-repere .scene-cadre{height:calc(100% - 50px - env(safe-area-inset-top, 0px));}
 #sceneRepere #sceneParts{display:flex; gap:4px;}
-#sceneRepere #sceneParts i{display:block; flex:1 1 0; min-width:6px; height:8px; border-radius:4px; background:rgba(255,255,255,.2);}
-#sceneRepere #sceneParts i.fait{background:#C9D4DD;}
-#sceneRepere #sceneParts i.ici{background:#F0B456;}
+#sceneRepere #sceneParts i{display:block; flex:1 1 0; min-width:6px; height:7px; border-radius:3.5px; background:rgba(255,255,255,.2);}
+#sceneRepere #sceneParts i.fait{background:#6FD6A6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.4 5.3l1.8 1.8 3.6-4' fill='none' stroke='%230B1626' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / auto 100% no-repeat;}
+#sceneRepere #sceneParts i.ici{background:#FFFFFF;}
 #sceneRepere #scenePartsNoms{display:grid; gap:4px; margin-top:3px; font-size:10px; font-weight:800; line-height:1.12; text-align:center; color:#B8C2CF;}
 #sceneRepere #scenePartsNoms span, #sceneRepere #scenePartsNoms b{min-width:0; overflow-wrap:anywhere; hyphens:auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 #sceneRepere #scenePartsNoms b{font-weight:900; color:#F6CE84;}
@@ -69697,9 +69702,11 @@ function segmentsSeance(paquet, parts){
 // ============ LES REPERES DE LA SEANCE (choix final de Jacques, 10 nov. 2026) ============
 // Les noms des parties sous la barre (en colonnes egales : on lit la seance d'un coup) et un paysage discret par partie
 // au bas de l'ecran, de jour et de nuit. Allemand et espagnol appris. Les dessins viennent de la maquette choisie
-// (Premiers pas, revisions, scene ; les montgolfieres ; le phare ; B7) : ne pas les redessiner sans Jacques.
-const PAYSAGES_SEANCE = {"pp":{"ar":"M0 100V62C40 44 86 40 130 56S226 78 320 48V100Z","av":"M0 100V80C60 66 120 72 170 84S270 92 320 74V100Z","milieu":"","supM":"","sup":"<rect x=\"69\" y=\"64\" width=\"2.4\" height=\"16\"/><path d=\"M70 70c0-8-6-11-12-11 0 6 5 11 12 11zM70 65c0-6 4-9 10-9 0 5-4 9-10 9z\"/><rect x=\"200\" y=\"74\" width=\"2\" height=\"12\"/><path d=\"M201 78c0-6-5-8-10-8 0 5 4 8 10 8zM201 75c0-5 3-7 8-7 0 4-3 7-8 7z\"/>","supA":"","astre":[238,34,14]},"rev":{"ar":"M-10 100V58c20-14 40-14 60 0s40 14 60 0 40-14 60 0 40 14 60 0 40-14 60 0 40 14 60 0V100Z","av":"M-30 100V76c16-11 32-11 48 0s32 11 48 0 32-11 48 0 32 11 48 0 32-11 48 0 32 11 48 0 32-11 48 0 32 11 48 0V100Z","milieu":"","supM":"","sup":"","supA":"","astre":[70,30,12]},"scene":{"ar":"M0 100V60L24 42 48 60V46H70V60L96 38 122 60 150 44 178 60H200V48H216V60L244 40 272 60 296 46 320 58V100Z","av":"M0 100V78H30L52 62 74 78H110V66H126V78L156 58 186 78H226L250 62 274 78H320V100Z","milieu":"","supM":"","sup":"","supA":"","astre":[56,28,11]},"mots":{"ar":"M0 100V72C70 56 150 60 220 70S300 78 320 66V100Z","av":"M0 100V86C90 78 200 80 320 88V100Z","milieu":"","supM":"","sup":"<g transform=\"translate(112 38) scale(1)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g><g transform=\"translate(214 48) scale(0.62)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g>","supA":"","astre":[284,26,11]},"conj":{"ar":"M0 100V76c30-4 60 4 90 0s60-4 90 0 60 4 140 0V100Z","av":"M0 100V92C40 86 100 94 150 90S200 66 230 64H320V100Z","milieu":"","supM":"","sup":"<path d=\"M262 64L266 24h12l4 40z\"/><path d=\"M264 24V16h16v8z\"/><path d=\"M262 16L272 8l10 8z\"/>","supA":"<path d=\"M266 20L120 6V34z\" opacity=\".55\"/>","astre":[66,26,11]},"theme":{"ar":"M0 100V70C70 56 150 58 220 68S300 76 320 66V100Z","av":"M0 100V86C90 78 200 80 320 88V100Z","milieu":"","supM":"","sup":"<g transform=\"translate(30 86) scale(1.2)\"><path fill-rule=\"evenodd\" d=\"M-12 0V-14L0-25 12-14V0zM-3 0V-8h6V0zM-9-12h5v4h-5zM4-12h5v4h-5z\"/></g><g transform=\"translate(70 84) scale(1.25)\"><circle cx=\"0\" cy=\"-17\" r=\"9\"/><rect x=\"-1.5\" y=\"-10\" width=\"3\" height=\"10\"/></g><g transform=\"translate(108 84) scale(1.3)\"><circle cx=\"-7\" cy=\"-4.5\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><circle cx=\"7\" cy=\"-4.5\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><path d=\"M-7 -4.5L-2 -11H5L7 -4.5M-2 -11L1 -4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\"/></g><g transform=\"translate(156 84) scale(0.95)\"><path d=\"M-18-4v-7l6-1 5-8h14l6 8 5 1v7z\"/><circle cx=\"-10\" cy=\"-3\" r=\"3.8\"/><circle cx=\"10\" cy=\"-3\" r=\"3.8\"/></g><g transform=\"translate(198 84) scale(1.45)\"><path d=\"M-6 0v-8l-2-6 4 2.4h4l4-2.4-2 6v8z\"/><path d=\"M6 0c5-1 6-7 3-11\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></g><g transform=\"translate(240 86) scale(1.05)\"><path fill-rule=\"evenodd\" d=\"M-16 0L0-24 16 0zM-5 0L0-11 5 0z\"/></g><g transform=\"translate(292 88) scale(1.3)\"><rect x=\"-0.9\" y=\"-12\" width=\"1.8\" height=\"12\"/><circle cx=\"0\" cy=\"-19\" r=\"3.2\"/><circle cx=\"-5.6\" cy=\"-16\" r=\"3.2\"/><circle cx=\"5.6\" cy=\"-16\" r=\"3.2\"/><circle cx=\"-3.6\" cy=\"-22\" r=\"3.2\"/><circle cx=\"3.6\" cy=\"-22\" r=\"3.2\"/></g><g transform=\"translate(150 30) scale(0.42)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g>","supA":"","astre":[60,24,11]}};
-const TEINTES_PAYSAGE = { pp:"#1F8A5B", rev:"#2E6FB8", mots:"#D97A12", conj:"#7B57C9", scene:"#0E8C8C", theme:"#C43F78" };
+// (Premiers pas, les vagues de la revision, les quatre montgolfieres, le phare, la scene B5b sans le moulin, le theme B7) :
+// ne pas les redessiner sans Jacques.
+const PAYSAGES_SEANCE = {"pp":{"ar":"M0 100V62C40 44 86 40 130 56S226 78 320 48V100Z","av":"M0 100V80C60 66 120 72 170 84S270 92 320 74V100Z","milieu":"","supM":"","sup":"<rect x=\"69\" y=\"64\" width=\"2.4\" height=\"16\"/><path d=\"M70 70c0-8-6-11-12-11 0 6 5 11 12 11zM70 65c0-6 4-9 10-9 0 5-4 9-10 9z\"/><rect x=\"200\" y=\"74\" width=\"2\" height=\"12\"/><path d=\"M201 78c0-6-5-8-10-8 0 5 4 8 10 8zM201 75c0-5 3-7 8-7 0 4-3 7-8 7z\"/>","supA":"","astre":[238,34,14]},"rev":{"ar":"M-10 100V58c20-14 40-14 60 0s40 14 60 0 40-14 60 0 40 14 60 0 40-14 60 0 40 14 60 0V100Z","av":"M-30 100V76c16-11 32-11 48 0s32 11 48 0 32-11 48 0 32 11 48 0 32-11 48 0 32 11 48 0 32-11 48 0 32 11 48 0V100Z","milieu":"","supM":"","sup":"","supA":"","astre":[70,30,12]},"mots":{"ar":"M0 100V78C70 72 160 71 230 75S300 80 320 77V100Z","av":"M0 100V88C100 84 220 84 320 89V100Z","milieu":"","supM":"","sup":"<g transform=\"translate(112 34) scale(1)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g><g transform=\"translate(214 44) scale(0.62)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g><g transform=\"translate(166 18) scale(0.36)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g><g transform=\"translate(58 18) scale(0.28)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g>","supA":"","astre":[158,74,16]},"conj":{"ar":"M0 100V76c30-4 60 4 90 0s60-4 90 0 60 4 140 0V100Z","av":"M0 100V92C40 86 100 94 150 90S200 66 230 64H320V100Z","milieu":"","supM":"","sup":"<path d=\"M262 64L266 24h12l4 40z\"/><path d=\"M264 24V16h16v8z\"/><path d=\"M262 16L272 8l10 8z\"/>","supA":"<path d=\"M266 20L120 6V34z\" opacity=\".55\"/>","astre":[66,26,11]},"scene":{"ar":"M0 100V64H12V46H26V58H40V30H48V22H54V30H62V52H80V38H100V60H116V26H130V50H146V64H160V40H176V32H190V56H206V36H220V20H228V36H240V58H258V44H276V60H294V48H320V100Z","av":"M0 100V90c30-5 60 5 90 0s60-5 90 0 60 5 140 0V100Z","milieu":"M0 100V70C70 58 160 62 320 74V100Z","supM":"<circle cx=\"26\" cy=\"52\" r=\"8\"/><rect x=\"24.8\" y=\"58\" width=\"2.4\" height=\"10\"/><rect x=\"62.5\" y=\"53\" width=\"15\" height=\"13\"/><path d=\"M60.5 53L70 45.5L79.5 53z\"/><rect x=\"91\" y=\"44\" width=\"10\" height=\"22\"/><path d=\"M91 44a5 5 0 0 1 10 0z\"/><g transform=\"translate(192 70) scale(0.66)\"><path d=\"M-13-8c0-5 3-7 8-7h14l3-3 6 1 1 6-4 1v2c0 3-1 5-4 5V0h-3v-4h-13V0h-3v-4c-3-1-5-2-5-4z\"/></g><g transform=\"translate(232 74) scale(0.72)\"><path fill-rule=\"evenodd\" d=\"M-12-18h12v8h10v6h-22zM-8-16h6v5h-6z\"/><circle cx=\"-8\" cy=\"-6\" r=\"6\"/><circle cx=\"10\" cy=\"-4\" r=\"4\"/></g><circle cx=\"286\" cy=\"57\" r=\"9\"/><rect x=\"284.8\" y=\"64\" width=\"2.4\" height=\"10\"/>","sup":"<g transform=\"translate(40 90) scale(0.62)\"><path d=\"M-14-22a14 12 0 0 1 28 0z\"/><path d=\"M0-22L3 0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"/><rect x=\"-18\" y=\"-2\" width=\"13\" height=\"2\"/></g><g transform=\"translate(70 92) scale(0.66)\"><path d=\"M0 0C2-10 1-18 4-26\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\"/><path d=\"M4-26c-8-6-14-4-18 2 6-3 12-2 18-2zM4-26c8-6 14-4 18 2-6-3-12-2-18-2zM4-26c-5-8-10-9-15-7 5 1 10 4 15 7zM4-26c5-8 10-9 15-7-5 1-10 4-15 7z\"/></g><circle cx=\"108\" cy=\"87\" r=\"5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\"/><path d=\"M103 87H113M108 82V92\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.8\" stroke-linecap=\"round\"/><path d=\"M124 50q3-4 6 0q3-4 6 0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.1\" stroke-linecap=\"round\"/><g transform=\"translate(196 92) scale(0.6)\"><path d=\"M-30-4h60l-8 10h-44z\"/><path d=\"M2-6V-46l26 40z\"/><path d=\"M-2-6V-34l-20 28z\"/></g><g transform=\"translate(272 92) scale(0.42)\"><path d=\"M-30-4h60l-8 10h-44z\"/><path d=\"M2-6V-46l26 40z\"/><path d=\"M-2-6V-34l-20 28z\"/></g>","supA":"","astre":[298,18,9]},"theme":{"ar":"M0 100V70C70 56 150 58 220 68S300 76 320 66V100Z","av":"M0 100V86C90 78 200 80 320 88V100Z","milieu":"","supM":"","sup":"<g transform=\"translate(30 86) scale(1.2)\"><path fill-rule=\"evenodd\" d=\"M-12 0V-14L0-25 12-14V0zM-3 0V-8h6V0zM-9-12h5v4h-5zM4-12h5v4h-5z\"/></g><g transform=\"translate(70 84) scale(1.25)\"><circle cx=\"0\" cy=\"-17\" r=\"9\"/><rect x=\"-1.5\" y=\"-10\" width=\"3\" height=\"10\"/></g><g transform=\"translate(108 84) scale(1.3)\"><circle cx=\"-7\" cy=\"-4.5\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><circle cx=\"7\" cy=\"-4.5\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><path d=\"M-7 -4.5L-2 -11H5L7 -4.5M-2 -11L1 -4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\"/></g><g transform=\"translate(156 84) scale(0.95)\"><path d=\"M-18-4v-7l6-1 5-8h14l6 8 5 1v7z\"/><circle cx=\"-10\" cy=\"-3\" r=\"3.8\"/><circle cx=\"10\" cy=\"-3\" r=\"3.8\"/></g><g transform=\"translate(198 84) scale(1.45)\"><path d=\"M-6 0v-8l-2-6 4 2.4h4l4-2.4-2 6v8z\"/><path d=\"M6 0c5-1 6-7 3-11\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></g><g transform=\"translate(240 86) scale(1.05)\"><path fill-rule=\"evenodd\" d=\"M-16 0L0-24 16 0zM-5 0L0-11 5 0z\"/></g><g transform=\"translate(292 88) scale(1.3)\"><rect x=\"-0.9\" y=\"-12\" width=\"1.8\" height=\"12\"/><circle cx=\"0\" cy=\"-19\" r=\"3.2\"/><circle cx=\"-5.6\" cy=\"-16\" r=\"3.2\"/><circle cx=\"5.6\" cy=\"-16\" r=\"3.2\"/><circle cx=\"-3.6\" cy=\"-22\" r=\"3.2\"/><circle cx=\"3.6\" cy=\"-22\" r=\"3.2\"/></g><g transform=\"translate(150 30) scale(0.42)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g>","supA":"","astre":[60,24,11]}};
+// La palette plus marquee (Jacques, 10 nov.) : six teintes bien separees, que le fond de tout l'ecran reprend.
+const TEINTES_PAYSAGE = { pp:"#5E9B1E", rev:"#2565C9", mots:"#E0791A", conj:"#8A3FD1", scene:"#0B9AA0", theme:"#D6336F" };
 function repereSeanceDispo(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es"; }
 function nomCourtPartie(p){ return t("seance_court_" + (p === "lieu" || p === "neufs" ? "mots" : p)); }
 function clePaysagePartie(p, enPP){
@@ -69713,7 +69720,12 @@ function melangePaysage(hex, cible, k){
 let PAYSAGE_MONTRE = null;
 function paysageSeance(cle){
     let el = document.getElementById("seancePaysage");
-    if(!cle || !repereSeanceDispo()){ if(el) el.classList.add("hidden"); PAYSAGE_MONTRE = null; return; }
+    if(!cle || !repereSeanceDispo()){
+        if(el) el.classList.add("hidden");
+        const fd = document.getElementById("seanceFond"); if(fd) fd.classList.add("hidden");
+        document.body.classList.remove("seance-fond");
+        PAYSAGE_MONTRE = null; return;
+    }
     if(!el){
         el = document.createElement("div");
         el.id = "seancePaysage";
@@ -69729,12 +69741,20 @@ function paysageSeance(cle){
         const astre = nuit
             ? '<path d="M' + x + " " + (y - r) + "a" + r + " " + r + " 0 1 0 0 " + (2 * r) + "a" + (r * .72).toFixed(1) + " " + (r * .88).toFixed(1) + " 0 1 1 0-" + (2 * r) + 'z" fill="' + lum + '"/><g fill="' + lum + '" opacity=".75"><circle cx="30" cy="16" r="1.2"/><circle cx="118" cy="10" r="1"/><circle cx="196" cy="22" r="1.2"/><circle cx="304" cy="12" r="1"/><circle cx="150" cy="34" r=".9"/></g>'
             : '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + lum + '"/>';
+        // LE FOND DE TOUT L'ECRAN prend la couleur du paysage (Jacques, 10 nov. : « le fond harmonise avec le bas
+        // de l'ecran ») : il passe devant la carte du monde, derriere le paysage et la carte.
+        let fd = document.getElementById("seanceFond");
+        if(!fd){ fd = document.createElement("div"); fd.id = "seanceFond"; fd.setAttribute("aria-hidden", "true"); document.body.insertBefore(fd, el); }
+        fd.style.background = "linear-gradient(180deg," + (nuit ? melangePaysage(b, fond, .58) + " 0%," + melangePaysage(b, fond, .82) : melangePaysage(b, fond, .42) + " 0%," + melangePaysage(b, fond, .72)) + " 100%)";
+        document.body.style.setProperty("--seance-kick", nuit ? "#F0B456" : melangePaysage(b, "#000000", .62));
         el.innerHTML = '<svg viewBox="0 0 320 100" preserveAspectRatio="none">' + astre + '<path d="' + L.ar + '" fill="' + ar + '"/>'
             + (L.supA ? '<g fill="' + ar + '">' + L.supA + "</g>" : "")
             + (L.milieu ? '<g fill="' + av + '" color="' + av + '" opacity=".55"><path d="' + L.milieu + '"/>' + (L.supM || "") + "</g>" : "")
             + '<g fill="' + av + '" color="' + av + '"><path d="' + L.av + '"/>' + (L.sup || "") + '</g></svg><i style="background:' + av + '"></i>';
     }
     el.classList.remove("hidden");
+    const fd = document.getElementById("seanceFond"); if(fd) fd.classList.remove("hidden");
+    document.body.classList.add("seance-fond");
 }
 // La barre et les noms, dans l'en-tete de la seance comme sur la bande de la scene.
 function nomsSousLaBarre(noms, segs){
