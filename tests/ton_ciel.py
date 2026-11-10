@@ -114,7 +114,7 @@ def juger(cas, r):
     for x in r.get("pastilles") or []:
         if "venir" in x["info"].lower() or "coming" in x["info"].lower():
             f.append("figure a venir montree : %s" % x["pastille"])
-    if cas == "voyage" and p["pastilles"] and p["pastilles"][0].split(" ")[0] not in ("Gémeaux", "Géminis", "Zwillinge"):
+    if cas == "voyage" and p["pastilles"] and not any(x in p["pastilles"][0] for x in ("Gémeaux", "Géminis", "Zwillinge", "Gemini")):
         f.append("voyage : %s" % p["pastilles"])
     t = r.get("touche")
     if not t or not t["texte"] or not t["dansCadre"]:
