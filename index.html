@@ -8531,6 +8531,27 @@ html[dir="rtl"] body[data-theme="dark"] #seanceParts i.ici{background:linear-gra
 /* Lot de l'evaluation : sur l'ecran de fin (fin-paquet), toutes les parties sont faites. */
 #flashcards.fin-paquet #seanceParts i{background:#2C3A4A;}
 body[data-theme="dark"] #flashcards.fin-paquet #seanceParts i{background:#C9D4DD;}
+/* 10 nov. 2026 (choix de Jacques) : les noms des parties sous la barre, et un paysage par partie au bas de l'ecran. */
+#seancePartsNoms{display:grid; gap:4px; margin:-9px 0 12px; font-size:10px; font-weight:800; line-height:1.12; text-align:center; color:#334055;}
+#seancePartsNoms.hidden{display:none;}
+#seancePartsNoms span, #seancePartsNoms b{min-width:0; overflow-wrap:anywhere; hyphens:auto;}
+#seancePartsNoms b{font-size:10.6px; font-weight:900; color:#1C2430;}
+body[data-theme="dark"] #seancePartsNoms{color:#B8C2CF;}
+body[data-theme="dark"] #seancePartsNoms b{color:#F6CE84;}
+#seancePaysage{--h:min(31.25vw, 175px); --sol:146px; position:fixed; left:0; right:0; bottom:0; margin:0 auto; max-width:560px; z-index:-1; pointer-events:none; height:calc(var(--h) + var(--sol) + env(safe-area-inset-bottom, 0px));}
+#seancePaysage.hidden, body:not([data-ecran="flashcards"]) #seancePaysage{display:none;}
+#seancePaysage svg{position:absolute; left:0; top:0; width:100%; height:var(--h); display:block;}
+#seancePaysage i{position:absolute; left:0; right:0; top:var(--h); bottom:0; display:block;}
+#sceneRepere{display:none;}
+#sceneSeance.avec-repere #sceneRepere{display:block; box-sizing:border-box; height:calc(50px + env(safe-area-inset-top, 0px)); padding:calc(6px + env(safe-area-inset-top, 0px)) 12px 0; background:#16222F; color:#fff;}
+#sceneSeance.avec-repere .scene-cadre{height:calc(100% - 50px - env(safe-area-inset-top, 0px));}
+#sceneRepere #sceneParts{display:flex; gap:4px;}
+#sceneRepere #sceneParts i{display:block; flex:1 1 0; min-width:6px; height:8px; border-radius:4px; background:rgba(255,255,255,.2);}
+#sceneRepere #sceneParts i.fait{background:#C9D4DD;}
+#sceneRepere #sceneParts i.ici{background:#F0B456;}
+#sceneRepere #scenePartsNoms{display:grid; gap:4px; margin-top:3px; font-size:10px; font-weight:800; line-height:1.12; text-align:center; color:#B8C2CF;}
+#sceneRepere #scenePartsNoms span, #sceneRepere #scenePartsNoms b{min-width:0; overflow-wrap:anywhere; hyphens:auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+#sceneRepere #scenePartsNoms b{font-weight:900; color:#F6CE84;}
 /* L'ecran de passage entre deux parties. */
 .cp-passage{display:grid; justify-items:center; gap:10px; text-align:center; padding:22px 8px 10px;}
 .cp-passage-ok{width:56px; height:56px; border-radius:50%; display:grid; place-items:center; background:rgba(31,122,85,.12);}
@@ -12710,6 +12731,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
      en haut, revient au choix ; « Continuer avec mes cartes » lance les
      cartes (message « fini »). -->
 <section id="sceneSeance" class="screen">
+    <div id="sceneRepere" aria-hidden="true"><div id="sceneParts"></div><div id="scenePartsNoms"></div></div>
     <iframe id="sceneCadre" class="scene-cadre" data-i18n-title="seance_scene_cadre" title="La scène du jour" allow="autoplay"></iframe>
 </section>
 
@@ -15314,6 +15336,13 @@ const I18N = {
         ra_consigne_orthographe: "Lequel est bien écrit ?",
         ra_tu_as_choisi: "Tu as choisi « {s} ».",
         ciel_prochaine: "Prochaine étoile : {s}",
+        seance_court_revisions: "Révisions",
+        seance_court_mots: "Mots",
+        seance_court_feuille: "Verbes",
+        seance_court_reperes: "Repères",
+        seance_court_scene: "Scène",
+        seance_court_son: "Son",
+        seance_court_theme: "Thème",
         ciel_tuile: "Ton ciel",
         ciel_total: "Étoiles allumées : {n}",
         ciel_complete: "Constellation complète",
@@ -17039,6 +17068,13 @@ const I18N = {
         ra_consigne_orthographe: "Which one is spelled right?",
         ra_tu_as_choisi: "You chose “{s}”.",
         ciel_prochaine: "Next star: {s}",
+        seance_court_revisions: "Review",
+        seance_court_mots: "Words",
+        seance_court_feuille: "Verbs",
+        seance_court_reperes: "Basics",
+        seance_court_scene: "Scene",
+        seance_court_son: "Sound",
+        seance_court_theme: "Theme",
         ciel_tuile: "Your sky",
         ciel_total: "Stars lit: {n}",
         ciel_complete: "Constellation complete",
@@ -18771,6 +18807,13 @@ const I18N = {
         etoile_compte: "{t} yıldızdan {n}",
         etoile_groupe_complet: "grup tamamlandı",
         ciel_prochaine: "Sıradaki yıldız: {s}",
+        seance_court_revisions: "Tekrar",
+        seance_court_mots: "Kelimeler",
+        seance_court_feuille: "Fiiller",
+        seance_court_reperes: "Temeller",
+        seance_court_scene: "Sahne",
+        seance_court_son: "Ses",
+        seance_court_theme: "Tema",
         ciel_tuile: "Gökyüzün",
         ciel_total: "Yanan yıldızlar: {n}",
         ciel_complete: "Takımyıldızı tamamlandı",
@@ -20871,6 +20914,13 @@ const I18N = {
         etoile_compte: "Зірок: {n} із {t}",
         etoile_groupe_complet: "групу завершено",
         ciel_prochaine: "Наступна зірка: {s}",
+        seance_court_revisions: "Повтор",
+        seance_court_mots: "Слова",
+        seance_court_feuille: "Дієслова",
+        seance_court_reperes: "Основи",
+        seance_court_scene: "Сцена",
+        seance_court_son: "Звук",
+        seance_court_theme: "Тема",
         ciel_tuile: "Твоє небо",
         ciel_total: "Запалених зірок: {n}",
         ciel_complete: "Сузір'я завершено",
@@ -23297,6 +23347,13 @@ const I18N = {
         etoile_compte: "{n} ستاره از {t}",
         etoile_groupe_complet: "گروه کامل شد",
         ciel_prochaine: "ستارهٔ بعدی: {s}",
+        seance_court_revisions: "مرور",
+        seance_court_mots: "واژه‌ها",
+        seance_court_feuille: "فعل‌ها",
+        seance_court_reperes: "پایه‌ها",
+        seance_court_scene: "صحنه",
+        seance_court_son: "آوا",
+        seance_court_theme: "موضوع",
         ciel_tuile: "آسمان تو",
         ciel_total: "ستاره‌های روشن: {n}",
         ciel_complete: "صورت فلکی کامل شد",
@@ -25138,6 +25195,13 @@ const I18N = {
         etoile_compte: "النجوم: {n} من {t}",
         etoile_groupe_complet: "اكتملت المجموعة",
         ciel_prochaine: "النجمة التالية: {s}",
+        seance_court_revisions: "مراجعة",
+        seance_court_mots: "كلمات",
+        seance_court_feuille: "أفعال",
+        seance_court_reperes: "أساسيات",
+        seance_court_scene: "مشهد",
+        seance_court_son: "صوت",
+        seance_court_theme: "موضوع",
         ciel_tuile: "سماؤك",
         ciel_total: "النجوم المضيئة: {n}",
         ciel_complete: "اكتملت الكوكبة",
@@ -25607,6 +25671,13 @@ const I18N = {
         etoile_compte: "{n} estrelas de {t}",
         etoile_groupe_complet: "grupo completo",
         ciel_prochaine: "Próxima estrela: {s}",
+        seance_court_revisions: "Revisão",
+        seance_court_mots: "Palavras",
+        seance_court_feuille: "Verbos",
+        seance_court_reperes: "Básico",
+        seance_court_scene: "Cena",
+        seance_court_son: "Som",
+        seance_court_theme: "Tema",
         ciel_tuile: "Seu céu",
         ciel_total: "Estrelas acesas: {n}",
         ciel_complete: "Constelação completa",
@@ -27336,6 +27407,13 @@ const I18N = {
         etoile_compte: "Gwiazdy: {n} z {t}",
         etoile_groupe_complet: "grupa ukończona",
         ciel_prochaine: "Następna gwiazda: {s}",
+        seance_court_revisions: "Powtórki",
+        seance_court_mots: "Słowa",
+        seance_court_feuille: "Czasowniki",
+        seance_court_reperes: "Podstawy",
+        seance_court_scene: "Scena",
+        seance_court_son: "Dźwięk",
+        seance_court_theme: "Temat",
         ciel_tuile: "Twoje niebo",
         ciel_total: "Zapalone gwiazdy: {n}",
         ciel_complete: "Konstelacja ukończona",
@@ -29065,6 +29143,13 @@ const I18N = {
         etoile_compte: "Звёзд: {n} из {t}",
         etoile_groupe_complet: "группа завершена",
         ciel_prochaine: "Следующая звезда: {s}",
+        seance_court_revisions: "Повтор",
+        seance_court_mots: "Слова",
+        seance_court_feuille: "Глаголы",
+        seance_court_reperes: "Основы",
+        seance_court_scene: "Сцена",
+        seance_court_son: "Звук",
+        seance_court_theme: "Тема",
         ciel_tuile: "Твоё небо",
         ciel_total: "Зажжённых звёзд: {n}",
         ciel_complete: "Созвездие завершено",
@@ -30797,6 +30882,13 @@ const I18N = {
         etoile_compte: "{n} von {t} Sternen",
         etoile_groupe_complet: "Gruppe vollständig",
         ciel_prochaine: "Nächster Stern: {s}",
+        seance_court_revisions: "Wiederholen",
+        seance_court_mots: "Wörter",
+        seance_court_feuille: "Verben",
+        seance_court_reperes: "Basis",
+        seance_court_scene: "Szene",
+        seance_court_son: "Laut",
+        seance_court_theme: "Thema",
         ciel_tuile: "Dein Himmel",
         ciel_total: "Leuchtende Sterne: {n}",
         ciel_complete: "Sternbild vollständig",
@@ -32541,6 +32633,13 @@ const I18N = {
         etoile_compte: "{n} estrellas de {t}",
         etoile_groupe_complet: "grupo completo",
         ciel_prochaine: "Próxima estrella: {s}",
+        seance_court_revisions: "Repaso",
+        seance_court_mots: "Palabras",
+        seance_court_feuille: "Verbos",
+        seance_court_reperes: "Básicos",
+        seance_court_scene: "Escena",
+        seance_court_son: "Sonido",
+        seance_court_theme: "Tema",
         ciel_tuile: "Tu cielo",
         ciel_total: "Estrellas encendidas: {n}",
         ciel_complete: "Constelación completa",
@@ -49897,6 +49996,7 @@ var accueilDejaOuvert = false;
 // Et pas de restauration automatique de la position par le navigateur au rechargement.
 try{ if("scrollRestoration" in history) history.scrollRestoration = "manual"; }catch(e){}
 function showScreen(id){
+    if(id !== "sceneSeance"){ try{ const sr = document.getElementById("sceneSeance"); if(sr) sr.classList.remove("avec-repere"); }catch(e){} }
     // v1003 : le fond commun se regle sur l'ecran (vif et anime sur l'accueil, pale ailleurs).
     try{ document.body.dataset.ecran = id; }catch(e){}
     if(id === "sceneSeance") sessionAvantMicro();
@@ -69185,6 +69285,7 @@ function ouvrirArretScene(item){
                   + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
+    try{ poserRepereScene(); }catch(e){}
 }
 // ============ LES THEMES ILLUSTRES DANS LA SEANCE (3 nov. 2026 ; regle du 7 nov. plus bas) ============
 // Jacques : « ca serait interessant de pouvoir les avoir dans la seance du jour, effectivement ». La regle
@@ -69246,6 +69347,7 @@ function ouvrirArretTheme(item){
                   + voixThemeIllustre() + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
+    try{ poserRepereScene(); }catch(e){}
 }
 // Retour de l'arret : la carte suivante de la seance, la ou l'on etait.
 function revenirDeLArret(){
@@ -69592,6 +69694,96 @@ function segmentsSeance(paquet, parts){
     return segs;
 }
 // L'en-tete et la barre, a chaque carte (appelee par loadFlashcard).
+// ============ LES REPERES DE LA SEANCE (choix final de Jacques, 10 nov. 2026) ============
+// Les noms des parties sous la barre (en colonnes egales : on lit la seance d'un coup) et un paysage discret par partie
+// au bas de l'ecran, de jour et de nuit. Allemand et espagnol appris. Les dessins viennent de la maquette choisie
+// (Premiers pas, revisions, scene ; les montgolfieres ; le phare ; B7) : ne pas les redessiner sans Jacques.
+const PAYSAGES_SEANCE = {"pp":{"ar":"M0 100V62C40 44 86 40 130 56S226 78 320 48V100Z","av":"M0 100V80C60 66 120 72 170 84S270 92 320 74V100Z","milieu":"","supM":"","sup":"<rect x=\"69\" y=\"64\" width=\"2.4\" height=\"16\"/><path d=\"M70 70c0-8-6-11-12-11 0 6 5 11 12 11zM70 65c0-6 4-9 10-9 0 5-4 9-10 9z\"/><rect x=\"200\" y=\"74\" width=\"2\" height=\"12\"/><path d=\"M201 78c0-6-5-8-10-8 0 5 4 8 10 8zM201 75c0-5 3-7 8-7 0 4-3 7-8 7z\"/>","supA":"","astre":[238,34,14]},"rev":{"ar":"M-10 100V58c20-14 40-14 60 0s40 14 60 0 40-14 60 0 40 14 60 0 40-14 60 0 40 14 60 0V100Z","av":"M-30 100V76c16-11 32-11 48 0s32 11 48 0 32-11 48 0 32 11 48 0 32-11 48 0 32 11 48 0 32-11 48 0 32 11 48 0V100Z","milieu":"","supM":"","sup":"","supA":"","astre":[70,30,12]},"scene":{"ar":"M0 100V60L24 42 48 60V46H70V60L96 38 122 60 150 44 178 60H200V48H216V60L244 40 272 60 296 46 320 58V100Z","av":"M0 100V78H30L52 62 74 78H110V66H126V78L156 58 186 78H226L250 62 274 78H320V100Z","milieu":"","supM":"","sup":"","supA":"","astre":[56,28,11]},"mots":{"ar":"M0 100V72C70 56 150 60 220 70S300 78 320 66V100Z","av":"M0 100V86C90 78 200 80 320 88V100Z","milieu":"","supM":"","sup":"<g transform=\"translate(112 38) scale(1)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g><g transform=\"translate(214 48) scale(0.62)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g>","supA":"","astre":[284,26,11]},"conj":{"ar":"M0 100V76c30-4 60 4 90 0s60-4 90 0 60 4 140 0V100Z","av":"M0 100V92C40 86 100 94 150 90S200 66 230 64H320V100Z","milieu":"","supM":"","sup":"<path d=\"M262 64L266 24h12l4 40z\"/><path d=\"M264 24V16h16v8z\"/><path d=\"M262 16L272 8l10 8z\"/>","supA":"<path d=\"M266 20L120 6V34z\" opacity=\".55\"/>","astre":[66,26,11]},"theme":{"ar":"M0 100V70C70 56 150 58 220 68S300 76 320 66V100Z","av":"M0 100V86C90 78 200 80 320 88V100Z","milieu":"","supM":"","sup":"<g transform=\"translate(30 86) scale(1.2)\"><path fill-rule=\"evenodd\" d=\"M-12 0V-14L0-25 12-14V0zM-3 0V-8h6V0zM-9-12h5v4h-5zM4-12h5v4h-5z\"/></g><g transform=\"translate(70 84) scale(1.25)\"><circle cx=\"0\" cy=\"-17\" r=\"9\"/><rect x=\"-1.5\" y=\"-10\" width=\"3\" height=\"10\"/></g><g transform=\"translate(108 84) scale(1.3)\"><circle cx=\"-7\" cy=\"-4.5\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><circle cx=\"7\" cy=\"-4.5\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><path d=\"M-7 -4.5L-2 -11H5L7 -4.5M-2 -11L1 -4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\"/></g><g transform=\"translate(156 84) scale(0.95)\"><path d=\"M-18-4v-7l6-1 5-8h14l6 8 5 1v7z\"/><circle cx=\"-10\" cy=\"-3\" r=\"3.8\"/><circle cx=\"10\" cy=\"-3\" r=\"3.8\"/></g><g transform=\"translate(198 84) scale(1.45)\"><path d=\"M-6 0v-8l-2-6 4 2.4h4l4-2.4-2 6v8z\"/><path d=\"M6 0c5-1 6-7 3-11\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></g><g transform=\"translate(240 86) scale(1.05)\"><path fill-rule=\"evenodd\" d=\"M-16 0L0-24 16 0zM-5 0L0-11 5 0z\"/></g><g transform=\"translate(292 88) scale(1.3)\"><rect x=\"-0.9\" y=\"-12\" width=\"1.8\" height=\"12\"/><circle cx=\"0\" cy=\"-19\" r=\"3.2\"/><circle cx=\"-5.6\" cy=\"-16\" r=\"3.2\"/><circle cx=\"5.6\" cy=\"-16\" r=\"3.2\"/><circle cx=\"-3.6\" cy=\"-22\" r=\"3.2\"/><circle cx=\"3.6\" cy=\"-22\" r=\"3.2\"/></g><g transform=\"translate(150 30) scale(0.42)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g>","supA":"","astre":[60,24,11]}};
+const TEINTES_PAYSAGE = { pp:"#1F8A5B", rev:"#2E6FB8", mots:"#D97A12", conj:"#7B57C9", scene:"#0E8C8C", theme:"#C43F78" };
+function repereSeanceDispo(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es"; }
+function nomCourtPartie(p){ return t("seance_court_" + (p === "lieu" || p === "neufs" ? "mots" : p)); }
+function clePaysagePartie(p, enPP){
+    if(enPP) return p === "scene" ? "scene" : p === "theme" ? "theme" : "pp";
+    return { revisions:"rev", son:"rev", lieu:"mots", neufs:"mots", reperes:"mots", feuille:"conj", scene:"scene", theme:"theme" }[p] || "rev";
+}
+function melangePaysage(hex, cible, k){
+    const h = c => [1, 3, 5].map(i => parseInt(c.substr(i, 2), 16)), a = h(hex), b = h(cible);
+    return "#" + a.map((v, i) => Math.round(v + (b[i] - v) * k).toString(16).padStart(2, "0")).join("");
+}
+let PAYSAGE_MONTRE = null;
+function paysageSeance(cle){
+    let el = document.getElementById("seancePaysage");
+    if(!cle || !repereSeanceDispo()){ if(el) el.classList.add("hidden"); PAYSAGE_MONTRE = null; return; }
+    if(!el){
+        el = document.createElement("div");
+        el.id = "seancePaysage";
+        el.setAttribute("aria-hidden", "true");
+        document.body.appendChild(el);   // apres #fondMonde : meme z-index, il passe devant lui
+    }
+    const nuit = document.body.getAttribute("data-theme") === "dark", marque = cle + (nuit ? ":n" : ":j");
+    if(marque !== PAYSAGE_MONTRE){
+        PAYSAGE_MONTRE = marque;
+        const L = PAYSAGES_SEANCE[cle], b = TEINTES_PAYSAGE[cle], fond = nuit ? "#0B1626" : "#FFFFFF";
+        const ar = melangePaysage(b, fond, nuit ? .62 : .52), av = melangePaysage(b, fond, nuit ? .42 : .26), lum = nuit ? "#E8EDF4" : "#FFE3A0";
+        const [x, y, r] = L.astre;
+        const astre = nuit
+            ? '<path d="M' + x + " " + (y - r) + "a" + r + " " + r + " 0 1 0 0 " + (2 * r) + "a" + (r * .72).toFixed(1) + " " + (r * .88).toFixed(1) + " 0 1 1 0-" + (2 * r) + 'z" fill="' + lum + '"/><g fill="' + lum + '" opacity=".75"><circle cx="30" cy="16" r="1.2"/><circle cx="118" cy="10" r="1"/><circle cx="196" cy="22" r="1.2"/><circle cx="304" cy="12" r="1"/><circle cx="150" cy="34" r=".9"/></g>'
+            : '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + lum + '"/>';
+        el.innerHTML = '<svg viewBox="0 0 320 100" preserveAspectRatio="none">' + astre + '<path d="' + L.ar + '" fill="' + ar + '"/>'
+            + (L.supA ? '<g fill="' + ar + '">' + L.supA + "</g>" : "")
+            + (L.milieu ? '<g fill="' + av + '" color="' + av + '" opacity=".55"><path d="' + L.milieu + '"/>' + (L.supM || "") + "</g>" : "")
+            + '<g fill="' + av + '" color="' + av + '"><path d="' + L.av + '"/>' + (L.sup || "") + '</g></svg><i style="background:' + av + '"></i>';
+    }
+    el.classList.remove("hidden");
+}
+// La barre et les noms, dans l'en-tete de la seance comme sur la bande de la scene.
+function nomsSousLaBarre(noms, segs){
+    if(!noms) return;
+    noms.textContent = "";
+    if(!segs || !segs.length){ noms.classList.add("hidden"); return; }
+    noms.lang = getUiLang();
+    noms.style.gridTemplateColumns = "repeat(" + segs.length + ", minmax(0, 1fr))";
+    segs.forEach(s => {
+        const ici = currentFlashcard >= s.debut && currentFlashcard < s.debut + s.n;
+        const n = document.createElement(ici ? "b" : "span");
+        n.textContent = nomCourtPartie(s.p);
+        noms.appendChild(n);
+    });
+    noms.classList.remove("hidden");
+}
+function elementNomsSeance(box){
+    let n = document.getElementById("seancePartsNoms");
+    if(!n && box){
+        n = document.createElement("div");
+        n.id = "seancePartsNoms";
+        n.setAttribute("aria-hidden", "true");
+        box.insertAdjacentElement("afterend", n);
+    }
+    return n;
+}
+function segmentsRepere(){
+    if(!repereSeanceDispo()) return null;
+    if(seancePartsActive()) return { segs: segmentsSeance(SEANCE_PARTS.paquet, SEANCE_PARTS.parts), pp: false };
+    if(currentTheme && currentTheme.id === "seance_premiers_pas" && currentCards.length > 1) return { segs: segmentsSeance(currentCards, partsPremiersPas(currentCards)), pp: true };
+    return null;
+}
+function poserRepereScene(){
+    const sec = document.getElementById("sceneSeance"), r = segmentsRepere();
+    if(!sec) return;
+    sec.classList.toggle("avec-repere", !!r);
+    if(!r) return;
+    const box = document.getElementById("sceneParts");
+    if(box){
+        box.textContent = "";
+        r.segs.forEach(s => {
+            const b = document.createElement("i");
+            if(currentFlashcard >= s.debut + s.n) b.className = "fait";
+            else if(currentFlashcard >= s.debut) b.className = "ici";
+            box.appendChild(b);
+        });
+    }
+    nomsSousLaBarre(document.getElementById("scenePartsNoms"), r.segs);
+}
 function majPartsSeance(){
     const box = document.getElementById("seanceParts");
     const zone = document.getElementById("flashcards");
@@ -69602,11 +69794,16 @@ function majPartsSeance(){
     const enPP = !!(currentTheme && currentTheme.id === "seance_premiers_pas" && currentCards.length > 1);
     if(zone) zone.classList.toggle("seance-en-parts", actif || reprise || enPP);
     if(enPP){
-        if(box) dessinerSegmentsSeance(box, segmentsSeance(currentCards, partsPremiersPas(currentCards)));
+        const segsPP = segmentsSeance(currentCards, partsPremiersPas(currentCards));
+        if(box) dessinerSegmentsSeance(box, segsPP);
+        const icePP = segsPP.find(s => currentFlashcard >= s.debut && currentFlashcard < s.debut + s.n);
+        paysageSeance(icePP ? clePaysagePartie(icePP.p, true) : null);
         return;
     }
     if(!actif){
         if(box){ box.classList.add("hidden"); box.textContent = ""; }
+        nomsSousLaBarre(document.getElementById("seancePartsNoms"), null);
+        paysageSeance(null);
         // Les reprises gardent l'en-tete d'avant et ont une barre d'un seul tenant, sur CE paquet : elles n'ont pas
         // de parties, mais on voit ou l'on en est (Jacques, 8 nov., v1139 : « tout a coup, j'ai des cartes, mais je
         // ne vois plus de progression »).
@@ -69637,12 +69834,14 @@ function majPartsSeance(){
     if(pTitre === "scene" && c && c.forme !== "scene_arret") pTitre = "revisions";
     if(h) h.textContent = titrePartSeance(P.parts.get(c) === "fin" ? "fin" : pTitre, c);
     if(box) dessinerSegmentsSeance(box, segmentsSeance(paquet, P.parts));
+    paysageSeance(clePaysagePartie(pTitre || "revisions", false));
 }
 function dessinerSegmentsSeance(box, segs){
     box.textContent = "";
+    const nomme = repereSeanceDispo();
     segs.forEach(s => {
         const b = document.createElement("i");
-        b.style.flexGrow = String(s.n);
+        b.style.flexGrow = nomme ? "1" : String(s.n);   // avec les noms, des colonnes egales
         if(currentFlashcard >= s.debut + s.n) b.className = "fait";
         else if(currentFlashcard >= s.debut){
             b.className = "ici";
@@ -69651,6 +69850,7 @@ function dessinerSegmentsSeance(box, segs){
         box.appendChild(b);
     });
     box.classList.remove("hidden");
+    if(nomme) nomsSousLaBarre(elementNomsSeance(box), segs);
 }
 // PREMIERS PAS (Jacques, 9 nov. 2026 : « On ne voit pas la barre de progression de seance pour les premiers pas ») :
 // la meme barre, sur le paquet dans son ordre a lui -- un morceau par suite de cartes, un par scene, un pour le theme ;
@@ -69680,6 +69880,8 @@ function montrerPassageSeance(){
     const zone = document.getElementById("flashcards"), el = document.getElementById("cartePhrase");
     if(!zone || !el || !avant || avant.p === s.p) return false;
     PASSAGES_VUS.add(s.p);
+    // L'ecran de passage montre deja la partie qui vient : sa place dans la barre et son paysage.
+    try{ const b0 = document.getElementById("seanceParts"); if(b0) dessinerSegmentsSeance(b0, segs); paysageSeance(clePaysagePartie(s.p, false)); }catch(e){}
     try{ arreterOralPhrase(); }catch(e){}
     CARTE_PHRASE_AFFICHEE = null;
     zone.classList.add("en-phrase");
@@ -69687,7 +69889,8 @@ function montrerPassageSeance(){
     el.textContent = "";
     const actions = document.getElementById("flashcardActions");
     if(actions) actions.classList.add("hidden");
-    const minuscule = x => x ? x.charAt(0).toLocaleLowerCase() + x.slice(1) : x;
+    // En allemand la majuscule reste : « Orientierung » est un nom (retour de Jacques, 10 nov.).
+    const minuscule = x => (x && getUiLang() !== "de") ? x.charAt(0).toLocaleLowerCase() + x.slice(1) : x;
     const boite = document.createElement("div");
     boite.className = "cp-passage";
     const ok = document.createElement("span");
@@ -71521,6 +71724,7 @@ function showFlashcardEnd(){
     // la carte [...] j'ai le verso, on devrait juste voir paquet termine avec [...] 20 cartes de plus,
     // revoir les cartes non maitrisees ». Le verso de la derniere carte restait au-dessus des choix.
     try{ document.getElementById("flashcards").classList.add("fin-paquet"); }catch(e){}
+    try{ paysageSeance(null); }catch(e){}
     const actions = document.getElementById("flashcardActions");
     if(actions) actions.classList.add("hidden");
     const fin = document.getElementById("flashcardEnd");
