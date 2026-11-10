@@ -56315,9 +56315,23 @@ function finDuJournalAudio(){
         // 70 caracteres. Les trois dernieres de l'heure s'ajoutent, en entier.
         const mesure = e => e && e.source === "ECRAN" && /fenetre /.test(String(e.detail || ""));
         const mesures = journalAudio.filter(e => mesure(e) && e.t >= Date.now() - 60 * 60 * 1000 && lignes.indexOf(e) < 0).slice(-3);
-        lignes = mesures.concat(lignes);
+        // 10 nov. 2026 (verification du son, retour d'un testeur sur iPhone : « le son met parfois du temps a partir ou
+        // ne part pas ») : LES ECHECS DU SON PARTENT TOUJOURS. Les huit dernieres lignes sont surtout des SORTIE et des
+        // PRECHARGE ; la ligne qui explique la carte muette, ecrite deux cartes plus tot, en sortait. Les six dernieres
+        // lignes d'echec des dix minutes s'ajoutent, et une ligne dit l'appareil (systeme, app posee ou navigateur) :
+        // sans elle, un « iPhone » se devinait au mieux.
+        const echec = e => e && /^(MUET|BASCULE|IGNORE|SAUTE|BLOQUE|SANS-VOIX|NATIF-ERR)$/.test(e.source);
+        const echecs = journalAudio.filter(e => echec(e) && e.t >= depuis && lignes.indexOf(e) < 0).slice(-6);
+        lignes = mesures.concat(echecs.concat(lignes).sort((a, b) => a.t - b.t));
         if(!lignes.length) return "";
-        return lignes.map(e => String.fromCharCode(10) + "  ~ " + e.h + " +" + e.d + " ms " + e.source
+        const ua = navigator.userAgent || "";
+        const systeme = (ua.match(/(iPhone|iPad); CPU [^)]*?OS ([\d_]+)/) || []).slice(1).join(" ").replace(/_/g, ".")
+            || (ua.match(/Android [\d.]+/) || [""])[0] || (/Macintosh/.test(ua) ? "Mac" : /Windows/.test(ua) ? "Windows" : "autre");
+        const pose = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
+        const natif = (ua.match(/WortandoNatif\/\d+/) || [""])[0];
+        const appareil = String.fromCharCode(10) + "  ~ appareil " + systeme + ", " + (natif || (pose ? "app posee" : "navigateur"))
+            + (navigator.onLine === false ? ", hors ligne" : "");
+        return appareil + lignes.map(e => String.fromCharCode(10) + "  ~ " + e.h + " +" + e.d + " ms " + e.source
             + " « " + e.texte + " »" + (e.detail ? " " + String(e.detail).slice(0, mesure(e) ? 240 : 70) : "")).join("");
     }catch(e){ return ""; }
 }
