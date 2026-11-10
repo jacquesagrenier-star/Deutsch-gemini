@@ -176,13 +176,15 @@ async ([quoi]) => {
   let forme = quoi === 'theme' ? 'theme_arret' : quoi === 'pp' ? 'pp_scene' : 'scene_arret';
   if(quoi === 'pp'){ await chargerPremiersPas(); await ouvrirPremiersPas(); } else await ouvrirSeanceDuJour();
   await pause(1400);
-  const k = currentCards.findIndex(c => c && c.forme === forme);
+  let k = currentCards.findIndex(c => c && c.forme === forme);
+  if(k < 0 && quoi === 'pp') k = currentCards.findIndex(c => c && c.forme === 'scene_arret');
   if(k < 0) return { quoi, faute: 'pas de carte ' + forme };
+  const formeVue = currentCards[k].forme;
   if(typeof SEANCE_PARTS !== 'undefined' && SEANCE_PARTS) segmentsSeance(SEANCE_PARTS.paquet, SEANCE_PARTS.parts).forEach(s => PASSAGES_VUS.add(s.p));
   currentFlashcard = k; loadFlashcard(); await pause(600);
   const c = await lireCadre();
   window.__cadrePret = true;
-  return { quoi, bande: bande(), cadre: c };
+  return { quoi, forme: formeVue, bande: bande(), cadre: c };
 }
 """
 
