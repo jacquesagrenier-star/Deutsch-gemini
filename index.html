@@ -8557,6 +8557,12 @@ body.seance-fond[data-ecran="flashcards"][data-theme="dark"] #seancePartsNoms{co
 #sceneRepere #scenePartsNoms{display:grid; gap:4px; margin-top:3px; font-size:10px; font-weight:800; line-height:1.12; text-align:center; color:#B8C2CF;}
 #sceneRepere #scenePartsNoms span, #sceneRepere #scenePartsNoms b{min-width:0; overflow-wrap:anywhere; hyphens:auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 #sceneRepere #scenePartsNoms b{font-weight:900; color:#F6CE84;}
+#sceneRepere.clair{color:#1C2430;}
+#sceneRepere.clair #scenePartsNoms{color:#1C2430;}
+#sceneRepere.clair #scenePartsNoms b{color:#1C2430;}
+#sceneRepere.clair #sceneParts i{background:rgba(28,36,48,.16);}
+#sceneRepere.clair #sceneParts i.fait{background:#1F8A5B url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.4 5.3l1.8 1.8 3.6-4' fill='none' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / auto 100% no-repeat;}
+#sceneRepere.clair #sceneParts i.ici{background:#1C2430;}
 /* L'ecran de passage entre deux parties. */
 .cp-passage{display:grid; justify-items:center; gap:10px; text-align:center; padding:22px 8px 10px;}
 .cp-passage-ok{width:56px; height:56px; border-radius:50%; display:grid; place-items:center; background:rgba(31,122,85,.12);}
@@ -64210,9 +64216,12 @@ function ouvrirScenePremiersPas(nom, dernier){
         cadre.title = t("seance_scene_cadre");
         chargerCadre(cadre, baseScenes() + "index.html?scene=" + encodeURIComponent(nom) + "&pp=1" + (dernier ? "&dernier=1" : "")
                   + "&nb=" + questionsSeance()
-                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse + "&t=" + Date.now());
+                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse
+                  + fondCadreSeance("scene") + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
+    // La scene de fin d'etape de Premiers pas a aussi sa bande de repere (elle n'en avait pas : Jacques, 10 nov.).
+    try{ poserRepereScene(); }catch(e){}
 }
 // v844 (17 oct. 2026) : LA PAGE BLANCHE AU RETOUR D'UNE SCENE, TROISIEME FOIS.
 // Jacques, sur iPhone : « je vais dans une scene, je fais Retour, la liste ne
@@ -69284,6 +69293,7 @@ function ouvrirArretScene(item){
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + langueDeScene()
                   + "&vitesse=" + facteurVitesse
+                  + fondCadreSeance("scene")
                   + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
@@ -69346,7 +69356,7 @@ function ouvrirArretTheme(item){
         chargerCadre(cadre, baseScenes() + th.page + "?seance=1" + (item.nb ? "&nb=" + item.nb : "") + "&apprendre=" + apprendreThemeIllustre()
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
-                  + voixThemeIllustre() + "&t=" + Date.now());
+                  + voixThemeIllustre() + fondCadreSeance("theme") + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
     try{ poserRepereScene(); }catch(e){}
@@ -69804,11 +69814,33 @@ function segmentsRepere(){
     if(currentTheme && currentTheme.id === "seance_premiers_pas" && currentCards.length > 1) return { segs: segmentsSeance(currentCards, partsPremiersPas(currentCards)), pp: true };
     return null;
 }
+// LE FOND DE LA SEANCE DANS LA SCENE ET LE THEME (Jacques, 10 nov. : « pour la scene, le nouveau fond n'apparait pas »).
+// La page en cadre recoit les deux couleurs par son adresse (&fond=haut,bas, lu par themes/verre.js) ; la bande au-dessus
+// prend la couleur du haut. Seulement dans la seance du jour, quand le repere est la : hors seance, rien ne change.
+function couleursFondSeance(cle){
+    const b = TEINTES_PAYSAGE[cle];
+    if(!b || !repereSeanceDispo()) return null;
+    const nuit = document.body.getAttribute("data-theme") === "dark", fond = nuit ? "#0B1626" : "#FFFFFF";
+    return { nuit, haut: melangePaysage(b, fond, nuit ? .58 : .42), bas: melangePaysage(b, fond, nuit ? .82 : .72) };
+}
+function fondCadreSeance(cle){
+    const c = segmentsRepere() ? couleursFondSeance(cle) : null;
+    return c ? "&fond=" + c.haut.slice(1) + "," + c.bas.slice(1) : "";
+}
+function cleArretCourant(){
+    const c = currentCards && currentCards[currentFlashcard];
+    return c && c.forme === "theme_arret" ? "theme" : "scene";
+}
 function poserRepereScene(){
     const sec = document.getElementById("sceneSeance"), r = segmentsRepere();
     if(!sec) return;
     sec.classList.toggle("avec-repere", !!r);
     if(!r) return;
+    const bande = document.getElementById("sceneRepere"), coul = couleursFondSeance(cleArretCourant());
+    if(bande){
+        bande.style.background = coul ? coul.haut : "";
+        bande.classList.toggle("clair", !!coul && !coul.nuit);
+    }
     const box = document.getElementById("sceneParts");
     if(box){
         box.textContent = "";

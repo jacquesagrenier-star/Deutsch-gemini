@@ -12,7 +12,10 @@ Sur un navigateur vierge, sans compte. A 320 x 568 et 360 x 780, clair, nuit, RT
   - aucun nom sous la barre ne laisse une lettre seule sur sa ligne (le « s » de Revisions lu comme un 5) ;
   - la carte reste au-dessus de lui ; aucun paysage sur l'accueil ni a la fin de la seance ;
   - l'ecran de passage montre deja le paysage de la partie qui vient ;
-  - sur une scene de la seance, la bande du repere est au-dessus du cadre, et disparait en quittant la scene.
+  - sur une scene de la seance, la bande du repere est au-dessus du cadre, et disparait en quittant la scene ;
+  - la scene, le theme et la scene de fin d'etape de Premiers pas : la bande dans la couleur de la partie, et la page en
+    cadre qui prend le fond de la seance (&fond=, pose par themes/verre.js) ; hors seance (Explorer les scenes, Tout le
+    contenu), la page garde son fond.
 Il ouvre un navigateur : a lancer SOUS LE VERROU (~/.wortando/REGLE-VERROU-PARCOURS.txt).
 """
 import argparse
@@ -145,6 +148,43 @@ async () => {
   return { accueilCache: (!p || getComputedStyle(p).display === 'none') && (!fd || getComputedStyle(fd).display === 'none'), sansBande: !document.getElementById('sceneSeance').classList.contains('avec-repere') };
 }
 """
+
+CADRE = r"""
+async ([quoi]) => {
+  const pause = ms => new Promise(r => setTimeout(r, ms));
+  const lireCadre = async () => {
+    const f = document.getElementById('sceneCadre');
+    for(let i = 0; i < 80; i++){
+      try{
+        const d = f.contentDocument;
+        if(d && d.readyState === 'complete' && d.body && (d.location.href || '').indexOf('about:') !== 0){
+          await pause(500);
+          const fm = d.getElementById('fondMonde'), w = d.defaultView;
+          return { adresseFond: (f.dataset.page || '').indexOf('&fond=') >= 0, fondPose: !!d.getElementById('fondSeance'),
+                   fondPage: w.getComputedStyle(d.body).backgroundImage.slice(0, 70), carteCachee: !fm || w.getComputedStyle(fm).display === 'none' };
+        }
+      }catch(e){}
+      await pause(150);
+    }
+    return { faute: 'cadre non charge' };
+  };
+  const bande = () => { const b = document.getElementById('sceneRepere'), sec = document.getElementById('sceneSeance');
+    return { avec: sec.classList.contains('avec-repere'), fond: getComputedStyle(b).backgroundColor, clair: b.classList.contains('clair'),
+             noms: [...document.querySelectorAll('#scenePartsNoms > *')].map(x => x.textContent), ici: [...document.querySelectorAll('#sceneParts i.ici')].length }; };
+  if(quoi === 'libre'){ ouvrirSceneLibre('kueche'); await pause(300); const c = await lireCadre(); return { quoi, bande: bande(), cadre: c }; }
+  if(quoi === 'theme-libre'){ ouvrirThemeIllustre('familia'); await pause(300); const c = await lireCadre(); return { quoi, bande: bande(), cadre: c }; }
+  let forme = quoi === 'theme' ? 'theme_arret' : quoi === 'pp' ? 'pp_scene' : 'scene_arret';
+  if(quoi === 'pp'){ await chargerPremiersPas(); await ouvrirPremiersPas(); } else await ouvrirSeanceDuJour();
+  await pause(1400);
+  const k = currentCards.findIndex(c => c && c.forme === forme);
+  if(k < 0) return { quoi, faute: 'pas de carte ' + forme };
+  if(typeof SEANCE_PARTS !== 'undefined' && SEANCE_PARTS) segmentsSeance(SEANCE_PARTS.paquet, SEANCE_PARTS.parts).forEach(s => PASSAGES_VUS.add(s.p));
+  currentFlashcard = k; loadFlashcard(); await pause(600);
+  const c = await lireCadre();
+  window.__cadrePret = true;
+  return { quoi, bande: bande(), cadre: c };
+}
+"""
 
 LANGUES = [("de", "fr"), ("de", "en"), ("de", "tr"), ("de", "uk"), ("de", "fa"), ("de", "ar"), ("de", "pt"), ("de", "pl"), ("de", "ru"), ("es", "de"), ("es", "fr")]
 
@@ -261,6 +301,22 @@ def main():
                 capt(page, "scene-%s-%s-%d" % (appris, theme, w))
                 s = page.evaluate(SORTIE)
                 note("scene %s %s %d" % (appris, theme, w), ok and s["accueilCache"] and s["sansBande"], [r, s])
+                ctx.close()
+            for appris, theme, w, h, quoi in (("de", "light", 360, 780, "scene"), ("es", "dark", 360, 780, "scene"), ("de", "light", 360, 780, "theme"), ("es", "dark", 320, 568, "theme"),
+                                              ("de", "light", 360, 780, "pp"), ("es", "dark", 360, 780, "pp"), ("de", "fr-ar", 360, 780, "scene"),
+                                              ("de", "light", 360, 780, "libre"), ("es", "dark", 360, 780, "theme-libre")):
+                ui = "ar" if theme == "fr-ar" else "fr"
+                th = "dark" if theme == "fr-ar" else theme
+                ctx, page = page_de(nav, appris, ui, th, w, h, pp=(quoi == "pp"))
+                r = page.evaluate(CADRE, [quoi])
+                b, c = r.get("bande") or {}, r.get("cadre") or {}
+                if quoi in ("libre", "theme-libre"):
+                    ok = not b.get("avec") and not c.get("adresseFond") and not c.get("fondPose") and not c.get("faute")
+                else:
+                    ok = (b.get("avec") and b.get("fond") != "rgb(22, 34, 47)" and b.get("clair") == (th == "light") and b.get("ici") == 1
+                          and c.get("adresseFond") and c.get("fondPose") and c.get("carteCachee") and "gradient" in (c.get("fondPage") or ""))
+                note("cadre %s %s %s %s %d" % (quoi, appris, ui, th, w), ok and not js(page), r)
+                capt(page, "cadre-%s-%s-%s-%s-%d" % (quoi, appris, ui, th, w))
                 ctx.close()
             ctx, page = page_de(nav, "en", "fr", "light", 360, 780)
             d = page.evaluate("async () => { await ouvrirSeanceDuJour(); await new Promise(r => setTimeout(r, 1200)); const p = document.getElementById('seancePaysage'); return { dispo: repereSeanceDispo(), paysage: !!(p && !p.classList.contains('hidden')) }; }")

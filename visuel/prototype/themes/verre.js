@@ -21,6 +21,23 @@
   "use strict";
   if (window.__verreBoutons) return; window.__verreBoutons = true;
 
+  /* LE FOND DE LA SEANCE (10 nov. 2026, Jacques : « pour la scene, le nouveau fond n'apparait pas ») : dans la seance du
+     jour, l'app passe les deux couleurs de la partie par l'adresse (&fond=haut,bas, en hexadecimal) ; la page les prend
+     a la place de son fond et de sa carte du monde. Sans le parametre (une scene ou un theme ouverts hors seance), rien
+     ne change. */
+  try {
+    const f = new URLSearchParams(location.search).get("fond");
+    if (f && /^[0-9a-f]{6},[0-9a-f]{6}$/i.test(f)) {
+      const [h, b] = f.split(",");
+      const st = document.createElement("style");
+      st.id = "fondSeance";
+      st.textContent = "html,body,html.nuit,html.nuit body{background:linear-gradient(180deg,#" + h + ",#" + b + ") fixed !important;background-color:#" + b + " !important}"
+        + "#fondMonde{display:none !important}.haut,html.nuit .haut{background:transparent !important}";
+      (document.head || document.documentElement).appendChild(st);
+      document.documentElement.classList.add("fond-seance");
+    }
+  } catch (e) {}
+
   const BLANC = [255,255,255], PETROLE = [23,58,78], CLAIR = [243,245,248], NUIT = [18,26,36];
   const APPLE = {f:{tc:BLANC, ink:PETROLE}, w:{tc:NUIT, ink:CLAIR}, min:.05, max:.60};
   const SEUIL_TEXTE = 4.5, SEUIL_ICONE = 3;
