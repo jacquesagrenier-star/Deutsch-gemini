@@ -35,3 +35,20 @@ Règle validée par Jacques le 7 nov. : la lettre grecque en toutes lettres et l
 - **arabe et persan** : la forme latine pour l'instant. Un natif dira s'il faut la lettre et le nom dans la langue.
 
 Les 19 étoiles concernées : tau, iota et kappa des Gémeaux ; epsilon, zêta et delta de la Lyre ; êta du Cygne ; bêta, delta et gamma de la Flèche ; thêta, gamma, delta et epsilon de la Couronne boréale ; iota et zêta de Céphée ; gamma et delta du Dauphin ; delta de la Croix du Sud.
+
+## 4. « Ton ciel » : la page de la constellation (9 nov. 2026)
+
+Cinq textes de l'interface, traduits par Claude et relus par personne dont c'est la langue (`ciel_tuile`, `ciel_total`, `ciel_complete`, `ciel_a_venir`, `ciel_premiere`). **À regarder d'abord : le mot arabe pour « Ton ciel » (« سماؤك »)**, demandé par Jacques.
+
+| Langue | Ton ciel | Étoiles allumées : N | Constellation complète | À venir | Ta première étoile |
+|---|---|---|---|---|---|
+| en | Your sky | Stars lit: N | Constellation complete | Coming up | Your first star |
+| de | Dein Himmel | Leuchtende Sterne: N | Sternbild vollständig | Kommt noch | Dein erster Stern |
+| es | Tu cielo | Estrellas encendidas: N | Constelación completa | Por venir | Tu primera estrella |
+| pt | Seu céu | Estrelas acesas: N | Constelação completa | Em breve | Sua primeira estrela |
+| tr | Gökyüzün | Yanan yıldızlar: N | Takımyıldızı tamamlandı | Sırada | İlk yıldızın |
+| pl | Twoje niebo | Zapalone gwiazdy: N | Konstelacja ukończona | Przed tobą | Twoja pierwsza gwiazda |
+| ru | Твоё небо | Зажжённых звёзд: N | Созвездие завершено | Впереди | Твоя первая звезда |
+| uk | Твоє небо | Запалених зірок: N | Сузір'я завершено | Попереду | Твоя перша зірка |
+| ar | سماؤك | النجوم المضيئة: N | اكتملت الكوكبة | قادمة | نجمتك الأولى |
+| fa | آسمان تو | ستاره‌های روشن: N | صورت فلکی کامل شد | در پیش است | نخستین ستاره‌ات |

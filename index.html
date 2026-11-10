@@ -8599,6 +8599,51 @@ body[data-theme="dark"] .tg{box-shadow:0 10px 22px -6px rgba(0,0,0,.55), inset 0
 .tg-tab-texte{display:flex; flex-direction:column; justify-content:flex-end; align-self:stretch; gap:2px; min-width:0; text-align:start;}
 .tg-tab-pct{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight:800; font-size:30px; line-height:1;}
 .tg-tab-titre{font-size:11px; font-weight:700; letter-spacing:.05em; line-height:1.15; text-transform:uppercase; padding-bottom:2px; overflow-wrap:anywhere;}
+/* 9 nov. 2026 (Jacques, proposition B) : la bande du tableau coupee en deux, le tableau et le ciel. */
+.tg-rangee{flex:0 0 100%; display:flex; gap:12px; min-width:0;}
+.tg-rangee.hidden{display:none;}
+.tg-rangee .tg.tg-tab{flex:1 1 0; width:auto; min-width:0;}
+.tg-rangee.deux .tg.tg-tab{height:172px;}
+.tg-rangee.deux .tg-tab-corps{flex-direction:column; align-items:stretch; gap:8px; padding:11px;}
+.tg-rangee.deux .tg-tab-corps img{flex:1 1 0; min-height:0; height:auto; width:100%; max-width:100%; object-fit:contain; object-position:center;}
+.tg-rangee.deux .tg-tab-texte{flex:none; flex-direction:row; flex-wrap:wrap; align-items:baseline; justify-content:flex-start; align-self:stretch; column-gap:8px; row-gap:0;}
+.tg-rangee.deux .tg-tab-pct{font-size:24px;}
+.tg-ciel-dessin{display:block; flex:0 0 96px; width:96px; height:96px; border-radius:4px; overflow:hidden; background:linear-gradient(180deg,#18223F 0%,#3E4B78 100%);}
+.tg-rangee.deux .tg-ciel-dessin{flex:1 1 0; width:100%; height:auto; min-height:0;}
+.tg-ciel-dessin svg{display:block; width:100%; height:100%;}
+.tg-tab-pct.tg-ciel-debut{font-family:inherit; font-size:13px !important; font-weight:800; line-height:1.15;}
+#grilleCielCompte{direction:ltr; unicode-bidi:isolate;}
+/* La page : le ciel de la fin de seance, en plein ecran (voir ouvrirCiel). */
+#tonCiel.active{position:fixed; inset:0; z-index:3000; margin:0; box-sizing:border-box; overflow-y:auto; -webkit-overflow-scrolling:touch; color:#FFF6E8;
+    padding:max(14px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+    background:linear-gradient(180deg,#18223F 0%,#26345A 30%,#3E4B78 60%,#565C86 86%,#B98A80 97%,#DDA477 100%);}
+body[data-theme="dark"] #tonCiel.active{color:#F3F5F8; background:linear-gradient(180deg,#050A13 0%,#0A1222 40%,#111A30 70%,#1A1D33 88%,#2A2236 100%);}
+#tonCiel h2, #tonCiel h3{color:inherit;}
+#tonCiel button.back{color:#FFF6E8 !important; background:rgba(255,255,255,.14) !important;}
+.tc-tete{display:flex; align-items:center; gap:12px; margin:8px 0 12px;}
+.tc-tete h2{margin:0; font-size:26px; font-weight:900;}
+.tc-total{margin-inline-start:auto; font-size:13px; font-weight:800; color:#FFE3A8; text-align:end;}
+body[data-theme="dark"] .tc-total{color:#F6CE84;}
+.tc-pastilles{display:flex; flex-wrap:wrap; justify-content:center; gap:8px;}
+.tc-pastille{display:inline-block; min-height:44px; padding:0 14px; border-radius:999px; border:1px solid rgba(255,255,255,.28); background:rgba(255,255,255,.1); color:inherit; font:800 13px Nunito, system-ui, sans-serif; cursor:pointer;}
+.tc-pastille::first-letter{text-transform:uppercase;}
+.tc-pastille.active{background:#E8A23A; border-color:transparent; color:#1C2430; font-weight:900;}
+.tc-pastille.venir{background:transparent; border-style:dashed;}
+.tc-pastille:focus-visible{outline:2px solid #FFE3A8; outline-offset:2px;}
+.tc-svg{display:block; width:100%; max-width:440px; margin:10px auto 0; overflow:visible; cursor:pointer;}
+.tc-svg .fc-nom{direction:ltr;}
+.tc-svg.tc-choisie .fc-nom{display:none;}
+.tc-tact{fill:transparent; outline:none;}
+.tc-tact:focus-visible{stroke:#FFE3A8; stroke-width:1.5;}
+.tc-choix{fill:none; stroke:#FFE3A8; stroke-width:1.4; opacity:.9;}
+.tc-info{display:grid; gap:4px; text-align:center; padding-bottom:10px;}
+.tc-info h3{margin:0; font-size:25px; font-weight:900;}
+.tc-info h3::first-letter{text-transform:uppercase;}
+.tc-etape{font-size:14px; font-weight:800; opacity:.92;}
+.tc-proch{margin-top:12px; font-size:16px; font-weight:700;}
+.tc-proch b{color:#FFE3A8; font-weight:900;}
+body[data-theme="dark"] .tc-proch b{color:#F6CE84;}
+.tc-dist{font-size:13px; font-weight:700;}
 #home #seancePilule.niveaux-replies > .pa-niveaux{display:none !important;}
 #home #seancePilule .pa-changer{order:3; justify-self:center; border:0; background:none; font:inherit; font-size:13px; font-weight:700;
     color:var(--encre-v); padding:4px 10px; border-radius:999px; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
@@ -10209,7 +10254,10 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
             <button type="button" class="tg" data-tg="episodes" onclick="episodeDepuisAccueil()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="10.4" width="18" height="10.1" rx="1.6"/><path d="M3 13.6h18"/><path d="M7.4 10.4 5.6 13.6M11.8 10.4 10 13.6M16.2 10.4 14.4 13.6M20.6 10.4 18.8 13.6"/><g transform="rotate(-13 3.2 10)"><rect x="3.2" y="6.7" width="17.8" height="3.3" rx=".7"/><path d="M7.4 6.7 5.7 10M11.8 6.7 10.1 10M16.2 6.7 14.5 10"/></g></svg></span><span class="tg-lib" data-i18n="ep_tuile">Mes épisodes</span><span class="tg-filet" aria-hidden="true"></span></button>
             <button type="button" class="tg" data-tg="gardes" data-orbid="gardes" onclick="ouvrirGardes()"><span class="tg-ico"><svg viewBox="40 60 450 450" fill="none" stroke="currentColor" stroke-width="28.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M265 253C228 222 172 208 110 214V421C172 415 228 428 265 455 302 428 358 415 420 421V214C358 208 302 222 265 253z"/><path d="M265 253V455"/><path d="M110 245H78V463C150 459 222 467 265 497 308 467 380 459 452 463V245H420"/><path d="M265.00 76.00 L279.69 111.77 L318.26 114.70 L288.78 139.73 L297.92 177.30 L265.00 157.00 L232.08 177.30 L241.22 139.73 L211.74 114.70 L250.31 111.77Z"/></svg></span><span class="tg-lib" data-i18n="gardes_titre">Mis de côté</span><span class="tg-filet" aria-hidden="true"></span></button>
             <button type="button" class="tg" data-tg="tout" onclick="ouvrirToutLeContenu()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="4" width="7" height="7" rx="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.8"/></svg></span><span class="tg-lib" data-i18n="accueil_tout_titre">Tout le contenu</span><span class="tg-filet" aria-hidden="true"></span></button>
-            <button type="button" class="tg tg-tab hidden" data-tg="tableau" onclick="ouvrirGalerieMosaiques()" data-i18n-aria-label="tableau_tuile" aria-label="Ton tableau"><span class="tg-filet"></span><span class="tg-tab-corps"><img id="grilleTableauImg" alt="" hidden><span class="tg-tab-texte"><span class="tg-tab-pct" id="grilleTableauPct"></span><span class="tg-tab-titre" data-i18n="tableau_tuile">Ton tableau</span></span></span></button>
+            <div class="tg-rangee">
+                <button type="button" class="tg tg-tab hidden" data-tg="tableau" onclick="ouvrirGalerieMosaiques()" data-i18n-aria-label="tableau_tuile" aria-label="Ton tableau"><span class="tg-filet"></span><span class="tg-tab-corps"><img id="grilleTableauImg" alt="" hidden><span class="tg-tab-texte"><span class="tg-tab-pct" id="grilleTableauPct"></span><span class="tg-tab-titre" data-i18n="tableau_tuile">Ton tableau</span></span></span></button>
+                <button type="button" class="tg tg-tab tg-ciel hidden" data-tg="ciel" onclick="ouvrirCiel()" data-i18n-aria-label="ciel_tuile" aria-label="Ton ciel"><span class="tg-filet"></span><span class="tg-tab-corps"><span class="tg-ciel-dessin" id="grilleCielDessin"></span><span class="tg-tab-texte"><span class="tg-tab-pct" id="grilleCielCompte"></span><span class="tg-tab-titre" data-i18n="ciel_tuile">Ton ciel</span></span></span></button>
+            </div>
         </div>
         <!-- v799 : EXPLORER LES SCENES, a part de la seance. Jacques voulait voir
              qu'il y a beaucoup de scenes (« peut-etre une cinquantaine ») et
@@ -11147,6 +11195,15 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
     <!-- v1019 : plus de surtitre « Tes tableaux » (Jacques : « redondant, Ta galerie, c'est suffisant »). -->
     <h2 data-i18n="mosaique_galerie">Ta galerie</h2>
     <div id="galerieMosaiques" class="galerie-grille"></div>
+</section>
+
+<!-- Ton ciel : la constellation en cours et les autres (proposition B de la maquette, 9 nov. 2026). Voir ouvrirCiel(). -->
+<section id="tonCiel" class="screen">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <div class="tc-tete"><h2 data-i18n="ciel_tuile">Ton ciel</h2><span class="tc-total" id="tcTotal"></span></div>
+    <div class="tc-pastilles" id="tcPastilles"></div>
+    <svg class="tc-svg" id="tcSvg" viewBox="0 0 375 372" role="group"></svg>
+    <div class="tc-info" id="tcInfo"></div>
 </section>
 
 <!-- Plein ecran : toucher l'image pour la voir en grand. Demande de Jacques. -->
@@ -15245,6 +15302,11 @@ const I18N = {
         ra_consigne_orthographe: "Lequel est bien écrit ?",
         ra_tu_as_choisi: "Tu as choisi « {s} ».",
         ciel_prochaine: "Prochaine étoile : {s}",
+        ciel_tuile: "Ton ciel",
+        ciel_total: "Étoiles allumées : {n}",
+        ciel_complete: "Constellation complète",
+        ciel_a_venir: "À venir",
+        ciel_premiere: "Ta première étoile",
         ciel_nouvelle: "Nouvelle étoile : {s}",
         ciel_commence: "Le chemin vers {s} commence.",
         ciel_rapproche: "Tu te rapproches de {s}.",
@@ -16963,6 +17025,11 @@ const I18N = {
         ra_consigne_orthographe: "Which one is spelled right?",
         ra_tu_as_choisi: "You chose “{s}”.",
         ciel_prochaine: "Next star: {s}",
+        ciel_tuile: "Your sky",
+        ciel_total: "Stars lit: {n}",
+        ciel_complete: "Constellation complete",
+        ciel_a_venir: "Coming up",
+        ciel_premiere: "Your first star",
         ciel_nouvelle: "New star: {s}",
         ciel_commence: "The path to {s} begins.",
         ciel_rapproche: "You're getting closer to {s}.",
@@ -18688,6 +18755,11 @@ const I18N = {
         etoile_compte: "{t} yıldızdan {n}",
         etoile_groupe_complet: "grup tamamlandı",
         ciel_prochaine: "Sıradaki yıldız: {s}",
+        ciel_tuile: "Gökyüzün",
+        ciel_total: "Yanan yıldızlar: {n}",
+        ciel_complete: "Takımyıldızı tamamlandı",
+        ciel_a_venir: "Sırada",
+        ciel_premiere: "İlk yıldızın",
         ciel_nouvelle: "Yeni yıldız: {s}",
         ciel_commence: "{s} yolculuğu başlıyor.",
         ciel_rapproche: "{s} yıldızına yaklaşıyorsun.",
@@ -20780,6 +20852,11 @@ const I18N = {
         etoile_compte: "Зірок: {n} із {t}",
         etoile_groupe_complet: "групу завершено",
         ciel_prochaine: "Наступна зірка: {s}",
+        ciel_tuile: "Твоє небо",
+        ciel_total: "Запалених зірок: {n}",
+        ciel_complete: "Сузір'я завершено",
+        ciel_a_venir: "Попереду",
+        ciel_premiere: "Твоя перша зірка",
         ciel_nouvelle: "Нова зірка: {s}",
         ciel_commence: "Шлях до зірки {s} починається.",
         ciel_rapproche: "Ти наближаєшся до зірки {s}.",
@@ -23199,6 +23276,11 @@ const I18N = {
         etoile_compte: "{n} ستاره از {t}",
         etoile_groupe_complet: "گروه کامل شد",
         ciel_prochaine: "ستارهٔ بعدی: {s}",
+        ciel_tuile: "آسمان تو",
+        ciel_total: "ستاره‌های روشن: {n}",
+        ciel_complete: "صورت فلکی کامل شد",
+        ciel_a_venir: "در پیش است",
+        ciel_premiere: "نخستین ستاره‌ات",
         ciel_nouvelle: "ستارهٔ تازه: {s}",
         ciel_commence: "راه به سوی {s} آغاز شد.",
         ciel_rapproche: "به {s} نزدیک‌تر می‌شوی.",
@@ -25032,6 +25114,11 @@ const I18N = {
         etoile_compte: "النجوم: {n} من {t}",
         etoile_groupe_complet: "اكتملت المجموعة",
         ciel_prochaine: "النجمة التالية: {s}",
+        ciel_tuile: "سماؤك",
+        ciel_total: "النجوم المضيئة: {n}",
+        ciel_complete: "اكتملت الكوكبة",
+        ciel_a_venir: "قادمة",
+        ciel_premiere: "نجمتك الأولى",
         ciel_nouvelle: "نجمة جديدة: {s}",
         ciel_commence: "بدأ الطريق إلى {s}.",
         ciel_rapproche: "أنت تقترب من {s}.",
@@ -25496,6 +25583,11 @@ const I18N = {
         etoile_compte: "{n} estrelas de {t}",
         etoile_groupe_complet: "grupo completo",
         ciel_prochaine: "Próxima estrela: {s}",
+        ciel_tuile: "Seu céu",
+        ciel_total: "Estrelas acesas: {n}",
+        ciel_complete: "Constelação completa",
+        ciel_a_venir: "Em breve",
+        ciel_premiere: "Sua primeira estrela",
         ciel_nouvelle: "Nova estrela: {s}",
         ciel_commence: "O caminho até {s} começa.",
         ciel_rapproche: "Você está se aproximando de {s}.",
@@ -27218,6 +27310,11 @@ const I18N = {
         etoile_compte: "Gwiazdy: {n} z {t}",
         etoile_groupe_complet: "grupa ukończona",
         ciel_prochaine: "Następna gwiazda: {s}",
+        ciel_tuile: "Twoje niebo",
+        ciel_total: "Zapalone gwiazdy: {n}",
+        ciel_complete: "Konstelacja ukończona",
+        ciel_a_venir: "Przed tobą",
+        ciel_premiere: "Twoja pierwsza gwiazda",
         ciel_nouvelle: "Nowa gwiazda: {s}",
         ciel_commence: "Zaczyna się droga do gwiazdy {s}.",
         ciel_rapproche: "Zbliżasz się do gwiazdy {s}.",
@@ -28940,6 +29037,11 @@ const I18N = {
         etoile_compte: "Звёзд: {n} из {t}",
         etoile_groupe_complet: "группа завершена",
         ciel_prochaine: "Следующая звезда: {s}",
+        ciel_tuile: "Твоё небо",
+        ciel_total: "Зажжённых звёзд: {n}",
+        ciel_complete: "Созвездие завершено",
+        ciel_a_venir: "Впереди",
+        ciel_premiere: "Твоя первая звезда",
         ciel_nouvelle: "Новая звезда: {s}",
         ciel_commence: "Путь к звезде {s} начинается.",
         ciel_rapproche: "Ты приближаешься к звезде {s}.",
@@ -30665,6 +30767,11 @@ const I18N = {
         etoile_compte: "{n} von {t} Sternen",
         etoile_groupe_complet: "Gruppe vollständig",
         ciel_prochaine: "Nächster Stern: {s}",
+        ciel_tuile: "Dein Himmel",
+        ciel_total: "Leuchtende Sterne: {n}",
+        ciel_complete: "Sternbild vollständig",
+        ciel_a_venir: "Kommt noch",
+        ciel_premiere: "Dein erster Stern",
         ciel_nouvelle: "Neuer Stern: {s}",
         ciel_commence: "Der Weg zu {s} beginnt.",
         ciel_rapproche: "Du kommst {s} näher.",
@@ -32402,6 +32509,11 @@ const I18N = {
         etoile_compte: "{n} estrellas de {t}",
         etoile_groupe_complet: "grupo completo",
         ciel_prochaine: "Próxima estrella: {s}",
+        ciel_tuile: "Tu cielo",
+        ciel_total: "Estrellas encendidas: {n}",
+        ciel_complete: "Constelación completa",
+        ciel_a_venir: "Por venir",
+        ciel_premiere: "Tu primera estrella",
         ciel_nouvelle: "Estrella nueva: {s}",
         ciel_commence: "Empieza el camino hacia {s}.",
         ciel_rapproche: "Te acercas a {s}.",
@@ -49935,7 +50047,8 @@ function tuilesProposees(home){
         episodes: sans("episodeLigne") && (L === "de" || L === "es"),
         gardes: !!document.getElementById("seanceGardes") && !(debut && home.classList.contains("sans-gardes")),
         tout: !!document.getElementById("tuileToutContenu"),
-        tableau: sans("tuileTableau")
+        tableau: sans("tuileTableau"),
+        ciel: tuileCielPrete
     };
 }
 function majGrilleAccueil(){
@@ -49950,9 +50063,20 @@ function majGrilleAccueil(){
     g.querySelectorAll(".tg").forEach(b => {
         const v = !!vis[b.dataset.tg];
         b.classList.toggle("hidden", !v);
-        if(v){ b.classList.toggle("tg-ambre", i % 2 === 0); b.classList.toggle("tg-ardoise", i % 2 === 1); i++; }
+        if(!v) return;
+        // Le ciel prend la couleur du tableau, dont il partage la bande.
+        const rang = b.dataset.tg === "ciel" ? Math.max(0, i - 1) : i;
+        b.classList.toggle("tg-ambre", rang % 2 === 0); b.classList.toggle("tg-ardoise", rang % 2 === 1);
+        i++;
     });
     g.classList.toggle("hidden", !i);
+    const rangee = g.querySelector(".tg-rangee");
+    if(rangee){
+        const montres = rangee.querySelectorAll(".tg:not(.hidden)").length;
+        rangee.classList.toggle("deux", montres === 2);
+        rangee.classList.toggle("hidden", !montres);
+    }
+    try{ majTuileCiel(); }catch(e){}
     grilleEmpreinte = empreinteGrille(home);
     if(!grilleObservee && typeof MutationObserver === "function"){
         grilleObservee = true;
@@ -60413,6 +60537,24 @@ function placerEtiquetteEtoile(P, rayons, traits, i, largeur, hauteur, marge, W,
     const tx = choix.ancre === "start" ? choix.bx : (choix.ancre === "end" ? choix.bx + w : choix.bx + w / 2);
     return { x: tx, y: choix.by + 14 * .8, ancre: choix.ancre };
 }
+// Le nom et la distance d'une etoile, places sans couper de trait (la fete de la nouvelle etoile, Ton ciel).
+function etiquetteEtoileSvg(P, rayons, traits, i, nomEt, distEt, marge, W, H){
+    const f = v => (+v).toFixed(1), lignes = lignesDistanceEtoile(distEt);
+    let w = 150;
+    try{
+        const cv = document.createElement("canvas").getContext("2d");
+        cv.font = "900 14px Nunito, system-ui, sans-serif"; const w1 = largeurEtiquette(cv, nomEt);
+        cv.font = "700 14px Nunito, system-ui, sans-serif";
+        w = Math.max(w1, ...lignes.map(l => largeurEtiquette(cv, l)));
+    }catch(x2){}
+    const pl = placerEtiquetteEtoile(P, rayons, traits, i, w, 14 + 17 * lignes.length, marge, W, H);
+    // En RTL, « start » est le bord droit du texte : l'etiquette placee a droite de l'etoile partait hors de l'ecran.
+    const rtl = getComputedStyle(document.body).direction === "rtl";
+    const ancre = rtl && pl.ancre !== "middle" ? (pl.ancre === "start" ? "end" : "start") : pl.ancre;
+    return '<text class="fe-nom-et" x="' + f(pl.x) + '" y="' + f(pl.y) + '" text-anchor="' + ancre + '">'
+         + '<tspan class="fe-ne-nom" x="' + f(pl.x) + '"></tspan>'
+         + lignes.map(() => '<tspan class="fe-ne-dist" x="' + f(pl.x) + '" dy="17"></tspan>').join("") + '</text>';
+}
 function svgConstellationFete(c, n, fin, nomEt, distEt){
     const W = (CIEL.boite && CIEL.boite[0]) || 375, H = (CIEL.boite && CIEL.boite[1]) || 372;
     const P = c.etoiles, lit = i => i <= n;
@@ -60447,22 +60589,7 @@ function svgConstellationFete(c, n, fin, nomEt, distEt){
                      + '<circle class="fe-coeur" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R) + '" style="fill:' + e.couleur + '"/></g>'
                      + '<circle class="fe-pouls" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(R * 2.6) + '"/></g>');
             // la place du nom et de la distance, mesures dans la police de l'app
-            const lignes = lignesDistanceEtoile(distEt);
-            let w = 150;
-            try{
-                const cv = document.createElement("canvas").getContext("2d");
-                cv.font = "900 14px Nunito, system-ui, sans-serif"; const w1 = largeurEtiquette(cv, nomEt);
-                cv.font = "700 14px Nunito, system-ui, sans-serif";
-                w = Math.max(w1, ...lignes.map(l => largeurEtiquette(cv, l)));
-            }catch(x2){}
-            const hh = 14 + 17 * lignes.length;
-            const pl = placerEtiquetteEtoile(P, rayons, c.traits.filter(([a, b]) => lit(a) && lit(b)), i, w, hh, R * 2.4, W, H);
-            // En RTL, « start » est le bord droit du texte : l'etiquette placee a droite de l'etoile partait hors de l'ecran.
-            const rtl = getComputedStyle(document.body).direction === "rtl";
-            const ancre = rtl && pl.ancre !== "middle" ? (pl.ancre === "start" ? "end" : "start") : pl.ancre;
-            etiq = '<text class="fe-nom-et" x="' + f(pl.x) + '" y="' + f(pl.y) + '" text-anchor="' + ancre + '">'
-                 + '<tspan class="fe-ne-nom" x="' + f(pl.x) + '"></tspan>'
-                 + lignes.map(() => '<tspan class="fe-ne-dist" x="' + f(pl.x) + '" dy="17"></tspan>').join("") + '</text>';
+            etiq = etiquetteEtoileSvg(P, rayons, c.traits.filter(([a, b]) => lit(a) && lit(b)), i, nomEt, distEt, R * 2.4, W, H);
         } else if(lit(i)){
             const d = (2.6 + ((i * 37) % 38) / 10).toFixed(2), o = ((i * 53) % 60 / 10).toFixed(2);
             out.push('<g class="fe-astre" style="--d:' + d + 's;--o:-' + o + 's;--lum:' + e.lum + ';--i:' + i + '">'
@@ -60679,6 +60806,203 @@ function placerNomsCiel(P, rayons, segs, W, H, noms, px){
         sortie.push({ x: bb[0], y: bb[3] - h * .22, t: noms[i] });
     }
     return sortie;
+}
+// ============ TON CIEL (Jacques, 9 nov. 2026 : la proposition B de la maquette) ============
+// « On ne peut plus acceder a la constellation a partir de la page d'accueil. » La bande du tableau est coupee en deux,
+// le tableau et le ciel ; le ciel ouvre un seul ecran : la constellation en cours, des pastilles pour les autres, et
+// une etoile touchee dit son nom et sa distance. Les trois figures sont celles des Premiers pas et de l'A1.
+// ETAT : lu du stockage, sans rien ecrire (etatCielFin, lui, fait avancer la part de la seance en cours).
+// L'A2 et plus : les trois figures sont finies. Les comptes de l'A1 qui gardent l'ancien ordre (a1Voyage.a === false) et
+// n'ont pas fait les Premiers pas n'avanceront jamais dans ce ciel : pas de tuile, plutot qu'un ciel qui reste vide.
+const CIEL_GROUPES = ["premiers_pas", "a1_escales", "a1_suite"];
+let tuileCielPrete = false, tuileCielEnCours = false, CIEL_ETAT = null, CIEL_VUE = null, CIEL_CHOISIE = -1;
+function cielDisponible(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es"; }
+async function etatDuCiel(){
+    if(!cielDisponible()) return null;
+    await chargerCiel();
+    if(!CIEL) return null;
+    const figure = g => CIEL.constellations[CIEL.groupes[g]];
+    if(CIEL_GROUPES.some(g => !figure(g))) return null;
+    const total = g => figure(g).etoiles.length;
+    const apresA1 = NIVEAUX_CECR.indexOf(niveauSeance()) > 0;
+    const pp = lirePremiersPas(), v = lireA1Voyage(), enPP = premiersPasEnCours();
+    if(!apresA1 && v.a === false && !pp.fini && !enPP) return null;
+    const attente = (g, n) => { const a = etoileLire(ETOILE_ATTENTE_KEY); return a && a.g === g && a.n === n ? 1 : 0; };
+    const n = {};
+    n.premiers_pas = (apresA1 || pp.fini) ? total("premiers_pas") : 0;
+    if(!apresA1 && !pp.fini && enPP){
+        await chargerPremiersPas();
+        const seq = sequencePremiersPas();
+        if(seq.length) n.premiers_pas = Math.min(total("premiers_pas"), seq[Math.min(positionPremiersPas(), seq.length - 1)].jourPP || 0);
+    }
+    n.a1_escales = (apresA1 || v.fin) ? total("a1_escales") : (v.a === true ? Math.min(total("a1_escales"), (v.e || 0) + attente("a1_escales", v.e || 0)) : 0);
+    n.a1_suite = (apresA1 || v.sf) ? total("a1_suite") : (v.fin ? Math.min(total("a1_suite"), (v.k || 0) + attente("a1_suite", v.k || 0)) : 0);
+    const courant = enPP && !apresA1 ? "premiers_pas" : (apresA1 || v.fin) ? "a1_suite" : "a1_escales";
+    const part = etoileLire(CIEL_PART_KEY);
+    const groupes = CIEL_GROUPES.map(g => ({ g, c: figure(g), n: n[g], t: total(g), part: part && part.g === g && part.n === n[g] ? Math.min(CIEL_PLAFOND, part.p || 0) : 0 }));
+    return { groupes, courant, somme: groupes.reduce((x, y) => x + y.n, 0) };
+}
+function svgCielMini(c, n){
+    const E = c.etoiles, f = v => (+v).toFixed(1), o = [];
+    c.traits.forEach(([i, j]) => {
+        const fait = i < n && j < n;
+        o.push('<line x1="' + E[i].x + '" y1="' + E[i].y + '" x2="' + E[j].x + '" y2="' + E[j].y + '" stroke="#FFE9BF" stroke-linecap="round" '
+             + (fait ? 'stroke-width="6"' : 'stroke-width="4" stroke-opacity=".36" stroke-dasharray="7 13"') + '/>');
+    });
+    E.forEach((a, i) => {
+        if(i < n) o.push('<circle cx="' + a.x + '" cy="' + a.y + '" r="' + f(8 + a.r * 1.4) + '" fill="#FFF3DC"/>');
+        else if(i === n) o.push('<circle cx="' + a.x + '" cy="' + a.y + '" r="24" fill="none" stroke="#F6CE84" stroke-width="4" stroke-opacity=".75"/><circle cx="' + a.x + '" cy="' + a.y + '" r="11" fill="#F6CE84"/>');
+        else o.push('<circle cx="' + a.x + '" cy="' + a.y + '" r="5" fill="#FFF3DC" fill-opacity=".5"/>');
+    });
+    const xs = E.map(a => a.x), ys = E.map(a => a.y), m = 34, x0 = Math.min(...xs) - m, y0 = Math.min(...ys) - m;
+    return '<svg viewBox="' + f(x0) + ' ' + f(y0) + ' ' + f(Math.max(...xs) + m - x0) + ' ' + f(Math.max(...ys) + m - y0) + '" aria-hidden="true">' + o.join("") + '</svg>';
+}
+async function majTuileCiel(){
+    if(tuileCielEnCours) return;
+    tuileCielEnCours = true;
+    let e = null;
+    try{ e = await etatDuCiel(); }catch(x){ e = null; }
+    tuileCielEnCours = false;
+    const avant = tuileCielPrete;
+    tuileCielPrete = !!e;
+    if(e){
+        const v = e.groupes.find(x => x.g === e.courant);
+        const d = document.getElementById("grilleCielDessin"), c = document.getElementById("grilleCielCompte");
+        if(d) d.innerHTML = svgCielMini(v.c, v.n);
+        if(c){
+            const debut = !e.somme;
+            c.textContent = debut ? t("ciel_premiere") : v.n + "/" + v.t;
+            c.classList.toggle("tg-ciel-debut", debut);
+        }
+    }
+    if(avant !== tuileCielPrete) majGrilleAccueil();
+}
+async function ouvrirCiel(){
+    const e = await etatDuCiel();
+    if(!e) return;
+    CIEL_ETAT = e;
+    CIEL_VUE = e.courant;
+    rendreTonCiel();
+    showScreen("tonCiel");
+}
+function rendreTonCiel(){
+    const e = CIEL_ETAT;
+    if(!e) return;
+    const lg = getUiLang();
+    const tot = document.getElementById("tcTotal");
+    if(tot) tot.textContent = e.somme ? tf("ciel_total", { n: e.somme }) : "";
+    const zone = document.getElementById("tcPastilles");
+    if(zone){
+        zone.textContent = "";
+        e.groupes.forEach(v => {
+            const b = document.createElement("button");
+            b.type = "button";
+            b.className = "tc-pastille" + (v.g === CIEL_VUE ? " active" : "") + (!v.n && v.g !== e.courant ? " venir" : "");
+            const fini = v.n >= v.t;
+            b.textContent = nomFigure(v.c, lg) + (fini ? " \u2713" : (v.n || v.g === e.courant) ? " " + v.n + "/" + v.t : "");
+            b.setAttribute("aria-pressed", v.g === CIEL_VUE ? "true" : "false");
+            b.addEventListener("click", () => { CIEL_VUE = v.g; rendreTonCiel(); });
+            zone.appendChild(b);
+        });
+    }
+    CIEL_CHOISIE = -1;
+    dessinerTonCiel();
+    infoTonCiel();
+}
+function vueTonCiel(){ return CIEL_ETAT.groupes.find(x => x.g === CIEL_VUE); }
+function dessinerTonCiel(){
+    const svg = document.getElementById("tcSvg");
+    if(!svg) return;
+    const v = vueTonCiel(), lg = getUiLang(), c = v.c, E = c.etoiles, n = v.n, W = 375, H = 372, f = x => (+x).toFixed(1);
+    const fini = n >= E.length, o = [], segs = [];
+    c.traits.forEach(([i, j]) => {
+        const fait = i < n && j < n;
+        if(fait) segs.push([E[i], E[j]]);
+        o.push('<line class="' + (fait ? "fc-allume" : "fc-avenir") + '" x1="' + E[i].x + '" y1="' + E[i].y + '" x2="' + E[j].x + '" y2="' + E[j].y + '"/>');
+    });
+    const lien = fini ? null : c.traits.find(t => (t[1] === n && t[0] < n) || (t[0] === n && t[1] < n));
+    if(lien && v.part > 0){
+        const A = E[lien[0] === n ? lien[1] : lien[0]], B = E[n];
+        const x = A.x + (B.x - A.x) * v.part, y = A.y + (B.y - A.y) * v.part;
+        segs.push([A, B]);
+        o.push('<line class="fc-nouveau" pathLength="1" x1="' + A.x + '" y1="' + A.y + '" x2="' + f(x) + '" y2="' + f(y) + '"/>');
+    }
+    const rayons = E.map((a, i) => i < n ? a.r * 1.15 : (i === n ? 5 : 2.3));
+    const viseUne = !fini && (v.g === CIEL_ETAT.courant || n > 0);
+    E.forEach((a, i) => {
+        if(i < n) o.push('<circle class="fc-halo" cx="' + a.x + '" cy="' + a.y + '" r="' + f(a.r * 4.6) + '" opacity="' + (a.lum * .07).toFixed(3) + '"/>'
+            + '<circle class="fc-halo" cx="' + a.x + '" cy="' + a.y + '" r="' + f(a.r * 2.6) + '" opacity="' + (a.lum * .16).toFixed(3) + '"/>'
+            + '<circle cx="' + a.x + '" cy="' + a.y + '" r="' + a.r + '" fill="' + a.couleur + '" opacity="' + a.lum + '"/>');
+        else if(i === n && viseUne) o.push('<circle class="fc-cible" cx="' + a.x + '" cy="' + a.y + '" r="13"/><circle class="fc-place" cx="' + a.x + '" cy="' + a.y + '" r="3"/>');
+        else o.push('<circle class="fc-place" cx="' + a.x + '" cy="' + a.y + '" r="2"/>');
+    });
+    E.forEach((a, i) => o.push('<circle class="tc-tact" data-i="' + i + '" cx="' + a.x + '" cy="' + a.y + '" r="15" tabindex="0" role="button"/>'));
+    svg.classList.remove("tc-choisie");
+    svg.innerHTML = o.join("") + '<g id="tcEtiq"></g>';
+    svg.setAttribute("aria-label", nomFigure(c, lg) + " : " + tf("etoile_compte", { n: n, t: E.length }));
+    svg.querySelectorAll(".tc-tact").forEach(x => { const a = E[+x.dataset.i]; x.setAttribute("aria-label", nomEtoileAffiche(a, lg) + ", " + phraseDistanceEtoile(a)); });
+    const noms = E.slice(0, n).map(a => nomCourtEtoile(a, lg));
+    placerNomsCiel(E, rayons, segs, W, H, noms, 12).forEach(x => {
+        const tx = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tx.setAttribute("class", "fc-nom"); tx.setAttribute("x", f(x.x)); tx.setAttribute("y", f(x.y));
+        tx.textContent = x.t;
+        svg.insertBefore(tx, svg.querySelector(".tc-tact"));
+    });
+    if(!svg.dataset.lie){
+        svg.dataset.lie = "1";
+        svg.addEventListener("click", ev => {
+            const e2 = vueTonCiel().c.etoiles, m = svg.getScreenCTM();
+            if(!m) return;
+            const px = (ev.clientX - m.e) / m.a, py = (ev.clientY - m.f) / m.d;
+            let mieux = -1, d = 34;
+            e2.forEach((a, i) => { const q = Math.hypot(a.x - px, a.y - py); if(q < d){ d = q; mieux = i; } });
+            choisirEtoileCiel(mieux);
+        });
+        svg.addEventListener("keydown", ev => {
+            if((ev.key !== "Enter" && ev.key !== " ") || !ev.target.classList.contains("tc-tact")) return;
+            ev.preventDefault();
+            choisirEtoileCiel(+ev.target.dataset.i);
+        });
+    }
+}
+function choisirEtoileCiel(i){
+    const svg = document.getElementById("tcSvg"), g = document.getElementById("tcEtiq");
+    if(!svg || !g) return;
+    if(i === CIEL_CHOISIE) i = -1;
+    CIEL_CHOISIE = i;
+    svg.classList.toggle("tc-choisie", i >= 0);
+    g.innerHTML = "";
+    if(i < 0) return;
+    const v = vueTonCiel(), lg = getUiLang(), c = v.c, E = c.etoiles, a = E[i], W = 375, H = 372;
+    const rayons = E.map((x, k) => k < v.n ? x.r * 1.15 : (k === v.n ? 5 : 2.3));
+    const traits = c.traits.filter(([p, q]) => p < v.n && q < v.n);
+    const nom = nomEtoileAffiche(a, lg), dist = phraseDistanceEtoile(a), lignes = lignesDistanceEtoile(dist);
+    g.innerHTML = '<circle class="tc-choix" cx="' + a.x + '" cy="' + a.y + '" r="' + Math.max(10, rayons[i] + 6).toFixed(1) + '"/>'
+                + etiquetteEtoileSvg(E, rayons, traits, i, nom, dist, 15, W, H);
+    const ne = g.querySelector(".fe-ne-nom");
+    if(ne) ne.textContent = nom;
+    g.querySelectorAll(".fe-ne-dist").forEach((x, k) => { x.textContent = lignes[k] || ""; });
+}
+function infoTonCiel(){
+    const el = document.getElementById("tcInfo");
+    if(!el) return;
+    const v = vueTonCiel(), lg = getUiLang(), e = CIEL_ETAT;
+    el.textContent = "";
+    const ligne = (tag, cls, txt) => { const x = document.createElement(tag); if(cls) x.className = cls; x.textContent = txt; el.appendChild(x); return x; };
+    ligne("h3", "", nomFigure(v.c, lg));
+    const fini = v.n >= v.t, enCours = v.g === e.courant || v.n > 0;
+    if(fini){ ligne("div", "tc-etape", t("ciel_complete")); return; }
+    if(!enCours){ ligne("div", "tc-etape", t("ciel_a_venir")); return; }
+    ligne("div", "tc-etape", v.g === "premiers_pas"
+        ? t("pp_badge") + " \u00b7 " + tf("pp_porte_jour", { n: v.n + 1, t: v.t })
+        : tf("av_porte", { m: t(v.g === "a1_escales" ? "av_moitie_1" : "av_moitie_2"), n: v.n + 1, t: v.t }));
+    const prochaine = v.c.etoiles[v.n], nom = nomEtoileAffiche(prochaine, lg), brut = t("ciel_prochaine"), k = brut.indexOf("{s}");
+    const p = ligne("div", "tc-proch", "");
+    p.setAttribute("dir", "auto");
+    p.appendChild(document.createTextNode(brut.slice(0, k)));
+    const b = document.createElement("b"); b.textContent = nom; p.appendChild(b);
+    p.appendChild(document.createTextNode(brut.slice(k + 3)));
+    ligne("div", "tc-dist", phraseDistanceEtoile(prochaine)).setAttribute("dir", "auto");
 }
 function retirerCielFin(fin){
     fin.classList.remove("avec-ciel");
