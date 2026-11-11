@@ -351,6 +351,7 @@ SERIES_BR.update(SERIES_BR_TUILES)
 # Les options des tuiles dont le titre ou la description citent un usage du
 # Portugal : id de l'option -> {"titre": ..., "desc": ...}.
 TUILES_BR = {
+    "fiche-pronomes-complemento": {"titre": "Eu o vi, lhe dei"},
     "fiche-colocacao-pronominal": {"desc": "me chamo, não me chame — la fiche B1"},
     "pronomes-tonicos": {"titre": "Mim, você, comigo, conosco"},
     "possessivos-tuile": {"titre": "Meu, seu, dele, dela", "desc": "à qui est-ce ? · A1"},
