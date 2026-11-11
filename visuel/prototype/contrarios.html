@@ -122,8 +122,10 @@ button:disabled{cursor:default}
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (3 nov. 2026, « pour que l'anglais suive aussi ») : les memes images, ses phrases a lui ; variante=gb
-const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+// le portugais (lot P3, 11 nov. 2026) : les memes images, ses phrases a lui ; variante=br pour le Bresil
+const APPRENDRE = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
 const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -160,6 +162,9 @@ const TEXTES = {
   regleEn:   {fr:"En anglais, l'adjectif ne change jamais : the big suitcase, the big suitcases. Il se met devant le nom (an open door) ou après be (the door is open). Pour comparer : -er pour les mots courts (bigger, wider), more pour les longs (more beautiful), et deux irréguliers, good → better, bad → worse."},
   comparatif:{fr:"Choisis le comparatif : -er, more, ou une forme irrégulière ?"},
   article:   {fr:"a ou an ? Écoute le son qui suit : an devant une voyelle (an old bike)."},
+  // le portugais seulement (son interface est en francais)
+  reglePt:   {fr:"Ce qu'est une chose, sa forme, sa taille : ser (a rua é estreita). Comment elle se trouve en ce moment : estar (a porta está aberta, o copo está vazio). L'adjectif s'accorde avec le nom : o copo cheio, a garrafa cheia. Et de + a donne da : a mala da esquerda."},
+  serEstarPt:{fr:"Choisis le bon verbe : é ou está ?"},
   retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -193,7 +198,9 @@ const ES = {
     return ES.nom(g, true) + " de la izquierda " + ES.verbe(im(g).mot) + " " + ES.forme(im(g).mot, im(g).es[0]) + ". "
          + (memeNom ? (im(d).es[0] === "la" ? "La" : "El") : ES.nom(d, true)) + " de la derecha " + ES.verbe(im(d).mot) + " ___.";
   },
-  forme1: (k, i) => ES.forme(k, im(i).es[0])
+  forme1: (k, i) => ES.forme(k, im(i).es[0]),
+  // ce que ser / estar et l'accord demandent a la langue (le portugais a les memes, 11 nov. 2026)
+  art: i => im(i).es[0], formes: k => D.mots[k].es, frases: () => D.phrasesEs, verbos: ["es", "está"], ser: "es"
 };
 const ARTDE = {der: "ein", die: "eine", das: "ein"}, ENDUNG = {der: "er", die: "e", das: "es", m: "er", f: "e", n: "es"};
 const DE = {
@@ -266,7 +273,63 @@ const EN = {
                      + (EN_NOMS[g] === EN_NOMS[d] ? "The one" : EN.nom(d, true)) + " on the right is ___.",
   forme1: k => EN_MOTS[k]
 };
-const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
+// LE PORTUGAIS (lot P3, 11 nov. 2026). La grammaire de l'espagnol (ser et estar, l'adjectif qui s'accorde), ses phrases a
+// lui : « A porta está aberta. », « O copo da esquerda está cheio. O da direita está ___. » (de + a = da). Les mots sont
+// ceux du corpus portugais (portugais/datos ; le Bresil a les memes) : raro -> esquisito, extraño -> estranho,
+// precioso -> maravilhoso (precioso, en portugais, c'est « precieux »), asqueroso -> nojento. Le Bresil change le vase
+// (o vaso, la ou le Portugal dit a jarra), et les noms des phrases sans image (ônibus, trem, banheiro, prédio).
+const PT_MOTS = {ancho:["largo", "larga"], estrecho:["estreito", "estreita"], abierto:["aberto", "aberta"], cerrado:["fechado", "fechada"],
+                 grande:["grande", "grande"], pequeno:["pequeno", "pequena"], nuevo:["novo", "nova"], viejo:["velho", "velha"],
+                 lleno:["cheio", "cheia"], vacio:["vazio", "vazia"], bonito:["bonito", "bonita"], feo:["feio", "feia"], bueno:["bom", "boa"],
+                 malo:["mau", "má"], raro:["esquisito", "esquisita"], extrano:["estranho", "estranha"], precioso:["maravilhoso", "maravilhosa"],
+                 asqueroso:["nojento", "nojenta"]};
+const PT_VASE = BR ? ["o", "vaso"] : ["a", "jarra"];
+const PT_NOMS = {"calle-ancha":["a", "rua"], "calle-estrecha":["a", "rua"], "puerta-abierta":["a", "porta"], "puerta-cerrada":["a", "porta"],
+                 "jarron-bonito":PT_VASE, "jarron-feo":PT_VASE, "pastel-bueno":["o", "bolo"], "comida-asquerosa":["a", "comida"],
+                 "manzana-mala":["a", "maçã"], "tetera-rara":["o", "bule"], "silla-extrana":["a", "cadeira"], "vista-preciosa":["a", "vista"],
+                 "maleta-grande":["a", "mala"], "maleta-pequena":["a", "mala"], "bici-nueva":["a", "bicicleta"], "bici-vieja":["a", "bicicleta"],
+                 "vaso-lleno":["o", "copo"], "vaso-vacio":["o", "copo"]};
+// les phrases sans image : [mot, phrase ({v} = é ou está, ___ = l'adjectif), genre, traduction francaise]
+const PT_FRASES = [
+  ["ancho", "O corredor {v} ___.", "m", "Le couloir est large."], ["ancho", "Este rio {v} muito ___.", "m", "Ce fleuve est très large."],
+  ["estrecho", "A estrada {v} muito ___.", "f", "La route est très étroite."], ["estrecho", "A ponte {v} ___.", "f", "Le pont est étroit."],
+  ["abierto", "A loja {v} ___.", "f", "Le magasin est ouvert."], ["abierto", "A janela {v} ___.", "f", "La fenêtre est ouverte."],
+  ["abierto", "O banco {v} ___.", "m", "La banque est ouverte."], ["cerrado", "O museu {v} ___.", "m", "Le musée est fermé."],
+  ["cerrado", "A farmácia {v} ___.", "f", "La pharmacie est fermée."], ["grande", "A praça {v} muito ___.", "f", "La place est très grande."],
+  ["grande", "O parque {v} ___.", "m", "Le parc est grand."],
+  ["pequeno", BR ? "O banheiro {v} ___." : "A casa de banho {v} ___.", BR ? "m" : "f", "La salle de bains est petite."],
+  ["pequeno", "A cozinha {v} ___.", "f", "La cuisine est petite."],
+  ["lleno", BR ? "O ônibus {v} ___." : "O autocarro {v} ___.", "m", "Le bus est plein."], ["lleno", "A caixa {v} ___.", "f", "La boîte est pleine."],
+  ["vacio", "A garrafa {v} ___.", "f", "La bouteille est vide."], ["vacio", BR ? "O trem {v} ___." : "O comboio {v} ___.", "m", "Le train est vide."],
+  ["bonito", "A praça é muito ___.", "f", "La place est très jolie."],
+  ["feo", BR ? "O prédio é bastante ___." : "O edifício é bastante ___.", "m", "Le bâtiment est assez laid."],
+  ["nuevo", "A casa é ___.", "f", "La maison est neuve."], ["nuevo", "O sofá é ___.", "m", "Le canapé est neuf."],
+  ["viejo", "A ponte é muito ___.", "f", "Le pont est très vieux."], ["viejo", "A igreja é muito ___.", "f", "L'église est très vieille."],
+  ["precioso", "A praia é ___.", "f", "La plage est magnifique."], ["precioso", "O jardim é ___.", "m", "Le jardin est magnifique."],
+  ["raro", "Este livro é muito ___.", "m", "Ce livre est très bizarre."], ["extrano", "A situação é ___.", "f", "La situation est étrange."],
+  ["bueno", "A sopa está muito ___.", "f", "La soupe est très bonne."], ["malo", "O leite está ___.", "m", "Le lait n'est plus bon."],
+  ["asqueroso", "O café da máquina está ___.", "m", "Le café de la machine est dégoûtant."]
+];
+const PT = {
+  bravo: "Muito bem!", vrai: "Verdadeiro", faux: "Falso",
+  forme: (k, art) => PT_MOTS[k][art === "a" || art === "f" ? 1 : 0],
+  // comme l'espagnol : l'etat avec estar (aberto, cheio, et la nourriture : o bolo está bom), le reste avec ser
+  verbe: k => D.estar.includes(k) || ["bueno", "malo", "asqueroso"].includes(k) ? "está" : "é",
+  nom: (i, maj) => { const [a, n] = PT_NOMS[i]; return (maj ? a.toUpperCase() : a) + " " + n; },
+  phrase(i, k){ k = k || im(i).mot; return this.nom(i, true) + " " + this.verbe(k) + " " + this.forme(k, PT_NOMS[i][0]) + "."; },
+  comment: i => "Como " + (im(i).verbe === "es" ? "é" : "está") + " " + PT.nom(i) + "?",
+  // « Que porta está aberta? » ; au Bresil « Qual porta está aberta? »
+  cual: (i, k) => (BR ? "Qual " : "Que ") + PT_NOMS[i][1] + " " + PT.verbe(k) + " " + PT.forme(k, PT_NOMS[i][0]) + "?",
+  // « O copo da esquerda está cheio. O da direita está ___. »
+  contraire(g, d){
+    const memeNom = PT_NOMS[g][1] === PT_NOMS[d][1];
+    return PT.nom(g, true) + " da esquerda " + PT.verbe(im(g).mot) + " " + PT.forme(im(g).mot, PT_NOMS[g][0]) + ". "
+         + (memeNom ? PT_NOMS[d][0].toUpperCase() : PT.nom(d, true)) + " da direita " + PT.verbe(im(d).mot) + " ___.";
+  },
+  forme1: (k, i) => PT.forme(k, PT_NOMS[i][0]),
+  art: i => PT_NOMS[i][0], formes: k => PT_MOTS[k], frases: () => PT_FRASES, verbos: ["é", "está"], ser: "é"
+};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : APPRENDRE === "pt" ? PT : ES;
 // le mot a sa forme pour cette image (« abierta » sous la porte, « groß » en allemand)
 const forme = (k, i) => L.forme1(k, i);
 
@@ -297,7 +360,7 @@ let motQ = null, cleQ = null, tradQ = null;
 // aussi. Pour le mauvais mot. ») : le bouton ou l'image touchee, et pour « vrai ou faux » le mot faux de la phrase
 let choixTexte = null, choixImage = null, fauxQ = null;      // cleQ : la cle du mot (« pequeno »), pour sa traduction et sa voix ;
                                                  // tradQ : la traduction de la phrase juste, quand ce n'est pas une phrase seule
-const motDe = k => ({mot: APPRENDRE === "de" ? D.mots[k].de : APPRENDRE === "en" ? EN_MOTS[k] : D.mots[k].es[0], cat: "adjectif"});
+const motDe = k => ({mot: APPRENDRE === "de" ? D.mots[k].de : APPRENDRE === "en" ? EN_MOTS[k] : APPRENDRE === "pt" ? PT_MOTS[k][0] : D.mots[k].es[0], cat: "adjectif"});
 function viser(w, k){ cleQ = k; motQ = w || motDe(k); }
 
 // apres la reponse : la phrase juste, puis le mot cle, sa traduction et sa voix (Jacques, 3 nov. : la traduction
@@ -325,6 +388,7 @@ function juger(ok, bonneTexte, phrase, motDit){
 function cleDeForme(f){
   const ks = Object.keys(D.mots);
   if (APPRENDRE === "es") return ks.find(k => D.mots[k].es.includes(f)) || null;
+  if (APPRENDRE === "pt") return ks.find(k => PT_MOTS[k].includes(f)) || null;
   if (APPRENDRE === "en"){
     // « wide », « the widest », « more big », « bigger », « better » -> le mot de base ; « a » / « an » -> rien
     const n = f.replace(/^(a|an|the)\s+/, "").replace(/^(more|most)\s+/, "");
@@ -440,29 +504,30 @@ const EX = {
     const surs = D.ser.concat(D.estar);
     if (w && !surs.includes(w.k)) return false;
     const imgs = IMG().filter(i => surs.includes(im(i).mot) && (!w || im(i).mot === w.k)).map(i => ["i", i]);
-    const phr = D.phrasesEs.filter(([k, s]) => s.includes("{v}") && surs.includes(k) && (!w || k === w.k)).map(p => ["p", p]);
+    const phr = L.frases().filter(([k, s]) => s.includes("{v}") && surs.includes(k) && (!w || k === w.k)).map(p => ["p", p]);
     const [t, x] = hasard(imgs.concat(phr));
     let k, image, phrase;
-    if (t === "i"){ k = im(x).mot; image = photo(x); phrase = ES.nom(x, true) + " ___ " + forme(k, x) + "."; }
-    else { k = x[0]; image = ""; phrase = x[1].replace(/___\.$/, ES.forme(k, x[2]) + ".").replace("{v}", "___"); }   // « Este río ___ muy ancho. »
+    if (t === "i"){ k = im(x).mot; image = photo(x); phrase = L.nom(x, true) + " ___ " + forme(k, x) + "."; }
+    else { k = x[0]; image = ""; phrase = x[1].replace(/___\.$/, L.forme(k, x[2]) + ".").replace("{v}", "___"); }   // « Este río ___ muy ancho. »
     viser(w, k);
-    const rep = D.ser.includes(k) ? "es" : "está";
-    ecran("serEstar", image, avecTrou(phrase));
-    boutons($("choix"), ["es", "está"], rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep), ES.forme(k, t === "i" ? im(x).es[0] : x[2])); });
+    const rep = D.ser.includes(k) ? L.ser : "está";
+    if (t === "p" && x[3]) tradQ = PHRASE_TRADUITE && LANGUE === "fr" ? x[3] : null;          // le portugais porte sa traduction
+    ecran(APPRENDRE === "pt" ? "serEstarPt" : "serEstar", image, avecTrou(phrase));
+    boutons($("choix"), L.verbos, rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep), L.forme(k, t === "i" ? L.art(x) : x[2])); });
     return true;
   },
   // « La puerta está ___. » abierta / abierto -- pas grande (la meme forme), une image ou une phrase sans image
   accord(w){
-    const variable = k => D.mots[k].es[0] !== D.mots[k].es[1];
+    const variable = k => L.formes(k)[0] !== L.formes(k)[1];
     if (w && !variable(w.k)) return false;
     const imgs = IMG().filter(i => variable(im(i).mot) && (!w || im(i).mot === w.k)).map(i => ["i", i]);
-    const phr = D.phrasesEs.filter(([k]) => variable(k) && (!w || k === w.k)).map(p => ["p", p]);
+    const phr = L.frases().filter(([k]) => variable(k) && (!w || k === w.k)).map(p => ["p", p]);
     const [t, x] = hasard(imgs.concat(phr));
     let k, image, phrase, genre;
-    if (t === "i"){ k = im(x).mot; genre = im(x).es[0]; image = photo(x); phrase = ES.nom(x, true) + " " + ES.verbe(k) + " ___."; }
-    else { k = x[0]; genre = x[2]; image = ""; phrase = x[1].replace("{v}", ES.verbe(k)); }
+    if (t === "i"){ k = im(x).mot; genre = L.art(x); image = photo(x); phrase = L.nom(x, true) + " " + L.verbe(k) + " ___."; }
+    else { k = x[0]; genre = x[2]; image = ""; phrase = x[1].replace("{v}", L.verbe(k)); if (x[3]) tradQ = PHRASE_TRADUITE && LANGUE === "fr" ? x[3] : null; }
     viser(w, k);
-    const rep = ES.forme(k, genre), f = D.mots[k].es;
+    const rep = L.forme(k, genre), f = L.formes(k);
     ecran("accord", image, avecTrou(phrase));
     boutons($("choix"), melanger([f[0], f[1]]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep), rep); });
     return true;
@@ -549,7 +614,7 @@ const EX = {
   }
 };
 // les sortes de la langue apprise : ser / estar et l'accord en espagnol ; la terminaison en allemand
-const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" ? !["endung", "comparatif", "article"].includes(x)
+const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" || APPRENDRE === "pt" ? !["endung", "comparatif", "article"].includes(x)
                                           : APPRENDRE === "de" ? !["serEstar", "accord", "comparatif", "article"].includes(x) : !["serEstar", "accord", "endung"].includes(x));
 
 // ---------- la decouverte : la planche des paires, chaque image se voit et s'entend ----------
@@ -557,7 +622,7 @@ function decouvrir(){
   $("compte").textContent = ""; $("barre").style.width = "0%";
   const z = $("zone"), dit = D.dit[APPRENDRE];
   z.innerHTML = '<p class="consigne">' + T("intro") + '</p><div class="fiche" id="fiche"></div><div class="planche" id="planche"></div>'
-              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : APPRENDRE === "en" ? "regleEn" : "regleEs")) + '</p>';
+              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : APPRENDRE === "en" ? "regleEn" : APPRENDRE === "pt" ? "reglePt" : "regleEs")) + '</p>';
   const montrer = i => {
     const k = im(i).mot, m = D.mots[k], autre = m.contraire ? imageDe(m.contraire) : (m.voisins || []).map(imageDe).find(Boolean);
     $("planche").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.id === i));
@@ -695,6 +760,16 @@ fetch("contrarios/contrarios.json?v=1").then(r => r.json()).then(d => {
       trEn[EN.phrase(i)] = tr[ES.phrase(i)];
     });
     D.dit.en = dit; D.phrasesTrad.en = trEn; D.trad.en = D.trad.es;   // le sens du mot : celui du mot espagnol de la meme image
+  }
+  if (APPRENDRE === "pt"){
+    // la phrase dite de chaque image, et la traduction des phrases : celle de la phrase espagnole de la meme image
+    const tr = D.phrasesTrad.es || {}, dit = {}, trPt = {};
+    IMG().forEach(i => {
+      dit[i] = im(i).mot === "estrecho" ? PT.nom(i, true) + " é muito estreita." : PT.phrase(i);
+      trPt[dit[i]] = tr[D.dit.es[i]] || tr[ES.phrase(i)];
+      trPt[PT.phrase(i)] = tr[ES.phrase(i)];
+    });
+    D.dit.pt = dit; D.phrasesTrad.pt = trPt; D.trad.pt = D.trad.es;   // le sens du mot : celui du mot espagnol de la meme image
   }
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });

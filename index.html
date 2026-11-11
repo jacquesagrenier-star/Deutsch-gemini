@@ -3581,6 +3581,13 @@ html[data-apprendre="pt"] #tempsEnCartes{ display:block !important; }
 /* L'article portugais : o (couleur de der), a (couleur de die). */
 html[data-apprendre="pt"] .article.o{ color: var(--g-der); }
 html[data-apprendre="pt"] .article.a{ color: var(--g-die); }
+/* Les themes illustres en portugais (lot P3, 11 nov. 2026) : un bloc a part, ancre sur un id pour passer devant la
+   liste blanche sans en reecrire les lignes -- l'en-tete de la section, ses tuiles (chacune reste .hidden tant que son
+   theme n'a pas ses phrases portugaises, themesIllustresOuverts()) et les options du panneau « N › ». En dernier dans
+   Tout le contenu, comme l'anglais. */
+html[data-apprendre="pt"] #orbGrid > h2.orb-section[data-section="illustres"]{ display:flex !important; order: 1; }
+html[data-apprendre="pt"] #orbGrid > [onclick^="ouvrirThemeIllustre"]:not(.hidden){ display:flex !important; order: 1; }
+html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="ouvrirThemePanneau_"]{ display:flex !important; }
 /* ============ L'ESPAGNOL (fusion, etape 3) ============
    Repris de fork.py. Les regles « display:none » sont prefixees par
    html[data-apprendre="es"] : en allemand, rien n'est cache. Les classes
@@ -50961,13 +50968,15 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           ecole: {page: "ecole.html", titre: "eco_tuile", court: "eco_court", tuile: "tuileEcole"},
                           ciudad: {page: "ciudad.html", titre: "ciu_tuile", court: "ciu_court", tuile: "tuileCiudad"},
                           fetes: {page: "fetes.html", titre: "fet_tuile", court: "fet_court", tuile: "tuileFetes"}};
-// Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
+// Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais (en: true)
+// ou en portugais (pt: true, lot P3 du 11 nov. 2026).
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
     if(LANGUE_APPRISE === "en") return Object.keys(THEMES_ILLUSTRES).filter(nom => THEMES_ILLUSTRES[nom].en);
+    if(LANGUE_APPRISE === "pt") return Object.keys(THEMES_ILLUSTRES).filter(nom => THEMES_ILLUSTRES[nom].pt);
     return [];
 }
-const apprendreThemeIllustre = () => LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "en" ? "en" : "de";
+const apprendreThemeIllustre = () => ["es", "en", "pt"].includes(LANGUE_APPRISE) ? LANGUE_APPRISE : "de";
 function ouvrirThemeIllustre(nom, depuis){
     const th = THEMES_ILLUSTRES[nom];
     if(!th) return;
@@ -51044,7 +51053,8 @@ async function microPourCadre(d, e){
 // l'americain (Sarah, A1-A2) ou le britannique (la voix du telephone), qui change aussi des mots (Mom / Mum).
 function voixThemeIllustre(){
     return (LANGUE_APPRISE === "es" ? "&variante=" + (VARIANTE_ESPAGNOL === "latam" ? "latam" : "es") : "")
-         + (LANGUE_APPRISE === "en" ? "&variante=" + (VARIANTE_ANGLAIS === "gb" ? "gb" : "us") : "") + "&r=" + AUDIO_REVISION;
+         + (LANGUE_APPRISE === "en" ? "&variante=" + (VARIANTE_ANGLAIS === "gb" ? "gb" : "us") : "")
+         + (LANGUE_APPRISE === "pt" ? "&variante=" + (VARIANTE_PORTUGAIS === "br" ? "br" : "pt") : "") + "&r=" + AUDIO_REVISION;
 }
 function ouvrirDescripcion(){ ouvrirThemeIllustre("descripcion"); }
 // le bouton M'ENTRAINER de « Comprendre les prepositions » (de), de la fiche « a, en, de » (es) et du panneau Prepositions
@@ -70051,7 +70061,7 @@ const THEMES_PREMIERS_PAS_NB = 8;
 // (aujourd'hui exclu : le meme toute la journee), et le suivant pour « Encore une seance ». La famille vient apres.
 const THEMES_PREMIERE_SEMAINE = ["cuerpo", "animales", "contrarios", "emociones"];
 function themeDuJour(){
-    if(LANGUE_APPRISE !== "es" && LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "en") return null;
+    if(!["es", "de", "en", "pt"].includes(LANGUE_APPRISE)) return null;
     const ouverts = themesIllustresOuverts();
     if(!ouverts.length) return null;
     if(premiereSemaineDebutant()){

@@ -301,7 +301,10 @@ def main():
                     if erreurs: echec.append("%s %s : erreurs JavaScript %s" % (th, app, erreurs[:3]))
                     print(ligne)
                     ctx.close()
-        nav.close()
+        try:
+            nav.close()
+        except Exception:
+            pass                                  # un navigateur qui ferme mal (11 nov. 2026) ne cache plus le verdict
     srv.shutdown()
     if echec:
         print("\nECHEC :\n  " + "\n  ".join(echec))

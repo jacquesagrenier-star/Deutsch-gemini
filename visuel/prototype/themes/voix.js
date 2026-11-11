@@ -18,12 +18,14 @@
 try{ if (!("speechSynthesis" in window) && window.parent !== window && window.parent.speechSynthesis){ window.speechSynthesis = window.parent.speechSynthesis; window.SpeechSynthesisUtterance = window.parent.SpeechSynthesisUtterance; } }catch(e){}
 const Voix = (() => {
   const Q = new URLSearchParams(location.search);
-  const APP = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+  // le portugais (lot P3, 11 nov. 2026) : aucune voix enregistree, la voix du telephone pt-PT, ou pt-BR (variante=br)
+  const APP = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
   const LATAM = APP === "es" && Q.get("variante") === "latam", GB = APP === "en" && Q.get("variante") === "gb";
-  const DOSSIER = APP === "de" ? "" : APP === "en" ? (GB ? "en-gb-sans-voix" : "en-us") : LATAM ? "es-419" : "es-es";
+  const BR = APP === "pt" && Q.get("variante") === "br";
+  const DOSSIER = APP === "de" ? "" : APP === "en" ? (GB ? "en-gb-sans-voix" : "en-us") : APP === "pt" ? "pt-sans-voix" : LATAM ? "es-419" : "es-es";
   const BASE = "https://deutschai-b6fbb.web.app/" + (DOSSIER ? DOSSIER + "/" : "");
   const R = Q.get("r") || "";
-  const TAG = APP === "de" ? "de-DE" : APP === "en" ? (GB ? "en-GB" : "en-US") : LATAM ? "es-MX" : "es-ES";
+  const TAG = APP === "de" ? "de-DE" : APP === "en" ? (GB ? "en-GB" : "en-US") : APP === "pt" ? (BR ? "pt-BR" : "pt-PT") : LATAM ? "es-MX" : "es-ES";
   // les memes listes qu'index.html (voiceQualityScore, VOIX_A_FUIR) : a garder ensemble
   const BONNES = ["natural", "neural", "enhanced", "premium", "online", "google", "siri", "wavenet"];
   const MAUVAISES = ["compact", "espeak", "kompakt"];
