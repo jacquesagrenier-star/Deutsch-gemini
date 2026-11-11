@@ -99,7 +99,8 @@ def lire(paire):
             continue
         f = fiches.setdefault(ecrit, {"m": ecrit, "t": [], "r": 0.0})
         for t in traductions.split(" | "):
-            t = t.strip()
+            # Les liens du Wiktionnaire restes dans le texte : [[dizer|diz-se]] -> diz-se.
+            t = re.sub(r"\[\[(?:[^\]|]*\|)?([^\]]*)\]\]", r"\1", t).strip()
             if t and t not in f["t"] and not t.startswith("-") and not t.endswith("-"):
                 f["t"].append(t)
         f["r"] = max(f["r"], round(importance or 0.0, 2))
