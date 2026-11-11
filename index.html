@@ -70157,9 +70157,8 @@ function majAujourdhuiScene(on){
 
 // Le japonais (essai) a eu une seance de MOTS seulement jusqu'au lot J1 (11 nov. 2026, alignement des langues) :
 // depuis, la seance commune -- sans objectif, legere, regroupee par partie, avec ses reperes, son ciel, les escales
-// de l'A1 voyage et les scenes de Camille (SCENES_SEANCE en japonais). Restent propres au japonais : les cartes-
-// phrases (exercices allemands) et les revisions des Premiers pas dans la seance. La fonction ne sert plus qu'aux
-// suggestions de l'accueil.
+// de l'A1 voyage et les scenes de Camille (SCENES_SEANCE en japonais). Reste fermee en japonais : la carte-phrase
+// (exercices allemands, lot J2). La fonction ne sert plus qu'aux suggestions de l'accueil.
 // L'anglais (essai) a eu la meme regle du 27 oct. (v983) jusqu'a ce que ses
 // Premiers pas, son A1 voyage, ses exercices et ses scenes existent (v986).
 function seanceJaponaise(){ return LANGUE_APPRISE === "ja"; }
@@ -70194,7 +70193,8 @@ async function ouvrirSeanceDuJour(sansScene){
     const tout = echeancesDeSeance(niveau, complet);
     // v829 : les flashcards de Premiers pas deja vues reviennent en revision --
     // v1114 : passees par la meme regle, Premiers pas au rang de l'A1.
-    try{ if(LANGUE_APPRISE !== "ja" && essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, echeancesPermises(cartesPremiersPasVues(), "PP", niveau)); } }catch(e){}
+    // Le japonais aussi depuis le lot J1 (11 nov. 2026) : ses Premiers pas sont japonais (japonais/datos/premiers-pas.json).
+    try{ if(essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, echeancesPermises(cartesPremiersPasVues(), "PP", niveau)); } }catch(e){}
     // v862 (essai a1_voyage) : le neuf pris dans l'escale du jour au lieu de
     // tout l'A1. v864 : un compte neuf y part sans question.
     let av = null;
