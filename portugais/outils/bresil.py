@@ -758,6 +758,14 @@ def _conjugaison(d, rap):
                 if isinstance(e.get(cle), dict):
                     e[cle] = {k: _francais(v, rap, "conjugaison") for k, v in e[cle].items()}
             e["l"] = [_ligne_tableau(l, rap, "conjugaison") for l in e.get("l", [])]
+            br = T.FEUILLES_BR.get(e.get("id"))
+            if br:
+                for cle in ("t", "a"):
+                    if cle in br:
+                        e[cle] = {"fr": br[cle]} if isinstance(e.get(cle), dict) else br[cle]
+                if "l" in br:
+                    e["l"] = [[pt, {"fr": fr}] for pt, fr in br["l"]]
+                rap.noter("feuilles de conjugaison reecrites pour le Bresil")
     return d
 
 

@@ -364,6 +364,49 @@ TUILES_BR = {
 # Le surtitre d'une serie de tuile (cle kicker_<serie> des textes).
 KICKERS_BR = {"kicker_pronomesTonicosPtExercises": "Mim, comigo, conosco"}
 
+# Les pronoms complements au Bresil (11 nov. 2026, lot P5, demande du chef :
+# plus aucun titre europeen au Bresil) : le pronom devant le verbe conjugue.
+SERIES_BR["pronomesComplementoPtExercises"] = ("pronomes-complemento", """
+Você conhece a Marta? — Sim, eu ___ conheço bem. | a | la / lhe | Tu connais Marta ? — Oui, je la connais bien. | Complément direct féminin : a, devant le verbe.
+O livro? Ainda não ___ li. | o | lo / lhe | Le livre ? Je ne l'ai pas encore lu. | Après não, le pronom passe devant : não o li.
+Eu ___ telefonei ontem à noite. | lhe | o / a | Je lui ai téléphoné hier soir. | Telefonar a alguém : lhe.
+Vou comprar este casaco. Vou comprá-___. | lo | o / lhe | Je vais acheter ce manteau. Je vais l'acheter. | Après un infinitif en -r : le r tombe et o devient lo.
+Os ingressos? Eles ___ compraram ontem. | os | los / nos | Les billets ? Ils les ont achetés hier. | Devant le verbe, os ne change pas.
+Eu já ___ disse que não posso. | lhe | o / a | Je lui ai déjà dit que je ne peux pas. | Dizer algo a alguém : lhe.
+A sopa? Nós ___ fizemos juntos. | a | la / na | La soupe ? Nous l'avons faite ensemble. | Complément direct féminin : a, devant le verbe.
+Cadê as chaves? Não ___ encontro. | as | las / lhes | Où sont les clés ? Je ne les trouve pas. | Après não : as, devant le verbe.
+Meus pais? Eu ___ dei um presente. | lhes | os / lhe | Mes parents ? Je leur ai offert un cadeau. | Dar algo a alguém, au pluriel : lhes.
+Você pode ___ ajudar? Tenho muitas malas. | me | mim / eu | Tu peux m'aider ? J'ai beaucoup de valises. | Avec deux verbes, me se place devant l'infinitif : pode me ajudar.
+O carro? Eu ___ vendi no ano passado. | o | lo / lhe | La voiture ? Je l'ai vendue l'année dernière. | O carro est masculin : o.
+O que você ___ disse? | lhe | o / a | Qu'est-ce que tu lui as dit ? | Dizer a alguém : lhe.
+Aquele prédio? Eles ___ construíram em dois anos. | o | lo / no | Cet immeuble ? Ils l'ont construit en deux ans. | Devant le verbe, o ne change pas.
+Quero ver o filme. Você quer vê-___ comigo? | lo | o / lhe | Je veux voir le film. Tu veux le voir avec moi ? | Après un infinitif en -r : vê-lo.
+Você conhece o Pedro? — Eu ___ conheço desde a escola. | o | lhe / lo | Tu connais Pedro ? — Je le connais depuis l'école. | Complément direct masculin : o, devant le verbe.
+As cartas? Ainda não ___ li. | as | las / lhes | Les lettres ? Je ne les ai pas encore lues. | Complément direct féminin pluriel : as, devant le verbe.
+Eu ___ escrevi uma mensagem ontem. | lhe | o / a | Je lui ai écrit un message hier. | Escrever a alguém : lhe.
+Vou visitá-___ no domingo. | la | a / lhe | Je vais lui rendre visite dimanche. | Visitar alguém : direct ; après un infinitif en -r, a devient la.
+Os bolos? Nós ___ comemos todos. | os | los / nos | Les gâteaux ? Nous les avons tous mangés. | Devant le verbe, os ne change pas.
+A porta? Eles ___ fecharam às dez. | a | na / la | La porte ? Ils l'ont fermée à dix heures. | Devant le verbe, a ne change pas.
+Você também ___ telefonou? | lhe | o / a | Tu lui as téléphoné aussi ? | Telefonar a alguém : lhe.
+Quero agradecer-___ a ajuda. | lhe | o / a | Je veux vous remercier pour votre aide. | Agradecer algo a alguém : lhe.
+Esta música? Eu ___ adoro! | a | la / lhe | Cette chanson ? Je l'adore ! | Complément direct féminin : a.
+Quem ___ ajudou com as malas? | te | ti / tu | Qui t'a aidé avec les valises ? | Complément de tu (ou de você, à l'oral) : te, devant le verbe.
+Ele sempre ___ faz rir. | nos | nós / se | Il nous fait toujours rire. | Nos, devant le verbe.
+""")
+
+# Les feuilles de conjugaison du Bresil dont le titre ou les lignes restaient
+# europeens (11 nov. 2026, lot P5) : {id: {"t": ..., "l": [[pt, fr]], "a": ...}}.
+FEUILLES_BR = {
+    "pronominais": {"t": "Les verbes pronominaux : me levanto",
+                    "a": "Au Brésil, le pronom se place devant le verbe : eu me levanto, você se levanta. À l'oral, on commence même la phrase par lui : Me levanto cedo. Avec nós, rien ne tombe : nós nos levantamos."},
+    "pronomes_complemento": {
+        "t": "Eu o vi, vou comprá-lo",
+        "l": [["eu [o vi] ontem", "je l'ai vu hier"], ["[não o vi]", "je ne l'ai pas vu"],
+              ["vou [comprá-lo]", "je vais l'acheter"], ["nós [o fizemos] juntos", "nous l'avons fait ensemble"],
+              ["eles [o dão] aos filhos", "ils le donnent à leurs enfants"], ["eu [lhe dei] o livro", "je lui ai donné le livre"]],
+        "a": "Au Brésil, le pronom se place devant le verbe conjugué : eu o vi, eles o dão. Après un infinitif, le r tombe et o devient lo : comprá-lo, fazê-lo. À l'oral, on dit souvent vi ele, dei para ele."},
+}
+
 
 # ---------------------------------------------------------------- fiches
 # Les fiches qui enseignent un usage du Portugal : ce qui remplace leur titre,
@@ -393,6 +436,16 @@ FICHES_BR = {
   "exemples": [["O que você está fazendo? — Estou cozinhando.", "Qu'est-ce que tu fais ? — Je cuisine."],
                ["Não posso falar, estou dirigindo.", "Je ne peux pas parler, je conduis."],
                ["Está chovendo muito em São Paulo.", "Il pleut beaucoup à São Paulo."]]},
+"pronomes-complemento": {"titre": "Le pronom complément : eu o vi, lhe dei", "resume": "o, a, os, as · lhe, lhes — et vou comprá-lo",
+  "tableau": [["eu o vi · eu a vi · eu os vi · eu as vi", "je l'ai vu(e), je les ai vu(e)s", "Você conhece o Rui? Eu o conheço bem."],
+              ["lhe dei · lhes dei", "je lui ai donné, je leur ai donné", "Eu lhe telefonei ontem."],
+              ["não o vi · já lhe disse", "devant : après não, já, que…", "Não a conheço."],
+              ["comprar + o → comprá-lo", "après un infinitif : -lo, -la", "Vou fazê-lo amanhã."],
+              ["vi ele · vi ela", "à l'oral : ele, ela au lieu de o, a", "O Rui? Vi ele ontem."],
+              ["para ele · para ela", "à l'oral : para ele au lieu de lhe", "Dei o livro para ela."]],
+  "exemples": [["Cadê o meu casaco? — Você o deixou no carro.", "Où est mon manteau ? — Tu l'as laissé dans la voiture."],
+               ["Ainda não lhe respondi.", "Je ne lui ai pas encore répondu."],
+               ["Este bolo está ótimo, você tem que prová-lo.", "Ce gâteau est excellent, tu dois le goûter."]]},
 "pronomes-atonos": {"titre": "Me chamo, me levanto : le pronom devant le verbe", "resume": "eu me chamo, não me lembro, vou te ligar",
   "tableau": [["pronom + verbe", "dans une phrase simple", "Eu me chamo Rui. Me levanto cedo."],
               ["não + pronom + verbe", "après une négation", "Não me lembro."],
