@@ -49998,8 +49998,11 @@ try{ if("scrollRestoration" in history) history.scrollRestoration = "manual"; }c
 function showScreen(id){
     if(id !== "sceneSeance"){ try{ const sr = document.getElementById("sceneSeance"); if(sr) sr.classList.remove("avec-repere"); }catch(e){} }
     // v1003 : le fond commun se regle sur l'ecran (vif et anime sur l'accueil, pale ailleurs).
+    const ecranAvant = (document.body && document.body.dataset.ecran) || "";
     try{ document.body.dataset.ecran = id; }catch(e){}
     if(id === "sceneSeance") sessionAvantMicro();
+    // 11 nov. 2026 : on n'en sortait pas. La session restait en « auto » apres une scene, jusqu'au prochain oral.
+    else if(ecranAvant === "sceneSeance") sessionApresMicro();
     try{ eteindreTransitHorsSeance(id); }catch(e){}
     // Le panneau d'information de l'accueil ne survit pas a un changement
     // d'ecran : voir fermerInfoProgression().
@@ -59696,7 +59699,7 @@ function direAllemand(texte, opts){
     const demandeA = Date.now();
     noterAudio(texte, "FICHIER",
         "vitesse " + son.playbackRate + ", volume " + son.volume +
-        (son.muted ? ", MUET" : ""));
+        (son.muted ? ", MUET" : "") + etatApresMicro());
     try{
         const p = son.play();
         if(p && p.catch) p.catch(e => versRepli(definitifSelonRefus(e, empreinte), e));
@@ -65843,6 +65846,34 @@ function direMotPhrase(item){
 // L'enregistrement de l'oral : rien ne sort de l'appareil (comme le mode
 // Parler) ; la piste est rendue des l'arret, l'URL revoquee a la carte suivante.
 let oralPhrase = null;
+// ⚠️ LA VOIX PLUS BASSE APRES L'ORAL (retours en persan, iPhone, app web sur l'ecran d'accueil, 9 et 10 nov. 2026 :
+// « the volume gets lower during the other exercises. It only returns to normal when I start speaking again »). Le
+// journal de la v1154 montrait la session rendue a « playback » et le fichier joue au volume 1 : il ne disait pas si
+// quelque chose du micro restait ouvert. Chaque ligne FICHIER dit donc maintenant, sur iPhone, ce qui reste du micro
+// (etatApresMicro) : les pistes encore vives, les moteurs audio pas fermes, une reconnaissance pas finie, la session.
+// Le prochain signalement tranche entre « un reste du micro » et « le reglage de volume d'iOS ».
+const SUIVI_MICRO = { flux: [], moteurs: [], reco: 0 };
+(function(){
+    try{
+        const md = navigator.mediaDevices;
+        if(!md || !md.getUserMedia || md.__suiviWortando) return;
+        const vrai = md.getUserMedia.bind(md);
+        md.getUserMedia = c => vrai(c).then(f => { SUIVI_MICRO.flux.push(f); if(SUIVI_MICRO.flux.length > 12) SUIVI_MICRO.flux.shift(); return f; });
+        md.__suiviWortando = true;
+    }catch(e){}
+})();
+function suivreMoteurMicro(ctx){ try{ if(ctx){ SUIVI_MICRO.moteurs.push(ctx); if(SUIVI_MICRO.moteurs.length > 12) SUIVI_MICRO.moteurs.shift(); } }catch(e){} return ctx; }
+function etatApresMicro(){
+    try{
+        if(!SUIVI_MICRO.flux.length && !SUIVI_MICRO.moteurs.length && !("audioSession" in navigator)) return "";
+        let pistes = 0;
+        SUIVI_MICRO.flux.forEach(f => { try{ f.getAudioTracks().forEach(p => { if(p.readyState === "live") pistes++; }); }catch(e){} });
+        const moteurs = SUIVI_MICRO.moteurs.filter(c => c && c.state !== "closed").map(c => c.state);
+        return " · apres micro : pistes vives " + pistes + ", moteurs ouverts " + moteurs.length + (moteurs.length ? " (" + moteurs.join("/") + ")" : "")
+            + ", reconnaissance " + (SUIVI_MICRO.reco > 0 ? "EN COURS" : "finie")
+            + ("audioSession" in navigator ? ", session « " + navigator.audioSession.type + " » " + (navigator.audioSession.state || "?") : "");
+    }catch(e){ return ""; }
+}
 // v835 : LE VERDICT DE L'ORAL, INDULGENT. La reconnaissance du telephone donne
 // une ou plusieurs transcriptions ; on garde la meilleure. Un mot compte s'il
 // est entendu n'importe ou dans la phrase (l'ordre ne compte pas), a une lettre
@@ -65896,6 +65927,47 @@ function chiffresEnMots(texte){
         .replace(/\d+/g, x => x.length <= 6 ? m(x) : x);
 }
 
+// ⚠️ UN NOM PROPRE NE FAIT PAS ECHOUER UNE PHRASE (Jacques, 11 nov. 2026, en espagnol : « l'application ne comprend
+// pas le nom de famille Tremblay »). La reconnaissance d'une langue ecrit a sa facon un nom venu d'ailleurs (Tremblay,
+// Smith, Dupont) : le nom ne compte que s'il est reconnu, il n'est jamais demande seul (ni gris, ni a toucher) et il ne
+// retient pas l'arret automatique. Le reste de la phrase est juge comme avant, sur ses seuls mots, aux memes seuils.
+// Sont des noms propres : ceux de NOMS_PROPRES_ORAL, ecrits avec leur majuscule (releves le 11 nov. dans les phrases
+// a dire, de et es : un mot a majuscule hors debut de phrase que la traduction francaise garde avec sa majuscule, plus
+// les valeurs a glisser de l'A1 voyage ; ecartes, parce qu'ils sont aussi des noms communs ou des adjectifs : Klein,
+// Land, Straße, Hauptstraße, Internet, Tisch, Union, Berliner, Estado, Camino, Norte, Reyes, Magos, Juegos) et leur
+// genitif allemand (Annas) ; les sigles (IBAN, ICE, CO2, B2) ; et en espagnol, portugais et anglais tout mot a
+// majuscule hors debut de phrase, puisque ces langues n'en mettent qu'aux noms propres (« I » mis a part).
+// Si la phrase n'a que des noms (« Ana Tremblay. »), elle se juge entiere, comme avant.
+const NOMS_PROPRES_ORAL = new Set([
+    "Anna", "Ana", "Mark", "Marc", "Lena", "Tom", "Toni", "Bello", "Tobi", "Tremblay", "Dupont", "Smith", "Müller",
+    "Schmidt", "Meier", "Berger", "Weber", "Dr", "García", "Pablo", "Pedro", "Marta", "Lucía", "Sofía", "Antonio",
+    "Lorca", "Borges", "Falla", "Serrat", "Cervantes", "Berlin", "Berlín", "Potsdam", "Hamburg", "Köln", "München",
+    "Wien", "Zürich", "Salzburg", "Lindenweg", "Bayern", "Lyon", "Paris", "Cannes", "Mars", "Frankreich", "Kanada",
+    "Canadá", "Montreal", "Toronto", "Portugal", "Ukraine", "New", "York", "Nueva", "Instagram", "Madrid",
+    "Barcelona", "Sevilla", "Valencia", "Granada", "Toledo", "Salamanca", "Bilbao", "Burgos", "León", "Almería",
+    "Galicia", "Rioja", "Pirineos", "Mayor", "Sol", "Prado", "Santiago", "Sebastián", "Lima", "Bogotá",
+    "Guadalajara", "Oaxaca", "Puebla", "México", "Cuba", "Perú", "Chile", "Colombia", "Argentina", "Buenos", "Aires",
+    "Brasil", "España", "Francia", "Alemania", "Londres", "Lisboa", "Roma", "Bruselas", "Europa", "Asia", "África",
+    "Sudamérica", "Japón", "China", "Fátima", "Luna", "Tierra", "Marte", "Navidad", "Nochebuena", "Nochevieja"
+]);
+function motsLibresOral(attendu){
+    const libres = new Set();
+    const romane = LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt" || LANGUE_APPRISE === "en";
+    let debut = true;
+    String(attendu || "").split(/\s+/).forEach(b => {
+        const mot = b.replace(/^[¿¡«"“„(\[]+|[.,!?;:»"”)\]…]+$/g, "");
+        const lettres = mot.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ0-9]/g, "");
+        if(!/[A-Za-zÀ-ÖØ-öø-ÿ]/.test(lettres)) return;   // un tiret de dialogue ne commence pas une phrase
+        const commence = debut || /^[¿¡]/.test(b);
+        const sigle = lettres.length >= 2 && lettres === lettres.toUpperCase();
+        const nom = NOMS_PROPRES_ORAL.has(mot) || (/s$/.test(mot) && NOMS_PROPRES_ORAL.has(mot.slice(0, -1)))
+                 || (romane && !commence && /^[A-ZÀ-ÖØ-Þ]/.test(mot) && mot !== "I" && !/^I'/.test(mot));
+        if(sigle || nom) normaliserSaisie(mot).split(" ").forEach(m => { if(m) libres.add(m); });
+        debut = /[.!?…:]["»”)]*$/.test(b);
+    });
+    return libres;
+}
+
 function scoreOral(attendu, entendus, chiffres){
     if(LANGUE_APPRISE === "ja") return scoreOralJaponais(attendu, entendus);
     const mots = s => normaliserSaisie(s).split(" ").filter(Boolean);
@@ -65909,18 +65981,23 @@ function scoreOral(attendu, entendus, chiffres){
     // v886 : les autres chiffres, et les prix, remis en mots (chiffresEnMots).
     entendus = (entendus || []).map(tx => chiffresEnMots(String(tx || "")));
     const cible = mots(attendu);
-    let meilleur = { ratio: 0, manques: cible.slice(), texte: "" };
+    // Les noms propres (voir NOMS_PROPRES_ORAL) : comptes s'ils sont reconnus, ignores sinon.
+    const noms = motsLibresOral(attendu);
+    const libre = m => noms.has(m) && !cible.every(x => noms.has(x));
+    let meilleur = { ratio: 0, manques: cible.filter(m => !libre(m)), libres: cible.filter(libre), texte: "" };
     (entendus || []).forEach(tx => {
         const dits = mots(tx);
         const pris = dits.map(() => false);
-        const manques = [];
-        let ok = 0;
+        const manques = [], libres = [];
+        let ok = 0, compte = 0;
         cible.forEach(m => {
             const k = dits.findIndex((d, i) => !pris[i] && (d === m || (m.length >= 4 && ecartLettres(d, m) <= 1)));
-            if(k >= 0){ pris[k] = true; ok++; } else manques.push(m);
+            if(k >= 0){ pris[k] = true; ok++; compte++; }
+            else if(libre(m)) libres.push(m);
+            else { manques.push(m); compte++; }
         });
-        const ratio = cible.length ? ok / cible.length : 0;
-        if(ratio > meilleur.ratio || (!meilleur.texte && tx)) meilleur = { ratio: ratio, manques: manques, texte: tx };
+        const ratio = compte ? ok / compte : 0;
+        if(ratio > meilleur.ratio || (!meilleur.texte && tx)) meilleur = { ratio: ratio, manques: manques, libres: libres, texte: tx };
     });
     meilleur.niveau = meilleur.ratio >= ORAL_SEUIL_BON ? "bon" : meilleur.ratio >= ORAL_SEUIL_PRESQUE ? "presque" : "rien";
     return meilleur;
@@ -67087,7 +67164,8 @@ function montrerCartePhrase(item){
         // v845 : les mots s'allument a mesure que la reconnaissance les entend.
         const eclairer = () => {
             if(!v2 || !essai || cible !== item.phrase.de) return;
-            const reste = scoreOral(item.phrase.de, essai.textes, item.oralChiffres).manques.slice();
+            const sc = scoreOral(item.phrase.de, essai.textes, item.oralChiffres);
+            const reste = sc.manques.slice(), libres = sc.libres || [];
             // v852 : TOUS LES MOTS VERTS = REUSSI, l'enregistrement s'arrete seul
             // (Jacques). Un court delai laisse arriver le dernier resultat.
             if(!reste.length && essai.enCours && !essai.arretAuto){
@@ -67105,6 +67183,7 @@ function montrerCartePhrase(item){
                     sp.addEventListener("click", () => reprendreMot(m));
                     phrase.appendChild(sp);
                 }
+                else if(libres.indexOf(normaliserSaisie(m)) >= 0) phrase.appendChild(document.createTextNode(m));   // un nom pas (encore) reconnu
                 else phrase.appendChild(creer("span", "cp-or-allume", m));
             });
         };
@@ -67260,7 +67339,7 @@ function montrerCartePhrase(item){
             // Dans le geste : le moteur du rond, et la reconnaissance (iOS exige
             // l'un et l'autre pendant le toucher).
             let ctx = null;
-            try{ const Ctx = window.AudioContext || window.webkitAudioContext; if(Ctx){ ctx = new Ctx(); if(ctx.resume) ctx.resume().catch(() => {}); } }catch(e){ ctx = null; }
+            try{ const Ctx = window.AudioContext || window.webkitAudioContext; if(Ctx){ ctx = suivreMoteurMicro(new Ctx()); if(ctx.resume) ctx.resume().catch(() => {}); } }catch(e){ ctx = null; }
             if(Reco){
                 try{
                     const reco = new Reco();
@@ -67278,8 +67357,9 @@ function montrerCartePhrase(item){
                         if(garderTextes(ici, textes)) eclairer();
                     };
                     reco.onerror = e => { journal("reconnaissance", "erreur " + (e && e.error)); if(e && (e.error === "not-allowed" || e.error === "service-not-allowed")) ici.avecReco = false; };
-                    reco.onend = () => { ici.recoFinie = true; if(!ici.enCours && ici.recFini) juger(); };
+                    reco.onend = () => { if(!ici.recoFinie) SUIVI_MICRO.reco--; ici.recoFinie = true; if(!ici.enCours && ici.recFini) juger(); };
                     reco.start();
+                    SUIVI_MICRO.reco++;
                     ici.reco = reco;
                     ici.avecReco = true;
                 }catch(e){ journal("reconnaissance", "demarrage refuse : " + (e && e.name)); ici.avecReco = false; }
@@ -67455,7 +67535,7 @@ function montrerCartePhrase(item){
             let ctxGeste = null;
             try{
                 const Ctx = window.AudioContext || window.webkitAudioContext;
-                if(Ctx){ ctxGeste = new Ctx(); if(ctxGeste.resume) ctxGeste.resume().catch(() => {}); }
+                if(Ctx){ ctxGeste = suivreMoteurMicro(new Ctx()); if(ctxGeste.resume) ctxGeste.resume().catch(() => {}); }
             }catch(e){ ctxGeste = null; }
             const fermerCtx = () => { try{ if(ctxGeste) ctxGeste.close(); }catch(e){} ctxGeste = null; };
             if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined"){
