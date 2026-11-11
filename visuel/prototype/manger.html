@@ -210,7 +210,7 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 
 // ---------- la donnee (manger.json) ----------
 let D = null;
-const nom = p => (D.noms || {})[p] || p;
+const nom = p => { const n = (D.noms || {})[p] || p; return APPRENDRE === "pt" ? n.replace("Inés", "Inês") : n; };   // Inês : l'orthographe portugaise
 const maj = s => s.charAt(0).toUpperCase() + s.slice(1);
 // au cafe, le serveur et la serveuse sont des figurants sans prenom (7 nov. 2026, visuel/personnes.json) : « der Mann
 // mit den grauen Haaren » ; les autres, leur prenom. l : la langue (apprise par defaut, celle de l'interface pour la traduction).

@@ -72,6 +72,10 @@ Laissés de côté exprès, à trancher à la relecture :
   des métiers dit « policial » au Brésil, sans carte au corpus.
 - **a luminária** (Brésil seulement : la lampe au plafond, à côté d'abajur, la lampe de chevet) : absente du corpus.
 - **o basquetebol → o basquete**, **a erva → a grama ou o capim** (le corpus du Brésil a déjà « grama » pour relva).
+- **castanho → marrom** : la page des vêtements dit « marrom » au Brésil (une jaqueta marrom), mais une conversion de
+  texte changerait aussi « cabelo castanho », qui reste castanho au Brésil. Sans carte au corpus du Brésil.
+- **as calças → a calça** : le Brésil dit surtout « a calça » au singulier (la page des vêtements aussi) ; « as calças »
+  s'y dit encore. La carte du Brésil reste « as calças », à trancher à la relecture.
 
 ## Ce que la variante laisse de côté, et pourquoi
 

@@ -171,7 +171,7 @@ const TEXTES = {
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
 
 // ---------- la langue apprise : les phrases, fabriquees depuis les combinaisons ----------
-const NOMS = {Ines:"Inés", Tomas:"Tomás"};
+const NOMS = {Ines: APPRENDRE === "pt" ? "Inês" : "Inés", Tomas:"Tomás"};   // Inês : l'orthographe portugaise (loisirs, metiers)
 const nom = id => NOMS[id] || id;
 const ES = {
   bravo: "¡Muy bien!",
@@ -849,7 +849,7 @@ if (APPRENDRE === "en"){
 if (APPRENDRE === "pt"){
   const C = CABELO + " ", O = OLHOS + " ", art = (a, n) => (BR ? "" : a + " ") + n;
   [["azuis", O + "azuis"], ["verdes", O + "verdes"], ["castanhos", O + "castanhos"], [PT.ojos.grises, O + PT.ojos.grises], ["escuros", O + "escuros"],
-   ["loiro", C + "loiro"], ["castanho", C + "castanho"], ["castanho-claro", C + "castanho-claro"], ["ruivo", art("A", "Inés é ruiva.")],
+   ["loiro", C + "loiro"], ["castanho", C + "castanho"], ["castanho-claro", C + "castanho-claro"], ["ruivo", art("A", "Inês é ruiva.")],
    ["preto", C + "preto"], ["grisalho", C + "grisalho"], ["curto", C + "curto"], ["comprido", C + "comprido"],
    ["liso", C + "liso"], ["ondulado", C + "ondulado"], [PT.tipo.rizado, C + PT.tipo.rizado],
    ["os óculos", art("O", "Diego usa óculos.")], ["a barba", art("O", "Pablo tem barba.")], ["o bigode", art("O", "Javier tem bigode.")],

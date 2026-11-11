@@ -211,7 +211,7 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 
 // ---------- la donnee (ropa.json) ----------
 let D = null, TENUES = [];                  // TENUES : [cle, tenue], les tenues dont l'image existe
-const nom = p => (D.noms || {})[p] || p;
+const nom = p => { const n = (D.noms || {})[p] || p; return APPRENDRE === "pt" ? n.replace("Inés", "Inês") : n; };   // Inês : l'orthographe portugaise
 const fem = p => D.sexe[p] === "f";
 const PI = x => D.pieces[x];
 const pluriel = x => APPRENDRE === "de" ? PI(x).de[3] === "p" : APPRENDRE === "en" ? EN_P[x][1] !== "s" : APPRENDRE === "pt" ? PO.pl(x) : PI(x).es[2] === "p";
