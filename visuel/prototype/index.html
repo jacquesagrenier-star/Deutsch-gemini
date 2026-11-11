@@ -21,7 +21,7 @@
 <style>
 :root{
   --encre:#1C2430; --ambre:#E8A23A; --papier:#FBF7EF;
-  --der:#2563EB; --die:#DC2626; --das:#16A34A;
+  --der:#2563EB; --die:#DC2626; --das:#2F7D57;
   --ok:#15803D; --faux:#B91C1C;
 }
 *{box-sizing:border-box}
@@ -339,6 +339,11 @@ html.nuit .niveaux button{color:#EEF2F5}
 html.nuit .carte{background:rgba(18,34,48,.80);color:#EEF2F5;box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.12),0 10px 26px rgba(0,0,0,.35)}
 html.nuit .carte .consigne{color:#F0A93C}
 html.nuit .choix{background:rgba(30,46,60,.86);color:#EEF2F5}
+/* Decouvrir / Trouve ! de nuit (11 nov.) : le bouton non choisi gardait le noir du navigateur sur la carte sombre */
+html.nuit .modes button{color:#EEF2F5;border-color:rgba(238,242,245,.55)}
+html.nuit .modes button[aria-pressed=true]{background:#EEF2F5;color:#0E1C26;border-color:#EEF2F5}
+/* le genre du mot a trouver, de nuit : les couleurs de nuit de l'app (index.html, --g-der / --g-die / --g-das) */
+html.nuit .carte{--der:#86A8E8;--die:#F08A78;--das:#74C69D}
 /* v1042 : le haut-parleur de « Trouve ! » est celui de l'app (meme dessin, meme rond de 30 px),
    plus l'emoji 🔈 (Jacques : « L'icone du haut parleur n'est pas le meme partout »). */
 .hp-rond{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0 !important;
