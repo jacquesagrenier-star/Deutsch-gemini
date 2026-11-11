@@ -3450,7 +3450,8 @@ html[data-apprendre="es"] [data-orbid="pruefung"]{ display:none !important; }
 html[data-apprendre="ja"] [data-i18n="credits_voix"],
 html[data-apprendre="ja"] [data-i18n="credits_degres"],
 html[data-apprendre="ja"] [data-i18n="credits_freq"],
-html[data-apprendre="ja"] [data-i18n="credits_examens"]{ display:none !important; }
+html[data-apprendre="ja"] [data-i18n="credits_examens"],
+html[data-apprendre="ja"] [data-i18n="credits_ciel"]{ display:none !important; }
 /* Le choix Espagne / Amerique latine n'existe qu'en espagnol. */
 html:not([data-apprendre="es"]) [data-seulement-es]{ display:none !important; }
 html[data-apprendre="es"] [data-seulement-de]{ display:none !important; }
@@ -3511,6 +3512,7 @@ body[data-theme="dark"] .trace-ja{ filter: invert(1); background: #fff; }
 html[data-apprendre="en"] [data-i18n="credits_voix"],
 html[data-apprendre="en"] [data-i18n="credits_degres"],
 html[data-apprendre="en"] [data-i18n="credits_examens"],
+html[data-apprendre="en"] [data-i18n="credits_ciel"],
 html[data-apprendre="en"] #episodeLigne,
 html[data-apprendre="en"] [data-seulement-de],
 html[data-apprendre="en"] [data-seulement-es],
@@ -13812,6 +13814,9 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
             <p style="color:#4C566B; margin-top:4px;" data-i18n="credits_degres">Comparatifs et superlatifs des adjectifs : Wiktionnaire allemand et anglais (via kaikki.org) — licence CC BY-SA 4.0.</p>
             <p style="color:#4C566B; margin-top:4px;" data-i18n="credits_video">Animation d'ouverture : Created with Grok.</p>
             <p style="color:#4C566B; margin-top:4px;" data-i18n="credits_freq">Fréquence d'usage : Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY ; et OPUS OpenSubtitles (Lison &amp; Tiedemann, 2016), d'après opensubtitles.org.</p>
+            <!-- Les etoiles de « Ton ciel » (decision de Jacques du 11 nov. 2026, etoiles/CREDITS.md) : l'UAI (CC BY)
+                 et Gaia (CC BY-SA 3.0 IGO) demandent une attribution. Pas en japonais ni en anglais, qui n'ont pas de ciel. -->
+            <p style="color:#4C566B; margin-top:4px;" data-i18n="credits_ciel">Étoiles : noms de l'Union astronomique internationale (CC BY 4.0) ; positions et distances de SIMBAD (CDS, Strasbourg) et des missions Hipparcos et Gaia de l'ESA (Gaia : ESA/Gaia/DPAC, CC BY-SA 3.0 IGO).</p>
             <!-- ⚠️ NON-AFFILIATION, ET CE N'EST PAS UNE FORMULE DE POLITESSE (v636).
                  L'app nomme le Goethe-Institut, telc et le DTZ a plusieurs endroits
                  -- << la liste officielle du Goethe-Zertifikat A2 >>, la tuile
@@ -15835,6 +15840,7 @@ const I18N = {
         credits_degres: "Comparatifs et superlatifs des adjectifs : Wiktionnaire allemand et anglais (via kaikki.org) — licence CC BY-SA 4.0.",
         credits_video: "Animation d'ouverture : Created with Grok.",
         credits_freq: "Fréquence d'usage : Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY ; et OPUS OpenSubtitles (Lison & Tiedemann, 2016), d'après opensubtitles.org.",
+        credits_ciel: "Étoiles : noms de l'Union astronomique internationale (CC BY 4.0) ; positions et distances de SIMBAD (CDS, Strasbourg) et des missions Hipparcos et Gaia de l'ESA (Gaia : ESA/Gaia/DPAC, CC BY-SA 3.0 IGO).",
         credits_examens: "Examens : Wortando n'est affilié ni au Goethe-Institut ni à telc, et n'est approuvé par aucun des deux. Leurs listes officielles servent uniquement de référence pour mesurer la couverture du vocabulaire.",
         dict_plural: "pl. {pl}",
         dict_participle: "part. {pp}",
@@ -17576,6 +17582,7 @@ const I18N = {
         credits_degres: "Adjective comparatives and superlatives: German and English Wiktionary (via kaikki.org) — CC BY-SA 4.0 licence.",
         credits_video: "Opening animation: Created with Grok.",
         credits_freq: "Usage frequency: Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY; and OPUS OpenSubtitles (Lison & Tiedemann, 2016), from opensubtitles.org.",
+        credits_ciel: "Stars: names from the International Astronomical Union (CC BY 4.0); positions and distances from SIMBAD (CDS, Strasbourg) and ESA's Hipparcos and Gaia missions (Gaia: ESA/Gaia/DPAC, CC BY-SA 3.0 IGO).",
         credits_examens: "Exams: Wortando is not affiliated with, nor endorsed by, the Goethe-Institut or telc. Their official lists are used only as a reference to measure vocabulary coverage.",
         dict_plural: "pl. {pl}",
         dict_participle: "past part. {pp}",
@@ -19263,6 +19270,7 @@ const I18N = {
         credits_degres: "Sıfatların karşılaştırma ve üstünlük biçimleri: Almanca ve İngilizce Vikisözlük (kaikki.org aracılığıyla) — CC BY-SA 4.0 lisansı.",
         credits_video: "Açılış animasyonu: Created with Grok.",
         credits_freq: "Kullanım sıklığı: Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY; ve OPUS OpenSubtitles (Lison & Tiedemann, 2016), opensubtitles.org kaynaklı.",
+        credits_ciel: "Yıldızlar: adlar Uluslararası Astronomi Birliği'nden (CC BY 4.0); konumlar ve uzaklıklar SIMBAD'dan (CDS, Strazburg) ve ESA'nın Hipparcos ve Gaia görevlerinden (Gaia: ESA/Gaia/DPAC, CC BY-SA 3.0 IGO).",
         credits_examens: "Sınavlar: Wortando, Goethe-Institut ya da telc ile bağlantılı değildir ve hiçbiri tarafından onaylanmamıştır. Resmî listeleri yalnızca kelime kapsamını ölçmek için başvuru kaynağıdır.",
         dict_plural: "çoğul {pl}",
         dict_participle: "geçmiş ort. {pp}",
@@ -21354,6 +21362,7 @@ const I18N = {
         credits_degres: "Вищий і найвищий ступені прикметників: німецький та англійський Вікісловник (через kaikki.org) — ліцензія CC BY-SA 4.0.",
         credits_video: "Анімація заставки: Created with Grok.",
         credits_freq: "Частота вживання: Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY; та OPUS OpenSubtitles (Lison & Tiedemann, 2016), за даними opensubtitles.org.",
+        credits_ciel: "Зірки: назви Міжнародного астрономічного союзу (CC BY 4.0); положення й відстані — із SIMBAD (CDS, Страсбург) і місій ЄКА Hipparcos і Gaia (Gaia: ESA/Gaia/DPAC, CC BY-SA 3.0 IGO).",
         credits_examens: "Іспити: Wortando не пов'язаний із Goethe-Institut чи telc і не схвалений жодним із них. Їхні офіційні списки слугують лише орієнтиром для вимірювання покриття лексики.",
         dict_plural: "мн. {pl}",
         dict_participle: "дієприкм. {pp}",
@@ -23819,6 +23828,7 @@ const I18N = {
         credits_degres: "صفت‌های تفضیلی و عالی: ویکی‌واژهٔ آلمانی و انگلیسی (از طریق kaikki.org) — مجوز CC BY-SA 4.0.",
         credits_video: "انیمیشن آغازین: Created with Grok.",
         credits_freq: "بسامد کاربرد: Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY؛ و OPUS OpenSubtitles (Lison & Tiedemann, 2016)، برگرفته از opensubtitles.org.",
+        credits_ciel: "ستارگان: نام‌ها از اتحادیهٔ بین‌المللی اخترشناسی (CC BY 4.0)؛ موقعیت‌ها و فاصله‌ها از SIMBAD (CDS، استراسبورگ) و مأموریت‌های هیپارکوس و گایای آژانس فضایی اروپا (Gaia: ESA/Gaia/DPAC، CC BY-SA 3.0 IGO).",
         credits_examens: "آزمون‌ها: Wortando وابسته به Goethe-Institut یا telc نیست و مورد تأیید هیچ‌کدام نیست. فهرست‌های رسمی آن‌ها تنها برای سنجش پوشش واژگان مرجع قرار می‌گیرند.",
         dict_plural: "جمع {pl}",
         dict_participle: "اسم مفعول {pp}",
@@ -25036,6 +25046,7 @@ const I18N = {
         credits_degres: "صيغ التفضيل للصفات: ويكاموس الألماني والإنجليزي (عبر kaikki.org) — رخصة CC BY-SA 4.0.",
         credits_video: "رسوم الافتتاح: Created with Grok.",
         credits_freq: "تواتر الاستعمال: Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI، رخصة CC BY؛ و OPUS OpenSubtitles (Lison & Tiedemann, 2016)، عن opensubtitles.org.",
+        credits_ciel: "النجوم: الأسماء من الاتحاد الفلكي الدولي (CC BY 4.0)؛ المواقع والمسافات من SIMBAD (CDS، ستراسبورغ) ومن مهمتي هيباركوس وغايا التابعتين لوكالة الفضاء الأوروبية (Gaia: ESA/Gaia/DPAC، CC BY-SA 3.0 IGO).",
         credits_examens: "الامتحانات: Wortando ليس تابعاً لمعهد غوته (Goethe-Institut) أو telc ولا معتمداً من أيّ منهما. قوائمهما الرسمية تُستخدم مرجعاً فقط لقياس تغطية المفردات.",
         dict_plural: "ج. {pl}",
         dict_participle: "اسم مفعول {pp}",
@@ -26167,6 +26178,7 @@ const I18N = {
         credits_degres: "Comparativos e superlativos dos adjetivos: Wikcionário alemão e inglês (via kaikki.org) — licença CC BY-SA 4.0.",
         credits_video: "Animação de abertura: Created with Grok.",
         credits_freq: "Frequência de uso: Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY; e OPUS OpenSubtitles (Lison & Tiedemann, 2016), a partir de opensubtitles.org.",
+        credits_ciel: "Estrelas: nomes da União Astronômica Internacional (CC BY 4.0); posições e distâncias do SIMBAD (CDS, Estrasburgo) e das missões Hipparcos e Gaia da ESA (Gaia: ESA/Gaia/DPAC, CC BY-SA 3.0 IGO).",
         credits_examens: "Provas: a Wortando não é afiliada ao Goethe-Institut nem à telc, e não é aprovada por nenhum dos dois. As listas oficiais deles servem apenas de referência para medir a cobertura do vocabulário.",
         dict_plural: "pl. {pl}",
         dict_participle: "part. {pp}",
@@ -27913,6 +27925,7 @@ const I18N = {
         credits_degres: "Stopniowanie przymiotników: Wikisłownik niemiecki i angielski (przez kaikki.org) — licencja CC BY-SA 4.0.",
         credits_video: "Animacja otwierająca: Created with Grok.",
         credits_freq: "Częstość użycia: Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY; oraz OPUS OpenSubtitles (Lison & Tiedemann, 2016), na podstawie opensubtitles.org.",
+        credits_ciel: "Gwiazdy: nazwy Międzynarodowej Unii Astronomicznej (CC BY 4.0); położenia i odległości z bazy SIMBAD (CDS, Strasburg) oraz z misji Hipparcos i Gaia ESA (Gaia: ESA/Gaia/DPAC, CC BY-SA 3.0 IGO).",
         credits_examens: "Egzaminy: Wortando nie jest powiązane ani z Goethe-Institut, ani z telc, i nie jest przez żadne z nich zatwierdzone. Ich oficjalne listy służą wyłącznie jako punkt odniesienia do pomiaru pokrycia słownictwa.",
         dict_plural: "l. mn. {pl}",
         dict_participle: "imiesł. {pp}",
@@ -29659,6 +29672,7 @@ const I18N = {
         credits_degres: "Степени сравнения прилагательных: немецкий и английский Викисловарь (через kaikki.org) — лицензия CC BY-SA 4.0.",
         credits_video: "Вступительная анимация: Created with Grok.",
         credits_freq: "Частотность: Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY; и OPUS OpenSubtitles (Lison & Tiedemann, 2016), на основе opensubtitles.org.",
+        credits_ciel: "Звёзды: названия Международного астрономического союза (CC BY 4.0); положения и расстояния — из SIMBAD (CDS, Страсбург) и миссий ЕКА Hipparcos и Gaia (Gaia: ESA/Gaia/DPAC, CC BY-SA 3.0 IGO).",
         credits_examens: "Экзамены: Wortando не связан ни с Goethe-Institut, ни с telc и не одобрен ни одним из них. Их официальные списки служат только ориентиром, чтобы измерить охват словаря.",
         dict_plural: "мн. ч. {pl}",
         dict_participle: "прич. {pp}",
@@ -31407,6 +31421,7 @@ const I18N = {
         credits_degres: "Komparativ und Superlativ der Adjektive: deutsches und englisches Wiktionary (über kaikki.org) – Lizenz CC BY-SA 4.0.",
         credits_video: "Eröffnungsanimation: Created with Grok.",
         credits_freq: "Gebrauchshäufigkeit: Leipzig Corpora Collection – © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY; und OPUS OpenSubtitles (Lison & Tiedemann, 2016), nach opensubtitles.org.",
+        credits_ciel: "Sterne: Namen der Internationalen Astronomischen Union (CC BY 4.0); Positionen und Entfernungen aus SIMBAD (CDS, Straßburg) und den ESA-Missionen Hipparcos und Gaia (Gaia: ESA/Gaia/DPAC, CC BY-SA 3.0 IGO).",
         credits_examens: "Prüfungen: Wortando ist weder mit dem Goethe-Institut noch mit telc verbunden und von keinem der beiden anerkannt. Ihre offiziellen Listen dienen nur als Bezugsgröße, um die Abdeckung des Wortschatzes zu messen.",
         dict_plural: "Pl. {pl}",
         dict_participle: "Part. {pp}",
@@ -33168,6 +33183,7 @@ const I18N = {
         credits_degres: "Comparativos y superlativos de los adjetivos: Wikcionario alemán e inglés (vía kaikki.org) — licencia CC BY-SA 4.0.",
         credits_video: "Animación de apertura: Created with Grok.",
         credits_freq: "Frecuencia de uso: Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY; y OPUS OpenSubtitles (Lison & Tiedemann, 2016), a partir de opensubtitles.org.",
+        credits_ciel: "Estrellas: nombres de la Unión Astronómica Internacional (CC BY 4.0); posiciones y distancias de SIMBAD (CDS, Estrasburgo) y de las misiones Hipparcos y Gaia de la ESA (Gaia: ESA/Gaia/DPAC, CC BY-SA 3.0 IGO).",
         credits_examens: "Exámenes: Wortando no está afiliado al Goethe-Institut ni a telc, y ninguno de los dos lo avala. Sus listas oficiales sirven únicamente como referencia para medir la cobertura del vocabulario.",
         dict_plural: "pl. {pl}",
         dict_participle: "part. {pp}",
