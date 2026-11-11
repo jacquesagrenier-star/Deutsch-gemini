@@ -39779,6 +39779,28 @@ async function loadFunktionswoerterJson() {
         const response = await fetch(urlDonnees('funktionswort.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier funktionswort.json introuvable");
         const data = await response.json();
+        // LE JAPONAIS (11 nov. 2026, radar, decision de Jacques) : son
+        // fonctionnels.json est range par niveau (A1...C1), sans cle par liste,
+        // et partikelnTheme restait la liste ALLEMANDE (doch, ja, mal), que lisait
+        // l'axe du radar. Les particules japonaises (は, が, を, ね...) en sont
+        // tirees, avec leur niveau. Un fichier japonais qui aura sa propre cle
+        // « partikeln » passera par le chemin commun, et ceci ne servira plus.
+        if(LANGUE_APPRISE === "ja" && !Array.isArray(data.partikeln)){
+            const particules = [];
+            Object.keys(data).forEach(niv => {
+                if(!Array.isArray(data[niv])) return;
+                data[niv].forEach(w => {
+                    const k = String(w.kategorie || "");
+                    if(k.indexOf("particule") !== 0) return;
+                    particules.push(Object.assign({ niveau: niv,
+                        kategorie_en: k === "particule de fin" ? "sentence-ending particle" : "particle" }, w));
+                });
+            });
+            if(particules.length){
+                data.partikeln = particules;
+                partikelnTheme.japonais = true;
+            }
+        }
         Object.keys(FUNKTIONSWORT_THEMES).forEach(cle => {
             const liste = data[cle];
             if (!liste || !liste.length) return;
@@ -46559,7 +46581,17 @@ function renderProgressRadar(){
         { id: "particules", label: t("radar_particules"), percent: getPartikelnMasteryPercent() }
     ].filter(c => LANGUE_APPRISE !== "es" || c.id !== "cas")
      // L'espagnol n'a pas de declinaison : la branche des cas resterait a zero.
-     .map(c => (LANGUE_APPRISE === "es" && c.id === "particules") ? { label: t("radar_marqueurs"), percent: c.percent } : c);
+     .map(c => (LANGUE_APPRISE === "es" && c.id === "particules") ? { label: t("radar_marqueurs"), percent: c.percent } : c)
+     // Le portugais et le japonais (11 nov. 2026, decision de Jacques) : aucun
+     // axe ne lit plus de liste allemande. Le portugais suit l'espagnol (ses
+     // prepositions et ses marqueurs viennent de portugais/datos/fonctionnels.json) ;
+     // le japonais garde Noms, Verbes, Adjectifs et met « Particules » a la
+     // place des cas, sans les prepositions -- et l'axe reste a zero si les
+     // particules japonaises n'ont pas pu etre chargees.
+     .filter(c => LANGUE_APPRISE !== "pt" || c.id !== "cas")
+     .map(c => (LANGUE_APPRISE === "pt" && c.id === "particules") ? { label: t("radar_marqueurs"), percent: c.percent } : c)
+     .filter(c => LANGUE_APPRISE !== "ja" || (c.id !== "cas" && c.id !== "preps"))
+     .map(c => (LANGUE_APPRISE === "ja" && c.id === "particules" && !partikelnTheme.japonais) ? Object.assign({}, c, { percent: 0 }) : c);
     const n = categories.length;
     const cx = 110, cy = 110, maxR = 75;
     const angleFor = i => -Math.PI / 2 + i * (2 * Math.PI / n);
