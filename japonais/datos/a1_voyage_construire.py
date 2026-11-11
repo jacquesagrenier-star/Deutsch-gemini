@@ -51,7 +51,7 @@ ESCALES = [
 あした かえります | ashita kaerimasu | je rentre demain | I'm going home tomorrow""",
   "a": ("Le lieu où l'on va ou arrive prend に : ホテルに いきます. Le lieu d'où l'on vient prend から : カナダから きました. ～ました, c'est le passé poli de ～ます.",
         "The place you go to or arrive at takes に: ホテルに いきます. The place you come from takes から: カナダから きました. ～ました is the polite past of ～ます.")},
- "blocs": """…と もうします。 | Je m'appelle …. | My name is …. | もり / カミーユ / たなか | Mori / Camille / Tanaka | Mori / Camille / Tanaka
+ "blocs": """…と もうします。 | Je m'appelle …. | My name is …. | たなか / カミーユ / もり | Tanaka / Camille / Mori | Tanaka / Camille / Mori
 …から きました。 | Je viens …. | I'm from …. | フランス / ベルギー / カナダ | de France / de Belgique / du Canada | France / Belgium / Canada
 …は どこですか。 | Où est … ? | Where is …? | でぐち / エレベーター / タクシーのりば | la sortie / l'ascenseur / la station de taxis | the exit / the lift / the taxi rank
 …を おねがいします。 | …, s'il vous plaît. | …, please. | かぎ / タオル / ちず | La clé / Une serviette / Un plan | The key / A towel / A map""",
