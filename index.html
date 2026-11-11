@@ -3481,7 +3481,7 @@ html[data-apprendre="ja"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="ja"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
 /* Dans les panneaux des mots : parcourir, rien d'autre. Dictees, quiz d'article,
    declinaisons, temps allemands, nuances : tous allemands ou espagnols. */
-html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="Kana"]):not([onclick*="abrirGramatica"]){ display:none !important; }
+html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="Kana"]):not([onclick*="abrirGramatica"]):not([onclick*="ouvrirSceneJa_"]){ display:none !important; }
 /* Le mot japonais : police du systeme d'abord (Hiragino sur iPhone, Noto sur
    Android), et lang="ja" sur l'element, sans quoi un kanji partage avec le
    chinois prend la forme chinoise. Les furigana au-dessus, petits et lisibles. */
@@ -36563,8 +36563,59 @@ const DECOUVERTE_CONTENU_ES = {
                  {"jeu": "acentosExercises", "debut": "¿___ quieres café?"}]
     }
 };
+// LA VISITE PORTUGAISE (lot P1, 11 nov. 2026, alignement des langues). Memes etapes, memes regles : des mots du
+// corpus portugais (portugais/datos/themes.json), un verbe de verbes.json, des exercices de ses fiches. Chaque
+// question citee existe a l'identique au Portugal et au Bresil (portugais/datos-br), qui partagent les identifiants
+// des themes. Verifie par tests/verifier.py, comme l'allemand et l'espagnol.
+const DECOUVERTE_CONTENU_PT = {
+    "zero": {
+        "noms": [{"theme": "casa_pt", "mot": "casa"},
+                 {"theme": "animais_pt", "mot": "gato"},
+                 {"theme": "comida_pt", "mot": "café"}],
+        "verbe": {"niveau": "A1", "infinitif": "ser", "temps": "praesens"},
+        "exos": [{"article": "gato"}, {"article": "casa"}]
+    },
+    "peu": {
+        "noms": [{"theme": "familia_pt", "mot": "criança"}],
+        "verbe": {"niveau": "A1", "infinitif": "falar", "temps": "praesens"},
+        "exos": [{"jeu": "serEstarPtExercises", "debut": "Hoje ___ frio."},
+                 {"jeu": "contracoesPtExercises", "debut": "Vou ___ mercado."}]
+    },
+    "A2": {
+        "noms": [{"theme": "escola_a2_pt", "mot": "resultado"}],
+        "verbe": {"niveau": "A2", "infinitif": "conseguir", "temps": "praesens"},
+        "exos": [{"jeu": "perfeitoImperfeitoPtExercises", "debut": "Ontem ___ ao cinema com a Rita."},
+                 {"jeu": "porParaPtExercises", "debut": "Este bolo é ___ a avó."}]
+    },
+    "B1": {
+        "noms": [{"theme": "sociedade_b1_pt_3", "mot": "sociedade"}],
+        "verbe": {"niveau": "B1", "infinitif": "respeitar", "temps": "praesens"},
+        "exos": [{"jeu": "conjuntivoPresentePtExercises", "debut": "Espero que ___ boa viagem."},
+                 {"jeu": "condicionalPtExercises", "debut": "O que ___ no meu lugar?"}]
+    },
+    "B2": {
+        "noms": [{"theme": "familia_b2_pt", "mot": "descendente"}],
+        "verbe": {"niveau": "B2", "infinitif": "assumir", "temps": "praesens"},
+        "exos": [{"jeu": "conjuntivoImperfeitoPtExercises", "debut": "Se eu ___ rico, viajava pelo mundo."},
+                 {"jeu": "concessivasPtExercises", "debut": "Mesmo que ___, vamos sair."}]
+    },
+    "C1": {
+        "noms": [{"theme": "familia_c1_pt", "mot": "condolências"}],
+        "verbe": {"niveau": "B2", "infinitif": "assumir", "temps": "praesens"},
+        "exos": [{"jeu": "infinitivoPessoalC1PtExercises", "debut": "Obrigado por ___ vindo."},
+                 {"jeu": "conjuncoesC1PtExercises", "debut": "Aceito o trabalho, contanto que me ___ a horas."}]
+    }
+};
+// Ses deux textes propres (le reste de la visite ne nomme pas la langue) : le peintre et le tableau final. Ils
+// sont ici, avec le contenu de la visite, plutot que dans I18N_PORTUGAIS, et ne valent qu'en portugais appris.
+const I18N_DECOUVERTE_PT = {
+    "dec_t4_texte": "Chaque carte travaillée ouvre un carreau. Sous les carreaux se cache l'œuvre d'un grand peintre portugais : tu ne sauras laquelle qu'en la dévoilant. Chaque tableau terminé rejoint ta galerie.",
+    "dec_t4_d5": "700 cartes : le tableau complet ! O Fado, de José Malhoa, 1910."
+};
+if(LANGUE_APPRISE === "pt") Object.assign(I18N.fr, I18N_DECOUVERTE_PT);
 function contenuDecouverte(){
-    return LANGUE_APPRISE === "es" ? DECOUVERTE_CONTENU_ES : DECOUVERTE_CONTENU;
+    return LANGUE_APPRISE === "es" ? DECOUVERTE_CONTENU_ES
+         : LANGUE_APPRISE === "pt" ? DECOUVERTE_CONTENU_PT : DECOUVERTE_CONTENU;
 }
 
 // La decouverte en cours, ou null. Tout ce qui l'interroge passe par
@@ -36680,8 +36731,8 @@ async function attendreDonneesDecouverte(){
 async function lancerDecouverte(reponseForcee){
     // Le contenu est allemand : le module anglais n'a rien a y montrer.
     if(getLearningDirection() === "en") return false;
-    // L'espagnol a la sienne depuis la v759 (DECOUVERTE_CONTENU_ES).
-    if(LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "es") return false;
+    // L'espagnol a la sienne depuis la v759 (DECOUVERTE_CONTENU_ES), le portugais depuis le lot P1 (DECOUVERTE_CONTENU_PT).
+    if(LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "es" && LANGUE_APPRISE !== "pt") return false;
     const reponse = (reponseForcee && contenuDecouverte()[reponseForcee]) ? reponseForcee : reponseDecouverte();
     // Cree l'etat du tableau s'il n'existe pas encore (les carreaux offerts).
     etatMosaique();
@@ -36799,7 +36850,11 @@ const CLIPS_PROPRES_ES = ["t4", "d5", "mots", "mot_peu"];
 // ⚠️ UN CLIP DONT LE TEXTE A CHANGE SE TAIT jusqu'a son nouvel
 // enregistrement (audio/voix_visite.py) : la voix dit le texte affiche, mot
 // pour mot, ou ne dit rien. Vider la liste une fois les clips deposes.
-const CLIPS_EN_ATTENTE = { de: [], es: [] };
+const CLIPS_EN_ATTENTE = { de: [], es: [], pt: CLIPS_PROPRES_ES.slice() };
+// Le portugais (lot P1) : ses clips propres (les mots et leur genre, le tableau) ne sont pas enregistres --
+// les clips allemands parleraient de der / die / das et d'Ajaccio. Ils se taisent ; le reste de la visite,
+// qui ne nomme pas la langue, garde sa voix.
+function clipsEnAttente(){ return CLIPS_EN_ATTENTE[LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt" ? LANGUE_APPRISE : "de"] || []; }
 
 function voixVisiteDispo(){
     const langues = LANGUE_APPRISE === "es" ? VOIX_VISITE.languesEs : VOIX_VISITE.langues;
@@ -36818,7 +36873,7 @@ function clipMotsDecouverte(){
 }
 function clipDePage(n){
     const clip = n === 2 ? clipMotsDecouverte() : (CLIPS_DE_PAGE[n] || null);
-    const attente = CLIPS_EN_ATTENTE[LANGUE_APPRISE === "es" ? "es" : "de"] || [];
+    const attente = clipsEnAttente();
     return attente.indexOf(clip) >= 0 ? null : clip;
 }
 
@@ -36828,7 +36883,7 @@ function cheminClipVisite(clip){
 }
 
 function narrerDecouverte(clip){
-    const attente = CLIPS_EN_ATTENTE[LANGUE_APPRISE === "es" ? "es" : "de"] || [];
+    const attente = clipsEnAttente();
     if(!decouverte || !clip || !voixVisiteDispo() || attente.indexOf(clip) >= 0) return Promise.resolve(false);
     arreterAudioPregenere();
     if('speechSynthesis' in window &&
@@ -37055,8 +37110,10 @@ function decouverteExercicesFaits(){
 // sa serie -- vers la fin, comme Ajaccio pour l'allemand. Son nom est dans
 // dec_t4_d5 de I18N_ESPAGNOL (et dans la voix, voix-visite/es/).
 // `!x.base` : un tableau herite de la collection allemande ne compte pas.
+// Le portugais (lot P1) : O Fado, de Jose Malhoa, 62e de sa serie (portugais/mosaique/app, rang ecrit en texte).
 const DEMO_TABLEAU = LANGUE_APPRISE === "es" ? { rang: 65, peintre: /Sorolla/ }
                    : LANGUE_APPRISE === "ja" ? { rang: 60, peintre: /Sōtatsu/ }
+                   : LANGUE_APPRISE === "pt" ? { rang: 62, peintre: /Malhoa/ }
                    : { rang: 61, peintre: /Faistauer/ };
 
 function montrerTableauDecouverte(){
@@ -37082,7 +37139,7 @@ function montrerTableauDecouverte(){
     chargerMosaiques().then(() => {
         if(ailleurs()) return;
         const m = mosaiqueCourante();
-        const demo = (MOSAIQUES || []).find(x => x.rang === DEMO_TABLEAU.rang && !x.base && DEMO_TABLEAU.peintre.test(x.peintre || ""));
+        const demo = (MOSAIQUES || []).find(x => Number(x.rang) === DEMO_TABLEAU.rang && !x.base && DEMO_TABLEAU.peintre.test(x.peintre || ""));
         const charger = (x) => x ? imageMosaique(x).catch(() => null) : Promise.resolve(null);
         return Promise.all([charger(m), charger(demo)]).then(([img, imgDemo]) => {
             if(ailleurs()) return;
@@ -45590,6 +45647,14 @@ const BILAN_NOTION_TAUX = 0.25;
 // Les jeux de grammaire de la seance : le titre (la cle du bandeau de l'ecran
 // d'exercices, deja traduite) et la fonction qui ouvre le jeu. Releves dans ce
 // fichier le 22 oct. 2026 ; un jeu absent d'ici n'est simplement pas propose.
+// LE PORTUGAIS (lot P1, 11 nov. 2026) : les series de ses fiches, celles que la seance lui donne
+// (COURS_GRAMMAIRE_PAR_LANGUE.pt). Leur titre est leur cle « kicker_<serie> » (portugais/datos*/grammaire.json,
+// champ textes) ; pas de lanceur a part, le melange les ouvre (voir la carte du bilan).
+function jeuBilan(nom){
+    if(BILAN_JEUX[nom]) return BILAN_JEUX[nom];
+    try{ if(LANGUE_APPRISE === "pt" && (COURS_GRAMMAIRE_PAR_LANGUE.pt || []).indexOf(nom) >= 0) return ["kicker_" + nom, null]; }catch(e){}
+    return null;
+}
 const BILAN_JEUX = {
     aberSondernExercises: ["kicker_aber_sondern", "startAberSondernUebung"],
     acentosExercises: ["kicker_acentos", "startAcentosUebung"],
@@ -45708,7 +45773,7 @@ function calculerBilan(){
         if(!x.ok) e.fautes++;
     });
     const notions = Object.values(parJeu)
-        .filter(e => BILAN_JEUX[e.jeu] && e.fautes >= BILAN_NOTION_FAUTES && e.fautes / e.total >= BILAN_NOTION_TAUX)
+        .filter(e => jeuBilan(e.jeu) && e.fautes >= BILAN_NOTION_FAUTES && e.fautes / e.total >= BILAN_NOTION_TAUX)
         .sort((a, b) => b.fautes - a.fautes || b.fautes / b.total - a.fautes / a.total)
         .slice(0, 2);
     const grammaire = Object.values(parJeu).reduce((s, e) => s + e.total, 0);
@@ -45811,7 +45876,7 @@ function ouvrirBilanSemaine(ev, retour){
         const s = creer("section", "bilan-section");
         s.appendChild(creer("h3", "", t(b.notions.length === 1 ? "bilan_notion_titre" : "bilan_notions_titre")));
         b.notions.forEach(e => {
-            const [cle, lanceur] = BILAN_JEUX[e.jeu];
+            const [cle, lanceur] = jeuBilan(e.jeu);
             const fait = BILAN_FAITS.has(e.jeu);
             const ligne = creer("div", "bilan-notion" + (fait ? " fait" : ""));
             const txt = creer("div", "bilan-notion-txt");
@@ -46809,6 +46874,8 @@ function orbPanelData(id){
                 return { icon:"carte", vignette:"themes/" + nom + ".webp", title:t(THEMES_ILLUSTRES[nom].titre), desc:"", action:ouvrir, section:"ailleurs" }; })
         };
     }
+    // Le japonais a ses scenes a lui (lot P1) : voir panneauScenesJa.
+    if(id === "scenes" && LANGUE_APPRISE === "ja") return panneauScenesJa();
     if(id === "scenes"){
         return {
             icon:"carte", title:t("op_scenes_title"), sub:t("op_scenes_sub"),
@@ -48217,7 +48284,14 @@ function buildSearchIndex(){
         [partikelnTheme, 'search_kind_particle', 'search_src_particle', 'partikeln', 9, 14, 17, 20, 23, 26, 29],
         [kasusVerbTheme, 'search_kind_verb', 'search_src_kasus', 'kasusverben', 9, 14, 17, 20, 23, 26, 29],
         [redewendungenTheme, 'search_kind_expr', 'search_src_redewendungen', 'redewendungen', 10, 15, 18, 21, 24, 27, 30]
-    ].forEach(cfg => {
+    // LE LOT P1 (11 nov. 2026, audit/ALIGNEMENT-LANGUES-2026-11-11.md) : les verbes a cas fixe (helfen, danken...)
+    // sont ecrits en dur, en allemand, sans version dans les autres langues : chercher « aider » en espagnol
+    // sortait « helfen ». Ils ne s'indexent qu'en allemand. En japonais, prepositions, conjonctions et
+    // particules restent les listes allemandes de secours (japonais/datos/fonctionnels.json est range par
+    // niveau, pas par ces cles) : elles ne s'indexent pas non plus.
+    ].filter(cfg => (cfg[0] !== kasusVerbTheme || LANGUE_APPRISE === "de")
+                 && !(LANGUE_APPRISE === "ja" && (cfg[0] === praepTheme || cfg[0] === konjunktionenTheme || cfg[0] === partikelnTheme)))
+    .forEach(cfg => {
         (cfg[0].words || []).forEach((w, index) => pushSearchEntry(list, {
             kindKey: cfg[1], source: t(cfg[2]), mode: cfg[3], prio: 3,
             themeId: cfg[0].id, index: index, card: w,
@@ -48225,7 +48299,8 @@ function buildSearchIndex(){
         }));
     });
 
-    (positionsverbenTheme.words || []).forEach((v, index) => pushSearchEntry(list, {
+    // Les verbes de position (stehen, liegen...) : allemands en dur eux aussi, l'allemand seul (lot P1).
+    if(LANGUE_APPRISE === "de") (positionsverbenTheme.words || []).forEach((v, index) => pushSearchEntry(list, {
         kindKey: 'search_kind_verb', mode: 'positionsverben', prio: 3, source: t('search_src_position'),
         themeId: positionsverbenTheme.id, index: index, card: v,
         de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr, uk: v.traduction_uk, fa: v.traduction_fa, pt: v.traduction_pt, ar: v.traduction_ar, pl: v.traduction_pl, ru: v.traduction_ru
@@ -51221,6 +51296,19 @@ const PLACEMENT_GRAMMAIRE = {
         A2: ["praeteritumExercises", "perfektExercises", "porParaExercises", "perifrasisExercises", "imperativoExercises"],
         B1: ["futuroExercises", "condicionalExercises", "konjunktiv2Exercises", "verbosConPreposicionExercises"],
         B2: ["subjuntivoImperfectoExercises", "oracionesSiExercises", "compuestosExercises", "pasivaExercises"]
+    },
+    // Le portugais (lot P1, 11 nov. 2026) : des series de ses fiches, par niveau (portugais/datos*/grammaire.json),
+    // les memes noms au Portugal et au Bresil.
+    pt: {
+        A1: ["serEstarPtExercises", "artigosPtExercises", "presentePtExercises", "contracoesPtExercises",
+             "possessivosPtExercises", "irFuturoPtExercises"],
+        A2: ["perfeitoImperfeitoPtExercises", "imperfeitoPtExercises", "porParaPtExercises", "imperativoPtExercises",
+             "comparativosPtExercises"],
+        B1: ["conjuntivoPresentePtExercises", "condicionalPtExercises", "futuroConjuntivoPtExercises",
+             "infinitivoPessoalPtExercises", "relativosPtExercises"],
+        B2: ["conjuntivoImperfeitoPtExercises", "condicionaisIrreaisPtExercises", "temposCompostosPtExercises",
+             "concessivasPtExercises"],
+        C1: ["mesoclisePtExercises", "infinitivoPessoalC1PtExercises", "participiosDuplosPtExercises", "conjuncoesC1PtExercises"]
     }
 };
 
@@ -51233,7 +51321,7 @@ function ecrirePlacement(v){
     try{ if(typeof scheduleCloudSync === "function") scheduleCloudSync(); }catch(e){}
 }
 function placementDisponible(){
-    return (LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es") && essaiActif("placement");
+    return (LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt") && essaiActif("placement");
 }
 // Les niveaux du test : ceux qui ont des noms (l'espagnol s'arrete au B2).
 function niveauxPlacement(){
@@ -51465,7 +51553,7 @@ function questionGrammairePlc(ex){
 const GRAMMAIRE_PLC = {};
 async function grammairePlc(niv){
     if(GRAMMAIRE_PLC[niv]) return GRAMMAIRE_PLC[niv];
-    const langue = LANGUE_APPRISE === "es" ? "es" : "de";
+    const langue = (LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt") ? LANGUE_APPRISE : "de";
     const out = [];
     for(const nom of ((PLACEMENT_GRAMMAIRE[langue] || {})[niv] || [])){
         let l = [];
@@ -55435,7 +55523,8 @@ function loadFlashcard(){
 const RAPPEL_MODES = ["nomen", "verben", "adjektive"];
 const RAPPEL_ARTICLES = {
     de: ["der", "die", "das"],
-    es: ["el", "la", "los", "las"]
+    es: ["el", "la", "los", "las"],
+    pt: ["o", "a", "os", "as"]
 };
 // Une carte active, puis deux ordinaires : « une sur trois ».
 const RAPPEL_ECART = 2;
@@ -55626,6 +55715,26 @@ function variantesMot(m, langue){
         chaque(/ie/g, x => { ajouter("ie", remplacerA(m, x.index, 2, "i")); ajouter("ie", remplacerA(m, x.index, 2, "ei")); });
         chaque(/ei/g, x => ajouter("ie", remplacerA(m, x.index, 2, "ie")));
         chaque(/[aeiouäöü]h[lmnr]/g, x => ajouter("dehnung", remplacerA(m, x.index + 1, 1, "")));
+    } else if(langue === "pt"){
+        // LE PORTUGAIS (lot P1, 11 nov. 2026) : les fautes d'un francophone. L'accent oublie (le til compris :
+        // « pao » pour « pão »), la cedille et son double ss, nh et lh ecrits a la francaise (« gn », « ill »),
+        // le s entre voyelles et le z, ch et x, le m final devenu n (« bon » pour « bom »), le h muet, et la
+        // consonne doublee comme en francais (« commer », « appartamento »).
+        const sansAccent = { "á": "a", "à": "a", "â": "a", "ã": "a", "é": "e", "ê": "e", "í": "i", "ó": "o", "ô": "o", "õ": "o", "ú": "u" };
+        for(let i = 0; i < m.length; i++) if(sansAccent[m[i]]) ajouter("accent", remplacerA(m, i, 1, sansAccent[m[i]]));
+        chaque(/ç/g, x => { ajouter("cedille", remplacerA(m, x.index, 1, "c")); ajouter("cedille", remplacerA(m, x.index, 1, "ss")); });
+        chaque(/[aeiouáéíóúâêôãõ]ss[aeiou]/g, x => ajouter("cedille", remplacerA(m, x.index + 1, 2, "ç")));
+        chaque(/nh/g, x => ajouter("nhlh", remplacerA(m, x.index, 2, "gn")));
+        chaque(/lh/g, x => { ajouter("nhlh", remplacerA(m, x.index, 2, "ill")); ajouter("nhlh", remplacerA(m, x.index, 2, "li")); });
+        chaque(/[aeiouáéíóúâêôãõ]s[aeiou]/g, x => ajouter("sz", remplacerA(m, x.index + 1, 1, "z")));
+        chaque(/z/g, x => ajouter("sz", remplacerA(m, x.index, 1, "s")));
+        chaque(/ch/g, x => ajouter("chx", remplacerA(m, x.index, 2, "x")));
+        chaque(/x/g, x => ajouter("chx", remplacerA(m, x.index, 1, "ch")));
+        chaque(/m$/g, x => ajouter("mn", remplacerA(m, x.index, 1, "n")));
+        chaque(/m(?=[bp])/g, x => ajouter("mn", remplacerA(m, x.index, 1, "n")));
+        if(/^h/.test(m)) ajouter("h", m.slice(1));
+        chaque(/[aeiou]([lmntpfc])[aeiou]/g, x => ajouter("double", remplacerA(m, x.index + 1, 1, x[1] + x[1])));
+        chaque(/rr/g, x => ajouter("rr", remplacerA(m, x.index, 2, "r")));
     } else {
         const sansAccent = { "á": "a", "é": "e", "í": "i", "ó": "o", "ú": "u", "ü": "u" };
         for(let i = 0; i < m.length; i++) if(sansAccent[m[i]]) ajouter("accent", remplacerA(m, i, 1, sansAccent[m[i]]));
@@ -55656,11 +55765,12 @@ function variantesMot(m, langue){
 // b/v, ll/y »), puis les autres.
 const RAPPEL_PRIORITE_FAUTES = {
     de: ["trema", "eszett", "double", "majuscule", "article", "ie", "dehnung"],
-    es: ["accent", "enie", "bv", "lly", "article", "sz", "gj", "rr", "h", "mb"]
+    es: ["accent", "enie", "bv", "lly", "article", "sz", "gj", "rr", "h", "mb"],
+    pt: ["accent", "cedille", "nhlh", "article", "sz", "mn", "chx", "double", "h", "rr"]
 };
 
 function fautesOrthographe(o, estUnMot){
-    const langue = o.langue === "es" ? "es" : "de";
+    const langue = (o.langue === "es" || o.langue === "pt") ? o.langue : "de";
     const mot = String(o.mot || "").normalize("NFC").trim();
     if(!mot) return [];
     // Le verbe pronominal garde son « sich » : la faute porte sur le verbe.
@@ -55710,7 +55820,7 @@ function fautesOrthographe(o, estUnMot){
             if(valide(forme, coeur, true)){ v = forme; vues.add(forme); }
         } else if(f === "article"){
             const pool = (RAPPEL_ARTICLES[langue] || []).filter(a => artsAdmis.indexOf(a) < 0)
-                .filter(a => langue !== "es" || (/s$/.test(a) === /s$/.test(artAffiche)));
+                .filter(a => langue === "de" || (/s$/.test(a) === /s$/.test(artAffiche)));
             const a = pool.sort((x, y) => empreinteRappel(o.cle + "@" + x) - empreinteRappel(o.cle + "@" + y))[0];
             if(a){
                 const forme = avecArt(coeur, a);
@@ -55806,7 +55916,8 @@ function corpusRappel(){
 // La carte peut-elle demander le mot, abstraction faite du tour ?
 function carteEligibleRappel(item){
     if(!essaiActif("rappel_actif")) return false;
-    if(LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "es") return false;
+    // Le portugais aussi (lot P1, 11 nov. 2026) : ses fautes sont dans variantesMot.
+    if(LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "es" && LANGUE_APPRISE !== "pt") return false;
     if(!frontIsFrench || getLearningDirection() === "en") return false;
     if(dansLePaquetGarde() || decouverteEnCours() || paquetTermine()) return false;
     if(!item || !item.word || RAPPEL_MODES.indexOf(modeDeLaCarteRappel(item)) < 0) return false;
@@ -55878,7 +55989,7 @@ function montrerRappelActif(item, dec){
     const zone = document.getElementById("flashcards");
     const el = document.getElementById("rappelActif");
     if(!zone || !el) return;
-    const langue = LANGUE_APPRISE === "es" ? "es" : "de";
+    const langue = (LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt") ? LANGUE_APPRISE : "de";
     const creer = (tag, cls, texte) => {
         const n = document.createElement(tag);
         if(cls) n.className = cls;
@@ -60973,15 +61084,18 @@ const CIEL_PART_KEY = PREFIXE_STOCKAGE + "cielPart";
 const ETOILES_MAJ_KEY = PREFIXE_STOCKAGE + "etoilesMaj";
 const CIEL_PLAFOND = .92;   // l'etape se ferme par son dialogue, qui n'est pas dans le compte : le trait s'arrete avant
 let CIEL_AV = null;         // l'etape de l'A1 voyage de la seance ouverte
+// Les etoiles de l'ecran de fin suivent le ciel de l'accueil (lot P1, 11 nov. 2026) : en anglais, la seance
+// allumait des etoiles qu'aucune tuile « Ton ciel » ne laissait revoir.
 function etoilesDeLaSeance(){
-    try{ return estSeanceDuJourOuverte() && !seanceJaponaise(); }catch(e){ return false; }
+    try{ return estSeanceDuJourOuverte() && !seanceJaponaise() && cielDisponible(); }catch(e){ return false; }
 }
 function cielA1Actif(){
     return !!(etoilesDeLaSeance() && CIEL_AV && !CIEL_AV.finA1 && CIEL_AV.lieu);
 }
 // L'etat a dessiner : la constellation, l'etoile visee, la part vue.
 function etatCielFin(){
-    if(!CIEL) return null;
+    // Pas de ciel a l'ecran de fin la ou l'accueil n'en a pas (lot P1) : la fin des Premiers pas l'allumait en anglais et en japonais.
+    if(!CIEL || !cielDisponible()) return null;
     const enPP = !!(currentTheme && currentTheme.id === "seance_premiers_pas");
     const prec = etoileLire(CIEL_PART_KEY);
     let g, n, a = 0, lit = false, gStock, nStock, pStock;
@@ -61077,7 +61191,9 @@ function placerNomsCiel(P, rayons, segs, W, H, noms, px){
 // n'ont pas fait les Premiers pas n'avanceront jamais dans ce ciel : pas de tuile, plutot qu'un ciel qui reste vide.
 const CIEL_GROUPES = ["premiers_pas", "a1_escales", "a1_suite"];
 let tuileCielPrete = false, tuileCielEnCours = false, CIEL_ETAT = null, CIEL_VUE = null, CIEL_CHOISIE = -1;
-function cielDisponible(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es"; }
+// Le portugais aussi (lot P1, 11 nov. 2026) : les figures (etoiles/ciel.json) sont communes, et le portugais a ses
+// Premiers pas et son A1 voyage, qui font avancer les trois constellations.
+function cielDisponible(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt"; }
 async function etatDuCiel(){
     if(!cielDisponible()) return null;
     await chargerCiel();
@@ -64104,6 +64220,19 @@ function majExplorerScenesJa(ruban){
         b.addEventListener("click", () => ouvrirSceneDepuisAccueil(s.nom));
         ruban.appendChild(b);
     });
+}
+// LE PANNEAU DES SCENES EN JAPONAIS (lot P1, 11 nov. 2026, alignement des langues). La tuile « Scenes » de la grille
+// de l'accueil ouvrait le panneau des scenes allemandes, dont la liste blanche japonaise cachait toutes les options :
+// un panneau vide. Il liste maintenant les scenes japonaises (SCENES_JA), ouvertes comme depuis le ruban. Une
+// fonction par scene, parce que le panneau appelle orbAction(nom).
+function nomOuvrirSceneJa(nom){ return "ouvrirSceneJa_" + String(nom).replace(/[^A-Za-z0-9]/g, "_"); }
+SCENES_JA.forEach(s => { window[nomOuvrirSceneJa(s.nom)] = () => ouvrirSceneDepuisAccueil(s.nom); });
+function panneauScenesJa(){
+    return {
+        icon:"carte", title:t("op_scenes_title"), sub:t("op_scenes_sub"),
+        options: SCENES_JA.map(s => ({ icon:"carte", vignette:"vignettes/" + s.nom + ".webp", title:libJa(s.fr, s.en),
+                                       desc:s.ja, action:nomOuvrirSceneJa(s.nom), section:"pratique" }))
+    };
 }
 function majExplorerScenes(){
     const ruban = document.getElementById("explorerRuban");
@@ -68078,6 +68207,20 @@ function contracterA1V(avant, mot){
         if(/(^|\s)a $/i.test(avant)) return { avant: avant.slice(0, -2) + "al ", mot: mot.slice(3) };
         if(/(^|\s)de $/i.test(avant)) return { avant: avant.slice(0, -3) + "del ", mot: mot.slice(3) };
     }
+    // LE PORTUGAIS (lot P1, 11 nov. 2026) : a + o = ao, de + a = da, em + os = nos, por + as = pelas.
+    // Aucun moule d'aujourd'hui ne les forme (les variantes portent deja « do telemovel ») : la regle les
+    // empeche de naitre, comme « a el » en espagnol.
+    if(LANGUE_APPRISE === "pt"){
+        const art = /^(o|a|os|as) /i.exec(mot);
+        const prep = /(^|\s)(a|de|em|por) $/i.exec(avant);
+        if(art && prep){
+            const a = art[1].toLowerCase(), p = prep[2].toLowerCase();
+            const fondu = p === "a" ? (a === "o" ? "ao" : a === "os" ? "aos" : a === "a" ? "à" : "às")
+                        : p === "de" ? "d" + a : p === "em" ? "n" + a : "pel" + a;
+            const debut = avant.slice(0, avant.length - p.length - 1);
+            return { avant: debut + fondu + " ", mot: mot.slice(art[0].length) };
+        }
+    }
     return { avant: avant, mot: mot };
 }
 function phraseBlocA1V(p, mot){
@@ -69836,7 +69979,9 @@ function segmentsSeance(paquet, parts){
 const PAYSAGES_SEANCE = {"pp":{"ar":"M0 100V62C40 44 86 40 130 56S226 78 320 48V100Z","av":"M0 100V80C60 66 120 72 170 84S270 92 320 74V100Z","milieu":"","supM":"","sup":"<rect x=\"69\" y=\"64\" width=\"2.4\" height=\"16\"/><path d=\"M70 70c0-8-6-11-12-11 0 6 5 11 12 11zM70 65c0-6 4-9 10-9 0 5-4 9-10 9z\"/><rect x=\"200\" y=\"74\" width=\"2\" height=\"12\"/><path d=\"M201 78c0-6-5-8-10-8 0 5 4 8 10 8zM201 75c0-5 3-7 8-7 0 4-3 7-8 7z\"/>","supA":"","astre":[238,34,14]},"rev":{"ar":"M-10 100V58c20-14 40-14 60 0s40 14 60 0 40-14 60 0 40 14 60 0 40-14 60 0 40 14 60 0V100Z","av":"M-30 100V76c16-11 32-11 48 0s32 11 48 0 32-11 48 0 32 11 48 0 32-11 48 0 32 11 48 0 32-11 48 0 32 11 48 0V100Z","milieu":"","supM":"","sup":"","supA":"","astre":[70,30,12]},"mots":{"ar":"M0 100V78C70 72 160 71 230 75S300 80 320 77V100Z","av":"M0 100V88C100 84 220 84 320 89V100Z","milieu":"","supM":"","sup":"<g transform=\"translate(112 34) scale(1)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g><g transform=\"translate(214 44) scale(0.62)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g><g transform=\"translate(166 18) scale(0.36)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g><g transform=\"translate(58 18) scale(0.28)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g>","supA":"","astre":[158,74,16]},"conj":{"ar":"M0 100V76c30-4 60 4 90 0s60-4 90 0 60 4 140 0V100Z","av":"M0 100V92C40 86 100 94 150 90S200 66 230 64H320V100Z","milieu":"","supM":"","sup":"<path d=\"M262 64L266 24h12l4 40z\"/><path d=\"M264 24V16h16v8z\"/><path d=\"M262 16L272 8l10 8z\"/>","supA":"<path d=\"M266 20L120 6V34z\" opacity=\".55\"/>","astre":[66,26,11]},"scene":{"ar":"M0 100V64H12V46H26V58H40V30H48V22H54V30H62V52H80V38H100V60H116V26H130V50H146V64H160V40H176V32H190V56H206V36H220V20H228V36H240V58H258V44H276V60H294V48H320V100Z","av":"M0 100V90c30-5 60 5 90 0s60-5 90 0 60 5 140 0V100Z","milieu":"M0 100V70C70 58 160 62 320 74V100Z","supM":"<circle cx=\"26\" cy=\"52\" r=\"8\"/><rect x=\"24.8\" y=\"58\" width=\"2.4\" height=\"10\"/><rect x=\"62.5\" y=\"53\" width=\"15\" height=\"13\"/><path d=\"M60.5 53L70 45.5L79.5 53z\"/><rect x=\"91\" y=\"44\" width=\"10\" height=\"22\"/><path d=\"M91 44a5 5 0 0 1 10 0z\"/><g transform=\"translate(192 70) scale(0.66)\"><path d=\"M-13-8c0-5 3-7 8-7h14l3-3 6 1 1 6-4 1v2c0 3-1 5-4 5V0h-3v-4h-13V0h-3v-4c-3-1-5-2-5-4z\"/></g><g transform=\"translate(232 74) scale(0.72)\"><path fill-rule=\"evenodd\" d=\"M-12-18h12v8h10v6h-22zM-8-16h6v5h-6z\"/><circle cx=\"-8\" cy=\"-6\" r=\"6\"/><circle cx=\"10\" cy=\"-4\" r=\"4\"/></g><circle cx=\"286\" cy=\"57\" r=\"9\"/><rect x=\"284.8\" y=\"64\" width=\"2.4\" height=\"10\"/>","sup":"<g transform=\"translate(40 90) scale(0.62)\"><path d=\"M-14-22a14 12 0 0 1 28 0z\"/><path d=\"M0-22L3 0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"/><rect x=\"-18\" y=\"-2\" width=\"13\" height=\"2\"/></g><g transform=\"translate(70 92) scale(0.66)\"><path d=\"M0 0C2-10 1-18 4-26\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\"/><path d=\"M4-26c-8-6-14-4-18 2 6-3 12-2 18-2zM4-26c8-6 14-4 18 2-6-3-12-2-18-2zM4-26c-5-8-10-9-15-7 5 1 10 4 15 7zM4-26c5-8 10-9 15-7-5 1-10 4-15 7z\"/></g><circle cx=\"108\" cy=\"87\" r=\"5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\"/><path d=\"M103 87H113M108 82V92\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.8\" stroke-linecap=\"round\"/><path d=\"M124 50q3-4 6 0q3-4 6 0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.1\" stroke-linecap=\"round\"/><g transform=\"translate(196 92) scale(0.6)\"><path d=\"M-30-4h60l-8 10h-44z\"/><path d=\"M2-6V-46l26 40z\"/><path d=\"M-2-6V-34l-20 28z\"/></g><g transform=\"translate(272 92) scale(0.42)\"><path d=\"M-30-4h60l-8 10h-44z\"/><path d=\"M2-6V-46l26 40z\"/><path d=\"M-2-6V-34l-20 28z\"/></g>","supA":"","astre":[298,18,9]},"theme":{"ar":"M0 100V70C70 56 150 58 220 68S300 76 320 66V100Z","av":"M0 100V86C90 78 200 80 320 88V100Z","milieu":"","supM":"","sup":"<g transform=\"translate(30 86) scale(1.2)\"><path fill-rule=\"evenodd\" d=\"M-12 0V-14L0-25 12-14V0zM-3 0V-8h6V0zM-9-12h5v4h-5zM4-12h5v4h-5z\"/></g><g transform=\"translate(70 84) scale(1.25)\"><circle cx=\"0\" cy=\"-17\" r=\"9\"/><rect x=\"-1.5\" y=\"-10\" width=\"3\" height=\"10\"/></g><g transform=\"translate(108 84) scale(1.3)\"><circle cx=\"-7\" cy=\"-4.5\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><circle cx=\"7\" cy=\"-4.5\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><path d=\"M-7 -4.5L-2 -11H5L7 -4.5M-2 -11L1 -4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\"/></g><g transform=\"translate(156 84) scale(0.95)\"><path d=\"M-18-4v-7l6-1 5-8h14l6 8 5 1v7z\"/><circle cx=\"-10\" cy=\"-3\" r=\"3.8\"/><circle cx=\"10\" cy=\"-3\" r=\"3.8\"/></g><g transform=\"translate(198 84) scale(1.45)\"><path d=\"M-6 0v-8l-2-6 4 2.4h4l4-2.4-2 6v8z\"/><path d=\"M6 0c5-1 6-7 3-11\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></g><g transform=\"translate(240 86) scale(1.05)\"><path fill-rule=\"evenodd\" d=\"M-16 0L0-24 16 0zM-5 0L0-11 5 0z\"/></g><g transform=\"translate(292 88) scale(1.3)\"><rect x=\"-0.9\" y=\"-12\" width=\"1.8\" height=\"12\"/><circle cx=\"0\" cy=\"-19\" r=\"3.2\"/><circle cx=\"-5.6\" cy=\"-16\" r=\"3.2\"/><circle cx=\"5.6\" cy=\"-16\" r=\"3.2\"/><circle cx=\"-3.6\" cy=\"-22\" r=\"3.2\"/><circle cx=\"3.6\" cy=\"-22\" r=\"3.2\"/></g><g transform=\"translate(150 30) scale(0.42)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g>","supA":"","astre":[60,24,11]},"son":{"ar":"M0 100V76C80 70 200 70 320 76V100Z","av":"M0 100V88C100 85 220 85 320 89V100Z","milieu":"","supM":"","sup":"<rect x=\"39\" y=\"38\" width=\"3.2\" height=\"52\"/><rect x=\"34\" y=\"42\" width=\"13\" height=\"2\"/><rect x=\"278\" y=\"38\" width=\"3.2\" height=\"52\"/><rect x=\"273\" y=\"42\" width=\"13\" height=\"2\"/><path d=\"M41 44Q160 80 279 44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M41 50Q160 86 279 50\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" opacity=\"0.7\"/><g transform=\"translate(92.0 56.1) scale(0.95)\"><path d=\"M-.9-1.6V0M1.1-1.6V0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\".8\" stroke-linecap=\"round\"/><ellipse cx=\"0\" cy=\"-3.9\" rx=\"3.4\" ry=\"2.5\"/><circle cx=\"2.6\" cy=\"-6.5\" r=\"1.8\"/><path d=\"M4.2-6.7l1.8.5-1.8.6z\"/><path d=\"M-3.2-3.5l-3.4 1.8 3.6-.4z\"/></g><g transform=\"translate(130.0 60.9) scale(0.95)\"><path d=\"M-.9-1.6V0M1.1-1.6V0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\".8\" stroke-linecap=\"round\"/><ellipse cx=\"0\" cy=\"-3.9\" rx=\"3.4\" ry=\"2.5\"/><circle cx=\"2.6\" cy=\"-6.5\" r=\"1.8\"/><path d=\"M4.2-6.7l1.8.5-1.8.6z\"/><path d=\"M-3.2-3.5l-3.4 1.8 3.6-.4z\"/></g><g transform=\"translate(168.0 61.9) scale(1.05)\"><path d=\"M-.9-1.6V0M1.1-1.6V0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\".8\" stroke-linecap=\"round\"/><ellipse cx=\"0\" cy=\"-3.9\" rx=\"3.4\" ry=\"2.5\"/><circle cx=\"2.6\" cy=\"-6.5\" r=\"1.8\"/><path d=\"M4.2-6.7l1.8.5-1.8.6z\"/><path d=\"M-3.2-3.5l-3.4 1.8 3.6-.4z\"/></g><g transform=\"translate(204.0 59.5) scale(0.95)\"><path d=\"M-.9-1.6V0M1.1-1.6V0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\".8\" stroke-linecap=\"round\"/><ellipse cx=\"0\" cy=\"-3.9\" rx=\"3.4\" ry=\"2.5\"/><circle cx=\"2.6\" cy=\"-6.5\" r=\"1.8\"/><path d=\"M4.2-6.7l1.8.5-1.8.6z\"/><path d=\"M-3.2-3.5l-3.4 1.8 3.6-.4z\"/></g><g transform=\"translate(236.0 54.7) scale(0.95)\"><path d=\"M-.9-1.6V0M1.1-1.6V0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\".8\" stroke-linecap=\"round\"/><ellipse cx=\"0\" cy=\"-3.9\" rx=\"3.4\" ry=\"2.5\"/><circle cx=\"2.6\" cy=\"-6.5\" r=\"1.8\"/><path d=\"M4.2-6.7l1.8.5-1.8.6z\"/><path d=\"M-3.2-3.5l-3.4 1.8 3.6-.4z\"/></g><g transform=\"translate(140 40) scale(0.95)\"><ellipse cx=\"0\" cy=\"0\" rx=\"2.6\" ry=\"1.9\" transform=\"rotate(-20)\"/><path d=\"M2.2-.6V-10.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><path d=\"M2.2-10.5c2.6 1.4 4.2 3 3.4 5.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/></g><g transform=\"translate(176 32) scale(0.8)\"><ellipse cx=\"0\" cy=\"0\" rx=\"2.6\" ry=\"1.9\" transform=\"rotate(-20)\"/><path d=\"M2.2-.6V-10.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><path d=\"M2.2-10.5c2.6 1.4 4.2 3 3.4 5.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/></g><g transform=\"translate(212 40) scale(0.7)\"><ellipse cx=\"0\" cy=\"0\" rx=\"2.6\" ry=\"1.9\" transform=\"rotate(-20)\"/><path d=\"M2.2-.6V-10.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><path d=\"M2.2-10.5c2.6 1.4 4.2 3 3.4 5.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/></g>","supA":"","astre":[74,24,10]}};
 // La palette plus marquee (Jacques, 10 nov.) : six teintes bien separees, que le fond de tout l'ecran reprend.
 const TEINTES_PAYSAGE = { pp:"#5E9B1E", rev:"#2565C9", mots:"#E0791A", conj:"#8A3FD1", scene:"#0B9AA0", theme:"#D6336F", son:"#C99A06" };
-function repereSeanceDispo(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es"; }
+// Le portugais aussi (lot P1, 11 nov. 2026, alignement des langues) : les paysages sont des dessins, les noms des
+// parties des textes d'interface (seance_court_*) ; rien n'y depend de la langue apprise.
+function repereSeanceDispo(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt"; }
 function nomCourtPartie(p){ return t("seance_court_" + (p === "lieu" || p === "neufs" ? "mots" : p)); }
 function clePaysagePartie(p, enPP){
     if(enPP) return p === "scene" ? "scene" : p === "theme" ? "theme" : "pp";

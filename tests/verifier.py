@@ -1555,6 +1555,25 @@ def verifier_decouverte(r, source, fonctions, cles):
                             json_es("verbos.json") or {}, (json_es("ejercicios.json") or {}).get("jeux", {}), {}))
         except ValueError as e:
             r.echec("decouverte", "DECOUVERTE_CONTENU_ES n'est plus du JSON strict (%s)" % e)
+    # La visite portugaise (lot P1, 11 nov. 2026) : au Portugal ET au Bresil, qui lisent le meme contenu.
+    def json_pt(dossier, nom):
+        try:
+            return json.load(io.open(os.path.join(RACINE, "portugais", dossier, nom), encoding="utf-8"))
+        except (OSError, ValueError):
+            return None
+    m_pt = re.search(r"const DECOUVERTE_CONTENU_PT = (\{.*?\n\});", source, re.S)
+    if not m_pt:
+        r.echec("decouverte", "const DECOUVERTE_CONTENU_PT introuvable dans index.html")
+    else:
+        try:
+            contenu_pt = json.loads(m_pt.group(1))
+            for x in sorted(reponses - set(contenu_pt)):
+                r.echec("decouverte", "portugais : la reponse « %s » n'a pas de contenu" % x)
+            for dossier, nom_variante in (("datos", "portugais "), ("datos-br", "portugais du Bresil ")):
+                sources.append((nom_variante, contenu_pt, (json_pt(dossier, "themes.json") or {}).get("themes", []),
+                                json_pt(dossier, "verbes.json") or {}, (json_pt(dossier, "exercices.json") or {}).get("jeux", {}), {}))
+        except ValueError as e:
+            r.echec("decouverte", "DECOUVERTE_CONTENU_PT n'est plus du JSON strict (%s)" % e)
     for prefixe, contenu_, themes, verbes, jeux, pruefung in sources:
         verifier_contenu_decouverte(r, prefixe, contenu_, themes, verbes, jeux, pruefung, fr)
 

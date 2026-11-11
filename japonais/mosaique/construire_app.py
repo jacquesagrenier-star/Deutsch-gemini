@@ -231,6 +231,10 @@ def main():
                "images": sortie},
               open(os.path.join(APP, "mosaiques.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(len(sortie), "tableaux -> app/mosaiques.json")
+    # img/info.jpg (l'ecran « Comment lire ta progression ») : une copie du dernier, comme l'anglais et le
+    # portugais (lot P1, 11 nov. 2026 : sans elle, la toile de cet ecran restait vide en japonais).
+    import shutil
+    shutil.copyfile(os.path.join(APP, "img", sortie[-1]["fichier"]), os.path.join(APP, "img", "info.jpg"))
 
 
 if __name__ == "__main__":
