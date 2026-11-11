@@ -268,6 +268,8 @@ TEXTES.regleFreq.pt = {fr:"Combien de fois, en quatre semaines. <b>nunca</b>, <b
 TEXTES.regleProp.pt = {fr:"Proposer : " + (BR ? "<b>Você quer</b> + infinitif ?" : "<b>Queres</b> + infinitif ? (entre amis, on tutoie)") + " ou <b>Vamos</b> + infinitif ? Pour une sortie : ir <b>ao</b> cinema (a + o), ir <b>à</b> praia (a + a). Répondre selon ce qu'on aime : <b>Combinado!</b>, <b>Sim, claro!</b>, ou <b>Não, obrigado</b> (<b>obrigada</b> si c'est une femme qui parle). Si on n'est pas libre : <b>Não posso, tenho " + (BR ? "que" : "de") + "</b> trabalhar."};
 Object.assign(TEXTES, {
   sair:     {fr:"Un ami te propose une sortie. Complète : a + o = ao, a + a = à."},
+  onde:     {fr:"Où fait-on cela ? Choisis le lieu (em + o = no, em + a = na)."},
+  umaVez:   {fr:"Combien de fois ? Complète : <b>vez</b> est féminin (uma vez, duas vezes)."},
   bonPt:    {fr:"Bon à savoir : tu apprends le portugais du Portugal. On y met l'article devant le prénom (<b>a</b> Rosa, <b>o</b> Felix), on dit <b>desporto</b>, <b>tirar fotografias</b>, <b>ténis</b>, <b>tocar guitarra</b>, et l'on tutoie un ami : <b>Queres…?</b> Le calendrier commence le lundi. Au Brésil : Rosa sans article, esporte, tirar fotos, tênis, tocar violão (la guitare sèche), Você quer…?"},
   bonBr:    {fr:"Bon à savoir : tu apprends le portugais du Brésil. On n'y met pas d'article devant le prénom (Rosa, Felix), on dit <b>esporte</b>, <b>tirar fotos</b>, <b>tênis</b>, <b>tocar violão</b> (la guitare sèche), et l'on demande <b>Você quer…?</b> Le calendrier commence le dimanche. Au Portugal : a Rosa, o Felix, desporto, tirar fotografias, ténis, tocar guitarra, Queres…?"}
 });
@@ -1133,8 +1135,50 @@ const EX = {
     ecran(T("sair"), "", '<span class="dialogue">' + T("ami") + ' :</span>' + avecTrou(debut + "___ " + l + " " + quando + "?"));
     boutons($("choix"), melanger(g === "a" ? ["à", "ao", "a"] : ["ao", "à", "o"]), bonne, ok => { remplir(bonne); juger(ok, bonne, juste); });
     return true;
+  },
+  // LE PORTUGAIS SEULEMENT, ou l'on fait quoi : « Onde se vê um filme? » -- No cinema. / Na praia. / No museu. (em + o =
+  // no, em + a = na). Le mot vise : le lieu. Deuxieme sorte des lieux, qui sans elle n'avaient que « sair » (le test :
+  // deux fois la meme sorte de suite, 11 nov.) ; la plage et la piscine ne sont jamais leurres l'une de l'autre.
+  onde(w){
+    if (!PT_APP || (w && !estLieu(w))) return false;
+    const l = w ? w.mot : hasard(Object.keys(LIEUX_PT)), g = LIEUX_PT[l][0], [q, qFr] = ONDE_PT[l];
+    viser(w, {mot: l, genre: g, cat: null});
+    const rep = x => (LIEUX_PT[x][0] === "a" ? "Na " : "No ") + x + ".";
+    const proches = {praia: "piscina", piscina: "praia", teatro: "concerto", concerto: "teatro"};
+    const autres = melanger(Object.keys(LIEUX_PT).filter(x => x !== l && x !== proches[l])).slice(0, 2);
+    const juste = q + " " + rep(l);
+    const lieuFr = x => LIEUX_PT[x][1].charAt(0).toUpperCase() + LIEUX_PT[x][1].slice(1) + ".";
+    tradQ = PHRASE_TRADUITE && LANGUE === "fr" ? qFr + " " + lieuFr(l) : null;
+    choixTrad = {}; autres.forEach(x => choixTrad[rep(x)] = {aff: rep(x), sens: lieuFr(x)});
+    ecran(T("onde"), "", cible(q), true);
+    boutons($("choix"), melanger([l, ...autres].map(rep)), rep(l), ok => juger(ok, rep(l), juste));
+    return true;
+  },
+  // LE PORTUGAIS SEULEMENT, a vez : le calendrier et « O Heinz lê ___ por semana. » -- uma vez (feminin : uma, duas),
+  // quatro vezes (le pluriel). Deuxieme sorte de « a vez », qui sans elle n'avait que « vezes ».
+  umaVez(w){
+    if (!PT_APP || (w && w.mot !== "vez" && !estMotAct(w))) return false;
+    const vez = !!w && w.mot === "vez";
+    const fs = (vez ? faits() : faitsPour(w)).filter(g => ["oft", "manchmal", "selten"].includes(g.freq));
+    if (!fs.length) return false;
+    const f = hasard(fs), forme = f.freq === "oft" ? "quatro vezes" : "uma vez";
+    viser(w, motAct(f.a));
+    const juste = PP.phraseFois(f.p, f.a, f.freq), trouee = juste.replace(forme, "___");
+    if (trouee === juste) return false;
+    const leurres = f.freq === "oft" ? ["quatro vez", "quatro de vezes"] : ["um vez", "uma vezes"];
+    tradQ = tr("phraseFois", f.p, f.a, f.freq); choixTrad = {};
+    ecran(T("umaVez"), calendrier(f.p, f.a, f.freq), avecTrou(trouee), true);
+    boutons($("choix"), melanger([forme, ...leurres]), forme, ok => { remplir(forme); juger(ok, forme, juste); });
+    return true;
   }
 };
+// LE PORTUGAIS, ou l'on fait quoi (la sorte « onde ») : [question, sa traduction]
+const ONDE_PT = {cinema: ["Onde se vê um filme?", "Où voit-on un film ?"],
+  praia: [BR ? "Onde se toma sol?" : "Onde se apanha sol?", "Où prend-on le soleil ?"],
+  piscina: ["Onde se nada no inverno?", "Où nage-t-on en hiver ?"],
+  concerto: ["Onde se ouve música ao vivo?", "Où entend-on de la musique en direct ?"],
+  teatro: ["Onde se vê uma peça?", "Où voit-on une pièce ?"],
+  museu: ["Onde se veem quadros antigos?", "Où voit-on de vieux tableaux ?"]};
 // LE PORTUGAIS, quand on propose une sortie : [portugais, francais]
 const QUANDO_PT = [["no sábado", "samedi"], ["no domingo", "dimanche"], ["amanhã", "demain"], ["hoje à noite", "ce soir"], ["na sexta-feira", "vendredi"]];
 // LE PORTUGAIS, la conjugaison : (a) la photo, « O Heinz ___. » lê / leio / ler / leem ; (b) la fiche et gostar,
@@ -1281,7 +1325,8 @@ const SORTES = DE_APP ? ["quoi", "verbe", "forme", "ordre", "frequence", "cual",
              : EN_APP ? ["quoi", "verbe", "article", "forme", "ing", "frequence", "howOften", "placeAdv", "cual", "entendre", "vraifaux", "proposer", "repondre"]
              // le portugais : sans art (jogar futebol, tocar piano : sans article) ; gosta (gostar de), vezes (uma vez
              // por semana...), sair (ir ao cinema, à praia)
-             : PT_APP ? ["quoi", "verbe", "forme", "gosta", "frequence", "vezes", "cual", "entendre", "vraifaux", "proposer", "repondre", "sair"]
+             // ; onde (No cinema. / Na praia.) et umaVez (uma vez, quatro vezes) : une deuxieme sorte pour les lieux et a vez
+             : PT_APP ? ["quoi", "verbe", "forme", "gosta", "frequence", "vezes", "cual", "entendre", "vraifaux", "proposer", "repondre", "sair", "onde", "umaVez"]
                       : ["quoi", "verbe", "art", "forme", "gusta", "frequence", "cual", "entendre", "vraifaux", "proposer", "repondre"];
 
 // ---------- la decouverte : les activites, aimer et la frequence, proposer ----------
