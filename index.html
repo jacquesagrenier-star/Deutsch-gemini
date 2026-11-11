@@ -7991,7 +7991,7 @@ body[data-theme="dark"] .cp-tl-teinte, body[data-theme="dark"] .rp-teinte{ borde
    la teinte est celle de la boite « Bravo » (.cp-retour.bon, #2E8B57), trois crans plus foncee
    (echantillon 3 de .claude/maquette-vert-bravo.html) -- Jacques. */
 .judge-good .judge-bille svg{width:38px; height:38px; stroke-width:3.6; filter:drop-shadow(0 1px 1.5px rgba(8,60,35,.4));}
-.judge-good .srs-ladder-text, #judgeEcheanceKnown{display:none !important;}
+#judgeEcheanceKnown, .judge-good .srs-ladder-text:not(.dit){display:none !important;}
 /* v923 : LE ✓ REDEVIENT LA BILLE, AVEC SES QUATRE POINTS, ET DIT « CONTINUER ». Jacques
    a pris la D de .claude/maquette-verso-carte.html : « le D est plus beau ». Les points
    reviennent (masques en v910) parce qu'ils repondent a la crainte que « Continuer »
@@ -9408,6 +9408,16 @@ html[dir="rtl"] #flashcards .cp-actions button.primary::before{transform:scaleX(
 #flashcardActions .judge-good .judge-bille svg{width:19px; height:19px;}
 #flashcardActions .judge-good .srs-ladder, #flashcardActions .judge-good .srs-pips{order:1 !important;}
 #flashcardActions .judge-good .judge-continuer{position:absolute !important; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap;}
+/* v1162 : LE MOT DU POINT (decision de Jacques du 11 nov., proposition 4) sous les points, le temps du passage.
+   Pose en absolu au bas du bouton : la bille et les points ne bougent pas d'un pixel quand il arrive. Le vert
+   des points allumes le jour, celui de l'ancien .srs-ladder-text la nuit. */
+#flashcardActions .judge-good .srs-ladder-text.dit{display:block !important; position:absolute; left:6px; right:6px; bottom:4px;
+    text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; pointer-events:none;
+    font-size:11px; font-weight:700; line-height:1.15; letter-spacing:0; opacity:.95;
+    color:#1c6b47 !important; animation:motDuPoint .28s ease both;}
+body[data-theme="dark"] #flashcardActions .judge-good .srs-ladder-text.dit{color:#7FD3A5 !important;}
+@keyframes motDuPoint{from{opacity:0; transform:translateY(2px);} to{opacity:.95; transform:none;}}
+@media (prefers-reduced-motion:reduce){ #flashcardActions .judge-good .srs-ladder-text.dit{animation:none;} }
 #flashcardActions .judge-row2 .judge-button{min-height:36px !important;}
 #flashcardActions .judge-garde svg, #flashcardActions .judge-sortir svg{color:var(--va-coffre);}
 #flashcardActions .judge-garde.on{--va-haut:rgba(240,167,90,.34); --va-bas:rgba(240,167,90,.28);}
@@ -15718,7 +15728,12 @@ const I18N = {
         review_known: "Je le connais déjà",
         review_continuer: "Continuer",
         review_continuer_sous: "il reviendra plus tard",
-        aide_continuer: "Chaque point vert est une réussite : le mot revient de plus en plus espacé, pour bien se fixer. Quand les {n} points sont allumés, il est acquis et ne revient que dans {jours} jours.",
+        aide_continuer: "Chaque point vert est une réussite : le mot revient de plus en plus espacé, pour bien se fixer. Quand les {n} points sont allumés, il est acquis.",
+        point_mot_1: "Vu",
+        point_mot_2: "Revu",
+        point_mot_3: "Retenu",
+        point_mot_4: "Maîtrisé",
+        point_mot_deja: "Déjà connu",
         known_echeance: "pas avant {n} jours",
         flash_end_title: "Paquet terminé",
         flash_end_summary: "{vues} cartes vues, dont {sues} sues du premier coup.",
@@ -17448,7 +17463,12 @@ const I18N = {
         review_known: "I already know it",
         review_continuer: "Continue",
         review_continuer_sous: "it will come back later",
-        aide_continuer: "Each green dot is a success: the word comes back at longer and longer intervals, so it sticks. When all {n} dots are lit, it's learned and only comes back in {jours} days.",
+        aide_continuer: "Each green dot is a success: the word comes back at longer and longer intervals, so it sticks. When all {n} dots are lit, it's learned.",
+        point_mot_1: "Seen",
+        point_mot_2: "Seen again",
+        point_mot_3: "Remembered",
+        point_mot_4: "Mastered",
+        point_mot_deja: "Already known",
         known_echeance: "not before {n} days",
         flash_end_title: "Deck finished",
         flash_end_summary: "{vues} cards seen, {sues} right first time.",
@@ -19130,7 +19150,12 @@ const I18N = {
         review_known: "Zaten biliyorum",
         review_continuer: "Devam",
         review_continuer_sous: "daha sonra tekrar gelecek",
-        aide_continuer: "Her yeşil nokta bir başarı: kelime iyice yerleşsin diye giderek daha seyrek geri gelir. {n} nokta da yandığında kelime öğrenilmiştir ve ancak {jours} gün sonra geri gelir.",
+        aide_continuer: "Her yeşil nokta bir başarı: kelime iyice yerleşsin diye giderek daha seyrek geri gelir. {n} nokta da yandığında kelime öğrenilmiştir.",
+        point_mot_1: "Görüldü",
+        point_mot_2: "Tekrar görüldü",
+        point_mot_3: "Akılda kaldı",
+        point_mot_4: "Öğrenildi",
+        point_mot_deja: "Zaten biliniyor",
         known_echeance: "{n} günden önce değil",
         flash_end_title: "Deste bitti",
         flash_end_summary: "{vues} kart görüldü, {sues} tanesi ilk seferde doğru.",
@@ -21996,7 +22021,12 @@ const I18N = {
         review_known: "Я вже знаю",
         review_continuer: "Далі",
         review_continuer_sous: "воно ще повернеться",
-        aide_continuer: "Кожна зелена крапка — це успіх: слово повертається дедалі рідше, щоб добре закріпитися. Коли засвітяться всі {n} крапки, слово засвоєне й повернеться лише через {jours} днів.",
+        aide_continuer: "Кожна зелена крапка — це успіх: слово повертається дедалі рідше, щоб добре закріпитися. Коли засвітяться всі {n} крапки, слово засвоєне.",
+        point_mot_1: "Побачено",
+        point_mot_2: "Повторено",
+        point_mot_3: "Запам'ятано",
+        point_mot_4: "Засвоєно",
+        point_mot_deja: "Уже знайоме",
         review_tomorrow: "Повторити завтра",
         review_mastered: "Засвоєно ✓",
         review_retry_unmastered: "Повторити незасвоєні картки",
@@ -23667,7 +23697,12 @@ const I18N = {
         review_known: "از قبل بلدم",
         review_continuer: "ادامه",
         review_continuer_sous: "بعداً دوباره می‌آید",
-        aide_continuer: "هر نقطهٔ سبز یک موفقیت است: واژه با فاصله‌های بیشتر و بیشتر برمی‌گردد تا خوب جا بیفتد. وقتی هر {n} نقطه روشن شد، واژه آموخته شده و فقط پس از {jours} روز برمی‌گردد.",
+        aide_continuer: "هر نقطهٔ سبز یک موفقیت است: واژه با فاصله‌های بیشتر و بیشتر برمی‌گردد تا خوب جا بیفتد. وقتی هر {n} نقطه روشن شد، واژه آموخته شده است.",
+        point_mot_1: "دیده شد",
+        point_mot_2: "دوباره دیده شد",
+        point_mot_3: "در یاد ماند",
+        point_mot_4: "آموخته",
+        point_mot_deja: "از قبل آشنا",
         known_echeance: "نه پیش از {n} روز",
         flash_end_title: "بستهٔ کارت‌ها تمام شد",
         flash_end_summary: "{vues} کارت دیده شد، که {sues} تای آن‌ها بار اول درست بود.",
@@ -25502,7 +25537,12 @@ const I18N = {
         review_known: "أعرفها مسبقًا",
         review_continuer: "متابعة",
         review_continuer_sous: "ستعود لاحقًا",
-        aide_continuer: "كل نقطة خضراء نجاح: تعود الكلمة على فترات متباعدة أكثر فأكثر لتترسّخ جيدًا. عندما تضيء النقاط الـ{n} كلها، تكون الكلمة قد أُتقنت ولا تعود إلا بعد {jours} يومًا.",
+        aide_continuer: "كل نقطة خضراء نجاح: تعود الكلمة على فترات متباعدة أكثر فأكثر لتترسّخ جيدًا. عندما تضيء النقاط الـ{n} كلها، تكون الكلمة قد أُتقنت.",
+        point_mot_1: "شوهِدت",
+        point_mot_2: "شوهِدت مجددًا",
+        point_mot_3: "ترسّخت",
+        point_mot_4: "متقَنة",
+        point_mot_deja: "معروفة مسبقًا",
         known_echeance: "ليس قبل {n} يوماً",
         flash_end_title: "انتهت المجموعة",
         flash_end_summary: "رأيتَ {vues} بطاقة، عرفتَ {sues} منها من أول مرة.",
@@ -25990,7 +26030,12 @@ const I18N = {
         review_known: "Já conheço",
         review_continuer: "Continuar",
         review_continuer_sous: "ela volta mais tarde",
-        aide_continuer: "Cada ponto verde é um acerto: a palavra volta em intervalos cada vez maiores, para fixar bem. Quando os {n} pontos estiverem acesos, ela está aprendida e só volta em {jours} dias.",
+        aide_continuer: "Cada ponto verde é um acerto: a palavra volta em intervalos cada vez maiores, para fixar bem. Quando os {n} pontos estiverem acesos, ela está aprendida.",
+        point_mot_1: "Vista",
+        point_mot_2: "Vista de novo",
+        point_mot_3: "Memorizada",
+        point_mot_4: "Dominada",
+        point_mot_deja: "Já conhecida",
         known_echeance: "não antes de {n} dias",
         flash_end_title: "Baralho terminado",
         flash_end_summary: "{vues} cartas vistas, {sues} acertadas de primeira.",
@@ -27725,7 +27770,12 @@ const I18N = {
         review_known: "Już to znam",
         review_continuer: "Dalej",
         review_continuer_sous: "wróci później",
-        aide_continuer: "Każda zielona kropka to sukces: słowo wraca coraz rzadziej, żeby dobrze się utrwaliło. Gdy zapalą się wszystkie {n} kropki, słowo jest opanowane i wróci dopiero za {jours} dni.",
+        aide_continuer: "Każda zielona kropka to sukces: słowo wraca coraz rzadziej, żeby dobrze się utrwaliło. Gdy zapalą się wszystkie {n} kropki, słowo jest opanowane.",
+        point_mot_1: "Zobaczone",
+        point_mot_2: "Powtórzone",
+        point_mot_3: "Zapamiętane",
+        point_mot_4: "Opanowane",
+        point_mot_deja: "Już znane",
         known_echeance: "nie wcześniej niż za {n} dni",
         flash_end_title: "Talia skończona",
         flash_end_summary: "Obejrzane karty: {vues}, za pierwszym razem: {sues}.",
@@ -29460,7 +29510,12 @@ const I18N = {
         review_known: "Я уже знаю",
         review_continuer: "Дальше",
         review_continuer_sous: "оно ещё вернётся",
-        aide_continuer: "Каждая зелёная точка — это успех: слово возвращается всё реже, чтобы хорошо закрепиться. Когда загорятся все {n} точки, слово освоено и вернётся только через {jours} дней.",
+        aide_continuer: "Каждая зелёная точка — это успех: слово возвращается всё реже, чтобы хорошо закрепиться. Когда загорятся все {n} точки, слово освоено.",
+        point_mot_1: "Увидено",
+        point_mot_2: "Повторено",
+        point_mot_3: "Запомнилось",
+        point_mot_4: "Выучено",
+        point_mot_deja: "Уже знакомо",
         known_echeance: "не раньше чем через {n} дн.",
         flash_end_title: "Колода пройдена",
         flash_end_summary: "Карточек просмотрено: {vues}, с первого раза: {sues}.",
@@ -31197,7 +31252,12 @@ const I18N = {
         review_known: "Kenne ich schon",
         review_continuer: "Weiter",
         review_continuer_sous: "es kommt später wieder",
-        aide_continuer: "Jeder grüne Punkt ist ein Erfolg: Das Wort kommt in immer größeren Abständen wieder, damit es sich festsetzt. Wenn alle {n} Punkte leuchten, sitzt es und kommt erst in {jours} Tagen wieder.",
+        aide_continuer: "Jeder grüne Punkt ist ein Erfolg: Das Wort kommt in immer größeren Abständen wieder, damit es sich festsetzt. Wenn alle {n} Punkte leuchten, sitzt es.",
+        point_mot_1: "Gesehen",
+        point_mot_2: "Wiederholt",
+        point_mot_3: "Eingeprägt",
+        point_mot_4: "Sicher",
+        point_mot_deja: "Schon bekannt",
         known_echeance: "nicht vor {n} Tagen",
         flash_end_title: "Stapel fertig",
         flash_end_summary: "{vues} Karten gesehen, davon {sues} auf Anhieb gewusst.",
@@ -32947,7 +33007,12 @@ const I18N = {
         review_known: "Ya lo sé",
         review_continuer: "Continuar",
         review_continuer_sous: "volverá más tarde",
-        aide_continuer: "Cada punto verde es un acierto: la palabra vuelve cada vez más espaciada, para fijarse bien. Cuando los {n} puntos están encendidos, está aprendida y no vuelve hasta dentro de {jours} días.",
+        aide_continuer: "Cada punto verde es un acierto: la palabra vuelve cada vez más espaciada, para fijarse bien. Cuando los {n} puntos están encendidos, está aprendida.",
+        point_mot_1: "Vista",
+        point_mot_2: "Repasada",
+        point_mot_3: "Recordada",
+        point_mot_4: "Dominada",
+        point_mot_deja: "Ya conocida",
         known_echeance: "no antes de {n} días",
         flash_end_title: "Mazo terminado",
         flash_end_summary: "{vues} tarjetas vistas, {sues} acertadas a la primera.",
@@ -71466,12 +71531,23 @@ function majEcheances(animerDernier){
     }
     pipsBox.innerHTML = pips;
     ladder.classList.toggle("done", fini);
-    // CE QUE CE CLIC PROGRAMME, comme sous le bouton « Encore » d'a cote. Le
-    // bouton disait le palier atteint (« je progresse ») -- mais les pastilles
-    // le disent deja, et rien ne disait la seule chose qu'on ne peut pas
-    // deviner : quand le mot reviendra. La symetrie manquait, les quatre
-    // libelles existaient depuis longtemps sans emploi. Idee de Jacques.
-    txt.textContent = echeanceProchaineReussite(state);
+    // LE MOT DU POINT QUI VIENT DE S'ALLUMER (decision de Jacques du 11 nov. 2026, proposition 4 de
+    // .claude/maquette-texte-quatre-points.html : « la 4 »). Sous les points, un mot par point -- Vu, Revu,
+    // Retenu, Maitrise, et « Deja connu » quand un mot neuf su du premier coup en allume deux --, et AUCUNE
+    // duree (« dans 10 minutes, moi, je trouvais que c'etait pas une bonne idee »). Il n'est ecrit qu'apres un
+    // ✓ (animerDernier) : il vit le temps du passage et part avec la carte, puisque la carte suivante rappelle
+    // majEcheances() sans animerDernier. Rien apres « Encore » : le bouton dit deja ce qu'il fait. Avant la
+    // v1162, ce texte (cache depuis la v910) recevait echeanceProchaineReussite(), qui ne sert plus qu'a l'aide.
+    const mot = animerDernier ? motDuPoint(atteints, animerDernier === 2) : "";
+    txt.textContent = mot;
+    txt.classList.toggle("dit", !!mot);
+    txt.setAttribute("aria-hidden", "true");   // les points le sont deja ; le nom du bouton ne change pas
+}
+// Le nom du point atteint : 1 a 4 points allumes, ou les deux d'un coup du premier « Je savais ».
+function motDuPoint(atteints, premierCoup){
+    if(premierCoup) return t("point_mot_deja");
+    const n = Math.max(1, Math.min(atteints, SRS_PALIERS));
+    return t("point_mot_" + n);
 }
 
 // L'AIDE EST CONSTRUITE A PARTIR DES CONSTANTES, jamais recopiee. Les quatre
@@ -71748,7 +71824,7 @@ function bulleDuPremierContinuer(){
     try{ localStorage.setItem(AIDE_CONTINUER_KEY, "1"); }catch(e){}
     const b = document.querySelector("#flashcardActions .judge-good");
     if(!b || !b.offsetParent) return false;
-    afficherBulle(b, tf("aide_continuer", { n: SRS_PALIERS, jours: SRS_MAINTENANCE_DAYS }), reviewGood);
+    afficherBulle(b, tf("aide_continuer", { n: SRS_PALIERS }), reviewGood);
     return true;
 }
 
