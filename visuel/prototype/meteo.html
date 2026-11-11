@@ -26,6 +26,15 @@
   « I have cold ») ; les saisons et les mois avec in (in January, in the summer). Boston : en americain les degres en
   °F (le thermometre dessine aussi : 0 a 100, la ligne du gel a 32), en britannique (variante=gb) en °C, avec autumn
   au lieu de fall. L'image du parc (park, la tour de la television de Berlin au fond) est ecartee : ECARTEES_EN.
+  LE PORTUGAIS (apprendre=pt, lot P3, 11 nov. 2026) : les memes images, des phrases ecrites pour le portugais (objet
+  PT_METEO, verse dans D par brancherPortugais()), l'action a Lisbonne. On y apprend « está » + un adjectif ou un nom
+  (está frio, está calor, está sol, está nublado, está vento, está bom tempo), « há » pour ce qui existe (há nevoeiro,
+  há uma tempestade), jamais « hace » ; la pluie qui tombe, estar a + infinitif (está a chover), contre l'habitude
+  (chove muito) ; la famille du mot (a chuva, chover, chove ; o sol, solarengo ; a nuvem, nublado) ; le temps ou soi
+  (está frio / tenho frio) ; les degres en lettres (estão vinte graus, está um grau, menos cinco graus) ; em janeiro,
+  na primavera, no verão ; l'article devant le prenom (a Anna, o Ben e a Mia). variante=br, le Bresil (l'action reste
+  a Lisbonne) : tem neblina, tem tempestade, está chovendo, está ventando, faz sol, ensolarado, sorvete, faz vinte
+  graus, dezesseis, estou com frio, pas d'article devant le prenom. Le parc est ecarte comme en anglais : ECARTEES_PT.
 -->
 <style>
 :root{--fond1:#8FC1E8;--fond3:#D3E6F3;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -127,8 +136,10 @@ button:disabled{cursor:default}
 <script src="themes/verre.js?v=8"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const APPRENDRE = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const EN_APP = APPRENDRE === "en", GB = EN_APP && Q.get("variante") === "gb";
+// le portugais (lot P3, 11 nov. 2026) : le Portugal, et variante=br pour le Bresil
+const PT_APP = APPRENDRE === "pt", BR = PT_APP && Q.get("variante") === "br";
 // les degres en Fahrenheit : l'anglais americain seulement (Boston) ; le britannique, l'espagnol et l'allemand en °C
 const FAHR = EN_APP && !GB;
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
@@ -232,6 +243,18 @@ const TEXTES = {
   saisonsEn:  {fr:"<b>in</b> + un mois ou une saison : <b>in</b> January, <b>in</b> (the) winter. Les mois prennent une majuscule (July), pas les saisons (summer). À Boston comme en France, c'est l'hémisphère nord."},
   itsEn:      {fr:"Complète la phrase. Regarde l'image."},
   continu:    {fr:"En ce moment, ou d'habitude ? Choisis la bonne forme du verbe."},
+  // le portugais seulement (son interface est en francais), Portugal puis Bresil
+  reglePt:    {fr:"Pour le temps qu'il fait : <b>está</b> + un adjectif ou un nom — está frio, está calor, está sol, está nublado, está vento, está bom tempo. <b>Há</b> + un nom, pour ce qui est là : há nevoeiro, há uma tempestade. On entend aussi <b>faz</b> (faz frio, faz sol). Jamais « hace » : c'est l'espagnol."},
+  chuvaPt:    {fr:"La pluie et la neige qui tombent en ce moment : <b>está a chover</b>, <b>está a nevar</b> (estar a + l'infinitif). Pour une habitude : <b>chove</b>, <b>neva</b> (em abril chove muito). La famille du mot : a chuva → chover → chove ; a neve → nevar ; o sol → um dia solarengo ; a nuvem → nublado."},
+  regleBr:    {fr:"Pour le temps qu'il fait : <b>está</b> + un adjectif ou un nom — está frio, está calor, está nublado ; <b>faz</b> sol, faz frio se disent aussi. <b>Tem</b> + un nom, pour ce qui est là : tem neblina, tem tempestade (au Portugal : há nevoeiro). Ce qui tombe en ce moment : <b>está chovendo</b>, <b>está nevando</b>, <b>está ventando</b> (estar + le gérondif ; au Portugal, está a chover). Pour une habitude : chove, neva. Jamais « hace » : c'est l'espagnol."},
+  bonBr:      {fr:"Bon à savoir : tu apprends le portugais du Brésil, mais l'action reste à Lisbonne. Au Brésil on dit <b>neblina</b> (au Portugal nevoeiro), <b>ensolarado</b> (solarengo), <b>sorvete</b> (gelado), et le prénom va sans article : Anna lê um livro (au Portugal : a Anna lê um livro)."},
+  regleDegPt: {fr:"<b>Estão</b> vinte graus : estar au pluriel, avec plusieurs degrés (un seul : <b>está</b> um grau). Sous zéro : <b>menos</b> cinco graus. Au Portugal : dez<b>a</b>sseis, dez<b>a</b>ssete, dez<b>a</b>nove (au Brésil : dezesseis, dezessete, dezenove)."},
+  regleDegBr: {fr:"<b>Faz</b> vinte graus : fazer reste au singulier (au Portugal : estão vinte graus). Sous zéro : <b>menos</b> cinco graus. Au Brésil : dez<b>e</b>sseis, dez<b>e</b>ssete, dez<b>e</b>nove (au Portugal : dezasseis, dezassete, dezanove)."},
+  ressentiPt: {fr:"Le temps : <b>está frio</b>. Toi : <b>tenho frio</b> ou <b>estou com frio</b> (j'ai froid). <i>Sou fria</i> parle du caractère. De même : está calor (il fait chaud) / <b>tenho calor</b> (j'ai chaud)."},
+  ressentiBr: {fr:"Le temps : <b>está frio</b>. Toi : <b>estou com frio</b> (j'ai froid ; tenho frio se dit surtout au Portugal). <i>Sou fria</i> parle du caractère. De même : está calor (il fait chaud) / <b>estou com calor</b> (j'ai chaud)."},
+  saisonsPt:  {fr:"Devant un mois : <b>em</b> — em janeiro, em julho. Devant une saison : <b>na</b> / <b>no</b> (em + a, em + o) — na primavera, no verão, no outono, no inverno. Les mois et les saisons s'écrivent en minuscules."},
+  hemispherePt:{fr:"Lisbonne est dans l'hémisphère nord : em julho é verão. Au Brésil, c'est l'inverse : em julho é inverno."},
+  hemisphereBr:{fr:"Tu apprends le portugais du Brésil, mais l'action se passe à Lisbonne, dans l'hémisphère nord : em julho é verão. À Rio ou à São Paulo, c'est l'inverse : em julho é inverno."},
   retourAria: {fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -240,8 +263,8 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 let D = null;
 const L = APPRENDRE, DE_APP = APPRENDRE === "de";
 // le mot de la saison dans D.saisons (es, de, puis en, ajoute par brancherAnglais) ; le mot du degre
-const SI = DE_APP ? 1 : EN_APP ? 2 : 0;
-const GRADO = DE_APP ? "Grad" : EN_APP ? "degree" : "grado";
+const SI = DE_APP ? 1 : EN_APP ? 2 : PT_APP ? 3 : 0;
+const GRADO = DE_APP ? "Grad" : EN_APP ? "degree" : PT_APP ? "grau" : "grado";
 const E = cle => D.enonces[L][cle];
 const IMG = () => Object.keys(D.images);
 const PLACES = () => IMG().filter(i => !D.images[i].act);
@@ -425,6 +448,166 @@ function brancherAnglais(D){
   RESSENTI_EN.forEach(x => { sons[x[3]] = ""; });
   D.continu.forEach(x => { sons[x.t.replace("___", x.rep)] = ""; });
   D.sons.en = sons;
+}
+
+// ---------- LE PORTUGAIS (lot P3, 11 nov. 2026) : ses phrases a lui, versees dans D a cote de es, de (et en) ----------
+// Les memes faits, les memes images, les memes sortes que l'espagnol ; les phrases ECRITES pour le portugais, l'action a
+// Lisbonne. Les mots a la forme du corpus ACTIF (portugais/datos ; datos-br au Bresil). Hors corpus, signales dans les
+// ajouts : o lago, a folha, a neblina (le Bresil, ou le corpus garde nevoeiro). Rien de ce bloc ne sert aux autres langues.
+const ECARTEES_PT = ["park"];   // le parc au printemps : la tour de la television de Berlin au fond -- pas Lisbonne
+// le prenom : avec l'article au Portugal (a Anna, o Mark), sans au Bresil
+const PRENOM_PT = (q, maj) => BR ? q : (maj ? (q === "Mark" || q === "Ben" ? "O " : "A ") : (q === "Mark" || q === "Ben" ? "o " : "a ")) + q;
+const PT_METEO = (() => {
+  const A = (q) => PRENOM_PT(q, false), Am = q => PRENOM_PT(q, true);
+  const M = {
+    // les noms (genre du corpus ; les mois n'ont pas d'article au corpus), les adjectifs, les verbes -- et leur sens
+    mots: Object.assign({tempo: "o", sol: "o", calor: "o", vento: "o"}, BR ? {neblina: "a"} : {nevoeiro: "o"},
+      {tempestade: "a", chuva: "a", neve: "a", nuvem: "a", grau: "o", primavera: "a", "verão": "o", outono: "o", inverno: "o",
+       janeiro: "", fevereiro: "", abril: "", maio: "", julho: "", agosto: "", outubro: "", novembro: "", lago: "o"},
+      BR ? {sorvete: "o"} : {gelado: "o"},
+      {folha: "a", frio: "adjectif", fresco: "adjectif", nublado: "adjectif"}, BR ? {ensolarado: "adjectif"} : {solarengo: "adjectif"},
+      {chover: "verbe", nevar: "verbe", nadar: "verbe"}, BR ? {tomar: "verbe", recolher: "verbe"} : {comer: "verbe", apanhar: "verbe"},
+      {brincar: "verbe", ler: "verbe"}),
+    gloses: {tempo: "le temps (qu'il fait)", sol: "le soleil", calor: "la chaleur", vento: "le vent", nevoeiro: "le brouillard",
+      neblina: "le brouillard", tempestade: "l'orage, la tempête", chuva: "la pluie", neve: "la neige", nuvem: "le nuage", grau: "le degré",
+      primavera: "le printemps", "verão": "l'été", outono: "l'automne", inverno: "l'hiver", janeiro: "janvier", fevereiro: "février",
+      abril: "avril", maio: "mai", julho: "juillet", agosto: "août", outubro: "octobre", novembro: "novembre", lago: "le lac",
+      gelado: "la glace", sorvete: "la glace", folha: "la feuille", frio: "froid", fresco: "frais", nublado: "nuageux, couvert",
+      solarengo: "ensoleillé", ensolarado: "ensoleillé", chover: "pleuvoir", nevar: "neiger", nadar: "nager", comer: "manger",
+      tomar: "prendre (tomar sorvete : manger une glace)", apanhar: "ramasser, attraper", recolher: "ramasser", brincar: "jouer (les enfants)",
+      ler: "lire", nuvens: "les nuages", chove: "il pleut", neva: "il neige"},
+    // [phrase, mot] par fait ; la premiere est celle de l'image
+    faits: BR ? {
+      sol: [["Faz sol.", "sol"], ["Está ensolarado.", "ensolarado"]], calor: [["Está calor.", "calor"]], frio: [["Está frio.", "frio"]],
+      fresco: [["Está fresco.", "fresco"]], lluvia: [["Está chovendo.", "chover"]], nieve: [["Está nevando.", "nevar"]],
+      nublado: [["Está nublado.", "nublado"]], viento: [["Está ventando.", "vento"]], niebla: [["Tem neblina.", "neblina"]],
+      tormenta: [["Tem tempestade.", "tempestade"]], buen: [["O tempo está bom.", "tempo"]], malo: [["O tempo está ruim.", "tempo"]]
+    } : {
+      sol: [["Está sol.", "sol"], ["Está um dia solarengo.", "solarengo"]], calor: [["Está calor.", "calor"]], frio: [["Está frio.", "frio"]],
+      fresco: [["Está fresco.", "fresco"]], lluvia: [["Está a chover.", "chover"]], nieve: [["Está a nevar.", "nevar"]],
+      nublado: [["Está nublado.", "nublado"]], viento: [["Está vento.", "vento"]], niebla: [["Há nevoeiro.", "nevoeiro"]],
+      tormenta: [["Há uma tempestade.", "tempestade"]], buen: [["Está bom tempo.", "tempo"]], malo: [["Está mau tempo.", "tempo"]]
+    },
+    // le bon verbe : [fait, phrase a trou, reponse, choix] -- jamais un leurre qui se dit aussi (faz frio, há vento, faz bom tempo)
+    verbe: BR ? [
+      ["calor", "___ calor.", "Está", ["Está", "É", "Tem"]], ["frio", "___ frio.", "Está", ["Está", "É", "Tem"]],
+      ["fresco", "___ fresco.", "Está", ["Está", "É"]], ["sol", "___ ensolarado.", "Está", ["Está", "É", "Faz"]],
+      ["nublado", "___ nublado.", "Está", ["Está", "É", "Tem"]], ["viento", "___ ventando.", "Está", ["Está", "É", "Faz"]],
+      ["niebla", "___ neblina.", "Tem", ["Tem", "É", "Faz"]], ["tormenta", "___ tempestade.", "Tem", ["Tem", "É", "Faz"]],
+      ["lluvia", "___ chovendo.", "Está", ["Está", "É", "Faz"]], ["nieve", "___ nevando.", "Está", ["Está", "É", "Faz"]],
+      ["buen", "O tempo ___ bom.", "está", ["está", "faz", "tem"]], ["malo", "O tempo ___ ruim.", "está", ["está", "faz", "tem"]]
+    ] : [
+      ["calor", "___ calor.", "Está", ["Está", "É", "Há"]], ["frio", "___ frio.", "Está", ["Está", "É", "Há"]],
+      ["fresco", "___ fresco.", "Está", ["Está", "É"]], ["sol", "___ sol.", "Está", ["Está", "É"]],
+      ["nublado", "___ nublado.", "Está", ["Está", "É", "Há"]], ["viento", "___ vento.", "Está", ["Está", "É"]],
+      ["niebla", "___ nevoeiro.", "Há", ["Há", "É", "Faz"]], ["tormenta", "___ uma tempestade.", "Há", ["Há", "É", "Faz"]],
+      ["lluvia", "___ a chover.", "Está", ["Está", "É", "Faz"]], ["nieve", "___ a nevar.", "Está", ["Está", "É", "Faz"]],
+      ["buen", "___ bom tempo.", "Está", ["Está", "É", "Há"]], ["malo", "___ mau tempo.", "Está", ["Está", "É", "Há"]]
+    ],
+    // la famille du mot : [phrase a trou, reponse, leurres, mot, image, fait]
+    familles: [
+      ["Hoje ___ muito.", "chove", ["chuva", "chover"], "chover", "regen", "lluvia"],
+      ["A ___ não para.", "chuva", ["chove", "chover"], "chuva", "regen", "lluvia"],
+      ["Hoje ___.", "neva", ["neve", "nevar"], "nevar", "winter", "nieve"],
+      [(BR ? "Tem" : "Há") + " muita ___ na praça.", "neve", ["neva", "nevar"], "neve", "winter", "nieve"],
+      ["O ___ brilha.", "sol", [BR ? "ensolarado" : "solarengo"], "sol", "sommer", "sol"],
+      BR ? ["É um dia ___.", "ensolarado", ["sol"], "ensolarado", "sommer", "sol"] : ["Está um dia ___.", "solarengo", ["sol"], "solarengo", "sommer", "sol"],
+      ["O céu está ___.", "nublado", ["nuvem", "nuvens"], "nublado", "bewoelkt", "nublado"],
+      [(BR ? "Tem" : "Há") + " muitas ___ no céu.", "nuvens", ["nublado", "nuvem"], "nuvem", "bewoelkt", "nublado"],
+      ["O ___ está muito forte.", "vento", ["ventoso"], "vento", "herbst", "viento"]
+    ],
+    // le temps ou soi : [qui, image, moi | dehors, reponse, leurres, mot]
+    ressenti: ["frio", "calor"].reduce((out, k) => out.concat([["Anna", k === "frio" ? "winter" : "sommer"], ["Mark", k === "frio" ? "nebel" : "sommer"]].reduce((o, [q, img]) => {
+      const moi = (BR ? "Estou com " : "Tenho ") + k + ".", dehors = "Está " + k + ".", sou = k === "frio" ? [q === "Anna" ? "Sou fria." : "Sou frio."] : [];
+      return o.concat([[q, img, "moi", moi, [dehors].concat(sou), k], [q, img, "dehors", dehors, [moi].concat(sou), k]]);
+    }, [])), []),
+    bandes: [["calor", 28, 99], ["fresco", 10, 16], ["frio", -99, 5]],
+    bandePhrase: {calor: ["Está calor.", "calor"], fresco: ["Está fresco.", "fresco"], frio: ["Está frio.", "frio"]},
+    saisons: {primavera: "primavera", verano: "verão", otono: "outono", invierno: "inverno"},
+    // les moments de saison (le parc est ecarte) ; trou : la phrase a trou quand le verbe finit par une lettre accentuee (lê)
+    act: {
+      see: {phrase: "No verão, " + A("Anna") + " nada no lago.", verbe: "nada", leurres: ["nadam", "nado"], mots: ["nadar", "lago", "verão"], fr: "En été, Anna nage dans le lac."},
+      eis: BR ? {phrase: "No verão, Ben e Mia tomam sorvete.", verbe: "tomam", leurres: ["toma", "tomamos"], mots: ["tomar", "sorvete", "verão"], fr: "En été, Ben et Mia mangent une glace."}
+              : {phrase: "No verão, o Ben e a Mia comem gelado.", verbe: "comem", leurres: ["come", "comemos"], mots: ["comer", "gelado", "verão"], fr: "En été, Ben et Mia mangent une glace."},
+      blaetter: BR ? {phrase: "No outono, Ben e Mia recolhem folhas no bosque.", verbe: "recolhem", leurres: ["recolhe", "recolhemos"], mots: ["recolher", "folha", "outono"], fr: "En automne, Ben et Mia ramassent des feuilles dans le bois."}
+                   : {phrase: "No outono, o Ben e a Mia apanham folhas no bosque.", verbe: "apanham", leurres: ["apanha", "apanhamos"], mots: ["apanhar", "folha", "outono"], fr: "En automne, Ben et Mia ramassent des feuilles dans le bois."},
+      schnee: {phrase: "No inverno, " + A("Ben") + " e " + A("Mia") + " brincam na neve.", verbe: "brincam", leurres: ["brinca", "jogam"], mots: ["brincar", "neve", "inverno"], fr: "En hiver, Ben et Mia jouent dans la neige."},
+      lesen: {phrase: "Quando chove, " + A("Anna") + " lê um livro com " + A("Mia") + ".", trou: "Quando chove, " + A("Anna") + " ___ um livro com " + A("Mia") + ".",
+              verbe: "lê", leurres: ["leem", "lês"], mots: ["ler", "chover"], fr: "Quand il pleut, Anna lit un livre avec Mia."}
+    },
+    // les mois a Lisbonne (l'hemisphere nord, Bresil compris : l'action reste a Lisbonne)
+    mois: {janeiro: ["invierno", "janvier"], fevereiro: ["invierno", "février"], abril: ["primavera", "avril"], maio: ["primavera", "mai"],
+           julho: ["verano", "juillet"], agosto: ["verano", "août"], outubro: ["otono", "octobre"], novembro: ["otono", "novembre"]},
+    enonces: {temps: "Como está o tempo?", degres: BR ? "Quantos graus está fazendo?" : "Quantos graus estão?", saison: BR ? "Qual é a estação do ano?" : "Em que estação do ano estamos?",
+              act: BR ? "O que está acontecendo na foto?" : "O que se passa na fotografia?", mois: "Em que mês estamos?",
+              dit: BR ? "{q} diz: “___”" : "{q} diz: «___»", vrai: "Verdadeiro", faux: "Falso", bravo: "Muito bem!"},
+    trad: {"Está sol.": "Il y a du soleil.", "Faz sol.": "Il y a du soleil.", "Está um dia solarengo.": "C'est une journée ensoleillée.",
+      "Está ensolarado.": "C'est ensoleillé.", "Está calor.": "Il fait chaud.", "Está frio.": "Il fait froid.", "Está fresco.": "Il fait frais.",
+      "Está a chover.": "Il pleut.", "Está chovendo.": "Il pleut.", "Está a nevar.": "Il neige.", "Está nevando.": "Il neige.",
+      "Está nublado.": "Le ciel est couvert.", "Está vento.": "Il y a du vent.", "Está ventando.": "Il y a du vent.",
+      "Há nevoeiro.": "Il y a du brouillard.", "Tem neblina.": "Il y a du brouillard.", "Há uma tempestade.": "Il y a de l'orage.",
+      "Tem tempestade.": "Il y a de l'orage.", "Está bom tempo.": "Il fait beau.", "O tempo está bom.": "Il fait beau.",
+      "Está mau tempo.": "Il fait mauvais.", "O tempo está ruim.": "Il fait mauvais.",
+      "Hoje chove muito.": "Aujourd'hui, il pleut beaucoup.", "A chuva não para.": "La pluie ne s'arrête pas.", "Hoje neva.": "Aujourd'hui, il neige.",
+      "Há muita neve na praça.": "Il y a beaucoup de neige sur la place.", "Tem muita neve na praça.": "Il y a beaucoup de neige sur la place.",
+      "O sol brilha.": "Le soleil brille.", "É um dia ensolarado.": "C'est une journée ensoleillée.", "O céu está nublado.": "Le ciel est couvert.",
+      "Há muitas nuvens no céu.": "Il y a beaucoup de nuages dans le ciel.", "Tem muitas nuvens no céu.": "Il y a beaucoup de nuages dans le ciel.",
+      "O vento está muito forte.": "Le vent est très fort.",
+      "Tenho frio.": "J'ai froid.", "Estou com frio.": "J'ai froid.", "Tenho calor.": "J'ai chaud.", "Estou com calor.": "J'ai chaud."}
+  };
+  return M;
+})();
+// les degres en lettres (la voix les dit tels quels ; l'ecrit du thermometre garde ses chiffres)
+const UNITES_PT = ["zero", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "catorze",
+                   "quinze", BR ? "dezesseis" : "dezasseis", BR ? "dezessete" : "dezassete", "dezoito", BR ? "dezenove" : "dezanove"];
+const DIZAINES_PT = ["", "", "vinte", "trinta", "quarenta", "cinquenta"];
+const nombrePt = n => n < 20 ? UNITES_PT[n] : DIZAINES_PT[Math.floor(n / 10)] + (n % 10 ? " e " + UNITES_PT[n % 10] : "");
+// « Estão vinte graus. » « Está um grau. » « Estão menos cinco graus. » ; au Bresil « Faz vinte graus. » « Faz zero grau. »
+function degresPt(t){
+  const a = Math.abs(t), n = (t < 0 ? "menos " : "") + nombrePt(a);
+  if (BR) return "Faz " + n + (a <= 1 ? " grau." : " graus.");
+  return (a === 1 ? "Está " : "Estão ") + n + (a === 1 ? " grau." : " graus.");
+}
+const degresPtFr = t => "Il fait " + (t < 0 ? "moins " + (-t) : t) + (Math.abs(t) >= 2 ? " degrés." : " degré.");
+
+// verse le portugais dans D (une fois, au chargement) : D garde la meme forme que pour es et de
+function brancherPortugais(D){
+  const P = PT_METEO, trad = {}, SFR = {primavera: "le printemps", verano: "l'été", otono: "l'automne", invierno: "l'hiver"};
+  ECARTEES_PT.forEach(i => { const a = D.images[i] && D.images[i].act; delete D.images[i]; if (a) delete D.activites[a]; });
+  D.mots.pt = P.mots;
+  Object.keys(P.faits).forEach(f => { D.faits[f].pt = P.faits[f]; });
+  Object.keys(P.saisons).forEach(s => { D.saisons[s][3] = P.saisons[s]; D.saisonPhrase[s].pt = "É " + P.saisons[s] + ".";
+    trad["É " + P.saisons[s] + "."] = "C'est " + SFR[s] + "."; });
+  Object.keys(P.act).forEach(a => { if (D.activites[a]){ D.activites[a].pt = P.act[a]; trad[P.act[a].phrase] = P.act[a].fr; } });
+  D.familles.pt = P.familles; D.verbeTemps.pt = P.verbe; D.ressenti.pt = P.ressenti;
+  D.bandes.pt = P.bandes; D.bandePhrase.pt = P.bandePhrase;
+  D.choixRessenti["Sou fria."] = {fr: "je suis une personne froide (le caractère)"};
+  D.choixRessenti["Sou frio."] = {fr: "je suis une personne froide (le caractère)"};
+  D.enonces.pt = P.enonces;
+  D.mois.pt = {};
+  Object.keys(P.mois).forEach(m => { const [s, fr] = P.mois[m], S = P.saisons[s];
+    D.mois.pt[m] = {saison: s, phrase: "Em Lisboa, em " + m + " é " + S + ".", trouSaison: "Em Lisboa, em " + m + " é ___.",
+                    phraseMois: "Em Lisboa, " + m + " é um mês de " + S + ".", trouMois: "Em Lisboa, ___ é um mês de " + S + "."};
+    trad[D.mois.pt[m].phrase] = "À Lisbonne, en " + fr + ", c'est " + SFR[s] + ".";
+    trad[D.mois.pt[m].phraseMois] = "À Lisbonne, " + fr + " est un mois " + (s === "verano" || s === "otono" || s === "invierno" ? "d'" : "de ") + SFR[s].replace(/^(le |l')/, "") + "."; });
+  D.degres.pt = {};
+  for (let t = -15; t <= 50; t++){ D.degres.pt[t] = degresPt(t); trad[degresPt(t)] = degresPtFr(t); }
+  Object.keys(P.trad).forEach(p => { trad[p] = P.trad[p]; });
+  D.trad.pt = {};
+  Object.keys(trad).forEach(p => { D.trad.pt[p] = {fr: trad[p]}; });
+  D.gloses.pt = {};
+  Object.keys(P.gloses).forEach(m => { D.gloses.pt[m] = {fr: P.gloses[m]}; });
+  // ce que la page dit : chaque phrase juste, une fois
+  const sons = {};
+  Object.values(P.faits).forEach(l => l.forEach(([p]) => { sons[p] = ""; }));
+  P.familles.forEach(x => { sons[x[0].replace("___", x[1])] = ""; });
+  Object.values(D.activites).forEach(a => { sons[a.pt.phrase] = ""; });
+  Object.keys(P.saisons).forEach(s => { sons[D.saisonPhrase[s].pt] = ""; });
+  Object.values(D.mois.pt).forEach(x => { sons[x.phrase] = ""; sons[x.phraseMois] = ""; });
+  D.temperatures.forEach(t => { sons[D.degres.pt[t]] = ""; });
+  Object.values(P.bandePhrase).forEach(([p]) => { sons[p] = ""; });
+  P.ressenti.forEach(x => { sons[x[3]] = ""; });
+  D.sons.pt = sons;
 }
 
 // ---------- la voix : le fichier enregistre s'il existe, sinon le telephone (themes/voix.js) ----------
@@ -727,7 +910,7 @@ const EX = {
     if (!c.length) return false;
     const it = hasard(c);
     viser(w, it.k);
-    ecranTrou(T(DE_APP ? "gibt" : EN_APP ? "itsEn" : "hace"), photo(hasard(it.imgs)), it.t);
+    ecranTrou(T(DE_APP || PT_APP ? "gibt" : EN_APP ? "itsEn" : "hace"), photo(hasard(it.imgs)), it.t);
     boutons($("choix"), it.opts, it.rep, ok => { remplir(it.rep); juger(ok, it.rep, it.juste); });
     return true;
   },
@@ -775,8 +958,8 @@ const EX = {
     if (!c.length) return false;
     const [qui, img, sens, rep, autres, k] = hasard(c);
     viser(w, k);
-    const froid = k === "frío" || k === "kalt" || k === "cold";
-    ecranTrou(T((sens === "moi" ? "moi" : "dehors") + (froid ? "Froid" : "Chaud"), {q: qui}), photo(img), E("dit").replace("{q}", qui));
+    const froid = k === "frío" || k === "kalt" || k === "cold" || k === "frio";
+    ecranTrou(T((sens === "moi" ? "moi" : "dehors") + (froid ? "Froid" : "Chaud"), {q: qui}), photo(img), E("dit").replace("{q}", PT_APP ? PRENOM_PT(qui, true) : qui));
     boutons($("choix"), melanger([rep, ...autres]), rep, ok => { remplir(rep); juger(ok, rep, rep); });
     $("choix").className = "choix colonne";
     return true;
@@ -837,7 +1020,7 @@ const EX = {
       ecran(T("act"), photo(it.i), E("act"), true, true);
       boutons($("choix"), melanger([it.x.phrase, ...autres]), it.x.phrase, ok => juger(ok, it.x.phrase, it.x.phrase));
     } else {
-      ecranTrou(T("actVerbe"), photo(it.i), it.x.phrase.replace(new RegExp("\\b" + it.x.verbe + "\\b"), "___"));
+      ecranTrou(T("actVerbe"), photo(it.i), it.x.trou || it.x.phrase.replace(new RegExp("\\b" + it.x.verbe + "\\b"), "___"));
       boutons($("choix"), melanger([it.x.verbe, ...it.x.leurres]), it.x.verbe, ok => { remplir(it.x.verbe); juger(ok, it.x.verbe, it.x.phrase); });
     }
     return true;
@@ -900,7 +1083,7 @@ function decouvrir(){
   const temps = () => {
     onglet(0); $("puces").innerHTML = "";
     PLACES().forEach(i => puce(premiere(D.images[i].vrais[0]).replace(/\.$/, ""), () => voirImage(i, true)));
-    regles(DE_APP ? ["regleDe", "regleV2"] : EN_APP ? ["regleEn", "regleEn2", GB ? "bonGb" : "bonUs"] : ["regleEs"]);
+    regles(DE_APP ? ["regleDe", "regleV2"] : EN_APP ? ["regleEn", "regleEn2", GB ? "bonGb" : "bonUs"] : PT_APP ? (BR ? ["regleBr", "bonBr"] : ["reglePt", "chuvaPt"]) : ["regleEs"]);
     voirImage("sommer", false); $("puces").firstChild.classList.add("choisi");
   };
   // les degres : un thermometre a faire glisser, la phrase en lettres et le ressenti
@@ -919,7 +1102,7 @@ function decouvrir(){
     $("curseur").addEventListener("input", () => maj(false));
     $("curseur").addEventListener("change", () => maj(true));
     (FAHR ? [23, 32, 54, 72, 88] : [-5, 0, 12, 22, 31]).forEach(t => puce(degresTxt(t), () => { $("curseur").value = t; maj(true); }));
-    regles(DE_APP ? ["regleDegDe", "ressentiDe"] : EN_APP ? [GB ? "regleDegGb" : "regleDegUs", "ressentiEn"] : ["regleDegEs", "ressentiEs"]);
+    regles(DE_APP ? ["regleDegDe", "ressentiDe"] : EN_APP ? [GB ? "regleDegGb" : "regleDegUs", "ressentiEn"] : PT_APP ? (BR ? ["regleDegBr", "ressentiBr"] : ["regleDegPt", "ressentiPt"]) : ["regleDegEs", "ressentiEs"]);
     maj(false);
   };
   // les saisons : chaque saison, ses mois, et ce qu'on y fait
@@ -938,7 +1121,7 @@ function decouvrir(){
       IMG().filter(i => D.images[i].act && D.images[i].saison === s).forEach(i => puce("· " + court(D.activites[D.images[i].act][L].phrase), () => voirImage(i, true)));
     });
     IMG().filter(i => D.images[i].act && !D.images[i].saison).forEach(i => puce((DE_APP ? "" : T("quandPleut") + " · ") + court(D.activites[D.images[i].act][L].phrase), () => voirImage(i, true)));
-    regles(DE_APP ? ["imDe"] : EN_APP ? ["saisonsEn"] : ["hemisphere"]);
+    regles(DE_APP ? ["imDe"] : EN_APP ? ["saisonsEn"] : PT_APP ? ["saisonsPt", BR ? "hemisphereBr" : "hemispherePt"] : ["hemisphere"]);
     $("puces").firstChild.click(); taire();
   };
   $("o1").addEventListener("click", temps); $("o2").addEventListener("click", degres); $("o3").addEventListener("click", saisons);
@@ -1045,6 +1228,7 @@ document.title = T("titre");
 fetch("meteo/meteo.json?v=1").then(r => r.json()).then(d => {
   D = d;
   if (EN_APP) brancherAnglais(D);
+  if (PT_APP) brancherPortugais(D);
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>

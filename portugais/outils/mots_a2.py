@@ -14,6 +14,8 @@ NIVEAU = 'A2'
 
 # « infinitif | traduction | phrase | sa traduction | drapeaux » (formes : irreguliers.py).
 VERBES = """
+reparar | réparer | O mecânico repara bicicletas. | Le mécanicien répare des vélos.
+consertar | réparer | O mecânico conserta bicicletas. | Le mécanicien répare des vélos.
 abaixar-se | se baisser | Eu abaixo-me para amarrar os sapatos. | Je me baisse pour lacer mes chaussures. | pron
 abrir mão de | renoncer | Abro mão de doces. | Je renonce aux sucreries.
 acabar | finir | Acabo o trabalho às seis. | Je finis le travail à six heures.
@@ -345,6 +347,18 @@ zangar-se | se fâcher | Sem os comprimidos, as costas doer-me-iam muito. | Sans
 
 # « masculin | feminin | traduction | phrase | sa traduction | drapeaux ».
 ADJECTIFS = """
+mobilado | mobilada | meublé | Procuramos um apartamento mobilado. | Nous cherchons un appartement meublé.
+largo | larga | large | Esta rua é muito larga. | Cette rue est très large.
+estreito | estreita | étroit | O corredor é estreito. | Le couloir est étroit.
+nojento | nojenta | dégoûtant | O café da máquina está nojento. | Le café de la machine est dégoûtant.
+liso | lisa | lisse, raide (cheveux) | A Rosa tem o cabelo comprido e liso. | Rosa a les cheveux longs et raides.
+ondulado | ondulada | ondulé | O Mark tem o cabelo curto e ondulado. | Mark a les cheveux courts et ondulés.
+gordinho | gordinha | un peu rond, potelé | O Javier é baixo e gordinho. | Javier est petit et un peu rond.
+encaracolado | encaracolada | bouclé, frisé | O Diego tem o cabelo curto e encaracolado. | Diego a les cheveux courts et bouclés.
+zangado | zangada | fâché, en colère | O Diego está zangado com o irmão. | Diego est fâché contre son frère.
+surpreendido | surpreendida | surpris | Fiquei surpreendido com a notícia. | J'ai été surpris par la nouvelle.
+extrovertido | extrovertida | extraverti, sociable | O Tomás é muito extrovertido. | Tomás est très extraverti.
+azedo | azeda | acide, aigre | O limão é azedo. | Le citron est acide.
 a tempo | a tempo | à temps | Chegamos a tempo. | Nous sommes arrivés à temps.
 aconchegante | aconchegante | confortable, convivial | O café é muito aconchegante. | Le café est très confortable.
 adulto | adulta | adulte | Ela já é uma pessoa adulta. | C'est déjà une personne adulte.

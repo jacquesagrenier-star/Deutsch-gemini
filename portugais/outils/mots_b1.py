@@ -461,6 +461,7 @@ zombar de | se moquer de | As crianças não zombam dele. | Les enfants ne se mo
 
 # « masculin | feminin | traduction | phrase | sa traduction | drapeaux ».
 ADJECTIFS = """
+avarento | avarenta | avare, radin | O Sergio é avarento: nunca paga um café. | Sergio est radin : il ne paie jamais un café.
 absoluto | absoluta | absolu | Ele exige silêncio absoluto. | Il exige un silence absolu.
 abundante | abundante | abondant | A colheita foi abundante. | La récolte a été abondante.
 acessível | acessível | accessible | O museu é acessível para cadeira de rodas. | Le musée est accessible en fauteuil roulant.

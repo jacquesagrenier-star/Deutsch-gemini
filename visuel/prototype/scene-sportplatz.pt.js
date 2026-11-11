@@ -591,8 +591,8 @@ window.SCENE = {
    "id": "gras",
    "mot": "erva",
    "genre": "a",
-   "pluriel": "as ervas",
-   "niveau": "B1",
+   "niveau": "A1",
+   "theme": "animais_pt",
    "personne": null,
    "aussi": [
     {

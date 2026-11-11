@@ -83,6 +83,8 @@ a velhice | la vieillesse | A velhice tem as suas vantagens. | La vieillesse a s
 a visita | la visite | Esperamos uma visita hoje à tarde. | Nous attendons une visite cet après-midi.
 """,
 "trabalho_a2_pt": """
+a mecânica | la mécanicienne | A mecânica repara bicicletas. | La mécanicienne répare des vélos.
+o salão de beleza | le salon de coiffure | A Inês trabalha num salão de beleza. | Inês travaille dans un salon de coiffure. | pl=salões de beleza
 a agenda | l'agenda | Anoto na agenda. | Je le note dans l'agenda.
 o agricultor | l'agriculteur | O agricultor trabalha de manhã cedo. | L'agriculteur travaille tôt le matin.
 a ama | le baby-sitter | Ele ama o trabalho acima de tudo. | Il aime son travail par-dessus tout.
@@ -123,6 +125,8 @@ o técnico | le technicien | O técnico vem amanhã de manhã. | Le technicien v
 o veterinário | le vétérinaire | O veterinário trata animais doentes. | Le vétérinaire soigne les animaux malades.
 """,
 "comida_a2_pt": """
+o pretzel | le bretzel | A Rosa gosta de pretzels. | Rosa aime les bretzels. | pl=pretzels
+a bolacha | le biscuit | As bolachas são doces. | Les biscuits sont sucrés. | br=biscoito
 o abacate | l'avocat (fruit) | Ponho abacate na salada. | Je mets de l'avocat dans la salade.
 a curgete | la courgette | Faço a curgete grelhada. | Je fais griller la courgette. | br=abobrinha
 o abridor de latas | l'ouvre-boîte | O abridor de latas está na gaveta. | L'ouvre-boîte est dans le tiroir. | pl=abridores de latas
@@ -230,6 +234,8 @@ a fita adesiva | le ruban adhésif | Cole o papel com fita adesiva. | Colle le p
 a furadeira | la perceuse | Preciso da furadeira para pendurar a estante. | J'ai besoin de la perceuse pour fixer l'étagère.
 """,
 "casa_a2_pt_2": """
+a renda | le loyer | A renda é de novecentos euros por mês. | Le loyer est de neuf cents euros par mois. | br=aluguel
+a planta | la plante | A planta está ao lado da janela. | La plante est à côté de la fenêtre.
 o gancho | le crochet | Pendura o casaco no gancho! | Accroche ton manteau au crochet !
 a grade | la grille | A grade do parque fecha às dez. | La grille du parc ferme à dix heures.
 o gás | le gaz | Os gases dos carros poluem o ar. | Les gaz d'échappement des voitures polluent l'air. | pl=gases
@@ -279,6 +285,8 @@ a vizinha | la voisine | A minha vizinha rega as minhas plantas. | Ma voisine ar
 a vizinhança | le voisinage | A vizinhança é muito tranquila. | Le voisinage est très calme. | g?
 """,
 "saude_a2_pt": """
+o cartão de utente | la carte du service de santé | Para a primeira consulta, é preciso o cartão de utente. | Pour la première consultation, il faut la carte de santé. | pl=cartões de utente
+o ouvido | l'oreille | Dói-me o ouvido esquerdo. | J'ai mal à l'oreille gauche.
 a alergia | l'allergie | Tenho alergia a pólen. | Je suis allergique au pollen.
 a balança | la balance (pèse-personne) | Suba na balança, por favor. | Montez sur la balance, s'il vous plaît.
 o bem-estar | le bien-être | O desporto melhora o bem-estar. | Le sport améliore le bien-être. | pl=bens-estares
@@ -332,6 +340,8 @@ a vacina | le vaccin | Tomei a vacina ontem. | On m'a fait le vaccin hier.
 o xarope | le sirop | Tome o xarope depois de comer. | Prends le sirop après le repas.
 """,
 "roupa_a2_pt": """
+os calções de banho | le maillot de bain (short) | O Tomás leva os calções de banho para a praia. | Tomás emporte son maillot de bain à la plage. | u | br=sunga
+o fato | le costume | O Mark veste um fato azul para o casamento. | Mark met un costume bleu pour le mariage. | br=terno
 a aparência | l'allure, l'apparence | Ele está com boa aparência hoje. | Il a bonne mine aujourd'hui.
 a barba | la barbe | Ele deixou a barba crescer no inverno. | Il s'est laissé pousser la barbe en hiver.
 o bigode | la moustache | O pai dele tem bigode. | Son père a une moustache.
@@ -361,6 +371,8 @@ a tatuagem | le tatouage | O meu irmão tem uma tatuagem no braço. | Mon frère
 o zíper | la fermeture éclair | O zíper está quebrado. | La fermeture éclair est cassée.
 """,
 "natureza_a2_pt": """
+o lago | le lac | No verão, a Anna nada no lago. | En été, Anna nage dans le lac.
+a folha | la feuille | No outono, caem as folhas. | En automne, les feuilles tombent.
 o anão | le nain | No jardim há um anãozinho. | Il y a un petit nain dans le jardin. | pl=anões | ex?
 o arco-íris | l'arc-en-ciel | O arco-íris é colorido. | L'arc-en-ciel est coloré. | g? | pl=arcos-íris
 a baleia | la baleine | A baleia é o maior animal do mar. | La baleine est le plus grand animal de la mer. | g?
@@ -503,6 +515,10 @@ o visto | le visa | Para este país precisamos de visto. | Nous avons besoin d'u
 o voo de conexão | le vol de correspondance | O nosso voo de conexão está atrasado. | Notre vol de correspondance a du retard. | pl=voos de conexão
 """,
 "cidade_a2_pt": """
+a junta de freguesia | la mairie de quartier (Junta de Freguesia) | O Mark pede o atestado de residência na junta de freguesia. | Mark demande l'attestation de résidence à la mairie de quartier. | pl=juntas de freguesia
+a data de nascimento | la date de naissance | Escreva aqui a data de nascimento. | Écrivez ici la date de naissance. | pl=datas de nascimento
+o local de nascimento | le lieu de naissance | O local de nascimento do Mark é Montreal. | Le lieu de naissance de Mark est Montréal. | pl=locais de nascimento
+a senha | le ticket (numéro d'attente) | O Mark tira uma senha e espera. | Mark prend un ticket et attend.
 a agência bancária | l'agence bancaire | A agência abre às oito e meia. | L'agence ouvre à huit heures et demie. | pl=agências bancárias | ex?
 o arranha-céu | le gratte-ciel | O arranha-céu tem quarenta andares. | Le gratte-ciel a quarante étages. | g? | pl=arranhas-céus
 o bairro residencial | le quartier résidentiel | O bairro residencial é ótimo para famílias. | Le quartier résidentiel est très adapté aux familles. | pl=bairros residenciais
@@ -707,6 +723,7 @@ a voz | la voix | Ele fala em voz baixa. | Il parle à voix basse.
 o wi-fi | wifi | O wi-fi não funciona aqui. | Le wifi ne fonctionne pas ici. | g? | pl=wis-fis
 """,
 "dinheiro_a2_pt": """
+o NIF | le numéro d'identification fiscale | Para abrir uma conta, é preciso o NIF. | Pour ouvrir un compte, il faut le numéro fiscal. | u
 o atendimento | le service | O atendimento deste hotel é excelente. | Le service dans cet hôtel est excellent.
 o carrinho de compras | le caddie | Para o carrinho de compras, preciso de uma moeda. | Pour le caddie, il me faut une pièce. | pl=carrinhos de compras
 o centavo | le centime | Custa noventa centavos. | Ça coûte quatre-vingt-dix centimes.
@@ -773,6 +790,7 @@ a terra natal | le pays d'origine | A minha terra natal é um vilarejo pequeno. 
 a votação | le vote | A votação termina às dezoito horas. | Le vote se termine à dix-huit heures. | g? | pl=votações
 """,
 "lei_a2_pt": """
+o polícia | l'agent de police | O polícia controla o trânsito. | L'agent de police règle la circulation. | br=policial
 o acidente | l'accident | Houve um acidente na estrada. | Il y a eu un accident sur la route.
 o alarme | l'alarme | O alarme tocou de noite. | L'alarme a sonné la nuit.
 a ambulância | l'ambulance | A ambulância chegou em cinco minutos. | L'ambulance est arrivée en cinq minutes.
@@ -794,6 +812,9 @@ o passado | passé | Ele raramente fala do passado. | Il parle rarement du pass�
 a quinze minutos | le quart d'heure | Volto em quinze minutos. | Je reviens dans quinze minutes. | g? | pl=quinzes minutos
 """,
 "quotidiano_a2_pt": """
+o pedaço | le morceau | Queria um pedaço de bolo, por favor. | Je voudrais un morceau de gâteau, s'il vous plaît.
+a lata | la boîte de conserve | Comprei uma lata de tomate. | J'ai acheté une boîte de tomates.
+o grama | le gramme | Queria duzentos gramas de queijo. | Je voudrais deux cents grammes de fromage. | pl=gramas
 o agradecimento | le remerciement | Ele merece o agradecimento de todos. | Les remerciements de tous lui reviennent.
 a atenção | l'attention | Ele perde a atenção em dez minutos. | Il perd l'attention au bout de dix minutes. | pl=atenções
 o caso | le cas | Em caso de acidente, chama-se a polícia. | En cas d'accident, on appelle la police.

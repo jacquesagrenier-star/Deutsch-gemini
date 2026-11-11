@@ -159,6 +159,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as guitarras",
    "niveau": "A1",
+   "theme": "lazer_pt",
    "personne": null,
    "aussi": [],
    "sur": null,

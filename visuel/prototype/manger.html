@@ -130,8 +130,10 @@ button:disabled{cursor:default}
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (4 nov. 2026, « il manque beaucoup de themes en anglais ») : les memes images, ses phrases a lui ; variante=gb
-const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+// le portugais (lot P3, 11 nov. 2026) : les memes images, ses phrases a lui ; variante=br pour le Bresil
+const APPRENDRE = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
 const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -191,7 +193,18 @@ const TEXTES = {
   gouter:    {fr:"Le goût d'une chose, ou ce que fait la personne en ce moment ?"},
   trop:      {fr:"Regarde le visage et complète la phrase."},
   combien:   {fr:"Regarde l'image : ça se compte, ou pas ?"},
-  poli:      {fr:"Au café : commander poliment, ou dire ce qu'on aime ?"}
+  poli:      {fr:"Au café : commander poliment, ou dire ce qu'on aime ?"},
+  // le portugais seulement (son interface est en francais)
+  regleGpt:  {fr:"Gostar se construit avec <b>de</b> : a Anna gosta <b>de</b> morangos, o Mark gosta <b>de</b> café (jamais « gosta café »). Devant un article, de se contracte : o Javier não gosta <b>da</b> sopa (de + a). Adorar, lui, n'a pas de de : o Ben adora bolo. Não gosta nada de : il n'aime pas du tout. Ce qu'est une chose : ser (o limão é azedo) ; l'état de ce qu'on goûte : estar (a sopa está salgada). Au Portugal, l'article se met devant le prénom : <b>o</b> Mark, <b>a</b> Carmen."},
+  regleGbr:  {fr:"Gostar se construit avec <b>de</b> : Anna gosta <b>de</b> morangos, Mark gosta <b>de</b> café (jamais « gosta café »). Devant un article, de se contracte : Javier não gosta <b>da</b> sopa (de + a). Adorar, lui, n'a pas de de : Ben adora bolo. Não gosta nada de : il n'aime pas du tout. Ce qu'est une chose : ser (o limão é azedo) ; l'état de ce qu'on goûte : estar (a sopa está salgada). Au Brésil, pas d'article devant le prénom : Mark, Carmen."},
+  bonGpt:    {fr:"Bon à savoir : au Portugal, le goût d'une chose se dit avec <b>saber a</b> : a sopa sabe a sal (la soupe a un goût de sel), et <b>sabe bem</b>, c'est bon. Ce qu'on fait en ce moment : <b>está a provar</b>. Au Brésil : a sopa tem gosto de sal, Que gostoso!, está provando."},
+  bonGbr:    {fr:"Bon à savoir : au Brésil, le goût d'une chose se dit avec <b>ter gosto de</b> : a sopa tem gosto de sal (la soupe a un goût de sel), et <b>Que gostoso!</b>, c'est bon. Ce qu'on fait en ce moment : <b>está provando</b>. Au Portugal : a sopa sabe a sal, sabe bem, está a provar."},
+  regleQpt:  {fr:"En portugais, la quantité prend <b>de</b>, comme en français : um quilo de laranjas, meio quilo de queijo, uma garrafa de água, um pacote de café, um pouco de açúcar. La tasse : uma chávena au Portugal, uma xícara au Brésil."},
+  regleCpt:  {fr:"Pour commander poliment : <b>Queria</b> um café, por favor (je voudrais), plus poli que Quero. Pour finir : A conta, por favor. Au Portugal, on vouvoie avec si : Isto é para si (c'est pour vous)."},
+  regleCbr:  {fr:"Pour commander poliment : <b>Eu queria</b> um café, por favor (je voudrais), plus poli que Eu quero ; entre amis, plus familier : Me vê um café. Pour finir : A conta, por favor. Au Brésil, on dit você : Isto é para você."},
+  bonCpt:    {fr:"Bon à savoir : on est à Lisbonne, on paie en euros (0,80 € : oitenta cêntimos). Au comptoir : uma bica (un expresso), um sumo, uma tosta mista, um pastel de nata. Au Brésil : cardápio (ementa), garçom (empregado de mesa), suco, misto-quente, sorvete (gelado)."},
+  bonCbr:    {fr:"Bon à savoir : tu apprends le portugais du Brésil, mais l'action est à Lisbonne : on y paie en euros (0,80 € : oitenta centavos). Au Brésil on dit cardápio, garçom, suco, misto-quente, sorvete ; au Portugal, ementa, empregado de mesa, sumo, tosta mista, gelado."},
+  sabe:      {fr:"Regarde l'image : quel goût ça a ? Complète la phrase."}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
 
@@ -466,11 +479,157 @@ const EN = {
   poliB: it => "Can I have " + it.un + ", please?",
   poliC: (g, sujet) => (sujet || (g.r === "encanta" ? "I love" : "I like")) + " " + ea(g.a).gen + ". " + (ea(g.a).boire ? "I drink it every morning." : genPl(g.a) ? "I eat them every week." : "I eat it every week.")
 };
-const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
+// ---------- LE PORTUGAIS (lot P3, 11 nov. 2026) : ses phrases a lui, fabriquees depuis les memes degustations ----------
+// Ce que le portugais enseigne ici : gostar DE (« a Anna gosta de morangos », jamais « gosta morangos »), la contraction
+// devant l'article (« o Javier não gosta da sopa »), adorar sans de, « não gosta nada de » ; ser / estar + l'adjectif qui
+// s'accorde (« o limão é azedo », « a sopa está salgada ») ; estar a + infinitif au Portugal, estar + gerondif au Bresil
+// (« está a provar » / « está provando ») ; le gout d'une chose : saber a au Portugal, ter gosto de au Bresil (« a sopa
+// sabe a sal ») ; la quantite avec de (um quilo de, meio quilo de, uma garrafa de, um pacote de) ; commander (« Queria um
+// café, por favor » ; au Bresil « Eu queria… ») ; l'article devant le prenom au Portugal (o Mark, a Carmen). L'action est a
+// LISBONNE : la carte en euros (une bica, une tosta mista, un pastel de nata), dans les deux variantes. Le Bresil change
+// les mots (chávena -> xícara, sumo -> suco, bolacha -> biscoito, ementa -> cardápio, empregado de mesa -> garçom, tosta
+// mista -> misto-quente, gelado -> sorvete, fiambre -> presunto) et la grammaire (pas d'article devant le prenom).
+// Les donnees portugaises sont posees dans D au chargement (D.aliments[k].pt, D.contenants[c].pt...) : les sortes
+// communes les lisent par [APPRENDRE], comme l'espagnol.
+const ESPT = APPRENDRE === "es" || APPRENDRE === "pt";
+const PT_AL = {
+  tarta:     {mot: "bolo", genre: "o", vu: "o bolo", gen: "bolo"},
+  chocolate: {mot: "chocolate", genre: "o", vu: "o chocolate", gen: "chocolate"},
+  limon:     {mot: "limão", genre: "o", vu: "o limão", gen: "limão"},
+  picante:   {mot: "comida", genre: "a", vu: "a comida picante", court: "a comida", gen: "comida picante"},
+  cafe:      {mot: "café", genre: "o", vu: "o café", gen: "café"},
+  // la soupe n'a pas de gout general : c'est CETTE soupe (« não gosta da sopa »)
+  sopa:      {mot: "sopa", genre: "a", vu: "a sopa", gen: null},
+  pretzel:   {mot: "pretzel", genre: "o", vu: "o pretzel", gen: "pretzels"},
+  fresa:     {mot: "morango", genre: "o", vu: "os morangos", gen: "morangos", pl: true},
+  pescado:   {mot: "peixe", genre: "o", vu: "o peixe", gen: "peixe"},
+  galleta:   BR ? {mot: "biscoito", genre: "o", vu: "os biscoitos", gen: "biscoitos", pl: true} : {mot: "bolacha", genre: "a", vu: "as bolachas", gen: "bolachas", pl: true},
+  pizza:     {mot: "pizza", genre: "a", vu: "a pizza", gen: "pizza"},
+  queso:     {mot: "queijo", genre: "o", vu: "o queijo", gen: "queijo"},
+  tomate:    {mot: "tomate", genre: "o", vu: "os tomates", gen: "tomates", pl: true}
+};
+const PT_SAV = {dulce: ["doce", "doce", "doces", "doces"], salado: ["salgado", "salgada", "salgados", "salgadas"], picante: ["picante", "picante", "picantes", "picantes"],
+                amargo: ["amargo", "amarga", "amargos", "amargas"], acido: ["azedo", "azeda", "azedos", "azedas"]};
+const PT_DELICIOSO = ["delicioso", "deliciosa", "deliciosos", "deliciosas"], PT_NOJENTO = ["nojento", "nojenta", "nojentos", "nojentas"];
+const iPt = k => (PT_AL[k].pl ? 2 : 0) + (PT_AL[k].genre === "a" ? 1 : 0);
+const formePt = (s, k) => PT_SAV[s][iPt(k)];
+// la reaction : ce qui va dans le trou (« gosta de », « não gosta da » devant la soupe, « adora ») et l'objet
+const PT_VERBE = {encanta: "adora", gusta: "gosta", no: "não gosta", nada: "não gosta nada"};
+const objPt = k => PT_AL[k].gen ? {de: "de", x: PT_AL[k].gen, art: ""} : {de: PT_AL[k].genre === "a" ? "da" : "do", x: PT_AL[k].mot, art: PT_AL[k].genre};
+const grupoPt = (r, k) => r === "encanta" ? PT_VERBE[r] + (objPt(k).art ? " " + objPt(k).art : "") : PT_VERBE[r] + " " + objPt(k).de;
+// le gout d'une chose : « A sopa sabe a sal. » (Portugal) / « A sopa tem gosto de sal. » (Bresil) -- les trois choses dont le
+// gout se nomme sans dire la chose elle-meme ; leurre : une autre saveur
+const PT_SABE = {sopa: {n: "sal", faux: "açúcar", fr: "La soupe a un goût de sel."}, pretzel: {n: "sal", faux: "açúcar", fr: "Le bretzel a un goût de sel."},
+                 picante: {n: BR ? "pimenta" : "piri-piri", faux: "açúcar", fr: "Le plat a un goût de piment."}};
+// l'article devant le prenom au Portugal (o Mark, a Carmen), pas au Bresil ; x : une cle (« Tomas ») ou un nom (« Tomás »)
+function nomA(x){
+  const k = D.sexe[x] ? x : Object.keys(D.sexe).find(c => nom(c) === x);
+  if (!k || (D.anonymes || {})[k] && nom(k) !== x) return x;
+  return BR ? nom(k) : (D.sexe[k] === "f" ? "a " : "o ") + nom(k);
+}
+// les prix en lettres : « quatro euros e noventa », « oitenta cêntimos » (Bresil : centavos ; dezasseis / dezesseis)
+const PT_N = ["zero", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "catorze", "quinze",
+              BR ? "dezesseis" : "dezasseis", BR ? "dezessete" : "dezassete", "dezoito", BR ? "dezenove" : "dezanove"];
+const PT_D = {2: "vinte", 3: "trinta", 4: "quarenta", 5: "cinquenta", 6: "sessenta", 7: "setenta", 8: "oitenta", 9: "noventa"};
+const nombrePt = n => n < 20 ? PT_N[n] : PT_D[Math.floor(n / 10)] + (n % 10 ? " e " + PT_N[n % 10] : "");
+function prixPt(c){
+  const e = Math.floor(c / 100), ct = c % 100;
+  if (!e) return nombrePt(ct) + (BR ? " centavos" : " cêntimos");
+  return nombrePt(e) + (e === 1 ? " euro" : " euros") + (ct ? " e " + nombrePt(ct) : "");
+}
+// LES QUANTITES : le contenant et le contenu (la chávena du Portugal est la xícara du Bresil)
+const PT_CT = {kilo: {mot: "quilo", genre: "o", art: "um quilo de"}, botella: {mot: "garrafa", genre: "a", art: "uma garrafa de"},
+  vaso: {mot: "copo", genre: "o", art: "um copo de"}, taza: BR ? {mot: "xícara", genre: "a", art: "uma xícara de"} : {mot: "chávena", genre: "a", art: "uma chávena de"},
+  trozo: {mot: "pedaço", genre: "o", art: "um pedaço de"}, lata: {mot: "lata", genre: "a", art: "uma lata de"}, docena: {mot: "dúzia", genre: "a", art: "uma dúzia de"},
+  loncha: {mot: "fatia", genre: "a", art: "uma fatia de"}, litro: {mot: "litro", genre: "o", art: "um litro de"}, poco: {mot: null, art: "um pouco de"}};
+const PT_CU = {naranja: {mot: "laranja", genre: "a", dit: "laranjas"}, agua: {mot: "água", genre: "a", dit: "água"}, leche: {mot: "leite", genre: "o", dit: "leite"},
+  te: {mot: "chá", genre: "o", dit: "chá"}, tarta: {mot: "bolo", genre: "o", dit: "bolo"}, tomate: {mot: "tomate", genre: "o", dit: "tomates"},
+  huevo: {mot: "ovo", genre: "o", dit: "ovos"}, queso: {mot: "queijo", genre: "o", dit: "queijo"}, azucar: {mot: "açúcar", genre: "o", dit: "açúcar"}};
+// LA LISTE DE COURSES : [ecrit, dit, unite, produit, lectures fausses] ; meio quilo, um pacote de
+const FIAMBRE = BR ? "presunto" : "fiambre", MASSA = BR ? "macarrão" : "massa";
+const PT_LISTE = [
+  ["1 kg tomates", "um quilo de tomates", "quilo", "tomates", ["um litro de tomates", "dois quilos de tomates", "cem gramas de tomates"]],
+  ["2 kg batatas", "dois quilos de batatas", "quilo", "patatas", ["doze quilos de batatas", "dois litros de batatas", "duzentos gramas de batatas"]],
+  ["½ kg queijo", "meio quilo de queijo", "quilo", "queso", ["um quilo de queijo", "meio litro de queijo", "cinco quilos de queijo"]],
+  ["1 kg laranjas", "um quilo de laranjas", "quilo", "naranjas", ["onze quilos de laranjas", "um litro de laranjas", "cem gramas de laranjas"]],
+  ["100 g " + FIAMBRE, "cem gramas de " + FIAMBRE, "grama", "jamon", ["cem quilos de " + FIAMBRE, "dez gramas de " + FIAMBRE, "mil gramas de " + FIAMBRE]],
+  ["200 g queijo", "duzentos gramas de queijo", "grama", "queso", ["doze gramas de queijo", "duzentos quilos de queijo", "dois quilos de queijo"]],
+  ["250 g " + FIAMBRE, "duzentos e cinquenta gramas de " + FIAMBRE, "grama", "jamon", ["vinte e cinco gramas de " + FIAMBRE, "duzentos e cinquenta quilos de " + FIAMBRE, "dois quilos e meio de " + FIAMBRE]],
+  ["500 g arroz", "quinhentos gramas de arroz", "grama", "arroz", ["cinquenta gramas de arroz", "quinhentos quilos de arroz", "cinco quilos de arroz"]],
+  ["1 l leite", "um litro de leite", "litro", "leche", ["um quilo de leite", "onze litros de leite", "meio litro de leite"]],
+  ["2 l água", "dois litros de água", "litro", "agua", ["doze litros de água", "dois quilos de água", "meio litro de água"]],
+  ["1 pac. " + MASSA, "um pacote de " + MASSA, "pacote", "nudeln", ["um litro de " + MASSA, "dez pacotes de " + MASSA, "uma lata de " + MASSA]],
+  ["1 pac. café", "um pacote de café", "pacote", "cafe", ["um litro de café", "onze pacotes de café", "uma garrafa de café"]]
+];
+// LE CAFE de Lisbonne : ce qu'on dit, ce qui se passe, le mot du corpus (ementa / cardápio, empregada de mesa / garçonete)
+const PT_CAFE = {
+  carta:    {dit: BR ? "O cardápio, por favor." : "A ementa, por favor.", fait: BR ? "Mark pede o cardápio." : "O Mark pede a ementa.", mot: BR ? {mot: "cardápio", genre: "o"} : {mot: "ementa", genre: "a"}},
+  pedir:    {dit: BR ? "Eu queria um café, por favor." : "Queria um café, por favor.", fait: BR ? "Mark pede um café." : "O Mark pede um café.", mot: {mot: "pedir", cat: "verbe"}},
+  camarera: {dit: BR ? "Aqui está." : "Aqui tem.", fait: BR ? "A garçonete traz o café." : "A empregada de mesa traz o café.", mot: {mot: BR ? "garçonete" : "empregada de mesa", genre: "a"}},
+  cuenta:   {dit: "A conta, por favor.", fait: BR ? "Mark pede a conta." : "O Mark pede a conta.", mot: {mot: "conta", genre: "a"}},
+  pagar:    {dit: "Posso pagar com cartão?", fait: BR ? "Mark paga com cartão." : "O Mark paga com cartão.", mot: {mot: "pagar", cat: "verbe"}},
+  // « para si » : le vouvoiement du Portugal ; « para você » au Bresil
+  propina:  {dit: BR ? "Isto é para você." : "Isto é para si.", fait: BR ? "Tomás deixa uma gorjeta." : "O Tomás deixa uma gorjeta.", mot: {mot: "gorjeta", genre: "a"}}
+};
+const PT_ROLES = {Kellner: {mot: BR ? "garçom" : "empregado de mesa", genre: "o"}, Kellnerin: {mot: BR ? "garçonete" : "empregada de mesa", genre: "a"},
+                  Mark: {mot: "cliente", genre: "o"}, Tomas: {mot: "cliente", genre: "o"}};
+const PT_ROLES_CHOIX = {m: [BR ? "o garçom" : "o empregado de mesa", "o cliente", "o cozinheiro"], f: [BR ? "a garçonete" : "a empregada de mesa", "a cliente", "a cozinheira"]};
+// LA CARTE d'un cafe de Lisbonne, en euros (la variante du Bresil garde Lisbonne, donc l'euro) ; le pastel de nata en plus
+const PT_CARTE = [
+  {cle: "cafe", mot: "café", genre: "o", carte: "Café", un: "um café", deux: "dois cafés", prix: 80},
+  {cle: "te", mot: "chá", genre: "o", carte: "Chá", un: "um chá", deux: "dois chás", prix: 120},
+  BR ? {cle: "zumo", mot: "suco", genre: "o", carte: "Suco de laranja", un: "um suco de laranja", deux: "dois sucos de laranja", prix: 250}
+     : {cle: "zumo", mot: "sumo", genre: "o", carte: "Sumo de laranja", un: "um sumo de laranja", deux: "dois sumos de laranja", prix: 250},
+  {cle: "agua", mot: "água", genre: "a", carte: "Água", un: "uma água", deux: "duas águas", prix: 100},
+  {cle: "cerveza", mot: "cerveja", genre: "a", carte: "Cerveja", un: "uma cerveja", deux: "duas cervejas", prix: 200},
+  {cle: "tarta", mot: "bolo", genre: "o", carte: "Bolo (fatia)", un: "uma fatia de bolo", deux: "duas fatias de bolo", prix: 260},
+  BR ? {cle: "bocadillo", mot: "misto-quente", genre: "o", carte: "Misto-quente", un: "um misto-quente", deux: "dois mistos-quentes", prix: 350}
+     : {cle: "bocadillo", mot: "tosta mista", genre: "a", carte: "Tosta mista", un: "uma tosta mista", deux: "duas tostas mistas", prix: 350},
+  {cle: "nata", mot: "pastel de nata", genre: "o", carte: "Pastel de nata", un: "um pastel de nata", deux: "dois pastéis de nata", prix: 130},
+  BR ? {cle: "helado", mot: "sorvete", genre: "o", carte: "Sorvete", un: "um sorvete", deux: "dois sorvetes", prix: 280}
+     : {cle: "helado", mot: "gelado", genre: "o", carte: "Gelado", un: "um gelado", deux: "dois gelados", prix: 280}
+];
+const PT = {
+  bravo: "Muito bem!", vrai: "Verdadeiro", faux: "Falso",
+  // « A Carmen não gosta de limão. », « O Javier não gosta da sopa. », « O Ben adora bolo. » (Bresil : sans article)
+  aime: g => maj(nomA(g.p)) + " " + grupoPt(g.r, g.a) + " " + objPt(g.a).x + ".",
+  // « O limão é azedo. », « A sopa está salgada. », « Os morangos são doces. »
+  copule: k => D.aliments[k].estar ? (PT_AL[k].pl ? "estão" : "está") : (PT_AL[k].pl ? "são" : "é"),
+  saveur(k, s){ return maj(PT_AL[k].court || PT_AL[k].vu) + " " + PT.copule(k) + " " + formePt(s || saveurDe(k), k) + "."; },
+  dit(k, r){ const pl = PT_AL[k].pl;
+    if (POSITIF(r)) return (pl ? "Estão " : "Está ") + PT_DELICIOSO[iPt(k)] + "!";
+    if (r === "nada") return PT.asco(k);
+    if (saveurDe(k)) return PT.trop(k, saveurDe(k));
+    return "Não gosto de " + PT_AL[k].gen + "."; },
+  // trop : « Está demasiado azedo! » (Portugal) / « Está azedo demais! » (Bresil)
+  trop: (k, s) => (PT_AL[k].pl ? "Estão " : "Está ") + (BR ? formePt(s, k) + " demais!" : "demasiado " + formePt(s, k) + "!"),
+  asco: k => (PT_AL[k].pl ? "Estão " : "Está ") + PT_NOJENTO[iPt(k)] + "!",
+  // « Sabe muito bem! » : bon, au Portugal ; « Que gostoso! » au Bresil
+  bueno: BR ? "Que gostoso!" : "Sabe muito bem!",
+  provar: (p, s) => maj(nomA(p)) + (BR ? " está provando algo " : " está a provar algo ") + PT_SAV[s][0] + ".",
+  cite: (p, t) => maj(nomA(p)) + " diz: " + (BR ? "“" + t + "”" : "«" + t + "»"),
+  quienSaveur: s => "Quem " + (BR ? "está provando" : "está a provar") + " algo " + PT_SAV[s][0] + "?",
+  quienPaire: (k, neg) => "Quem " + (neg ? "não " : "") + "gosta " + objPt(k).de + " " + objPt(k).x + "?",
+  dice: x => BR ? "O que " + nomA(x) + " diz?" : "O que diz " + nomA(x) + "?",
+  cantidad: d => "É ___ " + PT_CU[d].dit + ".",
+  queEs: "O que é?", lista: "Como se diz?",
+  np: (c, d) => PT_CT[c].art + " " + PT_CU[d].dit,
+  rol: p => maj(nomA(quiCafe(p))) + " é ___.",
+  carte: BR ? "Cardápio" : "Ementa", listeTitre: "Lista de compras",
+  // la commande : « A Carmen toma um café e uma tosta mista. Quanto é? »
+  commande(qui, items, cuenta){ const s = maj(qui.map(nomA).join(" e ")), pl = qui.length > 1;
+    return cuenta ? s + (pl ? " pedem" : " pede") + " a conta: " + liste(items, "pt") + ". Quanto é?" : s + (pl ? " tomam " : " toma ") + liste(items, "pt") + ". Quanto é?"; },
+  cuesta: it => "Quanto custa " + it.un + "?",
+  total: p => (p < 200 ? "É " : "São ") + prix(p) + ".", seul: (it, p) => maj(it.un) + " custa " + prix(p) + ".",
+  totalDit: p => (p < 200 ? "É " : "São ") + prixPt(p) + ".", seulDit: (it, p) => maj(it.un) + " custa " + prixPt(p) + ".",
+  et: " e ",
+  sabe: k => maj(PT_AL[k].court || PT_AL[k].vu) + (BR ? " tem gosto de " : " sabe a ") + PT_SABE[k].n + "."
+};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : APPRENDRE === "pt" ? PT : ES;
 // « un café y un trozo de tarta », « einen Kaffee und ein Stück Kuchen » : items = [[article de la carte, nombre]]
 function liste(items, l){
   const t = items.map(([it, n]) => n > 1 ? it.deux : it.un);
-  return t.length < 2 ? t[0] : t.slice(0, -1).join(", ") + (l === "de" ? " und " : " y ") + t[t.length - 1];
+  return t.length < 2 ? t[0] : t.slice(0, -1).join(", ") + (l === "de" ? " und " : l === "pt" ? " e " : " y ") + t[t.length - 1];
 }
 
 // ---------- les prix : « 4,90 € » a l'ecran, en lettres dans la voix (regle du 28 oct. : les nombres se disent) ----------
@@ -491,6 +650,7 @@ function nombre(n, l){
 function prixEnLettres(c){
   const e = Math.floor(c / 100), ct = c % 100;
   if (APPRENDRE === "es") return nombre(e, "es") + (e === 1 ? " euro" : " euros") + (ct ? " con " + nombre(ct, "es").replace(/ un$/, " uno").replace(/^un$/, "uno") : "");
+  if (APPRENDRE === "pt") return prixPt(c);
   return nombre(e, "de") + " Euro" + (ct ? " " + nombre(ct, "de").replace(/^ein$/, "eins") : "");
 }
 
@@ -547,6 +707,7 @@ let sensQ = null;
 function traduire(q){
   if (!TR || !q) return null;
   if (APPRENDRE === "en") return traduireEn(q);
+  if (q.sabe) return LANGUE === "fr" ? PT_SABE[q.sabe].fr : null;          // le portugais seulement
   if (q.aime) return TR.aime(q.aime);
   if (q.probar){ const s = saveurDe(q.probar.a), n = nom(q.probar.p);
     if (LANGUE === "de") return n + " probiert etwas " + D.saveurs[s].etwas + ".";
@@ -657,6 +818,17 @@ function textesAVoixEn(){
 }
 function textesAVoix(){
   if (APPRENDRE === "en") return textesAVoixEn();
+  if (APPRENDRE === "pt"){
+    const out = Object.values(D.decouverte.pt).map(x => x.texte);
+    GOUTS().forEach(g => { out.push(PT.aime(g), PT.dit(g.a, g.r), PT.cite(g.p, PT.dit(g.a, g.r)));
+      if (saveurDe(g.a)) out.push(PT.saveur(g.a), PT.provar(g.p, saveurDe(g.a)));
+      if (PT_SABE[g.a]) out.push(PT.sabe(g.a)); });
+    QTES().forEach(q => out.push(maj(PT.np(q.c, q.d)) + "."));
+    PT_LISTE.forEach(x => out.push(x[1], maj(x[1]) + "."));
+    CAFE().forEach(m => out.push(m.pt.dit, m.pt.fait));
+    Object.keys(PT_ROLES).forEach(p => out.push(PT.rol(p).replace("___", PT_ROLES[p].genre + " " + PT_ROLES[p].mot)));
+    return [...new Set(out.filter(Boolean))];
+  }
   const ph = D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"], out = Object.values(ph).map(x => x.texte);
   GOUTS().forEach(g => {
     out.push(L.aime(g), L.dit(g.a, g.r), APPRENDRE === "es" ? nom(g.p) + " dice: «" + L.dit(g.a, g.r) + "»" : nom(g.p) + " sagt: „" + L.dit(g.a, g.r) + "“");
@@ -754,8 +926,14 @@ function motsDuTheme(){
     for (const k in props) if (w[k] === undefined) w[k] = props[k];
   };
   Object.keys(D.aliments).forEach(k => ajouter(al(k).mot, al(k).genre, {a: k}));
-  Object.keys(D.saveurs).forEach(s => ajouter(APPRENDRE === "de" ? D.saveurs[s].de : D.saveurs[s].es[0], "adjectif", {s}));
-  if (APPRENDRE === "es"){
+  Object.keys(D.saveurs).forEach(s => ajouter(APPRENDRE === "de" ? D.saveurs[s].de : APPRENDRE === "pt" ? PT_SAV[s][0] : D.saveurs[s].es[0], "adjectif", {s}));
+  if (APPRENDRE === "pt"){
+    // gostar (v « gustar »), adorar (« encantar »), provar (« probar ») : les sortes communes les visent comme l'espagnol ;
+    // le gout d'une chose : saber (Portugal, « sabe a ») ou o gosto (Bresil, « tem gosto de »)
+    ajouter("delicioso", "adjectif", {r: "pos"}); ajouter("nojento", "adjectif", {r: "nada"});
+    ajouter("gostar", "verbe", {v: "gustar"}); ajouter("adorar", "verbe", {v: "encantar"}); ajouter("provar", "verbe", {v: "probar"});
+    if (BR) ajouter("gosto", "o", {v: "saber"}); else ajouter("saber", "verbe", {v: "saber"});
+  } else if (APPRENDRE === "es"){
     ajouter("rico", "adjectif", {r: "pos", sens: D.sens.es.rico}); ajouter("asqueroso", "adjectif", {r: "nada"});
     ajouter("gustar", "verbe", {v: "gustar"}); ajouter("encantar", "verbe", {v: "encantar"}); ajouter("probar", "verbe", {v: "probar"});
   } else {
@@ -767,7 +945,8 @@ function motsDuTheme(){
   CAFE().forEach(m => ajouter(m[APPRENDRE].mot.mot, m[APPRENDRE].mot.genre || m[APPRENDRE].mot.cat, {cafe: m.id}));
   Object.keys(D.roles).forEach(p => { const r = D.roles[p][APPRENDRE]; if (r) ajouter(r.mot, r.genre, {role: p}); });
   CARTE().forEach(it => ajouter(it.mot, it.genre, {m: it.cle}));
-  const UNITES_G = APPRENDRE === "es" ? {kilo: "el", gramo: "el", litro: "el"} : {Kilo: "das", Gramm: "das", Liter: "der", Pfund: "das", Packung: "die"};
+  const UNITES_G = APPRENDRE === "es" ? {kilo: "el", gramo: "el", litro: "el"} : APPRENDRE === "pt" ? {quilo: "o", grama: "o", litro: "o", pacote: "o"}
+                                      : {Kilo: "das", Gramm: "das", Liter: "der", Pfund: "das", Packung: "die"};
   Object.keys(UNITES_G).forEach(u => ajouter(u, UNITES_G[u], {u}));
   MOTS = [...par.values()];
   return MOTS;
@@ -790,8 +969,10 @@ function uneDegustation(ok, w){
 // jamais un leurre qui pourrait aussi etre vrai : qui aime ne dit pas « trop epice » de ce qu'il aime ; qui grimace
 // pourrait dire « c'est degoutant » ; qui n'aime pas ne dit ni « delicieux » ni « tres bon »
 const viseDit = w => g => !w || (w.r ? (w.r === "pos" ? POSITIF(g.r) : g.r === "nada") : w.s ? (g.r === "no" && saveurDe(g.a) === w.s) : g.a === w.a);
-const motSaveur = s => APPRENDRE === "de" ? D.saveurs[s].de : D.saveurs[s].es[0];
+const motSaveur = s => APPRENDRE === "de" ? D.saveurs[s].de : APPRENDRE === "pt" ? PT_SAV[s][0] : D.saveurs[s].es[0];
 function motDit(g){
+  if (APPRENDRE === "pt") return POSITIF(g.r) ? {mot: "delicioso", cat: "adjectif"} : g.r === "nada" ? {mot: "nojento", cat: "adjectif"}
+                               : saveurDe(g.a) ? {mot: motSaveur(saveurDe(g.a)), cat: "adjectif"} : {mot: al(g.a).mot, genre: al(g.a).genre};
   if (POSITIF(g.r)) return APPRENDRE === "es" ? {mot: "rico", cat: "adjectif", sens: D.sens.es.rico} : {mot: "lecker", cat: "adjectif"};
   if (g.r === "nada") return {mot: APPRENDRE === "es" ? "asqueroso" : "eklig", cat: "adjectif"};
   return saveurDe(g.a) ? {mot: motSaveur(saveurDe(g.a)), cat: "adjectif"} : {mot: al(g.a).mot, genre: al(g.a).genre};
@@ -810,7 +991,7 @@ const COMPAT = {agua: ["botella", "vaso", "taza", "litro"], leche: ["botella", "
 const autresContenants = q => (COMPAT[q.d] || []).filter(c => c !== q.c && c !== "poco" && !(D.voisinsContenants[q.c] || []).includes(c));
 // les deux moments ou l'on leve la main (la carte, l'addition) ne servent pas de leurre l'un a l'autre
 const VOIS_CAFE = {carta: ["cuenta"], cuenta: ["carta"]};
-const genreUnite = u => APPRENDRE === "es" ? "el" : ({Liter: "der", Packung: "die"}[u] || "das");
+const genreUnite = u => APPRENDRE === "es" ? "el" : APPRENDRE === "pt" ? "o" : ({Liter: "der", Packung: "die"}[u] || "das");
 // la carte du cafe, une ardoise a la craie
 const ardoise = () => '<div class="carteCafe"><div class="t">' + L.carte + '</div>' + CARTE().map(it => '<div class="l"><span>' + latam(it.carte) + '</span><span class="p">' + prix(it.prix) + '</span></div>').join("") + '</div>';
 
@@ -838,13 +1019,20 @@ function tradLeurresDit(g){
 const EX = {
   // « A Carmen ___ el limón. » le gusta / no le gusta / le gustan / no le gustan -- de : « Die Zitrone ___ Carmen. »
   aime(w){
-    const vise = g => !w || (w.a ? g.a === w.a : APPRENDRE === "es" ? (w.v === "gustar" && g.r !== "encanta") || (w.v === "encantar" && g.r === "encanta") : w.v === "schmecken");
+    const vise = g => !w || (w.a ? g.a === w.a : ESPT ? (w.v === "gustar" && g.r !== "encanta") || (w.v === "encantar" && g.r === "encanta") : w.v === "schmecken");
     if (w && !w.a && !w.v) return false;
     const g = uneDegustation(vise, w); if (!g) return false;
-    motQ = w || (APPRENDRE === "es" ? {mot: g.r === "encanta" ? "encantar" : "gustar", cat: "verbe"} : {mot: "schmecken", cat: "verbe"}); sensQ = {aime: g};
+    motQ = w || (APPRENDRE === "pt" ? {mot: g.r === "encanta" ? "adorar" : "gostar", cat: "verbe"}
+               : APPRENDRE === "es" ? {mot: g.r === "encanta" ? "encantar" : "gustar", cat: "verbe"} : {mot: "schmecken", cat: "verbe"}); sensQ = {aime: g};
     const pl = al(g.a).pl;
     let phrase, rep, leurres;
-    if (APPRENDRE === "es"){
+    if (APPRENDRE === "pt"){
+      // « A Carmen ___ limão. » não gosta de / não gosta (sans de) / gosta de... ; « adora de » est la faute d'adorar
+      const mal = r => r === "encanta" ? "adora de" : PT_VERBE[r] + (objPt(g.a).art ? " " + objPt(g.a).art : "");
+      const oppose = POSITIF(g.r) ? "no" : "gusta";
+      rep = grupoPt(g.r, g.a); phrase = maj(nomA(g.p)) + " ___ " + objPt(g.a).x + ".";
+      leurres = [mal(g.r), grupoPt(oppose, g.a), mal(oppose)];
+    } else if (APPRENDRE === "es"){
       rep = ES.verbe(g.r, pl); phrase = "A " + nom(g.p) + " ___ " + al(g.a).vu + ".";
       const pos = POSITIF(g.r), base = g.r === "encanta" ? "encanta" : g.r === "nada" ? "nada" : pos ? "gusta" : "no";
       const oppose = pos ? (g.r === "encanta" ? "no" : "no") : "gusta";
@@ -886,7 +1074,7 @@ const EX = {
     if (paire){
       const k = w && w.a ? w.a : hasard(PAIRES), deux = GOUTS().filter(g => g.a === k), neg = Math.random() < 0.5;
       bon = deux.find(g => POSITIF(g.r) !== neg); pris = deux; enonce = L.quienPaire(k, neg); phrase = L.aime(bon);
-      motQ = w || (APPRENDRE === "es" ? {mot: "gustar", cat: "verbe"} : {mot: "schmecken", cat: "verbe"}); sensQ = {aime: bon}; vuQ = null;
+      motQ = w || (APPRENDRE === "pt" ? {mot: "gostar", cat: "verbe"} : APPRENDRE === "es" ? {mot: "gustar", cat: "verbe"} : {mot: "schmecken", cat: "verbe"}); sensQ = {aime: bon}; vuQ = null;
     } else {
       const s = w && w.s ? w.s : hasard(Object.keys(D.saveurs));
       bon = uneDegustation(g => saveurDe(g.a) === s, w);
@@ -894,7 +1082,7 @@ const EX = {
       pris = [bon]; const vus = new Set([s]);
       for (const a of autres){ if (pris.length >= 4) break; if (!vus.has(saveurDe(a.a))){ vus.add(saveurDe(a.a)); pris.push(a); } }
       enonce = L.quienSaveur(s); phrase = L.saveur(bon.a);
-      motQ = w || {mot: APPRENDRE === "de" ? D.saveurs[s].de : D.saveurs[s].es[0], cat: "adjectif"}; sensQ = {saveur: bon.a};
+      motQ = w || {mot: APPRENDRE === "de" ? D.saveurs[s].de : APPRENDRE === "pt" ? PT_SAV[s][0] : D.saveurs[s].es[0], cat: "adjectif"}; sensQ = {saveur: bon.a};
     }
     $("zone").innerHTML = '<p class="consigne">' + T("quien") + '</p><div class="enonce centre">' + cible(enonce) + '</div><div class="visages" id="choix"></div><p class="retourMsg" id="msg"></p>';
     const ch = $("choix"); let bouton;
@@ -915,9 +1103,10 @@ const EX = {
   sabor(w){
     if (w && !w.s && !(w.a && saveurDe(w.a))) return false;
     const g = uneDegustation(g => saveurDe(g.a) && (!w || (w.s ? saveurDe(g.a) === w.s : g.a === w.a)), w); if (!g) return false;
-    const s = saveurDe(g.a); motQ = w || {mot: APPRENDRE === "de" ? D.saveurs[s].de : D.saveurs[s].es[0], cat: "adjectif"}; sensQ = {saveur: g.a};
-    const forme = x => APPRENDRE === "de" ? D.saveurs[x].de : formeEs(x, g.a);
-    const juste = L.saveur(g.a), sujet = APPRENDRE === "de" ? maj(g.a === "picante" ? "das Essen" : al(g.a).nom) + " " + (al(g.a).pl ? "sind" : "ist") : maj(al(g.a).court || al(g.a).vu) + " " + ES.copule(g.a);
+    const s = saveurDe(g.a); motQ = w || {mot: APPRENDRE === "de" ? D.saveurs[s].de : APPRENDRE === "pt" ? PT_SAV[s][0] : D.saveurs[s].es[0], cat: "adjectif"}; sensQ = {saveur: g.a};
+    const forme = x => APPRENDRE === "de" ? D.saveurs[x].de : APPRENDRE === "pt" ? formePt(x, g.a) : formeEs(x, g.a);
+    const juste = L.saveur(g.a), sujet = APPRENDRE === "de" ? maj(g.a === "picante" ? "das Essen" : al(g.a).nom) + " " + (al(g.a).pl ? "sind" : "ist")
+                : APPRENDRE === "pt" ? maj(PT_AL[g.a].court || PT_AL[g.a].vu) + " " + PT.copule(g.a) : maj(al(g.a).court || al(g.a).vu) + " " + ES.copule(g.a);
     ecran("sabor", portrait(g.id), avecTrou(sujet + " ___."));
     const rep = forme(s);
     TRAD_CHOIX = {}; Object.keys(D.saveurs).forEach(x => { TRAD_CHOIX[forme(x)] = tradSaveur(x); });
@@ -977,6 +1166,7 @@ const EX = {
   unidad(w){
     if (w && !w.u) return false;
     const FORMES = APPRENDRE === "es" ? [["kilo", "kilos"], ["gramo", "gramos"], ["litro", "litros"]]
+                 : APPRENDRE === "pt" ? [["quilo", "quilos"], ["grama", "gramas"], ["litro", "litros"], ["pacote", "pacotes"]]
                                       : [["Kilo", "Kilo"], ["Gramm", "Gramm"], ["Liter", "Liter"], ["Pfund", "Pfund"], ["Packung", "Packungen"]];
     const l = D.liste[APPRENDRE].filter(x => !w || x[2] === w.u); if (!l.length) return false;
     const x = hasard(l), [ecrit, dit, u] = x, mots = dit.split(" ");
@@ -1004,7 +1194,8 @@ const EX = {
       const m = hasard(CAFE().filter(x => x.gens.includes(p)));
       motQ = w || {mot: r.mot, genre: r.genre}; sensQ = {role: {p, mot: r.mot}}; vuQ = null;
       const rep = latam(r.genre + " " + r.mot), tous = D.rolesChoix[APPRENDRE][D.sexe[p]];
-      const ROLE_DE = {"el camarero": "camarero", "la camarera": "camarera", "el cliente": "cliente", "la cliente": "cliente", "der Kellner": "Kellner", "die Kellnerin": "Kellnerin"};
+      const ROLE_DE = {"el camarero": "camarero", "la camarera": "camarera", "el cliente": "cliente", "la cliente": "cliente", "der Kellner": "Kellner", "die Kellnerin": "Kellnerin",
+                       "o empregado de mesa": "camarero", "a empregada de mesa": "camarera", "o garçom": "camarero", "a garçonete": "camarera", "o cliente": "cliente", "a cliente": "cliente"};
       if (TR) { TRAD_CHOIX = {}; tous.forEach(x => { const k = ROLE_DE[x]; if (k && ROLES_TR[k] && ROLES_TR[k][LANGUE]) TRAD_CHOIX[latam(x)] = ROLES_TR[k][LANGUE]; }); }
       ecran("cafeQui", large("cafe-" + m.id), avecTrou(L.rol(p)));
       boutons($("choix"), options(rep, tous.map(latam), 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, L.rol(p).replace("___", rep)); });
@@ -1023,7 +1214,7 @@ const EX = {
       sensQ = {cafe: {id: m.id, fait: true}};
       const rep = latam(m[APPRENDRE].fait);
       TRAD_CHOIX = {}; CAFE().forEach(x => { if (x.tr[LANGUE] && LANGUE !== APPRENDRE) TRAD_CHOIX[latam(x[APPRENDRE].fait)] = x.tr[LANGUE][1]; });
-      ecran("cafeFait", large("cafe-" + m.id), APPRENDRE === "es" ? "¿Qué pasa?" : "Was passiert?", true);
+      ecran("cafeFait", large("cafe-" + m.id), APPRENDRE === "es" ? "¿Qué pasa?" : APPRENDRE === "pt" ? (BR ? "O que está acontecendo?" : "O que se passa?") : "Was passiert?", true);
       boutons($("choix"), options(rep, autres.map(x => latam(x[APPRENDRE].fait)), 3), rep, ok => juger(ok, rep, null));
     }
     return true;
@@ -1060,10 +1251,10 @@ const EX = {
   // main levee), une fausse lecture ecrite a la main.
   vraifaux(w){
     if (w && w.v === "mogen" && APPRENDRE !== "de") return false;
-    const domaines = !w ? ["gout", "gout", "saveur", "probar", "dit", "qte", "liste", "carte", "cafe", "role"]
+    const domaines = !w ? ["gout", "gout", "saveur", "probar", "dit", "qte", "liste", "carte", "cafe", "role"].concat(APPRENDRE === "pt" ? ["sabe"] : [])
       : [].concat(w.a || (w.v && w.v !== "probar") ? ["gout"] : [], w.a && saveurDe(w.a) || w.s ? ["saveur"] : [], w.v === "probar" || w.s ? ["probar"] : [],
                   w.r || w.a || w.s ? ["dit"] : [], w.c && w.c !== "poco" || w.d ? ["qte"] : [], w.u ? ["liste"] : [], w.m ? ["carte"] : [],
-                  w.cafe ? ["cafe"] : [], w.role ? ["role"] : []);
+                  w.cafe ? ["cafe"] : [], w.role ? ["role"] : [], w.v === "saber" || (w.a && APPRENDRE === "pt" && PT_SABE[w.a]) ? ["sabe"] : []);
     for (const domaine of melanger(domaines)){
       const q = VF[domaine](w, Math.random() < 0.5);
       if (!q) continue;
@@ -1073,15 +1264,27 @@ const EX = {
       return true;
     }
     return false;
+  },
+  // LE PORTUGAIS SEULEMENT : le gout d'une chose. « A sopa ___ sal. » sabe a (Portugal) / tem gosto de (Bresil) ; les
+  // leurres : la preposition fausse (sabe de, tem gosto a) et gostar de, qui veut dire aimer
+  sabe(w){
+    if (APPRENDRE !== "pt" || (w && !(w.a && PT_SABE[w.a]) && w.v !== "saber")) return false;
+    const g = uneDegustation(g => PT_SABE[g.a] && (!w || !w.a || g.a === w.a), w); if (!g) return false;
+    motQ = w || (BR ? {mot: "gosto", genre: "o"} : {mot: "saber", cat: "verbe"}); sensQ = {sabe: g.a};
+    const rep = BR ? "tem gosto de" : "sabe a", leurres = BR ? ["tem gosto a", "gosta de", "é de"] : ["sabe de", "gosta de", "é a"];
+    const phrase = maj(PT_AL[g.a].court || PT_AL[g.a].vu) + " ___ " + PT_SABE[g.a].n + ".";
+    ecran("sabe", portrait(g.id), avecTrou(phrase));
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep)); });
+    return true;
   }
 };
 // les domaines du vrai ou faux : chacun rend {image, phrase, juste, vrai} (ou false s'il ne peut viser ce mot)
 const VF = {
   gout(w, vrai){
-    const vise = g => !w || (w.a ? g.a === w.a : APPRENDRE === "es" ? (w.v === "gustar" ? g.r !== "encanta" : w.v === "encantar" ? g.r === "encanta" : false)
+    const vise = g => !w || (w.a ? g.a === w.a : ESPT ? (w.v === "gustar" ? g.r !== "encanta" : w.v === "encantar" ? g.r === "encanta" : false)
                        : w.v === "lieben" ? g.r === "encanta" && al(g.a).gen : w.v === "mogen" ? g.r !== "encanta" && al(g.a).gen : w.v === "schmecken");
     const g = uneDegustation(vise, w); if (!g) return false;
-    motQ = w || (APPRENDRE === "es" ? {mot: "gustar", cat: "verbe"} : {mot: al(g.a).gen ? "mögen" : "schmecken", cat: "verbe"}); sensQ = {aime: g};
+    motQ = w || (APPRENDRE === "pt" ? {mot: "gostar", cat: "verbe"} : APPRENDRE === "es" ? {mot: "gustar", cat: "verbe"} : {mot: al(g.a).gen ? "mögen" : "schmecken", cat: "verbe"}); sensQ = {aime: g};
     // le faux : la reaction contraire, a la meme personne et au meme aliment
     const juste = L.aime(g), contraire = Object.assign({}, g, {r: POSITIF(g.r) ? "no" : "gusta"});
     return {image: portrait(g.id), phrase: vrai ? juste : L.aime(contraire), juste, vrai};
@@ -1095,8 +1298,8 @@ const VF = {
   // « Carmen prueba algo ácido. » / « Carmen probiert etwas Saures. »
   probar(w, vrai){
     const g = uneDegustation(g => saveurDe(g.a) && (!w || !w.s || saveurDe(g.a) === w.s), w); if (!g) return false;
-    motQ = w || (APPRENDRE === "es" ? {mot: "probar", cat: "verbe"} : {mot: "probieren", cat: "verbe"}); sensQ = {probar: g};
-    const dit = s => APPRENDRE === "es" ? nom(g.p) + " prueba algo " + D.saveurs[s].es[0] + "." : nom(g.p) + " probiert etwas " + D.saveurs[s].etwas + ".";
+    motQ = w || (APPRENDRE === "pt" ? {mot: "provar", cat: "verbe"} : APPRENDRE === "es" ? {mot: "probar", cat: "verbe"} : {mot: "probieren", cat: "verbe"}); sensQ = {probar: g};
+    const dit = s => APPRENDRE === "pt" ? PT.provar(g.p, s) : APPRENDRE === "es" ? nom(g.p) + " prueba algo " + D.saveurs[s].es[0] + "." : nom(g.p) + " probiert etwas " + D.saveurs[s].etwas + ".";
     const juste = dit(saveurDe(g.a));
     return {image: portrait(g.id), phrase: vrai ? juste : dit(hasard(Object.keys(D.saveurs).filter(s => s !== saveurDe(g.a)))), juste, vrai};
   },
@@ -1104,7 +1307,7 @@ const VF = {
   dit(w, vrai){
     const g = uneDegustation(viseDit(w), w); if (!g) return false;
     motQ = w || motDit(g); sensQ = {dit: {a: g.a, r: g.r}};
-    const cite = t => APPRENDRE === "es" ? nom(g.p) + " dice: «" + t + "»" : nom(g.p) + " sagt: „" + t + "“", juste = L.dit(g.a, g.r);
+    const cite = t => APPRENDRE === "pt" ? PT.cite(g.p, t) : APPRENDRE === "es" ? nom(g.p) + " dice: «" + t + "»" : nom(g.p) + " sagt: „" + t + "“", juste = L.dit(g.a, g.r);
     return {image: portrait(g.id), phrase: cite(vrai ? juste : hasard(leurresDit(g))), juste: cite(juste), vrai};
   },
   qte(w, vrai){
@@ -1145,6 +1348,14 @@ const VF = {
     motQ = w || {mot: r.mot, genre: r.genre}; sensQ = {role: {p, mot: r.mot}}; vuQ = null;
     const tous = D.rolesChoix[APPRENDRE][D.sexe[p]], bon = r.genre + " " + r.mot, juste = latam(L.rol(p).replace("___", bon));
     return {image: large("cafe-" + m.id), phrase: vrai ? juste : latam(L.rol(p).replace("___", hasard(tous.filter(x => x !== bon)))), juste, vrai};
+  },
+  // LE PORTUGAIS SEULEMENT : « A sopa sabe a sal. » ; le faux : « A sopa sabe a açúcar. »
+  sabe(w, vrai){
+    if (APPRENDRE !== "pt") return false;
+    const g = uneDegustation(g => PT_SABE[g.a] && (!w || !w.a || g.a === w.a), w); if (!g) return false;
+    motQ = w || (BR ? {mot: "gosto", genre: "o"} : {mot: "saber", cat: "verbe"}); sensQ = {sabe: g.a};
+    const juste = PT.sabe(g.a);
+    return {image: portrait(g.id), phrase: vrai ? juste : juste.replace(/ [^ ]+\.$/, " " + PT_SABE[g.a].faux + "."), juste, vrai};
   }
 };
 // ---------- L'ANGLAIS : ses mots et ses sortes (4 nov. 2026) ----------
@@ -1545,12 +1756,13 @@ const VF_EN = {
 };
 if (APPRENDRE === "en") Object.assign(EX, EX_EN);
 // les sortes de la langue apprise : « mögen / kein » n'existe qu'en allemand ; l'anglais a les siennes (EX_EN)
-const SORTES = APPRENDRE === "en" ? Object.keys(EX_EN) : Object.keys(EX).filter(x => APPRENDRE === "de" || x !== "mogen");
+// le portugais : les sortes de l'espagnol, plus « sabe » (sabe a / tem gosto de), qui n'existe qu'en portugais
+const SORTES = APPRENDRE === "en" ? Object.keys(EX_EN) : Object.keys(EX).filter(x => (APPRENDRE === "de" || x !== "mogen") && (APPRENDRE === "pt" || x !== "sabe"));
 
 // ---------- la decouverte : trois planches a toucher, chaque element se voit, s'entend et se traduit ----------
 function decouvrir(){
   $("bas").hidden = true; $("compte").textContent = ""; $("barre").style.width = "0%";
-  const z = $("zone"), phrases = APPRENDRE === "en" ? phrasesEn() : D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  const z = $("zone"), phrases = APPRENDRE === "en" ? phrasesEn() : D.decouverte[APPRENDRE === "de" ? "de" : APPRENDRE === "pt" ? "pt" : LATAM ? "latam" : "es"];
   z.innerHTML = '<div class="onglets" role="tablist"><button type="button" role="tab" id="oG">' + T("ongletG") + '</button><button type="button" role="tab" id="oQ">' + T("ongletQ")
               + '</button><button type="button" role="tab" id="oC">' + T("ongletC") + '</button></div>'
               + '<p class="consigne" id="intro"></p><div class="planche" id="planche"></div><div class="fiche" id="fiche"></div><p class="regle" id="regle"></p>';
@@ -1564,12 +1776,15 @@ function decouvrir(){
     C: {liste: CAFE().map(m => Object.assign({}, m, {id: "cafe-" + m.id, cle: m.id})), larges: true, intro: "introC", regle: GB ? "regleCgb" : "regleCen", note: GB ? "bonCgb" : "bonCus",
         mot: m => EN_CAFE[m.cle].fait, sous: () => null, trad: m => traduireEn({cafe: {id: m.cle}})}
   } : {
-    G: {liste: GOUTS(), larges: false, intro: "introG", regle: APPRENDRE === "de" ? "regleGde" : "regleGes",
+    G: {liste: GOUTS(), larges: false, intro: "introG", regle: APPRENDRE === "de" ? "regleGde" : APPRENDRE === "pt" ? (BR ? "regleGbr" : "regleGpt") : "regleGes",
+        note: APPRENDRE === "pt" ? (BR ? "bonGbr" : "bonGpt") : undefined,
         mot: g => L.dit(g.a, g.r), sous: g => null, trad: g => traduire({aime: g}) || (TR ? null : glose({mot: al(g.a).mot, genre: al(g.a).genre}))},
-    Q: {liste: QTES(), larges: true, intro: "introQ", regle: APPRENDRE === "de" ? "regleQde" : "regleQes",
-        mot: q => q.c === "poco" ? L.np(q.c, q.d) : (APPRENDRE === "de" ? D.contenants[q.c].de.genre + " " + D.contenants[q.c].de.mot : D.contenants[q.c].es.genre + " " + D.contenants[q.c].es.mot),
+    Q: {liste: QTES(), larges: true, intro: "introQ", regle: APPRENDRE === "de" ? "regleQde" : APPRENDRE === "pt" ? "regleQpt" : "regleQes",
+        mot: q => q.c === "poco" ? L.np(q.c, q.d) : (APPRENDRE === "de" ? D.contenants[q.c].de.genre + " " + D.contenants[q.c].de.mot
+               : APPRENDRE === "pt" ? PT_CT[q.c].genre + " " + PT_CT[q.c].mot : D.contenants[q.c].es.genre + " " + D.contenants[q.c].es.mot),
         sous: q => null, trad: q => traduire({qte: q}) || (TR ? null : glose(q.c !== "poco" ? D.contenants[q.c][APPRENDRE] : D.contenus[q.d][APPRENDRE]))},
-    C: {liste: CAFE().map(m => Object.assign({}, m, {id: "cafe-" + m.id, cle: m.id})), larges: true, intro: "introC", regle: APPRENDRE === "de" ? "regleCde" : "regleCes",
+    C: {liste: CAFE().map(m => Object.assign({}, m, {id: "cafe-" + m.id, cle: m.id})), larges: true, intro: "introC", regle: APPRENDRE === "de" ? "regleCde" : APPRENDRE === "pt" ? (BR ? "regleCbr" : "regleCpt") : "regleCes",
+        note: APPRENDRE === "pt" ? (BR ? "bonCbr" : "bonCpt") : undefined,
         mot: m => latam(m[APPRENDRE].fait), sous: m => null, trad: m => traduire({cafe: {id: m.cle}}) || (TR ? null : glose(m[APPRENDRE].mot))}
   };
   const montrer = (o, it) => {
@@ -1694,6 +1909,28 @@ $("titre").textContent = T("titre");
 document.title = T("titre");
 fetch("manger/manger.json?v=1").then(r => r.json()).then(d => {
   D = d;
+  if (APPRENDRE === "pt"){
+    // les donnees portugaises a cote de l'espagnol et de l'allemand : les sortes communes les lisent par [APPRENDRE]
+    Object.keys(PT_AL).forEach(k => { D.aliments[k].pt = PT_AL[k]; });
+    Object.keys(PT_CT).forEach(c => { D.contenants[c].pt = PT_CT[c]; });
+    Object.keys(PT_CU).forEach(c => { D.contenus[c].pt = PT_CU[c]; });
+    D.carte.pt = PT_CARTE; D.liste.pt = PT_LISTE; D.rolesChoix.pt = PT_ROLES_CHOIX;
+    D.cafe.forEach(m => { m.pt = PT_CAFE[m.id]; });
+    Object.keys(D.roles).forEach(p => { D.roles[p].pt = PT_ROLES[p] || null; });
+    // le pastel de nata (Lisbonne) et le paquet n'ont pas de traduction dans manger.json
+    D.tradCarte.nata = {fr: ["un pastel de nata", "deux pastéis de nata"], en: ["a custard tart", "two custard tarts"], pt: ["um pastel de nata", "dois pastéis de nata"], de: ["ein Pastel de Nata", "zwei Pastéis de Nata"]};
+    // la tosta mista (le misto-quente) est un croque-monsieur, pas le sandwich de l'espagnol
+    D.tradCarte.bocadillo = Object.assign({}, D.tradCarte.bocadillo, {fr: ["un croque-monsieur", "deux croque-monsieur"], en: ["a toasted ham and cheese sandwich", "two toasted ham and cheese sandwiches"]});
+    D.unites.pacote = {fr: "paquet de", en: "packet of", pt: "pacote de"};
+    ["empregado de mesa", "garçom"].forEach(x => { ROLES_TR[x] = ROLES_TR.camarero; });
+    ["empregada de mesa", "garçonete"].forEach(x => { ROLES_TR[x] = ROLES_TR.camarera; });
+    // la serveuse : « cabelo encaracolado » au Portugal (« cacheado », au Bresil, est deja dans manger.json)
+    if (!BR) D.anonymes.Kellnerin.pt = "a mulher de cabelo encaracolado";
+    D.decouverte.pt = {};
+    GOUTS().forEach(g => { D.decouverte.pt[g.id] = {texte: PT.aime(g)}; });
+    QTES().forEach(q => { D.decouverte.pt[q.id] = {texte: maj(PT.np(q.c, q.d)) + "."}; });
+    CAFE().forEach(m => { D.decouverte.pt["cafe-" + m.id] = {texte: m.pt.dit}; });
+  }
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>

@@ -23,6 +23,10 @@
   off, les noms toujours pluriels (jeans, pants, shorts, sunglasses : a pair of, they are), l'ordre des adjectifs (a
   warm red scarf), le conseil (What should I wear? It's cold: wear a scarf!), les reponses courtes (Yes, she is. /
   No, he doesn't.). Americain / britannique : pants / trousers, sneakers / trainers, gray / grey...
+  LE PORTUGAIS (lot P3, 11 nov. 2026, apprendre=pt, variante=br) : les memes images, ses phrases a lui (objet PO) -- ce
+  qu'on porte au progressif (a Anna está a usar… ; au Bresil Anna está usando…, le gerondif), la couleur accordee apres
+  le vetement, pôr / tirar et la conjugaison de pôr (ponho, pões, põe), l'article devant le prenom au Portugal (o casaco
+  da Carmen). Les vetements du Bresil : camiseta, suéter, jaqueta, calça, calça jeans, short, terno, tênis ; cinza, marrom.
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -122,8 +126,10 @@ button:disabled{cursor:default}
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (4 nov. 2026, « il manque beaucoup de themes en anglais ») : les memes images, ses phrases a lui ; variante=gb
-const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+// le portugais (lot P3, 11 nov. 2026) : les memes images, ses phrases a lui ; variante=br pour le Bresil
+const APPRENDRE = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
 const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -194,7 +200,12 @@ const TEXTES = {
   pluriel:   {fr:"a, a pair of ; is ou are ? Certains vêtements sont toujours au pluriel."},
   ordre:     {fr:"Choisis le bon ordre : la qualité, puis la couleur, puis le vêtement."},
   temps:     {fr:"En ce moment ou d'habitude ? is wearing ou wears."},
-  courte:    {fr:"Regarde la photo et réponds comme en anglais : Yes, she is. No, he doesn't."}
+  courte:    {fr:"Regarde la photo et réponds comme en anglais : Yes, she is. No, he doesn't."},
+  // le portugais seulement (son interface est en francais)
+  reglePt:   {fr:"La couleur vient après le vêtement et s'accorde avec lui : um casaco vermelho, uma saia vermelha, uns sapatos vermelhos, umas botas vermelhas (azul et verde ne changent qu'au pluriel, cor-de-rosa jamais). Ce qu'on porte en ce moment : estar a + l'infinitif (a Anna está a usar um vestido azul). Mettre, enlever : pôr, tirar (o Mark põe o casaco, tira o casaco) ; pôr est irrégulier : ponho, pões, põe, pomos, põem."},
+  regleBr:   {fr:"La couleur vient après le vêtement et s'accorde avec lui : um casaco vermelho, uma saia vermelha, sapatos vermelhos, botas vermelhas (azul, verde et marrom ne changent qu'au pluriel, cinza et cor-de-rosa jamais). Ce qu'on porte en ce moment : estar + le gérondif (Anna está usando um vestido azul). Mettre, enlever : pôr, tirar (Mark põe o casaco, tira o casaco) ; pôr est irrégulier : eu ponho, você põe, nós pomos, eles põem."},
+  bonPt:     {fr:"Bon à savoir : tu apprends le portugais du Portugal. Au Brésil, on dit camiseta (ici t-shirt), suéter (ici camisola), jaqueta (ici blusão), calça et calça jeans (ici calças, calças de ganga), short (ici calções), terno (ici fato), tênis (ici ténis), cinza (ici cinzento) et marrom (ici castanho). Et « está usando » au lieu de « está a usar », sans article devant le prénom : Anna, et non a Anna."},
+  bonBr:     {fr:"Bon à savoir : tu apprends le portugais du Brésil. Au Portugal, on dit t-shirt (ici camiseta), camisola (ici suéter), blusão (ici jaqueta), calças et calças de ganga (ici calça, calça jeans), calções (ici short), fato (ici terno), ténis (ici tênis), cinzento (ici cinza) et castanho (ici marrom). Et « está a usar » au lieu de « está usando », avec l'article devant le prénom : a Anna, o casaco da Carmen. Attention : au Portugal, um fato est un costume ; au Brésil, un fait."}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
 
@@ -203,7 +214,7 @@ let D = null, TENUES = [];                  // TENUES : [cle, tenue], les tenues
 const nom = p => (D.noms || {})[p] || p;
 const fem = p => D.sexe[p] === "f";
 const PI = x => D.pieces[x];
-const pluriel = x => APPRENDRE === "de" ? PI(x).de[3] === "p" : APPRENDRE === "en" ? EN_P[x][1] !== "s" : PI(x).es[2] === "p";
+const pluriel = x => APPRENDRE === "de" ? PI(x).de[3] === "p" : APPRENDRE === "en" ? EN_P[x][1] !== "s" : APPRENDRE === "pt" ? PO.pl(x) : PI(x).es[2] === "p";
 const vus = t => t.pieces.filter(x => !(x[2] && x[2].q === false));             // les pieces qu'on peut nommer
 const loinC = (a, b) => a !== b && !(D.voisines[a] || []).includes(b) && !(D.voisines[b] || []).includes(a);
 const famsDe = x => PI(x).fam;
@@ -375,7 +386,91 @@ const EN = {
               quita: {diario: "At home,", lluvia: "At home,", frio: "At home,", calor: "At the beach,"}},
   conjFormes: ["put on", "puts on", "take off", "takes off"]
 };
-const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
+// LE PORTUGAIS (lot P3, 11 nov. 2026). Les phrases enseignent le portugais, fabriquees depuis les memes tenues : ce
+// qu'on porte en ce moment, au progressif -- « A Anna está a usar uma capa de chuva amarela » au Portugal, « Anna está
+// usando… » au Bresil (le gerondif) --, la couleur accordee apres le vetement (uma saia vermelha, umas botas vermelhas),
+// pôr / tirar pour mettre et enlever, l'article devant le prenom au Portugal (a Anna, da Carmen), jamais au Bresil.
+// Les vetements qui changent au Bresil : t-shirt / camiseta, camisola / suéter, blusão / jaqueta, calças / calça,
+// calças de ganga / calça jeans, calções / short, fato / terno, ténis / tênis ; cinzento / cinza, castanho / marrom.
+// [article, nom] tels qu'ils s'ecrivent ; le pluriel se lit sur l'article (os, as)
+const PT_PECAS = {camiseta: BR ? ["a", "camiseta"] : ["a", "t-shirt"], camisa:["a", "camisa"], blusa:["a", "blusa"], jersey: BR ? ["o", "suéter"] : ["a", "camisola"],
+  chaqueta: BR ? ["a", "jaqueta"] : ["o", "blusão"], abrigo:["o", "casaco"], impermeable:["a", "capa de chuva"], pantalon: BR ? ["a", "calça"] : ["as", "calças"],
+  vaqueros: BR ? ["a", "calça jeans"] : ["as", "calças de ganga"], cortos: BR ? ["o", "short"] : ["os", "calções"],
+  banador: BR ? ["o", "calção de banho"] : ["os", "calções de banho"], falda:["a", "saia"], vestido:["o", "vestido"], traje: BR ? ["o", "terno"] : ["o", "fato"],
+  corbata:["a", "gravata"], zapatos:["os", "sapatos"], zapatillas: BR ? ["os", "tênis"] : ["os", "ténis"], botas:["as", "botas"], sandalias:["as", "sandálias"],
+  sombrero:["o", "chapéu"], gorra:["o", "boné"], gorro:["o", "gorro"], bufanda:["o", "cachecol"], guantes:["as", "luvas"], gafasSol:["os", "óculos de sol"],
+  paraguas:["o", "guarda-chuva"]};
+// les mots a la forme du corpus portugais (portugais/datos ; datos-br) : [mot, genre] -- blusão / jaqueta, calções / short,
+// calções de banho / calção de banho, fato / terno et calça (Bresil) manquent encore (proposes dans les ajouts)
+const PT_MOT = {camiseta: BR ? ["camiseta", "a"] : ["t-shirt", "a"], camisa:["camisa", "a"], blusa:["blusa", "a"], jersey: BR ? ["suéter", "o"] : ["camisola", "a"],
+  chaqueta: BR ? ["jaqueta", "a"] : ["blusão", "o"], abrigo:["casaco", "o"], impermeable:["capa de chuva", "a"], pantalon: BR ? ["calça", "a"] : ["calças", "as"],
+  vaqueros: BR ? ["calça jeans", "a"] : ["calças de ganga", "as"], cortos: BR ? ["short", "o"] : ["calções", "os"],
+  banador: BR ? ["calção de banho", "o"] : ["calções de banho", "os"], falda:["saia", "a"], vestido:["vestido", "o"], traje: BR ? ["terno", "o"] : ["fato", "o"],
+  corbata:["gravata", "a"], zapatos:["sapato", "o"], zapatillas: BR ? ["tênis", "os"] : ["ténis", "os"], botas:["bota", "a"], sandalias:["sandália", "a"],
+  sombrero:["chapéu", "o"], gorra:["boné", "o"], gorro:["gorro", "o"], bufanda:["cachecol", "o"], guantes:["luva", "a"], gafasSol:["óculos de sol", "os"],
+  paraguas:["guarda-chuva", "o"]};
+// les couleurs : [m. sing., f. sing., m. plur., f. plur.] ; cinza et cor-de-rosa ne changent pas
+const PT_COR = {rojo:["vermelho", "vermelha", "vermelhos", "vermelhas"], azul:["azul", "azul", "azuis", "azuis"], verde:["verde", "verde", "verdes", "verdes"],
+  amarillo:["amarelo", "amarela", "amarelos", "amarelas"], negro:["preto", "preta", "pretos", "pretas"], blanco:["branco", "branca", "brancos", "brancas"],
+  gris: BR ? ["cinza", "cinza", "cinza", "cinza"] : ["cinzento", "cinzenta", "cinzentos", "cinzentas"],
+  marron: BR ? ["marrom", "marrom", "marrons", "marrons"] : ["castanho", "castanha", "castanhos", "castanhas"], rosa:["cor-de-rosa", "cor-de-rosa", "cor-de-rosa", "cor-de-rosa"]};
+// a Anna, o Mark (au Portugal) ; Anna, Mark (au Bresil). En tete de phrase : A Anna, O Mark
+const artNom = (p, debut) => BR ? nom(p) : (debut ? (fem(p) ? "A " : "O ") : (fem(p) ? "a " : "o ")) + nom(p);
+// {P} dans une phrase : en tete (ou apres un point), avec la majuscule
+const avecP = (s, p) => s.replace(/(^|\. )\{P\}/, (m, d) => d + artNom(p, true)).replace("{P}", artNom(p, false));
+const PO = {
+  bravo: "Muito bem!", vrai: "Verdadeiro", faux: "Falso",
+  pl: x => ["os", "as"].includes(PT_PECAS[x][0]),
+  fem: x => ["a", "as"].includes(PT_PECAS[x][0]),
+  couleur(x, c){ return PT_COR[c][(PO.pl(x) ? 2 : 0) + (PO.fem(x) ? 1 : 0)]; },
+  // « um casaco preto », « umas botas verdes » (au Bresil « botas verdes », sans article au pluriel) ; defini : « o casaco »
+  item(x, c, defini){
+    const [a, n] = PT_PECAS[x], p = PO.pl(x), f = PO.fem(x);
+    const art = defini ? a : p ? (BR ? "" : f ? "umas" : "uns") : f ? "uma" : "um";
+    return (art ? art + " " : "") + n + (c ? " " + PO.couleur(x, c) : "");
+  },
+  liste: l => l.length === 1 ? l[0] : l.slice(0, -1).join(", ") + " e " + l[l.length - 1],
+  usar: BR ? "está usando" : "está a usar",
+  sit: {lluvia: BR ? "Está chovendo." : "Está a chover.", frio: "Está frio.", calor: "Está calor.", boda: "{P} vai a um casamento.",
+        deporte: "{P} vai fazer " + (BR ? "esporte." : "desporto.")},
+  // « Está a chover. A Anna está a usar uma capa de chuva amarela… » ; « A Marta vai a um casamento. Está a usar um vestido azul. »
+  phrase(p, items, sit){
+    const corps = PO.usar + " " + PO.liste(items.map(x => PO.item(x[0], x[1]))) + ".", i = PO.sit[sit];
+    if (!i) return artNom(p, true) + " " + corps;
+    return i.includes("{P}") ? avecP(i, p) + " " + corps.charAt(0).toUpperCase() + corps.slice(1) : i + " " + artNom(p, true) + " " + corps;
+  },
+  queLleva: p => BR ? "O que " + nom(p) + " está usando?" : "O que está " + artNom(p) + " a usar?",
+  quien: (x, c) => "Quem " + PO.usar + " " + PO.item(x, c) + "?",
+  // « o casaco da Carmen » (de + a = da) ; au Bresil « o casaco de Carmen »
+  deQui: (x, p) => PO.item(x, null, true) + " " + (BR ? "de " + nom(p) : (fem(p) ? "da " : "do ") + nom(p)),
+  couleurQ: (x, p) => "De que cor " + (PO.pl(x) ? "são " : "é ") + PO.deQui(x, p) + "?",
+  couleurR(x, p, c){ const s = PO.deQui(x, p); return s.charAt(0).toUpperCase() + s.slice(1) + (PO.pl(x) ? " são " : " é ") + PO.couleur(x, c) + "."; },
+  // « Porque é que a Anna está a usar esta roupa? » ; au Bresil « Por que Anna está usando esta roupa? »
+  pourquoi: p => BR ? "Por que " + nom(p) + " está usando esta roupa?" : "Porque é que " + artNom(p) + " está a usar esta roupa?",
+  sitRep: {lluvia: BR ? "Está chovendo." : "Está a chover.", frio: "Está frio.", calor: "Está calor.", boda: "Vai a um casamento.", deporte: "Vai fazer " + (BR ? "esporte." : "desporto.")},
+  bienVestido: {lluvia: (BR ? "Está chovendo." : "Está a chover.") + " Quem está bem vestido?", frio: "Está frio. Quem está bem vestido?", calor: "Está calor. Quem está bem vestido?",
+                boda: "Quem vai a um casamento?", deporte: "Quem vai fazer " + (BR ? "esporte?" : "desporto?")},
+  // pôr / tirar : ce qu'on met en sortant, ce qu'on enleve en rentrant (« chega a casa » ; au Bresil « chega em casa »)
+  mettre: {diario: {pone: "{P} sai de casa e ___ {X}.", quita: "{P} chega " + (BR ? "em" : "a") + " casa e ___ {X}."},
+           lluvia: {pone: (BR ? "Está chovendo." : "Está a chover.") + " {P} sai de casa e ___ {X}.", quita: "{P} entra em casa e ___ {X}."},
+           frio: {pone: "Está frio. {P} sai para a rua e ___ {X}.", quita: "{P} chega " + (BR ? "em" : "a") + " casa e ___ {X}."},
+           calor: {pone: "Faz muito sol. {P} ___ {X}.", quita: "Na praia, {P} ___ {X}."},
+           boda: {pone: "{P} vai a um casamento e ___ {X}.", quita: "Depois do casamento, em casa, {P} ___ {X}."},
+           deporte: {pone: "{P} vai correr e ___ {X}.", quita: "Depois do " + (BR ? "esporte" : "desporto") + ", {P} ___ {X}."}},
+  verbes: {pone: "põe", quita: "tira"},
+  // « Está frio. O que é que o Mark põe? » -> « Está frio. O Mark põe o casaco. » (pôr vaut pour tout, chapeu et lunettes compris)
+  queSePone(p, sit){ const i = PO.sit[sit];
+    if (i.includes("{P}")) return avecP(i, p) + (BR ? " O que " + (fem(p) ? "ela" : "ele") + " põe?" : " O que é que " + (fem(p) ? "ela" : "ele") + " põe?");
+    return i + (BR ? " O que " + nom(p) + " põe?" : " O que é que " + artNom(p) + " põe?"); },
+  sePone(p, sit, x){ const i = PO.sit[sit], r = "põe " + PO.item(x, null, true) + ".";
+    return i.includes("{P}") ? avecP(i, p) + " " + r.charAt(0).toUpperCase() + r.slice(1) : i + " " + artNom(p, true) + " " + r; }
+};
+// la conjugaison de pôr (irregulier) et de tirar ; au Bresil você prend la forme de ele (põe, tira)
+const PT_CONJ = {pone: BR ? ["ponho", "põe", "põe", "pomos", "põem"] : ["ponho", "pões", "põe", "pomos", "põem"],
+                 quita: BR ? ["tiro", "tira", "tira", "tiramos", "tiram"] : ["tiro", "tiras", "tira", "tiramos", "tiram"]};
+const PT_INTRO = {diario: "", lluvia: BR ? "Está chovendo." : "Está a chover.", frio: "Está frio.", calor: "Está calor."};
+const PT_RENTRE = {diario: "Em casa,", lluvia: "Em casa,", frio: "Em casa,", calor: "Na praia,"};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : APPRENDRE === "pt" ? PO : ES;
 // la conjugaison : yo, tu, il ou elle, nous, deux personnes -- ich, du, er oder sie, wir, zwei Personen
 const ES_CONJ = {pone: ["me pongo", "te pones", "se pone", "nos ponemos", "se ponen"], quita: ["me quito", "te quitas", "se quita", "nos quitamos", "se quitan"]};
 // en allemand, la cinquieme personne est ihr (« Sie » au pluriel se confondrait avec la politesse)
@@ -592,8 +687,9 @@ const motCle = q => !q ? null : ((q.genre ? q.genre + " " : "") + q.mot);
 // les phrases de la decouverte : celles de ropa.json, et en anglais celles de EN.phrase (les memes tenues)
 let PH_EN = null;
 function phrasesDecouverte(){
-  if (APPRENDRE !== "en") return D.phrases[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
-  if (!PH_EN){ PH_EN = {}; TENUES.forEach(([cle, t]) => { PH_EN[cle] = {texte: EN.phrase(t.p, vus(t), t.sit === "diario" ? null : t.sit)}; }); }
+  if (APPRENDRE !== "en" && APPRENDRE !== "pt") return D.phrases[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  // en portugais aussi, fabriquees dans la page (PO.phrase), les memes tenues
+  if (!PH_EN){ PH_EN = {}; TENUES.forEach(([cle, t]) => { PH_EN[cle] = {texte: L.phrase(t.p, vus(t), t.sit === "diario" ? null : t.sit)}; }); }
   return PH_EN;
 }
 function textesAVoix(){
@@ -618,13 +714,17 @@ let file = [], rang = 0, bons = 0, repondu = false;
 let motQ = null;
 // en anglais, le mot du corpus sans article (genre "") : « coat », « shoe », « jeans », « red », « rain », « put on »
 const motPiece = x => { if (APPRENDRE === "en") return {k: "piece", x, mot: EN_P[x][0], genre: ""};
+                        if (APPRENDRE === "pt") return {k: "piece", x, mot: PT_MOT[x][0], genre: PT_MOT[x][1]};
                         const v = APPRENDRE === "de" ? PI(x).de : PI(x).es; return {k: "piece", x, mot: v[0], genre: v[1]}; };
-const motCouleur = c => ({k: "couleur", c, mot: APPRENDRE === "de" ? D.couleurs[c].de : APPRENDRE === "en" ? EN_C[c] : D.couleurs[c].es[0], cat: "adjectif"});
+const motCouleur = c => ({k: "couleur", c, mot: APPRENDRE === "de" ? D.couleurs[c].de : APPRENDRE === "en" ? EN_C[c] : APPRENDRE === "pt" ? PT_COR[c][0] : D.couleurs[c].es[0], cat: "adjectif"});
 const SIT_EN = {lluvia: {mot: "rain", genre: ""}, frio: {mot: "cold", cat: "adjectif"}, calor: {mot: "hot", cat: "adjectif"}, boda: {mot: "wedding", genre: ""}, deporte: {mot: "sport", genre: ""}};
-const sitsMots = () => APPRENDRE === "en" ? SIT_EN : D.motSituation[APPRENDRE];
+// le portugais : a chuva, frio, o calor, o casamento, o desporto (au Bresil o esporte)
+const SIT_PT = {lluvia: {mot: "chuva", genre: "a"}, frio: {mot: "frio", cat: "adjectif"}, calor: {mot: "calor", genre: "o"}, boda: {mot: "casamento", genre: "o"},
+                deporte: {mot: BR ? "esporte" : "desporto", genre: "o"}};
+const sitsMots = () => APPRENDRE === "en" ? SIT_EN : APPRENDRE === "pt" ? SIT_PT : D.motSituation[APPRENDRE];
 const motSit = s => Object.assign({k: "sit", s}, sitsMots()[s]);
 // en anglais, wear aussi (porte) : le present continu et les reponses courtes le font travailler
-const VERBES = {es: {pone: "ponerse", quita: "quitarse"}, de: {pone: "anziehen", quita: "ausziehen"}, en: {pone: "put on", quita: "take off", porte: "wear"}};
+const VERBES = {es: {pone: "ponerse", quita: "quitarse"}, de: {pone: "anziehen", quita: "ausziehen"}, en: {pone: "put on", quita: "take off", porte: "wear"}, pt: {pone: "pôr", quita: "tirar"}};
 const motVerbe = v => ({k: "verbe", v, mot: VERBES[APPRENDRE][v], cat: "verbe"});
 
 function juger(ok, bonneTexte, phrase){
@@ -767,7 +867,7 @@ const EX = {
     const cand = PIECES_VUES().filter(([, , x]) => x[1] && (!w || (w.k === "piece" ? x[0] === w.x : x[1] === w.c)));
     if (!cand.length) return false;
     const [, t, x] = choisir(cand, w, c => c[1].p), c = x[1];
-    const forme = k => { const o = APPRENDRE === "de" ? D.couleurs[k].de : APPRENDRE === "en" ? EN_C[k] : ES.couleur(x[0], k); SENS.set(o, sensCouleur(k)); return o; };
+    const forme = k => { const o = APPRENDRE === "de" ? D.couleurs[k].de : APPRENDRE === "en" ? EN_C[k] : APPRENDRE === "pt" ? PO.couleur(x[0], k) : ES.couleur(x[0], k); SENS.set(o, sensCouleur(k)); return o; };
     const rep = forme(c), autres = melanger(Object.keys(D.couleurs).filter(k => loinC(k, c))).slice(0, 3).map(forme);
     motQ = w || motCouleur(c); sensQ = APPRENDRE === "en" ? {coul: true, p: t.p, x: x[0], c} : {p: t.p, items: [x], sit: null};
     ecran("couleur", photo(t), L.couleurQ(x[0], t.p), true);
@@ -777,10 +877,13 @@ const EX = {
   // « Carmen lleva una falda ___. » roja / rojo / rojas / rojos -- les couleurs qui changent (pas rosa)
   accord(w){
     if (w && w.k !== "couleur" && w.k !== "piece") return false;
-    const cand = PIECES_VUES().filter(([, , x]) => x[1] && x[1] !== "rosa" && (!w || (w.k === "piece" ? x[0] === w.x : x[1] === w.c)));
+    // en portugais, les couleurs qui ont deux formes au moins (pas cor-de-rosa, ni cinza au Bresil)
+    const varie = c => APPRENDRE === "pt" ? new Set(PT_COR[c]).size > 1 : c !== "rosa";
+    const cand = PIECES_VUES().filter(([, , x]) => x[1] && varie(x[1]) && (!w || (w.k === "piece" ? x[0] === w.x : x[1] === w.c)));
     if (!cand.length) return false;
-    const [, t, x] = choisir(cand, w, c => c[1].p), formes = [...new Set(D.couleurs[x[1]].es)], rep = ES.couleur(x[0], x[1]);
-    const debut = nom(t.p) + " lleva " + ES.item(x[0], null) + " ___.";
+    const [, t, x] = choisir(cand, w, c => c[1].p);
+    const formes = [...new Set(APPRENDRE === "pt" ? PT_COR[x[1]] : D.couleurs[x[1]].es)], rep = APPRENDRE === "pt" ? PO.couleur(x[0], x[1]) : ES.couleur(x[0], x[1]);
+    const debut = APPRENDRE === "pt" ? artNom(t.p, true) + " " + PO.usar + " " + PO.item(x[0], null) + " ___." : nom(t.p) + " lleva " + ES.item(x[0], null) + " ___.";
     motQ = w || motCouleur(x[1]); sensQ = {p: t.p, items: [x], sit: null};
     ecran("accord", photo(t), avecTrou(debut));
     boutons($("choix"), melanger(formes), rep, ok => { $("trou").textContent = rep; juger(ok, rep, debut.replace("___", rep)); });
@@ -810,7 +913,7 @@ const EX = {
     if (w && w.k !== "sit") return false;
     const cand = TENUES.filter(([, t]) => t.sit !== "diario" && (!w || t.sit === w.s));
     if (!cand.length) return false;
-    const dit = (s, p) => APPRENDRE === "de" ? DE.sitRep(p)[s] : APPRENDRE === "en" ? EN.sitRep(p)[s] : ES.sitRep[s];
+    const dit = (s, p) => APPRENDRE === "de" ? DE.sitRep(p)[s] : APPRENDRE === "en" ? EN.sitRep(p)[s] : APPRENDRE === "pt" ? PO.sitRep[s] : ES.sitRep[s];
     const [, t] = choisir(cand, w, c => c[1].p), rep = dit(t.sit, t.p);
     const texte = s => { const o = dit(s, t.p); SENS.set(o, sensSit(s, t.p)); return o; };
     const autres = melanger(D.contraires[t.sit]).slice(0, 3).map(texte);
@@ -844,6 +947,7 @@ const EX = {
     let phrase, rep, opts;
     if (APPRENDRE === "de"){ phrase = DE.phraseMettre(t.p, t.sit, x[0], v, true); rep = v === "pone" ? "an" : "aus"; opts = ["an", "aus"]; }
     else if (APPRENDRE === "en"){ phrase = EN.mettre[t.sit][v].replace("{P}", nom(t.p)).replace("{X}", EN.poss(x[0], t.p)); rep = EN.verbes[v]; opts = [EN.verbes.pone, EN.verbes.quita]; }
+    else if (APPRENDRE === "pt"){ phrase = avecP(PO.mettre[t.sit][v], t.p).replace("{X}", PO.item(x[0], null, true)); rep = PO.verbes[v]; opts = [PO.verbes.pone, PO.verbes.quita]; }
     else { phrase = ES.mettre[t.sit][v].replace("{P}", nom(t.p)).replace("{X}", ES.item(x[0], null, true)); rep = ES.verbes[v]; opts = [ES.verbes.pone, ES.verbes.quita]; }
     ecran(APPRENDRE === "de" ? "ponerQuitar" : "ponerQuitar", photo(t), avecTrou(phrase));
     boutons($("choix"), opts, rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep)); });
@@ -857,7 +961,7 @@ const EX = {
     const cand = TENUES.filter(([, t]) => t.sit === "diario").flatMap(([cle, t]) => sits.flatMap(s => D.typique[s].filter(x => (!w || x === w.x) && met(x, t.p) && pourElle(x, t.p)).map(x => [cle, t, s, x])));
     if (!cand.length) return false;
     const [, t, s, x] = choisir(cand, w, c => c[1].p);
-    const texte = y => { const o = APPRENDRE === "de" ? DE.defAcc(y) : APPRENDRE === "en" ? EN.item(y, null) : ES.item(y, null, true); SENS.set(o, sensPiece(y, null)); return o; }, rep = texte(x);
+    const texte = y => { const o = APPRENDRE === "de" ? DE.defAcc(y) : APPRENDRE === "en" ? EN.item(y, null) : APPRENDRE === "pt" ? PO.item(y, null, true) : ES.item(y, null, true); SENS.set(o, sensPiece(y, null)); return o; }, rep = texte(x);
     // les leurres sont franchement deplaces : une cravate pour courir se refuse, qu'on soit homme ou femme
     const autres = melanger(D.deplace[s].filter(y => met(y, t.p))).slice(0, 3).map(texte);
     if (autres.length < 2) return false;
@@ -896,6 +1000,12 @@ const EX = {
       const S = ["I", "you", g ? "she" : "he", "we", "they"][k], poss = ["my", "your", g ? "her" : "his", "our", "their"][k];
       rep = EN.conjFormes[(v === "pone" ? 0 : 2) + (k === 2 ? 1 : 0)]; opts = EN.conjFormes.slice();
       phrase = EN.conjIntro[v][s] + " " + S + " ___ " + poss + " " + (k >= 3 ? EN.pluriel(x) : EN.forme(x)) + ".";
+    } else if (APPRENDRE === "pt"){
+      // pôr (ponho, pões, põe, pomos, põem) et tirar ; au Bresil você prend la forme de ele
+      const S = ["Eu", BR ? "Você" : "Tu", g ? "Ela" : "Ele", "Nós", g ? "Elas" : "Eles"][k], formes = [...new Set(PT_CONJ[v])];
+      rep = PT_CONJ[v][k]; opts = melanger(formes.filter(f => f !== rep)).slice(0, 3).concat(rep);
+      phrase = v === "pone" ? (PT_INTRO[s] ? PT_INTRO[s] + " " : "") + S + " ___ " + PO.item(x, null, true) + "."
+                            : PT_RENTRE[s] + " " + S.toLowerCase() + " ___ " + PO.item(x, null, true) + ".";
     } else {
       const S = ["Yo", "Tú", g ? "Ella" : "Él", "Nosotros", g ? "Ellas" : "Ellos"][k], formes = ES_CONJ[v];
       rep = formes[k]; opts = melanger(formes.filter(f => f !== rep)).slice(0, 3).concat(rep);
@@ -1028,12 +1138,13 @@ function tirerVraiFaux(w){
 // et les reponses courtes a la place du vrai ou faux (la meme question, posee comme on la pose en anglais)
 const SORTES_EN = ["pluriel", "ordre", "temps", "courte"];
 const SORTES = Object.keys(EX).filter(x => APPRENDRE === "en" ? !["accord", "endung", "vraifaux"].includes(x)
-                                          : !SORTES_EN.includes(x) && (APPRENDRE === "es" ? x !== "endung" : x !== "accord"));
+                                          : !SORTES_EN.includes(x) && (APPRENDRE === "es" || APPRENDRE === "pt" ? x !== "endung" : x !== "accord"));
 
 // la bande des couleurs : rojo · roja · rojos · rojas ; rot · einen roten Mantel · eine rote Jacke · ein rotes Kleid ;
 // red · a red coat · red boots (l'adjectif anglais ne change jamais)
 const formesCouleur = c => { const r = D.couleurs[c].de;
   if (APPRENDRE === "en") return [EN_C[c], anA(EN_C[c]) + " " + EN_C[c] + " coat", EN_C[c] + " boots"];
+  if (APPRENDRE === "pt") return [...new Set(PT_COR[c])];
   return APPRENDRE === "de" ? (r === "rosa" ? [r] : [r, "einen " + r + "en Mantel", "eine " + r + "e Jacke", "ein " + r + "es Kleid"]) : [...new Set(D.couleurs[c].es)]; };
 // ---------- la decouverte : les situations, les personnes, ce qu'elles portent ----------
 function decouvrir(){
@@ -1045,7 +1156,8 @@ function decouvrir(){
                   '<p class="consigne">' + T("bonOrdre") + '</p>', '<p class="consigne">' + T(GB ? "bonGb" : "bonUs") + '</p>'].join("");
   z.innerHTML = '<div class="situations" role="tablist" id="sits"></div><p class="consigne">' + T("intro") + '</p><div id="gens"></div><div class="fiche" id="fiche"></div>'
               + '<p class="consigne">' + T("couleurs") + '</p><div class="couleurs" id="couleurs"></div><div class="formes" id="formes"></div>'
-              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : APPRENDRE === "en" ? "regleEn" : "regleEs")) + '</p>' + notesEn;
+              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : APPRENDRE === "en" ? "regleEn" : APPRENDRE === "pt" ? (BR ? "regleBr" : "reglePt") : "regleEs")) + '</p>' + notesEn
+              + (APPRENDRE === "pt" ? '<p class="consigne">' + T(BR ? "bonBr" : "bonPt") + '</p>' : "");
   const montrer = cle => {
     const t = D.tenues[cle], ph = phrases[cle];
     $("gens").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.id === cle));
@@ -1055,7 +1167,7 @@ function decouvrir(){
     $("ecoute").addEventListener("click", () => dire(ph.texte));
     vus(t).forEach(x => {
       const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr";
-      b.textContent = APPRENDRE === "de" ? DE.defNom(x[0]) : APPRENDRE === "en" ? EN.item(x[0], null) : ES.item(x[0], null, true);
+      b.textContent = APPRENDRE === "de" ? DE.defNom(x[0]) : APPRENDRE === "en" ? EN.item(x[0], null) : APPRENDRE === "pt" ? PO.item(x[0], null, true) : ES.item(x[0], null, true);
       b.addEventListener("click", () => dire(L.item(x[0], x[1])));
       $("pastilles").appendChild(b);
     });

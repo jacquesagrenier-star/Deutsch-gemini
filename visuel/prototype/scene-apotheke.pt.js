@@ -946,7 +946,8 @@ window.SCENE = {
     {
      "mot": "cartão de utente",
      "genre": "o",
-     "niveau": "B1",
+     "niveau": "A2",
+     "theme": "saude_a2_pt",
      "fr": "carte d'assurance maladie",
      "br": {
       "mot": "cartão do SUS"
@@ -970,7 +971,8 @@ window.SCENE = {
    "mot": "planta",
    "genre": "a",
    "pluriel": "as plantas",
-   "niveau": "A1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": "schalter",
@@ -1014,7 +1016,8 @@ window.SCENE = {
    "mot": "caixa de cartão",
    "genre": "a",
    "pluriel": "as caixas de cartão",
-   "niveau": "A2",
+   "niveau": "A1",
+   "theme": "casa_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1027,7 +1030,11 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "br": {
+    "mot": "caixa de papelão",
+    "pluriel": "as caixas de papelão"
+   }
   },
   {
    "id": "tuer",
@@ -1395,7 +1402,14 @@ window.SCENE = {
      "r": "regal",
      "phrase": "Os medicamentos estão na estante.",
      "sens": "Les médicaments sont sur l'étagère.",
-     "n": "<b>em</b> + a = <b>na</b> : na estante."
+     "n": "<b>em</b> + a = <b>na</b> : na estante.",
+     "br": {
+      "c": [
+       "na estante",
+       "no chão",
+       "na caixa de papelão"
+      ]
+     }
     },
     {
      "q": "Onde está a planta?",
@@ -1499,11 +1513,13 @@ window.SCENE = {
      "sens": "Le carton est par terre.",
      "n": "<b>em</b> + o = <b>no</b> : no chão.",
      "br": {
+      "q": "Onde está a caixa de papelão?",
       "c": [
        "no chão",
        "em cima do guichê",
        "na estante"
-      ]
+      ],
+      "phrase": "A caixa de papelão está no chão."
      }
     }
    ]

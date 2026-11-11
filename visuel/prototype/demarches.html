@@ -24,6 +24,13 @@
   you spell that?), demander (I'd like to / Can I ...?), prep (on Tuesday, at 9:30 a.m., in December, from ... to),
   et la date ecrite a l'americaine (12/01/2026 : December 1st). Britannique : surname, postcode, mobile, fill in,
   doctor's surgery, les dates jour / mois.
+  LE PORTUGAIS (lot P3, 11 nov. 2026, apprendre=pt, variante=br) : Mark a Lisbonne (Arroios) : la Junta de Freguesia
+  (l'atestado de residência), le banco, le centro de saúde (la consulta, le cartão de utente), le NIF ; ses donnees dans
+  la page (objet PT), posees dans D par preparerPortugais(). Il enseigne le vouvoiement du guichet au subjonctif
+  (Preencha o formulário, por favor ; Tire uma senha), na / no (na Junta de Freguesia, no banco), estar aberto /
+  fechada, « é preciso », la date jour / mois (14/03/2001), l'heure (às 9h30) et l'article devant le prenom (o Mark).
+  Le Bresil garde Lisbonne et change les mots (posto de saúde, sobrenome, endereço, CEP, celular, retirar, sacar).
+  Ecartee comme en anglais : la carte d'assurance maladie allemande (versichertenkarte.webp).
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -136,7 +143,7 @@ html.nuit .papier .case .val{color:#9CC3FF}
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (4 nov. 2026, « il manque beaucoup de themes en anglais ») : Mark a Boston, sans le Buergeramt ; variante=gb
-const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const APPRENDRE = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const EN_ = APPRENDRE === "en";
 const GB = EN_ && Q.get("variante") === "gb";
 const U = (us, gb) => GB ? gb : us;                          // le mot americain, ou le britannique
@@ -173,6 +180,10 @@ const TEXTES = {
   c_demander:{fr:"Que dit-on poliment ? Choisis la phrase correcte."},
   c_prep:    {fr:"Lis bien et choisis le petit mot qui manque."},
   c_poliEn:  {fr:"Au guichet, l'employé demande poliment : choisis la bonne forme du verbe."},
+  // LE PORTUGAIS (interface en francais seulement)
+  reglePt:   {fr:"Au guichet, on vouvoie : o senhor, a senhora, et le verbe à la 3e personne. Pour demander poliment, le verbe prend la forme du subjonctif : Preencha o formulário, Assine aqui, Tire uma senha, por favor. Où ? <b>na</b> Junta de Freguesia (em + a), <b>no</b> banco (em + o). Un lieu est ouvert ou fermé en ce moment : estar (o banco está fechado). Pour une liste de documents : <b>é preciso</b> o passaporte. Les dates s'écrivent jour / mois / année (14/03/2001), les heures 9h30. Au Portugal, le prénom prend l'article : o Mark, a Anna."},
+  regleBr:   {fr:"Au guichet, on vouvoie : o senhor, a senhora, et le verbe à la 3e personne. Pour demander poliment, le verbe prend la forme du subjonctif : Preencha o formulário, Assine aqui, Tire uma senha, por favor. Où ? <b>na</b> Junta de Freguesia (em + a), <b>no</b> banco (em + o). Un lieu est ouvert ou fermé en ce moment : estar (o banco está fechado). Pour une liste de documents : <b>é preciso</b> o passaporte. Les dates s'écrivent jour / mois / année (14/03/2001), les heures 9h30."},
+  bonBr:     {fr:"Bon à savoir : tu apprends le portugais du Brésil, mais l'action reste à Lisbonne, où Mark fait ses démarches. Au Brésil on dit <b>posto de saúde</b> (au Portugal centro de saúde), <b>sobrenome</b> (apelido), <b>endereço</b> (morada), <b>CEP</b> (código postal), <b>celular</b> (telemóvel), <b>sacar dinheiro</b> (levantar dinheiro), <b>retirar</b> un document (levantar), et le prénom va sans article : Mark preenche o formulário (au Portugal : o Mark preenche…). La Junta de Freguesia, le NIF et le cartão de utente sont portugais : ils gardent leur nom."},
   regleEn:   {fr:"Au guichet, on demande poliment : I'd like to open an account (je voudrais ; I like, c'est « j'aime »), Can I make an appointment?, Could you spell that, please? L'employé, lui, emploie l'impératif : le verbe tout seul, sans to ni -s : Please " + U("fill out", "fill in") + " this form. Sign here, please. Prendre rendez-vous se dit make an appointment, jamais take ; mais prendre un numéro, take a number. Ce que fait Mark sur l'image : be + -ing (Mark is " + U("filling out", "filling in") + " the form). Le temps : on Monday, on " + U("December 1st", "1 December") + ", at 9:30, in December ; et les heures d'ouverture : The bank is open from 9 to 5."},
   bonUs:     {fr:"Bon à savoir : tu apprends l'anglais américain, et l'on est à Boston. Les dates s'écrivent mois / jour / année : 03/14/2001, c'est le 14 mars (March 14th) ; 12/01/2026, c'est le 1er décembre, pas le 12 janvier. Les heures : a.m. le matin, p.m. l'après-midi et le soir (9 a.m., 5 p.m.). Sur un formulaire : last name (surname en Grande-Bretagne), zip code (postcode), cell phone (mobile). Remplir un formulaire : fill out (fill in en Grande-Bretagne). Le cabinet médical : doctor's office (doctor's surgery). Pour épeler, attention aux lettres : E se dit « i », I se dit « aï », A « éï », R « ar » ; G-A-R-N-I-E-R : « dji, éï, ar, èn, aï, i, ar »."},
   bonGb:     {fr:"Bon à savoir : tu apprends l'anglais britannique. Les dates s'écrivent jour / mois / année, comme en français : 14/03/2001, c'est le 14 mars (14 March) ; aux États-Unis, on écrirait 03/14/2001, le mois d'abord. Les heures : am le matin, pm l'après-midi et le soir (9am, 5pm). Sur un formulaire : surname (last name aux États-Unis), postcode (zip code), mobile (cell phone). Remplir un formulaire : fill in (fill out aux États-Unis). Le cabinet médical : doctor's surgery (doctor's office). Pour épeler, attention aux lettres : E se dit « i », I se dit « aï », A « éï », R « ar » ; G-A-R-N-I-E-R : « dji, éï, ar, èn, aï, i, ar »."},
@@ -368,6 +379,177 @@ function preparerAnglais(d){
   Object.keys(d.fauxImg).forEach(i => { d.fauxImg[i].en = d.fauxImg[i].de.filter(k => EN.docs[k]); });
 }
 
+// ---------- LE PORTUGAIS : Mark a Lisbonne (lot P3, 11 nov. 2026) ----------
+// Comme l'anglais, les donnees sont ici et prennent la forme des tables de demarches.json (celles de l'espagnol : la
+// meme grammaire, le meme vouvoiement au subjonctif -- Preencha o formulário, por favor). Mark Garnier, de Montreal,
+// habite Arroios : la Junta de Freguesia (l'atestado de residência), le banco (abrir uma conta, levantar dinheiro), le
+// centro de saúde (marcar uma consulta, le cartão de utente) ; la farmácia n'est qu'un leurre de « Onde? ». Le NIF est
+// sur le formulaire de la banque et du centro de saúde. ECARTE comme en anglais : la carte d'assurance maladie
+// allemande (versichertenkarte.webp) ; le Buergeramt, l'Anmeldung et la Krankenkasse n'existent pas ici (la Junta et
+// le centro de saúde en sont l'equivalent portugais). Les euros du distributeur (geld.webp) vont tres bien a Lisbonne.
+// Le Bresil (variante=br) garde Lisbonne et change les mots : posto de saúde, sobrenome, endereço, CEP, celular, foto,
+// retirar (o atestado), sacar (dinheiro), canadense, et pas d'article devant le prenom (Mark, et non o Mark).
+const PT_ = APPRENDRE === "pt", BR = PT_ && Q.get("variante") === "br";
+const MARK = BR ? "Mark" : "O Mark", MARKde = BR ? "de Mark" : "do Mark";
+// les heures : « 9h30 », « 15h » ; la voix les lit en lettres (lirePt)
+const heurePt = h => Math.floor(h) + "h" + (h % 1 ? "30" : "");
+const UNITES_PT = ["zero", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "catorze", "quinze",
+                   BR ? "dezesseis" : "dezasseis", BR ? "dezessete" : "dezassete", "dezoito", BR ? "dezenove" : "dezanove"];
+const DIZAINES_PT = ["", "", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa"];
+const CENTAINES_PT = ["", "cento", "duzentos", "trezentos", "quatrocentos", "quinhentos", "seiscentos", "setecentos", "oitocentos", "novecentos"];
+function ptLettres(n){
+  if (n < 20) return UNITES_PT[n];
+  if (n < 100) return DIZAINES_PT[Math.floor(n / 10)] + (n % 10 ? " e " + UNITES_PT[n % 10] : "");
+  if (n === 100) return "cem";
+  if (n < 1000) return CENTAINES_PT[Math.floor(n / 100)] + (n % 100 ? " e " + ptLettres(n % 100) : "");
+  const m = Math.floor(n / 1000), r = n % 1000;
+  return (m === 1 ? "mil" : ptLettres(m) + " mil") + (r ? (r < 100 || r % 100 === 0 ? " e " : " ") + ptLettres(r) : "");
+}
+const MOIS_PT = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+// la voix du telephone recoit les nombres en lettres (regle des nombres, 28 oct.) ; l'ecrit garde ses chiffres :
+// 14/03/2001, 9h30, 1170-165, 912 345 678, 2.º Esq.
+function lirePt(t){
+  return t.replace(/\b(\d{1,2})\/(\d{1,2})\/(\d{4})\b/g, (x, j, m, a) => (+j === 1 ? "primeiro" : ptLettres(+j)) + " de " + MOIS_PT[+m - 1] + " de " + ptLettres(+a))
+          .replace(/\b(\d{1,2})h(\d\d)?\b/g, (x, h, m) => ptLettres(+h) + (m === "30" ? " e meia" : m && m !== "00" ? " e " + ptLettres(+m) : (+h === 1 ? " hora" : " horas")))
+          .replace(/\b(\d{4})-(\d{3})\b/g, (x, a, b) => ptLettres(+a) + ", " + ptLettres(+b))
+          .replace(/\b(\d{3}) (\d{3}) (\d{3})\b/g, (x, a, b, c) => [a, b, c].map(n => ptLettres(+n)).join(", "))
+          .replace(/\b(\d)\.?º [Ee]sq\./g, (x, n) => ["", "primeiro", "segundo", "terceiro", "quarto", "quinto"][+n] + " esquerdo.")
+          .replace(/\b\d+\b/g, n => ptLettres(+n));
+}
+const PT = {
+  lieux: {
+    junta:    {mot: "junta de freguesia", genre: "a", nom: "a Junta de Freguesia", dat: "na Junta de Freguesia", carte: "Junta de Freguesia de Arroios · Atendimento",
+               trad: {fr: ["la Junta de Freguesia (la mairie du quartier)", "à la Junta de Freguesia", true]}},
+    banco:    {mot: "banco", genre: "o", nom: "o banco", dat: "no banco", carte: BR ? "Banco · Agência Arroios" : "Banco · Balcão de Arroios", trad: {fr: ["la banque", "à la banque", true]}},
+    centro:   BR ? {mot: "posto de saúde", genre: "o", nom: "o posto de saúde", dat: "no posto de saúde", carte: "Posto de Saúde de Arroios · Clínica geral", trad: {fr: ["le centre de santé", "au centre de santé", false]}}
+                 : {mot: "centro de saúde", genre: "o", nom: "o centro de saúde", dat: "no centro de saúde", carte: "Centro de Saúde de Arroios · Medicina geral e familiar", trad: {fr: ["le centre de santé", "au centre de santé", false]}},
+    // un lieu sans demarche : un leurre de « Onde? », jamais un mot du theme
+    farmacia: {mot: "farmácia", genre: "a", nom: "a farmácia", dat: "na farmácia", carte: "Farmácia Arroios", trad: {fr: ["la pharmacie", "à la pharmacie", true]}}
+  },
+  // les heures de Lisbonne : la Junta ferme a l'heure du dejeuner ; samedi et dimanche, tout est ferme
+  horaires: {
+    junta:  {"1": [[9, 12], [14, 17]], "2": [[9, 12], [14, 17]], "3": [[9, 12], [14, 17]], "4": [[9, 12], [14, 17]], "5": [[9, 12]]},
+    banco:  {"1": [[8, 15]], "2": [[8, 15]], "3": [[8, 15]], "4": [[8, 15]], "5": [[8, 15]]},
+    centro: {"1": [[8, 20]], "2": [[8, 20]], "3": [[8, 20]], "4": [[8, 20]], "5": [[8, 16]]}
+  },
+  ouvert: {aberto: ["aberto", "aberta"], fechado: ["fechado", "fechada"]},
+  // mot : la forme du corpus ; affiche : ce que montre la page ; acc : ce qu'il faut (é preciso ...)
+  docs: {
+    passaporte:  {mot: "passaporte", genre: "o", acc: "o passaporte", img: "pass", trad: {fr: "le passeport"}},
+    formulario:  {mot: "formulário", genre: "o", acc: "o formulário", img: "formular", trad: {fr: "le formulaire"}},
+    atestado:    {mot: "atestado", genre: "o", acc: "o atestado de residência", affiche: "atestado de residência", img: "bescheinigung", trad: {fr: "l'attestation de résidence"}},
+    utente:      {mot: "cartão de utente", genre: "o", acc: "o cartão de utente", img: null, trad: {fr: "la carte de santé (le cartão de utente)"}},
+    contrato:    {mot: "contrato", genre: "o", acc: "o contrato de trabalho", affiche: "contrato de trabalho", img: "arbeitsvertrag", trad: {fr: "le contrat de travail"}},
+    arrendamento:{mot: "contrato", genre: "o", acc: BR ? "o contrato de aluguel" : "o contrato de arrendamento", affiche: BR ? "contrato de aluguel" : "contrato de arrendamento", img: "mietvertrag", trad: {fr: "le bail"}},
+    foto:        BR ? {mot: "foto", genre: "a", acc: "uma foto", img: "foto", trad: {fr: "une photo"}} : {mot: "fotografia", genre: "a", acc: "uma fotografia", img: "foto", trad: {fr: "une photo"}},
+    cartao:      {mot: "cartão", genre: "o", acc: BR ? "o cartão do banco" : "o cartão multibanco", affiche: BR ? "cartão do banco" : "cartão multibanco", img: "karte", trad: {fr: "la carte bancaire"}}
+  },
+  // les cles espagnoles des documents (pour reprendre les leurres des images, fauxImg) : es -> pt
+  depuisEs: {pasaporte: "passaporte", formulario: "formulario", certificado: "atestado", tarjeta_sanitaria: "utente", contrato: "contrato", contrato_alquiler: "arrendamento", foto: "foto", tarjeta: "cartao"},
+  // v : le verbe (la forme du corpus) ; obj : son objet ; sie : la fin de la phrase du guichet (Preencha ..., por favor) ;
+  // aussi : les lieux ou la demarche se fait aussi (« * » : partout) ; aussi_v : les verbes qui iraient aussi
+  demarches: [
+    {id: "nummer", v: "tirar", aussi_v: ["pedir", "levantar", "retirar", "mostrar", "trazer"], obj: "uma senha", lieu: "junta", aussi: ["banco", "centro", "farmacia"], img: "nummer", sie: "uma senha",
+     t: {fr: "Mark prend un ticket{L}."}, ts: {fr: "Prenez un ticket, s'il vous plaît."}},
+    {id: "formular", v: "preencher", aussi_v: ["assinar", "pedir", "levantar", "retirar", "trazer", "mostrar", "tirar", "abrir"], obj: "o formulário", lieu: "junta", aussi: ["*"], img: "ausfuellen", sie: "o formulário",
+     t: {fr: "Mark remplit le formulaire{L}."}, ts: {fr: "Remplissez le formulaire, s'il vous plaît."}},
+    {id: "atestado", v: "pedir", aussi_v: ["tirar", "levantar", "retirar", "mostrar", "trazer", "assinar"], obj: "um atestado de residência", lieu: "junta", aussi: [], img: null, sie: null,
+     t: {fr: "Mark demande une attestation de résidence{L}."}},
+    {id: "zeigen_pass", v: "mostrar", aussi_v: ["trazer", "levantar", "retirar", "pedir", "tirar", "abrir", "assinar"], obj: "o passaporte", lieu: "junta", aussi: ["banco"], img: "pass_zeigen", sie: "o seu passaporte",
+     t: {fr: "Mark montre son passeport{L}."}, ts: {fr: "Montrez votre passeport, s'il vous plaît."}},
+    {id: "abholen", v: BR ? "retirar" : "levantar", aussi_v: ["pedir", "tirar", "mostrar", "trazer", "assinar"], obj: "o atestado", lieu: "junta", aussi: [], img: "abholen", sie: "o seu atestado",
+     t: {fr: "Mark va chercher son attestation{L}."}, ts: {fr: "Venez chercher votre attestation, s'il vous plaît."}},
+    {id: "konto", v: "abrir", aussi_v: ["pedir", "mostrar"], obj: "uma conta", lieu: "banco", aussi: [], img: "konto", sie: null,
+     t: {fr: "Mark ouvre un compte{L}."}},
+    {id: "geld", v: BR ? "sacar" : "levantar", aussi_v: ["pedir", "tirar", "trazer", "mostrar", "retirar"], obj: "dinheiro", lieu: "banco", aussi: [], img: "geld", sie: null,
+     t: {fr: "Mark retire de l'argent{L}."}},
+    {id: "termin", v: "marcar", aussi_v: ["pedir", "tirar"], obj: "uma consulta", lieu: "centro", aussi: ["*"], img: "telefon", sie: "uma consulta",
+     t: {fr: "Mark prend rendez-vous{L}."}, ts: {fr: "Prenez rendez-vous, s'il vous plaît."}},
+    {id: "zeigen_karte", v: "mostrar", aussi_v: ["trazer", "levantar", "retirar", "pedir", "tirar", "assinar"], obj: "o cartão de utente", lieu: "centro", aussi: [], img: "karte_zeigen", sie: "o seu cartão de utente",
+     t: {fr: "Mark montre sa carte de santé{L}."}, ts: {fr: "Montrez votre carte de santé, s'il vous plaît."}},
+    {id: "warten", v: "esperar", aussi_v: [], obj: "", lieu: "centro", aussi: ["*"], img: "warten", sie: "aqui",
+     t: {fr: "Mark attend{L}."}, ts: {fr: "Attendez ici, s'il vous plaît."}},
+    {id: "unterschreiben", v: "assinar", aussi_v: ["trazer", "mostrar", "levantar", "retirar", "pedir", "tirar"], obj: "o contrato de trabalho", lieu: null, aussi: [], img: "unterschreiben", sie: "aqui",
+     t: {fr: "Mark signe le contrat de travail."}, ts: {fr: "Signez ici, s'il vous plaît."}},
+    {id: "mitbringen", v: "trazer", aussi_v: ["assinar", "mostrar", "levantar", "retirar", "pedir", "tirar"], obj: "o contrato de trabalho", lieu: null, aussi: [], img: null, sie: "o seu contrato de trabalho",
+     t: {fr: "Mark apporte son contrat de travail."}, ts: {fr: "Apportez votre contrat de travail, s'il vous plaît."}}
+  ],
+  // er : il / elle (o Mark preenche) ; ich : eu ; du : tu ; usted : le subjonctif du guichet (Preencha, por favor)
+  conj: {tirar: {er: "tira", ich: "tiro", du: "tiras", usted: "tire"}, preencher: {er: "preenche", ich: "preencho", du: "preenches", usted: "preencha"},
+         pedir: {er: "pede", ich: "peço", du: "pedes", usted: "peça"}, mostrar: {er: "mostra", ich: "mostro", du: "mostras", usted: "mostre"},
+         levantar: {er: "levanta", ich: "levanto", du: "levantas", usted: "levante"}, retirar: {er: "retira", ich: "retiro", du: "retiras", usted: "retire"},
+         sacar: {er: "saca", ich: "saco", du: "sacas", usted: "saque"}, abrir: {er: "abre", ich: "abro", du: "abres", usted: "abra"},
+         marcar: {er: "marca", ich: "marco", du: "marcas", usted: "marque"}, esperar: {er: "espera", ich: "espero", du: "esperas", usted: "espere"},
+         assinar: {er: "assina", ich: "assino", du: "assinas", usted: "assine"}, trazer: {er: "traz", ich: "trago", du: "trazes", usted: "traga"}},
+  // le formulaire : t.fr = [le nom, le nom de la case, la valeur traduite] ; tf : la traduction des valeurs fausses
+  champs: {
+    nome:        {label: "Nome", mot: "nome", genre: "o", v: "Mark", faux: ["Marco", "Max"], t: {fr: ["le prénom", "Prénom", null]}},
+    apelido:     BR ? {label: "Sobrenome", mot: "sobrenome", genre: "o", v: "Garnier", faux: ["Garcia", "Gardner"], t: {fr: ["le nom de famille", "Nom de famille", null]}}
+                    : {label: "Apelido", mot: "apelido", genre: "o", v: "Garnier", faux: ["Garcia", "Gardner"], t: {fr: ["le nom de famille", "Nom de famille", null]}},
+    nascimento:  {label: "Data de nascimento", mot: "data de nascimento", genre: "a", v: "14/03/2001", faux: ["14/08/2001", "13/04/2001"], t: {fr: ["la date de naissance", "Date de naissance", null]}},
+    local:       {label: "Local de nascimento", mot: "local de nascimento", genre: "o", v: "Montreal", faux: ["Toronto", "Vancouver"], t: {fr: ["le lieu de naissance", "Lieu de naissance", "Montréal"]},
+                  tf: {Toronto: ["Toronto"], Vancouver: ["Vancouver"]}},
+    nacionalidade:{label: "Nacionalidade", mot: "nacionalidade", genre: "a", v: BR ? "canadense" : "canadiana", faux: ["francesa", "americana"], t: {fr: ["la nationalité", "Nationalité", "canadienne"]},
+                  tf: {francesa: ["française"], americana: ["américaine"]}},
+    estcivil:    {label: "Estado civil", mot: "estado civil", genre: "o", v: "solteiro", faux: ["casado", "divorciado"], adj: "solteiro", t: {fr: ["la situation familiale", "Situation familiale", "célibataire"]},
+                  tf: {casado: ["marié"], divorciado: ["divorcé"]}},
+    morada:      BR ? {label: "Endereço", mot: "endereço", genre: "o", v: "Rua da Graça, 12, 2º esq.", faux: ["Rua da Graça, 21, 2º esq.", "Rua do Sol, 12, 2º esq."], t: {fr: ["l'adresse", "Adresse", null]}}
+                    : {label: "Morada", mot: "morada", genre: "a", v: "Rua da Graça, 12, 2.º Esq.", faux: ["Rua da Graça, 21, 2.º Esq.", "Rua do Sol, 12, 2.º Esq."], t: {fr: ["l'adresse", "Adresse", null]}},
+    codpostal:   BR ? {label: "CEP", mot: "CEP", genre: "o", v: "1170-165", faux: ["1710-165", "1170-156"], t: {fr: ["le code postal", "Code postal", null]}}
+                    : {label: "Código postal", mot: "código postal", genre: "o", v: "1170-165", faux: ["1710-165", "1170-156"], t: {fr: ["le code postal", "Code postal", null]}},
+    localidade:  {label: "Localidade", mot: null, genre: null, v: "Lisboa", faux: [], vf: false, t: {fr: ["la localité", "Localité", "Lisbonne"]}},
+    telemovel:   BR ? {label: "Celular", mot: "celular", genre: "o", v: "912 345 678", faux: ["912 354 678", "921 345 678"], t: {fr: ["le téléphone portable", "Portable", null]}}
+                    : {label: "Telemóvel", mot: "telemóvel", genre: "o", v: "912 345 678", faux: ["912 354 678", "921 345 678"], t: {fr: ["le téléphone portable", "Portable", null]}},
+    nif:         {label: "NIF", mot: "NIF", genre: "o", v: "298 765 432", faux: ["289 765 432", "298 756 432"], t: {fr: ["le NIF (le numéro fiscal)", "NIF (numéro fiscal)", null]}},
+    data:        {label: "Data", mot: "data", genre: "a", v: "10/11/2026", faux: ["01/11/2026", "10/12/2026"], vf: false, t: {fr: ["la date", "Date", null]}},
+    assinatura:  {label: "Assinatura", mot: "assinatura", genre: "a", v: "✍", faux: [], vf: false, signature: true, t: {fr: ["la signature", "Signature", null]}}
+  },
+  formulaires: [
+    {id: "atestado", titre: "Pedido de atestado de residência", lieu: "junta", champs: ["nome", "apelido", "nascimento", "local", "nacionalidade", "estcivil", "morada", "codpostal", "localidade", "data", "assinatura"]},
+    {id: "conta", titre: "Pedido de abertura de conta", lieu: "banco", champs: ["nome", "apelido", "nascimento", "nacionalidade", "nif", "morada", "codpostal", "localidade", "telemovel", "data", "assinatura"]},
+    {id: "utente", titre: BR ? "Ficha de cadastro do paciente" : "Ficha de inscrição do utente", lieu: "centro", champs: ["nome", "apelido", "nascimento", "nif", "morada", "codpostal", "telemovel", "data", "assinatura"]}
+  ],
+  // les avis « Documentos necessários » : pour = le debut de la phrase (Para ..., é preciso ...)
+  avis: [
+    {id: "atestado", lieu: "junta", titre: "Atestado de residência", pour: "Para pedir o atestado de residência", docs: ["passaporte", "arrendamento", "formulario"], t: {fr: "Pour demander l'attestation de résidence"}},
+    {id: "conta", lieu: "banco", titre: "Abertura de conta", pour: "Para abrir uma conta", docs: ["passaporte", "atestado"], t: {fr: "Pour ouvrir un compte"}},
+    {id: "inscricao", lieu: "centro", titre: BR ? "Cadastro no posto de saúde" : "Inscrição no centro de saúde", pour: BR ? "Para o cadastro no posto de saúde" : "Para a inscrição no centro de saúde",
+     docs: ["passaporte", "atestado"], t: {fr: "Pour l'inscription au centre de santé"}},
+    {id: "consulta", lieu: "centro", titre: BR ? "Sua primeira consulta" : "A sua primeira consulta", pour: "Para a primeira consulta", docs: ["utente"], t: {fr: "Pour la première consultation"}},
+    {id: "residencia", lieu: null, carte: "AIMA · Atendimento ao público", titre: "Autorização de residência", pour: "Para a autorização de residência", docs: ["passaporte", "foto", "contrato", "atestado"],
+     t: {fr: "Pour le titre de séjour"}}
+  ],
+  // le rendez-vous : une consulta, au centro de saúde seulement (au Portugal, « consulta » est medicale)
+  termin: {mot: "consulta", genre: "a", salles: BR ? ["Consultório 4", "Consultório 7", "Consultório 12"] : ["Gabinete 4", "Gabinete 7", "Gabinete 12"], lieux: ["centro"]},
+  // les mots du theme, a la forme du corpus portugais (portugais/datos ; datos-br au Bresil) ; « pedir » n'y est pas : une
+  // seule sorte saurait le viser (le verbe), il reste une reponse de « ___ um atestado de residência »
+  mots: [
+    ["junta de freguesia", "a", "la Junta de Freguesia (la mairie du quartier)"], ["banco", "o", "la banque"],
+    BR ? ["posto de saúde", "o", "le centre de santé"] : ["centro de saúde", "o", "le centre de santé"],
+    ["passaporte", "o", "le passeport"], ["formulário", "o", "le formulaire"], ["atestado", "o", "l'attestation, le certificat"],
+    ["cartão de utente", "o", "la carte de santé (le numéro du service de santé)"], ["contrato", "o", "le contrat"],
+    BR ? ["foto", "a", "la photo"] : ["fotografia", "a", "la photo"], ["cartão", "o", "la carte (bancaire)"],
+    ["nome", "o", "le prénom, le nom"], BR ? ["sobrenome", "o", "le nom de famille"] : ["apelido", "o", "le nom de famille"],
+    ["data de nascimento", "a", "la date de naissance"], ["local de nascimento", "o", "le lieu de naissance"], ["nacionalidade", "a", "la nationalité"],
+    ["estado civil", "o", "la situation familiale"], BR ? ["endereço", "o", "l'adresse"] : ["morada", "a", "l'adresse"],
+    BR ? ["CEP", "o", "le code postal"] : ["código postal", "o", "le code postal"], BR ? ["celular", "o", "le téléphone portable"] : ["telemóvel", "o", "le téléphone portable"],
+    ["NIF", "o", "le NIF, le numéro fiscal"], ["data", "a", "la date"], ["assinatura", "a", "la signature"], ["consulta", "a", "la consultation, le rendez-vous chez le médecin"],
+    ["solteiro", "adjectif", "célibataire"], ["aberto", "adjectif", "ouvert"], ["fechado", "adjectif", "fermé"],
+    ["tirar", "verbe", "prendre, retirer (tirar uma senha : prendre un ticket)"], ["preencher", "verbe", "remplir"], ["mostrar", "verbe", "montrer"],
+    BR ? ["retirar", "verbe", "retirer, aller chercher (un document)"] : ["levantar", "verbe", "retirer (de l'argent), aller chercher (un document)"],
+    ["abrir", "verbe", "ouvrir"], ["marcar", "verbe", "fixer, prendre (un rendez-vous)"], ["esperar", "verbe", "attendre"], ["assinar", "verbe", "signer"],
+    ["trazer", "verbe", "apporter"]
+  ].concat(BR ? [["sacar", "verbe", "retirer (de l'argent)"]] : [])
+   .map(([mot, g, fr]) => g === "verbe" || g === "adjectif" ? {mot, cat: g, g: {fr}} : {mot, genre: g, g: {fr}})
+};
+// pose le portugais dans D, a cote de l'allemand et de l'espagnol ; les leurres des images : ceux de l'espagnol
+function preparerPortugais(d){
+  d.lieux.pt = PT.lieux; d.horaires.pt = PT.horaires; d.ouvert.pt = PT.ouvert; d.docs.pt = PT.docs; d.demarches.pt = PT.demarches;
+  d.champs.pt = PT.champs; d.formulaires.pt = PT.formulaires; d.avis.pt = PT.avis; d.termin.pt = PT.termin; d.mots.pt = PT.mots;
+  d.conj.pt = PT.conj;
+  Object.keys(d.fauxImg).forEach(i => { d.fauxImg[i].pt = d.fauxImg[i].es.map(k => PT.depuisEs[k]).filter(k => PT.docs[k]); });
+}
+
 // ---------- utilitaires ----------
 const $ = id => document.getElementById(id);
 const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
@@ -380,7 +562,7 @@ const imgSrc = i => "demarches/" + i + ".webp";
 const photo = i => '<img class="photo" alt="" src="' + imgSrc(i) + '">';
 const espaces = s => s.replace(/\s+/g, " ").replace(/ ([.,!?])/g, "$1").trim();
 function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
-function dire(texte){ Voix.dire(texte); }
+function dire(texte){ Voix.dire(PT_ ? lirePt(texte) : texte); }
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 const ES_ = APPRENDRE === "es";
 
@@ -400,12 +582,14 @@ function phraseMark(d, avecLieu, lieuForce){
   const lieu = lieuForce || d.lieu, L = lieu && avecLieu !== false ? LX[lieu].dat : "";
   if (EN_) return espaces("Mark is " + conj(d.v)[2] + " " + d.obj + " " + L + ".");   // « Mark is opening an account at the bank. »
   if (ES_) return espaces("Mark " + conj(d.v).er + " " + d.obj + " " + L + ".");
+  if (PT_) return espaces(MARK + " " + conj(d.v).er + " " + d.obj + " " + L + ".");     // « O Mark abre uma conta no banco. »
   const [v, p] = decoupe(conj(d.v).er);
   return espaces("Mark " + v + " " + d.obj + " " + L + " " + p + ".");
 }
 function phraseTrou(d){            // le lieu remplace par ___
   if (EN_) return espaces("Mark is " + conj(d.v)[2] + " " + d.obj + " ___.");
   if (ES_)return espaces("Mark " + conj(d.v).er + " " + d.obj + " ___.");
+  if (PT_) return espaces(MARK + " " + conj(d.v).er + " " + d.obj + " ___.");
   const [v, p] = decoupe(conj(d.v).er);
   return espaces("Mark " + v + " " + d.obj + " ___ " + p + ".");
 }
@@ -415,15 +599,15 @@ function tradMark(d, avecLieu, lieuForce){
   const a = lieu && avecLieu !== false ? (LX[lieu].trad[TL] || [])[1] || "" : "";
   return espaces(t.replace("{L}", a ? " " + a : ""));
 }
-const infinitifPhrase = d => ES_ || EN_ ?espaces(d.v + " " + d.obj) : espaces(d.obj + " " + d.v);   // « ein Konto eröffnen » / « abrir una cuenta »
+const infinitifPhrase = d => ES_ || EN_ || PT_ ? espaces(d.v + " " + d.obj) : espaces(d.obj + " " + d.v);   // « ein Konto eröffnen » / « abrir una cuenta »
 // la phrase polie du guichet : « Füllen Sie bitte das Formular aus! » / « Rellene el formulario, por favor. »
 function phrasePolie(d, forme){
-  if (ES_) return espaces(cap(forme) + " " + d.sie + ", por favor.");
+  if (ES_ || PT_) return espaces(cap(forme) + " " + d.sie + ", por favor.");
   const p = decoupe(conj(d.v).sie)[1];
   return espaces(cap(forme) + " Sie bitte " + d.sie + " " + p + "!");
 }
 const docAff = k => { const d = DOC[k]; return EN_ ? espaces(d.art + " " + (d.affiche || d.mot)) : d.genre + " " + (d.affiche || d.mot); };   // a passport, an employment contract
-const docPhrase = k => EN_ ? (DOC[k].pl ? "These are " : "It's ") + docAff(k) + "." : ES_ ? "Es " + docAff(k) + "." : "Das ist " + docAff(k) + ".";
+const docPhrase = k => EN_ ? (DOC[k].pl ? "These are " : "It's ") + docAff(k) + "." : ES_ ? "Es " + docAff(k) + "." : PT_ ? "É " + docAff(k) + "." : "Das ist " + docAff(k) + ".";
 function docTrad(k){
   if (!TL) return null;
   const t = DOC[k].trad[TL]; if (!t) return null;
@@ -434,9 +618,10 @@ const docDit = k => docAff(k);
 const docMot = k => nom(DOC[k].mot, DOC[k].genre);
 const lieuMot = k => nom(LX[k].mot, LX[k].genre);
 const jour = (n, l) => D.jours[l || APPRENDRE][n - 1];
-const fem = k => ["la", "die"].includes(LX[k].genre);
-const ouvertForme = (k, ouvert) => EN_ ? (ouvert ? "open" : "closed") : ES_ ? D.ouvert.es[ouvert ? "abierto" : "cerrado"][fem(k) ? 1 : 0] : (ouvert ? "offen" : "geschlossen");
-const ouvertMot = ouvert => ({mot: EN_ ? (ouvert ? "open" : "closed") : ES_ ? (ouvert ? "abierto" : "cerrado") : (ouvert ? "offen" : "geschlossen"), cat: "adjectif"});
+const fem = k => ["la", "die", "a"].includes(LX[k].genre);
+const ouvertForme = (k, ouvert) => EN_ ? (ouvert ? "open" : "closed") : ES_ ? D.ouvert.es[ouvert ? "abierto" : "cerrado"][fem(k) ? 1 : 0]
+  : PT_ ? D.ouvert.pt[ouvert ? "aberto" : "fechado"][fem(k) ? 1 : 0] : (ouvert ? "offen" : "geschlossen");
+const ouvertMot = ouvert => ({mot: EN_ ? (ouvert ? "open" : "closed") : ES_ ? (ouvert ? "abierto" : "cerrado") : PT_ ? (ouvert ? "aberto" : "fechado") : (ouvert ? "offen" : "geschlossen"), cat: "adjectif"});
 const estOuvert = (k, j, h) => ((HO[k] || {})[j] || []).some(([a, b]) => a <= h && h < b);
 const jourArticlePt = n => n >= 6 ? "no " : "na ";
 
@@ -452,7 +637,7 @@ function juger(ok, bonneTexte, phrase){
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const g = motQ ? glose(motQ) : "";
-  m.innerHTML = (ok ? cible(EN_ ? "Well done!" : ES_ ? "¡Muy bien!" : "Sehr gut!") : T("bonne", {r: cible(esc(bonneTexte))}))
+  m.innerHTML = (ok ? cible(EN_ ? "Well done!" : ES_ ? "¡Muy bien!" : PT_ ? "Muito bem!" : "Sehr gut!") : T("bonne", {r: cible(esc(bonneTexte))}))
     + (phrase && (ok || phrase !== bonneTexte) ? '<span class="phrase">' + cible(esc(phrase)) + '</span>' : "")
     + traduction(tradQ)
     + (!ok && choixFaux && choixFaux.trad ? '<span class="trad faux" dir="auto">' + T("choix", {c: cible(esc(choixFaux.texte)) + " — " + esc(choixFaux.trad)}) + '</span>' : "")
@@ -502,25 +687,26 @@ const avecTrou = s => esc(s).replace("___", trou());
 const entete = t => '<div class="entete">' + esc(t) + '</div>';
 function papierFormulaire(f, cachee, vise){
   const cases = f.champs.map(c => {
-    const x = CH[c], large = ["adresse", "direccion", "unterschrift", "firma", "staat", "nacimiento", "lugar", "address", "signature"].includes(c) || x.label.length > 16;
+    const x = CH[c], large = ["adresse", "direccion", "unterschrift", "firma", "staat", "nacimiento", "lugar", "address", "signature", "morada", "assinatura"].includes(c) || x.label.length > 16;
     const val = x.signature ? '<span class="val signe">Mark Garnier</span>' : '<span class="val">' + esc(x.v) + '</span>';
     return '<div class="case' + (large ? " large" : "") + (c === cachee ? " cachee vise" : "") + (c === vise ? " vise" : "") + '" data-champ="' + c + '"><span class="lab">'
       + (c === cachee ? "?" : esc(x.label)) + '</span>' + val + '</div>';
   }).join("");
   return '<div class="papier" lang="' + APPRENDRE + '">' + entete(LX[f.lieu].carte) + '<h3>' + esc(f.titre) + '</h3><div class="cases">' + cases + '</div></div>';
 }
-const itemDoc = k => cap(DOC[k].acc.replace(/^(der|die|das|den|ein|eine|el|la|los|las|un|una) /, ""));
+const itemDoc = k => PT_ ? cap(DOC[k].acc.replace(/^(o|a|os|as|um|uma) /, "")) : cap(DOC[k].acc.replace(/^(der|die|das|den|ein|eine|el|la|los|las|un|una) /, ""));
 function papierAvis(a){
   if (EN_) return '<div class="papier" lang="en">' + entete(a.carte || LX[a.lieu].carte) + '<h3>' + esc(a.titre) + '</h3>'
     + '<div>Please bring:</div><ul>' + a.docs.map(k => '<li>' + esc(DOC[k].liste) + '</li>').join("") + '</ul>'
     + '<p class="note">' + esc(a.note) + '</p></div>';
   return '<div class="papier" lang="' + APPRENDRE + '">' + entete(a.carte || LX[a.lieu].carte) + '<h3>' + esc(a.titre) + '</h3>'
-    + '<div>' + (ES_ ? "Documentación necesaria:" : "Bitte bringen Sie mit:") + '</div><ul>' + a.docs.map(k => '<li>' + esc(itemDoc(k)) + '</li>').join("") + '</ul>'
-    + '<p class="note">' + (ES_ ? "Sin estos documentos no podemos atenderle." : "Ohne diese Unterlagen können wir Ihnen leider nicht helfen.") + '</p></div>';
+    + '<div>' + (ES_ ? "Documentación necesaria:" : PT_ ? "Documentos necessários:" : "Bitte bringen Sie mit:") + '</div><ul>' + a.docs.map(k => '<li>' + esc(itemDoc(k)) + '</li>').join("") + '</ul>'
+    + '<p class="note">' + (ES_ ? "Sin estos documentos no podemos atenderle." : PT_ ? (BR ? "Sem esses documentos, não podemos atendê-lo." : "Sem estes documentos, não o podemos atender.") : "Ohne diese Unterlagen können wir Ihnen leider nicht helfen.") + '</p></div>';
 }
 function plages(k, j){
   const p = (HO[k] || {})[j] || [];
   if (EN_) return p.length ? p.map(([a, b]) => heureEn(a) + " – " + heureEn(b)).join(", ") : "Closed";
+  if (PT_) return p.length ? p.map(([a, b]) => heurePt(a) + "–" + heurePt(b)).join(" e ") : (BR ? "fechado" : "encerrado");
   if (!p.length) return ES_ ? "cerrado" : "geschlossen";
   const f = h => ES_ ? h + ":00" : String(h);
   return p.map(([a, b]) => f(a) + "–" + f(b)).join(ES_ ? " y " : " und ") + (ES_ ? "" : " Uhr");
@@ -533,6 +719,9 @@ function papierHoraires(k){
       + '<tr><td>' + (sam ? jour(7) : jour(6) + " and " + jour(7)) + '</td><td>Closed</td></tr>';
     return '<div class="papier" lang="en">' + entete(LX[k].carte) + '<h3>' + U("Hours", "Opening hours") + '</h3><table>' + l + '</table></div>';
   }
+  if (PT_) return '<div class="papier" lang="pt">' + entete(LX[k].carte) + '<h3>' + (BR ? "Horário de funcionamento" : "Horário de atendimento") + '</h3><table>'
+    + [1, 2, 3, 4, 5].map(j => '<tr><td>' + cap(jour(j)) + '</td><td>' + esc(plages(k, j)) + '</td></tr>').join("")
+    + '<tr><td>' + cap(jour(6)) + " e " + jour(7) + '</td><td>' + (BR ? "fechado" : "encerrado") + '</td></tr></table></div>';
   const lignes = [1, 2, 3, 4, 5].map(j => '<tr><td>' + cap(jour(j)) + '</td><td>' + esc(plages(k, j)) + '</td></tr>').join("")
     + '<tr><td>' + cap(jour(6)) + (ES_ ? " y " : " und ") + jour(7) + '</td><td>' + (ES_ ? "cerrado" : "geschlossen") + '</td></tr>';
   return '<div class="papier" lang="' + APPRENDRE + '">' + entete(LX[k].carte) + '<h3>' + (ES_ ? "Horario de atención al público" : "Öffnungszeiten") + '</h3><table>' + lignes + '</table></div>';
@@ -549,7 +738,7 @@ function tirerTermin(k){
   HO[k][j].forEach(([a, b]) => { for (let h = a; h <= b - 1; h += 0.5) heures.push(h); });
   return {k, date, j, h: hasard(heures), salle: hasard(TE.salles)};
 }
-const dateTexte = d => { const p = n => String(n).padStart(2, "0"); return ES_ ? p(d.getDate()) + "/" + p(d.getMonth() + 1) + "/" + d.getFullYear() : p(d.getDate()) + "." + p(d.getMonth() + 1) + "." + d.getFullYear(); };
+const dateTexte = d => { const p = n => String(n).padStart(2, "0"); return ES_ || PT_ ? p(d.getDate()) + "/" + p(d.getMonth() + 1) + "/" + d.getFullYear() : p(d.getDate()) + "." + p(d.getMonth() + 1) + "." + d.getFullYear(); };
 const heureMin = (h, l) => { const hh = Math.floor(h), mm = h % 1 ? "30" : "00"; l = l || APPRENDRE;
   return l === "de" ? hh + ":" + mm + " Uhr" : l === "fr" ? hh + " h " + mm : l === "pt" ? hh + "h" + mm : hh + ":" + mm; };
 // la date du rendez-vous a l'americaine (12/01/2026 : le 1er decembre) ou a la britannique (01/12/2026)
@@ -558,6 +747,9 @@ function papierTermin(t){
   if (EN_) return '<div class="papier" lang="en">' + entete(LX[t.k].carte) + '<h3>Appointment confirmation</h3><div>Dear ' + U("Mr.", "Mr") + ' Garnier,</div>'
     + '<div class="gros">Your appointment: ' + jour(t.j) + ', ' + dateEn(t.date) + ', ' + heureEn(t.h) + '</div><div>' + t.salle + '</div>'
     + '<p class="note">Please arrive 10 minutes early.</p></div>';
+  if (PT_) return '<div class="papier" lang="pt">' + entete(LX[t.k].carte) + '<h3>Confirmação de consulta</h3><div>' + (BR ? "Prezado senhor Garnier," : "Exmo. Senhor Mark Garnier,") + '</div>'
+    + '<div class="gros">' + (BR ? "Sua consulta: " : "A sua consulta: ") + '<b>' + jour(t.j) + ', ' + dateTexte(t.date) + ', ' + heurePt(t.h) + '</b></div><div>Local: ' + t.salle + '</div>'
+    + '<p class="note">Por favor, seja pontual.</p></div>';
   const c = ES_
     ? ['Confirmación de cita', 'Estimado señor Garnier:', 'Su cita: <b>' + jour(t.j) + ', ' + dateTexte(t.date) + ', ' + heureMin(t.h) + '</b>', 'Lugar: ' + t.salle, 'Por favor, sea puntual.']
     : ['Terminbestätigung', 'Sehr geehrter Herr Garnier,', 'Ihr Termin: <b>' + jour(t.j) + ', ' + dateTexte(t.date) + ', ' + heureMin(t.h) + '</b>', 'Ort: ' + t.salle, 'Bitte kommen Sie pünktlich.'];
@@ -599,15 +791,17 @@ function champPhrase(c, v){
     return x.phr.replace("{a}", /^[aeiou]/i.test(w) ? "an" : "a").replace("{v}", w);
   }
   if (ES_) return cap(x.genre + " " + x.mot) + " de Mark es " + v + ".";
+  if (PT_) return cap(x.genre + " " + x.mot) + " " + MARKde + " é " + v + ".";        // « O código postal do Mark é 1170-165. »
   return "Marks " + x.label + " ist " + (v === x.v && x.satz ? x.satz : (c === "geburtsdatum" ? "der " + v : v)) + ".";
 }
 const champCourt = (c, v) => CH[c].label + ": " + (CH[c].signature ? "Mark Garnier" : v);
 const champCourtTrad = (c, v) => TL && tradChamp(c, 1) ? tradChamp(c, 1) + (TL === "fr" ? " : " : ": ") + (CH[c].signature ? "Mark Garnier" : valTrad(c, v)) : null;
 const GROUPES = [["geburtsdatum", "datum"], ["nacimiento", "fecha"], ["ort", "geburtsort", "adresse"], ["municipio", "lugar", "direccion"], ["familienname", "vorname"], ["nombre", "apellidos"],
-                 ["dob", "date"], ["city", "pob", "address", "nationality"], ["lastname", "firstname"]];   // l'anglais
+                 ["dob", "date"], ["city", "pob", "address", "nationality"], ["lastname", "firstname"],   // l'anglais
+                 ["nascimento", "data"], ["localidade", "local", "morada", "nacionalidade"], ["nome", "apelido"], ["telemovel", "nif"]];   // le portugais
 const memeGroupe = (a, b) => GROUPES.some(g => g.includes(a) && g.includes(b));
 // la phrase de l'avis : « Für die Anmeldung braucht man den Pass. » / « Para empadronarse, hace falta el pasaporte. »
-const avisPhrase = (a, k) => EN_ ? a.pour + ", you need " + DOC[k].acc + "." : ES_ ?a.pour + ", hace falta " + DOC[k].acc + "." : a.pour + " braucht man " + DOC[k].acc + ".";
+const avisPhrase = (a, k) => EN_ ? a.pour + ", you need " + DOC[k].acc + "." : ES_ ?a.pour + ", hace falta " + DOC[k].acc + "." : PT_ ? a.pour + ", é preciso " + DOC[k].acc + "." : a.pour + " braucht man " + DOC[k].acc + ".";
 function avisTrad(a, k){
   if (!TL) return null;
   const p = a.t[TL], d = DOC[k].trad[TL]; if (!p || !d) return null;
@@ -617,11 +811,12 @@ function avisTrad(a, k){
   if (TL === "pt") return p + ", você precisa " + d.replace(/^o /, "do ").replace(/^a /, "da ").replace(/^uma /, "de uma ").replace(/^um /, "de um ") + ".";
   return p + " braucht man " + d.replace(/^der /, "den ") + ".";
 }
-const avisQuestion = a => EN_ ? a.q : ES_ ?"¿Qué hace falta " + a.pour.charAt(0).toLowerCase() + a.pour.slice(1) + "?" : "Was braucht man " + a.pour.charAt(0).toLowerCase() + a.pour.slice(1) + "?";
+const avisQuestion = a => EN_ ? a.q : ES_ ?"¿Qué hace falta " + a.pour.charAt(0).toLowerCase() + a.pour.slice(1) + "?" : PT_ ? "O que é preciso " + a.pour.charAt(0).toLowerCase() + a.pour.slice(1) + "?" : "Was braucht man " + a.pour.charAt(0).toLowerCase() + a.pour.slice(1) + "?";
 // les heures : « Am Mittwoch um 15 Uhr ist das Bürgeramt geschlossen. »
 function horairePhrase(k, j, h, forme){
   if (EN_) return "On " + jour(j) + " at " + heureEn(h) + ", " + LX[k].nom + " is " + forme + ".";   // On Wednesday at 3 p.m., the bank is closed.
   if (ES_)return cap(jour(j).replace(/^/, "el ")) + " a las " + h + ":00, " + LX[k].nom + " está " + forme + ".";
+  if (PT_) return cap(jourArticlePt(j)) + jour(j) + ", às " + heurePt(h) + ", " + LX[k].nom + " está " + forme + ".";   // Na quarta-feira, às 15h, o banco está fechado.
   return "Am " + jour(j) + " um " + h + " Uhr ist " + LX[k].nom + " " + forme + ".";
 }
 function horaireTrad(k, j, h, ouvert){
@@ -642,7 +837,7 @@ function tirerHoraire(k){
 }
 // le rendez-vous : « Marks Termin ist am Dienstag um 9:30 Uhr im Bürgeramt. »
 // en anglais : « Mark has an appointment at the bank on Tuesday, December 1st, at 9:30 a.m. »
-const terminPhrase = t => EN_ ? pt("Mark has an appointment " + LX[t.k].dat + " on " + jour(t.j) + ", " + dateDite(t.date.getDate(), t.date.getMonth()) + ", at " + heureEn(t.h) + ".") : ES_ ?"La cita de Mark es el " + jour(t.j) + " a las " + heureMin(t.h) + " " + LX[t.k].dat + "." : "Marks Termin ist am " + jour(t.j) + " um " + heureMin(t.h) + " " + LX[t.k].dat + ".";
+const terminPhrase = t => PT_ ? "A consulta " + MARKde + " é " + jourArticlePt(t.j) + jour(t.j) + ", às " + heurePt(t.h) + ", " + LX[t.k].dat + "." : EN_ ? pt("Mark has an appointment " + LX[t.k].dat + " on " + jour(t.j) + ", " + dateDite(t.date.getDate(), t.date.getMonth()) + ", at " + heureEn(t.h) + ".") : ES_ ?"La cita de Mark es el " + jour(t.j) + " a las " + heureMin(t.h) + " " + LX[t.k].dat + "." : "Marks Termin ist am " + jour(t.j) + " um " + heureMin(t.h) + " " + LX[t.k].dat + ".";
 function terminTrad(t){
   if (!TL) return null;
   const lt = LX[t.k].trad[TL]; if (!lt) return null;
@@ -669,7 +864,7 @@ const EX = {
     const faux = D.fauxImg[img][APPRENDRE].filter(x => DOC[x] && docAff(x) !== docAff(k));
     const rep = docAff(k), opts = melanger([rep, ...melanger(faux).map(docAff).filter((x, i, a) => a.indexOf(x) === i).slice(0, 3)]);
     tradQ = docTrad(k); dirQ = docDit(k);
-    ecran("c_document", photo(img), EN_ ? "What is this?" : ES_ ? "¿Qué es esto?" : "Was ist das?", {centre: true});
+    ecran("c_document", photo(img), EN_ ? "What is this?" : ES_ ? "¿Qué es esto?" : PT_ ? "O que é isto?" : "Was ist das?", {centre: true});
     boutons($("choix"), opts, rep, ok => juger(ok, rep, docPhrase(k)), tradDocChoix);
     return true;
   },
@@ -711,7 +906,7 @@ const EX = {
     const autres = melanger(DEM.filter(x => x.img && x.img !== d.img && x.v !== d.v)).slice(0, 2);
     const rep = phraseMark(d, false), opts = melanger([rep, ...autres.map(x => phraseMark(x, false))]);
     tradQ = tradMark(d, false); dirQ = d.v;
-    ecran("c_quoi", photo(d.img), EN_ ? "What is Mark doing?" : ES_ ? "¿Qué hace Mark?" : "Was macht Mark?", {centre: true});
+    ecran("c_quoi", photo(d.img), EN_ ? "What is Mark doing?" : ES_ ? "¿Qué hace Mark?" : PT_ ? (BR ? "O que Mark faz?" : "O que faz o Mark?") : "Was macht Mark?", {centre: true});
     $("choix").classList.add("liste");
     boutons($("choix"), opts, rep, ok => juger(ok, rep, rep), o => { const x = DEM.find(y => phraseMark(y, false) === o); return x ? tradMark(x, false) : null; });
     return true;
@@ -724,7 +919,7 @@ const EX = {
     const d = hasard(cand); viser(w || {mot: d.v, cat: "verbe"});
     const leurres = melanger(libres(d)).slice(0, 3);
     const opts = melanger([d.v, ...leurres]);
-    const enonce = ES_ || EN_ ? "___ " + d.obj : d.obj + " ___";
+    const enonce = ES_ || EN_ || PT_ ? "___ " + d.obj : d.obj + " ___";
     tradQ = tradMark(d, true); dirQ = d.v;
     ecran("c_verbe", d.img ? photo(d.img) : "", "", {centre: true});
     document.querySelector("#zone .enonce").innerHTML = cible(avecTrou(enonce));
@@ -735,7 +930,7 @@ const EX = {
   // L'ALLEMAND SEULEMENT : la place du petit mot. « Mark meldet seine Wohnung an. » / « Mark anmeldet ... » ; et le
   // piege : unterschreiben ne se separe pas (« Mark schreibt den Vertrag unter. »)
   ordre(w){
-    if (ES_) return false;
+    if (ES_ || PT_) return false;
     const cand = demDe(w).filter(d => d.obj && (decoupe(conj(d.v).er)[1] || d.v === "unterschreiben"));
     if (!cand.length) return false;
     const d = hasard(cand); viser(w || {mot: d.v, cat: "verbe"});
@@ -756,8 +951,8 @@ const EX = {
     if (!cand.length) return false;
     const d = hasard(cand); viser(w || {mot: d.v, cat: "verbe"});
     const c = conj(d.v);
-    const rep = cap(ES_ ? c.usted : decoupe(c.sie)[0]);
-    const autres = ES_ ? [c.er, c.ich] : [decoupe(c.er)[0], decoupe(c.ich)[0]];
+    const rep = cap(ES_ || PT_ ? c.usted : decoupe(c.sie)[0]);
+    const autres = ES_ || PT_ ? [c.er, c.ich] : [decoupe(c.er)[0], decoupe(c.ich)[0]];
     const opts = melanger([rep, ...autres.map(cap)].filter((x, i, a) => a.indexOf(x) === i));
     const juste = phrasePolie(d, rep);
     const enonce = juste.replace(rep, "___");
@@ -791,7 +986,7 @@ const EX = {
       // « Wo unterschreibt Mark? » -> Unterschrift : la case ou l'on signe, parmi d'autres cases du formulaire
       const rep = CH[c].label, opts = melanger([rep, ...melanger(f.champs.filter(x => x !== c)).slice(0, 3).map(x => CH[x].label)]);
       tradQ = champCourtTrad(c, CH[c].v); dirQ = CH[c].label;
-      ecran("c_formValeur", papierFormulaire(f), EN_ ? "Where does Mark sign?" : ES_ ? "¿Dónde firma Mark?" : "Wo unterschreibt Mark?", {centre: true});
+      ecran("c_formValeur", papierFormulaire(f), EN_ ? "Where does Mark sign?" : ES_ ? "¿Dónde firma Mark?" : PT_ ? (BR ? "Onde Mark assina?" : "Onde assina o Mark?") : "Wo unterschreibt Mark?", {centre: true});
       boutons($("choix"), opts, rep, ok => juger(ok, rep, champCourt(c, CH[c].v)),
               o => { const x = Object.keys(CH).find(y => CH[y].label === o); return x ? tradChamp(x, 1) || glose(champMot(x)) : null; });
       return true;
@@ -799,7 +994,7 @@ const EX = {
     const autres = melanger(CH[c].faux).slice(0, 2).concat(melanger(f.champs.filter(x => x !== c && !CH[x].signature && !memeGroupe(x, c)).map(x => CH[x].v)).slice(0, 1));
     const rep = CH[c].v, opts = melanger([rep, ...autres.filter(x => x !== rep)]);
     tradQ = champCourtTrad(c, rep); dirQ = w && w.cat ? w.mot : CH[c].label;
-    const q = EN_ ? "What does Mark write in the “" + CH[c].label + "” box?" : ES_ ? "¿Qué pone en «" + CH[c].label + "»?" : "Was steht bei „" + CH[c].label + "“?";
+    const q = EN_ ? "What does Mark write in the “" + CH[c].label + "” box?" : ES_ ? "¿Qué pone en «" + CH[c].label + "»?" : PT_ ? "O que está escrito em «" + CH[c].label + "»?" : "Was steht bei „" + CH[c].label + "“?";
     ecran("c_formValeur", papierFormulaire(f, null, c), q, {centre: true});
     boutons($("choix"), opts, rep, ok => juger(ok, rep, champCourt(c, rep)), o => valTrad(c, o) !== o ? valTrad(c, o) : null);
     return true;
@@ -839,16 +1034,16 @@ const EX = {
   termin(w){
     if (w && !estTermin(w)) return false;
     viser(w || nom(TE.mot, TE.genre));
-    const t = tirerTermin(hasard(Object.keys(HO))), sorte = hasard(["jour", "heure", "lieu"]);
+    const t = tirerTermin(hasard(TE.lieux || Object.keys(HO))), sorte = hasard(PT_ ? ["jour", "heure"] : ["jour", "heure", "lieu"]);
     let q, rep, opts, trads = null;
     if (sorte === "jour"){
-      q = ES_ ? "¿Qué día es la cita de Mark?" : "An welchem Tag ist Marks Termin?";
-      const f = j => (ES_ ? "el " : "am ") + jour(j);
+      q = ES_ ? "¿Qué día es la cita de Mark?" : PT_ ? "Em que dia é a consulta " + MARKde + "?" : "An welchem Tag ist Marks Termin?";
+      const f = j => PT_ ? jourArticlePt(j) + jour(j) : (ES_ ? "el " : "am ") + jour(j);
       rep = f(t.j); opts = melanger([t.j, ...melanger([1, 2, 3, 4, 5].filter(j => j !== t.j)).slice(0, 3)]).map(f);
       trads = o => { const j = [1, 2, 3, 4, 5].find(x => f(x) === o); return j ? tradJour(j) : null; };
     } else if (sorte === "heure"){
-      q = ES_ ? "¿A qué hora es la cita de Mark?" : "Um wie viel Uhr ist Marks Termin?";
-      const f = h => (ES_ ? "a las " : "um ") + heureMin(h);
+      q = ES_ ? "¿A qué hora es la cita de Mark?" : PT_ ? "A que horas é a consulta " + MARKde + "?" : "Um wie viel Uhr ist Marks Termin?";
+      const f = h => PT_ ? "às " + heurePt(h) : (ES_ ? "a las " : "um ") + heureMin(h);
       const autres = [t.h + 1, t.h - 1, t.h + 0.5, t.h + 2, t.h - 2].filter(h => h >= 7 && h <= 19);
       rep = f(t.h); opts = melanger([rep, ...melanger(autres).slice(0, 3).map(f)]);
     } else {
@@ -901,10 +1096,10 @@ const EX = {
       tradQ = horaireTrad(t.k, t.j, t.h, t.ouvert); dirQ = ouvertForme(t.k, t.ouvert);
     } else if (s === "termin"){
       viser(w || nom(TE.mot, TE.genre));
-      const t = tirerTermin(hasard(Object.keys(HO)));
+      const t = tirerTermin(hasard(TE.lieux || Object.keys(HO)));
       const autreJ = hasard([1, 2, 3, 4, 5].filter(j => j !== t.j));
       avant = papierTermin(t);
-      const p = j => EN_ ? "Mark's appointment is on " + jour(j) + "." : ES_ ? "La cita de Mark es el " + jour(j) + "." : "Marks Termin ist am " + jour(j) + ".";
+      const p = j => EN_ ? "Mark's appointment is on " + jour(j) + "." : ES_ ? "La cita de Mark es el " + jour(j) + "." : PT_ ? "A consulta " + MARKde + " é " + jourArticlePt(j) + jour(j) + "." : "Marks Termin ist am " + jour(j) + ".";
       phrase = p(vrai ? t.j : autreJ); juste = terminPhrase(t);
       tradQ = terminTrad(t); dirQ = teDit();
     } else {
@@ -916,7 +1111,7 @@ const EX = {
       avant = d.img ? photo(d.img) : "";
       tradQ = tradMark(d, true); dirQ = LX[d.lieu].nom;
     }
-    const V = EN_ ? ["True", "False"] : ES_ ? ["Verdadero", "Falso"] : ["Richtig", "Falsch"];
+    const V = EN_ ? ["True", "False"] : ES_ ? ["Verdadero", "Falso"] : PT_ ? ["Verdadeiro", "Falso"] : ["Richtig", "Falsch"];
     const rep = phrase === juste ? V[0] : V[1];
     ecran("c_vraifaux", avant, phrase, {centre: true});
     boutons($("choix"), V, rep, ok => juger(ok, rep, juste));
@@ -1036,7 +1231,7 @@ const EX_EN = {
 };
 if (EN_) Object.assign(EX, EX_EN);
 const SORTES = EN_ ? ["document", "entendre", "ou", "quoi", "verbe", "poli", "formLabel", "formValeur", "apporter", "horaire", "termin", "vraifaux", "guichet", "demander", "prep"]
-                   : Object.keys(EX).filter(x => !(ES_ && x === "ordre"));
+                   : Object.keys(EX).filter(x => !((ES_ || PT_) && x === "ordre"));
 
 // ---------- la decouverte ----------
 function textesAVoix(){
@@ -1056,6 +1251,7 @@ function decouvrir(){
     + '<div class="section">' + T("secDoc") + '</div>' + planche("pDoc", docs.map(k => ["k:" + k, DOC[k].img, docAff(k)]))
     + '<div class="section">' + T("secForm") + '</div>' + papierFormulaire(f)
     + (EN_ ? '<p class="regle">' + T("regleEn") + '</p><p class="regle">' + T(GB ? "bonGb" : "bonUs") + '</p>'
+       : PT_ ? '<p class="regle">' + T(BR ? "regleBr" : "reglePt") + '</p>' + (BR ? '<p class="regle">' + T("bonBr") + '</p>' : "")
            : '<p class="regle">' + isoler(T(ES_ ? "regleEs" : "regleDe")) + '</p>');
   const fiche = (img, mot, sens, dit, trad) => {
     $("fiche").innerHTML = (img ? '<img alt="" src="' + imgSrc(img) + '">' : '<div></div>') + '<div><div class="mot">' + cible(esc(mot)) + '</div><div class="sens">' + esc(sens || "") + '</div>'
@@ -1179,6 +1375,7 @@ $("titre").textContent = T("titre");
 document.title = T("titre");
 function preparer(d){
   if (EN_) preparerAnglais(d);
+  if (PT_) preparerPortugais(d);
   D = d; LX = D.lieux[APPRENDRE]; HO = D.horaires[APPRENDRE]; DOC = D.docs[APPRENDRE]; DEM = D.demarches[APPRENDRE];
   CH = D.champs[APPRENDRE]; FO = D.formulaires[APPRENDRE]; AV = D.avis[APPRENDRE]; TE = D.termin[APPRENDRE]; CJ = D.conj[APPRENDRE];
 }

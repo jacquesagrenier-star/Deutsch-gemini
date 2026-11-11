@@ -131,8 +131,10 @@ button:disabled{cursor:default}
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (4 nov. 2026, « il manque beaucoup de themes en anglais ») : les memes images, ses phrases a lui ; variante=gb
-const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+// le portugais (lot P3, 11 nov. 2026) : les memes images, ses phrases a lui ; variante=br pour le Bresil
+const APPRENDRE = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
@@ -237,7 +239,13 @@ const TEXTES = {
   verbeEn:   {fr:"Ce que la personne fait au travail : le présent simple. N'oublie pas le -s de he et she."},
   alsEn:     {fr:"as, at, in, for ou on ? Choisis le petit mot qui manque."},
   neutre:    {fr:"Un homme ou une femme : quel mot convient ?"},
-  definition:{fr:"Qui fait cela ? Choisis le métier."}
+  definition:{fr:"Qui fait cela ? Choisis le métier."},
+  // le portugais seulement (son interface est en francais)
+  noteArticlePt:{fr:"Pour dire son métier, <b>pas d'article</b>, comme en français : « Sou uma médica » est une faute."},
+  noteFemPt: {fr:"Le féminin : <b>-o → -a</b>, <b>-or → -ora</b>. Certains mots ne changent pas : seul l'article change."},
+  noteAlsPt: {fr:"« Travailler comme » : <b>trabalhar como</b>, sans article. Le lieu : em + um = <b>num</b>, em + uma = <b>numa</b>, em + o = <b>no</b>, em + a = <b>na</b>."},
+  bonPt:     {fr:"Bon à savoir : tu apprends le portugais du Portugal. Devant un prénom, l'article : <b>o</b> Diego é médico, a profissão <b>do</b> Diego. Le serveur : o empregado de mesa ; l'agent de police : o polícia ; le commissariat : a esquadra. Au Brésil : Diego é médico, o garçom, o policial, a delegacia, et plutôt <b>em um</b> que num à l'écrit."},
+  bonBr:     {fr:"Bon à savoir : tu apprends le portugais du Brésil. Pas d'article devant un prénom : Diego é médico, a profissão <b>de</b> Diego. Le serveur : o garçom, a garçonete ; l'agent de police : o policial ; le commissariat : a delegacia ; réparer : consertar. Au Portugal : o Diego, o empregado de mesa, o polícia, a esquadra, reparar, et num / numa."}
 };
 // les exemples des regles, dans la langue apprise : une ligne de gauche a droite, la meme pour toutes les langues
 const EXEMPLES = {
@@ -249,10 +257,17 @@ const EXEMPLES = {
   noteAlsEs: "Trabaja <b>de</b> camarero. · Trabaja <b>como</b> camarera.",
   noteArticleEn: "She's <b>a</b> doctor. · He's <b>an</b> engineer. · She's <b>an</b> excellent teacher. · — What <b>does</b> she <b>do</b>? — She's a nurse.",
   noteAlsEn: "He works <b>as</b> a waiter. · She works <b>at</b> a hospital. · He works <b>in</b> the kitchen. · She works <b>for</b> the police. · He drive<b>s</b> a bus. · She teach<b>es</b> art.",
-  noteFemEn: "He's <b>a</b> nurse. · She's <b>a</b> police officer. · a waiter → a wait<b>ress</b> · an actor → an act<b>ress</b>"
+  noteFemEn: "He's <b>a</b> nurse. · She's <b>a</b> police officer. · a waiter → a wait<b>ress</b> · an actor → an act<b>ress</b>",
+  // le portugais (Portugal, et le Bresil quand il differe)
+  noteArticlePt: BR ? "Sou <b>médica</b>. · Ele é <b>professor</b>. · Qual é a sua profissão? — Sou <b>padeiro</b>."
+                    : "Sou <b>médica</b>. · Ele é <b>professor</b>. · Qual é a tua profissão? — Sou <b>padeiro</b>.",
+  noteFemPt: "o médic<b>o</b> → a médic<b>a</b> · o profess<b>or</b> → a profess<b>ora</b> · o padeir<b>o</b> → a padeir<b>a</b> · "
+           + (BR ? "<b>o</b> recepcionista → <b>a</b> recepcionista · o garç<b>om</b> → a garç<b>onete</b>" : "<b>o</b> rececionista → <b>a</b> rececionista · <b>o</b> polícia → <b>a</b> polícia"),
+  noteAlsPt: BR ? "Ela trabalha <b>como</b> médica. · Ele trabalha <b>em um</b> restaurante. · Ela trabalha <b>em uma</b> padaria. · Ele trabalha <b>no</b> hospital."
+                : "Ela trabalha <b>como</b> médica. · Ele trabalha <b>num</b> restaurante. · Ela trabalha <b>numa</b> padaria. · Ele trabalha <b>no</b> hospital."
 };
 const DE_APP = APPRENDRE === "de";
-const cleNote = c => DE_APP ? c : APPRENDRE === "en" ? c + "En" : c + "Es";
+const cleNote = c => DE_APP ? c : APPRENDRE === "en" ? c + "En" : APPRENDRE === "pt" ? c + "Pt" : c + "Es";
 const regle = cle => isoler(T(cleNote(cle))) + '<span class="exemples" lang="' + APPRENDRE + '" dir="ltr">' + EXEMPLES[cleNote(cle)] + '</span>';
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
 
@@ -260,7 +275,8 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 let D = null;
 // en anglais, Elena et Tomas sont ecartes : « POLIZEI » sur l'uniforme, ce n'est pas Boston
 const EN_ECARTES = ["Elena", "Tomas"];
-const PERS = () => Object.keys(D.personnes).filter(id => APPRENDRE !== "en" || !EN_ECARTES.includes(id));
+// en portugais aussi (Lisbonne)
+const PERS = () => Object.keys(D.personnes).filter(id => !["en", "pt"].includes(APPRENDRE) || !EN_ECARTES.includes(id));
 const P = id => D.personnes[id];
 const PH = id => D.phrases[APPRENDRE][id];
 const forme = (met, s) => D.metiers[met][APPRENDRE][s];                     // {genre, mot}
@@ -305,7 +321,10 @@ function motsDuTheme(){
   if (APPRENDRE === "en") return (MOTS = motsDuThemeEn());
   MOTS = [];
   Object.keys(D.metiers).forEach(met => ["m", "f"].forEach(s => { const f = forme(met, s); MOTS.push({k: "j:" + met + ":" + s, met, s, mot: f.mot, genre: f.genre}); }));
-  Object.keys(D.lieux).forEach(l => { const n = D.lieux[l].nom[APPRENDRE]; MOTS.push({k: "l:" + l, lieu: l, mot: n.mot, genre: n.genre}); });
+  // en portugais, un lieu dont plus aucune personne n'a d'image (la esquadra : Elena et Tomas, ecartes) n'a aucune
+  // question qui le vise : il ne va pas dans la file (comme EN_L en anglais)
+  Object.keys(D.lieux).filter(l => APPRENDRE !== "pt" || PERS().some(id => D.metiers[P(id).metier].lieux.includes(l)))
+    .forEach(l => { const n = D.lieux[l].nom[APPRENDRE]; MOTS.push({k: "l:" + l, lieu: l, mot: n.mot, genre: n.genre}); });
   uniques(PERS().map(id => PH(id).fait.inf)).forEach(v => MOTS.push({k: "v:" + v, mot: v, cat: "verbe"}));
   return MOTS;
 }
@@ -352,7 +371,7 @@ function juger(ok, bonneTexte, phrase){
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const mt = montreDe(motQ);
-  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : APPRENDRE === "en" ? "Well done!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
+  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : APPRENDRE === "en" ? "Well done!" : APPRENDRE === "pt" ? "Muito bem!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
     // la phrase juste, ECRITE, apres toute reponse (Jacques, 5 nov., comme la meteo : une ecoute reussie ne montrait
     // que « ¡Muy bien! ») ; apres une erreur, « La bonne reponse » l'a deja
     + ((ok || (phrase && phrase !== bonneTexte)) ? '<span class="phrase">' + cible(phrase || bonneTexte) + '</span>' : "")
@@ -559,7 +578,7 @@ const EX = {
     }
     const phrase = vrai ? juste : faux;
     ecran("vraifaux", photo(id), phrase, true);
-    const V = DE_APP ? "Richtig" : "Verdadero", F = DE_APP ? "Falsch" : "Falso", rep = vrai ? V : F;
+    const V = DE_APP ? "Richtig" : APPRENDRE === "pt" ? "Verdadeiro" : "Verdadero", F = DE_APP ? "Falsch" : "Falso", rep = vrai ? V : F;
     boutons($("choix"), [V, F], rep, ok => juger(ok, rep, juste));
     return true;
   }
@@ -568,6 +587,98 @@ const EX = {
 const SORTES = DE_APP ? ["beruf", "ich", "adj", "ou", "fait", "verbe", "als", "paire", "cual", "entendre", "vraifaux"]
              : APPRENDRE === "en" ? ["beruf", "ich", "article", "question", "ou", "fait", "verbe", "als", "neutre", "definition", "cual", "entendre", "vraifaux"]
                       : ["beruf", "ich", "ou", "fait", "verbe", "als", "paire", "cual", "entendre", "vraifaux"];
+
+// ---------- LE PORTUGAIS (lot P3, 11 nov. 2026) ----------
+// Comme l'espagnol, le metier se dit SANS article (« Ela é médica », « Sou professor » ; « Sou uma médica » est la faute),
+// le masculin et le feminin (o médico / a médica, o padeiro / a padeira, o professor / a professora, o / a rececionista),
+// « trabalha como » (jamais « trabalha de médica » en langue soignee), et le lieu avec la contraction de em + um :
+// « trabalha NUM consultório, NUMA padaria », « NO hospital, NA cozinha ». Au Portugal, l'article devant le prenom
+// (« o Diego é médico », « a profissão do Diego ») ; au Bresil, sans (« Diego é médico », « a profissão de Diego »), et
+// « em um / em uma » plutot que num / numa a l'ecrit. Les mots du Bresil : garçom / garçonete, policial, recepcionista,
+// delegacia, consertar. Les phrases sont fabriquees ici depuis les memes personnes et les memes lieux (metiers.json),
+// au chargement (preparerPortugais) : D.phrases.pt, D.metiers[m].pt, D.lieux[l].pt... ; la traduction francaise est
+// celle de la phrase espagnole de la meme case. Elena et Tomas sont ecartes, comme en anglais (« POLIZEI »).
+const PT_FORMES = {arzt: ["médico", "médica"], apotheker: ["farmacêutico", "farmacêutica"], baecker: ["padeiro", "padeira"],
+  friseur: ["cabeleireiro", "cabeleireira"], lehrer: ["professor", "professora"], kellner: BR ? ["garçom", "garçonete"] : ["empregado de mesa", "empregada de mesa"],
+  koch: ["cozinheiro", "cozinheira"], mechaniker: ["mecânico", "mecânica"], verkaeufer: ["vendedor", "vendedora"],
+  polizist: BR ? ["policial", "policial"] : ["polícia", "polícia"], pfleger: ["enfermeiro", "enfermeira"],
+  rezeptionist: BR ? ["recepcionista", "recepcionista"] : ["rececionista", "rececionista"]};
+// le lieu : [« num consultório », le nom, son genre] ; em + um = num, em + uma = numa, em + o = no, em + a = na
+const emUm = (g, mot) => (g === "a" ? (BR ? "em uma " : "numa ") : (BR ? "em um " : "num ")) + mot;
+const PT_LIEUX = {praxis: ["consultório", "o"], krankenhaus: ["hospital", "o", "no hospital"], apotheke: ["farmácia", "a"], baeckerei: ["padaria", "a"],
+  salon: ["salão de beleza", "o"], schule: ["escola", "a"], restaurant: ["restaurante", "o"], kueche: ["cozinha", "a", "na cozinha"],
+  werkstatt: ["oficina", "a"], geschaeft: ["loja", "a"], polizei: BR ? ["delegacia", "a", "na delegacia"] : ["esquadra", "a", "na esquadra"], hotel: ["hotel", "o"]};
+// ce que fait chaque metier : le verbe (3e personne, infinitif) ; les leurres de l'espagnol, mis en portugais
+const PT_VERBES = {arzt: ["examina", "examinar"], apotheker: ["vende", "vender"], baecker: ["faz", "fazer"], friseur: ["corta", "cortar"],
+  lehrer: ["ensina", "ensinar"], kellner: ["serve", "servir"], koch: ["cozinha", "cozinhar"], mechaniker: BR ? ["conserta", "consertar"] : ["repara", "reparar"],
+  verkaeufer: ["vende", "vender"], polizist: ["controla", "controlar"], pfleger: ["cuida", "cuidar"], rezeptionist: ["dá", "dar"]};
+const PT_V_ES = {hace: "faz", corta: "corta", repara: BR ? "conserta" : "repara", vende: "vende", cocina: "cozinha", "enseña": "ensina",
+  controla: "controla", examina: "examina", cuida: "cuida", sirve: "serve", da: "dá"};
+const PT_INF_ES = {examinar: "examinar", vender: "vender", hacer: "fazer", cortar: "cortar", "enseñar": "ensinar", servir: "servir", cocinar: "cozinhar",
+  reparar: BR ? "consertar" : "reparar", controlar: "controlar", cuidar: "cuidar", dar: "dar"};
+// le complement, pris dans la phrase espagnole de la meme personne (« La médica ___ a los pacientes. »)
+const PT_COMP = {"a los pacientes": "os pacientes", "medicamentos": "medicamentos", "pan": "pão", "el pelo": "o cabelo", "español": "português",
+  "la comida": "a comida", "bicicletas": "bicicletas", "ropa": "roupa", "la llave a los huéspedes": "a chave aos hóspedes",
+  "a los niños": "as crianças", "para los clientes": "para os clientes", "el tráfico": "o trânsito", "a los enfermos": "dos doentes"};
+// le prenom : l'article au Portugal (o Diego, a Inês), pas au Bresil ; de + o = do (« a profissão do Diego »)
+const prenomPt = id => P(id).nom ? (BR ? P(id).nom : (P(id).sexe === "f" ? "a " : "o ") + P(id).nom) : null;
+const dePt = id => BR ? "de " + P(id).nom : (P(id).sexe === "f" ? "da " : "do ") + P(id).nom;
+function preparerPortugais(){
+  if (D.personnes.Ines) D.personnes.Ines.nom = "Inês";              // l'orthographe portugaise
+  const es = D.phrases.es, trEs = D.trad.es, trPt = {}, glEs = D.gloses.es, glPt = {};
+  // (la traduction reprend celle de l'espagnol : Inés y devient Inês)
+  const tr = (pt, esPh, fr) => { const t = fr ? {fr} : (trEs[esPh] ? Object.assign({}, trEs[esPh]) : null);
+    if (t){ for (const k in t) t[k] = String(t[k]).replace(/Inés/g, "Inês"); trPt[pt] = t; } return pt; };
+  const gl = (pt, esMot) => { if (glEs[esMot]) glPt[pt] = glEs[esMot]; };
+  Object.keys(D.metiers).forEach(met => {
+    const m = D.metiers[met], f = PT_FORMES[met];
+    m.pt = {m: {genre: "o", mot: f[0]}, f: {genre: "a", mot: f[1]}};
+    m.verbes.pt = PT_VERBES[met][0]; m.inf.pt = PT_VERBES[met][1];
+    m.faux.pt = uniques(m.faux.es.map(v => PT_V_ES[v]).filter(v => v && v !== PT_VERBES[met][0]));
+    gl(f[0], m.es.m.mot); gl(f[1], m.es.f.mot); gl(PT_VERBES[met][1], m.inf.es);
+  });
+  Object.keys(D.lieux).forEach(l => {
+    const [mot, g, avec] = PT_LIEUX[l];
+    D.lieux[l].pt = avec || emUm(g, mot); D.lieux[l].nom.pt = {genre: g, mot}; gl(mot, D.lieux[l].nom.es.mot);
+  });
+  const ph = {};
+  Object.keys(D.personnes).forEach(id => {
+    const p = P(id), e = es[id], met = p.metier, mot = PT_FORMES[met][p.sexe === "f" ? 1 : 0];
+    const il = p.sexe === "f" ? "Ela" : "Ele", N = prenomPt(id), S = N ? N.charAt(0).toUpperCase() + N.slice(1) : il;
+    // la personne sans prenom des scenes : « a médica » quand elle fait son geste (comme l'espagnol)
+    const qui = N ? S : (p.sexe === "f" ? "A " : "O ") + mot;
+    const comp = PT_COMP[e.fait.trou.split("___ ")[1].replace(/\.$/, "")] || "";
+    const v = PT_VERBES[met][0];
+    const lieux = {};
+    Object.keys(e.ou.lieux).forEach(l => { lieux[l] = tr(S + " trabalha " + D.lieux[l].pt + ".", e.ou.lieux[l]); });
+    // le professeur de Lisbonne enseigne le portugais (l'espagnol enseigne l'espagnol)
+    const frFait = comp === "português" ? (trEs[e.fait.phrase] || {}).fr.replace("l'espagnol", "le portugais") : null;
+    ph[id] = {
+      beruf: {q: N ? "Qual é a profissão " + dePt(id) + "?" : "Qual é a profissão " + (p.sexe === "f" ? "dela" : "dele") + "?", rep: mot,
+              phrase: tr(S + " é " + mot + ".", e.beruf.phrase)},
+      ich: {q: BR ? "Qual é a sua profissão?" : "Qual é a tua profissão?", juste: tr("Sou " + mot + ".", e.ich.juste), faux: "Sou " + (p.sexe === "f" ? "uma " : "um ") + mot + "."},
+      ist: {juste: tr(S + " é " + mot + ".", e.ist.juste), faux: S + " é " + (p.sexe === "f" ? "uma " : "um ") + mot + "."},
+      ou: {q: N ? (BR ? "Onde " + N + " trabalha?" : "Onde trabalha " + N + "?") : (BR ? "Onde " + il.toLowerCase() + " trabalha?" : "Onde é que " + il.toLowerCase() + " trabalha?"), lieux},
+      fait: {q: "Quem " + v + " " + comp + "?", phrase: tr(qui + " " + v + " " + comp + ".", e.fait.phrase, frFait), trou: qui + " ___ " + comp + ".", v, inf: PT_VERBES[met][1]},
+      // « trabalha como médica » ; « de » n'est pas propose : « trabalha de garçom » se dit aussi, familier
+      als: {trou: S + " trabalha ___ " + mot + ".", rep: "como", opts: ["como", "em", "para"], phrase: tr(S + " trabalha como " + mot + ".", e.als.phrase)},
+      cual: tr("É " + mot + ".", e.cual)
+    };
+  });
+  D.phrases.pt = ph;
+  D.paires.pt = Object.keys(D.metiers).map(met => {
+    const x = {metier: met, m: "o " + PT_FORMES[met][0], f: "a " + PT_FORMES[met][1]}, y = D.paires.es.find(z => z.metier === met);
+    if (y){ tr(x.m + " → " + x.f, y.m + " → " + y.f); tr(x.f + " → " + x.m, y.f + " → " + y.m); }
+    return x;
+  });
+  // les formes sans image : celles de l'espagnol, et le policier et la policiere (Elena et Tomas ecartes)
+  const sans = D.sansImage.es.map(x => ({metier: x.metier, sexe: x.sexe, es: x.phrase}))
+    .concat([{metier: "polizist", sexe: "f", fr: "Elle travaille comme policière."}, {metier: "polizist", sexe: "m", fr: "Il travaille comme policier."}]);
+  D.sansImage.pt = sans.map(x => { const mot = PT_FORMES[x.metier][x.sexe === "f" ? 1 : 0], il = x.sexe === "f" ? "Ela" : "Ele";
+    return {metier: x.metier, sexe: x.sexe, trou: il + " trabalha ___ " + mot + ".", rep: "como", opts: ["como", "em", "para"],
+            phrase: tr(il + " trabalha como " + mot + ".", x.es, x.fr)}; });
+  D.trad.pt = trPt; D.gloses.pt = glPt;
+}
 
 // ---------- L'ANGLAIS (4 nov. 2026) ----------
 // Les phrases sont ecrites pour l'anglais, fabriquees depuis les memes personnes et les memes lieux (metiers.json) ;
@@ -1011,7 +1122,8 @@ function decouvrir(){
     $("oPers").classList.add("actif"); $("oPaires").classList.remove("actif");
     $("vue").innerHTML = '<div class="fiche" id="fiche"></div><div class="galerie" id="galerie"></div>'
       + '<p class="regle">' + regle("noteArticle") + '</p><p class="regle">' + regle("noteAls") + '</p>'
-      + (APPRENDRE === "en" ? '<p class="regle">' + isoler(T(GB ? "bonGb" : "bonUs")) + '</p>' : "");
+      + (APPRENDRE === "en" ? '<p class="regle">' + isoler(T(GB ? "bonGb" : "bonUs")) + '</p>' : "")
+      + (APPRENDRE === "pt" ? '<p class="regle">' + isoler(T(BR ? "bonBr" : "bonPt")) + '</p>' : "");
     const montrerFiche = (id, parle) => {
       const lignes = ficheDe(id);
       dit = lignes.join(" ");
@@ -1160,6 +1272,7 @@ document.title = T("titre");
 fetch("metiers/metiers.json?v=1").then(r => r.json()).then(d => {
   D = d;
   if (APPRENDRE === "en") preparerAnglais();
+  if (APPRENDRE === "pt") preparerPortugais();
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>

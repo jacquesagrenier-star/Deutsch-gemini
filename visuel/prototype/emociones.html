@@ -15,8 +15,8 @@
   la peur (hat Angst), d'ou « ist oder hat? » et « Gefuehl oder Charakter? ».
   Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne »
   a chaque reponse (objectif du jour, carreaux), « fini » et « fermer » a la fin.
-  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
-  variante=latam (enojado, la voix de Monica), r=<AUDIO_REVISION> (la voix de la decouverte).
+  Parametres : apprendre=es|de|en|pt, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
+  variante=latam (enojado, la voix de Monica), gb (anglais britannique) ou br (portugais du Bresil), r=<AUDIO_REVISION> (la voix de la decouverte).
   A chaque reponse, « reponse » {mot, genre, cat, juste} : le mot teste avance dans la progression commune aux cartes.
   Le tirage suit les mots (themes/tirage.js, commun aux themes) : les dus, les rates, puis les nouveaux.
   Les phrases sont FABRIQUEES depuis emociones.json : une image ne dit que ce qu'elle montre.
@@ -125,8 +125,10 @@ button:disabled{cursor:default}
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (4 nov. 2026) : les memes images, ses phrases a lui ; variante=gb, le britannique (ill, untidy, film)
-const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+// le portugais (lot P3, 11 nov. 2026) : les memes images, ses phrases a lui ; variante=br pour le Bresil
+const APPRENDRE = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
 const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -172,6 +174,10 @@ const TEXTES = {
   edIng:     {fr:"-ed ou -ing ? Ce qu'on ressent, ou ce qui le provoque ?"},
   edIngVf:   {fr:"Cette phrase est-elle correcte ? Attention à -ed et -ing."},
   question:  {fr:"Quelle question va avec cette réponse ?"},
+  // le portugais seulement (son interface est en francais)
+  reglePt:   {fr:"Une émotion passe : <b>estar</b> (<b>a Carmen está triste</b>). Le caractère reste : <b>ser</b> (<b>o Javier é simpático</b>). La peur se dit avec <b>estar com</b> ou <b>ter</b> : <b>a Carmen está com medo</b>, <b>tem medo de cães</b> ; de même <b>estar com sono</b>, <b>com fome</b>, <b>com frio</b>. Au Portugal, <b>aborrecido</b> change de sens avec le verbe : <b>o filme é aborrecido</b> (ennuyeux), <b>o Ben está aborrecido</b> (il s'ennuie). Au Brésil, pas d'article devant le prénom (<b>Carmen está triste</b>) et d'autres mots : <b>bravo</b> (zangado), <b>surpreso</b> (surpreendido), <b>entediado</b> et <b>chato</b> (aborrecido), <b>pão-duro</b> (avarento)."},
+  reglePtBr: {fr:"Une émotion passe : <b>estar</b> (<b>Carmen está triste</b>). Le caractère reste : <b>ser</b> (<b>Javier é simpático</b>). La peur se dit avec <b>estar com</b> ou <b>ter</b> : <b>Carmen está com medo</b>, <b>tem medo de cachorro</b> ; de même <b>estar com sono</b>, <b>com fome</b>, <b>com frio</b>. Tu apprends le portugais du Brésil : <b>bravo</b> (fâché), <b>surpreso</b>, <b>entediado</b> (qui s'ennuie ; ennuyeux, c'est <b>chato</b>), <b>pão-duro</b> (radin). Au Portugal : <b>a Carmen</b>, <b>zangado</b>, <b>surpreendido</b>, <b>aborrecido</b>, <b>avarento</b>."},
+  serEstarPt:{fr:"Choisis le bon verbe : é, está ou tem ?"},
   choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -265,7 +271,41 @@ const EN = {
   gens: (s, p) => s.replace("{P}", nom(p)).replace("{He}", fem(p) ? "She" : "He").replace("{him}", fem(p) ? "her" : "him")
                    .replace("{il}", fem(p) ? "elle" : "il").replace("{le}", fem(p) ? "la" : "le")
 };
-const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
+// LE PORTUGAIS (lot P3, 11 nov. 2026). Comme l'espagnol, estar pour l'emotion (« A Carmen está triste »), ser pour le
+// caractere (« O Javier é simpático ») ; la peur avec estar com (« A Carmen está com medo ») ou ter (« tem medo »),
+// comme estar com sono, com fome, com frio ; au Portugal l'article devant le prenom. Les mots a la forme du corpus
+// portugais, le Bresil a ses mots : bravo (zangado), surpreso (surpreendido), entediado (aborrecido), pão-duro
+// (avarento). Au Portugal, aborrecido change de sens avec le verbe (o filme é aborrecido / o Ben está aborrecido) :
+// le piege de l'espagnol (aburrido) ; au Bresil (entediado, chato), il n'existe pas.
+const PT_E = {contento:["contente", "contente"], triste:["triste", "triste"], enfadado: BR ? ["bravo", "brava"] : ["zangado", "zangada"], miedo:["medo", "medo"],
+              sorprendido: BR ? ["surpreso", "surpresa"] : ["surpreendido", "surpreendida"], cansado:["cansado", "cansada"],
+              aburrido: BR ? ["entediado", "entediada"] : ["aborrecido", "aborrecida"], nervioso:["nervoso", "nervosa"], preocupado:["preocupado", "preocupada"],
+              orgulloso:["orgulhoso", "orgulhosa"], avergonzado:["envergonhado", "envergonhada"], enfermo:["doente", "doente"]};
+const PT_T = {generoso:["generoso", "generosa"], tacano: BR ? ["pão-duro", "pão-dura"] : ["avarento", "avarenta"], trabajador:["trabalhador", "trabalhadora"],
+              perezoso:["preguiçoso", "preguiçosa"], extrovertido:["extrovertido", "extrovertida"], timido:["tímido", "tímida"], educado:["educado", "educada"],
+              grosero:["mal-educado", "mal-educada"], ordenado:["organizado", "organizada"], desordenado:["desarrumado", "desarrumada"],
+              simpatico:["simpático", "simpática"], antipatico:["antipático", "antipática"], feliz:["feliz", "feliz"], carinoso:["carinhoso", "carinhosa"],
+              estricto:["rigoroso", "rigorosa"], estudioso:["estudioso", "estudiosa"], inteligente:["inteligente", "inteligente"],
+              independiente:["independente", "independente"], rico:["rico", "rica"], pobre:["pobre", "pobre"]};
+// au Portugal, l'article devant le prenom : « A Carmen está triste », « o Javier »
+const NOM_PT = (p, maj) => BR ? nom(p) : (fem(p) ? (maj ? "A " : "a ") : (maj ? "O " : "o ")) + nom(p);
+const PT = {
+  bravo: "Muito bem!", vrai: "Verdadeiro", faux: "Falso",
+  forme(m, p){ return m.pt[fem(p) ? 1 : 0]; },
+  verbe: (m, emotion) => emotion || m.tener ? "está" : "é",
+  // « está contente », « está com medo », « é generosa » : ce qui suit le nom
+  predicat(m, p, emotion){ return m.tener ? "está com medo" : this.verbe(m, emotion) + " " + this.forme(m, p); },
+  commentEst: p => "Como está " + NOM_PT(p) + "?",
+  quien: m => m.tener ? "Quem está com medo?" : "Quem está " + m.pt[0] + "?",
+  commentEs: p => "Como é " + NOM_PT(p) + "?",
+  contraire: (a, ma, b) => NOM_PT(a, true) + " é " + PT.forme(ma, a) + ". " + NOM_PT(b, true) + ", pelo contrário, é ___.",
+  // le piege d'aborrecido : ce qui ennuie (ser) n'est pas celui qui s'ennuie (estar) -- au Portugal seulement
+  pieges: BR ? [] : [["Este filme ___ aborrecido.", "é"], ["A aula de hoje ___ muito aborrecida.", "é"], ["O Ben ___ aborrecido: não tem nada para fazer.", "está"]],
+  ser: "é", verbes: ["é", "está", "tem"]
+};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : APPRENDRE === "pt" ? PT : ES;
+// le sujet d'une phrase : le prenom, et au Portugal son article
+const sujet = p => APPRENDRE === "pt" ? NOM_PT(p, true) : nom(p);
 // les traits que la meme scene pourrait aussi montrer, EN PLUS en anglais : cheerful et outgoing se recouvrent (Gisela
 // qui rit au marche) ; friendly et cheerful le sont deja (simpatico / feliz)
 const VOISINS_T_EN = {feliz:["extrovertido"], extrovertido:["feliz"]};
@@ -288,7 +328,9 @@ const TRADS = {
         inteligente:["est intelligent","est intelligente"], independiente:["est indépendant","est indépendante"], rico:["est riche"], pobre:["est pauvre"]},
     h: {enfadado:["est de mauvaise humeur","est de mauvaise humeur"], enfermo:["a un rhume","a un rhume"]},
     contraire: (a, pa, b, pb) => a + " " + pa + ". " + b + ", au contraire, " + pb + ".",
-    pieges: {"Esta película ___ aburrida.":"Ce film est ennuyeux.", "La clase de hoy ___ muy aburrida.":"Le cours d'aujourd'hui est très ennuyeux.", "Ben ___ aburrido: no tiene nada que hacer.":"Ben s'ennuie : il n'a rien à faire."}
+    pieges: {"Esta película ___ aburrida.":"Ce film est ennuyeux.", "La clase de hoy ___ muy aburrida.":"Le cours d'aujourd'hui est très ennuyeux.", "Ben ___ aburrido: no tiene nada que hacer.":"Ben s'ennuie : il n'a rien à faire.",
+             // le portugais du Portugal
+             "Este filme ___ aborrecido.":"Ce film est ennuyeux.", "A aula de hoje ___ muito aborrecida.":"Le cours d'aujourd'hui est très ennuyeux.", "O Ben ___ aborrecido: não tem nada para fazer.":"Ben s'ennuie : il n'a rien à faire."}
   },
   en: {
     e: {contento:["is happy"], triste:["is sad"], enfadado:["is angry"], miedo:["is afraid"], sorprendido:["is surprised"], cansado:["is tired"], aburrido:["is bored"],
@@ -329,6 +371,8 @@ let TR = (LANGUE === APPRENDRE) ? null : (TRADS[LANGUE] && (LANGUE !== "de" || A
 // et « grossier »
 const FR_EN = APPRENDRE === "en" && LANGUE === "fr";
 if (TR && FR_EN) TR = Object.assign({}, TR, {t: Object.assign({}, TR.t, {feliz: ["est d'un naturel joyeux"], antipatico: ["est peu aimable"], grosero: ["est impoli", "est impolie"]})});
+// le portugais (interface en francais) : mal-educado dit « impoli » plutot que « grossier »
+if (TR && APPRENDRE === "pt" && LANGUE === "fr") TR = Object.assign({}, TR, {t: Object.assign({}, TR.t, {grosero: ["est impoli", "est impolie"]})});
 // l'anglais : la traduction de la phrase juste quand traduire() ne la sait pas (feel, -ed / -ing, la question), et
 // celle de chaque choix (le mot choisi, quand il est faux)
 let tradQ = null, tradsOpts = {}, choixFaux = null;
@@ -358,12 +402,12 @@ function glose(m){
   return g ? cle + " — " + g : null;
 }
 const traduction = t => '<span class="trad" dir="auto">' + t + '</span>';
-const pred = (p, e) => APPRENDRE === "de" ? DE.predicat(D.emotions[e], p) : APPRENDRE === "en" ? "is " + EN_E[e] : ES.predicat(D.emotions[e], p, true);
-const predT = (p, t) => APPRENDRE === "de" ? "ist " + D.caracteres[t].de : APPRENDRE === "en" ? "is " + EN_T[t] : ES.predicat(D.caracteres[t], p, false);
+const pred = (p, e) => APPRENDRE === "de" ? DE.predicat(D.emotions[e], p) : APPRENDRE === "en" ? "is " + EN_E[e] : APPRENDRE === "pt" ? PT.predicat(D.emotions[e], p, true) : ES.predicat(D.emotions[e], p, true);
+const predT = (p, t) => APPRENDRE === "de" ? "ist " + D.caracteres[t].de : APPRENDRE === "en" ? "is " + EN_T[t] : APPRENDRE === "pt" ? PT.predicat(D.caracteres[t], p, false) : ES.predicat(D.caracteres[t], p, false);
 // l'anglais : « has a cold », « is in a bad mood »
 const predH = e => EN_H[e].v + " " + EN_H[e].x;
-const phraseE = (p, e) => nom(p) + " " + pred(p, e) + ".";
-const phraseT = (p, t) => nom(p) + " " + predT(p, t) + ".";
+const phraseE = (p, e) => sujet(p) + " " + pred(p, e) + ".";
+const phraseT = (p, t) => sujet(p) + " " + predT(p, t) + ".";
 
 // ---------- les images et les sons ----------
 const imgP = (p, e) => "emociones/" + p + "-" + e + ".webp";
@@ -378,10 +422,11 @@ let dire = t => Voix.dire(t);
 function textesAVoix(){ return Object.values(phrasesDecouverte()).map(x => x.texte); }
 // les phrases de la decouverte : celles d'emociones.json, et en anglais, fabriquees ici (« Carmen is afraid. »)
 function phrasesDecouverte(){
-  if (APPRENDRE !== "en") return D.decouverte.phrases[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  if (APPRENDRE !== "en" && APPRENDRE !== "pt") return D.decouverte.phrases[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  // l'anglais et le portugais : « Carmen is afraid. », « A Carmen está com medo. »
   const dec = D.decouverte, ph = {};
-  EMOS().forEach(e => { ph[e] = {texte: nom(dec.visages[e]) + " " + pred(dec.visages[e], e) + "."}; });
-  TRAITS().forEach(t => { ph[t] = {texte: nom(dec.caracteres[t]) + " " + predT(dec.caracteres[t], t) + "."}; });
+  EMOS().forEach(e => { ph[e] = {texte: phraseE(dec.visages[e], e)}; });
+  TRAITS().forEach(t => { ph[t] = {texte: phraseT(dec.caracteres[t], t)}; });
   return ph;
 }
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
@@ -401,14 +446,14 @@ let file = [], rang = 0, bons = 0, repondu = false;
 // L'adjectif au masculin, tel que le corpus le range (enfadado aussi en Amerique latine : le corpus n'a pas
 // enojado) ; la peur est un nom (el miedo, die Angst), comme la mauvaise humeur et le rhume en allemand.
 let motQ = null;
-const MOT_NOM = {es: {miedo: {mot: "miedo", genre: "el"}}, de: {miedo: {mot: "Angst", genre: "die"}, enfadado: {mot: "Laune", genre: "die"}, enfermo: {mot: "Erkältung", genre: "die"}}};
+const MOT_NOM = {es: {miedo: {mot: "miedo", genre: "el"}}, pt: {miedo: {mot: "medo", genre: "o"}}, de: {miedo: {mot: "Angst", genre: "die"}, enfadado: {mot: "Laune", genre: "die"}, enfermo: {mot: "Erkältung", genre: "die"}}};
 // LE SENS (3 nov. 2026) : la traduction francaise de l'entree du corpus que le theme enseigne (emociones.json, « sens »).
 // Un mot a deux entrees (rico : delicieux / riche) a deux cartes : l'app fait avancer celle de ce sens (carteDeScene).
 const avecSens = m => { const s = ((D.sens || {})[APPRENDRE] || {})[((m.genre || "") + " " + m.mot).trim()]; return s ? Object.assign({}, m, {sens: s}) : m; };
 // L'anglais : la peur est un adjectif (afraid) ; le rhume et la mauvaise humeur des noms du corpus (cold, mood)
 const motE = (e, haben) => APPRENDRE === "en" ? (haben ? {mot: EN_H[e].mot, genre: ""} : {mot: EN_E[e], cat: "adjectif"})
-  : avecSens((haben || D.emotions[e].tener) ? MOT_NOM[APPRENDRE][e] : {mot: APPRENDRE === "de" ? D.emotions[e].de : D.emotions[e].es[0], cat: "adjectif"});
-const motT = t => APPRENDRE === "en" ? {mot: EN_T[t], cat: "adjectif"} : avecSens({mot: APPRENDRE === "de" ? D.caracteres[t].de : D.caracteres[t].es[0], cat: "adjectif"});
+  : avecSens((haben || D.emotions[e].tener) ? MOT_NOM[APPRENDRE][e] : {mot: APPRENDRE === "de" ? D.emotions[e].de : APPRENDRE === "pt" ? D.emotions[e].pt[0] : D.emotions[e].es[0], cat: "adjectif"});
+const motT = t => APPRENDRE === "en" ? {mot: EN_T[t], cat: "adjectif"} : avecSens({mot: APPRENDRE === "de" ? D.caracteres[t].de : APPRENDRE === "pt" ? D.caracteres[t].pt[0] : D.caracteres[t].es[0], cat: "adjectif"});
 // l'anglais : l'adjectif en -ing (boring, tiring...), un mot du theme a lui seul
 const motIng = e => ({mot: EN_EDING[e].ing, cat: "adjectif"});
 
@@ -537,11 +582,17 @@ const EX = {
   serEstar(w){
     let image, phrase, rep;
     const r = Math.random();
-    if (w ? w.e === "aburrido" && r < 0.25 : r < 0.1){ const [s, v] = hasard(ES.pieges); motQ = w || {mot: "aburrido", cat: "adjectif"}; sensQ = {piege: s}; image = ""; phrase = s; rep = v; }
-    else if (w ? w.t : r < 0.4){ const t = w ? w.t : hasard(TRAITS()), p = unePersonne(t); motQ = w || motT(t); sensQ = {p, t}; image = scene(t, p); rep = "es"; phrase = nom(p) + " ___ " + ES.forme(D.caracteres[t], p) + "."; }
-    else { const [p, e] = unPortrait(w && w.e), m = D.emotions[e]; motQ = w || motE(e); sensQ = {p, e}; image = portrait(p, e); rep = ES.verbe(m, true); phrase = nom(p) + " ___ " + ES.forme(m, p) + "."; }
-    ecran("serEstar", image, avecTrou(phrase));
-    boutons($("choix"), ["es", "está", "tiene"], rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep)); });
+    // le portugais : les memes, par L (é / está / tem) ; au Bresil, pas de piege (entediado n'est pas chato)
+    if (L.pieges.length && (w ? w.e === "aburrido" && r < 0.25 : r < 0.1)){ const [s, v] = hasard(L.pieges); motQ = w || (APPRENDRE === "pt" ? motE("aburrido") : {mot: "aburrido", cat: "adjectif"}); sensQ = {piege: s}; image = ""; phrase = s; rep = v; }
+    else if (w ? w.t : r < 0.4){ const t = w ? w.t : hasard(TRAITS()), p = unePersonne(t); motQ = w || motT(t); sensQ = {p, t}; image = scene(t, p); rep = APPRENDRE === "pt" ? PT.ser : "es"; phrase = sujet(p) + " ___ " + L.forme(D.caracteres[t], p) + "."; }
+    else {
+      const [p, e] = unPortrait(w && w.e), m = D.emotions[e]; motQ = w || motE(e); sensQ = {p, e}; image = portrait(p, e);
+      // la peur en portugais : « A Carmen ___ com medo. » (está) ou « A Carmen ___ medo. » (tem)
+      if (APPRENDRE === "pt" && m.tener){ const com = Math.random() < 0.5; rep = com ? "está" : "tem"; phrase = sujet(p) + " ___ " + (com ? "com " : "") + "medo."; }
+      else { rep = L.verbe(m, true); phrase = sujet(p) + " ___ " + L.forme(m, p) + "."; }
+    }
+    ecran(APPRENDRE === "pt" ? "serEstarPt" : "serEstar", image, avecTrou(phrase));
+    boutons($("choix"), APPRENDRE === "pt" ? PT.verbes : ["es", "está", "tiene"], rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep)); });
     return true;
   },
   // « Ben ___ Angst. » ist / hat -- un tiers des questions sur haben (Angst, schlechte Laune, eine Erkaeltung)
@@ -560,15 +611,17 @@ const EX = {
   },
   // « Gisela está ___. » orgullosa / orgulloso -- seulement les mots qui changent (pas triste, pas miedo)
   accord(w){
-    const variable = e => !D.emotions[e].tener && D.emotions[e].es[0] !== D.emotions[e].es[1];
+    // le portugais : ses formes a lui (contente ne change pas, contento si)
+    const fs = m => APPRENDRE === "pt" ? m.pt : m.es;
+    const variable = e => !D.emotions[e].tener && fs(D.emotions[e])[0] !== fs(D.emotions[e])[1];
     if (w && w.e && !variable(w.e)) return false;
     const cand = PORTRAITS.filter(([, e]) => variable(e) && (!w || e === w.e)).map(([p, e]) => ["e", p, e])
-                 .concat(TRAITS().filter(t => (!w || t === w.t) && D.caracteres[t].es[0] !== D.caracteres[t].es[1]).map(t => ["t", null, t]));   // pas feliz, inteligente, pobre...
+                 .concat(TRAITS().filter(t => (!w || t === w.t) && fs(D.caracteres[t])[0] !== fs(D.caracteres[t])[1]).map(t => ["t", null, t]));   // pas feliz, inteligente, pobre...
     if (!cand.length) return false;
-    const [k, , x] = hasard(cand), p = k === "t" ? unePersonne(x) : unPortrait(x)[0], m = k === "e" ? D.emotions[x] : D.caracteres[x], formes = (LATAM && m.latam) || m.es;
-    const rep = formes[fem(p) ? 1 : 0], verbe = k === "e" ? "está" : "es"; motQ = w || (k === "e" ? motE(x) : motT(x)); sensQ = k === "e" ? {p, e: x} : {p, t: x};
-    ecran("accord", k === "e" ? portrait(p, x) : scene(x, p), avecTrou(nom(p) + " " + verbe + " ___."));
-    boutons($("choix"), melanger([formes[0], formes[1]]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, nom(p) + " " + verbe + " " + rep + "."); });
+    const [k, , x] = hasard(cand), p = k === "t" ? unePersonne(x) : unPortrait(x)[0], m = k === "e" ? D.emotions[x] : D.caracteres[x], formes = APPRENDRE === "pt" ? m.pt : (LATAM && m.latam) || m.es;
+    const rep = formes[fem(p) ? 1 : 0], verbe = k === "e" ? "está" : APPRENDRE === "pt" ? "é" : "es"; motQ = w || (k === "e" ? motE(x) : motT(x)); sensQ = k === "e" ? {p, e: x} : {p, t: x};
+    ecran("accord", k === "e" ? portrait(p, x) : scene(x, p), avecTrou(sujet(p) + " " + verbe + " ___."));
+    boutons($("choix"), melanger([formes[0], formes[1]]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, sujet(p) + " " + verbe + " " + rep + "."); });
     return true;
   },
   // « ¿Cómo es Sergio? » / « Wie ist Sergio? » : une scene, quatre traits
@@ -592,7 +645,7 @@ const EX = {
   contraire(w){
     if (w && !(w.t && D.caracteres[w.t].contraire)) return false;
     const c = w ? w.t : hasard(TRAITS().filter(x => D.caracteres[x].contraire)), t = D.caracteres[c].contraire, a = unePersonne(t), b = unePersonne(c);   // b en dernier : la rotation retient le mot vise
-    const forme = (x, p) => APPRENDRE === "de" ? D.caracteres[x].de : APPRENDRE === "en" ? EN_T[x] : ES.forme(D.caracteres[x], p);
+    const forme = (x, p) => APPRENDRE === "de" ? D.caracteres[x].de : APPRENDRE === "en" ? EN_T[x] : APPRENDRE === "pt" ? PT.forme(D.caracteres[x], p) : ES.forme(D.caracteres[x], p);
     const rep = forme(c, b); motQ = w || motT(c); sensQ = {a, t, b, c};
     const leurres = melanger(TRAITS().filter(x => x !== c && x !== t && loin(x, c, VOISINS_T))).slice(0, 3).map(x => forme(x, b));
     const duo = '<div class="duo"><figure><img alt="" src="' + imgT(t, a) + '">' + nom(a) + '</figure><figure><img alt="" src="' + imgT(c, b) + '">' + nom(b) + '</figure></div>';
@@ -707,7 +760,7 @@ function questionEdIng(w){
 // les sortes de la langue apprise : ser / estar et l'accord en espagnol ; ist / hat et Gefuehl / Charakter en allemand ;
 // en anglais, is / has, feel, -ed / -ing et la question (How is she feeling? / What is she like?)
 const SEULES_EN = ["beHave", "feel", "edIng", "edIngVf", "question"];
-const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" ? !["istHat", "gefuehl"].concat(SEULES_EN).includes(x)
+const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" || APPRENDRE === "pt" ? !["istHat", "gefuehl"].concat(SEULES_EN).includes(x)
                                           : APPRENDRE === "de" ? !["serEstar", "accord"].concat(SEULES_EN).includes(x) : !["serEstar", "accord", "istHat", "gefuehl"].includes(x));
 
 // ---------- la decouverte : deux planches a toucher, le mot se voit et s'entend ----------
@@ -716,13 +769,13 @@ function decouvrir(){
   const z = $("zone"), dec = D.decouverte, phrases = phrasesDecouverte();
   z.innerHTML = '<div class="onglets" role="tablist"><button type="button" role="tab" id="oE">' + T("ongletEmo") + '</button><button type="button" role="tab" id="oC">' + T("ongletCar") + '</button></div>'
               + '<p class="consigne" id="intro"></p><div class="planche" id="planche"></div><div class="fiche" id="fiche"></div>'
-              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : APPRENDRE === "en" ? "regleEn" : "regleEs")) + '</p>'
+              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : APPRENDRE === "en" ? "regleEn" : APPRENDRE === "pt" ? (BR ? "reglePtBr" : "reglePt") : "regleEs")) + '</p>'
               // l'anglais : -ed / -ing et feel, puis l'americain et le britannique
               + (APPRENDRE === "en" ? '<p class="regle">' + T("bonEdIng", {film: MOVIE}) + '</p><p class="regle">' + T(GB ? "bonGb" : "bonUs") + '</p>' : "");
   const montrer = (cle, emotion) => {
     const p = emotion ? dec.visages[cle] : dec.caracteres[cle], m = emotion ? D.emotions[cle] : D.caracteres[cle];
     const motVu = APPRENDRE === "en" ? (emotion ? EN_E[cle] : EN_T[cle])
-                : APPRENDRE === "de" ? (emotion ? pred(p, cle) : "ist " + m.de).replace(/^ist /, "") : (emotion ? pred(p, cle) : predT(p, cle)).replace(/^(está|es) /, "");
+                : APPRENDRE === "de" ? (emotion ? pred(p, cle) : "ist " + m.de).replace(/^ist /, "") : (emotion ? pred(p, cle) : predT(p, cle)).replace(/^(está|es|é) /, "");
     const ph = phrases[cle];
     $("planche").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.cle === cle));
     $("fiche").innerHTML = '<img alt="" src="' + (emotion ? imgP(p, cle) : imgT(cle, p)) + '"><div><div class="mot">' + cible(motVu) + '</div><div class="dit">' + cible(ph.texte) + '</div>'
@@ -851,6 +904,8 @@ fetch("emociones/emociones.json?v=1").then(r => r.json()).then(d => {
   D = d; PORTRAITS = Object.entries(d.portraits).flatMap(([p, es]) => es.map(e => [p, e]));
   // l'anglais : le mot de chaque emotion et de chaque trait, la ou les phrases le cherchent (m.en)
   if (APPRENDRE === "en"){ Object.keys(D.emotions).forEach(k => { D.emotions[k].en = EN_E[k]; }); Object.keys(D.caracteres).forEach(k => { D.caracteres[k].en = EN_T[k]; }); }
+  // le portugais : ses deux formes (masculin, feminin), la ou les phrases les cherchent (m.pt)
+  if (APPRENDRE === "pt"){ Object.keys(D.emotions).forEach(k => { D.emotions[k].pt = PT_E[k]; }); Object.keys(D.caracteres).forEach(k => { D.caracteres[k].pt = PT_T[k]; }); }
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>

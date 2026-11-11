@@ -24,6 +24,13 @@
   (wake up, get up, get dressed, go to bed), l'heure (a quarter to seven ; en americain aussi six forty-five), la place
   des adverbes de frequence (avant le verbe, apres be) et first / then / after that / finally. variante=gb : have a
   shower, have breakfast, pyjamas. L'image du metro d'Anna (anna-6, la rame jaune de Berlin) est ecartee : Boston.
+  LE PORTUGAIS (apprendre=pt, lot P3, 11 nov. 2026) : les memes images, des phrases ecrites pour le portugais (objet PT).
+  Au Portugal, le pronom des pronominaux APRES le verbe (« a Anna levanta-se », « levantamo-nos »), DEVANT apres une
+  negation ou une question (« não se deita », « A que horas é que a Anna se levanta? ») -- la sorte pronomePt ; l'article
+  devant le prenom (a Anna, o Mark) ; l'heure (às sete e meia, às oito menos um quarto, à uma, ao meio-dia) ; primeiro,
+  depois, a seguir, por fim ; sempre APRES le verbe (« toma sempre o pequeno-almoço »), nunca et às vezes devant.
+  variante=br : le pronom devant (« Anna se levanta »), pas d'article devant le prenom, você, tomar banho, café da manhã,
+  escovar os dentes, às quinze para as oito, em seguida, sempre devant le verbe. L'image du metro (anna-6) est ecartee.
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -145,8 +152,9 @@ button:disabled{cursor:default}
 <script src="themes/verre.js?v=8"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const APPRENDRE = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
 const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -193,6 +201,12 @@ const TEXTES = {
   doesQ:     {fr:"Regarde l'image et l'horloge, puis réponds à la question."},
   placeAdv:  {fr:"Où va l'adverbe ? Choisis la phrase correcte."},
   finJour:   {fr:"Qu'est-ce qui vient à la fin de la journée ?"},
+  // le portugais seulement (son interface est en francais)
+  reglePt:   {fr:"Au Portugal, le petit pronom des verbes pronominaux se place <b>après</b> le verbe, avec un trait d'union : levanto-<b>me</b>, levantas-<b>te</b>, levanta-<b>se</b>, levantamo-<b>nos</b> (le -s de levantamos tombe), levantam-<b>se</b>. Il passe <b>devant</b> après une négation ou une question : a Anna <b>não se</b> deita antes das dez, A que horas é que a Anna <b>se</b> levanta? Devant un prénom, l'article : <b>a</b> Anna, <b>o</b> Mark. L'heure : às sete (7 h), às sete e um quarto (7 h 15), às sete e meia (7 h 30), às oito menos um quarto (7 h 45), <b>à</b> uma, <b>ao</b> meio-dia. L'ordre : primeiro, depois, a seguir, por fim. Et la fréquence : <b>sempre</b> se met volontiers après le verbe (toma sempre o pequeno-almoço), <b>às vezes</b> et <b>nunca</b> devant (nunca vai de carro)."},
+  regleBr:   {fr:"Au Brésil, le petit pronom des verbes pronominaux se place <b>devant</b> le verbe : eu <b>me</b> levanto, você <b>se</b> levanta, ela <b>se</b> levanta, nós <b>nos</b> levantamos, eles <b>se</b> levantam. On dit <b>você</b> (le verbe à la 3e personne) plutôt que tu, et pas d'article devant un prénom : Anna, Mark. L'heure : às sete (7 h), às sete e quinze (7 h 15), às sete e meia (7 h 30), às quinze para as oito (7 h 45), <b>à</b> uma, <b>ao</b> meio-dia. L'ordre : primeiro, depois, em seguida, por fim. Sempre, às vezes et nunca se mettent devant le verbe : Anna <b>sempre</b> toma café da manhã em casa."},
+  bonPt:     {fr:"Bon à savoir : tu apprends le portugais du Portugal. On y dit <b>tomar duche</b>, <b>o pequeno-almoço</b>, <b>lavar os dentes</b>, <b>o portátil</b>, et <b>a Anna levanta-se</b>. Au Brésil : tomar banho, o café da manhã, escovar os dentes, o computador, Anna se levanta, et 7 h 45 se dit às quinze para as oito."},
+  bonBr:     {fr:"Bon à savoir : tu apprends le portugais du Brésil. On y dit <b>tomar banho</b>, <b>o café da manhã</b>, <b>escovar os dentes</b>, <b>o computador</b>, et <b>Anna se levanta</b>. Au Portugal : tomar duche, o pequeno-almoço, lavar os dentes, o portátil, a Anna levanta-se, et 7 h 45 se dit às oito menos um quarto."},
+  pronomePt: {fr:"Où va le pronom, avant ou après le verbe ? Choisis la phrase correcte."},
   retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -369,7 +383,112 @@ function etapeApresLien(e, lien, avant, h){
   const p = avant === e.sujet ? pronEn(e.sujet) : null;
   return lienEn(lien) + EN.phrase(e.verbe, p ? p.p : EN.sujet(e.sujet, false), p ? p.k : n(e.sujet), h === false ? null : e.h, e.m, e.sujet);
 }
-const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
+// ---------- LE PORTUGAIS (lot P3, 11 nov. 2026) : ses phrases a lui, fabriquees depuis les memes etapes ----------
+// Chaque geste : v (eu, tu, ele / ela, nós, eles), r (pronominal : levantar-se, vestir-se, deitar-se), c (ce qui suit),
+// piege (la forme fautive de eu : vesto, fazo, penteo, pono), inf (l'infinitif, pour « antes de se vestir »).
+// mot / genre : le mot du CORPUS portugais ACTIF que l'etape fait avancer (portugais/datos, ou datos-br au Bresil) :
+// un verbe par son infinitif, un nom avec son genre (o duche, o pequeno-almoço, a barba, o pijama). Le portugais n'a
+// que trois pronominaux ici : on se reveille (acordar), on prend sa douche (tomar duche) et on se rase (fazer a barba)
+// sans pronom. Au Bresil : tomar banho, café da manhã, escovar os dentes, no computador, sans article devant Mia et Ben.
+const TOMAR = ["tomo", "tomas", "toma", "tomamos", "tomam"], TRABALHAR = ["trabalho", "trabalhas", "trabalha", "trabalhamos", "trabalham"];
+const ACORDAR = ["acordo", "acordas", "acorda", "acordamos", "acordam"];
+const VERBES_PT = {
+  "despertarse":         {mot: "acordar", inf: "acordar", v: ACORDAR},
+  "levantarse":          {mot: "levantar-se", r: true, inf: "levantar", v: ["levanto", "levantas", "levanta", "levantamos", "levantam"]},
+  "ducharse":            {mot: BR ? "banho" : "duche", genre: "o", inf: "tomar", v: TOMAR, c: BR ? "banho" : "duche"},
+  "vestirse":            {mot: "vestir-se", r: true, inf: "vestir", v: ["visto", "vestes", "veste", "vestimos", "vestem"], piege: "vesto"},
+  "desayunar":           {mot: BR ? "café da manhã" : "pequeno-almoço", genre: "o", inf: "tomar", v: TOMAR, c: BR ? "café da manhã" : "o pequeno-almoço"},
+  "trabajar-aeropuerto": {mot: "trabalhar", inf: "trabalhar", v: TRABALHAR, c: "no aeroporto"},
+  "volver":              {mot: "voltar", inf: "voltar", v: ["volto", "voltas", "volta", "voltamos", "voltam"], c: "para casa"},
+  "cenar":               {mot: "jantar", inf: "jantar", v: ["janto", "jantas", "janta", "jantamos", "jantam"]},
+  "acostarse":           {mot: "deitar-se", r: true, inf: "deitar", v: ["deito", "deitas", "deita", "deitamos", "deitam"]},
+  "correr":              {mot: "correr", inf: "ir", v: ["vou", "vais", "vai", "vamos", "vão"], c: "correr"},
+  "afeitarse":           {mot: "barba", genre: "a", inf: "fazer", v: ["faço", "fazes", "faz", "fazemos", "fazem"], c: "a barba", piege: "fazo"},
+  "trabajar-portatil":   {mot: BR ? "computador" : "portátil", genre: "o", inf: "trabalhar", v: TRABALHAR, c: BR ? "no computador" : "no portátil"},
+  "cocinar":             {mot: "cozinhar", inf: "cozinhar", v: ["cozinho", "cozinhas", "cozinha", "cozinhamos", "cozinham"]},
+  "despertar":           {mot: "acordar", inf: "acordar", v: ACORDAR, c: BR ? "Mia" : "a Mia"},
+  "lavarse-dientes":     BR ? {mot: "escovar", inf: "escovar", v: ["escovo", "escovas", "escova", "escovamos", "escovam"], c: "os dentes"}
+                            : {mot: "lavar", inf: "lavar", v: ["lavo", "lavas", "lava", "lavamos", "lavam"], c: "os dentes"},
+  "peinar":              {mot: "pentear", inf: "pentear", v: ["penteio", "penteias", "penteia", "penteamos", "penteiam"], c: BR ? "Mia" : "a Mia", piege: "penteo"},
+  "llevar-colegio":      {mot: "levar", inf: "levar", v: ["levo", "levas", "leva", "levamos", "levam"],
+                          c: BR ? "Ben para a escola e Mia para a creche" : "o Ben à escola e a Mia à creche"},
+  "ponerse-pijama":      {mot: "pijama", genre: "o", inf: "pôr", infPl: "porem", v: ["ponho", "pões", "põe", "pomos", "põem"], c: "o pijama", piege: "pono"}
+};
+// l'image du metro de Berlin (anna-6), comme en anglais
+const ECARTEES_PT = ["anna-6"];
+const TITRES_PT = BR ? {anna: "A segunda-feira de Anna", mark: "O sábado de Mark", familia: "Um dia em família"}
+                     : {anna: "A segunda-feira da Anna", mark: "O sábado do Mark", familia: "Um dia em família"};
+// l'article devant le prenom au Portugal, pas au Bresil ; le pronom sujet des reponses courtes du Bresil (« Ela se levanta. »)
+const SUJETS_PT = BR ? {Anna: "Anna", Mark: "Mark", Katrin: "Katrin", Jan: "Jan", BenMia: "Ben e Mia", familia: "a família"}
+                     : {Anna: "a Anna", Mark: "o Mark", Katrin: "a Katrin", Jan: "o Jan", BenMia: "o Ben e a Mia", familia: "a família"};
+const PRON_PT = {Anna: "ela", Katrin: "ela", Mia: "ela", Mark: "ele", Jan: "ele", Ben: "ele", BenMia: "eles", familia: ""};
+const CLITICOS_PT = ["me", "te", "se", "nos", "se"];
+// l'heure en lettres, sa preposition comprise : « às sete e meia », « à uma », « ao meio-dia », « à meia-noite » ; prep
+// "de" : « antes das dez ». Portugal : e um quarto, oito menos um quarto ; Bresil : e quinze, quinze para as oito.
+// Le soir : da tarde jusqu'a 20 h (Bresil 19 h), puis da noite -- jamais de chiffre dans une phrase dite.
+const NOMBRES_PT = ["", "uma", "duas", "três", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze"];
+const suffixePt = h => (h = ((h % 24) + 24) % 24, h >= 12 && h < (BR ? 19 : 20) ? " da tarde" : h >= (BR ? 19 : 20) ? " da noite" : "");
+function heurePt(h, m, prep){
+  h = ((h % 24) + 24) % 24;
+  const k = (m > 30 ? h + 1 : h) % 24, de = prep === "de";
+  const nom = x => x === 12 ? (de ? "do" : "ao") + " meio-dia" : x === 0 ? (de ? "da" : "à") + " meia-noite"
+                 : x % 12 === 1 ? (de ? "da" : "à") + " uma" : (de ? "das " : "às ") + NOMBRES_PT[x % 12];
+  const art = x => x === 12 ? "o meio-dia" : x === 0 ? "a meia-noite" : x % 12 === 1 ? "a uma" : "as " + NOMBRES_PT[x % 12];
+  let s = BR && m === 45 ? (de ? "das" : "às") + " quinze para " + art(k)
+        : nom(k) + ({0: "", 15: BR ? " e quinze" : " e um quarto", 30: " e meia", 45: " menos um quarto"})[m];
+  if (k !== 12 && k !== 0) s += suffixePt(h);
+  return s;
+}
+const PT = {
+  bravo: "Muito bem!", vrai: "Verdadeiro", faux: "Falso",
+  sujet: (s, debut) => debut ? cap(SUJETS_PT[s]) : SUJETS_PT[s],
+  // {pr, v, c, kk} a la personne k ; au Bresil, você (k = 1) prend la forme et le pronom de la troisieme personne
+  formes(vb, k){ const x = VERBES_PT[vb], kk = BR && k === 1 ? 2 : k; return {pr: x.r ? CLITICOS_PT[kk] : "", v: x.v[kk], c: x.c || "", kk}; },
+  // le pronom apres le verbe, au Portugal : levanto-me, levantamo-nos (le -s de « nós » tombe devant -nos)
+  enclise: (v, pr, kk) => (kk === 3 ? v.replace(/s$/, "") : v) + "-" + pr,
+  // le verbe et son pronom : « levanta-se » au Portugal ; « se levanta » au Bresil, et partout apres une negation,
+  // une question (proclise = true)
+  verbe(vb, k, proclise){ const f = PT.formes(vb, k); return !f.pr ? f.v : BR || proclise ? f.pr + " " + f.v : PT.enclise(f.v, f.pr, f.kk); },
+  pred: (vb, k, proclise) => [PT.verbe(vb, k, proclise), PT.formes(vb, k).c].filter(Boolean).join(" "),
+  heure: (vb, h, m) => heurePt(h, m),
+  // « A Anna levanta-se às sete menos um quarto. » / « Anna se levanta às quinze para as sete. »
+  phrase: (vb, S, k, h, m) => [S, PT.pred(vb, k), h == null ? "" : heurePt(h, m)].filter(Boolean).join(" ") + ".",
+  etape: e => PT.phrase(e.verbe, PT.sujet(e.sujet, true), n(e.sujet), e.h, e.m),
+  // la reponse courte : « Levanta-se. », « Toma duche. » ; au Bresil avec le pronom sujet : « Ela se levanta. »
+  diz: (vb, s) => cap([BR ? PRON_PT[s] : "", PT.pred(vb, n(s))].filter(Boolean).join(" ")) + ".",
+  queHace: s => BR ? "O que " + PT.sujet(s) + (n(s) === 4 ? " fazem?" : " faz?") : (n(s) === 4 ? "O que fazem " : "O que faz ") + PT.sujet(s) + "?",
+  // « A que horas é que a Anna se levanta? » (la question met le pronom devant) ; Bresil : « A que horas Anna se levanta? »
+  aQueHora: e => "A que horas " + (BR ? "" : "é que ") + PT.sujet(e.sujet) + " " + PT.pred(e.verbe, n(e.sujet), true) + "?",
+  reponseHeure: (vb, h, m) => cap(heurePt(h, m)),
+  liens: ["Primeiro", "Depois", BR ? "Em seguida" : "A seguir", "Por fim"],
+  jours: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
+  moments: {manha: "de manhã", tarde: "à tarde", noite: "à noite"}
+};
+// LA FREQUENCE EN PORTUGAIS : les memes faits que journee.json (frequences), sans pronominal (l'adverbe deplacerait le
+// pronom), en morceaux : S, v (le verbe), r (ce qui suit). Au Portugal, sempre se met APRES le verbe (« a Anna toma
+// sempre o pequeno-almoço em casa », comme le corpus), às vezes et nunca devant ; au Bresil, les trois devant.
+const FREQ_PT = [
+  {qui: "Anna", f: "siempre", S: "Anna", v: "toma", r: BR ? "café da manhã em casa" : "o pequeno-almoço em casa", fr: "Anna prend toujours son petit-déjeuner à la maison."},
+  {qui: "Anna", f: "nunca", S: "Anna", v: "vai", r: "de carro para o trabalho", fr: "Anna ne va jamais au travail en voiture."},
+  {qui: "Anna", f: "a veces", jours: [0, 0, 0, 0, 0, 1, 1], S: "Anna", v: "janta", r: "com a família", fr: "Anna dîne parfois avec sa famille."},
+  {qui: "Mark", f: "siempre", S: "Mark", v: "vai", r: "correr", fr: "Mark va toujours courir."},
+  {qui: "Mark", f: "a veces", jours: [1, 0, 0, 1, 0, 1, 0], S: "Mark", v: "faz", r: "a barba", fr: "Mark se rase parfois."},
+  {qui: "Mark", f: "a veces", jours: [0, 1, 0, 0, 1, 1, 0], S: "Mark", v: "cozinha", r: "", fr: "Mark fait parfois la cuisine."},
+  {qui: "Mark", f: "nunca", S: "Mark", v: "vai", r: "para a cama cedo", fr: "Mark ne se couche jamais tôt."},
+  {qui: "BenMia", f: "siempre", S: "BenMia", v: BR ? "escovam" : "lavam", r: "os dentes", fr: "Ben et Mia se brossent toujours les dents."},
+  {qui: "Mia", f: "nunca", S: "Mia", v: "penteia", r: "o cabelo sozinha", fr: "Mia ne se coiffe jamais seule."},
+  {qui: "Jan", f: "a veces", jours: [1, 0, 1, 0, 0, 0, 0], S: "Jan", v: "leva", r: BR ? "Ben para a escola e Mia para a creche" : "o Ben à escola e a Mia à creche",
+   fr: "Jan emmène parfois Ben à l'école et Mia à la garderie."},
+  {qui: "Katrin", f: "siempre", S: "Katrin", v: "acorda", r: BR ? "Mia" : "a Mia", fr: "Katrin réveille toujours Mia."},
+  {qui: "BenMia", f: "nunca", S: "BenMia", v: "vão", r: "para a cama tarde", fr: "Ben et Mia ne se couchent jamais tard."}
+].map(x => Object.assign(x, {S: cap((SUJETS_PT[x.S] || (BR ? x.S : "a " + x.S)))}));
+const ADV_PT = {siempre: "sempre", "a veces": "às vezes", nunca: "nunca"};
+// l'adverbe a sa place : « toma sempre » (Portugal), « sempre toma », « às vezes faz », « nunca vai »
+const freqMorceau = (fa, A) => !BR && A === "sempre" ? fa.v + " sempre" : A + " " + fa.v;
+const freqPhrase = (fa, A) => [fa.S, freqMorceau(fa, A), fa.r].filter(Boolean).join(" ") + ".";
+// « A Anna não se deita antes das dez. » : la traduction, le pronom passe devant apres não (pronomePt)
+const FR_NEG = {levantarse: ["ne se lève pas", "ne se lèvent pas"], vestirse: ["ne s'habille pas", "ne s'habillent pas"], acostarse: ["ne se couche pas", "ne se couchent pas"]};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : APPRENDRE === "pt" ? PT : ES;
 
 // ---------- la traduction dans la langue d'interface (Jacques, 3 nov. 2026) ----------
 // Sous la phrase de la decouverte, et APRES la reponse, sous la phrase juste -- jamais avant. En francais, anglais,
@@ -395,7 +514,10 @@ function tradSuite(etapes){
 // l'anglais n'est pas dans gloses.json : ses adverbes et ses moments, traduits a la main (le choix faux traduit)
 const GLOSES_EN = {always: {fr: "toujours"}, sometimes: {fr: "parfois"}, never: {fr: "jamais"},
                    morning: {fr: "le matin"}, evening: {fr: "le soir"}, night: {fr: "la nuit"}};
-let GLOSES = APPRENDRE === "en" ? GLOSES_EN : {};
+// le portugais non plus (gloses.json n'a que es et de) : ses adverbes et ses moments, le choix faux traduit
+const GLOSES_PT = {"sempre": {fr: "toujours"}, "às vezes": {fr: "parfois"}, "nunca": {fr: "jamais"},
+                   "a manhã": {fr: "le matin"}, "a tarde": {fr: "l'après-midi"}, "a noite": {fr: "le soir, la nuit"}};
+let GLOSES = APPRENDRE === "en" ? GLOSES_EN : APPRENDRE === "pt" ? GLOSES_PT : {};
 fetch("journee/gloses.json?v=1").then(r => r.json()).then(d => { GLOSES = d[APPRENDRE] || GLOSES; }).catch(() => {});
 function glose(m){
   if (!m) return null;
@@ -433,6 +555,7 @@ let dire = texte => { try { Voix.dire(texte); } catch(e){} };
 // sont aussi les phrases justes des questions sur une etape ; le reste passe par la voix du telephone
 function textesAVoix(){
   if (APPRENDRE === "en") return ETAPES.map(e => EN.etape(e));
+  if (APPRENDRE === "pt") return ETAPES.map(e => PT.etape(e));
   const dec = D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
   return ETAPES.map(e => dec[e.cle].texte);
 }
@@ -503,10 +626,13 @@ const remplir = (t, rep) => { const x = $("trou"); if (x) x.textContent = rep; }
 const ADV = {es: [["siempre", "f"], ["a veces", "f"], ["nunca", "f"], ["primero", "ordre"], ["después", "apres"], ["luego", "apres"], ["antes", "avant"]],
              de: [["immer", "f"], ["manchmal", "f"], ["nie", "f"], ["zuerst", "ordre"], ["dann", "apres"], ["danach", "apres"]],
              // finally : le dernier lien de la suite (« Finally, she goes to bed. »), role « fin »
-             en: [["always", "f"], ["sometimes", "f"], ["never", "f"], ["first", "ordre"], ["then", "apres"], ["after that", "apres"], ["finally", "fin"]]};
+             en: [["always", "f"], ["sometimes", "f"], ["never", "f"], ["first", "ordre"], ["then", "apres"], ["after that", "apres"], ["finally", "fin"]],
+             // primeiro (adverbe), a seguir et em seguida : pas encore au corpus portugais (ajouts du 11 nov.)
+             pt: [["sempre", "f"], ["às vezes", "f"], ["nunca", "f"], ["primeiro", "ordre"], ["depois", "apres"], [BR ? "em seguida" : "a seguir", "apres"], ["antes", "avant"]]};
 // l'apres-midi n'a aucune etape franche (rien entre midi et 18 h) : « in the afternoon » n'est qu'un leurre
 const MOMENTS = {es: [["la", "mañana", "manana"], ["la", "tarde", "tarde"], ["la", "noche", "noche"]], de: [["der", "Morgen", "morgen"], ["der", "Abend", "abend"]],
-                 en: [["", "morning", "morning"], ["", "evening", "evening"], ["", "night", "night"]]};
+                 en: [["", "morning", "morning"], ["", "evening", "evening"], ["", "night", "night"]],
+                 pt: [["a", "manhã", "manha"], ["a", "tarde", "tarde"], ["a", "noite", "noite"]]};
 let MOTS = null;
 function motsDuTheme(){
   if (MOTS) return MOTS;
@@ -514,7 +640,7 @@ function motsDuTheme(){
   ETAPES.forEach(e => {
     // le mot que l'etape fait avancer : son verbe, ou un nom du corpus (« ins Bett gehen » -> das Bett)
     // en anglais : VERBES_EN (un nom a le genre "", un adverbe sa categorie : come home -> home)
-    const v = APPRENDRE === "en" ? VERBES_EN[e.verbe] : D.verbes[e.verbe][APPRENDRE], mot = v.mot;
+    const v = APPRENDRE === "en" ? VERBES_EN[e.verbe] : APPRENDRE === "pt" ? VERBES_PT[e.verbe] : D.verbes[e.verbe][APPRENDRE], mot = v.mot;
     if (!vus[mot]){ vus[mot] = APPRENDRE === "en" ? (v.cat === "nom" ? {mot, genre: "", verbes: []} : {mot, cat: v.cat, verbes: []})
                              : v.genre ? {mot, genre: v.genre, verbes: []} : {mot, cat: "verbe", verbes: []}; MOTS.push(vus[mot]); }
     if (!vus[mot].verbes.includes(e.verbe)) vus[mot].verbes.push(e.verbe);
@@ -554,7 +680,7 @@ const EX = {
     const e = hasard(etapesDe(w)); motQ = w || motDuVerbe(e.verbe); tradQ = tradEtape(e);
     // en anglais : « She gets up. », « They brush their teeth. » -- le pronom et le -s
     const dire = vb => APPRENDRE === "de" ? DE.pred(vb, e.sujet) : APPRENDRE === "en" ? (p => cap(p.p) + " " + EN.pred(vb, p.k, e.sujet) + ".")(pronEn(e.sujet))
-                                                                 : cap(ES.pred(vb, n(e.sujet))) + ".";
+                                                                 : APPRENDRE === "pt" ? PT.diz(vb, e.sujet) : cap(ES.pred(vb, n(e.sujet))) + ".";
     const rep = dire(e.verbe);
     const autres = melanger(unique(Object.keys(D.verbes).filter(vb => groupe(vb) !== groupe(e.verbe) && vaA(vb, e.sujet))
                      .map(dire).filter(t => t !== rep))).slice(0, 3);
@@ -618,6 +744,8 @@ const EX = {
     // en anglais : « First, Anna wakes up at half past six. Then she gets up at a quarter to seven. After that, ... »
     const suite = ordre.map((e, i) => APPRENDRE === "de" ? DE.v2(DE.liens[i], e.verbe, DE.sujet(e.sujet, false), n(e.sujet), e.h, e.m)
                                     : APPRENDRE === "en" ? etapeApresLien(e, EN.liens[i], i ? ordre[i - 1].sujet : null)
+                                    // « Depois, a Anna levanta-se às sete menos um quarto. » : l'article du prenom en minuscule
+                                    : APPRENDRE === "pt" ? L.liens[i] + ", " + PT.phrase(e.verbe, PT.sujet(e.sujet, false), n(e.sujet), e.h, e.m)
                                                           : L.liens[i] + ", " + minus(ES.etape(e), e.sujet));
     tradQ = tradSuite(ordre);
     $("zone").innerHTML = '<p class="consigne">' + isoler(T("ordre")) + '</p><div class="enonce centre">' + cible(D.jours[j].titre[APPRENDRE]) + '</div><div class="ordre" id="ordre"></div><p class="retourMsg" id="msg"></p>';
@@ -646,7 +774,7 @@ const EX = {
     if (APPRENDRE === "en") return suiteEn(w);
     if (w && w.role === "ordre") return premier(w);
     if (w && !w.verbes && !["apres", "avant"].includes(w.role)) return false;
-    const avant = w && !w.verbes ? w.role === "avant" : APPRENDRE === "es" && Math.random() < 0.35;
+    const avant = w && !w.verbes ? w.role === "avant" : (APPRENDRE === "es" || APPRENDRE === "pt") && Math.random() < 0.35;
     // l'etape demandee (la reponse) et celle qu'on montre
     // au moins deux leurres du bon cote : la reponse a deux etapes avant elle (apres), ou deux apres (avant)
     const cand = (w && w.verbes ? etapesDe(w) : ETAPES).filter(e => avant ? etapesDu(e.jour).length - e.rang - 1 >= 2 : e.rang >= 2);
@@ -654,16 +782,19 @@ const EX = {
     const r = hasard(cand), d = etapesDu(r.jour), montree = avant ? d[r.rang + 1] : d[r.rang - 1];
     const leurres = melanger(avant ? d.slice(r.rang + 1) : d.slice(0, r.rang)).slice(0, 3);
     // le lien de la question : celui du mot vise (danach, luego...), sinon l'un ou l'autre
-    const liensApres = APPRENDRE === "de" ? ["dann", "danach"] : ["después", "luego"];
+    const liensApres = APPRENDRE === "de" ? ["dann", "danach"] : APPRENDRE === "pt" ? ["depois", BR ? "em seguida" : "a seguir"] : ["después", "luego"];
     const lien = avant ? "antes" : w && liensApres.includes(w.mot) ? w.mot : hasard(liensApres);
     // un sujet qui n'est pas celui de l'etape montree se nomme (« Dann weckt Katrin Mia »), sinon son pronom
     const dit = e => APPRENDRE === "de" ? DE.v2(cap(lien), e.verbe, e.sujet === montree.sujet ? D.sujets[e.sujet].pron : DE.sujet(e.sujet, false), n(e.sujet))
+                                         : APPRENDRE === "pt" ? PT.phrase(e.verbe, PT.sujet(e.sujet, true), n(e.sujet))
                                          : cap(ES.phrase(e.verbe, ES.sujet(e.sujet, true), n(e.sujet)));
     const rep = dit(r), opts = unique([rep, ...leurres.map(dit)]);
     if (opts.length < 3) return false;
     motQ = w || motsDuTheme().find(x => x.mot === lien);
     tradQ = tradEtape(r);
-    const enonce = (APPRENDRE === "de" ? DE.phrase(montree.verbe, DE.sujet(montree.sujet, true), n(montree.sujet)) : ES.phrase(montree.verbe, ES.sujet(montree.sujet, true), n(montree.sujet)))
+    // en portugais : « A Anna toma duche. E a seguir? »
+    const enonce = APPRENDRE === "pt" ? PT.phrase(montree.verbe, PT.sujet(montree.sujet, true), n(montree.sujet)) + " E " + lien + "?"
+                 : (APPRENDRE === "de" ? DE.phrase(montree.verbe, DE.sujet(montree.sujet, true), n(montree.sujet)) : ES.phrase(montree.verbe, ES.sujet(montree.sujet, true), n(montree.sujet)))
                  + " " + (APPRENDRE === "de" ? "Und " + lien + "?" : "¿Y " + lien + "?");
     ecran(avant ? "avant" : "apres", friseQuestion(r.jour, montree, r), enonce, true, true);
     tradsChoix = {}; [r, ...leurres].forEach(e => { tradsChoix[dit(e)] = tradGeste(e.verbe, e.sujet); });
@@ -672,6 +803,7 @@ const EX = {
   },
   // « Yo ___ levanto a las siete menos cuarto. » me / te / se / nos -- avec yo, tu, Anna, nosotros, Ben y Mia
   pronombre(w){
+    if (APPRENDRE === "pt") return pronombrePt(w);
     if (!estVerbe(w)) return false;
     const cand = etapesDe(w).filter(e => D.verbes[e.verbe].es.pr);
     if (!cand.length) return false;
@@ -684,6 +816,7 @@ const EX = {
   },
   // « Yo ___ a las once. » me acuesto / me acosto / acuesto / me acuestas -- la diphtongue, le pronom, la personne
   forma(w){
+    if (APPRENDRE === "pt") return formaPt(w);
     if (!estVerbe(w)) return false;
     const cand = etapesDe(w).filter(e => D.verbes[e.verbe].es.pr || D.verbes[e.verbe].es.piege);
     if (!cand.length) return false;
@@ -753,6 +886,7 @@ const EX = {
   },
   // « Mark ___ sale a correr. » siempre / a veces / nunca : la semaine le montre (lundi -> dimanche)
   frecuencia(w){
+    if (APPRENDRE === "pt") return frecuenciaPt(w);
     if (w && w.role !== "f") return false;
     const cles = Object.keys(D.adverbes), cle = w ? cles.find(c => D.adverbes[c][APPRENDRE] === w.mot) : null;
     const fa = hasard(D.frequences.filter(x => !cle || x.f === cle));
@@ -796,6 +930,7 @@ const EX = {
   // « Anna se ducha antes de vestirse. » vrai ou faux -- les deux photos et leurs horloges (espagnol)
   avantApres(w){
     if (APPRENDRE === "en") return avantApresEn(w);
+    if (APPRENDRE === "pt") return avantApresPt(w);
     if (w && !w.verbes && !["después", "antes"].includes(w.mot)) return false;
     // deux etapes du meme jour et du meme sujet : l'infinitif (« antes de vestirse ») a le sujet du verbe
     const paires = [];
@@ -823,10 +958,11 @@ const EX = {
     const e = hasard(cand), k = quand(e), rep = L.moments[k];
     motQ = w || MOTS_MOMENTS().find(x => x.moment === k);
     tradQ = tradEtape(e);
-    const S = APPRENDRE === "de" ? DE.sujet(e.sujet, true) : APPRENDRE === "en" ? EN.sujet(e.sujet, true) : ES.sujet(e.sujet, true);
+    const S = APPRENDRE === "de" ? DE.sujet(e.sujet, true) : APPRENDRE === "en" ? EN.sujet(e.sujet, true) : APPRENDRE === "pt" ? PT.sujet(e.sujet, true) : ES.sujet(e.sujet, true);
     let phrase;
     if (APPRENDRE === "de"){ const f = DE.formes(e.verbe, n(e.sujet)); phrase = [S, f.v, f.r, f.o, "___", f.c, f.p].filter(Boolean).join(" ") + "."; }
     else if (APPRENDRE === "en") phrase = [S, EN.pred(e.verbe, n(e.sujet), e.sujet), "___"].join(" ") + ".";   // « Anna eats breakfast ___. »
+    else if (APPRENDRE === "pt") phrase = [S, PT.pred(e.verbe, n(e.sujet)), "___"].join(" ") + ".";              // « A Anna deita-se ___. »
     else phrase = [S, ES.pred(e.verbe, n(e.sujet)), "___"].join(" ") + ".";
     ecran(APPRENDRE === "de" ? "momentDe" : APPRENDRE === "en" ? "momentEn" : "momentEs", photo(e), avecTrou(phrase));
     tradsChoix = {}; Object.keys(L.moments).forEach(c => { tradsChoix[L.moments[c]] = tradMot(MOTS_MOMENTS().find(x => x.moment === c)); });
@@ -896,8 +1032,108 @@ const EX = {
     $("zone").querySelector(".enonce").remove();
     boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep));
     return true;
+  },
+  // LE PORTUGAIS DU PORTUGAL SEULEMENT : la place du pronom. Apres le verbe dans la phrase affirmative (« A Anna
+  // levanta-se às sete menos um quarto. »), devant apres une negation (« A Anna não se levanta antes das seis. ») ; le
+  // leurre est l'autre place (« A Anna se levanta... » est bresilien, « não levanta-se » une faute partout).
+  pronomePt(w){
+    if (APPRENDRE !== "pt" || BR || !estVerbe(w)) return false;
+    const cand = etapesDe(w).filter(e => VERBES_PT[e.verbe].r);
+    if (!cand.length) return false;
+    const e = hasard(cand), k = n(e.sujet), S = PT.sujet(e.sujet, true), f = PT.formes(e.verbe, k);
+    motQ = w || motDuVerbe(e.verbe);
+    let bon, mau;
+    if (Math.random() < 0.5){
+      bon = PT.etape(e); mau = [S, PT.pred(e.verbe, k, true), heurePt(e.h, e.m)].join(" ") + ".";
+      tradQ = tradEtape(e);
+    } else {
+      // l'heure pleine juste avant l'etape : vrai sur l'image (« não se deita antes das dez da noite » a 22 h 30)
+      const H = e.m ? e.h : e.h - 1, avant = "antes " + heurePt(H, 0, "de");
+      bon = [S, "não", f.pr, f.v, f.c, avant].filter(Boolean).join(" ") + ".";
+      mau = [S, "não", PT.enclise(f.v, f.pr, f.kk), f.c, avant].filter(Boolean).join(" ") + ".";
+      tradQ = TR === "fr" ? D.sujets[e.sujet].fr + " " + FR_NEG[e.verbe][k === 4 ? 1 : 0] + " avant " + H + " h." : null;
+    }
+    ecran("pronomePt", photo(e), "", true, true);
+    $("zone").querySelector(".enonce").remove();
+    boutons($("choix"), melanger([bon, mau]), bon, ok => juger(ok, bon));
+    return true;
   }
 };
+// LE PORTUGAIS : « Eu levanto-___ às sete. » (Portugal, le pronom apres le verbe, « levantamo-___ » avec nós) ;
+// « Eu ___ levanto às sete. » (Bresil, devant ; você prend « se »). Avec eu, tu / você, nós (sans image) ou le sujet.
+function pronombrePt(w){
+  if (!estVerbe(w)) return false;
+  const cand = etapesDe(w).filter(e => VERBES_PT[e.verbe].r);
+  if (!cand.length) return false;
+  const e = hasard(cand), q = personne(e), f = PT.formes(e.verbe, q.k);
+  motQ = w || motDuVerbe(e.verbe); tradQ = traduire(e.verbe, q.k, q.s, e.h, e.m);
+  const vb = BR ? "___ " + f.v : PT.enclise(f.v, "___", f.kk);
+  const phrase = [q.S, vb, f.c, heurePt(e.h, e.m)].filter(Boolean).join(" ") + ".";
+  ecran("pronombre", q.s ? photo(e) : "", avecTrou(phrase));
+  boutons($("choix"), ["me", "te", "se", "nos"], f.pr, ok => { remplir(0, f.pr); juger(ok, f.pr, phrase.replace("___", f.pr)); });
+  return true;
+}
+// LE PORTUGAIS : « Eu ___ às onze e meia da noite. » deito-me / deito / deitas-te / deitam-se ; les pieges : le -s qui
+// reste devant -nos (levantamos-nos), la forme reguliere fautive de eu (vesto-me, fazo, penteo, pono)
+function formaPt(w){
+  if (!estVerbe(w)) return false;
+  const cand = etapesDe(w).filter(e => VERBES_PT[e.verbe].r || VERBES_PT[e.verbe].piege);
+  if (!cand.length) return false;
+  const e = hasard(cand), q = personne(e), x = VERBES_PT[e.verbe], f = PT.formes(e.verbe, q.k);
+  const avec = (v, pr, kk) => !pr ? v : BR ? pr + " " + v : PT.enclise(v, pr, kk);
+  const rep = avec(f.v, f.pr, f.kk);
+  const autres = [];
+  if (x.piege && f.kk === 0) autres.push(avec(x.piege, f.pr, 0));
+  if (x.r && f.kk === 3 && !BR) autres.push(f.v + "-nos");
+  if (x.r) autres.push(f.v);
+  melanger([0, 1, 2, 3, 4].filter(k => x.v[k] !== f.v)).forEach(k => autres.push(avec(x.v[k], x.r ? CLITICOS_PT[k] : "", k)));
+  const opts = unique([rep, ...unique(autres).filter(y => y !== rep).slice(0, 3)]);
+  motQ = w || motDuVerbe(e.verbe); tradQ = traduire(e.verbe, q.k, q.s, e.h, e.m);
+  const phrase = [q.S, "___", f.c, heurePt(e.h, e.m)].filter(Boolean).join(" ") + ".";
+  ecran("forma", q.s ? photo(e) : "", avecTrou(phrase));
+  boutons($("choix"), melanger(opts), rep, ok => { remplir(0, rep); juger(ok, rep, phrase.replace("___", rep)); });
+  return true;
+}
+// LE PORTUGAIS : « A Anna ___ o pequeno-almoço em casa. » toma sempre / às vezes toma / nunca toma -- la semaine le
+// montre, et chaque choix porte l'adverbe A SA PLACE (sempre apres le verbe au Portugal, devant au Bresil)
+function frecuenciaPt(w){
+  if (w && w.role !== "f") return false;
+  const cles = Object.keys(D.adverbes), cle = w ? cles.find(c => D.adverbes[c].pt === w.mot) : null;
+  const fa = hasard(D.frequences.filter(x => !cle || x.f === cle));
+  const morceau = c => freqMorceau(fa, D.adverbes[c].pt), rep = morceau(fa.f);
+  motQ = w || motsDuTheme().find(x => x.mot === D.adverbes[fa.f].pt);
+  tradQ = TR ? fa[TR] || null : null;
+  const phrase = [fa.S, "___", fa.r].filter(Boolean).join(" ") + ".";
+  const qui = fa.qui === "BenMia" ? ["Ben", "Mia"] : [fa.qui];
+  const image = '<div class="visages">' + qui.map(p => '<img alt="" src="' + VISAGE(p) + '">').join("") + '</div>' + semaineHTML(coches(fa.f, fa));
+  ecran("frecuencia", image, avecTrou(phrase));
+  const opts = cles.map(morceau);
+  tradsChoix = {}; cles.forEach(c => { tradsChoix[morceau(c)] = tradMot({mot: D.adverbes[c].pt}); });
+  boutons($("choix"), opts, rep, ok => { remplir(0, rep); juger(ok, rep, fa.pt); });
+  return true;
+}
+// LE PORTUGAIS : « A Anna toma duche antes de se vestir. » vrai ou faux -- antes de / depois de + l'infinitif, le pronom
+// devant (« de se vestir ») ; au pluriel l'infinitif personnel (« o Ben e a Mia lavam os dentes antes de se deitarem »)
+function avantApresPt(w){
+  if (w && !w.verbes && !["depois", "antes"].includes(w.mot)) return false;
+  const paires = [];
+  ETAPES.forEach(a => ETAPES.forEach(b => { if (a.jour === b.jour && a.sujet === b.sujet && a.rang !== b.rang && a.verbe !== b.verbe
+    && (!w || !w.verbes || w.verbes.includes(a.verbe) || w.verbes.includes(b.verbe))) paires.push([a, b]); }));
+  if (!paires.length) return false;
+  const [a, b] = hasard(paires), lien = w && !w.verbes ? w.mot : hasard(["antes", "depois"]);
+  const vrai = lien === "antes" ? a.rang < b.rang : a.rang > b.rang;
+  const pl = n(a.sujet) === 4, x = VERBES_PT[b.verbe];
+  const inf = [x.r ? "se" : "", pl ? (x.infPl || x.inf + "em") : x.inf, x.c].filter(Boolean).join(" ");
+  const dit = l => PT.phrase(a.verbe, PT.sujet(a.sujet, true), n(a.sujet)).replace(/\.$/, " " + l + " de " + inf + ".");
+  const phrase = dit(lien), juste = vrai ? phrase : dit(lien === "antes" ? "depois" : "antes");
+  motQ = w || (Math.random() < 0.5 ? motsDuTheme().find(y => y.mot === lien) : motDuVerbe(a.verbe));
+  const [p1, p2] = a.rang < b.rang ? [a, b] : [b, a];
+  tradQ = TR ? tradEtape(p1) + " " + tradEtape(p2) : null;
+  ecran("vraifaux", '<div class="duo">' + photo(p1, true, true) + photo(p2, true, true) + '</div>', phrase, true);
+  const rep = vrai ? PT.vrai : PT.faux;
+  boutons($("choix"), [PT.vrai, PT.faux], rep, ok => juger(ok, rep, juste));
+  return true;
+}
 // L'ANGLAIS : « Anna takes a shower. What happens next? » -- « Then she gets dressed. » / « After that, she gets
 // dressed. » ; « What happens before that? » -- « Before that, she gets up. » ; « What happens at the end of the
 // day? » -- « Finally, she goes to bed. » Les leurres viennent du bon cote de la journee, comme en espagnol.
@@ -949,7 +1185,8 @@ function avantApresEn(w){
 }
 // le moment que trahissent l'icone du cadran et la fin de l'heure ecrite (« de la tarde », « abends »)
 // (en anglais, la fin de l'heure ecrite : rien le matin, in the afternoon, in the evening, at night -- suffixeEn)
-const periode = h => (h >= 18 || h < 6 ? "lune" : "soleil") + (APPRENDRE === "en" ? suffixeEn(h) : APPRENDRE === "es" ? (h < 12 ? 0 : h < 20 ? 1 : 2) : (h < 18 ? 0 : 1));
+// (en portugais : rien le matin, da tarde, da noite -- suffixePt)
+const periode = h => (h >= 18 || h < 6 ? "lune" : "soleil") + (APPRENDRE === "en" ? suffixeEn(h) : APPRENDRE === "es" ? (h < 12 ? 0 : h < 20 ? 1 : 2) : APPRENDRE === "pt" ? suffixePt(h) : (h < 18 ? 0 : 1));
 // la semaine d'une frequence : tout coche (siempre), rien (nunca), les jours du fait (a veces) ; pour « laquelle
 // des trois semaines ? », un « a veces » quelconque si le fait n'en est pas un
 const coches = (f, fa) => f === "siempre" ? [1, 1, 1, 1, 1, 1, 1] : f === "nunca" ? [0, 0, 0, 0, 0, 0, 0] : (fa && fa.jours) || [1, 0, 0, 1, 0, 1, 0];
@@ -961,6 +1198,9 @@ function quand(e){
   const t = e.h * 60 + e.m;
   if (APPRENDRE === "en") return t < 12 * 60 ? "morning" : t >= 18 * 60 + 30 && t <= 19 * 60 + 30 ? "evening" : t >= 23 * 60 ? "night" : null;
   if (APPRENDRE === "es") return t < 12 * 60 ? "manana" : t >= 13 * 60 && t <= 18 * 60 + 30 ? "tarde" : t >= 21 * 60 ? "noche" : null;
+  // le portugais : 18 h 30 (le diner de la famille) n'est plus franchement « à tarde », au Bresil surtout
+  // et pas le petit-dejeuner : « toma o pequeno-almoço de manhã » ne dit rien
+  if (APPRENDRE === "pt") return e.verbe === "desayunar" ? null : t < 12 * 60 ? "manha" : t >= 13 * 60 && t <= 18 * 60 ? "tarde" : t >= 21 * 60 ? "noite" : null;
   if (/Abend/.test(D.verbes[e.verbe].de.c || "")) return null;          // pas « am Abend zu Abend »
   return t <= 9 * 60 ? "morgen" : t >= 18 * 60 && t <= 22 * 60 + 30 ? "abend" : null;
 }
@@ -973,6 +1213,7 @@ function momentVraiFaux(w){
   const e = hasard(cand), vrai = Math.random() < 0.5, autre = hasard(Object.keys(L.moments).filter(k => k !== w.moment && !(APPRENDRE === "en" && VOISIN_EN[w.moment] === k)));
   const dit = k => APPRENDRE === "de" ? (f => [DE.sujet(e.sujet, true), f.v, f.r, f.o, L.moments[k], f.c, f.p].filter(Boolean).join(" ") + ".")(DE.formes(e.verbe, n(e.sujet)))
                  : APPRENDRE === "en" ? [EN.sujet(e.sujet, true), EN.pred(e.verbe, n(e.sujet), e.sujet), L.moments[k]].join(" ") + "."
+                 : APPRENDRE === "pt" ? [PT.sujet(e.sujet, true), PT.pred(e.verbe, n(e.sujet)), L.moments[k]].join(" ") + "."
                                        : [ES.sujet(e.sujet, true), ES.pred(e.verbe, n(e.sujet)), L.moments[k]].join(" ") + ".";
   motQ = w; tradQ = tradEtape(e);
   const juste = dit(w.moment), phrase = vrai ? juste : dit(autre);
@@ -987,10 +1228,11 @@ function premier(w){
   const j = hasard(["anna", "mark"]), d = etapesDu(j), s = d[0].sujet;
   // en anglais : « What does Mark do first? » -- « He wakes up. », puis la phrase dite « First, Mark wakes up at... »
   const dit = e => APPRENDRE === "de" ? DE.pred(e.verbe, s) : APPRENDRE === "en" ? cap(pronEn(s).p) + " " + EN.pred(e.verbe, n(s), s) + "."
-                                       : cap(ES.pred(e.verbe, n(s))) + ".";
+                                       : APPRENDRE === "pt" ? PT.diz(e.verbe, s) : cap(ES.pred(e.verbe, n(s))) + ".";
   const rep = dit(d[0]), opts = unique([rep, ...melanger(d.slice(2)).map(dit)]).slice(0, 4);
   motQ = w; tradQ = tradEtape(d[0]);
-  ecran("premier", friseQuestion(j, null, d[0]), APPRENDRE === "de" ? "Was macht " + DE.sujet(s) + " zuerst?" : APPRENDRE === "en" ? "What does " + EN.sujet(s) + " do first?" : "¿Qué hace " + ES.sujet(s) + " primero?", true, true);
+  ecran("premier", friseQuestion(j, null, d[0]), APPRENDRE === "de" ? "Was macht " + DE.sujet(s) + " zuerst?" : APPRENDRE === "en" ? "What does " + EN.sujet(s) + " do first?"
+        : APPRENDRE === "pt" ? (BR ? "O que " + PT.sujet(s) + " faz primeiro?" : "O que faz " + PT.sujet(s) + " primeiro?") : "¿Qué hace " + ES.sujet(s) + " primero?", true, true);
   tradsChoix = {}; d.forEach(e => { tradsChoix[dit(e)] = tradGeste(e.verbe, s); });
   const phrase = APPRENDRE === "en" ? etapeApresLien(d[0], "First", null) : L.etape(d[0]);
   boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, phrase));
@@ -999,15 +1241,19 @@ function premier(w){
 // la personne d'un exercice de conjugaison : yo / tu / nosotros (sans image), ou le sujet de l'etape (avec son image)
 function personne(e){
   const k = hasard([0, 1, 3, n(e.sujet), n(e.sujet)]);
-  if (k === n(e.sujet)) return {k, s: e.sujet, S: APPRENDRE === "de" ? DE.sujet(e.sujet, true) : APPRENDRE === "en" ? EN.sujet(e.sujet, true) : ES.sujet(e.sujet, true)};
+  if (k === n(e.sujet)) return {k, s: e.sujet, S: APPRENDRE === "de" ? DE.sujet(e.sujet, true) : APPRENDRE === "en" ? EN.sujet(e.sujet, true) : APPRENDRE === "pt" ? PT.sujet(e.sujet, true) : ES.sujet(e.sujet, true)};
   return {k, s: null, S: D.personnes[APPRENDRE][k]};
 }
 // les sortes de la langue apprise
 // l'anglais : ni pronominaux (pronombre, forma, reflexiv), ni verbe separable, ni verbe en deuxieme position ; a la
 // place, le -s (troisieme), la question en does (doesQ) et la place de l'adverbe (placeAdv), qui n'existent qu'en anglais
 const SORTES_EN = ["troisieme", "doesQ", "placeAdv"];
-const SORTES = Object.keys(EX).filter(x => APPRENDRE === "en" ? !["pronombre", "forma", "reflexiv", "trennbar", "satzbau"].includes(x)
-  : !SORTES_EN.includes(x) && (APPRENDRE === "es" ? !["reflexiv", "trennbar", "satzbau"].includes(x) : !["pronombre", "forma", "avantApres"].includes(x)));
+// le portugais : les sortes de l'espagnol (pronombre, forma, avantApres, frecuencia... dans leur version portugaise) et,
+// au Portugal seulement, la place du pronom (pronomePt) -- le Bresil le met toujours devant
+const SORTES_PT = ["pronomePt"];
+const SORTES = Object.keys(EX).filter(x => APPRENDRE === "en" ? !["pronombre", "forma", "reflexiv", "trennbar", "satzbau"].concat(SORTES_PT).includes(x)
+  : APPRENDRE === "pt" ? !["reflexiv", "trennbar", "satzbau"].concat(SORTES_EN, BR ? SORTES_PT : []).includes(x)
+  : !SORTES_EN.includes(x) && !SORTES_PT.includes(x) && (APPRENDRE === "es" ? !["reflexiv", "trennbar", "satzbau"].includes(x) : !["pronombre", "forma", "avantApres"].includes(x)));
 // pour tests/themes_illustres.py : remettre dans l'ordre se resout en quatre gestes, pas en un
 function testerOrdre(){
   const z = $("ordre"); if (!z) return "";
@@ -1020,12 +1266,14 @@ function testerOrdre(){
 function decouvrir(){
   $("compte").textContent = ""; $("barre").style.width = "0%";
   // en anglais, les phrases de la decouverte se fabriquent ici (journee.json n'a que l'espagnol et l'allemand)
-  const dec = APPRENDRE === "en" ? Object.fromEntries(ETAPES.map(e => [e.cle, {texte: EN.etape(e)}])) : D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  const dec = APPRENDRE === "en" ? Object.fromEntries(ETAPES.map(e => [e.cle, {texte: EN.etape(e)}]))
+            : APPRENDRE === "pt" ? Object.fromEntries(ETAPES.map(e => [e.cle, {texte: PT.etape(e)}])) : D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
   const z = $("zone");
   z.innerHTML = '<div class="onglets" role="tablist">' + Object.keys(D.jours).map(j => '<button type="button" role="tab" data-j="' + j + '" lang="' + APPRENDRE + '" dir="ltr">' + D.jours[j].titre[APPRENDRE] + '</button>').join("") + '</div>'
               + '<p class="consigne">' + isoler(T("intro")) + '</p><div class="fiche" id="fiche"></div><div class="frise" id="frise"></div>'
-              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : APPRENDRE === "en" ? "regleEn" : "regleEs")) + '</p>'
-              + (APPRENDRE === "en" ? '<p class="consigne">' + T(GB ? "bonGb" : "bonUs") + '</p>' : "");
+              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : APPRENDRE === "en" ? "regleEn" : APPRENDRE === "pt" ? (BR ? "regleBr" : "reglePt") : "regleEs")) + '</p>'
+              + (APPRENDRE === "en" ? '<p class="consigne">' + T(GB ? "bonGb" : "bonUs") + '</p>' : "")
+              + (APPRENDRE === "pt" ? '<p class="consigne">' + T(BR ? "bonBr" : "bonPt") + '</p>' : "");
   const montrer = e => {
     const ph = dec[e.cle], t = tradEtape(e) || (TR ? null : glose(motDuVerbe(e.verbe)));
     $("frise").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.cle === e.cle));
@@ -1149,6 +1397,18 @@ fetch("journee/journee.json?v=1").then(r => r.json()).then(d => {
     // la frequence et ses phrases anglaises (FREQ_EN), au lieu de celles de l'espagnol et de l'allemand
     Object.keys(D.adverbes).forEach(c => { D.adverbes[c].en = ({siempre: "always", "a veces": "sometimes", nunca: "never"})[c]; });
     D.frequences = FREQ_EN.map(x => Object.assign({}, x, {en: (x.be ? [x.S, x.v, "{A}", x.r] : [x.S, "{A}", x.v, x.r]).filter(Boolean).join(" ") + "."}));
+  }
+  if (APPRENDRE === "pt"){
+    // Lisbonne : sans l'image du metro de Berlin (le rang se recompte dans la journee) ; un geste sans portugais sort des leurres
+    ETAPES = ETAPES.filter(e => !ECARTEES_PT.includes(e.cle) && VERBES_PT[e.verbe]);
+    const rangs = {}; ETAPES.forEach(e => { e.rang = rangs[e.jour] = (e.jour in rangs) ? rangs[e.jour] + 1 : 0; });
+    Object.keys(D.verbes).forEach(vb => { if (!VERBES_PT[vb]) delete D.verbes[vb]; });
+    Object.keys(D.jours).forEach(j => { D.jours[j].titre.pt = TITRES_PT[j]; });
+    // eu, tu (Portugal) ou você (Bresil), nós : journee.json a « Você », pour la traduction bresilienne de l'interface
+    D.personnes.pt = ["Eu", BR ? "Você" : "Tu", null, "Nós", null];
+    // la frequence : la phrase portugaise entiere, l'adverbe a sa place (frecuenciaPt, et « semaine » qui la lit)
+    Object.keys(D.adverbes).forEach(c => { D.adverbes[c].pt = ADV_PT[c]; });
+    D.frequences = FREQ_PT.map(x => Object.assign({}, x, {pt: freqPhrase(x, ADV_PT[x.f])}));
   }
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });

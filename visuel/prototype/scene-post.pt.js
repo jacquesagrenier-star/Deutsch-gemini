@@ -79,7 +79,8 @@ window.SCENE = {
    "mot": "caixa de cartão",
    "genre": "a",
    "pluriel": "as caixas de cartão",
-   "niveau": "A2",
+   "niveau": "A1",
+   "theme": "casa_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -92,7 +93,11 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "br": {
+    "mot": "caixa de papelão",
+    "pluriel": "as caixas de papelão"
+   }
   },
   {
    "id": "uhr",
@@ -141,7 +146,8 @@ window.SCENE = {
    "mot": "planta",
    "genre": "a",
    "pluriel": "as plantas",
-   "niveau": "A1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,

@@ -86,7 +86,8 @@ window.SCENE = {
    "mot": "caixa de cartão",
    "genre": "a",
    "pluriel": "as caixas de cartão",
-   "niveau": "A2",
+   "niveau": "A1",
+   "theme": "casa_pt",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -105,7 +106,11 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "br": {
+    "mot": "caixa de papelão",
+    "pluriel": "as caixas de papelão"
+   }
   },
   {
    "id": "kiste",
@@ -1267,7 +1272,8 @@ window.SCENE = {
    "mot": "caixa de cartão",
    "genre": "a",
    "pluriel": "as caixas de cartão",
-   "niveau": "A2",
+   "niveau": "A1",
+   "theme": "casa_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1286,7 +1292,11 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "br": {
+    "mot": "caixa de papelão",
+    "pluriel": "as caixas de papelão"
+   }
   },
   {
    "id": "rad-3",
@@ -1468,7 +1478,11 @@ window.SCENE = {
      "r": "regal",
      "phrase": "As caixas de cartão estão na estante.",
      "sens": "Les cartons sont sur l'étagère.",
-     "n": "<b>em</b> + a = <b>na</b> : na estante."
+     "n": "<b>em</b> + a = <b>na</b> : na estante.",
+     "br": {
+      "q": "Onde estão as caixas de papelão?",
+      "phrase": "As caixas de papelão estão na estante."
+     }
     },
     {
      "q": "Onde está o balde?",

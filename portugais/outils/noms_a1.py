@@ -43,6 +43,9 @@ THEMES = [
 NOMS = {}
 
 NOMS["casa_pt"] = """
+a banheira | la baignoire | A casa de banho tem banheira e duche. | La salle de bains a une baignoire et une douche.
+a caixa de cartão | le carton | As caixas de cartão estão no chão da sala. | Les cartons sont par terre dans le salon. | pl=caixas de cartão | br=caixa de papelão
+o banho | le bain, la douche | Os miúdos tomam banho à noite. | Les enfants prennent leur bain le soir.
 a casa | la maison | A nossa casa tem um jardim pequeno. | Notre maison a un petit jardin.
 o apartamento | l'appartement | Moro num apartamento no centro. | J'habite dans un appartement du centre.
 a divisão | la pièce | O apartamento tem três divisões. | L'appartement a trois pièces. | pl=divisões | br=cômodo
@@ -98,6 +101,7 @@ o rés-do-chão | le rez-de-chaussée | A padaria fica no rés-do-chão. | La bo
 """
 
 NOMS["familia_pt"] = """
+os pais | les parents | Os meus pais moram em Lisboa. | Mes parents habitent à Lisbonne. | u
 a família | la famille | A minha família é bastante grande. | Ma famille est assez grande.
 o pai | le père | O meu pai trabalha num banco. | Mon père travaille dans une banque.
 a mãe | la mère | A minha mãe cozinha muito bem. | Ma mère cuisine très bien.
@@ -188,6 +192,10 @@ o presunto | le jambon cru | O presunto de Chaves é muito bom. | Le jambon cru 
 """
 
 NOMS["corpo_pt"] = """
+o medo | la peur | A Carmen está com medo do cão. | Carmen a peur du chien. | u
+a garganta | la gorge | Dói-me a garganta desde ontem. | J'ai mal à la gorge depuis hier.
+a tosse | la toux | Estou com tosse há três dias. | Je tousse depuis trois jours. | u
+a enfermeira | l'infirmière | A enfermeira trabalha no hospital. | L'infirmière travaille à l'hôpital.
 o corpo | le corps | O corpo humano é fascinante. | Le corps humain est fascinant.
 a cabeça | la tête | Dói-me a cabeça. | J'ai mal à la tête.
 o cabelo | les cheveux | Ela tem o cabelo muito comprido. | Elle a les cheveux très longs.
@@ -229,6 +237,9 @@ a saúde | la santé | A saúde é o mais importante. | La santé est ce qu'il y
 """
 
 NOMS["roupa_pt"] = """
+a mala de mão | le sac à main | A mala de mão está em cima da cadeira. | Le sac à main est sur la chaise. | pl=malas de mão | br=bolsa
+o blusão | le blouson | O Mark veste o blusão cinzento antes de sair. | Mark met son blouson gris avant de sortir. | pl=blusões | br=jaqueta
+os calções | le short | No verão, o Pablo usa calções. | En été, Pablo porte un short. | u | br=bermuda
 a roupa | les vêtements | Arrumo a roupa de inverno. | Je range les vêtements d'hiver. | u
 a camisa | la chemise | Ele veste uma camisa branca. | Il porte une chemise blanche.
 a t-shirt | le tee-shirt | Visto uma t-shirt e pronto. | Je mets un tee-shirt et c'est tout. | pl=t-shirts | br=camiseta
@@ -308,6 +319,7 @@ o estacionamento | le parking | Não encontro estacionamento nesta rua. | Je ne 
 """
 
 NOMS["tempo_pt"] = """
+a vez | la fois | A Rosa vai à piscina uma vez por semana. | Rosa va à la piscine une fois par semaine. | pl=vezes
 o dia | le jour | Hoje está um dia muito bonito. | Aujourd'hui, c'est une très belle journée.
 a semana | la semaine | A semana começa na segunda-feira. | La semaine commence le lundi.
 o mês | le mois | Este mês tenho muito trabalho. | Ce mois-ci, j'ai beaucoup de travail. | pl=meses
@@ -399,6 +411,7 @@ a risca | la rayure | Gosto da camisa às riscas. | J'aime la chemise à rayures
 """
 
 NOMS["animais_pt"] = """
+a erva | l'herbe | As vacas comem erva. | Les vaches mangent de l'herbe. | u
 o animal | l'animal | É um animal muito calmo. | C'est un animal très calme. | pl=animais
 o animal de estimação | l'animal de compagnie | Temos um animal de estimação em casa. | Nous avons un animal de compagnie à la maison. | pl=animais de estimação
 o cão | le chien | O cão dorme no sofá. | Le chien dort sur le canapé. | pl=cães | br=cachorro
@@ -427,6 +440,8 @@ o peixinho-dourado | le poisson rouge | O peixinho-dourado nada no aquário. | L
 """
 
 NOMS["clima_pt"] = """
+o mar | la mer | O golfinho vive no mar. | Le dauphin vit dans la mer.
+a floresta | la forêt | A raposa vive na floresta. | Le renard vit dans la forêt.
 o tempo | le temps (qu'il fait) | Como está o tempo hoje? | Quel temps fait-il aujourd'hui ? | u
 o sol | le soleil | Esta manhã está sol. | Il fait soleil ce matin. | u
 a chuva | la pluie | A chuva não para. | La pluie ne s'arrête pas. | u
@@ -491,6 +506,8 @@ a manteiga | le beurre | Falta manteiga para as torradas. | Il manque du beurre 
 """
 
 NOMS["compras_pt"] = """
+o vendedor | le vendeur | O vendedor vende roupa. | Le vendeur vend des vêtements.
+a vendedora | la vendeuse | A vendedora trabalha numa loja. | La vendeuse travaille dans un magasin.
 o dinheiro | l'argent | Não tenho dinheiro comigo. | Je n'ai pas d'argent sur moi. | u
 a moeda | la pièce de monnaie | Preciso de uma moeda para o carrinho. | J'ai besoin d'une pièce pour le chariot.
 o cartão | la carte (bancaire) | Posso pagar com cartão? | Puis-je payer par carte ? | pl=cartões
@@ -511,6 +528,7 @@ o talho | la boucherie | Compro a carne no talho. | J'achète la viande à la bo
 """
 
 NOMS["transportes_pt"] = """
+o passaporte | le passeport | O Mark mostra o passaporte no balcão. | Mark montre son passeport au guichet.
 o avião | l'avion | O avião parte às sete. | L'avion part à sept heures. | pl=aviões
 o barco | le bateau | Atravessamos o Tejo de barco. | Nous traversons le Tage en bateau.
 a mota | la moto | Ele vai para o trabalho de mota. | Il va au travail en moto. | br=moto
@@ -533,6 +551,7 @@ o cais | le quai | O barco para Cacilhas sai do cais dois. | Le bateau pour Caci
 """
 
 NOMS["escola_pt"] = """
+a professora | la professeure | A professora ensina português. | La professeure enseigne le portugais.
 a escola | l'école | O meu filho vai para a escola de autocarro. | Mon fils va à l'école en bus.
 o colégio | l'école privée, le collège | O colégio está fechado hoje. | L'école est fermée aujourd'hui.
 a universidade | l'université | Ele estuda na Universidade de Coimbra. | Il étudie à l'université de Coimbra.
@@ -559,6 +578,12 @@ o giz | la craie | O professor escreve no quadro com giz. | Le professeur écrit
 """
 
 NOMS["trabalho_pt"] = """
+o farmacêutico | le pharmacien | O farmacêutico vende medicamentos. | Le pharmacien vend des médicaments.
+a farmacêutica | la pharmacienne | A farmacêutica trabalha numa farmácia. | La pharmacienne travaille dans une pharmacie.
+o padeiro | le boulanger | O padeiro faz pão. | Le boulanger fait du pain.
+a padeira | la boulangère | A padeira trabalha numa padaria. | La boulangère travaille dans une boulangerie.
+o cabeleireiro | le coiffeur | O cabeleireiro corta o cabelo. | Le coiffeur coupe les cheveux.
+a cabeleireira | la coiffeuse | A cabeleireira trabalha num salão de beleza. | La coiffeuse travaille dans un salon de coiffure.
 o trabalho | le travail | Procuro trabalho desde março. | Je cherche du travail depuis mars.
 o escritório | le bureau | O escritório fica no centro. | Le bureau est au centre-ville.
 a empresa | l'entreprise | Trabalho numa empresa pequena. | Je travaille dans une petite entreprise.
@@ -577,6 +602,9 @@ o emprego | l'emploi | Ela tem um emprego novo. | Elle a un nouvel emploi.
 """
 
 NOMS["lazer_pt"] = """
+o ténis | le tennis | A Rosa joga ténis ao sábado. | Rosa joue au tennis le samedi. | u | br=tênis
+a guitarra | la guitare | A Inês toca guitarra todos os dias. | Inês joue de la guitare tous les jours. | br=violão
+o piano | le piano | A Gisela toca piano todos os dias. | Gisela joue du piano tous les jours.
 o lazer | les loisirs | O fim de semana é tempo de lazer. | Le week-end est un temps de loisirs. | u
 o filme | le film | O filme começa às oito. | Le film commence à huit heures.
 a música | la musique | Ouço música enquanto cozinho. | J'écoute de la musique en cuisinant. | u

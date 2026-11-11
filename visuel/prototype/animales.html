@@ -24,6 +24,13 @@
   le present simple et son -s (A rabbit eats carrots. Cats eat fish. : le generique au pluriel, sans article),
   doesn't / don't, bigger than et the biggest, has (has got en britannique), it / its / their, et la couleur devant
   le nom, sans -s (white sheep, an orange fox). Americain / britannique : gray / grey, color / colour, has / has got.
+  LE PORTUGAIS (apprendre=pt, lot P3, 11 nov. 2026) : les memes images, aucune ecartee ; ses phrases a lui, fabriquees
+  au chargement (preparerPortugais, depuis les memes animaux, lieux, aliments, couleurs et tailles) dans les cles de
+  l'espagnol, si bien que les sortes de l'espagnol servent telles quelles. Il enseigne le genre (o / a : a raposa, o
+  rato), le pluriel (-s ; o cão -> os cães ; o peixinho-dourado -> os peixinhos-dourados), dois / duas, la contraction
+  du lieu (na quinta, no mar, em casa), o peixe (l'animal ET ce qu'on mange), la couleur accordee (preto e branco /
+  preta e branca ; cor-de-rosa ne change pas), maior do que et mais pequeno do que. variante=br, le Bresil : o
+  cachorro, na fazenda, a grama, marrom, cinza, rosa, laranja (invariables), menor do que, « Qual animal...? ».
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -125,9 +132,12 @@ button:disabled{cursor:default}
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (4 nov. 2026, « il manque beaucoup de themes en anglais ») : les memes images, ses phrases a lui ; variante=gb
-const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+// le portugais (lot P3, 11 nov. 2026) : les memes images, ses phrases a lui ; variante=br pour le Bresil
+const APPRENDRE = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
 const EN_APP = APPRENDRE === "en";
+const PT_APP = APPRENDRE === "pt";
 const DE_APP = APPRENDRE === "de";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -183,12 +193,17 @@ const TEXTES = {
   superlatifEn:{fr:"Le plus grand ou le plus petit des trois ? Complète la phrase."},
   haveEn:    {fr:"has ou have ? Complète la phrase."},
   haveGb:    {fr:"has got ou have got ? Complète la phrase."},
-  itsEn:     {fr:"its, it's, their ou they're ? Choisis le mot qui manque."}
+  itsEn:     {fr:"its, it's, their ou they're ? Choisis le mot qui manque."},
+  // le portugais seulement (son interface est en francais)
+  reglePt:   {fr:"o ou a : le genre s'apprend avec le mot, et ce n'est pas toujours celui du français (a raposa, le renard ; o rato, la souris). Au pluriel : -s (a vaca, as vacas), mais " + (BR ? "o cão devient os cães (au Brésil, on dit plutôt o cachorro)" : "o cão devient os cães") + ", o animal devient os animais, et dans o peixinho-dourado les deux mots prennent l's : os peixinhos-dourados. Où il vit : em + a = na (" + (BR ? "na fazenda" : "na quinta") + "), em + o = no (no mar), et em casa. O peixe, c'est l'animal ET ce qu'on mange. La couleur s'accorde avec l'animal (a ovelha branca, " + (BR ? "o cachorro preto e branco" : "o cão preto e branco") + "), sauf " + (BR ? "marrom, cinza, rosa et laranja" : "cor-de-rosa et cor de laranja") + ", qui ne changent pas. Comparer : maior do que ; " + (BR ? "menor do que (au Portugal : mais pequeno do que)." : "mais pequeno do que (au Brésil : menor do que).")},
+  couleurPt: {fr:"Choisis la couleur, accordée avec l'animal (o ou a)."}
 };
 // les exemples de la regle, dans la langue apprise
 const EXEMPLES = {
   de: "der Hund → die Hunde · die Kuh → die Kühe · das Huhn → die Hühner · der Bär → die Bären · das Eichhörnchen → die Eichhörnchen · Die Kuh frisst Gras.",
-  es: "la vaca → las vacas · el ratón → los ratones · el pez → los peces · la oveja blanca · el oso marrón · El delfín come pescado."
+  es: "la vaca → las vacas · el ratón → los ratones · el pez → los peces · la oveja blanca · el oso marrón · El delfín come pescado.",
+  pt: BR ? "a vaca → as vacas · o cachorro → os cachorros · o peixe → os peixes · o animal → os animais · o peixinho-dourado → os peixinhos-dourados · a ovelha branca · o urso marrom · O golfinho come peixe. · A galinha é menor do que a vaca."
+         : "a vaca → as vacas · o cão → os cães · o peixe → os peixes · o animal → os animais · o peixinho-dourado → os peixinhos-dourados · a ovelha branca · o urso castanho · O golfinho come peixe. · A galinha é mais pequena do que a vaca."
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
 
@@ -200,11 +215,16 @@ const ANI = () => Object.keys(D.animaux).filter(a => !EN_APP || !ECARTEES_EN.inc
 const an = a => D.animaux[a];
 const P = cle => D.phrases[APPRENDRE][cle];                    // une phrase de la langue apprise, par sa cle
 const sg = (a, maj) => { const [art, nom] = an(a)[APPRENDRE]; return (maj ? art.charAt(0).toUpperCase() + art.slice(1) : art) + " " + nom; };
-const plDe = (a, maj) => EN_APP ? (maj ? "Two " : "two ") + an(a).en[2] : DE_APP ? (maj ? "Die " : "die ") + an(a).de[2] : ((an(a).es[0] === "el" ? "los" : "las") + " " + an(a).es[2]).replace(/^l/, maj ? "L" : "l");
-const femEs = a => an(a).es[0] === "la";
+const plDe = (a, maj) => EN_APP ? (maj ? "Two " : "two ") + an(a).en[2] : DE_APP ? (maj ? "Die " : "die ") + an(a).de[2]
+  : PT_APP ? (an(a).pt[0] === "a" ? (maj ? "As " : "as ") : (maj ? "Os " : "os ")) + an(a).pt[2]
+  : ((an(a).es[0] === "el" ? "los" : "las") + " " + an(a).es[2]).replace(/^l/, maj ? "L" : "l");
+const femEs = a => PT_APP ? an(a).pt[0] === "a" : an(a).es[0] === "la";
+// la cle des mots du corpus dans animales.json (les lieux, les aliments) ; les couleurs a deux genres
+const MOTX = DE_APP ? "motDe" : PT_APP ? "motPt" : "motEs";
+const CL = PT_APP ? "pt" : "es";
 const lieu = h => D.habitats[h][APPRENDRE];
 const aliment = f => D.aliments[f][APPRENDRE];
-const couleur = (c, a) => DE_APP ? D.couleurs[c].de : D.couleurs[c].es[femEs(a) ? 1 : 0];
+const couleur = (c, a) => DE_APP ? D.couleurs[c].de : D.couleurs[c][CL][femEs(a) ? 1 : 0];
 // ou il vit vraiment, et ou il ne vit clairement pas (jamais un lieu « aussi »)
 const vitLa = (a, h) => an(a).ou === h || an(a).aussi.includes(h);
 const pasLa = (a, h) => an(a).ou && !vitLa(a, h);
@@ -249,8 +269,8 @@ function motsDuTheme(){
     par[k].roles[role] = id;
   };
   ANI().forEach(a => ajouter(an(a)[APPRENDRE][1], an(a)[APPRENDRE][0], "a", a));
-  Object.keys(D.habitats).forEach(h => { const [m, g] = D.habitats[h][DE_APP ? "motDe" : "motEs"]; ajouter(m, g, "h", h); });
-  Object.keys(D.aliments).forEach(f => { const [m, g] = D.aliments[f][DE_APP ? "motDe" : "motEs"]; ajouter(m, g, "f", f); });
+  Object.keys(D.habitats).forEach(h => { const [m, g] = D.habitats[h][MOTX]; ajouter(m, g, "h", h); });
+  Object.keys(D.aliments).forEach(f => { const [m, g] = D.aliments[f][MOTX]; ajouter(m, g, "f", f); });
   MOTS = out;
   return MOTS;
 }
@@ -271,14 +291,14 @@ function choixTraduit(c){
   const a = ANI().find(x => sg(x) === c);
   if (a) return {aff: c, sens: glose(an(a)[APPRENDRE][1])};
   const h = Object.keys(D.habitats).find(x => lieu(x) === c);
-  if (h){ const t = ((D.tradLieux[APPRENDRE] || {})[c] || {})[LANGUE]; return {aff: c, sens: t || glose(D.habitats[h][DE_APP ? "motDe" : "motEs"][0])}; }
+  if (h){ const t = ((D.tradLieux[APPRENDRE] || {})[c] || {})[LANGUE]; return {aff: c, sens: t || glose(D.habitats[h][MOTX][0])}; }
   const f = Object.keys(D.aliments).find(x => aliment(x) === c);
-  if (f) return {aff: c, sens: glose(D.aliments[f][DE_APP ? "motDe" : "motEs"][0])};
+  if (f) return {aff: c, sens: glose(D.aliments[f][MOTX][0])};
   // une couleur : en espagnol, traduite au genre de l'animal de la question (el perro gris -> gris, la vaca gris -> grise)
   const tc = ((D.tradCouleurs[APPRENDRE] || {})[DE_APP ? c : c + "|" + (animalQ && femEs(animalQ) ? 1 : 0)] || {});
   if (tc[LANGUE]) return {aff: c, sens: tc[LANGUE]};
-  const coul = Object.keys(D.couleurs).find(x => D.couleurs[x].de === c || D.couleurs[x].es.includes(c));
-  if (coul){ const mots = D.couleurs[coul][DE_APP ? "motsDe" : "motsEs"]; return {aff: c, sens: mots.map(glose).filter(Boolean).join(", ")}; }
+  const coul = Object.keys(D.couleurs).find(x => D.couleurs[x].de === c || D.couleurs[x][CL].includes(c));
+  if (coul){ const mots = D.couleurs[coul][DE_APP ? "motsDe" : PT_APP ? "motsPt" : "motsEs"]; return {aff: c, sens: mots.map(glose).filter(Boolean).join(", ")}; }
   return null;
 }
 
@@ -292,7 +312,7 @@ function juger(ok, bonneTexte, phrase){
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const mt = motQ ? {aff: (motQ.genre ? motQ.genre + " " : "") + motQ.mot, sens: glose(motQ.mot)} : null;
-  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : EN_APP ? "Well done!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
+  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : EN_APP ? "Well done!" : PT_APP ? "Muito bem!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
     + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
     + traduction(tradQ || tradPhrase(phrase || bonneTexte))
     + (!ok && (c => c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")(choixTraduit(choixQ)) || "")
@@ -353,7 +373,14 @@ const QES = {
   welchesLebt: h => "¿Qué animal vive " + lieu(h) + "?", welchesFrisst: f => "¿Qué animal come " + aliment(f) + "?",
   groesser: "¿Qué animal es más grande?", kleiner: "¿Qué animal es más pequeño?", vrai: "Verdadero", faux: "Falso"
 };
-const QL = DE_APP ? QDE : QES;
+// le portugais : « Que animal...? » au Portugal, « Qual animal...? » au Bresil ; « O que come a vaca? » / « O que a vaca come? »
+const QPT = {
+  nom: BR ? "Que animal é esse?" : "Que animal é este?", wo: a => "Onde vive " + sg(a) + "?",
+  frisst: a => BR ? "O que " + sg(a) + " come?" : "O que come " + sg(a) + "?",
+  welchesLebt: h => (BR ? "Qual animal" : "Que animal") + " vive " + lieu(h) + "?", welchesFrisst: f => (BR ? "Qual animal" : "Que animal") + " come " + aliment(f) + "?",
+  groesser: (BR ? "Qual animal" : "Que animal") + " é maior?", kleiner: BR ? "Qual animal é menor?" : "Que animal é mais pequeno?", vrai: "Verdadeiro", faux: "Falso"
+};
+const QL = DE_APP ? QDE : PT_APP ? QPT : QES;
 // un animal que la file vise (w.roles.a), ou au hasard parmi ceux qui conviennent ; null si aucun
 function animalPour(w, filtre){
   if (w && w.roles.a) return filtre(w.roles.a) ? w.roles.a : null;
@@ -381,7 +408,8 @@ const EX = {
     const [art, nom, pl] = an(a)[APPRENDRE];
     let enonce, rep, opts;
     if (DE_APP){ enonce = "___ " + nom; rep = art; opts = ["der", "die", "das"]; }
-    else if (Math.random() < 0.5){ enonce = "___ " + nom; rep = art; opts = ["el", "la"]; }
+    else if (Math.random() < 0.5){ enonce = "___ " + nom; rep = art; opts = PT_APP ? ["o", "a"] : ["el", "la"]; }
+    else if (PT_APP){ enonce = "___ " + pl; rep = art === "o" ? "os" : "as"; opts = ["os", "as"]; }
     else { enonce = "___ " + pl; rep = art === "el" ? "los" : "las"; opts = ["los", "las"]; }
     ecran("article", photo(a), avecTrou(enonce), true);
     boutons($("choix"), opts, rep, ok => { $("trou").textContent = rep; juger(ok, rep, P("art|" + a)); });
@@ -458,7 +486,8 @@ const EX = {
     const x = hasard(c);
     viser(w, w && w.roles.a === x.a ? w : x.mot);
     const phrase = P(x.k);
-    const FORMES = DE_APP ? {hab: {sg: "lebt", pl: "leben"}, mange: {sg: "frisst", pl: "fressen"}} : {hab: {sg: "vive", pl: "viven"}, mange: {sg: "come", pl: "comen"}};
+    const FORMES = DE_APP ? {hab: {sg: "lebt", pl: "leben"}, mange: {sg: "frisst", pl: "fressen"}} : PT_APP ? {hab: {sg: "vive", pl: "vivem"}, mange: {sg: "come", pl: "comem"}}
+                 : {hab: {sg: "vive", pl: "viven"}, mange: {sg: "come", pl: "comen"}};
     const rep = FORMES[x.t][x.n], autre = FORMES[x.t][x.n === "sg" ? "pl" : "sg"];
     // en allemand, le piege d'essen : « isst » / « essen » (une personne), jamais pour un animal
     const opts = [rep, autre].concat(DE_APP && x.t === "mange" ? [x.n === "sg" ? "isst" : "essen"] : []);
@@ -477,9 +506,9 @@ const EX = {
       boutons($("choix"), melanger([rep].concat(autres.slice(0, 3).map(x => D.couleurs[x].de))), rep, ok => juger(ok, rep, phrase));
     } else {
       // le piege de l'accord : la meme couleur a l'autre genre, quand elle change (blanco / blanca)
-      const autreGenre = D.couleurs[c].es[femEs(a) ? 0 : 1];
+      const autreGenre = D.couleurs[c][CL][femEs(a) ? 0 : 1];
       const opts = uniques([rep].concat(autreGenre !== rep ? [autreGenre] : [], autres.map(x => couleur(x, a)))).slice(0, 4);
-      ecran("couleurEs", photo(a), avecTrou(troue(phrase.replace(rep, "§"), "§") || phrase), true);
+      ecran(PT_APP ? "couleurPt" : "couleurEs", photo(a), avecTrou(troue(phrase.replace(rep, "§"), "§") || phrase), true);
       // un accord rate (blanco pour blanca) n'a rien a traduire : la regle commune, comme alto / alta
       boutons($("choix"), melanger(opts), rep, ok => { if (choixQ === autreGenre) choixQ = null; $("trou").textContent = rep; juger(ok, rep, phrase); });
     }
@@ -564,6 +593,13 @@ const EX = {
     const phrase = P(sens + "|" + a + "|" + b);
     let rep, opts;
     if (DE_APP){ rep = sens === "plus" ? "größer" : "kleiner"; opts = sens === "plus" ? ["größer", "kleiner", "großer"] : ["kleiner", "größer", "klein"]; }
+    else if (PT_APP){
+      // « A vaca é ___ do que a galinha. » maior, jamais « mais grande » ; « A galinha é mais ___ do que a vaca. »
+      // pequena / pequeno (l'accord) ; au Bresil « A galinha é ___ do que a vaca. » menor, jamais « mais menor »
+      const peq = femEs(a) ? "pequena" : "pequeno";
+      rep = sens === "plus" ? "maior" : BR ? "menor" : peq;
+      opts = sens === "plus" ? ["maior", "mais grande", BR ? "menor" : "mais pequeno"] : BR ? ["menor", "maior", "mais menor"] : [peq, femEs(a) ? "pequeno" : "pequena", "grande"];
+    }
     else {
       const peq = femEs(a) ? "pequeña" : "pequeño";
       rep = sens === "plus" ? "grande" : peq;
@@ -1102,12 +1138,112 @@ if (EN_APP) Object.keys(EX_EN).forEach(k => { EX[k] = w => { SENS_EN.clear(); re
 const SORTES = EN_APP ? ["nom", "pluriel", "habitat", "prep", "quel", "manger", "verbe", "negatif", "there", "couleur", "adjectif", "entendre", "vraifaux", "taille", "comparer", "superlatif", "have", "its"]
                       : Object.keys(EX).filter(x => DE_APP || x !== "endung");
 
+// ---------- LE PORTUGAIS (lot P3, 11 nov. 2026) ----------
+// Les phrases sont ecrites pour le portugais, fabriquees au chargement depuis les memes animaux (ou il vit, ce qu'il
+// mange, sa couleur, sa taille : animales.json), et rangees sous les cles de l'espagnol (ident, art, plur, nombre, hab,
+// mange, col, plus, moins) : les sortes de l'espagnol les posent telles quelles. Rien n'est traduit mot a mot : « O
+// golfinho come peixe. » (o peixe : l'animal ET ce qu'on mange, la ou l'espagnol a pez et pescado), « A vaca vive na
+// quinta. » (em + a = na), « A galinha é mais pequena do que a vaca. ». Les mots sont ceux du corpus actif (portugais/
+// datos ; datos-br au Bresil, qui dit o cachorro, a fazenda, a grama). La traduction d'une phrase : celle de la phrase
+// espagnole de la meme cle, qui dit la meme chose.
+// PT_A : [article, nom, pluriel, pluriels faux] -- o cão -> os cães (jamais « cãos », « cões ») ; o peixinho-dourado ->
+// os peixinhos-dourados (les deux mots prennent l's)
+const PT_A = {
+  kuh:     ["a", "vaca", "vacas", ["vaca", "vacaes"]],
+  pferd:   ["o", "cavalo", "cavalos", ["cavalo", "cavaloes"]],
+  schwein: ["o", "porco", "porcos", ["porco", "porcoes"]],
+  schaf:   ["a", "ovelha", "ovelhas", ["ovelha", "ovelhaes"]],
+  huhn:    ["a", "galinha", "galinhas", ["galinha", "galinhaes"]],
+  hund:    BR ? ["o", "cachorro", "cachorros", ["cachorro", "cachorroes"]] : ["o", "cão", "cães", ["cãos", "cões", "cão"]],
+  katze:   ["o", "gato", "gatos", ["gato", "gatoes"]],
+  goldfisch: ["o", "peixinho-dourado", "peixinhos-dourados", ["peixinho-dourados", "peixinhos-dourado", "peixinho-dourado"]],
+  baer:    ["o", "urso", "ursos", ["urso", "ursoes"]],
+  fuchs:   ["a", "raposa", "raposas", ["raposa", "raposaes"]],
+  eichhoernchen: ["o", "esquilo", "esquilos", ["esquilo", "esquiloes"]],
+  vogel:   ["o", "pássaro", "pássaros", ["pássaro", "pássaroes", "passaros"]],
+  fisch:   ["o", "peixe", "peixes", ["peixe", "peixs"]],
+  delfin:  ["o", "golfinho", "golfinhos", ["golfinho", "golfinhoes"]],
+  maus:    ["o", "rato", "ratos", ["rato", "ratoes"]]
+};
+// les lieux : [la ou il vit (la contraction), le mot du corpus, son genre]
+const PT_H = {
+  bauernhof: BR ? ["na fazenda", "fazenda", "a"] : ["na quinta", "quinta", "a"],
+  wald:      ["na floresta", "floresta", "a"],
+  meer:      ["no mar", "mar", "o"],
+  haus:      ["em casa", "casa", "a"]
+};
+// ce qu'ils mangent : [la forme de la phrase, le mot du corpus, son genre] -- l'herbe : a erva au Portugal, a grama au Bresil
+const PT_F = {
+  gras:    BR ? ["grama", "grama", "a"] : ["erva", "erva", "a"],
+  fleisch: ["carne", "carne", "a"],
+  fisch:   ["peixe", "peixe", "o"],
+  nuss:    ["nozes", "noz", "a"]
+};
+// les couleurs [masculin, feminin] : au Portugal castanho, cinzento, cor-de-rosa ; au Bresil marrom, cinza, rosa, invariables
+const PT_C = {
+  "noir-blanc": ["preto e branco", "preta e branca"],
+  brun:         BR ? ["marrom", "marrom"] : ["castanho", "castanha"],
+  rose:         BR ? ["rosa", "rosa"] : ["cor-de-rosa", "cor-de-rosa"],
+  blanc:        ["branco", "branca"],
+  gris:         BR ? ["cinza", "cinza"] : ["cinzento", "cinzenta"],
+  orange:       BR ? ["laranja", "laranja"] : ["cor de laranja", "cor de laranja"],
+  "bleu-jaune": ["azul e amarelo", "azul e amarela"]
+};
+const femPt = a => PT_A[a][0] === "a";
+const lePt = a => PT_A[a][0] + " " + PT_A[a][1];                                    // a vaca, o cão
+const LePt = a => PT_A[a][0].toUpperCase() + " " + PT_A[a][1];                      // A vaca
+const LesPt = a => (femPt(a) ? "As " : "Os ") + PT_A[a][2];                         // As vacas
+// une phrase portugaise, par la cle de l'espagnol
+function phrasePt(k){
+  const [t, a, x, n] = k.split("|");
+  if (t === "ident") return "É " + (femPt(a) ? "uma " : "um ") + PT_A[a][1] + ".";
+  if (t === "art") return lePt(a) + ", " + LesPt(a).toLowerCase();
+  if (t === "plur") return (femPt(a) ? "uma " : "um ") + PT_A[a][1] + ", " + (femPt(a) ? "duas " : "dois ") + PT_A[a][2];
+  if (t === "nombre") return "Na foto há " + (an(a).nombre === "viele" ? (femPt(a) ? "muitas " : "muitos ") : "três ") + PT_A[a][2] + ".";
+  if (t === "hab") return (n === "pl" ? LesPt(a) + " vivem " : LePt(a) + " vive ") + PT_H[x][0] + ".";
+  if (t === "mange") return (n === "pl" ? LesPt(a) + " comem " : LePt(a) + " come ") + PT_F[x][0] + ".";
+  if (t === "col") return LePt(a) + " é " + PT_C[x][femPt(a) ? 1 : 0] + ".";
+  if (t === "plus") return LePt(a) + " é maior do que " + lePt(x) + ".";
+  if (t === "moins") return LePt(a) + (BR ? " é menor do que " : " é mais " + (femPt(a) ? "pequena" : "pequeno") + " do que ") + lePt(x) + ".";
+  return null;
+}
+// apres le chargement : les formes portugaises que les sortes, la decouverte et les traductions lisent
+function preparerPortugais(){
+  const es = D.phrases.es, trEs = D.trad.es || {}, glEs = D.gloses.es || {};
+  D.phrases.pt = {}; D.trad.pt = {}; D.dit.pt = {}; D.tradLieux.pt = {}; D.tradCouleurs.pt = {}; D.gloses.pt = {};
+  Object.keys(D.animaux).forEach(a => {
+    D.animaux[a].pt = PT_A[a].slice(0, 3); D.animaux[a].plFaux.pt = PT_A[a][3];
+    D.gloses.pt[PT_A[a][1]] = glEs[D.animaux[a].es[1]] || {};
+  });
+  Object.keys(D.habitats).forEach(h => {
+    D.habitats[h].pt = PT_H[h][0]; D.habitats[h].motPt = [PT_H[h][1], PT_H[h][2]];
+    D.tradLieux.pt[PT_H[h][0]] = (D.tradLieux.es || {})[D.habitats[h].es] || {};
+    D.gloses.pt[PT_H[h][1]] = glEs[D.habitats[h].motEs[0]] || {};
+  });
+  Object.keys(D.aliments).forEach(f => {
+    D.aliments[f].pt = PT_F[f][0]; D.aliments[f].motPt = [PT_F[f][1], PT_F[f][2]];
+    D.gloses.pt[PT_F[f][1]] = glEs[D.aliments[f].motEs[0]] || {};
+  });
+  // o peixe : l'animal et ce qu'on mange (un seul mot, comme der Fisch)
+  D.gloses.pt.peixe = {fr: "le poisson (l'animal, et ce qu'on mange)"};
+  Object.keys(D.couleurs).forEach(c => {
+    D.couleurs[c].pt = PT_C[c]; D.couleurs[c].motsPt = [];
+    [0, 1].forEach(g => { D.tradCouleurs.pt[PT_C[c][g] + "|" + g] = (D.tradCouleurs.es || {})[D.couleurs[c].es[g] + "|" + g] || {}; });
+  });
+  Object.keys(es).forEach(k => { const p = phrasePt(k); if (!p) return; D.phrases.pt[k] = p; if (trEs[es[k]]) D.trad.pt[p] = trEs[es[k]]; });
+  // la fiche de la decouverte : ou il vit et ce qu'il mange, sinon sa couleur (comme l'espagnol)
+  Object.keys(D.animaux).forEach(a => {
+    const x = an(a);
+    const p = x.ou ? phrasePt("hab|" + a + "|" + x.ou + "|sg") + (x.mange.length ? " Come " + PT_F[x.mange[0]][0] + "." : "") : phrasePt("col|" + a + "|" + x.couleur);
+    D.dit.pt[a] = p; if (trEs[D.dit.es[a]]) D.trad.pt[p] = trEs[D.dit.es[a]];
+  });
+}
 // ---------- la decouverte : les animaux par lieu, la fiche de celui qu'on touche ----------
 function decouvrir(){
   $("compte").textContent = ""; $("barre").style.width = "0%";
   const z = $("zone");
   z.innerHTML = '<p class="consigne">' + T("intro") + '</p><div class="fiche" id="fiche"></div><div id="lieux"></div>'
-    + (EN_APP ? reglesEn() : '<p class="regle">' + isoler(T(DE_APP ? "regleDe" : "regleEs")) + '<span class="exemples" lang="' + APPRENDRE + '" dir="ltr">' + EXEMPLES[APPRENDRE] + '</span></p>');
+    + (EN_APP ? reglesEn() : '<p class="regle">' + isoler(T(DE_APP ? "regleDe" : PT_APP ? "reglePt" : "regleEs")) + '<span class="exemples" lang="' + APPRENDRE + '" dir="ltr">' + EXEMPLES[APPRENDRE] + '</span></p>');
   const montrerFiche = a => {
     z.querySelectorAll(".grille button").forEach(b => b.classList.toggle("choisi", b.dataset.id === a));
     const dit = D.dit[APPRENDRE][a];
@@ -1137,6 +1273,7 @@ function decouvrir(){
 }
 // tout ce que la page peut dire dans la decouverte : l'inventaire des voix (visuel/voix_themes.py)
 function textesAVoix(){
+  if (PT_APP) return [];
   if (D && EN_APP) return Object.values(D.dit.en).concat(IMG().map(nomAff));        // l'ecoute dit « a cow », et « sheep » pour une image de groupe
   return D ? Object.values(D.dit[APPRENDRE]).concat(ANI().map(a => sg(a))) : [];
 }
@@ -1244,6 +1381,7 @@ document.title = T("titre");
 fetch("animales/animales.json?v=1").then(r => r.json()).then(d => {
   D = d;
   if (EN_APP) preparerAnglais();
+  if (PT_APP) preparerPortugais();
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>

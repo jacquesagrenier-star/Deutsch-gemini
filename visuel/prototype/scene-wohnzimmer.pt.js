@@ -242,7 +242,8 @@ window.SCENE = {
    "mot": "planta",
    "genre": "a",
    "pluriel": "as plantas",
-   "niveau": "A1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [
     {
@@ -467,6 +468,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as guitarras",
    "niveau": "A1",
+   "theme": "lazer_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -626,7 +628,8 @@ window.SCENE = {
    "mot": "caixa de cartão",
    "genre": "a",
    "pluriel": "as caixas de cartão",
-   "niveau": "A2",
+   "niveau": "A1",
+   "theme": "casa_pt",
    "personne": null,
    "aussi": [
     {
@@ -647,7 +650,11 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "br": {
+    "mot": "caixa de papelão",
+    "pluriel": "as caixas de papelão"
+   }
   },
   {
    "id": "hund",
@@ -721,7 +728,8 @@ window.SCENE = {
    "mot": "caixa de cartão",
    "genre": "a",
    "pluriel": "as caixas de cartão",
-   "niveau": "A2",
+   "niveau": "A1",
+   "theme": "casa_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -734,7 +742,11 @@ window.SCENE = {
      12.6
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "br": {
+    "mot": "caixa de papelão",
+    "pluriel": "as caixas de papelão"
+   }
   },
   {
    "id": "katze",
@@ -878,7 +890,15 @@ window.SCENE = {
      "r": "karton",
      "phrase": "O gato está na caixa de cartão.",
      "sens": "Le chat est assis dans le carton.",
-     "n": "<b>em</b> + a = <b>na</b> : na caixa de cartão."
+     "n": "<b>em</b> + a = <b>na</b> : na caixa de cartão.",
+     "br": {
+      "c": [
+       "na caixa de papelão",
+       "em cima da caixa de papelão",
+       "atrás da caixa de papelão"
+      ],
+      "phrase": "O gato está na caixa de papelão."
+     }
     },
     {
      "q": "Onde está o guarda-chuva?",
@@ -1192,7 +1212,11 @@ window.SCENE = {
      "r": "karton",
      "phrase": "O gato, cuja cabeça sai da caixa de cartão, parece calmo.",
      "sens": "Le chat dont la tête dépasse du carton a l'air tout calme.",
-     "n": "<b>cujo</b> s'accorde avec <b>cabeça</b> : <b>cuja</b>."
+     "n": "<b>cujo</b> s'accorde avec <b>cabeça</b> : <b>cuja</b>.",
+     "br": {
+      "q": "O gato, ___ cabeça sai da caixa de papelão, parece calmo.",
+      "phrase": "O gato, cuja cabeça sai da caixa de papelão, parece calmo."
+     }
     },
     {
      "q": "A estante em frente da ___ está a bicicleta está cheia de livros.",

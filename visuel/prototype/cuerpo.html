@@ -24,6 +24,12 @@
   headache, toothache, backache, stomachache, earache et a sore throat ; should + le verbe nu ; for / since ; les
   pluriels foot / feet, tooth / teeth. Le britannique (variante=gb) : a temperature, ill, stomach ache, plaster,
   chemist's, surgery, 38 degres au lieu de 101.
+  LE PORTUGAIS (lot P3, 11 nov. 2026, interface en francais) : les memes images et la meme mecanique, des phrases
+  ecrites pour le portugais (objet PO, tables PT_* dans la page). Au Portugal : dói-me a cabeça / doem-me os pés, le
+  pronom apres le verbe (me, te, lhe, nos, lhes), ao Mark dói-lhe…, tenho dores de cabeça ; estar com febre, estar
+  constipado ; tens de + l'infinitif, tenho de me sentar ; o senhor, a senhora, « senhora doutora ». Le Bresil
+  (variante=br) : le possessif sans article (minha cabeça dói, a cabeça dele dói), estou com dor de cabeça, estou
+  resfriado, você tem que se sentar, vou lhe passar uma receita, um curativo, a tela. as costas (le dos) est pluriel.
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -150,8 +156,10 @@ button:disabled{cursor:default}
 <script src="themes/verre.js?v=8"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+// le portugais (lot P3, 11 nov. 2026) : apprendre=pt, variante=br pour le Bresil
+const APPRENDRE = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
@@ -215,6 +223,19 @@ const TEXTES = {
   regleMaladeEn:{fr:"Le mal se dit avec have et un article : I have a cold, a cough, a fever — et the flu. Là où le français dit « de la fièvre », l'anglais dit a fever. Comment on se sent : be (I'm tired, I'm sick — I'm ill en britannique). Le conseil : should + le verbe sans to (You should rest), et should ne prend jamais de -s (She should rest)."},
   regleMedecinEn:{fr:"L'anglais n'a pas de vouvoiement : you sert pour tout le monde, la politesse passe par Could you…?, please et thank you. Le médecin demande What's the matter? ou What's wrong?, puis How long have you had…? On répond for + une durée (for three days) ou since + un point de départ (since Monday) — jamais during, ni « since three days » : le français dit « depuis » dans les deux cas."},
   bonUs:     {fr:"Bon à savoir : tu apprends l'anglais américain, à Boston. La fièvre se mesure en degrés Fahrenheit (101 °F, environ 38 °C). En britannique, on dirait a temperature pour la fièvre (I have a temperature), ill pour malade, stomach ache en deux mots, a plaster pour le pansement (Band-Aid ici), the chemist's pour la pharmacie et the surgery pour le cabinet du médecin (ici the doctor's office)."},
+  // LE PORTUGAIS (interface en francais seulement)
+  regleMalPt:{fr:"Au Portugal, « j'ai mal à » se dit avec doer et un pronom après le verbe : dói-me a cabeça (une chose), doem-me os pés (plusieurs). Pour quelqu'un d'autre : te, lhe, nos, lhes (dói-lhe a cabeça ; ao Mark, doem-lhe as costas). On dit aussi : tenho dores de cabeça, tenho dores nas costas. Avec un possessif, l'article reste : a minha cabeça. Attention : as costas (le dos) est un pluriel."},
+  regleMalBr:{fr:"Au Brésil, on dit surtout « estou com dor de… » : estou com dor de cabeça, com dor nas costas. Ou le possessif, sans article : minha cabeça dói (une chose), meus pés doem (plusieurs) ; pour quelqu'un d'autre, dele, dela, deles : a cabeça dele dói. Attention : as costas (le dos) est un pluriel."},
+  regleMaladePt:{fr:"Le mal se dit avec estar com, sans article : estou com febre, com tosse, com gripe. Le rhume : estou constipado (constipada). Comment on se sent : estar (estou cansado, estou doente). Le conseil : tens de + l'infinitif (tens de descansar) ; avec un verbe pronominal, le pronom suit la personne : tenho de me sentar, tens de te sentar."},
+  regleMaladeBr:{fr:"Le mal se dit avec estar com, sans article : estou com febre, com tosse, com gripe. Le rhume : estou resfriado (resfriada). Comment on se sent : estar (estou cansado, estou doente). Le conseil : você tem que + l'infinitif (você tem que descansar) ; avec un verbe pronominal, você prend se : você tem que se sentar."},
+  regleMedecinPt:{fr:"Chez le médecin, on dit o senhor, a senhora, avec le verbe à la 3e personne (o senhor está com febre?), et l'on appelle la médecin « senhora doutora ». Dis où tu as mal et depuis quand (há três dias : depuis trois jours) ; l'ordonnance (a receita) se donne à la pharmacie (a farmácia)."},
+  regleMedecinBr:{fr:"Chez le médecin, on dit o senhor, a senhora, avec le verbe à la 3e personne (o senhor está com febre?), et l'on appelle la médecin « doutora ». Dis où tu as mal et depuis quand (há três dias : depuis trois jours) ; l'ordonnance (a receita) se donne à la pharmacie (a farmácia)."},
+  bonPt:     {fr:"Bon à savoir : tu apprends le portugais du Portugal, à Lisbonne. Au Brésil, le rhume se dit resfriado (ici constipação, estou constipado), le pansement um curativo (ici um penso), l'écran a tela (ici o ecrã), et l'on dit plutôt « estou com dor de cabeça » que « dói-me a cabeça ». Le pronom y passe devant le verbe : vou lhe passar uma receita (ici vou passar-lhe)."},
+  bonBr:     {fr:"Bon à savoir : tu apprends le portugais du Brésil. Au Portugal, le rhume se dit constipação (estou constipado ; ici resfriado), le pansement um penso (ici um curativo), l'écran o ecrã (ici a tela), on boit (beber) l'eau et le thé (ici tomar), et l'on dit « dói-me a cabeça », le pronom après le verbe : vou passar-lhe uma receita (ici vou lhe passar)."},
+  duelePt:   {fr:"Choisis le bon verbe : dói ou doem ?"},
+  pronPt:    {fr:"Choisis le bon pronom : me, te, lhe, nos ou lhes ?"},
+  pronBr:    {fr:"Choisis le bon possessif : minha, meu, sua, nossa… ou dele, dela, deles ?"},
+  verboPt:   {fr:"Choisis le bon verbe : tem, está, dói ou doem ?"},
   bonGb:     {fr:"Bon à savoir : tu apprends l'anglais britannique. La fièvre se dit souvent a temperature (I have a temperature, 38 °C), malade se dit ill, et l'on écrit stomach ache en deux mots. En américain, on dirait a fever (101 °F), sick, stomachache, a Band-Aid pour le pansement (ici a plaster), the pharmacy ou the drugstore pour la pharmacie (ici the chemist's) et the doctor's office pour le cabinet (ici the surgery)."}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -224,7 +245,8 @@ let D = null;
 const nom = p => (D.noms || {})[p] || p;
 const fem = p => D.sexe[p] === "f";
 const P = k => D.partes[k];
-const PLURIEL = k => ["los", "las"].includes(P(k).es[0]);
+// en portugais, le pluriel du portugais : as costas (le dos) est pluriel, la ou l'espagnol dit la espalda
+const PLURIEL = k => APPRENDRE === "pt" ? ["os", "as"].includes(PT_PARTES[k][0]) : ["los", "las"].includes(P(k).es[0]);
 const DOLORES = () => Object.keys(D.dolores);
 // un mal, quel qu'il soit : une partie du corps qui fait mal (d), un mal qu'on a (s), un etat (e)
 const genre = k => D.dolores[k] ? "d" : D.sintomas[k] ? "s" : D.estados[k] ? "e" : null;
@@ -480,9 +502,137 @@ const EN = {
              ["D", "I'll write you a prescription. You can get your medicine at the " + (GB ? "chemist's" : "pharmacy") + "."],
              ["P", "Thank you very much, doctor."], ["D", "Get well soon!"]]
 };
-const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
-// les guillemets de la langue apprise (« » en espagnol et en allemand, comme avant ; “ ” en anglais)
-const GU = APPRENDRE === "en" ? ["“", "”"] : ["«", "»"];
+// ---------- LE PORTUGAIS (lot P3, 11 nov. 2026) ----------
+// A Lisbonne, le Portugal par defaut, le Bresil en variante (variante=br). Ce que la page enseigne : dói-me a cabeça /
+// doem-me os pés et le pronom apres le verbe (me, te, lhe, nos, lhes) ; au Bresil le possessif sans article (minha
+// cabeça dói, a cabeça dele dói) et « estou com dor de… » ; estar com febre, estar constipado (resfriado au Bresil) ;
+// tens de / você tem que + l'infinitif ; as costas, pluriel. Les cases ⟦nom|valeur⟧ comme en espagnol.
+const PT_PARTES = {cabeza:["a", "cabeça"], garganta:["a", "garganta"], oido:["o", "ouvido"], muela:["o", "dente"], espalda:["as", "costas"], estomago:["a", "barriga"],
+  brazo:["o", "braço"], mano:["a", "mão"], rodilla:["o", "joelho"], piernas:["as", "pernas"], pies:["os", "pés"], ojos:["os", "olhos"], cuello:["o", "pescoço"],
+  hombro:["o", "ombro"], pecho:["o", "peito"], nariz:["o", "nariz"], boca:["a", "boca"], oreja:["a", "orelha"]};
+const PT_UN = {piernas:["a", "perna"], pies:["o", "pé"], ojos:["o", "olho"]};
+// « tenho dores de cabeça », « estou com dor nas costas »
+const PT_DOR = {cabeza:"de cabeça", garganta:"de garganta", oido: BR ? "de ouvido" : "de ouvidos", muela: BR ? "de dente" : "de dentes", espalda:"nas costas",
+  estomago:"de barriga", brazo:"no braço", mano:"na mão", rodilla:"no joelho", piernas:"nas pernas", pies:"nos pés", ojos:"nos olhos"};
+// les mots a la forme du corpus portugais (portugais/datos ; datos-br) : [mot, genre] -- les cartes que la page fait avancer
+const PT_MOT = {cabeza:["cabeça", "a"], garganta:["garganta", "a"], oido:["ouvido", "o"], muela:["dente", "o"], espalda:["costas", "as"], estomago:["barriga", "a"],
+  brazo:["braço", "o"], mano:["mão", "a"], rodilla:["joelho", "o"], piernas:["perna", "a"], pies:["pé", "o"], ojos:["olho", "o"], cuello:["pescoço", "o"],
+  hombro:["ombro", "o"], pecho:["peito", "o"], nariz:["nariz", "o"], boca:["boca", "a"], oreja:["orelha", "a"]};
+const PT_SINT = {fiebre:["febre", "a"], tos:["tosse", "a"], gripe:["gripe", "a"], alergia:["alergia", "a"], resfriado: BR ? ["resfriado", "o"] : ["constipação", "a"]};
+const PT_ETAT = {enfermo:["doente", "doente"], cansado:["cansado", "cansada"]};
+// estar com febre ; le rhume est un adjectif : estou constipado (au Bresil, resfriado)
+const PT_COM = {fiebre:"febre", tos:"tosse", gripe:"gripe", alergia:"alergia"};
+const PT_CONSTIP = BR ? ["resfriado", "resfriada"] : ["constipado", "constipada"];
+const PT_CONS = {descansar:"descansar", medico:"ir ao médico", pastilla:"tomar um comprimido", agua: BR ? "tomar muita água" : "beber muita água", cama:"ficar na cama",
+  te: BR ? "tomar chá com mel" : "beber chá com mel", jarabe:"tomar um xarope", dentista:"ir ao dentista", tirita: BR ? "colocar um curativo" : "pôr um penso",
+  pantalla: BR ? "olhar menos para a tela" : "olhar menos para o ecrã", hielo: BR ? "colocar gelo" : "pôr gelo", ligero: BR ? "comer algo leve" : "comer uma coisa leve"};
+// le seul conseil pronominal : sentar-se (tenho de me sentar, tens de te sentar ; au Bresil você tem que SE sentar)
+const REFL_PT = {sentarte: ["sentar", BR ? " um pouco" : " um bocado"]};
+// l'article devant le prenom au Portugal (o Mark, a Rosa), jamais au Bresil ; a + o = ao, a + a = à
+const artNom = (a, debut) => BR ? nom(a) : (debut ? (fem(a) ? "A " : "O ") : (fem(a) ? "a " : "o ")) + nom(a);
+const aoNom = a => (fem(a) ? "à " : "ao ") + nom(a);
+// le possessif bresilien, accorde avec la partie du corps : minha cabeça, meu pé, minhas pernas, meus pés
+const POSS = {"1": ["minha", "meu", "minhas", "meus"], "2": ["sua", "seu", "suas", "seus"], N: ["nossa", "nosso", "nossas", "nossos"]};
+const iPoss = (k, un) => ({a: 0, o: 1, as: 2, os: 3})[(un && PT_UN[k] ? PT_UN[k] : PT_PARTES[k])[0]];
+const PO = {
+  bravo: "Muito bem!", vrai: "Verdadeiro", faux: "Falso",
+  parte: k => PT_PARTES[k].join(" "),
+  un: k => (PT_UN[k] || PT_PARTES[k]).join(" "),
+  v: (k, un) => PLURIEL(k) && !un ? "doem" : "dói",
+  // per : 1 je, 2 tu (você au Bresil), U le medecin au patient, 3 il / elle (nomme), 3p il / elle (deja nomme), P et Pp
+  // eux deux (deja nommes), N nous
+  dolor(per, k, a, b, un){
+    const x = un ? PO.un(k) : PO.parte(k), v = PO.v(k, un), V = "⟦verbe|" + v + "⟧", fin = per === "2" || per === "U" ? "?" : ".";
+    if (!BR){
+      // « Dói-me a cabeça. », « Ao Mark dói-lhe a cabeça. »
+      const X = "⟦parte|" + x + "⟧";
+      if (per === "3") return maj(aoNom(a)) + " " + V + "-⟦pron|lhe⟧ " + X + ".";
+      const cl = {"1": "me", "2": "te", U: "lhe", "3p": "lhe", P: "lhes", Pp: "lhes", N: "nos"}[per];
+      return "⟦verbe|" + maj(v) + "⟧-⟦pron|" + cl + "⟧ " + X + fin;
+    }
+    // le Bresil : « Minha cabeça dói. », « A cabeça dele dói. », « A cabeça de Mark dói. »
+    if (per === "3") return maj(x) + " de " + nom(a) + " " + V + ".";
+    if (per === "3p") return maj(x) + " ⟦pron|" + (fem(a) ? "dela" : "dele") + "⟧ " + V + ".";
+    if (per === "P" || per === "Pp") return maj(x) + " ⟦pron|" + (fem(a) && fem(b) ? "delas" : "deles") + "⟧ " + V + ".";
+    const nu = (un && PT_UN[k] ? PT_UN[k] : PT_PARTES[k])[1];
+    return "⟦pron|" + maj(POSS[per === "U" ? "2" : per][iPoss(k, un)]) + "⟧ ⟦parte|" + nu + "⟧ " + V + fin;
+  },
+  // ce que la personne dit en plus sur la fiche : « Tenho dores de cabeça. » ; au Bresil « Estou com dor de cabeça. »
+  dores: k => PT_DOR[k] ? (BR ? "Estou com dor " : "Tenho dores ") + PT_DOR[k] + "." : "",
+  sint(per, k, a){
+    const sujet = per === "1" ? "" : per === "U" ? (fem(a) ? "A senhora " : "O senhor ") : artNom(a, true) + " ";
+    const m = k === "resfriado" ? "⟦mal|" + PT_CONSTIP[fem(a) ? 1 : 0] + "⟧" : "com ⟦mal|" + PT_COM[k] + "⟧";
+    return sujet + "⟦verbe|" + (per === "1" ? "Estou" : "está") + "⟧ " + m + (per === "U" ? "?" : ".");
+  },
+  estado(per, k, a){ const m = "⟦mal|" + PT_ETAT[k][fem(a) ? 1 : 0] + "⟧"; return per === "1" ? "⟦verbe|Estou⟧ " + m + "." : artNom(a, true) + " ⟦verbe|está⟧ " + m + "."; },
+  mal(per, k, a, b){ const g = genre(k); return g === "d" ? PO.dolor(per, k, a, b) : g === "s" ? PO.sint(per, k, a) : PO.estado(per, k, a); },
+  // ce qu'on repond a « O que tem o Mark? » : « Dói-lhe a cabeça. » (au Bresil « Está com dor de cabeça. »), « Está com febre. »
+  pred(k, a){
+    const g = genre(k);
+    if (g === "d") return BR ? "Está com dor " + PT_DOR[k] + "." : maj(PO.v(k)) + "-lhe " + PO.parte(k) + ".";
+    if (g === "s") return "Está " + (k === "resfriado" ? PT_CONSTIP[fem(a) ? 1 : 0] : "com " + PT_COM[k]) + ".";
+    return "Está " + PT_ETAT[k][fem(a) ? 1 : 0] + ".";
+  },
+  // « Tens de descansar. » ; au Bresil « Você tem que descansar. » ; « Tenho de me sentar um bocado. »
+  consejo(per, c, a){
+    const de = BR ? "que " : "de ";
+    const sujet = per === "1" ? "Tenho " + de : per === "3" ? "tem " + de : BR ? "Você tem que " : "Tens de ";
+    const r = REFL_PT[c];
+    if (r) return sujet + "⟦refl|" + (per === "1" ? "me" : per === "3" || BR ? "se" : "te") + "⟧ " + r[0] + r[1] + ".";
+    return sujet + PT_CONS[c] + ".";
+  },
+  cava: a => "— O que " + (BR ? "foi" : "tens") + ", " + nom(a) + "? — ",
+  cava2: a => "— O que " + (BR ? "foi" : "tens") + ", " + nom(a) + "? ",
+  doc: f => f ? "A médica" : "O médico",
+  docDit: (f, t) => (f ? "A médica" : "O médico") + ": " + GU[0] + t + GU[1],
+  bonjour: () => BR ? "Bom dia. O que houve? " : "Bom dia. O que se passa? ",
+  queDuele: a => BR ? "O que dói, " + nom(a) + "?" : "O que é que dói " + aoNom(a) + "?",
+  quePasa: a => BR ? "O que " + nom(a) + " tem?" : "O que tem " + artNom(a) + "?",
+  pp: (a, b) => BR ? "O que " + nom(a) + " e " + nom(b) + " têm? " : "O que têm " + artNom(a) + " e " + artNom(b) + "? ",
+  euch: () => BR ? "— O que vocês têm? — " : "— O que é que vocês têm? — ",
+  // « Aponta para o joelho. » (tu ; au Bresil, Aponte, você)
+  toca: k => (BR ? "Aponte" : "Aponta") + " para ⟦parte|" + PO.un(k) + "⟧.",
+  cest: k => "É ⟦parte|" + PO.un(k) + "⟧.",
+  queEs: "O que é isto?",
+  quien: (p, f) => artNom(p, true) + " trabalha neste consultório. É ⟦mot|" + (f ? "médica" : "médico") + "⟧.",
+  // les options du pronom : me, te, lhe, nos, lhes ; au Bresil le possessif (accorde avec la partie) ou dele / dela
+  prons(per, k){
+    if (!BR) return ["me", "te", "lhe", "nos", "lhes"];
+    if (per === "3" || per === "P") return ["dele", "dela", "deles", "delas"];
+    const i = iPoss(k), autre = [1, 0, 3, 2][i];
+    return [POSS["1"][i], POSS["2"][i], POSS.N[i], POSS[per === "U" ? "2" : per][autre]].map(maj);
+  },
+  medico: {
+    parte: (k, a) => "— Bom dia, " + nom(a) + ". " + (BR ? "Desde quando ⟦parte|" + PO.parte(k) + "⟧ " + (PLURIEL(k) ? "estão" : "está") + " doendo?"
+                                                      : "Desde quando lhe " + PO.v(k) + " ⟦parte|" + PO.parte(k) + "⟧?") + " — Há três dias.",
+    fiebre: a => "— Bom dia, " + nom(a) + ". " + (fem(a) ? "A senhora" : "O senhor") + " está com ⟦mal|febre⟧? — Sim, trinta e oito graus.",
+    receta: () => BR ? "— Vou lhe passar uma ⟦mot|receita⟧ para o xarope." : "— Vou passar-lhe uma ⟦mot|receita⟧ para o xarope.",
+    cita: () => BR ? "— Volte na semana que vem: vou marcar outra ⟦mot|consulta⟧ para terça." : "— Volte na próxima semana: marco-lhe outra ⟦mot|consulta⟧ para terça-feira."
+  },
+  paciente: {
+    parte: (k, a) => "— Bom dia, " + nom(a) + ". " + (BR ? "O que houve? — " + (PLURIEL(k) ? "Estão" : "Está") + " doendo ⟦parte|" + PO.parte(k) + "⟧ há três dias."
+                                                      : "O que se passa? — " + maj(PO.v(k)) + "-me ⟦parte|" + PO.parte(k) + "⟧ há três dias."),
+    fiebre: a => "— Bom dia, " + nom(a) + ". " + (BR ? "O que houve?" : "O que se passa?") + " — Estou com ⟦mal|febre⟧: trinta e oito graus.",
+    receta: f => BR ? "— " + (f ? "Doutora" : "Doutor") + ", pode me passar uma ⟦mot|receita⟧ para o xarope?"
+                    : "— " + (f ? "Senhora doutora" : "Senhor doutor") + ", passa-me uma ⟦mot|receita⟧ para o xarope?",
+    cita: f => "— Bom dia. Tenho uma ⟦mot|consulta⟧ com " + (f ? "a médica" : "o médico") + " às dez."
+  },
+  // des leurres feminins (« uma ___ ») : le genre ne trahit jamais la reponse
+  leurres: {receta: ["receita", "consulta", "vacina", "pomada"], cita: ["consulta", "receita", "vacina", "tosse"], quien: ["médica", "médico", "paciente", "receita"]},
+  fiebreOpts: ["febre", "tosse", "alergia", "dor de costas"],
+  vfDoc: (p, f, vrai) => artNom(p, true) + " é " + (vrai ? (f ? "médica" : "médico") : "paciente") + ".",
+  // le mot de la fiche : a cabeça, a febre, constipado, cansada
+  fiche: (k, p) => { const g = genre(k); return g === "d" ? PO.parte(k) : g === "s" ? (k === "resfriado" ? PT_CONSTIP[fem(p) ? 1 : 0] : "a " + PT_COM[k]) : PT_ETAT[k][fem(p) ? 1 : 0]; },
+  // la decouverte chez le medecin : la medica (Alicia) et Mark, qui a mal a la gorge ; l'ordonnance et la pharmacie
+  dialogue: BR
+    ? [["D", "Bom dia. O que houve?"], ["P", "Estou com dor de garganta e com febre."], ["D", "Desde quando?"], ["P", "Há três dias."],
+       ["D", "O senhor está com gripe. Tem que ficar de cama."], ["D", "Vou lhe passar uma receita. O senhor compra o remédio na farmácia."], ["P", "Muito obrigado, doutora."], ["D", "Melhoras!"]]
+    : [["D", "Bom dia. O que se passa?"], ["P", "Dói-me a garganta e estou com febre."], ["D", "Desde quando?"], ["P", "Há três dias."],
+       ["D", "Está com gripe. Tem de ficar na cama."], ["D", "Vou passar-lhe uma receita. Compra o xarope na farmácia."], ["P", "Muito obrigado, senhora doutora."], ["D", "As melhoras!"]]
+};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : APPRENDRE === "pt" ? PO : ES;
+// les guillemets de la langue apprise (« » en espagnol, en allemand et au Portugal, comme avant ; “ ” en anglais et au Bresil)
+const GU = APPRENDRE === "en" || BR ? ["“", "”"] : ["«", "»"];
 
 // ---------- la traduction dans la langue d'interface (comme la famille, Decrire et Emotions) ----------
 // En francais, anglais et portugais (et en allemand pour qui apprend l'espagnol), la phrase juste entiere, fabriquee
@@ -680,8 +830,25 @@ const FR_EN = Object.assign({}, FR, {
   dialogue: ["Bonjour. Qu'est-ce qui ne va pas ?", "J'ai mal à la gorge et j'ai de la fièvre.", "Depuis combien de temps êtes-vous malade ?", "Depuis trois jours.",
              "Vous avez la grippe. Vous devriez rester au lit.", "Je vous fais une ordonnance. Vous trouverez le médicament à la pharmacie.", "Merci beaucoup, docteur.", "Bon rétablissement !"]
 });
+// LE FRANCAIS SOUS LE PORTUGAIS APPRIS : les phrases de FR, et celles de FR_EN pour « Il a mal… », « Ils ont mal… »
+// (3p, P, N) ; « Je suis enrhumé » pour estou constipado ; « Montre la tête » pour aponta para a cabeça
+const FR_PT = Object.assign({}, FR, {
+  dolor: FR_EN.dolor, quoi: FR_EN.quoi, pp: FR_EN.pp, euch: FR_EN.euch,
+  sint(per, k, a){
+    if (k !== "resfriado") return FR.sint(per, k, a);
+    const x = fem(a) ? "enrhumée" : "enrhumé";
+    return per === "1" ? "Je suis " + x + "." : per === "U" ? "Êtes-vous " + x + " ?" : nom(a) + " est " + x + ".";
+  },
+  toca: k => "Montre " + (FRP[k][2] || FRP[k][0]) + ".",
+  dialogue: ["Bonjour. Qu'est-ce qui ne va pas ?", "J'ai mal à la gorge et j'ai de la fièvre.", "Depuis quand ?", "Depuis trois jours.",
+             "Vous avez la grippe. Vous devez rester au lit.", BR ? "Je vous fais une ordonnance. Vous achèterez le médicament à la pharmacie." : "Je vous fais une ordonnance. Vous achèterez le sirop à la pharmacie.",
+             "Merci beaucoup, docteur.", "Bon rétablissement !"]
+});
+// les leurres portugais du dialogue, traduits
+const FR_MOT_PT = {receita:"l'ordonnance", consulta:"le rendez-vous (chez le médecin)", vacina:"le vaccin", pomada:"la pommade", tosse:"la toux", febre:"la fièvre",
+  alergia:"l'allergie", "dor de costas":"le mal de dos", "médica":"la médecin", "médico":"le médecin", paciente:"le patient, la patiente"};
 // l'anglais appris : l'interface est en francais (FR_EN) ; ailleurs, pas de traduction plutot qu'une fausse
-const TR = APPRENDRE === "en" ? (LANGUE === "fr" ? FR_EN : null)
+const TR = APPRENDRE === "en" ? (LANGUE === "fr" ? FR_EN : null) : APPRENDRE === "pt" ? (LANGUE === "fr" ? FR_PT : null)
          : (LANGUE === APPRENDRE) ? null : (TRADS[LANGUE] && (LANGUE !== "de" || APPRENDRE === "es") ? TRADS[LANGUE] : null);
 // ce que la question montre, pour la traduire : une fonction qui recoit l'objet de la langue (TR)
 let sensQ = null;
@@ -756,7 +923,7 @@ function juger(ok, bonneTexte, phrase){
 let choixFaux = null;
 const DET = /^(el|la|los|las|un|una|der|die|das|ein|eine)\s+/i;
 function tradPartie(k, un){
-  if (TR === FR || TR === FR_EN) return un && FRP[k][2] ? FRP[k][2] : FRP[k][0];
+  if (TR === FR || TR === FR_EN || TR === FR_PT) return un && FRP[k][2] ? FRP[k][2] : FRP[k][0];
   if (TR === EN_TR) return "the " + EN_TR.x(k, un);
   if (TR === PT) return un && PTP[k][2] ? PTP[k][2] : PTP[k][0];
   if (TR === DE_TRAD) return un ? DE.un(k) : DE.parte(k);
@@ -771,6 +938,7 @@ function tradDuChoix(o){
     const a = Object.keys(EN_ACHE).find(x => EN.unAche(x) === o); if (a) return "avoir mal " + FRP[a][1];
     if (FR_MOT_EN[o]) return FR_MOT_EN[o];
   }
+  if (APPRENDRE === "pt" && TR && FR_MOT_PT[o]) return FR_MOT_PT[o];
   for (const k of Object.keys(D.partes)){
     if (L.parte(k) === o) return tradPartie(k, false);
     if (L.un(k) === o) return tradPartie(k, true);
@@ -818,6 +986,7 @@ let MOTS = null;
 function motsDuTheme(){
   if (MOTS) return MOTS;
   if (APPRENDRE === "en") return (MOTS = motsAnglais());
+  if (APPRENDRE === "pt") return (MOTS = motsPortugais());
   const par = {};
   Object.entries(D.partes).forEach(([k, v]) => {
     const [mot, g] = APPRENDRE === "de" ? v.cde : v.ces, cle = g + " " + mot;
@@ -845,6 +1014,15 @@ function motsAnglais(){
   Object.keys(D.estados).forEach(k => out.push({mot: EN_ETAT[k], cat: "adjectif", e: k}));
   Object.keys(EN_ACHE).forEach(k => out.push({mot: EN_ACHE[k], genre: "", ache: k}));
   out.push({mot: "prescription", genre: "", c: "receta"}, {mot: "appointment", genre: "", c: "cita"}, {mot: "doctor", genre: "", doc: "*"});
+  return out;
+}
+// LE PORTUGAIS : les mots du corpus portugais (genre o / a ; as costas) ; le rhume, a constipação au Portugal, o resfriado au
+// Bresil ; garganta, ouvido et tosse manquent encore au corpus (proposes) : « hors corpus » jusqu'a leur ajout
+function motsPortugais(){
+  const out = Object.keys(D.partes).map(k => ({mot: PT_MOT[k][0], genre: PT_MOT[k][1], k: [k]}));
+  Object.keys(D.sintomas).forEach(k => out.push({mot: PT_SINT[k][0], genre: PT_SINT[k][1], s: k}));
+  Object.keys(D.estados).forEach(k => out.push({mot: PT_ETAT[k][0], cat: "adjectif", e: k}));
+  out.push({mot: "receita", genre: "a", c: "receta"}, {mot: "consulta", genre: "a", c: "cita"}, {mot: "médico", genre: "o", doc: "m"}, {mot: "médica", genre: "a", doc: "f"});
   return out;
 }
 const motDe = k => motsDuTheme().find(m => (m.k && m.k.includes(k)) || m.s === k || m.e === k);
@@ -943,8 +1121,9 @@ const EX = {
     const p = quelquun(k), un = k === "pies" && Math.random() < 0.3, moi = Math.random() < 0.5; motQ = w || motDe(k);
     const coeur = L.dolor(moi ? "1" : "3", k, p, null, un), phrase = moi ? L.cava(p) + coeur : coeur;
     sensQ = tr => (moi ? tr.cava(p) : "") + tr.dolor(moi ? "1" : "3", k, p, null, un);
-    return aTrou(APPRENDRE === "de" ? "dueleDe" : APPRENDRE === "en" ? "dueleEn" : "dueleEs", photo(k, p), phrase, "verbe",
-                 APPRENDRE === "de" ? ["tut", "tun"] : APPRENDRE === "en" ? ["hurts", "hurt"] : ["duele", "duelen"], true);
+    const tete = APPRENDRE === "pt" && /^[A-ZÀ-Ý]/.test(trou(phrase, "verbe")[1] || "");      // « Dói-me… » : en tete de phrase
+    return aTrou(APPRENDRE === "de" ? "dueleDe" : APPRENDRE === "en" ? "dueleEn" : APPRENDRE === "pt" ? "duelePt" : "dueleEs", photo(k, p), phrase, "verbe",
+                 APPRENDRE === "de" ? ["tut", "tun"] : APPRENDRE === "en" ? ["hurts", "hurt"] : APPRENDRE === "pt" ? ["dói", "doem"].map(x => tete ? maj(x) : x) : ["duele", "duelen"], true);
   },
   // le pronom : me, te, le, nos, les ; le datif : mir, dir, ihm, ihr, Ihnen, uns
   pronombre(w){
@@ -961,6 +1140,16 @@ const EX = {
       opts = ["me", "te", "le", "nos", "les"].map(x => casse(debut, x));
       sensQ = tr => per === "1" ? tr.cava(p) + tr.dolor("1", k, p) : per === "2" ? tr.cava2(p) + tr.dolor("2", k, p)
                   : per === "U" ? tr.docDit(f, tr.bonjour(p) + tr.dolor("U", k, p)) : tr.dolor(per, k, p, b);
+    } else if (APPRENDRE === "pt"){
+      // le pronom apres le verbe (dói-me, dói-te, dói-lhe, dói-nos, dói-lhes) ; au Bresil le possessif (minha, sua, nossa,
+      // accorde avec la partie du corps) ou dele / dela / deles apres le nom
+      phrase = per === "1" ? PO.cava(p) + PO.dolor("1", k, p) : per === "2" ? PO.cava2(p) + PO.dolor("2", k, p)
+             : per === "U" ? PO.docDit(f, PO.bonjour() + PO.dolor("U", k, p)) : per === "N" ? PO.euch() + PO.dolor("N", k, p, b)
+             : per === "P" ? PO.pp(p, b) + PO.dolor("P", k, p, b) : PO.quePasa(p) + " " + PO.dolor("3p", k, p);
+      opts = PO.prons(per, k);
+      sensQ = tr => per === "1" ? tr.cava(p) + tr.dolor("1", k, p) : per === "2" ? tr.cava2(p) + tr.dolor("2", k, p)
+                  : per === "U" ? tr.docDit(f, tr.bonjour(p) + tr.dolor("U", k, p)) : per === "N" ? tr.euch() + tr.dolor("N", k, p, b)
+                  : per === "P" ? tr.pp(p, b) + tr.dolor("P", k, p, b) : tr.quoi(p) + tr.dolor("3p", k, p);
     } else if (APPRENDRE === "en"){
       // le possessif anglais : my, your, his, her, our, their -- il suit la personne qui a mal, jamais la chose
       phrase = per === "1" ? EN.cava(p) + EN.dolor("1", k, p) : per === "2" ? EN.cava2(p) + EN.dolor("2", k, p)
@@ -988,7 +1177,7 @@ const EX = {
     if (per === "U") image = duo(fig(imgDoc(f), nomDoc(f)), fig(imgMal(k, p), p));
     const rep = trou(phrase, "pron")[1];
     const autres = APPRENDRE === "en" && per === "3" ? opts.filter(x => x !== rep).slice(0, 3) : melanger(opts.filter(x => x !== rep)).slice(0, 3);
-    return aTrou(APPRENDRE === "de" ? "pronDe" : APPRENDRE === "en" ? "pronEn" : "pronEs", image, phrase, "pron", [rep].concat(autres));
+    return aTrou(APPRENDRE === "de" ? "pronDe" : APPRENDRE === "en" ? "pronEn" : APPRENDRE === "pt" ? (BR ? "pronBr" : "pronPt") : "pronEs", image, phrase, "pron", [rep].concat(autres));
   },
   // « ¿Qué le pasa a Mark? » : une image, quatre reponses (tiene fiebre, le duele la espalda, está cansado)
   queTiene(w){
@@ -1010,8 +1199,8 @@ const EX = {
     const p = quelquun(k); motQ = w || motDe(k);
     const phrase = w && w.schmerz ? DE.schmerz("3", k, p) : w && w.ache ? EN.ache("3", k, p) : L.mal("3", k, p);
     sensQ = tr => genre(k) === "d" ? tr.dolor("3", k, p) : genre(k) === "s" ? tr.sint("3", k, p) : tr.estado("3", k, p);
-    return aTrou(APPRENDRE === "de" ? "verboDe" : APPRENDRE === "en" ? "verboEn" : "verboEs", photo(k, p), phrase, "verbe",
-                 APPRENDRE === "de" ? ["hat", "ist", "tut", "tun"] : APPRENDRE === "en" ? ["has", "is", "hurts", "hurt"] : ["tiene", "está", "duele", "duelen"], true);
+    return aTrou(APPRENDRE === "de" ? "verboDe" : APPRENDRE === "en" ? "verboEn" : APPRENDRE === "pt" ? "verboPt" : "verboEs", photo(k, p), phrase, "verbe",
+                 APPRENDRE === "de" ? ["hat", "ist", "tut", "tun"] : APPRENDRE === "en" ? ["has", "is", "hurts", "hurt"] : APPRENDRE === "pt" ? ["tem", "está", "dói", "doem"] : ["tiene", "está", "duele", "duelen"], true);
   },
   // le conseil : « Carmen: «Me duelen los pies.» » -> « Tienes que sentarte un rato. »
   consejo(w){
@@ -1030,15 +1219,16 @@ const EX = {
   },
   // le pronom reflechi : « Tengo que sentar___ un rato. » me / te / se ; « Du musst ___ ausruhen. » mich / dich / sich
   reflexivo(w){
-    const REFL = APPRENDRE === "de" ? REFL_DE : REFL_ES;
+    const REFL = APPRENDRE === "de" ? REFL_DE : APPRENDRE === "pt" ? REFL_PT : REFL_ES;
     const k = unMal(w); if (!k) return false;
     const p = quelquun(k), image = imgMal(k, p).split("/").pop().replace(".webp", "");
     const cs = Object.keys(REFL).filter(c => D.consejos[c].va.includes(k) || (D.consejos[c].images || []).includes(image));
     if (!cs.length) return false;
     const c = hasard(cs), per = hasard(["1", "2", "3"]); motQ = w || motDe(k);
     const dit = w && w.schmerz ? DE.schmerz("1", k, p) : L.mal("1", k, p), dit3 = w && w.schmerz ? DE.schmerz("3", k, p) : L.mal("3", k, p);
-    const phrase = per === "1" ? nom(p) + ": «" + plein(dit) + " " + L.consejo("1", c, p) + "»"
-                 : per === "2" ? nom(p) + ": «" + plein(dit) + "» —" + L.consejo("2", c, p)
+    // les guillemets de la langue (« » en espagnol et en allemand ; “ ” au Bresil), le tiret espace en portugais
+    const phrase = per === "1" ? nom(p) + ": " + GU[0] + plein(dit) + " " + L.consejo("1", c, p) + GU[1]
+                 : per === "2" ? nom(p) + ": " + GU[0] + plein(dit) + GU[1] + (APPRENDRE === "pt" ? " — " : " —") + L.consejo("2", c, p)
                  : plein(dit3).replace(/\.$/, ": ") + L.consejo("3", c, p);
     sensQ = tr => {
       const m1 = genre(k) === "d" ? tr.dolor("1", k, p) : genre(k) === "s" ? tr.sint("1", k, p) : tr.estado("1", k, p);
@@ -1189,7 +1379,7 @@ function dialogue(w, qui){
     image = duo(doc, fig(imgMal(k, p), p));
     if (k === "fiebre"){
       phrase = M.fiebre(p); cas = "mal";
-      opts = APPRENDRE === "de" ? ["Fieber", "Husten", "eine Allergie", "eine Grippe"] : APPRENDRE === "en" ? EN.fiebreOpts : ["fiebre", "tos", "alergia", "gripe"];
+      opts = APPRENDRE === "de" ? ["Fieber", "Husten", "eine Allergie", "eine Grippe"] : APPRENDRE === "en" ? EN.fiebreOpts : APPRENDRE === "pt" ? PO.fiebreOpts : ["fiebre", "tos", "alergia", "gripe"];
       sens = tr => tr[qui].fiebre(p);
     } else {
       phrase = M.parte(k, p); cas = "parte"; opts = [L.parte(k), ...leurresMaux(k, 3, x => genre(x) === "d" && PLURIEL(x) === PLURIEL(k), p).map(L.parte)];
@@ -1227,9 +1417,10 @@ function decouvrir(){
   const z = $("zone"), dec = D.decouverte;
   z.innerHTML = '<div class="onglets" role="tablist">' + ["oCorps", "oMal", "oMalade", "oMedecin"].map((o, i) => '<button type="button" role="tab" data-o="' + i + '">' + T(o) + '</button>').join("") + '</div><div id="onglet"></div>';
   const fiche = (k, p, extra) => {
-    const g = genre(k), dit = plein(L.mal("1", k, p)) + (APPRENDRE === "en" && g === "d" && EN_ACHE[k] ? " " + plein(EN.ache("1", k, p)) : ""), trad = TR ? (g === "d" ? TR.dolor("1", k, p) : g === "s" ? TR.sint("1", k, p) : TR.estado("1", k, p)) : glose(motDe(k));
+    const g = genre(k), dit = plein(L.mal("1", k, p)) + (APPRENDRE === "en" && g === "d" && EN_ACHE[k] ? " " + plein(EN.ache("1", k, p)) : "")
+                                + (APPRENDRE === "pt" && g === "d" && PT_DOR[k] ? " " + PO.dores(k) : ""), trad = TR ? (g === "d" ? TR.dolor("1", k, p) : g === "s" ? TR.sint("1", k, p) : TR.estado("1", k, p)) : glose(motDe(k));
     const c = D.consejoDecouverte[k], conseil = c ? plein(L.consejo("2", c)) : null;
-    let h = '<img alt="" src="' + imgMal(k, p) + '"' + repli(p) + '><div><div class="mot">' + cible(APPRENDRE === "en" ? (g === "d" ? EN.parte(k) : g === "s" ? EN.sintPlein(k) : EN_ETAT[k]) : g === "d" ? L.parte(k) : g === "s" ? (APPRENDRE === "de" ? D.sintomas[k].de : D.sintomas[k].es) : (APPRENDRE === "de" ? D.estados[k].de : D.estados[k].es[fem(p) ? 1 : 0])) + '</div>'
+    let h = '<img alt="" src="' + imgMal(k, p) + '"' + repli(p) + '><div><div class="mot">' + cible(APPRENDRE === "pt" ? PO.fiche(k, p) : APPRENDRE === "en" ? (g === "d" ? EN.parte(k) : g === "s" ? EN.sintPlein(k) : EN_ETAT[k]) : g === "d" ? L.parte(k) : g === "s" ? (APPRENDRE === "de" ? D.sintomas[k].de : D.sintomas[k].es) : (APPRENDRE === "de" ? D.estados[k].de : D.estados[k].es[fem(p) ? 1 : 0])) + '</div>'
           + '<div class="dit">' + cible(dit) + '</div>' + (trad ? traduction(trad) : "")
           + '<button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button>';
     if (conseil) h += '<div class="conseil"><small>' + T("conseil") + '</small>' + cible(conseil) + (TR ? traduction(TR.consejo("2", c)) : "")
@@ -1275,8 +1466,8 @@ function decouvrir(){
   const medecin = () => {
     const o = $("onglet"), tr = TR ? TR.dialogue : null;
     o.innerHTML = '<p class="consigne">' + T(APPRENDRE === "en" ? "introMedecinEn" : "introMedecin") + '</p>' + duo(fig(imgDoc(true), nomDoc(true), L.doc(true)), fig(imgMal("garganta", "Mark"), "Mark", nom("Mark")))
-                + '<div class="dialogue" id="dialogue"></div><p class="regle">' + T(APPRENDRE === "en" ? "regleMedecinEn" : "regleMedecin") + '</p>'
-                + (APPRENDRE === "en" ? '<p class="regle">' + T(GB ? "bonGb" : "bonUs") + '</p>' : "");
+                + '<div class="dialogue" id="dialogue"></div><p class="regle">' + T(APPRENDRE === "en" ? "regleMedecinEn" : APPRENDRE === "pt" ? (BR ? "regleMedecinBr" : "regleMedecinPt") : "regleMedecin") + '</p>'
+                + (APPRENDRE === "en" ? '<p class="regle">' + T(GB ? "bonGb" : "bonUs") + '</p>' : APPRENDRE === "pt" ? '<p class="regle">' + T(BR ? "bonBr" : "bonPt") + '</p>' : "");
     L.dialogue.forEach(([qui, txt], i) => {
       const b = document.createElement("button"); b.type = "button"; b.className = "ligne" + (qui === "P" ? " patient" : "");
       b.innerHTML = '<span class="qui">' + (qui === "D" ? nom(nomDoc(true)) : nom("Mark")) + '</span><span class="dit"><span class="txt">' + cible(txt) + '</span>' + (tr ? traduction(tr[i]) : "") + '</span>'
@@ -1291,8 +1482,8 @@ function decouvrir(){
       $("dialogue").appendChild(b);
     });
   };
-  const onglets = [corps, () => planche(DOLORES(), "introMal", APPRENDRE === "de" ? "regleMalDe" : APPRENDRE === "en" ? "regleMalEn" : "regleMalEs"),
-                   () => planche(Object.keys(D.sintomas).concat(["cansado"]), "introMalade", APPRENDRE === "de" ? "regleMaladeDe" : APPRENDRE === "en" ? "regleMaladeEn" : "regleMaladeEs"), medecin];
+  const onglets = [corps, () => planche(DOLORES(), "introMal", APPRENDRE === "de" ? "regleMalDe" : APPRENDRE === "en" ? "regleMalEn" : APPRENDRE === "pt" ? (BR ? "regleMalBr" : "regleMalPt") : "regleMalEs"),
+                   () => planche(Object.keys(D.sintomas).concat(["cansado"]), "introMalade", APPRENDRE === "de" ? "regleMaladeDe" : APPRENDRE === "en" ? "regleMaladeEn" : APPRENDRE === "pt" ? (BR ? "regleMaladeBr" : "regleMaladePt") : "regleMaladeEs"), medecin];
   const choisir = i => { z.querySelectorAll(".onglets button").forEach(b => b.setAttribute("aria-selected", b.dataset.o == i)); Voix.arreter(); onglets[i](); };
   z.querySelectorAll(".onglets button").forEach(b => b.addEventListener("click", () => choisir(+b.dataset.o)));
   choisir(0);

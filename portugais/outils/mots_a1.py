@@ -17,6 +17,7 @@ recrit en portugais d'Europe.
 """
 
 VERBES = """
+cuidar | s'occuper de, soigner | O enfermeiro cuida dos doentes. | L'infirmier soigne les malades.
 viver | vivre | Vivo em Lisboa há dois anos. | Je vis à Lisbonne depuis deux ans.
 morar | habiter | Moro aqui há dois anos. | J'habite ici depuis deux ans.
 abrir | ouvrir | Podes abrir a janela? | Peux-tu ouvrir la fenêtre ?
@@ -140,6 +141,8 @@ trazer | apporter | Traz uma cadeira da cozinha. | Apporte une chaise de la cuis
 """
 
 ADJECTIFS = """
+amargo | amarga | amer | O café sem açúcar é amargo. | Le café sans sucre est amer.
+constipado | constipada | enrhumé | Estou constipado desde segunda-feira. | Je suis enrhumé depuis lundi.
 grande | grande | grand | A cozinha é muito grande. | La cuisine est très grande.
 pequeno | pequena | petit | Temos um jardim pequeno. | Nous avons un petit jardin.
 novo | nova | neuf, nouveau, jeune | É um apartamento novo. | C'est un appartement neuf.
@@ -245,6 +248,9 @@ SANS_COMPARATIF = {"mais velho", "mais novo", "melhor", "pior", "português", "f
                    "castanho", "cor-de-rosa", "roxo", "doente", "nublado", "possível", "necessário"}
 
 ADVERBES = """
+primeiro | d'abord | Temps | Primeiro tomo duche, depois visto-me. | D'abord je prends une douche, ensuite je m'habille.
+a seguir | ensuite, juste après | Temps | Tomo o pequeno-almoço e a seguir vou trabalhar. | Je prends le petit-déjeuner et ensuite je vais travailler.
+raramente | rarement | Fréquence | A Marta raramente faz desporto. | Marta fait rarement du sport.
 hoje | aujourd'hui | Temps | Hoje não trabalho. | Aujourd'hui, je ne travaille pas.
 ontem | hier | Temps | Ontem choveu o dia todo. | Hier, il a plu toute la journée.
 amanhã | demain | Temps | Amanhã vamos ao médico. | Demain, nous allons chez le médecin.

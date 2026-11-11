@@ -194,6 +194,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os mares",
    "niveau": "A1",
+   "theme": "clima_pt",
    "personne": null,
    "aussi": [],
    "sur": null,

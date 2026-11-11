@@ -12,7 +12,8 @@
   ni epouse. Quatorze personnes photorealistes (visuel/familia/familia.py), reutilisables ailleurs.
   Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne »
   a chaque reponse (objectif du jour, carreaux), « fini » et « fermer » a la fin.
-  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (ouverte depuis la seance : pas de decouverte).
+  Parametres : apprendre=es|de|en|pt, lang=<interface>, nuit=1, seance=1 (ouverte depuis la seance : pas de decouverte),
+  variante=gb (anglais britannique) ou br (portugais du Bresil).
   TOUT SE DEDUIT DE L'ARBRE (familia.json : sexe, parents, conjoint) : les liens (relation()), les questions,
   les possessifs, les comptes. Aucune phrase n'est ecrite a la main, donc aucune ne contredit l'image.
 -->
@@ -109,8 +110,10 @@ button:disabled{cursor:default}
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (3 nov. 2026, « pour que l'anglais suive aussi ») : le meme arbre, ses phrases a lui ; variante=gb, le britannique
-const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+// le portugais (lot P3, 11 nov. 2026) : le meme arbre, ses phrases a lui ; variante=br pour le Bresil
+const APPRENDRE = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const BRITANNIQUE = APPRENDRE === "en" && Q.get("variante") === "gb";
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
@@ -143,6 +146,9 @@ const TEXTES = {
   genitif:   {fr:"Choisis la bonne forme.", en:"Choose the right form."},
   bonASavoir:{fr:"Bon à savoir : on présente quelqu'un avec <b>father</b> et <b>mother</b> ; en famille, on dit <b>Dad</b> et <b>{mom}</b> ({ailleurs}). Le lien se dit avec <b>'s</b> : <b>Anna's father</b>, le père d'Anna.",
               en:"Good to know: <b>father</b> and <b>mother</b> introduce someone; at home, people say <b>Dad</b> and <b>{mom}</b>. The link uses <b>'s</b>: <b>Anna's father</b>."},
+  // le portugais seulement (son interface est en francais) : le Portugal, puis le Bresil
+  bonASavoirPt:{fr:"Bon à savoir : au Portugal, on met l'article devant le prénom et devant le possessif : <b>a Anna</b>, <b>o meu pai</b>. De + a donne <b>da</b>, de + o donne <b>do</b> : <b>o pai da Anna</b>, <b>a mãe do Jan</b>. Pour « son » ou « sa », on dit <b>dele</b> (de lui) ou <b>dela</b> (d'elle), après le nom : <b>o pai dela</b>. Au Brésil, pas d'article devant le prénom ni devant le possessif (<b>Anna</b>, <b>meu pai</b>, <b>o pai de Anna</b>), et <b>seu pai</b> (avec você) au lieu de <b>o teu pai</b>."},
+  bonASavoirBr:{fr:"Bon à savoir : au Brésil, pas d'article devant le prénom ni devant le possessif : <b>Anna</b>, <b>meu pai</b>, <b>o pai de Anna</b>. On dit <b>você</b>, d'où <b>seu pai</b> pour « ton père ». Pour « son » ou « sa », on dit <b>dele</b> (de lui) ou <b>dela</b> (d'elle), après le nom : <b>o pai dela</b>. Au Portugal : <b>a Anna</b>, <b>o meu pai</b>, <b>o pai da Anna</b>, <b>o teu pai</b>."},
   retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -282,10 +288,67 @@ const EN = {
     petitCouple: (a, b) => ["How many grandchildren do " + a + " and " + b + " have?", n => "They have " + EN.nombres[n] + " grandchildren."]
   }
 };
-const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
+// LE PORTUGAIS (lot P3, 11 nov. 2026). Ce que la page enseigne : au Portugal, l'article devant le prenom (« A Lena é a
+// neta da Gisela ») et devant le possessif (« o meu pai », « as minhas irmãs »), de + article = do / da (« o pai da
+// Anna »), a + article = ao / à (« O Ben pergunta à Mia »), et pour la 3e personne dele / dela APRES le nom, selon celui
+// qui possede (« O Peter é o pai dela ») ; le possessif s'accorde en genre ET en nombre (meus / minhas), et dois / duas.
+// Le Bresil (BR) : ni article devant le prenom ni devant le possessif (« Lena é a neta de Gisela », « meu pai »), seu /
+// sua de você au lieu de teu / tua ; les mots de la parente sont les memes (portugais/datos-br).
+const NOM_PT = (x, maj) => BR ? x : (sexe(x) === "f" ? (maj ? "A " : "a ") : (maj ? "O " : "o ")) + x;
+const DE_PT = x => BR ? "de " + x : (sexe(x) === "f" ? "da " : "do ") + x;
+const A_PT = x => BR ? "a " + x : (sexe(x) === "f" ? "à " : "ao ") + x;
+const GUILL_PT = p => BR ? "“" + p + "”" : "«" + p + "»";
+// les ages en lettres pour la voix du telephone (l'ecrit garde ses chiffres)
+const PT_UNITES = ["zero", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "catorze", "quinze",
+                   BR ? "dezesseis" : "dezasseis", BR ? "dezessete" : "dezassete", "dezoito", BR ? "dezenove" : "dezanove"];
+const ptLettres = n => n < 20 ? PT_UNITES[n] : n < 100 ? ["", "", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa"][Math.floor(n / 10)] + (n % 10 ? " e " + PT_UNITES[n % 10] : "") : String(n);
+const lire = t => APPRENDRE === "pt" && t ? t.replace(/\d+/g, n => ptLettres(+n)) : t;
+const PT = {
+  bravo: "Muito bem!", vrai: "Verdadeiro", faux: "Falso",
+  mots: {parent:["pai","mãe"], enfant:["filho","filha"], conjoint:["marido","mulher"], frere:["irmão","irmã"], grandparent:["avô","avó"],
+         petitenfant:["neto","neta"], oncle:["tio","tia"], neveu:["sobrinho","sobrinha"], cousin:["primo","prima"],
+         beauparent:["sogro","sogra"], gendre:["genro","nora"], beaufrere:["cunhado","cunhada"]},
+  // comme l'espagnol : masculin des qu'il y a un homme ; « os pais » est toujours un couple, « os avós » vaut pour tous
+  pluriels: {parent:["pais",null], enfant:["filhos","filhas"], frere:["irmãos","irmãs"], grandparent:["avós","avós"], petitenfant:["netos","netas"],
+             oncle:["tios","tias"], neveu:["sobrinhos","sobrinhas"], cousin:["primos","primas"]},
+  nombres: {2:"dois", 3:"três", 4:"quatro", 5:"cinco"},
+  nombre: (n, fem) => n === 2 && fem ? "duas" : PT.nombres[n],
+  art: (s, w) => (s === "f" ? "a " : "o ") + w,
+  artPl: (fem, w) => (fem ? "as " : "os ") + w,
+  et: (a, maj) => { const n = a.map((x, i) => NOM_PT(x, maj && i === 0)); return n.length > 1 ? n.slice(0, -1).join(", ") + " e " + n[n.length - 1] : n[0]; },
+  lien: (o, groupe, e) => NOM_PT(o, true) + " é " + groupe + " " + DE_PT(e) + ".",
+  lienPl: (os, groupe, e) => PT.et(os, true) + " são " + groupe + " " + DE_PT(e) + ".",
+  qui: (groupe, e) => "Quem é " + groupe + " " + DE_PT(e) + "?",
+  soi: (o, age) => "Esta é " + NOM_PT(o) + ". " + (BR ? "Ela tem " : "Tem ") + age + " anos.",
+  age: (o, age) => (BR ? (sexe(o) === "f" ? "Ela tem " : "Ele tem ") : "Tem ") + age + " anos.",
+  // [masculin singulier, feminin singulier, masculin pluriel, feminin pluriel] ; dele / dela : le sexe de celui qui possede
+  poss: {je:["meu","minha","meus","minhas"], tu: BR ? ["seu","sua","seus","suas"] : ["teu","tua","teus","tuas"], il:["dele","dele","dele"], elle:["dela","dela","dela"],
+         nous:["nosso","nossa","nossos","nossas"]},
+  dit: (s, phrase) => NOM_PT(s, true) + " diz: " + GUILL_PT(phrase),
+  disent: (s1, s2, phrase) => PT.et([s1, s2], true) + " dizem: " + GUILL_PT(phrase),
+  demande: (s, a, phrase) => NOM_PT(s, true) + " pergunta " + A_PT(a) + ": " + GUILL_PT(phrase),
+  // l'article devant le possessif au Portugal (« o meu pai ») : s, le sexe de la personne nommee
+  estPoss: (o, trou, w, s) => NOM_PT(o, true) + " é " + (BR ? "" : (s === "f" ? "a " : "o ")) + trou + " " + w + ".",
+  sontPoss: (os, trou, w, fem) => PT.et(os, true) + " são " + (BR ? "" : (fem ? "as " : "os ")) + trou + " " + w + ".",
+  estPossQ: (o, trou, w, s) => NOM_PT(o, true) + " é " + (BR ? "" : (s === "f" ? "a " : "o ")) + trou + " " + w + "?",
+  // la 3e personne : « O Peter é o pai ___. » -> dela (au Bresil aussi)
+  estPossIl: (o, trou, w, s) => NOM_PT(o, true) + " é " + (s === "f" ? "a " : "o ") + w + " " + trou + ".",
+  combien: {
+    frere: e => ["Quantos irmãos tem " + NOM_PT(e) + "?", (n, fem) => NOM_PT(e, true) + " tem " + PT.nombre(n, fem) + (fem ? " irmãs." : " irmãos.")],
+    cousin: e => ["Quantos primos tem " + NOM_PT(e) + "?", (n, fem) => NOM_PT(e, true) + " tem " + PT.nombre(n, fem) + (fem ? " primas." : " primos.")],
+    neveu: e => ["Quantos sobrinhos tem " + NOM_PT(e) + "?", (n, fem) => NOM_PT(e, true) + " tem " + PT.nombre(n, fem) + (fem ? " sobrinhas." : " sobrinhos.")],
+    oncle: e => ["Quantos tios tem " + NOM_PT(e) + "?", (n, fem) => NOM_PT(e, true) + " tem " + PT.nombre(n, fem) + (fem ? " tias." : " tios.")],
+    enfantCouple: (a, b) => ["Quantos filhos têm " + PT.et([a, b]) + "?", (n, fem) => (BR ? "Eles têm " : "Têm ") + PT.nombre(n, fem) + (fem ? " filhas." : " filhos.")],
+    petitCouple: (a, b) => ["Quantos netos têm " + PT.et([a, b]) + "?", (n, fem) => (BR ? "Eles têm " : "Têm ") + PT.nombre(n, fem) + (fem ? " netas." : " netos.")]
+  }
+};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : APPRENDRE === "pt" ? PT : ES;
 // les choix des possessifs, par forme ; en anglais, his et her sont toujours la : c'est la lecon
 const OPTS_POSS = {
   es: {nous:["nuestro", "nuestra", "mi", "su"], pluriel:["mis", "mi", "tus", "sus"], je:["mi", "tu", "su", "mis"], tu:["tu", "mi", "su", "tus"], il:["su", "sus", "mi", "tu"]},
+  // en portugais, dele / dela / deles / delas : comme his / her, c'est la lecon
+  pt: {nous:["nosso", "nossa", "meu", "minha"], pluriel:["meus", "minhas", "meu", "minha"], je: BR ? ["meu", "minha", "seu", "sua"] : ["meu", "minha", "teu", "tua"],
+       tu: BR ? ["seu", "sua", "meu", "minha"] : ["teu", "tua", "meu", "minha"], il:["dele", "dela", "deles", "delas"]},
   de: {nous:["unser", "unsere", "mein", "meine"], pluriel:["meine", "mein", "deine", "seine"], je:["mein", "meine", "dein", "deine"], tu:["dein", "deine", "mein", "meine"], il:["sein", "seine", "ihr", "ihre"]},
   en: {nous:["our", "my", "their", "your"], pluriel:["my", "your", "his", "their"], je:["my", "your", "his", "her"], tu:["your", "my", "his", "her"], il:["his", "her", "my", "your"]}
 }[APPRENDRE];
@@ -488,7 +551,11 @@ TRADS.de = {
 // la traduction de la phrase, s'il y en a une dans la langue d'interface ; sinon null, et la glose prend le relais
 const TR = (LANGUE === APPRENDRE) ? null : (TRADS[LANGUE] && (LANGUE !== "de" || APPRENDRE === "es") ? TRADS[LANGUE] : null);
 let GLOSES = {}, trad = null;
-fetch("familia/gloses.json?v=1").then(r => r.json()).then(d => { GLOSES = d[APPRENDRE] || {}; }).catch(() => {});
+fetch("familia/gloses.json?v=1").then(r => r.json()).then(d => {
+  GLOSES = d[APPRENDRE] || {};
+  // le portugais n'a pas de gloses a lui : celles du meme lien en espagnol (« o tio » -> « el tío » -> « l'oncle »)
+  if (APPRENDRE === "pt"){ GLOSES = {}; COEUR.concat(PAR_ALLIANCE).forEach(k => ["m", "f"].forEach(sx => { GLOSES[articleNu(sx) + " " + mot(k, sx)] = (d.es || {})[ES.art(sx, ES.mots[k][sx === "f" ? 1 : 0])]; })); }
+}).catch(() => {});
 // la glose du mot de la question : « la abuela — бабуся »
 function glose(q){
   if (!q) return null;
@@ -517,7 +584,7 @@ let file = [], rang = 0, bons = 0, repondu = false;
 // que la question teste. juger() l'envoie comme une scene (« reponse ») et l'app fait avancer sa carte
 // (revisionDeScene) : un mot neuf entre, une erreur le fait revenir. null pour les questions de groupe ou de compte.
 let motQ = null;
-const articleNu = s => APPRENDRE === "de" ? (s === "f" ? "die" : "der") : APPRENDRE === "en" ? "" : (s === "f" ? "la" : "el");
+const articleNu = s => APPRENDRE === "de" ? (s === "f" ? "die" : "der") : APPRENDRE === "en" ? "" : APPRENDRE === "pt" ? (s === "f" ? "a" : "o") : (s === "f" ? "la" : "el");
 
 // toutes les paires (e, o, lien) que l'arbre nomme ; les liens par alliance tires moins souvent
 function paires(filtre){
@@ -600,7 +667,8 @@ function juger(ok, bonneTexte, phrase){
 // la traduction d'un lien choisi (« la tía », « mi tía », « der Onkel ») : le mot du corpus relu (gloses.json), dans
 // la langue d'interface ; null pour ce qui n'est pas un lien (vrai / faux, un nombre, un pluriel)
 let choixFaux = null;
-const DETERMINANTS = /^(el|la|los|las|mi|tu|su|mis|tus|sus|der|die|das|den|dem|des|mein|meine|meinen|meinem|meiner|dein|deine|sein|seine|seinen|ihr|ihre|ihren|ein|eine|einen)\s+/i;
+const DETERMINANTS = APPRENDRE === "pt" ? /^(o|a|os|as|meu|minha|meus|minhas|teu|tua|seu|sua|nosso|nossa)\s+/i
+                   : /^(el|la|los|las|mi|tu|su|mis|tus|sus|der|die|das|den|dem|des|mein|meine|meinen|meinem|meiner|dein|deine|sein|seine|seinen|ihr|ihre|ihren|ein|eine|einen)\s+/i;
 function tradDuChoix(o){
   if (typeof o !== "string") return null;
   const nu = o.trim().replace(DETERMINANTS, "");
@@ -709,7 +777,7 @@ const EX = {
         const [a, b, o, k] = hasard(cand), mo = mot(k, sexe(o));
         motQ = [k, sexe(o)];
         rep = L.poss.nous[idx(sexe(o))];
-        enonce = L.disent(a, b, L.estPoss(o, trou(), mo)); phrase = L.disent(a, b, L.estPoss(o, rep, mo));
+        enonce = L.disent(a, b, L.estPoss(o, trou(), mo, sexe(o))); phrase = L.disent(a, b, L.estPoss(o, rep, mo, sexe(o)));
         trad = TR ? TR.disent(a, b, TR.estPoss(o, TR.possN("nous", k, sexe(o)))) : null;
         opts = OPTS_POSS.nous;
         ecran("possessif", cible(enonce), {ego: a, cibles: [b, o]});
@@ -717,13 +785,14 @@ const EX = {
     }
     if (forme === "pluriel"){
       const cand = [];
-      IDS.forEach(e => Object.keys(L.pluriels).forEach(k => { const g = lies(e, k); if (g.length >= 2 && g.length <= 3 && (APPRENDRE === "es" ? (k !== "parent" || g.length === 2) : true) && (!w || w.k === k)) cand.push([e, k, g]); }));
+      IDS.forEach(e => Object.keys(L.pluriels).forEach(k => { const g = lies(e, k); if (g.length >= 2 && g.length <= 3 && (APPRENDRE === "es" || APPRENDRE === "pt" ? (k !== "parent" || g.length === 2) : true) && (!w || w.k === k)) cand.push([e, k, g]); }));
       if (!cand.length) return false;
       const [e, k, g] = hasard(cand), fem = g.every(x => sexe(x) === "f");
       if (w) motQ = {mot: w.mot, genre: w.genre};
       const mo = L.pluriels[k][fem && L.pluriels[k][1] ? 1 : 0];
-      rep = L.poss.je[2];
-      enonce = L.dit(e, L.sontPoss(g, trou(), mo)); phrase = L.dit(e, L.sontPoss(g, rep, mo));
+      const femPl = !!(fem && L.pluriels[k][1]);
+      rep = L.poss.je[femPl && L.poss.je[3] ? 3 : 2];                     // le portugais : meus / minhas
+      enonce = L.dit(e, L.sontPoss(g, trou(), mo, femPl)); phrase = L.dit(e, L.sontPoss(g, rep, mo, femPl));
       trad = TR ? TR.dit(e, TR.sontPoss(g, TR.groupe(k, g, "je"))) : null;
       opts = OPTS_POSS.pluriel;
       ecran("possessif", cible(enonce), {ego: e, cibles: g});
@@ -739,14 +808,14 @@ const EX = {
       if (forme === "tu" && !qui.length) forme = "je";
       if (forme === "je"){
         rep = L.poss.je[i];
-        enonce = L.dit(e, L.estPoss(o, trou(), mo)); phrase = L.dit(e, L.estPoss(o, rep, mo));
+        enonce = L.dit(e, L.estPoss(o, trou(), mo, sexe(o))); phrase = L.dit(e, L.estPoss(o, rep, mo, sexe(o)));
         trad = TR ? TR.dit(e, TR.estPoss(o, TR.possN("je", k, sexe(o)))) : null;
         opts = OPTS_POSS.je;
         ecran("possessif", cible(enonce), {ego: e, cibles: [o]});
       } else if (forme === "tu"){
         const s = hasard(qui);
         rep = L.poss.tu[i];
-        enonce = L.demande(s, e, L.estPossQ(o, trou(), mo)); phrase = L.demande(s, e, L.estPossQ(o, rep, mo));
+        enonce = L.demande(s, e, L.estPossQ(o, trou(), mo, sexe(o))); phrase = L.demande(s, e, L.estPossQ(o, rep, mo, sexe(o)));
         trad = TR ? TR.demande(s, e, TR.estPossQ(o, TR.possN("tu", k, sexe(o)))) : null;
         opts = OPTS_POSS.tu;
         ecran("possessif", cible(enonce), {ego: e, cibles: [o]});
@@ -754,8 +823,10 @@ const EX = {
         // « Peter ist der Vater von Anna. → Peter ist ihr Vater. »
         const pr = sexe(e) === "f" ? "elle" : "il";
         rep = L.poss[pr][i];
-        enonce = '<span class="avant">' + cible(L.lien(o, avecArt(k, sexe(o)), e)) + '</span>' + cible(L.estPoss(o, trou(), mo));
-        phrase = L.estPoss(o, rep, mo);
+        // le portugais met dele / dela apres le nom : « O Peter é o pai dela. »
+        const ep = L.estPossIl || L.estPoss;
+        enonce = '<span class="avant">' + cible(L.lien(o, avecArt(k, sexe(o)), e)) + '</span>' + cible(ep(o, trou(), mo, sexe(o)));
+        phrase = ep(o, rep, mo, sexe(o));
         trad = TR ? TR.estPoss3(o, k, sexe(o), sexe(e)) : null;
         opts = OPTS_POSS.il;
         ecran("possessif", enonce, {ego: e, cibles: [o]});
@@ -771,7 +842,9 @@ const EX = {
     IDS.forEach(e => Object.keys(L.pluriels).forEach(k => {
       const g = lies(e, k); if (g.length < 2 || g.length > 3) return;
       const fem = g.every(x => sexe(x) === "f");
-      if (w && (APPRENDRE === "es" ? (w.pl || w.k !== k || k === "parent" || w.s !== (fem ? "f" : "m")) : (!w.pl || w.k !== k))) return;
+      if (w && (APPRENDRE === "es" ? (w.pl || w.k !== k || k === "parent" || w.s !== (fem ? "f" : "m"))
+              : APPRENDRE === "pt" ? (w.pl ? w.k !== k : (w.k !== k || k === "parent" || w.s !== (fem ? "f" : "m")))   // os pais, os avós ; ou os tios, as tias
+              : (!w.pl || w.k !== k))) return;
       cand.push([e, k, g]);
     }));
     if (!cand.length) return false;
@@ -804,7 +877,7 @@ const EX = {
   // « ¿Cuántos nietos tienen Heinz y Gisela? » -- il habille un mot (nieto, hermano ; Geschwister), jamais seul
   combien(w){
     const cand = [];
-    const garder = (k, fem) => !w || (APPRENDRE === "es" ? (!w.pl && w.k === k && w.s === (fem ? "f" : "m")) : (w.pl && w.k === k) || (APPRENDRE === "en" && k === "cousin" && w.k === k));
+    const garder = (k, fem) => !w || (APPRENDRE === "es" || APPRENDRE === "pt" ? (!w.pl && w.k === k && w.s === (fem ? "f" : "m")) : (w.pl && w.k === k) || (APPRENDRE === "en" && k === "cousin" && w.k === k));
     IDS.forEach(e => ["frere", "cousin", "neveu", "oncle"].forEach(k => {
       const g = lies(e, k); if (g.length < 2 || g.length > 5) return;
       if (MIXTE.includes(k) && new Set(g.map(sexe)).size < 2) return;
@@ -820,10 +893,11 @@ const EX = {
     const [[question, reponse], g, ego, k, traduire] = hasard(cand), n = g.length, fem = g.every(x => sexe(x) === "f");
     trad = TR ? traduire() : null;
     if (w) motQ = w.pl ? {mot: w.mot, genre: w.genre} : [k, w.s];
-    const rep = L.nombres[n];
+    const nb = x => L.nombre ? L.nombre(x, fem) : L.nombres[x];           // le portugais : dois / duas
+    const rep = nb(n);
     ecran("combien", cible(question), {ego: ego[0], cibles: ego.slice(1)});
     $("choix").style.justifyContent = "center";
-    boutons($("choix"), [2, 3, 4, 5].map(x => L.nombres[x]), rep, ok => {
+    boutons($("choix"), [2, 3, 4, 5].map(nb), rep, ok => {
       document.querySelectorAll(".arbre g.p").forEach(x => { if (g.includes(x.dataset.id)) x.classList.add("juste"); });
       juger(ok, rep, reponse(n, fem));
     });
@@ -877,6 +951,8 @@ function motsDuTheme(){
   });
   if (APPRENDRE === "de") [["parent", "Eltern"], ["frere", "Geschwister"], ["grandparent", "Großeltern"]].forEach(([k, m]) => out.push({k, pl: true, mot: m, genre: "die"}));
   if (APPRENDRE === "en") [["parent", "parents"], ["frere", "siblings"], ["grandparent", "grandparents"]].forEach(([k, m]) => out.push({k, pl: true, mot: m, genre: ""}));
+  // le portugais : os pais (les parents, propose au corpus comme os óculos : genre « os ») et avós (au corpus, genre « o »)
+  if (APPRENDRE === "pt") [["parent", "pais", "os"], ["grandparent", "avós", "o"]].forEach(([k, m, g]) => out.push({k, pl: true, mot: m, genre: g}));
   return out;
 }
 
@@ -886,6 +962,7 @@ function decouvrir(){
   const z = $("zone");
   z.innerHTML = '<p class="consigne">' + T("intro") + '</p>';
   // Mom aux Etats-Unis, Mum en Grande-Bretagne (VARIANTE_ANGLAIS de l'app)
+  if (APPRENDRE === "pt") z.insertAdjacentHTML("beforeend", '<p class="consigne">' + T(BR ? "bonASavoirBr" : "bonASavoirPt") + '</p>');
   if (APPRENDRE === "en") z.insertAdjacentHTML("beforeend", '<p class="consigne">' + T("bonASavoir", {mom: BRITANNIQUE ? "Mum" : "Mom", ailleurs: BRITANNIQUE ? "Mom aux États-Unis" : "Mum en Grande-Bretagne"}) + '</p>');
   const fiche = document.createElement("div");
   const montrer = id => {
@@ -898,7 +975,7 @@ function decouvrir(){
     fiche.innerHTML = '<img alt="" src="familia/' + id + '.webp"><div><div class="qui">' + id + '</div><div class="dit">' + cible(dit) + '</div>'
                     + (id === "Anna" ? "" : '<div class="age">' + cible(L.age(id, F[id].age)) + '</div>') + (tdit ? traduction(tdit) : "") + '</div>';
   };
-  const a = dessinerArbre({ego: "Anna", touchable: (g, id) => { montrer(id); Voix.dire(ficheDite(id)); }});
+  const a = dessinerArbre({ego: "Anna", touchable: (g, id) => { montrer(id); Voix.dire(lire(ficheDite(id))); }});
   z.appendChild(a); z.appendChild(fiche);
   montrer("Anna");
   const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;

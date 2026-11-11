@@ -347,6 +347,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os passaportes",
    "niveau": "A1",
+   "theme": "transportes_pt",
    "personne": null,
    "aussi": [],
    "sur": "bett",

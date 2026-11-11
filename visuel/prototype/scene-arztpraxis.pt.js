@@ -77,7 +77,8 @@ window.SCENE = {
    "mot": "planta",
    "genre": "a",
    "pluriel": "as plantas",
-   "niveau": "A1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": "fenster",
@@ -1057,7 +1058,8 @@ window.SCENE = {
    "mot": "cartão de utente",
    "genre": "o",
    "pluriel": "os cartões de utente",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [
     {

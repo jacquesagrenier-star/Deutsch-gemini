@@ -119,6 +119,7 @@ window.SCENE = {
      "mot": "pretzel",
      "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "bretzel"
     },
     {

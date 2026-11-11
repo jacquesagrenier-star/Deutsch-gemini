@@ -179,7 +179,8 @@ window.SCENE = {
    "mot": "caixa de cartão",
    "genre": "a",
    "pluriel": "as caixas de cartão",
-   "niveau": "A2",
+   "niveau": "A1",
+   "theme": "casa_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -192,7 +193,11 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "br": {
+    "mot": "caixa de papelão",
+    "pluriel": "as caixas de papelão"
+   }
   },
   {
    "id": "leiter",
@@ -545,7 +550,8 @@ window.SCENE = {
    "mot": "caixa de cartão",
    "genre": "a",
    "pluriel": "as caixas de cartão",
-   "niveau": "A2",
+   "niveau": "A1",
+   "theme": "casa_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -558,7 +564,11 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "br": {
+    "mot": "caixa de papelão",
+    "pluriel": "as caixas de papelão"
+   }
   },
   {
    "id": "boden",
@@ -646,7 +656,14 @@ window.SCENE = {
      "r": "fenster",
      "phrase": "O gato está à janela.",
      "sens": "Le chat est assis à la fenêtre.",
-     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à janela."
+     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à janela.",
+     "br": {
+      "c": [
+       "à janela",
+       "em cima do armário",
+       "na caixa de papelão"
+      ]
+     }
     },
     {
      "q": "Onde está o balde?",
@@ -672,7 +689,14 @@ window.SCENE = {
      "r": "eimer",
      "phrase": "O pincel está no balde.",
      "sens": "Le pinceau est sur le seau.",
-     "n": "<b>em</b> + o = <b>no</b> : no balde."
+     "n": "<b>em</b> + o = <b>no</b> : no balde.",
+     "br": {
+      "c": [
+       "no balde",
+       "na caixa de papelão",
+       "ao lado do gato"
+      ]
+     }
     },
     {
      "q": "Onde está o escadote?",
@@ -715,7 +739,11 @@ window.SCENE = {
      "r": "schrank",
      "phrase": "As caixas de cartão estão ao lado do armário.",
      "sens": "Les cartons sont à côté de l'armoire.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o armário = <b>ao lado do</b> armário."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o armário = <b>ao lado do</b> armário.",
+     "br": {
+      "q": "Onde estão as caixas de papelão?",
+      "phrase": "As caixas de papelão estão ao lado do armário."
+     }
     },
     {
      "q": "Onde estão as luvas?",
@@ -728,7 +756,15 @@ window.SCENE = {
      "r": "karton-2",
      "phrase": "As luvas estão ao lado da caixa de cartão.",
      "sens": "Les gants sont à côté du carton.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a caixa de cartão = <b>ao lado da</b> caixa de cartão."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a caixa de cartão = <b>ao lado da</b> caixa de cartão.",
+     "br": {
+      "c": [
+       "ao lado da caixa de papelão",
+       "no balde",
+       "em cima do armário"
+      ],
+      "phrase": "As luvas estão ao lado da caixa de papelão."
+     }
     },
     {
      "q": "Onde está a madeira?",
@@ -741,7 +777,15 @@ window.SCENE = {
      "r": "karton-2",
      "phrase": "A madeira está na caixa de cartão.",
      "sens": "Le bois est dans le carton.",
-     "n": "<b>em</b> + a = <b>na</b> : na caixa de cartão."
+     "n": "<b>em</b> + a = <b>na</b> : na caixa de cartão.",
+     "br": {
+      "c": [
+       "na caixa de papelão",
+       "no armário",
+       "no escadote"
+      ],
+      "phrase": "A madeira está na caixa de papelão."
+     }
     }
    ]
   },

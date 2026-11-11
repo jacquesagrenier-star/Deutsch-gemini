@@ -335,7 +335,8 @@ window.SCENE = {
    "mot": "planta",
    "genre": "a",
    "pluriel": "as plantas",
-   "niveau": "A1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": "karton",
@@ -355,7 +356,8 @@ window.SCENE = {
    "mot": "caixa de cartão",
    "genre": "a",
    "pluriel": "as caixas de cartão",
-   "niveau": "A2",
+   "niveau": "A1",
+   "theme": "casa_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -368,7 +370,11 @@ window.SCENE = {
      7.6
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "br": {
+    "mot": "caixa de papelão",
+    "pluriel": "as caixas de papelão"
+   }
   },
   {
    "id": "anna",
@@ -567,6 +573,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as guitarras",
    "niveau": "A1",
+   "theme": "lazer_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -734,7 +741,8 @@ window.SCENE = {
    "mot": "lata",
    "genre": "a",
    "pluriel": "as latas",
-   "niveau": "A1",
+   "niveau": "A2",
+   "theme": "quotidiano_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "karton-4",
@@ -837,7 +845,8 @@ window.SCENE = {
    "mot": "caixa de cartão",
    "genre": "a",
    "pluriel": "as caixas de cartão",
-   "niveau": "A2",
+   "niveau": "A1",
+   "theme": "casa_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -850,14 +859,19 @@ window.SCENE = {
      11.5
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "br": {
+    "mot": "caixa de papelão",
+    "pluriel": "as caixas de papelão"
+   }
   },
   {
    "id": "karton-4",
    "mot": "caixa de cartão",
    "genre": "a",
    "pluriel": "as caixas de cartão",
-   "niveau": "A2",
+   "niveau": "A1",
+   "theme": "casa_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -876,14 +890,19 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "br": {
+    "mot": "caixa de papelão",
+    "pluriel": "as caixas de papelão"
+   }
   },
   {
    "id": "karton-2",
    "mot": "caixa de cartão",
    "genre": "a",
    "pluriel": "as caixas de cartão",
-   "niveau": "A2",
+   "niveau": "A1",
+   "theme": "casa_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -902,7 +921,11 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "br": {
+    "mot": "caixa de papelão",
+    "pluriel": "as caixas de papelão"
+   }
   },
   {
    "id": "teppich",
@@ -1076,7 +1099,14 @@ window.SCENE = {
      "r": "sofa",
      "phrase": "As almofadas estão no sofá.",
      "sens": "Les coussins sont sur le canapé.",
-     "n": "<b>em</b> + o = <b>no</b> : no sofá."
+     "n": "<b>em</b> + o = <b>no</b> : no sofá.",
+     "br": {
+      "c": [
+       "no sofá",
+       "no chão",
+       "na caixa de papelão"
+      ]
+     }
     },
     {
      "q": "Onde está a cadeira?",
@@ -1102,7 +1132,15 @@ window.SCENE = {
      "r": "karton-3",
      "phrase": "A pizza está na caixa de cartão.",
      "sens": "La pizza est dans le carton.",
-     "n": "<b>em</b> + a = <b>na</b> : na caixa de cartão."
+     "n": "<b>em</b> + a = <b>na</b> : na caixa de cartão.",
+     "br": {
+      "c": [
+       "na caixa de papelão",
+       "em cima da mesa",
+       "no sofá"
+      ],
+      "phrase": "A pizza está na caixa de papelão."
+     }
     },
     {
      "q": "Onde está o relógio?",

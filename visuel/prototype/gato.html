@@ -23,6 +23,12 @@
   between, above, at), is sitting / is lying, into / onto / over / to pour le mouvement, there is / there are et
   « Where is the cat? — It's under the table. ». Les memes images ; les phrases anglaises sont fabriquees dans la
   page (EN_PLACES et voisins, plus bas) a partir des memes places que gato.json, qui ne change pas.
+  LE PORTUGAIS (lot P3, 11 nov. 2026) : apprendre=pt, variante=br pour le Bresil. Comme l'espagnol, pas de cas : la
+  preposition de lieu et sa contraction (em cima da mesa, atras do sofa, no cesto, na janela), para pour le mouvement
+  (salta para cima da mesa, para dentro da caixa, vai para debaixo da cadeira), por cima (par-dessus, et la lampe
+  suspendue), ha / esta (au Bresil tem / esta). Le Bresil : pula (saltar), le pronom avant le verbe (se senta), pas
+  d'article devant un prenom (entre Ben e Mia), na frente de, bolsa, luminaria, sobe no armario. Les phrases sont
+  fabriquees dans la page (PT_PLACES et voisins) depuis les memes places que gato.json, qui ne change pas.
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -122,8 +128,10 @@ button:disabled{cursor:default}
 <script src="themes/verre.js?v=8"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+// le portugais (lot P3, 11 nov. 2026) : apprendre=pt, variante=br pour le Bresil
+const APPRENDRE = ["de", "en", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const EN_APP = APPRENDRE === "en", GB = EN_APP && Q.get("variante") === "gb";
+const PT_APP = APPRENDRE === "pt", BR = PT_APP && Q.get("variante") === "br";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
@@ -191,7 +199,19 @@ const TEXTES = {
   bonUs:       {fr:"<b>Bon à savoir</b> (anglais américain) : « en face de » se dit <b>across from</b> (en britannique, opposite) ; <b>in front of</b> veut dire « devant ». Le sac à main est un <b>purse</b> (en britannique, handbag), et on dit souvent <b>couch</b> pour sofa. Une armoire est un <b>wardrobe</b> : un closet est un placard encastré."},
   bonGb:       {fr:"<b>Bon à savoir</b> (anglais britannique) : « en face de » se dit <b>opposite</b> (en américain, across from) ; <b>in front of</b> veut dire « devant ». Le sac à main est un <b>handbag</b> (en américain, purse)."},
   intoOnto:    {fr:"Il a bougé jusque-là : into, onto ou over ?"},
-  thereIs:     {fr:"There is, there are ou it's ? Regarde l'image."}
+  thereIs:     {fr:"There is, there are ou it's ? Regarde l'image."},
+  // le portugais seulement (son interface est en francais)
+  reglePtPos:  {fr:"<b>Où il est</b> : <b>estar</b> et la préposition de lieu. Presque toutes finissent par <b>de</b>, qui se soude à l'article : de + o = <b>do</b>, de + a = <b>da</b>. Avec <b>em</b> : em + o = <b>no</b>, em + a = <b>na</b>. Posé dessus : <b>em cima de</b> ; au-dessus, sans toucher (la lampe, le tableau) : <b>por cima de</b>."},
+  reglePtMvt:  {fr: BR ? "<b>Où il va</b> : un mouvement. On ajoute <b>para</b> : em cima → <b>para cima</b>, dentro → <b>para dentro</b>, debaixo → <b>para debaixo</b>, et pula <b>para a</b> janela (on entend aussi « pula na mesa », « pula em cima da mesa »). Par-dessus : <b>por cima</b>. Au Brésil, « sauter » se dit <b>pular</b>, et le pronom se met avant le verbe : <b>se senta</b>, <b>se deita</b>, <b>se esconde</b>."
+                          : "<b>Où il va</b> : un mouvement. On ajoute <b>para</b> : em cima → <b>para cima</b>, dentro → <b>para dentro</b>, debaixo → <b>para debaixo</b>, et salta <b>para a</b> janela. Par-dessus : <b>por cima</b>. Au Portugal, le pronom se met après le verbe : <b>senta-se</b>, <b>deita-se</b>, <b>esconde-se</b>."},
+  contrPt:     {fr: BR ? "<b>Tem</b> dit ce qu'il y a (il y a ; <b>há</b> est plus soutenu, surtout à l'écrit), <b>está</b> dit où il est. Jamais « está um gato » pour « il y a un chat »."
+                          : "<b>Há</b> dit ce qu'il y a (il y a), <b>está</b> dit où il est. Jamais « está um gato » pour « il y a un chat »."},
+  bonPt:       {fr:"<b>Bon à savoir</b> (Portugal) : « devant » se dit <b>em frente de</b> ou <b>à frente de</b>. On met l'article devant un prénom : « entre <b>o</b> Ben e <b>a</b> Mia », « ao lado <b>da</b> Mia ». « Sauter » se dit <b>saltar</b> (au Brésil, pular), et la lampe suspendue est un <b>candeeiro</b>."},
+  bonBr:       {fr:"<b>Bon à savoir</b> (Brésil) : « devant » se dit <b>na frente de</b> ou <b>em frente de</b> (au Portugal, à frente de), et « sous » aussi <b>embaixo de</b>. Pas d'article devant un prénom : « entre Ben e Mia », « ao lado de Mia » (au Portugal, ao lado da Mia). Le sac à main est une <b>bolsa</b> (au Portugal, mala), la lampe suspendue une <b>luminária</b> (au Portugal, candeeiro), et « monter sur » se dit <b>subir em</b> : sobe no armário (au Portugal, sobe para o armário)."},
+  contr:       {fr:"do ou da, no ou na ? Choisis la bonne forme."},
+  paraPt:      {fr:"Il bouge : suis la flèche et choisis la direction."},
+  haEsta:      {fr:"há ou está ? Regarde l'image."},
+  temEsta:     {fr:"tem ou está ? Regarde l'image."}
 };
 // les exemples des regles, dans la langue apprise : une ligne de gauche a droite, la meme pour toutes les langues
 const EXEMPLES = {
@@ -202,7 +222,11 @@ const EXEMPLES = {
   contrEs: "de + el = <b>del</b> : detrás del sofá · a + el = <b>al</b> : salta al sofá · de la, a la : detrás de la mesa, salta a la mesa",
   regleEnPos: "<b>on</b> the table · <b>under</b> the chair · <b>behind</b> the sofa · <b>in front of</b> the door · <b>next to</b> the basket · <b>between</b> the cushions · <b>above</b> the table",
   regleEnMvt: "in the box → jumps <b>into</b> the box · on the table → jumps <b>onto</b> the table · at the window → goes <b>to</b> the window · jumps <b>over</b> the box",
-  regleEnThere: "<b>There is</b> a cat under the table. · Where is the cat? — <b>It's</b> under the table. · <b>There are</b> two cushions on the sofa."
+  regleEnThere: "<b>There is</b> a cat under the table. · Where is the cat? — <b>It's</b> under the table. · <b>There are</b> two cushions on the sofa.",
+  reglePtPos: "<b>em cima da</b> mesa · <b>debaixo da</b> cadeira · <b>atrás do</b> sofá · <b>em frente da</b> porta · <b>ao lado do</b> cesto · <b>dentro da</b> caixa · <b>na</b> janela · <b>entre as</b> almofadas",
+  reglePtMvt: BR ? "está em cima da mesa → pula <b>para cima da</b> mesa · está dentro da caixa → pula <b>para dentro da</b> caixa · vai <b>para debaixo da</b> cadeira · pula <b>por cima da</b> caixa · sobe <b>no</b> armário"
+                 : "está em cima da mesa → salta <b>para cima da</b> mesa · está dentro da caixa → salta <b>para dentro da</b> caixa · vai <b>para debaixo da</b> cadeira · salta <b>por cima da</b> caixa · sobe <b>para o</b> armário",
+  contrPt: (BR ? "<b>Tem</b>" : "<b>Há</b>") + " um gato debaixo da mesa. · Onde está o gato? — <b>Está</b> debaixo da mesa."
 };
 const regle = cle => isoler(T(cle)) + '<span class="exemples" lang="' + APPRENDRE + '" dir="ltr">' + EXEMPLES[cle] + '</span>';
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -343,6 +367,123 @@ function preparerAnglais(){
 // la question en anglais sans mot vise (les controles) : sa preposition si c'est un mot du theme, sinon son nom
 const enDefaut = it => EN_PREPS_MOTS.includes(it.prep) || !it.nom ? motPrep(it.prep) : motNom(it.nom);
 
+// ---------- LE PORTUGAIS (lot P3, 11 nov. 2026) : les phrases, fabriquees depuis les memes places que gato.json ----------
+// Les noms, a la forme du corpus portugais (portugais/datos ; datos-br pour le Bresil) : [article, nom]. o cesto (le
+// panier du chat), a caixa (le carton), a estante (l'etagere), a mala (le sac a main ; au Bresil a bolsa). Les coussins
+// du canape : as almofadas (au Bresil, la carte almofada du corpus est devenue travesseiro, l'oreiller : le mot n'est
+// donc pas envoye au Bresil, seule la phrase le montre).
+const PT_NOMS = {tisch:["a", "mesa"], stuhl:["a", "cadeira"], sofa:["o", "sofá"], kissen:["a", "almofada"], korb:["o", "cesto"], karton:["a", "caixa"],
+                 schrank:["o", "armário"], tuer:["a", "porta"], fenster:["a", "janela"], regal:["a", "estante"], pflanze:["a", "planta"],
+                 vorhang:["a", "cortina"], tasche: BR ? ["a", "bolsa"] : ["a", "mala"], wand:["a", "parede"]};
+const PT_PLURIEL = {kissen: "almofadas"};
+// de + o = do, em + a = na... : la contraction de la preposition et de l'article
+const PT_CONTR = {de: {o: "do", a: "da", os: "dos", as: "das"}, em: {o: "no", a: "na", os: "nos", as: "nas"}};
+// le groupe « preposition + article + nom » : « em cima da mesa », « na janela », « entre as almofadas », « para a janela »
+function grPt(prep, n){
+  const [g, mot] = PT_NOMS[n], art = PT_PLURIEL[n] ? g + "s" : g, m = PT_PLURIEL[n] || mot;
+  if (prep === "em") return PT_CONTR.em[art] + " " + m;
+  if (/ de$/.test(prep)) return prep.slice(0, -3) + " " + PT_CONTR.de[art] + " " + m;
+  return prep + " " + art + " " + m;
+}
+// Les verbes du mouvement, et leur forme bresilienne : pular pour saltar, le pronom avant le verbe
+const PT_V = {salta: BR ? "pula" : "salta", deita: BR ? "se deita" : "deita-se", senta: BR ? "se senta" : "senta-se", esconde: BR ? "se esconde" : "esconde-se",
+              vai: "vai", entra: "entra", sobe: "sobe"};
+const PT_V_FR = {salta: "saute", deita: "se couche", senta: "s'assoit", esconde: "se cache", vai: "va", entra: "entre", sobe: "monte"};
+// Chaque place : [ses prepositions justes (la premiere : la decouverte et le corpus), le verbe du mouvement, sa
+// preposition]. Plusieurs formes justes par place, comme en espagnol (em cima da mesa, sobre a mesa, na mesa) : aucune
+// n'est jamais le leurre d'une autre. Le mouvement prend para devant un lieu (para cima de, para dentro de, para
+// debaixo de, para a janela) ; au Bresil, sobe no armario.
+const FRENTE = BR ? "na frente de" : "à frente de", SOUS = BR ? ["debaixo de", "embaixo de"] : ["debaixo de"];
+const PT_PLACES = {
+  "sofa-vor": [["em frente de", FRENTE], "deita", "em frente de"], "tisch-auf": [["em cima de", "sobre", "em"], "salta", "para cima de"],
+  "stuhl-unter": [SOUS, "vai", "para debaixo de"], "tisch-neben": [["ao lado de"], "senta", "ao lado de"],
+  "kissen-zwischen": [["entre"], "senta", "entre"], "sofa-auf": [["em cima de", "em", "sobre"], "salta", "para cima de"],
+  "sofa-hinter": [["atrás de"], "esconde", "atrás de"], "sofa-unter": [SOUS, "vai", "para debaixo de"],
+  "korb-in": [["em", "dentro de"], "entra", "em"], "korb-neben": [["ao lado de"], "senta", "ao lado de"],
+  "korb-auf": [["em cima de", "sobre"], "salta", "para cima de"], "karton-in": [["dentro de", "em"], "salta", "para dentro de"],
+  "karton-auf": [["em cima de", "sobre"], "salta", "para cima de"], "schrank-auf": [["em cima de"], "sobe", BR ? "em" : "para"],
+  "tuer-vor": [["em frente de", FRENTE], "senta", "em frente de"], "fenster-an": [["em"], "salta", "para"],
+  "regal-in": [["em"], "salta", "para"], "pflanze-vor": [["em frente de", FRENTE], "senta", "em frente de"],
+  "vorhang-hinter": [["atrás de"], "esconde", "atrás de"], "tasche-in": [["dentro de", "em"], "entra", "em"]
+};
+// la traduction francaise d'un groupe : la preposition portugaise vers la cle anglaise de frGroupe (plus haut), em et
+// para selon le nom (na mesa : sur la table ; no cesto : dans le panier ; na janela : a la fenetre)
+const PT_EN_P = {"em cima de": "on", sobre: "on", "debaixo de": "under", "embaixo de": "under", "dentro de": "in", "em frente de": "in front of",
+                 "à frente de": "in front of", "na frente de": "in front of", "atrás de": "behind", "ao lado de": "next to", entre: "between",
+                 "por cima de": "above", "para cima de": "onto", "para dentro de": "into", "para debaixo de": "under"};
+function frPt(prep, n){
+  if (prep === "para" && n === "fenster") return "sur le rebord de la fenêtre";
+  if (prep === "por cima de" && n === "karton") return frGroupe("over", n);
+  const k = PT_EN_P[prep] || (prep === "em" ? (n === "fenster" ? "at" : ["tisch", "sofa", "regal", "stuhl", "schrank", "wand"].includes(n) ? "on" : "in")
+                                            : ["regal", "schrank"].includes(n) ? "onto" : "to");
+  return frGroupe(k, n);
+}
+// le groupe, et sa traduction rangee dans D.groupes.pt (le mauvais choix traduit, choixTraduit)
+function G(prep, n){
+  const s = grPt(prep, n);
+  if (D.groupes.pt && !D.groupes.pt[s]) D.groupes.pt[s] = {fr: frPt(prep, n), prep: /^para\b/.test(prep) ? "para" : prep};
+  return s;
+}
+// les personnes : au Portugal, l'article devant le prenom (entre o Ben e a Mia, ao lado da Mia) ; au Bresil, sans
+const PT_PERSONNES = {"ben-mia": [BR ? "entre Ben e Mia" : "entre o Ben e a Mia", "entre"], "mia-tisch": [BR ? "ao lado de Mia" : "ao lado da Mia", "ao lado de"]};
+const ES_PT_P = {"al lado de": "ao lado de", "debajo de": "debaixo de", "detrás de": "atrás de", "encima de": "em cima de", "dentro de": "dentro de",
+                 "delante de": "em frente de", en: "em", sobre: "sobre", entre: "entre"};
+// les mots du theme : les prepositions du corpus (portugais/datos/fonctionnels.json, praepositionen), dont para (le
+// mouvement) ; la traduction montree sous la reponse
+const PT_PREPS_MOTS = ["em cima de", "sobre", "debaixo de", "dentro de", "em", "em frente de", "atrás de", "ao lado de", "entre", "para"];
+const PT_GLOSES = {"em cima de": "sur, au-dessus de", sobre: "sur", "debaixo de": "sous", "embaixo de": "sous", "dentro de": "dans, à l'intérieur de",
+  em: "dans, en, à, sur", "em frente de": "devant, en face de", "à frente de": "devant", "na frente de": "devant", "atrás de": "derrière",
+  "ao lado de": "à côté de", entre: "entre", para: "pour, vers (la direction)", "por cima de": "au-dessus de, par-dessus",
+  mesa: "la table", cadeira: "la chaise", "sofá": "le canapé", almofada: "le coussin", cesto: "le panier", caixa: "la boîte, le carton",
+  "armário": "l'armoire", porta: "la porte", janela: "la fenêtre", estante: "l'étagère", planta: "la plante", cortina: "le rideau",
+  mala: "le sac à main", bolsa: "le sac à main", parede: "le mur", estar: "être (état, lieu)"};
+// les donnees portugaises, posees dans D au chargement, a la forme des donnees espagnoles (D.places[id].pt...)
+function preparerPortugais(){
+  D.groupes.pt = {};
+  const tr = {}, gato = "O gato " + "está ";
+  PLACES().forEach(id => {
+    const [preps, v, mv] = PT_PLACES[id], n = D.places[id].de.nom, [g, mot] = PT_NOMS[n];
+    const donde = preps.map(x => G(x, n)), mvLieu = G(mv, n), mvVerbe = PT_V[v], mouvement = "O gato " + mvVerbe + " " + mvLieu + ".";
+    donde.forEach(d => { tr[gato + d + "."] = {fr: "Le chat est " + frPt(preps[0], n) + "."}; });
+    tr[mouvement] = {fr: "Le chat " + PT_V_FR[v] + " " + frPt(mv, n) + "."};
+    D.places[id].pt = {preps, nom: n, genre: g, mot, pluriel: !!PT_PLURIEL[n], donde, mvVerbe, mvPrep: /^para\b/.test(mv) ? "para" : mv, mvLieu,
+                       mouvement, phrase: gato + donde[0] + "."};
+  });
+  Object.keys(D.personnes).forEach(id => {
+    const P = D.personnes[id], [rep, prep] = PT_PERSONNES[id], phrase = gato + rep + ".";
+    P.pt = {q: "Onde está o gato?", rep, phrase, prep};
+    P.leurresPt = P.leurresEs.map(([a, b]) => [ES_PT_P[a], b]);
+    tr[phrase] = {fr: P.frEs};
+  });
+  // les gestes : « A Anna põe o gato no cesto. » (au Bresil « Anna põe… ») ; « Onde é que a Anna põe o gato? »
+  const anna = BR ? "Anna" : "a Anna", ben = BR ? "Ben" : "o Ben", maj = s => s.charAt(0).toUpperCase() + s.slice(1);
+  const GESTES = {"anna-korb": [anna, "em", "korb", ["ao lado de", "debaixo de"]], "ben-tisch": [ben, "em cima de", "tisch", ["debaixo de", "ao lado de"]]};
+  Object.keys(D.gestes).forEach(id => {
+    const [qui, prep, n, faux] = GESTES[id], rep = G(prep, n), phrase = maj(qui) + " põe o gato " + rep + ".";
+    D.gestes[id].pt = {q: BR ? "Onde " + qui + " põe o gato?" : "Onde é que " + qui + " põe o gato?", rep, phrase, prep, nom: n, leurres: faux.map(p => G(p, n))};
+    tr[phrase] = {fr: D.gestes[id].fr};
+  });
+  // le saut par-dessus le carton : por cima (par-dessus), et non para cima (dessus) ni para dentro (dedans)
+  const ueber = "O gato " + PT_V.salta + " " + G("por cima de", "karton") + ".";
+  D.ueber.pt = {q: BR ? "Por onde o gato pula?" : "Por onde salta o gato?", rep: G("por cima de", "karton"), phrase: ueber,
+                leurres: [G("para cima de", "karton"), G("para dentro de", "karton")]};
+  tr[ueber] = {fr: D.ueber.fr};
+  // les objets de la piece : la lampe suspendue et le tableau, au-dessus sans toucher (por cima de), le tableau au mur
+  const lampe = BR ? "A luminária" : "O candeeiro";
+  const OBJETS = {
+    lampe: {q: "Onde está " + lampe.toLowerCase() + "?", rep: [G("por cima de", "tisch"), G("sobre", "tisch")], preps: ["por cima de", "sobre"], nom: "tisch",
+            phrase: lampe + " está " + G("por cima de", "tisch") + ".", leurres: [G("debaixo de", "tisch"), G("ao lado de", "tisch")], fr: "La lampe est au-dessus de la table."},
+    "bild-sofa": {q: "Onde está o quadro?", rep: [G("por cima de", "sofa")], preps: ["por cima de"], nom: "sofa", phrase: "O quadro está " + G("por cima de", "sofa") + ".",
+            leurres: [G("debaixo de", "sofa"), G("ao lado de", "sofa")], fr: "Le tableau est au-dessus du canapé."},
+    "bild-wand": {q: "Onde está o quadro?", rep: [G("em", "wand")], preps: ["em"], nom: "wand", phrase: "O quadro está " + G("em", "wand") + ".",
+            leurres: [G("atrás de", "wand"), G("dentro de", "wand")], fr: "Le tableau est au mur."}
+  };
+  D.objets.forEach(o => { const x = OBJETS[o.id]; o.pt = x; x.rep.forEach(r => { tr[x.phrase.replace(x.rep[0], r)] = {fr: x.fr}; }); });
+  D.trad.pt = tr;
+  D.gloses.pt = {};
+  Object.keys(PT_GLOSES).forEach(k => { D.gloses.pt[k] = {fr: PT_GLOSES[k]}; });
+}
+
 // ---------- la voix : le fichier enregistre s'il existe, sinon le telephone (themes/voix.js) ----------
 let dire = t => Voix.dire(t);
 const taire = () => Voix.arreter();
@@ -373,7 +514,10 @@ function marquer(groupe, cas){
   const t = groupe.split(" ");
   let i = -1;
   if (DE_APP) i = KURZ.includes(t[0]) ? 0 : (t.length >= 3 && /^(dem|den|der|die|das)$/.test(t[1]) ? 1 : -1);
-  else i = t.findIndex((x, n) => x === "del" || (x === "al" && t[n + 1] !== "lado"));
+  // en portugais : para et por (le mouvement), sinon la contraction (da mesa, no cesto) -- pas ao de « ao lado », ni
+  // à / na de « à frente », « na frente »
+  else if (PT_APP) i = t.findIndex((x, n) => x === "para" || x === "por" || (/^(do|da|dos|das|no|na|nos|nas|ao|à)$/.test(x) && !["lado", "frente"].includes(t[n + 1])));
+  else i =t.findIndex((x, n) => x === "del" || (x === "al" && t[n + 1] !== "lado"));
   if (i < 0) return groupe;
   t[i] = '<span class="cas-' + cas + '">' + t[i] + '</span>';
   return t.join(" ");
@@ -426,9 +570,11 @@ function motsDuTheme(){
       .concat(EN_VERBES.map(v => ({k: "v:" + v, mot: v, cat: "verbe"})));
     return MOTS;
   }
-  const preps = DE_APP ? ["auf", "unter", "in", "vor", "hinter", "neben", "zwischen", "über", "an"]
+  const preps = DE_APP ? ["auf", "unter", "in", "vor", "hinter", "neben", "zwischen", "über", "an"] : PT_APP ? PT_PREPS_MOTS
                        : ["encima de", "sobre", "debajo de", "dentro de", "en", "delante de", "detrás de", "al lado de", "entre"];
-  const noms = uniques(PLACES().map(id => D.places[id].de.nom).concat(D.objets.filter(o => o.id === "bild-wand").map(o => o.de.nom)));
+  // au Bresil, la carte almofada du corpus est l'oreiller (travesseiro) : les coussins du canape ne sont pas envoyes
+  const noms = uniques(PLACES().map(id => D.places[id].de.nom).concat(D.objets.filter(o => o.id === "bild-wand").map(o => o.de.nom)))
+    .filter(n => !(BR && n === "kissen"));
   MOTS = preps.map(p => ({k: "p:" + p, mot: p, cat: "praep"}))
     .concat(noms.map(n => { const x = nomDe(n); return {k: "n:" + n, n, mot: x.mot, genre: x.genre}; }))
     .concat((DE_APP ? ["liegen", "legen", "sitzen", "setzen"] : ["estar"]).map(v => ({k: "v:" + v, mot: v, cat: "verbe"})));
@@ -439,7 +585,7 @@ function nomDe(n){
   if (EN_APP) return {mot: motEn(n), genre: ""};
   const p = PLACES().map(id => D.places[id]).find(x => x.de.nom === n);
   if (p) return {mot: p[APPRENDRE].mot, genre: p[APPRENDRE].genre};
-  return DE_APP ? {mot: "Wand", genre: "die"} : {mot: "pared", genre: "la"};
+  return DE_APP ? {mot: "Wand", genre: "die"} : PT_APP ? {mot: "parede", genre: "a"} : {mot: "pared", genre: "la"};
 }
 const motDe = w => ({mot: w.mot, genre: w.genre || null, cat: w.cat || null});
 function viser(w, defaut){ motQ = w ? motDe(w) : defaut; }
@@ -486,7 +632,7 @@ function juger(ok, bonneTexte, phrase){
   }
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const mt = montreDe(motQ);
-  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : EN_APP ? "Well done!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
+  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : EN_APP ? "Well done!" : PT_APP ? "Muito bem!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
     // la phrase juste, ECRITE, apres toute reponse (Jacques, 5 nov., d'abord sur la meteo : une ecoute reussie ne
     // montrait que « ¡Muy bien! ») ; apres une erreur, « La bonne reponse » l'a deja
     + ((ok || (phrase && phrase !== bonneTexte)) ? '<span class="phrase">' + cible(phrase || bonneTexte) + '</span>' : "")
@@ -544,6 +690,7 @@ function itemsOu(){
     if (DE_APP) out.push({img: id, place: id, q: p.qWo, rep: p.wo, phrase: p.phrase, prep: p.prep, nom, vrais: [p.wo], cas: "dat"});
     else if (EN_APP) p.preps.forEach((x, i) => out.push({img: id, place: id, q: "Where is the cat?", rep: p.donde[i], phrase: "The cat is " + p.etre + " " + p.donde[i] + ".",
                                                          prep: x, nom, vrais: p.donde, v: p.etre === "sitting" ? "sit" : null, chat: true}));
+    else if (PT_APP) p.preps.forEach((x, i) => out.push({img: id, place: id, q: "Onde está o gato?", rep: p.donde[i], phrase: "O gato está " + p.donde[i] + ".", prep: x, nom, vrais: p.donde}));
     else p.preps.forEach((x, i) => out.push({img: id, place: id, q: "¿Dónde está el gato?", rep: p.donde[i], phrase: "El gato está " + p.donde[i] + ".", prep: x, nom, vrais: p.donde}));
   });
   Object.keys(D.personnes).forEach(id => {
@@ -551,7 +698,7 @@ function itemsOu(){
     if (EN_APP){ out.push({img: id, q: q.q, rep: q.rep, phrase: q.phrase, prep: q.prep, nom: null, vrais: [q.rep], v: q.v, chat: true,
                            leurres: D.personnes[id].leurresEn.map(([a, b]) => groupe(a, b))}); return; }
     out.push({img: id, q: q.q, rep: q.rep, phrase: q.phrase, prep: q.prep, nom: q.nom || null, vrais: [q.rep], cas: "dat",
-              leurres: (DE_APP ? D.personnes[id].leurresDe : D.personnes[id].leurresEs).map(([a, b]) => groupe(a, b, "dat"))});
+              leurres: (DE_APP ? D.personnes[id].leurresDe : PT_APP ? D.personnes[id].leurresPt : D.personnes[id].leurresEs).map(([a, b]) => groupe(a, b, "dat"))});
   });
   D.objets.forEach(o => {
     const x = o[APPRENDRE];
@@ -566,6 +713,7 @@ function itemsOu(){
 // le groupe « preposition + article + nom » d'une cle de nom, comme gato.py (pour les leurres des personnes)
 function groupe(prep, n, cas){
   if (EN_APP) return prep + " the " + affNom(n);
+  if (PT_APP) return G(prep, n);
   const p = PLACES().map(id => D.places[id]).find(x => x.de.nom === n);
   if (DE_APP){
     const g = p ? p.de.genre : (n === "wand" ? "die" : "der"), mot = p ? p.de.mot : (n === "wand" ? "Wand" : n);
@@ -582,7 +730,9 @@ function leurresPlace(it, n){
   if (it.leurres) return melanger(it.leurres.filter(x => !it.vrais.includes(x))).slice(0, n);
   const autres = itemsOu().filter(o => o.place && compatibles(o.place, it.place) && !it.vrais.includes(o.rep) && o.rep !== it.rep);
   const memeObjet = melanger(autres.filter(o => o.nom === it.nom)), memePrep = melanger(autres.filter(o => o.prep === it.prep && o.nom !== it.nom));
-  return uniques(memeObjet.concat(memePrep, melanger(autres)).map(o => o.rep)).slice(0, n);
+  // en portugais, une forme par place (em frente do sofa et a frente do sofa disent la meme chose : jamais les deux)
+  const parPlace = l => PT_APP ? l.filter((o, i) => l.findIndex(x => x.place === o.place) === i) : l;
+  return uniques(parPlace(memeObjet.concat(memePrep, melanger(autres))).map(o => o.rep)).slice(0, n);
 }
 let ITEMS = null;
 const items = () => ITEMS || (ITEMS = itemsOu());
@@ -762,6 +912,21 @@ const EX = {
       boutons($("choix"), ["Verdadero", "Falso"], rep, ok => juger(ok, rep, juste));
       return true;
     }
+    // LE PORTUGAIS, estar : « Há um gato debaixo da mesa. » / « O gato está… » justes (au Bresil « Tem um gato… »),
+    // « Está um gato… » / « O gato há… » faux -- la deuxieme sorte d'estar, avec ha / esta
+    if (estVerbe(w) && PT_APP){
+      const it = itemPour(null, x => !!x.place); if (!it) return false;
+      viser(w, motVerbe("estar"));
+      const H = BR ? "Tem" : "Há", ha = Math.random() < 0.5, vrai = Math.random() < 0.5;
+      const juste = ha ? H + " um gato " + it.rep + "." : "O gato está " + it.rep + ".";
+      const phrase = vrai ? juste : (ha ? "Está um gato " + it.rep + "." : "O gato " + H.toLowerCase() + " " + it.rep + ".");
+      const g = D.groupes.pt[it.rep];
+      if (ha && g) tradQ = PHRASE_TRADUITE ? "Il y a un chat " + g.fr + "." : null;
+      ecran("vraifaux", photo(it.img), phrase, true);
+      const rep = vrai ? "Verdadeiro" : "Falso";
+      boutons($("choix"), ["Verdadeiro", "Falso"], rep, ok => juger(ok, rep, juste));
+      return true;
+    }
     // L'ANGLAIS, un verbe : la position (is sitting, is hanging) ou le mouvement (jumps onto, lies down in front of,
     // puts the cat in), vrai, ou faux par un autre lieu faux pour l'image
     if (estVerbe(w) && EN_APP){
@@ -800,7 +965,7 @@ const EX = {
     const vrai = Math.random() < 0.5, faux = leurresPlace(it, 1)[0];
     const phrase = vrai || !faux ? it.phrase : it.phrase.replace(it.rep, faux);
     ecran("vraifaux", photo(it.img), phrase, true);
-    const V = DE_APP ? "Richtig" : EN_APP ? "True" : "Verdadero", F = DE_APP ? "Falsch" : EN_APP ? "False" : "Falso", rep = vrai || !faux ? V : F;
+    const V = DE_APP ? "Richtig" : EN_APP ? "True" : PT_APP ? "Verdadeiro" : "Verdadero", F = DE_APP ? "Falsch" : EN_APP ? "False" : "Falso", rep = vrai || !faux ? V : F;
     boutons($("choix"), [V, F], rep, ok => juger(ok, rep, it.phrase));
     return true;
   },
@@ -950,11 +1115,107 @@ const EX = {
     ecran("thereIs", image, avecTrou(phrase));
     boutons($("choix"), melanger(opts), rep, ok => { remplir(rep); juger(ok, rep, juste); });
     return true;
+  },
+  // LE PORTUGAIS SEULEMENT : « O gato está atrás ___ sofá. » do / da / de o ; « O gato está ___ cesto. » no / na / em o
+  // -- le nom vise (son genre fait la contraction) ; le tableau au mur aussi (« O quadro está ___ parede. »)
+  contr(w){
+    if (!PT_APP || (w && !estNom(w))) return false;
+    const c = items().filter(it => it.nom && (/ de$/.test(it.prep) || it.prep === "em") && !(it.place && pl(it.place).pluriel) && (!w || it.nom === w.n));
+    if (!c.length) return false;
+    const it = hasard(c), x = nomDe(it.nom), base = it.prep === "em" ? "em" : "de";
+    viser(w, motNom(it.nom));
+    const rep = PT_CONTR[base][x.genre], autre = PT_CONTR[base][x.genre === "o" ? "a" : "o"];
+    const phrase = it.phrase.replace(it.rep, (base === "de" ? it.prep.slice(0, -3) + " " : "") + "___ " + x.mot);
+    ecran("contr", photo(it.img), avecTrou(phrase));
+    boutons($("choix"), melanger([rep, autre, base + " " + x.genre]), rep, ok => { remplir(rep); juger(ok, rep, it.phrase); });
+    return true;
+  },
+  // LE PORTUGAIS SEULEMENT : « O gato está debaixo da cadeira. Agora, salta ___. » -- l'image d'avant, la fleche, le
+  // lieu d'arrivee (para cima da mesa, para a janela, em frente do sofá) ; les gestes d'Anna et de Ben ; le saut
+  // par-dessus le carton. Les leurres : d'autres lieux d'arrivee, jamais le meme objet (avant la reponse, la fleche ne
+  // distingue pas « para dentro da caixa » de « para cima da caixa ») ; pour un mouvement en para, d'autres lieux en para
+  adondePt(w){
+    if (!PT_APP || estVerbe(w)) return false;
+    const c = PLACES().filter(id => !w || (estPrep(w) && pl(id).mvPrep === w.mot) || (estNom(w) && pl(id).nom === w.n)).map(id => ["p", id])
+      .concat(Object.keys(D.gestes).filter(id => !w || (estPrep(w) && D.gestes[id].pt.prep === w.mot) || (estNom(w) && D.gestes[id].pt.nom === w.n)).map(id => ["g", id]))
+      .concat((!w || (estNom(w) && w.n === "karton")) ? [["u", "saut-ueber"]] : []);
+    if (!c.length) return false;
+    const [t, x] = hasard(c);
+    if (t === "p"){
+      const p = pl(x), s = depart(x), para = l => /^para\b/.test(l);
+      viser(w, estNom(w) ? motNom(p.nom) : motPrep(p.mvPrep)); apresQ = x;
+      const autres = PLACES().filter(y => y !== x && y !== s && compatibles(x, y) && pl(y).nom !== p.nom);
+      // le lieu d'une autre place, a la forme que prend le verbe : entra dentro de, sobe em cima de, senta-se a n'importe ou
+      const lieu = y => { const q = pl(y);
+        if (para(p.mvLieu)) return para(q.mvLieu) ? q.mvLieu : null;
+        if (p.mvVerbe === "entra") return q.donde.find(d => /^dentro /.test(d)) || null;
+        if (p.mvVerbe === "sobe") return q.donde.find(d => /^em cima /.test(d)) || null;
+        return q.donde[0]; };
+      const memeVerbe = autres.filter(y => pl(y).mvVerbe === p.mvVerbe).map(lieu), reste = autres.map(lieu);
+      const leurres = uniques(melanger(memeVerbe).concat(melanger(reste))).filter(l => l && l !== p.mvLieu && !p.donde.includes(l)).slice(0, 2);
+      ecran("wohin", photo(s, x), pl(s).phrase + " Agora, " + p.mvVerbe + " ___.", true);
+      boutons($("choix"), melanger([p.mvLieu, ...leurres]), p.mvLieu, ok => { remplir(p.mvLieu); juger(ok, p.mvLieu, p.mouvement); });
+    } else if (t === "g"){
+      const g = D.gestes[x].pt;
+      viser(w, estNom(w) ? motNom(g.nom) : motPrep(g.prep));
+      ecran("wohin", photo(x), g.q, true);
+      boutons($("choix"), melanger([g.rep, ...g.leurres.slice(0, 2)]), g.rep, ok => juger(ok, g.rep, g.phrase));
+    } else {
+      const u = D.ueber.pt;
+      viser(w, motNom("karton"));
+      ecran("wohin", photo(x), u.q, true);
+      boutons($("choix"), melanger([u.rep, ...u.leurres]), u.rep, ok => juger(ok, u.rep, u.phrase));
+    }
+    return true;
+  },
+  // LE PORTUGAIS SEULEMENT : la direction. « O gato salta ___ da mesa. » para cima / por cima / para debaixo, sur l'image
+  // d'avant et la fleche ; « O gato salta ___ da caixa. » por cima, sur le saut par-dessus le carton. Vise para, le nom,
+  // ou la preposition de la place (em cima de -> para cima de, dentro de -> para dentro de, debaixo de -> para debaixo de).
+  // Pas « em cima » parmi les choix : au Bresil, « pula em cima da mesa » se dit aussi pour le mouvement.
+  paraPt(w){
+    if (!PT_APP || (w && !(estNom(w) || estPrep(w)))) return false;
+    const ADV = /^para (cima|dentro|debaixo) d/;
+    const c = PLACES().filter(id => { const p = pl(id); return ADV.test(p.mvLieu)
+        && (!w || (estNom(w) && p.nom === w.n) || (estPrep(w) && (w.mot === "para" || p.preps[0] === w.mot))); }).map(id => ["p", id])
+      .concat((!w || (estNom(w) && w.n === "karton")) ? [["u", "saut-ueber"]] : []);
+    if (!c.length) return false;
+    const [t, x] = hasard(c);
+    const AUTRES = {cima: ["por cima", "para debaixo"], dentro: ["para fora", "para debaixo"], debaixo: ["por debaixo", "para cima"]};
+    let image, phrase, rep, opts, juste;
+    if (t === "p"){
+      const p = pl(x), s = depart(x), adv = ADV.exec(p.mvLieu)[1];
+      viser(w, motPrep("para")); apresQ = x; image = photo(s, x);
+      rep = "para " + adv; opts = [rep, ...AUTRES[adv]];
+      phrase = "O gato " + p.mvVerbe + " ___" + p.mvLieu.slice(rep.length) + ".";        // « O gato salta ___ da mesa. »
+      juste = p.mouvement;
+    } else {
+      viser(w, motNom("karton")); image = photo(x);
+      rep = "por cima"; opts = ["por cima", "para cima", "para dentro"];
+      phrase = "O gato " + PT_V.salta + " ___ da caixa."; juste = D.ueber.pt.phrase;
+    }
+    ecran("paraPt", image, avecTrou(phrase));
+    boutons($("choix"), melanger(opts), rep, ok => { remplir(rep); juger(ok, rep, juste); });
+    return true;
+  },
+  // LE PORTUGAIS SEULEMENT : « ___ um gato debaixo da mesa. » Há (au Bresil Tem) ; « O gato ___ debaixo da mesa. » está
+  haEsta(w){
+    if (!PT_APP || (w && !(estVerbe(w) || estPrep(w)))) return false;
+    const it = itemPour(estPrep(w) ? w : null, x => !!x.place); if (!it) return false;
+    viser(w, estPrep(w) ? motPrep(it.prep) : motVerbe("estar"));
+    const H = BR ? "Tem" : "Há", ha = Math.random() < 0.5;
+    const phrase = ha ? "___ um gato " + it.rep + "." : "O gato ___ " + it.rep + ".";
+    const rep = ha ? H : "está", opts = ha ? [H, "Está"] : ["está", H.toLowerCase()];
+    const g = D.groupes.pt[it.rep];
+    if (ha && g) tradQ = PHRASE_TRADUITE ? "Il y a un chat " + g.fr + "." : null;
+    ecran(BR ? "temEsta" : "haEsta", photo(it.img), avecTrou(phrase));
+    boutons($("choix"), opts, rep, ok => { remplir(rep); juger(ok, rep, phrase.replace("___", rep)); });
+    return true;
   }
 };
 // les sortes de la langue apprise
 const SORTES = DE_APP ? ["wo", "dativ", "wohin", "akkusativ", "kurz", "cual", "entendre", "vraifaux", "verbe"]
              : EN_APP ? ["wo", "vers", "intoOnto", "thereIs", "cual", "entendre", "vraifaux"]
+             : PT_APP ? ["wo", "contr", "adondePt", "paraPt", "haEsta", "cual", "entendre", "vraifaux"]
                       : ["wo", "del", "adonde", "al", "hayEsta", "cual", "entendre", "vraifaux"];
 
 // ---------- la decouverte : la piece, deux onglets, les places a toucher ----------
@@ -964,8 +1225,8 @@ function decouvrir(){
   z.innerHTML = '<p class="consigne">' + T("intro") + '</p><div id="vue"></div>'
     + '<div class="dit"><div class="texte" id="dit"></div><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>'
     + '<div class="onglets" role="tablist"><button type="button" id="oPos" role="tab">' + T("ongletPos") + '</button><button type="button" id="oMvt" role="tab">' + T("ongletMvt") + '</button></div>'
-    + '<div class="puces" id="puces"></div><p class="regle" id="regle"></p><p class="regle">' + regle(DE_APP ? "kurz" : EN_APP ? "regleEnThere" : "contrEs") + '</p>'
-    + (EN_APP ? '<p class="regle">' + T(GB ? "bonGb" : "bonUs") + '</p>' : "");
+    + '<div class="puces" id="puces"></div><p class="regle" id="regle"></p><p class="regle">' + regle(DE_APP ? "kurz" : EN_APP ? "regleEnThere" : PT_APP ? "contrPt" : "contrEs") + '</p>'
+    + (EN_APP ? '<p class="regle">' + T(GB ? "bonGb" : "bonUs") + '</p>' : PT_APP ? '<p class="regle">' + T(BR ? "bonBr" : "bonPt") + '</p>' : "");
   let ici = "sofa-vor", phraseDite = "";
   // en espagnol, les autres formes justes de la meme place (« sobre la mesa », « en la mesa ») sous la phrase
   const montrerPhrase = (phrase, groupeTxt, cas, autres) => {
@@ -977,7 +1238,7 @@ function decouvrir(){
   // ou il est : la place, la phrase au datif
   const position = () => {
     $("oPos").classList.add("actif"); $("oMvt").classList.remove("actif");
-    $("regle").innerHTML = regle(DE_APP ? "regleWo" : EN_APP ? "regleEnPos" : "regleEs");
+    $("regle").innerHTML = regle(DE_APP ? "regleWo" : EN_APP ? "regleEnPos" : PT_APP ? "reglePtPos" : "regleEs");
     const pu = $("puces"); pu.innerHTML = "";
     const liste = items().filter(it => it.place && (DE_APP || it.rep === pl(it.place).donde[0]))
       .concat(items().filter(it => !it.place && (DE_APP || it.vrais[0] === it.rep)));
@@ -995,7 +1256,7 @@ function decouvrir(){
   // ou il va : l'image d'avant (la place ou il etait) et la fleche, puis l'image d'apres
   const mouvement = () => {
     $("oMvt").classList.add("actif"); $("oPos").classList.remove("actif");
-    $("regle").innerHTML = regle(DE_APP ? "regleWohin" : EN_APP ? "regleEnMvt" : "regleEs");
+    $("regle").innerHTML = regle(DE_APP ? "regleWohin" : EN_APP ? "regleEnMvt" : PT_APP ? "reglePtMvt" : "regleEs");
     const pu = $("puces"); pu.innerHTML = "";
     const liste = PLACES().map(id => ({dest: id, rep: DE_APP ? pl(id).wohin : pl(id).mvVerbe + " " + pl(id).mvLieu, phrase: pl(id).mouvement}))
       .concat(Object.keys(D.gestes).map(id => ({img: id, rep: D.gestes[id][APPRENDRE].rep, phrase: D.gestes[id][APPRENDRE].phrase, entier: true})))
@@ -1006,7 +1267,7 @@ function decouvrir(){
       b.addEventListener("click", () => {
         pu.querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b));
         // en anglais, la preposition du mouvement en couleur dans la phrase (onto, into, to, over)
-        const groupeTxt = DE_APP ? it.rep : EN_APP ? (it.dest ? pl(it.dest).mvLieu : it.rep) : null;
+        const groupeTxt = DE_APP ? it.rep : EN_APP || PT_APP ? (it.dest ? pl(it.dest).mvLieu : it.rep) : null;
         montrerPhrase(it.phrase, groupeTxt, "akk"); dire(it.phrase);
         if (!it.dest){ $("vue").innerHTML = photo(it.img); return; }
         const avant = ici !== it.dest && compatibles(ici, it.dest) ? ici : depart(it.dest);
@@ -1132,6 +1393,7 @@ document.title = T("titre");
 fetch("gato/gato.json?v=1").then(r => r.json()).then(d => {
   D = d;
   if (EN_APP) preparerAnglais();
+  if (PT_APP) preparerPortugais();
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>

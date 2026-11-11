@@ -138,6 +138,7 @@ porque | pourquoi | Mots interrogatifs | Porque não vens? | Pourquoi tu ne vien
 qual | lequel, quel | Mots interrogatifs | Qual preferes? | Lequel préfères-tu ?
 """,
 "praepositionen": """
+por cima de | au-dessus de, par-dessus | Prépositions de lieu | O candeeiro está por cima da mesa. | La lampe est au-dessus de la table.
 de | de | Prépositions | Sou do Canadá. | Je suis du Canada.
 em | dans, en, à | Prépositions | Moro em Lisboa. | J'habite à Lisbonne.
 a | à | Prépositions | Vou a Sintra amanhã. | Je vais à Sintra demain.

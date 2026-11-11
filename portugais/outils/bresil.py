@@ -185,6 +185,10 @@ ligadura | ligaduras | a > atadura | ataduras | a
 parque de estacionamento | parques de estacionamento | o > estacionamento | estacionamentos | o
 loiça | — | a > louça | — | a
 guitarra | guitarras | a > violão | violões | o
+caixa de cartão | caixas de cartão | a > caixa de papelão | caixas de papelão | a
+bolacha | bolachas | a > biscoito | biscoitos | o
+blusão | blusões | o > jaqueta | jaquetas | a
+mala de mão | malas de mão | a > bolsa | bolsas | a
 quinta | quintas | a > fazenda | fazendas | a !carte
 secretária | secretárias | a > escrivaninha | escrivaninhas | a !carte
 banca | bancas | a > barraca | barracas | a !carte
