@@ -873,7 +873,11 @@ function direTelephone(t){
    depuis la derniere generation, une phrase de scene pas encore enregistree)
    retombe sur la voix du telephone. */
 const AUDIO_BASE = "https://deutschai-b6fbb.web.app/" + (EST_ES ? (LATAM ? "es-419/" : "es-es/") : ""),
-      AUDIO_REVISION = "9";  // v845 : les voix Flash du 16 oct. refaites en v2, memes noms
+      AUDIO_REVISION = "15";  // v845 : les voix Flash du 16 oct. refaites en v2, memes noms
+/* ⚠️ LA MEME REVISION QUE L'APP (AUDIO_REVISION d'index.html), 10 nov. 2026. Restee a « 9 », elle laissait dans le
+   cache d'un an d'un navigateur la version d'avant la refonte des sons du 19 au 28 oct. (nombres espagnols, « hay »,
+   « a pie », syllabes saturees, « minutos », nombres en lettres), pour qui les avait entendus dans une scene : meme
+   nom de fichier, meme adresse ?r=9. A monter en meme temps que celle de l'app a chaque son refait sous le meme nom. */
 const audioAbsents = new Set();
 let audioEnCours = null;
 /* ⚠️ L'EMPREINTE EST SYNCHRONE, ET C'EST TOUT LE SUJET (v742). La version
