@@ -59673,8 +59673,10 @@ function direAllemand(texte, opts){
     // AVANT que les premieres donnees n'arrivent donne aussi le code 4 (MEDIA_ERR_SRC_NOT_SUPPORTED), pas le 2 : c'est
     // la regle des navigateurs, mesuree sur le moteur du web (BASCULE [MEDIA_ERR_4] 33 ms apres la demande). Un
     // tunnel, un ascenseur, un Wi-Fi qui decroche : le mot passait a la voix du telephone pour toute la seance, meme
-    // le reseau revenu (IGNORE). Le premier code 4 d'un fichier est donc passager, le second definitif -- un vrai 404
-    // ne coute qu'une requete de plus. Le refus de play() qui l'accompagne (NotSupportedError) suit la meme regle.
+    // le reseau revenu (IGNORE). La premiere tentative ratee d'un fichier (code 4) est donc passagere, la seconde
+    // definitive -- un vrai 404 ne coute qu'une requete de plus. Le refus de play() qui l'accompagne
+    // (NotSupportedError) suit la meme regle : les deux arrivent pour la meme tentative, le premier marque le
+    // fichier, le second est ignore (bascule), et c'est la tentative suivante qui condamne.
     son.onerror = () => {
         const code = son.error && son.error.code;
         versRepli(code === 4 ? echecIntrouvable(empreinte) : code !== 2, { name: code ? "MEDIA_ERR_" + code : "" });
