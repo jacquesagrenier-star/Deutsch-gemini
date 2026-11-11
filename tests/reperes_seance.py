@@ -15,7 +15,10 @@ Sur un navigateur vierge, sans compte. A 320 x 568 et 360 x 780, clair, nuit, RT
   - sur une scene de la seance, la bande du repere est au-dessus du cadre, et disparait en quittant la scene ;
   - la scene, le theme et la scene de fin d'etape de Premiers pas : la bande dans la couleur de la partie, et la page en
     cadre qui prend le fond de la seance (&fond=, pose par themes/verre.js) ; hors seance (Explorer les scenes, Tout le
-    contenu), la page garde son fond.
+    contenu), la page garde son fond ;
+  - 11 nov. (Jacques, iPhone) : la fleche du rond claire sur un fond fonce des sa premiere image, foncee sur un fond
+    clair ; une carte revenue apres la scene dans une partie « Revisions », pas « Scene » ; le cadre plein ecran
+    (et ses marges d'encoche) dans le fond de la partie, aussi au retour des reglages.
 Il ouvre un navigateur : a lancer SOUS LE VERROU (~/.wortando/REGLE-VERROU-PARCOURS.txt).
 """
 import argparse
@@ -44,25 +47,25 @@ POSER = """
 """
 
 MESURE = r"""
-async ([cas]) => {
-const LIRE_FOND = () => {
-  const fd = document.getElementById('seanceFond');
-  const vis = !!(fd && !fd.classList.contains('hidden') && getComputedStyle(fd).display !== 'none');
-  if(!vis) return { fond: false };
-  const lum = ([r,g,b]) => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(r) + .7152 * f(g) + .0722 * f(b); };
-  const rapp = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); };
-  const st = (fd.style.background.match(/rgb\(\d+, \d+, \d+\)/g) || []).map(c => c.match(/\d+/g).map(Number));
-  if(st.length < 2) return { fond: true, faute: 'degrade illisible' };
-  const H = innerHeight, rep = [];
-  const els = [document.getElementById('flashKicker'), document.getElementById('flashThemeTitle'), ...document.querySelectorAll('#seancePartsNoms > *')].filter(x => x && x.offsetParent && x.textContent.trim());
-  els.forEach(e => { const r = e.getBoundingClientRect(), f = Math.max(0, Math.min(1, (r.top + r.height / 2) / H)), bg = st[0].map((v, i) => v + (st[1][i] - v) * f), c = getComputedStyle(e).color.match(/[\d.]+/g).map(Number);
-                     rep.push([Math.round(rapp(c, bg) * 10) / 10, e.textContent.trim().slice(0, 18)]); });
-  rep.sort((a, b) => a[0] - b[0]);
-  const box = document.getElementById('seanceParts');
-  const fait = box ? [...box.querySelectorAll('i.fait')].map(i => getComputedStyle(i).backgroundColor)[0] || null : null;
-  const ici = box ? ((getComputedStyle(box.querySelector('i.ici') || box).backgroundImage.match(/rgb\(\d+, \d+, \d+\)/) || [null])[0]) : null;
-  return { fond: true, haut: 'rgb(' + st[0].join(',') + ')', pire: rep[0] || null, fait, ici };
-};
+async ([cas]) => {
+const LIRE_FOND = () => {
+  const fd = document.getElementById('seanceFond');
+  const vis = !!(fd && !fd.classList.contains('hidden') && getComputedStyle(fd).display !== 'none');
+  if(!vis) return { fond: false };
+  const lum = ([r,g,b]) => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(r) + .7152 * f(g) + .0722 * f(b); };
+  const rapp = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); };
+  const st = (fd.style.background.match(/rgb\(\d+, \d+, \d+\)/g) || []).map(c => c.match(/\d+/g).map(Number));
+  if(st.length < 2) return { fond: true, faute: 'degrade illisible' };
+  const H = innerHeight, rep = [];
+  const els = [document.getElementById('flashKicker'), document.getElementById('flashThemeTitle'), ...document.querySelectorAll('#seancePartsNoms > *')].filter(x => x && x.offsetParent && x.textContent.trim());
+  els.forEach(e => { const r = e.getBoundingClientRect(), f = Math.max(0, Math.min(1, (r.top + r.height / 2) / H)), bg = st[0].map((v, i) => v + (st[1][i] - v) * f), c = getComputedStyle(e).color.match(/[\d.]+/g).map(Number);
+                     rep.push([Math.round(rapp(c, bg) * 10) / 10, e.textContent.trim().slice(0, 18)]); });
+  rep.sort((a, b) => a[0] - b[0]);
+  const box = document.getElementById('seanceParts');
+  const fait = box ? [...box.querySelectorAll('i.fait')].map(i => getComputedStyle(i).backgroundColor)[0] || null : null;
+  const ici = box ? ((getComputedStyle(box.querySelector('i.ici') || box).backgroundImage.match(/rgb\(\d+, \d+, \d+\)/) || [null])[0]) : null;
+  return { fond: true, haut: 'rgb(' + st[0].join(',') + ')', pire: rep[0] || null, fait, ici };
+};
 
   const pause = ms => new Promise(r => setTimeout(r, ms));
   await chargerPremiersPas();
@@ -148,45 +151,112 @@ async () => {
   return { accueilCache: (!p || getComputedStyle(p).display === 'none') && (!fd || getComputedStyle(fd).display === 'none'), sansBande: !document.getElementById('sceneSeance').classList.contains('avec-repere') };
 }
 """
-
-CADRE = r"""
-async ([quoi]) => {
-  const pause = ms => new Promise(r => setTimeout(r, ms));
-  const lireCadre = async () => {
-    const f = document.getElementById('sceneCadre');
-    for(let i = 0; i < 80; i++){
-      try{
-        const d = f.contentDocument;
-        if(d && d.readyState === 'complete' && d.body && (d.location.href || '').indexOf('about:') !== 0){
-          await pause(500);
-          const fm = d.getElementById('fondMonde'), w = d.defaultView;
-          return { adresseFond: (f.dataset.page || '').indexOf('&fond=') >= 0, fondPose: !!d.getElementById('fondSeance'),
-                   fondPage: w.getComputedStyle(d.body).backgroundImage.slice(0, 70), carteCachee: !fm || w.getComputedStyle(fm).display === 'none' };
-        }
-      }catch(e){}
-      await pause(150);
-    }
-    return { faute: 'cadre non charge' };
-  };
-  const bande = () => { const b = document.getElementById('sceneRepere'), sec = document.getElementById('sceneSeance');
-    return { avec: sec.classList.contains('avec-repere'), fond: getComputedStyle(b).backgroundColor, clair: b.classList.contains('clair'),
-             noms: [...document.querySelectorAll('#scenePartsNoms > *')].map(x => x.textContent), ici: [...document.querySelectorAll('#sceneParts i.ici')].length }; };
-  if(quoi === 'libre'){ ouvrirSceneLibre('kueche'); await pause(300); const c = await lireCadre(); return { quoi, bande: bande(), cadre: c }; }
-  if(quoi === 'theme-libre'){ ouvrirThemeIllustre('familia'); await pause(300); const c = await lireCadre(); return { quoi, bande: bande(), cadre: c }; }
-  let forme = quoi === 'theme' ? 'theme_arret' : quoi === 'pp' ? 'pp_scene' : 'scene_arret';
-  if(quoi === 'pp'){ await chargerPremiersPas(); await ouvrirPremiersPas(); } else await ouvrirSeanceDuJour();
-  await pause(1400);
+
+CADRE = r"""
+async ([quoi]) => {
+  const pause = ms => new Promise(r => setTimeout(r, ms));
+  const lireCadre = async () => {
+    const f = document.getElementById('sceneCadre');
+    for(let i = 0; i < 80; i++){
+      try{
+        const d = f.contentDocument;
+        if(d && d.readyState === 'complete' && d.body && (d.location.href || '').indexOf('about:') !== 0){
+          await pause(500);
+          const fm = d.getElementById('fondMonde'), w = d.defaultView;
+          return { adresseFond: (f.dataset.page || '').indexOf('&fond=') >= 0, fondPose: !!d.getElementById('fondSeance'),
+                   fondPage: w.getComputedStyle(d.body).backgroundImage.slice(0, 70), carteCachee: !fm || w.getComputedStyle(fm).display === 'none' };
+        }
+      }catch(e){}
+      await pause(150);
+    }
+    return { faute: 'cadre non charge' };
+  };
+  const bande = () => { const b = document.getElementById('sceneRepere'), sec = document.getElementById('sceneSeance');
+    return { avec: sec.classList.contains('avec-repere'), fond: getComputedStyle(b).backgroundColor, clair: b.classList.contains('clair'),
+             noms: [...document.querySelectorAll('#scenePartsNoms > *')].map(x => x.textContent), ici: [...document.querySelectorAll('#sceneParts i.ici')].length }; };
+  if(quoi === 'libre'){ ouvrirSceneLibre('kueche'); await pause(300); const c = await lireCadre(); return { quoi, bande: bande(), cadre: c }; }
+  if(quoi === 'theme-libre'){ ouvrirThemeIllustre('familia'); await pause(300); const c = await lireCadre(); return { quoi, bande: bande(), cadre: c }; }
+  let forme = quoi === 'theme' ? 'theme_arret' : quoi === 'pp' ? 'pp_scene' : 'scene_arret';
+  if(quoi === 'pp'){ await chargerPremiersPas(); await ouvrirPremiersPas(); } else await ouvrirSeanceDuJour();
+  await pause(1400);
   let k = currentCards.findIndex(c => c && c.forme === forme);
   if(k < 0 && quoi === 'pp') k = currentCards.findIndex(c => c && c.forme === 'scene_arret');
-  if(k < 0) return { quoi, faute: 'pas de carte ' + forme };
+  if(k < 0) return { quoi, faute: 'pas de carte ' + forme };
   const formeVue = currentCards[k].forme;
-  if(typeof SEANCE_PARTS !== 'undefined' && SEANCE_PARTS) segmentsSeance(SEANCE_PARTS.paquet, SEANCE_PARTS.parts).forEach(s => PASSAGES_VUS.add(s.p));
-  currentFlashcard = k; loadFlashcard(); await pause(600);
-  const c = await lireCadre();
-  window.__cadrePret = true;
+  if(typeof SEANCE_PARTS !== 'undefined' && SEANCE_PARTS) segmentsSeance(SEANCE_PARTS.paquet, SEANCE_PARTS.parts).forEach(s => PASSAGES_VUS.add(s.p));
+  currentFlashcard = k; loadFlashcard(); await pause(600);
+  const c = await lireCadre();
+  window.__cadrePret = true;
   return { quoi, forme: formeVue, bande: bande(), cadre: c };
-}
-"""
+}
+"""
+
+FLECHE = r"""
+async ([quoi]) => {
+  const pause = ms => new Promise(r => setTimeout(r, ms));
+  await ouvrirSeanceDuJour(); await pause(1400);
+  const forme = quoi === 'theme' ? 'theme_arret' : 'scene_arret';
+  const k = currentCards.findIndex(c => c && c.forme === forme);
+  if(k < 0) return { faute: 'pas de carte ' + forme };
+  segmentsSeance(SEANCE_PARTS.paquet, SEANCE_PARTS.parts).forEach(s => PASSAGES_VUS.add(s.p));
+  currentFlashcard = k; loadFlashcard();
+  const f = document.getElementById('sceneCadre');
+  let d = null;
+  for(let i = 0; i < 80; i++){ try{ d = f.contentDocument; if(d && d.readyState === 'complete' && d.body && d.getElementById('verreBoutonsCss')) break; }catch(e){} await pause(150); }
+  if(!d) return { faute: 'cadre' };
+  await pause(600);
+  const w = d.defaultView;
+  // un rond « Continuer » pose au bas de la page, comme apres une reponse, et lu a sa toute premiere image
+  const b = d.createElement('button'); b.className = 'suite'; b.textContent = 'Continuer';
+  b.style.cssText = 'position:fixed;bottom:12px;left:20px;right:20px;height:54px;z-index:5000';
+  // le rond sur le fond de la page (une bande vide, comme le bas d'une page de theme) : il lit la couleur du fond
+  const vide = d.createElement('div'); vide.style.cssText = 'position:fixed;left:0;right:0;bottom:0;height:120px;z-index:4999;background:transparent'; d.body.appendChild(vide);
+  // dans la scene, une photo brune sous le rond (le sol de l'aeroport, Jacques, 11 nov.)
+  if(quoi === 'scene'){ const c = d.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d'); x.fillStyle = '#6B4A2E'; x.fillRect(0, 0, 16, 16);
+    const im = d.createElement('img'); im.src = c.toDataURL('image/png'); im.style.cssText = 'position:fixed;left:0;right:0;bottom:0;width:100%;height:110px;object-fit:cover;z-index:4998'; d.body.insertBefore(im, vide); }
+  d.body.appendChild(b);
+  await new Promise(r => w.requestAnimationFrame(() => r()));
+  const premiere = { encre: w.getComputedStyle(b).getPropertyValue('--v-encre').trim(), fleche: !!b.querySelector('.v-fleche'), rond: b.classList.contains('v-rond') };
+  await pause(1500);
+  const ensuite = w.getComputedStyle(b).getPropertyValue('--v-encre').trim();
+  return { quoi, sombre: d.documentElement.classList.contains('fond-sombre'), premiere, ensuite };
+}
+"""
+
+BARRE = r"""
+async () => {
+  const pause = ms => new Promise(r => setTimeout(r, ms));
+  await ouvrirSeanceDuJour(); await pause(1400);
+  const P = SEANCE_PARTS, k = P.paquet.findIndex(c => c && c.forme === 'scene_arret');
+  if(k < 0) return { faute: 'pas de scene' };
+  // une carte ratee plus tot, rattrapee juste apres la scene (comme rattraperAvantLeTheme)
+  const revue = P.paquet.find((c, i) => i < k && c && c.forme !== 'scene_arret');
+  P.paquet.splice(k + 1, 0, revue); currentCards = P.paquet;
+  segmentsSeance(P.paquet, P.parts).forEach(s => PASSAGES_VUS.add(s.p));
+  currentFlashcard = k + 1; loadFlashcard(); await pause(400);
+  const segs = segmentsSeance(P.paquet, P.parts).map(s => s.p);
+  return { segs, ici: [...document.querySelectorAll('#seancePartsNoms b')].map(x => x.textContent), titre: document.getElementById('flashThemeTitle').textContent };
+}
+"""
+
+CADRE_FOND = r"""
+async () => {
+  const pause = ms => new Promise(r => setTimeout(r, ms));
+  await ouvrirSeanceDuJour(); await pause(1400);
+  const k = currentCards.findIndex(c => c && c.forme === 'scene_arret');
+  segmentsSeance(SEANCE_PARTS.paquet, SEANCE_PARTS.parts).forEach(s => PASSAGES_VUS.add(s.p));
+  currentFlashcard = k; loadFlashcard(); await pause(900);
+  const sec = document.getElementById('sceneSeance');
+  const seance = sec.style.background;
+  showScreen('settings'); await pause(300);
+  quitterReglages(); await pause(300);
+  const retour = { avec: sec.classList.contains('avec-repere'), fond: sec.style.background };
+  showScreen('home'); await pause(200);
+  ouvrirSceneLibre('kueche'); await pause(500);
+  const libre = { avec: sec.classList.contains('avec-repere'), fond: sec.style.background };
+  return { seance: seance.slice(0, 60), retour: { avec: retour.avec, fond: retour.fond.slice(0, 60) }, libre };
+}
+"""
 
 LANGUES = [("de", "fr"), ("de", "en"), ("de", "tr"), ("de", "uk"), ("de", "fa"), ("de", "ar"), ("de", "pt"), ("de", "pl"), ("de", "ru"), ("es", "de"), ("es", "fr")]
 
@@ -319,6 +389,35 @@ def main():
                           and c.get("adresseFond") and c.get("fondPose") and c.get("carteCachee") and "gradient" in (c.get("fondPage") or ""))
                 note("cadre %s %s %s %s %d" % (quoi, appris, ui, th, w), ok and not js(page), r)
                 capt(page, "cadre-%s-%s-%s-%s-%d" % (quoi, appris, ui, th, w))
+                ctx.close()
+            for appris, theme, quoi in (("es", "dark", "scene"), ("de", "light", "scene"), ("es", "dark", "theme"), ("de", "light", "theme")):
+                ctx, page = page_de(nav, appris, "fr", theme, 390, 844)
+                r = page.evaluate(FLECHE, [quoi])
+                p1 = r.get("premiere") or {}
+                claire = lambda e: e.replace(" ", "").startswith("rgb(243") or e.replace(" ", "").startswith("rgba(243")
+                if quoi == "scene":
+                    # sur la photo brune : la fleche blanche, de jour comme de nuit
+                    ok = p1.get("rond") and p1.get("fleche") and claire(r.get("ensuite", "")) and (theme != "dark" or claire(p1.get("encre", "")))
+                elif theme == "dark":
+                    ok = r.get("sombre") and p1.get("rond") and p1.get("fleche") and claire(p1.get("encre", "")) and claire(r.get("ensuite", ""))
+                else:
+                    ok = p1.get("rond") and p1.get("fleche") and not claire(p1.get("encre", "")) and not r.get("sombre")
+                note("fleche %s %s %s" % (quoi, appris, theme), ok and not js(page), r)
+                capt(page, "fleche-%s-%s-%s" % (quoi, appris, theme))
+                ctx.close()
+            for appris, theme in (("de", "light"), ("es", "dark")):
+                ctx, page = page_de(nav, appris, "fr", theme, 390, 844)
+                r = page.evaluate(BARRE)
+                segs = r.get("segs") or []
+                ok = "scene" in segs and segs.index("scene") + 1 < len(segs) and segs[segs.index("scene") + 1] == "revisions" and r.get("ici") and r["ici"][0] != "Scène"
+                note("barre apres la scene %s %s" % (appris, theme), ok and not js(page), r)
+                capt(page, "barre-apres-scene-%s-%s" % (appris, theme))
+                ctx.close()
+            for appris, theme in (("de", "light"), ("es", "dark")):
+                ctx, page = page_de(nav, appris, "fr", theme, 390, 844)
+                r = page.evaluate(CADRE_FOND)
+                ok = "gradient" in r.get("seance", "") and r["retour"]["avec"] and "gradient" in r["retour"]["fond"] and not r["libre"]["avec"] and not r["libre"]["fond"]
+                note("cadre sans bandes %s %s" % (appris, theme), ok and not js(page), r)
                 ctx.close()
             ctx, page = page_de(nav, "en", "fr", "light", 360, 780)
             d = page.evaluate("async () => { await ouvrirSeanceDuJour(); await new Promise(r => setTimeout(r, 1200)); const p = document.getElementById('seancePaysage'); return { dispo: repereSeanceDispo(), paysage: !!(p && !p.classList.contains('hidden')) }; }")

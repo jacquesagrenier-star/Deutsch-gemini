@@ -50071,13 +50071,14 @@ var accueilDejaOuvert = false;
 // Et pas de restauration automatique de la position par le navigateur au rechargement.
 try{ if("scrollRestoration" in history) history.scrollRestoration = "manual"; }catch(e){}
 function showScreen(id){
-    if(id !== "sceneSeance"){ try{ const sr = document.getElementById("sceneSeance"); if(sr) sr.classList.remove("avec-repere"); }catch(e){} }
+    if(id !== "sceneSeance"){ try{ const sr = document.getElementById("sceneSeance"); if(sr){ sr.classList.remove("avec-repere"); sr.style.background = ""; } }catch(e){} }
     // v1003 : le fond commun se regle sur l'ecran (vif et anime sur l'accueil, pale ailleurs).
     const ecranAvant = (document.body && document.body.dataset.ecran) || "";
     try{ document.body.dataset.ecran = id; }catch(e){}
     if(id === "sceneSeance") sessionAvantMicro();
     // 11 nov. 2026 : on n'en sortait pas. La session restait en « auto » apres une scene, jusqu'au prochain oral.
     else if(ecranAvant === "sceneSeance") sessionApresMicro();
+    if(id === "sceneSeance" && (sceneOuverteDepuis === "arret" || sceneOuverteDepuis === "premiers_pas")) setTimeout(() => { try{ poserRepereScene(); }catch(e){} }, 0);
     try{ eteindreTransitHorsSeance(id); }catch(e){}
     // Le panneau d'information de l'accueil ne survit pas a un changement
     // d'ecran : voir fermerInfoProgression().
@@ -69963,6 +69964,12 @@ function segmentsSeance(paquet, parts){
         // la partie ou elle retombe, sinon elle la coupe en deux et fait naitre de faux passages
         // (« Les revisions : c'est fait · Ensuite : les mots de l'etape », Jacques, 6 nov.).
         if(vues.has(c) && segs.length) p = segs[segs.length - 1].p;
+        // Sauf apres un arret (scene, theme) : une carte revenue la (rattrapee avant le theme, « Encore ») est une
+        // revision, et la barre ne dit plus « Scene » pendant qu'on revoit des cartes (Jacques, 11 nov., espagnol,
+        // iPhone : « la barre indiquait encore Scene alors que j'etais revenu aux cartes »).
+        const arret = c && /^(scene_arret|theme_arret|pp_scene)$/.test(c.forme || "");
+        if(!arret && segs.length && (p === "scene" || p === "theme") && /^(scene|theme)$/.test(segs[segs.length - 1].p) && p === segs[segs.length - 1].p
+           && (vues.has(c) || !parts.get(c) || parts.get(c) === "fin")) p = "revisions";
         vues.add(c);
         const s = segs[segs.length - 1];
         if(s && s.p === p) s.n++;
@@ -70102,12 +70109,15 @@ function poserRepereScene(){
     const sec = document.getElementById("sceneSeance"), r = segmentsRepere();
     if(!sec) return;
     sec.classList.toggle("avec-repere", !!r);
-    if(!r) return;
+    if(!r){ sec.style.background = ""; return; }
     const bande = document.getElementById("sceneRepere"), coul = couleursFondSeance(cleArretCourant());
     if(bande){
         bande.style.background = coul ? coul.haut : "";
         bande.classList.toggle("clair", !!coul && !coul.nuit);
     }
+    // Les marges de l'encoche et du bas de l'iPhone (le padding de #sceneSeance) prennent le fond de la partie, pas
+    // le bleu du cadre (Jacques, 11 nov. : « une bande bleue en haut et une en bas »).
+    sec.style.background = coul ? "linear-gradient(180deg," + coul.haut + " 0%," + coul.bas + " 100%)" : "";
     const box = document.getElementById("sceneParts");
     if(box){
         box.textContent = "";

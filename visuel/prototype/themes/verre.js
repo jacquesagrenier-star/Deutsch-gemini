@@ -35,6 +35,9 @@
         + "#fondMonde{display:none !important}.haut,html.nuit .haut{background:transparent !important}";
       (document.head || document.documentElement).appendChild(st);
       document.documentElement.classList.add("fond-seance");
+      const lu = c => { const v = parseInt(c, 16) / 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); };
+      const lumB = 0.2126 * lu(b.slice(0, 2)) + 0.7152 * lu(b.slice(2, 4)) + 0.0722 * lu(b.slice(4, 6));
+      if (lumB < .22) document.documentElement.classList.add("fond-sombre");
     }
   } catch (e) {}
 
@@ -57,7 +60,7 @@
 @property --v-haut{syntax:"<color>"; inherits:false; initial-value:transparent}
 @property --v-bas{syntax:"<color>"; inherits:false; initial-value:transparent}
 .verre-v{--v-haut:rgba(255,255,255,.08); --v-bas:rgba(255,255,255,.05); --v-encre:rgb(23,58,78)}
-html.nuit .verre-v{--v-haut:rgba(18,26,36,.08); --v-bas:rgba(18,26,36,.05); --v-encre:rgb(243,245,248)}
+html.nuit .verre-v, html.fond-sombre .verre-v{--v-haut:rgba(18,26,36,.08); --v-bas:rgba(18,26,36,.05); --v-encre:rgb(243,245,248)}
 .verre-v{--v-reflet:linear-gradient(180deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.05) 30%, rgba(255,255,255,0) 48%), radial-gradient(60% 40% at 50% 110%, rgba(255,255,255,.22), rgba(255,255,255,0) 70%);
   background:var(--v-reflet), linear-gradient(180deg, var(--v-haut), var(--v-bas)) !important; color:var(--v-encre) !important;
   border-color:transparent !important; overflow:hidden !important; isolation:isolate;
@@ -149,9 +152,13 @@ html.v-zone .verre-v.v-rond.v-fixe{bottom:calc(6px + env(safe-area-inset-bottom,
       const img = pile.find(e => e.tagName === "IMG" && !b.contains(e));
       const P = img ? pixels(img) : null;
       if (img && !P && !(img.complete && img.naturalWidth)){
+        // 11 nov. : on ne laisse plus la fleche a l'encre par defaut le temps que l'image arrive (la pastille, puis la
+        // fleche, une seconde plus tard) : le fond decide d'abord, l'image redecide en arrivant.
         pasPrete = true;
         img.addEventListener("load", demander, {once:true});
         if (img.decode) img.decode().then(demander, () => {});
+        if (!fond) fond = couleurFond(pile.find(e => !b.contains(e) && e !== b && e !== img) || document.body);
+        echantillon.push(fond);
         continue;
       }
       if (P){
@@ -168,7 +175,7 @@ html.v-zone .verre-v.v-rond.v-fixe{bottom:calc(6px + env(safe-area-inset-bottom,
       echantillon.push(fond);
     }
     b.style.pointerEvents = ancien;
-    return pasPrete ? null : echantillon;
+    return echantillon.length ? echantillon : null;
   }
   function besoin(ech, tenue, P, seuil){
     const li = lum(tenue.ink), tc = tenue.tc;
@@ -193,7 +200,10 @@ html.v-zone .verre-v.v-rond.v-fixe{bottom:calc(6px + env(safe-area-inset-bottom,
        un peu le voile clair. La marge anti-clignotement ne garde plus un blanc devenu illisible. */
     const moyenne = ech.reduce((s, c) => s + lum(c), 0) / ech.length;
     // (un pantalon gris sur le fond clair d'un studio n'est pas « sombre » : la fleche y reste foncee, sur un voile clair)
-    const sombre = moyenne < .12 && !(x.f.ok && x.f.a <= .45);
+    /* 11 nov. 2026 (Jacques, scene de l'aeroport, espagnol, iPhone : « la fleche noire se voit a peine sur le brun,
+       elle devrait etre blanche ») : sous 0,22 de luminance moyenne, le blanc se lit mieux que le petrole sans aucun
+       voile ; c'est la qu'on change d'encre, et plus seulement sous 0,12. */
+    const sombre = moyenne < .22;
     let k = sombre && note(x.w) < note(x.f) ? "w" : "f";
     const avant = b.dataset.verreTenue;
     if (avant === "w" && k === "f" && sombre && note(x.w) - note(x.f) < .10) k = "w";
