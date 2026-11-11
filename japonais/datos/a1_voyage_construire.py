@@ -51,13 +51,13 @@ ESCALES = [
 あした かえります | ashita kaerimasu | je rentre demain | I'm going home tomorrow""",
   "a": ("Le lieu où l'on va ou arrive prend に : ホテルに いきます. Le lieu d'où l'on vient prend から : カナダから きました. ～ました, c'est le passé poli de ～ます.",
         "The place you go to or arrive at takes に: ホテルに いきます. The place you come from takes から: カナダから きました. ～ました is the polite past of ～ます.")},
- "blocs": """…と もうします。 | Je m'appelle …. | My name is …. | マルタン / ポール / トランブレ | Martin / Paul / Tremblay | Martin / Paul / Tremblay
+ "blocs": """…と もうします。 | Je m'appelle …. | My name is …. | もり / カミーユ / たなか | Mori / Camille / Tanaka | Mori / Camille / Tanaka
 …から きました。 | Je viens …. | I'm from …. | フランス / ベルギー / カナダ | de France / de Belgique / du Canada | France / Belgium / Canada
 …は どこですか。 | Où est … ? | Where is …? | でぐち / エレベーター / タクシーのりば | la sortie / l'ascenseur / la station de taxis | the exit / the lift / the taxi rank
 …を おねがいします。 | …, s'il vous plaît. | …, please. | かぎ / タオル / ちず | La clé / Une serviette / Un plan | The key / A towel / A map""",
  "dialogue": {"t": ("À la réception de l'auberge", "At the inn's front desk"), "l": """eux | いらっしゃいませ。ごよやくですか。 | Bienvenue. Vous avez réservé ? | Welcome. Do you have a reservation?
-moi | はい、トランブレと もうします。 | Oui, je m'appelle Tremblay. | Yes, my name is Tremblay.
-eux | トランブレさまですね。パスポートを おねがいします。 | Madame Tremblay, très bien. Votre passeport, s'il vous plaît. | Ms Tremblay, yes. Your passport, please.
+moi | はい、もりと もうします。 | Oui, je m'appelle Mori. | Yes, my name is Mori.
+eux | もりさまですね。パスポートを おねがいします。 | Madame Mori, très bien. Votre passeport, s'il vous plaît. | Ms Mori, yes. Your passport, please.
 moi | はい、どうぞ。 | Voici. | Here you are.
 eux | こちらが へやの かぎです。ごゆっくり どうぞ。 | Voici la clé de la chambre. Reposez-vous bien. | Here's your room key. Enjoy your stay.
 moi | ありがとうございます。 | Merci beaucoup. | Thank you very much."""}},
