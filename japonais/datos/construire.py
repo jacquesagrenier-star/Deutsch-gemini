@@ -125,6 +125,14 @@ def entree(f, phrases, domaines_niv):
     return e
 
 
+def fonctionnels_tuiles():
+    """Le module qui range les mots-outils par tuile (fonctionnels_tuiles.py)."""
+    spec = importlib.util.spec_from_file_location("fonctionnels_tuiles", os.path.join(ICI, "fonctionnels_tuiles.py"))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return m
+
+
 def romaji_de():
     """Le romaji des cartes, calculé par la même fonction que les fiches
     (japonais/cartes/outils/construire.py ; chargé sous un autre nom, ce
@@ -381,7 +389,9 @@ def principal():
     ecrire("adjectifs.json", par_nature["adjectif"])
     ecrire("adverbes.json", par_nature["adverbe"])
     ecrire("expressions.json", par_nature["expression"])
-    ecrire("fonctionnels.json", par_nature["fonctionnel"])
+    # Lot J4 (11 nov. 2026) : rangés par tuile (partikeln, pronomen, zahlen,
+    # konjunktionen), les clés que lit le moteur ; voir fonctionnels_tuiles.py.
+    ecrire("fonctionnels.json", fonctionnels_tuiles().regrouper(par_nature["fonctionnel"]))
 
     print("Niveau | noms (thèmes) | verbes | adjectifs | adverbes | expressions | mots-outils | en attente")
     for jlpt, cecr in NIVEAUX.items():
