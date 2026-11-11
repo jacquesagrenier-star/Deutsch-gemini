@@ -9408,7 +9408,7 @@ html[dir="rtl"] #flashcards .cp-actions button.primary::before{transform:scaleX(
 #flashcardActions .judge-good .judge-bille svg{width:19px; height:19px;}
 #flashcardActions .judge-good .srs-ladder, #flashcardActions .judge-good .srs-pips{order:1 !important;}
 #flashcardActions .judge-good .judge-continuer{position:absolute !important; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap;}
-/* v1162 : LE MOT DU POINT (decision de Jacques du 11 nov., proposition 4) sous les points, le temps du passage.
+/* v1164 : LE MOT DU POINT (decision de Jacques du 11 nov., proposition 4) sous les points, le temps du passage.
    Pose en absolu au bas du bouton : la bille et les points ne bougent pas d'un pixel quand il arrive. Le vert
    des points allumes le jour, celui de l'ancien .srs-ladder-text la nuit. */
 #flashcardActions .judge-good .srs-ladder-text.dit{display:block !important; position:absolute; left:6px; right:6px; bottom:4px;
@@ -9570,7 +9570,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1163</span>
+        <span class="subtitle-version">v1164</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -58666,7 +58666,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1163;
+const APP_VERSION = 1164;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -71603,7 +71603,7 @@ function majEcheances(animerDernier){
     // duree (« dans 10 minutes, moi, je trouvais que c'etait pas une bonne idee »). Il n'est ecrit qu'apres un
     // ✓ (animerDernier) : il vit le temps du passage et part avec la carte, puisque la carte suivante rappelle
     // majEcheances() sans animerDernier. Rien apres « Encore » : le bouton dit deja ce qu'il fait. Avant la
-    // v1162, ce texte (cache depuis la v910) recevait echeanceProchaineReussite(), qui ne sert plus qu'a l'aide.
+    // v1164, ce texte (cache depuis la v910) recevait echeanceProchaineReussite(), qui ne sert plus qu'a l'aide.
     // A la maitrise, markMastered() passe { jours, toujours } : la ligne dit aussi quand le mot revient.
     const mot = !animerDernier ? ""
         : (typeof animerDernier === "object" ? ligneMaitrise(animerDernier) : motDuPoint(atteints, animerDernier === 2));
@@ -73435,7 +73435,7 @@ function celebrateMastery(justReachedMultiple, avecToast){
 const ATTENTE_ETOILE_MS = 650;
 const ATTENTE_COFFRE_MS = 1000;
 const ATTENTE_FETE_MS   = 1250;
-// v1162 : le temps de lire « Maitrise · a dans 16 jours » ou « Toujours su · a dans 5 semaines » sous les points.
+// v1164 : le temps de lire « Maitrise · a dans 16 jours » ou « Toujours su · a dans 5 semaines » sous les points.
 const ATTENTE_MAITRISE_MS = 2000;
 
 // Duree avant qu'un mot maitrise revienne se faire verifier : le barreau
