@@ -3461,27 +3461,29 @@ html[data-apprendre="es"] [data-seulement-de]{ display:none !important; }
    reste). On ne montre donc que ce qui existe en japonais : la seance, les mots,
    les kana, « Mis de cote ». Une tuile qu'on porte en japonais s'ajoute ici. */
 html[data-apprendre="ja"] .explorer-tout,
-html[data-apprendre="ja"] #ecouteLigneAccueil,
 html[data-apprendre="ja"] #episodeLigne,
 html[data-apprendre="ja"] .search-launch,
 html[data-apprendre="ja"] [data-seulement-de],
 html[data-apprendre="ja"] [data-seulement-es],
-html[data-apprendre="ja"] [data-orbid]:not([data-orbid="signaler"]):not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]):not([data-orbid="ja-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]){ display:none !important; }
+html[data-apprendre="ja"] [data-orbid]:not([data-orbid="signaler"]):not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]):not([data-orbid="ja-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]):not([data-orbid="carnet"]):not([data-orbid="pronomen"]):not([data-orbid="zahlen"]):not([data-orbid="praep"]):not([data-orbid="konjunktionen"]):not([data-orbid="wortstellung"]){ display:none !important; }
 /* Les kanji et les kana dans le texte courant (fiches, exercices, tableaux) :
    une police japonaise en repli, sinon un kanji partage avec le chinois peut
    prendre sa forme chinoise. */
 html[data-apprendre="ja"] body{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", "Noto Sans CJK JP", sans-serif; }
 html:not([data-apprendre="ja"]) [data-seulement-ja]{ display:none !important; }
 /* « Tout le contenu » : les sections dont toutes les tuiles sont cachees. */
-html[data-apprendre="ja"] h2.orb-section[data-section="illustres"],
-html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_pratique"]){ display:none !important; }
+html[data-apprendre="ja"] h2.orb-section[data-section="illustres"]{ display:none !important; }
+/* Lot J4 (11 nov. 2026) : « S'entrainer par temps » en japonais, comme l'anglais --
+   les cartes allemandes cedent la place a la liste de grammaire.json. */
+html[data-apprendre="ja"] #verbenTempsInfo > .card{ display:none !important; }
+html[data-apprendre="ja"] #tempsEnCartes{ display:block !important; }
 /* Les exercices allemands des ecrans de niveau (Präsens, cas regi, articles). */
 html[data-apprendre="ja"] button[onclick*="startExercises"],
 html[data-apprendre="ja"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="ja"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
 /* Dans les panneaux des mots : parcourir, rien d'autre. Dictees, quiz d'article,
    declinaisons, temps allemands, nuances : tous allemands ou espagnols. */
-html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="Kana"]):not([onclick*="abrirGramatica"]):not([onclick*="ouvrirSceneJa_"]){ display:none !important; }
+html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="Kana"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]):not([onclick*="tuileEn_"]):not([onclick*="ausdrueckeJa"]):not([onclick*="ouvrirTuilesMenu"]):not([onclick*="startSchreiben"]):not([onclick*="startDictee"]):not([onclick*="startDueReview"]):not([onclick*="startRandomMixAll"]):not([onclick*="openRedewendungen"]):not([onclick*="ouvrirSceneJa_"]){ display:none !important; }
 /* Le mot japonais : police du systeme d'abord (Hiragino sur iPhone, Noto sur
    Android), et lang="ja" sur l'element, sans quoi un kanji partage avec le
    chinois prend la forme chinoise. Les furigana au-dessus, petits et lisibles. */
@@ -35845,7 +35847,7 @@ function chargerCours(){
                 FICHES_GRAMMAIRE = Array.isArray(d.fiches) ? d.fiches : [];
                 TEMPS_ANGLAIS = Array.isArray(d.temps) ? d.temps : [];
                 TUILES_ANGLAISES = (d.tuiles && typeof d.tuiles === "object") ? d.tuiles : {};
-                if(LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt") brancherSeriesAnglaises();
+                if(LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt" || LANGUE_APPRISE === "ja") brancherSeriesAnglaises();
                 Object.keys(textes).forEach(code => {
                     if(I18N[code]) Object.assign(I18N[code], textes[code]);
                 });
@@ -39797,6 +39799,25 @@ const FUNKTIONSWORT_THEMES = {
     artikelwoerter: () => artikelwoerterTheme
 };
 
+// LES MOTS-OUTILS DU JAPONAIS (lot J4, 11 nov. 2026), apres le chargeur commun. japonais/datos/fonctionnels.json
+// est range par tuile (partikeln, pronomen, zahlen, konjunktionen) ; ses listes praepositionen et artikelwoerter
+// sont VIDES expres -- le japonais n'en a pas. Le chargeur commun saute une liste vide et garderait les listes
+// ALLEMANDES (la recherche japonaise les servait) : on les vide ici. Et chaque carte recoit sa lecture (.ja).
+async function motsOutilsJaponais(){
+    try{
+        const r = await fetch(urlDonnees("funktionswort.json"), { cache: "no-cache" });
+        if(!r.ok) return;
+        const data = await r.json();
+        if(!data || !("partikeln" in data)) return;   // l'ancienne forme, par niveau
+        Object.keys(FUNKTIONSWORT_THEMES).forEach(cle => {
+            const liste = Array.isArray(data[cle]) ? data[cle] : [];
+            const theme = FUNKTIONSWORT_THEMES[cle]();
+            if(!liste.length){ theme.words = []; return; }
+            (theme.words || []).forEach((c, i) => { if(liste[i]) c.ja = lectureJaponaise(liste[i]); });
+        });
+    }catch(e){}
+}
+
 async function loadFunktionswoerterJson() {
     try {
         const response = await fetch(urlDonnees('funktionswort.json'), { cache: 'no-cache' });
@@ -39896,6 +39917,8 @@ async function loadRedewendungenJson() {
                     // Rangs 36-38 : l'espagnol (interface de l'anglais, 2 nov. 2026).
                       : LANGUE_APPRISE === "en" ? ["", "", "", champEs(r, "traduction"), champEs(r, "exemple"), cat.es || r.kategorie_es || ""] : [])
                 ]);
+                // Le japonais (lot J4) : la lecture et le romaji des expressions.
+                if (LANGUE_APPRISE === "ja") words[words.length - 1].ja = lectureJaponaise(r);
             });
         });
         if (words.length){ redewendungenTheme.words = words; migrerProgressionExpressions(); }
@@ -40055,6 +40078,7 @@ async function loadThemesJson() {
     await loadRedewendungenJson();
     await loadPruefungJson();
     await loadFunktionswoerterJson();
+    if (LANGUE_APPRISE === "ja") await motsOutilsJaponais();
     try {
         const response = await fetch(urlDonnees('themes.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Erreur themes.json");
@@ -41793,6 +41817,9 @@ function exercicesAdjectifsJa(){ serieJa("adjectifsJaExercises", "kicker_adjecti
 function exercicesKosoadoJa(){ serieJa("kosoadoJaExercises", "kicker_kosoado_ja", "kosoado", exercicesKosoadoJa); }
 function exercicesQuestionsJa(){ serieJa("questionsJaExercises", "kicker_questions_ja", "questions", exercicesQuestionsJa); }
 function exercicesAruIruJa(){ serieJa("aruIruJaExercises", "kicker_aru_iru_ja", "aru-iru", exercicesAruIruJa); }
+// Lot J4 (11 nov. 2026) : les deux fiches nouvelles, compteurs et ordre des mots.
+function exercicesCompteursJa(){ serieJa("compteursJaExercises", "kicker_compteursJaExercises", "compteurs", exercicesCompteursJa); }
+function exercicesOrdreJa(){ serieJa("ordreJaExercises", "kicker_ordreJaExercises", "ordre-des-mots", exercicesOrdreJa); }
 function startPorParaUebung(){
     startExerciseSetMelange("porParaExercises", "kicker_por_para",
                      () => abrirGramatica("por-para"), startPorParaUebung);
@@ -47083,8 +47110,9 @@ function texteDus(dus, total){
 }
 
 function orbPanelData(id){
-    // Le portugais a ses tuiles de grammaire depuis le 11 nov. 2026 (lot P5), meme forme que l'anglais.
-    if((LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt") && TUILES_ANGLAISES[id]) return panneauTuileAnglaise(id);
+    // Le portugais a ses tuiles de grammaire depuis le 11 nov. 2026 (lot P5), meme forme que l'anglais ;
+    // le japonais aussi (lot J4, 11 nov. 2026) : ses tuiles viennent de son grammaire.json.
+    if((LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt" || LANGUE_APPRISE === "ja") && TUILES_ANGLAISES[id]) return panneauTuileAnglaise(id);
     // LES THEMES ILLUSTRES (3 nov. 2026, Jacques : « N › » doit ouvrir tous les themes, sur le modele des
     // scenes). Une option par theme de la langue apprise, dans l'ordre de THEMES_ILLUSTRES ; section « ailleurs » :
     // ouverts a tous, comme leurs tuiles, et sans en-tete (une seule famille).
@@ -47334,7 +47362,11 @@ function orbPanelData(id){
     if(id === "ausdruecke"){
         return {
             icon:"dossier", title:t("orb_ausdruecke_title"), sub:t("orb_ausdruecke_sub"),
-            options: LANGUE_APPRISE === "en"
+            options: LANGUE_APPRISE === "ja"
+            // Le japonais (lot J4, 11 nov. 2026) : ses familles, le champ kategorie de japonais/datos/expressions.json.
+            ? EXPRESSIONS_JAPONAISES.map(([fn, fr, en, ex], i) => ({ icon:"carte", title: libJa(fr, en), desc: ex, primary: i === 0,
+                action: fn, section:"mots" }))
+            : LANGUE_APPRISE === "en"
             // L'anglais (essai, 27 oct. 2026) : ses familles (anglais/outils/phrases_a1.py).
             ? EXPRESSIONS_ANGLAISES.map(([cat, ex, fn], i) => ({ icon:"carte", title: nomFamilleAnglaise(cat), desc: ex, primary: i === 0,
                 action: fn, section:"mots" }))
@@ -48064,7 +48096,9 @@ function lancerDictee(mode, pool, orbe, relance){
         choix.push(item);
     }
     shuffleArray(choix);
-    const liste = buildDictationExercises(choix.slice(0, DICTEE_NOMS), mode);
+    let liste = buildDictationExercises(choix.slice(0, DICTEE_NOMS), mode);
+    // Le japonais (lot J4) : la dictee par syllabes a choisir, sans clavier japonais.
+    if(LANGUE_APPRISE === "ja") liste = dicteeEnMorceauxJa(liste);
     if(!liste.length){ showInfoToast(t("alert_no_dictation_available")); return; }
     startExerciseSet(shuffleArray(liste.slice()), "kicker_dictation_exercise",
                      () => openOrbPanel(orbe), relance);
@@ -53769,6 +53803,30 @@ const FAMILLES_ANGLAISES_ES = { "Saluer": "Saludar", "Se présenter": "Presentar
 function nomFamilleAnglaise(cat){
     return (getUiLang() === "es" && FAMILLES_ANGLAISES_ES[cat]) || cat;
 }
+// Le japonais (lot J4, 11 nov. 2026) : une famille par categorie de japonais/datos/expressions.json
+// (champ kategorie). Les fonctions en toutes lettres, comme celles de l'anglais : orbAction() appelle window[nom]().
+const EXPRESSIONS_JAPONAISES = [
+    ["ausdrueckeJaSalutation", "Saluer", "Greetings", "こんにちは · おはよう · さようなら"],
+    ["ausdrueckeJaPolitesse", "Politesse", "Politeness", "すみません · おねがいします · どうぞ"],
+    ["ausdrueckeJaConversation", "Converser", "Conversation", "そうですね · なるほど · ええと"],
+    ["ausdrueckeJaReaction", "Réagir", "Reacting", "本当 · よかった · 大丈夫"],
+    ["ausdrueckeJaInterjection", "Interjections", "Interjections", "あ · ええ · おや"],
+    ["ausdrueckeJaQuotidien", "Au quotidien", "Everyday life", "いただきます · ただいま · お先に"],
+    ["ausdrueckeJaSentiment", "Sentiments", "Feelings", "うれしい · 残念 · 心配"],
+    ["ausdrueckeJaTravail", "Au travail", "At work", "お疲れ様です · 失礼します"],
+    ["ausdrueckeJaTournures", "Tournures", "Set phrases", "気をつけて · 仕方がない"],
+    ["ausdrueckeJaProverbes", "Proverbes", "Proverbs", "猿も木から落ちる"]
+];
+function ausdrueckeJaSalutation(){ startRedewendungenVokabular("ALL", ["salutation"]); }
+function ausdrueckeJaPolitesse(){ startRedewendungenVokabular("ALL", ["politesse"]); }
+function ausdrueckeJaConversation(){ startRedewendungenVokabular("ALL", ["conversation"]); }
+function ausdrueckeJaReaction(){ startRedewendungenVokabular("ALL", ["reaction"]); }
+function ausdrueckeJaInterjection(){ startRedewendungenVokabular("ALL", ["interjection"]); }
+function ausdrueckeJaQuotidien(){ startRedewendungenVokabular("ALL", ["quotidien"]); }
+function ausdrueckeJaSentiment(){ startRedewendungenVokabular("ALL", ["sentiment"]); }
+function ausdrueckeJaTravail(){ startRedewendungenVokabular("ALL", ["travail"]); }
+function ausdrueckeJaTournures(){ startRedewendungenVokabular("ALL", ["expression"]); }
+function ausdrueckeJaProverbes(){ startRedewendungenVokabular("ALL", ["proverbe"]); }
 function ausdrueckeEnSaluer(){ startRedewendungenVokabular("ALL", ["Saluer"]); }
 function ausdrueckeEnPresenter(){ startRedewendungenVokabular("ALL", ["Se présenter"]); }
 function ausdrueckeEnPolitesse(){ startRedewendungenVokabular("ALL", ["Politesse"]); }
@@ -74022,7 +74080,7 @@ function resetAllConfirm(){
 
 function openVerbenTempsInfo(){
     // Le portugais (A2-C1, 30 oct. 2026) : ses series par temps, comme l'anglais.
-    if(LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt") return ouvrirTempsAnglais();
+    if(LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt" || LANGUE_APPRISE === "ja") return ouvrirTempsAnglais();
     showScreen("verbenTempsInfo");
 }
 
@@ -74158,8 +74216,10 @@ function phrasesTraduisibles(niveau){
     // Sans elle, l'ecran « Ecrire » montrait la phrase anglaise a qui lit
     // l'interface en portugais, en arabe, en turc... Les rangs viennent de
     // RANGS_CARTE, comme pour phrasesEcoutables().
+    // Le japonais (lot J4) : une phrase de 4 signes (空は青い) est deja une phrase.
+    const longueurMin = LANGUE_APPRISE === "ja" ? 3 : 6;
     const ajouter = (de, fr, en, source, trad) => {
-        if(de && fr && de.length > 6) sorties.push({ de, fr, en: en || fr, source, trad: trad || null });
+        if(de && fr && de.length > longueurMin) sorties.push({ de, fr, en: en || fr, source, trad: trad || null });
     };
     const bonNiveau = (n) => niveau === "ALL" || n === niveau;
     const rangs = (w, r) => ({ tr: w[r.tr], uk: w[r.uk], fa: w[r.fa], pt: w[r.pt], ar: w[r.ar], pl: w[r.pl], ru: w[r.ru], de: w[r.de] });
@@ -74598,6 +74658,7 @@ function startTuilesB2(){ startTuiles("B2"); }
 function startTuilesC1(){ startTuiles("C1"); }
 
 function phrasesPourTuiles(niveau){
+    if(LANGUE_APPRISE === "ja") return phrasesEnMorceauxJa(niveau, false);
     return phrasesTraduisibles(niveau || "ALL").filter(ph => {
         const n = ph.de.trim().split(/\s+/).length;
         return n >= TUILES_MIN_MOTS && n <= TUILES_MAX_MOTS;
@@ -74605,6 +74666,7 @@ function phrasesPourTuiles(niveau){
 }
 
 function startTuiles(niveau){
+    if(LANGUE_APPRISE === "ja") return startMorceauxJa(niveau, false);
     const vivier = phrasesPourTuiles(niveau);
     if(vivier.length < 3){ showInfoToast(t("alert_level_unavailable")); return; }
     shuffleArray(vivier);
@@ -74651,6 +74713,7 @@ function startTuiles(niveau){
 function ouvrirTuilesMenu(){
     showScreen("tuilesMenu");
     renderTuilesMenu();
+    if(LANGUE_APPRISE === "ja") chargerMorceauxJa().then(() => renderTuilesMenu()).catch(() => {});
     // Les phrases viennent en partie de themes.json, charge de facon asynchrone.
     Promise.resolve(loadThemesJson()).then(() => renderTuilesMenu()).catch(() => {});
 }
@@ -74672,6 +74735,120 @@ function renderTuilesMenu(){
 }
 
 
+// ==================== LE JAPONAIS ECRIT PAR MORCEAUX (lot J4, 11 nov. 2026) ====================
+// Decision de Jacques : dans Ecrire, Construire la phrase et les dictees, l'apprenant du japonais CHOISIT
+// DES MORCEAUX au lieu de taper au clavier japonais. Le moteur coupe les autres langues a leurs espaces ;
+// le japonais n'en a pas : japonais/datos/morceaux.json donne, pour chaque phrase d'exemple, ses bunsetsu
+// (b : 私は / 日本語を / 勉強します -- Construire la phrase) et ses mots (m : 私 / は / 日本語 / を / ... --
+// Ecrire, plus fin). Les leurres sont la meme piece avec une autre particule (私は -> 私が) : c'est le choix
+// de la particule qui fait travailler, pas un mot sans rapport.
+let MORCEAUX_JA = null, chargementMorceauxJa = null;
+function chargerMorceauxJa(){
+    if(MORCEAUX_JA) return Promise.resolve(MORCEAUX_JA);
+    if(!chargementMorceauxJa){
+        chargementMorceauxJa = fetch(urlDonnees("morceaux.json"), { cache: "no-cache" })
+            .then(r => r.ok ? r.json() : null)
+            .then(d => { MORCEAUX_JA = (d && d.phrases) || null; return MORCEAUX_JA; })
+            .catch(() => null)
+            .finally(() => { if(!MORCEAUX_JA) chargementMorceauxJa = null; });
+    }
+    return chargementMorceauxJa;
+}
+function morceauxJa(phrase, fin){
+    const p = MORCEAUX_JA && MORCEAUX_JA[String(phrase || "").trim()];
+    return p ? (fin ? p.m : p.b) : null;
+}
+function phrasesEnMorceauxJa(niveau, fin){
+    return phrasesTraduisibles(niveau || "ALL").filter(ph => {
+        const m = morceauxJa(ph.de, fin);
+        return m && m.length >= 3 && m.length <= (fin ? 10 : 7);
+    });
+}
+const PARTICULES_LEURRES_JA = ["は", "が", "を", "に", "で", "へ", "と", "も", "の", "から", "まで"];
+function leurresJa(tokens, reservoir, n){
+    const presents = new Set(tokens);
+    const sortie = [];
+    // D'abord : la particule finale d'un morceau, remplacee par une autre.
+    melangerPhrase(tokens.slice()).forEach(tok => {
+        if(sortie.length >= n) return;
+        const p = PARTICULES_LEURRES_JA.slice().sort((a, b) => b.length - a.length).find(x => tok.length > x.length && tok.endsWith(x));
+        if(!p) return;
+        const autres = PARTICULES_LEURRES_JA.filter(x => x !== p && !presents.has(tok.slice(0, -p.length) + x));
+        if(!autres.length) return;
+        const choisi = tok.slice(0, -p.length) + autres[Math.floor(Math.random() * autres.length)];
+        sortie.push(choisi); presents.add(choisi);
+    });
+    // Sinon : une piece d'une autre phrase.
+    for(let essai = 0; sortie.length < n && essai < 12 && reservoir.length; essai++){
+        const m = reservoir[Math.floor(Math.random() * reservoir.length)];
+        if(m && !presents.has(m)){ sortie.push(m); presents.add(m); }
+    }
+    return sortie;
+}
+async function startMorceauxJa(niveau, fin){
+    await chargerMorceauxJa();
+    const vivier = phrasesEnMorceauxJa(niveau, fin);
+    if(vivier.length < 3){ showInfoToast(t("alert_level_unavailable")); return; }
+    shuffleArray(vivier);
+    const reservoir = [];
+    vivier.slice(0, 200).forEach(ph => (morceauxJa(ph.de, fin) || []).forEach(m => reservoir.push(m)));
+    const liste = vivier.slice(0, fin ? SCHREIBEN_TAILLE_SERIE : TUILES_TAILLE_SERIE).map(ph => ({
+        ...questionsTraduites(ph),
+        topic: (fin ? "\u00c9crire \u00b7 " : "Construire \u00b7 ") + ph.source,
+        question: fin ? ph.fr : libelle(ph),
+        question_en: ph.en,
+        translation: "",
+        translation_en: "",
+        hint: fin ? libJa("Écris la phrase en japonais : touche les morceaux dans l'ordre.", "Write the sentence in Japanese: tap the pieces in order.") : t("tuiles_hint"),
+        hint_en: fin ? libJa("Écris la phrase en japonais : touche les morceaux dans l'ordre.", "Write the sentence in Japanese: tap the pieces in order.") : t("tuiles_hint"),
+        chunks: morceauxJa(ph.de, fin).slice(),
+        leurres: leurresJa(morceauxJa(ph.de, fin), reservoir, fin ? 3 : 2),
+        correct: ph.de,
+        correctEn: ph.de,
+        explanation: "",
+        explanation_en: ""
+    }));
+    startExerciseSet(liste, fin ? "kicker_schreiben" : "kicker_tuiles",
+                     () => fin ? openOrbPanel("schreiben") : ouvrirTuilesMenu(), () => startMorceauxJa(niveau, fin));
+}
+// La dictee japonaise : on entend le mot, on l'ecrit en kana en choisissant ses syllabes -- les leurres
+// sont celles qu'on confond a l'oreille (か / が, つ / っ, voyelle longue).
+const KANA_VOISINS_JA = { "か":"が", "が":"か", "き":"ぎ", "ぎ":"き", "く":"ぐ", "ぐ":"く", "け":"げ", "げ":"け", "こ":"ご", "ご":"こ",
+    "さ":"ざ", "ざ":"さ", "し":"じ", "じ":"し", "す":"ず", "ず":"す", "せ":"ぜ", "ぜ":"せ", "そ":"ぞ", "ぞ":"そ",
+    "た":"だ", "だ":"た", "ち":"じ", "つ":"っ", "っ":"つ", "て":"で", "で":"て", "と":"ど", "ど":"と",
+    "は":"ば", "ば":"ぱ", "ぱ":"は", "ひ":"び", "び":"ぴ", "ぴ":"ひ", "ふ":"ぶ", "ぶ":"ぷ", "ぷ":"ふ",
+    "へ":"べ", "べ":"ぺ", "ぺ":"へ", "ほ":"ぼ", "ぼ":"ぽ", "ぽ":"ほ", "お":"う", "う":"お", "い":"え", "え":"い",
+    "ん":"む", "よ":"ょ", "ゆ":"ゅ", "や":"ゃ" };
+function syllabesJa(kana){
+    const out = [];
+    Array.from(String(kana || "")).forEach(c => {
+        if(/[ゃゅょャュョぁぃぅぇぉァィゥェォ]/.test(c) && out.length) out[out.length - 1] += c;
+        else out.push(c);
+    });
+    return out;
+}
+function dicteeEnMorceauxJa(liste){
+    return liste.map(ex => {
+        const c = ex.carteDictee && ex.carteDictee.word;
+        const ja = c && c.ja;
+        const kana = (ja && ja.lecture) || "";
+        const syl = syllabesJa(kana);
+        if(syl.length < 2) return null;
+        const leurres = [];
+        melangerPhrase(syl.slice()).forEach(s => {
+            const v = KANA_VOISINS_JA[s.charAt(0)];
+            if(leurres.length < 2 && v && syl.indexOf(v + s.slice(1)) < 0 && leurres.indexOf(v + s.slice(1)) < 0) leurres.push(v + s.slice(1));
+        });
+        const mot = ex.correct;
+        return Object.assign({}, ex, {
+            hint: libJa("Écris le mot en kana : touche ses syllabes dans l'ordre.", "Write the word in kana: tap its syllables in order."),
+            hint_en: libJa("Écris le mot en kana : touche ses syllabes dans l'ordre.", "Write the word in kana: tap its syllables in order."),
+            chunks: syl, leurres: leurres,
+            answers: [kana], correct: kana + (mot && mot !== kana ? "（" + mot + "）" : ""), correctEn: kana,
+            dictationText: kana, carteDictee: null
+        });
+    }).filter(Boolean);
+}
 function startSchreibenALL(){ startSchreiben("ALL"); }
 function startSchreibenA1(){ startSchreiben("A1"); }
 function startSchreibenA2(){ startSchreiben("A2"); }
@@ -74680,6 +74857,7 @@ function startSchreibenB2(){ startSchreiben("B2"); }
 function startSchreibenC1(){ startSchreiben("C1"); }
 
 function startSchreiben(niveau){
+    if(LANGUE_APPRISE === "ja") return startMorceauxJa(niveau, true);
     const vivier = phrasesTraduisibles(niveau || "ALL");
     if(vivier.length < 3){ showInfoToast(t('alert_level_unavailable')); return; }
     shuffleArray(vivier);
