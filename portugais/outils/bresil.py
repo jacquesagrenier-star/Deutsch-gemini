@@ -820,8 +820,14 @@ def _grammaire(d, rap):
         for cle in ("titre", "texte"):
             if cle in t:
                 t[cle] = _francais(t[cle], rap, "temps")
-    for cle in [k for k in d if k not in ("textes", "fiches", "temps")]:
-        pass
+    # Les tuiles de grammaire (11 nov. 2026, lot P5) : le sous-titre est du
+    # portugais, le titre et la description d'une option du francais a balises.
+    for tuile in d.get("tuiles", {}).values():
+        tuile["sous_titre"] = _pt(tuile.get("sous_titre"), rap, "tuile")
+        for o in tuile.get("options", []):
+            for cle in ("titre", "desc"):
+                if cle in o:
+                    o[cle] = _francais(o[cle], rap, "tuile")
     return d
 
 

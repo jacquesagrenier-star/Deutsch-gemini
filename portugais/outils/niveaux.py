@@ -411,6 +411,132 @@ def temps(jeu):
     return len(liste), nq
 
 
+def regle_du_nom(mot, regles):
+    """La regle de genre qui s'applique au nom (la terminaison la plus longue), ou None."""
+    tete = mot.lower().split(" ")[0].split("-")[0]
+    trouvee = None
+    for r in regles:
+        fin = r[0].lstrip("-")
+        if tete.endswith(fin) and len(tete) >= len(fin) + 2 and (not trouvee or len(fin) > len(trouvee[0]) - 1):
+            trouvee = r
+    return trouvee
+
+
+def genre_mesure(jeu, regles):
+    """{terminaison: (suivent, total)} sur tous nos noms (A1-C1) au genre o / a."""
+    compte = {r[0]: [0, 0] for r in regles}
+    for t in jeu["themes.json"]["themes"]:
+        for m in t["mots"]:
+            if m.get("genre") not in ("o", "a"):
+                continue
+            r = regle_du_nom(m["mot"], regles)
+            if r:
+                compte[r[0]][1] += 1
+                if m["genre"] == r[1]:
+                    compte[r[0]][0] += 1
+    return compte
+
+
+def questions_terminaisons(jeu, regles, compte, n_par_genre=15, par_regle=3):
+    """« ___ viagem » : o ou a ? Des noms A1-B1 qui suivent leur regle, a parts
+    egales entre o et a (sinon repondre « a » partout ferait la moyenne), plus
+    quatre exceptions celebres."""
+    taux = {k: round(100 * s / t) if t else 0 for k, (s, t) in compte.items()}
+    candidats = {"o": [], "a": []}
+    vus = set()
+    for t in jeu["themes.json"]["themes"]:
+        if t.get("niveau") not in ("A1", "A2", "B1"):
+            continue
+        for m in t["mots"]:
+            g, mot = m.get("genre"), m["mot"]
+            if g not in ("o", "a") or " " in mot or mot.lower() in vus:
+                continue
+            r = regle_du_nom(mot, regles)
+            if r and r[1] == g:
+                vus.add(mot.lower())
+                candidats[g].append((mot, m.get("traduction", ""), r))
+    rnd = random.Random("terminaisons-pt")
+    qs = []
+    for g in ("o", "a"):
+        rnd.shuffle(candidats[g])
+        pris, par = [], {}
+        # d'abord les terminaisons rares (plus instructives), puis -o / -a
+        for mot, fr, r in sorted(candidats[g], key=lambda x: x[2][0] in ("-o", "-a")):
+            if par.get(r[0], 0) >= par_regle:
+                continue
+            par[r[0]] = par.get(r[0], 0) + 1
+            pris.append((mot, fr, r))
+            if len(pris) >= n_par_genre:
+                break
+        for mot, fr, r in pris:
+            qs.append(("___ " + mot, g, ["a" if g == "o" else "o"], fr,
+                       "%s : %s (%d %% de nos noms) — %s %s." % (r[0], "masculin" if g == "o" else "féminin", taux[r[0]], g, mot)))
+    for mot, g, fr, expl in (("dia", "o", "le jour", "-a, mais masculin : o dia."), ("mão", "a", "la main", "-ão, mais féminin : a mão."),
+                             ("problema", "o", "le problème", "-ema (mot grec) : masculin, o problema."),
+                             ("cor", "a", "la couleur", "-or, mais féminin : a cor.")):
+        qs.append(("___ " + mot, g, ["a" if g == "o" else "o"], fr, expl))
+    rnd.shuffle(qs)
+    return qs, taux
+
+
+def tuiles(jeu):
+    """Les tuiles de grammaire du portugais (11 nov. 2026, lot P5) : pronoms,
+    nombres, prepositions, connecteurs, ordre des mots, adverbes, et « genero »
+    (ajoutee au panneau des Noms). Meme forme que l'anglais : cle « tuiles » de
+    grammaire.json, dessinee par panneauTuileAnglaise() d'index.html."""
+    T = module("tuiles_niveaux")
+    if not T:
+        return 0, 0
+    fiches = jeu["grammaire.json"]["fiches"]
+    jeux = jeu["exercices.json"]["jeux"]
+    textes = jeu["grammaire.json"]["textes"]["fr"]
+    ids = {f["id"] for f in fiches}
+    compte = genre_mesure(jeu, T.REGLES_GENRE)
+    for f in T.FICHES:
+        assert f["id"] not in ids and f["serie"] not in jeux, "fiche en double : " + f["id"]
+        fiche = {k: f[k] for k in ("id", "titre", "resume", "regle", "tableau", "exemples", "attention")}
+        if f["id"] == "genero":
+            qs, taux = questions_terminaisons(jeu, T.REGLES_GENRE, compte)
+            fiche["tableau"] = [[r[0], "%s · %d %%" % ("masculin" if r[1] == "o" else "féminin", taux[r[0]]),
+                                 ", ".join(r[2]) + ((" · sauf " + ", ".join(r[3])) if r[3] else "")]
+                                for r in T.REGLES_GENRE]
+            jeux[f["serie"]] = [question(f["id"], q, b, fs, tr, ex) for q, b, fs, tr, ex in qs]
+        else:
+            jeux[f["serie"]] = questions(f["id"], f["questions"])
+        fiche.update(exercice="exercicesFicheEn_" + f["id"].replace("-", "_"), serie=f["serie"],
+                     niveau=f["niveau"], statut="brouillon")
+        fiches.append(fiche)
+        textes["kicker_" + f["serie"]] = f["kicker"]
+        ids.add(f["id"])
+    sortie, ns, nq = {}, 0, 0
+    for tuile, d in T.TUILES.items():
+        opts = []
+        for o in d["options"]:
+            if "fiche" in o:
+                assert o["fiche"] in ids, "fiche inconnue : " + o["fiche"]
+                opts.append({"id": "fiche-" + o["fiche"], "type": "fiche", "cible": o["fiche"], "titre": o["titre"], "desc": o["desc"]})
+            elif "vocab" in o:
+                opts.append({"id": "vocab-" + o["vocab"], "type": "vocab", "cible": o["vocab"], "titre": o["titre"], "desc": o["desc"]})
+            elif "serie_fiche" in o:
+                assert o["serie_fiche"] in jeux, "serie inconnue : " + o["serie_fiche"]
+                opts.append({"id": o["serie_fiche"], "type": "serie", "cible": o["serie_fiche"], "titre": o["titre"], "desc": o["desc"]})
+            else:
+                assert o["serie"] not in jeux, "serie en double : " + o["serie"]
+                jeux[o["serie"]] = questions(o["id"], o["questions"])
+                textes["kicker_" + o["serie"]] = o["kicker"]
+                opts.append({"id": o["id"], "type": "serie", "cible": o["serie"], "titre": o["titre"],
+                             "desc": o["desc"], "niveau": o["niveau"]})
+                ns += 1
+                nq += len(jeux[o["serie"]])
+        sortie[tuile] = {"sous_titre": d["sous_titre"], "options": opts}
+    jeu["grammaire.json"]["tuiles"] = sortie
+    RAPPORT.append("== TUILES : regles du genre mesurees sur nos noms")
+    for r in T.REGLES_GENRE:
+        s, t = compte[r[0]]
+        RAPPORT.append("  %-6s %s  %4d / %4d" % (r[0], r[1], s, t))
+    return ns, nq
+
+
 def allonger_series(jeu):
     """Les series ecrites a la main (series_<niv>.py, comme l'anglais), puis les
     questions de temps tirees des phrases des cartes (series_temps.py)."""
@@ -499,6 +625,8 @@ def construire(jeu, variantes=None):
                      % (niv, nn, nv, na, nad, nex, nf, nq))
     nte, qte = temps(jeu)
     nsup = allonger_series(jeu)
+    ntu, qtu = tuiles(jeu)
+    print("Niveaux -- tuiles de grammaire : %d series dediees (%d questions)" % (ntu, qtu))
     nfo = fonctionnels(jeu)
     nco = conjugaison(jeu)
     for l in bilan:

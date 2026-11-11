@@ -3556,7 +3556,7 @@ html[data-apprendre="pt"] [data-seulement-de],
 html[data-apprendre="pt"] [data-seulement-es],
 html[data-apprendre="pt"] [data-seulement-ja],
 html[data-apprendre="pt"] [data-seulement-en],
-html[data-apprendre="pt"] [data-orbid]:not([data-orbid="signaler"]):not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="pt-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]){ display:none !important; }
+html[data-apprendre="pt"] [data-orbid]:not([data-orbid="signaler"]):not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="pt-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]):not([data-orbid="carnet"]):not([data-orbid="pronomen"]):not([data-orbid="zahlen"]):not([data-orbid="praep"]):not([data-orbid="konjunktionen"]):not([data-orbid="wortstellung"]){ display:none !important; }
 html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startDictee"],
 html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startSchreiben"],
 html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="ouvrirTuilesMenu"],
@@ -3570,7 +3570,7 @@ html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:
 html[data-apprendre="pt"] button[onclick*="startExercises"],
 html[data-apprendre="pt"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="pt"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
-html[data-apprendre="pt"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]):not([onclick*="ouvrirScene"]){ display:none !important; }
+html[data-apprendre="pt"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]):not([onclick*="ouvrirScene"]):not([onclick*="tuileEn_"]):not([onclick*="ausdrueckeEn"]){ display:none !important; }
 /* « S'entrainer par temps » (A2-C1, 30 oct. 2026) : la liste portugaise
    (grammaire.json, cle « temps ») a la place des cartes allemandes. */
 html[data-apprendre="pt"] #verbenTempsInfo > .card{ display:none !important; }
@@ -46862,7 +46862,8 @@ function texteDus(dus, total){
 }
 
 function orbPanelData(id){
-    if(LANGUE_APPRISE === "en" && TUILES_ANGLAISES[id]) return panneauTuileAnglaise(id);
+    // Le portugais a ses tuiles de grammaire depuis le 11 nov. 2026 (lot P5), meme forme que l'anglais.
+    if((LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt") && TUILES_ANGLAISES[id]) return panneauTuileAnglaise(id);
     // LES THEMES ILLUSTRES (3 nov. 2026, Jacques : « N › » doit ouvrir tous les themes, sur le modele des
     // scenes). Une option par theme de la langue apprise, dans l'ordre de THEMES_ILLUSTRES ; section « ailleurs » :
     // ouverts a tous, comme leurs tuiles, et sans en-tete (une seule famille).
@@ -46985,7 +46986,10 @@ function orbPanelData(id){
             ] : LANGUE_APPRISE === "en" ? [
                 // L'anglais (essai) : la serie de la fiche « Les faux amis ».
                 { icon:"exercice", title:"Les faux amis", desc:"library ≠ librairie · actually ≠ actuellement", action:"exercicesFicheEnFauxAmis", section:"pratique" }
-            ] : [])
+            // Le portugais (11 nov. 2026, lot P5) : les regles du genre, les terminaisons et les faux amis,
+            // decrits dans grammaire.json comme une tuile « genero » sans tuile sur la grille.
+            ] : (LANGUE_APPRISE === "pt" && TUILES_ANGLAISES.genero) ? panneauTuileAnglaise("genero").options.map(o => Object.assign(o, { primary:false }))
+            : [])
         };
     }
     if(id === "adjektive"){
@@ -47113,6 +47117,14 @@ function orbPanelData(id){
             // L'anglais (essai, 27 oct. 2026) : ses familles (anglais/outils/phrases_a1.py).
             ? EXPRESSIONS_ANGLAISES.map(([cat, ex, fn], i) => ({ icon:"carte", title: nomFamilleAnglaise(cat), desc: ex, primary: i === 0,
                 action: fn, section:"mots" }))
+            // Le portugais (11 nov. 2026, lot P5) : les memes familles (expressions.json pt porte les memes
+            // categories que l'anglais), avec des exemples portugais.
+            : LANGUE_APPRISE === "pt"
+            ? EXPRESSIONS_ANGLAISES.map(([cat, ex, fn], i) => ({ icon:"carte", title: cat, primary: i === 0, action: fn, section:"mots",
+                desc: ({ "Saluer": "olá · bom dia · até logo", "Se présenter": "chamo-me… · muito prazer", "Politesse": "por favor · obrigado · desculpe",
+                         "Réagir": "claro · pois é · a sério?", "En classe": "não percebo · como se escreve…?", "Au quotidien": "quanto custa? · queria…",
+                         "Vœux": "parabéns · boa sorte · saúde", "Bavarder": "há quanto tempo! · tudo bem?", "Donner son avis": "na minha opinião · acho que",
+                         "Discuter": "por um lado · por exemplo · ou seja", "Nuancer": "até certo ponto · em teoria", "Tournures": "ter sorte · fazer sentido" })[cat] || "" }))
             : LANGUE_APPRISE === "es"
             // L'espagnol : les groupes de fork.py et leurs exemples.
             ? [

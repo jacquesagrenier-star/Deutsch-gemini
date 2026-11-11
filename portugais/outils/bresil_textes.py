@@ -164,6 +164,13 @@ REECRITURES = [
 # ---------------------------------------------------------------- reperes
 ("Un et deux ont un féminin : um, uma ; dois, duas",
  "Un et deux ont un féminin : um, uma ; dois, duas (duas horas, deux heures). 16, 17 et 19 : dezesseis, dezessete, dezenove (au Portugal dezasseis, dezassete, dezanove). Au téléphone, on dit souvent meia (une demi-douzaine) pour six : meia, sete, oito."),
+# ---------------------------------------------------------------- tuiles de grammaire (11 nov. 2026, lot P5)
+("Plusieurs noms changent de genre entre le français et le portugais",
+ "Plusieurs noms changent de genre entre le français et le portugais : <b>o leite</b> (le lait), <b>a árvore</b> (l'arbre), <b>o sangue</b> (le sang), <b>a ponte</b> (le pont), <b>o mel</b> (le miel), <b>a viagem</b> (le voyage), <b>a dor</b> (la douleur), <b>o nariz</b> (le nez)."),
+("Les villes n'ont pas d'article",
+ "Les villes n'ont pas d'article (<b>em São Paulo</b>, <b>de Recife</b>), sauf quelques-unes : <b>no Rio</b>, <b>do Porto</b>. Les pays en ont souvent un : <b>no Brasil</b>, <b>na França</b>, <b>nos Estados Unidos</b>, mais <b>em Portugal</b>."),
+("Pour répondre « oui », le Portugal reprend volontiers le verbe",
+ "Pour répondre « oui », le portugais reprend volontiers le verbe : <b>Gostou? — Gostei.</b> (Tu as aimé ? — Oui.) ; <b>Já comeu? — Já.</b>"),
 ("Les couleurs s'accordent comme les adjectifs",
  "Les couleurs s'accordent comme les adjectifs : um carro vermelho, uma casa vermelha. Azul et verde ne changent qu'au pluriel (azuis, verdes). Rosa, laranja, cinza et marrom sont invariables (uma camisa cinza)."),
 ]
