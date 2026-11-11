@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Fait des trois scenes japonaises (konbini, eki, genkan) des scenes JOUABLES.
+"""Fait des 35 scenes japonaises de Camille (« Une annee a Tokyo ») des scenes JOUABLES.
 
     python japonais/scenes/construire_scenes.py
 
@@ -19,6 +19,13 @@ pas ; celles du japonais restent a ecrire.
 
 Le niveau : N5 -> A1, N4 -> A2, N3 -> B1, comme les cartes. Un mot hors du
 corpus garde sa traduction du lexique (ecrite a la main le 12 oct.).
+
+LES 35 SCENES (11 nov. 2026, lot J3) : l'ordre de l'annee de Camille
+(japonais/scenes/HISTOIRE-CAMILLE.md). Les trois prototypes du 12 oct.
+(eki, konbini, genkan) gardent leur place, 2 a 4. L'anglais de chaque
+scene vient de traductions_en.py. Le script ecrit aussi
+japonais/scenes/scenes-ja-index.js : la table SCENES_JA a recopier dans
+index.html (titres ja, fr, en, dans l'ordre).
 Brouillon : a faire relire par un natif.
 """
 import importlib.util
@@ -30,8 +37,15 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 JAPONAIS = os.path.normpath(os.path.join(ICI, ".."))
 RACINE = os.path.normpath(os.path.join(JAPONAIS, ".."))
 PROTO = os.path.join(RACINE, "visuel", "prototype")
-SCENES = ["konbini", "eki", "genkan"]
+SCENES = ("kuukou eki konbini genkan heya kuyakusho hanami suupaa raamen sentou tsuyu kyoushitsu "
+          "yuubinkyoku mensetsu kissaten shinkansen sofu-no-ie daidokoro obon natsumatsuri hanabi "
+          "kamakura fushimi ryokan momiji izakaya kusuriya depaato furusato kotatsu chichi-tochaku "
+          "oomisoka hatsumoude kenrokuen ichinengo").split()
 NIVEAUX = {"N5": "A1", "N4": "A2", "N3": "B1", "N2": "B2", "N1": "C1"}
+
+import sys
+sys.path.insert(0, ICI)
+from traductions_en import SCENES_EN   # noqa: E402
 
 spec = importlib.util.spec_from_file_location(
     "cartes_construire", os.path.join(JAPONAIS, "cartes", "outils", "construire.py"))
@@ -102,7 +116,7 @@ def construire(nom, cor):
         "consigne": src["consigne"],
         "exclus": src.get("exclus", []),
         "couches": {"A1": {"titre": "Les mots de la scène"}},
-        "traductions": {"en": {"champs": TRADUCTIONS_EN[nom], "couches": {"A1": "Words in the scene"}}},
+        "traductions": {"en": {"champs": champs_en(nom), "couches": {"A1": "Words in the scene"}}},
     }
     chemin = os.path.join(PROTO, "scene-%s.ja.js" % nom)
     with io.open(chemin, "w", encoding="utf-8", newline="\n") as f:
@@ -115,10 +129,39 @@ def construire(nom, cor):
           % (nom, len(points), len(a1), " ".join(sorted(sans_carte)) or "aucun"))
 
 
+def champs_en(nom):
+    if nom in TRADUCTIONS_EN:
+        return TRADUCTIONS_EN[nom]
+    _, alt, consigne = SCENES_EN[nom]
+    return {"alt": alt, "consigne": consigne}
+
+
+TITRES_EN_PROTOTYPES = {"konbini": "At the konbini", "eki": "At the station", "genkan": "In the entryway"}
+# Le ruban de l'accueil veut des titres courts (le titre complet reste dans la scene).
+TITRES_COURTS_FR = {"genkan": "À l'entrée", "kuyakusho": "À la mairie", "furusato": "La ville du père",
+                    "hatsumoude": "Le premier sanctuaire", "raamen": "Au ramen"}
+
+
+def table_index():
+    """La table SCENES_JA d'index.html, dans l'ordre de l'annee."""
+    lignes = []
+    for nom in SCENES:
+        src = json.load(io.open(os.path.join(PROTO, nom + ".points.json"), encoding="utf-8"))
+        en = TITRES_EN_PROTOTYPES.get(nom) or SCENES_EN[nom][0]
+        lignes.append("    { nom: %s, ja: %s, fr: %s, en: %s }" % tuple(
+            json.dumps(x, ensure_ascii=False) for x in (nom, src["titre"], TITRES_COURTS_FR.get(nom) or src.get("titre_fr", ""), en)))
+    sortie = os.path.join(ICI, "scenes-ja-index.js")
+    with io.open(sortie, "w", encoding="utf-8", newline="\n") as f:
+        f.write("// GENERE par japonais/scenes/construire_scenes.py : a recopier dans index.html (SCENES_JA).\n")
+        f.write("const SCENES_JA = [\n" + ",\n".join(lignes) + "\n];\n")
+    print("-> %s (%d scenes)" % (os.path.relpath(sortie, RACINE), len(lignes)))
+
+
 def main():
     cor = corpus()
     for nom in SCENES:
         construire(nom, cor)
+    table_index()
 
 
 if __name__ == "__main__":
