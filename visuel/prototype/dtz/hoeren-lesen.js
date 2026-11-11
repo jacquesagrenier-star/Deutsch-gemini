@@ -262,7 +262,7 @@ function repondreEntrainement(id, v){
 function finEntrainement(){
   const e = ENT; marquerFait(e.part + e.teil, e.s);
   DTZ.surRetour(() => { choisirTeil(e.part); return true; });
-  parler("fini", {bons: e.bons, faits: e.faits});
+  parler("resultat", {mode: "entrainement", bons: e.bons, faits: e.faits});  // « resultat », pas « fini » : l'app fermerait la page et ses resultats (retour du 11 nov. 2026)
   const r = e.faits ? e.bons / e.faits : 0;
   $("suite").hidden = true;
   $("zone").innerHTML = '<div class="bloc" style="align-items:center;text-align:center"><div class="score">' + e.bons + ' / ' + e.faits + '</div><p>' + T("fin_teil", {b: e.bons, n: e.faits}) + '</p>' +
@@ -435,7 +435,6 @@ function rendreCopie(){
   ecrire("dernier", {date: new Date().toLocaleDateString("fr-FR", {day: "numeric", month: "long"}), texte});
   if (EX.quoi === "HL") resultat("HL", {points: bons, niveau: niv, serie: EX.sH.id});
   parler("resultat", {mode: "examen", serie: EX.sH.id, hoeren: res.H ? res.H.bons : null, lesen: res.L ? res.L.bons : null, niveau: niv});
-  parler("fini", {bons, faits: total});
   $("titre").textContent = T("verdict");
   const pct = v => Math.round(v * 100 / PROFIL.sur) + "%";
   let h = '<div class="bloc"><div class="score">' + bons + ' <span style="font-size:20px;color:var(--gris)">' + T("sur", {n: total}) + '</span></div>' +

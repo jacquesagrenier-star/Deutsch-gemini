@@ -163,7 +163,7 @@ function recapHS(){
   const s = HS.serie, ms = s.nachrichten, bons = ms.filter(m => noteOk(HS.verif[m.nr])).length;
   marquerFait("HS", s);
   resultat("HS", {serie: s.id, bons, sur: 5});
-  parler("fini", {bons, faits: 5});
+  parler("resultat", {partie: "HS", bons, faits: 5});  // « resultat », pas « fini » : l'app fermerait la page et ses resultats (retour du 11 nov. 2026)
   const mot = bons >= 4 ? "ho_mark_bien" : bons >= 3 ? "ho_mark_moyen" : "ho_mark_faible";
   const ligne = m => '<div class="q">' + rendreNotiz(m, HS.saisie[m.nr], HS.verif[m.nr], true) + aideNote(m, HS.saisie[m.nr], HS.verif[m.nr]) + '</div>';
   const rates = ms.filter(m => !noteOk(HS.verif[m.nr])), justes = ms.filter(m => noteOk(HS.verif[m.nr]));

@@ -731,7 +731,7 @@ function recapSch(){
   marquerFait("SCH" + SCH.mode, s);
   const bons = ls ? s.fragen.filter(f => SCH.etat.q[f.n] === f.bon).length : 0;
   resultat(SCH.mode, { serie: s.id, bons: ls ? bons : null, mots: motsDe(SCH.etat.texte), points: e ? e.points : null, sur: e ? e.sur : null, niveau: e ? e.niveau : null });
-  parler("fini", { bons: ls ? bons : (e && e.niveau !== "moins" ? 1 : 0), faits: ls ? 2 : 1 });
+  parler("resultat", { partie: SCH.mode, bons: ls ? bons : (e && e.niveau !== "moins" ? 1 : 0), faits: ls ? 2 : 1 });  // « resultat », pas « fini » : l'app fermerait la page et ses resultats (retour du 11 nov. 2026)
   const mot = !e ? "sch_mark_moins" : e.niveau === "b1" ? "sch_mark_b1" : e.niveau === "a2" ? "sch_mark_a2" : "sch_mark_moins";
   $("titre").textContent = T(ls ? "ls_titre" : "s_titre");
   $("zone").innerHTML =

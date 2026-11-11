@@ -393,7 +393,7 @@ function recapH(){
   const s = H.serie, b = bilanH(H.us, H.rep);
   marquerFait("H", s);
   resultat("H", {serie: s.id, bons: b.bons, sur: 20, points: b.points});
-  parler("fini", {bons: b.bons, faits: 20});
+  parler("resultat", {partie: "H", bons: b.bons, faits: 20});  // « resultat », pas « fini » : l'app fermerait la page et ses resultats (retour du 11 nov. 2026)
   const mot = b.bons >= 14 ? "ho_mark_bien" : b.bons >= 8 ? "ho_mark_moyen" : "ho_mark_faible";
   const lignes = [].concat(...H.us.map(u => u.questions.map(q => ({q, ok: H.rep[q.nr] === q.bon}))));
   const fin = boutonsFin("H", () => ouvrirH(s));
