@@ -57,10 +57,10 @@ FICHES = [
             ["～ですか", fe("question : est-ce que c'est… ?", "question: is it…?"), "学生ですか。"],
         ],
         "exemples": [
-            ex("わたしはマルクです。", "watashi wa Maruku desu", "Je suis Mark.", "I'm Mark."),
-            ex("カナダ人です。", "Kanada-jin desu", "Je suis Canadien.", "I'm Canadian."),
-            ex("アンナさんは学生ですか。", "Anna-san wa gakusei desu ka", "Anna, tu es étudiante ?", "Anna, are you a student?"),
-            ex("いいえ、学生じゃありません。", "iie, gakusei ja arimasen", "Non, je ne suis pas étudiante.", "No, I'm not a student."),
+            ex("わたしはカミーユです。", "watashi wa Kamīyu desu", "Je suis Camille.", "I'm Camille."),
+            ex("カナダ人です。", "Kanada-jin desu", "Je suis Canadienne.", "I'm Canadian."),
+            ex("翔さんは学生ですか。", "Shō-san wa gakusei desu ka", "Shō, tu es étudiant ?", "Shō, are you a student?"),
+            ex("いいえ、学生じゃありません。", "iie, gakusei ja arimasen", "Non, je ne suis pas étudiant.", "No, I'm not a student."),
         ],
         "attention": fe(
             "は s'écrit avec le kana は (ha) mais se dit <b>wa</b> quand c'est la particule. "
@@ -90,8 +90,8 @@ FICHES = [
         ],
         "exemples": [
             ex("わたしはコーヒーがすきです。", "watashi wa kōhī ga suki desu", "Moi, j'aime le café.", "I like coffee."),
-            ex("だれが来ましたか。— アンナさんが来ました。", "dare ga kimashita ka — Anna-san ga kimashita",
-               "Qui est venu ? — C'est Anna qui est venue.", "Who came? — Anna came."),
+            ex("だれが来ましたか。— 高橋さんが来ました。", "dare ga kimashita ka — Takahashi-san ga kimashita",
+               "Qui est venu ? — C'est Mme Takahashi qui est venue.", "Who came? — Ms. Takahashi came."),
             ex("雨がふっています。", "ame ga futte imasu", "Il pleut (la pluie tombe).", "It's raining."),
         ],
         "attention": fe(
@@ -123,7 +123,7 @@ FICHES = [
         "exemples": [
             ex("きのう、えきでパンを買いました。", "kinō, eki de pan o kaimashita", "Hier, j'ai acheté du pain à la gare.", "Yesterday I bought bread at the station."),
             ex("あした、バスで東京に行きます。", "ashita, basu de Tōkyō ni ikimasu", "Demain, je vais à Tokyo en bus.", "Tomorrow I'm going to Tokyo by bus."),
-            ex("アンナさんに本をあげました。", "Anna-san ni hon o agemashita", "J'ai donné un livre à Anna.", "I gave Anna a book."),
+            ex("高橋さんに本をあげました。", "Takahashi-san ni hon o agemashita", "J'ai donné un livre à Mme Takahashi.", "I gave Ms. Takahashi a book."),
         ],
         "attention": fe(
             "<b>に</b> ou <b>で</b> pour un lieu ? に si on y <b>est</b> ou on y <b>arrive</b> (へやにいます, 学校に行きます) ; "
@@ -152,8 +152,8 @@ FICHES = [
             ["A や B", fe("A, B, etc. (liste ouverte)", "A, B and so on (open list)"), "りんごやバナナを買いました。"],
         ],
         "exemples": [
-            ex("マルクさんはカナダ人です。わたしもカナダ人です。", "Maruku-san wa Kanada-jin desu. watashi mo Kanada-jin desu",
-               "Mark est Canadien. Moi aussi.", "Mark is Canadian. So am I."),
+            ex("母はカナダ人です。わたしもカナダ人です。", "haha wa Kanada-jin desu. watashi mo Kanada-jin desu",
+               "Ma mère est Canadienne. Moi aussi.", "My mother is Canadian. So am I."),
             ex("それはだれのかばんですか。", "sore wa dare no kaban desu ka", "À qui est ce sac ?", "Whose bag is that?"),
             ex("肉も魚も食べません。", "niku mo sakana mo tabemasen", "Je ne mange ni viande ni poisson.", "I eat neither meat nor fish."),
         ],
