@@ -106,7 +106,7 @@ html,body{margin:0;background:#DCE6EC;color:var(--encre);
 .explication .sens .fleche{opacity:.7;margin:0 .3em}
 .suite{border:0;border-radius:12px;padding:12px;font:700 16px inherit;background:var(--ambre);
   color:var(--encre);cursor:pointer}
-.score{font-size:13px;color:#fff;text-align:end;text-shadow:0 1px 3px #000}
+.score{font-size:13px;color:var(--encre);text-align:end;text-shadow:0 0 6px rgba(255,255,255,.85)}
 
 /* le contour lumineux d'un objet : une toile a la resolution des masques,
    etiree sur la scene, avec un halo ambre */
@@ -335,6 +335,8 @@ body,html.nuit body{background:transparent !important}
   box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.95),0 4px 14px rgba(20,40,60,.14)}
 html.nuit .titre,html.nuit .niveaux{background:rgba(20,36,50,.6);color:#EEF2F5;box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.14)}
 html.nuit .titre{color:#EEF2F5}
+/* le score suit le theme (11 nov.) : blanc, il se perdait de jour sur la carte du monde et sur le fond clair de la seance (1,27:1) */
+html.nuit .score{color:#EEF2F5;text-shadow:0 1px 3px #000}
 html.nuit .niveaux button{color:#EEF2F5}
 html.nuit .carte{background:rgba(18,34,48,.80);color:#EEF2F5;box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.12),0 10px 26px rgba(0,0,0,.35)}
 html.nuit .carte .consigne{color:#F0A93C}
