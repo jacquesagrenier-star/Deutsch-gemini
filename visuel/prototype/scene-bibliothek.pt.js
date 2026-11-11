@@ -869,7 +869,11 @@ window.SCENE = {
      "r": null,
      "phrase": "O estudante, cujo cabelo é encaracolado, lê na outra mesa.",
      "sens": "L'étudiant aux cheveux bouclés lit à l'autre table.",
-     "n": "<b>cujo</b> + cabelo."
+     "n": "<b>cujo</b> + cabelo.",
+     "br": {
+      "q": "O estudante, ___ cabelo é cacheado, lê na outra mesa.",
+      "phrase": "O estudante, cujo cabelo é cacheado, lê na outra mesa."
+     }
     },
     {
      "q": "A estante à ___ está encostada a escada é muito alta.",

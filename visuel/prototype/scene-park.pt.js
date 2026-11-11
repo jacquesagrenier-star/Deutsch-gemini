@@ -1167,13 +1167,13 @@ window.SCENE = {
      "sens": "Le chien va peut-être attraper le ballon tout de suite.",
      "n": "<b>se calhar</b> + indicatif présent.",
      "br": {
-      "q": "Se calhar o cachorro ___ a bola já a seguir.",
+      "q": "Se calhar o cachorro ___ a bola já em seguida.",
       "c": [
        "apanha",
        "apanhe",
        "se apanhará"
       ],
-      "phrase": "Se calhar o cachorro apanha a bola já a seguir."
+      "phrase": "Se calhar o cachorro apanha a bola já em seguida."
      }
     },
     {

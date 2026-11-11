@@ -56,7 +56,7 @@ brésiliens qui étaient au corpus du Portugal en sont sortis, leur forme du Por
 | avarento | pão-duro (pães-duros) | radin ; au Portugal aussi forreta, sovina |
 | mobilado | mobiliado | un appartement meublé |
 | constipado | resfriado | (paire déjà présente) |
-| a seguir | em seguida | « ensuite » ; seule la phrase de l'adverbe la contient aujourd'hui |
+| a seguir | em seguida | « ensuite » ; aussi la question du parc (« Se calhar o cachorro apanha a bola já em seguida », où « se calhar » reste du Portugal) |
 | o nevoeiro | a neblina | le genre change |
 | os calções | o short | avant : a bermuda (qui descend au genou ; les images montrent des shorts) |
 | os calções de banho | o calção de banho | avant : a sunga (le slip de bain ; l'image montre un short de bain) |
