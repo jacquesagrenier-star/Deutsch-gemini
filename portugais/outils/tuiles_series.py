@@ -124,7 +124,7 @@ Interessa-se ___ arte. | por | em / de | Il s'intéresse à l'art. | Interessar-
 # ------------------------------------------------------------------ Connecteurs
 "porqueEmboraPtExercises": """
 Fiquei em casa ___ estava doente. | porque | embora / mas | Je suis resté à la maison parce que j'étais malade. | La cause : porque + indicatif.
-___ estava doente, fui trabalhar. | Embora | Porque / Como | Bien que je sois malade, je suis allé travailler. | L'opposition : embora + conjuntivo.
+___ estivesse doente, fui trabalhar. | Embora | Porque / Como | Bien que je sois malade, je suis allé travailler. | L'opposition : embora + conjuntivo.
 ___ estava a chover, ficámos em casa. | Como | Embora / Mas | Comme il pleuvait, nous sommes restés à la maison. | Como en tête : la cause.
 Não fui à festa ___ estava cansado. | pois | embora / mas | Je ne suis pas allé à la fête, car j'étais fatigué. | Car : pois.
 Gosto de café, ___ prefiro chá. | mas | porque / embora | J'aime le café, mais je préfère le thé. | Mais : mas.
@@ -137,17 +137,17 @@ Não comprei o casaco ___ era caro demais. | porque | embora / por causa | Je n'
 ___ tenha pouco dinheiro, viaja muito. | Embora | Porque / Como | Bien qu'il ait peu d'argent, il voyage beaucoup. | Embora + conjuntivo (tenha).
 """,
 "quandoEnquantoPtExercises": """
-___ cheguei, já tinham jantado. | Quando | Enquanto / Assim que | Quand je suis arrivé, ils avaient déjà dîné. | Quand, au passé : quando + indicatif.
-___ eu cozinho, ele põe a mesa. | Enquanto | Quando / Até que | Pendant que je cuisine, il met la table. | Pendant que : enquanto.
+___ cheguei, já tinham jantado. | Quando | Enquanto / Até que | Quand je suis arrivé, ils avaient déjà dîné. | Quand, au passé : quando + indicatif.
+___ eu cozinho, ele põe a mesa. | Enquanto | Desde / Até que | Pendant que je cuisine, il met la table. | Pendant que : enquanto.
 Telefono-te ___ chegar. | assim que | enquanto / até que | Je t'appelle dès que j'arrive. | Dès que : assim que + futuro do conjuntivo.
 Espera aqui ___ eu voltar. | até | enquanto / desde | Attends ici jusqu'à ce que je revienne. | Até + infinitif personnel (ou até que + conjuntivo).
 ___ que moro em Lisboa, ando de elétrico. | Desde | Até / Assim | Depuis que j'habite à Lisbonne, je prends le tram. | Depuis que : desde que + indicatif.
-Lava as mãos ___ de comer. | antes | depois / enquanto | Lave-toi les mains avant de manger. | Avant de : antes de + infinitif.
-___ de jantar, vimos um filme. | Depois | Antes / Quando | Après le dîner, nous avons regardé un film. | Après : depois de.
+Lava as mãos ___ de comer, não depois! | antes | depois / enquanto | Lave-toi les mains avant de manger, pas après ! | Avant de : antes de + infinitif.
+Primeiro jantámos; ___, vimos um filme. | depois | antes / quando | D'abord nous avons dîné ; ensuite, nous avons regardé un film. | Ensuite : depois.
 ___ era criança, morava no campo. | Quando | Enquanto / Desde | Quand j'étais enfant, j'habitais à la campagne. | Quando + imperfeito.
 Sempre que ___ ao Porto, como uma francesinha. | vou | vá / ir | Chaque fois que je vais à Porto, je mange une francesinha. | Une habitude : sempre que + indicatif.
 Logo que ___ notícias, aviso-te. | tiver | tenho / tenha | Dès que j'aurai des nouvelles, je te préviendrai. | Logo que + futur : tiver.
-Fiquei acordado ___ ele chegou. | até | enquanto / desde | Je suis resté éveillé jusqu'à ce qu'il arrive. | Jusqu'à : até (au passé, até + indicatif possible).
+Fiquei acordado ___ ele chegar. | até | enquanto / desde | Je suis resté éveillé jusqu'à ce qu'il arrive. | Jusqu'à ce que : até + infinitif personnel.
 """,
 "seCasoPtExercises": """
 ___ chover, ficamos em casa. | Se | Caso / Quando que | S'il pleut, nous restons à la maison. | Se + futuro do conjuntivo.
@@ -157,7 +157,7 @@ Vou a pé, a não ser que ___. | chova | chove / chover | J'y vais à pied, à m
 Se eu ___ rico, comprava um barco. | fosse | for / sou | Si j'étais riche, j'achèterais un bateau. | Hypothèse irréelle : se + imperfeito do conjuntivo.
 Se ___ tempo amanhã, vamos à praia. | tivermos | temos / tivéssemos | Si nous avons le temps demain, nous irons à la plage. | Se + futur : tivermos.
 Não sei ___ ele vem. | se | caso / que se | Je ne sais pas s'il vient. | Question indirecte : se (si).
-Levo o casaco, ___ faça frio. | não vá | caso não / se calhar | Je prends le manteau, des fois qu'il fasse froid. | Não vá + conjuntivo : au cas où (familier).
+Levo o casaco, ___ fazer frio. | não vá | caso / se calhar | Je prends le manteau, des fois qu'il fasse froid. | Não vá + infinitif : au cas où (familier).
 Ligue-me ___ precise de alguma coisa. | caso | se / quando | Appelez-moi au cas où vous auriez besoin de quelque chose. | Caso + conjuntivo.
 Se ___ sabido, tinha vindo. | tivesse | tiver / tinha | Si j'avais su, je serais venu. | Irréel du passé : se tivesse + participe.
 """,
@@ -245,14 +245,14 @@ Ponho ___ na sopa. (du persil) | salsa | sauce / molho | Je mets du persil dans 
 Este ___ é muito bonito. (cet endroit) | sítio | site / sitio | Cet endroit est très beau. | O sítio = l'endroit, le lieu.
 Comi um ___ de chocolate. (un gâteau) | bolo | bol / bolinho | J'ai mangé un gâteau au chocolat. | O bolo = le gâteau (le bol : a tigela).
 Bebi um ___ de água. (un verre) | copo | copa / taça | J'ai bu un verre d'eau. | O copo = le verre.
-O ___ de hoje é arroz-doce. (le dessert) | sobremesa | sobre-mesa / desserto | Le dessert d'aujourd'hui, c'est le riz au lait. | A sobremesa = le dessert.
+A ___ de hoje é arroz-doce. (le dessert) | sobremesa | sobre-mesa / desserto | Le dessert d'aujourd'hui, c'est le riz au lait. | A sobremesa = le dessert.
 Ele vestiu um ___ azul para o casamento. (un costume) | fato | facto / costume | Il a mis un costume bleu pour le mariage. | O fato = le costume (o costume = l'habitude).
 É ___ dele acordar cedo. (son habitude) | costume | fato / hábito de | Il a l'habitude de se lever tôt. | O costume = l'habitude.
 O ___ é muito simpático. (le garçon) | rapaz | rapace / rapariga | Le garçon est très sympathique. | O rapaz = le garçon.
 Recebi uma ___ da minha avó. (une lettre) | carta | cartão / letra | J'ai reçu une lettre de ma grand-mère. | A carta = la lettre (et a carta de condução = le permis).
 A ___ desta música é bonita. (les paroles) | letra | carta / palavra | Les paroles de cette chanson sont belles. | A letra = l'écriture, les paroles.
 Ficámos ___ com a notícia. (contents) | contentes | contidos / contados | Nous avons été contents de la nouvelle. | Contente = content (pas « contenu »).
-Ela tirou um ___ excelente. (une note) | nota | notícia / ponto | Elle a eu une excellente note. | A nota = la note (scolaire, ou le billet de banque).
+Ela tirou uma ___ excelente. (une note) | nota | notícia / ponto | Elle a eu une excellente note. | A nota = la note (scolaire, ou le billet de banque).
 Ponha o lixo no ___. (la poubelle) | caixote do lixo | lixeira / poubela | Mettez les déchets dans la poubelle. | Au Portugal : o caixote do lixo.
 Esta peça de teatro tem uma ___ muito bonita. (une scène) | cena | ceia / jantar | Cette pièce a une très belle scène. | A cena = la scène (le dîner : o jantar ; a ceia = le souper).
 Que ___! Perdi o comboio. (Quel ennui) | chatice | chato / chateza | Quelle barbe ! J'ai raté le train. | A chatice = la barbe, l'embêtement.

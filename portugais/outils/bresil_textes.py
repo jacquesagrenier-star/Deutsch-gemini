@@ -344,6 +344,26 @@ Au Brésil, « la glace » (à manger) : o ___. | sorvete | gelado / bolo | La g
 }
 
 
+# Les series des tuiles de grammaire (lot P5, 11 nov. 2026), ecrites avec voce.
+from tuiles_series_br import SERIES_BR_TUILES
+SERIES_BR.update(SERIES_BR_TUILES)
+
+# Les options des tuiles dont le titre ou la description citent un usage du
+# Portugal : id de l'option -> {"titre": ..., "desc": ...}.
+TUILES_BR = {
+    "fiche-colocacao-pronominal": {"desc": "me chamo, não me chame — la fiche B1"},
+    "pronomes-tonicos": {"titre": "Mim, você, comigo, conosco"},
+    "possessivos-tuile": {"titre": "Meu, seu, dele, dela", "desc": "à qui est-ce ? · A1"},
+    "vocab-startPartikelnVokabular": {"desc": "les petits mots de l'oral"},
+    "fiche-perguntas": {"desc": "o que, onde, por quê — la fiche A1"},
+    "perguntas-ordem": {"desc": "onde é que…? · né? · A2"},
+    "adverbios-familia": {"desc": "às vezes, ali, lá, demais · A2"},
+    "fiche-conjuntivo-expressoes": {"desc": "Le subjuntivo après une conjonction — la fiche B1"},
+}
+# Le surtitre d'une serie de tuile (cle kicker_<serie> des textes).
+KICKERS_BR = {"kicker_pronomesTonicosPtExercises": "Mim, comigo, conosco"}
+
+
 # ---------------------------------------------------------------- fiches
 # Les fiches qui enseignent un usage du Portugal : ce qui remplace leur titre,
 # leur resume et leur tableau (en entier, ou ligne par ligne : « lignes »).

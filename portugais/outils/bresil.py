@@ -828,6 +828,12 @@ def _grammaire(d, rap):
             for cle in ("titre", "desc"):
                 if cle in o:
                     o[cle] = _francais(o[cle], rap, "tuile")
+            if o.get("id") in T.TUILES_BR:
+                o.update(T.TUILES_BR[o["id"]])
+                rap.noter("options de tuiles reecrites pour le Bresil")
+    for k, v in T.KICKERS_BR.items():
+        if k in textes:
+            textes[k] = v
     return d
 
 
