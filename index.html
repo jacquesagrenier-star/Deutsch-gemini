@@ -6650,6 +6650,26 @@ body.apercu-gratuit::after{content:"Aperçu gratuit"; position:fixed; top:calc(e
 }
 .abo-petit{text-align:center; font-size:12px; opacity:.65; line-height:1.6; margin-top:10px;}
 .abo-petit a{color:inherit;}
+/* v1165 : l'essai de 7 jours. La date de fin, le message du web (on ne vend
+   que dans l'app installee), l'etiquette de la simulation de l'admin et le
+   compte a rebours discret de l'accueil. Couleurs : variables du theme, qui
+   ont deja leur version de nuit. */
+.abo-note{text-align:center; font-size:14px; margin:18px 6px 0; opacity:.8;}
+.abo-web{margin-top:20px; padding:14px 16px; border-radius:14px; background:var(--wt-teinte); border:1.5px solid var(--wt-bordure-accent); font-size:14.5px; line-height:1.5;}
+.abo-web p{margin:0;}
+.abo-web .abo-petit{margin-top:8px;}
+.abo-web-magasins{margin-top:10px !important; text-align:center; font-weight:700;}
+.abo-web-magasins a{color:inherit;}
+body[data-apercu-essai]::after{content:"Essai simulé · jour " attr(data-apercu-essai); position:fixed; top:calc(env(safe-area-inset-top, 0px) + 4px); left:50%;
+  transform:translateX(-50%); z-index:9998; pointer-events:none; font:600 11px/1 system-ui, sans-serif;
+  padding:4px 10px; border-radius:999px; background:#E8A23A; color:#1C2430; opacity:.92;}
+.essai-compteur{display:inline-flex; align-items:center; gap:6px; width:auto; min-height:auto; margin:2px 0 6px;
+  padding:4px 12px; border-radius:999px; border:1px solid var(--wt-bordure-accent); background:var(--wt-teinte);
+  color:inherit; font:inherit; font-size:12.5px; font-weight:600; cursor:pointer; opacity:.85;}
+.essai-compteur::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--wt-ambre); flex:none;}
+.essai-compteur.hidden{display:none;}
+.admin-essai-jours{display:flex; flex-wrap:wrap; gap:8px;}
+.admin-essai-jours button{flex:1 1 30%; width:auto;}
 
 /* --- TABLEAU ADMIN : UNE LIGNE PAR TESTEUR (v680) ---
    Le point dit l'etat d'un coup d'oeil : plein vert = actif cette semaine,
@@ -10033,6 +10053,10 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <span class="sl-texte" data-i18n="search_pill">Chercher un mot</span>
     </label>
     </div>
+    <!-- L'ESSAI DE 7 JOURS (v1165) : un compte a rebours discret sous le salut,
+         pendant l'essai seulement ; le toucher ouvre l'abonnement. Cache tant
+         que ACCES.actif vaut false (majCompteurEssai). -->
+    <button type="button" id="essaiCompteur" class="essai-compteur hidden" onclick="ouvrirAbonnement()"></button>
 
     <h1>
         <span class="gradient">
@@ -14019,6 +14043,25 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <button id="adminApercuGratuitBouton" class="secondary" onclick="basculerApercuGratuit()">ACTIVER / ARRÊTER L'APERÇU →</button>
     </div>
 
+    <!-- L'essai de 7 jours (v1165), joue sur cet appareil comme un compte neuf
+         au jour choisi : compte a rebours, rappel du jour 5, ecran du 8e jour,
+         version gratuite. Rien ne change pour les autres comptes. -->
+    <div class="card">
+        <strong>Essai de 7 jours</strong>
+        <div class="info-box">Voir l'app comme un compte neuf au jour choisi : le compte à rebours sous le salut, le rappel du jour 5, l'écran d'abonnement du 8e jour, puis la version gratuite. Ne change rien pour les autres comptes ni pour ton accès réel.</div>
+        <div class="spacer"></div>
+        <div id="adminApercuEssaiEtat" class="info-box"></div>
+        <div class="spacer"></div>
+        <div class="admin-essai-jours">
+            <button class="secondary" onclick="simulerEssai(1)">JOUR 1</button>
+            <button class="secondary" onclick="simulerEssai(5)">JOUR 5</button>
+            <button class="secondary" onclick="simulerEssai(7)">JOUR 7</button>
+            <button class="secondary" onclick="simulerEssai(8)">JOUR 8</button>
+            <button class="secondary" onclick="simulerEssai(30)">JOUR 30</button>
+            <button class="secondary" onclick="simulerEssai(0)">ARRÊTER</button>
+        </div>
+    </div>
+
     <!-- LES FONCTIONS EN ESSAI (v713). Une nouveaute poussee sur main reste
          eteinte pour tout le monde sauf l'admin, qui la teste dans la vraie
          vie -- son compte, sa seance du jour -- jusqu'a ce qu'on decide de
@@ -16504,6 +16547,34 @@ const I18N = {
         abo_confidentialite: "Confidentialité",
         abo_apercu: "Aperçu : le paiement n'est pas encore branché.",
         abo_fermer: "Fermer",
+        essai_compteur: "Essai gratuit · encore {n} jours",
+        essai_compteur_dernier: "Essai gratuit · dernier jour",
+        essai_rappel_titre: "Plus que {n} jours d'essai",
+        essai_rappel_titre_dernier: "Dernier jour de ton essai",
+        essai_rappel_texte: "Ton essai gratuit dure jusqu'au {date}. Ensuite, tu choisis : l'abonnement, ou la version gratuite. Les mots que tu as déjà appris restent à toi.",
+        essai_rappel_ok: "D'accord",
+        essai_rappel_voir: "Voir les formules",
+        essai_notif_titre: "Ton essai Wortando se termine bientôt",
+        essai_notif_texte: "Encore {n} jours d'accès complet, jusqu'au {date}. Ensuite, l'abonnement ou la version gratuite : c'est toi qui choisis.",
+        abo_jour8: "Jour 8",
+        abo_jour8_texte: "tu choisis : l'abonnement, ou la version gratuite",
+        abo_essai_jusqua: "Ton essai dure jusqu'au {date}. Rien n'est payé tant que tu ne t'abonnes pas.",
+        abo_sous_titre_choisir: "Choisis ta formule",
+        abo_fin_titre: "Ton essai de 7 jours est terminé",
+        abo_fin_sous_titre: "Continue sans limite, ou garde la version gratuite.",
+        abo_gratuit_continuer: "Continuer avec la version gratuite",
+        gratuit_bienvenue: "Version gratuite : les mots que tu as déjà appris continuent de revenir en révision.",
+        abo_sabonner: "S'abonner",
+        abo_merci: "Merci ! Tout est ouvert.",
+        abo_achat_echec: "L'achat n'a pas abouti. Réessaie dans un moment.",
+        abo_restaure: "Ton abonnement est rétabli.",
+        abo_restaure_rien: "Aucun abonnement trouvé pour ce compte de magasin.",
+        abo_actif_titre: "Ton abonnement est actif",
+        abo_actif_texte: "Merci ! Tout Wortando est ouvert, dans toutes les langues.",
+        abo_gerer: "Gérer mon abonnement",
+        abo_web_texte: "L'abonnement se prend dans l'app Wortando, sur ton téléphone. C'est le même compte partout : une fois abonné, tout s'ouvre aussi ici.",
+        abo_web_deja: "Déjà abonné ? Ton accès suit ton compte : connecte-toi ici avec la même adresse.",
+        abo_maj_app: "Pour t'abonner, mets d'abord Wortando à jour dans le magasin d'applications.",
         ep_tuile: "Mes épisodes",
         ep_surprise_titre: "Surprise !",
         ep_debloque: "L'épisode {n} de « {serie} » est débloqué : {titre}.",
@@ -18244,6 +18315,34 @@ const I18N = {
         abo_confidentialite: "Privacy",
         abo_apercu: "Preview: payment is not connected yet.",
         abo_fermer: "Close",
+        essai_compteur: "Free trial · {n} days left",
+        essai_compteur_dernier: "Free trial · last day",
+        essai_rappel_titre: "{n} days of your trial left",
+        essai_rappel_titre_dernier: "Last day of your trial",
+        essai_rappel_texte: "Your free trial lasts until {date}. Then you choose: the subscription, or the free version. The words you've already learned stay yours.",
+        essai_rappel_ok: "OK",
+        essai_rappel_voir: "See the plans",
+        essai_notif_titre: "Your Wortando trial ends soon",
+        essai_notif_texte: "{n} more days of full access, until {date}. Then the subscription or the free version: it's your choice.",
+        abo_jour8: "Day 8",
+        abo_jour8_texte: "you choose: the subscription, or the free version",
+        abo_essai_jusqua: "Your trial lasts until {date}. Nothing is charged unless you subscribe.",
+        abo_sous_titre_choisir: "Choose your plan",
+        abo_fin_titre: "Your 7-day trial is over",
+        abo_fin_sous_titre: "Keep going without limits, or stay with the free version.",
+        abo_gratuit_continuer: "Continue with the free version",
+        gratuit_bienvenue: "Free version: the words you've already learned keep coming back for review.",
+        abo_sabonner: "Subscribe",
+        abo_merci: "Thank you! Everything is unlocked.",
+        abo_achat_echec: "The purchase didn't go through. Try again in a moment.",
+        abo_restaure: "Your subscription has been restored.",
+        abo_restaure_rien: "No subscription found for this store account.",
+        abo_actif_titre: "Your subscription is active",
+        abo_actif_texte: "Thank you! All of Wortando is open, in every language.",
+        abo_gerer: "Manage my subscription",
+        abo_web_texte: "You subscribe in the Wortando app on your phone. It's the same account everywhere: once you've subscribed, everything opens here too.",
+        abo_web_deja: "Already subscribed? Your access follows your account: sign in here with the same email address.",
+        abo_maj_app: "To subscribe, first update Wortando in the app store.",
         ep_tuile: "My episodes",
         ep_surprise_titre: "Surprise!",
         ep_debloque: "Episode {n} of “{serie}” is unlocked: {titre}.",
@@ -19928,6 +20027,34 @@ const I18N = {
         abo_confidentialite: "Gizlilik",
         abo_apercu: "Önizleme: ödeme henüz bağlı değil.",
         abo_fermer: "Kapat",
+        essai_compteur: "Ücretsiz deneme · {n} gün kaldı",
+        essai_compteur_dernier: "Ücretsiz deneme · son gün",
+        essai_rappel_titre: "Denemenin bitmesine {n} gün kaldı",
+        essai_rappel_titre_dernier: "Denemenin son günü",
+        essai_rappel_texte: "Ücretsiz denemen {date} tarihine kadar sürüyor. Sonra sen seçersin: abonelik ya da ücretsiz sürüm. Öğrendiğin kelimeler seninle kalır.",
+        essai_rappel_ok: "Tamam",
+        essai_rappel_voir: "Planları gör",
+        essai_notif_titre: "Wortando denemen yakında bitiyor",
+        essai_notif_texte: "{date} tarihine kadar {n} gün daha tam erişim. Sonra abonelik ya da ücretsiz sürüm: seçim senin.",
+        abo_jour8: "8. gün",
+        abo_jour8_texte: "sen seçersin: abonelik ya da ücretsiz sürüm",
+        abo_essai_jusqua: "Denemen {date} tarihine kadar sürüyor. Abone olmadıkça hiçbir ücret alınmaz.",
+        abo_sous_titre_choisir: "Planını seç",
+        abo_fin_titre: "7 günlük denemen sona erdi",
+        abo_fin_sous_titre: "Sınırsız devam et ya da ücretsiz sürümde kal.",
+        abo_gratuit_continuer: "Ücretsiz sürümle devam et",
+        gratuit_bienvenue: "Ücretsiz sürüm: öğrendiğin kelimeler tekrar için gelmeye devam eder.",
+        abo_sabonner: "Abone ol",
+        abo_merci: "Teşekkürler! Her şey açık.",
+        abo_achat_echec: "Satın alma tamamlanamadı. Biraz sonra tekrar dene.",
+        abo_restaure: "Aboneliğin geri yüklendi.",
+        abo_restaure_rien: "Bu mağaza hesabında abonelik bulunamadı.",
+        abo_actif_titre: "Aboneliğin etkin",
+        abo_actif_texte: "Teşekkürler! Wortando'nun tamamı, tüm dillerde açık.",
+        abo_gerer: "Aboneliğimi yönet",
+        abo_web_texte: "Abonelik telefonundaki Wortando uygulamasından alınır. Her yerde aynı hesap: abone olunca burada da her şey açılır.",
+        abo_web_deja: "Zaten abone misin? Erişimin hesabına bağlı: burada aynı e-posta adresiyle giriş yap.",
+        abo_maj_app: "Abone olmak için önce Wortando'yu uygulama mağazasından güncelle.",
         ep_tuile: "Bölümlerim",
         ep_surprise_titre: "Sürpriz!",
         ep_debloque: "«{serie}» dizisinin {n}. bölümü açıldı: {titre}.",
@@ -20841,6 +20968,34 @@ const I18N = {
         abo_confidentialite: "Конфіденційність",
         abo_apercu: "Попередній перегляд: оплату ще не підключено.",
         abo_fermer: "Закрити",
+        essai_compteur: "Безкоштовний період · залишилось днів: {n}",
+        essai_compteur_dernier: "Безкоштовний період · останній день",
+        essai_rappel_titre: "До кінця пробного періоду днів: {n}",
+        essai_rappel_titre_dernier: "Останній день пробного періоду",
+        essai_rappel_texte: "Безкоштовний пробний період триває до {date}. Далі вибираєш ти: підписка або безкоштовна версія. Слова, які ти вже вивчив, залишаються з тобою.",
+        essai_rappel_ok: "Гаразд",
+        essai_rappel_voir: "Переглянути тарифи",
+        essai_notif_titre: "Пробний період Wortando скоро закінчиться",
+        essai_notif_texte: "Повний доступ ще до {date} (днів: {n}). Далі підписка або безкоштовна версія — вибір за тобою.",
+        abo_jour8: "День 8",
+        abo_jour8_texte: "ти вибираєш: підписка або безкоштовна версія",
+        abo_essai_jusqua: "Пробний період триває до {date}. Нічого не списується, доки ти не оформиш підписку.",
+        abo_sous_titre_choisir: "Обери тариф",
+        abo_fin_titre: "Твій 7-денний пробний період закінчився",
+        abo_fin_sous_titre: "Продовжуй без обмежень або залишайся на безкоштовній версії.",
+        abo_gratuit_continuer: "Продовжити з безкоштовною версією",
+        gratuit_bienvenue: "Безкоштовна версія: вже вивчені слова й далі повертаються на повторення.",
+        abo_sabonner: "Оформити підписку",
+        abo_merci: "Дякуємо! Усе відкрито.",
+        abo_achat_echec: "Покупку не завершено. Спробуй ще раз трохи згодом.",
+        abo_restaure: "Підписку відновлено.",
+        abo_restaure_rien: "Для цього облікового запису магазину підписку не знайдено.",
+        abo_actif_titre: "Твоя підписка активна",
+        abo_actif_texte: "Дякуємо! Увесь Wortando відкритий, усіма мовами.",
+        abo_gerer: "Керувати підпискою",
+        abo_web_texte: "Підписка оформлюється в застосунку Wortando на телефоні. Обліковий запис скрізь той самий: після підписки тут теж усе відкриється.",
+        abo_web_deja: "Уже маєш підписку? Доступ прив'язаний до облікового запису: увійди тут з тією самою адресою.",
+        abo_maj_app: "Щоб оформити підписку, спершу онови Wortando в магазині застосунків.",
         ep_tuile: "Мої епізоди",
         ep_surprise_titre: "Сюрприз!",
         ep_debloque: "Епізод {n} серіалу «{serie}» відкрито: {titre}.",
@@ -22946,6 +23101,34 @@ const I18N = {
         abo_confidentialite: "حریم خصوصی",
         abo_apercu: "پیش‌نمایش: پرداخت هنوز وصل نشده است.",
         abo_fermer: "بستن",
+        essai_compteur: "دورهٔ آزمایشی رایگان · {n} روز مانده",
+        essai_compteur_dernier: "دورهٔ آزمایشی رایگان · روز آخر",
+        essai_rappel_titre: "فقط {n} روز از دورهٔ آزمایشی مانده",
+        essai_rappel_titre_dernier: "روز آخر دورهٔ آزمایشی تو",
+        essai_rappel_texte: "دورهٔ آزمایشی رایگانت تا {date} ادامه دارد. بعد خودت انتخاب می‌کنی: اشتراک، یا نسخهٔ رایگان. واژه‌هایی که یاد گرفته‌ای برای خودت می‌مانند.",
+        essai_rappel_ok: "باشه",
+        essai_rappel_voir: "دیدن طرح‌ها",
+        essai_notif_titre: "دورهٔ آزمایشی Wortando به‌زودی تمام می‌شود",
+        essai_notif_texte: "{n} روز دیگر دسترسی کامل، تا {date}. بعد اشتراک یا نسخهٔ رایگان: انتخاب با توست.",
+        abo_jour8: "روز ۸",
+        abo_jour8_texte: "خودت انتخاب می‌کنی: اشتراک، یا نسخهٔ رایگان",
+        abo_essai_jusqua: "دورهٔ آزمایشی‌ات تا {date} ادامه دارد. تا مشترک نشوی، هیچ پولی پرداخت نمی‌شود.",
+        abo_sous_titre_choisir: "طرحت را انتخاب کن",
+        abo_fin_titre: "دورهٔ آزمایشی ۷ روزه‌ات تمام شد",
+        abo_fin_sous_titre: "بی‌محدودیت ادامه بده، یا با نسخهٔ رایگان بمان.",
+        abo_gratuit_continuer: "ادامه با نسخهٔ رایگان",
+        gratuit_bienvenue: "نسخهٔ رایگان: واژه‌هایی که یاد گرفته‌ای همچنان برای مرور برمی‌گردند.",
+        abo_sabonner: "مشترک شو",
+        abo_merci: "ممنون! همه‌چیز باز است.",
+        abo_achat_echec: "خرید انجام نشد. کمی بعد دوباره امتحان کن.",
+        abo_restaure: "اشتراکت بازیابی شد.",
+        abo_restaure_rien: "هیچ اشتراکی برای این حساب فروشگاه پیدا نشد.",
+        abo_actif_titre: "اشتراکت فعال است",
+        abo_actif_texte: "ممنون! همهٔ Wortando، به همهٔ زبان‌ها، باز است.",
+        abo_gerer: "مدیریت اشتراک",
+        abo_web_texte: "اشتراک در اپ Wortando روی گوشی‌ات گرفته می‌شود. حساب همه‌جا یکی است: وقتی مشترک شدی، اینجا هم همه‌چیز باز می‌شود.",
+        abo_web_deja: "قبلاً مشترک شده‌ای؟ دسترسی‌ات به حسابت بسته است: اینجا با همان نشانی وارد شو.",
+        abo_maj_app: "برای اشتراک، اول Wortando را در فروشگاه برنامه‌ها به‌روز کن.",
         ep_tuile: "قسمت‌های من",
         ep_surprise_titre: "غافلگیری!",
         ep_debloque: "قسمت {n} از «{serie}» باز شد: {titre}.",
@@ -24508,6 +24691,34 @@ const I18N = {
         abo_confidentialite: "الخصوصية",
         abo_apercu: "معاينة: الدفع غير مفعّل بعد.",
         abo_fermer: "إغلاق",
+        essai_compteur: "تجربة مجانية · الأيام المتبقية: {n}",
+        essai_compteur_dernier: "تجربة مجانية · اليوم الأخير",
+        essai_rappel_titre: "الأيام المتبقية من تجربتك: {n}",
+        essai_rappel_titre_dernier: "اليوم الأخير من تجربتك",
+        essai_rappel_texte: "تستمر تجربتك المجانية حتى {date}. بعدها تختار: الاشتراك، أو النسخة المجانية. الكلمات التي تعلّمتها تبقى لك.",
+        essai_rappel_ok: "حسناً",
+        essai_rappel_voir: "عرض الخطط",
+        essai_notif_titre: "تجربتك في Wortando تنتهي قريباً",
+        essai_notif_texte: "وصول كامل حتى {date} (الأيام المتبقية: {n}). بعدها الاشتراك أو النسخة المجانية: الخيار لك.",
+        abo_jour8: "اليوم 8",
+        abo_jour8_texte: "تختار: الاشتراك، أو النسخة المجانية",
+        abo_essai_jusqua: "تستمر تجربتك حتى {date}. لا يُدفع شيء ما لم تشترك.",
+        abo_sous_titre_choisir: "اختر خطتك",
+        abo_fin_titre: "انتهت تجربتك لمدة 7 أيام",
+        abo_fin_sous_titre: "تابع بلا حدود، أو ابقَ على النسخة المجانية.",
+        abo_gratuit_continuer: "المتابعة بالنسخة المجانية",
+        gratuit_bienvenue: "النسخة المجانية: الكلمات التي تعلّمتها تواصل العودة للمراجعة.",
+        abo_sabonner: "اشترك",
+        abo_merci: "شكراً! كل شيء مفتوح.",
+        abo_achat_echec: "لم تكتمل عملية الشراء. حاول مجدداً بعد قليل.",
+        abo_restaure: "تمت استعادة اشتراكك.",
+        abo_restaure_rien: "لم يُعثر على اشتراك لحساب المتجر هذا.",
+        abo_actif_titre: "اشتراكك فعّال",
+        abo_actif_texte: "شكراً! Wortando كله مفتوح، بكل اللغات.",
+        abo_gerer: "إدارة اشتراكي",
+        abo_web_texte: "يتم الاشتراك من تطبيق Wortando على هاتفك. الحساب نفسه في كل مكان: بعد الاشتراك يُفتح كل شيء هنا أيضاً.",
+        abo_web_deja: "مشترك بالفعل؟ وصولك مرتبط بحسابك: سجّل الدخول هنا بالعنوان نفسه.",
+        abo_maj_app: "للاشتراك، حدّث Wortando أولاً من متجر التطبيقات.",
         ep_tuile: "حلقاتي",
         ep_surprise_titre: "مفاجأة!",
         ep_debloque: "فُتحت الحلقة {n} من «{serie}»: {titre}.",
@@ -26826,6 +27037,34 @@ const I18N = {
         abo_confidentialite: "Privacidade",
         abo_apercu: "Prévia: o pagamento ainda não está ligado.",
         abo_fermer: "Fechar",
+        essai_compteur: "Teste grátis · faltam {n} dias",
+        essai_compteur_dernier: "Teste grátis · último dia",
+        essai_rappel_titre: "Faltam {n} dias de teste",
+        essai_rappel_titre_dernier: "Último dia do seu teste",
+        essai_rappel_texte: "Seu teste grátis vai até {date}. Depois você escolhe: a assinatura ou a versão gratuita. As palavras que você já aprendeu continuam suas.",
+        essai_rappel_ok: "Ok",
+        essai_rappel_voir: "Ver os planos",
+        essai_notif_titre: "Seu teste do Wortando termina em breve",
+        essai_notif_texte: "Mais {n} dias de acesso completo, até {date}. Depois, a assinatura ou a versão gratuita: você escolhe.",
+        abo_jour8: "Dia 8",
+        abo_jour8_texte: "você escolhe: a assinatura ou a versão gratuita",
+        abo_essai_jusqua: "Seu teste vai até {date}. Nada é cobrado enquanto você não assinar.",
+        abo_sous_titre_choisir: "Escolha seu plano",
+        abo_fin_titre: "Seu teste de 7 dias terminou",
+        abo_fin_sous_titre: "Continue sem limites ou fique com a versão gratuita.",
+        abo_gratuit_continuer: "Continuar com a versão gratuita",
+        gratuit_bienvenue: "Versão gratuita: as palavras que você já aprendeu continuam voltando para revisão.",
+        abo_sabonner: "Assinar",
+        abo_merci: "Obrigado! Tudo está liberado.",
+        abo_achat_echec: "A compra não foi concluída. Tente de novo daqui a pouco.",
+        abo_restaure: "Sua assinatura foi restaurada.",
+        abo_restaure_rien: "Nenhuma assinatura encontrada para esta conta da loja.",
+        abo_actif_titre: "Sua assinatura está ativa",
+        abo_actif_texte: "Obrigado! Todo o Wortando está liberado, em todos os idiomas.",
+        abo_gerer: "Gerenciar minha assinatura",
+        abo_web_texte: "A assinatura é feita no app Wortando, no seu celular. A conta é a mesma em todo lugar: depois de assinar, tudo se abre aqui também.",
+        abo_web_deja: "Já assinou? Seu acesso acompanha sua conta: entre aqui com o mesmo e-mail.",
+        abo_maj_app: "Para assinar, atualize primeiro o Wortando na loja de aplicativos.",
         ep_tuile: "Meus episódios",
         ep_surprise_titre: "Surpresa!",
         ep_debloque: "O episódio {n} de “{serie}” foi desbloqueado: {titre}.",
@@ -28573,6 +28812,34 @@ const I18N = {
         abo_confidentialite: "Prywatność",
         abo_apercu: "Podgląd: płatności nie są jeszcze podłączone.",
         abo_fermer: "Zamknij",
+        essai_compteur: "Darmowy okres próbny · zostało dni: {n}",
+        essai_compteur_dernier: "Darmowy okres próbny · ostatni dzień",
+        essai_rappel_titre: "Do końca okresu próbnego zostało dni: {n}",
+        essai_rappel_titre_dernier: "Ostatni dzień okresu próbnego",
+        essai_rappel_texte: "Twój darmowy okres próbny trwa do {date}. Potem wybierasz: subskrypcja albo wersja darmowa. Słowa, których już się nauczyłeś, zostają z tobą.",
+        essai_rappel_ok: "OK",
+        essai_rappel_voir: "Zobacz plany",
+        essai_notif_titre: "Twój okres próbny Wortando wkrótce się kończy",
+        essai_notif_texte: "Pełny dostęp jeszcze do {date} (zostało dni: {n}). Potem subskrypcja albo wersja darmowa — wybór należy do ciebie.",
+        abo_jour8: "Dzień 8",
+        abo_jour8_texte: "wybierasz: subskrypcja albo wersja darmowa",
+        abo_essai_jusqua: "Okres próbny trwa do {date}. Nic nie zostanie pobrane, dopóki nie wykupisz subskrypcji.",
+        abo_sous_titre_choisir: "Wybierz plan",
+        abo_fin_titre: "Twój 7-dniowy okres próbny się skończył",
+        abo_fin_sous_titre: "Ucz się dalej bez ograniczeń albo zostań przy wersji darmowej.",
+        abo_gratuit_continuer: "Kontynuuj z wersją darmową",
+        gratuit_bienvenue: "Wersja darmowa: słowa, których już się nauczyłeś, nadal wracają do powtórek.",
+        abo_sabonner: "Subskrybuj",
+        abo_merci: "Dziękujemy! Wszystko jest otwarte.",
+        abo_achat_echec: "Zakup się nie powiódł. Spróbuj ponownie za chwilę.",
+        abo_restaure: "Subskrypcja została przywrócona.",
+        abo_restaure_rien: "Nie znaleziono subskrypcji dla tego konta w sklepie.",
+        abo_actif_titre: "Twoja subskrypcja jest aktywna",
+        abo_actif_texte: "Dziękujemy! Cały Wortando jest otwarty, we wszystkich językach.",
+        abo_gerer: "Zarządzaj subskrypcją",
+        abo_web_texte: "Subskrypcję wykupuje się w aplikacji Wortando na telefonie. Konto jest wszędzie to samo: po wykupieniu wszystko otworzy się też tutaj.",
+        abo_web_deja: "Masz już subskrypcję? Dostęp jest przypisany do konta: zaloguj się tutaj tym samym adresem.",
+        abo_maj_app: "Aby wykupić subskrypcję, najpierw zaktualizuj Wortando w sklepie z aplikacjami.",
         ep_tuile: "Moje odcinki",
         ep_surprise_titre: "Niespodzianka!",
         ep_debloque: "Odcinek {n} serialu „{serie}” jest odblokowany: {titre}.",
@@ -30323,6 +30590,34 @@ const I18N = {
         abo_confidentialite: "Конфиденциальность",
         abo_apercu: "Предпросмотр: оплата ещё не подключена.",
         abo_fermer: "Закрыть",
+        essai_compteur: "Бесплатный период · осталось дней: {n}",
+        essai_compteur_dernier: "Бесплатный период · последний день",
+        essai_rappel_titre: "До конца пробного периода дней: {n}",
+        essai_rappel_titre_dernier: "Последний день пробного периода",
+        essai_rappel_texte: "Бесплатный пробный период длится до {date}. Потом выбираешь ты: подписка или бесплатная версия. Слова, которые ты уже выучил, остаются с тобой.",
+        essai_rappel_ok: "Хорошо",
+        essai_rappel_voir: "Посмотреть тарифы",
+        essai_notif_titre: "Пробный период Wortando скоро закончится",
+        essai_notif_texte: "Полный доступ ещё до {date} (дней: {n}). Потом подписка или бесплатная версия — выбор за тобой.",
+        abo_jour8: "День 8",
+        abo_jour8_texte: "ты выбираешь: подписка или бесплатная версия",
+        abo_essai_jusqua: "Пробный период длится до {date}. Ничего не списывается, пока ты не оформишь подписку.",
+        abo_sous_titre_choisir: "Выбери тариф",
+        abo_fin_titre: "Твой 7-дневный пробный период закончился",
+        abo_fin_sous_titre: "Продолжай без ограничений или оставайся на бесплатной версии.",
+        abo_gratuit_continuer: "Продолжить с бесплатной версией",
+        gratuit_bienvenue: "Бесплатная версия: уже выученные слова по-прежнему возвращаются на повторение.",
+        abo_sabonner: "Оформить подписку",
+        abo_merci: "Спасибо! Всё открыто.",
+        abo_achat_echec: "Покупка не завершена. Попробуй ещё раз чуть позже.",
+        abo_restaure: "Подписка восстановлена.",
+        abo_restaure_rien: "Для этой учётной записи магазина подписка не найдена.",
+        abo_actif_titre: "Твоя подписка активна",
+        abo_actif_texte: "Спасибо! Весь Wortando открыт, на всех языках.",
+        abo_gerer: "Управлять подпиской",
+        abo_web_texte: "Подписка оформляется в приложении Wortando на телефоне. Учётная запись везде одна: после подписки здесь тоже всё откроется.",
+        abo_web_deja: "Уже есть подписка? Доступ привязан к учётной записи: войди здесь с тем же адресом.",
+        abo_maj_app: "Чтобы оформить подписку, сначала обнови Wortando в магазине приложений.",
         ep_tuile: "Мои эпизоды",
         ep_surprise_titre: "Сюрприз!",
         ep_debloque: "Эпизод {n} сериала «{serie}» открыт: {titre}.",
@@ -32072,6 +32367,34 @@ const I18N = {
         abo_confidentialite: "Datenschutz",
         abo_apercu: "Vorschau: Die Zahlung ist noch nicht angeschlossen.",
         abo_fermer: "Schließen",
+        essai_compteur: "Gratis-Test · noch {n} Tage",
+        essai_compteur_dernier: "Gratis-Test · letzter Tag",
+        essai_rappel_titre: "Noch {n} Tage Testzeit",
+        essai_rappel_titre_dernier: "Letzter Tag deines Tests",
+        essai_rappel_texte: "Dein Gratis-Test läuft bis zum {date}. Danach entscheidest du: das Abo oder die Gratis-Version. Die Wörter, die du schon gelernt hast, bleiben dir.",
+        essai_rappel_ok: "Okay",
+        essai_rappel_voir: "Tarife ansehen",
+        essai_notif_titre: "Dein Wortando-Test endet bald",
+        essai_notif_texte: "Noch {n} Tage voller Zugang, bis zum {date}. Danach das Abo oder die Gratis-Version: Du entscheidest.",
+        abo_jour8: "Tag 8",
+        abo_jour8_texte: "du entscheidest: das Abo oder die Gratis-Version",
+        abo_essai_jusqua: "Dein Test läuft bis zum {date}. Es wird nichts berechnet, solange du kein Abo abschließt.",
+        abo_sous_titre_choisir: "Wähle deinen Tarif",
+        abo_fin_titre: "Dein 7-Tage-Test ist vorbei",
+        abo_fin_sous_titre: "Lerne ohne Grenzen weiter oder bleib bei der Gratis-Version.",
+        abo_gratuit_continuer: "Mit der Gratis-Version weitermachen",
+        gratuit_bienvenue: "Gratis-Version: Die Wörter, die du schon gelernt hast, kommen weiter zur Wiederholung.",
+        abo_sabonner: "Abonnieren",
+        abo_merci: "Danke! Alles ist freigeschaltet.",
+        abo_achat_echec: "Der Kauf hat nicht geklappt. Versuch es gleich noch einmal.",
+        abo_restaure: "Dein Abo wurde wiederhergestellt.",
+        abo_restaure_rien: "Für dieses Store-Konto wurde kein Abo gefunden.",
+        abo_actif_titre: "Dein Abo ist aktiv",
+        abo_actif_texte: "Danke! Ganz Wortando ist offen, in allen Sprachen.",
+        abo_gerer: "Mein Abo verwalten",
+        abo_web_texte: "Das Abo schließt du in der Wortando-App auf deinem Handy ab. Es ist überall dasselbe Konto: Sobald du abonniert hast, ist auch hier alles offen.",
+        abo_web_deja: "Schon abonniert? Dein Zugang hängt an deinem Konto: Melde dich hier mit derselben Adresse an.",
+        abo_maj_app: "Um zu abonnieren, aktualisiere Wortando zuerst im App-Store.",
         ep_tuile: "Meine Folgen",
         ep_surprise_titre: "Überraschung!",
         ep_debloque: "Folge {n} von „{serie}“ ist freigeschaltet: {titre}.",
@@ -33834,6 +34157,34 @@ const I18N = {
         abo_confidentialite: "Privacidad",
         abo_apercu: "Vista previa: el pago aún no está conectado.",
         abo_fermer: "Cerrar",
+        essai_compteur: "Prueba gratis · quedan {n} días",
+        essai_compteur_dernier: "Prueba gratis · último día",
+        essai_rappel_titre: "Quedan {n} días de prueba",
+        essai_rappel_titre_dernier: "Último día de tu prueba",
+        essai_rappel_texte: "Tu prueba gratis dura hasta el {date}. Después eliges tú: la suscripción o la versión gratuita. Las palabras que ya aprendiste siguen siendo tuyas.",
+        essai_rappel_ok: "De acuerdo",
+        essai_rappel_voir: "Ver los planes",
+        essai_notif_titre: "Tu prueba de Wortando termina pronto",
+        essai_notif_texte: "{n} días más de acceso completo, hasta el {date}. Después, la suscripción o la versión gratuita: tú decides.",
+        abo_jour8: "Día 8",
+        abo_jour8_texte: "eliges tú: la suscripción o la versión gratuita",
+        abo_essai_jusqua: "Tu prueba dura hasta el {date}. No se cobra nada mientras no te suscribas.",
+        abo_sous_titre_choisir: "Elige tu plan",
+        abo_fin_titre: "Tu prueba de 7 días ha terminado",
+        abo_fin_sous_titre: "Sigue sin límites o quédate con la versión gratuita.",
+        abo_gratuit_continuer: "Seguir con la versión gratuita",
+        gratuit_bienvenue: "Versión gratuita: las palabras que ya aprendiste siguen volviendo para repasar.",
+        abo_sabonner: "Suscribirme",
+        abo_merci: "¡Gracias! Todo está abierto.",
+        abo_achat_echec: "La compra no se completó. Inténtalo de nuevo en un momento.",
+        abo_restaure: "Tu suscripción se ha restaurado.",
+        abo_restaure_rien: "No se encontró ninguna suscripción para esta cuenta de la tienda.",
+        abo_actif_titre: "Tu suscripción está activa",
+        abo_actif_texte: "¡Gracias! Todo Wortando está abierto, en todos los idiomas.",
+        abo_gerer: "Gestionar mi suscripción",
+        abo_web_texte: "La suscripción se contrata en la app Wortando, en tu teléfono. Es la misma cuenta en todas partes: una vez suscrito, todo se abre también aquí.",
+        abo_web_deja: "¿Ya tienes suscripción? Tu acceso va con tu cuenta: inicia sesión aquí con la misma dirección.",
+        abo_maj_app: "Para suscribirte, primero actualiza Wortando en la tienda de aplicaciones.",
         ep_tuile: "Mis episodios",
         ep_surprise_titre: "¡Sorpresa!",
         ep_debloque: "El episodio {n} de «{serie}» está desbloqueado: {titre}.",
@@ -38175,6 +38526,9 @@ async function confirmerNouveauMotDePasse(){
 async function handleLogout() {
     try {
         await window.signOut(window.firebaseAuth);
+        // L'acces suit le compte : rien du precedent ne reste (v1165).
+        aboStatut = { actif: false, source: null, expire: null, gererUrl: null };
+        essaiCompte = { debutMs: null, offertJusquaMs: null };
         showScreen("auth");
     } catch (error) {
         showInfoToast(t('alert_logout_error'));
@@ -38470,6 +38824,8 @@ async function programmerRappels(){
         });
     }
     try{ await LN.schedule({ notifications: liste }); }catch(e){}
+    // Le rappel du jour 5 de l'essai (v1165) suit la meme heure.
+    try{ await programmerRappelEssai(); }catch(e){}
 }
 
 async function basculerRappelNatif(){
@@ -44649,6 +45005,8 @@ async function loadVhsKapitelAccessFlag(){
         vhsKapitelAccess = !!(snap.exists() && snap.data().vhsChaptersEnabled === true);
         // Testeur arrive apres la sortie : gratuit a vie, pose a la main (v691).
         accesAVieFirestore = !!(snap.exists() && snap.data().accesAVie === true);
+        // L'essai de 7 jours et les 4 mois offerts (v1165) : inerte avant la sortie.
+        try{ lireAccesDuCompte(snap.exists() ? snap.data() : {}, user); }catch(e){}
         if(snap.exists()) appliquerLangueImposee(snap.data().langueImposee);
         // Les essais ouverts a ce compte (28 oct. 2026) : retenus sur
         // l'appareil pour la garde, et l'anglais referme s'il a ete retire.
@@ -50445,6 +50803,7 @@ function showScreen(id){
     // L'etiquette « Aperçu gratuit » suit l'etat, y compris apres un
     // rechargement : une lecture de localStorage, rien de plus.
     try{ document.body.classList.toggle("apercu-gratuit", apercuGratuitActif()); }catch(e){}
+    try{ const sim = apercuEssaiJour(); if(sim) document.body.setAttribute("data-apercu-essai", String(sim)); else document.body.removeAttribute("data-apercu-essai"); }catch(e){}
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active", "sans-fondu"));
     const target = document.getElementById(id);
     if(target){
@@ -50799,7 +51158,7 @@ function quitterToutLeContenu(){
     synchroniserHistorique();
 }
 
-function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); noterEtape("accueil"); installerReperes(); try{ retourAuBilanSiDemande(); }catch(e){} try{ majBandeauFetes(); }catch(e){} }
+function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); noterEtape("accueil"); installerReperes(); try{ retourAuBilanSiDemande(); }catch(e){} try{ majBandeauFetes(); }catch(e){} try{ majAccesAccueil(); }catch(e){} }
 
 // Salutation selon l'heure + prénom déduit de l'e-mail (pas de nom affiché
 // collecté à l'inscription -- utilise la partie avant @, mise en majuscule).
@@ -51150,6 +51509,14 @@ function ouvrirBadges(){
 const ABONNEMENT = { mensuel: 6.99, annuel: 49.99, devise: "EUR", essaiJours: 7 };
 let aboPlan = "annuel";
 let ecranAvantAbonnement = "adminDashboard";
+// L'abonnement en cours, tel que le magasin (RevenueCat) ou le jeton Firebase le
+// dit. Declare ICI, avant ACCES : etatAcces() le lit.
+let aboStatut = { actif: false, source: null, expire: null, gererUrl: null };
+// Les prix du magasin, dans la monnaie de la personne (« 9,99 $ CA ») : ils
+// remplacent ABONNEMENT a l'ecran des que RevenueCat les a donnes.
+let prixMagasin = null;
+// « fin » : l'ecran du 8e jour, avec « Continuer avec la version gratuite ».
+let aboModeFin = false;
 
 const LOCALES_ABO = { fr: "fr-FR", en: "en-IE", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar", pt: "pt-BR", pl: "pl-PL", ru: "ru-RU", de: "de-DE", es: VARIANTE_INTERFACE_ES === "es" ? "es-ES" : "es-419" };
 function prixAbo(v){
@@ -51168,18 +51535,36 @@ function nombreAbo(n){
 // tard » en toutes lettres sous l'offre. La croix fait la meme chose, mais
 // une premiere offre doit dire qu'on peut la remettre, pas seulement le
 // permettre. Les onclick existants n'en passent pas : le bouton reste cache.
-function ouvrirAbonnement(avecPlusTard){
+// `mode` "fin" (v1165) : l'ecran du 8e jour, ouvert une fois par
+// majAccesAccueil() quand l'essai vient de finir ; « Continuer avec la version
+// gratuite » remplace « Plus tard ».
+function ouvrirAbonnement(avecPlusTard, mode){
     const actif = document.querySelector(".screen.active");
     if(actif && actif.id !== "abonnement") ecranAvantAbonnement = actif.id;
+    aboModeFin = mode === "fin";
     const plusTard = document.getElementById("aboPlusTard");
-    if(plusTard) plusTard.classList.toggle("hidden", avecPlusTard !== true);
+    if(plusTard){
+        plusTard.classList.toggle("hidden", avecPlusTard !== true && !aboModeFin);
+        plusTard.textContent = t(aboModeFin ? "abo_gratuit_continuer" : "abo_plus_tard");
+    }
     aboPlan = "annuel";
     afficherAbonnement();
     showScreen("abonnement");
+    // Les prix du magasin et, sur le web, un jeton frais (un abonnement pris sur
+    // le telephone il y a une minute doit ouvrir l'acces ici aussi).
+    rafraichirAbonnement(true).then(() => {
+        const ecran = document.getElementById("abonnement");
+        if(ecran && ecran.classList.contains("active")) afficherAbonnement();
+    }).catch(() => {});
 }
 
 function fermerAbonnement(){
+    const fin = aboModeFin;
+    aboModeFin = false;
     showScreen(ecranAvantAbonnement || "home");
+    // Le 8e jour, « Continuer avec la version gratuite » : dire tout de suite ce
+    // qui reste a la personne -- ses mots continuent de revenir (decide le 2 oct.).
+    if(fin && !accesComplet()) showInfoToast(t("gratuit_bienvenue"));
 }
 
 function choisirPlanAbo(plan){
@@ -51187,11 +51572,36 @@ function choisirPlanAbo(plan){
     afficherAbonnement();
 }
 
+// L'achat n'existe que dans l'app installee (decide pour le lancement : on ne
+// vend pas sur le web). « web » : un navigateur ; « maj » : une app installee
+// trop ancienne pour avoir le module d'achat ; « magasin » : on peut acheter.
+function canalAchat(){
+    let natif = false;
+    try{ natif = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()); }catch(e){}
+    if(!natif) return "web";
+    return pluginAchats() ? "magasin" : "maj";
+}
+
+// Le jour et le mois, SANS le jour de la semaine : « до вторник » ou « do wtorek »
+// seraient faux (la preposition veut le genitif), « до 18 ноября » ne l'est pas.
+function dateLongueAbo(ms){
+    try{
+        return new Intl.DateTimeFormat(LOCALES_ABO[getUiLang()] || "fr-FR", { day: "numeric", month: "long" }).format(new Date(ms));
+    }catch(e){ return new Date(ms).toLocaleDateString(); }
+}
+
 function afficherAbonnement(){
     const zone = document.getElementById("aboContenu");
     if(!zone) return;
     const a = ABONNEMENT;
-    const economie = Math.round((1 - a.annuel / (12 * a.mensuel)) * 100);
+    const info = infoAcces();
+    const canal = canalAchat();
+    // Les prix du magasin quand on les a (monnaie et taxes du pays), sinon ceux d'ABONNEMENT.
+    const pm = prixMagasin;
+    const economie = pm && pm.economie ? pm.economie : Math.round((1 - a.annuel / (12 * a.mensuel)) * 100);
+    const prixAnnuel = pm && pm.annuel ? pm.annuel : prixAbo(a.annuel);
+    const prixAnnuelMois = pm && pm.annuelParMois ? pm.annuelParMois : prixAbo(a.annuel / 12);
+    const prixMensuel = pm && pm.mensuel ? pm.mensuel : prixAbo(a.mensuel);
     const plan = (id, nom, droite, sous, badge) =>
         '<button type="button" class="abo-plan' + (aboPlan === id ? ' choisi' : '') + '"'
         + ' onclick="choisirPlanAbo(\'' + id + '\')" aria-pressed="' + (aboPlan === id) + '">'
@@ -51201,27 +51611,67 @@ function afficherAbonnement(){
         + '</button>';
     const etape = (classe, quand, quoi) =>
         '<li><span class="abo-point ' + classe + '"></span><span><b>' + quand + '</b> · ' + quoi + '</span></li>';
+    const liens = '<a href="conditions.html" target="_blank" rel="noopener">' + t("abo_conditions") + '</a> · '
+        + '<a href="confidentialite.html" target="_blank" rel="noopener">' + t("abo_confidentialite") + '</a>';
+
+    // Deja abonne : rien a vendre. Le lien du magasin pour gerer ou resilier.
+    if(info.etat === "abonne"){
+        zone.innerHTML = '<h2 class="abo-titre">' + t("abo_actif_titre") + '</h2>'
+            + '<p class="abo-sous-titre">' + t("abo_actif_texte") + '</p>'
+            + (aboStatut.gererUrl ? '<p class="abo-petit"><a href="' + String(aboStatut.gererUrl).replace(/"/g, "&quot;") + '" target="_blank" rel="noopener">' + t("abo_gerer") + '</a></p>' : '')
+            + '<p class="abo-petit">' + liens + '</p>';
+        return;
+    }
+
+    // Le titre et la ligne qui le suit disent ou en est la personne.
+    let titre = t("abo_titre"), sousTitre = t("abo_sous_titre_choisir"), apresPlans = "";
+    if(aboModeFin){
+        titre = t("abo_fin_titre");
+        sousTitre = t("abo_fin_sous_titre");
+    }else if(info.etat === "essai"){
+        sousTitre = info.restants > 1 ? tf("essai_compteur", { n: nombreAbo(info.restants) }) : t("essai_compteur_dernier");
+        // Avant le rappel, le calendrier de l'essai ; ensuite, la date de fin seule.
+        apresPlans = info.jour < ESSAI_RAPPEL_JOUR || !info.fin
+            ? '<ol class="abo-calendrier">'
+              + etape("aujourdhui", t("abo_aujourdhui"), t("abo_aujourdhui_texte"))
+              + etape("rappel", t("abo_jour5"), t("abo_jour5_texte"))
+              + etape("debut", t("abo_jour8"), t("abo_jour8_texte"))
+              + '</ol>'
+            : '<p class="abo-note">' + tf("abo_essai_jusqua", { date: dateLongueAbo(info.fin - 1) }) + '</p>';
+    }
+
+    let action;
+    if(canal === "magasin"){
+        action = '<button type="button" id="aboAcheter" class="abo-bouton" onclick="acheterAbonnement()">' + t("abo_sabonner") + '</button>'
+            + '<p class="abo-petit">' + t("abo_annulation") + '<br>'
+            + '<a href="#" onclick="restaurerAchats(); return false;">' + t("abo_restaurer") + '</a> · ' + liens
+            + '</p>';
+    }else{
+        // Sur le web on ne vend pas (pas de TVA a gerer, pas de second systeme de
+        // paiement) : l'app installee, et le meme compte partout.
+        action = '<div class="abo-web">'
+            + '<p>' + t(canal === "maj" ? "abo_maj_app" : "abo_web_texte") + '</p>'
+            + (canal === "web"
+                ? '<p class="abo-web-magasins"><a href="https://play.google.com/store/apps/details?id=com.wortando.app" target="_blank" rel="noopener">Google Play</a> · '
+                  + '<a href="https://apps.apple.com/app/id6817122301" target="_blank" rel="noopener">App Store</a></p>'
+                  + '<p class="abo-petit">' + t("abo_web_deja") + '</p>'
+                : '')
+            + '</div>'
+            + '<p class="abo-petit">' + liens + '</p>';
+    }
+
     zone.innerHTML =
-        '<h2 class="abo-titre">' + t("abo_titre") + '</h2>'
-        + '<p class="abo-sous-titre">' + t("abo_sous_titre") + '</p>'
+        '<h2 class="abo-titre">' + titre + '</h2>'
+        + '<p class="abo-sous-titre">' + sousTitre + '</p>'
         + '<ul class="abo-avantages">'
         +   ["abo_av_mots", "abo_av_grammaire", "abo_av_voix", "abo_av_examens"]
                 .map(k => '<li>' + t(k) + '</li>').join("")
         + '</ul>'
-        + plan("annuel", t("abo_annuel"), prixAbo(a.annuel / 12),
-               tf("abo_par_an", { prix: prixAbo(a.annuel) }), tf("abo_economie", { n: nombreAbo(economie) }))
-        + plan("mensuel", t("abo_mensuel"), prixAbo(a.mensuel), "", "")
-        + '<ol class="abo-calendrier">'
-        +   etape("aujourdhui", t("abo_aujourdhui"), t("abo_aujourdhui_texte"))
-        +   etape("rappel", t("abo_jour5"), t("abo_jour5_texte"))
-        +   etape("debut", t("abo_jour7"), t("abo_jour7_texte"))
-        + '</ol>'
-        + '<button type="button" class="abo-bouton" onclick="showInfoToast(t(\'abo_apercu\'))">' + t("abo_bouton") + '</button>'
-        + '<p class="abo-petit">' + t("abo_annulation") + '<br>'
-        +   '<a href="#" onclick="showInfoToast(t(\'abo_apercu\')); return false;">' + t("abo_restaurer") + '</a> · '
-        +   '<a href="#" onclick="showInfoToast(t(\'abo_apercu\')); return false;">' + t("abo_conditions") + '</a> · '
-        +   '<a href="confidentialite.html" target="_blank" rel="noopener">' + t("abo_confidentialite") + '</a>'
-        + '</p>';
+        + plan("annuel", t("abo_annuel"), prixAnnuelMois,
+               tf("abo_par_an", { prix: prixAnnuel }), tf("abo_economie", { n: nombreAbo(economie) }))
+        + plan("mensuel", t("abo_mensuel"), prixMensuel, "", "")
+        + apresPlans
+        + action;
 }
 
 // ============ QUI A ACCES A QUOI (v691) ============
@@ -51317,22 +51767,520 @@ function compteAvantLancement(){
     return !isNaN(cree) && cree < new Date(ACCES.lancement + "T00:00:00");
 }
 
-// L'abonnement et l'essai viendront des magasins, par RevenueCat. Pas encore
-// branche : personne ne peut s'abonner, donc personne n'est abonne.
-function abonnementMagasin(){
-    return null; // plus tard : "abonne" ou "essai"
+// ============ L'ESSAI DE 7 JOURS, GERE PAR L'APP (11 nov. 2026) ============
+// Decision de Jacques (modele B) : « on ne demande pas la carte de credit au
+// depart. Seulement apres le 7 jours. » Tout est ouvert pendant 7 jours apres
+// la CREATION DU COMPTE, sans carte et sans rien chez Google ni Apple ; au
+// 8e jour, l'ecran d'abonnement (la carte n'est demandee qu'a ce moment, par
+// le magasin), ou la version gratuite. Les offres d'essai de Google
+// (essai-7-jours, essai-7-jours-mensuel) ne sont PAS a activer : elles
+// donneraient un second essai, avec carte, par-dessus celui-ci.
+//
+// ⚠️ L'HEURE DU TELEPHONE NE PROLONGE PAS L'ESSAI. Le debut vient du serveur
+// (Firebase Auth creationTime, recoupe par `essaiDebut` ecrit une fois dans le
+// compte par le serveur : on garde le plus TOT des deux, si bien qu'aucune
+// reecriture ne recule le debut). Et « maintenant » ne descend jamais sous la
+// derniere heure du SERVEUR connue (l'emission du jeton Firebase, renouvele
+// toutes les heures, et la derniere connexion) : reculer l'horloge du
+// telephone ne rend pas un seul jour.
+//
+// ⚠️ ET TOUT RESTE INERTE TANT QUE ACCES.actif VAUT false : etatEssaiPur rend
+// « ouvert » avant toute autre regle. Seul l'admin peut simuler un jour de
+// l'essai, depuis son tableau (« Essai de 7 jours »).
+//
+// La logique entre les deux marques n'a ni DOM ni stockage : node
+// tests/essai.js l'extrait et la passe sur les jours 1, 5, 7, 8 et 30, le
+// testeur a vie, le testeur des magasins (4 mois) et l'horloge reculee.
+// ---- ESSAI : LOGIQUE PURE (debut) ----
+const JOUR_MS = 86400000;
+const ESSAI_JOURS = 7;
+const ESSAI_RAPPEL_JOUR = 5;     // le rappel promis sur l'ecran d'abonnement (decide le 2 oct.)
+
+// p = { actif, admin, accesAVie, lancementMs, creeMs, debutCompteMs,
+//       maintenantMs, plancherServeurMs, offertJusquaMs, abonne }
+// Rend { etat, jour, restants, debut, fin, jusqua } ; etat parmi « ouvert »,
+// « testeur », « abonne », « offert », « essai », « gratuit ».
+function etatEssaiPur(p){
+    if(!p || !p.actif) return { etat: "ouvert" };
+    const valide = x => typeof x === "number" && isFinite(x) && x > 0;
+    // Les testeurs gratuits a vie (promesse du 2 oct.) : comptes crees avant
+    // la sortie, et le drapeau `accesAVie` pose a la main.
+    if(p.admin || p.accesAVie || (valide(p.lancementMs) && valide(p.creeMs) && p.creeMs < p.lancementMs)) return { etat: "testeur" };
+    if(p.abonne) return { etat: "abonne" };
+    const maintenant = Math.max(valide(p.maintenantMs) ? p.maintenantMs : 0, valide(p.plancherServeurMs) ? p.plancherServeurMs : 0);
+    // Les testeurs du Play Store et de TestFlight : 4 mois offerts (3 oct.),
+    // un acces complet jusqu'a une date (`accesJusqua`).
+    if(valide(p.offertJusquaMs) && maintenant < p.offertJusquaMs) return { etat: "offert", jusqua: p.offertJusquaMs };
+    const debuts = [p.creeMs, p.debutCompteMs].filter(valide);
+    // Compte pas encore connu (la session Firebase se retablit) : rien ne se
+    // ferme sur une inconnue -- l'etat se recalcule des que le compte arrive.
+    if(!debuts.length) return { etat: "essai", jour: 1, restants: ESSAI_JOURS, debut: null, fin: null };
+    const debut = Math.min.apply(null, debuts);
+    const fin = debut + ESSAI_JOURS * JOUR_MS;
+    const jour = Math.floor(Math.max(0, maintenant - debut) / JOUR_MS) + 1;
+    if(maintenant < fin) return { etat: "essai", jour, restants: Math.ceil((fin - maintenant) / JOUR_MS), debut, fin };
+    return { etat: "gratuit", jour, restants: 0, debut, fin };
 }
 
-// « ouvert » (avant la sortie), « testeur », « abonne », « essai » ou « gratuit ».
+// Le moment du rappel du jour 5 : a l'heure du rappel quotidien (19 h par
+// defaut), le premier jour ou cette heure tombe dans le 5e jour de l'essai ou
+// apres -- et toujours avant la fin. null s'il est trop tard pour le donner.
+function momentRappelEssai(debutMs, heure){
+    if(typeof debutMs !== "number" || !isFinite(debutMs)) return null;
+    const hm = /^(\d\d):(\d\d)$/.exec(heure || "") || [null, "19", "00"];
+    const depuis = debutMs + (ESSAI_RAPPEL_JOUR - 1) * JOUR_MS;
+    const fin = debutMs + ESSAI_JOURS * JOUR_MS;
+    const d = new Date(depuis);
+    for(let i = 0; i < 3; i++){
+        const quand = new Date(d.getFullYear(), d.getMonth(), d.getDate() + i, Number(hm[1]), Number(hm[2]), 0, 0).getTime();
+        if(quand >= depuis) return quand < fin ? quand : null;
+    }
+    return null;
+}
+
+// « 2027-03-15 » (tape a la main dans la console Firebase) vaut jusqu'a la fin
+// de ce jour-la ; un Timestamp Firestore ou un nombre, tels quels.
+function dateEnMs(v){
+    if(v === null || v === undefined || v === "") return null;
+    if(typeof v === "number") return isFinite(v) ? v : null;
+    if(typeof v.toMillis === "function"){ try{ return v.toMillis(); }catch(e){ return null; } }
+    if(typeof v === "string"){
+        const jour = /^(\d{4})-(\d\d)-(\d\d)$/.exec(v.trim());
+        const ms = jour ? new Date(Number(jour[1]), Number(jour[2]) - 1, Number(jour[3]), 23, 59, 59, 999).getTime() : Date.parse(v);
+        return isNaN(ms) ? null : ms;
+    }
+    return null;
+}
+// ---- ESSAI : LOGIQUE PURE (fin) ----
+
+// Ce que le compte dit de lui-meme (users/<uid>, lu par loadVhsKapitelAccessFlag) :
+// `essaiDebut` (heure du serveur, ecrite une fois) et `accesJusqua` (4 mois offerts).
+let essaiCompte = { debutMs: null, offertJusquaMs: null };
+// La plus haute heure du SERVEUR connue : emission du jeton Firebase, derniere connexion.
+let plancherServeurMs = 0;
+
+// La simulation de l'admin (« Essai de 7 jours » du tableau) : un jour de l'essai
+// joue sur SON appareil, comme un compte neuf. Aucun effet sur les autres comptes.
+const APERCU_ESSAI_KEY = PREFIXE_STOCKAGE + "apercuEssai";
+function apercuEssaiJour(){
+    if(!isAdminUser()) return 0;
+    try{ const n = parseInt(localStorage.getItem(APERCU_ESSAI_KEY) || "0", 10); return n > 0 ? n : 0; }catch(e){ return 0; }
+}
+
+function infoAcces(){
+    const maintenant = Date.now();
+    const sim = apercuEssaiJour();
+    if(sim){
+        // Deux heures dans le jour choisi : « jour 7 » reste le dernier jour.
+        return etatEssaiPur({ actif: true, creeMs: maintenant - ((sim - 1) * JOUR_MS + 2 * 3600000), maintenantMs: maintenant,
+                              abonne: abonnementMagasin() === "abonne" });
+    }
+    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+    let creeMs = null;
+    try{ if(user && user.metadata && user.metadata.creationTime) creeMs = Date.parse(user.metadata.creationTime); }catch(e){}
+    let plancher = plancherServeurMs;
+    try{ if(user && user.metadata && user.metadata.lastSignInTime) plancher = Math.max(plancher, Date.parse(user.metadata.lastSignInTime) || 0); }catch(e){}
+    return etatEssaiPur({
+        actif: ACCES.actif,
+        admin: isAdminUser(),
+        accesAVie: accesAVieFirestore,
+        lancementMs: ACCES.lancement ? new Date(ACCES.lancement + "T00:00:00").getTime() : null,
+        creeMs: isNaN(creeMs) ? null : creeMs,
+        debutCompteMs: essaiCompte.debutMs,
+        maintenantMs: maintenant,
+        plancherServeurMs: plancher,
+        offertJusquaMs: essaiCompte.offertJusquaMs,
+        abonne: abonnementMagasin() === "abonne"
+    });
+}
+
+// L'abonnement vient des magasins, par RevenueCat (voir « LES ACHATS » plus
+// bas) : dans l'app installee, le droit « premium » du client RevenueCat ; sur
+// le web, la meme information portee par le jeton Firebase (extension
+// RevenueCat de Firebase, voir abonnement/GUIDE-MAGASINS.md). Rien de
+// branche = personne n'est abonne.
+function abonnementMagasin(){
+    return aboStatut.actif ? "abonne" : null;
+}
+
+// « ouvert » (avant la sortie), « testeur », « abonne », « offert », « essai » ou « gratuit ».
 function etatAcces(){
     if(apercuGratuitActif()) return "gratuit";
-    if(!ACCES.actif) return "ouvert";
-    if(isAdminUser() || accesAVieFirestore || compteAvantLancement()) return "testeur";
-    return abonnementMagasin() || "gratuit";
+    return infoAcces().etat;
 }
 
 function accesComplet(){
     return etatAcces() !== "gratuit";
+}
+
+// ============ LES ACHATS : RevenueCat (v1165) ============
+// Le module natif (@revenuecat/purchases-capacitor 13.7.4) est dans les apps
+// depuis le 30 oct. 2026 (wortando-ios 9d7bfd0) : la page lui parle par le pont
+// de Capacitor, comme au rappel quotidien. Un seul compte pour les deux
+// magasins : l'identifiant RevenueCat EST l'uid Firebase (configure / logIn),
+// si bien qu'un abonnement pris sur Android vaut sur l'iPhone et sur le web.
+//
+// ⚠️ LES CLES CI-DESSOUS SONT LES CLES PUBLIQUES DU SDK (RevenueCat → Project
+// settings → API keys : « goog_… », « appl_… »), faites pour vivre dans l'app
+// comme la cle Firebase. JAMAIS la cle secrete (« sk_… ») : elle n'a rien a
+// faire dans un depot. Vides = aucun achat possible, rien ne se passe.
+//
+// ⚠️ INERTE TANT QUE ACCES.actif VAUT false, sauf pour l'admin : Jacques peut
+// essayer un vrai achat en bac a sable (testeur de licence Google, compte
+// Sandbox d'Apple) avant la sortie, personne d'autre ne voit rien changer.
+// Mode d'emploi des consoles : abonnement/GUIDE-MAGASINS.md.
+const REVENUECAT = {
+    cleAndroid: "",     // « goog_… »
+    cleIos: "",         // « appl_… »
+    droit: "premium"    // l'« entitlement » de RevenueCat, relie a wortando_premium (Google) et aux deux abonnements Apple
+};
+// Le dernier etat connu, pour l'app hors ligne. Sans prefixe de langue : UN
+// abonnement pour toutes les langues (decide le 2 nov. 2026).
+const ABO_CACHE_KEY = "wortando_abo_";
+let achatsConfigures = null;      // l'uid avec lequel RevenueCat est configure
+let achatEnCours = false;
+
+function pluginAchats(){ return pluginNatif("Purchases"); }
+function uidCourant(){
+    const u = window.firebaseAuth && window.firebaseAuth.currentUser;
+    return u ? u.uid : null;
+}
+function cleRevenueCat(){
+    let p = "web";
+    try{ p = window.Capacitor.getPlatform(); }catch(e){}
+    return p === "android" ? REVENUECAT.cleAndroid : p === "ios" ? REVENUECAT.cleIos : "";
+}
+function achatsPermis(){ return ACCES.actif || isAdminUser(); }
+
+function retenirStatut(nouveau){
+    const avant = aboStatut.actif;
+    aboStatut = nouveau;
+    const uid = uidCourant();
+    if(uid && nouveau.source === "magasin"){
+        try{ localStorage.setItem(ABO_CACHE_KEY + uid, JSON.stringify({ actif: nouveau.actif, expire: nouveau.expire })); }catch(e){}
+    }
+    if(avant !== nouveau.actif) majApresChangementAcces();
+}
+
+function lireClientRevenueCat(ci){
+    const d = (ci && ci.entitlements && ci.entitlements.active) ? ci.entitlements.active[REVENUECAT.droit] : null;
+    retenirStatut({ actif: !!(d && d.isActive !== false), source: "magasin",
+                    expire: (d && d.expirationDate) || null, gererUrl: (ci && ci.managementURL) || null });
+}
+
+// Hors ligne, dans l'app installee : le dernier etat que RevenueCat a donne,
+// tant que sa fin n'est pas passee depuis plus de 3 jours (le delai de grace
+// des magasins). Jamais sur le web : le jeton y fait foi.
+function statutEnCache(uid){
+    try{
+        const c = JSON.parse(localStorage.getItem(ABO_CACHE_KEY + uid) || "null");
+        if(c && c.actif){
+            const fin = c.expire ? Date.parse(c.expire) : NaN;
+            if(isNaN(fin) || fin + 3 * JOUR_MS > Date.now()) return { actif: true, source: "cache", expire: c.expire || null, gererUrl: null };
+        }
+    }catch(e){}
+    return { actif: false, source: null, expire: null, gererUrl: null };
+}
+
+async function configurerAchats(){
+    const P = pluginAchats(), cle = cleRevenueCat(), uid = uidCourant();
+    if(!P || !cle || !uid || !achatsPermis()) return null;
+    if(achatsConfigures === uid) return P;
+    // La page peut se recharger sans que l'app redemarre : le module natif est
+    // alors deja configure, et logIn suffit (il ne fait rien si l'uid est le meme).
+    let deja = false;
+    try{ const r = await P.isConfigured(); deja = !!(r && r.isConfigured); }catch(e){}
+    if(deja){
+        const r = await P.logIn({ appUserID: uid });
+        if(r && r.customerInfo) lireClientRevenueCat(r.customerInfo);
+    }else{
+        await P.configure({ apiKey: cle, appUserID: uid });
+    }
+    achatsConfigures = uid;
+    return P;
+}
+
+function paquetDuPlan(paquets, plan){
+    const type = plan === "annuel" ? "ANNUAL" : "MONTHLY";
+    const id = plan === "annuel" ? "$rc_annual" : "$rc_monthly";
+    return (paquets || []).find(p => p && p.packageType === type) || (paquets || []).find(p => p && p.identifier === id) || null;
+}
+
+async function paquetsDuMagasin(P){
+    const offres = await P.getOfferings();
+    return (offres && offres.current && offres.current.availablePackages) || [];
+}
+
+async function chargerPrixMagasin(P){
+    const paquets = await paquetsDuMagasin(P);
+    const m = paquetDuPlan(paquets, "mensuel"), an = paquetDuPlan(paquets, "annuel");
+    if(!m || !an || !m.product || !an.product) return;
+    const pm = m.product, pa = an.product;
+    let parMois = pa.pricePerMonthString || null;
+    if(!parMois && pa.price > 0 && pa.currencyCode){
+        try{ parMois = new Intl.NumberFormat(LOCALES_ABO[getUiLang()] || "fr-FR", { style: "currency", currency: pa.currencyCode }).format(pa.price / 12); }catch(e){}
+    }
+    prixMagasin = {
+        mensuel: pm.priceString || null,
+        annuel: pa.priceString || null,
+        annuelParMois: parMois,
+        economie: (pm.price > 0 && pa.price > 0) ? Math.round((1 - pa.price / (12 * pm.price)) * 100) : null
+    };
+}
+
+// Ce que l'on sait de l'abonnement, remis a jour : a la connexion, au retour
+// dans l'app, a l'ouverture de l'ecran d'abonnement (`fraisJeton` : sur le web,
+// on redemande le jeton au serveur pour voir un achat fait sur le telephone).
+async function rafraichirAbonnement(fraisJeton){
+    if(!achatsPermis()) return;
+    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+    if(!user) return;
+    const canal = canalAchat();
+    // 1. Le jeton Firebase : l'heure du serveur (plancher de l'essai) et, sur
+    //    le web, le droit que l'extension RevenueCat de Firebase y ecrit
+    //    (revenueCatEntitlements). Sans l'extension, rien n'y est : sur le web,
+    //    on reste alors sur l'essai ou la version gratuite.
+    try{
+        const jeton = await user.getIdTokenResult(!!fraisJeton && canal === "web");
+        const emis = Date.parse(jeton && jeton.issuedAtTime);
+        if(!isNaN(emis)) plancherServeurMs = Math.max(plancherServeurMs, emis);
+        if(canal === "web"){
+            const droits = jeton && jeton.claims && jeton.claims.revenueCatEntitlements;
+            retenirStatut({ actif: Array.isArray(droits) && droits.indexOf(REVENUECAT.droit) >= 0, source: "jeton", expire: null, gererUrl: null });
+        }
+    }catch(e){}
+    // 2. Dans l'app installee : RevenueCat, et en attendant sa reponse le dernier etat connu.
+    if(canal === "magasin"){
+        if(!aboStatut.source) retenirStatut(statutEnCache(user.uid));
+        try{
+            const P = await configurerAchats();
+            if(P){
+                const r = await P.getCustomerInfo();
+                if(r && r.customerInfo) lireClientRevenueCat(r.customerInfo);
+                if(!prixMagasin) await chargerPrixMagasin(P);
+            }
+        }catch(e){ console.warn("[achats] RevenueCat", e); }
+    }
+}
+
+function achatAnnule(e){
+    if(!e) return false;
+    if(e.userCancelled === true || (e.data && e.data.userCancelled === true)) return true;
+    const code = e.code !== undefined ? e.code : (e.data && e.data.code);
+    return String(code) === "1";   // PURCHASE_CANCELLED_ERROR
+}
+
+async function acheterAbonnement(){
+    if(achatEnCours) return;
+    if(!pluginAchats() || !cleRevenueCat() || !achatsPermis()){ showInfoToast(t("abo_apercu")); return; }
+    const bouton = document.getElementById("aboAcheter");
+    achatEnCours = true;
+    if(bouton) bouton.disabled = true;
+    try{
+        const P = await configurerAchats();
+        if(!P) throw new Error("RevenueCat non configure");
+        const paquet = paquetDuPlan(await paquetsDuMagasin(P), aboPlan);
+        if(!paquet) throw new Error("forfait " + aboPlan + " introuvable dans l'offre courante");
+        const r = await P.purchasePackage({ aPackage: paquet });
+        if(r && r.customerInfo) lireClientRevenueCat(r.customerInfo);
+        if(aboStatut.actif){
+            aboModeFin = false;
+            showInfoToast(t("abo_merci"));
+            fermerAbonnement();
+        }
+    }catch(e){
+        if(!achatAnnule(e)){
+            console.warn("[achats] achat", e);
+            showInfoToast(t("abo_achat_echec"));
+        }
+    }finally{
+        achatEnCours = false;
+        if(bouton) bouton.disabled = false;
+    }
+}
+
+// « Restaurer un achat » : exige par Apple sur tout ecran d'abonnement. Utile
+// aussi a qui change de telephone avec le meme compte de magasin.
+async function restaurerAchats(){
+    if(!pluginAchats() || !cleRevenueCat() || !achatsPermis()){ showInfoToast(t("abo_apercu")); return; }
+    try{
+        const P = await configurerAchats();
+        if(!P) throw new Error("RevenueCat non configure");
+        const r = await P.restorePurchases();
+        if(r && r.customerInfo) lireClientRevenueCat(r.customerInfo);
+        showInfoToast(t(aboStatut.actif ? "abo_restaure" : "abo_restaure_rien"));
+        if(aboStatut.actif) fermerAbonnement();
+    }catch(e){
+        console.warn("[achats] restauration", e);
+        showInfoToast(t("abo_achat_echec"));
+    }
+}
+
+// L'acces vient de changer (abonnement trouve, essai fini, simulation de
+// l'admin) : les cadenas et le compte a rebours suivent. Rien avant la sortie.
+function majApresChangementAcces(){
+    if(!ACCES.actif && !apercuEssaiJour()) return;
+    try{ renderThemes(); }catch(e){}
+    try{ majCompteurEssai(); }catch(e){}
+    if(!accesComplet()){
+        try{ chargerFrequence().then(() => { try{ renderThemes(); }catch(e){} }).catch(() => {}); }catch(e){}
+    }
+}
+
+// ============ L'ESSAI A L'ECRAN (v1165) ============
+// Trois moments, et rien d'autre : le compte a rebours discret sous le salut
+// (« Essai gratuit · encore 3 jours ») ; le rappel du jour 5 (decide le
+// 2 oct.), par notification locale si l'app installee a la permission, et
+// toujours par une bulle a l'ouverture ; l'ecran d'abonnement du 8e jour, une
+// fois, avec « Continuer avec la version gratuite ».
+const ESSAI_VU_KEY = "wortando_essaiVu_";     // + uid (ou « sim5 » pour une simulation) : { rappel, fin }
+const RAPPEL_ESSAI_ID = 7201;                  // a cote des rappels quotidiens 7101-7107
+
+function marquesEssai(){
+    const sim = apercuEssaiJour();
+    const cle = ESSAI_VU_KEY + (sim ? "sim" + sim : (uidCourant() || "anonyme"));
+    let v = {};
+    try{ v = JSON.parse(localStorage.getItem(cle) || "{}") || {}; }catch(e){}
+    return { cle, v };
+}
+function marquerEssai(champ){
+    const m = marquesEssai();
+    m.v[champ] = new Date().toISOString();
+    try{ localStorage.setItem(m.cle, JSON.stringify(m.v)); }catch(e){}
+}
+
+function majCompteurEssai(){
+    const el = document.getElementById("essaiCompteur");
+    if(!el) return;
+    const info = infoAcces();
+    if(info.etat !== "essai" || apercuGratuitActif()){ el.classList.add("hidden"); return; }
+    el.textContent = info.restants > 1 ? tf("essai_compteur", { n: nombreAbo(info.restants) }) : t("essai_compteur_dernier");
+    el.classList.remove("hidden");
+}
+
+// Appele par goHome() : jamais par-dessus une autre bulle, jamais hors de l'accueil.
+function majAccesAccueil(){
+    majCompteurEssai();
+    if(!ACCES.actif && !apercuEssaiJour()) return;
+    if(apercuGratuitActif()) return;
+    setTimeout(() => {
+        const accueil = document.getElementById("home");
+        if(!accueil || !accueil.classList.contains("active") || document.getElementById("episodeVoile")) return;
+        const info = infoAcces();
+        const m = marquesEssai();
+        if(info.etat === "essai" && info.jour >= ESSAI_RAPPEL_JOUR && !m.v.rappel){
+            marquerEssai("rappel");
+            montrerRappelEssai(info);
+        }else if(info.etat === "gratuit" && info.fin && !m.v.fin){
+            marquerEssai("fin");
+            ouvrirAbonnement(false, "fin");
+        }
+    }, 700);
+}
+
+function montrerRappelEssai(info){
+    const b = voileEpisode();
+    b.classList.add("ep-surprise", "essai-rappel");
+    const h = document.createElement("h2");
+    h.textContent = info.restants > 1 ? tf("essai_rappel_titre", { n: nombreAbo(info.restants) }) : t("essai_rappel_titre_dernier");
+    const p = document.createElement("p");
+    p.textContent = info.fin ? tf("essai_rappel_texte", { date: dateLongueAbo(info.fin - 1) }) : "";
+    const ok = document.createElement("button");
+    ok.type = "button"; ok.className = "secondary"; ok.textContent = t("essai_rappel_ok");
+    ok.addEventListener("click", () => fermerVoileEpisode());
+    const voir = document.createElement("button");
+    voir.type = "button"; voir.className = "primary"; voir.textContent = t("essai_rappel_voir");
+    voir.addEventListener("click", () => { fermerVoileEpisode(); ouvrirAbonnement(); });
+    const actions = document.createElement("div");
+    actions.className = "ep-actions";
+    actions.append(ok, voir);
+    b.append(h, p, actions);
+}
+
+// La notification du jour 5, dans l'app installee. On ne DEMANDE pas la
+// permission pour elle : le rappel quotidien la demande deja, au bon moment
+// (proposerRappel) ; sans permission, la bulle de l'accueil suffit.
+async function programmerRappelEssai(){
+    const LN = rappelNatif();
+    if(!LN) return;
+    try{ await LN.cancel({ notifications: [{ id: RAPPEL_ESSAI_ID }] }); }catch(e){}
+    if(!ACCES.actif || apercuEssaiJour()) return;
+    const info = infoAcces();
+    if(info.etat !== "essai" || !info.debut || !info.fin) return;
+    let perm = null;
+    try{ perm = await LN.checkPermissions(); }catch(e){}
+    if(!perm || perm.display !== "granted") return;
+    const quand = momentRappelEssai(info.debut, (lireRappel() || {}).heure || RAPPEL_HEURE_DEFAUT);
+    if(!quand || quand <= Date.now()) return;
+    const restants = Math.ceil((info.fin - quand) / JOUR_MS);
+    try{
+        await LN.schedule({ notifications: [{
+            id: RAPPEL_ESSAI_ID,
+            title: t("essai_notif_titre"),
+            body: tf("essai_notif_texte", { n: nombreAbo(restants), date: dateLongueAbo(info.fin - 1) }),
+            schedule: { at: new Date(quand) },
+            isExactNotification: false     // voir programmerRappels : jamais d'alarme exacte (v1007)
+        }] });
+    }catch(e){}
+}
+
+// Ce que le document du compte (users/<uid>) dit de l'acces, lu a la connexion.
+function lireAccesDuCompte(d, user){
+    d = d || {};
+    essaiCompte = { debutMs: dateEnMs(d.essaiDebut), offertJusquaMs: dateEnMs(d.accesJusqua) };
+    // Le debut de l'essai, ecrit UNE fois par le serveur (serverTimestamp) --
+    // jamais avant la sortie, ni pour un testeur.
+    if(ACCES.actif && user && !d.essaiDebut && infoAcces().etat === "essai"){
+        try{
+            window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', user.uid),
+                            { essaiDebut: window.fsServerTimestamp() }, { merge: true }).catch(() => {});
+        }catch(e){}
+    }
+    rafraichirAbonnement(false).catch(() => {}).then(() => {
+        majApresChangementAcces();
+        programmerRappelEssai();
+    });
+}
+
+// Au retour dans l'app : l'abonnement a pu etre pris ou resilie ailleurs, le
+// jour de l'essai a pu changer.
+document.addEventListener("visibilitychange", () => {
+    if(document.hidden || !achatsPermis()) return;
+    rafraichirAbonnement(false).catch(() => {}).then(() => { try{ majCompteurEssai(); }catch(e){} });
+});
+
+// LA SIMULATION DE L'ADMIN (tableau → « Essai de 7 jours »). Chaque jour choisi
+// rejoue son rappel et son ecran du 8e jour ; l'apercu gratuit s'arrete (les
+// deux ne se superposent pas).
+function simulerEssai(jour){
+    if(!isAdminUser()) return;
+    try{
+        if(jour > 0){
+            localStorage.setItem(APERCU_ESSAI_KEY, String(jour));
+            localStorage.removeItem(APERCU_GRATUIT_KEY);
+        }else localStorage.removeItem(APERCU_ESSAI_KEY);
+        Object.keys(localStorage).filter(k => k.indexOf(ESSAI_VU_KEY + "sim") === 0).forEach(k => localStorage.removeItem(k));
+    }catch(e){}
+    try{ renderThemes(); }catch(e){}
+    if(jour > 0) majApresChangementAcces();
+    try{ majCompteurEssai(); }catch(e){}
+    afficherEtatApercuGratuit();
+    showInfoToast(jour > 0 ? "Essai simulé : jour " + jour + ". Reviens à l'accueil pour le voir." : "Simulation arrêtée : accès réel.");
+}
+
+function afficherEtatApercuEssai(){
+    const sim = apercuEssaiJour();
+    try{
+        if(sim) document.body.setAttribute("data-apercu-essai", String(sim));
+        else document.body.removeAttribute("data-apercu-essai");
+    }catch(e){}
+    const el = document.getElementById("adminApercuEssaiEtat");
+    if(!el) return;
+    const info = infoAcces();
+    const nom = { ouvert: "ouvert (avant la sortie)", testeur: "testeur gratuit à vie", abonne: "abonné", offert: "accès offert", essai: "essai", gratuit: "version gratuite" };
+    el.textContent = sim
+        ? "Simulation : jour " + sim + " → " + (nom[info.etat] || info.etat) + (info.etat === "essai" ? ", encore " + info.restants + " jour(s)" : "") + "."
+        : "Aucune simulation. État réel de ce compte : " + (nom[info.etat] || info.etat) + ".";
 }
 
 // Le niveau qui regle l'echantillon : celui de la seance du jour, que la
@@ -52927,6 +53875,7 @@ function afficherEtatApercuGratuit(erreur){
             : "En ce moment : accès complet. État réel de ce compte : " + etatAcces() + ".";
     }catch(e){ texte = "En ce moment : aperçu " + (actif ? "actif" : "inactif") + "."; erreur = erreur || e.message; }
     el.textContent = texte + (erreur ? " ⚠️ Erreur : " + erreur : "");
+    try{ afficherEtatApercuEssai(); }catch(e){}
 }
 
 // ============ Tableau de bord admin (codes d'invitation + testeurs) ============
