@@ -501,6 +501,44 @@ Deux ajouts de « La journée » (3 nov. 2026), utiles aux thèmes suivants :
 - **chaque mot a au moins deux sortes** : un mot qu'une seule sorte sait viser (les adverbes de fréquence, les moments
   de la journée) fait se suivre deux fois la même sorte dès que deux de ces mots se suivent dans la file.
 
+## Le portugais (essai admin, lot P3, 11 nov. 2026)
+
+Jacques (11 nov.) : « toutes les corrections pour que le portugais et le japonais soient au même niveau que l'espagnol
+et l'allemand ». **Le modèle de l'anglais** (section précédente) : la même page, les mêmes images, la même mécanique ;
+chaque page accepte `apprendre=pt` et a son objet `PT` (et ses tables `PT_…`), à côté de `ES`, `DE`, `EN`. Les phrases
+sont écrites pour le portugais. Le pilote, le plus court à lire : `contrarios.html`.
+
+- **Le branchement** : `pt: true` sur la ligne du thème dans `THEMES_ILLUSTRES` (index.html) ; `themesIllustresOuverts()`,
+  `apprendreThemeIllustre()` (qui envoyait `de` au portugais), `voixThemeIllustre()` (`&variante=pt|br`), `themeDuJour()`.
+  La liste blanche CSS du portugais cache les thèmes : un petit bloc à part, ancré sur un id (`#orbGrid`, `#orbPanel`),
+  laisse passer l'en-tête, les tuiles ouvertes et les options du panneau « N › », sans réécrire les lignes de la liste.
+- **La grammaire de l'espagnol, les phrases du portugais** : là où une sorte espagnole convient (ser / estar, l'accord),
+  elle passe par `L` (de petits accès ajoutés à `ES` : `art`, `formes`, `frases`, `verbos`…) et l'espagnol rend
+  exactement la même chose ; ailleurs, des sortes propres (le pronom après le verbe de la journée, `pronomePt` ; `sabe`
+  de manger ; `contr`, `paraPt`, `haEsta` du chat ; `gosta`, `vezes`, `sair` des loisirs).
+- **Le Portugal, puis le Brésil** (`variante=br`, `BR` dans la page) : l'article devant le prénom et le possessif
+  (« a Lena é a neta da Gisela », « o meu pai ») au Portugal, sans au Brésil ; le pronom après le verbe (« levanta-se »)
+  ou avant (« se levanta ») ; « está a chover » / « está chovendo » ; « tu » / « você » ; les mots du Brésil
+  (`portugais/outils/bresil.py` : ônibus, banheiro, geladeira, café da manhã, camiseta, tênis, cachorro, fazenda…).
+  L'action reste à **Lisbonne** dans les deux variantes (les euros, la Junta de Freguesia, les saisons de Lisbonne).
+  Chaque page qui change le dit dans une note « Bon à savoir ».
+- **Les mots** : à la forme du corpus ACTIF (`portugais/datos`, `portugais/datos-br`), genre `o` / `a` (`os` pour
+  « os pais »). `python visuel/mots_pt.py <mots>` dit si un mot est au corpus et sa forme au Brésil ;
+  `python visuel/mots_themes_pt.py <dossier des échantillons>` vérifie tous les mots qu'une page envoie. Un mot qui
+  manque s'ajoute dans `portugais/outils` (`noms_<niv>.py`, `mots_<niv>.py` ; le Brésil par une ligne NOMS de
+  `bresil.py` — le drapeau `br=` des listes ne fait que documenter), puis `python portugais/outils/construire.py`
+  (16 s ; déterministe : seuls les mots ajoutés changent, plus des zones de scène qui gagnent leur carte et des
+  exercices tirés autrement). Ajoutés le 11 nov. : 48 noms, 15 adjectifs, 3 verbes, 3 adverbes, por cima de.
+- **La voix** : celle du téléphone, pt-PT ou pt-BR (`voix.js`) ; aucune voix enregistrée. Les nombres dits passent en
+  lettres (`lirePt` du logement, les âges de la famille, les degrés de la météo, les dates des démarches).
+- **Les images écartées** (comme en anglais) : Anna dans le U-Bahn (la journée), Elena et Tomás en uniforme POLIZEI
+  (les métiers ; la esquadra sort aussi des mots, aucune image ne la montre plus), le parc avec la tour de la télévision
+  (la météo), la carte d'assurance allemande (les démarches).
+- **Contrôler sans navigateur** : `node visuel/syntaxe_page.js visuel/prototype/<page>.html` ; **au navigateur, sous le
+  verrou** : `python visuel/echantillon_theme.py <page> pt 3` (et `"pt&variante=br"`) pour relire de vraies questions,
+  puis `THEMES_APPS="pt,pt&variante=br,es,de" python tests/themes_illustres.py <page> 1500`.
+- **Les sept autres thèmes** (transports, courses, vacances, travail, école, en ville, fêtes) : lot P4, après celui-ci.
+
 ## Un thème de papiers : « Les démarches » (vague 3, 4 nov. 2026)
 
 L'administration et la vie pratique, au cœur du DTZ (`demarches.html`, `visuel/demarches/demarches.py`, la seule
