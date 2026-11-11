@@ -770,7 +770,6 @@ progressista | progressista | progressiste | A empresa tem uma política progres
 punível | punível | punissable, répréhensible | Isso é crime e sai caro. | C'est répréhensible et cela coûte cher. | ex?
 puro | pura | pur | É lã pura. | C'est de la laine pure.
 pálido | pálida | pâle |  |  | ex=?
-pão-duro | pão-dura | avare | O homem pão-duro nunca dá gorjeta. | L'homme avare ne donne jamais de pourboire.
 péssimo | péssima | exécrable | O serviço foi péssimo. | Le service a été exécrable.
 público | pública | public | O transporte público é barato aqui. | Les transports publics sont bon marché ici.
 quadrado | quadrada | carré | Temos uma mesa quadrada na cozinha. | Nous avons une table carrée dans la cuisine.
@@ -788,7 +787,6 @@ relativo | relativa | relatif, relativement | Tudo é relativo, ele sempre diz. 
 relaxado | relaxada | détendu | Depois das férias ela sente-se relaxada. | Après les vacances, elle se sent détendue.
 relevante | relevante | pertinent | Inclua só dados relevantes. | N'inclus que des données pertinentes.
 remoto | remota | reculé | Ele mora em um vale remoto. | Il vit dans une vallée reculée.
-resfriado | resfriada | enrhumé | Estou resfriado desde ontem. | Je suis enrhumé depuis hier.
 responsável | responsável | responsable | Ele é responsável por três equipas. | Il est responsable de trois équipes.
 restante | restante | restant, qui reste | Não sobrou nada do bolo. | Il ne reste rien du gâteau. | ex?
 rico | rica | riche | O país é rico em água. | Le pays est riche en eau.
@@ -819,7 +817,6 @@ superficial | superficial | superficiel | Ele fez uma análise superficial. | Il
 superior | superior | supérieur | Ele mora no andar superior. | Il vit à l'étage supérieur.
 surdo | surda | sourd | Desde o acidente ele é surdo de um ouvido. | Depuis l'accident, il est sourd d'une oreille.
 surpreendente | surpreendente | surprenant | O resultado foi surpreendente. | Le résultat a été surprenant.
-surpreso | surpresa | surpris | Fiquei surpreso com a notícia. | J'ai été surpris par la nouvelle.
 suspeito | suspeita | suspect | A mala parece suspeita. | La valise a l'air suspecte.
 sustentável | sustentável | durable | É um modelo sustentável. | C'est un modèle durable.
 sábio | sábia | sage | Foi uma decisão sábia. | Ce fut une décision sage.

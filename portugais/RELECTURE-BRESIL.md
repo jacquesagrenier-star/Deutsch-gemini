@@ -42,6 +42,37 @@ change.
 10. **Ce qui reste du Portugal exprès** : l'action se passe encore à Lisbonne,
     avec des euros (la ville du Brésil est une question pour Jacques).
 
+## Les thèmes illustrés : les paires ajoutées (lot P3, 11 nov. 2026)
+
+Règle du projet : le corpus de base est celui du **Portugal** ; le Brésil n'en est dérivé que par `bresil.py`. Six mots
+brésiliens qui étaient au corpus du Portugal en sont sortis, leur forme du Portugal y est, et la paire est dans
+`bresil.py`. À faire relire par un Brésilien (et un Portugais pour la colonne de gauche) :
+
+| Portugal (corpus) | Brésil (`bresil.py`) | Remarque |
+|---|---|---|
+| encaracolado | cacheado | les cheveux bouclés |
+| zangado | bravo | fâché ; au Portugal, « bravo » veut dire sauvage |
+| surpreendido | surpreso | |
+| avarento | pão-duro (pães-duros) | radin ; au Portugal aussi forreta, sovina |
+| mobilado | mobiliado | un appartement meublé |
+| constipado | resfriado | (paire déjà présente) |
+| a seguir | em seguida | « ensuite » ; seule la phrase de l'adverbe la contient aujourd'hui |
+| o nevoeiro | a neblina | le genre change |
+| os calções | o short | avant : a bermuda (qui descend au genou ; les images montrent des shorts) |
+| os calções de banho | o calção de banho | avant : a sunga (le slip de bain ; l'image montre un short de bain) |
+| a bolacha | o biscoito | |
+| o blusão | a jaqueta | le genre change |
+| a mala de mão | a bolsa | |
+| a caixa de cartão | a caixa de papelão | |
+
+Laissés de côté exprès, à trancher à la relecture :
+- **o rato → o camundongo** : la souris se dit camundongo au Brésil, mais une conversion de texte ferait de la phrase
+  du corpus « Camundongos e ratos são roedores » « camundongos e camundongos ». La page des animaux dit « rato ».
+- **o / a polícia → o / a policial** (l'agent) : la conversion changerait aussi « a polícia » (l'institution). La page
+  des métiers dit « policial » au Brésil, sans carte au corpus.
+- **a luminária** (Brésil seulement : la lampe au plafond, à côté d'abajur, la lampe de chevet) : absente du corpus.
+- **o basquetebol → o basquete**, **a erva → a grama ou o capim** (le corpus du Brésil a déjà « grama » pour relva).
+
 ## Ce que la variante laisse de côté, et pourquoi
 
 - **145 questions d'exercice** ne passent pas au Brésil : elles enseignent un

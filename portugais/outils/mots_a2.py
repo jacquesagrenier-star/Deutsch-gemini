@@ -383,10 +383,8 @@ belo | bela | beau | Ele escreveu um texto belo e simples. | Il a écrit un text
 bem organizado | bem organizado | clair, bien structuré |  |  | ex=?
 bem-comportado | bem-comportada | sage, obéissant | Hoje a criança foi muito bem-comportada. | L'enfant a été très sage aujourd'hui.
 bem-vindo | bem-vinda | bienvenu |  |  | ex=?
-bravo | brava | fâché | Ela está brava comigo. | Elle est fâchée contre moi.
 breve | breve | bref | Foi uma reunião breve. | Ce fut une réunion brève.
 burro | burra | stupide | Foi uma ideia parva. | C'était une idée stupide. | ex?
-cacheado | cacheada | bouclé, frisé | A minha filha tem o cabelo cacheado. | Ma fille a les cheveux bouclés.
 calado | calada | silencieux | Ele ficou calado o jantar inteiro. | Il est resté silencieux tout le dîner.
 calmo | calma | calme, tranquille | O lago é claro e calmo. | Le lac est clair et calme.
 cansativo | cansativa | fatigant, exigeant | A trilha foi muito cansativa. | La randonnée était très fatigante.
@@ -508,7 +506,6 @@ maravilhoso | maravilhosa | merveilleux | A comida estava maravilhosa. | Le repa
 marinho | marinha | marin | Ele estuda a fauna marinha. | Il étudie la faune marine.
 masculino | masculina | masculin, mâle | A palavra é masculina: der Tisch. | Le mot est masculin : der Tisch.
 material | material | matériel | Os danos materiais foram menores. | Les dégâts matériels ont été mineurs.
-mobiliado | mobiliada | meublé | Procuramos um apartamento mobiliado. | Nous cherchons un appartement meublé.
 moderno | moderna | moderne | Ele mora em um apartamento moderno. | Il habite un appartement moderne.
 mole | mole | mou | O colchão é mole demais. | Le matelas est trop mou.
 monótono | monótona | monotone | O trabalho na linha de montagem é monótono. | Le travail à la chaîne est monotone.

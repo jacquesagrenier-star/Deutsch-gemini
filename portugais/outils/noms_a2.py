@@ -790,7 +790,6 @@ a terra natal | le pays d'origine | A minha terra natal é um vilarejo pequeno. 
 a votação | le vote | A votação termina às dezoito horas. | Le vote se termine à dix-huit heures. | g? | pl=votações
 """,
 "lei_a2_pt": """
-o polícia | l'agent de police | O polícia controla o trânsito. | L'agent de police règle la circulation. | br=policial
 o acidente | l'accident | Houve um acidente na estrada. | Il y a eu un accident sur la route.
 o alarme | l'alarme | O alarme tocou de noite. | L'alarme a sonné la nuit.
 a ambulância | l'ambulance | A ambulância chegou em cinco minutos. | L'ambulance est arrivée en cinq minutes.

@@ -169,8 +169,8 @@ sítio | sítios | o > lugar | lugares | o
 fato de banho | fatos de banho | o > maiô | maiôs | o
 fato de treino | fatos de treino | o > agasalho | agasalhos | o
 fato | fatos | o > terno | ternos | o
-calções de banho | — | os > sunga | — | a
-calções | — | os > bermuda | — | a
+calções de banho | — | os > calção de banho | — | o
+calções | — | os > short | — | o
 sapatilhas | — | as > tênis | — | os
 peúgas | — | as > meias | — | as
 soutien | soutiens | o > sutiã | sutiãs | o
@@ -185,6 +185,7 @@ ligadura | ligaduras | a > atadura | ataduras | a
 parque de estacionamento | parques de estacionamento | o > estacionamento | estacionamentos | o
 loiça | — | a > louça | — | a
 guitarra | guitarras | a > violão | violões | o
+nevoeiro | nevoeiros | o > neblina | neblinas | a
 caixa de cartão | caixas de cartão | a > caixa de papelão | caixas de papelão | a
 bolacha | bolachas | a > biscoito | biscoitos | o
 blusão | blusões | o > jaqueta | jaquetas | a
@@ -219,6 +220,8 @@ NOM_PAR_MOT = {n["pt"]: n for n in NOMS_LUS}
 # Adjectifs, locutions, noms propres, orthographe : sans accord a faire.
 MOTS = [
     # adjectifs
+    # les themes illustres (lot P3, 11 nov. 2026) : la forme du Portugal au corpus, celle du Bresil ici
+    ("encaracolado", "cacheado"), ("encaracolada", "cacheada"), ("encaracolados", "cacheados"), ("encaracoladas", "cacheadas"), ("zangado", "bravo"), ("zangada", "brava"), ("zangados", "bravos"), ("zangadas", "bravas"), ("surpreendido", "surpreso"), ("surpreendida", "surpresa"), ("surpreendidos", "surpresos"), ("surpreendidas", "surpresas"), ("mobilado", "mobiliado"), ("mobilada", "mobiliada"), ("mobilados", "mobiliados"), ("mobiladas", "mobiliadas"), ("avarento", "pão-duro"), ("avarenta", "pão-dura"), ("avarentos", "pães-duros"), ("avarentas", "pães-duras"), ("a seguir", "em seguida"), ("A seguir", "Em seguida"),
     ("cinzento", "cinza"), ("cinzenta", "cinza"), ("cinzentos", "cinza"), ("cinzentas", "cinza"),
     ("solarengo", "ensolarado"), ("solarenga", "ensolarada"), ("solarengos", "ensolarados"), ("solarengas", "ensolaradas"),
     ("canadiano", "canadense"), ("canadiana", "canadense"), ("canadianos", "canadenses"), ("canadianas", "canadenses"),

@@ -1241,7 +1241,7 @@ as coisas | les affaires, trucs | Tira as tuas coisas da mesa! | Enlève tes aff
 a comparação | la comparaison | Em comparação com antes, está mais barato. | Par comparaison avec avant, c'est moins cher. | pl=comparações
 o contraste | contraste, opposé | O contraste entre as cores é muito forte. | Le contraste entre les couleurs est très marqué. | g?
 o contrário | le contraire | O contrário de grande é pequeno. | Le contraire de grand est petit.
-o CÓDIGO POSTAL | le code postal | O código postal vem antes do nome da cidade. | Le code postal se place avant le nom de la ville. | pl=CÓDIGOs POSTALs
+o código postal | le code postal | O código postal vem antes do nome da cidade. | Le code postal se place avant le nom de la ville. | pl=códigos postais
 o detalhe | le détail | Conta-me cada detalhe. | Raconte-moi chaque détail. | g?
 a dificuldade | la difficulté | Ele tem dificuldade com a gramática. | Il a des difficultés avec la grammaire.
 a década | la décennie | Nas últimas duas décadas muita coisa mudou. | Beaucoup de choses ont changé au cours des deux dernières décennies. | g?
