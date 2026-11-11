@@ -332,7 +332,8 @@ def construire():
             "x, y : la position dans une boîte de 375 x 372 px ; r : le rayon du cœur de l'étoile ; lum : son éclat (0,55 à 1) ; "
             "couleur : sa teinte selon B-V. al : la distance en années-lumière ; affiche : ce qu'on écrit ; environ : arrondie.",
             "noms : le nom affiché d'une étoile sans nom propre, par langue d'interface (« Tau des Gémeaux », « Tau Geminorum »).",
-            "Chaque étoile garde sa source : la désignation SIMBAD, la parallaxe, son erreur et sa référence.",
+            "La source de chaque étoile (désignation SIMBAD, parallaxe, erreur, référence) est dans etoiles/sources-etoiles.json, "
+            "que seuls les outils lisent (même ordre que les étoiles de chaque constellation) : ciel.json reste léger.",
             "ordre : le voyage jusqu'au C1 (décision du 11 nov. 2026), une étoile par séance terminée, constellation après "
             "constellation : les 15 premières (etoiles/outils/figures.py), puis les 42 de etoiles/outils/voyage.py. "
             "Leurs mesures : etoiles/sources/simbad_voyage*.txt ; leurs noms propres : la liste de l'UAI (IAU-CSN.txt).",
@@ -344,9 +345,18 @@ def construire():
         "textes_distance": TEXTES_DISTANCE,
         "constellations": cons,
     }
+    # Les sources a part (chef, 11 nov. 2026) : l'app charge ciel.json, elle ne lit jamais « source ».
+    sources = {"_lisez_moi": "La source de chaque étoile de ciel.json, constellation par constellation, dans l'ordre de ses "
+                             "étoiles. Fichier DÉRIVÉ : python etoiles/outils/construire.py. Lu par les outils, jamais par l'app.",
+               "constellations": {k: [e.pop("source") for e in c["etoiles"]] for k, c in cons.items()}}
+    open(os.path.join(RACINE, "sources-etoiles.json"), "w", encoding="utf-8").write(
+        json.dumps(sources, ensure_ascii=False, separators=(",", ":")))
     sortie = os.path.join(RACINE, "ciel.json")
     open(sortie, "w", encoding="utf-8").write(json.dumps(data, ensure_ascii=False, separators=(",", ":")))
     print("ecrit", sortie, os.path.getsize(sortie), "octets,", sum(len(c["etoiles"]) for c in cons.values()), "etoiles")
+    for k, c in cons.items():
+        for e, src in zip(c["etoiles"], sources["constellations"][k]):
+            e["source"] = src
     return data
 
 

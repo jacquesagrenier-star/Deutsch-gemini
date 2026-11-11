@@ -37,6 +37,13 @@ def simplifier(t):
 def main():
     d = json.load(open(os.path.join(RACINE, "ciel.json"), encoding="utf-8"))
     C, ordre = d["constellations"], d.get("ordre") or []
+    S = json.load(open(os.path.join(RACINE, "sources-etoiles.json"), encoding="utf-8"))["constellations"]
+    if set(S) != set(C) or any(len(S[k]) != len(C[k]["etoiles"]) for k in C):
+        err("sources-etoiles.json ne suit pas ciel.json")
+    for k in C:
+        for e in C[k]["etoiles"]:
+            if "source" in e:
+                err("%s / %s : « source » encore dans ciel.json" % (k, e["nom"]))
     nouvelles = [f["cle"] for f in VOYAGE]
     if ordre != ORDRE_EXISTANT + nouvelles:
         err("ordre : %s" % ordre)
@@ -72,7 +79,7 @@ def main():
             q = "%s / %s" % (k, e["nom"])
             if not (0 <= e["x"] <= BOITE[0] and 0 <= e["y"] <= BOITE[1]):
                 err(q + " : hors de la boite")
-            s = e.get("source") or {}
+            s = S.get(k, [{}] * n)[i] if i < len(S.get(k, [])) else {}
             p, er = s.get("parallaxe_mas"), s.get("erreur_mas")
             if not p or p <= 0 or er is None:
                 err(q + " : pas de parallaxe")

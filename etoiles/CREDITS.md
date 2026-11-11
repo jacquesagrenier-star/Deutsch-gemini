@@ -1,6 +1,6 @@
 # Les étoiles : sources et licences
 
-`etoiles/ciel.json` (les constellations de « Ton ciel ») est un fichier **dérivé** : `python etoiles/outils/construire.py`. Il ne contient aucune mesure inventée ; chaque étoile garde sa source dans son champ `source`.
+`etoiles/ciel.json` (les constellations de « Ton ciel ») est un fichier **dérivé** : `python etoiles/outils/construire.py`. Il ne contient aucune mesure inventée ; la source de chaque étoile (désignation SIMBAD, parallaxe, erreur, référence, catalogue) est dans `etoiles/sources-etoiles.json`, dérivé lui aussi, que seuls les outils lisent.
 
 | Ce qu'on prend | D'où | Licence, conditions |
 |---|---|---|
