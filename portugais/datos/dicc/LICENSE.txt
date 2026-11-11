@@ -1,0 +1,33 @@
+LICENCE DES DONNEES DE CE DOSSIER
+=================================
+
+Les fichiers JSON de ce dossier -- portugais/datos/dicc/pt-fr/ et
+portugais/datos/dicc/fr-pt/ -- contiennent des donnees lexicales issues de
+WIKDICT, qui les derive lui-meme du WIKTIONNAIRE via DBnary.
+
+    Licence : Creative Commons Attribution - Partage dans les Memes
+              Conditions 4.0 International  (CC BY-SA 4.0)
+    Texte complet : https://creativecommons.org/licenses/by-sa/4.0/legalcode.fr
+    Resume         : https://creativecommons.org/licenses/by-sa/4.0/deed.fr
+
+    Source amont   : WikDict -- https://www.wikdict.com/
+                     (pt-fr.sqlite3 et fr-pt.sqlite3, version du 23 juin 2026)
+    Source premiere: Wiktionnaire / Wikcionario -- https://fr.wiktionary.org/,
+                     https://pt.wiktionary.org/
+                     via DBnary -- http://kaiko.getalp.org/about-dbnary/
+
+CE QUI A ETE MODIFIE
+--------------------
+Les donnees ont ete ADAPTEES au sens de la licence, et il faut le dire :
+
+  - decoupees en fichiers numerotes, par taille, pour que l'application
+    n'en telecharge qu'une part a la fois ;
+  - reduites aux champs dont l'application se sert ; les traductions d'un
+    mot rangees dans l'ordre de ses sens, huit au plus ;
+  - purgees des AFFIXES (« -cao », « anti- »), qui ne sont pas des mots ;
+  - completees, pour les noms portugais que le cours de Wortando connait,
+    de leur article (o / a), tire de ce cours et non du Wiktionnaire.
+
+Ces fichiers adaptes restent donc sous CC BY-SA 4.0, et quiconque les
+redistribue doit le faire aux memes conditions. Ils sont DERIVES : on les
+refait avec  python portugais/outils/dicc_construire.py

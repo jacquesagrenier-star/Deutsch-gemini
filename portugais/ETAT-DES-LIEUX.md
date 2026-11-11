@@ -166,10 +166,18 @@ corrigées à la source en v1029.
 4. ~~La variante brésilienne~~ : **faite en brouillon** (v1033, voir « La
    variante du Brésil » plus bas). Reste la relecture par un Brésilien, et
    « você » à la place de « tu » si le relecteur le demande.
-5. **Les à-côtés de l'anglais** : fréquence d'usage (Leipzig), mots voisins
-   (un `synonymes.json` vide évite seulement une erreur 404), tuiles de grammaire
-   (pronoms, prépositions…), « S'entraîner par temps », épisodes, dictionnaire
-   intégré.
+5. **Les à-côtés de l'anglais** : ~~fréquence d'usage (Leipzig)~~ et
+   ~~dictionnaire intégré~~ **faits le 11 nov. 2026** (lot P6, accord de Jacques) :
+   `portugais/datos/dicc/` (WikDict pt-fr / fr-pt, CC BY-SA, partagé par les deux
+   variantes, `outils/dicc_construire.py`) et `datos/frequence.json` +
+   `datos-br/frequence.json` (Leipzig, CC BY, chaque variante sur ses corpus,
+   `outils/frequence.py --ecrire`, à relancer après `construire.py`) ; archives
+   hors du dépôt dans `C:/Users/jacqu/.wortando/wikdict-pt` et `frequence-pt` ;
+   crédits dans `credits_dict` et `credits_freq` d'`I18N_PORTUGAIS`. La séance
+   portugaise lit désormais la fréquence (comme l'allemand et l'anglais).
+   Restent : mots voisins (un `synonymes.json` vide évite seulement une erreur
+   404), tuiles de grammaire (pronoms, prépositions…), « S'entraîner par
+   temps », épisodes.
 6. **L'ouverture à un compte** : non voulue pour l'instant (Jacques, 30 oct. :
    « on n'ouvre pas l'essai à quelqu'un pour le moment ») ; le bouton n'est pas
    construit, l'admin seul entre.

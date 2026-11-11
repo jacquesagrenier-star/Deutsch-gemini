@@ -19,3 +19,16 @@ listes), pour une future variante brésilienne. Le moteur ne le lit pas encore.
 
 Pas de clé `_lisez_moi` dans les fichiers par niveau (verbes, adjectifs…) : le
 chargeur prendrait chaque clé pour un niveau. Cette notice-ci en tient lieu.
+
+Deux dérivés à part, qui ne sortent PAS de `construire.py` (ils lisent des
+archives gardées hors du dépôt) :
+
+- `frequence.json` (et `../datos-br/frequence.json`) : le classement par
+  fréquence d'usage, Leipzig (CC BY), **à l'intérieur d'une catégorie
+  seulement**. Après chaque `construire.py` :
+  `python portugais/outils/frequence.py --ecrire`
+  (archives : `C:/Users/jacqu/.wortando/frequence-pt`).
+- `dicc/` : le dictionnaire de la recherche, WikDict pt-fr / fr-pt (CC BY-SA 4.0,
+  voir `dicc/LICENSE.txt`), un seul pour le Portugal et le Brésil :
+  `python portugais/outils/dicc_construire.py`
+  (archives : `C:/Users/jacqu/.wortando/wikdict-pt`).

@@ -3549,7 +3549,6 @@ html[data-apprendre="en"] #verbenTempsInfo > .card{ display:none !important; }
    mosaique portugaise est un autre chantier). */
 html[data-apprendre="pt"] [data-i18n="credits_voix"],
 html[data-apprendre="pt"] [data-i18n="credits_degres"],
-html[data-apprendre="pt"] [data-i18n="credits_freq"],
 html[data-apprendre="pt"] [data-i18n="credits_examens"],
 html[data-apprendre="pt"] #episodeLigne,
 html[data-apprendre="pt"] [data-seulement-de],
@@ -14582,7 +14581,9 @@ const LANGUE_PORTUGAIS = {
         "a1-voyage.json":     DOSSIER_PORTUGAIS + "a1-voyage.json",
         "grammaire.json":     DOSSIER_PORTUGAIS + "grammaire.json",
         "exercices.json":     DOSSIER_PORTUGAIS + "exercices.json",
-        "synonymes.json":     DOSSIER_PORTUGAIS + "synonymes.json"
+        "synonymes.json":     DOSSIER_PORTUGAIS + "synonymes.json",
+        // Leipzig, chaque variante sur ses corpus (portugais/outils/frequence.py, 11 nov. 2026).
+        "frequence.json":     DOSSIER_PORTUGAIS + "frequence.json"
     },
     prefixeProgression: ""
 };
@@ -35441,7 +35442,10 @@ const I18N_PORTUGAIS = {
         "av_moitie_2": "Vivre au Portugal",
         "home_title_1": "Apprends le portugais",
         "home_subtitle": "Ton tuteur personnel pour le vocabulaire et la grammaire du portugais du Portugal.",
-        "credits_dict": "Mots, traductions et phrases d'exemple : choisis et écrits par Wortando à partir de son cours d'espagnol, en portugais du Portugal (brouillon, à relire par un lusophone).",
+        "credits_dict": "Mots, traductions et phrases d'exemple : choisis et écrits par Wortando à partir de son cours d'espagnol, en portugais du Portugal (brouillon, à relire par un lusophone). Dictionnaire de la recherche : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
+        // Le dictionnaire (portugais/datos/dicc) et la frequence (frequence.json)
+        // du portugais, 11 nov. 2026 : attribution obligatoire (CC BY-SA, CC BY).
+        "credits_freq": "Fréquence d'usage : Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY.",
         "auth_title": "Apprends le portugais, un mot à la fois",
         "setup_niveau_label": "Tu connais déjà un peu de portugais ?",
         "profil_q1": "Pourquoi tu apprends le portugais ?",
@@ -35470,7 +35474,7 @@ const I18N_PORTUGAIS = {
         "kicker_verben_praesens": "Verbes · Presente",
         "search_title": "Chercher un mot portugais ou français",
         "search_placeholder": "Portugais ou français…",
-        "search_hint": "Tape au moins deux lettres, <strong>en portugais ou en français</strong> — les deux marchent. La recherche interroge tes {n} cartes.",
+        "search_hint": "Tape au moins deux lettres, <strong>en portugais ou en français</strong> — les deux marchent. La recherche interroge tes {n} cartes, puis le dictionnaire — plus de 90 000 mots.",
         "dictation_hint": "Pas besoin d'écrire l'article (o/a).",
         "op_nomen_o6_d": "o · a — deux genres",
         "op_schreiben_title": "Écrire en portugais",
@@ -35500,7 +35504,7 @@ const I18N_PORTUGAIS_BRESIL = {
     "fr": {
         "av_moitie_2": "Vivre au Brésil",
         "home_subtitle": "Ton tuteur personnel pour le vocabulaire et la grammaire du portugais du Brésil.",
-        "credits_dict": "Mots, traductions et phrases d'exemple : choisis et écrits par Wortando à partir de son cours d'espagnol, en portugais du Portugal, puis convertis en portugais du Brésil (brouillon, à relire par un lusophone).",
+        "credits_dict": "Mots, traductions et phrases d'exemple : choisis et écrits par Wortando à partir de son cours d'espagnol, en portugais du Portugal, puis convertis en portugais du Brésil (brouillon, à relire par un lusophone). Dictionnaire de la recherche : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         "profil_r_vivre": "Pour vivre au Brésil",
         "auth_value_1": "Vocabulaire et grammaire du portugais du Brésil, organisés par thème et par niveau.",
         "orb_redewendungen_sub": "olá · obrigado · por favor",
@@ -49545,7 +49549,11 @@ function openMyVocab(){
 // (1 Ko en mediane, 195 Ko au pire) au lieu des 10 Mo du dictionnaire entier.
 // Le credit d'attribution est affiche sous les resultats, comme l'exige la
 // licence -- ne pas le retirer.
-const DICT_BASE_URL = LANGUE_ENSEIGNEE.donnees + (LANGUE_APPRISE === "es" ? "dicc/" : "dict/");
+// Le portugais (11 nov. 2026, accord de Jacques) : WikDict pt-fr / fr-pt dans
+// portugais/datos/dicc/ (portugais/outils/dicc_construire.py), un seul
+// dictionnaire pour le Portugal et le Bresil.
+const DICT_BASE_URL = LANGUE_ENSEIGNEE.donnees
+    + (LANGUE_APPRISE === "es" ? "dicc/" : LANGUE_APPRISE === "pt" ? "datos/dicc/" : "dict/");
 // Quatre paires existent ; on n'en interroge que deux, celles qui parlent la
 // langue de l'interface. Un francophone qui cherche "Haus" doit lire "maison",
 // pas "house" -- c'etait le cas avant v231.
@@ -49555,12 +49563,15 @@ const DICT_BASE_URL = LANGUE_ENSEIGNEE.donnees + (LANGUE_APPRISE === "es" ? "dic
 const DICT_PAIRS_PAR_LANGUE = LANGUE_APPRISE === "es" ? {
     fr: ["es-fr", "fr-es"],
     en: ["es-en", "en-es"]
+} : LANGUE_APPRISE === "pt" ? {
+    // Interface en francais seulement : une seule paire, quelle que soit la langue.
+    fr: ["pt-fr", "fr-pt"]
 } : {
     fr: ["de-fr", "fr-de"],
     en: ["de-en", "en-de"]
 };
 function dictPairs(){
-    return DICT_PAIRS_PAR_LANGUE[getUiLang()] || DICT_PAIRS_PAR_LANGUE.en;
+    return DICT_PAIRS_PAR_LANGUE[getUiLang()] || DICT_PAIRS_PAR_LANGUE.en || DICT_PAIRS_PAR_LANGUE.fr;
 }
 // L'ORDRE DES TRADUCTIONS ALLEMANDES. Signale par Jacques : « concierge »
 // sortait « Concierge · Hausmeister · Hauswart » -- l'emprunt rare d'abord, le
@@ -49665,14 +49676,6 @@ function dictNormalize(str){
 // aurait donne 900 fichiers pour la meme chose -- ici il y en a 88.
 async function dictLoadIndex(pair){
     if(dictIndexes[pair]) return dictIndexes[pair];
-    // Le portugais (essai, 29 oct. 2026) n'a pas encore de dictionnaire : la
-    // section s'efface, sans aller chercher celui de l'allemand (deux 404 par
-    // recherche).
-    if(LANGUE_APPRISE === "pt"){
-        dictIndexes[pair] = [];
-        dictIndexes[pair].introuvable = true;
-        return dictIndexes[pair];
-    }
     try{
         const r = await fetch(DICT_BASE_URL + pair + "/index.json");
         if(!r.ok) throw new Error("index " + pair);
@@ -49802,7 +49805,9 @@ function renderDictSection(liste, total){
         // la carte qui existe deja. Seules les paires de-* sont concernees :
         // ailleurs o.m n'est pas de l'allemand, et un homographe francais ("bar")
         // ne doit pas passer pour un mot du cours.
-        const auCours = !dedans && x.pair.slice(0, 2) === "de" && motDejaDansLeCours(o.m);
+        // Le portugais (11 nov. 2026) : ses paires pt-* parlent la langue du cours.
+        const auCours = !dedans && x.pair.slice(0, 2) === (LANGUE_APPRISE === "pt" ? "pt" : "de")
+            && motDejaDansLeCours(o.m);
         const marque = auCours ? "→" : (dedans ? "✓" : "+");
         const ajout = '<button id="dictAdd' + i + '" class="dict-add'
             + (auCours ? ' au-cours' : (dedans ? ' ajoute' : ''))
