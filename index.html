@@ -9645,7 +9645,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
     <div class="card hidden" id="authSignupCard">
         <p style="color:#4C566B" data-i18n="auth_signup_desc">Tu as reçu un code d'invitation ? Crée ton compte ici.</p>
         <div class="spacer"></div>
-        <input id="authSignupFirstName" class="answer" type="text" placeholder="Prénom" style="margin-bottom:12px;" data-i18n-placeholder="auth_first_name_placeholder">
+        <input id="authSignupFirstName" class="answer" type="text" maxlength="60" placeholder="Prénom" style="margin-bottom:12px;" data-i18n-placeholder="auth_first_name_placeholder">
         <input id="authSignupEmail" class="answer" type="email" placeholder="E-mail" style="margin-bottom:12px;" data-i18n-placeholder="auth_email_placeholder">
         <div class="password-field-wrap" style="margin-bottom:10px;">
             <input id="authSignupPassword" class="answer" type="password" placeholder="Mot de passe (au moins 6 caractères)" oninput="checkSignupPasswordMatch()" data-i18n-placeholder="auth_signup_password_placeholder">
@@ -43875,17 +43875,23 @@ async function syncProgressToCloud(){
                 email: aEcrire.email,
                 // Pose a l'inscription par updateProfile() : disponible sans
                 // aucune lecture Firestore.
-                firstName: user.displayName || "",
+                // ⚠️ BORNES DES REGLES FIRESTORE (11 nov. 2026, securite/
+                // firestore-corrige.rules) : les resumes refusent un champ trop
+                // long ou du mauvais type. Le resume n'est qu'une vitrine : on le
+                // coupe ici plutot que de le voir refuse en silence. Le document
+                // de progression, lui, garde tout. Changer une borne la-bas,
+                // c'est la changer ici.
+                firstName: String(user.displayName || "").slice(0, 60),
                 masteredCount: aEcrire.masteredCount,
                 vusCount: aEcrire.vusCount,
                 totalCount: aEcrire.totalCount,
                 streak: aEcrire.streak,
-                retoursUsager: aEcrire.retoursUsager || "",
-                vocabDemandes: aEcrire.vocabDemandes || [],
-                synonymesEcartes: aEcrire.synonymesEcartes || "",
-                langueInterface: aEcrire.langueInterface || "",
-                appareil: aEcrire.appareil || "",
-                versionNative: aEcrire.versionNative || "",
+                retoursUsager: String(aEcrire.retoursUsager || "").slice(-20000),
+                vocabDemandes: (Array.isArray(aEcrire.vocabDemandes) ? aEcrire.vocabDemandes : []).slice(-150),
+                synonymesEcartes: String(aEcrire.synonymesEcartes || "").slice(-100000),
+                langueInterface: String(aEcrire.langueInterface || "").slice(0, 10),
+                appareil: String(aEcrire.appareil || "").slice(0, 20),
+                versionNative: String(aEcrire.versionNative || "").slice(0, 10),
                 updatedAt: window.fsServerTimestamp()
             }, { merge: true });
             marquerGel(null);
@@ -52839,6 +52845,29 @@ async function fetchBranchDeployInfo(branch){
     };
 }
 
+// TOUT TEXTE VENU D'UN COMPTE EST INERTE (11 nov. 2026, audit de lancement).
+// Le tableau de bord assemble ses lignes en HTML, et ce qu'il y met -- prenom,
+// adresse, appareil, retours, mots demandes, compteurs -- vient des resumes
+// que chacun ecrit lui-meme. Un prenom « <img src=x onerror=...> » tournait
+// avec les droits de l'admin. Tout passe donc par echapperCompte(), qui
+// neutralise aussi les guillemets (le texte peut finir dans un attribut), et
+// les identifiants qui finissent dans un onclick doivent avoir la forme d'un
+// uid ou d'un code (idSurCompte), sinon le bouton n'est pas dessine.
+// Les nombres ne sont crus que s'ils en sont (nombreCompte) : vusCount peut
+// arriver en texte depuis un document bricole.
+// ⚠️ Ne pas reutiliser echapperHtml ici : elle laisse passer les guillemets.
+function echapperCompte(s){
+    return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+function idSurCompte(id){
+    return typeof id === "string" && /^[A-Za-z0-9_-]{1,128}$/.test(id);
+}
+function nombreCompte(n, defaut){
+    return (typeof n === "number" && isFinite(n)) ? n : defaut;
+}
+
 async function renderAdminDeployStatus(){
     const el = document.getElementById("adminDeployStatus");
     if(!el || !isAdminUser()) return;
@@ -52850,13 +52879,13 @@ async function renderAdminDeployStatus(){
         el.innerHTML = `
             <div style="margin-bottom:10px;">
                 <div style="font-weight:800; color:#16a34a;">🟢 Production (main)</div>
-                <div>${prod.message}</div>
-                <small style="color:#4C566B;">${prod.sha} · ${timeAgoFr(prod.date)}</small>
+                <div>${echapperCompte(prod.message)}</div>
+                <small style="color:#4C566B;">${echapperCompte(prod.sha)} · ${echapperCompte(timeAgoFr(prod.date))}</small>
             </div>
             <div>
                 <div style="font-weight:800; color:#d97706;">🟡 En test (staging)</div>
-                <div>${staging.message}</div>
-                <small style="color:#4C566B;">${staging.sha} · ${timeAgoFr(staging.date)}</small>
+                <div>${echapperCompte(staging.message)}</div>
+                <small style="color:#4C566B;">${echapperCompte(staging.sha)} · ${echapperCompte(timeAgoFr(staging.date))}</small>
             </div>
         `;
     }catch(e){
@@ -52924,12 +52953,15 @@ async function renderAdminCodesList(){
             container.textContent = t('admin_no_codes');
             return;
         }
-        container.innerHTML = codes.map(c => `
+        // Les codes sont crees par l'admin seul (regle inviteCodes), mais on ne
+        // dessine que ceux qui ont la forme d'un code : l'identifiant finit
+        // dans des onclick.
+        container.innerHTML = codes.filter(c => idSurCompte(c.id)).map(c => `
             <div class="admin-code-row" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid rgba(30,41,59,.1);">
                 <div style="flex:1; min-width:0;">
                     <div style="font-weight:800; letter-spacing:1px;">${c.id}</div>
                     <small style="color:#4C566B;">${c.used ? t('admin_code_used') : t('admin_code_available')}</small>
-                    <input type="text" class="admin-code-note" placeholder="${t('admin_code_note_placeholder')}" value="${(c.note || "").replace(/"/g, "&quot;")}" onblur="updateInviteCodeNote('${c.id}', this.value)" style="display:block; width:100%; margin-top:6px; padding:8px 10px; font-size:16px; border:1px solid rgba(30,41,59,.15); border-radius:8px; background:transparent; color:inherit; min-height:36px;">
+                    <input type="text" class="admin-code-note" placeholder="${t('admin_code_note_placeholder')}" value="${echapperCompte(c.note || "")}" onblur="updateInviteCodeNote('${c.id}', this.value)" style="display:block; width:100%; margin-top:6px; padding:8px 10px; font-size:16px; border:1px solid rgba(30,41,59,.15); border-radius:8px; background:transparent; color:inherit; min-height:36px;">
                     ${c.used ? "" : `<div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">
                         <button class="secondary" style="width:auto; padding:7px 12px; font-size:12px;" onclick="copierLienInvitation('${c.id}', 'de', this)">LIEN ALLEMAND</button>
                         <button class="secondary" style="width:auto; padding:7px 12px; font-size:12px;" onclick="copierLienInvitation('${c.id}', 'es', this)">LIEN ESPAGNOL</button>
@@ -53015,11 +53047,14 @@ function renderAdminRequests(users){
     if(!box) return;
     const compte = {};
     (users || []).forEach(u => {
-        const prenom = (u.firstName || u.email || "?").trim();
-        (u.vocabDemandes || []).forEach(d => {
+        const prenom = String(u.firstName || u.email || "?").trim();
+        (Array.isArray(u.vocabDemandes) ? u.vocabDemandes : []).forEach(d => {
             if(!d || !d.m) return;
-            if(!compte[d.m]) compte[d.m] = { mot: d.m, sens: d.t || "", qui: [] };
-            if(compte[d.m].qui.indexOf(prenom) === -1) compte[d.m].qui.push(prenom);
+            // Cle prefixee : un mot demande nomme « __proto__ » ne doit pas
+            // atteindre le prototype de l'objet.
+            const cle = "m:" + String(d.m);
+            if(!compte[cle]) compte[cle] = { mot: String(d.m), sens: String(d.t || ""), qui: [] };
+            if(compte[cle].qui.indexOf(prenom) === -1) compte[cle].qui.push(prenom);
         });
     });
     const liste = Object.values(compte).sort((a, b) =>
@@ -53028,11 +53063,11 @@ function renderAdminRequests(users){
     box.innerHTML = liste.slice(0, 60).map(d => `
         <div style="padding:7px 0; border-top:1px solid rgba(30,41,59,.1);">
             <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px;">
-                <strong>${d.mot}</strong>
+                <strong>${echapperCompte(d.mot)}</strong>
                 <small style="color:var(--wt-accent-texte); font-weight:700; white-space:nowrap;">${d.qui.length}×</small>
             </div>
-            <small style="color:#4C566B;">${d.sens}</small><br>
-            <small style="color:#8b93a3;">${d.qui.join(", ")}</small>
+            <small style="color:#4C566B;">${echapperCompte(d.sens)}</small><br>
+            <small style="color:#8b93a3;">${echapperCompte(d.qui.join(", "))}</small>
         </div>`).join("")
         + (liste.length > 60 ? `<div class="spacer"></div><small style="color:#8b93a3;">${tf("admin_requests_more", { n: liste.length - 60 })}</small>` : "");
 }
@@ -53076,7 +53111,7 @@ function versionNative(){
 }
 
 function repartitionAppareils(users){
-    const n = {};
+    const n = Object.create(null);
     let inconnus = 0;
     users.forEach(u => { if(u.appareil) n[u.appareil] = (n[u.appareil] || 0) + 1; else inconnus++; });
     const morceaux = ["Android", "iPhone", "iPad", "ordinateur"].filter(k => n[k]).map(k => k + " " + n[k]);
@@ -53096,8 +53131,8 @@ async function renderAdminUsersList(){
     if(typeof syncProgressToCloud === "function") await syncProgressToCloud();
     const alerteSync = dernierEchecSync
         ? `<div style="background:#fef2f2; border:1px solid #fca5a5; color:#b91c1c; padding:10px 12px; border-radius:8px; margin-bottom:12px; font-weight:700;">
-               Écriture Firestore refusée : <code>${dernierEchecSync.message}</code> — la progression ne se sauvegarde PAS dans le cloud.
-               <div style="font-weight:400; margin-top:6px; font-size:12px;">${dernierEchecSync.detail || ""}</div>
+               Écriture Firestore refusée : <code>${echapperCompte(dernierEchecSync.message)}</code> — la progression ne se sauvegarde PAS dans le cloud.
+               <div style="font-weight:400; margin-top:6px; font-size:12px;">${echapperCompte(dernierEchecSync.detail || "")}</div>
            </div>`
         : "";
     try{
@@ -53184,31 +53219,38 @@ async function renderAdminUsersList(){
             + `<div class="admin-chiffres">${chiffre(compte.actif, "Actifs 7 j")}${chiffre(compte.relancer, "À relancer")}${chiffre(compte.jamais, "Jamais commencé")}</div>`
             + repartitionAppareils(users)
             + users.map(u => {
+            // Tout ce qui suit vient du resume que la personne ecrit elle-meme :
+            // echapperCompte partout, nombres verifies, et pas de bouton si
+            // l'identifiant n'a pas la forme d'un uid (voir echapperCompte).
             const vhsOn = u.vhsChaptersEnabled === true;
-            const prenom = (u.firstName || "").trim();
-            const titre = prenom || u.email || u.id;
+            const prenom = String(u.firstName || "").trim();
+            const titre = echapperCompte(prenom || u.email || u.id);
             const { vuLe, etat } = etatDe(u);
             const quand = vuLe ? timeAgoFr(vuLe) : "jamais";
-            const mots = u.vusCount === undefined ? "?" : u.vusCount;
+            const mots = nombreCompte(u.vusCount, "?");
             const retour = u.retoursUsager
-                ? `<div class="admin-retour">${String(u.retoursUsager).replace(/</g, "&lt;")}</div>` : "";
+                ? `<div class="admin-retour">${echapperCompte(u.retoursUsager)}</div>` : "";
+            const idSur = idSurCompte(u.id);
+            const nomLangue = u.langueInterface ? (Object.prototype.hasOwnProperty.call(NOMS_LANGUE, u.langueInterface) ? NOMS_LANGUE[u.langueInterface] : u.langueInterface) : "";
+            const cleLigne = echapperCompte(u._langue + "-" + u.id);
             return `
-            <details class="admin-user-row" data-uid="${u._langue}-${u.id}"${ouverts.has(u._langue + "-" + u.id) ? " open" : ""}>
+            <details class="admin-user-row" data-uid="${cleLigne}"${ouverts.has(u._langue + "-" + u.id) ? " open" : ""}>
                 <summary>
                     <span class="admin-point admin-point-${etat}"></span>
-                    <span class="admin-nom"><span class="admin-langue">${String(u._langue || "de").toUpperCase()}</span> ${titre}${u.retoursUsager ? ' <span class="admin-bulle" title="Retour">💬</span>' : ""}</span>
-                    <small>${quand} · ${mots} mot${mots > 1 ? "s" : ""}</small>
+                    <span class="admin-nom"><span class="admin-langue">${echapperCompte(String(u._langue || "de").toUpperCase())}</span> ${titre}${u.retoursUsager ? ' <span class="admin-bulle" title="Retour">💬</span>' : ""}</span>
+                    <small>${echapperCompte(quand)} · ${mots} mot${mots > 1 ? "s" : ""}</small>
                 </summary>
                 <div class="admin-detail">
-                    <small>${tf('admin_user_stats', { vus: mots, mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small><br>
-                    <small>${u.email || ""}${u.langueInterface ? " · interface en " + (NOMS_LANGUE[u.langueInterface] || u.langueInterface) : ""}${u.appareil ? " · " + u.appareil + (u.versionNative ? " · version " + u.versionNative : "") : ""}</small>
+                    <small>${echapperCompte(tf('admin_user_stats', { vus: mots, mastered: nombreCompte(u.masteredCount, 0), total: nombreCompte(u.totalCount, 0), streak: nombreCompte(u.streak, 0) }))}</small><br>
+                    <small>${echapperCompte(u.email || "")}${nomLangue ? " · interface en " + echapperCompte(nomLangue) : ""}${u.appareil ? " · " + echapperCompte(u.appareil) + (u.versionNative ? " · version " + echapperCompte(u.versionNative) : "") : ""}</small>
                     ${retour}
-                    ${u._coll === RESUMES_COLL ? `<button class="secondary admin-vhs" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
+                    ${!idSur ? "" : u._coll === RESUMES_COLL ? `<button class="secondary admin-vhs" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
                         ${vhsOn ? t('admin_vhs_access_on') : t('admin_vhs_access_off')}
                     </button>` : ""}
                     ${(() => {
                         // Sur TOUTES les lignes, allemandes et espagnoles : le
                         // compte a qui Jacques ouvre l'anglais pratique l'espagnol.
+                        if(!idSur) return "";
                         const anglaisOn = Array.isArray(u.essais) && u.essais.includes("anglais");
                         return `<button class="secondary admin-vhs" onclick="basculerEssaiCompte('${u.id}', 'anglais', ${!anglaisOn}, '${u._coll}')">
                         ${anglaisOn ? "ANGLAIS OUVERT ✓ — RETIRER" : "OUVRIR L'ANGLAIS"}
@@ -53220,7 +53262,7 @@ async function renderAdminUsersList(){
                         // ⚠️ « resumes » en toutes lettres, pas RESUMES_COLL : celle-ci suit la langue que l'ADMIN
                         // apprend, et le bouton disparaissait des lignes allemandes quand Jacques etait en espagnol
                         // (7 nov., la ligne de Marina). Le bouton VHS, lui, suit cette langue a dessein.
-                        if(u._coll !== "resumes") return "";
+                        if(u._coll !== "resumes" || !idSur) return "";
                         const examensOn = Array.isArray(u.essais) && u.essais.includes("examens");
                         return `<button class="secondary admin-vhs" onclick="basculerEssaiCompte('${u.id}', 'examens', ${!examensOn}, '${u._coll}')">
                         ${examensOn ? "EXAMENS OUVERTS ✓ — RETIRER" : "OUVRIR LES EXAMENS"}

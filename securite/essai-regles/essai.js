@@ -1,0 +1,109 @@
+// Banc d'essai des regles corrigees, dans l'EMULATEUR local (projet fictif
+// demo-wortando : rien ne part vers le vrai Firebase).
+const fs = require("fs");
+const path = require("path");
+const { initializeTestEnvironment, assertSucceeds, assertFails } = require("@firebase/rules-unit-testing");
+const { doc, setDoc, updateDoc, getDoc, getDocs, collection, deleteDoc, serverTimestamp } = require("firebase/firestore");
+
+const ADMIN_UID = "SOq5GGdxLsXGVaJWLiS3thtNGLE2";
+const ADMIN_EMAIL = "jacques.a.grenier@gmail.com";
+const REGLES = process.env.REGLES || path.join(__dirname, "..", "firestore-corrige.rules");
+
+let ok = 0, ko = 0;
+async function cas(nom, attendu, fn){
+    try{
+        await (attendu ? assertSucceeds(fn()) : assertFails(fn()));
+        ok++; console.log("  ok   " + nom);
+    }catch(e){
+        ko++; console.log("  ECHEC " + nom + " -- " + String(e.message || e).slice(0, 160));
+    }
+}
+
+function resume(email, extra){
+    return Object.assign({
+        email, firstName: "Anna", masteredCount: 12, vusCount: 40, totalCount: 8000, streak: 3,
+        retoursUsager: "", vocabDemandes: [], synonymesEcartes: "", langueInterface: "fr",
+        appareil: "Android", versionNative: "19", updatedAt: serverTimestamp()
+    }, extra || {});
+}
+
+(async () => {
+    const env = await initializeTestEnvironment({
+        projectId: "demo-wortando",
+        firestore: { rules: fs.readFileSync(REGLES, "utf8"), host: "127.0.0.1", port: 8085 }
+    });
+    const anna = env.authenticatedContext("annaUid", { email: "anna@example.com" }).firestore();
+    const bob = env.authenticatedContext("bobUid", { email: "bob@example.com" }).firestore();
+    const admin = env.authenticatedContext(ADMIN_UID, { email: ADMIN_EMAIL }).firestore();
+    const fauxAdmin = env.authenticatedContext("autreUid", { email: ADMIN_EMAIL }).firestore();
+    const anonyme = env.unauthenticatedContext().firestore();
+
+    console.log("RESUMES (ce que lit le tableau de bord)");
+    for(const coll of ["resumes", "resumenesEs", "resumesEn", "resumesPt", "resumesJa"]){
+        await env.clearFirestore();
+        console.log(" " + coll);
+        await cas("cree son resume normal", true, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com"), { merge: true }));
+        await cas("le met a jour (merge)", true, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { vusCount: 41 }), { merge: true }));
+        await cas("prenom a balise, court : accepte (l'app l'affiche en texte)", true, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { firstName: "<img src=x onerror=alert(1)>" }), { merge: true }));
+        await cas("prenom de 61 caracteres : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { firstName: "a".repeat(61) }), { merge: true }));
+        await cas("retours de 20 001 caracteres : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { retoursUsager: "a".repeat(20001) }), { merge: true }));
+        await cas("retours de 20 000 caracteres : accepte", true, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { retoursUsager: "a".repeat(20000) }), { merge: true }));
+        await cas("vusCount en texte : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { vusCount: "<b>9</b>" }), { merge: true }));
+        await cas("appareil de 200 caracteres : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { appareil: "x".repeat(200) }), { merge: true }));
+        await cas("151 mots demandes : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { vocabDemandes: Array(151).fill({ m: "x" }) }), { merge: true }));
+        await cas("champ inconnu : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { html: "<script>" }), { merge: true }));
+        await cas("s'ouvre un essai : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), { essais: ["anglais"] }, { merge: true }));
+        await cas("s'ouvre les VHS : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), { vhsChaptersEnabled: true }, { merge: true }));
+        await cas("se fait passer pour une autre adresse : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), resume("marina@example.com"), { merge: true }));
+        await cas("ecrit le resume de quelqu'un d'autre : refuse", false, () => setDoc(doc(bob, coll, "annaUid"), resume("bob@example.com"), { merge: true }));
+        await cas("lit son propre resume : refuse (admin seul)", false, () => getDoc(doc(anna, coll, "annaUid")));
+        await cas("l'admin lit la liste", true, () => getDocs(collection(admin, coll)));
+        await cas("la meme adresse que l'admin sur un autre compte : refuse", false, () => getDocs(collection(fauxAdmin, coll)));
+        await cas("l'admin ouvre un essai dans le resume", true, () => setDoc(doc(admin, coll, "annaUid"), { essais: ["anglais"], vhsChaptersEnabled: true }, { merge: true }));
+        await cas("la personne sauvegarde ensuite normalement (essai deja la)", true, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { vusCount: 50 }), { merge: true }));
+        await cas("l'admin reconstruit un resume", true, () => setDoc(doc(admin, coll, "bobUid"), resume("bob@example.com", { vhsChaptersEnabled: false, essais: [], updatedAt: null }), { merge: true }));
+        await cas("la personne supprime son resume (suppression du compte)", true, () => deleteDoc(doc(anna, coll, "annaUid")));
+        await cas("anonyme ecrit un resume : refuse", false, () => setDoc(doc(anonyme, coll, "annaUid"), resume("anna@example.com"), { merge: true }));
+    }
+
+    console.log("USERS (progression allemande et acces)");
+    await env.clearFirestore();
+    await cas("inscription : profil", true, () => setDoc(doc(anna, "users", "annaUid"), { email: "anna@example.com", firstName: "Anna", inviteCode: "ABCD2345", createdAt: serverTimestamp() }, { merge: true }));
+    await cas("sauvegarde de la progression", true, () => setDoc(doc(anna, "users", "annaUid"), { progressJson: "{}", vusCount: 3, updatedAt: serverTimestamp(), dailyGoalTarget: null }, { merge: true }));
+    await cas("jeton de notification", true, () => setDoc(doc(anna, "users", "annaUid"), { fcmToken: "t", fcmTokenUpdatedAt: serverTimestamp() }, { merge: true }));
+    await cas("langue apprise", true, () => setDoc(doc(anna, "users", "annaUid"), { langueApprise: "es" }, { merge: true }));
+    await cas("lit sa progression", true, () => getDoc(doc(anna, "users", "annaUid")));
+    await cas("s'ouvre l'anglais : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { essais: ["anglais"] }, { merge: true }));
+    await cas("s'ouvre les VHS : refuse", false, () => updateDoc(doc(anna, "users", "annaUid"), { vhsChaptersEnabled: true }));
+    await cas("compte neuf cree avec un essai : refuse", false, () => setDoc(doc(bob, "users", "bobUid"), { email: "bob@example.com", essais: ["examens"] }));
+    await cas("un autre lit ma progression : refuse", false, () => getDoc(doc(bob, "users", "annaUid")));
+    await cas("un autre ecrit ma progression : refuse", false, () => setDoc(doc(bob, "users", "annaUid"), { progressJson: "{}" }, { merge: true }));
+    await cas("l'admin ouvre l'anglais", true, () => updateDoc(doc(admin, "users", "annaUid"), { essais: ["anglais"] }));
+    await cas("l'admin ouvre les VHS", true, () => updateDoc(doc(admin, "users", "annaUid"), { vhsChaptersEnabled: true }));
+    await cas("l'admin touche a la progression : refuse", false, () => updateDoc(doc(admin, "users", "annaUid"), { progressJson: "x" }));
+    await cas("la personne sauvegarde ensuite normalement (essai deja la)", true, () => setDoc(doc(anna, "users", "annaUid"), { progressJson: "{\"a\":1}", updatedAt: serverTimestamp() }, { merge: true }));
+    await cas("l'admin lit la liste", true, () => getDocs(collection(admin, "users")));
+    await cas("un testeur lit la liste : refuse", false, () => getDocs(collection(anna, "users")));
+    await cas("la personne supprime son document", true, () => deleteDoc(doc(anna, "users", "annaUid")));
+
+    console.log("AUTRES LANGUES (progression)");
+    for(const coll of ["usuariosEs", "usersEn", "usersPt", "usersJa"]){
+        await cas(coll + " : sauvegarde", true, () => setDoc(doc(anna, coll, "annaUid"), { progressJson: "{}", updatedAt: serverTimestamp() }, { merge: true }));
+        await cas(coll + " : un autre ecrit : refuse", false, () => setDoc(doc(bob, coll, "annaUid"), { progressJson: "{}" }, { merge: true }));
+        await cas(coll + " : suppression", true, () => deleteDoc(doc(anna, coll, "annaUid")));
+    }
+
+    console.log("CODES D'INVITATION (inchanges)");
+    await env.withSecurityRulesDisabled(async c => { await setDoc(doc(c.firestore(), "inviteCodes", "ABCD2345"), { used: false, note: "" }); });
+    await cas("anonyme verifie un code", true, () => getDoc(doc(anonyme, "inviteCodes", "ABCD2345")));
+    await cas("anonyme liste les codes : refuse", false, () => getDocs(collection(anonyme, "inviteCodes")));
+    await cas("le nouvel inscrit consomme le code", true, () => updateDoc(doc(anna, "inviteCodes", "ABCD2345"), { used: true, usedAt: serverTimestamp(), usedBy: "annaUid" }));
+    await cas("un second le reconsomme : refuse", false, () => updateDoc(doc(bob, "inviteCodes", "ABCD2345"), { used: true, usedAt: serverTimestamp(), usedBy: "bobUid" }));
+    await cas("l'admin cree un code", true, () => setDoc(doc(admin, "inviteCodes", "ZZZZ2345"), { used: false, note: "", createdAt: serverTimestamp(), createdBy: ADMIN_EMAIL }));
+    await cas("un testeur cree un code : refuse", false, () => setDoc(doc(anna, "inviteCodes", "YYYY2345"), { used: false }));
+    await cas("collection inconnue : refuse", false, () => setDoc(doc(anna, "autre", "x"), { a: 1 }));
+
+    await env.cleanup();
+    console.log("\n" + ok + " ok, " + ko + " echec(s)");
+    process.exit(ko ? 1 : 0);
+})().catch(e => { console.error("PLANTE", e); process.exit(2); });

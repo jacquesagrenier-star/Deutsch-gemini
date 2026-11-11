@@ -1,0 +1,180 @@
+// Regles de securite Firestore du projet deutschai-b6fbb -- VERSION CORRIGEE
+// DU 11 NOVEMBRE 2026 (audit de lancement, point 1). A COLLER TELLE QUELLE dans
+//   https://console.firebase.google.com/project/deutschai-b6fbb/firestore/rules
+// a la place de TOUT le texte present, puis « Publier ». Mode d'emploi et
+// raisons : securite/REGLES-FIRESTORE.md. Une fois publiee, ce fichier
+// remplace firestore.rules (la copie de ce qui est en ligne).
+//
+// Ce qui change par rapport aux regles du 30 oct. :
+//  1. L'admin est reconnu par son identifiant de compte (uid), plus par son
+//     adresse : l'uid ne se choisit pas et ne se reutilise pas.
+//  2. Les resumes (ce que lit le tableau de bord admin) n'acceptent plus
+//     n'importe quoi de la part de la personne : seulement les treize champs
+//     que l'app y ecrit, chacun de son type et borne en taille, et l'adresse
+//     doit etre celle du compte connecte (on ne peut plus se faire passer
+//     pour un autre testeur dans le tableau).
+//  3. Personne ne peut s'ouvrir lui-meme un essai (`essais`) ni les chapitres
+//     VHS (`vhsChaptersEnabled`) : seul l'admin les ecrit, dans `users` comme
+//     dans les resumes.
+// Tout le reste est identique : memes collections, memes lectures.
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function connecte() {
+      return request.auth != null;
+    }
+    // Le compte de Jacques (verifie le 11 nov. 2026 : c'est l'identifiant de
+    // ses documents dans les dix collections). Un uid n'est pas un secret.
+    function isAdmin() {
+      return connecte() && request.auth.uid == 'SOq5GGdxLsXGVaJWLiS3thtNGLE2';
+    }
+    function proprietaire(uid) {
+      return connecte() && request.auth.uid == uid;
+    }
+
+    // ---- Ce que seul l'admin accorde ----
+    function accesReserves() {
+      return ['essais', 'vhsChaptersEnabled'];
+    }
+    function creeSansAccesReserves() {
+      return !request.resource.data.keys().hasAny(accesReserves());
+    }
+    function modifieSansAccesReserves() {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(accesReserves());
+    }
+
+    // ---- Les resumes : ce que la personne y ecrit elle-meme ----
+    // La liste exacte de syncProgressToCloud() dans index.html. Un champ
+    // ajoute la-bas doit l'etre ici, sinon son resume est refuse (sa
+    // progression, elle, part quand meme : c'est un autre document).
+    function champsResume() {
+      return ['email', 'firstName', 'masteredCount', 'vusCount', 'totalCount',
+              'streak', 'retoursUsager', 'vocabDemandes', 'synonymesEcartes',
+              'langueInterface', 'appareil', 'versionNative', 'updatedAt'];
+    }
+    function texte(d, champ, max) {
+      return !(champ in d) || (d[champ] is string && d[champ].size() <= max);
+    }
+    function nombre(d, champ) {
+      return !(champ in d) || d[champ] == null
+          || (d[champ] is number && d[champ] >= 0 && d[champ] <= 10000000);
+    }
+    function resumeValide(d) {
+      return d.email == request.auth.token.email
+          && texte(d, 'email', 254)
+          && texte(d, 'firstName', 60)
+          && nombre(d, 'masteredCount')
+          && nombre(d, 'vusCount')
+          && nombre(d, 'totalCount')
+          && nombre(d, 'streak')
+          && texte(d, 'retoursUsager', 20000)
+          && (!('vocabDemandes' in d) || (d.vocabDemandes is list && d.vocabDemandes.size() <= 150))
+          && texte(d, 'synonymesEcartes', 100000)
+          && texte(d, 'langueInterface', 10)
+          && texte(d, 'appareil', 20)
+          && texte(d, 'versionNative', 10)
+          && (!('updatedAt' in d) || d.updatedAt == null || d.updatedAt is timestamp);
+    }
+    function creeSonResume(uid) {
+      return proprietaire(uid)
+          && request.resource.data.keys().hasOnly(champsResume())
+          && resumeValide(request.resource.data);
+    }
+    function modifieSonResume(uid) {
+      return proprietaire(uid)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(champsResume())
+          && resumeValide(request.resource.data);
+    }
+
+    match /inviteCodes/{code} {
+      allow get: if true;
+      allow list: if isAdmin();
+      allow create: if isAdmin();
+      allow delete: if isAdmin();
+      // Un code se consomme une seule fois, et celui qui le consomme ne peut
+      // toucher qu'aux trois champs de sa consommation.
+      allow update: if connecte()
+                    && resource.data.used == false
+                    && request.resource.data.used == true
+                    && request.resource.data.usedBy == request.auth.uid
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['used', 'usedAt', 'usedBy']);
+      allow update: if isAdmin()
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['note']);
+    }
+
+    // ---- La progression allemande, et les acces accordes par l'admin ----
+    match /users/{uid} {
+      allow get: if proprietaire(uid) || isAdmin();
+      allow list: if isAdmin();
+      allow create: if proprietaire(uid) && creeSansAccesReserves();
+      allow update: if proprietaire(uid) && modifieSansAccesReserves();
+      allow delete: if proprietaire(uid);
+      // L'admin ne modifie QUE les deux acces chez autrui.
+      allow update: if isAdmin()
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(accesReserves());
+    }
+    match /resumes/{uid} {
+      allow get, list: if isAdmin();
+      allow create: if creeSonResume(uid);
+      allow update: if modifieSonResume(uid);
+      allow delete: if proprietaire(uid);
+      // « Reconstruire les resumes », les boutons VHS et essais.
+      allow write: if isAdmin();
+    }
+
+    // ---- Les autres langues : meme modele (progression, puis resume) ----
+    match /usuariosEs/{uid} {
+      allow get: if proprietaire(uid) || isAdmin();
+      allow list: if isAdmin();
+      allow write: if proprietaire(uid);
+    }
+    match /resumenesEs/{uid} {
+      allow get, list: if isAdmin();
+      allow create: if creeSonResume(uid);
+      allow update: if modifieSonResume(uid);
+      allow delete: if proprietaire(uid);
+      allow write: if isAdmin();
+    }
+
+    match /usersJa/{uid} {
+      allow get: if proprietaire(uid) || isAdmin();
+      allow list: if isAdmin();
+      allow write: if proprietaire(uid);
+    }
+    match /resumesJa/{uid} {
+      allow get, list: if isAdmin();
+      allow create: if creeSonResume(uid);
+      allow update: if modifieSonResume(uid);
+      allow delete: if proprietaire(uid);
+      allow write: if isAdmin();
+    }
+
+    match /usersEn/{uid} {
+      allow get: if proprietaire(uid) || isAdmin();
+      allow list: if isAdmin();
+      allow write: if proprietaire(uid);
+    }
+    match /resumesEn/{uid} {
+      allow get, list: if isAdmin();
+      allow create: if creeSonResume(uid);
+      allow update: if modifieSonResume(uid);
+      allow delete: if proprietaire(uid);
+      allow write: if isAdmin();
+    }
+
+    match /usersPt/{uid} {
+      allow get: if proprietaire(uid) || isAdmin();
+      allow list: if isAdmin();
+      allow write: if proprietaire(uid);
+    }
+    match /resumesPt/{uid} {
+      allow get, list: if isAdmin();
+      allow create: if creeSonResume(uid);
+      allow update: if modifieSonResume(uid);
+      allow delete: if proprietaire(uid);
+      allow write: if isAdmin();
+    }
+  }
+}
