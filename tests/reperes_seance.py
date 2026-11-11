@@ -6,7 +6,7 @@
 
 Sur un navigateur vierge, sans compte. A 320 x 568 et 360 x 780, clair, nuit, RTL :
   - les noms sous la barre, un par partie, ne debordent pas, meme a six parties dans la langue la plus longue ;
-  - le paysage suit la partie (six paysages), et il s'arrete au-dessus des boutons du verso ;
+  - le paysage suit la partie (sept paysages, le son du jour compris), et il s'arrete au-dessus des boutons du verso ;
   - le fond de tout l'ecran prend la couleur de la partie, et le texte de l'en-tete y reste lisible (4,5:1 au moins) ;
   - la barre : la partie en cours en encre (blanc la nuit), les parties faites en vert avec le crochet ;
   - aucun nom sous la barre ne laisse une lettre seule sur sa ligne (le « s » de Revisions lu comme un 5) ;
@@ -279,7 +279,7 @@ def main():
                 ctx, page = page_de(nav, "de", "fr", theme, 360, 780)
                 page.evaluate("() => ouvrirSeanceDuJour()")
                 page.wait_for_timeout(1400)
-                for k in ("pp", "rev", "mots", "conj", "scene", "theme"):
+                for k in ("pp", "rev", "mots", "conj", "scene", "theme", "son"):
                     m = page.evaluate(PAYSAGES, [k])
                     note("paysage %s %s" % (k, theme), m["marque"] == k + (":n" if theme == "dark" else ":j") and bool(m["fond"]), m)
                     capt(page, "paysage-%s-%s" % (k, theme))
