@@ -64475,30 +64475,72 @@ function majPortesSeance(){
 // scene ENTIERE, sur Decouvrir (le prototype commence la). Version gratuite :
 // la classe seule, les autres portent un cadenas et menent a l'offre.
 // LES SCENES DU JAPONAIS (essai, 27 oct. 2026) : les siennes, pas celles de
-// l'allemand -- un konbini, une gare, l'entree d'une maison. Explorer seulement
-// (toucher, ecouter) : elles n'entrent pas encore dans la seance.
+// l'allemand. Depuis le 11 nov. (lot J3) : les 35 scenes de Camille, « Une annee
+// a Tokyo », dans l'ordre de l'annee (japonais/scenes/HISTOIRE-CAMILLE.md, branche
+// japonais) -- konbini, eki et genkan, les prototypes du 12 oct., y gardent leur
+// place. TABLE GENEREE par japonais/scenes/construire_scenes.py
+// (scenes-ja-index.js) : la refaire la-bas, puis la recopier ici. Explorer
+// seulement (toucher, ecouter) : elles n'entrent pas encore dans la seance.
 const SCENES_JA = [
-    { nom: "konbini", ja: "コンビニで", fr: "Au konbini", en: "At the konbini" },
+    { nom: "kuukou", ja: "空港で", fr: "À l'aéroport", en: "At the airport" },
     { nom: "eki", ja: "駅で", fr: "À la gare", en: "At the station" },
-    { nom: "genkan", ja: "玄関で", fr: "À l'entrée", en: "In the entryway" }
+    { nom: "konbini", ja: "コンビニで", fr: "Au konbini", en: "At the konbini" },
+    { nom: "genkan", ja: "玄関で", fr: "À l'entrée", en: "In the entryway" },
+    { nom: "heya", ja: "部屋で", fr: "Dans la chambre", en: "In the room" },
+    { nom: "kuyakusho", ja: "区役所で", fr: "À la mairie", en: "At the ward office" },
+    { nom: "hanami", ja: "花見", fr: "Sous les cerisiers", en: "Under the cherry trees" },
+    { nom: "suupaa", ja: "スーパーで", fr: "Au supermarché", en: "At the supermarket" },
+    { nom: "raamen", ja: "ラーメン屋で", fr: "Au ramen", en: "At the ramen shop" },
+    { nom: "sentou", ja: "銭湯で", fr: "Au bain public", en: "At the public bath" },
+    { nom: "tsuyu", ja: "梅雨", fr: "La saison des pluies", en: "The rainy season" },
+    { nom: "kyoushitsu", ja: "教室で", fr: "En classe", en: "In class" },
+    { nom: "yuubinkyoku", ja: "郵便局で", fr: "À la poste", en: "At the post office" },
+    { nom: "mensetsu", ja: "面接", fr: "L'entretien", en: "The job interview" },
+    { nom: "kissaten", ja: "喫茶店で", fr: "Au café", en: "At the café" },
+    { nom: "shinkansen", ja: "新幹線で", fr: "Dans le shinkansen", en: "On the shinkansen" },
+    { nom: "sofu-no-ie", ja: "祖母の家で", fr: "Chez la grand-mère", en: "At grandma's" },
+    { nom: "daidokoro", ja: "台所で", fr: "Dans la cuisine", en: "In the kitchen" },
+    { nom: "obon", ja: "お盆", fr: "Obon", en: "Obon" },
+    { nom: "natsumatsuri", ja: "夏祭り", fr: "La fête d'été", en: "The summer festival" },
+    { nom: "hanabi", ja: "花火", fr: "Les feux d'artifice", en: "The fireworks" },
+    { nom: "kamakura", ja: "鎌倉の海", fr: "La plage de Kamakura", en: "The beach at Kamakura" },
+    { nom: "fushimi", ja: "京都の神社", fr: "Le sanctuaire aux portiques", en: "The shrine of the gates" },
+    { nom: "ryokan", ja: "旅館で", fr: "À l'auberge", en: "At the inn" },
+    { nom: "momiji", ja: "紅葉", fr: "Les érables rouges", en: "The red maples" },
+    { nom: "izakaya", ja: "居酒屋で", fr: "À l'izakaya", en: "At the izakaya" },
+    { nom: "kusuriya", ja: "薬屋で", fr: "À la pharmacie", en: "At the pharmacy" },
+    { nom: "depaato", ja: "デパートで", fr: "Au grand magasin", en: "At the department store" },
+    { nom: "furusato", ja: "父の故郷", fr: "La ville du père", en: "Dad's home town" },
+    { nom: "kotatsu", ja: "こたつ", fr: "La table chauffante", en: "The heated table" },
+    { nom: "chichi-tochaku", ja: "父の到着", fr: "Le père arrive", en: "Dad arrives" },
+    { nom: "oomisoka", ja: "大晦日", fr: "Le réveillon", en: "New Year's Eve" },
+    { nom: "hatsumoude", ja: "初詣", fr: "Le premier sanctuaire", en: "The first shrine visit" },
+    { nom: "kenrokuen", ja: "兼六園", fr: "Le jardin sous la neige", en: "The garden in the snow" },
+    { nom: "ichinengo", ja: "一年後", fr: "Un an après", en: "One year later" }
 ];
 function majExplorerScenesJa(ruban){
     const nb = document.getElementById("explorerNb");
     if(nb) nb.textContent = SCENES_JA.length;
     ruban.innerHTML = "";
-    SCENES_JA.forEach(s => {
+    // 35 scenes (11 nov.) : comme le ruban de l'allemand (v1000, v1003, v1043), par
+    // pages de trois, les deux premieres pages chargees tout de suite, le titre
+    // ajuste a sa longueur (--n). L'ordre reste celui de l'annee de Camille.
+    SCENES_JA.forEach((s, rang) => {
         const b = document.createElement("button");
         b.type = "button";
         b.className = "explorer-v";
         const img = document.createElement("img");
-        img.loading = "lazy"; img.alt = ""; img.src = vignetteScene(s.nom);
+        img.loading = rang < 8 ? "eager" : "lazy"; img.decoding = "async"; img.alt = ""; img.src = vignetteScene(s.nom);
         const sp = document.createElement("span");
         sp.textContent = libJa(s.fr, s.en);
+        sp.style.setProperty("--n", Math.max(8, sp.textContent.length));
         b.appendChild(img); b.appendChild(sp);
         b.setAttribute("aria-label", s.ja);
         b.addEventListener("click", () => ouvrirSceneDepuisAccueil(s.nom));
         ruban.appendChild(b);
     });
+    ruban.scrollLeft = 0;
+    pagesExplorer(ruban, Math.ceil(SCENES_JA.length / 3));
 }
 // LE PANNEAU DES SCENES EN JAPONAIS (lot P1, 11 nov. 2026, alignement des langues). La tuile « Scenes » de la grille
 // de l'accueil ouvrait le panneau des scenes allemandes, dont la liste blanche japonaise cachait toutes les options :

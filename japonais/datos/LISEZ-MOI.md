@@ -20,7 +20,14 @@ décision (`japonais/cartes/decisions/`), puis :
 ```
 python japonais/cartes/outils/construire.py
 python japonais/datos/construire.py
+python japonais/datos/a1_voyage_construire.py
 ```
+
+`a1-voyage.json` (11 nov. 2026, lot J3) : l'A1 voyage, 12 escales, 2 étapes
+« installe », 8 étapes de suite, au format de l'espagnol et du portugais. Sa source
+est `a1_voyage_construire.py` lui-même (phrases, tableaux, dialogues, mots nommés) ;
+il lit `themes.json` & co, donc il passe après `construire.py`. Les mots nouveaux
+des scènes de Camille : `japonais/cartes/scenes.json`.
 
 ## Ce qui diffère de l'espagnol
 
