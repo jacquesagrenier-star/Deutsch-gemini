@@ -9109,9 +9109,9 @@ body[data-theme="dark"] .fete-tableau{background:linear-gradient(180deg, #0E1C26
 .ft-sous{bottom:calc(5% + env(safe-area-inset-bottom, 0px)); font-weight:800; font-size:14px;}
 body[data-theme="dark"] .ft-titre, body[data-theme="dark"] .ft-sous{color:#F6C46A; text-shadow:none;}
 .fete-tableau.ft-fini .ft-titre, .fete-tableau.ft-fini .ft-sous{opacity:1; transform:none;}
-/* L'objectif du jour est retire (8 nov. 2026) : l'anneau, son reglage ; l'essai japonais les garde. */
-html:not([data-apprendre="ja"]) #spAnneau, html:not([data-apprendre="ja"]) #spObjectif{display:none !important;}
-html:not([data-apprendre="ja"]) #reglageObjectif{display:none !important;}
+/* L'objectif du jour est retire (8 nov. 2026) : l'anneau, son reglage ; le japonais aussi depuis le lot J1 (11 nov.). */
+#spAnneau, #spObjectif{display:none !important;}
+#reglageObjectif{display:none !important;}
 #flashcardEnd.avec-ciel #flashEndObjectif{display:none !important;}
 .fin-tableau{display:grid; justify-items:center; gap:4px; margin:8px 0 10px;}
 .fin-tableau canvas{width:min(250px, 80%); height:auto; border-radius:10px; box-shadow:0 6px 18px rgba(20,40,60,.16);}
@@ -61045,13 +61045,11 @@ const TAILLE_LECON = 20;
 const THEME_COURT_NB = 4;   // le theme court de la lecon : quatre questions (parametre nb des pages de themes)
 const SEANCES_LEGERES_KEY = PREFIXE_STOCKAGE + "seancesLegeres";
 function seanceLegere(){
-    try{ return essaiActif("seance_legere") && !seanceJaponaise(); }catch(e){ return false; }
+    try{ return essaiActif("seance_legere"); }catch(e){ return false; }
 }
-// L'OBJECTIF DU JOUR EST RETIRE POUR TOUT LE MONDE (decision du 8 nov. 2026), sauf dans l'essai japonais, que la
-// seance legere n'a jamais couvert. Un objectif regle par un compte existant n'est plus lu, sans effet sur sa progression.
-function objectifRetire(){
-    try{ return !seanceJaponaise(); }catch(e){ return true; }
-}
+// L'OBJECTIF DU JOUR EST RETIRE POUR TOUT LE MONDE (decision du 8 nov. 2026), le japonais compris depuis le lot J1
+// (11 nov. 2026, decision de Jacques). Un objectif regle par un compte existant n'est plus lu, sans effet sur sa progression.
+function objectifRetire(){ return true; }
 // « L'objectif est atteint » devient « une seance est finie aujourd'hui » pour les rappels et le hors-ligne.
 function journeeFaite(){
     if(objectifRetire()) return seancesFiniesAujourdhui() >= 1;
@@ -61460,7 +61458,7 @@ let CIEL_AV = null;         // l'etape de l'A1 voyage de la seance ouverte
 // Les etoiles de l'ecran de fin suivent le ciel de l'accueil (lot P1, 11 nov. 2026) : en anglais, la seance
 // allumait des etoiles qu'aucune tuile « Ton ciel » ne laissait revoir.
 function etoilesDeLaSeance(){
-    try{ return estSeanceDuJourOuverte() && !seanceJaponaise() && cielDisponible(); }catch(e){ return false; }
+    try{ return estSeanceDuJourOuverte() && cielDisponible(); }catch(e){ return false; }
 }
 function cielA1Actif(){
     return !!(etoilesDeLaSeance() && CIEL_AV && !CIEL_AV.finA1 && CIEL_AV.lieu);
@@ -61565,8 +61563,9 @@ function placerNomsCiel(P, rayons, segs, W, H, noms, px){
 const CIEL_GROUPES = ["premiers_pas", "a1_escales", "a1_suite"];
 let tuileCielPrete = false, tuileCielEnCours = false, CIEL_ETAT = null, CIEL_VUE = null, CIEL_CHOISIE = -1;
 // Le portugais aussi (lot P1, 11 nov. 2026) : les figures (etoiles/ciel.json) sont communes, et le portugais a ses
-// Premiers pas et son A1 voyage, qui font avancer les trois constellations.
-function cielDisponible(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt"; }
+// Premiers pas et son A1 voyage, qui font avancer les trois constellations. Le japonais depuis le lot J1 (11 nov.) :
+// ses Premiers pas et son A1 voyage (japonais/datos/a1-voyage.json, l'annee de Camille). L'anglais reste ferme.
+function cielDisponible(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt" || LANGUE_APPRISE === "ja"; }
 async function etatDuCiel(){
     if(!cielDisponible()) return null;
     await chargerCiel();
@@ -64387,7 +64386,8 @@ const SCENES_TOUTES = [
 // passer a Boston -- ecartees par Jacques (« Ecarte ces six scenes de l'anglais
 // pour l'instant ; on garde les 37 autres »). Ailleurs, la liste est entiere.
 ];
-const SCENES_SEANCE = SCENES_TOUTES.filter(s => !sceneEcartee(s.nom));
+// En japonais, remplacee par les scenes de Camille juste apres SCENES_JA (lot J1).
+let SCENES_SEANCE = SCENES_TOUTES.filter(s => !sceneEcartee(s.nom));
 const SCENE_FAITE_KEY = PREFIXE_STOCKAGE + "sceneFaite";
 
 // ⚠️ LE CADRE DES SCENES NE POSE JAMAIS D'ENTREE D'HISTORIQUE. Poser cadre.src ajoutait une entree, apres le pushState du
@@ -64642,6 +64642,18 @@ function majExplorerScenesJa(ruban){
 // fonction par scene, parce que le panneau appelle orbAction(nom).
 function nomOuvrirSceneJa(nom){ return "ouvrirSceneJa_" + String(nom).replace(/[^A-Za-z0-9]/g, "_"); }
 SCENES_JA.forEach(s => { window[nomOuvrirSceneJa(s.nom)] = () => ouvrirSceneDepuisAccueil(s.nom); });
+// LA SEANCE DU JAPONAIS PREND SES SCENES (lot J1, 11 nov. 2026, alignement des langues). La scene du jour, l'arret
+// de la seance, la scene d'une escale (objetScene) et la ligne « Aujourd'hui » lisent SCENES_SEANCE, qui etait
+// allemande : l'accueil japonais chargeait scene-post.js. Les titres passent par t(), comme ceux de l'allemand :
+// une cle par scene, en francais et en anglais (libJa), les deux langues d'interface du japonais.
+if(LANGUE_APPRISE === "ja"){
+    SCENES_JA.forEach(s => {
+        const cle = "scene_ja_" + s.nom;
+        if(I18N.fr) I18N.fr[cle] = s.fr;
+        if(I18N.en) I18N.en[cle] = s.en;
+    });
+    SCENES_SEANCE = SCENES_JA.map(s => ({ nom: s.nom, titre: "scene_ja_" + s.nom, desc: "", ouvrir: nomOuvrirSceneJa(s.nom) }));
+}
 function panneauScenesJa(){
     return {
         icon:"carte", title:t("op_scenes_title"), sub:t("op_scenes_sub"),
@@ -69860,7 +69872,9 @@ function motsLusPremiersPas(){
 }
 const SCENES_LUES = new Map();
 async function motsVusDeScene(nom){
-    const url = baseScenes() + "scene-" + nom + (LANGUE_APPRISE === "es" ? ".es" : LANGUE_APPRISE === "pt" ? ".pt" : "") + ".js";
+    // Le japonais et l'anglais (lot J1, 11 nov. 2026) : ils lisaient le fichier allemand de la scene.
+    const suffixe = { es: ".es", pt: ".pt", ja: ".ja", en: ".en" }[LANGUE_APPRISE] || "";
+    const url = baseScenes() + "scene-" + nom + suffixe + ".js";
     if(!SCENES_LUES.has(url)){
         SCENES_LUES.set(url, fetch(url, { cache: "no-cache" }).then(r => r.text())
             .then(texte => JSON.parse(texte.slice(texte.indexOf("{"), texte.lastIndexOf("}") + 1))));
@@ -70141,10 +70155,11 @@ function majAujourdhuiScene(on){
     el.appendChild(txt);
 }
 
-// Le japonais (essai) : une seance de MOTS seulement. Les scenes, les escales
-// d'A1 voyage, les feuilles de conjugaison, les reperes, le son du jour et les
-// cartes-phrases n'existent qu'en allemand et en espagnol ; inseres ici, ils
-// montreraient de l'allemand. Chacun s'ouvrira quand il aura son japonais.
+// Le japonais (essai) a eu une seance de MOTS seulement jusqu'au lot J1 (11 nov. 2026, alignement des langues) :
+// depuis, la seance commune -- sans objectif, legere, regroupee par partie, avec ses reperes, son ciel, les escales
+// de l'A1 voyage et les scenes de Camille (SCENES_SEANCE en japonais). Restent propres au japonais : les cartes-
+// phrases (exercices allemands) et les revisions des Premiers pas dans la seance. La fonction ne sert plus qu'aux
+// suggestions de l'accueil.
 // L'anglais (essai) a eu la meme regle du 27 oct. (v983) jusqu'a ce que ses
 // Premiers pas, son A1 voyage, ses exercices et ses scenes existent (v986).
 function seanceJaponaise(){ return LANGUE_APPRISE === "ja"; }
@@ -70192,8 +70207,8 @@ async function ouvrirSeanceDuJour(sansScene){
     let aRevoir = null;
     try{ aRevoir = cartesARevoir(pool, niveau); }catch(e){ aRevoir = null; }
     if(!aRevoir){
-        try{ if(niveau === "A1" && !seanceJaponaise()) activerA1Voyage(); }catch(e){}
-        try{ av = seanceJaponaise() ? null : await preparerA1Voyage(pool); }catch(e){ av = null; }
+        try{ if(niveau === "A1") activerA1Voyage(); }catch(e){}
+        try{ av = await preparerA1Voyage(pool); }catch(e){ av = null; }
         CIEL_AV = av;
     }
     // v867 (essai feuilles_conj) : la feuille de conjugaison du jour, a l'A2 et
@@ -70218,7 +70233,7 @@ async function ouvrirSeanceDuJour(sansScene){
     }
     // v831 : la scene du jour, une fois, au milieu (essai « scene_arret »).
     // v862 : pendant les escales, la scene de l'escale.
-    try{ if(LANGUE_APPRISE !== "ja") seance = await preparerArretScene(seance, av ? av.scene : null); }catch(e){}
+    try{ seance = await preparerArretScene(seance, av ? av.scene : null); }catch(e){}
     // 3 nov. 2026 : un jour sur trois, un theme illustre a la place de cet arret (themeDuJour).
     // 7 nov. 2026 (decision 6fda9e0) : le theme EN PLUS de la scene, chaque jour, A1 voyage compris.
     try{ seance = insererThemeIllustre(seance); }catch(e){}
@@ -70231,7 +70246,7 @@ async function ouvrirSeanceDuJour(sansScene){
     // 6 nov. 2026 : la seance regroupee par partie (voir LE PLAN DE LA SEANCE),
     // AVANT premiereCarteFacile, qui ne deplace que quelques cartes de tete.
     let regroupee = null;
-    try{ if(!seanceJaponaise()){ regroupee = regrouperSeance(seance, av); seance = regroupee.cartes; } }catch(e){ regroupee = null; }
+    try{ regroupee = regrouperSeance(seance, av); seance = regroupee.cartes; }catch(e){ regroupee = null; }
     try{ seance = premiereCarteFacile(seance); }catch(e){}
     if(!seance.length){
         if(!complet){ seanceGratuiteVide(tout); return; }
@@ -70457,7 +70472,7 @@ const PAYSAGES_SEANCE = {"pp":{"ar":"M0 100V62C40 44 86 40 130 56S226 78 320 48V
 const TEINTES_PAYSAGE = { pp:"#5E9B1E", rev:"#2565C9", mots:"#E0791A", conj:"#8A3FD1", scene:"#0B9AA0", theme:"#D6336F", son:"#C99A06" };
 // Le portugais aussi (lot P1, 11 nov. 2026, alignement des langues) : les paysages sont des dessins, les noms des
 // parties des textes d'interface (seance_court_*) ; rien n'y depend de la langue apprise.
-function repereSeanceDispo(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt"; }
+function repereSeanceDispo(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt" || LANGUE_APPRISE === "ja"; }
 function nomCourtPartie(p){ return t("seance_court_" + (p === "lieu" || p === "neufs" ? "mots" : p)); }
 function clePaysagePartie(p, enPP){
     if(enPP) return p === "scene" ? "scene" : p === "theme" ? "theme" : "pp";
@@ -70760,7 +70775,6 @@ function attendrePourLePlan(nom, promesse){
     promesse.then(() => { PLAN_CACHE = null; try{ majPlanPilule(); }catch(e){} }).catch(() => {});
 }
 function planSeanceDuJour(){
-    if(seanceJaponaise()) return null;
     try{ if(premiersPasEnCours()) return null; }catch(e){ return null; }
     const niveau = niveauSeance();
     try{ const r = lireRevoirNiveau(); if(r && r.n === niveau) return null; }catch(e){}
