@@ -20,11 +20,9 @@ Rien n'oblige à une mention pour SIMBAD, Hipparcos, le BSC ou les noms usuels. 
 - **les noms de l'UAI** (CC BY) ;
 - **Gaia** (CC BY-SA 3.0 IGO, « ESA/Gaia/DPAC »).
 
-Proposition : une ligne dans la carte « Crédits » des réglages, à côté de WikDict et de Leipzig :
+Elles sont dans la carte « Crédits » des réglages (groupe « Compte et aide »), à côté de WikDict et de Leipzig, clé `credits_ciel` dans les 11 langues d'interface, cachée en japonais et en anglais, qui n'ont pas de ciel (décision de Jacques du 11 nov. 2026) :
 
-> Étoiles : positions et distances de SIMBAD (CDS, Strasbourg), d'Hipparcos et de Gaia (ESA/Gaia/DPAC) ; noms des étoiles de l'Union astronomique internationale.
-
-Elle est à traduire dans les langues d'interface ; elle n'est pas encore dans `index.html`.
+> Étoiles : noms de l'Union astronomique internationale (CC BY 4.0) ; positions et distances de SIMBAD (CDS, Strasbourg) et des missions Hipparcos et Gaia de l'ESA (Gaia : ESA/Gaia/DPAC, CC BY-SA 3.0 IGO).
 
 ## Refaire les relevés
 
