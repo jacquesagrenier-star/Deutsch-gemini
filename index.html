@@ -15925,6 +15925,7 @@ const I18N = {
         seance_plan_feuille: "la conjugaison",
         seance_plan_reperes: "les repères",
         seance_plan_scene: "une scène",
+        seance_plan_scenes_deux: "deux scènes",
         seance_plan_theme: "un thème illustré",
         seance_plan_son: "le son du jour",
         seance_plan_revisions: "{n} révisions",
@@ -17730,6 +17731,7 @@ const I18N = {
         seance_plan_feuille: "conjugation",
         seance_plan_reperes: "the basics",
         seance_plan_scene: "a scene",
+        seance_plan_scenes_deux: "two scenes",
         seance_plan_theme: "an illustrated topic",
         seance_plan_son: "the sound of the day",
         seance_plan_revisions: "{n} reviews",
@@ -19495,6 +19497,7 @@ const I18N = {
         seance_plan_feuille: "çekim",
         seance_plan_reperes: "temeller",
         seance_plan_scene: "bir sahne",
+        seance_plan_scenes_deux: "iki sahne",
         seance_plan_theme: "resimli bir konu",
         seance_plan_son: "günün sesi",
         seance_plan_revisions: "{n} tekrar",
@@ -21708,6 +21711,7 @@ const I18N = {
         seance_plan_feuille: "дієвідміна",
         seance_plan_reperes: "основи",
         seance_plan_scene: "сцена",
+        seance_plan_scenes_deux: "дві сцени",
         seance_plan_theme: "тема в картинках",
         seance_plan_son: "звук дня",
         seance_plan_revisions: "повторень: {n}",
@@ -24225,6 +24229,7 @@ const I18N = {
         seance_plan_feuille: "صرف فعل",
         seance_plan_reperes: "پایه‌ها",
         seance_plan_scene: "یک صحنه",
+        seance_plan_scenes_deux: "دو صحنه",
         seance_plan_theme: "یک موضوع مصور",
         seance_plan_son: "صدای امروز",
         seance_plan_revisions: "{n} مرور",
@@ -26147,6 +26152,7 @@ const I18N = {
         seance_plan_feuille: "التصريف",
         seance_plan_reperes: "الأساسيات",
         seance_plan_scene: "مشهد",
+        seance_plan_scenes_deux: "مشهدان",
         seance_plan_theme: "موضوع مصوّر",
         seance_plan_son: "صوت اليوم",
         seance_plan_revisions: "مراجعات: {n}",
@@ -26655,6 +26661,7 @@ const I18N = {
         seance_plan_feuille: "a conjugação",
         seance_plan_reperes: "os básicos",
         seance_plan_scene: "uma cena",
+        seance_plan_scenes_deux: "duas cenas",
         seance_plan_theme: "um tema ilustrado",
         seance_plan_son: "o som do dia",
         seance_plan_revisions: "{n} revisões",
@@ -28465,6 +28472,7 @@ const I18N = {
         seance_plan_feuille: "odmiana",
         seance_plan_reperes: "podstawy",
         seance_plan_scene: "scena",
+        seance_plan_scenes_deux: "dwie sceny",
         seance_plan_theme: "temat ilustrowany",
         seance_plan_son: "dźwięk dnia",
         seance_plan_revisions: "powtórek: {n}",
@@ -30275,6 +30283,7 @@ const I18N = {
         seance_plan_feuille: "спряжение",
         seance_plan_reperes: "основы",
         seance_plan_scene: "сцена",
+        seance_plan_scenes_deux: "две сцены",
         seance_plan_theme: "тема в картинках",
         seance_plan_son: "звук дня",
         seance_plan_revisions: "повторений: {n}",
@@ -32087,6 +32096,7 @@ const I18N = {
         seance_plan_feuille: "die Konjugation",
         seance_plan_reperes: "Orientierung",
         seance_plan_scene: "eine Szene",
+        seance_plan_scenes_deux: "zwei Szenen",
         seance_plan_theme: "ein bebildertes Thema",
         seance_plan_son: "der Laut des Tages",
         seance_plan_revisions: "{n} Wiederholungen",
@@ -33912,6 +33922,7 @@ const I18N = {
         seance_plan_feuille: "la conjugación",
         seance_plan_reperes: "lo básico",
         seance_plan_scene: "una escena",
+        seance_plan_scenes_deux: "dos escenas",
         seance_plan_theme: "un tema ilustrado",
         seance_plan_son: "el sonido del día",
         seance_plan_revisions: "{n} repasos",
@@ -72332,11 +72343,16 @@ async function preparerArretScene(seance, sceneImposee, enPremiersPas){
         // la derniere carte, et une scene DIFFERENTE a chaque arret.
         let p = null;
         try{ p = profilActif(); }catch(e){}
-        const ecart = (p && p.f === "images") ? 4 : (p && (p.f === "oreille" || p.f === "regles")) ? 12 : 8;
+        // 12 nov. 2026 (Jacques, « Oui, les deux ») : « ce que j'entends » et « comment ca marche » reviennent a 8,
+        // comme tout le monde ; seul « ce que je vois » garde 4.
+        const images = !!(p && p.f === "images");
+        const ecart = images ? 4 : 8;
         // Essai « seance_legere » : UNE scene par lecon (le theme court suit), et « Encore une seance »
         // prend une autre scene que la precedente (la N-ieme suivante, N = seances finies aujourd'hui).
+        // 12 nov. 2026 : le profil « images » n'avait plus d'effet hors Premiers pas (une scene par lecon pour tous) ;
+        // il a maintenant DEUX scenes differentes par lecon, avant le theme -- une partie Images plus longue, la meme barre.
         const legere = !enPremiersPas && seanceLegere();
-        const nb = legere ? 1 : Math.max(1, Math.floor(seance.length / ecart));
+        const nb = legere ? (images ? 2 : 1) : Math.max(1, Math.floor(seance.length / ecart));
         let prevue = sceneImposee || sceneDuJour();
         // (la scene imposee d'une etape de l'A1 garde la premiere seance ; les suivantes changent de lieu)
         if(legere){
@@ -73288,12 +73304,18 @@ function partsPremiersPas(paquet){
 // theme passe avant la scene de l'etape, qui ferme la seance (et que la conversation suit).
 function ordonnerPremiersPas(items){
     const iEtape = items.findIndex(c => c && c.forme === "pp_scene");
+    // 12 nov. 2026 (Jacques, « Oui, les deux ») : au profil « ce que je vois », deux scenes (la scene de l'etape compte).
+    let images = false;
+    try{ const pr = profilActif(); images = !!(pr && pr.f === "images"); }catch(e){}
+    let place = (images ? 2 : 1) - (iEtape >= 0 ? 1 : 0);
     let liste;
     if(iEtape >= 0){
-        liste = items.filter((c, i) => (i <= iEtape || (c && /^(theme_arret|conv_arret)$/.test(c.forme || ""))) && !(c && c.forme === "scene_arret"));
+        liste = items.filter((c, i) => {
+            if(c && c.forme === "scene_arret"){ if(i > iEtape || place <= 0) return false; place--; return true; }
+            return i <= iEtape || (c && /^(theme_arret|conv_arret)$/.test(c.forme || ""));
+        });
     } else {
-        let vue = false;
-        liste = items.filter(c => { if(c && c.forme === "scene_arret"){ if(vue) return false; vue = true; } return true; });
+        liste = items.filter(c => { if(c && c.forme === "scene_arret"){ if(place <= 0) return false; place--; } return true; });
     }
     const rang = { cartes: 0, grammaire: 1, images: 2, conv: 3 };
     const rangImage = c => c.forme === "scene_arret" ? 0 : c.forme === "theme_arret" ? 1 : 2;
@@ -73430,7 +73452,10 @@ function planSeanceDuJour(){
     const scene = [];
     try{
         if(total >= 2){   // v1127 : le seuil de preparerArretScene dans la seance du jour
-            if(arretSceneActif()) scene.push("seance_plan_scene");
+            // 12 nov. 2026 : deux scenes par lecon au profil « images » (preparerArretScene).
+            let deux = false;
+            try{ const pr = profilActif(); deux = !!(pr && pr.f === "images") && seanceLegere(); }catch(e){}
+            if(arretSceneActif()) scene.push(deux ? "seance_plan_scenes_deux" : "seance_plan_scene");
             if(themeDuJour()) scene.push("seance_plan_theme");
         }
     }catch(e){}
