@@ -7,7 +7,8 @@
 Sur un navigateur vierge, sans compte. Chaque cas joue une seance en appelant les fonctions de la page et note ce qui suit le theme :
   tout_bien     : le theme en dernier, l'ecran de fin, une seance comptee ;
   encore_dernier: « Encore » sur le dernier mot avant la scene et le theme : la carte repasse AVANT le theme ;
-  echu_scene    : une carte ratee redevenue due pendant la scene : AVANT le theme, dans la barre en parties ;
+  echu_scene    : une carte ratee redevenue due pendant la scene : a la seance suivante (12 nov., la scene et le
+                  theme forment une seule partie, Images) ;
   echu_theme    : une carte devenue due pendant le theme : rien apres lui, elle attend la seance suivante, et la seance compte ;
   phrase_ratee  : une phrase ratee revient avant le theme ;
   son           : le son du jour avant le theme ;
@@ -135,9 +136,13 @@ def juger(cas, r):
     avant = j[:j.index("THEME")]
     if cas == "encore_dernier" and u["retenus"] and avant.count(u["retenus"][0]) != 2:
         fautes.append("la carte ne repasse pas avant le theme")
+    # 12 nov. 2026, la barre en trois parties : la scene et le theme forment UNE partie (Images). Une carte qui devient
+    # due PENDANT la scene ne s'y glisse plus entre la scene et le theme (une carte au milieu des images) : comme ce qui
+    # devient du pendant le theme (8 nov.), elle ouvre la seance suivante. Elle passe donc deux fois avant le theme
+    # (la carte, puis son « Encore »), pas trois.
     if cas == "echu_scene":
-        if not u["retenus"] or avant.count(u["retenus"][0]) < 3:
-            fautes.append("la carte echue ne repasse pas avant le theme : %s fois" % (avant.count(u["retenus"][0]) if u["retenus"] else "?"))
+        if not u["retenus"] or avant.count(u["retenus"][0]) != 2:
+            fautes.append("la carte echue pendant la scene : %s fois avant le theme (2 attendues)" % (avant.count(u["retenus"][0]) if u["retenus"] else "?"))
     if cas == "son" and not any(x.endswith(":son") for x in avant):
         fautes.append("pas de son avant le theme")
     if any("Le thème illustré : c'est fait" in p for p in u["passages"]):

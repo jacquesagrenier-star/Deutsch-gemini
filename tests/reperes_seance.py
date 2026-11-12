@@ -409,7 +409,10 @@ def main():
                 ctx, page = page_de(nav, appris, "fr", theme, 390, 844)
                 r = page.evaluate(BARRE)
                 segs = r.get("segs") or []
-                ok = "scene" in segs and segs.index("scene") + 1 < len(segs) and segs[segs.index("scene") + 1] == "revisions" and r.get("ici") and r["ici"][0] != "Scène"
+                # 12 nov. 2026, la barre en trois parties : plus de partie qui nait apres la scene -- une carte posee la
+                # (cas force par la sonde ; la seance rattrape desormais AVANT les images) compte dans Images, et la
+                # barre garde ses parties : Cartes, (Grammaire,) Images.
+                ok = bool(segs) and "revisions" not in segs and segs == [x for x in ["cartes", "grammaire", "images", "conv"] if x in segs] and r.get("ici")
                 note("barre apres la scene %s %s" % (appris, theme), ok and not js(page), r)
                 capt(page, "barre-apres-scene-%s-%s" % (appris, theme))
                 ctx.close()

@@ -63,7 +63,9 @@ def juger(r, quoi, largeur):
     d = r["depart"]
     if not d["visible"]:
         f.append("barre absente")
-    if d["epais"] != 10:
+    # 7 px depuis la decision de Jacques du 10 nov. 2026 (« je mettrai la barre de progression un peu moins large.
+    # Donc, moins haute ») ; cette sonde du 9 nov. attendait encore 10.
+    if d["epais"] != 7:
         f.append("epaisseur %s" % d["epais"])
     if not d["sous_entete"]:
         f.append("barre sur l'en-tete")
