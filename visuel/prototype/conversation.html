@@ -118,7 +118,7 @@ details ul{padding-left:20px;margin:8px 0}
 .repondre[hidden]{display:none}
 .consigne{font:800 13px var(--police);color:var(--gris);margin:0 0 8px;text-align:center}
 .choix{display:flex;flex-direction:column;gap:8px}
-.choix button{text-align:left;border:2px solid var(--bord);background:var(--carte);border-radius:14px;padding:11px 14px;cursor:pointer;min-height:52px}
+.choix button{text-align:start;border:2px solid var(--bord);background:var(--carte);border-radius:14px;padding:11px 14px;cursor:pointer;min-height:52px}
 .choix button b{display:block;font-size:17px;line-height:1.3}
 .choix button span{display:block;font-size:13px;color:var(--gris);margin-top:2px}
 .choix button:disabled{opacity:.45;cursor:default}
@@ -165,11 +165,66 @@ const LANGUE = ["es", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : 
 const GB = LANGUE === "en" && Q.get("variante") === "gb";
 const BCP47 = { de: "de-DE", es: "es-ES", en: GB ? "en-GB" : "en-US" }[LANGUE];
 const T = (o, champ) => (GB && o[champ + "_gb"] != null) ? o[champ + "_gb"] : o[champ];
+// LA LANGUE D'INTERFACE (lang=, comme les themes illustres) : francais, anglais et arabe (de droite a gauche) ; les
+// autres langues retombent sur le francais, comme les pages du telc avant leurs traductions.
+const LANG = ["fr", "en", "ar"].includes(Q.get("lang")) ? Q.get("lang") : "fr";
+document.documentElement.lang = LANG;
+document.documentElement.dir = LANG === "ar" ? "rtl" : "ltr";
+// LE FOND DE LA PARTIE (choix de Jacques attendu entre A la terrasse, B le banc, C les bulles) : UNE ligne a changer.
+const PAYSAGE_CHOISI = "A";
+const UI = {
+ fr: { retour: "Retour", maquette: "Maquette", conversations: "Conversations", jouer: "Jouer une conversation",
+   surtitre: "Conversation · {niv}", etape: " · étape {n}", commencer: "Commencer", sans_filet: "Sans filet : tout au micro",
+   toi_reponds: "<b>C'est toi qui réponds</b> : touche une réponse, ou dis-la au micro. La conversation suit ce que tu choisis.",
+   pas_de_reco: "Ce navigateur n'a pas de reconnaissance de la voix : touche les réponses.",
+   a_toi: "À toi : touche ta réponse, ou dis-la au micro.", a_toi_micro: "À toi : réponds au micro.", a_toi_touche: "À toi : touche ta réponse.",
+   sos: "Je ne sais pas quoi dire", ecoute: "Je t'écoute…", micro_indispo: "Le micro n'est pas disponible : touche ta réponse.",
+   rien: "Je n'ai rien entendu. Réessaie, plus près du téléphone.", micro_aria: "Répondre au micro",
+   tu_as_dit: "<b>Tu as dit : « {t} ».</b> Ce n'est pas une des réponses : redis-la, ou touche-la.",
+   reecouter: "Réécouter", traduire: "Traduire", toi: "Toi", bien: "Bien joué !", parfait: "Parfait, sans une erreur !",
+   erreurs: "Tes erreurs, corrigées", phrases: "Les phrases que tu as dites", rejouer: "Rejouer en répondant autrement",
+   terminer: "Terminer", une_minute: "1 minute", trois_minutes: "3 minutes", poli: "registre poli",
+   de: "Allemand", es: "Espagnol", en: "Anglais", gb: "Anglais (britannique)", pp: "Premiers pas", voyage: "Le voyage A1",
+   ligne_etape: "Étape {n} · {niv} · {m} moments", ligne: "{niv} · {m} moments", introuvable: "Cette conversation n'existe pas encore.",
+   paysage: "Paysage :", pardon: "Pardon ?" },
+ en: { retour: "Back", maquette: "Mock-up", conversations: "Conversations", jouer: "Play a conversation",
+   surtitre: "Conversation · {niv}", etape: " · step {n}", commencer: "Start", sans_filet: "No safety net: microphone only",
+   toi_reponds: "<b>You answer</b>: tap an answer, or say it into the microphone. The conversation follows your choice.",
+   pas_de_reco: "This browser has no speech recognition: tap the answers.",
+   a_toi: "Your turn: tap your answer, or say it.", a_toi_micro: "Your turn: answer into the microphone.", a_toi_touche: "Your turn: tap your answer.",
+   sos: "I don't know what to say", ecoute: "Listening…", micro_indispo: "The microphone isn't available: tap your answer.",
+   rien: "I didn't hear anything. Try again, closer to the phone.", micro_aria: "Answer into the microphone",
+   tu_as_dit: "<b>You said: “{t}”.</b> That isn't one of the answers: say it again, or tap it.",
+   reecouter: "Listen again", traduire: "Translate", toi: "You", bien: "Well done!", parfait: "Perfect, not a single mistake!",
+   erreurs: "Your mistakes, corrected", phrases: "What you said", rejouer: "Play again with other answers",
+   terminer: "Finish", une_minute: "1 minute", trois_minutes: "3 minutes", poli: "polite",
+   de: "German", es: "Spanish", en: "English", gb: "English (British)", pp: "First steps", voyage: "The A1 journey",
+   ligne_etape: "Step {n} · {niv} · {m} moments", ligne: "{niv} · {m} moments", introuvable: "This conversation doesn't exist yet.",
+   paysage: "Background:", pardon: "Sorry?" },
+ ar: { retour: "رجوع", maquette: "نموذج", conversations: "المحادثات", jouer: "العب محادثة",
+   surtitre: "محادثة · {niv}", etape: " · المرحلة {n}", commencer: "ابدأ", sans_filet: "بدون مساعدة: بالميكروفون فقط",
+   toi_reponds: "<b>أنت من يجيب</b>: المس إجابة، أو قلها في الميكروفون. المحادثة تتبع اختيارك.",
+   pas_de_reco: "هذا المتصفح لا يتعرّف على الصوت: المس الإجابات.",
+   a_toi: "دورك: المس إجابتك، أو قلها في الميكروفون.", a_toi_micro: "دورك: أجب في الميكروفون.", a_toi_touche: "دورك: المس إجابتك.",
+   sos: "لا أعرف ماذا أقول", ecoute: "أنا أستمع…", micro_indispo: "الميكروفون غير متاح: المس إجابتك.",
+   rien: "لم أسمع شيئًا. حاول مرة أخرى، أقرب إلى الهاتف.", micro_aria: "أجب في الميكروفون",
+   tu_as_dit: "<b>قلت: «{t}».</b> هذه ليست إحدى الإجابات: قلها مرة أخرى، أو المسها.",
+   reecouter: "استمع مرة أخرى", traduire: "ترجم", toi: "أنت", bien: "أحسنت!", parfait: "ممتاز، بدون أي خطأ!",
+   erreurs: "أخطاؤك، مصحَّحة", phrases: "الجمل التي قلتها", rejouer: "العب مرة أخرى بإجابات أخرى",
+   terminer: "إنهاء", une_minute: "دقيقة واحدة", trois_minutes: "3 دقائق", poli: "بأسلوب مهذّب",
+   de: "الألمانية", es: "الإسبانية", en: "الإنجليزية", gb: "الإنجليزية (البريطانية)", pp: "الخطوات الأولى", voyage: "رحلة A1",
+   ligne_etape: "المرحلة {n} · {niv} · {m} لحظات", ligne: "{niv} · {m} لحظات", introuvable: "هذه المحادثة غير موجودة بعد.",
+   paysage: "الخلفية:", pardon: "عفوًا؟" }
+};
+const u = (k, v) => (UI[LANG][k] != null ? UI[LANG][k] : UI.fr[k]).replace(/\{(\w+)\}/g, (m, n) => (v || {})[n] != null ? v[n] : m);
+// le texte dans la langue d'interface : un objet {fr, en, ar} ; ou le champ de meme nom d'une replique, a cote de « fr »
+const loc = o => (o && (o[LANG] || o.fr || o.en)) || "";
+const trad = r => (r[LANG] != null ? r[LANG] : r.fr);
 function parler(type, extra){ try{ if (DANS_APP) parent.postMessage(Object.assign({source: "wortando-scene", type}, extra || {}), "*"); }catch(e){} }
 const charger = url => fetch(url, { cache: "no-store" }).then(r => { if (!r.ok) throw new Error(url + " : " + r.status); return r.json(); });
 const ecran = document.getElementById("ecran"), plateau = document.getElementById("plateau");
 function el(tag, cls, texte){ const e = document.createElement(tag); if (cls) e.className = cls; if (texte != null) e.textContent = texte; return e; }
-const fr = o => (o && (o.fr || o.en)) || "";
+const fr = loc;
 const MOTS_UI = {
   de: { pardon: "Wie bitte?", pardon_fr: "Pardon ?" },
   es: { pardon: "¿Perdón?", pardon_fr: "Pardon ?" },
@@ -214,7 +269,11 @@ function prixEnMots(c, l){
 function prixEnChiffres(c, l){
   if (l === "en") return "$" + Math.floor(c / 100) + "." + String(c % 100).padStart(2, "0");
   const s = Math.floor(c / 100) + "," + String(c % 100).padStart(2, "0");
-  if (l === "fr" && LANGUE === "en") return s + " $";
+  if (l === "fr"){
+    if (LANG === "en") return LANGUE === "en" ? "$" + s.replace(",", ".") : "€" + s.replace(",", ".");
+    if (LANG === "ar") return s + (LANGUE === "en" ? " دولار" : " يورو");
+    return s + (LANGUE === "en" ? " $" : " euros");
+  }
   return s + (l === "de" ? " Euro" : " euros");
 }
 const majuscule = s => s.charAt(0).toUpperCase() + s.slice(1);
@@ -386,8 +445,8 @@ const SEUIL = 0.5;
 const HP_SVG = '<svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
 const MIC_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.25 4.5a3.75 3.75 0 1 1 7.5 0v8.25a3.75 3.75 0 1 1-7.5 0V4.5Z"/><path d="M6 10.5a.75.75 0 0 1 .75.75v1.5a5.25 5.25 0 1 0 10.5 0v-1.5a.75.75 0 0 1 1.5 0v1.5a6.751 6.751 0 0 1-6 6.709v2.291h3a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1 0-1.5h3v-2.291a6.751 6.751 0 0 1-6-6.709v-1.5A.75.75 0 0 1 6 10.5Z"/></svg>';
 function boutonHP(texte, qui, libelle){
-  const b = el("button"); b.type = "button"; b.innerHTML = HP_SVG; b.appendChild(document.createTextNode(libelle == null ? " Réécouter" : libelle));
-  if (!libelle) b.setAttribute("aria-label", "Réécouter");
+  const b = el("button"); b.type = "button"; b.innerHTML = HP_SVG; b.appendChild(document.createTextNode(libelle == null ? " " + u("reecouter") : libelle));
+  if (!libelle) b.setAttribute("aria-label", u("reecouter"));
   b.onclick = () => dire(texte, qui);
   return b;
 }
@@ -404,10 +463,10 @@ async function replique(r){
   const b = el("div", "bulle");
   b.appendChild(el("div", "nom", fr(PERS[qui].nom)));
   const d = el("div", "de", t); d.lang = LANGUE; b.appendChild(d);
-  const f = el("div", "fr", gabarit(r.fr, "fr")); f.hidden = true; b.appendChild(f);
+  const f = el("div", "fr", gabarit(trad(r), "fr")); f.hidden = true; b.appendChild(f);
   const outils = el("div", "outils");
   outils.appendChild(boutonHP(dit, qui));
-  const tr = el("button", null, "Traduire"); tr.type = "button"; tr.onclick = () => { f.hidden = !f.hidden; }; outils.appendChild(tr);
+  const tr = el("button", null, u("traduire")); tr.type = "button"; tr.onclick = () => { f.hidden = !f.hidden; }; outils.appendChild(tr);
   b.appendChild(outils); ligne.appendChild(b); fil.appendChild(ligne); defiler();
   quiParle(qui); dernier = qui;
   await dire(dit, qui);
@@ -417,9 +476,9 @@ async function replique(r){
 function maReplique(c){
   const ligne = el("div", "ligne toi");
   const b = el("div", "bulle" + (c.faux ? " faux" : ""));
-  b.appendChild(el("div", "nom", "Toi"));
+  b.appendChild(el("div", "nom", u("toi")));
   const d = el("div", "de", gabarit(T(c, "t"), LANGUE)); d.lang = LANGUE; b.appendChild(d);
-  b.appendChild(el("div", "fr", gabarit(c.fr, "fr")));
+  b.appendChild(el("div", "fr", gabarit(trad(c), "fr")));
   ligne.appendChild(b); fil.appendChild(ligne); defiler();
 }
 const choixDe = id => (C.noeuds[id].choix || []).map((c, i) => Object.assign({ i }, c)).filter(c => vrai(c.si));
@@ -427,22 +486,22 @@ const essayes = id => (S.essaye[id] = S.essaye[id] || new Set());
 
 function presentation(){
   taire(); partieNeuve(); plateauNeuf();
-  document.getElementById("surtitre").textContent = "Conversation · " + C.niveau + (C.etape ? " · étape " + C.etape : "");
+  document.getElementById("surtitre").textContent = u("surtitre", { niv: C.niveau }) + (C.etape ? u("etape", { n: C.etape }) : "");
   document.getElementById("titre").textContent = fr(C.titre);
   ecran.textContent = "";
   const c = el("div", "carte debut");
   c.appendChild(el("h1", null, fr(C.titre)));
   c.appendChild(el("p", null, fr(C.intro)));
-  const p = el("p"); p.innerHTML = "<b>C'est toi qui réponds</b> : touche une réponse, ou dis-la au micro. La conversation suit ce que tu choisis."; c.appendChild(p);
+  const p = el("p"); p.innerHTML = u("toi_reponds"); c.appendChild(p);
   const puces = el("div", "puces");
   const nb = Object.keys(C.noeuds).length;
-  [C.niveau, { de: "Allemand", es: "Espagnol", en: GB ? "Anglais (britannique)" : "Anglais" }[LANGUE], { Sie: "Sie", usted: "usted", poli: "registre poli" }[C.registre] || C.registre, (nb <= 5 ? "1 minute" : "3 minutes")]
+  [C.niveau, u(GB ? "gb" : LANGUE), { Sie: "Sie", usted: "usted", poli: u("poli") }[C.registre] || C.registre, (nb <= 5 ? u("une_minute") : u("trois_minutes"))]
     .forEach(x => puces.appendChild(el("span", null, x)));
   c.appendChild(puces);
-  const go = el("button", "gros", "Commencer"); go.type = "button"; go.onclick = () => commencer(false);
+  const go = el("button", "gros", u("commencer")); go.type = "button"; go.onclick = () => commencer(false);
   c.appendChild(go);
-  if (MICRO_POSSIBLE){ const nu = el("button", "gros second", "Sans filet : tout au micro"); nu.type = "button"; nu.onclick = () => commencer(true); c.appendChild(nu); }
-  else c.appendChild(el("p", "entendu", "Ce navigateur n'a pas de reconnaissance de la voix : touche les réponses."));
+  if (MICRO_POSSIBLE){ const nu = el("button", "gros second", u("sans_filet")); nu.type = "button"; nu.onclick = () => commencer(true); c.appendChild(nu); }
+  else c.appendChild(el("p", "entendu", u("pas_de_reco")));
   ecran.appendChild(c);
 }
 async function commencer(nu){
@@ -459,12 +518,12 @@ async function jouer(id){
 }
 function montrerChoix(apresErreur){
   repondre.textContent = ""; repondre.hidden = false;
-  repondre.appendChild(el("p", "consigne", sansFilet ? "À toi : réponds au micro." : (MICRO_POSSIBLE ? "À toi : touche ta réponse, ou dis-la au micro." : "À toi : touche ta réponse.")));
+  repondre.appendChild(el("p", "consigne", sansFilet ? u("a_toi_micro") : (MICRO_POSSIBLE ? u("a_toi") : u("a_toi_touche"))));
   const ch = el("div", "choix" + (sansFilet && !apresErreur ? " cache" : ""));
   choixDe(noeud).forEach(c => {
     const b = el("button"); b.type = "button";
     const t = el("b", null, gabarit(T(c, "t"), LANGUE)); t.lang = LANGUE; b.appendChild(t);
-    b.appendChild(el("span", null, gabarit(c.fr, "fr")));
+    b.appendChild(el("span", null, gabarit(trad(c), "fr")));
     if (essayes(noeud).has(c.i)){ b.disabled = true; if (c.faux) b.classList.add("faux-essaye"); }
     b.onclick = () => choisir(c);
     ch.appendChild(b);
@@ -472,11 +531,11 @@ function montrerChoix(apresErreur){
   repondre.appendChild(ch);
   const m = el("div", "micro");
   if (MICRO_POSSIBLE){
-    const mic = el("button", "mic"); mic.type = "button"; mic.innerHTML = MIC_SVG; mic.setAttribute("aria-label", "Répondre au micro");
+    const mic = el("button", "mic"); mic.type = "button"; mic.innerHTML = MIC_SVG; mic.setAttribute("aria-label", u("micro_aria"));
     mic.onclick = () => micro(mic); m.appendChild(mic);
   }
   if (sansFilet && ch.classList.contains("cache")){
-    const sos = el("button", "lien", "Je ne sais pas quoi dire"); sos.type = "button";
+    const sos = el("button", "lien", u("sos")); sos.type = "button";
     sos.onclick = () => { ch.classList.remove("cache"); sos.remove(); };
     m.appendChild(sos);
   }
@@ -488,18 +547,24 @@ function micro(bouton){
   const entendu = repondre.querySelector(".entendu");
   if (ecouteEnCours){ ecouteEnCours.arreter(); return; }
   taire();
-  bouton.classList.add("ecoute"); entendu.textContent = "Je t'écoute…";
+  bouton.classList.add("ecoute"); entendu.textContent = u("ecoute");
   ecouteEnCours = ecouter(t => { entendu.textContent = "« " + t + " »"; }, async t => {
     ecouteEnCours = null; bouton.classList.remove("ecoute");
-    if (t == null){ entendu.textContent = "Le micro n'est pas disponible : touche ta réponse."; repondre.querySelector(".choix").classList.remove("cache"); return; }
-    if (!t){ entendu.textContent = "Je n'ai rien entendu. Réessaie, plus près du téléphone."; return; }
+    if (t == null){
+      // pas de micro (refuse, absent, pas de reconnaissance) : les reponses ecrites reviennent, et « Sans filet » s'arrete
+      entendu.textContent = u("micro_indispo"); sansFilet = false;
+      const ch = repondre.querySelector(".choix"); if (ch) ch.classList.remove("cache");
+      const sos = repondre.querySelector(".lien"); if (sos) sos.remove();
+      return;
+    }
+    if (!t){ entendu.textContent = u("rien"); return; }
     let meilleur = null, score = 0;
     choixDe(noeud).forEach(c => { if (essayes(noeud).has(c.i)) return; const s = ressemblance(t, gabarit(T(c, "t"), LANGUE)); if (s > score){ score = s; meilleur = c; } });
     if (!meilleur || score < SEUIL){
       repondre.hidden = true;
-      await replique({ qui: dernier || C.personnes[0], air: "perplexe", t: MOTS_UI.pardon, fr: MOTS_UI.pardon_fr });
+      await replique({ qui: dernier || C.personnes[0], air: "perplexe", t: MOTS_UI.pardon, fr: u("pardon"), [LANG]: u("pardon") });
       montrerChoix(true);
-      const aide = el("div", "aide douce"); aide.innerHTML = "<b>Tu as dit : « " + t.replace(/[<>&]/g, "") + " ».</b> Ce n'est pas une des réponses : redis-la, ou touche-la.";
+      const aide = el("div", "aide douce"); aide.innerHTML = u("tu_as_dit", { t: t.replace(/[<>&]/g, "") });
       repondre.insertBefore(aide, repondre.firstChild);
       return;
     }
@@ -516,7 +581,7 @@ async function choisir(c){
     if (c.faux){ S.erreurs.push(c); parler("exercice"); }
     for (const r of (c.puis || [])) await replique(r);
     montrerChoix(true);
-    if (c.faux){ const aide = el("div", "aide"); aide.innerHTML = fr(c.aide); repondre.insertBefore(aide, repondre.firstChild); }
+    if (c.faux){ const aide = el("div", "aide"); aide.innerHTML = loc(c.aide); repondre.insertBefore(aide, repondre.firstChild); }
     defiler();
     return;
   }
@@ -529,23 +594,23 @@ function fin(){
   quiParle(null);
   parler("fini");
   const c = el("div", "carte fin");
-  c.appendChild(el("h2", null, S.erreurs.length ? "Bien joué !" : "Parfait, sans une erreur !"));
+  c.appendChild(el("h2", null, S.erreurs.length ? u("bien") : u("parfait")));
   c.appendChild(el("p", null, gabarit(fr(C.bilan), "fr")));
   if (S.erreurs.length){
-    c.appendChild(el("h3", null, "Tes erreurs, corrigées"));
+    c.appendChild(el("h3", null, u("erreurs")));
     const ul = el("ul");
-    S.erreurs.forEach(e => { const li = el("li"); li.innerHTML = "<s>" + gabarit(T(e, "t"), LANGUE) + "</s> : " + fr(e.aide); ul.appendChild(li); });
+    S.erreurs.forEach(e => { const li = el("li"); li.innerHTML = "<s>" + gabarit(T(e, "t"), LANGUE) + "</s> : " + loc(e.aide); ul.appendChild(li); });
     c.appendChild(ul);
   }
-  c.appendChild(el("h3", null, "Les phrases que tu as dites"));
+  c.appendChild(el("h3", null, u("phrases")));
   S.dit.filter(x => !x.faux && !x.repete).forEach(x => {
     const p = el("div", "phrase"), t = gabarit(T(x, "t"), LANGUE);
     const b = el("b", null, t); b.lang = LANGUE; p.appendChild(b);
     p.appendChild(boutonHP(t, "toi", ""));
     c.appendChild(p);
   });
-  const re = el("button", "gros", "Rejouer en répondant autrement"); re.type = "button"; re.onclick = () => commencer(sansFilet);
-  const ter = el("button", "gros second", "Terminer"); ter.type = "button"; ter.onclick = () => { if (DANS_APP) parler("fermer"); else location.href = "?apprendre=" + LANGUE + (GB ? "&variante=gb" : ""); };
+  const re = el("button", "gros", u("rejouer")); re.type = "button"; re.onclick = () => commencer(sansFilet);
+  const ter = el("button", "gros second", u("terminer")); ter.type = "button"; ter.onclick = quitter;
   c.append(re, ter);
   fil.appendChild(c); defiler();
 }
@@ -553,8 +618,8 @@ function fin(){
 // ---------------------------------------------------------------- la liste (maquette)
 async function liste(){
   plateau.textContent = "";
-  document.getElementById("surtitre").textContent = "Maquette";
-  document.getElementById("titre").textContent = "Jouer une conversation";
+  document.getElementById("surtitre").textContent = DANS_APP ? u("conversations") : u("maquette");
+  document.getElementById("titre").textContent = u("jouer");
   const idx = await charger("conversation/donnees/index.json");
   // les lots en parallele : un lot pas encore ecrit (404) ne retarde pas les autres
   const lots = await Promise.all(idx.lots.map(lot => charger("conversation/donnees/lot-" + lot + ".json").catch(() => null)));
@@ -562,22 +627,22 @@ async function liste(){
   lots.forEach(l => { if (l) l.conversations.forEach(e => toutes.push(e)); });
   ecran.textContent = "";
   const c = el("div", "liste");
-  const lg = el("div", "langues");
-  [["de", "Allemand"], ["es", "Espagnol"], ["en", "Anglais"]].forEach(([k, n]) => {
-    const b = el("button", null, n); b.type = "button"; b.setAttribute("aria-pressed", String(k === LANGUE));
-    b.onclick = () => { location.href = "?apprendre=" + k; }; lg.appendChild(b);
+  const lg = el("div", "langues"); lg.hidden = DANS_APP;   // dans l'app, la langue apprise est celle du compte
+  ["de", "es", "en"].forEach(k => {
+    const b = el("button", null, u(k)); b.type = "button"; b.setAttribute("aria-pressed", String(k === LANGUE));
+    b.onclick = () => { location.href = adresse({ apprendre: k, variante: null }); }; lg.appendChild(b);
   });
   c.appendChild(lg);
   let groupe = null;
   for (const e of toutes){
     if (!e.langues.includes(LANGUE)) continue;
     const d = await charger("conversation/donnees/" + e.id + "." + LANGUE + ".json");
-    const g = d.parcours === "premiers-pas" ? "Premiers pas" : d.parcours === "voyage" ? "Le voyage A1" : d.niveau;
+    const g = d.parcours === "premiers-pas" ? u("pp") : d.parcours === "voyage" ? u("voyage") : d.niveau;
     if (g !== groupe){ c.appendChild(el("h2", null, g)); groupe = g; }
-    const a = el("a"); a.href = "?c=" + e.id + "&apprendre=" + LANGUE + (GB ? "&variante=gb" : "") + (Q.get("nuit") ? "&nuit=" + Q.get("nuit") : "");
+    const a = el("a"); a.href = adresse({ c: e.id, liste: "1" });
     const im = el("img"); im.alt = ""; im.src = PERS[d.personnes[0]].visages.sourire; a.appendChild(im);
     const t = el("div"); t.appendChild(el("b", null, fr(d.titre)));
-    t.appendChild(el("span", null, (d.etape ? "Étape " + d.etape + " · " : "") + d.niveau + " · " + Object.keys(d.noeuds).length + " moments"));
+    t.appendChild(el("span", null, d.etape ? u("ligne_etape", { n: d.etape, niv: d.niveau, m: Object.keys(d.noeuds).length }) : u("ligne", { niv: d.niveau, m: Object.keys(d.noeuds).length })));
     a.appendChild(t); c.appendChild(a);
   }
   if (!DANS_APP){
@@ -592,10 +657,22 @@ async function liste(){
   ecran.appendChild(c);
 }
 
-document.getElementById("retour").onclick = () => {
+// L'adresse de la page avec d'autres parametres (la langue, la nuit et la variante suivent).
+function adresse(change){
+  const q = new URLSearchParams(location.search);
+  ["c", "liste", "t"].forEach(k => q.delete(k));
+  Object.entries(change || {}).forEach(([k, v]) => { if (v == null) q.delete(k); else q.set(k, v); });
+  return "?" + q.toString();
+}
+// Quitter une conversation : vers la liste si l'on en vient (dans l'app comme hors de l'app) ; sinon on ferme le cadre.
+function quitter(){
   taire(); if (ecouteEnCours) ecouteEnCours.arreter();
-  if (DANS_APP) parler("fermer"); else if (Q.get("c")) location.href = "?apprendre=" + LANGUE + (GB ? "&variante=gb" : ""); else history.back();
-};
+  if (Q.get("c") && (Q.get("liste") === "1" || !DANS_APP)) location.href = adresse({});
+  else if (DANS_APP) parler("fermer");
+  else history.back();
+}
+document.getElementById("retour").onclick = quitter;
+document.getElementById("retour").setAttribute("aria-label", u("retour"));
 if (DANS_APP) document.getElementById("marque").hidden = true;
 
 // ---------------------------------------------------------------- le paysage
@@ -603,7 +680,7 @@ if (DANS_APP) document.getElementById("marque").hidden = true;
 // Maquette : trois dessins a comparer (A la terrasse, B le banc, C les bulles), ?paysage=A|B|C ; dans l'app, la
 // variante que Jacques choisira, et les couleurs de la partie passees par &fond=haut,bas comme aux scenes.
 const NOMS_PAYSAGES = { A: "La terrasse", B: "Le banc", C: "Les bulles" };
-let paysage = ["A", "B", "C"].includes(Q.get("paysage")) ? Q.get("paysage") : "A";
+let paysage = ["A", "B", "C"].includes(Q.get("paysage")) ? Q.get("paysage") : PAYSAGE_CHOISI;
 function melange(hex, cible, k){
   const h = c => [1, 3, 5].map(i => parseInt(c.substr(i, 2), 16)), a = h(hex), b = h(cible);
   return "#" + a.map((v, i) => Math.round(v + (b[i] - v) * k).toString(16).padStart(2, "0")).join("");
@@ -622,7 +699,7 @@ function poserPaysage(){
 }
 if (!DANS_APP){
   const bar = document.getElementById("paysages"); bar.hidden = false;
-  bar.appendChild(el("span", "consigne", "Paysage :"));
+  bar.appendChild(el("span", "consigne", u("paysage")));
   Object.entries(NOMS_PAYSAGES).forEach(([k, n]) => {
     const x = el("button", null, k + " · " + n); x.type = "button"; x.dataset.v = k;
     x.onclick = () => { paysage = k; poserPaysage(); };
@@ -638,7 +715,7 @@ poserPaysage();
     (await Promise.all(idx.personnes.map(f => charger("conversation/" + f).catch(() => null)))).forEach(x => { if (x) Object.assign(PERS, x); });
     if (Q.get("c")){ C = await charger("conversation/donnees/" + Q.get("c") + "." + LANGUE + ".json"); presentation(); }
     else await liste();
-  }catch(e){ ecran.textContent = "Cette conversation n'existe pas encore (" + e.message + ")."; }
+  }catch(e){ ecran.textContent = u("introuvable"); }
 })();
 </script>
 </body>

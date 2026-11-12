@@ -138,6 +138,22 @@ def controler(chemin, personnes):
     if autour:
         A("la personne en face dit des mots pas encore vus (normal en petite quantite) : %s" % ", ".join(sorted(autour)))
 
+    # LES LANGUES D'INTERFACE (12 nov. 2026, deploiement : fr, en, ar) : une conversation de l'allemand ou de l'espagnol
+    # deja traduite le reste partout ; une phrase francaise ajoutee sans sa traduction s'afficherait en francais a un
+    # arabophone. Les traductions vivent dans visuel/conversation/traduire.py (puis le relancer).
+    if langue in ("de", "es") and c.get("parcours") == "premiers-pas":
+        textes = [c[k] for k in ("titre", "intro", "bilan")]
+        for n in noeuds.values():
+            for r in n.get("dit", []):
+                textes.append(r["recit"] if "recit" in r else r)
+            for ch in n.get("choix", []):
+                textes.append(ch)
+                textes += [ch["aide"]] if ch.get("aide") else []
+                textes += ch.get("puis", [])
+        sans = [o.get("fr") for o in textes if o.get("fr") and not (o.get("en") and o.get("ar"))]
+        if sans:
+            E("%d texte(s) sans anglais ou sans arabe (visuel/conversation/traduire.py) : « %s »" % (len(sans), sans[0]))
+
     # Les chemins : chaque reponse juste, sauf repetition, est un echange ; la fin doit etre atteinte sans boucle.
     longueurs, branches = [], 0
     for nid, n in noeuds.items():

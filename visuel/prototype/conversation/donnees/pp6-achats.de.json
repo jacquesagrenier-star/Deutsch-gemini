@@ -5,50 +5,206 @@
  "parcours": "premiers-pas",
  "etape": 6,
  "registre": "Sie",
- "titre": {"fr": "Au marché"},
- "intro": {"fr": "Samedi matin, au marché de ton quartier. Tu achètes des fruits ou des légumes, tu demandes un prix, tu paies."},
- "personnes": ["marktverkaeufer"],
+ "titre": {
+  "fr": "Au marché",
+  "en": "At the market",
+  "ar": "في السوق"
+ },
+ "intro": {
+  "fr": "Samedi matin, au marché de ton quartier. Tu achètes des fruits ou des légumes, tu demandes un prix, tu paies.",
+  "en": "Saturday morning, at your local market. You buy fruit or vegetables, ask a price and pay.",
+  "ar": "صباح السبت، في سوق حيّك. تشتري فواكه أو خضارًا، وتسأل عن سعر، وتدفع."
+ },
+ "personnes": [
+  "marktverkaeufer"
+ ],
  "debut": "kaufen",
- "prix": {"aepfel": 250, "tomaten": 180, "kaese": 400},
- "panier": ["obst", "kaese"],
+ "prix": {
+  "aepfel": 250,
+  "tomaten": 180,
+  "kaese": 400
+ },
+ "panier": [
+  "obst",
+  "kaese"
+ ],
  "noeuds": {
   "kaufen": {
    "dit": [
-    {"recit": {"fr": "Samedi matin, au marché. Un marchand t'appelle derrière son étal."}},
-    {"qui": "marktverkaeufer", "air": "sourire", "t": "Guten Morgen! Was möchten Sie?", "fr": "Bonjour ! Qu'est-ce que vous désirez ?"}
+    {
+     "recit": {
+      "fr": "Samedi matin, au marché. Un marchand t'appelle derrière son étal.",
+      "en": "Saturday morning, at the market. A stallholder calls out to you from his stall.",
+      "ar": "صباح السبت في السوق. بائع يناديك من وراء بسطته."
+     }
+    },
+    {
+     "qui": "marktverkaeufer",
+     "air": "sourire",
+     "t": "Guten Morgen! Was möchten Sie?",
+     "fr": "Bonjour ! Qu'est-ce que vous désirez ?",
+     "en": "Good morning! What would you like?",
+     "ar": "صباح الخير! ماذا تريد؟"
+    }
    ],
    "choix": [
-    {"t": "Ein Kilo Äpfel, bitte.", "fr": "Un kilo de pommes, s'il vous plaît.", "pose": {"obst": "aepfel"}, "va": "sonst"},
-    {"t": "Ein halbes Kilo Tomaten, bitte.", "fr": "Un demi-kilo de tomates, s'il vous plaît.", "pose": {"obst": "tomaten"}, "va": "sonst"},
-    {"faux": true, "t": "Ich möchte ein Kilo von Äpfel.", "fr": "Je voudrais un kilo de pommes (mot à mot : « de » pommes).",
-     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "Ein Kilo … von Äpfel?", "fr": "Un kilo… « von » pommes ?"}],
-     "aide": {"fr": "<b>Pas de « von » après une quantité</b>, contrairement au « de » français : « ein Kilo Äpfel », « eine Flasche Wasser »."}}
+    {
+     "t": "Ein Kilo Äpfel, bitte.",
+     "fr": "Un kilo de pommes, s'il vous plaît.",
+     "pose": {
+      "obst": "aepfel"
+     },
+     "va": "sonst",
+     "en": "A kilo of apples, please.",
+     "ar": "كيلو تفاح من فضلك."
+    },
+    {
+     "t": "Ein halbes Kilo Tomaten, bitte.",
+     "fr": "Un demi-kilo de tomates, s'il vous plaît.",
+     "pose": {
+      "obst": "tomaten"
+     },
+     "va": "sonst",
+     "en": "Half a kilo of tomatoes, please.",
+     "ar": "نصف كيلو طماطم من فضلك."
+    },
+    {
+     "faux": true,
+     "t": "Ich möchte ein Kilo von Äpfel.",
+     "fr": "Je voudrais un kilo de pommes (mot à mot : « de » pommes).",
+     "puis": [
+      {
+       "qui": "marktverkaeufer",
+       "air": "perplexe",
+       "t": "Ein Kilo … von Äpfel?",
+       "fr": "Un kilo… « von » pommes ?",
+       "en": "A kilo… « von » apples?",
+       "ar": "كيلو… «von» تفاح؟"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Pas de « von » après une quantité</b>, contrairement au « de » français : « ein Kilo Äpfel », « eine Flasche Wasser ».",
+      "en": "<b>No « von » after a quantity</b>, unlike English “of”: « ein Kilo Äpfel », « eine Flasche Wasser ».",
+      "ar": "<b>لا تُستعمل «von» بعد الكمية</b>: «ein Kilo Äpfel»، «eine Flasche Wasser»."
+     },
+     "en": "I'd like a kilo of apples (word for word: « of » apples).",
+     "ar": "أريد كيلو تفاح (حرفيًا: كيلو «من» التفاح)."
+    }
    ]
   },
   "sonst": {
-   "dit": [{"qui": "marktverkaeufer", "air": "question", "t": "Gern. Sonst noch etwas?", "fr": "Volontiers. Autre chose ?"}],
+   "dit": [
+    {
+     "qui": "marktverkaeufer",
+     "air": "question",
+     "t": "Gern. Sonst noch etwas?",
+     "fr": "Volontiers. Autre chose ?",
+     "en": "Of course. Anything else?",
+     "ar": "بكل سرور. شيء آخر؟"
+    }
+   ],
    "choix": [
-    {"t": "Nein, das ist alles, danke.", "fr": "Non, c'est tout, merci.", "va": "zahlen"},
-    {"t": "Wie viel kostet der Käse?", "fr": "Combien coûte le fromage ?", "va": "kaese",
-     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Der Käse? Vier Euro.", "fr": "Le fromage ? Quatre euros."}]}
+    {
+     "t": "Nein, das ist alles, danke.",
+     "fr": "Non, c'est tout, merci.",
+     "va": "zahlen",
+     "en": "No, that's all, thank you.",
+     "ar": "لا، هذا كل شيء، شكرًا."
+    },
+    {
+     "t": "Wie viel kostet der Käse?",
+     "fr": "Combien coûte le fromage ?",
+     "va": "kaese",
+     "puis": [
+      {
+       "qui": "marktverkaeufer",
+       "air": "sourire",
+       "t": "Der Käse? Vier Euro.",
+       "fr": "Le fromage ? Quatre euros.",
+       "en": "The cheese? Four euros.",
+       "ar": "الجبن؟ أربعة يورو."
+      }
+     ],
+     "en": "How much is the cheese?",
+     "ar": "كم سعر الجبن؟"
+    }
    ]
   },
   "kaese": {
    "dit": [],
    "choix": [
-    {"t": "Gut, ich nehme das.", "fr": "Bien, je le prends.", "pose": {"kaese": "kaese"}, "va": "zahlen"},
-    {"t": "Das ist sehr teuer. Nein, danke.", "fr": "C'est très cher. Non, merci.", "va": "zahlen"}
+    {
+     "t": "Gut, ich nehme das.",
+     "fr": "Bien, je le prends.",
+     "pose": {
+      "kaese": "kaese"
+     },
+     "va": "zahlen",
+     "en": "Good, I'll take it.",
+     "ar": "حسنًا، سآخذه."
+    },
+    {
+     "t": "Das ist sehr teuer. Nein, danke.",
+     "fr": "C'est très cher. Non, merci.",
+     "va": "zahlen",
+     "en": "That's very expensive. No, thank you.",
+     "ar": "هذا غالٍ جدًا. لا، شكرًا."
+    }
    ]
   },
   "zahlen": {
-   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Das macht {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Das macht {a_payer:mots}."}],
+   "dit": [
+    {
+     "qui": "marktverkaeufer",
+     "air": "sourire",
+     "t": "Das macht {a_payer}.",
+     "fr": "Ça fait {a_payer}.",
+     "dit": "Das macht {a_payer:mots}.",
+     "en": "That's {a_payer}.",
+     "ar": "المبلغ {a_payer}."
+    }
+   ],
    "choix": [
-    {"t": "Haben Sie eine Tüte?", "fr": "Vous avez un sac ?", "va": null,
-     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Ja, natürlich. Hier, bitte. Schönes Wochenende!", "fr": "Oui, bien sûr. Voilà. Bon week-end !"}]},
-    {"t": "Danke, auf Wiedersehen!", "fr": "Merci, au revoir !", "va": null,
-     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Danke! Schönes Wochenende!", "fr": "Merci ! Bon week-end !"}]}
+    {
+     "t": "Haben Sie eine Tüte?",
+     "fr": "Vous avez un sac ?",
+     "va": null,
+     "puis": [
+      {
+       "qui": "marktverkaeufer",
+       "air": "sourire",
+       "t": "Ja, natürlich. Hier, bitte. Schönes Wochenende!",
+       "fr": "Oui, bien sûr. Voilà. Bon week-end !",
+       "en": "Yes, of course. Here you are. Have a nice weekend!",
+       "ar": "نعم، بالطبع. تفضّل. عطلة نهاية أسبوع سعيدة!"
+      }
+     ],
+     "en": "Do you have a bag?",
+     "ar": "هل لديك كيس؟"
+    },
+    {
+     "t": "Danke, auf Wiedersehen!",
+     "fr": "Merci, au revoir !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "marktverkaeufer",
+       "air": "sourire",
+       "t": "Danke! Schönes Wochenende!",
+       "fr": "Merci ! Bon week-end !",
+       "en": "Thank you! Have a nice weekend!",
+       "ar": "شكرًا! عطلة نهاية أسبوع سعيدة!"
+      }
+     ],
+     "en": "Thank you, goodbye!",
+     "ar": "شكرًا، إلى اللقاء!"
+    }
    ]
   }
  },
- "bilan": {"fr": "Tu as acheté au marché, demandé un prix et payé {a_payer}."}
+ "bilan": {
+  "fr": "Tu as acheté au marché, demandé un prix et payé {a_payer}.",
+  "en": "You shopped at the market, asked a price and paid {a_payer}.",
+  "ar": "اشتريت من السوق، وسألت عن سعر، ودفعت {a_payer}."
+ }
 }

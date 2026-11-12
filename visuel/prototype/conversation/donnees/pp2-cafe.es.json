@@ -5,48 +5,202 @@
  "parcours": "premiers-pas",
  "etape": 2,
  "registre": "usted",
- "titre": {"fr": "Le petit-déjeuner au bar"},
- "intro": {"fr": "Premier matin à Madrid. Tu prends ton petit-déjeuner dans un bar du quartier. Commande, puis paie."},
- "personnes": ["kellnerin"],
+ "titre": {
+  "fr": "Le petit-déjeuner au bar",
+  "en": "Breakfast at the bar",
+  "ar": "الفطور في المقهى"
+ },
+ "intro": {
+  "fr": "Premier matin à Madrid. Tu prends ton petit-déjeuner dans un bar du quartier. Commande, puis paie.",
+  "en": "First morning in Madrid. You have breakfast in a neighbourhood bar. Order, then pay.",
+  "ar": "أول صباح في مدريد. تتناول فطورك في مقهى الحي. اطلب، ثم ادفع."
+ },
+ "personnes": [
+  "kellnerin"
+ ],
  "debut": "pedir",
- "prix": {"cafe": 180, "zumo": 250, "bocadillo": 350},
- "panier": ["bebida", "comida"],
+ "prix": {
+  "cafe": 180,
+  "zumo": 250,
+  "bocadillo": 350
+ },
+ "panier": [
+  "bebida",
+  "comida"
+ ],
  "noeuds": {
   "pedir": {
    "dit": [
-    {"recit": {"fr": "Un bar du quartier, le matin. La serveuse est derrière le comptoir."}},
-    {"qui": "kellnerin", "air": "sourire", "t": "¡Buenos días! ¿Qué quiere tomar?", "fr": "Bonjour ! Qu'est-ce que vous voulez prendre ?"}
+    {
+     "recit": {
+      "fr": "Un bar du quartier, le matin. La serveuse est derrière le comptoir.",
+      "en": "A neighbourhood bar, in the morning. The waitress is behind the counter.",
+      "ar": "مقهى في الحي، في الصباح. النادلة خلف المنضدة."
+     }
+    },
+    {
+     "qui": "kellnerin",
+     "air": "sourire",
+     "t": "¡Buenos días! ¿Qué quiere tomar?",
+     "fr": "Bonjour ! Qu'est-ce que vous voulez prendre ?",
+     "en": "Good morning! What would you like to have?",
+     "ar": "صباح الخير! ماذا تريد أن تتناول؟"
+    }
    ],
    "choix": [
-    {"t": "Quiero un café con leche, por favor.", "fr": "Je veux un café au lait, s'il vous plaît.", "pose": {"bebida": "cafe"}, "va": "comer"},
-    {"t": "Para mí, un zumo de naranja, por favor.", "fr": "Pour moi, un jus d'orange, s'il vous plaît.", "pose": {"bebida": "zumo"}, "va": "comer"}
+    {
+     "t": "Quiero un café con leche, por favor.",
+     "fr": "Je veux un café au lait, s'il vous plaît.",
+     "pose": {
+      "bebida": "cafe"
+     },
+     "va": "comer",
+     "en": "I want a coffee with milk, please.",
+     "ar": "أريد قهوة بالحليب من فضلك."
+    },
+    {
+     "t": "Para mí, un zumo de naranja, por favor.",
+     "fr": "Pour moi, un jus d'orange, s'il vous plaît.",
+     "pose": {
+      "bebida": "zumo"
+     },
+     "va": "comer",
+     "en": "For me, an orange juice, please.",
+     "ar": "لي عصير برتقال من فضلك."
+    }
    ]
   },
   "comer": {
-   "dit": [{"qui": "kellnerin", "air": "question", "t": "Muy bien. ¿Y un bocadillo?", "fr": "Très bien. Et un sandwich ?"}],
+   "dit": [
+    {
+     "qui": "kellnerin",
+     "air": "question",
+     "t": "Muy bien. ¿Y un bocadillo?",
+     "fr": "Très bien. Et un sandwich ?",
+     "en": "Very good. And a sandwich?",
+     "ar": "جيد جدًا. وشطيرة؟"
+    }
+   ],
    "choix": [
-    {"t": "Sí, un bocadillo, por favor.", "fr": "Oui, un sandwich, s'il vous plaît.", "pose": {"comida": "bocadillo"}, "va": "cuenta",
-     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Ahora mismo!", "fr": "Tout de suite !"}]},
-    {"t": "No, gracias.", "fr": "Non, merci.", "va": "cuenta",
-     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Ahora mismo!", "fr": "Tout de suite !"}]}
+    {
+     "t": "Sí, un bocadillo, por favor.",
+     "fr": "Oui, un sandwich, s'il vous plaît.",
+     "pose": {
+      "comida": "bocadillo"
+     },
+     "va": "cuenta",
+     "puis": [
+      {
+       "qui": "kellnerin",
+       "air": "sourire",
+       "t": "¡Ahora mismo!",
+       "fr": "Tout de suite !",
+       "en": "Right away!",
+       "ar": "حالًا!"
+      }
+     ],
+     "en": "Yes, a sandwich, please.",
+     "ar": "نعم، شطيرة من فضلك."
+    },
+    {
+     "t": "No, gracias.",
+     "fr": "Non, merci.",
+     "va": "cuenta",
+     "puis": [
+      {
+       "qui": "kellnerin",
+       "air": "sourire",
+       "t": "¡Ahora mismo!",
+       "fr": "Tout de suite !",
+       "en": "Right away!",
+       "ar": "حالًا!"
+      }
+     ],
+     "en": "No, thank you.",
+     "ar": "لا، شكرًا."
+    }
    ]
   },
   "cuenta": {
-   "dit": [{"recit": {"fr": "Un peu plus tard. Tu as fini et tu veux payer."}}],
+   "dit": [
+    {
+     "recit": {
+      "fr": "Un peu plus tard. Tu as fini et tu veux payer.",
+      "en": "A little later. You've finished and want to pay.",
+      "ar": "بعد قليل. انتهيت وتريد أن تدفع."
+     }
+    }
+   ],
    "choix": [
-    {"t": "La cuenta, por favor.", "fr": "L'addition, s'il vous plaît.", "va": "pagar"},
-    {"t": "¿Cuánto es?", "fr": "C'est combien ?", "va": "pagar"}
+    {
+     "t": "La cuenta, por favor.",
+     "fr": "L'addition, s'il vous plaît.",
+     "va": "pagar",
+     "en": "The bill, please.",
+     "ar": "الحساب من فضلك."
+    },
+    {
+     "t": "¿Cuánto es?",
+     "fr": "C'est combien ?",
+     "va": "pagar",
+     "en": "How much is it?",
+     "ar": "كم الثمن؟"
+    }
    ]
   },
   "pagar": {
-   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "Son {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Son {a_payer:mots}."}],
+   "dit": [
+    {
+     "qui": "kellnerin",
+     "air": "attentive",
+     "t": "Son {a_payer}.",
+     "fr": "Ça fait {a_payer}.",
+     "dit": "Son {a_payer:mots}.",
+     "en": "That's {a_payer}.",
+     "ar": "المبلغ {a_payer}."
+    }
+   ],
    "choix": [
-    {"t": "Con tarjeta, por favor.", "fr": "Par carte, s'il vous plaît.", "va": null,
-     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Gracias! ¡Hasta luego!", "fr": "Merci ! À plus tard !"}]},
-    {"t": "Gracias, adiós.", "fr": "Merci, au revoir.", "va": null,
-     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Gracias a usted! ¡Adiós!", "fr": "Merci à vous ! Au revoir !"}]}
+    {
+     "t": "Con tarjeta, por favor.",
+     "fr": "Par carte, s'il vous plaît.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "kellnerin",
+       "air": "sourire",
+       "t": "¡Gracias! ¡Hasta luego!",
+       "fr": "Merci ! À plus tard !",
+       "en": "Thank you! See you later!",
+       "ar": "شكرًا! إلى اللقاء لاحقًا!"
+      }
+     ],
+     "en": "By card, please.",
+     "ar": "بالبطاقة من فضلك."
+    },
+    {
+     "t": "Gracias, adiós.",
+     "fr": "Merci, au revoir.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "kellnerin",
+       "air": "sourire",
+       "t": "¡Gracias a usted! ¡Adiós!",
+       "fr": "Merci à vous ! Au revoir !",
+       "en": "Thank you! Goodbye!",
+       "ar": "الشكر لك! إلى اللقاء!"
+      }
+     ],
+     "en": "Thank you, goodbye.",
+     "ar": "شكرًا، إلى اللقاء."
+    }
    ]
   }
  },
- "bilan": {"fr": "Tu as commandé ton petit-déjeuner, demandé l'addition et payé {a_payer}."}
+ "bilan": {
+  "fr": "Tu as commandé ton petit-déjeuner, demandé l'addition et payé {a_payer}.",
+  "en": "You ordered your breakfast, asked for the bill and paid {a_payer}.",
+  "ar": "طلبت فطورك، وطلبت الحساب، ودفعت {a_payer}."
+ }
 }

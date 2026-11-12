@@ -3517,7 +3517,7 @@ html[data-apprendre="en"] #episodeLigne,
 html[data-apprendre="en"] [data-seulement-de],
 html[data-apprendre="en"] [data-seulement-es],
 html[data-apprendre="en"] [data-seulement-ja],
-html[data-apprendre="en"] [data-orbid]:not([data-orbid="signaler"]):not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]):not([data-orbid="pronomen"]):not([data-orbid="zahlen"]):not([data-orbid="praep"]):not([data-orbid="konjunktionen"]):not([data-orbid="wortstellung"]):not([onclick^="ouvrirThemeIllustre"]){ display:none !important; }
+html[data-apprendre="en"] [data-orbid]:not([data-orbid="signaler"]):not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="conversations"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]):not([data-orbid="pronomen"]):not([data-orbid="zahlen"]):not([data-orbid="praep"]):not([data-orbid="konjunktionen"]):not([data-orbid="wortstellung"]):not([onclick^="ouvrirThemeIllustre"]){ display:none !important; }
 /* Les options des panneaux qui marchent avec l'anglais (27 oct. 2026) : les
    dictees, Ecrire, Construire la phrase, les familles d'expressions, les faux
    amis. Une regle a part, ancree sur #orbPanel pour passer devant la liste
@@ -10891,6 +10891,16 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
                 <strong data-i18n="orb_prononciation">Prononciation</strong>
             </div>
         </div>
+        <!-- LES CONVERSATIONS (decisions de Jacques du 11 et du 12 nov. 2026 : « une tuile pour les conversations »,
+             « Deploie les conversations ») : on REPOND, au micro ou en touchant une reponse, et la conversation suit
+             le choix. La page visuel/prototype/conversation.html, dans le cadre des scenes, montre la liste rangee par
+             niveau ; rien ici ne compte pour la seance du jour. Mode d'emploi : visuel/CONVERSATIONS.md. -->
+        <div class="orb orb-de" data-orbid="conversations" onclick="ouvrirConversations()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 5.5A2.5 2.5 0 015.5 3h8A2.5 2.5 0 0116 5.5v5a2.5 2.5 0 01-2.5 2.5H9l-4 3v-3H5.5A2.5 2.5 0 013 10.5z"/><path d="M19 8.5h.5A1.5 1.5 0 0121 10v5a1.5 1.5 0 01-1.5 1.5H19v3l-3.5-3H12a1.5 1.5 0 01-1.5-1.5"/></svg></div>
+            <div>
+                <strong data-i18n="orb_conversations">Conversations</strong>
+            </div>
+        </div>
 
         <!-- Section « Mon parcours ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -16794,6 +16804,7 @@ const I18N = {
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Nombres",
         orb_prononciation: "Prononciation",
+        orb_conversations: "Conversations",
         pron_kicker: "Lire l'allemand",
         pron_intro: "L'allemand se lit presque toujours comme il s'écrit : ces règles suffisent pour lire n'importe quel mot. Touche un mot pour l'entendre.",
         pron_voyelles: "Les voyelles",
@@ -18562,6 +18573,7 @@ const I18N = {
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Numbers",
         orb_prononciation: "Pronunciation",
+        orb_conversations: "Conversations",
         pron_kicker: "Reading German",
         pron_intro: "German is almost always read the way it is written: these rules are enough to read any word. Tap a word to hear it.",
         pron_voyelles: "Vowels",
@@ -20274,6 +20286,7 @@ const I18N = {
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Sayılar",
         orb_prononciation: "Telaffuz",
+        orb_conversations: "Konuşmalar",
         pron_kicker: "Almanca okumak",
         pron_intro: "Almanca neredeyse her zaman yazıldığı gibi okunur: bu kurallar her kelimeyi okumaya yeter. Duymak için kelimeye dokun.",
         pron_voyelles: "Ünlüler",
@@ -22196,6 +22209,7 @@ const I18N = {
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Числа",
         orb_prononciation: "Вимова",
+        orb_conversations: "Розмови",
         pron_kicker: "Читати німецькою",
         pron_intro: "Німецькі слова майже завжди читаються так, як пишуться: цих правил досить, щоб прочитати будь-яке слово. Торкнись слова, щоб його почути.",
         pron_voyelles: "Голосні",
@@ -22733,6 +22747,7 @@ const I18N = {
         schreiben_hint: "جمله را به آلمانی بنویس. علامت‌ها و نشانه‌گذاری به حساب نمی‌آیند.",
         orb_zahlen_title: "عددها",
         orb_prononciation: "تلفظ",
+        orb_conversations: "گفت‌وگوها",
         pron_kicker: "خواندن آلمانی",
         pron_intro: "آلمانی تقریباً همیشه همان‌طور که نوشته می‌شود خوانده می‌شود: این قاعده‌ها برای خواندن هر واژه‌ای کافی است. برای شنیدن، واژه را لمس کن.",
         pron_voyelles: "واکه‌ها",
@@ -24512,6 +24527,7 @@ const I18N = {
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "الأعداد",
         orb_prononciation: "النطق",
+        orb_conversations: "المحادثات",
         pron_kicker: "قراءة الألمانية",
         pron_intro: "تُقرأ الألمانية غالبًا كما تُكتب: هذه القواعد تكفي لقراءة أي كلمة. المس الكلمة لتسمعها.",
         pron_voyelles: "الحروف الصائتة",
@@ -27307,6 +27323,7 @@ const I18N = {
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Números",
         orb_prononciation: "Pronúncia",
+        orb_conversations: "Conversas",
         pron_kicker: "Ler o alemão",
         pron_intro: "O alemão quase sempre se lê como se escreve: estas regras bastam para ler qualquer palavra. Toque numa palavra para ouvi-la.",
         pron_voyelles: "As vogais",
@@ -29082,6 +29099,7 @@ const I18N = {
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Liczby",
         orb_prononciation: "Wymowa",
+        orb_conversations: "Rozmowy",
         pron_kicker: "Czytanie po niemiecku",
         pron_intro: "Niemiecki prawie zawsze czyta się tak, jak się pisze — podobnie jak polski, tylko według innych reguł: te reguły wystarczą, żeby przeczytać każde słowo. Dotknij słowa, żeby je usłyszeć.",
         pron_voyelles: "Samogłoski",
@@ -30860,6 +30878,7 @@ const I18N = {
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Числа",
         orb_prononciation: "Произно­шение",
+        orb_conversations: "Разговоры",
         pron_kicker: "Читать по-немецки",
         pron_intro: "По-немецки почти всегда читают так, как пишут: этих правил достаточно, чтобы прочитать любое слово. Нажми на слово, чтобы его услышать.",
         pron_voyelles: "Гласные",
@@ -32637,6 +32656,7 @@ const I18N = {
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Zahlen",
         orb_prononciation: "Aussprache",
+        orb_conversations: "Gespräche",
         pron_kicker: "Deutsch lesen",
         pron_intro: "Deutsch liest man fast immer so, wie es geschrieben wird: Diese Regeln reichen, um jedes Wort zu lesen. Tippe auf ein Wort, um es zu hören.",
         pron_voyelles: "Die Vokale",
@@ -34427,6 +34447,7 @@ const I18N = {
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Números",
         orb_prononciation: "Pronunciación",
+        orb_conversations: "Conversaciones",
         pron_kicker: "Leer el alemán",
         pron_intro: "El alemán casi siempre se lee como se escribe: estas reglas bastan para leer cualquier palabra. Toca una palabra para oírla.",
         pron_voyelles: "Las vocales",
@@ -51383,6 +51404,23 @@ function ouvrirDtzOral(){
     }
     showScreen("sceneSeance");
 }
+// LES CONVERSATIONS (12 nov. 2026) : la liste de la page, rangee par niveau, dans le cadre des scenes. La page va
+// d'elle-meme de la liste a une conversation et retour ; « fermer » ramene a Tout le contenu. Rien ne compte pour la
+// seance du jour (decision du 11 nov. : la tuile sert a s'entrainer a volonte).
+function ouvrirConversations(){
+    sceneOuverteDepuis = "conversations";
+    const cadre = document.getElementById("sceneCadre");
+    const appris = ["de", "es", "en"].includes(LANGUE_APPRISE) ? LANGUE_APPRISE : "de";
+    if(cadre){
+        cadre.title = t("orb_conversations");
+        chargerCadre(cadre, baseScenes() + "conversation.html?apprendre=" + appris
+                  + "&lang=" + encodeURIComponent(getUiLang())
+                  + (appris === "en" && VARIANTE_ANGLAIS === "gb" ? "&variante=gb" : "")
+                  + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
+                  + "&t=" + Date.now());
+    }
+    showScreen("sceneSeance");
+}
 // LE MICRO POUR LA PAGE DU CADRE. Dans les apps, la page n'a pas la reconnaissance du navigateur et ne voit pas le
 // module natif : elle le demande ici (« micro », start / stop) et recoit le texte (« wortando-app », texte / fin /
 // indisponible). Memes precautions que la carte d'oral : arreter avant de demarrer (v883), garder le dernier
@@ -51417,7 +51455,7 @@ async function microPourCadre(d, e){
             const t = ((ev && ev.matches) || []).map(x => String(x || "").trim()).filter(Boolean)[0];
             if(t && microCadre === ici){ ici.texte = t; repondre("texte", t); }
         }));
-        const r = await Natif.start({ language: "de-DE", maxResults: 1, partialResults: true, popup: false });
+        const r = await Natif.start({ language: (typeof d.langue === "string" && /^[a-z]{2}-[A-Z]{2}$/.test(d.langue)) ? d.langue : "de-DE", maxResults: 1, partialResults: true, popup: false });
         const t = ((r && r.matches) || []).map(x => String(x || "").trim()).filter(Boolean)[0];
         if(t) ici.texte = t;
         try{ noterAudio("natif", "DTZ", "start rendu, " + (ici.texte || "").length + " car."); }catch(err){}
@@ -66219,6 +66257,11 @@ window.addEventListener("message", (e) => {
     // 3 nov. 2026 : un theme illustre demande ou en sont ses mots (le tirage suit les mots, visuel/prototype/themes/tirage.js).
     if(d.type === "etats"){
         try{ e.source.postMessage({source: "wortando-app", type: "etats", etats: etatsDesMots(d.mots)}, e.origin === "null" ? "*" : e.origin); }catch(err){}
+        return;
+    }
+    if(sceneOuverteDepuis === "conversations"){
+        if(d.type === "micro") microPourCadre(d, e);
+        else if(d.type === "fermer"){ try{ ouvrirToutLeContenu(); }catch(err){ goHome(); } }
         return;
     }
     if(d.type === "fini" && d.faits > 0 && d.bons === d.faits && sceneOuverteDepuis !== "admin"){

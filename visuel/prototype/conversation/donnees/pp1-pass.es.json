@@ -5,40 +5,130 @@
  "parcours": "premiers-pas",
  "etape": 1,
  "registre": "usted",
- "titre": {"fr": "Au contrôle des passeports"},
- "intro": {"fr": "Tu arrives à l'aéroport de Madrid. Le policier du contrôle te parle. Réponds avec les phrases de l'étape."},
- "personnes": ["polizist"],
+ "titre": {
+  "fr": "Au contrôle des passeports",
+  "en": "At passport control",
+  "ar": "عند مراقبة الجوازات"
+ },
+ "intro": {
+  "fr": "Tu arrives à l'aéroport de Madrid. Le policier du contrôle te parle. Réponds avec les phrases de l'étape.",
+  "en": "You arrive at Madrid airport. The police officer at passport control speaks to you. Answer with the sentences of this step.",
+  "ar": "تصل إلى مطار مدريد. يكلّمك الشرطي عند مراقبة الجوازات. أجب بجمل هذه المرحلة."
+ },
+ "personnes": [
+  "polizist"
+ ],
  "debut": "pasaporte",
  "noeuds": {
   "pasaporte": {
    "dit": [
-    {"recit": {"fr": "Aéroport de Madrid-Barajas. C'est ton tour au contrôle des passeports."}},
-    {"qui": "polizist", "air": "sourire", "t": "Buenos días. El pasaporte, por favor.", "fr": "Bonjour. Le passeport, s'il vous plaît."}
+    {
+     "recit": {
+      "fr": "Aéroport de Madrid-Barajas. C'est ton tour au contrôle des passeports.",
+      "en": "Madrid-Barajas airport. It's your turn at passport control.",
+      "ar": "مطار مدريد باراخاس. جاء دورك عند مراقبة الجوازات."
+     }
+    },
+    {
+     "qui": "polizist",
+     "air": "sourire",
+     "t": "Buenos días. El pasaporte, por favor.",
+     "fr": "Bonjour. Le passeport, s'il vous plaît.",
+     "en": "Hello. Your passport, please.",
+     "ar": "مرحبًا. جواز السفر من فضلك."
+    }
    ],
    "choix": [
-    {"t": "Buenos días, señor. Un momento.", "fr": "Bonjour, monsieur. Un moment.", "va": "donde"},
-    {"t": "Sí, un momento, por favor.", "fr": "Oui, un moment, s'il vous plaît.", "va": "donde"}
+    {
+     "t": "Buenos días, señor. Un momento.",
+     "fr": "Bonjour, monsieur. Un moment.",
+     "va": "donde",
+     "en": "Hello, sir. One moment.",
+     "ar": "مرحبًا يا سيدي. لحظة."
+    },
+    {
+     "t": "Sí, un momento, por favor.",
+     "fr": "Oui, un moment, s'il vous plaît.",
+     "va": "donde",
+     "en": "Yes, one moment, please.",
+     "ar": "نعم، لحظة من فضلك."
+    }
    ]
   },
   "donde": {
-   "dit": [{"qui": "polizist", "air": "question", "t": "Gracias. ¿De dónde es usted?", "fr": "Merci. D'où êtes-vous ?"}],
+   "dit": [
+    {
+     "qui": "polizist",
+     "air": "question",
+     "t": "Gracias. ¿De dónde es usted?",
+     "fr": "Merci. D'où êtes-vous ?",
+     "en": "Thank you. Where are you from?",
+     "ar": "شكرًا. من أين أنت؟"
+    }
+   ],
    "choix": [
-    {"t": "Soy de Canadá.", "fr": "Je suis du Canada.", "va": "turista"},
-    {"t": "Soy de Francia.", "fr": "Je suis de France.", "va": "turista"}
+    {
+     "t": "Soy de Canadá.",
+     "fr": "Je suis du Canada.",
+     "va": "turista",
+     "en": "I'm from Canada.",
+     "ar": "أنا من كندا."
+    },
+    {
+     "t": "Soy de Francia.",
+     "fr": "Je suis de France.",
+     "va": "turista",
+     "en": "I'm from France.",
+     "ar": "أنا من فرنسا."
+    }
    ]
   },
   "turista": {
-   "dit": [{"qui": "polizist", "air": "question", "t": "¿Y es usted turista?", "fr": "Et vous êtes touriste ?"}],
+   "dit": [
+    {
+     "qui": "polizist",
+     "air": "question",
+     "t": "¿Y es usted turista?",
+     "fr": "Et vous êtes touriste ?",
+     "en": "And you are a tourist?",
+     "ar": "وهل أنت سائح؟"
+    }
+   ],
    "choix": [
-    {"t": "Sí, soy turista.", "fr": "Oui, je suis touriste.", "va": "adios"}
+    {
+     "t": "Sí, soy turista.",
+     "fr": "Oui, je suis touriste.",
+     "va": "adios",
+     "en": "Yes, I'm a tourist.",
+     "ar": "نعم، أنا سائح."
+    }
    ]
   },
   "adios": {
-   "dit": [{"qui": "polizist", "air": "sourire", "t": "Muy bien. ¡Buen viaje!", "fr": "Très bien. Bon voyage !"}],
+   "dit": [
+    {
+     "qui": "polizist",
+     "air": "sourire",
+     "t": "Muy bien. ¡Buen viaje!",
+     "fr": "Très bien. Bon voyage !",
+     "en": "Very good. Have a good trip!",
+     "ar": "جيد جدًا. رحلة سعيدة!"
+    }
+   ],
    "choix": [
-    {"t": "Gracias. ¡Adiós!", "fr": "Merci. Au revoir !", "va": null}
+    {
+     "t": "Gracias. ¡Adiós!",
+     "fr": "Merci. Au revoir !",
+     "va": null,
+     "en": "Thank you. Goodbye!",
+     "ar": "شكرًا. إلى اللقاء!"
+    }
    ]
   }
  },
- "bilan": {"fr": "Tu as passé le contrôle : tu as salué, demandé un moment, dit d'où tu viens et que tu es touriste."}
+ "bilan": {
+  "fr": "Tu as passé le contrôle : tu as salué, demandé un moment, dit d'où tu viens et que tu es touriste.",
+  "en": "You got through passport control: you said hello, asked for a moment, said where you come from and that you are a tourist.",
+  "ar": "اجتزت المراقبة: سلّمت، وطلبت لحظة، وقلت من أين أنت وأنك سائح."
+ }
 }

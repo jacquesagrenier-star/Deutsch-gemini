@@ -5,48 +5,202 @@
  "parcours": "premiers-pas",
  "etape": 2,
  "registre": "Sie",
- "titre": {"fr": "Le petit-déjeuner au café"},
- "intro": {"fr": "Premier matin à Berlin. Tu prends ton petit-déjeuner dans un café. Commande, puis paie."},
- "personnes": ["kellnerin"],
+ "titre": {
+  "fr": "Le petit-déjeuner au café",
+  "en": "Breakfast at the café",
+  "ar": "الفطور في المقهى"
+ },
+ "intro": {
+  "fr": "Premier matin à Berlin. Tu prends ton petit-déjeuner dans un café. Commande, puis paie.",
+  "en": "First morning in Berlin. You have breakfast in a café. Order, then pay.",
+  "ar": "أول صباح في برلين. تتناول فطورك في مقهى. اطلب، ثم ادفع."
+ },
+ "personnes": [
+  "kellnerin"
+ ],
  "debut": "bestellen",
- "prix": {"kaffee": 320, "saft": 350, "broetchen": 180},
- "panier": ["boisson", "manger"],
+ "prix": {
+  "kaffee": 320,
+  "saft": 350,
+  "broetchen": 180
+ },
+ "panier": [
+  "boisson",
+  "manger"
+ ],
  "noeuds": {
   "bestellen": {
    "dit": [
-    {"recit": {"fr": "Un petit café du quartier, le matin. La serveuse arrive."}},
-    {"qui": "kellnerin", "air": "sourire", "t": "Guten Morgen! Was möchten Sie?", "fr": "Bonjour ! Qu'est-ce que vous désirez ?"}
+    {
+     "recit": {
+      "fr": "Un petit café du quartier, le matin. La serveuse arrive.",
+      "en": "A small neighbourhood café, in the morning. The waitress comes over.",
+      "ar": "مقهى صغير في الحي، في الصباح. تأتي النادلة."
+     }
+    },
+    {
+     "qui": "kellnerin",
+     "air": "sourire",
+     "t": "Guten Morgen! Was möchten Sie?",
+     "fr": "Bonjour ! Qu'est-ce que vous désirez ?",
+     "en": "Good morning! What would you like?",
+     "ar": "صباح الخير! ماذا تريد؟"
+    }
    ],
    "choix": [
-    {"t": "Ich möchte einen Kaffee mit Milch, bitte.", "fr": "Je voudrais un café au lait, s'il vous plaît.", "pose": {"boisson": "kaffee"}, "va": "essen"},
-    {"t": "Für mich einen Orangensaft, bitte.", "fr": "Pour moi, un jus d'orange, s'il vous plaît.", "pose": {"boisson": "saft"}, "va": "essen"}
+    {
+     "t": "Ich möchte einen Kaffee mit Milch, bitte.",
+     "fr": "Je voudrais un café au lait, s'il vous plaît.",
+     "pose": {
+      "boisson": "kaffee"
+     },
+     "va": "essen",
+     "en": "I'd like a coffee with milk, please.",
+     "ar": "أريد قهوة بالحليب من فضلك."
+    },
+    {
+     "t": "Für mich einen Orangensaft, bitte.",
+     "fr": "Pour moi, un jus d'orange, s'il vous plaît.",
+     "pose": {
+      "boisson": "saft"
+     },
+     "va": "essen",
+     "en": "For me, an orange juice, please.",
+     "ar": "لي عصير برتقال من فضلك."
+    }
    ]
   },
   "essen": {
-   "dit": [{"qui": "kellnerin", "air": "question", "t": "Gern. Und ein Brötchen?", "fr": "Volontiers. Et un petit pain ?"}],
+   "dit": [
+    {
+     "qui": "kellnerin",
+     "air": "question",
+     "t": "Gern. Und ein Brötchen?",
+     "fr": "Volontiers. Et un petit pain ?",
+     "en": "Of course. And a bread roll?",
+     "ar": "بكل سرور. وخبزة صغيرة؟"
+    }
+   ],
    "choix": [
-    {"t": "Ja, ein Brötchen, bitte.", "fr": "Oui, un petit pain, s'il vous plaît.", "pose": {"manger": "broetchen"}, "va": "rechnung",
-     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Kommt sofort!", "fr": "Ça arrive tout de suite !"}]},
-    {"t": "Nein, danke.", "fr": "Non, merci.", "va": "rechnung",
-     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Kommt sofort!", "fr": "Ça arrive tout de suite !"}]}
+    {
+     "t": "Ja, ein Brötchen, bitte.",
+     "fr": "Oui, un petit pain, s'il vous plaît.",
+     "pose": {
+      "manger": "broetchen"
+     },
+     "va": "rechnung",
+     "puis": [
+      {
+       "qui": "kellnerin",
+       "air": "sourire",
+       "t": "Kommt sofort!",
+       "fr": "Ça arrive tout de suite !",
+       "en": "Coming right up!",
+       "ar": "حالًا!"
+      }
+     ],
+     "en": "Yes, a bread roll, please.",
+     "ar": "نعم، خبزة صغيرة من فضلك."
+    },
+    {
+     "t": "Nein, danke.",
+     "fr": "Non, merci.",
+     "va": "rechnung",
+     "puis": [
+      {
+       "qui": "kellnerin",
+       "air": "sourire",
+       "t": "Kommt sofort!",
+       "fr": "Ça arrive tout de suite !",
+       "en": "Coming right up!",
+       "ar": "حالًا!"
+      }
+     ],
+     "en": "No, thank you.",
+     "ar": "لا، شكرًا."
+    }
    ]
   },
   "rechnung": {
-   "dit": [{"recit": {"fr": "Un peu plus tard. Tu as fini et tu veux payer."}}],
+   "dit": [
+    {
+     "recit": {
+      "fr": "Un peu plus tard. Tu as fini et tu veux payer.",
+      "en": "A little later. You've finished and want to pay.",
+      "ar": "بعد قليل. انتهيت وتريد أن تدفع."
+     }
+    }
+   ],
    "choix": [
-    {"t": "Die Rechnung, bitte.", "fr": "L'addition, s'il vous plaît.", "va": "zahlen"},
-    {"t": "Was macht das?", "fr": "Ça fait combien ?", "va": "zahlen"}
+    {
+     "t": "Die Rechnung, bitte.",
+     "fr": "L'addition, s'il vous plaît.",
+     "va": "zahlen",
+     "en": "The bill, please.",
+     "ar": "الحساب من فضلك."
+    },
+    {
+     "t": "Was macht das?",
+     "fr": "Ça fait combien ?",
+     "va": "zahlen",
+     "en": "How much is it?",
+     "ar": "كم المبلغ؟"
+    }
    ]
   },
   "zahlen": {
-   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "Das macht {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Das macht {a_payer:mots}."}],
+   "dit": [
+    {
+     "qui": "kellnerin",
+     "air": "attentive",
+     "t": "Das macht {a_payer}.",
+     "fr": "Ça fait {a_payer}.",
+     "dit": "Das macht {a_payer:mots}.",
+     "en": "That's {a_payer}.",
+     "ar": "المبلغ {a_payer}."
+    }
+   ],
    "choix": [
-    {"t": "Mit Karte, bitte.", "fr": "Par carte, s'il vous plaît.", "va": null,
-     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Danke schön! Auf Wiedersehen!", "fr": "Merci beaucoup ! Au revoir !"}]},
-    {"t": "Danke, auf Wiedersehen.", "fr": "Merci, au revoir.", "va": null,
-     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Danke! Einen schönen Tag!", "fr": "Merci ! Bonne journée !"}]}
+    {
+     "t": "Mit Karte, bitte.",
+     "fr": "Par carte, s'il vous plaît.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "kellnerin",
+       "air": "sourire",
+       "t": "Danke schön! Auf Wiedersehen!",
+       "fr": "Merci beaucoup ! Au revoir !",
+       "en": "Thank you very much! Goodbye!",
+       "ar": "شكرًا جزيلًا! إلى اللقاء!"
+      }
+     ],
+     "en": "By card, please.",
+     "ar": "بالبطاقة من فضلك."
+    },
+    {
+     "t": "Danke, auf Wiedersehen.",
+     "fr": "Merci, au revoir.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "kellnerin",
+       "air": "sourire",
+       "t": "Danke! Einen schönen Tag!",
+       "fr": "Merci ! Bonne journée !",
+       "en": "Thank you! Have a nice day!",
+       "ar": "شكرًا! يومًا سعيدًا!"
+      }
+     ],
+     "en": "Thank you, goodbye.",
+     "ar": "شكرًا، إلى اللقاء."
+    }
    ]
   }
  },
- "bilan": {"fr": "Tu as commandé ton petit-déjeuner, demandé l'addition et payé {a_payer}."}
+ "bilan": {
+  "fr": "Tu as commandé ton petit-déjeuner, demandé l'addition et payé {a_payer}.",
+  "en": "You ordered your breakfast, asked for the bill and paid {a_payer}.",
+  "ar": "طلبت فطورك، وطلبت الحساب، ودفعت {a_payer}."
+ }
 }

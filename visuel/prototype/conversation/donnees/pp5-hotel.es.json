@@ -5,54 +5,233 @@
  "parcours": "premiers-pas",
  "etape": 5,
  "registre": "usted",
- "titre": {"fr": "À la réception de l'hôtel"},
- "intro": {"fr": "Tu arrives à ton hôtel de Madrid. Tu prends ta chambre, puis, le lendemain matin, tu signales un problème."},
- "personnes": ["rezeptionistin"],
+ "titre": {
+  "fr": "À la réception de l'hôtel",
+  "en": "At the hotel reception",
+  "ar": "في استقبال الفندق"
+ },
+ "intro": {
+  "fr": "Tu arrives à ton hôtel de Madrid. Tu prends ta chambre, puis, le lendemain matin, tu signales un problème.",
+  "en": "You arrive at your hotel in Madrid. You check in, then, the next morning, you report a problem.",
+  "ar": "تصل إلى فندقك في مدريد. تستلم غرفتك، ثم في صباح اليوم التالي تُبلغ عن مشكلة."
+ },
+ "personnes": [
+  "rezeptionistin"
+ ],
  "debut": "llegada",
  "noeuds": {
   "llegada": {
    "dit": [
-    {"recit": {"fr": "Le soir, à la réception d'un petit hôtel."}},
-    {"qui": "rezeptionistin", "air": "sourire", "t": "¡Buenas tardes! Bienvenidos al hotel.", "fr": "Bonsoir ! Bienvenue à l'hôtel."}
+    {
+     "recit": {
+      "fr": "Le soir, à la réception d'un petit hôtel.",
+      "en": "In the evening, at the reception of a small hotel.",
+      "ar": "في المساء، في استقبال فندق صغير."
+     }
+    },
+    {
+     "qui": "rezeptionistin",
+     "air": "sourire",
+     "t": "¡Buenas tardes! Bienvenidos al hotel.",
+     "fr": "Bonsoir ! Bienvenue à l'hôtel.",
+     "en": "Good evening! Welcome to the hotel.",
+     "ar": "مساء الخير! أهلًا بك في الفندق."
+    }
    ],
    "choix": [
-    {"t": "Buenas tardes. Tengo una reserva para dos noches.", "fr": "Bonsoir. J'ai une réservation pour deux nuits.", "va": "habitacion"},
-    {"t": "Buenas tardes. ¿Tiene una habitación doble?", "fr": "Bonsoir. Vous avez une chambre double ?", "va": "habitacion"},
-    {"faux": true, "t": "Buenas tardes. Soy una reserva.", "fr": "Bonsoir. Je suis une réservation.",
-     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "¿Usted … es una reserva?", "fr": "Vous… êtes une réservation ?"}],
-     "aide": {"fr": "<b>« soy »</b>, c'est « je suis » ; <b>« tengo »</b>, « j'ai ». Dis : « Tengo una reserva »."}}
+    {
+     "t": "Buenas tardes. Tengo una reserva para dos noches.",
+     "fr": "Bonsoir. J'ai une réservation pour deux nuits.",
+     "va": "habitacion",
+     "en": "Good evening. I have a reservation for two nights.",
+     "ar": "مساء الخير. لدي حجز لليلتين."
+    },
+    {
+     "t": "Buenas tardes. ¿Tiene una habitación doble?",
+     "fr": "Bonsoir. Vous avez une chambre double ?",
+     "va": "habitacion",
+     "en": "Good evening. Do you have a double room?",
+     "ar": "مساء الخير. هل لديكم غرفة مزدوجة؟"
+    },
+    {
+     "faux": true,
+     "t": "Buenas tardes. Soy una reserva.",
+     "fr": "Bonsoir. Je suis une réservation.",
+     "puis": [
+      {
+       "qui": "rezeptionistin",
+       "air": "perplexe",
+       "t": "¿Usted … es una reserva?",
+       "fr": "Vous… êtes une réservation ?",
+       "en": "You… are a reservation?",
+       "ar": "أنت… حجز؟"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« soy »</b>, c'est « je suis » ; <b>« tengo »</b>, « j'ai ». Dis : « Tengo una reserva ».",
+      "en": "<b>« soy »</b> means “I am”; <b>« tengo »</b> means “I have”. Say: « Tengo una reserva ».",
+      "ar": "<b>«soy»</b> تعني «أنا»، و<b>«tengo»</b> تعني «لدي». قل: «Tengo una reserva»."
+     },
+     "en": "Good evening. I am a reservation.",
+     "ar": "مساء الخير. أنا حجز."
+    }
    ]
   },
   "habitacion": {
-   "dit": [{"qui": "rezeptionistin", "air": "sourire", "t": "Muy bien. Su habitación está en la tercera planta. Aquí tiene la llave.", "fr": "Très bien. Votre chambre est au troisième étage. Voici la clé."}],
+   "dit": [
+    {
+     "qui": "rezeptionistin",
+     "air": "sourire",
+     "t": "Muy bien. Su habitación está en la tercera planta. Aquí tiene la llave.",
+     "fr": "Très bien. Votre chambre est au troisième étage. Voici la clé.",
+     "en": "Very good. Your room is on the third floor. Here is the key.",
+     "ar": "جيد جدًا. غرفتك في الطابق الثالث. هذا هو المفتاح."
+    }
+   ],
    "choix": [
-    {"t": "Gracias. Perdón, ¿dónde está el ascensor?", "fr": "Merci. Pardon, où est l'ascenseur ?", "va": "manana",
-     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Aquí mismo, a la izquierda.", "fr": "Juste ici, à gauche."}]},
-    {"t": "Gracias. ¿El desayuno está incluido?", "fr": "Merci. Le petit-déjeuner est compris ?", "va": "manana",
-     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Sí, el desayuno está incluido.", "fr": "Oui, le petit-déjeuner est compris."}]}
+    {
+     "t": "Gracias. Perdón, ¿dónde está el ascensor?",
+     "fr": "Merci. Pardon, où est l'ascenseur ?",
+     "va": "manana",
+     "puis": [
+      {
+       "qui": "rezeptionistin",
+       "air": "sourire",
+       "t": "Aquí mismo, a la izquierda.",
+       "fr": "Juste ici, à gauche.",
+       "en": "Right here, on the left.",
+       "ar": "هنا تمامًا، على اليسار."
+      }
+     ],
+     "en": "Thank you. Sorry, where is the lift?",
+     "ar": "شكرًا. عفوًا، أين المصعد؟"
+    },
+    {
+     "t": "Gracias. ¿El desayuno está incluido?",
+     "fr": "Merci. Le petit-déjeuner est compris ?",
+     "va": "manana",
+     "puis": [
+      {
+       "qui": "rezeptionistin",
+       "air": "sourire",
+       "t": "Sí, el desayuno está incluido.",
+       "fr": "Oui, le petit-déjeuner est compris.",
+       "en": "Yes, breakfast is included.",
+       "ar": "نعم، الفطور مشمول."
+      }
+     ],
+     "en": "Thank you. Is breakfast included?",
+     "ar": "شكرًا. هل الفطور مشمول؟"
+    }
    ]
   },
   "manana": {
    "dit": [
-    {"recit": {"fr": "Le lendemain matin, tu redescends à la réception."}},
-    {"qui": "rezeptionistin", "air": "question", "t": "¡Buenos días! ¿Todo bien?", "fr": "Bonjour ! Tout va bien ?"}
+    {
+     "recit": {
+      "fr": "Le lendemain matin, tu redescends à la réception.",
+      "en": "The next morning, you go back down to reception.",
+      "ar": "في صباح اليوم التالي، تنزل إلى الاستقبال."
+     }
+    },
+    {
+     "qui": "rezeptionistin",
+     "air": "question",
+     "t": "¡Buenos días! ¿Todo bien?",
+     "fr": "Bonjour ! Tout va bien ?",
+     "en": "Good morning! Is everything all right?",
+     "ar": "صباح الخير! هل كل شيء على ما يرام؟"
+    }
    ],
    "choix": [
-    {"t": "La ducha no funciona.", "fr": "La douche ne fonctionne pas.", "va": "algo",
-     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "¡Ay, lo siento! Ahora mismo mando a alguien.", "fr": "Oh, je suis désolée ! J'envoie quelqu'un tout de suite."}]},
-    {"t": "Hay mucho ruido en la habitación.", "fr": "Il y a beaucoup de bruit dans la chambre.", "va": "algo",
-     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "¡Ay, lo siento! Le doy otra habitación.", "fr": "Oh, je suis désolée ! Je vous donne une autre chambre."}]}
+    {
+     "t": "La ducha no funciona.",
+     "fr": "La douche ne fonctionne pas.",
+     "va": "algo",
+     "puis": [
+      {
+       "qui": "rezeptionistin",
+       "air": "surprise",
+       "t": "¡Ay, lo siento! Ahora mismo mando a alguien.",
+       "fr": "Oh, je suis désolée ! J'envoie quelqu'un tout de suite.",
+       "en": "Oh, I'm sorry! I'll send someone right away.",
+       "ar": "آه، أنا آسفة! سأرسل أحدًا حالًا."
+      }
+     ],
+     "en": "The shower doesn't work.",
+     "ar": "الدش لا يعمل."
+    },
+    {
+     "t": "Hay mucho ruido en la habitación.",
+     "fr": "Il y a beaucoup de bruit dans la chambre.",
+     "va": "algo",
+     "puis": [
+      {
+       "qui": "rezeptionistin",
+       "air": "surprise",
+       "t": "¡Ay, lo siento! Le doy otra habitación.",
+       "fr": "Oh, je suis désolée ! Je vous donne une autre chambre.",
+       "en": "Oh, I'm sorry! I'll give you another room.",
+       "ar": "آه، أنا آسفة! سأعطيك غرفة أخرى."
+      }
+     ],
+     "en": "It's very noisy in the room.",
+     "ar": "هناك ضجيج كثير في الغرفة."
+    }
    ]
   },
   "algo": {
-   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "¿Necesita algo más?", "fr": "Vous avez besoin d'autre chose ?"}],
+   "dit": [
+    {
+     "qui": "rezeptionistin",
+     "air": "question",
+     "t": "¿Necesita algo más?",
+     "fr": "Vous avez besoin d'autre chose ?",
+     "en": "Do you need anything else?",
+     "ar": "هل تحتاج إلى شيء آخر؟"
+    }
+   ],
    "choix": [
-    {"t": "¿A qué hora es el desayuno?", "fr": "Le petit-déjeuner, c'est à quelle heure ?", "va": null,
-     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "De siete a diez. ¡Que aproveche!", "fr": "De sept heures à dix heures. Bon appétit !"}]},
-    {"t": "No, gracias. ¡Adiós!", "fr": "Non, merci. Au revoir !", "va": null,
-     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "¡Adiós! ¡Que tenga un buen día!", "fr": "Au revoir ! Bonne journée !"}]}
+    {
+     "t": "¿A qué hora es el desayuno?",
+     "fr": "Le petit-déjeuner, c'est à quelle heure ?",
+     "va": null,
+     "puis": [
+      {
+       "qui": "rezeptionistin",
+       "air": "sourire",
+       "t": "De siete a diez. ¡Que aproveche!",
+       "fr": "De sept heures à dix heures. Bon appétit !",
+       "en": "From seven to ten. Enjoy your meal!",
+       "ar": "من السابعة إلى العاشرة. بالهناء والشفاء!"
+      }
+     ],
+     "en": "What time is breakfast?",
+     "ar": "في أي ساعة الفطور؟"
+    },
+    {
+     "t": "No, gracias. ¡Adiós!",
+     "fr": "Non, merci. Au revoir !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "rezeptionistin",
+       "air": "sourire",
+       "t": "¡Adiós! ¡Que tenga un buen día!",
+       "fr": "Au revoir ! Bonne journée !",
+       "en": "Goodbye! Have a nice day!",
+       "ar": "إلى اللقاء! يومًا سعيدًا!"
+      }
+     ],
+     "en": "No, thank you. Goodbye!",
+     "ar": "لا، شكرًا. إلى اللقاء!"
+    }
    ]
   }
  },
- "bilan": {"fr": "Tu as pris ta chambre, posé une question, signalé un problème et obtenu une solution."}
+ "bilan": {
+  "fr": "Tu as pris ta chambre, posé une question, signalé un problème et obtenu une solution.",
+  "en": "You checked in, asked a question, reported a problem and got a solution.",
+  "ar": "استلمت غرفتك، وطرحت سؤالًا، وأبلغت عن مشكلة، وحصلت على حل."
+ }
 }
