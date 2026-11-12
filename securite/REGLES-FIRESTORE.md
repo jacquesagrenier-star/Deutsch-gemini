@@ -1,8 +1,15 @@
 # Règles Firestore corrigées (11 nov. 2026)
 
-Audit de lancement, point 1. Les règles sont **prêtes, pas publiées** : c'est
-Jacques qui les colle dans la console. Le texte à coller est le fichier
-[`firestore-corrige.rules`](firestore-corrige.rules), **en entier**.
+Audit de lancement, point 1. Les règles sont **EN LIGNE depuis le 12 nov. 2026,
+15 h 03** : Jacques a collé le fichier
+[`firestore-corrige.rules`](firestore-corrige.rules), **en entier**, dans la
+console (ses trois vérifications passées : liste des testeurs, « OUVRIR
+L'ANGLAIS » puis « RETIRER », sauvegarde « il y a quelques secondes »).
+[`../firestore.rules`](../firestore.rules) en est la copie exacte (ce qui est
+en ligne). Les anciennes règles sont gardées hors du dépôt, dans
+`C:\Users\jacqu\.wortando\regles-console-2026-11-12-avant.txt` : pour revenir
+en arrière, les recoller et « Publier ». Toute correction future se fait dans
+les deux fichiers à la fois, puis se colle.
 
 ## Pourquoi
 
