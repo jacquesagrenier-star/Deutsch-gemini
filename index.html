@@ -4790,23 +4790,34 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 /* Le mot neuf presente (revue d'usage du 11 nov. 2026, proposition 1) : un seul bouton, « Je l'ai ». */
 .presente-row{display:none;}
 #flashcardActions.presentation .judge-again, #flashcardActions.presentation .judge-garde{visibility:hidden !important; pointer-events:none !important;}
-/* Le lien ne prend aucune place dans la rangee : la bille reste au pixel pres ou elle est sur un verso habituel.
-   Il se pose juste au-dessus de la bille (la colonne de droite ; a gauche en arabe et en persan), un endroit vide
-   sur toutes les autres cartes. */
+/* « Je le connaissais deja » : un vrai bouton (Jacques, 11 nov. 2026 : le lien souligne au-dessus de la bille n'etait
+   « pas intuitif »). Trois placements a l'essai, choisis par placerBoutonConnu() ; aucun ne prend la place d'Encore, de
+   la bille ni de Mettre de cote. A : dans la carte, sous l'exemple. B : au-dessus des deux rangees, pleine largeur,
+   hors du flux (la bille ne bouge pas). C : dans le bandeau « Nouveau mot ». */
 #flashcardActions.presentation{position:relative;}
-#flashcardActions.presentation .presente-row{display:flex; justify-content:center; position:absolute; bottom:calc(100% + 2px);
-    inset-inline-start:50%; inset-inline-end:0; margin:0;}
-.presente-row .presente-connu{background:none !important; border:0 !important; box-shadow:none !important; margin:0; padding:10px 14px; min-height:44px;
-    font:inherit; font-size:13.5px; font-weight:700; color:#26313F; text-decoration:underline; text-underline-offset:3px; cursor:pointer;}
-body[data-theme="dark"] .presente-row .presente-connu{color:#D5DCE4;}
+.presente-connu{display:none;}
+#flashcard.presentation .presente-connu, #flashcardActions.presentation .presente-connu{display:flex;}
+.presente-connu{align-items:center; justify-content:center; width:100%; min-height:44px; margin:0; padding:8px 14px; border-radius:14px;
+    font:inherit; font-size:14.5px; font-weight:700; cursor:pointer; text-transform:none; letter-spacing:0;
+    background:#FFFFFF; color:#1C2430; border:1.5px solid #1C2430; box-shadow:0 2px 8px rgba(28,36,48,.14);}
+body[data-theme="dark"] .presente-connu{background:#1F2A37; color:#EEF2F6; border-color:#C9D2DD; box-shadow:none;}
+.presente-connu:focus-visible{outline:2px solid currentColor; outline-offset:2px;}
+.flashcard-back > .presente-connu{margin-top:14px;}
+#flashcardActions.presentation .presente-row{display:flex; position:absolute; left:0; right:0; bottom:calc(100% + 8px); margin:0;}
+.carte-presente-bandeau .presente-connu{width:auto; min-height:36px; margin:8px auto 0; padding:6px 16px; font-size:13.5px;
+    background:#FFFFFF; color:#1C2430; border-color:#FFFFFF; box-shadow:none;}
+body[data-theme="dark"] .carte-presente-bandeau .presente-connu{background:#1C2430; color:#F4F6F9; border-color:#1C2430;}
+/* Le bandeau et le contour : l'ENCRE, une couleur sans teinte (Jacques : « en allemand, on a deja un code de couleur
+   pour der, die, das »). Rien de bleu, de rouge ni de vert, de jour comme de nuit ; et la barre du genre, en haut de
+   la carte (border-der / -die / -das), reste visible : la carte du mot neuf ne la recouvre plus. */
 .carte-presente-bandeau{display:block; margin:-8px -8px 14px; padding:9px 12px 10px; border-radius:14px; text-align:center;
-    background:#E8A23A; color:#1C2430;}
+    background:#1C2430; color:#F4F6F9;}
 .carte-presente-bandeau.hidden{display:none;}
 .carte-presente-bandeau b{display:block; font-size:13px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;}
 .carte-presente-bandeau span{display:block; margin-top:2px; font-size:13px; font-weight:600; line-height:1.35;}
-body[data-theme="dark"] .carte-presente-bandeau{background:#F0B456; color:#1C2430;}
-#flashcard.presentation .flashcard-back{border:2.5px solid #E8A23A !important; box-shadow:0 0 0 5px rgba(232,162,58,.20) !important;}
-body[data-theme="dark"] #flashcard.presentation .flashcard-back{border-color:#F0B456 !important; box-shadow:0 0 0 5px rgba(240,180,86,.22) !important;}
+body[data-theme="dark"] .carte-presente-bandeau{background:#E6EAF0; color:#1C2430;}
+#flashcard.presentation .flashcard-back{outline:2px solid rgba(28,36,48,.6); outline-offset:-2px;}
+body[data-theme="dark"] #flashcard.presentation .flashcard-back{outline-color:rgba(230,234,240,.7);}
 /* La carte arrive deja ouverte : un petit mouvement de retournement le dit. */
 @keyframes presentationEntree{
     0%{transform:perspective(900px) rotateY(-32deg) scale(.96); opacity:.6;}
@@ -13152,7 +13163,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
              mais gardent leur place, et « Je le connaissais deja » vit ici, en petit, sous les rangees : un endroit
              vide sur toutes les autres cartes. Montre seulement quand #flashcardActions porte .presentation. -->
         <div class="presente-row">
-            <button type="button" class="presente-connu" onclick="motPresenteDejaConnu()" data-i18n="presente_connu">Je le connaissais déjà</button>
+            <button type="button" id="presenteConnuBtn" class="presente-connu" onclick="event.stopPropagation(); motPresenteDejaConnu()" data-i18n="presente_connu">Je le connaissais déjà</button>
         </div>
         <!-- ⚠️ LE LIEN D'AIDE EST PARTI D'ICI (v600), ET C'EST LA v598 QUI
              L'A RENDU INUTILE. Tant que la rangee etait deux boutons plus une
@@ -57540,7 +57551,20 @@ function motAPresenter(item){
     }catch(e){ return false; }
     return !MOTS_PRESENTES.has(clePresentation(item));
 }
+// Ou vit « Je le connaissais deja » (essai du 11 nov. 2026, voir le CSS) : A dans la carte, B au-dessus des rangees,
+// C dans le bandeau. Le choix de Jacques remplacera l'essai ; PLACE_CONNU_ESSAI ne sert qu'aux captures de la maquette.
+const PLACE_CONNU = "A";
+function placerBoutonConnu(){
+    const b = document.getElementById("presenteConnuBtn");
+    if(!b) return;
+    const v = window.PLACE_CONNU_ESSAI || PLACE_CONNU;
+    const cible = v === "C" ? document.getElementById("flashNouveauVerso")
+                : v === "B" ? document.querySelector("#flashcardActions .presente-row")
+                : document.querySelector("#flashcard .flashcard-back");
+    if(cible && b.parentElement !== cible) cible.appendChild(b);
+}
 function majPresentation(on){
+    if(on) placerBoutonConnu();
     const act = document.getElementById("flashcardActions");
     if(act) act.classList.toggle("presentation", !!on);
     const carte = document.getElementById("flashcard");
