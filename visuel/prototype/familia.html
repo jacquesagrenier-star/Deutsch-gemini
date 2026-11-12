@@ -987,7 +987,7 @@ $("retour").addEventListener("click", () => parler("fermer"));
 $("retour").setAttribute("aria-label", T("retourAria"));
 $("titre").textContent = T("titre");
 document.title = T("titre");
-fetch("familia/familia.json?v=1").then(r => r.json()).then(d => { F = d; IDS = Object.keys(d); if (Q.get("seance") === "1") demarrer(); else decouvrir(); });
+fetch("familia/familia.json?v=1").then(r => r.json()).then(d => { F = d; IDS = Object.keys(d); if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir(); });
 </script>
 </body>
 </html>

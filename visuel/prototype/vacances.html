@@ -921,7 +921,7 @@ fetch("vacances/vacances.json?v=1").then(r => r.json()).then(d => {
   D = d;
   const rangs = {};
   ETAPES = d.etapes.map(e => Object.assign({}, e, {rang: rangs[e.voyage] = (e.voyage in rangs) ? rangs[e.voyage] + 1 : 0}));
-  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+  if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>
 </body>

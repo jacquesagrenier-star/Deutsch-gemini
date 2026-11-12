@@ -962,7 +962,7 @@ $("titre").textContent = T("titre");
 document.title = T("titre");
 fetch("fetes/fetes.json?v=1").then(r => r.json()).then(d => {
   D = d; FE = D.fetes[APPRENDRE]; AP = D.apports[APPRENDRE]; INV = D.invitations[APPRENDRE]; MO = D.motifs[APPRENDRE]; PERS = D.personnes[APPRENDRE]; CJ = D.conj[APPRENDRE];
-  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+  if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>
 </body>

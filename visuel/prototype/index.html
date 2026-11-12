@@ -1387,6 +1387,13 @@ const PP = PARAMS.get("pp") === "1";
    devinette sur un mot jamais entendu. */
 const MOTS_PERMIS = (() => { const v = PARAMS.get("mots"); return v ? new Set(v.split("|")) : null; })();
 const PP_DERNIER = PARAMS.get("dernier") === "1";
+/* 11 nov. 2026 (proposition 3 de la revue, la premiere semaine d'un debutant) : l'arret de la seance peut
+   commencer par Decouvrir (&decouvrir=1) quand la scene n'a pas encore trois mots deja vus. On touche, on entend ;
+   apres DECOUVRIR_SEUIL objets, le rond mene a Trouve !, qui ne demande QUE les objets decouverts : un mot est
+   montre avant d'etre demande. */
+const DECOUVRIR_DABORD = PARAMS.get("decouvrir") === "1";
+const DECOUVRIR_SEUIL = 3;
+let PERMIS_DECOUVERTS = null;
 /* 7 nov. 2026 : le reglage « Questions par scene et par theme » de l'app (5 · 8 · 12) vaut aussi pour la scene
    de Premiers pas ; sans parametre (une app d'avant), 5 comme avant. */
 const NB_PP = Math.max(1, Math.min(30, parseInt(PARAMS.get("nb"), 10) || 5));
@@ -1433,7 +1440,7 @@ if (window.parent !== window){
 
 /* ---------- etat ---------- */
 let niveau = (EN_SEANCE && COUCHES[PARAMS.get("niveau")]) ? PARAMS.get("niveau") : "A1";
-let modeA1 = (EN_SEANCE || PP) ? "trouver" : "decouvrir", i = 0, bons = 0, faits = 0, attenteToucher = null, verrou = false;
+let modeA1 = (EN_SEANCE || PP) ? (DECOUVRIR_DABORD ? "decouvrir" : "trouver") : "decouvrir", i = 0, bons = 0, faits = 0, attenteToucher = null, verrou = false;
 /* Une etape « Trouve ! » glissee dans une suite de questions A2 (la seance) :
    le niveau reste A2, mais on attend un toucher. */
 let etapeTrouve = false;
@@ -1511,6 +1518,13 @@ function majDecouverts(){
   const n = [...DECOUVERTS].filter(m => ZONES.some(z => z.mot === m)).length;
   $("bas").innerHTML = '<div class="decouverts"><span>' + T("decouverts", {a: compte(n, total)}) + '</span>'
     + '<div class="jauge"><span style="width:' + Math.round(100 * n / total) + '%"></span></div></div>';
+  // l'arret qui commence par Decouvrir : assez d'objets touches, on passe a Trouve ! sur eux seuls
+  if (DECOUVRIR_DABORD && n >= Math.min(DECOUVRIR_SEUIL, total)){
+    const go = document.createElement("button");
+    go.className = "suite"; go.textContent = T("trouve");
+    go.addEventListener("click", () => { PERMIS_DECOUVERTS = new Set(DECOUVERTS); modeA1 = "trouver"; demarrer(); });
+    $("bas").appendChild(go);
+  }
 }
 function montrerIndices(){
   const aire = MW * MH;
@@ -1598,7 +1612,7 @@ const A_TROUVER = (() => {
    au-dessus du niveau de la seance ne se DEMANDE pas ; il se touche toujours
    en Decouvrir. Hors seance, rien n'est filtre. */
 const RANG = {A1: 1, A2: 2, B1: 3, B2: 4, C1: 5, C2: 6};
-const aSonNiveau = (m, niv) => (!MOTS_PERMIS || MOTS_PERMIS.has(m.mot))
+const aSonNiveau = (m, niv) => (!MOTS_PERMIS || MOTS_PERMIS.has(m.mot)) && (!PERMIS_DECOUVERTS || PERMIS_DECOUVERTS.has(m.mot))
   && ((!EN_SEANCE && !PP) || !m.niveau || (RANG[m.niveau] || 9) <= (RANG[niv] || 9));
 const zonesDe = mot => S.points.filter(p => porte(p, mot)).map(p => p.id);
 let fileTrouver = [];

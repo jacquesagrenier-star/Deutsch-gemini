@@ -513,7 +513,7 @@ fetch("travail/travail.json?v=1").then(r => r.json()).then(d => {
   // un mot sans aucune question utilisable (son image n'est pas encore faite) ne sort pas du tirage
   MOTS_THEME = motsDuTheme().filter(w => QS.some(q => memeMot(q.w, w)));
   SORTES = SORTES_TOUTES.filter(s => QS.some(q => q.s === s));
-  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+  if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>
 </body>

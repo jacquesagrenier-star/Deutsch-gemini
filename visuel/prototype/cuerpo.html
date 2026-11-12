@@ -1302,6 +1302,13 @@ function decouvrir(){
 
 // LA PARTIE (« le tirage suit les mots ») : recopie de familia.html, identique d'un theme a l'autre.
 const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+// LA PREMIERE SEMAINE (proposition 3 de la revue, 11 nov. 2026) : l'app demande &simple=1 pour un debutant -- une image
+// et un mot, pas de phrase entiere. Si aucun mot de la file ne s'y prete, toutes les sortes, comme avant.
+const SIMPLES = ["tocar", "nombrar"];
+function sortesDuMode(toutes){
+  const simples = SORTES.filter(x => SIMPLES.includes(x));
+  return (!toutes && Q.get("simple") === "1" && simples.length) ? simples : SORTES;
+}
 let vus = new Set(), sorteCourante = null, derniereSorte = null;
 function cleQuestion(){
   const z = $("zone"), en = z.querySelector(".enonce");
@@ -1311,8 +1318,8 @@ function montrer(){
   repondu = false; choixFaux = null; $("suite").hidden = true; $("basFixe").hidden = true;
   $("compte").textContent = (rang + 1) + " / " + file.length;
   $("barre").style.width = (rang / file.length * 100) + "%";
-  const essai = (w, strict) => {
-    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+  const essai = (w, strict, toutes) => {
+    const autres = melanger(sortesDuMode(toutes).filter(x => x !== derniereSorte));
     for (const so of autres){
       for (let n = 0; n < 25; n++){
         motQ = null; vuQ = null; sensQ = null; sorteCourante = so;
@@ -1338,6 +1345,9 @@ function montrer(){
     if (fait) [file[rang], file[j]] = [file[j], file[rang]];
   }
   if (!fait) fait = essai(file[rang], false);
+  // le mode simple : un mot qu'aucune question simple ne sait poser quitte la partie, plutot qu'une phrase entiere
+  if (!fait && sortesDuMode(false) !== SORTES){ file.splice(rang, 1); if (rang >= file.length) return file.length ? fin() : toutRevu(null); return montrer(); }
+  if (!fait) fait = essai(file[rang], false, true);
   vus.add(cleQuestion()); derniereSorte = fait; retenir();
   window.scrollTo(0, 0); document.body.scrollTop = 0;
 }
@@ -1383,7 +1393,7 @@ document.title = T("titre");
 const IDS = [];
 fetch("cuerpo/cuerpo.json?v=1").then(r => r.json()).then(d => {
   D = d; IDS.push(...Object.keys(d.partes));
-  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+  if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>
 </body>

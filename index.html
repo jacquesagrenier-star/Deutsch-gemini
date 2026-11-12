@@ -64654,13 +64654,22 @@ function ouvrirSceneAdmin(nom){
 function ouvrirScenePremiersPas(nom, dernier){
     sceneOuverteDepuis = "premiers_pas";
     const cadre = document.getElementById("sceneCadre");
-    if(cadre){
+    // 11 nov. 2026 (proposition 3, la premiere semaine) : la scene qui ferme l'etape suit la regle des arrets -- les
+    // mots deja vus seuls s'il y en a trois, sinon Decouvrir d'abord. Hors premiere semaine, rien ne change.
+    const charger = vus => {
+        if(!cadre) return;
+        const mots = vus && vus.size >= ARRET_NB ? Array.from(vus.keys()).join("|") : "";
         cadre.title = t("seance_scene_cadre");
         chargerCadre(cadre, baseScenes() + "index.html?scene=" + encodeURIComponent(nom) + "&pp=1" + (dernier ? "&dernier=1" : "")
                   + "&nb=" + questionsSeance()
+                  + (mots ? "&mots=" + encodeURIComponent(mots) : vus ? "&decouvrir=1" : "")
                   + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse
                   + fondCadreSeance("scene") + "&t=" + Date.now());
-    }
+    };
+    let debut = false;
+    try{ debut = premiereSemaineDebutant(); }catch(e){}
+    if(debut) motsVusDeScene(nom).then(charger).catch(() => charger(new Map()));
+    else charger(null);
     showScreen("sceneSeance");
     // La scene de fin d'etape de Premiers pas a aussi sa bande de repere (elle n'en avait pas : Jacques, 10 nov.).
     try{ poserRepereScene(); }catch(e){}
@@ -69680,6 +69689,28 @@ function arretSceneActif(){
 // Les mots de la scene (fichier genere par construire.py), avec leur carte.
 // v901 : la scene lue reste en memoire -- elle etait retelechargee a CHAQUE
 // seance. Seule la scene est gardee ; les mots vus se recalculent a chaque fois.
+// LA PREMIERE SEMAINE D'UN DEBUTANT (proposition 3 de la revue de l'app, 11 nov. 2026 ; Jacques : « la scene des le
+// premier jour, c'est bien [...] ce qui est trop dur, c'est le theme du premier jour »). Pendant Premiers pas, et en A1
+// tant que le compte a moins de sept jours de pratique : la scene ne demande jamais un mot inconnu (sinon elle commence
+// par Decouvrir), et le theme est un des quatre themes simples, ouvert sur sa decouverte, en trois questions d'une image
+// et d'un mot. ⚠️ Les cartes de Premiers pas sont des EXPRESSIONS (theme premiers_pas2) : elles ne marquent aucun mot du
+// corpus comme vu. Un mot de la scene lu dans une carte deja passee (« Ein Wasser, bitte » -> das Wasser) compte donc
+// comme vu ; sans cela, tout Premiers pas demandait des mots jamais rencontres.
+const JOURS_PREMIERE_SEMAINE = 7;
+function premiereSemaineDebutant(){
+    try{ if(premiersPasEnCours()) return true; }catch(e){}
+    try{ if(niveauSeance() !== "A1") return false; }catch(e){ return false; }
+    try{ return Object.keys(joursActifs()).length < JOURS_PREMIERE_SEMAINE; }catch(e){ return false; }
+}
+function motsLusPremiersPas(){
+    const lus = new Set();
+    try{
+        cartesPremiersPasVues().forEach(it => {
+            String((it.word && it.word[0]) || "").toLocaleLowerCase().split(/[^\p{L}]+/u).forEach(m => { if(m.length > 1) lus.add(m); });
+        });
+    }catch(e){}
+    return lus;
+}
 const SCENES_LUES = new Map();
 async function motsVusDeScene(nom){
     const url = baseScenes() + "scene-" + nom + (LANGUE_APPRISE === "es" ? ".es" : LANGUE_APPRISE === "pt" ? ".pt" : "") + ".js";
@@ -69689,6 +69720,7 @@ async function motsVusDeScene(nom){
         SCENES_LUES.get(url).catch(() => SCENES_LUES.delete(url));
     }
     const scene = await SCENES_LUES.get(url);
+    const lus = premiereSemaineDebutant() ? motsLusPremiersPas() : null;
     const vus = new Map();
     vus.tous = new Map();   // v912 : tous les mots A1 de la scene, vus ou non
     const exclus = scene.exclus || [];
@@ -69699,7 +69731,7 @@ async function motsVusDeScene(nom){
             if(m.niveau && m.niveau !== "A1") return;
             const carte = carteDeScene({ mot: m.mot, genre: m.genre, theme: m.theme });
             if(carte) vus.tous.set(m.mot, (m.genre ? m.genre + " " : "") + m.mot);
-            if(carte && !estNeuf(getWordState(carte.themeId, carte.index)))
+            if(carte && (!estNeuf(getWordState(carte.themeId, carte.index)) || (lus && lus.has(String(m.mot).toLocaleLowerCase()))))
                 vus.set(m.mot, (m.genre ? m.genre + " " : "") + m.mot);
         });
     });
@@ -69796,6 +69828,12 @@ async function arretDeScene(s, completer, niveauImpose){
     if(niveau === "A1"){
         const vus = await motsVusDeScene(s.nom);
         if(vus.size < ARRET_NB && !completer) return null;
+        // La premiere semaine : pas de mots inconnus ajoutes. Trois mots vus, ils sont demandes seuls ; moins,
+        // la scene commence par Decouvrir (on touche, on entend), puis Trouve ! sur ce qu'on a touche.
+        const debut = premiereSemaineDebutant();
+        if(debut && vus.size < ARRET_NB)
+            return { mode: "phrase", forme: "scene_arret", cible: null, themeId: "scene_arret", index: 0,
+                     scene: s, niveau: niveau, mots: [], decouvrir: true, phrase: null, word: "" };
         // Trois mots tires parmi ceux deja vus : ce sont eux que la carte
         // annonce, et eux seuls que la scene demande.
         // 7 nov. 2026 : autant de mots que le reglage « Questions par scene et par theme » (5 · 8 · 12) ;
@@ -69804,7 +69842,7 @@ async function arretDeScene(s, completer, niveauImpose){
         mots = melangerPhrase(Array.from(vus.entries())).slice(0, nb);
         // v912 : « completer » -- les vus d'abord, puis d'autres mots A1 de la
         // scene, comme les scenes de Premiers pas (la scene dit le mot, 🔈).
-        if(mots.length < nb && vus.tous){
+        if(mots.length < nb && vus.tous && !debut){
             const autres = melangerPhrase(Array.from(vus.tous.entries()).filter(([m]) => !vus.has(m)));
             mots = mots.concat(autres.slice(0, nb - mots.length));
         }
@@ -69823,6 +69861,7 @@ function ouvrirArretScene(item){
                   + "&seance=1&niveau=" + encodeURIComponent(item.niveau || "A1")
                   + "&nb=" + questionsSeance()
                   + (mots ? "&mots=" + encodeURIComponent(mots) : "")
+                  + (item.decouvrir ? "&decouvrir=1" : "")
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + langueDeScene()
                   + "&vitesse=" + facteurVitesse
@@ -69844,10 +69883,23 @@ function ouvrirArretScene(item){
 // Les themes a tour de role au numero du jour ; « Encore une seance » (essai seance_legere) prend le suivant.
 // En Premiers pas, les huit premiers du ruban (la famille d'abord), un par etape du parcours.
 const THEMES_PREMIERS_PAS_NB = 8;
+// 11 nov. 2026 (proposition 3) : la premiere semaine, les quatre themes ou une question tient en une image et un mot
+// (le corps : montre, nomme ; les animaux ; les contraires ; les emotions : qui est triste ?), un par jour de pratique
+// (aujourd'hui exclu : le meme toute la journee), et le suivant pour « Encore une seance ». La famille vient apres.
+const THEMES_PREMIERE_SEMAINE = ["cuerpo", "animales", "contrarios", "emociones"];
 function themeDuJour(){
     if(LANGUE_APPRISE !== "es" && LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "en") return null;
     const ouverts = themesIllustresOuverts();
     if(!ouverts.length) return null;
+    if(premiereSemaineDebutant()){
+        const simples = THEMES_PREMIERE_SEMAINE.filter(nom => ouverts.indexOf(nom) >= 0);
+        if(simples.length){
+            let d = 0;
+            try{ const auj = getTodayStr(); d = Object.keys(joursActifs()).filter(j => j !== auj).length; }catch(e){}
+            try{ d += seancesFiniesAujourdhui() || 0; }catch(e){}
+            return simples[d % simples.length];
+        }
+    }
     let pp = false;
     try{ pp = premiersPasEnCours(); }catch(e){}
     if(pp){
@@ -69868,8 +69920,10 @@ function themeDuJour(){
 function insererThemeIllustre(seance){
     const nom = themeDuJour();
     if(!nom || !seance || seance.length < 2) return seance;   // v1127 : comme la scene (preparerArretScene)
+    // La premiere semaine : la decouverte du theme d'abord, puis trois questions d'une image et d'un mot.
+    const debut = premiereSemaineDebutant() && THEMES_PREMIERE_SEMAINE.indexOf(nom) >= 0;
     const item = { mode: "phrase", forme: "theme_arret", cible: null, themeId: "theme_arret", index: 0,
-                   theme: nom, nb: questionsSeance(), phrase: null, word: "" };
+                   theme: nom, nb: debut ? 3 : questionsSeance(), decouvrir: debut, simple: debut, phrase: null, word: "" };
     const sortie = seance.slice();
     // La derniere carte (Jacques, 7 nov. : « le theme reste la derniere carte ») ; en Premiers pas, avant la fin
     // du parcours et la scene de l'etape qui le ferment (la sonde du 7 nov. : [pp_fin, pp_scene] mettait le theme
@@ -69887,6 +69941,7 @@ function ouvrirArretTheme(item){
     if(cadre){
         cadre.title = t(th.titre);
         chargerCadre(cadre, baseScenes() + th.page + "?seance=1" + (item.nb ? "&nb=" + item.nb : "") + "&apprendre=" + apprendreThemeIllustre()
+                  + (item.decouvrir ? "&decouvrir=1" : "") + (item.simple ? "&simple=1" : "")
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
                   + voixThemeIllustre() + fondCadreSeance("theme") + "&t=" + Date.now());

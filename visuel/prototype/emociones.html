@@ -759,6 +759,13 @@ function decouvrir(){
 // jamais la meme sorte deux fois de suite, jamais deux fois la meme question. Rate, il revient plus loin.
 // Recopie de familia.html (visuel/THEMES-ILLUSTRES.md : ces fonctions sont identiques d'un theme a l'autre).
 const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+// LA PREMIERE SEMAINE (proposition 3 de la revue, 11 nov. 2026) : l'app demande &simple=1 pour un debutant -- une image
+// et un mot, pas de phrase entiere. Si aucun mot de la file ne s'y prete, toutes les sortes, comme avant.
+const SIMPLES = ["quien"];
+function sortesDuMode(toutes){
+  const simples = SORTES.filter(x => SIMPLES.includes(x));
+  return (!toutes && Q.get("simple") === "1" && simples.length) ? simples : SORTES;
+}
 let vus = new Set(), sorteCourante = null, derniereSorte = null;
 function cleQuestion(){
   const z = $("zone"), en = z.querySelector(".enonce");
@@ -771,8 +778,8 @@ function montrer(){
   // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
   // Si ce mot ne le permet pas, un mot plus loin dans la file passe devant ;
   // en dernier recours seulement, la meme sorte, puis une question deja vue.
-  const essai = (w, strict) => {
-    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+  const essai = (w, strict, toutes) => {
+    const autres = melanger(sortesDuMode(toutes).filter(x => x !== derniereSorte));
     for (const so of autres){
       for (let n = 0; n < 25; n++){
         motQ = null; vuQ = null; sensQ = null; tradQ = null; tradsOpts = {}; sorteCourante = so;
@@ -798,6 +805,9 @@ function montrer(){
     if (fait) [file[rang], file[j]] = [file[j], file[rang]];
   }
   if (!fait) fait = essai(file[rang], false);
+  // le mode simple : un mot qu'aucune question simple ne sait poser quitte la partie, plutot qu'une phrase entiere
+  if (!fait && sortesDuMode(false) !== SORTES){ file.splice(rang, 1); if (rang >= file.length) return file.length ? fin() : toutRevu(null); return montrer(); }
+  if (!fait) fait = essai(file[rang], false, true);
   vus.add(cleQuestion()); derniereSorte = fait; retenir();
   window.scrollTo(0, 0); document.body.scrollTop = 0;
 }
@@ -841,7 +851,7 @@ fetch("emociones/emociones.json?v=1").then(r => r.json()).then(d => {
   D = d; PORTRAITS = Object.entries(d.portraits).flatMap(([p, es]) => es.map(e => [p, e]));
   // l'anglais : le mot de chaque emotion et de chaque trait, la ou les phrases le cherchent (m.en)
   if (APPRENDRE === "en"){ Object.keys(D.emotions).forEach(k => { D.emotions[k].en = EN_E[k]; }); Object.keys(D.caracteres).forEach(k => { D.caracteres[k].en = EN_T[k]; }); }
-  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+  if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>
 </body>

@@ -1150,7 +1150,7 @@ fetch("journee/journee.json?v=1").then(r => r.json()).then(d => {
     Object.keys(D.adverbes).forEach(c => { D.adverbes[c].en = ({siempre: "always", "a veces": "sometimes", nunca: "never"})[c]; });
     D.frequences = FREQ_EN.map(x => Object.assign({}, x, {en: (x.be ? [x.S, x.v, "{A}", x.r] : [x.S, "{A}", x.v, x.r]).filter(Boolean).join(" ") + "."}));
   }
-  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+  if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>
 </body>

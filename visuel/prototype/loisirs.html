@@ -1232,7 +1232,7 @@ $("titre").textContent = T("titre");
 document.title = T("titre");
 fetch("loisirs/loisirs.json?v=1").then(r => r.json()).then(d => {
   D = d;
-  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+  if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>
 </body>
