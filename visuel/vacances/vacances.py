@@ -227,6 +227,97 @@ LIENS = {"de": ["zuerst", "dann", "danach", "schließlich"], "es": ["primero", "
 # ajouts/vacances.json et espanol/ajouts/vacances.json ; il n'en manque plus.
 AJOUTS = {"de": [], "es": []}
 
+# ---------- LE PORTUGAIS APPRIS (lot P4, 12 nov. 2026) ----------
+# Le Portugal (« pt_ ») et, la ou il differe, le Bresil (« br_ ») ; la page les pose sous « pt » au chargement. La cle
+# « pt » des etapes, des sujets et du temps reste la TRADUCTION bresilienne pour qui apprend es ou de.
+# Le preterito perfeito est LU dans le corpus (portugais/datos, portugais/datos-br : « perfeito »), comme le pretérito
+# espagnol ; au Bresil la 2e personne est « você », donc la forme de la 3e.
+PT_ETAPES = {"anna-koffer": (["fazer", "a mala"], None), "anna-flughafen": (["ir", "ao aeroporto"], None),
+             "anna-flug": (["voar", "para Málaga"], None), "anna-meer": (["nadar", "no mar"], None),
+             "anna-eis": (["comer", "um gelado na praia"], ["comer", "um sorvete na praia"]),
+             "anna-altstadt": (["visitar", "o centro histórico"], None), "anna-souvenirs": (["comprar", "lembranças"], None),
+             "mark-rucksack": (["fazer", "a mochila"], ["arrumar", "a mochila"]),
+             "mark-zug": (["ir", "de comboio para Hamburgo"], ["ir", "de trem para Hamburgo"]),
+             "mark-hotel": (["chegar", "ao hotel"], None), "mark-hafen": (["fazer", "um passeio de barco pelo porto"], None),
+             "mark-fisch": (["comer", "uma sandes de peixe"], ["comer", "um sanduíche de peixe"]),
+             "mark-museum": (["ir", "ao museu"], None), "mark-postkarte": (["escrever", "um postal"], ["escrever", "um cartão-postal"]),
+             "familia-auto": (["ir", "de carro para o mar Báltico"], None),
+             "familia-wohnung": (["alugar", "um apartamento de férias"], None),
+             "familia-sandburg": (["fazer", "um castelo de areia"], None),
+             "familia-baden": (["tomar", "banho no mar"], ["tomar", "banho de mar"]),
+             "familia-rad": (["andar", "de bicicleta pela praia"], None),
+             "familia-karten": (["jogar", "às cartas"], ["jogar", "cartas"])}
+# le sujet : « a Anna », « o Ben e a Mia » au Portugal ; le prenom seul au Bresil
+PT_SUJETS = {"Anna": ("A Anna", "Anna"), "Mark": ("O Mark", "Mark"), "familia": ("A família", None), "BenMia": ("O Ben e a Mia", "Ben e Mia")}
+PT_PERSONNES = (["Eu", "Tu", None, "Nós", None], ["Eu", "Você", None, "Nós", None])
+PT_LIENS = (["primeiro", "depois", "a seguir", "finalmente"], ["primeiro", "depois", "em seguida", "finalmente"])
+PT_NOMBRES = ["", "uma", "duas", "três", "quatro", "cinco", "seis", "sete", "oito"]
+PT_METEO = {"sonne": ("Fez sol.", {"mot": "sol", "genre": "o"}), "warm": ("Fez calor.", {"mot": "calor", "genre": "o"}),
+            "regen": ("Choveu.", {"mot": "chover", "cat": "verbe"}), "kalt": ("Fez frio.", {"mot": "frio", "cat": "adjectif"}),
+            "schnee": ("Nevou.", {"mot": "nevar", "cat": "verbe"})}
+# les objets : [article, nom, pluriel] comme l'espagnol
+PT_OBJETS = {"pass": (["o", "passaporte"], None), "badeanzug": (["o", "fato de banho"], ["o", "maiô"]), "hut": (["o", "chapéu"], None),
+             "sandalen": (["a", "sandália", "sandálias"], None), "kamera": (["a", "máquina fotográfica"], None),
+             "sonnenbrille": (["os", "óculos de sol"], None), "sonnencreme": (["o", "protetor solar"], None),
+             "regenschirm": (["o", "guarda-chuva"], None), "pullover": (["a", "camisola"], ["o", "suéter"]),
+             "ladegeraet": (["o", "carregador"], None), "stadtplan": (["o", "mapa"], None)}
+PT_VILLES = {"Hamburg": ("Hamburgo", None), "Málaga": ("Málaga", None), "München": ("Munique", None), "Wien": ("Viena", None),
+             "Rostock": ("Rostock", None), "Köln": ("Colónia", "Colônia"), "Barcelona": ("Barcelona", None), "Dresden": ("Dresden", None)}
+PT_TITRES = {"anna": "As férias da Anna em Málaga", "mark": "O fim de semana do Mark em Hamburgo", "familia": "A família no mar Báltico"}
+
+
+def portugais_verbes():
+    """{infinitif: {pret, pres}} au Portugal et au Bresil, LUS dans le corpus portugais."""
+    out = []
+    for fichier, br in (("portugais/datos/verbes.json", False), ("portugais/datos-br/verbes.json", True)):
+        idx, vs = index_verbes(fichier), {}
+        for pt, b in PT_ETAPES.values():
+            for x in (pt, b):
+                if not x or x[0] in vs:
+                    continue
+                v = idx[x[0]]
+                pret = [v["perfeito"][i] for i in ES_IDX]
+                pres = [v["praesens"][c] for c in ("ich", "du", "er_sie_es", "wir", "sie_Sie")]
+                if br:
+                    pret[1], pres[1] = pret[2], pres[2]
+                vs[x[0]] = {"pret": pret, "pres": pres}
+        out.append(vs)
+    return out
+
+
+def portugais(d):
+    """Pose pt_ / br_ dans la donnee construite (construire()), a cote de es et de."""
+    def poser(o, pt, br):
+        o["pt_"] = pt
+        if br is not None:
+            o["br_"] = br
+    for e in d["etapes"]:
+        poser(e, *PT_ETAPES[e["cle"]])
+    for k, s in d["sujets"].items():
+        poser(s, *PT_SUJETS[k])
+    poser(d["personnes"], *PT_PERSONNES)
+    poser(d["liens"], *PT_LIENS)
+    d["nombres"]["pt_"] = PT_NOMBRES
+    pt, br = portugais_verbes()
+    poser(d["verbes"], pt, br)
+    for k, (t, mot) in PT_METEO.items():
+        d["meteo"][k]["pt_"] = t
+        d["meteo"][k]["mot_pt"] = mot
+    for k, o in d["objets"].items():
+        poser(o, *PT_OBJETS[k])
+    for r in d["reservations"]:
+        poser(r["ville"], *PT_VILLES[r["ville"]["de"]])
+    for k, v in d["voyages"].items():
+        v["titre"]["pt_"] = PT_TITRES[k]
+
+
+def phrase_pt(d, e, br):
+    """« A Anna fez a mala. » au Portugal, « Anna fez a mala. » au Bresil."""
+    x = (e.get("br_") if br else None) or e["pt_"]
+    s = d["sujets"][e["sujet"]]
+    sj = (s.get("br_") if br else None) or s["pt_"]
+    return " ".join([sj, d["verbes"]["br_" if br else "pt_"][x[0]]["pret"][s["n"]], x[1]]) + "."
+
 # ---------------------------------------------------------------------------------------------------------------
 # LE CORPUS
 def lire(p):
@@ -407,9 +498,14 @@ def phrase_es(d, e, latam=False):
 
 def ecrire_json():
     d = construire()
-    dec = {"de": {}, "es": {}, "latam": {}}
+    portugais(d)
+    dec = {"de": {}, "es": {}, "latam": {}, "pt_": {}, "br_": {}}
     for e in ETAPES:
         for langue, t in (("de", phrase_de(d, e)), ("es", phrase_es(d, e)), ("latam", phrase_es(d, e, True))):
+            dec[langue][e["cle"]] = {"texte": t, "son": identifiant(t)}
+    for e in d["etapes"]:
+        for langue, br in (("pt_", False), ("br_", True)):
+            t = phrase_pt(d, e, br)
             dec[langue][e["cle"]] = {"texte": t, "son": identifiant(t)}
     d["decouverte"] = dec
     os.makedirs(SORTIE, exist_ok=True)

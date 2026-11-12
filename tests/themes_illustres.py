@@ -26,7 +26,7 @@ THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "
 ANGLAIS = ["familia", "descripcion", "contrarios", "emociones", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "loisirs", "animales", "meteo", "logement", "demarches"]
 # LE PORTUGAIS (lots P3 et P4, 11-12 nov. 2026) : les themes qui ont leurs phrases portugaises, au Portugal et en
 # variante du Bresil (« pt&variante=br »)
-PORTUGAIS = ANGLAIS + ["courses"]
+PORTUGAIS = ANGLAIS + ["courses", "vacances"]
 PLANCHER = 100
 
 COMPTER = """(n) => {

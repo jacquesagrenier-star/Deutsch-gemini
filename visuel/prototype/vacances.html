@@ -128,7 +128,17 @@ html.nuit .papier .case{background:rgba(255,255,255,.03)}
 <script src="themes/verre.js?v=8"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const APPRENDRE = ["de", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+// le portugais (lot P4, 12 nov. 2026) : le Portugal ; &variante=br, le Bresil. vacances.json porte pt_ (et br_ la ou le
+// Bresil differe), que le chargement pose sous « pt » (portugaisAppris) : la cle « pt » y est la traduction bresilienne
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
+function portugaisAppris(o){
+  if (Array.isArray(o)) o.forEach(portugaisAppris);
+  else if (o && typeof o === "object"){
+    if ("pt_" in o) o.pt = (BR && "br_" in o) ? o.br_ : o.pt_;
+    for (const k in o) if (k !== "pt" && k !== "pt_" && k !== "br_") portugaisAppris(o[k]);
+  }
+}
 const DE_APP = APPRENDRE === "de";
 const LATAM = !DE_APP && Q.get("variante") === "latam";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
@@ -166,6 +176,11 @@ const TEXTES = {
               pl:"Opowiadając o zakończonej podróży, hiszpański używa <b>pretérito indefinido</b>: visit<b>é</b>, visit<b>aste</b>, visit<b>ó</b>, visit<b>amos</b>, visit<b>aron</b>; com<b>í</b>, com<b>ió</b>, com<b>ieron</b>. Akcent ma znaczenie: <b>visito</b> (zwiedzam) to nie <b>visitó</b> (zwiedził, zwiedziła). Najczęstsze są nieregularne: <b>fui, fue, fueron</b> (ir, a także ser), <b>hice, hizo, hicieron</b> (hacer). Czasowniki na -gar mają u w 1. osobie: lle<b>gué</b>, ju<b>gué</b>. Pogoda: <b>hizo sol</b>, <b>hizo calor</b>, <b>llovió</b>.",
               ru:"Чтобы рассказать о законченной поездке, испанский использует <b>pretérito indefinido</b>: visit<b>é</b>, visit<b>aste</b>, visit<b>ó</b>, visit<b>amos</b>, visit<b>aron</b>; com<b>í</b>, com<b>ió</b>, com<b>ieron</b>. Ударение важно: <b>visito</b> (я посещаю) — это не <b>visitó</b> (он, она посетил(а)). Самые частые — неправильные: <b>fui, fue, fueron</b> (ir, а также ser), <b>hice, hizo, hicieron</b> (hacer). Глаголы на -gar получают u в 1-м лице: lle<b>gué</b>, ju<b>gué</b>. Погода: <b>hizo sol</b>, <b>hizo calor</b>, <b>llovió</b>.",
               de:"Um von einer abgeschlossenen Reise zu erzählen, benutzt das Spanische das <b>pretérito indefinido</b>: visit<b>é</b>, visit<b>aste</b>, visit<b>ó</b>, visit<b>amos</b>, visit<b>aron</b>; com<b>í</b>, com<b>ió</b>, com<b>ieron</b>. Der Akzent zählt: <b>visito</b> (ich besichtige) ist nicht <b>visitó</b> (er, sie hat besichtigt). Die häufigsten sind unregelmäßig: <b>fui, fue, fueron</b> (ir, auch ser), <b>hice, hizo, hicieron</b> (hacer). Verben auf -gar bekommen in der 1. Person ein u: lle<b>gué</b>, ju<b>gué</b>. Das Wetter: <b>hizo sol</b>, <b>hizo calor</b>, <b>llovió</b>."},
+  // le portugais appris : l'interface en francais (et en anglais)
+  reglePt:   {fr:"Pour raconter un voyage fini, le portugais prend le <b>pretérito perfeito</b> : visit<b>ei</b>, visit<b>aste</b>, visit<b>ou</b>, visit<b>ámos</b>, visit<b>aram</b> ; com<b>i</b>, com<b>eu</b>, com<b>eram</b>. Au Portugal, l'accent compte : <b>visitámos</b> (nous avons visité) n'est pas <b>visitamos</b> (nous visitons). Les plus fréquents sont irréguliers : <b>fui, foi, foram</b> (ir, et ser aussi), <b>fiz, fez, fizeram</b> (fazer). Les verbes en -gar prennent un u : che<b>guei</b>, jo<b>guei</b>. Le temps : <b>fez sol</b>, <b>fez calor</b>, <b>choveu</b>.",
+              en:"To tell about a finished trip, Portuguese uses the <b>pretérito perfeito</b>: visit<b>ei</b>, visit<b>aste</b>, visit<b>ou</b>, visit<b>ámos</b>, visit<b>aram</b>; com<b>i</b>, com<b>eu</b>, com<b>eram</b>. In Portugal the accent matters: <b>visitámos</b> (we visited) is not <b>visitamos</b> (we visit). The most frequent ones are irregular: <b>fui, foi, foram</b> (ir, and ser too), <b>fiz, fez, fizeram</b> (fazer). Verbs in -gar take a u: che<b>guei</b>, jo<b>guei</b>. The weather: <b>fez sol</b>, <b>fez calor</b>, <b>choveu</b>."},
+  regleBr:   {fr:"Pour raconter un voyage fini, le portugais prend le <b>pretérito perfeito</b> : visit<b>ei</b>, (você) visit<b>ou</b>, visit<b>ou</b>, visit<b>amos</b>, visit<b>aram</b> ; com<b>i</b>, com<b>eu</b>, com<b>eram</b>. Au Brésil, « nous » s'écrit pareil au passé et au présent : <b>visitamos</b>. Les plus fréquents sont irréguliers : <b>fui, foi, foram</b> (ir, et ser aussi), <b>fiz, fez, fizeram</b> (fazer). Les verbes en -gar prennent un u : che<b>guei</b>, jo<b>guei</b>. Le temps : <b>fez sol</b>, <b>fez calor</b>, <b>choveu</b>.",
+              en:"To tell about a finished trip, Portuguese uses the <b>pretérito perfeito</b>: visit<b>ei</b>, (você) visit<b>ou</b>, visit<b>ou</b>, visit<b>amos</b>, visit<b>aram</b>; com<b>i</b>, com<b>eu</b>, com<b>eram</b>. In Brazil, « we » is spelt the same in the past and the present: <b>visitamos</b>. The most frequent ones are irregular: <b>fui, foi, foram</b> (ir, and ser too), <b>fiz, fez, fizeram</b> (fazer). Verbs in -gar take a u: che<b>guei</b>, jo<b>guei</b>. The weather: <b>fez sol</b>, <b>fez calor</b>, <b>choveu</b>."},
   ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
   commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
   suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
@@ -280,14 +295,54 @@ const ES = {
   vfPetitdej: oui => oui ? "El desayuno está incluido." : "El desayuno no está incluido.",
   carteTitres: {entete: "Confirmación de reserva", gast: "Huésped", zimmer: "Habitación", naechte: "Noches", fruehstueck: "Desayuno", oui: "incluido", non: "no incluido"}
 };
-const L = DE_APP ? DE : ES;
+// le portugais : la meme mecanique que l'espagnol (le sujet tu, le preterito lu dans le corpus) ; « a Anna », « o Mark »
+// au Portugal, le prenom seul au Bresil (sujets.pt) ; « você » et la 3e personne au Bresil (personnes.pt, verbes.pt)
+const SEXE_RESA = {Mark: "m", Anna: "f", Lena: "f", Felix: "m", Katrin: "f", Jan: "m", Sophie: "f", Peter: "m"};
+const quiPt = (r, debut) => BR ? r.qui : (debut ? (SEXE_RESA[r.qui] === "f" ? "A " : "O ") : (SEXE_RESA[r.qui] === "f" ? "a " : "o ")) + r.qui;
+const PEQ = BR ? "café da manhã" : "pequeno-almoço";
+const PT = {
+  bravo: "Muito bem!", vrai: "Verdadeiro", faux: "Falso",
+  sujet: (s, debut) => debut ? D.sujets[s].pt : D.sujets[s].pt.replace(/^(A|O) /, m => m.toLowerCase()),
+  verbe: e => D.verbes.pt[e.pt[0]],
+  suite: e => e.pt[1],
+  phrase(e, S, k){ const s = D.sujets[e.sujet]; k = k == null ? s.n : k; return [S || s.pt, PT.verbe(e).pret[k], PT.suite(e)].join(" ") + "."; },
+  etape: e => PT.phrase(e),
+  pron: (e, s) => cap(PT.verbe(e).pret[n(s || e.sujet)] + " " + PT.suite(e)) + ".",
+  pronDe: (e, s) => cap(PT.verbe(e).pret[n(s)] + " " + PT.suite(e)) + ".",
+  // « O que fez a Anna? » ; au Bresil « O que Anna fez? »
+  fait: (s, fin) => BR ? "O que " + PT.sujet(s, false) + (n(s) === 4 ? " fizeram" : " fez") + fin + "?" : "O que " + (n(s) === 4 ? "fizeram " : "fez ") + PT.sujet(s, false) + fin + "?",
+  queHace: s => PT.fait(s, ""),
+  quoiEnsuite: l => "E " + l + "?",
+  zuerst: s => PT.fait(s, " primeiro"),
+  zuletzt: s => PT.fait(s, BR ? " no final" : " no fim"),
+  wetter: "Que tempo fez?",
+  bett: BR ? "O que tem na cama?" : "O que há na cama?",
+  objet: o => o.pt[2] ? (o.pt[0] === "a" ? "as " : "os ") + o.pt[2] : o.pt[0] + " " + o.pt[1],
+  surLit: o => (BR ? "Na cama tem " : "Na cama há ") + (o.pt[2] ? (o.pt[0] === "a" ? "umas " : "uns ") + o.pt[2]
+            : o.pt[0] === "os" ? "uns " + o.pt[1] : o.pt[0] === "as" ? "umas " + o.pt[1] : ({o: "um", a: "uma"})[o.pt[0]] + " " + o.pt[1]) + ".",
+  chambre: r => r.chambre === "doppel" ? "quarto duplo" : "quarto individual",
+  nuits: x => x === 1 ? "uma noite" : D.nombres.pt[x] + " noites",
+  reserve: (r, ch, nu) => "Um " + PT.chambre({chambre: ch || r.chambre}) + " para " + PT.nuits(nu || r.nuits) + ".",
+  qReserve: r => BR ? "O que " + r.qui + " reservou?" : "O que reservou " + quiPt(r, false) + "?",
+  qNuits: r => BR ? "Quantas noites " + r.qui + " fica no hotel?" : "Quantas noites fica " + quiPt(r, false) + " no hotel?",
+  rNuits: x => cap(PT.nuits(x)) + ".",
+  qPetitdej: r => "O " + PEQ + " está incluído para " + quiPt(r, false) + "?",
+  rPetitdej: oui => oui ? "Sim, o " + PEQ + " está incluído." : "Não, o " + PEQ + " não está incluído.",
+  // « Boa tarde, reservei um quarto duplo para três noites. » ; aux : la faute de personne « reservou »
+  accueil: (r, ch, nu, aux) => "Boa tarde, " + (aux || "reservei") + " um " + PT.chambre({chambre: ch || r.chambre}) + " para " + PT.nuits(nu || r.nuits) + ".",
+  vfChambre: (r, ch) => quiPt(r, true) + " reservou um " + PT.chambre({chambre: ch}) + ".",
+  vfNuits: (r, x) => quiPt(r, true) + " fica " + PT.nuits(x) + ".",
+  vfPetitdej: oui => oui ? "O " + PEQ + " está incluído." : "O " + PEQ + " não está incluído.",
+  carteTitres: {entete: "Confirmação de reserva", gast: "Hóspede", zimmer: "Quarto", naechte: "Noites", fruehstueck: cap(PEQ), oui: "incluído", non: "não incluído"}
+};
+const L = DE_APP ? DE : APPRENDRE === "pt" ? PT : ES;
 // la suite racontee avec ses liens : « Zuerst hat Anna ihren Koffer gepackt. Dann ist sie zum Flughafen gefahren. »
 // le pronom quand le sujet est celui d'avant, sinon le sujet nomme
 function suiteDite(etapes){
   return etapes.map((e, i) => {
     const lien = cap(D.liens[APPRENDRE][i]), meme = i && etapes[i - 1].sujet === e.sujet;
     if (DE_APP) return DE.v2(lien, e, meme ? D.sujets[e.sujet].pron : DE.sujet(e.sujet, false));
-    return lien + ", " + (meme ? ES.verbe(e).pret[n(e.sujet)] + " " + ES.suite(e) + "." : ES.phrase(e, ES.sujet(e.sujet, false)));
+    return lien + ", " + (meme ? L.verbe(e).pret[n(e.sujet)] + " " + L.suite(e) + "." : L.phrase(e, L.sujet(e.sujet, false)));
   }).join(" ");
 }
 
@@ -360,7 +415,7 @@ const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-
 let dire = texte => { try { Voix.dire(texte); } catch(e){} };
 // pour visuel/voix_themes.py : les phrases de la decouverte et les objets des valises
 function textesAVoix(){
-  const dec = D.decouverte[DE_APP ? "de" : LATAM ? "latam" : "es"];
+  const dec = D.decouverte[DE_APP ? "de" : LATAM ? "latam" : APPRENDRE];
   return ETAPES.map(e => dec[e.cle].texte).concat(Object.values(D.objets).map(o => L.objet(o)), Object.keys(D.meteo).map(f => D.meteo[f][APPRENDRE]));
 }
 
@@ -427,7 +482,7 @@ function carteHTML(r){
   const t = L.carteTitres, ville = r.ville[APPRENDRE];
   return '<div class="papier" lang="' + APPRENDRE + '"><div class="entete">' + t.entete + '</div><h3>' + r.hotel + ', ' + ville + '</h3><div class="cases">'
     + '<div class="case"><span class="lab">' + t.gast + '</span><span class="val">' + r.qui + '</span></div>'
-    + '<div class="case"><span class="lab">' + t.zimmer + '</span><span class="val">' + (DE_APP ? DE.chambre(r) : cap(ES.chambre(r).replace("habitación ", ""))) + '</span></div>'
+    + '<div class="case"><span class="lab">' + t.zimmer + '</span><span class="val">' + (DE_APP ? DE.chambre(r) : APPRENDRE === "pt" ? cap(PT.chambre(r).replace("quarto ", "")) : cap(ES.chambre(r).replace("habitación ", ""))) + '</span></div>'
     + '<div class="case"><span class="lab">' + t.naechte + '</span><span class="val">' + r.nuits + '</span></div>'
     + '<div class="case"><span class="lab">' + t.fruehstueck + '</span><span class="val">' + (r.petitdej ? t.oui : t.non) + '</span></div></div></div>';
 }
@@ -442,7 +497,10 @@ const MOTS_RESA = {de: [{mot: "Doppelzimmer", genre: "das", resa: "doppel"}, {mo
                         {mot: "reservieren", cat: "verbe", resa: "accueil"}, {mot: "buchen", cat: "verbe", resa: "buchen"}],
                    es: [{mot: "habitación", genre: "la", resa: "chambre"}, {mot: "habitación doble", genre: "la", resa: "doppel"},
                         {mot: "habitación individual", genre: "la", resa: "einzel"}, {mot: "noche", genre: "la", resa: "nuit"},
-                        {mot: "desayuno", genre: "el", resa: "petitdej"}, {mot: "reservar", cat: "verbe", resa: "accueil"}]};
+                        {mot: "desayuno", genre: "el", resa: "petitdej"}, {mot: "reservar", cat: "verbe", resa: "accueil"}],
+                   pt: [{mot: "quarto", genre: "o", resa: "chambre"}, {mot: "quarto duplo", genre: "o", resa: "doppel"},
+                        {mot: "quarto individual", genre: "o", resa: "einzel"}, {mot: "noite", genre: "a", resa: "nuit"},
+                        {mot: BR ? "café da manhã" : "pequeno-almoço", genre: "o", resa: "petitdej"}, {mot: "reservar", cat: "verbe", resa: "accueil"}]};
 // le mot vise est une chambre (double ou simple) : la confirmation tiree doit etre de cette chambre
 const chambreVisee = w => w && (w.resa === "doppel" || w.resa === "einzel") ? w.resa : null;
 const resasPour = w => D.reservations.filter(x => !chambreVisee(w) || x.chambre === chambreVisee(w));
@@ -504,7 +562,7 @@ const EX = {
     const e = hasard(etapesDe(w)); motQ = w || motDe(e); tradQ = tradEtape(e);
     const juste = L.etape(e), vrai = Math.random() < 0.5;
     const phrase = vrai ? juste : DE_APP ? DE.phrase(hasard(autresQue(e)), DE.sujet(e.sujet, true), n(e.sujet), D.sujets[e.sujet].g)
-                                        : (x => [ES.sujet(e.sujet, true), ES.verbe(x).pret[n(e.sujet)], ES.suite(x)].join(" ") + ".")(hasard(autresQue(e)));
+                                        : (x => [L.sujet(e.sujet, true), L.verbe(x).pret[n(e.sujet)], L.suite(x)].join(" ") + ".")(hasard(autresQue(e)));
     ecran("vraifaux", photo(e.cle), phrase, true);
     const rep = vrai ? L.vrai : L.faux;
     boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste));
@@ -556,13 +614,13 @@ const EX = {
   // reguliere fautive d'un irregulier (« hació », « llegé »)
   forma(w){
     if (DE_APP || !estVerbe(w)) return false;
-    const e = hasard(etapesDe(w)), q = personne(e), v = ES.verbe(e), inf = e.es[0];
+    const e = hasard(etapesDe(w)), q = personne(e), v = L.verbe(e), inf = e[APPRENDRE][0];
     const rep = v.pret[q.k];
     const leurres = [v.pres[q.k], v.pret[q.k === 0 ? 2 : 0], regulier(inf, q.k, rep), v.pret[hasard([1, 3, 4].filter(k => k !== q.k))]];
     const opts = unique([rep, ...unique(leurres.filter(x => x && x !== rep)).slice(0, 3)]);
     if (opts.length < 3) return false;
     motQ = w || motDe(e); tradQ = traduire(e, q.k, q.s);
-    const phrase = [q.S, "___", ES.suite(e)].join(" ") + ".";
+    const phrase = [q.S, "___", L.suite(e)].join(" ") + ".";
     ecran("forma", q.s ? photo(e.cle) : "", "", true);
     $("zone").querySelector("#choix").insertAdjacentHTML("beforebegin", '<div class="enonce">' + avecTrou(phrase) + '</div>');
     boutons($("choix"), melanger(opts), rep, ok => { remplir(rep); juger(ok, rep, phrase.replace("___", rep)); });
@@ -620,7 +678,7 @@ const EX = {
     ecran("danach", friseHTML(r.voyage, montree.cle), L.etape(montree) + " " + L.quoiEnsuite(lien), true, true);
     tradsChoix = {}; [r, ...leurres].forEach(e => { tradsChoix[dit(e)] = tradEtape(e); });
     const phrase = DE_APP ? DE.v2(cap(lien), r, r.sujet === montree.sujet ? D.sujets[r.sujet].pron : DE.sujet(r.sujet, false))
-                          : cap(lien) + ", " + (r.sujet === montree.sujet ? ES.verbe(r).pret[n(r.sujet)] + " " + ES.suite(r) + "." : ES.phrase(r, ES.sujet(r.sujet, false)));
+                          : cap(lien) + ", " + (r.sujet === montree.sujet ? L.verbe(r).pret[n(r.sujet)] + " " + L.suite(r) + "." : L.phrase(r, L.sujet(r.sujet, false)));
     boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, phrase));
     return true;
   },
@@ -680,7 +738,7 @@ const EX = {
     if (w && !["doppel", "einzel", "chambre", "nuit", "accueil"].includes(w.resa)) return false;
     const r = hasard(resasPour(w));
     const autreCh = r.chambre === "doppel" ? "einzel" : "doppel", nAutre = r.nuits === 1 ? 2 : hasard([r.nuits - 1, r.nuits + 1]);
-    const rep = L.accueil(r), opts = unique([rep, L.accueil(r, autreCh), L.accueil(r, null, nAutre), L.accueil(r, null, null, DE_APP ? "bin" : "reservó")]);
+    const rep = L.accueil(r), opts = unique([rep, L.accueil(r, autreCh), L.accueil(r, null, nAutre), L.accueil(r, null, null, DE_APP ? "bin" : APPRENDRE === "pt" ? "reservou" : "reservó")]);
     motQ = w || motResa(hasard(["accueil", "accueil", "nuit", r.chambre]));
     tradQ = tradAccueil(r.chambre, r.nuits);
     ecran("rezeption", carteHTML(r), "", false, true);
@@ -718,9 +776,15 @@ const EX = {
 };
 // ESPAGNOL : la forme reguliere qu'un apprenant fabrique pour un irregulier (« hació », « llegé », « jugé ») ; rien
 // quand elle est juste (le verbe est regulier) ou qu'elle n'a pas de sens (ir : pas de radical)
+// PORTUGAIS : « fazeu », « chegei », « jogei » (le c / g devant e) ; au Bresil la 2e personne est « você » (3e)
 function regulier(inf, k, juste){
   const refl = inf.endsWith("se"), base = refl ? inf.slice(0, -2) : inf, rad = base.slice(0, -2), fin = base.slice(-2);
   if (!rad) return null;
+  if (APPRENDRE === "pt"){
+    const kk = BR && k === 1 ? 2 : k;
+    const t = rad + ({ar: ["ei", "aste", "ou", BR ? "amos" : "ámos", "aram"], er: ["i", "este", "eu", "emos", "eram"], ir: ["i", "iste", "iu", "imos", "iram"]})[fin][kk];
+    return t === juste ? null : t;
+  }
   const f = (fin === "ar" ? ["é", "aste", "ó", "amos", "aron"] : ["í", "iste", "ió", "imos", "ieron"])[k];
   const t = (refl ? ["me", "te", "se", "nos", "se"][k] + " " : "") + rad + f;
   return t === juste ? null : t;
@@ -736,7 +800,7 @@ function premierDernier(w){
   ecran(der ? "zuletzt" : "zuerst", friseHTML(v), der ? L.zuletzt(s) : L.zuerst(s), true, true);
   tradsChoix = {}; d.forEach(e => { tradsChoix[dit(e)] = tradEtape(e); });
   const lien = cap(D.liens[APPRENDRE][der ? 3 : 0]);
-  const phrase = DE_APP ? DE.v2(lien, r, DE.sujet(r.sujet, false)) : lien + ", " + ES.phrase(r, ES.sujet(r.sujet, false));
+  const phrase = DE_APP ? DE.v2(lien, r, DE.sujet(r.sujet, false)) : lien + ", " + L.phrase(r, L.sujet(r.sujet, false));
   boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, phrase));
   return true;
 }
@@ -778,13 +842,14 @@ function testerOrdre(){
 
 // ---------- la decouverte : les trois voyages, les valises, l'hotel ----------
 const ONGLETS = {de: {anna: "Anna", mark: "Mark", familia: "Die Familie", valises: "Koffer", hotel: "Hotel"},
-                 es: {anna: "Anna", mark: "Mark", familia: "La familia", valises: "Maletas", hotel: "Hotel"}};
+                 es: {anna: "Anna", mark: "Mark", familia: "La familia", valises: "Maletas", hotel: "Hotel"},
+                 pt: {anna: "Anna", mark: "Mark", familia: "A família", valises: "Malas", hotel: "Hotel"}};
 function decouvrir(){
   $("compte").textContent = ""; $("barre").style.width = "0%";
-  const dec = D.decouverte[DE_APP ? "de" : LATAM ? "latam" : "es"];
+  const dec = D.decouverte[DE_APP ? "de" : LATAM ? "latam" : APPRENDRE];
   const z = $("zone");
   z.innerHTML = '<div class="onglets" role="tablist">' + Object.keys(ONGLETS[APPRENDRE]).map(j => '<button type="button" role="tab" data-j="' + j + '" lang="' + APPRENDRE + '" dir="ltr">' + ONGLETS[APPRENDRE][j] + '</button>').join("") + '</div>'
-              + '<div id="page"></div><p class="regle">' + isoler(T(DE_APP ? "regleDe" : "regleEs")) + '</p>';
+              + '<div id="page"></div><p class="regle">' + isoler(T(DE_APP ? "regleDe" : APPRENDRE === "pt" ? (BR ? "regleBr" : "reglePt") : "regleEs")) + '</p>';
   const montrer = e => {
     const ph = dec[e.cle], t = tradEtape(e) || (TR ? null : glose(motDe(e)));
     const temps = e.meteo ? e.meteo.vrais.map(f => D.meteo[f][APPRENDRE]).join(" ") : "";
@@ -917,8 +982,9 @@ $("retour").addEventListener("click", () => parler("fermer"));
 $("retour").setAttribute("aria-label", T("retourAria"));
 $("titre").textContent = T("titre");
 document.title = T("titre");
-fetch("vacances/vacances.json?v=1").then(r => r.json()).then(d => {
+fetch("vacances/vacances.json?v=2").then(r => r.json()).then(d => {
   D = d;
+  if (APPRENDRE === "pt") portugaisAppris(D);
   const rangs = {};
   ETAPES = d.etapes.map(e => Object.assign({}, e, {rang: rangs[e.voyage] = (e.voyage in rangs) ? rangs[e.voyage] + 1 : 0}));
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();

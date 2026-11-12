@@ -496,6 +496,8 @@ o poste de luz | le réverbère | Há uma caixa de correio ao lado do poste. | I
 o propósito | le but | Qual é o propósito da sua viagem? | Quel est le but de votre voyage ?
 a pá | la pelle | Com a pá, ele faz um castelo de areia. | Avec la pelle, il fait un château de sable.
 o quarto duplo | la chambre double | Gostaríamos de um quarto duplo. | Nous voudrions une chambre double. | pl=quartos duplos
+o quarto individual | la chambre simple | Reservei um quarto individual para duas noites. | J'ai réservé une chambre simple pour deux nuits. | pl=quartos individuais
+o protetor solar | la crème solaire | Na praia, uso sempre protetor solar. | À la plage, je mets toujours de la crème solaire. | pl=protetores solares
 o rececionista | le réceptionniste | O rececionista fala inglês. | Le réceptionniste parle anglais.
 a receção | la réception | Deixe a chave na receção. | Laissez la clé à la réception. | pl=receções
 a reclamação | la réclamation | Quero fazer uma reclamação. | Je veux faire une réclamation. | pl=reclamações
