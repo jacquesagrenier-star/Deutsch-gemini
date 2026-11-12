@@ -9833,3 +9833,5 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
   → Cause : la zone du professeur porte Hemd dans « aussi » (Hemd sans zone propre) ; même défaut pour 7 autres personnes (klassenzimmer, kreuzung). Confié le 12 nov. à la session de revue des scènes : un vêtement ne se trouve qu'en touchant le vêtement (l'inverse, vêtement → personne, reste voulu).
 - 12 nov. (Jacques, espagnol, v1181, séance) : « quand je suis passé à image, les images n'avancent pas. Donc, la barre image reste noire. »
   → Confié le 12 nov. à la session de la barre (maquettes-ameliorations), avec la Grammaire dans chaque séance : la partie Images doit avancer à chaque bonne réponse de la scène (et du thème, des conversations).
+- 12 nov. (Jacques, espagnol, thème Émotions) : « ¿Quién está enojado? » dit par la voix du téléphone.
+  → Cause : les questions des thèmes illustrés ne sont pas dans l'inventaire des voix (0 question dans 13 thèmes sur 17). Jacques : « compte et chiffre » ; comptage confié le 12 nov. à la session voix-tuiles, sans dépense avant son accord.
