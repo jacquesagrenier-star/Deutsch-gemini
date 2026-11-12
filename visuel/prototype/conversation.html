@@ -49,7 +49,8 @@ main{max-width:560px;margin:0 auto;position:relative;z-index:1}
 #paysage svg{display:block;width:100%;height:min(31vw,170px)}
 body.avec-paysage{padding-bottom:calc(env(safe-area-inset-bottom,0px) + min(31vw,170px) + 12px)}
 body.avec-paysage .recit,body.avec-paysage .consigne,body.avec-paysage .titre small,body.avec-paysage .perso{color:var(--encre)}
-.paysages{display:flex;gap:6px;justify-content:center;max-width:560px;margin:0 auto 8px}
+.paysages{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;max-width:560px;margin:0 auto 8px}
+.paysages .consigne{margin:0;white-space:nowrap}
 .paysages button{border:1px solid var(--bord);background:var(--verre);border-radius:999px;padding:5px 11px;font:800 12px var(--police);cursor:pointer}
 .paysages button[aria-pressed="true"]{border-color:var(--encre);box-shadow:inset 0 0 0 1px var(--encre)}
 .plateau{position:sticky;top:0;z-index:2;display:flex;justify-content:center;align-items:flex-end;gap:16px;padding:6px 0 12px;
@@ -555,10 +556,10 @@ async function liste(){
   document.getElementById("surtitre").textContent = "Maquette";
   document.getElementById("titre").textContent = "Jouer une conversation";
   const idx = await charger("conversation/donnees/index.json");
+  // les lots en parallele : un lot pas encore ecrit (404) ne retarde pas les autres
+  const lots = await Promise.all(idx.lots.map(lot => charger("conversation/donnees/lot-" + lot + ".json").catch(() => null)));
   const toutes = [];
-  for (const lot of idx.lots){
-    try{ (await charger("conversation/donnees/lot-" + lot + ".json")).conversations.forEach(e => toutes.push(e)); }catch(e){}
-  }
+  lots.forEach(l => { if (l) l.conversations.forEach(e => toutes.push(e)); });
   ecran.textContent = "";
   const c = el("div", "liste");
   const lg = el("div", "langues");
@@ -634,9 +635,7 @@ poserPaysage();
     // les personnes : celles de tous les lots, fusionnees (personnes.json, puis personnes-<lot>.json s'il existe)
     PERS = {};
     const idx = await charger("conversation/donnees/index.json");
-    for (const f of idx.personnes){
-      try{ Object.assign(PERS, await charger("conversation/" + f)); }catch(e){}
-    }
+    (await Promise.all(idx.personnes.map(f => charger("conversation/" + f).catch(() => null)))).forEach(x => { if (x) Object.assign(PERS, x); });
     if (Q.get("c")){ C = await charger("conversation/donnees/" + Q.get("c") + "." + LANGUE + ".json"); presentation(); }
     else await liste();
   }catch(e){ ecran.textContent = "Cette conversation n'existe pas encore (" + e.message + ")."; }
