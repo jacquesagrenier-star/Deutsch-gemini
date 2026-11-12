@@ -1,0 +1,58 @@
+{
+ "id": "pp5-hotel",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "premiers-pas",
+ "etape": 5,
+ "registre": "poli",
+ "titre": {"fr": "À la réception de l'hôtel"},
+ "intro": {"fr": "Tu arrives à ton hôtel de Boston. Tu prends ta chambre, puis, le lendemain matin, tu signales un problème."},
+ "personnes": ["rezeptionistin"],
+ "debut": "arrive",
+ "noeuds": {
+  "arrive": {
+   "dit": [
+    {"recit": {"fr": "Le soir, à la réception d'un petit hôtel."}},
+    {"qui": "rezeptionistin", "air": "sourire", "t": "Good evening! Welcome to the hotel.", "fr": "Bonsoir ! Bienvenue à l'hôtel."}
+   ],
+   "choix": [
+    {"t": "Good evening. I have a reservation.", "fr": "Bonsoir. J'ai une réservation.", "va": "room"},
+    {"t": "Hi. I have a reservation for two nights.", "fr": "Bonjour. J'ai une réservation pour deux nuits.", "va": "room"},
+    {"faux": true, "t": "Good evening. I am a reservation.", "fr": "Bonsoir. Je suis une réservation.",
+     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "You … are a reservation?", "fr": "Vous… êtes une réservation ?"}],
+     "aide": {"fr": "<b>« I am »</b>, c'est « je suis » ; <b>« I have »</b>, « j'ai ». Dis : « I have a reservation »."}}
+   ]
+  },
+  "room": {
+   "dit": [{"qui": "rezeptionistin", "air": "sourire", "t": "Great. Your room is on the third floor. Here is your key.", "fr": "Parfait. Votre chambre est au troisième étage. Voici votre clé."}],
+   "choix": [
+    {"t": "Thank you. Is breakfast included?", "fr": "Merci. Le petit-déjeuner est compris ?", "va": "morning",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Yes, breakfast is included, from seven to ten.", "fr": "Oui, le petit-déjeuner est compris, de sept heures à dix heures."}]},
+    {"t": "Thank you. Do you have Wi-Fi?", "fr": "Merci. Vous avez le wifi ?", "va": "morning",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Yes, the password is on your key card.", "fr": "Oui, le mot de passe est sur votre carte-clé."}]}
+   ]
+  },
+  "morning": {
+   "dit": [
+    {"recit": {"fr": "Le lendemain matin, tu redescends à la réception."}},
+    {"qui": "rezeptionistin", "air": "question", "t": "Good morning! Is everything okay?", "fr": "Bonjour ! Tout va bien ?"}
+   ],
+   "choix": [
+    {"t": "The shower doesn't work.", "fr": "La douche ne fonctionne pas.", "va": "else",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "Oh, I'm so sorry! I'll send someone right away.", "fr": "Oh, je suis vraiment désolée ! J'envoie quelqu'un tout de suite."}]},
+    {"t": "I'd like a quiet room.", "fr": "Je voudrais une chambre calme.", "va": "else",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "Oh, I'm so sorry! Of course, you can have a quiet room.", "fr": "Oh, je suis vraiment désolée ! Bien sûr, vous aurez une chambre calme."}]}
+   ]
+  },
+  "else": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Anything else?", "fr": "Autre chose ?"}],
+   "choix": [
+    {"t": "Where is the station?", "fr": "Où est la gare ?", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Turn left, it's five minutes on foot. Have a nice day!", "fr": "Tournez à gauche, c'est à cinq minutes à pied. Bonne journée !"}]},
+    {"t": "No, thank you. Goodbye!", "fr": "Non, merci. Au revoir !", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Goodbye! Have a nice day!", "fr": "Au revoir ! Bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as pris ta chambre, posé une question, signalé un problème et obtenu une solution."}
+}
