@@ -21,6 +21,10 @@
 //  4. Le debut de l'essai de 7 jours (`essaiDebut`) s'ecrit UNE fois, et
 //     seulement a l'heure du serveur (session de l'abonnement, section D de
 //     abonnement/GUIDE-MAGASINS.md, fusionnee ici le 11 nov.).
+//  5. Les documents de progression (users et les quatre autres langues)
+//     n'acceptent plus que les cles que l'app y ecrit, chacune de son type
+//     (12 nov. 2026, avec le mode sans compte) ; les petits champs sont bornes,
+//     les gros ne le sont que par la limite de Firestore (voir plus bas).
 // Un champ de droit d'acces AJOUTE plus tard doit entrer dans accesReserves(),
 // sinon chacun peut se le poser.
 // Tout le reste est identique : memes collections, memes lectures.
@@ -75,6 +79,80 @@ service cloud.firestore {
       return !request.resource.data.diff(resource.data).affectedKeys().hasAny(['essaiDebut'])
           || (!('essaiDebut' in resource.data)
               && request.resource.data.essaiDebut == request.time);
+    }
+
+    // ---- Les documents de progression : ce que la personne y ecrit ----
+    // (users, usuariosEs, usersEn, usersPt, usersJa ; 12 nov. 2026, avec le
+    // mode sans compte : un uid s'obtient en un clic.) Les 41 cles de
+    // syncProgressToCloud() dans index.html, puis celles de l'inscription, des
+    // notifications, de la langue apprise, de l'essai et du lien d'adresse.
+    // ⚠️ UNE CLE AJOUTEE A LA SAUVEGARDE DOIT L'ETRE ICI, sinon TOUTE la
+    // sauvegarde de chacun est refusee, sans message. tests/verifier.py le
+    // controle (securite/controle_cles.py) avant chaque push.
+    // Les cles anciennes deja presentes (gender, langueImposee, l'ancien
+    // `progress`) restent ; `progress` ne peut plus que s'effacer.
+    function champsProgression() {
+      return ['a1VoyageJson', 'appareil', 'badgesJson', 'dailyActivityDate',
+              'dailyActivityToday', 'dailyGoalTarget', 'decouverteJson', 'email',
+              'etoilesJson', 'gels', 'grammaire', 'journalFinsJson',
+              'journalVersionJson', 'joursJson', 'langueInterface', 'masteredCount',
+              'monVocabJson', 'mosaique', 'niveauSeance', 'parcoursJson',
+              'phrasesRateesJson', 'placementJson', 'premiersPasJson', 'profilJson',
+              'progress', 'progressJson', 'questionsSeance', 'retoursUsager',
+              'seanceFinieDate', 'seancesJson', 'streak', 'streakJour',
+              'synonymesEcartes', 'totalCount', 'tuilesJson', 'updatedAt',
+              'versionNative', 'vocabCartes', 'vocabDemandes', 'vusCount', 'xp',
+              // hors de la sauvegarde
+              'firstName', 'inviteCode', 'createdAt', 'fcmToken', 'fcmTokenUpdatedAt',
+              'langueApprise', 'essaiDebut', 'adresseLieeLe'];
+    }
+    // Les champs qui grandissent avec l'usage (stockage local recopie tel quel :
+    // vocabulaire, retours, journal, progressJson...) ne sont bornes que par la
+    // limite de Firestore (1 Mio par document) : une borne plus basse finirait
+    // par refuser, en silence, la sauvegarde d'une personne assidue. Ni leur
+    // type : ⚠️ Firestore n'evalue pas plus de 1 000 expressions par requete,
+    // et une sauvegarde complete (41 cles) les depassait (banc du 12 nov.) --
+    // TOUTE la sauvegarde etait alors refusee. Ne pas ajouter de controle ici
+    // sans relancer le banc (cas « la sauvegarde reelle complete »).
+    function texteOuNul(d, champ, max) {
+      return !(champ in d) || d[champ] == null || (d[champ] is string && d[champ].size() <= max);
+    }
+    function dateOuNul(d, champ) {
+      return !(champ in d) || d[champ] == null || d[champ] is timestamp;
+    }
+    function liste(d, champ, max) {
+      return !(champ in d) || (d[champ] is list && d[champ].size() <= max);
+    }
+    // Bornes gardees : ce que « Reconstruire les resumes » recopie dans le
+    // tableau de bord (adresse, prenom, appareil, compteurs). ⚠️ MARGE MESUREE
+    // le 12 nov. (securite/essai-regles, cas « la sauvegarde reelle
+    // complete ») : 10 controles de champ de plus passent, 15 font refuser
+    // la sauvegarde complete (limite des 1 000 expressions). Une CLE de plus dans champsProgression()
+    // ne coute presque rien (100 essayees) ; un CONTROLE de plus coute cher.
+    function progressionValide(d) {
+      // email : null pour un compte sans compte (user.email d'un anonyme).
+      return texteOuNul(d, 'email', 254)
+          && texte(d, 'firstName', 60)
+          && texte(d, 'appareil', 40)
+          && texte(d, 'langueInterface', 10)
+          && nombre(d, 'masteredCount') && nombre(d, 'totalCount') && nombre(d, 'vusCount')
+          && nombre(d, 'streak') && nombre(d, 'xp') && nombre(d, 'gels')
+          && nombre(d, 'dailyActivityToday') && nombre(d, 'dailyGoalTarget')
+          && nombre(d, 'questionsSeance')
+          && dateOuNul(d, 'updatedAt') && dateOuNul(d, 'createdAt')
+          && dateOuNul(d, 'fcmTokenUpdatedAt')
+          && liste(d, 'vocabDemandes', 150) && liste(d, 'vocabCartes', 150);
+    }
+    function creeSaProgression() {
+      return request.resource.data.keys().hasOnly(champsProgression())
+          && !('progress' in request.resource.data)
+          && progressionValide(request.resource.data);
+    }
+    function modifieSaProgression() {
+      let touchees = request.resource.data.diff(resource.data).affectedKeys();
+      return touchees.hasOnly(champsProgression())
+          && (!touchees.hasAny(['progress']) || !('progress' in request.resource.data))
+          && progressionValide(request.resource.data);
     }
 
     // ---- Les resumes : ce que la personne y ecrit elle-meme ----
@@ -142,8 +220,10 @@ service cloud.firestore {
     match /users/{uid} {
       allow get: if proprietaire(uid) || isAdmin();
       allow list: if isAdmin();
-      allow create: if proprietaire(uid) && creeSansAccesReserves() && essaiDebutALaCreation() && lienALaCreation();
-      allow update: if proprietaire(uid) && modifieSansAccesReserves() && essaiDebutALaModification() && lienALaModification();
+      allow create: if proprietaire(uid) && creeSansAccesReserves() && essaiDebutALaCreation() && lienALaCreation()
+                    && creeSaProgression();
+      allow update: if proprietaire(uid) && modifieSansAccesReserves() && essaiDebutALaModification() && lienALaModification()
+                    && modifieSaProgression();
       allow delete: if proprietaire(uid);
       // L'admin ne modifie QUE les acces chez autrui (pas la progression,
       // pas essaiDebut).
@@ -163,8 +243,8 @@ service cloud.firestore {
     match /usuariosEs/{uid} {
       allow get: if proprietaire(uid) || isAdmin();
       allow list: if isAdmin();
-      allow create: if proprietaire(uid) && creeSansAccesReserves();
-      allow update: if proprietaire(uid) && modifieSansAccesReserves();
+      allow create: if proprietaire(uid) && creeSansAccesReserves() && creeSaProgression();
+      allow update: if proprietaire(uid) && modifieSansAccesReserves() && modifieSaProgression();
       allow delete: if proprietaire(uid);
     }
     match /resumenesEs/{uid} {
@@ -178,8 +258,8 @@ service cloud.firestore {
     match /usersJa/{uid} {
       allow get: if proprietaire(uid) || isAdmin();
       allow list: if isAdmin();
-      allow create: if proprietaire(uid) && creeSansAccesReserves();
-      allow update: if proprietaire(uid) && modifieSansAccesReserves();
+      allow create: if proprietaire(uid) && creeSansAccesReserves() && creeSaProgression();
+      allow update: if proprietaire(uid) && modifieSansAccesReserves() && modifieSaProgression();
       allow delete: if proprietaire(uid);
     }
     match /resumesJa/{uid} {
@@ -193,8 +273,8 @@ service cloud.firestore {
     match /usersEn/{uid} {
       allow get: if proprietaire(uid) || isAdmin();
       allow list: if isAdmin();
-      allow create: if proprietaire(uid) && creeSansAccesReserves();
-      allow update: if proprietaire(uid) && modifieSansAccesReserves();
+      allow create: if proprietaire(uid) && creeSansAccesReserves() && creeSaProgression();
+      allow update: if proprietaire(uid) && modifieSansAccesReserves() && modifieSaProgression();
       allow delete: if proprietaire(uid);
     }
     match /resumesEn/{uid} {
@@ -208,8 +288,8 @@ service cloud.firestore {
     match /usersPt/{uid} {
       allow get: if proprietaire(uid) || isAdmin();
       allow list: if isAdmin();
-      allow create: if proprietaire(uid) && creeSansAccesReserves();
-      allow update: if proprietaire(uid) && modifieSansAccesReserves();
+      allow create: if proprietaire(uid) && creeSansAccesReserves() && creeSaProgression();
+      allow update: if proprietaire(uid) && modifieSansAccesReserves() && modifieSaProgression();
       allow delete: if proprietaire(uid);
     }
     match /resumesPt/{uid} {

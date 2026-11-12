@@ -145,6 +145,52 @@ function resume(email, extra){
     await cas("un autre offre l'acces a quelqu'un : refuse", false, () => updateDoc(doc(bob, "users", "annaUid"), { accesAVie: true }));
     await cas("la personne supprime son document (suppression du compte)", true, () => deleteDoc(doc(anna, "users", "annaUid")));
 
+    // LA FORME DES DOCUMENTS DE PROGRESSION (12 nov. 2026) : les 41 cles de
+    // syncProgressToCloud(), chacune de son type ; les petits champs bornes.
+    console.log("PROGRESSION : FORME ET TAILLE");
+    await env.clearFirestore();
+    const sauvegarde = extra => Object.assign({
+        email: "anna@example.com", masteredCount: 12, totalCount: 8000, vusCount: 40, streak: 3, xp: 1234,
+        dailyGoalTarget: null, seanceFinieDate: "2026-11-12", questionsSeance: 5, dailyActivityToday: 7,
+        dailyActivityDate: "2026-11-12", vocabDemandes: [{ m: "Haus", s: "maison" }], vocabCartes: ["Haus"],
+        retoursUsager: "[2026-11-12T09:00 | v1176 | fr | accueil] Super", synonymesEcartes: "", grammaire: "{}",
+        mosaique: "{\"i\":3}", badgesJson: "[]", joursJson: "{}", gels: 1, monVocabJson: "[]", parcoursJson: "{}",
+        seancesJson: "[]", tuilesJson: "{}", phrasesRateesJson: "[]", a1VoyageJson: "{}", decouverteJson: "{}",
+        profilJson: "{}", placementJson: "", langueInterface: "fr", niveauSeance: "A1", premiersPasJson: "{}",
+        etoilesJson: "{\"s\":1}", appareil: "Android", versionNative: "19", journalVersionJson: "[]",
+        journalFinsJson: "[]", streakJour: "2026-11-12", progressJson: "{\"Haus\":[1,2]}",
+        progress: deleteField(), updatedAt: serverTimestamp()
+    }, extra || {}, {});
+    const sansVides = o => { for(const k of Object.keys(o)) if(o[k] === undefined) delete o[k]; return o; };
+    await cas("la sauvegarde reelle complete, compte neuf (sans l'ancien progress)", true, () => setDoc(doc(anna, "users", "annaUid"), sansVides(sauvegarde({ progress: undefined })), { merge: true }));
+    await cas("la sauvegarde reelle complete, ensuite (efface l'ancien progress)", true, () => setDoc(doc(anna, "users", "annaUid"), sauvegarde(), { merge: true }));
+    await cas("une cle inconnue : refusee", false, () => setDoc(doc(anna, "users", "annaUid"), { fichierCache: "x".repeat(1000) }, { merge: true }));
+    await cas("une cle inconnue glissee dans la sauvegarde : refusee", false, () => setDoc(doc(anna, "users", "annaUid"), sauvegarde({ stockage: "x" }), { merge: true }));
+    await cas("progressJson en nombre : accepte (type des gros champs non controle : limite des 1 000 expressions)", true, () => setDoc(doc(anna, "users", "annaUid"), { progressJson: 42 }, { merge: true }));
+    await cas("monVocabJson de 300 000 caracteres : accepte (personne assidue)", true, () => setDoc(doc(anna, "users", "annaUid"), { monVocabJson: "v".repeat(300000) }, { merge: true }));
+    await cas("prenom de 61 caracteres : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { firstName: "a".repeat(61) }, { merge: true }));
+    await cas("appareil de 200 caracteres : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { appareil: "x".repeat(200) }, { merge: true }));
+    await cas("vusCount en texte : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { vusCount: "<b>9</b>" }, { merge: true }));
+    await cas("xp negatif : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { xp: -5 }, { merge: true }));
+    await cas("151 mots de mon vocabulaire : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { vocabCartes: Array(151).fill("x") }, { merge: true }));
+    await cas("updatedAt en texte : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { updatedAt: "demain" }, { merge: true }));
+    await cas("notifications coupees (fcmToken a null) : accepte", true, () => setDoc(doc(anna, "users", "annaUid"), { fcmToken: null }, { merge: true }));
+    await cas("compte neuf cree avec l'ancien progress : refuse", false, () => setDoc(doc(bob, "users", "bobUid"), { progress: { Haus: 1 } }));
+    await env.withSecurityRulesDisabled(async c => { await setDoc(doc(c.firestore(), "users", "vieuxUid"), { email: "vieux@example.com", gender: "f", langueImposee: "uk", progress: { Haus: { a: 1 } }, progressJson: "{}" }); });
+    const vieux = env.authenticatedContext("vieuxUid", { email: "vieux@example.com" }).firestore();
+    await cas("compte ancien (gender, langueImposee) : la sauvegarde reelle passe", true, () => setDoc(doc(vieux, "users", "vieuxUid"), sauvegarde({ email: "vieux@example.com" }), { merge: true }));
+    await env.withSecurityRulesDisabled(async c => { await setDoc(doc(c.firestore(), "users", "vieuxUid"), { progress: { Haus: { a: 1 } } }, { merge: true }); });
+    await cas("compte ancien : reecrit l'ancien progress : refuse", false, () => setDoc(doc(vieux, "users", "vieuxUid"), { progress: { Haus: { a: 2 } } }, { merge: true }));
+    await cas("compte ancien : une sauvegarde qui ne touche pas progress : acceptee", true, () => setDoc(doc(vieux, "users", "vieuxUid"), { vusCount: 50, updatedAt: serverTimestamp() }, { merge: true }));
+    const anonyme2 = env.authenticatedContext("anoUid", { firebase: { sign_in_provider: "anonymous" } }).firestore();
+    await cas("sans compte : la sauvegarde reelle complete (adresse absente)", true, () => setDoc(doc(anonyme2, "users", "anoUid"), sansVides(sauvegarde({ email: null, progress: undefined })), { merge: true }));
+    await cas("sans compte : 1 cle inconnue de 900 000 caracteres : refusee", false, () => setDoc(doc(anonyme2, "users", "anoUid"), { cache: "x".repeat(900000) }, { merge: true }));
+    for(const coll of ["usuariosEs", "usersEn", "usersPt", "usersJa"]){
+        await cas(coll + " : la sauvegarde reelle complete", true, () => setDoc(doc(anna, coll, "annaUid"), sansVides(sauvegarde({ progress: undefined })), { merge: true }));
+        await cas(coll + " : une cle inconnue : refusee", false, () => setDoc(doc(anna, coll, "annaUid"), { autre: "x" }, { merge: true }));
+        await cas(coll + " : vusCount en texte : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), { vusCount: "x" }, { merge: true }));
+    }
+
     console.log("AUTRES LANGUES (progression)");
     for(const coll of ["usuariosEs", "usersEn", "usersPt", "usersJa"]){
         await cas(coll + " : sauvegarde", true, () => setDoc(doc(anna, coll, "annaUid"), { progressJson: "{}", updatedAt: serverTimestamp() }, { merge: true }));

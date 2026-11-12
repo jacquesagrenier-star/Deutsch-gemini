@@ -1430,6 +1430,79 @@ def verifier_version(r, source):
     print("   version         : v%d (etiquette, APP_VERSION et version.json concordent)" % n_badge)
 
 
+def _objets_ecrits(source, motif):
+    """Les cles des objets passes a fsSetDoc(<motif>, {...}) : cles explicites
+    (`nom:`) et abregees (`nom,` seul sur sa ligne), commentaires retires,
+    jusqu'aux options « { merge » de l'appel."""
+    cles = set()
+    for m in re.finditer(re.escape(motif), source):
+        debut = m.end()
+        fin = source.find("{ merge", debut)
+        if fin < 0 or fin - debut > 6000:
+            continue
+        bloc = re.sub(r"//[^\n]*", "", source[debut:fin])
+        cles |= set(re.findall(r"\b([A-Za-z_]\w*)\s*:(?!:)", bloc))
+        cles |= set(re.findall(r"^\s*([A-Za-z_]\w*)\s*,?\s*$", bloc, re.M))
+    return cles - {"window", "true", "false", "null"}
+
+
+def verifier_cles_firestore(r, source):
+    """Chaque cle que l'app ecrit dans Firestore est-elle permise par les regles ?
+
+    Depuis le 12 nov. 2026, les regles (securite/firestore-corrige.rules, puis
+    firestore.rules une fois collees) n'acceptent que des cles nommees : les
+    resumes (champsResume) et les documents de progression (champsProgression).
+    Une cle ajoutee a syncProgressToCloud() sans etre ajoutee aux regles fait
+    refuser TOUTE la sauvegarde de chacun, sans message. D'ou ce controle.
+    """
+    regles = None
+    for nom in ("securite/firestore-corrige.rules", "firestore.rules"):
+        chemin = os.path.join(RACINE, nom)
+        if os.path.exists(chemin):
+            texte = io.open(chemin, encoding="utf-8").read()
+            if "function champsProgression()" in texte:
+                regles = (nom, texte)
+                break
+    if regles is None:
+        print("   cles Firestore  : regles sans liste de cles, rien a comparer")
+        return
+    nom, texte = regles
+
+    def liste(fonction):
+        m = re.search(r"function %s\(\)\s*\{\s*return\s*\[(.*?)\];" % fonction, texte, re.S)
+        return set(re.findall(r"'([^']+)'", re.sub(r"//[^\n]*", "", m.group(1)))) if m else None
+
+    permis_prog, permis_resume = liste("champsProgression"), liste("champsResume")
+    # La sauvegarde : l'objet snapshot de syncProgressToCloud().
+    d = source.find("snapshot = {")
+    f = source.find("const aEcrire = sansIndefinis(snapshot", d)
+    if d < 0 or f < 0:
+        return r.echec("cles Firestore", "objet snapshot de syncProgressToCloud() introuvable")
+    bloc = re.sub(r"//[^\n]*", "", source[d:f])
+    ecrites = set(re.findall(r"^ {12}([A-Za-z_]\w*)\s*[:,]", bloc, re.M))
+    ecrites |= set(re.findall(r"snapshot\.([A-Za-z_]\w*)\s*=", bloc))
+    # Les autres ecritures de la personne dans son document de progression.
+    ecrites |= _objets_ecrits(source, "fsSetDoc(window.fsDoc(window.firestoreDb, 'users',")
+    ecrites |= _objets_ecrits(source, "fsSetDoc(window.fsDoc(window.firestoreDb, COLL_PROGRESSION,")
+    ecrites.discard("aEcrire")
+    resume = _objets_ecrits(source, "fsSetDoc(window.fsDoc(window.firestoreDb, RESUMES_COLL, user.uid),")
+    r.controle(len(ecrites) + len(resume))
+    manque_prog = sorted(ecrites - permis_prog) if permis_prog is not None else []
+    manque_resume = sorted(resume - permis_resume) if permis_resume is not None else []
+    if manque_prog:
+        r.echec("cles Firestore", "l'app ecrit %s dans la progression, absent(s) de champsProgression() de %s : "
+                "toute la sauvegarde serait refusee" % (", ".join(manque_prog), nom))
+    if manque_resume:
+        r.echec("cles Firestore", "l'app ecrit %s dans le resume, absent(s) de champsResume() de %s : "
+                "le resume serait refuse" % (", ".join(manque_resume), nom))
+    if len(ecrites) < 40:
+        r.echec("cles Firestore", "seulement %d cles de progression trouvees dans index.html : "
+                "le controle ne lit plus le code (a mettre a jour)" % len(ecrites))
+    print("   cles Firestore  : %d cles de progression et %d de resume, toutes permises par %s"
+          % (len(ecrites), len(resume), nom) if not (manque_prog or manque_resume) else
+          "   cles Firestore  : ECHEC (voir plus bas)")
+
+
 
 def verifier_chemins(r):
     """Chaque ecran, panneau et jeu est-il ATTEIGNABLE depuis l'accueil ?
@@ -1821,6 +1894,7 @@ def main():
     verifier_sections_des_options(r, source)
     verifier_taille_des_champs(r, source)
     verifier_version(r, source)
+    verifier_cles_firestore(r, source)
     verifier_chemins(r)
     verifier_decouverte(r, source, fonctions, cles)
     verifier_export_csv(r)
