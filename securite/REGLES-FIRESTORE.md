@@ -78,7 +78,8 @@ Le banc d'essai se relance ainsi (Java et Firebase CLI sont installés) :
 
 ## Quand coller
 
-**Après** la publication de la version de ce correctif (l'app qui coupe le résumé aux bornes).
+**Après** la publication de la v1180 (App Check inerte et le garde-fou des clés ; l'app
+qui coupe le résumé aux bornes est en ligne depuis la v1165).
 Avant, une vieille version ouverte sur un téléphone pourrait encore envoyer un
 résumé trop long : il serait refusé (le tableau de bord ne serait plus à jour
 pour ce compte ; sa progression, elle, est dans un autre document et part
@@ -89,7 +90,7 @@ quand même).
 1. Ouvrir <https://console.firebase.google.com/project/deutschai-b6fbb/firestore/rules>.
 2. **Garder une copie de l'ancien texte** : tout sélectionner dans l'éditeur
    (Ctrl+A), copier (Ctrl+C), coller dans un fichier
-   `C:\Users\jacqu\.wortando\regles-console-2026-11-11-avant.txt`.
+   `C:\Users\jacqu\.wortando\regles-console-2026-11-12-avant.txt`.
    (C'est le chemin du retour en arrière.)
 3. Ouvrir `securite/firestore-corrige.rules` dans le dépôt, tout copier.
 4. Dans l'éditeur de la console : tout sélectionner, coller à la place.

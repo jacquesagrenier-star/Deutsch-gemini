@@ -25,6 +25,9 @@
 //     n'acceptent plus que les cles que l'app y ecrit, chacune de son type
 //     (12 nov. 2026, avec le mode sans compte) ; les petits champs sont bornes,
 //     les gros ne le sont que par la limite de Firestore (voir plus bas).
+//  6. Le mode sans compte (v1178, 12 nov. 2026) : un compte anonyme ecrit
+//     son resume avec une adresse vide ; la date du lien d'une adresse a ce
+//     compte (`adresseLieeLe`) s'ecrit une fois, a l'heure du serveur.
 // Un champ de droit d'acces AJOUTE plus tard doit entrer dans accesReserves(),
 // sinon chacun peut se le poser.
 // Tout le reste est identique : memes collections, memes lectures.
