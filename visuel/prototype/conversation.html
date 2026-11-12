@@ -146,8 +146,11 @@ const Q = new URLSearchParams(location.search);
 const DANS_APP = window.parent && window.parent !== window;
 if (Q.get("nuit") === "1" || (!Q.has("nuit") && !DANS_APP && window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches))
   document.documentElement.classList.add("nuit");
-const LANGUE = Q.get("apprendre") === "es" ? "es" : "de";
-const BCP47 = { de: "de-DE", es: "es-ES" }[LANGUE];
+const LANGUE = ["es", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "de";
+// L'anglais : americain par defaut, britannique en variante (variante=gb) ; un champ t_gb / dit_gb remplace t / dit.
+const GB = LANGUE === "en" && Q.get("variante") === "gb";
+const BCP47 = { de: "de-DE", es: "es-ES", en: GB ? "en-GB" : "en-US" }[LANGUE];
+const T = (o, champ) => (GB && o[champ + "_gb"] != null) ? o[champ + "_gb"] : o[champ];
 function parler(type, extra){ try{ if (DANS_APP) parent.postMessage(Object.assign({source: "wortando-scene", type}, extra || {}), "*"); }catch(e){} }
 const charger = url => fetch(url, { cache: "no-store" }).then(r => { if (!r.ok) throw new Error(url + " : " + r.status); return r.json(); });
 const ecran = document.getElementById("ecran"), plateau = document.getElementById("plateau");
@@ -155,7 +158,8 @@ function el(tag, cls, texte){ const e = document.createElement(tag); if (cls) e.
 const fr = o => (o && (o.fr || o.en)) || "";
 const MOTS_UI = {
   de: { pardon: "Wie bitte?", pardon_fr: "Pardon ?" },
-  es: { pardon: "¿Perdón?", pardon_fr: "Pardon ?" }
+  es: { pardon: "¿Perdón?", pardon_fr: "Pardon ?" },
+  en: { pardon: "Sorry?", pardon_fr: "Pardon ?" }
 }[LANGUE];
 
 // ---------------------------------------------------------------- les nombres, dans les trois langues
@@ -164,7 +168,9 @@ const NB = {
         d: ["","","zwanzig","dreißig","vierzig","fünfzig","sechzig","siebzig","achtzig","neunzig"] },
   es: { u: ["cero","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez","once","doce","trece","catorce","quince","dieciséis","diecisiete","dieciocho","diecinueve",
             "veinte","veintiuno","veintidós","veintitrés","veinticuatro","veinticinco","veintiséis","veintisiete","veintiocho","veintinueve"],
-        d: ["","","","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa"] }
+        d: ["","","","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa"] },
+  en: { u: ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"],
+        d: ["","","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"] }
 };
 function nombre(n, l){
   const t = NB[l];
@@ -173,19 +179,28 @@ function nombre(n, l){
     const d = Math.floor(n / 10), u = n % 10;
     return u ? (u === 1 ? "ein" : t.u[u]) + "und" + t.d[d] : t.d[d];
   }
+  if (l === "en"){
+    if (n < 20) return t.u[n];
+    const d = Math.floor(n / 10), u = n % 10;
+    return t.d[d] + (u ? "-" + t.u[u] : "");
+  }
   if (n < 30) return t.u[n];
   const d = Math.floor(n / 10), u = n % 10;
   return t.d[d] + (u ? " y " + t.u[u] : "");
 }
 // « un euro », « veintiún euros » : la forme courte devant un nom.
-const devantNom = (n, l) => l === "de" ? (n === 1 ? "ein" : nombre(n, l)) : nombre(n, l).replace(/uno$/, "ún").replace(/^ún$/, "un");
+const devantNom = (n, l) => l === "en" ? nombre(n, l) : l === "de" ? (n === 1 ? "ein" : nombre(n, l)) : nombre(n, l).replace(/uno$/, "ún").replace(/^ún$/, "un");
 function prixEnMots(c, l){
   const e = Math.floor(c / 100), ct = c % 100;
   if (l === "de") return devantNom(e, l) + " Euro" + (ct ? " " + nombre(ct, l) : "");
+  // Boston : des dollars ; « three dollars and twenty cents »
+  if (l === "en") return nombre(e, l) + (e === 1 ? " dollar" : " dollars") + (ct ? " and " + nombre(ct, l) + (ct === 1 ? " cent" : " cents") : "");
   return devantNom(e, l) + (e === 1 ? " euro" : " euros") + (ct ? " con " + nombre(ct, l) : "");
 }
 function prixEnChiffres(c, l){
+  if (l === "en") return "$" + Math.floor(c / 100) + "." + String(c % 100).padStart(2, "0");
   const s = Math.floor(c / 100) + "," + String(c % 100).padStart(2, "0");
+  if (l === "fr" && LANGUE === "en") return s + " $";
   return s + (l === "de" ? " Euro" : " euros");
 }
 const majuscule = s => s.charAt(0).toUpperCase() + s.slice(1);
@@ -253,14 +268,16 @@ function quiParle(qui){ Object.entries(persos).forEach(([k, f]) => { f.classList
 
 // ---------------------------------------------------------------- la voix du telephone
 const VOIX_A_FUIR = ["albert","bad news","bahh","bells","boing","bubbles","cellos","good news","jester","organ","superstar","trinoids","whisper","wobble","zarvox","deranged","hysterical","junior","ralph","kathy","fred","princess","bruce","agnes","vicki","eddy","flo","grandma","grandpa","reed","rocko","sandy","shelley"];
-const FEMME = /anna|petra|helena|katja|marlene|hedda|female|frau|mujer|m[oó]nica|paulina|luc[ií]a|elvira|marisol|google/i;
-const HOMME = /markus|yannick|martin|conrad|stefan|hans|killian|male|mann|hombre|jorge|diego|[aá]lvaro|pablo|juan|carlos/i;
+const FEMME = /anna|petra|helena|katja|marlene|hedda|female|frau|mujer|m[oó]nica|paulina|luc[ií]a|elvira|marisol|samantha|\bava\b|allison|susan|zira|karen|serena|kate|moira|google/i;
+const HOMME = /markus|yannick|martin|conrad|stefan|hans|killian|male|mann|hombre|jorge|diego|[aá]lvaro|pablo|juan|carlos|\balex\b|daniel|\btom\b|aaron|david|arthur|oliver/i;
 let voix = { f: null, m: null };
 function choisirVoix(){
   const toutes = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
   const ici = toutes.filter(v => (v.lang || "").toLowerCase().startsWith(LANGUE) && !VOIX_A_FUIR.some(f => (v.name || "").toLowerCase().includes(f)));
-  const espagne = ici.filter(v => /es-es/i.test(v.lang));
-  const liste = LANGUE === "es" && espagne.length ? espagne.concat(ici.filter(v => !espagne.includes(v))) : ici;
+  // l'espagnol d'Espagne d'abord ; l'anglais de la variante (en-US ou en-GB) d'abord
+  const pays = LANGUE === "es" ? /es-es/i : LANGUE === "en" ? (GB ? /en-gb/i : /en-us/i) : /^de/i;
+  const devant = ici.filter(v => pays.test(v.lang));
+  const liste = devant.length ? devant.concat(ici.filter(v => !devant.includes(v))) : ici;
   voix.f = liste.find(v => FEMME.test(v.name)) || liste[0] || null;
   voix.m = liste.find(v => HOMME.test(v.name)) || liste.find(v => v !== voix.f) || liste[0] || null;
 }
@@ -366,7 +383,7 @@ function defiler(){ setTimeout(() => window.scrollTo({ top: document.body.scroll
 async function replique(r){
   if (!vrai(r.si)) return;
   if (r.recit){ fil.appendChild(el("div", "recit", gabarit(fr(r.recit), "fr"))); defiler(); await attendre(700); return; }
-  const qui = r.qui, t = gabarit(r.t, LANGUE), dit = r.dit ? gabarit(r.dit, LANGUE) : t;
+  const qui = r.qui, t = gabarit(T(r, "t"), LANGUE), dit = T(r, "dit") ? gabarit(T(r, "dit"), LANGUE) : t;
   entre(qui); poserVisage(qui, r.air || "sourire");
   const ligne = el("div", "ligne");
   const img = el("img"); img.src = visage(qui, r.air || "sourire"); img.alt = ""; ligne.appendChild(img);
@@ -387,7 +404,7 @@ function maReplique(c){
   const ligne = el("div", "ligne toi");
   const b = el("div", "bulle" + (c.faux ? " faux" : ""));
   b.appendChild(el("div", "nom", "Toi"));
-  const d = el("div", "de", gabarit(c.t, LANGUE)); d.lang = LANGUE; b.appendChild(d);
+  const d = el("div", "de", gabarit(T(c, "t"), LANGUE)); d.lang = LANGUE; b.appendChild(d);
   b.appendChild(el("div", "fr", gabarit(c.fr, "fr")));
   ligne.appendChild(b); fil.appendChild(ligne); defiler();
 }
@@ -405,7 +422,7 @@ function presentation(){
   const p = el("p"); p.innerHTML = "<b>C'est toi qui réponds</b> : touche une réponse, ou dis-la au micro. La conversation suit ce que tu choisis."; c.appendChild(p);
   const puces = el("div", "puces");
   const nb = Object.keys(C.noeuds).length;
-  [C.niveau, LANGUE === "de" ? "Allemand" : "Espagnol", C.registre === "Sie" ? "Sie" : (C.registre === "usted" ? "usted" : C.registre), (nb <= 5 ? "1 minute" : "3 minutes")]
+  [C.niveau, { de: "Allemand", es: "Espagnol", en: GB ? "Anglais (britannique)" : "Anglais" }[LANGUE], { Sie: "Sie", usted: "usted", poli: "registre poli" }[C.registre] || C.registre, (nb <= 5 ? "1 minute" : "3 minutes")]
     .forEach(x => puces.appendChild(el("span", null, x)));
   c.appendChild(puces);
   const go = el("button", "gros", "Commencer"); go.type = "button"; go.onclick = () => commencer(false);
@@ -432,7 +449,7 @@ function montrerChoix(apresErreur){
   const ch = el("div", "choix" + (sansFilet && !apresErreur ? " cache" : ""));
   choixDe(noeud).forEach(c => {
     const b = el("button"); b.type = "button";
-    const t = el("b", null, gabarit(c.t, LANGUE)); t.lang = LANGUE; b.appendChild(t);
+    const t = el("b", null, gabarit(T(c, "t"), LANGUE)); t.lang = LANGUE; b.appendChild(t);
     b.appendChild(el("span", null, gabarit(c.fr, "fr")));
     if (essayes(noeud).has(c.i)){ b.disabled = true; if (c.faux) b.classList.add("faux-essaye"); }
     b.onclick = () => choisir(c);
@@ -463,7 +480,7 @@ function micro(bouton){
     if (t == null){ entendu.textContent = "Le micro n'est pas disponible : touche ta réponse."; repondre.querySelector(".choix").classList.remove("cache"); return; }
     if (!t){ entendu.textContent = "Je n'ai rien entendu. Réessaie, plus près du téléphone."; return; }
     let meilleur = null, score = 0;
-    choixDe(noeud).forEach(c => { if (essayes(noeud).has(c.i)) return; const s = ressemblance(t, gabarit(c.t, LANGUE)); if (s > score){ score = s; meilleur = c; } });
+    choixDe(noeud).forEach(c => { if (essayes(noeud).has(c.i)) return; const s = ressemblance(t, gabarit(T(c, "t"), LANGUE)); if (s > score){ score = s; meilleur = c; } });
     if (!meilleur || score < SEUIL){
       repondre.hidden = true;
       await replique({ qui: dernier || C.personnes[0], air: "perplexe", t: MOTS_UI.pardon, fr: MOTS_UI.pardon_fr });
@@ -503,18 +520,18 @@ function fin(){
   if (S.erreurs.length){
     c.appendChild(el("h3", null, "Tes erreurs, corrigées"));
     const ul = el("ul");
-    S.erreurs.forEach(e => { const li = el("li"); li.innerHTML = "<s>" + gabarit(e.t, LANGUE) + "</s> : " + fr(e.aide); ul.appendChild(li); });
+    S.erreurs.forEach(e => { const li = el("li"); li.innerHTML = "<s>" + gabarit(T(e, "t"), LANGUE) + "</s> : " + fr(e.aide); ul.appendChild(li); });
     c.appendChild(ul);
   }
   c.appendChild(el("h3", null, "Les phrases que tu as dites"));
   S.dit.filter(x => !x.faux && !x.repete).forEach(x => {
-    const p = el("div", "phrase"), t = gabarit(x.t, LANGUE);
+    const p = el("div", "phrase"), t = gabarit(T(x, "t"), LANGUE);
     const b = el("b", null, t); b.lang = LANGUE; p.appendChild(b);
     p.appendChild(boutonHP(t, "toi", ""));
     c.appendChild(p);
   });
   const re = el("button", "gros", "Rejouer en répondant autrement"); re.type = "button"; re.onclick = () => commencer(sansFilet);
-  const ter = el("button", "gros second", "Terminer"); ter.type = "button"; ter.onclick = () => { if (DANS_APP) parler("fermer"); else location.href = "?apprendre=" + LANGUE; };
+  const ter = el("button", "gros second", "Terminer"); ter.type = "button"; ter.onclick = () => { if (DANS_APP) parler("fermer"); else location.href = "?apprendre=" + LANGUE + (GB ? "&variante=gb" : ""); };
   c.append(re, ter);
   fil.appendChild(c); defiler();
 }
@@ -528,7 +545,7 @@ async function liste(){
   ecran.textContent = "";
   const c = el("div", "liste");
   const lg = el("div", "langues");
-  [["de", "Allemand"], ["es", "Espagnol"]].forEach(([k, n]) => {
+  [["de", "Allemand"], ["es", "Espagnol"], ["en", "Anglais"]].forEach(([k, n]) => {
     const b = el("button", null, n); b.type = "button"; b.setAttribute("aria-pressed", String(k === LANGUE));
     b.onclick = () => { location.href = "?apprendre=" + k; }; lg.appendChild(b);
   });
@@ -539,7 +556,7 @@ async function liste(){
     const d = await charger("conversation/donnees/" + e.id + "." + LANGUE + ".json");
     const g = d.parcours === "premiers-pas" ? "Premiers pas" : d.parcours === "voyage" ? "Le voyage A1" : d.niveau;
     if (g !== groupe){ c.appendChild(el("h2", null, g)); groupe = g; }
-    const a = el("a"); a.href = "?c=" + e.id + "&apprendre=" + LANGUE + (Q.get("nuit") ? "&nuit=" + Q.get("nuit") : "");
+    const a = el("a"); a.href = "?c=" + e.id + "&apprendre=" + LANGUE + (GB ? "&variante=gb" : "") + (Q.get("nuit") ? "&nuit=" + Q.get("nuit") : "");
     const im = el("img"); im.alt = ""; im.src = PERS[d.personnes[0]].visages.sourire; a.appendChild(im);
     const t = el("div"); t.appendChild(el("b", null, fr(d.titre)));
     t.appendChild(el("span", null, (d.etape ? "Étape " + d.etape + " · " : "") + d.niveau + " · " + Object.keys(d.noeuds).length + " moments"));
@@ -559,7 +576,7 @@ async function liste(){
 
 document.getElementById("retour").onclick = () => {
   taire(); if (ecouteEnCours) ecouteEnCours.arreter();
-  if (DANS_APP) parler("fermer"); else if (Q.get("c")) location.href = "?apprendre=" + LANGUE; else history.back();
+  if (DANS_APP) parler("fermer"); else if (Q.get("c")) location.href = "?apprendre=" + LANGUE + (GB ? "&variante=gb" : ""); else history.back();
 };
 if (DANS_APP) document.getElementById("marque").hidden = true;
 (async () => {
