@@ -36,6 +36,7 @@ async () => {
   if(portes && !portes.classList.contains('hidden')) choisirPorteBienvenue('zero'); else choisirNiveauDeclare('zero');
   completeInitialSetup(); await pause(600);
   if(document.querySelector('#profil.active')){ choisirRaisonProfil('plaisir'); await pause(400); choisirFaconProfil('tout'); await pause(800); }
+  try{ document.getElementById('badgeToast').classList.remove('show'); }catch(e){}
   for(let i = 0; i < 40 && !decouverte; i++) await pause(250);
   if(decouverte) passerDecouverte();
   await pause(900);
@@ -101,7 +102,7 @@ def main():
     fautes = []
     try:
         with sync_playwright() as p:
-            nav = p.chromium.launch()
+            nav = p.chromium.launch(args=["--marque-" + os.environ["PRESENTATION_MARQUE"]] if os.environ.get("PRESENTATION_MARQUE") else [])
             for appris in a.langues.split(","):
                 for cas in ("presente", "connu", "rate"):
                     ctx = nav.new_context(locale="fr-FR", viewport={"width": 390, "height": 844}, service_workers="block")
@@ -112,7 +113,7 @@ def main():
                     page.goto("http://127.0.0.1:%d/index.html%s" % (PORT, "?apprendre=es" if appris == "es" else ""))
                     page.wait_for_load_state("networkidle")
                     page.wait_for_timeout(1500)
-                    cap = lambda nom: page.screenshot(path=os.path.join(a.captures, "%s-%s-%s.png" % (appris, cas, nom)))
+                    cap = lambda nom: page.screenshot(path=os.path.join(a.captures, "%s-%s-%s.png" % (appris, cas, nom)), timeout=120000, animations="disabled")
                     nb = page.evaluate(PREPARER)
                     pres = page.evaluate(VERS_PRESENTEE)
                     if not pres:

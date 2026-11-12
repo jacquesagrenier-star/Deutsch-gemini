@@ -4790,9 +4790,14 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 /* Le mot neuf presente (revue d'usage du 11 nov. 2026, proposition 1) : un seul bouton, « Je l'ai ». */
 .presente-row{display:none;}
 #flashcardActions.presentation .judge-again, #flashcardActions.presentation .judge-garde{visibility:hidden !important; pointer-events:none !important;}
-#flashcardActions.presentation .presente-row{display:flex; justify-content:center; margin-top:6px;}
+/* Le lien ne prend aucune place dans la rangee : la bille reste au pixel pres ou elle est sur un verso habituel.
+   Il se pose juste au-dessus de la bille (la colonne de droite ; a gauche en arabe et en persan), un endroit vide
+   sur toutes les autres cartes. */
+#flashcardActions.presentation{position:relative;}
+#flashcardActions.presentation .presente-row{display:flex; justify-content:center; position:absolute; bottom:calc(100% + 2px);
+    inset-inline-start:50%; inset-inline-end:0; margin:0;}
 .presente-row .presente-connu{background:none !important; border:0 !important; box-shadow:none !important; margin:0; padding:10px 14px; min-height:44px;
-    font:inherit; font-size:13.5px; font-weight:700; color:#3B4656; text-decoration:underline; text-underline-offset:3px; cursor:pointer;}
+    font:inherit; font-size:13.5px; font-weight:700; color:#26313F; text-decoration:underline; text-underline-offset:3px; cursor:pointer;}
 body[data-theme="dark"] .presente-row .presente-connu{color:#D5DCE4;}
 .carte-presente-bandeau{display:block; margin:-8px -8px 14px; padding:9px 12px 10px; border-radius:14px; text-align:center;
     background:#E8A23A; color:#1C2430;}
@@ -57468,7 +57473,8 @@ function loadFlashcard(){
     const etatMot = getWordState(item.themeId, item.index) || {};
     const jamaisJuge = !etatMot.reviews && !etatMot.mastered;
     if(nouveauEl){
-        nouveauEl.classList.toggle("hidden", !jamaisJuge);
+        // Un mot deja presente (MOTS_PRESENTES) ne se dit plus « nouveau » quand il revient pour etre demande.
+        nouveauEl.classList.toggle("hidden", !jamaisJuge || MOTS_PRESENTES.has(clePresentation(item)));
         // Une expression n'est pas un mot (retour d'un testeur, 10 nov. 2026 : « Es geht mir gut » sous « Nouveau mot »).
         const cleNouveau = estExpressionCarte(flashcardMode, card && card[0]) ? "carte_nouvelle_expression" : "carte_nouveau_mot";
         nouveauEl.setAttribute("data-i18n", cleNouveau);
