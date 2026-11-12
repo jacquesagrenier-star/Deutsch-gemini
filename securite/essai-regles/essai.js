@@ -3,10 +3,13 @@
 const fs = require("fs");
 const path = require("path");
 const { initializeTestEnvironment, assertSucceeds, assertFails } = require("@firebase/rules-unit-testing");
-const { doc, setDoc, updateDoc, getDoc, getDocs, collection, deleteDoc, serverTimestamp } = require("firebase/firestore");
+const { doc, setDoc, updateDoc, getDoc, getDocs, collection, deleteDoc, serverTimestamp, deleteField, Timestamp } = require("firebase/firestore");
 
 const ADMIN_UID = "SOq5GGdxLsXGVaJWLiS3thtNGLE2";
-const ADMIN_EMAIL = "jacques.a.grenier@gmail.com";
+// Les regles corrigees reconnaissent l'admin par son uid : l'adresse n'y joue
+// aucun role. Pour comparer avec les regles EN LIGNE (qui la lisent), passer
+// la vraie adresse par ADMIN_EMAIL.
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@example.com";
 const REGLES = process.env.REGLES || path.join(__dirname, "..", "firestore-corrige.rules");
 
 let ok = 0, ko = 0;
@@ -54,6 +57,8 @@ function resume(email, extra){
         await cas("champ inconnu : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { html: "<script>" }), { merge: true }));
         await cas("s'ouvre un essai : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), { essais: ["anglais"] }, { merge: true }));
         await cas("s'ouvre les VHS : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), { vhsChaptersEnabled: true }, { merge: true }));
+        await cas("s'offre l'acces a vie : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { accesAVie: true }), { merge: true }));
+        await cas("s'offre 4 mois : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), resume("anna@example.com", { accesJusqua: Timestamp.fromDate(new Date("2027-03-11")) }), { merge: true }));
         await cas("se fait passer pour une autre adresse : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), resume("marina@example.com"), { merge: true }));
         await cas("ecrit le resume de quelqu'un d'autre : refuse", false, () => setDoc(doc(bob, coll, "annaUid"), resume("bob@example.com"), { merge: true }));
         await cas("lit son propre resume : refuse (admin seul)", false, () => getDoc(doc(anna, coll, "annaUid")));
@@ -86,9 +91,44 @@ function resume(email, extra){
     await cas("un testeur lit la liste : refuse", false, () => getDocs(collection(anna, "users")));
     await cas("la personne supprime son document", true, () => deleteDoc(doc(anna, "users", "annaUid")));
 
+    console.log("USERS : L'ABONNEMENT (acces offerts, debut de l'essai)");
+    await env.clearFirestore();
+    const dans4mois = () => Timestamp.fromDate(new Date("2027-03-11"));
+    const hier = () => Timestamp.fromDate(new Date("2026-11-10"));
+    await cas("inscription : profil", true, () => setDoc(doc(anna, "users", "annaUid"), { email: "anna@example.com", firstName: "Anna", inviteCode: "ABCD2345", createdAt: serverTimestamp() }, { merge: true }));
+    await cas("compte neuf cree avec l'acces a vie : refuse", false, () => setDoc(doc(bob, "users", "bobUid"), { email: "bob@example.com", accesAVie: true }));
+    await cas("compte neuf cree avec 4 mois offerts : refuse", false, () => setDoc(doc(bob, "users", "bobUid"), { email: "bob@example.com", accesJusqua: dans4mois() }));
+    await cas("s'offre l'acces a vie (merge) : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { accesAVie: true }, { merge: true }));
+    await cas("s'offre l'acces a vie (update) : refuse", false, () => updateDoc(doc(anna, "users", "annaUid"), { accesAVie: true }));
+    await cas("s'offre 4 mois : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { accesJusqua: dans4mois() }, { merge: true }));
+    await cas("s'offre l'acces glisse dans une sauvegarde : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { progressJson: "{}", updatedAt: serverTimestamp(), accesAVie: true }, { merge: true }));
+    await cas("debut de l'essai a une date du telephone : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { essaiDebut: hier() }, { merge: true }));
+    await cas("debut de l'essai a l'heure du serveur, la premiere fois : accepte", true, () => setDoc(doc(anna, "users", "annaUid"), { essaiDebut: serverTimestamp() }, { merge: true }));
+    await cas("debut de l'essai reecrit (heure du serveur) : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { essaiDebut: serverTimestamp() }, { merge: true }));
+    await cas("debut de l'essai reecrit (date choisie) : refuse", false, () => updateDoc(doc(anna, "users", "annaUid"), { essaiDebut: dans4mois() }));
+    await cas("debut de l'essai efface : refuse", false, () => updateDoc(doc(anna, "users", "annaUid"), { essaiDebut: deleteField() }));
+    await cas("la sauvegarde ordinaire, essai en cours : acceptee", true, () => setDoc(doc(anna, "users", "annaUid"), { progressJson: "{\"b\":2}", vusCount: 9, updatedAt: serverTimestamp() }, { merge: true }));
+    await cas("compte neuf cree avec le debut de l'essai (serveur) : accepte", true, () => setDoc(doc(bob, "users", "bobUid"), { email: "bob@example.com", essaiDebut: serverTimestamp() }, { merge: true }));
+    await cas("compte neuf cree avec un debut d'essai choisi : refuse", false, () => setDoc(doc(anna, "users", "autreDoc"), { essaiDebut: hier() }));
+    await cas("l'admin offre l'acces a vie", true, () => updateDoc(doc(admin, "users", "annaUid"), { accesAVie: true }));
+    await cas("l'admin offre 4 mois", true, () => updateDoc(doc(admin, "users", "bobUid"), { accesJusqua: dans4mois() }));
+    await cas("l'admin offre 4 mois en touchant la progression : refuse", false, () => updateDoc(doc(admin, "users", "bobUid"), { accesJusqua: dans4mois(), progressJson: "x" }));
+    await cas("l'admin reecrit le debut de l'essai : refuse", false, () => updateDoc(doc(admin, "users", "annaUid"), { essaiDebut: serverTimestamp() }));
+    await cas("la meme adresse que l'admin sur un autre compte offre l'acces : refuse", false, () => updateDoc(doc(fauxAdmin, "users", "annaUid"), { accesAVie: true }));
+    await cas("apres l'acces offert, la sauvegarde ordinaire : acceptee", true, () => setDoc(doc(anna, "users", "annaUid"), { progressJson: "{\"c\":3}", updatedAt: serverTimestamp(), dailyGoalTarget: null }, { merge: true }));
+    await cas("apres l'acces offert, le jeton de notification : accepte", true, () => setDoc(doc(anna, "users", "annaUid"), { fcmToken: null }, { merge: true }));
+    await cas("apres les 4 mois offerts, la sauvegarde ordinaire : acceptee", true, () => setDoc(doc(bob, "users", "bobUid"), { progressJson: "{}", updatedAt: serverTimestamp() }, { merge: true }));
+    await cas("se prolonge les 4 mois : refuse", false, () => updateDoc(doc(bob, "users", "bobUid"), { accesJusqua: Timestamp.fromDate(new Date("2030-01-01")) }));
+    await cas("retire lui-meme son acces : refuse (admin seul)", false, () => updateDoc(doc(anna, "users", "annaUid"), { accesAVie: deleteField() }));
+    await cas("un autre offre l'acces a quelqu'un : refuse", false, () => updateDoc(doc(bob, "users", "annaUid"), { accesAVie: true }));
+    await cas("la personne supprime son document (suppression du compte)", true, () => deleteDoc(doc(anna, "users", "annaUid")));
+
     console.log("AUTRES LANGUES (progression)");
     for(const coll of ["usuariosEs", "usersEn", "usersPt", "usersJa"]){
         await cas(coll + " : sauvegarde", true, () => setDoc(doc(anna, coll, "annaUid"), { progressJson: "{}", updatedAt: serverTimestamp() }, { merge: true }));
+        await cas(coll + " : s'offre l'acces a vie : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), { accesAVie: true }, { merge: true }));
+        await cas(coll + " : s'offre 4 mois a la creation : refuse", false, () => setDoc(doc(bob, coll, "bobUid"), { accesJusqua: dans4mois() }));
+        await cas(coll + " : s'ouvre un essai : refuse", false, () => setDoc(doc(anna, coll, "annaUid"), { essais: ["anglais"] }, { merge: true }));
         await cas(coll + " : un autre ecrit : refuse", false, () => setDoc(doc(bob, coll, "annaUid"), { progressJson: "{}" }, { merge: true }));
         await cas(coll + " : suppression", true, () => deleteDoc(doc(anna, coll, "annaUid")));
     }

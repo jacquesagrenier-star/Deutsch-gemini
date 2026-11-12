@@ -11,7 +11,10 @@ Le tableau de bord admin affiche ce que chaque compte écrit dans son
 règles actuelles laissent chacun y écrire **n'importe quoi** : un prénom de
 mille caractères, du code à la place d'un nombre, l'adresse d'un autre testeur.
 Elles laissent aussi chacun s'ouvrir lui-même un essai réservé (l'anglais, les
-examens) ou les chapitres VHS. Et un compte peut se créer sans code
+examens) ou les chapitres VHS, et — ce que relève la session de l'abonnement
+(section D de `abonnement/GUIDE-MAGASINS.md`, fusionnée ici le 11 nov.) — se
+poser `accesAVie` ou `accesJusqua` dans `users/<uid>`, donc **s'offrir
+l'abonnement**, ou réécrire le début de son essai de 7 jours. Et un compte peut se créer sans code
 d'invitation (la vérification se fait dans l'app, pas chez Firebase).
 
 L'app est corrigée de son côté (version de ce correctif : tout texte venu d'un compte s'affiche
@@ -25,6 +28,8 @@ comme du texte). Les règles ferment la porte du côté de Firebase.
 | Résumés | n'importe quel champ, n'importe quel contenu | les 13 champs que l'app écrit, chacun de son type et de sa taille |
 | Adresse dans le résumé | libre | forcément celle du compte connecté |
 | S'ouvrir un essai ou les VHS | possible | refusé : seul l'admin les ouvre |
+| S'offrir l'abonnement (`accesAVie`, `accesJusqua`) | possible | refusé : seul l'admin les pose, dans `users` ; personne ne peut les écrire dans les autres langues ni dans les résumés |
+| Début de l'essai (`essaiDebut`) | libre | écrit une seule fois, à l'heure du serveur ; ni réécrit, ni effacé, ni posé par l'admin |
 | Progression, codes d'invitation, lectures | inchangés | inchangés |
 
 Bornes des résumés : prénom 60 caractères, retours 20 000, mots demandés 150,
@@ -35,14 +40,17 @@ déjà le résumé à ces bornes (depuis ce correctif) : une écriture normale n
 ## Éprouvé avant d'être proposé
 
 Dans l'émulateur Firebase local (un projet fictif, rien n'est parti vers le
-vrai Firebase), 146 cas, avec le SDK de l'app :
+vrai Firebase), 195 cas, avec le SDK de l'app (146 pour l'audit, 49 pour
+l'abonnement) :
 
-- **Nouvelles règles : 146 sur 146.** Toutes les écritures normales passent
+- **Nouvelles règles : 195 sur 195.** Toutes les écritures normales passent
   (inscription, sauvegarde, résumé, notifications, suppression du compte,
-  boutons admin, « Reconstruire les résumés », codes d'invitation), et toutes
-  les attaques sont refusées.
-- **Règles actuelles : 53 attaques passent** (prénom trop long, compteur en
-  texte, champ inconnu, adresse d'un autre, essai ou VHS auto-attribué…).
+  boutons admin, « Reconstruire les résumés », codes d'invitation, début de
+  l'essai écrit par l'app, accès offert par l'admin puis sauvegarde ordinaire),
+  et toutes les attaques sont refusées.
+- **Règles actuelles : 88 attaques passent** (prénom trop long, compteur en
+  texte, champ inconnu, adresse d'un autre, essai ou VHS auto-attribué,
+  accès à vie ou 4 mois offerts à soi-même, début d'essai réécrit…).
 
 Le banc d'essai se relance ainsi (Java et Firebase CLI sont installés) :
 `securite/essai-regles/` → voir son `LISEZ-MOI.md`.
@@ -89,7 +97,6 @@ quand même).
 - **Taille des documents de progression** : pas bornée ici. Firestore refuse
   de lui-même au-delà de 1 Mio, et une borne plus basse risquerait de refuser
   en silence la sauvegarde d'un testeur assidu.
-- **Si l'abonnement écrit un jour un droit dans Firestore** (par exemple une
-  date d'accès offert), ce champ doit rejoindre `accesReserves()`, sinon
-  chacun pourrait se l'accorder. Aujourd'hui, l'essai de 7 jours lit la date
-  de création du compte Firebase, que personne ne peut réécrire.
+- **Un champ de droit d'accès ajouté plus tard** doit rejoindre
+  `accesReserves()`, sinon chacun pourrait se l'accorder. L'abonnement payé,
+  lui, n'est pas dans Firestore : RevenueCat le dit à l'app.
