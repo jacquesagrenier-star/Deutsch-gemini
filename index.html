@@ -72251,8 +72251,10 @@ function majPartsSeance(){
         // ne vois plus de progression »).
         if(reprise){
             const k = document.getElementById("flashKicker"), h = document.getElementById("flashThemeTitle");
-            if(k) k.textContent = t("seance_titre");
-            if(h) h.textContent = currentTheme.name || "";
+            // la reprise de fin de seance (lancerRepriseSeance) a son titre a elle, pas « Ma seance du jour »
+            const apres = !!(REPRISE_ERREURS && currentCards === REPRISE_ERREURS);
+            if(k) k.textContent = t(apres ? "fin_rev_kicker" : "seance_titre");
+            if(h) h.textContent = apres ? t("fin_rev_entete") : (currentTheme.name || "");
             if(box){
                 const b = document.createElement("i");
                 b.className = "ici";
@@ -72460,6 +72462,10 @@ function majPlanPilule(){
     if(!el) return;
     let plan = null;
     try{ plan = planSeanceDuJour(); }catch(e){ plan = null; }
+    // La seance du jour faite : la ligne du plan le dit, a sa place (le niveau, a cote, reste).
+    let faite = false;
+    try{ faite = objectifRetire() && etatSeanceAccueil() === "faite"; }catch(e){}
+    if(faite) plan = "✓ " + t("legere_fin_une");
     if(plan){ el.removeAttribute("data-i18n"); el.textContent = plan; }
     else { el.setAttribute("data-i18n", "seance_contenu"); el.textContent = t("seance_contenu"); }
     el.classList.toggle("pa-plan", !!plan);
@@ -72861,8 +72867,7 @@ function majBoutonSeance(){
     if(b) b.setAttribute("aria-label", txt);
     const pil = document.getElementById("seancePilule");
     if(pil) pil.classList.toggle("seance-faite", e === "faite");
-    const sens = document.getElementById("spSens");
-    if(sens && e === "faite") sens.textContent = "✓ " + t("legere_fin_une");
+    try{ majPlanPilule(); }catch(err){}
 }
 function majAnneauSeance(){
     if(objectifRetire()){ try{ majBoutonSeance(); }catch(e){} }

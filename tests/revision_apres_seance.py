@@ -235,8 +235,8 @@ def main():
                             juge.append("%d mot(s) neuf(s) dans la reprise" % rep["neufs"])
                         if rep["horsSeance"]:
                             juge.append("%d carte(s) hors de la seance (%d en tout)" % (rep["horsSeance"], rep["n"]))
-                        if e2["kicker"] == e1["kicker"] and e2["titre"] == e1["titre"]:
-                            juge.append("la reprise garde le titre de la seance")
+                        if page.evaluate("() => t('seance_titre')") in (e2["kicker"] or "") or page.evaluate("() => t('seance_titre')") in (e2["titre"] or ""):
+                            juge.append("la reprise garde le titre de la seance (%s · %s)" % (e2["kicker"], e2["titre"]))
                         page.evaluate(JOUER, [0, 0])
                         e3 = page.evaluate(ETAT)
                         cap("3-fin-reprise")
@@ -266,7 +266,9 @@ def main():
                         lignes.append(("accueil", e5))
                         if e5["ecran"] != "home":
                             juge.append("pas revenu a l'accueil (%s)" % e5["ecran"])
-                        if e5["bouton"] != att["encore"] or att["faite"] not in (e5["sens"] or ""):
+                        plan = page.evaluate("() => { const e = document.querySelector('#seancePilule .pa-contenu'); return e ? e.textContent : ''; }")
+                        e5["plan"] = plan
+                        if e5["bouton"] != att["encore"] or att["faite"] not in plan or e5["sens"] == plan:
                             juge.append("l'accueil ne dit pas la seance faite (« %s » / « %s »)" % (e5["bouton"], (e5["sens"] or "")[:40]))
                         if e5["finies"] != e1["finies"] or e5["nbSeances"] != e1["nbSeances"]:
                             juge.append("le compte des seances a change (%s/%s -> %s/%s)" % (e1["finies"], e1["nbSeances"], e5["finies"], e5["nbSeances"]))
