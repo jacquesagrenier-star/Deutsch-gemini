@@ -2,6 +2,8 @@
 
 Préparé le 11 nov. 2026 (décision du 11 nov. : « Vérifier d'abord la règle d'Apple sur un accès gratuit limité dans le temps géré par l'app »). **Rien n'est envoyé** : c'est Jacques qui l'envoie, depuis son compte développeur.
 
+> ⏸ **En attente** (décision de Jacques, 11 nov., `decisions/DECISIONS.md`) : rien n'est envoyé à Apple au sujet de l'abonnement, et le contrat Paid Apps n'est pas signé, **tant que l'adresse de l'entreprise n'est pas corrigée chez Apple**.
+
 ## Pourquoi la question se pose
 
 Ce que disent les règles d'Apple (App Review Guidelines, à relire sur la page en ligne avant l'envoi — la lecture du 11 nov. n'a pu en obtenir qu'un résumé fidèle, pas le texte mot pour mot) :
