@@ -6663,7 +6663,10 @@ body.apercu-gratuit::after{content:"Aperçu gratuit"; position:fixed; top:calc(e
 body[data-apercu-essai]::after{content:"Essai simulé · jour " attr(data-apercu-essai); position:fixed; top:calc(env(safe-area-inset-top, 0px) + 4px); left:50%;
   transform:translateX(-50%); z-index:9998; pointer-events:none; font:600 11px/1 system-ui, sans-serif;
   padding:4px 10px; border-radius:999px; background:#E8A23A; color:#1C2430; opacity:.92;}
-.essai-compteur{display:inline-flex; align-items:center; gap:6px; width:auto; min-height:auto; margin:2px 0 6px;
+/* L'accueil est une colonne flex ordonnee (.home-greeting-row : order 1) : meme
+   ordre, et place APRES dans le HTML, le compteur vient sous le salut ; sans
+   align-self, la colonne l'etirait sur toute la largeur. */
+.essai-compteur{order:1; align-self:flex-start; display:inline-flex; align-items:center; gap:6px; width:auto; min-height:auto; margin:-4px 0 10px;
   padding:4px 12px; border-radius:999px; border:1px solid var(--wt-bordure-accent); background:var(--wt-teinte);
   color:inherit; font:inherit; font-size:12.5px; font-weight:600; cursor:pointer; opacity:.85;}
 .essai-compteur::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--wt-ambre); flex:none;}
