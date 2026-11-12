@@ -76,6 +76,11 @@ Laissés de côté exprès, à trancher à la relecture :
 - **o basquetebol → o basquete**, **a erva → a grama ou o capim** (le corpus du Brésil a déjà « grama » pour relva).
 - **castanho → marrom** : la page des vêtements dit « marrom » au Brésil (une jaqueta marrom), mais une conversion de
   texte changerait aussi « cabelo castanho », qui reste castanho au Brésil. Sans carte au corpus du Brésil.
+- **o tempo inteiro / o tempo parcial (Portugal) et o período integral / o meio período (Brésil)** : le corpus du Portugal a
+  les deux paires (les formes du Brésil y étaient déjà), sans conversion : « tempo parcial » → « meio período » ferait
+  « a meio período » de « a tempo parcial ». Le thème du travail (lot P4) vise la forme de chaque variante. **a baixa
+  (médica)** (l'arrêt maladie, Portugal ; o atestado médico au Brésil) reste hors du corpus : une conversion toucherait
+  « a Baixa » de Lisbonne et « maré baixa ».
 - **as calças → a calça** : le Brésil dit surtout « a calça » au singulier (la page des vêtements aussi) ; « as calças »
   s'y dit encore. La carte du Brésil reste « as calças », à trancher à la relecture.
 

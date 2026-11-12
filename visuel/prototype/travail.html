@@ -16,7 +16,10 @@
   reserve de leurres clairement faux, la phrase juste et sa traduction). On corrige le script, jamais le JSON.
   Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne » a
   chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin.
-  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte), variante=latam.
+  En portugais (lot P4, 12 nov. 2026), Mark a Lisbonne, la senhora Costa (Viagens Tejo), le Tiago et la Marta ;
+  variante=br : le Bresil (memes gens, meme ville, la langue du Bresil). travail.json porte pt_ et br_, poses sous
+  « pt » au chargement (portugaisAppris) : la cle « pt » y est la traduction bresilienne pour qui apprend es ou de.
+  Parametres : apprendre=es|de|pt, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte), variante=latam|br.
   Le tirage suit les mots (themes/tirage.js).
 -->
 <style>
@@ -135,7 +138,17 @@ html.nuit .papier .lettre .signe{color:#9CC3FF}
 <script src="themes/fin.js?v=2"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const APPRENDRE = ["de", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+// le portugais (lot P4, 12 nov. 2026) : Lisbonne ; &variante=br, le Bresil. travail.json porte pt_ et br_, que le
+// chargement pose sous « pt » (portugaisAppris) : la cle « pt » y est la traduction bresilienne de l'interface
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
+function portugaisAppris(o){
+  if (Array.isArray(o)) o.forEach(portugaisAppris);
+  else if (o && typeof o === "object"){
+    if ("pt_" in o) o.pt = (BR && "br_" in o) ? o.br_ : o.pt_;
+    for (const k in o) if (k !== "pt" && k !== "pt_" && k !== "br_") portugaisAppris(o[k]);
+  }
+}
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
@@ -163,6 +176,12 @@ const TEXTES = {
               pt:"Jornada completa: 40 horas por semana; media jornada: cerca de 20; por horas: poucas horas pagas por hora. Candidata-se com solicitar: solicitar el puesto de camarero. A carta começa com Estimada señora …: (com dois-pontos) e termina com Un cordial saludo. Na entrevista, usa-se usted: ¿Puede usted empezar el lunes?; entre colegas, tú: ¿Me puedes ayudar? Uma qualidade leva ser (Lucía es trabajadora); um estado do momento, estar (Mark está enfermo).",
               ar:"Jornada completa: ‏40 ساعة في الأسبوع؛ media jornada: نحو 20؛ por horas: بضع ساعات مدفوعة بالساعة. نتقدم للوظيفة بـ solicitar: solicitar el puesto de camarero. تبدأ الرسالة بـ Estimada señora …: (مع نقطتين) وتنتهي بـ Un cordial saludo. في المقابلة نقول usted: ¿Puede usted empezar el lunes?؛ وبين الزملاء tú: ¿Me puedes ayudar? الصفة الدائمة مع ser ‏(Lucía es trabajadora)، والحالة المؤقتة مع estar ‏(Mark está enfermo).",
               de:"Jornada completa: 40 Stunden pro Woche; media jornada: etwa 20; por horas: ein paar Stunden, pro Stunde bezahlt. Man bewirbt sich mit solicitar: solicitar el puesto de camarero. Der Brief beginnt mit Estimada señora …: (mit Doppelpunkt) und endet mit Un cordial saludo. Im Vorstellungsgespräch sagt man usted: ¿Puede usted empezar el lunes?; unter Kollegen tú: ¿Me puedes ayudar? Eine Eigenschaft steht mit ser (Lucía es trabajadora), ein Zustand im Moment mit estar (Mark está enfermo)."},
+  // le portugais appris : l'interface en francais (et en anglais)
+  reglePt:   {fr:"A tempo inteiro : environ 40 heures par semaine ; a tempo parcial : moins, souvent 20 ; à hora : payé à l'heure. On postule avec candidatar-se a : Candidato-me à vaga de rececionista (a + a = à). Au Portugal, le pronom se met après le verbe : candidata-se, chama-se. La lettre commence par Exma. Senhora, / Exmo. Senhor, et finit par Com os melhores cumprimentos. En entretien et avec la cheffe, on dit o senhor / a senhora, ou le verbe seul (Quando pode começar?) ; entre collègues, tu : Podes ajudar-me? Une qualité se dit avec ser (A Marta é uma pessoa trabalhadora) ; un état du moment avec estar (O Mark está doente).",
+              en:"A tempo inteiro: about 40 hours a week; a tempo parcial: fewer, often 20; à hora: paid by the hour. You apply with candidatar-se a: Candidato-me à vaga de rececionista (a + a = à). In Portugal the pronoun goes after the verb: candidata-se, chama-se. The letter starts with Exma. Senhora, / Exmo. Senhor, and ends with Com os melhores cumprimentos. In the interview and with the boss you say o senhor / a senhora, or the verb alone (Quando pode começar?); between colleagues, tu: Podes ajudar-me? A quality takes ser (A Marta é uma pessoa trabalhadora); a state right now takes estar (O Mark está doente)."},
+  regleBr:   {fr:"Período integral : environ 40 heures par semaine ; meio período : environ 20 ; por hora : payé à l'heure. On postule avec candidatar-se a : Eu me candidato à vaga de recepcionista (a + a = à). Au Brésil, le pronom se met avant le verbe : se candidata, se chama ; et pas d'article devant un prénom (Mark, Marta). La lettre commence par Prezada Sra. … / Prezado Sr. … et finit par Atenciosamente. En entretien et avec la cheffe, on dit o senhor / a senhora ; entre collègues, você. Les deux prennent la forme de « ele » : Você pode me ajudar? Une qualité se dit avec ser (Marta é uma pessoa trabalhadora) ; un état du moment avec estar (Mark está doente).",
+              en:"Período integral: about 40 hours a week; meio período: about 20; por hora: paid by the hour. You apply with candidatar-se a: Eu me candidato à vaga de recepcionista (a + a = à). In Brazil the pronoun goes before the verb: se candidata, se chama; and no article before a first name (Mark, Marta). The letter starts with Prezada Sra. … / Prezado Sr. … and ends with Atenciosamente. In the interview and with the boss you say o senhor / a senhora; between colleagues, você. Both take the « ele » form: Você pode me ajudar? A quality takes ser (Marta é uma pessoa trabalhadora); a state right now takes estar (Mark está doente)."},
+  c_registreBr:{fr:"Você ou o senhor : choisis la bonne forme du verbe (celle de « ele »).", en:"Você or o senhor: choose the right form of the verb (the « ele » form)."},
   c_umfang:  {fr:"Lis l'annonce : quel type de poste est-ce ?", en:"Read the advert: what kind of job is it?", tr:"İlanı oku: bu ne tür bir iş?", uk:"Прочитай оголошення: яка це робота?", fa:"آگهی را بخوان: این چه نوع کاری است؟", ar:"اقرأ الإعلان: ما نوع هذه الوظيفة؟", pt:"Leia o anúncio: que tipo de vaga é?", pl:"Przeczytaj ogłoszenie: jaki to rodzaj pracy?", ru:"Прочитай объявление: что это за работа?", de:"Lies die Anzeige: Was für eine Stelle ist das?"},
   c_annonce: {fr:"Lis l'annonce et réponds.", en:"Read the advert and answer.", tr:"İlanı oku ve cevap ver.", uk:"Прочитай оголошення й дай відповідь.", fa:"آگهی را بخوان و جواب بده.", ar:"اقرأ الإعلان وأجب.", pt:"Leia o anúncio e responda.", pl:"Przeczytaj ogłoszenie i odpowiedz.", ru:"Прочитай объявление и ответь.", de:"Lies die Anzeige und antworte."},
   c_qualite: {fr:"Que fait cette personne ? Choisis la qualité qui va avec.", en:"What does this person do? Choose the quality that fits.", tr:"Bu kişi ne yapıyor? Uygun özelliği seç.", uk:"Що робить ця людина? Обери відповідну рису.", fa:"این شخص چه می‌کند؟ ویژگی مناسب را انتخاب کن.", ar:"ماذا يفعل هذا الشخص؟ اختر الصفة المناسبة.", pt:"O que essa pessoa faz? Escolha a qualidade certa.", pl:"Co robi ta osoba? Wybierz pasującą cechę.", ru:"Что делает этот человек? Выбери подходящее качество.", de:"Was macht diese Person? Wähle die passende Eigenschaft."},
@@ -207,7 +226,7 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 
 // ---------- la donnee (travail.json) ----------
 let D = null, QS = [], GENS = null;
-const ES_ = APPRENDRE === "es";
+const ES_ = APPRENDRE === "es", PT_ = APPRENDRE === "pt";
 const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && ES_));
 const TL = PHRASE_TRADUITE ? LANGUE : null;                  // la langue des phrases traduites, sinon rien
 const traduction = t => t ? '<span class="trad" dir="auto">' + esc(t) + '</span>' : "";
@@ -244,7 +263,7 @@ function papierAnnonce(id, champ, cache, anon){
     const v = k === champ && cache ? '<span class="cache">?</span>' : esc(val);
     return '<tr' + (k === champ ? ' class="vise"' : "") + '>' + (lab ? '<td>' + esc(lab) + '</td><td>' + v + '</td>' : '<td class="seul" colspan="2">' + v + '</td>') + '</tr>';
   }).join("");
-  return '<div class="papier" lang="' + APPRENDRE + '">' + entete((anon ? "" : (ES_ ? "Oferta de empleo · " : "Stellenanzeige · ")) + a.firma) + '<h3>' + esc(a.titre) + '</h3>'
+  return '<div class="papier" lang="' + APPRENDRE + '">' + entete((anon ? "" : (ES_ ? "Oferta de empleo · " : PT_ ? "Oferta de emprego · " : "Stellenanzeige · ")) + a.firma) + '<h3>' + esc(a.titre) + '</h3>'
     + '<div class="intro">' + esc(a.intro) + '</div><table>' + lignes + '</table></div>';
 }
 function papierCv(ri, li, cache, anon){
@@ -269,7 +288,7 @@ function papierContrat(vise, cache, anon){
 }
 function papierAppel(sym, i, ligne){
   const lignes = D.appels[APPRENDRE][sym].slice(0, i + 1);
-  const nomDe = qui => qui === "mark" ? "Mark" : (ES_ ? "Sra. Navarro" : "Frau Schneider");
+  const nomDe = qui => qui === "mark" ? "Mark" : (ES_ ? "Sra. Navarro" : PT_ ? "Sra. Costa" : "Frau Schneider");
   return '<div class="appel" lang="' + APPRENDRE + '"><div class="tel">' + esc(T("appelTel")) + '</div>' + lignes.map(([qui, t], j) =>
     '<div class="b ' + qui + (j === i ? " vise" : "") + '"><span class="qui">' + esc(nomDe(qui)) + '</span>' + avecTrou(j === i && ligne ? ligne : t) + '</div>').join("") + '</div>';
 }
@@ -295,7 +314,7 @@ function juger(ok, bonneTexte, phrase){
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const g = motQ ? glose(motQ) : "";
-  m.innerHTML = (ok ? cible(ES_ ? "¡Muy bien!" : "Sehr gut!") : T("bonne", {r: cible(esc(bonneTexte))}))
+  m.innerHTML = (ok ? cible(ES_ ? "¡Muy bien!" : PT_ ? "Muito bem!" : "Sehr gut!") : T("bonne", {r: cible(esc(bonneTexte))}))
     + (phrase && (ok || phrase !== bonneTexte) ? '<span class="phrase">' + cible(esc(phrase)) + '</span>' : "")
     + traduction(tradQ)
     + (!ok && choixFaux && choixFaux.trad ? '<span class="trad faux" dir="auto">' + T("choix", {c: cible(esc(choixFaux.texte)) + " — " + esc(choixFaux.trad)}) + '</span>' : "")
@@ -334,7 +353,8 @@ function images(conteneur, ids, bonne, apres){
   });
 }
 // vrai / faux, oui / non : toujours dans cet ordre
-const PAIRES_VF = [["Richtig", "Falsch"], ["Ja", "Nein"], ["Verdadero", "Falso"], ["Sí", "No"]];
+// (le portugais a ses paires a part : « Falso » est aussi espagnol, la premiere paire trouvee serait espagnole)
+const PAIRES_VF = PT_ ? [["Verdadeiro", "Falso"], ["Sim", "Não"]] : [["Richtig", "Falsch"], ["Ja", "Nein"], ["Verdadero", "Falso"], ["Sí", "No"]];
 
 // UNE QUESTION : elle vient toute faite de travail.json ; la page la dessine
 function poser(q){
@@ -403,7 +423,7 @@ function decouvrir(){
     + (etapes.length ? '<div class="section">' + T("secEtapes") + '</div>' + planche("pEt", etapes.map(a => ["a:" + a.id, a.img, a.ph])) : "")
     + (docs.length ? '<div class="section">' + T("secDocs") + '</div>' + planche("pDoc", docs.map(k => ["d:" + k, k, D.docs[APPRENDRE][k][0]])) : "")
     + '<div class="section">' + T("secAnnonce") + '</div>' + papierAnnonce("sonnenweg", null, false)
-    + '<p class="regle">' + isoler(T(ES_ ? "regleEs" : "regleDe")) + '</p>';
+    + '<p class="regle">' + isoler(T(ES_ ? "regleEs" : PT_ ? (BR ? "regleBr" : "reglePt") : "regleDe")) + '</p>';
   const fiche = (img, mot, sens, dit, trad) => {
     const f = $("fiche"); f.className = "fiche" + (img ? "" : " sans");
     f.innerHTML = (img ? '<img alt="" src="' + imgSrc(img) + '">' : "") + '<div><div class="mot">' + cible(esc(mot)) + '</div><div class="sens">' + esc(sens || "") + '</div>'
@@ -415,7 +435,7 @@ function decouvrir(){
     document.querySelectorAll(".planche button").forEach(b => b.classList.toggle("choisi", b.dataset.k === cle));
     const [t, id] = cle.split(":");
     if (t === "a"){ const a = D.actions[APPRENDRE].find(x => x.id === id); fiche(a.img, a.v, glose({mot: a.v, cat: "verbe"}), a.ph, TL ? a.t[TL] : null); }
-    else { const d = D.docs[APPRENDRE][id]; fiche(id, d[1] + " " + d[0], glose({mot: d[0], genre: d[1]}), (ES_ ? "Es " : "Das ist ") + d[1] + " " + d[0] + ".", TL ? ({fr: "C'est ", en: "This is ", pt: "É ", de: "Das ist "}[TL] + d[2][TL] + ".") : null); }
+    else { const d = D.docs[APPRENDRE][id]; fiche(id, d[1] + " " + d[0], glose({mot: d[0], genre: d[1]}), (ES_ ? "Es " : PT_ ? "É " : "Das ist ") + d[1] + " " + d[0] + ".", TL ? ({fr: "C'est ", en: "This is ", pt: "É ", de: "Das ist "}[TL] + d[2][TL] + ".") : null); }
   };
   document.querySelectorAll(".planche button").forEach(b => b.addEventListener("click", () => choisir(b.dataset.k)));
   const garde = dire; dire = () => {};
@@ -507,8 +527,10 @@ $("retour").addEventListener("click", () => parler("fermer"));
 $("retour").setAttribute("aria-label", T("retourAria"));
 $("titre").textContent = T("titre");
 document.title = T("titre");
-fetch("travail/travail.json?v=1").then(r => r.json()).then(d => {
-  D = d; GENS = D.gens[APPRENDRE];
+fetch("travail/travail.json?v=2").then(r => r.json()).then(d => {
+  D = d;
+  if (PT_) portugaisAppris(D);
+  GENS = D.gens[APPRENDRE];
   QS = D.questions[APPRENDRE].filter(utilisable);
   // un mot sans aucune question utilisable (son image n'est pas encore faite) ne sort pas du tirage
   MOTS_THEME = motsDuTheme().filter(w => QS.some(q => memeMot(q.w, w)));

@@ -22,6 +22,12 @@ LES DEUX MONDES (les memes images, des phrases ecrites pour chaque langue), comm
     Frau Schneider, du service client de Sonnenweg Reisen. Ses collegues : Jonas et Lisa.
   - en espagnol, le Mark de « Mark en Madrid » (mexicain, ne a Mexico, comme dans « Les demarches ») ; la meme cheffe
     est la senora Navarro de Viajes Solano, ses collegues Jorge et Lucia.
+  - en portugais (lot P4, 12 nov. 2026), Mark Garnier a LISBONNE (il vient de Montreal et APPREND le portugais) ; la
+    meme cheffe est la senhora Costa de Viagens Tejo, ses collegues le Tiago et la Marta. Le Portugal d'abord (cle
+    « pt_ ») et le Bresil (cle « br_ ») : memes gens, meme ville, la langue du Bresil (« Mark » sans article, le
+    pronom avant le verbe, voce, equipe, periodo integral, Atenciosamente). PAS la cle « pt » : elle est deja la
+    TRADUCTION en portugais du Bresil pour qui apprend es ou de ; la page pose pt_ (ou br_) sous « pt » au chargement.
+    Les tables portugaises s'ecrivent une fois, sous « PT », avec PB(portugal, bresil) la ou le Bresil differe.
 Ni Anna ni sa famille : le travail de Mark n'est pas le leur.
 
 LES PHRASES SONT FABRIQUEES ICI, depuis ces tables, et la page ne fait que les tirer : chaque question porte le mot
@@ -51,8 +57,29 @@ REFERENCES = {"Mark": PRINCIPAL + "/video/episode-02-beim-buergeramt/01-images/m
               "Salon": W + "/journee/img/mark-6.png",                     # le salon de Mark, son petit bureau
               "Chambre": W + "/journee/img/mark-1.png",                   # la chambre de Mark
               "Equipe": DOSSIER + "/kollegen.png"}                         # les deux collegues, une fois faits
-LANGUES = {"es": ["fr", "en", "pt", "ar", "de"], "de": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"]}
-TL = {"es": ["fr", "en", "pt", "de"], "de": ["fr", "en", "pt"]}        # les langues des phrases traduites en entier
+LANGUES = {"es": ["fr", "en", "pt", "ar", "de"], "de": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"],
+           "pt_": ["fr", "en"], "br_": ["fr", "en"]}                    # le portugais appris : interface fr, puis en
+TL = {"es": ["fr", "en", "pt", "de"], "de": ["fr", "en", "pt"], "pt_": ["fr", "en"], "br_": ["fr", "en"]}  # les langues des phrases traduites en entier
+APPRIS = ("de", "es", "pt_", "br_")                                       # pt_ : le Portugal ; br_ : le Bresil
+
+
+class PB:
+    """Une valeur portugaise qui differe au Bresil : PB(portugal, bresil)."""
+    def __init__(self, pt, br):
+        self.pt, self.br = pt, br
+
+
+def R(x, br):
+    """La table portugaise pour le Portugal (br False) ou le Bresil (br True)."""
+    if isinstance(x, PB):
+        return R(x.br if br else x.pt, br)
+    if isinstance(x, dict):
+        return {k: R(v, br) for k, v in x.items()}
+    if isinstance(x, list):
+        return [R(v, br) for v in x]
+    if isinstance(x, tuple):
+        return tuple(R(v, br) for v in x)
+    return x
 
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -66,8 +93,13 @@ GENS = {
            "chef":  {"n": "la señora Navarro", "g": "f", "t": {"fr": "Mme Navarro", "en": "Ms Navarro", "pt": "a Sra. Navarro", "de": "Frau Navarro"}},
            "m":     {"n": "Jorge", "g": "m"},
            "f":     {"n": "Lucía", "g": "f"}},
+    # le portugais : « o Mark », « a Marta » au Portugal (l'article devant le prenom), le prenom seul au Bresil
+    "PT": {"mark":  {"n": PB("o Mark", "Mark"), "g": "m", "t": {"fr": "Mark", "en": "Mark"}},
+           "chef":  {"n": "a senhora Costa", "g": "f", "t": {"fr": "Mme Costa", "en": "Ms Costa"}},
+           "m":     {"n": PB("o Tiago", "Tiago"), "g": "m", "t": {"fr": "Tiago", "en": "Tiago"}},
+           "f":     {"n": PB("a Marta", "Marta"), "g": "f", "t": {"fr": "Marta", "en": "Marta"}}},
 }
-FIRME = {"de": "Sonnenweg Reisen", "es": "Viajes Solano"}
+FIRME = {"de": "Sonnenweg Reisen", "es": "Viajes Solano", "PT": "Viagens Tejo"}
 
 
 def gens(langue, k, l=None):
@@ -99,7 +131,9 @@ def lohn(x, par, l):
             "es": {"monat": e + " al mes", "stunde": e + " la hora"},
             "fr": {"monat": e + " par mois", "stunde": e + " de l'heure"},
             "en": {"monat": e + " a month", "stunde": e + " an hour"},
-            "pt": {"monat": e + " por mês", "stunde": e + " por hora"}}[l][par]
+            "pt": {"monat": e + " por mês", "stunde": e + " por hora"},
+            "pt_": {"monat": e + " por mês", "stunde": e + " por hora"},
+            "br_": {"monat": e + " por mês", "stunde": e + " por hora"}}[l][par]
 
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -114,6 +148,14 @@ def contact(c, l, cas="n"):
         return {"n": ("la señora " if f else "el señor ") + nom, "akk": ("a la señora " if f else "al señor ") + nom,
                 "brief": ("Estimada señora " if f else "Estimado señor ") + nom + ":",
                 "faux": ("Estimado señora " if f else "Estimada señor ") + nom + ":"}[cas]
+    if l in ("pt_", "br_"):
+        # la lettre : « Exma. Senhora, » au Portugal, « Prezada Sra. Costa, » au Bresil ; faux : le genre qui ne va pas
+        sr = ("a senhora " if f else "o senhor ") + nom
+        if l == "pt_":
+            brief, faux = ("Exma. Senhora," if f else "Exmo. Senhor,"), ("Exmo. Senhora," if f else "Exma. Senhor,")
+        else:
+            brief, faux = ("Prezada Sra. " if f else "Prezado Sr. ") + nom + ",", ("Prezado Sra. " if f else "Prezada Sr. ") + nom + ","
+        return {"n": sr, "akk": "para " + sr, "aff": ("Sra. " if f else "Sr. ") + nom, "brief": brief, "faux": faux}[cas]
     return {"fr": ("Mme " if f else "M. ") + nom, "en": ("Ms " if f else "Mr ") + nom,
             "pt": ("a Sra. " if f else "o Sr. ") + nom}[l]
 
@@ -129,6 +171,12 @@ BEGINN = {
     "15jan":  {"de": ["ab dem 15. Januar", "am 15. Januar"], "es": ["a partir del 15 de enero", "el 15 de enero"],
                "fr": ["à partir du 15 janvier", "le 15 janvier"], "en": ["from 15 January", "on 15 January"], "pt": ["a partir de 15 de janeiro", "em 15 de janeiro"]},
 }
+# le portugais appris (« pt » est deja la traduction) : « 1 de dezembro » au Portugal, « 1º de dezembro » au Bresil
+for _k, _pt, _br in (("sofort", ["imediato", "imediatamente"], ["imediato", "imediatamente"]),          # l'annonce : « Início: imediato »
+                     ("1dez", ["a partir de 1 de dezembro", "no dia 1 de dezembro"], ["a partir de 1º de dezembro", "no dia 1º de dezembro"]),
+                     ("1jan", ["a partir de 1 de janeiro", "no dia 1 de janeiro"], ["a partir de 1º de janeiro", "no dia 1º de janeiro"]),
+                     ("15jan", ["a partir de 15 de janeiro", "no dia 15 de janeiro"], ["a partir de 15 de janeiro", "no dia 15 de janeiro"])):
+    BEGINN[_k]["pt_"], BEGINN[_k]["br_"] = _pt, _br
 
 # LE TEMPS DE TRAVAIL. mot / genre : le mot du corpus vise (None : aucun) ; satz : la phrase « Die Stelle ist in Vollzeit. »
 UMFANG = {
@@ -138,7 +186,18 @@ UMFANG = {
     "es": {"vollzeit": {"mot": "jornada completa", "genre": "la", "wort": "jornada completa", "satz": "Es un puesto de jornada completa."},
            "teilzeit": {"mot": "media jornada", "genre": "la", "wort": "media jornada", "satz": "Es un puesto de media jornada."},
            "minijob":  {"mot": "trabajo", "genre": "el", "wort": "por horas", "satz": "Es un trabajo por horas."}},
+    # « a tempo inteiro », « a tempo parcial », « à hora » au Portugal ; « período integral », « meio período »,
+    # « por hora » au Bresil (les deux mots du Bresil sont au corpus, ceux du Portugal pas encore)
+    "PT": {"vollzeit": {"mot": PB("tempo inteiro", "período integral"), "genre": "o", "wort": PB("a tempo inteiro", "período integral"),
+                        "satz": PB("É um emprego a tempo inteiro.", "É uma vaga de período integral.")},
+           "teilzeit": {"mot": PB("tempo parcial", "meio período"), "genre": "o", "wort": PB("a tempo parcial", "meio período"),
+                        "satz": PB("É um emprego a tempo parcial.", "É uma vaga de meio período.")},
+           "minijob":  {"mot": "trabalho", "genre": "o", "wort": PB("à hora", "por hora"),
+                        "satz": PB("É um trabalho pago à hora.", "É um trabalho pago por hora.")}},
 }
+UMFANG_T_PT = {"vollzeit": {"fr": "C'est un emploi à temps plein.", "en": "It's a full-time job."},
+               "teilzeit": {"fr": "C'est un emploi à temps partiel.", "en": "It's a part-time job."},
+               "minijob":  {"fr": "C'est un travail payé à l'heure.", "en": "It's a job paid by the hour."}}
 UMFANG_T = {"vollzeit": {"fr": "Le poste est à temps plein.", "en": "The job is full-time.", "pt": "A vaga é de tempo integral.", "de": "Die Stelle ist in Vollzeit."},
             "teilzeit": {"fr": "Le poste est à temps partiel.", "en": "The job is part-time.", "pt": "A vaga é de meio período.", "de": "Die Stelle ist in Teilzeit."},
             "minijob":  {"fr": "Le poste est un mini-job, quelques heures par semaine.", "en": "The job is a mini-job, a few hours a week.", "pt": "A vaga é um minijob, poucas horas por semana.", "de": "Die Stelle ist ein Minijob."}}
@@ -187,12 +246,31 @@ QUALITES = {
         "independiente": {"def": "{P} trabaja bien sol{=o|a}, sin ayuda.", "proches": [],
                           "t": {"fr": ["autonome", "{P} travaille bien seul{=|e}, sans aide."], "en": ["independent", "{P} works well alone, without help."], "pt": ["independente", "{P} trabalha bem sozinh{=o|a}, sem ajuda."], "de": ["selbstständig", "{P} arbeitet gut allein, ohne Hilfe."]}},
     },
+    # le portugais : « sempre » apres le verbe au Portugal (« cumpre sempre »), avant au Bresil (« sempre cumpre »)
+    "PT": {
+        "pontual":       {"def": "{P} nunca chega atrasad{=o|a}.", "proches": ["responsável"],
+                          "t": {"fr": ["ponctuel{=|le}", "{P} n'arrive jamais en retard."], "en": ["punctual", "{P} is never late."]}},
+        "responsável":   {"def": PB("{P} cumpre sempre o que promete.", "{P} sempre cumpre o que promete."), "proches": ["pontual", "trabalhador"],
+                          "t": {"fr": ["responsable", "{P} tient toujours ses promesses."], "en": ["responsible", "{P} always keeps {=his|her} promises."]}},
+        "simpático":     {"def": PB("{P} sorri sempre e cumprimenta os clientes.", "{P} sempre sorri e cumprimenta os clientes."), "proches": [], "f": "simpática",
+                          "t": {"fr": ["aimable", "{P} sourit et salue toujours les clients."], "en": ["friendly", "{P} always smiles and greets the customers."]}},
+        "flexível":      {"def": PB("{P} também pode trabalhar aos fins de semana.", "{P} também pode trabalhar nos fins de semana."), "proches": [],
+                          "t": {"fr": ["flexible", "{P} peut aussi travailler le week-end."], "en": ["flexible", "{P} can also work at weekends."]}},
+        "trabalhador":   {"def": "{P} trabalha muito e faz poucas pausas.", "proches": ["responsável"], "f": "trabalhadora",
+                          "t": {"fr": ["travailleu{=r|se}", "{P} travaille beaucoup et fait peu de pauses."], "en": ["hard-working", "{P} works a lot and takes few breaks."]}},
+        # « organizado » (organise) deborde sur « pontual » et « responsável » : jamais leurre de l'un ni de l'autre
+        "organizado":    {"def": PB("{P} arruma a mesa de trabalho ao fim do dia.", "{P} arruma a mesa de trabalho no fim do dia."), "proches": ["pontual", "responsável"], "f": "organizada",
+                          "t": {"fr": ["organisé{=|e}", "{P} range son bureau à la fin de la journée."], "en": ["organised", "{P} tidies {=his|her} desk at the end of the day."]}},
+        "independente":  {"def": "{P} trabalha bem sozinh{=o|a}, sem ajuda.", "proches": [],
+                          "t": {"fr": ["autonome", "{P} travaille bien seul{=|e}, sans aide."], "en": ["independent", "{P} works well alone, without help."]}},
+    },
 }
-MARK_QUALITES = {"de": ["pünktlich", "zuverlässig", "freundlich", "flexibel"], "es": ["puntual", "responsable", "amable", "flexible"]}
+MARK_QUALITES = {"de": ["pünktlich", "zuverlässig", "freundlich", "flexibel"], "es": ["puntual", "responsable", "amable", "flexible"],
+                 "PT": ["pontual", "responsável", "simpático", "flexível"]}
 
 
 def adj(langue, a, g):
-    return QUALITES[langue][a].get("f", a) if (g == "f" and langue == "es") else a
+    return QUALITES[langue][a].get("f", a) if (g == "f" and langue != "de") else a
 
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -264,6 +342,47 @@ ANNONCES = {
          "kontakt": {"g": "m", "nom": "Sanz"}, "mail": "farmaciaplaza@correo.es", "brief": "Pedro Gómez",
          "t": {"fr": ["chauffeur", "Le nouveau chauffeur travaille pour une pharmacie."], "en": ["driver", "The new driver works for a pharmacy."], "pt": ["motorista", "O novo motorista trabalha para uma farmácia."], "de": ["Fahrer", "Der neue Fahrer arbeitet für eine Apotheke."]}},
     ],
+    # LISBONNE. poste : le poste dans la lettre ; brief_g : le genre de qui ecrit (« Sou pontual e organizada »).
+    # Salaires du Portugal (salario minimo d'environ 870 EUR en 2026) : 1 250 EUR a temps plein dans l'agence, 650 et
+    # 600 EUR pour 20 heures, 6 et 7 EUR de l'heure.
+    "PT": [
+        {"id": "sonnenweg", "firma": "Viagens Tejo", "stelle": PB("Assistente de apoio ao cliente", "Atendente"), "poste": PB("assistente de apoio ao cliente", "atendente"),
+         "mot": "cliente", "genre": "o", "neu": PB("O novo assistente de apoio ao cliente", "O novo atendente"), "ou": PB("numa agência de viagens", "em uma agência de viagens"),
+         "umfang": "vollzeit", "stunden": 40, "lohn": [1250, "monat"], "beginn": "1dez",
+         "erwartet": ["simpático", "responsável"], "plus": "Fala francês e inglês.", "bietet": PB("22 dias de férias, uma boa equipa", "22 dias de férias, uma boa equipe"),
+         "kontakt": {"g": "f", "nom": "Costa"}, "mail": "emprego@viagenstejo.pt", "brief": "Mark",
+         "t": {"fr": ["assistant du service client", "Le nouvel assistant du service client travaille dans une agence de voyages."], "en": ["customer service assistant", "The new customer service assistant works in a travel agency."]}},
+        {"id": "hotel", "firma": "Hotel Alfama", "stelle": PB("Rececionista", "Recepcionista"), "poste": PB("rececionista", "recepcionista"),
+         "mot": PB("rececionista", "recepcionista"), "genre": "o", "neu": PB("O novo rececionista", "O novo recepcionista"), "ou": PB("num hotel", "em um hotel"),
+         "umfang": "teilzeit", "stunden": 20, "lohn": [650, "monat"], "beginn": "15jan",
+         "erwartet": ["simpático", "flexível"], "plus": "Fala bem inglês.", "bietet": "trabalho no centro de Lisboa",
+         "kontakt": {"g": "m", "nom": "Gomes"}, "mail": "rh@hotelalfama.pt", "brief": "Mark",
+         "t": {"fr": ["réceptionniste", "Le nouveau réceptionniste travaille dans un hôtel."], "en": ["receptionist", "The new receptionist works in a hotel."]}},
+        {"id": "cafe", "firma": "Café Aurora", "stelle": PB("Empregado/a de mesa", "Garçom/Garçonete"), "poste": PB("empregado de mesa", "garçom"),
+         "mot": PB("empregado de mesa", "garçom"), "genre": "o", "neu": PB("O novo empregado de mesa", "O novo garçom"), "ou": PB("num café", "em um café"),
+         "umfang": "minijob", "stunden": 10, "lohn": [6, "stunde"], "beginn": "sofort",
+         "erwartet": ["pontual", "simpático"], "plus": PB("Trabalho aos sábados e aos domingos.", "Trabalho aos sábados e domingos."), "bietet": PB("uma equipa jovem", "uma equipe jovem"),
+         "kontakt": {"g": "f", "nom": "Pereira"}, "mail": "ola@cafeaurora.pt", "brief": "Mark",
+         "t": {"fr": ["serveur", "Le nouveau serveur travaille dans un café."], "en": ["waiter", "The new waiter works in a café."]}},
+        {"id": "restaurant", "firma": "Restaurante Oliveira", "stelle": "Cozinheiro/a", "poste": "cozinheiro",
+         "mot": "cozinheiro", "genre": "o", "neu": "O novo cozinheiro", "ou": PB("num restaurante", "em um restaurante"),
+         "umfang": "vollzeit", "stunden": 40, "lohn": [1100, "monat"], "beginn": "1jan",
+         "erwartet": ["trabalhador", "independente"], "plus": "Tem experiência em cozinha.", "bietet": "uma refeição por dia",
+         "kontakt": {"g": "m", "nom": "Almeida"}, "mail": "cozinha@restauranteoliveira.pt", "brief": "João Martins",
+         "t": {"fr": ["cuisinier", "Le nouveau cuisinier travaille dans un restaurant."], "en": ["cook", "The new cook works in a restaurant."]}},
+        {"id": "baeckerei", "firma": "Padaria Sol", "stelle": "Vendedor/a", "poste": "vendedora",
+         "mot": "vendedor", "genre": "o", "neu": "O novo vendedor", "ou": PB("numa padaria", "em uma padaria"),
+         "umfang": "teilzeit", "stunden": 20, "lohn": [600, "monat"], "beginn": "sofort",
+         "erwartet": ["pontual", "organizado"], "plus": "Trabalho de manhã, das 7h às 11h.", "bietet": PB("pão do dia para a equipa", "pão do dia para a equipe"),
+         "kontakt": {"g": "f", "nom": "Rocha"}, "mail": "geral@padariasol.pt", "brief": "Beatriz Lopes", "brief_g": "f",
+         "t": {"fr": ["vendeuse", "Le nouveau vendeur travaille dans une boulangerie."], "en": ["sales assistant", "The new sales assistant works in a bakery."]}},
+        {"id": "apotheke", "firma": "Farmácia Central", "stelle": PB("Condutor/a", "Motorista"), "poste": PB("condutor", "motorista"),
+         "mot": PB("condutor", "motorista"), "genre": "o", "neu": PB("O novo condutor", "O novo motorista"), "ou": "para uma farmácia",
+         "umfang": "minijob", "stunden": 8, "lohn": [7, "stunde"], "beginn": "1dez",
+         "erwartet": ["responsável", "pontual"], "plus": "Leva medicamentos aos nossos clientes.", "bietet": "um carro da farmácia",
+         "kontakt": {"g": "m", "nom": "Sousa"}, "mail": "farmaciacentral@correio.pt", "brief": "Carlos Ferreira",
+         "t": {"fr": ["chauffeur", "Le nouveau chauffeur travaille pour une pharmacie."], "en": ["driver", "The new driver works for a pharmacy."]}},
+    ],
 }
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -291,6 +410,17 @@ CV = {
               "en": ["Personal details", "Work experience", "Education", "Languages", "Hobbies"],
               "pt": ["Dados pessoais", "Experiência profissional", "Formação", "Idiomas", "Hobbies"],
               "de": ["Persönliche Daten", "Berufserfahrung", "Ausbildung", "Sprachkenntnisse", "Hobbys"]}},
+    # Lisbonne : Mark parle francais (langue maternelle), tres bien anglais, et APPREND le portugais (niveau de base)
+    "PT": {"titre": "Currículo", "mot": ["currículo", "o"], "rubriques": [
+        {"titre": "Dados pessoais", "mot": None, "lignes": ["Mark Garnier", "Data de nascimento: 14/03/2001, Montreal (Canadá)",
+                                                          "Rua da Rosa 12, 2.º Esq., 1200-385 Lisboa", PB("Telemóvel: 912 483 017", "Celular: 912 483 017")]},
+        {"titre": "Experiência profissional", "mot": ["experiência", "a"], "lignes": [PB("Desde 03/2026: estágio num escritório, Lisboa", "Desde 03/2026: estágio em um escritório, Lisboa"),
+                                                                                     PB("2023–2025: apoio ao cliente (a tempo parcial), agência de viagens, Montreal", "2023–2025: atendimento ao cliente (meio período), agência de viagens, Montreal")]},
+        {"titre": "Formação", "mot": ["formação", "a"], "lignes": [PB("2019–2023: Licenciatura em Turismo, Montreal", "2019–2023: Graduação em Turismo, Montreal")]},
+        {"titre": PB("Línguas", "Idiomas"), "mot": PB(["língua", "a"], None), "lignes": ["Francês: língua materna", "Inglês: muito bom", "Português: nível básico (curso de português)"]},
+        {"titre": PB("Tempos livres", "Hobbies"), "mot": None, "lignes": [PB("Futebol, corrida, cozinha", "Futebol, corrida, culinária")]}],
+        "t": {"fr": ["Données personnelles", "Expérience professionnelle", "Formation", "Langues", "Loisirs"],
+              "en": ["Personal details", "Work experience", "Education", "Languages", "Hobbies"]}},
 }
 # les langues du CV, pour les « vrai ou faux » : [langue dans la phrase, niveau dans la phrase, traductions]
 SPRACHEN = {
@@ -300,6 +430,10 @@ SPRACHEN = {
     "es": [["español", "La lengua materna de Mark es el español.", {"fr": "La langue maternelle de Mark est l'espagnol.", "en": "Mark's mother tongue is Spanish.", "pt": "A língua materna do Mark é o espanhol.", "de": "Marks Muttersprache ist Spanisch."}],
            ["inglés", "Mark habla muy bien inglés.", {"fr": "Mark parle très bien anglais.", "en": "Mark speaks very good English.", "pt": "Mark fala inglês muito bem.", "de": "Mark spricht sehr gut Englisch."}],
            ["francés", "Mark tiene un nivel intermedio de francés.", {"fr": "Mark a un niveau intermédiaire en français.", "en": "Mark has intermediate French.", "pt": "Mark tem nível intermediário de francês.", "de": "Mark spricht mittelgut Französisch."}]],
+    # le 4e element : les langues qui ne font PAS une phrase fausse (« fala muito bem francês » est vrai : sa langue maternelle)
+    "PT": [["francês", PB("A língua materna do Mark é o francês.", "A língua materna de Mark é o francês."), {"fr": "La langue maternelle de Mark est le français.", "en": "Mark's mother tongue is French."}, []],
+           ["inglês", PB("O Mark fala muito bem inglês.", "Mark fala inglês muito bem."), {"fr": "Mark parle très bien anglais.", "en": "Mark speaks very good English."}, ["francês"]],
+           ["português", PB("O Mark fala um pouco de português e está a aprender.", "Mark fala um pouco de português e está aprendendo."), {"fr": "Mark parle un peu portugais et l'apprend.", "en": "Mark speaks a little Portuguese and is learning it."}, []]],
 }
 # la phrase fausse : une autre langue a la meme place (« Mark spricht fliessend Spanisch. »)
 SPRACHE_T = {"de": {"Französisch": "Französisch", "Deutsch": "Deutsch", "Englisch": "Englisch"},
@@ -310,7 +444,7 @@ SPRACHE_T = {"de": {"Französisch": "Französisch", "Deutsch": "Deutsch", "Engli
 def lettre(langue, a):
     k = a["kontakt"]
     beg = BEGINN[a["beginn"]][langue][1]
-    q = [adj(langue, x, "m") for x in a["erwartet"]]
+    q = [adj(langue, x, a.get("brief_g", "m")) for x in a["erwartet"]]
     if langue == "de":
         stelle = a["stelle"]
         lignes = ["Bewerbung als " + stelle, contact(k, "de", "brief"),
@@ -326,6 +460,27 @@ def lettre(langue, a):
             ("bewerbe", 2, "bewerbe", ["stelle", "melde", "lerne"], ["Bewerbung", "die"], "c_lettreMot"),
         ]
         betreff = "Betreff"
+    elif langue in ("pt_", "br_"):
+        # candidatar-se A : « candidatar à vaga » (a + a = à) ; « de me candidatar » : le pronom avant, apres « de »,
+        # au Portugal comme au Bresil ; « Exma. Senhora, » ... « Com os melhores cumprimentos, » / « Prezada Sra. Costa, »
+        # ... « Atenciosamente, »
+        br = langue == "br_"
+        poste = a["poste"]
+        f = k["g"] == "f"
+        lignes = ["Candidatura à vaga de " + poste, contact(k, langue, "brief"),
+                  ("Li o seu anúncio" if br else "Li o vosso anúncio") + " e gostaria de me candidatar à vaga de " + poste + ".",
+                  "Sou " + q[0] + " e " + q[1] + ". Posso começar " + beg + ".",
+                  "Fico à disposição para uma entrevista." if br else "Fico ao dispor para uma entrevista.",
+                  "Atenciosamente," if br else "Com os melhores cumprimentos,", a["brief"] if a["brief"] != "Mark" else "Mark Garnier"]
+        trous = [
+            ("anrede", 1, contact(k, langue, "brief"), [contact(k, langue, "faux"), ("Oi, " if br else "Olá, ") + ("senhora " if f else "senhor ") + k["nom"] + "!"],
+             ["carta de apresentação", "a"], "c_lettreDebut"),
+            ("gruss", 5, "Atenciosamente," if br else "Com os melhores cumprimentos,", ["Tchau!", "Até logo!", "Oi!"] if br else ["Adeus!", "Até logo!", "Olá!"],
+             ["carta de apresentação", "a"] if br else ["cumprimento", "o"], "c_lettreFin"),
+            ("prep", 2, "à", ["da", "com a", "de"], ["candidatar-se", "verbe"], "c_lettreMot"),       # pas « na » ni « pela » : « se candidatar na vaga » s'entend au Bresil, « pela vaga » se lit comme « pour la place »
+            ("cand", 2, "candidatar", ["assinar", "comer", "ligar"], ["candidatar-se", "verbe"], "c_lettreMot"),
+        ]
+        betreff = "Assunto"
     else:
         stelle = a["stelle"].split("/")[0].lower()
         lignes = ["Solicitud del puesto de " + stelle, contact(k, "es", "brief"),
@@ -384,11 +539,34 @@ ENTRETIEN = {
         {"id": "warum", "q": "¿Por qué quiere trabajar con nosotros?", "r": "Me gusta trabajar con la gente y hablo tres idiomas.", "compat": ["ueber", "sprachen", "staerken", "erfahrung"], "mot": ["entrevista", "la"],
          "t": {"fr": ["Pourquoi voulez-vous travailler chez nous ?", "J'aime travailler avec les gens, et je parle trois langues."], "en": ["Why do you want to work for us?", "I like working with people, and I speak three languages."], "pt": ["Por que o senhor quer trabalhar conosco?", "Gosto de trabalhar com pessoas e falo três idiomas."], "de": ["Warum möchten Sie bei uns arbeiten?", "Ich arbeite gern mit Menschen, und ich spreche drei Sprachen."]}},
     ],
+    # en entretien, la recruteuse vouvoie : le verbe seul au Portugal (« Quando pode começar? »), « o senhor » au Bresil
+    "PT": [
+        {"id": "ueber", "q": PB("Fale-me um pouco de si.", "Fale um pouco sobre o senhor."), "r": PB("Chamo-me Mark Garnier, tenho 25 anos e sou do Canadá.", "Eu me chamo Mark Garnier, tenho 25 anos e sou do Canadá."),
+         "compat": ["sprachen", "erfahrung", "staerken", "warum"], "mot": ["entrevista", "a"],
+         "t": {"fr": ["Parlez-moi un peu de vous.", "Je m'appelle Mark Garnier, j'ai 25 ans et je viens du Canada."], "en": ["Tell me a little about yourself.", "My name is Mark Garnier, I'm 25 and I'm from Canada."]}},
+        {"id": "sprachen", "q": PB("Que línguas fala?", "Que idiomas o senhor fala?"), "r": "Falo francês, inglês e um pouco de português.", "compat": ["ueber", "staerken", "warum"], "mot": ["língua", "a"],
+         "t": {"fr": ["Quelles langues parlez-vous ?", "Je parle français, anglais et un peu portugais."], "en": ["Which languages do you speak?", "I speak French, English and a little Portuguese."]}},
+        {"id": "erfahrung", "q": PB("Tem experiência?", "O senhor tem experiência?"), "r": PB("Sim, trabalhei dois anos no apoio ao cliente.", "Sim, trabalhei dois anos com atendimento ao cliente."),
+         "compat": ["ueber", "staerken", "warum"], "mot": ["experiência", "a"],
+         "t": {"fr": ["Avez-vous de l'expérience ?", "Oui, j'ai travaillé deux ans au service client."], "en": ["Do you have any experience?", "Yes, I worked in customer service for two years."]}},
+        {"id": "staerken", "q": "Quais são os seus pontos fortes?", "r": "Sou {a} e {b}.", "compat": ["ueber", "sprachen", "erfahrung", "warum"], "mot": None,
+         "t": {"fr": ["Quels sont vos points forts ?", "Je suis {a} et {b}."], "en": ["What are your strengths?", "I'm {a} and {b}."]}},
+        {"id": "beginn", "q": PB("Quando pode começar?", "Quando o senhor pode começar?"), "r": "Posso começar {am}.", "compat": [], "mot": ["começar", "verbe"],
+         "t": {"fr": ["Quand pouvez-vous commencer ?", "Je peux commencer {am}."], "en": ["When can you start?", "I can start {am}."]}},
+        {"id": "umfang", "q": PB("Prefere trabalhar a tempo inteiro ou a tempo parcial?", "O senhor prefere trabalhar em período integral ou meio período?"), "r": "Prefiro trabalhar {umf}.", "compat": [], "mot": None,
+         "t": {"fr": ["Préférez-vous travailler à temps plein ou à temps partiel ?", "Je préfère travailler à {umf}."], "en": ["Do you prefer to work full-time or part-time?", "I prefer to work {umf}."]}},
+        {"id": "fragen", "q": PB("Tem alguma pergunta?", "O senhor tem alguma pergunta?"), "r": "Sim: quantos dias de férias tenho por ano?", "compat": [], "mot": ["férias", "as"],
+         "t": {"fr": ["Avez-vous une question ?", "Oui : combien de jours de congé ai-je par an ?"], "en": ["Do you have any questions?", "Yes: how many days of holiday do I get a year?"]}},
+        {"id": "warum", "q": PB("Porque quer trabalhar connosco?", "Por que o senhor quer trabalhar conosco?"), "r": PB("Gosto de trabalhar com pessoas e falo três línguas.", "Gosto de trabalhar com pessoas e falo três idiomas."),
+         "compat": ["ueber", "sprachen", "staerken", "erfahrung"], "mot": ["entrevista", "a"],
+         "t": {"fr": ["Pourquoi voulez-vous travailler chez nous ?", "J'aime travailler avec les gens, et je parle trois langues."], "en": ["Why do you want to work for us?", "I like working with people, and I speak three languages."]}},
+    ],
 }
 # le temps de travail dans la reponse : « in Vollzeit » / « la jornada completa » ; et traduit
 UMF_REP = {"de": {"vollzeit": "Vollzeit", "teilzeit": "Teilzeit"}, "es": {"vollzeit": "la jornada completa", "teilzeit": "la media jornada"},
            "fr": {"vollzeit": "temps plein", "teilzeit": "temps partiel"}, "en": {"vollzeit": "full-time", "teilzeit": "part-time"},
-           "pt": {"vollzeit": "tempo integral", "teilzeit": "meio período"}}
+           "pt": {"vollzeit": "tempo integral", "teilzeit": "meio período"},
+           "pt_": {"vollzeit": "a tempo inteiro", "teilzeit": "a tempo parcial"}, "br_": {"vollzeit": "em período integral", "teilzeit": "meio período"}}
 UMF_REP_FR_ES = {"vollzeit": "un temps plein", "teilzeit": "un mi-temps"}
 UMF_REP_DE_ES = {"vollzeit": "Vollzeit", "teilzeit": "Teilzeit"}
 
@@ -427,6 +605,30 @@ CONTRAT = {
         {"id": "urlaub", "label": "Vacaciones", "v": "30 días al año", "faux": ["15 días al año", "22 días al año"], "mot": ["vacaciones", "las"],
          "q": "¿Cuántos días de vacaciones tiene Mark?", "r": "30 días al año", "rf": ["15 días al año", "22 días al año"], "ph": "Mark tiene 30 días de vacaciones al año.", "vf": "Mark tiene {r} de vacaciones.",
          "t": {"fr": "Mark a 30 jours de congé par an.", "en": "Mark has 30 days of holiday a year.", "pt": "Mark tem 30 dias de férias por ano.", "de": "Mark hat 30 Tage Urlaub im Jahr."}}]},
+    # Lisbonne : 22 jours ouvrables de conges, 90 jours d'essai, 40 heures, 1 250 EUR bruts par mois ; au Portugal la
+    # question met le sujet apres le verbe (« Quando começa o Mark? »), au Bresil avant (« Quando Mark começa? »)
+    "PT": {"titre": "Contrato de trabalho", "mot": ["contrato de trabalho", "o"], "parties": ["Viagens Tejo, Lda., Lisboa (empregador)", PB("Mark Garnier (trabalhador)", "Mark Garnier (empregado)")], "cases": [
+        {"id": "beginn", "label": "Data de início", "v": PB("1 de dezembro de 2026", "1º de dezembro de 2026"), "faux": [], "mot": ["começar", "verbe"],
+         "q": PB("Quando começa o Mark?", "Quando Mark começa?"), "r": PB("no dia 1 de dezembro", "no dia 1º de dezembro"),
+         "rf": PB(["no dia 1 de novembro", "no dia 1 de janeiro"], ["no dia 1º de novembro", "no dia 1º de janeiro"]),
+         "ph": PB("O Mark começa no dia 1 de dezembro.", "Mark começa no dia 1º de dezembro."), "vf": PB("O Mark começa {r}.", "Mark começa {r}."),
+         "t": {"fr": "Mark commence le 1er décembre.", "en": "Mark starts on 1 December."}},
+        {"id": "probezeit", "label": "Período de experiência", "v": "90 dias", "faux": [], "mot": ["período de experiência", "o"],
+         "q": "Quanto tempo dura o período de experiência?", "r": "90 dias", "rf": ["180 dias", "1 ano"], "ph": "O período de experiência dura 90 dias.", "vf": "O período de experiência dura {r}.",
+         "t": {"fr": "La période d'essai dure 90 jours.", "en": "The probation period lasts 90 days."}},
+        {"id": "arbeitszeit", "label": "Horário de trabalho", "v": PB("a tempo inteiro, 40 horas semanais", "período integral, 40 horas semanais"), "faux": [],
+         "mot": PB(["tempo inteiro", "o"], ["período integral", "o"]),
+         "q": PB("Quantas horas por semana trabalha o Mark?", "Quantas horas por semana Mark trabalha?"), "r": "40 horas", "rf": ["20 horas", "30 horas"],
+         "ph": PB("O Mark trabalha 40 horas por semana.", "Mark trabalha 40 horas por semana."), "vf": PB("O Mark trabalha {r} por semana.", "Mark trabalha {r} por semana."),
+         "t": {"fr": "Mark travaille 40 heures par semaine.", "en": "Mark works 40 hours a week."}},
+        {"id": "gehalt", "label": PB("Ordenado", "Salário"), "v": "1.250 € brutos por mês", "faux": [], "mot": PB(["ordenado", "o"], ["salário", "o"]),
+         "q": PB("Quanto ganha o Mark?", "Quanto Mark ganha?"), "r": "1.250 € brutos por mês", "rf": ["900 € brutos por mês", "1.700 € brutos por mês"],
+         "ph": PB("O Mark ganha 1.250 € brutos por mês.", "Mark ganha 1.250 € brutos por mês."), "vf": PB("O Mark ganha {r}.", "Mark ganha {r}."),
+         "t": {"fr": "Mark gagne 1 250 € brut par mois.", "en": "Mark earns €1,250 gross a month."}},
+        {"id": "urlaub", "label": "Férias", "v": "22 dias úteis por ano", "faux": [], "mot": ["férias", "as"],
+         "q": PB("Quantos dias de férias tem o Mark?", "Quantos dias de férias Mark tem?"), "r": "22 dias", "rf": ["15 dias", "30 dias"],
+         "ph": PB("O Mark tem 22 dias de férias por ano.", "Mark tem 22 dias de férias por ano."), "vf": PB("O Mark tem {r} de férias por ano.", "Mark tem {r} de férias por ano."),
+         "t": {"fr": "Mark a 22 jours de congé par an.", "en": "Mark has 22 days of holiday a year."}}]},
 }
 # la phrase vraie/fausse « Mark hat 30 Tage im Jahr Urlaub. » a besoin de « 30 Tage » sans « im Jahr » : on garde la valeur telle quelle
 
@@ -501,6 +703,47 @@ ACTIONS = {
         {"id": "verdienen", "s": "mark", "v": "ganar", "obj": "1.700 euros al mes", "img": None, "aussi_v": ["enviar", "tener"],
          "t": {"fr": "Mark gagne 1\u202f700 euros par mois.", "en": "Mark earns 1,700 euros a month.", "pt": "Mark ganha 1.700 euros por mês.", "de": "Mark verdient 1.700 Euro im Monat."}},
     ],
+    # le portugais : aussi_v est large, car un objet portugais accepte beaucoup de verbes (« procura a sua carta »,
+    # « ganha o contrato », « apresenta uma entrevista ») ; « ligar à chefe » au Portugal, « ligar para a chefe » au Bresil
+    "PT": [
+        {"id": "suchen", "s": "mark", "v": "procurar", "obj": "trabalho", "img": "suchen", "aussi_v": ["escrever", "enviar", "ter", "apresentar", "mostrar", "ganhar"],
+         "t": {"fr": "Mark cherche du travail.", "en": "Mark is looking for work."}},
+        {"id": "schreiben", "s": "mark", "v": "escrever", "obj": PB("a sua carta de apresentação", "sua carta de apresentação"), "img": "bewerbung",
+         "aussi_v": ["procurar", "enviar", "ter", "assinar", "apresentar", "mostrar", "conhecer", "trabalhar"],      # « trabalha a sua carta » : il la travaille
+         "t": {"fr": "Mark écrit sa lettre de motivation.", "en": "Mark writes his cover letter."}},
+        {"id": "schicken", "s": "mark", "v": "enviar", "obj": PB("o seu currículo", "seu currículo"), "img": None,
+         "aussi_v": ["escrever", "mostrar", "assinar", "procurar", "apresentar", "ter", "conhecer", "trabalhar"],
+         "t": {"fr": "Mark envoie son CV.", "en": "Mark sends his CV."}},
+        {"id": "bewerben", "s": "mark", "v": "candidatar-se", "obj": "à vaga", "img": None, "aussi_v": [], "verbe": False,
+         "t": {"fr": "Mark pose sa candidature pour le poste.", "en": "Mark applies for the job."}},
+        {"id": "vorstellen_sich", "s": "mark", "v": "ter", "obj": "uma entrevista com a senhora Costa", "img": "gespraech",
+         "aussi_v": ["procurar", "escrever", "enviar", "apresentar", "mostrar", "ganhar"],
+         "t": {"fr": "Mark a un entretien avec Mme Costa.", "en": "Mark has an interview with Ms Costa."}},
+        {"id": "unterschreiben", "s": "mark", "v": "assinar", "obj": "o contrato", "img": "unterschreiben",
+         "aussi_v": ["procurar", "escrever", "enviar", "ter", "apresentar", "conhecer", "mostrar", "ganhar"],
+         "t": {"fr": "Mark signe le contrat.", "en": "Mark signs the contract."}},
+        {"id": "anfangen", "s": "mark", "v": "começar", "obj": "na segunda-feira", "img": None, "aussi_v": [], "verbe": False,
+         "t": {"fr": "Mark commence lundi.", "en": "Mark starts on Monday."}},
+        {"id": "begruessen", "s": "chef", "v": "cumprimentar", "obj": PB("o Mark", "Mark"), "img": "begruessen", "aussi_v": [], "verbe": False,
+         "t": {"fr": "Mme Costa salue Mark.", "en": "Ms Costa greets Mark."}},
+        {"id": "vorstellen", "s": "chef", "v": "apresentar", "obj": PB("o Mark aos colegas", "Mark aos colegas"), "img": "kollegen", "aussi_v": ["enviar", "mostrar", "ligar"],
+         "t": {"fr": "Mme Costa présente Mark à ses collègues.", "en": "Ms Costa introduces Mark to her team."}},
+        {"id": "kennenlernen", "s": "mark", "v": "conhecer", "obj": "os colegas", "img": None, "aussi_v": ["procurar", "enviar", "ter", "apresentar", "mostrar", "ganhar"],
+         "t": {"fr": "Mark fait la connaissance de ses collègues.", "en": "Mark meets his colleagues."}},
+        {"id": "zeigen", "s": "f", "v": "mostrar", "obj": PB("a secretária ao Mark", "a mesa para Mark"), "img": "arbeitsplatz",
+         "aussi_v": ["apresentar", "enviar", "procurar", "ganhar", "ligar", "ter"],
+         "t": {"fr": "Marta montre son bureau à Mark.", "en": "Marta shows Mark his desk."}},
+        {"id": "arbeiten", "s": "mark", "v": "trabalhar", "obj": PB("no apoio ao cliente", "no atendimento ao cliente"), "img": "arbeiten",
+         "aussi_v": ["procurar", "escrever", "comer", "ligar", "ganhar"],
+         "t": {"fr": "Mark travaille au service client.", "en": "Mark works in customer service."}},
+        {"id": "essen", "s": "mark", "v": "comer", "obj": "com os colegas no refeitório", "img": "kantine", "aussi_v": ["trabalhar", "procurar", "escrever"],
+         "t": {"fr": "Mark mange avec ses collègues à la cantine.", "en": "Mark eats with his colleagues in the canteen."}},
+        {"id": "anrufen", "s": "mark", "v": "ligar", "obj": PB("à chefe", "para a chefe"), "img": "krank",
+         "aussi_v": PB(["escrever", "enviar", "mostrar", "apresentar", "ganhar"], ["escrever", "enviar", "mostrar", "apresentar", "ganhar", "trabalhar", "procurar", "ter", "assinar"]),
+         "t": {"fr": "Mark appelle sa cheffe.", "en": "Mark calls his boss."}},
+        {"id": "verdienen", "s": "mark", "v": "ganhar", "obj": "1.250 euros por mês", "img": None, "aussi_v": ["procurar", "enviar", "ter"],
+         "t": {"fr": "Mark gagne 1 250 euros par mois.", "en": "Mark earns 1,250 euros a month."}},
+    ],
 }
 PRONOMS_REFLEXIFS = ("sich", "mich", "dich", "uns", "euch", "mir", "dir")
 # deux images qui se ressemblent : la phrase de l'une n'est jamais un leurre de l'autre (la cheffe et Mark a la meme
@@ -545,10 +788,36 @@ REGISTRE = {
         {"v": "comer", "sie": None, "du": "¿___ con nosotros hoy?", "dir": "vers",
          "t": {"fr": [None, "Tu manges avec nous aujourd'hui ?"], "en": [None, "Are you having lunch with us today?"], "pt": [None, "Você almoça com a gente hoje?"], "de": [None, "Isst du heute mit uns?"]}},
     ],
+    # le portugais : la cheffe dit « o senhor » ; entre collegues, « tu » au Portugal (« Podes ajudar-me? »), « você »
+    # au Bresil, AVEC LA FORME DE « ele » (« Você pode me ajudar? ») : au Bresil, la question est la forme du verbe
+    # avec você ou o senhor (pode), jamais celle de tu (podes) -- voir fabriquer
+    # « tu » est ecrit au Portugal (« E tu, de onde és? ») : sans lui, « De onde é? » (le vouvoiement sans pronom) serait
+    # une reponse possible ; avec lui, « tu é » est faux sans discussion
+    "PT": [
+        {"v": "poder", "sie": "O senhor ___ começar na segunda-feira?", "du": PB("Tu ___ ajudar-me um minuto?", "Você ___ me ajudar um minutinho?"),
+         "t": {"fr": ["Pouvez-vous commencer lundi ?", "Tu peux m'aider une minute ?"], "en": ["Can you start on Monday?", "Can you help me for a minute?"]}},
+        {"v": "ter", "sie": PB("O senhor ___ experiência no apoio ao cliente?", "O senhor ___ experiência no atendimento ao cliente?"), "du": PB("Tu ___ tempo para almoçar hoje?", "Você ___ tempo para almoçar hoje?"),
+         "t": {"fr": ["Avez-vous de l'expérience au service client ?", "Tu as le temps de déjeuner aujourd'hui ?"], "en": ["Do you have experience in customer service?", "Have you got time for lunch today?"]}},
+        {"v": "falar", "sie": "O senhor também ___ inglês?", "du": PB("E tu, também ___ francês?", "Você também ___ francês?"),
+         "t": {"fr": ["Parlez-vous aussi anglais ?", PB("Et toi, tu parles aussi français ?", "Tu parles aussi français ?")], "en": ["Do you speak English too?", PB("And you, do you speak French too?", "Do you speak French too?")]}},
+        {"v": "ser", "sie": PB("De onde ___ o senhor?", "De onde o senhor ___?"), "du": PB("E tu, de onde ___?", "De onde você ___?"),
+         "t": {"fr": ["D'où êtes-vous ?", PB("Et toi, tu es d'où ?", "Tu es d'où ?")], "en": ["Where are you from?", PB("And where are you from?", "Where are you from?")]}},
+        {"v": "trabalhar", "sie": PB("O senhor ___ bem em equipa?", "O senhor ___ bem em equipe?"), "du": PB("E tu, há quanto tempo ___ aqui?", "Há quanto tempo você ___ aqui?"), "dir": "de",
+         "t": {"fr": ["Travaillez-vous bien en équipe ?", PB("Et toi, tu travailles ici depuis quand ?", "Tu travailles ici depuis quand ?")], "en": ["Do you work well in a team?", PB("And how long have you been working here?", "How long have you been working here?")]}},
+        {"v": "querer", "sie": "O senhor ___ um café?", "du": PB("Tu também ___ um café?", "Você ___ um café?"),
+         "t": {"fr": ["Voulez-vous un café ?", PB("Tu veux un café, toi aussi ?", "Tu veux un café ?")], "en": ["Would you like a coffee?", PB("Do you want a coffee too?", "Do you want a coffee?")]}},
+        {"v": "almoçar", "sie": None, "du": PB("Tu ___ connosco hoje?", "Você ___ com a gente hoje?"), "dir": "vers",
+         "t": {"fr": [None, "Tu déjeunes avec nous aujourd'hui ?"], "en": [None, "Are you having lunch with us today?"]}},
+    ],
 }
 # qui parle a qui : le Sie / usted, la cheffe a Mark ; le du / tu, un collegue a Mark ou Mark a un collegue
 REGISTRE_GENS = {"sie": [("chef", "mark")], "du": [("m", "mark"), ("f", "mark"), ("mark", "m"), ("mark", "f")]}
-FRAGT = {"de": "{A} fragt {B}:", "es": "{A} pregunta a {B}:"}
+FRAGT = {"de": "{A} fragt {B}:", "es": "{A} pregunta a {B}:", "PT": "{A} pergunta a {B}:"}   # pt : a + o = ao, a + a = à (contracter)
+
+
+def contracter(s):
+    """Le portugais : « a o Mark » -> « ao Mark », « a a Marta » -> « à Marta »."""
+    return re.sub(r"\ba a\b", "à", re.sub(r"\ba o\b", "ao", s))
 
 # ---------------------------------------------------------------------------------------------------------------
 # L'APPEL : se declarer malade. Le symptome (le mot du corpus, et la forme dans la phrase), puis les lignes, une a
@@ -556,6 +825,7 @@ FRAGT = {"de": "{A} fragt {B}:", "es": "{A} pregunta a {B}:"}
 SYMPTOMES = {
     "de": [["Fieber", "das", "Fieber"], ["Halsschmerzen", "die", "Halsschmerzen"], ["Kopfschmerzen", "die", "Kopfschmerzen"], ["Grippe", "die", "eine Grippe"], ["Erkältung", "die", "eine Erkältung"]],
     "es": [["fiebre", "la", "fiebre"], ["gripe", "la", "gripe"], ["tos", "la", "tos"], ["resfriado", "el", "un resfriado"]],
+    "PT": [["febre", "a", "febre"], ["gripe", "a", "gripe"], ["tosse", "a", "tosse"], PB(["constipação", "a", "uma constipação"], ["resfriado", "o", "um resfriado"])],
 }
 SYMPTOMES_T = {"Fieber": {"fr": "de la fièvre", "en": "a temperature", "pt": "febre"}, "Halsschmerzen": {"fr": "mal à la gorge", "en": "a sore throat", "pt": "dor de garganta"},
                "Kopfschmerzen": {"fr": "mal à la tête", "en": "a headache", "pt": "dor de cabeça"}, "Grippe": {"fr": "la grippe", "en": "flu", "pt": "gripe"},
@@ -580,6 +850,21 @@ def appel(langue, sym):
             ["chef", "Gute ___, Herr Garnier!", ["Besserung", ["Reise", "Arbeit", "Nacht"], ["Besserung", "die"]]],
             ["mark", "Danke schön. Auf Wiederhören!", None],
         ]
+    if langue in ("pt_", "br_"):
+        # « mande-me » au Portugal, « me mande » au Bresil ; la baixa medica (Portugal), o atestado medico (Bresil)
+        br = langue == "br_"
+        return [
+            ["chef", "Viagens Tejo, bom dia.", None],
+            ["mark", "Bom dia, senhora Costa. " + ("Aqui é Mark Garnier." if br else "Fala o Mark Garnier."), None],
+            ["mark", "Tenho " + s + " desde ontem.", None],
+            ["mark", "Desculpe, estou ___.", ["doente", ["contente", "pontual", "trabalhador"], ["doente", "adjectif"]]],
+            ["mark", "Hoje não posso ir ao ___.", ["trabalho", ["contrato", "currículo", "anúncio"], ["trabalho", "o"]]],
+            ["chef", "Vá ao ___, por favor.", ["médico", ["chefe", "colega", "cliente"], ["médico", "o"]]],
+            (["chef", "E me mande o ___ médico, por favor.", ["atestado", ["anúncio", "emprego", "cumprimento"], ["atestado médico", "o"]]] if br else
+             ["chef", "E mande-me a ___ médica, por favor.", ["baixa", ["vaga", "pausa", "tarefa"], ["baixa", "a"]]]),
+            ["chef", "Melhoras, Mark!" if br else "As melhoras, Mark!", None],
+            ["mark", "Obrigado. Até logo!", None],
+        ]
     return [
         ["chef", "Viajes Solano, buenos días.", None],
         ["mark", "Buenos días, señora Navarro. Soy Mark Garnier.", None],
@@ -600,6 +885,12 @@ def appel_t(langue, i, sym):
          5: {"fr": "Oh, je suis désolée. Allez chez le médecin, s'il vous plaît.", "en": "Oh, I'm sorry. Please go to the doctor.", "pt": "Ah, sinto muito. Vá ao médico, por favor.", "de": "Oh, das tut mir leid. Gehen Sie bitte zum Arzt."},
          6: {"fr": "Et envoyez-moi l'arrêt de travail, s'il vous plaît.", "en": "And please send me the sick note.", "pt": "E me mande o atestado médico, por favor.", "de": "Und schicken Sie mir bitte die Krankmeldung."},
          7: {"fr": "Bon rétablissement, monsieur Garnier !", "en": "Get well soon, Mr Garnier!", "pt": "Melhoras, Sr. Garnier!", "de": "Gute Besserung, Herr Garnier!"}}
+    if langue in ("pt_", "br_"):
+        return {3: {"fr": "Excusez-moi, je suis malade.", "en": "Sorry, I'm ill."},
+                4: {"fr": "Aujourd'hui, je ne peux pas aller au travail.", "en": "I can't go to work today."},
+                5: {"fr": "Allez chez le médecin, s'il vous plaît.", "en": "Please go to the doctor."},
+                6: ({"fr": "Et envoyez-moi le certificat médical, s'il vous plaît.", "en": "And please send me the doctor's note."} if langue == "br_" else
+                    {"fr": "Et envoyez-moi l'arrêt maladie, s'il vous plaît.", "en": "And please send me the sick note."})}.get(i)
     if langue == "es":
         T[4] = {"fr": "Aujourd'hui, je ne peux pas aller travailler.", "en": "I can't go to work today.", "pt": "Hoje não posso ir trabalhar.", "de": "Heute kann ich nicht zur Arbeit gehen."}
         T[7] = {"fr": "Bon rétablissement, Mark !", "en": "Get well soon, Mark!", "pt": "Melhoras, Mark!", "de": "Gute Besserung, Mark!"}
@@ -635,6 +926,31 @@ ROLES = {
         {"qui": "kunde", "img": "arbeiten", "d": ["Mark ayuda por teléfono a un señor que quiere reservar un viaje. El señor es un ___.", "Mark habla por teléfono con un señor que busca un viaje. Es un ___ de Viajes Solano."], "r": "cliente", "l": ["compañero", "jefe", "empresa"], "mot": ["cliente", "el"],
          "t": {"fr": "Le monsieur est un client.", "en": "The man is a customer.", "pt": "O senhor é um cliente.", "de": "Der Mann ist ein Kunde."}},
     ],
+    # le portugais : « o chefe », « o colega » sont les formes du corpus (chefe et colega servent aux deux genres :
+    # « a chefe », « uma colega ») ; un role n'est jamais leurre d'un autre qui serait vrai aussi (« fazem o mesmo
+    # trabalho » : Tiago n'est pas son chef)
+    "PT": [
+        {"qui": "chef", "img": "begruessen", "d": PB(["A senhora Costa dirige a equipa de apoio ao cliente. É a ___ do Mark.", "A senhora Costa é a ___ do Mark, do Tiago e da Marta."],
+                                                     ["A senhora Costa dirige a equipe de atendimento ao cliente. É a ___ de Mark.", "A senhora Costa é a ___ de Mark, Tiago e Marta."]),
+         "r": "chefe", "l": ["colega", "cliente", "vendedora"], "mot": ["chefe", "o"],
+         "t": {"fr": "Mme Costa est la cheffe de Mark.", "en": "Ms Costa is Mark's boss."}},
+        {"qui": "m", "img": "kollegen", "d": PB(["O Tiago e o Mark fazem o mesmo trabalho na mesma equipa. O Tiago é ___ do Mark.", "O Tiago e o Mark trabalham juntos. O Tiago é um ___ do Mark."],
+                                                 ["Tiago e Mark fazem o mesmo trabalho na mesma equipe. Tiago é ___ de Mark.", "Tiago e Mark trabalham juntos. Tiago é um ___ de Mark."]),
+         "r": "colega", "l": ["chefe", "cliente", "vendedor"], "mot": ["colega", "o"],
+         "t": {"fr": "Tiago est un collègue de Mark.", "en": "Tiago is Mark's colleague."}},
+        {"qui": "f", "img": "kollegen", "d": PB(["A Marta e o Mark fazem o mesmo trabalho na mesma equipa. A Marta é ___ do Mark.", "A Marta e o Mark trabalham juntos. A Marta é uma ___ do Mark."],
+                                                 ["Marta e Mark fazem o mesmo trabalho na mesma equipe. Marta é ___ de Mark.", "Marta e Mark trabalham juntos. Marta é uma ___ de Mark."]),
+         "r": "colega", "l": ["chefe", "cliente", "vendedora"], "mot": ["colega", "o"],
+         "t": {"fr": "Marta est une collègue de Mark.", "en": "Marta is Mark's colleague."}},
+        {"qui": "firma", "img": None, "d": PB(["O Mark trabalha para a Viagens Tejo. A Viagens Tejo é a ___ do Mark.", "A Viagens Tejo paga o ordenado do Mark: é a sua ___."],
+                                              ["Mark trabalha para a Viagens Tejo. A Viagens Tejo é a ___ de Mark.", "A Viagens Tejo paga o salário de Mark: é a ___ dele."]),
+         "r": "empresa", "l": ["chefe", "colega", "cliente"], "mot": ["empresa", "a"],
+         "t": {"fr": "Viagens Tejo est l'entreprise de Mark.", "en": "Viagens Tejo is Mark's company."}},
+        {"qui": "kunde", "img": "arbeiten", "d": PB(["Um senhor liga para reservar uma viagem e o Mark ajuda-o. O senhor é um ___ da Viagens Tejo.", "O Mark fala ao telefone com um senhor que procura uma viagem. É um ___ da Viagens Tejo."],
+                                                    ["Um senhor liga para reservar uma viagem e Mark o ajuda. O senhor é um ___ da Viagens Tejo.", "Mark fala ao telefone com um senhor que procura uma viagem. É um ___ da Viagens Tejo."]),
+         "r": "cliente", "l": ["colega", "chefe", "empresa"], "mot": ["cliente", "o"],
+         "t": {"fr": "Le monsieur est un client.", "en": "The man is a customer."}},
+    ],
 }
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -654,6 +970,23 @@ LIEUX_ESTAR = [["La oficina de Viajes Solano ___ en Madrid.", "está", ["oficina
                ["Viajes Solano ___ una empresa de viajes.", "es", ["empresa", "la"], {"fr": "Viajes Solano est une entreprise de voyages.", "en": "Viajes Solano is a travel company.", "pt": "A Viajes Solano é uma empresa de viagens.", "de": "Viajes Solano ist ein Reiseunternehmen."}],
                ["La señora Navarro ___ la jefa de Mark.", "es", ["jefa", "la"], {"fr": "Mme Navarro est la cheffe de Mark.", "en": "Ms Navarro is Mark's boss.", "pt": "A Sra. Navarro é a chefe do Mark.", "de": "Frau Navarro ist Marks Chefin."}],
                ["Jorge ___ el compañero de Mark.", "es", ["compañero", "el"], {"fr": "Jorge est le collègue de Mark.", "en": "Jorge is Mark's colleague.", "pt": "Jorge é o colega do Mark.", "de": "Jorge ist Marks Kollege."}]]
+# SER OU ESTAR en portugais. Une qualite s'y dit dans « é uma pessoa pontual » : « está uma pessoa » est faux sans
+# discussion, alors que « está simpático » (il est aimable aujourd'hui) se dit. Pas de lieu fixe : « o escritório é em
+# Lisboa » et « fica em Lisboa » sont justes, « está » aussi parfois -- on ne demande que ce qui n'a qu'une reponse.
+ESTAR_PT = {  # [forme f, image, traductions [m, f], quand (Portugal, Bresil)]
+    "doente":   ["doente", "krank", {"fr": ["malade", "malade"], "en": ["ill", "ill"]}, "hoje"],
+    "nervoso":  ["nervosa", None, {"fr": ["nerveux", "nerveuse"], "en": ["nervous", "nervous"]}, "antes da entrevista"],
+    "contente": ["contente", None, {"fr": ["content", "contente"], "en": ["happy", "happy"]}, "com o novo trabalho"],
+    "cansado":  ["cansada", None, {"fr": ["fatigué", "fatiguée"], "en": ["tired", "tired"]}, "depois de oito horas de trabalho"],
+}
+ESTAR_T_PT = {"hoje": {"fr": " aujourd'hui", "en": " today"}, "antes da entrevista": {"fr": " avant l'entretien", "en": " before the interview"},
+              "com o novo trabalho": {"fr": " de son nouveau travail", "en": " with {=his|her} new job"},
+              "depois de oito horas de trabalho": {"fr": " après huit heures de travail", "en": " after eight hours of work"}}
+LIEUX_ESTAR_PT = [[PB("O Mark ___ no escritório até às seis.", "Mark ___ no escritório até as seis."), "está", ["escritório", "o"], {"fr": "Mark est au bureau jusqu'à six heures.", "en": "Mark is at the office until six."}],
+                  ["A Viagens Tejo ___ uma empresa de viagens.", "é", ["empresa", "a"], {"fr": "Viagens Tejo est une entreprise de voyages.", "en": "Viagens Tejo is a travel company."}],
+                  [PB("A senhora Costa ___ a chefe do Mark.", "A senhora Costa ___ a chefe de Mark."), "é", ["chefe", "o"], {"fr": "Mme Costa est la cheffe de Mark.", "en": "Ms Costa is Mark's boss."}],
+                  [PB("O Tiago ___ colega do Mark.", "Tiago ___ colega de Mark."), "é", ["colega", "o"], {"fr": "Tiago est un collègue de Mark.", "en": "Tiago is Mark's colleague."}],
+                  [PB("A Marta ___ de férias esta semana.", "Marta ___ de férias esta semana."), "está", ["férias", "as"], {"fr": "Marta est en vacances cette semaine.", "en": "Marta is on holiday this week."}]]
 
 # ---------------------------------------------------------------------------------------------------------------
 # LES DOCUMENTS (images sans texte) et ce qui est clairement faux pour chacun
@@ -666,6 +999,10 @@ DOCS = {
            "lebenslauf": ["currículum", "el", {"fr": "le CV", "en": "the CV", "pt": "o currículo", "de": "der Lebenslauf"}],
            "anschreiben": ["carta de presentación", "la", {"fr": "la lettre de motivation", "en": "the cover letter", "pt": "a carta de apresentação", "de": "das Anschreiben"}],
            "arbeitsvertrag": ["contrato", "el", {"fr": "le contrat de travail", "en": "the employment contract", "pt": "o contrato de trabalho", "de": "der Arbeitsvertrag"}]},
+    "PT": {"zeitung": ["anúncio de emprego", "o", {"fr": "l'offre d'emploi", "en": "the job advert"}],
+           "lebenslauf": ["currículo", "o", {"fr": "le CV", "en": "the CV"}],
+           "anschreiben": ["carta de apresentação", "a", {"fr": "la lettre de motivation", "en": "the cover letter"}],
+           "arbeitsvertrag": ["contrato de trabalho", "o", {"fr": "le contrat de travail", "en": "the employment contract"}]},
 }
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -686,7 +1023,36 @@ AJOUTS_TRAD = {
            "jefa": {"fr": "cheffe, patronne", "en": "boss (woman)", "pt": "chefe (mulher)", "ar": "مديرة", "de": "Chefin"},
            "compañera": {"fr": "collègue (femme)", "en": "colleague (woman)", "pt": "colega (mulher)", "ar": "زميلة", "de": "Kollegin"},
            "baja": {"fr": "arrêt maladie", "en": "sick leave", "pt": "licença médica", "ar": "إجازة مرضية", "de": "Krankschreibung"}},
+    # le portugais (12 nov. 2026) : absents du corpus portugais, a y ajouter (la forme du Bresil entre parentheses)
+    "pt_": {"tempo inteiro": {"fr": "le temps plein", "en": "full-time"},              # (Bresil : período integral, deja au corpus)
+            "tempo parcial": {"fr": "le temps partiel", "en": "part-time"},            # (Bresil : meio período, deja au corpus)
+            "baixa": {"fr": "l'arrêt maladie", "en": "sick leave"},                    # a baixa (Bresil : atestado médico, deja au corpus)
+            "anúncio de emprego": {"fr": "l'offre d'emploi", "en": "job advert"}},      # o anúncio de emprego (Bresil : idem)
+    "br_": {"anúncio de emprego": {"fr": "l'offre d'emploi", "en": "job advert"}},
 }
+# un verbe absent du corpus portugais : ses formes, le temps qu'il y entre (aucun aujourd'hui)
+VERBES_ABSENTS = {}
+# la traduction ANGLAISE des mots portugais vises : le corpus portugais n'a que le francais (« traduction »)
+EN_PT = {"período integral": "full-time", "meio período": "part-time", "tempo inteiro": "full-time", "tempo parcial": "part-time", "anúncio de emprego": "job advertisement", "trabalho": "work, job", "hora": "hour", "ordenado": "salary",
+         "salário": "salary", "currículo": "CV, résumé", "cliente": "customer", "rececionista": "receptionist", "recepcionista": "receptionist",
+         "empregado de mesa": "waiter", "garçom": "waiter", "cozinheiro": "cook", "vendedor": "shop assistant", "condutor": "driver",
+         "motorista": "driver", "entrevista": "interview", "língua": "language", "experiência": "experience",
+         "carta de apresentação": "cover letter", "cumprimento": "greeting", "formação": "training, education",
+         "período de experiência": "probation period", "chefe": "boss", "colega": "colleague", "empresa": "company", "médico": "doctor",
+         "atestado médico": "doctor's note", "escritório": "office", "contrato de trabalho": "employment contract",
+         "pontual": "punctual", "responsável": "responsible", "simpático": "friendly, nice", "flexível": "flexible",
+         "trabalhador": "hard-working", "organizado": "organised", "independente": "independent", "doente": "ill, sick",
+         "nervoso": "nervous", "contente": "happy, pleased", "cansado": "tired",
+         "começar": "to start, to begin", "ganhar": "to earn, to win", "candidatar-se": "to apply", "procurar": "to look for",
+         "escrever": "to write", "enviar": "to send", "ter": "to have", "assinar": "to sign", "cumprimentar": "to greet",
+         "apresentar": "to introduce, to present", "conhecer": "to know, to meet", "mostrar": "to show", "trabalhar": "to work",
+         "comer": "to eat", "férias": "holidays, leave", "ligar": "to call (on the phone)"}
+
+# les tables portugaises, ecrites une fois sous « PT », deviennent « pt_ » (Portugal) et « br_ » (Bresil)
+for _T in (GENS, FIRME, UMFANG, QUALITES, MARK_QUALITES, ANNONCES, CV, SPRACHEN, ENTRETIEN, CONTRAT, ACTIONS, REGISTRE, FRAGT,
+           SYMPTOMES, ROLES, DOCS):
+    _src = _T.pop("PT")
+    _T["pt_"], _T["br_"] = R(_src, False), R(_src, True)
 
 # ---------------------------------------------------------------------------------------------------------------
 # LES IMAGES (4:3, aucun texte). source : les references (Mark, la cheffe et son bureau, ses pieces). src : une image
@@ -729,8 +1095,14 @@ def img_src(i):
 
 # ---------------------------------------------------------------------------------------------------------------
 # LE CORPUS
+CORPUS = {"de": ("themes.json", "verbe.json", "adjectif.json"),
+          "es": ("espanol/datos/temas.json", "espanol/datos/verbos.json", "espanol/datos/adjetivos.json"),
+          "pt_": ("portugais/datos/themes.json", "portugais/datos/verbes.json", "portugais/datos/adjectifs.json"),
+          "br_": ("portugais/datos-br/themes.json", "portugais/datos-br/verbes.json", "portugais/datos-br/adjectifs.json")}
+
+
 def corpus_noms(langue):
-    f = "themes.json" if langue == "de" else "espanol/datos/temas.json"
+    f = CORPUS[langue][0]
     out = {}
     for t in json.load(io.open(os.path.join(RACINE, f), encoding="utf-8"))["themes"]:
         for m in t["mots"]:
@@ -751,8 +1123,8 @@ class Corpus:
     def __init__(self, langue):
         self.langue = langue
         self.noms = corpus_noms(langue)
-        self.verbes = corpus_liste("verbe.json" if langue == "de" else "espanol/datos/verbos.json", "infinitif")
-        self.adjs = corpus_liste("adjectif.json" if langue == "de" else "espanol/datos/adjetivos.json", "mot")
+        self.verbes = corpus_liste(CORPUS[langue][1], "infinitif")
+        self.adjs = corpus_liste(CORPUS[langue][2], "mot")
 
     def entree(self, mot, genre=None, cat=None):
         if cat == "verbe":
@@ -763,6 +1135,8 @@ class Corpus:
 
     def glose(self, mot, genre=None, cat=None):
         e = self.entree(mot, genre, cat)
+        if e and self.langue in ("pt_", "br_"):
+            return {"fr": e.get("traduction"), "en": EN_PT.get(mot)}      # le corpus portugais n'a que le francais
         if e:
             return {l: e.get("traduction" if l == "fr" else "traduction_" + l) for l in LANGUES[self.langue]}
         if mot in AJOUTS_TRAD[self.langue]:
@@ -771,9 +1145,9 @@ class Corpus:
 
     def er(self, v):
         """La forme de la 3e personne, en trois morceaux : [verbe, pronom reflechi, particule] (« meldet », « sich », « krank »)."""
-        e = self.verbes[v]
+        e = self.verbes.get(v) or VERBES_ABSENTS[v]
         f = e["praesens"]["er_sie_es"].split()
-        if self.langue == "es":
+        if self.langue != "de":                            # es, pt_, br_ : la forme telle quelle (« candidata-se », « se candidata »)
             return [e["praesens"]["er_sie_es"], "", ""]
         verbe, reste = f[0], f[1:]
         pron = ""
@@ -812,8 +1186,20 @@ def espaces(s):
 def fabriquer(langue):
     C = Corpus(langue)
     ES = langue == "es"
+    PT = langue in ("pt_", "br_")                          # le portugais appris : pt_ le Portugal, br_ le Bresil
+    BR = langue == "br_"
     tls = TL[langue]
     Q = []
+    VF = {"de": ("Richtig", "Falsch"), "es": ("Verdadero", "Falso"), "pt_": ("Verdadeiro", "Falso"), "br_": ("Verdadeiro", "Falso")}[langue]
+    SN = {"de": ("Ja", "Nein"), "es": ("Sí", "No"), "pt_": ("Sim", "Não"), "br_": ("Sim", "Não")}[langue]
+
+    def X(es, de, pt):
+        """Le texte de la langue apprise : pt est PB(portugal, bresil) ou le meme pour les deux."""
+        return R(pt, BR) if PT else (es if ES else de)
+
+    def cite(s):
+        """« ... » en espagnol et au Portugal, “...” au Bresil, „...“ en allemand."""
+        return X("«" + s + "»", "„" + s + "“", PB("«" + s + "»", "“" + s + "”"))
 
     deja = set()
 
@@ -827,7 +1213,7 @@ def fabriquer(langue):
         Q.append(q)
         if q["s"] in ("quoi", "serEstar", "ordre"):
             # vrai ou faux : la meme phrase, juste ou avec une autre (l'action d'une autre image ; ser au lieu d'estar)
-            V, F = ("Verdadero", "Falso") if ES else ("Richtig", "Falsch")
+            V, F = VF
             juste = q["ph"]
             faux = q["l"][0] if q["s"] in ("quoi", "ordre") else q["e"].replace("___", q["l"][0])
             for e_, r_ in ((juste, V), (faux, F)):
@@ -853,68 +1239,81 @@ def fabriquer(langue):
     # 1. LES ANNONCES : le temps de travail (la case cachee), puis les cases lues
     for a in ads:
         u = U[a["umfang"]]
-        ajouter(s="umfang", c="c_umfang", av=["annonce", a["id"], "umfang", "cache"], e=("¿Jornada completa, media jornada o por horas?" if ES else "Vollzeit, Teilzeit oder Minijob?"),
-                r=u["wort"], l=[U[k]["wort"] for k in U if k != a["umfang"]], n=2, ph=u["satz"], t={l: (UMFANG_T_ES if ES else UMFANG_T)[a["umfang"]][l] for l in tls},
+        ajouter(s="umfang", c="c_umfang", av=["annonce", a["id"], "umfang", "cache"],
+                e=X("¿Jornada completa, media jornada o por horas?", "Vollzeit, Teilzeit oder Minijob?", PB("A tempo inteiro, a tempo parcial ou à hora?", "Período integral, meio período ou por hora?")),
+                r=u["wort"], l=[U[k]["wort"] for k in U if k != a["umfang"]], n=2, ph=u["satz"], t={l: X(UMFANG_T_ES, UMFANG_T, UMFANG_T_PT)[a["umfang"]][l] for l in tls},
                 w=w(u["mot"], u["genre"]), d=u["wort"])
         # les heures
-        h = lambda n: ("%d horas" if ES else "%d Stunden") % n
+        h = lambda n: (X("%d horas", "%d Stunden", "%d horas")) % n
         autres_h = sorted({x["stunden"] for x in ads if x["stunden"] != a["stunden"]} | {a["stunden"] + 10, max(4, a["stunden"] - 10)} - {a["stunden"]})
-        ajouter(s="annonce", c="c_annonce", av=["annonce", a["id"], "stunden"], e=("¿Cuántas horas a la semana se trabaja?" if ES else "Wie viele Stunden pro Woche arbeitet man?"),
-                r=h(a["stunden"]), l=[h(x) for x in autres_h], ph=("Se trabajan %d horas a la semana." if ES else "Man arbeitet %d Stunden pro Woche.") % a["stunden"],
+        ajouter(s="annonce", c="c_annonce", av=["annonce", a["id"], "stunden"], e=X("¿Cuántas horas a la semana se trabaja?", "Wie viele Stunden pro Woche arbeitet man?", "Quantas horas por semana se trabalha?"),
+                r=h(a["stunden"]), l=[h(x) for x in autres_h], ph=X("Se trabajan %d horas a la semana.", "Man arbeitet %d Stunden pro Woche.", "São %d horas por semana.") % a["stunden"],
                 t=tr({"fr": "On travaille %d heures par semaine." % a["stunden"], "en": "You work %d hours a week." % a["stunden"], "pt": "Trabalha-se %d horas por semana." % a["stunden"], "de": "Man arbeitet %d Stunden pro Woche." % a["stunden"]}),
-                w=w("hora", "la") if ES else w("Arbeitszeit", "die"), d=("hora" if ES else "die Arbeitszeit"))
+                w=X(w("hora", "la"), w("Arbeitszeit", "die"), w("hora", "a")), d=X("hora", "die Arbeitszeit", "a hora"))
         # le salaire : le mois (Gehalt / sueldo), l'heure (Lohn / ganar)
         x, par = a["lohn"]
         autres_l = [lohn(y[0], y[1], langue) for y in {tuple(b["lohn"]) for b in ads if b["lohn"][1] == par and b["lohn"] != a["lohn"]}]
         autres_l += [lohn(x + (500 if par == "monat" else 2), par, langue), lohn(x - (500 if par == "monat" else 2), par, langue)]
         r = lohn(x, par, langue)
-        ajouter(s="annonce", c="c_annonce", av=["annonce", a["id"], "lohn"], e=("¿Cuánto se gana?" if ES else "Wie viel verdient man?"), r=r, l=autres_l,
-                ph=("Se gana " + r + "." if ES else "Man verdient " + r + "."),
+        mois = par == "monat"
+        ajouter(s="annonce", c="c_annonce", av=["annonce", a["id"], "lohn"], e=X("¿Cuánto se gana?", "Wie viel verdient man?", "Quanto se ganha?"), r=r, l=autres_l,
+                ph=X("Se gana " + r + ".", "Man verdient " + r + ".", PB("Ganha-se " + r + ".", "Você ganha " + r + ".")),
                 t={l: {"fr": "On gagne ", "en": "You earn ", "pt": "Ganha-se ", "de": "Man verdient "}[l] + lohn(x, par, "de" if l == "de" else l) + "." for l in tls},
-                w=(w("sueldo", "el") if par == "monat" else w("ganar", cat="verbe")) if ES else (w("Gehalt", "das") if par == "monat" else w("Lohn", "der")),
-                d=(("el sueldo" if par == "monat" else "ganar") if ES else ("das Gehalt" if par == "monat" else "der Lohn")))
+                w=X(w("sueldo", "el") if mois else w("ganar", cat="verbe"), w("Gehalt", "das") if mois else w("Lohn", "der"),
+                    (PB(w("ordenado", "o"), w("salário", "o")) if mois else w("ganhar", cat="verbe"))),
+                d=X("el sueldo" if mois else "ganar", "das Gehalt" if mois else "der Lohn", PB("o ordenado", "o salário") if mois else "ganhar"))
         # le debut
         b = BEGINN[a["beginn"]]
-        ajouter(s="annonce", c="c_annonce", av=["annonce", a["id"], "beginn"], e=("¿Cuándo se empieza a trabajar?" if ES else "Wann fängt man an?"),
+        ajouter(s="annonce", c="c_annonce", av=["annonce", a["id"], "beginn"], e=X("¿Cuándo se empieza a trabajar?", "Wann fängt man an?", "Quando começa o trabalho?"),
                 r=b[langue][1], l=[BEGINN[k][langue][1] for k in BEGINN if k != a["beginn"]],
-                ph=("Se empieza a trabajar " + b["es"][1] + "." if ES else "Man fängt " + b["de"][1] + " an."),
+                ph=X("Se empieza a trabajar " + b["es"][1] + ".", "Man fängt " + b["de"][1] + " an.", "O trabalho começa " + b[langue][1] + "." if PT else ""),
                 t={l: {"fr": "On commence " + b["fr"][1] + ".", "en": "You start " + b["en"][1] + ".", "pt": "O trabalho começa " + b["pt"][1] + ".", "de": "Man fängt " + b["de"][1] + " an."}[l] for l in tls},
-                w=w("empezar", cat="verbe") if ES else w("anfangen", cat="verbe"), d=("empezar" if ES else "anfangen"))
+                w=X(w("empezar", cat="verbe"), w("anfangen", cat="verbe"), w("começar", cat="verbe")), d=X("empezar", "anfangen", "começar"))
         # a qui ecrire
         k = a["kontakt"]
-        ajouter(s="annonce", c="c_annonce", av=["annonce", a["id"], "kontakt"], e=("¿A quién se envía el currículum?" if ES else "An wen schickt man die Bewerbung?"),
+        if PT:
+            tk = {l: {"fr": "Le CV va à ", "en": "The CV goes to "}[l] + contact(k, l) + "." for l in tls}
+        else:
+            tk = {l: ({"fr": "On envoie le CV à ", "en": "You send your CV to ", "pt": "O currículo vai para ", "de": "Man schickt den Lebenslauf an "} if ES else
+                      {"fr": "On envoie la candidature à ", "en": "You send the application to ", "pt": "A candidatura vai para "})[l]
+                      + (contact(k, "de", "akk") if l == "de" else contact(k, l)) + "." for l in tls}
+        ajouter(s="annonce", c="c_annonce", av=["annonce", a["id"], "kontakt"], e=X("¿A quién se envía el currículum?", "An wen schickt man die Bewerbung?", "Para quem vai o currículo?"),
                 r=contact(k, langue, "akk"), l=[contact(o["kontakt"], langue, "akk") for o in ads if o["id"] != a["id"]],
-                ph=("Se envía el currículum " + contact(k, "es", "akk") + "." if ES else "Man schickt die Bewerbung an " + contact(k, "de", "akk") + "."),
-                t={l: ({"fr": "On envoie le CV à ", "en": "You send your CV to ", "pt": "O currículo vai para ", "de": "Man schickt den Lebenslauf an "} if ES else
-                       {"fr": "On envoie la candidature à ", "en": "You send the application to ", "pt": "A candidatura vai para "})[l]
-                       + (contact(k, "de", "akk") if l == "de" else contact(k, l)) + "." for l in tls},
-                w=w("currículum", "el") if ES else w("Bewerbung", "die"), d=("el currículum" if ES else "die Bewerbung"))
+                ph=X("Se envía el currículum " + contact(k, "es", "akk") + "." if ES else "", "Man schickt die Bewerbung an " + contact(k, "de", "akk") + "." if langue == "de" else "",
+                     "O currículo vai " + contact(k, langue, "akk") + "." if PT else ""),
+                t=tk,
+                w=X(w("currículum", "el"), w("Bewerbung", "die"), w("currículo", "o")), d=X("el currículum", "die Bewerbung", "o currículo"))
         # ce que l'annonce demande
         for q in a["erwartet"]:
             hors = [x for x in QUALITES[langue] if x not in a["erwartet"]]
-            ajouter(s="annonce", c="c_annonce", av=["annonce", a["id"], "erwartet"], e=("¿Cómo hay que ser, según la oferta?" if ES else "Was steht in der Anzeige? Man soll … sein."),
-                    r=q, l=hors, ph=("Hay que ser " + q + "." if ES else "Man soll " + q + " sein."),
-                    t={l: {"fr": "Il faut être " + accord(QUALITES[langue][q]["t"]["fr"][0], "m") + ".", "en": "You need to be " + QUALITES[langue][q]["t"]["en"][0] + ".",
-                           "pt": "É preciso ser " + accord(QUALITES[langue][q]["t"]["pt"][0], "m") + ".", "de": "Man soll " + QUALITES[langue][q]["t"].get("de", [""])[0] + " sein."}[l]
-                       if not QUALITES[langue][q]["t"][l][0].startswith("!") else {"fr": "Il faut avoir l'esprit d'équipe.", "pt": "É preciso saber trabalhar em equipe."}[l] for l in tls},
-                    w=w(q, cat="adjectif"), d=q, groupe=a["id"])
+            if PT:
+                te = {l: {"fr": "Il faut être " + accord(QUALITES[langue][q]["t"]["fr"][0], "m") + ".", "en": "You need to be " + QUALITES[langue][q]["t"]["en"][0] + "."}[l] for l in tls}
+            else:
+                te = {l: {"fr": "Il faut être " + accord(QUALITES[langue][q]["t"]["fr"][0], "m") + ".", "en": "You need to be " + QUALITES[langue][q]["t"]["en"][0] + ".",
+                          "pt": "É preciso ser " + accord(QUALITES[langue][q]["t"]["pt"][0], "m") + ".", "de": "Man soll " + QUALITES[langue][q]["t"].get("de", [""])[0] + " sein."}[l]
+                      if not QUALITES[langue][q]["t"][l][0].startswith("!") else {"fr": "Il faut avoir l'esprit d'équipe.", "pt": "É preciso saber trabalhar em equipe."}[l] for l in tls}
+            ajouter(s="annonce", c="c_annonce", av=["annonce", a["id"], "erwartet"], e=X("¿Cómo hay que ser, según la oferta?", "Was steht in der Anzeige? Man soll … sein.", "Segundo o anúncio, como é preciso ser?"),
+                    r=q, l=hors, ph=X("Hay que ser " + q + ".", "Man soll " + q + " sein.", "É preciso ser " + q + "."),
+                    t=te, w=w(q, cat="adjectif"), d=q, groupe=a["id"])
         # ou travaille le nouveau
-        ajouter(s="annonce", c="c_annonce", av=["annonce", a["id"], "firma"], e=("¿Dónde trabaja " + a["neu"].replace("El ", "el ") + "?" if ES else "Wo arbeitet " + a["neu"].replace("Der ", "der ") + "?"),
-                r=a["ou"], l=[o["ou"] for o in ads if o["id"] != a["id"]], ph=a["neu"] + (" trabaja " if ES else " arbeitet ") + a["ou"] + ".",
+        ajouter(s="annonce", c="c_annonce", av=["annonce", a["id"], "firma"],
+                e=X("¿Dónde trabaja " + a["neu"].replace("El ", "el ") + "?", "Wo arbeitet " + a["neu"].replace("Der ", "der ") + "?", "Onde trabalha " + a["neu"].replace("O ", "o ", 1) + "?"),
+                r=a["ou"], l=[o["ou"] for o in ads if o["id"] != a["id"]], ph=a["neu"] + X(" trabaja ", " arbeitet ", " trabalha ") + a["ou"] + ".",
                 t={l: a["t"][l][1] for l in tls}, w=w(a["mot"], a["genre"]), d=a["genre"] + " " + a["mot"])
     # vrai ou faux sur les annonces : la phrase d'une case avec la valeur d'une autre annonce
+    V, F = VF
     for q in [q for q in Q if q["s"] == "annonce" and q["av"][2] in ("stunden", "lohn", "beginn", "kontakt", "firma")]:
         for faux in q["l"][:2]:
             phf = q["ph"].replace(q["r"], faux, 1)
             if phf == q["ph"]:
                 continue
-            ajouter(s="vraifaux", c="c_vraifauxAnnonce", av=q["av"], e=phf, r=("Falso" if ES else "Falsch"), l=[("Verdadero" if ES else "Richtig")], n=1, ph=q["ph"], t=q["t"], w=q["w"], d=q["d"], vf=True)
-        ajouter(s="vraifaux", c="c_vraifauxAnnonce", av=q["av"], e=q["ph"], r=("Verdadero" if ES else "Richtig"), l=[("Falso" if ES else "Falsch")], n=1, ph=q["ph"], t=q["t"], w=q["w"], d=q["d"], vf=True)
+            ajouter(s="vraifaux", c="c_vraifauxAnnonce", av=q["av"], e=phf, r=F, l=[V], n=1, ph=q["ph"], t=q["t"], w=q["w"], d=q["d"], vf=True)
+        ajouter(s="vraifaux", c="c_vraifauxAnnonce", av=q["av"], e=q["ph"], r=V, l=[F], n=1, ph=q["ph"], t=q["t"], w=q["w"], d=q["d"], vf=True)
     for a in ads:
         u = U[a["umfang"]]
         for k in U:
-            ajouter(s="vraifaux", c="c_vraifauxAnnonce", av=["annonce", a["id"], "umfang", "cache"], e=U[k]["satz"], r=(("Verdadero" if ES else "Richtig") if k == a["umfang"] else ("Falso" if ES else "Falsch")),
-                    l=[("Falso" if ES else "Falsch") if k == a["umfang"] else ("Verdadero" if ES else "Richtig")], n=1, ph=u["satz"], t={l: (UMFANG_T_ES if ES else UMFANG_T)[a["umfang"]][l] for l in tls},
+            ajouter(s="vraifaux", c="c_vraifauxAnnonce", av=["annonce", a["id"], "umfang", "cache"], e=U[k]["satz"], r=(V if k == a["umfang"] else F),
+                    l=[F if k == a["umfang"] else V], n=1, ph=u["satz"], t={l: X(UMFANG_T_ES, UMFANG_T, UMFANG_T_PT)[a["umfang"]][l] for l in tls},
                     w=w(u["mot"], u["genre"]), d=u["wort"], vf=True)
 
     # 2. LES QUALITES : ce que fait la personne -> la qualite
@@ -926,19 +1325,19 @@ def fabriquer(langue):
             e = cap(accord(qv["def"].replace("{P}", P), g))
             rep = adj(langue, qk, g)
             leurres = [adj(langue, x, g) for x in QU if x != qk and x not in qv["proches"] and qk not in QU[x]["proches"]]
-            ph = cap(P) + (" es " if ES else " ist ") + rep + "."
+            ph = cap(P) + X(" es ", " ist ", " é ") + rep + "."
             t = {}
             for l in tls:
                 Pl = cap(gens(langue, p, l))
                 vb = {"fr": " est ", "en": " is ", "pt": " é ", "de": " ist "}[l]; at = accord(qv["t"][l][0], g)
                 t[l] = accord(qv["t"][l][1].replace("{P}", Pl), g) + " " + Pl + ((" " + at[1:]) if at.startswith("!") else vb + at) + "."
-            ajouter(s="qualite", c="c_qualite", av=None, e=e + " " + (cap(P) + " es ___." if ES else cap(P) + " ist ___."), r=rep, l=leurres, ph=e + " " + ph, t=t,
+            ajouter(s="qualite", c="c_qualite", av=None, e=e + " " + cap(P) + X(" es ___.", " ist ___.", " é ___."), r=rep, l=leurres, ph=e + " " + ph, t=t,
                     w=w(qk, cat="adjectif"), d=rep)
             # vrai ou faux : la meme description, la bonne qualite ou une qualite clairement fausse
-            V, F = ("Verdadero", "Falso") if ES else ("Richtig", "Falsch")
+            V, F = VF
             ajouter(s="vraifaux", c="c_vraifauxQualite", av=None, e=e + " " + ph, r=V, l=[F], n=1, ph=e + " " + ph, t=t, w=w(qk, cat="adjectif"), d=rep, vf=True)
             fx = leurres[(len(qk) + len(P)) % len(leurres)]
-            ajouter(s="vraifaux", c="c_vraifauxQualite", av=None, e=e + " " + cap(P) + (" es " if ES else " ist ") + fx + ".", r=F, l=[V], n=1, ph=e + " " + ph, t=t, w=w(qk, cat="adjectif"), d=rep, vf=True)
+            ajouter(s="vraifaux", c="c_vraifauxQualite", av=None, e=e + " " + cap(P) + X(" es ", " ist ", " é ") + fx + ".", r=F, l=[V], n=1, ph=e + " " + ph, t=t, w=w(qk, cat="adjectif"), d=rep, vf=True)
 
     # 3. L'ENTRETIEN : la question du recruteur -> la reponse de Mark
     ENT = ENTRETIEN[langue]
@@ -983,13 +1382,13 @@ def fabriquer(langue):
                 qui = cap(rec)
                 dd = mot["mot"] if mot.get("cat") else (mot.get("genre", "") + " " + mot["mot"]).strip()
                 av = ["img", "gespraech"] if aid == "sonnenweg" else None
-                enq = (qui + " pregunta: «" + e["q"] + "»" if ES else qui + " fragt: „" + e["q"] + "“")
+                enq = qui + X(" pregunta: ", " fragt: ", " pergunta: ") + cite(e["q"])
                 ajouter(s="entretien", c="c_entretien", av=av, e=enq, r=rep, l=leurres, ph=rep, t=t, w=mot, d=dd, liste=True)
                 # vrai ou faux : la reponse convient-elle a la question ? (une seule fois par question, pas par paire)
                 if pr is None or pr == paires[0]:
-                    V, F = ("Sí", "No") if ES else ("Ja", "Nein")
-                    rep2 = (" Mark: «" if ES else " Mark: „")
-                    fin = ("»" if ES else "“")
+                    V, F = SN
+                    rep2 = " Mark: " + cite("")[:1]
+                    fin = cite("")[1:]
                     ajouter(s="vraifaux", c="c_vraifauxEntretien", av=av, e=enq + rep2 + rep + fin, r=V, l=[F], n=1, ph=rep, t=t, w=mot, d=dd, vf=True)
                     ajouter(s="vraifaux", c="c_vraifauxEntretien", av=av, e=enq + rep2 + leurres[len(e["id"]) % len(leurres)] + fin, r=F, l=[V], n=1, ph=rep, t=t, w=mot, d=dd, vf=True)
 
@@ -1002,12 +1401,23 @@ def fabriquer(langue):
             if cle in ("anrede", "gruss"):
                 trou = "___"
             else:
-                motif = {"um": " um die", "als": " als ", "bewerbe": "bewerbe mich", "de": "puesto de ", "solicitar": "solicitar el"}[cle]
+                motif = {"um": " um die", "als": " als ", "bewerbe": "bewerbe mich", "de": "puesto de ", "solicitar": "solicitar el",
+                         "prep": "candidatar à", "cand": "me candidatar"}[cle]
                 trou = ligne.replace(motif, motif.replace(rep, "___"), 1)
             tl = {}
             f, kn = k_f, a["kontakt"]["nom"]
             for l in tls:
-                if cle == "anrede":
+                if PT:
+                    if cle == "anrede":
+                        tl[l] = ({"fr": "Madame," if f else "Monsieur,", "en": ("Dear Ms " if f else "Dear Mr ") + kn + ","} if BR else
+                                 {"fr": "Madame," if f else "Monsieur,", "en": "Dear Madam," if f else "Dear Sir,"})[l]
+                    elif cle == "gruss":
+                        tl[l] = {"fr": "Veuillez agréer mes salutations distinguées.", "en": "Kind regards,"}[l]
+                    else:
+                        pf = a["t"]["fr"][0]
+                        tl[l] = {"fr": "Je pose ma candidature pour le poste " + ("d'" if pf[:1] in "aeiouéè" else "de ") + pf + ".",
+                                 "en": "I am applying for the job of " + a["t"]["en"][0] + "."}[l]
+                elif cle == "anrede":
                     tl[l] = {"fr": "Madame," if f else "Monsieur,", "en": ("Dear Ms " if f else "Dear Mr ") + kn + ",", "pt": ("Prezada Sra. " if f else "Prezado Sr. ") + kn + ",",
                              "de": ("Sehr geehrte Frau " if f else "Sehr geehrter Herr ") + kn + ","}[l]
                 elif cle == "gruss":
@@ -1018,7 +1428,7 @@ def fabriquer(langue):
             dd = mot[0] if mot[1] in ("verbe", "adjectif") else mot[1] + " " + mot[0]
             ajouter(s="lettre", c=cons, av=["lettre", a["id"], i, trou], e=("" if cle in ("anrede", "gruss") else trou), r=rep, l=leurres, n=min(3, len(leurres)), ph=ligne, t=tl, w=wl(mot), d=dd, liste=cle in ("anrede", "gruss"))
             # vrai ou faux : la ligne avec la bonne forme, ou avec un leurre
-            V, F = ("Verdadero", "Falso") if ES else ("Richtig", "Falsch")
+            V, F = VF
             fx = leurres[(len(a["id"]) + i) % len(leurres)]
             fausse = trou.replace("___", fx)
             ajouter(s="vraifaux", c="c_vraifauxLettre", av=["lettre", a["id"], i, ligne], e=ligne, r=V, l=[F], n=1, ph=ligne, t=tl, w=wl(mot), d=dd, vf=True)
@@ -1032,24 +1442,29 @@ def fabriquer(langue):
             mot = wl(r["mot"]) if r["mot"] else wl(cv["mot"])
             dd = mot["mot"] if mot.get("cat") else mot["genre"] + " " + mot["mot"]
             tt = {l: r["titre"] + (" = " if l != "de" else " → ") + cv["t"][l][ri] for l in tls}
-            ajouter(s="cv", c="c_cv", av=["cv", ri, li, "cache"], e=("¿En qué apartado está esta línea?" if ES else "Unter welcher Überschrift steht diese Zeile?"), r=r["titre"],
+            ajouter(s="cv", c="c_cv", av=["cv", ri, li, "cache"], e=X("¿En qué apartado está esta línea?", "Unter welcher Überschrift steht diese Zeile?", PB("Em que secção está esta linha?", "Em que seção está esta linha?")), r=r["titre"],
                     l=[x["titre"] for x in rub if x is not r], ph=r["titre"] + ": " + ligne, t=tt, w=mot, d=dd)
             # vrai ou faux : « „Fussball, Laufen, Kochen“ steht unter „Hobbys“. »
-            V, F = ("Verdadero", "Falso") if ES else ("Richtig", "Falsch")
+            V, F = VF
             autre = rub[(ri + li + 1) % len(rub)] if rub[(ri + li + 1) % len(rub)] is not r else rub[(ri + 2) % len(rub)]
-            dit = lambda t_: ("«" + ligne + "» está en el apartado «" + t_ + "»." if ES else "„" + ligne + "“ steht unter „" + t_ + "“.")
+            dit = lambda t_: X("«" + ligne + "» está en el apartado «" + t_ + "».", "„" + ligne + "“ steht unter „" + t_ + "“.",
+                               PB("«" + ligne + "» está na secção «" + t_ + "».", "“" + ligne + "” está na seção “" + t_ + "”."))
             ajouter(s="vraifaux", c="c_vraifauxCv", av=["cv", ri, li, "cache"], e=dit(r["titre"]), r=V, l=[F], n=1, ph=r["titre"] + ": " + ligne, t=tt, w=mot, d=dd, vf=True)
             ajouter(s="vraifaux", c="c_vraifauxCv", av=["cv", ri, li, "cache"], e=dit(autre["titre"]), r=F, l=[V], n=1, ph=r["titre"] + ": " + ligne, t=tt, w=mot, d=dd, vf=True)
     # vrai ou faux sur les langues du CV
     SP = SPRACHEN[langue]
-    for i, (sp, phrase, t) in enumerate(SP):
-        mot = wl(["idioma", "el"]) if ES else wl(["Sprachkenntnisse", "die (Pl.)"])
-        ajouter(s="vraifaux", c="c_vraifauxCv", av=["cv", 3, i], e=phrase, r=("Verdadero" if ES else "Richtig"), l=[("Falso" if ES else "Falsch")], n=1, ph=phrase, t={l: t[l] for l in tls}, w=mot, d=mot["mot"], vf=True)
-        for j, (sp2, _, _) in enumerate(SP):
-            if j != i:
+    V, F = VF
+    for i, e_sp in enumerate(SP):
+        sp, phrase, t = e_sp[:3]
+        sauf = e_sp[3] if len(e_sp) > 3 else []           # le portugais : une langue qui rendrait la phrase vraie
+        mot = X(wl(["idioma", "el"]), wl(["Sprachkenntnisse", "die (Pl.)"]), wl(["língua", "a"]))
+        ajouter(s="vraifaux", c="c_vraifauxCv", av=["cv", 3, i], e=phrase, r=V, l=[F], n=1, ph=phrase, t={l: t[l] for l in tls}, w=mot, d=mot["mot"], vf=True)
+        for j, e2 in enumerate(SP):
+            sp2 = e2[0]
+            if j != i and sp2 not in sauf:
                 f = phrase.replace(sp, sp2)
-                if f != phrase and f not in [p for (_, p, _) in SP]:
-                    ajouter(s="vraifaux", c="c_vraifauxCv", av=["cv", 3, i], e=f, r=("Falso" if ES else "Falsch"), l=[("Verdadero" if ES else "Richtig")], n=1, ph=phrase, t={l: t[l] for l in tls}, w=mot, d=mot["mot"], vf=True)
+                if f != phrase and f not in [x[1] for x in SP]:
+                    ajouter(s="vraifaux", c="c_vraifauxCv", av=["cv", 3, i], e=f, r=F, l=[V], n=1, ph=phrase, t={l: t[l] for l in tls}, w=mot, d=mot["mot"], vf=True)
 
     # 6. LE CONTRAT : la question d'une case ; le nom d'une case cachee ; vrai ou faux
     ct = CONTRAT[langue]
@@ -1059,16 +1474,17 @@ def fabriquer(langue):
         tt = {l: c["t"][l] for l in tls}
         ajouter(s="contrat", c="c_contrat", av=["contrat", c["id"], None], e=c["q"], r=c["r"], l=c["rf"], n=2, ph=c["ph"], t=tt, w=mot, d=dd)
         ajouter(s="contrat", c="c_contratLabel", av=["contrat", None, c["id"]], e="___: " + c["v"], r=c["label"], l=[x["label"] for x in ct["cases"] if x is not c], ph=c["label"] + ": " + c["v"], t=tt, w=mot, d=dd)
+        V, F = VF
         for v, juste in [(c["r"], True)] + [(f, False) for f in c["rf"]]:
-            ajouter(s="vraifaux", c="c_vraifauxContrat", av=["contrat", c["id"], None], e=c["vf"].replace("{r}", v), r=(("Verdadero" if ES else "Richtig") if juste else ("Falso" if ES else "Falsch")),
-                    l=[("Falso" if ES else "Falsch") if juste else ("Verdadero" if ES else "Richtig")], n=1, ph=c["ph"], t=tt, w=mot, d=dd, vf=True)
+            ajouter(s="vraifaux", c="c_vraifauxContrat", av=["contrat", c["id"], None], e=c["vf"].replace("{r}", v), r=(V if juste else F),
+                    l=[F if juste else V], n=1, ph=c["ph"], t=tt, w=mot, d=dd, vf=True)
 
     # 7. LES ACTIONS : l'image -> la phrase ; l'objet -> le verbe ; (de) la place du petit mot
     ACT = ACTIONS[langue]
     def phrase(x, avec_obj=True):
         v, pron, part = C.er(x["v"])
         S = cap(gens(langue, x["s"]))
-        if ES:
+        if langue != "de":                                 # es, et le portugais : sujet, verbe, objet
             return espaces(S + " " + (x.get("pre", "") + " ") + v + " " + (x["obj"] if avec_obj else "") + ".")
         return espaces(S + " " + v + " " + pron + " " + (x["obj"] if avec_obj else "") + " " + part + ".")
     def proches(i, j):
@@ -1078,19 +1494,19 @@ def fabriquer(langue):
         tt = {l: x["t"][l] for l in tls}
         if x["img"]:
             autres = [y for y in ACT if y["img"] and y["img"] != x["img"] and y["v"] != x["v"] and not proches(x["img"], y["img"])]
-            ajouter(s="quoi", c="c_quoi", av=["img", x["img"]], e=("¿Qué pasa en la foto?" if ES else "Was passiert auf dem Bild?"), r=phrase(x), l=[phrase(y) for y in autres], n=2,
-                    ph=phrase(x), t=tt, w=w(x["v"], cat="verbe"), d=x["v"], liste=True)
+            ajouter(s="quoi", c="c_quoi", av=["img", x["img"]], e=X("¿Qué pasa en la foto?", "Was passiert auf dem Bild?", PB("O que se passa na foto?", "O que está acontecendo na foto?")),
+                    r=phrase(x), l=[phrase(y) for y in autres], n=2, ph=phrase(x), t=tt, w=w(x["v"], cat="verbe"), d=x["v"], liste=True)
         if x.get("verbe", True) and x["obj"]:
             libres = [y["v"] for y in ACT if y["v"] != x["v"] and y["v"] not in x["aussi_v"] and y.get("verbe", True)]
-            enonce = ((x.get("pre", "") + " ___ ").lstrip() + x["obj"]) if ES else (x["obj"] + " ___")
+            enonce = ((x.get("pre", "") + " ___ ").lstrip() + x["obj"]) if langue != "de" else (x["obj"] + " ___")
             av = ["img", x["img"]] if x["img"] else None
             ajouter(s="verbe", c="c_verbe", av=av, e=enonce, r=x["v"], l=libres, ph=phrase(x), t=tt, w=w(x["v"], cat="verbe"), d=x["v"])
             # vrai ou faux : la phrase avec son verbe, ou avec un verbe qui ne va pas avec l'objet
-            V, F = ("Verdadero", "Falso") if ES else ("Richtig", "Falsch")
+            V, F = VF
             y = next(z for z in ACT if z["v"] == libres[len(x["id"]) % len(libres)])
             ajouter(s="vraifaux", c="c_vraifauxPhrase", av=av, e=phrase(x), r=V, l=[F], n=1, ph=phrase(x), t=tt, w=w(x["v"], cat="verbe"), d=x["v"], vf=True)
             ajouter(s="vraifaux", c="c_vraifauxPhrase", av=av, e=phrase(dict(x, v=y["v"])), r=F, l=[V], n=1, ph=phrase(x), t=tt, w=w(x["v"], cat="verbe"), d=x["v"], vf=True)
-        if not ES:
+        if langue == "de":
             v, pron, part = C.er(x["v"])
             S = cap(gens(langue, x["s"]))
             if part or x["v"] in ("sich bewerben", "unterschreiben"):
@@ -1109,7 +1525,14 @@ def fabriquer(langue):
     # 8. SIE OU DU / USTED OU TU
     for it in REGISTRE[langue]:
         e = C.verbes[it["v"]]["praesens"]
-        formes = {"sie": e["sie_Sie"] if not ES else e["er_sie_es"], "du": e["du"], "er": e["er_sie_es"] if not ES else e["ich"]}
+        if BR:
+            # au Bresil, voce et o senhor prennent la forme de « ele » : la reponse est la meme pour les deux, les leurres
+            # sont la forme de tu (« podes », jamais avec voce) et celle de eu
+            formes = {"sie": e["er_sie_es"], "du": e["er_sie_es"], "tu": e["du"], "eu": e["ich"]}
+        elif PT:
+            formes = {"sie": e["er_sie_es"], "du": e["du"], "er": e["ich"]}
+        else:
+            formes = {"sie": e["sie_Sie"] if not ES else e["er_sie_es"], "du": e["du"], "er": e["er_sie_es"] if not ES else e["ich"]}
         for reg in ("sie", "du"):
             if not it[reg]:
                 continue
@@ -1129,11 +1552,14 @@ def fabriquer(langue):
                 if ES and B != "mark":
                     pB = pB
                 intro = FRAGT[langue].replace("{A}", pA).replace("{B}", pB)
+                if PT:
+                    intro = contracter(intro)              # « pergunta ao Mark », « pergunta à Marta »
                 vis = "chef" if reg == "sie" else (A if A != "mark" else B)
+                pt_mots = {"chef": ["chefe", "o"], "m": ["colega", "o"], "f": ["colega", "o"]}
                 mot = {"de": {"chef": ["Chefin", "die"], "m": ["Kollege", "der"], "f": ["Kollegin", "die"]},
-                       "es": {"chef": ["jefa", "la"], "m": ["compañero", "el"], "f": ["compañera", "la"]}}[langue][vis]
-                ajouter(s="registre", c="c_registre", av=None, e=intro + " " + ("«" + txt + "»" if ES else "„" + txt + "“"), r=aff(rep),
-                        l=[aff(formes[k]) for k in formes if formes[k] != rep], n=2, ph=juste, t=tt, w=wl(mot), d=mot[1] + " " + mot[0], cle=reg)
+                       "es": {"chef": ["jefa", "la"], "m": ["compañero", "el"], "f": ["compañera", "la"]}, "pt_": pt_mots, "br_": pt_mots}[langue][vis]
+                ajouter(s="registre", c="c_registreBr" if BR else "c_registre", av=None, e=intro + " " + cite(txt), r=aff(rep),
+                        l=list(dict.fromkeys(aff(formes[k]) for k in formes if formes[k] != rep)), n=2, ph=juste, t=tt, w=wl(mot), d=mot[1] + " " + mot[0], cle=reg)
 
     # 9. L'APPEL : une ligne a trou
     for sym in SYMPTOMES[langue]:
@@ -1147,7 +1573,7 @@ def fabriquer(langue):
             dd = mot[0] if mot[1] in ("verbe", "adjectif") else mot[1] + " " + mot[0]
             ajouter(s="telefon", c="c_telefon", av=["appel", sym[0], i, txt], e=txt, r=rep, l=leurres, ph=txt.replace("___", rep), t=tt, w=wl(mot), d=dd)
             # vrai ou faux : la ligne completee juste, ou avec un leurre (« Ich habe Urlaub. »)
-            V, F = ("Verdadero", "Falso") if ES else ("Richtig", "Falsch")
+            V, F = VF
             fausse = txt.replace("___", leurres[len(sym[0]) % len(leurres)])
             ajouter(s="vraifaux", c="c_vraifauxAppel", av=["appel", sym[0], i, txt.replace("___", rep)], e=txt.replace("___", rep), r=V, l=[F], n=1, ph=txt.replace("___", rep), t=tt, w=wl(mot), d=dd, vf=True)
             ajouter(s="vraifaux", c="c_vraifauxAppel", av=["appel", sym[0], i, fausse], e=fausse, r=F, l=[V], n=1, ph=txt.replace("___", rep), t=tt, w=wl(mot), d=dd, vf=True)
@@ -1161,7 +1587,7 @@ def fabriquer(langue):
             av = ["img", ro["img"]] if ro["img"] else None
             leurres = [x for x in ro["l"] if x not in reps]
             ajouter(s="qui", c="c_qui", av=av, e=dsc, r=reps[i], l=leurres, n=3, ph=dsc.replace("___", reps[i]), t=t, w=wl(mots[i]), d=mots[i][1] + " " + mots[i][0])
-            V, F = ("Verdadero", "Falso") if ES else ("Richtig", "Falsch")
+            V, F = VF
             ajouter(s="vraifaux", c="c_vraifauxQui", av=av, e=dsc.replace("___", reps[i]), r=V, l=[F], n=1, ph=dsc.replace("___", reps[i]), t=t, w=wl(mots[i]), d=mots[i][1] + " " + mots[i][0], vf=True)
             ajouter(s="vraifaux", c="c_vraifauxQui", av=av, e=dsc.replace("___", leurres[i % len(leurres)]), r=F, l=[V], n=1, ph=dsc.replace("___", reps[i]), t=t, w=wl(mots[i]), d=mots[i][1] + " " + mots[i][0], vf=True)
 
@@ -1185,20 +1611,44 @@ def fabriquer(langue):
         for (e, rep, mot, tt) in LIEUX_ESTAR:
             ajouter(s="serEstar", c="c_serEstar", av=None, e=e, r=rep, l=["es" if rep == "está" else "está"], n=1, ph=e.replace("___", rep), t={l: tt[l] for l in tls}, w=wl(mot), d=mot[1] + " " + mot[0])
 
+    # 11 bis. SER OU ESTAR en portugais : « é uma pessoa pontual » (jamais « está uma pessoa ») ; « está doente hoje »
+    if PT:
+        for qk in QU:
+            for p in ("mark", "m", "f"):
+                g = GENS[langue][p]["g"]
+                P = cap(gens(langue, p))
+                a_ = adj(langue, qk, "f")                  # accorde avec « pessoa »
+                en_ = QU[qk]["t"]["en"][0]
+                tt = {l: cap(gens(langue, p, l)) + {"fr": " est une personne " + accord(QU[qk]["t"]["fr"][0], "f") + ".",
+                                                     "en": (" is an " if en_[0] in "aeiou" else " is a ") + en_ + " person."}[l] for l in tls}
+                ajouter(s="serEstar", c="c_serEstar", av=None, e=P + " ___ uma pessoa " + a_ + ".", r="é", l=["está"], n=1, ph=P + " é uma pessoa " + a_ + ".", t=tt,
+                        w=w(qk, cat="adjectif"), d=a_)
+        for ek, (f, img, ttr, quand) in ESTAR_PT.items():
+            for p in ("mark", "m", "f"):
+                g = GENS[langue][p]["g"]
+                P = cap(gens(langue, p))
+                a_ = ek if g == "m" else f
+                tt = {l: cap(gens(langue, p, l)) + {"fr": " est ", "en": " is "}[l] + ttr[l][0 if g == "m" else 1] + accord(ESTAR_T_PT[quand][l], g) + "." for l in tls}
+                ajouter(s="serEstar", c="c_serEstar", av=["img", img] if (img and p == "mark") else None, e=P + " ___ " + a_ + " " + quand + ".", r="está", l=["é"], n=1,
+                        ph=P + " está " + a_ + " " + quand + ".", t=tt, w=w(ek, cat="adjectif"), d=a_)
+        for (e, rep, mot, tt) in R(LIEUX_ESTAR_PT, BR):
+            ajouter(s="serEstar", c="c_serEstar", av=None, e=e, r=rep, l=["é" if rep == "está" else "está"], n=1, ph=e.replace("___", rep), t={l: tt[l] for l in tls}, w=wl(mot), d=mot[1] + " " + mot[0])
+
     # 12. LES DOCUMENTS : l'image -> le nom ; le nom entendu -> l'image ; et le papier dessine -> le nom (sans image)
     dk = DOCS[langue]
     papiers = {"zeitung": [["annonce", a["id"], None, "anon"] for a in ads[:3]], "lebenslauf": [["cv", -1, -1, "anon"]], "anschreiben": [["lettre", "sonnenweg", -1, None], ["lettre", "cafe", -1, None]],
                "arbeitsvertrag": [["contrat", None, None, "anon"]]}
+    cest = lambda aff: X("Es " + aff + ".", "Das ist " + aff + ".", "É " + aff + ".")
     for k, (m, g, t) in dk.items():
         aff = g + " " + m
         for av in papiers[k]:
-            ajouter(s="document", c="c_papier", av=av, e=("¿Qué es este papel?" if ES else "Was für ein Papier ist das?"), r=aff, l=[dk[x][1] + " " + dk[x][0] for x in dk if x != k], n=3,
-                    ph=("Es " + aff + "." if ES else "Das ist " + aff + "."), t={l: {"fr": "C'est ", "en": "This is ", "pt": "É ", "de": "Das ist "}[l] + t[l] + "." for l in tls}, w=w(m, g), d=aff)
+            ajouter(s="document", c="c_papier", av=av, e=X("¿Qué es este papel?", "Was für ein Papier ist das?", "Que papel é este?"), r=aff, l=[dk[x][1] + " " + dk[x][0] for x in dk if x != k], n=3,
+                    ph=cest(aff), t={l: {"fr": "C'est ", "en": "This is ", "pt": "É ", "de": "Das ist "}[l] + t[l] + "." for l in tls}, w=w(m, g), d=aff)
     for k, (m, g, t) in dk.items():
         aff = g + " " + m
-        ajouter(s="document", c="c_document", av=["img", k], e=("¿Qué es esto?" if ES else "Was ist das?"), r=aff, l=[dk[x][1] + " " + dk[x][0] for x in dk if x != k], n=3,
-                ph=("Es " + aff + "." if ES else "Das ist " + aff + "."), t={l: {"fr": "C'est ", "en": "This is ", "pt": "É ", "de": "Das ist "}[l] + t[l] + "." for l in tls}, w=w(m, g), d=aff)
-        ajouter(s="entendre", c="c_entendre", av=None, e="", r=k, l=[x for x in dk if x != k], n=2, ph=("Es " + aff + "." if ES else "Das ist " + aff + "."),
+        ajouter(s="document", c="c_document", av=["img", k], e=X("¿Qué es esto?", "Was ist das?", "O que é isto?"), r=aff, l=[dk[x][1] + " " + dk[x][0] for x in dk if x != k], n=3,
+                ph=cest(aff), t={l: {"fr": "C'est ", "en": "This is ", "pt": "É ", "de": "Das ist "}[l] + t[l] + "." for l in tls}, w=w(m, g), d=aff)
+        ajouter(s="entendre", c="c_entendre", av=None, e="", r=k, l=[x for x in dk if x != k], n=2, ph=cest(aff),
                 t={l: {"fr": "C'est ", "en": "This is ", "pt": "É ", "de": "Das ist "}[l] + t[l] + "." for l in tls}, w=w(m, g), d=aff, images=True)
     return Q, C
 
@@ -1215,6 +1665,13 @@ def annonce_affiche(langue, a):
                            ["lohn", "Lohn" if par == "stunde" else "Gehalt", lohn(x, par, "de").replace(" im Monat", " brutto im Monat")],
                            ["beginn", "Beginn", b], ["erwartet", "Sie sind", ", ".join(a["erwartet"])], ["plus", "", a["plus"]], ["bietet", "Wir bieten", a["bietet"]],
                            ["kontakt", "Bewerbung an", contact(a["kontakt"], "de", "n") + ", " + a["mail"]]]}
+    if langue in ("pt_", "br_"):
+        br = langue == "br_"
+        return {"titre": a["stelle"], "firma": a["firma"], "intro": "Procuramos:",
+                "lignes": [["umfang", "Jornada" if br else "Regime", U[a["umfang"]]["wort"]], ["stunden", "Horas", "%d horas por semana" % a["stunden"]],
+                           ["lohn", "Salário" if br else "Remuneração", lohn(x, par, langue).replace(" por mês", " brutos por mês")], ["beginn", "Início", b],
+                           ["erwartet", "Perfil", " e ".join(a["erwartet"])], ["plus", "", a["plus"]], ["bietet", "Oferecemos", a["bietet"]],
+                           ["kontakt", "Envie o currículo para" if br else "Candidaturas para", contact(a["kontakt"], langue, "aff") + ", " + a["mail"]]]}
     return {"titre": a["stelle"], "firma": a["firma"], "intro": "Buscamos:",
             "lignes": [["umfang", "Jornada", U[a["umfang"]]["wort"]], ["stunden", "Horas", "%d horas a la semana" % a["stunden"]],
                        ["lohn", "Sueldo", lohn(x, par, "es").replace(" al mes", " brutos al mes")], ["beginn", "Inicio", b],
@@ -1226,7 +1683,7 @@ def ecrire_json():
     d = {"gens": GENS, "firme": FIRME, "annonces": {}, "cv": CV, "contrat": CONTRAT, "lettres": {}, "appels": {}, "images": {i: img_src(i) for i in IMAGES},
          "docs": DOCS, "actions": ACTIONS, "questions": {}, "mots": {}, "absents": {}, "tc": {}}
     rapport = []
-    for langue in ("de", "es"):
+    for langue in APPRIS:
         Q, C = fabriquer(langue)
         d["annonces"][langue] = {a["id"]: annonce_affiche(langue, a) for a in ANNONCES[langue]}
         d["lettres"][langue] = {}

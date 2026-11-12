@@ -114,6 +114,9 @@ a oficina | l'atelier (formation) | Deixei o carro na oficina. | J'ai laissé la
 o orçamento | le budget, le devis | O orçamento está alto demais. | Le devis est trop élevé.
 o pedido | la commande | O seu pedido chega amanhã. | Votre commande arrive demain.
 o período integral | le temps plein | Ele trabalha em período integral nesta empresa. | Il travaille à temps plein dans cette entreprise. | pl=períodos integrais
+o tempo inteiro | le temps plein | O meu contrato é de tempo inteiro. | Mon contrat est à temps plein. | u
+o tempo parcial | le temps partiel | Ela tem um contrato de tempo parcial. | Elle a un contrat à temps partiel. | u
+o anúncio de emprego | l'offre d'emploi | Li um anúncio de emprego no jornal. | J'ai lu une offre d'emploi dans le journal. | pl=anúncios de emprego
 o programador | le programmeur | O programador escreve código novo. | Le programmeur écrit du nouveau code.
 a reformada | la retraitée | A minha mãe está reformada há dois anos. | Ma mère est retraitée depuis deux ans. | g?
 o reformado | le retraité | O meu vizinho está reformado há um ano. | Mon voisin est retraité depuis un an.
