@@ -117,6 +117,10 @@ def cle_de(e):
         return "pronomen"
     if c == "ctr" or k == "compteur":
         return "zahlen"
+    # Une unite (キロ) ou un suffixe de comptage (軒) : avec les nombres.
+    t = (e.get("traduction") or "").lower()
+    if t.startswith("(compteur") or t.startswith("kilo"):
+        return "zahlen"
     return "partikeln"
 
 
@@ -141,8 +145,13 @@ def regrouper(par_niveau):
         if e["mot"].lstrip("～") not in deja_nombres:
             sortie["zahlen"].append(e)
     rang = {"A1": 0, "A2": 1, "B1": 2, "B2": 3, "C1": 4}
+    # Dans un niveau, les particules d'abord, puis la copule et les terminaisons,
+    # puis les auxiliaires, suffixes et prefixes (tri stable).
+    nature = {"particule": 0, "particule de fin": 1, "copule": 2, "terminaison": 3,
+              "auxiliaire": 4, "suffixe": 5, "préfixe": 6}
     for k in sortie:
-        sortie[k].sort(key=lambda e: rang.get(e.get("niveau"), 9))
+        sortie[k].sort(key=lambda e: (rang.get(e.get("niveau"), 9),
+                                      nature.get(e.get("kategorie"), 3) if k == "partikeln" else 0))
     return sortie
 
 
