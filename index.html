@@ -74339,6 +74339,13 @@ function showFlashcardEnd(){
         if(anneau){ anneau.classList.toggle("hidden", !enSeance); if(enSeance) majAnneauFin(anneau, true); }
         const titre = document.getElementById("flashEndTitre");
         if(titre) titre.textContent = t(enSeance ? "fin_seance_titre" : "flash_end_title");
+        // L'en-tete gardait le nom de la derniere partie (« Le theme illustre ») au-dessus de « Seance terminee »
+        // (revue A a Z, v4, M2) : la fin de seance reprend le titre de la seance.
+        if(enSeance){
+            const k = document.getElementById("flashKicker"), h = document.getElementById("flashThemeTitle");
+            if(k) k.textContent = t("seance_titre");
+            if(h) h.textContent = (currentTheme && currentTheme.name) || "";
+        }
         rendreFetes(document.getElementById("finFetes"), prendreFetesAttente());
         const ne = rendreErreurs(document.getElementById("finErreurs"), enSeance ? erreursDeLaSeance() : []);
         if(enSeance && ne) majSeanceSuivie(s => { s.e = Math.max(s.e || 0, ne); });
