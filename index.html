@@ -38642,9 +38642,11 @@ async function handleEmailSignup() {
                               : { createdAt: window.fsServerTimestamp() }), { merge: true });
             } catch (e) {}
             if (sansCompte) {
-                try { localStorage.setItem("wortando_adresseLieeLe_" + uid, String(Date.now())); } catch (e) {}
-                adresseLieeLeMs = Date.now();
-                codeInvitationConsomme = true;
+                // L'acces se relit du serveur (date du lien, code consomme) : le
+                // cache de l'anonyme ne vaut plus, et d'ici la, l'acces complet.
+                try { localStorage.removeItem(CLE_ACCES_COMPTE + uid); } catch (e) {}
+                oublierAccesCompte();
+                try { loadVhsKapitelAccessFlag(); } catch (e) {}
             }
             if (typeof syncProgressToCloud === "function") syncProgressToCloud();
             if (sansCompte) {
@@ -45266,6 +45268,9 @@ window.onDeutschAiUserSignedIn = function(){
     // Un autre compte (depuis le mode sans compte, ou apres une deconnexion) :
     // rien ne s'ecrit avant sa restauration. Voir suspendreSyncCompte().
     suspendreSyncCompte();
+    // Et son acces se relit (loadVhsKapitelAccessFlag, plus bas) : rien de
+    // l'ancien compte ne lui est prete.
+    oublierAccesCompte();
     // La langue d'abord : restaurer la progression allemande pour repartir
     // aussitot vers l'espagnol ne servirait a rien.
     accorderLangueAuCompte().catch(() => false).then(part => {
@@ -45314,6 +45319,8 @@ async function loadVhsKapitelAccessFlag(){
                 codeInvitationConsomme = !!(c.exists() && c.data().usedBy === user.uid);
             }catch(e){}
         }
+        accesCompteLu = true;
+        retenirAccesCompte(user.uid);
         // L'essai de 7 jours et les 4 mois offerts (v1165) : inerte avant la sortie.
         try{ lireAccesDuCompte(snap.exists() ? snap.data() : {}, user); }catch(e){}
         if(snap.exists()) appliquerLangueImposee(snap.data().langueImposee);
@@ -52096,8 +52103,29 @@ function apercuGratuitActif(){
 // (compteAvantLancement(), reste de la v691 sans appelant, est retire.)
 let adresseLieeLeMs = null;
 let codeInvitationConsomme = false;
-function adresseLieeLeLocale(uid){
-    try{ const v = Number(localStorage.getItem("wortando_adresseLieeLe_" + uid)); return v > 0 ? v : null; }catch(e){ return null; }
+// ⚠️ LA COURSE AU CHARGEMENT (relecture de la session de l'abonnement, 12 nov.).
+// Ces deux valeurs arrivent apres deux lectures Firestore (users, puis
+// inviteCodes) : d'ici la, un vrai testeur de plus de 7 jours se lirait
+// « gratuit », et l'accueil lui montrerait la fin de l'essai -- hors ligne, pour
+// toute la session. D'ou : un cache par uid de ce que le SERVEUR a dit (jamais
+// une valeur tiree de l'horloge du telephone), le drapeau `accesCompteLu`, et,
+// sans l'un ni l'autre, jamais moins qu'un essai (infoAcces, majAccesAccueil).
+// Le meme cache couvre accesAVie, qui avait deja cette course en petit.
+let accesCompteLu = false;
+const CLE_ACCES_COMPTE = "wortando_accesCompte_";
+function accesCompteEnCache(uid){
+    try{
+        const v = JSON.parse(localStorage.getItem(CLE_ACCES_COMPTE + uid) || "null");
+        return v && typeof v === "object" ? v : null;
+    }catch(e){ return null; }
+}
+function retenirAccesCompte(uid){
+    try{ localStorage.setItem(CLE_ACCES_COMPTE + uid, JSON.stringify({ code: !!codeInvitationConsomme, lie: adresseLieeLeMs, vie: !!accesAVieFirestore })); }catch(e){}
+}
+function oublierAccesCompte(){
+    accesCompteLu = false;
+    codeInvitationConsomme = false;
+    adresseLieeLeMs = null;
 }
 
 // ============ L'ESSAI DE 7 JOURS, GERE PAR L'APP (11 nov. 2026) ============
@@ -52218,21 +52246,34 @@ function infoAcces(){
     try{ if(user && user.metadata && user.metadata.creationTime) creeMs = Date.parse(user.metadata.creationTime); }catch(e){}
     let plancher = plancherServeurMs;
     try{ if(user && user.metadata && user.metadata.lastSignInTime) plancher = Math.max(plancher, Date.parse(user.metadata.lastSignInTime) || 0); }catch(e){}
-    return etatEssaiPur({
+    let code = codeInvitationConsomme, lie = adresseLieeLeMs, vie = accesAVieFirestore, enAttente = false;
+    if(user && !user.isAnonymous && !accesCompteLu){
+        const c = accesCompteEnCache(user.uid);
+        if(c){
+            code = code || !!c.code;
+            if(lie == null && typeof c.lie === "number") lie = c.lie;
+            vie = vie || !!c.vie;
+        } else enAttente = true;
+    }
+    const r = etatEssaiPur({
         actif: ACCES.actif,
         admin: isAdminUser(),
-        accesAVie: accesAVieFirestore,
+        accesAVie: vie,
         lancementMs: ACCES.lancement ? new Date(ACCES.lancement + "T00:00:00").getTime() : null,
         creeMs: isNaN(creeMs) ? null : creeMs,
         anonyme: !!(user && user.isAnonymous),
-        codeInvitation: codeInvitationConsomme,
-        lieMs: adresseLieeLeMs != null ? adresseLieeLeMs : (user ? adresseLieeLeLocale(user.uid) : null),
+        codeInvitation: code,
+        lieMs: lie,
         debutCompteMs: essaiCompte.debutMs,
         maintenantMs: maintenant,
         plancherServeurMs: plancher,
         offertJusquaMs: essaiCompte.offertJusquaMs,
         abonne: abonnementMagasin() === "abonne"
     });
+    // Le compte n'est pas encore connu (ni serveur ni cache) : l'acces complet
+    // en attendant, jamais l'inverse. `attente` : l'accueil n'en tire rien.
+    if(enAttente && r.etat === "gratuit") return Object.assign({}, r, { etat: "essai", restants: 1, attente: true });
+    return enAttente ? Object.assign({}, r, { attente: true }) : r;
 }
 
 // L'abonnement vient des magasins, par RevenueCat (voir « LES ACHATS » plus
@@ -52508,6 +52549,7 @@ function majAccesAccueil(){
         const accueil = document.getElementById("home");
         if(!accueil || !accueil.classList.contains("active") || document.getElementById("episodeVoile")) return;
         const info = infoAcces();
+        if(info.attente) return;      // le compte n'est pas encore lu (voir accesCompteLu)
         const m = marquesEssai();
         if(info.etat === "essai" && info.jour >= ESSAI_RAPPEL_JOUR && !m.v.rappel){
             marquerEssai("rappel");
