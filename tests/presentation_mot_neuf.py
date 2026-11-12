@@ -4,9 +4,9 @@
     python tests/presentation_mot_neuf.py --captures DOSSIER        (de et es)
 
 Sur un navigateur vierge, sans compte : « Je pars de zero », la visite passee, la seance du jour. Trois cas :
-  presente : la carte neuve arrive par son verso (« Nouveau mot », le mot, la traduction, « Continuer »,
-             « Je le connaissais deja »), puis revient plus loin et se demande depuis le francais ;
-  connu    : « Je le connaissais deja » -> deux points, « Deja connu », et le mot ne revient pas dans la seance ;
+  presente : la carte neuve arrive par son verso (bandeau « Nouveau mot », le mot, la traduction) ; un seul geste, la
+             bille a sa place habituelle, Encore et Mettre de cote invisibles a leur place ; elle revient plus loin et
+             se demande depuis le francais (decision de Jacques du 11 nov. : la bille seule, pas de « Je le connaissais deja ») ;
   rate     : presente, puis rate a la demande (« Encore ») -> il revient, comme toute carte ratee.
 Les points des cartes (v1164) ne changent pas. Il ouvre un navigateur : a lancer SOUS LE VERROU.
 """
@@ -70,7 +70,7 @@ ETAT = r"""
   const tx = id => ((document.getElementById(id) || {}).textContent || '').replace(/\s+/g, ' ').trim();
   return { presentation: vis('#flashcardActions.presentation'), retournee: document.getElementById('flashcard').classList.contains('flipped'),
            etiquette: vis('#flashNouveauVerso') ? tx('flashNouveauVerso') : null, mot: tx('flashBackWord'), traduction: vis('#flashTranslation') ? tx('flashTranslation') : null,
-           continuer: vis('#flashcardActions .judge-good'), connu: vis('.presente-connu'), recto: tx('flashWord'),
+           continuer: vis('#flashcardActions .judge-good'), recto: tx('flashWord'),
            encoreVisible: vis('#flashcardActions .judge-again') && getComputedStyle(document.querySelector('#flashcardActions .judge-again')).visibility !== 'hidden',
            gardeVisible: vis('#flashcardActions .judge-garde') && getComputedStyle(document.querySelector('#flashcardActions .judge-garde')).visibility !== 'hidden',
            bille: (() => { const b = document.querySelector('#flashcardActions .judge-good'); if(!b) return null; const r = b.getBoundingClientRect(); return [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)]; })(),
@@ -104,7 +104,7 @@ def main():
         with sync_playwright() as p:
             nav = p.chromium.launch(args=["--marque-" + os.environ["PRESENTATION_MARQUE"]] if os.environ.get("PRESENTATION_MARQUE") else [])
             for appris in a.langues.split(","):
-                for cas in ("presente", "connu", "rate"):
+                for cas in ("presente", "rate"):
                     ctx = nav.new_context(locale="fr-FR", viewport={"width": 390, "height": 844}, service_workers="block")
                     page = ctx.new_page()
                     erreurs = []
@@ -130,70 +130,50 @@ def main():
                     e1 = page.evaluate(ETAT)
                     e1["bulle"] = bulle
                     cap("1-presentee")
-                    if cas == "presente":
-                        page.evaluate("() => applyAppTheme('dark')"); page.wait_for_timeout(400)
-                        cap("cote-presentee-dark")
-                        page.evaluate("() => applyAppTheme('light')"); page.wait_for_timeout(400)
                     if not bulle:
                         fautes.append("%s %s : pas de bulle au premier mot neuf" % (appris, cas))
-                    ok1 = e1["presentation"] and e1["retournee"] and e1["continuer"] and e1["connu"] and not e1["encoreVisible"] and not e1["gardeVisible"] and bool(e1["traduction"]) and bool(e1["etiquette"])
+                    ok1 = e1["presentation"] and e1["retournee"] and e1["continuer"] and not e1["encoreVisible"] and not e1["gardeVisible"] and bool(e1["traduction"]) and bool(e1["etiquette"])
                     if not ok1:
                         fautes.append("%s %s : presentation incomplete %s" % (appris, cas, e1))
                     i0 = pres["i"]
-                    if cas == "connu":
-                        page.click(".presente-connu")
-                        page.wait_for_timeout(400)
-                        e2 = page.evaluate(ETAT)
-                        cap("2-deja-connu")
-                        revient = page.evaluate("([i0]) => currentCards.slice(i0 + 1).includes(currentCards[i0])", [i0])
-                        print("== %s connu %s | apres : points « %s », revient : %s" % (appris, json.dumps(e1, ensure_ascii=False), e2["points"], revient), flush=True)
-                        if revient:
-                            fautes.append("%s connu : le mot revient dans la seance" % appris)
-                    else:
-                        page.click("#flashcardActions .judge-good")
-                        page.wait_for_timeout(900)
-                        # jusqu'a la demande de la meme carte
-                        trouve = page.evaluate(r"""
-                        async ([i0]) => {
-                          const pause = ms => new Promise(r => setTimeout(r, ms));
-                          const cible = currentCards[i0];
-                          for(let k = 0; k < 40; k++){
-                            if(currentCards[currentFlashcard] === cible && currentFlashcard > i0) return currentFlashcard;
-                            const it = currentCards[currentFlashcard];
-                            if(!it) return -1;
-                            if(document.querySelector('#flashcardActions.presentation')){ motPresenteVu(); await pause(600); continue; }
-                            if(it.mode === 'phrase' || it.forme){ nextFlashcard(); await pause(500); continue; }
-                            try{ flipCard(); }catch(e){} await pause(300); reviewGood(); await pause(1300);
-                          }
-                          return -1;
-                        }""", [i0])
+                    page.click("#flashcardActions .judge-good")
+                    page.wait_for_timeout(900)
+                    # jusqu'a la demande de la meme carte
+                    trouve = page.evaluate(r"""
+                    async ([i0]) => {
+                      const pause = ms => new Promise(r => setTimeout(r, ms));
+                      const cible = currentCards[i0];
+                      for(let k = 0; k < 40; k++){
+                        if(currentCards[currentFlashcard] === cible && currentFlashcard > i0) return currentFlashcard;
+                        const it = currentCards[currentFlashcard];
+                        if(!it) return -1;
+                        if(document.querySelector('#flashcardActions.presentation')){ motPresenteVu(); await pause(600); continue; }
+                        if(it.mode === 'phrase' || it.forme){ nextFlashcard(); await pause(500); continue; }
+                        try{ flipCard(); }catch(e){} await pause(300); reviewGood(); await pause(1300);
+                      }
+                      return -1;
+                    }""", [i0])
+                    page.wait_for_timeout(500)
+                    e2 = page.evaluate(ETAT)
+                    cap("2-demandee-recto")
+                    page.evaluate("() => flipCard()")
+                    page.wait_for_timeout(700)
+                    cap("3-demandee-verso")
+                    e3 = page.evaluate(ETAT)
+                    if trouve < 0 or e2["presentation"] or e2["retournee"]:
+                        fautes.append("%s %s : la carte n'est pas redemandee (%s, %s)" % (appris, cas, trouve, e2))
+                    ligne = "== %s %s presentee %s | redemandee a %s, recto « %s », verso : Encore visible %s, bille %s (presentee %s)" % (appris, cas, json.dumps(e1, ensure_ascii=False), trouve, e2["recto"], e3["encoreVisible"], e3["bille"], e1["bille"])
+                    if e3["bille"] != e1["bille"]:
+                        fautes.append("%s %s : la bille change de place (%s puis %s)" % (appris, cas, e1["bille"], e3["bille"]))
+                    if cas == "rate":
+                        page.click("#flashcardActions .judge-again")
                         page.wait_for_timeout(500)
-                        e2 = page.evaluate(ETAT)
-                        cap("2-demandee-recto")
-                        page.evaluate("() => flipCard()")
-                        page.wait_for_timeout(700)
-                        cap("3-demandee-verso")
-                        e3 = page.evaluate(ETAT)
-                        if trouve < 0 or e2["presentation"] or e2["retournee"]:
-                            fautes.append("%s %s : la carte n'est pas redemandee (%s, %s)" % (appris, cas, trouve, e2))
-                        ligne = "== %s %s presentee %s | redemandee a %s, recto « %s », verso : Encore visible %s, bille %s (presentee %s)" % (appris, cas, json.dumps(e1, ensure_ascii=False), trouve, e2["recto"], e3["encoreVisible"], e3["bille"], e1["bille"])
-                        if e3["bille"] != e1["bille"]:
-                            fautes.append("%s %s : la bille change de place (%s puis %s)" % (appris, cas, e1["bille"], e3["bille"]))
-                        if cas == "presente":
-                            # cote a cote, jour puis nuit : la carte presentee et un verso habituel, au meme endroit
-                            for theme in ("light", "dark"):
-                                page.evaluate("([th]) => applyAppTheme(th)", [theme])
-                                page.wait_for_timeout(400)
-                                cap("cote-verso-%s" % theme)
-                        if cas == "rate":
-                            page.click("#flashcardActions .judge-again")
-                            page.wait_for_timeout(500)
-                            cap("4-ratee")
-                            revient = page.evaluate("([i]) => currentCards.slice(i + 1).includes(currentCards[i])", [trouve])
-                            ligne += " | ratee : revient %s" % revient
-                            if not revient:
-                                fautes.append("%s rate : le mot rate ne revient pas" % appris)
-                        print(ligne, flush=True)
+                        cap("4-ratee")
+                        revient = page.evaluate("([i]) => currentCards.slice(i + 1).includes(currentCards[i])", [trouve])
+                        ligne += " | ratee : revient %s" % revient
+                        if not revient:
+                            fautes.append("%s rate : le mot rate ne revient pas" % appris)
+                    print(ligne, flush=True)
                     err = sorted(set(x for x in erreurs if "synonymes" not in x))
                     if err:
                         print("   erreurs JS", err[:4], flush=True)
