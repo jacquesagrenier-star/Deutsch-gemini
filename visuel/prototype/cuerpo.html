@@ -242,7 +242,7 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 
 // ---------- la donnee (cuerpo.json) ----------
 let D = null;
-const nom = p => { const n = (D.noms || {})[p] || p; return APPRENDRE === "pt" ? n.replace("Inés", "Inês") : n; };   // Inês : l'orthographe portugaise
+const nom = p => { const n = (D.noms || {})[p] || p; return APPRENDRE === "pt" && typeof n === "string" ? n.replace("Inés", "Inês") : n; };   // Inês : l'orthographe portugaise
 const fem = p => D.sexe[p] === "f";
 const P = k => D.partes[k];
 // en portugais, le pluriel du portugais : as costas (le dos) est pluriel, la ou l'espagnol dit la espalda

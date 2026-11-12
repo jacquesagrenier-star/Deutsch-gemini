@@ -184,7 +184,7 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 
 // ---------- la donnee (emociones.json) ----------
 let D = null, PORTRAITS = [];               // PORTRAITS : [personne, emotion], les 36 visages
-const nom = p => { const n = (D.noms || {})[p] || p; return APPRENDRE === "pt" ? n.replace("Inés", "Inês") : n; };   // Inês : l'orthographe portugaise
+const nom = p => { const n = (D.noms || {})[p] || p; return APPRENDRE === "pt" && typeof n === "string" ? n.replace("Inés", "Inês") : n; };   // Inês : l'orthographe portugaise
 const fem = p => D.sexe[p] === "f";
 const EMOS = () => Object.keys(D.emotions), TRAITS = () => Object.keys(D.caracteres);
 // Les emotions trop proches pour servir de leurre l'une a l'autre : un visage triste peut sembler inquiet, un visage
