@@ -51099,7 +51099,7 @@ function showScreen(id){
     if(id === "sceneSeance") sessionAvantMicro();
     // 11 nov. 2026 : on n'en sortait pas. La session restait en « auto » apres une scene, jusqu'au prochain oral.
     else if(ecranAvant === "sceneSeance") sessionApresMicro();
-    if(id === "sceneSeance" && (sceneOuverteDepuis === "arret" || sceneOuverteDepuis === "premiers_pas" || sceneOuverteDepuis === "conv_pp")) setTimeout(() => { try{ poserRepereScene(); }catch(e){} }, 0);
+    if(id === "sceneSeance" && (sceneOuverteDepuis === "arret" || sceneOuverteDepuis === "premiers_pas")) setTimeout(() => { try{ poserRepereScene(); }catch(e){} }, 0);
     try{ eteindreTransitHorsSeance(id); }catch(e){}
     // Le panneau d'information de l'accueil ne survit pas a un changement
     // d'ecran : voir fermerInfoProgression().
@@ -66653,11 +66653,6 @@ window.addEventListener("message", (e) => {
         try{ e.source.postMessage({source: "wortando-app", type: "etats", etats: etatsDesMots(d.mots)}, e.origin === "null" ? "*" : e.origin); }catch(err){}
         return;
     }
-    if(sceneOuverteDepuis === "conv_pp"){
-        if(d.type === "micro") microPourCadre(d, e);
-        else if(d.type === "fini" || d.type === "fermer") finConversationPP(d.type === "fini");
-        return;
-    }
     if(sceneOuverteDepuis === "conversations"){
         if(d.type === "micro") microPourCadre(d, e);
         else if(d.type === "fermer"){ try{ ouvrirToutLeContenu(); }catch(err){ goHome(); } }
@@ -68353,7 +68348,7 @@ function montrerCartePhrase(item){
         return;
     } else if(item.forme === "conv_arret"){
         // La conversation de l'etape (12 nov. 2026) : d'ordinaire ouverte par la fin de la scene qui la precede.
-        ouvrirArretConversation(item, false);
+        ouvrirArretConversation(item);
         return;
     } else if(item.forme === "pp_tableau"){
         // Le tableau du jour : chaque ligne se touche et se prononce. Rien a
@@ -69902,10 +69897,12 @@ function insererConversationPP(items){
     });
     return sortie;
 }
-// La conversation dans le cadre. apresScene : ouverte a la fin de la scene de l'etape (la scene a deja marque l'etape
-// faite et la seance suivie) ; sa fin fait alors ce que faisait la fin de la scene. Sinon, un arret ordinaire.
-function ouvrirArretConversation(item, apresScene){
-    sceneOuverteDepuis = apresScene ? "conv_pp" : "arret";
+// La conversation dans le cadre : un arret, comme une scene ou un theme. Sa fin (« Continuer ») ou « ‹ » rend la main a
+// la seance, a la carte suivante (revenirDeLArret) ; l'etape suivante ne s'ouvre qu'a la fin normale de la seance (defaut de
+// la v1177, revue du 12 nov. : la fin de la conversation ouvrait l'etape suivante, sautant le reste du paquet, le theme,
+// l'ecran de fin et l'etoile).
+function ouvrirArretConversation(item){
+    sceneOuverteDepuis = "arret";
     const cadre = document.getElementById("sceneCadre");
     const appris = ["de", "es", "en"].indexOf(LANGUE_APPRISE) >= 0 ? LANGUE_APPRISE : "de";
     if(cadre){
@@ -69927,14 +69924,8 @@ function ouvrirConversationApresScenePP(){
     const i = currentFlashcard + 1, c = currentCards && currentCards[i];
     if(!c || c.forme !== "conv_arret") return false;
     currentFlashcard = i;
-    ouvrirArretConversation(c, true);
+    ouvrirArretConversation(c);
     return true;
-}
-// La fin de la conversation d'etape : comme la fin de la scene de Premiers pas (l'etape suivante, ou l'accueil).
-function finConversationPP(fini){
-    if(fini && premiersPasEnCours()){ ouvrirPremiersPas(); return; }
-    goHome();
-    try{ majTuileSeance(); }catch(err){}
 }
 async function ouvrirPremiersPas(taille){
     await chargerPremiersPas();

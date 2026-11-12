@@ -92,6 +92,7 @@ details ul{padding-left:20px;margin:8px 0}
 .liste a b{display:block;font-size:16px}
 .liste a span{display:block;font-size:13px;color:var(--gris)}
 .langues{display:flex;gap:8px;margin:4px 0 6px}
+.langues[hidden]{display:none}
 .langues button{border:2px solid var(--bord);background:var(--carte);border-radius:999px;padding:6px 14px;font:800 14px var(--police);cursor:pointer}
 .langues button[aria-pressed="true"]{border-color:var(--ambre);background:var(--toi)}
 .fil{display:flex;flex-direction:column;gap:12px;padding-bottom:12px}
@@ -489,7 +490,8 @@ const essayes = id => (S.essaye[id] = S.essaye[id] || new Set());
 
 function presentation(){
   taire(); partieNeuve(); plateauNeuf();
-  document.getElementById("surtitre").textContent = u("surtitre", { niv: C.niveau }) + (C.etape ? u("etape", { n: C.etape }) : "");
+  document.getElementById("surtitre").textContent = (C.parcours === "premiers-pas" ? u("pp") : u("surtitre", { niv: C.niveau }))
+    + (C.etape ? u("etape", { n: C.etape }) : "");
   document.getElementById("titre").textContent = fr(C.titre);
   ecran.textContent = "";
   const c = el("div", "carte debut");
@@ -645,7 +647,7 @@ async function liste(){
     const b = el("button", null, u(k)); b.type = "button"; b.setAttribute("aria-pressed", String(k === LANGUE));
     b.onclick = () => { location.href = adresse({ apprendre: k, variante: null }); }; lg.appendChild(b);
   });
-  c.appendChild(lg);
+  if (!DANS_APP) c.appendChild(lg);
   let groupe = null;
   const ici = toutes.filter(e => e.langues.includes(LANGUE));
   const donnees = await Promise.all(ici.map(e => charger("conversation/donnees/" + e.id + "." + LANGUE + ".json").catch(() => null)));
