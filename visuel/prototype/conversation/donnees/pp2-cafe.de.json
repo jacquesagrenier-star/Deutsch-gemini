@@ -1,0 +1,52 @@
+{
+ "id": "pp2-cafe",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "premiers-pas",
+ "etape": 2,
+ "registre": "Sie",
+ "titre": {"fr": "Le petit-déjeuner au café"},
+ "intro": {"fr": "Premier matin à Berlin. Tu prends ton petit-déjeuner dans un café. Commande, puis paie."},
+ "personnes": ["kellnerin"],
+ "debut": "bestellen",
+ "prix": {"kaffee": 320, "saft": 350, "broetchen": 180},
+ "panier": ["boisson", "manger"],
+ "noeuds": {
+  "bestellen": {
+   "dit": [
+    {"recit": {"fr": "Un petit café du quartier, le matin. La serveuse arrive."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Guten Morgen! Was möchten Sie?", "fr": "Bonjour ! Qu'est-ce que vous désirez ?"}
+   ],
+   "choix": [
+    {"t": "Ich möchte einen Kaffee mit Milch, bitte.", "fr": "Je voudrais un café au lait, s'il vous plaît.", "pose": {"boisson": "kaffee"}, "va": "essen"},
+    {"t": "Für mich einen Orangensaft, bitte.", "fr": "Pour moi, un jus d'orange, s'il vous plaît.", "pose": {"boisson": "saft"}, "va": "essen"}
+   ]
+  },
+  "essen": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Gern. Und ein Brötchen?", "fr": "Volontiers. Et un petit pain ?"}],
+   "choix": [
+    {"t": "Ja, ein Brötchen, bitte.", "fr": "Oui, un petit pain, s'il vous plaît.", "pose": {"manger": "broetchen"}, "va": "rechnung",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Kommt sofort!", "fr": "Ça arrive tout de suite !"}]},
+    {"t": "Nein, danke.", "fr": "Non, merci.", "va": "rechnung",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Kommt sofort!", "fr": "Ça arrive tout de suite !"}]}
+   ]
+  },
+  "rechnung": {
+   "dit": [{"recit": {"fr": "Un peu plus tard. Tu as fini et tu veux payer."}}],
+   "choix": [
+    {"t": "Die Rechnung, bitte.", "fr": "L'addition, s'il vous plaît.", "va": "zahlen"},
+    {"t": "Was macht das?", "fr": "Ça fait combien ?", "va": "zahlen"}
+   ]
+  },
+  "zahlen": {
+   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "Das macht {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Das macht {a_payer:mots}."}],
+   "choix": [
+    {"t": "Mit Karte, bitte.", "fr": "Par carte, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Danke schön! Auf Wiedersehen!", "fr": "Merci beaucoup ! Au revoir !"}]},
+    {"t": "Danke, auf Wiedersehen.", "fr": "Merci, au revoir.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Danke! Einen schönen Tag!", "fr": "Merci ! Bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as commandé ton petit-déjeuner, demandé l'addition et payé {a_payer}."}
+}

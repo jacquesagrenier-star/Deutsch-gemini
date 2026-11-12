@@ -1,0 +1,45 @@
+{
+ "id": "pp1-pass",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "premiers-pas",
+ "etape": 1,
+ "registre": "Sie",
+ "titre": {"fr": "Au contrôle des passeports"},
+ "intro": {"fr": "Tu arrives à l'aéroport de Berlin. Le policier du contrôle te parle. Réponds avec les phrases de l'étape."},
+ "personnes": ["polizist"],
+ "debut": "pass",
+ "noeuds": {
+  "pass": {
+   "dit": [
+    {"recit": {"fr": "Aéroport de Berlin. C'est ton tour au contrôle des passeports."}},
+    {"qui": "polizist", "air": "sourire", "t": "Guten Tag! Ihren Pass, bitte.", "fr": "Bonjour ! Votre passeport, s'il vous plaît."}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Hier ist mein Pass.", "fr": "Bonjour. Voici mon passeport.", "va": "woher"},
+    {"t": "Einen Moment, bitte. Hier ist mein Pass.", "fr": "Un moment, s'il vous plaît. Voici mon passeport.", "va": "woher"}
+   ]
+  },
+  "woher": {
+   "dit": [{"qui": "polizist", "air": "question", "t": "Danke. Woher kommen Sie?", "fr": "Merci. D'où venez-vous ?"}],
+   "choix": [
+    {"t": "Ich komme aus Kanada.", "fr": "Je viens du Canada.", "va": "tourist"},
+    {"t": "Ich komme aus Frankreich.", "fr": "Je viens de France.", "va": "tourist"}
+   ]
+  },
+  "tourist": {
+   "dit": [{"qui": "polizist", "air": "question", "t": "Und Sie sind Tourist?", "fr": "Et vous êtes touriste ?"}],
+   "choix": [
+    {"t": "Ja, ich bin Tourist.", "fr": "Oui, je suis touriste (un homme).", "va": "willkommen"},
+    {"t": "Ja, ich bin Touristin.", "fr": "Oui, je suis touriste (une femme).", "va": "willkommen"}
+   ]
+  },
+  "willkommen": {
+   "dit": [{"qui": "polizist", "air": "sourire", "t": "Gut. Willkommen in Deutschland!", "fr": "Bien. Bienvenue en Allemagne !"}],
+   "choix": [
+    {"t": "Danke! Auf Wiedersehen!", "fr": "Merci ! Au revoir !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as passé le contrôle : tu as salué, montré ton passeport, dit d'où tu viens et que tu es touriste."}
+}
