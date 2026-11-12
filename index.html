@@ -14229,14 +14229,16 @@ import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gst
 // aurait recopie la cle publique ci-dessous. Fournisseur : reCAPTCHA Enterprise,
 // invisible (un score, jamais d'image a cliquer). Les apps iPhone et Android
 // chargent cette meme page : elles sont couvertes sans recompilation.
-// INERTE TANT QUE LA CLE EST VIDE. Elle se cree dans Google Cloud (pas a pas :
-// securite/APP-CHECK.md) ; c'est un identifiant public, pas un secret.
-// Remplie, App Check SURVEILLE seulement : Firebase compte les demandes
-// verifiees et non verifiees, et ne refuse rien tant que personne n'a clique
-// « Enforce » dans la console (a decider sur les chiffres, apres 7 a 14 jours).
+// La cle « Wortando » (reCAPTCHA Enterprise, Web, sans defi), creee par Jacques
+// le 12 nov. 2026 dans Google Cloud (pas a pas : securite/APP-CHECK.md), pour
+// wortando.com, deutsch-gemini.pages.dev, jacquesagrenier-star.github.io et
+// localhost ; c'est un identifiant public, pas un secret. Vide = inerte.
+// App Check SURVEILLE seulement : Firebase compte les demandes verifiees et
+// non verifiees, et ne refuse rien tant que personne n'a clique « Enforce »
+// dans la console (a decider sur les chiffres, apres 7 a 14 jours).
 // Sur 127.0.0.1 / localhost (parcours, sondes), le fournisseur de debogage :
-// reCAPTCHA y refuserait le domaine. En file://, rien.
-const APP_CHECK_CLE = "";
+// ses demandes restent « non verifiees », sans rien bloquer. En file://, rien.
+const APP_CHECK_CLE = "6Ld7OB0uAAAAAJLkvanggKLwCwnrvdSqeh39TJWu";
 window.appCheckEtat = "inerte";
 
 const firebaseConfig = {

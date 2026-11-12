@@ -1,5 +1,11 @@
 # App Check et limites : ce que Jacques clique (préparé le 12 nov. 2026)
 
+**État au 12 nov. 2026** : les règles Firestore sont en ligne (15 h 03).
+Étape 1 faite : Jacques a créé la clé « Wortando » (Web, sans défi, sans clé
+de test, sans WAF ; les quatre domaines ci-dessous), identifiant
+`6Ld7OB0uAAAAAJLkvanggKLwCwnrvdSqeh39TJWu`, posé dans `APP_CHECK_CLE`
+(version qui suit la v1181). Restent les étapes 2 à 4, après cette version.
+
 **Rien ne s'active avant le feu vert du chef.** L'ordre compte : d'abord la
 clé (étape 1), ensuite l'app qui la porte (une version publiée par Claude),
 enfin l'enregistrement dans Firebase (étape 2). Aucune étape ne bloque qui
