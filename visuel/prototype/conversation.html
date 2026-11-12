@@ -149,7 +149,6 @@ html[dir="rtl"] .appris{text-align:right}
   <div class="titre"><small id="surtitre">Conversations</small><span id="titre">Jouer une conversation</span></div>
   <span class="maquette" id="marque">Maquette</span>
 </div>
-<div class="paysages" id="paysages" hidden></div>
 <div id="paysage" aria-hidden="true"></div>
 <main>
   <div class="plateau" id="plateau"></div>
@@ -172,8 +171,10 @@ const T = (o, champ) => (GB && o[champ + "_gb"] != null) ? o[champ + "_gb"] : o[
 const LANG = ["fr", "en", "ar"].includes(Q.get("lang")) ? Q.get("lang") : "fr";
 document.documentElement.lang = LANG;
 document.documentElement.dir = LANG === "ar" ? "rtl" : "ltr";
-// LE FOND DE LA PARTIE (choix de Jacques attendu entre A la terrasse, B le banc, C les bulles) : UNE ligne a changer.
-const PAYSAGE_CHOISI = "A";
+// LE FOND DE LA PARTIE : B, le banc au parc (choix de Jacques du 12 nov. 2026), dans la tuile comme dans la seance.
+const PAYSAGE_CHOISI = "B";
+// Dans la seance du jour (?seance=1, la conversation de l'etape) : la fin rend la main par « Continuer ».
+const SEANCE = Q.get("seance") === "1";
 const UI = {
  fr: { retour: "Retour", maquette: "Maquette", conversations: "Conversations", jouer: "Jouer une conversation",
    surtitre: "Conversation · {niv}", etape: " · étape {n}", commencer: "Commencer", sans_filet: "Sans filet : tout au micro",
@@ -188,7 +189,7 @@ const UI = {
    terminer: "Terminer", une_minute: "1 minute", trois_minutes: "3 minutes", poli: "registre poli",
    de: "Allemand", es: "Espagnol", en: "Anglais", gb: "Anglais (britannique)", pp: "Premiers pas", voyage: "Le voyage A1",
    ligne_etape: "Étape {n} · {niv} · {m} moments", ligne: "{niv} · {m} moments", introuvable: "Cette conversation n'existe pas encore.",
-   paysage: "Paysage :", pardon: "Pardon ?" },
+   pardon: "Pardon ?", continuer: "Continuer" },
  en: { retour: "Back", maquette: "Mock-up", conversations: "Conversations", jouer: "Play a conversation",
    surtitre: "Conversation · {niv}", etape: " · step {n}", commencer: "Start", sans_filet: "No safety net: microphone only",
    toi_reponds: "<b>You answer</b>: tap an answer, or say it into the microphone. The conversation follows your choice.",
@@ -202,7 +203,7 @@ const UI = {
    terminer: "Finish", une_minute: "1 minute", trois_minutes: "3 minutes", poli: "polite",
    de: "German", es: "Spanish", en: "English", gb: "English (British)", pp: "First steps", voyage: "The A1 journey",
    ligne_etape: "Step {n} · {niv} · {m} moments", ligne: "{niv} · {m} moments", introuvable: "This conversation doesn't exist yet.",
-   paysage: "Background:", pardon: "Sorry?" },
+   pardon: "Sorry?", continuer: "Continue" },
  ar: { retour: "رجوع", maquette: "نموذج", conversations: "المحادثات", jouer: "العب محادثة",
    surtitre: "محادثة · {niv}", etape: " · المرحلة {n}", commencer: "ابدأ", sans_filet: "بدون مساعدة: بالميكروفون فقط",
    toi_reponds: "<b>أنت من يجيب</b>: المس إجابة، أو قلها في الميكروفون. المحادثة تتبع اختيارك.",
@@ -216,7 +217,7 @@ const UI = {
    terminer: "إنهاء", une_minute: "دقيقة واحدة", trois_minutes: "3 دقائق", poli: "بأسلوب مهذّب",
    de: "الألمانية", es: "الإسبانية", en: "الإنجليزية", gb: "الإنجليزية (البريطانية)", pp: "الخطوات الأولى", voyage: "رحلة A1",
    ligne_etape: "المرحلة {n} · {niv} · {m} لحظات", ligne: "{niv} · {m} لحظات", introuvable: "هذه المحادثة غير موجودة بعد.",
-   paysage: "الخلفية:", pardon: "عفوًا؟" }
+   pardon: "عفوًا؟", continuer: "متابعة" }
 };
 const u = (k, v) => (UI[LANG][k] != null ? UI[LANG][k] : UI.fr[k]).replace(/\{(\w+)\}/g, (m, n) => (v || {})[n] != null ? v[n] : m);
 // le texte dans la langue d'interface : un objet {fr, en, ar} ; ou le champ de meme nom d'une replique, a cote de « fr »
@@ -594,7 +595,7 @@ async function choisir(c){
 }
 function fin(){
   quiParle(null);
-  parler("fini");
+  if (!SEANCE) parler("fini");
   const c = el("div", "carte fin");
   c.appendChild(el("h2", null, S.erreurs.length ? u("bien") : u("parfait")));
   c.appendChild(el("p", null, gabarit(fr(C.bilan), "fr")));
@@ -612,8 +613,16 @@ function fin(){
     c.appendChild(p);
   });
   const re = el("button", "gros", u("rejouer")); re.type = "button"; re.onclick = () => commencer(sansFilet);
-  const ter = el("button", "gros second", u("terminer")); ter.type = "button"; ter.onclick = quitter;
-  c.append(re, ter);
+  if (SEANCE && DANS_APP){
+    // dans la seance : « Continuer » rend la main a la seance (« fini ») ; « Rejouer » reste, en second
+    const suite = el("button", "gros", u("continuer")); suite.type = "button";
+    suite.onclick = () => { suite.disabled = true; parler("fini"); };
+    re.className = "gros second";
+    c.append(suite, re);
+  } else {
+    const ter = el("button", "gros second", u("terminer")); ter.type = "button"; ter.onclick = quitter;
+    c.append(re, ter);
+  }
   fil.appendChild(c); defiler();
 }
 
@@ -683,10 +692,9 @@ if (DANS_APP) document.getElementById("marque").hidden = true;
 
 // ---------------------------------------------------------------- le paysage
 // La teinte de l'ecran suit le dessin (fondEcran) ; les verres du plateau et des reponses prennent ses deux couleurs.
-// Maquette : trois dessins a comparer (A la terrasse, B le banc, C les bulles), ?paysage=A|B|C ; dans l'app, la
-// variante que Jacques choisira, et les couleurs de la partie passees par &fond=haut,bas comme aux scenes.
-const NOMS_PAYSAGES = { A: "La terrasse", B: "Le banc", C: "Les bulles" };
-let paysage = ["A", "B", "C"].includes(Q.get("paysage")) ? Q.get("paysage") : PAYSAGE_CHOISI;
+// Le banc (B), seul dessin deploye ; la teinte est celle de la partie (TEINTES_PAYSAGE.conv de l'app), d'ou les
+// memes couleurs que le &fond= de la seance.
+const paysage = PAYSAGE_CHOISI;
 function melange(hex, cible, k){
   const h = c => [1, 3, 5].map(i => parseInt(c.substr(i, 2), 16)), a = h(hex), b = h(cible);
   return "#" + a.map((v, i) => Math.round(v + (b[i] - v) * k).toString(16).padStart(2, "0")).join("");
@@ -701,16 +709,6 @@ function poserPaysage(){
   r.setProperty("--fond1", nuit ? melange(b, fond, .58) : melange(b, fond, .42));
   r.setProperty("--fond3", nuit ? melange(b, fond, .82) : melange(b, fond, .72));
   document.body.classList.add("avec-paysage");
-  document.querySelectorAll("#paysages button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.v === paysage)));
-}
-if (!DANS_APP){
-  const bar = document.getElementById("paysages"); bar.hidden = false;
-  bar.appendChild(el("span", "consigne", u("paysage")));
-  Object.entries(NOMS_PAYSAGES).forEach(([k, n]) => {
-    const x = el("button", null, k + " · " + n); x.type = "button"; x.dataset.v = k;
-    x.onclick = () => { paysage = k; poserPaysage(); };
-    bar.appendChild(x);
-  });
 }
 poserPaysage();
 (async () => {
