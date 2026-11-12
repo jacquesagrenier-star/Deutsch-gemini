@@ -69,33 +69,11 @@ Compte Firebase (uid)  ──►  identifiant RevenueCat = le même uid
 6. **Clés publiques du SDK** (Project settings → API keys) : copier la clé publique de l'app Google (`goog_…`) et celle de l'app Apple (`appl_…`) et les **donner au chef d'orchestre**. Elles sont publiques, faites pour être dans l'app : Claude les pose dans `REVENUECAT.cleAndroid` / `cleIos`. ⚠️ **Jamais la clé secrète `sk_…`.**
 7. (Pour le web, étape E) Integrations → Webhooks : l'adresse et le secret que donnera l'extension Firebase.
 
-## D. Firebase : les règles (à coller par Jacques, avec celles de l'audit)
+## D. Firebase : les règles
 
-Aujourd'hui une personne peut écrire tout son document `users/<uid>`, donc se poser elle-même `accesAVie: true` ou `accesJusqua`. Avant le lancement, il faut que :
-- la personne ne puisse **jamais** écrire `accesAVie` ni `accesJusqua` ;
-- elle ne puisse écrire `essaiDebut` **qu'une fois**, et seulement l'heure du serveur ;
-- l'admin puisse poser `accesAVie` et `accesJusqua` chez autrui.
-
-Proposition (à fusionner avec le travail de la session de l'audit de sécurité, qui borne déjà ces règles) :
-
-```
-match /users/{uid} {
-  function proprietaire() { return request.auth != null && request.auth.uid == uid; }
-  function changes() { return request.resource.data.diff(resource.data).affectedKeys(); }
-  allow get: if request.auth != null && (request.auth.uid == uid || isAdmin());
-  allow list: if isAdmin();
-  allow create: if proprietaire()
-                && !request.resource.data.keys().hasAny(['accesAVie', 'accesJusqua'])
-                && (!('essaiDebut' in request.resource.data) || request.resource.data.essaiDebut == request.time);
-  allow update: if proprietaire()
-                && !changes().hasAny(['accesAVie', 'accesJusqua'])
-                && (!changes().hasAny(['essaiDebut'])
-                    || (!('essaiDebut' in resource.data) && request.resource.data.essaiDebut == request.time));
-  allow delete: if proprietaire();
-  allow update: if isAdmin()
-                && changes().hasOnly(['vhsChaptersEnabled', 'essais', 'accesAVie', 'accesJusqua']);
-}
-```
+Les règles de l'abonnement sont **fusionnées dans celles de l'audit de sécurité** (11 nov., `e85153f`) : une seule version à coller, `securite/firestore-corrige.rules`, expliquée dans `securite/REGLES-FIRESTORE.md`. Ce qu'elles garantissent pour l'abonnement :
+- la personne ne peut **jamais** écrire `accesAVie` ni `accesJusqua` : seul l'admin les pose, dans `users/<uid>` ;
+- elle n'écrit `essaiDebut` **qu'une fois**, et seulement à l'heure du serveur.
 
 Même si une personne réécrivait `essaiDebut`, l'app garde le **plus tôt** de `essaiDebut` et de la date de création du compte (Firebase Auth) : l'essai ne peut que raccourcir.
 
