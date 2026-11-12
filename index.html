@@ -51100,6 +51100,7 @@ function showScreen(id){
     // 11 nov. 2026 : on n'en sortait pas. La session restait en « auto » apres une scene, jusqu'au prochain oral.
     else if(ecranAvant === "sceneSeance") sessionApresMicro();
     if(id === "sceneSeance" && (sceneOuverteDepuis === "arret" || sceneOuverteDepuis === "premiers_pas")) setTimeout(() => { try{ poserRepereScene(); }catch(e){} }, 0);
+    if(id === "sceneSeance" && sceneOuverteDepuis === "conversations"){ try{ document.getElementById("sceneSeance").style.background = fondCadreConversation(); }catch(e){} }
     try{ eteindreTransitHorsSeance(id); }catch(e){}
     // Le panneau d'information de l'accueil ne survit pas a un changement
     // d'ecran : voir fermerInfoProgression().
@@ -66706,7 +66707,10 @@ window.addEventListener("message", (e) => {
         // v916 : apres la DERNIERE scene aussi, tant que le parcours n'est pas
         // marque fini -- ouvrirPremiersPas() montre alors la carte de fin
         // (recommencer ou passer a l'A1) au lieu de renvoyer a l'accueil.
-        if(ouvrirConversationApresScenePP()) return;
+        // 12 nov. 2026 (lot 71) : une carte suit la scene dans la seance (sa conversation, ou l'etape suivante) -> on la
+        // joue ; la seance finit normalement, avec son theme, son ecran de fin et son etoile. Avant, la fin de la scene
+        // ouvrait aussitot la seance de l'etape suivante et sautait tout cela.
+        if(currentCards && currentCards[currentFlashcard + 1]){ revenirDeLArret(); return; }
         if(premiersPasEnCours()){ ouvrirPremiersPas(); return; }
         goHome();
         try{ majTuileSeance(); }catch(err){}
@@ -68551,8 +68555,6 @@ function montrerCartePhrase(item){
         try{ recordDailyActivity(); }catch(e){}
         try{ finSeanceSuivie(true); }catch(e){}
         cacherCartePhrase();
-        const apres = currentCards[currentFlashcard + 1];
-        conversationApresScenePP = !!(apres && apres.forme === "conv_arret");
         ouvrirScenePremiersPas(item.scene, (item.jourPP || 0) >= joursPremiersPas().length - 1);
         return;
     } else if(item.forme === "ecoute"){
@@ -69916,16 +69918,13 @@ function ouvrirArretConversation(item){
     showScreen("sceneSeance");
     try{ poserRepereScene(); }catch(e){}
 }
-// A la fin de la scene de l'etape : la conversation qui la suit, s'il y en a une. Rend true si elle s'ouvre.
-let conversationApresScenePP = false;
-function ouvrirConversationApresScenePP(){
-    if(!conversationApresScenePP) return false;
-    conversationApresScenePP = false;
-    const i = currentFlashcard + 1, c = currentCards && currentCards[i];
-    if(!c || c.forme !== "conv_arret") return false;
-    currentFlashcard = i;
-    ouvrirArretConversation(c);
-    return true;
+// LE FOND DU CADRE D'UNE CONVERSATION (12 nov. 2026, Jacques sur l'app iPhone : « une bande bleue en haut et une bande
+// bleue en bas ») : les marges de l'encoche (le padding de #sceneSeance) prennent la teinte de la page -- en haut celle du
+// ciel (--fond1 de conversation.html), en bas celle du sol du paysage. Par la tuile comme en seance, de jour comme de nuit.
+function fondCadreConversation(){
+    const nuit = document.body.getAttribute("data-theme") === "dark", b = TEINTES_PAYSAGE.conv, fond = nuit ? "#0B1626" : "#FFFFFF";
+    const haut = melangePaysage(b, fond, nuit ? .58 : .42), sol = melangePaysage(b, fond, nuit ? .42 : .26);
+    return "linear-gradient(180deg," + haut + " 0%," + haut + " 50%," + sol + " 50%," + sol + " 100%)";
 }
 async function ouvrirPremiersPas(taille){
     await chargerPremiersPas();
@@ -72081,7 +72080,8 @@ function poserRepereScene(){
     const sec = document.getElementById("sceneSeance"), r = segmentsRepere();
     if(!sec) return;
     sec.classList.toggle("avec-repere", !!r);
-    if(!r){ sec.style.background = ""; return; }
+    const conv = sceneOuverteDepuis === "arret" && cleArretCourant() === "conv";
+    if(!r){ sec.style.background = conv ? fondCadreConversation() : ""; return; }
     const bande = document.getElementById("sceneRepere"), coul = couleursFondSeance(cleArretCourant());
     if(bande){
         bande.style.background = coul ? coul.haut : "";
@@ -72089,7 +72089,7 @@ function poserRepereScene(){
     }
     // Les marges de l'encoche et du bas de l'iPhone (le padding de #sceneSeance) prennent le fond de la partie, pas
     // le bleu du cadre (Jacques, 11 nov. : « une bande bleue en haut et une en bas »).
-    sec.style.background = coul ? "linear-gradient(180deg," + coul.haut + " 0%," + coul.bas + " 100%)" : "";
+    sec.style.background = conv ? fondCadreConversation() : coul ? "linear-gradient(180deg," + coul.haut + " 0%," + coul.bas + " 100%)" : "";
     const box = document.getElementById("sceneParts");
     if(box){
         box.textContent = "";

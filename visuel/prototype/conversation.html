@@ -26,26 +26,35 @@
   sansfilet=1.
 -->
 <style>
-:root{--fond1:#F3E7D6;--fond3:#E7D3B9;--encre:#1C2430;--gris:#5A5348;--ambre:#E8A23A;--ambre-f:#8A5A10;--vert:#2F7D57;
+:root{--fond1:#C89B85;--fond3:#E4CFC4;--encre:#1C2430;--gris:#5A5348;--ambre:#E8A23A;--ambre-f:#8A5A10;--vert:#2F7D57;
   --rouge:#B23F33;--rouge-pale:#F7E0DC;--turq:#14807A;--verre:rgba(255,255,255,.92);--bord:rgba(28,36,48,.10);--carte:#FFFFFF;
   --toi:#FBEBD0;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
-html.nuit{--fond1:#15191F;--fond3:#22201C;--encre:#EEF2F5;--gris:#B9B0A2;--ambre-f:#F0B456;--vert:#7FD1A4;
+html.nuit{--fond1:#4A2F29;--fond3:#262127;--encre:#EEF2F5;--gris:#B9B0A2;--ambre-f:#F0B456;--vert:#7FD1A4;
   --rouge:#F0A08C;--rouge-pale:#3D221B;--turq:#4FC7BD;--verre:rgba(30,34,40,.92);--bord:rgba(255,255,255,.12);--carte:#252A31;--toi:#3A2E1A}
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%}
-body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+/* LA PAGE NE DEFILE PAS (12 nov. 2026, Jacques sur l'app iPhone : « l'image saute », « l'ecran est vide, faut que je
+   clique sur l'ecran »). Dans le cadre de l'app (un iframe de WKWebView), le defilement « smooth » de toute la page, les
+   elements colles (position:sticky) et le flou en arriere-plan (backdrop-filter) ne se repeignaient pas toujours avant un
+   toucher. Ici, une colonne de la hauteur de l'ecran : l'en-tete, les visages et les reponses sont des blocs fixes, le fil
+   seul defile (scrollTop, sans animation) ; ni sticky, ni backdrop-filter, ni background-attachment:fixed. */
+html,body{margin:0;height:100%}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));color:var(--encre);font-family:var(--police);
+  display:flex;flex-direction:column;overflow:hidden;position:relative;
   padding:calc(env(safe-area-inset-top,0px) + 10px) max(14px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 24px) max(14px,env(safe-area-inset-left,0px))}
 button{font-family:inherit;color:inherit}
-.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 8px}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;width:100%;margin:0 auto 8px;flex:none}
 .retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
 .titre{flex:1;font-weight:900;font-size:18px;line-height:1.2}
 .titre small{display:block;font-size:12px;font-weight:800;color:var(--gris);letter-spacing:.06em;text-transform:uppercase}
 .maquette{font:800 11px var(--police);letter-spacing:.06em;text-transform:uppercase;color:var(--ambre-f);border:1px solid var(--ambre);border-radius:999px;padding:4px 9px;flex:0 0 auto}
-main{max-width:560px;margin:0 auto;position:relative;z-index:1}
+main{max-width:560px;width:100%;margin:0 auto;position:relative;z-index:1;flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+#ecran{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+#ecran.jeu{display:flex;flex-direction:column;overflow:hidden}
+#ecran.jeu .fil{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 /* LE PAYSAGE DE LA PARTIE « CONVERSATION » (choix de Jacques du 11 nov. : B, un paysage dessine au style des autres
    parties de la seance ; dessins de la session de la seance, conversation/paysages.js). Pose en bas d'ecran, fixe,
    derriere la conversation ; le sol se prolonge sous le dessin jusqu'au bord du telephone. */
-#paysage{position:fixed;left:0;right:0;bottom:0;z-index:0;pointer-events:none;padding-bottom:env(safe-area-inset-bottom,0px)}
+#paysage{position:absolute;left:0;right:0;bottom:0;z-index:0;pointer-events:none;padding-bottom:env(safe-area-inset-bottom,0px)}
 #paysage svg{display:block;width:100%;height:min(31vw,170px)}
 body.avec-paysage{padding-bottom:calc(env(safe-area-inset-bottom,0px) + min(31vw,170px) + 12px)}
 body.avec-paysage .recit,body.avec-paysage .consigne,body.avec-paysage .titre small,body.avec-paysage .perso{color:var(--encre)}
@@ -53,8 +62,8 @@ body.avec-paysage .recit,body.avec-paysage .consigne,body.avec-paysage .titre sm
 .paysages .consigne{margin:0;white-space:nowrap}
 .paysages button{border:1px solid var(--bord);background:var(--verre);border-radius:999px;padding:5px 11px;font:800 12px var(--police);cursor:pointer}
 .paysages button[aria-pressed="true"]{border-color:var(--encre);box-shadow:inset 0 0 0 1px var(--encre)}
-.plateau{position:sticky;top:0;z-index:2;display:flex;justify-content:center;align-items:flex-end;gap:16px;padding:6px 0 12px;
-  background:color-mix(in srgb,var(--fond1) 80%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);margin:0 -14px 6px;border-radius:0 0 22px 22px}
+.plateau{position:relative;flex:none;z-index:2;display:flex;justify-content:center;align-items:flex-end;gap:16px;padding:6px 0 12px;
+  background:color-mix(in srgb,var(--fond1) 90%,transparent);margin:0 -14px 6px;border-radius:0 0 22px 22px}
 .plateau:empty{display:none}
 .perso{margin:0;text-align:center;font:800 12px var(--police);color:var(--gris);transition:opacity .35s,transform .35s;opacity:.55;transform:scale(.86)}
 .perso[hidden]{display:none}
@@ -116,8 +125,8 @@ html[dir="rtl"] .appris{text-align:right}
 .aide b{color:var(--rouge)}
 .aide.douce{background:var(--toi)}
 .aide.douce b{color:var(--ambre-f)}
-.repondre{position:sticky;bottom:0;padding:10px 8px 6px;margin:0 -8px;border-radius:18px 18px 0 0;
-  background:color-mix(in srgb,var(--fond3) 72%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.repondre{flex:none;max-height:60%;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:10px 8px 6px;margin:0 -8px;border-radius:18px 18px 0 0;
+  background:color-mix(in srgb,var(--fond3) 92%,transparent)}
 .repondre[hidden]{display:none}
 .consigne{font:800 13px var(--police);color:var(--gris);margin:0 0 8px;text-align:center}
 .choix{display:flex;flex-direction:column;gap:8px}
@@ -456,7 +465,12 @@ function boutonHP(texte, qui, libelle){
 }
 let dernier = null, fil, repondre, sansFilet = Q.get("sansfilet") === "1", noeud = null, ecouteEnCours = null;
 const attendre = ms => new Promise(r => setTimeout(r, ms));
-function defiler(){ setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }), 30); }
+function defiler(){
+  // le fil pendant la conversation, l'ecran sinon ; scrollTop et non scrollTo({behavior:"smooth"}), qui laissait l'ecran
+  // vide sur l'iPhone jusqu'a un toucher
+  const z = (ecran.classList.contains("jeu") && fil) || ecran;
+  setTimeout(() => { z.scrollTop = z.scrollHeight; }, 30);
+}
 async function replique(r){
   if (!vrai(r.si)) return;
   if (r.recit){ fil.appendChild(el("div", "recit", gabarit(fr(r.recit), "fr"))); defiler(); await attendre(700); return; }
@@ -493,7 +507,7 @@ function presentation(){
   document.getElementById("surtitre").textContent = (C.parcours === "premiers-pas" ? u("pp") : u("surtitre", { niv: C.niveau }))
     + (C.etape ? u("etape", { n: C.etape }) : "");
   document.getElementById("titre").textContent = fr(C.titre);
-  ecran.textContent = "";
+  ecran.textContent = ""; ecran.classList.remove("jeu"); ecran.scrollTop = 0;
   const c = el("div", "carte debut");
   c.appendChild(el("h1", null, fr(C.titre)));
   c.appendChild(el("p", null, fr(C.intro)));
@@ -511,7 +525,7 @@ function presentation(){
 }
 async function commencer(nu){
   sansFilet = nu; partieNeuve(); plateauNeuf();
-  ecran.textContent = "";
+  ecran.textContent = ""; ecran.classList.add("jeu");
   fil = el("div", "fil"); ecran.appendChild(fil);
   repondre = el("div", "repondre"); repondre.hidden = true; ecran.appendChild(repondre);
   await jouer(C.debut);
@@ -530,7 +544,7 @@ function montrerChoix(apresErreur){
     const t = el("b", "appris", gabarit(T(c, "t"), LANGUE)); t.lang = LANGUE; t.dir = "ltr"; b.appendChild(t);
     b.appendChild(el("span", null, gabarit(trad(c), "fr")));
     if (essayes(noeud).has(c.i)){ b.disabled = true; if (c.faux) b.classList.add("faux-essaye"); }
-    b.onclick = () => choisir(c);
+    b.onclick = () => choisir(c, true);
     ch.appendChild(b);
   });
   repondre.appendChild(ch);
@@ -576,11 +590,14 @@ function micro(bouton){
     choisir(meilleur);
   });
 }
-async function choisir(c){
+async function choisir(c, touchee){
   if (ecouteEnCours){ ecouteEnCours.arreter(); ecouteEnCours = null; }
   repondre.hidden = true;
   maReplique(c);
   S.dit.push(c);
+  // touchee : on ne l'a pas dite soi-meme, la voix la dit (au micro, on vient de la dire) ; puis un temps pour la voir
+  if (touchee) await dire(T(c, "dit") ? gabarit(T(c, "dit"), LANGUE) : gabarit(T(c, "t"), LANGUE), "toi");
+  await attendre(touchee ? 450 : 700);
   if (c.faux || c.repete){
     essayes(noeud).add(c.i);
     if (c.faux){ S.erreurs.push(c); parler("exercice"); }
@@ -640,7 +657,7 @@ async function liste(){
   const lots = await Promise.all(visibles.map(lot => charger("conversation/donnees/lot-" + lot + ".json").catch(() => null)));
   const toutes = [];
   lots.forEach(l => { if (l) l.conversations.forEach(e => toutes.push(e)); });
-  ecran.textContent = "";
+  ecran.textContent = ""; ecran.classList.remove("jeu"); ecran.scrollTop = 0;
   const c = el("div", "liste");
   const lg = el("div", "langues"); lg.hidden = DANS_APP;   // dans l'app, la langue apprise est celle du compte
   ["de", "es", "en"].forEach(k => {
@@ -657,6 +674,7 @@ async function liste(){
     const g = d.parcours === "premiers-pas" ? u("pp") : d.parcours === "voyage" ? u("voyage") : d.niveau;
     if (g !== groupe){ c.appendChild(el("h2", null, g)); groupe = g; }
     const a = el("a"); a.href = adresse({ c: e.id, liste: "1" });
+    a.onclick = ev => { ev.preventDefault(); ouvrirDepuisListe(e.id); };
     const im = el("img"); im.alt = ""; im.src = PERS[d.personnes[0]].visages.sourire; a.appendChild(im);
     const t = el("div"); t.appendChild(el("b", null, fr(d.titre)));
     t.appendChild(el("span", null, d.etape ? u("ligne_etape", { n: d.etape, niv: d.niveau, m: Object.keys(d.noeuds).length }) : u("ligne", { niv: d.niveau, m: Object.keys(d.noeuds).length })));
@@ -681,14 +699,38 @@ function adresse(change){
   Object.entries(change || {}).forEach(([k, v]) => { if (v == null) q.delete(k); else q.set(k, v); });
   return "?" + q.toString();
 }
+// La liste et les conversations dans la MEME page : ouvrir une conversation ou revenir a la liste ne recharge pas le cadre
+// (le flash de l'iPhone, 12 nov.). L'adresse suit (pushState), pour que le bouton retour d'Android revienne a la liste.
+let enConversation = !!Q.get("c"), depuisListe = Q.get("liste") === "1", pousse = false;
+async function ouvrirDepuisListe(id){
+  taire();
+  try{ C = await charger("conversation/donnees/" + id + "." + LANGUE + ".json"); }catch(e){ return; }
+  try{ history.pushState({ c: id }, "", adresse({ c: id, liste: "1" })); pousse = true; }catch(e){}
+  enConversation = true; depuisListe = true;
+  presentation();
+}
+function revenirALaListe(){
+  taire(); if (ecouteEnCours) ecouteEnCours.arreter();
+  enConversation = false; plateau.textContent = "";
+  liste();
+}
+addEventListener("popstate", () => {
+  const id = new URLSearchParams(location.search).get("c");
+  if (!id && enConversation) revenirALaListe();
+});
 // Quitter une conversation : vers la liste si l'on en vient (dans l'app comme hors de l'app) ; sinon on ferme le cadre.
 function quitter(){
   taire(); if (ecouteEnCours) ecouteEnCours.arreter();
-  if (Q.get("c") && (Q.get("liste") === "1" || !DANS_APP)) location.href = adresse({});
+  if (enConversation && depuisListe){
+    if (pousse){ pousse = false; history.back(); }          // popstate ramene la liste
+    else { try{ history.replaceState(null, "", adresse({})); }catch(e){} revenirALaListe(); }
+  }
+  else if (enConversation && !DANS_APP) location.href = adresse({});
   else if (DANS_APP) parler("fermer");
   else history.back();
 }
 document.getElementById("retour").onclick = quitter;
+if (LANG === "ar") document.getElementById("retour").textContent = "›";
 document.getElementById("retour").setAttribute("aria-label", u("retour"));
 if (DANS_APP) document.getElementById("marque").hidden = true;
 
