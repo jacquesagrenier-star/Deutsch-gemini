@@ -171,6 +171,8 @@ fato de treino | fatos de treino | o > agasalho | agasalhos | o
 fato | fatos | o > terno | ternos | o
 calções de banho | — | os > calção de banho | — | o
 calções | — | os > short | — | o
+Dia da Mãe | — | o > Dia das Mães | — | o
+Dia do Pai | — | o > Dia dos Pais | — | o
 trabalhos de casa | — | os > dever de casa | — | o
 justificação de faltas | justificações de faltas | a > justificativa de falta | justificativas de falta | a
 sapatilhas | — | as > tênis | — | os

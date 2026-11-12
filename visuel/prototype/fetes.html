@@ -130,7 +130,17 @@ html.nuit .papier .signe{color:#9CC3FF}
 <script src="themes/fin.js?v=2"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const APPRENDRE = ["de", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+// le portugais (lot P4, 12 nov. 2026) : Lisbonne ; &variante=br, le Bresil. fetes.json porte pt_ (et br_ la ou le Bresil
+// differe), que le chargement pose sous « pt » (portugaisAppris) : la cle « pt » y est la traduction bresilienne de l'interface
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
+function portugaisAppris(o){
+  if (Array.isArray(o)) o.forEach(portugaisAppris);
+  else if (o && typeof o === "object"){
+    if ("pt_" in o) o.pt = (BR && "br_" in o) ? o.br_ : o.pt_;
+    for (const k in o) if (k !== "pt" && k !== "pt_" && k !== "br_") portugaisAppris(o[k]);
+  }
+}
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 const LATAM = Q.get("variante") === "latam";
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -147,6 +157,10 @@ const TEXTES = {
   secInvit:  {fr:"Une invitation", en:"An invitation", tr:"Bir davet", uk:"Запрошення", fa:"یک دعوت‌نامه", ar:"دعوة", pt:"Um convite", pl:"Zaproszenie", ru:"Приглашение", de:"Eine Einladung"},
   regleDe:   {fr:"Inviter : Ich lade dich zu meiner Party ein — einladen et mitbringen se séparent, le petit mot va à la fin (Lena bringt einen Salat mit). Zu + datif : zu meinem Geburtstag (der), zu meiner Party (die) ; zum = zu dem, zur = zu der (Herzlichen Glückwunsch zum Geburtstag, zur Hochzeit). Le verbe reste en deuxième place : Leider kann ich nicht. Am Samstag habe ich Zeit. Pour proposer : Wie wäre es mit Samstag?", en:"Inviting: Ich lade dich zu meiner Party ein — einladen and mitbringen split, the small word goes to the end (Lena bringt einen Salat mit). Zu + dative: zu meinem Geburtstag (der), zu meiner Party (die); zum = zu dem, zur = zu der (Herzlichen Glückwunsch zum Geburtstag, zur Hochzeit). The verb stays in second place: Leider kann ich nicht. Am Samstag habe ich Zeit. To suggest: Wie wäre es mit Samstag?", tr:"Davet: Ich lade dich zu meiner Party ein — einladen ve mitbringen ayrılır, küçük kelime sona gider (Lena bringt einen Salat mit). Zu + datif: zu meinem Geburtstag (der), zu meiner Party (die); zum = zu dem, zur = zu der (Herzlichen Glückwunsch zum Geburtstag, zur Hochzeit). Fiil ikinci sırada kalır: Leider kann ich nicht. Am Samstag habe ich Zeit. Öneri için: Wie wäre es mit Samstag?", uk:"Запрошення: Ich lade dich zu meiner Party ein — einladen і mitbringen розділяються, маленьке слово йде в кінець (Lena bringt einen Salat mit). Zu + давальний: zu meinem Geburtstag (der), zu meiner Party (die); zum = zu dem, zur = zu der (Herzlichen Glückwunsch zum Geburtstag, zur Hochzeit). Дієслово стоїть на другому місці: Leider kann ich nicht. Am Samstag habe ich Zeit. Щоб запропонувати: Wie wäre es mit Samstag?", fa:"دعوت: Ich lade dich zu meiner Party ein — einladen و mitbringen جدا می‌شوند و واژهٔ کوچک به آخر می‌رود (Lena bringt einen Salat mit). zu + داتیو: zu meinem Geburtstag ‏(der)، zu meiner Party ‏(die)؛ zum = zu dem و zur = zu der ‏(Herzlichen Glückwunsch zum Geburtstag, zur Hochzeit). فعل در جای دوم می‌ماند: Leider kann ich nicht. Am Samstag habe ich Zeit. برای پیشنهاد: Wie wäre es mit Samstag?", ar:"الدعوة: Ich lade dich zu meiner Party ein — الفعلان einladen وmitbringen ينفصلان والكلمة الصغيرة تذهب إلى الآخر (Lena bringt einen Salat mit). zu + الداتيف: zu meinem Geburtstag ‏(der)، zu meiner Party ‏(die)؛ zum = zu dem وzur = zu der ‏(Herzlichen Glückwunsch zum Geburtstag, zur Hochzeit). يبقى الفعل في المكان الثاني: Leider kann ich nicht. Am Samstag habe ich Zeit. للاقتراح: Wie wäre es mit Samstag?", pt:"Convidar: Ich lade dich zu meiner Party ein — einladen e mitbringen se separam, a palavrinha vai para o fim (Lena bringt einen Salat mit). Zu + dativo: zu meinem Geburtstag (der), zu meiner Party (die); zum = zu dem, zur = zu der (Herzlichen Glückwunsch zum Geburtstag, zur Hochzeit). O verbo fica em segundo lugar: Leider kann ich nicht. Am Samstag habe ich Zeit. Para propor: Wie wäre es mit Samstag?", pl:"Zapraszanie: Ich lade dich zu meiner Party ein — einladen i mitbringen się rozdzielają, małe słowo idzie na koniec (Lena bringt einen Salat mit). Zu + celownik: zu meinem Geburtstag (der), zu meiner Party (die); zum = zu dem, zur = zu der (Herzlichen Glückwunsch zum Geburtstag, zur Hochzeit). Czasownik zostaje na drugim miejscu: Leider kann ich nicht. Am Samstag habe ich Zeit. Żeby coś zaproponować: Wie wäre es mit Samstag?", ru:"Приглашение: Ich lade dich zu meiner Party ein — einladen и mitbringen разделяются, маленькое слово уходит в конец (Lena bringt einen Salat mit). Zu + дательный: zu meinem Geburtstag (der), zu meiner Party (die); zum = zu dem, zur = zu der (Herzlichen Glückwunsch zum Geburtstag, zur Hochzeit). Глагол остаётся на втором месте: Leider kann ich nicht. Am Samstag habe ich Zeit. Чтобы предложить: Wie wäre es mit Samstag?"},
   regleEs:   {fr:"Inviter : Te invito a mi fiesta. a + el = al : Te invito al cumpleaños de Mark, mais a la boda, a la cena. Répondre : ¡Con mucho gusto! ou Lo siento, no puedo. poder change de voyelle (puedo, puedes, puede) et traer fait traigo à la première personne. Pour proposer un jour : ¿Quedamos el sábado? — les jours prennent l'article : el sábado.", en:"Inviting: Te invito a mi fiesta. a + el = al: Te invito al cumpleaños de Mark, but a la boda, a la cena. Answering: ¡Con mucho gusto! or Lo siento, no puedo. poder changes its vowel (puedo, puedes, puede) and traer becomes traigo in the first person. To suggest a day: ¿Quedamos el sábado? — days take the article: el sábado.", pt:"Convidar: Te invito a mi fiesta. a + el = al: Te invito al cumpleaños de Mark, mas a la boda, a la cena. Responder: ¡Con mucho gusto! ou Lo siento, no puedo. poder muda a vogal (puedo, puedes, puede) e traer vira traigo na primeira pessoa. Para propor um dia: ¿Quedamos el sábado? — os dias levam artigo: el sábado.", ar:"الدعوة: Te invito a mi fiesta. ‏a + el = al: ‏Te invito al cumpleaños de Mark، لكن a la boda وa la cena. الرد: ¡Con mucho gusto! أو Lo siento, no puedo. يتغيّر حرف العلة في poder ‏(puedo, puedes, puede) ويصبح traer ‏traigo مع المتكلم. لاقتراح يوم: ¿Quedamos el sábado? — تأخذ الأيام أداة التعريف: el sábado.", de:"Einladen: Te invito a mi fiesta. a + el = al: Te invito al cumpleaños de Mark, aber a la boda, a la cena. Antworten: ¡Con mucho gusto! oder Lo siento, no puedo. Bei poder ändert sich der Vokal (puedo, puedes, puede), und traer heißt in der ersten Person traigo. Einen Tag vorschlagen: ¿Quedamos el sábado? — Wochentage haben einen Artikel: el sábado."},
+  // le portugais appris : l'interface en francais (et en anglais)
+  introPt:   {fr:"Mark vit à Lisbonne. Touche une fête : tu vois quand on la fête et ce qu'on se souhaite, et tu l'entends. En bas, une invitation et la règle.", en:"Mark lives in Lisbon. Tap a celebration to see when it is and what people wish each other, and to hear it. Below: an invitation and the rule."},
+  reglePt:   {fr:"Inviter : Convido-te para a minha festa — au Portugal, le pronom se met après le verbe (convido-te, diz-se). Aller à une fête : ir a, collé à l'article : vou ao aniversário do Mark (a + o = ao), vou à festa da Carmen (a + a = à). Répondre : Vou com todo o gosto! ou Infelizmente, não posso ir. On apporte À la fête : levar (o Mark leva uma salada). Proposer un jour : Que tal no sábado? — no sábado, na segunda-feira. Au Portugal, on met l'article devant le prénom : o Mark, a Inês.", en:"Inviting: Convido-te para a minha festa — in Portugal the pronoun goes after the verb (convido-te, diz-se). Going to a party: ir a, joined to the article: vou ao aniversário do Mark (a + o = ao), vou à festa da Carmen (a + a = à). Answering: Vou com todo o gosto! or Infelizmente, não posso ir. You bring things TO the party: levar (o Mark leva uma salada). Suggesting a day: Que tal no sábado? — no sábado, na segunda-feira. In Portugal, first names take the article: o Mark, a Inês."},
+  regleBr:   {fr:"Inviter : Te convido para a minha festa — au Brésil, le pronom se met avant le verbe (te convido, se diz). Aller à une fête : ir a, collé à l'article : vou ao aniversário de Mark (a + o = ao), vou à festa de Carmen (a + a = à). Répondre : Vou com prazer! ou Infelizmente, não posso ir. On apporte À la fête : levar (Mark leva uma salada). Proposer un jour : Que tal no sábado? — no sábado, na segunda-feira. Bon à savoir : au Brésil, on dit você entre amis (au Portugal tu), le prénom se dit sans article (au Portugal o Mark, a Inês), o Réveillon (au Portugal a passagem de ano), o suco (au Portugal o sumo) et le Dia das Mães tombe le deuxième dimanche de mai (au Portugal le Dia da Mãe, le premier).", en:"Inviting: Te convido para a minha festa — in Brazil the pronoun goes before the verb (te convido, se diz). Going to a party: ir a, joined to the article: vou ao aniversário de Mark (a + o = ao), vou à festa de Carmen (a + a = à). Answering: Vou com prazer! or Infelizmente, não posso ir. You bring things TO the party: levar (Mark leva uma salada). Suggesting a day: Que tal no sábado? — no sábado, na segunda-feira. Good to know: in Brazil friends say você (in Portugal tu), first names take no article (in Portugal o Mark, a Inês), o Réveillon (in Portugal a passagem de ano), o suco (in Portugal o sumo), and Dia das Mães is the second Sunday in May (in Portugal Dia da Mãe, the first)."},
   c_fete:    {fr:"Regarde l'image : quelle fête est-ce ?", en:"Look at the picture: which celebration is it?", tr:"Resme bak: bu hangi bayram?", uk:"Подивися на зображення: яке це свято?", fa:"به تصویر نگاه کن: این کدام جشن است؟", ar:"انظر إلى الصورة: أي عيد هذا؟", pt:"Olhe a imagem: que festa é esta?", pl:"Spójrz na obrazek: jakie to święto?", ru:"Посмотри на картинку: какой это праздник?", de:"Sieh dir das Bild an: Welches Fest ist das?"},
   c_entendre:{fr:"Écoute et touche la bonne image.", en:"Listen and tap the right picture.", tr:"Dinle ve doğru resme dokun.", uk:"Послухай і торкнися потрібного зображення.", fa:"گوش کن و روی تصویر درست بزن.", ar:"استمع والمس الصورة الصحيحة.", pt:"Ouça e toque na imagem certa.", pl:"Posłuchaj i dotknij właściwego obrazka.", ru:"Послушай и нажми на нужную картинку.", de:"Hör zu und tippe auf das richtige Bild."},
   c_quand:   {fr:"Quand est cette fête ?", en:"When is this celebration?", tr:"Bu bayram ne zaman?", uk:"Коли це свято?", fa:"این جشن کی است؟", ar:"متى هذا العيد؟", pt:"Quando é esta festa?", pl:"Kiedy jest to święto?", ru:"Когда этот праздник?", de:"Wann ist dieses Fest?"},
@@ -192,9 +206,31 @@ const imgSrc = i => "fetes/" + i + ".webp";
 const photo = i => '<img class="photo" alt="" src="' + imgSrc(i) + '">';
 const espaces = s => s.replace(/\s+/g, " ").replace(/ ([.,!?])/g, "$1").trim();
 function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
-function dire(texte){ Voix.dire(texte); }
+function dire(texte){ Voix.dire(PT_ ? lirePt(texte) : texte); }
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-const ES_ = APPRENDRE === "es";
+const ES_ = APPRENDRE === "es", PT_ = APPRENDRE === "pt", DE_ = APPRENDRE === "de";
+// LE PORTUGAIS : au Portugal l'article devant le prenom (o Mark, a Inês ; « o Javier e a Marta »), au Bresil le prenom seul
+const artP = n => BR ? n : PARTIES(n).map(p => (sexe(p) === "f" ? "a " : "o ") + p).join(" e ");
+const ArtP = n => cap(artP(n));
+const deP = n => BR ? "de " + n : PARTIES(n).map(p => (sexe(p) === "f" ? "da " : "do ") + p).join(" e ");   // « do Mark », « da Inês » ; Bresil « de Mark »
+// la voix du telephone recoit les nombres en lettres (regle des nombres, 28 oct.) ; l'ecrit garde ses chiffres :
+// « às 20h », « a 25 de dezembro », « em 1º de janeiro » (recopie d'ecole.html)
+const UNITES_PT = ["zero", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "catorze", "quinze",
+                   BR ? "dezesseis" : "dezasseis", BR ? "dezessete" : "dezassete", "dezoito", BR ? "dezenove" : "dezanove"];
+const DIZAINES_PT = ["", "", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa"];
+function ptLettres(n){
+  if (n < 20) return UNITES_PT[n];
+  if (n < 100) return DIZAINES_PT[Math.floor(n / 10)] + (n % 10 ? " e " + UNITES_PT[n % 10] : "");
+  if (n < 1000) return ["", "cento", "duzentos"][Math.floor(n / 100)] + (n % 100 ? " e " + ptLettres(n % 100) : "");
+  const m = Math.floor(n / 1000), r = n % 1000;
+  return (m === 1 ? "mil" : ptLettres(m) + " mil") + (r ? (r < 100 || r % 100 === 0 ? " e " : " ") + ptLettres(r) : "");
+}
+function lirePt(t){
+  return String(t).replace(/\b(\d{1,2})h(\d\d)?\b/g, (x, h, m) => ptLettres(+h) + (m === "30" ? " e meia" : m && m !== "00" ? " e " + ptLettres(+m) : (+h === 1 ? " hora" : " horas")))
+          .replace(/\b1º de /g, "primeiro de ")
+          .replace(/\b1 de (janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)\b/g, (x, m) => (BR ? "primeiro" : "um") + " de " + m)
+          .replace(/\b\d+\b/g, n => ptLettres(+n));
+}
 
 // ---------- les mots du theme (la forme du corpus) et leur traduction ----------
 const memeMot = (a, b) => a && b && a.mot === b.mot && (a.genre || null) === (b.genre || null) && (a.cat || null) === (b.cat || null);
@@ -231,26 +267,29 @@ const NomT = (n, l) => cap(nomT(n, l));
 // ---------- les fetes ----------
 const FETES = () => Object.keys(FE).filter(k => !FE[k].latam || LATAM);
 const feteMot = k => nom(FE[k].mot, FE[k].genre);
-const imgPret = i => D.images[i] && (!D.imgLangues[i] || D.imgLangues[i].includes(APPRENDRE));
+// le portugais : toutes les images, sauf celles d'une coutume etrangere au Portugal et au Bresil (fetes.py, IMG_EXCLUES_PT)
+const imgPret = i => D.images[i] && (PT_ ? !D.imgExcluesPt.includes(i) : (!D.imgLangues[i] || D.imgLangues[i].includes(APPRENDRE)));
 const imgsDe = k => FE[k].img.filter(imgPret);
 const fetesDe = w => FETES().filter(k => !w || memeMot(feteMot(k), w));
 const voisines = k => [k].concat(FE[k].aussi || []);
 // les fetes qu'une image montre (on ne propose jamais l'une pour l'autre)
 const fetesDeImg = i => FETES().filter(k => FE[k].img.includes(i));
 const feteBouton = k => FE[k].nom;
-const fetePhrase = k => ES_ ? (FE[k].c ? "Es " + (FE[k].genre === "la" ? "una " : "un ") + FE[k].mot : "Es " + FE[k].nom) + "." : (FE[k].c ? "Das ist " + (FE[k].genre === "die" ? "eine " : "ein ") + FE[k].mot : "Das ist " + FE[k].nom) + ".";
+const fetePhrase = k => PT_ ? (FE[k].c ? "É " + (FE[k].genre === "a" ? "uma " : "um ") + FE[k].mot : "É " + FE[k].nom) + "." : ES_ ? (FE[k].c ? "Es " + (FE[k].genre === "la" ? "una " : "un ") + FE[k].mot : "Es " + FE[k].nom) + "." : (FE[k].c ? "Das ist " + (FE[k].genre === "die" ? "eine " : "ein ") + FE[k].mot : "Das ist " + FE[k].nom) + ".";
 function feteTrad(k){
   if (!TL) return null; const t = FE[k].t[TL]; if (!t) return null;
   return {fr: "C'est " + t[0] + ".", en: "This is " + t[0] + ".", pt: "É " + t[0] + ".", de: "Das ist " + t[0] + "."}[TL];
 }
 // les jours d'une fete se touchent-ils ? (« 12 » couvre tout decembre)
 const touche = (a, b) => (a || []).some(x => (b || []).some(y => x === y || x.length === 2 && y.startsWith(x + "-") || y.length === 2 && x.startsWith(y + "-")));
-const quandPhrase = k => ES_ ? cap(FE[k].nom) + " es " + FE[k].quand + "." : FE[k].nom + " ist " + FE[k].quand + ".";
+const quandPhrase = k => PT_ ? cap(FE[k].nom) + " é " + FE[k].quand + "." : ES_ ? cap(FE[k].nom) + " es " + FE[k].quand + "." : FE[k].nom + " ist " + FE[k].quand + ".";
 function quandTrad(k){
   if (!TL) return null; const t = FE[k].t[TL]; if (!t || !t[1]) return null;
   return {fr: cap(t[0]) + ", c'est " + t[1] + ".", en: cap(t[0]) + " is " + t[1] + ".", pt: cap(t[0]) + " é " + t[1] + ".", de: cap(t[0]) + " ist " + t[1] + "."}[TL];
 }
-const souhaitPhrase = k => ES_ ? FE[k].dans + " se dice: «" + FE[k].wunsch + "»." : FE[k].dans + " sagt man: „" + FE[k].wunsch + "“";
+// « No Natal diz-se: «Feliz Natal!» » (Portugal, le pronom apres) ; « No Natal se diz: “Feliz Natal!” » (Bresil, avant)
+const ditSePt = w => BR ? " se diz: “" + w + "”." : " diz-se: «" + w + "».";
+const souhaitPhrase = k => PT_ ? FE[k].dans + ditSePt(FE[k].wunsch) : ES_ ? FE[k].dans + " se dice: «" + FE[k].wunsch + "»." : FE[k].dans + " sagt man: „" + FE[k].wunsch + "“";
 const souhaitTrad = k => TL && FE[k].t[TL] ? FE[k].t[TL][2] : null;
 
 // ---------- les apports, les invitations, l'agenda ----------
@@ -258,7 +297,7 @@ const apMot = k => nom(AP[k].mot, AP[k].genre);
 const apT = (k, i) => TL ? (AP[k].t[TL] || [])[i] : null;
 const apportsDe = w => Object.keys(AP).filter(k => !w || memeMot(apMot(k), w));
 // « Lena bringt einen Salat mit. » / « Inés trae una ensalada. » (forme : def ou indef)
-const apportePhrase = (p, k, f) => ES_ ? p + " trae " + AP[k][f] + "." : p + " bringt " + AP[k][f] + " mit.";
+const apportePhrase = (p, k, f) => PT_ ? ArtP(p) + " leva " + AP[k][f] + "." : ES_ ? p + " trae " + AP[k][f] + "." : p + " bringt " + AP[k][f] + " mit.";
 function apporteTrad(p, k, f){
   if (!TL) return null; const a = apT(k, f === "def" ? 0 : 1); if (!a) return null;
   return {fr: NomT(p, "fr") + " apporte " + a + ".", en: NomT(p, "en") + " is bringing " + a + ".", pt: NomT(p, "pt") + " leva " + a + ".", de: p + " bringt " + a + " mit."}[TL];
@@ -266,12 +305,18 @@ function apporteTrad(p, k, f){
 function papierInvitation(inv, invite, apport){
   const f = sexe(invite) === "f", pl = inv.s === "pl", h = inv.heure, r = dateDe(inv.repondre);
   const p = (t, gras) => '<p>' + (gras ? '<b>' + esc(gras) + '</b> ' : "") + esc(t) + '</p>';
-  const l = ES_
+  // le portugais : « tu » au Portugal (Podes vir? Traz…, se quiseres. Responde-me), « você » au Bresil (Você pode vir?
+  // Traga…, se quiser. Me responda : le pronom avant)
+  const l = PT_
+    ? [p((f ? "Querida " : "Querido ") + invite + ","), p(inv.texte + (BR ? " Você pode vir?" : " Podes vir?")), p(dateLongue(inv.date) + ", " + heureTexte(h), "Quando:"), p(inv.lieu, "Onde:"),
+       apport ? p((BR ? "Traga " : "Traz ") + AP[apport].indef + (BR ? ", se quiser." : ", se quiseres.")) : "",
+       p((BR ? (pl ? "Nos responda" : "Me responda") : (pl ? "Responde-nos" : "Responde-me")) + " até " + dateLongue(inv.repondre) + "."), p("Um abraço!")]
+    : ES_
     ? [p((f ? "Querida " : "Querido ") + invite + ":"), p(inv.texte + " ¿Puedes venir?"), p(dateLongue(inv.date) + ", a las " + h + ":00", "Cuándo:"), p(inv.lieu, "Dónde:"),
        apport ? p("Trae " + AP[apport].indef + ", si quieres.") : "", p((pl ? "Contéstanos" : "Contéstame") + " antes del " + jourN(jourDe(inv.repondre)) + " " + r.getDate() + " de " + D.mois.es[r.getMonth()] + "."), p("¡Un abrazo!")]
     : [p((f ? "Liebe " : "Lieber ") + invite + ","), p(inv.texte), p(dateLongue(inv.date) + ", um " + h + " Uhr", "Wann?"), p(cap(inv.lieu), "Wo?"),
        apport ? p("Bring gern " + AP[apport].indef + " mit!") : "", p("Sag " + (pl ? "uns" : "mir") + " bitte bis " + dateLongue(inv.repondre) + " Bescheid."), p("Bis bald!")];
-  return '<div class="papier carte" lang="' + APPRENDRE + '"><div class="entete">' + (ES_ ? "Invitación" : "Einladung") + '</div><h3>' + esc(inv.titre) + '</h3>'
+  return '<div class="papier carte" lang="' + APPRENDRE + '"><div class="entete">' + (PT_ ? "Convite" : ES_ ? "Invitación" : "Einladung") + '</div><h3>' + esc(inv.titre) + '</h3>'
     + l.join("") + '<div class="signe">' + esc(inv.hote) + '</div></div>';
 }
 // un agenda de la semaine : {jour: motif|null} ; « occupe » : le jour de la fete, occupe (motif) ou libre (null)
@@ -290,12 +335,12 @@ function tirerAgenda(jourFete, occupe, minLibres, minPris){
   return null;
 }
 function papierAgenda(qui, a){
-  const titre = ES_ ? "La semana de " + qui : qui + (/[sxzß]$/.test(qui) ? "’" : "s") + " Woche";
-  const lignes = a.map((m, j) => '<tr><td>' + cap(jourN(j)) + '</td><td' + (m ? '>' + esc(MO[m].court) : ' class="libre">' + (ES_ ? "libre" : "frei")) + '</td></tr>').join("");
-  return '<div class="papier" lang="' + APPRENDRE + '"><div class="entete">' + (ES_ ? "Agenda" : "Kalender") + '</div><h3>' + esc(titre) + '</h3><table>' + lignes + '</table></div>';
+  const titre = PT_ ? "A semana " + deP(qui) : ES_ ? "La semana de " + qui : qui + (/[sxzß]$/.test(qui) ? "’" : "s") + " Woche";
+  const lignes = a.map((m, j) => '<tr><td>' + cap(jourN(j)) + '</td><td' + (m ? '>' + esc(MO[m].court) : ' class="libre">' + (PT_ ? "livre" : ES_ ? "libre" : "frei")) + '</td></tr>').join("");
+  return '<div class="papier" lang="' + APPRENDRE + '"><div class="entete">' + (ES_ || PT_ ? "Agenda" : "Kalender") + '</div><h3>' + esc(titre) + '</h3><table>' + lignes + '</table></div>';
 }
 // « Am Samstag muss ich arbeiten. » / « El sábado trabajo. »
-const motifPhrase = (j, m) => ES_ ? cap(amJour(j)) + " " + MO[m].satz + "." : cap(amJour(j)) + " " + MO[m].satz + ".";
+const motifPhrase = (j, m) => ES_ || PT_ ? cap(amJour(j)) + " " + MO[m].satz + "." : cap(amJour(j)) + " " + MO[m].satz + ".";
 function motifTrad(j, m){
   if (!TL) return null; const t = MO[m].t[TL]; if (!t) return null;
   return {fr: cap(amJour(j, "fr")) + ", " + t + ".", en: cap(amJour(j, "en")) + " " + t + ".", pt: cap(amJour(j, "pt")) + " " + t + ".", de: cap(amJour(j, "de")) + " " + t + "."}[TL];
@@ -314,7 +359,7 @@ function juger(ok, bonneTexte, phrase){
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const g = motQ ? glose(motQ) : "";
-  m.innerHTML = (ok ? cible(ES_ ? "¡Muy bien!" : "Sehr gut!") : T("bonne", {r: cible(esc(bonneTexte))}))
+  m.innerHTML = (ok ? cible(PT_ ? "Muito bem!" : ES_ ? "¡Muy bien!" : "Sehr gut!") : T("bonne", {r: cible(esc(bonneTexte))}))
     // la phrase juste, ECRITE, apres toute reponse (Jacques, 5 nov., comme la meteo et les metiers) ; apres une erreur,
     // « La bonne reponse » l'a deja quand elle est la meme
     + ((ok || (phrase && phrase !== bonneTexte)) ? '<span class="phrase">' + cible(esc(phrase || bonneTexte)) + '</span>' : "")
@@ -363,22 +408,32 @@ const trou = () => '<span class="trou" id="trou">?</span>';
 const avecTrou = s => esc(s).replace("___", trou());
 const enTrou = s => { document.querySelector("#zone .enonce").innerHTML = cible(avecTrou(s)); };
 const tradFete = o => { const k = FETES().find(x => feteBouton(x) === o); return k ? (TL && FE[k].t[TL] ? FE[k].t[TL][0] : glose(feteMot(k))) : null; };
-const tradJourChoix = (o, f) => { const j = [0, 1, 2, 3, 4, 5, 6].find(x => f(x) === o); return j !== undefined ? (TL ? jourN(j, TL) : glose(nom(jourN(j), ES_ ? "el" : "der"))) : null; };
+const tradJourChoix = (o, f) => { const j = [0, 1, 2, 3, 4, 5, 6].find(x => f(x) === o); return j !== undefined ? (TL ? jourN(j, TL) : glose(jourMot(j))) : null; };
 
 // ---------- ce qui vise quoi ----------
 const estMot = (w, x) => w && memeMot(w, x);
-const EINL = () => ES_ ? nom("invitación", "la") : nom("Einladung", "die");
+const EINL = () => PT_ ? nom("convite", "o") : ES_ ? nom("invitación", "la") : nom("Einladung", "die");
 const ZEIT = nom("Zeit", "die");
-const jourMot = j => nom(jourN(j), ES_ ? "el" : "der");
+// pt : a segunda-feira ... a sexta-feira, o sábado, o domingo
+const jourMot = j => nom(jourN(j), PT_ ? (j >= 5 ? "o" : "a") : ES_ ? "el" : "der");
 const jourDeMot = w => w && !w.cat ? JOURS().findIndex((j, i) => memeMot(jourMot(i), w)) : -1;
-const momentsDe = w => D.moments.filter(m => imgPret(m.img) && (!w || memeMot(verbe(m.v[APPRENDRE]), w)));
-const momentPhrase = m => m.phrase[APPRENDRE];
+// les moments : en portugais leur propre liste (fetes.json, momentsPt), chacun avec le mot qu'il vise (w : « os parabéns »)
+const MOMS = () => PT_ ? D.momentsPt.pt : D.moments;
+const momentMot = m => PT_ ? {mot: m.w[0], genre: m.w[1], cat: m.w[2]} : verbe(m.v[APPRENDRE]);
+const momentDit = m => { const w = momentMot(m); return (w.genre ? w.genre + " " : "") + w.mot; };
+const momentsDe = w => MOMS().filter(m => imgPret(m.img) && (!w || memeMot(momentMot(m), w)));
+const momentPhrase = m => PT_ ? m.phrase : m.phrase[APPRENDRE];
 const momentTrad = m => !TL ? null : (ES_ && m.t_es && m.t_es[TL]) || m.t[TL] || null;
+const V_INVITER = () => PT_ ? "convidar" : ES_ ? "invitar" : "einladen", V_APPORTER = () => PT_ ? "levar" : ES_ ? "traer" : "mitbringen";
+const V_FETER = () => PT_ || ES_ ? "celebrar" : "feiern";
+const invMot = x => x.nomMot ? nom(x.nomMot[0], x.nomMot[1]) : null;      // pt : le nom de l'evenement (a festa, o jantar, o lanche)
+const PLANEAR = () => verbe(PT_ ? (BR ? "planejar" : "planear") : ES_ ? "planear" : "planen");     // planear au Portugal, planejar au Bresil
+const QUEDAR = () => verbe(PT_ ? "combinar" : "quedar");
 const leurresFete = (k, img) => FETES().filter(x => !voisines(k).includes(x) && !(FE[x].aussi || []).includes(k) && !(img && fetesDeImg(img).includes(x)));
 // le souhait : « Lena hat heute Geburtstag. » / « Heute ist Ostern. » ; ihr / ihm
 const AMIS = () => Object.keys(PERS).filter(p => p !== "Mark");
 function situation(k){
-  const p = hasard(AMIS()), s = FE[k].situation.replace("{P}", p);
+  const p = hasard(AMIS()), s = FE[k].situation.replace("{P}", PT_ ? ArtP(p) : p);
   const tt = (D.situationsT[APPRENDRE][k] || {})[TL];
   let t = null;
   if (TL){
@@ -387,7 +442,9 @@ function situation(k){
   }
   return {s, t, p};
 }
-const quiDit = (k, p) => ES_ ? (FE[k].situation.includes("{P}") ? "¿Qué le dices?" : "¿Qué dices?") : (FE[k].situation.includes("{P}") ? "Was sagst du " + (sexe(p) === "f" ? "ihr" : "ihm") + "?" : "Was sagst du?");
+// « O que lhe dizes? » (Portugal, tu ; le pronom avant le verbe apres « o que ») ; « O que você diz para ela? » (Bresil)
+const quiDit = (k, p) => PT_ ? (FE[k].situation.includes("{P}") ? (BR ? "O que você diz para " + (sexe(p) === "f" ? "ela" : "ele") + "?" : "O que lhe dizes?") : (BR ? "O que você diz?" : "O que dizes?"))
+  : ES_ ? (FE[k].situation.includes("{P}") ? "¿Qué le dices?" : "¿Qué dices?") : (FE[k].situation.includes("{P}") ? "Was sagst du " + (sexe(p) === "f" ? "ihr" : "ihm") + "?" : "Was sagst du?");
 
 // ---------- les exercices ----------
 // Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
@@ -399,7 +456,7 @@ const EX = {
     const k = hasard(ks), img = hasard(imgsDe(k)); viser(w || feteMot(k));
     const opts = melanger([feteBouton(k), ...melanger(leurresFete(k, img)).slice(0, 3).map(feteBouton)]);
     tradQ = feteTrad(k); dirQ = FE[k].nom;
-    ecran("c_fete", photo(img), ES_ ? "¿Qué fiesta es?" : "Welches Fest ist das?", {centre: true});
+    ecran("c_fete", photo(img), PT_ ? "Que festa é?" : ES_ ? "¿Qué fiesta es?" : "Welches Fest ist das?", {centre: true});
     boutons($("choix"), opts, feteBouton(k), ok => juger(ok, feteBouton(k), fetePhrase(k)), tradFete);
     return true;
   },
@@ -431,14 +488,14 @@ const EX = {
     const rep = FE[k].quand, opts = melanger([rep, ...melanger(autres).slice(0, 3)]);
     tradQ = quandTrad(k); dirQ = FE[k].nom;
     const avant = imgsDe(k).length && Math.random() < 0.5 ? photo(hasard(imgsDe(k))) : "";
-    ecran("c_quand", avant, ES_ ? "¿Cuándo es " + FE[k].nom + "?" : "Wann ist " + FE[k].nom + "?", {centre: true});
+    ecran("c_quand", avant, PT_ ? "Quando é " + FE[k].nom + "?" : ES_ ? "¿Cuándo es " + FE[k].nom + "?" : "Wann ist " + FE[k].nom + "?", {centre: true});
     boutons($("choix"), opts, rep, ok => juger(ok, rep, quandPhrase(k)),
             o => { const x = FETES().find(y => FE[y].quand === o); return x && TL && FE[x].t[TL] ? FE[x].t[TL][1] : null; });
     return true;
   },
   // « Heute ist Ostern. Was sagst du? » -> Frohe Ostern!
   souhait(w){
-    const vV = estMot(w, verbe(ES_ ? "felicitar" : "gratulieren"));   // feliciter : l'anniversaire, le mariage
+    const vV = estMot(w, PT_ ? nom("parabéns", "os") : verbe(ES_ ? "felicitar" : "gratulieren"));   // pt : « os parabéns » (les deux souhaits le disent)   // feliciter : l'anniversaire, le mariage
     const ks = fetesDe(vV ? null : w).filter(k => FE[k].wunsch && FE[k].situation && (!vV || FE[k].c));
     if (!ks.length) return false;
     const k = hasard(ks);
@@ -457,6 +514,19 @@ const EX = {
   // de : « Herzlichen Glückwunsch ___ Geburtstag! » -> zum ; « Ich lade dich zu ___ Party ein. » -> meiner
   // es : « Te invito ___ cumpleaños de Mark. » -> al (a + el = al)
   forme(w){
+    if (PT_){
+      const cand = D.alPt.pt.filter(x => !w || memeMot(nom(x.mot, x.genre), w));
+      if (!cand.length) return false;
+      const x = hasard(cand), h = hasard(x.hotes); viser(w || nom(x.mot, x.genre));
+      const apres = x.apres.replace("{deH}", h ? deP(h) : ""), rep = x.genre === "o" ? "ao" : "à";
+      const juste = "Vou " + rep + " " + apres + ".";
+      tradQ = TL ? ({fr: "Je vais ", en: "I'm going "}[TL] + x.t[TL].replace("{H}", h ? nomT(h, TL) : "") + ".").replace(/ de ([AEIOUÉ])/g, " d'$1") : null;   // « d'Inês », « d'Elena »
+      dirQ = x.genre + " " + x.mot;
+      ecran("c_zu", "", "", {centre: true}); enTrou("Vou ___ " + apres + ".");
+      // les quatre contractions de a + l'article : une seule s'accorde (jamais « para o », juste aussi, ni « no »)
+      boutons($("choix"), melanger(["ao", "à", "aos", "às"]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, juste); });
+      return true;
+    }
     if (ES_){
       const cand = D.alEs.filter(x => !w || memeMot(nom(x.mot, x.genre), w));
       if (!cand.length) return false;
@@ -493,40 +563,43 @@ const EX = {
     const sortes = [];
     if (!w || estMot(w, EINL())) sortes.push("tag", "heure", "bis");
     if (j >= 0) sortes.push("tagJ", "bisJ");
+    if (PT_ && w && INV.some(x => memeMot(invMot(x), w))) sortes.push("tag", "heure");
     if (!w || apportesDe(w)) sortes.push("mit");
-    if (!w || estMot(w, verbe(ES_ ? "invitar" : "einladen"))) sortes.push("wer");
-    if (!w || estMot(w, verbe(ES_ ? "traer" : "mitbringen"))) sortes.push("mitV");
-    if (!w || fetesDe(w).length || estMot(w, verbe(ES_ ? "celebrar" : "feiern"))) sortes.push("was");
+    if (!w || estMot(w, verbe(V_INVITER()))) sortes.push("wer");
+    if (!w || estMot(w, verbe(V_APPORTER()))) sortes.push("mitV");
+    if (!w || fetesDe(w).length || estMot(w, verbe(V_FETER()))) sortes.push("was");
     const so = melanger(sortes);
     for (const s of so){ if (questionCarte(s, w, j)) return true; }
     return false;
   },
   // l'invitation et l'agenda de l'invite : « Ich komme gern. » / « ... leider ... Am Samstag muss ich arbeiten. »
   reponse(w){
-    const oui = ES_ ? "ir" : "gern", non = ES_ ? "poder" : "leider";
+    const oui = !DE_ ? "ir" : "gern", non = !DE_ ? "poder" : "leider";
     let occupe;
-    if (!w || estMot(w, EINL()) || (ES_ && estMot(w, verbe("venir")))) occupe = Math.random() < 0.5;
-    else if (estMot(w, ES_ ? verbe(oui) : adverbe(oui))) occupe = false;
-    else if (estMot(w, ES_ ? verbe(non) : adverbe(non)) || (!ES_ && estMot(w, verbe("absagen")))) occupe = true;
+    if (!w || estMot(w, EINL()) || (ES_ && estMot(w, verbe("venir"))) || (PT_ && estMot(w, verbe("vir")))) occupe = Math.random() < 0.5;
+    else if (estMot(w, !DE_ ? verbe(oui) : adverbe(oui))) occupe = false;
+    else if (estMot(w, !DE_ ? verbe(non) : adverbe(non)) || (DE_ && estMot(w, verbe("absagen")))) occupe = true;
     else return false;
     const inv = hasard(INV), invite = hasard(inv.pour), jf = jourDe(inv.date);
     const motifs = Object.keys(MO).filter(m => !MO[m].semaine || jf < 5);
     const mf = occupe ? hasard(motifs) : null, a = tirerAgenda(jf, mf);
     if (!a) return false;
-    viser(w || (occupe ? (ES_ ? verbe(non) : adverbe(non)) : EINL()));
-    if (!w && !occupe) viser(ES_ ? verbe(oui) : adverbe(oui));
+    viser(w || (occupe ? (!DE_ ? verbe(non) : adverbe(non)) : EINL()));
+    if (!w && !occupe) viser(!DE_ ? verbe(oui) : adverbe(oui));
     const f = sexe(invite) === "f";
     const dit = (m) => m === null
-      ? (ES_ ? "¡Muchas gracias por la invitación! Voy con mucho gusto." : "Danke für die Einladung! Ich komme gern.")
-      : (ES_ ? "Muchas gracias, pero lo siento, no puedo ir. " + motifPhrase(jf, m) : "Danke für die Einladung, aber ich kann leider nicht. " + motifPhrase(jf, m));
+      ? (PT_ ? (f ? "Muito obrigada" : "Muito obrigado") + " pelo convite! " + (BR ? "Vou com prazer." : "Vou com todo o gosto.")
+         : ES_ ? "¡Muchas gracias por la invitación! Voy con mucho gusto." : "Danke für die Einladung! Ich komme gern.")
+      : (PT_ ? (f ? "Muito obrigada" : "Muito obrigado") + " pelo convite, mas infelizmente não posso ir. " + motifPhrase(jf, m)
+         : ES_ ? "Muchas gracias, pero lo siento, no puedo ir. " + motifPhrase(jf, m) : "Danke für die Einladung, aber ich kann leider nicht. " + motifPhrase(jf, m));
     const trad = (m) => !TL ? null : m === null
       ? {fr: "Merci pour l'invitation ! Je viens avec plaisir.", en: "Thanks for the invitation! I'd love to come.", pt: (f ? "Obrigada" : "Obrigado") + " pelo convite! Vou com prazer.", de: "Danke für die Einladung! Ich komme gern."}[TL]
       : ({fr: "Merci pour l'invitation, mais malheureusement je ne peux pas. ", en: "Thanks for the invitation, but unfortunately I can't. ", pt: (f ? "Obrigada" : "Obrigado") + " pelo convite, mas infelizmente não posso. ", de: "Danke für die Einladung, aber ich kann leider nicht. "}[TL] + (motifTrad(jf, m) || ""));
     const autres = melanger(motifs.filter(m => m !== mf)).slice(0, occupe ? 1 : 2);
     const choixM = occupe ? [mf, null, ...autres] : [null, ...autres];
     const rep = dit(mf), opts = melanger(choixM.map(dit));
-    tradQ = trad(mf); dirQ = motQ && motQ.cat === "verbe" && ["venir", "absagen"].includes(motQ.mot) ? motQ.mot : memeMot(motQ, EINL()) ? EINL().genre + " " + EINL().mot : ES_ ? (occupe ? "no puedo" : "voy") : (occupe ? "leider" : "gern");
-    ecran("c_reponse", papierInvitation(inv, invite, inv.apports.length ? hasard(inv.apports) : null) + papierAgenda(invite, a), ES_ ? "¿Qué contesta " + invite + "?" : "Was antwortet " + invite + "?", {centre: true});
+    tradQ = trad(mf); dirQ = motQ && motQ.cat === "verbe" && ["venir", "absagen", "vir"].includes(motQ.mot) ? motQ.mot : memeMot(motQ, EINL()) ? EINL().genre + " " + EINL().mot : PT_ ? (occupe ? "não posso" : "vou") : ES_ ? (occupe ? "no puedo" : "voy") : (occupe ? "leider" : "gern");
+    ecran("c_reponse", papierInvitation(inv, invite, inv.apports.length ? hasard(inv.apports) : null) + papierAgenda(invite, a), PT_ ? (BR ? "O que " + invite + " responde?" : "O que responde " + artP(invite) + "?") : ES_ ? "¿Qué contesta " + invite + "?" : "Was antwortet " + invite + "?", {centre: true});
     $("choix").classList.add("liste");
     boutons($("choix"), opts, rep, ok => juger(ok, rep, rep), o => { const m = choixM.find(x => dit(x) === o); return m !== undefined ? trad(m) : null; });
     return true;
@@ -536,8 +609,8 @@ const EX = {
     const jw = jourDeMot(w);
     let libre;
     if (!w) libre = Math.random() < 0.45;
-    else if (estMot(w, ES_ ? verbe("poder") : ZEIT)) libre = true;
-    else if (jw >= 0 || estMot(w, verbe("quedar"))) libre = false;
+    else if (estMot(w, !DE_ ? verbe("poder") : ZEIT)) libre = true;
+    else if (jw >= 0 || estMot(w, QUEDAR())) libre = false;
     else return false;
     const ami = hasard(AMIS()), h = hasard([17, 18, 19, 20]);
     let jp, a = null;
@@ -551,10 +624,10 @@ const EX = {
     if (!a) return false;
     const libres = [0, 1, 2, 3, 4, 5, 6].filter(j => !a[j] && j !== jp), pris = [0, 1, 2, 3, 4, 5, 6].filter(j => a[j] && j !== jp);
     const contre = libre ? null : (jw >= 0 ? jw : hasard(libres));
-    viser(w || (libre ? (ES_ ? verbe("poder") : ZEIT) : jourMot(contre)));
-    const propo = ES_ ? "¿Cuándo hacemos la fiesta? ¿Quedamos " + amJour(jp) + " a las " + h + ":00?" : "Wann machen wir die Party? Wie wäre es mit " + jourN(jp) + " um " + h + " Uhr?";
-    const oui = ES_ ? "¡Muy bien! " + cap(amJour(jp)) + " puedo." : "Gute Idee! " + cap(amJour(jp)) + " habe ich Zeit.";
-    const nonAvec = (m, x) => ES_ ? cap(amJour(jp)) + " no puedo, " + MO[m].satz + ". ¿Quedamos " + amJour(x) + "?" : cap(amJour(jp)) + " kann ich leider nicht, da " + MO[m].satz + ". Wie wäre es mit " + jourN(x) + "?";
+    viser(w || (libre ? (!DE_ ? verbe("poder") : ZEIT) : jourMot(contre)));
+    const propo = PT_ ? (BR ? "Temos que" : "Temos de") + " combinar um dia para a festa. Que tal " + amJour(jp) + ", " + heureTexte(h) + "?" : ES_ ? "¿Cuándo hacemos la fiesta? ¿Quedamos " + amJour(jp) + " a las " + h + ":00?" : "Wann machen wir die Party? Wie wäre es mit " + jourN(jp) + " um " + h + " Uhr?";
+    const oui = PT_ ? "Boa ideia! " + cap(amJour(jp)) + " posso." : ES_ ? "¡Muy bien! " + cap(amJour(jp)) + " puedo." : "Gute Idee! " + cap(amJour(jp)) + " habe ich Zeit.";
+    const nonAvec = (m, x) => PT_ ? cap(amJour(jp)) + " não posso, " + MO[m].satz + ". Que tal " + amJour(x) + "?" : ES_ ? cap(amJour(jp)) + " no puedo, " + MO[m].satz + ". ¿Quedamos " + amJour(x) + "?" : cap(amJour(jp)) + " kann ich leider nicht, da " + MO[m].satz + ". Wie wäre es mit " + jourN(x) + "?";
     const T_oui = TL ? {fr: "Bonne idée ! " + cap(amJour(jp, "fr")) + ", je suis libre.", en: "Good idea! I'm free " + amJour(jp, "en") + ".", pt: "Boa ideia! " + cap(amJour(jp, "pt")) + " estou livre.", de: "Gute Idee! " + cap(amJour(jp, "de")) + " habe ich Zeit."}[TL] : null;
     const T_non = (m, x) => TL ? {fr: cap(amJour(jp, "fr")) + ", je ne peux pas : " + MO[m].t.fr + ". Et " + amJour(x, "fr") + " ?", en: "I can't " + amJour(jp, "en") + ": " + MO[m].t.en + ". How about " + jourN(x, "en") + "?",
       pt: cap(amJour(jp, "pt")) + " não posso: " + MO[m].t.pt + ". Que tal " + amJour(x, "pt") + "?", de: cap(amJour(jp, "de")) + " kann ich leider nicht, da " + MO[m].t.de + ". Wie wäre es mit " + jourN(x, "de") + "?"}[TL] : null;
@@ -569,8 +642,8 @@ const EX = {
       rep = nonAvec(m, contre); choix = [[rep, T_non(m, contre)], [oui, T_oui], [nonAvec(m, hasard(pris)), null]];
       tradQ = T_non(m, contre);
     }
-    dirQ = libre ? (ES_ ? "puedo" : "Zeit") : jourN(contre);
-    ecran("c_proposer", fil([["Mark", propo, "g"]]) + papierAgenda(ami, a), ES_ ? "¿Qué contesta " + ami + "?" : "Was antwortet " + ami + "?", {centre: true});
+    dirQ = libre ? (PT_ ? "posso" : ES_ ? "puedo" : "Zeit") : jourN(contre);
+    ecran("c_proposer", fil([["Mark", propo, "g"]]) + papierAgenda(ami, a), PT_ ? (BR ? "O que " + ami + " responde?" : "O que responde " + artP(ami) + "?") : ES_ ? "¿Qué contesta " + ami + "?" : "Was antwortet " + ami + "?", {centre: true});
     $("choix").classList.add("liste");
     boutons($("choix"), melanger(choix.map(c => c[0])), rep, ok => juger(ok, rep, rep), o => (choix.find(c => c[0] === o) || [])[1] || null);
     return true;
@@ -578,28 +651,31 @@ const EX = {
   // se mettre d'accord : A propose un jour, B refuse et propose un autre jour, A accepte -> « Wann feiern sie? »
   accord(w){
     const jw = jourDeMot(w);
-    if (w && jw < 0 && !estMot(w, verbe("quedar")) && !estMot(w, verbe(ES_ ? "planear" : "planen"))) return false;
+    if (w && jw < 0 && !estMot(w, QUEDAR()) && !estMot(w, PLANEAR())) return false;
     const gens = Object.keys(PERS), a = hasard(gens), b = hasard(gens.filter(x => x !== a));
     const j2 = jw >= 0 ? jw : hasard([0, 1, 2, 3, 4, 5, 6]), j1 = hasard([0, 1, 2, 3, 4, 5, 6].filter(x => x !== j2));
     const motifs = Object.keys(MO).filter(m => !MO[m].semaine || j1 < 5), m = hasard(motifs), h = hasard([17, 18, 19, 20]);
     viser(w || jourMot(j2));
-    const bulles = ES_
+    const bulles = PT_
+      ? [[a, (BR ? "Temos que combinar um dia para planejar a festa. Pode ser " : "Temos de combinar um dia para planear a festa. Pode ser ") + amJour(j1) + ", " + heureTexte(h) + "?", "g"],
+         [b, cap(amJour(j1)) + " não posso, " + MO[m].satz + ". Que tal " + amJour(j2) + "?", "d"], [a, "Perfeito! Então " + (BR ? "nos encontramos " : "encontramo-nos ") + amJour(j2) + "."]]
+      : ES_
       ? [[a, "¿Quedamos " + amJour(j1) + " a las " + h + ":00 para planear la fiesta?", "g"], [b, cap(amJour(j1)) + " no puedo, " + MO[m].satz + ". ¿Qué tal " + amJour(j2) + "?", "d"], [a, "¡Perfecto! Quedamos " + amJour(j2) + "."]]
       : [[a, "Wollen wir die Party " + amJour(j1) + " um " + h + " Uhr planen?", "g"], [b, cap(amJour(j1)) + " kann ich leider nicht, da " + MO[m].satz + ". Wie wäre es mit " + jourN(j2) + "?", "d"], [a, jourN(j2) + " passt mir gut. Dann treffen wir uns " + amJour(j2) + "!"]];
     bulles[2][2] = "g";
     const f = x => amJour(x), rep = f(j2);
     const opts = melanger([j2, j1, ...melanger([0, 1, 2, 3, 4, 5, 6].filter(x => x !== j1 && x !== j2)).slice(0, 2)]).map(f);
-    const juste = ES_ ? yEs(a, b) + " quedan " + amJour(j2) + "." : a + " und " + b + " treffen sich " + amJour(j2) + ".";
+    const juste = PT_ ? (BR ? a + " e " + b + " se encontram " : ArtP(a) + " e " + artP(b) + " encontram-se ") + amJour(j2) + "." : ES_ ? yEs(a, b) + " quedan " + amJour(j2) + "." : a + " und " + b + " treffen sich " + amJour(j2) + ".";
     tradQ = TL ? {fr: NomT(a, "fr") + " et " + nomT(b, "fr") + " se retrouvent " + amJour(j2, "fr") + ".", en: a + " and " + b + " are meeting " + amJour(j2, "en") + ".",
                   pt: NomT(a, "pt") + " e " + nomT(b, "pt") + " se encontram " + amJour(j2, "pt") + ".", de: a + " und " + b + " treffen sich " + amJour(j2, "de") + "."}[TL] : null;
     dirQ = motQ && motQ.cat === "verbe" ? motQ.mot : jourN(j2);
-    ecran("c_accord", fil(bulles), ES_ ? "¿Qué día quedan " + yEs(a, b) + "?" : "Wann treffen sich " + a + " und " + b + "?", {centre: true});
+    ecran("c_accord", fil(bulles), PT_ ? (BR ? "Em que dia " + a + " e " + b + " se encontram?" : "Em que dia se encontram " + artP(a) + " e " + artP(b) + "?") : ES_ ? "¿Qué día quedan " + yEs(a, b) + "?" : "Wann treffen sich " + a + " und " + b + "?", {centre: true});
     boutons($("choix"), opts, rep, ok => juger(ok, rep, juste), o => tradJourChoix(o, f));
     return true;
   },
   // la liste « qui apporte quoi » : « Wer bringt den Kuchen mit? » -> Katrin ; « Was bringt Lena mit? » -> den Salat
   liste(w){
-    const vise = w ? apportsDe(w) : null, vV = estMot(w, verbe(ES_ ? "traer" : "mitbringen"));
+    const vise = w ? apportsDe(w) : null, vV = estMot(w, verbe(V_APPORTER()));
     if (w && !vise.length && !vV) return false;
     const gens = melanger(Object.keys(PERS)).slice(0, 4);
     let items = melanger(Object.keys(AP).filter(k => !vise || !vise.includes(k))).slice(0, 4);
@@ -609,13 +685,13 @@ const EX = {
     const p = gens[i], k = items[i]; viser(w || apMot(k));
     const lignes = gens.map((g, n) => '<tr><td>' + esc(g) + '</td><td>' + esc(cap(AP[items[n]].def)) + '</td></tr>').join("");
     const jour = jourN(hasard([4, 5]));
-    const papier = '<div class="papier" data-doc="liste" lang="' + APPRENDRE + '"><div class="entete">' + (ES_ ? "Nuestra fiesta del " + jour : "Unsere Party am " + jour) + '</div><h3>' + (ES_ ? "¿Quién trae qué?" : "Wer bringt was mit?") + '</h3><table>' + lignes + '</table></div>';
+    const papier = '<div class="papier" data-doc="liste" lang="' + APPRENDRE + '"><div class="entete">' + (PT_ ? (BR ? "Nossa festa de " : "A nossa festa de ") + jour : ES_ ? "Nuestra fiesta del " + jour : "Unsere Party am " + jour) + '</div><h3>' + (PT_ ? "Quem leva o quê?" : ES_ ? "¿Quién trae qué?" : "Wer bringt was mit?") + '</h3><table>' + lignes + '</table></div>';
     const juste = apportePhrase(p, k, "def"); tradQ = apporteTrad(p, k, "def"); dirQ = AP[k].def;
     let q, rep, opts, trads = null;
     if (qui){
-      q = ES_ ? "¿Quién trae " + AP[k].def + "?" : "Wer bringt " + AP[k].def + " mit?"; rep = p; opts = melanger(gens.slice());
+      q = PT_ ? "Quem leva " + AP[k].def + "?" : ES_ ? "¿Quién trae " + AP[k].def + "?" : "Wer bringt " + AP[k].def + " mit?"; rep = p; opts = melanger(gens.slice());
     } else {
-      q = ES_ ? "¿Qué trae " + p + "?" : "Was bringt " + p + " mit?"; rep = AP[k].def; opts = melanger(items.map(x => AP[x].def));
+      q = PT_ ? (BR ? "O que " + p + " leva?" : "O que leva " + artP(p) + "?") : ES_ ? "¿Qué trae " + p + "?" : "Was bringt " + p + " mit?"; rep = AP[k].def; opts = melanger(items.map(x => AP[x].def));
       trads = o => { const x = items.find(y => AP[y].def === o); return x ? (TL ? apT(x, 0) : glose(apMot(x))) : null; };
     }
     ecran("c_liste", papier, q, {centre: true});
@@ -624,7 +700,7 @@ const EX = {
   },
   // L'ALLEMAND SEULEMENT : la place du verbe. « Lena bringt einen Salat mit. » / « Leider kann ich nicht kommen. »
   ordre(w){
-    if (ES_) return false;
+    if (!DE_) return false;
     const cas = [];
     if (!w || apportsDe(w).length || estMot(w, verbe("mitbringen"))) cas.push("mit");
     if (!w || estMot(w, verbe("einladen"))) cas.push("ein");
@@ -672,12 +748,12 @@ const EX = {
   },
   // L'ESPAGNOL SEULEMENT : « ¿___ venir a mi fiesta? » -> Puedes ; « Yo ___ el pan. » -> traigo
   conjug(w){
-    if (!ES_) return false;
-    const cand = D.conjEs.filter(x => !w || estMot(w, verbe(x.v)));
+    if (DE_) return false;
+    const cand = (PT_ ? D.conjPt.pt : D.conjEs).filter(x => !w || estMot(w, verbe(x.v)));
     if (!cand.length) return false;
     const x = hasard(cand); viser(w || verbe(x.v));
     const k = hasard(Object.keys(AP)), P = hasard(Object.keys(PERS).filter(p => p !== "Mark"));
-    const remplir = s => s.replace("{A}", AP[k].def).replace("{P}", P);
+    const remplir = s => s.replace("{A}", AP[k].def).replace("{P}", PT_ ? ArtP(P) : P);
     const debut = /^¿?___/.test(x.phrase), forme = f => debut ? cap(f) : f;
     const conj = CJ[x.v], rep = forme(conj[x.p]);
     const opts = melanger(uniques([rep, ...melanger(["ich", "du", "er_sie_es", "wir", "sie_Sie"].filter(p => p !== x.p).map(p => forme(conj[p]))).filter(f => f !== rep)]).slice(0, 4));
@@ -692,14 +768,14 @@ const EX = {
   moment(w){
     const cand = momentsDe(w);
     if (!cand.length) return false;
-    const m = hasard(cand), autres = melanger(D.moments.filter(x => imgPret(x.img) && x.id !== m.id && x.v[APPRENDRE] !== m.v[APPRENDRE])).slice(0, 2);
+    const m = hasard(cand), autres = melanger(MOMS().filter(x => imgPret(x.img) && x.id !== m.id && !memeMot(momentMot(x), momentMot(m)))).slice(0, 2);
     if (autres.length < 2) return false;
-    viser(w || verbe(m.v[APPRENDRE]));
+    viser(w || momentMot(m));
     const rep = momentPhrase(m), opts = melanger([rep, ...autres.map(momentPhrase)]);
-    tradQ = momentTrad(m); dirQ = m.v[APPRENDRE];
-    ecran("c_moment", photo(m.img), ES_ ? "¿Qué hace Mark?" : "Was macht Mark?", {centre: true});
+    tradQ = momentTrad(m); dirQ = PT_ ? momentDit(m) : m.v[APPRENDRE];
+    ecran("c_moment", photo(m.img), PT_ ? (BR ? "O que Mark faz?" : "O que faz o Mark?") : ES_ ? "¿Qué hace Mark?" : "Was macht Mark?", {centre: true});
     $("choix").classList.add("liste");
-    boutons($("choix"), opts, rep, ok => juger(ok, rep, rep), o => { const x = D.moments.find(y => momentPhrase(y) === o); return x ? momentTrad(x) : null; });
+    boutons($("choix"), opts, rep, ok => juger(ok, rep, rep), o => { const x = MOMS().find(y => momentPhrase(y) === o); return x ? momentTrad(x) : null; });
     return true;
   },
   // vrai ou faux : la date d'une fete, le souhait, l'invitation, la liste
@@ -707,7 +783,7 @@ const EX = {
     const src = [];
     if (fetesDe(w).some(k => FE[k].quand)) src.push("quand");
     if (fetesDe(w).some(k => FE[k].wunsch && FE[k].dans)) src.push("souhait");
-    if (!w || estMot(w, EINL()) || jourDeMot(w) >= 0) src.push("carte");
+    if (!w || estMot(w, EINL()) || jourDeMot(w) >= 0 || (PT_ && INV.some(x => memeMot(invMot(x), w)))) src.push("carte");
     if (!w || apportsDe(w).length) src.push("liste");
     if (!src.length) return false;
     const s = hasard(src), vrai = Math.random() < 0.5;
@@ -715,26 +791,26 @@ const EX = {
     if (s === "quand"){
       const k = hasard(fetesDe(w).filter(x => FE[x].quand)); viser(w || feteMot(k));
       const autres = uniques(FETES().filter(x => FE[x].quand && !touche(FE[x].jours, FE[k].jours)).map(x => FE[x].quand));
-      juste = quandPhrase(k); phrase = vrai || !autres.length ? juste : (ES_ ? cap(FE[k].nom) + " es " + hasard(autres) + "." : FE[k].nom + " ist " + hasard(autres) + ".");
+      juste = quandPhrase(k); phrase = vrai || !autres.length ? juste : (PT_ ? cap(FE[k].nom) + " é " + hasard(autres) + "." : ES_ ? cap(FE[k].nom) + " es " + hasard(autres) + "." : FE[k].nom + " ist " + hasard(autres) + ".");
       tradQ = quandTrad(k); dirQ = FE[k].nom;
     } else if (s === "souhait"){
       const k = hasard(fetesDe(w).filter(x => FE[x].wunsch && FE[x].dans)); viser(w || feteMot(k));
       const autres = uniques(FETES().filter(x => FE[x].wunsch && !voisines(k).includes(x) && !(FE[x].aussi || []).includes(k) && FE[x].wunsch !== FE[k].wunsch).map(x => FE[x].wunsch));
       juste = souhaitPhrase(k);
-      phrase = vrai || !autres.length ? juste : (ES_ ? FE[k].dans + " se dice: «" + hasard(autres) + "»." : FE[k].dans + " sagt man: „" + hasard(autres) + "“");
+      phrase = vrai || !autres.length ? juste : (PT_ ? FE[k].dans + ditSePt(hasard(autres)) : ES_ ? FE[k].dans + " se dice: «" + hasard(autres) + "»." : FE[k].dans + " sagt man: „" + hasard(autres) + "“");
       tradQ = souhaitTrad(k); dirQ = FE[k].nom;
     } else if (s === "carte"){
       const jw = jourDeMot(w);
-      const invs = INV.filter(x => jw < 0 || jourDe(x.date) === jw);
+      const invs = INV.filter(x => (jw < 0 || jourDe(x.date) === jw) && (!PT_ || !w || jw >= 0 || memeMot(w, EINL()) || memeMot(invMot(x), w)));
       if (!invs.length) return false;
       const inv = hasard(invs), invite = hasard(inv.pour), jf = jourDe(inv.date);
       viser(w || EINL());
       const autreJ = hasard([0, 1, 2, 3, 4, 5, 6].filter(x => x !== jf));
-      const fn = x => ES_ ? cap(inv.nom) + " es " + amJour(x) + "." : cap(inv.nom) + " ist " + amJour(x) + ".";
+      const fn = x => PT_ ? cap(inv.nom) + " é " + amJour(x) + "." : ES_ ? cap(inv.nom) + " es " + amJour(x) + "." : cap(inv.nom) + " ist " + amJour(x) + ".";
       avant = papierInvitation(inv, invite, inv.apports.length ? hasard(inv.apports) : null);
       juste = fn(jf); phrase = vrai ? juste : fn(autreJ);
-      tradQ = TL && inv.t[TL] ? {fr: cap(inv.t.fr[0]) + " a lieu " + amJour(jf, "fr") + ".", en: cap(inv.t.en[0]) + " is " + amJour(jf, "en") + ".", pt: cap(inv.t.pt[0]) + " é " + amJour(jf, "pt") + ".", de: cap((inv.t.de || [""])[0]) + " ist " + amJour(jf, "de") + "."}[TL] : null;
-      dirQ = jw >= 0 ? jourN(jf) : EINL().genre + " " + EINL().mot;
+      tradQ = TL && inv.t[TL] ? {fr: cap(inv.t.fr[0]) + " a lieu " + amJour(jf, "fr") + ".", en: cap(inv.t.en[0]) + " is " + amJour(jf, "en") + ".", pt: cap((inv.t.pt || [""])[0]) + " é " + amJour(jf, "pt") + ".", de: cap((inv.t.de || [""])[0]) + " ist " + amJour(jf, "de") + "."}[TL] : null;
+      dirQ = jw >= 0 ? jourN(jf) : PT_ && w && !memeMot(w, EINL()) ? inv.nom : EINL().genre + " " + EINL().mot;
       if (jw >= 0) viser(jourMot(jf));
     } else {
       const vise = w ? apportsDe(w) : null;
@@ -742,12 +818,12 @@ const EX = {
       let items = melanger(Object.keys(AP).filter(k => !vise || !vise.includes(k))).slice(0, 4);
       if (vise && vise.length) items[0] = vise[0];
       const i = 0, p = gens[i], k = items[i]; viser(w || apMot(k));
-      avant = '<div class="papier" lang="' + APPRENDRE + '"><div class="entete">' + (ES_ ? "La fiesta" : "Die Party") + '</div><h3>' + (ES_ ? "¿Quién trae qué?" : "Wer bringt was mit?") + '</h3><table>'
+      avant = '<div class="papier" lang="' + APPRENDRE + '"><div class="entete">' + (PT_ ? "A festa" : ES_ ? "La fiesta" : "Die Party") + '</div><h3>' + (PT_ ? "Quem leva o quê?" : ES_ ? "¿Quién trae qué?" : "Wer bringt was mit?") + '</h3><table>'
         + gens.map((g, n) => '<tr><td>' + esc(g) + '</td><td>' + esc(cap(AP[items[n]].def)) + '</td></tr>').join("") + '</table></div>';
       juste = apportePhrase(p, k, "def"); phrase = vrai ? juste : apportePhrase(p, items[1 + Math.floor(Math.random() * 3)], "def");
       tradQ = apporteTrad(p, k, "def"); dirQ = AP[k].def;
     }
-    const V = ES_ ? ["Verdadero", "Falso"] : ["Richtig", "Falsch"];
+    const V = PT_ ? ["Verdadeiro", "Falso"] : ES_ ? ["Verdadero", "Falso"] : ["Richtig", "Falsch"];
     const rep = phrase === juste ? V[0] : V[1];
     ecran("c_vraifaux", avant, phrase, {centre: true});
     boutons($("choix"), V, rep, ok => juger(ok, rep, juste));
@@ -763,77 +839,80 @@ function questionCarte(s, w, j){
   if (s === "tagJ") invs = invs.filter(x => jourDe(x.date) === j);
   if (s === "bisJ") invs = invs.filter(x => jourDe(x.repondre) === j);
   if (s === "wer") invs = invs.filter(x => uniques(INV.map(y => y.hote)).length > 2);
+  const evt = PT_ && w && !w.cat && (s === "tag" || s === "heure") && INV.some(x => memeMot(invMot(x), w));   // a festa, o jantar, o lanche
+  if (evt) invs = invs.filter(x => memeMot(invMot(x), w));
   if (!invs.length) return false;
   const inv = hasard(invs), invite = hasard(inv.pour), jf = jourDe(inv.date), jr = jourDe(inv.repondre);
   const apport = inv.apports.length ? (s === "mit" && w ? inv.apports.find(k => memeMot(apMot(k), w)) : hasard(inv.apports)) : null;
   const tt = TL ? inv.t[TL] : null;
   let q, rep, opts, juste, trads = null, cible_ = w;
   if (s === "tag" || s === "tagJ"){
-    const f = x => amJour(x); q = ES_ ? "¿Qué día es " + inv.nom + "?" : "An welchem Tag ist " + inv.nom + "?";
+    const f = x => amJour(x); q = PT_ ? "Em que dia é " + inv.nom + "?" : ES_ ? "¿Qué día es " + inv.nom + "?" : "An welchem Tag ist " + inv.nom + "?";
     rep = f(jf); opts = melanger([jf, ...melanger([0, 1, 2, 3, 4, 5, 6].filter(x => x !== jf)).slice(0, 3)]).map(f);
-    juste = ES_ ? cap(inv.nom) + " es " + amJour(jf) + "." : cap(inv.nom) + " ist " + amJour(jf) + ".";
+    juste = PT_ ? cap(inv.nom) + " é " + amJour(jf) + "." : ES_ ? cap(inv.nom) + " es " + amJour(jf) + "." : cap(inv.nom) + " ist " + amJour(jf) + ".";
     tradQ = tt ? {fr: cap(tt[0]) + " a lieu " + amJour(jf, "fr") + ".", en: cap(tt[0]) + " is " + amJour(jf, "en") + ".", pt: cap(tt[0]) + " é " + amJour(jf, "pt") + ".", de: cap(tt[0]) + " ist " + amJour(jf, "de") + "."}[TL] : null;
     trads = o => tradJourChoix(o, f); dirQ = jourN(jf); if (s === "tagJ") cible_ = jourMot(jf);
   } else if (s === "heure"){
-    const f = h => ES_ ? "a las " + h + ":00" : "um " + h + " Uhr"; q = ES_ ? "¿A qué hora empieza " + inv.nom + "?" : "Um wie viel Uhr beginnt " + inv.nom + "?";
+    const f = h => PT_ ? heureTexte(h) : ES_ ? "a las " + h + ":00" : "um " + h + " Uhr"; q = PT_ ? "A que horas começa " + inv.nom + "?" : ES_ ? "¿A qué hora empieza " + inv.nom + "?" : "Um wie viel Uhr beginnt " + inv.nom + "?";
     rep = f(inv.heure); opts = melanger([rep, ...melanger([inv.heure - 2, inv.heure - 1, inv.heure + 1, inv.heure + 2].filter(h => h >= 8 && h <= 23)).slice(0, 3).map(f)]);
-    juste = ES_ ? cap(inv.nom) + " empieza " + f(inv.heure) + "." : cap(inv.nom) + " beginnt " + f(inv.heure) + ".";
+    juste = PT_ ? cap(inv.nom) + " começa " + f(inv.heure) + "." : ES_ ? cap(inv.nom) + " empieza " + f(inv.heure) + "." : cap(inv.nom) + " beginnt " + f(inv.heure) + ".";
     tradQ = tt ? {fr: cap(tt[0]) + " commence " + heureTexte(inv.heure, "fr") + ".", en: cap(tt[0]) + " starts " + heureTexte(inv.heure, "en") + ".", pt: cap(tt[0]) + " começa " + heureTexte(inv.heure, "pt") + ".", de: cap(tt[0]) + " beginnt " + heureTexte(inv.heure, "de") + "."}[TL] : null;
     dirQ = rep;
   } else if (s === "mit" || s === "mitV"){
-    q = ES_ ? "¿Qué tiene que traer " + invite + "?" : "Was soll " + invite + " mitbringen?";
+    q = PT_ ? (BR ? "O que " + invite + " pode levar?" : "O que é que " + artP(invite) + " pode levar?") : ES_ ? "¿Qué tiene que traer " + invite + "?" : "Was soll " + invite + " mitbringen?";
     rep = AP[apport].indef; opts = melanger([rep, ...melanger(uniques(Object.keys(AP).filter(k => k !== apport).map(k => AP[k].indef))).slice(0, 3)]);
     juste = apportePhrase(invite, apport, "indef"); tradQ = apporteTrad(invite, apport, "indef");
     trads = o => { const x = Object.keys(AP).find(k => AP[k].indef === o); return x ? (TL ? apT(x, 1) : glose(apMot(x))) : null; };
-    dirQ = s === "mitV" ? (ES_ ? "traer" : "mitbringen") : AP[apport].indef; if (!w) cible_ = s === "mitV" ? verbe(ES_ ? "traer" : "mitbringen") : apMot(apport);
+    dirQ = s === "mitV" ? (V_APPORTER()) : AP[apport].indef; if (!w) cible_ = s === "mitV" ? verbe(V_APPORTER()) : apMot(apport);
   } else if (s === "bis" || s === "bisJ"){
-    const f = x => ES_ ? "antes del " + jourN(x) : "bis " + jourN(x);
-    q = ES_ ? "¿Antes de qué día tiene que contestar " + invite + "?" : "Bis wann soll " + invite + " antworten?";
+    const f = x => PT_ ? "até " + jourN(x) : ES_ ? "antes del " + jourN(x) : "bis " + jourN(x);
+    q = PT_ ? (BR ? "Até que dia " + invite + " tem que responder?" : "Até que dia tem de responder " + artP(invite) + "?") : ES_ ? "¿Antes de qué día tiene que contestar " + invite + "?" : "Bis wann soll " + invite + " antworten?";
     rep = f(jr); opts = melanger([jr, ...melanger([0, 1, 2, 3, 4, 5, 6].filter(x => x !== jr)).slice(0, 3)]).map(f);
-    juste = ES_ ? invite + " tiene que contestar " + f(jr) + "." : invite + " soll " + f(jr) + " antworten.";
+    juste = PT_ ? ArtP(invite) + (BR ? " tem que responder " : " tem de responder ") + f(jr) + "." : ES_ ? invite + " tiene que contestar " + f(jr) + "." : invite + " soll " + f(jr) + " antworten.";
     tradQ = TL ? {fr: invite + " doit répondre d'ici " + jourN(jr, "fr") + ".", en: invite + " has to reply by " + jourN(jr, "en") + ".", pt: NomT(invite, "pt") + " tem que responder até " + jourN(jr, "pt") + ".", de: invite + " soll bis " + jourN(jr, "de") + " antworten."}[TL] : null;
     trads = o => tradJourChoix(o, f); dirQ = jourN(jr); if (s === "bisJ") cible_ = jourMot(jr);
   } else if (s === "wer"){
-    q = ES_ ? "¿Quién invita a " + invite + "?" : "Wer lädt " + invite + " ein?";
+    q = PT_ ? "Quem convida " + artP(invite) + "?" : ES_ ? "¿Quién invita a " + invite + "?" : "Wer lädt " + invite + " ein?";
     rep = inv.hote; opts = melanger([rep, ...melanger(uniques(INV.map(y => y.hote)).filter(h => h !== rep && !PARTIES(h).includes(invite))).slice(0, 3)]);
     const pl = inv.s === "pl";
-    juste = ES_ ? inv.hote + (pl ? " invitan a " : " invita a ") + invite + "." : inv.hote + (pl ? " laden " : " lädt ") + invite + " ein.";
+    juste = PT_ ? ArtP(inv.hote) + (pl ? " convidam " : " convida ") + artP(invite) + "." : ES_ ? inv.hote + (pl ? " invitan a " : " invita a ") + invite + "." : inv.hote + (pl ? " laden " : " lädt ") + invite + " ein.";
     tradQ = TL ? {fr: NomT(inv.hote, "fr") + (pl ? " invitent " : " invite ") + nomT(invite, "fr") + ".", en: nomT(inv.hote, "en") + (pl ? " are inviting " : " is inviting ") + invite + ".",
                   pt: NomT(inv.hote, "pt") + (pl ? " convidam " : " convida ") + nomT(invite, "pt") + ".", de: nomT(inv.hote, "de") + (pl ? " laden " : " lädt ") + invite + " ein."}[TL] : null;
-    dirQ = ES_ ? "invitar" : "einladen"; if (!w) cible_ = verbe(ES_ ? "invitar" : "einladen");
+    dirQ = V_INVITER(); if (!w) cible_ = verbe(V_INVITER());
   } else {
-    q = ES_ ? "¿Qué se celebra?" : "Was feiert man?";
+    q = PT_ ? "O que se celebra?" : ES_ ? "¿Qué se celebra?" : "Was feiert man?";
     rep = feteBouton(inv.fete); opts = melanger([rep, ...melanger(leurresFete(inv.fete)).slice(0, 3).map(feteBouton)]);
     juste = inv.feiert; tradQ = tt ? tt[1] : null; trads = tradFete; dirQ = w && w.cat ? w.mot : FE[inv.fete].nom; if (!w) cible_ = feteMot(inv.fete);
   }
   if (!cible_) cible_ = EINL();
   viser(cible_);
-  if (memeMot(cible_, EINL())) dirQ = EINL().genre + " " + EINL().mot;          // le mot rappele sous la reponse : celui qu'on teste
+  if (memeMot(cible_, EINL())) dirQ = EINL().genre + " " + EINL().mot;
+  if (evt) dirQ = inv.nom;          // le mot rappele sous la reponse : celui qu'on teste
   ecran("c_einladung", papierInvitation(inv, invite, apport), q, {centre: true});
   boutons($("choix"), opts, rep, ok => juger(ok, rep, juste), trads);
   return true;
 }
-const SORTES = Object.keys(EX).filter(x => !(ES_ && x === "ordre") && !(!ES_ && x === "conjug"));
+const SORTES = Object.keys(EX).filter(x => !(!DE_ && x === "ordre") && !(DE_ && x === "conjug"));
 
 // ---------- la decouverte ----------
 function textesAVoix(){
   if (!D) return [];
-  const t = FETES().map(k => FE[k].nom).concat(FETES().filter(k => FE[k].quand).map(quandPhrase), FETES().filter(k => FE[k].wunsch).map(k => FE[k].wunsch), D.moments.map(momentPhrase));
+  const t = FETES().map(k => FE[k].nom).concat(FETES().filter(k => FE[k].quand).map(quandPhrase), FETES().filter(k => FE[k].wunsch).map(k => FE[k].wunsch), MOMS().map(momentPhrase));
   return [...new Set(t)];
 }
 function decouvrir(){
   $("compte").textContent = ""; $("barre").style.width = "0%";
   const z = $("zone");
-  const ks = FETES(), moms = D.moments.filter(m => imgPret(m.img));
+  const ks = FETES(), moms = MOMS().filter(m => imgPret(m.img));
   const avecImg = ks.filter(k => imgsDe(k).length);
   const inv = INV[0], invite = inv.pour[0];
-  z.innerHTML = '<p class="consigne">' + T("intro") + '</p><div class="fiche" id="fiche"></div>'
+  z.innerHTML = '<p class="consigne">' + T(PT_ ? "introPt" : "intro") + '</p><div class="fiche" id="fiche"></div>'
     + '<div class="section">' + T("secFetes") + '</div>'
     + (avecImg.length ? '<div class="planche" id="pFetes">' + avecImg.map(k => '<button type="button" data-k="f:' + k + '" aria-label="' + esc(FE[k].nom) + '"><img alt="" src="' + imgSrc(imgsDe(k)[0]) + '"></button>').join("") + '</div>' : "")
     + '<div class="puces" id="puces">' + ks.map(k => '<button type="button" data-k="f:' + k + '" lang="' + APPRENDRE + '">' + esc(FE[k].nom) + '</button>').join("") + '</div>'
     + (moms.length ? '<div class="section">' + T("secMoments") + '</div><div class="planche">' + moms.map(m => '<button type="button" data-k="m:' + m.id + '" aria-label="' + esc(momentPhrase(m)) + '"><img alt="" src="' + imgSrc(m.img) + '"></button>').join("") + '</div>' : "")
     + '<div class="section">' + T("secInvit") + '</div>' + papierInvitation(inv, invite, inv.apports[0])
-    + '<p class="regle">' + isoler(T(ES_ ? "regleEs" : "regleDe")) + '</p>';
+    + '<p class="regle">' + isoler(T(PT_ ? (BR ? "regleBr" : "reglePt") : ES_ ? "regleEs" : "regleDe")) + '</p>';
   const fiche = (img, mot, sens, dit, trad, dire2) => {
     $("fiche").className = "fiche" + (img ? "" : " sans");
     $("fiche").innerHTML = (img ? '<img alt="" src="' + imgSrc(img) + '">' : "") + '<div><div class="mot">' + cible(esc(mot)) + '</div><div class="sens">' + esc(sens || "") + '</div>'
@@ -848,7 +927,7 @@ function decouvrir(){
       const k = id, lignes = [FE[k].quand ? quandPhrase(k) : fetePhrase(k), FE[k].wunsch ? FE[k].wunsch : ""].filter(Boolean);
       const tr = [FE[k].quand ? quandTrad(k) : feteTrad(k), FE[k].wunsch ? souhaitTrad(k) : null].filter(Boolean).join(" — ");
       fiche(imgsDe(k)[0] || null, FE[k].nom, glose(feteMot(k)), lignes.join(" "), tr || null);
-    } else { const m = D.moments.find(x => x.id === id); fiche(m.img, m.v[APPRENDRE], glose(verbe(m.v[APPRENDRE])), momentPhrase(m), momentTrad(m)); }
+    } else { const m = MOMS().find(x => x.id === id); fiche(m.img, PT_ ? momentDit(m) : m.v[APPRENDRE], glose(momentMot(m)), momentPhrase(m), momentTrad(m)); }
   };
   document.querySelectorAll(".planche button, .puces button").forEach(b => b.addEventListener("click", () => choisir(b.dataset.k)));
   const garde = dire; dire = () => {}; choisir("f:" + (avecImg[0] || ks[0])); dire = garde;
@@ -960,8 +1039,10 @@ $("retour").addEventListener("click", () => parler("fermer"));
 $("retour").setAttribute("aria-label", T("retourAria"));
 $("titre").textContent = T("titre");
 document.title = T("titre");
-fetch("fetes/fetes.json?v=1").then(r => r.json()).then(d => {
-  D = d; FE = D.fetes[APPRENDRE]; AP = D.apports[APPRENDRE]; INV = D.invitations[APPRENDRE]; MO = D.motifs[APPRENDRE]; PERS = D.personnes[APPRENDRE]; CJ = D.conj[APPRENDRE];
+fetch("fetes/fetes.json?v=2").then(r => r.json()).then(d => {
+  D = d;
+  if (PT_) portugaisAppris(D);
+  FE = D.fetes[APPRENDRE]; AP = D.apports[APPRENDRE]; INV = D.invitations[APPRENDRE]; MO = D.motifs[APPRENDRE]; PERS = D.personnes[APPRENDRE]; CJ = D.conj[APPRENDRE];
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>

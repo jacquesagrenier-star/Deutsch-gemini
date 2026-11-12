@@ -65,6 +65,7 @@ brésiliens qui étaient au corpus du Portugal en sont sortis, leur forme du Por
 | a mala de mão | a bolsa | |
 | a caixa de cartão | a caixa de papelão | |
 | os trabalhos de casa | o dever de casa | les devoirs (lot P4, l'école) ; le genre et le nombre changent |
+| o Dia da Mãe / o Dia do Pai | o Dia das Mães / o Dia dos Pais | les fêtes (lot P4) ; les formes du Brésil étaient au corpus du Portugal |
 | a justificação de faltas | a justificativa de falta | le mot d'absence (lot P4) ; la forme du Brésil était au corpus du Portugal (C1), elle en sort |
 
 Laissés de côté exprès, à trancher à la relecture :

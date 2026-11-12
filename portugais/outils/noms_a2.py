@@ -607,8 +607,14 @@ o coral | le chœur | O coral canta na igreja. | La chorale chante dans l'églis
 a corda | la corde | Uma corda arrebentou. | Une corde s'est cassée.
 o desenho | le dessin | O desenho mostra uma paisagem. | Le dessin représente un paysage.
 o desfile | le défilé | O desfile passa pela avenida. | Le défilé passe par l'avenue.
-o Dia das Mães | la fête des mères | No Dia das Mães eu dou flores para a minha mãe. | À la fête des mères, j'offre des fleurs à ma mère. | pl=Dias das Mães
-o Dia dos Pais | la fête des pères | No Dia dos Pais os pais costumam sair. | À la fête des pères, les pères sortent souvent. | pl=Dias dos Pais
+o Dia da Mãe | la fête des mères | No Dia da Mãe dou flores à minha mãe. | À la fête des mères, j'offre des fleurs à ma mère. | u
+o Dia do Pai | la fête des pères | No Dia do Pai almoçamos todos juntos. | À la fête des pères, nous déjeunons tous ensemble. | u
+o Natal | Noël | No Natal a família janta junta. | À Noël, la famille dîne ensemble. | u
+o Ano Novo | le Nouvel An | Feliz Ano Novo! | Bonne année ! | u
+o Dia de Reis | l'Épiphanie | No Dia de Reis comemos bolo-rei. | Le jour des Rois, nous mangeons la galette des rois. | u
+a Páscoa | Pâques | A Páscoa é em março ou abril. | Pâques tombe en mars ou en avril. | u
+a Semana Santa | la Semaine sainte | Na Semana Santa há procissões em Braga. | Pendant la Semaine sainte, il y a des processions à Braga. | u
+a passagem de ano | la Saint-Sylvestre | Na passagem de ano vemos o fogo de artifício. | À la Saint-Sylvestre, nous regardons le feu d'artifice. | u
 o diretor | le réalisateur | O diretor ganhou um prémio. | Le réalisateur a gagné un prix.
 o disco | le disque, l'album | Quando jovem, eu gastava tudo em discos. | Jeune, je dépensais tout en disques.
 o entusiasmo | l'enthousiasme, l'espoir | Ela falou da viagem com muito entusiasmo. | Elle a parlé de son voyage avec beaucoup d'enthousiasme.

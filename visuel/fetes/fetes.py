@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Les fetes et les invitations, theme illustre de la vague 4 (decision de Jacques du 5 nov. 2026, « go » sur la liste
-des quatre : le travail, l'ecole, les fetes, les vacances). En allemand ET en espagnol.
+des quatre : le travail, l'ecole, les fetes, les vacances). En allemand ET en espagnol ; en portugais depuis le lot P4
+(12 nov. 2026, Lisbonne, Portugal et Bresil : FETES_PT et la suite, plus bas).
 
     python visuel/fetes/fetes.py --json             # fetes.json seul, gratuit
     python visuel/fetes/fetes.py --montrer          # les prompts seuls, gratuit
@@ -370,6 +371,341 @@ AJOUTS_TRAD = {
 }
 
 # ---------------------------------------------------------------------------------------------------------------
+# LE PORTUGAIS APPRIS (lot P4, 12 nov. 2026). Lisbonne, le Portugal d'abord ; « br_ » seulement la ou le Bresil differe
+# (la page prend pt_, ou br_ s'il existe, avec &variante=br, et les pose sous « pt » au chargement). Pas « pt » : cette
+# cle est deja la TRADUCTION en portugais du Bresil pour qui apprend es ou de. Le monde de l'espagnol transpose a
+# Lisbonne : Mark (Rua da Rosa 12) et les personnes de « Decrire une personne » (Inês a l'orthographe portugaise).
+# Au Portugal l'article devant le prenom (o Mark, a Inês), le pronom apres le verbe (convido-te, diz-se), « tu » entre
+# amis ; au Bresil le prenom seul, le pronom avant (te convido, se diz), « você ». L'axe : ir a + l'article (vou ao
+# aniversário, à festa), poder, levar (on apporte A la fete), convidar, celebrar ; la troisieme partie du DTZ comme ailleurs.
+#
+# LES IMAGES (aucune image nouvelle, decision de Jacques) : ouvertes au portugais celles dont la coutume existe au Portugal
+# et au Bresil -- l'anniversaire, le Natal (le sapin et les cadeaux), la passagem de ano (feu d'artifice et cierges
+# magiques, une rue generique), le Dia de Reis (le roscon de l'image est tres proche du bolo-rei portugais), la Semana
+# Santa (les processions existent au Portugal, Braga, et au Bresil), le mariage. ECARTEES : karneval (une petite ville
+# allemande a colombages, en manteaux d'hiver), weihnachtsmarkt (bretzels, eglise de brique : un marche allemand),
+# ostern (la chasse aux oeufs peints, coutume allemande ; l'espagnol l'ecarte aussi), uvas (les raisins frais devant
+# l'horloge de la Puerta del Sol a la tele : la coutume de Madrid ; au Portugal ce sont 12 passas), muertos (le Mexique).
+# Le Carnaval et la Páscoa restent, sans image (la date, le souhait).
+IMG_EXCLUES_PT = ["karneval", "weihnachtsmarkt", "ostern", "uvas", "muertos"]
+PERSONNES_PT = {"Mark": "m", "Inês": "f", "Javier": "m", "Carmen": "f", "Tomás": "m", "Elena": "f", "Diego": "m", "Marta": "f"}
+
+
+def _br(pt, br):
+    """La donnee du Bresil : celle du Portugal, ou chaque cle de br remplace la sienne (cle par cle, entree par entree)."""
+    import copy
+    out = copy.deepcopy(pt)
+    for k, v in br.items():
+        if isinstance(out, dict) and isinstance(out.get(k), dict) and isinstance(v, dict):
+            out[k].update(copy.deepcopy(v))
+        else:
+            out[k] = copy.deepcopy(v)
+    return out
+
+
+# LES FETES (memes champs que FETES ; {P} : la personne, avec l'article au Portugal). Le Dia de Reis et le Natal sont
+# « aussi » l'un de l'autre : le bolo-rei se mange de Noel aux Rois et l'image des Rois montre des cadeaux.
+FETES_PT = {
+    "aniversario": {"mot": "aniversário", "genre": "o", "nom": "o aniversário", "wunsch": "Parabéns! Feliz aniversário!", "img": ["geburtstag", "kindergeburtstag"],
+                    "dans": "Num aniversário", "c": True, "situation": "{P} faz anos hoje.",
+                    "t": {"fr": ["un anniversaire", None, "Joyeux anniversaire !"], "en": ["a birthday", None, "Happy birthday!"]}},
+    "natal":       {"mot": "Natal", "genre": "o", "nom": "o Natal", "quand": "a 25 de dezembro", "jours": ["12-25"], "wunsch": "Feliz Natal!", "aussi": ["reis"],
+                    "img": ["weihnachten"], "dans": "No Natal", "c": False, "situation": "Hoje é dia de Natal.",
+                    "t": {"fr": ["Noël", "le 25 décembre", "Joyeux Noël !"], "en": ["Christmas", "on December 25", "Merry Christmas!"]}},
+    "passagem":    {"mot": "passagem de ano", "genre": "a", "nom": "a passagem de ano", "quand": "a 31 de dezembro", "jours": ["12-31"], "wunsch": "Feliz Ano Novo!",
+                    "aussi": ["anonovo"], "img": ["silvester"], "dans": "Na passagem de ano", "c": False, "situation": "Hoje é a passagem de ano.",
+                    "t": {"fr": ["la Saint-Sylvestre", "le 31 décembre", "Bonne année !"], "en": ["New Year's Eve", "on December 31", "Happy New Year!"]}},
+    "anonovo":     {"mot": "Ano Novo", "genre": "o", "nom": "o Ano Novo", "quand": "a 1 de janeiro", "jours": ["01-01"], "wunsch": "Feliz Ano Novo!",
+                    "aussi": ["passagem"], "img": [], "dans": "No Ano Novo", "c": False, "situation": "Hoje é dia de Ano Novo.",
+                    "t": {"fr": ["le jour de l'An", "le 1er janvier", "Bonne année !"], "en": ["New Year's Day", "on January 1", "Happy New Year!"]}},
+    "reis":        {"mot": "Dia de Reis", "genre": "o", "nom": "o Dia de Reis", "quand": "a 6 de janeiro", "jours": ["01-06"], "aussi": ["natal"], "img": ["reyes"],
+                    "dans": None, "c": False, "situation": None,
+                    "t": {"fr": ["l'Épiphanie (les Rois mages)", "le 6 janvier", None], "en": ["Three Kings' Day", "on January 6", None]}},
+    "pascoa":      {"mot": "Páscoa", "genre": "a", "nom": "a Páscoa", "quand": "em março ou abril", "jours": ["03", "04"], "wunsch": "Boa Páscoa!", "aussi": ["semanasanta"],
+                    "img": [], "dans": "Na Páscoa", "c": False, "situation": "Hoje é domingo de Páscoa.",
+                    "t": {"fr": ["Pâques", "en mars ou en avril", "Joyeuses Pâques !"], "en": ["Easter", "in March or April", "Happy Easter!"]}},
+    "semanasanta": {"mot": "Semana Santa", "genre": "a", "nom": "a Semana Santa", "quand": "em março ou abril", "jours": ["03", "04"], "aussi": ["pascoa"],
+                    "img": ["semanasanta"], "dans": None, "c": False, "situation": None,
+                    "t": {"fr": ["la Semaine sainte", "en mars ou en avril", None], "en": ["Holy Week", "in March or April", None]}},
+    # le mardi gras tombe entre le 3 fevrier et le 9 mars
+    "carnaval":    {"mot": "carnaval", "genre": "o", "nom": "o Carnaval", "quand": "em fevereiro ou março", "jours": ["02", "03"], "img": [],
+                    "dans": None, "c": False, "situation": None,
+                    "t": {"fr": ["le carnaval", "en février ou en mars", None], "en": ["carnival", "in February or March", None]}},
+    "casamento":   {"mot": "casamento", "genre": "o", "nom": "o casamento", "wunsch": "Muitos parabéns aos noivos!", "img": ["hochzeit"],
+                    "dans": "Num casamento", "c": True, "situation": "A tua colega casa-se hoje.",
+                    "t": {"fr": ["un mariage", None, "Félicitations aux mariés !"], "en": ["a wedding", None, "Congratulations to the happy couple!"]}},
+    # le premier dimanche de mai au Portugal, le deuxieme au Bresil
+    "mae":         {"mot": "Dia da Mãe", "genre": "o", "nom": "o Dia da Mãe", "quand": "no primeiro domingo de maio", "jours": ["05"], "wunsch": "Feliz Dia da Mãe!",
+                    "img": [], "dans": "No Dia da Mãe", "c": False, "situation": "Hoje é o Dia da Mãe.",
+                    "t": {"fr": ["la fête des Mères", "le premier dimanche de mai", "Bonne fête, maman !"], "en": ["Mother's Day", "on the first Sunday in May", "Happy Mother's Day!"]}},
+}
+FETES_BR = _br(FETES_PT, {
+    "aniversario": {"dans": "Em um aniversário", "situation": "{P} faz aniversário hoje."},
+    "natal": {"quand": "em 25 de dezembro"},
+    "passagem": {"mot": "réveillon", "genre": "o", "nom": "o Réveillon", "quand": "em 31 de dezembro", "dans": "No Réveillon", "situation": "Hoje é noite de Réveillon."},
+    "anonovo": {"quand": "em 1º de janeiro"},
+    "reis": {"quand": "em 6 de janeiro"},
+    "pascoa": {"wunsch": "Feliz Páscoa!"},
+    "casamento": {"wunsch": "Parabéns aos noivos!", "dans": "Em um casamento", "situation": "Sua colega de trabalho se casa hoje."},
+    "mae": {"mot": "Dia das Mães", "nom": "o Dia das Mães", "quand": "no segundo domingo de maio", "wunsch": "Feliz Dia das Mães!", "dans": "No Dia das Mães",
+            "situation": "Hoje é Dia das Mães.",
+            "t": {"fr": ["la fête des Mères", "le deuxième dimanche de mai", "Bonne fête, maman !"], "en": ["Mother's Day", "on the second Sunday in May", "Happy Mother's Day!"]}},
+})
+SITUATIONS_T_PT = {"aniversario": {"fr": "C'est l'anniversaire de {P} aujourd'hui.", "en": "It's {P}'s birthday today."},
+                   "casamento": {"fr": "Ta collègue se marie aujourd'hui.", "en": "Your colleague is getting married today."}}
+
+APPORTS_PT = {
+    "bolo":      {"mot": "bolo", "genre": "o", "def": "o bolo", "indef": "um bolo", "t": {"fr": ["le gâteau", "un gâteau"], "en": ["the cake", "a cake"]}},
+    "salada":    {"mot": "salada", "genre": "a", "def": "a salada", "indef": "uma salada", "t": {"fr": ["la salade", "une salade"], "en": ["the salad", "a salad"]}},
+    "pao":       {"mot": "pão", "genre": "o", "def": "o pão", "indef": "pão", "t": {"fr": ["le pain", "du pain"], "en": ["the bread", "some bread"]}},
+    "bebida":    {"mot": "bebida", "genre": "a", "def": "as bebidas", "indef": "bebidas", "t": {"fr": ["les boissons", "des boissons"], "en": ["the drinks", "some drinks"]}},
+    "sobremesa": {"mot": "sobremesa", "genre": "a", "def": "a sobremesa", "indef": "uma sobremesa", "t": {"fr": ["le dessert", "un dessert"], "en": ["the dessert", "a dessert"]}},
+    "fruta":     {"mot": "fruta", "genre": "a", "def": "a fruta", "indef": "fruta", "t": {"fr": ["les fruits", "des fruits"], "en": ["the fruit", "some fruit"]}},
+    "balao":     {"mot": "balão", "genre": "o", "def": "os balões", "indef": "balões", "t": {"fr": ["les ballons", "des ballons"], "en": ["the balloons", "some balloons"]}},
+    "sumo":      {"mot": "sumo", "genre": "o", "def": "o sumo", "indef": "sumo", "t": {"fr": ["le jus", "du jus"], "en": ["the juice", "some juice"]}},
+}
+APPORTS_BR = _br(APPORTS_PT, {"sumo": {"mot": "suco", "def": "o suco", "indef": "suco"}})
+
+# LES INVITATIONS (memes champs ; nomMot : le mot du corpus que dit « nom », vise par les questions sur la carte)
+INVITATIONS_PT = [
+    {"id": "mark", "hote": "Mark", "s": "m", "pour": ["Inês", "Javier", "Carmen", "Tomás", "Elena", "Diego"], "fete": "aniversario",
+     "titre": "Faço 26 anos!", "texte": "Convido-te para a minha festa de anos.",
+     "date": "2027-03-13", "heure": 20, "lieu": "na minha casa, Rua da Rosa 12", "apports": ["salada", "pao", "sobremesa", "bebida"], "repondre": "2027-03-10",
+     "nom": "a festa", "nomMot": ["festa", "a"], "feiert": "O Mark celebra o aniversário.",
+     "t": {"fr": ["la fête", "Mark fête son anniversaire."], "en": ["the party", "Mark is celebrating his birthday."]}},
+    {"id": "ines", "hote": "Inês", "s": "f", "pour": ["Mark", "Javier", "Carmen", "Tomás", "Elena"], "fete": "passagem",
+     "titre": "Passagem de ano cá em casa!", "texte": "Convido-te para o jantar da passagem de ano.",
+     "date": "2026-12-31", "heure": 21, "lieu": "na minha casa, Rua do Norte 8", "apports": ["sobremesa", "pao", "bebida"], "repondre": "2026-12-27",
+     "nom": "o jantar", "nomMot": ["jantar", "o"], "feiert": "A Inês celebra a passagem de ano.",
+     "t": {"fr": ["le dîner", "Inês fête la Saint-Sylvestre."], "en": ["the dinner", "Inês is celebrating New Year's Eve."]}},
+    {"id": "casamento", "hote": "Javier e Marta", "s": "pl", "pour": ["Mark", "Inês", "Carmen", "Tomás", "Elena", "Diego"], "fete": "casamento",
+     "titre": "Vamos casar!", "texte": "Convidamos-te para o nosso casamento.",
+     "date": "2027-06-05", "heure": 12, "lieu": "na Quinta do Sobreiro", "apports": [], "repondre": "2027-04-30",
+     "nom": "o casamento", "nomMot": ["casamento", "o"], "feiert": "O Javier e a Marta celebram o casamento.",
+     "t": {"fr": ["le mariage", "Javier et Marta fêtent leur mariage."], "en": ["the wedding", "Javier and Marta are celebrating their wedding."]}},
+    {"id": "carmen", "hote": "Carmen", "s": "f", "pour": ["Mark", "Inês", "Javier", "Tomás", "Elena", "Diego"], "fete": "reis",
+     "titre": "Dia de Reis!", "texte": "Convido-te para um lanche com bolo-rei no Dia de Reis.",
+     "date": "2027-01-06", "heure": 17, "lieu": "na minha casa, Rua de São Bento 30", "apports": ["fruta", "sumo", "balao"], "repondre": "2027-01-03",
+     "nom": "o lanche", "nomMot": ["lanche", "o"], "feiert": "A Carmen celebra o Dia de Reis.",
+     "t": {"fr": ["le goûter", "Carmen fête l'Épiphanie."], "en": ["the afternoon snack", "Carmen is celebrating Three Kings' Day."]}},
+    {"id": "tomas", "hote": "Tomás", "s": "m", "pour": ["Mark", "Inês", "Javier", "Carmen", "Elena", "Diego"], "fete": None,
+     "titre": "Festa no terraço!", "texte": "Convido-te para uma festa no meu terraço.",
+     "date": "2027-06-19", "heure": 20, "lieu": "na minha casa, Rua da Graça 5", "apports": ["salada", "pao", "fruta", "bebida"], "repondre": "2027-06-16",
+     "nom": "a festa", "nomMot": ["festa", "a"], "feiert": None,
+     "t": {"fr": ["la fête", None], "en": ["the party", None]}},
+]
+_INV_BR = {"mark": {"texte": "Quero te convidar para a minha festa de aniversário.", "feiert": "Mark celebra o aniversário."},
+           "ines": {"titre": "Réveillon aqui em casa!", "texte": "Quero te convidar para o jantar de Réveillon.", "feiert": "Inês celebra o Réveillon."},
+           "casamento": {"titre": "Vamos nos casar!", "texte": "Convidamos você para o nosso casamento.", "feiert": "Javier e Marta celebram o casamento."},
+           "carmen": {"texte": "Quero te convidar para um lanche com bolo-rei no Dia de Reis.", "feiert": "Carmen celebra o Dia de Reis."},
+           "tomas": {"texte": "Quero te convidar para uma festa no meu terraço."}}
+INVITATIONS_BR = [_br(i, _INV_BR[i["id"]]) for i in INVITATIONS_PT]
+
+MOTIFS_PT = {
+    "trabalho": {"court": "trabalho", "satz": "tenho de trabalhar", "t": {"fr": "je dois travailler", "en": "I have to work"}},
+    "pais":     {"court": "visitar os pais", "satz": "vou visitar os meus pais", "t": {"fr": "je rends visite à mes parents", "en": "I'm visiting my parents"}},
+    "medico":   {"court": "consulta no médico", "satz": "tenho consulta no médico", "semaine": True, "t": {"fr": "j'ai rendez-vous chez le médecin", "en": "I have a doctor's appointment"}},
+    "aula":     {"court": "aula de alemão", "satz": "tenho aula de alemão", "t": {"fr": "j'ai cours d'allemand", "en": "I have German class"}},
+    "cinema":   {"court": "cinema com amigos", "satz": "vou ao cinema com uns amigos", "t": {"fr": "je vais au cinéma avec des amis", "en": "I'm going to the cinema with friends"}},
+}
+MOTIFS_BR = _br(MOTIFS_PT, {"trabalho": {"satz": "tenho que trabalhar"}, "pais": {"satz": "vou visitar meus pais"},
+                            "medico": {"court": "consulta médica", "satz": "tenho consulta médica"}})
+
+# LES MOMENTS DE MARK (les memes images ; w : le mot vise -- « os parabéns » pour la carte, plus naturel que felicitar)
+MOMENTS_PT = [
+    {"id": "einladen", "img": "einladen", "w": ["convidar", None, "verbe"], "phrase": "O Mark convida os amigos.",
+     "t": {"fr": "Mark invite ses amis.", "en": "Mark is inviting his friends."}},
+    {"id": "karte", "img": "karte", "w": ["parabéns", "os", None], "phrase": "O Mark escreve um cartão de parabéns à amiga.",
+     "t": {"fr": "Mark écrit une carte d'anniversaire à son amie.", "en": "Mark is writing a birthday card to his friend."}},
+    {"id": "mitbringen", "img": "mitbringen", "w": ["levar", None, "verbe"], "phrase": "O Mark leva uma salada.",
+     "t": {"fr": "Mark apporte une salade.", "en": "Mark is bringing a salad."}},
+    {"id": "absagen", "img": "absagen", "w": ["poder", None, "verbe"], "phrase": "O Mark diz ao telefone que não pode ir.",
+     "t": {"fr": "Mark dit au téléphone qu'il ne peut pas venir.", "en": "Mark is saying on the phone that he can't come."}},
+    {"id": "planen", "img": "planen", "w": ["planear", None, "verbe"], "phrase": "O Mark planeia uma festa com uma amiga.",
+     "t": {"fr": "Mark prépare une fête avec une amie.", "en": "Mark is planning a party with a friend."}},
+    {"id": "feiern", "img": "geburtstag", "w": ["celebrar", None, "verbe"], "phrase": "O Mark celebra o aniversário.",
+     "t": {"fr": "Mark fête son anniversaire.", "en": "Mark is celebrating his birthday."}},
+]
+_MOM_BR = {"einladen": {"phrase": "Mark convida os amigos."}, "karte": {"phrase": "Mark escreve um cartão de parabéns para a amiga."},
+           "mitbringen": {"phrase": "Mark leva uma salada."}, "absagen": {"phrase": "Mark diz no telefone que não pode ir."},
+           "planen": {"w": ["planejar", None, "verbe"], "phrase": "Mark planeja uma festa com uma amiga."}, "feiern": {"phrase": "Mark celebra o aniversário."}}
+MOMENTS_BR = [_br(m, _MOM_BR[m["id"]]) for m in MOMENTS_PT]
+
+# LA CONJUGAISON : le sujet toujours dit (sinon une autre personne serait juste aussi : « não pode ir » = il ne peut pas) ;
+# au Bresil « você » prend la 3e personne (er_sie_es)
+CONJ_PT = [
+    {"v": "poder", "p": "du", "phrase": "Tu ___ vir à minha festa?", "t": {"fr": "Tu peux venir à ma fête ?", "en": "Can you come to my party?"}},
+    {"v": "poder", "p": "ich", "phrase": "Desculpa, eu não ___ ir.", "t": {"fr": "Désolé, je ne peux pas venir.", "en": "Sorry, I can't go."}},
+    {"v": "levar", "p": "ich", "phrase": "Eu ___ {A}.", "t": {"fr": "J'apporte {A}.", "en": "I'll bring {A}."}},
+    {"v": "levar", "p": "er_sie_es", "phrase": "{P} ___ {A}.", "t": {"fr": "{P} apporte {A}.", "en": "{P} is bringing {A}."}},
+    {"v": "levar", "p": "du", "phrase": "E tu, o que ___?", "t": {"fr": "Et toi, qu'est-ce que tu apportes ?", "en": "And you, what are you bringing?"}},
+    {"v": "convidar", "p": "ich", "phrase": "Eu ___ a Marta para o meu aniversário.", "t": {"fr": "J'invite Marta à mon anniversaire.", "en": "I'm inviting Marta to my birthday."}},
+    {"v": "convidar", "p": "sie_Sie", "phrase": "O Javier e a Marta ___-te para o casamento.", "t": {"fr": "Javier et Marta t'invitent à leur mariage.", "en": "Javier and Marta are inviting you to their wedding."}},
+    {"v": "celebrar", "p": "wir", "phrase": "No sábado nós ___ o aniversário do Mark.", "t": {"fr": "Samedi, nous fêtons l'anniversaire de Mark.", "en": "On Saturday we're celebrating Mark's birthday."}},
+    {"v": "vir", "p": "du", "phrase": "Tu ___ ao jantar da passagem de ano?", "t": {"fr": "Tu viens au dîner de la Saint-Sylvestre ?", "en": "Are you coming to the New Year's Eve dinner?"}},
+    {"v": "ir", "p": "ich", "phrase": "Obrigado! Claro que eu ___ à tua festa.", "t": {"fr": "Merci ! Bien sûr que je viens à ta fête.", "en": "Thanks! Of course I'll come to your party."}},
+    {"v": "ir", "p": "wir", "phrase": "No sábado nós ___ ao casamento do Javier e da Marta.", "t": {"fr": "Samedi, nous allons au mariage de Javier et Marta.", "en": "On Saturday we're going to Javier and Marta's wedding."}},
+]
+_CONJ_BR = [{"p": "er_sie_es", "phrase": "Você ___ vir à minha festa?"}, {"phrase": "Desculpe, eu não ___ ir."}, {}, {},
+            {"p": "er_sie_es", "phrase": "E você, o que ___?", "t": {"fr": "Et toi, qu'est-ce que tu apportes ?", "en": "And you, what are you bringing?"}},
+            {"phrase": "Eu ___ Marta para o meu aniversário."}, {"phrase": "Javier e Marta te ___ para o casamento."},
+            {"phrase": "No sábado nós ___ o aniversário de Mark."}, {"p": "er_sie_es", "phrase": "Você ___ ao jantar de Réveillon?"},
+            {"phrase": "Obrigado! Claro que eu ___ à sua festa."}, {"phrase": "No sábado nós ___ ao casamento de Javier e Marta."}]
+CONJ_BR = [_br(c, b) for c, b in zip(CONJ_PT, _CONJ_BR)]
+
+# « Vou ao aniversário do Mark » / « à festa da Carmen » (a + o = ao, a + a = à) ; {deH} : do Mark, da Inês (Bresil :
+# de Mark). Les leurres sont les quatre contractions : une seule s'accorde (jamais « para o », juste aussi, ni « no »).
+AL_PT = [
+    {"mot": "aniversário", "genre": "o", "apres": "aniversário {deH}", "hotes": ["Mark", "Tomás", "Inês", "Elena"], "t": {"fr": "à l'anniversaire de {H}", "en": "to {H}'s birthday"}},
+    {"mot": "casamento", "genre": "o", "apres": "casamento {deH}", "hotes": ["Javier e Marta"], "t": {"fr": "au mariage de {H}", "en": "to {H}'s wedding"}},
+    {"mot": "jantar", "genre": "o", "apres": "jantar da passagem de ano", "hotes": [None], "t": {"fr": "au dîner de la Saint-Sylvestre", "en": "to the New Year's Eve dinner"}},
+    {"mot": "festa", "genre": "a", "apres": "festa {deH}", "hotes": ["Carmen", "Tomás", "Diego", "Inês"], "t": {"fr": "à la fête de {H}", "en": "to {H}'s party"}},
+]
+AL_BR = _br(AL_PT, {})
+AL_BR[2]["apres"] = "jantar de Réveillon"
+
+# LES MOTS ABSENTS DU CORPUS PORTUGAIS (a ajouter : portugais/outils) : leur traduction, en attendant (« hors jeu »)
+PT_AJOUTS = {"Natal": "Noël", "passagem de ano": "la Saint-Sylvestre (le passage à la nouvelle année)", "Ano Novo": "le jour de l'An",
+             "Dia de Reis": "l'Épiphanie (la fête des Rois)", "Páscoa": "Pâques", "Semana Santa": "la Semaine sainte", "Dia da Mãe": "la fête des Mères"}
+# le corpus portugais n'a que le francais : l'anglais des mots du theme, ici
+PT_EN = {"aniversário": "birthday", "Natal": "Christmas", "passagem de ano": "New Year's Eve", "réveillon": "New Year's Eve (party)", "Ano Novo": "New Year's Day",
+         "Dia de Reis": "Three Kings' Day", "Páscoa": "Easter", "Semana Santa": "Holy Week", "carnaval": "carnival", "casamento": "wedding",
+         "Dia da Mãe": "Mother's Day", "Dia das Mães": "Mother's Day", "bolo": "cake", "salada": "salad", "pão": "bread", "bebida": "drink",
+         "sobremesa": "dessert", "fruta": "fruit", "balão": "balloon", "sumo": "juice", "suco": "juice", "convidar": "to invite",
+         "parabéns": "congratulations, happy birthday", "levar": "to take, to bring (along)", "poder": "can, to be able to", "planear": "to plan",
+         "planejar": "to plan", "celebrar": "to celebrate", "ir": "to go", "vir": "to come", "combinar": "to arrange, to agree on",
+         "convite": "invitation", "festa": "party", "jantar": "dinner", "lanche": "afternoon snack",
+         "segunda-feira": "Monday", "terça-feira": "Tuesday", "quarta-feira": "Wednesday", "quinta-feira": "Thursday", "sexta-feira": "Friday",
+         "sábado": "Saturday", "domingo": "Sunday"}
+
+
+def corpus_pt(br):
+    """(noms {(mot, genre): entree}, verbes {infinitif: entree}) du corpus portugais (Portugal ou Bresil)."""
+    dos = os.path.join(RACINE, "portugais", "datos-br" if br else "datos")
+    noms = {}
+    for t in json.load(io.open(os.path.join(dos, "themes.json"), encoding="utf-8"))["themes"]:
+        for m in t["mots"]:
+            noms.setdefault((m["mot"], m.get("genre")), m)
+    verbes = {e.get("infinitif"): e for l in json.load(io.open(os.path.join(dos, "verbes.json"), encoding="utf-8")).values() if isinstance(l, list) for e in l}
+    return noms, verbes
+
+
+def mots_du_theme_pt(br):
+    """Comme mots_du_theme : la forme du corpus (Portugal ou Bresil), le francais du corpus et l'anglais de PT_EN ; un mot
+    absent garde PT_AJOUTS et va dans la liste des absents."""
+    noms, verbes = corpus_pt(br)
+    mots, absents = [], []
+
+    def ajouter(mot, genre=None, cat=None):
+        if any(m["mot"] == mot and m.get("genre") == genre and m.get("cat") == cat for m in mots):
+            return
+        e = verbes.get(mot) if cat == "verbe" else noms.get((mot, genre))
+        if e:
+            fr = e.get("traduction")
+        elif mot in PT_AJOUTS:
+            fr = PT_AJOUTS[mot]; absents.append(mot)
+        else:
+            sys.exit("  %s (%s) absent du corpus portugais%s et des ajouts" % (mot, genre or cat, " (Bresil)" if br else ""))
+        if mot not in PT_EN:
+            sys.exit("  %s : pas d'anglais dans PT_EN" % mot)
+        w = {"mot": mot, "g": {"fr": fr, "en": PT_EN[mot]}}
+        if genre:
+            w["genre"] = genre
+        if cat:
+            w["cat"] = cat
+        mots.append(w)
+    for f in (FETES_BR if br else FETES_PT).values():
+        ajouter(f["mot"], f["genre"])
+    for a in (APPORTS_BR if br else APPORTS_PT).values():
+        ajouter(a["mot"], a["genre"])
+    for m in (MOMENTS_BR if br else MOMENTS_PT):
+        ajouter(*m["w"])
+    for n, j in enumerate(JOURS["pt"]):
+        ajouter(j, "o" if n >= 5 else "a")
+    ajouter("convite", "o")
+    for i in INVITATIONS_PT:
+        ajouter(*i["nomMot"])
+    for v in ("ir", "vir", "combinar", "poder", "convidar", "levar", "celebrar"):
+        ajouter(v, cat="verbe")
+    return mots, sorted(set(absents))
+
+
+def conjugaisons_pt(br):
+    _, verbes = corpus_pt(br)
+    vs = set(c["v"] for c in CONJ_PT) | set(m["w"][0] for m in (MOMENTS_BR if br else MOMENTS_PT) if m["w"][2] == "verbe") | {"combinar"}
+    out = {}
+    for v in sorted(vs):
+        if v not in verbes:
+            sys.exit("  verbe portugais absent : %s" % v)
+        out[v] = verbes[v]["praesens"]
+    return out
+
+
+def verifier_pt():
+    for br in (False, True):
+        F, A, I, M = (FETES_BR, APPORTS_BR, INVITATIONS_BR, MOTIFS_BR) if br else (FETES_PT, APPORTS_PT, INVITATIONS_PT, MOTIFS_PT)
+        for f, x in F.items():
+            for a in x.get("aussi", []):
+                if a not in F:
+                    sys.exit("  pt %s : aussi inconnu %s" % (f, a))
+            for i in x["img"]:
+                if i in IMG_EXCLUES_PT or (i not in IMAGES and i not in REPRISES):
+                    sys.exit("  pt %s : image exclue ou inconnue %s" % (f, i))
+            for l in ("fr", "en"):
+                if x.get("quand") and not x["t"][l][1]:
+                    sys.exit("  pt %s : date %s absente" % (f, l))
+                if x.get("wunsch") and not x["t"][l][2]:
+                    sys.exit("  pt %s : souhait %s absent" % (f, l))
+            if x.get("wunsch") and not (x.get("dans") and x.get("situation")):
+                sys.exit("  pt %s : souhait sans « dans » ni situation" % f)
+        # un souhait n'est jamais celui d'une autre fete, sauf « aussi » (Ano Novo / passagem)
+        for f, x in F.items():
+            for g, y in F.items():
+                if f < g and x.get("wunsch") and x.get("wunsch") == y.get("wunsch") and g not in x.get("aussi", []):
+                    sys.exit("  pt %s / %s : le meme souhait" % (f, g))
+        for inv in I:
+            if inv["fete"] and inv["fete"] not in F:
+                sys.exit("  pt invitation %s : fete inconnue" % inv["id"])
+            for a in inv["apports"]:
+                if a not in A:
+                    sys.exit("  pt invitation %s : apport inconnu %s" % (inv["id"], a))
+            for p in inv["pour"] + inv["hote"].split(" e "):
+                if p not in PERSONNES_PT:
+                    sys.exit("  pt invitation %s : personne inconnue %s" % (inv["id"], p))
+        for k, m in M.items():
+            if any(l not in m["t"] for l in ("fr", "en")):
+                sys.exit("  pt motif %s : traduction" % k)
+        for m in (MOMENTS_BR if br else MOMENTS_PT):
+            if m["img"] in IMG_EXCLUES_PT or m["img"] not in IMAGES and m["img"] not in REPRISES:
+                sys.exit("  pt moment %s : image" % m["id"])
+        # le sujet de la phrase a trou est toujours dit : « ___ » n'ouvre jamais la phrase
+        for c in (CONJ_BR if br else CONJ_PT):
+            if c["phrase"].startswith("___"):
+                sys.exit("  pt conj %s : sujet absent" % c["phrase"])
+
+
+def portugais(d):
+    """Pose pt_ / br_ dans la donnee construite (ecrire_json), a cote de de et es."""
+    def poser(o, pt, br=None):
+        o["pt_"] = pt
+        if br is not None and br != pt:
+            o["br_"] = br
+    poser(d["fetes"], FETES_PT, FETES_BR)
+    poser(d["personnes"], PERSONNES_PT)
+    poser(d["situationsT"], SITUATIONS_T_PT)
+    poser(d["apports"], APPORTS_PT, APPORTS_BR)
+    poser(d["invitations"], INVITATIONS_PT, INVITATIONS_BR)
+    poser(d["motifs"], MOTIFS_PT, MOTIFS_BR)
+    d["momentsPt"] = {}; poser(d["momentsPt"], MOMENTS_PT, MOMENTS_BR)
+    d["conjPt"] = {}; poser(d["conjPt"], CONJ_PT, CONJ_BR)
+    d["alPt"] = {}; poser(d["alPt"], AL_PT, AL_BR)
+    d["imgExcluesPt"] = IMG_EXCLUES_PT
+    for cle, br in (("pt_", False), ("br_", True)):
+        d["mots"][cle], d["absents"][cle] = mots_du_theme_pt(br)
+        d["conj"][cle] = conjugaisons_pt(br)
+
+
+# ---------------------------------------------------------------------------------------------------------------
 # LES IMAGES (4:3, aucun texte lisible). source : des references (personnes, lieux), jamais une description seule de
 # nos personnes. reprise : une image deja faite, recadree en 4:3 par web.py (gratuit).
 REPRISES = {"geburtstag": {"src": RACINE + "/visuel/prototype/geburtstag.webp", "haut": 0.36},
@@ -538,11 +874,13 @@ def ecrire_json():
         d["conj"][langue] = conjugaisons(langue)
     noms = list(IMAGES) + list(REPRISES)
     d["images"] = {i: os.path.exists(os.path.join(RACINE, "visuel", "prototype", "fetes", i + ".webp")) for i in noms}
+    verifier_pt()
+    portugais(d)
     texte = json.dumps(d, ensure_ascii=False, indent=1) + "\n"
     chemin = os.path.join(RACINE, "visuel", "prototype", "fetes", "fetes.json")
     os.makedirs(os.path.dirname(chemin), exist_ok=True)
     io.open(chemin, "w", encoding="utf-8", newline="\n").write(texte)
-    for langue in ("de", "es"):
+    for langue in ("de", "es", "pt_", "br_"):
         print("  %s : %d mots, dont %d absents du corpus (%s)" % (langue, len(d["mots"][langue]), len(d["absents"][langue]), ", ".join(d["absents"][langue])))
     print("  images : %d / %d faites" % (sum(d["images"].values()), len(noms)))
     return d
