@@ -41,7 +41,17 @@ button{font-family:inherit;color:inherit}
 .titre{flex:1;font-weight:900;font-size:18px;line-height:1.2}
 .titre small{display:block;font-size:12px;font-weight:800;color:var(--gris);letter-spacing:.06em;text-transform:uppercase}
 .maquette{font:800 11px var(--police);letter-spacing:.06em;text-transform:uppercase;color:var(--ambre-f);border:1px solid var(--ambre);border-radius:999px;padding:4px 9px;flex:0 0 auto}
-main{max-width:560px;margin:0 auto}
+main{max-width:560px;margin:0 auto;position:relative;z-index:1}
+/* LE PAYSAGE DE LA PARTIE « CONVERSATION » (choix de Jacques du 11 nov. : B, un paysage dessine au style des autres
+   parties de la seance ; dessins de la session de la seance, conversation/paysages.js). Pose en bas d'ecran, fixe,
+   derriere la conversation ; le sol se prolonge sous le dessin jusqu'au bord du telephone. */
+#paysage{position:fixed;left:0;right:0;bottom:0;z-index:0;pointer-events:none;padding-bottom:env(safe-area-inset-bottom,0px)}
+#paysage svg{display:block;width:100%;height:min(31vw,170px)}
+body.avec-paysage{padding-bottom:calc(env(safe-area-inset-bottom,0px) + min(31vw,170px) + 12px)}
+body.avec-paysage .recit,body.avec-paysage .consigne,body.avec-paysage .titre small,body.avec-paysage .perso{color:var(--encre)}
+.paysages{display:flex;gap:6px;justify-content:center;max-width:560px;margin:0 auto 8px}
+.paysages button{border:1px solid var(--bord);background:var(--verre);border-radius:999px;padding:5px 11px;font:800 12px var(--police);cursor:pointer}
+.paysages button[aria-pressed="true"]{border-color:var(--encre);box-shadow:inset 0 0 0 1px var(--encre)}
 .plateau{position:sticky;top:0;z-index:2;display:flex;justify-content:center;align-items:flex-end;gap:16px;padding:6px 0 12px;
   background:color-mix(in srgb,var(--fond1) 80%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);margin:0 -14px 6px;border-radius:0 0 22px 22px}
 .plateau:empty{display:none}
@@ -136,10 +146,13 @@ details ul{padding-left:20px;margin:8px 0}
   <div class="titre"><small id="surtitre">Conversations</small><span id="titre">Jouer une conversation</span></div>
   <span class="maquette" id="marque">Maquette</span>
 </div>
+<div class="paysages" id="paysages" hidden></div>
+<div id="paysage" aria-hidden="true"></div>
 <main>
   <div class="plateau" id="plateau"></div>
   <div id="ecran"></div>
 </main>
+<script src="conversation/paysages.js?v=1"></script>
 <script>
 "use strict";
 const Q = new URLSearchParams(location.search);
@@ -583,6 +596,39 @@ document.getElementById("retour").onclick = () => {
   if (DANS_APP) parler("fermer"); else if (Q.get("c")) location.href = "?apprendre=" + LANGUE + (GB ? "&variante=gb" : ""); else history.back();
 };
 if (DANS_APP) document.getElementById("marque").hidden = true;
+
+// ---------------------------------------------------------------- le paysage
+// La teinte de l'ecran suit le dessin (fondEcran) ; les verres du plateau et des reponses prennent ses deux couleurs.
+// Maquette : trois dessins a comparer (A la terrasse, B le banc, C les bulles), ?paysage=A|B|C ; dans l'app, la
+// variante que Jacques choisira, et les couleurs de la partie passees par &fond=haut,bas comme aux scenes.
+const NOMS_PAYSAGES = { A: "La terrasse", B: "Le banc", C: "Les bulles" };
+let paysage = ["A", "B", "C"].includes(Q.get("paysage")) ? Q.get("paysage") : "A";
+function melange(hex, cible, k){
+  const h = c => [1, 3, 5].map(i => parseInt(c.substr(i, 2), 16)), a = h(hex), b = h(cible);
+  return "#" + a.map((v, i) => Math.round(v + (b[i] - v) * k).toString(16).padStart(2, "0")).join("");
+}
+function poserPaysage(){
+  if (typeof dessinerPaysageConversation !== "function") return;
+  const nuit = document.documentElement.classList.contains("nuit");
+  const d = dessinerPaysageConversation(paysage, nuit), b = TEINTE_CONVERSATION, fond = nuit ? "#0B1626" : "#FFFFFF";
+  document.getElementById("paysage").innerHTML = d.svg;
+  document.getElementById("paysage").style.background = "linear-gradient(transparent 60%," + d.sol + " 60%)";
+  const r = document.documentElement.style;
+  r.setProperty("--fond1", nuit ? melange(b, fond, .58) : melange(b, fond, .42));
+  r.setProperty("--fond3", nuit ? melange(b, fond, .82) : melange(b, fond, .72));
+  document.body.classList.add("avec-paysage");
+  document.querySelectorAll("#paysages button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.v === paysage)));
+}
+if (!DANS_APP){
+  const bar = document.getElementById("paysages"); bar.hidden = false;
+  bar.appendChild(el("span", "consigne", "Paysage :"));
+  Object.entries(NOMS_PAYSAGES).forEach(([k, n]) => {
+    const x = el("button", null, k + " · " + n); x.type = "button"; x.dataset.v = k;
+    x.onclick = () => { paysage = k; poserPaysage(); };
+    bar.appendChild(x);
+  });
+}
+poserPaysage();
 (async () => {
   try{
     // les personnes : celles de tous les lots, fusionnees (personnes.json, puis personnes-<lot>.json s'il existe)
