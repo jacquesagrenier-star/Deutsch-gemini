@@ -1,0 +1,95 @@
+{
+ "id": "cafe-voisin",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "manger",
+ "registre": "poli",
+ "titre": {"fr": "Au café, avec un voisin de table"},
+ "intro": {"fr": "Tu prends un café dans ton nouveau quartier de Boston. Tu commandes, un voisin de table te parle, puis tu paies."},
+ "personnes": ["kellnerin", "nachbar"],
+ "debut": "order",
+ "prix": {"coffee": 250, "tea": 225, "water": 200, "muffin": 275},
+ "panier": ["boisson", "gateau"],
+ "textes": {
+  "boisson_fr": {"cle": "boisson", "coffee": "ton café", "tea": "ton thé", "water": "ton eau"},
+  "gateau_fr": {"cle": "gateau", "muffin": " et ton muffin"}
+ },
+ "noeuds": {
+  "order": {
+   "dit": [
+    {"recit": {"fr": "Tu entres dans un petit café du quartier. Tu t'assieds près de la fenêtre."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Hi there! What can I get you?", "fr": "Bonjour ! Qu'est-ce que je vous sers ?"}
+   ],
+   "choix": [
+    {"t": "A coffee, please.", "fr": "Un café, s'il vous plaît.", "pose": {"boisson": "coffee"}, "va": "seat",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sure thing!", "fr": "Bien sûr !"}]},
+    {"t": "Can I have a tea, please?", "fr": "Je peux avoir un thé, s'il vous plaît ?", "pose": {"boisson": "tea"}, "va": "seat",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Of course!", "fr": "Bien sûr !"}]},
+    {"t": "A water and a muffin, please.", "fr": "Une eau et un muffin, s'il vous plaît.", "pose": {"boisson": "water", "gateau": "muffin"}, "va": "seat",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Coming right up!", "fr": "Ça arrive tout de suite !"}]},
+    {"faux": true, "t": "Give me a coffee.", "fr": "Donnez-moi un café.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Um … excuse me?", "fr": "Euh… pardon ?"}],
+     "aide": {"fr": "<b>En anglais, on demande avec « please ».</b> « Give me » sonne comme un ordre. Dis plutôt : « Can I have a coffee, please? » ou « A coffee, please »."}}
+   ]
+  },
+  "seat": {
+   "dit": [
+    {"recit": {"fr": "La serveuse apporte {boisson_fr}{gateau_fr}. Le café se remplit. Un homme s'approche de ta table."}},
+    {"qui": "nachbar", "air": "question", "t": "Excuse me, is this seat taken?", "fr": "Excusez-moi, cette place est prise ?"}
+   ],
+   "choix": [
+    {"t": "No, go ahead!", "fr": "Non, je vous en prie !", "va": "market",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Thanks!", "fr": "Merci !"}]},
+    {"t": "No, please sit down.", "fr": "Non, asseyez-vous, je vous en prie.", "va": "market",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Thank you, that's very kind!", "fr": "Merci, c'est très gentil !"}]},
+    {"faux": true, "t": "Yes, please sit down.", "fr": "Oui (elle est prise), asseyez-vous.",
+     "puis": [{"qui": "nachbar", "air": "perplexe", "t": "Oh … so it's taken? Should I sit or not?", "fr": "Oh… elle est prise, alors ? Je m'assieds ou pas ?"}],
+     "aide": {"fr": "<b>« Is this seat taken? »</b> demande si la place est PRISE. Si elle est libre, on répond « No » : « No, go ahead! »."}}
+   ]
+  },
+  "market": {
+   "dit": [{"qui": "nachbar", "air": "question", "t": "Are you new here? Do you know the farmers market on Saturday?", "fr": "Vous êtes nouveau (nouvelle) ici ? Vous connaissez le marché des producteurs du samedi ?"}],
+   "choix": [
+    {"t": "No. When is it?", "fr": "Non. C'est quand ?", "pose": {"marche": "oui"}, "va": "pay",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Saturday morning, from eight to one, just around the corner. The fruit is great!", "fr": "Le samedi matin, de huit heures à une heure, juste au coin de la rue. Les fruits sont super !"}]},
+    {"t": "Yes, I love the market.", "fr": "Oui, j'adore ce marché.", "pose": {"marche": "oui"}, "va": "pay",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Me too! Maybe I'll see you there.", "fr": "Moi aussi ! On s'y verra peut-être."}]},
+    {"repete": true, "t": "Sorry? Can you say that again?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "market",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Sure. Do you know the farmers market on Saturday?", "fr": "Bien sûr. Vous connaissez le marché des producteurs du samedi ?"}]}
+   ]
+  },
+  "pay": {
+   "dit": [
+    {"recit": {"fr": "Un peu plus tard. Tu fais signe à la serveuse."}},
+    {"qui": "kellnerin", "air": "question", "t": "Are you ready for the check?", "t_gb": "Would you like the bill?", "fr": "Vous voulez l'addition ?"}
+   ],
+   "choix": [
+    {"t": "Yes, the check, please.", "t_gb": "Yes, the bill, please.", "fr": "Oui, l'addition, s'il vous plaît.", "va": "amount"},
+    {"t": "Yes, please. How much is it?", "fr": "Oui, s'il vous plaît. C'est combien ?", "va": "amount"},
+    {"faux": true, "t": "Yes, the menu, please.", "fr": "Oui, la carte, s'il vous plaît.",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "The menu? Would you like to order something else?", "fr": "La carte ? Vous voulez commander autre chose ?"}],
+     "aide": {"fr": "<b>« the menu »</b>, c'est la carte. Pour payer : « The check, please » (« The bill, please » en anglais britannique) ou « How much is it? »."}}
+   ]
+  },
+  "amount": {
+   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "That's {a_payer}. Cash or card?", "fr": "Ça fait {a_payer}. En espèces ou par carte ?", "dit": "That's {a_payer:mots}. Cash or card?"}],
+   "choix": [
+    {"t": "{arrondi:mots_maj} dollars. Keep the change!", "fr": "{arrondi} dollars. Gardez la monnaie !", "va": "bye",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Oh, thank you so much! Have a great day!", "fr": "Oh, merci beaucoup ! Excellente journée !"}]},
+    {"t": "By card, please.", "fr": "Par carte, s'il vous plaît.", "va": "bye",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sure. Thanks, and have a nice day!", "fr": "Bien sûr. Merci, et bonne journée !"}]}
+   ]
+  },
+  "bye": {
+   "dit": [{"qui": "nachbar", "air": "sourire", "t": "Goodbye! Maybe see you Saturday at the market!", "fr": "Au revoir ! Peut-être à samedi au marché !"}],
+   "choix": [
+    {"t": "See you Saturday! Goodbye!", "fr": "À samedi ! Au revoir !", "va": null},
+    {"faux": true, "t": "See you yesterday!", "fr": "À hier !",
+     "puis": [{"qui": "nachbar", "air": "amuse", "t": "Yesterday? You mean Saturday!", "fr": "Hier ? Vous voulez dire samedi !"}],
+     "aide": {"fr": "<b>« yesterday »</b>, c'est hier. Pour un rendez-vous à venir : « See you Saturday! » ou « See you soon! »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as commandé, parlé avec ton voisin de table (rendez-vous au marché samedi) et payé {a_payer}."}
+}

@@ -1,0 +1,52 @@
+{
+ "id": "pp2-cafe",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "premiers-pas",
+ "etape": 2,
+ "registre": "poli",
+ "titre": {"fr": "Le petit-déjeuner au café"},
+ "intro": {"fr": "Premier matin à Boston. Tu prends ton petit-déjeuner dans un café. Commande, puis paie."},
+ "personnes": ["kellnerin"],
+ "debut": "order",
+ "prix": {"coffee": 250, "juice": 350, "muffin": 275},
+ "panier": ["boisson", "manger"],
+ "noeuds": {
+  "order": {
+   "dit": [
+    {"recit": {"fr": "Un petit café de Boston, le matin. La serveuse arrive."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Good morning! What can I get you?", "fr": "Bonjour ! Qu'est-ce que je vous sers ?"}
+   ],
+   "choix": [
+    {"t": "I'd like a coffee, please.", "fr": "Je voudrais un café, s'il vous plaît.", "pose": {"boisson": "coffee"}, "va": "muffin"},
+    {"t": "An orange juice, please.", "fr": "Un jus d'orange, s'il vous plaît.", "pose": {"boisson": "juice"}, "va": "muffin"}
+   ]
+  },
+  "muffin": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Sure. And a muffin?", "fr": "Bien sûr. Et un muffin ?"}],
+   "choix": [
+    {"t": "Yes, a muffin, please.", "fr": "Oui, un muffin, s'il vous plaît.", "pose": {"manger": "muffin"}, "va": "check",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Coming right up!", "fr": "Ça arrive tout de suite !"}]},
+    {"t": "No, thank you.", "fr": "Non, merci.", "va": "check",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Coming right up!", "fr": "Ça arrive tout de suite !"}]}
+   ]
+  },
+  "check": {
+   "dit": [{"recit": {"fr": "Un peu plus tard. Tu as fini et tu veux payer."}}],
+   "choix": [
+    {"t": "The check, please.", "t_gb": "The bill, please.", "fr": "L'addition, s'il vous plaît.", "va": "pay"},
+    {"t": "How much is it?", "fr": "C'est combien ?", "va": "pay"}
+   ]
+  },
+  "pay": {
+   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "That's {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "That's {a_payer:mots}."}],
+   "choix": [
+    {"t": "Can I pay by card?", "fr": "Je peux payer par carte ?", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sure. Thank you, have a nice day!", "fr": "Bien sûr. Merci, bonne journée !"}]},
+    {"t": "Here you go. Thank you!", "fr": "Voilà. Merci !", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Thanks! Have a great day!", "fr": "Merci ! Excellente journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as commandé ton petit-déjeuner, demandé l'addition et payé {a_payer}."}
+}

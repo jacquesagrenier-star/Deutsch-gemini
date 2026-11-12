@@ -1,0 +1,45 @@
+{
+ "id": "pp1-pass",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "premiers-pas",
+ "etape": 1,
+ "registre": "poli",
+ "titre": {"fr": "Au contrôle des passeports"},
+ "intro": {"fr": "Tu arrives à l'aéroport de Boston. Le policier du contrôle te parle. Réponds avec les phrases de l'étape."},
+ "personnes": ["polizist"],
+ "debut": "passport",
+ "noeuds": {
+  "passport": {
+   "dit": [
+    {"recit": {"fr": "Aéroport Logan, à Boston. C'est ton tour au contrôle des passeports."}},
+    {"qui": "polizist", "air": "sourire", "t": "Good morning. Passport, please.", "fr": "Bonjour. Le passeport, s'il vous plaît."}
+   ],
+   "choix": [
+    {"t": "Good morning. Here is my passport.", "fr": "Bonjour. Voici mon passeport.", "va": "from"},
+    {"t": "Hello. Here is my passport.", "fr": "Bonjour. Voici mon passeport.", "va": "from"}
+   ]
+  },
+  "from": {
+   "dit": [{"qui": "polizist", "air": "question", "t": "Thank you. Where are you from?", "fr": "Merci. D'où venez-vous ?"}],
+   "choix": [
+    {"t": "I'm from France.", "fr": "Je viens de France.", "va": "tourist"},
+    {"t": "I'm from Canada.", "fr": "Je viens du Canada.", "va": "tourist"}
+   ]
+  },
+  "tourist": {
+   "dit": [{"qui": "polizist", "air": "question", "t": "Are you a tourist?", "fr": "Vous êtes touriste ?"}],
+   "choix": [
+    {"t": "Yes, I'm a tourist.", "fr": "Oui, je suis touriste.", "va": "welcome"},
+    {"t": "Yes, I'm a student.", "fr": "Oui, je suis étudiant(e).", "va": "welcome"}
+   ]
+  },
+  "welcome": {
+   "dit": [{"qui": "polizist", "air": "sourire", "t": "Okay. Welcome to Boston!", "fr": "Bien. Bienvenue à Boston !"}],
+   "choix": [
+    {"t": "Thank you. Goodbye!", "fr": "Merci. Au revoir !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as passé le contrôle : tu as salué, montré ton passeport, dit d'où tu viens et ce que tu fais à Boston."}
+}

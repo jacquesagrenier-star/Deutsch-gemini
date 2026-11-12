@@ -24,14 +24,16 @@ sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOSSIER = os.path.join(RACINE, "visuel", "prototype", "conversation")
 DONNEES = os.path.join(DOSSIER, "donnees")
-PP = {"de": os.path.join(RACINE, "premiers-pas.json"), "es": os.path.join(RACINE, "espanol", "datos", "premiers-pas.json")}
+PP = {"de": os.path.join(RACINE, "premiers-pas.json"), "es": os.path.join(RACINE, "espanol", "datos", "premiers-pas.json"),
+      "en": os.path.join(RACINE, "anglais", "datos", "premiers-pas.json"),
+      "en-gb": os.path.join(RACINE, "anglais", "datos-gb", "premiers-pas.json")}
 LONGUEUR = {"premiers-pas": (3, 4), "voyage": (5, 6), "A2": (6, 8), "B1": (1, 10), "B2": (1, 10), "C1": (1, 10)}
 REPLI = {"question": ["attentive", "sourire"], "attentive": ["question", "sourire"], "surprise": ["attentive", "sourire"],
          "perplexe": ["attentive", "surprise", "sourire"], "amuse": ["sourire"], "sourire": ["attentive"]}
 TUTOIEMENT = {"Sie": r"\b(du|dich|dir|dein\w*)\b", "usted": r"\b(t[uú]|te|ti|contigo|tus?)\b"}
 # Les noms propres qu'une reponse peut dire sans les avoir vus en carte : ils se comprennent tels quels.
 PROPRES = {"kanada", "frankreich", "belgien", "schweiz", "berlin", "deutschland", "canada", "francia", "belgica", "suiza",
-           "madrid", "espana", "montreal"}
+           "madrid", "espana", "montreal", "france", "boston", "usa", "america"}
 erreurs, avis = [], []
 
 
@@ -97,6 +99,7 @@ def controler(chemin, personnes):
             E("%s : tutoiement dans une conversation au %s : « %s »" % (ou, c.get("registre"), r.get("t")))
 
     vu = vocabulaire(langue, c["etape"]) if c.get("parcours") == "premiers-pas" and langue in PP else None
+    vu_gb = vocabulaire("en-gb", c["etape"]) if vu is not None and langue == "en" else None
     autour = set()
     for nid, n in noeuds.items():
         for r in n.get("dit", []):
@@ -127,6 +130,11 @@ def controler(chemin, personnes):
                 inconnus = [m for m in plier(sans_gabarit(ch["t"])) if m not in vu and m not in PROPRES]
                 if inconnus:
                     E("%s : mot(s) pas encore vu(s) a l'etape %d : %s" % (ou, c["etape"], ", ".join(inconnus)))
+                # l'anglais britannique (variante=gb) : sa reponse propre doit venir de SES etapes (the bill, pas the check)
+                if ch.get("t_gb") and vu_gb is not None:
+                    inconnus = [m for m in plier(sans_gabarit(ch["t_gb"])) if m not in vu_gb and m not in PROPRES]
+                    if inconnus:
+                        E("%s : variante britannique, mot(s) pas encore vu(s) : %s" % (ou, ", ".join(inconnus)))
     if autour:
         A("la personne en face dit des mots pas encore vus (normal en petite quantite) : %s" % ", ".join(sorted(autour)))
 
