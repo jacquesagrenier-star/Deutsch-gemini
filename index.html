@@ -4726,17 +4726,19 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
     display:flex; align-items:baseline; justify-content:space-between;
     gap:10px; margin-bottom:10px;
 }
+/* 12 nov. 2026 (revue d'usage) : #8b93a3 sur la carte du monde se lisait a peine le jour (moins de 2:1). */
 .dict-section-note{
-    font-size:12px; color:#8b93a3; line-height:1.45;
+    font-size:12px; color:#3F4858; line-height:1.45;
     margin:-4px 0 12px;
 }
+body[data-theme="dark"] .dict-section-note, body[data-theme="dark"] .dict-section-title{color:#A9B3C0;}
 .dict-section-head{
     display:flex; align-items:baseline; justify-content:space-between;
     gap:10px; margin-bottom:10px;
 }
 .dict-section-title{
     font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
-    color:#8b93a3;
+    color:#3F4858;
 }
 .dict-row{
     padding:11px 14px; border:1px solid #e6e9ef; border-radius:12px;
@@ -9673,7 +9675,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <button id="themeToggleBtn" class="theme-icon-btn" onclick="toggleAppTheme()" data-i18n-title="theme_changer" data-i18n-aria-label="theme_changer" title="Changer de thème" aria-label="Changer de thème">
             <span id="themeToggleIcon" class="switch-icon">🌙</span>
         </button>
-        <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openSettings()" data-i18n-title="settings_account_title" title="Compte">CM</div>
+        <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openSettings()" data-i18n-title="settings_account_title" title="Compte"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 19.5c1.3-3.4 4-5 7-5s5.7 1.6 7 5"/></svg></div>
     </div>
 </header>
 
@@ -9814,7 +9816,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
     <div class="title-row" style="margin-top: 10px;">
         <div>
             <div class="kicker" data-i18n="setup_kicker">Bienvenue</div>
-            <h2 data-i18n="setup_title">Configurons ton apprentissage</h2>
+            <h2 data-i18n="setup_title">Préparons ton apprentissage</h2>
         </div>
     </div>
     <div class="card">
@@ -11394,7 +11396,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
 
     <div class="title-row">
         <div>
-            <div class="kicker" data-i18n="search_kicker">Flashcards</div>
+            <div class="kicker" data-i18n="search_kicker">Cartes et dictionnaire</div>
             <h2 data-i18n="search_title">Chercher un mot allemand ou français</h2>
         </div>
         <div class="pill" id="wordSearchCount">—</div>
@@ -14363,7 +14365,7 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         // Le japonais n'est qu'un essai de l'admin (25 oct. 2026).
         if(typeof gardeEssaiJaponais === "function" && gardeEssaiJaponais(user)) return;
-        userProfile.textContent = user.email ? user.email.substring(0, 2).toUpperCase() : "CM";
+        majAvatar(user);
         authContent.classList.add("hidden");
         // Connecté : plus besoin de choisir entre « Se connecter » et « Créer un
         // compte », on masque l'onglet et on force l'affichage sur la carte de
@@ -14418,7 +14420,7 @@ onAuthStateChanged(auth, (user) => {
         if(typeof renderBadgesGrid === "function") renderBadgesGrid();
         if(typeof updateHomeGreeting === "function") updateHomeGreeting();
     } else {
-        userProfile.textContent = "CM";
+        majAvatar(null);
         authContent.classList.remove("hidden");
         if(authModeToggle) authModeToggle.classList.remove("hidden");
         if(typeof setAuthMode === "function")
@@ -16223,7 +16225,7 @@ const I18N = {
         search_pill: "Chercher un mot",
         tableau_tuile: "Ton tableau",
         tableau_pct: "{p} %",
-        search_kicker: "Flashcards et dictionnaire",
+        search_kicker: "Cartes et dictionnaire",
         search_title: "Chercher un mot allemand ou français",
         search_placeholder: "Allemand ou français…",
         search_hint: "Tape au moins deux lettres, <strong>en allemand ou en français</strong> — les deux marchent. La recherche interroge tes {n} cartes, puis le dictionnaire — plus de 250 000 mots.",
@@ -16595,7 +16597,7 @@ const I18N = {
         auth_login_loading: "CONNEXION…",
         auth_signup: "CRÉER UN COMPTE",
         setup_kicker: "Bienvenue",
-        setup_title: "Configure ton environnement d'apprentissage",
+        setup_title: "Préparons ton apprentissage",
         setup_learning_label: "Quelle langue apprends-tu ?",
         setup_learning_de: "Allemand",
         setup_learning_en: "Anglais",
@@ -16644,19 +16646,19 @@ const I18N = {
         dec_progression_aria: "Étape {n} sur {total}",
         dec_kicker: "Découvre Wortando",
         dec_t0_titre: "Bienvenue dans Wortando !",
-        dec_t0_texte: "Voici une petite visite de l'application, en deux minutes. Chaque jour, trois choses t'attendent sur l'accueil : ta séance du jour, les scènes à explorer et l'écoute. On les voit ensemble, avec tes premiers mots et ton tableau.",
+        dec_t0_texte: "Voici une petite visite de l'application, en deux minutes. Chaque jour, ta séance t'attend en haut de l'accueil ; en dessous, des tuiles mènent aux scènes, aux thèmes, à l'écoute et à ton tableau. On voit l'essentiel ensemble, avec tes premiers mots.",
         dec_t0_bouton: "COMMENCER LA VISITE",
         dec_ecouter: "Réécouter",
         dec_ts_titre: "Explorer les scènes",
-        dec_ts_texte: "Juste sous ta séance : près de quarante scènes de la vie de Mark et d'Anna. Touche les objets et les personnes : tu entends leur nom, avec leur article. Essaie ici.",
+        dec_ts_texte: "Sur l'accueil, la tuile Scènes : près de quarante scènes de la vie de Mark et d'Anna. Touche les objets et les personnes : tu entends leur nom, avec leur article. Essaie ici.",
         dec_te_titre: "Écouter, répéter",
-        dec_te_texte: "En dessous, l'écoute : l'application dit les mots de ton niveau et te laisse le temps de les répéter à voix haute. Idéal en marchant ou en cuisinant. Essaie avec tes premiers mots.",
+        dec_te_texte: "La tuile Écouter : l'application dit les mots de ton niveau et te laisse le temps de les répéter à voix haute. Idéal en marchant ou en cuisinant. Essaie avec tes premiers mots.",
         dec_te_essai: "▶ Écouter mes premiers mots",
         dec_te_repete: "À toi : répète !",
         dec_t5_titre: "Ta séance du jour",
         dec_t5_texte: "C'est le cœur de l'application. Chaque jour, une séance : des mots nouveaux, les révisions qui reviennent au bon moment, un peu de grammaire, l'oral, et la scène du jour. Tu peux en enchaîner autant que tu veux. Tout fait avancer ton tableau. Sur l'accueil, la flèche la lance. Ton niveau se change ici. Tu pars de zéro ? La petite pousse, c'est Premiers pas : les phrases essentielles pour voyager.",
         dec_t6_titre: "Ta visite est terminée !",
-        dec_t6_texte: "Sur l'accueil, tout est là : ta séance du jour d'abord, puis les scènes et l'écoute, quand tu veux. Quelques minutes par jour suffisent. Bon apprentissage !",
+        dec_t6_texte: "Sur l'accueil, tout est là : ta séance du jour d'abord, puis, dans les tuiles, les scènes, les thèmes et l'écoute, quand tu veux. Quelques minutes par jour suffisent. Bon apprentissage !",
         dec_t6_bouton: "COMMENCER",
         dec_t1_titre: "Ton premier mot",
         dec_t1_titre_plusieurs: "Tes premiers mots",
@@ -18021,7 +18023,7 @@ const I18N = {
         search_pill: "Find a word",
         tableau_tuile: "Your painting",
         tableau_pct: "{p}%",
-        search_kicker: "Flashcards and dictionary",
+        search_kicker: "Cards and dictionary",
         search_title: "Search a German or English word",
         search_placeholder: "German or English…",
         search_hint: "Type at least two letters, <strong>in German or in English</strong> — both work. The search looks through your {n} cards, then the dictionary — over 250,000 words.",
@@ -18391,7 +18393,7 @@ const I18N = {
         auth_login_loading: "SIGNING IN…",
         auth_signup: "CREATE ACCOUNT",
         setup_kicker: "Welcome",
-        setup_title: "Set up your learning environment",
+        setup_title: "Let's get your learning ready",
         setup_learning_label: "What language are you learning?",
         setup_learning_de: "German",
         setup_learning_en: "English",
@@ -18440,19 +18442,19 @@ const I18N = {
         dec_progression_aria: "Step {n} of {total}",
         dec_kicker: "Discover Wortando",
         dec_t0_titre: "Welcome to Wortando!",
-        dec_t0_texte: "Here is a short tour of the app, in two minutes. Every day, three things are waiting for you on the home screen: today's session, the scenes to explore, and listening. Let's look at them together, with your first words and your painting.",
+        dec_t0_texte: "Here is a short tour of the app, in two minutes. Every day, your session waits at the top of the home screen; below it, tiles lead to the scenes, the topics, listening and your painting. Let's look at the essentials together, with your first words.",
         dec_t0_bouton: "START THE TOUR",
         dec_ecouter: "Listen again",
         dec_ts_titre: "Explore the scenes",
-        dec_ts_texte: "Right below your session: nearly forty scenes from the lives of Mark and Anna. Tap the objects and the people: you hear their name, with its article. Try it here.",
+        dec_ts_texte: "On the home screen, the Scenes tile: nearly forty scenes from the lives of Mark and Anna. Tap the objects and the people: you hear their name, with its article. Try it here.",
         dec_te_titre: "Listen and repeat",
-        dec_te_texte: "Below that, listening: the app says the words of your level and gives you time to repeat them out loud. Perfect while walking or cooking. Try it with your first words.",
+        dec_te_texte: "The Listen tile: the app says the words of your level and gives you time to repeat them out loud. Perfect while walking or cooking. Try it with your first words.",
         dec_te_essai: "▶ Listen to my first words",
         dec_te_repete: "Your turn: repeat!",
         dec_t5_titre: "Today's session",
         dec_t5_texte: "This is the heart of the app. Every day, a session: new words, the reviews that come back at just the right time, a little grammar, speaking, and the scene of the day. You can do as many in a row as you like. Everything moves your painting forward. On the home screen, the arrow starts it. You change your level here. Starting from zero? The little sprout is First steps: the essential phrases for travelling.",
         dec_t6_titre: "Your tour is complete!",
-        dec_t6_texte: "Everything is on the home screen: today's session first, then the scenes and listening, whenever you like. A few minutes a day is enough. Happy learning!",
+        dec_t6_texte: "Everything is on the home screen: today's session first, then, in the tiles, the scenes, the topics and listening, whenever you like. A few minutes a day is enough. Happy learning!",
         dec_t6_bouton: "LET'S START",
         dec_t1_titre: "Your first word",
         dec_t1_titre_plusieurs: "Your first words",
@@ -20135,7 +20137,7 @@ const I18N = {
         auth_login_loading: "GİRİŞ YAPILIYOR…",
         auth_signup: "HESAP OLUŞTUR",
         setup_kicker: "Hoş geldin",
-        setup_title: "Öğrenme ortamını ayarlayalım",
+        setup_title: "Öğrenmeni hazırlayalım",
         setup_learning_label: "Hangi dili öğreniyorsun?",
         setup_learning_de: "Almanca",
         setup_learning_en: "İngilizce",
@@ -20180,19 +20182,19 @@ const I18N = {
         dec_progression_aria: "Adım {n} / {total}",
         dec_kicker: "Wortando'yu keşfet",
         dec_t0_titre: "Wortando'ya hoş geldin!",
-        dec_t0_texte: "İşte uygulamada iki dakikalık kısa bir tur. Her gün ana ekranda seni üç şey bekliyor: bugünkü oturumun, keşfedilecek sahneler ve dinleme. İlk kelimelerin ve tablonla birlikte onlara bakalım.",
+        dec_t0_texte: "İşte uygulamada iki dakikalık kısa bir tur. Her gün oturumun ana ekranın en üstünde seni bekliyor; altındaki kutucuklar sahnelere, konulara, dinlemeye ve tablona götürür. İlk kelimelerinle birlikte en önemlilerine bakalım.",
         dec_t0_bouton: "TURA BAŞLA",
         dec_ecouter: "Tekrar dinle",
         dec_ts_titre: "Sahneleri keşfet",
-        dec_ts_texte: "Oturumunun hemen altında: Mark ile Anna'nın hayatından kırka yakın sahne. Nesnelere ve kişilere dokun: adlarını artikelleriyle birlikte duyarsın. Burada dene.",
+        dec_ts_texte: "Ana ekranda Sahneler kutucuğu: Mark ile Anna'nın hayatından kırka yakın sahne. Nesnelere ve kişilere dokun: adlarını artikelleriyle birlikte duyarsın. Burada dene.",
         dec_te_titre: "Dinle ve tekrarla",
-        dec_te_texte: "Onun altında dinleme: uygulama seviyendeki kelimeleri söyler ve onları sesli tekrarlaman için sana zaman tanır. Yürürken ya da yemek yaparken ideal. İlk kelimelerinle dene.",
+        dec_te_texte: "Dinle kutucuğu: uygulama seviyendeki kelimeleri söyler ve onları sesli tekrarlaman için sana zaman tanır. Yürürken ya da yemek yaparken ideal. İlk kelimelerinle dene.",
         dec_te_essai: "▶ İlk kelimelerimi dinle",
         dec_te_repete: "Sıra sende: tekrarla!",
         dec_t5_titre: "Bugünkü oturumun",
         dec_t5_texte: "Uygulamanın kalbi burası. Her gün bir oturum: yeni kelimeler, tam zamanında geri gelen tekrarlar, biraz dilbilgisi, konuşma ve günün sahnesi. İstediğin kadar art arda yapabilirsin. Her şey tablonu ilerletir. Ana ekranda ok onu başlatır. Seviyeni buradan değiştirirsin. Sıfırdan mı başlıyorsun? Küçük filiz İlk adımlar'dır: seyahat için temel cümleler.",
         dec_t6_titre: "Turun tamamlandı!",
-        dec_t6_texte: "Her şey ana ekranda: önce bugünkü oturumun, sonra istediğin zaman sahneler ve dinleme. Günde birkaç dakika yeter. İyi öğrenmeler!",
+        dec_t6_texte: "Her şey ana ekranda: önce bugünkü oturumun, sonra kutucuklarda, istediğin zaman sahneler, konular ve dinleme. Günde birkaç dakika yeter. İyi öğrenmeler!",
         dec_t6_bouton: "BAŞLA",
         dec_t1_titre: "İlk kelimen",
         dec_t1_titre_plusieurs: "İlk kelimelerin",
@@ -21086,7 +21088,7 @@ const I18N = {
         streak_freeze_earned: "Заморозку серії отримано! Вона захистить серію в день, який ти пропустиш.",
         streak_freeze_hint: "Заморозка серії доступна: захищає серію в пропущений день.",
         setup_kicker: "Ласкаво просимо",
-        setup_title: "Налаштуймо твоє навчальне середовище",
+        setup_title: "Підготуймо твоє навчання",
         setup_learning_label: "Яку мову ти вивчаєш?",
         setup_learning_de: "Німецьку",
         setup_learning_en: "Англійську",
@@ -21131,19 +21133,19 @@ const I18N = {
         dec_progression_aria: "Крок {n} з {total}",
         dec_kicker: "Знайомство з Wortando",
         dec_t0_titre: "Ласкаво просимо до Wortando!",
-        dec_t0_texte: "Ось коротка екскурсія застосунком — на дві хвилини. Щодня на головному екрані на тебе чекають три речі: твій сеанс на сьогодні, сцени, які можна досліджувати, і слухання. Подивімося на них разом — з твоїми першими словами й твоєю картиною.",
+        dec_t0_texte: "Ось коротка екскурсія застосунком — на дві хвилини. Щодня твій сеанс чекає на тебе вгорі головного екрана, а нижче плитки ведуть до сцен, тем, слухання й твоєї картини. Подивімося на головне разом — з твоїми першими словами.",
         dec_t0_bouton: "ПОЧАТИ ЕКСКУРСІЮ",
         dec_ecouter: "Прослухати ще раз",
         dec_ts_titre: "Досліджуй сцени",
-        dec_ts_texte: "Одразу під твоїм сеансом — майже сорок сцен із життя Марка й Анни. Торкайся предметів і людей: ти почуєш їхню назву разом з артиклем. Спробуй тут.",
+        dec_ts_texte: "На головному екрані — плитка «Сцени»: майже сорок сцен із життя Марка й Анни. Торкайся предметів і людей: ти почуєш їхню назву разом з артиклем. Спробуй тут.",
         dec_te_titre: "Слухай і повторюй",
-        dec_te_texte: "Нижче — слухання: застосунок вимовляє слова твого рівня й дає тобі час повторити їх уголос. Чудово під час прогулянки чи готування. Спробуй зі своїми першими словами.",
+        dec_te_texte: "Плитка «Слухати»: застосунок вимовляє слова твого рівня й дає тобі час повторити їх уголос. Чудово під час прогулянки чи готування. Спробуй зі своїми першими словами.",
         dec_te_essai: "▶ Послухати мої перші слова",
         dec_te_repete: "Твоя черга: повтори!",
         dec_t5_titre: "Твій сеанс на сьогодні",
         dec_t5_texte: "Це серце застосунку. Щодня — сеанс: нові слова, повторення, що повертаються саме вчасно, трохи граматики, усне мовлення і сцена дня. Можна проходити їх одне за одним скільки завгодно. Усе це просуває твою картину. На головному екрані його запускає стрілка. Рівень змінюється тут. Починаєш з нуля? Маленький паросток — це «Перші кроки»: найпотрібніші фрази для подорожі.",
         dec_t6_titre: "Твою екскурсію завершено!",
-        dec_t6_texte: "На головному екрані є все: спершу твій сеанс на сьогодні, а потім сцени й слухання — коли захочеш. Кількох хвилин на день достатньо. Успішного навчання!",
+        dec_t6_texte: "На головному екрані є все: спершу твій сеанс на сьогодні, а потім, у плитках, сцени, теми й слухання — коли захочеш. Кількох хвилин на день достатньо. Успішного навчання!",
         dec_t6_bouton: "ПОЧАТИ",
         dec_t1_titre: "Твоє перше слово",
         dec_t1_titre_plusieurs: "Твої перші слова",
@@ -23257,7 +23259,7 @@ const I18N = {
         sans_compte_erreur: "الان نمی‌شود شروع کرد. اتصالت را بررسی کن و دوباره تلاش کن.",
         delete_account_wrong_pwd: "رمز عبور نادرست است.",
         setup_kicker: "خوش آمدید",
-        setup_title: "محیط یادگیری‌تان را تنظیم کنیم",
+        setup_title: "یادگیری‌تان را آماده کنیم",
         setup_learning_label: "چه زبانی یاد می‌گیرید؟",
         setup_learning_de: "آلمانی",
         setup_learning_en: "انگلیسی",
@@ -23302,19 +23304,19 @@ const I18N = {
         dec_progression_aria: "گام {n} از {total}",
         dec_kicker: "آشنایی با Wortando",
         dec_t0_titre: "به Wortando خوش آمدی!",
-        dec_t0_texte: "این یک گشت کوتاه دو دقیقه‌ای در برنامه است. هر روز سه چیز در صفحهٔ اصلی منتظر توست: جلسهٔ امروزت، صحنه‌هایی برای کاوش و شنیدن. با اولین واژه‌هایت و تابلویت، آن‌ها را با هم می‌بینیم.",
+        dec_t0_texte: "این یک گشت کوتاه دو دقیقه‌ای در برنامه است. هر روز جلسه‌ات بالای صفحهٔ اصلی منتظر توست؛ زیر آن، کاشی‌ها تو را به صحنه‌ها، موضوع‌ها، شنیدن و تابلویت می‌برند. با اولین واژه‌هایت، مهم‌ترین‌ها را با هم می‌بینیم.",
         dec_t0_bouton: "شروع گشت",
         dec_ecouter: "دوباره گوش کن",
         dec_ts_titre: "کاوش در صحنه‌ها",
-        dec_ts_texte: "درست زیر جلسه‌ات: نزدیک به چهل صحنه از زندگی مارک و آنا. اشیا و آدم‌ها را لمس کن: نامشان را همراه با حرف تعریفشان می‌شنوی. اینجا امتحان کن.",
+        dec_ts_texte: "در صفحهٔ اصلی، کاشی «صحنه‌ها»: نزدیک به چهل صحنه از زندگی مارک و آنا. اشیا و آدم‌ها را لمس کن: نامشان را همراه با حرف تعریفشان می‌شنوی. اینجا امتحان کن.",
         dec_te_titre: "گوش کن و تکرار کن",
-        dec_te_texte: "پایین‌تر، شنیدن: برنامه واژه‌های سطح تو را می‌گوید و به تو فرصت می‌دهد آن‌ها را بلند تکرار کنی. برای هنگام قدم زدن یا آشپزی عالی است. با اولین واژه‌هایت امتحان کن.",
+        dec_te_texte: "کاشی «شنیدن»: برنامه واژه‌های سطح تو را می‌گوید و به تو فرصت می‌دهد آن‌ها را بلند تکرار کنی. برای هنگام قدم زدن یا آشپزی عالی است. با اولین واژه‌هایت امتحان کن.",
         dec_te_essai: "▶ شنیدن اولین واژه‌هایم",
         dec_te_repete: "نوبت توست: تکرار کن!",
         dec_t5_titre: "جلسهٔ امروزت",
         dec_t5_texte: "این قلب برنامه است. هر روز یک جلسه: واژه‌های تازه، مرورهایی که درست به‌موقع برمی‌گردند، کمی دستور زبان، گفتار و صحنهٔ روز. هر چند جلسه که بخواهی می‌توانی پشت سر هم انجام بدهی. همه‌چیز تابلویت را جلو می‌برد. در صفحهٔ اصلی، پیکان آن را شروع می‌کند. سطحت را اینجا عوض می‌کنی. از صفر شروع می‌کنی؟ جوانهٔ کوچک «گام‌های نخست» است: جمله‌های ضروری برای سفر.",
         dec_t6_titre: "گشتت کامل شد!",
-        dec_t6_texte: "همه‌چیز در صفحهٔ اصلی است: اول جلسهٔ امروزت، بعد هر وقت خواستی صحنه‌ها و شنیدن. چند دقیقه در روز کافی است. یادگیری خوبی داشته باشی!",
+        dec_t6_texte: "همه‌چیز در صفحهٔ اصلی است: اول جلسهٔ امروزت، بعد در کاشی‌ها، هر وقت خواستی، صحنه‌ها، موضوع‌ها و شنیدن. چند دقیقه در روز کافی است. یادگیری خوبی داشته باشی!",
         dec_t6_bouton: "شروع کنیم",
         dec_t1_titre: "نخستین واژه‌ات",
         dec_t1_titre_plusieurs: "نخستین واژه‌هایت",
@@ -24866,7 +24868,7 @@ const I18N = {
         auth_login_loading: "جارٍ الدخول…",
         auth_signup: "إنشاء حساب",
         setup_kicker: "أهلاً بك",
-        setup_title: "لنضبط بيئة تعلّمك",
+        setup_title: "لنُهيّئ تعلّمك",
         setup_learning_label: "ما اللغة التي تتعلّمها؟",
         setup_learning_de: "الألمانية",
         setup_learning_en: "الإنجليزية",
@@ -24911,19 +24913,19 @@ const I18N = {
         dec_progression_aria: "الخطوة {n} من {total}",
         dec_kicker: "تعرّف على Wortando",
         dec_t0_titre: "مرحبًا بك في Wortando!",
-        dec_t0_texte: "إليك جولة قصيرة في التطبيق، في دقيقتين. كل يوم، تنتظرك ثلاثة أشياء في الصفحة الرئيسية: جلستك اليوم، والمشاهد التي تستكشفها، والاستماع. لنرها معًا، مع كلماتك الأولى ولوحتك.",
+        dec_t0_texte: "إليك جولة قصيرة في التطبيق، في دقيقتين. كل يوم، تنتظرك جلستك في أعلى الصفحة الرئيسية، وتحتها مربعات تقودك إلى المشاهد والمواضيع والاستماع ولوحتك. لنرَ الأهم معًا، مع كلماتك الأولى.",
         dec_t0_bouton: "ابدأ الجولة",
         dec_ecouter: "استمع مرة أخرى",
         dec_ts_titre: "استكشف المشاهد",
-        dec_ts_texte: "تحت جلستك مباشرة: قرابة أربعين مشهدًا من حياة مارك وآنا. المس الأشياء والأشخاص: تسمع اسمها مع أداة التعريف. جرّب هنا.",
+        dec_ts_texte: "في الصفحة الرئيسية، مربع «المشاهد»: قرابة أربعين مشهدًا من حياة مارك وآنا. المس الأشياء والأشخاص: تسمع اسمها مع أداة التعريف. جرّب هنا.",
         dec_te_titre: "استمع وكرّر",
-        dec_te_texte: "وتحتها الاستماع: يقول التطبيق كلمات مستواك ويمنحك الوقت لتكرارها بصوت عالٍ. مثالي أثناء المشي أو الطبخ. جرّب مع كلماتك الأولى.",
+        dec_te_texte: "مربع «الاستماع»: يقول التطبيق كلمات مستواك ويمنحك الوقت لتكرارها بصوت عالٍ. مثالي أثناء المشي أو الطبخ. جرّب مع كلماتك الأولى.",
         dec_te_essai: "▶ الاستماع إلى كلماتي الأولى",
         dec_te_repete: "دورك: كرّر!",
         dec_t5_titre: "جلستك اليوم",
         dec_t5_texte: "هذا قلب التطبيق. كل يوم جلسة: كلمات جديدة، ومراجعات تعود في الوقت المناسب تمامًا، وقليل من القواعد، والتحدث، ومشهد اليوم. ويمكنك أن تتابع منها بقدر ما تشاء. كل ذلك يُقدّم لوحتك. في الصفحة الرئيسية، يبدأها السهم. تغيّر مستواك من هنا. تبدأ من الصفر؟ البرعم الصغير هو «الخطوات الأولى»: العبارات الأساسية للسفر.",
         dec_t6_titre: "اكتملت جولتك!",
-        dec_t6_texte: "كل شيء في الصفحة الرئيسية: جلستك اليوم أولًا، ثم المشاهد والاستماع متى شئت. بضع دقائق في اليوم تكفي. تعلّمًا موفقًا!",
+        dec_t6_texte: "كل شيء في الصفحة الرئيسية: جلستك اليوم أولًا، ثم في المربعات المشاهد والمواضيع والاستماع متى شئت. بضع دقائق في اليوم تكفي. تعلّمًا موفقًا!",
         dec_t6_bouton: "لنبدأ",
         dec_t1_titre: "كلمتك الأولى",
         dec_t1_titre_plusieurs: "كلماتك الأولى",
@@ -26898,7 +26900,7 @@ const I18N = {
         search_pill: "Buscar palavra",
         tableau_tuile: "Seu quadro",
         tableau_pct: "{p}%",
-        search_kicker: "Flashcards e dicionário",
+        search_kicker: "Cartões e dicionário",
         search_title: "Buscar uma palavra em alemão ou em português",
         search_placeholder: "Alemão ou português…",
         search_hint: "Digite pelo menos duas letras, <strong>em alemão ou em português</strong> — os dois funcionam. A busca procura nas suas {n} cartas, depois no dicionário — mais de 250 000 palavras.",
@@ -27257,7 +27259,7 @@ const I18N = {
         auth_login_loading: "ENTRANDO…",
         auth_signup: "CRIAR CONTA",
         setup_kicker: "Bem-vindo",
-        setup_title: "Vamos configurar seu ambiente de aprendizado",
+        setup_title: "Vamos preparar seu aprendizado",
         setup_learning_label: "Que língua você está aprendendo?",
         setup_learning_de: "Alemão",
         setup_learning_en: "Inglês",
@@ -27302,19 +27304,19 @@ const I18N = {
         dec_progression_aria: "Etapa {n} de {total}",
         dec_kicker: "Conheça a Wortando",
         dec_t0_titre: "Bem-vindo à Wortando!",
-        dec_t0_texte: "Aqui vai uma pequena visita pelo aplicativo, em dois minutos. Todo dia, três coisas esperam por você na tela inicial: a sua sessão do dia, as cenas para explorar e a escuta. Vamos vê-las juntos, com as suas primeiras palavras e o seu quadro.",
+        dec_t0_texte: "Aqui vai uma pequena visita pelo aplicativo, em dois minutos. Todo dia, a sua sessão espera por você no alto da tela inicial; logo abaixo, os blocos levam às cenas, aos temas, à escuta e ao seu quadro. Vamos ver o essencial juntos, com as suas primeiras palavras.",
         dec_t0_bouton: "COMEÇAR A VISITA",
         dec_ecouter: "Ouvir de novo",
         dec_ts_titre: "Explore as cenas",
-        dec_ts_texte: "Logo abaixo da sua sessão: quase quarenta cenas da vida de Mark e Anna. Toque nos objetos e nas pessoas: você ouve o nome deles, com o artigo. Experimente aqui.",
+        dec_ts_texte: "Na tela inicial, o bloco Cenas: quase quarenta cenas da vida de Mark e Anna. Toque nos objetos e nas pessoas: você ouve o nome deles, com o artigo. Experimente aqui.",
         dec_te_titre: "Ouvir e repetir",
-        dec_te_texte: "Mais abaixo, a escuta: o aplicativo diz as palavras do seu nível e dá tempo para você repeti-las em voz alta. Perfeito para caminhar ou cozinhar. Experimente com as suas primeiras palavras.",
+        dec_te_texte: "O bloco Ouvir: o aplicativo diz as palavras do seu nível e dá tempo para você repeti-las em voz alta. Perfeito para caminhar ou cozinhar. Experimente com as suas primeiras palavras.",
         dec_te_essai: "▶ Ouvir minhas primeiras palavras",
         dec_te_repete: "Sua vez: repita!",
         dec_t5_titre: "A sua sessão do dia",
         dec_t5_texte: "Este é o coração do aplicativo. Todo dia, uma sessão: palavras novas, as revisões que voltam na hora certa, um pouco de gramática, a fala e a cena do dia. Você pode fazer quantas quiser em sequência. Tudo faz o seu quadro avançar. Na tela inicial, a seta a inicia. O seu nível se muda aqui. Começando do zero? O brotinho é Primeiros passos: as frases essenciais para viajar.",
         dec_t6_titre: "Sua visita terminou!",
-        dec_t6_texte: "Está tudo na tela inicial: primeiro a sua sessão do dia, depois as cenas e a escuta, quando quiser. Alguns minutos por dia bastam. Bons estudos!",
+        dec_t6_texte: "Está tudo na tela inicial: primeiro a sua sessão do dia, depois, nos blocos, as cenas, os temas e a escuta, quando quiser. Alguns minutos por dia bastam. Bons estudos!",
         dec_t6_bouton: "COMEÇAR",
         dec_t1_titre: "Sua primeira palavra",
         dec_t1_titre_plusieurs: "Suas primeiras palavras",
@@ -29062,7 +29064,7 @@ const I18N = {
         auth_login_loading: "LOGOWANIE…",
         auth_signup: "ZAŁÓŻ KONTO",
         setup_kicker: "Witaj",
-        setup_title: "Ustawmy twoje środowisko nauki",
+        setup_title: "Przygotujmy twoją naukę",
         setup_learning_label: "Jakiego języka się uczysz?",
         setup_learning_de: "Niemiecki",
         setup_learning_en: "Angielski",
@@ -29105,19 +29107,19 @@ const I18N = {
         dec_progression_aria: "Krok {n} z {total}",
         dec_kicker: "Poznaj Wortando",
         dec_t0_titre: "Witaj w Wortando!",
-        dec_t0_texte: "Oto krótka, dwuminutowa wycieczka po aplikacji. Codziennie na ekranie głównym czekają na ciebie trzy rzeczy: twoja dzisiejsza sesja, sceny do odkrywania i słuchanie. Zobaczmy je razem, z twoimi pierwszymi słowami i twoim obrazem.",
+        dec_t0_texte: "Oto krótka, dwuminutowa wycieczka po aplikacji. Codziennie twoja sesja czeka na ciebie na górze ekranu głównego, a pod nią kafelki prowadzą do scen, tematów, słuchania i twojego obrazu. Zobaczmy najważniejsze razem, z twoimi pierwszymi słowami.",
         dec_t0_bouton: "ZACZNIJ WYCIECZKĘ",
         dec_ecouter: "Posłuchaj jeszcze raz",
         dec_ts_titre: "Odkrywaj sceny",
-        dec_ts_texte: "Tuż pod twoją sesją: prawie czterdzieści scen z życia Marka i Anny. Dotykaj przedmiotów i ludzi: usłyszysz ich nazwę razem z rodzajnikiem. Spróbuj tutaj.",
+        dec_ts_texte: "Na ekranie głównym kafelek Sceny: prawie czterdzieści scen z życia Marka i Anny. Dotykaj przedmiotów i ludzi: usłyszysz ich nazwę razem z rodzajnikiem. Spróbuj tutaj.",
         dec_te_titre: "Słuchaj i powtarzaj",
-        dec_te_texte: "Niżej słuchanie: aplikacja wymawia słowa z twojego poziomu i daje ci czas, by powtórzyć je na głos. Idealne na spacer albo przy gotowaniu. Spróbuj ze swoimi pierwszymi słowami.",
+        dec_te_texte: "Kafelek Słuchanie: aplikacja wymawia słowa z twojego poziomu i daje ci czas, by powtórzyć je na głos. Idealne na spacer albo przy gotowaniu. Spróbuj ze swoimi pierwszymi słowami.",
         dec_te_essai: "▶ Posłuchaj moich pierwszych słów",
         dec_te_repete: "Twoja kolej: powtórz!",
         dec_t5_titre: "Twoja dzisiejsza sesja",
         dec_t5_texte: "To serce aplikacji. Codziennie sesja: nowe słowa, powtórki, które wracają w odpowiednim momencie, trochę gramatyki, mówienie i scena dnia. Możesz robić ich tyle, ile tylko chcesz. Wszystko to posuwa twój obraz do przodu. Na ekranie głównym uruchamia ją strzałka. Poziom zmieniasz tutaj. Zaczynasz od zera? Mały kiełek to „Pierwsze kroki”: najważniejsze zwroty na podróż.",
         dec_t6_titre: "Twoja wycieczka dobiegła końca!",
-        dec_t6_texte: "Wszystko jest na ekranie głównym: najpierw twoja dzisiejsza sesja, potem sceny i słuchanie, kiedy zechcesz. Wystarczy kilka minut dziennie. Owocnej nauki!",
+        dec_t6_texte: "Wszystko jest na ekranie głównym: najpierw twoja dzisiejsza sesja, potem, w kafelkach, sceny, tematy i słuchanie, kiedy zechcesz. Wystarczy kilka minut dziennie. Owocnej nauki!",
         dec_t6_bouton: "ZACZYNAMY",
         dec_t1_titre: "Twoje pierwsze słowo",
         dec_t1_titre_plusieurs: "Twoje pierwsze słowa",
@@ -30866,7 +30868,7 @@ const I18N = {
         auth_login_loading: "ВХОД…",
         auth_signup: "СОЗДАТЬ АККАУНТ",
         setup_kicker: "Добро пожаловать",
-        setup_title: "Настроим твою учебную среду",
+        setup_title: "Подготовим твоё обучение",
         setup_learning_label: "Какой язык ты учишь?",
         setup_learning_de: "Немецкий",
         setup_learning_en: "Английский",
@@ -30911,19 +30913,19 @@ const I18N = {
         dec_progression_aria: "Шаг {n} из {total}",
         dec_kicker: "Знакомство с Wortando",
         dec_t0_titre: "Добро пожаловать в Wortando!",
-        dec_t0_texte: "Вот небольшая экскурсия по приложению — на две минуты. Каждый день на главном экране тебя ждут три вещи: твоё занятие на сегодня, сцены, которые можно исследовать, и слушание. Посмотрим на них вместе — с твоими первыми словами и твоей картиной.",
+        dec_t0_texte: "Вот небольшая экскурсия по приложению — на две минуты. Каждый день твоё занятие ждёт тебя вверху главного экрана, а ниже плитки ведут к сценам, темам, слушанию и твоей картине. Посмотрим на главное вместе — с твоими первыми словами.",
         dec_t0_bouton: "НАЧАТЬ ЭКСКУРСИЮ",
         dec_ecouter: "Послушать ещё",
         dec_ts_titre: "Исследуй сцены",
-        dec_ts_texte: "Прямо под твоим занятием — почти сорок сцен из жизни Марка и Анны. Касайся предметов и людей: ты услышишь их название вместе с артиклем. Попробуй здесь.",
+        dec_ts_texte: "На главном экране — плитка «Сцены»: почти сорок сцен из жизни Марка и Анны. Касайся предметов и людей: ты услышишь их название вместе с артиклем. Попробуй здесь.",
         dec_te_titre: "Слушай и повторяй",
-        dec_te_texte: "Ниже — слушание: приложение произносит слова твоего уровня и даёт время повторить их вслух. Отлично подходит для прогулки или готовки. Попробуй со своими первыми словами.",
+        dec_te_texte: "Плитка «Слушать»: приложение произносит слова твоего уровня и даёт время повторить их вслух. Отлично подходит для прогулки или готовки. Попробуй со своими первыми словами.",
         dec_te_essai: "▶ Послушать мои первые слова",
         dec_te_repete: "Твоя очередь: повтори!",
         dec_t5_titre: "Твоё занятие на сегодня",
         dec_t5_texte: "Это сердце приложения. Каждый день — занятие: новые слова, повторения, которые возвращаются точно вовремя, немного грамматики, устная речь и сцена дня. Можно проходить их одно за другим сколько угодно. Всё это продвигает твою картину. На главном экране его запускает стрелка. Уровень меняется здесь. Начинаешь с нуля? Маленький росток — это «Первые шаги»: самые нужные фразы для поездки.",
         dec_t6_titre: "Твоя экскурсия завершена!",
-        dec_t6_texte: "Всё есть на главном экране: сначала твоё занятие на сегодня, а потом сцены и слушание — когда захочешь. Нескольких минут в день достаточно. Успешной учёбы!",
+        dec_t6_texte: "Всё есть на главном экране: сначала твоё занятие на сегодня, а потом, в плитках, сцены, темы и слушание — когда захочешь. Нескольких минут в день достаточно. Успешной учёбы!",
         dec_t6_bouton: "НАЧАТЬ",
         dec_t1_titre: "Твоё первое слово",
         dec_t1_titre_plusieurs: "Твои первые слова",
@@ -32668,7 +32670,7 @@ const I18N = {
         auth_login_loading: "ANMELDUNG …",
         auth_signup: "KONTO ERSTELLEN",
         setup_kicker: "Willkommen",
-        setup_title: "Richten wir deine Lernumgebung ein",
+        setup_title: "Bereiten wir dein Lernen vor",
         setup_learning_label: "Welche Sprache lernst du?",
         setup_learning_de: "Deutsch",
         setup_learning_en: "Englisch",
@@ -32716,19 +32718,19 @@ const I18N = {
         dec_progression_aria: "Schritt {n} von {total}",
         dec_kicker: "Entdecke Wortando",
         dec_t0_titre: "Willkommen bei Wortando!",
-        dec_t0_texte: "Hier ein kleiner Rundgang durch die App, in zwei Minuten. Jeden Tag warten drei Dinge auf der Startseite auf dich: deine Lerneinheit, die Szenen zum Entdecken und das Hören. Wir sehen sie uns zusammen an, mit deinen ersten Wörtern und deinem Gemälde.",
+        dec_t0_texte: "Hier ein kleiner Rundgang durch die App, in zwei Minuten. Jeden Tag wartet deine Lerneinheit oben auf der Startseite; darunter führen Kacheln zu den Szenen, den Themen, dem Hören und deinem Gemälde. Wir sehen uns das Wichtigste zusammen an, mit deinen ersten Wörtern.",
         dec_t0_bouton: "RUNDGANG STARTEN",
         dec_ecouter: "Noch einmal hören",
         dec_ts_titre: "Szenen entdecken",
-        dec_ts_texte: "Direkt unter deiner Lerneinheit: fast vierzig Szenen aus dem Leben von Mark und Anna. Tippe auf die Gegenstände und Personen: Du hörst ihren Namen, mit Artikel. Probier es hier aus.",
+        dec_ts_texte: "Auf der Startseite die Kachel Szenen: fast vierzig Szenen aus dem Leben von Mark und Anna. Tippe auf die Gegenstände und Personen: Du hörst ihren Namen, mit Artikel. Probier es hier aus.",
         dec_te_titre: "Hören, nachsprechen",
-        dec_te_texte: "Darunter das Hören: Die App spricht die Wörter deines Niveaus und lässt dir Zeit, sie laut nachzusprechen. Ideal beim Gehen oder Kochen. Probier es mit deinen ersten Wörtern.",
+        dec_te_texte: "Die Kachel Hören: Die App spricht die Wörter deines Niveaus und lässt dir Zeit, sie laut nachzusprechen. Ideal beim Gehen oder Kochen. Probier es mit deinen ersten Wörtern.",
         dec_te_essai: "▶ Meine ersten Wörter hören",
         dec_te_repete: "Jetzt du: Sprich nach!",
         dec_t5_titre: "Deine Lerneinheit heute",
         dec_t5_texte: "Das ist das Herz der App. Jeden Tag eine Lerneinheit: neue Wörter, die Wiederholungen, die zur rechten Zeit wiederkommen, etwas Grammatik, Sprechen und die Szene des Tages. Du kannst so viele hintereinander machen, wie du willst. Alles bringt dein Gemälde voran. Auf der Startseite startet sie der Pfeil. Dein Niveau änderst du hier. Du fängst bei null an? Der kleine Keimling ist „Erste Schritte“: die wichtigsten Sätze fürs Reisen.",
         dec_t6_titre: "Dein Rundgang ist abgeschlossen!",
-        dec_t6_texte: "Auf der Startseite ist alles da: zuerst deine Lerneinheit, dann die Szenen und das Hören, wann du willst. Ein paar Minuten am Tag reichen. Viel Spaß beim Lernen!",
+        dec_t6_texte: "Auf der Startseite ist alles da: zuerst deine Lerneinheit, dann in den Kacheln die Szenen, die Themen und das Hören, wann du willst. Ein paar Minuten am Tag reichen. Viel Spaß beim Lernen!",
         dec_t6_bouton: "STARTEN",
         dec_t1_titre: "Dein erstes Wort",
         dec_t1_titre_plusieurs: "Deine ersten Wörter",
@@ -34486,7 +34488,7 @@ const I18N = {
         auth_login_loading: "INICIANDO SESIÓN…",
         auth_signup: "CREAR UNA CUENTA",
         setup_kicker: "Te damos la bienvenida",
-        setup_title: "Configuremos tu entorno de aprendizaje",
+        setup_title: "Preparemos tu aprendizaje",
         setup_learning_label: "¿Qué idioma estás aprendiendo?",
         setup_learning_de: "Alemán",
         setup_learning_en: "Inglés",
@@ -34534,19 +34536,19 @@ const I18N = {
         dec_progression_aria: "Paso {n} de {total}",
         dec_kicker: "Descubre Wortando",
         dec_t0_titre: "¡Te damos la bienvenida a Wortando!",
-        dec_t0_texte: "Este es un breve recorrido por la aplicación, en dos minutos. Cada día te esperan tres cosas en la pantalla de inicio: tu práctica de hoy, las escenas para explorar y la escucha. Las vemos juntas, con tus primeras palabras y tu cuadro.",
+        dec_t0_texte: "Este es un breve recorrido por la aplicación, en dos minutos. Cada día, tu práctica te espera arriba en la pantalla de inicio; debajo, unos recuadros llevan a las escenas, los temas, la escucha y tu cuadro. Veamos juntos lo esencial, con tus primeras palabras.",
         dec_t0_bouton: "COMENZAR EL RECORRIDO",
         dec_ecouter: "Volver a escuchar",
         dec_ts_titre: "Explorar las escenas",
-        dec_ts_texte: "Justo debajo de tu práctica: casi cuarenta escenas de la vida de Mark y Anna. Toca los objetos y las personas: oyes su nombre, con su artículo. Pruébalo aquí.",
+        dec_ts_texte: "En la pantalla de inicio, el recuadro Escenas: casi cuarenta escenas de la vida de Mark y Anna. Toca los objetos y las personas: oyes su nombre, con su artículo. Pruébalo aquí.",
         dec_te_titre: "Escuchar, repetir",
-        dec_te_texte: "Más abajo, la escucha: la aplicación dice las palabras de tu nivel y te deja tiempo para repetirlas en voz alta. Ideal mientras caminas o cocinas. Pruébalo con tus primeras palabras.",
+        dec_te_texte: "El recuadro Escuchar: la aplicación dice las palabras de tu nivel y te deja tiempo para repetirlas en voz alta. Ideal mientras caminas o cocinas. Pruébalo con tus primeras palabras.",
         dec_te_essai: "▶ Escuchar mis primeras palabras",
         dec_te_repete: "Tu turno: ¡repite!",
         dec_t5_titre: "Tu práctica de hoy",
         dec_t5_texte: "Es el corazón de la aplicación. Cada día, una práctica: palabras nuevas, los repasos que vuelven en el momento justo, un poco de gramática, el oral y la escena del día. Puedes hacer tantas seguidas como quieras. Todo hace avanzar tu cuadro. En la pantalla de inicio, la flecha la lanza. Tu nivel se cambia aquí. ¿Empiezas de cero? El brotecito es Primeros pasos: las frases esenciales para viajar.",
         dec_t6_titre: "¡Tu recorrido ha terminado!",
-        dec_t6_texte: "En la pantalla de inicio está todo: primero tu práctica de hoy, y luego las escenas y la escucha, cuando quieras. Con unos minutos al día basta. ¡Feliz aprendizaje!",
+        dec_t6_texte: "En la pantalla de inicio está todo: primero tu práctica de hoy, y luego, en los recuadros, las escenas, los temas y la escucha, cuando quieras. Con unos minutos al día basta. ¡Feliz aprendizaje!",
         dec_t6_bouton: "EMPEZAR",
         dec_t1_titre: "Tu primera palabra",
         dec_t1_titre_plusieurs: "Tus primeras palabras",
@@ -37864,7 +37866,11 @@ const CLIPS_PROPRES_ES = ["t4", "d5", "mots", "mot_peu"];
 // ⚠️ UN CLIP DONT LE TEXTE A CHANGE SE TAIT jusqu'a son nouvel
 // enregistrement (audio/voix_visite.py) : la voix dit le texte affiche, mot
 // pour mot, ou ne dit rien. Vider la liste une fois les clips deposes.
-const CLIPS_EN_ATTENTE = { de: [], es: [], pt: CLIPS_PROPRES_ES.slice() };
+// 12 nov. 2026 (revue d'usage) : l'intro, les scenes, l'ecoute et la fin decrivent l'accueil en tuiles ; leurs
+// clips disaient l'ancien accueil (« juste sous ta seance », « en dessous, l'ecoute »).
+const CLIPS_VISITE_A_REFAIRE = ["intro", "scene", "ecoute", "t6"];
+const CLIPS_EN_ATTENTE = { de: CLIPS_VISITE_A_REFAIRE.slice(), es: CLIPS_VISITE_A_REFAIRE.slice(),
+                           pt: CLIPS_PROPRES_ES.concat(CLIPS_VISITE_A_REFAIRE) };
 // Le portugais (lot P1) : ses clips propres (les mots et leur genre, le tableau) ne sont pas enregistres --
 // les clips allemands parleraient de der / die / das et d'Ajaccio. Ils se taisent ; le reste de la visite,
 // qui ne nomme pas la langue, garde sa voix.
@@ -46196,6 +46202,9 @@ function getNextBadgeToUnlock(){
     BADGE_DEFINITIONS.forEach(def => {
         if(unlocked.includes(def.id)) return;
         const current = stats[def.metric] || 0;
+        // 12 nov. 2026 (revue d'usage) : un badge deja atteint n'est pas « a gagner ». Le premier mot restait des
+        // jours sur l'accueil : « Premier pas · 1 sur 1 points », barre pleine.
+        if(current >= def.threshold) return;
         const ratio = Math.min(1, current / def.threshold);
         if(ratio > bestRatio){
             bestRatio = ratio;
@@ -50163,7 +50172,9 @@ function panneauBlocsExamens(){
         icon:"dossier", title:t("op_pruefung_title"), sub:t("op_pruefung_blocs_sub"),
         options:[{ icon:"dossier", title:t("op_pruefung_info_t"), desc:t("op_pruefung_info_d"),
                    action:"openPruefungInfo", section:"comprendre" }]
-            .concat(blocs.map(b => ({ icon:"dossier", title:t(b.t), desc:t(b.d), primary:true,
+            // 12 nov. 2026 (revue d'usage) : sans « primary ». Les portes etaient des cartes grises au texte gras,
+            // « Comprendre l'examen » une carte blanche : on croyait voir deux sortes de choses, ou des portes eteintes.
+            .concat(blocs.map(b => ({ icon:"dossier", title:t(b.t), desc:t(b.d),
                                       action:b.action, section:"pratique" })))
     };
 }
@@ -51863,6 +51874,18 @@ function updateHomeGreeting(){
     // L'espagnol ouvre l'exclamation : « ¡Buenos días! » (2 nov. 2026).
     const debut = getUiLang() === "es" ? "¡" : "";
     el.textContent = name ? `${debut}${t(key)}, ${name}${fin}` : `${debut}${t(key)}${fin}`;
+    try{ majAvatar(user); }catch(e){}
+}
+// L'AVATAR (12 nov. 2026, revue d'usage) : l'initiale du prenom donne a l'inscription. Il affichait les deux
+// premieres lettres de l'adresse, ou « CM » sans compte. Sans prenom connu, une silhouette.
+const AVATAR_ICONE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 19.5c1.3-3.4 4-5 7-5s5.7 1.6 7 5"/></svg>';
+function majAvatar(user){
+    const el = document.getElementById("userProfile");
+    if(!el) return;
+    const prenom = (user && !user.isAnonymous && user.displayName) ? String(user.displayName).trim() : "";
+    const initiale = prenom ? Array.from(prenom)[0].toLocaleUpperCase() : "";
+    if(initiale) el.textContent = initiale;
+    else if(el.textContent || !el.querySelector("svg")) el.innerHTML = AVATAR_ICONE;
 }
 function openNomen(){
     const learningEnglish = getLearningDirection() === 'en';
@@ -59787,14 +59810,21 @@ function renderEcouteMenu(){
     }
     const bar = document.getElementById("ecouteLevelBar");
     if(bar){
-        const total = poolEcoute("ALL").length;
-        let html = ecouteBoutonBarre(false, "demarrerEcoute('ALL')",
-            `${t("ecoute_level_all")} (${total})`, "", "flex:1 1 100%;");
-        LEVELS.forEach(lvl => {
-            const n = poolEcoute(lvl).length;
-            if(n) html += ecouteBoutonBarre(false, `demarrerEcoute('${lvl}')`,
-                `${lvl} (${n})`, "", "flex:1 1 46%; min-width:0;");
-        });
+        // 12 nov. 2026 (revue d'usage) : « Tous (7077) » venait en tete, meme pour qui commence. Ton niveau d'abord,
+        // mis en avant -- Premiers pas, ou celui de l'ecoute de l'accueil --, puis les autres niveaux, « Tous » en
+        // dernier. Aucun choix ne disparait (decision du 7 nov. : on peut ecouter tout un niveau).
+        const tonNiv = niveauEcouteAccueil();
+        if(tonNiv === "PP" && !PREMIERS_PAS_DONNEES){ try{ chargerPremiersPas().then(d => { if(d) renderEcouteMenu(); }); }catch(e){} }
+        const libelle = n => n === "ALL" ? t("ecoute_level_all") : n === "PP" ? "🌱 " + t("pp_badge") : n;
+        const bouton = (n, plein) => {
+            let k = 0;
+            try{ k = poolEcoute(n).length; }catch(e){}
+            return k ? ecouteBoutonBarre(n === tonNiv, `demarrerEcoute('${n}')`, `${libelle(n)} (${k})`, "",
+                                         plein ? "flex:1 1 100%;" : "flex:1 1 46%; min-width:0;") : "";
+        };
+        let html = bouton(tonNiv, true);
+        LEVELS.forEach(lvl => { if(lvl !== tonNiv) html += bouton(lvl, false); });
+        if(tonNiv !== "ALL") html += bouton("ALL", true);
         bar.innerHTML = html;
     }
     const barPhrase = document.getElementById("ecoutePhraseLevelBar");
@@ -68188,15 +68218,21 @@ function melangerPhrase(t){
 // pour un verbe, deux autres formes du meme verbe (« hast » / habe, hat) -- la
 // conjugaison est l'exercice ; pour un nom, deux autres noms avec leur article ;
 // pour un adjectif, deux autres adjectifs.
+// Le mot du trou, sans la ponctuation qui l'entoure : « ¿Te » -> « Te », « casa. » -> « casa ».
+function formeDuTrou(m){ return String(m || "").replace(/[.,!?;:]+$/, "").replace(/^[\u00bf\u00a1\u00ab\u201e"(]+/, ""); }
 function choixDuTrou(item){
-    const juste = String(item.phrase.mots[item.vise] || "").replace(/[.,!?;:]+$/, "");
+    const juste = formeDuTrou(item.phrase.mots[item.vise]);
     const c = item.cible;
     const vus = new Set([nuPhrase(juste)]);
     const out = [];
+    // 12 nov. 2026 (revue d'usage) : en tete de phrase, la bonne reponse porte la majuscule ; les leurres la portent
+    // aussi, sinon elle donne la reponse (« Me » parmi « nos » et « os »).
+    const majuscule = /^\p{Lu}/u.test(juste);
+    const casse = x => majuscule ? x.charAt(0).toLocaleUpperCase() + x.slice(1) : x;
     const ajouter = (texte, genre) => {
         if(out.length >= 2 || !texte || vus.has(nuPhrase(texte))) return;
         vus.add(nuPhrase(texte));
-        out.push({ texte: texte, genre: genre || "" });
+        out.push({ texte: casse(texte), genre: genre || "" });
     };
     if(c.mode === "verben"){
         melangerPhrase(formesPresent(c.word)).forEach(f => ajouter(f));
@@ -69245,6 +69281,9 @@ function montrerCartePhrase(item){
         item.phrase.mots.forEach((m, i) => {
             if(i) phrase.appendChild(document.createTextNode(" "));
             if(i === item.vise){
+                // « ¿ » et « ¡ » restent dans la phrase, devant le trou : sur le bouton, ils donnaient la reponse.
+                const debut = m.match(/^[\u00bf\u00a1\u00ab\u201e"(]+/);
+                if(debut) phrase.appendChild(document.createTextNode(debut[0]));
                 phrase.appendChild(trou);
                 const fin = m.match(/[.,!?;:]+$/);
                 if(fin) phrase.appendChild(document.createTextNode(fin[0]));
@@ -69254,7 +69293,7 @@ function montrerCartePhrase(item){
         el.appendChild(creer("p", "cp-sens", item.phrase.sens));
         const choix = creer("div", "cp-choix");
         const options = choixDuTrou(item);
-        const forme = String(item.phrase.mots[item.vise] || "").replace(/[.,!?;:]+$/, "");
+        const forme = formeDuTrou(item.phrase.mots[item.vise]);
         options.forEach(o => {
             const b = creer("button", "");
             b.type = "button";
