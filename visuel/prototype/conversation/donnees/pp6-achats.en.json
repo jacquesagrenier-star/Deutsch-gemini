@@ -1,0 +1,58 @@
+{
+ "id": "pp6-achats",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "premiers-pas",
+ "etape": 6,
+ "registre": "poli",
+ "titre": {"fr": "Dans une boutique de vêtements"},
+ "intro": {"fr": "Tu entres dans une boutique de vêtements à Boston. Tu demandes un prix, tu essaies une chemise, tu paies."},
+ "personnes": ["verkaeuferin"],
+ "debut": "help",
+ "prix": {"normal": 2000, "sale": 1500},
+ "panier": ["chemise"],
+ "noeuds": {
+  "help": {
+   "dit": [
+    {"recit": {"fr": "Une petite boutique de vêtements, dans le centre de Boston."}},
+    {"qui": "verkaeuferin", "air": "sourire", "t": "Hi! Can I help you?", "fr": "Bonjour ! Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "I'm just looking, thanks.", "fr": "Je regarde seulement, merci.", "va": "shirt",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Sure, take your time!", "fr": "Bien sûr, prenez votre temps !"}]},
+    {"t": "How much is this shirt?", "fr": "Combien coûte cette chemise ?", "va": "shirt",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "It's twenty dollars.", "fr": "Elle coûte vingt dollars."}]}
+   ]
+  },
+  "shirt": {
+   "dit": [{"recit": {"fr": "Tu as trouvé une chemise bleue qui te plaît."}}],
+   "choix": [
+    {"t": "Can I try it on?", "fr": "Je peux l'essayer ?", "va": "take",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Of course. The fitting room is over there.", "fr": "Bien sûr. La cabine d'essayage est là-bas."}]},
+    {"t": "Do you have a medium?", "fr": "Vous l'avez en taille M ?", "va": "take",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Yes, here is a medium.", "fr": "Oui, voici une taille M."}]},
+    {"faux": true, "t": "Can I try on it?", "fr": "Je peux l'essayer ? (mot à mot : essayer sur elle)",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "Try … on it? Oh, you mean try it on!", "fr": "Essayer… sur elle ? Ah, vous voulez dire l'essayer !"}],
+     "aide": {"fr": "<b>Avec « it », le petit mot se met au milieu</b> : « try it on », jamais « try on it »."}}
+   ]
+  },
+  "take": {
+   "dit": [{"recit": {"fr": "La chemise te va bien."}}],
+   "choix": [
+    {"t": "I'll take this one.", "fr": "Je prends celle-ci.", "pose": {"chemise": "normal"}, "va": "pay"},
+    {"t": "It's too expensive.", "fr": "C'est trop cher.", "pose": {"chemise": "sale"}, "va": "pay",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Good news: today it's on sale, fifteen dollars!", "fr": "Bonne nouvelle : aujourd'hui elle est en solde, quinze dollars !"}]}
+   ]
+  },
+  "pay": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "That's {a_payer}. Cash or card?", "fr": "Ça fait {a_payer}. En espèces ou par carte ?", "dit": "That's {a_payer:mots}. Cash or card?"}],
+   "choix": [
+    {"t": "By card, please.", "fr": "Par carte, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Here is your receipt. Have a nice day!", "fr": "Voici votre ticket. Bonne journée !"}]},
+    {"t": "Cash. Here you go.", "fr": "En espèces. Voilà.", "va": null,
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Thank you! Have a nice day!", "fr": "Merci ! Bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé un prix, essayé une chemise et payé {a_payer}."}
+}

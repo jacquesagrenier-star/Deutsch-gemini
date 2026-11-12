@@ -10,3 +10,5 @@ joue à `visuel/prototype/conversation.html?c=<id>&apprendre=de|es|en`.
 | pp | pp1-pass (contrôle des passeports) | à relire | à relire | à relire (us, gb) |
 | pp | pp2-cafe (petit-déjeuner) | à relire | à relire | à relire (us, gb) |
 | a1-1 | cafe-voisin (le café, un voisin de table) | à relire | à écrire | à relire (us, gb) |
+| pp | pp5-hotel (la réception de l'hôtel) | à relire | à relire | à relire (us, gb) |
+| pp | pp6-achats (le marché ; en anglais, une boutique de vêtements) | à relire | à relire | à relire (us, gb) |

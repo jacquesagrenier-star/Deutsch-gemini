@@ -1,0 +1,54 @@
+{
+ "id": "pp6-achats",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "premiers-pas",
+ "etape": 6,
+ "registre": "usted",
+ "titre": {"fr": "Au marché"},
+ "intro": {"fr": "Samedi matin, au marché de ton quartier. Tu achètes des fruits ou des légumes, tu demandes un prix, tu paies."},
+ "personnes": ["marktverkaeufer"],
+ "debut": "comprar",
+ "prix": {"manzanas": 250, "tomates": 180, "queso": 400},
+ "panier": ["fruta", "queso"],
+ "noeuds": {
+  "comprar": {
+   "dit": [
+    {"recit": {"fr": "Samedi matin, au marché. Un marchand t'appelle derrière son étal."}},
+    {"qui": "marktverkaeufer", "air": "sourire", "t": "¡Buenos días! ¿Qué le pongo?", "fr": "Bonjour ! Qu'est-ce que je vous sers ?"}
+   ],
+   "choix": [
+    {"t": "Un kilo de manzanas, por favor.", "fr": "Un kilo de pommes, s'il vous plaît.", "pose": {"fruta": "manzanas"}, "va": "mas"},
+    {"t": "Medio kilo de tomates, por favor.", "fr": "Un demi-kilo de tomates, s'il vous plaît.", "pose": {"fruta": "tomates"}, "va": "mas"},
+    {"faux": true, "t": "Un medio kilo de tomates, por favor.", "fr": "Un demi-kilo de tomates (mot à mot : « un » demi-kilo).",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "¿Un medio kilo? Medio kilo, ¿no?", "fr": "« Un » demi-kilo ? Un demi-kilo, non ?"}],
+     "aide": {"fr": "<b>« medio » se dit sans « un »</b>, contrairement au français : « medio kilo », « media hora »."}}
+   ]
+  },
+  "mas": {
+   "dit": [{"qui": "marktverkaeufer", "air": "question", "t": "Muy bien. ¿Algo más?", "fr": "Très bien. Autre chose ?"}],
+   "choix": [
+    {"t": "No, nada más, gracias.", "fr": "Non, rien d'autre, merci.", "va": "pagar"},
+    {"t": "¿Cuánto cuesta el queso?", "fr": "Combien coûte le fromage ?", "va": "queso",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "¿El queso? Cuatro euros.", "fr": "Le fromage ? Quatre euros."}]}
+   ]
+  },
+  "queso": {
+   "dit": [],
+   "choix": [
+    {"t": "Muy bien, me lo llevo.", "fr": "Très bien, je le prends.", "pose": {"queso": "queso"}, "va": "pagar"},
+    {"t": "Es muy caro. No, gracias.", "fr": "C'est très cher. Non, merci.", "va": "pagar"}
+   ]
+  },
+  "pagar": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Son {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Son {a_payer:mots}."}],
+   "choix": [
+    {"t": "¿Tiene una bolsa?", "fr": "Vous avez un sac ?", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Sí, claro. Aquí tiene. ¡Buen fin de semana!", "fr": "Oui, bien sûr. Voilà. Bon week-end !"}]},
+    {"t": "Gracias, adiós.", "fr": "Merci, au revoir.", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "¡Gracias! ¡Buen fin de semana!", "fr": "Merci ! Bon week-end !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as acheté au marché, demandé un prix et payé {a_payer}."}
+}

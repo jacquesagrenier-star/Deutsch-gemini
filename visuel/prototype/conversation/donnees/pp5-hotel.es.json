@@ -1,0 +1,58 @@
+{
+ "id": "pp5-hotel",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "premiers-pas",
+ "etape": 5,
+ "registre": "usted",
+ "titre": {"fr": "À la réception de l'hôtel"},
+ "intro": {"fr": "Tu arrives à ton hôtel de Madrid. Tu prends ta chambre, puis, le lendemain matin, tu signales un problème."},
+ "personnes": ["rezeptionistin"],
+ "debut": "llegada",
+ "noeuds": {
+  "llegada": {
+   "dit": [
+    {"recit": {"fr": "Le soir, à la réception d'un petit hôtel."}},
+    {"qui": "rezeptionistin", "air": "sourire", "t": "¡Buenas tardes! Bienvenidos al hotel.", "fr": "Bonsoir ! Bienvenue à l'hôtel."}
+   ],
+   "choix": [
+    {"t": "Buenas tardes. Tengo una reserva para dos noches.", "fr": "Bonsoir. J'ai une réservation pour deux nuits.", "va": "habitacion"},
+    {"t": "Buenas tardes. ¿Tiene una habitación doble?", "fr": "Bonsoir. Vous avez une chambre double ?", "va": "habitacion"},
+    {"faux": true, "t": "Buenas tardes. Soy una reserva.", "fr": "Bonsoir. Je suis une réservation.",
+     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "¿Usted … es una reserva?", "fr": "Vous… êtes une réservation ?"}],
+     "aide": {"fr": "<b>« soy »</b>, c'est « je suis » ; <b>« tengo »</b>, « j'ai ». Dis : « Tengo una reserva »."}}
+   ]
+  },
+  "habitacion": {
+   "dit": [{"qui": "rezeptionistin", "air": "sourire", "t": "Muy bien. Su habitación está en la tercera planta. Aquí tiene la llave.", "fr": "Très bien. Votre chambre est au troisième étage. Voici la clé."}],
+   "choix": [
+    {"t": "Gracias. Perdón, ¿dónde está el ascensor?", "fr": "Merci. Pardon, où est l'ascenseur ?", "va": "manana",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Aquí mismo, a la izquierda.", "fr": "Juste ici, à gauche."}]},
+    {"t": "Gracias. ¿El desayuno está incluido?", "fr": "Merci. Le petit-déjeuner est compris ?", "va": "manana",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Sí, el desayuno está incluido.", "fr": "Oui, le petit-déjeuner est compris."}]}
+   ]
+  },
+  "manana": {
+   "dit": [
+    {"recit": {"fr": "Le lendemain matin, tu redescends à la réception."}},
+    {"qui": "rezeptionistin", "air": "question", "t": "¡Buenos días! ¿Todo bien?", "fr": "Bonjour ! Tout va bien ?"}
+   ],
+   "choix": [
+    {"t": "La ducha no funciona.", "fr": "La douche ne fonctionne pas.", "va": "algo",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "¡Ay, lo siento! Ahora mismo mando a alguien.", "fr": "Oh, je suis désolée ! J'envoie quelqu'un tout de suite."}]},
+    {"t": "Hay mucho ruido en la habitación.", "fr": "Il y a beaucoup de bruit dans la chambre.", "va": "algo",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "¡Ay, lo siento! Le doy otra habitación.", "fr": "Oh, je suis désolée ! Je vous donne une autre chambre."}]}
+   ]
+  },
+  "algo": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "¿Necesita algo más?", "fr": "Vous avez besoin d'autre chose ?"}],
+   "choix": [
+    {"t": "¿A qué hora es el desayuno?", "fr": "Le petit-déjeuner, c'est à quelle heure ?", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "De siete a diez. ¡Que aproveche!", "fr": "De sept heures à dix heures. Bon appétit !"}]},
+    {"t": "No, gracias. ¡Adiós!", "fr": "Non, merci. Au revoir !", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "¡Adiós! ¡Que tenga un buen día!", "fr": "Au revoir ! Bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as pris ta chambre, posé une question, signalé un problème et obtenu une solution."}
+}

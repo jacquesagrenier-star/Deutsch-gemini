@@ -1,0 +1,58 @@
+{
+ "id": "pp5-hotel",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "premiers-pas",
+ "etape": 5,
+ "registre": "Sie",
+ "titre": {"fr": "À la réception de l'hôtel"},
+ "intro": {"fr": "Tu arrives à ton hôtel de Berlin. Tu prends ta chambre, puis, le lendemain matin, tu signales un problème."},
+ "personnes": ["rezeptionistin"],
+ "debut": "ankunft",
+ "noeuds": {
+  "ankunft": {
+   "dit": [
+    {"recit": {"fr": "Le soir, à la réception d'un petit hôtel."}},
+    {"qui": "rezeptionistin", "air": "sourire", "t": "Guten Abend! Willkommen im Hotel.", "fr": "Bonsoir ! Bienvenue à l'hôtel."}
+   ],
+   "choix": [
+    {"t": "Guten Abend. Ich habe eine Reservierung für zwei Nächte.", "fr": "Bonsoir. J'ai une réservation pour deux nuits.", "va": "zimmer"},
+    {"t": "Guten Abend. Haben Sie ein Doppelzimmer?", "fr": "Bonsoir. Vous avez une chambre double ?", "va": "zimmer"},
+    {"faux": true, "t": "Guten Abend. Ich bin eine Reservierung.", "fr": "Bonsoir. Je suis une réservation.",
+     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "Sie … sind eine Reservierung?", "fr": "Vous… êtes une réservation ?"}],
+     "aide": {"fr": "<b>« ich bin »</b>, c'est « je suis » ; <b>« ich habe »</b>, « j'ai ». Dis : « Ich habe eine Reservierung »."}}
+   ]
+  },
+  "zimmer": {
+   "dit": [{"qui": "rezeptionistin", "air": "sourire", "t": "Sehr gut. Ihr Zimmer ist im dritten Stock. Hier ist der Schlüssel.", "fr": "Très bien. Votre chambre est au troisième étage. Voici la clé."}],
+   "choix": [
+    {"t": "Danke. Entschuldigung, wo ist der Aufzug?", "fr": "Merci. Excusez-moi, où est l'ascenseur ?", "va": "morgen",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Gleich hier links.", "fr": "Juste ici, à gauche."}]},
+    {"t": "Danke. Ist das Frühstück inklusive?", "fr": "Merci. Le petit-déjeuner est compris ?", "va": "morgen",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Ja, das Frühstück ist inklusive.", "fr": "Oui, le petit-déjeuner est compris."}]}
+   ]
+  },
+  "morgen": {
+   "dit": [
+    {"recit": {"fr": "Le lendemain matin, tu redescends à la réception."}},
+    {"qui": "rezeptionistin", "air": "question", "t": "Guten Morgen! Alles gut?", "fr": "Bonjour ! Tout va bien ?"}
+   ],
+   "choix": [
+    {"t": "Die Dusche funktioniert nicht.", "fr": "La douche ne fonctionne pas.", "va": "noch",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "Oh, das tut mir leid! Ich schicke sofort jemanden.", "fr": "Oh, je suis désolée ! J'envoie quelqu'un tout de suite."}]},
+    {"t": "Es ist sehr laut im Zimmer.", "fr": "Il y a beaucoup de bruit dans la chambre.", "va": "noch",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "Oh, das tut mir leid! Sie bekommen ein anderes Zimmer.", "fr": "Oh, je suis désolée ! Vous aurez une autre chambre."}]}
+   ]
+  },
+  "noch": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Brauchen Sie noch etwas?", "fr": "Vous avez besoin d'autre chose ?"}],
+   "choix": [
+    {"t": "Wann gibt es Frühstück?", "fr": "Le petit-déjeuner, c'est à quelle heure ?", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Von sieben bis zehn Uhr. Guten Appetit!", "fr": "De sept heures à dix heures. Bon appétit !"}]},
+    {"t": "Nein, danke. Auf Wiedersehen!", "fr": "Non, merci. Au revoir !", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Auf Wiedersehen! Einen schönen Tag!", "fr": "Au revoir ! Bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as pris ta chambre, posé une question, signalé un problème et obtenu une solution."}
+}
