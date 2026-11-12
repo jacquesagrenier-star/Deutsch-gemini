@@ -70,7 +70,7 @@ async ([rater, limite]) => {
     cartes++;
     if(c.mode === 'phrase'){ try{ repondrePhrase(c, c.forme === 'pp_tableau' || c.forme === 'av_bloc' ? null : true); }catch(e){} nextFlashcard(); }
     else {
-      if(!fois.get(c) && encore.size < rater){ encore.add(c); fois.set(c, 1); reviewAgain(); }
+      if(!fois.get(c) && encore.size < rater && !document.querySelector('#flashcardActions.presentation')){ encore.add(c); fois.set(c, 1); reviewAgain(); }
       else reviewGood();
       n++;
     }

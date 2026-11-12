@@ -57570,6 +57570,10 @@ function motPresenteVu(bientot){
         const st = getWordState(item.themeId, item.index);
         if(!st.vu){ st.vu = Date.now(); setWordState(item.themeId, item.index, st); }
     }catch(e){}
+    // Une carte passee comme une autre : elle compte dans le jour (l'ecran court disait « 2 cartes aujourd'hui » apres
+    // quatre) et Premiers pas avance au-dela d'elle -- une seance rouverte ne la remontre pas (tests/premiers_pas_suite.py).
+    try{ const n = recordDailyActivity(); if(n > 0) triggerDailyGoalCelebration(n); }catch(e){}
+    if(typeof item.ppPos === "number"){ try{ marquerPositionPremiersPas(item.ppPos + 1); }catch(e){} }
     if(bientot) remettreEnFile(item); else redemanderPlusLoin(item);
     // Le carreau du tableau se pose a la vraie reponse, pas deux fois pour le meme mot (voir carreauAuDepart).
     carreauDejaPose = item;

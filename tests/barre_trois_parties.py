@@ -60,7 +60,7 @@ async ([rater]) => {
     releves.push(Object.assign(barre(), { carte: c.forme || c.mode }));
     const n0 = currentFlashcard, q0 = currentCards;
     if(c.mode === 'phrase'){ try{ repondrePhrase(c, c.forme === 'pp_tableau' || c.forme === 'av_bloc' ? null : true); }catch(e){} nextFlashcard(); }
-    else if(!fois.get(c) && rates < rater){ fois.set(c, 1); rates++; reviewAgain(); }
+    else if(!fois.get(c) && rates < rater && !document.querySelector('#flashcardActions.presentation')){ fois.set(c, 1); rates++; reviewAgain(); }
     else reviewGood();
     for(let k = 0; k < 40 && currentFlashcard === n0 && currentCards === q0; k++) await pause(50);
   }
