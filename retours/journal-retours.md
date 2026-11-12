@@ -9831,3 +9831,5 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
   → Grammaire dans chaque séance confiée le 12 nov. à la session de la barre (maquettes-ameliorations), plan avant code. Montrer l'effet du choix : proposition faite à Jacques.
 - 12 nov. (Jacques, espagnol, scène de la salle de classe) : on lui demande « la camisa » ; il touche le professeur entier, et c'est compté juste, « alors qu'il aurait fallu que je sélectionne seulement la chemise ».
   → Cause : la zone du professeur porte Hemd dans « aussi » (Hemd sans zone propre) ; même défaut pour 7 autres personnes (klassenzimmer, kreuzung). Confié le 12 nov. à la session de revue des scènes : un vêtement ne se trouve qu'en touchant le vêtement (l'inverse, vêtement → personne, reste voulu).
+- 12 nov. (Jacques, espagnol, v1181, séance) : « quand je suis passé à image, les images n'avancent pas. Donc, la barre image reste noire. »
+  → Confié le 12 nov. à la session de la barre (maquettes-ameliorations), avec la Grammaire dans chaque séance : la partie Images doit avancer à chaque bonne réponse de la scène (et du thème, des conversations).
