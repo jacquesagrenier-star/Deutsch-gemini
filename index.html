@@ -74294,7 +74294,10 @@ function showFlashcardEnd(){
         // « Encore » continue le parcours, comme ailleurs il ajoute des mots.
         const reste = sequencePremiersPas().length - positionPremiersPas();
         encore.classList.toggle("hidden", reste <= 1 || !premiersPasEnCours());
-        encore.textContent = tf("encore_neufs", { n: SUPPLEMENT_SEANCE });
+        // Le meme bouton qu'en A1 (revue A a Z, 12 nov. 2026 : « 20 cartes de plus » ici, « Encore une seance » la).
+        encore.textContent = t("legere_encore");
+        encore.classList.remove("secondary");
+        encore.classList.add("primary");
         // La constellation : les seances des Premiers pas comptent aussi (l'etoile filante des la 2e).
         if(currentCards.some(c => c && typeof c.ppPos === "number")) noterSeanceLegereFinie(currentCards);
     }
