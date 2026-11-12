@@ -174,10 +174,11 @@ function poserVisage(qui, air){
   if (actuelle && actuelle.getAttribute("src") === src) return;
   const img = new Image(); img.alt = ""; img.src = src; img.className = "sort";
   cadre.appendChild(img);
-  requestAnimationFrame(() => requestAnimationFrame(() => {
+  // un minuteur et non requestAnimationFrame : celui-ci s'arrete quand la page est en arriere-plan, et l'image restait invisible
+  setTimeout(() => {
     img.classList.remove("sort");
     if (actuelle){ actuelle.classList.add("sort"); setTimeout(() => actuelle.remove(), 400); }
-  }));
+  }, 30);
 }
 function entre(qui){ const f = persos[qui]; if (f.hidden){ f.hidden = false; f.classList.add("arrive"); } }
 function quiParle(qui){
@@ -464,7 +465,7 @@ function boutonHP(texte, qui, libelle){
 
 let dernier = "kellnerin", fil, repondre, sansFilet = Q.get("sansfilet") === "1";
 const attendre = ms => new Promise(r => setTimeout(r, ms));
-function defiler(){ requestAnimationFrame(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })); }
+function defiler(){ setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }), 30); }
 async function replique(r){
   if (r[0] === "recit"){ fil.appendChild(el("div", "recit", r[1])); defiler(); await attendre(700); return; }
   const [qui, air, de, fr, lecture] = r;
