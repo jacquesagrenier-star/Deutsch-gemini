@@ -9704,7 +9704,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
     </div>
 
     <div class="card hidden" id="authSignupCard">
-        <p style="color:#4C566B" data-i18n="auth_signup_desc">Tu as reçu un code d'invitation ? Crée ton compte ici.</p>
+        <p style="color:#4C566B" id="authSignupDesc" data-i18n="auth_signup_desc">Tu as reçu un code d'invitation ? Crée ton compte ici.</p>
         <div class="spacer"></div>
         <input id="authSignupFirstName" class="answer" type="text" maxlength="60" placeholder="Prénom" style="margin-bottom:12px;" data-i18n-placeholder="auth_first_name_placeholder">
         <input id="authSignupEmail" class="answer" type="email" placeholder="E-mail" style="margin-bottom:12px;" data-i18n-placeholder="auth_email_placeholder">
@@ -16667,6 +16667,8 @@ const I18N = {
         delete_account_confirm: "Dernière vérification : ton compte et toute ta progression vont être effacés définitivement. Continuer ?",
         delete_account_done: "Compte supprimé.",
         delete_account_error: "La suppression n'a pas abouti. Vérifie ta connexion et réessaie.",
+        auth_invite_code_optional: "Code d'invitation (facultatif)",
+        auth_signup_desc_open: "Crée ton compte pour sauvegarder ta progression et la retrouver sur un autre appareil.",
         sans_compte_desc: "Pas besoin de compte pour apprendre : tout est ouvert tout de suite. Tu pourras en créer un plus tard pour sauvegarder ta progression.",
         sans_compte_commencer: "COMMENCER SANS COMPTE",
         sans_compte_actif: "Tu apprends sans compte : ta progression reste sur cet appareil. Crée un compte pour la sauvegarder et la retrouver sur un autre appareil, sans rien perdre.",
@@ -18445,6 +18447,8 @@ const I18N = {
         delete_account_confirm: "Last check: your account and all your progress are about to be permanently deleted. Continue?",
         delete_account_done: "Account deleted.",
         delete_account_error: "The deletion did not go through. Check your connection and try again.",
+        auth_invite_code_optional: "Invitation code (optional)",
+        auth_signup_desc_open: "Create your account to save your progress and find it on another device.",
         sans_compte_desc: "No account needed to learn: everything is open right away. You can create one later to save your progress.",
         sans_compte_commencer: "START WITHOUT AN ACCOUNT",
         sans_compte_actif: "You're learning without an account: your progress stays on this device. Create an account to save it and find it on another device, without losing anything.",
@@ -20167,6 +20171,8 @@ const I18N = {
         delete_account_confirm: "Son kontrol: hesabın ve tüm ilerlemen kalıcı olarak silinecek. Devam edilsin mi?",
         delete_account_done: "Hesap silindi.",
         delete_account_error: "Silme işlemi tamamlanamadı. Bağlantını kontrol edip yeniden dene.",
+        auth_invite_code_optional: "Davet kodu (isteğe bağlı)",
+        auth_signup_desc_open: "İlerlemeni kaydetmek ve başka bir cihazda bulmak için hesabını oluştur.",
         sans_compte_desc: "Öğrenmek için hesap gerekmez: her şey hemen açık. İlerlemeni kaydetmek için daha sonra bir hesap oluşturabilirsin.",
         sans_compte_commencer: "HESAPSIZ BAŞLA",
         sans_compte_actif: "Hesapsız öğreniyorsun: ilerlemen bu cihazda kalıyor. Hiçbir şey kaybetmeden kaydetmek ve başka bir cihazda bulmak için bir hesap oluştur.",
@@ -21743,6 +21749,8 @@ const I18N = {
         delete_account_confirm: "Остання перевірка: твій обліковий запис і весь поступ буде видалено назавжди. Продовжити?",
         delete_account_done: "Обліковий запис видалено.",
         delete_account_error: "Видалити не вдалося. Перевір з'єднання і спробуй ще раз.",
+        auth_invite_code_optional: "Код запрошення (необов'язково)",
+        auth_signup_desc_open: "Створи обліковий запис, щоб зберегти свій прогрес і відкрити його на іншому пристрої.",
         sans_compte_desc: "Для навчання обліковий запис не потрібен: усе відкрито одразу. Пізніше ти зможеш його створити, щоб зберегти свій прогрес.",
         sans_compte_commencer: "ПОЧАТИ БЕЗ ОБЛІКОВОГО ЗАПИСУ",
         sans_compte_actif: "Ти навчаєшся без облікового запису: твій прогрес зберігається на цьому пристрої. Створи обліковий запис, щоб зберегти його й відкрити на іншому пристрої, нічого не втративши.",
@@ -23076,6 +23084,8 @@ const I18N = {
         delete_account_confirm: "بررسی آخر: حساب و همهٔ پیشرفت تو برای همیشه پاک می‌شود. ادامه می‌دهی؟",
         delete_account_done: "حساب حذف شد.",
         delete_account_error: "حذف انجام نشد. اتصالت را بررسی کن و دوباره تلاش کن.",
+        auth_invite_code_optional: "کد دعوت (اختیاری)",
+        auth_signup_desc_open: "حسابت را بساز تا پیشرفتت ذخیره شود و روی دستگاه دیگری هم پیدایش کنی.",
         sans_compte_desc: "برای یادگیری به حساب کاربری نیازی نیست: همه‌چیز از همین حالا باز است. بعداً می‌توانی حسابی بسازی تا پیشرفتت ذخیره شود.",
         sans_compte_commencer: "شروع بدون حساب",
         sans_compte_actif: "بدون حساب یاد می‌گیری: پیشرفتت روی همین دستگاه می‌ماند. حسابی بساز تا آن را ذخیره کنی و روی دستگاه دیگری هم پیدایش کنی، بی‌آنکه چیزی از دست برود.",
@@ -24860,6 +24870,8 @@ const I18N = {
         delete_account_confirm: "تحقّق أخير: سيُحذف حسابك وكل تقدّمك نهائياً. هل تتابع؟",
         delete_account_done: "تم حذف الحساب.",
         delete_account_error: "لم يتمّ الحذف. تحقّق من اتصالك وأعد المحاولة.",
+        auth_invite_code_optional: "رمز الدعوة (اختياري)",
+        auth_signup_desc_open: "أنشئ حسابك لحفظ تقدّمك والعثور عليه على جهاز آخر.",
         sans_compte_desc: "لا تحتاج إلى حساب لكي تتعلّم: كلّ شيء متاح فورًا. يمكنك إنشاء حساب لاحقًا لحفظ تقدّمك.",
         sans_compte_commencer: "ابدأ بدون حساب",
         sans_compte_actif: "أنت تتعلّم بدون حساب: يبقى تقدّمك على هذا الجهاز. أنشئ حسابًا لحفظه والعثور عليه على جهاز آخر، دون أن تفقد شيئًا.",
@@ -27217,6 +27229,8 @@ const I18N = {
         delete_account_confirm: "Última verificação: a sua conta e todo o seu progresso vão ser apagados definitivamente. Continuar?",
         delete_account_done: "Conta excluída.",
         delete_account_error: "A exclusão não foi concluída. Verifique sua conexão e tente de novo.",
+        auth_invite_code_optional: "Código de convite (opcional)",
+        auth_signup_desc_open: "Crie sua conta para salvar seu progresso e recuperá-lo em outro aparelho.",
         sans_compte_desc: "Não é preciso ter conta para aprender: tudo está liberado desde já. Você pode criar uma depois para salvar seu progresso.",
         sans_compte_commencer: "COMEÇAR SEM CONTA",
         sans_compte_actif: "Você está aprendendo sem conta: seu progresso fica neste aparelho. Crie uma conta para salvá-lo e recuperá-lo em outro aparelho, sem perder nada.",
@@ -29002,6 +29016,8 @@ const I18N = {
         delete_account_confirm: "Ostatnie sprawdzenie: twoje konto i wszystkie postępy zostaną trwale usunięte. Kontynuować?",
         delete_account_done: "Konto usunięte.",
         delete_account_error: "Usuwanie się nie powiodło. Sprawdź połączenie i spróbuj ponownie.",
+        auth_invite_code_optional: "Kod zaproszenia (opcjonalnie)",
+        auth_signup_desc_open: "Załóż konto, żeby zapisać swoje postępy i odzyskać je na innym urządzeniu.",
         sans_compte_desc: "Do nauki nie potrzebujesz konta: wszystko jest od razu dostępne. Później możesz je założyć, żeby zapisać swoje postępy.",
         sans_compte_commencer: "ZACZNIJ BEZ KONTA",
         sans_compte_actif: "Uczysz się bez konta: twoje postępy zostają na tym urządzeniu. Załóż konto, żeby je zapisać i odzyskać na innym urządzeniu, niczego nie tracąc.",
@@ -30790,6 +30806,8 @@ const I18N = {
         delete_account_confirm: "Последняя проверка: твой аккаунт и весь прогресс будут удалены навсегда. Продолжить?",
         delete_account_done: "Аккаунт удалён.",
         delete_account_error: "Удаление не удалось. Проверь подключение и попробуй ещё раз.",
+        auth_invite_code_optional: "Код приглашения (необязательно)",
+        auth_signup_desc_open: "Создай аккаунт, чтобы сохранить свой прогресс и открыть его на другом устройстве.",
         sans_compte_desc: "Для учёбы аккаунт не нужен: всё открыто сразу. Позже ты сможешь создать его, чтобы сохранить свой прогресс.",
         sans_compte_commencer: "НАЧАТЬ БЕЗ АККАУНТА",
         sans_compte_actif: "Ты учишься без аккаунта: твой прогресс хранится на этом устройстве. Создай аккаунт, чтобы сохранить его и открыть на другом устройстве, ничего не потеряв.",
@@ -32577,6 +32595,8 @@ const I18N = {
         delete_account_confirm: "Letzte Prüfung: Dein Konto und dein gesamter Fortschritt werden endgültig gelöscht. Weiter?",
         delete_account_done: "Konto gelöscht.",
         delete_account_error: "Das Löschen hat nicht geklappt. Prüfe deine Verbindung und versuch es noch einmal.",
+        auth_invite_code_optional: "Einladungscode (optional)",
+        auth_signup_desc_open: "Leg dein Konto an, um deinen Fortschritt zu sichern und auf einem anderen Gerät wiederzufinden.",
         sans_compte_desc: "Zum Lernen brauchst du kein Konto: Alles ist sofort offen. Später kannst du eins anlegen, um deinen Fortschritt zu sichern.",
         sans_compte_commencer: "OHNE KONTO STARTEN",
         sans_compte_actif: "Du lernst ohne Konto: Dein Fortschritt bleibt auf diesem Gerät. Leg ein Konto an, um ihn zu sichern und auf einem anderen Gerät wiederzufinden, ohne etwas zu verlieren.",
@@ -34377,6 +34397,8 @@ const I18N = {
         delete_account_confirm: "Última comprobación: tu cuenta y todo tu progreso se van a borrar para siempre. ¿Continuar?",
         delete_account_done: "Cuenta eliminada.",
         delete_account_error: "No se pudo eliminar la cuenta. Comprueba tu conexión y vuelve a intentarlo.",
+        auth_invite_code_optional: "Código de invitación (opcional)",
+        auth_signup_desc_open: "Crea tu cuenta para guardar tu progreso y recuperarlo en otro dispositivo.",
         sans_compte_desc: "No necesitas una cuenta para aprender: todo está abierto desde ya. Podrás crear una más adelante para guardar tu progreso.",
         sans_compte_commencer: "EMPEZAR SIN CUENTA",
         sans_compte_actif: "Estás aprendiendo sin cuenta: tu progreso se queda en este dispositivo. Crea una cuenta para guardarlo y recuperarlo en otro dispositivo, sin perder nada.",
@@ -38466,6 +38488,32 @@ async function commencerSansCompte(){
         if(btn) btn.disabled = false;
     }
 }
+// LE CODE D'INVITATION (decision de Jacques du 12 nov. 2026 : « Oui, comme
+// propose ») : obligatoire pour creer un compte avec une adresse jusqu'au
+// lancement, facultatif ensuite -- par le MEME geste que l'abonnement : poser
+// ACCES.lancement suffit, aucune autre ligne a changer. Apres le lancement, un
+// code saisi est encore verifie et consomme, mais il ne fait plus un testeur
+// a vie (etatEssaiPur : date du compte avant la sortie).
+function codeInvitationObligatoire(){
+    if(!ACCES.lancement) return true;
+    const d = new Date(ACCES.lancement + "T00:00:00").getTime();
+    return isNaN(d) || Date.now() < d;
+}
+function majCodeInvitationFacultatif(){
+    const facultatif = !codeInvitationObligatoire();
+    const champ = document.getElementById("authInviteCode");
+    if(champ){
+        const cle = facultatif ? "auth_invite_code_optional" : "auth_invite_code_placeholder";
+        champ.setAttribute("data-i18n-placeholder", cle);
+        champ.placeholder = t(cle);
+    }
+    const desc = document.getElementById("authSignupDesc");
+    if(desc){
+        const cle = facultatif ? "auth_signup_desc_open" : "auth_signup_desc";
+        desc.setAttribute("data-i18n", cle);
+        desc.textContent = t(cle);
+    }
+}
 function ouvrirCompteDepuisReglages(mode){
     showScreen("auth");
     setAuthMode(mode === "login" ? "login" : "signup");
@@ -38487,6 +38535,7 @@ function appliquerEtatSansCompte(user){
         montrer("authModeToggle", true);
         montrer("userAccountInfo", false);
     }
+    majCodeInvitationFacultatif();
     montrer("settingsCompteAvecAdresse", !anonyme);
     montrer("settingsCompteSansAdresse", anonyme);
     // Effacer ses donnees sans compte : il n'y a pas de mot de passe.
@@ -38575,7 +38624,8 @@ async function handleEmailSignup() {
     if (!isValidEmail(email)) { showInfoToast(t('alert_valid_email')); return; }
     if (password.length < 6) { showInfoToast(t('alert_password_min_length')); return; }
     if (password !== passwordConfirm) { showInfoToast(t('alert_password_mismatch')); return; }
-    if (!code) { showInfoToast(t('alert_invite_code_required')); return; }
+    // Obligatoire jusqu'au lancement, facultatif ensuite (codeInvitationObligatoire).
+    if (!code && codeInvitationObligatoire()) { showInfoToast(t('alert_invite_code_required')); return; }
 
     // Sans compte (12 nov. 2026) : l'adresse sera RELIEE a ce compte anonyme --
     // meme uid, donc toute la progression deja faite reste la sienne.
@@ -38590,8 +38640,8 @@ async function handleEmailSignup() {
         if(!sansCompte) window.INSCRIPTION_EN_COURS = true;
         // On valide le code AVANT de créer le compte, pour ne pas créer de compte
         // Firebase orphelin si le code est invalide ou déjà utilisé.
-        let codeSnap;
-        try {
+        let codeSnap = null;
+        if (code) try {
             codeSnap = await window.fsGetDoc(window.fsDoc(window.firestoreDb, 'inviteCodes', code));
         } catch (e) {
             // v890 : LA RAISON DANS LE MESSAGE. Jacques (20 oct. 2026) : « toujours
@@ -38603,7 +38653,7 @@ async function handleEmailSignup() {
             try{ console.error("verification du code", e); }catch(x){}
             return;
         }
-        if (!codeSnap.exists() || codeSnap.data().used) {
+        if (code && (!codeSnap.exists() || codeSnap.data().used)) {
             showInfoToast(t('alert_invalid_invite_code'));
             return;
         }
@@ -38623,7 +38673,7 @@ async function handleEmailSignup() {
             // La marque « utilisé » et le profil se créent une fois le compte prêt
             // (le nouvel utilisateur est alors authentifié, ce qu'exigent les règles
             // Firestore) : un échec ici n'empêche pas la connexion de fonctionner.
-            try {
+            if (code) try {
                 await window.fsUpdateDoc(window.fsDoc(window.firestoreDb, 'inviteCodes', code), {
                     used: true,
                     usedAt: window.fsServerTimestamp(),
@@ -38636,9 +38686,8 @@ async function handleEmailSignup() {
                 // l'anonyme, qui dit si le compte a ete cree avant la sortie.
                 await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', uid), Object.assign({
                     email,
-                    firstName,
-                    inviteCode: code
-                }, sansCompte ? { adresseLieeLe: window.fsServerTimestamp() }
+                    firstName
+                }, code ? { inviteCode: code } : {}, sansCompte ? { adresseLieeLe: window.fsServerTimestamp() }
                               : { createdAt: window.fsServerTimestamp() }), { merge: true });
             } catch (e) {}
             if (sansCompte) {
