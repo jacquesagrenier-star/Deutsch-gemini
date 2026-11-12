@@ -70867,6 +70867,12 @@ async function ouvrirPremiersPas(taille){
         // v879 : les reperes (jours, mois, nombres) des Premiers pas.
         try{ const rp = await preparerReperes(); if(rp && items.length > 2) items = insererReperes(items, rp); }catch(e){}
         try{ const sd = await preparerSonDuJour(); if(sd && items.length > 2) items = insererSonDuJour(items, sd); }catch(e){}
+        // 12 nov. 2026 : une partie Grammaire dans chaque seance -- au milieu d'une etape, trois questions de son tableau.
+        try{
+            const d = (items.find(x => x && typeof x.jourPP === "number") || {}).jourPP;
+            const jr = joursPremiersPas()[d];
+            items = await assurerGrammaireSeance(items, jr ? jr.tableau : null, 0);
+        }catch(e){}
         try{ items = premiereCarteFacile(items); }catch(e){}
         // v941 : une scene toutes les 8 cartes, comme la seance du jour (voir
         // preparerArretScene). Jamais en derniere position : la fin de seance lit
@@ -72629,6 +72635,11 @@ async function ouvrirSeanceDuJour(sansScene){
     try{ const rp = await preparerReperes(); if(rp && seance.length) seance = insererReperes(seance, rp); }catch(e){}
     // v880 : le son du jour, une fois par jour, au milieu.
     try{ const sd = await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
+    // 12 nov. 2026 : une partie Grammaire dans chaque seance (assurerGrammaireSeance).
+    try{
+        const nVus = tout.filter(it => !estNeuf(getWordState(it.themeId, it.index))).length;
+        seance = await assurerGrammaireSeance(seance, (av && av.lieu && !av.finA1) ? av.lieu.tableau : null, nVus);
+    }catch(e){}
     // 6 nov. 2026 : la seance regroupee par partie (voir LE PLAN DE LA SEANCE),
     // AVANT premiereCarteFacile, qui ne deplace que quelques cartes de tete.
     let regroupee = null;
@@ -72712,11 +72723,11 @@ function glisserPhrasesPlusTard(paquet, tout){
 // dans la seance, sinon dans les revisions : elles restent APRES ce mot.
 // 7 nov. 2026 (decision 6fda9e0) : le theme illustre a sa partie, apres les revisions -- la scene dans la
 // premiere moitie, le theme vers la fin, les deux avant la fin de la seance.
-const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "scene", "conv", "son", "revisions", "theme", "fin"];
+const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "gram", "scene", "conv", "son", "revisions", "theme", "fin"];
 // Essai « seance_legere » (decision d9d9dbd) : la lecon dans l'ordre de la maquette -- « Revisions · Mots ·
 // Grammaire · Scene · Theme ».
 // 8 nov. 2026 : le son avant le theme, qui reste la derniere etape (seules les cartes de cloture le suivent).
-const ORDRE_PARTS_LEGERE = ["revisions", "lieu", "neufs", "feuille", "reperes", "scene", "conv", "son", "theme", "fin"];
+const ORDRE_PARTS_LEGERE = ["revisions", "lieu", "neufs", "feuille", "reperes", "gram", "scene", "conv", "son", "theme", "fin"];
 function ordreParts(){ return seanceLegere() ? ORDRE_PARTS_LEGERE : ORDRE_PARTS; }
 // LA BARRE EN TROIS PARTIES (decision de Jacques du 12 nov. 2026, proposition 5 de la revue : « des cartes,
 // [grammaire], images [...] conversation va s'ajouter » ; « mettre conversation au pluriel » ; puis « Pas besoin de
@@ -72726,13 +72737,16 @@ function ordreParts(){ return seanceLegere() ? ORDRE_PARTS_LEGERE : ORDRE_PARTS;
 // Les parties fines (ORDRE_PARTS) gardent l'ordre a l'interieur d'une partie de la barre.
 const GROUPES_SEANCE = ["cartes", "grammaire", "images", "conv"];
 const GROUPE_DE_PARTIE = { revisions: "cartes", lieu: "cartes", neufs: "cartes", fin: "fin", feuille: "grammaire",
-                           reperes: "grammaire", son: "grammaire", scene: "images", theme: "images", conv: "conv" };
+                           reperes: "grammaire", gram: "grammaire", son: "grammaire", scene: "images", theme: "images", conv: "conv" };
 function groupePartie(p){ return GROUPE_DE_PARTIE[p] || p || "cartes"; }
 let SEANCE_PARTS = null;           // { paquet, parts (Map carte -> partie), themeId, niveau, etape }
 const PASSAGES_VUS = new Set();    // les parties dont l'ecran de passage a ete montre (v1122 : par partie)
 function partDeCarteSeance(c, av, parCle){
     if(!c) return "revisions";
     const forme = c.forme || "";
+    // 12 nov. 2026 (Jacques : « une partie grammaire dans chaque seance ») : les questions de grammaire (« gram »,
+    // sans mot vise, elles tombaient dans les revisions) et le tableau du verbe de l'escale vont dans Grammaire.
+    if(c.mode === "phrase" && (forme === "gram" || c.gramTableau || c.avTableau)) return "gram";
     if(c.av) return /^(av_escale_fin|av_jalon|av_fin_a1)$/.test(forme) ? "fin" : "lieu";
     if(forme === "theme_arret") return "theme";
     if(forme === "scene_arret") return "scene";
@@ -73121,8 +73135,105 @@ function groupeCartePP(c){
     const f = (c && c.forme) || "", tid = String((c && c.themeId) || "");
     if(f === "conv_arret") return "conv";
     if(f === "theme_arret" || f === "scene_arret" || f === "pp_scene") return "images";
+    if(f === "pp_tableau" || f === "gram" || (c && c.gramTableau)) return "grammaire";
     if(tid.indexOf("son_") === 0 || tid.indexOf("rp_") === 0 || (c && (c.rpBadge || c.rpTableau))) return "grammaire";
     return "cartes";
+}
+// UNE PARTIE GRAMMAIRE DANS CHAQUE SEANCE (decision de Jacques du 12 nov. 2026 : « Ouais, j'aimerais avoir une partie
+// grammaire dans chaque seance »). Une seance qui a moins de trois cartes de grammaire (palier 1 : les questions « gram »
+// n'arrivent qu'a 60 mots vus ; Premiers pas ; l'escale dont le tableau est deja vu) est completee a trois, AJOUTEES
+// (les mots nouveaux annonces restent justes) : tirees du tableau de l'etape ou de l'escale quand il y en a un, sinon du
+// cours (questionGrammaire, les questions faciles sous 200 mots vus). Rien n'est ecrit a la main. Le profil dose
+// toujours (formesSelonProfil) ; le japonais n'en recoit pas (sa seance ne prend pas de cartes-phrases).
+const GRAMMAIRE_GARANTIE = 3;
+const PRONOMS_TABLEAU = {
+    de: ["ich", "du", "er", "sie", "es", "wir", "ihr", "Sie"],
+    es: ["yo", "tú", "vos", "usted", "él", "ella", "nosotros", "nosotras", "vosotros", "vosotras", "ustedes", "ellos", "ellas"],
+    en: ["I", "you", "he", "she", "it", "we", "they"],
+    pt: ["eu", "tu", "você", "ele", "ela", "nós", "vocês", "eles", "elas"]
+};
+function compterGrammaire(liste){
+    return (liste || []).filter(c => {
+        if(!c) return false;
+        const tid = String(c.themeId || "");
+        return c.forme === "gram" || c.forme === "pp_tableau" || c.gramTableau || c.avTableau || c.rpBadge || c.rpTableau
+            || c.fcBadge || c.fcFeuille || c.feuilleTemps || tid.indexOf("rp_") === 0 || tid.indexOf("son_") === 0;
+    });
+}
+// Les questions d'un tableau (Premiers pas, escale de l'A1 voyage). Un verbe : « du ___ », trois formes du tableau, une
+// seule juste -- une forme n'est jamais proposee si une autre ligne du tableau la donne a un des pronoms de la question
+// (« sie ___ » : ni « ist », qui est aussi « sie ist », ni rien d'autre que « sind »). Une ligne sans pronom (« voy »,
+// « Wo? », « zwanzig ») : son sens parmi trois sens differents du tableau.
+function questionsDeTableau(tableau, n){
+    const lignes = ((tableau && tableau.l) || []).filter(l => Array.isArray(l) && l[0] && l[1]);
+    const pronoms = PRONOMS_TABLEAU[LANGUE_APPRISE] || [];
+    const bas = x => String(x).toLowerCase();
+    const decoupe = lignes.map(l => {
+        const m = /^(.+?)\s+(\S+)$/.exec(String(l[0]).trim());
+        if(!m) return null;
+        const pr = m[1].split(/\s*·\s*/);
+        if(!pr.every(x => pronoms.indexOf(x) >= 0) || /[·…?¿!]/.test(m[2])) return null;
+        return { pr: pr.map(bas), forme: m[2], sens: sensPremiersPas(l[1]), ligne: l };
+    });
+    const conj = [], sens = [];
+    decoupe.forEach((d, i) => {
+        if(d){
+            const interdites = new Set(decoupe.filter(e => e && e.pr.some(x => d.pr.indexOf(x) >= 0)).map(e => e.forme));
+            const autres = [];
+            decoupe.forEach(e => { if(e && !interdites.has(e.forme) && autres.indexOf(e.forme) < 0) autres.push(e.forme); });
+            if(autres.length >= 2){
+                const pronom = String(lignes[i][0]).trim().replace(/\s+\S+$/, "");
+                conj.push({ question: pronom + " ___", translation: d.sens, answers: [d.forme], correct: d.forme,
+                            options: melangerPhrase([d.forme].concat(melangerPhrase(autres).slice(0, 2))) });
+                return;
+            }
+        }
+        const s0 = sensPremiersPas(lignes[i][1]);
+        const autres = [];
+        lignes.forEach(l => { const s1 = sensPremiersPas(l[1]); if(bas(s1) !== bas(s0) && autres.every(a => bas(a) !== bas(s1))) autres.push(s1); });
+        if(autres.length >= 2 && lignes.filter(l => l[0] === lignes[i][0]).length === 1)
+            sens.push({ question: String(lignes[i][0]), answers: [s0], correct: s0,
+                        options: melangerPhrase([s0].concat(melangerPhrase(autres).slice(0, 2))) });
+    });
+    return melangerPhrase(conj).concat(melangerPhrase(sens)).slice(0, n).map((ex, k) => ({
+        mode: "phrase", forme: "gram", ex: ex, jeu: null, cible: null, gramTableau: true,
+        themeId: "gram_tableau", index: k, phrase: null, word: "" }));
+}
+function questionsDuCours(n, nVus){
+    const out = [], vues = new Set();
+    for(let essai = 0; out.length < n && essai < n * 8; essai++){
+        const q = questionGrammaire(nVus);
+        if(!q || vues.has(q.ex)) continue;
+        vues.add(q.ex);
+        out.push({ mode: "phrase", forme: "gram", ex: q.ex, jeu: q.nom, cible: null,
+                   themeId: "gram_cours", index: out.length, phrase: null, word: "" });
+    }
+    return out;
+}
+async function assurerGrammaireSeance(seance, tableau, nVus){
+    if(LANGUE_APPRISE === "ja" || !seance || !seance.length) return seance;
+    // Trois cartes de grammaire au moins (cinq au profil « regles », qui en veut plus) : le tableau, les reperes, le son
+    // du jour et les questions deja tirees comptent.
+    let profil = null;
+    try{ profil = profilActif(); }catch(e){}
+    const manque = (profil && profil.f === "regles" ? GRAMMAIRE_GARANTIE + 2 : GRAMMAIRE_GARANTIE) - compterGrammaire(seance);
+    if(manque <= 0) return seance;
+    let ajout = [];
+    try{ if(tableau) ajout = questionsDeTableau(tableau, manque); }catch(e){ ajout = []; }
+    if(ajout.length < manque){
+        // exercices.json est precharge 700 ms apres l'accueil : en pratique deja la. Sinon, 2,5 s au plus -- la barre
+        // est fixee des la premiere carte, la grammaire ne peut pas arriver apres.
+        try{
+            const attente = new Promise(r => setTimeout(r, 2500));
+            await Promise.race([prechargerGrammaireSeance().catch(() => {}), attente]);
+        }catch(e){}
+        try{ ajout = ajout.concat(questionsDuCours(manque - ajout.length, nVus)); }catch(e){}
+    }
+    if(!ajout.length) return seance;
+    // Avant le premier arret (la scene de l'etape ferme la seance de Premiers pas : ce qui la suit n'est pas joue).
+    let i = seance.findIndex(c => c && /^(pp_scene|pp_fin|scene_arret|theme_arret|conv_arret)$/.test(c.forme || ""));
+    if(i < 0) i = seance.length;
+    return seance.slice(0, i).concat(ajout, seance.slice(i));
 }
 function partsPremiersPas(paquet){
     const parts = new Map();
