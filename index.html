@@ -14167,6 +14167,23 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, deleteUser, EmailAuthProvider, reauthenticateWithCredential, sendPasswordResetEmail, verifyPasswordResetCode, confirmPasswordReset, signInAnonymously, linkWithCredential } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, deleteField, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getMessaging, getToken as fcmGetToken, isSupported as fcmIsSupported } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js";
+import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app-check.js";
+
+// ---- App Check (12 nov. 2026, audit de lancement, avec le mode sans compte) ----
+// Firebase joint a chaque appel (Firestore, connexion) un jeton qui prouve que
+// la demande vient de NOTRE page, servie par wortando.com -- pas d'un script qui
+// aurait recopie la cle publique ci-dessous. Fournisseur : reCAPTCHA Enterprise,
+// invisible (un score, jamais d'image a cliquer). Les apps iPhone et Android
+// chargent cette meme page : elles sont couvertes sans recompilation.
+// INERTE TANT QUE LA CLE EST VIDE. Elle se cree dans Google Cloud (pas a pas :
+// securite/APP-CHECK.md) ; c'est un identifiant public, pas un secret.
+// Remplie, App Check SURVEILLE seulement : Firebase compte les demandes
+// verifiees et non verifiees, et ne refuse rien tant que personne n'a clique
+// « Enforce » dans la console (a decider sur les chiffres, apres 7 a 14 jours).
+// Sur 127.0.0.1 / localhost (parcours, sondes), le fournisseur de debogage :
+// reCAPTCHA y refuserait le domaine. En file://, rien.
+const APP_CHECK_CLE = "";
+window.appCheckEtat = "inerte";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDK9aTVTxDWWrGSIuydHtjSvUTaEguu45U",
@@ -14179,6 +14196,21 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+// AVANT tout autre service : un appel parti avant App Check partirait sans jeton.
+if(APP_CHECK_CLE && /^https?:$/.test(location.protocol)){
+    try{
+        if(/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+        initializeAppCheck(app, {
+            provider: new ReCaptchaEnterpriseProvider(APP_CHECK_CLE),
+            isTokenAutoRefreshEnabled: true
+        });
+        window.appCheckEtat = "actif";
+    }catch(e){
+        // Jamais bloquant : sans App Check, l'app marche comme avant (tant que
+        // rien n'est impose dans la console).
+        window.appCheckEtat = "erreur : " + (e && e.message || e);
+    }
+}
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);

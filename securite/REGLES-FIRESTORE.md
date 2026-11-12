@@ -30,27 +30,48 @@ comme du texte). Les règles ferment la porte du côté de Firebase.
 | S'ouvrir un essai ou les VHS | possible | refusé : seul l'admin les ouvre |
 | S'offrir l'abonnement (`accesAVie`, `accesJusqua`) | possible | refusé : seul l'admin les pose, dans `users` ; personne ne peut les écrire dans les autres langues ni dans les résumés |
 | Début de l'essai (`essaiDebut`) | libre | écrit une seule fois, à l'heure du serveur ; ni réécrit, ni effacé, ni posé par l'admin |
-| Progression, codes d'invitation, lectures | inchangés | inchangés |
+| Documents de progression (`users`, `usuariosEs`, `usersEn`, `usersPt`, `usersJa`) | n'importe quelle clé, n'importe quel contenu jusqu'à 1 Mio | les clés que l'app écrit (`champsProgression()`), compteurs en nombres, dates en dates, adresse, prénom et appareil bornés ; les gros champs (vocabulaire, retours, journal) seulement par le 1 Mio de Firestore |
+| Codes d'invitation, lectures | inchangés | inchangés |
 
 Bornes des résumés : prénom 60 caractères, retours 20 000, mots demandés 150,
 appareil 20, version 10, langue 10, compteurs entre 0 et 10 millions.
 Les plus grands mesurés le 11 nov. : prénom 15, retours 11 917. L'app coupe
 déjà le résumé à ces bornes (depuis ce correctif) : une écriture normale n'est jamais refusée.
 
+**Documents de progression** (12 nov., avec le mode sans compte : un uid
+s'obtient en un clic). Mesure en lecture seule le 12 nov. : 56 documents, le
+plus gros 319 Ko (l'ancienne carte `progress`, que l'app efface), médiane
+3,8 Ko, au plus 47 clés. Les 41 clés de la sauvegarde sont identiques sur main
+et sur les cinq branches en file.
+- ⚠️ **Une clé ajoutée à la sauvegarde doit l'être à `champsProgression()`**,
+  sinon toute la sauvegarde de chacun est refusée, sans message.
+  `tests/verifier.py` le contrôle avant chaque push (« cles Firestore »).
+- ⚠️ **Firestore n'évalue pas plus de 1 000 expressions par requête.** Une
+  sauvegarde complète la dépassait dans une première version (le banc l'a vu :
+  toute la sauvegarde refusée). Marge mesurée : 10 contrôles de champ de plus
+  passent, 15 non ; une clé de plus dans la liste ne coûte presque rien (100
+  essayées, et 25 clés réellement écrites en plus). Ne pas ajouter de contrôle
+  sans relancer le banc.
+
 ## Éprouvé avant d'être proposé
 
 Dans l'émulateur Firebase local (un projet fictif, rien n'est parti vers le
-vrai Firebase), 195 cas, avec le SDK de l'app (146 pour l'audit, 49 pour
-l'abonnement) :
+vrai Firebase), 241 cas, avec le SDK de l'app (146 pour l'audit, 49 pour
+l'abonnement, 16 pour le mode sans compte, 30 pour la forme des documents de
+progression) :
 
-- **Nouvelles règles : 195 sur 195.** Toutes les écritures normales passent
+- **Nouvelles règles : 241 sur 241.** Toutes les écritures normales passent
   (inscription, sauvegarde, résumé, notifications, suppression du compte,
   boutons admin, « Reconstruire les résumés », codes d'invitation, début de
-  l'essai écrit par l'app, accès offert par l'admin puis sauvegarde ordinaire),
+  l'essai écrit par l'app, accès offert par l'admin puis sauvegarde ordinaire,
+  compte sans compte, la sauvegarde réelle complète dans les cinq langues,
+  un compte ancien avec ses clés d'autrefois),
   et toutes les attaques sont refusées.
-- **Règles actuelles : 88 attaques passent** (prénom trop long, compteur en
+- **Règles actuelles : 114 cas sur 241 donnent un autre résultat** (attaques qui passent (prénom trop long, compteur en
   texte, champ inconnu, adresse d'un autre, essai ou VHS auto-attribué,
-  accès à vie ou 4 mois offerts à soi-même, début d'essai réécrit…).
+  accès à vie ou 4 mois offerts à soi-même, début d'essai réécrit, clé
+  inconnue de 900 000 caractères dans une progression…, et les écritures du
+  mode sans compte, qu'elles ne connaissent pas).
 
 Le banc d'essai se relance ainsi (Java et Firebase CLI sont installés) :
 `securite/essai-regles/` → voir son `LISEZ-MOI.md`.
@@ -94,9 +115,11 @@ quand même).
   ce serait à défaire aussitôt. La vraie protection d'une inscription ouverte
   est ailleurs : App Check, quota d'inscriptions par adresse IP
   (Authentication → Paramètres) et alerte de budget.
-- **Taille des documents de progression** : pas bornée ici. Firestore refuse
-  de lui-même au-delà de 1 Mio, et une borne plus basse risquerait de refuser
-  en silence la sauvegarde d'un testeur assidu.
+- **Taille totale des documents de progression** : Firestore refuse de
+  lui-même au-delà de 1 Mio ; les gros champs ne sont pas bornés plus bas, une
+  borne risquerait de refuser en silence la sauvegarde d'un testeur assidu.
+  Le coût d'un abus se règle par App Check et le quota d'inscriptions
+  (`securite/APP-CHECK.md`).
 - **Un champ de droit d'accès ajouté plus tard** doit rejoindre
   `accesReserves()`, sinon chacun pourrait se l'accorder. L'abonnement payé,
   lui, n'est pas dans Firestore : RevenueCat le dit à l'app.
