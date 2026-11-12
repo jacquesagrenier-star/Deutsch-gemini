@@ -9817,3 +9817,5 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
   → Confié le 12 nov. à la session de la séance (maquettes-ameliorations) : reproduire, trouver si c'est une nouvelle séance proposée trop tôt ou un état perdu ; l'accueil doit dire « séance faite » après la séance (décision du 11 nov.).
 - 12 nov. (Jacques, v1176) : séance recommencée, puis passage en mode nuit pendant la séance ; dans la partie Révisions (les vagues), le fond reste celui du jour au lieu de passer à la nuit.
   → Confié le 12 nov. à la session de la séance (maquettes-ameliorations), avec les autres défauts de la séance (révision des mots manqués).
+- 12 nov. (Jacques, espagnol, v1177, conversations) : « lorsque je suis en espagnol, je devrais juste voir les conversations espagnoles et non allemand et anglais » ; en ouvrant « Au contrôle des passeports » : un flash, puis ça revient ; pendant la conversation (« Buenos días », « Por favor »), « l'image saute », « l'écran est vide », « Faut que je clique sur l'écran ou là, ça apparaît ».
+  → Confié le 12 nov. à la session des conversations (dtz-mark-anna), dans le lot 71.
