@@ -4792,7 +4792,10 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
    cote. Seule difference : pas de bille ✓ ni de points (rien n'est juge), le mot « Continuer » a sa place. */
 #flashcardActions.presentation .judge-good .judge-bille, #flashcardActions.presentation .judge-good .srs-ladder{display:none !important;}
 #flashcardActions.presentation .judge-good .judge-continuer{position:static !important; width:auto !important; height:auto !important;
-    overflow:visible !important; clip-path:none !important; white-space:normal; font-size:17px; font-weight:800;}
+    overflow:visible !important; clip-path:none !important; white-space:normal; font-size:17px; font-weight:800;
+    color:var(--va-encre, #1C2430) !important; text-shadow:none !important;}
+/* L'etiquette « Essentiel » (la cle, en haut a gauche du verso) reste visible : le bandeau descend sous elle. */
+#flashcard.presentation .flashcard-back:has(#flashExamenCoin:not(.hidden)) .carte-presente-bandeau{margin-top:26px;}
 /* Le bandeau et le contour : l'ENCRE, une couleur sans teinte (Jacques : « en allemand, on a deja un code de couleur
    pour der, die, das »). Rien de bleu, de rouge ni de vert, de jour comme de nuit ; et la barre du genre, en haut de
    la carte (border-der / -die / -das), reste visible : la carte du mot neuf ne la recouvre plus. */
