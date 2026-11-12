@@ -27,7 +27,7 @@ DONNEES = os.path.join(DOSSIER, "donnees")
 PP = {"de": os.path.join(RACINE, "premiers-pas.json"), "es": os.path.join(RACINE, "espanol", "datos", "premiers-pas.json"),
       "en": os.path.join(RACINE, "anglais", "datos", "premiers-pas.json"),
       "en-gb": os.path.join(RACINE, "anglais", "datos-gb", "premiers-pas.json")}
-LONGUEUR = {"premiers-pas": (3, 4), "voyage": (5, 6), "A2": (6, 8), "B1": (1, 10), "B2": (1, 10), "C1": (1, 10)}
+LONGUEUR = {"premiers-pas": (3, 4), "voyage": (4, 6), "A1": (4, 6), "A2": (6, 8), "B1": (1, 10), "B2": (1, 10), "C1": (1, 10)}
 REPLI = {"question": ["attentive", "sourire"], "attentive": ["question", "sourire"], "surprise": ["attentive", "sourire"],
          "perplexe": ["attentive", "surprise", "sourire"], "amuse": ["sourire"], "sourire": ["attentive"]}
 TUTOIEMENT = {"Sie": r"\b(du|dich|dir|dein\w*)\b", "usted": r"\b(t[uú]|te|ti|contigo|tus?)\b"}
@@ -174,19 +174,37 @@ def plier_texte(s):
 
 
 def main():
-    personnes = json.load(io.open(os.path.join(DOSSIER, "personnes.json"), encoding="utf-8"))
-    personnes = {k: v for k, v in personnes.items() if not k.startswith("_")}
+    idx = json.load(io.open(os.path.join(DONNEES, "index.json"), encoding="utf-8"))
+    personnes = {}
+    for f in idx["personnes"]:
+        chemin = os.path.join(DOSSIER, f)
+        if not os.path.exists(chemin):
+            continue
+        for k, v in json.load(io.open(chemin, encoding="utf-8")).items():
+            if k.startswith("_"):
+                continue
+            if k in personnes:
+                erreurs.append("%s : la personne « %s » existe deja dans un autre fichier" % (f, k))
+            personnes[k] = v
     for q, p in personnes.items():
         for air, img in p.get("visages", {}).items():
             if not os.path.exists(os.path.join(RACINE, "visuel", "prototype", img)):
                 erreurs.append("personnes.json : %s %s : image absente (%s)" % (q, air, img))
-    idx = json.load(io.open(os.path.join(DONNEES, "index.json"), encoding="utf-8"))
-    attendus = {"%s.%s.json" % (e["id"], l) for e in idx["conversations"] for l in e["langues"]}
-    presents = {f for f in os.listdir(DONNEES) if f.endswith(".json") and f != "index.json"}
+    attendus, ids = set(), []
+    for lot in idx["lots"]:
+        chemin = os.path.join(DONNEES, "lot-%s.json" % lot)
+        if not os.path.exists(chemin):
+            erreurs.append("index.json annonce le lot %s, fichier lot-%s.json absent" % (lot, lot)); continue
+        for e in json.load(io.open(chemin, encoding="utf-8"))["conversations"]:
+            ids.append(e["id"])
+            attendus.update("%s.%s.json" % (e["id"], l) for l in e["langues"])
+    for i in sorted({i for i in ids if ids.count(i) > 1}):
+        erreurs.append("la conversation %s est dans deux lots" % i)
+    presents = {f for f in os.listdir(DONNEES) if f.endswith(".json") and f != "index.json" and not f.startswith("lot-")}
     for f in sorted(attendus - presents):
-        erreurs.append("index.json annonce %s, absent" % f)
+        erreurs.append("un lot annonce %s, absent" % f)
     for f in sorted(presents - attendus):
-        erreurs.append("%s n'est pas dans index.json" % f)
+        erreurs.append("%s n'est dans aucun lot" % f)
     choisis = sys.argv[1:]
     for f in sorted(presents):
         if not choisis or f.split(".")[0] in choisis:

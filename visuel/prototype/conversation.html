@@ -542,6 +542,10 @@ async function liste(){
   document.getElementById("surtitre").textContent = "Maquette";
   document.getElementById("titre").textContent = "Jouer une conversation";
   const idx = await charger("conversation/donnees/index.json");
+  const toutes = [];
+  for (const lot of idx.lots){
+    try{ (await charger("conversation/donnees/lot-" + lot + ".json")).conversations.forEach(e => toutes.push(e)); }catch(e){}
+  }
   ecran.textContent = "";
   const c = el("div", "liste");
   const lg = el("div", "langues");
@@ -551,7 +555,7 @@ async function liste(){
   });
   c.appendChild(lg);
   let groupe = null;
-  for (const e of idx.conversations){
+  for (const e of toutes){
     if (!e.langues.includes(LANGUE)) continue;
     const d = await charger("conversation/donnees/" + e.id + "." + LANGUE + ".json");
     const g = d.parcours === "premiers-pas" ? "Premiers pas" : d.parcours === "voyage" ? "Le voyage A1" : d.niveau;
@@ -581,7 +585,12 @@ document.getElementById("retour").onclick = () => {
 if (DANS_APP) document.getElementById("marque").hidden = true;
 (async () => {
   try{
-    PERS = await charger("conversation/personnes.json");
+    // les personnes : celles de tous les lots, fusionnees (personnes.json, puis personnes-<lot>.json s'il existe)
+    PERS = {};
+    const idx = await charger("conversation/donnees/index.json");
+    for (const f of idx.personnes){
+      try{ Object.assign(PERS, await charger("conversation/" + f)); }catch(e){}
+    }
     if (Q.get("c")){ C = await charger("conversation/donnees/" + Q.get("c") + "." + LANGUE + ".json"); presentation(); }
     else await liste();
   }catch(e){ ecran.textContent = "Cette conversation n'existe pas encore (" + e.message + ")."; }
