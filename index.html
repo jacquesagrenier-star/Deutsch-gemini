@@ -9416,6 +9416,17 @@ html[dir="rtl"] #flashcards .cp-actions button.primary::before{transform:scaleX(
     color:#1c6b47 !important; animation:motDuPoint .28s ease both;}
 body[data-theme="dark"] #flashcardActions .judge-good .srs-ladder-text.dit{color:#7FD3A5 !important;}
 @keyframes motDuPoint{from{opacity:0; transform:translateY(2px);} to{opacity:.95; transform:none;}}
+/* LES POINTS SELON LE FOND DE LA PARTIE (Jacques, 11 nov. 2026 : « dans la revision, on ne voyait pas bien, mais dans les
+   mots, on voit suffisamment » ; « c'est pas une question de grossir [...] c'est vraiment une question de visibilite »).
+   Le bouton est un verre presque transparent : derriere les points, c'est le sol du paysage de la partie. Le vert passe
+   sur l'orange des Mots (2,99:1, juge suffisant) et tombe a 2:1 sur le bleu des Revisions, le violet des Verbes ou le
+   rose du Theme. paysageSeance() mesure le vert sur ce sol ; en dessous du niveau des Mots, body.points-encre met les
+   points et le mot a l'encre de l'app. Meme taille, memes places ; la nuit passe partout et ne change pas
+   (tests/points_contraste.py). */
+body.points-encre #flashcardActions .judge-good .srs-pip{background:rgba(28,36,48,.30);}
+body.points-encre #flashcardActions .judge-good .srs-pip.on{background:#1C2430;}
+body.points-encre #flashcardActions .judge-good .srs-pip.next{box-shadow:0 0 0 2.5px rgba(28,36,48,.30);}
+body.points-encre #flashcardActions .judge-good .srs-ladder-text.dit{color:#1C2430 !important;}
 @media (prefers-reduced-motion:reduce){ #flashcardActions .judge-good .srs-ladder-text.dit{animation:none;} }
 #flashcardActions .judge-row2 .judge-button{min-height:36px !important;}
 #flashcardActions .judge-garde svg, #flashcardActions .judge-sortir svg{color:var(--va-coffre);}
@@ -70321,12 +70332,24 @@ function melangePaysage(hex, cible, k){
     return "#" + a.map((v, i) => Math.round(v + (b[i] - v) * k).toString(16).padStart(2, "0")).join("");
 }
 let PAYSAGE_MONTRE = null;
+// Le contraste de deux couleurs « #RRGGBB » (WCAG). POINTS_SEUIL : celui du vert sur l'orange des Mots, que Jacques
+// juge assez visible ; une partie qui fait moins passe a l'encre.
+// Calcule sur le sol nu : les Mots y font 2,87:1 (2,99 a l'ecran, le verre eclaircit un peu), le Son 3,24 ; les
+// Revisions 1,93, les Verbes 1,87, le Theme 2,04, la Scene 2,63, Premiers pas 2,71 passent a l'encre (4,5 a 6,6:1).
+const POINTS_SEUIL = 2.8;
+function contrasteCouleurs(a, b){
+    const l = h => { const v = [1, 3, 5].map(i => parseInt(h.substr(i, 2), 16) / 255).map(c => c <= .03928 ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4));
+                     return .2126 * v[0] + .7152 * v[1] + .0722 * v[2]; };
+    const x = l(a), y = l(b);
+    return (Math.max(x, y) + .05) / (Math.min(x, y) + .05);
+}
 function paysageSeance(cle){
     let el = document.getElementById("seancePaysage");
     if(!cle || !repereSeanceDispo()){
         if(el) el.classList.add("hidden");
         const fd = document.getElementById("seanceFond"); if(fd) fd.classList.add("hidden");
         document.body.classList.remove("seance-fond");
+        document.body.classList.remove("points-encre");
         PAYSAGE_MONTRE = null; return;
     }
     if(!el){
@@ -70350,6 +70373,8 @@ function paysageSeance(cle){
         if(!fd){ fd = document.createElement("div"); fd.id = "seanceFond"; fd.setAttribute("aria-hidden", "true"); document.body.insertBefore(fd, el); }
         fd.style.background = "linear-gradient(180deg," + (nuit ? melangePaysage(b, fond, .58) + " 0%," + melangePaysage(b, fond, .82) : melangePaysage(b, fond, .42) + " 0%," + melangePaysage(b, fond, .72)) + " 100%)";
         document.body.style.setProperty("--seance-kick", nuit ? "#F0B456" : melangePaysage(b, "#000000", .62));
+        // Les quatre points du verso (voir body.points-encre) : le vert des points, de jour, sur le sol de la partie.
+        document.body.classList.toggle("points-encre", !nuit && contrasteCouleurs("#1c6b47", av) < POINTS_SEUIL);
         el.innerHTML = '<svg viewBox="0 0 320 100" preserveAspectRatio="none">' + astre + '<path d="' + L.ar + '" fill="' + ar + '"/>'
             + (L.supA ? '<g fill="' + ar + '">' + L.supA + "</g>" : "")
             + (L.milieu ? '<g fill="' + av + '" color="' + av + '" opacity=".55"><path d="' + L.milieu + '"/>' + (L.supM || "") + "</g>" : "")
