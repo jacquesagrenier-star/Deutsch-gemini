@@ -9819,3 +9819,5 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
   → Confié le 12 nov. à la session de la séance (maquettes-ameliorations), avec les autres défauts de la séance (révision des mots manqués).
 - 12 nov. (Jacques, espagnol, v1177, conversations) : « lorsque je suis en espagnol, je devrais juste voir les conversations espagnoles et non allemand et anglais » ; en ouvrant « Au contrôle des passeports » : un flash, puis ça revient ; pendant la conversation (« Buenos días », « Por favor »), « l'image saute », « l'écran est vide », « Faut que je clique sur l'écran ou là, ça apparaît ».
   → Confié le 12 nov. à la session des conversations (dtz-mark-anna), dans le lot 71.
+- 12 nov. (Jacques, app iPhone, espagnol, conversations) : « quand je clique sur ma réponse, ça ne la dit pas. Puis ça passe tout de suite à l'autre personnage. »
+  → Confié le 12 nov. à la session des conversations, lot 71 (la réponse dite, le temps de la voir, puis la réplique suivante).
