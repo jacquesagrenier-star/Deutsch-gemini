@@ -23,7 +23,9 @@ la page (aucun texte dans les images), comme dans « Les demarches ».
 
 LA GRAMMAIRE : en allemand Wohin? + accusatif / Wo? + datif (in die Kita, in der Schule, von der Kita), les verbes
 separables (Mark holt Mia ab, Katrin meldet Mia an, Katrin ruft in der Schule an), les pluriels de la liste (vier Hefte) ;
-en espagnol ir a / estar en, la contraction al, la « a » personnelle (Mark recoge a Mia), les pluriels.
+en espagnol ir a / estar en, la contraction al, la « a » personnelle (Mark recoge a Mia), les pluriels ; en portugais
+(lot P4, 12 nov. 2026, Lisbonne, Portugal et Bresil : PT_... plus bas) ir a / estar em et leurs contractions (à escola, ao
+jardim de infância, na escola, no jardim de infância), ir buscar / buscar, l'accord um / uma, dois / duas.
 
 LES PHRASES SONT FABRIQUEES par la page (ecole.html) a partir de ces tables, jamais ecrites une a une. Un leurre n'est
 jamais une reponse possible : chaque action dit les verbes qui iraient aussi (aussi_v), chaque objet les objets qu'on
@@ -386,6 +388,294 @@ DECOUPES = {"heft": (110, 90, 570, 660), "buch": (585, 85, 1005, 660), "maeppche
 DECOUPES = {k: (x0 / 1400, y0 / 1045, x1 / 1400, y1 / 1045) for k, (x0, y0, x1, y1) in DECOUPES.items()}   # relevees sur la vue 1400 x 1045
 
 
+# ---------------------------------------------------------------------------------------------------------------
+# LE PORTUGAIS APPRIS (lot P4, 12 nov. 2026). Lisbonne, le Portugal d'abord ; « br_ » seulement la ou le Bresil differe
+# (la page prend pt_, ou br_ s'il existe, avec &variante=br, et les pose sous « pt » au chargement). Pas « pt » : cette
+# cle est deja la TRADUCTION en portugais du Bresil pour qui apprend es ou de. La meme famille que l'espagnol a Madrid :
+# Jan et Katrin, Ben (7 ans, a escola, 2.º ano) et Mia (4 ans, o jardim de infância -- jamais a creche, qui est pour les
+# moins de trois ans, au Portugal comme au Bresil). L'axe : ir a + l'article (à escola, ao jardim de infância), estar em
+# (na escola, no jardim de infância), « ir buscar » au Portugal / « buscar » au Bresil, porque. Au Portugal l'article
+# devant le prenom (o Ben, a Mia, a Katrin), au Bresil le prenom seul. Les leurres de « Vai ___ » ne proposent jamais
+# « na » / « no » (le Bresil les dit pour le mouvement) ni « para a » (juste).
+PT_LIEUX = {
+    "escola": {"mot": "escola", "genre": "a", "nom": "a escola", "akk": "à escola", "dat": "na escola", "von": "da escola",
+               "faux_akk": ["ao escola", "a a escola"], "faux_dat": ["no escola", "em a escola"],
+               "trad": {"fr": ["l'école", "à l'école", "à l'école"], "en": ["the school", "to school", "from school"]}},
+    "jardim": {"mot": "jardim de infância", "genre": "o", "nom": "o jardim de infância", "akk": "ao jardim de infância", "dat": "no jardim de infância",
+               "von": "do jardim de infância", "faux_akk": ["à jardim de infância", "a o jardim de infância"], "faux_dat": ["na jardim de infância", "em o jardim de infância"],
+               "trad": {"fr": ["le jardin d'enfants", "au jardin d'enfants", "au jardin d'enfants"], "en": ["the kindergarten", "to kindergarten", "from kindergarten"]}},
+}
+PT_ENFANTS = {"Ben": ["escola"], "Mia": ["jardim"]}
+PT_AGES = {7: "sete", 4: "quatro"}
+
+
+def _pt_action(id_, v, s, c, img, noms, faux, t_fr, t_en, **extra):
+    """Une action portugaise : s et c portent deja les articles (o Ben, a Mia) ; « Portugal » et « Bresil » en paires."""
+    a = {"id": id_, "v": v, "s": s, "c": c, "img": img, "noms": noms, "aussi_v": [], "t": {"fr": t_fr, "en": t_en}}
+    if faux:
+        a["faux_v"] = faux
+    a.update(extra)
+    return a
+
+
+# (Portugal, Bresil) : le sujet, le complement et, pour « aller chercher », l'infinitif affiche (ir buscar / buscar)
+_PT_ACT = [
+    ("bringen_kita", "levar", ("A Katrin", "Katrin"), ("a Mia ao jardim de infância", "Mia ao jardim de infância"), "kita-bringen", [["jardim de infância", "o"]],
+     ["escrever", "pintar", "brincar", "fazer"], "Katrin amène Mia au jardin d'enfants.", "Katrin takes Mia to kindergarten.", {}),
+    ("bringen_schule", "levar", ("O Jan", "Jan"), ("o Ben à escola", "Ben à escola"), "schulweg", [["escola", "a"]],
+     ["escrever", "pintar", "brincar", "fazer"], "Jan amène Ben à l'école.", "Jan takes Ben to school.", {}),
+    ("abholen_kita", "buscar", ("O Mark", "Mark"), ("a Mia ao jardim de infância", "Mia no jardim de infância"), "kita-abholen", [["jardim de infância", "o"]],
+     ["escrever", "pintar", "brincar", "fazer"], "Mark va chercher Mia au jardin d'enfants.", "Mark picks Mia up from kindergarten.", {"inf": ("ir buscar", "buscar")}),
+    ("abholen_schule", "buscar", ("O Jan", "Jan"), ("o Ben à escola", "Ben na escola"), "schule-abholen", [["escola", "a"]],
+     ["escrever", "pintar", "brincar", "fazer"], "Jan va chercher Ben à l'école.", "Jan picks Ben up from school.", {"inf": ("ir buscar", "buscar")}),
+    ("anmelden", "inscrever", ("A Katrin", "Katrin"), ("a Mia no jardim de infância", "Mia no jardim de infância"), "anmelden", [["jardim de infância", "o"]],
+     ["escrever", "pintar", "brincar"], "Katrin inscrit Mia au jardin d'enfants.", "Katrin registers Mia at the kindergarten.", {}),
+    # « com a professora » : seuls des verbes qui ont besoin d'un complement direct (inscrever, buscar, arrumar), jamais
+    # pintar, brincar, escrever, ir, qui iraient avec « com »
+    ("sprechen", "falar", ("A Katrin", "Katrin"), ("com a professora", "com a professora"), "lehrerin", [["professora", "a"]],
+     ["inscrever", "buscar", "arrumar"], "Katrin parle avec l'enseignante.", "Katrin talks to the teacher.", {}),
+    ("anrufen", "ligar", ("A Katrin", "Katrin"), ("para a escola", "para a escola"), "krank", [["escola", "a"]],
+     None, "Katrin appelle l'école.", "Katrin calls the school.", {}),
+    ("krank", "estar", ("O Ben", "Ben"), ("doente", "doente"), "krank", [],
+     None, "Ben est malade.", "Ben is ill.", {"adj": "doente", "etat": True}),
+    ("packen", "arrumar", ("O Ben", "Ben"), ("a mochila", "a mochila"), "packen", [["mochila", "a"]],
+     ["falar", "brincar", "ir", "escrever"], "Ben prépare son cartable.", "Ben packs his school bag.", {}),
+    ("hausaufgaben", "fazer", ("O Ben", "Ben"), ("os trabalhos de casa", "o dever de casa"), "hausaufgaben", ([["trabalhos de casa", "os"]], [["dever de casa", "o"]]),
+     ["falar", "ligar", "brincar", "ir"], "Ben fait ses devoirs.", "Ben does his homework.", {}),
+    # « no caderno » : jamais buscar (au Bresil, chercher dans le cahier), inscrever (inscrire dedans), desenhar, pintar
+    ("schreiben", "escrever", ("O Ben", "Ben"), ("no caderno", "no caderno"), "klasse", [["caderno", "o"]],
+     ["ligar", "ir", "falar", "levar"], "Ben écrit dans son cahier.", "Ben writes in his exercise book.", {"aussi_v": ["desenhar", "pintar"]}),
+    ("malen", "pintar", ("A Mia", "Mia"), ("no jardim de infância", "no jardim de infância"), "malen", [["jardim de infância", "o"]],
+     None, "Mia peint au jardin d'enfants.", "Mia paints at kindergarten.", {"aussi_v": ["brincar", "desenhar", "escrever"]}),
+    ("spielen", "brincar", ("O Ben", "Ben"), ("no recreio", "no recreio"), "pause", [["recreio", "o"]],
+     None, "Ben joue pendant la récréation.", "Ben plays at break time.", {}),
+    ("elternabend", "ir", ("O Jan e a Katrin", "Jan e Katrin"), ("à reunião de pais", "à reunião de pais"), "elternabend", [["reunião", "a"]],
+     None, "Jan et Katrin vont à la réunion de parents.", "Jan and Katrin go to the parents' meeting.", {"pl": True}),
+]
+
+
+def pt_actions(br):
+    out = []
+    for id_, v, s, c, img, noms, faux, tf, te, extra in _PT_ACT:
+        i = 1 if br else 0
+        ex = {k: (x[i] if isinstance(x, tuple) else x) for k, x in extra.items()}
+        out.append(_pt_action(id_, v, s[i], c[i], img, noms[i] if isinstance(noms, tuple) else noms, faux, tf, te, **ex))
+    return out
+
+
+PT_OBJETS = {
+    "mochila": {"mot": "mochila", "genre": "a", "pl": "mochilas", "img": "ranzen", "proches": [], "liste": False,
+                "trad": {"fr": ["le cartable", "cartables"], "en": ["the school bag", "school bags"]}},
+    "estojo":  {"mot": "estojo", "genre": "o", "pl": "estojos", "img": "maeppchen", "proches": [],
+                "trad": {"fr": ["la trousse", "trousses"], "en": ["the pencil case", "pencil cases"]}},
+    "caderno": {"mot": "caderno", "genre": "o", "pl": "cadernos", "img": "heft", "proches": ["livro"],
+                "trad": {"fr": ["le cahier", "cahiers"], "en": ["the exercise book", "exercise books"]}},
+    "lapis":   {"mot": "lápis", "genre": "o", "pl": "lápis", "img": "bleistift", "proches": [],
+                "trad": {"fr": ["le crayon", "crayons"], "en": ["the pencil", "pencils"]}},
+    "regua":   {"mot": "régua", "genre": "a", "pl": "réguas", "img": "lineal", "proches": [],
+                "trad": {"fr": ["la règle", "règles"], "en": ["the ruler", "rulers"]}},
+    "borracha": {"mot": "borracha", "genre": "a", "pl": "borrachas", "img": "radiergummi", "proches": [],
+                 "trad": {"fr": ["la gomme", "gommes"], "en": ["the eraser", "erasers"]}},
+    "livro":   {"mot": "livro", "genre": "o", "pl": "livros", "img": "buch", "proches": ["caderno"],
+                "trad": {"fr": ["le livre", "livres"], "en": ["the book", "books"]}},
+    # une seule tesoura dans la liste (« uma tesoura »), comme die Schere
+    "tesoura": {"mot": "tesoura", "genre": "a", "pl": "tesouras", "img": "schere", "proches": [],
+                "trad": {"fr": ["les ciseaux", "paires de ciseaux"], "en": ["the scissors", "pairs of scissors"]}},
+}
+PT_NOMBRES = ["", "um", "dois", "três", "quatro", "cinco"]          # « duas » devant un nom feminin : la page
+# l'horaire : au Portugal les disciplines du 1.º ciclo, au Bresil les materias des anos iniciais
+PT_MATIERES = (
+    {"deutsch": {"aff": "Português", "mot": None}, "mathe": {"aff": "Matemática", "mot": ["matemática", "a"]}, "sport": {"aff": "Educação Física", "mot": None},
+     "kunst": {"aff": "Artes Visuais", "mot": None}, "musik": {"aff": "Música", "mot": ["música", "a"]},
+     "sachunterricht": {"aff": "Estudo do Meio", "mot": None}, "englisch": {"aff": "Inglês", "mot": None}},
+    {"deutsch": {"aff": "Português", "mot": None}, "mathe": {"aff": "Matemática", "mot": ["matemática", "a"]}, "sport": {"aff": "Educação Física", "mot": None},
+     "kunst": {"aff": "Arte", "mot": None}, "musik": {"aff": "Música", "mot": ["música", "a"]},
+     "sachunterricht": {"aff": "Ciências", "mot": None}, "englisch": {"aff": "Inglês", "mot": None}})
+# LES VACANCES DE LISBONNE, 2026-2027 : PLAUSIBLES, PAS OFFICIELLES (le despacho du calendrier scolaire 2026/2027 n'a pas
+# ete lu) -- d'apres le modele des annees precedentes : rentree la semaine du 14 sept. ; Natal du lundi 21 dec. au 1er janv.
+# (reprise le lundi 4) ; Carnaval du lundi 8 au mercredi 10 fevr. (mardi gras le 9, Paques le 28 mars 2027) ; Pascoa du 22
+# mars au 2 avril ; fin des cours du 1.º ciclo le 30 juin. A remplacer par les dates du despacho quand on l'aura.
+FERIEN_PT = [["weihnachten", [21, 12, 2026], [1, 1, 2027]], ["carnaval", [8, 2, 2027], [10, 2, 2027]], ["ostern", [22, 3, 2027], [2, 4, 2027]], ["sommer", [1, 7, 2027], None]]
+RENTREE_PT = [14, 9, 2026]
+# les jours feries nationaux sans ecole, hors vacances : 5 out., 1 e 8 dez., Corpo de Deus (27 maio 2027), 10 junho ;
+# 1 nov. 2026 et 13 junho 2027 (Santo António, Lisbonne) tombent un dimanche, 25 abril un dimanche, 1 maio un samedi
+SANS_ECOLE_PT = ["5.10.2026", "1.12.2026", "8.12.2026", "27.5.2027", "10.6.2027"]
+PT_FERIEN_NOMS = ({"weihnachten": "férias do Natal", "carnaval": "férias do Carnaval", "ostern": "férias da Páscoa", "sommer": "férias de verão"},
+                  {"weihnachten": "férias de Natal", "carnaval": "recesso de Carnaval", "ostern": "recesso de Páscoa", "sommer": "férias de verão"})
+PT_RAISONS = (
+    {"krank": {"p": "Está doente.", "mots": [["doente", "adjectif"]], "t": {"fr": "Il est malade.", "en": "He is ill."}},
+     "fieber": {"p": "Tem febre.", "mots": [["febre", "a"]], "t": {"fr": "Il a de la fièvre.", "en": "He has a temperature."}},
+     "arzt": {"p": "Tem uma consulta no médico.", "mots": [["consulta", "a"], ["médico", "o"]], "t": {"fr": "Il a rendez-vous chez le médecin.", "en": "He has a doctor's appointment."}}},
+    {"krank": {"p": "Está doente.", "mots": [["doente", "adjectif"]], "t": {"fr": "Il est malade.", "en": "He is ill."}},
+     "fieber": {"p": "Está com febre.", "mots": [["febre", "a"]], "t": {"fr": "Il a de la fièvre.", "en": "He has a temperature."}},
+     "arzt": {"p": "Tem consulta com o médico.", "mots": [["consulta", "a"], ["médico", "o"]], "t": {"fr": "Il a rendez-vous chez le médecin.", "en": "He has a doctor's appointment."}}})
+PT_SALLES = ["sala 12", "sala 8", "sala 21"]
+PT_SUJETS = (["a visita de estudo ao jardim zoológico", "a festa de Natal", "os trabalhos de casa", "as aulas de natação", "o passeio de fim de ano"],
+             ["o passeio ao zoológico", "a festa de Natal", "o dever de casa", "as aulas de natação", "o passeio de fim de ano"])
+PT_PAPIERS = (
+    {"stundenplan": {"mot": "horário", "genre": "o", "aff": "um horário", "t": {"fr": "un emploi du temps", "en": "a timetable"}},
+     "entschuldigung": {"mot": "justificação de faltas", "genre": "a", "aff": "uma justificação de faltas", "t": {"fr": "un mot d'absence", "en": "a note excusing an absence"}},
+     "elternabend": {"mot": "reunião", "genre": "a", "aff": "um convite para a reunião de pais", "t": {"fr": "une invitation à la réunion de parents", "en": "an invitation to the parents' meeting"}},
+     "ferien": {"mot": "férias", "genre": "as", "aff": "um calendário das férias", "t": {"fr": "un calendrier des vacances", "en": "a holiday calendar"}},
+     "liste": {"mot": None, "genre": None, "aff": "uma lista de material", "t": {"fr": "une liste de fournitures", "en": "a list of school supplies"}}},
+    {"stundenplan": {"mot": "horário", "genre": "o", "aff": "um horário", "t": {"fr": "un emploi du temps", "en": "a timetable"}},
+     "entschuldigung": {"mot": "justificativa de falta", "genre": "a", "aff": "uma justificativa de falta", "t": {"fr": "un mot d'absence", "en": "a note excusing an absence"}},
+     "elternabend": {"mot": "reunião", "genre": "a", "aff": "um convite para a reunião de pais", "t": {"fr": "une invitation à la réunion de parents", "en": "an invitation to the parents' meeting"}},
+     "ferien": {"mot": "férias", "genre": "as", "aff": "um calendário de férias", "t": {"fr": "un calendrier des vacances", "en": "a holiday calendar"}},
+     "liste": {"mot": None, "genre": None, "aff": "uma lista de material", "t": {"fr": "une liste de fournitures", "en": "a list of school supplies"}}})
+# des noms inventes (pas une vraie ecole de Lisbonne) : Dente-de-Leão = Pusteblume, « do Bairro » = am Kiez
+PT_NOMS = ({"kita": "Jardim de Infância Dente-de-Leão", "schule": "Escola Básica do Bairro", "lehrerin": "a professora Teresa", "erzieherin": "a educadora Rita",
+            "klasse": "2.º B", "turma": "Turma 2.º B", "daTurma": "da turma 2.º B", "grupo": "Sala das Joaninhas"},
+           {"kita": "Jardim de Infância Dente-de-Leão", "schule": "Escola Básica do Bairro", "lehrerin": "a professora Teresa", "erzieherin": "a professora Rita",
+            "klasse": "2º ano B", "turma": "2º ano B", "daTurma": "do 2º ano B", "grupo": "Turma Joaninha"})
+# le corpus portugais n'a que le francais : l'anglais des mots du theme, ici
+PT_EN = {"escola": "school", "jardim de infância": "kindergarten", "levar": "to take, to bring", "buscar": "to pick up, to fetch",
+         "inscrever": "to register, to enrol", "falar": "to speak, to talk", "professora": "teacher (woman)", "ligar": "to call (on the phone)",
+         "doente": "ill, sick", "arrumar": "to tidy, to pack", "mochila": "backpack, school bag", "fazer": "to do, to make",
+         "trabalhos de casa": "homework", "dever de casa": "homework", "escrever": "to write", "caderno": "exercise book",
+         "pintar": "to paint", "brincar": "to play (children)", "recreio": "break time", "ir": "to go", "reunião": "meeting",
+         "estojo": "pencil case", "lápis": "pencil", "régua": "ruler", "borracha": "eraser", "livro": "book", "tesoura": "scissors",
+         "matemática": "maths", "música": "music", "febre": "fever, temperature", "consulta": "appointment (doctor)", "médico": "doctor",
+         "horário": "timetable", "justificação de faltas": "note excusing an absence", "justificativa de falta": "note excusing an absence",
+         "férias": "holidays", "faltar": "to be absent, to miss", "aula": "lesson, class"}
+# LES MOTS ABSENTS DU CORPUS PORTUGAIS (a ajouter : portugais/outils) : leur traduction francaise, en attendant
+PT_AJOUTS_FR = {"buscar": "aller chercher (au Portugal : ir buscar)", "ligar": "appeler (au téléphone)", "trabalhos de casa": "devoirs",
+                "dever de casa": "devoirs", "recreio": "récréation", "justificação de faltas": "mot d'absence", "férias": "vacances"}
+# les verbes absents du corpus : leur present (au Portugal « ir buscar », au Bresil « buscar »)
+PT_CONJ_AJOUTS = ({"buscar": {"er": "vai buscar", "ich": "vou buscar", "du": "vais buscar", "pl": "vão buscar"},
+                   "ligar": {"er": "liga", "ich": "ligo", "du": "ligas", "pl": "ligam"}},
+                  {"buscar": {"er": "busca", "ich": "busco", "du": "buscas", "pl": "buscam"},
+                   "ligar": {"er": "liga", "ich": "ligo", "du": "ligas", "pl": "ligam"}})
+
+
+def corpus_pt(br):
+    """(noms {(mot, genre): entree}, verbes {infinitif: entree}, adjectifs {mot: entree}) du corpus portugais."""
+    dos = os.path.join(RACINE, "portugais", "datos-br" if br else "datos")
+    noms = {}
+    for t in json.load(io.open(os.path.join(dos, "themes.json"), encoding="utf-8"))["themes"]:
+        for m in t["mots"]:
+            noms.setdefault((m["mot"], m.get("genre")), m)
+    lis = lambda f, cle: {e.get(cle) or e.get("mot"): e for l in json.load(io.open(os.path.join(dos, f), encoding="utf-8")).values() if isinstance(l, list) for e in l}
+    return noms, lis("verbes.json", "infinitif"), lis("adjectifs.json", "mot")
+
+
+def mots_du_theme_pt(br):
+    """Comme mots_du_theme, pour le portugais appris : la forme du corpus (Portugal ou Bresil), le francais du corpus et
+    l'anglais de PT_EN ; un mot absent garde PT_AJOUTS_FR et va dans la liste des absents."""
+    i = 1 if br else 0
+    noms, verbes, adjs = corpus_pt(br)
+    mots, absents = [], []
+
+    def ajouter(mot, genre=None, cat=None):
+        if any(m["mot"] == mot and m.get("genre") == genre and m.get("cat") == cat for m in mots):
+            return
+        e = verbes.get(mot) if cat == "verbe" else adjs.get(mot) if cat == "adjectif" else noms.get((mot, genre))
+        if e:
+            fr = e.get("traduction")
+        elif mot in PT_AJOUTS_FR:
+            fr = PT_AJOUTS_FR[mot]; absents.append(mot)
+        else:
+            sys.exit("  %s (%s) absent du corpus portugais%s et des ajouts" % (mot, genre or cat, " (Bresil)" if br else ""))
+        if mot not in PT_EN:
+            sys.exit("  %s : pas d'anglais dans PT_EN" % mot)
+        w = {"mot": mot, "g": {"fr": fr, "en": PT_EN[mot]}}
+        if genre: w["genre"] = genre
+        if cat: w["cat"] = cat
+        mots.append(w)
+    for l in PT_LIEUX.values():
+        ajouter(l["mot"], l["genre"])
+    for a in pt_actions(br):
+        if a["v"] != "estar":
+            ajouter(a["v"], cat="verbe")
+        for n, g in a["noms"]:
+            ajouter(n, g)
+        if a.get("adj"):
+            ajouter(a["adj"], cat="adjectif")
+    for o in PT_OBJETS.values():
+        ajouter(o["mot"], o["genre"])
+    for m in PT_MATIERES[i].values():
+        if m["mot"]:
+            ajouter(*m["mot"])
+    for r in PT_RAISONS[i].values():
+        for n, g in r["mots"]:
+            ajouter(n, None, "adjectif") if g == "adjectif" else ajouter(n, g)
+    for p in PT_PAPIERS[i].values():
+        if p["mot"]:
+            ajouter(p["mot"], p["genre"])
+    ajouter("faltar", cat="verbe")
+    ajouter("professora", "a")
+    ajouter("recreio", "o")
+    ajouter("aula", "a")              # « o Ben tem aulas » : le calendrier des vacances
+    return mots, sorted(set(absents))
+
+
+def conjugaisons_pt(br):
+    _, verbes, _ = corpus_pt(br)
+    out = {}
+    for a in pt_actions(br):
+        if a["v"] in PT_CONJ_AJOUTS[1 if br else 0]:
+            out[a["v"]] = PT_CONJ_AJOUTS[1 if br else 0][a["v"]]
+            continue
+        e = verbes.get(a["v"])
+        if not e:
+            sys.exit("  verbe portugais absent : %s" % a["v"])
+        p = e["praesens"]
+        out[a["v"]] = {"er": p["er_sie_es"], "ich": p["ich"], "du": p["du"], "pl": p["sie_Sie"]}
+    return out
+
+
+def verifier_pt():
+    for br in (False, True):
+        acts = pt_actions(br)
+        if [a["id"] for a in acts] != [a["id"] for a in ACTIONS["de"]]:
+            sys.exit("  les actions pt ne sont pas dans l'ordre de l'allemand")
+        for a in acts:
+            if a["img"] not in IMAGES:
+                sys.exit("  image inconnue : %s" % a["img"])
+            if any(l not in a["t"] for l in ("fr", "en")):
+                sys.exit("  pt %s : traduction absente" % a["id"])
+            # un leurre de verbe n'est jamais le verbe juste ni un verbe qui irait aussi
+            if set(a.get("faux_v", [])) & ({a["v"]} | set(a["aussi_v"])):
+                sys.exit("  pt %s : un leurre est une reponse possible" % a["id"])
+        for e, ks in PT_ENFANTS.items():
+            for k in ks:
+                if k not in PT_LIEUX:
+                    sys.exit("  lieu portugais inconnu : %s" % k)
+        for k, l in PT_LIEUX.items():
+            # « Vai ___ » : jamais « na » / « no » (le Bresil les dit pour le mouvement) ni « para a » (juste)
+            if any(f.split(" ")[0] in ("na", "no", "para") for f in l["faux_akk"]):
+                sys.exit("  %s : un leurre de « vai ___ » serait dit au Bresil" % k)
+
+
+def portugais(d):
+    """Pose pt_ / br_ dans la donnee construite (ecrire_json), a cote de de et es."""
+    def poser(o, pt, br=None):
+        o["pt_"] = pt
+        if br is not None and br != pt:
+            o["br_"] = br
+    poser(d["lieux"], PT_LIEUX)
+    for e, ks in PT_ENFANTS.items():
+        poser(d["enfants"][e], ks)
+    poser(d["ages"], PT_AGES)
+    poser(d["actions"], pt_actions(False), pt_actions(True))
+    poser(d["objets"], PT_OBJETS)
+    poser(d["nombres"], PT_NOMBRES)
+    poser(d["matieres"], *PT_MATIERES)
+    poser(d["jours"], JOURS["pt"]); poser(d["mois"], MOIS["pt"]); poser(d["ordinaux"], ORDINAUX["pt"])
+    d["ferienPt"], d["rentreePt"], d["sansEcolePt"] = FERIEN_PT, RENTREE_PT, SANS_ECOLE_PT
+    # la traduction de « Português » (la matiere « deutsch » de l'horaire) : le portugais, pas l'allemand
+    d["matieresTradPt"] = {"deutsch": {"fr": "portugais", "en": "Portuguese"}}
+    poser(d["ferienNoms"], *PT_FERIEN_NOMS)
+    poser(d["raisons"], *PT_RAISONS)
+    poser(d["elternabend"]["salles"], PT_SALLES)
+    poser(d["elternabend"]["sujets"], *PT_SUJETS)
+    poser(d["papiers"], *PT_PAPIERS)
+    poser(d["noms"], *PT_NOMS)
+    for cle, br in (("pt_", False), ("br_", True)):
+        d["mots"][cle], d["absents"][cle] = mots_du_theme_pt(br)
+        d["conj"][cle] = conjugaisons_pt(br)
+
+
 def identifiant(texte):
     return hashlib.sha1(texte.encode("utf-8")).hexdigest()[:16]
 
@@ -510,11 +800,13 @@ def ecrire_json():
     for langue in ("de", "es"):
         d["mots"][langue], d["absents"][langue] = mots_du_theme(langue)
         d["conj"][langue] = conjugaisons(langue)
+    verifier_pt()
+    portugais(d)
     texte = json.dumps(d, ensure_ascii=False, indent=1) + "\n"
     chemin = os.path.join(RACINE, "visuel", "prototype", "ecole", "ecole.json")
     os.makedirs(os.path.dirname(chemin), exist_ok=True)
     io.open(chemin, "w", encoding="utf-8", newline="\n").write(texte)
-    for langue in ("de", "es"):
+    for langue in ("de", "es", "pt_", "br_"):
         print("  %s : %d mots, dont %d absents du corpus (%s)" % (langue, len(d["mots"][langue]), len(d["absents"][langue]), ", ".join(d["absents"][langue])))
     return d
 

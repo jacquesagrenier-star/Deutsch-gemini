@@ -171,6 +171,8 @@ fato de treino | fatos de treino | o > agasalho | agasalhos | o
 fato | fatos | o > terno | ternos | o
 calções de banho | — | os > calção de banho | — | o
 calções | — | os > short | — | o
+trabalhos de casa | — | os > dever de casa | — | o
+justificação de faltas | justificações de faltas | a > justificativa de falta | justificativas de falta | a
 sapatilhas | — | as > tênis | — | os
 peúgas | — | as > meias | — | as
 soutien | soutiens | o > sutiã | sutiãs | o

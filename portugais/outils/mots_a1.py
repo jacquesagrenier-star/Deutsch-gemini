@@ -73,6 +73,8 @@ passar | passer | O autocarro passa de dez em dez minutos. | Le bus passe toutes
 dever | devoir | Deves descansar mais. | Tu dois te reposer davantage.
 achar | trouver, penser | Acho que tens razão. | Je crois que tu as raison.
 falar | parler | Falo um pouco de português. | Je parle un peu portugais.
+buscar | aller chercher | Vou buscar o meu filho à escola. | Je vais chercher mon fils à l'école.
+ligar | appeler (au téléphone) | Vou ligar para a minha mãe. | Je vais appeler ma mère.
 trabalhar | travailler | Trabalho num escritório. | Je travaille dans un bureau.
 estudar | étudier | Estudo português à terça-feira. | J'étudie le portugais le mardi.
 escrever | écrire | Escrevo uma carta à minha avó. | J'écris une lettre à ma grand-mère.

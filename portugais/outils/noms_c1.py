@@ -393,7 +393,7 @@ o erro médico | l'erreur médicale | Não foi possível comprovar um erro médi
 o esclarecimento | l'information, éclaircissement | Antes da intervenção é obrigatório um esclarecimento detalhado. | Avant l'intervention, une information détaillée est obligatoire.
 a expectativa de vida | l'espérance de vie | A expectativa de vida sobe lentamente há décadas. | L'espérance de vie augmente lentement depuis des décennies. | g? | pl=expectativas de vida
 o ganho de conhecimento | le gain de connaissance | O ganho de conhecimento mal justifica o esforço. | Le gain de connaissance justifie à peine l'effort. | pl=ganhos de conhecimento
-a justificativa de falta | le justificatif d'absence | Sem justificativa por escrito, a falta não é abonada. | Sans justificatif écrit, l'absence est considérée comme injustifiée. | g? | pl=justificativas de falta | ex?
+a justificação de faltas | le justificatif d'absence | Sem justificação por escrito, a falta fica injustificada. | Sans justificatif écrit, l'absence reste injustifiée. | g? | pl=justificações de faltas | br=justificativa de falta
 o levantamento | l'enquête, collecte de données | O levantamento abrangeu dois mil domicílios. | L'enquête portait sur deux mille ménages.
 o meio especializado | le milieu spécialisé, les spécialistes | O estudo teve uma receção controversa entre os especialistas. | L'étude a été reçue de façon controversée par les spécialistes. | pl=meios especializados | ex?
 a mudança de escola | le changement d'école | A mudança de escola foi mais difícil para ela do que o esperado. | Le changement d'école lui a été plus difficile que prévu. | g? | pl=mudanças de escola

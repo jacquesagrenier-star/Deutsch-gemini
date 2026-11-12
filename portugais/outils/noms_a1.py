@@ -552,6 +552,9 @@ o cais | le quai | O barco para Cacilhas sai do cais dois. | Le bateau pour Caci
 """
 
 NOMS["escola_pt"] = """
+o recreio | la récréation | As crianças brincam no recreio. | Les enfants jouent dans la cour de récréation.
+as férias | les vacances | As férias de verão começam em julho. | Les vacances d'été commencent en juillet. | u
+os trabalhos de casa | les devoirs | O Ben faz os trabalhos de casa depois das aulas. | Ben fait ses devoirs après les cours. | u | br=dever de casa (o)
 a professora | la professeure | A professora ensina português. | La professeure enseigne le portugais.
 a escola | l'école | O meu filho vai para a escola de autocarro. | Mon fils va à l'école en bus.
 o colégio | l'école privée, le collège | O colégio está fechado hoje. | L'école est fermée aujourd'hui.
