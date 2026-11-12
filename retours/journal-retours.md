@@ -9821,3 +9821,5 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
   → Confié le 12 nov. à la session des conversations (dtz-mark-anna), dans le lot 71.
 - 12 nov. (Jacques, app iPhone, espagnol, conversations) : « quand je clique sur ma réponse, ça ne la dit pas. Puis ça passe tout de suite à l'autre personnage. »
   → Confié le 12 nov. à la session des conversations, lot 71 (la réponse dite, le temps de la voir, puis la réplique suivante).
+- 12 nov. (Jacques, app iPhone, conversations) : « il y a une bande bleue en haut et une bande bleue en bas. »
+  → Confié le 12 nov. à la session des conversations, lot 71 (le fond du cadre plein écran ou de la page, par la tuile comme en séance).
