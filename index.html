@@ -13150,8 +13150,8 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <!-- La fin de l'apercu gratuit (v698) : remplie par afficherFinGratuite(). -->
         <div id="finGratuiteFlash" class="fin-gratuite hidden"></div>
         <button id="encoreNeufsBtn" class="secondary hidden" onclick="encoreDesMotsNeufs()" data-i18n="encore_neufs">Encore 15 mots nouveaux</button>
-        <button class="secondary" onclick="retryUnmastered()" data-i18n="review_retry_unmastered">Revoir les cartes non maîtrisées</button>
-        <button class="secondary" onclick="retryMastered()" data-i18n="review_retry_mastered">Revoir les cartes maîtrisées</button>
+        <button id="retryUnmasteredBtn" class="secondary" onclick="retryUnmastered()" data-i18n="review_retry_unmastered">Revoir les cartes non maîtrisées</button>
+        <button id="retryMasteredBtn" class="secondary" onclick="retryMastered()" data-i18n="review_retry_mastered">Revoir les cartes maîtrisées</button>
         <button id="dictationStartBtn" class="secondary hidden" onclick="startDictationExercise()" data-i18n="dictation_start_btn">🎧 S'ENTRAÎNER : DICTÉE</button>
         <button class="primary" onclick="handleFlashcardBack()" data-i18n="flash_end_done">TERMINER</button>
     </div>
@@ -13167,6 +13167,15 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <div id="finCourteErreurs" class="fin-erreurs hidden"></div>
         <button type="button" class="primary" onclick="reprendreSeanceCourte()" data-i18n="fin_court_reprendre">Continuer la séance</button>
         <button type="button" class="secondary" onclick="quitterSeanceCourte()" data-i18n="fin_court_accueil">Revenir à l'accueil</button>
+    </div>
+    <!-- APRES LA REVISION DES MOTS MANQUES (Jacques, 12 nov. 2026 : « une fois qu'on a revise nos mots qu'on avait
+         manques, on devrait [...] nous demander si on veut continuer avec une nouvelle seance. Ou non. »).
+         Voir montrerFinRevision(). -->
+    <div id="finRevision" class="flashcard-end fin-courte fin-revision hidden">
+        <div class="flash-end-title" data-i18n="fin_rev_titre">Tes mots manqués sont revus.</div>
+        <div class="flash-end-summary" data-i18n="fin_rev_question">Continuer avec une nouvelle séance ?</div>
+        <button type="button" class="primary" onclick="revisionNouvelleSeance()" data-i18n="fin_rev_oui">Oui, une nouvelle séance</button>
+        <button type="button" class="secondary" onclick="revisionTerminer()" data-i18n="fin_rev_non">Non, c'est tout pour aujourd'hui</button>
     </div>
 
 </section>
@@ -14509,7 +14518,10 @@ function applyAppTheme(theme){
 
     const icon = document.getElementById("themeToggleIcon");
     if(icon) icon.textContent = theme === "dark" ? "☀️" : "🌙";
-
+    // Pendant une seance, le paysage et le fond de la partie en cours (Jacques, 12 nov. 2026 : « je l'ai mis en mode
+    // nuit. Mais la, je suis dans revision avec les vagues. Le fond d'ecran est comme en mode jour »). Au chargement,
+    // les fonctions de la seance ne sont pas encore pretes : le try s'en accommode.
+    try{ majPaysageApresTheme(); }catch(e){}
 }
 
 function setAppTheme(theme){
@@ -15904,6 +15916,12 @@ const I18N = {
         encore_neufs: "{n} cartes de plus",
         legere_encore: "Encore une séance",
         legere_fin_une: "Ta séance du jour est faite.",
+        fin_rev_titre: "Tes mots manqués sont revus.",
+        fin_rev_question: "Continuer avec une nouvelle séance ?",
+        fin_rev_oui: "Oui, une nouvelle séance",
+        fin_rev_non: "Non, c'est tout pour aujourd'hui",
+        fin_rev_kicker: "Après la séance",
+        fin_rev_entete: "Revoir mes mots",
         legere_fin_n: "Bravo, {n} séances terminées aujourd'hui",
         etoile_aria: "Une nouvelle étoile",
         etoile_compte: "{n} étoiles sur {t}",
@@ -17686,6 +17704,12 @@ const I18N = {
         encore_neufs: "{n} more cards",
         legere_encore: "One more session",
         legere_fin_une: "Today's session is done.",
+        fin_rev_titre: "Your missed words are reviewed.",
+        fin_rev_question: "Continue with a new session?",
+        fin_rev_oui: "Yes, a new session",
+        fin_rev_non: "No, that's all for today",
+        fin_rev_kicker: "After the session",
+        fin_rev_entete: "Review my words",
         legere_fin_n: "Well done, {n} sessions finished today",
         etoile_aria: "A new star",
         etoile_compte: "{n} stars out of {t}",
@@ -19079,6 +19103,12 @@ const I18N = {
         ra_tu_as_choisi: "“{s}” seçtin.",
         legere_encore: "Bir oturum daha",
         legere_fin_une: "Bugünkü oturumun bitti.",
+        fin_rev_titre: "Kaçırdığın kelimeler tekrar edildi.",
+        fin_rev_question: "Yeni bir oturumla devam etmek ister misin?",
+        fin_rev_oui: "Evet, yeni bir oturum",
+        fin_rev_non: "Hayır, bugünlük bu kadar",
+        fin_rev_kicker: "Oturumdan sonra",
+        fin_rev_entete: "Kelimelerimi tekrar et",
         legere_fin_n: "Bravo, bugün {n} oturum tamamlandı",
         etoile_aria: "Yeni bir yıldız",
         etoile_compte: "{t} yıldızdan {n}",
@@ -21265,6 +21295,12 @@ const I18N = {
         ra_tu_as_choisi: "Ти вибрав(-ла) «{s}».",
         legere_encore: "Ще одне заняття",
         legere_fin_une: "Сьогоднішнє заняття завершено.",
+        fin_rev_titre: "Пропущені слова повторено.",
+        fin_rev_question: "Продовжити новим заняттям?",
+        fin_rev_oui: "Так, нове заняття",
+        fin_rev_non: "Ні, на сьогодні все",
+        fin_rev_kicker: "Після заняття",
+        fin_rev_entete: "Повторити мої слова",
         legere_fin_n: "Браво! Завершених занять сьогодні: {n}",
         etoile_aria: "Нова зірка",
         etoile_compte: "Зірок: {n} із {t}",
@@ -23759,6 +23795,12 @@ const I18N = {
         ra_tu_as_choisi: "«{s}» را انتخاب کردی.",
         legere_encore: "یک جلسهٔ دیگر",
         legere_fin_une: "جلسهٔ امروزت تمام شد.",
+        fin_rev_titre: "واژه‌هایی که جا انداخته بودی مرور شد.",
+        fin_rev_question: "با یک جلسهٔ تازه ادامه می‌دهی؟",
+        fin_rev_oui: "بله، یک جلسهٔ تازه",
+        fin_rev_non: "نه، برای امروز بس است",
+        fin_rev_kicker: "پس از جلسه",
+        fin_rev_entete: "مرور واژه‌هایم",
         legere_fin_n: "آفرین، امروز {n} جلسه تمام شد",
         etoile_aria: "ستاره‌ای تازه",
         etoile_compte: "{n} ستاره از {t}",
@@ -25658,6 +25700,12 @@ const I18N = {
         ra_tu_as_choisi: "اخترت: «{s}».",
         legere_encore: "حصة أخرى",
         legere_fin_une: "انتهت حصة اليوم.",
+        fin_rev_titre: "تمت مراجعة الكلمات التي فاتتك.",
+        fin_rev_question: "هل تتابع بحصة جديدة؟",
+        fin_rev_oui: "نعم، حصة جديدة",
+        fin_rev_non: "لا، هذا كل شيء لليوم",
+        fin_rev_kicker: "بعد الحصة",
+        fin_rev_entete: "مراجعة كلماتي",
         legere_fin_n: "أحسنت! عدد الحصص المنجزة اليوم: {n}",
         etoile_aria: "نجمة جديدة",
         etoile_compte: "النجوم: {n} من {t}",
@@ -26147,6 +26195,12 @@ const I18N = {
         ra_tu_as_choisi: "Você escolheu “{s}”.",
         legere_encore: "Mais uma sessão",
         legere_fin_une: "Sua sessão de hoje está concluída.",
+        fin_rev_titre: "As palavras que você errou foram revisadas.",
+        fin_rev_question: "Continuar com uma nova sessão?",
+        fin_rev_oui: "Sim, uma nova sessão",
+        fin_rev_non: "Não, por hoje é só",
+        fin_rev_kicker: "Depois da sessão",
+        fin_rev_entete: "Revisar minhas palavras",
         legere_fin_n: "Parabéns, {n} sessões concluídas hoje",
         etoile_aria: "Uma nova estrela",
         etoile_compte: "{n} estrelas de {t}",
@@ -27934,6 +27988,12 @@ const I18N = {
         ra_tu_as_choisi: "Wybrałeś(-aś) „{s}”.",
         legere_encore: "Jeszcze jedna sesja",
         legere_fin_une: "Dzisiejsza sesja gotowa.",
+        fin_rev_titre: "Słowa, które ci umknęły, są powtórzone.",
+        fin_rev_question: "Kontynuować nową sesją?",
+        fin_rev_oui: "Tak, nowa sesja",
+        fin_rev_non: "Nie, na dziś wystarczy",
+        fin_rev_kicker: "Po sesji",
+        fin_rev_entete: "Powtórz moje słowa",
         legere_fin_n: "Brawo! Ukończonych sesji dzisiaj: {n}",
         etoile_aria: "Nowa gwiazda",
         etoile_compte: "Gwiazdy: {n} z {t}",
@@ -29721,6 +29781,12 @@ const I18N = {
         ra_tu_as_choisi: "Ты выбрал(а) «{s}».",
         legere_encore: "Ещё одно занятие",
         legere_fin_une: "Сегодняшнее занятие завершено.",
+        fin_rev_titre: "Пропущенные слова повторены.",
+        fin_rev_question: "Продолжить новым занятием?",
+        fin_rev_oui: "Да, новое занятие",
+        fin_rev_non: "Нет, на сегодня всё",
+        fin_rev_kicker: "После занятия",
+        fin_rev_entete: "Повторить мои слова",
         legere_fin_n: "Браво! Завершённых занятий сегодня: {n}",
         etoile_aria: "Новая звезда",
         etoile_compte: "Звёзд: {n} из {t}",
@@ -31511,6 +31577,12 @@ const I18N = {
         ra_tu_as_choisi: "Du hast „{s}“ gewählt.",
         legere_encore: "Noch eine Einheit",
         legere_fin_une: "Deine heutige Einheit ist geschafft.",
+        fin_rev_titre: "Deine verpassten Wörter sind wiederholt.",
+        fin_rev_question: "Mit einer neuen Einheit weitermachen?",
+        fin_rev_oui: "Ja, eine neue Einheit",
+        fin_rev_non: "Nein, für heute reicht es",
+        fin_rev_kicker: "Nach der Einheit",
+        fin_rev_entete: "Meine Wörter wiederholen",
         legere_fin_n: "Bravo, heute {n} Einheiten geschafft",
         etoile_aria: "Ein neuer Stern",
         etoile_compte: "{n} von {t} Sternen",
@@ -33313,6 +33385,12 @@ const I18N = {
         ra_tu_as_choisi: "Elegiste «{s}».",
         legere_encore: "Una práctica más",
         legere_fin_une: "Tu práctica de hoy está hecha.",
+        fin_rev_titre: "Tus palabras falladas están repasadas.",
+        fin_rev_question: "¿Seguir con una práctica nueva?",
+        fin_rev_oui: "Sí, una práctica nueva",
+        fin_rev_non: "No, es todo por hoy",
+        fin_rev_kicker: "Después de la práctica",
+        fin_rev_entete: "Repasar mis palabras",
         legere_fin_n: "¡Bravo! {n} prácticas terminadas hoy",
         etoile_aria: "Una estrella nueva",
         etoile_compte: "{n} estrellas de {t}",
@@ -46829,6 +46907,9 @@ function entrerSeanceDuJour(){
     let montrer = false;
     try{ montrer = bilanAMontrer(); }catch(e){}
     if(montrer){ ouvrirBilanSemaine(); return; }
+    let faite = false;
+    try{ faite = objectifRetire() && etatSeanceAccueil() === "faite"; }catch(e){}
+    if(faite){ encoreUneSeance(); return; }
     ouvrirSeanceDuJour(true);
 }
 // LE RETOUR A LA CARTE (Jacques : « lorsqu'on clique sur travailler ca, puis
@@ -71988,6 +72069,17 @@ function melangePaysage(hex, cible, k){
     return "#" + a.map((v, i) => Math.round(v + (b[i] - v) * k).toString(16).padStart(2, "0")).join("");
 }
 let PAYSAGE_MONTRE = null;
+// Le passage jour / nuit (applyAppTheme) : la partie en cours se redessine tout de suite -- paysage, fond de l'ecran,
+// couleur des points (body.points-encre) et, dans une scene ou un theme, la bande de repere et le fond du cadre. Les
+// parties suivantes lisent le theme au moment ou elles s'ouvrent.
+function majPaysageApresTheme(){
+    if(!PAYSAGE_MONTRE) return;
+    const cle = PAYSAGE_MONTRE.split(":")[0];
+    PAYSAGE_MONTRE = null;
+    paysageSeance(cle);
+    const ecran = document.querySelector(".screen.active");
+    if(ecran && ecran.id === "sceneSeance"){ try{ poserRepereScene(); }catch(e){} }
+}
 // Le contraste de deux couleurs « #RRGGBB » (WCAG). POINTS_SEUIL : celui du vert sur l'orange des Mots, que Jacques
 // juge assez visible ; une partie qui fait moins passe a l'encre.
 // Calcule sur le sol nu : les Mots y font 2,87:1 (2,99 a l'ecran, le verre eclaircit un peu), le Son 3,24 ; les
@@ -72744,7 +72836,36 @@ function majPiluleSeance(){
     majAnneauSeance();
     majTuilesCarnetFeuilles();
 }
+// L'ETAT DE LA SEANCE DU JOUR, POUR L'ACCUEIL (revue A a Z du 12 nov. 2026 ; Jacques, le meme jour : « ca m'a ramene a
+// une ligne complete de progression vide dans ma seance du jour » ; decision du 11 nov. : l'accueil dit que c'est fait).
+// « entamee » : la derniere seance ouverte aujourd'hui a des cartes passees et n'est pas finie ; « faite » : une seance
+// au moins est finie aujourd'hui ; sinon « neuve ». Les reprises (mots rates, cartes revues) ne sont pas des seances.
+function etatSeanceAccueil(){
+    const auj = getTodayStr();
+    let der = null;
+    try{ lireSeances().forEach(x => { if(x && x.d && getTodayStr(new Date(x.d)) === auj && (!der || x.d > der.d)) der = x; }); }catch(e){}
+    if(der && !der.f && (der.p || 0) > 0) return "entamee";
+    let n = 0;
+    try{ n = seancesFiniesAujourdhui(); }catch(e){}
+    return n >= 1 ? "faite" : "neuve";
+}
+// Le bouton de la carte de la seance : « Commencer la seance », « Continuer la seance », ou, la seance faite,
+// « Encore une seance » avec « ✓ Ta seance du jour est faite. » a la place du plan.
+function majBoutonSeance(){
+    const pt = document.getElementById("spPlayTxt");
+    if(!pt) return;
+    const e = etatSeanceAccueil();
+    const txt = t(e === "entamee" ? "seance_continuer_long" : e === "faite" ? "legere_encore" : "seance_commencer_long");
+    pt.textContent = txt;
+    const b = pt.closest("button");
+    if(b) b.setAttribute("aria-label", txt);
+    const pil = document.getElementById("seancePilule");
+    if(pil) pil.classList.toggle("seance-faite", e === "faite");
+    const sens = document.getElementById("spSens");
+    if(sens && e === "faite") sens.textContent = "✓ " + t("legere_fin_une");
+}
 function majAnneauSeance(){
+    if(objectifRetire()){ try{ majBoutonSeance(); }catch(e){} }
     const a = document.getElementById("spAnneau");
     if(!a || objectifRetire()) return;
     let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
@@ -74100,6 +74221,7 @@ function markKnownAlready(){
 }
 
 function showFlashcardEnd(){
+    if(REPRISE_ERREURS && currentCards === REPRISE_ERREURS) return montrerFinRevision();
     // v1044 : LA DERNIERE CARTE S'EFFACE. Jacques, 31 oct. 2026 : a la fin des cartes, « il faudra enlever
     // la carte [...] j'ai le verso, on devrait juste voir paquet termine avec [...] 20 cartes de plus,
     // revoir les cartes non maitrisees ». Le verso de la derniere carte restait au-dessus des choix.
@@ -74147,6 +74269,16 @@ function showFlashcardEnd(){
     }
     const enPP = !!(currentTheme && currentTheme.id === "seance_premiers_pas");
     if(enPP && dictee) dictee.classList.add("hidden");
+    // « Revoir les cartes maitrisees » le jour 1 : aucune, et le bouton ne faisait rien (revue d'usage, 12 nov. 2026).
+    // Chaque bouton ne s'affiche que s'il a des cartes a reprendre ; en seance du jour, celles de la seance seulement.
+    try{
+        const enSeanceJour = !!(currentTheme && String(currentTheme.id).indexOf("seance_") === 0);
+        const src = enSeanceJour ? cartesDeLaSeanceFinie() : (currentCardsFull || []);
+        const maitrisee = it => !!getWordState(it.themeId, it.index).mastered;
+        const bU = document.getElementById("retryUnmasteredBtn"), bM = document.getElementById("retryMasteredBtn");
+        if(bU) bU.classList.toggle("hidden", !src.some(it => !maitrisee(it)));
+        if(bM) bM.classList.toggle("hidden", !src.some(maitrisee));
+    }catch(e){}
     const encore = document.getElementById("encoreNeufsBtn");
     if(enPP){
         // La derniere carte du parcours, pas forcement la derniere de la seance : le theme illustre la suit.
@@ -74217,6 +74349,7 @@ function showFlashcardEnd(){
 
 function hideFlashcardEnd(){
     try{ arreterCristal(); }catch(e){}
+    try{ if(!(REPRISE_ERREURS && currentCards === REPRISE_ERREURS)){ const fr = document.getElementById("finRevision"); if(fr) fr.classList.add("hidden"); } }catch(e){}
     const fin = document.getElementById("flashcardEnd");
     if(fin) fin.classList.add("hidden");
     try{ document.getElementById("flashcards").classList.remove("fin-paquet"); }catch(e){}
@@ -74355,8 +74488,10 @@ function majAnneauFin(el, finie){
         const tot = (currentCards || []).length;
         el.style.setProperty("--p", tot ? Math.min(100, Math.round(100 * currentFlashcard / tot)) : 0);
         el.classList.remove("atteint");
-        el.querySelector("b").textContent = String(f0);
-        el.querySelector("small").textContent = "";
+        // le rang dans la seance, pas le compte du jour : la phrase dessous le dit deja (« 4 4 cartes aujourd'hui »,
+        // revue A a Z du 12 nov.)
+        el.querySelector("b").textContent = String(Math.min(currentFlashcard, tot));
+        el.querySelector("small").textContent = tot ? "/" + tot : "";
         return { fait: f0, cible: 0 };
     }
     if(finie && objectifRetire()){
@@ -74438,11 +74573,69 @@ function refaireErreurs(){
     try{ majSeanceSuivie(s => { s.er = (s.er || 0) + items.length; }); }catch(e){}
     ERREURS_SEANCE.length = 0;
     fermerFinCourte();
+    lancerRepriseSeance(items, true);
+}
+// Une reprise apres la seance du jour (les mots rates, ou les cartes de la seance) : ses cartes seules, sous son titre
+// a elle (« Apres la seance · Revoir mes mots », plus « Ma seance du jour »), puis la question de montrerFinRevision().
+function lancerRepriseSeance(items, melanger){
     currentCards = items.slice();
-    try{ shuffleArray(currentCards); }catch(e){}
+    if(melanger){ try{ shuffleArray(currentCards); }catch(e){} }
+    REPRISE_ERREURS = currentCards;
     currentFlashcard = 0;
+    try{ setFlashHeader("fin_rev_kicker", "fin_rev_entete"); }catch(e){}
     loadFlashcard();
     try{ scrollTo(0, 0); }catch(e){}
+}
+// Les cartes de la seance qu'on vient de finir : son paquet (pas currentCardsFull, qui y vaut TOUT le niveau), ses
+// cartes de mots seulement, jamais un mot encore neuf ; chacune une fois.
+function cartesDeLaSeanceFinie(){
+    const src = (SEANCE_PARTS && SEANCE_PARTS.paquet) || (seanceSuivie && seanceSuivie.paquet) || REPRISE_ERREURS || [];
+    const vues = new Set(), out = [];
+    src.forEach(it => {
+        if(!it || !it.word || it.mode === "phrase" || it.forme) return;
+        const cle = it.themeId + ":" + it.index;
+        if(vues.has(cle)) return;
+        vues.add(cle);
+        if(estNeuf(getWordState(it.themeId, it.index))) return;
+        out.push(it);
+    });
+    return out;
+}
+// APRES LA REVISION DES MOTS MANQUES (Jacques, 12 nov. 2026, espagnol, A1, v1176 : « J'ai fait une seance du jour [...]
+// puis apres ca, j'ai demande de reviser des mots. Ce que j'avais manque. Ca a fonctionne, mais ensuite, ca m'a ramene a
+// une ligne complete de progression vide dans ma seance du jour A1 » ; puis : « on devrait commencer avec nous demander si
+// on veut continuer avec une nouvelle seance. Ou non. »). Le paquet de « Les refaire » fini, une carte courte pose la
+// question au lieu de reafficher l'ecran de fin de la seance : Oui ouvre la seance suivante (« Encore une seance », la
+// regle des seances a la suite), Non rentre a l'accueil. La seance du jour reste faite dans les deux cas.
+let REPRISE_ERREURS = null;
+function montrerFinRevision(){
+    try{ document.getElementById("flashcards").classList.add("fin-paquet", "fin-courte-ouverte"); }catch(e){}
+    try{ paysageSeance(null); }catch(e){}
+    const actions = document.getElementById("flashcardActions");
+    if(actions) actions.classList.add("hidden");
+    try{ hideFlashcardEnd(); }catch(e){}
+    try{ document.getElementById("flashcards").classList.add("fin-paquet"); }catch(e){}
+    const fr = document.getElementById("finRevision");
+    if(!fr) return false;
+    fr.classList.remove("hidden");
+    try{ scrollTo(0, 0); }catch(e){}
+    try{ const b = fr.querySelector("button.primary"); if(b) b.focus({ preventScroll: true }); }catch(e){}
+    return true;
+}
+function fermerFinRevision(){
+    REPRISE_ERREURS = null;
+    const fr = document.getElementById("finRevision");
+    if(fr) fr.classList.add("hidden");
+    try{ document.getElementById("flashcards").classList.remove("fin-courte-ouverte"); }catch(e){}
+}
+function revisionNouvelleSeance(){
+    fermerFinRevision();
+    encoreUneSeance();
+}
+function revisionTerminer(){
+    fermerFinRevision();
+    sortieSansFinCourte = true;
+    handleFlashcardBack();
 }
 
 // ============ L'ECRAN DE FIN COURT (lot de l'evaluation, 6 nov. 2026) ============
@@ -75487,6 +75680,14 @@ function skipFlashcard(){
 }
 
 function retryUnmastered(){
+    // En seance du jour : les cartes de la seance seulement (la revue d'usage du 12 nov. : en espagnol, des le jour 1,
+    // currentCardsFull donnait TOUT le niveau A1, plusieurs centaines de cartes, la premiere un mot jamais vu).
+    if(currentTheme && String(currentTheme.id).indexOf("seance_") === 0){
+        const items = cartesDeLaSeanceFinie().filter(it => !getWordState(it.themeId, it.index).mastered);
+        if(!items.length){ showInfoToast(t('alert_all_series_mastered')); return; }
+        lancerRepriseSeance(items, false);
+        return;
+    }
     if(!currentCardsFull.length) return;
     currentCards = currentCardsFull.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0){ showInfoToast(t('alert_all_series_mastered')); return; }
@@ -75495,6 +75696,12 @@ function retryUnmastered(){
 }
 
 function retryMastered(){
+    if(currentTheme && String(currentTheme.id).indexOf("seance_") === 0){
+        const items = cartesDeLaSeanceFinie().filter(it => getWordState(it.themeId, it.index).mastered);
+        if(!items.length){ showInfoToast(t('alert_no_mastered_in_series')); return; }
+        lancerRepriseSeance(items, true);
+        return;
+    }
     if(!currentCardsFull.length) return;
     currentCards = currentCardsFull.filter(item => getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0){ showInfoToast(t('alert_no_mastered_in_series')); return; }
