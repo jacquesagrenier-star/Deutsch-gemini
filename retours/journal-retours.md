@@ -9827,3 +9827,5 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
   → Confié le 12 nov. à la session des conversations, lot 71 (le fond du cadre plein écran ou de la page, par la tuile comme en séance).
 - 12 nov. (Jacques, v1178) : à la fin de la visite guidée, le texte (et la voix) renvoie à un bouton « play » (▶) pour la séance du jour, alors que l'accueil montre « Commencer la séance » : « c'est trompeur ».
   → Rattaché au point 1 de la ligne 72 (texte de la visite périmé), session petites-ameliorations ; la page de fin a une voix enregistrée (Charlotte, 7 langues).
+- 12 nov. (Jacques, v1181, deuxième séance du jour) : la barre ne montre que Cartes et Images, « pas de grammaire ». Décision : « j'aimerais avoir une partie grammaire dans chaque séance ». Et, rapporté d'un testeur : à l'inscription, voir ce que signifie « dans les faits » le choix « ce qui te ressemble » (images, écouter, règles, un peu de tout).
+  → Grammaire dans chaque séance confiée le 12 nov. à la session de la barre (maquettes-ameliorations), plan avant code. Montrer l'effet du choix : proposition faite à Jacques.
