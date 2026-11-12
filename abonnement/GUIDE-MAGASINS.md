@@ -116,6 +116,12 @@ Sans l'extension, un abonné voit sur le web la version gratuite (dans l'app, to
 
 ## F. Ce que Claude fait ensuite, dans l'ordre
 
+**Trois étapes à faire au moment de brancher les magasins** (décision du chef, 11 nov. : pas avant) :
+
+- **Les clés publiques RevenueCat** : Jacques les copie depuis RevenueCat (C.5), `goog_…` et `appl_…`, et les donne au chef. Elles vont dans `REVENUECAT.cleAndroid` / `cleIos`. Jamais de clé `sk_…`.
+- **La recompilation Android** avec `launchMode="singleTop"` (section H). Recommandée, pas obligatoire : la compilation 19 contient déjà le module d'achat.
+- **La recompilation iPhone** (section H). OBLIGATOIRE pour vendre sur iPhone, et elle attend le contrat Paid Apps (B.1), toujours bloqué par l'adresse.
+
 1. Recevoir les deux clés publiques → les poser dans `REVENUECAT` (une version de l'app, rien ne change pour personne : `ACCES.actif` reste `false`).
 2. Achat de test par Jacques, compte admin, sur Android (testeur de licence) : Réglages → Administration → « Écran d'abonnement » → S'abonner. Puis « Restaurer un achat », puis résiliation dans Google Play. Même chose sur iPhone dès que la nouvelle compilation et le contrat Paid Apps existent.
 3. **Le jour de la sortie** : `ACCES.lancement = "AAAA-MM-JJ"` (la date du jour), **puis** `ACCES.actif = true`, une version. Tout compte créé avant cette date reste gratuit à vie (promesse du 2 oct.).
