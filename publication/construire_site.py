@@ -19,6 +19,9 @@ Reglage Cloudflare (une fois, par Jacques) :
     Commande de construction : python3 publication/construire_site.py
     Dossier de sortie        : _site
 
+Il ecrit aussi _site/_redirects (les fichiers internes vers l'accueil, en 301) :
+voir la section 3 et publication/LISEZ-MOI.md.
+
 Aucune dependance : bibliotheque standard de Python 3, comme sur la machine de
 construction de Cloudflare.
 """
@@ -118,6 +121,102 @@ a{color:#1C2430;font-weight:700}</style></head>
 """
 
 
+# ---- 3. Les redirections des fichiers internes (12 nov. 2026) ----
+# Le « cache de preservation » de Cloudflare Pages (workers-sdk,
+# pages-shared/asset-server/handler.ts, assetPreservationCacheV2) garde 7 jours,
+# par URL exacte et par centre de donnees, chaque fichier qu'il a servi ; quand
+# le deploiement actuel n'a plus le fichier, il le RESSERT au lieu de la 404.
+# Apres le passage a _site/, wortando.com servait encore CLAUDE.md,
+# decisions/DECISIONS.md, firestore.rules... et « Purge Everything » ne l'a pas
+# vide. Pages lit _redirects AVANT de chercher un fichier : une redirection vers
+# l'accueil passe devant ce cache, partout et des le deploiement.
+#
+# La liste est DERIVEE de ce qui n'est pas publie (rien a tenir a la main) :
+#  - un joker « /dossier/* » pour chaque dossier sans AUCUN fichier publie
+#    dessous (le plus haut possible), jamais pour un dossier de l'app (ci-dessous) ;
+#  - une ligne par fichier interne restant (racine, notes et sources rangees a
+#    cote de fichiers publies).
+# Un dossier qui gagne un fichier publie perd son joker a la construction
+# suivante. La construction s'arrete si une regle couvrait un fichier publie.
+JAMAIS_DE_JOKER = {"visuel", "espanol", "anglais", "portugais", "japonais", "audio"}
+MAX_STATIQUES = 2000   # limites de Cloudflare Pages (constants.ts)
+MAX_JOKERS = 100
+# Un chemin d'URL tel que le navigateur l'envoie : accents et espaces encodes ;
+# « * » et « : » encodes aussi (ils feraient d'une ligne une regle dynamique).
+SURS_DANS_URL = "/!$&'()+,;=@~-._"
+
+
+def _url(chemin):
+    from urllib.parse import quote
+    return "/" + quote(chemin, safe=SURS_DANS_URL)
+
+
+def redirections(retenus):
+    """(jokers, statiques, laisses) : dossiers et fichiers internes renvoyes vers /."""
+    publies = set(retenus)
+    dehors = [c for c in fichiers_du_depot() if c not in publies]
+    # Tout dossier qui contient (a toute profondeur) un fichier publie.
+    habites = set()
+    for c in retenus:
+        parties = c.split("/")[:-1]
+        for i in range(1, len(parties) + 1):
+            habites.add("/".join(parties[:i]))
+
+    def dossier_joker(c):
+        """Le plus haut dossier de c sans fichier publie (hors dossiers de l'app au 1er niveau)."""
+        parties = c.split("/")[:-1]
+        for i in range(1, len(parties) + 1):
+            d = "/".join(parties[:i])
+            if d in habites:
+                continue
+            if i == 1 and d in JAMAIS_DE_JOKER:
+                continue
+            return d
+        return None
+
+    par_dossier = {}
+    isoles = []
+    for c in dehors:
+        d = dossier_joker(c)
+        if d:
+            par_dossier.setdefault(d, []).append(c)
+        elif c + ".html" not in publies and c + "/index.html" not in publies:
+            # (« /conditions » est l'adresse courte de conditions.html : pas de ligne)
+            isoles.append(c)
+    # Les plus gros dossiers en joker ; au-dela de 100, leurs fichiers en lignes.
+    tries = sorted(par_dossier, key=lambda d: (-len(par_dossier[d]), d))
+    jokers = sorted(tries[:MAX_JOKERS])
+    for d in tries[MAX_JOKERS:]:
+        isoles.extend(par_dossier[d])
+    # Les lignes : la racine d'abord, puis les notes, puis le reste.
+    def rang(c):
+        ext = c.rsplit(".", 1)[-1].lower() if "." in c.rsplit("/", 1)[-1] else ""
+        return (0 if "/" not in c else 1 if ext in ("md", "txt", "rules", "csv", "tsv") else 2, c)
+    isoles.sort(key=rang)
+    statiques, laisses = isoles[:MAX_STATIQUES], isoles[MAX_STATIQUES:]
+    # Garde-fou : aucune regle ne doit toucher un fichier publie.
+    for d in jokers:
+        if d in habites or any(p.startswith(d + "/") for p in publies):
+            raise SystemExit("ERREUR _redirects : le joker /%s/* couvrirait un fichier publie" % d)
+    for c in statiques:
+        if c in publies:
+            raise SystemExit("ERREUR _redirects : %s est publie" % c)
+    return jokers, statiques, laisses
+
+
+def ecrire_redirections(retenus):
+    jokers, statiques, laisses = redirections(retenus)
+    lignes = ["# Fichiers internes du depot -> l'accueil (publication/construire_site.py, ne pas modifier a la main)."]
+    lignes += ["%s %s" % (_url(c), "/ 301") for c in statiques]
+    lignes += ["%s/* / 301" % _url(d) for d in jokers]
+    for l in lignes:
+        if len(l) > 2000:
+            raise SystemExit("ERREUR _redirects : ligne trop longue : %s..." % l[:80])
+    with open(os.path.join(SORTIE, "_redirects"), "w", encoding="utf-8", newline="\n") as f:
+        f.write("\n".join(lignes) + "\n")
+    return jokers, statiques, laisses
+
+
 def fichiers_du_depot():
     """Les fichiers suivis par git si possible (pas ce qui traine sur le disque)."""
     try:
@@ -200,7 +299,11 @@ def verifier(retenus):
 def main():
     retenus, manquants = construire()
     taille = sum(os.path.getsize(os.path.join(SORTIE, c)) for c in retenus)
-    print("_site : %d fichiers, %.1f Mo (+ 404.html)" % (len(retenus), taille / 1e6))
+    print("_site : %d fichiers, %.1f Mo (+ 404.html, _redirects)" % (len(retenus), taille / 1e6))
+    jokers, statiques, laisses = ecrire_redirections(retenus)
+    print("_redirects : %d dossiers internes en joker (max %d), %d fichiers internes en lignes (max %d)%s"
+          % (len(jokers), MAX_JOKERS, len(statiques), MAX_STATIQUES,
+             (" ; %d laisses en 404 seulement (au-dela de la limite)" % len(laisses)) if laisses else ""))
     if manquants:
         print("ABSENTS du depot (liste a corriger) : " + ", ".join(manquants))
     if "--verifier" in sys.argv:

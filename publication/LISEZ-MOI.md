@@ -25,6 +25,43 @@ dossier de Firebase.
 `functions/` (Firebase) n'est pas touché : Cloudflare le traite exactement
 comme aujourd'hui, et il ne fait pas partie de `_site/`.
 
+## `_redirects` : les fichiers internes vers l'accueil (12 nov. 2026)
+
+La liste blanche ne suffisait pas. Le **cache de préservation** de Cloudflare
+Pages (code : workers-sdk, `pages-shared/asset-server/handler.ts`,
+`assetPreservationCacheV2`) garde pendant 7 jours, par URL exacte et par centre
+de données, chaque fichier qu'il a servi. Quand le déploiement actuel n'a plus
+un fichier, il le **ressert** au lieu de la 404, avec les en-têtes
+`x-robots-tag: noindex` et `s-maxage=604800`. Le soir du 12 nov., wortando.com
+servait encore `CLAUDE.md`, `decisions/DECISIONS.md`, `firestore.rules`,
+`demenagement/JOUR-J.md` et `.gitignore` (centre de Toronto), un jour après
+le passage à `_site/` et malgré « Purge Everything ».
+
+Pages lit `_redirects` **avant** de chercher un fichier, donc avant ce cache.
+`construire_site.py` écrit donc `_site/_redirects`, qui renvoie en 301 vers
+`/` chaque fichier suivi par git et **absent** de `_site/`. La liste est
+dérivée de la liste blanche, il n'y a rien à tenir à la main :
+
+- **un joker** `/dossier/* / 301` pour chaque dossier sans aucun fichier
+  publié dessous, pris le plus haut possible (`tests/`, `decisions/`,
+  `retours/`, `securite/`, `visuel/familia/`, `audio/lectures/`…). Jamais
+  `/visuel/*`, `/espanol/*`, `/anglais/*`, `/portugais/*`, `/japonais/*` ni
+  `/audio/*` entiers : `JAMAIS_DE_JOKER`. Un dossier qui gagne un fichier
+  publié perd son joker à la construction suivante ;
+- **une ligne** par fichier interne restant : la racine (`CLAUDE.md`,
+  `firestore.rules`…), les notes et sources rangées à côté de fichiers publiés ;
+- les limites de Pages sont tenues : 100 jokers au plus, 2 000 lignes au plus.
+  Au-delà de 100 jokers, les plus petits dossiers passent en lignes ; au-delà
+  de 2 000 lignes, la construction dit combien restent en 404 seulement ;
+- **garde-fou** : la construction s'arrête si un joker couvrirait un fichier
+  publié. Aucune ligne n'est écrite pour l'adresse courte d'une page
+  (`/conditions` pour `conditions.html`).
+
+Au 12 nov., la construction écrit 93 jokers et 233 lignes. Les 4 559 fichiers
+suivis hors de `_site/` sont tous redirigés, et aucune adresse des 3 127
+fichiers publiés n'est touchée. Une adresse qui n'est **pas** un fichier du dépôt
+(`/adresse-inconnue`) répond toujours 404.
+
 ## Ajouter un fichier que l'app charge
 
 Une page, une image ou un JSON **nouveaux** sous un dossier déjà publié, avec
