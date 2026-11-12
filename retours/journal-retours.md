@@ -9811,3 +9811,5 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
   → Renvoyé le 11 nov. à la session revue-corrections : nouvelle maquette, « Je le connaissais déjà » en vrai bouton, couleurs hors du code des genres, plusieurs variantes pour Jacques ; la ligne 60 reste bloquée jusqu'à son accord.
 - 12 nov. (un testeur, interface anglaise, par WhatsApp à Jacques) : « for wartando i cant login in my laptop ». Compte vérifié en lecture seule : créé le 7 sept. avec son code, actif aujourd'hui (synchronisé à 6 h 46), donc le compte marche ; le blocage est propre à l'ordinateur.
   → Réponse proposée à Jacques (au « je ») : ouvrir wortando.com, onglet « Se connecter », mêmes identifiants que sur le téléphone, sinon « Mot de passe oublié », et une capture du message d'erreur si ça bloque encore.
+  → Suite, 12 nov. 8 h 43 : « after few minutes i can login in it, thank you so much » (réglé de lui-même).
+- 12 nov. (le même testeur, anglais) : « if you add more exam model .then it will superb » -- demande de plus d'examens blancs (modèles d'examen) ; à rapprocher de la préparation DTZ / telc / Goethe en ligne. Rien de lancé : à proposer à Jacques.
