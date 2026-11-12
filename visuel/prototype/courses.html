@@ -140,8 +140,18 @@ button:disabled{cursor:default}
 <script src="themes/verre.js?v=8"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const APPRENDRE = ["de", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
 const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
+// le portugais (lot P4, 12 nov. 2026) : Lisbonne ; &variante=br, le Bresil. courses.json porte pt_ (et br_ la ou le Bresil
+// differe), que le chargement pose sous « pt » (portugaisAppris) : la cle « pt » y est la traduction bresilienne de l'interface
+const BR = APPRENDRE === "pt" && Q.get("variante") === "br";
+function portugaisAppris(o){
+  if (Array.isArray(o)) o.forEach(portugaisAppris);
+  else if (o && typeof o === "object"){
+    if ("pt_" in o) o.pt = (BR && "br_" in o) ? o.br_ : o.pt_;
+    for (const k in o) if (k !== "pt" && k !== "pt_" && k !== "br_") portugaisAppris(o[k]);
+  }
+}
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
@@ -165,6 +175,12 @@ const TEXTES = {
   regleDes:  {fr:"« Quisiera… » est poli (je voudrais). La vendeuse demande « ¿Qué desea? » puis « ¿Algo más? » ; on termine par « Eso es todo. »", en:"« Quisiera… » is polite (I would like). The shop assistant asks « ¿Qué desea? », then « ¿Algo más? »; you finish with « Eso es todo. »", tr:"« Quisiera… » kibardır (isterdim). Satıcı « ¿Qué desea? », sonra « ¿Algo más? » diye sorar; « Eso es todo. » diyerek bitirirsin.", uk:"« Quisiera… » звучить ввічливо (я хотів би). Продавчиня питає « ¿Qué desea? », потім « ¿Algo más? »; закінчують словами « Eso es todo. »", fa:"« Quisiera… » مؤدبانه است (می‌خواستم). فروشنده می‌پرسد « ¿Qué desea? » و بعد « ¿Algo más? »؛ در پایان می‌گویی « Eso es todo. »", ar:"« Quisiera… » مهذبة (أودّ). تسأل البائعة « ¿Qué desea? » ثم « ¿Algo más? »، وتنهي بـ « Eso es todo. »", pt:"« Quisiera… » é educado (eu queria). A vendedora pergunta « ¿Qué desea? » e depois « ¿Algo más? »; você termina com « Eso es todo. »", pl:"« Quisiera… » jest grzeczne (chciałbym). Sprzedawczyni pyta « ¿Qué desea? », potem « ¿Algo más? »; kończysz słowami « Eso es todo. »", ru:"« Quisiera… » звучит вежливо (я бы хотел). Продавщица спрашивает « ¿Qué desea? », потом « ¿Algo más? »; заканчивают словами « Eso es todo. »", de:"« Quisiera… » ist höflich (ich hätte gern). Die Verkäuferin fragt « ¿Qué desea? », dann « ¿Algo más? »; zum Schluss sagt man « Eso es todo. »"},
   reglePde:  {fr:"En allemand, l'unité vient avant la dizaine : 49 = neunundvierzig (« neuf et quarante »). Un prix se lit sans « virgule » : 2,49 € = zwei Euro neunundvierzig.", en:"In German, the units come before the tens: 49 = neunundvierzig (« nine and forty »). A price is read without « point »: €2.49 = zwei Euro neunundvierzig.", tr:"Almancada birler onlardan önce gelir: 49 = neunundvierzig (« dokuz ve kırk »). Fiyat « virgül » denmeden okunur: 2,49 € = zwei Euro neunundvierzig.", uk:"У німецькій одиниці йдуть перед десятками: 49 = neunundvierzig (« дев'ять і сорок »). Ціну читають без « коми »: 2,49 € = zwei Euro neunundvierzig.", fa:"در آلمانی یکان پیش از دهگان می‌آید: 49 = neunundvierzig (« نُه و چهل »). قیمت بدون « ممیز » خوانده می‌شود: 2,49 € = zwei Euro neunundvierzig.", ar:"في الألمانية تأتي الآحاد قبل العشرات: 49 = neunundvierzig (« تسعة وأربعون »). ويُقرأ السعر بلا « فاصلة »: 2,49 € = zwei Euro neunundvierzig.", pt:"Em alemão, a unidade vem antes da dezena: 49 = neunundvierzig (« nove e quarenta »). O preço se lê sem « vírgula »: 2,49 € = zwei Euro neunundvierzig.", pl:"Po niemiecku jedności są przed dziesiątkami: 49 = neunundvierzig (« dziewięć i czterdzieści »). Cenę czyta się bez « przecinka »: 2,49 € = zwei Euro neunundvierzig.", ru:"В немецком единицы идут перед десятками: 49 = neunundvierzig (« девять и сорок »). Цену читают без « запятой »: 2,49 € = zwei Euro neunundvierzig.", de:"49 = neunundvierzig ; 2,49 € = zwei Euro neunundvierzig."},
   reglePes:  {fr:"En espagnol, on relie les euros et les centimes par « con » : 2,49 € = dos euros con cuarenta y nueve. Attention : sesenta (60) et setenta (70) se ressemblent.", en:"In Spanish, euros and cents are joined with « con »: €2.49 = dos euros con cuarenta y nueve. Careful: sesenta (60) and setenta (70) sound alike.", tr:"İspanyolcada avro ile sent « con » ile bağlanır: 2,49 € = dos euros con cuarenta y nueve. Dikkat: sesenta (60) ile setenta (70) birbirine benzer.", uk:"В іспанській євро й центи з'єднують словом « con »: 2,49 € = dos euros con cuarenta y nueve. Увага: sesenta (60) і setenta (70) схожі.", fa:"در اسپانیایی یورو و سنت با « con » به هم وصل می‌شوند: 2,49 € = dos euros con cuarenta y nueve. دقت کن: sesenta (60) و setenta (70) شبیه هم‌اند.", ar:"في الإسبانية تُربط اليوروهات بالسنتات بكلمة « con »: 2,49 € = dos euros con cuarenta y nueve. انتبه: sesenta (60) وsetenta (70) متشابهتان.", pt:"Em espanhol, euros e centavos se ligam com « con »: 2,49 € = dos euros con cuarenta y nueve. Atenção: sesenta (60) e setenta (70) se parecem.", pl:"Po hiszpańsku euro i centy łączy się słowem « con »: 2,49 € = dos euros con cuarenta y nueve. Uwaga: sesenta (60) i setenta (70) brzmią podobnie.", ru:"По-испански евро и центы соединяют словом « con »: 2,49 € = dos euros con cuarenta y nueve. Внимание: sesenta (60) и setenta (70) похожи.", de:"Auf Spanisch verbindet man Euro und Cent mit « con »: 2,49 € = dos euros con cuarenta y nueve. Vorsicht: sesenta (60) und setenta (70) klingen ähnlich."},
+  // le portugais appris : l'interface en francais (et en anglais)
+  regleMpt:  {fr:"On va à la padaria (a + a = à) ou ao supermercado (a + o = ao) ; on est na padaria (em + a = na), no supermercado (em + o = no).", en:"You go à padaria (a + a = à) or ao supermercado (a + o = ao); you are na padaria (em + a = na), no supermercado (em + o = no)."},
+  regleDpt:  {fr:"« Queria… » est poli (je voudrais). La vendeuse demande « O que deseja? » puis « Mais alguma coisa? » ; on termine par « É tudo. »", en:"« Queria… » is polite (I would like). The shop assistant asks « O que deseja? », then « Mais alguma coisa? »; you finish with « É tudo. »"},
+  regleDbr:  {fr:"« Eu queria… » est poli (je voudrais). La vendeuse demande « O que deseja? » puis « Mais alguma coisa? » ; on termine par « É só isso. »", en:"« Eu queria… » is polite (I would like). The shop assistant asks « O que deseja? », then « Mais alguma coisa? »; you finish with « É só isso. »"},
+  reglePpt:  {fr:"En portugais, on relie les euros et les cêntimos par « e » : 2,49 € = dois euros e quarenta e nove. Attention : sessenta (60) et setenta (70) se ressemblent.", en:"In Portuguese, euros and cêntimos are joined with « e »: €2.49 = dois euros e quarenta e nove. Careful: sessenta (60) and setenta (70) sound alike."},
+  reglePbr:  {fr:"En portugais, on relie les euros et les centavos par « e » : 2,49 € = dois euros e quarenta e nove. Attention : sessenta (60) et setenta (70) se ressemblent.", en:"In Portuguese, euros and centavos are joined with « e »: €2.49 = dois euros e quarenta e nove. Careful: sessenta (60) and setenta (70) sound alike."},
   ou:        {fr:"Lis la question et choisis le magasin.", en:"Read the question and choose the shop.", tr:"Soruyu oku ve dükkânı seç.", uk:"Прочитай запитання й обери магазин.", fa:"سؤال را بخوان و مغازه را انتخاب کن.", ar:"اقرأ السؤال واختر المتجر.", pt:"Leia a pergunta e escolha a loja.", pl:"Przeczytaj pytanie i wybierz sklep.", ru:"Прочитай вопрос и выбери магазин.", de:"Lies die Frage und wähle das Geschäft."},
   magasin:   {fr:"Regarde l'image : où sommes-nous ?", en:"Look at the picture: where are we?", tr:"Resme bak: neredeyiz?", uk:"Подивися на зображення: де ми?", fa:"به تصویر نگاه کن: کجا هستیم؟", ar:"انظر إلى الصورة: أين نحن؟", pt:"Olhe a imagem: onde estamos?", pl:"Spójrz na obrazek: gdzie jesteśmy?", ru:"Посмотри на картинку: где мы?", de:"Sieh dir das Bild an: Wo sind wir?"},
   aller:     {fr:"Complète avec la bonne préposition.", en:"Fill in the right preposition.", tr:"Doğru edatla tamamla.", uk:"Встав правильний прийменник.", fa:"با حرف اضافهٔ درست کامل کن.", ar:"أكمل بحرف الجر الصحيح.", pt:"Complete com a preposição certa.", pl:"Uzupełnij właściwym przyimkiem.", ru:"Вставь правильный предлог.", de:"Ergänze die richtige Präposition."},
@@ -200,8 +216,10 @@ const MAGS = () => D.magasins.filter(m => m[APPRENDRE]);
 const art = id => D.articles.find(a => a.id === id);
 const PERS = [{n: "Mark", s: "m"}, {n: "Anna", s: "f"}];
 const ligne = id => D.lignes[id];
-const texteLigne = id => latam(ligne(id)[APPRENDRE]);
-const voixLigne = id => latam((ligne(id).dit || {})[APPRENDRE] || ligne(id)[APPRENDRE]);
+// le portugais : une cliente dit « obrigada » (s : le sexe de qui parle, quand on le connait)
+const accordLigne = (t, id, s) => APPRENDRE === "pt" && s === "f" && ligne(id).r === "K" ? t.replace(/\b([Oo])brigado\b/g, "$1brigada") : t;
+const texteLigne = (id, s) => accordLigne(latam(ligne(id)[APPRENDRE]), id, s);
+const voixLigne = (id, s) => accordLigne(latam((ligne(id).dit || {})[APPRENDRE] || ligne(id)[APPRENDRE]), id, s);
 
 // ---------- les prix : « 2,49 € » a l'ecran, en lettres dans la voix (regle du 28 oct. : les nombres se disent) ----------
 const prix = c => Math.floor(c / 100) + "," + String(c % 100).padStart(2, "0") + " €";
@@ -213,7 +231,12 @@ const ES_D = {3: "treinta", 4: "cuarenta", 5: "cincuenta", 6: "sesenta", 7: "set
 const DE_N = ["null", "ein", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwölf", "dreizehn", "vierzehn",
               "fünfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn"];
 const DE_D = {2: "zwanzig", 3: "dreißig", 4: "vierzig", 5: "fünfzig", 6: "sechzig", 7: "siebzig", 8: "achtzig", 9: "neunzig"};
+// le portugais : dezasseis / dezassete / dezanove au Portugal, dezesseis / dezessete / dezenove au Bresil
+const PT_N = ["zero", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "catorze", "quinze",
+              BR ? "dezesseis" : "dezasseis", BR ? "dezessete" : "dezassete", "dezoito", BR ? "dezenove" : "dezanove"];
+const PT_D = {2: "vinte", 3: "trinta", 4: "quarenta", 5: "cinquenta", 6: "sessenta", 7: "setenta", 8: "oitenta", 9: "noventa"};
 function nombre(n, l){
+  if (l === "pt"){ if (n < 20) return PT_N[n]; const d = Math.floor(n / 10), u = n % 10; return PT_D[d] + (u ? " e " + PT_N[u] : ""); }
   if (l === "es"){ if (n < 30) return ES_N[n]; const d = Math.floor(n / 10), u = n % 10; return ES_D[d] + (u ? " y " + (u === 1 ? "un" : ES_N[u]) : ""); }
   if (n < 20) return DE_N[n]; const d = Math.floor(n / 10), u = n % 10; return (u ? (u === 1 ? "ein" : DE_N[u]) + "und" : "") + DE_D[d];
 }
@@ -221,6 +244,11 @@ function nombre(n, l){
 function lettres(c){
   const e = Math.floor(c / 100), ct = c % 100;
   const esCt = n => nombre(n, "es").replace(/ un$/, " uno").replace(/^un$/, "uno").replace(/veintiún$/, "veintiuno");
+  // pt : « dois euros e quarenta e nove », « noventa cêntimos » (centavos au Bresil)
+  if (APPRENDRE === "pt"){
+    if (!e) return ct === 1 ? (BR ? "um centavo" : "um cêntimo") : nombre(ct, "pt") + (BR ? " centavos" : " cêntimos");
+    return nombre(e, "pt") + (e === 1 ? " euro" : " euros") + (ct ? " e " + nombre(ct, "pt") : "");
+  }
   if (APPRENDRE === "es"){
     if (!e) return (ct === 1 ? "un céntimo" : nombre(ct, "es") + " céntimos");
     return nombre(e, "es") + (e === 1 ? " euro" : " euros") + (ct ? " con " + esCt(ct) : "");
@@ -295,7 +323,44 @@ const DE = {
   demande: e => "„" + maj(e.de.np) + ", bitte.“",
   demandePh: e => maj(e.de.np) + ", bitte."
 };
-const L = APPRENDRE === "de" ? DE : ES;
+// le portugais : « o Mark », « a Anna » au Portugal, le prenom seul au Bresil ; le pronom apres le verbe au Portugal
+// (« compra-se »), avant au Bresil (« se compra »)
+const nomPe = pe => BR ? pe.n : (pe.s === "f" ? "a " : "o ") + pe.n;
+const PT = {
+  bravo: "Muito bem!", vrai: "Verdadeiro", faux: "Falso",
+  wo: m => m.pt.en + " " + m.pt.mot,
+  woPh: m => maj(m.pt.en + " " + m.pt.mot) + ".",
+  ouQ: p => "Onde se compra" + (p.pt.pl ? "m " : " ") + p.pt.art + "?",
+  ouPh: (p, m) => maj(p.pt.art) + (BR ? " se compra" + (p.pt.pl ? "m " : " ") : " compra" + (p.pt.pl ? "m-se " : "-se ")) + m.pt.en + " " + m.pt.mot + ".",
+  ouSommes: "Onde estamos?",
+  sommesPh: m => "Estamos " + m.pt.en + " " + m.pt.mot + ".",
+  allerZu: (pe, p, m) => maj(nomPe(pe)) + " precisa de " + p.pt.nu + ". Vai ___ " + m.pt.mot + ".",
+  allerWo: (pe, p, m) => maj(nomPe(pe)) + " compra " + p.pt.nu + ". Está ___ " + m.pt.mot + ".",
+  estLa: (pe, m) => maj(nomPe(pe)) + " está " + m.pt.en + " " + m.pt.mot + ".",
+  citer: t => BR ? "“" + t + "”" : "«" + t + "»",
+  quiQ: BR ? "Quem diz isso?" : "Quem diz isto?",
+  dit: (role, t) => maj(role) + " diz: " + PT.citer(t),
+  repQ: role => "O que responde " + role + "?",
+  coute: (a, p) => maj(a.pt[0]) + (a.pt[1] ? " custam " : " custa ") + p + ".",
+  plusQue: (a, b, adj) => maj(a.pt[0]) + (a.pt[1] ? " são " : " é ") + adj + " do que " + b.pt[0] + ".",
+  rendu: (pe, t, b) => "São " + t + ". " + maj(nomPe(pe)) + " paga com uma nota de " + BILLETS[b].pt + " euros.",
+  renduQ: () => "Recebe ___ de troco.",
+  renduPh: (pe, t, b, r) => "São " + t + ". " + maj(nomPe(pe)) + " paga com uma nota de " + BILLETS[b].pt + " euros. Recebe " + r + " de troco.",
+  kostetQ: a => "Quanto ___ " + a.pt[0] + "?",
+  kostetPh: a => "Quanto " + (a.pt[1] ? "custam " : "custa ") + a.pt[0] + "?",
+  commande: x => (BR ? "Eu queria" : "Queria") + " ___ " + x[1] + ".",
+  commandePh: x => (BR ? "Eu queria " : "Queria ") + x[0] + " " + x[1] + ".",
+  offres: "Promoções da semana",
+  combien: e => "Quanto custa " + e.pt.np + "?",
+  quoiPour: p => "O que custa " + p + "?",
+  embPh: (e, p) => maj(e.pt.np) + " custa " + p + ".",
+  demande: e => PT.citer(maj(e.pt.np) + ", por favor."),
+  demandePh: e => maj(e.pt.np) + ", por favor."
+};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "pt" ? PT : ES;
+// les mots des prix, par langue apprise
+const MOTS_PRIX = {de: {kosten: "kosten", cher: "teuer", pas: "billig", payer: "bezahlen"}, es: {kosten: "costar", cher: "caro", pas: "barato", payer: "pagar"},
+                   pt: {kosten: "custar", cher: "caro", pas: "barato", payer: "pagar"}}[APPRENDRE];
 const roleNom = (r, s) => { const x = D.roles[APPRENDRE][r][s]; return x[1] + " " + x[0]; };
 
 // ---------- la traduction dans la langue d'interface (Jacques, 3 nov. 2026) ----------
@@ -493,6 +558,9 @@ function motsDuTheme(){
   if (APPRENDRE === "de"){
     ajouter("kosten", "verbe", {prix: true, kostet: true}); ajouter("Euro", "der", {prix: true, rendu: true}); ajouter("bezahlen", "verbe", {rendu: true});
     ajouter("teuer", "adjectif", {cmp: "plus"}); ajouter("billig", "adjectif", {cmp: "moins"}); ajouter("Angebot", "das", {angebot: true});
+  } else if (APPRENDRE === "pt"){
+    ajouter("custar", "verbe", {prix: true, kostet: true}); ajouter("euro", "o", {prix: true, rendu: true}); ajouter("pagar", "verbe", {rendu: true});
+    ajouter("caro", "adjectif", {cmp: "plus"}); ajouter("barato", "adjectif", {cmp: "moins"}); ajouter("promoção", "a", {angebot: true});
   } else {
     ajouter("costar", "verbe", {prix: true, kostet: true}); ajouter("euro", "el", {prix: true, rendu: true}); ajouter("pagar", "verbe", {rendu: true});
     ajouter("caro", "adjectif", {cmp: "plus"}); ajouter("barato", "adjectif", {cmp: "moins"}); ajouter("oferta", "la", {angebot: true});
@@ -585,8 +653,8 @@ const EX = {
     motQ = w || (ligne(id).mot && ligne(id).mot[APPRENDRE] ? motDe(ligne(id).mot[APPRENDRE]) : motDe(D.roles[APPRENDRE][r][s]));
     sensQ = {qui: {id, r, s}};
     TRAD_CHOIX = {}; TRAD_CHOIX[rep] = tradRole(r, s); TRAD_CHOIX[leurre] = tradRole(autre, s2);
-    ecran("qui", "", cible(L.citer(texteLigne(id))) + sous(L.quiQ), true);
-    const phrase = L.dit(rep, texteLigne(id)), lu = ligne(id).dit ? L.dit(rep, voixLigne(id)) : null;
+    ecran("qui", "", cible(L.citer(texteLigne(id, s))) + sous(L.quiQ), true);
+    const phrase = L.dit(rep, texteLigne(id, s)), lu = ligne(id).dit ? L.dit(rep, voixLigne(id, s)) : null;
     boutons($("choix"), melanger([rep, leurre]), rep, ok => juger(ok, rep, phrase, lu));
     return true;
   },
@@ -605,19 +673,19 @@ const EX = {
     const motPaire = (ligne(p.r).mot || {})[APPRENDRE] || (ligne(p.q).mot || {})[APPRENDRE];
     motQ = w || (motPaire ? motDe(motPaire) : motDe(D.roles[APPRENDRE][rr][sr]));
     sensQ = {paire: p};
-    const rep = texteLigne(p.r), leurres = avecLeurres(p).map(texteLigne);
-    TRAD_CHOIX = {}; D.paires.forEach(x => { TRAD_CHOIX[texteLigne(x.r)] = tradLigne(x.r); });
-    ecran("reponse", "", cible(maj(roleNom(rq, sq)) + ": " + L.citer(texteLigne(p.q))) + sous(L.repQ(roleNom(rr, sr))));
-    const phrase = L.citer(texteLigne(p.q)) + " — " + L.citer(rep);
-    const lu = (ligne(p.q).dit || ligne(p.r).dit) ? voixLigne(p.q) + " " + voixLigne(p.r) : null;
-    boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(ok, rep, phrase, lu || voixLigne(p.q) + " " + voixLigne(p.r)));
+    const rep = texteLigne(p.r, sr), leurres = avecLeurres(p).map(id => texteLigne(id, sr));
+    TRAD_CHOIX = {}; D.paires.forEach(x => { TRAD_CHOIX[texteLigne(x.r, sr)] = tradLigne(x.r); });
+    ecran("reponse", "", cible(maj(roleNom(rq, sq)) + ": " + L.citer(texteLigne(p.q, sq))) + sous(L.repQ(roleNom(rr, sr))));
+    const phrase = L.citer(texteLigne(p.q, sq)) + " — " + L.citer(rep);
+    const lu = (ligne(p.q).dit || ligne(p.r).dit) ? voixLigne(p.q, sq) + " " + voixLigne(p.r, sr) : null;
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(ok, rep, phrase, lu || voixLigne(p.q, sq) + " " + voixLigne(p.r, sr)));
     return true;
   },
   // le prix en lettres (et a l'oreille) : « Die Butter kostet zwei Euro neunundvierzig. » -> l'etiquette 2,49 €
   prix(w){
     if (w && !w.prix && !w.art) return false;
     const a = w && w.art ? art(hasard(w.art)) : hasard(D.articles), c = prixHasard(a);
-    motQ = w || motDe(APPRENDRE === "de" ? ["kosten", "verbe"] : ["costar", "verbe"]); sensQ = {coute: {a, c}};
+    motQ = w || motDe([MOTS_PRIX.kosten, "verbe"]); sensQ = {coute: {a, c}};
     const ditTexte = L.coute(a, lettres(c)), rep = prix(c);
     ecran("prix", "", cible(ditTexte) + " " + boutonEcoute("reecoute"), true, "etiquettes");
     $("reecoute").addEventListener("click", () => direPrix(ditTexte));
@@ -634,14 +702,14 @@ const EX = {
     if (Math.abs(ca - cb) < 30) cb = ca + 50;
     if (w && w.cmp && (w.cmp === "plus") !== (ca > cb)) [ca, cb] = [cb, ca];
     const plus = ca > cb;
-    motQ = w || motDe(APPRENDRE === "de" ? [plus ? "teuer" : "billig", "adjectif"] : [plus ? "caro" : "barato", "adjectif"]);
+    motQ = w || motDe([plus ? MOTS_PRIX.cher : MOTS_PRIX.pas, "adjectif"]);
     sensQ = {compare: {a, b, plus}};
     let rep, leurres;
     if (APPRENDRE === "de"){ rep = plus ? "teurer" : "billiger"; leurres = plus ? ["billiger", "teuerer", "teuer"] : ["teurer", "billig", "mehr billig"]; }
     else {
-      const i = (a.es[1] ? 2 : 0) + (a.es[3] === "la" ? 1 : 0), F = {c: ["caro", "cara", "caros", "caras"], b: ["barato", "barata", "baratos", "baratas"]};
-      const x = plus ? F.c : F.b, y = plus ? F.b : F.c;
-      rep = "más " + x[i]; leurres = ["más " + y[i], "más " + x[i ^ 1], x[i]];
+      const A = a[APPRENDRE], i = (A[1] ? 2 : 0) + (A[3] === "la" || A[3] === "a" ? 1 : 0), F = {c: ["caro", "cara", "caros", "caras"], b: ["barato", "barata", "baratos", "baratas"]};
+      const x = plus ? F.c : F.b, y = plus ? F.b : F.c, plusMot = APPRENDRE === "pt" ? "mais " : "más ";
+      rep = plusMot + x[i]; leurres = [plusMot + y[i], plusMot + x[i ^ 1], x[i]];
     }
     TRAD_CHOIX = {};
     if (TR){ const fr = TR === "fr", en = TR === "en", pt = TR === "pt";
@@ -658,7 +726,7 @@ const EX = {
   rendu(w){
     if (w && !w.rendu) return false;
     const t = entre(110, 4890), b = [500, 1000, 2000, 5000].find(x => x > t), r = b - t, pe = hasard(PERS);
-    motQ = w || motDe(APPRENDRE === "de" ? ["bezahlen", "verbe"] : ["pagar", "verbe"]); sensQ = {rendu: {pe, t, b, r}};
+    motQ = w || motDe([MOTS_PRIX.payer, "verbe"]); sensQ = {rendu: {pe, t, b, r}};
     const re = Math.floor(r / 100), rc = r % 100;
     const l = new Set([r + 100, r - 100, re * 100 + (100 - rc) % 100, r + 10, r - 10, r + 90].filter(x => x > 0 && x !== r));
     const rep = prix(r);
@@ -671,10 +739,10 @@ const EX = {
   kostet(w){
     if (w && !w.kostet && !w.art) return false;
     const a = w && w.art ? art(hasard(w.art)) : hasard(D.articles);
-    motQ = w || motDe(APPRENDRE === "de" ? ["kosten", "verbe"] : ["costar", "verbe"]); sensQ = {kostet: a};
+    motQ = w || motDe([MOTS_PRIX.kosten, "verbe"]); sensQ = {kostet: a};
     const pl = a[APPRENDRE][1];
-    const rep = APPRENDRE === "de" ? (pl ? "kosten" : "kostet") : (pl ? "cuestan" : "cuesta");
-    const leurres = APPRENDRE === "de" ? ["kostet", "kosten", "kostest"] : ["cuesta", "cuestan", "costa", "costan"];
+    const rep = APPRENDRE === "de" ? (pl ? "kosten" : "kostet") : APPRENDRE === "pt" ? (pl ? "custam" : "custa") : (pl ? "cuestan" : "cuesta");
+    const leurres = APPRENDRE === "de" ? ["kostet", "kosten", "kostest"] : APPRENDRE === "pt" ? ["custa", "custam", "custas"] : ["cuesta", "cuestan", "costa", "costan"];
     ecran("kostet", "", avecTrou(L.kostetQ(a)), true);
     boutons($("choix"), options(rep, leurres, 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, L.kostetPh(a)); });
     return true;
@@ -684,7 +752,7 @@ const EX = {
     if (w && !w.cmd) return false;
     const liste = D.commande[APPRENDRE], i = w ? hasard(w.cmd) : Math.floor(Math.random() * liste.length), x = liste[i];
     motQ = w || motDe([x[2], x[3]]); sensQ = {commande: x[4]};
-    const rep = x[0], leurres = APPRENDRE === "de" ? ["ein", "eine", "einen"] : ["un", "una", "uno"];
+    const rep = x[0], leurres = APPRENDRE === "de" ? ["ein", "eine", "einen"] : APPRENDRE === "pt" ? ["um", "uma", "uns"] : ["un", "una", "uno"];
     ecran("commande", "", avecTrou(L.commande(x)), true);
     boutons($("choix"), options(rep, leurres, 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, latam(L.commandePh(x))); });
     return true;
@@ -796,16 +864,16 @@ function decouvrir(){
     D(pl){ pl.className = "repliques";
       D.paires.forEach(p => {
         const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE;
-        const t = document.createElement("span"); t.className = "txt"; t.textContent = texteLigne(p.q); b.appendChild(t);
+        const t = document.createElement("span"); t.className = "txt"; t.textContent = texteLigne(p.q, "f"); b.appendChild(t);
         b.insertAdjacentHTML("beforeend", '<span class="hp-ligne" aria-hidden="true">' + HP_APP + '</span>');
-        b.setAttribute("aria-label", T("ecouter") + " : " + texteLigne(p.q));
+        b.setAttribute("aria-label", T("ecouter") + " : " + texteLigne(p.q, "f"));
         // toucher la replique ou son haut-parleur ouvre la fiche et la fait entendre ; le rond s'allume le temps du geste
         b.addEventListener("click", () => { choisir(pl, b);
           if (!muet) { pl.querySelectorAll(".joue").forEach(x => x.classList.remove("joue")); b.classList.add("joue"); setTimeout(() => b.classList.remove("joue"), 1200); }
-          const dit = cible(maj(roleNom(ligne(p.q).r, "f")) + " : " + L.citer(texteLigne(p.q))) + "<br>" + cible(maj(roleNom(ligne(p.r).r, "m")) + " : " + L.citer(texteLigne(p.r)));
+          const dit = cible(maj(roleNom(ligne(p.q).r, "f")) + " : " + L.citer(texteLigne(p.q, "f"))) + "<br>" + cible(maj(roleNom(ligne(p.r).r, "m")) + " : " + L.citer(texteLigne(p.r, "m")));
           const tq = tradLigne(p.q), trr = tradLigne(p.r);
           const prixVoix = !!(ligne(p.q).dit || ligne(p.r).dit);
-          fiche(null, texteLigne(p.q), dit, tq && trr ? tq + " — " + trr : null, voixLigne(p.q) + " " + voixLigne(p.r), prixVoix); });
+          fiche(null, texteLigne(p.q, "f"), dit, tq && trr ? tq + " — " + trr : null, voixLigne(p.q, "f") + " " + voixLigne(p.r, "m"), prixVoix); });
         pl.appendChild(b);
       });
       return pl.querySelector("button"); },
@@ -817,7 +885,8 @@ function decouvrir(){
       });
       return pl.querySelector("button"); }
   };
-  const REGLES = {M: APPRENDRE === "de" ? "regleMde" : "regleMes", D: APPRENDRE === "de" ? "regleDde" : "regleDes", P: APPRENDRE === "de" ? "reglePde" : "reglePes"};
+  const REGLES = APPRENDRE === "pt" ? {M: "regleMpt", D: BR ? "regleDbr" : "regleDpt", P: BR ? "reglePbr" : "reglePpt"}
+               : {M: APPRENDRE === "de" ? "regleMde" : "regleMes", D: APPRENDRE === "de" ? "regleDde" : "regleDes", P: APPRENDRE === "de" ? "reglePde" : "reglePes"};
   const onglet = cle => {
     ["M", "D", "P"].forEach(k => $("o" + k).setAttribute("aria-selected", k === cle));
     $("intro").textContent = T("intro" + cle);
@@ -912,8 +981,9 @@ $("retour").addEventListener("click", () => parler("fermer"));
 $("retour").setAttribute("aria-label", T("retourAria"));
 $("titre").textContent = T("titre");
 document.title = T("titre");
-fetch("courses/courses.json?v=1").then(r => r.json()).then(d => {
+fetch("courses/courses.json?v=2").then(r => r.json()).then(d => {
   D = d;
+  if (APPRENDRE === "pt") portugaisAppris(D);
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>

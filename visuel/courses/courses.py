@@ -364,6 +364,162 @@ MOMENTS = [
 ]
 PLANCHE = ["metzgerei", "tube-zahnpasta", "glas-marmelade", "baeckerei-bestellen", "kasse-karte", "markt-fragen"]
 
+# ---------- LE PORTUGAIS APPRIS (lot P4, 12 nov. 2026) ----------
+# Lisbonne, le Portugal d'abord ; « br_ » seulement la ou le Bresil differe (la page prend pt_, ou br_ s'il existe, avec
+# &variante=br). Pas « pt » : cette cle est deja la TRADUCTION en portugais du Bresil pour qui apprend es ou de.
+# Les mots : au corpus portugais (python visuel/mots_pt.py). em + a = na, a + a = à ; les leurres de « aller » ne
+# proposent jamais « na » / « no », qui se disent au Bresil pour le mouvement (« vou na padaria »).
+def _pt_mag(mot, genre):
+    f = genre == "a"
+    return {"mot": mot, "genre": genre, "en": "na" if f else "no", "enL": ["à", "no", "em a"] if f else ["ao", "na", "em o"],
+            "a": "à" if f else "ao", "aL": ["ao", "a a", "em a"] if f else ["à", "a o", "em o"]}
+PT_MAGASINS = {"baeckerei": (_pt_mag("padaria", "a"), None), "metzgerei": (_pt_mag("talho", "o"), _pt_mag("açougue", "o")),
+               "supermarkt": (_pt_mag("supermercado", "o"), None), "markt": (_pt_mag("mercado", "o"), _pt_mag("feira", "a")),
+               "apotheke": (_pt_mag("farmácia", "a"), None), "kiosk": (_pt_mag("banca", "a"), None),
+               "drogerie": (None, None),   # a drogaria : au Portugal, l'outillage et l'entretien ; au Bresil, la pharmacie
+               "buchhandlung": (_pt_mag("livraria", "a"), None)}
+PT_PRODUITS = {"brot": ({"art": "o pão", "nu": "pão", "pl": False}, None), "kuchen": ({"art": "o bolo", "nu": "um bolo", "pl": False}, None),
+               "fleisch": ({"art": "a carne", "nu": "carne", "pl": False}, None),
+               "wurst": ({"art": "o fiambre", "nu": "fiambre", "pl": False}, {"art": "o presunto", "nu": "presunto", "pl": False}),
+               "medikamente": ({"art": "os medicamentos", "nu": "medicamentos", "pl": True}, None),
+               "tabletten": ({"art": "os comprimidos", "nu": "comprimidos", "pl": True}, None),
+               "zeitung": ({"art": "o jornal", "nu": "um jornal", "pl": False}, None), "buch": ({"art": "o livro", "nu": "um livro", "pl": False}, None),
+               "zahnpasta": ({"art": "a pasta de dentes", "nu": "pasta de dentes", "pl": False}, {"art": "a pasta de dente", "nu": "pasta de dente", "pl": False}),
+               "seife": ({"art": "o sabonete", "nu": "sabonete", "pl": False}, None), "obst": ({"art": "a fruta", "nu": "fruta", "pl": False}, None),
+               "gemuese": ({"art": "os legumes", "nu": "legumes", "pl": True}, None)}
+# les repliques : (Portugal, Bresil ou None) ; mot ; dit (Portugal, Bresil) ; tr {fr, en} du Portugal, du Bresil
+PT_LIGNES = {
+    "V1": ("Bom dia. O que deseja?", None, None, None, {"fr": "Bonjour. Vous désirez ?", "en": "Good morning. What would you like?"}, None),
+    "K1": ("Queria seis pães, por favor.", "Eu queria seis pãezinhos, por favor.", None, None,
+           {"fr": "Je voudrais six petits pains, s'il vous plaît.", "en": "I'd like six bread rolls, please."}, None),
+    "V2": ("Mais alguma coisa?", None, None, None, {"fr": "Autre chose ?", "en": "Anything else?"}, None),
+    "K2": ("Não, obrigado. É tudo.", "Não, obrigado. É só isso.", None, None, {"fr": "Non, merci. C'est tout.", "en": "No, thank you. That's all."}, None),
+    "V3": ("Precisa de um saco?", "Quer uma sacola?", (["saco", "o"], ["sacola", "a"]), None,
+           {"fr": "Vous avez besoin d'un sac ?", "en": "Do you need a bag?"}, {"fr": "Vous voulez un sac ?", "en": "Would you like a bag?"}),
+    "K3": ("Não, obrigado. Já tenho um.", "Não, obrigado. Já tenho uma.", None, None,
+           {"fr": "Non, merci. J'en ai déjà un.", "en": "No, thanks. I already have one."}, None),
+    "V4": ("Paga em dinheiro ou com cartão?", "Vai pagar em dinheiro ou com cartão?", (["dinheiro", "o"], None), None,
+           {"fr": "Vous payez en espèces ou par carte ?", "en": "Are you paying cash or by card?"}, None),
+    "K4": ("Com cartão, por favor.", None, (["cartão", "o"], None), None, {"fr": "Par carte, s'il vous plaît.", "en": "By card, please."}, None),
+    "V5": ("São 4,20 €.", None, None, ("São quatro euros e vinte.", None), {"fr": "Ça fait 4,20 €.", "en": "That's €4.20."}, None),
+    "K5": ("Aqui tem cinco euros.", "Aqui estão cinco euros.", (["euro", "o"], None), None, {"fr": "Voici cinq euros.", "en": "Here's five euros."}, None),
+    "K6": ("Quanto custam as maçãs?", None, (["custar", "verbe"], None), None, {"fr": "Combien coûtent les pommes ?", "en": "How much are the apples?"}, None),
+    "V7": ("O quilo custa 2,90 €.", None, (["quilo", "o"], None), ("O quilo custa dois euros e noventa.", None),
+           {"fr": "Le kilo coûte 2,90 €.", "en": "They're €2.90 a kilo."}, None),
+    "K8": ("Posso pagar com cartão?", None, (["pagar", "verbe"], None), None, {"fr": "Je peux payer par carte ?", "en": "Can I pay by card?"}, None),
+    "V8": ("Sim, claro.", None, None, None, {"fr": "Oui, bien sûr.", "en": "Yes, of course."}, None),
+    "K9": ("Onde fica o arroz?", None, (["arroz", "o"], None), None, {"fr": "Où est le riz ?", "en": "Where's the rice?"}, None),
+    "V9": ("Ali ao fundo, ao lado da massa.", "Ali no fundo, ao lado do macarrão.", None, None,
+           {"fr": "Là-bas, au fond, à côté des pâtes.", "en": "Over there at the back, next to the pasta."}, None),
+    "V10": ("Aqui tem o seu talão.", "Aqui está o seu recibo.", (["talão", "o"], ["recibo", "o"]), None,
+            {"fr": "Voici votre ticket de caisse.", "en": "Here's your receipt."}, None),
+    "K10": ("Obrigado. Adeus!", "Obrigado. Tchau!", None, None, {"fr": "Merci. Au revoir !", "en": "Thanks. Goodbye!"}, None),
+    "V11": ("São 220 gramas. Está bem assim?", "São 220 gramas. Está bom assim?", (["grama", "o"], None),
+            ("São duzentos e vinte gramas. Está bem assim?", "São duzentos e vinte gramas. Está bom assim?"),
+            {"fr": "Ça fait 220 grammes. Ça vous va comme ça ?", "en": "It's 220 grams. Is that all right?"}, None),
+    "K11": ("Sim, está bem.", "Sim, está bom.", None, None, {"fr": "Oui, c'est bien.", "en": "Yes, that's fine."}, None),
+    "K12": ("O queijo está em promoção?", None, (["promoção", "a"], None), None,
+            {"fr": "Le fromage est en promotion ?", "en": "Is the cheese on special offer?"}, None),
+    "V12": ("Sim, esta semana custa só 1,99 €.", None, None, ("Sim, esta semana custa só um euro e noventa e nove.", None),
+            {"fr": "Oui, cette semaine, il ne coûte que 1,99 €.", "en": "Yes, this week it's only €1.99."}, None),
+    "K13": ("É demasiado caro para mim.", "É caro demais para mim.", (["caro", "adjectif"], None), None,
+            {"fr": "C'est trop cher pour moi.", "en": "It's too expensive for me."}, None),
+    "V13": ("Hoje os morangos estão baratos.", None, (["barato", "adjectif"], None), None,
+            {"fr": "Aujourd'hui, les fraises ne sont pas chères.", "en": "The strawberries are cheap today."}, None),
+    "K14": ("Tem pão integral?", None, (["pão", "o"], None), None, {"fr": "Vous avez du pain complet ?", "en": "Do you have wholemeal bread?"}, None),
+    "V14": ("Não, lamento, já não há.", "Não, sinto muito, acabou.", None, None,
+            {"fr": "Non, désolée, il n'y en a plus.", "en": "No, sorry, there's none left."}, None),
+    "V15": ("O seguinte, por favor!", "O próximo, por favor!", None, None, {"fr": "Au suivant, s'il vous plaît !", "en": "Next, please!"}, None),
+}
+PT_ROLES = {"K": {"m": ["cliente", "o"], "f": ["cliente", "a"]}, "V": {"m": ["vendedor", "o"], "f": ["vendedora", "a"]}}
+PT_ARTICLES = {"butter": ["a manteiga", False, "manteiga", "a"], "kaese": ["o queijo", False, "queijo", "o"], "brot": ["o pão", False, "pão", "o"],
+               "milch": ["o leite", False, "leite", "o"], "kaffee": ["o café", False, "café", "o"], "aepfel": ["as maçãs", True, "maçã", "a"],
+               "tomaten": ["os tomates", True, "tomate", "o"], "eier": ["os ovos", True, "ovo", "o"], "kuchen": ["o bolo", False, "bolo", "o"],
+               "zeitung": ["o jornal", False, "jornal", "o"], "buch": ["o livro", False, "livro", "o"], "schokolade": ["o chocolate", False, "chocolate", "o"],
+               "reis": ["o arroz", False, "arroz", "o"], "erdbeeren": ["os morangos", True, "morango", "o"]}
+PT_COMMANDE = [("um", "bolo", "bolo", "o", "kuchen"), ("um", "jornal", "jornal", "o", "zeitung"), ("um", "livro", "livro", "o", "buch"),
+               ("um", "café", "café", "o", "kaffee"), ("um", "saco", "saco", "o", "tuete"), ("uma", "garrafa de água", "garrafa", "a", "wasser"),
+               ("um", "pacote de massa", "pacote", "o", "nudeln"), ("um", "frasco de compota", "frasco", "o", "marmelade"),
+               ("uma", "lata de tomate", "lata", "a", "tomatendose"), ("um", "tubo de pasta de dentes", "tubo", "o", "zahnpasta"),
+               ("um", "quilo de maçãs", "quilo", "o", "kiloaepfel"), ("uma", "maçã", "maçã", "a", "apfel"),
+               ("um", "chocolate quente", "chocolate", "o", "schoko")]
+BR_COMMANDE = [("uma", "sacola", "sacola", "a", "tuete") if c[4] == "tuete" else ("um", "pacote de macarrão", "pacote", "o", "nudeln") if c[4] == "nudeln"
+               else ("um", "pote de geleia", "pote", "o", "marmelade") if c[4] == "marmelade"
+               else ("um", "tubo de pasta de dente", "tubo", "o", "zahnpasta") if c[4] == "zahnpasta" else c for c in PT_COMMANDE]
+PT_EMBALLAGES = {"nudeln": ({"np": "um pacote de massa", "mot": ["pacote", "o"], "ligne": "Massa", "emb": "pacote"},
+                            {"np": "um pacote de macarrão", "mot": ["pacote", "o"], "ligne": "Macarrão", "emb": "pacote"}),
+                 "marmelade": ({"np": "um frasco de compota", "mot": ["frasco", "o"], "ligne": "Compota", "emb": "frasco"},
+                               {"np": "um pote de geleia", "mot": ["pote", "o"], "ligne": "Geleia", "emb": "pote"}),
+                 "zahnpasta": ({"np": "um tubo de pasta de dentes", "mot": ["tubo", "o"], "ligne": "Pasta de dentes", "emb": "tubo"},
+                               {"np": "um tubo de pasta de dente", "mot": ["tubo", "o"], "ligne": "Pasta de dente", "emb": "tubo"}),
+                 "chips": ({"np": "um saco de batatas fritas", "mot": ["saco", "o"], "ligne": "Batatas fritas", "emb": "saco"},
+                           {"np": "um pacote de batata frita", "mot": ["pacote", "o"], "ligne": "Batata frita", "emb": "pacote"}),
+                 "wasser": ({"np": "uma garrafa de água", "mot": ["garrafa", "a"], "ligne": "Água mineral", "emb": "garrafa"}, None),
+                 "tomatendose": ({"np": "uma lata de tomate", "mot": ["lata", "a"], "ligne": "Tomate", "emb": "lata"}, None),
+                 "milch": ({"np": "um litro de leite", "mot": ["litro", "o"], "ligne": "Leite", "emb": "litro"}, None)}
+# les moments : (fait au Portugal, au Bresil), (mot au Portugal, au Bresil ou None) -- « o Mark », « a Anna » au Portugal
+PT_MOMENTS = {"baeckerei-bestellen": (("O Mark pede pães.", "Mark pede pãezinhos."), (["pão", "o"], None)),
+              "baeckerei-tuete": (("A vendedora dá um saco ao Mark.", "A vendedora dá uma sacola para o Mark."), (["saco", "o"], ["sacola", "a"])),
+              "baeckerei-bar": (("O Mark paga em dinheiro.", "Mark paga em dinheiro."), (["dinheiro", "o"], None)),
+              "metzgerei-wiegen": (("O vendedor pesa o fiambre.", "O vendedor pesa o presunto."), (["grama", "o"], None)),
+              "markt-fragen": (("A Anna pergunta o preço das maçãs.", "Anna pergunta o preço das maçãs."), (["custar", "verbe"], None)),
+              "kasse-karte": (("O Mark paga com cartão.", "Mark paga com cartão."), (["cartão", "o"], None)),
+              "kasse-bon": (("O Mark recebe o talão.", "Mark recebe o recibo."), (["talão", "o"], ["recibo", "o"])),
+              "regal-suchen": (("O Mark procura o arroz.", "Mark procura o arroz."), (["arroz", "o"], None))}
+
+
+def _poser(d, pt, br):
+    d["pt_"] = pt
+    if br is not None:
+        d["br_"] = br
+
+
+def portugais():
+    """Pose pt_ / br_ dans les donnees, a cote de es et de."""
+    for m in MAGASINS:
+        _poser(m, *PT_MAGASINS[m["id"]])
+    for p in PRODUITS:
+        _poser(p, *PT_PRODUITS[p["id"]])
+    for k, (t, tb, mot, dit, tr, trb) in PT_LIGNES.items():
+        l = LIGNES[k]
+        _poser(l, t, tb)
+        if mot:
+            l.setdefault("mot", {}); _poser(l["mot"], mot[0], mot[1])
+        if dit:
+            l.setdefault("dit", {}); _poser(l["dit"], dit[0], dit[1])
+        _poser(l["tr"], tr, trb)
+    _poser(ROLES, PT_ROLES, None)
+    for a in ARTICLES:
+        _poser(a, PT_ARTICLES[a["id"]], None)
+    _poser(COMMANDE, PT_COMMANDE, BR_COMMANDE)
+    for e in EMBALLAGES:
+        _poser(e, *PT_EMBALLAGES[e["id"]])
+    for m in MOMENTS:
+        (f, fb), (mot, motb) = PT_MOMENTS[m["id"]]
+        _poser(m["fait"], f, fb); _poser(m["mot"], mot, motb)
+
+
+def decouverte_pt(br):
+    """« Na padaria compra-se pão. » au Portugal, « Na padaria se compra pão. » au Bresil."""
+    out = {}
+    for m in MAGASINS:
+        x = (m.get("br_") if br else None) or m["pt_"]
+        if not x:
+            continue
+        prods = [p for p in PRODUITS if p["vend"][0] == m["id"]] or [p for p in PRODUITS if m["id"] in p["vend"]]
+        p = (prods[0].get("br_") if br else None) or prods[0]["pt_"]
+        if m["id"] == "supermarkt":
+            t = "No supermercado se compra quase tudo." if br else "No supermercado compra-se quase tudo."
+        elif br:
+            t = x["en"].capitalize() + " " + x["mot"] + " se compra" + ("m " if p["pl"] else " ") + p["nu"] + "."
+        else:
+            t = x["en"].capitalize() + " " + x["mot"] + " compra" + ("m-se " if p["pl"] else "-se ") + p["nu"] + "."
+        out["mag-" + m["id"]] = {"texte": t, "son": identifiant(t)}
+    for k, l in LIGNES.items():
+        t = (l.get("br_") if br else None) or l["pt_"]
+        out["ligne-" + k] = {"texte": t, "son": identifiant(t)}
+    return out
+
 # les natures mortes et les magasins a faire
 NATURES = {
     "packung-nudeln": "A packet of dry spaghetti in a plain transparent plastic wrapping with a plain yellow band, lying on the table.",
@@ -412,12 +568,14 @@ def decouverte(langue):
 def ecrire_json():
     def pret(chemin):
         return os.path.exists(os.path.join(PROTO, chemin))
+    if "pt_" not in MAGASINS[0]:
+        portugais()
     d = {"magasins": [dict(m, pret=pret(m["img"])) for m in MAGASINS], "produits": PRODUITS, "lignes": LIGNES, "paires": PAIRES,
          "roles": ROLES, "tradRoles": TRAD_ROLES, "articles": ARTICLES, "commande": COMMANDE, "tradCommande": TRAD_COMMANDE,
          "emballages": [dict(e, pret=pret(e["img"])) for e in EMBALLAGES], "tradEmb": TRAD_EMB,
          "moments": [dict({k: v for k, v in m.items() if k not in ("scene", "decor")}, img="courses/" + m["id"] + ".webp", pret=pret("courses/" + m["id"] + ".webp")) for m in MOMENTS],
          "latam": {"patatas": "papas"},
-         "decouverte": {"de": decouverte("de"), "es": decouverte("es")}}
+         "decouverte": {"de": decouverte("de"), "es": decouverte("es"), "pt_": decouverte_pt(False), "br_": decouverte_pt(True)}}
     os.makedirs(SORTIE, exist_ok=True)
     io.open(os.path.join(SORTIE, "courses.json"), "w", encoding="utf-8", newline="\n").write(json.dumps(d, ensure_ascii=False, indent=1) + "\n")
 

@@ -525,6 +525,7 @@ o presente | le cadeau | Procuro um presente para a minha mãe. | Je cherche un 
 a marca | la marque | Não conheço essa marca. | Je ne connais pas cette marque.
 a qualidade | la qualité | É de ótima qualidade. | C'est de très bonne qualité.
 o talho | la boucherie | Compro a carne no talho. | J'achète la viande à la boucherie. | br=açougue
+o euro | l'euro | Este livro custa dez euros. | Ce livre coûte dix euros. | pl=euros
 """
 
 NOMS["transportes_pt"] = """
