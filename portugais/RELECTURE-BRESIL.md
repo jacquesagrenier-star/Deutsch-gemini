@@ -64,6 +64,8 @@ brésiliens qui étaient au corpus du Portugal en sont sortis, leur forme du Por
 | o blusão | a jaqueta | le genre change |
 | a mala de mão | a bolsa | |
 | a caixa de cartão | a caixa de papelão | |
+| os trabalhos de casa | o dever de casa | les devoirs (lot P4, l'école) ; le genre et le nombre changent |
+| a justificação de faltas | a justificativa de falta | le mot d'absence (lot P4) ; la forme du Brésil était au corpus du Portugal (C1), elle en sort |
 
 Laissés de côté exprès, à trancher à la relecture :
 - **o rato → o camundongo** : la souris se dit camundongo au Brésil, mais une conversion de texte ferait de la phrase
