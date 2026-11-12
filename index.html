@@ -4794,26 +4794,27 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 #flashcardActions.presentation .judge-good .judge-continuer{position:static !important; width:auto !important; height:auto !important;
     overflow:visible !important; clip-path:none !important; white-space:normal; font-size:17px; font-weight:800;
     color:var(--va-encre, #1C2430) !important; text-shadow:none !important;}
-/* L'etiquette « Essentiel » (la cle, en haut a gauche du verso) reste visible : le bandeau descend sous elle. */
-#flashcard.presentation .flashcard-back:has(#flashExamenCoin:not(.hidden)) .carte-presente-bandeau{margin-top:26px;}
-/* Le bandeau et le contour : l'ENCRE, une couleur sans teinte (Jacques : « en allemand, on a deja un code de couleur
-   pour der, die, das »). Rien de bleu, de rouge ni de vert, de jour comme de nuit ; et la barre du genre, en haut de
-   la carte (border-der / -die / -das), reste visible : la carte du mot neuf ne la recouvre plus. */
-.carte-presente-bandeau{display:block; margin:-8px -8px 14px; padding:9px 12px 10px; border-radius:14px; text-align:center;
-    background:#1C2430; color:#F4F6F9;}
+/* « NOUVEAU MOT », UN PETIT LIBELLE SOBRE en haut de la carte (Jacques, 12 nov. 2026 : « si on a des etincelles [...] on
+   peut juste mettre Nouveau mot, tout simplement, puis mettre l'etincelle dessus. Sinon, c'est peut-etre overkill. »).
+   Le reste de la carte est un verso habituel. Encre, sans teinte : rien du bleu, du rouge ni du vert du genre. */
+.carte-presente-bandeau{position:relative; display:block; width:max-content; max-width:100%; margin:0 auto 8px; padding:2px 11px;
+    border-radius:20px; font-size:11.5px; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+    background:transparent; color:#1C2430; border:1.5px solid rgba(28,36,48,.45);}
 .carte-presente-bandeau.hidden{display:none;}
-.carte-presente-bandeau b{display:block; font-size:13px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;}
-.carte-presente-bandeau span{display:block; margin-top:2px; font-size:13px; font-weight:600; line-height:1.35;}
-body[data-theme="dark"] .carte-presente-bandeau{background:#E6EAF0; color:#1C2430;}
-#flashcard.presentation .flashcard-back{outline:2px solid rgba(28,36,48,.6); outline-offset:-2px;}
-body[data-theme="dark"] #flashcard.presentation .flashcard-back{outline-color:rgba(230,234,240,.7);}
+.carte-presente-bandeau b{font:inherit;}
+body[data-theme="dark"] .carte-presente-bandeau{color:#E6EAF0; border-color:rgba(230,234,240,.5);}
+/* Jamais de retour au recto sur cette carte (Jacques, 12 nov.) : la fleche du coin bas-gauche se cache ; toucher la
+   carte rejoue la voix avec un petit rebond (toucherCartePresentee). */
+#flashcard.presentation .flash-recto-coin{display:none !important;}
+@keyframes rebondPresentee{0%{transform:scale(1);} 40%{transform:scale(.97);} 100%{transform:scale(1);}}
+.flashcard-wrapper.rebond{animation:rebondPresentee .32s ease-out 1;}
+@media (prefers-reduced-motion: reduce){ .flashcard-wrapper.rebond{animation:none;} }
 /* LES ETINCELLES (variante 2 de la maquette, choisie par Jacques le 12 nov. 2026 : « on deploie maintenant avec les
-   etincelles ») : cinq petites etoiles eclosent au coin du bandeau « Nouveau mot », une seule fois a l'arrivee de la
+   etincelles ») : cinq petites etoiles eclosent au coin du libelle « Nouveau mot », une seule fois a l'arrivee de la
    carte, puis s'effacent (1,2 s). Encre de jour ; de nuit, un creme chaud adouci plutot que le blanc pur (Jacques :
    « vu que c'est en blanc, est-ce qu'on devrait un peu eclaircir le blanc ? »). Rien du bleu, du rouge ni du vert du
    genre. Rien ne bouge si le telephone reduit les animations. */
-.carte-presente-bandeau{position:relative;}
-.eclat-neuf{position:absolute; top:8px; right:10px; width:12px; height:12px; pointer-events:none; opacity:0;}
+.eclat-neuf{position:absolute; top:-5px; right:-6px; width:12px; height:12px; pointer-events:none; opacity:0;}
 .eclat-neuf::before{content:""; position:absolute; inset:0; background:#1C2430;
     clip-path:polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);}
 body[data-theme="dark"] .eclat-neuf::before{background:rgba(246,226,186,.82);}
@@ -4826,7 +4827,7 @@ body[data-theme="dark"] .eclat-neuf::before{background:rgba(246,226,186,.82);}
 @keyframes eclatNeuf{0%{transform:translate(0,0) scale(0) rotate(0); opacity:0;}
     30%{opacity:1; transform:translate(calc(var(--dx)*.5), calc(var(--dy)*.5)) scale(1.15) rotate(30deg);}
     100%{transform:translate(var(--dx), var(--dy)) scale(.2) rotate(90deg); opacity:0;}}
-html[dir="rtl"] .eclat-neuf{right:auto; left:10px;}
+html[dir="rtl"] .eclat-neuf{right:auto; left:-6px;}
 @media (prefers-reduced-motion: reduce){ .carte-presente-bandeau.eclats .eclat-neuf{animation:none !important;} }
 .flashcard-actions.paquet-garde .judge-row2{display:none;}
 /* ⚠️ RESSERRE (v559). Les trois boutons prenaient le tiers de l'ecran a eux
@@ -12939,7 +12940,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
                 <div id="flashMaitrise" class="carte-maitrise hidden">🏆</div>
                 <!-- Le mot neuf presente (revue d'usage du 11 nov. 2026) : un bandeau en haut de la carte, « Nouveau mot »
                      et ce qu'il faut faire (demande de Jacques : qu'on ne croie pas a une carte qui ne se retourne pas). -->
-                <div id="flashNouveauVerso" class="carte-presente-bandeau hidden"><b id="flashNouveauVersoTitre"></b><span data-i18n="presente_consigne">Écoute et regarde bien : on y revient tout à l'heure.</span><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i></div>
+                <div id="flashNouveauVerso" class="carte-presente-bandeau hidden"><b id="flashNouveauVersoTitre"></b><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i></div>
                 <button type="button" id="flashExamenCoin" class="examen-coin hidden"
                         onclick="event.stopPropagation(); ouvrirAideExamen();"></button>
                 <div id="flashGenre" class="carte-genre hidden"></div>
@@ -15965,8 +15966,8 @@ const I18N = {
         flash_end_done: "TERMINER",
         encore_neufs: "{n} cartes de plus",
         legere_encore: "Encore une séance",
-        presente_consigne: "Écoute et regarde bien : on y revient tout à l'heure.",
         presente_bulle: "Un mot nouveau : écoute-le et lis-le. Il reviendra en question dans quelques cartes.",
+        presente_toucher: "Ce mot est nouveau : il est déjà retourné. Écoute-le, puis choisis Continuer.",
         legere_fin_une: "Ta séance du jour est faite.",
         fin_rev_titre: "Tes mots manqués sont revus.",
         fin_rev_question: "Continuer avec une nouvelle séance ?",
@@ -17761,8 +17762,8 @@ const I18N = {
         flash_end_done: "DONE",
         encore_neufs: "{n} more cards",
         legere_encore: "One more session",
-        presente_consigne: "Listen and look carefully: it comes back in a moment.",
         presente_bulle: "A new word: listen to it and read it. It will come back as a question in a few cards.",
+        presente_toucher: "This word is new: it's already turned over. Listen to it, then choose Continue.",
         legere_fin_une: "Today's session is done.",
         fin_rev_titre: "Your missed words are reviewed.",
         fin_rev_question: "Continue with a new session?",
@@ -19162,8 +19163,8 @@ const I18N = {
         ra_consigne_orthographe: "Hangisi doğru yazılmış?",
         ra_tu_as_choisi: "“{s}” seçtin.",
         legere_encore: "Bir oturum daha",
-        presente_consigne: "İyi dinle ve dikkatle bak: birazdan geri gelecek.",
         presente_bulle: "Yeni bir kelime: dinle ve oku. Birkaç kart sonra soru olarak geri gelecek.",
+        presente_toucher: "Bu kelime yeni: zaten çevrilmiş durumda. Dinle, sonra Devam'ı seç.",
         legere_fin_une: "Bugünkü oturumun bitti.",
         fin_rev_titre: "Kaçırdığın kelimeler tekrar edildi.",
         fin_rev_question: "Yeni bir oturumla devam etmek ister misin?",
@@ -21362,8 +21363,8 @@ const I18N = {
         ra_consigne_orthographe: "Яке написано правильно?",
         ra_tu_as_choisi: "Ти вибрав(-ла) «{s}».",
         legere_encore: "Ще одне заняття",
-        presente_consigne: "Послухай і добре придивися: скоро ми до цього повернемося.",
         presente_bulle: "Нове слово: послухай його й прочитай. За кілька карток воно повернеться як запитання.",
+        presente_toucher: "Це слово нове: картку вже перевернуто. Послухай його, а тоді вибери «Далі».",
         legere_fin_une: "Сьогоднішнє заняття завершено.",
         fin_rev_titre: "Пропущені слова повторено.",
         fin_rev_question: "Продовжити новим заняттям?",
@@ -23870,8 +23871,8 @@ const I18N = {
         ra_consigne_orthographe: "کدام درست نوشته شده است؟",
         ra_tu_as_choisi: "«{s}» را انتخاب کردی.",
         legere_encore: "یک جلسهٔ دیگر",
-        presente_consigne: "خوب گوش کن و دقیق نگاه کن: کمی بعد دوباره برمی‌گردد.",
         presente_bulle: "یک واژهٔ تازه: گوشش کن و بخوانش. چند کارت بعد به‌صورت پرسش برمی‌گردد.",
+        presente_toucher: "این واژه تازه است: کارتش از قبل برگشته است. گوشش کن، بعد «ادامه» را انتخاب کن.",
         legere_fin_une: "جلسهٔ امروزت تمام شد.",
         fin_rev_titre: "واژه‌هایی که جا انداخته بودی مرور شد.",
         fin_rev_question: "با یک جلسهٔ تازه ادامه می‌دهی؟",
@@ -25783,8 +25784,8 @@ const I18N = {
         ra_consigne_orthographe: "أيّها مكتوب بشكل صحيح؟",
         ra_tu_as_choisi: "اخترت: «{s}».",
         legere_encore: "حصة أخرى",
-        presente_consigne: "استمع وانظر جيدًا: سنعود إليها بعد قليل.",
         presente_bulle: "كلمة جديدة: استمع إليها واقرأها. ستعود سؤالًا بعد بضع بطاقات.",
+        presente_toucher: "هذه الكلمة جديدة: البطاقة مقلوبة مسبقًا. استمع إليها، ثم اختر «متابعة».",
         legere_fin_une: "انتهت حصة اليوم.",
         fin_rev_titre: "تمت مراجعة الكلمات التي فاتتك.",
         fin_rev_question: "هل تتابع بحصة جديدة؟",
@@ -26286,8 +26287,8 @@ const I18N = {
         ra_consigne_orthographe: "Qual está escrito certo?",
         ra_tu_as_choisi: "Você escolheu “{s}”.",
         legere_encore: "Mais uma sessão",
-        presente_consigne: "Ouça e observe bem: voltamos a isso daqui a pouco.",
         presente_bulle: "Uma palavra nova: ouça e leia. Ela volta como pergunta daqui a algumas cartas.",
+        presente_toucher: "Esta palavra é nova: o cartão já está virado. Ouça e depois escolha Continuar.",
         legere_fin_une: "Sua sessão de hoje está concluída.",
         fin_rev_titre: "As palavras que você errou foram revisadas.",
         fin_rev_question: "Continuar com uma nova sessão?",
@@ -28087,8 +28088,8 @@ const I18N = {
         ra_consigne_orthographe: "Które jest napisane poprawnie?",
         ra_tu_as_choisi: "Wybrałeś(-aś) „{s}”.",
         legere_encore: "Jeszcze jedna sesja",
-        presente_consigne: "Posłuchaj i dobrze się przyjrzyj: zaraz do tego wrócimy.",
         presente_bulle: "Nowe słowo: posłuchaj i przeczytaj. Za kilka kart wróci jako pytanie.",
+        presente_toucher: "To słowo jest nowe: karta jest już odwrócona. Posłuchaj go, a potem wybierz „Dalej”.",
         legere_fin_une: "Dzisiejsza sesja gotowa.",
         fin_rev_titre: "Słowa, które ci umknęły, są powtórzone.",
         fin_rev_question: "Kontynuować nową sesją?",
@@ -29888,8 +29889,8 @@ const I18N = {
         ra_consigne_orthographe: "Какое написано правильно?",
         ra_tu_as_choisi: "Ты выбрал(а) «{s}».",
         legere_encore: "Ещё одно занятие",
-        presente_consigne: "Послушай и хорошо посмотри: скоро мы к этому вернёмся.",
         presente_bulle: "Новое слово: послушай его и прочитай. Через несколько карточек оно вернётся вопросом.",
+        presente_toucher: "Это слово новое: карточка уже перевёрнута. Послушай его, а потом выбери «Дальше».",
         legere_fin_une: "Сегодняшнее занятие завершено.",
         fin_rev_titre: "Пропущенные слова повторены.",
         fin_rev_question: "Продолжить новым занятием?",
@@ -31692,8 +31693,8 @@ const I18N = {
         ra_consigne_orthographe: "Welches ist richtig geschrieben?",
         ra_tu_as_choisi: "Du hast „{s}“ gewählt.",
         legere_encore: "Noch eine Einheit",
-        presente_consigne: "Hör zu und schau genau hin: Es kommt gleich wieder.",
         presente_bulle: "Ein neues Wort: hör es dir an und lies es. In ein paar Karten kommt es als Frage wieder.",
+        presente_toucher: "Dieses Wort ist neu: Die Karte ist schon umgedreht. Hör es dir an und wähle dann „Weiter“.",
         legere_fin_une: "Deine heutige Einheit ist geschafft.",
         fin_rev_titre: "Deine verpassten Wörter sind wiederholt.",
         fin_rev_question: "Mit einer neuen Einheit weitermachen?",
@@ -33508,8 +33509,8 @@ const I18N = {
         ra_consigne_orthographe: "¿Cuál está bien escrito?",
         ra_tu_as_choisi: "Elegiste «{s}».",
         legere_encore: "Una práctica más",
-        presente_consigne: "Escucha y mira bien: enseguida vuelve.",
         presente_bulle: "Una palabra nueva: escúchala y léela. Volverá como pregunta dentro de unas tarjetas.",
+        presente_toucher: "Esta palabra es nueva: la tarjeta ya está girada. Escúchala y luego elige Continuar.",
         legere_fin_une: "Tu práctica de hoy está hecha.",
         fin_rev_titre: "Tus palabras falladas están repasadas.",
         fin_rev_question: "¿Seguir con una práctica nueva?",
@@ -57588,6 +57589,32 @@ function entreePresentation(){
     entreePresentation.minuterie = setTimeout(() => b.classList.remove("eclats"), 1600);
 }
 const AIDE_PRESENTATION_KEY = PREFIXE_STOCKAGE + "aidePresentationVue";
+// TOUCHER LA CARTE DU MOT NEUF (Jacques, 12 nov. 2026 : « normalement on a une carte, on est porte a cliquer sur la
+// carte pour voir le verso. Mais dans ce cas-ci, c'est pas la meme chose. » ; « oui, c'est parfait comme ca »).
+// Le reflexe de toucher ne tombe jamais dans le vide ni ne retourne la carte : la voix du mot repart, avec un petit
+// rebond ; la premiere fois seulement, une bulle explique. Un deuxieme toucher dans les 700 ms ne fait rien de plus.
+const AIDE_TOUCHER_PRESENTEE_KEY = PREFIXE_STOCKAGE + "aideToucherPresenteeVue";
+let dernierToucherPresentee = 0;
+function toucherCartePresentee(){
+    const maintenant = Date.now();
+    if(maintenant - dernierToucherPresentee < 700) return;
+    dernierToucherPresentee = maintenant;
+    try{ direChaineCarte(); }catch(e){}
+    const w = document.querySelector("#flashcards .flashcard-wrapper");
+    if(w){
+        w.classList.remove("rebond");
+        void w.offsetWidth;
+        w.classList.add("rebond");
+        setTimeout(() => w.classList.remove("rebond"), 400);
+    }
+    let vue = true;
+    try{ vue = localStorage.getItem(AIDE_TOUCHER_PRESENTEE_KEY) === "1"; }catch(e){}
+    if(vue || bulleRepere) return;
+    const ancre = document.querySelector("#flashcardActions .judge-good");
+    if(!ancre || !ancre.offsetParent) return;
+    try{ localStorage.setItem(AIDE_TOUCHER_PRESENTEE_KEY, "1"); }catch(e){}
+    setTimeout(() => { try{ afficherBulle(ancre, t("presente_toucher")); }catch(e){} }, 0);
+}
 function bulleDuPremierMotNeuf(){
     let vue = true;
     try{ vue = localStorage.getItem(AIDE_PRESENTATION_KEY) === "1"; }catch(e){}
@@ -58332,6 +58359,8 @@ function handleCardTap(event){
     // explicite) : la gratification a joue son role, la laisser par-dessus
     // n'apporte plus rien.
     stopMasteryCelebrations();
+    // La carte du mot neuf, deja retournee : toucher rejoue la voix, jamais de retour au recto.
+    if(document.querySelector("#flashcardActions.presentation")){ toucherCartePresentee(); return; }
     const flashcardEl = document.getElementById("flashcard");
     if(!flashcardEl) return;
     // ⚠️ LE VERSO NE SE RETOURNE PLUS EN LE TOUCHANT (v576). La v573 en avait
