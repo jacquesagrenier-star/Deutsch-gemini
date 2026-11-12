@@ -9823,3 +9823,5 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
   → Confié le 12 nov. à la session des conversations, lot 71 (la réponse dite, le temps de la voir, puis la réplique suivante).
 - 12 nov. (Jacques, app iPhone, conversations) : « il y a une bande bleue en haut et une bande bleue en bas. »
   → Confié le 12 nov. à la session des conversations, lot 71 (le fond du cadre plein écran ou de la page, par la tuile comme en séance).
+- 12 nov. (Jacques, v1178) : à la fin de la visite guidée, le texte (et la voix) renvoie à un bouton « play » (▶) pour la séance du jour, alors que l'accueil montre « Commencer la séance » : « c'est trompeur ».
+  → Rattaché au point 1 de la ligne 72 (texte de la visite périmé), session petites-ameliorations ; la page de fin a une voix enregistrée (Charlotte, 7 langues).
