@@ -24,6 +24,9 @@ THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "
 # L'ANGLAIS (3 nov. 2026) : les themes qui ont deja leurs phrases anglaises, a mesure qu'ils les recoivent ; et le
 # britannique, la variante (« en&variante=gb »)
 ANGLAIS = ["familia", "descripcion", "contrarios", "emociones", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "loisirs", "animales", "meteo", "logement", "demarches"]
+# LE PORTUGAIS (lots P3 et P4, 11-12 nov. 2026) : les themes qui ont leurs phrases portugaises, au Portugal et en
+# variante du Bresil (« pt&variante=br »)
+PORTUGAIS = ANGLAIS + ["courses"]
 PLANCHER = 100
 
 COMPTER = """(n) => {
@@ -281,7 +284,7 @@ def main():
         nav = p.chromium.launch()
         for th in themes:
             # THEMES_APPS=en,en&variante=gb : seulement ces langues (une page qu'on met en anglais, avant d'etre dans ANGLAIS)
-            apps = tuple(os.environ["THEMES_APPS"].split(",")) if os.environ.get("THEMES_APPS") else ("es", "de") + (("en", "en&variante=gb") if th in ANGLAIS else ())
+            apps = tuple(os.environ["THEMES_APPS"].split(",")) if os.environ.get("THEMES_APPS") else ("es", "de") + (("en", "en&variante=gb") if th in ANGLAIS else ()) + (("pt", "pt&variante=br") if th in PORTUGAIS else ())
             for app in apps:
                 for seance in ("", "&seance=1"):
                     ctx = nav.new_context(viewport={"width": 390, "height": 844})
