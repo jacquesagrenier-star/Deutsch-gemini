@@ -288,6 +288,16 @@ Ordre conseillé : P1 et P2 d'abord (petits, visibles, et P1 corrige aussi l'esp
 
 Pour information, l'anglais : seuls défauts propres, la scène A1 de la séance (`motsVusDeScene` 69194, ajouter `.en`), les 7 thèmes sans anglais, le carnet caché alors que son contenu existe, la révision et les « mots au hasard » cachés dans les panneaux, et la course au chargement des tuiles anglaises.
 
+### 4.1 Trois clés allemandes qui dorment (vu par le lot P2, v1166, 11 nov.)
+
+Trois textes de l'allemand n'ont **aucune surcharge** en pt, ja et en. Ils ne s'affichent nulle part aujourd'hui, donc on n'y a pas touché (décision du chef : pas de surcharge par précaution). **Chacun se réveille à une condition précise** : ce jour-là, il faut écrire le texte de la langue dans son bloc `I18N_*`, sinon il parlera d'allemand.
+
+| Clé | Texte allemand (fr) | Pourquoi il ne s'affiche pas | Se réveille quand… |
+|---|---|---|---|
+| `credits_voix` | « Voix allemande : Aurora, générée avec ElevenLabs. » | la ligne des crédits est cachée par le CSS en es, ja, en et pt (`html[data-apprendre=…] [data-i18n="credits_voix"]`) | une langue reçoit sa ligne de crédits de voix (anglais : Sarah ; une voix pt ou ja enregistrée) et qu'on retire la règle qui la cache |
+| `dec_t4_texte` | « …l'œuvre d'un grand peintre de langue allemande… » | la visite de découverte ne tourne qu'en de, es et pt (`lancerDecouverte()`) ; le portugais a son texte (`I18N_DECOUVERTE_PT`), l'espagnol le sien, sans nationalité (`I18N_ESPAGNOL`) | le japonais ou l'anglais reçoit sa visite (`contenuDecouverte()`, la garde de `lancerDecouverte()`) : écrire alors son `dec_t4_texte` et son `dec_t4_d5` (le tableau final) |
+| `examen_aide_1` | « Trois référentiels d'allemand publient la liste du vocabulaire… » | l'écran `examenInfo` ne s'ouvre que par la clé « Essentiel » d'une carte (`marqueExamenCarte()`), qui exige une marque `pruefung` : `themes.json` en a 2 175, les données es, pt, en et ja aucune | une langue reçoit des marques d'examen dans ses données (`pruefung`) : écrire alors un `examen_aide_1` (et revoir `examen_aide_2`) qui nomme ses propres référentiels |
+
 ---
 
 ## 5. Sonde Playwright (lecture seule)
