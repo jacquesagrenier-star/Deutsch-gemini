@@ -530,6 +530,15 @@ async function commencer(nu){
   repondre = el("div", "repondre"); repondre.hidden = true; ecran.appendChild(repondre);
   await jouer(C.debut);
 }
+// Le nombre de repliques a dire depuis un noeud jusqu'a la fin, par le plus court chemin (barre de la seance).
+function restantDepuis(id, vus){
+  vus = vus || new Set();
+  if (!id || !C.noeuds[id] || vus.has(id)) return 0;
+  vus.add(id);
+  const suites = (C.noeuds[id].choix || []).filter(c => !c.faux && !c.repete);
+  if (!suites.length) return 0;
+  return 1 + Math.min.apply(null, suites.map(c => c.va ? restantDepuis(c.va, new Set(vus)) : 0));
+}
 async function jouer(id){
   noeud = id;
   for (const r of (C.noeuds[id].dit || [])) await replique(r);
@@ -608,6 +617,10 @@ async function choisir(c, touchee){
     return;
   }
   parler("bonne");
+  // 12 nov. 2026 : la part faite, pour la barre de la seance (« avance ») -- les repliques dites sur celles qui restent
+  // par le plus court chemin jusqu'a la fin.
+  try{ const faites = S.dit.filter(x => !x.faux && !x.repete).length, reste = c.va ? restantDepuis(c.va) : 0;
+       parler("avance", { f: faites / (faites + reste) }); }catch(e){}
   Object.assign(S.etat, c.pose || {});
   for (const r of (c.puis || [])) await replique(r);
   if (c.va) await jouer(c.va); else fin();

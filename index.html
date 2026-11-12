@@ -8644,7 +8644,8 @@ body.seance-fond[data-ecran="flashcards"][data-theme="dark"] #seancePartsNoms{co
 #sceneRepere #sceneParts{display:flex; gap:4px;}
 #sceneRepere #sceneParts i{display:block; flex:1 1 0; min-width:6px; height:7px; border-radius:3.5px; background:rgba(255,255,255,.2);}
 #sceneRepere #sceneParts i.fait{background:#6FD6A6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.4 5.3l1.8 1.8 3.6-4' fill='none' stroke='%230B1626' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / auto 100% no-repeat;}
-#sceneRepere #sceneParts i.ici{background:#FFFFFF;}
+#sceneRepere #sceneParts i.ici{background:linear-gradient(90deg, #FFFFFF 0 var(--q, 0%), rgba(255,255,255,.2) var(--q, 0%) 100%);}
+html[dir="rtl"] #sceneRepere #sceneParts i.ici{background:linear-gradient(270deg, #FFFFFF 0 var(--q, 0%), rgba(255,255,255,.2) var(--q, 0%) 100%);}
 #sceneRepere #scenePartsNoms{display:grid; gap:4px; margin-top:3px; font-size:10px; font-weight:800; line-height:1.12; text-align:center; color:#B8C2CF;}
 #sceneRepere #scenePartsNoms span, #sceneRepere #scenePartsNoms b{min-width:0; overflow-wrap:anywhere; hyphens:auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 #sceneRepere #scenePartsNoms b{font-weight:900; color:#F6CE84;}
@@ -8653,7 +8654,8 @@ body.seance-fond[data-ecran="flashcards"][data-theme="dark"] #seancePartsNoms{co
 #sceneRepere.clair #scenePartsNoms b{color:#1C2430;}
 #sceneRepere.clair #sceneParts i{background:rgba(28,36,48,.16);}
 #sceneRepere.clair #sceneParts i.fait{background:#1F8A5B url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.4 5.3l1.8 1.8 3.6-4' fill='none' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / auto 100% no-repeat;}
-#sceneRepere.clair #sceneParts i.ici{background:#1C2430;}
+#sceneRepere.clair #sceneParts i.ici{background:linear-gradient(90deg, #1C2430 0 var(--q, 0%), rgba(28,36,48,.16) var(--q, 0%) 100%);}
+html[dir="rtl"] #sceneRepere.clair #sceneParts i.ici{background:linear-gradient(270deg, #1C2430 0 var(--q, 0%), rgba(28,36,48,.16) var(--q, 0%) 100%);}
 /* L'ecran de passage entre deux parties. */
 .cp-passage{display:grid; justify-items:center; gap:10px; text-align:center; padding:22px 8px 10px;}
 .cp-passage-ok{width:56px; height:56px; border-radius:50%; display:grid; place-items:center; background:rgba(31,122,85,.12);}
@@ -67558,6 +67560,11 @@ window.addEventListener("message", (e) => {
         try{ e.source.postMessage({source: "wortando-app", type: "etats", etats: etatsDesMots(d.mots)}, e.origin === "null" ? "*" : e.origin); }catch(err){}
         return;
     }
+    // 12 nov. 2026 : la barre du bandeau avance pendant l'arret (voir ARRET_AVANCE).
+    const dansLArret = sceneOuverteDepuis === "arret" || sceneOuverteDepuis === "premiers_pas";
+    if(d.type === "avance"){ if(dansLArret) avancerArret(d.f); return; }
+    if(dansLArret && d.type === "exercice"){ try{ exerciceDansLArret(); }catch(err){} }
+    if(dansLArret && d.type === "fini"){ try{ avancerArret(1); }catch(err){} }
     if(sceneOuverteDepuis === "conversations"){
         if(d.type === "micro") microPourCadre(d, e);
         else if(d.type === "fermer"){ try{ ouvrirToutLeContenu(); }catch(err){ goHome(); } }
@@ -73032,9 +73039,40 @@ function cleArretCourant(){
     const c = currentCards && currentCards[currentFlashcard];
     return c && c.forme === "theme_arret" ? "theme" : c && c.forme === "conv_arret" ? "conv" : "scene";
 }
+// LA PARTIE IMAGES AVANCE PENDANT LA SCENE (Jacques, 12 nov. 2026, espagnol : « quand je suis passe a image, les images
+// n'avancent pas. Donc, la barre image reste noire. »). Le bandeau du cadre n'etait dessine qu'a l'ouverture, et sa partie
+// en cours etait un aplat plein. Elle se remplit maintenant a chaque question de la scene ou du theme (le message
+// « exercice », sur le nombre prevu : le reglage 5 · 8 · 12 qu'on leur passe) et a chaque replique de la conversation
+// (« avance », la part faite). Elle ne recule jamais, et elle est pleine a la fin (« fini »).
+let ARRET_AVANCE = 0, ARRET_EXOS = 0, ARRET_CLE = null;
+function cleArretOuvert(){
+    const c = currentCards && currentCards[currentFlashcard];
+    return c ? c : null;
+}
+function attenduArret(){
+    const c = cleArretOuvert();
+    if(!c) return 0;
+    if(c.forme === "theme_arret") return c.nb || 6;
+    if(c.forme === "conv_arret") return 0;
+    try{ return questionsSeance(); }catch(e){ return 5; }
+}
+function avancerArret(f){
+    if(cleArretOuvert() !== ARRET_CLE){ ARRET_CLE = cleArretOuvert(); ARRET_AVANCE = 0; ARRET_EXOS = 0; }
+    f = Math.max(0, Math.min(1, +f || 0));
+    if(f <= ARRET_AVANCE) return;
+    ARRET_AVANCE = f;
+    try{ poserRepereScene(); }catch(e){}
+}
+function exerciceDansLArret(){
+    if(cleArretOuvert() !== ARRET_CLE){ ARRET_CLE = cleArretOuvert(); ARRET_AVANCE = 0; ARRET_EXOS = 0; }
+    ARRET_EXOS++;
+    const n = attenduArret();
+    if(n > 0) avancerArret(ARRET_EXOS / n);
+}
 function poserRepereScene(){
     const sec = document.getElementById("sceneSeance"), r = segmentsRepere();
     if(!sec) return;
+    if(cleArretOuvert() !== ARRET_CLE){ ARRET_CLE = cleArretOuvert(); ARRET_AVANCE = 0; ARRET_EXOS = 0; }
     sec.classList.toggle("avec-repere", !!r);
     const conv = sceneOuverteDepuis === "arret" && cleArretCourant() === "conv";
     if(!r){ sec.style.background = conv ? fondCadreConversation() : ""; return; }
@@ -73052,7 +73090,10 @@ function poserRepereScene(){
         r.segs.forEach(s => {
             const b = document.createElement("i");
             if(currentFlashcard >= s.debut + s.n) b.className = "fait";
-            else if(currentFlashcard >= s.debut) b.className = "ici";
+            else if(currentFlashcard >= s.debut){
+                b.className = "ici";
+                b.style.setProperty("--q", Math.round(100 * Math.min(s.n, currentFlashcard - s.debut + ARRET_AVANCE) / s.n) + "%");
+            }
             box.appendChild(b);
         });
     }
