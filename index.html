@@ -4787,29 +4787,12 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 .judge-row2 .judge-button svg{order:0; width:19px; height:19px;}
 .judge-row2 .judge-button .judge-echeance{display:inline; font-size:11.5px;}
 #judgeKnownBtn{display:none !important;}
-/* Le mot neuf presente (revue d'usage du 11 nov. 2026, proposition 1) : un seul bouton, « Je l'ai ». */
-#flashcardActions.presentation .judge-again, #flashcardActions.presentation .judge-garde{visibility:hidden !important; pointer-events:none !important;}
-/* Un seul geste (decision de Jacques du 11 nov. 2026) : la bille, a sa place habituelle, veut dire « on avance ».
-   Deux dessins a l'essai, au choix de Jacques : le ✓ habituel, ou une fleche (rien n'est juge sur cette carte) --
-   classe .bille-fleche, voir BILLE_PRESENTATION. */
-#flashcardActions.presentation.bille-fleche .judge-good .judge-bille svg:not(.ra-fleche){display:none !important;}
-#flashcardActions.presentation.bille-fleche .judge-good .judge-bille .ra-fleche{display:block !important; fill:none; stroke:#fff;
-    stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round;}
-html[dir="rtl"] #flashcardActions.presentation.bille-fleche .judge-good .judge-bille .ra-fleche{transform:scaleX(-1);}
-/* Variante « deux » (piste de Jacques, 11 nov. : « deux boutons qui ne sont pas les memes que ce qu'on avait dans
-   l'autre cadre ») : deux pilules propres a la carte du mot neuf, dans la carte, sous l'exemple ; la zone des boutons
-   habituels reste vide. Forme (pilule plate) et couleurs (encre et blanc) qu'aucun bouton des cartes n'a ; rien du
-   bleu, du rouge ni du vert du genre. */
-.presente-choix{display:none;}
-#flashcard.presentation.deux-boutons .presente-choix{display:flex; gap:10px; margin-top:16px;}
-#flashcardActions.presentation.deux-boutons{visibility:hidden; pointer-events:none;}
-.presente-choix button{flex:1 1 0; min-width:0; min-height:48px; margin:0; padding:8px 12px; border-radius:999px; cursor:pointer;
-    font:inherit; font-size:14px; font-weight:700; line-height:1.2; text-transform:none; letter-spacing:0; box-shadow:none;}
-.presente-choix .pc-neuf{background:#1C2430; color:#F4F6F9; border:1.5px solid #1C2430;}
-.presente-choix .pc-connu{background:#FFFFFF; color:#1C2430; border:1.5px solid #1C2430;}
-body[data-theme="dark"] .presente-choix .pc-neuf{background:#E6EAF0; color:#1C2430; border-color:#E6EAF0;}
-body[data-theme="dark"] .presente-choix .pc-connu{background:transparent; color:#EEF2F6; border-color:#C9D2DD;}
-.presente-choix button:focus-visible{outline:2px solid currentColor; outline-offset:2px;}
+/* Le mot neuf presente (decision de Jacques du 11 nov. 2026, « garder exactement comme lorsque ce n'est pas un nouveau
+   mot ») : les trois boutons habituels du verso, a leurs places et dans leur style -- Encore, Continuer, Mettre de
+   cote. Seule difference : pas de bille ✓ ni de points (rien n'est juge), le mot « Continuer » a sa place. */
+#flashcardActions.presentation .judge-good .judge-bille, #flashcardActions.presentation .judge-good .srs-ladder{display:none !important;}
+#flashcardActions.presentation .judge-good .judge-continuer{position:static !important; width:auto !important; height:auto !important;
+    overflow:visible !important; clip-path:none !important; white-space:normal; font-size:17px; font-weight:800;}
 /* Le bandeau et le contour : l'ENCRE, une couleur sans teinte (Jacques : « en allemand, on a deja un code de couleur
    pour der, die, das »). Rien de bleu, de rouge ni de vert, de jour comme de nuit ; et la barre du genre, en haut de
    la carte (border-der / -die / -das), reste visible : la carte du mot neuf ne la recouvre plus. */
@@ -12970,11 +12953,6 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
                 <div id="flashUsage" class="usage-mark hidden"></div>
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
-                <!-- Variante « deux » du mot neuf presente (essai du 11 nov. 2026) : voir .presente-choix. -->
-                <div class="presente-choix" id="presenteChoix">
-                    <button type="button" class="pc-neuf" onclick="event.stopPropagation(); motPresenteVu()" data-i18n="presente_neuf">Je ne le connaissais pas</button>
-                    <button type="button" class="pc-connu" onclick="event.stopPropagation(); motPresenteDejaConnu()" data-i18n="presente_connu">Je le connaissais déjà</button>
-                </div>
                 <div id="flashSynonymes" class="synonymes hidden"></div>
                 <!-- ⚠️ LA FLECHE QUI RETOURNE LA CARTE (v574). Demande de
                      Jacques, quatre fois de suite et que je n'avais pas
@@ -15971,9 +15949,7 @@ const I18N = {
         encore_neufs: "{n} cartes de plus",
         legere_encore: "Encore une séance",
         presente_consigne: "Écoute et regarde bien : on y revient tout à l'heure.",
-        presente_bulle: "Un mot nouveau : écoute-le, lis-le, puis touche la bille. Il reviendra dans quelques cartes.",
-        presente_neuf: "Je ne le connaissais pas",
-        presente_connu: "Je le connaissais déjà",
+        presente_bulle: "Un mot nouveau : écoute-le et lis-le. Il reviendra en question dans quelques cartes.",
         legere_fin_une: "Ta séance du jour est faite.",
         fin_rev_titre: "Tes mots manqués sont revus.",
         fin_rev_question: "Continuer avec une nouvelle séance ?",
@@ -17769,9 +17745,7 @@ const I18N = {
         encore_neufs: "{n} more cards",
         legere_encore: "One more session",
         presente_consigne: "Listen and look carefully: it comes back in a moment.",
-        presente_bulle: "A new word: listen to it, read it, then tap the ball. It will come back in a few cards.",
-        presente_neuf: "I didn't know it",
-        presente_connu: "I already knew it",
+        presente_bulle: "A new word: listen to it and read it. It will come back as a question in a few cards.",
         legere_fin_une: "Today's session is done.",
         fin_rev_titre: "Your missed words are reviewed.",
         fin_rev_question: "Continue with a new session?",
@@ -19172,9 +19146,7 @@ const I18N = {
         ra_tu_as_choisi: "“{s}” seçtin.",
         legere_encore: "Bir oturum daha",
         presente_consigne: "İyi dinle ve dikkatle bak: birazdan geri gelecek.",
-        presente_bulle: "Yeni bir kelime: dinle, oku, sonra yuvarlak düğmeye dokun. Birkaç kart sonra geri gelecek.",
-        presente_neuf: "Bunu bilmiyordum",
-        presente_connu: "Bunu zaten biliyordum",
+        presente_bulle: "Yeni bir kelime: dinle ve oku. Birkaç kart sonra soru olarak geri gelecek.",
         legere_fin_une: "Bugünkü oturumun bitti.",
         fin_rev_titre: "Kaçırdığın kelimeler tekrar edildi.",
         fin_rev_question: "Yeni bir oturumla devam etmek ister misin?",
@@ -21374,9 +21346,7 @@ const I18N = {
         ra_tu_as_choisi: "Ти вибрав(-ла) «{s}».",
         legere_encore: "Ще одне заняття",
         presente_consigne: "Послухай і добре придивися: скоро ми до цього повернемося.",
-        presente_bulle: "Нове слово: послухай його, прочитай, а тоді торкнися кружечка. Воно повернеться за кілька карток.",
-        presente_neuf: "Я цього не знаю",
-        presente_connu: "Я вже знаю це слово",
+        presente_bulle: "Нове слово: послухай його й прочитай. За кілька карток воно повернеться як запитання.",
         legere_fin_une: "Сьогоднішнє заняття завершено.",
         fin_rev_titre: "Пропущені слова повторено.",
         fin_rev_question: "Продовжити новим заняттям?",
@@ -23884,9 +23854,7 @@ const I18N = {
         ra_tu_as_choisi: "«{s}» را انتخاب کردی.",
         legere_encore: "یک جلسهٔ دیگر",
         presente_consigne: "خوب گوش کن و دقیق نگاه کن: کمی بعد دوباره برمی‌گردد.",
-        presente_bulle: "یک واژهٔ تازه: گوشش کن، بخوانش، بعد دایره را لمس کن. چند کارت بعد برمی‌گردد.",
-        presente_neuf: "این را نمی‌دانستم",
-        presente_connu: "این را از قبل می‌دانستم",
+        presente_bulle: "یک واژهٔ تازه: گوشش کن و بخوانش. چند کارت بعد به‌صورت پرسش برمی‌گردد.",
         legere_fin_une: "جلسهٔ امروزت تمام شد.",
         fin_rev_titre: "واژه‌هایی که جا انداخته بودی مرور شد.",
         fin_rev_question: "با یک جلسهٔ تازه ادامه می‌دهی؟",
@@ -25799,9 +25767,7 @@ const I18N = {
         ra_tu_as_choisi: "اخترت: «{s}».",
         legere_encore: "حصة أخرى",
         presente_consigne: "استمع وانظر جيدًا: سنعود إليها بعد قليل.",
-        presente_bulle: "كلمة جديدة: استمع إليها، اقرأها، ثم المس الدائرة. ستعود بعد بضع بطاقات.",
-        presente_neuf: "لم أكن أعرفها",
-        presente_connu: "كنت أعرفها من قبل",
+        presente_bulle: "كلمة جديدة: استمع إليها واقرأها. ستعود سؤالًا بعد بضع بطاقات.",
         legere_fin_une: "انتهت حصة اليوم.",
         fin_rev_titre: "تمت مراجعة الكلمات التي فاتتك.",
         fin_rev_question: "هل تتابع بحصة جديدة؟",
@@ -26304,9 +26270,7 @@ const I18N = {
         ra_tu_as_choisi: "Você escolheu “{s}”.",
         legere_encore: "Mais uma sessão",
         presente_consigne: "Ouça e observe bem: voltamos a isso daqui a pouco.",
-        presente_bulle: "Uma palavra nova: ouça, leia e toque na bolinha. Ela volta daqui a algumas cartas.",
-        presente_neuf: "Eu não sabia",
-        presente_connu: "Eu já sabia",
+        presente_bulle: "Uma palavra nova: ouça e leia. Ela volta como pergunta daqui a algumas cartas.",
         legere_fin_une: "Sua sessão de hoje está concluída.",
         fin_rev_titre: "As palavras que você errou foram revisadas.",
         fin_rev_question: "Continuar com uma nova sessão?",
@@ -28107,9 +28071,7 @@ const I18N = {
         ra_tu_as_choisi: "Wybrałeś(-aś) „{s}”.",
         legere_encore: "Jeszcze jedna sesja",
         presente_consigne: "Posłuchaj i dobrze się przyjrzyj: zaraz do tego wrócimy.",
-        presente_bulle: "Nowe słowo: posłuchaj, przeczytaj, a potem dotknij kółka. Wróci za kilka kart.",
-        presente_neuf: "Nie znam tego słowa",
-        presente_connu: "Już znam to słowo",
+        presente_bulle: "Nowe słowo: posłuchaj i przeczytaj. Za kilka kart wróci jako pytanie.",
         legere_fin_une: "Dzisiejsza sesja gotowa.",
         fin_rev_titre: "Słowa, które ci umknęły, są powtórzone.",
         fin_rev_question: "Kontynuować nową sesją?",
@@ -29910,9 +29872,7 @@ const I18N = {
         ra_tu_as_choisi: "Ты выбрал(а) «{s}».",
         legere_encore: "Ещё одно занятие",
         presente_consigne: "Послушай и хорошо посмотри: скоро мы к этому вернёмся.",
-        presente_bulle: "Новое слово: послушай его, прочитай, а потом нажми на кружок. Оно вернётся через несколько карточек.",
-        presente_neuf: "Я этого не знаю",
-        presente_connu: "Я уже знаю это слово",
+        presente_bulle: "Новое слово: послушай его и прочитай. Через несколько карточек оно вернётся вопросом.",
         legere_fin_une: "Сегодняшнее занятие завершено.",
         fin_rev_titre: "Пропущенные слова повторены.",
         fin_rev_question: "Продолжить новым занятием?",
@@ -31716,9 +31676,7 @@ const I18N = {
         ra_tu_as_choisi: "Du hast „{s}“ gewählt.",
         legere_encore: "Noch eine Einheit",
         presente_consigne: "Hör zu und schau genau hin: Es kommt gleich wieder.",
-        presente_bulle: "Ein neues Wort: hör es dir an, lies es und tippe dann auf die Kugel. Es kommt in ein paar Karten wieder.",
-        presente_neuf: "Kannte ich nicht",
-        presente_connu: "Kannte ich schon",
+        presente_bulle: "Ein neues Wort: hör es dir an und lies es. In ein paar Karten kommt es als Frage wieder.",
         legere_fin_une: "Deine heutige Einheit ist geschafft.",
         fin_rev_titre: "Deine verpassten Wörter sind wiederholt.",
         fin_rev_question: "Mit einer neuen Einheit weitermachen?",
@@ -33534,9 +33492,7 @@ const I18N = {
         ra_tu_as_choisi: "Elegiste «{s}».",
         legere_encore: "Una práctica más",
         presente_consigne: "Escucha y mira bien: enseguida vuelve.",
-        presente_bulle: "Una palabra nueva: escúchala, léela y luego toca la bolita. Vuelve dentro de unas tarjetas.",
-        presente_neuf: "No lo sabía",
-        presente_connu: "Ya lo sabía",
+        presente_bulle: "Una palabra nueva: escúchala y léela. Volverá como pregunta dentro de unas tarjetas.",
         legere_fin_une: "Tu práctica de hoy está hecha.",
         fin_rev_titre: "Tus palabras falladas están repasadas.",
         fin_rev_question: "¿Seguir con una práctica nueva?",
@@ -57540,11 +57496,10 @@ function loadFlashcard(){
 // La toute premiere carte d'un debutant demandait l'allemand de « bonjour, salut », jamais vu ; les cinq ou six
 // premieres cartes se passaient en « je ne savais pas ». Un mot jamais juge se montre maintenant PAR SON VERSO :
 // le mot appris en grand, sa voix qui part toute seule (flipCard), l'article en couleur, la phrase d'exemple, et un
-// seul geste : la bille, a sa place habituelle, qui veut dire « on avance ». Rien n'est juge ; la carte revient
-// quelques cartes plus loin dans la meme partie de la seance, et la on la demande depuis le francais et on la juge
-// comme toute carte (✓ / Encore). Decision de Jacques du 11 nov. : pas de « Je le connaissais deja » ni de
-// « Continuer » a part -- « Continuer, puis encore le bouton vert, ca fait pas de sens » ; un mot neuf qu'on
-// connaissait deja revient quand meme une fois. Encore et Mettre de cote gardent leur place, vide.
+// dessous, les trois boutons habituels du verso, a leurs places : Encore (il revient dans quelques cartes), Continuer
+// (a la place de la bille : il revient plus loin dans la meme partie), Mettre de cote (comme d'habitude). Rien n'est
+// juge ; quand il revient, on le demande depuis le francais et on le juge comme toute carte. Decision de Jacques du
+// 11 nov. 2026 : « garder exactement comme lorsque ce n'est pas un nouveau mot » ; pas de « Je le connaissais deja ».
 // ⚠️ CE N'EST PAS LE RETOURNEMENT AUTOMATIQUE RETIRE EN v722 (« trop derangeant ») : rien ne tourne a l'ecran, la
 // carte arrive simplement posee dans l'autre sens (transition coupee le temps du geste).
 // ⚠️ LA PRESENTATION NE JUGE RIEN : ni srsHits, ni echeance, ni dose du jour (noterMotNeuf vient a la vraie
@@ -57562,18 +57517,9 @@ function motAPresenter(item){
     }catch(e){ return false; }
     return !MOTS_PRESENTES.has(clePresentation(item));
 }
-// Le geste sur la carte presentee (essai du 11 nov. 2026, au choix de Jacques) : "coche", la bille ✓ habituelle ;
-// "fleche", la bille en fleche ; "deux", deux pilules dans la carte (Je ne le connaissais pas / Je le connaissais
-// deja) et la zone des boutons habituels vide. BILLE_PRESENTATION_ESSAI ne sert qu'aux captures de la maquette.
-const BILLE_PRESENTATION = "coche";
 function majPresentation(on){
     const act = document.getElementById("flashcardActions");
     if(act) act.classList.toggle("presentation", !!on);
-    const variante = window.BILLE_PRESENTATION_ESSAI || BILLE_PRESENTATION;
-    if(act) act.classList.toggle("bille-fleche", !!on && variante === "fleche");
-    if(act) act.classList.toggle("deux-boutons", !!on && variante === "deux");
-    const carteP = document.getElementById("flashcard");
-    if(carteP) carteP.classList.toggle("deux-boutons", !!on && variante === "deux");
     const carte = document.getElementById("flashcard");
     if(carte) carte.classList.toggle("presentation", !!on);
     // « Nouveau mot » et la traduction AU VERSO : en seance, la traduction vit au recto (frontIsFrench), que la
@@ -57594,7 +57540,7 @@ function majPresentation(on){
         if(avant === "cache") tr.classList.add("hidden"); else tr.textContent = avant;
     }
 }
-function motPresenteVu(){
+function motPresenteVu(bientot){
     if(!currentCards.length) return;
     if(deuxiemeToucher()) return;
     marquerCarteJugee();
@@ -57606,7 +57552,7 @@ function motPresenteVu(){
         const st = getWordState(item.themeId, item.index);
         if(!st.vu){ st.vu = Date.now(); setWordState(item.themeId, item.index, st); }
     }catch(e){}
-    redemanderPlusLoin(item);
+    if(bientot) remettreEnFile(item); else redemanderPlusLoin(item);
     // Le carreau du tableau se pose a la vraie reponse, pas deux fois pour le meme mot (voir carreauAuDepart).
     carreauDejaPose = item;
     programmerSuite(nextFlashcard, 120);
@@ -57636,15 +57582,6 @@ function bulleDuPremierMotNeuf(){
         try{ localStorage.setItem(AIDE_PRESENTATION_KEY, "1"); }catch(e){}
         afficherBulle(document.querySelector("#flashcardActions .judge-good") || carte, t("presente_bulle"));
     }, 900);
-}
-// Variante « deux » : « Je le connaissais deja » juge la carte comme un ✓ sur un mot neuf (deux points, la seance
-// suivante) -- reviewGood() fait le reste ; le mot ne revient pas dans la seance.
-function motPresenteDejaConnu(){
-    if(!currentCards.length) return;
-    const item = currentCards[currentFlashcard];
-    if(item) MOTS_PRESENTES.add(clePresentation(item));
-    majPresentation(false);
-    reviewGood();
 }
 // La meme carte, plus loin : apres le dernier mot de la partie en cours quand la seance est en parties (la barre ne
 // gagne pas de partie), sinon quelques cartes plus loin comme « Encore » (remettreEnFile) ; toujours avant le theme.
@@ -74065,6 +74002,8 @@ function echeanceProchaineReussite(state){
 
 function reviewAgain(){
     if(!currentCards.length) return;
+    // La carte du mot neuf presente : « Encore » le fait revenir dans quelques cartes, sans rien juger.
+    if(document.querySelector("#flashcardActions.presentation")){ motPresenteVu(true); return; }
     if(deuxiemeToucher()) return;
     marquerCarteJugee();
     arreterChaineCarte(true);   // voir reviewGood()
@@ -74267,7 +74206,7 @@ function bulleDuPremierContinuer(){
 
 function reviewGood(){
     if(!currentCards.length) return;
-    // La carte du mot neuf presente : la bille, a sa place habituelle, veut dire « Continuer » (rien n'est juge).
+    // La carte du mot neuf presente : « Continuer » (a la place de la bille) -- rien n'est juge, le mot revient plus loin.
     if(document.querySelector("#flashcardActions.presentation")){ motPresenteVu(); return; }
     if(deuxiemeToucher()) return;
     if(bulleDuPremierContinuer()) return;

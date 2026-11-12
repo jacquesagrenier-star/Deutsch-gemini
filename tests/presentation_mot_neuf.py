@@ -4,9 +4,9 @@
     python tests/presentation_mot_neuf.py --captures DOSSIER        (de et es)
 
 Sur un navigateur vierge, sans compte : « Je pars de zero », la visite passee, la seance du jour. Trois cas :
-  presente : la carte neuve arrive par son verso (bandeau « Nouveau mot », le mot, la traduction) ; un seul geste, la
-             bille a sa place habituelle, Encore et Mettre de cote invisibles a leur place ; elle revient plus loin et
-             se demande depuis le francais (decision de Jacques du 11 nov. : la bille seule, pas de « Je le connaissais deja ») ;
+  presente : la carte neuve arrive par son verso (bandeau « Nouveau mot », le mot, la traduction), avec les trois boutons
+             habituels a leurs places (Encore, Continuer a la place de la bille, Mettre de cote) ; « Continuer » : elle
+             revient plus loin et se demande depuis le francais (decision de Jacques du 11 nov.) ;
   rate     : presente, puis rate a la demande (« Encore ») -> il revient, comme toute carte ratee.
 Les points des cartes (v1164) ne changent pas. Il ouvre un navigateur : a lancer SOUS LE VERROU.
 """
@@ -132,7 +132,7 @@ def main():
                     cap("1-presentee")
                     if not bulle:
                         fautes.append("%s %s : pas de bulle au premier mot neuf" % (appris, cas))
-                    ok1 = e1["presentation"] and e1["retournee"] and e1["continuer"] and not e1["encoreVisible"] and not e1["gardeVisible"] and bool(e1["traduction"]) and bool(e1["etiquette"])
+                    ok1 = e1["presentation"] and e1["retournee"] and e1["continuer"] and e1["encoreVisible"] and e1["gardeVisible"] and bool(e1["traduction"]) and bool(e1["etiquette"])
                     if not ok1:
                         fautes.append("%s %s : presentation incomplete %s" % (appris, cas, e1))
                     i0 = pres["i"]
