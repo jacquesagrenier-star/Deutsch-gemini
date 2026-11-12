@@ -16,9 +16,9 @@
 
   DES VISAGES EXPRESSIFS (option A, decision du 11 nov.) : le portrait de la personne qui parle, qui change selon le
   moment (sourire, question, surprise, « Wie bitte? ») et s'anime doucement pendant qu'elle parle (un zoom lent, une
-  lumiere). Pas de bouche qui bouge, pas de video par replique. Images reprises : la serveuse recadree depuis
-  manger/cafe-camarera.webp et cafe-pagar.webp (conversation/), le voisin depuis emociones/Tomas-*.webp. Les
-  expressions qui manquent sont chiffrees a part, rien n'est genere sans l'accord de Jacques.
+  lumiere). Pas de bouche qui bouge, pas de video par replique. Les visages de la serveuse et l'ecoute du voisin
+  sont faits pour les conversations (visuel/conversation/visages.py, accord de Jacques du 11 nov., 0,75 $) ; les autres
+  visages du voisin viennent du theme des emotions (emociones/Tomas-*.webp).
 
   UNE ERREUR NE FAIT PAS PERDRE : la personne en face reagit en allemand, une ligne explique, la reponse se barre, on
   reessaie ; les erreurs reviennent dans le bilan. LE MICRO : la reponse ecrite la plus proche de ce qui a ete dit ;
@@ -152,9 +152,11 @@ function parler(type, extra){ try{ if (DANS_APP) parent.postMessage(Object.assig
 // Une expression par moment. Celles qui n'existent pas encore retombent sur la plus proche (REPLI) : c'est la liste des
 // images a fabriquer, chiffree a part.
 const VISAGES = {
-  kellnerin: { sourire: "conversation/kellnerin-sourire.webp", attentive: "conversation/kellnerin-attentive.webp" },
-  nachbar: { sourire: "emociones/Tomas-contento.webp", surprise: "emociones/Tomas-sorprendido.webp",
-             perplexe: "emociones/Tomas-nervioso.webp", amuse: "emociones/Tomas-avergonzado.webp" }
+  kellnerin: { sourire: "conversation/Kellnerin-accueil.webp", question: "conversation/Kellnerin-question.webp",
+               attentive: "conversation/Kellnerin-question.webp", surprise: "conversation/Kellnerin-surprise.webp",
+               perplexe: "conversation/Kellnerin-perplexe.webp" },
+  nachbar: { sourire: "emociones/Tomas-contento.webp", question: "conversation/Tomas-ecoute.webp", attentive: "conversation/Tomas-ecoute.webp",
+             surprise: "emociones/Tomas-sorprendido.webp", perplexe: "emociones/Tomas-nervioso.webp", amuse: "emociones/Tomas-avergonzado.webp" }
 };
 const REPLI = { question: ["attentive", "sourire"], surprise: ["attentive", "sourire"], perplexe: ["attentive", "surprise", "sourire"],
                 amuse: ["sourire"], attentive: ["sourire"], sourire: ["attentive"] };
@@ -515,7 +517,7 @@ function debut(){
       <p><b>Une conversation A1 de la famille « toi ».</b> Tu joues ton propre rôle, au « Sie », avec des gens du quartier : la serveuse, puis un voisin de table. Ni Anna ni Mark : à l'A1, ils ne se connaissent pas encore. Les conversations « dans la peau de Mark » s'ouvriront avec les épisodes, au Sie jusqu'à l'épisode du « du ».</p>
       <p><b>Les embranchements.</b> Trois boissons qui ont chacune leur question, le gâteau dont on peut demander le prix, la place libre, « depuis combien de temps tu habites ici » (et « Wie bitte? » pour faire répéter), le marché du samedi (quand, où, j'y vais), l'addition, en espèces avec pourboire ou par carte. Le voisin s'en souvient au moment de dire au revoir.</p>
       <p><b>Si on se trompe.</b> Six fautes, celles qu'on fait vraiment : « Gib mir » à la serveuse, « Ich habe Apfelkuchen », « Ich bin frei », « seit morgen », « die Speisekarte » pour l'addition, « Tschüss, mein Freund » à un inconnu. La personne réagit en allemand, son visage aussi ; une ligne explique, on réessaie.</p>
-      <p><b>Les visages.</b> Celui de la personne qui parle grandit, s'éclaire et s'anime doucement ; il change selon le moment. Les images viennent de l'app (le café du thème « Manger », les visages du thème « Émotions »). Il manque encore des expressions (la serveuse qui pose une question, qui s'étonne, qui ne comprend pas ; le voisin qui écoute) : elles sont chiffrées à part et attendent ton accord.</p>
+      <p><b>Les visages.</b> Celui de la personne qui parle grandit, s'éclaire et s'anime doucement ; il change selon le moment. La serveuse a ses quatre visages (accueil, question, surprise, « Wie bitte? ») et le voisin son écoute, faits le 11 nov. avec ton accord ; ses autres visages viennent du thème « Émotions ».</p>
       <p><b>Où elle s'insère</b> : à la fin de l'étape « commander » de l'A1 dans la séance du jour ; un bouton sur la scène du café ; et dans Tout le contenu, rubrique PARLER.</p>`;
     c.appendChild(det);
   }
