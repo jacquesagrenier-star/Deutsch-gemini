@@ -5371,6 +5371,10 @@ body[data-theme="dark"] .mos-plaque > .search-launch .sl-texte{color:#CFE3F0;}
 .bulle-repere{position:fixed; z-index:9000; background:#1C2430; color:#FFFFFF; border-radius:12px; padding:12px 14px 10px;
   box-shadow:0 10px 30px rgba(0,0,0,.30); font-size:14px; line-height:1.45;}
 .bulle-repere p{margin:0 0 8px;}
+/* Posee a cote de son ancre (la bulle du micro et du haut-parleur) : plus serree, pour s'arreter au-dessus de la carte. */
+.bulle-repere.a-cote{font-size:13px; line-height:1.35; padding:10px 12px 8px;}
+.bulle-repere.a-cote p{margin-bottom:6px;}
+.bulle-repere.a-cote button{padding:4px 14px;}
 .bulle-repere button{display:block; margin-inline-start:auto; background:#E8A23A; color:#1C2430; border:0; border-radius:8px;
   padding:6px 16px; font-weight:700; cursor:pointer;}
 /* La version se loge dans le coin de la carte de progression : elle ne coute
@@ -50301,6 +50305,11 @@ var accueilDejaOuvert = false;
 // Et pas de restauration automatique de la position par le navigateur au rechargement.
 try{ if("scrollRestoration" in history) history.scrollRestoration = "manual"; }catch(e){}
 function showScreen(id){
+    // LA VISITE GUIDEE NE SE PERD PAS EN ROUTE (revue d'usage du 11 nov. 2026) : elle emprunte la vraie carte et
+    // la tuile de la seance. Si un autre ecran s'ouvre pendant qu'elle est en cours -- autre que la visite elle-meme
+    // et l'aide « Essentiel », qui y ramene --, elle se referme et rend ces blocs a leur ecran ; sinon l'ecran des
+    // cartes resterait sans carte jusqu'au rechargement.
+    try{ if(decouverte && id !== "decouverte" && id !== "examenInfo"){ noterEtape("decouverte_perdue"); fermerDecouverte(); } }catch(e){}
     if(id !== "sceneSeance"){ try{ const sr = document.getElementById("sceneSeance"); if(sr){ sr.classList.remove("avec-repere"); sr.style.background = ""; } }catch(e){} }
     // v1003 : le fond commun se regle sur l'ecran (vif et anime sur l'accueil, pale ailleurs).
     const ecranAvant = (document.body && document.body.dataset.ecran) || "";
@@ -52685,7 +52694,7 @@ function ouvrirRepere(id){
 
 // Une bulle d'explication sous (ou sur) un element, avec un bouton OK.
 // `apres` est appele quand on la ferme par OK (v804, « Mis de cote »).
-function afficherBulle(ancre, message, apres){
+function afficherBulle(ancre, message, apres, aCote){
     try{ noterInterruptionSeance(); }catch(e){}
     fermerRepere();
     const b = document.createElement("div");
@@ -52701,12 +52710,21 @@ function afficherBulle(ancre, message, apres){
     b.append(texte, ok);
     document.body.appendChild(b);
     bulleRepere = b;
-    const L = Math.min(300, innerWidth - 32);
-    b.style.width = L + "px";
+    let L = Math.min(300, innerWidth - 32);
     const ra = ancre.getBoundingClientRect();
-    const x = Math.max(16, Math.min(ra.left + ra.width / 2 - L / 2, innerWidth - 16 - L));
+    // `aCote` : la bulle se pose a cote de l'ancre, sur sa ligne, plutot que dessous (la bulle du micro et du
+    // haut-parleur couvrait le mot de la premiere carte -- revue d'usage du 11 nov. 2026). Du cote ou il y a la place :
+    // a gauche des boutons, a droite en arabe et en persan.
+    const rtl = document.documentElement.dir === "rtl";
+    const placeCote = aCote ? (rtl ? innerWidth - ra.right - 26 : ra.left - 26) : 0;
+    const cote = aCote && placeCote >= 180;
+    if(cote){ L = Math.min(300, placeCote); b.classList.add("a-cote"); }
+    b.style.width = L + "px";
     const h = b.offsetHeight;
-    const y = (ra.bottom + 10 + h < innerHeight - 10 || ra.top < h + 20) ? ra.bottom + 10 : ra.top - h - 10;
+    const x = cote ? (rtl ? ra.right + 10 : ra.left - 10 - L)
+                   : Math.max(16, Math.min(ra.left + ra.width / 2 - L / 2, innerWidth - 16 - L));
+    const y = cote ? Math.max(8, ra.top - 4)
+                   : ((ra.bottom + 10 + h < innerHeight - 10 || ra.top < h + 20) ? ra.bottom + 10 : ra.top - h - 10);
     b.style.left = x + "px";
     b.style.top = y + "px";
     // Le prochain clic n'importe ou referme : on attend la fin de celui-ci.
@@ -60430,13 +60448,27 @@ let gardeOrigineCartes = null;
 let retourSeanceAccueil = false;
 
 function ouvrirAideExamen(){
-    gardeOrigineCartes = { panneau: panneauAvantFlashcards, recherche: flashcardFromSearch };
+    // L'ecran d'ou l'on vient : la visite guidee montre la vraie carte (empruntee dans #decouverteScene), et c'est
+    // la qu'il faut revenir -- voir retourDepuisAideExamen.
+    const actif = document.querySelector(".screen.active");
+    gardeOrigineCartes = { panneau: panneauAvantFlashcards, recherche: flashcardFromSearch, ecran: actif ? actif.id : "" };
     // La carte continue de se prononcer sinon, par-dessus l'ecran d'explication.
     arreterChaineCarte(true);
     showScreen("examenInfo");
 }
 
+// ⚠️ PENDANT LA VISITE GUIDEE, LE RETOUR RAMENE DANS LA VISITE (revue d'usage du 11 nov. 2026, reproduit deux fois sur
+// un compte neuf). Toucher « Essentiel » sur la carte de la visite, puis « Revenir a la carte », menait a l'ecran des
+// cartes VIDE -- la carte etait encore empruntee par la visite -- ; la visite etait perdue, et la seance du jour
+// s'ouvrait ensuite sans aucune carte et ne finissait jamais.
 function retourDepuisAideExamen(){
+    const origine = gardeOrigineCartes ? gardeOrigineCartes.ecran : "";
+    if(origine === "decouverte" && decouverteEnCours()){
+        gardeOrigineCartes = null;
+        showScreen("decouverte");
+        try{ synchroniserHistorique(); }catch(e){}
+        return;
+    }
     showScreen("flashcards");
     if(gardeOrigineCartes){
         panneauAvantFlashcards = gardeOrigineCartes.panneau;
@@ -72901,7 +72933,7 @@ function bulleTransitUneFois(){
     const b = document.getElementById("trMicroBtn");
     if(!b || !b.offsetParent) return;
     try{ localStorage.setItem(AIDE_TRANSIT_KEY, "1"); }catch(e){}
-    afficherBulle(b, t("tr_bulle"));
+    afficherBulle(b, t("tr_bulle"), null, true);
 }
 
 let sharedAudioCtx = null;
