@@ -14100,6 +14100,8 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         </div>
     </div>
 
+    <div id="adminPreuvesTesteurs"></div>
+
     <div class="card">
         <strong data-i18n="admin_deploy_title">Déploiement</strong>
         <div class="info-box" data-i18n="admin_deploy_desc">deutsch-gemini.pages.dev (Cloudflare) et jacquesagrenier-star.github.io reflètent main (production) ; chaque branche a son aperçu à [branche].deutsch-gemini.pages.dev.</div>
@@ -54751,6 +54753,7 @@ function openAdminDashboard(){
     renderAdminDeployStatus();
     renderAdminCodesList();
     renderAdminUsersList();
+    verifierPreuvesTesteurs(false);
 }
 
 function timeAgoFr(dateStr){
@@ -55233,6 +55236,7 @@ async function renderAdminUsersList(){
                         ${examensOn ? "EXAMENS OUVERTS ✓ — RETIRER" : "OUVRIR LES EXAMENS"}
                     </button>`;
                     })()}
+                    ${idSur ? boutonTesteurAVie(u.id) : ""}
                 </div>
             </details>
         `;}).join("");
@@ -55360,6 +55364,169 @@ async function basculerEssaiCompte(uid, nom, ouvrir, collResume){
             ? "Refusé par Firestore : colle d'abord les nouvelles règles (firestore.rules)."
             : t('admin_action_failed'));
         console.warn("basculerEssaiCompte", e);
+    }
+}
+
+// ============ LES PREUVES DU TESTEUR A VIE (12 nov. 2026) ============
+// Jacques : « Assure-toi qu'il n'y ait aucun risque. » Depuis le mode sans
+// compte, est testeur gratuit a vie (etatEssaiPur) : l'admin, un compte dont
+// `users/<uid>.accesAVie === true` (pose ici, par l'admin seul), ou un compte
+// dont le code d'invitation existe encore avec `usedBy == uid`. Le 12 nov., 3
+// comptes avaient un code dont le DOCUMENT avait ete supprime : au lancement,
+// ils seraient passes en essai de 7 jours sans un mot.
+// Les garde-fous, a plusieurs endroits : pas de SUPPRIMER sur un code utilise
+// (renderAdminCodesList), refus dans deleteInviteCode, une regle Firestore qui
+// l'interdit meme a l'admin, et ici une alerte en tete du tableau de bord quand
+// un compte a `inviteCode` sans le document de code qui le prouve, avec le
+// bouton qui lui rend la preuve (accesAVie).
+// La verification lit TOUS les documents `users` (lourds : la progression y
+// est) et tous les codes : une fois a l'ouverture du tableau de bord, puis
+// gardee 12 h sur l'appareil de l'admin (uid, prenom, code, etat : rien d'autre),
+// et REVERIFIER la refait.
+const CLE_PREUVES_TESTEURS = "wortando_adminPreuvesTesteurs";
+const PREUVES_VALIDES_MS = 12 * 3600 * 1000;
+let preuvesTesteurs = null;   // { lu, comptes: { uid: { nom, code, preuve, vie, cree } } }
+
+function retenirPreuvesTesteurs(){
+    try{ localStorage.setItem(CLE_PREUVES_TESTEURS, JSON.stringify(preuvesTesteurs)); }catch(e){}
+}
+
+async function verifierPreuvesTesteurs(forcer){
+    const zone = document.getElementById("adminPreuvesTesteurs");
+    if(!zone || !isAdminUser()) return;
+    if(!forcer){
+        try{
+            const c = JSON.parse(localStorage.getItem(CLE_PREUVES_TESTEURS) || "null");
+            if(c && c.comptes && typeof c.lu === "number" && Date.now() - c.lu < PREUVES_VALIDES_MS){
+                preuvesTesteurs = c;
+                afficherPreuvesTesteurs();
+                return;
+            }
+        }catch(e){}
+    }
+    if(!window.firestoreDb){ adminEtatErreur(zone, () => verifierPreuvesTesteurs(true)); return; }
+    zone.innerHTML = `<div class="card"><small>Vérification des preuves de testeur à vie…</small></div>`;
+    try{
+        const [snapUsers, snapCodes] = await Promise.all([
+            window.fsGetDocs(window.fsCollection(window.firestoreDb, 'users')),
+            window.fsGetDocs(window.fsCollection(window.firestoreDb, 'inviteCodes'))
+        ]);
+        const codes = {};
+        snapCodes.forEach(d => { codes[d.id] = d.data() || {}; });
+        const comptes = {};
+        snapUsers.forEach(d => {
+            if(!idSurCompte(d.id)) return;
+            const u = d.data() || {};
+            const code = (typeof u.inviteCode === "string" && u.inviteCode) ? u.inviteCode : null;
+            // « code » : la preuve est la ; « manquante » : le document du code
+            // n'existe plus ; « autre » : le code dit avoir servi a un autre
+            // compte ; « sans » : aucun code (sans compte, admin, comptes d'avant v47).
+            let preuve = "sans";
+            if(code) preuve = !codes[code] ? "manquante" : (codes[code].usedBy === d.id ? "code" : "autre");
+            comptes[d.id] = {
+                nom: String(u.firstName || "").trim().slice(0, 60) || String(u.email || "").trim().slice(0, 80),
+                code: code ? code.slice(0, 20) : null,
+                preuve,
+                vie: u.accesAVie === true,
+                cree: dateEnMs(u.createdAt) || null
+            };
+        });
+        preuvesTesteurs = { lu: Date.now(), comptes };
+        retenirPreuvesTesteurs();
+    }catch(e){
+        adminEtatErreur(zone, () => verifierPreuvesTesteurs(true));
+        return;
+    }
+    afficherPreuvesTesteurs();
+}
+
+function afficherPreuvesTesteurs(){
+    const zone = document.getElementById("adminPreuvesTesteurs");
+    if(!zone || !preuvesTesteurs) return;
+    const liste = Object.entries(preuvesTesteurs.comptes || {});
+    const intactes = liste.filter(([, c]) => c.preuve === "code").length;
+    const aVie = liste.filter(([, c]) => c.vie).length;
+    // Une preuve manquante est REGLEE quand l'admin a pose accesAVie.
+    const manquantes = liste.filter(([, c]) => (c.preuve === "manquante" || c.preuve === "autre") && !c.vie);
+    const reglees = liste.filter(([, c]) => (c.preuve === "manquante" || c.preuve === "autre") && c.vie).length;
+    const quand = timeAgoFr(new Date(preuvesTesteurs.lu));
+    const reverifier = `<button class="secondary" style="width:auto; padding:6px 12px; font-size:12px; margin-top:8px;" onclick="verifierPreuvesTesteurs(true)">REVÉRIFIER</button>`;
+    const bilan = `${intactes} preuve${intactes > 1 ? "s" : ""} par code intacte${intactes > 1 ? "s" : ""} · ${aVie} accordé${aVie > 1 ? "s" : ""} à la main${reglees ? " (dont " + reglees + " preuve" + (reglees > 1 ? "s" : "") + " rendue" + (reglees > 1 ? "s" : "") + ")" : ""} · vérifié ${echapperCompte(quand)}`;
+    if(!manquantes.length){
+        zone.innerHTML = `<div class="card admin-preuves-ok"><strong>Testeurs à vie : aucune preuve manquante ✓</strong><br><small>${bilan}</small><br>${reverifier}</div>`;
+        majBoutonsTesteurAVie();
+        return;
+    }
+    const date = ms => ms ? new Date(ms).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }) : "date inconnue";
+    zone.innerHTML = `
+        <div class="card admin-preuves-alerte" style="background:#fef2f2; border:1px solid #fca5a5; color:#7f1d1d;">
+            <strong>⚠️ Preuve de testeur manquante : ${manquantes.length}</strong>
+            <div style="font-size:13px; margin:6px 0 4px;">Ces comptes ont un code d'invitation dont le document n'existe plus (ou a servi à un autre compte). Au lancement, ils passeraient en essai de 7 jours. Le bouton leur rend le testeur à vie.</div>
+            ${manquantes.map(([uid, c]) => `
+                <div style="border-top:1px solid #fca5a5; padding:8px 0;">
+                    <div style="font-weight:800;">${echapperCompte(c.nom || ("compte " + uid.slice(0, 6)))}</div>
+                    <small>code ${echapperCompte(c.code || "?")}${c.preuve === "autre" ? " (servi à un autre compte)" : " (document supprimé)"} · inscrit le ${echapperCompte(date(c.cree))}</small><br>
+                    <button class="secondary admin-vhs" style="margin-top:6px;" data-testeur-uid="${uid}" onclick="basculerTesteurAVie('${uid}')">RENDRE TESTEUR À VIE</button>
+                </div>`).join("")}
+            <small>${bilan}</small><br>${reverifier}
+        </div>`;
+    majBoutonsTesteurAVie();
+}
+
+// Sur la ligne de chaque compte : l'etat de sa preuve et le bouton.
+function libelleTesteurAVie(uid){
+    const c = preuvesTesteurs && preuvesTesteurs.comptes ? preuvesTesteurs.comptes[uid] : null;
+    if(!c) return { bouton: "TESTEUR À VIE…", note: "" };
+    const note = c.preuve === "code" ? "Testeur à vie par son code ✓"
+        : (c.preuve === "manquante" || c.preuve === "autre") ? "⚠️ Preuve par code manquante"
+        : "Sans code d'invitation";
+    return { bouton: c.vie ? "TESTEUR À VIE ✓ — RETIRER" : "RENDRE TESTEUR À VIE", note: c.vie ? note + " · accordé à la main ✓" : note };
+}
+function boutonTesteurAVie(uid){
+    const l = libelleTesteurAVie(uid);
+    return `<div class="admin-testeur" style="margin-top:8px;"><small data-testeur-note="${uid}">${echapperCompte(l.note)}</small>
+        <button class="secondary admin-vhs" data-testeur-uid="${uid}" data-testeur-ligne="1" onclick="basculerTesteurAVie('${uid}')">${l.bouton}</button></div>`;
+}
+function majBoutonsTesteurAVie(){
+    document.querySelectorAll("#adminUsersList [data-testeur-ligne]").forEach(b => {
+        const uid = b.getAttribute("data-testeur-uid");
+        const l = libelleTesteurAVie(uid);
+        b.textContent = l.bouton;
+        const n = document.querySelector(`#adminUsersList [data-testeur-note="${uid}"]`);
+        if(n) n.textContent = l.note;
+    });
+}
+
+// Pose ou retire `accesAVie` dans users/<uid> (l'admin seul : regle
+// accesReserves). On relit le document avant : le bouton dit ce qu'il fait
+// d'apres l'etat REEL, pas d'apres une liste qui a pu vieillir. Retirer
+// accesAVie ne retire pas une preuve par code encore intacte (etatEssaiPur).
+async function basculerTesteurAVie(uid){
+    if(!isAdminUser() || !idSurCompte(uid)) return;
+    try{
+        const ref = window.fsDoc(window.firestoreDb, 'users', uid);
+        const snap = await window.fsGetDoc(ref);
+        if(!snap.exists()){ showInfoToast("Ce compte n'a pas de document users : rien à changer."); return; }
+        const d = snap.data() || {};
+        const avant = d.accesAVie === true;
+        const nom = String(d.firstName || d.email || ("compte " + uid.slice(0, 6))).trim().slice(0, 60);
+        const question = avant
+            ? `Retirer le testeur à vie accordé à la main à « ${nom} » ?` + (preuvesTesteurs && preuvesTesteurs.comptes[uid] && preuvesTesteurs.comptes[uid].preuve === "code" ? "\n(Son code d'invitation le garde testeur à vie.)" : "\nAu lancement, ce compte passerait en essai de 7 jours.")
+            : `Rendre « ${nom} » testeur à vie (gratuit à vie) ?`;
+        if(!confirm(question)) return;
+        await window.fsUpdateDoc(ref, { accesAVie: !avant });
+        if(!preuvesTesteurs) preuvesTesteurs = { lu: Date.now(), comptes: {} };
+        if(preuvesTesteurs.comptes[uid]) preuvesTesteurs.comptes[uid].vie = !avant;
+        else preuvesTesteurs.comptes[uid] = { nom, code: null, preuve: "sans", vie: !avant, cree: dateEnMs(d.createdAt) || null };
+        retenirPreuvesTesteurs();
+        afficherPreuvesTesteurs();
+        showInfoToast(!avant ? "Testeur à vie : accordé ✓" : "Testeur à vie : retiré");
+    }catch(e){
+        const code = String((e && (e.code || e.message)) || "?");
+        showInfoToast(code.indexOf("permission") !== -1
+            ? "Refusé par Firestore : colle d'abord les nouvelles règles (firestore.rules)."
+            : t('admin_action_failed'));
+        console.warn("basculerTesteurAVie", e);
     }
 }
 

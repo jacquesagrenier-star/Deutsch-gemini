@@ -111,6 +111,8 @@ function resume(email, extra){
     await cas("compte neuf cree avec le debut de l'essai (serveur) : accepte", true, () => setDoc(doc(bob, "users", "bobUid"), { email: "bob@example.com", essaiDebut: serverTimestamp() }, { merge: true }));
     await cas("compte neuf cree avec un debut d'essai choisi : refuse", false, () => setDoc(doc(anna, "users", "autreDoc"), { essaiDebut: hier() }));
     await cas("l'admin offre l'acces a vie", true, () => updateDoc(doc(admin, "users", "annaUid"), { accesAVie: true }));
+    await cas("l'admin retire l'acces a vie (bouton du 12 nov.)", true, () => updateDoc(doc(admin, "users", "annaUid"), { accesAVie: false }));
+    await cas("l'admin le rend de nouveau", true, () => updateDoc(doc(admin, "users", "annaUid"), { accesAVie: true }));
     await cas("l'admin offre 4 mois", true, () => updateDoc(doc(admin, "users", "bobUid"), { accesJusqua: dans4mois() }));
     await cas("l'admin offre 4 mois en touchant la progression : refuse", false, () => updateDoc(doc(admin, "users", "bobUid"), { accesJusqua: dans4mois(), progressJson: "x" }));
     await cas("l'admin reecrit le debut de l'essai : refuse", false, () => updateDoc(doc(admin, "users", "annaUid"), { essaiDebut: serverTimestamp() }));
