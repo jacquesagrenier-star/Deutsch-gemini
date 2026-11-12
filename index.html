@@ -52535,7 +52535,8 @@ function majCompteurEssai(){
     const el = document.getElementById("essaiCompteur");
     if(!el) return;
     const info = infoAcces();
-    if(info.etat !== "essai" || apercuGratuitActif()){ el.classList.add("hidden"); return; }
+    // Le compte pas encore lu (attente) : ni pastille, qui disparaitrait ensuite.
+    if(info.etat !== "essai" || info.attente || apercuGratuitActif()){ el.classList.add("hidden"); return; }
     el.textContent = info.restants > 1 ? tf("essai_compteur", { n: nombreAbo(info.restants) }) : t("essai_compteur_dernier");
     el.classList.remove("hidden");
 }
