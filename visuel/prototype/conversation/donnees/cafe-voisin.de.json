@@ -1,0 +1,96 @@
+{
+ "id": "cafe-voisin",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "manger",
+ "registre": "Sie",
+ "titre": {"fr": "Au café, avec un voisin de table"},
+ "intro": {"fr": "Tu prends un café dans ton nouveau quartier. Tu commandes, un voisin de table te parle, puis tu paies."},
+ "personnes": ["kellnerin", "nachbar"],
+ "debut": "bestellen",
+ "prix": {"kaffee": 280, "tee": 260, "wasser": 220, "kuchen": 350},
+ "panier": ["boisson", "gateau"],
+ "textes": {
+  "boisson_fr": {"cle": "boisson", "kaffee": "ton café", "tee": "ton thé", "wasser": "ton eau"},
+  "gateau_fr": {"cle": "gateau", "kuchen": " et ton gâteau"}
+ },
+ "noeuds": {
+  "bestellen": {
+   "dit": [
+    {"recit": {"fr": "Tu entres dans un petit café du quartier. Tu t'assieds près de la fenêtre."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Guten Tag! Was möchten Sie trinken?", "fr": "Bonjour ! Qu'est-ce que vous voulez boire ?"}
+   ],
+   "choix": [
+    {"t": "Einen Kaffee, bitte.", "fr": "Un café, s'il vous plaît.", "pose": {"boisson": "kaffee"}, "va": "frei",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gern. Kommt sofort!", "fr": "Volontiers. Ça arrive tout de suite !"}]},
+    {"t": "Ich hätte gern einen Tee.", "fr": "Je voudrais un thé.", "pose": {"boisson": "tee"}, "va": "frei",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gern. Kommt sofort!", "fr": "Volontiers. Ça arrive tout de suite !"}]},
+    {"t": "Ein Wasser und ein Stück Apfelkuchen, bitte.", "fr": "Une eau et une part de gâteau aux pommes, s'il vous plaît.", "pose": {"boisson": "wasser", "gateau": "kuchen"}, "va": "frei",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sehr gern. Kommt sofort!", "fr": "Avec plaisir. Ça arrive tout de suite !"}]},
+    {"faux": true, "t": "Hallo! Gib mir einen Kaffee.", "fr": "Salut ! Donne-moi un café.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Äh … wie bitte?", "fr": "Euh… pardon ?"}],
+     "aide": {"fr": "<b>À la serveuse, on dit « Sie » et « bitte ».</b> « Gib mir » est un ordre qu'on donne à un ami. Dis plutôt : « Einen Kaffee, bitte » ou « Ich hätte gern einen Kaffee »."}}
+   ]
+  },
+  "frei": {
+   "dit": [
+    {"recit": {"fr": "La serveuse apporte {boisson_fr}{gateau_fr}. Le café se remplit. Un homme s'approche de ta table."}},
+    {"qui": "nachbar", "air": "question", "t": "Entschuldigung, ist hier noch frei?", "fr": "Excusez-moi, la place est libre ?"}
+   ],
+   "choix": [
+    {"t": "Ja, klar. Bitte!", "fr": "Oui, bien sûr. Je vous en prie !", "va": "markt",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Danke schön!", "fr": "Merci beaucoup !"}]},
+    {"t": "Ja, natürlich. Setzen Sie sich!", "fr": "Oui, naturellement. Asseyez-vous !", "va": "markt",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Vielen Dank, sehr nett!", "fr": "Merci beaucoup, c'est très gentil !"}]},
+    {"faux": true, "t": "Nein, ich bin frei.", "fr": "Non, je suis libre.",
+     "puis": [{"qui": "nachbar", "air": "perplexe", "t": "Äh … und der Stuhl? Ist der frei?", "fr": "Euh… et la chaise ? Elle est libre ?"}],
+     "aide": {"fr": "<b>« Ist hier noch frei? »</b> demande si la place est libre, pas toi. Réponds « Ja, klar » ou « Ja, natürlich »."}}
+   ]
+  },
+  "markt": {
+   "dit": [{"qui": "nachbar", "air": "question", "t": "Sind Sie neu hier? Kennen Sie schon den Markt am Samstag?", "fr": "Vous êtes nouveau (nouvelle) ici ? Vous connaissez déjà le marché du samedi ?"}],
+   "choix": [
+    {"t": "Nein. Wann ist der Markt?", "fr": "Non. Le marché, c'est quand ?", "pose": {"markt": "oui"}, "va": "zahlen",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Am Samstag, von acht bis eins, gleich um die Ecke. Das Obst ist sehr gut!", "fr": "Le samedi, de huit heures à une heure, juste au coin de la rue. Les fruits sont très bons !"}]},
+    {"t": "Ja, ich gehe gern auf den Markt.", "fr": "Oui, j'aime bien aller au marché.", "pose": {"markt": "oui"}, "va": "zahlen",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Ich auch! Vielleicht sehen wir uns da.", "fr": "Moi aussi ! On s'y verra peut-être."}]},
+    {"t": "Wie bitte? Können Sie das wiederholen?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "markt",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Natürlich. Kennen Sie den Markt am Samstag?", "fr": "Bien sûr. Vous connaissez le marché du samedi ?"}],
+     "repete": true}
+   ]
+  },
+  "zahlen": {
+   "dit": [
+    {"recit": {"fr": "Un peu plus tard. Tu fais signe à la serveuse."}},
+    {"qui": "kellnerin", "air": "question", "t": "Möchten Sie zahlen?", "fr": "Vous voulez payer ?"}
+   ],
+   "choix": [
+    {"t": "Ja, die Rechnung, bitte.", "fr": "Oui, l'addition, s'il vous plaît.", "va": "betrag"},
+    {"t": "Ja, bitte. Was macht das?", "fr": "Oui, s'il vous plaît. Ça fait combien ?", "va": "betrag"},
+    {"faux": true, "t": "Ja, die Speisekarte, bitte.", "fr": "Oui, la carte, s'il vous plaît.",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Die Speisekarte? Möchten Sie noch etwas bestellen?", "fr": "La carte ? Vous voulez encore commander quelque chose ?"}],
+     "aide": {"fr": "<b>« die Speisekarte »</b>, c'est le menu. Pour payer : « Die Rechnung, bitte » ou « Was macht das? »."}}
+   ]
+  },
+  "betrag": {
+   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "Das macht {a_payer}. Bar oder mit Karte?", "fr": "Ça fait {a_payer}. En espèces ou par carte ?", "dit": "Das macht {a_payer:mots}. Bar oder mit Karte?"}],
+   "choix": [
+    {"t": "{arrondi:mots_maj} Euro, bar. Stimmt so!", "fr": "{arrondi} euros, en espèces. Gardez la monnaie !", "va": "tschuess",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Oh, vielen Dank! Schönen Tag noch!", "fr": "Oh, merci beaucoup ! Bonne journée !"}]},
+    {"t": "Mit Karte, bitte.", "fr": "Par carte, s'il vous plaît.", "va": "tschuess",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gern. Danke schön und schönen Tag noch!", "fr": "Volontiers. Merci, et bonne journée !"}]}
+   ]
+  },
+  "tschuess": {
+   "dit": [{"qui": "nachbar", "air": "sourire", "t": "Auf Wiedersehen! Und vielleicht bis Samstag auf dem Markt!", "fr": "Au revoir ! Et peut-être à samedi au marché !"}],
+   "choix": [
+    {"t": "Bis Samstag! Auf Wiedersehen!", "fr": "À samedi ! Au revoir !", "va": null},
+    {"faux": true, "t": "Tschüss, bis morgen, mein Freund!", "fr": "Salut, à demain, mon ami !",
+     "puis": [{"qui": "nachbar", "air": "amuse", "t": "Ha, mein Freund … schon? Na gut!", "fr": "Ha, mon ami… déjà ? Bon, d'accord !"}],
+     "aide": {"fr": "<b>On ne connaît pas encore ce voisin</b> : « Auf Wiedersehen » ou « Schönen Tag noch ». « Tschüss » et « mein Freund », c'est pour les amis."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as commandé, parlé avec ton voisin de table (rendez-vous au marché samedi) et payé {a_payer}."}
+}

@@ -1,0 +1,44 @@
+{
+ "id": "pp1-pass",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "premiers-pas",
+ "etape": 1,
+ "registre": "usted",
+ "titre": {"fr": "Au contrôle des passeports"},
+ "intro": {"fr": "Tu arrives à l'aéroport de Madrid. Le policier du contrôle te parle. Réponds avec les phrases de l'étape."},
+ "personnes": ["polizist"],
+ "debut": "pasaporte",
+ "noeuds": {
+  "pasaporte": {
+   "dit": [
+    {"recit": {"fr": "Aéroport de Madrid-Barajas. C'est ton tour au contrôle des passeports."}},
+    {"qui": "polizist", "air": "sourire", "t": "Buenos días. El pasaporte, por favor.", "fr": "Bonjour. Le passeport, s'il vous plaît."}
+   ],
+   "choix": [
+    {"t": "Buenos días, señor. Un momento.", "fr": "Bonjour, monsieur. Un moment.", "va": "donde"},
+    {"t": "Sí, un momento, por favor.", "fr": "Oui, un moment, s'il vous plaît.", "va": "donde"}
+   ]
+  },
+  "donde": {
+   "dit": [{"qui": "polizist", "air": "question", "t": "Gracias. ¿De dónde es usted?", "fr": "Merci. D'où êtes-vous ?"}],
+   "choix": [
+    {"t": "Soy de Canadá.", "fr": "Je suis du Canada.", "va": "turista"},
+    {"t": "Soy de Francia.", "fr": "Je suis de France.", "va": "turista"}
+   ]
+  },
+  "turista": {
+   "dit": [{"qui": "polizist", "air": "question", "t": "¿Y es usted turista?", "fr": "Et vous êtes touriste ?"}],
+   "choix": [
+    {"t": "Sí, soy turista.", "fr": "Oui, je suis touriste.", "va": "adios"}
+   ]
+  },
+  "adios": {
+   "dit": [{"qui": "polizist", "air": "sourire", "t": "Muy bien. ¡Buen viaje!", "fr": "Très bien. Bon voyage !"}],
+   "choix": [
+    {"t": "Gracias. ¡Adiós!", "fr": "Merci. Au revoir !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as passé le contrôle : tu as salué, demandé un moment, dit d'où tu viens et que tu es touriste."}
+}

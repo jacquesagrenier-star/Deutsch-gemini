@@ -1,0 +1,52 @@
+{
+ "id": "pp2-cafe",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "premiers-pas",
+ "etape": 2,
+ "registre": "usted",
+ "titre": {"fr": "Le petit-déjeuner au bar"},
+ "intro": {"fr": "Premier matin à Madrid. Tu prends ton petit-déjeuner dans un bar du quartier. Commande, puis paie."},
+ "personnes": ["kellnerin"],
+ "debut": "pedir",
+ "prix": {"cafe": 180, "zumo": 250, "bocadillo": 350},
+ "panier": ["bebida", "comida"],
+ "noeuds": {
+  "pedir": {
+   "dit": [
+    {"recit": {"fr": "Un bar du quartier, le matin. La serveuse est derrière le comptoir."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "¡Buenos días! ¿Qué quiere tomar?", "fr": "Bonjour ! Qu'est-ce que vous voulez prendre ?"}
+   ],
+   "choix": [
+    {"t": "Quiero un café con leche, por favor.", "fr": "Je veux un café au lait, s'il vous plaît.", "pose": {"bebida": "cafe"}, "va": "comer"},
+    {"t": "Para mí, un zumo de naranja, por favor.", "fr": "Pour moi, un jus d'orange, s'il vous plaît.", "pose": {"bebida": "zumo"}, "va": "comer"}
+   ]
+  },
+  "comer": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Muy bien. ¿Y un bocadillo?", "fr": "Très bien. Et un sandwich ?"}],
+   "choix": [
+    {"t": "Sí, un bocadillo, por favor.", "fr": "Oui, un sandwich, s'il vous plaît.", "pose": {"comida": "bocadillo"}, "va": "cuenta",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Ahora mismo!", "fr": "Tout de suite !"}]},
+    {"t": "No, gracias.", "fr": "Non, merci.", "va": "cuenta",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Ahora mismo!", "fr": "Tout de suite !"}]}
+   ]
+  },
+  "cuenta": {
+   "dit": [{"recit": {"fr": "Un peu plus tard. Tu as fini et tu veux payer."}}],
+   "choix": [
+    {"t": "La cuenta, por favor.", "fr": "L'addition, s'il vous plaît.", "va": "pagar"},
+    {"t": "¿Cuánto es?", "fr": "C'est combien ?", "va": "pagar"}
+   ]
+  },
+  "pagar": {
+   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "Son {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Son {a_payer:mots}."}],
+   "choix": [
+    {"t": "Con tarjeta, por favor.", "fr": "Par carte, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Gracias! ¡Hasta luego!", "fr": "Merci ! À plus tard !"}]},
+    {"t": "Gracias, adiós.", "fr": "Merci, au revoir.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Gracias a usted! ¡Adiós!", "fr": "Merci à vous ! Au revoir !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as commandé ton petit-déjeuner, demandé l'addition et payé {a_payer}."}
+}
