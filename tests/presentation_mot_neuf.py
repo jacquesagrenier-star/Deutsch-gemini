@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Le mot neuf presente avant d'etre demande (revue d'usage du 11 nov. 2026, proposition 1 ; precisions de Jacques).
 
-    python tests/presentation_mot_neuf.py --captures DOSSIER        (de et es)
+    python tests/presentation_mot_neuf.py [--captures DOSSIER]      (de et es)
 
 Sur un navigateur vierge, sans compte : « Je pars de zero », la visite passee, la seance du jour. Trois cas :
   presente : la carte neuve arrive par son verso (bandeau « Nouveau mot », le mot, la traduction), avec les trois boutons
@@ -68,7 +68,7 @@ ETAT = r"""
 () => {
   const vis = sel => { const e = document.querySelector(sel); return !!(e && e.offsetParent && !e.classList.contains('hidden')); };
   const tx = id => ((document.getElementById(id) || {}).textContent || '').replace(/\s+/g, ' ').trim();
-  return { presentation: vis('#flashcardActions.presentation'), retournee: document.getElementById('flashcard').classList.contains('flipped'),
+  return { presentation: !!document.querySelector('#flashcardActions.presentation'), retournee: document.getElementById('flashcard').classList.contains('flipped'),
            etiquette: vis('#flashNouveauVerso') ? tx('flashNouveauVerso') : null, mot: tx('flashBackWord'), traduction: vis('#flashTranslation') ? tx('flashTranslation') : null,
            continuer: vis('#flashcardActions .judge-good'), recto: tx('flashWord'),
            encoreVisible: vis('#flashcardActions .judge-again') && getComputedStyle(document.querySelector('#flashcardActions .judge-again')).visibility !== 'hidden',
@@ -80,10 +80,11 @@ ETAT = r"""
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--captures", required=True)
+    ap.add_argument("--captures", help="dossier des captures (facultatif : sans lui, la sonde ne fait que verifier)")
     ap.add_argument("--langues", default="de,es")
     a = ap.parse_args()
-    os.makedirs(a.captures, exist_ok=True)
+    if a.captures:
+        os.makedirs(a.captures, exist_ok=True)
 
     class Serveur(http.server.SimpleHTTPRequestHandler):
         def log_message(self, *x, **k):
@@ -113,7 +114,7 @@ def main():
                     page.goto("http://127.0.0.1:%d/index.html%s" % (PORT, "?apprendre=es" if appris == "es" else ""))
                     page.wait_for_load_state("networkidle")
                     page.wait_for_timeout(1500)
-                    cap = lambda nom: page.screenshot(path=os.path.join(a.captures, "%s-%s-%s.png" % (appris, cas, nom)), timeout=120000, animations="disabled")
+                    cap = (lambda nom: page.screenshot(path=os.path.join(a.captures, "%s-%s-%s.png" % (appris, cas, nom)), timeout=60000)) if a.captures else (lambda nom: None)
                     nb = page.evaluate(PREPARER)
                     pres = page.evaluate(VERS_PRESENTEE)
                     if not pres:
@@ -136,7 +137,7 @@ def main():
                     if not ok1:
                         fautes.append("%s %s : presentation incomplete %s" % (appris, cas, e1))
                     i0 = pres["i"]
-                    page.click("#flashcardActions .judge-good")
+                    page.evaluate("() => document.querySelector('#flashcardActions .judge-good').click()")
                     page.wait_for_timeout(900)
                     # jusqu'a la demande de la meme carte
                     trouve = page.evaluate(r"""
@@ -166,7 +167,7 @@ def main():
                     if e3["bille"] != e1["bille"]:
                         fautes.append("%s %s : la bille change de place (%s puis %s)" % (appris, cas, e1["bille"], e3["bille"]))
                     if cas == "rate":
-                        page.click("#flashcardActions .judge-again")
+                        page.evaluate("() => document.querySelector('#flashcardActions .judge-again').click()")
                         page.wait_for_timeout(500)
                         cap("4-ratee")
                         revient = page.evaluate("([i]) => currentCards.slice(i + 1).includes(currentCards[i])", [trouve])
