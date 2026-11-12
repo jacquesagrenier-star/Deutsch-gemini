@@ -349,7 +349,9 @@ const entete = t => '<div class="entete">' + esc(t) + '</div>';
 const papier = (tete, titre, corps) => '<div class="papier" lang="' + APPRENDRE + '">' + entete(tete) + '<h3>' + esc(titre) + '</h3>' + corps + '</div>';
 const MAT = c => D.matieres[APPRENDRE][c];
 // la traduction d'une matiere ; en portugais, la langue de l'ecole est le portugais (matieresTradPt d'ecole.py)
-const MTR = c => PT_ && D.matieresTradPt && D.matieresTradPt[c] ? Object.assign({}, D.matieresTrad[c], D.matieresTradPt[c]) : D.matieresTrad[c];
+// la langue de l'ecole : « Lengua » est l'espagnol (le champ t de la matiere, correction de la session « Ecole », 12 nov. 2026)
+const MTR = c => MAT(c) && MAT(c).t ? Object.assign({}, D.matieresTrad[c], MAT(c).t)
+             : PT_ && D.matieresTradPt && D.matieresTradPt[c] ? Object.assign({}, D.matieresTrad[c], D.matieresTradPt[c]) : D.matieresTrad[c];
 // l'en-tete des papiers de la classe : « Escola Básica do Bairro · Turma 2.º B » (pt), « … · 2º ano B » (Bresil)
 const teteClasse = () => PT_ ? NO.schule + " · " + NO.turma : NO.schule + " · " + (ES_ ? "Clase " : "Klasse ") + NO.klasse;
 // « Ben » dans un papier portugais : « do Ben » au Portugal, « de Ben » au Bresil
@@ -1028,7 +1030,7 @@ $("retour").addEventListener("click", () => parler("fermer"));
 $("retour").setAttribute("aria-label", T("retourAria"));
 $("titre").textContent = T("titre");
 document.title = T("titre");
-fetch("ecole/ecole.json?v=3").then(r => r.json()).then(d => {
+fetch("ecole/ecole.json?v=4").then(r => r.json()).then(d => {
   D = d;
   if (PT_) portugaisAppris(D);
   LX = D.lieux[APPRENDRE]; ACT = D.actions[APPRENDRE]; OBJ = D.objets[APPRENDRE]; CJ = D.conj[APPRENDRE]; NO = D.noms[APPRENDRE];

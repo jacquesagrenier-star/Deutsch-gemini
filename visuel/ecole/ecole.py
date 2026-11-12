@@ -212,7 +212,7 @@ MATIERES = {
     "de": {"deutsch": {"aff": "Deutsch", "mot": None}, "mathe": {"aff": "Mathe", "mot": ["Mathe", "die"]}, "sport": {"aff": "Sport", "mot": ["Sport", "der"]},
            "kunst": {"aff": "Kunst", "mot": ["Kunst", "die"]}, "musik": {"aff": "Musik", "mot": ["Musik", "die"]},
            "sachunterricht": {"aff": "Sachunterricht", "mot": None}, "englisch": {"aff": "Englisch", "mot": None}},
-    "es": {"deutsch": {"aff": "Lengua", "mot": None}, "mathe": {"aff": "Matemáticas", "mot": None}, "sport": {"aff": "Educación Física", "mot": None},
+    "es": {"deutsch": {"aff": "Lengua", "mot": None, "t": {"fr": "espagnol", "en": "Spanish", "pt": "espanhol", "de": "Spanisch"}}, "mathe": {"aff": "Matemáticas", "mot": None}, "sport": {"aff": "Educación Física", "mot": None},
            "kunst": {"aff": "Plástica", "mot": None}, "musik": {"aff": "Música", "mot": ["música", "la"]},
            "sachunterricht": {"aff": "Ciencias", "mot": None}, "englisch": {"aff": "Inglés", "mot": None}},
 }
