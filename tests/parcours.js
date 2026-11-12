@@ -32,8 +32,10 @@ const ETAPES = [["accueil", "accueil vu"], ["carte", "1re carte affichee"], ["re
 // passe a la 6. Un compte qui a vu la visite avant la v806 n'a pas pu atteindre
 // la 6 : chez lui « etape 5 » veut dire la seance.
 const DEC_ETAPES = 6;
+// 12 nov. 2026 : `decouverte_perdue` -- la visite quittee par un autre ecran (showScreen la referme et rend ses blocs).
 function decouverte(p){
     if(p.decouverte_finie) return "finie";
+    if(p.decouverte_perdue) return "perdue (autre ecran)";
     // 0 = quittee des l'introduction (v701), avant toute carte.
     for(let n = 0; n <= DEC_ETAPES; n++){
         if(p["decouverte_passee_etape" + n]) return "passee a " + n + "/" + DEC_ETAPES;
@@ -215,6 +217,7 @@ async function main(){
             console.log(("  etape " + n + " atteinte").padEnd(22) + vues.filter(l => l.p["decouverte_etape" + n]).length);
         }
         console.log("  finie".padEnd(22) + vues.filter(l => l.p.decouverte_finie).length);
+        console.log("  perdue".padEnd(22) + vues.filter(l => l.p.decouverte_perdue).length);
         console.log("  passee".padEnd(22) + vues.filter(l => l.p.decouverte_passee).length
                     + "  (" + [0, 1, 2, 3, 4, 5].map(n => n + "/" + DEC_ETAPES + " : "
                         + vues.filter(l => l.p["decouverte_passee_etape" + n]).length).join(", ") + ")");
