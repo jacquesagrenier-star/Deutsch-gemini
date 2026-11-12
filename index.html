@@ -73199,7 +73199,7 @@ function compterGrammaire(liste){
         const tid = String(c.themeId || "");
         return c.forme === "gram" || c.forme === "pp_tableau" || c.gramTableau || c.avTableau || c.rpBadge || c.rpTableau
             || c.fcBadge || c.fcFeuille || c.feuilleTemps || tid.indexOf("rp_") === 0 || tid.indexOf("son_") === 0;
-    });
+    }).length;
 }
 // Les questions d'un tableau (Premiers pas, escale de l'A1 voyage). Un verbe : « du ___ », trois formes du tableau, une
 // seule juste -- une forme n'est jamais proposee si une autre ligne du tableau la donne a un des pronoms de la question
