@@ -1080,17 +1080,6 @@ window.SCENE = {
      "pt": "a bicicleta",
      "ar": "درّاجة",
      "de": "das Fahrrad"
-    },
-    {
-     "mot": "chaqueta",
-     "genre": "la",
-     "niveau": "A1",
-     "theme": "la_ropa",
-     "fr": "la veste",
-     "en": "the jacket",
-     "pt": "a jaqueta, o casaco",
-     "ar": "سترة، جاكيت",
-     "de": "die Jacke"
     }
    ],
    "sur": null,
@@ -1110,6 +1099,34 @@ window.SCENE = {
    "pl": "rowerzysta",
    "ru": "велосипедист",
    "de": "der Radfahrer",
+   "latam": null
+  },
+  {
+   "id": "jacke",
+   "mot": "chaqueta",
+   "genre": "la",
+   "pluriel": "las chaquetas",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": "radfahrer",
+   "devant": 0,
+   "boites": [
+    [
+     72.5,
+     71.5,
+     10.5,
+     5.3
+    ]
+   ],
+   "fr": "la veste",
+   "en": "the jacket",
+   "pt": "a jaqueta, o casaco",
+   "ar": "سترة، جاكيت",
+   "pl": "kurtka",
+   "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -1280,17 +1297,6 @@ window.SCENE = {
       "genre": "el",
       "pluriel": "los celulares"
      }
-    },
-    {
-     "mot": "chaqueta",
-     "genre": "la",
-     "niveau": "A1",
-     "theme": "la_ropa",
-     "fr": "la veste",
-     "en": "the jacket",
-     "pt": "a jaqueta, o casaco",
-     "ar": "سترة، جاكيت",
-     "de": "die Jacke"
     }
    ],
    "sur": null,
@@ -1310,6 +1316,34 @@ window.SCENE = {
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
    "de": "die Frau, die Ehefrau",
+   "latam": null
+  },
+  {
+   "id": "jacke-2",
+   "mot": "chaqueta",
+   "genre": "la",
+   "pluriel": "las chaquetas",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": "anna",
+   "devant": 0,
+   "boites": [
+    [
+     48.8,
+     81.6,
+     7.2,
+     5.8
+    ]
+   ],
+   "fr": "la veste",
+   "en": "the jacket",
+   "pt": "a jaqueta, o casaco",
+   "ar": "سترة، جاكيت",
+   "pl": "kurtka",
+   "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {

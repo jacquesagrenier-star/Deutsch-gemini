@@ -1216,21 +1216,6 @@ window.SCENE = {
      "ar": "درّاجة",
      "pl": "rower",
      "ru": "велосипед"
-    },
-    {
-     "mot": "Jacke",
-     "genre": "die",
-     "niveau": "A1",
-     "theme": "kleidung_a1",
-     "fr": "veste",
-     "en": "jacket",
-     "tr": "ceket",
-     "uk": "куртка",
-     "fa": "کاپشن",
-     "pt": "jaqueta",
-     "ar": "سترة، جاكيت",
-     "pl": "kurtka",
-     "ru": "куртка"
     }
    ],
    "sur": null,
@@ -1252,6 +1237,35 @@ window.SCENE = {
    "ar": "راكب دراجة",
    "pl": "rowerzysta",
    "ru": "велосипедист"
+  },
+  {
+   "id": "jacke",
+   "mot": "Jacke",
+   "genre": "die",
+   "pluriel": "Jacken",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "radfahrer",
+   "devant": 0,
+   "boites": [
+    [
+     72.5,
+     71.5,
+     10.5,
+     5.3
+    ]
+   ],
+   "fr": "veste",
+   "en": "jacket",
+   "tr": "ceket",
+   "uk": "куртка",
+   "fa": "کاپشن",
+   "pt": "jaqueta",
+   "ar": "سترة، جاكيت",
+   "pl": "kurtka",
+   "ru": "куртка"
   },
   {
    "id": "helm",
@@ -1421,21 +1435,6 @@ window.SCENE = {
      "ar": "هاتف محمول",
      "pl": "komórka, telefon komórkowy",
      "ru": "мобильный телефон"
-    },
-    {
-     "mot": "Jacke",
-     "genre": "die",
-     "niveau": "A1",
-     "theme": "kleidung_a1",
-     "fr": "veste",
-     "en": "jacket",
-     "tr": "ceket",
-     "uk": "куртка",
-     "fa": "کاپشن",
-     "pt": "jaqueta",
-     "ar": "سترة، جاكيت",
-     "pl": "kurtka",
-     "ru": "куртка"
     }
    ],
    "sur": null,
@@ -1457,6 +1456,35 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена"
+  },
+  {
+   "id": "jacke-2",
+   "mot": "Jacke",
+   "genre": "die",
+   "pluriel": "Jacken",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "anna",
+   "devant": 0,
+   "boites": [
+    [
+     48.8,
+     81.6,
+     7.2,
+     5.8
+    ]
+   ],
+   "fr": "veste",
+   "en": "jacket",
+   "tr": "ceket",
+   "uk": "куртка",
+   "fa": "کاپشن",
+   "pt": "jaqueta",
+   "ar": "سترة، جاكيت",
+   "pl": "kurtka",
+   "ru": "куртка"
   },
   {
    "id": "ampel-vorne",

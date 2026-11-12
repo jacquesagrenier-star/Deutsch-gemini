@@ -80,14 +80,6 @@ window.SCENE = {
      "theme": "clothes_a2",
      "fr": "barbe",
      "es": "la barba"
-    },
-    {
-     "mot": "shirt",
-     "genre": "",
-     "niveau": "A1",
-     "theme": "clothes_a1",
-     "fr": "chemise",
-     "es": "la camisa"
     }
    ],
    "sur": null,
@@ -108,6 +100,28 @@ window.SCENE = {
    ],
    "fr": "enseignant",
    "es": "el profesor, la profesora"
+  },
+  {
+   "id": "hemd",
+   "mot": "shirt",
+   "genre": "",
+   "pluriel": "shirts",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "lehrer",
+   "devant": 0,
+   "boites": [
+    [
+     10.3,
+     38,
+     9.7,
+     8
+    ]
+   ],
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "brille",
@@ -392,19 +406,6 @@ window.SCENE = {
      "es": "el hombre"
     },
     {
-     "mot": "sweater",
-     "genre": "",
-     "niveau": "A1",
-     "theme": "clothes_a1",
-     "fr": "pull",
-     "es": "el suéter",
-     "esp": "el jersey",
-     "gb": {
-      "mot": "jumper",
-      "pluriel": "jumpers"
-     }
-    },
-    {
      "mot": "student",
      "genre": "",
      "niveau": "A1",
@@ -492,27 +493,6 @@ window.SCENE = {
      "es": "la mujer"
     },
     {
-     "mot": "sweater",
-     "genre": "",
-     "niveau": "A1",
-     "theme": "clothes_a1",
-     "fr": "pull",
-     "es": "el suéter",
-     "esp": "el jersey",
-     "gb": {
-      "mot": "jumper",
-      "pluriel": "jumpers"
-     }
-    },
-    {
-     "mot": "skirt",
-     "genre": "",
-     "niveau": "A1",
-     "theme": "clothes_a1",
-     "fr": "jupe",
-     "es": "la falda"
-    },
-    {
      "mot": "pen",
      "genre": "",
      "niveau": "A1",
@@ -554,6 +534,33 @@ window.SCENE = {
    ],
    "fr": "participante",
    "es": "la participante"
+  },
+  {
+   "id": "pullover-2",
+   "mot": "sweater",
+   "genre": "",
+   "pluriel": "sweaters",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "anna",
+   "devant": 0,
+   "boites": [
+    [
+     55,
+     48.8,
+     22,
+     11.8
+    ]
+   ],
+   "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
+   "gb": {
+    "mot": "jumper",
+    "pluriel": "jumpers"
+   }
   },
   {
    "id": "rock",
@@ -916,14 +923,6 @@ window.SCENE = {
      "es": "la barba"
     },
     {
-     "mot": "shirt",
-     "genre": "",
-     "niveau": "A1",
-     "theme": "clothes_a1",
-     "fr": "chemise",
-     "es": "la camisa"
-    },
-    {
      "mot": "student",
      "genre": "",
      "niveau": "A1",
@@ -952,6 +951,28 @@ window.SCENE = {
    "es": "el hombre"
   },
   {
+   "id": "hemd-2",
+   "mot": "shirt",
+   "genre": "",
+   "pluriel": "shirts",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "mann",
+   "devant": 0,
+   "boites": [
+    [
+     71.5,
+     45.3,
+     7.5,
+     6.2
+    ]
+   ],
+   "fr": "chemise",
+   "es": "la camisa"
+  },
+  {
    "id": "studentin",
    "mot": "student",
    "genre": "",
@@ -975,19 +996,6 @@ window.SCENE = {
      "theme": "education_a2",
      "fr": "participante",
      "es": "la participante"
-    },
-    {
-     "mot": "sweater",
-     "genre": "",
-     "niveau": "A1",
-     "theme": "clothes_a1",
-     "fr": "pull",
-     "es": "el suéter",
-     "esp": "el jersey",
-     "gb": {
-      "mot": "jumper",
-      "pluriel": "jumpers"
-     }
     }
    ],
    "sur": null,
@@ -1002,6 +1010,33 @@ window.SCENE = {
    ],
    "fr": "étudiante",
    "es": "el estudiante, la estudiante; el alumno"
+  },
+  {
+   "id": "pullover-3",
+   "mot": "sweater",
+   "genre": "",
+   "pluriel": "sweaters",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "studentin",
+   "devant": 0,
+   "boites": [
+    [
+     78,
+     46.2,
+     13.2,
+     6.4
+    ]
+   ],
+   "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
+   "gb": {
+    "mot": "jumper",
+    "pluriel": "jumpers"
+   }
   },
   {
    "id": "frau",
@@ -1028,14 +1063,6 @@ window.SCENE = {
      "fr": "lunettes",
      "es": "los lentes, las gafas",
      "esp": "las gafas"
-    },
-    {
-     "mot": "dress",
-     "genre": "",
-     "niveau": "A1",
-     "theme": "clothes_a1",
-     "fr": "robe",
-     "es": "el vestido"
     },
     {
      "mot": "student",

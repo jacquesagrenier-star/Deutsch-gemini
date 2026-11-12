@@ -108,17 +108,6 @@ window.SCENE = {
      "pt": "a barba",
      "ar": "لحية",
      "de": "der Bart"
-    },
-    {
-     "mot": "camisa",
-     "genre": "la",
-     "niveau": "A1",
-     "theme": "la_ropa",
-     "fr": "la chemise",
-     "en": "the shirt",
-     "pt": "a camisa",
-     "ar": "قميص",
-     "de": "das Hemd"
     }
    ],
    "sur": null,
@@ -144,6 +133,34 @@ window.SCENE = {
    "pl": "nauczyciel",
    "ru": "учитель",
    "de": "der Lehrer",
+   "latam": null
+  },
+  {
+   "id": "hemd",
+   "mot": "camisa",
+   "genre": "la",
+   "pluriel": "las camisas",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": "lehrer",
+   "devant": 0,
+   "boites": [
+    [
+     10.3,
+     38,
+     9.7,
+     8
+    ]
+   ],
+   "fr": "la chemise",
+   "en": "the shirt",
+   "pt": "a camisa",
+   "ar": "قميص",
+   "pl": "koszula",
+   "ru": "рубашка",
+   "de": "das Hemd",
    "latam": null
   },
   {
@@ -511,22 +528,6 @@ window.SCENE = {
      "de": "der Mann"
     },
     {
-     "mot": "jersey",
-     "genre": "el",
-     "niveau": "A1",
-     "theme": "la_ropa",
-     "fr": "le pull",
-     "en": "the jumper",
-     "pt": "o suéter, a blusa de lã",
-     "ar": "كنزة صوفية",
-     "de": "der Pullover",
-     "latam": {
-      "mot": "suéter",
-      "genre": "el",
-      "pluriel": "los suéteres"
-     }
-    },
-    {
      "mot": "estudiante",
      "genre": "el",
      "niveau": "A1",
@@ -638,33 +639,6 @@ window.SCENE = {
      "de": "die Frau, die Ehefrau"
     },
     {
-     "mot": "jersey",
-     "genre": "el",
-     "niveau": "A1",
-     "theme": "la_ropa",
-     "fr": "le pull",
-     "en": "the jumper",
-     "pt": "o suéter, a blusa de lã",
-     "ar": "كنزة صوفية",
-     "de": "der Pullover",
-     "latam": {
-      "mot": "suéter",
-      "genre": "el",
-      "pluriel": "los suéteres"
-     }
-    },
-    {
-     "mot": "falda",
-     "genre": "la",
-     "niveau": "A1",
-     "theme": "la_ropa",
-     "fr": "la jupe",
-     "en": "the skirt",
-     "pt": "a saia",
-     "ar": "تنّورة",
-     "de": "der Rock"
-    },
-    {
      "mot": "bolígrafo",
      "genre": "el",
      "niveau": "A1",
@@ -722,6 +696,38 @@ window.SCENE = {
    "ru": "участница",
    "de": "der Teilnehmer",
    "latam": null
+  },
+  {
+   "id": "pullover-2",
+   "mot": "jersey",
+   "genre": "el",
+   "pluriel": "los jerséis",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": "anna",
+   "devant": 0,
+   "boites": [
+    [
+     55,
+     48.8,
+     22,
+     11.8
+    ]
+   ],
+   "fr": "le pull",
+   "en": "the jumper",
+   "pt": "o suéter, a blusa de lã",
+   "ar": "كنزة صوفية",
+   "pl": "sweter",
+   "ru": "свитер",
+   "de": "der Pullover",
+   "latam": {
+    "mot": "suéter",
+    "genre": "el",
+    "pluriel": "los suéteres"
+   }
   },
   {
    "id": "rock",
@@ -1195,17 +1201,6 @@ window.SCENE = {
      "de": "der Bart"
     },
     {
-     "mot": "camisa",
-     "genre": "la",
-     "niveau": "A1",
-     "theme": "la_ropa",
-     "fr": "la chemise",
-     "en": "the shirt",
-     "pt": "a camisa",
-     "ar": "قميص",
-     "de": "das Hemd"
-    },
-    {
      "mot": "estudiante",
      "genre": "el",
      "niveau": "A1",
@@ -1243,6 +1238,34 @@ window.SCENE = {
    "latam": null
   },
   {
+   "id": "hemd-2",
+   "mot": "camisa",
+   "genre": "la",
+   "pluriel": "las camisas",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": "mann",
+   "devant": 0,
+   "boites": [
+    [
+     71.5,
+     45.3,
+     7.5,
+     6.2
+    ]
+   ],
+   "fr": "la chemise",
+   "en": "the shirt",
+   "pt": "a camisa",
+   "ar": "قميص",
+   "pl": "koszula",
+   "ru": "рубашка",
+   "de": "das Hemd",
+   "latam": null
+  },
+  {
    "id": "studentin",
    "mot": "estudiante",
    "genre": "la",
@@ -1272,22 +1295,6 @@ window.SCENE = {
      "pt": "o/a participante",
      "ar": "مشارك",
      "de": "der Teilnehmer"
-    },
-    {
-     "mot": "jersey",
-     "genre": "el",
-     "niveau": "A1",
-     "theme": "la_ropa",
-     "fr": "le pull",
-     "en": "the jumper",
-     "pt": "o suéter, a blusa de lã",
-     "ar": "كنزة صوفية",
-     "de": "der Pullover",
-     "latam": {
-      "mot": "suéter",
-      "genre": "el",
-      "pluriel": "los suéteres"
-     }
     }
    ],
    "sur": null,
@@ -1308,6 +1315,38 @@ window.SCENE = {
    "ru": "студентка",
    "de": "der Student, die Studentin",
    "latam": null
+  },
+  {
+   "id": "pullover-3",
+   "mot": "jersey",
+   "genre": "el",
+   "pluriel": "los jerséis",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": "studentin",
+   "devant": 0,
+   "boites": [
+    [
+     78,
+     46.2,
+     13.2,
+     6.4
+    ]
+   ],
+   "fr": "le pull",
+   "en": "the jumper",
+   "pt": "o suéter, a blusa de lã",
+   "ar": "كنزة صوفية",
+   "pl": "sweter",
+   "ru": "свитер",
+   "de": "der Pullover",
+   "latam": {
+    "mot": "suéter",
+    "genre": "el",
+    "pluriel": "los suéteres"
+   }
   },
   {
    "id": "frau",
@@ -1344,17 +1383,6 @@ window.SCENE = {
       "genre": "los",
       "pluriel": null
      }
-    },
-    {
-     "mot": "vestido",
-     "genre": "el",
-     "niveau": "A1",
-     "theme": "la_ropa",
-     "fr": "la robe",
-     "en": "the dress",
-     "pt": "o vestido",
-     "ar": "فستان",
-     "de": "das Kleid"
     },
     {
      "mot": "estudiante",

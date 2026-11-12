@@ -113,21 +113,6 @@ window.SCENE = {
      "ar": "لحية",
      "pl": "broda, zarost",
      "ru": "борода"
-    },
-    {
-     "mot": "Hemd",
-     "genre": "das",
-     "niveau": "A1",
-     "theme": "kleidung_a1",
-     "fr": "chemise",
-     "en": "shirt",
-     "tr": "gömlek",
-     "uk": "сорочка",
-     "fa": "پیراهن",
-     "pt": "camisa",
-     "ar": "قميص",
-     "pl": "koszula",
-     "ru": "рубашка"
     }
    ],
    "sur": null,
@@ -155,6 +140,35 @@ window.SCENE = {
    "ar": "معلّم",
    "pl": "nauczyciel",
    "ru": "учитель"
+  },
+  {
+   "id": "hemd",
+   "mot": "Hemd",
+   "genre": "das",
+   "pluriel": "Hemden",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "lehrer",
+   "devant": 0,
+   "boites": [
+    [
+     10.3,
+     38,
+     9.7,
+     8
+    ]
+   ],
+   "fr": "chemise",
+   "en": "shirt",
+   "tr": "gömlek",
+   "uk": "сорочка",
+   "fa": "پیراهن",
+   "pt": "camisa",
+   "ar": "قميص",
+   "pl": "koszula",
+   "ru": "рубашка"
   },
   {
    "id": "brille",
@@ -529,21 +543,6 @@ window.SCENE = {
      "ru": "мужчина, муж"
     },
     {
-     "mot": "Pullover",
-     "genre": "der",
-     "niveau": "A1",
-     "theme": "kleidung_a1",
-     "fr": "pull",
-     "en": "sweater",
-     "tr": "kazak",
-     "uk": "светр",
-     "fa": "پلیور",
-     "pt": "suéter",
-     "ar": "كنزة صوف",
-     "pl": "sweter",
-     "ru": "свитер"
-    },
-    {
      "mot": "Student",
      "genre": "der",
      "niveau": "A1",
@@ -660,36 +659,6 @@ window.SCENE = {
      "ru": "женщина, жена"
     },
     {
-     "mot": "Pullover",
-     "genre": "der",
-     "niveau": "A1",
-     "theme": "kleidung_a1",
-     "fr": "pull",
-     "en": "sweater",
-     "tr": "kazak",
-     "uk": "светр",
-     "fa": "پلیور",
-     "pt": "suéter",
-     "ar": "كنزة صوف",
-     "pl": "sweter",
-     "ru": "свитер"
-    },
-    {
-     "mot": "Rock",
-     "genre": "der",
-     "niveau": "A1",
-     "theme": "kleidung_a1",
-     "fr": "jupe",
-     "en": "skirt",
-     "tr": "etek",
-     "uk": "спідниця",
-     "fa": "دامن",
-     "pt": "saia",
-     "ar": "تنورة",
-     "pl": "spódnica",
-     "ru": "юбка"
-    },
-    {
      "mot": "Stift",
      "genre": "der",
      "niveau": "A1",
@@ -751,6 +720,35 @@ window.SCENE = {
    "ar": "مشاركة",
    "pl": "uczestniczka",
    "ru": "участница"
+  },
+  {
+   "id": "pullover-2",
+   "mot": "Pullover",
+   "genre": "der",
+   "pluriel": "Pullover",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "anna",
+   "devant": 0,
+   "boites": [
+    [
+     55,
+     48.8,
+     22,
+     11.8
+    ]
+   ],
+   "fr": "pull",
+   "en": "sweater",
+   "tr": "kazak",
+   "uk": "светр",
+   "fa": "پلیور",
+   "pt": "suéter",
+   "ar": "كنزة صوف",
+   "pl": "sweter",
+   "ru": "свитер"
   },
   {
    "id": "rock",
@@ -1227,21 +1225,6 @@ window.SCENE = {
      "ru": "борода"
     },
     {
-     "mot": "Hemd",
-     "genre": "das",
-     "niveau": "A1",
-     "theme": "kleidung_a1",
-     "fr": "chemise",
-     "en": "shirt",
-     "tr": "gömlek",
-     "uk": "сорочка",
-     "fa": "پیراهن",
-     "pt": "camisa",
-     "ar": "قميص",
-     "pl": "koszula",
-     "ru": "рубашка"
-    },
-    {
      "mot": "Student",
      "genre": "der",
      "niveau": "A1",
@@ -1284,6 +1267,35 @@ window.SCENE = {
    "ru": "мужчина, муж"
   },
   {
+   "id": "hemd-2",
+   "mot": "Hemd",
+   "genre": "das",
+   "pluriel": "Hemden",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "mann",
+   "devant": 0,
+   "boites": [
+    [
+     71.5,
+     45.3,
+     7.5,
+     6.2
+    ]
+   ],
+   "fr": "chemise",
+   "en": "shirt",
+   "tr": "gömlek",
+   "uk": "сорочка",
+   "fa": "پیراهن",
+   "pt": "camisa",
+   "ar": "قميص",
+   "pl": "koszula",
+   "ru": "рубашка"
+  },
+  {
    "id": "studentin",
    "mot": "Studentin",
    "genre": "die",
@@ -1321,21 +1333,6 @@ window.SCENE = {
      "ar": "مشاركة",
      "pl": "uczestniczka",
      "ru": "участница"
-    },
-    {
-     "mot": "Pullover",
-     "genre": "der",
-     "niveau": "A1",
-     "theme": "kleidung_a1",
-     "fr": "pull",
-     "en": "sweater",
-     "tr": "kazak",
-     "uk": "светр",
-     "fa": "پلیور",
-     "pt": "suéter",
-     "ar": "كنزة صوف",
-     "pl": "sweter",
-     "ru": "свитер"
     }
    ],
    "sur": null,
@@ -1357,6 +1354,35 @@ window.SCENE = {
    "ar": "طالبة جامعية",
    "pl": "studentka",
    "ru": "студентка"
+  },
+  {
+   "id": "pullover-3",
+   "mot": "Pullover",
+   "genre": "der",
+   "pluriel": "Pullover",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "studentin",
+   "devant": 0,
+   "boites": [
+    [
+     78,
+     46.2,
+     13.2,
+     6.4
+    ]
+   ],
+   "fr": "pull",
+   "en": "sweater",
+   "tr": "kazak",
+   "uk": "светр",
+   "fa": "پلیور",
+   "pt": "suéter",
+   "ar": "كنزة صوف",
+   "pl": "sweter",
+   "ru": "свитер"
   },
   {
    "id": "frau",
@@ -1396,21 +1422,6 @@ window.SCENE = {
      "ar": "نظّارة",
      "pl": "okulary",
      "ru": "очки"
-    },
-    {
-     "mot": "Kleid",
-     "genre": "das",
-     "niveau": "A1",
-     "theme": "kleidung_a1",
-     "fr": "robe",
-     "en": "dress",
-     "tr": "elbise",
-     "uk": "сукня",
-     "fa": "پیراهن زنانه",
-     "pt": "vestido",
-     "ar": "فستان",
-     "pl": "sukienka",
-     "ru": "платье"
     },
     {
      "mot": "Studentin",

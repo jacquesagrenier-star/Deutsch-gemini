@@ -77,13 +77,6 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "roupa_a2_pt",
      "fr": "barbe"
-    },
-    {
-     "mot": "camisa",
-     "genre": "a",
-     "niveau": "A1",
-     "theme": "roupa_pt",
-     "fr": "chemise"
     }
    ],
    "sur": null,
@@ -103,6 +96,27 @@ window.SCENE = {
     ]
    ],
    "fr": "enseignant"
+  },
+  {
+   "id": "hemd",
+   "mot": "camisa",
+   "genre": "a",
+   "pluriel": "as camisas",
+   "niveau": "A1",
+   "theme": "roupa_pt",
+   "personne": null,
+   "aussi": [],
+   "sur": "lehrer",
+   "devant": 0,
+   "boites": [
+    [
+     10.3,
+     38,
+     9.7,
+     8
+    ]
+   ],
+   "fr": "chemise"
   },
   {
    "id": "brille",
@@ -374,17 +388,6 @@ window.SCENE = {
      "fr": "homme/mari"
     },
     {
-     "mot": "camisola",
-     "genre": "a",
-     "niveau": "A1",
-     "theme": "roupa_pt",
-     "fr": "pull",
-     "br": {
-      "mot": "suéter",
-      "genre": "o"
-     }
-    },
-    {
      "mot": "estudante",
      "genre": "o",
      "niveau": "A1",
@@ -466,24 +469,6 @@ window.SCENE = {
      "fr": "femme/épouse"
     },
     {
-     "mot": "camisola",
-     "genre": "a",
-     "niveau": "A1",
-     "theme": "roupa_pt",
-     "fr": "pull",
-     "br": {
-      "mot": "suéter",
-      "genre": "o"
-     }
-    },
-    {
-     "mot": "saia",
-     "genre": "a",
-     "niveau": "A1",
-     "theme": "roupa_pt",
-     "fr": "jupe"
-    },
-    {
      "mot": "caneta",
      "genre": "a",
      "niveau": "A1",
@@ -521,6 +506,32 @@ window.SCENE = {
     ]
    ],
    "fr": "participante"
+  },
+  {
+   "id": "pullover-2",
+   "mot": "camisola",
+   "genre": "a",
+   "pluriel": "as camisolas",
+   "niveau": "A1",
+   "theme": "roupa_pt",
+   "personne": null,
+   "aussi": [],
+   "sur": "anna",
+   "devant": 0,
+   "boites": [
+    [
+     55,
+     48.8,
+     22,
+     11.8
+    ]
+   ],
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "rock",
@@ -861,13 +872,6 @@ window.SCENE = {
      "fr": "barbe"
     },
     {
-     "mot": "camisa",
-     "genre": "a",
-     "niveau": "A1",
-     "theme": "roupa_pt",
-     "fr": "chemise"
-    },
-    {
      "mot": "estudante",
      "genre": "o",
      "niveau": "A1",
@@ -894,6 +898,27 @@ window.SCENE = {
    "fr": "homme/mari"
   },
   {
+   "id": "hemd-2",
+   "mot": "camisa",
+   "genre": "a",
+   "pluriel": "as camisas",
+   "niveau": "A1",
+   "theme": "roupa_pt",
+   "personne": null,
+   "aussi": [],
+   "sur": "mann",
+   "devant": 0,
+   "boites": [
+    [
+     71.5,
+     45.3,
+     7.5,
+     6.2
+    ]
+   ],
+   "fr": "chemise"
+  },
+  {
    "id": "studentin",
    "mot": "estudante",
    "genre": "o",
@@ -915,17 +940,6 @@ window.SCENE = {
      "niveau": "B1",
      "theme": "escola_b1_pt_2",
      "fr": "participante"
-    },
-    {
-     "mot": "camisola",
-     "genre": "a",
-     "niveau": "A1",
-     "theme": "roupa_pt",
-     "fr": "pull",
-     "br": {
-      "mot": "suéter",
-      "genre": "o"
-     }
     }
    ],
    "sur": null,
@@ -939,6 +953,32 @@ window.SCENE = {
     ]
    ],
    "fr": "étudiante"
+  },
+  {
+   "id": "pullover-3",
+   "mot": "camisola",
+   "genre": "a",
+   "pluriel": "as camisolas",
+   "niveau": "A1",
+   "theme": "roupa_pt",
+   "personne": null,
+   "aussi": [],
+   "sur": "studentin",
+   "devant": 0,
+   "boites": [
+    [
+     78,
+     46.2,
+     13.2,
+     6.4
+    ]
+   ],
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "frau",
@@ -962,13 +1002,6 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "roupa_pt",
      "fr": "lunettes"
-    },
-    {
-     "mot": "vestido",
-     "genre": "o",
-     "niveau": "A1",
-     "theme": "roupa_pt",
-     "fr": "robe"
     },
     {
      "mot": "estudante",

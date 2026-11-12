@@ -816,13 +816,6 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "cidade_pt",
      "fr": "vélo"
-    },
-    {
-     "mot": "casaco",
-     "genre": "o",
-     "niveau": "A1",
-     "theme": "roupa_pt",
-     "fr": "veste"
     }
    ],
    "sur": null,
@@ -836,6 +829,27 @@ window.SCENE = {
     ]
    ],
    "fr": "cycliste"
+  },
+  {
+   "id": "jacke",
+   "mot": "casaco",
+   "genre": "o",
+   "pluriel": "os casacos",
+   "niveau": "A1",
+   "theme": "roupa_pt",
+   "personne": null,
+   "aussi": [],
+   "sur": "radfahrer",
+   "devant": 0,
+   "boites": [
+    [
+     72.5,
+     71.5,
+     10.5,
+     5.3
+    ]
+   ],
+   "fr": "veste"
   },
   {
    "id": "helm",
@@ -961,13 +975,6 @@ window.SCENE = {
      "br": {
       "mot": "celular"
      }
-    },
-    {
-     "mot": "casaco",
-     "genre": "o",
-     "niveau": "A1",
-     "theme": "roupa_pt",
-     "fr": "veste"
     }
    ],
    "sur": null,
@@ -981,6 +988,27 @@ window.SCENE = {
     ]
    ],
    "fr": "femme/épouse"
+  },
+  {
+   "id": "jacke-2",
+   "mot": "casaco",
+   "genre": "o",
+   "pluriel": "os casacos",
+   "niveau": "A1",
+   "theme": "roupa_pt",
+   "personne": null,
+   "aussi": [],
+   "sur": "anna",
+   "devant": 0,
+   "boites": [
+    [
+     48.8,
+     81.6,
+     7.2,
+     5.8
+    ]
+   ],
+   "fr": "veste"
   },
   {
    "id": "ampel-vorne",
