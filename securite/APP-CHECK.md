@@ -91,8 +91,13 @@ App Attest (iPhone) et Play Integrity (Android), par une recompilation
   Check est chargé, pas initialisé ; `window.appCheckEtat` vaut « inerte »).
   Remplie : App Check s'initialise avant tout autre service Firebase, en
   reCAPTCHA Enterprise invisible, jeton renouvelé seul. Sur `localhost` /
-  `127.0.0.1` : le fournisseur de débogage (les parcours et sondes ne passent
-  pas par reCAPTCHA). Une erreur d'App Check ne bloque jamais l'app.
+  `127.0.0.1` : **inerte**, comme en `file://`. Le fournisseur de débogage y
+  essuyait un refus, puis ses délais de reprise tiraient `Math.random`. Le
+  parcours fige ce hasard par une graine : tous ses exercices tirés au hasard
+  changeaient (mesure du 12 nov.). Pour essayer App Check en local quand même :
+  `localStorage.appCheckLocal = "1"`, recharger, puis déclarer le jeton de
+  débogage affiché dans la console App Check. Une erreur d'App Check ne bloque
+  jamais l'app.
 - Les règles Firestore (`securite/firestore-corrige.rules`, une seule version
   à coller, voir `securite/REGLES-FIRESTORE.md`) bornent ce qu'un compte peut
   écrire : les clés permises dans chaque document de progression, leur type,

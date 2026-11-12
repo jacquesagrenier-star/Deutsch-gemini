@@ -14236,10 +14236,17 @@ import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gst
 // App Check SURVEILLE seulement : Firebase compte les demandes verifiees et
 // non verifiees, et ne refuse rien tant que personne n'a clique « Enforce »
 // dans la console (a decider sur les chiffres, apres 7 a 14 jours).
-// Sur 127.0.0.1 / localhost (parcours, sondes), le fournisseur de debogage :
-// ses demandes restent « non verifiees », sans rien bloquer. En file://, rien.
+// Sur 127.0.0.1 / localhost (parcours, sondes) : INERTE, comme en file://.
+// Le fournisseur de debogage y essuyait un 403 puis reessayait ; ses delais de
+// reprise tirent Math.random, que le parcours fige par une graine : tous les
+// exercices tires au hasard changeaient (53 ecarts en de, 16 en es, mesure du
+// 12 nov.). Pour l'essayer en local quand meme (jeton de debogage a declarer
+// dans la console App Check) : localStorage.appCheckLocal = "1", puis recharger.
 const APP_CHECK_CLE = "6Ld7OB0uAAAAAJLkvanggKLwCwnrvdSqeh39TJWu";
 window.appCheckEtat = "inerte";
+const APP_CHECK_LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+let appCheckLocalVoulu = false;
+try{ appCheckLocalVoulu = localStorage.getItem("appCheckLocal") === "1"; }catch(e){}
 
 const firebaseConfig = {
   apiKey: "AIzaSyDK9aTVTxDWWrGSIuydHtjSvUTaEguu45U",
@@ -14253,9 +14260,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 // AVANT tout autre service : un appel parti avant App Check partirait sans jeton.
-if(APP_CHECK_CLE && /^https?:$/.test(location.protocol)){
+if(APP_CHECK_CLE && /^https?:$/.test(location.protocol) && (!APP_CHECK_LOCAL || appCheckLocalVoulu)){
     try{
-        if(/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+        if(APP_CHECK_LOCAL) self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
         initializeAppCheck(app, {
             provider: new ReCaptchaEnterpriseProvider(APP_CHECK_CLE),
             isTokenAutoRefreshEnabled: true
