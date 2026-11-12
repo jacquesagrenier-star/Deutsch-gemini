@@ -4807,13 +4807,27 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 body[data-theme="dark"] .carte-presente-bandeau{background:#E6EAF0; color:#1C2430;}
 #flashcard.presentation .flashcard-back{outline:2px solid rgba(28,36,48,.6); outline-offset:-2px;}
 body[data-theme="dark"] #flashcard.presentation .flashcard-back{outline-color:rgba(230,234,240,.7);}
-/* La carte arrive deja ouverte : un petit mouvement de retournement le dit. */
-@keyframes presentationEntree{
-    0%{transform:perspective(900px) rotateY(-32deg) scale(.96); opacity:.6;}
-    100%{transform:none; opacity:1;}
-}
-.flashcard-wrapper.entree-presentation{animation:presentationEntree .55s cubic-bezier(.2,.8,.3,1);}
-@media (prefers-reduced-motion: reduce){ .flashcard-wrapper.entree-presentation{animation:none;} }
+/* LES ETINCELLES (variante 2 de la maquette, choisie par Jacques le 12 nov. 2026 : « on deploie maintenant avec les
+   etincelles ») : cinq petites etoiles eclosent au coin du bandeau « Nouveau mot », une seule fois a l'arrivee de la
+   carte, puis s'effacent (1,2 s). Encre de jour ; de nuit, un creme chaud adouci plutot que le blanc pur (Jacques :
+   « vu que c'est en blanc, est-ce qu'on devrait un peu eclaircir le blanc ? »). Rien du bleu, du rouge ni du vert du
+   genre. Rien ne bouge si le telephone reduit les animations. */
+.carte-presente-bandeau{position:relative;}
+.eclat-neuf{position:absolute; top:8px; right:10px; width:12px; height:12px; pointer-events:none; opacity:0;}
+.eclat-neuf::before{content:""; position:absolute; inset:0; background:#1C2430;
+    clip-path:polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);}
+body[data-theme="dark"] .eclat-neuf::before{background:rgba(246,226,186,.82);}
+.carte-presente-bandeau.eclats .eclat-neuf{animation:eclatNeuf 1s ease-out 1 both;}
+.carte-presente-bandeau.eclats .eclat-neuf:nth-of-type(1){--dx:-34px; --dy:-6px; animation-delay:.10s;}
+.carte-presente-bandeau.eclats .eclat-neuf:nth-of-type(2){--dx:-12px; --dy:-16px; animation-delay:.18s; width:9px; height:9px;}
+.carte-presente-bandeau.eclats .eclat-neuf:nth-of-type(3){--dx:14px; --dy:-14px; animation-delay:.26s;}
+.carte-presente-bandeau.eclats .eclat-neuf:nth-of-type(4){--dx:20px; --dy:10px; animation-delay:.14s; width:8px; height:8px;}
+.carte-presente-bandeau.eclats .eclat-neuf:nth-of-type(5){--dx:-26px; --dy:16px; animation-delay:.22s; width:9px; height:9px;}
+@keyframes eclatNeuf{0%{transform:translate(0,0) scale(0) rotate(0); opacity:0;}
+    30%{opacity:1; transform:translate(calc(var(--dx)*.5), calc(var(--dy)*.5)) scale(1.15) rotate(30deg);}
+    100%{transform:translate(var(--dx), var(--dy)) scale(.2) rotate(90deg); opacity:0;}}
+html[dir="rtl"] .eclat-neuf{right:auto; left:10px;}
+@media (prefers-reduced-motion: reduce){ .carte-presente-bandeau.eclats .eclat-neuf{animation:none !important;} }
 .flashcard-actions.paquet-garde .judge-row2{display:none;}
 /* ⚠️ RESSERRE (v559). Les trois boutons prenaient le tiers de l'ecran a eux
    seuls. On gagne la hauteur sur le REMPLISSAGE, pas sur le texte : le libelle
@@ -12925,7 +12939,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
                 <div id="flashMaitrise" class="carte-maitrise hidden">🏆</div>
                 <!-- Le mot neuf presente (revue d'usage du 11 nov. 2026) : un bandeau en haut de la carte, « Nouveau mot »
                      et ce qu'il faut faire (demande de Jacques : qu'on ne croie pas a une carte qui ne se retourne pas). -->
-                <div id="flashNouveauVerso" class="carte-presente-bandeau hidden"><b id="flashNouveauVersoTitre"></b><span data-i18n="presente_consigne">Écoute et regarde bien : on y revient tout à l'heure.</span></div>
+                <div id="flashNouveauVerso" class="carte-presente-bandeau hidden"><b id="flashNouveauVersoTitre"></b><span data-i18n="presente_consigne">Écoute et regarde bien : on y revient tout à l'heure.</span><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i></div>
                 <button type="button" id="flashExamenCoin" class="examen-coin hidden"
                         onclick="event.stopPropagation(); ouvrirAideExamen();"></button>
                 <div id="flashGenre" class="carte-genre hidden"></div>
@@ -57562,15 +57576,16 @@ function motPresenteVu(bientot){
 }
 // ELLE SE DISTINGUE AU PREMIER COUP D'OEIL (demande de Jacques, relayee le 11 nov. 2026) : « j'ai une carte, elle ne
 // se tourne pas, une autre se tourne » se lirait comme une panne. D'ou le bandeau « Nouveau mot » en haut, sa
-// consigne, le filet ambre (CSS #flashcard.presentation), un petit mouvement de retournement a l'entree -- la carte
-// arrive deja ouverte -- et, au tout premier mot neuf d'un compte, une bulle d'une phrase, une seule fois.
+// consigne, le contour d'encre (CSS #flashcard.presentation), les etincelles a l'arrivee -- la carte arrive deja
+// ouverte -- et, au tout premier mot neuf d'un compte, une bulle d'une phrase, une seule fois.
 function entreePresentation(){
-    const w = document.querySelector("#flashcards .flashcard-wrapper") || document.querySelector(".flashcard-wrapper");
-    if(!w) return;
-    w.classList.remove("entree-presentation");
-    void w.offsetWidth;
-    w.classList.add("entree-presentation");
-    w.addEventListener("animationend", () => w.classList.remove("entree-presentation"), { once: true });
+    const b = document.getElementById("flashNouveauVerso");
+    if(!b) return;
+    b.classList.remove("eclats");
+    void b.offsetWidth;
+    b.classList.add("eclats");
+    clearTimeout(entreePresentation.minuterie);
+    entreePresentation.minuterie = setTimeout(() => b.classList.remove("eclats"), 1600);
 }
 const AIDE_PRESENTATION_KEY = PREFIXE_STOCKAGE + "aidePresentationVue";
 function bulleDuPremierMotNeuf(){
