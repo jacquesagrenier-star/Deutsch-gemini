@@ -185,10 +185,13 @@ async function main(){
     for(const [coll, marque] of [["users", ""], ["usuariosEs", "es "], ["usersEn", "en "], ["usersPt", "pt "], ["usersJa", "ja "]]){
         docs = docs.concat((await db.collection(coll).get()).docs.map(d => [d, marque]));
     }
+    // Sans compte (12 nov. 2026) : un compte qui n'a pas d'adresse dans users.
+    const avecAdresse = new Set(docs.filter(([d, m]) => m === "" && d.data().email).map(([d]) => d.id));
     const maintenant = Date.now();
     const lignes = [];
     for(const [d, marque] of docs){
         const x = d.data();
+        if(!avecAdresse.has(d.id)) x.langueInterface = (x.langueInterface || "?") + " sans compte";
         let p = {};
         try{ p = JSON.parse(x.parcoursJson || "{}") || {}; }catch(e){}
         const cree = x.createdAt && x.createdAt.toDate ? x.createdAt.toDate().toISOString() : "";

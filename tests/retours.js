@@ -104,7 +104,8 @@ async function main(){
         const dejaVus = vus[doc.id] || [];
         const nouveaux = TOUT ? liste : liste.filter(e => !dejaVus.includes(empreinte(e)));
         if(nouveaux.length) aVoir.push({
-            qui: ((u.firstName || "").trim() || u.email || doc.id) + doc.langue,
+            // Sans compte (12 nov. 2026) : ni prenom ni adresse.
+            qui: ((u.firstName || "").trim() || u.email || ("sans compte " + String(doc.id).slice(0, 6))) + doc.langue,
             retours: nouveaux
         });
     });

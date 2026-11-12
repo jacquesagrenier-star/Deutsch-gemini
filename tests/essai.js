@@ -121,10 +121,27 @@ egal(E.etatEssaiPur(null).etat, "ouvert", "sans parametre : ouvert");
 }
 
 // ---------- 3. Le testeur gratuit a vie ----------
-egal(etat({ creeMs: LANCEMENT - J, maintenantMs: au(30) }).etat, "testeur", "compte cree la veille de la sortie : testeur a vie, meme au jour 30");
+egal(etat({ creeMs: LANCEMENT - J, codeInvitation: true, maintenantMs: au(30) }).etat, "testeur", "compte cree la veille de la sortie, avec code : testeur a vie, meme au jour 30");
 egal(etat({ accesAVie: true, maintenantMs: au(30) }).etat, "testeur", "drapeau accesAVie : testeur a vie au jour 30");
 egal(etat({ admin: true, maintenantMs: au(30) }).etat, "testeur", "l'admin : toujours tout");
-egal(etat({ creeMs: LANCEMENT, maintenantMs: LANCEMENT + 30 * J }).etat, "gratuit", "compte cree le jour meme de la sortie : pas testeur (essai puis gratuit)");
+egal(etat({ creeMs: LANCEMENT, codeInvitation: true, maintenantMs: LANCEMENT + 30 * J }).etat, "gratuit", "compte cree le jour meme de la sortie : pas testeur (essai puis gratuit)");
+
+// ---------- 3 bis. Le mode sans compte (12 nov. 2026, refus d'Apple 5.1.1(v)) ----------
+// Un compte anonyme garde son uid et sa date de creation quand on y relie une
+// adresse : c'est la date du lien (lieMs) qui compte, et il faut un code
+// d'invitation consomme par ce compte (codeInvitation).
+egal(etat({ anonyme: true, creeMs: LANCEMENT - 10 * J, maintenantMs: LANCEMENT + 30 * J }).etat, "gratuit", "sans compte, cree avant la sortie : pas testeur");
+egal(etat({ anonyme: true, creeMs: LANCEMENT - 10 * J, codeInvitation: true, maintenantMs: LANCEMENT + 30 * J }).etat, "gratuit", "sans compte, meme avec un code : pas testeur");
+egal(etat({ creeMs: LANCEMENT - 10 * J, lieMs: LANCEMENT + 2 * J, codeInvitation: true, maintenantMs: LANCEMENT + 30 * J }).etat, "gratuit", "anonyme relie apres la sortie, avec code : pas testeur");
+egal(etat({ creeMs: LANCEMENT - 10 * J, lieMs: LANCEMENT - 2 * J, maintenantMs: LANCEMENT + 30 * J }).etat, "gratuit", "relie avant la sortie, sans code : pas testeur");
+egal(etat({ creeMs: LANCEMENT - 10 * J, lieMs: LANCEMENT - 2 * J, codeInvitation: true, maintenantMs: LANCEMENT + 30 * J }).etat, "testeur", "relie avant la sortie, code consomme par ce compte : testeur");
+egal(etat({ creeMs: LANCEMENT - J, maintenantMs: au(30) }).etat, "gratuit", "compte cree avant la sortie sans code consomme : pas testeur");
+{
+    // L'essai part de la creation de l'anonyme : pas de second essai en creant un compte.
+    const debut = LANCEMENT + 1 * J;
+    const r = etat({ creeMs: debut, lieMs: debut + 5 * J, codeInvitation: true, maintenantMs: debut + 8 * J });
+    egal(r.etat, "gratuit", "anonyme du jour 1 relie au jour 6 : l'essai part du jour 1 (gratuit au jour 9)");
+}
 
 // ---------- 4. Le testeur des magasins : 4 mois offerts ----------
 {

@@ -118,6 +118,28 @@ function resume(email, extra){
     await cas("apres l'acces offert, la sauvegarde ordinaire : acceptee", true, () => setDoc(doc(anna, "users", "annaUid"), { progressJson: "{\"c\":3}", updatedAt: serverTimestamp(), dailyGoalTarget: null }, { merge: true }));
     await cas("apres l'acces offert, le jeton de notification : accepte", true, () => setDoc(doc(anna, "users", "annaUid"), { fcmToken: null }, { merge: true }));
     await cas("apres les 4 mois offerts, la sauvegarde ordinaire : acceptee", true, () => setDoc(doc(bob, "users", "bobUid"), { progressJson: "{}", updatedAt: serverTimestamp() }, { merge: true }));
+
+    // LE MODE SANS COMPTE (12 nov. 2026, refus d'Apple 5.1.1(v)) : un compte
+    // Firebase Anonyme a un uid mais pas d'adresse dans son jeton.
+    console.log("SANS COMPTE (Firebase Anonyme)");
+    const sc = env.authenticatedContext("scUid", { firebase: { sign_in_provider: "anonymous" } }).firestore();
+    await cas("sans compte : sa progression", true, () => setDoc(doc(sc, "users", "scUid"), { progressJson: "{}", vusCount: 2, updatedAt: serverTimestamp() }, { merge: true }));
+    await cas("sans compte : lit sa progression", true, () => getDoc(doc(sc, "users", "scUid")));
+    await cas("sans compte : la progression d'un autre : refuse", false, () => getDoc(doc(sc, "users", "annaUid")));
+    await cas("sans compte : son resume, adresse vide", true, () => setDoc(doc(sc, "resumes", "scUid"), resume(""), { merge: true }));
+    await cas("sans compte : son resume avec une adresse : refuse", false, () => setDoc(doc(sc, "resumes", "scUid"), resume("anna@example.com"), { merge: true }));
+    await cas("sans compte : s'offre l'acces a vie : refuse", false, () => setDoc(doc(sc, "users", "scUid"), { accesAVie: true }, { merge: true }));
+    await cas("avec une adresse, un resume a adresse vide : refuse", false, () => setDoc(doc(anna, "resumes", "annaUid"), resume(""), { merge: true }));
+    // Le lien d'une adresse (linkWithCredential) : sa date, une fois, a l'heure du serveur.
+    const relie = env.authenticatedContext("scUid", { email: "sc@example.com" }).firestore();
+    await cas("lien : date du telephone : refuse", false, () => setDoc(doc(relie, "users", "scUid"), { email: "sc@example.com", adresseLieeLe: hier() }, { merge: true }));
+    await cas("lien : heure du serveur, la premiere fois : accepte", true, () => setDoc(doc(relie, "users", "scUid"), { email: "sc@example.com", firstName: "Sam", inviteCode: "ABCD2345", adresseLieeLe: serverTimestamp() }, { merge: true }));
+    await cas("lien : reecrit (heure du serveur) : refuse", false, () => setDoc(doc(relie, "users", "scUid"), { adresseLieeLe: serverTimestamp() }, { merge: true }));
+    await cas("lien : reecrit (date choisie) : refuse", false, () => updateDoc(doc(relie, "users", "scUid"), { adresseLieeLe: hier() }));
+    await cas("lien : efface : refuse", false, () => updateDoc(doc(relie, "users", "scUid"), { adresseLieeLe: deleteField() }));
+    await cas("lien : compte neuf cree avec une date choisie : refuse", false, () => setDoc(doc(bob, "users", "bobAutre"), { adresseLieeLe: hier() }));
+    await cas("lien : le resume prend l'adresse", true, () => setDoc(doc(relie, "resumes", "scUid"), resume("sc@example.com"), { merge: true }));
+    await cas("lien : la sauvegarde ordinaire ensuite : acceptee", true, () => setDoc(doc(relie, "users", "scUid"), { progressJson: "{\"d\":4}", updatedAt: serverTimestamp() }, { merge: true }));
     await cas("se prolonge les 4 mois : refuse", false, () => updateDoc(doc(bob, "users", "bobUid"), { accesJusqua: Timestamp.fromDate(new Date("2030-01-01")) }));
     await cas("retire lui-meme son acces : refuse (admin seul)", false, () => updateDoc(doc(anna, "users", "annaUid"), { accesAVie: deleteField() }));
     await cas("un autre offre l'acces a quelqu'un : refuse", false, () => updateDoc(doc(bob, "users", "annaUid"), { accesAVie: true }));

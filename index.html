@@ -9663,6 +9663,17 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         </div>
     </div>
 
+    <!-- LE MODE SANS COMPTE (12 nov. 2026). Apple a refuse l'app (regle 5.1.1(v)) :
+         il fallait un compte pour apprendre. Jacques : « partout ». On entre sans
+         compte, et le compte reste propose plus bas : sauvegarder sa progression,
+         la retrouver sur un autre appareil. Sans compte, la meme carte dit
+         « Continuer sans compte » (appliquerEtatSansCompte). -->
+    <div class="card" id="authSansCompteCard">
+        <p style="color:#4C566B" id="authSansCompteTexte" data-i18n="sans_compte_desc">Pas besoin de compte pour apprendre : tout est ouvert tout de suite. Tu pourras en créer un plus tard pour sauvegarder ta progression.</p>
+        <div class="spacer"></div>
+        <button type="button" id="authSansCompteBtn" class="primary" onclick="commencerSansCompte()" data-i18n="sans_compte_commencer">COMMENCER SANS COMPTE</button>
+    </div>
+
     <div id="authModeToggle" class="auth-mode-toggle">
         <button type="button" id="authModeLoginBtn" class="auth-mode-btn active" onclick="setAuthMode('login')" data-i18n="auth_mode_login">Se connecter</button>
         <button type="button" id="authModeSignupBtn" class="auth-mode-btn" onclick="setAuthMode('signup')" data-i18n="auth_mode_signup">Créer un compte</button>
@@ -13744,9 +13755,22 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
 
         <div class="card">
             <strong data-i18n="settings_account_title">Compte</strong>
+            <div id="settingsCompteAvecAdresse">
             <p style="color:#4C566B"><span data-i18n="auth_logged_in_as">Connecté en tant que : </span><strong id="settingsUserEmailDisplay" style="color:#1e2433;"></strong></p>
             <div class="spacer"></div>
             <button class="secondary danger" onclick="handleLogout()" data-i18n="auth_logout">SE DÉCONNECTER</button>
+            </div>
+            <!-- SANS COMPTE (12 nov. 2026) : pas de « Se deconnecter », qui perdrait
+                 la progression pour toujours (un anonyme deconnecte ne retrouve
+                 jamais son uid). Creer un compte la garde ; se connecter a un
+                 compte existant la fusionne a celle du compte. -->
+            <div id="settingsCompteSansAdresse" class="hidden">
+                <p style="color:#4C566B" data-i18n="sans_compte_actif">Tu apprends sans compte : ta progression reste sur cet appareil. Crée un compte pour la sauvegarder et la retrouver sur un autre appareil, sans rien perdre.</p>
+                <div class="spacer"></div>
+                <button class="primary" onclick="ouvrirCompteDepuisReglages('signup')" data-i18n="auth_signup">CRÉER UN COMPTE</button>
+                <div class="spacer"></div>
+                <button class="secondary" onclick="ouvrirCompteDepuisReglages('login')" data-i18n="sans_compte_connecter">J'AI DÉJÀ UN COMPTE</button>
+            </div>
             <!-- SUPPRIMER SON COMPTE (v633). Apple l'exige de toute app qui permet
                  d'en CREER un (regle 5.1.1(v)), Google Play demande la meme chose :
                  sans ce bouton, la soumission est refusee avant meme d'etre
@@ -13769,7 +13793,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
             <div id="suppressionCompteBloc" class="hidden" style="margin-top:12px;">
                 <p style="color:#4C566B; font-size:13px; line-height:1.5;"
                    data-i18n="delete_account_intro">Efface définitivement ton compte.</p>
-                <div class="password-field-wrap" style="margin:12px 0;">
+                <div class="password-field-wrap" id="suppressionMdpLigne" style="margin:12px 0;">
                     <input id="suppressionMdp" class="answer" type="password"
                            autocomplete="current-password"
                            data-i18n-placeholder="delete_account_pwd_ph" placeholder="Ton mot de passe">
@@ -14140,7 +14164,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, deleteUser, EmailAuthProvider, reauthenticateWithCredential, sendPasswordResetEmail, verifyPasswordResetCode, confirmPasswordReset } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, deleteUser, EmailAuthProvider, reauthenticateWithCredential, sendPasswordResetEmail, verifyPasswordResetCode, confirmPasswordReset, signInAnonymously, linkWithCredential } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, deleteField, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getMessaging, getToken as fcmGetToken, isSupported as fcmIsSupported } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js";
 
@@ -14187,6 +14211,13 @@ window.authResetEmail = sendPasswordResetEmail;
 // faire taper deux fois un mot de passe pour rien.
 window.authVerifyReset = verifyPasswordResetCode;
 window.authConfirmReset = confirmPasswordReset;
+// LE MODE SANS COMPTE (12 nov. 2026, refus d'Apple 5.1.1(v), Jacques : « partout »).
+// Firebase Anonyme (active le 12 nov., nettoyage automatique decoche) : un uid
+// sans adresse, dont la progression part dans le nuage comme celle d'un compte.
+// Un compte cree ensuite RELIE l'adresse a ce meme uid (linkWithCredential) :
+// rien a copier, rien a perdre. Voir commencerSansCompte().
+window.authSignInAnonymously = signInAnonymously;
+window.authLink = linkWithCredential;
 
 // Accès à Firestore depuis le script principal (non-module) : même pattern que
 // les fonctions Auth ci-dessus, exposées individuellement sur window.
@@ -14303,6 +14334,9 @@ onAuthStateChanged(auth, (user) => {
         if(typeof updateVhsKapitelTileVisibility === "function") updateVhsKapitelTileVisibility();
         if(AUTH_REQUIRED && !window.LIEN_REINIT) showScreen("auth");
     }
+    // Le mode sans compte (12 nov. 2026) : la carte « Commencer sans compte »,
+    // et l'ecran de connexion ou les reglages d'un compte sans adresse.
+    if(typeof appliquerEtatSansCompte === "function") appliquerEtatSansCompte(user);
 });
 
 // ⚠️ ICI, PARCE QUE C'EST LE SEUL ENDROIT OU LES DEUX MOITIES EXISTENT. Ce
@@ -16633,6 +16667,13 @@ const I18N = {
         delete_account_confirm: "Dernière vérification : ton compte et toute ta progression vont être effacés définitivement. Continuer ?",
         delete_account_done: "Compte supprimé.",
         delete_account_error: "La suppression n'a pas abouti. Vérifie ta connexion et réessaie.",
+        sans_compte_desc: "Pas besoin de compte pour apprendre : tout est ouvert tout de suite. Tu pourras en créer un plus tard pour sauvegarder ta progression.",
+        sans_compte_commencer: "COMMENCER SANS COMPTE",
+        sans_compte_actif: "Tu apprends sans compte : ta progression reste sur cet appareil. Crée un compte pour la sauvegarder et la retrouver sur un autre appareil, sans rien perdre.",
+        sans_compte_continuer: "CONTINUER SANS COMPTE",
+        sans_compte_connecter: "J'AI DÉJÀ UN COMPTE",
+        sans_compte_garde: "Compte créé : ta progression est sauvegardée.",
+        sans_compte_erreur: "Impossible de commencer pour l'instant. Vérifie ta connexion et réessaie.",
         delete_account_wrong_pwd: "Mot de passe incorrect.",
 
         op_due_desc: "Une séance de {n} cartes · {r} à revoir",
@@ -18404,6 +18445,13 @@ const I18N = {
         delete_account_confirm: "Last check: your account and all your progress are about to be permanently deleted. Continue?",
         delete_account_done: "Account deleted.",
         delete_account_error: "The deletion did not go through. Check your connection and try again.",
+        sans_compte_desc: "No account needed to learn: everything is open right away. You can create one later to save your progress.",
+        sans_compte_commencer: "START WITHOUT AN ACCOUNT",
+        sans_compte_actif: "You're learning without an account: your progress stays on this device. Create an account to save it and find it on another device, without losing anything.",
+        sans_compte_continuer: "CONTINUE WITHOUT AN ACCOUNT",
+        sans_compte_connecter: "I ALREADY HAVE AN ACCOUNT",
+        sans_compte_garde: "Account created: your progress is saved.",
+        sans_compte_erreur: "Can't start right now. Check your connection and try again.",
         delete_account_wrong_pwd: "Wrong password.",
 
         op_due_desc: "A {n}-card session · {r} to review",
@@ -20119,6 +20167,13 @@ const I18N = {
         delete_account_confirm: "Son kontrol: hesabın ve tüm ilerlemen kalıcı olarak silinecek. Devam edilsin mi?",
         delete_account_done: "Hesap silindi.",
         delete_account_error: "Silme işlemi tamamlanamadı. Bağlantını kontrol edip yeniden dene.",
+        sans_compte_desc: "Öğrenmek için hesap gerekmez: her şey hemen açık. İlerlemeni kaydetmek için daha sonra bir hesap oluşturabilirsin.",
+        sans_compte_commencer: "HESAPSIZ BAŞLA",
+        sans_compte_actif: "Hesapsız öğreniyorsun: ilerlemen bu cihazda kalıyor. Hiçbir şey kaybetmeden kaydetmek ve başka bir cihazda bulmak için bir hesap oluştur.",
+        sans_compte_continuer: "HESAPSIZ DEVAM ET",
+        sans_compte_connecter: "ZATEN HESABIM VAR",
+        sans_compte_garde: "Hesap oluşturuldu: ilerlemen kaydedildi.",
+        sans_compte_erreur: "Şu anda başlanamıyor. Bağlantını kontrol edip yeniden dene.",
         delete_account_wrong_pwd: "Şifre yanlış.",
 
         op_due_desc: "{n} kartlık bir oturum · {r} tekrar",
@@ -21688,6 +21743,13 @@ const I18N = {
         delete_account_confirm: "Остання перевірка: твій обліковий запис і весь поступ буде видалено назавжди. Продовжити?",
         delete_account_done: "Обліковий запис видалено.",
         delete_account_error: "Видалити не вдалося. Перевір з'єднання і спробуй ще раз.",
+        sans_compte_desc: "Для навчання обліковий запис не потрібен: усе відкрито одразу. Пізніше ти зможеш його створити, щоб зберегти свій прогрес.",
+        sans_compte_commencer: "ПОЧАТИ БЕЗ ОБЛІКОВОГО ЗАПИСУ",
+        sans_compte_actif: "Ти навчаєшся без облікового запису: твій прогрес зберігається на цьому пристрої. Створи обліковий запис, щоб зберегти його й відкрити на іншому пристрої, нічого не втративши.",
+        sans_compte_continuer: "ПРОДОВЖИТИ БЕЗ ОБЛІКОВОГО ЗАПИСУ",
+        sans_compte_connecter: "У МЕНЕ ВЖЕ Є ОБЛІКОВИЙ ЗАПИС",
+        sans_compte_garde: "Обліковий запис створено: твій прогрес збережено.",
+        sans_compte_erreur: "Зараз не вдається почати. Перевір з'єднання і спробуй ще раз.",
         delete_account_wrong_pwd: "Неправильний пароль.",
         auth_signup_desc: "Маєш код запрошення? Створи тут свій обліковий запис.",
         auth_invite_code_placeholder: "Код запрошення",
@@ -23014,6 +23076,13 @@ const I18N = {
         delete_account_confirm: "بررسی آخر: حساب و همهٔ پیشرفت تو برای همیشه پاک می‌شود. ادامه می‌دهی؟",
         delete_account_done: "حساب حذف شد.",
         delete_account_error: "حذف انجام نشد. اتصالت را بررسی کن و دوباره تلاش کن.",
+        sans_compte_desc: "برای یادگیری به حساب کاربری نیازی نیست: همه‌چیز از همین حالا باز است. بعداً می‌توانی حسابی بسازی تا پیشرفتت ذخیره شود.",
+        sans_compte_commencer: "شروع بدون حساب",
+        sans_compte_actif: "بدون حساب یاد می‌گیری: پیشرفتت روی همین دستگاه می‌ماند. حسابی بساز تا آن را ذخیره کنی و روی دستگاه دیگری هم پیدایش کنی، بی‌آنکه چیزی از دست برود.",
+        sans_compte_continuer: "ادامه بدون حساب",
+        sans_compte_connecter: "از قبل حساب دارم",
+        sans_compte_garde: "حساب ساخته شد: پیشرفتت ذخیره شد.",
+        sans_compte_erreur: "الان نمی‌شود شروع کرد. اتصالت را بررسی کن و دوباره تلاش کن.",
         delete_account_wrong_pwd: "رمز عبور نادرست است.",
         setup_kicker: "خوش آمدید",
         setup_title: "محیط یادگیری‌تان را تنظیم کنیم",
@@ -24791,6 +24860,13 @@ const I18N = {
         delete_account_confirm: "تحقّق أخير: سيُحذف حسابك وكل تقدّمك نهائياً. هل تتابع؟",
         delete_account_done: "تم حذف الحساب.",
         delete_account_error: "لم يتمّ الحذف. تحقّق من اتصالك وأعد المحاولة.",
+        sans_compte_desc: "لا تحتاج إلى حساب لكي تتعلّم: كلّ شيء متاح فورًا. يمكنك إنشاء حساب لاحقًا لحفظ تقدّمك.",
+        sans_compte_commencer: "ابدأ بدون حساب",
+        sans_compte_actif: "أنت تتعلّم بدون حساب: يبقى تقدّمك على هذا الجهاز. أنشئ حسابًا لحفظه والعثور عليه على جهاز آخر، دون أن تفقد شيئًا.",
+        sans_compte_continuer: "تابع بدون حساب",
+        sans_compte_connecter: "لديّ حساب بالفعل",
+        sans_compte_garde: "تمّ إنشاء الحساب: حُفظ تقدّمك.",
+        sans_compte_erreur: "تعذّر البدء الآن. تحقّق من اتصالك وأعد المحاولة.",
         delete_account_wrong_pwd: "كلمة السرّ غير صحيحة.",
         op_due_desc: "جلسة من {n} بطاقة · {r} للمراجعة",
         op_due_desc_neufs: "جلسة من {n} بطاقة",
@@ -27141,6 +27217,13 @@ const I18N = {
         delete_account_confirm: "Última verificação: a sua conta e todo o seu progresso vão ser apagados definitivamente. Continuar?",
         delete_account_done: "Conta excluída.",
         delete_account_error: "A exclusão não foi concluída. Verifique sua conexão e tente de novo.",
+        sans_compte_desc: "Não é preciso ter conta para aprender: tudo está liberado desde já. Você pode criar uma depois para salvar seu progresso.",
+        sans_compte_commencer: "COMEÇAR SEM CONTA",
+        sans_compte_actif: "Você está aprendendo sem conta: seu progresso fica neste aparelho. Crie uma conta para salvá-lo e recuperá-lo em outro aparelho, sem perder nada.",
+        sans_compte_continuer: "CONTINUAR SEM CONTA",
+        sans_compte_connecter: "JÁ TENHO UMA CONTA",
+        sans_compte_garde: "Conta criada: seu progresso está salvo.",
+        sans_compte_erreur: "Não foi possível começar agora. Verifique sua conexão e tente de novo.",
         delete_account_wrong_pwd: "Senha incorreta.",
         op_due_desc: "Uma sessão de {n} cartas · {r} para rever",
         op_due_desc_neufs: "Uma sessão de {n} cartas",
@@ -28919,6 +29002,13 @@ const I18N = {
         delete_account_confirm: "Ostatnie sprawdzenie: twoje konto i wszystkie postępy zostaną trwale usunięte. Kontynuować?",
         delete_account_done: "Konto usunięte.",
         delete_account_error: "Usuwanie się nie powiodło. Sprawdź połączenie i spróbuj ponownie.",
+        sans_compte_desc: "Do nauki nie potrzebujesz konta: wszystko jest od razu dostępne. Później możesz je założyć, żeby zapisać swoje postępy.",
+        sans_compte_commencer: "ZACZNIJ BEZ KONTA",
+        sans_compte_actif: "Uczysz się bez konta: twoje postępy zostają na tym urządzeniu. Załóż konto, żeby je zapisać i odzyskać na innym urządzeniu, niczego nie tracąc.",
+        sans_compte_continuer: "KONTYNUUJ BEZ KONTA",
+        sans_compte_connecter: "MAM JUŻ KONTO",
+        sans_compte_garde: "Konto założone: twoje postępy są zapisane.",
+        sans_compte_erreur: "Nie można teraz zacząć. Sprawdź połączenie i spróbuj ponownie.",
         delete_account_wrong_pwd: "Nieprawidłowe hasło.",
         op_due_desc: "Sesja: {n} kart · do powtórki: {r}",
         op_due_desc_neufs: "Sesja: {n} kart",
@@ -30700,6 +30790,13 @@ const I18N = {
         delete_account_confirm: "Последняя проверка: твой аккаунт и весь прогресс будут удалены навсегда. Продолжить?",
         delete_account_done: "Аккаунт удалён.",
         delete_account_error: "Удаление не удалось. Проверь подключение и попробуй ещё раз.",
+        sans_compte_desc: "Для учёбы аккаунт не нужен: всё открыто сразу. Позже ты сможешь создать его, чтобы сохранить свой прогресс.",
+        sans_compte_commencer: "НАЧАТЬ БЕЗ АККАУНТА",
+        sans_compte_actif: "Ты учишься без аккаунта: твой прогресс хранится на этом устройстве. Создай аккаунт, чтобы сохранить его и открыть на другом устройстве, ничего не потеряв.",
+        sans_compte_continuer: "ПРОДОЛЖИТЬ БЕЗ АККАУНТА",
+        sans_compte_connecter: "У МЕНЯ УЖЕ ЕСТЬ АККАУНТ",
+        sans_compte_garde: "Аккаунт создан: твой прогресс сохранён.",
+        sans_compte_erreur: "Сейчас не получается начать. Проверь подключение и попробуй ещё раз.",
         delete_account_wrong_pwd: "Неверный пароль.",
         op_due_desc: "Занятие из {n} карточек · повторить: {r}",
         op_due_desc_neufs: "Занятие из {n} карточек",
@@ -32480,6 +32577,13 @@ const I18N = {
         delete_account_confirm: "Letzte Prüfung: Dein Konto und dein gesamter Fortschritt werden endgültig gelöscht. Weiter?",
         delete_account_done: "Konto gelöscht.",
         delete_account_error: "Das Löschen hat nicht geklappt. Prüfe deine Verbindung und versuch es noch einmal.",
+        sans_compte_desc: "Zum Lernen brauchst du kein Konto: Alles ist sofort offen. Später kannst du eins anlegen, um deinen Fortschritt zu sichern.",
+        sans_compte_commencer: "OHNE KONTO STARTEN",
+        sans_compte_actif: "Du lernst ohne Konto: Dein Fortschritt bleibt auf diesem Gerät. Leg ein Konto an, um ihn zu sichern und auf einem anderen Gerät wiederzufinden, ohne etwas zu verlieren.",
+        sans_compte_continuer: "OHNE KONTO WEITERMACHEN",
+        sans_compte_connecter: "ICH HABE SCHON EIN KONTO",
+        sans_compte_garde: "Konto angelegt: Dein Fortschritt ist gesichert.",
+        sans_compte_erreur: "Der Start klappt gerade nicht. Prüfe deine Verbindung und versuch es noch einmal.",
         delete_account_wrong_pwd: "Falsches Passwort.",
         op_due_desc: "Eine Lerneinheit mit {n} Karten · {r} zu wiederholen",
         op_due_desc_neufs: "Eine Lerneinheit mit {n} Karten",
@@ -34273,6 +34377,13 @@ const I18N = {
         delete_account_confirm: "Última comprobación: tu cuenta y todo tu progreso se van a borrar para siempre. ¿Continuar?",
         delete_account_done: "Cuenta eliminada.",
         delete_account_error: "No se pudo eliminar la cuenta. Comprueba tu conexión y vuelve a intentarlo.",
+        sans_compte_desc: "No necesitas una cuenta para aprender: todo está abierto desde ya. Podrás crear una más adelante para guardar tu progreso.",
+        sans_compte_commencer: "EMPEZAR SIN CUENTA",
+        sans_compte_actif: "Estás aprendiendo sin cuenta: tu progreso se queda en este dispositivo. Crea una cuenta para guardarlo y recuperarlo en otro dispositivo, sin perder nada.",
+        sans_compte_continuer: "SEGUIR SIN CUENTA",
+        sans_compte_connecter: "YA TENGO UNA CUENTA",
+        sans_compte_garde: "Cuenta creada: tu progreso está guardado.",
+        sans_compte_erreur: "No se puede empezar ahora. Comprueba tu conexión y vuelve a intentarlo.",
         delete_account_wrong_pwd: "Contraseña incorrecta.",
         op_due_desc: "Una práctica de {n} tarjetas · {r} para repasar",
         op_due_desc_neufs: "Una práctica de {n} tarjetas",
@@ -38295,6 +38406,7 @@ function getFriendlyAuthError(error) {
         "auth/missing-password": "Merci d'indiquer un mot de passe.",
         "auth/weak-password": "Le mot de passe doit contenir au moins 6 caractères.",
         "auth/email-already-in-use": "Un compte existe déjà avec cet e-mail.",
+        "auth/credential-already-in-use": "Un compte existe déjà avec cet e-mail.",
         "auth/user-not-found": "Aucun compte ne correspond à cet e-mail.",
         "auth/wrong-password": "Mot de passe incorrect.",
         "auth/invalid-credential": "E-mail ou mot de passe incorrect.",
@@ -38319,17 +38431,118 @@ function setAuthButtonLoading(btnId, isLoading, loadingTextKey, normalTextKey) {
     btn.textContent = t(isLoading ? loadingTextKey : normalTextKey);
 }
 
+// ============ LE MODE SANS COMPTE (12 nov. 2026) ============
+// Apple a refuse l'app (regle 5.1.1(v)) : « the app requires users to register
+// before accessing learning materials ». Jacques : « partout » -- iPhone,
+// Android et web. On apprend sans compte des le premier ecran ; le compte est
+// PROPOSE (sauvegarder, retrouver sa progression ailleurs), jamais impose.
+// Un compte anonyme est un vrai compte Firebase, sans adresse : sa progression
+// part dans le nuage sous son uid, et la creation d'un compte RELIE l'adresse a
+// ce meme uid (handleEmailSignup). Se connecter a un compte existant fusionne
+// la progression d'ici a la sienne (restoreProgressFromCloud ne garde que le
+// plus avance), sans rien en effacer.
+// ⚠️ PAS DE « SE DECONNECTER » SANS COMPTE : un anonyme deconnecte ne retrouve
+// jamais son uid. Les reglages proposent de creer un compte ou de se connecter.
+function estSansCompte(){
+    const u = window.firebaseAuth && window.firebaseAuth.currentUser;
+    return !!(u && u.isAnonymous);
+}
+async function commencerSansCompte(){
+    // Deja sans compte (l'ecran ouvert depuis les reglages) : on y retourne.
+    if(estSansCompte()){ goHome(); return; }
+    const btn = document.getElementById("authSansCompteBtn");
+    if(btn) btn.disabled = true;
+    try{
+        // Comme une inscription : le rappel d'authentification ouvre la
+        // bienvenue (langue, niveau) au lieu de l'accueil.
+        window.INSCRIPTION_EN_COURS = true;
+        await window.authSignInAnonymously(window.firebaseAuth);
+        ouvrirBienvenue();
+    }catch(e){
+        const code = String((e && (e.code || e.name)) || "");
+        showInfoToast(t("sans_compte_erreur") + (code ? " (" + code + ")" : ""));
+    }finally{
+        window.INSCRIPTION_EN_COURS = false;
+        if(btn) btn.disabled = false;
+    }
+}
+function ouvrirCompteDepuisReglages(mode){
+    showScreen("auth");
+    setAuthMode(mode === "login" ? "login" : "signup");
+}
+// Ce que l'ecran de connexion et les reglages montrent : avant d'entrer, sans
+// compte, ou avec un compte. Appele a la fin du rappel d'authentification.
+function appliquerEtatSansCompte(user){
+    const anonyme = !!(user && user.isAnonymous);
+    try{ document.documentElement.classList.toggle("sans-compte", anonyme); }catch(e){}
+    const montrer = (id, oui) => { const el = document.getElementById(id); if(el) el.classList.toggle("hidden", !oui); };
+    const texte = (id, cle) => { const el = document.getElementById(id); if(el){ el.setAttribute("data-i18n", cle); el.textContent = t(cle); } };
+    montrer("authSansCompteCard", !user || anonyme);
+    texte("authSansCompteTexte", anonyme ? "sans_compte_actif" : "sans_compte_desc");
+    texte("authSansCompteBtn", anonyme ? "sans_compte_continuer" : "sans_compte_commencer");
+    if(anonyme){
+        // L'ecran garde ses deux formulaires : creer un compte (qui reliera la
+        // progression) ou se connecter a un compte existant.
+        montrer("authContent", true);
+        montrer("authModeToggle", true);
+        montrer("userAccountInfo", false);
+    }
+    montrer("settingsCompteAvecAdresse", !anonyme);
+    montrer("settingsCompteSansAdresse", anonyme);
+    // Effacer ses donnees sans compte : il n'y a pas de mot de passe.
+    montrer("suppressionMdpLigne", !anonyme);
+}
+// Apres le lien : le rappel d'authentification ne repart pas (meme utilisateur).
+function compteRelieALaPage(user){
+    try{
+        const profil = document.getElementById("userProfile");
+        if(profil && user.email) profil.textContent = user.email.substring(0, 2).toUpperCase();
+        const a = document.getElementById("userEmailDisplay");
+        if(a) a.textContent = user.email || "";
+        const b = document.getElementById("settingsUserEmailDisplay");
+        if(b) b.textContent = user.email || "";
+        const toggle = document.getElementById("authModeToggle");
+        if(toggle) toggle.classList.add("hidden");
+        const contenu = document.getElementById("authContent");
+        if(contenu) contenu.classList.add("hidden");
+        const info = document.getElementById("userAccountInfo");
+        if(info) info.classList.remove("hidden");
+        setAuthMode("login");
+    }catch(e){}
+    appliquerEtatSansCompte(user);
+    if(typeof updateHomeGreeting === "function") updateHomeGreeting();
+}
+// ⚠️ AVANT DE CHANGER DE COMPTE, ON SUSPEND L'ECRITURE. La synchronisation en
+// attente (scheduleCloudSync) partirait sous le NOUVEL uid avec la progression
+// d'ici seule, et ecraserait celle du compte avant que restoreProgressFromCloud()
+// ait pu les fusionner. cloudRestoreDone a false : syncProgressToCloud()
+// n'ecrit plus rien jusqu'a la restauration du compte qui arrive. (Le cas
+// existait deja apres une deconnexion ; le mode sans compte le rend ordinaire.)
+function suspendreSyncCompte(){
+    let avant = false;
+    try{ avant = cloudRestoreDone; }catch(e){}
+    try{ clearTimeout(cloudSyncTimer); cloudSyncTimer = null; }catch(e){}
+    try{ cloudRestoreDone = false; }catch(e){}
+    return avant;
+}
+function reprendreSyncCompte(avant){
+    try{ cloudRestoreDone = !!avant; }catch(e){}
+}
+
 async function handleEmailLogin() {
     const email = document.getElementById("authEmail").value.trim();
     const password = document.getElementById("authPassword").value;
     if (!isValidEmail(email)) { showInfoToast(t('alert_valid_email')); return; }
     if (!password) { showInfoToast(t('alert_enter_password')); return; }
     setAuthButtonLoading('authLoginBtn', true, 'auth_login_loading', 'auth_login');
+    let restaurePrec = null;
     try {
         // Lot de l'evaluation (6 nov. 2026) : plus de page blanche apres la connexion. L'etat passe a
         // « attente » AVANT la connexion (le rappel d'authentification part pendant l'appel) ; la
         // restauration du nuage le passe a « pret » ou libere l'ecran (libererAttenteConnexion).
         window.ATTENTE_CONNEXION = "attente";
+        // Depuis le mode sans compte (12 nov. 2026) : voir suspendreSyncCompte().
+        restaurePrec = suspendreSyncCompte();
         await window.signInWithEmailAndPassword(window.firebaseAuth, email, password);
         if(window.ATTENTE_CONNEXION === "attente" && typeof window.ouvertureAttendre === "function"){
             window.ATTENTE_CONNEXION = "couvert";
@@ -38338,6 +38551,8 @@ async function handleEmailLogin() {
         goHome();
     } catch (error) {
         window.ATTENTE_CONNEXION = false;
+        // Connexion refusee : on reste le meme compte, son ecriture reprend.
+        if(restaurePrec !== null) reprendreSyncCompte(restaurePrec);
         showInfoToast(t('alert_login_error_prefix') + getFriendlyAuthError(error));
     } finally {
         setAuthButtonLoading('authLoginBtn', false, 'auth_login_loading', 'auth_login');
@@ -38362,12 +38577,17 @@ async function handleEmailSignup() {
     if (password !== passwordConfirm) { showInfoToast(t('alert_password_mismatch')); return; }
     if (!code) { showInfoToast(t('alert_invite_code_required')); return; }
 
+    // Sans compte (12 nov. 2026) : l'adresse sera RELIEE a ce compte anonyme --
+    // meme uid, donc toute la progression deja faite reste la sienne.
+    const actuel = window.firebaseAuth && window.firebaseAuth.currentUser;
+    const sansCompte = actuel && actuel.isAnonymous ? actuel : null;
     setAuthButtonLoading('authSignupBtn', true, 'auth_signup_loading', 'auth_signup');
     try {
         // LE COMPTE EST NEUF, ET C'EST LE SEUL ENDROIT QUI LE SAIT (v700). Le
         // rappel d'authentification part PENDANT createUserWithEmailAndPassword ;
         // ce drapeau lui dit d'ouvrir l'ecran de bienvenue au lieu de l'accueil.
-        window.INSCRIPTION_EN_COURS = true;
+        // Un compte relie n'est pas neuf : pas de bienvenue (deja passee).
+        if(!sansCompte) window.INSCRIPTION_EN_COURS = true;
         // On valide le code AVANT de créer le compte, pour ne pas créer de compte
         // Firebase orphelin si le code est invalide ou déjà utilisé.
         let codeSnap;
@@ -38389,12 +38609,17 @@ async function handleEmailSignup() {
         }
 
         try {
-            const cred = await window.createUserWithEmailAndPassword(window.firebaseAuth, email, password);
+            const cred = sansCompte
+                ? await window.authLink(sansCompte, window.authEmailCredential(email, password))
+                : await window.createUserWithEmailAndPassword(window.firebaseAuth, email, password);
             const uid = cred.user.uid;
             // Prénom stocké sur le profil Firebase Auth (displayName) --
             // disponible directement via currentUser.displayName sans lecture
             // Firestore supplémentaire, utilisé par updateHomeGreeting().
             try { await window.updateProfile(cred.user, { displayName: firstName }); } catch (e) {}
+            // Le jeton d'un compte relie ne porte pas encore l'adresse : les
+            // regles Firestore la lisent (le resume du tableau de bord).
+            if (sansCompte) { try { await cred.user.getIdToken(true); } catch (e) {} }
             // La marque « utilisé » et le profil se créent une fois le compte prêt
             // (le nouvel utilisateur est alors authentifié, ce qu'exigent les règles
             // Firestore) : un échec ici n'empêche pas la connexion de fonctionner.
@@ -38406,14 +38631,30 @@ async function handleEmailSignup() {
                 });
             } catch (e) {}
             try {
-                await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', uid), {
+                // Relie : la date du LIEN, a l'heure du serveur, ecrite une fois
+                // (regle adresseLieeLe). C'est elle, et non la creation de
+                // l'anonyme, qui dit si le compte a ete cree avant la sortie.
+                await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', uid), Object.assign({
                     email,
                     firstName,
-                    inviteCode: code,
-                    createdAt: window.fsServerTimestamp()
-                }, { merge: true });
+                    inviteCode: code
+                }, sansCompte ? { adresseLieeLe: window.fsServerTimestamp() }
+                              : { createdAt: window.fsServerTimestamp() }), { merge: true });
             } catch (e) {}
+            if (sansCompte) {
+                try { localStorage.setItem("wortando_adresseLieeLe_" + uid, String(Date.now())); } catch (e) {}
+                adresseLieeLeMs = Date.now();
+                codeInvitationConsomme = true;
+            }
             if (typeof syncProgressToCloud === "function") syncProgressToCloud();
+            if (sansCompte) {
+                // Le meme utilisateur : le rappel d'authentification ne repart
+                // pas. L'ecran se met a jour ici, et on retourne a l'accueil.
+                compteRelieALaPage(cred.user);
+                showInfoToast(t("sans_compte_garde"));
+                goHome();
+                return;
+            }
             // L'ecran de bienvenue (langue, niveau), puis la decouverte guidee
             // par son bouton CONTINUER -- et non plus l'accueil directement.
             ouvrirBienvenue();
@@ -38611,8 +38852,10 @@ async function confirmerSuppressionCompte(){
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
     const champ = document.getElementById("suppressionMdp");
     const mdp = champ ? champ.value : "";
-    if(!user || !user.email){ showInfoToast(t("delete_account_error")); return; }
-    if(!mdp){ if(champ) champ.focus(); return; }
+    // Sans compte (12 nov. 2026) : pas d'adresse ni de mot de passe a redemander.
+    const anonyme = !!(user && user.isAnonymous);
+    if(!user || (!user.email && !anonyme)){ showInfoToast(t("delete_account_error")); return; }
+    if(!anonyme && !mdp){ if(champ) champ.focus(); return; }
     if(!confirm(t("delete_account_confirm"))) return;
     const bouton = document.getElementById("suppressionCompteGo");
     if(bouton) bouton.disabled = true;
@@ -38626,7 +38869,7 @@ async function confirmerSuppressionCompte(){
         cloudSyncTimer = null;
         annulerEcritureProgression();
 
-        await window.authReauthenticate(user, window.authEmailCredential(user.email, mdp));
+        if(!anonyme) await window.authReauthenticate(user, window.authEmailCredential(user.email, mdp));
 
         // ⚠️ LES DOCUMENTS D'ABORD, LE COMPTE ENSUITE, ET L'ORDRE EST TOUT.
         // Les regles Firestore n'autorisent l'effacement de `users/{uid}` qu'a
@@ -38650,7 +38893,11 @@ async function confirmerSuppressionCompte(){
             await window.fsDeleteDoc(window.fsDoc(window.firestoreDb, RESUMES_COLL, user.uid));
         }catch(e){}
 
-        await window.authDeleteUser(user);
+        // Un compte anonyme ne peut pas se re-authentifier : si Firebase juge sa
+        // session trop ancienne, on le deconnecte -- ses documents sont deja
+        // effaces, il ne reste qu'un uid vide.
+        try{ await window.authDeleteUser(user); }
+        catch(e){ if(!anonyme) throw e; try{ await window.signOut(window.firebaseAuth); }catch(_){} }
 
         // La seance hors ligne et les reponses en attente (v967) vivent dans
         // les fichiers de l'app, que localStorage.clear() ne touche pas.
@@ -44149,7 +44396,9 @@ async function syncProgressToCloud(){
             vusCount += Object.keys(utile[cle] || {}).length;
         });
         snapshot = {
-            email: user.email,
+            // Sans compte (12 nov. 2026) : pas d'adresse, et jamais undefined,
+            // que Firestore refuse.
+            email: user.email || "",
             masteredCount,
             totalCount,
             vusCount,
@@ -45014,6 +45263,9 @@ function libererAttenteConnexion(){
     setTimeout(() => { try{ if(typeof window.ouvertureLiberer === "function") window.ouvertureLiberer(); }catch(e){} }, 150);
 }
 window.onDeutschAiUserSignedIn = function(){
+    // Un autre compte (depuis le mode sans compte, ou apres une deconnexion) :
+    // rien ne s'ecrit avant sa restauration. Voir suspendreSyncCompte().
+    suspendreSyncCompte();
     // La langue d'abord : restaurer la progression allemande pour repartir
     // aussitot vers l'espagnol ne servirait a rien.
     accorderLangueAuCompte().catch(() => false).then(part => {
@@ -45051,6 +45303,17 @@ async function loadVhsKapitelAccessFlag(){
         vhsKapitelAccess = !!(snap.exists() && snap.data().vhsChaptersEnabled === true);
         // Testeur arrive apres la sortie : gratuit a vie, pose a la main (v691).
         accesAVieFirestore = !!(snap.exists() && snap.data().accesAVie === true);
+        // Le mode sans compte (12 nov. 2026) : la date du lien et le code
+        // consomme par CE compte (voir adresseLieeLeMs).
+        adresseLieeLeMs = snap.exists() ? dateEnMs(snap.data().adresseLieeLe) : null;
+        codeInvitationConsomme = false;
+        const codeDuCompte = snap.exists() ? snap.data().inviteCode : null;
+        if(!user.isAnonymous && typeof codeDuCompte === "string" && codeDuCompte){
+            try{
+                const c = await window.fsGetDoc(window.fsDoc(window.firestoreDb, 'inviteCodes', codeDuCompte));
+                codeInvitationConsomme = !!(c.exists() && c.data().usedBy === user.uid);
+            }catch(e){}
+        }
         // L'essai de 7 jours et les 4 mois offerts (v1165) : inerte avant la sortie.
         try{ lireAccesDuCompte(snap.exists() ? snap.data() : {}, user); }catch(e){}
         if(snap.exists()) appliquerLangueImposee(snap.data().langueImposee);
@@ -51823,11 +52086,18 @@ function apercuGratuitActif(){
     try{ return localStorage.getItem(APERCU_GRATUIT_KEY) === "1"; }catch(e){ return false; }
 }
 
-function compteAvantLancement(){
-    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
-    if(!ACCES.lancement || !user || !user.metadata || !user.metadata.creationTime) return false;
-    const cree = new Date(user.metadata.creationTime);
-    return !isNaN(cree) && cree < new Date(ACCES.lancement + "T00:00:00");
+// LE TESTEUR GRATUIT A VIE ET LE MODE SANS COMPTE (12 nov. 2026). La regle vit
+// dans etatEssaiPur ; ici, ce qu'elle lit du compte. Un anonyme n'est jamais
+// testeur. Un compte RELIE apres coup garde l'uid et la date de creation de
+// l'anonyme : c'est la date du lien (adresseLieeLe, heure du serveur) qui se
+// compare a la sortie. Et seul un compte qui a consomme un code d'invitation
+// est testeur : inviteCodes/<code>.usedBy == uid (la regle ne laisse poser
+// usedBy qu'avec un code neuf ; users/<uid>.inviteCode seul se falsifie).
+// (compteAvantLancement(), reste de la v691 sans appelant, est retire.)
+let adresseLieeLeMs = null;
+let codeInvitationConsomme = false;
+function adresseLieeLeLocale(uid){
+    try{ const v = Number(localStorage.getItem("wortando_adresseLieeLe_" + uid)); return v > 0 ? v : null; }catch(e){ return null; }
 }
 
 // ============ L'ESSAI DE 7 JOURS, GERE PAR L'APP (11 nov. 2026) ============
@@ -51860,7 +52130,8 @@ const ESSAI_JOURS = 7;
 const ESSAI_RAPPEL_JOUR = 5;     // le rappel promis sur l'ecran d'abonnement (decide le 2 oct.)
 
 // p = { actif, admin, accesAVie, lancementMs, creeMs, debutCompteMs,
-//       maintenantMs, plancherServeurMs, offertJusquaMs, abonne }
+//       maintenantMs, plancherServeurMs, offertJusquaMs, abonne,
+//       anonyme, codeInvitation, lieMs }
 // Rend { etat, jour, restants, debut, fin, jusqua } ; etat parmi « ouvert »,
 // « testeur », « abonne », « offert », « essai », « gratuit ».
 function etatEssaiPur(p){
@@ -51868,7 +52139,11 @@ function etatEssaiPur(p){
     const valide = x => typeof x === "number" && isFinite(x) && x > 0;
     // Les testeurs gratuits a vie (promesse du 2 oct.) : comptes crees avant
     // la sortie, et le drapeau `accesAVie` pose a la main.
-    if(p.admin || p.accesAVie || (valide(p.lancementMs) && valide(p.creeMs) && p.creeMs < p.lancementMs)) return { etat: "testeur" };
+    // Le mode sans compte (12 nov. 2026) : jamais un anonyme ; un compte relie
+    // compte a la date du lien (lieMs), pas a celle de l'anonyme ; et il faut
+    // un code d'invitation consomme par ce compte (codeInvitation).
+    const dateCompte = valide(p.lieMs) ? p.lieMs : p.creeMs;
+    if(p.admin || p.accesAVie || (!p.anonyme && p.codeInvitation && valide(p.lancementMs) && valide(dateCompte) && dateCompte < p.lancementMs)) return { etat: "testeur" };
     if(p.abonne) return { etat: "abonne" };
     const maintenant = Math.max(valide(p.maintenantMs) ? p.maintenantMs : 0, valide(p.plancherServeurMs) ? p.plancherServeurMs : 0);
     // Les testeurs du Play Store et de TestFlight : 4 mois offerts (3 oct.),
@@ -51949,6 +52224,9 @@ function infoAcces(){
         accesAVie: accesAVieFirestore,
         lancementMs: ACCES.lancement ? new Date(ACCES.lancement + "T00:00:00").getTime() : null,
         creeMs: isNaN(creeMs) ? null : creeMs,
+        anonyme: !!(user && user.isAnonymous),
+        codeInvitation: codeInvitationConsomme,
+        lieMs: adresseLieeLeMs != null ? adresseLieeLeMs : (user ? adresseLieeLeLocale(user.uid) : null),
         debutCompteMs: essaiCompte.debutMs,
         maintenantMs: maintenant,
         plancherServeurMs: plancher,
@@ -54400,7 +54678,8 @@ async function renderAdminUsersList(){
             // l'identifiant n'a pas la forme d'un uid (voir echapperCompte).
             const vhsOn = u.vhsChaptersEnabled === true;
             const prenom = String(u.firstName || "").trim();
-            const titre = echapperCompte(prenom || u.email || u.id);
+            // Sans compte (12 nov. 2026) : ni prenom ni adresse.
+            const titre = echapperCompte(prenom || u.email || ("sans compte · " + String(u.id || "").slice(0, 6)));
             const { vuLe, etat } = etatDe(u);
             const quand = vuLe ? timeAgoFr(vuLe) : "jamais";
             const mots = nombreCompte(u.vusCount, "?");
@@ -54487,10 +54766,11 @@ async function reconstruireResumes(){
         let ecrits = 0;
         for(const d of docs){
             const u = d.data || {};
-            // Un document sans adresse n'est pas un testeur : c'est un reste.
-            if(!u.email) continue;
+            // Un document sans adresse ni progression est un reste ; avec une
+            // progression, c'est quelqu'un qui apprend sans compte (12 nov. 2026).
+            if(!u.email && !(u.vusCount > 0)) continue;
             await window.fsSetDoc(window.fsDoc(window.firestoreDb, RESUMES_COLL, d.id), {
-                email: u.email,
+                email: u.email || "",
                 firstName: u.firstName || "",
                 masteredCount: u.masteredCount || 0,
                 vusCount: u.vusCount,

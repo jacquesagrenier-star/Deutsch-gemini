@@ -59,6 +59,18 @@ service cloud.firestore {
       return !('essaiDebut' in request.resource.data)
           || request.resource.data.essaiDebut == request.time;
     }
+    // La date du LIEN d'une adresse a un compte cree sans compte (12 nov. 2026) :
+    // comme essaiDebut, ecrite une fois, a l'heure du serveur, jamais changee.
+    // C'est elle qui dit si un compte relie l'a ete avant la sortie.
+    function lienALaCreation() {
+      return !('adresseLieeLe' in request.resource.data)
+          || request.resource.data.adresseLieeLe == request.time;
+    }
+    function lienALaModification() {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(['adresseLieeLe'])
+          || (!('adresseLieeLe' in resource.data)
+              && request.resource.data.adresseLieeLe == request.time);
+    }
     function essaiDebutALaModification() {
       return !request.resource.data.diff(resource.data).affectedKeys().hasAny(['essaiDebut'])
           || (!('essaiDebut' in resource.data)
@@ -81,8 +93,10 @@ service cloud.firestore {
       return !(champ in d) || d[champ] == null
           || (d[champ] is number && d[champ] >= 0 && d[champ] <= 10000000);
     }
+    // Le mode sans compte (12 nov. 2026) : un compte anonyme n'a pas d'adresse
+    // dans son jeton ; son resume porte alors une adresse vide.
     function resumeValide(d) {
-      return d.email == request.auth.token.email
+      return d.get('email', '') == request.auth.token.get('email', '')
           && texte(d, 'email', 254)
           && texte(d, 'firstName', 60)
           && nombre(d, 'masteredCount')
@@ -128,8 +142,8 @@ service cloud.firestore {
     match /users/{uid} {
       allow get: if proprietaire(uid) || isAdmin();
       allow list: if isAdmin();
-      allow create: if proprietaire(uid) && creeSansAccesReserves() && essaiDebutALaCreation();
-      allow update: if proprietaire(uid) && modifieSansAccesReserves() && essaiDebutALaModification();
+      allow create: if proprietaire(uid) && creeSansAccesReserves() && essaiDebutALaCreation() && lienALaCreation();
+      allow update: if proprietaire(uid) && modifieSansAccesReserves() && essaiDebutALaModification() && lienALaModification();
       allow delete: if proprietaire(uid);
       // L'admin ne modifie QUE les acces chez autrui (pas la progression,
       // pas essaiDebut).
