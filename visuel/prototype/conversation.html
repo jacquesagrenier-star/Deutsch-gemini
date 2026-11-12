@@ -100,6 +100,8 @@ details ul{padding-left:20px;margin:8px 0}
 .bulle{background:var(--carte);border:1px solid var(--bord);border-radius:18px 18px 18px 6px;padding:10px 13px;max-width:86%}
 .bulle .nom{font:800 12px var(--police);color:var(--gris);margin-bottom:2px}
 .bulle .de{font-size:18px;font-weight:800;line-height:1.35}
+[dir="ltr"].appris{unicode-bidi:isolate}
+html[dir="rtl"] .appris{text-align:right}
 .bulle .fr{font-size:14px;color:var(--gris);margin-top:4px}
 .outils{display:flex;gap:14px;margin-top:4px}
 .outils button{border:0;background:none;color:var(--turq);font:800 13px var(--police);padding:4px 0;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
@@ -462,7 +464,7 @@ async function replique(r){
   const img = el("img"); img.src = visage(qui, r.air || "sourire"); img.alt = ""; ligne.appendChild(img);
   const b = el("div", "bulle");
   b.appendChild(el("div", "nom", fr(PERS[qui].nom)));
-  const d = el("div", "de", t); d.lang = LANGUE; b.appendChild(d);
+  const d = el("div", "de appris", t); d.lang = LANGUE; d.dir = "ltr"; b.appendChild(d);
   const f = el("div", "fr", gabarit(trad(r), "fr")); f.hidden = true; b.appendChild(f);
   const outils = el("div", "outils");
   outils.appendChild(boutonHP(dit, qui));
@@ -477,7 +479,7 @@ function maReplique(c){
   const ligne = el("div", "ligne toi");
   const b = el("div", "bulle" + (c.faux ? " faux" : ""));
   b.appendChild(el("div", "nom", u("toi")));
-  const d = el("div", "de", gabarit(T(c, "t"), LANGUE)); d.lang = LANGUE; b.appendChild(d);
+  const d = el("div", "de appris", gabarit(T(c, "t"), LANGUE)); d.lang = LANGUE; d.dir = "ltr"; b.appendChild(d);
   b.appendChild(el("div", "fr", gabarit(trad(c), "fr")));
   ligne.appendChild(b); fil.appendChild(ligne); defiler();
 }
@@ -522,7 +524,7 @@ function montrerChoix(apresErreur){
   const ch = el("div", "choix" + (sansFilet && !apresErreur ? " cache" : ""));
   choixDe(noeud).forEach(c => {
     const b = el("button"); b.type = "button";
-    const t = el("b", null, gabarit(T(c, "t"), LANGUE)); t.lang = LANGUE; b.appendChild(t);
+    const t = el("b", "appris", gabarit(T(c, "t"), LANGUE)); t.lang = LANGUE; t.dir = "ltr"; b.appendChild(t);
     b.appendChild(el("span", null, gabarit(trad(c), "fr")));
     if (essayes(noeud).has(c.i)){ b.disabled = true; if (c.faux) b.classList.add("faux-essaye"); }
     b.onclick = () => choisir(c);
@@ -599,13 +601,13 @@ function fin(){
   if (S.erreurs.length){
     c.appendChild(el("h3", null, u("erreurs")));
     const ul = el("ul");
-    S.erreurs.forEach(e => { const li = el("li"); li.innerHTML = "<s>" + gabarit(T(e, "t"), LANGUE) + "</s> : " + loc(e.aide); ul.appendChild(li); });
+    S.erreurs.forEach(e => { const li = el("li"); li.innerHTML = '<s dir="ltr" class="appris">' + gabarit(T(e, "t"), LANGUE) + "</s> : " + loc(e.aide); ul.appendChild(li); });
     c.appendChild(ul);
   }
   c.appendChild(el("h3", null, u("phrases")));
   S.dit.filter(x => !x.faux && !x.repete).forEach(x => {
     const p = el("div", "phrase"), t = gabarit(T(x, "t"), LANGUE);
-    const b = el("b", null, t); b.lang = LANGUE; p.appendChild(b);
+    const b = el("b", "appris", t); b.lang = LANGUE; b.dir = "ltr"; p.appendChild(b);
     p.appendChild(boutonHP(t, "toi", ""));
     c.appendChild(p);
   });
@@ -622,7 +624,9 @@ async function liste(){
   document.getElementById("titre").textContent = u("jouer");
   const idx = await charger("conversation/donnees/index.json");
   // les lots en parallele : un lot pas encore ecrit (404) ne retarde pas les autres
-  const lots = await Promise.all(idx.lots.map(lot => charger("conversation/donnees/lot-" + lot + ".json").catch(() => null)));
+  // dans l'app, seulement les lots deja publies (index.json, « publies ») ; la page seule montre tout (maquette)
+  const visibles = DANS_APP ? idx.lots.filter(l => (idx.publies || []).includes(l)) : idx.lots;
+  const lots = await Promise.all(visibles.map(lot => charger("conversation/donnees/lot-" + lot + ".json").catch(() => null)));
   const toutes = [];
   lots.forEach(l => { if (l) l.conversations.forEach(e => toutes.push(e)); });
   ecran.textContent = "";
@@ -634,9 +638,11 @@ async function liste(){
   });
   c.appendChild(lg);
   let groupe = null;
-  for (const e of toutes){
-    if (!e.langues.includes(LANGUE)) continue;
-    const d = await charger("conversation/donnees/" + e.id + "." + LANGUE + ".json");
+  const ici = toutes.filter(e => e.langues.includes(LANGUE));
+  const donnees = await Promise.all(ici.map(e => charger("conversation/donnees/" + e.id + "." + LANGUE + ".json").catch(() => null)));
+  for (let k = 0; k < ici.length; k++){
+    const e = ici[k], d = donnees[k];
+    if (!d) continue;
     const g = d.parcours === "premiers-pas" ? u("pp") : d.parcours === "voyage" ? u("voyage") : d.niveau;
     if (g !== groupe){ c.appendChild(el("h2", null, g)); groupe = g; }
     const a = el("a"); a.href = adresse({ c: e.id, liste: "1" });
@@ -710,9 +716,13 @@ poserPaysage();
 (async () => {
   try{
     // les personnes : celles de tous les lots, fusionnees (personnes.json, puis personnes-<lot>.json s'il existe)
+    // les personnes : les communes (index.json), puis celles que chaque lot declare (« personnes » de lot-<id>.json) --
+    // jamais un fichier qui n'existe pas (un 404 compterait comme une erreur dans les parcours de l'app)
     PERS = {};
     const idx = await charger("conversation/donnees/index.json");
-    (await Promise.all(idx.personnes.map(f => charger("conversation/" + f).catch(() => null)))).forEach(x => { if (x) Object.assign(PERS, x); });
+    const lots = await Promise.all(idx.lots.map(l => charger("conversation/donnees/lot-" + l + ".json").catch(() => null)));
+    const fichiers = idx.personnes.concat(lots.filter(l => l && l.personnes).map(l => l.personnes));
+    (await Promise.all(fichiers.map(f => charger("conversation/" + f).catch(() => null)))).forEach(x => { if (x) Object.assign(PERS, x); });
     if (Q.get("c")){ C = await charger("conversation/donnees/" + Q.get("c") + "." + LANGUE + ".json"); presentation(); }
     else await liste();
   }catch(e){ ecran.textContent = u("introuvable"); }

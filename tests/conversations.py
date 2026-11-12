@@ -192,7 +192,16 @@ def plier_texte(s):
 def main():
     idx = json.load(io.open(os.path.join(DONNEES, "index.json"), encoding="utf-8"))
     personnes = {}
-    for f in idx["personnes"]:
+    fichiers = list(idx["personnes"])
+    for lot in idx["lots"]:
+        chemin = os.path.join(DONNEES, "lot-%s.json" % lot)
+        if os.path.exists(chemin):
+            pf = json.load(io.open(chemin, encoding="utf-8")).get("personnes")
+            if pf:
+                fichiers.append(pf)
+                if not os.path.exists(os.path.join(DOSSIER, pf)):
+                    erreurs.append("lot-%s.json declare %s, absent" % (lot, pf))
+    for f in fichiers:
         chemin = os.path.join(DOSSIER, f)
         if not os.path.exists(chemin):
             continue
