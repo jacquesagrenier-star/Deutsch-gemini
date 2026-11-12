@@ -207,7 +207,9 @@ service cloud.firestore {
       allow get: if true;
       allow list: if isAdmin();
       allow create: if isAdmin();
-      allow delete: if isAdmin();
+      // Un code UTILISE ne se supprime jamais, meme par l'admin (decision du
+      // 12 nov. 2026) : usedBy == uid est la seule preuve du testeur a vie.
+      allow delete: if isAdmin() && resource.data.used != true;
       // Un code se consomme une seule fois, et celui qui le consomme ne peut
       // toucher qu'aux trois champs de sa consommation.
       allow update: if connecte()

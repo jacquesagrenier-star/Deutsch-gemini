@@ -54856,8 +54856,29 @@ async function updateInviteCodeNote(code, note){
     }
 }
 
+// ⚠️ UN CODE UTILISE NE SE SUPPRIME JAMAIS (decision de Jacques du 12 nov. 2026,
+// « Oui, corrige »). Depuis le mode sans compte, `inviteCodes/<code>.usedBy == uid`
+// est la SEULE preuve du testeur gratuit a vie (codeInvitationConsomme) :
+// supprimer le code ferait passer la personne en essai de 7 jours au lancement,
+// sans aucun message. Le bouton n'est dessine que sur les codes disponibles, et
+// on relit le document avant d'effacer (la liste a pu vieillir : un code peut
+// avoir ete consomme depuis son affichage). Les regles Firestore le refusent
+// aussi (delete seulement si used != true).
 async function deleteInviteCode(code){
     if(!isAdminUser()) return;
+    try{
+        const ref = window.fsDoc(window.firestoreDb, 'inviteCodes', code);
+        const snap = await window.fsGetDoc(ref);
+        if(!snap.exists()){ renderAdminCodesList(); return; }
+        if(snap.data().used === true){
+            showInfoToast("Ce code a été utilisé : il prouve le testeur à vie, il ne se supprime pas.");
+            renderAdminCodesList();
+            return;
+        }
+    }catch(e){
+        showInfoToast(t('admin_action_failed'));
+        return;
+    }
     if(!confirm(tf('admin_confirm_delete_code', { code }))) return;
     try{
         await window.fsDeleteDoc(window.fsDoc(window.firestoreDb, 'inviteCodes', code));
@@ -54878,7 +54899,6 @@ async function renderAdminCodesList(){
         const snap = await window.fsGetDocs(window.fsCollection(window.firestoreDb, 'inviteCodes'));
         const codes = [];
         snap.forEach(d => codes.push({ id: d.id, ...d.data() }));
-        codes.sort((a, b) => (a.used === b.used) ? 0 : (a.used ? 1 : -1));
         if(codes.length === 0){
             container.textContent = t('admin_no_codes');
             return;
@@ -54886,7 +54906,14 @@ async function renderAdminCodesList(){
         // Les codes sont crees par l'admin seul (regle inviteCodes), mais on ne
         // dessine que ceux qui ont la forme d'un code : l'identifiant finit
         // dans des onclick.
-        container.innerHTML = codes.filter(c => idSurCompte(c.id)).map(c => `
+        const valides = codes.filter(c => idSurCompte(c.id));
+        // Les codes disponibles en haut, avec leurs liens et SUPPRIMER ; les
+        // codes utilises regroupes et replies en bas, avec leur note seule :
+        // jamais de SUPPRIMER sur eux (voir deleteInviteCode).
+        const disponibles = valides.filter(c => c.used !== true);
+        const utilises = valides.filter(c => c.used === true)
+            .sort((a, b) => String(a.note || "").localeCompare(String(b.note || ""), "fr") || a.id.localeCompare(b.id));
+        const ligne = c => `
             <div class="admin-code-row" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid rgba(30,41,59,.1);">
                 <div style="flex:1; min-width:0;">
                     <div style="font-weight:800; letter-spacing:1px;">${c.id}</div>
@@ -54897,9 +54924,16 @@ async function renderAdminCodesList(){
                         <button class="secondary" style="width:auto; padding:7px 12px; font-size:12px;" onclick="copierLienInvitation('${c.id}', 'es', this)">LIEN ESPAGNOL</button>
                     </div>`}
                 </div>
-                <button class="secondary danger" style="width:auto; padding:8px 14px; font-size:12px; flex:none;" onclick="deleteInviteCode('${c.id}')" data-i18n="admin_delete_code_btn">SUPPRIMER</button>
+                ${c.used ? "" : `<button class="secondary danger" style="width:auto; padding:8px 14px; font-size:12px; flex:none;" onclick="deleteInviteCode('${c.id}')" data-i18n="admin_delete_code_btn">SUPPRIMER</button>`}
             </div>
-        `).join("");
+        `;
+        container.innerHTML = disponibles.map(ligne).join("")
+            + (utilises.length ? `
+            <details class="admin-codes-utilises" style="margin-top:14px; border-top:1px solid rgba(30,41,59,.18); padding-top:10px;">
+                <summary style="cursor:pointer; font-weight:800; padding:6px 0; min-height:36px; display:flex; align-items:center;">Codes utilisés (${utilises.length}) ›</summary>
+                <small style="display:block; color:#4C566B; margin:4px 0 6px;">Ils prouvent le testeur à vie : ils restent, et ne se suppriment pas.</small>
+                ${utilises.map(ligne).join("")}
+            </details>` : "");
     }catch(e){
         adminEtatErreur(container, renderAdminCodesList);
     }

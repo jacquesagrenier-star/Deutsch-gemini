@@ -63,22 +63,27 @@ et sur les cinq branches en file.
 ## Éprouvé avant d'être proposé
 
 Dans l'émulateur Firebase local (un projet fictif, rien n'est parti vers le
-vrai Firebase), 241 cas, avec le SDK de l'app (146 pour l'audit, 49 pour
+vrai Firebase), 245 cas, avec le SDK de l'app (146 pour l'audit, 49 pour
 l'abonnement, 16 pour le mode sans compte, 30 pour la forme des documents de
-progression) :
+progression, 4 pour les codes d'invitation utilisés) :
 
-- **Nouvelles règles : 241 sur 241.** Toutes les écritures normales passent
+- **Nouvelles règles : 245 sur 245.** Toutes les écritures normales passent
   (inscription, sauvegarde, résumé, notifications, suppression du compte,
   boutons admin, « Reconstruire les résumés », codes d'invitation, début de
   l'essai écrit par l'app, accès offert par l'admin puis sauvegarde ordinaire,
   compte sans compte, la sauvegarde réelle complète dans les cinq langues,
   un compte ancien avec ses clés d'autrefois),
   et toutes les attaques sont refusées.
-- **Règles actuelles : 114 cas sur 241 donnent un autre résultat** (attaques qui passent (prénom trop long, compteur en
+- **Anciennes règles (en ligne jusqu'au 12 nov., 15 h 03) : 114 cas sur 241 donnent un autre résultat** (attaques qui passent (prénom trop long, compteur en
   texte, champ inconnu, adresse d'un autre, essai ou VHS auto-attribué,
   accès à vie ou 4 mois offerts à soi-même, début d'essai réécrit, clé
   inconnue de 900 000 caractères dans une progression…, et les écritures du
   mode sans compte, qu'elles ne connaissent pas).
+- **Codes d'invitation utilisés (12 nov. 2026)** : les règles en ligne depuis
+  15 h 03 laissent l'admin supprimer un code utilisé (244 sur 245, seul échec
+  « l'admin supprime un code utilisé : refusé »). Un code utilisé est la seule
+  preuve du testeur à vie (`usedBy == uid`) : `allow delete: if isAdmin() &&
+  resource.data.used != true;` le refuse, l'app aussi (`deleteInviteCode`).
 
 Le banc d'essai se relance ainsi (Java et Firebase CLI sont installés) :
 `securite/essai-regles/` → voir son `LISEZ-MOI.md`.

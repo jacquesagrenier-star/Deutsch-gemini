@@ -201,14 +201,19 @@ function resume(email, extra){
         await cas(coll + " : suppression", true, () => deleteDoc(doc(anna, coll, "annaUid")));
     }
 
-    console.log("CODES D'INVITATION (inchanges)");
-    await env.withSecurityRulesDisabled(async c => { await setDoc(doc(c.firestore(), "inviteCodes", "ABCD2345"), { used: false, note: "" }); });
+    console.log("CODES D'INVITATION");
+    await env.withSecurityRulesDisabled(async c => { const db = c.firestore(); await setDoc(doc(db, "inviteCodes", "ABCD2345"), { used: false, note: "" }); await setDoc(doc(db, "inviteCodes", "WWWW2345"), { used: false, note: "" }); });
     await cas("anonyme verifie un code", true, () => getDoc(doc(anonyme, "inviteCodes", "ABCD2345")));
     await cas("anonyme liste les codes : refuse", false, () => getDocs(collection(anonyme, "inviteCodes")));
     await cas("le nouvel inscrit consomme le code", true, () => updateDoc(doc(anna, "inviteCodes", "ABCD2345"), { used: true, usedAt: serverTimestamp(), usedBy: "annaUid" }));
     await cas("un second le reconsomme : refuse", false, () => updateDoc(doc(bob, "inviteCodes", "ABCD2345"), { used: true, usedAt: serverTimestamp(), usedBy: "bobUid" }));
     await cas("l'admin cree un code", true, () => setDoc(doc(admin, "inviteCodes", "ZZZZ2345"), { used: false, note: "", createdAt: serverTimestamp(), createdBy: ADMIN_EMAIL }));
     await cas("un testeur cree un code : refuse", false, () => setDoc(doc(anna, "inviteCodes", "YYYY2345"), { used: false }));
+    // 12 nov. 2026 : un code utilise prouve le testeur a vie, il ne se supprime pas.
+    await cas("l'admin supprime un code utilise : refuse", false, () => deleteDoc(doc(admin, "inviteCodes", "ABCD2345")));
+    await cas("l'admin supprime un code disponible", true, () => deleteDoc(doc(admin, "inviteCodes", "ZZZZ2345")));
+    await cas("un testeur supprime un code disponible : refuse", false, () => deleteDoc(doc(anna, "inviteCodes", "WWWW2345")));
+    await cas("un testeur supprime son code utilise : refuse", false, () => deleteDoc(doc(anna, "inviteCodes", "ABCD2345")));
     await cas("collection inconnue : refuse", false, () => setDoc(doc(anna, "autre", "x"), { a: 1 }));
 
     await env.cleanup();
