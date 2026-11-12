@@ -158,7 +158,7 @@ def main():
                     juge.append("pas en premiere semaine")
                 if th and th.get("nom") == "familia":
                     juge.append("la famille")
-                SIMPLES = {"cuerpo": ["tocar", "nombrar"], "animales": ["nom", "entendre"], "contrarios": ["comment", "cual", "entendre"], "emociones": ["quien"]}
+                SIMPLES = {"cuerpo": ["tocar", "nombrar"], "animales": ["nom", "entendre"], "contrarios": ["comment", "cual", "entendre"], "emociones": ["quien", "commentEst"]}
                 for v in r["vu"]:
                     if v["quoi"] == "THEME" and v.get("ouverture") != "decouverte":
                         juge.append("theme sans decouverte")
