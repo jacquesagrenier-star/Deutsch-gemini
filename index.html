@@ -3497,7 +3497,9 @@ html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclic
 /* Un kana seul au recto : grand, comme on le voit sur une affiche. */
 .word.kana-ja{ font-size: 4.4rem !important; line-height: 1.15; }
 .trace-ja{ display: block; width: 92px; height: 92px; margin: 8px auto 0; background: #fff; border-radius: 10px; }
-body[data-theme="dark"] .trace-ja{ filter: invert(1); background: #000; }
+/* La nuit, l'image entiere est inversee, son fond compris : un fond blanc devient noir et les traits noirs blancs.
+   (Un fond noir devenait blanc comme les traits : carre blanc, numeros seuls, signale pendant le lot J3.) */
+body[data-theme="dark"] .trace-ja{ filter: invert(1); background: #fff; }
 .forme-ja small{ opacity: .72; }
 .forme-ja .lj-kana{ opacity: .72; }
 /* ============ L'ANGLAIS (essai admin, 27 oct. 2026) ============
