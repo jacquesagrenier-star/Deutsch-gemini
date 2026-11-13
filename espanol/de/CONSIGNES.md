@@ -89,7 +89,7 @@ avec le français, et ajoute la comparaison avec l'allemand quand elle aide vrai
 comparaison fausse est pire que pas de comparaison. Repères :
 
 - **Genre** : deux genres (el / la), pas de neutre, et ils ne coïncident pas avec l'allemand :
-  el sol / die Sonne, la luna / der Mond, el coche / das Auto, la leche / die Milch,
+  el sol / die Sonne, la luna / der Mond, el coche / das Auto, la sal / das Salz,
   el problema (masculin malgré le -a). **Pas de déclinaison** : el / la / los / las ne changent
   jamais selon le cas (pas de der/den/dem) — un vrai soulagement à dire.
 - **Adjectif** : en général APRÈS le nom (una casa blanca), et il s'accorde **aussi en

@@ -141,6 +141,15 @@ function extraireOral(){
         for (const k of Object.keys(o)) if (k !== "de") marche(o[k], chemin + "." + k);
         return;
       }
+      // un tour de la planification (PLAN.<sujet>.tours) : {m, a2: [allemand, francais, anglais], b1: [...]}.
+      // Oublie jusqu'au 13 nov. 2026 : les 30 reponses modeles s'affichaient en francais dans les 7 langues
+      // (releve par la traduction portugaise du cahier telc).
+      const triplet = x => Array.isArray(x) && x.length === 3 && x.every(s => typeof s === "string");
+      if (triplet(o.a2) || triplet(o.b1)){
+        for (const niv of ["a2", "b1"]) if (triplet(o[niv])) ajouter(o[niv][2], o[niv][1], "oral:" + chemin + "." + niv);
+        for (const k of Object.keys(o)) if (k !== "a2" && k !== "b1") marche(o[k], chemin + "." + k);
+        return;
+      }
       for (const k of Object.keys(o)) marche(o[k], chemin + "." + k);
     })(v, n);
   });
