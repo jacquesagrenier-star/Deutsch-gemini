@@ -45657,25 +45657,8 @@ async function restoreProgressFromCloud(){
             if(typeof data.mosaique === "string" && data.mosaique){
                 const d = JSON.parse(data.mosaique);
                 if(d && typeof d === "object"){
-                    const l = etatMosaique();
-                    const rd = d.r || 1, cd = d.c || 0;
-                    const distantDevant = rd > l.r || (rd === l.r && cd > l.c) || (rd === l.r && cd === l.c && (d.cn || 0) > (l.cn || 0));
-                    const gagnes = Array.from(new Set([...(l.g || []), ...(Array.isArray(d.g) ? d.g : [])]))
-                        .sort((a, b) => a - b);
-                    // v941 : `b` (le passage au tableau suivant, attendu le lendemain), et
-                    // `s` / `h` (la serie et l'heritage de l'espagnol, v791) voyagent
-                    // aussi -- perdus ici, `s` absent relancait migrerMosaiqueEspagnole()
-                    // sur un etat deja migre.
-                    const retenu = distantDevant
-                        ? { r: rd, c: cd, j: d.j || "", n: d.n || 0, t: d.t || 0, tj: d.tj || "",
-                            // un etat distant SANS serie date d'avant la v791 : il doit
-                            // etre migre a la lecture, on ne lui prete pas celle d'ici.
-                            b: d.b || "", s: d.s || "", h: Array.isArray(d.h) ? d.h : [], cn: d.cn || 0 }
-                        : { r: l.r, c: l.c, j: l.j, n: l.n, t: l.t, tj: l.tj,
-                            b: l.b || "", s: l.s || "", h: l.h || [], cn: l.cn || 0 };
-                    retenu.g = gagnes;
-                    retenu.x = Math.max(l.x || 0, d.x || 0);
-                    if(distantDevant || gagnes.length !== (l.g || []).length || retenu.x !== (l.x || 0)){
+                    const retenu = fusionnerMosaique(etatMosaique(), d);
+                    if(retenu){
                         ecrireMosaique(retenu);
                         try{ majMosaiqueAccueil(); }catch(e){}
                     }
@@ -65670,7 +65653,7 @@ function chargerMosaiques(){
 }
 
 // { r: rang courant, c: carreaux poses, j: jour, n: poses aujourd'hui,
-//   g: [rangs gagnes], t: seances restantes du trophee }
+//   g: [rangs gagnes], t: jours d'ouverture restants du trophee, jour compte inclus }
 // ⚠️ DIX CARREAUX D'AVANCE AU TOUT PREMIER JOUR. Demande de Jacques :
 // « pour que son esprit se dise : ok, on est en train de construire quelque
 // chose ». Une grille intacte se lit comme un depart a zero ; dix carreaux
@@ -65694,21 +65677,95 @@ function etatMosaique(){
     // herites, dans leur ordre ; ils occupent les premieres places de la liste
     // espagnole (v791). Les deux voyagent avec la sauvegarde, comme le reste.
     // `b` : LE JOUR OU LE TROPHEE S'EST ACHEVE (v941). Le tableau suivant n'arrive
-    // que le LENDEMAIN, a la premiere lecture de l'etat -- voir seanceMosaiqueTerminee().
+    // que le LENDEMAIN, a la premiere lecture de l'etat -- plus pose depuis le 13 nov. 2026, lu pour les etats anciens.
     const etat = { r: v.r || 1, c: v.c || 0, j: v.j || "", n: v.n || 0,
              g: Array.isArray(v.g) ? v.g : [], t: v.t || 0, tj: v.tj || "", x: v.x || 0,
              s: v.s || "", h: Array.isArray(v.h) ? v.h : [], b: v.b || "", cn: v.cn || 0 };
     if(LANGUE_APPRISE === "es" && etat.s !== "es") return migrerMosaiqueEspagnole(etat, existait);
-    if(etat.b && etat.b !== getTodayStr()){
-        etat.r = etat.r + 1;
-        // v1061 : LE SUIVANT GARDE SON AVANCE. Commence pendant le trophee (`cn`), il arrive deja entame.
-        etat.c = etat.cn || 0;
-        etat.cn = 0;
-        etat.tj = "";
-        etat.b = "";
+    const jour = getTodayStr();
+    // `b` : un etat ecrit avant le 13 nov. 2026 (le dernier jour decompte en fin de seance). Il bascule comme avant.
+    if(etat.b && etat.b !== jour){
+        basculerMosaique(etat);
+        ecrireMosaique(etat);
+        return etat;
+    }
+    // ⚠️ LE TROPHEE SE COMPTE EN JOURS D'OUVERTURE DE L'APP. Decision de Jacques, 13 nov. 2026 : « c'est
+    // 3 jours reels ou on ouvre l'application » ; un jour sans ouverture ne compte pas, et il n'est pas necessaire
+    // de finir une seance. Jusqu'ici le jour ne se comptait qu'en sortant des cartes par handleFlashcardBack()
+    // (« TERMINER » ou « ‹ ») : fermer l'app sur l'ecran de fin -- le geste naturel sur un telephone -- ne
+    // decomptait rien, et le tableau restait a « 3/3 » des jours durant (Jacques, espagnol, iPhone v1182). La
+    // premiere lecture de l'etat dans une journee est l'ouverture : a l'accueil, ou au retour au premier plan
+    // (majMosaiqueAccueil, visibilitychange). Le jour de la victoire est le jour 1 (`tj`, v1062) ; le 4e jour
+    // d'ouverture, le tableau suivant est la des la premiere image de l'accueil.
+    if(etat.t > 0 && etat.tj !== jour){
+        if(etat.tj) etat.t -= 1;      // sans `tj` (etat tres ancien) : ce jour devient le jour compte, sans decompte
+        etat.tj = jour;
+        if(etat.t <= 0) basculerMosaique(etat);
+        ecrireMosaique(etat);
+        return etat;
+    }
+    // ⚠️ UN TABLEAU GAGNE SANS TROPHEE NI FIN NE BASCULERAIT JAMAIS : « 3/3 » pour toujours. Jusqu'au 13 nov. 2026, la
+    // fusion du nuage pouvait le fabriquer (le tableau gagne d'un cote, encore en cours de l'autre, et c'est l'autre
+    // qui gardait `t`). On le montre aujourd'hui, le suivant arrive au prochain jour d'ouverture.
+    if(etat.t <= 0 && !etat.b && etat.g.indexOf(etat.r) >= 0){
+        etat.t = 1;
+        etat.tj = jour;
         ecrireMosaique(etat);
     }
     return etat;
+}
+
+// Le tableau suivant arrive. v1061 : IL GARDE SON AVANCE -- commence pendant le trophee (`cn`), il arrive deja entame.
+function basculerMosaique(etat){
+    etat.r = etat.r + 1;
+    etat.c = etat.cn || 0;
+    etat.cn = 0;
+    etat.t = 0;
+    etat.tj = "";
+    etat.b = "";
+}
+
+// LA MOSAIQUE DU NUAGE, FUSIONNEE ET NON ECRASEE (v666), appelee par restoreProgressFromCloud(). On garde l'image
+// la plus avancee -- rang d'abord, puis carreaux poses -- et la REUNION des tableaux gagnes. Le dernier qui parle
+// n'a pas raison : un navigateur tout neuf a dix carreaux ne doit jamais effacer l'image de l'icone.
+// Rend l'etat a ecrire, ou null si l'etat local ne change pas.
+function fusionnerMosaique(l, d){
+    const rd = d.r || 1, cd = d.c || 0;
+    const distantDevant = rd > l.r || (rd === l.r && cd > l.c) || (rd === l.r && cd === l.c && (d.cn || 0) > (l.cn || 0));
+    const gagnes = Array.from(new Set([...(l.g || []), ...(Array.isArray(d.g) ? d.g : [])]))
+        .sort((a, b) => a - b);
+    // v941 : `b` (le passage au tableau suivant, attendu le lendemain), et
+    // `s` / `h` (la serie et l'heritage de l'espagnol, v791) voyagent
+    // aussi -- perdus ici, `s` absent relancait migrerMosaiqueEspagnole()
+    // sur un etat deja migre.
+    const retenu = distantDevant
+        ? { r: rd, c: cd, j: d.j || "", n: d.n || 0, t: d.t || 0, tj: d.tj || "",
+            // un etat distant SANS serie date d'avant la v791 : il doit
+            // etre migre a la lecture, on ne lui prete pas celle d'ici.
+            b: d.b || "", s: d.s || "", h: Array.isArray(d.h) ? d.h : [], cn: d.cn || 0 }
+        : { r: l.r, c: l.c, j: l.j, n: l.n, t: l.t, tj: l.tj,
+            b: l.b || "", s: l.s || "", h: l.h || [], cn: l.cn || 0 };
+    retenu.g = gagnes;
+    retenu.x = Math.max(l.x || 0, d.x || 0);
+    // ⚠️ LE TROPHEE NE REMONTE JAMAIS (13 nov. 2026). Sur le meme tableau, l'etat retenu etait celui qui avait le plus
+    // de carreaux -- `cn` compris, les carreaux du tableau suivant -- et il apportait SON trophee : un second appareil
+    // reste en arriere (ou une sauvegarde plus ancienne) qui avait pose quelques cartes de plus faisait revenir
+    // « 2/3 » apres « 3/3 », ou gardait `t = 0` d'un cote ou le tableau n'etait pas encore gagne -- et ce tableau-la,
+    // gagne sans trophee, ne basculait plus jamais. Le trophee se fusionne a part : la fin la plus tot, sinon le
+    // decompte le plus avance (le moins de jours restants, le jour compte le plus recent), sinon le seul cote qui l'a.
+    if(rd === l.r){
+        const fins = [l.b, d.b].filter(Boolean).sort();
+        const enCours = [l, d].filter(e => (e.t || 0) > 0);
+        if(fins.length){ retenu.b = fins[0]; retenu.t = 0; }
+        else if(enCours.length){
+            retenu.t = Math.min(...enCours.map(e => e.t));
+            retenu.tj = enCours.map(e => e.tj || "").sort().pop();
+        }
+        retenu.cn = Math.max(l.cn || 0, d.cn || 0);
+    }
+    const change = distantDevant || gagnes.length !== (l.g || []).length || retenu.x !== (l.x || 0)
+        || retenu.t !== (l.t || 0) || retenu.tj !== (l.tj || "") || retenu.b !== (l.b || "") || retenu.cn !== (l.cn || 0);
+    return change ? retenu : null;
 }
 
 // L'HERITAGE (v791). Jusqu'a la v790, l'espagnol montrait la collection
@@ -66218,41 +66275,15 @@ function carreauAuDepart(quittee){
     if(!deja) poserCarreau();
 }
 
-// Appelee a la fin d'une seance : fait avancer le compte des seances du trophee
-// et bascule sur l'image suivante quand il est ecoule.
-// ⚠️ LE TROPHEE SE COMPTE EN JOURS D'ACTIVITE, PLUS EN VISITES (v629).
-// Cette fonction part a chaque sortie de l'ecran des cartes. Sans garde de
-// date, trois passages dans le meme apres-midi consommaient les trois jours du
-// trophee en une heure -- et l'app se contredisait elle-meme, puisque son
-// etiquette dit « Ma seance DU JOUR » : dans la tete de quelqu'un, une seance
-// EST une journee. Signale par Jacques, qui ne comprenait plus si on comptait
-// en jours ou en seances. La reponse etait : les deux, selon l'endroit.
-//
-// Les deux protections d'origine tiennent toujours, et c'est le point :
-//   - une journee SANS activite ne decompte rien (l'absence ne punit pas --
-//     c'est pour ca que ce n'est pas un compte a rebours de calendrier) ;
-//   - trois visites le MEME jour comptent pour une (l'assiduite non plus).
+// Appelee a la sortie des cartes (handleFlashcardBack).
+// ⚠️ ELLE NE DECOMPTE PLUS RIEN (13 nov. 2026). Le trophee se compte en JOURS D'OUVERTURE de l'app, a la premiere
+// lecture de l'etat dans la journee : voir etatMosaique(). Le compte d'ici ne partait que par « TERMINER » ou « ‹ » ;
+// fermer l'app sur l'ecran de fin ne decomptait rien, et le tableau espagnol de Jacques est reste a « 3/3 ».
+// Ce qui tient toujours (v629) : une journee sans ouverture ne compte pas, et dix ouvertures le meme jour en font une.
+// v941 tient aussi, autrement : le tableau suivant n'arrive jamais en milieu de journee, mais a la premiere image
+// du jour qui suit le dernier jour du trophee.
 function seanceMosaiqueTerminee(){
-    const v = etatMosaique();
-    if(v.t <= 0) return;
-    const jour = getTodayStr();
-    if(v.tj === jour) return;
-    v.tj = jour;
-    v.t -= 1;
-    if(v.t === 0){
-        // v941 : LE TABLEAU SUIVANT ARRIVE LE LENDEMAIN MATIN, PAS ICI. Jacques,
-        // 24 oct. 2026 : « j'ai commence la journee avec mon tableau complete et je
-        // viens de passer au nouveau ; j'aurais du avoir la nouvelle mosaique en
-        // debut de seance ». Ce passage se faisait a la FIN de la seance du dernier
-        // jour : le tableau changeait en plein milieu de la journee. On note le jour
-        // (`b`) ; etatMosaique() bascule a la premiere lecture du jour suivant, avant
-        // le premier rendu de l'accueil. Le trophee reste donc visible toute sa
-        // derniere journee, et rien ne s'accumule jusque-la (poserCarreau).
-        // ⚠️ LE SUIVANT REPART TOUJOURS DE ZERO : les cartes du trophee n'ont rien
-        // accumule, `c = 0` est la verite.
-        v.b = jour;
-    }
-    ecrireMosaique(v);
+    etatMosaique();   // compte le jour s'il ne l'est pas encore (minuit passe pendant la seance)
     // ⚠️ SANS CETTE LIGNE, LE NOUVEAU TABLEAU N'APPARAIT PAS. Le redessin de
     // l'accueil est reporte tant qu'on n'y est pas, et c'est poserCarreau() qui
     // levait le drapeau -- par effet de bord, en accumulant. Depuis que rien ne
@@ -66693,7 +66724,7 @@ function majMosaiqueAccueil(){
         // ⚠️ ON NE REMET PAS LE COMPTEUR A ZERO ICI. C'etait le defaut trouve
         // a l'essai : remis a zero, `fini` redevenait faux au rendu suivant et
         // le trophee disparaissait avant son premier jour. C'est
-        // seanceMosaiqueTerminee() qui le ramene, quand le trophee s'acheve.
+        // etatMosaique() qui le ramene, au jour d'ouverture qui suit le dernier.
         if(vientDeGagner){
             v.g.push(v.r);
             v.t = MOSAIQUE_SEANCES_TROPHEE;
