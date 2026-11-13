@@ -1,10 +1,26 @@
 # App Check et limites : ce que Jacques clique (préparé le 12 nov. 2026)
 
-**État au 12 nov. 2026** : les règles Firestore sont en ligne (15 h 03).
-Étape 1 faite : Jacques a créé la clé « Wortando » (Web, sans défi, sans clé
-de test, sans WAF ; les quatre domaines ci-dessous), identifiant
-`6Ld7OB0uAAAAAJLkvanggKLwCwnrvdSqeh39TJWu`, posé dans `APP_CHECK_CLE`
-(version qui suit la v1181). Restent les étapes 2 à 4, après cette version.
+**État au 13 nov. 2026 : App Check est EN SURVEILLANCE, rien n'est imposé.**
+- Règles Firestore en ligne depuis le 12 nov., 15 h 03.
+- Étape 1 faite (12 nov.) : la clé « Wortando » (Web, sans défi, sans clé de
+  test, sans WAF ; les quatre domaines ci-dessous), identifiant
+  `6Ld7OB0uAAAAAJLkvanggKLwCwnrvdSqeh39TJWu`, dans `APP_CHECK_CLE`.
+- Étape 2 faite (13 nov. au matin) : Jacques a enregistré l'app web
+  « DeutschAI » dans App Check, fournisseur « Fraud Defense (anciennement
+  reCAPTCHA Enterprise) », état « Enregistrée », jeton d'un jour, **aucun
+  Enforce**.
+- **v1183 en ligne** (0240336, 13 nov., 9 h 48). Sonde du 13 nov., 9 h 53, en
+  lecture seule, sur wortando.com, www.wortando.com et
+  deutsch-gemini.pages.dev : App Check « actif », l'échange
+  `content-firebaseappcheck` répond **200** (jeton obtenu), aucun 403, aucune
+  erreur de page. La veille, avant l'enregistrement, il répondait 403.
+- Restent les étapes 3 (alerte de budget) et 4 (quota par IP), à faire par
+  Jacques.
+
+> ⏰ **Rappel : entre le 20 et le 27 nov. 2026, regarder les métriques
+> App Check** (App Check → APIs : part des demandes vérifiées pour Cloud
+> Firestore et Authentication, apps iPhone et Android surtout ; voir
+> l'étape 5) **avant toute idée d'Enforce. Seul Jacques décide d'imposer.**
 
 **Rien ne s'active avant le feu vert du chef.** L'ordre compte : d'abord la
 clé (étape 1), ensuite l'app qui la porte (une version publiée par Claude),
@@ -72,6 +88,9 @@ dépense anormale, quelle qu'en soit la cause.
    connexion (le cours de Marina) crée plusieurs comptes d'un coup.
 
 ## 5. Plus tard : imposer (après 7 à 14 jours de surveillance)
+
+**Fenêtre : du 20 au 27 nov. 2026** (surveillance commencée le 13 nov.).
+Imposer est une décision de **Jacques seul**, prise sur ces chiffres.
 
 Dans **App Check → APIs**, Firebase montre pour **Cloud Firestore** et
 **Authentication** la part des demandes vérifiées. On regarde ensemble :
