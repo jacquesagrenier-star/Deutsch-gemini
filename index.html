@@ -72527,7 +72527,8 @@ const PAYSAGES_SEANCE = {"pp":{"ar":"M0 100V62C40 44 86 40 130 56S226 78 320 48V
 const TEINTES_PAYSAGE = { pp:"#5E9B1E", rev:"#2565C9", mots:"#E0791A", conj:"#8A3FD1", scene:"#0B9AA0", theme:"#D6336F", son:"#C99A06", conv:"#A0522D" };
 // Le portugais aussi (lot P1, 11 nov. 2026, alignement des langues) : les paysages sont des dessins, les noms des
 // parties des textes d'interface (seance_court_*) ; rien n'y depend de la langue apprise.
-function repereSeanceDispo(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt" || LANGUE_APPRISE === "ja"; }
+// L'anglais aussi (12 nov. 2026 : deux testeurs Android en anglais n'avaient pas « les nouveaux fonds d'ecran »).
+function repereSeanceDispo(){ return LANGUE_APPRISE === "de" || LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt" || LANGUE_APPRISE === "ja" || LANGUE_APPRISE === "en"; }
 function nomCourtPartie(p){ p = groupePartie(p); return t("seance_court_" + (GROUPES_SEANCE.indexOf(p) >= 0 ? p : "cartes")); }
 // Un paysage par partie, parmi ceux choisis le 10 nov. : les montgolfieres pour les cartes (les pousses en Premiers pas),
 // le phare pour la grammaire, la ville pour les images, le banc du parc pour les conversations.
