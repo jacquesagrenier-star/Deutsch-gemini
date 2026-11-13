@@ -1868,9 +1868,15 @@ def verifier_typographie_langues(r):
     genre = [(f, c, s) for f, c, s in genre_lecteur.relever(genre_lecteur.PERIMETRE) if c.strip() not in ok]
     for f, c, s in genre:
         r.echec("langues", "%s : lecteur au masculin (%s) : %s" % (f, " / ".join(x[1] for x in s), c[:90]))
-    r.controle(2)
-    print("   langues       : %d fichier(s) a apostrophe droite en ukrainien, %d texte(s) au masculin pour le lecteur"
-          % (len(restes), len(genre)))
+    # 3. Lot 90 : apres une preposition, le cas allemand porte son nom allemand (« mit + Dativ »), jamais le
+    #    cas polonais / ukrainien / russe, qui fait croire a une equivalence fausse (tests/cas_allemands.py).
+    import cas_allemands
+    cas = cas_allemands.relever()
+    for f, x, t in cas:
+        r.echec("langues", "%s : cas local apres une preposition (%s) : %s" % (f, x, t[:90]))
+    r.controle(3)
+    print("   langues       : %d fichier(s) a apostrophe droite en ukrainien, %d texte(s) au masculin pour le lecteur, "
+          "%d cas local apres une preposition" % (len(restes), len(genre), len(cas)))
 
 
 def main():
