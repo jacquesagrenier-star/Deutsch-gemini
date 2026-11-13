@@ -9693,6 +9693,9 @@ body[data-theme="dark"] .flash-end-objectif:not(.atteint){color:#A9B8C4;}
 .cp-dic{display:flex; flex-direction:column; gap:6px; font-weight:500;}
 .cp-dic p{margin:0;}
 .cp-dic-titre{font-weight:800; color:#8A5A00;}
+/* 13 nov. 2026 : « N'oublie pas l'accent : está », dans l'orange du « Presque ! », sous Bravo comme sous la correction. */
+.cp-rem-accent{margin:0 0 6px;}
+.cp-explication .cp-rem-accent, .feedback .cp-rem-accent{margin:4px 0 6px;}
 .cp-dic-sous{font-weight:500; font-size:13.5px; color:#7a4f06;}
 .cp-dic-lib{font-weight:700; color:#566070; font-size:13.5px;}
 .cp-dic-ecrit{color:#1C2430;}
@@ -15722,6 +15725,10 @@ const I18N = {
         cp_reponse: "La bonne réponse :",
         cp_tu_as_ecrit: "Tu as écrit :",
         cp_presque: "Une petite faute de frappe : on la compte juste.",
+        rem_accent: "N'oublie pas l'accent : {m}",
+        rem_trema: "N'oublie pas le tréma : {m}",
+        rem_accent_faux: "C'est l'accent qui manque : {m}",
+        rem_trema_faux: "C'est le tréma qui manque : {m}",
         ra_consigne_choisir: "Comment dit-on…",
         ra_bravo_1: "Bravo !",
         ra_bravo_2: "Exact !",
@@ -17550,6 +17557,10 @@ const I18N = {
         cp_reponse: "The right answer:",
         cp_tu_as_ecrit: "You wrote:",
         cp_presque: "Just a small typo: we count it as right.",
+        rem_accent: "Don't forget the accent: {m}",
+        rem_trema: "Don't forget the umlaut: {m}",
+        rem_accent_faux: "It's the accent that's missing: {m}",
+        rem_trema_faux: "It's the umlaut that's missing: {m}",
         ra_consigne_choisir: "How do you say…",
         ra_bravo_1: "Well done!",
         ra_bravo_2: "Exactly!",
@@ -19379,6 +19390,10 @@ const I18N = {
         cp_reponse: "Doğru cevap:",
         cp_tu_as_ecrit: "Senin yazdığın:",
         cp_presque: "Küçük bir yazım hatası: doğru sayıyoruz.",
+        rem_accent: "Harfin üstündeki işareti unutma: {m}",
+        rem_trema: "Harfin üstündeki iki noktayı unutma: {m}",
+        rem_accent_faux: "Eksik olan, harfin üstündeki işaret: {m}",
+        rem_trema_faux: "Eksik olan, harfin üstündeki iki nokta: {m}",
         ra_consigne_choisir: "Nasıl denir…",
         ra_bravo_1: "Aferin!",
         ra_bravo_2: "Tam olarak!",
@@ -21626,6 +21641,10 @@ const I18N = {
         cp_reponse: "Правильна відповідь:",
         cp_tu_as_ecrit: "Ти написав(-ла):",
         cp_presque: "Невелика описка: зараховуємо як правильно.",
+        rem_accent: "Не забувай про знак над літерою: {m}",
+        rem_trema: "Не забувай про дві крапки над літерою: {m}",
+        rem_accent_faux: "Бракує знака над літерою: {m}",
+        rem_trema_faux: "Бракує двох крапок над літерою: {m}",
         ra_consigne_choisir: "Як сказати…",
         ra_bravo_1: "Браво!",
         ra_bravo_2: "Саме так!",
@@ -24165,6 +24184,10 @@ const I18N = {
         cp_reponse: "پاسخ درست:",
         cp_tu_as_ecrit: "نوشتهٔ تو:",
         cp_presque: "یک غلط تایپی کوچک: درست حساب می‌کنیم.",
+        rem_accent: "علامت روی حرف را فراموش نکن: {m}",
+        rem_trema: "دو نقطهٔ روی حرف را فراموش نکن: {m}",
+        rem_accent_faux: "علامت روی حرف جا افتاده است: {m}",
+        rem_trema_faux: "دو نقطهٔ روی حرف جا افتاده است: {m}",
         ra_consigne_choisir: "چطور می‌گویند…",
         ra_bravo_1: "آفرین!",
         ra_bravo_2: "دقیقاً!",
@@ -26109,6 +26132,10 @@ const I18N = {
         cp_reponse: "الإجابة الصحيحة:",
         cp_tu_as_ecrit: "ما كتبته:",
         cp_presque: "خطأ مطبعي صغير: نحسبه صحيحًا.",
+        rem_accent: "لا تنسَ العلامة فوق الحرف: {m}",
+        rem_trema: "لا تنسَ النقطتين فوق الحرف: {m}",
+        rem_accent_faux: "الناقص هو العلامة فوق الحرف: {m}",
+        rem_trema_faux: "الناقص هو النقطتان فوق الحرف: {m}",
         ra_consigne_choisir: "كيف نقول…",
         ra_bravo_1: "أحسنت!",
         ra_bravo_2: "بالضبط!",
@@ -26627,6 +26654,10 @@ const I18N = {
         cp_reponse: "A resposta certa:",
         cp_tu_as_ecrit: "Você escreveu:",
         cp_presque: "Só um pequeno erro de digitação: conta como certo.",
+        rem_accent: "Não esqueça o acento: {m}",
+        rem_trema: "Não esqueça o trema: {m}",
+        rem_accent_faux: "Falta só o acento: {m}",
+        rem_trema_faux: "Falta só o trema: {m}",
         ra_consigne_choisir: "Como se diz…",
         ra_bravo_1: "Muito bem!",
         ra_bravo_2: "Exato!",
@@ -28459,6 +28490,10 @@ const I18N = {
         cp_reponse: "Prawidłowa odpowiedź:",
         cp_tu_as_ecrit: "Napisałeś(-aś):",
         cp_presque: "Mała literówka: liczymy jako dobrze.",
+        rem_accent: "Nie zapomnij o znaku nad literą: {m}",
+        rem_trema: "Nie zapomnij o dwóch kropkach nad literą: {m}",
+        rem_accent_faux: "Brakuje znaku nad literą: {m}",
+        rem_trema_faux: "Brakuje dwóch kropek nad literą: {m}",
         ra_consigne_choisir: "Jak się mówi…",
         ra_bravo_1: "Brawo!",
         ra_bravo_2: "Dokładnie!",
@@ -30291,6 +30326,10 @@ const I18N = {
         cp_reponse: "Правильный ответ:",
         cp_tu_as_ecrit: "Ты написал(а):",
         cp_presque: "Небольшая опечатка: засчитываем как верно.",
+        rem_accent: "Не забывай про значок над буквой: {m}",
+        rem_trema: "Не забывай про две точки над буквой: {m}",
+        rem_accent_faux: "Не хватает значка над буквой: {m}",
+        rem_trema_faux: "Не хватает двух точек над буквой: {m}",
         ra_consigne_choisir: "Как сказать…",
         ra_bravo_1: "Молодец!",
         ra_bravo_2: "Именно!",
@@ -32126,6 +32165,10 @@ const I18N = {
         cp_reponse: "Die richtige Antwort:",
         cp_tu_as_ecrit: "Du hast geschrieben:",
         cp_presque: "Ein kleiner Tippfehler: Wir zählen es trotzdem als richtig.",
+        rem_accent: "Vergiss den Akzent nicht: {m}",
+        rem_trema: "Vergiss das Trema nicht: {m}",
+        rem_accent_faux: "Es fehlt nur der Akzent: {m}",
+        rem_trema_faux: "Es fehlt nur das Trema: {m}",
         ra_consigne_choisir: "Wie sagt man…",
         ra_bravo_1: "Super!",
         ra_bravo_2: "Genau!",
@@ -33973,6 +34016,10 @@ const I18N = {
         cp_reponse: "La respuesta correcta:",
         cp_tu_as_ecrit: "Escribiste:",
         cp_presque: "Solo un pequeño error al teclear: la contamos como correcta.",
+        rem_accent: "No olvides la tilde: {m}",
+        rem_trema: "No olvides la diéresis: {m}",
+        rem_accent_faux: "Solo falta la tilde: {m}",
+        rem_trema_faux: "Solo falta la diéresis: {m}",
         ra_consigne_choisir: "¿Cómo se dice…?",
         ra_bravo_1: "¡Muy bien!",
         ra_bravo_2: "¡Exacto!",
@@ -40341,7 +40388,8 @@ async function mettreSeanceDeCote(){
          "hl_recommencer", "hl_encore_sous", "flash_tap_hint", "carte_nouveau_mot", "carte_nouvelle_expression",
          "review_again", "review_continuer", "back_button",
          "cp_q_ecoute", "cp_q_trou", "cp_q_ordre", "cp_q_dictee", "cp_q_parler", "cp_q_gram", "cp_q_sens",
-         "cp_ecouter", "cp_bravo", "cp_reponse", "cp_presque", "verify_button", "setup_continue"].forEach(k => { textes[k] = t(k); });
+         "cp_ecouter", "cp_bravo", "cp_reponse", "cp_presque", "verify_button", "setup_continue",
+         "rem_accent", "rem_trema", "rem_accent_faux", "rem_trema_faux"].forEach(k => { textes[k] = t(k); });
         const seance = {
             v: 1, cree: Date.now(), uid: uid, langue: LANGUE_APPRISE,
             rtl: ["fa", "ar"].includes(getUiLang()),
@@ -40627,6 +40675,23 @@ function lecteurHorsLigne(){
             .replace(/[.,!?;:\u00ab\u00bb"'\u2019\u02bc\u2013\u2014\u00bf\u00a1\u201c\u201d\u201e\u2026()-]/g, " ")
             .replace(/\s+/g, " ").trim();
     }
+    // 13 nov. 2026 : l'accent oublie (voir remarqueAccent dans index.html). Les mots attendus qui ne different de la
+    // saisie que par un accent, un tilde ou un trema ; le ß tape « ss » n'en est pas un.
+    function accentsHL(saisi, attendu){
+        function forme(m){ m = String(m || ""); if(m.normalize) m = m.normalize("NFC"); return m.toLowerCase().replace(/\u00df/g, "ss").replace(/[^a-z\u00e0-\u00ff]/g, ""); }
+        var a = String(saisi || "").trim().split(/\s+/), b = String(attendu || "").trim().split(/\s+/), out = [];
+        if(a.length !== b.length) return out;
+        for(var i = 0; i < b.length; i++) if(normal(a[i]) === normal(b[i]) && forme(a[i]) !== forme(b[i])) out.push(b[i].replace(/[.,!?;:\u00bf\u00a1\u00ab\u00bb"()]/g, ""));
+        return out;
+    }
+    function remarqueHL(mots, faux){
+        if(!mots.length) return "";
+        var trema = mots.some(function(m){ return /[\u00e4\u00eb\u00ef\u00f6\u00fc]/i.test(m); });
+        var x = txt("rem_" + (trema ? "trema" : "accent") + (faux ? "_faux" : ""));
+        if(!x) return "";
+        var esc = function(v){ return String(v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); };
+        return '<p class="hl-rem">' + esc(x).replace("{m}", "<b>" + esc(mots.join(", ")) + "</b>") + "</p>";
+    }
     function ecart(a, b){
         if(Math.abs(a.length - b.length) > 2) return 3;
         var prec = [], j;
@@ -40777,7 +40842,9 @@ function lecteurHorsLigne(){
                 var presque = !motSeul && n !== na && na.length >= 20 && ecart(n, na) <= 1;
                 var ok = n === na || presque || (motSeul && c.nu && n === normal(c.nu));
                 champ.disabled = true;
-                conclure(ok, motSeul && c.sensMot ? attendu + " (" + c.sensMot + ")" : attendu, presque ? txt("cp_presque") : "");
+                var cibleHL = (motSeul && c.nu && n === normal(c.nu)) ? c.nu : attendu;
+                var rem = (ok && !presque) ? remarqueHL(accentsHL(v, cibleHL), false) : "";
+                conclure(ok, motSeul && c.sensMot ? attendu + " (" + c.sensMot + ")" : attendu, presque ? txt("cp_presque") : rem);
             });
             champ.addEventListener("keydown", function(e){ if(e.key === "Enter") actions.querySelector(".hl-verifier").click(); });
         } else if(c.f === "gram"){
@@ -40812,7 +40879,9 @@ function lecteurHorsLigne(){
                     var r = jugerG(champG.value);
                     if(r === null){ champG.focus(); return; }
                     champG.disabled = true;
-                    conclure(r, c.corr, c.expl);
+                    var vG = String(champG.value).trim(), remG = "";
+                    c.rep.forEach(function(a){ if(!remG && normal(a) === normal(vG) && (r || !c.tol)) remG = remarqueHL(accentsHL(vG, a), !r); });
+                    conclure(r, c.corr, remG + (c.expl || ""));
                 });
             }
         } else {
@@ -69590,9 +69659,9 @@ function ecartDictee(saisi, attendu){
 //    Moins de quatre lettres, non : « la » et « le », « con » et « son » sont d'autres mots.
 //    Et jamais quand ce qui est tape est un AUTRE vrai mot du corpus (« cosa » pour « casa ») : la meme garde que le
 //    rappel actif.
-//  - un accent, un Umlaut ou un ß oublie est accepte, SAUF s'il donne un autre vrai mot (« Mutter » pour « Mütter »,
-//    « schon » pour « schön », « esta » pour « está », « Masse » pour « Maße ») : accentFaitUnAutreMot, commune aux
-//    phrases et aux mots dictes (8 nov. 2026, ligne 27).
+//  - un accent, un tilde ou un trema oublie compte JUSTE, avec une remarque (« N'oublie pas l'accent : está »), meme
+//    quand l'oubli fait un autre mot (esta / está, schon / schön) : decision de Jacques du 13 nov. 2026 (cd4c384),
+//    qui remplace la garde du 8 nov. Voir accentsOublies() et remarqueAccent().
 // Casse et ponctuation ne comptent pas, comme partout (normaliserSaisie). Controle : tests/dictee_ecart.js.
 const DICTEE_MOT_TOLERE = 4;   // longueur a partir de laquelle une lettre de travers est pardonnee
 function distanceMots(a, b){
@@ -69609,12 +69678,24 @@ function distanceMots(a, b){
 function formeAccents(m){
     return String(m || "").normalize("NFC").toLowerCase().replace(/[^a-z\u00df-\u00ff]/g, "");
 }
-// LA REGLE, commune aux mots et aux phrases dictes : deux mots egaux une fois plies (normaliserSaisie), dont la forme
-// ecrite differe, et ce qui est tape est un autre vrai mot du corpus. `autres` : motsDuCorpusDictee().
-function accentFaitUnAutreMot(saisi, attendu, autres){
-    if(!autres || !autres.formes) return false;
-    const fs = formeAccents(saisi);
-    return fs !== formeAccents(attendu) && autres.formes.has(fs);
+// 13 nov. 2026 : L'ACCENT OUBLIE COMPTE REUSSI, AVEC UNE REMARQUE. Jacques (cd4c384), apres « la sopa esta
+// caliente » compte faux : « ça devrait compter comme réussi quand même. En mentionnant juste qu'il ne faut pas oublier
+// l'accent ». Pour toute reponse TAPEE (dictees, Ecrire, epeler, series tolerantes), meme quand l'oubli fait un autre
+// mot (esta / está, schon / schön : la garde du 8 nov. tombe). Les series de grammaire a comparaison stricte restent
+// fausses, avec la meme remarque : l'accent y est souvent la forme demandee (hablo / habló) -- « B : faux en
+// conjugaison ». Le ß tape « ss » n'est pas un accent (l'ecriture suisse) : rien a dire.
+function formeSansEszett(m){ return formeAccents(m).replace(/\u00df/g, "ss"); }
+// Les mots de la reponse qui ne different de la saisie que par un accent, un tilde ou un trema : [{ s, a }].
+function accentsOublies(saisi, attendu){
+    try{ return alignerDictee(saisi, attendu).paires.filter(p => p.accent); }catch(e){ return []; }
+}
+// La remarque, dans l'orange du « Presque ! », le mot juste avec la lettre en gras. `faux` : la reponse compte fausse.
+function remarqueAccent(oublis, faux){
+    if(!oublis || !oublis.length) return "";
+    const trema = oublis.some(p => /[\u00e4\u00eb\u00ef\u00f6\u00fc]/i.test(p.a));
+    const cle = "rem_" + (trema ? "trema" : "accent") + (faux ? "_faux" : "");
+    const mots = oublis.map(p => lettresCorrigees(p.s, p.a, true)).join(", ");
+    return '<p class="cp-dic-titre cp-rem-accent">' + echapperHtml(t(cle)).replace("{m}", '<bdi class="cp-dic-phrase">' + mots + "</bdi>") + "</p>";
 }
 // Les mots du corpus, pour la garde de la dictee : { plies (quatre lettres ou plus), formes (toutes longueurs : « él »,
 // « sí », « Bär » comptent) }. Calcules une fois, des que les themes, les verbes et les adjectifs sont la.
@@ -69681,12 +69762,11 @@ function alignerDictee(saisi, attendu, opts){
             const x = na[i - 1], y = nb[j - 1];
             let tp = x === y ? "juste"
                 : (x.length >= DICTEE_MOT_TOLERE && y.length >= DICTEE_MOT_TOLERE && distanceMots(x, y) <= 1) ? "presque" : "faux";
-            let umlaut = false;
             // Un autre vrai mot n'est pas une faute de frappe (« cosa » pour « casa »).
             if(tp === "presque" && autres && autres.plies && autres.plies.has(x)) tp = "faux";
-            // L'accent oublie qui fait un autre mot (« Mutter » pour « Mütter », « esta » pour « está »).
-            if(tp === "juste" && accentFaitUnAutreMot(a[i - 1], b[j - 1], autres)){ tp = "faux"; umlaut = true; }
-            paires.push({ t: tp, s: a[i - 1], a: b[j - 1], umlaut: umlaut }); i--; j--;
+            // 13 nov. : l'accent oublie (ou de travers) reste juste ; il est note pour la remarque (remarqueAccent).
+            const accent = tp === "juste" && formeSansEszett(a[i - 1]) !== formeSansEszett(b[j - 1]);
+            paires.push({ t: tp, s: a[i - 1], a: b[j - 1], accent: accent }); i--; j--;
         } else if(j > 0 && (i === 0 || D[i][j] === D[i][j - 1] + 2)){
             paires.push({ t: "manque", s: "", a: b[j - 1] }); j--;
         } else {
@@ -69733,9 +69813,9 @@ function lettresCorrigees(ecrit, attendu, umlaut){
 function rendreDictee(al, langue){
     const ecrit = [], juste = [];
     al.paires.forEach(p => {
-        if(p.t === "juste"){ ecrit.push(echapperHtml(p.s)); juste.push(echapperHtml(p.a)); }
+        if(p.t === "juste"){ ecrit.push(echapperHtml(p.s)); juste.push(p.accent ? lettresCorrigees(p.s, p.a, true) : echapperHtml(p.a)); }
         else if(p.t === "presque"){ ecrit.push('<span class="cp-dic-presque">' + echapperHtml(p.s) + "</span>"); juste.push(lettresCorrigees(p.s, p.a)); }
-        else if(p.t === "faux"){ ecrit.push('<span class="cp-faute">' + echapperHtml(p.s) + "</span>"); juste.push(lettresCorrigees(p.s, p.a, p.umlaut)); }
+        else if(p.t === "faux"){ ecrit.push('<span class="cp-faute">' + echapperHtml(p.s) + "</span>"); juste.push(lettresCorrigees(p.s, p.a)); }
         else if(p.t === "trop"){ ecrit.push('<span class="cp-faute">' + echapperHtml(p.s) + "</span>"); }
         else { ecrit.push('<span class="cp-faute cp-dic-manque">…</span>'); juste.push("<b>" + echapperHtml(p.a) + "</b>"); }
     });
@@ -70729,7 +70809,8 @@ function montrerCartePhrase(item){
             if(!v){ champ.focus(); return; }
             champ.disabled = true;
             verif.classList.add("hidden");
-            conclure(normaliserSaisie(v) === normaliserSaisie(item.phrase.sens), item.phrase.sens + " — " + item.phrase.de);
+            const ok = normaliserSaisie(v) === normaliserSaisie(item.phrase.sens);
+            conclure(ok, item.phrase.sens + " — " + item.phrase.de, ok ? remarqueAccent(accentsOublies(v, item.phrase.sens)) : "");
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
@@ -70950,7 +71031,12 @@ function montrerCartePhrase(item){
                 if(r === null){ champ.focus(); return; }
                 champ.disabled = true;
                 verif.classList.add("hidden");
-                conclure(r, valeurTraduite(ex, "correct") || ex.correct, texteTraduit(ex, "explanation"));
+                // 13 nov. 2026 : l'accent oublie. Tolerante : juste, avec la remarque. Stricte (la conjugaison) : faux,
+                // avec la remarque qui dit que c'est l'accent (« B : faux en conjugaison »).
+                const v = String(champ.value).trim();
+                const bonne = ex.answers.find(a => normaliserSaisie(a) === normaliserSaisie(v));
+                const rem = (bonne && (r || !ex.tolerant)) ? remarqueAccent(accentsOublies(v, bonne), !r) : "";
+                conclure(r, valeurTraduite(ex, "correct") || ex.correct, rem + (texteTraduit(ex, "explanation") || ""));
             });
             champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
             actions.appendChild(verif);
@@ -70958,8 +71044,8 @@ function montrerCartePhrase(item){
     } else if(item.forme === "dictee" || item.forme === "dictee_mot"){
         // La dictee : un mot (palier 2) ou la phrase entiere (palier 3), deja
         // rencontres. Casse, ponctuation et accents ne comptent pas
-        // (normaliserSaisie) : on juge l'oreille, pas le clavier -- sauf l'accent
-        // oublie qui donne un autre vrai mot (accentFaitUnAutreMot, mots et phrases).
+        // (normaliserSaisie) : on juge l'oreille, pas le clavier. Un accent oublie
+        // compte juste, avec sa remarque (13 nov. 2026, remarqueAccent).
         const motSeul = item.forme === "dictee_mot";
         const w = item.cible.word;
         const attendu = motSeul ? motDictee(item.cible) : item.phrase.de;
@@ -70984,9 +71070,9 @@ function montrerCartePhrase(item){
             // Le repli de la v826 (une lettre sur toute la phrase) ne vaut que si aucun mot n'est un autre vrai mot.
             const presque = !motSeul && n !== na && (al.juste
                 || (!al.paires.some(p => p.t === "faux") && na.length >= 20 && ecartLettres(n, na) <= 1));
-            // Egal une fois plie, mais un accent oublie qui fait un autre mot (« Mutter » / « Mütter ») : faux.
-            const accentFaux = n === na && al.paires.some(p => p.umlaut);
-            const exact = n === na && !accentFaux;
+            // 13 nov. 2026 : egal une fois plie, c'est juste -- un accent oublie aussi, meme « esta » pour « está ».
+            const exact = n === na;
+            const accents = al.paires.filter(p => p.accent);
             const juste = exact || presque;
             champ.disabled = true;
             verif.classList.add("hidden");
@@ -71001,13 +71087,18 @@ function montrerCartePhrase(item){
             conclure(juste, sensMot ? attendu + " (" + sensMot + ")" : attendu, presque ? echapperHtml(t("cp_presque")) : "");
             // La dictee d'une phrase, pas tout a fait juste : le retour mot par mot (rendreDictee), sans le rouge sur
             // ce qui est juste. « Presque ! » en orange quand elle compte juste.
-            // Et un mot seul faux par son accent : sans la lettre en gras, on ne verrait pas ce qui ne va pas.
-            if((!motSeul && !exact) || accentFaux){
+            // 13 nov. 2026 : un accent oublie, la remarque « N'oublie pas l'accent : está », la lettre en gras.
+            if(!motSeul && !exact){
                 retour.className = "cp-retour " + (presque ? "presque" : "dictee-faux");
                 retour.innerHTML = (presque ? '<p class="cp-dic-titre">' + echapperHtml(t("or_presque")) + '</p><p class="cp-dic-sous">'
                                               + echapperHtml(t("cp_presque")) + "</p>" : "")
-                    + rendreDictee(al, langueDe)
-                    + (motSeul && sensMot ? '<p class="cp-dic-ecrit">' + echapperHtml(sensMot) + "</p>" : "");
+                    + (juste ? remarqueAccent(accents) : "")
+                    + rendreDictee(al, langueDe);
+            } else if(accents.length){
+                retour.className = "cp-retour presque";
+                retour.innerHTML = remarqueAccent(accents)
+                    + (motSeul ? '<p class="cp-dic-ecrit">' + echapperHtml(sensMot ? attendu + " (" + sensMot + ")" : attendu) + "</p>"
+                               : rendreDictee(al, langueDe));
             }
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
@@ -79697,6 +79788,7 @@ function checkAnswer(){
     const usingOptions = !usingChunks && !!(opts && opts.length);
     const input = document.getElementById("answer");
     let isCorrect;
+    let remAccent = "";   // 13 nov. 2026 : la remarque de l'accent oublie (remarqueAccent)
     if(usingChunks){
         const manquants = ex.chunks.length - chunkBuilt.length;
         if(manquants > 0){
@@ -79732,6 +79824,12 @@ function checkAnswer(){
         isCorrect = ex.tolerant
             ? ex.answers.some(a => normaliserSaisie(a) === normaliserSaisie(rawVal))
             : ex.answers.some(a => a.toLowerCase() === val);
+        // 13 nov. 2026 : un accent oublie. Tolerant (Ecrire) : juste, avec la remarque ; strict (la conjugaison) : faux,
+        // avec la remarque qui dit que c'est l'accent. Pas pour une tuile choisie : on n'y tape rien.
+        if(!usingOptions){
+            const bonne = ex.answers.find(a => normaliserSaisie(a) === normaliserSaisie(rawVal));
+            if(bonne && (isCorrect || !ex.tolerant)) remAccent = remarqueAccent(accentsOublies(rawVal, bonne), !isCorrect);
+        }
     }
     // Phrase ratee au clavier : on la redonne en tuiles au lieu d'afficher la
     // reponse. L'echec est enregistre tout de suite -- c'est la frappe qu'on
@@ -79757,7 +79855,7 @@ function checkAnswer(){
         const explanation = enRattrapage
             ? t("rattrapage_reussi")
             : (texteTraduit(ex, "explanation"));
-        feedback.innerHTML = `<div class="feedback-title">${t("feedback_correct_title")}</div><div class="explanation">${explanation}</div>`;
+        feedback.innerHTML = `<div class="feedback-title">${t("feedback_correct_title")}</div>${remAccent}<div class="explanation">${explanation}</div>`;
         // Une bonne réponse compte désormais aussi pour l'objectif du jour, la
         // série de jours (streak) et le compteur hebdomadaire -- même chemin que
         // markMastered()/scheduleReview() pour les flashcards (recordDailyActivity
@@ -79788,7 +79886,7 @@ function checkAnswer(){
         feedback.className = "feedback show wrong";
         const correctDisplay = (valeurTraduite(ex, "correct"))
             || (usingChunks ? ex.chunks.join(" ") : "");
-        let html = `<div class="feedback-title">${t("feedback_wrong_title")}</div>`;
+        let html = `<div class="feedback-title">${t("feedback_wrong_title")}</div>` + remAccent;
         // Avec des tuiles, la bonne reponse est DEJA sous les yeux : la tuile
         // juste passe au vert et le mot se pose dans la phrase. La repeter ici
         // occupait la place de ce qui manque vraiment. Sans tuiles (frappe
