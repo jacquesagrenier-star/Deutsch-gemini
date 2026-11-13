@@ -52,7 +52,11 @@ tableau de bord minimal, relu par une infirmière. **Environ 9 à 11 semaines**,
 2027 si les accords arrivent vite (estimation). Dépense du MVP : **≈ 15 $ d'images, ≈ 10 $ de voix,
 400 à 1 000 € de relecture** (estimations, § 6).
 
-**Accords demandés à Jacques** : voir § 9 (sept questions, dont le téléchargement du test modèle
+**Et l'espagnol ?** (§ 8 bis) : l'Espagne recrute surtout des soignants qui parlent déjà
+espagnol, le marché y est petit. L'« espagnol médical » pour les soignants américains est un vrai
+marché, à prendre **en second**, avec la même mécanique.
+
+**Accords demandés à Jacques** : voir § 9 (huit questions, dont le téléchargement du test modèle
 telc, le choix des personnages et la place de l'espagnol).
 
 ---
@@ -595,6 +599,85 @@ fiche d'entretien et une démo.
 
 ---
 
+## 8 bis. Et l'espagnol ? (question de Jacques, 13 nov.)
+
+« Est-ce que ça s'applique aussi à l'Espagne ? » Deux marchés différents se cachent derrière la
+question. Recherche du 13 nov. 2026, pages web seulement, aucun téléchargement.
+
+### (a) L'espagnol des soins pour les soignants étrangers en Espagne
+
+| Fait | Chiffre | Source |
+|---|---|---|
+| Pénurie d'infirmières | ≈ **100 000** manquantes (ministère de la Santé, 2024) ; 6,45 pour 1 000 habitants contre 8,12 dans l'UE | https://www.eldiario.es/sociedad/sanidad-calcula-deficit-100-000-enfermeras-29-anos-eliminarlo_1_11960409.html ; https://www.redaccionmedica.com/profesionales/enfermeria/20260701/espana-necesita-enfermeras-para-igualar-la-media-europea/313152_0.html |
+| Infirmières étrangères entrées dans le système public | **726 en 2022** : Portugal 195, Colombie 113, Roumanie 76, Italie 70, puis Pérou, Cuba, Venezuela… ; ≈ 47 % non hispanophones (toutes de l'UE) | https://www.redaccionmedica.com/formacion/fse/20250917/solo-dos-enfermeras-extranjeras-obtuvieron-plaza-eir-en/249596_0.amp.html |
+| Homologations de diplômes (toutes professions, 2025) | 30 303 favorables, demandeurs **à 63 % latino-américains** ; infirmières ≈ 2 450 (calcul d'après un cabinet) | https://www.ciencia.gob.es/en/Noticias/2026/abril/Morant-presenta-informe-homologaciones-2025.html |
+| Recrutement actif d'infirmières non hispanophones hors UE (Philippines, Inde, Maroc) | **aucune trace** | — |
+| Exigence de langue | **B2 d'espagnol** pour homologuer un diplôme d'infirmier ou de médecin d'un pays non hispanophone ; rien d'officiel pour l'UE ; rien pour les aides-soignantes | https://www.ciencia.gob.es/Universidades/validate/homologacion/enfermero.html |
+| Langues co-officielles (secteur public) | catalan exigé pour les postes titulaires en Catalogne ; profil de basque au Pays basque ; supprimé aux Baléares (2023), atout réduit à Valence | https://theobjective.com/sanidad/2025-05-12/pinchan-cursos-catalan-medicos-segunda-edicion/ ; https://preparaoposiciones.com/blog/oposiciones/enfermeria/pais-vasco/ |
+| Aides-soignantes et auxiliaires de vie | 261 000 à 639 000 de plus d'ici 2030 (estimation du ministère, citée par le secteur) ; 45 % des employées de maison déclarées sont étrangères ; régularisation de 2026 (≈ 500 000 personnes) | https://www.corresponsables.com/actualidad/aeste-alerta-falta-profesionales-limita-atencion-personas-dependencia/ ; https://maldita.es/migracion/20240330/mujeres-migrantes-trabajo-domestico-espana/ |
+| Qui paierait | aucun programme employeur de recrutement à l'étranger trouvé ; seul levier : le crédit de formation **Fundae** des entreprises (53 % utilisé en 2024) | https://factorial.es/blog/fundae-empresas-formaciones/ |
+
+- **Taille** (estimation) : environ **1 000 infirmières par an** auraient besoin d'apprendre
+  l'espagnol (UE et hors UE non hispanophones), contre ≈ 32 000 reconnaissances par an en
+  Allemagne. Le seul gros volume est celui des **aides-soignantes non hispanophones**
+  (10 000 à 30 000 par an, estimation), payées ≈ 1 150 € par mois, pour qui **personne ne paie**
+  de formation aujourd'hui.
+- **Pourquoi c'est si différent de l'Allemagne** : l'Espagne recrute là où l'on parle déjà
+  espagnol (Amérique latine). La langue n'y est pas l'obstacle ; elle l'est en Allemagne.
+- **Ce que le moteur réutiliserait** : tout l'espagnol actuel (corpus, scènes, voix, séance,
+  variantes Espagne / Amérique latine), plus les scènes de soins si on les dessine neutres
+  (voir plus bas). Il manquerait les thèmes, les dialogues et la grammaire **écrits pour
+  l'espagnol** (règle des scènes : on ne traduit pas les questions d'une langue à l'autre).
+- **Recommandation** : **non**, pas de section « Espagne » maintenant. Le marché payant est trop
+  petit et sans acheteur identifié. Deux idées à garder : une préparation au **B2 de
+  l'homologation**, plus tard, et, hors sujet ici, le **catalan pour soignants** (les
+  infirmières latino-américaines qui visent un poste titulaire en Catalogne), que personne ne
+  propose en application.
+
+### (b) L'« espagnol médical » pour soignants anglophones (États-Unis) et francophones
+
+| Fait | Chiffre | Source |
+|---|---|---|
+| Hispanophones aux États-Unis | **44,9 M** parlent espagnol à la maison (2024), dont 41 % parlent anglais « moins que très bien » → **≈ 18,5 M** (calcul) | https://usafacts.org/answers/how-many-people-speak-spanish-at-home/country/united-states/ |
+| Soignants qui parlent espagnol | infirmières ≈ 7 % (2022) ; médecins : 6 % hispaniques + 2 % de non-hispaniques | https://www.axios.com/2024/04/01/nurse-workforce-diverse ; https://aamc.org/news/united-states-needs-more-spanish-speaking-physicians |
+| Effet de la barrière de langue | chez les patients ne parlant pas anglais, 49 % des événements indésirables causent un dommage physique, contre 30 % (Divi et al., 2007) | https://psnet.ahrq.gov/issue/language-proficiency-and-adverse-events-us-hospitals-pilot-study |
+| Le droit (Section 1557, règle de 2024) | un soignant ne peut soigner en espagnol sans interprète que s'il est « qualified bilingual staff », **compétence démontrée** à l'établissement ; tests courants : CCLA (≈ 110 $), CanopyCredential | https://www.law.cornell.edu/cfr/text/45/92.4 ; https://altalang.com/language-testing/ccla/ |
+| Incertitude | décret de 2025 faisant de l'anglais la langue officielle ; la règle 1557 reste en vigueur, son application fédérale pourrait faiblir | https://healthlaw.org/language-access-is-mission-critical-and-still-the-law/ |
+| Concurrent principal | **CanopyLearn** : 36 leçons, 40 h, ≈ **595 $ par an**, **45 crédits de formation continue** (médecins et infirmières) par un partenaire accrédité ; licences d'établissements | https://info.withcanopy.com/en/knowledge/what-ce-credits-does-canopylearn-medical-spanish-offer |
+| Autres offres | MOOC Coursera / edX (sans crédits, 29-239 $), cours en direct (997-1 994 $), immersion au Guatemala (≈ 300-350 $ par semaine), Babbel for Business (sur devis) ; **Duolingo n'a pas de module médical** | coursera.org/specializations/medicalspanish ; babbelforbusiness.com/us/industries/healthcare/ |
+| Facultés de médecine | 78 % offrent de l'espagnol médical, 21 % seulement selon les normes de base (2019) | https://pubmed.ncbi.nlm.nih.gov/33835381/ |
+| Soignants cibles | ≈ 6 M (infirmières 3,4 M, médecins 0,86 M, assistants médicaux 0,8 M, NP 0,3 M…), dont plus de 90 % ne parlent pas espagnol | bls.gov/ooh/healthcare |
+| Crédits de formation continue | devenir organisme accrédité (ACCME) : ≈ 11 800 $ et 8-10 mois ; voie réaliste : **co-organisation** avec un organisme déjà accrédité, payée par activité (montant non publié) | https://accme.org/become-accredited |
+| Québec, France | Montréal : l'espagnol est la première langue non officielle parlée à la maison, mais **aucune formation** structurée trouvée ; France : aucune action DPC | — |
+
+- **Taille** (estimation, aucune étude publiée) : 2 à 5 % de 2,7 M de soignants non
+  hispanophones dans les États à forte population hispanique, à 100-300 $ par an, soit **5 à
+  40 M$ par an** pour le marché individuel, plus les licences d'hôpitaux (≈ 6 000) et de facultés.
+- **Qui paie** : le soignant (son budget de formation continue), l'hôpital (son budget d'accès
+  linguistique), l'école (licence pour ses étudiants). Le premier achète surtout **des crédits**,
+  le second **la préparation au test** de bilinguisme.
+- **Ce que le moteur réutiliserait** : presque tout. L'espagnol a **déjà l'interface anglaise**
+  (et française), la **variante Amérique latine** (celle des patients américains, surtout
+  mexicains et centraméricains), ses voix, ses scènes, la séance et l'oral jugé. Il manquerait le
+  contenu médical écrit pour l'espagnol (thèmes, dialogues patient-soignant, anamnèse, douleur,
+  consentement) et, pour vendre, les crédits et un tableau de bord d'établissement — c'est-à-dire
+  **exactement la mécanique de la section Soins**.
+- **Une précaution** : l'app ne doit jamais laisser croire qu'elle « qualifie » quelqu'un pour
+  soigner sans interprète ; elle enseigne aussi quand appeler l'interprète.
+- **Recommandation** : **oui, mais en second**, après le pilote allemand. C'est un vrai marché,
+  établi, plus grand en valeur que l'Espagne, avec un seul concurrent sérieux (Canopy) et aucun
+  produit de masse. Deux gestes **gratuits** dès maintenant :
+  1. **Dessiner les 8 scènes de soins neutres** (un hôpital qui pourrait être allemand,
+     espagnol ou américain, sans écriteau) : elles serviraient l'allemand puis l'espagnol, comme
+     les scènes actuelles servent déjà les deux langues. Coût nul, décision à prendre avant la
+     phase 3 (§ 9, Q8).
+  2. **Garder la section Soins indépendante de la langue** dans l'architecture (`pflege/` pour
+     l'allemand ; un futur `espanol/salud/` suivrait le même modèle).
+  Avant d'investir : deux ou trois conversations avec des formatrices d'infirmières américaines
+  et un devis de co-organisation de crédits. Le Québec et la France restent accessoires.
+
+---
+
 ## 9. Les décisions et accords demandés à Jacques
 
 1. **Q1 — Le test modèle telc** : autoriser le téléchargement gratuit du test modèle officiel
@@ -613,6 +696,9 @@ fiche d'entretien et une démo.
    lancerait).
 7. **Q7 — Les dépenses du MVP**, lot par lot et sur annonce : ≈ 7 $ d'images, ≈ 10 $ de voix
    ElevenLabs v2, et l'idée de chercher une infirmière relectrice (400-1 000 €).
+8. **Q8 — L'espagnol** (§ 8 bis) : pas de section « Espagne » ; l'espagnol médical pour les
+   soignants américains **en second**, après le pilote allemand ; dès maintenant, dessiner les
+   scènes de soins **neutres** pour qu'elles servent les deux langues.
 
 Et une remarque pour le chef : l'entrée « Chantier Wortando Pflege » du 13 nov. n'est pas (encore)
 dans `decisions/DECISIONS.md` sur `main` ni dans le dossier principal.

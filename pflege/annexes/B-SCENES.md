@@ -243,6 +243,9 @@ des objets, `detourer.py`, masques), avec les leçons consignées (`continuite-d
 - **Exactitude du matériel** : un lit médicalisé allemand, une potence, un chariot, un tensiomètre
   tels qu'on les voit en Allemagne (pas d'hôpital américain). Chaque image vérifiée par l'IA
   **contre une liste d'objets** puis, pour le MVP, par l'infirmière relectrice.
+- **Neutres, si Jacques retient Q8** (PLAN § 8 bis) : aucun écriteau, aucun signe propre à
+  l'Allemagne, pour que la même image serve plus tard l'espagnol médical, comme les scènes
+  actuelles servent déjà les deux langues.
 - **Pudeur** : aucune nudité, ni corps dénudé, ni excréments. Toilette, change et intimité sont
   suggérés (serviette, paravent, porte entrouverte).
 - **Une planche d'essai d'abord** (phase 3) : trois images d'une même scène (chambre), dont on
