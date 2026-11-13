@@ -37,7 +37,7 @@ EXPL = re.compile(r"^La subordonnée est passée derrière : la principale repre
                   r"ordre normal — sujet, puis verbe\. L'inversion n'apparaît que "
                   r"lorsque la subordonnée occupe la première place\. Comparez : (.+)$")
 EXPL_UK = ("Підрядне речення перейшло назад: головне повертає свій звичайний "
-           "порядок — підмет, потім присудок. Інверсія з'являється лише тоді, "
+           "порядок — підмет, потім присудок. Інверсія зʼявляється лише тоді, "
            "коли підрядне стоїть на першому місці. Порівняй: %s")
 
 EXPL2 = re.compile(r"^La subordonnée est passée devant : elle occupe la première "
@@ -78,7 +78,7 @@ T = {
 "Als ich klein war, habe ich in Wien gewohnt.":
     "Коли я був малим, я жив у Відні.",
 "Weil ich zu viel gegessen habe, bin ich früh ins Bett gegangen.":
-    "Оскільки я забагато з'їв, я рано ліг спати.",
+    "Оскільки я забагато зʼїв, я рано ліг спати.",
 "Nachdem ich die Prüfung bestanden hatte, habe ich meine Eltern angerufen.":
     "Після того як я склав іспит, я зателефонував батькам.",
 "Obwohl wir früh losgefahren sind, haben wir den Zug verpasst.":
@@ -86,7 +86,7 @@ T = {
 "Als wir in Wien angekommen sind, hat es stark geregnet.":
     "Коли ми прибули до Відня, ішов сильний дощ.",
 "Ich habe das Paket nicht bekommen, weil der Bote nicht geklingelt hat.":
-    "Я не отримав посилки, бо кур'єр не подзвонив у двері.",
+    "Я не отримав посилки, бо курʼєр не подзвонив у двері.",
 "Wir sind zu Fuß gegangen, obwohl es geschneit hat.":
     "Ми пішли пішки, хоча йшов сніг.",
 "Sie hat mir geschrieben, nachdem sie nach Hause gekommen war.":

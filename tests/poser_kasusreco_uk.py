@@ -60,7 +60,7 @@ T = {
 "Ich kaufe einen Apfel.": "Я купую яблуко.",
 "Er liest das Buch.": "Він читає книжку.",
 "Wir besuchen unsere Großeltern.": "Ми відвідуємо наших бабусю й дідуся.",
-"Sie trinkt den Kaffee.": "Вона п'є каву.",
+"Sie trinkt den Kaffee.": "Вона пʼє каву.",
 "Ich sehe den Vogel im Baum.": "Я бачу птаха на дереві.",
 "Der Koch bereitet die Suppe vor.": "Кухар готує суп.",
 "Wir putzen das Fenster.": "Ми миємо вікно.",

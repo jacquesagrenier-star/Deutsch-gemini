@@ -230,7 +230,7 @@ window.SCENE = {
    "fr": "ballon",
    "en": "ball",
    "tr": "top",
-   "uk": "м'яч",
+   "uk": "мʼяч",
    "fa": "توپ",
    "pt": "bola",
    "ar": "كرة",
@@ -1767,7 +1767,7 @@ window.SCENE = {
   },
   "uk": {
    "champs": {
-    "alt": "Вітальня у спільній квартирі Марка наступного ранку після вечірки: м'яч на шафі, парасолька, що висить на лампі, шкарпетка на торшері, кіт у картонній коробці, пес під журнальним столиком і валіза Марка на порозі.",
+    "alt": "Вітальня у спільній квартирі Марка наступного ранку після вечірки: мʼяч на шафі, парасолька, що висить на лампі, шкарпетка на торшері, кіт у картонній коробці, пес під журнальним столиком і валіза Марка на порозі.",
     "consigne": "Марк повертається з поїздки… а його сусіди влаштували вечірку. Торкнись предмета."
    },
    "couches": {
@@ -1810,7 +1810,7 @@ window.SCENE = {
     "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Нереальна умова (hätte … verpasst), наслідок у теперішньому → Konjunktiv II: <b>wäre</b>."
    },
    "sens": {
-    "A2 | Der Ball liegt auf dem Schrank.": "М'яч лежить на шафі.",
+    "A2 | Der Ball liegt auf dem Schrank.": "Мʼяч лежить на шафі.",
     "A2 | Der Hund liegt unter dem Couchtisch.": "Собака лежить під журнальним столиком.",
     "A2 | Die Katze sitzt im Karton.": "Кіт сидить у коробці.",
     "A2 | Der Regenschirm hängt an der Lampe.": "Парасолька висить на лампі.",
@@ -1820,8 +1820,8 @@ window.SCENE = {
     "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "Акваріум із золотою рибкою стоїть на полиці.",
     "A2 | Die Socke hängt an der Stehlampe.": "Шкарпетка висить на торшері.",
     "A2 | Der Heizkörper ist unter dem Fenster.": "Батарея під вікном.",
-    "B1 | Der Ball liegt noch auf dem Schrank.": "М'яч ще лежить на шафі.",
-    "B1 | Mark legt den Ball in den Schrank.": "Марк кладе м'яч у шафу.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "Мʼяч ще лежить на шафі.",
+    "B1 | Mark legt den Ball in den Schrank.": "Марк кладе мʼяч у шафу.",
     "B1 | Die Tasse steht auf dem Couchtisch.": "Чашка стоїть на журнальному столику.",
     "B1 | Mark stellt die Tasse auf das Regal.": "Марк ставить чашку на полицю.",
     "B1 | Noch hängt der Regenschirm an der Lampe.": "Парасолька ще висить на лампі.",

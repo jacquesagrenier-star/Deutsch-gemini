@@ -33,7 +33,7 @@ T1 = {
 "Tu sais que je suis satisfait(e).":"Ти знаєш, що я задоволений.",
 "Je crois que tu es fatigué(e).":"Я думаю, що ти втомлений.",
 "Je pense qu'il fait froid.":"Я думаю, що надворі холодно.",
-"Je bois du café quand je suis fatigué(e).":"Я п'ю каву, коли я втомлений.",
+"Je bois du café quand je suis fatigué(e).":"Я пʼю каву, коли я втомлений.",
 "Tu chantes quand tu es heureux/heureuse.":"Ти співаєш, коли ти щасливий.",
 "Il reste à la maison quand il est malade.":"Він лишається вдома, коли він хворий.",
 "Elle cuisine quand elle a faim.":"Вона готує, коли вона голодна.",

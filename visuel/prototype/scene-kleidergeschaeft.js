@@ -2004,7 +2004,7 @@ window.SCENE = {
     "B1 | Ein brauner Mantel hängt neben dem Anzug.": "Коричневе пальто висить біля костюма.",
     "B2 | Die Frau, die den gelben Pullover hält, heißt Anna.": "Жінку, яка тримає жовтий светр, звати Анна.",
     "B2 | Der Mann, dessen Schuh noch auf dem Boden steht, probiert den anderen an.": "Чоловік, чий черевик ще стоїть на підлозі, приміряє інший.",
-    "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "Дзеркало, перед яким стоїть табурет, має дерев'яну раму.",
+    "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "Дзеркало, перед яким стоїть табурет, має деревʼяну раму.",
     "B2 | Die Socken, die im Korb liegen, sind bunt.": "Шкарпетки, що лежать у кошику, різнокольорові.",
     "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "Светри на полиці акуратно складені.",
     "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "Шарф зараз складає продавчиня.",

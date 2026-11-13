@@ -1483,7 +1483,7 @@ window.SCENE = {
     "B1 | Gleich bringt Anna den Gästen Saft.": "Анна зараз принесе гостям сік.",
     "B2 | Das Geschenk, das Anna in der Hand hält, ist grün.": "Подарунок, який Анна тримає в руці, зелений.",
     "B2 | Der Freund, der Mark fotografiert, sitzt auf dem Sofa.": "Друг, який фотографує Марка, сидить на дивані.",
-    "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "Торт, на якому горять п'ять свічок, шоколадний.",
+    "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "Торт, на якому горять пʼять свічок, шоколадний.",
     "B2 | Die Kerzen werden gleich ausgeblasen.": "Свічки зараз задмуть.",
     "B2 | Das rote Geschenk ist schön eingepackt.": "Червоний подарунок гарно запакований.",
     "B2 | Die Freundin, deren Haare rot sind, klatscht.": "Подруга з рудим волоссям плескає в долоні.",

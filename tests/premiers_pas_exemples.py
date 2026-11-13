@@ -33,7 +33,7 @@ EXEMPLES_DE = {
         "Jedzenie już jest. Smacznego!", "Еда готова. Приятного аппетита!")),
     "Prost!": ("Wir trinken zusammen. Prost!", t(DE,
         "Nous buvons ensemble. Santé !", "We're having a drink together. Cheers!", "Birlikte içiyoruz. Şerefe!",
-        "Ми п'ємо разом. Будьмо!", "با هم می‌نوشیم. به سلامتی!", "نشرب معًا. في صحتك!", "Estamos bebendo juntos. Saúde!",
+        "Ми пʼємо разом. Будьмо!", "با هم می‌نوشیم. به سلامتی!", "نشرب معًا. في صحتك!", "Estamos bebendo juntos. Saúde!",
         "Pijemy razem. Na zdrowie!", "Мы пьём вместе. За здоровье!")),
     "eins · zwei · drei · vier · fünf": ("Ich möchte zwei Kaffee, bitte.", t(DE,
         "Je voudrais deux cafés, s'il vous plaît.", "I'd like two coffees, please.", "İki kahve istiyorum, lütfen.",

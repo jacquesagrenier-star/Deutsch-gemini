@@ -633,7 +633,7 @@ window.SCENE = {
    "fr": "ballon",
    "en": "ball",
    "tr": "top",
-   "uk": "м'яч",
+   "uk": "мʼяч",
    "fa": "توپ",
    "pt": "bola",
    "ar": "كرة",
@@ -1600,7 +1600,7 @@ window.SCENE = {
   },
   "uk": {
    "champs": {
-    "alt": "Неділя в берлінському парку: Анна сидить на покривалі для пікніка й кидає м'яч собаці; позаду неї хлопчик на велосипеді на доріжці, чоловік читає на лавці, озеро з човном, міст і фонтан.",
+    "alt": "Неділя в берлінському парку: Анна сидить на покривалі для пікніка й кидає мʼяч собаці; позаду неї хлопчик на велосипеді на доріжці, чоловік читає на лавці, озеро з човном, міст і фонтан.",
     "consigne": "Анна влаштувала пікнік у парку. Торкнися предмета."
    },
    "couches": {
@@ -1644,10 +1644,10 @@ window.SCENE = {
     "A2 | Der Junge fährt auf dem Weg.": "Хлопчик їде доріжкою.",
     "A2 | Der Korb steht auf der Decke.": "Кошик стоїть на ковдрі.",
     "A2 | Das Handy liegt neben dem Rucksack.": "Телефон лежить біля рюкзака.",
-    "A2 | Der Ball ist über dem Gras.": "М'яч над травою.",
+    "A2 | Der Ball ist über dem Gras.": "Мʼяч над травою.",
     "A2 | Die Laterne steht neben dem Mülleimer.": "Ліхтар стоїть біля смітника.",
     "A2 | Der Vogel sitzt auf der Bank.": "Птах сидить на лавці.",
-    "B1 | Anna wirft dem Hund den Ball.": "Анна кидає собаці м'яч.",
+    "B1 | Anna wirft dem Hund den Ball.": "Анна кидає собаці мʼяч.",
     "B1 | Der Hund läuft über das Gras.": "Собака біжить по траві.",
     "B1 | Der Junge fährt mit dem Fahrrad.": "Хлопчик їде на велосипеді.",
     "B1 | Anna hat ihr Buch auf die Decke gelegt.": "Анна поклала свою книжку на ковдру.",
@@ -1655,14 +1655,14 @@ window.SCENE = {
     "B1 | Der Vogel hat sich auf die Bank gesetzt.": "Птах сів на лавку.",
     "B1 | Der Mann sitzt auf der Bank und liest.": "Чоловік сидить на лавці й читає.",
     "B1 | Zwei Leute rudern auf dem See.": "Двоє людей веслують на озері.",
-    "B2 | Die Frau, die dem Hund den Ball wirft, heißt Anna.": "Жінку, яка кидає собаці м'яч, звати Анна.",
+    "B2 | Die Frau, die dem Hund den Ball wirft, heißt Anna.": "Жінку, яка кидає собаці мʼяч, звати Анна.",
     "B2 | Der Junge, dessen Helm blau ist, fährt Fahrrad.": "Хлопчик у синьому шоломі їде на велосипеді.",
     "B2 | Die Bank, auf der der Mann sitzt, ist grün.": "Лавка, на якій сидить чоловік, зелена.",
-    "B2 | Der laufende Hund will den Ball fangen.": "Собака, що біжить, хоче впіймати м'яч.",
+    "B2 | Der laufende Hund will den Ball fangen.": "Собака, що біжить, хоче впіймати мʼяч.",
     "B2 | Auf der Decke liegt ein aufgeschlagenes Buch.": "На ковдрі лежить розгорнута книжка.",
     "B2 | Die Decke ist auf dem Gras ausgebreitet.": "Ковдра розстелена на траві.",
     "C1 | Sie muss den Hund kennen.": "Вона, мабуть, знає цього собаку.",
-    "C1 | Der Hund könnte den Ball gleich fangen.": "Собака, можливо, зараз упіймає м'яч.",
+    "C1 | Der Hund könnte den Ball gleich fangen.": "Собака, можливо, зараз упіймає мʼяч.",
     "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "Чоловік, напевно, приходить сюди щонеділі.",
     "C1 | Im See soll es riesige Fische geben.": "Кажуть, в озері водяться величезні риби."
    }

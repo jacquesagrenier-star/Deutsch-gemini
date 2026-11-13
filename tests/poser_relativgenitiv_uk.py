@@ -116,7 +116,7 @@ T = {
 "Die Universität, ___ Programme sehr anspruchsvoll sind, ist weltbekannt.":
     "Університет, чиї програми дуже вимогливі, відомий у всьому світі.",
 "Der Ingenieur, ___ Erfindung genial ist, wird oft interviewt.":
-    "Інженер, чий винахід геніальний, часто дає інтерв'ю.",
+    "Інженер, чий винахід геніальний, часто дає інтервʼю.",
 "Das Krankenhaus, ___ Personal sehr freundlich ist, ist bei allen beliebt.":
     "Лікарня, чий персонал дуже привітний, подобається всім.",
 "Die Wissenschaftler, ___ Forschung wichtig ist, bekommen viel Geld.":

@@ -242,7 +242,7 @@ T = {
 "Je n'ai pas faim, c'est pourquoi je ne mange rien.":
     "Я не голодний, тому нічого не їм.",
 "L'exercice était difficile, néanmoins nous l'avons résolu.":
-    "Завдання було важке, проте ми його розв'язали.",
+    "Завдання було важке, проте ми його розвʼязали.",
 "Il a peu étudié, néanmoins il a réussi.": "Він мало вчився, проте склав іспит.",
 "L'appartement est bon marché, en plus il est central.":
     "Квартира недорога, до того ж розташована в центрі.",

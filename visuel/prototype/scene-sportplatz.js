@@ -181,7 +181,7 @@ window.SCENE = {
    "fr": "ballon",
    "en": "ball",
    "tr": "top",
-   "uk": "м'яч",
+   "uk": "мʼяч",
    "fa": "توپ",
    "pt": "bola",
    "ar": "كرة",
@@ -667,7 +667,7 @@ window.SCENE = {
    "fr": "ballon",
    "en": "ball",
    "tr": "top",
-   "uk": "м'яч",
+   "uk": "мʼяч",
    "fa": "توپ",
    "pt": "bola",
    "ar": "كرة",
@@ -1382,7 +1382,7 @@ window.SCENE = {
   },
   "uk": {
    "champs": {
-    "alt": "Марк на футбольному полі в берлінському парку: він щойно забив гол, м'яч лежить у глибині сітки, а він обертається з піднятим кулаком; воротар сміється, сидячи на траві, двоє товаришів по команді біжать до нього, тренерка плескає; позаду двоє глядачів на лавці й велосипед; на передньому плані м'яч, спортивна сумка, рушник, пляшка й кросівки.",
+    "alt": "Марк на футбольному полі в берлінському парку: він щойно забив гол, мʼяч лежить у глибині сітки, а він обертається з піднятим кулаком; воротар сміється, сидячи на траві, двоє товаришів по команді біжать до нього, тренерка плескає; позаду двоє глядачів на лавці й велосипед; на передньому плані мʼяч, спортивна сумка, рушник, пляшка й кросівки.",
     "consigne": "Марк грає у футбол зі своєю командою. Торкнися предмета."
    },
    "couches": {
@@ -1421,15 +1421,15 @@ window.SCENE = {
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
    },
    "sens": {
-    "A2 | Der Ball ist im Netz.": "М'яч у сітці.",
+    "A2 | Der Ball ist im Netz.": "Мʼяч у сітці.",
     "A2 | Der Spieler im gelben Trikot sitzt vor dem Netz.": "Гравець у жовтій футболці сидить перед сіткою.",
     "A2 | Der alte Mann sitzt auf der Bank.": "Старий чоловік сидить на лавці.",
     "A2 | Das Handtuch ist in der Tasche.": "Рушник у сумці.",
-    "A2 | Der Ball liegt neben der Tasche.": "М'яч лежить біля сумки.",
+    "A2 | Der Ball liegt neben der Tasche.": "Мʼяч лежить біля сумки.",
     "A2 | Das Fahrrad steht hinter dem Netz.": "Велосипед стоїть за сіткою.",
     "A2 | Die Flasche ist in der Tasche.": "Пляшка в сумці.",
     "A2 | Die Wolke ist am Himmel.": "Хмара на небі.",
-    "B1 | Mark schoss den Ball ins Tor.": "Марк забив м'яч у ворота.",
+    "B1 | Mark schoss den Ball ins Tor.": "Марк забив мʼяч у ворота.",
     "B1 | Der Torwart fiel ins Gras.": "Воротар упав на траву.",
     "B1 | Die Spieler liefen zu Mark.": "Гравці побігли до Марка.",
     "B1 | Die Trainerin klatschte in die Hände.": "Тренерка заплескала в долоні.",
@@ -1438,9 +1438,9 @@ window.SCENE = {
     "B1 | Die Zuschauer saßen auf der Bank.": "Глядачі сиділи на лавці.",
     "B1 | Am Ende gewann Marks Mannschaft.": "Зрештою команда Марка перемогла.",
     "B2 | Mark jubelt, weil er ein Tor geschossen hat.": "Марк радіє, бо забив гол.",
-    "B2 | Der Torwart lacht, obwohl er den Ball nicht gehalten hat.": "Воротар сміється, хоча не спіймав м'яч.",
+    "B2 | Der Torwart lacht, obwohl er den Ball nicht gehalten hat.": "Воротар сміється, хоча не спіймав мʼяч.",
     "B2 | Als Mark das Tor schoss, klatschte die Trainerin.": "Коли Марк забив гол, тренерка заплескала.",
-    "B2 | Mark trinkt Wasser, sobald das Spiel vorbei ist.": "Марк п'є воду, щойно гра закінчується.",
+    "B2 | Mark trinkt Wasser, sobald das Spiel vorbei ist.": "Марк пʼє воду, щойно гра закінчується.",
     "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "Глядачі сидять на лавці, поки гравці бігають.",
     "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "Вони тренуються щосуботи, щоб залишатися у формі.",
     "C1 | Das muss sein erstes Tor sein.": "Це, мабуть, його перший гол.",

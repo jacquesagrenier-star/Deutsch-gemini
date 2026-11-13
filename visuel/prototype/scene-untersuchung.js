@@ -387,7 +387,7 @@ window.SCENE = {
    "fr": "poignet",
    "en": "wrist",
    "tr": "bilek",
-   "uk": "зап'ясток",
+   "uk": "запʼясток",
    "fa": "مچ دست",
    "pt": "pulso",
    "ar": "معصم",

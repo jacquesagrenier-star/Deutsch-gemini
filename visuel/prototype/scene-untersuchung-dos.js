@@ -783,7 +783,7 @@ window.SCENE = {
    "fr": "talon",
    "en": "heel",
    "tr": "topuk",
-   "uk": "п'ята",
+   "uk": "пʼята",
    "fa": "پاشنهٔ پا",
    "pt": "calcanhar",
    "ar": "كعب القدم",

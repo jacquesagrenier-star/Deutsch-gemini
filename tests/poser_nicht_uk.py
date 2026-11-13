@@ -56,7 +56,7 @@ T = {
 "Je n'apprends pas le français, mais l'allemand.":"Я вчу не французьку, а німецьку.",
 "Elle ne chante pas fort, mais doucement.":"Вона співає не голосно, а тихо.",
 "On ne se retrouve pas à deux heures, mais à trois heures.":"Ми зустрічаємося не о другій, а о третій.",
-"Je ne bois pas de thé, mais du café.":"Я п'ю не чай, а каву.",
+"Je ne bois pas de thé, mais du café.":"Я пʼю не чай, а каву.",
 "Il ne lit pas le journal, mais un livre.":"Він читає не газету, а книжку.",
 "Vous n'y allez pas à pied, mais en bus.":"Ви йдете не пішки, а їдете автобусом.",
 "Ils ne viennent pas seuls, mais à deux.":"Вони приходять не самі, а вдвох.",

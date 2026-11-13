@@ -30,7 +30,7 @@ JOURS = [
     ("mardi", "Tuesday", "Salı", "вівторок", "سه‌شنبه", "الثلاثاء", "terça-feira", "wtorek", "вторник"),
     ("mercredi", "Wednesday", "Çarşamba", "середа", "چهارشنبه", "الأربعاء", "quarta-feira", "środa", "среда"),
     ("jeudi", "Thursday", "Perşembe", "четвер", "پنجشنبه", "الخميس", "quinta-feira", "czwartek", "четверг"),
-    ("vendredi", "Friday", "Cuma", "п'ятниця", "جمعه", "الجمعة", "sexta-feira", "piątek", "пятница"),
+    ("vendredi", "Friday", "Cuma", "пʼятниця", "جمعه", "الجمعة", "sexta-feira", "piątek", "пятница"),
     ("samedi", "Saturday", "Cumartesi", "субота", "شنبه", "السبت", "sábado", "sobota", "суббота"),
     ("dimanche", "Sunday", "Pazar", "неділя", "یکشنبه", "الأحد", "domingo", "niedziela", "воскресенье"),
 ]

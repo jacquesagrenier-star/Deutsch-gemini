@@ -47,7 +47,7 @@ def m_haben(v):
             "більшості дієслів." % v)
 def m_bleiben(v):
     return ("« %s » бере sein, не виражаючи ні переміщення, ні зміни стану: це виняток, який "
-            "запам'ятовують як є, разом із bleiben, sein і werden." % v)
+            "запамʼятовують як є, разом із bleiben, sein і werden." % v)
 
 # ---------- les indices ----------
 def h_type(v, t):
@@ -92,7 +92,7 @@ T = {
 "Elle s'appelait Anna.":"Її звали Анна.",
 "Elle est restée médecin.":"Вона лишилася лікаркою.",
 "J'ai parlé allemand.":"Я говорив німецькою.",
-"J'ai mangé une pizza.":"Я з'їв піцу.",
+"J'ai mangé une pizza.":"Я зʼїв піцу.",
 "J'ai mal dormi.":"Я погано спав.",
 "J'ai fermé la porte.":"Я зачинив двері.",
 "Je suis allé en voiture.":"Я поїхав автомобілем.",
@@ -126,7 +126,7 @@ T = {
 "Ça m'a beaucoup intéressé.":"Це мене дуже зацікавило.",
 "J'ai formulé la réponse.":"Я сформулював відповідь.",
 "J'ai installé la mise à jour.":"Я встановив оновлення.",
-"J'ai réparé l'ordinateur.":"Я полагодив комп'ютер.",
+"J'ai réparé l'ordinateur.":"Я полагодив компʼютер.",
 "Nous avons discuté de politique.":"Ми обговорювали політику.",
 "J'ai critiqué la décision.":"Я розкритикував рішення.",
 "Cette règle a toujours existé.":"Це правило існувало завжди.",
@@ -181,7 +181,7 @@ T = {
 "Le conducteur s'est arrêté immédiatement.":"Водій одразу зупинився.",
 "Je l'ai invitée à la fête.":"Я запросив її на свято.",
 "Nous avons continué le projet.":"Ми продовжили проєкт.",
-"Je l'ai finalement découvert.":"Зрештою я це з'ясував.",
+"Je l'ai finalement découvert.":"Зрештою я це зʼясував.",
 "J'ai constaté une différence.":"Я помітив різницю.",
 "Il a présenté le nouveau projet hier.":"Учора він представив новий проєкт.",
 "Elle l'a seulement suggéré.":"Вона лише натякнула на це.",

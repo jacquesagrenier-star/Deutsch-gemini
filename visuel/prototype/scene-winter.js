@@ -1443,7 +1443,7 @@ window.SCENE = {
     "A2 | Der Hut ist auf dem Schneemann.": "Капелюх на сніговику.",
     "B1 | Ihr ist kalt.": "Їй холодно.",
     "B1 | Die Mütze steht ihr gut.": "Шапка їй личить.",
-    "B1 | Anna hat dem Schneemann einen Schal umgebunden.": "Анна пов'язала сніговикові шарф.",
+    "B1 | Anna hat dem Schneemann einen Schal umgebunden.": "Анна повʼязала сніговикові шарф.",
     "B1 | Sie hat die Handschuhe angezogen.": "Вона надягла рукавиці.",
     "B1 | Der Hund trägt einen Mantel, damit ihm nicht kalt ist.": "Собака в пальті, щоб їй не було холодно.",
     "B1 | Die Stiefel gehören ihr.": "Чоботи належать їй.",

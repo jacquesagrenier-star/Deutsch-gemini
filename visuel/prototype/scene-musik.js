@@ -1388,7 +1388,7 @@ window.SCENE = {
     "A2 | Mark sitzt auf dem Stuhl.": "der Stuhl → auf <b>dem</b> Stuhl.",
     "A2 | Die große Lampe steht neben dem Fenster.": "<b>neben</b> = поруч із. das Fenster → neben <b>dem</b> Fenster.",
     "B1 | Mark kann schon drei Akkorde spielen.": "<b>können</b> = могти, уміти: здатність.",
-    "B1 | Er muss jeden Tag üben.": "<b>müssen</b> = мусити: обов'язок.",
+    "B1 | Er muss jeden Tag üben.": "<b>müssen</b> = мусити: обовʼязок.",
     "B1 | Im Unterricht darf man nicht telefonieren.": "<b>nicht dürfen</b> = не мати права.",
     "B1 | Mark will später in einer Band spielen.": "<b>wollen</b> = хотіти: намір.",
     "B1 | Die Frau möchte, dass Mark langsamer spielt.": "<b>möchte</b> = хотів би: ввічливе бажання.",

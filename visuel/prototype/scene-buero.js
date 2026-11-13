@@ -1446,7 +1446,7 @@ window.SCENE = {
     "B1 | Mark hat den Kunden angerufen.": "Марк зателефонував клієнтові.",
     "B1 | Die Kollegin druckt einen Brief aus.": "Колега роздруковує лист.",
     "B1 | Kannst du mich bitte morgen zurückrufen?": "Можеш передзвонити мені завтра, будь ласка?",
-    "B1 | Um fünf Uhr hört Mark mit der Arbeit auf.": "О п'ятій Марк закінчує працювати.",
+    "B1 | Um fünf Uhr hört Mark mit der Arbeit auf.": "О пʼятій Марк закінчує працювати.",
     "B1 | Die Kollegin bereitet eine Besprechung vor.": "Колега готує нараду.",
     "B1 | Mark legt den Hörer gleich auf.": "Марк зараз покладе слухавку.",
     "B2 | Der Mann, der gerade telefoniert, heißt Mark.": "Чоловіка, який зараз розмовляє по телефону, звати Марк.",

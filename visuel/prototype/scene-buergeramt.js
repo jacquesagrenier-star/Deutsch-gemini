@@ -772,7 +772,7 @@ window.SCENE = {
      "fr": "ordinateur",
      "en": "computer",
      "tr": "bilgisayar",
-     "uk": "комп'ютер",
+     "uk": "компʼютер",
      "fa": "رایانه",
      "pt": "computador",
      "ar": "حاسوب",

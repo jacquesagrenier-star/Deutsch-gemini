@@ -1849,6 +1849,30 @@ def verifier_export_csv(r):
           "a jour" if not retard else "%d en retard" % len(retard)))
 
 
+def verifier_typographie_langues(r):
+    """L'apostrophe ukrainienne et le lecteur sans genre (lot 89, 13 nov. 2026).
+
+    1. Aucun fichier servi n'ecrit l'ukrainien avec l'apostrophe droite : c'est ʼ (U+02BC), une lettre
+       (tests/apostrophe_uk.py ; --ecrire remplace). 1 673 droites avaient survecu jusque-la, melangees
+       a 96 typographiques.
+    2. Le telc et l'interface (pl, ru, uk) ne s'adressent jamais au lecteur au masculin seul
+       (tests/genre_lecteur.py) ; ce qui est juste malgre le detecteur s'ecrit, avec sa raison, dans
+       tests/genre_lecteur_acceptes.txt.
+    """
+    import apostrophe_uk
+    import genre_lecteur
+    restes = apostrophe_uk.controler()
+    for f, n in restes:
+        r.echec("langues", "%s : %d apostrophe(s) droite(s) en ukrainien (python tests/apostrophe_uk.py --ecrire)" % (f, n))
+    ok = genre_lecteur.acceptes()
+    genre = [(f, c, s) for f, c, s in genre_lecteur.relever(genre_lecteur.PERIMETRE) if c.strip() not in ok]
+    for f, c, s in genre:
+        r.echec("langues", "%s : lecteur au masculin (%s) : %s" % (f, " / ".join(x[1] for x in s), c[:90]))
+    r.controle(2)
+    print("   langues       : %d fichier(s) a apostrophe droite en ukrainien, %d texte(s) au masculin pour le lecteur"
+          % (len(restes), len(genre)))
+
+
 def main():
     if not os.path.exists(INDEX):
         print("index.html introuvable dans %s" % RACINE)
@@ -1887,6 +1911,7 @@ def main():
     verifier_lectures(r)
     verifier_trous_de_liste(r, source)
     verifier_octets_de_controle(r, INDEX)
+    verifier_typographie_langues(r)
     verifier_zoom_involontaire(r, source)
     verifier_zone_morte(r, source)
     verifier_appels_internes(r, source, fonctions)

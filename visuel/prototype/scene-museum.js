@@ -1827,7 +1827,7 @@ window.SCENE = {
     "B2 | Der Student lernt etwas über das Bild, indem er die Kopfhörer benutzt.": "Студент дізнається про картину, користуючись навушниками.",
     "B2 | Man schützt die Bilder, indem man sie nicht berührt.": "Картини захищають тим, що їх не торкаються.",
     "B2 | Der Mann passt auf, indem er alle Besucher beobachtet.": "Чоловік наглядає, спостерігаючи за всіма відвідувачами.",
-    "B2 | Anna merkt sich die Skulptur dadurch, dass sie sie zeichnet.": "Анна запам'ятовує скульптуру, малюючи її.",
+    "B2 | Anna merkt sich die Skulptur dadurch, dass sie sie zeichnet.": "Анна запамʼятовує скульптуру, малюючи її.",
     "B2 | Man spart Geld, indem man am Sonntag ins Museum geht.": "Можна заощадити, ходячи до музею в неділю.",
     "C1 | Sie muss Kunst lieben.": "Вона, мабуть, любить мистецтво.",
     "C1 | Der junge Mann könnte Kunst studieren.": "Можливо, юнак вивчає мистецтво.",

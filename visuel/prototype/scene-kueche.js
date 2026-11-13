@@ -2023,7 +2023,7 @@ window.SCENE = {
     "B1 | Mark hat das Handtuch an den Backofen gehängt.": "Марк повісив рушник на духовку.",
     "B1 | Heute Abend hat Mark für seine Mitbewohner gekocht.": "Сьогодні ввечері Марк приготував вечерю для сусідів по квартирі.",
     "B2 | Die Karotte wird gerade geschnitten.": "Моркву зараз нарізають.",
-    "B2 | Der Tisch, auf dem das Gemüse liegt, ist aus Holz.": "Стіл, на якому лежать овочі, дерев'яний.",
+    "B2 | Der Tisch, auf dem das Gemüse liegt, ist aus Holz.": "Стіл, на якому лежать овочі, деревʼяний.",
     "B2 | Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.": "Кіт, який сидить на стільці, дивиться на стіл.",
     "B2 | Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.": "Книжка, сторінки якої повні картинок, лежить на столі.",
     "B2 | Die Eier in der Pfanne sind schon gebraten.": "Яйця на сковорідці вже підсмажені.",

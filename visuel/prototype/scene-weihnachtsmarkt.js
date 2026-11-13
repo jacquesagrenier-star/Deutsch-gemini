@@ -2229,7 +2229,7 @@ window.SCENE = {
   },
   "uk": {
    "champs": {
-    "alt": "Марк на різдвяному ярмарку грудневого вечора в Берліні: з гарячим кухлем в одній руці він тягнеться другою до дерев'яної зірки, яку продавець у червоній шапці подає йому через прилавок; на дерев'яному прилавку, припорошеному снігом, три червоні свічки, мідний глечик і каструля, загорнуті подарунки, червоні кухлі, дві монети, ящик яблук і апельсинів та горіхи; вгорі кінь-гойдалка, ганчір'яна лялька й дерев'яні зірки під гірляндою; позаду велика освітлена ялинка, цегляна церква з вежею, ліхтар, місяць і ятка з бретцелями, де мати тримає дитину за руку; попереду запалена жаровня, дрова й пес, що сидить у снігу.",
+    "alt": "Марк на різдвяному ярмарку грудневого вечора в Берліні: з гарячим кухлем в одній руці він тягнеться другою до деревʼяної зірки, яку продавець у червоній шапці подає йому через прилавок; на деревʼяному прилавку, припорошеному снігом, три червоні свічки, мідний глечик і каструля, загорнуті подарунки, червоні кухлі, дві монети, ящик яблук і апельсинів та горіхи; вгорі кінь-гойдалка, ганчірʼяна лялька й деревʼяні зірки під гірляндою; позаду велика освітлена ялинка, цегляна церква з вежею, ліхтар, місяць і ятка з бретцелями, де мати тримає дитину за руку; попереду запалена жаровня, дрова й пес, що сидить у снігу.",
     "consigne": "Марк відкриває для себе свій перший різдвяний ярмарок у Берліні. Торкнися предмета."
    },
    "couches": {
@@ -2256,7 +2256,7 @@ window.SCENE = {
     "B1 | Der Hund sieht ihn an.": "<b>ansehen</b> + Akkusativ: Mark → <b>ihn</b>.",
     "B1 | Die Brezeln schmecken ihr.": "<b>schmecken</b> + Dativ: die Frau → <b>ihr</b>.",
     "B1 | Mark kauft sie für seine Mutter.": "die Kerzen (множина) → в Akkusativ — <b>sie</b>.",
-    "B2 | Der Markt zu Weihnachten ist der Weihnachtsmarkt.": "Уточнювальне слово йде першим, останнє слово дає рід: der Markt → <b>der</b> Weihnachts<b>markt</b>; <b>-s-</b> з'єднує обидві частини.",
+    "B2 | Der Markt zu Weihnachten ist der Weihnachtsmarkt.": "Уточнювальне слово йде першим, останнє слово дає рід: der Markt → <b>der</b> Weihnachts<b>markt</b>; <b>-s-</b> зʼєднує обидві частини.",
     "B2 | Eine Kette aus Lichtern ist eine Lichterkette.": "Множина <b>Lichter</b> є першим словом; рід дає die Kette → <b>die</b> Lichter<b>kette</b>.",
     "B2 | Ein Stern aus Holz ist ein Holzstern.": "Спочатку матеріал: Holz + Stern → <b>der</b> Holz<b>stern</b> (das Sternholz було б деревом зірки).",
     "B2 | Der Baum zu Weihnachten heißt Weihnachtsbaum.": "Weihnacht<b>s</b>baum: сполучне <b>-s-</b>, як у Weihnachtsmarkt.",
@@ -2286,7 +2286,7 @@ window.SCENE = {
     "B1 | Mark kauft sie für seine Mutter.": "Марк купує їх для своєї матері.",
     "B2 | Der Markt zu Weihnachten ist der Weihnachtsmarkt.": "Різдвяний ярмарок — це «Weihnachtsmarkt».",
     "B2 | Eine Kette aus Lichtern ist eine Lichterkette.": "Гірлянда — це «Lichterkette».",
-    "B2 | Ein Stern aus Holz ist ein Holzstern.": "Дерев'яна зірка — це «Holzstern».",
+    "B2 | Ein Stern aus Holz ist ein Holzstern.": "Деревʼяна зірка — це «Holzstern».",
     "B2 | Der Baum zu Weihnachten heißt Weihnachtsbaum.": "Різдвяна ялинка називається «Weihnachtsbaum».",
     "B2 | Ein Handschuh für den Winter ist ein Winterhandschuh.": "Зимова рукавичка — це «Winterhandschuh».",
     "B2 | Die Uhr an der Kirche ist eine Kirchturmuhr.": "Церковний годинник — це «Kirchturmuhr», годинник на вежі.",
