@@ -42,6 +42,10 @@ THEMES_EN = []                                   # (ancien : l'anglais seul pour
 # a vide prenait les branches au hasard -- et ratait celles qui dependent du mot (w.doc, w.c...), tout en comptant
 # des phrases que l'app ne dit pas. On fait donc comme montrer() : chaque mot de motsDuTheme(), chaque sorte qui
 # l'accepte (EX rend faux sinon), TIRAGES / nombre de mots fois (au moins 20).
+# LES QUESTIONS (13 nov. 2026, Jacques : « ¿Quién está enojado? » dit par le telephone). La phrase de l'enonce, dite
+# a l'entree de chaque carte, passe par le dire() interne de themes/voix.js, pas par Voix.dire : elle n'etait jamais
+# relevee, donc jamais enregistree (~11 000 textes par voix au 13 nov.). Voix.enonce() rend ce que la carte posee
+# dit a son entree, a la regle de voix.js ; on le releve juste apres EX[sorte](mot), avant la reponse.
 TIRAGES = int(os.environ.get("TIRAGES_VOIX", "2000"))
 ENUMERER = """async (n) => {
   const dits = new Set(), orig = Voix.dire;
@@ -61,6 +65,7 @@ ENUMERER = """async (n) => {
           repondu = false; vider();
           if (!EX[t](w)) break;
           poses++;
+          if (Voix.enonce) { const q = Voix.enonce(); if (q) dits.add(q); }
           const z = document.getElementById('zone');
           const c = Array.from(z.querySelectorAll('#choix button'));
           if (c.length) hasard(c).click();

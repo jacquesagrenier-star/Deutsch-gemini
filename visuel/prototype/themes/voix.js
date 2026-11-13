@@ -212,6 +212,14 @@ const Voix = (() => {
     const t = phraseEnonce(z);
     if (t) dire(t, true);
   }
+  // CE QUE LA CARTE DIT A SON ENTREE (13 nov. 2026), aux conditions de poserReecoute() et de direEntree() : pour
+  // visuel/voix_themes.py, qui ne voyait pas ces phrases -- elles ne passent pas par Voix.dire, et partaient donc au
+  // telephone sans jamais etre comptees (« ¿Quién está enojado? », Jacques, 12 nov.).
+  function enonceDeLaCarte(){
+    const z = document.getElementById("zone");
+    if (!z || !z.querySelector(".consigne") || z.querySelector(".ecoute:not(.v-redire), #ecoute")) return "";
+    return phraseEnonce(z);
+  }
   function brancherReecoute(){
     const z = document.getElementById("zone"); if (!z) return;
     const st = document.createElement("style");
@@ -322,5 +330,5 @@ const Voix = (() => {
     if (p && p.then) p.then(() => setTimeout(reprendre, attente)).catch(() => setTimeout(() => { if (s === son){ s.loop = false; s.muted = false; s.play().catch(tel); } }, attente));
     else setTimeout(reprendre, attente);
   }
-  return {dire, arreter, bravo, aUnFichier: texte => connus.has(sha1(texte)), sha1};
+  return {dire, arreter, bravo, aUnFichier: texte => connus.has(sha1(texte)), sha1, enonce: enonceDeLaCarte};
 })();
