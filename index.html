@@ -50120,11 +50120,20 @@ function startQuizArticle(){
                 // la personne -- « la artista » est juste aussi. Hors du quiz, comme les genres doubles
                 // allemands (Jacques : « Oui, retire-les »).
                 if(LANGUE_APPRISE === "es" && /ista$/i.test(String(word[0] || "").trim())) return;
-                pool.push({ word, index, themeId: levelData.id });
+                pool.push({ word, index, themeId: levelData.id, niveau: lvl });
             });
         });
     });
-    let ordre = cartesDeSession(sansDoublons(pool));
+    // 13 nov. 2026 (ligne 85, decision du chef) : D'ABORD LES MOTS DEJA RENCONTRES -- les echus en tete, puis les
+    // autres, melanges --, PUIS LES NEUFS DU NIVEAU CHOISI, par frequence. Avant, cartesDeSession() servait des neufs
+    // de tous les niveaux, du B2 a un debutant. Le reservoir entier ne sert plus qu'a completer un genre qui manque.
+    const unique = sansDoublons(pool);
+    const vus = unique.filter(it => motRencontre(getWordState(it.themeId, it.index)));
+    const echues = cartesEchuesTriees(vus);
+    const autresVus = shuffleArray(vus.filter(it => echues.indexOf(it) < 0));
+    const niv = niveauSeance();
+    const neufsDuNiveau = ordonnerParFrequence(unique.filter(it => it.niveau === niv && vus.indexOf(it) < 0));
+    let ordre = echues.concat(autresVus, neufsDuNiveau);
     if(!ordre.length) ordre = pool;
     // v1031 : LES EXCEPTIONS ESPAGNOLES, RARES. Jacques, 30 oct. 2026 : « ne pas en mettre 3
     // consecutifs [...] vu que c'est exceptionnel, ca devrait etre mis tres sporadiquement ».
@@ -50142,7 +50151,7 @@ function startQuizArticle(){
     // en silence.
     QUIZ_ARTICLE_GENRES.forEach(g => {
         if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / QUIZ_ARTICLE_GENRES.length) return;
-        for(const item of pool){
+        for(const item of ordre.concat(pool)){
             if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / QUIZ_ARTICLE_GENRES.length) break;
             if(item.word[1] === g && parGenre[g].indexOf(item) < 0 && admis(item)) prendre(g, item);
         }
@@ -70829,6 +70838,11 @@ function montrerCartePhrase(item){
         const q = creer("p", "cp-phrase rp-suite-q", nom);
         q.setAttribute("lang", langueDe);
         el.appendChild(q);
+        // 13 nov. 2026 (ligne 85) : le sens sous le nom, avant la reponse, pour un mot pas encore rencontre.
+        if(article && item.sensAvant){
+            const tr = traductionNomRepere(item.phrase.de);
+            if(tr){ const sv = creer("p", "cp-sens", tr); sv.setAttribute("lang", getUiLang()); el.appendChild(sv); }
+        }
         const options = article ? (LANGUE_APPRISE === "es" ? ["el", "la"] : LANGUE_APPRISE === "pt" ? ["o", "a"] : ["der", "die", "das"]) : (item.choix || []);
         const juste = article ? item.phrase.de.slice(0, espace) : item.phrase.de;
         const choix = creer("div", "cp-choix" + (article ? " rp-articles" : ""));
@@ -72852,6 +72866,37 @@ function traductionNomRepere(motAvecArticle){
     }catch(e){ return ""; }
 }
 
+// 13 nov. 2026 (ligne 85, retour d'un testeur Android en espagnol : « on lui demandait l'article el ou la [...] il
+// n'avait jamais vu le mot ») : LE NOM DU REPERE DANS LE CORPUS, pour savoir s'il a deja ete rencontre. Un mot
+// « rencontre » a une trace dans la progression : appris, du, reussi, ou simplement vu (mot neuf presente, v1182).
+let ITEMS_NOMS_REPERES = null, ITEMS_NOMS_REPERES_N = -1;
+function itemNomRepere(motAvecArticle){
+    try{
+        const nThemes = themesComptes().length;
+        if(!ITEMS_NOMS_REPERES || !ITEMS_NOMS_REPERES.size || nThemes !== ITEMS_NOMS_REPERES_N){
+            ITEMS_NOMS_REPERES_N = nThemes;
+            ITEMS_NOMS_REPERES = new Map();
+            themesComptes().forEach(th => Object.keys(th.levels || {}).forEach(niv => {
+                const d = th.levels[niv] || {};
+                (d.words || []).forEach((w, index) => {
+                    const cle = String(w[0] || "").trim().toLowerCase();
+                    if(cle && d.id && !ITEMS_NOMS_REPERES.has(cle)) ITEMS_NOMS_REPERES.set(cle, { themeId: d.id, index: index });
+                });
+            }));
+        }
+        const nu = String(motAvecArticle || "").trim().toLowerCase().replace(/^(el|la|los|las|der|die|das|o|a|os|as|the)\s+/, "");
+        return ITEMS_NOMS_REPERES.get(nu) || null;
+    }catch(e){ return null; }
+}
+function motRencontre(st){ return !!st && (!estNeuf(st) || !!st.vu); }
+function nomRepereRencontre(motAvecArticle){
+    const it = itemNomRepere(motAvecArticle);
+    if(!it) return false;
+    try{ return motRencontre(getWordState(it.themeId, it.index)); }catch(e){ return false; }
+}
+// Le filet : sous ce nombre de mots du bloc deja rencontres, chaque question du bloc montre le sens sous le nom.
+const REPERES_GENRE_VUS_MIN = 5;
+
 function exercicesRepere(r, n, badge){
     const sens = l => sensPremiersPas(l[1]);
     const carte = (forme, de, s, extra) => Object.assign({ mode: "phrase", forme: forme, cible: null, themeId: "rp_" + r.id,
@@ -72877,14 +72922,21 @@ function exercicesRepere(r, n, badge){
         return out;
     }
     if(r.type === "genre"){
-        const pris = melangerPhrase((r.l || []).concat(r.x || []));
+        // 13 nov. 2026 (ligne 85) : L'ARTICLE D'UN MOT RENCONTRE SEULEMENT. Les mots du tableau (« l ») viennent
+        // d'etre montres, avec leur sens ; les mots « x », qui n'etaient qu'en question, ne sont demandes qu'une fois
+        // rencontres ailleurs (cartes, scenes, themes). Et le filet : un mot pas encore rencontre, ou un bloc dont
+        // moins de cinq mots l'ont ete, montre son sens sous le nom AVANT la reponse.
+        const L = r.l || [], X = r.x || [];
+        const nVus = L.concat(X).filter(l => nomRepereRencontre(l[0])).length;
+        const pris = melangerPhrase(L.concat(X.filter(l => nomRepereRencontre(l[0]))));
         const formes = ["rp_article", "rp_article", "parler", "rp_article", "rp_article"];
         for(let k = 0; k < n && k < pris.length; k++){
             const l = pris[k], f = formes[k % formes.length];
             const tr = traductionNomRepere(l[0]);
             const regle = l[1] + (tr ? " \u00b7 " + tr : "");   // v1042 : la regle, puis le sens
             if(f === "parler") out.push(carte("parler", l[0], regle, { q: "rp_q_dire_mot" }));
-            else out.push(carte("rp_article", l[0], regle, { q: "rp_q_article" }));
+            else out.push(carte("rp_article", l[0], regle, { q: "rp_q_article",
+                sensAvant: nVus < REPERES_GENRE_VUS_MIN || !nomRepereRencontre(l[0]) }));
         }
         return out;
     }
@@ -72965,7 +73017,7 @@ function insererReperes(seance, rp){
     if(rp.neuf){
         const r = rp.neuf;
         const badge = tf("rp_badge", { n: rp.rang + 1, t: rp.total });
-        placer(pos, { mode: "phrase", forme: "pp_tableau", tableau: { t: r.t, l: r.l, a: r.a }, rpTableau: r.id,
+        placer(pos, { mode: "phrase", forme: "pp_tableau", tableau: { t: r.t, l: r.l, a: r.a, genre: r.type === "genre" }, rpTableau: r.id,
                       rpBadge: badge, rpType: r.type || "suite", cible: null, themeId: "rp_tableau", index: rp.rang, phrase: null, word: "" });
         pos += 1;
         exercicesRepere(r, REPERES_EXOS, badge).forEach(x => { placer(pos, x); pos += 2; });
@@ -73149,7 +73201,10 @@ function construireTableau(tab){
             pastille.setAttribute("aria-hidden", "true");
             ligne.appendChild(pastille);
         }
-        ligne.appendChild(creer("span", "cp-tl-sens", sensPremiersPas(l[1])));
+        // 13 nov. 2026 (ligne 85) : le tableau du bloc genre donne aussi le sens de chaque mot (« -o → el · 99 % · livre »).
+        let sensLigne = sensPremiersPas(l[1]);
+        if(tab.genre){ const tr = traductionNomRepere(l[0]); if(tr) sensLigne += " \u00b7 " + tr; }
+        ligne.appendChild(creer("span", "cp-tl-sens", sensLigne));
         const brut = String(l[0] || "");
         const forme = creer("b", "cp-tl-forme", brut.indexOf("[") < 0 ? brut : undefined);
         if(brut.indexOf("[") >= 0){
