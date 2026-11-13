@@ -8,6 +8,8 @@ agences de recrutement et aux employeurs de soignants étrangers, pour mener leu
 **B1-B2** et au **telc Deutsch B1·B2 Pflege**. C'est la piste 1 de la page « Trois pistes »
 (https://claude.ai/artifact/5J6RVTSuFFUPf9GjtuPcSV).
 
+Page de présentation pour Jacques (privée) : https://claude.ai/artifact/EBtWZGJwrKJ5Cto37Ctbdn
+
 Annexes (le contenu, en listes réelles) :
 
 - [A — les dix thèmes de vocabulaire](annexes/A-THEMES.md) : 430 entrées, niveau par niveau
