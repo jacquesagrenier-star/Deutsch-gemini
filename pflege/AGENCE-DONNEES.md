@@ -1,5 +1,19 @@
 # Wortando Pflege : les données du tableau de bord de l'agence
 
+> ⚠️ **Le fichier de règles prêt à coller (`securite/regles-soins/firestore-avec-soins.rules`) contient
+> AUSSI la règle des codes de la v1188** (« un code d'invitation utilisé ne se supprime jamais, même par
+> l'admin » : `allow delete: if isAdmin() && resource.data.used != true;`). Elle est dans `firestore.rules`
+> du dépôt depuis c29337e, mais Jacques ne l'a peut-être pas encore collée dans la console. Par rapport aux
+> règles **réellement collées le 12 nov.** (cf0cfe6), le fichier a donc **deux** changements, pas un : la
+> clé `soinsExamensJson` et cette règle des codes. Le jour venu, Jacques colle **les deux en une fois**.
+>
+> Banc du 14 nov. (émulateur local) :
+>
+> | Règles | Cas « l'admin supprime un code utilisé » | Cas « soins » | Total |
+> |---|---|---|---|
+> | Collées le 12 nov. (cf0cfe6) | **accepté** (la règle v1188 n'y est pas) | refusés | 249 ok, **1 échec** (celui-là, attendu) |
+> | Proposées (soins + codes v1188) | refusé, comme voulu | acceptés | **250 ok, 0 échec** |
+
 14 nov. 2026. Ce que le suivi lit aujourd'hui, ce qu'il lui manque, et **ce qui demanderait de changer les
 règles Firestore** (donc Jacques, qui les colle dans la console). Rien de ce fichier n'est en ligne.
 
