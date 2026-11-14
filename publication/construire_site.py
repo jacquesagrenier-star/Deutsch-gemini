@@ -93,6 +93,8 @@ DOSSIERS = {
     "japonais/kana/traits/": IMAGES,
     "japonais/kanji/traits/": IMAGES,
     "japonais/mosaique/app/": IMAGES | {"json"},
+    # Wortando Pflege, la section Soins de l'allemand (essai « soins », 14 nov. 2026).
+    "pflege/datos/": {"json"},
     # L'anglais (essai admin) : americain, britannique, mosaique.
     "anglais/datos/": {"json"},
     "anglais/datos-gb/": {"json"},
