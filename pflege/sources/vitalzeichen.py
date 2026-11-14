@@ -20,6 +20,7 @@ THEME = {
     "base": "soins_vitalzeichen",
     "nom_theme": "Vitalzeichen und Krankenbeobachtung",
     "nom_theme_fr": "Les signes vitaux et la surveillance",
+    "nom_theme_trad": {"fr": "Les signes vitaux et la surveillance", "en": "Vital signs and patient observation", "tr": "Yaşam bulguları ve hasta gözlemi", "uk": "Життєві показники та спостереження за пацієнтом", "fa": "علائم حیاتی و مشاهدهٔ بیمار", "pt": "Sinais vitais e observação do paciente", "ar": "العلامات الحيوية ومراقبة المريض", "pl": "Parametry życiowe i obserwacja chorego", "ru": "Жизненные показатели и наблюдение за пациентом"},
     # un coeur et une ligne de pouls, au trait, comme les icones des themes
     "svg": '<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-7-9.6A4 4 0 0 1 12 7.6a4 4 0 0 1 7 2.8C19 15.7 12 20 12 20z"/><path d="M3 12h4l1.5-2.5 2 5 1.5-2.5H21"/></svg>',
 }
@@ -291,7 +292,7 @@ MOTS = [
         "fr": ("tachycardie", "En cas de tachycardie, le cœur bat trop vite."),
         "en": ("tachycardia", "With tachycardia, the heart beats too fast."),
         "tr": ("taşikardi", "Taşikardide kalp çok hızlı atar."),
-        "uk": ("тахікардія", "При тахікардії серце б'ється занадто швидко."),
+        "uk": ("тахікардія", "При тахікардії серце бʼється занадто швидко."),
         "fa": ("تاکی‌کاردی", "در تاکی‌کاردی قلب خیلی تند می‌زند."),
         "pt": ("taquicardia", "Na taquicardia, o coração bate rápido demais."),
         "ar": ("تسرّع القلب", "في تسرّع القلب ينبض القلب بسرعة كبيرة."),
@@ -302,7 +303,7 @@ MOTS = [
         "fr": ("bradycardie", "En cas de bradycardie, le cœur bat trop lentement."),
         "en": ("bradycardia", "With bradycardia, the heart beats too slowly."),
         "tr": ("bradikardi", "Bradikardide kalp çok yavaş atar."),
-        "uk": ("брадикардія", "При брадикардії серце б'ється занадто повільно."),
+        "uk": ("брадикардія", "При брадикардії серце бʼється занадто повільно."),
         "fa": ("برادی‌کاردی", "در برادی‌کاردی قلب خیلی کند می‌زند."),
         "pt": ("bradicardia", "Na bradicardia, o coração bate devagar demais."),
         "ar": ("بطء القلب", "في بطء القلب ينبض القلب ببطء شديد."),
@@ -377,3 +378,14 @@ MOTS = [
         "ru": ("наблюдение за пациентом", "Хорошее наблюдение за пациентом рано замечает изменения."),
     }, "Eine gute Krankenbeobachtung erkennt Veränderungen früh.", ""),
 ]
+
+# ── Annexe A complete (session vocabulaire, 14 nov. 2026) ─────────────────────────────
+# AJOUTES A LA FIN : l'ordre des 31 noms ci-dessus ne change pas (progression rangee par rang).
+# Source : pflege/sources/vocabulaire/t03_vitalzeichen.py ; un mot deja ci-dessus est saute.
+import os  # noqa: E402
+import sys  # noqa: E402
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "vocabulaire"))
+from adaptateur import mots_ajoutes  # noqa: E402
+
+MOTS += mots_ajoutes("t03_vitalzeichen", deja=MOTS)
