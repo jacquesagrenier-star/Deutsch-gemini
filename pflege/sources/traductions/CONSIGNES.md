@@ -14,7 +14,7 @@ personne. Les langues à déclinaison (uk, ru, pl) **ajoutent les cas qu'elles e
 ici, le contrôle le vérifie. Écriture : les noms se translittèrent dans l'alphabet de la langue (uk, ru :
 cyrillique ; ar, fa : écriture arabe), comme dans un roman traduit. Titres : « Herr / Frau » deviennent le titre
 courant de la langue (M. / Mme, Mr / Mrs, Bay / Bayan, пан / пані, господин / госпожа, pan / pani, السيد / السيدة,
-آقای / خانم, Sr. / Sra.). « Dr. Sommer » est une femme, « Dr. Neumann » un homme.
+آقای / خانم, Sr. / Sra.). « Dr. Sommer » est une femme, « Dr. Krämer » (médecin de garde) un homme.
 
 ## Comment traduire
 

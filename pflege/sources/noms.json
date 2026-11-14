@@ -1,47 +1,230 @@
 {
  "_note": "Les noms des personnages des textes Soins (pflege/PERSONNAGES.md, proposition du 14 nov. 2026, a valider par Jacques). Changer un nom ici (et dans traductions/<langue>/noms.json), puis python pflege/outils/textes.py construire. Formes : \"\" = la forme courante (sujet), voc = pour s'adresser a la personne, dat / akk = cas allemands, famille = le nom seul, fiche = « Nom, Prénom » des formulaires (allemand seulement). Les autres langues ajoutent leurs cas dans leur fichier de traduction.",
  "personnes": {
-  "elif":    {"role": "soignante", "genre": "f", "pays": "Turquie (Izmir)",
-              "de": {"": "Elif"}, "fr": {"": "Elif"}},
-  "yusuf":   {"role": "soignant", "genre": "m", "pays": "Syrie (Alep)",
-              "de": {"": "Yusuf"}, "fr": {"": "Yusuf"}},
-  "arun":    {"role": "soignant", "genre": "m", "pays": "Inde (Kerala)",
-              "de": {"": "Arun"}, "fr": {"": "Arun"}},
-  "olena":   {"role": "soignante", "genre": "f", "pays": "Ukraine (Kharkiv)",
-              "de": {"": "Olena"}, "fr": {"": "Olena"}},
-  "amira":   {"role": "soignante", "genre": "f", "pays": "Tunisie (Sfax)",
-              "de": {"": "Amira"}, "fr": {"": "Amira"}},
-  "jonas":   {"role": "infirmier tuteur", "genre": "m",
-              "de": {"": "Jonas"}, "fr": {"": "Jonas"}},
-  "hoffmann": {"role": "cadre du service", "genre": "f",
-              "de": {"": "Frau Hoffmann", "famille": "Hoffmann"},
-              "fr": {"": "Mme Hoffmann", "voc": "madame Hoffmann", "famille": "Hoffmann"}},
-  "sommer":  {"role": "medecin du service", "genre": "f",
-              "de": {"": "Dr. Sommer", "voc": "Frau Dr. Sommer", "famille": "Sommer"},
-              "fr": {"": "la docteure Sommer", "a": "à la docteure Sommer", "de": "de la docteure Sommer", "voc": "docteure Sommer", "famille": "Sommer"}},
-  "neumann": {"role": "medecin de garde (nuit)", "genre": "m",
-              "de": {"": "Dr. Neumann", "voc": "Herr Dr. Neumann", "famille": "Neumann"},
-              "fr": {"": "le docteur Neumann", "a": "au docteur Neumann", "de": "du docteur Neumann", "voc": "docteur Neumann", "famille": "Neumann"}},
-  "brandt":  {"role": "patient, 82 ans, opere de la hanche", "genre": "m",
-              "de": {"": "Herr Brandt", "dat": "Herrn Brandt", "akk": "Herrn Brandt", "famille": "Brandt", "fiche": "Brandt, Heinrich"},
-              "fr": {"": "M. Brandt", "voc": "monsieur Brandt", "famille": "Brandt"}},
-  "lehmann": {"role": "patiente, 74 ans, diabetique, plaie au pied", "genre": "f",
-              "de": {"": "Frau Lehmann", "famille": "Lehmann", "fiche": "Lehmann, Gisela"},
-              "fr": {"": "Mme Lehmann", "voc": "madame Lehmann", "famille": "Lehmann"}},
-  "krueger": {"role": "la fille de Frau Lehmann (nom propose)", "genre": "f",
-              "de": {"": "Frau Krüger", "famille": "Krüger"},
-              "fr": {"": "Mme Krüger", "voc": "madame Krüger", "famille": "Krüger"}},
-  "schulze": {"role": "resident, 87 ans, demence moderee, ancien conducteur de tramway", "genre": "m",
-              "de": {"": "Herr Schulze", "dat": "Herrn Schulze", "akk": "Herrn Schulze", "famille": "Schulze", "fiche": "Schulze, Werner"},
-              "fr": {"": "M. Schulze", "voc": "monsieur Schulze", "famille": "Schulze"}},
-  "weber":   {"role": "residente, 81 ans", "genre": "f",
-              "de": {"": "Frau Weber", "famille": "Weber", "fiche": "Weber, Hildegard"},
-              "fr": {"": "Mme Weber", "voc": "madame Weber", "famille": "Weber"}},
-  "kowalski": {"role": "cliente des soins a domicile, 79 ans", "genre": "f",
-              "de": {"": "Frau Kowalski", "famille": "Kowalski", "fiche": "Kowalski, Maria"},
-              "fr": {"": "Mme Kowalski", "voc": "madame Kowalski", "famille": "Kowalski"}},
-  "klinik":  {"role": "lieu", "de": {"": "Klinikum am Kanal"}, "fr": {"": "Klinikum am Kanal"}},
-  "heim":    {"role": "lieu", "de": {"": "Haus Lindenhof"}, "fr": {"": "Haus Lindenhof"}},
-  "station": {"role": "lieu (service de l'hopital)", "de": {"": "Station 4B", "dit": "Station vier B"}, "fr": {"": "service 4B"}}
+  "elif": {
+   "role": "soignante",
+   "genre": "f",
+   "pays": "Turquie (Izmir)",
+   "de": {
+    "": "Elif"
+   },
+   "fr": {
+    "": "Elif"
+   }
+  },
+  "yusuf": {
+   "role": "soignant",
+   "genre": "m",
+   "pays": "Syrie (Alep)",
+   "de": {
+    "": "Yusuf"
+   },
+   "fr": {
+    "": "Yusuf"
+   }
+  },
+  "arun": {
+   "role": "soignant",
+   "genre": "m",
+   "pays": "Inde (Kerala)",
+   "de": {
+    "": "Arun"
+   },
+   "fr": {
+    "": "Arun"
+   }
+  },
+  "olena": {
+   "role": "soignante",
+   "genre": "f",
+   "pays": "Ukraine (Kharkiv)",
+   "de": {
+    "": "Olena"
+   },
+   "fr": {
+    "": "Olena"
+   }
+  },
+  "amira": {
+   "role": "soignante",
+   "genre": "f",
+   "pays": "Tunisie (Sfax)",
+   "de": {
+    "": "Amira"
+   },
+   "fr": {
+    "": "Amira"
+   }
+  },
+  "jonas": {
+   "role": "infirmier tuteur",
+   "genre": "m",
+   "de": {
+    "": "Jonas"
+   },
+   "fr": {
+    "": "Jonas"
+   }
+  },
+  "hoffmann": {
+   "role": "cadre du service",
+   "genre": "f",
+   "de": {
+    "": "Frau Hoffmann",
+    "famille": "Hoffmann"
+   },
+   "fr": {
+    "": "Mme Hoffmann",
+    "voc": "madame Hoffmann",
+    "famille": "Hoffmann"
+   }
+  },
+  "sommer": {
+   "role": "medecin du service",
+   "genre": "f",
+   "de": {
+    "": "Dr. Sommer",
+    "voc": "Frau Dr. Sommer",
+    "famille": "Sommer"
+   },
+   "fr": {
+    "": "la docteure Sommer",
+    "a": "à la docteure Sommer",
+    "de": "de la docteure Sommer",
+    "voc": "docteure Sommer",
+    "famille": "Sommer"
+   }
+  },
+  "kraemer": {
+   "role": "medecin de garde (nuit)",
+   "genre": "m",
+   "de": {
+    "": "Dr. Krämer",
+    "voc": "Herr Dr. Krämer",
+    "famille": "Krämer"
+   },
+   "fr": {
+    "": "le docteur Krämer",
+    "a": "au docteur Krämer",
+    "de": "du docteur Krämer",
+    "voc": "docteur Krämer",
+    "famille": "Krämer"
+   }
+  },
+  "brandt": {
+   "role": "patient, 82 ans, opere de la hanche",
+   "genre": "m",
+   "de": {
+    "": "Herr Brandt",
+    "dat": "Herrn Brandt",
+    "akk": "Herrn Brandt",
+    "famille": "Brandt",
+    "fiche": "Brandt, Heinrich"
+   },
+   "fr": {
+    "": "M. Brandt",
+    "voc": "monsieur Brandt",
+    "famille": "Brandt"
+   }
+  },
+  "lehmann": {
+   "role": "patiente, 74 ans, diabetique, plaie au pied",
+   "genre": "f",
+   "de": {
+    "": "Frau Lehmann",
+    "famille": "Lehmann",
+    "fiche": "Lehmann, Gisela"
+   },
+   "fr": {
+    "": "Mme Lehmann",
+    "voc": "madame Lehmann",
+    "famille": "Lehmann"
+   }
+  },
+  "lehmann_tochter": {
+   "role": "la fille de Frau Lehmann (nom propose)",
+   "genre": "f",
+   "de": {
+    "": "Frau Krüger",
+    "famille": "Krüger"
+   },
+   "fr": {
+    "": "Mme Krüger",
+    "voc": "madame Krüger",
+    "famille": "Krüger"
+   }
+  },
+  "schulze": {
+   "role": "resident, 87 ans, demence moderee, ancien conducteur de tramway",
+   "genre": "m",
+   "de": {
+    "": "Herr Schulze",
+    "dat": "Herrn Schulze",
+    "akk": "Herrn Schulze",
+    "famille": "Schulze",
+    "fiche": "Schulze, Werner"
+   },
+   "fr": {
+    "": "M. Schulze",
+    "voc": "monsieur Schulze",
+    "famille": "Schulze"
+   }
+  },
+  "weber": {
+   "role": "residente, 81 ans",
+   "genre": "f",
+   "de": {
+    "": "Frau Weber",
+    "famille": "Weber",
+    "fiche": "Weber, Hildegard"
+   },
+   "fr": {
+    "": "Mme Weber",
+    "voc": "madame Weber",
+    "famille": "Weber"
+   }
+  },
+  "kowalski": {
+   "role": "cliente des soins a domicile, 79 ans",
+   "genre": "f",
+   "de": {
+    "": "Frau Kowalski",
+    "famille": "Kowalski",
+    "fiche": "Kowalski, Maria"
+   },
+   "fr": {
+    "": "Mme Kowalski",
+    "voc": "madame Kowalski",
+    "famille": "Kowalski"
+   }
+  },
+  "klinik": {
+   "role": "lieu",
+   "de": {
+    "": "Klinikum am Kanal"
+   },
+   "fr": {
+    "": "Klinikum am Kanal"
+   }
+  },
+  "heim": {
+   "role": "lieu",
+   "de": {
+    "": "Haus Lindenhof"
+   },
+   "fr": {
+    "": "Haus Lindenhof"
+   }
+  },
+  "station": {
+   "role": "lieu (service de l'hopital)",
+   "de": {
+    "": "Station 4B",
+    "dit": "Station vier B"
+   },
+   "fr": {
+    "": "service 4B"
+   }
+  }
  }
 }
