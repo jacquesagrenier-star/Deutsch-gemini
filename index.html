@@ -72760,13 +72760,18 @@ function seanceJaponaise(){ return LANGUE_APPRISE === "ja"; }
 //   (b) SUR LE TELEPHONE : la meme seance est ecrite a chaque carte sous SEANCE_EN_COURS_KEY (le jour, la version, les
 //       cartes, la position, les parties, les mots presentes, l'etat de chaque mot au moment de l'ecriture). Si l'app
 //       a ete tuee (iPhone en arriere-plan), elle se reconstruit le meme jour tant qu'il reste des cartes. Le
-//       lendemain, ou apres une mise a jour (version differente), elle est abandonnee proprement : une seance neuve.
+//       lendemain, elle est abandonnee : une seance neuve. UNE MISE A JOUR NE LA PERD PAS (le chef, 14 nov. : on publie
+//       plusieurs versions par jour) : chaque carte de mot est retrouvee dans les donnees du jour (themeId:index:mode,
+//       le meme mot) et en reprend le contenu a jour ; elle n'est abandonnee que si une carte ne se retrouve plus, ou
+//       si le FORMAT de ce qui est ecrit a change (SEANCE_EN_COURS_FORMAT, a monter si la forme change).
 //       Une carte de mot jugee AILLEURS entre-temps (autre appareil, nuage) -- son etat a change depuis l'ecriture et
 //       elle n'est plus due -- n'est pas reposee.
 //   (c) ajouterSerieNeufs() (la dose de mots neufs d'« Encore une seance ») seulement au debut d'une VRAIE nouvelle
 //       seance : jamais sur une reprise (un aller-retour sans carte passee en ouvrait 15 de plus chaque fois).
 // Premiers pas garde sa propre reprise (sa position, marquerPositionPremiersPas) : il n'entre pas ici.
 const SEANCE_EN_COURS_KEY = PREFIXE_STOCKAGE + "seanceEnCours";
+// Le format de ce qui est ecrit sous SEANCE_EN_COURS_KEY -- distinct d'APP_VERSION, qui change plusieurs fois par jour.
+const SEANCE_EN_COURS_FORMAT = 1;
 let SEANCE_MEMO = null;   // { d, jour, v, paquet, full, theme, niveau, parts, pool, ciel, passages }
 function signatureMot(it){
     try{
@@ -72788,7 +72793,7 @@ function oublierSeanceEnCours(){
 // La seance du jour qui vient d'etre construite (ou reprise) devient « la seance en cours ».
 function retenirSeanceEnCours(niveau){
     if(!seanceSuivie || !estSeanceDuJourOuverte()) return;
-    SEANCE_MEMO = { d: seanceSuivie.d, jour: getTodayStr(), v: APP_VERSION, paquet: currentCards, full: currentCardsFull,
+    SEANCE_MEMO = { d: seanceSuivie.d, jour: getTodayStr(), paquet: currentCards, full: currentCardsFull,
                     theme: currentTheme, niveau: niveau, parts: SEANCE_PARTS, pool: POOL_NEUFS_SEANCE, ciel: CIEL_AV,
                     passages: PASSAGES_VUS };
     ecrireSeanceEnCours();
@@ -72802,7 +72807,7 @@ function ecrireSeanceEnCours(){
         const parts = m.parts && m.parts.paquet === m.paquet ? m.paquet.map(it => m.parts.parts.get(it) || "") : null;
         const presentes = [];
         m.paquet.forEach(it => { try{ if(it && MOTS_PRESENTES.has(clePresentation(it))) presentes.push(clePresentation(it)); }catch(e){} });
-        const v = { j: m.jour, v: m.v, d: m.d, pos: currentFlashcard, niveau: m.niveau, rattrapage: !!m.rattrapage,
+        const v = { f: SEANCE_EN_COURS_FORMAT, j: m.jour, v: APP_VERSION, d: m.d, pos: currentFlashcard, niveau: m.niveau, rattrapage: !!m.rattrapage,
                     theme: m.theme ? { id: m.theme.id, name: m.theme.name } : null,
                     cartes: m.paquet, parts: parts,
                     infos: m.parts ? { themeId: m.parts.themeId, niveau: m.parts.niveau, etape: m.parts.etape, rang: m.parts.rang } : null,
@@ -72818,23 +72823,45 @@ function seanceEnCoursLue(){
     let v = null;
     try{ v = JSON.parse(localStorage.getItem(SEANCE_EN_COURS_KEY) || "null"); }catch(e){ v = null; }
     if(!v || typeof v !== "object" || !Array.isArray(v.cartes)) return null;
-    if(v.j !== getTodayStr() || v.v !== APP_VERSION){ oublierSeanceEnCours(); return null; }
+    if(v.j !== getTodayStr() || v.f !== SEANCE_EN_COURS_FORMAT){ oublierSeanceEnCours(); return null; }
     return v;
 }
 function seanceAReprendre(){
     try{
         if(premiersPasEnCours()) return false;
         const m = SEANCE_MEMO;
-        if(m && m.jour === getTodayStr() && m.v === APP_VERSION && m.paquet && m.paquet.length) return true;
+        if(m && m.jour === getTodayStr() && m.paquet && m.paquet.length) return true;
         const v = seanceEnCoursLue();
         return !!(v && typeof v.pos === "number" && v.pos < v.cartes.length);
     }catch(e){ return false; }
 }
-function reprendreSeanceDuJour(){
+// Les cartes de mots du jour, par themeId:index:mode -- tous les niveaux, et Premiers pas (ses cartes reviennent en
+// revision). Sert a retrouver les cartes d'une seance gardee, apres une mise a jour comme apres un rechargement.
+function cleCarteSeance(it){ return it.themeId + ":" + it.index + ":" + (it.mode || "nomen"); }
+async function cartesDuCorpus(){
+    const m = new Map();
+    NIVEAUX_CECR.forEach(n => { try{ paquetDuNiveau(n).forEach(it => m.set(cleCarteSeance(it), it)); }catch(e){} });
+    try{ if(essaiActif("premiers_pas")){ await chargerPremiersPas(); toutesCartesPremiersPas().forEach(it => m.set(cleCarteSeance(it), it)); } }catch(e){}
+    return m;
+}
+// Chaque carte de mot de la seance gardee, retrouvee dans les donnees du jour : la meme cle ET le meme mot. Rend les
+// cartes avec leur contenu a jour, ou null si une seule ne se retrouve plus (la seance est alors abandonnee).
+async function resoudreCartesGardees(cartes){
+    const corpus = await cartesDuCorpus();
+    const out = [];
+    for(const it of cartes){
+        if(!it || it.mode === "phrase" || !it.themeId || !Array.isArray(it.word)){ out.push(it); continue; }
+        const ici = corpus.get(cleCarteSeance(it));
+        if(!ici || !Array.isArray(ici.word) || ici.word[0] !== it.word[0]) return null;
+        out.push(Object.assign({}, it, { word: ici.word }));
+    }
+    return out;
+}
+async function reprendreSeanceDuJour(){
     if(premiersPasEnCours()) return false;
     const niveau = niveauSeance();
     let m = SEANCE_MEMO;
-    if(m && (m.jour !== getTodayStr() || m.v !== APP_VERSION || m.niveau !== niveau)) m = null;
+    if(m && (m.jour !== getTodayStr() || m.niveau !== niveau)) m = null;
     let pos = null, presentes = [];
     if(m){
         // (a) la seance est encore en memoire : on y retourne telle quelle.
@@ -72845,7 +72872,11 @@ function reprendreSeanceDuJour(){
         // (b) l'app a ete fermee : on la reconstruit depuis le stockage.
         const v = seanceEnCoursLue();
         if(!v || v.niveau !== niveau || typeof v.pos !== "number" || v.pos >= v.cartes.length) return false;
-        const cartes = v.cartes.slice(), noms = Array.isArray(v.parts) ? v.parts.slice() : null, snap = Array.isArray(v.snap) ? v.snap : [];
+        // Les cartes retrouvees dans les donnees du jour (une version plus recente a pu les changer) ; une seule
+        // introuvable, et la seance gardee est abandonnee pour une seance neuve.
+        const resolues = await resoudreCartesGardees(v.cartes);
+        if(!resolues){ oublierSeanceEnCours(); return false; }
+        const cartes = resolues, noms = Array.isArray(v.parts) ? v.parts.slice() : null, snap = Array.isArray(v.snap) ? v.snap : [];
         // Une carte de mot jugee ailleurs depuis l'ecriture, et plus due : on ne la repose pas.
         const garder = cartes.map((it, i) => {
             if(i < v.pos || !it || it.mode === "phrase" || !it.themeId) return true;
@@ -72865,7 +72896,7 @@ function reprendreSeanceDuJour(){
             paquet.forEach((it, i) => { if(nomsGardes[i]) map.set(it, nomsGardes[i]); });
             parts = Object.assign({ paquet: paquet, parts: map }, v.infos);
         }
-        m = { d: v.d, jour: v.j, v: v.v, paquet: paquet, full: full, rattrapage: !!v.rattrapage, theme: v.theme || { id: "seance_" + niveau, name: t("seance_titre") + " · " + niveau },
+        m = { d: v.d, jour: v.j, paquet: paquet, full: full, rattrapage: !!v.rattrapage, theme: v.theme || { id: "seance_" + niveau, name: t("seance_titre") + " · " + niveau },
               niveau: niveau, parts: parts, pool: null, ciel: null, passages: new Set(Array.isArray(v.passages) ? v.passages : []) };
         pos = v.pos;
         presentes = Array.isArray(v.presentes) ? v.presentes : [];
@@ -72904,7 +72935,7 @@ async function ouvrirSeanceDuJour(sansScene){
     // v828 : en Premiers pas, la porte des mots mene au parcours des 50 mots.
     if(premiersPasEnCours()){ ouvrirPremiersPas(); return; }
     // 14 nov. 2026 : la seance du jour entamee se reprend (voir « CONTINUER LA SEANCE » REPREND LA SEANCE).
-    try{ if(reprendreSeanceDuJour()) return; }catch(e){}
+    try{ if(await reprendreSeanceDuJour()) return; }catch(e){}
     PHRASES_POSEES.clear();
     RETOURS_FIN_SEANCE.length = 0;
     // L'essai des scenes (v713) : l'ecran de choix, une fois par jour.
