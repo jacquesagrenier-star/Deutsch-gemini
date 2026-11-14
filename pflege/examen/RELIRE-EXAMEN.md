@@ -28,3 +28,10 @@ La question à se poser à chaque ligne : **est-ce ainsi que cela se dit et se f
 | 33-34 | la notice du paracétamol 500 mg (dose, intervalle de 6 h, 4 g par jour, 3 jours contre la fièvre, 4 contre la douleur, surdosage et foie) |
 | 35-36 | la note norovirus : désinfectant virucide, visites limitées, 48 h sans symptômes avant de reprendre |
 | 37-38 | le secret professionnel (§ 203 StGB), la fiche d'identité (« Stammblatt ») qui nomme les personnes autorisées, ce que dit la soignante et ce que dit le médecin |
+
+## Sprachbausteine
+
+| item | ce qu'il faut vérifier |
+|---|---|
+| S1 (42-49) | le rapport du matin sur Herr Brandt : est-ce le style d'un vrai « Pflegebericht » ? (« Körperpflege am Waschbecken teilweise selbst übernommen », « Wunde reizlos », l'antalgique une demi-heure avant la kiné) ; et surtout : les deux mots en trop (falls, trotzdem) ne vont-ils vraiment dans aucun trou ? |
+| S2 (50-59) | le rapport du soir sur Frau Lehmann : « 4 IE Insulin s. c. » après un contrôle à 212 mg/dl sur avis du médecin, « Verband leicht durchfeuchtet, nach Standard gewechselt », « unter Anleitung selbst gespritzt », « den Pen einstellen » ; et pour chaque trou, qu'une seule des trois réponses soit possible |
