@@ -3113,6 +3113,7 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 .soins-chapeau{margin:0 0 12px; color:#4C566B; font-size:.95rem; line-height:1.45;}
 .soins-sous{font-size:.85rem; color:#4C566B;}
 .soins-vide{color:#4C566B; text-align:center; padding:20px;}
+.soins-examen{display:grid; gap:8px; padding:12px 0 16px; margin-bottom:12px; border-bottom:1px solid rgba(76,86,107,.18);}
 .suivi-soins-ligne{padding:8px 0; border-top:1px solid rgba(76,86,107,.18); line-height:1.45;}
 .suivi-soins-alerte{display:inline-block; font-size:.78rem; font-weight:700; padding:1px 8px; border-radius:999px; background:#fde8e4; color:#a33a2c;}
 
@@ -11569,7 +11570,13 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <div class="pill">telc B1·B2 Pflege</div>
     </div>
     <div class="card" style="margin-top:15px;">
-        <p class="soins-chapeau">L'allemand des soignants : les mots du service, par niveau. Les scènes, les dialogues, la grammaire du métier, l'écrit et l'examen blanc arrivent ensuite.</p>
+        <p class="soins-chapeau">L'allemand des soignants : les mots du service, par niveau, et l'examen blanc du telc Deutsch B1·B2 Pflege. Les scènes, les dialogues, la grammaire du métier et l'écrit arrivent ensuite.</p>
+        <div class="soins-examen">
+            <strong>telc Deutsch B1·B2 Pflege</strong>
+            <div id="soinsDernierExamen" class="soins-sous"></div>
+            <button class="primary" onclick="ouvrirTelcPflege('blanc')">L'examen blanc complet</button>
+            <button class="secondary" onclick="ouvrirTelcPflege('')">S'entraîner par partie</button>
+        </div>
         <div class="theme-list" id="soinsList"></div>
     </div>
 </section>
@@ -57204,6 +57211,18 @@ function pretPourExamenSoins(examens){
 }
 
 function renderSoinsListe(){
+    // Le dernier examen blanc, s'il y en a un (enregistrerExamenSoins).
+    try{
+        const dernier = document.getElementById("soinsDernierExamen");
+        if(dernier){
+            const l = lireExamensSoins();
+            const x = l[l.length - 1];
+            dernier.textContent = x
+                ? "Dernier examen blanc : " + (x.certificat === "aucun" ? "pas encore de certificat" : "niveau " + x.certificat)
+                  + " (écoute, lecture et éléments de langue " + x.hls + "/59 · écrit " + x.schreiben + "/20 · oral " + x.sprechen + "/100)"
+                : "Pas encore d'examen blanc : 1 h 55 d'écrit, puis l'oral, comme le jour de l'examen.";
+        }
+    }catch(e){}
     const box = document.getElementById("soinsList");
     if(!box) return;
     if(!themesSoins.length){ box.innerHTML = '<p class="soins-vide">Aucun thème pour le moment.</p>'; return; }
@@ -68025,12 +68044,8 @@ window.addEventListener("message", (e) => {
     // Wortando Pflege (14 nov. 2026) : l'examen blanc telc Pflege (visuel/prototype/telc-pflege/) envoie son
     // resultat (pflege/FORMAT-DONNEES.md, § 6) ; l'app le garde et en tire « pret pour l'examen ». Ses fins
     // (fini, fermer) ramenent a l'ecran Soins.
+    // Ses exercices (« exercice ») et son micro passent plus bas par le chemin commun, comme le telc A2·B1.
     if(d.type === "resultat_examen" && d.examen === "soins_telc"){ try{ enregistrerExamenSoins(d); }catch(err){} return; }
-    if(sceneOuverteDepuis === "telc-pflege"){
-        if(d.type === "micro") microPourCadre(d, e);
-        else if(d.type === "fini" || d.type === "fermer"){ try{ ouvrirSoins(); }catch(err){ goHome(); } }
-        return;
-    }
     if(sceneOuverteDepuis === "conversations"){
         if(d.type === "micro") microPourCadre(d, e);
         else if(d.type === "fermer"){ try{ ouvrirToutLeContenu(); }catch(err){ goHome(); } }
@@ -68058,6 +68073,11 @@ window.addEventListener("message", (e) => {
     }
     // Essai dtz_oral : le micro demande par la page, et le retour au panneau « Preparation ».
     if(d.type === "micro"){ microPourCadre(d, e); return; }
+    // Wortando Pflege : la fin de l'examen blanc telc Pflege, ou sa page quittee, ramene a l'ecran Soins.
+    if(sceneOuverteDepuis === "telc-pflege" && (d.type === "fini" || d.type === "fermer")){
+        try{ ouvrirSoins(); }catch(err){ goHome(); }
+        return;
+    }
     // Le bloc d'ou l'on vient (essai examens_blocs) : l'oral du DTZ revient au bloc DTZ s'il en vient, la page du
     // telc au bloc telc.
     if((sceneOuverteDepuis === "dtz" || sceneOuverteDepuis === "telc") && (d.type === "fini" || d.type === "fermer")){
