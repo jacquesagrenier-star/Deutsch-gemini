@@ -33,8 +33,8 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RACINE, "pflege", "outils"))
 import corpus  # noqa: E402
 
-FICHIER = os.path.join(RACINE, "pflege", "datos", "themes.json")
-LECTURES = os.path.join(RACINE, "pflege", "datos", "lectures-de.json")
+FICHIER = os.path.join(RACINE, "pflege", "sources", "vocabulaire", "_apercu", "themes.json")
+LECTURES = os.path.join(RACINE, "pflege", "sources", "vocabulaire", "_apercu", "lectures-de.json")
 LECTURES_APP = os.path.join(RACINE, "audio", "lectures", "de.json")
 LANGUES = ["en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"]  # + fr sans suffixe
 NIVEAUX = {"A2", "B1", "B2"}
@@ -183,6 +183,14 @@ def main():
                 if d.get("relire"):
                     a_relire.append("%s · %s" % (th["id"], tete(d)))
                 textes_dits.add(d.get("exemple", ""))
+                # le mot est-il dans sa phrase ? (avertissement : flexions, verbes separables)
+                if liste == "mots" or (liste == "reprises" and d.get("type") == "nom"):
+                    ex = (d.get("exemple") or "").lower()
+                    formes = [f for f in re.split(r"\s*/\s*", tete(d)) if f]
+                    if d.get("pluriel"):
+                        formes.append(d["pluriel"])
+                    if not any(corpus.cle(f)[:5] in ex for f in formes):
+                        r.averti("%s/%s : le mot n'apparait pas dans sa phrase d'exemple" % (th["id"], tete(d)))
                 if liste != "reprises":
                     textes_dits.add(tete(d))
                 # doublons entre entrees des Soins

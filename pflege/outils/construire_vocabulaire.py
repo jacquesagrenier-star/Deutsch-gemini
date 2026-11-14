@@ -41,7 +41,7 @@ import sys
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
 SOURCES = os.path.join(RACINE, "pflege", "sources", "vocabulaire")
-DATOS = os.path.join(RACINE, "pflege", "datos")
+DATOS = os.path.join(RACINE, "pflege", "sources", "vocabulaire", "_apercu")  # provisoire : le format officiel est celui de pflege/outils/construire.py
 SORTIE = os.path.join(DATOS, "themes.json")
 SORTIE_LECTURES = os.path.join(DATOS, "lectures-de.json")
 
