@@ -81,7 +81,7 @@ def main():
 
     def cadre(page):
         for f in page.frames:
-            if f != page.main_frame and ("seance=1" in f.url or "conversation" in f.url):
+            if f != page.main_frame and ("seance=1" in f.url or "pp=1" in f.url or "conversation" in f.url):
                 return f
         return None
 
@@ -187,6 +187,14 @@ def main():
                 # chaque question envoie « exercice »).
                 for _ in range(30):
                     page.wait_for_timeout(400)
+                    # 14 nov. : on repond par la page elle-meme (toucher() sur une zone de la cible) -- un clic au
+                    # centre de l'image ne tombait pas toujours sur une zone, et rien n'etait repondu.
+                    rep = f.evaluate("""() => { try{ if(typeof attenteToucher !== 'undefined' && attenteToucher && !verrou){
+                        const z = zonesDe(attenteToucher); if(z.length){ toucher(z[0], null); return 'toucher ' + attenteToucher; } } }catch(e){ return 'erreur ' + e; } return null; }""")
+                    if rep:
+                        touche = rep
+                        page.wait_for_timeout(1500)
+                        break
                     touche = f.evaluate("""() => { const b = [...document.querySelectorAll('button')].find(x => x.offsetHeight > 0 && /passer|commencer|continuer|weiter|empezar|start/i.test(x.textContent));
                         if(b){ b.click(); return 'bouton ' + b.textContent.trim().slice(0, 20); }
                         const z = document.querySelector('[data-mot], .zone, svg [data-z], canvas'); return z ? 'zone' : null; }""")

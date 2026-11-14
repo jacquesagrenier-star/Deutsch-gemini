@@ -73217,13 +73217,18 @@ function majPartsSeance(){
 function dessinerSegmentsSeance(box, segs){
     box.textContent = "";
     const nomme = repereSeanceDispo();
+    // 14 nov. 2026 : au retour d'une scene, d'un theme ou d'une conversation, la barre des cartes compte ce qui y a
+    // ete fait (ARRET_AVANCE, plein a « fini ») -- sinon elle retombait a mi-partie sous l'ecran de fin, alors que le
+    // bandeau du cadre etait plein (tests/images_avancent.py : « la barre recule au retour »).
+    const cArret = currentCards && currentCards[currentFlashcard];
+    const avance = (cArret && /^(scene_arret|theme_arret|conv_arret|pp_scene)$/.test(cArret.forme || "") && ARRET_CLE === cArret) ? ARRET_AVANCE : 0;
     segs.forEach(s => {
         const b = document.createElement("i");
         b.style.flexGrow = nomme ? "1" : String(s.n);   // avec les noms, des colonnes egales
-        if(currentFlashcard >= s.debut + s.n) b.className = "fait";
+        if(currentFlashcard + avance >= s.debut + s.n) b.className = "fait";
         else if(currentFlashcard >= s.debut){
             b.className = "ici";
-            b.style.setProperty("--q", Math.round(100 * (currentFlashcard - s.debut) / s.n) + "%");
+            b.style.setProperty("--q", Math.round(100 * Math.min(s.n, currentFlashcard - s.debut + avance) / s.n) + "%");
         }
         box.appendChild(b);
     });
