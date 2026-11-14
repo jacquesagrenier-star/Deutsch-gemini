@@ -350,7 +350,7 @@ def construire_scene(nom, idx):
 
 def toutes():
     return sorted(n[len("scene-"):-len(".js")] for n in os.listdir(PROTO)
-                  if re.match(r"^scene-[a-z-]+\.js$", n) and os.path.exists(
+                  if re.match(r"^scene-[a-z-]+\.js$", n) and not n.startswith("scene-soins-") and os.path.exists(
                       os.path.join(PROTO, n[len("scene-"):-len(".js")] + ".points.json")))
 
 
