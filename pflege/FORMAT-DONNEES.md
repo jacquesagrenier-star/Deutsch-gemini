@@ -28,9 +28,13 @@ fichiers **à ce format**, et un changement de format se décide ici d'abord.
    un mot publié (le marquer `"retire": true` si besoin).
 8. **Les personnages** (`pflege/PERSONNAGES.md`) sont **une proposition** tant que Jacques ne les a pas
    validés. Le texte peut les nommer (Elif, Amira, Arun, Yusuf, Olena, Jonas, Frau Hoffmann, Dr. Sommer,
-   Herr Brandt, Frau Lehmann, Herr Schulze, Frau Weber, Frau Kowalski). **Images** : aucun **soignant**
-   dessiné avant la validation ; les **patients et résidents** selon la consigne du chef, lot par lot
-   (précisé le 14 nov. : c'est le chef qui tranche, pas ce contrat).
+   Herr Brandt, Frau Lehmann, Herr Schulze, Frau Weber, Frau Kowalski). **Images** (règle du chef,
+   14 nov.) :
+   - **permis dès maintenant** : les **patients**, les **résidents** et les **proches** — Herr Brandt,
+     Frau Lehmann et sa fille, les résidents du Haus Lindenhof (Herr Schulze, Frau Weber…), Frau Kowalski ;
+   - **en attente de la validation de Jacques** : les **soignants** seuls — Elif, Amira, Arun, Yusuf, Olena,
+     Jonas, Frau Hoffmann, Dr. Sommer. Aucun d'eux dessiné avant.
+   - chaque lot reste annoncé au chef avec son coût (règle 9).
 9. **Dépenses** (images fal, voix ElevenLabs v2, jamais Flash) : chaque lot annoncé au chef avec son coût
    avant d'être lancé ; hors plan ou au-delà de +20 % de l'estimation, nouvel accord.
 
