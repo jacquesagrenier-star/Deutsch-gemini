@@ -115,7 +115,7 @@ function carteQuestion(teil, it, rep, mode, opts){
       (tr(it, "erkl") ? '<div class="erkl">' + esc(tr(it, "erkl")) + '</div>' : "") + '</div>';
   }
   const frage = it.frage ? '<span class="frage" lang="de">' + esc(it.frage) + '</span>'
-    : '<span class="frage">' + esc(it.wer_nom ? T("pf_meinung", { n: it.wer_nom }) : opts && opts.frageVide || "") + '</span>';
+    : '<span class="frage">' + esc(it.wer_nom ? T("pf_meinung", { n: it.wer_nom }) : T("pf_ta_reponse")) + '</span>';
   return '<div class="q' + (opts && opts.ici ? " ici" : "") + '" id="q' + it.nr + '"><div class="tete"><span class="num">' + it.nr + '</span>' + frage + '</div>' +
     '<div class="choix' + (ligne ? " ligne" : "") + '">' + boutons + '</div>' + aide + '</div>';
 }

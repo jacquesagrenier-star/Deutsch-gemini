@@ -18,3 +18,13 @@ La question à se poser à chaque ligne : **est-ce ainsi que cela se dit et se f
 | G4 (11-12) | le stylo entamé à température ambiante, les neufs au réfrigérateur et jamais au congélateur, ne pas doubler une dose oubliée d'insuline lente, appeler le médecin de famille |
 | G5 (13-14) | la transmission au médecin de garde (fièvre 39,2, tension 105/60, pouls 110, confusion nouvelle), deux hémocultures AVANT l'antipyrétique, 1 g de paracétamol en perfusion, la surveillance horaire, le seuil « unter neunzig » |
 | T3 (15-20) | le tapis capteur (« Sensormatte ») et l'accord du patient, la sonnette du côté opéré, la chambre d'isolement pour un germe multirésistant (blouse, gants, masque pour tous, y compris le ménage), le plateau que la cuisine pose devant la porte, la documentation sur tablette et sa formation obligatoire |
+
+## Lesen
+
+| item | ce qu'il faut vérifier |
+|---|---|
+| 26 | la vaccination antigrippale du personnel par le service de médecine du travail, l'équipe mobile pour le travail posté |
+| L2 (28-32) | le rapport d'admission de Frau Lehmann (ulcère du pied diabétique, rétinopathie) et tout le plan de soins : les intitulés des AEDL de Krohwinkel, la cible glycémique 100-180 mg/dl, l'inspection des pieds, les ongles par la podologue, la conseillère en diabétologie, le sucre et la sonnette au lit, le service social |
+| 33-34 | la notice du paracétamol 500 mg (dose, intervalle de 6 h, 4 g par jour, 3 jours contre la fièvre, 4 contre la douleur, surdosage et foie) |
+| 35-36 | la note norovirus : désinfectant virucide, visites limitées, 48 h sans symptômes avant de reprendre |
+| 37-38 | le secret professionnel (§ 203 StGB), la fiche d'identité (« Stammblatt ») qui nomme les personnes autorisées, ce que dit la soignante et ce que dit le médecin |
