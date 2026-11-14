@@ -3114,6 +3114,7 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 .soins-sous{font-size:.85rem; color:#4C566B;}
 .soins-vide{color:#4C566B; text-align:center; padding:20px;}
 .soins-examen{display:grid; gap:8px; padding:12px 0 16px; margin-bottom:12px; border-bottom:1px solid rgba(76,86,107,.18);}
+.soins-scenes{display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:8px;}
 .suivi-soins-ligne{padding:8px 0; border-top:1px solid rgba(76,86,107,.18); line-height:1.45;}
 .suivi-soins-alerte{display:inline-block; font-size:.78rem; font-weight:700; padding:1px 8px; border-radius:999px; background:#fde8e4; color:#a33a2c;}
 
@@ -11576,6 +11577,10 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
             <div id="soinsDernierExamen" class="soins-sous"></div>
             <button class="primary" onclick="ouvrirTelcPflege('blanc')">L'examen blanc complet</button>
             <button class="secondary" onclick="ouvrirTelcPflege('')">S'entraîner par partie</button>
+        </div>
+        <div class="soins-examen">
+            <strong>Les scènes</strong>
+            <div id="soinsScenes" class="soins-scenes"></div>
         </div>
         <div class="theme-list" id="soinsList"></div>
     </div>
@@ -57141,6 +57146,21 @@ async function ouvrirSoins(){
 
 function retourDeSoins(){ ouvrirToutLeContenu(); }
 
+// Les scenes des Soins (session « scenes », visuel/prototype/soins-*.points.json, construites par
+// pflege/outils/construire_scenes.py). Elles ne sont PAS dans SCENES_TOUTES : un compte sans les Soins ne les voit
+// nulle part. Une scene a plusieurs vues s'ouvre par sa premiere vue (champ « vues »). On n'ajoute ici une scene que
+// lorsque sa session l'annonce construite et controlee.
+const SCENES_SOINS = [
+    { nom: "soins-zimmer",   titre: "Das Patientenzimmer", fr: "La chambre du patient" },
+    { nom: "soins-aufnahme", titre: "Die Aufnahme",        fr: "L'admission" }
+];
+function ouvrirSceneSoins(nom){
+    if(!soinsActifs()) return;
+    if(!SCENES_SOINS.some(s => s.nom === nom)) return;
+    ouvrirSceneLibre(nom);
+    sceneOuverteDepuis = "soins";
+}
+
 // L'examen blanc telc Pflege : une page a part, sur le modele du telc A2·B1 (ouvrirTelc), construite par la
 // session « examen » dans visuel/prototype/telc-pflege/. Son entree dans l'ecran Soins viendra a l'integration,
 // quand la page existera.
@@ -57223,6 +57243,17 @@ function renderSoinsListe(){
                 : "Pas encore d'examen blanc : 1 h 55 d'écrit, puis l'oral, comme le jour de l'examen.";
         }
     }catch(e){}
+    const scenes = document.getElementById("soinsScenes");
+    if(scenes){
+        scenes.innerHTML = "";
+        SCENES_SOINS.forEach(s => {
+            const b = document.createElement("button");
+            b.className = "secondary";
+            b.innerHTML = '<strong>' + echapperCompte(s.titre) + '</strong><br><small>' + echapperCompte(s.fr) + '</small>';
+            b.addEventListener("click", () => ouvrirSceneSoins(s.nom));
+            scenes.appendChild(b);
+        });
+    }
     const box = document.getElementById("soinsList");
     if(!box) return;
     if(!themesSoins.length){ box.innerHTML = '<p class="soins-vide">Aucun thème pour le moment.</p>'; return; }
@@ -68073,8 +68104,9 @@ window.addEventListener("message", (e) => {
     }
     // Essai dtz_oral : le micro demande par la page, et le retour au panneau « Preparation ».
     if(d.type === "micro"){ microPourCadre(d, e); return; }
-    // Wortando Pflege : la fin de l'examen blanc telc Pflege, ou sa page quittee, ramene a l'ecran Soins.
-    if(sceneOuverteDepuis === "telc-pflege" && (d.type === "fini" || d.type === "fermer")){
+    // Wortando Pflege : la fin de l'examen blanc telc Pflege ou d'une scene des Soins, ou leur page quittee, ramene a
+    // l'ecran Soins -- sans marquer la scene du jour comme faite (ce que fait la fin d'une scene libre).
+    if((sceneOuverteDepuis === "telc-pflege" || sceneOuverteDepuis === "soins") && (d.type === "fini" || d.type === "fermer")){
         try{ ouvrirSoins(); }catch(err){ goHome(); }
         return;
     }
