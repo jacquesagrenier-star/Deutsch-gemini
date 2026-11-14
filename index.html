@@ -45521,7 +45521,8 @@ async function restoreProgressFromCloud(){
                 let ici = null;
                 try{ ici = JSON.parse(localStorage.getItem(A1_VOYAGE_KEY) || "null"); }catch(e2){ ici = null; }
                 // 8 nov. 2026 : le plus recent l'emporte, sinon un deuxieme appareil restait a son etape.
-                if(d && typeof d === "object" && (!ici || (d.t || 0) > (ici.t || 0))){
+                // 14 nov. 2026 : l'heure sous « w » (« t » est le tableau vu) ; heureA1Voyage lit aussi l'ancienne.
+                if(d && typeof d === "object" && (!ici || heureA1Voyage(d) > heureA1Voyage(ici))){
                     try{ localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify(d)); }catch(e2){}
                 }
             }
@@ -70959,16 +70960,28 @@ const A1V_SEUIL_NOUVEAU = 10;
 //   « installe » | « aucun », dep / ret : « AAAA-MM-JJ », e: escale en cours,
 //   t: son tableau vu, b: ses phrases vues (nombre), d: son dialogue fait,
 //   fin: escales finies, jalon: jalon montre, k: etape de la suite,
-//   sf: suite finie (l'A2 commence), retour: avis donne au retour }
+//   sf: suite finie (l'A2 commence), retour: avis donne au retour,
+//   w: l'heure de l'ecriture (le nuage : le plus recent l'emporte) }
+// ⚠️ 14 nov. 2026 (retour de Jacques sur la v1189 : « deuxieme seance, etape 2 sur 12, Manger dehors », que des
+// cartes, aucune grammaire) : du 8 au 14 nov., l'heure de l'ecriture etait rangee sous « t », la cle qui dit « son
+// tableau vu ». Chaque ecriture marquait donc le tableau comme vu : a partir de la 2e escale, le tableau de
+// l'escale (sa grammaire) ne s'affichait plus, et l'escale avancait sans lui. L'heure vit maintenant sous « w » ;
+// un « t » qui est une heure (un nombre) redevient « pas encore vu » : le tableau de l'escale en cours revient.
 function lireA1Voyage(){
     let v = {};
     try{ v = JSON.parse(localStorage.getItem(A1_VOYAGE_KEY) || "{}"); if(!v || typeof v !== "object") v = {}; }
     catch(e){ v = {}; }
+    if(typeof v.t === "number"){ if(!v.w) v.w = v.t; v.t = false; }
     return v;
 }
+function heureA1Voyage(v){
+    // L'heure d'un etat, ecrit avant (« t », un nombre) ou apres (« w ») le 14 nov.
+    if(!v || typeof v !== "object") return 0;
+    return v.w || (typeof v.t === "number" ? v.t : 0);
+}
 function ecrireA1Voyage(v){
-    // 8 nov. 2026 : « t », l'heure de l'ecriture -- l'etat part dans le nuage et le plus recent l'emporte.
-    v.t = Date.now();
+    // 8 nov. 2026 : l'heure de l'ecriture -- l'etat part dans le nuage et le plus recent l'emporte.
+    v.w = Date.now();
     try{ localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify(v)); }catch(e){}
 }
 function a1VoyageEssai(){
