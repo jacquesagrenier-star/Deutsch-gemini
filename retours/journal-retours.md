@@ -9866,3 +9866,10 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
      d) zwischen : l'image est un schéma général des 25 prépositions (mots à 8,8 px), sans lien avec la carte.
   → Le chef autorise c) (défilement doux au retournement) et d-a) (la préposition de la carte en évidence dans la phrase, et « Dativ (wo?) » / « Akkusativ (wohin?) » en clair) ; a), b) et le schéma redessiné en SVG attendent Jacques.
   → EN LIGNE en v1189 (14 nov., 325b6c9) : a) un mot présenté depuis moins de 24 h donne 1 pastille et revient dans 10 min (décision de Jacques du 14 nov.) ; c) le verso défile au-dessus des boutons ; d) la préposition de la carte soulignée et son cas en clair. Restent à Jacques : b) la bulle des points, et le schéma redessiné.
+- 14 nov. (Jacques, iPhone, v1189, compte A1 après Premiers pas, chemin A1 à 12 escales) :
+  1. « deuxième séance, étape 2 sur 12 · Manger dehors » : seulement des cartes, aucune partie grammaire.
+     → C'est le cas de la ligne 77 (une partie grammaire dans chaque séance, décision du 12 nov.) : à la 2e séance, le tableau de l'escale est déjà vu, il ne reste aucune carte de grammaire ; la branche en ajoute trois tirées du tableau de l'escale. Sonde ajoutée sur ce chemin précis (de et es, avant/après).
+  2. « Mi tía es profesora » encore revue.
+     → Cause prouvée le 13 nov. (pas de révision par phrase) ; ligne 84 remontée juste après la 77.
+  3. Sorti de la séance du jour, puis revenu : « de retour à zéro, comme si j'avais rien fait ».
+     → Diagnostic confié le 14 nov. à la session des corrections rapides : reproduction de/es (1re séance et « encore une séance »), régression ou non de la v1189, état enregistré ou perdu.
