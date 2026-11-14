@@ -79,15 +79,15 @@ def main():
                     n = page.evaluate("""() => {
                         ensureSearchIndex();
                         const r = {};
-                        for(const q of ["м'ясо", "м’ясо", "мʼясо", "сімʼя", "сім'я"]){
+                        for(const q of ["м'ясо", "м’ясо", "мʼясо", "обовʼязковий", "обов'язковий"]){
                             renderWordSearch(q); r[q] = searchResults.length;
                         }
                         return r; }""")
                     print("   recherche :", json.dumps(n, ensure_ascii=False), flush=True)
                     if len({n["м'ясо"], n["м’ясо"], n["мʼясо"]}) != 1 or not n["мʼясо"]:
                         fautes.append("uk recherche : м'ясо / м’ясо / мʼясо ne donnent pas les memes cartes : %s" % n)
-                    if n["сім'я"] != n["сімʼя"] or not n["сімʼя"]:
-                        fautes.append("uk recherche : сім'я / сімʼя : %s" % n)
+                    if n["обов'язковий"] != n["обовʼязковий"] or not n["обовʼязковий"]:
+                        fautes.append("uk recherche : обов'язковий / обовʼязковий : %s" % n)
                 if a.captures:
                     os.makedirs(a.captures, exist_ok=True)
                     page.screenshot(path=os.path.join(a.captures, "accueil-%s.png" % ui))
