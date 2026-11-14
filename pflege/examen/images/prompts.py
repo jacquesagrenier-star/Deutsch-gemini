@@ -56,10 +56,15 @@ AMIRA_SPORT = ("AMIRA, a young woman of twenty-six from Tunisia, the woman of th
                "height, with light-brown skin, dark-brown eyes, full dark eyebrows, a round face and a bright, energetic "
                "smile, her thick black curly hair gathered in a high bun; today in a navy-blue running jacket, black "
                "running tights and grey running shoes.")
-WEBER = ("FRAU WEBER, a resident of eighty-one, the woman of the {ref} reference picture, her face, skin and hair exactly "
-         "as in it: white curly hair, a lilac twin-set, small pearl earrings")
-SCHULZE = ("HERR SCHULZE, a resident of eighty-seven, the man of the {ref} reference picture, his face, skin and hair "
-           "exactly as in it: a grey cardigan, a white beard and a small hearing aid behind his ear")
+# Frau Weber et Herr Schulze : des decoupes de la scene soins-altenheim (pflege-scenes, 14 nov.), table et objets
+# compris dans le cadre : la reference sert pour la PERSONNE seulement
+WEBER = ("FRAU WEBER, a resident of eighty-one, the woman of the {ref} reference picture (use that picture for the person "
+         "only: the table and the things around her do not appear here), her face, skin and hair exactly as in it: short "
+         "white curly hair, small pearl earrings, a lilac twin-set")
+SCHULZE = ("HERR SCHULZE, a resident of eighty-seven, the man of the {ref} reference picture (use that picture for the "
+           "person only: the table, the walker and the things around him do not appear here), his face, skin and hair "
+           "exactly as in it: white hair, a short white beard, a skin-coloured hearing aid at his ear, a grey cardigan "
+           "over a white shirt")
 KRUEGER = ("FRAU KRÜGER, a woman of about forty-five, the woman of the first reference picture: shoulder-length "
            "dark-blonde hair, a navy-blue raincoat over a grey jumper and dark jeans")
 
