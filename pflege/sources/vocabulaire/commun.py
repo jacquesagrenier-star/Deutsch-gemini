@@ -2,7 +2,8 @@
 """Les briques des sources du vocabulaire des Soins (un fichier par theme : tNN_*.py).
 
 ON CORRIGE ICI, JAMAIS DANS pflege/datos/ : pflege/datos/themes.json est DERIVE,
-refait par  python pflege/outils/construire_vocabulaire.py
+refait par  python pflege/outils/construire.py (via pflege/sources/<theme>.py et adaptateur.py),
+puis controle par  python tests/pflege.py  et  python tests/pflege_vocabulaire.py
 
 Une entree = une carte. Les champs sont ecrits en une ligne, separes par « | », dans
 un ORDRE FIXE :
