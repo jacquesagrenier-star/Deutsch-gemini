@@ -1,0 +1,386 @@
+{
+ "_langue": "tr",
+ "_source": "pflege/sources/dialogues/d08-sturz.json",
+ "cles": {
+  "titre": {
+   "fr": "Une résidente au sol",
+   "de": "Der Sturz",
+   "tr": "Yere düşen bir bakımevi sakini"
+  },
+  "intro": {
+   "fr": "Six heures du matin, au {heim}. {arun} entre dans la chambre de {weber} : elle est assise par terre, à côté de son lit. Tu joues {arun} : ne la relève pas tout de suite, rassure-la, vérifie, appelle de l'aide sans la laisser seule, aide-la à se relever avec ta collègue, puis demande ce qui s'est passé.",
+   "tr": "Sabah saat altı, {heim:loc}. {arun}, {weber:gen} odasına giriyor: yatağının yanında yerde oturuyor. Sen {arun:acc} canlandırıyorsun: onu hemen kaldırma, sakinleştir, kontrol et, onu yalnız bırakmadan yardım çağır, meslektaşınla birlikte kalkmasına yardım et, sonra ne olduğunu sor."
+  },
+  "but": {
+   "fr": "Réagir à une chute dans l'ordre : rassurer, ne pas relever tout de suite, vérifier (douleur, mouvements, tête), appeler sans quitter la personne, transmettre au Perfekt, aider à se relever, chercher la cause, documenter.",
+   "tr": "Bir düşmeye sırasıyla müdahale etmek: sakinleştirmek, hemen kaldırmamak, kontrol etmek (ağrı, hareketler, baş), kişiyi bırakmadan yardım çağırmak, Perfekt ile aktarmak, kalkmasına yardım etmek, nedenini araştırmak, kayıt tutmak."
+  },
+  "relire_notes": {
+   "fr": "Conduite après une chute (procédure de la maison, Expertenstandard Sturzprophylaxe) : ne pas relever avant d'avoir vérifié ; contrôles (douleur, mobilité, choc à la tête, anticoagulants ?) ; appeler sans quitter la résidente ; technique pour se relever (côté, genoux, chaise) ; informer le médecin traitant ; rapport de chute ; mesures (lumière de nuit, chaussons).",
+   "tr": "Düşme sonrası yapılacaklar (kurumun prosedürü, Expertenstandard Sturzprophylaxe): kontrol etmeden kaldırmamak; kontroller (ağrı, hareketlilik, başa darbe, kan sulandırıcı kullanıyor mu?); sakini bırakmadan yardım çağırmak; kalkma tekniği (yan, dizler, sandalye); aile hekimine haber vermek; düşme raporu; önlemler (gece lambası, terlik)."
+  },
+  "redemittel.0": {
+   "fr": "{weber:voc}, je suis là. Restez assise pour l'instant, s'il vous plaît.",
+   "de": "{weber}, ich bin da. Bleiben Sie bitte erst mal sitzen.",
+   "tr": "{weber:voc}, buradayım. Lütfen şimdilik oturduğunuz yerde kalın."
+  },
+  "redemittel.1": {
+   "fr": "Vous vous êtes fait mal ?",
+   "de": "Haben Sie sich wehgetan?",
+   "tr": "Bir yerinizi incittiniz mi?"
+  },
+  "redemittel.2": {
+   "fr": "Vous pouvez bouger la main et les jambes ?",
+   "de": "Können Sie die Hand und die Beine bewegen?",
+   "tr": "Elinizi ve bacaklarınızı oynatabiliyor musunuz?"
+  },
+  "redemittel.3": {
+   "fr": "Vous vous êtes cogné la tête ?",
+   "de": "Sind Sie mit dem Kopf aufgeschlagen?",
+   "tr": "Başınızı çarptınız mı?"
+  },
+  "redemittel.4": {
+   "fr": "J'appelle ma collègue. Je reste avec vous.",
+   "de": "Ich rufe meine Kollegin. Ich bleibe bei Ihnen.",
+   "tr": "Meslektaşımı çağırıyorum. Yanınızdan ayrılmıyorum."
+  },
+  "redemittel.5": {
+   "fr": "Vous vous souvenez comment c'est arrivé ?",
+   "de": "Wissen Sie noch, wie es passiert ist?",
+   "tr": "Nasıl olduğunu hatırlıyor musunuz?"
+  },
+  "redemittel.6": {
+   "fr": "Je fais un rapport de chute.",
+   "de": "Ich schreibe ein Sturzprotokoll.",
+   "tr": "Bir düşme raporu yazıyorum."
+  },
+  "noeuds.finden.dit.0.recit": {
+   "fr": "Six heures du matin. {arun} ouvre la porte de la chambre de {weber}. Elle est assise par terre, à côté du lit, en chemise de nuit.",
+   "tr": "Sabah saat altı. {arun}, {weber:gen} odasının kapısını açıyor. Kadın, yatağın yanında, geceliğiyle yerde oturuyor."
+  },
+  "noeuds.finden.dit.1": {
+   "fr": "Oh là là… je voulais juste aller aux toilettes.",
+   "de": "Ach je … ich wollte doch nur zur Toilette.",
+   "tr": "Ah, ah… Sadece tuvalete gitmek istemiştim."
+  },
+  "noeuds.finden.choix.0": {
+   "fr": "{weber:voc}, je suis là. Restez assise pour l'instant, je vais vous aider.",
+   "de": "{weber}, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.",
+   "tr": "{weber:voc}, buradayım. Lütfen şimdilik oturduğunuz yerde kalın, birazdan size yardım edeceğim."
+  },
+  "noeuds.finden.choix.0.puis.0": {
+   "fr": "Je suis tellement maladroite…",
+   "de": "Ich bin so ungeschickt …",
+   "tr": "Ne kadar beceriksizim…"
+  },
+  "noeuds.finden.choix.1": {
+   "fr": "{weber:voc}, c'est moi, {arun}. Restez comme vous êtes, s'il vous plaît. Ne vous levez pas encore.",
+   "de": "{weber}, ich bin's, {arun}. Bitte bleiben Sie, wie Sie sind. Noch nicht aufstehen.",
+   "tr": "{weber:voc}, benim, {arun}. Lütfen olduğunuz gibi kalın. Henüz kalkmayın."
+  },
+  "noeuds.finden.choix.1.puis.0": {
+   "fr": "Je suis tellement maladroite…",
+   "de": "Ich bin so ungeschickt …",
+   "tr": "Ne kadar beceriksizim…"
+  },
+  "noeuds.finden.choix.2": {
+   "fr": "Venez, je vous relève vite !",
+   "de": "Kommen Sie, ich ziehe Sie schnell hoch!",
+   "tr": "Gelin, sizi hemen kaldırayım!"
+  },
+  "noeuds.finden.choix.2.puis.0": {
+   "fr": "Aïe ! Non, attendez !",
+   "de": "Au! Nein, warten Sie!",
+   "tr": "Ay! Hayır, durun!"
+  },
+  "noeuds.finden.choix.2.aide": {
+   "fr": "<b>Ne relève jamais tout de suite une personne tombée.</b> D'abord rassurer et vérifier : une fracture ou un choc à la tête peut passer inaperçu. « Bleiben Sie bitte erst mal sitzen. »",
+   "tr": "<b>Düşen birini asla hemen kaldırma.</b> Önce sakinleştir ve kontrol et: bir kırık ya da başa darbe fark edilmeyebilir. “Bleiben Sie bitte erst mal sitzen.”"
+  },
+  "noeuds.beruhigen.choix.0": {
+   "fr": "Ça peut arriver à tout le monde. Je suis avec vous. Vous vous êtes fait mal ?",
+   "de": "Das kann jedem passieren. Ich bin bei Ihnen. Haben Sie sich wehgetan?",
+   "tr": "Bu herkesin başına gelebilir. Yanınızdayım. Bir yerinizi incittiniz mi?"
+  },
+  "noeuds.beruhigen.choix.0.puis.0": {
+   "fr": "J'ai mal au poignet. Le gauche.",
+   "de": "Mein Handgelenk tut weh. Das linke.",
+   "tr": "Bileğim ağrıyor. Sol bileğim."
+  },
+  "noeuds.beruhigen.choix.1": {
+   "fr": "Vous n'êtes pas maladroite, ça arrive. Vous avez mal quelque part ?",
+   "de": "Sie sind nicht ungeschickt, so etwas passiert. Tut Ihnen etwas weh?",
+   "tr": "Beceriksiz değilsiniz, böyle şeyler olur. Bir yeriniz ağrıyor mu?"
+  },
+  "noeuds.beruhigen.choix.1.puis.0": {
+   "fr": "J'ai mal au poignet. Le gauche.",
+   "de": "Mein Handgelenk tut weh. Das linke.",
+   "tr": "Bileğim ağrıyor. Sol bileğim."
+  },
+  "noeuds.pruefen.choix.0": {
+   "fr": "Vous pouvez bouger les doigts ? Et les jambes ?",
+   "de": "Können Sie die Finger bewegen? Und die Beine?",
+   "tr": "Parmaklarınızı oynatabiliyor musunuz? Ya bacaklarınızı?"
+  },
+  "noeuds.pruefen.choix.0.puis.0": {
+   "fr": "Les jambes, oui. Les doigts… oui, mais le poignet fait mal.",
+   "de": "Die Beine ja. Die Finger … ja, aber das Handgelenk tut weh.",
+   "tr": "Bacaklarımı evet. Parmaklarımı… evet, ama bileğim ağrıyor."
+  },
+  "noeuds.pruefen.choix.1": {
+   "fr": "Essayez de bouger les doigts, tout doucement. Et maintenant les pieds.",
+   "de": "Versuchen Sie bitte mal, ganz vorsichtig die Finger zu bewegen. Und jetzt die Füße.",
+   "tr": "Lütfen parmaklarınızı çok yavaşça oynatmayı deneyin. Şimdi de ayaklarınızı."
+  },
+  "noeuds.pruefen.choix.1.puis.0": {
+   "fr": "Les jambes, oui. Les doigts… oui, mais le poignet fait mal.",
+   "de": "Die Beine ja. Die Finger … ja, aber das Handgelenk tut weh.",
+   "tr": "Bacaklarımı evet. Parmaklarımı… evet, ama bileğim ağrıyor."
+  },
+  "noeuds.pruefen.choix.2": {
+   "fr": "Bougez la main très fort, s'il vous plaît.",
+   "de": "Bewegen Sie die Hand ganz fest, bitte.",
+   "tr": "Lütfen elinizi çok kuvvetli hareket ettirin."
+  },
+  "noeuds.pruefen.choix.2.puis.0": {
+   "fr": "Aïe ! Ça fait mal !",
+   "de": "Au! Das tut weh!",
+   "tr": "Ay! Acıyor!"
+  },
+  "noeuds.pruefen.choix.2.aide": {
+   "fr": "<b>On vérifie doucement, et on s'arrête à la douleur.</b> « Versuchen Sie mal, ganz vorsichtig die Finger zu bewegen. » Un poignet douloureux après une chute peut être fracturé.",
+   "tr": "<b>Kontrol yavaşça yapılır ve ağrı olunca durulur.</b> “Versuchen Sie mal, ganz vorsichtig die Finger zu bewegen.” Düşmeden sonra ağrıyan bir bilek kırık olabilir."
+  },
+  "noeuds.kopf.choix.0": {
+   "fr": "Vous vous êtes cogné la tête ?",
+   "de": "Sind Sie mit dem Kopf aufgeschlagen?",
+   "tr": "Başınızı çarptınız mı?"
+  },
+  "noeuds.kopf.choix.0.puis.0": {
+   "fr": "Non, je ne crois pas. Je suis tombée sur les fesses.",
+   "de": "Nein, ich glaube nicht. Ich bin auf den Po gefallen.",
+   "tr": "Hayır, sanmıyorum. Popomun üstüne düştüm."
+  },
+  "noeuds.kopf.choix.1": {
+   "fr": "Vous vous êtes aussi cogné la tête ?",
+   "de": "Haben Sie sich auch den Kopf gestoßen?",
+   "tr": "Başınızı da vurdunuz mu?"
+  },
+  "noeuds.kopf.choix.1.puis.0": {
+   "fr": "Non, je ne crois pas. Je suis tombée sur les fesses.",
+   "de": "Nein, ich glaube nicht. Ich bin auf den Po gefallen.",
+   "tr": "Hayır, sanmıyorum. Popomun üstüne düştüm."
+  },
+  "noeuds.kopf.choix.2": {
+   "fr": "Pardon, où avez-vous mal ? Je ne vous ai pas bien comprise.",
+   "de": "Entschuldigung, wo tut es weh? Ich habe Sie nicht richtig verstanden.",
+   "tr": "Pardon, neresi ağrıyor? Sizi tam anlayamadım."
+  },
+  "noeuds.kopf.choix.2.puis.0": {
+   "fr": "Le poignet. À gauche.",
+   "de": "Das Handgelenk. Links.",
+   "tr": "Bileğim. Sol."
+  },
+  "noeuds.hilfe.choix.0": {
+   "fr": "J'appuie sur la sonnette et j'appelle ma collègue. Je reste avec vous.",
+   "de": "Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.",
+   "tr": "Şimdi zile basıp meslektaşımı çağırıyorum. Yanınızdan ayrılmıyorum."
+  },
+  "noeuds.hilfe.choix.0.puis.0": {
+   "fr": "Merci. Toute seule, je n'arriverai pas à me relever.",
+   "de": "Danke. Allein komme ich hier nicht hoch.",
+   "tr": "Teşekkürler. Tek başıma buradan kalkamam."
+  },
+  "noeuds.hilfe.choix.1": {
+   "fr": "J'appelle {olena} avec le téléphone. Je ne m'en vais pas.",
+   "de": "Ich rufe {olena} mit dem Telefon. Ich gehe nicht weg.",
+   "tr": "{olena:acc} telefonla çağırıyorum. Hiçbir yere gitmiyorum."
+  },
+  "noeuds.hilfe.choix.1.puis.0": {
+   "fr": "Merci. Toute seule, je n'arriverai pas à me relever.",
+   "de": "Danke. Allein komme ich hier nicht hoch.",
+   "tr": "Teşekkürler. Tek başıma buradan kalkamam."
+  },
+  "noeuds.hilfe.choix.2": {
+   "fr": "Attendez ici, je reviens dans dix minutes.",
+   "de": "Warten Sie hier, ich bin in zehn Minuten wieder da.",
+   "tr": "Burada bekleyin, on dakikaya geri gelirim."
+  },
+  "noeuds.hilfe.choix.2.puis.0": {
+   "fr": "Dix minutes ? Ici, par terre, sur le sol froid ?",
+   "de": "Zehn Minuten? Hier auf dem kalten Boden?",
+   "tr": "On dakika mı? Burada, soğuk yerde mi?"
+  },
+  "noeuds.hilfe.choix.2.aide": {
+   "fr": "<b>On ne laisse pas seule une personne tombée.</b> Appelle de l'aide depuis la chambre : la sonnette, le téléphone. « Ich rufe meine Kollegin. Ich bleibe bei Ihnen. »",
+   "tr": "<b>Düşmüş bir kişi yalnız bırakılmaz.</b> Odadan yardım çağır: zil, telefon. “Ich rufe meine Kollegin. Ich bleibe bei Ihnen.”"
+  },
+  "noeuds.olena.dit.0.recit": {
+   "fr": "Une minute plus tard, {olena} arrive.",
+   "tr": "Bir dakika sonra {olena} geliyor."
+  },
+  "noeuds.olena.dit.1": {
+   "fr": "Je suis là. Qu'est-ce qui s'est passé ?",
+   "de": "Ich bin da. Was ist passiert?",
+   "tr": "Geldim. Ne oldu?"
+  },
+  "noeuds.olena.choix.0": {
+   "fr": "{weber} est tombée en allant aux toilettes. Elle ne s'est pas cogné la tête, mais elle a mal au poignet gauche.",
+   "de": "{weber} ist auf dem Weg zur Toilette gestürzt. Sie ist nicht mit dem Kopf aufgeschlagen, aber das linke Handgelenk tut weh.",
+   "tr": "{weber} tuvalete giderken düştü. Başını çarpmadı, ama sol bileği ağrıyor."
+  },
+  "noeuds.olena.choix.0.puis.0": {
+   "fr": "D'accord. Alors on l'aide à deux à s'asseoir sur la chaise.",
+   "de": "Okay. Dann helfen wir ihr jetzt zusammen auf den Stuhl.",
+   "tr": "Tamam. O zaman şimdi birlikte sandalyeye oturmasına yardım edelim."
+  },
+  "noeuds.olena.choix.1": {
+   "fr": "Je l'ai trouvée à côté du lit. Elle voulait aller aux toilettes. Pas de choc à la tête, mais une douleur au poignet gauche.",
+   "de": "Ich habe sie neben dem Bett gefunden. Sie wollte zur Toilette. Kein Kopfanprall, aber Schmerzen im linken Handgelenk.",
+   "tr": "Onu yatağın yanında buldum. Tuvalete gitmek istemiş. Başa darbe yok, ama sol bilekte ağrı var."
+  },
+  "noeuds.olena.choix.1.puis.0": {
+   "fr": "D'accord. Alors on l'aide à deux à s'asseoir sur la chaise.",
+   "de": "Okay. Dann helfen wir ihr jetzt zusammen auf den Stuhl.",
+   "tr": "Tamam. O zaman şimdi birlikte sandalyeye oturmasına yardım edelim."
+  },
+  "noeuds.olena.choix.2": {
+   "fr": "{weber} « tombe » ce matin. Elle « a main mal ». (mal dit)",
+   "de": "{weber} fällt heute Morgen. Sie hat Hand weh.",
+   "tr": "{weber} bu sabah “düşüyor”. “El ağrımak.” (yanlış söylenmiş)"
+  },
+  "noeuds.olena.choix.2.puis.0": {
+   "fr": "Elle est tombée ? Quand ? Et quelle main ?",
+   "de": "Sie ist gefallen? Wann? Und welche Hand?",
+   "tr": "Düştü mü? Ne zaman? Hangi eli?"
+  },
+  "noeuds.olena.choix.2.aide": {
+   "fr": "<b>Ce qui s'est passé se dit au Perfekt, avec « sein » pour une chute.</b> « Sie ist gestürzt » ou « Sie ist gefallen ». Et précise : « Das linke Handgelenk tut weh. »",
+   "tr": "<b>Olanlar Perfekt ile anlatılır, düşme için “sein” ile.</b> “Sie ist gestürzt” ya da “Sie ist gefallen”. Bir de açık söyle: “Das linke Handgelenk tut weh.”"
+  },
+  "noeuds.aufhelfen.choix.0": {
+   "fr": "{weber:voc}, on vous aide à vous relever. Tournez-vous d'abord sur le côté, puis on se met à genoux.",
+   "de": "{weber}, wir helfen Ihnen jetzt hoch. Drehen Sie sich bitte zuerst auf die Seite, dann gehen wir auf die Knie.",
+   "tr": "{weber:voc}, şimdi kalkmanıza yardım ediyoruz. Lütfen önce yan dönün, sonra dizlerinizin üstüne geçelim."
+  },
+  "noeuds.aufhelfen.choix.0.puis.0": {
+   "fr": "Comme ça ? … Ah, ça marche.",
+   "de": "So? … Ach, das geht ja.",
+   "tr": "Böyle mi? … A, oluyormuş."
+  },
+  "noeuds.aufhelfen.choix.1": {
+   "fr": "On le fait tout doucement et ensemble : d'abord sur le côté, puis à genoux, puis sur la chaise.",
+   "de": "Wir machen das ganz langsam und zusammen: zuerst auf die Seite, dann auf die Knie, dann auf den Stuhl.",
+   "tr": "Bunu çok yavaş ve birlikte yapacağız: önce yana, sonra dizlerin üstüne, sonra sandalyeye."
+  },
+  "noeuds.aufhelfen.choix.1.puis.0": {
+   "fr": "Comme ça ? … Ah, ça marche.",
+   "de": "So? … Ach, das geht ja.",
+   "tr": "Böyle mi? … A, oluyormuş."
+  },
+  "noeuds.wie.dit.0.recit": {
+   "fr": "{weber} est assise sur la chaise. Elle respire mieux.",
+   "tr": "{weber} sandalyede oturuyor. Daha rahat nefes alıyor."
+  },
+  "noeuds.wie.choix.0": {
+   "fr": "Vous vous souvenez comment c'est arrivé ?",
+   "de": "Wissen Sie noch, wie es passiert ist?",
+   "tr": "Nasıl olduğunu hatırlıyor musunuz?"
+  },
+  "noeuds.wie.choix.0.puis.0": {
+   "fr": "J'ai trébuché sur mes chaussons. Et il faisait si sombre.",
+   "de": "Ich bin über meine Hausschuhe gestolpert. Und es war so dunkel.",
+   "tr": "Terliklerime takılıp tökezledim. Bir de çok karanlıktı."
+  },
+  "noeuds.wie.choix.1": {
+   "fr": "Qu'est-ce qui s'est passé, exactement ?",
+   "de": "Was ist denn genau passiert?",
+   "tr": "Tam olarak ne oldu?"
+  },
+  "noeuds.wie.choix.1.puis.0": {
+   "fr": "J'ai trébuché sur mes chaussons. Et il faisait si sombre.",
+   "de": "Ich bin über meine Hausschuhe gestolpert. Und es war so dunkel.",
+   "tr": "Terliklerime takılıp tökezledim. Bir de çok karanlıktı."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Je préviens tout de suite votre médecin traitant pour votre main, et je fais un rapport de chute. Et cette nuit, on laissera une petite lumière allumée.",
+   "de": "Ich sage gleich der Hausärztin wegen Ihrer Hand Bescheid und schreibe ein Sturzprotokoll. Und heute Nacht lassen wir ein kleines Licht an.",
+   "tr": "Eliniz için hemen aile hekiminize haber veriyorum ve bir düşme raporu yazıyorum. Bu gece de küçük bir ışık açık bırakacağız."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Merci, vous êtes un amour.",
+   "de": "Danke, Sie sind ein Schatz.",
+   "tr": "Teşekkürler, siz bir tanesiniz."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "J'informe le médecin et je documente la chute. Et on va vous trouver des chaussons qui tiennent mieux.",
+   "de": "Ich informiere die Ärztin und dokumentiere den Sturz. Und wir suchen Ihnen Hausschuhe, die besser sitzen.",
+   "tr": "Doktora haber veriyorum ve düşmeyi kayda geçiriyorum. Size ayağınızı daha iyi saran terlikler de bulacağız."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Merci, vous êtes un amour.",
+   "de": "Danke, Sie sind ein Schatz.",
+   "tr": "Teşekkürler, siz bir tanesiniz."
+  },
+  "ecouter.0.q": {
+   "fr": "Où voulait aller {weber} ?",
+   "de": "Wohin wollte {weber}?",
+   "tr": "{weber} nereye gitmek istiyordu?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Au petit-déjeuner.",
+   "de": "Zum Frühstück.",
+   "tr": "Kahvaltıya."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Aux toilettes.",
+   "de": "Zur Toilette.",
+   "tr": "Tuvalete."
+  },
+  "ecouter.0.options.2": {
+   "fr": "À la salle de bain, pour se doucher.",
+   "de": "Ins Bad, zum Duschen.",
+   "tr": "Duş almak için banyoya."
+  },
+  "ecouter.1.q": {
+   "fr": "Où a-t-elle mal ?",
+   "de": "Was tut ihr weh?",
+   "tr": "Neresi ağrıyor?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Le poignet gauche.",
+   "de": "Das linke Handgelenk.",
+   "tr": "Sol bileği."
+  },
+  "ecouter.1.options.1": {
+   "fr": "La tête.",
+   "de": "Der Kopf.",
+   "tr": "Başı."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Le genou droit.",
+   "de": "Das rechte Knie.",
+   "tr": "Sağ dizi."
+  },
+  "ecouter.2.q": {
+   "fr": "Pourquoi est-elle tombée ?",
+   "de": "Warum ist sie gestürzt?",
+   "tr": "Neden düştü?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Elle avait des vertiges.",
+   "de": "Ihr war schwindelig.",
+   "tr": "Başı dönüyordu."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Le sol était mouillé.",
+   "de": "Der Boden war nass.",
+   "tr": "Yer ıslaktı."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Elle a trébuché sur ses chaussons, et il faisait sombre.",
+   "de": "Sie ist über ihre Hausschuhe gestolpert, und es war dunkel.",
+   "tr": "Terliklerine takılıp tökezledi, bir de karanlıktı."
+  }
+ }
+}

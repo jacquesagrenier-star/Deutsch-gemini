@@ -1,0 +1,151 @@
+{
+ "id": "d08-sturz",
+ "numero": 8,
+ "niveau": "B1",
+ "registre": "Sie",
+ "lieu": "altenheim",
+ "scene_annexe": 7,
+ "role": "arun",
+ "personnes": ["weber", "olena"],
+ "titre": {"t": "Der Sturz", "fr": "Une résidente au sol"},
+ "intro": {"fr": "Six heures du matin, au {heim}. {arun} entre dans la chambre de {weber} : elle est assise par terre, à côté de son lit. Tu joues {arun} : ne la relève pas tout de suite, rassure-la, vérifie, appelle de l'aide sans la laisser seule, aide-la à se relever avec ta collègue, puis demande ce qui s'est passé."},
+ "but": {"fr": "Réagir à une chute dans l'ordre : rassurer, ne pas relever tout de suite, vérifier (douleur, mouvements, tête), appeler sans quitter la personne, transmettre au Perfekt, aider à se relever, chercher la cause, documenter."},
+ "grammaire": ["g01", "g13", "g03"],
+ "telc": ["schreiben", "oral-1"],
+ "relire_notes": {"fr": "Conduite après une chute (procédure de la maison, Expertenstandard Sturzprophylaxe) : ne pas relever avant d'avoir vérifié ; contrôles (douleur, mobilité, choc à la tête, anticoagulants ?) ; appeler sans quitter la résidente ; technique pour se relever (côté, genoux, chaise) ; informer le médecin traitant ; rapport de chute ; mesures (lumière de nuit, chaussons)."},
+ "redemittel": [
+  {"t": "{weber}, ich bin da. Bleiben Sie bitte erst mal sitzen.", "fr": "{weber:voc}, je suis là. Restez assise pour l'instant, s'il vous plaît."},
+  {"t": "Haben Sie sich wehgetan?", "fr": "Vous vous êtes fait mal ?"},
+  {"t": "Können Sie die Hand und die Beine bewegen?", "fr": "Vous pouvez bouger la main et les jambes ?", "relire": true, "relire_note": "Contrôles après une chute."},
+  {"t": "Sind Sie mit dem Kopf aufgeschlagen?", "fr": "Vous vous êtes cogné la tête ?"},
+  {"t": "Ich rufe meine Kollegin. Ich bleibe bei Ihnen.", "fr": "J'appelle ma collègue. Je reste avec vous."},
+  {"t": "Wissen Sie noch, wie es passiert ist?", "fr": "Vous vous souvenez comment c'est arrivé ?"},
+  {"t": "Ich schreibe ein Sturzprotokoll.", "fr": "Je fais un rapport de chute."}
+ ],
+ "debut": "finden",
+ "noeuds": {
+  "finden": {
+   "dit": [
+    {"recit": {"fr": "Six heures du matin. {arun} ouvre la porte de la chambre de {weber}. Elle est assise par terre, à côté du lit, en chemise de nuit."}},
+    {"qui": "weber", "air": "perplexe", "t": "Ach je … ich wollte doch nur zur Toilette.", "fr": "Oh là là… je voulais juste aller aux toilettes."}
+   ],
+   "choix": [
+    {"t": "{weber}, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.", "fr": "{weber:voc}, je suis là. Restez assise pour l'instant, je vais vous aider.", "va": "beruhigen",
+     "relire": true, "relire_note": "Ne pas relever tout de suite.",
+     "puis": [{"qui": "weber", "air": "perplexe", "t": "Ich bin so ungeschickt …", "fr": "Je suis tellement maladroite…"}]},
+    {"t": "{weber}, ich bin's, {arun}. Bitte bleiben Sie, wie Sie sind. Noch nicht aufstehen.", "fr": "{weber:voc}, c'est moi, {arun}. Restez comme vous êtes, s'il vous plaît. Ne vous levez pas encore.", "va": "beruhigen",
+     "puis": [{"qui": "weber", "air": "perplexe", "t": "Ich bin so ungeschickt …", "fr": "Je suis tellement maladroite…"}]},
+    {"faux": true, "t": "Kommen Sie, ich ziehe Sie schnell hoch!", "fr": "Venez, je vous relève vite !",
+     "puis": [{"qui": "weber", "air": "surprise", "t": "Au! Nein, warten Sie!", "fr": "Aïe ! Non, attendez !"}],
+     "aide": {"fr": "<b>Ne relève jamais tout de suite une personne tombée.</b> D'abord rassurer et vérifier : une fracture ou un choc à la tête peut passer inaperçu. « Bleiben Sie bitte erst mal sitzen. »"},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  },
+  "beruhigen": {
+   "dit": [],
+   "choix": [
+    {"t": "Das kann jedem passieren. Ich bin bei Ihnen. Haben Sie sich wehgetan?", "fr": "Ça peut arriver à tout le monde. Je suis avec vous. Vous vous êtes fait mal ?", "va": "pruefen",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Mein Handgelenk tut weh. Das linke.", "fr": "J'ai mal au poignet. Le gauche."}]},
+    {"t": "Sie sind nicht ungeschickt, so etwas passiert. Tut Ihnen etwas weh?", "fr": "Vous n'êtes pas maladroite, ça arrive. Vous avez mal quelque part ?", "va": "pruefen",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Mein Handgelenk tut weh. Das linke.", "fr": "J'ai mal au poignet. Le gauche."}]}
+   ]
+  },
+  "pruefen": {
+   "dit": [],
+   "choix": [
+    {"t": "Können Sie die Finger bewegen? Und die Beine?", "fr": "Vous pouvez bouger les doigts ? Et les jambes ?", "va": "kopf",
+     "relire": true, "relire_note": "Contrôles après une chute.",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Die Beine ja. Die Finger … ja, aber das Handgelenk tut weh.", "fr": "Les jambes, oui. Les doigts… oui, mais le poignet fait mal."}]},
+    {"t": "Versuchen Sie bitte mal, ganz vorsichtig die Finger zu bewegen. Und jetzt die Füße.", "fr": "Essayez de bouger les doigts, tout doucement. Et maintenant les pieds.", "va": "kopf",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Die Beine ja. Die Finger … ja, aber das Handgelenk tut weh.", "fr": "Les jambes, oui. Les doigts… oui, mais le poignet fait mal."}]},
+    {"faux": true, "t": "Bewegen Sie die Hand ganz fest, bitte.", "fr": "Bougez la main très fort, s'il vous plaît.",
+     "puis": [{"qui": "weber", "air": "surprise", "t": "Au! Das tut weh!", "fr": "Aïe ! Ça fait mal !"}],
+     "aide": {"fr": "<b>On vérifie doucement, et on s'arrête à la douleur.</b> « Versuchen Sie mal, ganz vorsichtig die Finger zu bewegen. » Un poignet douloureux après une chute peut être fracturé."},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  },
+  "kopf": {
+   "dit": [],
+   "choix": [
+    {"t": "Sind Sie mit dem Kopf aufgeschlagen?", "fr": "Vous vous êtes cogné la tête ?", "va": "hilfe",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Nein, ich glaube nicht. Ich bin auf den Po gefallen.", "fr": "Non, je ne crois pas. Je suis tombée sur les fesses."}]},
+    {"t": "Haben Sie sich auch den Kopf gestoßen?", "fr": "Vous vous êtes aussi cogné la tête ?", "va": "hilfe",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Nein, ich glaube nicht. Ich bin auf den Po gefallen.", "fr": "Non, je ne crois pas. Je suis tombée sur les fesses."}]},
+    {"repete": true, "t": "Entschuldigung, wo tut es weh? Ich habe Sie nicht richtig verstanden.", "fr": "Pardon, où avez-vous mal ? Je ne vous ai pas bien comprise.", "va": "kopf",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Das Handgelenk. Links.", "fr": "Le poignet. À gauche."}]}
+   ]
+  },
+  "hilfe": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.", "fr": "J'appuie sur la sonnette et j'appelle ma collègue. Je reste avec vous.", "va": "olena",
+     "relire": true, "relire_note": "Appeler sans quitter la résidente.",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Danke. Allein komme ich hier nicht hoch.", "fr": "Merci. Toute seule, je n'arriverai pas à me relever."}]},
+    {"t": "Ich rufe {olena} mit dem Telefon. Ich gehe nicht weg.", "fr": "J'appelle {olena} avec le téléphone. Je ne m'en vais pas.", "va": "olena",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Danke. Allein komme ich hier nicht hoch.", "fr": "Merci. Toute seule, je n'arriverai pas à me relever."}]},
+    {"faux": true, "t": "Warten Sie hier, ich bin in zehn Minuten wieder da.", "fr": "Attendez ici, je reviens dans dix minutes.",
+     "puis": [{"qui": "weber", "air": "surprise", "t": "Zehn Minuten? Hier auf dem kalten Boden?", "fr": "Dix minutes ? Ici, par terre, sur le sol froid ?"}],
+     "aide": {"fr": "<b>On ne laisse pas seule une personne tombée.</b> Appelle de l'aide depuis la chambre : la sonnette, le téléphone. « Ich rufe meine Kollegin. Ich bleibe bei Ihnen. »"},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  },
+  "olena": {
+   "dit": [
+    {"recit": {"fr": "Une minute plus tard, {olena} arrive."}},
+    {"qui": "olena", "air": "question", "t": "Ich bin da. Was ist passiert?", "fr": "Je suis là. Qu'est-ce qui s'est passé ?"}
+   ],
+   "choix": [
+    {"t": "{weber} ist auf dem Weg zur Toilette gestürzt. Sie ist nicht mit dem Kopf aufgeschlagen, aber das linke Handgelenk tut weh.", "fr": "{weber} est tombée en allant aux toilettes. Elle ne s'est pas cogné la tête, mais elle a mal au poignet gauche.", "va": "aufhelfen",
+     "puis": [{"qui": "olena", "air": "attentive", "t": "Okay. Dann helfen wir ihr jetzt zusammen auf den Stuhl.", "fr": "D'accord. Alors on l'aide à deux à s'asseoir sur la chaise."}]},
+    {"t": "Ich habe sie neben dem Bett gefunden. Sie wollte zur Toilette. Kein Kopfanprall, aber Schmerzen im linken Handgelenk.", "fr": "Je l'ai trouvée à côté du lit. Elle voulait aller aux toilettes. Pas de choc à la tête, mais une douleur au poignet gauche.", "va": "aufhelfen",
+     "puis": [{"qui": "olena", "air": "attentive", "t": "Okay. Dann helfen wir ihr jetzt zusammen auf den Stuhl.", "fr": "D'accord. Alors on l'aide à deux à s'asseoir sur la chaise."}]},
+    {"faux": true, "t": "{weber} fällt heute Morgen. Sie hat Hand weh.", "fr": "{weber} « tombe » ce matin. Elle « a main mal ». (mal dit)",
+     "puis": [{"qui": "olena", "air": "perplexe", "t": "Sie ist gefallen? Wann? Und welche Hand?", "fr": "Elle est tombée ? Quand ? Et quelle main ?"}],
+     "aide": {"fr": "<b>Ce qui s'est passé se dit au Perfekt, avec « sein » pour une chute.</b> « Sie ist gestürzt » ou « Sie ist gefallen ». Et précise : « Das linke Handgelenk tut weh. »"}}
+   ]
+  },
+  "aufhelfen": {
+   "dit": [],
+   "choix": [
+    {"t": "{weber}, wir helfen Ihnen jetzt hoch. Drehen Sie sich bitte zuerst auf die Seite, dann gehen wir auf die Knie.", "fr": "{weber:voc}, on vous aide à vous relever. Tournez-vous d'abord sur le côté, puis on se met à genoux.", "va": "wie",
+     "relire": true, "relire_note": "Technique pour aider à se relever après une chute.",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "So? … Ach, das geht ja.", "fr": "Comme ça ? … Ah, ça marche."}]},
+    {"t": "Wir machen das ganz langsam und zusammen: zuerst auf die Seite, dann auf die Knie, dann auf den Stuhl.", "fr": "On le fait tout doucement et ensemble : d'abord sur le côté, puis à genoux, puis sur la chaise.", "va": "wie",
+     "relire": true, "relire_note": "Technique pour aider à se relever après une chute.",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "So? … Ach, das geht ja.", "fr": "Comme ça ? … Ah, ça marche."}]}
+   ]
+  },
+  "wie": {
+   "dit": [
+    {"recit": {"fr": "{weber} est assise sur la chaise. Elle respire mieux."}}
+   ],
+   "choix": [
+    {"t": "Wissen Sie noch, wie es passiert ist?", "fr": "Vous vous souvenez comment c'est arrivé ?", "va": "ende",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Ich bin über meine Hausschuhe gestolpert. Und es war so dunkel.", "fr": "J'ai trébuché sur mes chaussons. Et il faisait si sombre."}]},
+    {"t": "Was ist denn genau passiert?", "fr": "Qu'est-ce qui s'est passé, exactement ?", "va": "ende",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Ich bin über meine Hausschuhe gestolpert. Und es war so dunkel.", "fr": "J'ai trébuché sur mes chaussons. Et il faisait si sombre."}]}
+   ]
+  },
+  "ende": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich sage gleich der Hausärztin wegen Ihrer Hand Bescheid und schreibe ein Sturzprotokoll. Und heute Nacht lassen wir ein kleines Licht an.", "fr": "Je préviens tout de suite votre médecin traitant pour votre main, et je fais un rapport de chute. Et cette nuit, on laissera une petite lumière allumée.", "va": null,
+     "relire": true, "relire_note": "Suite d'une chute : médecin traitant, rapport, mesures.",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Danke, Sie sind ein Schatz.", "fr": "Merci, vous êtes un amour."}]},
+    {"t": "Ich informiere die Ärztin und dokumentiere den Sturz. Und wir suchen Ihnen Hausschuhe, die besser sitzen.", "fr": "J'informe le médecin et je documente la chute. Et on va vous trouver des chaussons qui tiennent mieux.", "va": null,
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Danke, Sie sind ein Schatz.", "fr": "Merci, vous êtes un amour."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Wohin wollte {weber}?", "fr": "Où voulait aller {weber} ?"},
+   "options": [{"t": "Zum Frühstück.", "fr": "Au petit-déjeuner."}, {"t": "Zur Toilette.", "fr": "Aux toilettes."}, {"t": "Ins Bad, zum Duschen.", "fr": "À la salle de bain, pour se doucher."}],
+   "juste": 1},
+  {"q": {"t": "Was tut ihr weh?", "fr": "Où a-t-elle mal ?"},
+   "options": [{"t": "Das linke Handgelenk.", "fr": "Le poignet gauche."}, {"t": "Der Kopf.", "fr": "La tête."}, {"t": "Das rechte Knie.", "fr": "Le genou droit."}],
+   "juste": 0},
+  {"q": {"t": "Warum ist sie gestürzt?", "fr": "Pourquoi est-elle tombée ?"},
+   "options": [{"t": "Ihr war schwindelig.", "fr": "Elle avait des vertiges."}, {"t": "Der Boden war nass.", "fr": "Le sol était mouillé."}, {"t": "Sie ist über ihre Hausschuhe gestolpert, und es war dunkel.", "fr": "Elle a trébuché sur ses chaussons, et il faisait sombre."}],
+   "juste": 2}
+ ]
+}

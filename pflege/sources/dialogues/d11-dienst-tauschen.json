@@ -1,0 +1,138 @@
+{
+ "id": "d11-dienst-tauschen",
+ "numero": 11,
+ "niveau": "B1",
+ "registre": "du+Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 2,
+ "role": "elif",
+ "personnes": ["jonas", "hoffmann"],
+ "titre": {"t": "Den Dienst tauschen", "fr": "Échanger un poste, se déclarer malade"},
+ "intro": {"fr": "Deux moments. D'abord, à la pause, {elif} demande à {jonas} d'échanger un poste : entre collègues, on se dit « du ». Puis, un lundi à l'aube, elle est malade et appelle la cadre, {hoffmann} : avec elle, c'est « Sie »."},
+ "but": {"fr": "Demander poliment entre collègues (Könntest du …? Würdest du …?), proposer un échange ; appeler sa cadre au « Sie » pour se déclarer malade : dire quoi, combien de temps, ce qui suit (le médecin, l'arrêt de travail)."},
+ "grammaire": ["g21", "g07", "g04"],
+ "telc": ["oral-1", "schreiben"],
+ "relire_notes": {"fr": "Usage du « du » entre soignants et du « Sie » avec la cadre (selon la maison) ; arrêt maladie en Allemagne depuis 2023 : l'arrêt électronique (eAU) va à la caisse, l'employeur le consulte, mais il faut prévenir l'employeur soi-même, tôt, et dire la durée prévue."},
+ "redemittel": [
+  {"t": "Könntest du am Samstag meinen Frühdienst übernehmen?", "fr": "Tu pourrais prendre mon poste du matin samedi ?"},
+  {"t": "Ich würde dafür deinen Spätdienst am Mittwoch machen.", "fr": "En échange, je ferais ton poste de l'après-midi mercredi."},
+  {"t": "Danke dir, das ist echt nett!", "fr": "Merci, c'est vraiment sympa !"},
+  {"t": "Guten Morgen, {hoffmann}. Ich bin leider krank und kann heute nicht kommen.", "fr": "Bonjour, {hoffmann:voc}. Je suis malheureusement malade et je ne peux pas venir aujourd'hui."},
+  {"t": "Ich gehe heute zum Arzt und sage Ihnen Bescheid, wie lange ich krankgeschrieben bin.", "fr": "Je vais chez le médecin aujourd'hui et je vous dis combien de temps je suis en arrêt.", "relire": true, "relire_note": "Procédure de l'arrêt maladie."},
+  {"t": "Entschuldigen Sie die Umstände.", "fr": "Excusez-moi pour le dérangement."}
+ ],
+ "debut": "fragen",
+ "noeuds": {
+  "fragen": {
+   "registre": "du",
+   "dit": [
+    {"recit": {"fr": "La pause du midi, dans la salle du personnel. {jonas} remplit sa tasse de café."}},
+    {"qui": "jonas", "air": "question", "t": "Na, {elif}, du siehst nachdenklich aus. Alles okay?", "fr": "Alors, {elif}, tu as l'air pensive. Tout va bien ?"}
+   ],
+   "choix": [
+    {"t": "Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.", "fr": "Oui, ça va. Dis-moi, tu pourrais prendre mon poste du matin samedi ? Ma sœur vient d'Izmir.", "va": "angebot",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Am Samstag? Hm, da hab ich eigentlich frei.", "fr": "Samedi ? Hum, normalement, je suis en repos."}]},
+    {"t": "Ich hab eine Bitte: Würdest du am Samstag mit mir den Dienst tauschen? Meine Schwester kommt aus Izmir, und ich hätte gern frei.", "fr": "J'ai un service à te demander : tu échangerais ton poste avec moi samedi ? Ma sœur vient d'Izmir, et j'aimerais être en repos.", "va": "angebot",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Am Samstag? Hm, da hab ich eigentlich frei.", "fr": "Samedi ? Hum, normalement, je suis en repos."}]},
+    {"faux": true, "t": "Ja. Könnten Sie am Samstag meinen Dienst übernehmen, Herr {jonas}?", "fr": "Oui. Pourriez-vous prendre mon poste samedi, monsieur {jonas} ?",
+     "puis": [{"qui": "jonas", "air": "amuse", "t": "„Herr {jonas}“? Wir sind doch per du, {elif}!", "fr": "« Monsieur {jonas} » ? On se tutoie, {elif} !"}],
+     "aide": {"fr": "<b>Entre collègues soignants, on se dit presque toujours « du », avec le prénom.</b> Le Konjunktiv reste poli au « du » : « Könntest du …? », « Würdest du …? »."}}
+   ]
+  },
+  "angebot": {
+   "registre": "du",
+   "dit": [],
+   "choix": [
+    {"t": "Ich würde dafür deinen Spätdienst am Mittwoch machen. Wäre das okay für dich?", "fr": "En échange, je ferais ton poste de l'après-midi mercredi. Ça t'irait ?", "va": "chefin",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Mittwoch Spät gegen Samstag Früh … Abgemacht!", "fr": "Mercredi après-midi contre samedi matin… Marché conclu !"}]},
+    {"t": "Dafür könnte ich am Mittwoch deinen Spätdienst übernehmen.", "fr": "En échange, je pourrais prendre ton poste de l'après-midi mercredi.", "va": "chefin",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Mittwoch Spät gegen Samstag Früh … Abgemacht!", "fr": "Mercredi après-midi contre samedi matin… Marché conclu !"}]},
+    {"faux": true, "t": "Du musst am Samstag arbeiten, bitte.", "fr": "Tu dois travailler samedi, s'il te plaît.",
+     "puis": [{"qui": "jonas", "air": "perplexe", "t": "Ich muss? Das klingt aber nicht nach einer Frage.", "fr": "Je dois ? Ça ne ressemble pas à une question."}],
+     "aide": {"fr": "<b>« müssen » est une obligation, même avec « bitte ».</b> Pour proposer un échange : « Ich würde dafür … machen » ou « Dafür könnte ich … übernehmen »."}}
+   ]
+  },
+  "chefin": {
+   "registre": "du",
+   "dit": [
+    {"qui": "jonas", "air": "attentive", "t": "Aber sag es bitte noch {hoffmann}. Sie muss den Tausch in den Dienstplan eintragen.", "fr": "Mais préviens {hoffmann}, s'il te plaît. Elle doit noter l'échange dans le planning."}
+   ],
+   "choix": [
+    {"t": "Klar, ich schreibe ihr gleich eine Nachricht. Danke dir, das ist echt nett!", "fr": "Bien sûr, je lui écris un message tout de suite. Merci, c'est vraiment sympa !", "va": "anruf",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Gern. Grüß deine Schwester!", "fr": "Avec plaisir. Salue ta sœur de ma part !"}]},
+    {"t": "Mach ich. Vielen Dank, ich schulde dir was!", "fr": "Je m'en occupe. Merci beaucoup, je te dois un service !", "va": "anruf",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Gern. Grüß deine Schwester!", "fr": "Avec plaisir. Salue ta sœur de ma part !"}]}
+   ]
+  },
+  "anruf": {
+   "registre": "Sie",
+   "dit": [
+    {"recit": {"fr": "Le lundi suivant, cinq heures quarante. {elif} se réveille avec de la fièvre et très mal à la gorge. Elle appelle {hoffmann}."}},
+    {"qui": "hoffmann", "air": "attentive", "t": "{hoffmann:famille}, guten Morgen.", "fr": "{hoffmann:famille}, bonjour."}
+   ],
+   "choix": [
+    {"t": "Guten Morgen, {hoffmann}, hier ist {elif}. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.", "fr": "Bonjour, {hoffmann:voc}, c'est {elif}. Je suis malheureusement malade et je ne peux pas venir au poste du matin aujourd'hui.", "va": "symptome",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Oh, das tut mir leid. Was haben Sie denn?", "fr": "Oh, je suis désolée. Qu'est-ce que vous avez ?"}]},
+    {"t": "Guten Morgen, {hoffmann}. Hier spricht {elif}. Es tut mir leid, aber ich bin krank und kann heute nicht arbeiten.", "fr": "Bonjour, {hoffmann:voc}. C'est {elif} à l'appareil. Je suis désolée, mais je suis malade et je ne peux pas travailler aujourd'hui.", "va": "symptome",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Oh, das tut mir leid. Was haben Sie denn?", "fr": "Oh, je suis désolée. Qu'est-ce que vous avez ?"}]},
+    {"faux": true, "t": "Hallo, ich bin's. Ich komm heute nicht, okay?", "fr": "Salut, c'est moi. Je ne viens pas aujourd'hui, OK ?",
+     "puis": [{"qui": "hoffmann", "air": "perplexe", "t": "Wer ist da, bitte? Und warum kommen Sie nicht?", "fr": "Qui est à l'appareil, s'il vous plaît ? Et pourquoi vous ne venez pas ?"}],
+     "aide": {"fr": "<b>Avec la cadre : « Sie », ton nom, et la raison.</b> « Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen. » Et on appelle tôt, avant le début du service."}}
+   ]
+  },
+  "symptome": {
+   "registre": "Sie",
+   "dit": [],
+   "choix": [
+    {"t": "Ich habe Fieber, 38,5, und starke Halsschmerzen.", "dit": "Ich habe Fieber, achtunddreißig Komma fünf, und starke Halsschmerzen.", "fr": "J'ai de la fièvre, 38,5, et très mal à la gorge.", "va": "au",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Dann bleiben Sie bitte zu Hause. Mit Fieber können Sie nicht zu den Patienten.", "fr": "Alors restez chez vous, s'il vous plaît. Avec de la fièvre, vous ne pouvez pas aller voir les patients."}]},
+    {"t": "Ich habe seit heute Nacht Fieber und Halsschmerzen.", "fr": "J'ai de la fièvre et mal à la gorge depuis cette nuit.", "va": "au",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Dann bleiben Sie bitte zu Hause. Mit Fieber können Sie nicht zu den Patienten.", "fr": "Alors restez chez vous, s'il vous plaît. Avec de la fièvre, vous ne pouvez pas aller voir les patients."}]}
+   ]
+  },
+  "au": {
+   "registre": "Sie",
+   "dit": [],
+   "choix": [
+    {"t": "Ich gehe heute Vormittag zum Arzt und sage Ihnen dann Bescheid, wie lange ich krankgeschrieben bin.", "fr": "Je vais chez le médecin ce matin, et je vous dis ensuite combien de temps je suis en arrêt.", "va": "samstag",
+     "relire": true, "relire_note": "Procédure de l'arrêt maladie (eAU).",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Gut, danke. Die Krankmeldung bekommen wir ja elektronisch.", "fr": "Bien, merci. L'arrêt de travail, on le reçoit par voie électronique."}]},
+    {"t": "Ich gehe heute zum Hausarzt. Danach rufe ich Sie an und sage Ihnen, wie lange es dauert.", "fr": "Je vais chez mon médecin aujourd'hui. Après, je vous appelle pour vous dire combien de temps ça dure.", "va": "samstag",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Gut, danke. Die Krankmeldung bekommen wir ja elektronisch.", "fr": "Bien, merci. L'arrêt de travail, on le reçoit par voie électronique."}]}
+   ]
+  },
+  "samstag": {
+   "registre": "Sie",
+   "dit": [
+    {"qui": "hoffmann", "air": "question", "t": "Und am Samstag? Da haben Sie doch mit {jonas} getauscht, oder?", "fr": "Et samedi ? Vous avez échangé avec {jonas}, non ?"}
+   ],
+   "choix": [
+    {"t": "Ja, genau. Wenn ich bis dahin wieder gesund bin, bleibt es dabei. Sonst rufe ich Sie rechtzeitig an.", "fr": "Oui, c'est ça. Si je suis guérie d'ici là, ça ne change pas. Sinon, je vous appelle à temps.", "va": "ende",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Gut. Gute Besserung, {elif}!", "fr": "Bien. Bon rétablissement, {elif} !"}]},
+    {"t": "Richtig. Ich hoffe, dass ich bis Samstag wieder fit bin. Ich gebe Ihnen spätestens am Freitag Bescheid.", "fr": "C'est exact. J'espère être remise d'ici samedi. Je vous préviens au plus tard vendredi.", "va": "ende",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Gut. Gute Besserung, {elif}!", "fr": "Bien. Bon rétablissement, {elif} !"}]}
+   ]
+  },
+  "ende": {
+   "registre": "Sie",
+   "dit": [],
+   "choix": [
+    {"t": "Vielen Dank, {hoffmann}. Und entschuldigen Sie die Umstände.", "fr": "Merci beaucoup, {hoffmann:voc}. Et excusez-moi pour le dérangement.", "va": null,
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Dafür müssen Sie sich nicht entschuldigen. Kurieren Sie sich gut aus.", "fr": "Vous n'avez pas à vous excuser. Soignez-vous bien."}]},
+    {"t": "Danke schön. Auf Wiederhören!", "fr": "Merci beaucoup. Au revoir !", "va": null,
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Auf Wiederhören, und gute Besserung.", "fr": "Au revoir, et bon rétablissement."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Warum möchte {elif} am Samstag frei haben?", "fr": "Pourquoi {elif} veut-elle être en repos samedi ?"},
+   "options": [{"t": "Sie hat einen Arzttermin.", "fr": "Elle a rendez-vous chez le médecin."}, {"t": "Ihre Schwester kommt aus Izmir.", "fr": "Sa sœur vient d'Izmir."}, {"t": "Sie macht einen Deutschkurs.", "fr": "Elle suit un cours d'allemand."}],
+   "juste": 1},
+  {"q": {"t": "Welchen Dienst macht {elif} dafür?", "fr": "Quel poste {elif} fait-elle en échange ?"},
+   "options": [{"t": "Den Spätdienst am Mittwoch.", "fr": "Le poste de l'après-midi mercredi."}, {"t": "Den Nachtdienst am Freitag.", "fr": "Le poste de nuit vendredi."}, {"t": "Den Frühdienst am Sonntag.", "fr": "Le poste du matin dimanche."}],
+   "juste": 0},
+  {"q": {"t": "Warum kann {elif} am Montag nicht arbeiten?", "fr": "Pourquoi {elif} ne peut-elle pas travailler lundi ?"},
+   "options": [{"t": "Ihre Schwester ist zu Besuch.", "fr": "Sa sœur est en visite."}, {"t": "Sie hat verschlafen.", "fr": "Elle ne s'est pas réveillée."}, {"t": "Sie hat Fieber und Halsschmerzen.", "fr": "Elle a de la fièvre et mal à la gorge."}],
+   "juste": 2}
+ ]
+}

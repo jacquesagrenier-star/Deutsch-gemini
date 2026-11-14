@@ -1,0 +1,344 @@
+{
+ "_langue": "ar",
+ "_source": "pflege/sources/dialogues/d05-angehoerige.json",
+ "cles": {
+  "titre": {
+   "fr": "Parler à la famille",
+   "de": "Gespräch mit Angehörigen",
+   "ar": "التحدث مع أهل المريض"
+  },
+  "intro": {
+   "fr": "Dans le couloir, la fille de {lehmann}, {krueger}, arrête {elif}. Elle est inquiète. {lehmann} a donné son accord pour qu'on informe sa fille (c'est noté au dossier). Tu joues {elif} : accueille son inquiétude, dis ce que tu peux dire sur les soins, renvoie au médecin pour le diagnostic et propose un rendez-vous.",
+   "ar": "في الممر، توقف {krueger}، ابنة {lehmann}، {elif}. إنها قلقة. وقد وافقت {lehmann} على إطلاع ابنتها على حالتها (وهذا مدوَّن في الملف). أنت تؤدي دور {elif}: تقبّل قلقها، وقل ما يمكنك قوله عن الرعاية، وأحِلها إلى الطبيبة فيما يخص التشخيص، واقترح موعدًا."
+  },
+  "but": {
+   "fr": "Accueillir une inquiétude ; dire ce qu'un soignant peut dire (le soin, le confort, le repas) ; renvoyer au médecin pour les résultats et le pronostic sans fermer la porte ; organiser un entretien.",
+   "ar": "تقبّل القلق؛ وقول ما يحق للممرض قوله (الرعاية، الراحة، الطعام)؛ والإحالة إلى الطبيب فيما يخص النتائج والتوقعات من دون إغلاق الباب؛ وتنظيم لقاء."
+  },
+  "relire_notes": {
+   "fr": "Secret professionnel (Schweigepflicht) : ce qu'une soignante peut dire à une proche autorisée par la patiente, ce qui revient au médecin (résultats, diagnostic, opération, pronostic) ; une confusion nouvelle se signale au médecin.",
+   "ar": "السرّ المهني (Schweigepflicht): ما يحق للممرضة أن تقوله لقريبة أذنت لها المريضة، وما هو من اختصاص الطبيب (النتائج، التشخيص، العملية، التوقعات)؛ أي تشوّش ذهني جديد يُبلَّغ إلى الطبيب."
+  },
+  "redemittel.0": {
+   "fr": "Je comprends très bien que vous vous fassiez du souci.",
+   "de": "Ich kann gut verstehen, dass Sie sich Sorgen machen.",
+   "ar": "أفهم جيدًا أنك قلقة."
+  },
+  "redemittel.1": {
+   "fr": "Votre mère a bien mangé aujourd'hui, et elle a fait une petite promenade.",
+   "de": "Ihre Mutter hat heute gut gegessen und war ein bisschen spazieren.",
+   "ar": "أكلت والدتك جيدًا اليوم، ومشت قليلًا."
+  },
+  "redemittel.2": {
+   "fr": "Pour les résultats des examens, le médecin pourra vous en dire plus.",
+   "de": "Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.",
+   "ar": "أما نتائج الفحوص، فالطبيبة تستطيع أن تخبرك بالمزيد عنها."
+  },
+  "redemittel.3": {
+   "fr": "Voulez-vous que je vous organise un entretien avec le médecin ?",
+   "de": "Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?",
+   "ar": "هل تريدين أن أرتّب لك لقاءً مع الطبيبة؟"
+  },
+  "redemittel.4": {
+   "fr": "Je transmets volontiers.",
+   "de": "Ich gebe das gern weiter.",
+   "ar": "سأنقل ذلك بكل سرور."
+  },
+  "redemittel.5": {
+   "fr": "Si vous avez des questions sur les soins, vous pouvez me demander à tout moment.",
+   "de": "Wenn Sie Fragen zur Pflege haben, können Sie mich jederzeit fragen.",
+   "ar": "إذا كانت لديك أسئلة عن الرعاية، فيمكنك أن تسأليني في أي وقت."
+  },
+  "noeuds.flur.dit.0.recit": {
+   "fr": "Seize heures, le couloir du service. Une femme d'une cinquantaine d'années s'approche de {elif}.",
+   "ar": "الساعة الرابعة عصرًا، ممر القسم. تقترب من {elif} امرأة في نحو الخمسين من عمرها."
+  },
+  "noeuds.flur.dit.1": {
+   "fr": "Excusez-moi ! Je suis la fille de {lehmann}. Comment va ma mère ?",
+   "de": "Entschuldigung! Ich bin die Tochter von {lehmann}. Wie geht es meiner Mutter?",
+   "ar": "عفوًا! أنا ابنة {lehmann}. كيف حال والدتي؟"
+  },
+  "noeuds.flur.choix.0": {
+   "fr": "Bonjour, {krueger:voc}. Je suis {elif}, je m'occupe de votre mère aujourd'hui.",
+   "de": "Guten Tag, {krueger}. Ich bin {elif}, ich betreue Ihre Mutter heute.",
+   "ar": "مرحبًا يا {krueger:voc}. أنا {elif}، أعتني بوالدتك اليوم."
+  },
+  "noeuds.flur.choix.0.puis.0": {
+   "fr": "Je me fais tellement de souci. Hier, au téléphone, elle était complètement perdue.",
+   "de": "Ich mache mir solche Sorgen. Gestern am Telefon war sie ganz durcheinander.",
+   "ar": "أنا قلقة جدًا. أمس على الهاتف كانت مشوّشة تمامًا."
+  },
+  "noeuds.flur.choix.1": {
+   "fr": "Bonjour. Je m'appelle {elif}, c'est moi qui soigne votre mère aujourd'hui.",
+   "de": "Guten Tag. Mein Name ist {elif}, ich bin heute die Pflegekraft Ihrer Mutter.",
+   "ar": "مرحبًا. اسمي {elif}، وأنا الممرضة المسؤولة عن والدتك اليوم."
+  },
+  "noeuds.flur.choix.1.puis.0": {
+   "fr": "Je me fais tellement de souci. Hier, au téléphone, elle était complètement perdue.",
+   "de": "Ich mache mir solche Sorgen. Gestern am Telefon war sie ganz durcheinander.",
+   "ar": "أنا قلقة جدًا. أمس على الهاتف كانت مشوّشة تمامًا."
+  },
+  "noeuds.flur.choix.2": {
+   "fr": "Je n'ai pas le droit de vous le dire.",
+   "de": "Das darf ich Ihnen nicht sagen.",
+   "ar": "لا يحق لي أن أخبرك بذلك."
+  },
+  "noeuds.flur.choix.2.puis.0": {
+   "fr": "Pardon ? Je suis sa fille !",
+   "de": "Wie bitte? Ich bin ihre Tochter!",
+   "ar": "عفوًا؟ أنا ابنتها!"
+  },
+  "noeuds.flur.choix.2.aide": {
+   "fr": "<b>Présente-toi d'abord.</b> Le secret professionnel ne veut pas dire ne rien dire : ici, la patiente a autorisé sa fille, tu peux parler des soins. Les résultats et le diagnostic, eux, reviennent au médecin.",
+   "ar": "<b>عرّف بنفسك أولًا.</b> السرّ المهني لا يعني ألا تقول شيئًا: هنا أذنت المريضة لابنتها، فيمكنك أن تتحدث عن الرعاية. أما النتائج والتشخيص فهي من اختصاص الطبيب."
+  },
+  "noeuds.sorgen.choix.0": {
+   "fr": "Je comprends très bien que vous vous fassiez du souci. Aujourd'hui, votre mère est bien réveillée et bien orientée.",
+   "de": "Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.",
+   "ar": "أفهم جيدًا أنك قلقة. اليوم والدتك يقظة تمامًا ومدركة للزمان والمكان."
+  },
+  "noeuds.sorgen.choix.0.puis.0": {
+   "fr": "Dieu merci. Et elle mange assez ?",
+   "de": "Gott sei Dank. Und isst sie denn genug?",
+   "ar": "الحمد لله. وهل تأكل ما يكفي؟"
+  },
+  "noeuds.sorgen.choix.1": {
+   "fr": "Je comprends. Je peux vous rassurer : ce matin, elle avait toute sa tête et elle a longuement discuté avec moi.",
+   "de": "Das verstehe ich. Ich kann Sie beruhigen: Heute Morgen war sie ganz klar und hat sich lange mit mir unterhalten.",
+   "ar": "أفهم ذلك. أستطيع أن أطمئنك: هذا الصباح كانت صافية الذهن تمامًا، وتحدثت معي طويلًا."
+  },
+  "noeuds.sorgen.choix.1.puis.0": {
+   "fr": "Dieu merci. Et elle mange assez ?",
+   "de": "Gott sei Dank. Und isst sie denn genug?",
+   "ar": "الحمد لله. وهل تأكل ما يكفي؟"
+  },
+  "noeuds.sorgen.choix.2": {
+   "fr": "Ne vous inquiétez pas, c'est normal chez les personnes âgées.",
+   "de": "Keine Sorge, das ist normal bei alten Leuten.",
+   "ar": "لا تقلقي، هذا أمر طبيعي عند كبار السن."
+  },
+  "noeuds.sorgen.choix.2.puis.0": {
+   "fr": "Normal ? Ma mère n'a jamais été confuse !",
+   "de": "Normal? Meine Mutter war noch nie verwirrt!",
+   "ar": "طبيعي؟ والدتي لم تكن مشوّشة أبدًا!"
+  },
+  "noeuds.sorgen.choix.2.aide": {
+   "fr": "<b>Ne généralise pas (« bei alten Leuten ») et prends l'inquiétude au sérieux.</b> Une confusion nouvelle n'est pas « normale » : c'est un signe à transmettre au médecin. Dis plutôt ce que tu as observé aujourd'hui.",
+   "ar": "<b>لا تعمّم («bei alten Leuten») وخذ القلق على محمل الجد.</b> التشوّش الذهني الجديد ليس «طبيعيًا»: إنه علامة يجب إبلاغ الطبيب بها. قل بدلًا من ذلك ما لاحظته اليوم."
+  },
+  "noeuds.essen.choix.0": {
+   "fr": "Oui, elle a bien mangé aujourd'hui, et après le déjeuner, elle a fait quelques pas avec moi dans le couloir.",
+   "de": "Ja, sie hat heute gut gegessen, und nach dem Mittagessen war sie mit mir ein bisschen auf dem Flur spazieren.",
+   "ar": "نعم، أكلت جيدًا اليوم، وبعد الغداء مشت معي قليلًا في الممر."
+  },
+  "noeuds.essen.choix.0.puis.0": {
+   "fr": "C'est bien. Et le pied ? Elle doit être opérée ? J'ai lu qu'avec le diabète, parfois…",
+   "de": "Das ist schön. Und der Fuß? Muss sie operiert werden? Ich habe gelesen, dass man bei Diabetes manchmal …",
+   "ar": "هذا جميل. والقدم؟ هل يجب أن تُجرى لها عملية؟ قرأت أنه مع السكري أحيانًا…"
+  },
+  "noeuds.essen.choix.1": {
+   "fr": "Elle a mangé presque tout son déjeuner et elle a beaucoup bu. Après, nous avons fait quelques pas.",
+   "de": "Sie hat fast das ganze Mittagessen gegessen und viel getrunken. Danach sind wir ein paar Schritte gegangen.",
+   "ar": "أكلت تقريبًا كل غدائها، وشربت كثيرًا. بعد ذلك مشينا بضع خطوات."
+  },
+  "noeuds.essen.choix.1.puis.0": {
+   "fr": "C'est bien. Et le pied ? Elle doit être opérée ? J'ai lu qu'avec le diabète, parfois…",
+   "de": "Das ist schön. Und der Fuß? Muss sie operiert werden? Ich habe gelesen, dass man bei Diabetes manchmal …",
+   "ar": "هذا جميل. والقدم؟ هل يجب أن تُجرى لها عملية؟ قرأت أنه مع السكري أحيانًا…"
+  },
+  "noeuds.befund.choix.0": {
+   "fr": "Pour les résultats des examens et le traitement, le médecin pourra vous en dire plus. Ce que je peux vous dire, c'est que nous soignons la plaie tous les jours.",
+   "de": "Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.",
+   "ar": "أما نتائج الفحوص والعلاج، فالطبيبة تستطيع أن تخبرك بالمزيد عنها. ما أستطيع قوله لك هو أننا نعتني بالجرح كل يوم."
+  },
+  "noeuds.befund.choix.0.puis.0": {
+   "fr": "Mais vous voyez la plaie tous les jours !",
+   "de": "Aber Sie sehen die Wunde doch jeden Tag!",
+   "ar": "لكنك ترين الجرح كل يوم!"
+  },
+  "noeuds.befund.choix.1": {
+   "fr": "C'est une question pour {sommer}. Elle connaît les résultats et peut tout vous expliquer en détail.",
+   "de": "Das ist eine Frage für {sommer}. Sie kennt die Befunde und kann Ihnen alles genau erklären.",
+   "ar": "هذا سؤال يُطرح على {sommer}. فهي تعرف النتائج وتستطيع أن تشرح لك كل شيء بالتفصيل."
+  },
+  "noeuds.befund.choix.1.puis.0": {
+   "fr": "Mais vous voyez la plaie tous les jours !",
+   "de": "Aber Sie sehen die Wunde doch jeden Tag!",
+   "ar": "لكنك ترين الجرح كل يوم!"
+  },
+  "noeuds.befund.choix.2": {
+   "fr": "Non, ne vous inquiétez pas, elle ne sera sûrement pas opérée.",
+   "de": "Nein, keine Sorge, sie wird bestimmt nicht operiert.",
+   "ar": "لا، لا تقلقي، بالتأكيد لن تُجرى لها عملية."
+  },
+  "noeuds.befund.choix.2.puis.0": {
+   "fr": "C'est vrai ? Le médecin l'a dit ?",
+   "de": "Wirklich? Hat die Ärztin das gesagt?",
+   "ar": "حقًا؟ هل قالت الطبيبة ذلك؟"
+  },
+  "noeuds.befund.choix.2.aide": {
+   "fr": "<b>Ne promets rien sur le diagnostic ni sur une opération.</b> Ce n'est pas ton rôle, et une promesse fausse détruit la confiance. Renvoie au médecin : « Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen. »",
+   "ar": "<b>لا تعِد بشيء بشأن التشخيص أو العملية.</b> هذا ليس دورك، والوعد الكاذب يهدم الثقة. أحِل إلى الطبيب: «Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.»"
+  },
+  "noeuds.wunde.choix.0": {
+   "fr": "Oui, et je note tout avec précision. Mais ce que cela signifie pour le traitement, c'est au médecin de l'évaluer.",
+   "de": "Ja, und ich dokumentiere alles genau. Aber was das für die Behandlung bedeutet, muss die Ärztin beurteilen.",
+   "ar": "نعم، وأوثّق كل شيء بدقة. لكن ما يعنيه ذلك بالنسبة إلى العلاج، فهذا تقيّمه الطبيبة."
+  },
+  "noeuds.wunde.choix.0.puis.0": {
+   "fr": "Hum. Et quand est-ce que je peux lui parler ?",
+   "de": "Hm. Und wann kann ich mit ihr sprechen?",
+   "ar": "همم. ومتى يمكنني أن أتحدث معها؟"
+  },
+  "noeuds.wunde.choix.1": {
+   "fr": "C'est vrai. Mais seul le médecin peut vous donner une évaluation. Comme ça, vous aurez une réponse sûre.",
+   "de": "Das stimmt. Aber eine Einschätzung kann Ihnen nur die Ärztin geben. Dann bekommen Sie auch eine sichere Antwort.",
+   "ar": "هذا صحيح. لكن الطبيبة وحدها تستطيع أن تعطيك تقييمًا. وهكذا تحصلين على جواب أكيد."
+  },
+  "noeuds.wunde.choix.1.puis.0": {
+   "fr": "Hum. Et quand est-ce que je peux lui parler ?",
+   "de": "Hm. Und wann kann ich mit ihr sprechen?",
+   "ar": "همم. ومتى يمكنني أن أتحدث معها؟"
+  },
+  "noeuds.termin.choix.0": {
+   "fr": "Voulez-vous que je vous organise un entretien avec {sommer} ? Après la visite, elle a souvent du temps.",
+   "de": "Soll ich ein Gespräch mit {sommer} für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.",
+   "ar": "هل تريدين أن أرتّب لك لقاءً مع {sommer}؟ بعد الجولة الطبية يكون لديها وقت في الغالب."
+  },
+  "noeuds.termin.choix.0.puis.0": {
+   "fr": "Oui, s'il vous plaît. Demain, je suis là à partir de dix heures.",
+   "de": "Ja, bitte. Morgen bin ich ab zehn Uhr hier.",
+   "ar": "نعم، من فضلك. غدًا سأكون هنا ابتداءً من الساعة العاشرة."
+  },
+  "noeuds.termin.choix.1": {
+   "fr": "Je peux demander à {sommer} quand elle aura du temps pour vous. Vous êtes là à quelle heure, demain ?",
+   "de": "Ich kann {sommer} fragen, wann sie Zeit für Sie hat. Wann sind Sie morgen hier?",
+   "ar": "أستطيع أن أسأل {sommer} متى يكون لديها وقت لك. في أي ساعة تكونين هنا غدًا؟"
+  },
+  "noeuds.termin.choix.1.puis.0": {
+   "fr": "Demain, je suis là à partir de dix heures.",
+   "de": "Morgen bin ich ab zehn Uhr hier.",
+   "ar": "غدًا سأكون هنا ابتداءً من الساعة العاشرة."
+  },
+  "noeuds.termin.choix.2": {
+   "fr": "Appelez le médecin, tout simplement. Le numéro est sur Internet.",
+   "de": "Rufen Sie einfach die Ärztin an. Die Nummer steht im Internet.",
+   "ar": "اتصلي بالطبيبة ببساطة. الرقم موجود على الإنترنت."
+  },
+  "noeuds.termin.choix.2.puis.0": {
+   "fr": "Sur Internet ? Je n'aurai que le standard.",
+   "de": "Im Internet? Da erreiche ich doch nur die Zentrale.",
+   "ar": "على الإنترنت؟ لن أصل إلا إلى المقسم."
+  },
+  "noeuds.termin.choix.2.aide": {
+   "fr": "<b>Propose ton aide pour organiser l'entretien.</b> « Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren? » : « Soll ich …? » propose un service, poliment.",
+   "ar": "<b>اعرض مساعدتك في تنظيم اللقاء.</b> «Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?»: الفعل «sollen» في هذه الصيغة يعرض خدمة بأدب.",
+   "perime": true
+  },
+  "noeuds.rueckruf.choix.0": {
+   "fr": "Bien, je transmets. Je peux noter votre numéro de téléphone, au cas où l'heure changerait ?",
+   "de": "Gut, ich gebe das weiter. Darf ich mir Ihre Telefonnummer notieren, falls sich die Zeit ändert?",
+   "ar": "حسنًا، سأنقل ذلك. هل يمكنني أن أسجّل رقم هاتفك، في حال تغيّر الموعد؟"
+  },
+  "noeuds.rueckruf.choix.0.puis.0": {
+   "fr": "Bien sûr. Je vous l'écris.",
+   "de": "Natürlich. Ich schreibe sie Ihnen auf.",
+   "ar": "بالطبع. سأكتبه لك."
+  },
+  "noeuds.rueckruf.choix.1": {
+   "fr": "Je préviens {sommer} que vous venez demain à partir de dix heures. Si ça ne convient pas, le service vous appelle.",
+   "de": "Ich sage {sommer} Bescheid, dass Sie morgen ab zehn kommen. Wenn es nicht passt, ruft die Station Sie an.",
+   "ar": "سأخبر {sommer} أنك ستأتين غدًا ابتداءً من العاشرة. وإذا لم يناسب ذلك، فسيتصل بك القسم."
+  },
+  "noeuds.rueckruf.choix.1.puis.0": {
+   "fr": "Merci. Le service a déjà mon numéro.",
+   "de": "Danke. Meine Nummer hat die Station schon.",
+   "ar": "شكرًا. رقمي موجود لدى القسم أصلًا."
+  },
+  "noeuds.ende.dit.0": {
+   "fr": "Merci beaucoup. Vous m'avez vraiment aidée.",
+   "de": "Vielen Dank. Sie haben mir wirklich geholfen.",
+   "ar": "شكرًا جزيلًا. لقد ساعدتني حقًا."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Avec plaisir. Votre mère sera sûrement contente que vous soyez là. Allez la voir.",
+   "de": "Gern. Ihre Mutter freut sich bestimmt, dass Sie da sind. Gehen Sie ruhig zu ihr.",
+   "ar": "بكل سرور. ستفرح والدتك بالتأكيد بوجودك. اذهبي إليها."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Oui, j'y vais.",
+   "de": "Ja, das mache ich.",
+   "ar": "نعم، سأذهب."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Ça me fait plaisir. Si vous avez des questions sur les soins, vous pouvez me demander à tout moment.",
+   "de": "Das freut mich. Wenn Sie Fragen zur Pflege haben, können Sie mich jederzeit fragen.",
+   "ar": "هذا يسعدني. إذا كانت لديك أسئلة عن الرعاية، فيمكنك أن تسأليني في أي وقت."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "C'est bon à savoir. Merci.",
+   "de": "Das ist gut zu wissen. Danke.",
+   "ar": "من الجيد معرفة ذلك. شكرًا."
+  },
+  "ecouter.0.q": {
+   "fr": "Pourquoi {krueger} s'inquiète-t-elle ?",
+   "de": "Warum macht sich {krueger} Sorgen?",
+   "ar": "لماذا {krueger} قلقة؟"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Sa mère ne mange rien.",
+   "de": "Ihre Mutter isst nichts.",
+   "ar": "والدتها لا تأكل شيئًا."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Sa mère était perdue au téléphone hier.",
+   "de": "Ihre Mutter war gestern am Telefon durcheinander.",
+   "ar": "كانت والدتها مشوّشة على الهاتف أمس."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Sa mère est tombée.",
+   "de": "Ihre Mutter ist gestürzt.",
+   "ar": "سقطت والدتها."
+  },
+  "ecouter.1.q": {
+   "fr": "Que veut savoir {krueger} sur le pied ?",
+   "de": "Was möchte {krueger} über den Fuß wissen?",
+   "ar": "ماذا تريد {krueger} أن تعرف عن القدم؟"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Si sa mère doit être opérée.",
+   "de": "Ob ihre Mutter operiert werden muss.",
+   "ar": "إن كان يجب أن تُجرى لوالدتها عملية."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Quand le pansement est changé.",
+   "de": "Wann der Verband gewechselt wird.",
+   "ar": "متى يُغيَّر الضماد."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Si sa mère a le droit de marcher.",
+   "de": "Ob ihre Mutter laufen darf.",
+   "ar": "إن كان يُسمح لوالدتها بالمشي."
+  },
+  "ecouter.2.q": {
+   "fr": "À quelle heure {krueger} est-elle à l'hôpital demain ?",
+   "de": "Wann ist {krueger} morgen im Krankenhaus?",
+   "ar": "في أي ساعة تكون {krueger} في المستشفى غدًا؟"
+  },
+  "ecouter.2.options.0": {
+   "fr": "À partir de huit heures.",
+   "de": "Ab acht Uhr.",
+   "ar": "ابتداءً من الساعة الثامنة."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Seulement le soir.",
+   "de": "Erst am Abend.",
+   "ar": "في المساء فقط."
+  },
+  "ecouter.2.options.2": {
+   "fr": "À partir de dix heures.",
+   "de": "Ab zehn Uhr.",
+   "ar": "ابتداءً من الساعة العاشرة."
+  }
+ }
+}

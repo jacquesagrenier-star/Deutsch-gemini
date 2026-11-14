@@ -1,0 +1,134 @@
+{
+ "id": "d06-uebergabe",
+ "numero": 6,
+ "niveau": "B2",
+ "registre": "du",
+ "lieu": "klinikum",
+ "scene_annexe": 4,
+ "role": "elif",
+ "personnes": ["jonas"],
+ "titre": {"t": "Die Übergabe", "fr": "La relève orale"},
+ "intro": {"fr": "Treize heures trente, la relève. {elif} a fini son service du matin, {jonas} prend celui de l'après-midi. Entre collègues, on se dit « du ». Tu joues {elif} : transmets l'essentiel de deux patients, dans l'ordre : qui, pourquoi, ce qui s'est passé, ce qui reste à faire."},
+ "but": {"fr": "Faire une relève claire et ordonnée ; donner des valeurs exactes avec l'heure ; employer le passé (Perfekt, Präteritum) et le passif ; rester objectif, sans jugement."},
+ "grammaire": ["g13", "g10", "g20"],
+ "telc": ["hoeren", "schreiben", "oral-1"],
+ "relire_notes": {"fr": "Relève : ordre (identité, motif, évolution, à faire) ; glycémie 180 mg/dl à 7 h avec insuline selon schéma, 140 à midi, contrôle à 14 h ; « reizlos » ; Hüft-TEP ; antalgique si besoin et réévaluation (7 → 3) ; refus de mobilisation documenté."},
+ "redemittel": [
+  {"t": "Ich fange mit Zimmer 14 an.", "dit": "Ich fange mit Zimmer vierzehn an.", "fr": "Je commence par la chambre 14."},
+  {"t": "Sie ist seit Montag bei uns, aufgenommen wegen einer Wunde am Fuß.", "fr": "Elle est chez nous depuis lundi, admise pour une plaie au pied."},
+  {"t": "Sie hat heute Nacht gut geschlafen.", "fr": "Elle a bien dormi cette nuit."},
+  {"t": "Der Verband wurde gewechselt, die Wunde ist reizlos.", "fr": "Le pansement a été changé, la plaie est calme (sans signe d'inflammation).", "relire": true, "relire_note": "« reizlos »."},
+  {"t": "Blutzucker um 7 Uhr: 180, nach Schema Insulin gegeben.", "dit": "Blutzucker um sieben Uhr: hundertachtzig, nach Schema Insulin gegeben.", "fr": "Glycémie à 7 h : 180 (mg/dl), insuline donnée selon le schéma.", "relire": true, "relire_note": "Valeur et schéma d'insuline."},
+  {"t": "Bitte um 14 Uhr noch einmal den Blutzucker messen.", "dit": "Bitte um vierzehn Uhr noch einmal den Blutzucker messen.", "fr": "Merci de refaire la glycémie à 14 h."},
+  {"t": "Die Ärztin ist informiert, es ist dokumentiert.", "fr": "Le médecin est informé, c'est noté au dossier."}
+ ],
+ "debut": "start",
+ "noeuds": {
+  "start": {
+   "dit": [
+    {"recit": {"fr": "Treize heures trente, au poste de soins. {jonas} s'assoit avec un café et son carnet."}},
+    {"qui": "jonas", "air": "sourire", "t": "So, {elif}, dann leg mal los. Wer ist neu, wer macht Probleme?", "fr": "Bon, {elif}, vas-y. Qui est nouveau, qui pose problème ?"}
+   ],
+   "choix": [
+    {"t": "Ich fange mit Zimmer 14 an. {lehmann}, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.", "dit": "Ich fange mit Zimmer vierzehn an. {lehmann}, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.", "fr": "Je commence par la chambre 14. {lehmann}, 74 ans, admise pour une plaie au pied droit, sur un diabète.", "va": "verlauf",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Okay. Wie war ihre Nacht, und wie geht's der Wunde?", "fr": "D'accord. Comment s'est passée sa nuit, et la plaie ?"}]},
+    {"t": "Zimmer 14, {lehmann}, 74, seit Montag bei uns mit einem diabetischen Fuß rechts.", "dit": "Zimmer vierzehn, {lehmann}, vierundsiebzig, seit Montag bei uns mit einem diabetischen Fuß rechts.", "fr": "Chambre 14, {lehmann}, 74 ans, chez nous depuis lundi pour un pied diabétique droit.", "va": "verlauf",
+     "relire": true, "relire_note": "« diabetischer Fuß » comme motif d'admission.",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Okay. Wie war ihre Nacht, und wie geht's der Wunde?", "fr": "D'accord. Comment s'est passée sa nuit, et la plaie ?"}]},
+    {"faux": true, "t": "{lehmann} ist sehr nett, und ihre Tochter kommt jeden Tag.", "fr": "{lehmann} est très gentille, et sa fille vient tous les jours.",
+     "puis": [{"qui": "jonas", "air": "amuse", "t": "Schön für sie. Aber warum liegt sie bei uns?", "fr": "Tant mieux pour elle. Mais pourquoi elle est chez nous ?"}],
+     "aide": {"fr": "<b>Une relève a un ordre : qui, pourquoi, ce qui s'est passé, ce qui reste à faire.</b> Commence par la chambre, le nom, l'âge et le motif d'admission. Le reste vient après, s'il compte pour les soins."}}
+   ]
+  },
+  "verlauf": {
+   "dit": [],
+   "choix": [
+    {"t": "Sie hat heute Nacht gut geschlafen. Der Verband wurde heute Morgen gewechselt, die Wunde ist reizlos.", "fr": "Elle a bien dormi cette nuit. Le pansement a été changé ce matin, la plaie est calme.", "va": "zucker",
+     "relire": true, "relire_note": "« reizlos »",
+     "puis": [{"qui": "jonas", "air": "question", "t": "Gut. Und der Zucker?", "fr": "Bien. Et le sucre ?"}]},
+    {"t": "Die Nacht war ruhig. Beim Verbandswechsel heute Morgen war die Wunde sauber, nicht gerötet und schon etwas kleiner.", "fr": "La nuit a été calme. Au changement de pansement ce matin, la plaie était propre, pas rouge, et déjà un peu plus petite.", "va": "zucker",
+     "puis": [{"qui": "jonas", "air": "question", "t": "Gut. Und der Zucker?", "fr": "Bien. Et le sucre ?"}]}
+   ]
+  },
+  "zucker": {
+   "dit": [],
+   "choix": [
+    {"t": "Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.", "dit": "Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.", "fr": "Glycémie à 7 h : 180. Elle a eu son insuline selon le schéma. À midi, elle était à 140.", "va": "offen",
+     "relire": true, "relire_note": "Valeurs et schéma d'insuline.",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Okay. Was ist bei ihr noch offen?", "fr": "D'accord. Qu'est-ce qui reste à faire pour elle ?"}]},
+    {"t": "Um 7 Uhr hatte sie einen Blutzucker von 180, Insulin wurde nach Schema gegeben. Um 12 Uhr war er bei 140.", "dit": "Um sieben Uhr hatte sie einen Blutzucker von hundertachtzig, Insulin wurde nach Schema gegeben. Um zwölf Uhr war er bei hundertvierzig.", "fr": "À 7 h, elle avait une glycémie à 180, l'insuline a été donnée selon le schéma. À 12 h, elle était à 140.", "va": "offen",
+     "relire": true, "relire_note": "Valeurs et schéma d'insuline.",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Okay. Was ist bei ihr noch offen?", "fr": "D'accord. Qu'est-ce qui reste à faire pour elle ?"}]},
+    {"faux": true, "t": "Der Zucker war ziemlich hoch, aber ich weiß nicht mehr genau, wie hoch.", "fr": "Le sucre était assez haut, mais je ne sais plus exactement combien.",
+     "puis": [{"qui": "jonas", "air": "perplexe", "t": "„Ziemlich hoch“ ist keine Zahl, {elif}. Hast du es dokumentiert?", "fr": "« Assez haut », ce n'est pas un chiffre, {elif}. Tu l'as noté ?"}],
+     "aide": {"fr": "<b>Une valeur se transmet avec son chiffre et son heure.</b> « Blutzucker um 7 Uhr: 180 ». Si tu ne t'en souviens pas, relis le dossier avant la relève."},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  },
+  "offen": {
+   "dit": [],
+   "choix": [
+    {"t": "Bitte um 14 Uhr noch einmal den Blutzucker messen. Und ihre Tochter möchte morgen um zehn mit {sommer} sprechen.", "dit": "Bitte um vierzehn Uhr noch einmal den Blutzucker messen. Und ihre Tochter möchte morgen um zehn mit {sommer} sprechen.", "fr": "Merci de refaire la glycémie à 14 h. Et sa fille voudrait parler avec {sommer} demain à dix heures.", "va": "brandt",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Notiert. Und Zimmer 12?", "dit": "Notiert. Und Zimmer zwölf?", "fr": "Noté. Et la chambre 12 ?"}]},
+    {"t": "Offen ist noch der Blutzucker um 14 Uhr. Und das Gespräch der Tochter mit {sommer} ist für morgen um zehn angefragt.", "dit": "Offen ist noch der Blutzucker um vierzehn Uhr. Und das Gespräch der Tochter mit {sommer} ist für morgen um zehn angefragt.", "fr": "Il reste la glycémie de 14 h. Et l'entretien de la fille avec {sommer} est demandé pour demain à dix heures.", "va": "brandt",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Notiert. Und Zimmer 12?", "dit": "Notiert. Und Zimmer zwölf?", "fr": "Noté. Et la chambre 12 ?"}]}
+   ]
+  },
+  "brandt": {
+   "dit": [],
+   "choix": [
+    {"t": "{brandt}, 82 Jahre, am Dienstag nach einem Sturz an der rechten Hüfte operiert, Hüft-TEP. Heute Vormittag hatte er starke Schmerzen, sieben von zehn.", "dit": "{brandt}, zweiundachtzig Jahre, am Dienstag nach einem Sturz an der rechten Hüfte operiert, Hüft-TEP. Heute Vormittag hatte er starke Schmerzen, sieben von zehn.", "fr": "{brandt}, 82 ans, opéré mardi de la hanche droite après une chute, prothèse totale de hanche. Ce matin, il avait une forte douleur, sept sur dix.", "va": "bedarf",
+     "relire": true, "relire_note": "« Hüft-TEP » à l'oral.",
+     "puis": [{"qui": "jonas", "air": "question", "t": "Hat er was bekommen?", "fr": "Il a eu quelque chose ?"}]},
+    {"t": "Zimmer 12, {brandt}, 82, am Dienstag an der rechten Hüfte operiert worden. Um zehn hatte er Schmerzen von sieben auf der Skala.", "dit": "Zimmer zwölf, {brandt}, zweiundachtzig, am Dienstag an der rechten Hüfte operiert worden. Um zehn hatte er Schmerzen von sieben auf der Skala.", "fr": "Chambre 12, {brandt}, 82 ans, opéré mardi de la hanche droite. À dix heures, il avait une douleur à sept sur l'échelle.", "va": "bedarf",
+     "puis": [{"qui": "jonas", "air": "question", "t": "Hat er was bekommen?", "fr": "Il a eu quelque chose ?"}]}
+   ]
+  },
+  "bedarf": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja, um zehn hat er sein Schmerzmittel bei Bedarf bekommen. Eine halbe Stunde später lag er bei drei.", "fr": "Oui, à dix heures il a eu son antidouleur si besoin. Une demi-heure plus tard, il était à trois.", "va": "mobi",
+     "relire": true, "relire_note": "Antalgique si besoin et réévaluation.",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Gut. Und die Mobilisation?", "fr": "Bien. Et la mobilisation ?"}]},
+    {"t": "Er hat um zehn seine Bedarfsmedikation bekommen. Nach dreißig Minuten waren die Schmerzen bei drei.", "fr": "Il a eu son traitement si besoin à dix heures. Après trente minutes, la douleur était à trois.", "va": "mobi",
+     "relire": true, "relire_note": "« Bedarfsmedikation ».",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Gut. Und die Mobilisation?", "fr": "Bien. Et la mobilisation ?"}]}
+   ]
+  },
+  "mobi": {
+   "dit": [],
+   "choix": [
+    {"t": "Die hat er heute abgelehnt. Er hat Angst, wieder zu stürzen. {sommer} und die Physiotherapie sind informiert, es ist dokumentiert.", "fr": "Il l'a refusée aujourd'hui. Il a peur de retomber. {sommer} et la kinésithérapie sont informées, c'est noté au dossier.", "va": "ende",
+     "relire": true, "relire_note": "Refus de mobilisation documenté.",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Hm. Dann versuche ich es heute Nachmittag noch mal mit ihm.", "fr": "Hum. Alors je réessaie avec lui cet après-midi."}]},
+    {"t": "Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.", "fr": "Mobilisation refusée aujourd'hui, par peur d'une nouvelle chute. C'est noté, et le médecin est au courant.", "va": "ende",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Hm. Dann versuche ich es heute Nachmittag noch mal mit ihm.", "fr": "Hum. Alors je réessaie avec lui cet après-midi."}]},
+    {"faux": true, "t": "Er wollte nicht laufen, er ist halt ein bisschen faul.", "fr": "Il n'a pas voulu marcher, il est un peu paresseux, quoi.",
+     "puis": [{"qui": "jonas", "air": "perplexe", "t": "Faul? So schreiben wir das aber nicht in die Akte.", "fr": "Paresseux ? Ce n'est pas comme ça qu'on l'écrit dans le dossier."}],
+     "aide": {"fr": "<b>Une relève est objective : des faits, pas de jugement.</b> Dis ce qui s'est passé et la raison donnée par le patient : « Mobilisation abgelehnt, wegen Angst vor einem Sturz »."}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "jonas", "air": "sourire", "t": "Danke, {elif}, das war eine super Übergabe. Noch was?", "fr": "Merci, {elif}, c'était une super relève. Autre chose ?"}
+   ],
+   "choix": [
+    {"t": "Nein, das ist alles. Ich wünsch dir einen ruhigen Dienst!", "fr": "Non, c'est tout. Je te souhaite un service tranquille !", "va": null,
+     "puis": [{"qui": "jonas", "air": "amuse", "t": "Danke. Und für dich: Feierabend!", "fr": "Merci. Et pour toi : fin de journée !"}]},
+    {"t": "Nein, alles gesagt. Bis morgen, und schönen Dienst noch!", "fr": "Non, j'ai tout dit. À demain, et bon service !", "va": null,
+     "puis": [{"qui": "jonas", "air": "amuse", "t": "Danke. Und für dich: Feierabend!", "fr": "Merci. Et pour toi : fin de journée !"}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Wie hoch war der Blutzucker von {lehmann} um sieben Uhr?", "fr": "Quelle était la glycémie de {lehmann} à sept heures ?"},
+   "options": [{"t": "Hundertvierzig.", "fr": "Cent quarante."}, {"t": "Hundertachtzig.", "fr": "Cent quatre-vingts."}, {"t": "Hundertzehn.", "fr": "Cent dix."}],
+   "juste": 1},
+  {"q": {"t": "Was muss {jonas} um vierzehn Uhr machen?", "fr": "Que doit faire {jonas} à quatorze heures ?"},
+   "options": [{"t": "Den Blutzucker messen.", "fr": "Mesurer la glycémie."}, {"t": "Den Verband wechseln.", "fr": "Changer le pansement."}, {"t": "Die Ärztin anrufen.", "fr": "Appeler le médecin."}],
+   "juste": 0},
+  {"q": {"t": "Warum hat {brandt} die Mobilisation abgelehnt?", "fr": "Pourquoi {brandt} a-t-il refusé la mobilisation ?"},
+   "options": [{"t": "Er hatte Besuch.", "fr": "Il avait de la visite."}, {"t": "Er hatte keinen Rollator.", "fr": "Il n'avait pas de déambulateur."}, {"t": "Er hat Angst vor einem Sturz.", "fr": "Il a peur de tomber."}],
+   "juste": 2}
+ ]
+}

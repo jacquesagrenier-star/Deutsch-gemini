@@ -1,0 +1,386 @@
+{
+ "_langue": "en",
+ "_source": "pflege/sources/dialogues/d08-sturz.json",
+ "cles": {
+  "titre": {
+   "fr": "Une résidente au sol",
+   "de": "Der Sturz",
+   "en": "A resident on the floor"
+  },
+  "intro": {
+   "fr": "Six heures du matin, au {heim}. {arun} entre dans la chambre de {weber} : elle est assise par terre, à côté de son lit. Tu joues {arun} : ne la relève pas tout de suite, rassure-la, vérifie, appelle de l'aide sans la laisser seule, aide-la à se relever avec ta collègue, puis demande ce qui s'est passé.",
+   "en": "Six in the morning, at {heim}. {arun} goes into {weber}'s room: she is sitting on the floor next to her bed. You play {arun}: don't get her up right away, reassure her, check her over, call for help without leaving her alone, help her up with your colleague, then ask what happened."
+  },
+  "but": {
+   "fr": "Réagir à une chute dans l'ordre : rassurer, ne pas relever tout de suite, vérifier (douleur, mouvements, tête), appeler sans quitter la personne, transmettre au Perfekt, aider à se relever, chercher la cause, documenter.",
+   "en": "Respond to a fall in the right order: reassure, don't lift right away, check (pain, movement, head), call for help without leaving the person, report in the Perfekt, help her up, look for the cause, document."
+  },
+  "relire_notes": {
+   "fr": "Conduite après une chute (procédure de la maison, Expertenstandard Sturzprophylaxe) : ne pas relever avant d'avoir vérifié ; contrôles (douleur, mobilité, choc à la tête, anticoagulants ?) ; appeler sans quitter la résidente ; technique pour se relever (côté, genoux, chaise) ; informer le médecin traitant ; rapport de chute ; mesures (lumière de nuit, chaussons).",
+   "en": "What to do after a fall (facility protocol, Expertenstandard Sturzprophylaxe, the German national fall-prevention standard): don't lift before checking; checks (pain, mobility, head strike, anticoagulants?); call for help without leaving the resident; technique for getting up (side, knees, chair); inform the primary care doctor; fall report; measures (night light, slippers)."
+  },
+  "redemittel.0": {
+   "fr": "{weber:voc}, je suis là. Restez assise pour l'instant, s'il vous plaît.",
+   "de": "{weber}, ich bin da. Bleiben Sie bitte erst mal sitzen.",
+   "en": "{weber:voc}, I'm here. Please stay sitting for now."
+  },
+  "redemittel.1": {
+   "fr": "Vous vous êtes fait mal ?",
+   "de": "Haben Sie sich wehgetan?",
+   "en": "Did you hurt yourself?"
+  },
+  "redemittel.2": {
+   "fr": "Vous pouvez bouger la main et les jambes ?",
+   "de": "Können Sie die Hand und die Beine bewegen?",
+   "en": "Can you move your hand and your legs?"
+  },
+  "redemittel.3": {
+   "fr": "Vous vous êtes cogné la tête ?",
+   "de": "Sind Sie mit dem Kopf aufgeschlagen?",
+   "en": "Did you hit your head?"
+  },
+  "redemittel.4": {
+   "fr": "J'appelle ma collègue. Je reste avec vous.",
+   "de": "Ich rufe meine Kollegin. Ich bleibe bei Ihnen.",
+   "en": "I'm calling my colleague. I'm staying with you."
+  },
+  "redemittel.5": {
+   "fr": "Vous vous souvenez comment c'est arrivé ?",
+   "de": "Wissen Sie noch, wie es passiert ist?",
+   "en": "Do you remember how it happened?"
+  },
+  "redemittel.6": {
+   "fr": "Je fais un rapport de chute.",
+   "de": "Ich schreibe ein Sturzprotokoll.",
+   "en": "I'll fill out a fall report."
+  },
+  "noeuds.finden.dit.0.recit": {
+   "fr": "Six heures du matin. {arun} ouvre la porte de la chambre de {weber}. Elle est assise par terre, à côté du lit, en chemise de nuit.",
+   "en": "Six in the morning. {arun} opens the door to {weber}'s room. She is sitting on the floor next to the bed, in her nightgown."
+  },
+  "noeuds.finden.dit.1": {
+   "fr": "Oh là là… je voulais juste aller aux toilettes.",
+   "de": "Ach je … ich wollte doch nur zur Toilette.",
+   "en": "Oh dear… I only wanted to go to the toilet."
+  },
+  "noeuds.finden.choix.0": {
+   "fr": "{weber:voc}, je suis là. Restez assise pour l'instant, je vais vous aider.",
+   "de": "{weber}, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.",
+   "en": "{weber:voc}, I'm here. Please stay sitting for now; I'll help you in a moment."
+  },
+  "noeuds.finden.choix.0.puis.0": {
+   "fr": "Je suis tellement maladroite…",
+   "de": "Ich bin so ungeschickt …",
+   "en": "I'm so clumsy…"
+  },
+  "noeuds.finden.choix.1": {
+   "fr": "{weber:voc}, c'est moi, {arun}. Restez comme vous êtes, s'il vous plaît. Ne vous levez pas encore.",
+   "de": "{weber}, ich bin's, {arun}. Bitte bleiben Sie, wie Sie sind. Noch nicht aufstehen.",
+   "en": "{weber:voc}, it's me, {arun}. Please stay just as you are. Don't get up yet."
+  },
+  "noeuds.finden.choix.1.puis.0": {
+   "fr": "Je suis tellement maladroite…",
+   "de": "Ich bin so ungeschickt …",
+   "en": "I'm so clumsy…"
+  },
+  "noeuds.finden.choix.2": {
+   "fr": "Venez, je vous relève vite !",
+   "de": "Kommen Sie, ich ziehe Sie schnell hoch!",
+   "en": "Come on, I'll pull you up quickly!"
+  },
+  "noeuds.finden.choix.2.puis.0": {
+   "fr": "Aïe ! Non, attendez !",
+   "de": "Au! Nein, warten Sie!",
+   "en": "Ouch! No, wait!"
+  },
+  "noeuds.finden.choix.2.aide": {
+   "fr": "<b>Ne relève jamais tout de suite une personne tombée.</b> D'abord rassurer et vérifier : une fracture ou un choc à la tête peut passer inaperçu. « Bleiben Sie bitte erst mal sitzen. »",
+   "en": "<b>Never get a person who has fallen up right away.</b> First reassure and check: a fracture or a blow to the head can go unnoticed. “Bleiben Sie bitte erst mal sitzen.”"
+  },
+  "noeuds.beruhigen.choix.0": {
+   "fr": "Ça peut arriver à tout le monde. Je suis avec vous. Vous vous êtes fait mal ?",
+   "de": "Das kann jedem passieren. Ich bin bei Ihnen. Haben Sie sich wehgetan?",
+   "en": "That can happen to anyone. I'm with you. Did you hurt yourself?"
+  },
+  "noeuds.beruhigen.choix.0.puis.0": {
+   "fr": "J'ai mal au poignet. Le gauche.",
+   "de": "Mein Handgelenk tut weh. Das linke.",
+   "en": "My wrist hurts. The left one."
+  },
+  "noeuds.beruhigen.choix.1": {
+   "fr": "Vous n'êtes pas maladroite, ça arrive. Vous avez mal quelque part ?",
+   "de": "Sie sind nicht ungeschickt, so etwas passiert. Tut Ihnen etwas weh?",
+   "en": "You're not clumsy; these things happen. Does anything hurt?"
+  },
+  "noeuds.beruhigen.choix.1.puis.0": {
+   "fr": "J'ai mal au poignet. Le gauche.",
+   "de": "Mein Handgelenk tut weh. Das linke.",
+   "en": "My wrist hurts. The left one."
+  },
+  "noeuds.pruefen.choix.0": {
+   "fr": "Vous pouvez bouger les doigts ? Et les jambes ?",
+   "de": "Können Sie die Finger bewegen? Und die Beine?",
+   "en": "Can you move your fingers? And your legs?"
+  },
+  "noeuds.pruefen.choix.0.puis.0": {
+   "fr": "Les jambes, oui. Les doigts… oui, mais le poignet fait mal.",
+   "de": "Die Beine ja. Die Finger … ja, aber das Handgelenk tut weh.",
+   "en": "My legs, yes. My fingers… yes, but my wrist hurts."
+  },
+  "noeuds.pruefen.choix.1": {
+   "fr": "Essayez de bouger les doigts, tout doucement. Et maintenant les pieds.",
+   "de": "Versuchen Sie bitte mal, ganz vorsichtig die Finger zu bewegen. Und jetzt die Füße.",
+   "en": "Please try moving your fingers, very carefully. And now your feet."
+  },
+  "noeuds.pruefen.choix.1.puis.0": {
+   "fr": "Les jambes, oui. Les doigts… oui, mais le poignet fait mal.",
+   "de": "Die Beine ja. Die Finger … ja, aber das Handgelenk tut weh.",
+   "en": "My legs, yes. My fingers… yes, but my wrist hurts."
+  },
+  "noeuds.pruefen.choix.2": {
+   "fr": "Bougez la main très fort, s'il vous plaît.",
+   "de": "Bewegen Sie die Hand ganz fest, bitte.",
+   "en": "Move your hand really hard, please."
+  },
+  "noeuds.pruefen.choix.2.puis.0": {
+   "fr": "Aïe ! Ça fait mal !",
+   "de": "Au! Das tut weh!",
+   "en": "Ouch! That hurts!"
+  },
+  "noeuds.pruefen.choix.2.aide": {
+   "fr": "<b>On vérifie doucement, et on s'arrête à la douleur.</b> « Versuchen Sie mal, ganz vorsichtig die Finger zu bewegen. » Un poignet douloureux après une chute peut être fracturé.",
+   "en": "<b>You check gently, and you stop when it hurts.</b> “Versuchen Sie mal, ganz vorsichtig die Finger zu bewegen.” A painful wrist after a fall may be fractured."
+  },
+  "noeuds.kopf.choix.0": {
+   "fr": "Vous vous êtes cogné la tête ?",
+   "de": "Sind Sie mit dem Kopf aufgeschlagen?",
+   "en": "Did you hit your head?"
+  },
+  "noeuds.kopf.choix.0.puis.0": {
+   "fr": "Non, je ne crois pas. Je suis tombée sur les fesses.",
+   "de": "Nein, ich glaube nicht. Ich bin auf den Po gefallen.",
+   "en": "No, I don't think so. I landed on my bottom."
+  },
+  "noeuds.kopf.choix.1": {
+   "fr": "Vous vous êtes aussi cogné la tête ?",
+   "de": "Haben Sie sich auch den Kopf gestoßen?",
+   "en": "Did you bump your head as well?"
+  },
+  "noeuds.kopf.choix.1.puis.0": {
+   "fr": "Non, je ne crois pas. Je suis tombée sur les fesses.",
+   "de": "Nein, ich glaube nicht. Ich bin auf den Po gefallen.",
+   "en": "No, I don't think so. I landed on my bottom."
+  },
+  "noeuds.kopf.choix.2": {
+   "fr": "Pardon, où avez-vous mal ? Je ne vous ai pas bien comprise.",
+   "de": "Entschuldigung, wo tut es weh? Ich habe Sie nicht richtig verstanden.",
+   "en": "Sorry, where does it hurt? I didn't quite understand you."
+  },
+  "noeuds.kopf.choix.2.puis.0": {
+   "fr": "Le poignet. À gauche.",
+   "de": "Das Handgelenk. Links.",
+   "en": "My wrist. The left."
+  },
+  "noeuds.hilfe.choix.0": {
+   "fr": "J'appuie sur la sonnette et j'appelle ma collègue. Je reste avec vous.",
+   "de": "Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.",
+   "en": "I'm going to press the call button now and call my colleague. I'm staying with you."
+  },
+  "noeuds.hilfe.choix.0.puis.0": {
+   "fr": "Merci. Toute seule, je n'arriverai pas à me relever.",
+   "de": "Danke. Allein komme ich hier nicht hoch.",
+   "en": "Thank you. I can't get up from here on my own."
+  },
+  "noeuds.hilfe.choix.1": {
+   "fr": "J'appelle {olena} avec le téléphone. Je ne m'en vais pas.",
+   "de": "Ich rufe {olena} mit dem Telefon. Ich gehe nicht weg.",
+   "en": "I'll call {olena} on the phone. I'm not going anywhere."
+  },
+  "noeuds.hilfe.choix.1.puis.0": {
+   "fr": "Merci. Toute seule, je n'arriverai pas à me relever.",
+   "de": "Danke. Allein komme ich hier nicht hoch.",
+   "en": "Thank you. I can't get up from here on my own."
+  },
+  "noeuds.hilfe.choix.2": {
+   "fr": "Attendez ici, je reviens dans dix minutes.",
+   "de": "Warten Sie hier, ich bin in zehn Minuten wieder da.",
+   "en": "Wait here, I'll be back in ten minutes."
+  },
+  "noeuds.hilfe.choix.2.puis.0": {
+   "fr": "Dix minutes ? Ici, par terre, sur le sol froid ?",
+   "de": "Zehn Minuten? Hier auf dem kalten Boden?",
+   "en": "Ten minutes? Here, on the cold floor?"
+  },
+  "noeuds.hilfe.choix.2.aide": {
+   "fr": "<b>On ne laisse pas seule une personne tombée.</b> Appelle de l'aide depuis la chambre : la sonnette, le téléphone. « Ich rufe meine Kollegin. Ich bleibe bei Ihnen. »",
+   "en": "<b>You don't leave a person who has fallen alone.</b> Call for help from the room: the call button, the phone. “Ich rufe meine Kollegin. Ich bleibe bei Ihnen.”"
+  },
+  "noeuds.olena.dit.0.recit": {
+   "fr": "Une minute plus tard, {olena} arrive.",
+   "en": "A minute later, {olena} arrives."
+  },
+  "noeuds.olena.dit.1": {
+   "fr": "Je suis là. Qu'est-ce qui s'est passé ?",
+   "de": "Ich bin da. Was ist passiert?",
+   "en": "I'm here. What happened?"
+  },
+  "noeuds.olena.choix.0": {
+   "fr": "{weber} est tombée en allant aux toilettes. Elle ne s'est pas cogné la tête, mais elle a mal au poignet gauche.",
+   "de": "{weber} ist auf dem Weg zur Toilette gestürzt. Sie ist nicht mit dem Kopf aufgeschlagen, aber das linke Handgelenk tut weh.",
+   "en": "{weber} fell on her way to the toilet. She didn't hit her head, but her left wrist hurts."
+  },
+  "noeuds.olena.choix.0.puis.0": {
+   "fr": "D'accord. Alors on l'aide à deux à s'asseoir sur la chaise.",
+   "de": "Okay. Dann helfen wir ihr jetzt zusammen auf den Stuhl.",
+   "en": "Okay. Then let's help her onto the chair together."
+  },
+  "noeuds.olena.choix.1": {
+   "fr": "Je l'ai trouvée à côté du lit. Elle voulait aller aux toilettes. Pas de choc à la tête, mais une douleur au poignet gauche.",
+   "de": "Ich habe sie neben dem Bett gefunden. Sie wollte zur Toilette. Kein Kopfanprall, aber Schmerzen im linken Handgelenk.",
+   "en": "I found her next to the bed. She wanted to go to the toilet. No head strike, but pain in her left wrist."
+  },
+  "noeuds.olena.choix.1.puis.0": {
+   "fr": "D'accord. Alors on l'aide à deux à s'asseoir sur la chaise.",
+   "de": "Okay. Dann helfen wir ihr jetzt zusammen auf den Stuhl.",
+   "en": "Okay. Then let's help her onto the chair together."
+  },
+  "noeuds.olena.choix.2": {
+   "fr": "{weber} « tombe » ce matin. Elle « a main mal ». (mal dit)",
+   "de": "{weber} fällt heute Morgen. Sie hat Hand weh.",
+   "en": "{weber} “falls” this morning. She “has hand hurt”. (said wrong)"
+  },
+  "noeuds.olena.choix.2.puis.0": {
+   "fr": "Elle est tombée ? Quand ? Et quelle main ?",
+   "de": "Sie ist gefallen? Wann? Und welche Hand?",
+   "en": "She fell? When? And which hand?"
+  },
+  "noeuds.olena.choix.2.aide": {
+   "fr": "<b>Ce qui s'est passé se dit au Perfekt, avec « sein » pour une chute.</b> « Sie ist gestürzt » ou « Sie ist gefallen ». Et précise : « Das linke Handgelenk tut weh. »",
+   "en": "<b>What happened is told in the Perfekt, with “sein” for a fall.</b> “Sie ist gestürzt” or “Sie ist gefallen”. And be precise: “Das linke Handgelenk tut weh.”"
+  },
+  "noeuds.aufhelfen.choix.0": {
+   "fr": "{weber:voc}, on vous aide à vous relever. Tournez-vous d'abord sur le côté, puis on se met à genoux.",
+   "de": "{weber}, wir helfen Ihnen jetzt hoch. Drehen Sie sich bitte zuerst auf die Seite, dann gehen wir auf die Knie.",
+   "en": "{weber:voc}, we're going to help you up now. First, please roll onto your side, then we'll get onto your knees."
+  },
+  "noeuds.aufhelfen.choix.0.puis.0": {
+   "fr": "Comme ça ? … Ah, ça marche.",
+   "de": "So? … Ach, das geht ja.",
+   "en": "Like this? … Oh, that works."
+  },
+  "noeuds.aufhelfen.choix.1": {
+   "fr": "On le fait tout doucement et ensemble : d'abord sur le côté, puis à genoux, puis sur la chaise.",
+   "de": "Wir machen das ganz langsam und zusammen: zuerst auf die Seite, dann auf die Knie, dann auf den Stuhl.",
+   "en": "We'll do it very slowly and together: first onto your side, then onto your knees, then onto the chair."
+  },
+  "noeuds.aufhelfen.choix.1.puis.0": {
+   "fr": "Comme ça ? … Ah, ça marche.",
+   "de": "So? … Ach, das geht ja.",
+   "en": "Like this? … Oh, that works."
+  },
+  "noeuds.wie.dit.0.recit": {
+   "fr": "{weber} est assise sur la chaise. Elle respire mieux.",
+   "en": "{weber} is sitting on the chair. She is breathing more easily."
+  },
+  "noeuds.wie.choix.0": {
+   "fr": "Vous vous souvenez comment c'est arrivé ?",
+   "de": "Wissen Sie noch, wie es passiert ist?",
+   "en": "Do you remember how it happened?"
+  },
+  "noeuds.wie.choix.0.puis.0": {
+   "fr": "J'ai trébuché sur mes chaussons. Et il faisait si sombre.",
+   "de": "Ich bin über meine Hausschuhe gestolpert. Und es war so dunkel.",
+   "en": "I tripped over my slippers. And it was so dark."
+  },
+  "noeuds.wie.choix.1": {
+   "fr": "Qu'est-ce qui s'est passé, exactement ?",
+   "de": "Was ist denn genau passiert?",
+   "en": "So what exactly happened?"
+  },
+  "noeuds.wie.choix.1.puis.0": {
+   "fr": "J'ai trébuché sur mes chaussons. Et il faisait si sombre.",
+   "de": "Ich bin über meine Hausschuhe gestolpert. Und es war so dunkel.",
+   "en": "I tripped over my slippers. And it was so dark."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Je préviens tout de suite votre médecin traitant pour votre main, et je fais un rapport de chute. Et cette nuit, on laissera une petite lumière allumée.",
+   "de": "Ich sage gleich der Hausärztin wegen Ihrer Hand Bescheid und schreibe ein Sturzprotokoll. Und heute Nacht lassen wir ein kleines Licht an.",
+   "en": "I'll let your primary care doctor know about your hand right away, and I'll fill out a fall report. And tonight we'll leave a little light on."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Merci, vous êtes un amour.",
+   "de": "Danke, Sie sind ein Schatz.",
+   "en": "Thank you, you're a dear."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "J'informe le médecin et je documente la chute. Et on va vous trouver des chaussons qui tiennent mieux.",
+   "de": "Ich informiere die Ärztin und dokumentiere den Sturz. Und wir suchen Ihnen Hausschuhe, die besser sitzen.",
+   "en": "I'll inform the doctor and document the fall. And we'll find you some slippers that fit better."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Merci, vous êtes un amour.",
+   "de": "Danke, Sie sind ein Schatz.",
+   "en": "Thank you, you're a dear."
+  },
+  "ecouter.0.q": {
+   "fr": "Où voulait aller {weber} ?",
+   "de": "Wohin wollte {weber}?",
+   "en": "Where did {weber} want to go?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Au petit-déjeuner.",
+   "de": "Zum Frühstück.",
+   "en": "To breakfast."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Aux toilettes.",
+   "de": "Zur Toilette.",
+   "en": "To the toilet."
+  },
+  "ecouter.0.options.2": {
+   "fr": "À la salle de bain, pour se doucher.",
+   "de": "Ins Bad, zum Duschen.",
+   "en": "To the bathroom, to take a shower."
+  },
+  "ecouter.1.q": {
+   "fr": "Où a-t-elle mal ?",
+   "de": "Was tut ihr weh?",
+   "en": "What hurts?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Le poignet gauche.",
+   "de": "Das linke Handgelenk.",
+   "en": "Her left wrist."
+  },
+  "ecouter.1.options.1": {
+   "fr": "La tête.",
+   "de": "Der Kopf.",
+   "en": "Her head."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Le genou droit.",
+   "de": "Das rechte Knie.",
+   "en": "Her right knee."
+  },
+  "ecouter.2.q": {
+   "fr": "Pourquoi est-elle tombée ?",
+   "de": "Warum ist sie gestürzt?",
+   "en": "Why did she fall?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Elle avait des vertiges.",
+   "de": "Ihr war schwindelig.",
+   "en": "She felt dizzy."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Le sol était mouillé.",
+   "de": "Der Boden war nass.",
+   "en": "The floor was wet."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Elle a trébuché sur ses chaussons, et il faisait sombre.",
+   "de": "Sie ist über ihre Hausschuhe gestolpert, und es war dunkel.",
+   "en": "She tripped over her slippers, and it was dark."
+  }
+ }
+}

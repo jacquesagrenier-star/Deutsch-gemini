@@ -1,0 +1,457 @@
+{
+ "_langue": "uk",
+ "_source": "pflege/sources/dialogues/d01-vorstellung.json",
+ "cles": {
+  "titre": {
+   "fr": "Se présenter à un patient",
+   "de": "Begrüßung und Vorstellung",
+   "uk": "Представитися пацієнтові"
+  },
+  "intro": {
+   "fr": "Premier matin de {elif} dans le service. Elle entre dans la chambre de {brandt}, opéré de la hanche il y a trois jours. Tu joues {elif} : présente-toi, demande comment il a dormi, dis ce que tu vas faire et montre-lui la sonnette.",
+   "uk": "Перший ранок {elif} у відділенні. Вона заходить до палати {brandt:gen}, якого три дні тому прооперували на кульшовому суглобі. Ти в ролі {elif}: представся, запитай, як він спав, скажи, що збираєшся робити, і покажи йому кнопку виклику."
+  },
+  "but": {
+   "fr": "Se présenter (nom, fonction, expérience), poser les premières questions, annoncer un soin, montrer la sonnette.",
+   "uk": "Представитися (імʼя, посада, досвід), поставити перші запитання, повідомити про процедуру, показати кнопку виклику."
+  },
+  "redemittel.0": {
+   "fr": "Bonjour, {brandt:voc}. Je m'appelle {elif}, c'est moi qui m'occupe de vous aujourd'hui.",
+   "de": "Guten Morgen, {brandt}. Mein Name ist {elif}, ich bin heute Ihre Pflegekraft.",
+   "uk": "Доброго ранку, {brandt:voc}. Мене звати {elif}, сьогодні я ваша медсестра."
+  },
+  "redemittel.1": {
+   "fr": "Je travaille ici depuis quatre mois.",
+   "de": "Ich arbeite seit vier Monaten hier.",
+   "uk": "Я працюю тут уже чотири місяці."
+  },
+  "redemittel.2": {
+   "fr": "Comment avez-vous dormi cette nuit ?",
+   "de": "Wie haben Sie heute Nacht geschlafen?",
+   "uk": "Як ви спали цієї ночі?"
+  },
+  "redemittel.3": {
+   "fr": "Je suis désolée.",
+   "de": "Das tut mir leid.",
+   "uk": "Мені дуже шкода."
+  },
+  "redemittel.4": {
+   "fr": "Je vais prendre votre tension. Vous êtes d'accord ?",
+   "de": "Ich messe jetzt Ihren Blutdruck. Ist das in Ordnung?",
+   "uk": "Зараз я поміряю вам тиск. Ви не проти?"
+  },
+  "redemittel.5": {
+   "fr": "Voulez-vous que je vous aide à vous asseoir ?",
+   "de": "Soll ich Ihnen helfen, sich aufzusetzen?",
+   "uk": "Допомогти вам сісти?"
+  },
+  "redemittel.6": {
+   "fr": "Si vous avez besoin de quelque chose, appuyez ici, sur la sonnette.",
+   "de": "Wenn Sie etwas brauchen, drücken Sie bitte hier auf die Klingel.",
+   "uk": "Якщо вам щось знадобиться, натисніть, будь ласка, ось тут, на кнопку виклику."
+  },
+  "redemittel.7": {
+   "fr": "Je reviens tout de suite.",
+   "de": "Ich komme gleich wieder.",
+   "uk": "Я зараз повернуся."
+  },
+  "noeuds.tuer.dit.0.recit": {
+   "fr": "Sept heures, service du matin au {klinik}. {elif} frappe à la porte de la chambre douze.",
+   "uk": "Сьома ранку, ранкова зміна в клініці «{klinik}». {elif} стукає у двері дванадцятої палати."
+  },
+  "noeuds.tuer.dit.1": {
+   "fr": "Oui ? Entrez !",
+   "de": "Ja? Herein!",
+   "uk": "Так? Заходьте!"
+  },
+  "noeuds.tuer.choix.0": {
+   "fr": "Bonjour, {brandt:voc}. Je m'appelle {elif}, c'est moi qui m'occupe de vous aujourd'hui.",
+   "de": "Guten Morgen, {brandt}. Mein Name ist {elif}, ich bin heute Ihre Pflegekraft.",
+   "uk": "Доброго ранку, {brandt:voc}. Мене звати {elif}, сьогодні я ваша медсестра."
+  },
+  "noeuds.tuer.choix.0.puis.0": {
+   "fr": "{elif} ? Je n'ai jamais entendu ce prénom.",
+   "de": "{elif}? Den Namen hab ich ja noch nie gehört.",
+   "uk": "{elif}? Такого імені я ще ніколи не чув."
+  },
+  "noeuds.tuer.choix.1": {
+   "fr": "Bonjour ! Je suis {elif}. Aujourd'hui, c'est moi qui m'occupe de vous.",
+   "de": "Guten Morgen! Ich bin {elif}. Ich kümmere mich heute um Sie.",
+   "uk": "Доброго ранку! Я {elif}. Сьогодні я доглядаю за вами."
+  },
+  "noeuds.tuer.choix.1.puis.0": {
+   "fr": "{elif} ? Je n'ai jamais entendu ce prénom.",
+   "de": "{elif}? Den Namen hab ich ja noch nie gehört.",
+   "uk": "{elif}? Такого імені я ще ніколи не чув."
+  },
+  "noeuds.tuer.choix.2": {
+   "fr": "Salut ! Ça va, toi ?",
+   "de": "Hallo! Wie geht's dir?",
+   "uk": "Привіт! Як ти?"
+  },
+  "noeuds.tuer.choix.2.puis.0": {
+   "fr": "« Toi » ? On se connaît, peut-être ?",
+   "de": "Dir? Kennen wir uns etwa?",
+   "uk": "«Ти»? Ми що, знайомі?"
+  },
+  "noeuds.tuer.choix.2.aide": {
+   "fr": "<b>Avec un patient, on dit toujours « Sie ».</b> « dir » et « Hallo », c'est pour un ami. Commence par « Guten Morgen, Herr Brandt », puis dis ton nom et ta fonction.",
+   "uk": "<b>З пацієнтом завжди кажуть «Sie».</b> «dir» і «Hallo» — для друзів. Почни з «Guten Morgen, Herr Brandt», потім назви своє імʼя та посаду."
+  },
+  "noeuds.neu.dit.0": {
+   "fr": "Vous êtes nouvelle ici ?",
+   "de": "Sind Sie neu hier?",
+   "uk": "Ви тут новенька?"
+  },
+  "noeuds.neu.choix.0": {
+   "fr": "Oui, je travaille ici depuis quatre mois. Je viens de Turquie, d'Izmir.",
+   "de": "Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.",
+   "uk": "Так, я працюю тут уже чотири місяці. Я з Туреччини, з Ізміра."
+  },
+  "noeuds.neu.choix.0.puis.0": {
+   "fr": "D'Izmir ! J'y suis allé en vacances, il y a plus de quarante ans. Il faisait bien chaud.",
+   "de": "Aus Izmir! Da war ich mal im Urlaub, vor über vierzig Jahren. Schön warm war's da.",
+   "uk": "З Ізміра! Я був там у відпустці, понад сорок років тому. Тепло там було, гарно."
+  },
+  "noeuds.neu.choix.1": {
+   "fr": "Oui, je suis ici depuis quatre mois. En Turquie, j'étais infirmière, dans un hôpital d'Izmir.",
+   "de": "Ja, ich bin seit vier Monaten hier. In der Türkei war ich Krankenschwester, in einem Krankenhaus in Izmir.",
+   "uk": "Так, я тут уже чотири місяці. У Туреччині я була медсестрою, у лікарні в Ізмірі."
+  },
+  "noeuds.neu.choix.1.puis.0": {
+   "fr": "D'Izmir ! J'y suis allé en vacances, il y a plus de quarante ans. Il faisait bien chaud.",
+   "de": "Aus Izmir! Da war ich mal im Urlaub, vor über vierzig Jahren. Schön warm war's da.",
+   "uk": "З Ізміра! Я був там у відпустці, понад сорок років тому. Тепло там було, гарно."
+  },
+  "noeuds.neu.choix.2": {
+   "fr": "Oui, je suis nouvelle. Je viens « de Turquie » (mal dit).",
+   "de": "Ja, ich bin neu. Ich komme von Türkei.",
+   "uk": "Так, я нова. Я «від Туреччина» (сказано неправильно)."
+  },
+  "noeuds.neu.choix.2.puis.0": {
+   "fr": "D'où, pardon ?",
+   "de": "Von wo, bitte?",
+   "uk": "Звідки, перепрошую?"
+  },
+  "noeuds.neu.choix.2.aide": {
+   "fr": "<b>On dit « aus der Türkei ».</b> Pour le pays d'où l'on vient : « aus » + datif. Quelques pays ont un article : die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+   "uk": "<b>Кажуть «aus der Türkei».</b> Про країну, з якої ти родом: «aus» + Dativ. Деякі країни мають артикль: die Türkei → aus der Türkei, die Schweiz → aus der Schweiz."
+  },
+  "noeuds.schlaf.dit.0.recit": {
+   "fr": "{brandt} bâille et se frotte les yeux.",
+   "uk": "{brandt} позіхає і тре очі."
+  },
+  "noeuds.schlaf.choix.0": {
+   "fr": "Comment avez-vous dormi cette nuit ?",
+   "de": "Wie haben Sie heute Nacht geschlafen?",
+   "uk": "Як ви спали цієї ночі?"
+  },
+  "noeuds.schlaf.choix.0.puis.0": {
+   "fr": "Mal. La hanche me fait mal, et à côté il y en a un qui ronfle comme un ours.",
+   "de": "Schlecht. Die Hüfte tut weh, und nebenan schnarcht einer wie ein Bär.",
+   "uk": "Погано. Стегно болить, а поруч один хропе, як ведмідь."
+  },
+  "noeuds.schlaf.choix.1": {
+   "fr": "Vous avez bien dormi ?",
+   "de": "Haben Sie gut geschlafen?",
+   "uk": "Ви добре спали?"
+  },
+  "noeuds.schlaf.choix.1.puis.0": {
+   "fr": "Pas vraiment. La hanche me fait mal, et à côté il y en a un qui ronfle comme un ours.",
+   "de": "Nicht besonders. Die Hüfte tut weh, und nebenan schnarcht einer wie ein Bär.",
+   "uk": "Не дуже. Стегно болить, а поруч один хропе, як ведмідь."
+  },
+  "noeuds.schlaf.choix.2": {
+   "fr": "Quand avez-vous dormi ?",
+   "de": "Wann haben Sie geschlafen?",
+   "uk": "Коли ви спали?"
+  },
+  "noeuds.schlaf.choix.2.puis.0": {
+   "fr": "Quand ? Eh bien, la nuit, comme tout le monde !",
+   "de": "Wann? Na, in der Nacht, wie jeder anständige Mensch!",
+   "uk": "Коли? Ну, вночі, як усі порядні люди!"
+  },
+  "noeuds.schlaf.choix.2.aide": {
+   "fr": "<b>« Wann ? » demande le moment, « Wie ? » la manière.</b> Pour savoir si la nuit a été bonne : « Wie haben Sie geschlafen? »",
+   "uk": "<b>«Wann?» питає про час, «Wie?» — про спосіб.</b> Щоб дізнатися, чи добре минула ніч: «Wie haben Sie geschlafen?»"
+  },
+  "noeuds.schmerz.dit.0.recit": {
+   "fr": "Il grimace en bougeant la jambe.",
+   "uk": "Він кривиться, коли рухає ногою."
+  },
+  "noeuds.schmerz.choix.0": {
+   "fr": "Je suis désolée. Je le dis tout de suite {sommer:a}. Elle passe à neuf heures pour la visite.",
+   "de": "Das tut mir leid. Ich sage es gleich {sommer}. Sie kommt um neun zur Visite.",
+   "uk": "Мені дуже шкода. Я зараз же скажу про це {sommer:dat}. Вона прийде о девʼятій на обхід."
+  },
+  "noeuds.schmerz.choix.0.puis.0": {
+   "fr": "Bon. Espérons que la doctoresse aura plus de temps qu'hier.",
+   "de": "Na gut. Hoffentlich hat die Frau Doktor heute mehr Zeit als gestern.",
+   "uk": "Ну добре. Сподіваюся, пані докторка сьогодні матиме більше часу, ніж учора."
+  },
+  "noeuds.schmerz.choix.1": {
+   "fr": "Je suis désolée. Si la douleur devient forte, dites-le-moi tout de suite.",
+   "de": "Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.",
+   "uk": "Мені дуже шкода. Якщо біль посилиться, скажіть мені, будь ласка, одразу."
+  },
+  "noeuds.schmerz.choix.1.puis.0": {
+   "fr": "Pour l'instant, ça va. Mais dites-le aussi au médecin, s'il vous plaît.",
+   "de": "Im Moment geht's. Aber sagen Sie es bitte auch der Ärztin.",
+   "uk": "Поки що терпимо. Але скажіть, будь ласка, і лікарці теж."
+  },
+  "noeuds.schmerz.choix.2": {
+   "fr": "Ce n'est pas grave.",
+   "de": "Das ist nicht schlimm.",
+   "uk": "Це нічого страшного."
+  },
+  "noeuds.schmerz.choix.2.puis.0": {
+   "fr": "Pas grave ? Évidemment, ce n'est pas vous qui avez une hanche neuve !",
+   "de": "Nicht schlimm? Sie haben ja auch keine neue Hüfte!",
+   "uk": "Нічого страшного? Ну звісно, це ж не вам поставили новий суглоб!"
+  },
+  "noeuds.schmerz.choix.2.aide": {
+   "fr": "<b>D'abord, montre que tu as entendu : « Das tut mir leid ».</b> Dire « ce n'est pas grave » à quelqu'un qui a mal le vexe, même avec une bonne intention.",
+   "uk": "<b>Спершу покажи, що чуєш людину: «Das tut mir leid».</b> Сказати «нічого страшного» тому, кому болить, — образити його, навіть із добрими намірами."
+  },
+  "noeuds.messen.dit.0": {
+   "fr": "Et maintenant, qu'est-ce que vous allez me faire ?",
+   "de": "Und was machen Sie jetzt mit mir?",
+   "uk": "А що ви зараз зі мною робитимете?"
+  },
+  "noeuds.messen.choix.0": {
+   "fr": "Je vais prendre votre tension et votre température. Vous êtes d'accord ?",
+   "de": "Ich messe jetzt Ihren Blutdruck und Ihre Temperatur. Ist das in Ordnung?",
+   "uk": "Зараз я поміряю вам тиск і температуру. Ви не проти?"
+  },
+  "noeuds.messen.choix.0.puis.0": {
+   "fr": "Allez-y.",
+   "de": "Machen Sie nur.",
+   "uk": "Міряйте."
+  },
+  "noeuds.messen.choix.1": {
+   "fr": "D'abord je prends votre tension, ensuite votre température. Je peux ?",
+   "de": "Zuerst messe ich Ihren Blutdruck, dann Ihre Temperatur. Darf ich?",
+   "uk": "Спочатку я поміряю вам тиск, потім температуру. Можна?"
+  },
+  "noeuds.messen.choix.1.puis.0": {
+   "fr": "S'il le faut.",
+   "de": "Wenn's sein muss.",
+   "uk": "Якщо треба, то треба."
+  },
+  "noeuds.messen.choix.2": {
+   "fr": "Je vais « mesurer votre sang ».",
+   "de": "Ich messe jetzt Ihr Blut.",
+   "uk": "Зараз я «поміряю вашу кров»."
+  },
+  "noeuds.messen.choix.2.puis.0": {
+   "fr": "Mon sang ? Vous voulez encore me faire une prise de sang ?",
+   "de": "Mein Blut? Wollen Sie mir etwa schon wieder Blut abnehmen?",
+   "uk": "Мою кров? Ви що, знову хочете взяти в мене кров?"
+  },
+  "noeuds.messen.choix.2.aide": {
+   "fr": "<b>Le mot juste est « der Blutdruck » (la tension).</b> « das Blut » est le sang ; « Blut abnehmen », c'est faire une prise de sang. Un mot de travers peut inquiéter un patient.",
+   "uk": "<b>Правильне слово — «der Blutdruck» (тиск).</b> «das Blut» — це кров; «Blut abnehmen» — узяти кров на аналіз. Одне неточне слово може налякати пацієнта."
+  },
+  "noeuds.werte.dit.0.recit": {
+   "fr": "{elif} pose le brassard, mesure, puis prend la température.",
+   "uk": "{elif} накладає манжету, міряє тиск, потім температуру."
+  },
+  "noeuds.werte.dit.1": {
+   "fr": "Alors ? Je suis encore vivant ?",
+   "de": "Und? Lebe ich noch?",
+   "uk": "Ну що? Я ще живий?"
+  },
+  "noeuds.werte.choix.0": {
+   "fr": "Oui, tout va bien. Votre tension est à 13/8 (130 sur 80), et vous n'avez pas de fièvre.",
+   "de": "Ja, alles in Ordnung. Ihr Blutdruck ist 130 zu 80, und Fieber haben Sie nicht.",
+   "uk": "Так, усе гаразд. Тиск у вас 130 на 80, і температури немає."
+  },
+  "noeuds.werte.choix.0.puis.0": {
+   "fr": "Eh bien, c'est déjà ça.",
+   "de": "Na, wenigstens etwas.",
+   "uk": "Ну, хоч щось."
+  },
+  "noeuds.werte.choix.1": {
+   "fr": "Et comment ! La tension est normale, la température aussi.",
+   "de": "Und wie! Der Blutdruck ist normal, und die Temperatur auch.",
+   "uk": "Ще й як! Тиск нормальний, і температура теж."
+  },
+  "noeuds.werte.choix.1.puis.0": {
+   "fr": "Eh bien, c'est déjà ça.",
+   "de": "Na, wenigstens etwas.",
+   "uk": "Ну, хоч щось."
+  },
+  "noeuds.werte.choix.2": {
+   "fr": "Pardon, comment ?",
+   "de": "Entschuldigung, wie bitte?",
+   "uk": "Перепрошую, що ви сказали?"
+  },
+  "noeuds.werte.choix.2.puis.0": {
+   "fr": "Je vous ai demandé si j'étais encore vivant. C'était une blague !",
+   "de": "Ob ich noch lebe, hab ich gefragt. Das war ein Witz!",
+   "uk": "Я спитав, чи я ще живий. Це був жарт!"
+  },
+  "noeuds.fruehstueck.dit.0": {
+   "fr": "Il y a le petit-déjeuner à quelle heure, ici ? J'ai faim.",
+   "de": "Wann gibt's denn hier Frühstück? Ich hab Hunger.",
+   "uk": "А коли тут сніданок? Я голодний."
+  },
+  "noeuds.fruehstueck.choix.0": {
+   "fr": "Le petit-déjeuner arrive à sept heures et demie. Voulez-vous que je vous aide à vous asseoir ?",
+   "de": "Das Frühstück kommt um halb acht. Soll ich Ihnen helfen, sich aufzusetzen?",
+   "uk": "Сніданок приносять о пів на восьму. Допомогти вам сісти?"
+  },
+  "noeuds.fruehstueck.choix.0.puis.0": {
+   "fr": "Oui, tout seul, je n'y arrive pas encore.",
+   "de": "Ja, allein schaff ich das noch nicht.",
+   "uk": "Так, сам я ще не можу."
+  },
+  "noeuds.fruehstueck.choix.1": {
+   "fr": "À sept heures et demie, donc dans une demi-heure. Avant, je vous aide à vous asseoir.",
+   "de": "Um halb acht, also in einer halben Stunde. Vorher helfe ich Ihnen, sich aufzusetzen.",
+   "uk": "О пів на восьму, тобто за пів години. Перед тим я допоможу вам сісти."
+  },
+  "noeuds.fruehstueck.choix.1.puis.0": {
+   "fr": "Oui, tout seul, je n'y arrive pas encore.",
+   "de": "Ja, allein schaff ich das noch nicht.",
+   "uk": "Так, сам я ще не можу."
+  },
+  "noeuds.fruehstueck.choix.2": {
+   "fr": "Le petit-déjeuner est à « sept heures trente minutes ».",
+   "de": "Das Frühstück ist um sieben Uhr dreißig Minuten.",
+   "uk": "Сніданок о «сьомій годині тридцять хвилин»."
+  },
+  "noeuds.fruehstueck.choix.2.puis.0": {
+   "fr": "Sept heures trente minutes ? Vous voulez dire sept heures et demie, non ?",
+   "de": "Sieben Uhr dreißig Minuten? Sie meinen halb acht, oder?",
+   "uk": "Сьома година тридцять хвилин? Ви маєте на увазі пів на восьму, так?"
+  },
+  "noeuds.fruehstueck.choix.2.aide": {
+   "fr": "<b>L'heure se dit « halb acht » ou « sieben Uhr dreißig », sans « Minuten ».</b> Attention : « halb acht » veut dire 7 h 30 (la moitié de l'heure qui mène à huit), pas 8 h 30.",
+   "uk": "<b>Час кажуть так: «halb acht» або «sieben Uhr dreißig», без «Minuten».</b> Увага: «halb acht» означає 7:30 (половина години, що веде до восьмої), а не 8:30."
+  },
+  "noeuds.klingel.dit.0.recit": {
+   "fr": "{elif} aide {brandt} à s'asseoir dans son lit. Avant de partir, elle lui approche la sonnette.",
+   "uk": "{elif} допомагає {brandt:dat} сісти в ліжку. Перед тим як піти, вона присуває до нього кнопку виклику."
+  },
+  "noeuds.klingel.choix.0": {
+   "fr": "Si vous avez besoin de quelque chose, appuyez ici, sur la sonnette.",
+   "de": "Wenn Sie etwas brauchen, drücken Sie bitte hier auf die Klingel.",
+   "uk": "Якщо вам щось знадобиться, натисніть, будь ласка, ось тут, на кнопку виклику."
+  },
+  "noeuds.klingel.choix.0.puis.0": {
+   "fr": "Le bouton rouge ? D'accord.",
+   "de": "Der rote Knopf? Gut.",
+   "uk": "Червона кнопка? Добре."
+  },
+  "noeuds.klingel.choix.1": {
+   "fr": "Voici votre sonnette. S'il vous plaît, ne vous levez pas encore seul, sonnez plutôt.",
+   "de": "Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.",
+   "uk": "Ось ваша кнопка виклику. Будь ласка, поки що не вставайте самі, краще натисніть на кнопку."
+  },
+  "noeuds.klingel.choix.1.puis.0": {
+   "fr": "Oui, oui. Le bouton rouge. Je ne suis pas né de la dernière pluie.",
+   "de": "Ja, ja. Der rote Knopf. Ich bin ja nicht von gestern.",
+   "uk": "Так, так. Червона кнопка. Я ж не вчора народився."
+  },
+  "noeuds.klingel.choix.2": {
+   "fr": "Si vous avez besoin de quelque chose, appelez fort, tout simplement.",
+   "de": "Wenn Sie etwas brauchen, rufen Sie einfach laut.",
+   "uk": "Якщо вам щось знадобиться, просто голосно покличте."
+  },
+  "noeuds.klingel.choix.2.puis.0": {
+   "fr": "Appeler fort ? Personne ne m'entendra, avec le ronfleur d'à côté !",
+   "de": "Laut rufen? Da hört mich doch keiner, bei dem Schnarcher nebenan!",
+   "uk": "Голосно покликати? Та мене ніхто не почує, з тим хропуном поруч!"
+  },
+  "noeuds.klingel.choix.2.aide": {
+   "fr": "<b>À l'hôpital, on montre la sonnette : « die Klingel ».</b> « Drücken Sie bitte hier » : appuyez ici. Un patient opéré ne doit pas avoir à crier pour être aidé.",
+   "uk": "<b>У лікарні показують кнопку виклику: «die Klingel».</b> «Drücken Sie bitte hier»: натисніть ось тут. Прооперований пацієнт не повинен кричати, щоб отримати допомогу."
+  },
+  "noeuds.ende.dit.0": {
+   "fr": "Merci, ma sœur. (ancienne façon d'appeler une infirmière)",
+   "de": "Danke, Schwester.",
+   "uk": "Дякую, сестричко. (старе звертання до медсестри)"
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Avec plaisir. Je reviens tout de suite avec le petit-déjeuner.",
+   "de": "Gern geschehen. Ich komme gleich mit dem Frühstück wieder.",
+   "uk": "Нема за що. Я зараз повернуся зі сніданком."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Vous êtes gentille, {elif}.",
+   "de": "Sie sind nett, {elif}.",
+   "uk": "Ви дуже мила, {elif}."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Je vous en prie. Vous pouvez m'appeler {elif}. À tout de suite !",
+   "de": "Bitte schön. Sie können ruhig {elif} zu mir sagen. Bis gleich!",
+   "uk": "Будь ласка. Можете називати мене просто {elif}. До скорого!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "{elif}. Bien, je m'en souviendrai.",
+   "de": "{elif}. Gut, das merk ich mir.",
+   "uk": "{elif}. Добре, запамʼятаю."
+  },
+  "ecouter.0.q": {
+   "fr": "D'où vient {elif} ?",
+   "de": "Woher kommt {elif}?",
+   "uk": "Звідки родом {elif}?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "D'Izmir, en Turquie.",
+   "de": "Aus Izmir, in der Türkei.",
+   "uk": "З Ізміра, у Туреччині."
+  },
+  "ecouter.0.options.1": {
+   "fr": "D'Istanbul.",
+   "de": "Aus Istanbul.",
+   "uk": "Зі Стамбула."
+  },
+  "ecouter.0.options.2": {
+   "fr": "De Berlin.",
+   "de": "Aus Berlin.",
+   "uk": "З Берліна."
+  },
+  "ecouter.1.q": {
+   "fr": "Pourquoi {brandt} a-t-il mal dormi ?",
+   "de": "Warum hat {brandt} schlecht geschlafen?",
+   "uk": "Чому {brandt} погано спав?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Il avait faim.",
+   "de": "Er hatte Hunger.",
+   "uk": "Він був голодний."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Sa hanche lui fait mal, et son voisin ronfle.",
+   "de": "Die Hüfte tut weh, und der Nachbar schnarcht.",
+   "uk": "У нього болить стегно, а сусід хропе."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Il faisait trop chaud dans la chambre.",
+   "de": "Es war zu warm im Zimmer.",
+   "uk": "У палаті було надто тепло."
+  },
+  "ecouter.2.q": {
+   "fr": "Quand arrive le petit-déjeuner ?",
+   "de": "Wann kommt das Frühstück?",
+   "uk": "Коли приносять сніданок?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "À huit heures et demie.",
+   "de": "Um halb neun.",
+   "uk": "О пів на девʼяту."
+  },
+  "ecouter.2.options.1": {
+   "fr": "À sept heures.",
+   "de": "Um sieben.",
+   "uk": "О сьомій."
+  },
+  "ecouter.2.options.2": {
+   "fr": "À sept heures et demie.",
+   "de": "Um halb acht.",
+   "uk": "О пів на восьму."
+  }
+ }
+}
