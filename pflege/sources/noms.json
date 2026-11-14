@@ -1,5 +1,5 @@
 {
- "_note": "Les noms des personnages des textes Soins (pflege/PERSONNAGES.md, proposition du 14 nov. 2026, a valider par Jacques). Changer un nom ici (et dans traductions/<langue>/noms.json), puis python pflege/outils/textes.py construire. Formes : \"\" = la forme courante (sujet), voc = pour s'adresser a la personne, dat / akk = cas allemands, famille = le nom seul, fiche = « Nom, Prénom » des formulaires (allemand seulement). Les autres langues ajoutent leurs cas dans leur fichier de traduction.",
+ "_note": "Les noms des personnages de Wortando Pflege : LISTE UNIQUE (chef, 14 nov. 2026), tenue par la session dialogues ; les autres sessions la reprennent et demandent un ajout ici. Personnages valides par Jacques (14 nov.). Changer un nom ici (et dans traductions/<langue>/noms.json), puis python pflege/outils/textes.py construire. Formes : \"\" = la forme courante (sujet), voc = pour s'adresser a la personne, dat / akk = cas allemands, famille = le nom seul, prenom = le prenom seul, fiche = « Nom, Prenom » des formulaires (allemand). \"examen\": true = un role de l'examen blanc seulement. Les autres langues ajoutent leurs cas dans leur fichier.",
  "personnes": {
   "elif": {
    "role": "soignante",
@@ -17,7 +17,9 @@
    "genre": "m",
    "pays": "Syrie (Alep)",
    "de": {
-    "": "Yusuf"
+    "": "Yusuf",
+    "famille": "Haddad",
+    "fiche": "Haddad, Yusuf"
    },
    "fr": {
     "": "Yusuf"
@@ -71,7 +73,9 @@
    "genre": "f",
    "de": {
     "": "Frau Hoffmann",
-    "famille": "Hoffmann"
+    "famille": "Hoffmann",
+    "prenom": "Petra",
+    "fiche": "Hoffmann, Petra"
    },
    "fr": {
     "": "Mme Hoffmann",
@@ -96,7 +100,7 @@
    }
   },
   "kraemer": {
-   "role": "medecin de garde (nuit)",
+   "role": "medecin de garde (nuit), Dr. Kraemer (chef, 14 nov. ; le meme que l'ecoute de l'examen)",
    "genre": "m",
    "de": {
     "": "Dr. Krämer",
@@ -142,11 +146,13 @@
    }
   },
   "lehmann_tochter": {
-   "role": "la fille de Frau Lehmann (nom propose)",
+   "role": "la fille de Frau Lehmann, Sabine Krueger (chef, 14 nov.)",
    "genre": "f",
    "de": {
     "": "Frau Krüger",
-    "famille": "Krüger"
+    "famille": "Krüger",
+    "prenom": "Sabine",
+    "fiche": "Krüger, Sabine"
    },
    "fr": {
     "": "Mme Krüger",
@@ -224,6 +230,116 @@
    },
    "fr": {
     "": "service 4B"
+   }
+  },
+  "neumann": {
+   "role": "la Prüferin de l'oral (examen)",
+   "genre": "f",
+   "examen": true,
+   "de": {
+    "": "Frau Neumann",
+    "famille": "Neumann"
+   },
+   "fr": {
+    "": "Mme Neumann",
+    "voc": "madame Neumann",
+    "famille": "Neumann"
+   }
+  },
+  "aksoy": {
+   "role": "laboratoire (examen)",
+   "genre": "f",
+   "examen": true,
+   "de": {
+    "": "Frau Aksoy",
+    "famille": "Aksoy"
+   },
+   "fr": {
+    "": "Mme Aksoy",
+    "voc": "madame Aksoy",
+    "famille": "Aksoy"
+   }
+  },
+  "richter": {
+   "role": "pharmacie de l'hopital (examen)",
+   "genre": "m",
+   "examen": true,
+   "de": {
+    "": "Herr Richter",
+    "famille": "Richter",
+    "dat": "Herrn Richter",
+    "akk": "Herrn Richter"
+   },
+   "fr": {
+    "": "M. Richter",
+    "voc": "monsieur Richter",
+    "famille": "Richter"
+   }
+  },
+  "lorenz": {
+   "role": "transport sanitaire (examen)",
+   "genre": "m",
+   "examen": true,
+   "de": {
+    "": "Herr Lorenz",
+    "famille": "Lorenz",
+    "dat": "Herrn Lorenz",
+    "akk": "Herrn Lorenz"
+   },
+   "fr": {
+    "": "M. Lorenz",
+    "voc": "monsieur Lorenz",
+    "famille": "Lorenz"
+   }
+  },
+  "albrecht": {
+   "role": "patient de Yusuf la nuit, pneumonie (examen)",
+   "genre": "m",
+   "examen": true,
+   "de": {
+    "": "Herr Albrecht",
+    "famille": "Albrecht",
+    "dat": "Herrn Albrecht",
+    "akk": "Herrn Albrecht"
+   },
+   "fr": {
+    "": "M. Albrecht",
+    "voc": "monsieur Albrecht",
+    "famille": "Albrecht"
+   }
+  },
+  "wolf": {
+   "role": "hygieniste, Stefan Wolf (examen)",
+   "genre": "m",
+   "examen": true,
+   "de": {
+    "": "Herr Wolf",
+    "famille": "Wolf",
+    "dat": "Herrn Wolf",
+    "akk": "Herrn Wolf",
+    "prenom": "Stefan",
+    "fiche": "Wolf, Stefan"
+   },
+   "fr": {
+    "": "M. Wolf",
+    "voc": "monsieur Wolf",
+    "famille": "Wolf"
+   }
+  },
+  "schulze_tochter": {
+   "role": "la fille de Herr Schulze, Monika Schulze (examen ; Monika aussi dans e05)",
+   "genre": "f",
+   "examen": true,
+   "de": {
+    "": "Frau Schulze",
+    "famille": "Schulze",
+    "prenom": "Monika",
+    "fiche": "Schulze, Monika"
+   },
+   "fr": {
+    "": "Mme Schulze",
+    "voc": "madame Schulze",
+    "famille": "Schulze"
    }
   }
  }
