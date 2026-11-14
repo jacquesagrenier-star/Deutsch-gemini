@@ -62,7 +62,12 @@ def noms(texte, langue):
         n = mo.group(1)
         if n not in PERSONNAGES:
             raise ValueError("personnage inconnu {%s} dans : %s" % (n, texte))
-        return PERSONNAGES[n][langue]
+        forme = PERSONNAGES[n][langue]
+        avant = texte[:mo.start()]
+        # en tete de phrase : la majuscule (« a senhora Weber » -> « A senhora Weber »)
+        if not avant.strip() or re.search(r"[.!?:]\s*$|[«„“\"]\s*$", avant):
+            forme = forme[:1].upper() + forme[1:]
+        return forme
     return re.sub(r"\{([^{}]+)\}", rep, texte)
 
 
