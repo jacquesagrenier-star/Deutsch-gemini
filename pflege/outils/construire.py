@@ -55,6 +55,15 @@ def entree_mot(ligne):
         e["exemple_" + l] = trad[l][1]
     if lecture:
         e["lecture"] = lecture
+    if isinstance(ligne, dict):
+        # Repris tels quels quand ils sont la (demande de la session vocabulaire, 14 nov.) :
+        #  - feminin / masculin : l'autre forme d'un nom de personne (Pflegefachmann / Pflegefachfrau), lue par
+        #    rangsDuMotDeTheme comme au corpus (rang 8) ;
+        #  - lecture_mot : le MOT dit en lettres quand il porte des chiffres (« die 112 ») ;
+        #  - sens_distinct, source_corpus : pour l'integration (homographe du corpus, fiche reprise).
+        for cle in ("feminin", "masculin", "lecture_mot", "sens_distinct", "source_corpus"):
+            if ligne.get(cle):
+                e[cle] = ligne[cle]
     if corpus:
         e["corpus"] = True
     if relire:

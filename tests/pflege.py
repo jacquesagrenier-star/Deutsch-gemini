@@ -63,8 +63,8 @@ def main():
                 problemes.append(ou + " : exemple allemand vide")
             elif re.search(r"\d", m["exemple"]) and not m.get("lecture"):
                 problemes.append(ou + " : chiffre dans l'exemple sans « lecture » (« %s »)" % m["exemple"])
-            if re.search(r"\d", m.get("mot", "")) and not m.get("lecture"):
-                problemes.append(ou + " : chiffre dans le mot sans « lecture »")
+            if re.search(r"\d", m.get("mot", "")) and not m.get("lecture_mot"):
+                problemes.append(ou + " : chiffre dans le mot sans « lecture_mot »")
             for l in LANGUES:
                 tr = m.get("traduction" if l == "fr" else "traduction_" + l)
                 ex = m.get("exemple_" + l)
