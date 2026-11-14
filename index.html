@@ -6605,6 +6605,12 @@ body[data-theme="dark"] .carte-genre.cas-akkdat{color:#C5CEDB; background:rgba(1
 body[data-theme="dark"] .carte-genre.cas-gen{color:#E3A6D2; background:rgba(200,110,170,.22);}
 body[data-theme="dark"] .carte-genre.cas-nom{color:#E9E6DF; background:rgba(242,242,246,.12);}
 .carte-genre{max-width:92%; text-align:center;}
+/* La preposition de la carte dans sa phrase, et le cas de cette phrase (retour d'une testeuse du 13 nov. 2026) :
+   un trait ambre sous le mot plutot qu'une couleur de texte, lisible de jour comme de nuit. */
+.praep-hl{font-weight:800; color:inherit; box-shadow:inset 0 -.2em 0 rgba(232,162,58,.55); border-radius:2px; padding:0 1px;}
+body[data-theme="dark"] .praep-hl{box-shadow:inset 0 -.2em 0 rgba(232,162,58,.7);}
+.praep-ici{margin-top:8px; font-weight:700; font-size:15px; color:#1C2430;}
+body[data-theme="dark"] .praep-ici{color:#E9E6DF;}
 
 /* --- LE PREMIER LANCEMENT (v678) ---
    Le bouton de langue quitte l'en-tete : la langue vient du telephone et se
@@ -15968,6 +15974,9 @@ const I18N = {
         point_mot_3: "Retenu",
         point_mot_4: "Maîtrisé",
         point_mot_deja: "Déjà connu",
+        praep_cas_toujours: "toujours + {cas}",
+        praep_cas_les_deux: "les deux : {dat} · {akk}",
+        praep_cas_ici: "ici : {cas}",
         point_maitrise_16: "Maîtrisé · à dans 16 jours",
         point_toujours_35: "Toujours su · à dans 5 semaines",
         point_toujours_90: "Toujours su · à dans 3 mois",
@@ -17770,6 +17779,9 @@ const I18N = {
         point_mot_3: "Remembered",
         point_mot_4: "Mastered",
         point_mot_deja: "Already known",
+        praep_cas_toujours: "always + {cas}",
+        praep_cas_les_deux: "both: {dat} · {akk}",
+        praep_cas_ici: "here: {cas}",
         point_maitrise_16: "Mastered · back in 16 days",
         point_toujours_35: "Still known · back in 5 weeks",
         point_toujours_90: "Still known · back in 3 months",
@@ -19532,6 +19544,9 @@ const I18N = {
         point_mot_3: "Akılda kaldı",
         point_mot_4: "Öğrenildi",
         point_mot_deja: "Zaten biliniyor",
+        praep_cas_toujours: "her zaman + {cas}",
+        praep_cas_les_deux: "ikisi de: {dat} · {akk}",
+        praep_cas_ici: "burada: {cas}",
         point_maitrise_16: "Öğrenildi · 16 gün sonra",
         point_toujours_35: "Hâlâ aklında · 5 hafta sonra",
         point_toujours_90: "Hâlâ aklında · 3 ay sonra",
@@ -22515,6 +22530,9 @@ const I18N = {
         point_mot_3: "Запамʼятано",
         point_mot_4: "Засвоєно",
         point_mot_deja: "Уже знайоме",
+        praep_cas_toujours: "завжди + {cas}",
+        praep_cas_les_deux: "обидва: {dat} · {akk}",
+        praep_cas_ici: "тут: {cas}",
         point_maitrise_16: "Засвоєно · через 16 днів",
         point_toujours_35: "Не забуто · через 5 тижнів",
         point_toujours_90: "Не забуто · через 3 місяці",
@@ -24255,6 +24273,9 @@ const I18N = {
         point_mot_3: "در یاد ماند",
         point_mot_4: "آموخته",
         point_mot_deja: "از قبل آشنا",
+        praep_cas_toujours: "همیشه + {cas}",
+        praep_cas_les_deux: "هر دو: {dat} · {akk}",
+        praep_cas_ici: "اینجا: {cas}",
         point_maitrise_16: "آموخته · تا 16 روز دیگر",
         point_toujours_35: "فراموش نشده · تا 5 هفته دیگر",
         point_toujours_90: "فراموش نشده · تا 3 ماه دیگر",
@@ -26163,6 +26184,9 @@ const I18N = {
         point_mot_3: "ترسّخت",
         point_mot_4: "متقَنة",
         point_mot_deja: "معروفة مسبقًا",
+        praep_cas_toujours: "دائمًا + {cas}",
+        praep_cas_les_deux: "كلاهما: {dat} · {akk}",
+        praep_cas_ici: "هنا: {cas}",
         point_maitrise_16: "متقَنة · تعود بعد 16 يومًا",
         point_toujours_35: "لم تُنسَ · تعود بعد 5 أسابيع",
         point_toujours_90: "لم تُنسَ · تعود بعد 3 أشهر",
@@ -26680,6 +26704,9 @@ const I18N = {
         point_mot_3: "Memorizada",
         point_mot_4: "Dominada",
         point_mot_deja: "Já conhecida",
+        praep_cas_toujours: "sempre + {cas}",
+        praep_cas_les_deux: "os dois: {dat} · {akk}",
+        praep_cas_ici: "aqui: {cas}",
         point_maitrise_16: "Dominada · volta em 16 dias",
         point_toujours_35: "Ainda sabe · volta em 5 sem.",
         point_toujours_90: "Ainda sabe · volta em 3 meses",
@@ -28487,6 +28514,9 @@ const I18N = {
         point_mot_3: "Zapamiętane",
         point_mot_4: "Opanowane",
         point_mot_deja: "Już znane",
+        praep_cas_toujours: "zawsze + {cas}",
+        praep_cas_les_deux: "oba: {dat} · {akk}",
+        praep_cas_ici: "tutaj: {cas}",
         point_maitrise_16: "Opanowane · za 16 dni",
         point_toujours_35: "Wciąż znasz · za 5 tygodni",
         point_toujours_90: "Wciąż znasz · za 3 miesiące",
@@ -30294,6 +30324,9 @@ const I18N = {
         point_mot_3: "Запомнилось",
         point_mot_4: "Выучено",
         point_mot_deja: "Уже знакомо",
+        praep_cas_toujours: "всегда + {cas}",
+        praep_cas_les_deux: "оба: {dat} · {akk}",
+        praep_cas_ici: "здесь: {cas}",
         point_maitrise_16: "Выучено · через 16 дней",
         point_toujours_35: "Не забыто · через 5 недель",
         point_toujours_90: "Не забыто · через 3 месяца",
@@ -32103,6 +32136,9 @@ const I18N = {
         point_mot_3: "Eingeprägt",
         point_mot_4: "Sicher",
         point_mot_deja: "Schon bekannt",
+        praep_cas_toujours: "immer + {cas}",
+        praep_cas_les_deux: "beide: {dat} · {akk}",
+        praep_cas_ici: "hier: {cas}",
         point_maitrise_16: "Sicher · bis in 16 Tagen",
         point_toujours_35: "Sitzt noch · bis in 5 Wochen",
         point_toujours_90: "Sitzt noch · bis in 3 Monaten",
@@ -33925,6 +33961,9 @@ const I18N = {
         point_mot_3: "Recordada",
         point_mot_4: "Dominada",
         point_mot_deja: "Ya conocida",
+        praep_cas_toujours: "siempre + {cas}",
+        praep_cas_les_deux: "los dos: {dat} · {akk}",
+        praep_cas_ici: "aquí: {cas}",
         point_maitrise_16: "Dominada · vuelve en 16 días",
         point_toujours_35: "La sabes · vuelve en 5 semanas",
         point_toujours_90: "La sabes · vuelve en 3 meses",
@@ -42298,6 +42337,46 @@ const PRAEP_CASE_BADGE = {
 };
 function praepCaseBadgeFor(catFr){
     return PRAEP_CASE_BADGE[catFr] || { label: "Wechsel", color: "#4F5B6E" };
+}
+
+// ============ LA CARTE DE PREPOSITION DIT SON CAS EN CLAIR (retour d'une testeuse du 13 nov. 2026) ============
+// « Image doesn't show any prepositions that are in the sentence » : le schema montre les 25 prepositions, pas
+// celle de la carte, et l'etiquette disait « two-way preposition (Wo=Dativ, Wohin=Akkusativ) ». Feu vert du chef
+// d'orchestre (point 4a du diagnostic) : la preposition en evidence dans la phrase, et le cas en clair --
+// « toujours + Dativ », « les deux : Dativ (wo?) · Akkusativ (wohin?) », et sous l'exemple d'une
+// Wechselpraeposition, le cas de CETTE phrase (« ici : Dativ (wo?) »). Allemand appris seulement.
+// Les mots allemands sont isoles (FSI ... PDI) : en arabe et en persan, « (wo?) » se lisait « (?wo) ».
+function isolerPraep(s){ return "⁨" + s + "⁩"; }
+const PRAEP_CAS_ICI = { dat: "Dativ (wo?)", akk: "Akkusativ (wohin?)" };
+function estPraepWechsel(card){ return /Wechsel/.test(String(card && card[2] || "")); }
+function etiquettePraep(card){
+    if(estPraepWechsel(card)) return tf("praep_cas_les_deux", { dat: isolerPraep(PRAEP_CAS_ICI.dat), akk: isolerPraep(PRAEP_CAS_ICI.akk) });
+    const m = String(card && card[2] || "").match(/Akkusativ|Dativ|Genitiv/);
+    return m ? tf("praep_cas_toujours", { cas: isolerPraep(m[0]) }) : "";
+}
+// Le cas de la phrase d'exemple, lu sur le mot qui suit la preposition : dem / der / mir… -> Dativ,
+// den / das / die / mich… -> Akkusativ. Rien quand le mot ne tranche pas (on ne devine pas).
+function casDeLExemplePraep(card){
+    const phrase = String(card && card[3] || ""), prep = String(card && card[0] || "");
+    const m = phrase.match(new RegExp("(?:^|[^\\p{L}])" + prep.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\s+(\\p{L}+)", "iu"));
+    if(!m) return null;
+    const mot = m[1].toLowerCase();
+    if(/^(dem|der|einem|einer|meinem|meiner|deinem|deiner|seinem|seiner|ihrem|ihrer|unserem|unserer|mir|dir|ihm|ihr|uns|euch|ihnen)$/.test(mot)) return "dat";
+    if(/^(den|das|die|einen|eine|ein|meinen|meine|mein|deinen|deine|seinen|seine|ihren|unseren|mich|dich|ihn)$/.test(mot)) return "akk";
+    return null;
+}
+function lignePraepIci(card){
+    if(!estPraepWechsel(card)) return "";
+    const cas = casDeLExemplePraep(card);
+    return cas ? `<div class="praep-ici">${tf("praep_cas_ici", { cas: isolerPraep(PRAEP_CAS_ICI[cas]) })}</div>` : "";
+}
+// La preposition de la carte en evidence dans sa phrase (la premiere occurrence, mot entier : « gegen » ne prend
+// pas « gegenüber »).
+function surlignerPraep(phrase, prep){
+    const s = String(phrase || ""), p = String(prep || "");
+    if(!p) return s;
+    const re = new RegExp("(^|[^\\p{L}])(" + p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")(?![\\p{L}])", "iu");
+    return s.replace(re, '$1<strong class="praep-hl">$2</strong>');
 }
 
 // Pour les 9 Wechselpräpositionen : une phrase Wo ? (Dativ, position -- reprend
@@ -54508,6 +54587,8 @@ function fermerRepere(){
     bulleRepere = null;
     document.removeEventListener("click", clicHorsBulle, true);
     window.removeEventListener("scroll", fermerRepere, true);
+    // Le verso attendait que la bulle parte pour se montrer en entier (garderVersoVisible).
+    try{ const c = document.getElementById("flashcard"); if(c && c.classList.contains("flipped") && c.offsetParent) planifierVersoVisible(); }catch(e){}
 }
 
 function ouvrirRepere(id){
@@ -57108,6 +57189,8 @@ function resizeFlashcard(){
     const targetHeight = isFlipped ? Math.max(back.scrollHeight, 200)
                                    : Math.max(FRONT_HEIGHT, Math.ceil(besoinRecto));
     flashcardEl.style.height = targetHeight + "px";
+    // Le verso grandit parfois apres coup (le schema des prepositions qui arrive, une police) : on revoit sa fin.
+    if(isFlipped) planifierVersoVisible();
 }
 
 // Rotation du telephone ou changement de largeur : la place disponible change,
@@ -57132,6 +57215,7 @@ function estExpressionCarte(mode, texte){
 }
 function loadFlashcard(){
     oublierCarteJugee();   // une carte (re)dessinee n'a pas encore ete jugee
+    rendreDefilementVerso();   // la carte suivante repart du haut si l'app avait fait defiler la precedente
     updateXpComboDisplay();
     hideFlashcardEnd();
     // La phrase a prononcer appartient a la carte qu'on affiche, et a elle
@@ -57595,17 +57679,20 @@ function loadFlashcard(){
         // La categorie (le cas, ou la nature du mot) monte en etiquette en tete
         // de carte (v674) : elle n'est plus repetee ici. `label` reste pour
         // les cartes qui n'ont pas de categorie.
+        const praepAllemande = flashcardMode === 'praep' && LANGUE_APPRISE === "de";
         const etiquetteCarte = flashcardMode === 'partikeln' ? t('carte_type_particule')
             : flashcardMode === 'vhskapiteladjektive' ? t('carte_type_adjectif')
-            : cas;
+            : praepAllemande ? etiquettePraep(card) : cas;
         habillerCarte(etiquetteCarte,
             (flashcardMode === 'praep' || flashcardMode === 'kasusverben') ? casDeLibelle(card[2] + " " + cas) : "aucun");
         // v884 : PAS DE BOITE VIDE. Jacques : une carte qui est deja une phrase
         // (« ¿A qué hora es la salida? ») n'a pas forcement d'exemple -- mais le
         // cadre s'affichait quand meme, vide, avec son seul bouton 🔊.
         const avecExemple = !!String(exampleSentence || "").trim();
+        const phraseAffichee = praepAllemande ? surlignerPraep(exampleSentence, card[0]) : exampleSentence;
+        const ligneIci = praepAllemande ? lignePraepIci(card) : "";
         const blocExemple = avecExemple
-            ? `${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}` : "";
+            ? `${phraseAffichee}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}${ligneIci}` : "";
         const sansCategorie = (flashcardMode === 'partikeln' || flashcardMode === 'vhskapiteladjektive' || cas);
         verbDetailsEl.innerHTML = sansCategorie
             ? `${blocExemple}${praepDiagramHtml}`
@@ -58651,6 +58738,7 @@ function flipCard(){
     // jugee, et la seance suivante heritait du compte fausse.
     if(!paquetTermine()) document.getElementById("flashcardActions").classList.remove("hidden");
     resizeFlashcard();
+    planifierVersoVisible();
     // Prononcer automatiquement dès que la carte se retourne, sans attendre un
     // clic sur le bouton d'écoute. Les textes sont à jour à ce stade, puisque
     // loadFlashcard() s'exécute avant tout retournement possible.
@@ -58693,6 +58781,55 @@ function flipCard(){
 // retirees avec lui : plus personne ne les appelle (verifie), et du code mort
 // qui reste a maintenir est precisement ce que la v461 avait fini par payer.
 // cardBusy part aussi -- seule slideToNextCard() le mettait a vrai.
+
+// ============ LE VERSO NE FINIT PLUS SOUS LES BOUTONS (retour d'une testeuse du 13 nov. 2026) ============
+// « der Sommer » sur un iPhone, dans Safari : la fin de la traduction passait SOUS « Again » et ✓. Les boutons sont
+// fixes en bas (#flashcardActions) ; dans la hauteur que Safari laisse avec ses barres (664 px sur un iPhone de
+// 390 px, 548 sur un SE), une carte un peu longue finit derriere eux. La page defilait, mais rien n'invitait a le
+// faire. Desormais, une fois la carte retournee (et sa hauteur posee : la transition dure 550 ms), la page defile
+// juste de ce qu'il faut pour que le bas de la carte s'arrete au-dessus des boutons -- jamais au point de faire
+// sortir le haut de la carte de l'ecran. Defilement doux, sauf si le telephone reduit les animations.
+// Feu vert du chef d'orchestre (point 3 du diagnostic).
+let attenteVersoVisible = null;
+let defileParLeVerso = false;
+function planifierVersoVisible(){
+    clearTimeout(attenteVersoVisible);
+    const carte = document.getElementById("flashcard");
+    const instantane = carte && carte.style.transition === "none";
+    // Deux regards : apres la transition de hauteur, puis une fois ce qui arrive en retard pose (police, image).
+    attenteVersoVisible = setTimeout(() => {
+        garderVersoVisible();
+        attenteVersoVisible = setTimeout(garderVersoVisible, 800);
+    }, instantane ? 80 : 600);
+}
+function garderVersoVisible(){
+    const carte = document.getElementById("flashcard"), act = document.getElementById("flashcardActions");
+    if(!carte || !act || !carte.offsetParent || !carte.classList.contains("flipped") || act.classList.contains("hidden")) return;
+    // Une bulle ouverte se ferme au defilement (fermerRepere) : on ne la retire pas sous le doigt.
+    if(bulleRepere) return;
+    const boutons = [...act.querySelectorAll("button")].filter(b => b.offsetParent && b.getBoundingClientRect().height > 0);
+    if(!boutons.length) return;
+    const hautBoutons = Math.min(...boutons.map(b => b.getBoundingClientRect().top));
+    const r = carte.getBoundingClientRect();
+    const MARGE = 10;
+    const manque = Math.ceil(r.bottom + MARGE - hautBoutons);
+    if(manque <= 0) return;
+    // Le haut de la carte reste a l'ecran (le mot, le genre) : on ne defile pas plus que ce qui est au-dessus d'elle.
+    const possible = Math.max(0, Math.floor(r.top - MARGE));
+    const defile = Math.min(manque, possible);
+    if(defile <= 0) return;
+    let reduit = false;
+    try{ reduit = matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
+    defileParLeVerso = true;
+    window.scrollBy({ top: defile, behavior: reduit ? "auto" : "smooth" });
+}
+// Seulement ce que l'app a fait defiler elle-meme : un defilement de la personne n'est pas repris.
+function rendreDefilementVerso(){
+    clearTimeout(attenteVersoVisible);
+    if(!defileParLeVerso) return;
+    defileParLeVerso = false;
+    try{ window.scrollTo({ top: 0, behavior: "auto" }); }catch(e){ window.scrollTo(0, 0); }
+}
 
 function unflipCard(){
     const flashcardEl = document.getElementById("flashcard");
