@@ -73046,7 +73046,8 @@ function eloignerPhrasesDeLeurMot(cartes, parts){
     for(let passe = 0; passe < 2; passe++){
         for(let i = 0; i < out.length; i++){
             const c = out[i];
-            if(!c || c.mode !== "phrase" || !c.cible || !c.phrase) continue;
+            // Le bloc d'une dictee et sa dictee gardent leur ordre (v892) : on ne les deplace pas.
+            if(!c || c.mode !== "phrase" || !c.cible || !c.phrase || c.prepaDictee || c.forme === "dictee") continue;
             const m = motDe(out, c);
             if(m < 0 || Math.abs(m - i) > ANTI_ECHO_PHRASE) continue;
             const gr = g(c);
