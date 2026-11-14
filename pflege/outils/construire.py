@@ -32,13 +32,31 @@ def charger(nom):
 
 
 def entree_mot(ligne):
-    niveau, genre, mot, pluriel, article_fr, trad, exemple_de, relire = ligne
-    e = {"mot": mot, "genre": genre, "pluriel": pluriel,
-         "traduction": trad["fr"][0], "exemple": exemple_de, "exemple_fr": trad["fr"][1],
-         "article_fr": article_fr}
+    """Une ligne de MOTS : le tuple des noms (phase 1) ou le dictionnaire (toutes les sortes),
+    voir pflege/FORMAT-DONNEES.md, § 1."""
+    if isinstance(ligne, dict):
+        d = ligne
+        niveau, sorte, mot, trad, exemple_de = d["niveau"], d.get("sorte", "nom"), d["mot"], d["trad"], d["exemple"]
+        genre, pluriel, article_fr = d.get("genre", ""), d.get("pluriel", ""), d.get("article_fr", "")
+        relire, corpus, perfekt, lecture = d.get("relire", ""), d.get("corpus", False), d.get("perfekt", ""), d.get("lecture", "")
+    else:
+        niveau, genre, mot, pluriel, article_fr, trad, exemple_de, relire = ligne
+        sorte, corpus, perfekt, lecture = "nom", False, "", ""
+    e = {"mot": mot, "sorte": sorte}
+    if sorte == "nom":
+        e.update({"genre": genre, "pluriel": pluriel})
+    if perfekt:
+        e["perfekt"] = perfekt
+    e.update({"traduction": trad["fr"][0], "exemple": exemple_de, "exemple_fr": trad["fr"][1]})
+    if sorte == "nom":
+        e["article_fr"] = article_fr
     for l in LANGUES[1:]:
         e["traduction_" + l] = trad[l][0]
         e["exemple_" + l] = trad[l][1]
+    if lecture:
+        e["lecture"] = lecture
+    if corpus:
+        e["corpus"] = True
     if relire:
         e["relire"] = relire
     return niveau, e
@@ -55,14 +73,18 @@ def construire():
         for niveau in NIVEAUX:
             if niveau not in par_niveau:
                 continue
-            themes.append({
+            entree = {
                 "id": src.THEME["base"] + "_" + niveau.lower(),
                 "nom_theme": src.THEME["nom_theme"],
                 "nom_theme_fr": src.THEME["nom_theme_fr"],
+            }
+            if src.THEME.get("nom_theme_trad"):
+                entree["nom_theme_trad"] = src.THEME["nom_theme_trad"]
+            themes.append(dict(entree, **{
                 "niveau": niveau,
                 "svg": src.THEME["svg"],
                 "mots": par_niveau[niveau],
-            })
+            }))
     return {
         "_note": "DERIVE de pflege/sources/ par pflege/outils/construire.py : ne pas corriger a la main. "
                  "Wortando Pflege, la section Soins (essai « soins »). Controle : python tests/pflege.py.",

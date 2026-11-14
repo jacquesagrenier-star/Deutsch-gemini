@@ -47,14 +47,24 @@ def main():
         for m in th.get("mots", []):
             total += 1
             ou = "%s / %s" % (tid, m.get("mot"))
-            if m.get("genre") not in ("der", "die", "das"):
-                problemes.append(ou + " : genre %r" % m.get("genre"))
-            if not m.get("pluriel"):
-                problemes.append(ou + " : pluriel vide (« — » si aucun)")
+            sorte = m.get("sorte", "nom")
+            if sorte not in ("nom", "verbe", "adjectif", "expression"):
+                problemes.append(ou + " : sorte %r" % sorte)
+            if sorte == "nom":
+                if m.get("genre") not in ("der", "die", "das"):
+                    problemes.append(ou + " : genre %r" % m.get("genre"))
+                if not m.get("pluriel"):
+                    problemes.append(ou + " : pluriel vide (« — » si aucun)")
+            elif m.get("genre"):
+                problemes.append(ou + " : un genre sur un(e) %s" % sorte)
+            if sorte == "verbe" and not m.get("perfekt"):
+                problemes.append(ou + " : verbe sans perfekt (« hat gemessen »)")
             if not m.get("exemple"):
                 problemes.append(ou + " : exemple allemand vide")
-            elif re.search(r"\d", m["exemple"]):
-                problemes.append(ou + " : chiffre dans l'exemple (« %s »)" % m["exemple"])
+            elif re.search(r"\d", m["exemple"]) and not m.get("lecture"):
+                problemes.append(ou + " : chiffre dans l'exemple sans « lecture » (« %s »)" % m["exemple"])
+            if re.search(r"\d", m.get("mot", "")) and not m.get("lecture"):
+                problemes.append(ou + " : chiffre dans le mot sans « lecture »")
             for l in LANGUES:
                 tr = m.get("traduction" if l == "fr" else "traduction_" + l)
                 ex = m.get("exemple_" + l)
