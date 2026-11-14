@@ -4831,6 +4831,47 @@ body[data-theme="dark"] .eclat-neuf::before{background:rgba(246,226,186,.82);}
     100%{transform:translate(var(--dx), var(--dy)) scale(.2) rotate(90deg); opacity:0;}}
 html[dir="rtl"] .eclat-neuf{right:auto; left:-6px;}
 @media (prefers-reduced-motion: reduce){ .carte-presente-bandeau.eclats .eclat-neuf{animation:none !important;} }
+/* LIGNE 80 (decisions de Jacques du 13 nov. 2026) :
+   1. « Nouveau mot » / « Nouvelle expression » devient une PASTILLE AMBRE (#E8A23A, la couleur Wortando), qui se
+      remplit a l'arrivee des etincelles. Texte a l'encre : 7,4:1 sur l'ambre (le blanc n'y ferait que 2,1:1). De nuit,
+      l'ambre un peu retenu, pour ne pas eblouir sur la carte sombre, le texte toujours a l'encre. Elle ne se confond pas
+      avec « Essentiel » (texte brun sur gris clair, avec sa cle, dans le coin) : fond plein, au centre, en capitales.
+   2. Les etincelles ne restent plus au seul coin du libelle : deux gerbes montent aussi le long des DEUX COTES de la
+      carte, et tout dure plus longtemps (« c'est a peine si on a le temps de les voir ») -- environ 3,5 s au lieu de
+      1,2. Memes couleurs qu'avant (encre le jour, creme adouci la nuit). Rien si le telephone reduit les animations. */
+.carte-presente-bandeau{background:#E8A23A; color:#1C2430; border-color:transparent;}
+body[data-theme="dark"] .carte-presente-bandeau{background:#D99634; color:#1C2430; border-color:transparent;}
+.carte-presente-bandeau.eclats{animation:pastilleAmbre .7s ease-out .05s 1 both;}
+@keyframes pastilleAmbre{0%{background-color:transparent; border-color:rgba(232,162,58,.9); transform:scale(.92);}
+    60%{transform:scale(1.06);} 100%{transform:scale(1);}}
+.carte-presente-bandeau.eclats .eclat-neuf{animation-duration:1.9s;}
+.eclats-carte{position:absolute; inset:0; pointer-events:none; overflow:hidden; border-radius:inherit; z-index:1;}
+.eclat-carte{position:absolute; width:11px; height:11px; opacity:0; top:var(--y);}
+.eclat-carte::before{content:""; position:absolute; inset:0; background:#1C2430;
+    clip-path:polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);}
+body[data-theme="dark"] .eclat-carte::before{background:rgba(246,226,186,.78);}
+.eclat-carte:nth-child(-n+5){left:var(--bord);}
+.eclat-carte:nth-child(n+6){right:var(--bord);}
+.eclat-carte:nth-child(1){--y:14%; --bord:12px; --dx:6px; --dy:-26px; --d:.15s;}
+.eclat-carte:nth-child(2){--y:32%; --bord:22px; --dx:10px; --dy:-30px; --d:.55s; width:8px; height:8px;}
+.eclat-carte:nth-child(3){--y:50%; --bord:10px; --dx:4px; --dy:-34px; --d:.30s; width:13px; height:13px;}
+.eclat-carte:nth-child(4){--y:68%; --bord:24px; --dx:8px; --dy:-24px; --d:.85s; width:9px; height:9px;}
+.eclat-carte:nth-child(5){--y:84%; --bord:14px; --dx:5px; --dy:-28px; --d:1.10s;}
+.eclat-carte:nth-child(6){--y:20%; --bord:14px; --dx:-6px; --dy:-28px; --d:.35s;}
+.eclat-carte:nth-child(7){--y:38%; --bord:24px; --dx:-10px; --dy:-26px; --d:.75s; width:9px; height:9px;}
+.eclat-carte:nth-child(8){--y:56%; --bord:10px; --dx:-4px; --dy:-32px; --d:.20s; width:13px; height:13px;}
+.eclat-carte:nth-child(9){--y:72%; --bord:22px; --dx:-8px; --dy:-26px; --d:1.00s; width:8px; height:8px;}
+.eclat-carte:nth-child(10){--y:88%; --bord:12px; --dx:-5px; --dy:-30px; --d:.60s;}
+.eclats-carte.eclats .eclat-carte{animation:eclatCarte 2.4s ease-in-out var(--d) 1 both;}
+@keyframes eclatCarte{0%{transform:translate(0,0) scale(0) rotate(0); opacity:0;}
+    20%{opacity:1; transform:translate(calc(var(--dx)*.3), calc(var(--dy)*.3)) scale(1.15) rotate(25deg);}
+    45%{opacity:.55; transform:translate(calc(var(--dx)*.55), calc(var(--dy)*.55)) scale(.8) rotate(50deg);}
+    65%{opacity:1; transform:translate(calc(var(--dx)*.75), calc(var(--dy)*.75)) scale(1.05) rotate(70deg);}
+    100%{transform:translate(var(--dx), var(--dy)) scale(.2) rotate(110deg); opacity:0;}}
+@media (prefers-reduced-motion: reduce){
+    .eclats-carte{display:none;}
+    .carte-presente-bandeau.eclats{animation:none !important;}
+}
 .flashcard-actions.paquet-garde .judge-row2{display:none;}
 /* ⚠️ RESSERRE (v559). Les trois boutons prenaient le tiers de l'ecran a eux
    seuls. On gagne la hauteur sur le REMPLISSAGE, pas sur le texte : le libelle
@@ -12953,6 +12994,8 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
                 <!-- Le mot neuf presente (revue d'usage du 11 nov. 2026) : un bandeau en haut de la carte, « Nouveau mot »
                      et ce qu'il faut faire (demande de Jacques : qu'on ne croie pas a une carte qui ne se retourne pas). -->
                 <div id="flashNouveauVerso" class="carte-presente-bandeau hidden"><b id="flashNouveauVersoTitre"></b><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i></div>
+                <!-- Ligne 80 (decisions de Jacques du 13 nov.) : les etincelles aussi des deux cotes de la carte, plus longues. -->
+                <div id="flashEclatsCarte" class="eclats-carte" aria-hidden="true"><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i></div>
                 <button type="button" id="flashExamenCoin" class="examen-coin hidden"
                         onclick="event.stopPropagation(); ouvrirAideExamen();"></button>
                 <div id="flashGenre" class="carte-genre hidden"></div>
@@ -58022,6 +58065,8 @@ function majPresentation(on){
           rectoEtiq = document.getElementById("flashNouveau");
     if(titreEtiq) titreEtiq.textContent = on && rectoEtiq ? rectoEtiq.textContent : "";
     if(etiq) etiq.classList.toggle("hidden", !on);
+    // Une carte ordinaire qui suit n'herite pas des etincelles encore en vol (ligne 80 : elles durent 3,5 s).
+    if(!on) arreterEclatsPresentation();
     const tr = document.getElementById("flashTranslation"), recto = document.getElementById("flashWord");
     if(!tr) return;
     if(on && recto){
@@ -58062,14 +58107,20 @@ function motPresenteVu(bientot){
 // se tourne pas, une autre se tourne » se lirait comme une panne. D'ou le bandeau « Nouveau mot » en haut, sa
 // consigne, le contour d'encre (CSS #flashcard.presentation), les etincelles a l'arrivee -- la carte arrive deja
 // ouverte -- et, au tout premier mot neuf d'un compte, une bulle d'une phrase, une seule fois.
+// Ligne 80 (13 nov.) : les gerbes des deux cotes de la carte (#flashEclatsCarte) partent avec celles du libelle, et
+// le tout dure plus longtemps -- la derniere etincelle s'eteint vers 3,5 s, d'ou les 3,8 s avant de retirer la classe.
 function entreePresentation(){
-    const b = document.getElementById("flashNouveauVerso");
-    if(!b) return;
-    b.classList.remove("eclats");
-    void b.offsetWidth;
-    b.classList.add("eclats");
+    const elems = ["flashNouveauVerso", "flashEclatsCarte"].map(id => document.getElementById(id)).filter(Boolean);
+    if(!elems.length) return;
+    elems.forEach(e => e.classList.remove("eclats"));
+    void elems[0].offsetWidth;
+    elems.forEach(e => e.classList.add("eclats"));
     clearTimeout(entreePresentation.minuterie);
-    entreePresentation.minuterie = setTimeout(() => b.classList.remove("eclats"), 1600);
+    entreePresentation.minuterie = setTimeout(arreterEclatsPresentation, 3800);
+}
+function arreterEclatsPresentation(){
+    clearTimeout(entreePresentation.minuterie);
+    ["flashNouveauVerso", "flashEclatsCarte"].forEach(id => { const e = document.getElementById(id); if(e) e.classList.remove("eclats"); });
 }
 const AIDE_PRESENTATION_KEY = PREFIXE_STOCKAGE + "aidePresentationVue";
 // TOUCHER LA CARTE DU MOT NEUF (Jacques, 12 nov. 2026 : « normalement on a une carte, on est porte a cliquer sur la
