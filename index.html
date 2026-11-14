@@ -58237,7 +58237,13 @@ function loadFlashcard(){
             const plurielDit = aUnPluriel ? articlePluriel(card[1]) + pluralForm : null;
             const plurielEl = document.getElementById("flashPluralText");
             plurielEl.textContent = t('label_plural') + " ";
-            if(aUnPluriel){
+            // Wortando Pflege : un verbe, un adjectif ou une expression des Soins passe par cette carte (sorte posee par
+            // chargerThemesSoins) mais n'a pas de pluriel. Un verbe montre son Perfekt a la place ; le reste, rien.
+            if(card.sorte && card.sorte !== "nom"){
+                plurielEl.textContent = card.perfekt ? "Perfekt : " + card.perfekt : "";
+                reglerAudioPluriel(null);
+                pluralEl.classList.toggle("hidden", !card.perfekt);
+            } else if(aUnPluriel){
                 const artPl = document.createElement("span");
                 artPl.className = "pl-art";
                 artPl.textContent = articlePluriel(card[1]).trim();
@@ -58250,8 +58256,10 @@ function loadFlashcard(){
             }
             // Les 246 noms sans pluriel affichent « — » : pas de bouton, il n'y a
             // rien a dire. Un haut-parleur qui ne produit rien se lit comme une panne.
-            reglerAudioPluriel(plurielDit);
-            pluralEl.classList.remove("hidden");
+            if(!(card.sorte && card.sorte !== "nom")){
+                reglerAudioPluriel(plurielDit);
+                pluralEl.classList.remove("hidden");
+            }
         }
         // La marque d'usage est desormais remplie en haut de loadFlashcard(),
         // pour tous les modes a la fois. Elle etait ici, dans la seule branche
