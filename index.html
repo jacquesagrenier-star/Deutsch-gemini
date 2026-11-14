@@ -3113,6 +3113,8 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 .soins-chapeau{margin:0 0 12px; color:#4C566B; font-size:.95rem; line-height:1.45;}
 .soins-sous{font-size:.85rem; color:#4C566B;}
 .soins-vide{color:#4C566B; text-align:center; padding:20px;}
+.suivi-soins-ligne{padding:8px 0; border-top:1px solid rgba(76,86,107,.18); line-height:1.45;}
+.suivi-soins-alerte{display:inline-block; font-size:.78rem; font-weight:700; padding:1px 8px; border-radius:999px; background:#fde8e4; color:#a33a2c;}
 
 .theme-count{
     color:#4C566B;
@@ -14226,6 +14228,19 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <!-- v793, essai « reperes » : faire revenir les points de decouverte de l'accueil. -->
         <div class="spacer"></div>
         <button class="secondary" onclick="reafficherReperes()">REVOIR LES POINTS DE DÉCOUVERTE →</button>
+    </div>
+
+    <!-- WORTANDO PFLEGE (14 nov. 2026) : le suivi de la cohorte Soins. Pendant le travail, l'acces est gere par
+         l'admin compte par compte (decision de Jacques) : le « tableau de bord de l'agence » vit donc ici d'abord.
+         En francais seulement, comme tout le tableau de bord. Voir chargerSuiviSoins(). -->
+    <div class="card" id="carteSuiviSoins">
+        <strong>Suivi Soins (Wortando Pflege)</strong>
+        <div class="info-box">Les comptes ouverts aux Soins : activité des sept derniers jours, mots des Soins vus et maîtrisés par niveau, alertes. Le détail lit le document complet de chaque compte : il se charge à la demande.</div>
+        <div class="spacer"></div>
+        <div id="suiviSoinsListe" class="info-box">Chargement...</div>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="chargerSuiviSoins(true)">CHARGER LE DÉTAIL</button>
+        <button class="secondary" onclick="exporterSuiviSoins()">EXPORTER EN CSV</button>
     </div>
 
     <div class="card">
@@ -54891,6 +54906,7 @@ function openAdminDashboard(){
     renderAdminCodesList();
     renderAdminUsersList();
     verifierPreuvesTesteurs(false);
+    try{ chargerSuiviSoins(false); }catch(e){}
 }
 
 function timeAgoFr(dateStr){
@@ -55512,6 +55528,145 @@ async function basculerEssaiCompte(uid, nom, ouvrir, collResume){
             : t('admin_action_failed'));
         console.warn("basculerEssaiCompte", e);
     }
+}
+
+// ============ WORTANDO PFLEGE : LE SUIVI DE LA COHORTE SOINS (14 nov. 2026) ============
+// Le « tableau de bord de l'agence » de pflege/PLAN.md, § 4.8, dans sa premiere forme : l'acces aux Soins est
+// gere par l'admin compte par compte (decision de Jacques du 14 nov.), donc le suivi aussi. La cohorte = les
+// comptes dont le resume porte essais « soins » (recopie par basculerEssaiCompte).
+// Deux temps : la liste (les resumes, deja lus par le tableau) a l'ouverture ; le DETAIL a la demande, qui lit
+// le document complet de chaque compte de la cohorte (progressJson, seancesJson) -- lourd, comme
+// « Reconstruire les resumes », d'ou le bouton. Rien n'est ecrit, et aucune regle Firestore ne change : l'admin
+// lit deja users/<uid>.
+// « Pret pour l'examen » attend l'examen blanc (visuel/prototype/telc-pflege/) : ses seuils sont ceux du telc
+// (pflege/FORMAT-TELC-PFLEGE.md, l'oral d'abord). D'ici la, la colonne dit « — ».
+let suiviSoins = [];   // [{ id, nom, email, maj, jours7, finies7, nonFinies, vus, maitrises, parNiveau, alertes }]
+
+function msDe(v){
+    if(!v) return 0;
+    if(typeof v.toMillis === "function") return v.toMillis();
+    const n = typeof v === "number" ? v : Date.parse(v);
+    return isNaN(n) ? 0 : n;
+}
+
+// Le bilan d'un document complet : ce que l'agence voudra voir, et rien de plus (ni retours, ni mots demandes).
+function bilanSoinsDuCompte(id, data){
+    const seances = (() => { try{ const l = JSON.parse(data.seancesJson || "[]"); return Array.isArray(l) ? l : []; }catch(e){ return []; } })();
+    const depuis = Date.now() - 7 * 86400000;
+    const recentes = seances.filter(s => s && s.d && Date.parse(s.d) >= depuis).sort((a, b) => Date.parse(a.d) - Date.parse(b.d));
+    const jours = new Set(recentes.filter(s => (s.p || 0) > 0).map(s => String(s.d).slice(0, 10)));
+    const finies = recentes.filter(s => s.f).length;
+    // Les trois dernieres seances commencees, toutes laissees en route : le decrochage le plus parlant.
+    const commencees = recentes.filter(s => (s.p || 0) > 0);
+    const nonFinies = commencees.length >= 3 && commencees.slice(-3).every(s => !s.f);
+    let progression = {};
+    try{ progression = JSON.parse(data.progressJson || "{}") || {}; }catch(e){}
+    const parNiveau = {};
+    let vus = 0, maitrises = 0;
+    Object.keys(progression).forEach(cle => {
+        if(cle.indexOf("soins_") !== 0) return;
+        const niv = cle.split("_").pop().toUpperCase();
+        const bloc = progression[cle] || {};
+        const c = parNiveau[niv] || (parNiveau[niv] = { vus: 0, maitrises: 0 });
+        Object.keys(bloc).forEach(i => {
+            const st = bloc[i];
+            if(!st || typeof st !== "object") return;
+            if(st.mastered || st.due || st.srsHits || st.vu){ c.vus++; vus++; }
+            if(st.mastered){ c.maitrises++; maitrises++; }
+        });
+    });
+    const derniere = Math.max(msDe(data.updatedAt), ...recentes.map(s => Date.parse(s.d) || 0));
+    const alertes = [];
+    if(!derniere || Date.now() - derniere > 5 * 86400000) alertes.push("5 jours sans activité");
+    if(nonFinies) alertes.push("3 séances laissées en route");
+    return { id: id, nom: data.firstName || data.email || "(sans nom)", email: data.email || "", maj: derniere,
+             jours7: jours.size, finies7: finies, vus: vus, maitrises: maitrises, parNiveau: parNiveau, alertes: alertes };
+}
+
+function totalSoinsParNiveau(){
+    const t = {};
+    (themesSoins || []).forEach(th => Object.keys(th.levels || {}).forEach(n => { t[n] = (t[n] || 0) + th.levels[n].words.length; }));
+    return t;
+}
+
+async function chargerSuiviSoins(detail){
+    const box = document.getElementById("suiviSoinsListe");
+    if(!box || !isAdminUser()) return;
+    if(!window.firestoreDb){ box.textContent = "Firestore indisponible."; return; }
+    box.textContent = detail ? "Lecture des comptes de la cohorte…" : "Chargement...";
+    try{
+        const snap = await window.fsGetDocs(window.fsCollection(window.firestoreDb, "resumes"));
+        const cohorte = [];
+        snap.forEach(d => { const u = d.data() || {}; if(Array.isArray(u.essais) && u.essais.includes("soins")) cohorte.push({ id: d.id, u: u }); });
+        if(!cohorte.length){
+            suiviSoins = [];
+            box.innerHTML = "Aucun compte ouvert aux Soins pour l'instant. Ouvre-les depuis la liste des testeurs (bouton « OUVRIR SOINS »).";
+            return;
+        }
+        if(!detail){
+            suiviSoins = cohorte.map(c => ({ id: c.id, nom: c.u.firstName || c.u.email || "(sans nom)", email: c.u.email || "",
+                                             maj: msDe(c.u.updatedAt), jours7: null }));
+        } else {
+            try{ await chargerThemesSoins(); }catch(e){}
+            suiviSoins = [];
+            for(const c of cohorte){
+                try{
+                    const doc = await window.fsGetDoc(window.fsDoc(window.firestoreDb, "users", c.id));
+                    suiviSoins.push(bilanSoinsDuCompte(c.id, doc.exists() ? doc.data() : {}));
+                }catch(e){ suiviSoins.push({ id: c.id, nom: c.u.firstName || "(illisible)", erreur: true }); }
+            }
+        }
+        afficherSuiviSoins(detail);
+    }catch(e){
+        console.warn("chargerSuiviSoins", e);
+        box.textContent = "Lecture impossible : " + String((e && (e.code || e.message)) || "?");
+    }
+}
+
+function afficherSuiviSoins(detail){
+    const box = document.getElementById("suiviSoinsListe");
+    if(!box) return;
+    const totaux = totalSoinsParNiveau();
+    const quand = ms => ms ? timeAgoFr(new Date(ms).toISOString()) : "jamais";
+    const lignes = suiviSoins.map(s => {
+        if(!detail || s.jours7 === null || s.jours7 === undefined){
+            return `<div class="suivi-soins-ligne"><strong>${echapperCompte(s.nom)}</strong> <small>· vu ${echapperCompte(quand(s.maj))}</small></div>`;
+        }
+        if(s.erreur) return `<div class="suivi-soins-ligne"><strong>${echapperCompte(s.nom)}</strong> <small>· document illisible</small></div>`;
+        const niveaux = ["A2", "B1", "B2", "C1"].filter(n => totaux[n] || (s.parNiveau[n] && s.parNiveau[n].vus))
+            .map(n => { const c = s.parNiveau[n] || { vus: 0, maitrises: 0 };
+                        return n + " " + nombreCompte(c.maitrises, 0) + "/" + nombreCompte(totaux[n] || c.vus, 0); }).join(" · ");
+        const alertes = (s.alertes || []).map(a => `<span class="suivi-soins-alerte">${echapperCompte(a)}</span>`).join(" ");
+        return `<div class="suivi-soins-ligne">
+            <strong>${echapperCompte(s.nom)}</strong> <small>· vu ${echapperCompte(quand(s.maj))}</small> ${alertes}<br>
+            <small>${nombreCompte(s.jours7, 0)} jour(s) actif(s) sur 7 · ${nombreCompte(s.finies7, 0)} séance(s) finie(s) · mots des Soins : ${nombreCompte(s.vus, 0)} vus, ${nombreCompte(s.maitrises, 0)} maîtrisés</small><br>
+            <small>Maîtrisés par niveau : ${echapperCompte(niveaux || "—")} · Prêt pour l'examen : — (attend l'examen blanc)</small>
+        </div>`;
+    });
+    box.innerHTML = `<div><strong>${suiviSoins.length}</strong> compte(s) dans la cohorte${detail ? "" : " · touche « CHARGER LE DÉTAIL » pour l'activité et les mots"}</div>` + lignes.join("");
+}
+
+function exporterSuiviSoins(){
+    if(!isAdminUser()) return;
+    if(!suiviSoins.length || suiviSoins.some(s => s.jours7 === null || s.jours7 === undefined)){
+        showInfoToast("Charge d'abord le détail (CHARGER LE DÉTAIL).");
+        return;
+    }
+    const totaux = totalSoinsParNiveau();
+    const cellule = v => { const s = String(v === undefined || v === null ? "" : v); return /[";\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+    const tete = ["prenom", "email", "derniere_activite", "jours_actifs_7", "seances_finies_7", "mots_soins_vus", "mots_soins_maitrises"]
+        .concat(["A2", "B1", "B2", "C1"].map(n => "maitrises_" + n + "_sur_" + (totaux[n] || 0))).concat(["alertes"]);
+    const lignes = suiviSoins.map(s => [s.nom, s.email, s.maj ? new Date(s.maj).toISOString().slice(0, 10) : "",
+        s.jours7, s.finies7, s.vus, s.maitrises]
+        .concat(["A2", "B1", "B2", "C1"].map(n => (s.parNiveau && s.parNiveau[n] ? s.parNiveau[n].maitrises : 0)))
+        .concat([(s.alertes || []).join(" / ")]).map(cellule).join(";"));
+    const csv = "﻿" + [tete.join(";")].concat(lignes).join("\n");
+    try{
+        const lien = document.createElement("a");
+        lien.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+        lien.download = "suivi-soins-" + new Date().toISOString().slice(0, 10) + ".csv";
+        document.body.appendChild(lien); lien.click(); lien.remove();
+    }catch(e){ showInfoToast("Export impossible sur cet appareil."); }
 }
 
 // ============ LES PREUVES DU TESTEUR A VIE (12 nov. 2026) ============
@@ -56929,8 +57084,20 @@ function chargerThemesSoins(){
                                     svg: th.svg || "", levels: {} };
                 ordre.push(baseId);
             }
-            groupes[baseId].levels[niveau] = { id: entryId, words: (th.mots || []).map(rangsDuMotDeTheme),
-                                               verben: [], adjektive: [] };
+            // Les quatre sortes (pflege/FORMAT-DONNEES.md, § 1) passent par la carte des noms, qui porte deja
+            // les 9 langues. Un verbe, un adjectif ou une expression n'a ni article ni pluriel : sans ce
+            // nettoyage, rangsDuMotDeTheme lui donnerait « der » (le defaut des noms allemands). Sa sorte et
+            // son Perfekt suivent la carte en proprietes nommees, comme le feminin des adjectifs (v942).
+            const mots = (th.mots || []).map(w => {
+                const r = rangsDuMotDeTheme(w);
+                if(w && w.sorte && w.sorte !== "nom"){
+                    r[1] = ""; r[2] = "—"; r[9] = "";
+                    r.sorte = w.sorte;
+                    if(w.perfekt) r.perfekt = w.perfekt;
+                }
+                return r;
+            });
+            groupes[baseId].levels[niveau] = { id: entryId, words: mots, verben: [], adjektive: [] };
         });
         themesSoins = ordre.map(id => groupes[id]);
         themesSoinsCharges = true;
