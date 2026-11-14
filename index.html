@@ -3109,6 +3109,10 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 }
 
 .theme-name{font-weight:800; color:#1e2433;}
+/* Wortando Pflege (essai « soins ») : l'ecran soinsListe reprend la liste des themes ; trois textes en plus. */
+.soins-chapeau{margin:0 0 12px; color:#4C566B; font-size:.95rem; line-height:1.45;}
+.soins-sous{font-size:.85rem; color:#4C566B;}
+.soins-vide{color:#4C566B; text-align:center; padding:20px;}
 
 .theme-count{
     color:#4C566B;
@@ -4539,6 +4543,9 @@ body[data-theme="dark"] .home-daily-goal-row,
 body[data-theme="dark"] .home-level-hint,
 body[data-theme="dark"] .due-banner-sub,
 body[data-theme="dark"] .theme-count,
+body[data-theme="dark"] .soins-chapeau,
+body[data-theme="dark"] .soins-sous,
+body[data-theme="dark"] .soins-vide,
 body[data-theme="dark"] .theme-percent,
 body[data-theme="dark"] .orb small,
 body[data-theme="dark"] .orb-opt-desc,
@@ -10993,6 +11000,14 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
                 <strong data-i18n="orb_pruefung_title">Préparation aux examens</strong>
             </div>
         </div>
+        <!-- Wortando Pflege (essai « soins », 14 nov. 2026) : cachee sauf pour l'admin et les comptes ouverts
+             (majTuileSoins). orb-de : jamais en espagnol ; absente des listes blanches de ja, en et pt. -->
+        <div class="orb orb-de hidden" id="tuileSoins" data-orbid="pflege" onclick="ouvrirSoins()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.4 4.4 0 0 1 12 7.6a4.4 4.4 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"/><path d="M12 10.5v5M9.5 13h5"/></svg></div>
+            <div>
+                <strong>Soins</strong>
+            </div>
+        </div>
         <div class="orb orb-de hidden" id="vhsKapitelTile" data-orbid="vhskapitel" onclick="openVhsKapitelListe()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div>
             <div>
@@ -11536,6 +11551,24 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
 
     <div class="card" style="margin-top:15px;">
         <div class="theme-list" id="vhsKapitelList"></div>
+    </div>
+</section>
+
+<!-- ================= SOINS (Wortando Pflege, essai « soins », 14 nov. 2026) =================
+     En francais seulement pendant l'essai (comme tout essai) : les cles i18n viendront avec la phase 2. -->
+<section id="soinsListe" class="screen">
+    <button class="back" onclick="retourDeSoins()"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker">Wortando Pflege · essai</div>
+            <h2>Soins</h2>
+        </div>
+        <div class="pill">telc B1·B2 Pflege</div>
+    </div>
+    <div class="card" style="margin-top:15px;">
+        <p class="soins-chapeau">L'allemand des soignants : les mots du service, par niveau. Les scènes, les dialogues, la grammaire du métier, l'écrit et l'examen blanc arrivent ensuite.</p>
+        <div class="theme-list" id="soinsList"></div>
     </div>
 </section>
 
@@ -40787,8 +40820,13 @@ let themes = [];
 // leurs comptes bougeaient pour tout le monde (« Ecouter » 3475 -> 3485). Vide
 // en allemand, ou les chapitres restent ou ils ont toujours ete.
 let themesCours = [];
+// Les themes de la section Soins (Wortando Pflege, 14 nov. 2026) : a part, comme themesCours, pour ne jamais
+// entrer dans `themes` -- ni dans les pourcentages, ni dans les niveaux, ni dans le paquet public. Remplis par
+// chargerThemesSoins(), seulement quand l'essai « soins » est ouvert a ce compte.
+let themesSoins = [];
 function themeParId(id){
-    return themes.find(t => t.id === id) || themesCours.find(t => t.id === id);
+    return themes.find(t => t.id === id) || themesCours.find(t => t.id === id)
+        || themesSoins.find(t => t.id === id);
 }
 let themesLoaded = false;
 
@@ -41160,45 +41198,11 @@ async function loadEnglishModuleJson(id) {
     }
 }
 
-async function loadThemesJson() {
-    if (themesLoaded) return;
-    showGlobalLoadingBar();
-    try {
-    await loadAdjektiveJson();
-    await loadVerbeJson();
-    await loadAdverbienJson();
-    await loadRedewendungenJson();
-    await loadPruefungJson();
-    await loadFunktionswoerterJson();
-    if (LANGUE_APPRISE === "ja") await motsOutilsJaponais();
-    try {
-        const response = await fetch(urlDonnees('themes.json'), { cache: 'no-cache' });
-        if (!response.ok) throw new Error("Erreur themes.json");
-        const rawJson = await response.json();
-        const rawThemesData = Array.isArray(rawJson) ? rawJson : (rawJson.themes || []);
-        // Le japonais : les kana d'abord (japonais/datos/kana.json), six themes
-        // de cartes avant les mots -- on ne lit aucun mot sans eux.
-        if(LANGUE_APPRISE === "ja") rawThemesData.unshift(...(await chargerKanaJaponais()));
-        const variantesEspagnol = LANGUE_APPRISE === "es" ? (((await chargerVariantesEspagnol()) || {}).noms || null) : null;
-        const phrasesLatam = await phrasesVarianteEspagnol();
-        
-        const DEFAULT_SVG = '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
-        const grouped = {};
-        const order = [];
-
-        rawThemesData.forEach((t, idx) => {
-            // Le nom s'affiche dans la langue apprise, comme « Familie » en
-            // allemand. En espagnol, nom_theme est en ANGLAIS (« The house ») :
-            // le nom espagnol est dans nom_theme_es (« La casa »).
-            const name = t.name || (LANGUE_APPRISE === "es" && t.nom_theme_es)
-                || (LANGUE_APPRISE === "ja" && t.nom_theme_ja) || t.nom_theme || `Thème ${idx + 1}`;
-            const niveau = (t.niveau || "A1").toUpperCase();
-            const svg = t.svg || DEFAULT_SVG;
-            const entryId = t.id || `theme_${idx}`;
-            const baseId = entryId.replace(/_(a1|a2|b1|b2|c1)$/i, "") || `theme_${idx}`;
-
-            const rawWords = t.words || t.mots || [];
-            const words = rawWords.map(w => {
+// Un mot de themes.json (objet) en rangs, tels que les cartes les lisent. Sorti de
+// loadThemesJson() le 14 nov. 2026, sans changer une ligne, pour que les themes de
+// la section Soins (pflege/datos/themes.json, chargerThemesSoins) passent par le
+// MEME chemin que le corpus : un mot de soins est une carte comme les autres.
+function rangsDuMotDeTheme(w){
                 if (Array.isArray(w)) return w;
                 return [
                     w.mot || w.word || "",
@@ -41273,7 +41277,47 @@ async function loadThemesJson() {
                     // Rangs 29-30 : l'espagnol (interface de l'anglais, 2 nov. 2026).
                       : LANGUE_APPRISE === "en" ? ["", "", champEs(w, "traduction"), champEs(w, "exemple")] : [])
                 ];
-            });
+}
+
+async function loadThemesJson() {
+    if (themesLoaded) return;
+    showGlobalLoadingBar();
+    try {
+    await loadAdjektiveJson();
+    await loadVerbeJson();
+    await loadAdverbienJson();
+    await loadRedewendungenJson();
+    await loadPruefungJson();
+    await loadFunktionswoerterJson();
+    if (LANGUE_APPRISE === "ja") await motsOutilsJaponais();
+    try {
+        const response = await fetch(urlDonnees('themes.json'), { cache: 'no-cache' });
+        if (!response.ok) throw new Error("Erreur themes.json");
+        const rawJson = await response.json();
+        const rawThemesData = Array.isArray(rawJson) ? rawJson : (rawJson.themes || []);
+        // Le japonais : les kana d'abord (japonais/datos/kana.json), six themes
+        // de cartes avant les mots -- on ne lit aucun mot sans eux.
+        if(LANGUE_APPRISE === "ja") rawThemesData.unshift(...(await chargerKanaJaponais()));
+        const variantesEspagnol = LANGUE_APPRISE === "es" ? (((await chargerVariantesEspagnol()) || {}).noms || null) : null;
+        const phrasesLatam = await phrasesVarianteEspagnol();
+        
+        const DEFAULT_SVG = '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
+        const grouped = {};
+        const order = [];
+
+        rawThemesData.forEach((t, idx) => {
+            // Le nom s'affiche dans la langue apprise, comme « Familie » en
+            // allemand. En espagnol, nom_theme est en ANGLAIS (« The house ») :
+            // le nom espagnol est dans nom_theme_es (« La casa »).
+            const name = t.name || (LANGUE_APPRISE === "es" && t.nom_theme_es)
+                || (LANGUE_APPRISE === "ja" && t.nom_theme_ja) || t.nom_theme || `Thème ${idx + 1}`;
+            const niveau = (t.niveau || "A1").toUpperCase();
+            const svg = t.svg || DEFAULT_SVG;
+            const entryId = t.id || `theme_${idx}`;
+            const baseId = entryId.replace(/_(a1|a2|b1|b2|c1)$/i, "") || `theme_${idx}`;
+
+            const rawWords = t.words || t.mots || [];
+            const words = rawWords.map(rangsDuMotDeTheme);
             if(variantesEspagnol) words.forEach(w => appliquerVarianteEspagnol(w, variantesEspagnol, phrasesLatam));
             // Le japonais : la lecture, le romaji et les furigana suivent la
             // carte en propriete nommee, comme le feminin des adjectifs (v942) --
@@ -45751,6 +45795,8 @@ let vhsKapitelAccess = false;
 function updateVhsKapitelTileVisibility(){
     const tile = document.getElementById("vhsKapitelTile");
     if(tile) tile.classList.toggle("hidden", !(isAdminUser() || vhsKapitelAccess));
+    // La tuile Soins suit les memes moments (connexion, relecture du compte, reglages).
+    try{ majTuileSoins(); }catch(e){}
 }
 
 
@@ -54439,6 +54485,16 @@ const ESSAIS = {
         titre: "La séance légère (une leçon par jour, sans objectif chiffré)",
         desc: "La séance du jour fait toujours la même taille, quel que soit l'objectif réglé ; à la fin, « Encore une séance » en ouvre une autre, sans limite, et l'écran de fin dit combien de séances sont faites aujourd'hui. Une étape de l'A1 finie allume son étoile en plein écran à la fin de la séance (une seule fête par séance : l'étoile d'abord, le tableau le lendemain). Les autres comptes gardent l'objectif « N / 20 »."
     },
+    // WORTANDO PFLEGE, phase 1 (14 nov. 2026). Jacques : « Je ferais une grande version tout de suite » ;
+    // l'acces : « on verra comment on va le gerer » -- pendant le travail, l'admin l'ouvre COMPTE PAR COMPTE
+    // (bouton « OUVRIR SOINS » du tableau de bord, users/<uid>.essais contient « soins »). Allemand appris
+    // seulement. Plan : pflege/PLAN.md ; voir soinsActifs() et chargerThemesSoins().
+    soins: {
+        etat: "admin",
+        compte: "soins",
+        titre: "Soins : l'allemand des soignants (Wortando Pflege)",
+        desc: "La tuile « Soins » de Tout le contenu : les thèmes de vocabulaire des soins (pflege/datos/themes.json), en cartes, par niveau ; dans la séance du jour, les mots nouveaux viennent pour les deux tiers des Soins. Hors des comptes publics (pourcentages, niveaux). Ouvert par l'admin, compte par compte."
+    },
     premiers_pas: {
         etat: "tous",
         titre: "Premiers pas (un niveau avant A1)",
@@ -55315,6 +55371,16 @@ async function renderAdminUsersList(){
                         const examensOn = Array.isArray(u.essais) && u.essais.includes("examens");
                         return `<button class="secondary admin-vhs" onclick="basculerEssaiCompte('${u.id}', 'examens', ${!examensOn}, '${u._coll}')">
                         ${examensOn ? "EXAMENS OUVERTS ✓ — RETIRER" : "OUVRIR LES EXAMENS"}
+                    </button>`;
+                    })()}
+                    ${(() => {
+                        // Wortando Pflege (essai « soins », 14 nov. 2026) : Jacques ouvre les Soins compte par
+                        // compte pendant le travail. Lignes allemandes seulement, « resumes » en toutes lettres
+                        // pour la meme raison que le bouton des examens.
+                        if(u._coll !== "resumes" || !idSur) return "";
+                        const soinsOn = Array.isArray(u.essais) && u.essais.includes("soins");
+                        return `<button class="secondary admin-vhs" onclick="basculerEssaiCompte('${u.id}', 'soins', ${!soinsOn}, '${u._coll}')">
+                        ${soinsOn ? "SOINS OUVERTS ✓ — RETIRER" : "OUVRIR SOINS"}
                     </button>`;
                     })()}
                     ${idSur ? boutonTesteurAVie(u.id) : ""}
@@ -56821,6 +56887,150 @@ function titreChapitreCours(theme, level, sorte){
         return theme.name + " · " + t(cle);
     }
     return theme.name + " · " + level + (sorte ? " · " + sorte : "");
+}
+
+// ============ WORTANDO PFLEGE : LA SECTION SOINS (phase 1, 14 nov. 2026) ============
+// L'allemand des soignants (telc Deutsch B1·B2 Pflege). Plan : pflege/PLAN.md. Decisions de Jacques du 14 nov. :
+// la grande version tout de suite, l'acces ouvert par l'admin compte par compte (essai « soins », champ
+// users/<uid>.essais), les 9 langues d'interface.
+//
+// CE QUI NE DOIT JAMAIS BOUGER : l'allemand sans l'essai. Tout passe par soinsActifs() ; les themes vivent dans
+// themesSoins, jamais dans `themes` (comme themesCours) : ni les pourcentages, ni les niveaux, ni paquetDuNiveau
+// ne les voient. Seuls trois endroits les lisent : themeParId (pour startTheme), l'ecran soinsListe, et la seance
+// du jour (ajouterSoinsASeance, melerNeufsSoins).
+//
+// Les donnees : pflege/datos/themes.json, DERIVE de pflege/sources/ par pflege/outils/construire.py (jamais
+// corrige a la main), au format de themes.json (mot, genre, pluriel, traduction, traduction_<langue>, exemple,
+// exemple_<langue>), ids « soins_<theme>_<niveau> » (jamais « pflege_ » : le corpus a deja pflege_betreuung_c1). Controle : python tests/pflege.py.
+let themesSoinsCharges = false;
+let promesseThemesSoins = null;
+
+function soinsActifs(){
+    return (LANGUE_APPRISE === "de" || !LANGUE_APPRISE) && essaiActif("soins");
+}
+
+function chargerThemesSoins(){
+    if(themesSoinsCharges) return Promise.resolve(themesSoins);
+    if(promesseThemesSoins) return promesseThemesSoins;
+    promesseThemesSoins = (async () => {
+        const rep = await fetch(RACINE_DEPOT + "pflege/datos/themes.json", { cache: "no-cache" });
+        if(!rep.ok) throw new Error("pflege/datos/themes.json : " + rep.status);
+        const brut = await rep.json();
+        const liste = Array.isArray(brut) ? brut : (brut.themes || []);
+        const groupes = {}, ordre = [];
+        liste.forEach((th, idx) => {
+            const entryId = String(th.id || "");
+            // Un id hors du prefixe partagerait sa progression avec un theme du corpus : refuse.
+            if(entryId.indexOf("soins_") !== 0) return;
+            const niveau = String(th.niveau || "B1").toUpperCase();
+            const baseId = entryId.replace(/_(a1|a2|b1|b2|c1)$/i, "");
+            if(!groupes[baseId]){
+                groupes[baseId] = { id: baseId, name: th.nom_theme || baseId, nomFr: th.nom_theme_fr || "",
+                                    svg: th.svg || "", levels: {} };
+                ordre.push(baseId);
+            }
+            groupes[baseId].levels[niveau] = { id: entryId, words: (th.mots || []).map(rangsDuMotDeTheme),
+                                               verben: [], adjektive: [] };
+        });
+        themesSoins = ordre.map(id => groupes[id]);
+        themesSoinsCharges = true;
+        return themesSoins;
+    })().catch(e => { promesseThemesSoins = null; throw e; });
+    return promesseThemesSoins;
+}
+
+function majTuileSoins(){
+    const tuile = document.getElementById("tuileSoins");
+    if(tuile) tuile.classList.toggle("hidden", !soinsActifs());
+}
+
+async function ouvrirSoins(){
+    if(!soinsActifs()) return;
+    showScreen("soinsListe");
+    const box = document.getElementById("soinsList");
+    if(box && !themesSoinsCharges) box.innerHTML = '<p class="soins-vide">Chargement…</p>';
+    try{ await chargerThemesSoins(); }
+    catch(e){
+        console.warn("chargerThemesSoins", e);
+        if(box) box.innerHTML = '<p class="soins-vide">Les thèmes des soins n\'ont pas pu être chargés. Vérifie ta connexion, puis réessaie.</p>';
+        return;
+    }
+    renderSoinsListe();
+}
+
+function retourDeSoins(){ ouvrirToutLeContenu(); }
+
+function renderSoinsListe(){
+    const box = document.getElementById("soinsList");
+    if(!box) return;
+    if(!themesSoins.length){ box.innerHTML = '<p class="soins-vide">Aucun thème pour le moment.</p>'; return; }
+    box.innerHTML = "";
+    themesSoins.forEach(theme => {
+        let sus = 0, total = 0;
+        const pastilles = NIVEAUX_CECR.filter(n => theme.levels[n]).map(n => {
+            const d = theme.levels[n];
+            let m = 0;
+            d.words.forEach((w, i) => { if(getWordState(d.id, i).mastered) m++; });
+            sus += m; total += d.words.length;
+            return '<div class="level-pill" data-level="' + n + '"><div class="level-pill-label">' + n
+                + '</div><div class="level-pill-stat">' + m + '/' + d.words.length + '</div></div>';
+        }).join("");
+        const pourcent = total ? Math.round(sus / total * 100) : 0;
+        const item = document.createElement("div");
+        item.className = "theme-item";
+        item.innerHTML = `
+            <div class="theme-header">
+                <div class="theme-left">
+                    <div class="theme-icon">${theme.svg || ""}</div>
+                    <div>
+                        <div class="theme-name">${echapperCompte(theme.name)}</div>
+                        ${theme.nomFr ? '<div class="soins-sous">' + echapperCompte(theme.nomFr) + '</div>' : ""}
+                    </div>
+                </div>
+                <div class="theme-count">${sus}/${total}</div>
+            </div>
+            <div class="theme-progress">
+                <div class="theme-progress-bar"><div class="theme-progress-fill" style="width:${pourcent}%"></div></div>
+                <div class="theme-percent">${pourcent}${t('mastered_suffix')}</div>
+            </div>
+            <div class="level-pills">${pastilles}</div>`;
+        item.querySelectorAll(".level-pill").forEach(p => p.addEventListener("click", e => {
+            e.stopPropagation();
+            startTheme(theme.id, p.dataset.level, "soinsListe");
+        }));
+        box.appendChild(item);
+    });
+}
+
+// La seance du jour d'un compte ouvert : les mots de soins du niveau rejoignent le neuf, et ceux deja commences
+// de tous les niveaux reviennent a leur echeance, par les memes regles que le corpus (echeancesPermises).
+function soinsDuNiveau(niveau){
+    const out = [];
+    themesSoins.forEach(th => {
+        const d = th.levels[niveau];
+        if(!d) return;
+        d.words.forEach((word, index) => out.push({ word: word, index: index, themeId: d.id, mode: "nomen" }));
+    });
+    return out;
+}
+function ajouterSoinsASeance(niveau, pool, tout){
+    soinsDuNiveau(niveau).forEach(it => pool.push(it));
+    NIVEAUX_CECR.forEach(n => { tout.push.apply(tout, echeancesPermises(soinsDuNiveau(n), n, niveau)); });
+}
+// Deux mots neufs sur trois viennent des soins, tant qu'il en reste (PLAN § 4.4, a regler apres les premiers
+// essais) ; les mots de soins gardent l'ordre du fichier, du plus utile au plus rare.
+function estCarteSoins(it){ return !!it && String(it.themeId || "").indexOf("soins_") === 0; }
+function melerNeufsSoins(ordre){
+    const soins = ordre.filter(estCarteSoins);
+    if(!soins.length) return ordre;
+    const autres = ordre.filter(it => !estCarteSoins(it));
+    const out = [];
+    let s = 0, a = 0;
+    while(s < soins.length || a < autres.length){
+        if((out.length % 3 < 2 && s < soins.length) || a >= autres.length) out.push(soins[s++]);
+        else out.push(autres[a++]);
+    }
+    return out;
 }
 
 function startTheme(themeId, level, returnScreen){
@@ -64615,7 +64825,10 @@ function cartesDeSeance(poolTout, poolNeufs){
     const dues = cartesEchuesTriees((poolTout || []).filter(
         it => !estNeuf(getWordState(it.themeId, it.index)))).slice(0, taille - reserve);
     const place = Math.min(taille - dues.length, plafond);
-    return dues.concat((kanaDabord(neufs) || ordonnerParFrequence(neufs)).slice(0, Math.max(0, place)));
+    let ordre = kanaDabord(neufs) || ordonnerParFrequence(neufs);
+    // Wortando Pflege : seulement pour un compte ouvert aux soins (sinon l'ordre est celui d'avant, tel quel).
+    if(soinsActifs()) ordre = melerNeufsSoins(ordre);
+    return dues.concat(ordre.slice(0, Math.max(0, place)));
 }
 
 function cartesDeSession(items){
@@ -72581,6 +72794,8 @@ async function ouvrirSeanceDuJour(sansScene){
     // v1114 : passees par la meme regle, Premiers pas au rang de l'A1.
     // Le japonais aussi depuis le lot J1 (11 nov. 2026) : ses Premiers pas sont japonais (japonais/datos/premiers-pas.json).
     try{ if(essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, echeancesPermises(cartesPremiersPasVues(), "PP", niveau)); } }catch(e){}
+    // Wortando Pflege (essai « soins », 14 nov. 2026) : les mots de soins dans la seance d'un compte ouvert.
+    try{ if(soinsActifs()){ await chargerThemesSoins(); ajouterSoinsASeance(niveau, pool, tout); } }catch(e){}
     // v862 (essai a1_voyage) : le neuf pris dans l'escale du jour au lieu de
     // tout l'A1. v864 : un compte neuf y part sans question.
     let av = null;
