@@ -69115,6 +69115,16 @@ window.addEventListener("message", (e) => {
     // (fini, fermer) ramenent a l'ecran Soins.
     // Ses exercices (« exercice ») et son micro passent plus bas par le chemin commun, comme le telc A2·B1.
     if(d.type === "resultat_examen" && d.examen === "soins_telc"){ try{ enregistrerExamenSoins(d); }catch(err){} return; }
+    // Ligne 95 : l'etat de la revision par question (moteur commun, type « t » theme, « s » scene), et chaque question
+    // jugee. Le tableau de bord (scene ouverte pour la tester) ne compte pas.
+    if(d.type === "questions"){
+        const type = d.rev === "s" ? "s" : "t";
+        try{ e.source.postMessage({source: "wortando-app", type: "questions", rev: type, etat: lireRevisions()[type], jour: jourRevision()}, e.origin === "null" ? "*" : e.origin); }catch(err){}
+        return;
+    }
+    if(d.type === "exercice" && (d.rev === "t" || d.rev === "s") && typeof d.question === "string" && d.question && sceneOuverteDepuis !== "admin"){
+        try{ noterRevision(d.rev, d.question.slice(0, 600), d.juste === false ? false : d.juste === true ? true : null); }catch(err){}
+    }
     // 12 nov. 2026 : la barre du bandeau avance pendant l'arret (voir ARRET_AVANCE).
     const dansLArret = sceneOuverteDepuis === "arret" || sceneOuverteDepuis === "premiers_pas";
     if(d.type === "avance"){ if(dansLArret) avancerArret(d.f); return; }
@@ -69838,13 +69848,18 @@ function phrasesRateesDues(tout){
 //  - ratee : le lendemain (la liste des ratees, v827, continue de la ramener ; la fin de seance aussi) ;
 //  - une phrase reussie ne revient avant son echeance que si le niveau n'a plus aucune phrase jamais vue ;
 //  - jamais a moins de quatre cartes de la carte de son mot (ANTI_ECHO_PHRASE : le verso montre deja l'exemple).
-// Le MOTEUR est commun (type « p » ; « t » et « s » attendent la ligne 85 : questions des themes et des scenes).
+// Le MOTEUR est commun : type « p » (les phrases), « t » (les questions des themes illustres, ligne 95 : la page
+// demande l'etat par le message « questions » et envoie chaque question jugee avec son « exercice », voir
+// visuel/prototype/themes/tirage.js) et « s » (les questions des scenes, ligne 95, second lot).
 // L'etat : { p: { id: [reussites de suite, jour de l'echeance, jour de la derniere vue] } }, l'id un hachage court du
 // texte. Il voyage dans le champ phrasesRateesJson (objet { v: 2, ratees, rev }), le seul que les regles bornees
 // acceptent sans y toucher ; 3 000 entrees au plus par type (~75 ko), les reussies les plus anciennes elaguees.
 const REVISIONS_KEY = PREFIXE_STOCKAGE + "revisions";
 const REVISION_JOURS = [60, 180, 365];
 const REVISION_MAX = 3000;
+// Ligne 95 : les questions des themes (« t ») et des scenes (« s ») a 1 500 chacune (~45 ko), pour que le document
+// Firestore garde de la marge sous 1 Mio (progress y pese deja ~420 ko chez un compte qui a croise 9 500 mots).
+const REVISION_MAX_TYPE = { p: REVISION_MAX, t: 1500, s: 1500 };
 const ANTI_ECHO_PHRASE = 4;
 function jourRevision(ms){ return Math.floor((ms === undefined ? Date.now() : ms) / 86400000); }
 function idRevision(texte){
@@ -69863,10 +69878,11 @@ function lireRevisions(){
 function elaguerRevisions(v){
     ["p", "t", "s"].forEach(k => {
         const ids = Object.keys(v[k] || {});
-        if(ids.length <= REVISION_MAX) return;
+        const max = REVISION_MAX_TYPE[k] || REVISION_MAX;
+        if(ids.length <= max) return;
         // Les reussies les plus anciennes partent d'abord ; une ratee reste (elle doit revenir).
         ids.sort((a, b) => ((v[k][a][0] > 0 ? 0 : 1) - (v[k][b][0] > 0 ? 0 : 1)) || (v[k][a][2] - v[k][b][2]));
-        ids.slice(0, ids.length - REVISION_MAX).forEach(id => { delete v[k][id]; });
+        ids.slice(0, ids.length - max).forEach(id => { delete v[k][id]; });
     });
     return v;
 }
