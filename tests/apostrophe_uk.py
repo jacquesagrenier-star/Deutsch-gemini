@@ -33,7 +33,9 @@ DROITE = re.compile("(?<=[" + CYR + "])'(?=[" + CYR + "])")
 MOT = re.compile("[" + CYR + "]+'[" + CYR + "'ʼ]*")
 APOSTROPHE_UK = "ʼ"
 TEXTES = (".json", ".js", ".html", ".py")
-HORS_CHAMP = ("retours/", "relecture_uk/", ".claude/", "video/", "scenes/", "audio/", "export/")
+HORS_CHAMP = ("retours/", "relecture_uk/", ".claude/", "video/", "scenes/", "audio/", "export/",
+              # ces deux-la ecrivent l'apostrophe droite expres (exemples, cas de recherche)
+              "tests/apostrophe_uk.py", "tests/lot89_langues.py")
 
 
 def fichiers_suivis():
