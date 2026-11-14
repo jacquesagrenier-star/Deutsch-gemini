@@ -15,20 +15,25 @@ distance dans les soins de base, d'une formation obligatoire sur les proches).
 
 | fichier | rôle |
 |---|---|
-| `visuel/prototype/telc/pflege/pflege.html` | la page (accueil, entraînement par épreuve, examen blanc complet) |
-| `visuel/prototype/telc/pflege/pflege-examen.js` | le module : questions, écrit, oral, enchaînement, verdict |
-| `visuel/prototype/telc/pflege/bareme.js` | le calcul du niveau et du certificat, pur (lu aussi par le contrôle) |
-| `visuel/prototype/telc/pflege/donnees/examen-1.json` | l'examen : allemand, plus le français et l'anglais des aides |
-| `visuel/prototype/telc/pflege/donnees/interface.json` | les textes de l'interface, fr et en |
-| `visuel/prototype/telc/pflege/donnees/langues/<l>.json` | tr, uk, fa, ar, pt, pl, ru : interface et aides |
-| `visuel/prototype/telc/pflege/donnees/voix-pflege.json` | le manifeste des pistes enregistrées (vide tant que rien n'est produit) |
-| `visuel/prototype/telc/pflege/outils/voix_pflege.py` | à blanc : le chiffrage ; `--pour-de-vrai` après accord |
+Selon le contrat de la session architecture (`pflege/FORMAT-DONNEES.md`, § 6) : une page à part,
+`visuel/prototype/telc-pflege/`, ouverte par l'app avec `ouvrirTelcPflege(partie)`.
+
+| fichier | rôle |
+|---|---|
+| `visuel/prototype/telc-pflege/telc.html` | la page (accueil, entraînement par épreuve, examen blanc complet) ; paramètres `apprendre`, `lang`, `nuit`, `partie` (hoeren, lesen, sprachbausteine, schreiben, sprechen, BLANC), `serie` |
+| `visuel/prototype/telc-pflege/examen.js` | le module : questions, écrit, oral, enchaînement, verdict ; à la fin, `resultat_examen` / `soins_telc` vers l'app |
+| `visuel/prototype/telc-pflege/bareme.js` | le calcul du niveau et du certificat, pur (lu aussi par le contrôle) |
+| `visuel/prototype/telc-pflege/donnees/<épreuve>.json` | `series` (une série = un examen blanc complet) ; l'allemand sans suffixe, les aides en 9 langues (`X_fr` … `X_ru`) |
+| `visuel/prototype/telc-pflege/donnees/interface.json` | les textes de l'interface, 9 langues |
+| `visuel/prototype/telc-pflege/donnees/voix-soins.json` | le manifeste des pistes enregistrées (vide tant que rien n'est produit) |
+| `visuel/prototype/telc-pflege/outils/voix_soins.py` | à blanc : le chiffrage ; `--pour-de-vrai` après accord |
+| `visuel/prototype/telc-pflege/outils/a_traduire.py` | ce qui manque dans les 9 langues ; le repli d'un lot traduit |
 | `tests/pflege_examen.py` | le contrôle |
 
-**Réutilisé tel quel, sans rien y changer** : `../../dtz/commun.css` et `commun.js` (voix, pistes, lecteur unique iOS,
-chronomètre, panneau, stockage, `parler()` vers l'app), `../telc-commun.js` (`textesTelc`, champs traduits),
-`../langues/<l>.js` (les mots communs : Continuer, Fermer…), `../../dtz/outils/voix.py` (la fabrication des pistes
-ElevenLabs v2, comme `../outils/voix_ecouter.py`). `examen-blanc.js` du telc A2·B1 n'est **pas** réutilisé : ses étapes et
+**Réutilisé tel quel, sans rien y changer** : `../dtz/commun.css` et `commun.js` (voix, pistes, lecteur unique iOS,
+chronomètre, panneau, stockage, `parler()` vers l'app), `../telc/telc-commun.js` (`textesTelc`),
+`../telc/langues/<l>.js` (les mots communs : Continuer, Fermer…), `../dtz/outils/voix.py` (la fabrication des pistes
+ElevenLabs v2, comme `../telc/outils/voix_ecouter.py`). `examen-blanc.js` du telc A2·B1 n'est **pas** réutilisé : ses étapes et
 son barème sont écrits en dur pour l'A2·B1 ; le modifier changerait l'A2·B1. Le module Pflege a son propre
 enchaînement, sur les mêmes briques.
 

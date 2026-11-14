@@ -1,4 +1,4 @@
-"""Le controle de l'examen blanc telc Deutsch B1·B2 Pflege (visuel/prototype/telc/pflege/).
+"""Le controle de l'examen blanc telc Deutsch B1·B2 Pflege (visuel/prototype/telc-pflege/).
 
     python tests/pflege_examen.py            # tout : 59 questions, ecrit, oral, 9 langues, bareme
     python tests/pflege_examen.py --partiel  # une epreuve pas encore ecrite n'est pas une faute (pendant le travail)
@@ -12,8 +12,8 @@ Ce qu'il verifie (pflege/FORMAT-TELC-PFLEGE.md) :
      pas deux fois la meme solution ; aucune lettre ne porte plus de la moitie des bonnes reponses d'une partie a
      choix a, b, c ;
   3. les AIDES : chaque question a son explication en francais et en anglais, chaque objet traduit a sa cle ;
-  4. les 9 LANGUES : l'interface (interface.json fr et en, langues/interface.<l>.json pour les 7 autres) et les
-     aides de chaque epreuve (langues/<epreuve>.<l>.json) ont toutes les cles du francais, non vides ;
+  4. les 9 LANGUES (contrat pflege/FORMAT-DONNEES.md) : interface.json a les 9 langues avec les cles du francais, et
+     chaque champ traduit X d'un objet a X_fr … X_ru, non vides, avec les memes {x} ;
   5. l'AUDIO : aucun chiffre dans un texte dit (les nombres en lettres), chaque voix a son identifiant ;
   6. l'ECRIT : A et B, chaque information de la fiche retrouvee dans le texte modele, le modele entre 120 et 170 mots ;
   7. l'ORAL : les cinq taches et leurs points (5, 5, 15, 5, 20), deux sujets d'expose, chaque reponse modele
@@ -21,7 +21,9 @@ Ce qu'il verifie (pflege/FORMAT-TELC-PFLEGE.md) :
   8. le BAREME (bareme.js, par node) : chaque seuil (26/27, 42/43 ; 6/7, 14/15 ; 34,5/35, 74,5/75), les 13 cas du
      B1 et les 3 du B2 du tableau officiel, les planchers (19 sur 59, 4 sur 20), l'oral qui decide, le contenu a 0,
      l'expose lu ;
-  9. le CODE : chaque T("pf_…") de pflege-examen.js existe dans l'interface.
+  9. le CODE : chaque T("pf_…") de examen.js existe dans l'interface ; la page envoie le resultat au format du contrat
+     (resultat_examen, soins_telc).
+Les donnees sont en « series » (une serie = un examen blanc complet) : chaque serie est controlee.
 """
 import io
 import json
@@ -32,10 +34,9 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 DEPOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ICI = os.path.join(DEPOT, "visuel", "prototype", "telc", "pflege")
+ICI = os.path.join(DEPOT, "visuel", "prototype", "telc-pflege")
 DONNEES = os.path.join(ICI, "donnees")
-MODELL = os.path.join(DONNEES, "modell-1")
-LANGUES = ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"]
+LANGUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]
 AUTRES = LANGUES[2:]
 EPREUVES = ["hoeren", "lesen", "sprachbausteine", "schreiben", "sprechen"]
 FORMAT = {"hoeren": [4, 10, 6, 3], "lesen": [4, 5, 6, 3], "sprachbausteine": [8, 10]}
@@ -90,210 +91,229 @@ def mots(t):
 
 
 # ------------------------------------------------------------------ les donnees
-D = {e: lire(os.path.join(MODELL, e + ".json")) for e in EPREUVES}
+FICHIERS = {e: lire(os.path.join(DONNEES, e + ".json")) for e in EPREUVES}
 for e in EPREUVES:
-    if D[e] is None:
+    if FICHIERS[e] is None:
         (notes if PARTIEL else fautes).append("%s.json absent" % e)
-
-# 1-2. le format et les bonnes reponses
-tous_nr = []
-for e, nombres in FORMAT.items():
-    d = D[e]
-    if not d:
-        continue
-    teile = d.get("teile", [])
-    if [len(items_de(t)) for t in teile] != nombres:
-        faute("%s : %s questions par partie, le telc en demande %s" % (e, [len(items_de(t)) for t in teile], nombres))
-    nr = [it["nr"] for t in teile for it in items_de(t)]
-    attendu = list(range(DEBUT[e], DEBUT[e] + sum(nombres)))
-    if nr != attendu:
-        faute("%s : numeros %s, attendus %d a %d dans l'ordre" % (e, nr, attendu[0], attendu[-1]))
-    tous_nr += nr
-    for t in teile:
-        its = items_de(t)
-        wahl = t.get("wahl")
-        abc = []
-        for it in its + ([t["beispiel"]] if t.get("beispiel") else []):
-            ou = "%s %s n%s" % (e, t["cle"], it.get("nr"))
-            typ, bon = it.get("typ"), it.get("bon")
-            if typ == "abc":
-                o = it.get("o") or []
-                if len(o) != 3 or len(set(o)) != 3:
-                    faute(ou + " : trois choix distincts attendus")
-                if bon not in (0, 1, 2):
-                    faute(ou + " : « bon » hors des trois choix")
-                if it is not t.get("beispiel"):
-                    abc.append(bon)
-                if not it.get("frage"):
-                    faute(ou + " : pas de question")
-            elif typ == "rf":
-                if bon not in (0, 1):
-                    faute(ou + " : vrai / faux sans 0 ou 1")
-                if not it.get("frage"):
-                    faute(ou + " : pas d'affirmation")
-            elif typ == "zuord":
-                if not wahl:
-                    faute(ou + " : association sans liste « wahl »")
-                elif not (bon == "x" and t.get("mitX")) and not (isinstance(bon, int) and 0 <= bon < len(wahl)):
-                    faute(ou + " : « bon » hors de la liste")
-            else:
-                faute(ou + " : type inconnu %r" % typ)
-            if it is not t.get("beispiel") and not (it.get("erkl_fr") and it.get("erkl_en")):
-                faute(ou + " : explication fr / en manquante")
-        if len(abc) >= 4:
-            for k in range(3):
-                if abc.count(k) * 2 > len(abc):
-                    faute("%s %s : la lettre %s porte %d bonnes reponses sur %d" % (e, t["cle"], "abc"[k], abc.count(k), len(abc)))
-        if wahl:
-            if len(set(json.dumps(w, ensure_ascii=False) for w in wahl)) != len(wahl):
-                faute("%s %s : deux choix identiques dans « wahl »" % (e, t["cle"]))
-            bons = [it["bon"] for it in its if it.get("typ") == "zuord"] + ([t["beispiel"]["bon"]] if t.get("beispiel") else [])
-            pris = [b for b in bons if b != "x"]
-            if len(set(pris)) != len(pris):
-                faute("%s %s : une meme solution sert deux fois" % (e, t["cle"]))
-            reste = len(wahl) - len(pris)
-            attendu_reste = {("hoeren", 4): 2, ("lesen", 1): 2, ("lesen", 2): 4, ("sprachbausteine", 1): 2}.get((e, t["teil"]))
-            if attendu_reste is not None and reste != attendu_reste:
-                faute("%s %s : %d choix sans question, le format en laisse %d" % (e, t["cle"], reste, attendu_reste))
-            if (e, t["teil"]) == ("lesen", 2) and (bons.count("x") != 1 or len(wahl) != 8 or not t.get("mitX")):
-                faute("lesen L2 : huit lignes du plan et exactement une phrase « x » attendues")
-        # un trou {n} du document pour chaque question des elements de langue
-        if e == "sprachbausteine":
-            texte = " ".join((t.get("doc") or {}).get("absaetze", []))
-            trous = [int(n) for n in re.findall(r"\{(\d+)\}", texte)]
-            if trous != [it["nr"] for it in its]:
-                faute("%s : les trous du texte %s ne suivent pas les questions" % (t["cle"], trous))
-if not PARTIEL and len(tous_nr) != 59:
-    faute("%d questions en tout, le telc en compte 59" % len(tous_nr))
-if D["hoeren"]:
-    for t in D["hoeren"]["teile"]:
-        if t["teil"] in (1, 4) and not t.get("beispiel"):
-            faute("hoeren T%d : l'exemple manque" % t["teil"])
-
-# 3. les cles des objets traduits
+    elif not FICHIERS[e].get("series"):
+        faute("%s.json : pas de « series »" % e)
+IDS = sorted({s["id"] for f in FICHIERS.values() if f for s in f.get("series", [])})
 for e in EPREUVES:
-    if not D[e]:
-        continue
-    vues = {}
-    for o, champs, ch in objets_traduits(D[e]):
-        if "cle" not in o:
-            faute("%s %s : objet traduit sans « cle »" % (e, ch))
-            continue
-        if o["cle"] in vues and vues[o["cle"]] is not o:
-            faute("%s : cle %s en double" % (e, o["cle"]))
-        vues[o["cle"]] = o
-        for c in champs:
-            if not o.get(c + "_en"):
-                faute("%s %s.%s : pas d'anglais" % (e, o["cle"], c))
+    if FICHIERS[e] and sorted(s["id"] for s in FICHIERS[e]["series"]) != IDS:
+        faute("%s.json : les series %s, les autres epreuves ont %s" % (e, [s["id"] for s in FICHIERS[e]["series"]], IDS))
 
-# 4. les 9 langues
-UI = lire(os.path.join(DONNEES, "interface.json")) or {}
-if set(UI.get("fr", {})) != set(UI.get("en", {})):
-    faute("interface.json : fr et en n'ont pas les memes cles (%s)" % sorted(set(UI.get("fr", {})) ^ set(UI.get("en", {}))))
-for l in AUTRES:
-    L = lire(os.path.join(DONNEES, "langues", "interface.%s.json" % l))
-    if L is None:
-        (notes if PARTIEL else fautes).append("langues/interface.%s.json absent" % l)
-        continue
-    manque = [k for k in UI["fr"] if not (L.get(k) or "").strip()]
-    if manque:
-        faute("interface %s : %d cle(s) manquante(s) : %s" % (l, len(manque), ", ".join(manque[:6])))
-    for k, v in L.items():
-        if k in UI["fr"]:
-            for x in re.findall(r"\{[a-z]+\}", UI["fr"][k]):
-                if x not in v:
-                    faute("interface %s.%s : la valeur %s n'y est pas" % (l, k, x))
+def controler(D, tous_nr):
+    """Les controles 1 a 7 sur une serie : D = {epreuve: contenu de la serie (avec « voix »)}."""
+    # 1-2. le format et les bonnes reponses
+    for e, nombres in FORMAT.items():
+        d = D[e]
+        if not d:
+            continue
+        teile = d.get("teile", [])
+        if [len(items_de(t)) for t in teile] != nombres:
+            faute("%s : %s questions par partie, le telc en demande %s" % (e, [len(items_de(t)) for t in teile], nombres))
+        nr = [it["nr"] for t in teile for it in items_de(t)]
+        attendu = list(range(DEBUT[e], DEBUT[e] + sum(nombres)))
+        if nr != attendu:
+            faute("%s : numeros %s, attendus %d a %d dans l'ordre" % (e, nr, attendu[0], attendu[-1]))
+        tous_nr.extend(nr)
+        for t in teile:
+            its = items_de(t)
+            wahl = t.get("wahl")
+            abc = []
+            for it in its + ([t["beispiel"]] if t.get("beispiel") else []):
+                ou = "%s %s n%s" % (e, t["cle"], it.get("nr"))
+                typ, bon = it.get("typ"), it.get("bon")
+                if typ == "abc":
+                    o = it.get("o") or []
+                    if len(o) != 3 or len(set(o)) != 3:
+                        faute(ou + " : trois choix distincts attendus")
+                    if bon not in (0, 1, 2):
+                        faute(ou + " : « bon » hors des trois choix")
+                    if it is not t.get("beispiel"):
+                        abc.append(bon)
+                    if not it.get("frage"):
+                        faute(ou + " : pas de question")
+                elif typ == "rf":
+                    if bon not in (0, 1):
+                        faute(ou + " : vrai / faux sans 0 ou 1")
+                    if not it.get("frage"):
+                        faute(ou + " : pas d'affirmation")
+                elif typ == "zuord":
+                    if not wahl:
+                        faute(ou + " : association sans liste « wahl »")
+                    elif not (bon == "x" and t.get("mitX")) and not (isinstance(bon, int) and 0 <= bon < len(wahl)):
+                        faute(ou + " : « bon » hors de la liste")
+                else:
+                    faute(ou + " : type inconnu %r" % typ)
+                if it is not t.get("beispiel") and not (it.get("erkl_fr") and it.get("erkl_en")):
+                    faute(ou + " : explication fr / en manquante")
+            if len(abc) >= 4:
+                for k in range(3):
+                    if abc.count(k) * 2 > len(abc):
+                        faute("%s %s : la lettre %s porte %d bonnes reponses sur %d" % (e, t["cle"], "abc"[k], abc.count(k), len(abc)))
+            if wahl:
+                if len(set(json.dumps(w, ensure_ascii=False) for w in wahl)) != len(wahl):
+                    faute("%s %s : deux choix identiques dans « wahl »" % (e, t["cle"]))
+                bons = [it["bon"] for it in its if it.get("typ") == "zuord"] + ([t["beispiel"]["bon"]] if t.get("beispiel") else [])
+                pris = [b for b in bons if b != "x"]
+                if len(set(pris)) != len(pris):
+                    faute("%s %s : une meme solution sert deux fois" % (e, t["cle"]))
+                reste = len(wahl) - len(pris)
+                attendu_reste = {("hoeren", 4): 2, ("lesen", 1): 2, ("lesen", 2): 4, ("sprachbausteine", 1): 2}.get((e, t["teil"]))
+                if attendu_reste is not None and reste != attendu_reste:
+                    faute("%s %s : %d choix sans question, le format en laisse %d" % (e, t["cle"], reste, attendu_reste))
+                if (e, t["teil"]) == ("lesen", 2) and (bons.count("x") != 1 or len(wahl) != 8 or not t.get("mitX")):
+                    faute("lesen L2 : huit lignes du plan et exactement une phrase « x » attendues")
+            # un trou {n} du document pour chaque question des elements de langue
+            if e == "sprachbausteine":
+                texte = " ".join((t.get("doc") or {}).get("absaetze", []))
+                trous = [int(n) for n in re.findall(r"\{(\d+)\}", texte)]
+                if trous != [it["nr"] for it in its]:
+                    faute("%s : les trous du texte %s ne suivent pas les questions" % (t["cle"], trous))
+    if D["hoeren"]:
+        for t in D["hoeren"]["teile"]:
+            if t["teil"] in (1, 4) and not t.get("beispiel"):
+                faute("hoeren T%d : l'exemple manque" % t["teil"])
+
+    # 3. les cles des objets traduits
     for e in EPREUVES:
         if not D[e]:
             continue
-        T = lire(os.path.join(MODELL, "langues", "%s.%s.json" % (e, l)))
-        if T is None:
-            (notes if PARTIEL else fautes).append("langues/%s.%s.json absent" % (e, l))
-            continue
-        manque = [o["cle"] + "." + c for o, champs, _ in objets_traduits(D[e]) if "cle" in o for c in champs
-                  if not (T.get(o["cle"] + "." + c) or "").strip()]
-        if manque:
-            faute("%s %s : %d aide(s) sans traduction : %s" % (e, l, len(manque), ", ".join(manque[:5])))
-
-# 5. l'audio
-for e in ("hoeren", "sprechen"):
-    if not D[e]:
-        continue
-    voix = dict((D["hoeren"] or {}).get("voix", {}))
-    voix.update(D[e].get("voix", {}))
-    for l in textes_dits(D[e]):
-        if re.search(r"\d", l["text"]):
-            faute("%s : chiffres dans un texte dit (a ecrire en lettres) : %s" % (e, l["text"][:60]))
-        if not (voix.get(l["wer"]) or {}).get("voice_id"):
-            faute("%s : la voix « %s » n'a pas d'identifiant" % (e, l["wer"]))
-
-# 6. l'ecrit
-S = D["schreiben"]
-if S:
-    if [a["id"] for a in S.get("aufgaben", [])] != ["A", "B"]:
-        faute("schreiben : les taches A et B attendues")
-    for a in S.get("aufgaben", []):
-        if len(a.get("infos", [])) < 10:
-            faute("schreiben %s : %d informations sur la fiche, trop peu" % (a["id"], len(a.get("infos", []))))
-        modele = " ".join(a.get("modele", [])).lower()
-        n = mots(modele)
-        if not 120 <= n <= 170:
-            faute("schreiben %s : le modele fait %d mots (120 a 170)" % (a["id"], n))
-        for i in a.get("infos", []):
-            try:
-                ok = any(re.search(m, modele, re.I) for m in i["mots"])
-            except re.error as x:
-                faute("schreiben %s %s : mot repere invalide (%s)" % (a["id"], i["cle"], x))
+        vues = {}
+        for o, champs, ch in objets_traduits(D[e]):
+            if "cle" not in o:
+                faute("%s %s : objet traduit sans « cle »" % (e, ch))
                 continue
-            if not ok:
-                faute("schreiben %s : l'information %s n'est pas dans le modele" % (a["id"], i["cle"]))
-        if not a.get("redemittel"):
-            faute("schreiben %s : pas de tournures utiles" % a["id"])
+            if o["cle"] in vues and vues[o["cle"]] is not o:
+                faute("%s : cle %s en double" % (e, o["cle"]))
+            vues[o["cle"]] = o
+            for c in champs:
+                if not o.get(c + "_en"):
+                    faute("%s %s.%s : pas d'anglais" % (e, o["cle"], c))
 
-# 7. l'oral
-SP = D["sprechen"]
-if SP:
-    attendu = [("sp1a", 5), ("sp1b", 5), ("sp2a", 15), ("sp2b", 5), ("sp3", 20)]
-    if [(t["cle"], t["sur"]) for t in SP.get("taches", [])] != attendu:
-        faute("sprechen : taches %s, attendues %s" % ([(t["cle"], t["sur"]) for t in SP.get("taches", [])], attendu))
-    t2a = next((t for t in SP.get("taches", []) if t.get("themen")), None)
-    if not t2a or len(t2a["themen"]) != 2:
-        faute("sprechen : deux sujets d'expose attendus en 2A")
-    ids = [th["id"] for th in (t2a or {}).get("themen", [])]
+    # 4. les 9 langues, dans les objets
+    for e in EPREUVES:
+        if not D[e]:
+            continue
+        for o, champs, ch in objets_traduits(D[e]):
+            for c in champs:
+                fr = o[c + "_fr"]
+                for l in LANGUES[1:]:
+                    v = (o.get(c + "_" + l) or "").strip()
+                    if not v:
+                        faute("%s %s.%s : pas de %s" % (e, o.get("cle", ch), c, l))
+                    elif sorted(re.findall(r"\{[a-z]+\}", v)) != sorted(re.findall(r"\{[a-z]+\}", fr)):
+                        faute("%s %s.%s %s : les {x} different du francais" % (e, o.get("cle", ch), c, l))
 
-    def verifier_muster(nom, kriterien, muster):
-        t = " ".join(muster or [])
-        if not t:
-            faute("sprechen %s : pas de reponse modele" % nom)
-            return
-        for k in kriterien or []:
-            ok = True
-            if k.get("min_woerter"):
-                ok = ok and mots(t) >= k["min_woerter"]
-            if k.get("mots"):
-                ok = ok and sum(1 for m in k["mots"] if re.search(m, t, re.I)) >= k.get("mindestens", 1)
-            if not ok:
-                faute("sprechen %s : la reponse modele ne remplit pas « %s »" % (nom, k.get("label_fr")))
+    # 5. l'audio
+    for e in ("hoeren", "sprechen"):
+        if not D[e]:
+            continue
+        voix = dict((D["hoeren"] or {}).get("voix", {}))
+        voix.update(D[e].get("voix", {}))
+        for l in textes_dits(D[e]):
+            if re.search(r"\d", l["text"]):
+                faute("%s : chiffres dans un texte dit (a ecrire en lettres) : %s" % (e, l["text"][:60]))
+            if not (voix.get(l["wer"]) or {}).get("voice_id"):
+                faute("%s : la voix « %s » n'a pas d'identifiant" % (e, l["wer"]))
 
-    for t in SP.get("taches", []):
-        if t.get("themen"):
-            for th in t["themen"]:
-                verifier_muster(t["cle"] + "/" + th["id"], th.get("kriterien"), th.get("muster"))
-        elif t.get("tours_nach_thema"):
-            if sorted(t["tours_nach_thema"]) != sorted(ids):
-                faute("sprechen %s : des tours pour chaque sujet attendus" % t["cle"])
-            for th in ids:
-                verifier_muster(t["cle"] + "/" + th, (t.get("kriterien_nach_thema") or {}).get(th) or t.get("kriterien"),
-                                (t.get("muster_nach_thema") or {}).get(th) or t.get("muster"))
-        else:
-            if not t.get("tours"):
-                faute("sprechen %s : pas de tours de parole" % t["cle"])
-            verifier_muster(t["cle"], t.get("kriterien"), t.get("muster"))
-        for tour in (t.get("tours") or []) + [x for ts in (t.get("tours_nach_thema") or {}).values() for x in ts]:
-            if tour.get("consigne") and tour["consigne"] not in UI.get("fr", {}):
-                faute("sprechen %s : consigne %s absente de l'interface" % (t["cle"], tour["consigne"]))
-            if not tour.get("limite"):
-                faute("sprechen %s : un tour sans limite de temps" % t["cle"])
+    # 6. l'ecrit
+    S = D["schreiben"]
+    if S:
+        if [a["id"] for a in S.get("aufgaben", [])] != ["A", "B"]:
+            faute("schreiben : les taches A et B attendues")
+        for a in S.get("aufgaben", []):
+            if len(a.get("infos", [])) < 10:
+                faute("schreiben %s : %d informations sur la fiche, trop peu" % (a["id"], len(a.get("infos", []))))
+            modele = " ".join(a.get("modele", [])).lower()
+            n = mots(modele)
+            if not 120 <= n <= 170:
+                faute("schreiben %s : le modele fait %d mots (120 a 170)" % (a["id"], n))
+            for i in a.get("infos", []):
+                try:
+                    ok = any(re.search(m, modele, re.I) for m in i["mots"])
+                except re.error as x:
+                    faute("schreiben %s %s : mot repere invalide (%s)" % (a["id"], i["cle"], x))
+                    continue
+                if not ok:
+                    faute("schreiben %s : l'information %s n'est pas dans le modele" % (a["id"], i["cle"]))
+            if not a.get("redemittel"):
+                faute("schreiben %s : pas de tournures utiles" % a["id"])
+
+    # 7. l'oral
+    SP = D["sprechen"]
+    if SP:
+        attendu = [("sp1a", 5), ("sp1b", 5), ("sp2a", 15), ("sp2b", 5), ("sp3", 20)]
+        if [(t["cle"], t["sur"]) for t in SP.get("taches", [])] != attendu:
+            faute("sprechen : taches %s, attendues %s" % ([(t["cle"], t["sur"]) for t in SP.get("taches", [])], attendu))
+        t2a = next((t for t in SP.get("taches", []) if t.get("themen")), None)
+        if not t2a or len(t2a["themen"]) != 2:
+            faute("sprechen : deux sujets d'expose attendus en 2A")
+        ids = [th["id"] for th in (t2a or {}).get("themen", [])]
+
+        def verifier_muster(nom, kriterien, muster):
+            t = " ".join(muster or [])
+            if not t:
+                faute("sprechen %s : pas de reponse modele" % nom)
+                return
+            for k in kriterien or []:
+                ok = True
+                if k.get("min_woerter"):
+                    ok = ok and mots(t) >= k["min_woerter"]
+                if k.get("mots"):
+                    ok = ok and sum(1 for m in k["mots"] if re.search(m, t, re.I)) >= k.get("mindestens", 1)
+                if not ok:
+                    faute("sprechen %s : la reponse modele ne remplit pas « %s »" % (nom, k.get("label_fr")))
+
+        for t in SP.get("taches", []):
+            if t.get("themen"):
+                for th in t["themen"]:
+                    verifier_muster(t["cle"] + "/" + th["id"], th.get("kriterien"), th.get("muster"))
+            elif t.get("tours_nach_thema"):
+                if sorted(t["tours_nach_thema"]) != sorted(ids):
+                    faute("sprechen %s : des tours pour chaque sujet attendus" % t["cle"])
+                for th in ids:
+                    verifier_muster(t["cle"] + "/" + th, (t.get("kriterien_nach_thema") or {}).get(th) or t.get("kriterien"),
+                                    (t.get("muster_nach_thema") or {}).get(th) or t.get("muster"))
+            else:
+                if not t.get("tours"):
+                    faute("sprechen %s : pas de tours de parole" % t["cle"])
+                verifier_muster(t["cle"], t.get("kriterien"), t.get("muster"))
+            for tour in (t.get("tours") or []) + [x for ts in (t.get("tours_nach_thema") or {}).values() for x in ts]:
+                if tour.get("consigne") and tour["consigne"] not in UI.get("fr", {}):
+                    faute("sprechen %s : consigne %s absente de l'interface" % (t["cle"], tour["consigne"]))
+                if not tour.get("limite"):
+                    faute("sprechen %s : un tour sans limite de temps" % t["cle"])
+
+
+
+UI = lire(os.path.join(DONNEES, "interface.json")) or {}
+for l in LANGUES:
+    if l not in UI:
+        faute("interface.json : la langue %s manque" % l)
+        continue
+    manque = [k for k in UI["fr"] if not (UI[l].get(k) or "").strip()]
+    if manque:
+        faute("interface %s : %d cle(s) manquante(s) : %s" % (l, len(manque), ", ".join(manque[:6])))
+    en_trop = [k for k in UI[l] if k not in UI["fr"]]
+    if en_trop:
+        faute("interface %s : cle(s) inconnue(s) : %s" % (l, ", ".join(en_trop[:6])))
+    for k, v in UI[l].items():
+        if k in UI["fr"] and sorted(re.findall(r"\{[a-z]+\}", v)) != sorted(re.findall(r"\{[a-z]+\}", UI["fr"][k])):
+            faute("interface %s.%s : les {x} different du francais" % (l, k))
+
+for sid in IDS:
+    D = {}
+    for e in EPREUVES:
+        f = FICHIERS[e]
+        s = next((x for x in (f or {}).get("series", []) if x["id"] == sid), None) if f else None
+        D[e] = dict(s, voix=f.get("voix", {})) if s else None
+    tous = []
+    controler(D, tous)
+    if not PARTIEL and len(tous) != 59:
+        faute("serie %s : %d questions en tout, le telc en compte 59" % (sid, len(tous)))
+    notes.append("serie %s : %d questions controlees" % (sid, len(tous)))
 
 # 8. le bareme, par node
 SONDE = r"""
@@ -339,6 +359,11 @@ eq("cran hors bareme", B.borner(15, 13), 12);
 eq("contenu complet", B.inhaltPunkte(16, 16), 5); eq("contenu 2 oublis", B.inhaltPunkte(16, 14), 5);
 eq("contenu 3 oublis", B.inhaltPunkte(16, 13), 4); eq("contenu 12 oublis", B.inhaltPunkte(16, 4), 1);
 eq("contenu rien", B.inhaltPunkte(16, 0), 0);
+// les 13 cas de la session architecture (tests/pflege_certificat.js, certificatSoins d'index.html) : la page et
+// l'app doivent dire la meme chose
+const CAS = [[59,20,100,"B2"],[43,7,75,"B2"],[42,15,75,"B2"],[42,14,75,"B1"],[43,3,75,"aucun"],[43,4,75,"B1"],
+  [18,15,80,"aucun"],[19,7,80,"B1"],[50,18,74.5,"B1"],[50,18,34.5,"aucun"],[26,6,90,"aucun"],[27,0,40,"aucun"],[27,4,40,"B1"]];
+CAS.forEach(([h, s, o, att]) => { const z = B.zertifikat({hls: h, schreiben: s, sprechen: o}); eq("app " + h + "/" + s + "/" + o, z ? z.toUpperCase() : "aucun", att); });
 console.log(JSON.stringify(r));
 """
 try:
@@ -352,12 +377,14 @@ except Exception as x:
     faute("bareme : node n'a pas pu tourner (%s)" % x)
 
 # 9. le code
-code = io.open(os.path.join(ICI, "pflege-examen.js"), encoding="utf-8").read()
+code = io.open(os.path.join(ICI, "examen.js"), encoding="utf-8").read()
+if 'parler("resultat_examen"' not in code or 'examen: "soins_telc"' not in code:
+    faute("examen.js : le resultat ne part pas au format du contrat (resultat_examen, soins_telc)")
 for k in sorted(set(re.findall(r'T\("(pf_[a-z0-9_]+)"', code))):
     if k.endswith("_"):
         continue
     if k not in UI.get("fr", {}):
-        faute("pflege-examen.js : T(\"%s\") absent de l'interface" % k)
+        faute("examen.js : T(\"%s\") absent de l'interface" % k)
 familles = [("pf_e_", ["hoeren", "lesen", "schreiben", "vorbereitung", "sprechen", "grilles"], ["", "_s", "_q"]),
             ("pf_epr_", EPREUVES, ["", "_s"]),
             ("pf_jonas_", ["hoeren", "lesen", "sprachbausteine", "schreiben", "b1", "b2", "rien"], [""]),

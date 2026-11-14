@@ -3,10 +3,10 @@
 //
 // LE FORMAT EST CELUI DU TELC (pflege/FORMAT-TELC-PFLEGE.md), LE CONTENU EST A WORTANDO : 59 questions (ecoute 23,
 // lecture 18, elements de langue 18), l'ecrit A ou B sur 20, l'oral en cinq temps sur 100, puis le certificat
-// (bareme.js : l'oral decide). Les donnees : donnees/modell-1/<epreuve>.json ; l'interface : donnees/interface.json
-// (fr, en) et donnees/langues/interface.<langue>.json ; les aides traduites : donnees/modell-1/langues/<epreuve>.<l>.json.
+// (bareme.js : l'oral decide). Les donnees : donnees/<epreuve>.json (series) ; l'interface : donnees/interface.json ;
+// les 9 langues dans les objets eux-memes. Contrat avec l'app : pflege/FORMAT-DONNEES.md, § 6.
 //
-// CE QUI EST REPRIS DU MODULE TELC A2·B1, SANS Y TOUCHER : ../../dtz/commun.js (la voix, les pistes enregistrees,
+// CE QUI EST REPRIS DU MODULE TELC A2·B1, SANS Y TOUCHER : ../dtz/commun.js (la voix, les pistes enregistrees,
 // le lecteur unique d'iOS, le chronometre, le panneau, le stockage local, parler() vers l'app, DTZ.partie /
 // DTZ.charger / DTZ.surRetour) et ../telc-commun.js (textesTelc, le dictionnaire des 7 autres langues).
 // examen-blanc.js de l'A2·B1 n'est pas repris : ses etapes et son bareme y sont ecrits en dur.
@@ -20,41 +20,46 @@
 
 (() => {
 const B = PF_BAREME;
-const MODELL = "modell-1";
 const EPR = ["hoeren", "lesen", "sprachbausteine", "schreiben", "sprechen"];
 const AUTRES = !["fr", "en"].includes(LANGUE);
-const PF = { d: {}, tr: {}, items: [], parNr: {}, teile: [], lecture: null };
+const PF = { d: {}, items: [], parNr: {}, teile: [], lecture: null, serie: 1 };
 const ANTWORTZEIT = 8;          // secondes pour repondre apres chaque texte de l'ecoute, a l'examen
-const PREFIXE_PISTE = "pf1-";   // les cles des pistes enregistrees (donnees/voix-pflege.json)
+const prefixePiste = () => "s" + PF.serie + "-";   // les cles des pistes enregistrees (donnees/voix-soins.json)
 
 // ---------------------------------------------------------------- le chargement
+// donnees/<epreuve>.json : {_note, voix, series: [{id, titre, …}]} ; une serie est un examen blanc complet. Les 9 langues
+// d'interface sont dans les objets (X_fr, X_en, X_tr…) et dans interface.json ({fr: {…}, en: {…}, tr: {…}…}).
+// ?serie=N choisit la serie (la premiere sinon) : l'examen blanc garde la sienne dans son etat.
 function json(url, facultatif){
   return fetch(url, { cache: "no-cache" })
     .then(r => { if (!r.ok) throw new Error(url); return r.json(); })
     .catch(e => { if (facultatif) return {}; throw e; });
 }
+PF.serie = Number(Q.get("serie")) || (lire("blanc", null) || {}).serie || 1;
 DTZ.charger(Promise.all([
   json("donnees/interface.json"),
-  AUTRES ? json("donnees/langues/interface." + LANGUE + ".json", true) : Promise.resolve({}),
   // une epreuve pas encore ecrite laisse sa tuile grisee (« bientot ») : son fichier est facultatif
-  ...EPR.map(e => json("donnees/" + MODELL + "/" + e + ".json", true)),
-  ...EPR.map(e => AUTRES ? json("donnees/" + MODELL + "/langues/" + e + "." + LANGUE + ".json", true) : Promise.resolve({})),
-  json("donnees/voix-pflege.json", true)
-]).then(([ui, uiL, ...reste]) => {
+  ...EPR.map(e => json("donnees/" + e + ".json", true)),
+  json("donnees/voix-soins.json", true)
+]).then(([ui, ...reste]) => {
   textesTelc({ fr: ui.fr, en: ui.en });
-  if (AUTRES) Object.assign(TXT, uiL || {});
-  EPR.forEach((e, k) => { PF.d[e] = reste[k]; Object.assign(PF.tr, reste[EPR.length + k] || {}); });
-  const m = reste[2 * EPR.length] || {};
+  if (AUTRES) Object.assign(TXT, ui[LANGUE] || {});
+  EPR.forEach((e, k) => {
+    const d = reste[k] || {}, series = d.series || [];
+    const s = series.find(x => x.id === PF.serie) || series[0] || {};
+    PF.d[e] = Object.assign({ voix: d.voix || {} }, s);
+  });
+  const m = reste[EPR.length] || {};
   for (const k in m) if (k[0] !== "_") DTZ_PISTES[k] = m[k];
   for (const e of EPR) for (const w in (PF.d[e].voix || {})) DTZ_VOIX[w] = { sexe: PF.d[e].voix[w].sexe };
   indexer();
   inscrire();
 }));
 
-// une aide traduite : le champ « X_<langue> », sinon le fichier de la langue (cle.X), sinon le francais
+// une aide dans la langue d'interface (X_<langue>), sinon le francais
 function tr(o, champ){
   if (!o) return "";
-  return o[champ + "_" + LANGUE] || PF.tr[o.cle + "." + champ] || o[champ + "_fr"] || "";
+  return o[champ + "_" + LANGUE] || o[champ + "_fr"] || "";
 }
 const ABCX = "abcdefghij";
 const lettre = v => v === "x" ? "x" : ABCX[v];
@@ -218,7 +223,7 @@ function cleAudio(teil, cle){
   const g = (groupesDe(teil) || []).find(x => x.cle === cle); if (g) return g.audio;
   const it = itemsDe(teil).find(x => x.cle === cle); return it && it.audio;
 }
-const jouerCle = (cle, audio) => jouerPiste(PREFIXE_PISTE + cle, audio);
+const jouerCle = (cle, audio) => jouerPiste(prefixePiste() + cle, audio);
 
 // ================================================================= L'ENTRAINEMENT PAR EPREUVE
 // Une epreuve a la fois, partie par partie, sans chronometre ; « Corriger » montre les reponses, l'explication et,
@@ -258,7 +263,7 @@ function ongletsTeile(epr, k){
 }
 
 // ================================================================= L'EXAMEN BLANC
-// L'etat (stockage local wortando_telc_pflege_blanc) : {debut, etape, rep, schreiben, sprechen, vorbereitung,
+// L'etat (stockage local wortando_soins_telc_blanc) : {debut, etape, rep, schreiben, sprechen, vorbereitung,
 // grilles, fini}. On peut quitter et reprendre : l'etape en cours recommence, les reponses deja donnees restent.
 const ETAPES = ["hoeren", "lesen", "schreiben", "vorbereitung", "sprechen", "grilles"];
 const MINUTES = { hoeren: 25, lesen: 60, schreiben: 30, vorbereitung: 20, sprechen: 16 };
@@ -283,7 +288,7 @@ function blancIntro(){
   } else bouton(T("pf_commencer"), nouveau);
 }
 function nouveau(){
-  BL = { debut: Date.now(), etape: 0, rep: {}, schreiben: null, sprechen: {}, vorbereitung: "", grilles: {}, fini: false };
+  BL = { debut: Date.now(), serie: PF.serie, etape: 0, rep: {}, schreiben: null, sprechen: {}, vorbereitung: "", grilles: {}, fini: false };
   sauver(); etape();
 }
 function suivante(){ arreterChrono(); BL.etape++; sauver(); etape(); }

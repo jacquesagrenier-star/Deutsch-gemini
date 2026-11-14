@@ -1,8 +1,8 @@
 """Les voix enregistrees de l'examen blanc telc Deutsch B1·B2 Pflege : une piste par texte entendu.
 
-    python visuel/prototype/telc/pflege/outils/voix_pflege.py                    # a blanc : ce qui manque, ce que ca coute
-    python visuel/prototype/telc/pflege/outils/voix_pflege.py --detail           # le compte par piste
-    python visuel/prototype/telc/pflege/outils/voix_pflege.py --pour-de-vrai --plafond N   # APRES l'accord du chef
+    python visuel/prototype/telc-pflege/outils/voix_soins.py                    # a blanc : ce qui manque, ce que ca coute
+    python visuel/prototype/telc-pflege/outils/voix_soins.py --detail           # le compte par piste
+    python visuel/prototype/telc-pflege/outils/voix_soins.py --pour-de-vrai --plafond N   # APRES l'accord du chef
 
 AUCUNE DEPENSE SANS ACCORD (decision de Jacques du 14 nov. 2026, Q7 : chaque lot annonce au chef avec son cout avant
 d'etre lance). ElevenLabs multilingual v2 SEULEMENT, jamais Flash (regle du 12 oct.).
@@ -10,12 +10,12 @@ d'etre lance). ElevenLabs multilingual v2 SEULEMENT, jamais Flash (regle du 12 o
 LA FABRICATION EST CELLE DU DTZ ET DU TELC A2·B1, sans la modifier : visuel/prototype/dtz/outils/voix.py (fabriquer,
 nom_fichier) -- une voix par personne, les repliques voisines en contexte, une demi-seconde entre deux repliques, la
 piste entiere ramenee a la sonie du cours, le nom du fichier tire des voix et des textes. Ce qui change :
-  - les pistes viennent de donnees/modell-1/hoeren.json (consignes, exemples, textes) et sprechen.json (ce que disent
-    la Pruferin et Elif a l'oral), avec les cles que lit pflege-examen.js (« pf1-H1-consigne », « pf1-n1 »,
-    « pf1-H2g1 », « pf1-H3 », « pf1-sp1a-0 », « pf1-sp2b-<sujet>-0 »…) ;
+  - les pistes viennent de donnees/hoeren.json (consignes, exemples, textes) et sprechen.json (ce que disent
+    la Pruferin et Elif a l'oral), avec les cles que lit pflege-examen.js (« s1-H1-consigne », « s1-n1 »,
+    « s1-H2g1 », « s1-H3 », « s1-sp1a-0 », « s1-sp2b-<sujet>-0 » ; « s1 » = la serie 1) ;
   - les nombres sont ecrits en lettres dans les textes de l'audio : une replique a chiffres arrete le script ;
-  - les fichiers vont dans audio/mp3/dtz/pflege/ du depot principal (servis sous BASE_PISTES + « pflege/… ») et le
-    manifeste dans donnees/voix-pflege.json.
+  - les fichiers vont dans audio/mp3/dtz/soins/ du depot principal (servis sous BASE_PISTES + « soins/… ») et le
+    manifeste dans donnees/voix-soins.json.
 Ensuite : python audio/controler_sons.py sur le dossier, puis le depot (avec le chef).
 """
 import argparse
@@ -29,14 +29,13 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
 PFLEGE = os.path.dirname(ICI)
-DEPOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(PFLEGE))))
+DEPOT = os.path.dirname(os.path.dirname(os.path.dirname(PFLEGE)))
 spec = importlib.util.spec_from_file_location("voix_dtz", os.path.join(DEPOT, "visuel", "prototype", "dtz", "outils", "voix.py"))
 V = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(V)
-DONNEES = os.path.join(PFLEGE, "donnees", "modell-1")
-SORTIE = os.path.join(V.PRINCIPAL, "audio", "mp3", "dtz", "pflege")
-MANIFESTE = os.path.join(PFLEGE, "donnees", "voix-pflege.json")
-PREFIXE = "pf1-"
+DONNEES = os.path.join(PFLEGE, "donnees")
+SORTIE = os.path.join(V.PRINCIPAL, "audio", "mp3", "dtz", "soins")
+MANIFESTE = os.path.join(PFLEGE, "donnees", "voix-soins.json")
 # le prix : l'abonnement Pro, 99 $ pour 600 000 credits (DEVIS-VOIX-HOEREN.md du telc A2·B1)
 DOLLARS_PAR_CREDIT = 99 / 600000
 
@@ -47,7 +46,16 @@ def charger(nom):
 
 
 def pistes(H, S):
-    """{cle: [{wer, text}]} : tout ce que la page fait entendre, avec les cles de pflege-examen.js."""
+    """{cle: [{wer, text}]} : tout ce que la page fait entendre, serie par serie, avec les cles de examen.js
+    (« s1-H1-consigne », « s1-n1 », « s1-H2g1 », « s1-sp2b-schmerz-0 »…)."""
+    out = {}
+    for sh in H.get("series", []):
+        ss = next((x for x in S.get("series", []) if x["id"] == sh["id"]), {})
+        out.update(pistes_serie(sh, ss, "s%d-" % sh["id"]))
+    return out
+
+
+def pistes_serie(H, S, PREFIXE):
     out = {}
     for t in H.get("teile", []):
         out[PREFIXE + t["cle"] + "-consigne"] = t["audio_consigne"]
@@ -97,7 +105,7 @@ def main():
 
     a_faire = []
     for cle, lignes in tout.items():
-        f = "pflege/" + V.nom_fichier(lignes, voix)
+        f = "soins/" + V.nom_fichier(lignes, voix)
         if manifeste.get(cle) == f and os.path.exists(os.path.join(V.PRINCIPAL, "audio", "mp3", "dtz", f)):
             continue
         a_faire.append((cle, lignes, f, sum(len(l["text"]) for l in lignes)))

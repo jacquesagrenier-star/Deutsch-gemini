@@ -4,10 +4,11 @@
 sont écrites en français et en anglais, puis traduites depuis le français dans les sept autres langues d'interface :
 355 textes par langue, sans relecture native.
 
-- Fichiers : `visuel/prototype/telc/pflege/donnees/langues/interface.<l>.json` et
-  `visuel/prototype/telc/pflege/donnees/modell-1/langues/<épreuve>.<l>.json`, des dictionnaires plats {clé : texte}.
-- Ce qui manque : `python visuel/prototype/telc/pflege/outils/a_traduire.py` (le compte) ; `--sortie f.json --langue l`
-  (les textes à traduire). Contrôle complet : `python tests/pflege_examen.py` (rien ne manque, les {x} sont intacts).
+- Où elles vivent : dans les données mêmes (contrat `pflege/FORMAT-DONNEES.md`) — `donnees/interface.json`
+  ({fr, en, tr, uk, fa, pt, ar, pl, ru}) et, dans `donnees/<épreuve>.json`, les champs `X_tr`, `X_uk`… à côté de
+  `X_fr` (sous `visuel/prototype/telc-pflege/`). On corrige directement le champ.
+- Ce qui manque : `python visuel/prototype/telc-pflege/outils/a_traduire.py` (le compte) ; `--sortie f.json --langue l`
+  (les textes à traduire) ; `--appliquer t.json --langue l` (replier un lot traduit). Contrôle complet : `python tests/pflege_examen.py` (rien ne manque, les {x} sont intacts).
 - L'allemand de l'examen n'est jamais traduit : textes, mots cités, noms des parties, AEDL, noms propres.
 - Conventions reprises du telc A2·B1 (`retours/A-RELIRE-TELC-LANGUES.md`) : tutoiement de l'élève, lecteur neutre en
   uk, ru, pl, pt, ar ; l'apostrophe ʼ en ukrainien ; les cas allemands nommés en allemand ; le Brésil en portugais ;

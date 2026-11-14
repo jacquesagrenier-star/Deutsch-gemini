@@ -1,0 +1,976 @@
+{
+  "_note": "telc Deutsch B1·B2 Pflege, les séries (une série = un examen blanc complet) von Wortando : SCHREIBEN (14 nov. 2026, session pflege-examen). Le FORMAT du telc (pflege/FORMAT-TELC-PFLEGE.md) : une tâche au choix, A rapport d'admission (Aufnahmebericht) d'après une fiche d'anamnèse, B rapport biographique d'après une fiche biographique, 120-170 mots, 30 minutes ; quatre critères notés 5-4-3-2-1-0 (bareme.js) ; toutes les informations de la fiche doivent être reprises. « infos » : chaque information de la fiche, avec ses mots repères (expressions régulières, sans tenir compte des majuscules) ; le contenu se calcule sur elles (bareme.js, inhaltPunkte) et le contrôle vérifie que le texte modèle les contient toutes. Fiches et modèles écrits pour Wortando ; les personnes sont celles de pflege/PERSONNAGES.md (Herr Brandt, Herr Schulze). Les 9 langues d'interface sont dans les objets (X_fr, X_en, X_tr, X_uk, X_fa, X_pt, X_ar, X_pl, X_ru) ; outils/a_traduire.py liste ce qui manque et replie un fichier de traductions.",
+  "series": [
+    {
+      "id": 1,
+      "titre": "Modellprüfung 1",
+      "cle": "SCH",
+      "consigne_de": "Wählen Sie Aufgabe A oder Aufgabe B.",
+      "aufgaben": [
+        {
+          "id": "A",
+          "cle": "SCHa",
+          "titre": "Aufnahmebericht",
+          "relire": true,
+          "consigne_de": "Herr Brandt ist heute auf Ihre Station gekommen. Schreiben Sie für Ihr Team einen Aufnahmebericht als zusammenhängenden Text (etwa 120–170 Wörter). Alle Angaben aus dem Anamnesebogen müssen vorkommen. Sie dürfen Einzelheiten ergänzen, aber nichts verändern.",
+          "fiche": {
+            "titre": "Pflegeanamnese bei der Aufnahme",
+            "kopf": [
+              "Patient: Dieter Brandt (männlich), geb. 03.05.1944",
+              "Aufnahme: 13.11., Geriatrie, Zimmer 14",
+              "Diagnose: Hüft-TEP rechts nach Sturz in der Wohnung (06.11.)",
+              "Informationen von: Patient selbst, Sohn (telefonisch)"
+            ],
+            "rubriken": [
+              {
+                "titre": "1. Kommunizieren",
+                "zeilen": [
+                  [
+                    "Brille",
+                    "ja, zum Lesen"
+                  ],
+                  [
+                    "Hörgerät",
+                    "ja, links"
+                  ],
+                  [
+                    "Orientierung",
+                    "zeitlich, örtlich, zur Person: ja"
+                  ]
+                ]
+              },
+              {
+                "titre": "2. Sich bewegen",
+                "zeilen": [
+                  [
+                    "Gehen",
+                    "mit Rollator"
+                  ],
+                  [
+                    "Aufstehen / zu Bett gehen",
+                    "Teilübernahme"
+                  ],
+                  [
+                    "Sturzrisiko",
+                    "hoch (2 Stürze im letzten Jahr)"
+                  ]
+                ]
+              },
+              {
+                "titre": "3. Sich pflegen",
+                "zeilen": [
+                  [
+                    "Oberkörper",
+                    "selbstständig"
+                  ],
+                  [
+                    "Unterkörper, Füße",
+                    "Teilübernahme"
+                  ]
+                ]
+              },
+              {
+                "titre": "4. Essen und trinken",
+                "zeilen": [
+                  [
+                    "Zähne",
+                    "Zahnprothese oben"
+                  ],
+                  [
+                    "Trinkmenge",
+                    "ca. 1 l / Tag (zu wenig)"
+                  ]
+                ]
+              },
+              {
+                "titre": "5. Ausscheiden",
+                "zeilen": [
+                  [
+                    "Kontinenz",
+                    "ja"
+                  ],
+                  [
+                    "nachts",
+                    "2× Toilette"
+                  ]
+                ]
+              },
+              {
+                "titre": "6. Ruhen und schlafen",
+                "zeilen": [
+                  [
+                    "Schlaf",
+                    "schlecht, wegen Schmerzen"
+                  ]
+                ]
+              },
+              {
+                "titre": "7. Soziale Bereiche des Lebens sichern",
+                "zeilen": [
+                  [
+                    "Familienstand",
+                    "verwitwet, lebt allein"
+                  ],
+                  [
+                    "Angehörige",
+                    "Sohn (wohnt in Hamburg)"
+                  ],
+                  [
+                    "Hilfe zu Hause",
+                    "Nachbarin kauft ein"
+                  ]
+                ]
+              },
+              {
+                "titre": "Gewohnheiten · Wünsche",
+                "zeilen": [
+                  [
+                    "morgens",
+                    "Zeitung, Kaffee schwarz"
+                  ],
+                  [
+                    "Wunsch",
+                    "möglichst schnell wieder nach Hause"
+                  ]
+                ]
+              }
+            ]
+          },
+          "infos": [
+            {
+              "cle": "SCHa01",
+              "mots": [
+                "h(ü|ue)ft",
+                "\\btep\\b"
+              ],
+              "label_fr": "la prothèse de hanche après une chute",
+              "label_en": "the hip replacement after a fall",
+              "label_tr": "düşme sonrası kalça protezi",
+              "label_uk": "ендопротез кульшового суглоба після падіння",
+              "label_fa": "پروتز مفصل ران پس از زمین خوردن",
+              "label_pt": "a prótese de quadril depois de uma queda",
+              "label_ar": "مفصل الورك الاصطناعي بعد سقوط",
+              "label_pl": "endoproteza biodra po upadku",
+              "label_ru": "эндопротез тазобедренного сустава после падения"
+            },
+            {
+              "cle": "SCHa02",
+              "mots": [
+                "informationen",
+                "angaben",
+                "auskunft",
+                "erz(ä|ae)hlt"
+              ],
+              "label_fr": "d'où viennent les informations (lui et son fils)",
+              "label_en": "where the information comes from (him and his son)",
+              "label_tr": "bilgilerin kaynağı (kendisi ve oğlu)",
+              "label_uk": "звідки інформація (від нього і його сина)",
+              "label_fa": "منبع اطلاعات (خودش و پسرش)",
+              "label_pt": "de onde vêm as informações (ele e o filho)",
+              "label_ar": "مصدر المعلومات (هو وابنه)",
+              "label_pl": "skąd pochodzą informacje (od niego i od syna)",
+              "label_ru": "откуда сведения (от него самого и от сына)"
+            },
+            {
+              "cle": "SCHa03",
+              "mots": [
+                "brille"
+              ],
+              "label_fr": "les lunettes pour lire",
+              "label_en": "glasses for reading",
+              "label_tr": "okuma gözlüğü",
+              "label_uk": "окуляри для читання",
+              "label_fa": "عینک برای مطالعه",
+              "label_pt": "os óculos para ler",
+              "label_ar": "النظارة للقراءة",
+              "label_pl": "okulary do czytania",
+              "label_ru": "очки для чтения"
+            },
+            {
+              "cle": "SCHa04",
+              "mots": [
+                "h(ö|oe)rger(ä|ae)t.{0,40}link",
+                "link.{0,40}h(ö|oe)rger(ä|ae)t",
+                "linken ohr"
+              ],
+              "label_fr": "l'appareil auditif à gauche",
+              "label_en": "the hearing aid on the left",
+              "label_tr": "sol kulakta işitme cihazı",
+              "label_uk": "слуховий апарат зліва",
+              "label_fa": "سمعک در گوش چپ",
+              "label_pt": "o aparelho auditivo à esquerda",
+              "label_ar": "السمّاعة الطبية في الأذن اليسرى",
+              "label_pl": "aparat słuchowy w lewym uchu",
+              "label_ru": "слуховой аппарат слева"
+            },
+            {
+              "cle": "SCHa05",
+              "mots": [
+                "orientiert"
+              ],
+              "label_fr": "orienté (temps, lieu, personne)",
+              "label_en": "oriented (time, place, person)",
+              "label_tr": "oryante (zaman, yer, kişi)",
+              "label_uk": "орієнтований (у часі, місці, власній особі)",
+              "label_fa": "آگاه به زمان، مکان و شخص",
+              "label_pt": "orientado (tempo, espaço, pessoa)",
+              "label_ar": "مدرك للزمان والمكان والأشخاص",
+              "label_pl": "zorientowany (czas, miejsce, osoby)",
+              "label_ru": "ориентирован (во времени, месте, собственной личности)"
+            },
+            {
+              "cle": "SCHa06",
+              "mots": [
+                "rollator"
+              ],
+              "label_fr": "marche avec le déambulateur",
+              "label_en": "walks with the walker",
+              "label_tr": "yürüteçle yürüyor",
+              "label_uk": "ходить із ходунками",
+              "label_fa": "با واکر راه می‌رود",
+              "label_pt": "anda com o andador",
+              "label_ar": "يمشي بالمشّاية",
+              "label_pl": "chodzi z balkonikiem",
+              "label_ru": "ходит с ходунками"
+            },
+            {
+              "cle": "SCHa07",
+              "mots": [
+                "aufsteh",
+                "aufzustehen",
+                "zu bett",
+                "ins bett"
+              ],
+              "label_fr": "aide pour se lever et se coucher",
+              "label_en": "help getting up and going to bed",
+              "label_tr": "kalkarken ve yatarken yardım",
+              "label_uk": "допомога, щоб вставати й лягати",
+              "label_fa": "برای بلند شدن از تخت و به رختخواب رفتن کمک لازم دارد",
+              "label_pt": "ajuda para se levantar e se deitar",
+              "label_ar": "يحتاج مساعدة في النهوض والاستلقاء",
+              "label_pl": "pomoc przy wstawaniu i kładzeniu się",
+              "label_ru": "помощь при вставании и укладывании в постель"
+            },
+            {
+              "cle": "SCHa08",
+              "mots": [
+                "sturzrisiko",
+                "sturzgefahr",
+                "zweimal gest(ü|ue)rzt",
+                "zwei st(ü|ue)rze",
+                "2 st(ü|ue)rze"
+              ],
+              "label_fr": "risque de chute élevé, deux chutes l'an dernier",
+              "label_en": "high fall risk, two falls last year",
+              "label_tr": "yüksek düşme riski, geçen yıl iki kez düşmüş",
+              "label_uk": "високий ризик падіння, два падіння минулого року",
+              "label_fa": "خطر زمین خوردن بالا، دو بار زمین خوردن در سال گذشته",
+              "label_pt": "alto risco de queda, duas quedas no ano passado",
+              "label_ar": "خطر سقوط مرتفع، سقطتان في العام الماضي",
+              "label_pl": "wysokie ryzyko upadku, dwa upadki w zeszłym roku",
+              "label_ru": "высокий риск падения, два падения в прошлом году"
+            },
+            {
+              "cle": "SCHa09",
+              "mots": [
+                "oberk(ö|oe)rper"
+              ],
+              "label_fr": "se lave seul le haut du corps",
+              "label_en": "washes his upper body himself",
+              "label_tr": "üst bedenini kendisi yıkıyor",
+              "label_uk": "верхню частину тіла миє сам",
+              "label_fa": "بالاتنه‌اش را خودش می‌شوید",
+              "label_pt": "lava sozinho a parte de cima do corpo",
+              "label_ar": "يغسل الجزء العلوي من جسمه بنفسه",
+              "label_pl": "sam myje górną część ciała",
+              "label_ru": "верхнюю часть тела моет сам"
+            },
+            {
+              "cle": "SCHa10",
+              "mots": [
+                "unterk(ö|oe)rper",
+                "f(ü|ue)(ß|ss)e",
+                "beine"
+              ],
+              "label_fr": "aide pour le bas du corps et les pieds",
+              "label_en": "help with the lower body and feet",
+              "label_tr": "alt beden ve ayaklar için yardım",
+              "label_uk": "допомога з нижньою частиною тіла й стопами",
+              "label_fa": "برای پایین‌تنه و پاها کمک لازم دارد",
+              "label_pt": "ajuda com a parte de baixo do corpo e os pés",
+              "label_ar": "مساعدة في غسل الجزء السفلي من الجسم والقدمين",
+              "label_pl": "pomoc przy myciu dolnej części ciała i stóp",
+              "label_ru": "помощь с нижней частью тела и стопами"
+            },
+            {
+              "cle": "SCHa11",
+              "mots": [
+                "prothese",
+                "gebiss",
+                "dritte z(ä|ae)hne"
+              ],
+              "label_fr": "la prothèse dentaire du haut",
+              "label_en": "the upper denture",
+              "label_tr": "üst çene protezi",
+              "label_uk": "верхній зубний протез",
+              "label_fa": "دندان مصنوعی فک بالا",
+              "label_pt": "a prótese dentária superior",
+              "label_ar": "طقم الأسنان العلوي",
+              "label_pl": "górna proteza zębowa",
+              "label_ru": "верхний зубной протез"
+            },
+            {
+              "cle": "SCHa12",
+              "mots": [
+                "liter",
+                "trinkt.{0,20}wenig",
+                "zu wenig"
+              ],
+              "label_fr": "boit trop peu (environ un litre)",
+              "label_en": "drinks too little (about a litre)",
+              "label_tr": "çok az sıvı alıyor (yaklaşık bir litre)",
+              "label_uk": "пʼє замало (близько літра)",
+              "label_fa": "خیلی کم مایعات می‌نوشد (حدود یک لیتر)",
+              "label_pt": "bebe pouco demais (cerca de um litro)",
+              "label_ar": "يشرب أقل من اللازم (نحو لتر واحد)",
+              "label_pl": "pije za mało (około litra)",
+              "label_ru": "пьёт слишком мало (около литра)"
+            },
+            {
+              "cle": "SCHa13",
+              "mots": [
+                "kontinent"
+              ],
+              "label_fr": "continent",
+              "label_en": "continent",
+              "label_tr": "kontinan (idrar ve dışkısını tutabiliyor)",
+              "label_uk": "без нетримання (континентний)",
+              "label_fa": "کنترل ادرار و مدفوع دارد",
+              "label_pt": "continente",
+              "label_ar": "لا يعاني من السلس",
+              "label_pl": "kontroluje oddawanie moczu i stolca",
+              "label_ru": "контролирует мочеиспускание и стул (kontinent)"
+            },
+            {
+              "cle": "SCHa14",
+              "mots": [
+                "nachts.{0,60}toilette",
+                "toilette.{0,60}nachts",
+                "in der nacht.{0,60}toilette"
+              ],
+              "label_fr": "se lève deux fois la nuit pour les toilettes",
+              "label_en": "gets up twice at night for the toilet",
+              "label_tr": "gece tuvalet için iki kez kalkıyor",
+              "label_uk": "уночі двічі встає в туалет",
+              "label_fa": "شب‌ها دو بار برای دستشویی بلند می‌شود",
+              "label_pt": "levanta duas vezes à noite para ir ao banheiro",
+              "label_ar": "ينهض مرتين ليلًا إلى المرحاض",
+              "label_pl": "wstaje dwa razy w nocy do toalety",
+              "label_ru": "ночью встаёт два раза в туалет"
+            },
+            {
+              "cle": "SCHa15",
+              "mots": [
+                "schl(ä|ae)ft.{0,20}schlecht",
+                "schlecht.{0,20}schl(ä|ae)ft",
+                "schmerz.{0,50}schlaf",
+                "schlaf.{0,50}schmerz"
+              ],
+              "label_fr": "dort mal à cause des douleurs",
+              "label_en": "sleeps badly because of the pain",
+              "label_tr": "ağrılar yüzünden kötü uyuyor",
+              "label_uk": "погано спить через біль",
+              "label_fa": "به خاطر درد بد می‌خوابد",
+              "label_pt": "dorme mal por causa das dores",
+              "label_ar": "ينام بشكل سيئ بسبب الآلام",
+              "label_pl": "źle śpi z powodu bólu",
+              "label_ru": "плохо спит из-за болей"
+            },
+            {
+              "cle": "SCHa16",
+              "mots": [
+                "verwitwet",
+                "witwer",
+                "allein"
+              ],
+              "label_fr": "veuf, vit seul",
+              "label_en": "widowed, lives alone",
+              "label_tr": "dul, yalnız yaşıyor",
+              "label_uk": "вдівець, живе сам",
+              "label_fa": "همسرش فوت کرده، تنها زندگی می‌کند",
+              "label_pt": "viúvo, mora sozinho",
+              "label_ar": "أرمل، يعيش وحده",
+              "label_pl": "wdowiec, mieszka sam",
+              "label_ru": "вдовец, живёт один"
+            },
+            {
+              "cle": "SCHa17",
+              "mots": [
+                "sohn"
+              ],
+              "label_fr": "son fils à Hambourg",
+              "label_en": "his son in Hamburg",
+              "label_tr": "Hamburg'daki oğlu",
+              "label_uk": "син у Гамбурзі",
+              "label_fa": "پسرش در Hamburg",
+              "label_pt": "o filho em Hamburgo",
+              "label_ar": "ابنه في هامبورغ",
+              "label_pl": "syn w Hamburgu",
+              "label_ru": "его сын в Гамбурге"
+            },
+            {
+              "cle": "SCHa18",
+              "mots": [
+                "nachbarin"
+              ],
+              "label_fr": "la voisine qui fait les courses",
+              "label_en": "the neighbour who does the shopping",
+              "label_tr": "alışverişini yapan komşusu",
+              "label_uk": "сусідка, яка купує продукти",
+              "label_fa": "همسایه‌ای که برایش خرید می‌کند",
+              "label_pt": "a vizinha que faz as compras",
+              "label_ar": "الجارة التي تتسوّق له",
+              "label_pl": "sąsiadka, która robi zakupy",
+              "label_ru": "соседка, которая ходит за покупками"
+            },
+            {
+              "cle": "SCHa19",
+              "mots": [
+                "zeitung",
+                "kaffee"
+              ],
+              "label_fr": "le journal et le café noir le matin",
+              "label_en": "the newspaper and black coffee in the morning",
+              "label_tr": "sabahları gazete ve sade kahve",
+              "label_uk": "газета й чорна кава зранку",
+              "label_fa": "روزنامه و قهوهٔ بدون شیر صبح‌ها",
+              "label_pt": "o jornal e o café preto de manhã",
+              "label_ar": "الجريدة والقهوة السوداء صباحًا",
+              "label_pl": "gazeta i czarna kawa rano",
+              "label_ru": "газета и чёрный кофе по утрам"
+            },
+            {
+              "cle": "SCHa20",
+              "mots": [
+                "nach hause",
+                "zu hause",
+                "nachhause",
+                "heim"
+              ],
+              "label_fr": "veut rentrer chez lui au plus vite",
+              "label_en": "wants to go home as soon as possible",
+              "label_tr": "bir an önce evine dönmek istiyor",
+              "label_uk": "хоче якнайшвидше повернутися додому",
+              "label_fa": "می‌خواهد هر چه زودتر به خانه برگردد",
+              "label_pt": "quer voltar para casa o quanto antes",
+              "label_ar": "يريد العودة إلى بيته في أسرع وقت",
+              "label_pl": "chce jak najszybciej wrócić do domu",
+              "label_ru": "хочет как можно скорее вернуться домой"
+            }
+          ],
+          "redemittel": [
+            "Herr B. wurde am … auf unsere Station aufgenommen.",
+            "Die Informationen stammen von … / Laut Angaben des Sohnes …",
+            "Er ist zeitlich, örtlich und zur Person orientiert.",
+            "Beim Aufstehen braucht er Unterstützung. / Hier übernehmen wir einen Teil der Pflege.",
+            "Es besteht ein erhöhtes Sturzrisiko, weil …",
+            "Mit etwa … am Tag trinkt er zu wenig.",
+            "Er ist kontinent, muss aber nachts … zur Toilette.",
+            "Sein Wunsch ist es, …"
+          ],
+          "modele": [
+            "Herr Dieter Brandt, geboren am 03.05.1944, wurde am 13.11. auf unsere geriatrische Station aufgenommen. Nach einem Sturz in seiner Wohnung hat er eine Hüft-TEP rechts bekommen. Die Informationen stammen von ihm selbst und von seinem Sohn.",
+            "Herr Brandt ist zeitlich, örtlich und zur Person orientiert. Zum Lesen braucht er eine Brille, und links trägt er ein Hörgerät. Er geht mit dem Rollator; beim Aufstehen und Zubettgehen braucht er Hilfe. Weil er im letzten Jahr zweimal gestürzt ist, besteht ein hohes Sturzrisiko. Den Oberkörper wäscht er selbst, beim Unterkörper und bei den Füßen übernehmen wir einen Teil der Pflege.",
+            "Er hat oben eine Zahnprothese und trinkt mit etwa einem Liter am Tag zu wenig. Er ist kontinent, muss aber nachts zweimal zur Toilette. Wegen der Schmerzen schläft er schlecht.",
+            "Herr Brandt ist verwitwet und lebt allein. Sein Sohn wohnt in Hamburg, eine Nachbarin kauft für ihn ein. Morgens liest er die Zeitung und trinkt seinen Kaffee schwarz. Er möchte so schnell wie möglich wieder nach Hause."
+          ],
+          "resume_fr": "Herr Brandt, 82 ans, arrive en gériatrie après une prothèse de hanche. À partir de la fiche d'anamnèse, écris le rapport d'admission pour l'équipe.",
+          "resume_en": "Herr Brandt, 82, arrives on the geriatric ward after a hip replacement. Using the admission form, write the admission report for the team.",
+          "resume_tr": "82 yaşındaki Herr Brandt, kalça protezi ameliyatından sonra geriatri servisine geliyor. Anamnez formundan yola çıkarak ekip için kabul raporunu yaz.",
+          "resume_uk": "Herr Brandt, 82 роки, надходить до геріатричного відділення після ендопротезування кульшового суглоба. За анамнестичною карткою напиши звіт про надходження для команди.",
+          "resume_fa": "Herr Brandt، 82 ساله، پس از عمل پروتز مفصل ران به بخش سالمندان می‌آید. بر اساس فرم شرح حال، گزارش پذیرش را برای تیم بنویس.",
+          "resume_pt": "Herr Brandt, 82 anos, chega à geriatria depois de uma prótese de quadril. A partir da ficha de anamnese, escreva o relatório de admissão para a equipe.",
+          "resume_ar": "Herr Brandt (82 عامًا) يصل إلى قسم طب الشيخوخة بعد تركيب مفصل ورك اصطناعي. انطلاقًا من استمارة التاريخ المرضي، اكتب تقرير القبول للفريق.",
+          "resume_pl": "Herr Brandt, 82 lata, trafia na oddział geriatryczny po endoprotezoplastyce biodra. Na podstawie karty wywiadu napisz raport przyjęcia dla zespołu.",
+          "resume_ru": "Herr Brandt, 82 года, поступает в гериатрическое отделение после эндопротезирования тазобедренного сустава. По листу анамнеза напиши для команды отчёт о поступлении.",
+          "consigne_fr": "Herr Brandt est arrivé aujourd'hui dans ton service. Écris pour l'équipe un rapport d'admission rédigé (120 à 170 mots). Toutes les informations de la fiche doivent y être ; tu peux préciser un détail, jamais le changer.",
+          "consigne_en": "Herr Brandt arrived on your ward today. Write a connected admission report for your team (120 to 170 words). Every piece of information on the form must be in it; you may add a detail, never change one.",
+          "consigne_tr": "Herr Brandt bugün servisine geldi. Ekip için düz metin hâlinde bir kabul raporu yaz (120-170 kelime). Formdaki bilgilerin hepsi raporda yer almalı; bir ayrıntıyı netleştirebilirsin, ama asla değiştiremezsin.",
+          "consigne_uk": "Herr Brandt сьогодні надійшов до твого відділення. Напиши для команди звʼязний звіт про надходження (120–170 слів). У ньому має бути вся інформація з картки; деталь можна уточнити, але ніколи не змінювати.",
+          "consigne_fa": "Herr Brandt امروز به بخش تو آمده است. برای تیم یک گزارش پذیرش پیوسته بنویس (120 تا 170 واژه). همهٔ اطلاعات فرم باید در آن باشد؛ می‌توانی جزئیاتی را دقیق‌تر کنی، ولی هرگز آن را تغییر نده.",
+          "consigne_pt": "Herr Brandt chegou hoje à sua unidade. Escreva para a equipe um relatório de admissão em texto corrido (120 a 170 palavras). Todas as informações da ficha precisam estar no texto; você pode detalhar uma informação, nunca alterá-la.",
+          "consigne_ar": "وصل Herr Brandt اليوم إلى قسمك. اكتب للفريق تقرير قبول بنص متصل (120 إلى 170 كلمة). يجب أن ترد فيه كل معلومات الاستمارة؛ يمكنك توضيح تفصيل، لكن لا تغييره أبدًا.",
+          "consigne_pl": "Herr Brandt został dziś przyjęty na twój oddział. Napisz dla zespołu raport przyjęcia w formie ciągłego tekstu (od 120 do 170 słów). Muszą się w nim znaleźć wszystkie informacje z karty; możesz doprecyzować szczegół, ale nigdy go nie zmieniaj.",
+          "consigne_ru": "Herr Brandt сегодня поступил в твоё отделение. Напиши для команды связный отчёт о поступлении (от 120 до 170 слов). В нём должны быть все сведения из бланка; деталь можно уточнить, но никогда не менять."
+        },
+        {
+          "id": "B",
+          "cle": "SCHb",
+          "titre": "Biografiebericht",
+          "consigne_de": "Die Tochter von Herrn Schulze hat mit Ihnen den Biografiebogen ausgefüllt. Schreiben Sie für das Team einen Biografiebericht als zusammenhängenden Text (etwa 120–170 Wörter). Alle Angaben aus dem Biografiebogen müssen vorkommen. Sie dürfen Einzelheiten ergänzen, aber nichts verändern.",
+          "fiche": {
+            "titre": "Biografiebogen",
+            "kopf": [
+              "Bewohner: Walter Schulze (männlich), geb. 21.02.1939 in Görlitz",
+              "im Haus Lindenhof seit: 01.09.",
+              "Diagnose: Demenz vom Alzheimer-Typ, mittleres Stadium",
+              "Informationen von: Tochter (Monika Schulze), Bewohner selbst"
+            ],
+            "rubriken": [
+              {
+                "titre": "Kindheit und Jugend",
+                "zeilen": [
+                  [
+                    "aufgewachsen",
+                    "in Görlitz, zwei ältere Schwestern"
+                  ],
+                  [
+                    "Ausbildung",
+                    "mit 16 Lehre als Elektriker"
+                  ]
+                ]
+              },
+              {
+                "titre": "Beruf",
+                "zeilen": [
+                  [
+                    "ab 1962",
+                    "in Berlin, 40 Jahre Straßenbahnfahrer"
+                  ],
+                  [
+                    "besonders wichtig",
+                    "Pünktlichkeit (sehr stolz darauf)"
+                  ]
+                ]
+              },
+              {
+                "titre": "Familie",
+                "zeilen": [
+                  [
+                    "Ehefrau",
+                    "Ingrid, Heirat 1965, † 2019"
+                  ],
+                  [
+                    "Kinder",
+                    "Tochter Monika (Besuch jeden Sonntag)"
+                  ],
+                  [
+                    "Enkel",
+                    "zwei"
+                  ]
+                ]
+              },
+              {
+                "titre": "Freizeit · Interessen",
+                "zeilen": [
+                  [
+                    "früher",
+                    "Skat am Freitag, Schlager, Kleingarten (Tomaten)"
+                  ]
+                ]
+              },
+              {
+                "titre": "Gewohnheiten",
+                "zeilen": [
+                  [
+                    "morgens",
+                    "steht um 5.30 Uhr auf, Radio"
+                  ],
+                  [
+                    "Kaffee",
+                    "mit Milch und zwei Stück Zucker"
+                  ]
+                ]
+              },
+              {
+                "titre": "Abneigungen",
+                "zeilen": [
+                  [
+                    "Essen",
+                    "kein Fisch"
+                  ],
+                  [
+                    "abends",
+                    "keine laute Musik"
+                  ]
+                ]
+              },
+              {
+                "titre": "Heute",
+                "zeilen": [
+                  [
+                    "später Nachmittag",
+                    "unruhig, will „zur Arbeit“"
+                  ],
+                  [
+                    "hilft",
+                    "Fotos von der Straßenbahn, Gespräche über früher"
+                  ]
+                ]
+              }
+            ]
+          },
+          "infos": [
+            {
+              "cle": "SCHb01",
+              "mots": [
+                "g(ö|oe)rlitz"
+              ],
+              "label_fr": "né en 1939 à Görlitz",
+              "label_en": "born in 1939 in Görlitz",
+              "label_tr": "1939'da Görlitz'te doğmuş",
+              "label_uk": "народився 1939 року в Görlitz",
+              "label_fa": "متولد 1939 در Görlitz",
+              "label_pt": "nascido em 1939 em Görlitz",
+              "label_ar": "وُلد عام 1939 في Görlitz",
+              "label_pl": "urodzony w 1939 r. w Görlitz",
+              "label_ru": "родился в 1939 году в Гёрлице (Görlitz)"
+            },
+            {
+              "cle": "SCHb02",
+              "mots": [
+                "lindenhof",
+                "seit.{0,30}september",
+                "seit dem 1"
+              ],
+              "label_fr": "à Haus Lindenhof depuis le 1er septembre",
+              "label_en": "at Haus Lindenhof since 1 September",
+              "label_tr": "1 Eylül'den beri Haus Lindenhof'ta",
+              "label_uk": "у Haus Lindenhof з 1 вересня",
+              "label_fa": "از 1 سپتامبر در Haus Lindenhof",
+              "label_pt": "no Haus Lindenhof desde 1º de setembro",
+              "label_ar": "في Haus Lindenhof منذ الأول من سبتمبر (أيلول)",
+              "label_pl": "w Haus Lindenhof od 1 września",
+              "label_ru": "в Haus Lindenhof с 1 сентября"
+            },
+            {
+              "cle": "SCHb03",
+              "mots": [
+                "demenz",
+                "alzheimer"
+              ],
+              "label_fr": "la démence (type Alzheimer, stade moyen)",
+              "label_en": "dementia (Alzheimer type, middle stage)",
+              "label_tr": "demans (Alzheimer tipi, orta evre)",
+              "label_uk": "деменція (альцгеймерівського типу, середня стадія)",
+              "label_fa": "دمانس (از نوع آلزایمر، مرحلهٔ میانی)",
+              "label_pt": "a demência (tipo Alzheimer, estágio moderado)",
+              "label_ar": "الخرف (من نوع ألزهايمر، مرحلة متوسطة)",
+              "label_pl": "demencja (typu Alzheimera, stadium umiarkowane)",
+              "label_ru": "деменция (альцгеймеровского типа, средняя стадия)"
+            },
+            {
+              "cle": "SCHb04",
+              "mots": [
+                "schwester"
+              ],
+              "label_fr": "deux sœurs aînées",
+              "label_en": "two older sisters",
+              "label_tr": "kendisinden büyük iki kız kardeşi",
+              "label_uk": "дві старші сестри",
+              "label_fa": "دو خواهر بزرگ‌تر",
+              "label_pt": "duas irmãs mais velhas",
+              "label_ar": "أختان أكبر منه",
+              "label_pl": "dwie starsze siostry",
+              "label_ru": "две старшие сестры"
+            },
+            {
+              "cle": "SCHb05",
+              "mots": [
+                "elektriker"
+              ],
+              "label_fr": "apprentissage d'électricien à 16 ans",
+              "label_en": "electrician apprenticeship at 16",
+              "label_tr": "16 yaşında elektrikçi çıraklığı",
+              "label_uk": "навчання на електрика з 16 років",
+              "label_fa": "کارآموزی برق‌کاری در 16 سالگی",
+              "label_pt": "aprendiz de eletricista aos 16 anos",
+              "label_ar": "تدريب مهني ككهربائي في سن السادسة عشرة",
+              "label_pl": "nauka zawodu elektryka od 16. roku życia",
+              "label_ru": "в 16 лет обучение на электрика"
+            },
+            {
+              "cle": "SCHb06",
+              "mots": [
+                "stra(ß|ss)enbahnfahrer",
+                "stra(ß|ss)enbahn"
+              ],
+              "label_fr": "40 ans conducteur de tramway à Berlin",
+              "label_en": "40 years as a tram driver in Berlin",
+              "label_tr": "Berlin'de 40 yıl tramvay sürücülüğü",
+              "label_uk": "40 років водієм трамвая в Берліні",
+              "label_fa": "40 سال رانندهٔ تراموا در Berlin",
+              "label_pt": "40 anos como motorneiro de bonde em Berlim",
+              "label_ar": "40 عامًا سائق ترام في برلين",
+              "label_pl": "przez 40 lat motorniczy tramwaju w Berlinie",
+              "label_ru": "40 лет водитель трамвая в Берлине"
+            },
+            {
+              "cle": "SCHb07",
+              "mots": [
+                "p(ü|ue)nktlich"
+              ],
+              "label_fr": "fier de sa ponctualité",
+              "label_en": "proud of his punctuality",
+              "label_tr": "dakikliğiyle gurur duyuyor",
+              "label_uk": "пишається своєю пунктуальністю",
+              "label_fa": "به وقت‌شناسی‌اش افتخار می‌کند",
+              "label_pt": "orgulhoso da sua pontualidade",
+              "label_ar": "فخور بدقته في المواعيد",
+              "label_pl": "dumny ze swojej punktualności",
+              "label_ru": "гордится своей пунктуальностью"
+            },
+            {
+              "cle": "SCHb08",
+              "mots": [
+                "ingrid"
+              ],
+              "label_fr": "sa femme Ingrid, morte en 2019",
+              "label_en": "his wife Ingrid, died in 2019",
+              "label_tr": "2019'da ölen eşi Ingrid",
+              "label_uk": "дружина Ingrid, померла 2019 року",
+              "label_fa": "همسرش Ingrid، درگذشته در 2019",
+              "label_pt": "a esposa Ingrid, falecida em 2019",
+              "label_ar": "زوجته Ingrid، توفيت عام 2019",
+              "label_pl": "żona Ingrid, zmarła w 2019 r.",
+              "label_ru": "его жена Ingrid, умерла в 2019 году"
+            },
+            {
+              "cle": "SCHb09",
+              "mots": [
+                "monika",
+                "sonntag"
+              ],
+              "label_fr": "sa fille Monika, chaque dimanche",
+              "label_en": "his daughter Monika, every Sunday",
+              "label_tr": "her pazar gelen kızı Monika",
+              "label_uk": "донька Monika, щонеділі",
+              "label_fa": "دخترش Monika، هر یکشنبه",
+              "label_pt": "a filha Monika, todo domingo",
+              "label_ar": "ابنته Monika، كل يوم أحد",
+              "label_pl": "córka Monika, w każdą niedzielę",
+              "label_ru": "его дочь Monika, каждое воскресенье"
+            },
+            {
+              "cle": "SCHb10",
+              "mots": [
+                "enkel"
+              ],
+              "label_fr": "deux petits-enfants",
+              "label_en": "two grandchildren",
+              "label_tr": "iki torunu",
+              "label_uk": "двоє онуків",
+              "label_fa": "دو نوه",
+              "label_pt": "dois netos",
+              "label_ar": "حفيدان",
+              "label_pl": "dwoje wnucząt",
+              "label_ru": "двое внуков"
+            },
+            {
+              "cle": "SCHb11",
+              "mots": [
+                "skat"
+              ],
+              "label_fr": "le skat le vendredi",
+              "label_en": "skat (cards) on Fridays",
+              "label_tr": "cuma günleri skat (kâğıt oyunu)",
+              "label_uk": "скат (карткова гра) по пʼятницях",
+              "label_fa": "بازی ورق Skat در روزهای جمعه",
+              "label_pt": "o skat (jogo de cartas) às sextas",
+              "label_ar": "لعبة الورق Skat أيام الجمعة",
+              "label_pl": "skat (gra w karty) w piątki",
+              "label_ru": "скат (карточная игра) по пятницам"
+            },
+            {
+              "cle": "SCHb12",
+              "mots": [
+                "schlager"
+              ],
+              "label_fr": "les chansons (Schlager)",
+              "label_en": "the songs (Schlager)",
+              "label_tr": "şarkılar (Schlager)",
+              "label_uk": "пісні (Schlager)",
+              "label_fa": "ترانه‌ها (Schlager)",
+              "label_pt": "as canções (Schlager)",
+              "label_ar": "الأغاني الشعبية (Schlager)",
+              "label_pl": "piosenki (Schlager)",
+              "label_ru": "песни (Schlager)"
+            },
+            {
+              "cle": "SCHb13",
+              "mots": [
+                "kleingarten",
+                "garten",
+                "tomaten"
+              ],
+              "label_fr": "le jardin ouvrier et ses tomates",
+              "label_en": "the allotment and its tomatoes",
+              "label_tr": "hobi bahçesi ve domatesleri",
+              "label_uk": "дачна ділянка і його помідори",
+              "label_fa": "باغچهٔ اجاره‌ای و گوجه‌فرنگی‌هایش",
+              "label_pt": "a horta comunitária e os tomates dela",
+              "label_ar": "حديقته الصغيرة وطماطمها",
+              "label_pl": "ogródek działkowy i jego pomidory",
+              "label_ru": "садовый участок и его помидоры"
+            },
+            {
+              "cle": "SCHb14",
+              "mots": [
+                "fr(ü|ue)h auf",
+                "5[.:]30",
+                "halb sechs"
+              ],
+              "label_fr": "se lève à 5 h 30",
+              "label_en": "gets up at 5.30",
+              "label_tr": "05.30'da kalkıyor",
+              "label_uk": "встає о 5:30",
+              "label_fa": "ساعت 5:30 بیدار می‌شود",
+              "label_pt": "levanta às 5h30",
+              "label_ar": "يستيقظ في الساعة 5:30",
+              "label_pl": "wstaje o 5:30",
+              "label_ru": "встаёт в 5:30"
+            },
+            {
+              "cle": "SCHb15",
+              "mots": [
+                "radio"
+              ],
+              "label_fr": "la radio le matin",
+              "label_en": "the radio in the morning",
+              "label_tr": "sabahları radyo",
+              "label_uk": "радіо зранку",
+              "label_fa": "رادیو در صبح",
+              "label_pt": "o rádio de manhã",
+              "label_ar": "الراديو صباحًا",
+              "label_pl": "radio rano",
+              "label_ru": "радио по утрам"
+            },
+            {
+              "cle": "SCHb16",
+              "mots": [
+                "milch",
+                "zucker"
+              ],
+              "label_fr": "le café au lait et deux sucres",
+              "label_en": "coffee with milk and two sugars",
+              "label_tr": "sütlü kahve, iki şeker",
+              "label_uk": "кава з молоком і двома ложками цукру",
+              "label_fa": "قهوه با شیر و دو قند",
+              "label_pt": "o café com leite e dois cubos de açúcar",
+              "label_ar": "القهوة بالحليب مع قطعتي سكر",
+              "label_pl": "kawa z mlekiem i dwiema łyżeczkami cukru",
+              "label_ru": "кофе с молоком и два кусочка сахара"
+            },
+            {
+              "cle": "SCHb17",
+              "mots": [
+                "fisch"
+              ],
+              "label_fr": "pas de poisson",
+              "label_en": "no fish",
+              "label_tr": "balık yemiyor",
+              "label_uk": "без риби",
+              "label_fa": "بدون ماهی",
+              "label_pt": "nada de peixe",
+              "label_ar": "لا سمك",
+              "label_pl": "bez ryb",
+              "label_ru": "не ест рыбу"
+            },
+            {
+              "cle": "SCHb18",
+              "mots": [
+                "laute musik",
+                "laut"
+              ],
+              "label_fr": "pas de musique forte le soir",
+              "label_en": "no loud music in the evening",
+              "label_tr": "akşamları yüksek sesle müzik istemiyor",
+              "label_uk": "без гучної музики ввечері",
+              "label_fa": "بدون موسیقی بلند در شب",
+              "label_pt": "nada de música alta à noite",
+              "label_ar": "لا موسيقى صاخبة في المساء",
+              "label_pl": "bez głośnej muzyki wieczorem",
+              "label_ru": "никакой громкой музыки вечером"
+            },
+            {
+              "cle": "SCHb19",
+              "mots": [
+                "unruhig",
+                "zur arbeit"
+              ],
+              "label_fr": "agité en fin d'après-midi, veut « aller au travail »",
+              "label_en": "restless in the late afternoon, wants to “go to work”",
+              "label_tr": "akşamüstü huzursuz, “işe gitmek” istiyor",
+              "label_uk": "неспокійний пізно вдень, хоче «йти на роботу»",
+              "label_fa": "اواخر بعدازظهر بی‌قرار است، می‌خواهد «سر کار برود»",
+              "label_pt": "agitado no fim da tarde, quer “ir para o trabalho”",
+              "label_ar": "مضطرب في آخر بعد الظهر، يريد «الذهاب إلى العمل»",
+              "label_pl": "niespokojny późnym popołudniem, chce „iść do pracy”",
+              "label_ru": "беспокоен ближе к вечеру, хочет «пойти на работу»"
+            },
+            {
+              "cle": "SCHb20",
+              "mots": [
+                "fotos",
+                "bilder",
+                "fr(ü|ue)her"
+              ],
+              "label_fr": "ce qui l'apaise : les photos du tramway, parler d'autrefois",
+              "label_en": "what calms him: tram photos, talking about the old days",
+              "label_tr": "onu sakinleştiren şeyler: tramvay fotoğrafları, eski günlerden konuşmak",
+              "label_uk": "що його заспокоює: фото трамваїв, розмови про минуле",
+              "label_fa": "آنچه آرامش می‌کند: عکس‌های تراموا، صحبت از گذشته‌ها",
+              "label_pt": "o que o acalma: as fotos do bonde, falar dos velhos tempos",
+              "label_ar": "ما يهدّئه: صور الترام، والحديث عن الماضي",
+              "label_pl": "co go uspokaja: zdjęcia tramwajów, rozmowy o dawnych czasach",
+              "label_ru": "что его успокаивает: фотографии трамваев, разговоры о прошлом"
+            }
+          ],
+          "redemittel": [
+            "Herr S. wurde am … in … geboren.",
+            "Er ist mit … in … aufgewachsen.",
+            "Mit 16 Jahren begann er eine Lehre als …",
+            "Von … an arbeitete er … Jahre lang als …",
+            "Er war mit … verheiratet, die … gestorben ist.",
+            "Früher hat er gern … / In seiner Freizeit …",
+            "Er mag keinen … / … mag er nicht.",
+            "Am späten Nachmittag wird er …; dann helfen ihm …"
+          ],
+          "modele": [
+            "Herr Walter Schulze wurde am 21.02.1939 in Görlitz geboren und lebt seit dem 1. September im Haus Lindenhof. Er hat eine Demenz vom Alzheimer-Typ im mittleren Stadium. Die Angaben stammen von seiner Tochter und von ihm selbst.",
+            "Er ist mit zwei älteren Schwestern aufgewachsen und begann mit 16 eine Lehre als Elektriker. Ab 1962 war er in Berlin 40 Jahre lang Straßenbahnfahrer. Auf seine Pünktlichkeit ist er bis heute stolz.",
+            "1965 heiratete er Ingrid, die 2019 gestorben ist. Seine Tochter Monika besucht ihn jeden Sonntag, und er hat zwei Enkel. Früher spielte er freitags Skat, hörte gern Schlager und pflanzte Tomaten in seinem Kleingarten.",
+            "Er steht früh auf, um 5.30 Uhr, hört morgens Radio und trinkt Kaffee mit Milch und zwei Stück Zucker. Fisch und laute Musik am Abend mag er nicht. Am späten Nachmittag wird er oft unruhig und möchte „zur Arbeit“. Dann beruhigen ihn Fotos von der Straßenbahn und Gespräche über früher."
+          ],
+          "resume_fr": "Herr Schulze, 87 ans, vit à Haus Lindenhof et a une démence. À partir de la fiche biographique remplie avec sa fille, écris son rapport biographique.",
+          "resume_en": "Herr Schulze, 87, lives at Haus Lindenhof and has dementia. Using the biographical form filled in with his daughter, write his biographical report.",
+          "resume_tr": "87 yaşındaki Herr Schulze, Haus Lindenhof'ta yaşıyor ve demansı var. Kızıyla birlikte doldurulan biyografi formundan yola çıkarak biyografik raporunu yaz.",
+          "resume_uk": "Herr Schulze, 87 років, живе в Haus Lindenhof і має деменцію. За біографічною карткою, заповненою разом із його донькою, напиши його біографічний звіт.",
+          "resume_fa": "Herr Schulze، 87 ساله، در Haus Lindenhof زندگی می‌کند و دمانس دارد. بر اساس فرم زندگی‌نامه که با دخترش پر شده، گزارش زندگی‌نامه‌ای او را بنویس.",
+          "resume_pt": "Herr Schulze, 87 anos, mora no Haus Lindenhof e tem demência. A partir da ficha biográfica preenchida com a filha dele, escreva o relatório biográfico.",
+          "resume_ar": "Herr Schulze (87 عامًا) يعيش في Haus Lindenhof ومصاب بالخرف. انطلاقًا من استمارة السيرة الحياتية التي مُلئت مع ابنته، اكتب تقرير سيرته الحياتية.",
+          "resume_pl": "Herr Schulze, 87 lat, mieszka w Haus Lindenhof i ma demencję. Na podstawie karty biograficznej wypełnionej z jego córką napisz raport biograficzny.",
+          "resume_ru": "Herr Schulze, 87 лет, живёт в Haus Lindenhof, у него деменция. По биографической анкете, заполненной вместе с его дочерью, напиши его биографический отчёт.",
+          "consigne_fr": "La fille de Herr Schulze a rempli la fiche biographique avec toi. Écris pour l'équipe un rapport biographique rédigé (120 à 170 mots). Toutes les informations de la fiche doivent y être ; tu peux préciser un détail, jamais le changer.",
+          "consigne_en": "Herr Schulze's daughter filled in the biographical form with you. Write a connected biographical report for the team (120 to 170 words). Every piece of information on the form must be in it; you may add a detail, never change one.",
+          "consigne_tr": "Herr Schulze'nin kızı biyografi formunu seninle birlikte doldurdu. Ekip için düz metin hâlinde bir biyografik rapor yaz (120-170 kelime). Formdaki bilgilerin hepsi raporda yer almalı; bir ayrıntıyı netleştirebilirsin, ama asla değiştiremezsin.",
+          "consigne_uk": "Донька Herr Schulze заповнила біографічну картку разом із тобою. Напиши для команди звʼязний біографічний звіт (120–170 слів). У ньому має бути вся інформація з картки; деталь можна уточнити, але ніколи не змінювати.",
+          "consigne_fa": "دختر Herr Schulze فرم زندگی‌نامه را با تو پر کرده است. برای تیم یک گزارش زندگی‌نامه‌ای پیوسته بنویس (120 تا 170 واژه). همهٔ اطلاعات فرم باید در آن باشد؛ می‌توانی جزئیاتی را دقیق‌تر کنی، ولی هرگز آن را تغییر نده.",
+          "consigne_pt": "A filha de Herr Schulze preencheu a ficha biográfica com você. Escreva para a equipe um relatório biográfico em texto corrido (120 a 170 palavras). Todas as informações da ficha precisam estar no texto; você pode detalhar uma informação, nunca alterá-la.",
+          "consigne_ar": "ملأت ابنة Herr Schulze استمارة السيرة الحياتية معك. اكتب للفريق تقرير سيرة حياتية بنص متصل (120 إلى 170 كلمة). يجب أن ترد فيه كل معلومات الاستمارة؛ يمكنك توضيح تفصيل، لكن لا تغييره أبدًا.",
+          "consigne_pl": "Pacjent: Herr Schulze. Jego córka wypełniła z tobą kartę biograficzną. Napisz dla zespołu raport biograficzny w formie ciągłego tekstu (od 120 do 170 słów). Muszą się w nim znaleźć wszystkie informacje z karty; możesz doprecyzować szczegół, ale nigdy go nie zmieniaj.",
+          "consigne_ru": "Дочь Herr Schulze заполнила биографическую анкету вместе с тобой. Напиши для команды связный биографический отчёт (от 120 до 170 слов). В нём должны быть все сведения из анкеты; деталь можно уточнить, но никогда не менять."
+        }
+      ],
+      "consigne_fr": "Choisis une tâche : A, le rapport d'admission de Herr Brandt, ou B, le rapport biographique de Herr Schulze. Tu as 30 minutes et 120 à 170 mots.",
+      "consigne_en": "Choose one task: A, Herr Brandt's admission report, or B, Herr Schulze's biographical report. You have 30 minutes and 120 to 170 words.",
+      "consigne_tr": "Bir görev seç: A, Herr Brandt'ın kabul raporu, ya da B, Herr Schulze'nin biyografik raporu. 30 dakikan ve 120-170 kelimen var.",
+      "consigne_uk": "Обери завдання: A — звіт про надходження Herr Brandt або B — біографічний звіт Herr Schulze. У тебе 30 хвилин і 120–170 слів.",
+      "consigne_fa": "یک تکلیف را انتخاب کن: A، گزارش پذیرش Herr Brandt، یا B، گزارش زندگی‌نامه‌ای Herr Schulze. 30 دقیقه وقت داری و 120 تا 170 واژه.",
+      "consigne_pt": "Escolha uma tarefa: A, o relatório de admissão de Herr Brandt, ou B, o relatório biográfico de Herr Schulze. Você tem 30 minutos e 120 a 170 palavras.",
+      "consigne_ar": "اختر مهمة: A، تقرير القبول الخاص بـ Herr Brandt، أو B، تقرير السيرة الحياتية الخاص بـ Herr Schulze. لديك 30 دقيقة و120 إلى 170 كلمة.",
+      "consigne_pl": "Wybierz jedno zadanie: A — raport przyjęcia (Herr Brandt) albo B — raport biograficzny (Herr Schulze). Masz 30 minut i od 120 do 170 słów.",
+      "consigne_ru": "Выбери одно задание: A — отчёт о поступлении Herr Brandt, или B — биографический отчёт о Herr Schulze. У тебя 30 минут и от 120 до 170 слов."
+    }
+  ]
+}

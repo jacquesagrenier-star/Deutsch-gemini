@@ -1,6 +1,6 @@
 # Examen blanc telc Pflege, modèle 1 : ce qu'une infirmière germanophone doit valider
 
-Tout ce qui porte `"relire": true` dans `visuel/prototype/telc/pflege/donnees/modell-1/*.json`. Profil de la
+Tout ce qui porte `"relire": true` dans `visuel/prototype/telc-pflege/donnees/*.json`. Profil de la
 relectrice : [../PROFILS-RELECTURE.md](../PROFILS-RELECTURE.md). Rien de ceci n'est ouvert aux élèves avant sa
 relecture.
 
