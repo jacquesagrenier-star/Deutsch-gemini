@@ -204,7 +204,8 @@ MOTS = [
       relire=True),
     V("B2", "sich verschlechtern / sich bessern",
       "s'aggraver / s'améliorer | to get worse / to improve | kötüleşmek / iyileşmek | погіршуватися / покращуватися | بدتر شدن / بهتر شدن | يسوء / يتحسّن | piorar / melhorar | pogarszać się / poprawiać się | ухудшаться / улучшаться",
-      "Der Zustand hat sich in der Nacht verschlechtert, am Morgen hat er sich wieder gebessert. | L'état s'est aggravé pendant la nuit, puis il s'est de nouveau amélioré le matin. | The condition got worse during the night and improved again in the morning. | Durum gece kötüleşti, sabah yeniden düzeldi. | Уночі стан погіршився, а вранці знову покращився. | حال او شب بدتر شد و صبح دوباره بهتر شد. | ساءت الحالة في الليل ثم تحسّنت من جديد في الصباح. | O estado piorou durante a noite e voltou a melhorar de manhã. | Stan pogorszył się w nocy, a rano znowu się poprawił. | Ночью состояние ухудшилось, а утром снова улучшилось."),
+      "Der Zustand hat sich in der Nacht verschlechtert, am Morgen hat er sich wieder gebessert. | L'état s'est aggravé pendant la nuit, puis il s'est de nouveau amélioré le matin. | The condition got worse during the night and improved again in the morning. | Durum gece kötüleşti, sabah yeniden düzeldi. | Уночі стан погіршився, а вранці знову покращився. | حال او شب بدتر شد و صبح دوباره بهتر شد. | ساءت الحالة في الليل ثم تحسّنت من جديد في الصباح. | O estado piorou durante a noite e voltou a melhorar de manhã. | Stan pogorszył się w nocy, a rano znowu się poprawił. | Ночью состояние ухудшилось, а утром снова улучшилось.",
+      perfekt="hat sich verschlechtert / hat sich gebessert"),
 ]
 
 # Les nombres en lettres (CLAUDE.md, audio/lectures/) : { texte ecrit : texte dit }

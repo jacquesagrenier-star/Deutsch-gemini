@@ -51,31 +51,32 @@ def index():
         return _INDEX
     ix = {}
 
-    def ajouter(texte, fichier, ou, typ, niveau, trad):
+    def ajouter(texte, fichier, ou, typ, niveau, trad, fiche=None):
         ix.setdefault(cle(texte), []).append(
-            {"fichier": fichier, "ou": ou, "mot": texte, "type": typ, "niveau": niveau, "traduction": trad})
+            {"fichier": fichier, "ou": ou, "mot": texte, "type": typ, "niveau": niveau, "traduction": trad,
+             "fiche": fiche})
 
     for th in _lire("themes.json")["themes"]:
         for m in th.get("mots", []):
-            ajouter(m["mot"], "themes.json", th["id"], "nom", th.get("niveau"), m.get("traduction"))
+            ajouter(m["mot"], "themes.json", th["id"], "nom", th.get("niveau"), m.get("traduction"), m)
         for v in th.get("verben", []):
-            ajouter(v["infinitif"], "themes.json", th["id"], "verbe", th.get("niveau"), v.get("traduction"))
+            ajouter(v["infinitif"], "themes.json", th["id"], "verbe", th.get("niveau"), v.get("traduction"), v)
         for a in th.get("adjektive", []):
-            ajouter(a["mot"], "themes.json", th["id"], "adjectif", th.get("niveau"), a.get("traduction"))
+            ajouter(a["mot"], "themes.json", th["id"], "adjectif", th.get("niveau"), a.get("traduction"), a)
     for niv, liste in _lire("verbe.json").items():
         if isinstance(liste, list):
             for v in liste:
-                ajouter(v["infinitif"], "verbe.json", niv, "verbe", niv, v.get("traduction"))
+                ajouter(v["infinitif"], "verbe.json", niv, "verbe", niv, v.get("traduction"), v)
     for nom, typ in (("adjectif.json", "adjectif"), ("adverbe.json", "adverbe"), ("redewendung.json", "expression")):
         for niv, liste in _lire(nom).items():
             if isinstance(liste, list):
                 for x in liste:
-                    ajouter(x["mot"], nom, niv, typ, niv, x.get("traduction"))
+                    ajouter(x["mot"], nom, niv, typ, niv, x.get("traduction"), x)
     for cat, liste in _lire("funktionswort.json").items():
         if isinstance(liste, list):
             for x in liste:
                 if isinstance(x, dict) and x.get("mot"):
-                    ajouter(x["mot"], "funktionswort.json", cat, "mot-outil", x.get("niveau"), x.get("traduction"))
+                    ajouter(x["mot"], "funktionswort.json", cat, "mot-outil", x.get("niveau"), x.get("traduction"), x)
     _INDEX = ix
     return ix
 
@@ -91,4 +92,4 @@ def chercher(texte, typ=None):
 if __name__ == "__main__":
     import sys
     for mot in sys.argv[1:]:
-        print(mot, "->", chercher(mot) or "absent")
+        print(mot, "->", [{k: v for k, v in h.items() if k != "fiche"} for h in chercher(mot)] or "absent")
