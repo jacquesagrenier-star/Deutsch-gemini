@@ -44975,8 +44975,16 @@ async function syncProgressToCloud(){
                 catch(e){ return ""; }
             })(),
             // Les phrases ratees a revoir (v827).
+            // Ligne 84 (14 nov. 2026) : le meme champ porte aussi la revision par phrase -- { v: 2, ratees, rev }. Un
+            // appareil d'avant la ligne 84 lit un objet et l'ignore (il n'attend qu'une liste) ; les regles bornees
+            // ne regardent pas ce champ, une cle neuve demanderait de les recoller.
             phrasesRateesJson: (function(){
-                try{ return localStorage.getItem(PHRASES_RATEES_KEY) || ""; }
+                try{
+                    const rev = lireRevisions();
+                    if(!Object.keys(rev.p).length && !Object.keys(rev.t).length && !Object.keys(rev.s).length)
+                        return localStorage.getItem(PHRASES_RATEES_KEY) || "";
+                    return JSON.stringify({ v: 2, ratees: lirePhrasesRatees(), rev: rev });
+                }
                 catch(e){ return ""; }
             })(),
             // L'A1 voyage (v862, essai) : l'escale, les dates, l'avis au retour.
@@ -45503,10 +45511,13 @@ async function restoreProgressFromCloud(){
             // Phrases ratees (v827) : un appareil qui n'en a pas reprend celles
             // du cloud. Pas de reunion : une phrase reussie sur ce telephone
             // reviendrait du cloud.
-            if(typeof data.phrasesRateesJson === "string" && data.phrasesRateesJson
-               && !lirePhrasesRatees().length){
+            // Ligne 84 : un objet { v: 2, ratees, rev } -- les ratees comme avant, la revision par phrase reunie
+            // (par phrase, la vue la plus recente l'emporte : fusionnerRevisions).
+            if(typeof data.phrasesRateesJson === "string" && data.phrasesRateesJson){
                 const d = JSON.parse(data.phrasesRateesJson);
-                if(Array.isArray(d) && d.length) ecrirePhrasesRatees(d);
+                const ratees = Array.isArray(d) ? d : (d && d.v === 2 && Array.isArray(d.ratees)) ? d.ratees : null;
+                if(ratees && ratees.length && !lirePhrasesRatees().length) ecrirePhrasesRatees(ratees);
+                if(d && d.v === 2 && d.rev && typeof d.rev === "object") ecrireRevisions(fusionnerRevisions(lireRevisions(), d.rev));
             }
         }catch(e){}
         try{
@@ -68279,6 +68290,87 @@ function phrasesRateesDues(tout){
     return dues;
 }
 
+// ============ UNE REVISION PAR PHRASE (ligne 84 ; decisions de Jacques du 13 nov. 2026, cd4d778 et df709a9) ============
+// Jacques voyait « Mi tia es profesora » a chaque retour de « tia » : la carte-phrase prenait la phrase la plus facile
+// parmi les mots de la seance, sans memoire de ce qui avait ete vu (60 jours d'A1 mesures : 302 cartes-phrases, 116
+// phrases differentes, « Tengo mucha hambre » 20 fois). Ses mots : « on devrait tout gerer de la facon qu'on gere les
+// cartes » ; « les phrases reussies, on devrait les pousser tres, tres loin. Quitte a les revoir » ; « mettons vraiment
+// de l'espace ». D'ou, par phrase :
+//  - jamais vue : elle passe AVANT une phrase deja vue (la reserve du niveau d'abord) ;
+//  - reussie (ou ecoutee sans verdict) : pas avant 60 jours, puis 180, puis 365 (REVISION_JOURS) ;
+//  - ratee : le lendemain (la liste des ratees, v827, continue de la ramener ; la fin de seance aussi) ;
+//  - une phrase reussie ne revient avant son echeance que si le niveau n'a plus aucune phrase jamais vue ;
+//  - jamais a moins de quatre cartes de la carte de son mot (ANTI_ECHO_PHRASE : le verso montre deja l'exemple).
+// Le MOTEUR est commun (type « p » ; « t » et « s » attendent la ligne 85 : questions des themes et des scenes).
+// L'etat : { p: { id: [reussites de suite, jour de l'echeance, jour de la derniere vue] } }, l'id un hachage court du
+// texte. Il voyage dans le champ phrasesRateesJson (objet { v: 2, ratees, rev }), le seul que les regles bornees
+// acceptent sans y toucher ; 3 000 entrees au plus par type (~75 ko), les reussies les plus anciennes elaguees.
+const REVISIONS_KEY = PREFIXE_STOCKAGE + "revisions";
+const REVISION_JOURS = [60, 180, 365];
+const REVISION_MAX = 3000;
+const ANTI_ECHO_PHRASE = 4;
+function jourRevision(ms){ return Math.floor((ms === undefined ? Date.now() : ms) / 86400000); }
+function idRevision(texte){
+    const s = String(texte || "").normalize("NFC").replace(/\s+/g, " ").trim();
+    let h = 5381;
+    for(let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+    return h.toString(36) + s.length.toString(36);
+}
+function lireRevisions(){
+    let v = null;
+    try{ v = JSON.parse(localStorage.getItem(REVISIONS_KEY) || "null"); }catch(e){ v = null; }
+    if(!v || typeof v !== "object") v = {};
+    ["p", "t", "s"].forEach(k => { if(!v[k] || typeof v[k] !== "object") v[k] = {}; });
+    return v;
+}
+function elaguerRevisions(v){
+    ["p", "t", "s"].forEach(k => {
+        const ids = Object.keys(v[k] || {});
+        if(ids.length <= REVISION_MAX) return;
+        // Les reussies les plus anciennes partent d'abord ; une ratee reste (elle doit revenir).
+        ids.sort((a, b) => ((v[k][a][0] > 0 ? 0 : 1) - (v[k][b][0] > 0 ? 0 : 1)) || (v[k][a][2] - v[k][b][2]));
+        ids.slice(0, ids.length - REVISION_MAX).forEach(id => { delete v[k][id]; });
+    });
+    return v;
+}
+function ecrireRevisions(v){
+    try{ localStorage.setItem(REVISIONS_KEY, JSON.stringify(elaguerRevisions(v))); }catch(e){}
+}
+// juste : true (reussie), false (ratee), null (vue sans verdict : ecoutee, lue) -- comptee comme reussie.
+function noterRevision(type, texte, juste){
+    if(!texte) return;
+    const v = lireRevisions(), id = idRevision(texte), auj = jourRevision();
+    const avant = v[type][id];
+    if(juste === false){
+        v[type][id] = [0, auj + 1, auj];
+    } else {
+        // Revue le jour meme ou elle a ete ratee (le retour de fin de seance) : elle revient quand meme demain.
+        if(avant && avant[0] === 0 && avant[2] === auj){ v[type][id] = [0, auj + 1, auj]; ecrireRevisions(v); return; }
+        const n = avant ? Math.max(0, avant[0]) : 0;
+        v[type][id] = [n + 1, auj + REVISION_JOURS[Math.min(n, REVISION_JOURS.length - 1)], auj];
+    }
+    ecrireRevisions(v);
+}
+// « jamais », « due » (echeance passee) ou « attente » (pas avant son echeance).
+function statutRevision(etat, texte, auj){
+    const x = etat[idRevision(texte)];
+    if(!x) return "jamais";
+    return x[1] > auj ? "attente" : "due";
+}
+// Deux appareils : par phrase, la vue la plus recente l'emporte.
+function fusionnerRevisions(ici, nuage){
+    const out = { p: {}, t: {}, s: {} };
+    ["p", "t", "s"].forEach(k => {
+        const a = (ici && ici[k]) || {}, b = (nuage && nuage[k]) || {};
+        Object.keys(a).forEach(id => { if(Array.isArray(a[id])) out[k][id] = a[id]; });
+        Object.keys(b).forEach(id => {
+            if(!Array.isArray(b[id]) || b[id].length < 3) return;
+            if(!out[k][id] || b[id][2] > out[k][id][2]) out[k][id] = b[id];
+        });
+    });
+    return elaguerRevisions(out);
+}
+
 // v903 (essai « profil ») : le cycle des formes selon ce qui ressemble a la
 // personne. Meme longueur, donc le compteur du cycle (CYCLE_FORMES_KEY) reste
 // juste ; « un peu de tout » ne retire rien : l'oreille garde la grammaire, les
@@ -68325,15 +68417,38 @@ function insererCartesPhrases(seance, tout){
         if(inconnus > palier.inconnus_max) return null;
         return { it: it, p: p, vise: vise, cout: inconnus * 10 - appui + p.mots.length * 0.1 };
     };
+    // Ligne 84 : la revision par phrase. Une jamais vue passe avant une phrase due, une phrase en attente n'est prise
+    // que si le niveau n'a plus de jamais vue (reserveJamaisVide, calculee une fois, a la premiere demande).
+    const etatP = lireRevisions().p, auj = jourRevision();
+    const RANG = { jamais: 0, due: 1, attente: 2 };
+    let reserveVide = null;
+    const reserveJamaisVide = () => {
+        if(reserveVide === null){
+            reserveVide = !(tout || []).some(it => {
+                if(!avecPhrase(it)) return false;
+                const p = phraseDeCarte(it, 99);
+                return !!p && !PHRASES_POSEES.has(p.de) && statutRevision(etatP, p.de, auj) === "jamais";
+            });
+        }
+        return reserveVide;
+    };
     const meilleur = (liste, max) => {
         let best = null;
         liste.forEach(it => {
             if(pris.has(cle(it))) return;
             const e = evaluer(it, max);
-            if(e && PHRASES_POSEES.has(e.p.de)) return;
-            if(e && (!best || e.cout < best.cout)) best = e;
+            if(!e || PHRASES_POSEES.has(e.p.de)) return;
+            e.rang = RANG[statutRevision(etatP, e.p.de, auj)];
+            if(!best || e.rang < best.rang || (e.rang === best.rang && e.cout < best.cout)) best = e;
         });
+        if(best && best.rang === RANG.attente && !reserveJamaisVide()) return null;
         return best;
+    };
+    // Jamais a moins de ANTI_ECHO_PHRASE cartes de la carte de son mot, avant ou apres.
+    const pres = k => {
+        const s = new Set();
+        sortie.slice(Math.max(0, k - ANTI_ECHO_PHRASE), k + ANTI_ECHO_PHRASE + 1).forEach(c => { if(c && c.mode !== "phrase") s.add(cle(c)); });
+        return s;
     };
     const sortie = seance.slice();
     // v839 : LE CYCLE CONTINUE. Il repartait de zero a chaque appel -- chaque
@@ -68372,7 +68487,11 @@ function insererCartesPhrases(seance, tout){
                 continue;
             }
             const max = f === "parler" ? palier.parler_max : (f === "dictee" && palier.dictee_max) ? palier.dictee_max : 0;
-            const e = meilleur(sortie.slice(0, k).filter(avecPhrase), max) || meilleur(vus.filter(avecPhrase), max);
+            const proches = pres(k);
+            const loin = it => avecPhrase(it) && !proches.has(cle(it));
+            // Les mots de la seance d'abord, puis tous les mots vus ; une jamais vue l'emporte sur une due d'ou qu'elle vienne.
+            const e1 = meilleur(sortie.slice(0, k).filter(loin), max), e2 = meilleur(vus.filter(loin), max);
+            const e = (e1 && e2) ? ((e2.rang < e1.rang) ? e2 : e1) : (e1 || e2);
             if(!e) continue;
             if(f === "trou" && e.vise < 0) continue;
             pris.add(cle(e.it));
@@ -70609,6 +70728,8 @@ function repondrePhrase(item, juste){
         try{ recordDailyActivity(); }catch(e){}
         return 0;
     }
+    // Ligne 84 : la revision de la phrase elle-meme, avant tout le reste (un mot pas encore du sortait plus bas sans rien noter).
+    try{ if(item && item.phrase && item.cible && item.forme !== "gram") noterRevision("p", item.phrase.de, juste); }catch(e){}
     try{
         const it = item.cible;
         if(item.forme === "gram" && juste !== null) noterGrammaireSeance(item.jeu, juste);
