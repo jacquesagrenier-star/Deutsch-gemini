@@ -23,6 +23,10 @@ LES TENUES SUIVENT LE LIEU, pour qu'on reconnaisse d'un coup d'œil qui travaill
 
 LE FOULARD : Amira seulement (décision de Jacques du 14 nov., « Amira seulement ») — sobre, uni, bleu
 marine, compatible avec la tenue de soins à domicile. Elif n'en porte pas.
+
+OLENA REFAITE (retour de Jacques du 14 nov.) : la première ressemblait trop à Anna
+(visuel/prototype/descripcion/Anna.webp : fine, cheveux châtain clair tirés en arrière). Visage rond et
+large, pommettes marquées, rides d'expression, carré blond doré lâché aux épaules, silhouette plus forte.
 """
 import io
 import os
@@ -70,9 +74,12 @@ SOIGNANTS = {
               "dark eyes and a calm, kind, slightly tired look. He wears a plain white short-sleeved nurse's tunic, plain "
               "white trousers and white closed shoes."),
     "olena": ("woman of forty-four from Ukraine, a nurse in a care home",
-              "SHE is of medium height and sturdy, with fair skin, blue-grey eyes, fine laugh lines and a warm, motherly "
-              "smile. Her straight ash-blonde hair falls to her shoulders, held back behind her ears. She wears a plain "
-              "sage-green short-sleeved polo shirt, navy-blue trousers and black closed shoes."),
+              "SHE is of medium height with a solid, sturdy build, broad shoulders and a full figure. Her face is round "
+              "and wide, with high, marked cheekbones, a broad short nose, light-blue eyes, fine expression lines at the "
+              "corners of the eyes and across the forehead, and a broad, warm, motherly smile. Her hair is dark golden "
+              "blonde, cut in a straight blunt bob that hangs loose and touches her shoulders, with a side parting; it "
+              "is not tied back. She wears a plain sage-green short-sleeved polo shirt, navy-blue trousers and black "
+              "closed shoes."),
     "jonas": ("German man of thirty-eight, a senior nurse who trains new colleagues",
               "HE is tall and lean, with fair skin, short sandy-blond hair, light stubble, blue eyes and an amused, "
               "friendly grin. He wears a plain white short-sleeved nurse's tunic, plain white trousers and white trainers; "
