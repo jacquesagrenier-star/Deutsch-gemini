@@ -65,9 +65,16 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
 
 
-def corpus():
+def corpus(nom=""):
     themes = json.load(io.open(os.path.join(RACINE, "themes.json"),
                                encoding="utf-8"))["themes"]
+    # WORTANDO PFLEGE (14 nov. 2026) : une scene « soins-<nom> » lit AUSSI les mots de la section Soins
+    # (pflege/datos/themes.json, ids soins_*), apres le corpus general, qui reste prioritaire. Les autres
+    # scenes ne les voient pas : leurs apprenants n'ont pas ces mots. Voir pflege/FORMAT-DONNEES.md, § 5.
+    if nom.startswith("soins-"):
+        chemin = os.path.join(RACINE, "pflege", "datos", "themes.json")
+        if os.path.exists(chemin):
+            themes = themes + json.load(io.open(chemin, encoding="utf-8"))["themes"]
     idx = {}
     for t in themes:
         for m in t["mots"]:
@@ -200,7 +207,7 @@ def main():
     nom = noms[0] if noms else "klassenzimmer"
     pts = json.load(io.open(os.path.join(ICI, nom + ".points.json"),
                             encoding="utf-8"))
-    idx = corpus()
+    idx = corpus(nom)
     sortie, manquants = [], []
     for p in pts["points"]:
         m = idx.get(p["mot"])
@@ -421,6 +428,10 @@ def mot_espagnol(valeur, idx, variantes):
 
 
 def construire_espagnol(nom, scene_de):
+    # Les scenes des Soins (soins-*) sont allemandes seulement pour l'instant (decision Q8 du 14 nov. :
+    # dessinees neutres pour servir plus tard l'espagnol medical, mais sans variante aujourd'hui).
+    if nom.startswith("soins-"):
+        return
     chemin = os.path.join(ICI, "espanol", nom + ".json")
     if not os.path.exists(chemin):
         return
