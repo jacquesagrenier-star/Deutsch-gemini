@@ -50951,6 +50951,8 @@ function panneauBlocExamen(ex){
 // LA PAGE DU TELC (visuel/prototype/telc/telc.html), dans le cadre des scenes comme l'oral du DTZ. Elle repose sur
 // visuel/prototype/dtz/commun.js (le profil d'examen « telc »). « partie » ouvre directement une partie.
 function ouvrirTelc(partie){
+    // ligne 86 : en defense -- sa seule porte (le panneau du telc) a deja le cadenas en version gratuite
+    if(!famillePageOuverte("telc")){ ouvrirAbonnement(); return; }
     sceneOuverteDepuis = "telc";
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
@@ -52778,6 +52780,7 @@ const apprendreThemeIllustre = () => ["es", "en", "pt"].includes(LANGUE_APPRISE)
 function ouvrirThemeIllustre(nom, depuis){
     const th = THEMES_ILLUSTRES[nom];
     if(!th) return;
+    if(!pageOuverte("theme:" + nom)){ ouvrirAbonnement(); return; }   // ligne 86
     sceneOuverteDepuis = (depuis === "accueil" ? "themeaccueil:" : depuis === "panneau" ? "themepanneau:" : "theme:") + nom;
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
@@ -52807,6 +52810,7 @@ function ouvrirDtzOral(){
 // d'elle-meme de la liste a une conversation et retour ; « fermer » ramene a Tout le contenu. Rien ne compte pour la
 // seance du jour (decision du 11 nov. : la tuile sert a s'entrainer a volonte).
 function ouvrirConversations(){
+    if(!famillePageOuverte("conversation")){ ouvrirAbonnement(); return; }   // ligne 86
     sceneOuverteDepuis = "conversations";
     const cadre = document.getElementById("sceneCadre");
     const appris = ["de", "es", "en"].includes(LANGUE_APPRISE) ? LANGUE_APPRISE : "de";
@@ -53180,6 +53184,11 @@ const GRATUIT = {
         partikeln:     "startPartikelnNuance",
         zuinfinitiv:   "startZuInfinitivExercise"
     },
+    // LES PAGES EN CADRE GRATUITES (ligne 86, 13 nov. 2026) : « theme:<nom> » (THEMES_ILLUSTRES), « conversation:<id> »
+    // (une conversation ; la tuile s'ouvre s'il y en a au moins une), « telc » (la page du telc), « scene:<nom> ».
+    // VIDE d'abord (le chef, 13 nov. : tout payant en version gratuite) ; les choix de vitrine de Jacques s'y
+    // ajoutent. La classe (scene:klassenzimmer) est deja gratuite depuis le 2 oct. : voir PAGES_GRATUITES_DECIDEES.
+    portes: [],
     // Les portes d'un panneau qui restent ouvertes parce qu'elles verifient
     // elles-memes (themes, niveaux de verbes et d'adjectifs), ou parce
     // qu'elles menent a la serie gratuite (la lecon des adjectifs).
@@ -53400,6 +53409,26 @@ function etatAcces(){
 
 function accesComplet(){
     return etatAcces() !== "gratuit";
+}
+
+// ============ LES PAGES EN CADRE ET L'ACCES (ligne 86, 13 nov. 2026) ============
+// Les pages chargees dans le cadre (themes illustres, conversations, telc, scenes) ne verifient rien elles-memes :
+// la garde est ICI, a leurs portes (ouvrirThemeIllustre, ouvrirConversations, ouvrirTelc, le panneau des themes, le
+// ruban) et dans la seance du jour (themeDuJour, la scene de la seance, la conversation de Premiers pas). Les mots
+// d'une scene ou d'un theme, eux, etaient deja gardes : revisionDeScene() et etatsDesMots() ignorent en version
+// gratuite tout mot hors de l'echantillon. Et la page elle-meme (visuel/prototype/themes/acces.js) refuse de
+// s'ouvrir hors du cadre de l'app une fois ACCES.actif vrai : c'est la poignee de main (window.cadreAutorise,
+// pose par chargerCadre). Tout est INERTE tant que ACCES.actif vaut false (accesComplet() rend toujours vrai).
+// Premiers pas et l'A1 voyage gardent leurs scenes d'etape : elles ferment l'etape.
+const PAGES_GRATUITES_DECIDEES = ["scene:klassenzimmer"];   // la classe, gratuite depuis le 2 oct. (GRATUIT.portesOuvertes)
+function pageOuverte(id){
+    if(accesComplet()) return true;
+    return PAGES_GRATUITES_DECIDEES.indexOf(id) >= 0 || (GRATUIT.portes || []).indexOf(id) >= 0;
+}
+// « conversation: » : au moins une page de cette famille est ouverte.
+function famillePageOuverte(prefixe){
+    if(accesComplet()) return true;
+    return PAGES_GRATUITES_DECIDEES.concat(GRATUIT.portes || []).some(p => p === prefixe || p.indexOf(prefixe + ":") === 0);
 }
 
 // ============ LES ACHATS : RevenueCat (v1165) ============
@@ -53864,6 +53893,9 @@ function optionGratuite(panneau, o){
     // blocSansEchantillon), elles prennent donc le cadenas comme le reste de l'abonnement
     const bloc = blocDePanneau(panneau);
     if(bloc && /^startPruefung/.test(o.action) && blocSansEchantillon(bloc)) return false;
+    // ligne 86 : un theme illustre n'est ouvert que s'il est dans GRATUIT.portes
+    if(panneau === "themes_illustres" && /^ouvrirThemePanneau_/.test(o.action || ""))
+        return pageOuverte("theme:" + o.action.replace("ouvrirThemePanneau_", ""));
     if(o.section === "comprendre" || o.section === "ailleurs") return true;
     if(GRATUIT.portesOuvertes.indexOf(o.action) >= 0) return true;
     return GRATUIT.exercices[panneau] === o.action;
@@ -67882,6 +67914,12 @@ const SCENE_FAITE_KEY = PREFIXE_STOCKAGE + "sceneFaite";
 // n'en cree aucune. Vaut dans un navigateur des aujourd'hui, et dans l'app Android le jour ou le natif gerera Retour.
 function chargerCadre(cadre, url){
     cadre.dataset.page = url;
+    // La poignee de main (ligne 86) : le chemin de la page que l'APP vient d'ouvrir, lu par themes/acces.js depuis le
+    // cadre. Le dossier entier pour le telc et le DTZ, qui passent d'une page a l'autre a l'interieur.
+    try{
+        const ch = new URL(url, location.href).pathname;
+        window.cadreAutorise = /\/(telc|dtz)\//.test(ch) ? ch.slice(0, ch.lastIndexOf("/") + 1) : ch;
+    }catch(e){}
     try{ cadre.contentWindow.location.replace(url); return; }catch(e){}
     cadre.src = url;
 }
@@ -68225,7 +68263,7 @@ function majExplorerThemes(){
     if(nb) nb.textContent = noms.length;
     // Rebati seulement si quelque chose a change : refaites a chaque retour a l'accueil, les vignettes se
     // redecodaient et l'accueil clignotait (vu en capture, 3 nov. 2026).
-    const cle = getUiLang() + "|" + noms.join(",");
+    const cle = getUiLang() + "|" + noms.join(",") + "|" + (accesComplet() ? 1 : 0);
     if(ruban.dataset.cle === cle && ruban.children.length) return;
     ruban.dataset.cle = cle;
     ruban.innerHTML = "";
@@ -68233,7 +68271,7 @@ function majExplorerThemes(){
         const th = THEMES_ILLUSTRES[nom];
         const b = document.createElement("button");
         b.type = "button";
-        b.className = "explorer-v";
+        b.className = "explorer-v" + (pageOuverte("theme:" + nom) ? "" : " verrou");   // ligne 86
         const img = document.createElement("img");
         img.alt = ""; img.src = baseScenes() + "themes/" + nom + ".webp";
         const sp = document.createElement("span");
@@ -72144,7 +72182,7 @@ function insererConversationPP(items){
     items.forEach(c => {
         sortie.push(c);
         const id = c && c.forme === "pp_scene" ? CONVERSATIONS_PREMIERS_PAS[c.jourPP] : null;
-        if(id) sortie.push({ mode: "phrase", forme: "conv_arret", pp: true, cible: null, themeId: "conv_arret", index: c.jourPP,
+        if(id && pageOuverte("conversation:" + id)) sortie.push({ mode: "phrase", forme: "conv_arret", pp: true, cible: null, themeId: "conv_arret", index: c.jourPP,
                              conversation: id, jourPP: c.jourPP, phrase: null, word: "" });
     });
     return sortie;
@@ -73761,6 +73799,14 @@ async function preparerArretScene(seance, sceneImposee, enPremiersPas){
         const depart = Math.max(0, SCENES_SEANCE.findIndex(x => x.nom === sceneDuJour().nom));
         const voulus = Math.max(8, nb + 3);
         for(let k = 1; k < SCENES_SEANCE.length && candidates.length < voulus; k++) ajouter(SCENES_SEANCE[(depart + k) % SCENES_SEANCE.length]);
+        // ligne 86 : en version gratuite, seulement les scenes ouvertes (la classe d'abord), hors Premiers pas et hors
+        // scene imposee (l'etape de l'A1 voyage), qui ferment une etape
+        if(!enPremiersPas && !accesComplet()){
+            const libres = candidates.filter(c => (sceneImposee && c.nom === sceneImposee.nom) || pageOuverte("scene:" + c.nom));
+            SCENES_SEANCE.forEach(x => { if(pageOuverte("scene:" + x.nom) && !libres.some(c => c.nom === x.nom)) libres.push(x); });
+            candidates.splice(0, candidates.length, ...libres);
+            if(!candidates.length) return seance;
+        }
         // D'abord les scenes qui ont deja trois mots vus (dans l'ordre : la prevue,
         // celle du jour, les suivantes) ; s'il en manque, les autres, leurs mots vus
         // completes par d'autres mots A1 (v913 : le cas ordinaire en A1, ou les mots
@@ -73861,7 +73907,8 @@ const THEMES_PREMIERS_PAS_NB = 8;
 const THEMES_PREMIERE_SEMAINE = ["cuerpo", "animales", "contrarios", "emociones"];
 function themeDuJour(){
     if(!["es", "de", "en", "pt"].includes(LANGUE_APPRISE)) return null;
-    const ouverts = themesIllustresOuverts();
+    // ligne 86 : en version gratuite, seulement les themes de GRATUIT.portes (aucun d'abord : pas de theme)
+    const ouverts = themesIllustresOuverts().filter(nom => pageOuverte("theme:" + nom));
     if(!ouverts.length) return null;
     if(premiereSemaineDebutant()){
         const simples = THEMES_PREMIERE_SEMAINE.filter(nom => ouverts.indexOf(nom) >= 0);

@@ -214,5 +214,31 @@ CLES.forEach(k => {
     egal(n, 11, "la cle " + k + " existe dans les 11 langues d'interface");
 });
 
+// ---------- 9. Les pages en cadre (ligne 86, 13 nov. 2026) ----------
+// A : la garde aux portes, inerte avant la sortie. B : la poignee de main dans les pages.
+verifier(/function pageOuverte\(id\)\{\s*if\(accesComplet\(\)\) return true;/.test(source), "pageOuverte : tout est ouvert en acces complet (donc avant la sortie)");
+verifier(/portes: \[\],/.test(source), "GRATUIT.portes est vide d'abord (decision du chef du 13 nov.)");
+verifier(/function ouvrirThemeIllustre\(nom, depuis\)\{[\s\S]{0,160}if\(!pageOuverte\("theme:" \+ nom\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte des themes illustres");
+verifier(/function ouvrirConversations\(\)\{\s*if\(!famillePageOuverte\("conversation"\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte des conversations");
+verifier(/function ouvrirTelc\(partie\)\{[\s\S]{0,160}if\(!famillePageOuverte\("telc"\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte du telc");
+verifier(/const ouverts = themesIllustresOuverts\(\)\.filter\(nom => pageOuverte\("theme:" \+ nom\)\);/.test(source), "le theme de la seance parmi les themes ouverts");
+verifier(/if\(id && pageOuverte\("conversation:" \+ id\)\) sortie\.push\(/.test(source), "la conversation de Premiers pas seulement si elle est ouverte");
+verifier(/if\(!enPremiersPas && !accesComplet\(\)\)\{\s*const libres = candidates\.filter/.test(source), "la scene de la seance parmi les scenes ouvertes");
+verifier(/window\.cadreAutorise = /.test(source), "chargerCadre pose la poignee de main (window.cadreAutorise)");
+verifier(/if\(!accesComplet\(\) && !filtrerGratuit\(\[it\]\)\.length\) return false;/.test(source), "les mots d'une scene ou d'un theme hors echantillon n'avancent pas en version gratuite");
+{
+    const accesJs = fs.readFileSync(path.join(RACINE, "visuel", "prototype", "themes", "acces.js"), "utf8");
+    const m = accesJs.match(/var ACTIF = (true|false);/);
+    const actifApp = /const ACCES = \{ actif: (true|false)/.exec(source);
+    verifier(!!m && !!actifApp, "ACTIF lisible dans acces.js et ACCES.actif dans index.html");
+    if(m && actifApp) egal(m[1], actifApp[1], "acces.js (ACTIF) et index.html (ACCES.actif) s'accordent");
+    const idx = source;
+    const pagesThemes = Array.from(new Set((idx.match(/page: *"[a-z-]+\.html"/g) || []).map(x => x.match(/"([a-z-]+\.html)"/)[1])));
+    pagesThemes.concat(["conversation.html", "index.html", "dtz-oral.html", "telc/telc.html", "telc/oral.html", "dtz/dtz.html"]).forEach(p => {
+        const page = fs.readFileSync(path.join(RACINE, "visuel", "prototype", p), "utf8");
+        verifier(page.indexOf("themes/acces.js") >= 0, "la page " + p + " charge themes/acces.js");
+    });
+}
+
 console.log("Essai de 7 jours : " + ok + " verifications passees, " + ko + " en echec.");
 if(ko){ fautes.forEach(f => console.log("  ECHEC : " + f)); process.exit(1); }
