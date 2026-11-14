@@ -480,6 +480,10 @@ lignes en portent deux (*hoch / niedrig*). 43 sont reprises du corpus, 78 porten
 - die Pflegeanamnese — le recueil de données
 - der Pflegeprozess (Problem – Ressource – Ziel – Maßnahme – Evaluation) — la démarche de soins ⚕️
 - die Strukturierte Informationssammlung (SIS) — le recueil structuré de l'Altenpflege ⚕️
+- die AEDL (nach Krohwinkel) / die ATL (nach Juchli) — les grilles des activités de la vie
+  quotidienne qui rangent un plan de soins (« sich bewegen », « essen und trinken »,
+  « ausscheiden »…) : la grille de la lecture partie 2 du telc ⚕️ (ajout du 14 nov., voir
+  `../FORMAT-TELC-PFLEGE.md`)
 - das Pflegeziel / die Evaluation — l'objectif de soins / l'évaluation
 - AZ / EZ (Allgemein-, Ernährungszustand) — état général / nutritionnel ⚕️
 - reduzierter AZ — état général altéré ⚕️

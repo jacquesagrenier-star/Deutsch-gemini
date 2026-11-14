@@ -22,6 +22,39 @@ marque ce qui ne l'est pas ; ⚕️ marque ce qui demande la relecture d'une inf
 
 ---
 
+## ✦ Décisions de Jacques du 14 nov. 2026 (elles priment sur la suite du plan)
+
+Consignées dans `decisions/DECISIONS.md` (« Wortando Pflege : les décisions de lancement »).
+
+| Question | Décision | Ce que cela change ici |
+|---|---|---|
+| Q1 Test modèle | **Téléchargé** (ZIP et manuel, depuis telc.net, hors du dépôt) | Format et barème exacts : [FORMAT-TELC-PFLEGE.md](FORMAT-TELC-PFLEGE.md) ; le § 1.2 ci-dessous est dépassé |
+| Q2 Personnages | De nouveaux soignants, d'après les pays qui recrutent **aujourd'hui**, **un personnage turc obligatoire** | Nouvelle distribution proposée : [PERSONNAGES.md](PERSONNAGES.md) (Elif, Amira, Arun, Yusuf, Olena), **à valider avant toute image** ; l'annexe B sera mise à jour après |
+| Q3 MVP | **Pas de MVP : la grande version tout de suite** | § 7.2 abandonné ; nouveau calendrier ci-dessous |
+| Q4 Licence | « On verra comment on va le gérer » : pendant le travail, **l'admin ouvre les Soins compte par compte** (`essais: ["soins"]`) | **Pas** de codes d'agence ni de Cloud Function pour l'instant (§ 4.3 points 2 et 3 en attente) ; le tableau de bord de la grande version vit d'abord **dans le tableau de bord admin** |
+| Q5 Contenu lisible | (non tranché séparément : suit Q4) | les fichiers restent servis comme le reste |
+| Q6 Langues | Les **9 langues d'interface actuelles** | pas d'espagnol d'interface pour l'instant |
+| Q7 Dépenses | **Go** pour les images (fal) et les voix (ElevenLabs v2, jamais Flash) du plan | chaque lot **annoncé au chef avec son coût** avant d'être lancé ; une dépense hors plan, ou un lot qui dépasse son estimation de plus de 20 %, demande un nouvel accord ; l'infirmière relectrice et le juriste sont l'affaire de Jacques : profils dans [PROFILS-RELECTURE.md](PROFILS-RELECTURE.md) |
+| Q8 Espagnol | Recommandation gardée : scènes neutres, l'espagnol médical américain plus tard | — |
+| Validation par les agences | « Je le ferai sans l'avis de 2 ou 3 agences, j'irai de l'avant » | § 7.3 sans objet |
+
+### Le calendrier de la grande version (estimation)
+
+| Phase | Contenu | Durée | Après |
+|---|---|---|---|
+| 1 · Architecture | Ouverture par l'admin (`essais` « soins »), garde, tuile et panneau, chargement de `pflege/datos/`, séance, premier thème, contrôles | 1-2 sem. | — |
+| 2 · Contenu texte | Les **10 thèmes** (430 entrées, phrases d'exemple, 9 langues), les **12 dialogues**, les **21 points** de grammaire et leurs séries, l'écrit (12 sujets) | 5-6 sem. | phase 1 |
+| 3 · Scènes | Planche d'essai (3 images), puis les **8 scènes** et leurs couches ; personnages validés d'abord | 3-4 sem., en parallèle de la phase 2 | Q2 validée |
+| 4 · Examen blanc | **Deux examens complets** au format exact (59 questions, écrit A / B, oral sur 100, calcul du certificat B1 / B2), audio des écoutes | 3-4 sem. | phase 2 avancée |
+| 5 · Suivi | Dans le tableau de bord admin : la cohorte « Soins », progression, « prêt pour l'examen » (seuils du telc), alertes, export CSV ; l'accès d'une agence plus tard | 2 sem. | phases 1 et 4 |
+| 6 · Relecture | Infirmière et langues, au fil des lots | continue | une relectrice trouvée par Jacques |
+
+Fin estimée : **fin février 2027** si la phase 3 tourne en parallèle (une session à part, que je
+proposerai au chef), **fin mars** sinon. Coût du plan complet inchangé : ≈ 30 $ d'images, ≈ 27 $ de
+voix (§ 6).
+
+---
+
 ## 0. En une page
 
 **Le besoin est réel et payé par l'employeur.** L'Allemagne emploie 353 000 soignants étrangers
