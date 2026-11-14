@@ -58,11 +58,11 @@ AMIRA_SPORT = ("AMIRA, a young woman of twenty-six from Tunisia, the woman of th
                "running tights and grey running shoes.")
 # Frau Weber et Herr Schulze : des decoupes de la scene soins-altenheim (pflege-scenes, 14 nov.), table et objets
 # compris dans le cadre : la reference sert pour la PERSONNE seulement
-WEBER = ("FRAU WEBER, a resident of eighty-one, the woman of the {ref} reference picture (use that picture for the person "
-         "only: the table and the things around her do not appear here), her face, skin and hair exactly as in it: short "
+WEBER = ("FRAU WEBER, a resident of eighty-one, the woman of the {ref} reference picture (that picture gives her face, her hair and "
+         "her clothes; here she is in the place described below), her face, skin and hair exactly as in it: short "
          "white curly hair, small pearl earrings, a lilac twin-set")
-SCHULZE = ("HERR SCHULZE, a resident of eighty-seven, the man of the {ref} reference picture (use that picture for the "
-           "person only: the table, the walker and the things around him do not appear here), his face, skin and hair "
+SCHULZE = ("HERR SCHULZE, a resident of eighty-seven, the man of the {ref} reference picture (that picture gives his face, his "
+           "hair and his clothes; here he is in the place described below), his face, skin and hair "
            "exactly as in it: white hair, a short white beard, a skin-coloured hearing aid at his ear, a grey cardigan "
            "over a white shirt")
 KRUEGER = ("FRAU KRÜGER, a woman of about forty-five, the woman of the first reference picture: shoulder-length "
@@ -75,7 +75,7 @@ PHOTOS = {
         "texte": TETE.format(quoi="a carer helping an old woman walk with a walker along a bright corridor of a care home",
                              lumiere="soft daylight from a large window at the end of the corridor") +
         "The third reference picture is a real phone photograph taken in the common room of the same care home: use it "
-        "for the photographic look and for the warm, homely style of the house; its room does not appear here.\n\n" +
+        "for the photographic look and for the warm, homely style of the house; this picture is set in another room of the house.\n\n" +
         WEBER.format(ref="second") + ", now in a lilac twin-set and grey trousers and soft dark-red slippers, walks slowly "
         "in the middle of the picture, holding the handles of a grey four-wheeled walker with a small basket, looking "
         "ahead along the corridor with a small proud smile.\n\n" + OLENA + " She walks beside Frau Weber, on the left of "
@@ -102,7 +102,7 @@ PHOTOS = {
         "texte": TETE.format(quoi="a nurse at the bedside of an old man in a care home, filling in a pain observation sheet",
                              lumiere="soft morning daylight from the window") +
         "The third reference picture is a real phone photograph of the same care home: use it for the photographic look "
-        "and the homely style of the rooms; its room does not appear here.\n\n" + SCHULZE.format(ref="second") + ", lies in a bed "
+        "and the homely style of the rooms; this picture is set in another room of the house.\n\n" + SCHULZE.format(ref="second") + ", lies in a bed "
         "with pale wooden boards on the right of the picture, his head on a white pillow, a cream blanket up to his "
         "chest, looking at the nurse with a slightly troubled face.\n\n" + ARUN + " He sits on a chair beside the bed, on "
         "the left of the picture, turned towards Herr Schulze, a brown clipboard on his knee, writing with a blue pen on "
@@ -141,7 +141,7 @@ PHOTOS = {
                              lumiere="soft daylight from a window at the end of the corridor") +
         "The second reference picture is a real phone photograph taken on the same hospital ward: use it for the "
         "photographic look; the corridor has the same warm white walls and the same pale grey vinyl floor as in that "
-        "photograph. Its people do not appear here.\n\n" + ELIF + " She stands in the middle of the picture beside a "
+        "photograph.\n\n" + ELIF + " She stands in the middle of the picture beside a "
         "grey steel care trolley, taking a quick bite of a bread roll held in one hand, a small paper bag in the other, "
         "her eyes turned down the corridor towards a patient's door on the right of the picture, in a hurry.\n\n"
         "THE CORRIDOR: a pale wooden handrail along the wall, closed pale wooden doors, a hand sanitiser pump bottle on "
