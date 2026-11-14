@@ -119,6 +119,42 @@ async ([etape]) => {
 """
 
 
+# Le compte qui a un « t » numerique (ecrit du 8 au 14 nov., dans le nuage ou sur l'appareil) : le tableau de l'escale
+# revient UNE fois, puis plus apres l'avoir vu. Puis la fusion de deux appareils, qui ne perd aucune escale.
+MIGRATION = r"""
+async () => {
+  const pause = ms => new Promise(r => setTimeout(r, ms));
+  if(typeof fusionnerA1Voyage !== 'function') return { absent: true };
+  const ancienne = Date.now() - 3 * 86400000;
+  localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify({ a: true, e: 1, t: ancienne, b: 0, d: false }));
+  const tour = async () => {
+    await ouvrirSeanceDuJour(); await pause(1200);
+    const c = currentCards.slice(), tab = c.filter(x => x.avTableau);
+    tab.forEach(x => { try{ marquerCarteA1V(x); }catch(e){} });
+    return { tableau: tab.length, etat: lireA1Voyage() };
+  };
+  const t1 = await tour(), t2 = await tour(), t3 = await tour();
+  const brut = JSON.parse(localStorage.getItem(A1_VOYAGE_KEY) || '{}');
+  const vieux = Date.now() - 5 * 86400000, recent = Date.now() - 60000;
+  const cas = [
+    ['ici escale 4 (ancien « t »), nuage escale 2 plus recent', { a: true, e: 3, t: vieux }, { a: true, e: 1, t: false, w: recent }, 'ici'],
+    ['ici escale 2 recent, nuage escale 3 (ancien « t »)', { a: true, e: 1, t: true, w: recent }, { a: true, e: 2, t: vieux }, 'nuage'],
+    ['meme escale, ici « w » recent, nuage ancien « t »', { a: true, e: 1, t: true, w: recent }, { a: true, e: 1, t: vieux }, 'ici'],
+    ['meme escale, nuage a vu le tableau', { a: true, e: 1, t: false, w: recent }, { a: true, e: 1, t: true, w: vieux }, 'nuage'],
+    ['ici escales finies (suite etape 1), nuage escale 12', { a: true, fin: true, k: 0, e: 12, w: vieux }, { a: true, e: 11, t: true, w: recent }, 'ici'],
+    ['rien ici', null, { a: true, e: 5, t: vieux }, 'nuage'],
+    ['rien dans le nuage', { a: true, e: 5, w: vieux }, null, 'ici'],
+  ];
+  const fusion = cas.map(([nom, ici, nuage, attendu]) => {
+    const g = fusionnerA1Voyage(ici, nuage);
+    const obtenu = g === ici ? 'ici' : g === nuage ? 'nuage' : String(g);
+    return { nom, attendu, obtenu, ok: obtenu === attendu };
+  });
+  return { tours: [t1.tableau, t2.tableau, t3.tableau], brut: { t: brut.t, w: typeof brut.w }, fusion };
+}
+"""
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--racine", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -209,6 +245,35 @@ def main():
                     fautes.append("%s : la partie Grammaire ne s'ouvre pas (%s)" % (langue, v2))
             if err:
                 print("   erreurs JavaScript : %s" % err[:5], flush=True)
+            ctx.close()
+            # Le « t » numerique et la fusion de deux appareils (absents avant le correctif).
+            ctx = nav.new_context(locale="fr-FR", viewport={"width": 390, "height": 844}, service_workers="block")
+            page = ctx.new_page()
+            page.on("dialog", lambda d: d.dismiss())
+            page.goto(url)
+            page.wait_for_load_state("networkidle")
+            page.wait_for_timeout(1200)
+            try:
+                page.evaluate("() => { try{ if(typeof CODIGOS_VALIDOS !== 'undefined' && typeof CLAVE_ACCESO !== 'undefined') localStorage.setItem(CLAVE_ACCESO, CODIGOS_VALIDOS[0]); }catch(e){} }")
+            except Exception:
+                pass
+            page.evaluate(SEMER)
+            m = page.evaluate(MIGRATION)
+            if m.get("absent"):
+                page.goto(url)
+                page.wait_for_load_state("networkidle")
+                page.wait_for_timeout(800)
+                page.evaluate("() => localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify({ a: true, e: 1, t: Date.now() - 3 * 86400000, b: 0, d: false }))")
+                n = page.evaluate("async () => { await ouvrirSeanceDuJour(); await new Promise(r => setTimeout(r, 1200)); return currentCards.filter(x => x.avTableau).length; }")
+                print("   « t » numerique, version d'avant : tableau de l'escale dans la seance : %d" % n, flush=True)
+            else:
+                print("   « t » numerique : tableau de l'escale aux seances 1, 2, 3 = %s ; ecrit ensuite t=%s, w %s" % (m["tours"], m["brut"]["t"], m["brut"]["w"]), flush=True)
+                if m["tours"] != [1, 0, 0]:
+                    fautes.append("%s : le tableau de l'escale avec un « t » numerique : %s au lieu de [1, 0, 0]" % (langue, m["tours"]))
+                for f in m["fusion"]:
+                    print("   fusion : %-58s attendu %-5s obtenu %-5s %s" % (f["nom"], f["attendu"], f["obtenu"], "OK" if f["ok"] else "FAUX"), flush=True)
+                    if not f["ok"]:
+                        fautes.append("%s : fusion « %s » : %s au lieu de %s" % (langue, f["nom"], f["obtenu"], f["attendu"]))
             ctx.close()
         nav.close()
     srv.shutdown()

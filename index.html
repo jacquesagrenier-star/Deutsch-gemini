@@ -45521,8 +45521,9 @@ async function restoreProgressFromCloud(){
                 let ici = null;
                 try{ ici = JSON.parse(localStorage.getItem(A1_VOYAGE_KEY) || "null"); }catch(e2){ ici = null; }
                 // 8 nov. 2026 : le plus recent l'emporte, sinon un deuxieme appareil restait a son etape.
-                // 14 nov. 2026 : l'heure sous « w » (« t » est le tableau vu) ; heureA1Voyage lit aussi l'ancienne.
-                if(d && typeof d === "object" && (!ici || heureA1Voyage(d) > heureA1Voyage(ici))){
+                // 14 nov. 2026 : le plus AVANCE l'emporte, le plus recent a egalite (fusionnerA1Voyage).
+                const garde = fusionnerA1Voyage(ici, d);
+                if(garde && garde === d){
                     try{ localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify(d)); }catch(e2){}
                 }
             }
@@ -70978,6 +70979,26 @@ function heureA1Voyage(v){
     // L'heure d'un etat, ecrit avant (« t », un nombre) ou apres (« w ») le 14 nov.
     if(!v || typeof v !== "object") return 0;
     return v.w || (typeof v.t === "number" ? v.t : 0);
+}
+// Deux appareils (l'etat d'ici, celui du nuage) : lequel garder. Le plus recent seul pouvait faire RECULER : un
+// telephone reste a l'escale 2, ecrit en dernier, effacait l'escale 4 de l'autre (le chef, 14 nov. : « ne doit
+// perdre aucune escale »). Le plus avance l'emporte donc -- suite finie, escales finies, etape de la suite ou escale,
+// tableau, phrases, dialogue --, et le plus recent seulement a egalite. Rend l'objet garde (ici ou nuage), ou null.
+function avanceeA1Voyage(v){
+    if(!v || typeof v !== "object") return [-1];
+    const tableauVu = v.t === true ? 1 : 0;   // un « t » numerique est une heure, pas un tableau vu
+    return [v.sf ? 1 : 0, v.fin ? 1 : 0, v.fin ? (v.k || 0) : (v.e || 0), tableauVu, v.b || 0, v.d ? 1 : 0, v.jalon ? 1 : 0];
+}
+function fusionnerA1Voyage(ici, nuage){
+    const okIci = ici && typeof ici === "object", okNuage = nuage && typeof nuage === "object";
+    if(!okNuage) return okIci ? ici : null;
+    if(!okIci) return nuage;
+    const a = avanceeA1Voyage(ici), b = avanceeA1Voyage(nuage);
+    for(let i = 0; i < Math.max(a.length, b.length); i++){
+        if((b[i] || 0) > (a[i] || 0)) return nuage;
+        if((b[i] || 0) < (a[i] || 0)) return ici;
+    }
+    return heureA1Voyage(nuage) > heureA1Voyage(ici) ? nuage : ici;
 }
 function ecrireA1Voyage(v){
     // 8 nov. 2026 : l'heure de l'ecriture -- l'etat part dans le nuage et le plus recent l'emporte.
