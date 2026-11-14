@@ -189,8 +189,16 @@ def main():
                     page.wait_for_timeout(400)
                     # 14 nov. : on repond par la page elle-meme (toucher() sur une zone de la cible) -- un clic au
                     # centre de l'image ne tombait pas toujours sur une zone, et rien n'etait repondu.
-                    rep = f.evaluate("""() => { try{ if(typeof attenteToucher !== 'undefined' && attenteToucher && !verrou){
-                        const z = zonesDe(attenteToucher); if(z.length){ toucher(z[0], null); return 'toucher ' + attenteToucher; } } }catch(e){ return 'erreur ' + e; } return null; }""")
+                    # Un compte neuf ouvre la scene en « Decouvrir » : on touche des objets jusqu'au bouton « Trouve ! ».
+                    rep = f.evaluate("""() => { try{
+                        if(niveau === 'A1' && modeA1 === 'decouvrir'){
+                          const go = document.querySelector('#bas button.suite'); if(go){ go.click(); return 'trouve'; }
+                          const z = ZONES.find(x => !DECOUVERTS.has(x.mot)); if(z){ toucher(z.id, null); return 'decouvre'; } return null; }
+                        if(attenteToucher && !verrou){
+                          const z = zonesDe(attenteToucher); if(z.length){ toucher(z[0], null); return 'toucher ' + attenteToucher; } }
+                      }catch(e){ return 'erreur ' + e; } return null; }""")
+                    if rep in ("trouve", "decouvre"):
+                        continue
                     if rep:
                         touche = rep
                         page.wait_for_timeout(1500)

@@ -72576,6 +72576,9 @@ function revenirDeLArret(){
     showScreen("flashcards");
     cacherCartePhrase();
     nextFlashcard();
+    // 14 nov. 2026 (ligne 77) : apres le DERNIER arret (le theme, la conversation de l'etape), l'ecran de fin s'ouvre
+    // sans redessiner la barre -- elle restait telle qu'a l'ouverture de l'arret (Images a 50 %, Conversations a 0 %).
+    try{ majPartsSeance(); }catch(e){}
 }
 // La porte unique de l'accueil annonce la scene du jour.
 function majAujourdhuiScene(on){
