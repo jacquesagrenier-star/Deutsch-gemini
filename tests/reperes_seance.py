@@ -424,7 +424,9 @@ def main():
                 ctx.close()
             ctx, page = page_de(nav, "en", "fr", "light", 360, 780)
             d = page.evaluate("async () => { await ouvrirSeanceDuJour(); await new Promise(r => setTimeout(r, 1200)); const p = document.getElementById('seancePaysage'); return { dispo: repereSeanceDispo(), paysage: !!(p && !p.classList.contains('hidden')) }; }")
-            note("anglais sans repere", not d["dispo"] and not d["paysage"], d)
+            # v1186 (ligne 78, retour de deux testeurs Android du 12 nov.) : l'anglais a ses reperes, comme l'allemand et
+            # l'espagnol -- le controle d'avant (« anglais sans repere ») est perime.
+            note("anglais avec reperes", d["dispo"] and d["paysage"], d)
             ctx.close()
             nav.close()
     finally:
