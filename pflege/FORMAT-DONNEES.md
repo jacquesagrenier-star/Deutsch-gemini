@@ -28,8 +28,13 @@ fichiers **à ce format**, et un changement de format se décide ici d'abord.
    un mot publié (le marquer `"retire": true` si besoin).
 8. **Les personnages** (`pflege/PERSONNAGES.md`) sont **une proposition** tant que Jacques ne les a pas
    validés. Le texte peut les nommer (Elif, Amira, Arun, Yusuf, Olena, Jonas, Frau Hoffmann, Dr. Sommer,
-   Herr Brandt, Frau Lehmann, Herr Schulze, Frau Weber, Frau Kowalski) ; **aucune image d'une personne
-   avant la validation**.
+   Herr Brandt, Frau Lehmann, Herr Schulze, Frau Weber, Frau Kowalski). **Images** (règle du chef,
+   14 nov.) :
+   - **permis dès maintenant** : les **patients**, les **résidents** et les **proches** — Herr Brandt,
+     Frau Lehmann et sa fille, les résidents du Haus Lindenhof (Herr Schulze, Frau Weber…), Frau Kowalski ;
+   - **en attente de la validation de Jacques** : les **soignants** seuls — Elif, Amira, Arun, Yusuf, Olena,
+     Jonas, Frau Hoffmann, Dr. Sommer. Aucun d'eux dessiné avant.
+   - chaque lot reste annoncé au chef avec son coût (règle 9).
 9. **Dépenses** (images fal, voix ElevenLabs v2, jamais Flash) : chaque lot annoncé au chef avec son coût
    avant d'être lancé ; hors plan ou au-delà de +20 % de l'estimation, nouvel accord.
 
@@ -185,6 +190,8 @@ corpus, relire} ] } ] }`.
 - **Le mot d'un point** doit exister dans `pflege/datos/themes.json` **ou** dans le corpus général. Un mot
   qui manque aux deux : le signaler à la session « vocabulaire » (et à moi), ne pas l'inventer dans la
   scène.
+- **Une couche `A1` au titre seul** (« Les objets de la chambre ») est permise : c'est elle qui ouvre
+  Découvrir et Trouve !, le toucher des mots, comme dans toutes les scènes. Aucune question A1.
 - **Les couches** : `A2`, `B1`, `B2`, `C1`, au format des scènes (`titre`, `qs` : `q`, `c`, `f`, `r`,
   `phrase`, `sens`, `n`), plus **`SIT`** pour la couche « Situation » : mêmes champs, et `"type":
   "situation"` sur chaque question (la bonne réponse est toujours `c[0]`, comme ailleurs).

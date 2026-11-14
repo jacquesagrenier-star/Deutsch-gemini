@@ -166,6 +166,15 @@ function resume(email, extra){
     const sansVides = o => { for(const k of Object.keys(o)) if(o[k] === undefined) delete o[k]; return o; };
     await cas("la sauvegarde reelle complete, compte neuf (sans l'ancien progress)", true, () => setDoc(doc(anna, "users", "annaUid"), sansVides(sauvegarde({ progress: undefined })), { merge: true }));
     await cas("la sauvegarde reelle complete, ensuite (efface l'ancien progress)", true, () => setDoc(doc(anna, "users", "annaUid"), sauvegarde(), { merge: true }));
+    // WORTANDO PFLEGE (14 nov. 2026) : la cle des examens blancs (pflege/AGENCE-DONNEES.md, proposition A).
+    // Avec AVEC_SOINS=1 et REGLES=../regles-soins/firestore-avec-soins.rules : acceptee, sauvegarde complete
+    // comprise (le budget des 1 000 expressions tient). Sans : REFUSEE, et toute la sauvegarde avec elle --
+    // c'est pourquoi les regles se collent AVANT la version qui ecrit la cle.
+    const avecSoins = process.env.AVEC_SOINS === "1";
+    const examensSoins = JSON.stringify(Array(20).fill({ d: "2026-11-14T10:00:00.000Z", hls: 44, schreiben: 15.5, sprechen: 76, certificat: "B2" }));
+    await cas("soins : sauvegarde complete + soinsExamensJson (20 examens) : " + (avecSoins ? "acceptee" : "refusee, regles sans la cle"), avecSoins, () => setDoc(doc(anna, "users", "annaUid"), sauvegarde({ soinsExamensJson: examensSoins }), { merge: true }));
+    await cas("soins : soinsExamensJson seul : " + (avecSoins ? "accepte" : "refuse, regles sans la cle"), avecSoins, () => setDoc(doc(anna, "users", "annaUid"), { soinsExamensJson: "[]", updatedAt: serverTimestamp() }, { merge: true }));
+    await cas("soins : sans compte, sauvegarde complete + soinsExamensJson : " + (avecSoins ? "acceptee" : "refusee, regles sans la cle"), avecSoins, () => setDoc(doc(env.authenticatedContext("anoSoins", { firebase: { sign_in_provider: "anonymous" } }).firestore(), "users", "anoSoins"), sansVides(sauvegarde({ email: null, progress: undefined, soinsExamensJson: examensSoins })), { merge: true }));
     await cas("une cle inconnue : refusee", false, () => setDoc(doc(anna, "users", "annaUid"), { fichierCache: "x".repeat(1000) }, { merge: true }));
     await cas("une cle inconnue glissee dans la sauvegarde : refusee", false, () => setDoc(doc(anna, "users", "annaUid"), sauvegarde({ stockage: "x" }), { merge: true }));
     await cas("progressJson en nombre : accepte (type des gros champs non controle : limite des 1 000 expressions)", true, () => setDoc(doc(anna, "users", "annaUid"), { progressJson: 42 }, { merge: true }));
