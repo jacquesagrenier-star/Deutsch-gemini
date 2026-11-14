@@ -1,0 +1,142 @@
+{
+ "id": "d09-essen-anreichen",
+ "numero": 9,
+ "niveau": "B1",
+ "registre": "Sie",
+ "lieu": "altenheim",
+ "scene_annexe": 7,
+ "role": "olena",
+ "personnes": ["schulze"],
+ "titre": {"t": "Essen anreichen", "fr": "Aider à manger"},
+ "intro": {"fr": "Midi, au {heim}. {schulze} ne peut plus bien manger seul. Tu joues {olena} : installe-le bien droit, laisse-le choisir, donne à son rythme, attends qu'il ait avalé, et réagis s'il avale de travers."},
+ "but": {"fr": "Installer pour le repas ; laisser choisir ; donner à manger au rythme de la personne ; reconnaître une fausse route et réagir ; documenter le repas."},
+ "grammaire": ["g01", "g03", "g02"],
+ "telc": ["oral-1"],
+ "relire_notes": {"fr": "Position pour le repas (assis bien droit, et rester assis environ 30 minutes après) ; ne jamais goûter avec la cuillère du résident ; attendre la déglutition ; fausse route : laisser tousser, buste penché en avant, ne pas donner à boire pendant la toux, alerter si la personne ne respire plus ; signaler et documenter."},
+ "redemittel": [
+  {"t": "Setzen Sie sich bitte gerade hin.", "fr": "Asseyez-vous bien droit, s'il vous plaît."},
+  {"t": "Möchten Sie zuerst die Suppe oder das Püree?", "fr": "Vous voulez d'abord la soupe ou la purée ?"},
+  {"t": "Nehmen Sie sich Zeit.", "fr": "Prenez votre temps."},
+  {"t": "Ich warte, bis Sie geschluckt haben.", "fr": "J'attends que vous ayez avalé."},
+  {"t": "Haben Sie sich verschluckt? Husten Sie kräftig.", "fr": "Vous avez avalé de travers ? Toussez fort.", "relire": true, "relire_note": "Conduite en cas de fausse route."},
+  {"t": "Bleiben Sie nach dem Essen bitte noch aufrecht sitzen.", "fr": "Après le repas, restez encore assis bien droit, s'il vous plaît.", "relire": true, "relire_note": "Durée après le repas."}
+ ],
+ "debut": "platz",
+ "noeuds": {
+  "platz": {
+   "dit": [
+    {"recit": {"fr": "Midi. {olena} pose le plateau sur la table de {schulze}. Il est un peu affaissé dans son fauteuil."}},
+    {"qui": "schulze", "air": "question", "t": "Was gibt's denn heute?", "fr": "Qu'est-ce qu'il y a aujourd'hui ?"}
+   ],
+   "choix": [
+    {"t": "Heute gibt es Kartoffelsuppe und danach Hähnchen mit Püree. Setzen Sie sich bitte gerade hin, dann geht das Essen leichter.", "fr": "Aujourd'hui, il y a une soupe de pommes de terre, puis du poulet avec de la purée. Asseyez-vous bien droit, s'il vous plaît, ce sera plus facile pour manger.", "va": "sitzen",
+     "relire": true, "relire_note": "Position pour le repas.",
+     "puis": [{"qui": "schulze", "air": "question", "t": "So? Gerade genug?", "fr": "Comme ça ? Assez droit ?"}]},
+    {"t": "Kartoffelsuppe und Hähnchen mit Püree. Ich helfe Ihnen, sich aufrecht hinzusetzen.", "fr": "Soupe de pommes de terre, et poulet avec de la purée. Je vous aide à vous asseoir bien droit.", "va": "sitzen",
+     "puis": [{"qui": "schulze", "air": "question", "t": "So? Gerade genug?", "fr": "Comme ça ? Assez droit ?"}]},
+    {"faux": true, "t": "Bleiben Sie ruhig so halb liegen, das ist bequemer.", "fr": "Restez donc à moitié allongé, c'est plus confortable.",
+     "puis": [{"qui": "schulze", "air": "perplexe", "t": "Im Liegen essen? Wie soll das gehen?", "fr": "Manger allongé ? Comment je fais ?"}],
+     "aide": {"fr": "<b>Pour manger, on est assis bien droit : c'est une faute de soin.</b> À moitié allongé, on avale de travers plus facilement (fausse route). « Setzen Sie sich bitte gerade hin. »"},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  },
+  "sitzen": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja, so ist es gut. Ich lege Ihnen noch ein Kissen in den Rücken.", "fr": "Oui, comme ça, c'est bien. Je vous mets encore un coussin dans le dos.", "va": "wahl",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Danke. Und eine Serviette, bitte. Ich kleckere immer.", "fr": "Merci. Et une serviette, s'il vous plaît. J'en mets toujours partout."}]},
+    {"t": "Perfekt. Möchten Sie eine Serviette?", "fr": "Parfait. Vous voulez une serviette ?", "va": "wahl",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Ja, bitte. Ich kleckere immer.", "fr": "Oui, s'il vous plaît. J'en mets toujours partout."}]}
+   ]
+  },
+  "wahl": {
+   "dit": [],
+   "choix": [
+    {"t": "Möchten Sie zuerst die Suppe oder das Hähnchen?", "fr": "Vous voulez d'abord la soupe ou le poulet ?", "va": "heiss",
+     "puis": [{"qui": "schulze", "air": "attentive", "t": "Die Suppe. Aber nicht so heiß!", "fr": "La soupe. Mais pas trop chaude !"}]},
+    {"t": "Was möchten Sie zuerst: die Suppe oder das Hauptgericht?", "fr": "Qu'est-ce que vous voulez d'abord : la soupe ou le plat principal ?", "va": "heiss",
+     "puis": [{"qui": "schulze", "air": "attentive", "t": "Die Suppe. Aber nicht so heiß!", "fr": "La soupe. Mais pas trop chaude !"}]},
+    {"faux": true, "t": "Sie essen jetzt zuerst die Suppe.", "fr": "Maintenant, vous mangez d'abord la soupe.",
+     "puis": [{"qui": "schulze", "air": "perplexe", "t": "Und wenn ich keine Suppe will?", "fr": "Et si je ne veux pas de soupe ?"}],
+     "aide": {"fr": "<b>Laisse choisir : « Möchten Sie zuerst … oder …? »</b> Même pour manger, la personne décide. Une question à deux choix est simple et respectueuse."}}
+   ]
+  },
+  "heiss": {
+   "dit": [],
+   "choix": [
+    {"t": "Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.", "fr": "Ne vous inquiétez pas, je remue un peu, comme ça elle sera moins chaude. Prenez votre temps.", "va": "schlucken",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Gut. Ich hab's nicht eilig.", "fr": "Bien. Je ne suis pas pressé."}]},
+    {"t": "Ich lasse sie einen Moment abkühlen. Wir haben ganz viel Zeit.", "fr": "Je la laisse refroidir un moment. Nous avons tout notre temps.", "va": "schlucken",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Gut. Ich hab's nicht eilig.", "fr": "Bien. Je ne suis pas pressé."}]},
+    {"faux": true, "t": "Ich probiere mal mit Ihrem Löffel, ob sie zu heiß ist.", "fr": "Je goûte avec votre cuillère, pour voir si elle est trop chaude.",
+     "puis": [{"qui": "schulze", "air": "surprise", "t": "Mit meinem Löffel? Na hören Sie mal!", "fr": "Avec ma cuillère ? Non mais dites donc !"}],
+     "aide": {"fr": "<b>On ne goûte jamais avec la cuillère du résident : c'est une faute d'hygiène.</b> Pour la température, on remue, on attend, ou on vérifie sur le bord de l'assiette."},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  },
+  "schlucken": {
+   "dit": [
+    {"recit": {"fr": "{olena} lui donne une cuillerée et attend."}}
+   ],
+   "choix": [
+    {"t": "Haben Sie gut geschluckt? Dann kommt der nächste Löffel.", "fr": "Vous avez bien avalé ? Alors voici la cuillerée suivante.", "va": "verschluckt",
+     "relire": true, "relire_note": "Attendre la déglutition.",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Lecker. Wie früher bei meiner Frau.", "fr": "C'est bon. Comme chez ma femme, autrefois."}]},
+    {"t": "Schön langsam. Ich warte, bis Sie geschluckt haben.", "fr": "Tout doucement. J'attends que vous ayez avalé.", "va": "verschluckt",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Lecker. Wie früher bei meiner Frau.", "fr": "C'est bon. Comme chez ma femme, autrefois."}]}
+   ]
+  },
+  "verschluckt": {
+   "dit": [
+    {"recit": {"fr": "Quelques cuillerées plus tard, {schulze} se met soudain à tousser fort."}},
+    {"qui": "schulze", "air": "surprise", "t": "Ich hab mich … verschluckt …", "fr": "J'ai… avalé de travers…"}
+   ],
+   "choix": [
+    {"t": "Husten Sie kräftig, das ist gut so. Ich bin da.", "fr": "Toussez fort, c'est bien. Je suis là.", "va": "pause",
+     "relire": true, "relire_note": "Conduite en cas de fausse route.",
+     "puis": [{"qui": "schulze", "air": "attentive", "t": "Geht schon wieder … Das war die Suppe.", "fr": "Ça va mieux… C'était la soupe."}]},
+    {"t": "Husten Sie ruhig, ganz kräftig. Beugen Sie sich ein bisschen nach vorne.", "fr": "Toussez, très fort. Penchez-vous un peu en avant.", "va": "pause",
+     "relire": true, "relire_note": "Conduite en cas de fausse route.",
+     "puis": [{"qui": "schulze", "air": "attentive", "t": "Geht schon wieder … Das war die Suppe.", "fr": "Ça va mieux… C'était la soupe."}]},
+    {"faux": true, "t": "Schnell, trinken Sie einen großen Schluck Wasser!", "fr": "Vite, buvez une grande gorgée d'eau !",
+     "puis": [{"qui": "schulze", "air": "surprise", "t": "Kann … nicht …", "fr": "Peux… pas…"}],
+     "aide": {"fr": "<b>Pendant la toux, rien à boire ni à manger : la toux nettoie elle-même.</b> Laisse tousser, buste un peu en avant, reste près de lui. S'il ne peut plus respirer ni tousser, c'est une urgence : appeler à l'aide."},
+     "relire": true, "relire_note": "Conduite en cas de fausse route : vérifier l'aide."}
+   ]
+  },
+  "pause": {
+   "dit": [],
+   "choix": [
+    {"t": "Wir machen eine kleine Pause. Sagen Sie mir, wenn Sie weiteressen möchten.", "fr": "On fait une petite pause. Dites-moi quand vous voulez continuer.", "va": "fertig",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Jetzt geht's wieder. Das Hähnchen, bitte.", "fr": "Ça va, maintenant. Le poulet, s'il vous plaît."}]},
+    {"t": "Ruhen Sie sich kurz aus. Wir haben keine Eile.", "fr": "Reposez-vous un moment. Nous ne sommes pas pressés.", "va": "fertig",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Jetzt geht's wieder. Das Hähnchen, bitte.", "fr": "Ça va, maintenant. Le poulet, s'il vous plaît."}]}
+   ]
+  },
+  "fertig": {
+   "dit": [
+    {"recit": {"fr": "Plus tard, l'assiette est presque vide."}},
+    {"qui": "schulze", "air": "sourire", "t": "Ich bin satt. Mehr geht nicht.", "fr": "Je n'ai plus faim. Je ne peux plus."}
+   ],
+   "choix": [
+    {"t": "Sie haben fast alles gegessen, super. Bleiben Sie bitte noch eine halbe Stunde aufrecht sitzen.", "fr": "Vous avez presque tout mangé, bravo. Restez encore une demi-heure assis bien droit, s'il vous plaît.", "va": null,
+     "relire": true, "relire_note": "Durée en position assise après le repas.",
+     "puis": [{"qui": "schulze", "air": "amuse", "t": "Wie früher im Führerstand. Gerade sitzen, Augen nach vorn!", "fr": "Comme autrefois dans la cabine du tram. Assis droit, les yeux devant !"}]},
+    {"t": "Gut, dann räume ich ab. Ich gebe weiter, dass Sie sich verschluckt haben, und schreibe auf, wie viel Sie gegessen haben.", "fr": "Bien, alors je débarrasse. Je signale que vous avez avalé de travers, et je note combien vous avez mangé.", "va": null,
+     "relire": true, "relire_note": "Signaler une fausse route, noter les quantités.",
+     "puis": [{"qui": "schulze", "air": "amuse", "t": "Sie schreiben ja mehr als früher mein Fahrdienstleiter.", "fr": "Vous écrivez plus que mon chef de dépôt d'autrefois."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Was isst {schulze} zuerst?", "fr": "Que mange {schulze} en premier ?"},
+   "options": [{"t": "Das Hähnchen.", "fr": "Le poulet."}, {"t": "Das Püree.", "fr": "La purée."}, {"t": "Die Suppe.", "fr": "La soupe."}],
+   "juste": 2},
+  {"q": {"t": "Was ist während des Essens passiert?", "fr": "Que s'est-il passé pendant le repas ?"},
+   "options": [{"t": "Er hat sich verschluckt.", "fr": "Il a avalé de travers."}, {"t": "Er ist eingeschlafen.", "fr": "Il s'est endormi."}, {"t": "Er hat den Teller fallen lassen.", "fr": "Il a fait tomber l'assiette."}],
+   "juste": 0},
+  {"q": {"t": "An wen erinnert ihn das Essen?", "fr": "À qui le repas lui fait-il penser ?"},
+   "options": [{"t": "An seine Mutter.", "fr": "À sa mère."}, {"t": "An seine Frau.", "fr": "À sa femme."}, {"t": "An seine Tochter.", "fr": "À sa fille."}],
+   "juste": 1}
+ ]
+}

@@ -1,0 +1,409 @@
+{
+ "_langue": "uk",
+ "_source": "pflege/sources/dialogues/d02-schmerzen.json",
+ "cles": {
+  "titre": {
+   "fr": "La douleur, de 0 à 10",
+   "de": "Schmerzen erfragen",
+   "uk": "Біль від 0 до 10"
+  },
+  "intro": {
+   "fr": "Dix heures. {brandt} sonne : sa hanche lui fait mal. Tu joues {elif} : fais-lui dire où il a mal, combien sur l'échelle de 0 à 10, comment et depuis quand, propose ce qui est prescrit et dis quand tu reviens.",
+   "uk": "Десята година. {brandt} натискає кнопку виклику: у нього болить стегно. Ти в ролі {elif}: розпитай, де саме болить, на скільки за шкалою від 0 до 10, який це біль і відколи, запропонуй те, що призначено, і скажи, коли повернешся."
+  },
+  "but": {
+   "fr": "Localiser, chiffrer et décrire une douleur ; proposer l'antalgique prescrit « si besoin » ; installer le patient ; prévoir la réévaluation et la noter.",
+   "uk": "Визначити, де болить, оцінити біль числом і описати його; запропонувати знеболювальне, призначене «за потреби»; зручно вкласти пацієнта; запланувати повторну оцінку й записати її."
+  },
+  "relire_notes": {
+   "fr": "Échelle numérique 0-10 (NRS) ; antalgique « bei Bedarf » donné seulement s'il est prescrit, dans le cadre de compétence d'une assistante de soins en cours de reconnaissance ; délai de réévaluation (30 min après une prise orale ici).",
+   "uk": "Числова шкала 0–10 (NRS); знеболювальне «bei Bedarf» дають лише тоді, коли його призначено, і в межах компетенції помічниці з догляду, чий диплом ще визнають; строк повторної оцінки (тут 30 хв після прийому всередину)."
+  },
+  "redemittel.0": {
+   "fr": "Avez-vous mal ?",
+   "de": "Haben Sie Schmerzen?",
+   "uk": "У вас болить?"
+  },
+  "redemittel.1": {
+   "fr": "Où avez-vous mal, exactement ?",
+   "de": "Wo genau tut es weh?",
+   "uk": "Де саме болить?"
+  },
+  "redemittel.2": {
+   "fr": "Pouvez-vous me montrer où vous avez mal ?",
+   "de": "Können Sie mir zeigen, wo es wehtut?",
+   "uk": "Можете показати, де болить?"
+  },
+  "redemittel.3": {
+   "fr": "Sur une échelle de 0 à 10, quelle est l'intensité de votre douleur maintenant ?",
+   "de": "Auf einer Skala von 0 bis 10: Wie stark sind Ihre Schmerzen jetzt?",
+   "uk": "За шкалою від 0 до 10: наскільки сильний ваш біль зараз?"
+  },
+  "redemittel.4": {
+   "fr": "La douleur est-elle plutôt lancinante (en coups de couteau) ou plutôt sourde ?",
+   "de": "Ist der Schmerz eher stechend oder eher dumpf?",
+   "uk": "Біль радше колючий чи радше тупий?"
+  },
+  "redemittel.5": {
+   "fr": "Depuis quand avez-vous mal ?",
+   "de": "Seit wann haben Sie die Schmerzen?",
+   "uk": "Відколи у вас болить?"
+  },
+  "redemittel.6": {
+   "fr": "Le médecin vous a prescrit un antidouleur si besoin.",
+   "de": "Der Arzt hat Ihnen ein Schmerzmittel bei Bedarf verordnet.",
+   "uk": "Лікар призначив вам знеболювальне за потреби."
+  },
+  "redemittel.7": {
+   "fr": "Je reviens dans une demi-heure et je vous redemande.",
+   "de": "Ich komme in einer halben Stunde wieder und frage noch einmal nach.",
+   "uk": "Я повернуся через пів години й ще раз запитаю, як ви."
+  },
+  "noeuds.klingel.dit.0.recit": {
+   "fr": "Dix heures. Au-dessus de la chambre douze, la lampe de la sonnette s'allume. {elif} entre.",
+   "uk": "Десята година. Над дванадцятою палатою загоряється лампочка виклику. {elif} заходить."
+  },
+  "noeuds.klingel.dit.1": {
+   "fr": "Ah, {elif}, heureusement que vous venez. Ça fait de nouveau si mal.",
+   "de": "Ach, {elif}, gut, dass Sie kommen. Es tut wieder so weh.",
+   "uk": "Ох, {elif}, як добре, що ви прийшли. Знову так болить."
+  },
+  "noeuds.klingel.choix.0": {
+   "fr": "Je suis désolée, {brandt:voc}. Où avez-vous mal, exactement ?",
+   "de": "Das tut mir leid, {brandt}. Wo genau tut es weh?",
+   "uk": "Мені дуже шкода, {brandt:voc}. Де саме болить?"
+  },
+  "noeuds.klingel.choix.0.puis.0": {
+   "fr": "Ici, à la hanche droite. Et ça tire jusque dans le genou.",
+   "de": "Hier, an der rechten Hüfte. Und es zieht bis ins Knie runter.",
+   "uk": "Ось тут, у правому стегні. І тягне аж до коліна."
+  },
+  "noeuds.klingel.choix.1": {
+   "fr": "Vous avez mal ? Pouvez-vous me montrer où ?",
+   "de": "Sie haben Schmerzen? Können Sie mir zeigen, wo es wehtut?",
+   "uk": "У вас болить? Можете показати, де саме?"
+  },
+  "noeuds.klingel.choix.1.puis.0": {
+   "fr": "Ici, à la hanche droite. Et ça tire jusque dans le genou.",
+   "de": "Hier, an der rechten Hüfte. Und es zieht bis ins Knie runter.",
+   "uk": "Ось тут, у правому стегні. І тягне аж до коліна."
+  },
+  "noeuds.klingel.choix.2": {
+   "fr": "Où « avez-vous mal » ? (mal dit)",
+   "de": "Wo haben Sie weh?",
+   "uk": "Де ви «маєте боляче»? (сказано неправильно)"
+  },
+  "noeuds.klingel.choix.2.puis.0": {
+   "fr": "Où j'ai… quoi ?",
+   "de": "Wo ich … was habe?",
+   "uk": "Де я… що маю?"
+  },
+  "noeuds.klingel.choix.2.aide": {
+   "fr": "<b>« weh » n'est pas un nom : on dit « Wo tut es weh? » ou « Wo haben Sie Schmerzen? ».</b> « wehtun » est un verbe (es tut weh) ; « der Schmerz, die Schmerzen » est le nom.",
+   "uk": "<b>«weh» — не іменник: кажуть «Wo tut es weh?» або «Wo haben Sie Schmerzen?».</b> «wehtun» — дієслово (es tut weh); «der Schmerz, die Schmerzen» — іменник."
+  },
+  "noeuds.skala.dit.0.recit": {
+   "fr": "{elif} veut un chiffre pour le dossier.",
+   "uk": "{elif} потрібне число для документації."
+  },
+  "noeuds.skala.choix.0": {
+   "fr": "Sur une échelle de 0 à 10 : 0, c'est pas de douleur, 10, la pire douleur que vous puissiez imaginer. Quelle est l'intensité de la douleur maintenant ?",
+   "de": "Auf einer Skala von 0 bis 10: 0 heißt keine Schmerzen, 10 die stärksten Schmerzen, die Sie sich vorstellen können. Wie stark sind die Schmerzen jetzt?",
+   "uk": "За шкалою від 0 до 10: 0 означає, що болю немає, 10 — найсильніший біль, який ви можете собі уявити. Наскільки сильний біль зараз?"
+  },
+  "noeuds.skala.choix.0.puis.0": {
+   "fr": "Hum… un sept. Et quand je bouge, un huit.",
+   "de": "Hm … eine Sieben. Und wenn ich mich bewege, eine Acht.",
+   "uk": "Гм… сім. А коли рухаюся, вісім."
+  },
+  "noeuds.skala.choix.1": {
+   "fr": "Quelle est l'intensité de la douleur, de 0 à 10 ? 0, c'est pas de douleur, 10, la pire douleur.",
+   "de": "Wie stark sind die Schmerzen, von 0 bis 10? 0 ist kein Schmerz, 10 ist der schlimmste Schmerz.",
+   "uk": "Наскільки сильний біль, від 0 до 10? 0 — болю немає, 10 — найсильніший біль."
+  },
+  "noeuds.skala.choix.1.puis.0": {
+   "fr": "Hum… un sept. Et quand je bouge, un huit.",
+   "de": "Hm … eine Sieben. Und wenn ich mich bewege, eine Acht.",
+   "uk": "Гм… сім. А коли рухаюся, вісім."
+  },
+  "noeuds.skala.choix.2": {
+   "fr": "Vous avez combien de douleur ?",
+   "de": "Wie viel Schmerzen haben Sie?",
+   "uk": "Скільки у вас болю?"
+  },
+  "noeuds.skala.choix.2.puis.0": {
+   "fr": "Beaucoup ! Énormément !",
+   "de": "Viel! Sehr viel!",
+   "uk": "Багато! Дуже багато!"
+  },
+  "noeuds.skala.choix.2.aide": {
+   "fr": "<b>Pour le dossier, il faut un chiffre : demande avec l'échelle.</b> « Auf einer Skala von 0 bis 10 … » : explique ce que veulent dire 0 et 10, puis demande « Wie stark sind die Schmerzen jetzt? ».",
+   "uk": "<b>Для документації потрібне число: запитуй за шкалою.</b> «Auf einer Skala von 0 bis 10 …»: поясни, що означають 0 і 10, потім запитай «Wie stark sind die Schmerzen jetzt?»."
+  },
+  "noeuds.art.choix.0": {
+   "fr": "La douleur est-elle plutôt lancinante, en coups de couteau, ou plutôt sourde ?",
+   "de": "Ist der Schmerz eher stechend oder eher dumpf?",
+   "uk": "Біль радше колючий, наче ножем, чи радше тупий?"
+  },
+  "noeuds.art.choix.0.puis.0": {
+   "fr": "Lancinante. Comme un couteau, quand je bouge la jambe.",
+   "de": "Stechend. Wie ein Messer, wenn ich das Bein bewege.",
+   "uk": "Колючий. Наче ножем, коли я рухаю ногою."
+  },
+  "noeuds.art.choix.1": {
+   "fr": "Comment est la douleur ? Elle pique, elle brûle, ou elle appuie ?",
+   "de": "Wie fühlt sich der Schmerz an? Sticht er, brennt er, oder drückt er?",
+   "uk": "Який цей біль на відчуття? Коле, пече чи тисне?"
+  },
+  "noeuds.art.choix.1.puis.0": {
+   "fr": "Elle pique. Comme un couteau, quand je bouge la jambe.",
+   "de": "Er sticht. Wie ein Messer, wenn ich das Bein bewege.",
+   "uk": "Коле. Наче ножем, коли я рухаю ногою."
+  },
+  "noeuds.art.choix.2": {
+   "fr": "Pardon, vous pouvez répéter, s'il vous plaît ?",
+   "de": "Entschuldigung, können Sie das bitte noch einmal sagen?",
+   "uk": "Перепрошую, можете, будь ласка, повторити?"
+  },
+  "noeuds.art.choix.2.puis.0": {
+   "fr": "Un sept, j'ai dit. Et quand je bouge, un huit.",
+   "de": "Eine Sieben, hab ich gesagt. Und wenn ich mich bewege, eine Acht.",
+   "uk": "Сім, я ж сказав. А коли рухаюся, вісім."
+  },
+  "noeuds.seit.choix.0": {
+   "fr": "Depuis quand la douleur est-elle aussi forte ?",
+   "de": "Seit wann sind die Schmerzen so stark?",
+   "uk": "Відколи біль такий сильний?"
+  },
+  "noeuds.seit.choix.0.puis.0": {
+   "fr": "Depuis le petit-déjeuner. Ce matin, ça allait encore.",
+   "de": "Seit dem Frühstück. Heute Morgen ging's noch.",
+   "uk": "Від сніданку. Зранку ще було нічого."
+  },
+  "noeuds.seit.choix.1": {
+   "fr": "Quand la forte douleur a-t-elle commencé ?",
+   "de": "Wann haben die starken Schmerzen angefangen?",
+   "uk": "Коли почався сильний біль?"
+  },
+  "noeuds.seit.choix.1.puis.0": {
+   "fr": "Après le petit-déjeuner. Ce matin, ça allait encore.",
+   "de": "Nach dem Frühstück. Heute Morgen ging's noch.",
+   "uk": "Після сніданку. Зранку ще було нічого."
+  },
+  "noeuds.seit.choix.2": {
+   "fr": "« Depuis combien longtemps » avez-vous mal ? (mal dit)",
+   "de": "Seit wie lange haben Sie die Schmerzen?",
+   "uk": "«З якого як довго» у вас болить? (сказано неправильно)"
+  },
+  "noeuds.seit.choix.2.puis.0": {
+   "fr": "Depuis comb… ? Ah, vous voulez dire depuis quand.",
+   "de": "Seit wie … ? Ach, Sie meinen, seit wann.",
+   "uk": "З якого як… ? А, ви маєте на увазі, відколи."
+  },
+  "noeuds.seit.choix.2.aide": {
+   "fr": "<b>On dit « Seit wann …? » ou « Wie lange schon …? ».</b> « Seit wie lange » est un mélange des deux, que les Allemands remarquent tout de suite.",
+   "uk": "<b>Кажуть «Seit wann …?» або «Wie lange schon …?».</b> «Seit wie lange» — це суміш обох, і німці її одразу помічають."
+  },
+  "noeuds.mittel.dit.0.recit": {
+   "fr": "{elif} regarde la feuille de prescription : {sommer} a prescrit un antidouleur en comprimé, « si besoin ».",
+   "uk": "{elif} дивиться в лист призначень: {sommer} призначила знеболювальне в таблетках, «за потреби»."
+  },
+  "noeuds.mittel.choix.0": {
+   "fr": "{sommer} vous a prescrit un antidouleur si besoin. Vous voulez le prendre ?",
+   "de": "{sommer} hat Ihnen ein Schmerzmittel bei Bedarf verordnet. Möchten Sie es haben?",
+   "uk": "Вам {sommer} призначила знеболювальне за потреби. Хочете його прийняти?"
+  },
+  "noeuds.mittel.choix.0.puis.0": {
+   "fr": "Oui, s'il vous plaît. Mais pas de piqûre, je n'aime pas ça.",
+   "de": "Ja, bitte. Aber keine Spritze, die mag ich nicht.",
+   "uk": "Так, будь ласка. Тільки не укол, я їх не люблю."
+  },
+  "noeuds.mittel.choix.1": {
+   "fr": "Vous avez droit à un antidouleur si besoin. Voulez-vous que j'aille le chercher ?",
+   "de": "Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?",
+   "uk": "Вам можна отримати знеболювальне за потреби. Принести його вам?"
+  },
+  "noeuds.mittel.choix.1.puis.0": {
+   "fr": "Oui, s'il vous plaît. Mais pas de piqûre, je n'aime pas ça.",
+   "de": "Ja, bitte. Aber keine Spritze, die mag ich nicht.",
+   "uk": "Так, будь ласка. Тільки не укол, я їх не люблю."
+  },
+  "noeuds.mittel.choix.2": {
+   "fr": "J'ai encore un comprimé d'hier, ici. Vous pouvez le prendre.",
+   "de": "Ich habe hier noch eine Tablette von gestern. Die können Sie nehmen.",
+   "uk": "У мене тут лишилася вчорашня таблетка. Можете її випити."
+  },
+  "noeuds.mittel.choix.2.puis.0": {
+   "fr": "D'hier ? Il est seulement pour moi, ce comprimé ?",
+   "de": "Von gestern? Ist die denn überhaupt für mich?",
+   "uk": "Учорашня? А вона взагалі для мене?"
+  },
+  "noeuds.mittel.choix.2.aide": {
+   "fr": "<b>C'est une faute de soin, pas de langue.</b> On ne donne que ce qui est prescrit à ce patient, préparé pour lui. Dis ce que le médecin a prescrit : « Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet. »",
+   "uk": "<b>Це помилка в догляді, а не в мові.</b> Пацієнтові дають лише те, що призначено саме йому й підготовлено для нього. Скажи, що призначила лікарка: «Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet.»"
+  },
+  "noeuds.spritze.choix.0": {
+   "fr": "Ne vous inquiétez pas, c'est un comprimé. Je vais vous le chercher tout de suite, avec un verre d'eau.",
+   "de": "Keine Sorge, es ist eine Tablette. Ich hole sie Ihnen gleich, mit einem Glas Wasser.",
+   "uk": "Не хвилюйтеся, це таблетка. Я зараз же її принесу, зі склянкою води."
+  },
+  "noeuds.spritze.choix.0.puis.0": {
+   "fr": "Bon, alors ça va.",
+   "de": "Na, dann ist ja gut.",
+   "uk": "Ну, тоді добре."
+  },
+  "noeuds.spritze.choix.1": {
+   "fr": "Ce n'est pas une piqûre, c'est un comprimé. Je vous l'apporte tout de suite.",
+   "de": "Das ist keine Spritze, das ist eine Tablette. Ich bringe sie Ihnen sofort.",
+   "uk": "Це не укол, це таблетка. Я зараз же вам її принесу."
+  },
+  "noeuds.spritze.choix.1.puis.0": {
+   "fr": "Bon, alors ça va.",
+   "de": "Na, dann ist ja gut.",
+   "uk": "Ну, тоді добре."
+  },
+  "noeuds.lage.dit.0.recit": {
+   "fr": "{elif} revient avec le comprimé. {brandt} l'avale et soupire. Il est mal installé, de travers dans son lit.",
+   "uk": "{elif} повертається з таблеткою. {brandt} ковтає її і зітхає. Він лежить незручно, навскоси в ліжку."
+  },
+  "noeuds.lage.choix.0": {
+   "fr": "Voulez-vous que je remette votre oreiller autrement ? Vous serez peut-être mieux installé.",
+   "de": "Soll ich Ihr Kissen anders hinlegen? Vielleicht liegen Sie dann bequemer.",
+   "uk": "Поправити вам подушку? Може, тоді вам буде зручніше лежати."
+  },
+  "noeuds.lage.choix.0.puis.0": {
+   "fr": "Oui, ce serait bien. Mais doucement, s'il vous plaît.",
+   "de": "Ja, das wäre gut. Aber vorsichtig, bitte.",
+   "uk": "Так, це було б добре. Тільки обережно, будь ласка."
+  },
+  "noeuds.lage.choix.1": {
+   "fr": "Je peux vous aider à vous installer un peu autrement ?",
+   "de": "Darf ich Ihnen helfen, sich ein bisschen anders hinzulegen?",
+   "uk": "Можна, я допоможу вам лягти трохи інакше?"
+  },
+  "noeuds.lage.choix.1.puis.0": {
+   "fr": "Oui, ce serait bien. Mais doucement, s'il vous plaît.",
+   "de": "Ja, das wäre gut. Aber vorsichtig, bitte.",
+   "uk": "Так, це було б добре. Тільки обережно, будь ласка."
+  },
+  "noeuds.lage.choix.2": {
+   "fr": "Bougez beaucoup la jambe, et la douleur va partir.",
+   "de": "Bewegen Sie das Bein ganz viel, dann geht der Schmerz weg.",
+   "uk": "Рухайте ногою якомога більше, і біль мине."
+  },
+  "noeuds.lage.choix.2.puis.0": {
+   "fr": "Bouger beaucoup ? Maintenant que ça fait si mal ?",
+   "de": "Viel bewegen? Jetzt, wo es so wehtut?",
+   "uk": "Багато рухатися? Тепер, коли так болить?"
+  },
+  "noeuds.lage.choix.2.aide": {
+   "fr": "<b>Ne promets pas que la douleur va partir, et ne donne pas de consigne de rééducation.</b> Les mouvements après l'opération sont décidés avec la kinésithérapie. Propose plutôt de l'installer confortablement.",
+   "uk": "<b>Не обіцяй, що біль мине, і не давай вказівок щодо реабілітації.</b> Рухи після операції визначають разом із фізіотерапевтом. Краще запропонуй зручно вкласти пацієнта."
+  },
+  "noeuds.zurueck.choix.0": {
+   "fr": "Je reviens dans une demi-heure et je vous redemande pour la douleur.",
+   "de": "Ich komme in einer halben Stunde wieder und frage Sie noch einmal nach den Schmerzen.",
+   "uk": "Я повернуся через пів години й ще раз запитаю вас про біль."
+  },
+  "noeuds.zurueck.choix.0.puis.0": {
+   "fr": "Bien. Et si ça empire, je sonne.",
+   "de": "Gut. Und wenn es schlimmer wird, klingle ich.",
+   "uk": "Добре. А якщо стане гірше, я натисну на кнопку."
+  },
+  "noeuds.zurueck.choix.1": {
+   "fr": "Dans 30 minutes, je repasse vous voir. Vous me redonnerez un chiffre.",
+   "de": "In 30 Minuten schaue ich wieder nach Ihnen. Dann sagen Sie mir wieder eine Zahl.",
+   "uk": "Через 30 хвилин я знову до вас зазирну. Тоді знову назвете мені число."
+  },
+  "noeuds.zurueck.choix.1.puis.0": {
+   "fr": "Bien. Et si ça empire, je sonne.",
+   "de": "Gut. Und wenn es schlimmer wird, klingle ich.",
+   "uk": "Добре. А якщо стане гірше, я натисну на кнопку."
+  },
+  "noeuds.doku.dit.0": {
+   "fr": "Au fait, vous notez tout ça ?",
+   "de": "Schreiben Sie das eigentlich alles auf?",
+   "uk": "До речі, ви все це записуєте?"
+  },
+  "noeuds.doku.choix.0": {
+   "fr": "Oui, je note le sept et l'antidouleur dans votre dossier. Comme ça, le médecin est au courant aussi.",
+   "de": "Ja, ich trage die Sieben und das Schmerzmittel in Ihre Kurve ein. So weiß auch die Ärztin Bescheid.",
+   "uk": "Так, я вношу сімку і знеболювальне у вашу карту спостереження. Так і лікарка буде в курсі."
+  },
+  "noeuds.doku.choix.0.puis.0": {
+   "fr": "Vous êtes consciencieuse, il faut bien le reconnaître.",
+   "de": "Ordentlich sind Sie ja, das muss man Ihnen lassen.",
+   "uk": "Сумлінна ви, нічого не скажеш."
+  },
+  "noeuds.doku.choix.1": {
+   "fr": "Oui, tout est noté : où vous avez mal, à quelle intensité et quel médicament vous avez reçu.",
+   "de": "Ja, alles wird dokumentiert: wo es wehtut, wie stark und welches Medikament Sie bekommen haben.",
+   "uk": "Так, усе документується: де болить, наскільки сильно і які ліки ви отримали."
+  },
+  "noeuds.doku.choix.1.puis.0": {
+   "fr": "Vous êtes consciencieuse, il faut bien le reconnaître.",
+   "de": "Ordentlich sind Sie ja, das muss man Ihnen lassen.",
+   "uk": "Сумлінна ви, нічого не скажеш."
+  },
+  "ecouter.0.q": {
+   "fr": "Où {brandt} a-t-il mal ?",
+   "de": "Wo hat {brandt} Schmerzen?",
+   "uk": "Де болить у {brandt:gen}?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "À la hanche droite.",
+   "de": "An der rechten Hüfte.",
+   "uk": "У правому стегні."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Au genou gauche.",
+   "de": "Am linken Knie.",
+   "uk": "У лівому коліні."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Dans le dos.",
+   "de": "Im Rücken.",
+   "uk": "У спині."
+  },
+  "ecouter.1.q": {
+   "fr": "Quelle est l'intensité de la douleur quand il bouge ?",
+   "de": "Wie stark sind die Schmerzen, wenn er sich bewegt?",
+   "uk": "Наскільки сильний біль, коли він рухається?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Sept.",
+   "de": "Eine Sieben.",
+   "uk": "Сім."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Huit.",
+   "de": "Eine Acht.",
+   "uk": "Вісім."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Dix.",
+   "de": "Eine Zehn.",
+   "uk": "Десять."
+  },
+  "ecouter.2.q": {
+   "fr": "Qu'est-ce que {brandt} ne veut pas ?",
+   "de": "Was möchte {brandt} nicht?",
+   "uk": "Чого не хоче {brandt}?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Un comprimé.",
+   "de": "Eine Tablette.",
+   "uk": "Таблетки."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Un verre d'eau.",
+   "de": "Ein Glas Wasser.",
+   "uk": "Склянки води."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Une piqûre.",
+   "de": "Eine Spritze.",
+   "uk": "Уколу."
+  }
+ }
+}

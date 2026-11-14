@@ -1,0 +1,390 @@
+{
+ "_langue": "fa",
+ "_source": "pflege/sources/dialogues/d03-verbandswechsel.json",
+ "cles": {
+  "titre": {
+   "fr": "Expliquer un soin avant de le faire",
+   "de": "Eine Maßnahme erklären",
+   "fa": "توضیح دادن یک کار مراقبتی پیش از انجام آن"
+  },
+  "intro": {
+   "fr": "{lehmann}, diabétique, a une plaie au pied droit. C'est l'heure du changement de pansement. Tu joues {elif} : annonce le soin, demande son accord, explique les étapes dans l'ordre, préviens de la gêne et rassure-la pendant.",
+   "fa": "{lehmann} دیابت دارد و روی پای راستش زخمی دارد. وقت تعویض پانسمان است. تو نقش {elif} را بازی می‌کنی: کار مراقبتی را اعلام کن، رضایتش را بگیر، مراحل را به ترتیب توضیح بده، از ناراحتی احتمالی آگاهش کن و در طول کار به او آرامش بده."
+  },
+  "but": {
+   "fr": "Annoncer un soin et obtenir l'accord ; expliquer un déroulement (zuerst, dann, danach, zum Schluss) ; prévenir sans mentir ; décrire une plaie avec des mots neutres.",
+   "fa": "اعلام یک کار مراقبتی و گرفتن رضایت بیمار؛ توضیح ترتیب مراحل (zuerst، dann، danach، zum Schluss)؛ آگاه کردن بیمار بدون دروغ گفتن؛ توصیف زخم با کلمات خنثی."
+  },
+  "relire_notes": {
+   "fr": "Ordre des gestes du changement de pansement (hygiène des mains, gants, retrait de l'ancien pansement, nettoyage, pansement stérile) ; fréquence quotidienne (selon le type de pansement) ; description de la plaie (« reizlos », non rouge).",
+   "fa": "ترتیب مراحل تعویض پانسمان (بهداشت دست، دستکش، برداشتن پانسمان قبلی، شست‌وشوی زخم، پانسمان استریل)؛ تعویض روزانه (بسته به نوع پانسمان)؛ توصیف زخم («reizlos»، بدون قرمزی)."
+  },
+  "redemittel.0": {
+   "fr": "Je voudrais changer votre pansement maintenant. Vous êtes d'accord ?",
+   "de": "Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?",
+   "fa": "می‌خواهم الان پانسمانتان را عوض کنم. موافقید؟"
+  },
+  "redemittel.1": {
+   "fr": "D'abord je me désinfecte les mains, ensuite j'enlève l'ancien pansement.",
+   "de": "Zuerst desinfiziere ich mir die Hände, dann nehme ich den alten Verband ab.",
+   "fa": "اول دست‌هایم را ضدعفونی می‌کنم، بعد پانسمان قبلی را برمی‌دارم."
+  },
+  "redemittel.2": {
+   "fr": "Pour finir, je pose un nouveau pansement stérile.",
+   "de": "Zum Schluss lege ich einen neuen, sterilen Verband an.",
+   "fa": "در آخر یک پانسمان استریل جدید می‌گذارم."
+  },
+  "redemittel.3": {
+   "fr": "Ça peut tirer un peu.",
+   "de": "Es kann ein bisschen ziehen.",
+   "fa": "ممکن است کمی احساس کشیدگی کنید."
+  },
+  "redemittel.4": {
+   "fr": "Dites-moi tout de suite si ça fait mal, s'il vous plaît.",
+   "de": "Sagen Sie mir bitte sofort, wenn es wehtut.",
+   "fa": "لطفاً اگر درد گرفت، فوراً به من بگویید."
+  },
+  "redemittel.5": {
+   "fr": "La plaie a meilleur aspect qu'hier.",
+   "de": "Die Wunde sieht heute besser aus als gestern.",
+   "fa": "زخم امروز از دیروز بهتر به نظر می‌رسد."
+  },
+  "redemittel.6": {
+   "fr": "Le pansement est changé tous les jours.",
+   "de": "Der Verband wird jeden Tag gewechselt.",
+   "fa": "پانسمان هر روز عوض می‌شود."
+  },
+  "noeuds.ankuendigen.dit.0.recit": {
+   "fr": "Neuf heures. {elif} entre dans la chambre quatorze avec le chariot de pansements.",
+   "fa": "ساعت نه. {elif} با ترالی پانسمان وارد اتاق چهارده می‌شود."
+  },
+  "noeuds.ankuendigen.dit.1": {
+   "fr": "Bonjour. Qu'est-ce que vous apportez là ?",
+   "de": "Guten Morgen. Was haben Sie denn da alles dabei?",
+   "fa": "صبح بخیر. این‌ها چیست که با خودتان آورده‌اید؟"
+  },
+  "noeuds.ankuendigen.choix.0": {
+   "fr": "Bonjour, {lehmann:voc}. Je voudrais changer le pansement de votre pied maintenant. Vous êtes d'accord ?",
+   "de": "Guten Morgen, {lehmann}. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?",
+   "fa": "صبح بخیر، {lehmann:voc}. می‌خواهم الان پانسمان پایتان را عوض کنم. موافقید؟"
+  },
+  "noeuds.ankuendigen.choix.0.puis.0": {
+   "fr": "Encore ? Bon, s'il le faut.",
+   "de": "Schon wieder? Na gut, wenn's sein muss.",
+   "fa": "باز هم؟ خب، اگر لازم است، باشد."
+  },
+  "noeuds.ankuendigen.choix.1": {
+   "fr": "Bonjour ! Aujourd'hui, c'est de nouveau le changement de pansement. Je peux regarder votre pied ?",
+   "de": "Guten Morgen! Heute ist wieder der Verbandswechsel dran. Darf ich mir Ihren Fuß ansehen?",
+   "fa": "صبح بخیر! امروز باز نوبت تعویض پانسمان است. اجازه می‌دهید پایتان را ببینم؟"
+  },
+  "noeuds.ankuendigen.choix.1.puis.0": {
+   "fr": "Encore ? Bon, s'il le faut.",
+   "de": "Schon wieder? Na gut, wenn's sein muss.",
+   "fa": "باز هم؟ خب، اگر لازم است، باشد."
+  },
+  "noeuds.ankuendigen.choix.2": {
+   "fr": "Je vais « faire » votre pied.",
+   "de": "Ich mache jetzt Ihren Fuß.",
+   "fa": "الان پایتان را «انجام می‌دهم»."
+  },
+  "noeuds.ankuendigen.choix.2.puis.0": {
+   "fr": "« Faire » mon pied ? Qu'est-ce que vous voulez en faire ?",
+   "de": "Meinen Fuß machen? Was wollen Sie denn damit machen?",
+   "fa": "پایم را «انجام می‌دهید»؟ می‌خواهید با آن چه کار کنید؟"
+  },
+  "noeuds.ankuendigen.choix.2.aide": {
+   "fr": "<b>Dis exactement ce que tu vas faire, et demande l'accord.</b> « Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung? » « machen » tout seul ne dit rien au patient.",
+   "fa": "<b>دقیقاً بگو چه کاری می‌خواهی انجام بدهی و رضایت بیمار را بپرس.</b> «Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?» «machen» به‌تنهایی هیچ چیزی به بیمار نمی‌گوید."
+  },
+  "noeuds.warum.dit.0": {
+   "fr": "Pourquoi faut-il le faire tous les jours, au fait ?",
+   "de": "Warum muss das eigentlich jeden Tag sein?",
+   "fa": "راستی، چرا باید هر روز این کار را بکنید؟"
+  },
+  "noeuds.warum.choix.0": {
+   "fr": "Pour que la plaie reste propre et puisse bien guérir. Avec le diabète, une plaie guérit souvent plus lentement.",
+   "de": "Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.",
+   "fa": "برای اینکه زخم تمیز بماند و خوب جوش بخورد. در دیابت، زخم اغلب دیرتر خوب می‌شود."
+  },
+  "noeuds.warum.choix.0.puis.0": {
+   "fr": "Oui, le médecin me l'a dit aussi.",
+   "de": "Ja, das hat die Ärztin auch gesagt.",
+   "fa": "بله، خانم دکتر هم همین را گفت."
+  },
+  "noeuds.warum.choix.1": {
+   "fr": "Le pansement est changé tous les jours, pour qu'on voie si la plaie guérit bien.",
+   "de": "Der Verband wird jeden Tag gewechselt, damit wir sehen, ob die Wunde gut heilt.",
+   "fa": "پانسمان هر روز عوض می‌شود تا ببینیم زخم خوب ترمیم می‌شود یا نه."
+  },
+  "noeuds.warum.choix.1.puis.0": {
+   "fr": "Oui, le médecin me l'a dit aussi.",
+   "de": "Ja, das hat die Ärztin auch gesagt.",
+   "fa": "بله، خانم دکتر هم همین را گفت."
+  },
+  "noeuds.warum.choix.2": {
+   "fr": "Parce que le médecin le veut.",
+   "de": "Weil der Arzt das so will.",
+   "fa": "چون دکتر این‌طور می‌خواهد."
+  },
+  "noeuds.warum.choix.2.puis.0": {
+   "fr": "Ah bon. Et pourquoi il le veut ?",
+   "de": "Ach so. Und warum will er das?",
+   "fa": "آهان. حالا چرا او این را می‌خواهد؟"
+  },
+  "noeuds.warum.choix.2.aide": {
+   "fr": "<b>Explique le but du soin, en mots simples : « damit … ».</b> « Damit die Wunde sauber bleibt und gut heilen kann. » Un patient qui comprend pourquoi coopère mieux.",
+   "fa": "<b>هدف کار مراقبتی را با کلمات ساده توضیح بده: «damit …».</b> «Damit die Wunde sauber bleibt und gut heilen kann.» بیماری که بفهمد چرا، بهتر همکاری می‌کند."
+  },
+  "noeuds.ablauf.dit.0": {
+   "fr": "Et qu'est-ce que vous faites, exactement ? Je préfère ne pas regarder.",
+   "de": "Und was machen Sie da genau? Ich will lieber nicht hinschauen.",
+   "fa": "حالا دقیقاً چه کار می‌کنید؟ ترجیح می‌دهم نگاه نکنم."
+  },
+  "noeuds.ablauf.choix.0": {
+   "fr": "D'abord, je me désinfecte les mains et je mets des gants. Ensuite, j'enlève l'ancien pansement.",
+   "de": "Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.",
+   "fa": "اول دست‌هایم را ضدعفونی می‌کنم و دستکش می‌پوشم. بعد پانسمان قبلی را برمی‌دارم."
+  },
+  "noeuds.ablauf.choix.0.puis.0": {
+   "fr": "Bien. Et ensuite ?",
+   "de": "Gut. Und dann?",
+   "fa": "خوب است. بعد چه؟"
+  },
+  "noeuds.ablauf.choix.1": {
+   "fr": "Avant de commencer, je me désinfecte les mains et je mets des gants. Après, j'enlève doucement l'ancien pansement.",
+   "de": "Bevor ich anfange, desinfiziere ich mir die Hände und ziehe Handschuhe an. Danach nehme ich den alten Verband vorsichtig ab.",
+   "fa": "پیش از شروع، دست‌هایم را ضدعفونی می‌کنم و دستکش می‌پوشم. بعد از آن، پانسمان قبلی را با احتیاط برمی‌دارم."
+  },
+  "noeuds.ablauf.choix.1.puis.0": {
+   "fr": "Bien. Et ensuite ?",
+   "de": "Gut. Und dann?",
+   "fa": "خوب است. بعد چه؟"
+  },
+  "noeuds.ablauf.choix.2": {
+   "fr": "D'abord j'enlève le pansement, ensuite je me désinfecte les mains.",
+   "de": "Zuerst nehme ich den Verband ab, dann desinfiziere ich mir die Hände.",
+   "fa": "اول پانسمان را برمی‌دارم، بعد دست‌هایم را ضدعفونی می‌کنم."
+  },
+  "noeuds.ablauf.choix.2.puis.0": {
+   "fr": "Les mains seulement après ? Ce n'est pas l'inverse ?",
+   "de": "Erst danach die Hände? Ist das nicht andersrum?",
+   "fa": "دست‌ها را تازه بعدش؟ برعکس نیست؟"
+  },
+  "noeuds.ablauf.choix.2.aide": {
+   "fr": "<b>C'est une faute de soin : l'hygiène des mains vient avant tout geste.</b> « Zuerst desinfiziere ich mir die Hände, dann … ». La patiente l'a remarqué : à l'examen comme au travail, l'ordre compte.",
+   "fa": "<b>این یک خطای مراقبتی است: بهداشت دست پیش از هر کاری می‌آید.</b> «Zuerst desinfiziere ich mir die Hände, dann …». بیمار متوجهش شد: در امتحان هم مثل سر کار، ترتیب مهم است."
+  },
+  "noeuds.dann.choix.0": {
+   "fr": "Après, je nettoie la plaie, et pour finir, je mets un nouveau pansement stérile.",
+   "de": "Danach reinige ich die Wunde, und zum Schluss kommt ein neuer, steriler Verband drauf.",
+   "fa": "بعد زخم را شست‌وشو می‌دهم، و در آخر یک پانسمان استریل جدید رویش می‌گذارم."
+  },
+  "noeuds.dann.choix.0.puis.0": {
+   "fr": "Et ça fait mal ?",
+   "de": "Und tut das weh?",
+   "fa": "درد هم دارد؟"
+  },
+  "noeuds.dann.choix.1": {
+   "fr": "Ensuite, la plaie est nettoyée et examinée. Pour finir, je pose un nouveau pansement.",
+   "de": "Dann wird die Wunde gereinigt und angeschaut. Zum Schluss lege ich einen neuen Verband an.",
+   "fa": "بعد زخم شست‌وشو و بررسی می‌شود. در آخر یک پانسمان جدید می‌گذارم."
+  },
+  "noeuds.dann.choix.1.puis.0": {
+   "fr": "Et ça fait mal ?",
+   "de": "Und tut das weh?",
+   "fa": "درد هم دارد؟"
+  },
+  "noeuds.weh.choix.0": {
+   "fr": "Ça peut tirer un peu. Dites-moi tout de suite si ça fait mal, et je fais une pause.",
+   "de": "Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.",
+   "fa": "ممکن است کمی احساس کشیدگی کنید. لطفاً اگر درد گرفت فوراً به من بگویید، آن وقت کمی دست نگه می‌دارم."
+  },
+  "noeuds.weh.choix.0.puis.0": {
+   "fr": "D'accord, je vous le dirai.",
+   "de": "Gut, das mache ich.",
+   "fa": "باشد، حتماً می‌گویم."
+  },
+  "noeuds.weh.choix.1": {
+   "fr": "Peut-être un peu. Si ça fait mal, dites-le-moi, et j'arrête un moment.",
+   "de": "Vielleicht ein bisschen. Wenn es wehtut, sagen Sie es mir, und ich höre kurz auf.",
+   "fa": "شاید کمی. اگر درد گرفت به من بگویید، کمی دست نگه می‌دارم."
+  },
+  "noeuds.weh.choix.1.puis.0": {
+   "fr": "D'accord, je vous le dirai.",
+   "de": "Gut, das mache ich.",
+   "fa": "باشد، حتماً می‌گویم."
+  },
+  "noeuds.weh.choix.2": {
+   "fr": "Non, ça ne fait pas mal du tout.",
+   "de": "Nein, das tut überhaupt nicht weh.",
+   "fa": "نه، اصلاً درد ندارد."
+  },
+  "noeuds.weh.choix.2.puis.0": {
+   "fr": "Votre collègue m'a dit ça hier aussi. Et puis ça a fait mal quand même !",
+   "de": "Das hat Ihre Kollegin gestern auch gesagt. Und dann hat es doch wehgetan!",
+   "fa": "همکارتان دیروز هم همین را گفت. ولی بعدش درد گرفت!"
+  },
+  "noeuds.weh.choix.2.aide": {
+   "fr": "<b>Ne promets pas qu'un soin ne fera pas mal.</b> Préviens honnêtement (« Es kann ein bisschen ziehen ») et donne à la patiente un moyen d'agir : « Sagen Sie mir bitte sofort, wenn es wehtut. »",
+   "fa": "<b>قول نده که یک کار مراقبتی درد ندارد.</b> صادقانه آگاهش کن («Es kann ein bisschen ziehen») و به بیمار راهی برای واکنش بده: «Sagen Sie mir bitte sofort, wenn es wehtut.»"
+  },
+  "noeuds.waehrend.dit.0.recit": {
+   "fr": "{elif} se désinfecte les mains, met ses gants et décolle l'ancien pansement.",
+   "fa": "{elif} دست‌هایش را ضدعفونی می‌کند، دستکش می‌پوشد و پانسمان قبلی را جدا می‌کند."
+  },
+  "noeuds.waehrend.dit.1": {
+   "fr": "Aïe ! … Ah, ce n'était que le sparadrap.",
+   "de": "Au! … Ach, das war nur der Kleber.",
+   "fa": "آخ! … آهان، فقط چسبش بود."
+  },
+  "noeuds.waehrend.choix.0": {
+   "fr": "Pardon. Je vais tout doucement. Ça va mieux ?",
+   "de": "Entschuldigung. Ich mache ganz langsam. Geht es wieder?",
+   "fa": "ببخشید. خیلی آرام انجامش می‌دهم. بهتر شد؟"
+  },
+  "noeuds.waehrend.choix.0.puis.0": {
+   "fr": "Oui, ça va. Vous pouvez continuer.",
+   "de": "Ja, geht schon. Machen Sie ruhig weiter.",
+   "fa": "بله، خوب است. ادامه بدهید."
+  },
+  "noeuds.waehrend.choix.1": {
+   "fr": "Je fais une petite pause. Dites-moi quand je peux continuer.",
+   "de": "Ich mache eine kurze Pause. Sagen Sie mir, wenn ich weitermachen darf.",
+   "fa": "کمی دست نگه می‌دارم. به من بگویید کی می‌توانم ادامه بدهم."
+  },
+  "noeuds.waehrend.choix.1.puis.0": {
+   "fr": "Oui, ça va. Vous pouvez continuer.",
+   "de": "Ja, geht schon. Machen Sie ruhig weiter.",
+   "fa": "بله، خوب است. ادامه بدهید."
+  },
+  "noeuds.wunde.dit.0": {
+   "fr": "Alors ? À quoi ça ressemble ? Je n'ose pas regarder.",
+   "de": "Und? Wie sieht es aus? Ich trau mich nicht hinzuschauen.",
+   "fa": "خب؟ چه شکلی است؟ جرئت نمی‌کنم نگاه کنم."
+  },
+  "noeuds.wunde.choix.0": {
+   "fr": "La plaie a meilleur aspect qu'hier. Elle a rétréci et elle n'est pas rouge.",
+   "de": "Die Wunde sieht heute besser aus als gestern. Sie ist kleiner geworden und nicht gerötet.",
+   "fa": "زخم امروز از دیروز بهتر به نظر می‌رسد. کوچک‌تر شده و قرمز نیست."
+  },
+  "noeuds.wunde.choix.0.puis.0": {
+   "fr": "C'est vrai ? Ça me fait plaisir.",
+   "de": "Wirklich? Da bin ich aber froh.",
+   "fa": "واقعاً؟ خیلی خوشحالم."
+  },
+  "noeuds.wunde.choix.1": {
+   "fr": "Bien. La plaie est propre, et elle a déjà un peu rétréci.",
+   "de": "Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.",
+   "fa": "خوب است. زخم تمیز است و کمی هم کوچک‌تر شده."
+  },
+  "noeuds.wunde.choix.1.puis.0": {
+   "fr": "C'est vrai ? Ça me fait plaisir.",
+   "de": "Wirklich? Da bin ich aber froh.",
+   "fa": "واقعاً؟ خیلی خوشحالم."
+  },
+  "noeuds.wunde.choix.2": {
+   "fr": "La plaie est assez dégoûtante.",
+   "de": "Die Wunde ist ziemlich eklig.",
+   "fa": "زخم نسبتاً چندش‌آور است."
+  },
+  "noeuds.wunde.choix.2.puis.0": {
+   "fr": "Dégoûtante ?! Eh bien, merci beaucoup.",
+   "de": "Eklig?! Na, vielen Dank auch.",
+   "fa": "چندش‌آور؟! خب، خیلی ممنون!"
+  },
+  "noeuds.wunde.choix.2.aide": {
+   "fr": "<b>Pour une plaie, des mots neutres et précis : sauber, gerötet, kleiner, größer.</b> « eklig » (dégoûtant) blesse la patiente et n'apprend rien au dossier.",
+   "fa": "<b>برای زخم، کلمات خنثی و دقیق: sauber، gerötet، kleiner، größer.</b> «eklig» (چندش‌آور) بیمار را می‌رنجاند و هیچ اطلاعاتی به پرونده اضافه نمی‌کند."
+  },
+  "noeuds.fertig.dit.0.recit": {
+   "fr": "Le nouveau pansement est posé. {elif} enlève ses gants.",
+   "fa": "پانسمان جدید گذاشته شده است. {elif} دستکش‌هایش را درمی‌آورد."
+  },
+  "noeuds.fertig.dit.1": {
+   "fr": "On a déjà fini ?",
+   "de": "Sind wir schon fertig?",
+   "fa": "تمام شد؟"
+  },
+  "noeuds.fertig.choix.0": {
+   "fr": "Oui, on a fini. Je note l'aspect de la plaie, et je le dis aussi au médecin.",
+   "de": "Ja, wir sind fertig. Ich schreibe auf, wie die Wunde aussieht, und sage es auch der Ärztin.",
+   "fa": "بله، تمام شد. وضعیت زخم را ثبت می‌کنم و به خانم دکتر هم می‌گویم."
+  },
+  "noeuds.fertig.choix.0.puis.0": {
+   "fr": "Merci. Vous avez fait ça très délicatement.",
+   "de": "Danke. Sie haben das sehr vorsichtig gemacht.",
+   "fa": "ممنون. خیلی با احتیاط انجامش دادید."
+  },
+  "noeuds.fertig.choix.1": {
+   "fr": "Oui, c'est fini. Merci d'avoir si bien collaboré. Demain, le pansement sera de nouveau changé.",
+   "de": "Ja, fertig. Danke, dass Sie so gut mitgemacht haben. Morgen wird der Verband wieder gewechselt.",
+   "fa": "بله، تمام شد. ممنون که این‌قدر خوب همکاری کردید. فردا دوباره پانسمان عوض می‌شود."
+  },
+  "noeuds.fertig.choix.1.puis.0": {
+   "fr": "Merci. Vous avez fait ça très délicatement.",
+   "de": "Danke. Sie haben das sehr vorsichtig gemacht.",
+   "fa": "ممنون. خیلی با احتیاط انجامش دادید."
+  },
+  "ecouter.0.q": {
+   "fr": "Qu'est-ce que {lehmann} ne veut pas pendant le changement de pansement ?",
+   "de": "Was möchte {lehmann} beim Verbandswechsel nicht?",
+   "fa": "{lehmann} هنگام تعویض پانسمان چه چیزی را نمی‌خواهد؟"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Elle ne veut pas regarder.",
+   "de": "Sie möchte nicht hinschauen.",
+   "fa": "نمی‌خواهد نگاه کند."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Elle ne veut pas de gants.",
+   "de": "Sie möchte keine Handschuhe.",
+   "fa": "دستکش نمی‌خواهد."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Elle ne veut pas de nouveau pansement.",
+   "de": "Sie möchte keinen neuen Verband.",
+   "fa": "پانسمان جدید نمی‌خواهد."
+  },
+  "ecouter.1.q": {
+   "fr": "Qu'est-ce qui a fait mal un instant, quand on a enlevé le pansement ?",
+   "de": "Was hat beim Abnehmen kurz wehgetan?",
+   "fa": "موقع برداشتن پانسمان، چه چیزی برای لحظه‌ای درد داشت؟"
+  },
+  "ecouter.1.options.0": {
+   "fr": "La plaie.",
+   "de": "Die Wunde.",
+   "fa": "زخم."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Le sparadrap.",
+   "de": "Der Kleber.",
+   "fa": "چسب."
+  },
+  "ecouter.1.options.2": {
+   "fr": "La désinfection.",
+   "de": "Die Desinfektion.",
+   "fa": "ضدعفونی."
+  },
+  "ecouter.2.q": {
+   "fr": "Quel aspect a la plaie aujourd'hui ?",
+   "de": "Wie sieht die Wunde heute aus?",
+   "fa": "زخم امروز چه وضعی دارد؟"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Elle est très rouge.",
+   "de": "Sie ist stark gerötet.",
+   "fa": "خیلی قرمز است."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Elle est plus grande qu'hier.",
+   "de": "Sie ist größer als gestern.",
+   "fa": "از دیروز بزرگ‌تر است."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Elle a rétréci.",
+   "de": "Sie ist kleiner geworden.",
+   "fa": "کوچک‌تر شده است."
+  }
+ }
+}

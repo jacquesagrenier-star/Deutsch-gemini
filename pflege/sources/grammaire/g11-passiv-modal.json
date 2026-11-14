@@ -1,0 +1,250 @@
+{
+ "id": "g11",
+ "cle": "passiv-modal",
+ "numero": 11,
+ "niveau": "B1",
+ "titre": {
+  "fr": "Le passif avec un modal"
+ },
+ "resume": {
+  "fr": "muss gewechselt werden : la phrase des consignes"
+ },
+ "regle": {
+  "fr": "Modal conjugué + <b>participe II + werden</b> à la fin : Die Infusion <b>muss</b> um 10 Uhr <b>gewechselt werden</b>. C'est la phrase des consignes et du plan de soins."
+ },
+ "tableau": [
+  [
+   "müssen",
+   {
+    "t": "Der Verband muss heute gewechselt werden.",
+    "fr": "Le pansement doit être changé aujourd'hui."
+   }
+  ],
+  [
+   "dürfen",
+   {
+    "t": "Der Patient darf nicht allein mobilisiert werden.",
+    "fr": "Le patient ne doit pas être mobilisé seul.",
+    "relire": true,
+    "relire_note": "Consigne de mobilisation."
+   }
+  ],
+  [
+   "sollen",
+   {
+    "t": "Die Werte sollen zweimal täglich kontrolliert werden.",
+    "fr": "Les valeurs doivent être contrôlées deux fois par jour."
+   }
+  ],
+  [
+   "können",
+   {
+    "t": "Das kann morgen erledigt werden.",
+    "fr": "Ça peut être fait demain."
+   }
+  ]
+ ],
+ "exemples": [
+  {
+   "t": "Die Infusion muss um 10 Uhr gewechselt werden.",
+   "fr": "La perfusion doit être changée à 10 h.",
+   "dit": "Die Infusion muss um zehn Uhr gewechselt werden."
+  },
+  {
+   "t": "Jede Gabe muss dokumentiert werden.",
+   "fr": "Chaque administration doit être documentée."
+  },
+  {
+   "t": "Die Angehörigen sollen informiert werden.",
+   "fr": "Les proches doivent être informés."
+  }
+ ],
+ "piege": {
+  "fr": "À la fin, toujours <b>participe puis werden</b> : gewechselt werden (et non « werden gewechselt »)."
+ },
+ "renvoi": null,
+ "dialogues": [
+  "d06",
+  "d03"
+ ],
+ "serie": [
+  {
+   "type": "trou",
+   "t": "Die Infusion muss um zehn Uhr gewechselt ___.",
+   "options": [
+    "werden",
+    "wird",
+    "worden"
+   ],
+   "juste": "werden",
+   "phrase": {
+    "t": "Die Infusion muss um zehn Uhr gewechselt werden.",
+    "fr": "La perfusion doit être changée à dix heures."
+   },
+   "explication": {
+    "fr": "Après un modal : participe + werden (infinitif)."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Der Patient darf nicht allein ___ werden.",
+   "options": [
+    "mobilisiert",
+    "mobilisieren",
+    "mobilisierte"
+   ],
+   "juste": "mobilisiert",
+   "phrase": {
+    "t": "Der Patient darf nicht allein mobilisiert werden.",
+    "fr": "Le patient ne doit pas être mobilisé seul."
+   },
+   "explication": {
+    "fr": "Le participe II avant « werden »."
+   }
+  },
+  {
+   "type": "ordre",
+   "morceaux": [
+    "Der",
+    "Verband",
+    "muss",
+    "heute",
+    "gewechselt",
+    "werden."
+   ],
+   "phrase": {
+    "t": "Der Verband muss heute gewechselt werden.",
+    "fr": "Le pansement doit être changé aujourd'hui."
+   },
+   "explication": {
+    "fr": "Modal en deuxième place ; « gewechselt werden » à la fin."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Die Werte ___ zweimal täglich kontrolliert werden.",
+   "options": [
+    "sollen",
+    "soll",
+    "sollt"
+   ],
+   "juste": "sollen",
+   "phrase": {
+    "t": "Die Werte sollen zweimal täglich kontrolliert werden.",
+    "fr": "Les valeurs doivent être contrôlées deux fois par jour."
+   },
+   "explication": {
+    "fr": "Sujet pluriel (die Werte) : sollen."
+   }
+  },
+  {
+   "type": "choix",
+   "consigne": {
+    "fr": "Quelle phrase est correcte ?"
+   },
+   "options": [
+    "Das Medikament muss werden abgesetzt.",
+    "Das Medikament muss abgesetzt werden.",
+    "Das Medikament muss abgesetzt wird."
+   ],
+   "juste": 1,
+   "phrase": {
+    "t": "Das Medikament muss abgesetzt werden.",
+    "fr": "Le médicament doit être arrêté."
+   },
+   "explication": {
+    "fr": "L'ordre de la fin : participe, puis werden."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Jede Gabe muss ___ werden.",
+   "options": [
+    "dokumentiert",
+    "dokumentieren",
+    "dokumentierte"
+   ],
+   "juste": "dokumentiert",
+   "phrase": {
+    "t": "Jede Gabe muss dokumentiert werden.",
+    "fr": "Chaque administration doit être documentée."
+   },
+   "explication": {
+    "fr": "Participe II : dokumentiert."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Das ___ auch morgen noch erledigt werden.",
+   "options": [
+    "kann",
+    "können",
+    "könnt"
+   ],
+   "juste": "kann",
+   "phrase": {
+    "t": "Das kann auch morgen noch erledigt werden.",
+    "fr": "Ça peut encore être fait demain."
+   },
+   "explication": {
+    "fr": "Sujet singulier (das) : kann."
+   }
+  },
+  {
+   "type": "choix",
+   "consigne": {
+    "fr": "Au passif : « On doit informer la famille. »"
+   },
+   "options": [
+    "Die Familie muss informiert werden.",
+    "Die Familie muss informieren werden.",
+    "Die Familie wird informiert müssen."
+   ],
+   "juste": 0,
+   "phrase": {
+    "t": "Die Familie muss informiert werden.",
+    "fr": "La famille doit être informée."
+   },
+   "explication": {
+    "fr": "muss + informiert werden."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Der Katheter soll morgen ___ werden.",
+   "options": [
+    "entfernt",
+    "entfernen",
+    "entfernte"
+   ],
+   "juste": "entfernt",
+   "phrase": {
+    "t": "Der Katheter soll morgen entfernt werden.",
+    "fr": "La sonde doit être retirée demain."
+   },
+   "explication": {
+    "fr": "Participe de « entfernen » : entfernt (pas de ge- pour les verbes en ent-)."
+   }
+  },
+  {
+   "type": "ordre",
+   "morceaux": [
+    "Der",
+    "Blutzucker",
+    "muss",
+    "vor",
+    "dem",
+    "Essen",
+    "gemessen",
+    "werden."
+   ],
+   "phrase": {
+    "t": "Der Blutzucker muss vor dem Essen gemessen werden.",
+    "fr": "La glycémie doit être mesurée avant le repas."
+   },
+   "explication": {
+    "fr": "Modal, compléments, puis « gemessen werden »."
+   }
+  }
+ ]
+}

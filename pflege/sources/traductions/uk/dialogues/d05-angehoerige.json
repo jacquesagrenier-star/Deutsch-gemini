@@ -1,0 +1,343 @@
+{
+ "_langue": "uk",
+ "_source": "pflege/sources/dialogues/d05-angehoerige.json",
+ "cles": {
+  "titre": {
+   "fr": "Parler à la famille",
+   "de": "Gespräch mit Angehörigen",
+   "uk": "Розмова з родичами"
+  },
+  "intro": {
+   "fr": "Dans le couloir, la fille de {lehmann}, {lehmann_tochter}, arrête {elif}. Elle est inquiète. {lehmann} a donné son accord pour qu'on informe sa fille (c'est noté au dossier). Tu joues {elif} : accueille son inquiétude, dis ce que tu peux dire sur les soins, renvoie au médecin pour le diagnostic et propose un rendez-vous.",
+   "uk": "У коридорі донька {lehmann}, {lehmann_tochter}, зупиняє {elif}. Вона стривожена. {lehmann} дала згоду на те, щоб її доньку інформували (це записано в документації). Ти в ролі {elif}: прийми її тривогу, скажи те, що можеш сказати про догляд, щодо діагнозу направ до лікарки й запропонуй зустріч."
+  },
+  "but": {
+   "fr": "Accueillir une inquiétude ; dire ce qu'un soignant peut dire (le soin, le confort, le repas) ; renvoyer au médecin pour les résultats et le pronostic sans fermer la porte ; organiser un entretien.",
+   "uk": "Прийняти тривогу; сказати те, що може сказати медсестра (догляд, самопочуття, харчування); щодо результатів і прогнозу направити до лікаря, не обриваючи розмову; організувати бесіду."
+  },
+  "relire_notes": {
+   "fr": "Secret professionnel (Schweigepflicht) : ce qu'une soignante peut dire à une proche autorisée par la patiente, ce qui revient au médecin (résultats, diagnostic, opération, pronostic) ; une confusion nouvelle se signale au médecin.",
+   "uk": "Професійна таємниця (Schweigepflicht): що медсестра може сказати родичці, якій пацієнтка дала дозвіл, а що належить лікареві (результати, діагноз, операція, прогноз); про нову сплутаність свідомості повідомляють лікаря."
+  },
+  "redemittel.0": {
+   "fr": "Je comprends très bien que vous vous fassiez du souci.",
+   "de": "Ich kann gut verstehen, dass Sie sich Sorgen machen.",
+   "uk": "Я дуже добре розумію, що ви хвилюєтеся."
+  },
+  "redemittel.1": {
+   "fr": "Votre mère a bien mangé aujourd'hui, et elle a fait une petite promenade.",
+   "de": "Ihre Mutter hat heute gut gegessen und war ein bisschen spazieren.",
+   "uk": "Ваша мама сьогодні добре поїла й трохи прогулялася."
+  },
+  "redemittel.2": {
+   "fr": "Pour les résultats des examens, le médecin pourra vous en dire plus.",
+   "de": "Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.",
+   "uk": "Щодо результатів обстежень лікарка зможе розповісти вам більше."
+  },
+  "redemittel.3": {
+   "fr": "Voulez-vous que je vous organise un entretien avec le médecin ?",
+   "de": "Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?",
+   "uk": "Домовитися для вас про розмову з лікаркою?"
+  },
+  "redemittel.4": {
+   "fr": "Je transmets volontiers.",
+   "de": "Ich gebe das gern weiter.",
+   "uk": "Я охоче це передам."
+  },
+  "redemittel.5": {
+   "fr": "Si vous avez des questions sur les soins, vous pouvez me demander à tout moment.",
+   "de": "Wenn Sie Fragen zur Pflege haben, können Sie mich jederzeit fragen.",
+   "uk": "Якщо у вас є запитання щодо догляду, можете звертатися до мене будь-коли."
+  },
+  "noeuds.flur.dit.0.recit": {
+   "fr": "Treize heures, le couloir du service. Une femme d'une cinquantaine d'années s'approche de {elif}.",
+   "uk": "Тринадцята година, коридор відділення. До {elif} підходить жінка років пʼятдесяти."
+  },
+  "noeuds.flur.dit.1": {
+   "fr": "Excusez-moi ! Je suis la fille de {lehmann}. Comment va ma mère ?",
+   "de": "Entschuldigung! Ich bin die Tochter von {lehmann}. Wie geht es meiner Mutter?",
+   "uk": "Перепрошую! Я донька {lehmann}. Як почувається моя мама?"
+  },
+  "noeuds.flur.choix.0": {
+   "fr": "Bonjour, {lehmann_tochter:voc}. Je suis {elif}, je m'occupe de votre mère aujourd'hui.",
+   "de": "Guten Tag, {lehmann_tochter}. Ich bin {elif}, ich betreue Ihre Mutter heute.",
+   "uk": "Добрий день, {lehmann_tochter:voc}. Я {elif}, сьогодні я доглядаю за вашою мамою."
+  },
+  "noeuds.flur.choix.0.puis.0": {
+   "fr": "Je me fais tellement de souci. Hier, au téléphone, elle était complètement perdue.",
+   "de": "Ich mache mir solche Sorgen. Gestern am Telefon war sie ganz durcheinander.",
+   "uk": "Я так хвилююся. Учора по телефону вона була зовсім розгублена."
+  },
+  "noeuds.flur.choix.1": {
+   "fr": "Bonjour. Je m'appelle {elif}, c'est moi qui soigne votre mère aujourd'hui.",
+   "de": "Guten Tag. Mein Name ist {elif}, ich bin heute die Pflegekraft Ihrer Mutter.",
+   "uk": "Добрий день. Мене звати {elif}, сьогодні я медсестра вашої мами."
+  },
+  "noeuds.flur.choix.1.puis.0": {
+   "fr": "Je me fais tellement de souci. Hier, au téléphone, elle était complètement perdue.",
+   "de": "Ich mache mir solche Sorgen. Gestern am Telefon war sie ganz durcheinander.",
+   "uk": "Я так хвилююся. Учора по телефону вона була зовсім розгублена."
+  },
+  "noeuds.flur.choix.2": {
+   "fr": "Je n'ai pas le droit de vous le dire.",
+   "de": "Das darf ich Ihnen nicht sagen.",
+   "uk": "Я не маю права вам цього казати."
+  },
+  "noeuds.flur.choix.2.puis.0": {
+   "fr": "Pardon ? Je suis sa fille !",
+   "de": "Wie bitte? Ich bin ihre Tochter!",
+   "uk": "Перепрошую? Я ж її донька!"
+  },
+  "noeuds.flur.choix.2.aide": {
+   "fr": "<b>Présente-toi d'abord.</b> Le secret professionnel ne veut pas dire ne rien dire : ici, la patiente a autorisé sa fille, tu peux parler des soins. Les résultats et le diagnostic, eux, reviennent au médecin.",
+   "uk": "<b>Спершу представся.</b> Професійна таємниця не означає нічого не казати: тут пацієнтка дала дозвіл доньці, тож про догляд ти можеш говорити. А от результати й діагноз — справа лікаря."
+  },
+  "noeuds.sorgen.choix.0": {
+   "fr": "Je comprends très bien que vous vous fassiez du souci. Aujourd'hui, votre mère est bien réveillée et bien orientée.",
+   "de": "Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.",
+   "uk": "Я дуже добре розумію, що ви хвилюєтеся. Сьогодні ваша мама бадьора й добре орієнтується."
+  },
+  "noeuds.sorgen.choix.0.puis.0": {
+   "fr": "Dieu merci. Et elle mange assez ?",
+   "de": "Gott sei Dank. Und isst sie denn genug?",
+   "uk": "Слава Богу. А вона достатньо їсть?"
+  },
+  "noeuds.sorgen.choix.1": {
+   "fr": "Je comprends. Je peux vous rassurer : ce matin, elle avait toute sa tête et elle a longuement discuté avec moi.",
+   "de": "Das verstehe ich. Ich kann Sie beruhigen: Heute Morgen war sie ganz klar und hat sich lange mit mir unterhalten.",
+   "uk": "Я вас розумію. Можу вас заспокоїти: сьогодні вранці вона була при ясній памʼяті й довго зі мною розмовляла."
+  },
+  "noeuds.sorgen.choix.1.puis.0": {
+   "fr": "Dieu merci. Et elle mange assez ?",
+   "de": "Gott sei Dank. Und isst sie denn genug?",
+   "uk": "Слава Богу. А вона достатньо їсть?"
+  },
+  "noeuds.sorgen.choix.2": {
+   "fr": "Ne vous inquiétez pas, c'est normal chez les personnes âgées.",
+   "de": "Keine Sorge, das ist normal bei alten Leuten.",
+   "uk": "Не хвилюйтеся, у старих людей це нормально."
+  },
+  "noeuds.sorgen.choix.2.puis.0": {
+   "fr": "Normal ? Ma mère n'a jamais été confuse !",
+   "de": "Normal? Meine Mutter war noch nie verwirrt!",
+   "uk": "Нормально? Моя мама ніколи не була сплутаною!"
+  },
+  "noeuds.sorgen.choix.2.aide": {
+   "fr": "<b>Ne généralise pas (« bei alten Leuten ») et prends l'inquiétude au sérieux.</b> Une confusion nouvelle n'est pas « normale » : c'est un signe à transmettre au médecin. Dis plutôt ce que tu as observé aujourd'hui.",
+   "uk": "<b>Не узагальнюй («bei alten Leuten») і сприймай тривогу всерйоз.</b> Нова сплутаність свідомості — не «норма»: це ознака, про яку треба повідомити лікаря. Краще скажи, що ти спостерігала сьогодні."
+  },
+  "noeuds.essen.choix.0": {
+   "fr": "Oui, elle a bien mangé aujourd'hui, et après le déjeuner, elle a fait quelques pas avec moi dans le couloir.",
+   "de": "Ja, sie hat heute gut gegessen, und nach dem Mittagessen war sie mit mir ein bisschen auf dem Flur spazieren.",
+   "uk": "Так, сьогодні вона добре поїла, а після обіду трохи прогулялася зі мною коридором."
+  },
+  "noeuds.essen.choix.0.puis.0": {
+   "fr": "C'est bien. Et le pied ? Elle doit être opérée ? J'ai lu qu'avec le diabète, parfois…",
+   "de": "Das ist schön. Und der Fuß? Muss sie operiert werden? Ich habe gelesen, dass man bei Diabetes manchmal …",
+   "uk": "Це добре. А стопа? Її треба оперувати? Я читала, що при діабеті іноді…"
+  },
+  "noeuds.essen.choix.1": {
+   "fr": "Elle a mangé presque tout son déjeuner et elle a beaucoup bu. Après, nous avons fait quelques pas.",
+   "de": "Sie hat fast das ganze Mittagessen gegessen und viel getrunken. Danach sind wir ein paar Schritte gegangen.",
+   "uk": "Вона зʼїла майже весь обід і багато пила. Після цього ми пройшли кілька кроків."
+  },
+  "noeuds.essen.choix.1.puis.0": {
+   "fr": "C'est bien. Et le pied ? Elle doit être opérée ? J'ai lu qu'avec le diabète, parfois…",
+   "de": "Das ist schön. Und der Fuß? Muss sie operiert werden? Ich habe gelesen, dass man bei Diabetes manchmal …",
+   "uk": "Це добре. А стопа? Її треба оперувати? Я читала, що при діабеті іноді…"
+  },
+  "noeuds.befund.choix.0": {
+   "fr": "Pour les résultats des examens et le traitement, le médecin pourra vous en dire plus. Ce que je peux vous dire, c'est que nous soignons la plaie tous les jours.",
+   "de": "Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.",
+   "uk": "Щодо результатів обстежень і лікування лікарка зможе розповісти вам більше. Можу сказати вам, що ми щодня обробляємо рану."
+  },
+  "noeuds.befund.choix.0.puis.0": {
+   "fr": "Mais vous voyez la plaie tous les jours !",
+   "de": "Aber Sie sehen die Wunde doch jeden Tag!",
+   "uk": "Але ж ви бачите рану щодня!"
+  },
+  "noeuds.befund.choix.1": {
+   "fr": "C'est une question pour {sommer}. Elle connaît les résultats et peut tout vous expliquer en détail.",
+   "de": "Das ist eine Frage für {sommer}. Sie kennt die Befunde und kann Ihnen alles genau erklären.",
+   "uk": "Це запитання до {sommer:gen}. Вона знає результати й може все докладно вам пояснити."
+  },
+  "noeuds.befund.choix.1.puis.0": {
+   "fr": "Mais vous voyez la plaie tous les jours !",
+   "de": "Aber Sie sehen die Wunde doch jeden Tag!",
+   "uk": "Але ж ви бачите рану щодня!"
+  },
+  "noeuds.befund.choix.2": {
+   "fr": "Non, ne vous inquiétez pas, elle ne sera sûrement pas opérée.",
+   "de": "Nein, keine Sorge, sie wird bestimmt nicht operiert.",
+   "uk": "Ні, не хвилюйтеся, її напевно не оперуватимуть."
+  },
+  "noeuds.befund.choix.2.puis.0": {
+   "fr": "C'est vrai ? Le médecin l'a dit ?",
+   "de": "Wirklich? Hat die Ärztin das gesagt?",
+   "uk": "Справді? Це лікарка так сказала?"
+  },
+  "noeuds.befund.choix.2.aide": {
+   "fr": "<b>Ne promets rien sur le diagnostic ni sur une opération.</b> Ce n'est pas ton rôle, et une promesse fausse détruit la confiance. Renvoie au médecin : « Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen. »",
+   "uk": "<b>Нічого не обіцяй щодо діагнозу чи операції.</b> Це не твоя роль, а хибна обіцянка руйнує довіру. Направ до лікаря: «Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.»"
+  },
+  "noeuds.wunde.choix.0": {
+   "fr": "Oui, et je note tout avec précision. Mais ce que cela signifie pour le traitement, c'est au médecin de l'évaluer.",
+   "de": "Ja, und ich dokumentiere alles genau. Aber was das für die Behandlung bedeutet, muss die Ärztin beurteilen.",
+   "uk": "Так, і я все точно документую. Але що це означає для лікування, має оцінити лікарка."
+  },
+  "noeuds.wunde.choix.0.puis.0": {
+   "fr": "Hum. Et quand est-ce que je peux lui parler ?",
+   "de": "Hm. Und wann kann ich mit ihr sprechen?",
+   "uk": "Гм. А коли я зможу з нею поговорити?"
+  },
+  "noeuds.wunde.choix.1": {
+   "fr": "C'est vrai. Mais seul le médecin peut vous donner une évaluation. Comme ça, vous aurez une réponse sûre.",
+   "de": "Das stimmt. Aber eine Einschätzung kann Ihnen nur die Ärztin geben. Dann bekommen Sie auch eine sichere Antwort.",
+   "uk": "Це правда. Але дати оцінку може тільки лікарка. Тоді ви й отримаєте надійну відповідь."
+  },
+  "noeuds.wunde.choix.1.puis.0": {
+   "fr": "Hum. Et quand est-ce que je peux lui parler ?",
+   "de": "Hm. Und wann kann ich mit ihr sprechen?",
+   "uk": "Гм. А коли я зможу з нею поговорити?"
+  },
+  "noeuds.termin.choix.0": {
+   "fr": "Voulez-vous que je vous organise un entretien avec {sommer} ? Après la visite, elle a souvent du temps.",
+   "de": "Soll ich ein Gespräch mit {sommer} für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.",
+   "uk": "Домовитися для вас про розмову з {sommer:ins}? Після обходу в неї здебільшого є час."
+  },
+  "noeuds.termin.choix.0.puis.0": {
+   "fr": "Oui, s'il vous plaît. Demain, je suis là à partir de dix heures.",
+   "de": "Ja, bitte. Morgen bin ich ab zehn Uhr hier.",
+   "uk": "Так, будь ласка. Завтра я буду тут з десятої."
+  },
+  "noeuds.termin.choix.1": {
+   "fr": "Je peux demander à {sommer} quand elle aura du temps pour vous. Vous êtes là à quelle heure, demain ?",
+   "de": "Ich kann {sommer} fragen, wann sie Zeit für Sie hat. Wann sind Sie morgen hier?",
+   "uk": "Я можу спитати {sommer:acc}, коли в неї буде для вас час. О котрій ви завтра будете тут?"
+  },
+  "noeuds.termin.choix.1.puis.0": {
+   "fr": "Demain, je suis là à partir de dix heures.",
+   "de": "Morgen bin ich ab zehn Uhr hier.",
+   "uk": "Завтра я буду тут з десятої."
+  },
+  "noeuds.termin.choix.2": {
+   "fr": "Appelez le médecin, tout simplement. Le numéro est sur Internet.",
+   "de": "Rufen Sie einfach die Ärztin an. Die Nummer steht im Internet.",
+   "uk": "Просто зателефонуйте лікарці. Номер є в інтернеті."
+  },
+  "noeuds.termin.choix.2.puis.0": {
+   "fr": "Sur Internet ? Je n'aurai que le standard.",
+   "de": "Im Internet? Da erreiche ich doch nur die Zentrale.",
+   "uk": "В інтернеті? Та там я дозвонюся тільки до довідкової."
+  },
+  "noeuds.termin.choix.2.aide": {
+   "fr": "<b>Propose ton aide pour organiser l'entretien.</b> « Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren? » : « Soll ich …? » propose un service, poliment.",
+   "uk": "<b>Запропонуй допомогу з організацією розмови.</b> «Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?»: «Soll ich …?» ввічливо пропонує послугу."
+  },
+  "noeuds.rueckruf.choix.0": {
+   "fr": "Bien, je transmets. Je peux noter votre numéro de téléphone, au cas où l'heure changerait ?",
+   "de": "Gut, ich gebe das weiter. Darf ich mir Ihre Telefonnummer notieren, falls sich die Zeit ändert?",
+   "uk": "Добре, я передам. Можна я запишу ваш номер телефону на випадок, якщо час зміниться?"
+  },
+  "noeuds.rueckruf.choix.0.puis.0": {
+   "fr": "Bien sûr. Je vous l'écris.",
+   "de": "Natürlich. Ich schreibe sie Ihnen auf.",
+   "uk": "Звісно. Я вам його напишу."
+  },
+  "noeuds.rueckruf.choix.1": {
+   "fr": "Je préviens {sommer} que vous venez demain à partir de dix heures. Si ça ne convient pas, le service vous appelle.",
+   "de": "Ich sage {sommer} Bescheid, dass Sie morgen ab zehn kommen. Wenn es nicht passt, ruft die Station Sie an.",
+   "uk": "Я повідомлю {sommer:acc}, що ви прийдете завтра з десятої. Якщо час не підійде, вам зателефонують з відділення."
+  },
+  "noeuds.rueckruf.choix.1.puis.0": {
+   "fr": "Merci. Le service a déjà mon numéro.",
+   "de": "Danke. Meine Nummer hat die Station schon.",
+   "uk": "Дякую. Мій номер у відділенні вже є."
+  },
+  "noeuds.ende.dit.0": {
+   "fr": "Merci beaucoup. Vous m'avez vraiment aidée.",
+   "de": "Vielen Dank. Sie haben mir wirklich geholfen.",
+   "uk": "Щиро дякую. Ви мені справді допомогли."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Avec plaisir. Votre mère sera sûrement contente que vous soyez là. Allez la voir.",
+   "de": "Gern. Ihre Mutter freut sich bestimmt, dass Sie da sind. Gehen Sie ruhig zu ihr.",
+   "uk": "Будь ласка. Ваша мама напевно зрадіє, що ви тут. Ідіть до неї."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Oui, j'y vais.",
+   "de": "Ja, das mache ich.",
+   "uk": "Так, іду."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Ça me fait plaisir. Si vous avez des questions sur les soins, vous pouvez me demander à tout moment.",
+   "de": "Das freut mich. Wenn Sie Fragen zur Pflege haben, können Sie mich jederzeit fragen.",
+   "uk": "Мені приємно. Якщо у вас є запитання щодо догляду, можете звертатися до мене будь-коли."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "C'est bon à savoir. Merci.",
+   "de": "Das ist gut zu wissen. Danke.",
+   "uk": "Добре знати. Дякую."
+  },
+  "ecouter.0.q": {
+   "fr": "Pourquoi {lehmann_tochter} s'inquiète-t-elle ?",
+   "de": "Warum macht sich {lehmann_tochter} Sorgen?",
+   "uk": "Чому {lehmann_tochter} хвилюється?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Sa mère ne mange rien.",
+   "de": "Ihre Mutter isst nichts.",
+   "uk": "Її мама нічого не їсть."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Sa mère était perdue au téléphone hier.",
+   "de": "Ihre Mutter war gestern am Telefon durcheinander.",
+   "uk": "Учора по телефону її мама була розгублена."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Sa mère est tombée.",
+   "de": "Ihre Mutter ist gestürzt.",
+   "uk": "Її мама впала."
+  },
+  "ecouter.1.q": {
+   "fr": "Que veut savoir {lehmann_tochter} sur le pied ?",
+   "de": "Was möchte {lehmann_tochter} über den Fuß wissen?",
+   "uk": "Що {lehmann_tochter} хоче дізнатися про стопу?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Si sa mère doit être opérée.",
+   "de": "Ob ihre Mutter operiert werden muss.",
+   "uk": "Чи треба її мамі операція."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Quand le pansement est changé.",
+   "de": "Wann der Verband gewechselt wird.",
+   "uk": "Коли міняють повʼязку."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Si sa mère a le droit de marcher.",
+   "de": "Ob ihre Mutter laufen darf.",
+   "uk": "Чи можна її мамі ходити."
+  },
+  "ecouter.2.q": {
+   "fr": "À quelle heure {lehmann_tochter} est-elle à l'hôpital demain ?",
+   "de": "Wann ist {lehmann_tochter} morgen im Krankenhaus?",
+   "uk": "О котрій {lehmann_tochter} буде завтра в лікарні?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "À partir de huit heures.",
+   "de": "Ab acht Uhr.",
+   "uk": "З восьмої."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Seulement le soir.",
+   "de": "Erst am Abend.",
+   "uk": "Тільки ввечері."
+  },
+  "ecouter.2.options.2": {
+   "fr": "À partir de dix heures.",
+   "de": "Ab zehn Uhr.",
+   "uk": "З десятої."
+  }
+ }
+}

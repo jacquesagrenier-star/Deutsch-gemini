@@ -1,0 +1,245 @@
+{
+ "id": "g02",
+ "cle": "ankuendigen",
+ "numero": 2,
+ "niveau": "A2",
+ "titre": {
+  "fr": "Annoncer ce qu'on va faire"
+ },
+ "resume": {
+  "fr": "Le présent suffit : jetzt, gleich, zuerst, dann"
+ },
+ "regle": {
+  "fr": "Pour annoncer un geste qu'on va faire tout de suite, l'allemand emploie le <b>présent</b> avec un mot de temps : jetzt, gleich, sofort, zuerst, dann, danach. Le futur (werden) n'est pas nécessaire. Si le mot de temps est en tête, le verbe reste en deuxième place : <b>Gleich kommt die Ärztin.</b>"
+ },
+ "tableau": [
+  [
+   "jetzt",
+   {
+    "t": "Ich messe jetzt Ihren Blutdruck.",
+    "fr": "Je vais prendre votre tension maintenant."
+   }
+  ],
+  [
+   "gleich",
+   {
+    "t": "Gleich kommt die Ärztin.",
+    "fr": "Le médecin arrive tout de suite."
+   }
+  ],
+  [
+   "zuerst … dann",
+   {
+    "t": "Zuerst wasche ich Ihnen den Rücken, dann ziehen wir das Hemd an.",
+    "fr": "D'abord je vous lave le dos, ensuite on met la chemise."
+   }
+  ],
+  [
+   "sofort",
+   {
+    "t": "Ich bringe Ihnen sofort ein Glas Wasser.",
+    "fr": "Je vous apporte tout de suite un verre d'eau."
+   }
+  ]
+ ],
+ "exemples": [
+  {
+   "t": "Ich wechsle jetzt Ihren Verband.",
+   "fr": "Je vais changer votre pansement maintenant."
+  },
+  {
+   "t": "Gleich bekommen Sie Ihr Frühstück.",
+   "fr": "Vous allez avoir votre petit-déjeuner tout de suite."
+  },
+  {
+   "t": "Danach gehen wir zusammen ins Bad.",
+   "fr": "Ensuite, nous allons ensemble à la salle de bain."
+  }
+ ],
+ "piege": {
+  "fr": "Après un mot de temps en tête, le verbe vient en deuxième place et le sujet après : <b>Gleich kommt</b> die Ärztin (et non « Gleich die Ärztin kommt »)."
+ },
+ "renvoi": "wortstellungInfo",
+ "dialogues": [
+  "d01",
+  "d03",
+  "d09"
+ ],
+ "serie": [
+  {
+   "type": "trou",
+   "t": "Ich ___ jetzt Ihren Puls.",
+   "options": [
+    "messe",
+    "misst",
+    "messen"
+   ],
+   "juste": "messe",
+   "phrase": {
+    "t": "Ich messe jetzt Ihren Puls.",
+    "fr": "Je prends votre pouls maintenant."
+   },
+   "explication": {
+    "fr": "« ich » : messe. Le présent avec « jetzt » annonce ce qu'on va faire."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Gleich ___ die Ärztin zur Visite.",
+   "options": [
+    "kommt",
+    "kommen",
+    "komme"
+   ],
+   "juste": "kommt",
+   "phrase": {
+    "t": "Gleich kommt die Ärztin zur Visite.",
+    "fr": "Le médecin passe tout de suite pour la visite."
+   },
+   "explication": {
+    "fr": "« die Ärztin » (elle) : kommt. Après « Gleich » en tête, le verbe vient tout de suite."
+   }
+  },
+  {
+   "type": "ordre",
+   "morceaux": [
+    "Jetzt",
+    "wechsle",
+    "ich",
+    "Ihren",
+    "Verband."
+   ],
+   "phrase": {
+    "t": "Jetzt wechsle ich Ihren Verband.",
+    "fr": "Maintenant, je change votre pansement."
+   },
+   "explication": {
+    "fr": "Mot de temps en tête, verbe en deuxième place, sujet après."
+   }
+  },
+  {
+   "type": "choix",
+   "consigne": {
+    "fr": "Quelle phrase est correcte ?"
+   },
+   "options": [
+    "Gleich die Physiotherapeutin kommt.",
+    "Gleich kommt die Physiotherapeutin.",
+    "Gleich kommen die Physiotherapeutin."
+   ],
+   "juste": 1,
+   "phrase": {
+    "t": "Gleich kommt die Physiotherapeutin.",
+    "fr": "La kinésithérapeute arrive tout de suite."
+   },
+   "explication": {
+    "fr": "Verbe en deuxième place (kommt), accordé avec le sujet singulier."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Zuerst ___ ich Ihnen beim Waschen, dann ziehen wir Sie an.",
+   "options": [
+    "helfe",
+    "hilft",
+    "helfen"
+   ],
+   "juste": "helfe",
+   "phrase": {
+    "t": "Zuerst helfe ich Ihnen beim Waschen, dann ziehen wir Sie an.",
+    "fr": "D'abord je vous aide à vous laver, ensuite on vous habille."
+   },
+   "explication": {
+    "fr": "« helfen » : ich helfe, er hilft."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Ich ___ Ihnen sofort eine Decke.",
+   "options": [
+    "bringe",
+    "bringt",
+    "gebracht"
+   ],
+   "juste": "bringe",
+   "phrase": {
+    "t": "Ich bringe Ihnen sofort eine Decke.",
+    "fr": "Je vous apporte tout de suite une couverture."
+   },
+   "explication": {
+    "fr": "Le présent (ich bringe) avec « sofort » : c'est pour tout de suite."
+   }
+  },
+  {
+   "type": "ordre",
+   "morceaux": [
+    "Dann",
+    "gebe",
+    "ich",
+    "Ihnen",
+    "die",
+    "Tabletten."
+   ],
+   "phrase": {
+    "t": "Dann gebe ich Ihnen die Tabletten.",
+    "fr": "Ensuite, je vous donne les comprimés."
+   },
+   "explication": {
+    "fr": "« Dann » en tête : le verbe « gebe » suit, puis « ich »."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Wir ___ jetzt zusammen ins Bad.",
+   "options": [
+    "gehen",
+    "geht",
+    "gehst"
+   ],
+   "juste": "gehen",
+   "phrase": {
+    "t": "Wir gehen jetzt zusammen ins Bad.",
+    "fr": "Nous allons maintenant ensemble à la salle de bain."
+   },
+   "explication": {
+    "fr": "« wir » : gehen."
+   }
+  },
+  {
+   "type": "choix",
+   "consigne": {
+    "fr": "Pour annoncer un soin tout de suite, la phrase la plus naturelle :"
+   },
+   "options": [
+    "Ich werde morgen Ihren Blutdruck gemessen haben.",
+    "Ich messe jetzt Ihren Blutdruck.",
+    "Ich habe Ihren Blutdruck gemessen."
+   ],
+   "juste": 1,
+   "phrase": {
+    "t": "Ich messe jetzt Ihren Blutdruck.",
+    "fr": "Je vais prendre votre tension maintenant."
+   },
+   "explication": {
+    "fr": "Le présent + « jetzt ». La première phrase est un futur antérieur, la troisième un passé."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "In fünf Minuten ___ das Essen.",
+   "options": [
+    "kommt",
+    "kam",
+    "komme"
+   ],
+   "juste": "kommt",
+   "phrase": {
+    "t": "In fünf Minuten kommt das Essen.",
+    "fr": "Le repas arrive dans cinq minutes."
+   },
+   "explication": {
+    "fr": "Présent à valeur de futur proche : « kommt »."
+   }
+  }
+ ]
+}

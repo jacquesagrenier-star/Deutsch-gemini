@@ -1,0 +1,164 @@
+{
+ "id": "d01-vorstellung",
+ "numero": 1,
+ "niveau": "A2",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 1,
+ "role": "elif",
+ "personnes": ["brandt"],
+ "titre": {"t": "Begrüßung und Vorstellung", "fr": "Se présenter à un patient"},
+ "intro": {"fr": "Un matin dans le service. Aujourd'hui, {elif} s'occupe de {brandt}, qu'elle ne connaît pas encore, opéré de la hanche il y a trois jours. Tu joues {elif} : présente-toi, demande comment il a dormi, dis ce que tu vas faire et montre-lui la sonnette."},
+ "but": {"fr": "Se présenter (nom, fonction, expérience), poser les premières questions, annoncer un soin, montrer la sonnette."},
+ "grammaire": ["g01", "g02", "g04"],
+ "telc": ["oral-1"],
+ "redemittel": [
+  {"t": "Guten Morgen, {brandt}. Mein Name ist {elif}, ich bin heute Ihre Pflegekraft.", "fr": "Bonjour, {brandt:voc}. Je m'appelle {elif}, c'est moi qui m'occupe de vous aujourd'hui."},
+  {"t": "Ich arbeite seit vier Monaten hier.", "fr": "Je travaille ici depuis quatre mois."},
+  {"t": "Wie haben Sie heute Nacht geschlafen?", "fr": "Comment avez-vous dormi cette nuit ?"},
+  {"t": "Das tut mir leid.", "fr": "Je suis désolée."},
+  {"t": "Ich messe jetzt Ihren Blutdruck. Ist das in Ordnung?", "fr": "Je vais prendre votre tension. Vous êtes d'accord ?"},
+  {"t": "Soll ich Ihnen helfen, sich aufzusetzen?", "fr": "Voulez-vous que je vous aide à vous asseoir ?"},
+  {"t": "Wenn Sie etwas brauchen, drücken Sie bitte hier auf die Klingel.", "fr": "Si vous avez besoin de quelque chose, appuyez ici, sur la sonnette."},
+  {"t": "Ich komme gleich wieder.", "fr": "Je reviens tout de suite."}
+ ],
+ "debut": "tuer",
+ "noeuds": {
+  "tuer": {
+   "dit": [
+    {"recit": {"fr": "Sept heures, service du matin au {klinik}. {elif} frappe à la porte de la chambre douze."}},
+    {"qui": "brandt", "air": "question", "t": "Ja? Herein!", "fr": "Oui ? Entrez !"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen, {brandt}. Mein Name ist {elif}, ich bin heute Ihre Pflegekraft.", "fr": "Bonjour, {brandt:voc}. Je m'appelle {elif}, c'est moi qui m'occupe de vous aujourd'hui.", "va": "neu",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "{elif}? Den Namen hab ich ja noch nie gehört.", "fr": "{elif} ? Je n'ai jamais entendu ce prénom."}]},
+    {"t": "Guten Morgen! Ich bin {elif}. Ich kümmere mich heute um Sie.", "fr": "Bonjour ! Je suis {elif}. Aujourd'hui, c'est moi qui m'occupe de vous.", "va": "neu",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "{elif}? Den Namen hab ich ja noch nie gehört.", "fr": "{elif} ? Je n'ai jamais entendu ce prénom."}]},
+    {"faux": true, "t": "Hallo! Wie geht's dir?", "fr": "Salut ! Ça va, toi ?",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Dir? Kennen wir uns etwa?", "fr": "« Toi » ? On se connaît, peut-être ?"}],
+     "aide": {"fr": "<b>Avec un patient, on dit toujours « Sie ».</b> « dir » et « Hallo », c'est pour un ami. Commence par « Guten Morgen, Herr Brandt », puis dis ton nom et ta fonction."}}
+   ]
+  },
+  "neu": {
+   "dit": [
+    {"qui": "brandt", "air": "question", "t": "Sind Sie neu hier?", "fr": "Vous êtes nouvelle ici ?"}
+   ],
+   "choix": [
+    {"t": "Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.", "fr": "Oui, je travaille ici depuis quatre mois. Je viens de Turquie, d'Izmir.", "va": "schlaf",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Aus Izmir! Da war ich mal im Urlaub, vor über vierzig Jahren. Schön warm war's da.", "fr": "D'Izmir ! J'y suis allé en vacances, il y a plus de quarante ans. Il faisait bien chaud."}]},
+    {"t": "Ja, ich bin seit vier Monaten hier. In der Türkei war ich Krankenschwester, in einem Krankenhaus in Izmir.", "fr": "Oui, je suis ici depuis quatre mois. En Turquie, j'étais infirmière, dans un hôpital d'Izmir.", "va": "schlaf",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Aus Izmir! Da war ich mal im Urlaub, vor über vierzig Jahren. Schön warm war's da.", "fr": "D'Izmir ! J'y suis allé en vacances, il y a plus de quarante ans. Il faisait bien chaud."}]},
+    {"faux": true, "t": "Ja, ich bin neu. Ich komme von Türkei.", "fr": "Oui, je suis nouvelle. Je viens « de Turquie » (mal dit).",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Von wo, bitte?", "fr": "D'où, pardon ?"}],
+     "aide": {"fr": "<b>On dit « aus der Türkei ».</b> Pour le pays d'où l'on vient : « aus » + datif. Quelques pays ont un article : die Türkei → aus der Türkei, die Schweiz → aus der Schweiz."}}
+   ]
+  },
+  "schlaf": {
+   "dit": [
+    {"recit": {"fr": "{brandt} bâille et se frotte les yeux."}}
+   ],
+   "choix": [
+    {"t": "Wie haben Sie heute Nacht geschlafen?", "fr": "Comment avez-vous dormi cette nuit ?", "va": "schmerz",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Schlecht. Die Hüfte tut weh, und nebenan schnarcht einer wie ein Bär.", "fr": "Mal. La hanche me fait mal, et à côté il y en a un qui ronfle comme un ours."}]},
+    {"t": "Haben Sie gut geschlafen?", "fr": "Vous avez bien dormi ?", "va": "schmerz",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Nicht besonders. Die Hüfte tut weh, und nebenan schnarcht einer wie ein Bär.", "fr": "Pas vraiment. La hanche me fait mal, et à côté il y en a un qui ronfle comme un ours."}]},
+    {"faux": true, "t": "Wann haben Sie geschlafen?", "fr": "Quand avez-vous dormi ?",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Wann? Na, in der Nacht, wie jeder anständige Mensch!", "fr": "Quand ? Eh bien, la nuit, comme tout le monde !"}],
+     "aide": {"fr": "<b>« Wann ? » demande le moment, « Wie ? » la manière.</b> Pour savoir si la nuit a été bonne : « Wie haben Sie geschlafen? »"}}
+   ]
+  },
+  "schmerz": {
+   "dit": [
+    {"recit": {"fr": "Il grimace en bougeant la jambe."}}
+   ],
+   "choix": [
+    {"t": "Das tut mir leid. Ich sage es gleich {sommer}. Sie kommt um neun zur Visite.", "fr": "Je suis désolée. Je le dis tout de suite {sommer:a}. Elle passe à neuf heures pour la visite.", "va": "messen",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Na gut. Hoffentlich hat die Frau Doktor heute mehr Zeit als gestern.", "fr": "Bon. Espérons que la doctoresse aura plus de temps qu'hier."}]},
+    {"t": "Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.", "fr": "Je suis désolée. Si la douleur devient forte, dites-le-moi tout de suite.", "va": "messen",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Im Moment geht's. Aber sagen Sie es bitte auch der Ärztin.", "fr": "Pour l'instant, ça va. Mais dites-le aussi au médecin, s'il vous plaît."}]},
+    {"faux": true, "t": "Das ist nicht schlimm.", "fr": "Ce n'est pas grave.",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Nicht schlimm? Sie haben ja auch keine neue Hüfte!", "fr": "Pas grave ? Évidemment, ce n'est pas vous qui avez une hanche neuve !"}],
+     "aide": {"fr": "<b>D'abord, montre que tu as entendu : « Das tut mir leid ».</b> Dire « ce n'est pas grave » à quelqu'un qui a mal le vexe, même avec une bonne intention."}}
+   ]
+  },
+  "messen": {
+   "dit": [
+    {"qui": "brandt", "air": "question", "t": "Und was machen Sie jetzt mit mir?", "fr": "Et maintenant, qu'est-ce que vous allez me faire ?"}
+   ],
+   "choix": [
+    {"t": "Ich messe jetzt Ihren Blutdruck und Ihre Temperatur. Ist das in Ordnung?", "fr": "Je vais prendre votre tension et votre température. Vous êtes d'accord ?", "va": "werte",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Machen Sie nur.", "fr": "Allez-y."}]},
+    {"t": "Zuerst messe ich Ihren Blutdruck, dann Ihre Temperatur. Darf ich?", "fr": "D'abord je prends votre tension, ensuite votre température. Je peux ?", "va": "werte",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Wenn's sein muss.", "fr": "S'il le faut."}]},
+    {"faux": true, "t": "Ich messe jetzt Ihr Blut.", "fr": "Je vais « mesurer votre sang ».",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Mein Blut? Wollen Sie mir etwa schon wieder Blut abnehmen?", "fr": "Mon sang ? Vous voulez encore me faire une prise de sang ?"}],
+     "aide": {"fr": "<b>Le mot juste est « der Blutdruck » (la tension).</b> « das Blut » est le sang ; « Blut abnehmen », c'est faire une prise de sang. Un mot de travers peut inquiéter un patient."}}
+   ]
+  },
+  "werte": {
+   "dit": [
+    {"recit": {"fr": "{elif} pose le brassard, mesure, puis prend la température."}},
+    {"qui": "brandt", "air": "amuse", "t": "Und? Lebe ich noch?", "fr": "Alors ? Je suis encore vivant ?"}
+   ],
+   "choix": [
+    {"t": "Ja, alles in Ordnung. Ihr Blutdruck ist 130 zu 80, und Fieber haben Sie nicht.", "dit": "Ja, alles in Ordnung. Ihr Blutdruck ist hundertdreißig zu achtzig, und Fieber haben Sie nicht.", "fr": "Oui, tout va bien. Votre tension est à 13/8 (130 sur 80), et vous n'avez pas de fièvre.", "va": "fruehstueck",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Na, wenigstens etwas.", "fr": "Eh bien, c'est déjà ça."}]},
+    {"t": "Und wie! Der Blutdruck ist normal, und die Temperatur auch.", "fr": "Et comment ! La tension est normale, la température aussi.", "va": "fruehstueck",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Na, wenigstens etwas.", "fr": "Eh bien, c'est déjà ça."}]},
+    {"repete": true, "t": "Entschuldigung, wie bitte?", "fr": "Pardon, comment ?", "va": "werte",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Ob ich noch lebe, hab ich gefragt. Das war ein Witz!", "fr": "Je vous ai demandé si j'étais encore vivant. C'était une blague !"}]}
+   ]
+  },
+  "fruehstueck": {
+   "dit": [
+    {"qui": "brandt", "air": "question", "t": "Wann gibt's denn hier Frühstück? Ich hab Hunger.", "fr": "Il y a le petit-déjeuner à quelle heure, ici ? J'ai faim."}
+   ],
+   "choix": [
+    {"t": "Das Frühstück kommt um halb acht. Soll ich Ihnen helfen, sich aufzusetzen?", "fr": "Le petit-déjeuner arrive à sept heures et demie. Voulez-vous que je vous aide à vous asseoir ?", "va": "klingel",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Ja, allein schaff ich das noch nicht.", "fr": "Oui, tout seul, je n'y arrive pas encore."}]},
+    {"t": "Um halb acht, also in einer halben Stunde. Vorher helfe ich Ihnen, sich aufzusetzen.", "fr": "À sept heures et demie, donc dans une demi-heure. Avant, je vous aide à vous asseoir.", "va": "klingel",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Ja, allein schaff ich das noch nicht.", "fr": "Oui, tout seul, je n'y arrive pas encore."}]},
+    {"faux": true, "t": "Das Frühstück ist um sieben Uhr dreißig Minuten.", "fr": "Le petit-déjeuner est à « sept heures trente minutes ».",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Sieben Uhr dreißig Minuten? Sie meinen halb acht, oder?", "fr": "Sept heures trente minutes ? Vous voulez dire sept heures et demie, non ?"}],
+     "aide": {"fr": "<b>L'heure se dit « halb acht » ou « sieben Uhr dreißig », sans « Minuten ».</b> Attention : « halb acht » veut dire 7 h 30 (la moitié de l'heure qui mène à huit), pas 8 h 30."}}
+   ]
+  },
+  "klingel": {
+   "dit": [
+    {"recit": {"fr": "{elif} aide {brandt} à s'asseoir dans son lit. Avant de partir, elle lui approche la sonnette."}}
+   ],
+   "choix": [
+    {"t": "Wenn Sie etwas brauchen, drücken Sie bitte hier auf die Klingel.", "fr": "Si vous avez besoin de quelque chose, appuyez ici, sur la sonnette.", "va": "ende",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Der rote Knopf? Gut.", "fr": "Le bouton rouge ? D'accord."}]},
+    {"t": "Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.", "fr": "Voici votre sonnette. S'il vous plaît, ne vous levez pas encore seul, sonnez plutôt.", "va": "ende",
+     "relire": true, "relire_note": "Après une prothèse de hanche, consigne « ne pas se lever seul » les premiers jours : formulation et durée à confirmer selon le protocole du service.",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Ja, ja. Der rote Knopf. Ich bin ja nicht von gestern.", "fr": "Oui, oui. Le bouton rouge. Je ne suis pas né de la dernière pluie."}]},
+    {"faux": true, "t": "Wenn Sie etwas brauchen, rufen Sie einfach laut.", "fr": "Si vous avez besoin de quelque chose, appelez fort, tout simplement.",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Laut rufen? Da hört mich doch keiner, bei dem Schnarcher nebenan!", "fr": "Appeler fort ? Personne ne m'entendra, avec le ronfleur d'à côté !"}],
+     "aide": {"fr": "<b>À l'hôpital, on montre la sonnette : « die Klingel ».</b> « Drücken Sie bitte hier » : appuyez ici. Un patient opéré ne doit pas avoir à crier pour être aidé."}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "brandt", "air": "sourire", "t": "Danke, Schwester.", "fr": "Merci, ma sœur. (ancienne façon d'appeler une infirmière)"}
+   ],
+   "choix": [
+    {"t": "Gern geschehen. Ich komme gleich mit dem Frühstück wieder.", "fr": "Avec plaisir. Je reviens tout de suite avec le petit-déjeuner.", "va": null,
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Sie sind nett, {elif}.", "fr": "Vous êtes gentille, {elif}."}]},
+    {"t": "Bitte schön. Sie können ruhig {elif} zu mir sagen. Bis gleich!", "fr": "Je vous en prie. Vous pouvez m'appeler {elif}. À tout de suite !", "va": null,
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "{elif}. Gut, das merk ich mir.", "fr": "{elif}. Bien, je m'en souviendrai."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Woher kommt {elif}?", "fr": "D'où vient {elif} ?"},
+   "options": [{"t": "Aus Izmir, in der Türkei.", "fr": "D'Izmir, en Turquie."}, {"t": "Aus Istanbul.", "fr": "D'Istanbul."}, {"t": "Aus Berlin.", "fr": "De Berlin."}],
+   "juste": 0},
+  {"q": {"t": "Warum hat {brandt} schlecht geschlafen?", "fr": "Pourquoi {brandt} a-t-il mal dormi ?"},
+   "options": [{"t": "Er hatte Hunger.", "fr": "Il avait faim."}, {"t": "Die Hüfte tut weh, und der Nachbar schnarcht.", "fr": "Sa hanche lui fait mal, et son voisin ronfle."}, {"t": "Es war zu warm im Zimmer.", "fr": "Il faisait trop chaud dans la chambre."}],
+   "juste": 1},
+  {"q": {"t": "Wann kommt das Frühstück?", "fr": "Quand arrive le petit-déjeuner ?"},
+   "options": [{"t": "Um halb neun.", "fr": "À huit heures et demie."}, {"t": "Um sieben.", "fr": "À sept heures."}, {"t": "Um halb acht.", "fr": "À sept heures et demie."}],
+   "juste": 2}
+ ]
+}
