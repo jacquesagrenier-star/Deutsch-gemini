@@ -707,7 +707,11 @@ function verdict(){
     const res = { hls, hoeren: ph, lesen: pl, sprachbausteine: ps, schreiben: schr, sprechen: spr, niveaux: r, zertifikat: r.zertifikat };
     ecrire("dernier", { date: new Date().toLocaleDateString(DATE_TELC), zertifikat: r.zertifikat, hls, schreiben: schr, sprechen: spr });
     resultat("blanc", res);
-    parler("resultat", Object.assign({ mode: "examen_blanc_telc_pflege", modell: 1 }, res));
+    // LE MESSAGE A L'APP (contrat pflege/FORMAT-DONNEES.md, § 6) : c'est ce que lit le tableau de bord ; l'app
+    // recalcule le certificat elle-meme (certificatSoins, memes seuils que bareme.js)
+    parler("resultat_examen", { examen: "soins_telc", serie: PF.serie, date: new Date().toISOString(),
+      points: { hls, schreiben: schr, sprechen: spr },
+      certificat: r.zertifikat ? r.zertifikat.toUpperCase() : "aucun", detail: res });
   }
 }
 function corrige(j){
@@ -754,5 +758,5 @@ function inscrire(){
 }
 
 // pour le controle et les sondes : le calcul, et l'index des questions (rien d'ecrit)
-window.PFLEGE = { PF, juste, pointsDe, estimer, infosTrouvees, itemsDe, choixDe };
+window.SOINS_EXAMEN = { PF, juste, pointsDe, estimer, infosTrouvees, itemsDe, choixDe };
 })();
