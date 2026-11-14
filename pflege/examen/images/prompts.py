@@ -41,7 +41,7 @@ def soignant(nom, qui, ref, il, tenue):
 VERT = "a plain sage-green short-sleeved polo shirt, navy-blue trousers and black closed shoes"
 BLANC = "a plain white short-sleeved nurse's tunic, plain white trousers and white closed shoes"
 OLENA = soignant("Olena", "a nurse of forty-four from Ukraine, working in this care home", "first", "she",
-                 VERT + ", her ash-blonde hair tied back")
+                 VERT)
 ARUN = soignant("Arun", "a nurse of thirty-one from Kerala in India, working in this care home", "first", "he",
                 VERT + ", his thin black-framed glasses on")
 YUSUF = soignant("Yusuf", "a nurse of thirty-four from Syria, on the night shift", "first", "he", BLANC)
@@ -162,7 +162,7 @@ PHOTOS = {
         "shoes, her long dark-brown hair in a ponytail. She runs on the left of the picture.\n\n"
         "OLENA, a nurse of forty-four from Ukraine. The second reference picture shows Olena: her face, hair and build "
         "stay exactly as in it. Today she wears a sage-green running jacket, dark-grey running trousers and grey "
-        "running shoes, her ash-blonde hair tied back. She runs in the middle.\n\n" + AMIRA_SPORT +
+        "running shoes. She runs in the middle.\n\n" + AMIRA_SPORT +
         " She runs on the right of the picture.\n\n"
         "All three run side by side towards the left of the picture, laughing together, their eyes on each other or on "
         "the path. THE PARK: a gravel path, green lawns, tall trees in autumn colours, a bench far behind." + SANS_TEXTE,
