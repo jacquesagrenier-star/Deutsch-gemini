@@ -33,9 +33,103 @@ const Tirage = {
     return Tirage.docAvant.length ? ids : ids.filter(r).concat(ids.filter(i => !r(i)));
   },
   docAvant: [],
-  // les mots du theme -> l'etat de chacun, dans le meme ordre ; null hors de l'app
+  // UNE REVISION PAR QUESTION (ligne 95 ; decision de Jacques du 13 nov. 2026 : « au moment ou on a une grande
+  // reserve, autant pour les themes que pour les scenes, on devrait [avoir] une meme approche » -- celle des
+  // cartes-phrases, ligne 84). Le mot reste choisi par sa carte (plan) ; c'est la QUESTION qui l'habille qui suit
+  // maintenant sa propre revision, dans le moteur commun de index.html (type « t ») :
+  //   - une question jamais posee passe d'abord ; puis une question due ; une question reussie attend 60 jours,
+  //     puis 180, puis 365 (REVISION_JOURS de index.html) ; ratee, elle revient le lendemain ;
+  //   - une question en attente ne se pose que si le mot n'en a plus d'autre (repli de la page, comme avant).
+  // Les pages tirent leurs questions au hasard (EX[sorte](mot)) et refusent celles que vus.has() connait. Tirage.vus()
+  // remplace ce Set : au debut d'une question il refuse tout ce qui n'est pas jamais pose, puis tout ce qui est en
+  // attente, puis seulement ce qui a deja ete vu dans la partie (le comportement d'avant) -- par paliers comptes en
+  // tirages, pour que le cout reste borne quand toute la reserve d'un mot a ete reussie. vus.add() (la question
+  // retenue) remet les paliers a zero et note la question courante, que l'« exercice » envoie avec son verdict.
+  // L'etat vient de l'app (message « questions ») ; hors de l'app, ou d'une app d'avant la ligne 95, il est vide et
+  // vus() se comporte exactement comme un Set.
+  PALIER_JAMAIS: 75,
+  PALIER_DUE: 50,
+  revisions: null,     // { etat: { id: [reussites, jour de l'echeance, jour vu] }, jour }
+  courante: null,
+  page(){ try{ return (location.pathname.split("/").pop() || "").replace(/\.html?$/, ""); }catch(e){ return ""; } },
+  // le texte qui identifie une question : la page et sa cle (cleQuestion), hachee par l'app comme les phrases
+  texteQuestion(cle){ return Tirage.page() + "|" + cle; },
+  // le meme hachage que idRevision() de index.html
+  idQuestion(texte){
+    const s = String(texte || "").normalize("NFC").replace(/\s+/g, " ").trim();
+    let h = 5381;
+    for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+    return h.toString(36) + s.length.toString(36);
+  },
+  statut(cle){
+    const r = Tirage.revisions;
+    if (!r || !r.etat) return "jamais";
+    const x = r.etat[Tirage.idQuestion(Tirage.texteQuestion(cle))];
+    if (!x) return "jamais";
+    return x[1] > r.jour ? "attente" : "due";
+  },
+  vus(){
+    const base = new Set();
+    let tirages = 0;
+    return {
+      has(k){
+        if (base.has(k)) return true;
+        if (!Tirage.revisions) return false;
+        tirages++;
+        const s = Tirage.statut(k);
+        if (tirages <= Tirage.PALIER_JAMAIS) return s !== "jamais";
+        if (tirages <= Tirage.PALIER_JAMAIS + Tirage.PALIER_DUE) return s === "attente";
+        return false;
+      },
+      add(k){ base.add(k); tirages = 0; Tirage.courante = k; return this; },
+      delete(k){ return base.delete(k); },
+      clear(){ base.clear(); tirages = 0; },
+      values(){ return base.values(); },
+      forEach(f){ base.forEach(f); },
+      get size(){ return base.size; }
+    };
+  },
+  // l'« exercice » d'une page : son verdict, et la question qu'il juge (l'app la note, type « t »)
+  question(extra){
+    const out = Object.assign({}, extra || {});
+    if (Tirage.courante){
+      out.rev = "t"; out.question = Tirage.texteQuestion(Tirage.courante);
+      // la page garde sa copie a jour : une question jugee ne se repropose pas comme « jamais posee »
+      if (Tirage.revisions && Tirage.revisions.etat){
+        const id = Tirage.idQuestion(out.question), j = Tirage.revisions.jour, av = Tirage.revisions.etat[id];
+        Tirage.revisions.etat[id] = out.juste === false ? [0, j + 1, j] : [(av ? av[0] : 0) + 1, j + 60, j];
+      }
+    }
+    return out;
+  },
+  // l'etat des questions de ce type, demande a l'app ; null hors de l'app ou si elle ne repond pas
+  demanderQuestions(type, attente){
+    if (window.parent === window) return Promise.resolve(null);
+    return new Promise(fin => {
+      let fait = false;
+      const finir = v => { if (fait) return; fait = true; window.removeEventListener("message", ecoute); fin(v); };
+      const delai = setTimeout(() => finir(null), attente || 2000);
+      function ecoute(ev){
+        const d = ev.data;
+        if (ev.source !== window.parent || !d || d.source !== "wortando-app" || d.type !== "questions") return;
+        clearTimeout(delai);
+        finir(d.etat && typeof d.etat === "object" && typeof d.jour === "number" ? {etat: d.etat, jour: d.jour} : null);
+      }
+      window.addEventListener("message", ecoute);
+      try{ window.parent.postMessage({source: "wortando-scene", type: "questions", rev: type}, "*"); }
+      catch(e){ clearTimeout(delai); finir(null); }
+    });
+  },
+  // les mots du theme -> l'etat de chacun, dans le meme ordre ; null hors de l'app. L'etat des questions arrive
+  // avec lui (Tirage.revisions) : une app d'avant la ligne 95 ne repond pas a « questions », on ne l'attend alors
+  // que 300 ms apres les etats.
   demander(mots){
     if (window.parent === window) return Promise.resolve(null);
+    const questions = Tirage.demanderQuestions("t", 2300).then(r => { Tirage.revisions = r; });
+    return Tirage.demanderEtats(mots).then(etats =>
+      Promise.race([questions, new Promise(r => setTimeout(r, 300))]).then(() => etats));
+  },
+  demanderEtats(mots){
     return new Promise(fin => {
       const delai = setTimeout(() => { window.removeEventListener("message", ecoute); fin(null); }, 2000);
       function ecoute(ev){
