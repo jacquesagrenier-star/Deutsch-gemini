@@ -9859,3 +9859,9 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
   2. carte « zwischen » (« Die Schule liegt zwischen dem Park und dem Fluss ») : l'image des prépositions (deux cercles Akkusativ / Dativ) « doesn't show any prepositions that are in the sentence ».
   3. rappel actif « der Schwager → ? » (die Schwägerin, die Mutter, die Schwiegermutter, die Tochter) : « This is a good improvement ».
   → Diagnostic confié le 13 nov. à la session des corrections rapides (points 1 et 2).
+  → Causes (13 nov., reproduit à 390 px, jour et nuit, aucun code touché) :
+     a) « 2 marks » : un mot présenté dans la séance revient plus loin comme question sans échec ; au premier ✓ s'applique la règle « su du premier coup » (v1140) → deux pastilles et « Already known », alors qu'elle venait de le voir.
+     b) « 3 times » : 1er appui = la bulle d'aide des points (la carte ne bouge pas) ; 2e = bulle fermée et carte jugée ; puis ~950 ms de fête sans signe d'attente, d'où un 3e appui.
+     c) traduction sous les boutons : hauteur visible de Safari avec ses barres (390 × 664) ; la page défile mais rien n'y invite.
+     d) zwischen : l'image est un schéma général des 25 prépositions (mots à 8,8 px), sans lien avec la carte.
+  → Le chef autorise c) (défilement doux au retournement) et d-a) (la préposition de la carte en évidence dans la phrase, et « Dativ (wo?) » / « Akkusativ (wohin?) » en clair) ; a), b) et le schéma redessiné en SVG attendent Jacques.
