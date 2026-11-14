@@ -9865,3 +9865,4 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
      c) traduction sous les boutons : hauteur visible de Safari avec ses barres (390 × 664) ; la page défile mais rien n'y invite.
      d) zwischen : l'image est un schéma général des 25 prépositions (mots à 8,8 px), sans lien avec la carte.
   → Le chef autorise c) (défilement doux au retournement) et d-a) (la préposition de la carte en évidence dans la phrase, et « Dativ (wo?) » / « Akkusativ (wohin?) » en clair) ; a), b) et le schéma redessiné en SVG attendent Jacques.
+  → EN LIGNE en v1189 (14 nov., 325b6c9) : a) un mot présenté depuis moins de 24 h donne 1 pastille et revient dans 10 min (décision de Jacques du 14 nov.) ; c) le verso défile au-dessus des boutons ; d) la préposition de la carte soulignée et son cas en clair. Restent à Jacques : b) la bulle des points, et le schéma redessiné.
