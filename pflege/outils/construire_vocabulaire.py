@@ -207,8 +207,8 @@ def main():
     if "--verifier" in sys.argv:
         retard = []
         for chemin, contenu in a_ecrire.items():
-            ancien = io.open(chemin, encoding="utf-8").read() if os.path.exists(chemin) else None
-            if ancien != contenu:
+            ancien = io.open(chemin, encoding="utf-8", newline="").read() if os.path.exists(chemin) else None
+            if ancien is None or ancien.replace("\r\n", "\n") != contenu:  # git peut rendre du CRLF
                 retard.append(os.path.relpath(chemin, RACINE))
         if retard:
             print("en retard sur les sources : " + ", ".join(retard))
