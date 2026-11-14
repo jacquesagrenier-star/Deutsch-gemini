@@ -20,6 +20,9 @@ LES TENUES SUIVENT LE LIEU, pour qu'on reconnaisse d'un coup d'œil qui travaill
   - Dr. Sommer : blouse blanche ouverte sur un chemisier bleu clair, stéthoscope ;
   - Haus Lindenhof (Arun, Olena) : polo vert sauge et pantalon bleu marine ;
   - soins à domicile (Amira) : polo bleu marine, pantalon gris foncé, veste polaire bleu marine.
+
+LE FOULARD : Amira seulement (décision de Jacques du 14 nov., « Amira seulement ») — sobre, uni, bleu
+marine, compatible avec la tenue de soins à domicile. Elif n'en porte pas.
 """
 import io
 import os
@@ -55,8 +58,9 @@ SOIGNANTS = {
              "A black ballpoint pen is clipped to the breast pocket, and a slim black wristwatch is on her wrist."),
     "amira": ("young woman of twenty-six from Tunisia, a home-care nurse",
               "SHE is of medium height, with light-brown skin, dark-brown eyes, full dark eyebrows, a round face and a "
-              "bright, energetic smile. Her thick black curly hair is gathered in a high bun. She wears a plain navy-blue "
-              "polo shirt, dark-grey trousers, a zipped navy-blue fleece jacket left open, and black trainers."),
+              "bright, energetic smile. She wears a plain navy-blue jersey headscarf, neatly wrapped around her head and "
+              "pinned under the chin, covering her hair and neck and tucked into the collar of her fleece, simple and "
+              "practical for work, with no pattern. She wears a plain navy-blue polo shirt, dark-grey trousers, a zipped navy-blue fleece jacket left open, and black trainers."),
     "arun": ("man of thirty-one from Kerala in India, a nurse in a care home",
              "HE is of medium height and build, with dark-brown skin, short neat black hair parted on the side, dark eyes "
              "behind thin black-framed glasses, a short neat black moustache and a gentle, patient smile. He wears a "
