@@ -583,6 +583,7 @@ function sprechen(mode, depart){
       (t.bild ? '<div class="photo-texte"><div class="k">' + esc(T("pf_bild")) + '</div><p lang="de">' + esc(t.bild.beschreibung) + '</p><p class="petit">' + esc(T("pf_bild_bientot")) + '</p></div>' : "") +
       (th ? '<div class="doc"><div class="k" lang="de">' + esc(th.titre) + '</div><p lang="de">' + esc(th.stichworte.join(" · ")) + '</p>' +
         (th.bilder || []).map(b => '<p class="petit" lang="de">▫ ' + esc(b) + '</p>').join("") + '</div>' : "") +
+      (t.situation_de ? '<p lang="de"><b>' + esc(t.situation_de) + '</b></p>' : "") +
       (t.aussagen ? '<div class="doc liste">' + t.aussagen.map(a => '<p lang="de">„' + esc(a) + '“</p>').join("") + '</div>' : "") +
       (!ex && redemittel ? '<details><summary>' + esc(T("pf_redemittel")) + '</summary><ul class="redemittel">' + redemittel.map(r => '<li lang="de">' + esc(r) + '</li>').join("") + '</ul></details>' : "");
     $("zone").innerHTML = ""; $("zone").appendChild(bloc);
@@ -626,7 +627,9 @@ function sprechen(mode, depart){
 function grilleSprechen(etat, quandFini, libelleFin){
   ecran(T("pf_grille_sprechen"));
   const S = PF.d.sprechen, g = {};
-  S.taches.forEach(t => { g[t.cle] = estimer(t, (etat.reponses || {})[t.cle], etat.thema).punkte; });
+  // la cle de la tache (sp1a) devient celle du bareme (t1a)
+  const cleB = t => t.cle.replace(/^sp/, "t");
+  S.taches.forEach(t => { g[cleB(t)] = estimer(t, (etat.reponses || {})[t.cle], etat.thema).punkte; });
   ["aussprache", "fluessigkeit", "korrektheit", "wortschatz"].forEach(c => { g[c] = null; });
   g.abgelesen = false;
   const rendre = () => {
@@ -634,7 +637,7 @@ function grilleSprechen(etat, quandFini, libelleFin){
     const total = B.punkteSprechen(g);
     $("zone").innerHTML =
       '<div class="bloc"><h2>' + esc(T("pf_taches")) + '</h2><p class="petit">' + esc(T("pf_taches_explique")) + '</p>' +
-        '<div class="detail">' + S.taches.map(t => '<span>' + esc(t.teil + " · " + tr(t, "nom")) + '</span><b>' + B.borner(t.sur, g[t.cle]) + ' / ' + t.sur + '</b>').join("") + '</div>' +
+        '<div class="detail">' + S.taches.map(t => '<span>' + esc(t.teil + " · " + tr(t, "nom")) + '</span><b>' + B.borner(t.sur, g[cleB(t)]) + ' / ' + t.sur + '</b>').join("") + '</div>' +
         '<label class="case"><input type="checkbox" id="pfLu"' + (g.abgelesen ? " checked" : "") + '> ' + esc(T("pf_abgelesen")) + '</label></div>' +
       [["aussprache", 15], ["fluessigkeit", 10], ["korrektheit", 10], ["wortschatz", 15]].map(([c, n]) => selecteur(c, n, g[c], "sprechen")).join("") +
       '<div class="bloc"><div class="score">' + vir(total) + ' / 100</div><p class="petit" style="text-align:center">' + esc(nomNiveau(B.niveauSprechen(total))) + '</p>' +

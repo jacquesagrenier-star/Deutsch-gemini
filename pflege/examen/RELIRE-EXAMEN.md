@@ -35,3 +35,19 @@ La question à se poser à chaque ligne : **est-ce ainsi que cela se dit et se f
 |---|---|
 | S1 (42-49) | le rapport du matin sur Herr Brandt : est-ce le style d'un vrai « Pflegebericht » ? (« Körperpflege am Waschbecken teilweise selbst übernommen », « Wunde reizlos », l'antalgique une demi-heure avant la kiné) ; et surtout : les deux mots en trop (falls, trotzdem) ne vont-ils vraiment dans aucun trou ? |
 | S2 (50-59) | le rapport du soir sur Frau Lehmann : « 4 IE Insulin s. c. » après un contrôle à 212 mg/dl sur avis du médecin, « Verband leicht durchfeuchtet, nach Standard gewechselt », « unter Anleitung selbst gespritzt », « den Pen einstellen » ; et pour chaque trou, qu'une seule des trois réponses soit possible |
+
+## Schreiben
+
+| tâche | ce qu'il faut vérifier |
+|---|---|
+| A | la fiche d'anamnèse rangée par AEDL (intitulés, « Teilübernahme », « kontinent », « Zahnprothese oben », « ca. 1 l / Tag (zu wenig) ») et le texte modèle : est-ce un vrai « Aufnahmebericht » ? |
+| B | la fiche biographique d'un résident atteint de démence (rubriques usuelles d'un « Biografiebogen ») et le texte modèle |
+| grilles | les descripteurs des critères (interface.json, `pf_desc_schreiben_*`) : écrits pour Wortando, à confronter à ce qu'un examinateur telc attend |
+
+## Sprechen
+
+| partie | ce qu'il faut vérifier |
+|---|---|
+| 1A, 1B | la photo décrite (aide à la marche avec déambulateur) et les mesures de prévention des chutes de la réponse modèle |
+| 2A | les deux exposés modèles : reconnaître la douleur chez une personne démente (échelle d'observation, mimique, agitation, proches, documentation), le travail posté et la santé |
+| 3 | le chien de thérapie en maison de retraite : les arguments pour et contre sont-ils réalistes (hygiène, chutes, allergies, responsabilité) ? |
