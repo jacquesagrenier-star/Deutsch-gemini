@@ -2,7 +2,7 @@
 """Les noms des personnages dans les phrases d'exemple, langue par langue.
 
 PROPOSITION du 14 nov. 2026 (pflege/PERSONNAGES.md), a valider par Jacques : si un nom
-change, on le change ICI seulement, puis  python pflege/outils/construire_vocabulaire.py
+change, on le change ICI seulement, puis  python pflege/outils/construire.py
 
 Dans les sources, un nom s'ecrit entre accolades : {Elif}, {Frau Hoffmann}.
 Les phrases sont ecrites pour que le nom reste au NOMINATIF dans les langues a cas

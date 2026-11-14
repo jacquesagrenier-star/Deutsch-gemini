@@ -18,7 +18,7 @@ SOURCES = RACINE / "sources"
 SORTIE = RACINE / "datos" / "themes.json"
 
 # Les themes, dans l'ordre ou l'ecran Soins les montre (annexe A du plan).
-THEMES = ["koerper", "vitalzeichen", "angehoerige"]
+THEMES = ["koerper", "grundpflege", "vitalzeichen", "medikamente", "hygiene", "ernaehrung", "notfaelle", "team", "dokumentation", "angehoerige", "szenen"]
 
 LANGUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]
 NIVEAUX = ["A2", "B1", "B2", "C1"]
