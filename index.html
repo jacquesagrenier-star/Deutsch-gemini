@@ -6656,6 +6656,12 @@ body[data-theme="dark"] .praep-ici{color:#E9E6DF;}
    la preposition de la carte entouree d'un trait ambre, en gras, les autres estompees. */
 .praep-schema-cadre{background:#FBF8F1; border-radius:12px; padding:6px 4px 2px;}
 body[data-theme="dark"] .praep-schema-cadre{background:rgba(255,255,255,.05);}
+.praep-schema-cadre.hidden{display:none;}
+.praep-schema-voir{display:inline-flex; align-items:center; gap:6px; margin:2px 0 0; padding:7px 14px; border-radius:20px;
+    border:1.5px solid rgba(232,162,58,.9); background:rgba(232,162,58,.14); color:#1C2430; font:inherit; font-size:15px;
+    font-weight:700; cursor:pointer;}
+body[data-theme="dark"] .praep-schema-voir{color:#F6E2BA; background:rgba(232,162,58,.16);}
+html[dir="rtl"] .praep-schema-fleche{display:inline-block; transform:scaleX(-1);}
 .praep-schema{display:block; width:100%; height:auto; font-family:inherit;}
 .praep-schema text{text-anchor:middle; font-weight:700; font-size:13px;}
 .praep-schema .ps-akk{fill:rgba(91,63,166,.10); stroke:#5B3FA6; stroke-width:1.6;}
@@ -16053,6 +16059,7 @@ const I18N = {
         praep_cas_les_deux: "les deux : {dat} · {akk}",
         praep_cas_ici: "ici : {cas}",
         praep_schema_alt: "Schéma des prépositions : avec Akkusativ, avec Dativ, et les deux (wohin? : Akkusativ ; wo? : Dativ)",
+        praep_schema_voir: "Voir le schéma",
         point_maitrise_16: "Maîtrisé · à dans 16 jours",
         point_toujours_35: "Toujours su · à dans 5 semaines",
         point_toujours_90: "Toujours su · à dans 3 mois",
@@ -17860,6 +17867,7 @@ const I18N = {
         praep_cas_les_deux: "both: {dat} · {akk}",
         praep_cas_ici: "here: {cas}",
         praep_schema_alt: "Diagram of prepositions: with Akkusativ, with Dativ, and both (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Show the diagram",
         point_maitrise_16: "Mastered · back in 16 days",
         point_toujours_35: "Still known · back in 5 weeks",
         point_toujours_90: "Still known · back in 3 months",
@@ -19627,6 +19635,7 @@ const I18N = {
         praep_cas_les_deux: "ikisi de: {dat} · {akk}",
         praep_cas_ici: "burada: {cas}",
         praep_schema_alt: "Edatlar şeması: Akkusativ ile, Dativ ile ve ikisiyle (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Şemayı göster",
         point_maitrise_16: "Öğrenildi · 16 gün sonra",
         point_toujours_35: "Hâlâ aklında · 5 hafta sonra",
         point_toujours_90: "Hâlâ aklında · 3 ay sonra",
@@ -22615,6 +22624,7 @@ const I18N = {
         praep_cas_les_deux: "обидва: {dat} · {akk}",
         praep_cas_ici: "тут: {cas}",
         praep_schema_alt: "Схема прийменників: з Akkusativ, з Dativ і з обома (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Показати схему",
         point_maitrise_16: "Засвоєно · через 16 днів",
         point_toujours_35: "Не забуто · через 5 тижнів",
         point_toujours_90: "Не забуто · через 3 місяці",
@@ -24360,6 +24370,7 @@ const I18N = {
         praep_cas_les_deux: "هر دو: {dat} · {akk}",
         praep_cas_ici: "اینجا: {cas}",
         praep_schema_alt: "نمودار حروف اضافه: با Akkusativ، با Dativ و با هر دو (wohin?: Akkusativ؛ wo?: Dativ)",
+        praep_schema_voir: "نمایش نمودار",
         point_maitrise_16: "آموخته · تا 16 روز دیگر",
         point_toujours_35: "فراموش نشده · تا 5 هفته دیگر",
         point_toujours_90: "فراموش نشده · تا 3 ماه دیگر",
@@ -26273,6 +26284,7 @@ const I18N = {
         praep_cas_les_deux: "كلاهما: {dat} · {akk}",
         praep_cas_ici: "هنا: {cas}",
         praep_schema_alt: "مخطط حروف الجر: مع Akkusativ، ومع Dativ، ومع الاثنين (wohin?: Akkusativ؛ wo?: Dativ)",
+        praep_schema_voir: "عرض المخطط",
         point_maitrise_16: "متقَنة · تعود بعد 16 يومًا",
         point_toujours_35: "لم تُنسَ · تعود بعد 5 أسابيع",
         point_toujours_90: "لم تُنسَ · تعود بعد 3 أشهر",
@@ -26795,6 +26807,7 @@ const I18N = {
         praep_cas_les_deux: "os dois: {dat} · {akk}",
         praep_cas_ici: "aqui: {cas}",
         praep_schema_alt: "Esquema das preposições: com Akkusativ, com Dativ e com os dois (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Ver o esquema",
         point_maitrise_16: "Dominada · volta em 16 dias",
         point_toujours_35: "Ainda sabe · volta em 5 sem.",
         point_toujours_90: "Ainda sabe · volta em 3 meses",
@@ -28607,6 +28620,7 @@ const I18N = {
         praep_cas_les_deux: "oba: {dat} · {akk}",
         praep_cas_ici: "tutaj: {cas}",
         praep_schema_alt: "Schemat przyimków: z Akkusativ, z Dativ i z oboma (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Pokaż schemat",
         point_maitrise_16: "Opanowane · za 16 dni",
         point_toujours_35: "Wciąż znasz · za 5 tygodni",
         point_toujours_90: "Wciąż znasz · za 3 miesiące",
@@ -30419,6 +30433,7 @@ const I18N = {
         praep_cas_les_deux: "оба: {dat} · {akk}",
         praep_cas_ici: "здесь: {cas}",
         praep_schema_alt: "Схема предлогов: с Akkusativ, с Dativ и с обоими (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Показать схему",
         point_maitrise_16: "Выучено · через 16 дней",
         point_toujours_35: "Не забыто · через 5 недель",
         point_toujours_90: "Не забыто · через 3 месяца",
@@ -32233,6 +32248,7 @@ const I18N = {
         praep_cas_les_deux: "beide: {dat} · {akk}",
         praep_cas_ici: "hier: {cas}",
         praep_schema_alt: "Schema der Präpositionen: mit Akkusativ, mit Dativ und mit beiden (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Schema anzeigen",
         point_maitrise_16: "Sicher · bis in 16 Tagen",
         point_toujours_35: "Sitzt noch · bis in 5 Wochen",
         point_toujours_90: "Sitzt noch · bis in 3 Monaten",
@@ -34060,6 +34076,7 @@ const I18N = {
         praep_cas_les_deux: "los dos: {dat} · {akk}",
         praep_cas_ici: "aquí: {cas}",
         praep_schema_alt: "Esquema de las preposiciones: con Akkusativ, con Dativ y con los dos (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Ver el esquema",
         point_maitrise_16: "Dominada · vuelve en 16 días",
         point_toujours_35: "La sabes · vuelve en 5 semanas",
         point_toujours_90: "La sabes · vuelve en 3 meses",
@@ -42491,6 +42508,27 @@ const PRAEP_SCHEMA = {
     gen: ["wegen", "während", "trotz"]
 };
 function echapperSchema(s){ return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]); }
+// SUR UN PETIT ECRAN, LE SCHEMA SE DEPLIE (option B du chef, 14 nov. 2026). Sous 600 px de haut (un iPhone SE dans
+// Safari : 548), la carte « zwischen » avec sa phrase, sa traduction, son cas et le schema ne tenait pas au-dessus des
+// boutons (57 px dessous). Le schema y attend derriere « Voir le schema ▸ » ; un toucher le deplie, la carte se
+// remesure et le defilement doux (garderVersoVisible) ramene son bas au-dessus des boutons. Les boutons ne changent pas.
+const SCHEMA_PRAEP_HAUTEUR_MIN = 600;
+function cadreSchemaPraep(prep){
+    const svg = praepSchemaSvg(prep);
+    let petit = false;
+    try{ petit = window.innerHeight < SCHEMA_PRAEP_HAUTEUR_MIN; }catch(e){}
+    if(!petit) return `<div class="praep-schema-cadre">${svg}</div>`;
+    return `<button type="button" class="praep-schema-voir" onclick="event.stopPropagation(); deplierSchemaPraep(this)">`
+        + `${echapperSchema(t("praep_schema_voir"))} <span class="praep-schema-fleche" aria-hidden="true">▸</span></button>`
+        + `<div class="praep-schema-cadre hidden">${svg}</div>`;
+}
+function deplierSchemaPraep(bouton){
+    const cadre = bouton && bouton.nextElementSibling;
+    if(!cadre) return;
+    cadre.classList.remove("hidden");
+    bouton.remove();
+    try{ resizeFlashcard(); }catch(e){}
+}
 function praepSchemaSvg(prep){
     const p = String(prep || "").toLowerCase();
     const tous = PRAEP_SCHEMA.akk.concat(PRAEP_SCHEMA.mil, PRAEP_SCHEMA.dat);
@@ -57836,7 +57874,7 @@ function loadFlashcard(){
         }
         // 14 nov. 2026 (point 4b) : le schema dessine dans la page, la preposition de la carte entouree (praepSchemaSvg).
         const praepDiagramHtml = flashcardMode === 'praep' && LANGUE_APPRISE === "de"
-            ? `<div class="verb-sep"></div><div class="praep-schema-cadre">${praepSchemaSvg(card[0])}</div>`
+            ? `<div class="verb-sep"></div>${cadreSchemaPraep(card[0])}`
             : "";
         const grammarSpeakBtn = sentenceSpeakBtnHtml(exampleSentence, "de");
         // La categorie (le cas, ou la nature du mot) monte en etiquette en tete
