@@ -153,6 +153,9 @@ def convertir(e, lectures):
             g = f.get("genre", "")
             d.update({"genre": "die" if g == "die (Pl.)" else g, "pluriel": f.get("pluriel") or "—",
                       "article_fr": f.get("article_fr") or ""})
+            for k in ("feminin", "masculin"):  # comme la fiche du corpus (Bewohner -> Bewohnerin)
+                if f.get(k):
+                    d[k] = f[k]
         if e.get("precision"):
             tr = dict(zip(ORDRE_SOURCE, e["precision"]))
             if sorte == "nom":
