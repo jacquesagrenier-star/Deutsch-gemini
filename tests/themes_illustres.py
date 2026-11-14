@@ -114,11 +114,15 @@ def _textes():
     for th in sorted(os.listdir(os.path.join(RACINE, "visuel"))):
         f = os.path.join(RACINE, "visuel", th, "voix.json")
         if os.path.exists(f):
-            for k, v in json.load(open(f, encoding="utf-8")).items():
+            vj = json.load(open(f, encoding="utf-8"))
+            for k, v in vj.items():
                 if k in LANG:
                     connus = sons.get(DOSSIER[k], set())
+                    # les enonces (13 nov. 2026, Voix.enonce) : le vrai ou faux affirme aussi le FAUX (« Pablo ist
+                    # Koch. » pour un boulanger) ; voix_themes.py les met a part, on ne les juge pas sur les fiches
+                    questions = set(vj.get("enonces", {}).get(k, []))
                     poser(LANG[k], [t for t in v if not (isinstance(t, str) and
-                                    hashlib.sha1(t.encode("utf-8")).hexdigest()[:16] in connus)])
+                                    (t in questions or hashlib.sha1(t.encode("utf-8")).hexdigest()[:16] in connus))])
     f = os.path.join(RACINE, "visuel", "transportes", "toutes-les-phrases.json")
     if os.path.exists(f):
         for k, v in json.load(open(f, encoding="utf-8")).items():
