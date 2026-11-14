@@ -15722,6 +15722,7 @@ const I18N = {
         or_passer: "Passer",
         or_sans_verdict: "C'est enregistré. Réécoute-toi et compare au modèle.",
         cp_q_gram: "Complète la phrase",
+        cp_q_sens: "Qu'est-ce que ça veut dire ?",
         cp_q_dictee: "Écris ce que tu entends",
         cp_q_parler: "Répète à voix haute",
         cp_modele: "Modèle",
@@ -17528,6 +17529,7 @@ const I18N = {
         or_passer: "Skip",
         or_sans_verdict: "Recorded. Listen back and compare with the model.",
         cp_q_gram: "Complete the sentence",
+        cp_q_sens: "What does it mean?",
         cp_q_dictee: "Write what you hear",
         cp_q_parler: "Say it out loud",
         cp_modele: "Model",
@@ -19350,6 +19352,7 @@ const I18N = {
         or_passer: "Geç",
         or_sans_verdict: "Kaydedildi. Kendini dinle ve modelle karşılaştır.",
         cp_q_gram: "Cümleyi tamamla",
+        cp_q_sens: "Bu ne demek?",
         cp_q_dictee: "Duyduğunu yaz",
         cp_q_parler: "Yüksek sesle tekrarla",
         cp_modele: "Örnek",
@@ -21564,6 +21567,7 @@ const I18N = {
         or_passer: "Пропустити",
         or_sans_verdict: "Записано. Послухай себе й порівняй зі зразком.",
         cp_q_gram: "Доповни речення",
+        cp_q_sens: "Що це означає?",
         cp_q_dictee: "Напиши, що чуєш",
         cp_q_parler: "Повтори вголос",
         cp_modele: "Зразок",
@@ -24082,6 +24086,7 @@ const I18N = {
         or_passer: "رد شدن",
         or_sans_verdict: "ضبط شد. صدای خودت را گوش کن و با نمونه مقایسه کن.",
         cp_q_gram: "جمله را کامل کن",
+        cp_q_sens: "این یعنی چه؟",
         cp_q_dictee: "آنچه می‌شنوی را بنویس",
         cp_q_parler: "بلند تکرار کن",
         cp_modele: "نمونه",
@@ -26005,6 +26010,7 @@ const I18N = {
         or_passer: "تخطٍّ",
         or_sans_verdict: "تم التسجيل. استمع إلى نفسك وقارن بالنموذج.",
         cp_q_gram: "أكمل الجملة",
+        cp_q_sens: "ماذا يعني هذا؟",
         cp_q_dictee: "اكتب ما تسمعه",
         cp_q_parler: "كرّرها بصوت عالٍ",
         cp_modele: "النموذج",
@@ -26514,6 +26520,7 @@ const I18N = {
         or_passer: "Pular",
         or_sans_verdict: "Gravado. Ouça a si mesmo e compare com o modelo.",
         cp_q_gram: "Complete a frase",
+        cp_q_sens: "O que isso quer dizer?",
         cp_q_dictee: "Escreva o que você ouve",
         cp_q_parler: "Repita em voz alta",
         cp_modele: "Modelo",
@@ -28325,6 +28332,7 @@ const I18N = {
         or_passer: "Pomiń",
         or_sans_verdict: "Nagrane. Posłuchaj siebie i porównaj ze wzorem.",
         cp_q_gram: "Uzupełnij zdanie",
+        cp_q_sens: "Co to znaczy?",
         cp_q_dictee: "Napisz, co słyszysz",
         cp_q_parler: "Powtórz na głos",
         cp_modele: "Wzór",
@@ -30136,6 +30144,7 @@ const I18N = {
         or_passer: "Пропустить",
         or_sans_verdict: "Записано. Послушай себя и сравни с образцом.",
         cp_q_gram: "Дополни предложение",
+        cp_q_sens: "Что это значит?",
         cp_q_dictee: "Напиши, что слышишь",
         cp_q_parler: "Повтори вслух",
         cp_modele: "Образец",
@@ -31949,6 +31958,7 @@ const I18N = {
         or_passer: "Überspringen",
         or_sans_verdict: "Aufgenommen. Hör dich noch einmal an und vergleiche mit dem Modell.",
         cp_q_gram: "Ergänze den Satz",
+        cp_q_sens: "Was bedeutet das?",
         cp_q_dictee: "Schreib, was du hörst",
         cp_q_parler: "Sprich laut nach",
         cp_modele: "Modell",
@@ -33775,6 +33785,7 @@ const I18N = {
         or_passer: "Saltar",
         or_sans_verdict: "Quedó grabado. Vuelve a escucharte y compara con el modelo.",
         cp_q_gram: "Completa la frase",
+        cp_q_sens: "¿Qué significa?",
         cp_q_dictee: "Escribe lo que oyes",
         cp_q_parler: "Repite en voz alta",
         cp_modele: "Modelo",
@@ -39969,7 +39980,7 @@ async function mettreSeanceDeCote(){
         ["hl_titre", "hl_sous", "hl_commencer", "hl_en_ligne", "hl_fin_titre", "hl_fin_texte",
          "hl_recommencer", "hl_encore_sous", "flash_tap_hint", "carte_nouveau_mot", "carte_nouvelle_expression",
          "review_again", "review_continuer", "back_button",
-         "cp_q_ecoute", "cp_q_trou", "cp_q_ordre", "cp_q_dictee", "cp_q_parler", "cp_q_gram",
+         "cp_q_ecoute", "cp_q_trou", "cp_q_ordre", "cp_q_dictee", "cp_q_parler", "cp_q_gram", "cp_q_sens",
          "cp_ecouter", "cp_bravo", "cp_reponse", "cp_presque", "verify_button", "setup_continue"].forEach(k => { textes[k] = t(k); });
         const seance = {
             v: 1, cree: Date.now(), uid: uid, langue: LANGUE_APPRISE,
@@ -73283,11 +73294,11 @@ function questionsDeTableau(tableau, n){
         const autres = [];
         lignes.forEach(l => { const s1 = sensPremiersPas(l[1]); if(bas(s1) !== bas(s0) && autres.every(a => bas(a) !== bas(s1))) autres.push(s1); });
         if(autres.length >= 2 && lignes.filter(l => l[0] === lignes[i][0]).length === 1)
-            sens.push({ question: String(lignes[i][0]), answers: [s0], correct: s0,
+            sens.push({ sens: true, question: String(lignes[i][0]), answers: [s0], correct: s0,
                         options: melangerPhrase([s0].concat(melangerPhrase(autres).slice(0, 2))) });
     });
     return melangerPhrase(conj).concat(melangerPhrase(sens)).slice(0, n).map((ex, k) => ({
-        mode: "phrase", forme: "gram", ex: ex, jeu: null, cible: null, gramTableau: true,
+        mode: "phrase", forme: "gram", ex: ex, jeu: null, cible: null, gramTableau: true, q: ex.sens ? "cp_q_sens" : undefined,
         themeId: "gram_tableau", index: k, phrase: null, word: "" }));
 }
 function questionsDuCours(n, nVus){
