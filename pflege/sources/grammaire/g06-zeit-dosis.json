@@ -1,0 +1,260 @@
+{
+ "id": "g06",
+ "cle": "zeit-dosis",
+ "numero": 6,
+ "niveau": "B1",
+ "titre": {
+  "fr": "Temps, fréquence, dose"
+ },
+ "resume": {
+  "fr": "seit, ab, bis, um, alle vier Stunden, dreimal täglich"
+ },
+ "regle": {
+  "fr": "Les mots du plan de soins : <b>seit</b> + datif (depuis, et ça dure encore), <b>vor</b> + datif (il y a), <b>ab</b> (à partir de), <b>bis</b> (jusqu'à), <b>um</b> + heure, <b>alle</b> + durée (alle vier Stunden = toutes les quatre heures), <b>-mal täglich</b>, <b>vor / nach dem Essen</b>, <b>bei Bedarf</b>."
+ },
+ "tableau": [
+  [
+   "seit",
+   {
+    "t": "seit gestern · seit drei Tagen",
+    "fr": "depuis hier · depuis trois jours"
+   }
+  ],
+  [
+   "vor",
+   {
+    "t": "vor zwei Stunden",
+    "fr": "il y a deux heures"
+   }
+  ],
+  [
+   "ab · bis",
+   {
+    "t": "ab morgen · bis Freitag",
+    "fr": "à partir de demain · jusqu'à vendredi"
+   }
+  ],
+  [
+   "alle",
+   {
+    "t": "alle vier Stunden",
+    "fr": "toutes les quatre heures"
+   }
+  ],
+  [
+   "-mal",
+   {
+    "t": "dreimal täglich · einmal pro Woche",
+    "fr": "trois fois par jour · une fois par semaine"
+   }
+  ]
+ ],
+ "exemples": [
+  {
+   "t": "Sie hat seit gestern Fieber.",
+   "fr": "Elle a de la fièvre depuis hier."
+  },
+  {
+   "t": "Er bekommt alle 8 Stunden ein Antibiotikum.",
+   "fr": "Il reçoit un antibiotique toutes les 8 heures.",
+   "dit": "Er bekommt alle acht Stunden ein Antibiotikum.",
+   "relire": true,
+   "relire_note": "Exemple de rythme d'administration."
+  },
+  {
+   "t": "Ab morgen darf er wieder normal essen.",
+   "fr": "À partir de demain, il peut de nouveau manger normalement."
+  },
+  {
+   "t": "Bitte um 14 Uhr den Blutzucker messen.",
+   "fr": "Merci de mesurer la glycémie à 14 h.",
+   "dit": "Bitte um vierzehn Uhr den Blutzucker messen."
+  }
+ ],
+ "piege": {
+  "fr": "« seit » pour ce qui dure encore se met avec le <b>présent</b> : Sie <b>hat</b> seit gestern Fieber (elle a de la fièvre depuis hier). Pour un moment passé : <b>vor</b> zwei Tagen (il y a deux jours)."
+ },
+ "renvoi": "adverbienInfo",
+ "dialogues": [
+  "d02",
+  "d07",
+  "d10"
+ ],
+ "serie": [
+  {
+   "type": "trou",
+   "t": "Sie hat ___ gestern Fieber.",
+   "options": [
+    "seit",
+    "vor",
+    "ab"
+   ],
+   "juste": "seit",
+   "phrase": {
+    "t": "Sie hat seit gestern Fieber.",
+    "fr": "Elle a de la fièvre depuis hier."
+   },
+   "explication": {
+    "fr": "Ça dure encore : « seit » + présent."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Er bekommt ___ sechs Stunden ein Schmerzmittel.",
+   "options": [
+    "alle",
+    "jede",
+    "pro"
+   ],
+   "juste": "alle",
+   "phrase": {
+    "t": "Er bekommt alle sechs Stunden ein Schmerzmittel.",
+    "fr": "Il reçoit un antidouleur toutes les six heures."
+   },
+   "explication": {
+    "fr": "« alle sechs Stunden » = toutes les six heures."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "___ morgen darf er wieder normal essen.",
+   "options": [
+    "Ab",
+    "Seit",
+    "Vor"
+   ],
+   "juste": "Ab",
+   "phrase": {
+    "t": "Ab morgen darf er wieder normal essen.",
+    "fr": "À partir de demain, il peut de nouveau manger normalement."
+   },
+   "explication": {
+    "fr": "Point de départ dans l'avenir : « ab »."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Die Tabletten nimmt sie dreimal ___.",
+   "options": [
+    "täglich",
+    "Tag",
+    "am Tag mal"
+   ],
+   "juste": "täglich",
+   "phrase": {
+    "t": "Die Tabletten nimmt sie dreimal täglich.",
+    "fr": "Elle prend les comprimés trois fois par jour."
+   },
+   "explication": {
+    "fr": "« dreimal täglich » (ou « dreimal am Tag »)."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Bitte messen Sie den Blutdruck ___ 18 Uhr.",
+   "options": [
+    "um",
+    "am",
+    "im"
+   ],
+   "juste": "um",
+   "phrase": {
+    "t": "Bitte messen Sie den Blutdruck um 18 Uhr.",
+    "fr": "Merci de prendre la tension à 18 h.",
+    "dit": "Bitte messen Sie den Blutdruck um achtzehn Uhr."
+   },
+   "explication": {
+    "fr": "L'heure : « um »."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Er ist ___ drei Tagen gestürzt.",
+   "options": [
+    "vor",
+    "seit",
+    "ab"
+   ],
+   "juste": "vor",
+   "phrase": {
+    "t": "Er ist vor drei Tagen gestürzt.",
+    "fr": "Il est tombé il y a trois jours."
+   },
+   "explication": {
+    "fr": "Un moment passé, fini : « vor » + datif = il y a."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Das Antibiotikum bekommt er noch ___ Freitag.",
+   "options": [
+    "bis",
+    "seit",
+    "um"
+   ],
+   "juste": "bis",
+   "phrase": {
+    "t": "Das Antibiotikum bekommt er noch bis Freitag.",
+    "fr": "Il reçoit encore l'antibiotique jusqu'à vendredi."
+   },
+   "explication": {
+    "fr": "La fin d'une période : « bis »."
+   }
+  },
+  {
+   "type": "choix",
+   "consigne": {
+    "fr": "« si besoin » sur une prescription :"
+   },
+   "options": [
+    "bei Bedarf",
+    "mit Bedarf",
+    "für Bedarf"
+   ],
+   "juste": 0,
+   "phrase": {
+    "t": "bei Bedarf",
+    "fr": "si besoin"
+   },
+   "explication": {
+    "fr": "La formule fixe est « bei Bedarf »."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Die Tablette nehmen Sie bitte ___ dem Frühstück.",
+   "options": [
+    "nach",
+    "vor",
+    "seit"
+   ],
+   "juste": "nach",
+   "phrase": {
+    "t": "Die Tablette nehmen Sie bitte nach dem Frühstück.",
+    "fr": "Prenez le comprimé après le petit-déjeuner, s'il vous plaît."
+   },
+   "explication": {
+    "fr": "« nach dem Frühstück » = après le petit-déjeuner (datif)."
+   }
+  },
+  {
+   "type": "ordre",
+   "morceaux": [
+    "Er",
+    "hat",
+    "seit",
+    "zwei",
+    "Tagen",
+    "keinen",
+    "Stuhlgang."
+   ],
+   "phrase": {
+    "t": "Er hat seit zwei Tagen keinen Stuhlgang.",
+    "fr": "Il n'a pas eu de selles depuis deux jours."
+   },
+   "explication": {
+    "fr": "« seit zwei Tagen » : datif pluriel, Tage → Tagen."
+   }
+  }
+ ]
+}

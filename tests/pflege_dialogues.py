@@ -247,7 +247,7 @@ def controle_ecrit(ident, d):
         return
     if d.get("id") != ident:
         E("%s : id « %s » différent du nom du fichier" % (ou, d.get("id")))
-    for cle in ("id", "genre", "niveau", "titre", "consigne", "fiche", "points", "briques", "modele"):
+    for cle in ("id", "genre", "niveau", "titre", "consigne", "fiche", "points", "modele") + (("briques",) if d.get("examen") else ()):
         if cle not in d:
             E("%s : clé « %s » absente" % (ou, cle))
     if d.get("prononce") is not False:

@@ -1,0 +1,255 @@
+{
+ "id": "g08",
+ "cle": "modalverben",
+ "numero": 8,
+ "niveau": "B1",
+ "titre": {
+  "fr": "Les modaux de la règle et du conseil"
+ },
+ "resume": {
+  "fr": "dürfen nicht, müssen nicht, sollen, sollten"
+ },
+ "regle": {
+  "fr": "<b>dürfen</b> = permission, <b>nicht dürfen</b> = interdiction ; <b>müssen</b> = obligation, <b>nicht müssen</b> = ce n'est pas obligé ; <b>sollen</b> = la consigne d'un autre (le médecin) ; <b>sollten</b> = un conseil ; <b>können</b> = une possibilité. Le verbe principal va à la fin, à l'infinitif."
+ },
+ "tableau": [
+  [
+   "dürfen",
+   {
+    "t": "Sie dürfen morgen wieder duschen.",
+    "fr": "Vous pourrez de nouveau vous doucher demain."
+   }
+  ],
+  [
+   "nicht dürfen",
+   {
+    "t": "Sie dürfen heute nichts essen.",
+    "fr": "Vous ne devez rien manger aujourd'hui (interdit).",
+    "relire": true,
+    "relire_note": "À jeun avant une intervention."
+   }
+  ],
+  [
+   "nicht müssen",
+   {
+    "t": "Sie müssen nicht alles aufessen.",
+    "fr": "Vous n'êtes pas obligé de tout manger."
+   }
+  ],
+  [
+   "sollen",
+   {
+    "t": "Die Ärztin sagt, Sie sollen liegen bleiben.",
+    "fr": "Le médecin dit que vous devez rester couché."
+   }
+  ],
+  [
+   "sollten",
+   {
+    "t": "Sie sollten viel trinken.",
+    "fr": "Vous devriez boire beaucoup."
+   }
+  ]
+ ],
+ "exemples": [
+  {
+   "t": "Das muss dokumentiert werden.",
+   "fr": "Il faut le documenter."
+  },
+  {
+   "t": "Diese Tablette darf man nicht zerkleinern.",
+   "fr": "Il ne faut pas écraser ce comprimé.",
+   "relire": true,
+   "relire_note": "Exemple général, selon le médicament."
+  },
+  {
+   "t": "Wenn Sie Schmerzen haben, können Sie jederzeit klingeln.",
+   "fr": "Si vous avez mal, vous pouvez sonner à tout moment."
+  }
+ ],
+ "piege": {
+  "fr": "« Sie müssen nicht » = vous n'êtes pas obligé ; l'interdiction, c'est « Sie <b>dürfen nicht</b> ». Une confusion qui peut être grave dans un soin."
+ },
+ "renvoi": null,
+ "dialogues": [
+  "d10",
+  "d04",
+  "d02"
+ ],
+ "serie": [
+  {
+   "type": "trou",
+   "t": "Vor der Operation ___ Sie nichts mehr essen.",
+   "options": [
+    "dürfen",
+    "müssen",
+    "können"
+   ],
+   "juste": "dürfen",
+   "phrase": {
+    "t": "Vor der Operation dürfen Sie nichts mehr essen.",
+    "fr": "Avant l'opération, vous ne devez plus rien manger."
+   },
+   "explication": {
+    "fr": "Une interdiction : « dürfen » + nichts / nicht."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Sie ___ nicht alles aufessen, nur so viel, wie Sie möchten.",
+   "options": [
+    "müssen",
+    "dürfen",
+    "sollen"
+   ],
+   "juste": "müssen",
+   "phrase": {
+    "t": "Sie müssen nicht alles aufessen, nur so viel, wie Sie möchten.",
+    "fr": "Vous n'êtes pas obligé de tout manger, seulement ce que vous voulez."
+   },
+   "explication": {
+    "fr": "« nicht müssen » = pas d'obligation. « nicht dürfen » serait une interdiction."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Bei Fieber ___ Sie viel trinken.",
+   "options": [
+    "sollten",
+    "durften",
+    "konnten"
+   ],
+   "juste": "sollten",
+   "phrase": {
+    "t": "Bei Fieber sollten Sie viel trinken.",
+    "fr": "Quand on a de la fièvre, vous devriez boire beaucoup."
+   },
+   "explication": {
+    "fr": "Un conseil : « sollten » (Konjunktiv II de sollen)."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Die Ärztin sagt, Sie ___ heute noch liegen bleiben.",
+   "options": [
+    "sollen",
+    "wollen",
+    "mögen"
+   ],
+   "juste": "sollen",
+   "phrase": {
+    "t": "Die Ärztin sagt, Sie sollen heute noch liegen bleiben.",
+    "fr": "Le médecin dit que vous devez encore rester couché aujourd'hui."
+   },
+   "explication": {
+    "fr": "La consigne de quelqu'un d'autre : « sollen »."
+   }
+  },
+  {
+   "type": "choix",
+   "consigne": {
+    "fr": "« Vous ne devez pas vous lever seul. » (c'est interdit)"
+   },
+   "options": [
+    "Sie müssen nicht allein aufstehen.",
+    "Sie dürfen nicht allein aufstehen.",
+    "Sie sollen allein aufstehen."
+   ],
+   "juste": 1,
+   "phrase": {
+    "t": "Sie dürfen nicht allein aufstehen.",
+    "fr": "Vous ne devez pas vous lever seul."
+   },
+   "explication": {
+    "fr": "L'interdiction : « nicht dürfen ». « nicht müssen » voudrait dire « vous n'êtes pas obligé »."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Diese Tablette ___ man nicht zerkleinern.",
+   "options": [
+    "darf",
+    "muss",
+    "will"
+   ],
+   "juste": "darf",
+   "phrase": {
+    "t": "Diese Tablette darf man nicht zerkleinern.",
+    "fr": "Il ne faut pas écraser ce comprimé."
+   },
+   "explication": {
+    "fr": "Interdiction : « darf nicht »."
+   }
+  },
+  {
+   "type": "ordre",
+   "morceaux": [
+    "Sie",
+    "dürfen",
+    "morgen",
+    "wieder",
+    "duschen."
+   ],
+   "phrase": {
+    "t": "Sie dürfen morgen wieder duschen.",
+    "fr": "Vous pourrez de nouveau vous doucher demain."
+   },
+   "explication": {
+    "fr": "Le modal en deuxième place, l'infinitif à la fin."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Wenn Sie Schmerzen haben, ___ Sie jederzeit klingeln.",
+   "options": [
+    "können",
+    "müssen",
+    "sollen"
+   ],
+   "juste": "können",
+   "phrase": {
+    "t": "Wenn Sie Schmerzen haben, können Sie jederzeit klingeln.",
+    "fr": "Si vous avez mal, vous pouvez sonner à tout moment."
+   },
+   "explication": {
+    "fr": "Une possibilité : « können »."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Jede Gabe ___ in der Kurve abgezeichnet werden.",
+   "options": [
+    "muss",
+    "darf",
+    "kann"
+   ],
+   "juste": "muss",
+   "phrase": {
+    "t": "Jede Gabe muss in der Kurve abgezeichnet werden.",
+    "fr": "Chaque administration doit être paraphée dans le dossier."
+   },
+   "explication": {
+    "fr": "Une règle obligatoire : « muss »."
+   }
+  },
+  {
+   "type": "choix",
+   "consigne": {
+    "fr": "« Il n'est pas obligé de manger tout de suite. »"
+   },
+   "options": [
+    "Er darf nicht sofort essen.",
+    "Er muss nicht sofort essen.",
+    "Er soll nicht sofort essen."
+   ],
+   "juste": 1,
+   "phrase": {
+    "t": "Er muss nicht sofort essen.",
+    "fr": "Il n'est pas obligé de manger tout de suite."
+   },
+   "explication": {
+    "fr": "« nicht müssen » : pas d'obligation."
+   }
+  }
+ ]
+}

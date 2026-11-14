@@ -1,0 +1,244 @@
+{
+ "id": "g15",
+ "cle": "zustandspassiv",
+ "numero": 15,
+ "niveau": "B2",
+ "titre": {
+  "fr": "Le passif d'état"
+ },
+ "resume": {
+  "fr": "ist versorgt (c'est fait) ≠ wird versorgt (on le fait)"
+ },
+ "regle": {
+  "fr": "Pour dire le résultat d'un geste, l'état : <b>sein + participe II</b>. Die Wunde <b>ist versorgt</b> (c'est fait). Le passif avec werden dit l'action : Die Wunde <b>wird versorgt</b> (on la soigne en ce moment)."
+ },
+ "tableau": [
+  [
+   "Vorgang",
+   {
+    "t": "Die Wunde wird versorgt.",
+    "fr": "On soigne la plaie (l'action)."
+   }
+  ],
+  [
+   "Zustand",
+   {
+    "t": "Die Wunde ist versorgt.",
+    "fr": "La plaie est soignée (c'est fait)."
+   }
+  ],
+  [
+   "Vorgang",
+   {
+    "t": "Die Angehörigen werden informiert.",
+    "fr": "On informe les proches."
+   }
+  ],
+  [
+   "Zustand",
+   {
+    "t": "Die Angehörigen sind informiert.",
+    "fr": "Les proches sont informés."
+   }
+  ]
+ ],
+ "exemples": [
+  {
+   "t": "Der Patient ist mobilisiert und sitzt im Sessel.",
+   "fr": "Le patient est levé et assis dans le fauteuil."
+  },
+  {
+   "t": "Der Zugang ist gelegt.",
+   "fr": "La voie veineuse est posée."
+  },
+  {
+   "t": "Alle Werte sind dokumentiert.",
+   "fr": "Toutes les valeurs sont notées."
+  }
+ ],
+ "piege": {
+  "fr": "« Die Ärztin <b>ist</b> informiert » (c'est fait) n'est pas « Die Ärztin <b>wird</b> informiert » (c'est en cours, ou à faire). Dans une relève, la différence compte."
+ },
+ "renvoi": null,
+ "dialogues": [
+  "d06"
+ ],
+ "serie": [
+  {
+   "type": "trou",
+   "t": "Keine Sorge, die Ärztin ___ schon informiert.",
+   "options": [
+    "ist",
+    "wird",
+    "hat"
+   ],
+   "juste": "ist",
+   "phrase": {
+    "t": "Keine Sorge, die Ärztin ist schon informiert.",
+    "fr": "Ne vous inquiétez pas, le médecin est déjà informé."
+   },
+   "explication": {
+    "fr": "« schon » : c'est fait → sein + participe."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Die Wunde ___ gerade versorgt, bitte warten Sie draußen.",
+   "options": [
+    "wird",
+    "ist",
+    "hat"
+   ],
+   "juste": "wird",
+   "phrase": {
+    "t": "Die Wunde wird gerade versorgt, bitte warten Sie draußen.",
+    "fr": "On est en train de soigner la plaie, attendez dehors, s'il vous plaît."
+   },
+   "explication": {
+    "fr": "« gerade » : l'action en cours → werden."
+   }
+  },
+  {
+   "type": "choix",
+   "consigne": {
+    "fr": "L'état : « Le pansement est posé. »"
+   },
+   "options": [
+    "Der Verband wird angelegt.",
+    "Der Verband ist angelegt.",
+    "Der Verband hat angelegt."
+   ],
+   "juste": 1,
+   "phrase": {
+    "t": "Der Verband ist angelegt.",
+    "fr": "Le pansement est posé."
+   },
+   "explication": {
+    "fr": "Le résultat : ist + participe."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Der Patient ist ___ und sitzt im Sessel.",
+   "options": [
+    "mobilisiert",
+    "mobilisieren",
+    "mobilisierend"
+   ],
+   "juste": "mobilisiert",
+   "phrase": {
+    "t": "Der Patient ist mobilisiert und sitzt im Sessel.",
+    "fr": "Le patient est levé et assis dans le fauteuil."
+   },
+   "explication": {
+    "fr": "sein + participe II."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Die Angehörigen ___ informiert, sie kommen um drei.",
+   "options": [
+    "sind",
+    "werden",
+    "haben"
+   ],
+   "juste": "sind",
+   "phrase": {
+    "t": "Die Angehörigen sind informiert, sie kommen um drei.",
+    "fr": "Les proches sont informés, ils viennent à trois heures."
+   },
+   "explication": {
+    "fr": "C'est fait : sind informiert."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Der Zugang ___ gelegt, die Infusion kann laufen.",
+   "options": [
+    "ist",
+    "wird",
+    "hat"
+   ],
+   "juste": "ist",
+   "phrase": {
+    "t": "Der Zugang ist gelegt, die Infusion kann laufen.",
+    "fr": "La voie veineuse est posée, la perfusion peut passer."
+   },
+   "explication": {
+    "fr": "Le résultat permet la suite : ist gelegt."
+   }
+  },
+  {
+   "type": "choix",
+   "consigne": {
+    "fr": "L'action en cours : « On est en train de faire le lit. »"
+   },
+   "options": [
+    "Das Bett ist gemacht.",
+    "Das Bett wird gerade gemacht.",
+    "Das Bett hat gemacht."
+   ],
+   "juste": 1,
+   "phrase": {
+    "t": "Das Bett wird gerade gemacht.",
+    "fr": "On est en train de faire le lit."
+   },
+   "explication": {
+    "fr": "L'action : wird + participe."
+   }
+  },
+  {
+   "type": "ordre",
+   "morceaux": [
+    "Die",
+    "Medikamente",
+    "für",
+    "morgen",
+    "sind",
+    "schon",
+    "gestellt."
+   ],
+   "phrase": {
+    "t": "Die Medikamente für morgen sind schon gestellt.",
+    "fr": "Les médicaments de demain sont déjà préparés."
+   },
+   "explication": {
+    "fr": "État : sind … gestellt."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Alle Werte ___ dokumentiert.",
+   "options": [
+    "sind",
+    "werden",
+    "haben"
+   ],
+   "juste": "sind",
+   "phrase": {
+    "t": "Alle Werte sind dokumentiert.",
+    "fr": "Toutes les valeurs sont notées."
+   },
+   "explication": {
+    "fr": "C'est fait : sind dokumentiert."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Die Tür ___ abgeschlossen, Sie brauchen den Schlüssel.",
+   "options": [
+    "ist",
+    "wird",
+    "hat"
+   ],
+   "juste": "ist",
+   "phrase": {
+    "t": "Die Tür ist abgeschlossen, Sie brauchen den Schlüssel.",
+    "fr": "La porte est fermée à clé, vous avez besoin de la clé."
+   },
+   "explication": {
+    "fr": "Un état : ist abgeschlossen."
+   }
+  }
+ ]
+}
