@@ -320,6 +320,76 @@ def controle_gabarits_trad():
                             E("%s/%s %s : %s" % (famille, ident, c, x))
 
 
+# ------------------------------------------------------------------ le contrat (pflege/FORMAT-DONNEES.md, § 2 à 4)
+
+QUI_CONTRAT = {"elif", "jonas", "hoffmann", "sommer", "brandt", "lehmann", "lehmann_tochter", "schulze", "weber",
+               "kowalski", "amira", "arun", "yusuf", "olena", "kraemer"}   # kraemer : à ajouter au contrat (demandé)
+
+
+def controle_contrat(export):
+    """Ce que l'app lira : ids « soins_ », traductions à 9 clés (en mode strict), « lecture » à côté d'un chiffre,
+    les champs obligatoires de chaque famille."""
+    def langues(obj, ou):
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                if k in ("trad", "titre", "but", "intro", "regle", "resume", "piege", "note", "consigne", "corrige",
+                         "corrige_b1", "rubrique", "texte", "question", "conseil", "seuils") and isinstance(v, dict) \
+                        and all(len(x) == 2 for x in v):
+                    manque = [l for l in T.LANGUES if not v.get(l)]
+                    if manque and not PARTIEL:
+                        E("%s.%s : traduction sans %s" % (ou, k, ",".join(manque)))
+                else:
+                    langues(v, ou + "." + k)
+        elif isinstance(obj, list):
+            for i, v in enumerate(obj):
+                langues(v, "%s.%d" % (ou, i))
+
+    def parle(x, ou, cle="de"):
+        if isinstance(x, dict) and CHIFFRE.search(x.get(cle, "")) and not x.get("lecture"):
+            E("%s : chiffre sans « lecture » : %s" % (ou, x[cle]))
+
+    for d in export["dialogues"]["dialogues"]:
+        ou = d.get("id", "?")
+        if not re.fullmatch(r"soins_dlg_\d\d_[a-z_]+", ou):
+            E("dialogue : id hors contrat %r" % ou)
+        for k in ("numero", "niveau", "titre_de", "titre", "lieu", "scene", "personnages", "apprenant", "but",
+                  "repliques", "redemittel", "questions", "grammaire", "prepare", "relire"):
+            if k not in d:
+                E("%s : clé « %s » absente" % (ou, k))
+        for i, r in enumerate(d["repliques"]):
+            if r["qui"] not in QUI_CONTRAT:
+                E("%s repliques.%d : qui %r hors contrat" % (ou, i, r["qui"]))
+            parle(r, "%s repliques.%d" % (ou, i))
+        if not 12 <= len(d["repliques"]) <= 30:
+            A("%s : %d répliques sur le chemin modèle (le contrat dit 12 à 20)" % (ou, len(d["repliques"])))
+        for i, r in enumerate(d["redemittel"]):
+            parle(r, "%s redemittel.%d" % (ou, i))
+        for g in d["grammaire"]:
+            if not g.startswith("soins_gr_"):
+                E("%s : grammaire %r" % (ou, g))
+        langues(d, ou)
+    for p in export["grammaire"]["points"]:
+        ou = p.get("id", "?")
+        if not re.fullmatch(r"soins_gr_\d\d_[a-z_]+", ou):
+            E("grammaire : id hors contrat %r" % ou)
+        for i, q in enumerate(p["serie"]):
+            if q["type"] == "choix" and not 0 <= q.get("bon", -1) < len(q.get("choix", [])):
+                E("%s serie.%d : « bon » hors des choix" % (ou, i))
+            parle(q, "%s serie.%d" % (ou, i), "phrase")
+        for i, e in enumerate(p["exemples"]):
+            parle(e, "%s exemples.%d" % (ou, i))
+        langues(p, ou)
+    for s in export["ecrit"]["sujets"]:
+        ou = s.get("id", "?")
+        if not re.fullmatch(r"soins_ecrit_(aufnahme|biografie|pflegebericht|sturz|nachricht)_\d\d", ou):
+            E("écrit : id hors contrat %r" % ou)
+        for k in ("type", "niveau", "consigne", "fiche", "briques", "corrige_de", "points_cles", "relire"):
+            if k not in s:
+                E("%s : clé « %s » absente" % (ou, k))
+        langues(s, ou)
+    langues(export["ecrit"]["grilles"], "grilles")
+
+
 # ------------------------------------------------------------------ main
 
 def main():
@@ -355,16 +425,15 @@ def main():
     else:
         for m in manques:
             E(m)
-    # Le derive est-il a jour ?
-    for famille, doc in res.items():
+    # Le derive est-il a jour, et au format du contrat (pflege/FORMAT-DONNEES.md) ?
+    export = T.exporter(res)
+    for famille, doc in export.items():
         ch = os.path.join(T.DATOS, famille + ".json")
-        cle = {"dialogues": "dialogues", "grammaire": "points", "ecrit": "taches"}[famille]
-        if not doc[cle]:
-            continue
         if not os.path.exists(ch):
             E("pflege/datos/%s.json absent : python pflege/outils/textes.py construire" % famille)
         elif T.lire(ch) != json.loads(json.dumps(doc, ensure_ascii=False)):
             E("pflege/datos/%s.json en retard sur les sources : python pflege/outils/textes.py construire" % famille)
+    controle_contrat(export)
 
     if "--relire" in ARGS:
         print("À relire par l'infirmière :")

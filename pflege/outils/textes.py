@@ -16,7 +16,7 @@ PFLEGE = os.path.join(RACINE, "pflege")
 SOURCES = os.path.join(PFLEGE, "sources")
 TRAD = os.path.join(SOURCES, "traductions")
 DATOS = os.path.join(PFLEGE, "datos")
-LANGUES = ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"]
+LANGUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]   # l'ordre du contrat (pflege/FORMAT-DONNEES.md)
 AUTRES = LANGUES[1:]
 FAMILLES = ["dialogues", "grammaire", "ecrit"]
 GABARIT = re.compile(r"\{([a-z_]+)(?::([a-z]+))?\}")
@@ -237,9 +237,182 @@ def construire_tout(ecrire_fichiers=True):
             doc["personnes"] = {i: {"genre": p.get("genre"), "role": p.get("role")}
                                 for i, p in lire(os.path.join(SOURCES, "noms.json"))["personnes"].items()}
         res[famille] = doc
-        if ecrire_fichiers and elements:
+    if ecrire_fichiers:
+        for famille, doc in exporter(res).items():
             ecrire(os.path.join(DATOS, famille + ".json"), doc, compact=True)
     return res, manques
+
+
+# ---------------------------------------------------------------- le format du contrat (pflege/FORMAT-DONNEES.md)
+# Ce qui sort dans pflege/datos/ : les champs du contrat (§ 2, 3, 4), puis, en plus, ce que le contrat ne prevoit
+# pas encore (l'arbre des branches, les modeles B1, la grille), sous des cles qui ne gênent pas sa lecture.
+
+SCENE = {1: "soins-zimmer", 2: "soins-zimmer", 3: "soins-zimmer", 4: "soins-zimmer", 5: "soins-stationszimmer",
+         6: "soins-uebergabe", 7: "soins-stationszimmer", 8: "soins-altenheim", 9: "soins-altenheim",
+         10: "soins-ambulant", 11: "soins-stationszimmer", 12: "soins-altenheim"}
+LIEU = {1: "chambre", 2: "chambre", 3: "chambre", 4: "chambre", 5: "couloir", 6: "poste de soins",
+        7: "poste de soins, la nuit", 8: "maison de retraite, chambre", 9: "maison de retraite",
+        10: "domicile", 11: "salle du personnel, téléphone", 12: "maison de retraite, couloir, la nuit"}
+PREPARE = {"oral-1": "sprechen_1", "oral-2": "sprechen_2", "oral-3": "sprechen_3", "hoeren": "hoeren_2",
+           "lesen": "lesen_3", "schreiben": "schreiben"}
+PREPARE_HOEREN = {6: "hoeren_3", 7: "hoeren_1", 11: "hoeren_1"}   # relève = réunion d'équipe ; téléphone = messages
+TYPE_ECRIT = {"aufnahmebericht": "aufnahme", "biografiebericht": "biografie", "pflegebericht": "pflegebericht",
+              "sturzprotokoll": "sturz", "nachricht": "nachricht"}
+
+
+def trad(u):
+    return {l: u[l] for l in LANGUES if isinstance(u, dict) and u.get(l)}
+
+
+def texte_de(u, cle="de"):
+    """{de, trad, lecture?} d'une unité qui a "t"."""
+    out = {cle: u["t"], "trad": trad(u)}
+    if u.get("dit"):
+        out["lecture"] = u["dit"]
+    if u.get("relire_note"):
+        out["relire"] = u["relire_note"]
+    return out
+
+
+def cellule(x):
+    return texte_de(x) if isinstance(x, dict) and "t" in x else (trad(x) if isinstance(x, dict) else x)
+
+
+def notes_relire(el):
+    notes = []
+    if el.get("relire_notes"):
+        notes.append(el["relire_notes"]["fr"])
+    for chemin, u in unites(el):
+        if u.get("relire") and u.get("relire_note") and not chemin.startswith("chemin."):
+            notes.append("%s : %s" % (u.get("t", "")[:60], u["relire_note"]))
+    return ("⚕️ " + " · ".join(notes)) if notes else ""
+
+
+def lignes_lecture(obj):
+    """L'arbre des branches, avec « lecture » à la place de « dit » sur une réplique (le contrat)."""
+    if isinstance(obj, dict):
+        out = {}
+        for k, v in obj.items():
+            if k == "dit" and isinstance(v, str):
+                out["lecture"] = v
+            else:
+                out[k] = lignes_lecture(v)
+        return out
+    if isinstance(obj, list):
+        return [lignes_lecture(v) for v in obj]
+    return obj
+
+
+def exporter(res):
+    ids_g = {p["id"]: "soins_gr_%02d_%s" % (p["numero"], p["cle"].replace("-", "_")) for p in res["grammaire"]["points"]}
+    ids_d = {}
+    for d in res["dialogues"]["dialogues"]:
+        ids_d[d["id"][:3]] = "soins_dlg_%02d_%s" % (d["numero"], d["id"][4:].replace("-", "_"))
+    note = ("DERIVE de pflege/sources/ par pflege/outils/textes.py construire : ne pas corriger a la main. "
+            "Format : pflege/FORMAT-DONNEES.md (§ 2 a 4) ; en plus du contrat : %s.")
+    # Dialogues
+    dialogues = []
+    for d in res["dialogues"]["dialogues"]:
+        n = d["numero"]
+        prepare = []
+        for t in d.get("telc", []):
+            p = PREPARE_HOEREN.get(n, PREPARE[t]) if t == "hoeren" else PREPARE[t]
+            if p not in prepare:
+                prepare.append(p)
+        repliques = []
+        for r in d["chemin"]:
+            x = {"qui": r["qui"], "de": r["t"], "trad": trad(r)}
+            if r.get("dit"):
+                x["lecture"] = r["dit"]
+            repliques.append(x)
+        questions = [{"type": "choix", "de": q["q"]["t"], "trad": trad(q["q"]),
+                      "choix": [{"de": o["t"], "trad": trad(o)} for o in q["options"]], "bon": q["juste"]}
+                     for q in d["ecouter"]]
+        dialogues.append({
+            "id": ids_d[d["id"][:3]], "source": d["id"], "numero": n, "niveau": d["niveau"],
+            "titre_de": d["titre"]["t"], "titre": trad(d["titre"]), "lieu": LIEU[n], "scene": SCENE[n],
+            "personnages": [d["role"]] + d["personnes"], "apprenant": d["role"], "registre": d["registre"],
+            "intro": trad(d["intro"]), "but": trad(d["but"]),
+            "repliques": repliques, "redemittel": [texte_de(r) for r in d["redemittel"]], "questions": questions,
+            "grammaire": [ids_g[g] for g in d["grammaire"] if g in ids_g], "prepare": prepare,
+            "relire": notes_relire(d),
+            "debut": d["debut"], "noeuds": lignes_lecture(d["noeuds"]),
+        })
+    # Grammaire
+    points = []
+    for p in res["grammaire"]["points"]:
+        serie = []
+        for q in p["serie"]:
+            x = {"type": "ordre" if q["type"] == "ordre" else "choix"}
+            if q["type"] == "trou":
+                x.update({"de": q["t"], "choix": q["options"], "bon": q["options"].index(q["juste"])})
+            elif q["type"] == "choix":
+                x.update({"de": "___", "choix": q["options"], "bon": q["juste"]})
+            else:
+                x["mots"] = q["morceaux"]
+            if q.get("consigne"):
+                x["consigne"] = trad(q["consigne"])
+            x.update({"phrase": q["phrase"]["t"], "trad": trad(q["phrase"]), "note": trad(q["explication"])})
+            if q["phrase"].get("dit"):
+                x["lecture"] = q["phrase"]["dit"]
+            serie.append(x)
+        points.append({
+            "id": ids_g[p["id"]], "source": p["id"], "numero": p["numero"], "niveau": p["niveau"],
+            "titre": trad(p["titre"]), "resume": trad(p["resume"]), "regle": trad(p["regle"]),
+            "tableau": [[cellule(c) for c in ligne] for ligne in p.get("tableau", [])],
+            "exemples": [texte_de(e) for e in p["exemples"]], "piege": trad(p["piege"]),
+            "renvoi": p.get("renvoi") or "", "dialogues": [ids_d[x] for x in p.get("dialogues", []) if x in ids_d],
+            "serie": serie, "relire": notes_relire(p),
+        })
+    # Écrit
+    taches = {t["id"]: t for t in res["ecrit"]["taches"]}
+    banques = {i: t for i, t in taches.items() if i.startswith("briques")}
+    sujets, rang = [], {}
+    for t in res["ecrit"]["taches"]:
+        if t["id"].startswith(("briques", "grille")):
+            continue
+        typ = TYPE_ECRIT[t["genre"]]
+        rang[typ] = rang.get(typ, 0) + 1
+        b = t.get("briques")
+        groupes = banques[b]["groupes"] if isinstance(b, str) else ([{"briques": b}] if b else [])
+        niv = t["niveau"].split("-")
+        s = {"id": "soins_ecrit_%s_%02d" % (typ, rang[typ]), "source": t["id"], "type": typ,
+             "niveau": niv[0], "niveau_max": niv[-1], "examen": bool(t.get("examen")), "lieu": t.get("lieu"),
+             "titre_de": t["titre"]["t"], "titre": trad(t["titre"]),
+             "consigne_de": t["consigne"]["t"], "consigne": trad(t["consigne"]),
+             "fiche": {"titre_de": t["fiche"]["titre"]["t"], "titre": trad(t["fiche"]["titre"]),
+                       "rubriques": [{"rubrique_de": r["t"], "rubrique": trad(r), "texte_de": r["valeur"]}
+                                     for r in t["fiche"]["rubriques"]]},
+             "briques": [texte_de(x) for g in groupes for x in g["briques"]],
+             "briques_groupes": [{"titre_de": g["titre"]["t"], "titre": trad(g["titre"]),
+                                  "briques": [texte_de(x) for x in g["briques"]]} for g in groupes if g.get("titre")],
+             "corrige_de": t["modele"]["t"], "corrige": trad(t["modele"]), "corrige_niveau": t["modele"]["niveau"],
+             "points_cles": [p["t"] for p in t["points"]],
+             "points": [{"id": p["id"], "de": p["t"], "trad": trad(p)} for p in t["points"]],
+             "pieges": [trad(x) for x in t.get("pieges", [])], "grille": t.get("grille") or "",
+             "relire": notes_relire(t)}
+        if t.get("modele_b1"):
+            s["corrige_b1_de"] = t["modele_b1"]["t"]
+            s["corrige_b1"] = trad(t["modele_b1"])
+        sujets.append(s)
+    grilles = {}
+    for i, g in taches.items():
+        if i.startswith("grille"):
+            grilles[i] = {"titre": trad(g["titre"]), "intro": trad(g["intro"]),
+                          "echelle": [{"points": e["points"], "texte": trad(e)} for e in g["echelle"]],
+                          "criteres": [{"id": c["id"], "titre": trad(c["titre"]), "question": trad(c["question"]),
+                                        "conseil": trad(c["conseil"]),
+                                        "niveaux": [{"points": n["points"], "texte": trad(n)} for n in c["niveaux"]]}
+                                       for c in g["criteres"]],
+                          "seuils": trad(g["seuils"])}
+    return {
+        "dialogues": {"_note": note % "source, registre, intro, et l'arbre des branches (debut, noeuds : le format des conversations jouées, visuel/CONVERSATIONS.md)",
+                      "langues": LANGUES, "dialogues": dialogues},
+        "grammaire": {"_note": note % "source, resume, tableau, piege, dialogues ; une question « choix » sans trou a de = « ___ » et une consigne",
+                      "langues": LANGUES, "points": points},
+        "ecrit": {"_note": note % "source, titre, consigne_de, rubrique (traduite), briques_groupes, corrige (traduit), corrige_b1, points, pieges, grille, et les grilles d'auto-évaluation (grilles)",
+                  "langues": LANGUES, "sujets": sujets, "grilles": grilles},
+    }
 
 
 def etat():
