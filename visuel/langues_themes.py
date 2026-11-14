@@ -50,6 +50,8 @@ DOSSIER = os.path.join(ICI, "prototype", "themes", "langues")
 SOURCE = os.path.join(DOSSIER, "source.json")
 PORT = int(os.environ.get("LANGUES_PORT", "8858"))
 TIRAGES = int(os.environ.get("LANGUES_TIRAGES", "2000"))
+# la decouverte (onglets puis elements) s'arrete a ce nombre de gestes ; atteint = releve peut-etre tronque, signale
+PLAFOND = int(os.environ.get("LANGUES_GESTES", "3000"))
 THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "transportes",
           "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes"]
 # la langue apprise -> les langues d'interface que le DICTIONNAIRE doit couvrir (les autres, la page les fabrique)
@@ -86,7 +88,7 @@ GLOSES_FR = r"""() => {
   return [...fr];
 }"""
 
-ENUMERER = r"""async ([n, relever]) => {
+ENUMERER = r"""async ([n, relever, PLAFOND_GESTES]) => {
   const vus = new Map(), relev = eval(relever);
   const noter = () => { for (const r of relev()) { const k = r.fr + '\u0001' + r.src; if (!vus.has(k)) vus.set(k, {fr: r.fr, src: r.src, faux: r.faux}); } };
   const pause = ms => new Promise(r => setTimeout(r, ms));
@@ -98,10 +100,10 @@ ENUMERER = r"""async ([n, relever]) => {
     try { await decouvrir(); } catch (e) {}
     noter();
     const n1 = boutons().length;
-    for (let i = 0; i < n1 && gestes < 600; i++) {
+    for (let i = 0; i < n1 && gestes < PLAFOND_GESTES; i++) {
       try { await decouvrir(); const b1 = boutons()[i]; if (!b1) continue; b1.click(); gestes++; await pause(0); noter();
             const n2 = boutons().length;
-            for (let j = 0; j < n2 && gestes < 600; j++) {
+            for (let j = 0; j < n2 && gestes < PLAFOND_GESTES; j++) {
               try { await decouvrir(); const a = boutons()[i]; if (!a) break; a.click(); const b2 = boutons()[j]; if (!b2) continue; b2.click(); gestes++; noter(); } catch (e) {}
             } } catch (e) {}
     }
@@ -163,7 +165,7 @@ def extraire(seuls):
                     page.wait_for_function("() => typeof EX !== 'undefined' && (typeof IDS === 'undefined' || IDS.length > 0) && (typeof D === 'undefined' || D)", timeout=30000)
                     page.wait_for_timeout(600)
                     gl = set(page.evaluate(GLOSES_FR))
-                    e = page.evaluate(ENUMERER, [TIRAGES, RELEVER])
+                    e = page.evaluate(ENUMERER, [TIRAGES, RELEVER, PLAFOND])
                     phrases, gloses = [], 0
                     for x in e["textes"]:
                         if x["fr"] in gl:
@@ -180,10 +182,14 @@ def extraire(seuls):
                         srcs.setdefault(x["fr"], set()).add(x.get("src", ""))
                     ambigus = sum(1 for v in srcs.values() if len(v) > 1)
                     print("  %-12s %s  %4d phrases francaises (%d couples avec la source, %d ambigus), %d par la decouverte, "
-                          "%d gestes, %d gloses ecartees ; sortes non epuisees : %s%s"
-                          % (th, app, len(srcs), len(phrases), ambigus, e["decouverte"], e["gestes"], gloses, ouvertes or "aucune",
+                          "%d gestes%s, %d gloses ecartees ; sortes non epuisees : %s%s"
+                          % (th, app, len(srcs), len(phrases), ambigus, e["decouverte"], e["gestes"], " (PLAFOND ATTEINT)" if e["gestes"] >= PLAFOND else "", gloses, ouvertes or "aucune",
                              ("  ERREURS JS : " + " | ".join(erreurs[:3])) if erreurs else ""), flush=True)
                     page.close()
+                jamais = phrases_de_la_donnee(th) - {x["fr"] for a in source[th].values() for x in a}
+                if jamais:
+                    print("  %-12s    %d phrase(s) de la donnee (3 mots et plus) jamais affichee(s) : %s"
+                          % (th, len(jamais), " | ".join(sorted(jamais)[:4])), flush=True)
             try:
                 nav.close()
             except Exception:
@@ -193,6 +199,31 @@ def extraire(seuls):
     os.makedirs(DOSSIER, exist_ok=True)
     io.open(SOURCE, "w", encoding="utf-8", newline="\n").write(json.dumps(source, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
     print("  -> %s" % os.path.relpath(SOURCE, RACINE))
+
+
+def phrases_de_la_donnee(th):
+    """Les valeurs « fr » de 3 mots et plus des JSON du theme (visuel/prototype/<theme>/*.json, sauf gloses.json) :
+    controle de couverture -- une phrase de la donnee que l'extraction n'a jamais vue est un geste oublie (ou un
+    texte que la page n'affiche pas, a verifier). Les gloses et noms d'objets (1-2 mots) n'y entrent pas."""
+    res, d = set(), os.path.join(ICI, "prototype", th)
+    def prendre(o):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if k == "fr" and isinstance(v, str) and mots(v) >= 3:
+                    res.add(re.sub(r"\s+", " ", v).strip())
+                else:
+                    prendre(v)
+        elif isinstance(o, list):
+            for v in o:
+                prendre(v)
+    if os.path.isdir(d):
+        for f in os.listdir(d):
+            if f.endswith(".json") and f != "gloses.json":
+                try:
+                    prendre(json.load(io.open(os.path.join(d, f), encoding="utf-8")))
+                except ValueError:
+                    pass
+    return res
 
 
 def mots(s):
