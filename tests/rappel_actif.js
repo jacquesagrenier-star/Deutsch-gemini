@@ -83,6 +83,10 @@ egal(jouer([1,1,1,1,1].map(Boolean), [false, true, true, true, true]), "01001", 
     egal(I({ mastered: false, due: 0, reviews: 0 }), '{"hits":2,"minutes":1440,"premierCoup":true}', "neuf, su du premier coup : 2 pastilles, la seance suivante");
     egal(I({}), '{"hits":2,"minutes":1440,"premierCoup":true}', "aucun etat : premier coup");
     egal(I({ vu: 1 }), '{"hits":2,"minutes":1440,"premierCoup":true}', "simplement balaye : premier coup");
+    // Decision de Jacques du 14 nov. (« Oui, 1 point ») : presente il y a moins de 24 h, le premier ✓ vaut une pastille.
+    egal(I({ vu: 1, presente: Date.now() - 60000 }), '{"hits":1,"minutes":10,"premierCoup":false}', "presente il y a une minute : 1 pastille, 10 minutes");
+    egal(I({ vu: 1, presente: Date.now() - 23 * 3600000 }), '{"hits":1,"minutes":10,"premierCoup":false}', "presente il y a 23 h : encore 1 pastille");
+    egal(I({ vu: 1, presente: Date.now() - 25 * 3600000 }), '{"hits":2,"minutes":1440,"premierCoup":true}', "presente il y a 25 h : la regle des 2 pastilles revient");
     egal(I({ srsHits: 0, rate: 1, reviews: 1, due: 9 }), '{"hits":1,"minutes":10,"premierCoup":false}', "rate puis reussi : 1 pastille, 10 minutes");
     egal(I({ srsHits: 0, reviews: 2, due: 9 }), '{"hits":1,"minutes":10,"premierCoup":false}', "rate avant la v1114 (reviews > srsHits, pas de rate) : 10 minutes");
     egal(I({ srsHits: 1, reviews: 1, due: 9, rate: 1 }), '{"hits":2,"minutes":1440,"premierCoup":false}', "2e reussite : le premier barreau des jours");

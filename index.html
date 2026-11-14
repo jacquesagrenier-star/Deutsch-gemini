@@ -58006,7 +58006,10 @@ function motPresenteVu(bientot){
     MOTS_PRESENTES.add(clePresentation(item));
     try{
         const st = getWordState(item.themeId, item.index);
-        if(!st.vu){ st.vu = Date.now(); setWordState(item.themeId, item.index, st); }
+        if(!st.vu) st.vu = Date.now();
+        // L'heure de la presentation : son premier ✓ dans les 24 h donne une pastille, pas deux (issueReussite).
+        st.presente = Date.now();
+        setWordState(item.themeId, item.index, st);
     }catch(e){}
     // Une carte passee comme une autre : elle compte dans le jour (l'ecran court disait « 2 cartes aujourd'hui » apres
     // quatre) et Premiers pas avance au-dela d'elle -- une seance rouverte ne la remontre pas (tests/premiers_pas_suite.py).
@@ -74301,9 +74304,17 @@ function programmerEcheance(state, minutes){
 //   ensuite                     -> une pastille, l'echelle des jours, puis la maitrise.
 // Rend { hits, minutes, premierCoup } ; minutes vaut null pour la maitrise. A LIRE AVANT de toucher a l'etat :
 // motRate() compare reviews a srsHits. Ne touche a rien (tests/rappel_actif.js l'execute sous Node).
+// ⚠️ UN MOT QU'ON VIENT DE PRESENTER N'EST PAS « DEJA CONNU » (retour d'une testeuse du 13 nov. 2026, « Then gives me
+// 2 marks » ; decision de Jacques du 14 nov. : « Oui, 1 point »). La carte de presentation (v1182) ne juge rien, donc
+// le mot revenait en question avec zero pastille et sans echec, et son premier ✓ tombait dans la regle ci-dessus :
+// deux pastilles et « Deja connu » pour un mot vu trente secondes plus tot. Pendant 24 h apres sa presentation
+// (`presente`, pose par motPresenteVu), le premier ✓ donne UNE pastille (« Vu ») et le retour de 10 minutes, comme
+// un mot rate puis reussi. La regle des deux pastilles reste entiere pour un mot jamais presente. Le delai est ecrit
+// ici et non dans une constante globale : le test l'execute seul.
 function issueReussite(st){
     const reussites = st.srsHits || 0;
-    if(reussites === 0 && !motRate(st)) return { hits: 2, minutes: 1440, premierCoup: true };
+    const presenteRecemment = typeof st.presente === "number" && Date.now() - st.presente < 24 * 3600 * 1000;
+    if(reussites === 0 && !motRate(st) && !presenteRecemment) return { hits: 2, minutes: 1440, premierCoup: true };
     const hits = reussites + 1;
     if(reussites === 0) return { hits: hits, minutes: SRS_PREMIERE_MINUTES, premierCoup: false };
     if(hits >= SRS_PALIERS) return { hits: hits, minutes: null, premierCoup: false };
