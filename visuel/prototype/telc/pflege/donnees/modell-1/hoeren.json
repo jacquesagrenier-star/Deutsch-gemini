@@ -1,0 +1,306 @@
+{
+  "_note": "telc Deutsch B1·B2 Pflege, Modellprüfung 1 von Wortando : HÖREN, items 1-23 (14 nov. 2026, session pflege-examen). Le FORMAT du telc (pflege/FORMAT-TELC-PFLEGE.md : 4 parties, 4 + 10 + 6 + 3 points, chaque texte entendu une seule fois), jamais son contenu : tout est écrit pour Wortando, avec les personnages de pflege/PERSONNAGES.md. Chaque objet traduit a une clé « cle » ; ses champs « X_fr » / « X_en » ont leur traduction dans langues/hoeren.<langue>.json sous « cle.X ». « bon » : l'indice de la bonne réponse dans « o » (0 = a) ; pour un vrai / faux, 0 = richtig, 1 = falsch ; pour Teil 4, l'indice dans « saetze ». « relire » : contenu métier qu'une infirmière germanophone doit valider (pflege/examen/RELIRE-EXAMEN.md). Les nombres de l'audio sont écrits en lettres : la voix les dit tels quels, aucune lecture n'est nécessaire dans audio/lectures/de.json. Voix : provisoires, reprises du telc A2·B1 (visuel/prototype/telc/donnees/hoeren.json), à aligner sur celles que la session des dialogues donnera à l'équipe.",
+  "voix": {
+    "aurora": {"nom": "Aurora, les consignes", "sexe": "f", "voice_id": "8HePnvwzEdJ614CQMPqF"},
+    "elif": {"nom": "Elif, 29 ans (voix f_jung du telc)", "sexe": "f", "voice_id": "KdxIdEwcPWzvsuKFEGL2"},
+    "jonas": {"nom": "Jonas, 38 ans (voix radio_m du telc)", "sexe": "m", "voice_id": "KMSBmY3yNdCjbnsEvXc6"},
+    "hoffmann": {"nom": "Frau Hoffmann, 52 ans (voix de Frau Brandt du telc)", "sexe": "f", "voice_id": "cDlEZdkTayS2jHnyaXx6"},
+    "sommer": {"nom": "Dr. Sommer, 40 ans (voix m_mittel du telc)", "sexe": "m", "voice_id": "lwbCRuiP1VdfP1CRfjHk"},
+    "kraemer": {"nom": "Dr. Krämer, médecin de garde (voix radio_m du telc)", "sexe": "m", "voice_id": "KMSBmY3yNdCjbnsEvXc6"},
+    "herr_brandt": {"nom": "Herr Brandt, 82 ans (voix m_alt du telc)", "sexe": "m", "voice_id": "o66wtFhUpq7rflsMnh38"},
+    "herr_schulze": {"nom": "Herr Schulze, 87 ans (voix m_alt du telc)", "sexe": "m", "voice_id": "o66wtFhUpq7rflsMnh38"},
+    "frau_lehmann": {"nom": "Frau Lehmann, 74 ans (voix f_alt du telc)", "sexe": "f", "voice_id": "VTPbgxY1fFa6FwTfzLEB"},
+    "frau_kowalski": {"nom": "Frau Kowalski, 79 ans (voix f_alt du telc)", "sexe": "f", "voice_id": "VTPbgxY1fFa6FwTfzLEB"},
+    "wendt": {"nom": "Sabine Wendt, la fille de Frau Lehmann (voix de Frau Brandt du telc)", "sexe": "f", "voice_id": "cDlEZdkTayS2jHnyaXx6"},
+    "olena": {"nom": "Olena, 44 ans (voix f_mittel du telc)", "sexe": "f", "voice_id": "N85Zhun98cg4usHJ1afQ"},
+    "aksoy": {"nom": "Frau Aksoy, laboratoire (voix f_mittel du telc)", "sexe": "f", "voice_id": "N85Zhun98cg4usHJ1afQ"},
+    "amira": {"nom": "Amira, 26 ans (voix radio_f du telc)", "sexe": "f", "voice_id": "eynqyfGtOX7SMOw161Ca"},
+    "yusuf": {"nom": "Yusuf, 34 ans (voix m_jung du telc)", "sexe": "m", "voice_id": "YsKUFZvQZDgRvcfwUT4X"},
+    "lorenz": {"nom": "Herr Lorenz, transport sanitaire (voix m_jung du telc)", "sexe": "m", "voice_id": "YsKUFZvQZDgRvcfwUT4X"},
+    "richter": {"nom": "Herr Richter, pharmacie de l'hôpital (voix m_mittel du telc)", "sexe": "m", "voice_id": "lwbCRuiP1VdfP1CRfjHk"}
+  },
+  "teile": [
+    {
+      "cle": "H1",
+      "teil": 1,
+      "titre": "Hören, Teil 1",
+      "consigne_de": "Sie hören vier Telefonnachrichten. Zu jeder Nachricht gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jede Nachricht nur einmal.",
+      "consigne_fr": "Tu entends quatre messages téléphoniques, chacun une seule fois. Pour chacun, choisis la phrase qui correspond à ce qui est dit (a, b ou c). On commence par un exemple.",
+      "consigne_en": "You will hear four phone messages, each one only once. For each one, choose the sentence that matches what is said (a, b or c). There is an example first.",
+      "audio_consigne": [{"wer": "aurora", "text": "Hören, Teil eins. Sie hören jetzt vier Nachrichten am Telefon. Zu jeder Nachricht lösen Sie eine Aufgabe: Wählen Sie a, b oder c. Jede Nachricht hören Sie nur einmal. Zuerst kommt ein Beispiel."}],
+      "beispiel": {
+        "cle": "n0", "nr": 0, "typ": "abc",
+        "audio": [{"wer": "jonas", "text": "Hallo Elif, hier ist Jonas. Kurz zum Dienstplan: Frau Hoffmann hat ihn heute Mittag geändert. Du hast morgen keinen Spätdienst, sondern Frühdienst, du fängst also um sechs Uhr an. Dafür hast du am Freitag frei. Wenn das für dich nicht passt, ruf bitte heute noch auf der Station an, nicht erst morgen früh. Bis dann!"}],
+        "frage": "Elif soll",
+        "o": ["morgen um sechs Uhr mit der Arbeit anfangen.", "am Freitag den Frühdienst übernehmen.", "morgen früh auf der Station anrufen."],
+        "bon": 0,
+        "erkl_fr": "Jonas dit qu'Elif a demain le service du matin (Frühdienst), qui commence à six heures. Le vendredi, elle est libre ; et elle doit appeler aujourd'hui, pas demain matin.",
+        "erkl_en": "Jonas says Elif is on the early shift (Frühdienst) tomorrow, starting at six. She has Friday off, and she should call today, not tomorrow morning."
+      },
+      "items": [
+        {
+          "cle": "n1", "nr": 1, "typ": "abc", "relire": true,
+          "audio": [{"wer": "aksoy", "text": "Guten Morgen, hier ist Aksoy aus dem Zentrallabor. Ich rufe wegen Herrn Brandt an, Zimmer vierzehn auf der Geriatrie. Die Blutprobe von heute früh können wir leider nicht auswerten: Das Röhrchen war nicht richtig beschriftet, es fehlt das Geburtsdatum. Bitte nehmen Sie noch einmal Blut ab und schicken Sie die Probe bis zehn Uhr. Nüchtern muss er dafür nicht sein, er kann also ganz normal frühstücken. Danke!"}],
+          "frage": "Die Station soll",
+          "o": ["Herrn Brandt bis zehn Uhr nichts zu essen geben.", "im Labor nach dem Geburtsdatum von Herrn Brandt fragen.", "bei Herrn Brandt bis zehn Uhr noch einmal Blut abnehmen."],
+          "bon": 2,
+          "erkl_fr": "Le laboratoire ne peut pas analyser l'échantillon (le tube n'avait pas la date de naissance) : il faut refaire la prise de sang avant dix heures. Herr Brandt n'a pas besoin d'être à jeun (« nüchtern ») : il peut déjeuner.",
+          "erkl_en": "The lab cannot test the sample (the tube had no date of birth), so blood must be taken again by ten. Herr Brandt does not need to fast (“nüchtern”): he can have breakfast."
+        },
+        {
+          "cle": "n2", "nr": 2, "typ": "abc", "relire": true,
+          "audio": [{"wer": "richter", "text": "Hallo, hier ist Richter von der Krankenhausapotheke. Eine Information für die Geriatrie: Die Thrombosespritzen, die Sie gestern bestellt haben, sind im Moment nicht lieferbar. Wir bekommen ein Ersatzpräparat mit dem gleichen Wirkstoff, aber erst am Donnerstag. Bis dahin können Sie Spritzen von der Station sechs bekommen, die hat noch genug. Ich habe dort schon Bescheid gesagt. Holen Sie sie bitte selbst ab, unser Bote fährt heute nicht mehr."}],
+          "frage": "Die Thrombosespritzen",
+          "o": ["holt die Geriatrie bis Donnerstag auf der Station sechs.", "bringt der Bote der Apotheke heute noch vorbei.", "gibt es ab Donnerstag mit einem anderen Wirkstoff."],
+          "bon": 0,
+          "erkl_fr": "La pharmacie n'en a plus ; jusqu'à jeudi, le service va les chercher lui-même au service six. Le produit de remplacement a le MÊME principe actif (« gleicher Wirkstoff »), et le coursier ne passe plus aujourd'hui.",
+          "erkl_en": "The pharmacy is out of stock; until Thursday the ward fetches them itself from ward six. The replacement has the SAME active ingredient (“gleicher Wirkstoff”), and the courier isn't coming today."
+        },
+        {
+          "cle": "n3", "nr": 3, "typ": "abc",
+          "audio": [{"wer": "wendt", "text": "Guten Tag, hier spricht Sabine Wendt, ich bin die Tochter von Frau Lehmann aus Zimmer neun. Ich schaffe es heute leider nicht zu kommen, mein Sohn ist krank. Morgen Nachmittag bin ich wieder da und bringe dann ihre Lesebrille und die Hausschuhe mit. Meine Mutter isst abends oft zu wenig, wenn niemand bei ihr ist. Könnten Sie bitte beim Abendessen ein bisschen auf sie achten? Und sagen Sie ihr bitte, dass ich angerufen habe. Vielen Dank."}],
+          "frage": "Frau Wendt bittet die Station,",
+          "o": ["ihrer Mutter heute die Lesebrille zu geben.", "beim Abendessen auf ihre Mutter zu achten.", "sie morgen Nachmittag zurückzurufen."],
+          "bon": 1,
+          "erkl_fr": "Sa demande est de « faire un peu attention » à sa mère au dîner, parce qu'elle mange trop peu quand elle est seule. Les lunettes, c'est elle qui les apporte demain ; elle ne demande pas qu'on la rappelle.",
+          "erkl_en": "What she asks is that someone “keep an eye” on her mother at dinner, because she eats too little when alone. She'll bring the glasses herself tomorrow, and she doesn't ask for a call back."
+        },
+        {
+          "cle": "n4", "nr": 4, "typ": "abc",
+          "audio": [{"wer": "lorenz", "text": "Ja, hallo, Lorenz vom Krankentransport. Es geht um die Verlegung von Herrn Brandt in die Reha-Klinik. Die war für Mittwoch geplant, aber die Klinik hat erst ab Donnerstag ein Bett frei. Wir holen ihn also am Donnerstag um neun Uhr ab. Legen Sie bitte den Arztbrief und den aktuellen Medikamentenplan bereit, und packen Sie seinen Rollator mit ein. Wenn sich noch etwas ändert, erreichen Sie uns unter der Durchwahl dreihundertzwölf."}],
+          "frage": "Herr Brandt",
+          "o": ["fährt am Mittwoch um neun Uhr in die Reha.", "bekommt in der Reha-Klinik einen neuen Rollator.", "wird einen Tag später abgeholt als geplant."],
+          "bon": 2,
+          "erkl_fr": "Le transfert était prévu mercredi ; la clinique n'a un lit que jeudi : il part donc un jour plus tard, jeudi à neuf heures. Son déambulateur part avec lui.",
+          "erkl_en": "The transfer was planned for Wednesday; the clinic only has a bed from Thursday, so he leaves one day later, on Thursday at nine. His walker goes with him."
+        }
+      ]
+    },
+    {
+      "cle": "H2",
+      "teil": 2,
+      "titre": "Hören, Teil 2",
+      "consigne_de": "Sie hören fünf Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben: Ist die Aussage richtig oder falsch? Und welche Lösung (a, b oder c) passt am besten? Sie hören jedes Gespräch nur einmal.",
+      "consigne_fr": "Tu entends cinq conversations de travail, chacune une seule fois. Pour chacune : d'abord une phrase sur l'idée générale (vrai ou faux), puis une question sur un détail (a, b ou c).",
+      "consigne_en": "You will hear five work conversations, each one only once. For each: first a sentence about the general idea (true or false), then a question about a detail (a, b or c).",
+      "audio_consigne": [{"wer": "aurora", "text": "Hören, Teil zwei. Sie hören jetzt fünf Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie: Ist die Aussage richtig oder falsch? Und welche Lösung passt am besten, a, b oder c? Jedes Gespräch hören Sie nur einmal."}],
+      "gespraeche": [
+        {
+          "cle": "H2g1", "relire": true,
+          "situation_fr": "La visite du matin : Dr. Sommer et Elif au lit de Herr Brandt, opéré de la hanche.",
+          "situation_en": "The morning ward round: Dr. Sommer and Elif at the bedside of Herr Brandt, who had hip surgery.",
+          "audio": [
+            {"wer": "sommer", "text": "Guten Morgen, Herr Brandt. Schwester Elif, wie war die Nacht?"},
+            {"wer": "elif", "text": "Nicht so gut. Herr Brandt hatte gegen drei Uhr starke Schmerzen in der Hüfte, ungefähr sieben von zehn. Der Nachtdienst hat ihm die Bedarfsmedikation gegeben, danach konnte er wieder schlafen."},
+            {"wer": "herr_brandt", "text": "Na ja, schlafen … ein bisschen. Wenn ich mich auf die Seite drehe, tut es richtig weh."},
+            {"wer": "sommer", "text": "Das ist nach so einer Operation leider normal. Wir ändern das Schmerzmittel: Ab heute bekommt er es dreimal am Tag zu festen Zeiten, nicht mehr nur bei Bedarf. Bitte fragen Sie ihn in jeder Schicht nach seinen Schmerzen und dokumentieren Sie den Wert."},
+            {"wer": "elif", "text": "Mache ich. Und die Wunde? Der Verband war heute früh trocken."},
+            {"wer": "sommer", "text": "Gut, dann reicht ein Verbandswechsel morgen. Die Physiotherapeutin kommt heute um zwei. Herr Brandt, Sie gehen mit ihr ein paar Schritte mit dem Rollator, auch wenn es am Anfang schwerfällt."},
+            {"wer": "herr_brandt", "text": "Wenn's sein muss."},
+            {"wer": "sommer", "text": "Es muss sein. Je früher Sie laufen, desto schneller sind Sie wieder zu Hause."}
+          ],
+          "items": [
+            {"cle": "n5", "nr": 5, "typ": "rf", "frage": "Der Arzt und Elif sprechen über die Schmerzen und die Mobilisation von Herrn Brandt.", "bon": 0,
+             "erkl_fr": "Vrai : toute la conversation porte sur ses douleurs (la nuit, le nouveau traitement) et sur la marche avec la kiné.",
+             "erkl_en": "True: the whole conversation is about his pain (the night, the new medication) and walking with the physiotherapist."},
+            {"cle": "n6", "nr": 6, "typ": "abc", "frage": "Herr Brandt bekommt sein Schmerzmittel ab heute",
+             "o": ["nur noch in der Nacht.", "regelmäßig dreimal am Tag.", "nur, wenn er danach fragt."], "bon": 1,
+             "erkl_fr": "« dreimal am Tag zu festen Zeiten, nicht mehr nur bei Bedarf » : trois fois par jour à heures fixes. « bei Bedarf » (si besoin), c'était avant.",
+             "erkl_en": "“dreimal am Tag zu festen Zeiten, nicht mehr nur bei Bedarf”: three times a day at fixed times. “bei Bedarf” (as needed) was the old way."}
+          ]
+        },
+        {
+          "cle": "H2g2", "relire": true,
+          "situation_fr": "Avant le petit-déjeuner, Elif mesure la glycémie de Frau Lehmann, diabétique, qui a une plaie au pied.",
+          "situation_en": "Before breakfast, Elif checks the blood sugar of Frau Lehmann, who has diabetes and a wound on her foot.",
+          "audio": [
+            {"wer": "elif", "text": "Guten Morgen, Frau Lehmann. Ich messe kurz Ihren Blutzucker, bevor das Frühstück kommt."},
+            {"wer": "frau_lehmann", "text": "Schon wieder? Gestern Abend haben Sie doch auch gemessen."},
+            {"wer": "elif", "text": "Ja, vor jeder Mahlzeit. Der Arzt möchte sehen, wie das neue Insulin wirkt. So, ein kleiner Piks in den Finger … schon fertig. Hundertachtunddreißig, das ist in Ordnung."},
+            {"wer": "frau_lehmann", "text": "Und die Spritze? Ich mag diese Spritzen in den Bauch nicht. Zu Hause hat das immer meine Tochter gemacht."},
+            {"wer": "elif", "text": "Das verstehe ich. Ich zeige Ihnen heute, wie Sie es selbst machen können, ganz langsam. Wenn Sie wieder zu Hause sind, sollen Sie das ja allein schaffen."},
+            {"wer": "frau_lehmann", "text": "Allein? Ich sehe doch so schlecht. Ich glaube nicht, dass ich das kann."},
+            {"wer": "elif", "text": "Dafür gibt es Pens mit großen Zahlen, die schauen wir uns zusammen an. Und Ihren Fuß sieht sich heute um elf Uhr die Wundexpertin an. Bitte ziehen Sie bis dahin keinen Schuh an, nur den Verbandsschuh."}
+          ],
+          "items": [
+            {"cle": "n7", "nr": 7, "typ": "rf", "frage": "Frau Lehmann freut sich darauf, ihr Insulin bald allein zu spritzen.", "bon": 1,
+             "erkl_fr": "Faux : c'est Elif qui veut lui apprendre. Frau Lehmann n'aime pas les piqûres, et elle doute d'y arriver parce qu'elle voit mal (« Ich glaube nicht, dass ich das kann »).",
+             "erkl_en": "False: it's Elif who wants to teach her. Frau Lehmann dislikes the injections and doubts she can manage, because her eyesight is poor (“Ich glaube nicht, dass ich das kann”)."},
+            {"cle": "n8", "nr": 8, "typ": "abc", "frage": "Um elf Uhr",
+             "o": ["misst Elif noch einmal den Blutzucker.", "kommt die Tochter von Frau Lehmann.", "wird der Fuß von Frau Lehmann kontrolliert."], "bon": 2,
+             "erkl_fr": "À onze heures, la spécialiste des plaies (« Wundexpertin ») regarde son pied. La glycémie se mesure avant chaque repas, et la fille ne vient pas dans cette conversation.",
+             "erkl_en": "At eleven, the wound specialist (“Wundexpertin”) looks at her foot. Blood sugar is measured before each meal, and the daughter doesn't come up in this conversation."}
+          ]
+        },
+        {
+          "cle": "H2g3",
+          "situation_fr": "Fin d'après-midi à la maison de retraite Haus Lindenhof : Herr Schulze, qui a une démence, veut partir.",
+          "situation_en": "Late afternoon at the Haus Lindenhof care home: Herr Schulze, who has dementia, wants to leave.",
+          "audio": [
+            {"wer": "herr_schulze", "text": "Wo ist meine Mütze? Ich muss los, die Bahn wartet nicht."},
+            {"wer": "olena", "text": "Herr Schulze, Sie wollen zur Arbeit?"},
+            {"wer": "herr_schulze", "text": "Natürlich! Die Vier fährt um fünf ab Depot. Ohne mich fährt da keiner."},
+            {"wer": "olena", "text": "Sie waren immer sehr pünktlich, oder?"},
+            {"wer": "herr_schulze", "text": "Vierzig Jahre lang. Nie einen Tag zu spät."},
+            {"wer": "olena", "text": "Das glaube ich Ihnen sofort. Erzählen Sie mal: War es im Winter nicht sehr kalt in der Straßenbahn?"},
+            {"wer": "herr_schulze", "text": "Kalt? Vorne beim Fahrer gab es damals keine Heizung. Ich hatte immer zwei Pullover an."},
+            {"wer": "olena", "text": "Zwei Pullover! Kommen Sie, wir setzen uns kurz hin. Ich habe Kaffee gemacht, und Ihre Tochter hat das Fotoalbum mitgebracht, mit den Bildern von der alten Bahn."},
+            {"wer": "herr_schulze", "text": "Das Album? … Na gut, einen Kaffee. Aber dann muss ich los."},
+            {"wer": "olena", "text": "Erst mal den Kaffee, Herr Schulze."}
+          ],
+          "items": [
+            {"cle": "n9", "nr": 9, "typ": "rf", "frage": "Olena versucht, Herrn Schulze zu beruhigen, ohne ihm zu widersprechen.", "bon": 0,
+             "erkl_fr": "Vrai : elle ne lui dit jamais qu'il n'a plus de travail ; elle entre dans son souvenir (la ponctualité, le froid dans le tramway) et l'emmène vers autre chose.",
+             "erkl_en": "True: she never tells him he no longer has a job; she goes along with his memory (punctuality, the cold tram) and leads him towards something else."},
+            {"cle": "n10", "nr": 10, "typ": "abc", "frage": "Olena schlägt Herrn Schulze vor,",
+             "o": ["ihn zur Haltestelle zu begleiten.", "mit ihr Kaffee zu trinken und Fotos anzusehen.", "seine Tochter anzurufen."], "bon": 1,
+             "erkl_fr": "Elle propose de s'asseoir, de boire le café et de regarder l'album de photos que sa fille a apporté. La fille est seulement nommée ; personne ne va à l'arrêt.",
+             "erkl_en": "She suggests sitting down, having coffee and looking at the photo album his daughter brought. The daughter is only mentioned; nobody goes to the stop."}
+          ]
+        },
+        {
+          "cle": "H2g4", "relire": true,
+          "situation_fr": "Soins à domicile : Amira passe chez Frau Kowalski, qui fait elle-même ses injections d'insuline et vit avec sa chatte Mimi.",
+          "situation_en": "Home care: Amira visits Frau Kowalski, who injects her own insulin and lives with her cat Mimi.",
+          "audio": [
+            {"wer": "amira", "text": "Guten Morgen, Frau Kowalski! Der Pflegedienst ist da, ich bin's, Amira."},
+            {"wer": "frau_kowalski", "text": "Kommen Sie rein. Passen Sie auf, Mimi liegt wieder direkt hinter der Tür."},
+            {"wer": "amira", "text": "Hallo, Mimi. So, Frau Kowalski, zuerst messen wir den Zucker, dann kommt das Insulin. Wo ist denn Ihr Pen?"},
+            {"wer": "frau_kowalski", "text": "Auf dem Küchentisch, neben dem Brot."},
+            {"wer": "amira", "text": "Der Pen, den Sie gerade benutzen, darf ruhig draußen liegen. Aber die neuen Pens gehören in den Kühlschrank, nicht ins Gefrierfach. Sagen Sie, gestern Abend: Haben Sie Ihr Langzeitinsulin gespritzt? Im Heft steht nichts."},
+            {"wer": "frau_kowalski", "text": "Gestern Abend? Das weiß ich nicht mehr. Ich glaube, nicht. Da lief ein Film …"},
+            {"wer": "amira", "text": "Okay. Bitte jetzt nicht einfach die doppelte Menge spritzen. Ich rufe gleich Ihren Hausarzt an und frage, was wir machen. Und ich hänge Ihnen einen Zettel an den Fernseher: zwanzig Uhr, Insulin."},
+            {"wer": "frau_kowalski", "text": "Einen Zettel am Fernseher! Da schaue ich wenigstens jeden Abend hin."}
+          ],
+          "items": [
+            {"cle": "n11", "nr": 11, "typ": "rf", "frage": "Bei dem Besuch geht es vor allem um die Katze von Frau Kowalski.", "bon": 1,
+             "erkl_fr": "Faux : la chatte n'est qu'un détail de l'arrivée. La visite porte sur l'insuline : la glycémie, la conservation des stylos, la dose oubliée.",
+             "erkl_en": "False: the cat is just a detail at the door. The visit is about insulin: blood sugar, storing the pens, the missed dose."},
+            {"cle": "n12", "nr": 12, "typ": "abc", "frage": "Amira",
+             "o": ["will den Hausarzt wegen der vergessenen Spritze fragen.", "sagt, dass Frau Kowalski heute die doppelte Menge spritzen soll.", "legt alle Insulinpens ins Gefrierfach."], "bon": 0,
+             "erkl_fr": "Amira appelle le médecin de famille pour savoir quoi faire. Elle dit au contraire de NE PAS doubler la dose, et les stylos neufs vont au réfrigérateur, pas au congélateur.",
+             "erkl_en": "Amira calls the GP to ask what to do. She says NOT to double the dose, and new pens go in the fridge, not the freezer."}
+          ]
+        },
+        {
+          "cle": "H2g5", "relire": true,
+          "situation_fr": "La nuit, Yusuf appelle le médecin de garde, Dr. Krämer : l'état d'un patient atteint de pneumonie s'aggrave.",
+          "situation_en": "At night, Yusuf calls the doctor on call, Dr. Krämer: a patient with pneumonia is getting worse.",
+          "audio": [
+            {"wer": "kraemer", "text": "Krämer, Bereitschaftsdienst."},
+            {"wer": "yusuf", "text": "Guten Abend, Herr Doktor, hier ist Yusuf Haddad von der Geriatrie, Station drei. Ich rufe wegen Herrn Albrecht an, Zimmer elf. Er ist seit gestern bei uns, mit einer Lungenentzündung."},
+            {"wer": "kraemer", "text": "Ja, was ist los?"},
+            {"wer": "yusuf", "text": "Seit einer Stunde hat er Fieber, neununddreißig Komma zwei. Er atmet schneller als am Abend, und er ist etwas verwirrt, das war er vorher nicht. Der Blutdruck liegt bei hundertfünf zu sechzig, der Puls bei hundertzehn."},
+            {"wer": "kraemer", "text": "Bekommt er schon ein Antibiotikum?"},
+            {"wer": "yusuf", "text": "Ja, seit gestern Mittag, intravenös. Die nächste Gabe ist um sechs Uhr früh."},
+            {"wer": "kraemer", "text": "Gut. Nehmen Sie bitte zwei Blutkulturen ab, bevor Sie etwas gegen das Fieber geben. Danach bekommt er ein Gramm Paracetamol als Infusion. Und messen Sie jede Stunde Blutdruck und Puls. Ich bin gerade in der Notaufnahme, ich komme in etwa einer halben Stunde vorbei."},
+            {"wer": "yusuf", "text": "Also: zuerst zwei Blutkulturen, dann ein Gramm Paracetamol intravenös, stündlich Blutdruck und Puls. Sie kommen in einer halben Stunde."},
+            {"wer": "kraemer", "text": "Genau. Und wenn der Blutdruck unter neunzig fällt, rufen Sie mich sofort an."}
+          ],
+          "items": [
+            {"cle": "n13", "nr": 13, "typ": "rf", "frage": "Yusuf informiert den Arzt darüber, dass es einem Patienten schlechter geht.", "bon": 0,
+             "erkl_fr": "Vrai : fièvre, respiration plus rapide, confusion nouvelle — Yusuf décrit une aggravation, avec les valeurs, et répète à la fin ce que le médecin prescrit.",
+             "erkl_en": "True: fever, faster breathing, new confusion — Yusuf describes a deterioration, gives the values, and repeats the doctor's orders at the end."},
+            {"cle": "n14", "nr": 14, "typ": "abc", "frage": "Der Arzt möchte, dass Yusuf zuerst",
+             "o": ["Blut für eine Untersuchung abnimmt.", "das Mittel gegen das Fieber gibt.", "die nächste Dosis Antibiotikum früher gibt."], "bon": 0,
+             "erkl_fr": "« Nehmen Sie zwei Blutkulturen ab, BEVOR Sie etwas gegen das Fieber geben » : d'abord les prélèvements (hémocultures), ensuite le paracétamol. L'antibiotique reste à six heures.",
+             "erkl_en": "“Take two blood cultures BEFORE you give anything for the fever”: samples first, then paracetamol. The antibiotic stays at six."}
+          ]
+        }
+      ]
+    },
+    {
+      "cle": "H3",
+      "teil": 3,
+      "titre": "Hören, Teil 3",
+      "relire": true,
+      "lesezeit": 60,
+      "consigne_de": "Sie hören eine Teambesprechung auf der Station. Dazu gibt es sechs Aufgaben. Welche Lösung (a, b oder c) passt am besten? Sie haben zuerst eine Minute Zeit, die Aufgaben zu lesen. Sie hören das Gespräch nur einmal.",
+      "consigne_fr": "Tu entends une réunion d'équipe dans le service (Frau Hoffmann, Jonas et Elif), une seule fois. Tu as d'abord une minute pour lire les six questions.",
+      "consigne_en": "You will hear a team meeting on the ward (Frau Hoffmann, Jonas and Elif), only once. You first have one minute to read the six questions.",
+      "audio_consigne": [{"wer": "aurora", "text": "Hören, Teil drei. Sie hören jetzt eine Teambesprechung auf der Station. Dazu gibt es sechs Aufgaben. Wählen Sie jeweils a, b oder c. Sie haben jetzt eine Minute Zeit. Lesen Sie die Aufgaben. Das Gespräch hören Sie nur einmal."}],
+      "audio": [
+        {"wer": "hoffmann", "text": "So, dann fangen wir an. Viel Zeit haben wir nicht, um halb drei kommt schon der Spätdienst. Erstes Thema: Herr Brandt. Jonas?"},
+        {"wer": "jonas", "text": "Herr Brandt läuft jetzt mit dem Rollator bis zum Bad. Aber nachts steht er allein auf, ohne zu klingeln. Heute Nacht hat ihn der Nachtdienst neben dem Bett gefunden. Zum Glück ist er nicht gestürzt, aber er war sehr wackelig. Ich schlage vor, dass wir eine Sensormatte vor das Bett legen. Dann merken wir sofort, wenn er aufsteht."},
+        {"wer": "hoffmann", "text": "Einverstanden. Aber vorher sprechen wir mit ihm darüber, er muss zustimmen. Elif, kannst du das übernehmen? Er mag dich."},
+        {"wer": "elif", "text": "Ja, mache ich gleich nach der Besprechung. Ich lege ihm auch die Klingel wieder auf die rechte Seite. Links kommt er wegen der Hüfte nicht gut dran."},
+        {"wer": "hoffmann", "text": "Sehr gut. Zweites Thema: Zimmer zwölf. Dort liegt seit heute Morgen eine Patientin mit einem multiresistenten Keim. Das Zimmer ist ein Isolierzimmer. Das heißt: Schutzkittel, Handschuhe und Mund-Nasen-Schutz für alle, die hineingehen, auch für die Physiotherapie und den Reinigungsdienst. Besucher melden sich bitte vorher im Stationszimmer, und wir erklären ihnen, was sie anziehen müssen."},
+        {"wer": "jonas", "text": "Und das Essen? Bringt die Küche das Tablett bis ins Zimmer?"},
+        {"wer": "hoffmann", "text": "Nein. Die Küche stellt es vor die Tür, und wir bringen es hinein. Das Geschirr bleibt auch nicht auf dem Flur stehen. Drittes Thema, und das betrifft alle: Ab dem ersten Dezember dokumentieren wir nicht mehr auf Papier, sondern auf Tablets. Die Papierkurven gibt es dann nicht mehr."},
+        {"wer": "elif", "text": "Für alles? Auch für die Medikamente?"},
+        {"wer": "hoffmann", "text": "Für alles, auch für die Medikamente und die Wunddokumentation. Jeder muss vorher eine Schulung machen, sie dauert zwei Stunden. Die erste ist nächsten Dienstag um vierzehn Uhr im Seminarraum zwei. Wer an dem Tag Dienst hat, geht während der Arbeitszeit hin. Bitte tragt euch bis Freitag in die Liste ein."},
+        {"wer": "jonas", "text": "Kann man die Schulung auch online machen?"},
+        {"wer": "hoffmann", "text": "Leider nicht. Man muss die Geräte in der Hand haben. Aber es gibt einen zweiten Termin, am Donnerstag in einer Woche, am Nachmittag."},
+        {"wer": "elif", "text": "Ich habe am Dienstag Frühdienst, dann gehe ich gleich danach hin."},
+        {"wer": "hoffmann", "text": "Prima. Und zum Schluss etwas Schönes: Elif, deine Unterlagen für die Anerkennung sind vollständig, die Behörde hat heute geschrieben. Jetzt fehlt nur noch die Sprachprüfung."},
+        {"wer": "jonas", "text": "Na dann, Elif: Ab jetzt reden wir in der Pause nur noch über Verben mit Präpositionen!"}
+      ],
+      "items": [
+        {"cle": "n15", "nr": 15, "typ": "abc", "frage": "Herr Brandt",
+         "o": ["ist in der Nacht gestürzt.", "kann noch nicht bis zum Bad gehen.", "steht nachts auf, ohne Hilfe zu holen."], "bon": 2,
+         "erkl_fr": "Il se lève seul la nuit « ohne zu klingeln » (sans sonner). Il n'est pas tombé (« zum Glück ist er nicht gestürzt ») et il marche déjà jusqu'à la salle de bains.",
+         "erkl_en": "He gets up alone at night “ohne zu klingeln” (without ringing). He didn't fall (“zum Glück ist er nicht gestürzt”) and already walks to the bathroom."},
+        {"cle": "n16", "nr": 16, "typ": "abc", "frage": "Bevor die Station die Sensormatte benutzt,",
+         "o": ["muss Herr Brandt einverstanden sein.", "muss der Arzt sie anordnen.", "bekommt Elif eine Schulung."], "bon": 0,
+         "erkl_fr": "Frau Hoffmann : « er muss zustimmen » — il doit donner son accord, et c'est Elif qui lui en parle. Personne ne parle du médecin ; la formation, c'est pour les tablettes.",
+         "erkl_en": "Frau Hoffmann: “er muss zustimmen” — he has to agree, and Elif will talk to him. Nobody mentions the doctor; the training is for the tablets."},
+        {"cle": "n17", "nr": 17, "typ": "abc", "frage": "Wer in Zimmer zwölf geht,",
+         "o": ["braucht Schutzkleidung, außer dem Reinigungsdienst.", "muss Schutzkleidung tragen, auch Besucher.", "muss sich vorher beim Arzt melden."], "bon": 1,
+         "erkl_fr": "La protection vaut pour TOUS (« für alle »), y compris le ménage et la kiné ; les visiteurs passent d'abord au bureau infirmier, où on leur explique quoi mettre.",
+         "erkl_en": "Protection applies to EVERYONE (“für alle”), cleaners and physios included; visitors first go to the nurses' office, where they're told what to wear."},
+        {"cle": "n18", "nr": 18, "typ": "abc", "frage": "Das Essen für Zimmer zwölf",
+         "o": ["bringt die Küche bis ans Bett.", "bleibt auf dem Flur stehen.", "bringt das Pflegeteam ins Zimmer."], "bon": 2,
+         "erkl_fr": "La cuisine le pose devant la porte, « und wir bringen es hinein » : c'est l'équipe soignante qui le porte dans la chambre. Sur le couloir, c'est la vaisselle qui ne doit PAS rester.",
+         "erkl_en": "The kitchen leaves it outside the door, “und wir bringen es hinein”: the nursing team carries it in. It's the dishes that must NOT stay in the corridor."},
+        {"cle": "n19", "nr": 19, "typ": "abc", "frage": "Die Schulung für die Tablets",
+         "o": ["muss jede Pflegekraft machen.", "kann man auch zu Hause am Computer machen.", "gibt es nur an einem Termin."], "bon": 0,
+         "erkl_fr": "« Jeder muss vorher eine Schulung machen » : obligatoire pour tous. Elle n'existe pas en ligne, et il y a deux dates (mardi, puis jeudi de la semaine suivante).",
+         "erkl_en": "“Jeder muss vorher eine Schulung machen”: compulsory for everyone. It isn't available online, and there are two dates (Tuesday, then Thursday the following week)."},
+        {"cle": "n20", "nr": 20, "typ": "abc", "frage": "Für ihre Anerkennung",
+         "o": ["hat Elif schon alles geschafft.", "braucht Elif noch die Sprachprüfung.", "muss Elif der Behörde noch Unterlagen schicken."], "bon": 1,
+         "erkl_fr": "Le dossier est complet (« vollständig ») ; il ne manque plus que l'examen de langue — justement celui que tu prépares.",
+         "erkl_en": "The file is complete (“vollständig”); only the language exam is missing — the very one you're preparing for."}
+      ]
+    },
+    {
+      "cle": "H4",
+      "teil": 4,
+      "titre": "Hören, Teil 4",
+      "lesezeit": 30,
+      "consigne_de": "Sie hören ein Gespräch unter Kolleginnen und Kollegen zum Thema „Sollen Angehörige im Krankenhaus bei der Pflege mithelfen?“. Welcher Satz (a–f) passt zu welcher Meinung (21–23)? Zwei Sätze passen nicht. Sie haben zuerst 30 Sekunden Zeit, die Sätze zu lesen. Sie hören die Meinungen nur einmal.",
+      "consigne_fr": "Quatre collègues donnent leur avis : les proches doivent-ils aider aux soins à l'hôpital ? Associe chaque avis (21-23) à une phrase a-f ; la première personne est l'exemple, et deux phrases ne vont avec personne. Tu as 30 secondes pour lire les phrases.",
+      "consigne_en": "Four colleagues give their views: should relatives help with care in hospital? Match each opinion (21-23) to one of the sentences a-f; the first person is the example, and two sentences fit nobody. You have 30 seconds to read the sentences.",
+      "audio_consigne": [{"wer": "aurora", "text": "Hören, Teil vier. Sie hören jetzt, was Kolleginnen und Kollegen zu einem Thema meinen: Sollen Angehörige im Krankenhaus bei der Pflege mithelfen? Welcher Satz passt zu welcher Meinung? Zwei Sätze passen nicht. Sie haben jetzt dreißig Sekunden Zeit. Lesen Sie die Sätze a bis f. Jede Meinung hören Sie nur einmal. Zuerst kommt ein Beispiel."}],
+      "wahl": [
+        "Angehörige dürfen mithelfen, wenn das Team ihnen vorher zeigt, wie es geht.",
+        "Was Angehörige unbezahlt machen, ist eigentlich Arbeit für ausgebildete Pflegekräfte.",
+        "Für Menschen mit Demenz kann ein bekanntes Gesicht mehr bewirken als jede Pflegekraft.",
+        "Bei der Körperpflege sollten Angehörige grundsätzlich nicht dabei sein.",
+        "Viele pflegende Angehörige sind selbst alt und brauchen eher Entlastung.",
+        "Angehörige sollten nur noch zu festen Besuchszeiten auf die Station kommen."
+      ],
+      "beispiel": {
+        "cle": "n0b", "nr": 0, "typ": "zuord", "wer_nom": "Jonas",
+        "audio": [{"wer": "jonas", "text": "Ich finde, man muss das gut organisieren. Wenn eine Tochter ihrem Vater beim Essen helfen möchte, warum nicht? Aber wir zeigen ihr vorher, wie es richtig geht: dass er aufrecht sitzt, dass sie langsam und in kleinen Portionen anreicht. Ohne diese Anleitung ist es eher gefährlich, zum Beispiel wenn sich jemand verschluckt."}],
+        "bon": 0
+      },
+      "items": [
+        {"cle": "n21", "nr": 21, "typ": "zuord", "wer_nom": "Olena",
+         "audio": [{"wer": "olena", "text": "In der Altenpflege habe ich oft gesehen, wie ruhig ein Bewohner wird, wenn seine Frau zu Besuch kommt. Bei uns im Haus ist Herr Schulze am Nachmittag oft unruhig. Aber wenn seine Tochter da ist, ist er ein ganz anderer Mensch. Eine fremde Pflegekraft kann das nicht ersetzen, auch wenn sie noch so nett ist. Für Menschen mit Demenz sind die Angehörigen unglaublich wichtig."}],
+         "bon": 2,
+         "erkl_fr": "Olena : avec sa fille, Herr Schulze est « un autre homme », et « une soignante inconnue ne peut pas remplacer ça » → phrase c (un visage connu fait plus que toute soignante).",
+         "erkl_en": "Olena: with his daughter, Herr Schulze is “a different person”, and “a strange carer can't replace that” → sentence c (a familiar face does more than any carer)."},
+        {"cle": "n22", "nr": 22, "typ": "zuord", "wer_nom": "Yusuf",
+         "audio": [{"wer": "yusuf", "text": "Ich sehe das kritischer. Natürlich ist Besuch schön. Aber wenn wir anfangen, mit den Familien zu planen, dann sagt die Klinikleitung irgendwann: Wir brauchen ja gar nicht mehr so viele Pflegekräfte. Die Arbeit, die Angehörige dann machen, müssten eigentlich wir machen, mit einem richtigen Gehalt. Pflege ist ein Beruf und kein Hobby."}],
+         "bon": 1,
+         "erkl_fr": "Yusuf : ce que font les proches, « c'est nous qui devrions le faire, avec un vrai salaire » ; « les soins sont un métier » → phrase b.",
+         "erkl_en": "Yusuf: what relatives do “we should be doing, with a proper salary”; “care is a profession” → sentence b."},
+        {"cle": "n23", "nr": 23, "typ": "zuord", "wer_nom": "Amira",
+         "audio": [{"wer": "amira", "text": "Im ambulanten Dienst erlebe ich jeden Tag, wie viel Angehörige leisten. Aber oft ist die Ehefrau selbst schon achtzig und hat Rückenschmerzen. Sie möchte helfen, aber sie kann einfach nicht mehr. Ich finde, wir müssen die Angehörigen eher entlasten, statt ihnen noch mehr Aufgaben zu geben."}],
+         "bon": 4,
+         "erkl_fr": "Amira : l'épouse a souvent quatre-vingts ans et mal au dos ; il faut « soulager » (entlasten) les proches → phrase e. Les phrases d et f ne vont avec personne : personne ne parle de toilette ni d'horaires de visite.",
+         "erkl_en": "Amira: the wife is often eighty with back pain; relatives need relief (“entlasten”) → sentence e. Sentences d and f fit nobody: no one talks about washing or visiting hours."}
+      ]
+    }
+  ]
+}

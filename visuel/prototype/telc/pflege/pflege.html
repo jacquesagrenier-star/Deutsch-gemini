@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>telc Deutsch B1·B2 Pflege avec Elif</title>
+<!--
+  LE TELC DEUTSCH B1·B2 PFLEGE AVEC ELIF (14 nov. 2026, session pflege-examen ; Wortando Pflege, decisions de Jacques
+  du 14 nov.). L'examen blanc COMPLET au format du telc (pflege/FORMAT-TELC-PFLEGE.md) et l'entrainement par epreuve.
+  Plan : pflege/examen/PLAN-EXAMEN.md ; relecture metier : pflege/examen/RELIRE-EXAMEN.md.
+
+  Repose sur la page du DTZ et du telc A2·B1, sans y rien changer : ../../dtz/commun.css, ../../dtz/commun.js,
+  ../langues/<langue>.js (les mots communs dans les 7 autres langues), ../telc-commun.js. Ensuite bareme.js (le calcul
+  du niveau et du certificat, pur) et pflege-examen.js (le module).
+
+  Parametres : lang (fr, en, tr, uk, fa, ar, pt, pl, ru), nuit=1, partie=hoeren|lesen|sprachbausteine|schreiben|
+  sprechen|BLANC (ouvre directement l'entrainement d'une epreuve, ou l'examen blanc), rapide=1 (essais seulement :
+  pauses et chronometres raccourcis). Ouverte par l'app dans le cadre des scenes, comme le telc A2·B1 ; l'app n'a pas
+  encore de porte vers elle (index.html n'est pas touche par cette session).
+-->
+<link rel="stylesheet" href="../../dtz/commun.css?v=3">
+<style>
+.section{font-size:12px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:var(--gris)}
+.mono{width:52px;height:52px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:#1C2430;color:#E8A23A;font:900 24px var(--police)}
+.petit-mono{width:28px;height:28px;font-size:14px}
+.ici{box-shadow:0 0 0 3px var(--ambre);border-radius:16px}
+.trou{display:inline-block;min-width:2.4em;padding:0 4px;border-bottom:2px solid var(--ambre);font-weight:900;color:var(--encre);text-decoration:none}
+.trou.ok{color:var(--vert);border-color:var(--vert)} .trou.ko{color:var(--rouge);border-color:var(--rouge)}
+.opt.occupe{opacity:.45}
+.kasten{display:flex;flex-wrap:wrap;gap:6px 14px;background:var(--papier);border:1px solid var(--papier-trait);border-radius:12px;padding:10px 12px}
+.liste p{margin:0 0 6px}
+.plan{background:var(--papier);border:1px solid var(--papier-trait);border-radius:12px;padding:8px 10px;margin-bottom:8px}
+.plan-t{font-weight:900;margin-bottom:4px}
+.plan-l{font-size:14px;line-height:1.45}
+.plan-l i{font-style:normal;font-weight:800;color:var(--gris)}
+.lettre{background:var(--papier);border:1px solid var(--papier-trait);border-radius:12px;padding:10px 12px;line-height:1.55}
+.lettre p{margin:6px 0}
+.lettre .k,.fiche .k,.photo-texte .k{font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--gris)}
+.lettre .objet{font-weight:900}
+.fiche{background:var(--papier);border:1px solid var(--papier-trait);border-radius:12px;padding:10px 12px}
+.rubrik{margin-top:8px}
+.rubrik-t{font-weight:900;border-bottom:1px solid var(--papier-trait);padding-bottom:2px;margin-bottom:4px}
+.zeile{display:flex;justify-content:space-between;gap:10px;font-size:14px;line-height:1.4;padding:2px 0}
+.zeile b{text-align:right}
+.photo-texte{background:var(--carte);border:2px dashed var(--trait);border-radius:14px;padding:12px}
+.dit-oral{display:flex;gap:8px;align-items:flex-start}
+.dit-oral p{margin:0;line-height:1.45}
+.micro-zone{display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 0}
+.micro{width:76px;height:76px;border-radius:50%;border:0;background:linear-gradient(180deg,#E25B4C,#B83A2D);color:#fff;font-size:30px;cursor:pointer;box-shadow:0 8px 20px rgba(184,58,45,.3)}
+.micro.ecoute{animation:pouls 1.2s ease-in-out infinite}
+@keyframes pouls{50%{transform:scale(1.07)}}
+.micro-info{font-weight:800;font-size:14px;color:var(--gris);text-align:center}
+.entendu{background:var(--carte);border-radius:12px;padding:10px 12px;font-style:italic;line-height:1.45;min-height:2.6em;width:100%}
+textarea{width:100%;min-height:90px;border-radius:12px;border:1px solid rgba(76,86,107,.35);padding:10px;font:600 15px var(--police);background:var(--carte);color:var(--encre)}
+.lien{border:0;background:none;color:var(--bleu);font:800 14px var(--police);cursor:pointer;padding:2px}
+.verdict{border-radius:14px;padding:12px;background:var(--carte)}
+.verdict h3{margin:0 0 6px;font-size:18px}
+.crit{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.4}
+.crit li::before{content:"✗";display:inline-block;width:1.3em;font-weight:900;color:var(--rouge)}
+.crit li.ok::before{content:"✓";color:var(--vert)}
+.redemittel{margin:6px 0 0;padding-inline-start:18px;line-height:1.55}
+details summary{cursor:pointer;font-weight:800}
+label.case{display:flex;gap:8px;align-items:center;text-align:start;cursor:pointer}
+.niveau.b2{background:#14807A} .niveau.b1{background:var(--vert)} .niveau.moins{background:var(--trait)}
+.exemple{opacity:.92}
+.boutons{flex-direction:row;flex-wrap:wrap;gap:8px}
+</style>
+</head>
+<body>
+<div class="haut">
+  <button class="retour" id="retour" type="button" aria-label="Retour">‹</button>
+  <div class="titre" id="titre">telc Deutsch B1·B2 Pflege</div>
+  <div class="chrono" id="chrono" dir="ltr" hidden></div>
+</div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<div class="voile" id="voile" hidden><div class="panneau" id="panneau"></div></div>
+<script>
+// le profil, pose AVANT commun.js : le stockage local (wortando_telc_pflege_...), le titre ; l'accueil de commun.js
+// est remplace par celui du module (pfAccueil), qui n'a ni Mark ni ses tuiles
+window.PROFIL_EXAMEN = { id: "telc_pflege", titre: "telc Deutsch B1·B2 Pflege", intro: "", sur: 59, seriesExamen: 0, tuiles: [] };
+</script>
+<script src="../../themes/tirage.js?v=1"></script>
+<script src="../../dtz/commun.js?v=6"></script>
+<script>
+(() => {
+  const l = ((new URLSearchParams(location.search).get("lang")) || "fr").toLowerCase().split(/[-_]/)[0];
+  if (["tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l)) document.write('<script src="../langues/' + l + '.js?v=7"><\/script>');
+})();
+</script>
+<script src="../telc-commun.js?v=4"></script>
+<script src="bareme.js?v=1"></script>
+<script src="pflege-examen.js?v=1"></script>
+<script>
+Promise.all(DTZ.chargements).then(() => {
+  const p = Q.get("partie"), partie = p && DTZ.parties.find(x => x.id === p);
+  if (partie){ TELC.direct = true; partie.ouvrir(); } else accueil();
+}).catch(e => { console.error(e); $("zone").innerHTML = '<div class="bloc"><p>Les données de l’examen ne se chargent pas.</p></div>'; });
+</script>
+</body>
+</html>
