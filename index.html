@@ -37353,7 +37353,7 @@ function finSeanceSuivie(finie, raison){
     const s = seanceCourante();
     seanceSuivie = null;
     if(!s) return;
-    if(finie){ s.p = s.n; s.f = 1; s.q = "f"; delete s.a; }
+    if(finie){ s.p = s.n; s.f = 1; s.q = "f"; delete s.a; oublierSiSeance(s.d); }
     else { s.a = activiteSeance(); if(raison) s.q = raison; }
     s.o = objectifAtteint();
     if(s.p > 0 || finie) s.t = dureeSeance(s);
@@ -57252,6 +57252,7 @@ function estExpressionCarte(mode, texte){
 }
 function loadFlashcard(){
     oublierCarteJugee();   // une carte (re)dessinee n'a pas encore ete jugee
+    try{ ecrireSeanceEnCours(); }catch(e){}   // la seance du jour retient sa carte (reprise du 14 nov.)
     rendreDefilementVerso();   // la carte suivante repart du haut si l'app avait fait defiler la precedente
     updateXpComboDisplay();
     hideFlashcardEnd();
@@ -63445,7 +63446,10 @@ async function encoreUneSeance(){
     if(ENCORE_EN_COURS) return;   // le deuxieme toucher ne compte rien
     ENCORE_EN_COURS = true;
     hideFlashcardEnd();
-    try{ ajouterSerieNeufs(); }catch(e){}
+    // 14 nov. 2026 : une seance entamee se reprend ; la dose de mots neufs n'est que pour une seance NOUVELLE.
+    let reprise = false;
+    try{ reprise = seanceAReprendre(); }catch(e){}
+    if(!reprise){ try{ ajouterSerieNeufs(); }catch(e){} }
     try{ await ouvrirSeanceDuJour(true); }catch(e){}
     ENCORE_EN_COURS = false;
 }
@@ -72746,9 +72750,161 @@ function majAujourdhuiScene(on){
 // L'anglais (essai) a eu la meme regle du 27 oct. (v983) jusqu'a ce que ses
 // Premiers pas, son A1 voyage, ses exercices et ses scenes existent (v986).
 function seanceJaponaise(){ return LANGUE_APPRISE === "ja"; }
+// ============ « CONTINUER LA SEANCE » REPREND LA SEANCE (decision de Jacques du 14 nov. 2026, « Oui, vraie reprise ») ============
+// Le retour de Jacques sur la v1189 : il ouvre sa deuxieme seance, fait quelques cartes, sort, revient -- « comme si
+// j'avais rien fait ». L'accueil disait « Continuer la seance » (depuis le 12 nov.), mais ouvrirSeanceDuJour()
+// reconstruisait TOUJOURS un paquet neuf : carte 1, barre a zero, une entree seancesJson de plus, et les mots seulement
+// presentes de nouveau en tete. Rien ne gardait la seance en cours. Desormais :
+//   (a) EN MEMOIRE : la seance du jour quittee (« ‹ », l'accueil, Tout le contenu…) reste en SEANCE_MEMO ; la rouvrir
+//       le meme jour y retourne -- meme paquet, meme carte, memes parties, PASSAGES_VUS, la meme entree seancesJson.
+//   (b) SUR LE TELEPHONE : la meme seance est ecrite a chaque carte sous SEANCE_EN_COURS_KEY (le jour, la version, les
+//       cartes, la position, les parties, les mots presentes, l'etat de chaque mot au moment de l'ecriture). Si l'app
+//       a ete tuee (iPhone en arriere-plan), elle se reconstruit le meme jour tant qu'il reste des cartes. Le
+//       lendemain, ou apres une mise a jour (version differente), elle est abandonnee proprement : une seance neuve.
+//       Une carte de mot jugee AILLEURS entre-temps (autre appareil, nuage) -- son etat a change depuis l'ecriture et
+//       elle n'est plus due -- n'est pas reposee.
+//   (c) ajouterSerieNeufs() (la dose de mots neufs d'« Encore une seance ») seulement au debut d'une VRAIE nouvelle
+//       seance : jamais sur une reprise (un aller-retour sans carte passee en ouvrait 15 de plus chaque fois).
+// Premiers pas garde sa propre reprise (sa position, marquerPositionPremiersPas) : il n'entre pas ici.
+const SEANCE_EN_COURS_KEY = PREFIXE_STOCKAGE + "seanceEnCours";
+let SEANCE_MEMO = null;   // { d, jour, v, paquet, full, theme, niveau, parts, pool, ciel, passages }
+function signatureMot(it){
+    try{
+        if(!it || it.mode === "phrase" || !it.themeId) return "";
+        const st = getWordState(it.themeId, it.index);
+        return (st.srsHits || 0) + "|" + (st.due || 0) + "|" + (st.mastered ? 1 : 0);
+    }catch(e){ return ""; }
+}
+// Une seance finie n'est plus a reprendre : en memoire ou sur le disque, si c'est bien elle (sa date d'ouverture).
+function oublierSiSeance(d){
+    let disque = null;
+    try{ disque = JSON.parse(localStorage.getItem(SEANCE_EN_COURS_KEY) || "null"); }catch(e){ disque = null; }
+    if((SEANCE_MEMO && SEANCE_MEMO.d === d) || (disque && disque.d === d)) oublierSeanceEnCours();
+}
+function oublierSeanceEnCours(){
+    SEANCE_MEMO = null;
+    try{ localStorage.removeItem(SEANCE_EN_COURS_KEY); }catch(e){}
+}
+// La seance du jour qui vient d'etre construite (ou reprise) devient « la seance en cours ».
+function retenirSeanceEnCours(niveau){
+    if(!seanceSuivie || !estSeanceDuJourOuverte()) return;
+    SEANCE_MEMO = { d: seanceSuivie.d, jour: getTodayStr(), v: APP_VERSION, paquet: currentCards, full: currentCardsFull,
+                    theme: currentTheme, niveau: niveau, parts: SEANCE_PARTS, pool: POOL_NEUFS_SEANCE, ciel: CIEL_AV,
+                    passages: PASSAGES_VUS };
+    ecrireSeanceEnCours();
+}
+// Appelee a chaque carte de la seance (loadFlashcard) : la position, et ce qui a pu s'ajouter (« Encore »).
+function ecrireSeanceEnCours(){
+    const m = SEANCE_MEMO;
+    if(!m || currentCards !== m.paquet) return;
+    m.pos = currentFlashcard;
+    try{
+        const parts = m.parts && m.parts.paquet === m.paquet ? m.paquet.map(it => m.parts.parts.get(it) || "") : null;
+        const presentes = [];
+        m.paquet.forEach(it => { try{ if(it && MOTS_PRESENTES.has(clePresentation(it))) presentes.push(clePresentation(it)); }catch(e){} });
+        const v = { j: m.jour, v: m.v, d: m.d, pos: currentFlashcard, niveau: m.niveau, rattrapage: !!m.rattrapage,
+                    theme: m.theme ? { id: m.theme.id, name: m.theme.name } : null,
+                    cartes: m.paquet, parts: parts,
+                    infos: m.parts ? { themeId: m.parts.themeId, niveau: m.parts.niveau, etape: m.parts.etape, rang: m.parts.rang } : null,
+                    passages: [...(m.passages || [])], presentes: presentes, snap: m.paquet.map(signatureMot) };
+        localStorage.setItem(SEANCE_EN_COURS_KEY, JSON.stringify(v));
+    }catch(e){
+        // Une carte qui ne se met pas en texte, ou le stockage plein : la reprise en memoire reste, celle du disque non.
+        try{ localStorage.removeItem(SEANCE_EN_COURS_KEY); }catch(e2){}
+    }
+}
+// Une seance a reprendre, aujourd'hui ? (l'accueil et « Encore une seance » le demandent aussi)
+function seanceEnCoursLue(){
+    let v = null;
+    try{ v = JSON.parse(localStorage.getItem(SEANCE_EN_COURS_KEY) || "null"); }catch(e){ v = null; }
+    if(!v || typeof v !== "object" || !Array.isArray(v.cartes)) return null;
+    if(v.j !== getTodayStr() || v.v !== APP_VERSION){ oublierSeanceEnCours(); return null; }
+    return v;
+}
+function seanceAReprendre(){
+    try{
+        if(premiersPasEnCours()) return false;
+        const m = SEANCE_MEMO;
+        if(m && m.jour === getTodayStr() && m.v === APP_VERSION && m.paquet && m.paquet.length) return true;
+        const v = seanceEnCoursLue();
+        return !!(v && typeof v.pos === "number" && v.pos < v.cartes.length);
+    }catch(e){ return false; }
+}
+function reprendreSeanceDuJour(){
+    if(premiersPasEnCours()) return false;
+    const niveau = niveauSeance();
+    let m = SEANCE_MEMO;
+    if(m && (m.jour !== getTodayStr() || m.v !== APP_VERSION || m.niveau !== niveau)) m = null;
+    let pos = null, presentes = [];
+    if(m){
+        // (a) la seance est encore en memoire : on y retourne telle quelle.
+        let lu = null;
+        try{ lu = seanceEnCoursLue(); }catch(e){ lu = null; }
+        pos = (lu && lu.d === m.d && typeof lu.pos === "number") ? lu.pos : (typeof m.pos === "number" ? m.pos : 0);
+    } else {
+        // (b) l'app a ete fermee : on la reconstruit depuis le stockage.
+        const v = seanceEnCoursLue();
+        if(!v || v.niveau !== niveau || typeof v.pos !== "number" || v.pos >= v.cartes.length) return false;
+        const cartes = v.cartes.slice(), noms = Array.isArray(v.parts) ? v.parts.slice() : null, snap = Array.isArray(v.snap) ? v.snap : [];
+        // Une carte de mot jugee ailleurs depuis l'ecriture, et plus due : on ne la repose pas.
+        const garder = cartes.map((it, i) => {
+            if(i < v.pos || !it || it.mode === "phrase" || !it.themeId) return true;
+            const sig = signatureMot(it);
+            if(!snap[i] || sig === snap[i]) return true;
+            try{ const st = getWordState(it.themeId, it.index); return !(st.mastered || (st.due && st.due > Date.now())); }
+            catch(e){ return true; }
+        });
+        const paquet = cartes.filter((it, i) => garder[i]);
+        const nomsGardes = noms ? noms.filter((x, i) => garder[i]) : null;
+        if(v.pos >= paquet.length) { oublierSeanceEnCours(); return false; }
+        let full = paquet.slice();
+        try{ full = echeancesDeSeance(niveau, accesComplet()); }catch(e){}
+        let parts = null;
+        if(nomsGardes && v.infos){
+            const map = new Map();
+            paquet.forEach((it, i) => { if(nomsGardes[i]) map.set(it, nomsGardes[i]); });
+            parts = Object.assign({ paquet: paquet, parts: map }, v.infos);
+        }
+        m = { d: v.d, jour: v.j, v: v.v, paquet: paquet, full: full, rattrapage: !!v.rattrapage, theme: v.theme || { id: "seance_" + niveau, name: t("seance_titre") + " · " + niveau },
+              niveau: niveau, parts: parts, pool: null, ciel: null, passages: new Set(Array.isArray(v.passages) ? v.passages : []) };
+        pos = v.pos;
+        presentes = Array.isArray(v.presentes) ? v.presentes : [];
+    }
+    if(!m || !m.paquet || pos === null || pos >= m.paquet.length) return false;
+    SEANCE_MEMO = m;
+    presentes.forEach(k => MOTS_PRESENTES.add(k));
+    currentCardsFull = m.full;
+    currentCards = m.paquet;
+    POOL_NEUFS_SEANCE = m.pool;
+    CIEL_AV = m.ciel;
+    // La meme entree seancesJson : la seance continue, elle n'en commence pas une autre.
+    // Pendant le rattrapage, le compte de cartes (p) ne suit plus le paquet : la seance garde le sien.
+    const paquetSuivi = m.rattrapage ? null : m.paquet;
+    if(!seanceSuivie || seanceSuivie.d !== m.d){
+        if(seanceSuivie) finSeanceSuivie(false);
+        seanceSuivie = { d: m.d, paquet: paquetSuivi };
+        derniereSeanceD = m.d;
+        try{ majSeanceSuivie(s => { delete s.q; if(paquetSuivi) s.p = Math.min(s.n, Math.max(s.p || 0, pos)); }); }catch(e){}
+    } else seanceSuivie.paquet = paquetSuivi;
+    retourSeanceAccueil = true;
+    panneauAvantFlashcards = null;
+    flashcardFromSearch = false;
+    currentTheme = m.theme;
+    if(m.passages !== PASSAGES_VUS){ PASSAGES_VUS.clear(); (m.passages || []).forEach(p => PASSAGES_VUS.add(p)); m.passages = PASSAGES_VUS; }
+    SEANCE_PARTS = m.parts;
+    currentFlashcard = pos;
+    flashcardMode = (m.paquet[pos] && m.paquet[pos].mode) || "nomen";
+    setFlashHeader("seance_titre", null);
+    showScreen("flashcards");
+    loadFlashcard();
+    return true;
+}
+
 async function ouvrirSeanceDuJour(sansScene){
     // v828 : en Premiers pas, la porte des mots mene au parcours des 50 mots.
     if(premiersPasEnCours()){ ouvrirPremiersPas(); return; }
+    // 14 nov. 2026 : la seance du jour entamee se reprend (voir « CONTINUER LA SEANCE » REPREND LA SEANCE).
+    try{ if(reprendreSeanceDuJour()) return; }catch(e){}
     PHRASES_POSEES.clear();
     RETOURS_FIN_SEANCE.length = 0;
     // L'essai des scenes (v713) : l'ecran de choix, une fois par jour.
@@ -72867,6 +73023,8 @@ async function ouvrirSeanceDuJour(sansScene){
     }
     currentFlashcard = 0;
     flashcardMode = seance[0].mode || "nomen";
+    // 14 nov. 2026 : elle devient la seance en cours, a reprendre si on la quitte (reprendreSeanceDuJour).
+    try{ retenirSeanceEnCours(niveau); }catch(e){}
     setFlashHeader("seance_titre", null);
     showScreen("flashcards");
     loadFlashcard();
@@ -74079,6 +74237,8 @@ function etatSeanceAccueil(){
     if(der && !der.f && (der.p || 0) > 0) return "entamee";
     let n = 0;
     try{ n = seancesFiniesAujourdhui(); }catch(e){}
+    // 14 nov. 2026 : une « Encore une seance » ouverte puis quittee avant sa premiere carte se reprend aussi.
+    if(n >= 1){ try{ if(seanceAReprendre()) return "entamee"; }catch(e){} }
     return n >= 1 ? "faite" : "neuve";
 }
 // Le bouton de la carte de la seance : « Commencer la seance », « Continuer la seance », ou, la seance faite,
@@ -76885,6 +77045,8 @@ function nextFlashcard(){
         const finitSurTheme = currentCards.some(c => c && c.forme === "theme_arret");
         const rattrapage = cartes => {
             if(SEANCE_PARTS) SEANCE_PARTS.rattrapage = true;   // la fin de ce paquet est bien celle de la seance
+            // La seance en cours (reprise du 14 nov.) suit son rattrapage : sortir pendant lui y ramene.
+            try{ if(SEANCE_MEMO && SEANCE_MEMO.paquet === currentCards){ SEANCE_MEMO.paquet = cartes; SEANCE_MEMO.rattrapage = true; } }catch(e){}
             currentCards = cartes;
             currentFlashcard = 0;
             loadFlashcard();
