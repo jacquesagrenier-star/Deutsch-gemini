@@ -72969,7 +72969,7 @@ function regrouperSeance(seance, av){
     const rang = c => { const i = ordre.indexOf(parts.get(c)); return i < 0 ? ordre.length : i; };
     const rangG = c => { const g = groupePartie(parts.get(c)); const i = GROUPES_SEANCE.indexOf(g); return i < 0 ? GROUPES_SEANCE.length : i; };
     const triees = seance.map((c, i) => [c, i]).sort((a, b) => rangG(a[0]) - rangG(b[0]) || rang(a[0]) - rang(b[0]) || a[1] - b[1]).map(x => x[0]);
-    const cartes = espacerPhrasesEtape(triees, parts);
+    const cartes = eloignerPhrasesDeLeurMot(espacerPhrasesEtape(triees, parts), parts);
     const groupes = new Map();
     cartes.forEach(c => { if(c) groupes.set(c, groupePartie(parts.get(c))); });
     return { cartes: cartes, parts: groupes };
@@ -73033,6 +73033,35 @@ function espacerPhrasesEtape(cartes, parts){
     const sortie = cartes.slice();
     refait.forEach((c, k) => { sortie[idx[0] + k] = c; });
     return sortie;
+}
+// Ligne 84 (anti-echo, decisions du 13 nov.) : le tri par partie rapproche une carte-phrase de la carte de son mot
+// (les deux vont dans la partie du mot) -- 30 jours d'A1 mesures : 99 phrases a moins de quatre cartes de leur mot.
+// Une telle phrase recule dans SA partie, a ANTI_ECHO_PHRASE + 1 cartes apres son mot ; jamais avant lui (v1124), jamais
+// hors de sa partie de la barre. Une partie trop courte la laisse ou elle est.
+function eloignerPhrasesDeLeurMot(cartes, parts){
+    const out = cartes.slice();
+    const g = c => groupePartie(parts.get(c));
+    const cle = c => c.themeId + ":" + c.index;
+    const motDe = (liste, c) => liste.findIndex(d => d && d.mode !== "phrase" && cle(d) === cle(c.cible));
+    for(let passe = 0; passe < 2; passe++){
+        for(let i = 0; i < out.length; i++){
+            const c = out[i];
+            if(!c || c.mode !== "phrase" || !c.cible || !c.phrase) continue;
+            const m = motDe(out, c);
+            if(m < 0 || Math.abs(m - i) > ANTI_ECHO_PHRASE) continue;
+            const gr = g(c);
+            let fin = i;
+            while(fin + 1 < out.length && g(out[fin + 1]) === gr) fin++;
+            const reste = out.slice(0, i).concat(out.slice(i + 1));
+            const m2 = motDe(reste, c);
+            const but = m2 + ANTI_ECHO_PHRASE + 1;
+            // fin - 1 : la derniere place de la partie une fois la phrase retiree ; on peut se poser juste apres.
+            if(m2 < 0 || g(reste[m2]) !== gr || but > fin) continue;
+            reste.splice(but, 0, c);
+            for(let k = 0; k < out.length; k++) out[k] = reste[k];
+        }
+    }
+    return out;
 }
 function seancePartsActive(){
     return !!(SEANCE_PARTS && currentCards === SEANCE_PARTS.paquet && currentTheme && currentTheme.id === SEANCE_PARTS.themeId);

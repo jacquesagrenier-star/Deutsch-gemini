@@ -58,7 +58,8 @@ async ([jour, cible]) => {
   const phrases = [], echos = [];
   cartes.forEach((c, k) => {
     if(c.mode !== 'phrase' || !c.cible || !c.phrase) return;
-    phrases.push(c.phrase.de);
+    // Le bloc d'une dictee (« ordre », 3 a 5 cartes avant elle, v892) reprend VOULUMENT la phrase de la dictee.
+    if(!c.prepaDictee) phrases.push(c.phrase.de);
     const kc = cle(c.cible);
     for(let j = Math.max(0, k - 4); j <= Math.min(cartes.length - 1, k + 4); j++){
       const d = cartes[j];
