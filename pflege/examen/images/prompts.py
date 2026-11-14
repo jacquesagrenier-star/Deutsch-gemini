@@ -29,33 +29,35 @@ SANS_TEXTE = ("\n\nThe whole picture carries no writing, numbers, print, symbol 
               "name badge, no embroidery and no brand, every paper is blank or carries only grey lines and empty boxes, "
               "and every screen shows only plain pale-blue panels.")
 
-# les tenues et les traits, mot pour mot comme dans pflege/scenes/portraits.py
-OLENA = ("OLENA, a woman of forty-four from Ukraine, a nurse in this care home, the woman of the first reference "
-         "picture: of medium height and sturdy, with fair skin, blue-grey eyes, fine laugh lines and a warm, motherly "
-         "smile, her straight ash-blonde hair falling to her shoulders, held back behind her ears. She wears a plain "
-         "sage-green short-sleeved polo shirt, navy-blue trousers and black closed shoes.")
-ARUN = ("ARUN, a man of thirty-one from Kerala in India, a nurse in this care home, the man of the first reference "
-        "picture: of medium height and build, with dark-brown skin, short neat black hair parted on the side, dark eyes "
-        "behind thin black-framed glasses, a short neat black moustache and a gentle, patient smile. He wears a plain "
-        "sage-green short-sleeved polo shirt, navy-blue trousers and black closed shoes.")
-YUSUF = ("YUSUF, a man of thirty-four from Syria, a nurse on the night shift, the man of the first reference picture: "
-         "tall and broad-shouldered, with light olive skin, short black hair, a short well-trimmed black beard, dark eyes "
-         "and a calm, kind, slightly tired look. He wears a plain white short-sleeved nurse's tunic, plain white trousers "
-         "and white closed shoes.")
-JONAS = ("JONAS, a German man of thirty-eight, a senior nurse, the man of the second reference picture: tall and lean, "
-         "with fair skin, short sandy-blond hair, light stubble, blue eyes and a friendly face. He wears a plain white "
-         "short-sleeved nurse's tunic, plain white trousers and white trainers; a pair of trauma scissors and a black pen "
-         "sit in the breast pocket.")
-ELIF = ("ELIF, a young woman of twenty-nine from Turkey, a nurse, the woman of the first reference picture: of medium "
-        "height and slim, with olive skin, warm dark-brown eyes, straight dark eyebrows, a small straight nose, her long "
-        "dark-brown hair tied back in a low ponytail with a few loose strands at her temples, small round silver stud "
-        "earrings. She wears a plain white short-sleeved nurse's tunic with a V-neck and two lower pockets, plain white "
-        "trousers and white closed nursing shoes, a black ballpoint pen clipped to the breast pocket and a slim black "
-        "wristwatch on her wrist.")
-AMIRA_SPORT = ("AMIRA, a young woman of twenty-six from Tunisia, the woman of the third reference picture: of medium "
-               "height, with light-brown skin, dark-brown eyes, full dark eyebrows, a round face and a bright, energetic "
-               "smile, her thick black curly hair gathered in a high bun; today in a navy-blue running jacket, black "
-               "running tights and grey running shoes.")
+# les soignants (portraits maitres de pflege-scenes, 14 nov.) : L'IMAGE FAIT FOI. Une ligne par reference, selon la
+# consigne de pflege-scenes (« the Nth reference picture shows <role> : her face, hair and build stay exactly as in
+# it »), puis la tenue seule ; aucun trait du visage ni des cheveux qui pourrait contredire le portrait.
+def soignant(nom, qui, ref, il, tenue):
+    poss = {"he": "his", "she": "her"}[il]
+    return ("%s, %s. The %s reference picture shows %s: %s face, hair and build stay exactly as in it. %s wears %s."
+            % (nom.upper(), qui, ref, nom, poss, il.capitalize(), tenue))
+
+
+VERT = "a plain sage-green short-sleeved polo shirt, navy-blue trousers and black closed shoes"
+BLANC = "a plain white short-sleeved nurse's tunic, plain white trousers and white closed shoes"
+OLENA = soignant("Olena", "a nurse of forty-four from Ukraine, working in this care home", "first", "she",
+                 VERT + ", her ash-blonde hair tied back")
+ARUN = soignant("Arun", "a nurse of thirty-one from Kerala in India, working in this care home", "first", "he",
+                VERT + ", his thin black-framed glasses on")
+YUSUF = soignant("Yusuf", "a nurse of thirty-four from Syria, on the night shift", "first", "he", BLANC)
+JONAS = soignant("Jonas", "a German senior nurse of thirty-eight", "second", "he",
+                 BLANC.replace("white closed shoes", "white trainers") +
+                 ", a pair of trauma scissors and a black pen in the breast pocket")
+ELIF = soignant("Elif", "a young nurse of twenty-nine from Turkey", "first", "she",
+                "a plain white short-sleeved nurse's tunic with a V-neck, plain white trousers and white closed nursing "
+                "shoes, a black pen clipped to the breast pocket, a slim black wristwatch, her long dark-brown hair in a "
+                "low ponytail")
+# Amira porte au travail un foulard en jersey bleu marine (decision de Jacques : « Amira seulement ») ; au jogging,
+# un foulard de sport du meme bleu
+AMIRA_SPORT = ("AMIRA, a young nurse of twenty-six from Tunisia. The third reference picture shows Amira: her face and "
+               "build stay exactly as in it, and her hair stays covered as in it. Today she wears a close-fitting "
+               "navy-blue sports headscarf in jersey covering her hair and neck, a long-sleeved navy-blue running top, "
+               "black running trousers and grey running shoes.")
 # Frau Weber et Herr Schulze : des decoupes de la scene soins-altenheim (pflege-scenes, 14 nov.), table et objets
 # compris dans le cadre : la reference sert pour la PERSONNE seulement
 WEBER = ("FRAU WEBER, a resident of eighty-one, the woman of the {ref} reference picture (that picture gives her face, her hair and "
@@ -65,8 +67,9 @@ SCHULZE = ("HERR SCHULZE, a resident of eighty-seven, the man of the {ref} refer
            "hair and his clothes; here he is in the place described below), his face, skin and hair "
            "exactly as in it: white hair, a short white beard, a skin-coloured hearing aid at his ear, a grey cardigan "
            "over a white shirt")
-KRUEGER = ("FRAU KRÜGER, a woman of about forty-five, the woman of the first reference picture: shoulder-length "
-           "dark-blonde hair, a navy-blue raincoat over a grey jumper and dark jeans")
+KRUEGER = ("FRAU KRÜGER, a woman of about forty-five, the woman of the first reference picture (that picture gives her "
+           "face, her hair and her clothes; here she is in the place described below), her face and hair exactly as in "
+           "it: shoulder-length dark-blonde hair, a navy-blue raincoat over a grey jumper and dark jeans")
 
 PHOTOS = {
     # 1A : la photo de la partie 1A (description de sprechen.json, tache sp1a)
@@ -76,7 +79,7 @@ PHOTOS = {
                              lumiere="soft daylight from a large window at the end of the corridor") +
         "The third reference picture is a real phone photograph taken in the common room of the same care home: use it "
         "for the photographic look and for the warm, homely style of the house; this picture is set in another room of the house.\n\n" +
-        WEBER.format(ref="second") + ", now in a lilac twin-set and grey trousers and soft dark-red slippers, walks slowly "
+        WEBER.format(ref="second") + ", with grey trousers and soft dark-red slippers, walks slowly "
         "in the middle of the picture, holding the handles of a grey four-wheeled walker with a small basket, looking "
         "ahead along the corridor with a small proud smile.\n\n" + OLENA + " She walks beside Frau Weber, on the left of "
         "the picture, one hand lightly on Frau Weber's back, her eyes on Frau Weber's feet, smiling.\n\n"
@@ -154,10 +157,12 @@ PHOTOS = {
                              lumiere="fresh morning sunlight through the trees") +
         "The three reference pictures are real phone photographs of the three women, in their work clothes; here they "
         "are in sports clothes.\n\n"
-        "ELIF, the young woman of the first reference picture, with her long dark-brown hair in a ponytail, in a white "
-        "running top, black running tights and white running shoes, runs on the left of the picture.\n\n"
-        "OLENA, the woman of the second reference picture, with her ash-blonde hair tied back, in a sage-green running "
-        "jacket, dark-grey running trousers and grey running shoes, runs in the middle.\n\n" + AMIRA_SPORT +
+        "ELIF, a young nurse of twenty-nine from Turkey. The first reference picture shows Elif: her face, hair and "
+        "build stay exactly as in it. Today she wears a white running top, black running tights and white running "
+        "shoes, her long dark-brown hair in a ponytail. She runs on the left of the picture.\n\n"
+        "OLENA, a nurse of forty-four from Ukraine. The second reference picture shows Olena: her face, hair and build "
+        "stay exactly as in it. Today she wears a sage-green running jacket, dark-grey running trousers and grey "
+        "running shoes, her ash-blonde hair tied back. She runs in the middle.\n\n" + AMIRA_SPORT +
         " She runs on the right of the picture.\n\n"
         "All three run side by side towards the left of the picture, laughing together, their eyes on each other or on "
         "the path. THE PARK: a gravel path, green lawns, tall trees in autumn colours, a bench far behind." + SANS_TEXTE,
