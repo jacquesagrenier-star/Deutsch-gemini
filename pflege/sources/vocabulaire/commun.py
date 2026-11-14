@@ -1,0 +1,99 @@
+# -*- coding: utf-8 -*-
+"""Les briques des sources du vocabulaire des Soins (un fichier par theme : tNN_*.py).
+
+ON CORRIGE ICI, JAMAIS DANS pflege/datos/ : pflege/datos/themes.json est DERIVE,
+refait par  python pflege/outils/construire_vocabulaire.py
+
+Une entree = une carte. Les champs sont ecrits en une ligne, separes par « | », dans
+un ORDRE FIXE :
+
+  traductions (9) : fr | en | tr | uk | fa | ar | pt | pl | ru
+  exemple    (10) : de | fr | en | tr | uk | fa | ar | pt | pl | ru
+
+- le francais d'un NOM porte son article (« l'escarre », « la toilette ») : le
+  constructeur en tire article_fr, comme dans themes.json ;
+- pt = le portugais du Bresil (la langue d'interface `pt` de l'app) ;
+- chaque terme est le MOT DU METIER dans la langue cible (« escarre », « pressure
+  ulcer », « bası yarası »), pas une traduction mot a mot ;
+- un prenom s'ecrit {Elif}, {Jonas}, {Frau Hoffmann}... : il est remplace a la
+  construction par la table de personnages.py (les noms peuvent encore changer).
+
+Les constructeurs :
+
+  N(niveau, "die Schulter", "Schultern", trad, ex)  nom ; pluriel "—" = sans pluriel,
+                                                     "(Pl.)" = toujours au pluriel
+  V(niveau, "lagern", trad, ex, aux="haben", p2="gelagert")   verbe
+  A(niveau, "geschwollen", trad, ex)                adjectif (ou paire d'adjectifs)
+  X(niveau, "Wie geht es Ihnen?", trad, ex)         expression, phrase, groupe de mots
+  R(niveau, "Kopf", ex)                             REPRISE d'un mot du corpus general :
+                                                     meme carte, une phrase de soins en
+                                                     plus ; precision=trad si le corpus
+                                                     ne donne pas le sens du metier
+
+Options communes : relire=True (une infirmiere doit valider ; ⚕️ de l'annexe A),
+note="..." (pour la relectrice, en francais, jamais affichee),
+sens_distinct="..." (le mot existe au corpus dans un AUTRE sens : on en fait une
+carte a part, et on dit lequel).
+"""
+
+LANGUES = ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"]
+NIVEAUX = ("A2", "B1", "B2")
+
+
+def _champs(texte, n, quoi, mot):
+    parts = [p.strip() for p in texte.split("|")]
+    if len(parts) != n:
+        raise ValueError("%s : %s attend %d champs, en a %d" % (mot, quoi, n, len(parts)))
+    if any(not p for p in parts):
+        raise ValueError("%s : %s a un champ vide" % (mot, quoi))
+    return parts
+
+
+def _base(niveau, typ, mot, trad, ex, opts):
+    if niveau not in NIVEAUX:
+        raise ValueError("%s : niveau %r" % (mot, niveau))
+    e = {"niveau": niveau, "type": typ, "mot": mot}
+    if trad is not None:
+        e["trad"] = _champs(trad, 9, "la traduction", mot)
+    e["ex"] = _champs(ex, 10, "l'exemple", mot)
+    for k in ("relire", "note", "sens_distinct", "aux", "p2", "feminin", "masculin", "source"):
+        if opts.get(k):
+            e[k] = opts[k]
+    if opts.get("precision"):
+        e["precision"] = _champs(opts["precision"], 9, "la precision", mot)
+    inconnus = set(opts) - {"relire", "note", "sens_distinct", "aux", "p2", "feminin", "masculin", "source", "precision", "typ"}
+    if inconnus:
+        raise ValueError("%s : options inconnues %s" % (mot, sorted(inconnus)))
+    return e
+
+
+def N(niveau, art_mot, pluriel, trad, ex, **opts):
+    art, _, mot = art_mot.partition(" ")
+    if art not in ("der", "die", "das"):
+        raise ValueError("%s : article manquant" % art_mot)
+    e = _base(niveau, "nom", mot, trad, ex, opts)
+    if pluriel == "(Pl.)":
+        e["genre"], e["pluriel"] = "die (Pl.)", mot
+    else:
+        e["genre"], e["pluriel"] = art, pluriel
+    return e
+
+
+def V(niveau, mot, trad, ex, **opts):
+    return _base(niveau, "verbe", mot, trad, ex, opts)
+
+
+def A(niveau, mot, trad, ex, **opts):
+    return _base(niveau, "adjectif", mot, trad, ex, opts)
+
+
+def X(niveau, mot, trad, ex, **opts):
+    return _base(niveau, "expression", mot, trad, ex, opts)
+
+
+def R(niveau, mot, ex, **opts):
+    typ = opts.pop("typ", None)
+    e = _base(niveau, "reprise", mot, None, ex, opts)
+    if typ:
+        e["type_corpus"] = typ
+    return e
