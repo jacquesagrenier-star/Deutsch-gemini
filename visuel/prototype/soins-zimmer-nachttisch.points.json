@@ -1,0 +1,249 @@
+{
+ "_lisez_moi": [
+  "Scene de soins 1, la chambre du patient (14 nov. 2026). Memes regles que les scenes generales (klassenzimmer.points.json, arztpraxis.points.json) ; construite par visuel/prototype/construire.py, qui lit aussi pflege/datos/themes.json pour une scene soins-. Zones mesurees sur une grille de 5 % de l'image REELLE. Les couches sont un BROUILLON non relu : ce qui porte ⚕️ attend l'infirmiere relectrice."
+ ],
+ "image": "soins-zimmer-nachttisch.webp",
+ "source": "~/.wortando/pflege/scenes/soins-zimmer-nachttisch.png",
+ "titre": "Im Patientenzimmer",
+ "alt": "La table de chevet de Herr Brandt vue de près : un verre d'eau, un gobelet à bec, ses lunettes, ses appareils auditifs sur un mouchoir et, sur l'étagère, la boîte de sa prothèse dentaire ; à droite, sa main posée sur la couette, avec son bracelet.",
+ "consigne": "Touche un objet de la table de chevet.",
+ "vues": [
+  "soins-zimmer",
+  "soins-zimmer-nachttisch",
+  "soins-zimmer-aufstehen"
+ ],
+ "nom_vue": "La table de chevet",
+ "couches": {
+  "A2": {
+   "titre": "Wo? — au lit du patient",
+   "qs": [
+    {
+     "q": "Wo liegt die Brille?",
+     "c": [
+      "auf dem Nachttisch",
+      "unter dem Nachttisch",
+      "neben dem Fenster"
+     ],
+     "f": "brille",
+     "r": "nachttisch",
+     "phrase": "Die Brille liegt auf dem Nachttisch.",
+     "sens": "Les lunettes sont sur la table de chevet.",
+     "n": "<b>Wo?</b> → datif : der Nachttisch → auf <b>dem</b> Nachttisch."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "L'impératif poli — Sie",
+   "qs": [
+    {
+     "q": "Er soll seine Brille aufsetzen. Was sagen Sie?",
+     "c": [
+      "Setzen Sie bitte Ihre Brille auf.",
+      "Setzen Sie bitte deine Brille auf.",
+      "Setzen Sie bitte seine Brille auf."
+     ],
+     "f": "brille",
+     "phrase": "Setzen Sie bitte Ihre Brille auf.",
+     "sens": "Mettez vos lunettes, s'il vous plaît.",
+     "n": "À Sie répond <b>Ihr</b>, avec une majuscule : Ihre Brille = vos lunettes."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Le style des transmissions",
+   "qs": [
+    {
+     "q": "Er hat bis zehn Uhr nur einen halben Becher getrunken. Was schreiben Sie?",
+     "c": [
+      "Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.",
+      "Er trinkt wenig, das ist nicht so gut.",
+      "Pat. hat keinen Durst, also nichts gemacht."
+     ],
+     "f": "schnabelbecher",
+     "phrase": "Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.",
+     "sens": "Quantité bue jusqu'à 10 h : un demi-gobelet, patient encouragé à boire.",
+     "n": "Une quantité (<b>ein halber Becher</b>) et une action (<b>motiviert</b>), pas une impression. ⚕️ Pat. = Patient."
+    }
+   ]
+  },
+  "SIT": {
+   "titre": "Que faites-vous ?",
+   "niveau": "B2",
+   "qs": [
+    {
+     "q": "Herr Brandt versteht Sie schlecht. Sein Hörgerät liegt auf dem Nachttisch. Was tun Sie?",
+     "c": [
+      "Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.",
+      "Ich spreche einfach sehr laut.",
+      "Ich erkläre es später seiner Tochter."
+     ],
+     "f": "hoergeraet",
+     "phrase": "Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.",
+     "sens": "Je lui donne son appareil auditif et je parle lentement et distinctement.",
+     "n": "D'abord ses aides (appareil auditif, lunettes), puis une voix calme, en face de lui : crier ne rend pas plus clair.",
+     "type": "situation"
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "nachttisch",
+   "mot": "Nachttisch",
+   "boite": [
+    0,
+    42.5,
+    79.2,
+    57.5
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "taschentuch",
+   "mot": "Taschentuch",
+   "boite": [
+    0,
+    51.8,
+    32.8,
+    9.4
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "hoergeraet",
+   "mot": "Hörgerät",
+   "boite": [
+    11.4,
+    53.2,
+    12.0,
+    4.5
+   ],
+   "sur": "taschentuch"
+  },
+  {
+   "id": "wasserglas",
+   "mot": "Wasserglas",
+   "boite": [
+    18.6,
+    38.0,
+    13.6,
+    12.1
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "schnabelbecher",
+   "mot": "Schnabelbecher",
+   "boite": [
+    40.4,
+    35.3,
+    21.5,
+    12.8
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "boite": [
+    45.9,
+    50.3,
+    22.4,
+    9.3
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "prothesendose",
+   "mot": "Zahnprothese",
+   "boite": [
+    41.7,
+    77.2,
+    18.2,
+    8.8
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "infusionsstaender",
+   "mot": "Infusionsständer",
+   "boite": [
+    59.4,
+    0,
+    6.2,
+    42.6
+   ]
+  },
+  {
+   "id": "sichtschutz",
+   "mot": "Sichtschutz",
+   "boite": [
+    0,
+    0,
+    23.0,
+    42.5
+   ]
+  },
+  {
+   "id": "pflegebett",
+   "mot": "Pflegebett",
+   "boite": [
+    62.5,
+    13.6,
+    37.5,
+    86.4
+   ],
+   "aussi": [
+    "Bett"
+   ]
+  },
+  {
+   "id": "bettgitter",
+   "mot": "Bettgitter",
+   "boite": [
+    60.4,
+    20.9,
+    6.9,
+    16.3
+   ],
+   "sur": "pflegebett"
+  },
+  {
+   "id": "kissen",
+   "mot": "Kissen",
+   "boite": [
+    76.6,
+    7.3,
+    23.4,
+    23.5
+   ],
+   "sur": "pflegebett"
+  },
+  {
+   "id": "patient",
+   "mot": "Patient",
+   "boite": [
+    78.0,
+    20.9,
+    22.0,
+    41.4
+   ],
+   "aussi": [
+    "Mann"
+   ]
+  },
+  {
+   "id": "armband",
+   "mot": "Patientenarmband",
+   "ellipses": [
+    [
+     87.5,
+     50.1,
+     4.6,
+     1.9
+    ]
+   ],
+   "sur": "patient"
+  }
+ ]
+}

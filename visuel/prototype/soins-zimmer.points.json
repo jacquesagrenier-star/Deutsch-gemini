@@ -1,0 +1,645 @@
+{
+ "_lisez_moi": [
+  "Scene de soins 1, la chambre du patient (14 nov. 2026). Memes regles que les scenes generales (klassenzimmer.points.json, arztpraxis.points.json) ; construite par visuel/prototype/construire.py, qui lit aussi pflege/datos/themes.json pour une scene soins-. Zones mesurees sur une grille de 5 % de l'image REELLE. Les couches sont un BROUILLON non relu : ce qui porte ⚕️ attend l'infirmiere relectrice."
+ ],
+ "image": "soins-zimmer.webp",
+ "source": "~/.wortando/pflege/scenes/soins-zimmer.png",
+ "titre": "Im Patientenzimmer",
+ "alt": "Une chambre double d'hôpital, le matin : Herr Brandt, 82 ans, est à demi assis dans son lit médicalisé, des lunettes à oxygène sous le nez et une perfusion ; à côté, la table de chevet, le déambulateur, le fauteuil roulant ; au fond, la fenêtre, le paravent et le second lit, vide.",
+ "consigne": "Touche un objet de la chambre, ou Herr Brandt.",
+ "vues": [
+  "soins-zimmer",
+  "soins-zimmer-nachttisch",
+  "soins-zimmer-aufstehen"
+ ],
+ "nom_vue": "La chambre",
+ "couches": {
+  "A1": {
+   "titre": "Les objets de la chambre"
+  },
+  "A2": {
+   "titre": "Wo? — au lit du patient",
+   "qs": [
+    {
+     "q": "Wo steht der Rollator?",
+     "c": [
+      "neben dem Bett",
+      "unter dem Bett",
+      "hinter dem Fenster"
+     ],
+     "f": "rollator",
+     "r": "pflegebett",
+     "phrase": "Der Rollator steht neben dem Bett.",
+     "sens": "Le déambulateur est à côté du lit.",
+     "n": "<b>neben</b> + datif : das Bett → neben <b>dem</b> Bett."
+    },
+    {
+     "q": "Wo hängt die Infusion?",
+     "c": [
+      "am Infusionsständer",
+      "am Fenster",
+      "an der Tür"
+     ],
+     "f": "infusion",
+     "r": "infusionsstaender",
+     "phrase": "Die Infusion hängt am Infusionsständer.",
+     "sens": "La perfusion est accrochée au pied à perfusion.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Infusionsständer → am Infusionsständer."
+    },
+    {
+     "q": "Wo liegt die Klingel?",
+     "c": [
+      "auf der Bettdecke",
+      "unter dem Kissen",
+      "im Rollstuhl"
+     ],
+     "f": "klingel",
+     "r": "bettdecke",
+     "phrase": "Die Klingel liegt auf der Bettdecke.",
+     "sens": "La sonnette est sur la couette.",
+     "n": "Féminin au datif : die Bettdecke → auf <b>der</b> Bettdecke."
+    },
+    {
+     "q": "Wo stehen die Hausschuhe?",
+     "c": [
+      "auf dem Boden",
+      "auf dem Nachttisch",
+      "im Rollstuhl"
+     ],
+     "f": "hausschuhe",
+     "phrase": "Die Hausschuhe stehen auf dem Boden.",
+     "sens": "Les chaussons sont par terre.",
+     "n": "Des chaussures <b>stehen</b> (debout sur leur semelle), un objet à plat <b>liegt</b>."
+    },
+    {
+     "q": "Wo steht der Sichtschutz?",
+     "c": [
+      "zwischen den Betten",
+      "vor dem Fenster",
+      "auf dem Nachttisch"
+     ],
+     "f": "sichtschutz",
+     "phrase": "Der Sichtschutz steht zwischen den Betten.",
+     "sens": "Le paravent est entre les lits.",
+     "n": "<b>zwischen</b> + datif pluriel : die Betten → zwischen <b>den</b> Betten (le -n du datif pluriel)."
+    },
+    {
+     "q": "Wo hängt der Desinfektionsmittelspender?",
+     "c": [
+      "an der Wand",
+      "am Bett",
+      "am Rollator"
+     ],
+     "f": "spender",
+     "phrase": "Der Desinfektionsmittelspender hängt an der Wand.",
+     "sens": "Le distributeur de désinfectant est fixé au mur.",
+     "n": "<b>an der Wand</b> : contre une surface verticale, on dit <b>an</b>, jamais auf."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "L'impératif poli — Sie",
+   "qs": [
+    {
+     "q": "Herr Brandt soll sich aufsetzen. Was sagen Sie?",
+     "c": [
+      "Setzen Sie sich bitte auf.",
+      "Setz dich bitte auf.",
+      "Setzen Sie bitte auf sich."
+     ],
+     "f": "patient",
+     "phrase": "Setzen Sie sich bitte auf.",
+     "sens": "Asseyez-vous, s'il vous plaît.",
+     "n": "Avec un patient : <b>Sie</b>. Verbe en tête, puis Sie, puis le pronom réfléchi ; la particule <b>auf</b> va à la fin."
+    },
+    {
+     "q": "Er soll klingeln, wenn er Hilfe braucht. Was sagen Sie?",
+     "c": [
+      "Klingeln Sie bitte, wenn Sie Hilfe brauchen.",
+      "Klingeln Sie bitte, wenn Sie brauchen Hilfe.",
+      "Klingelt bitte, wenn ihr Hilfe braucht."
+     ],
+     "f": "klingel",
+     "phrase": "Klingeln Sie bitte, wenn Sie Hilfe brauchen.",
+     "sens": "Sonnez, s'il vous plaît, si vous avez besoin d'aide.",
+     "n": "Après <b>wenn</b>, le verbe conjugué va à la fin : wenn Sie Hilfe <b>brauchen</b>.",
+     "revise": "klingeln"
+    },
+    {
+     "q": "Er soll beim Aufstehen den Rollator nehmen. Was sagen Sie?",
+     "c": [
+      "Nehmen Sie bitte den Rollator.",
+      "Nimm bitte den Rollator.",
+      "Nehmen Sie bitte der Rollator."
+     ],
+     "f": "rollator",
+     "phrase": "Nehmen Sie bitte den Rollator.",
+     "sens": "Prenez le déambulateur, s'il vous plaît.",
+     "n": "L'impératif de Sie garde la forme de l'infinitif (<b>nehmen</b> Sie, jamais nimm) ; nehmen + accusatif : <b>den</b> Rollator.",
+     "revise": "nehmen"
+    },
+    {
+     "q": "Er soll noch etwas trinken. Was sagen Sie?",
+     "c": [
+      "Trinken Sie bitte noch einen Schluck.",
+      "Trink bitte noch einen Schluck.",
+      "Sie trinken noch einen Schluck, oder ich gehe."
+     ],
+     "f": "schnabelbecher",
+     "phrase": "Trinken Sie bitte noch einen Schluck.",
+     "sens": "Buvez encore une gorgée, s'il vous plaît.",
+     "n": "<b>bitte</b> adoucit l'ordre ; avec un patient, on propose, on ne menace pas.",
+     "revise": "trinken"
+    },
+    {
+     "q": "Er soll liegen bleiben, bis Sie zurück sind. Was sagen Sie?",
+     "c": [
+      "Bleiben Sie bitte liegen, ich komme gleich wieder.",
+      "Bleiben Sie bitte liegen, ich gleich wieder komme.",
+      "Bleib bitte liegen, ich komme gleich wieder."
+     ],
+     "f": "pflegebett",
+     "phrase": "Bleiben Sie bitte liegen, ich komme gleich wieder.",
+     "sens": "Restez couché, s'il vous plaît, je reviens tout de suite.",
+     "n": "Deux phrases principales : le verbe conjugué reste en 2e place (ich <b>komme</b> gleich wieder).",
+     "revise": "bleiben"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le passif des soins",
+   "qs": [
+    {
+     "q": "Das Kopfteil ___ schon hochgestellt: Herr Brandt sitzt halb aufrecht.",
+     "c": [
+      "ist",
+      "wird",
+      "hat"
+     ],
+     "f": "pflegebett",
+     "phrase": "Das Kopfteil ist schon hochgestellt: Herr Brandt sitzt halb aufrecht.",
+     "sens": "La tête du lit est déjà relevée : M. Brandt est assis à demi.",
+     "n": "<b>sein</b> + participe = le passif d'ÉTAT, le résultat (déjà relevée). <b>werden</b> + participe = l'action en train de se faire."
+    },
+    {
+     "q": "Die Infusion muss um zehn Uhr gewechselt ___.",
+     "c": [
+      "werden",
+      "worden",
+      "wird"
+     ],
+     "f": "infusion",
+     "phrase": "Die Infusion muss um zehn Uhr gewechselt werden.",
+     "sens": "La perfusion doit être changée à 10 heures.",
+     "n": "Passif avec modal : modal conjugué + participe + <b>werden</b> à la fin."
+    },
+    {
+     "q": "Das Bettgitter ___ nur mit Einwilligung des Patienten hochgezogen.",
+     "c": [
+      "wird",
+      "ist",
+      "hat"
+     ],
+     "f": "bettgitter",
+     "phrase": "Das Bettgitter wird nur mit Einwilligung des Patienten hochgezogen.",
+     "sens": "On ne remonte la barrière de lit qu'avec le consentement du patient.",
+     "n": "Passif présent : <b>werden</b> + participe, pour une règle. ⚕️ La barrière de lit prive de liberté : il faut le consentement du patient ou, s'il ne peut pas le donner, l'autorisation du tribunal (sauf urgence)."
+    },
+    {
+     "q": "Die Hände ___ vor und nach jedem Patientenkontakt desinfiziert.",
+     "c": [
+      "werden",
+      "wird",
+      "sind"
+     ],
+     "f": "spender",
+     "phrase": "Die Hände werden vor und nach jedem Patientenkontakt desinfiziert.",
+     "sens": "On se désinfecte les mains avant et après chaque contact avec un patient.",
+     "n": "Le sujet est au pluriel (die Hände) : <b>werden</b>, pas wird."
+    },
+    {
+     "q": "Herr Brandt ___ vorgestern an der Hüfte operiert.",
+     "c": [
+      "wurde",
+      "wird",
+      "hat"
+     ],
+     "f": "patient",
+     "phrase": "Herr Brandt wurde vorgestern an der Hüfte operiert.",
+     "sens": "M. Brandt a été opéré de la hanche avant-hier.",
+     "n": "Passif au passé : <b>wurde</b> + participe (à l'oral aussi : ist … operiert worden)."
+    },
+    {
+     "q": "Herr Brandt möchte, dass das Fenster geöffnet ___.",
+     "c": [
+      "wird",
+      "werden",
+      "ist"
+     ],
+     "f": "fenster",
+     "phrase": "Herr Brandt möchte, dass das Fenster geöffnet wird.",
+     "sens": "M. Brandt aimerait qu'on ouvre la fenêtre.",
+     "n": "Après <b>dass</b>, le verbe conjugué du passif (<b>wird</b>) va tout à la fin."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Le style des transmissions",
+   "qs": [
+    {
+     "q": "Herr Brandt will nicht aufstehen, die Hüfte tut ihm weh. Sie haben die Ärztin informiert. Was schreiben Sie?",
+     "c": [
+      "Mobilisation aufgrund von Schmerzen abgelehnt, Ärztin informiert.",
+      "Herr Brandt hat heute keine Lust aufzustehen.",
+      "Pat. steht nicht auf, weil schlecht gelaunt."
+     ],
+     "f": "patient",
+     "phrase": "Mobilisation aufgrund von Schmerzen abgelehnt, Ärztin informiert.",
+     "sens": "Mobilisation refusée en raison de douleurs, médecin informée.",
+     "n": "Une transmission est objective et nominale (<b>Mobilisation … abgelehnt</b>) : la cause (<b>aufgrund von</b> + datif) et la mesure prise, jamais une humeur."
+    },
+    {
+     "q": "Herr Brandt hat Sie gebeten, das Bettgitter für die Nacht hochzuziehen. Was schreiben Sie?",
+     "c": [
+      "Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.",
+      "Bettgitter hoch, sonst fällt er raus.",
+      "Pat. im Bett festgemacht."
+     ],
+     "f": "bettgitter",
+     "phrase": "Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.",
+     "sens": "Barrière de lit remontée à la demande du patient, consentement documenté.",
+     "n": "<b>auf Wunsch</b> + génitif : le motif juridique d'abord. ⚕️ Sans consentement ni autorisation, la barrière est une mesure privative de liberté."
+    },
+    {
+     "q": "Er bekommt Sauerstoff über die Nasenbrille, es geht ihm gut. Was schreiben Sie?",
+     "c": [
+      "Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.",
+      "Er kriegt Luft durch die Nase, alles okay.",
+      "Nasenbrille drin, Pat. zufrieden, glaube ich."
+     ],
+     "f": "nasenbrille",
+     "phrase": "Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.",
+     "sens": "Oxygène par lunettes nasales, patient calme, pas de dyspnée.",
+     "n": "Le nom composé (<b>Sauerstoffgabe</b>) remplace une phrase ; on écrit ce qu'on observe (atmet ruhig), pas ce qu'on croit. ⚕️ Le débit se note selon la prescription."
+    },
+    {
+     "q": "Sie haben alles getan, damit Herr Brandt nicht stürzt. Was schreiben Sie?",
+     "c": [
+      "Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.",
+      "Rollator steht irgendwo am Bett.",
+      "Damit er nicht fällt, habe ich alles hingestellt."
+     ],
+     "f": "rollator",
+     "phrase": "Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.",
+     "sens": "Prévention des chutes : déambulateur à portée, sonnette à portée de main.",
+     "n": "Style des transmissions : le titre (<b>Sturzprophylaxe</b>), puis les mesures sans verbe conjugué. <b>griffbereit</b> = à portée de main."
+    }
+   ]
+  },
+  "SIT": {
+   "titre": "Que faites-vous ?",
+   "niveau": "B2",
+   "qs": [
+    {
+     "q": "Herr Brandt nimmt die Nasenbrille ab: Sie stört ihn. Was tun Sie?",
+     "c": [
+      "Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.",
+      "Ich setze sie ihm wieder auf und sage nichts.",
+      "Ich lege sie weg und schreibe nichts auf."
+     ],
+     "f": "nasenbrille",
+     "phrase": "Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.",
+     "sens": "Je lui explique à quoi sert l'oxygène et je préviens la médecin s'il n'en veut pas.",
+     "n": "Le patient décide, mais il doit savoir pourquoi : on explique, on respecte, on informe et on documente ⚕️.",
+     "type": "situation"
+    },
+    {
+     "q": "Der Infusionsbeutel ist leer. Was tun Sie?",
+     "c": [
+      "Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.",
+      "Ich hänge einfach einen neuen Beutel aus dem Schrank an.",
+      "Ich warte bis zur Übergabe."
+     ],
+     "f": "infusion",
+     "phrase": "Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.",
+     "sens": "Je préviens tout de suite l'infirmière ou l'infirmier responsable.",
+     "n": "Une perfusion se change sur prescription, par la personne habilitée : en attendant la reconnaissance du diplôme, on prévient sans tarder ⚕️.",
+     "type": "situation"
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    15.4,
+    14.8,
+    9.7,
+    6.1
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "boite": [
+    52.5,
+    7.2,
+    28.7,
+    32.2
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "spender",
+   "mot": "Desinfektionsmittelspender",
+   "boite": [
+    87.4,
+    31.4,
+    5.7,
+    5.8
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "infusionsstaender",
+   "mot": "Infusionsständer",
+   "boite": [
+    34.0,
+    23.3,
+    8.2,
+    22.5
+   ]
+  },
+  {
+   "id": "infusion",
+   "mot": "Infusion",
+   "boite": [
+    39.6,
+    24.3,
+    3.8,
+    5.8
+   ],
+   "sur": "infusionsstaender"
+  },
+  {
+   "id": "sichtschutz",
+   "mot": "Sichtschutz",
+   "boite": [
+    9.3,
+    25.0,
+    14.8,
+    32.2
+   ]
+  },
+  {
+   "id": "bett",
+   "mot": "Bett",
+   "boite": [
+    0,
+    40.0,
+    13.6,
+    17.5
+   ]
+  },
+  {
+   "id": "nachttisch",
+   "mot": "Nachttisch",
+   "boite": [
+    20.6,
+    42.9,
+    18.6,
+    13.7
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "wasserglas",
+   "mot": "Wasserglas",
+   "boite": [
+    27.3,
+    40.9,
+    3.3,
+    3.3
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "schnabelbecher",
+   "mot": "Schnabelbecher",
+   "boite": [
+    32.4,
+    40.7,
+    4.8,
+    3.3
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "boite": [
+    32.9,
+    42.9,
+    5.7,
+    2.0
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "hoergeraet",
+   "mot": "Hörgerät",
+   "boite": [
+    24.4,
+    42.8,
+    3.2,
+    2.0
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "prothesendose",
+   "mot": "Zahnprothese",
+   "boite": [
+    30.0,
+    47.7,
+    4.7,
+    2.5
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "pflegebett",
+   "mot": "Pflegebett",
+   "boite": [
+    3.6,
+    37.5,
+    71.8,
+    42.2
+   ],
+   "aussi": [
+    "Bett"
+   ]
+  },
+  {
+   "id": "bettgitter",
+   "mot": "Bettgitter",
+   "boite": [
+    72.3,
+    42.6,
+    3.2,
+    6.6
+   ],
+   "sur": "pflegebett"
+  },
+  {
+   "id": "fernbedienung",
+   "mot": "Fernbedienung",
+   "boite": [
+    25.7,
+    58.6,
+    4.6,
+    6.5
+   ],
+   "sur": "pflegebett"
+  },
+  {
+   "id": "urinbeutel",
+   "mot": "Urinbeutel",
+   "boite": [
+    13.7,
+    71.7,
+    14.2,
+    7.5
+   ],
+   "sur": "pflegebett"
+  },
+  {
+   "id": "rollstuhl",
+   "mot": "Rollstuhl",
+   "boite": [
+    81.1,
+    42.5,
+    18.9,
+    21.2
+   ]
+  },
+  {
+   "id": "kissen",
+   "mot": "Kissen",
+   "boite": [
+    44.3,
+    37.5,
+    25.6,
+    9.5
+   ],
+   "sur": "pflegebett"
+  },
+  {
+   "id": "patient",
+   "mot": "Patient",
+   "boite": [
+    35.5,
+    36.9,
+    32.2,
+    18.4
+   ],
+   "aussi": [
+    "Mann"
+   ]
+  },
+  {
+   "id": "schlafanzug",
+   "mot": "Schlafanzug",
+   "boite": [
+    40.0,
+    42.2,
+    27.4,
+    11.2
+   ],
+   "sur": "patient"
+  },
+  {
+   "id": "nasenbrille",
+   "mot": "Nasenbrille",
+   "ellipses": [
+    [
+     53.0,
+     39.6,
+     3.6,
+     0.9
+    ]
+   ],
+   "sur": "patient"
+  },
+  {
+   "id": "armband-l",
+   "mot": "Patientenarmband",
+   "ellipses": [
+    [
+     39.8,
+     51.5,
+     1.5,
+     0.9
+    ]
+   ],
+   "sur": "patient"
+  },
+  {
+   "id": "armband-r",
+   "mot": "Patientenarmband",
+   "ellipses": [
+    [
+     61.1,
+     52.6,
+     1.6,
+     0.9
+    ]
+   ],
+   "sur": "patient"
+  },
+  {
+   "id": "bettdecke",
+   "mot": "Bettdecke",
+   "boite": [
+    11.2,
+    46.9,
+    64.2,
+    24.6
+   ],
+   "sur": "pflegebett"
+  },
+  {
+   "id": "klingel",
+   "mot": "Klingel",
+   "boite": [
+    54.8,
+    54.8,
+    5.2,
+    2.2
+   ],
+   "sur": "bettdecke"
+  },
+  {
+   "id": "rollator",
+   "mot": "Rollator",
+   "boite": [
+    65.8,
+    47.0,
+    28.6,
+    25.4
+   ]
+  },
+  {
+   "id": "hausschuhe",
+   "mot": "Hausschuh",
+   "boite": [
+    67.3,
+    71.4,
+    16.1,
+    5.7
+   ]
+  }
+ ]
+}
