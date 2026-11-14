@@ -55579,8 +55579,15 @@ function bilanSoinsDuCompte(id, data){
     const alertes = [];
     if(!derniere || Date.now() - derniere > 5 * 86400000) alertes.push("5 jours sans activité");
     if(nonFinies) alertes.push("3 séances laissées en route");
+    // Les examens blancs : la cle soinsExamensJson n'existe que lorsque les regles l'auront permise
+    // (pflege/AGENCE-DONNEES.md) ; absente, « — ».
+    let examens = [];
+    try{ const l = JSON.parse(data.soinsExamensJson || "[]"); if(Array.isArray(l)) examens = l; }catch(e){}
+    const pret = pretPourExamenSoins(examens);
+    if(pret.etat === "rouge") alertes.push("examen blanc sans certificat");
     return { id: id, nom: data.firstName || data.email || "(sans nom)", email: data.email || "", maj: derniere,
-             jours7: jours.size, finies7: finies, vus: vus, maitrises: maitrises, parNiveau: parNiveau, alertes: alertes };
+             jours7: jours.size, finies7: finies, vus: vus, maitrises: maitrises, parNiveau: parNiveau, alertes: alertes,
+             pret: pret, examens: examens.length };
 }
 
 function totalSoinsParNiveau(){
@@ -55640,7 +55647,7 @@ function afficherSuiviSoins(detail){
         return `<div class="suivi-soins-ligne">
             <strong>${echapperCompte(s.nom)}</strong> <small>· vu ${echapperCompte(quand(s.maj))}</small> ${alertes}<br>
             <small>${nombreCompte(s.jours7, 0)} jour(s) actif(s) sur 7 · ${nombreCompte(s.finies7, 0)} séance(s) finie(s) · mots des Soins : ${nombreCompte(s.vus, 0)} vus, ${nombreCompte(s.maitrises, 0)} maîtrisés</small><br>
-            <small>Maîtrisés par niveau : ${echapperCompte(niveaux || "—")} · Prêt pour l'examen : — (attend l'examen blanc)</small>
+            <small>Maîtrisés par niveau : ${echapperCompte(niveaux || "—")} · Prêt pour l'examen : ${echapperCompte(s.pret && s.pret.etat !== "—" ? s.pret.etat + " (" + s.pret.texte + ")" : "— (aucun examen blanc enregistré)")}</small>
         </div>`;
     });
     box.innerHTML = `<div><strong>${suiviSoins.length}</strong> compte(s) dans la cohorte${detail ? "" : " · touche « CHARGER LE DÉTAIL » pour l'activité et les mots"}</div>` + lignes.join("");
@@ -55655,11 +55662,11 @@ function exporterSuiviSoins(){
     const totaux = totalSoinsParNiveau();
     const cellule = v => { const s = String(v === undefined || v === null ? "" : v); return /[";\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
     const tete = ["prenom", "email", "derniere_activite", "jours_actifs_7", "seances_finies_7", "mots_soins_vus", "mots_soins_maitrises"]
-        .concat(["A2", "B1", "B2", "C1"].map(n => "maitrises_" + n + "_sur_" + (totaux[n] || 0))).concat(["alertes"]);
+        .concat(["A2", "B1", "B2", "C1"].map(n => "maitrises_" + n + "_sur_" + (totaux[n] || 0))).concat(["examens_blancs", "pret_pour_examen", "alertes"]);
     const lignes = suiviSoins.map(s => [s.nom, s.email, s.maj ? new Date(s.maj).toISOString().slice(0, 10) : "",
         s.jours7, s.finies7, s.vus, s.maitrises]
         .concat(["A2", "B1", "B2", "C1"].map(n => (s.parNiveau && s.parNiveau[n] ? s.parNiveau[n].maitrises : 0)))
-        .concat([(s.alertes || []).join(" / ")]).map(cellule).join(";"));
+        .concat([s.examens || 0, s.pret ? s.pret.etat : "—", (s.alertes || []).join(" / ")]).map(cellule).join(";"));
     const csv = "﻿" + [tete.join(";")].concat(lignes).join("\n");
     try{
         const lien = document.createElement("a");
@@ -57126,6 +57133,75 @@ async function ouvrirSoins(){
 }
 
 function retourDeSoins(){ ouvrirToutLeContenu(); }
+
+// L'examen blanc telc Pflege : une page a part, sur le modele du telc A2·B1 (ouvrirTelc), construite par la
+// session « examen » dans visuel/prototype/telc-pflege/. Son entree dans l'ecran Soins viendra a l'integration,
+// quand la page existera.
+function ouvrirTelcPflege(partie){
+    if(!soinsActifs()) return;
+    sceneOuverteDepuis = "telc-pflege";
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre){
+        cadre.title = "telc Deutsch B1·B2 Pflege";
+        chargerCadre(cadre, baseScenes() + "telc-pflege/telc.html?apprendre=de&lang=" + encodeURIComponent(getUiLang())
+                  + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
+                  + (partie ? "&partie=" + encodeURIComponent(partie) : "")
+                  + "&t=" + Date.now());
+    }
+    showScreen("sceneSeance");
+}
+
+// LE RESULTAT D'UN EXAMEN BLANC, ET « PRET POUR L'EXAMEN ». Le bareme est celui du telc Deutsch B1·B2 Pflege,
+// lu dans le test modele officiel (pflege/FORMAT-TELC-PFLEGE.md) : trois resultats partiels, puis le certificat.
+//   ecoute + lecture + elements de langue (sur 59) : B2 43-59, B1 27-42 ; ecrit (sur 20) : B2 15-20, B1 7-14 ;
+//   oral (sur 100) : B2 75-100, B1 35-74,5.
+//   B2 = B2 a l'oral ET B2 dans l'une des deux parties ecrites, l'autre au moins B1.
+//   B1 = au moins B1 a l'oral ET au moins B1 dans l'une des deux parties ecrites, l'autre au plancher (19 / 59 ou
+//   4 / 20). Sans B1 a l'oral, aucun certificat.
+// L'app recalcule le certificat a partir des points : elle ne prend pas celui de la page pour argent comptant.
+const SOINS_EXAMENS_KEY = PREFIXE_STOCKAGE + "soinsExamens";
+const SOINS_EXAMENS_MAX = 20;
+
+function niveauPartielSoins(points, b2, b1){
+    return points >= b2 ? "B2" : points >= b1 ? "B1" : "sous";
+}
+function certificatSoins(p){
+    const hls = niveauPartielSoins(p.hls, 43, 27);
+    const ecrit = niveauPartielSoins(p.schreiben, 15, 7);
+    const oral = niveauPartielSoins(p.sprechen, 75, 35);
+    if(oral === "sous") return "aucun";
+    const auMoinsB1 = n => n === "B1" || n === "B2";
+    if(oral === "B2" && ((hls === "B2" && auMoinsB1(ecrit)) || (ecrit === "B2" && auMoinsB1(hls)))) return "B2";
+    const plancherHls = p.hls >= 19, plancherEcrit = p.schreiben >= 4;
+    if((auMoinsB1(hls) && plancherEcrit) || (auMoinsB1(ecrit) && plancherHls)) return "B1";
+    return "aucun";
+}
+function lireExamensSoins(){
+    try{ const l = JSON.parse(localStorage.getItem(SOINS_EXAMENS_KEY) || "[]"); return Array.isArray(l) ? l : []; }catch(e){ return []; }
+}
+function enregistrerExamenSoins(d){
+    const p = d && d.points;
+    if(!p) return;
+    const borne = (v, max) => { const n = Number(v); return isFinite(n) && n >= 0 && n <= max ? Math.round(n * 2) / 2 : null; };
+    const points = { hls: borne(p.hls, 59), schreiben: borne(p.schreiben, 20), sprechen: borne(p.sprechen, 100) };
+    if(points.hls === null || points.schreiben === null || points.sprechen === null) return;
+    const l = lireExamensSoins();
+    l.push({ d: new Date().toISOString(), hls: points.hls, schreiben: points.schreiben, sprechen: points.sprechen,
+             certificat: certificatSoins(points) });
+    try{ localStorage.setItem(SOINS_EXAMENS_KEY, JSON.stringify(l.slice(-SOINS_EXAMENS_MAX))); }catch(e){}
+}
+// « Pret pour l'examen » : le dernier examen blanc complet dit B2 (vert), B1 (orange), rien (rouge) ; aucun
+// examen blanc, « — ». Le tableau de bord le lira dans le document du compte quand la cle sera synchronisee
+// (proposition de regles : pflege/AGENCE-DONNEES.md) ; d'ici la, il ne vit que sur l'appareil.
+function pretPourExamenSoins(examens){
+    const l = Array.isArray(examens) ? examens : [];
+    if(!l.length) return { etat: "—", texte: "aucun examen blanc" };
+    const dernier = l[l.length - 1];
+    const cert = certificatSoins(dernier);
+    return cert === "B2" ? { etat: "vert", texte: "B2 au dernier examen blanc" }
+         : cert === "B1" ? { etat: "orange", texte: "B1 au dernier examen blanc" }
+         : { etat: "rouge", texte: "pas de certificat au dernier examen blanc" };
+}
 
 function renderSoinsListe(){
     const box = document.getElementById("soinsList");
@@ -67936,6 +68012,15 @@ window.addEventListener("message", (e) => {
     // 3 nov. 2026 : un theme illustre demande ou en sont ses mots (le tirage suit les mots, visuel/prototype/themes/tirage.js).
     if(d.type === "etats"){
         try{ e.source.postMessage({source: "wortando-app", type: "etats", etats: etatsDesMots(d.mots)}, e.origin === "null" ? "*" : e.origin); }catch(err){}
+        return;
+    }
+    // Wortando Pflege (14 nov. 2026) : l'examen blanc telc Pflege (visuel/prototype/telc-pflege/) envoie son
+    // resultat (pflege/FORMAT-DONNEES.md, § 6) ; l'app le garde et en tire « pret pour l'examen ». Ses fins
+    // (fini, fermer) ramenent a l'ecran Soins.
+    if(d.type === "resultat_examen" && d.examen === "soins_telc"){ try{ enregistrerExamenSoins(d); }catch(err){} return; }
+    if(sceneOuverteDepuis === "telc-pflege"){
+        if(d.type === "micro") microPourCadre(d, e);
+        else if(d.type === "fini" || d.type === "fermer"){ try{ ouvrirSoins(); }catch(err){ goHome(); } }
         return;
     }
     if(sceneOuverteDepuis === "conversations"){
