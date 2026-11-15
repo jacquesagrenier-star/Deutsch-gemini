@@ -38,6 +38,163 @@ Consignées dans `decisions/DECISIONS.md` (« Wortando Pflege : les décisions d
 | Q8 Espagnol | Recommandation gardée : scènes neutres, l'espagnol médical américain plus tard | — |
 | Validation par les agences | « Je le ferai sans l'avis de 2 ou 3 agences, j'irai de l'avant » | § 7.3 sans objet |
 
+## ✦ Décisions de Jacques du 15 nov. 2026 : la communication au cœur
+
+Consignées dans `decisions/DECISIONS.md` (f0f5518). Le constat de départ est le retour d'une enseignante
+(§ 2.5) : « Der Fokus muss … auf die speziellen Sprachanforderungen im Pflegealltag (Kommunikation!)
+liegen. » Jacques : « Il faut étoffer avec ce que [l'enseignante] nous a donné comme information. »
+**Plan seulement : rien n'est publié.**
+
+Trois autres décisions du même jour ont leur propre session :
+- le manuel complet de préparation au B2 va à pflege-examen, qui envoie son plan au chef d'abord ;
+- la recherche de contacts chez les employeurs a une session à part ;
+- l'espagnol devient langue d'interface de l'allemand, dans une session à part (voir E ci-dessous).
+
+### Ce qui existe (15 nov.)
+
+| Bloc | Contenu | Niveaux |
+|---|---|---|
+| Mots | 11 thèmes, 569 entrées | A2 144 · B1 238 · B2 187 |
+| Dialogues | 12, **à embranchements** (`noeuds`, `choix`), Sie / du ; pas encore jouables dans l'app | A2 1 · B1 6 · B2 5 |
+| Grammaire | 21 points, dont l'annonce d'un soin, le Konjunktiv de politesse, les questions indirectes, le style télégraphique, le du et le Sie dans l'équipe | — |
+| Écrit | 10 sujets (admission, biographie, rapport de soins, protocole de chute) | — |
+| Scènes | 8 : objets à toucher, couches A1-C1, une « Situation » dans la relève | — |
+| Examen | l'examen blanc complet, dont l'oral sur 100 | B1·B2 |
+
+**Le manque n'est pas dans les textes, il est dans l'usage.** Les 12 dialogues existent, mais personne ne
+peut les jouer. Ils ont déjà, nœud pour nœud, le format des conversations jouées de l'app
+(`visuel/prototype/conversation.html`, v1177 : `debut`, `noeuds`, `dit` avec `qui` / `air` / `t`, `choix`
+avec `va` et `puis`). La communication devient le cœur dès qu'on peut **la pratiquer** chaque jour.
+
+### A. Jouer les dialogues : le premier chantier (session architecture)
+
+1. **Les dialogues des Soins dans le lecteur des conversations.** Une liste « Les dialogues du service »
+   dans l'écran Soins, et le dialogue joué : le patient, le collègue ou le médecin parle, tu choisis
+   ou tu **dis** ta réplique au micro, l'autre répond selon ton choix. Le micro et les réponses écrites
+   existent déjà ; il reste à brancher les personnages Pflege (portraits, `{yusuf}`, `{kraemer:famille}`),
+   les récits et les notes ⚕️. Le lecteur est commun : aucune page nouvelle à maintenir.
+2. **Une partie « Dialogue » dans la séance des comptes Soins**, comme la Conversation de Premiers pas
+   (v1177) : chaque jour un dialogue, ou une partie d'un dialogue, au niveau du compte.
+3. **Les sons des dialogues** (`pflege/VOIX.md`, « chemin modèle », ≈ 7,4 $ avec les reprises, dans le
+   plan). Ils deviennent **prioritaires** : on ne s'exerce pas à comprendre un patient avec la voix du
+   téléphone. Le lot est à annoncer au chef avant d'être lancé.
+
+Durée estimée : 1 à 2 semaines. C'est ce qui rend visibles, enfin, les dialogues des sessions
+dialogues et scènes.
+
+### B. Les dialogues à ajouter (session dialogues, grammaire, écrit)
+
+Les 12 actuels couvrent le patient (accueil, douleur, soin expliqué, refus, repas, médicaments, nuit),
+la famille, la relève, l'appel SBAR, la chute et l'échange de poste. **Il manque surtout trois
+interlocuteurs : l'équipe, le médecin hors urgence, et le patient qui parle sa langue de tous les
+jours.** Proposition : **14 dialogues de plus** (13 à 26), dont 4 B1 et 10 B2.
+
+| # | Situation | Avec qui | Niveau | Pourquoi |
+|---|---|---|---|---|
+| 13 | L'entretien d'admission, à l'oral | patient | B1 | l'écrit e01-e04 existe, pas l'oral |
+| 14 | Mobiliser, transférer : guider pas à pas | patient | B1 | les verbes séparables (g04) en action |
+| 15 | Rassurer un patient qui a peur avant un examen | patient | B1 | ton et Konjunktiv |
+| 16 | L'urgence : appeler à l'aide, le 112, la réanimation | équipe | B1 | phrases courtes sous stress |
+| 17 | La visite : présenter un patient, noter les ordres | médecin | B2 | complète la scène « Die Visite » |
+| 18 | Une prescription floue : redemander, refuser poliment | médecin | B2 | sécurité du patient ⚕️ |
+| 19 | Le téléphone : laboratoire, pharmacie, médecin traitant | services | B2 | soins à domicile, liaison |
+| 20 | La première semaine avec la tutrice (Praxisanleitung) | équipe | B2 | le vrai moment de l'Anpassung |
+| 21 | Signaler une erreur ou un presque-incident | équipe | B2 | culture de l'erreur ⚕️ |
+| 22 | Un conflit dans l'équipe, une critique | équipe | B2 | du / Sie (g21), désaccord poli |
+| 23 | La famille au téléphone : le secret professionnel | proches | B2 | ce qu'on peut dire, ce qu'on ne dit pas ⚕️ |
+| 24 | Une plainte de la famille | proches | B2 | désamorcer, renvoyer à qui de droit |
+| 25 | La sortie : expliquer le retour à la maison | patient, proches | B2 | consignes, médicaments, rendez-vous |
+| 26 | La fin de vie : accompagner, parler aux proches | patient, proches | B2 | délicat : relecture infirmière **et** prudence |
+
+**Les répliques utiles par fonction** (« Redemittel ») : annoncer, demander, rassurer, refuser,
+reformuler, transmettre, redemander. Les dialogues ont déjà un champ `redemittel` : on les réunit en
+**cartes-phrases** pour la séance (une phrase dite, une situation), au lieu de les laisser dans chaque
+dialogue. Chiffrage des voix des 14 nouveaux : environ la moitié de l'actuel « chemin modèle » de plus
+(≈ 4 $), **à chiffrer par la session et à faire valider avant la dépense**.
+
+### C. Les mots : comprendre le patient, parler au médecin (session vocabulaire)
+
+La communication demande deux registres que le corpus ne relie pas encore :
+1. **La langue du patient et la langue du service, en paires.** Ce que dit le patient (« Bauchweh »,
+   « Wasser in den Beinen », « groß machen ») et ce qu'écrit ou dit la soignante au médecin
+   (« Abdominalschmerzen », « Ödeme », « Stuhlgang »). Une sorte de carte nouvelle « dit le patient /
+   dit le service », dans les deux sens. Environ 120 paires, surtout B1-B2. ⚕️ pour le registre médical.
+2. **Les abréviations de la documentation** (RR, BZ, i.v., s.c., p.o., Vitalzeichen, n.B.) et leur
+   lecture à voix haute à la relève : un thème « Dokumentation » existe, à compléter.
+3. **Les formules de l'équipe** : se répartir les patients, demander de l'aide, prendre une pause. Elles
+   viennent des dialogues 16, 20 et 22 et partent en cartes-phrases (B, ci-dessus).
+
+Pas de thème nouveau sur les objets ou le corps : les mots s'apprennent désormais **au service des
+situations**.
+
+### D. Les scènes : des personnes qui parlent (session scènes)
+
+Les 8 scènes montrent des objets. Proposition :
+1. **Une couche « Situation » par scène**, sur le modèle de la relève : une personne de l'image parle, tu
+   choisis la bonne réponse. Les phrases viennent des dialogues, aucune n'est écrite à part. Aucune
+   image nouvelle.
+2. **Deux scènes de plus**, si le chef les accorde : le **téléphone du poste** (appeler, être appelé :
+   SBAR, laboratoire, famille) et la **salle de pause** (l'équipe, le planning, l'échange de poste).
+   ≈ 6 images, ≈ 0,90 $ (nano-banana-pro, 0,15 $ l'image), dans l'enveloppe des images du plan.
+
+### Les niveaux : du B1 au B2, la place de chacun
+
+Le témoignage le confirme : on arrive **avec un B1** et on vise le **B2** pendant l'Anpassung, au travail
+et à l'école. D'où :
+
+| Niveau | Rôle | Contenu nouveau |
+|---|---|---|
+| A2 | rattrapage, jamais montré par défaut | aucun |
+| **B1** | **« tenir le service »** : les premières semaines, les gestes, les patients | ≈ 1/3 (dialogues 13-16, paires simples) |
+| **B2** | **« l'examen et l'autonomie »** : la relève, le médecin, la famille, l'équipe, l'écrit | ≈ 2/3 (dialogues 17-26, abréviations, paires) |
+
+- Un compte Soins démarre en B1, l'objectif B2 affiché.
+- La séance prend les dialogues dans l'ordre des niveaux.
+- Le « prêt pour l'examen » (examen blanc) reste la mesure du B2.
+- Le corpus B2 passe de 187 à ≈ 300 entrées, surtout des paires et des cartes-phrases plutôt que des noms.
+
+### E. L'espagnol, langue d'interface : la clé à prévoir
+
+Décision 4 : l'espagnol devient langue d'interface de l'allemand, Soins compris, dans une session à part.
+Ce que les textes de soins demandent, le jour venu, en **une seule clé** :
+- les outils lisent une seule liste, `LANGUES` (`pflege/outils/textes.py`, `construire.py`,
+  `construire_scenes.py`) : y ajouter le code de l'espagnol ;
+- les champs suivent d'eux-mêmes : `traduction_<code>`, `exemple_<code>`, la clé `<code>` des
+  dialogues, de la grammaire et de l'écrit ; un dossier `pflege/sources/traductions/<code>/` sur le
+  modèle des 8 autres (`CONSIGNES.md`) ;
+- `tests/pflege.py` compte 9 langues : il passera à 10.
+
+**Le précédent existe** : l'espagnol est déjà langue d'interface de l'anglais appris. Les cartes y portent
+`traduction_es` / `exemple_es` (l'Amérique latine, par défaut) et, quand l'Espagne dit autrement,
+`traduction_esp` / `exemple_esp` (`champEs()`, `VARIANTE_INTERFACE_ES`, `anglais/outils/espagnol.py`).
+Les Soins devraient suivre la même convention, **le code `es` et le suffixe `_esp`**, sauf avis contraire
+de la session de l'espagnol, à qui revient le choix.
+
+⚠️ Dans le moteur, « es » désigne aussi la **langue apprise** espagnole (`LANGUE_APPRISE`, `wortandoEs_`).
+C'est le même piège que l'allemand, langue d'interface de l'espagnol (« de-connu », `VOIX_ALLEMAND_CONNU`).
+Les Soins ne vivent que dans `apprendre=de`, ce qui limite le risque. `champEs()` ne s'applique
+aujourd'hui qu'à l'anglais appris : la session de l'espagnol l'étendra à l'allemand.
+
+La variété : le recrutement vient d'Amérique latine (Mexique, Colombie), et le vocabulaire des soins y
+diffère parfois de l'Espagne (« curita » / « tirita », « suero »…). Le défaut « latam » de l'anglais
+convient. Un champ `_esp` n'est nécessaire que là où l'Espagne dit autrement. La traduction des 2 055
+unités demandera une relecture, comme les 8 autres langues.
+
+### Qui fait quoi, dans quel ordre
+
+| Ordre | Chantier | Session | Dépense |
+|---|---|---|---|
+| 1 | A. jouer les 12 dialogues, la partie Dialogue de la séance | architecture | — |
+| 1 bis | A3. les sons du « chemin modèle » | dialogues (voix) | ≈ 7,4 $, déjà dans le plan, à annoncer |
+| 2 | B. les dialogues 13-26 et les cartes-phrases | dialogues | voix ≈ 4 $, à chiffrer et faire accorder |
+| 2 | C. les paires patient / service, les abréviations | vocabulaire | — |
+| 3 | D1. la couche « Situation » des 8 scènes | scènes | — |
+| 3 | D2. le téléphone et la salle de pause | scènes | ≈ 0,90 $, si accordé |
+| plus tard | E. l'espagnol des Soins | session de l'espagnol, avec la clé ci-dessus | — |
+
+⚕️ Les dialogues 18, 21, 23 et 26, les paires médicales et toute valeur clinique attendent la relecture
+d'une infirmière, comme le reste.
+
 ### Le calendrier de la grande version (estimation)
 
 | Phase | Contenu | Durée | Après |
