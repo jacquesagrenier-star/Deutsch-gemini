@@ -17,6 +17,8 @@ LA RÈGLE (pflege/PLAN.md, décisions de Jacques du 15 nov., § D)
         « faux » d'un dialogue, faux ici aussi ;
       - n : l'aide (« aide ») du choix faux du nœud, ⚕️ si un des deux choix est à relire ;
       - sens : la traduction du choix juste.
+    Les nombres : la forme « dit » du dialogue (en lettres) est prise quand elle existe, car aucun
+    chiffre ne se dit à voix haute (pflege/FORMAT-DONNEES.md, règle 4) ; un chiffre restant arrête le script.
     Seuls s'écrivent ici le cadre de la question (« Herr Brandt fragt: „…“ », « Am Telefon … »),
     le titre de la couche et la zone de l'image où la personne se trouve.
 
@@ -98,7 +100,7 @@ SCENES = {
     "soins-uebergabe": {"niveau": "B2", "qui": {"jonas": "pflegefachmann"}, "qs": [
         Q(D06, "start", 0, 2, (D06, "zucker", 2)),
         Q(D06, "zucker", 0, 2, (D06, "start", 2), r="fieberkurve"),
-        Q(D06, "mobi", 1, 2, (D04, "erklaeren", 2), cadre="{nom} fragt nach Herrn Brandt, Zimmer 12: „{t}“"),
+        Q(D06, "mobi", 1, 2, (D04, "erklaeren", 2), cadre="{nom} fragt nach Herrn Brandt, Zimmer zwölf: „{t}“"),
     ]},
     # 5. L'admission : Frau Krüger, la fille de Frau Lehmann (d05).
     "soins-aufnahme": {"niveau": "B2", "qui": {"lehmann_tochter": "tochter"}, "qs": [
@@ -225,11 +227,13 @@ def construire(src):
             if not zone:
                 fautes.append("%s/%s : %s parle, sans zone dans %s" % (item["d"], item["noeud"], ligne["qui"], scene))
             de = lambda t: remplacer(t, noms["de"], manque)
-            parle = de(ligne["t"])
+            parle = de(ligne.get("dit") or ligne["t"])     # « dit » : les nombres en lettres (contrat, règle 4)
             cadre = item["cadre"] or ("{nom} fragt: „{t}“" if "?" in parle else "{nom} sagt: „{t}“")
             formes = noms["de"].get(ligne["qui"]) or {}
             nom = formes.get("") or ligne["qui"]
-            c = [de(bon["t"]), de(faux["t"]), de(autre["t"])]
+            c = [de(x.get("dit") or x["t"]) for x in (bon, faux, autre)]
+            if any(ch.isdigit() for x in c + [parle, cadre] for ch in x):
+                fautes.append("%s/%s : un chiffre dans l'allemand dit (règle 4)" % (item["d"], item["noeud"]))
             if len(set(c)) != 3:
                 fautes.append("%s/%s : choix en double" % (item["d"], item["noeud"]))
             relire = bon.get("relire") or faux.get("relire")
