@@ -99,3 +99,45 @@ Caractères allemands **distincts** à dire, nombres déjà en lettres (`python 
 - Recommandation : **« chemin modèle » d'abord**, puis les autres branches si l'usage le justifie.
 - Avant toute génération : les lectures des nombres (`"lecture"` dans `pflege/datos/`) versées dans
   `audio/lectures/de.json`, puis `python audio/controler_sons.py --dossiers de` après la génération.
+
+## Ce qui est fait (14 nov. 2026)
+
+Lot « chemin modèle » généré : 775 fichiers, 845 clés (`pflege/datos/sons.json`), ≈ 34 504 crédits v2.
+547 fichiers sont dits par Aurora (questions d'écoute et leurs choix, Redemittel, toute la grammaire) ;
+les personnages ne parlent que dans les clés `r/…`. Fichiers par voix (hauteur médiane mesurée) :
+`m_alt` 55 (113 Hz), `radio_m` 32 (130 Hz), `m_mittel` 8 (144 Hz), `m_jung` 7 (110 Hz) ; `f_jung` 58,
+`f_alt` 33, `f_mittel` 20, `radio_f` 8, `f_reif` 7 ; `aurora` 547 (211 Hz). Les voix d'homme sont bien des
+voix d'homme. Planche d'écoute (une réplique par personnage) : `Downloads/pflege/voix-personnages/`.
+
+## L'accent d'origine des soignants (décision de Jacques du 14 nov., en préparation)
+
+« Les personnes doivent parler avec leur accent d'origine » → « Oui, vas-y avec l'accent léger ». Les cinq
+soignants venus d'ailleurs parlent un allemand clair et correct, avec un accent **léger mais audible** :
+Elif (turc), Yusuf (arabe syrien), Amira (arabe tunisien), Arun (malayalam, Kerala), Olena (ukrainien).
+L'équipe allemande, les patients et l'examen blanc gardent leurs voix, sans accent.
+
+**Le soignant est le rôle de l'apprenant** dans chaque dialogue : 98 de ses 100 répliques du chemin
+modèle sont aussi des phrases que l'apprenant choisit et redit. D'où **deux fichiers pour ces répliques** :
+- la voix **neutre** déjà faite, gardée pour « à répéter » et « jouer son rôle » (clé `<id>/r/<n>`) ;
+- la voix **à accent**, nouvelle, pour écouter la conversation (clé `<id>/ra/<n>`, à ajouter au contrat
+  avec l'architecture).
+
+Voix : **conçues par Voice Design** (`audio/concevoir_voix.py`), comme celles du telc, et non prises dans
+la bibliothèque (une voix conçue n'appartient à personne ; la clé du projet ne lit d'ailleurs pas la
+bibliothèque, erreur 401). Une description par personnage, texte d'essai = une vraie réplique de lui ; trois
+aperçus, choix à l'oreille par Jacques, puis la voix gardée dans le compte et un essai en multilingual v2.
+
+| Personnage | Clé prévue | Texte d'essai (réplique réelle) |
+|---|---|---|
+| Elif | `elif_tr` | d01 : « Guten Morgen, Herr Brandt. Mein Name ist Elif, … Wie haben Sie heute Nacht geschlafen? » |
+| Yusuf | `yusuf_ar` | d07 : « Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. … » |
+| Amira | `amira_ar` | d10 : « Ein hoher Blutdruck ist schlecht für das Herz. Die Tablette senkt den Blutdruck … » |
+| Arun | `arun_ml` | d12 : « Das klingt schön. Wissen Sie, jetzt ist noch mitten in der Nacht. … » |
+| Olena | `olena_uk` | d09 : « Heute gibt es Kartoffelsuppe und danach Hähnchen mit Püree. … » |
+
+Chiffrage :
+- **essais** : 5 conceptions (trois aperçus chacune, sur 104 à 139 caractères) puis 5 répliques en v2,
+  environ 500 à 1 500 crédits (le prix des aperçus se mesure au premier) ;
+- **refonte** : les 100 répliques à accent des cinq soignants (Elif 58, Arun 17, Olena 10, Amira 8,
+  Yusuf 7), **8 819 caractères, soit ≈ 8 800 crédits** (≈ 1,5 $), les fichiers neutres restant tels quels.
+Rien n'est lancé sans l'autorisation de Jacques écrite dans la session.
