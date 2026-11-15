@@ -477,6 +477,8 @@ for c in chap:
         langues_de(c, champ, "sommaire " + str(c.get("id")), True)
 
 # les chapitres
+GROUPES_RM = ["patient", "famille", "collegues", "releve", "sbar", "visite", "negociation", "telephone"]
+RM = lire(os.path.join(DEPOT, "pflege", "datos", "redemittel.json"))
 BLOCS = {"p", "titre", "liste", "de", "piege", "tableau", "doc", "redemittel", "exercice", "serie", "renvoi"}
 VERS = re.compile(r"^(dialogue|grammaire|ecrit|theme|scene):[A-Za-z0-9_-]+$|^chapitre:(%s)$" % "|".join(i for i, _ in ATTENDUS))
 cles_manuel = {}
@@ -546,21 +548,15 @@ for nom in fichiers:
                 if not (b.get("doc") or {}).get("absaetze"):
                     faute(ob + " : document sans paragraphes")
             elif t == "redemittel":
-                langues_de(b, "titre", ob, exiger)
-                for cle in [b.get("cle")] + [p.get("cle") for p in b.get("phrases") or []]:
-                    if not cle or cle in cles_manuel:
-                        faute(ob + " : cle %r manquante ou en double (deja dans %s)" % (cle, cles_manuel.get(cle)))
-                    cles_manuel[cle] = ob
-                if not b.get("phrases"):
-                    faute(ob + " : aucune phrase")
-                for p in b.get("phrases") or []:
-                    if not p.get("de"):
-                        faute(ob + " %s : pas d'allemand" % p.get("cle"))
-                    if re.search(r"\d", p.get("de") or ""):
-                        faute(ob + " %s : chiffres dans une phrase dite (en lettres) : %s" % (p.get("cle"), p.get("de")))
-                    if p.get("registre") not in ("Sie", "du", None):
-                        faute(ob + " %s : registre %r" % (p.get("cle"), p.get("registre")))
-                    langues_de(p, "texte", ob + " " + str(p.get("cle")), exiger)
+                # une reference a la source unique (pflege/datos/redemittel.json, FORMAT-DONNEES.md § 2 bis)
+                if b.get("phrases"):
+                    faute(ob + " : pas de phrases ici, la source est pflege/datos/redemittel.json (« ref »)")
+                if b.get("ref") not in GROUPES_RM:
+                    faute(ob + " : « ref » %r, un des groupes %s" % (b.get("ref"), ", ".join(GROUPES_RM)))
+                elif RM is not None and not any(c.get("groupe") == b["ref"] and not c.get("retire") for c in RM.get("cartes", [])):
+                    notes.append("%s : aucune carte « %s » encore dans redemittel.json" % (ob, b["ref"]))
+                if b.get("titre_fr"):
+                    langues_de(b, "titre", ob, exiger)
             elif t == "exercice":
                 n_ex += 1
                 if not b.get("cle") or b["cle"] in cles_manuel:

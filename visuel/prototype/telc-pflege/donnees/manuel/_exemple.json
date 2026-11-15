@@ -5,57 +5,173 @@
     {
       "id": "attendu",
       "blocs": [
-        { "t": "p", "texte_fr": "Un paragraphe d'aide. L'allemand s'écrit entre doubles crochets : [[die Übergabe]], la relève.", "texte_en": "A paragraph of help. German goes between double brackets: [[die Übergabe]], the handover." },
-        { "t": "titre", "texte_fr": "Un intertitre", "texte_en": "A subheading" },
-        { "t": "liste", "ordre": true, "items": [
-          { "texte_fr": "Lis les questions avant d'écouter.", "texte_en": "Read the questions before listening." },
-          { "texte_fr": "Souligne les mots qui comptent : [[nicht]], [[erst]], [[schon]].", "texte_en": "Underline the words that matter: [[nicht]], [[erst]], [[schon]]." }
-        ] },
-        { "t": "tableau",
-          "entetes": [ { "texte_fr": "Partie", "texte_en": "Part" }, { "texte_fr": "Points", "texte_en": "Points" } ],
-          "lignes": [ [ { "de": "Teil 1" }, { "texte_fr": "4", "texte_en": "4" } ], [ { "de": "Teil 2" }, { "texte_fr": "10", "texte_en": "10" } ] ] }
+        {
+          "t": "p",
+          "texte_fr": "Un paragraphe d'aide. L'allemand s'écrit entre doubles crochets : [[die Übergabe]], la relève.",
+          "texte_en": "A paragraph of help. German goes between double brackets: [[die Übergabe]], the handover."
+        },
+        {
+          "t": "titre",
+          "texte_fr": "Un intertitre",
+          "texte_en": "A subheading"
+        },
+        {
+          "t": "liste",
+          "ordre": true,
+          "items": [
+            {
+              "texte_fr": "Lis les questions avant d'écouter.",
+              "texte_en": "Read the questions before listening."
+            },
+            {
+              "texte_fr": "Souligne les mots qui comptent : [[nicht]], [[erst]], [[schon]].",
+              "texte_en": "Underline the words that matter: [[nicht]], [[erst]], [[schon]]."
+            }
+          ]
+        },
+        {
+          "t": "tableau",
+          "entetes": [
+            {
+              "texte_fr": "Partie",
+              "texte_en": "Part"
+            },
+            {
+              "texte_fr": "Points",
+              "texte_en": "Points"
+            }
+          ],
+          "lignes": [
+            [
+              {
+                "de": "Teil 1"
+              },
+              {
+                "texte_fr": "4",
+                "texte_en": "4"
+              }
+            ],
+            [
+              {
+                "de": "Teil 2"
+              },
+              {
+                "texte_fr": "10",
+                "texte_en": "10"
+              }
+            ]
+          ]
+        }
       ]
     },
     {
       "id": "pieges",
       "blocs": [
-        { "t": "piege", "titre_fr": "Le mot entendu n'est pas la réponse", "titre_en": "The word you hear is not the answer",
+        {
+          "t": "piege",
+          "titre_fr": "Le mot entendu n'est pas la réponse",
+          "titre_en": "The word you hear is not the answer",
           "de": "Die Blutabnahme war für acht Uhr geplant, aber wir machen sie erst um zehn.",
           "texte_fr": "On entend [[acht Uhr]], mais la prise de sang a lieu à [[zehn]] : [[erst]] corrige l'heure.",
-          "texte_en": "You hear [[acht Uhr]], but the blood test takes place at [[zehn]]: [[erst]] corrects the time." },
-        { "t": "de", "de": "Frau Lehmann gibt an, sie habe heute Nacht schlecht geschlafen.\nSie wünscht sich ein Gespräch mit der Ärztin.",
+          "texte_en": "You hear [[acht Uhr]], but the blood test takes place at [[zehn]]: [[erst]] corrects the time."
+        },
+        {
+          "t": "de",
+          "de": "Frau Lehmann gibt an, sie habe heute Nacht schlecht geschlafen.\nSie wünscht sich ein Gespräch mit der Ärztin.",
           "texte_fr": "Mme Lehmann dit qu'elle a mal dormi cette nuit. Elle souhaite parler à la médecin.",
-          "texte_en": "Mrs Lehmann says she slept badly last night. She would like to talk to the doctor." },
-        { "t": "doc", "doc": { "art": "E-Mail", "kopf": ["Von: Pflegedienstleitung", "An: Station 4"], "betreff": "Dienstplan Januar",
-          "absaetze": ["Liebe Kolleginnen und Kollegen,", "bitte tragen Sie Ihre Wünsche bis Freitag in die Liste ein."] } }
+          "texte_en": "Mrs Lehmann says she slept badly last night. She would like to talk to the doctor."
+        },
+        {
+          "t": "doc",
+          "doc": {
+            "art": "E-Mail",
+            "kopf": [
+              "Von: Pflegedienstleitung",
+              "An: Station 4"
+            ],
+            "betreff": "Dienstplan Januar",
+            "absaetze": [
+              "Liebe Kolleginnen und Kollegen,",
+              "bitte tragen Sie Ihre Wünsche bis Freitag in die Liste ein."
+            ]
+          }
+        }
       ]
     },
     {
       "id": "guide",
       "blocs": [
-        { "t": "exercice", "cle": "ex-exemple-1",
-          "consigne_de": "Was ist richtig?", "consigne_fr": "Choisis la bonne réponse.", "consigne_en": "Choose the right answer.",
+        {
+          "t": "exercice",
+          "cle": "ex-exemple-1",
+          "consigne_de": "Was ist richtig?",
+          "consigne_fr": "Choisis la bonne réponse.",
+          "consigne_en": "Choose the right answer.",
           "items": [
-            { "nr": 1, "typ": "abc", "frage": "Wann ist die Blutabnahme?", "o": ["um acht Uhr", "um zehn Uhr", "morgen früh"], "bon": 1,
-              "erkl_fr": "« erst um zehn » : à dix heures, pas avant.", "erkl_en": "“erst um zehn”: at ten, not before.",
-              "pas_fr": ["Je lis la question : on cherche une heure.", "J'entends [[acht]] puis [[erst um zehn]] : la deuxième heure corrige la première."],
-              "pas_en": ["I read the question: I'm looking for a time.", "I hear [[acht]] then [[erst um zehn]]: the second time corrects the first."] },
-            { "nr": 2, "typ": "rf", "frage": "Die Blutabnahme fällt heute aus.", "bon": 1,
-              "erkl_fr": "Elle n'est pas annulée, elle est déplacée.", "erkl_en": "It isn't cancelled, it is moved." }
-          ] }
+            {
+              "nr": 1,
+              "typ": "abc",
+              "frage": "Wann ist die Blutabnahme?",
+              "o": [
+                "um acht Uhr",
+                "um zehn Uhr",
+                "morgen früh"
+              ],
+              "bon": 1,
+              "erkl_fr": "« erst um zehn » : à dix heures, pas avant.",
+              "erkl_en": "“erst um zehn”: at ten, not before.",
+              "pas_fr": [
+                "Je lis la question : on cherche une heure.",
+                "J'entends [[acht]] puis [[erst um zehn]] : la deuxième heure corrige la première."
+              ],
+              "pas_en": [
+                "I read the question: I'm looking for a time.",
+                "I hear [[acht]] then [[erst um zehn]]: the second time corrects the first."
+              ]
+            },
+            {
+              "nr": 2,
+              "typ": "rf",
+              "frage": "Die Blutabnahme fällt heute aus.",
+              "bon": 1,
+              "erkl_fr": "Elle n'est pas annulée, elle est déplacée.",
+              "erkl_en": "It isn't cancelled, it is moved."
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "redemittel-exemple", "titre_fr": "Une rubrique libre : des Redemittel", "titre_en": "A free section: Redemittel",
+      "id": "redemittel-exemple",
+      "titre_fr": "Une rubrique libre : des Redemittel",
+      "titre_en": "A free section: Redemittel",
       "blocs": [
-        { "t": "redemittel", "cle": "rm-exemple", "titre_fr": "Se présenter au patient", "titre_en": "Introducing yourself to a patient",
-          "phrases": [
-            { "cle": "rm-exemple-01", "de": "Guten Morgen, ich bin Elif, Ihre Pflegefachkraft heute.", "texte_fr": "Bonjour, je suis Elif, votre infirmière aujourd'hui.", "texte_en": "Good morning, I'm Elif, your nurse today.", "registre": "Sie" },
-            { "cle": "rm-exemple-02", "de": "Darf ich kurz Ihren Blutdruck messen?", "texte_fr": "Je peux prendre votre tension un instant ?", "texte_en": "May I quickly take your blood pressure?", "registre": "Sie" }
-          ] },
-        { "t": "serie", "epreuve": "lesen", "serie": 101, "teil": 2, "texte_fr": "Une série d'entraînement, ouverte à sa partie 2.", "texte_en": "A practice set, opened at its part 2." },
-        { "t": "renvoi", "vers": "chapitre:examen", "titre_fr": "L'examen en un coup d'œil", "titre_en": "The exam at a glance" },
-        { "t": "renvoi", "vers": "dialogue:d07", "titre_fr": "Le dialogue « L'appel au médecin »", "titre_en": "The dialogue “Calling the doctor”" }
+        {
+          "t": "redemittel",
+          "ref": "patient",
+          "titre_fr": "Avec le patient",
+          "titre_en": "With the patient"
+        },
+        {
+          "t": "serie",
+          "epreuve": "lesen",
+          "serie": 101,
+          "teil": 2,
+          "texte_fr": "Une série d'entraînement, ouverte à sa partie 2.",
+          "texte_en": "A practice set, opened at its part 2."
+        },
+        {
+          "t": "renvoi",
+          "vers": "chapitre:examen",
+          "titre_fr": "L'examen en un coup d'œil",
+          "titre_en": "The exam at a glance"
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d07",
+          "titre_fr": "Le dialogue « L'appel au médecin »",
+          "titre_en": "The dialogue “Calling the doctor”"
+        }
       ]
     }
   ]

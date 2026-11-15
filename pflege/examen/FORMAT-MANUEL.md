@@ -132,7 +132,7 @@ crochets.
 | `piege` | `titre_*`, `de` (facultatif), `texte_*` | un encadré « Piège » : un exemple de notre cru et son explication |
 | `tableau` | `entetes`: [cellule], `lignes`: [[cellule…]] ; une cellule = {`texte_*`} ou {`de`} | un tableau |
 | `doc` | `doc`: {`art`, `kopf`, `betreff`, `absaetze`} (comme dans les examens) | un document allemand (courriel, extrait de plan…) |
-| `redemittel` | `cle`, `titre_*`, `phrases`: [{`cle`, `de`, `texte_*`, `registre`: "Sie" \| "du" \| null}] | les tournures, chacune avec sa traduction, et sa voix une fois enregistrée |
+| `redemittel` | `ref` (un groupe : `patient`, `famille`, `collegues`, `releve`, `sbar`, `visite`, `negociation`, `telephone`), `titre_*` (facultatif) | les cartes de ce groupe, lues dans la **source unique** `pflege/datos/redemittel.json` (FORMAT-DONNEES.md § 2 bis), rangées par fonction puis par niveau, avec leur son |
 | `exercice` | `cle`, `consigne_de` (facultatif), `consigne_*`, `doc` (facultatif), `items`: [question] | des questions à faire sur place, puis « Corriger » |
 | `serie` | `epreuve`, `serie` (id d'entraînement), `teil` (facultatif), `texte_*` | un bouton vers une série d'entraînement, ouverte à cette partie |
 | `renvoi` | `vers` (`dialogue:<id>`, `grammaire:<id>`, `ecrit:<id>`, `theme:<id>`, `scene:<id>`, `chapitre:<id>`), `titre_*` | « Dans l'app : … ». Un `chapitre:` s'ouvre dans la page ; les autres envoient `parler("ouvrir", {vers})` à l'app |
@@ -143,10 +143,14 @@ crochets.
 - **`relire: true`** se pose sur tout bloc, sur une phrase de Redemittel ou sur une question d'exercice dont le
   contenu métier doit être validé par une infirmière : dose, geste, soin, droit. `python tests/pflege_examen.py
   --relire` en sort la liste.
-- **Les `cle`** (`exercice`, `redemittel` et ses phrases) sont uniques dans tout le manuel. La progression et les
-  pistes enregistrées s'y rattachent : une phrase de Redemittel `rm-patient-03` aura la piste `m-rm-patient-03`.
-- La phrase d'un Redemittel se dit **comme écrite**, donc sans chiffres : on écrit « hundertdreißig zu
-  fünfundachtzig ».
+- **Les `cle`** d'`exercice` sont uniques dans tout le manuel ; la progression s'y rattache.
+- **Les Redemittel n'ont qu'une source** (décision de l'architecture, 15 nov.) : `pflege/datos/redemittel.json`,
+  construit par la chaîne de la session dialogues (`textes.py`), sons compris (`pflege/datos/sons.json`, voix
+  d'Aurora). Ses cartes portent `id` (`soins_rm_<groupe>_<rang>`, stable), `groupe`, `fonction`, `niveau`,
+  `registre`, `de`, `lecture` (les nombres en lettres), `trad`, `situation`, `son`, `relire`. Les phrases sans
+  dialogue s'écrivent dans `pflege/sources/redemittel/<groupe>.json`, au format source du § 2 bis. Avant d'en
+  écrire une, on regarde les environ 180 cartes des dialogues d01-d26 : celles d'un groupe comptent déjà pour le
+  chapitre. Un même `de` deux fois est refusé.
 
 ## 6. La progression (stockage local, `wortando_soins_telc_manuel`)
 
@@ -174,11 +178,12 @@ existants : un besoin dans l'un d'eux se demande à pflege-examen.
 | A · manuel-hoeren (local_32d21ba9) | 1 | `donnees/entrainement/hoeren.json`, `voix-hoeren.json` ; `donnees/manuel/hoeren.json` | 53 000 crédits (≈ 8,75 $) | — |
 | B · manuel-lesen-sprach (local_7b006a7a) | 2, 3, 8 | `donnees/entrainement/lesen.json`, `sprachbausteine.json` ; `donnees/manuel/lesen.json`, `sprachbausteine.json`, `grammatik.json` | — | — |
 | C · L'écrit | 4, 7 | `donnees/entrainement/schreiben.json` ; `donnees/manuel/schreiben.json`, `beruf.json` | — | — |
-| D · L'oral et la communication | 5, 6 | `donnees/entrainement/sprechen.json`, `voix-sprechen.json` ; `donnees/manuel/sprechen.json`, `kommunikation.json` ; `img/entr-*.webp` ; `pflege/examen/images/prompts_entrainement.py` et ses `entr-*` ; un outil neuf pour les sons des Redemittel (`outils/voix_redemittel.py`, pistes `m-<cle>`) | 64 000 crédits (≈ 10,50 $) | 16 photos 2A (plafond 3 $) ; les 1A reprennent les scènes |
+| D · L'oral et la communication | 5, 6 | `donnees/entrainement/sprechen.json`, `voix-sprechen.json` ; `donnees/manuel/sprechen.json`, `kommunikation.json` ; `img/entr-*.webp` ; `pflege/examen/images/prompts_entrainement.py` et ses `entr-*` ; les phrases sans dialogue `pflege/sources/redemittel/<groupe>.json` (construction et sons : la session dialogues) | 64 000 crédits (≈ 10,50 $), dont environ 24 000 pour les sons des Redemittel, produits par la chaîne des dialogues | 16 photos 2A (plafond 3 $) ; les 1A reprennent les scènes |
 | E · pflege-examen | 0, 9 | `donnees/manuel/sommaire.json`, `examen.json` ; l'examen blanc 2 (`donnees/<épreuve>.json`, série 2) ; le code, ce contrat, le contrôle, l'intégration | 15 600 crédits (≈ 2,60 $) | 7 photos (plafond 1,50 $) |
 
-- **Les Redemittel du chapitre 6** : leur source unique est à fixer avec l'architecture (local_eb28671b). La
-  question lui est posée ; D commence par le chapitre 5 en attendant.
+- **Les Redemittel du chapitre 6** : source unique `pflege/datos/redemittel.json` (§ 5), décidée par
+  l'architecture le 15 nov. Le chapitre 6 n'y met que des blocs `{"t":"redemittel","ref":"<groupe>"}` et leur
+  explication.
 - **Les voix** : chaque lot est annoncé au chef avec son coût réel avant d'être lancé. Il faut l'accord de Jacques,
   confirmé dans la session qui dépense si ses permissions l'exigent. Après chaque lot : `python
   audio/controler_sons.py`.

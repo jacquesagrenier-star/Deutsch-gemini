@@ -53,7 +53,10 @@ DTZ.charger(Promise.all([
   ...["hoeren", "sprechen"].map(e => json("donnees/entrainement/voix-" + e + ".json", true)),
   json("donnees/manuel/sommaire.json", true),
   ...CHAPITRES.map(c => json("donnees/manuel/" + c + ".json", true)),
-  Q.get("exemple") ? json("donnees/manuel/_exemple.json", true) : Promise.resolve(null)
+  Q.get("exemple") ? json("donnees/manuel/_exemple.json", true) : Promise.resolve(null),
+  // les Redemittel : UNE source, celle de la section Soins (pflege/datos/redemittel.json, FORMAT-DONNEES.md § 2 bis)
+  json("../../../pflege/datos/redemittel.json", true),
+  json("../../../pflege/datos/sons.json", true)
 ]).then(([ui, ...reste]) => {
   textesTelc({ fr: ui.fr, en: ui.en });
   if (AUTRES) Object.assign(TXT, ui[LANGUE] || {});
@@ -69,6 +72,8 @@ DTZ.charger(Promise.all([
   PF.sommaire = (reste[2 * n + 3] || {}).chapitres || [];
   CHAPITRES.forEach((c, k) => { const f = reste[2 * n + 4 + k]; if (f && f.rubriques && f.rubriques.length) PF.chap[c] = f; });
   const ex = reste[2 * n + 4 + CHAPITRES.length];
+  PF.rm = reste[2 * n + 5 + CHAPITRES.length] || {};
+  PF.sons = reste[2 * n + 6 + CHAPITRES.length] || {};
   if (ex && ex.rubriques){
     PF.chap._exemple = ex;
     PF.sommaire = [{ id: "_exemple", nr: "·", titre_fr: "Exemple : chaque sorte de bloc", titre_en: "Example: every kind of block", resume_fr: "Pour voir le rendu du format (?exemple=1).", resume_en: "To see how the format renders (?exemple=1)." }].concat(PF.sommaire);
@@ -903,6 +908,15 @@ function ouvrirSerie(epr, id, teil, aufgabe){
 }
 
 // ---------------------------------------------------------------- les blocs d'un chapitre
+// l'adresse des sons de la section Soins (pflege/datos/sons.json : cle -> fichier) : VIDE tant que l'architecture ne
+// l'a pas fixee (les fichiers sont faits, pas deposes) ; vide, la voix du telephone lit la carte
+const BASE_SONS_SOINS = "";
+const ORDRE_NIVEAUX = ["A2", "B1", "B2", "C1"];
+function cartesRm(groupe){
+  const fonctions = (PF.rm.fonctions || []).map(f => f.id);
+  return (PF.rm.cartes || []).filter(c => c.groupe === groupe && !c.retire)
+    .sort((a, b) => (fonctions.indexOf(a.fonction) - fonctions.indexOf(b.fonction)) || (ORDRE_NIVEAUX.indexOf(a.niveau) - ORDRE_NIVEAUX.indexOf(b.niveau)));
+}
 // [[…]] dans un texte d'aide : de l'allemand, montre comme tel (lang="de", de gauche a droite)
 const aide = (o, champ) => esc(tr(o, champ || "texte")).replace(/\[\[([^\]]+)\]\]/g, (m, d) => '<span lang="de" dir="ltr" class="de">' + d + '</span>');
 const deHtml = t => esc(t || "").split("\n").join("<br>");
@@ -919,10 +933,25 @@ function blocHtml(b){
     case "tableau": return '<div class="tableau-manuel"><table>' + (b.entetes ? '<thead><tr>' + b.entetes.map(c => '<th>' + cellule(c) + '</th>').join("") + '</tr></thead>' : "") +
       '<tbody>' + (b.lignes || []).map(l => '<tr>' + l.map(c => '<td>' + cellule(c) + '</td>').join("") + '</tr>').join("") + '</tbody></table></div>';
     case "doc": return docHtml(b.doc, { items: [] }, {}, "tr");
-    case "redemittel": return '<div class="rm"><div class="rm-t">' + aide(b, "titre") + '</div>' + (b.phrases || []).map(p =>
-      '<div class="rm-l"><button class="jouer petit-jouer" data-rm="' + esc(p.cle) + '" aria-label="' + esc(T("pf_ecouter")) + '">' + ICONE_SON + '</button>' +
-      '<div><span lang="de" dir="ltr" class="rm-de">' + esc(p.de) + '</span>' + (p.registre ? ' <span class="rm-reg" lang="de">' + esc(p.registre) + '</span>' : "") +
-      (tr(p, "texte") ? '<span class="rm-tr">' + aide(p) + '</span>' : "") + '</div></div>').join("") + '</div>';
+    case "redemittel": {
+      // les cartes d'un groupe, rangees par fonction puis par niveau ; leur texte et leur son viennent de la source
+      const cartes = cartesRm(b.ref);
+      if (!cartes.length) return '<div class="rm">' + (tr(b, "titre") ? '<div class="rm-t">' + aide(b, "titre") + '</div>' : "") + '<p class="petit">' + esc(T("pf_rm_a_venir")) + '</p></div>';
+      const fonctions = (PF.rm.fonctions || []).map(f => f.id);
+      let h = '<div class="rm">' + (tr(b, "titre") ? '<div class="rm-t">' + aide(b, "titre") + '</div>' : ""), avant = null;
+      cartes.forEach(c => {
+        if (c.fonction !== avant){
+          avant = c.fonction;
+          const f = (PF.rm.fonctions || [])[fonctions.indexOf(c.fonction)];
+          h += '<h3>' + esc(f ? ((f.titre || {})[LANGUE] || (f.titre || {}).fr || c.fonction) : c.fonction) + '</h3>';
+        }
+        h += '<div class="rm-l"><button class="jouer petit-jouer" data-rm="' + esc(c.id) + '" aria-label="' + esc(T("pf_ecouter")) + '">' + ICONE_SON + '</button>' +
+          '<div><span lang="de" dir="ltr" class="rm-de">' + esc(c.de) + '</span>' + (c.registre ? ' <span class="rm-reg" lang="de">' + esc(c.registre) + '</span>' : "") +
+          ' <span class="rm-reg">' + esc(c.niveau || "") + '</span>' +
+          '<span class="rm-tr">' + esc((c.trad || {})[LANGUE] || (c.trad || {}).fr || "") + '</span></div></div>';
+      });
+      return h + '</div>';
+    }
     case "exercice": return '<div class="exercice-manuel" data-ex="' + esc(b.cle) + '"></div>';
     case "serie": {
       const s = (PF.entr[b.epreuve] || []).find(x => x.id === b.serie);
@@ -972,10 +1001,14 @@ function brancherBlocs(c){
   const rub = (PF.chap[c] || {}).rubriques || [];
   const tous = rub.flatMap(r => r.blocs || []);
   $("zone").querySelectorAll("[data-ex]").forEach(el => { const b = tous.find(x => x.t === "exercice" && x.cle === el.dataset.ex); if (b) exerciceManuel(el, b); });
-  $("zone").querySelectorAll("[data-rm]").forEach(x => x.onclick = () => {
-    const b = tous.find(y => y.t === "redemittel" && (y.phrases || []).some(p => p.cle === x.dataset.rm));
-    const p = b && b.phrases.find(y => y.cle === x.dataset.rm);
-    if (p){ debloquerSon(); arreterSon(); jouerPiste("m-" + p.cle, [{ wer: "neutral", text: p.de }]); }
+  $("zone").querySelectorAll("[data-rm]").forEach(x => x.onclick = async () => {
+    const c = (PF.rm.cartes || []).find(y => y.id === x.dataset.rm);
+    if (!c) return;
+    debloquerSon(); arreterSon();
+    // le son de la carte (sons.json de la section Soins), sinon la voix du telephone sur la lecture (nombres en lettres)
+    const f = BASE_SONS_SOINS && PF.sons[c.son];
+    if (f && !RAPIDE && await jouerFichier(BASE_SONS_SOINS + f)) return;
+    jouerRepliques([{ wer: "neutral", text: c.lecture || c.de }]);
   });
   $("zone").querySelectorAll("[data-serie]").forEach(x => x.onclick = () => {
     const ch = PF.sommaire.find(y => y.id === c);
