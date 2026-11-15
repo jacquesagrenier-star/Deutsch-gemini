@@ -9873,3 +9873,6 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
      → Cause prouvée le 13 nov. (pas de révision par phrase) ; ligne 84 remontée juste après la 77.
   3. Sorti de la séance du jour, puis revenu : « de retour à zéro, comme si j'avais rien fait ».
      → Diagnostic confié le 14 nov. à la session des corrections rapides : reproduction de/es (1re séance et « encore une séance »), régression ou non de la v1189, état enregistré ou perdu.
+- 14 nov. au soir (Jacques, v1193, séance en trois parties Cartes · Grammaire · Images) : « c'est pas toujours juste des cartes dans les cartes » ; « je retrouve même des cartes dans la grammaire […] même des cartes que j'avais vues dans les cartes » ; « les sons, je les garderai par contre dans la grammaire, ça c'est OK ».
+  → Lu dans le code (partDeCarteSeance) : Cartes = mots à revoir, mots neufs, cartes-phrases de ces mots, mots et phrases de l'escale ; Grammaire = questions de grammaire, tableau de l'escale, feuilles de conjugaison, MAIS AUSSI les repères (nombres, jours, mois, genre) et le son du jour ; Images = scène et thème.
+  → Diagnostic des doublons confié le 14 nov. à la session de la séance (maquettes-ameliorations) ; le son du jour reste dans Grammaire (décision de Jacques).
