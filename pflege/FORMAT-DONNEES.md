@@ -132,6 +132,61 @@ corpus, relire} ] } ] }`.
 - `prepare` : les parties du telc qu'il prépare (`hoeren_1`…`hoeren_4`, `lesen_1`…, `sprechen_1`…`sprechen_3`,
   `schreiben`).
 
+## 2 bis. Les cartes-phrases (« Redemittel » par fonction) — **PROPOSITION** (session « dialogues », 15 nov.)
+
+> À valider par l'architecture avant d'être produit en nombre (mandat B, point 2). Rien n'est encore dans
+> `pflege/datos/` ; seuls d13 à d26 portent déjà le champ `fonction` (sans effet sur la sortie actuelle).
+
+**Une seule source : les `redemittel` des dialogues.** Chaque dialogue a déjà 5 à 10 répliques utiles,
+traduites dans les 9 langues et lues par la voix d'Aurora (`<id>/rm/<n>` dans `pflege/datos/sons.json`). On
+ne les recopie pas ailleurs : on leur ajoute une **fonction**, et un fichier dérivé les range en cartes.
+
+**Dans la source** (`pflege/sources/dialogues/dNN-*.json`), sur chaque Redemittel :
+
+```json
+{"t": "Ich mache mir Sorgen. Ich glaube, er muss schnell untersucht werden.", "fr": "…",
+ "fonction": "transmettre",
+ "situation": {"fr": "Tu appelles le médecin de garde la nuit et tu dis ton inquiétude."}}
+```
+
+- `fonction` (obligatoire) : `annoncer` · `demander` · `rassurer` · `refuser` · `reformuler` · `transmettre` ·
+  `redemander`. Une seule par carte : celle qu'on apprend en la disant.
+- `situation` (facultatif) : quand on la dit, en une phrase, traduite dans les 9 langues comme tout texte.
+  **Absente, elle vaut le titre du dialogue** (« Appeler le médecin de garde »), déjà traduit : aucune
+  traduction nouvelle n'est nécessaire pour commencer.
+- Des cartes **sans dialogue** (formules de l'équipe, mandat C point 3) viendront plus tard dans
+  `pflege/sources/redemittel.json`, au même format, avec `niveau` et `registre` en plus.
+
+**Sortie** (fabriquée par `textes.py construire`, ne pas écrire à la main) : `pflege/datos/redemittel.json`
+
+```json
+{"_note": "…", "langues": ["fr", …, "ru"],
+ "fonctions": [{"id": "annoncer", "titre": {"fr": "Annoncer ce qu'on va faire", …}, "conseil": {"fr": …, …}}, …],
+ "cartes": [{
+   "id": "soins_rm_07_4",              // numéro du dialogue + rang dans sa liste : STABLE (règle 7)
+   "fonction": "transmettre",
+   "niveau": "B2", "registre": "Sie",  // ceux du dialogue
+   "de": "Ich mache mir Sorgen. …", "lecture": "", "trad": {"fr": …, …, "ru": …},
+   "situation": {"fr": …, …},          // la sienne, sinon le titre du dialogue
+   "dialogue": "soins_dlg_07_sbar", "apprenant": "yusuf",
+   "son": "soins_dlg_07_sbar/rm/4",    // la clé de sons.json : le son existe déjà
+   "relire": ""
+ }]}
+```
+
+- **L'id est stable** : la progression d'un apprenant sur une carte est rangée par `id`. On **ajoute** un
+  Redemittel en fin de liste d'un dialogue ; on n'en retire ni n'en réordonne un publié (`"retire": true`).
+- Les cartes sont rangées par fonction, puis par niveau, puis par numéro de dialogue. La séance peut en
+  tirer « une carte de chaque fonction » ou « toutes les cartes de *refuser* au B2 ».
+- Une carte à trou (« Ich wiederhole: … », « Ich fasse kurz zusammen: … ») reste une carte : les points de
+  suspension disent ce qu'on complète.
+- Les 7 fonctions (titre et conseil, 14 textes × 9 langues) sont la seule traduction nouvelle ; elles
+  vivraient dans `pflege/sources/redemittel.json`, clé `fonctions`.
+- **Ce qu'il resterait à faire, une fois le format validé** : poser `fonction` sur les 82 Redemittel de
+  d01-d12 (aucune traduction), les 7 fonctions en 9 langues, la sortie dans `textes.py` et son contrôle
+  dans `tests/pflege_dialogues.py`. Environ **180 cartes** pour d01-d26, sans aucune voix nouvelle pour
+  d01-d12 (les sons `rm` existent) ; ceux de d13-d26 font partie du chiffrage des voix des 14 dialogues.
+
 ## 3. La grammaire du métier — `pflege/datos/grammaire.json` (session « dialogues »)
 
 ```json

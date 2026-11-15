@@ -1,0 +1,135 @@
+{
+ "id": "d18-unklare-anordnung",
+ "numero": 18,
+ "niveau": "B2",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 2,
+ "role": "elif",
+ "personnes": ["sommer"],
+ "titre": {"t": "Eine unklare Anordnung", "fr": "Une prescription floue : redemander, refuser poliment"},
+ "intro": {"fr": "Jeudi 12 novembre, 7 h 40. {elif} prépare les médicaments de 8 heures. Dans le dossier de {brandt}, deux prescriptions ont été ajoutées la veille au soir : un antibiotique, alors qu'il est allergique à la pénicilline, et un antidouleur « si besoin », sans dose. Tu joues {elif} : tu arrêtes {sommer} dans le couloir, tu signales le problème sans accuser personne, tu demandes la dose exacte et tu refuses poliment un ordre trop vague."},
+ "but": {"fr": "Signaler un risque à une médecin pressée (faits, source, question) ; redemander une prescription incomplète (dose, intervalle, maximum) ; refuser poliment de donner un médicament sans prescription précise ; relire la prescription ; demander l'ordre écrit."},
+ "grammaire": ["g07", "g09", "g17"],
+ "telc": ["oral-3"],
+ "relire_notes": {"fr": "TOUT le dialogue. Amoxicilline + acide clavulanique = une pénicilline, contre-indiquée chez un patient allergique (éruption) ; la première dose n'a pas été donnée ; « bei Bedarf » sans dose : une prescription incomplète ne s'exécute pas ; métamizole 1 g, intervalle d'au moins 6 h, maximum 4 g par jour, si douleur > 3/10 (à vérifier selon le protocole du service) ; prescription orale : seulement en urgence, et à faire signer ; qui modifie le dossier (la médecin)."},
+ "redemittel": [
+  {"t": "Haben Sie kurz einen Moment? Es geht um eine Anordnung bei {brandt:dat}.", "fr": "Vous avez un instant ? C'est au sujet d'une prescription pour {brandt}.", "fonction": "demander"},
+  {"t": "Laut Aufnahmebogen hat {brandt} eine Penicillinallergie.", "fr": "D'après la fiche d'admission, {brandt} est allergique à la pénicilline.", "fonction": "transmettre", "relire": true, "relire_note": "Allergie du cas."},
+  {"t": "In der Kurve steht nur „bei Bedarf“. Es fehlen die Dosis und die Höchstmenge pro Tag.", "fr": "Dans le dossier, il n'y a que « si besoin ». Il manque la dose et le maximum par jour.", "fonction": "redemander"},
+  {"t": "Wie viel soll er bekommen, und wie oft höchstens?", "fr": "Combien doit-il recevoir, et combien de fois au maximum ?", "fonction": "redemander"},
+  {"t": "Das kann ich leider nicht. Ohne genaue Dosis darf ich das nicht geben.", "fr": "Je ne peux malheureusement pas. Sans dose précise, je n'ai pas le droit de le donner.", "fonction": "refuser", "relire": true, "relire_note": "Refus d'une prescription incomplète."},
+  {"t": "Ich wiederhole: …", "fr": "Je répète : …", "fonction": "reformuler"},
+  {"t": "Könnten Sie das bitte gleich in der Kurve ändern?", "fr": "Pourriez-vous le corriger tout de suite dans le dossier, s'il vous plaît ?", "fonction": "demander"}
+ ],
+ "debut": "ansprechen",
+ "noeuds": {
+  "ansprechen": {
+   "dit": [
+    {"recit": {"fr": "Jeudi 12 novembre, 7 h 40. Dans le dossier de {brandt}, deux prescriptions de la veille au soir : « Amoxicillin/Clavulansäure 3 x tägl. » et « Metamizol b. B. ». La première dose d'antibiotique est prévue à 8 heures. {sommer} passe dans le couloir, un gobelet de café à la main."}, "relire": true, "relire_note": "Prescriptions du cas."},
+    {"qui": "sommer", "air": "question", "t": "Ja, {elif}? Ich bin ein bisschen in Eile.", "fr": "Oui, {elif} ? Je suis un peu pressée."}
+   ],
+   "choix": [
+    {"t": "Entschuldigung, {sommer:voc}, haben Sie kurz einen Moment? Es geht um zwei Anordnungen bei {brandt:dat}.", "fr": "Pardon, {sommer:voc}, vous avez un instant ? C'est au sujet de deux prescriptions pour {brandt}.", "va": "allergie",
+     "puis": [{"qui": "sommer", "air": "attentive", "t": "Zwei Minuten. Worum geht's?", "fr": "Deux minutes. De quoi s'agit-il ?"}]},
+    {"t": "Darf ich Sie ganz kurz stören? Ich habe eine Frage zu den neuen Anordnungen bei {brandt:dat}, bevor ich die Medikamente gebe.", "fr": "Je peux vous déranger une seconde ? J'ai une question sur les nouvelles prescriptions de {brandt}, avant de donner les médicaments.", "va": "allergie",
+     "puis": [{"qui": "sommer", "air": "attentive", "t": "Zwei Minuten. Worum geht's?", "fr": "Deux minutes. De quoi s'agit-il ?"}]},
+    {"faux": true, "t": "{sommer:voc}, in der Kurve von {brandt:dat} ist ein Fehler.", "fr": "{sommer:voc}, il y a une erreur dans le dossier de {brandt}.",
+     "puis": [{"qui": "sommer", "air": "surprise", "t": "Ein Fehler? Von wem denn?", "fr": "Une erreur ? De qui, donc ?"}],
+     "aide": {"fr": "<b>Ne commence pas par « une erreur » : demande un moment, puis décris ce que tu vois.</b> « Haben Sie kurz einen Moment? Es geht um zwei Anordnungen bei Herrn Brandt. » Le but est la sécurité du patient, pas de trouver un coupable."}}
+   ]
+  },
+  "allergie": {
+   "dit": [],
+   "choix": [
+    {"t": "Gestern Abend ist Amoxicillin mit Clavulansäure angeordnet worden. Laut Aufnahmebogen hat {brandt} aber eine Penicillinallergie, er bekommt davon einen Hautausschlag.", "fr": "Hier soir, on a prescrit de l'amoxicilline avec de l'acide clavulanique. Mais d'après la fiche d'admission, {brandt} est allergique à la pénicilline : il fait une éruption.", "va": "gegeben",
+     "relire": true, "relire_note": "Amoxicilline = pénicilline.",
+     "puis": [{"qui": "sommer", "air": "surprise", "t": "Oh. Das ist ein Penicillin, das darf er auf keinen Fall bekommen. Hat er schon eine Dosis bekommen?", "fr": "Oh. C'est une pénicilline, il ne doit surtout pas en recevoir. Il a déjà eu une dose ?"}]},
+    {"t": "Das Antibiotikum, das gestern angeordnet wurde, ist Amoxicillin. Im Aufnahmebogen steht aber eine Penicillinallergie mit Hautausschlag.", "fr": "L'antibiotique prescrit hier, c'est de l'amoxicilline. Mais sur la fiche d'admission, il y a une allergie à la pénicilline avec éruption.", "va": "gegeben",
+     "puis": [{"qui": "sommer", "air": "surprise", "t": "Oh. Das ist ein Penicillin, das darf er auf keinen Fall bekommen. Hat er schon eine Dosis bekommen?", "fr": "Oh. C'est une pénicilline, il ne doit surtout pas en recevoir. Il a déjà eu une dose ?"}]},
+    {"faux": true, "t": "Der Kollege hat gestern ein falsches Antibiotikum aufgeschrieben. Das ist gefährlich!", "fr": "Le collègue a prescrit hier un mauvais antibiotique. C'est dangereux !",
+     "puis": [{"qui": "sommer", "air": "perplexe", "t": "Langsam. Was genau steht da, und was ist das Problem?", "fr": "Doucement. Qu'est-ce qui est écrit exactement, et quel est le problème ?"}],
+     "aide": {"fr": "<b>Donne les faits et leur source, sans juger le collègue.</b> « Angeordnet ist Amoxicillin. Laut Aufnahmebogen hat er eine Penicillinallergie. » La médecin décide elle-même ; ton rôle est de lui donner l'information exacte."}}
+   ]
+  },
+  "gegeben": {
+   "dit": [],
+   "choix": [
+    {"t": "Nein, die erste Gabe war für acht Uhr geplant. Ich habe sie noch nicht gegeben.", "fr": "Non, la première dose était prévue à 8 heures. Je ne l'ai pas encore donnée.", "va": "metamizol",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Gut, dass Sie nachgefragt haben. Ich setze es ab und ordne ein anderes Antibiotikum an. War das alles?", "fr": "Vous avez bien fait de demander. Je l'arrête et je prescris un autre antibiotique. C'est tout ?"}]},
+    {"t": "Nein, noch nicht. Ich wollte zuerst mit Ihnen sprechen.", "fr": "Non, pas encore. Je voulais d'abord vous en parler.", "va": "metamizol",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Gut, dass Sie nachgefragt haben. Ich setze es ab und ordne ein anderes Antibiotikum an. War das alles?", "fr": "Vous avez bien fait de demander. Je l'arrête et je prescris un autre antibiotique. C'est tout ?"}]}
+   ]
+  },
+  "metamizol": {
+   "dit": [],
+   "choix": [
+    {"t": "Noch eine Frage: Bei Metamizol steht nur „bei Bedarf“. Es fehlen die Einzeldosis und die Höchstmenge pro Tag.", "fr": "Encore une question : pour le métamizole, il n'y a que « si besoin ». Il manque la dose par prise et le maximum par jour.", "va": "wie_immer",
+     "puis": [{"qui": "sommer", "air": "attentive", "t": "Ach, machen Sie das einfach wie immer.", "fr": "Oh, faites comme d'habitude."}]},
+    {"t": "Und beim Metamizol bin ich unsicher: Wie viel darf er bekommen, und wie oft? In der Kurve steht nur „bei Bedarf“.", "fr": "Et pour le métamizole, je ne suis pas sûre : combien peut-il recevoir, et à quelle fréquence ? Dans le dossier, il n'y a que « si besoin ».", "va": "wie_immer",
+     "puis": [{"qui": "sommer", "air": "attentive", "t": "Ach, machen Sie das einfach wie immer.", "fr": "Oh, faites comme d'habitude."}]},
+    {"faux": true, "t": "Nein, das war alles. Metamizol gebe ich dann einfach, wenn er Schmerzen hat.", "fr": "Non, c'est tout. Le métamizole, je le donnerai simplement quand il aura mal.",
+     "puis": [{"qui": "sommer", "air": "perplexe", "t": "Wie viel denn? Steht da überhaupt eine Dosis?", "fr": "Combien, alors ? Il y a au moins une dose d'écrite ?"}],
+     "aide": {"fr": "<b>« Bei Bedarf » ne suffit pas : il faut la dose, l'intervalle et le maximum par jour.</b> Une prescription incomplète se redemande avant de la donner : « Es fehlen die Einzeldosis und die Höchstmenge pro Tag. »"},
+     "relire": true, "relire_note": "Éléments d'une prescription si besoin."}
+   ]
+  },
+  "wie_immer": {
+   "dit": [],
+   "choix": [
+    {"t": "Das kann ich leider nicht. Ohne genaue Dosis darf ich es nicht geben. Wie viel soll er bekommen, und wie oft höchstens?", "fr": "Je ne peux malheureusement pas. Sans dose précise, je n'ai pas le droit de le donner. Combien doit-il recevoir, et combien de fois au maximum ?", "va": "wiederholen",
+     "relire": true, "relire_note": "Refus poli d'un ordre vague.",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Sie haben recht. Ein Gramm, wenn die Schmerzen über drei liegen, frühestens alle sechs Stunden, höchstens vier Gramm am Tag.", "fr": "Vous avez raison. Un gramme si la douleur est au-dessus de 3, au plus tôt toutes les six heures, quatre grammes par jour au maximum.", "relire": true, "relire_note": "Posologie du métamizole."}]},
+    {"t": "Ich verstehe, dass Sie wenig Zeit haben. Aber ich brauche eine genaue Anordnung: die Einzeldosis, den Abstand und die Höchstmenge am Tag.", "fr": "Je comprends que vous ayez peu de temps. Mais j'ai besoin d'une prescription précise : la dose par prise, l'intervalle et le maximum par jour.", "va": "wiederholen",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Sie haben recht. Ein Gramm, wenn die Schmerzen über drei liegen, frühestens alle sechs Stunden, höchstens vier Gramm am Tag.", "fr": "Vous avez raison. Un gramme si la douleur est au-dessus de 3, au plus tôt toutes les six heures, quatre grammes par jour au maximum."}]},
+    {"faux": true, "t": "Okay, dann gebe ich ihm zwei Tabletten, das passt schon.", "fr": "D'accord, je lui donnerai deux comprimés, ça ira.",
+     "puis": [{"qui": "sommer", "air": "surprise", "t": "Moment, nein! Raten Sie bitte keine Dosis.", "fr": "Attendez, non ! Ne devinez pas une dose, s'il vous plaît."}],
+     "aide": {"fr": "<b>Tu as le droit, et le devoir, de refuser poliment un ordre trop vague.</b> « Das kann ich leider nicht. Ohne genaue Dosis darf ich es nicht geben. » Puis repose la question : « Wie viel soll er bekommen, und wie oft höchstens? »"}}
+   ]
+  },
+  "wiederholen": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich wiederhole: Metamizol ein Gramm bei Schmerzen über drei, frühestens alle sechs Stunden, höchstens vier Gramm am Tag.", "fr": "Je répète : métamizole un gramme si la douleur dépasse 3, au plus tôt toutes les six heures, quatre grammes par jour au maximum.", "va": "schriftlich",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Genau.", "fr": "Exactement."}]},
+    {"t": "Also: ein Gramm, ab Schmerzstärke vier, mindestens sechs Stunden Abstand und maximal vier Gramm pro Tag. Richtig?", "fr": "Donc : un gramme à partir d'une douleur de 4, au moins six heures d'intervalle et quatre grammes par jour au maximum. C'est bien ça ?", "va": "schriftlich",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Genau.", "fr": "Exactement."}]},
+    {"repete": true, "t": "Entschuldigung, wie oft höchstens, haben Sie gesagt?", "fr": "Pardon, combien de fois au maximum, vous avez dit ?", "va": "wiederholen",
+     "puis": [{"qui": "sommer", "air": "attentive", "t": "Frühestens alle sechs Stunden, höchstens vier Gramm am Tag.", "fr": "Au plus tôt toutes les six heures, quatre grammes par jour au maximum."}]}
+   ]
+  },
+  "schriftlich": {
+   "dit": [],
+   "choix": [
+    {"t": "Könnten Sie beides bitte gleich in der Kurve ändern? Eine mündliche Anordnung kann ich nur im Notfall annehmen.", "fr": "Pourriez-vous corriger les deux tout de suite dans le dossier, s'il vous plaît ? Une prescription orale, je ne peux l'accepter qu'en urgence.", "va": "ende",
+     "relire": true, "relire_note": "Règle de la prescription orale.",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Mache ich sofort, noch vor der Visite. Das neue Antibiotikum schreibe ich direkt dazu.", "fr": "Je le fais tout de suite, avant la visite. J'écris le nouvel antibiotique en même temps."}]},
+    {"t": "Würden Sie die Änderungen bitte schriftlich in die Kurve eintragen? Dann gebe ich die Medikamente danach.", "fr": "Vous voudriez bien noter les changements par écrit dans le dossier ? Je donnerai les médicaments après.", "va": "ende",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Mache ich sofort, noch vor der Visite. Das neue Antibiotikum schreibe ich direkt dazu.", "fr": "Je le fais tout de suite, avant la visite. J'écris le nouvel antibiotique en même temps."}]},
+    {"faux": true, "t": "Kein Problem, ich ändere das selbst in der Kurve.", "fr": "Pas de problème, je le corrige moi-même dans le dossier.",
+     "puis": [{"qui": "sommer", "air": "perplexe", "t": "Nein, nein, Anordnungen trage ich ein. Sonst ist nicht klar, wer was angeordnet hat.", "fr": "Non, non, c'est moi qui écris les prescriptions. Sinon, on ne sait plus qui a prescrit quoi."}],
+     "aide": {"fr": "<b>Une prescription s'écrit et se signe par la médecin, pas par la soignante.</b> Demande-le poliment : « Könnten Sie das bitte gleich in der Kurve ändern? » Une prescription orale ne s'accepte qu'en urgence, et se fait signer ensuite."}}
+   ]
+  },
+  "ende": {
+   "dit": [],
+   "choix": [
+    {"t": "Danke. Ich markiere die Allergie noch einmal deutlich auf der ersten Seite der Kurve.", "fr": "Merci. Je signale encore une fois l'allergie bien visiblement sur la première page du dossier.", "va": null,
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Gute Idee. Und, {elif}: danke. Genau so soll es laufen.", "fr": "Bonne idée. Et, {elif} : merci. C'est exactement comme ça qu'il faut faire."}]},
+    {"t": "Vielen Dank. Sprechen Sie mit {brandt:dat} über das neue Antibiotikum, oder soll ich es ihm sagen?", "fr": "Merci beaucoup. Vous parlez à {brandt} du nouvel antibiotique, ou je le lui dis ?", "va": null,
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Ich sage es ihm bei der Visite. Und, {elif}: danke. Genau so soll es laufen.", "fr": "Je le lui dirai à la visite. Et, {elif} : merci. C'est exactement comme ça qu'il faut faire."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Warum darf {brandt} das Antibiotikum nicht bekommen?", "fr": "Pourquoi {brandt} ne doit-il pas recevoir l'antibiotique ?"},
+   "options": [{"t": "Er hat eine Penicillinallergie.", "fr": "Il est allergique à la pénicilline."}, {"t": "Er hat kein Fieber mehr.", "fr": "Il n'a plus de fièvre."}, {"t": "Er nimmt schon Metamizol.", "fr": "Il prend déjà du métamizole."}],
+   "juste": 0},
+  {"q": {"t": "Was fehlt bei der Anordnung von Metamizol?", "fr": "Qu'est-ce qui manque dans la prescription de métamizole ?"},
+   "options": [{"t": "Der Name des Patienten.", "fr": "Le nom du patient."}, {"t": "Die Dosis und die Höchstmenge pro Tag.", "fr": "La dose et le maximum par jour."}, {"t": "Die Unterschrift der Pflege.", "fr": "La signature de la soignante."}],
+   "juste": 1},
+  {"q": {"t": "Wie viel Metamizol darf {brandt} höchstens am Tag bekommen?", "fr": "Combien de métamizole {brandt} peut-il recevoir au maximum par jour ?"},
+   "options": [{"t": "Ein Gramm.", "fr": "Un gramme."}, {"t": "Sechs Gramm.", "fr": "Six grammes."}, {"t": "Vier Gramm.", "fr": "Quatre grammes."}],
+   "juste": 2}
+ ]
+}

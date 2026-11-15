@@ -1,0 +1,136 @@
+{
+ "id": "d17-visite",
+ "numero": 17,
+ "niveau": "B2",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 6,
+ "role": "elif",
+ "personnes": ["sommer"],
+ "titre": {"t": "Die Visite", "fr": "La visite : présenter un patient"},
+ "intro": {"fr": "Vendredi 13 novembre, la visite du matin. Devant la chambre 12, {sommer} demande où en est {brandt}. Tu joues {elif} : tu présentes le patient en peu de mots, dans l'ordre, avec des valeurs précises. Puis tu notes les prescriptions, tu poses ta question et tu relis tout à la médecin."},
+ "but": {"fr": "Présenter un patient à la visite (qui, pourquoi, quel jour après l'opération, ce qui a changé, les valeurs, la douleur, la mobilité, la plaie, l'alimentation) ; écouter et noter des prescriptions ; poser une question ; relire les prescriptions et les faire signer."},
+ "grammaire": ["g20", "g14", "g10"],
+ "telc": ["hoeren", "oral-1"],
+ "relire_notes": {"fr": "Cohérence du cas : prothèse de hanche droite le 10 nov., scanner du 11 nov. (pas d'embolie, pneumonie droite), antibiotique depuis le 12 nov. (pas une pénicilline : allergie, voir d18) ; valeurs (T 37,6 °C, SpO2 94 % sous 2 l/min, douleur 3/10 au repos et 5/10 à la marche) ; prescriptions (prise de sang NFS et CRP, réduire l'O2 si SpO2 > 92 %, kiné deux fois par jour, ablation de la sonde urinaire, bilan entrées-sorties, douche avec pansement étanche) ; qui retire la sonde, qui signe."},
+ "redemittel": [
+  {"t": "Zimmer 12, {brandt}, 82 Jahre, dritter Tag nach der Hüftoperation rechts.", "dit": "Zimmer zwölf, {brandt}, zweiundachtzig Jahre, dritter Tag nach der Hüftoperation rechts.", "fr": "Chambre 12, {brandt}, 82 ans, troisième jour après l'opération de la hanche droite.", "fonction": "transmettre"},
+  {"t": "Seit gestern bekommt er ein Antibiotikum.", "fr": "Depuis hier, il reçoit un antibiotique.", "fonction": "transmettre"},
+  {"t": "Er ist gestern in den Sessel mobilisiert worden.", "fr": "Hier, il a été levé au fauteuil.", "fonction": "transmettre"},
+  {"t": "Darf ich noch etwas fragen?", "fr": "Je peux encore poser une question ?", "fonction": "demander"},
+  {"t": "Entschuldigung, das ging etwas schnell. Können Sie das bitte wiederholen?", "fr": "Pardon, c'est allé un peu vite. Vous pouvez répéter, s'il vous plaît ?", "fonction": "redemander"},
+  {"t": "Ich fasse kurz zusammen: …", "fr": "Je résume rapidement : …", "fonction": "reformuler"},
+  {"t": "Könnten Sie die Anordnungen bitte noch in der Kurve abzeichnen?", "fr": "Pourriez-vous signer les prescriptions dans le dossier, s'il vous plaît ?", "fonction": "demander", "relire": true, "relire_note": "Signature des prescriptions."}
+ ],
+ "debut": "anfang",
+ "noeuds": {
+  "anfang": {
+   "dit": [
+    {"recit": {"fr": "Vendredi 13 novembre, 9 heures. Le chariot de la visite s'arrête devant la chambre 12. {elif} a la feuille de transmission à la main."}},
+    {"qui": "sommer", "air": "question", "t": "Guten Morgen, {elif}. Wer ist der Nächste?", "fr": "Bonjour, {elif}. Qui est le suivant ?"}
+   ],
+   "choix": [
+    {"t": "Zimmer 12, {brandt}, 82 Jahre. Er ist am dritten Tag nach der Hüftoperation rechts.", "dit": "Zimmer zwölf, {brandt}, zweiundachtzig Jahre. Er ist am dritten Tag nach der Hüftoperation rechts.", "fr": "Chambre 12, {brandt}, 82 ans. Il en est au troisième jour après l'opération de la hanche droite.", "va": "lunge",
+     "puis": [{"qui": "sommer", "air": "attentive", "t": "Ah ja, {brandt:akk} kenne ich. Was gibt's Neues?", "fr": "Ah oui, {brandt}, je le connais. Quoi de neuf ?"}]},
+    {"t": "{brandt}, Zimmer 12. Er ist 82 und am Dienstag an der rechten Hüfte operiert worden, heute ist der dritte Tag.", "dit": "{brandt}, Zimmer zwölf. Er ist zweiundachtzig und am Dienstag an der rechten Hüfte operiert worden, heute ist der dritte Tag.", "fr": "{brandt}, chambre 12. Il a 82 ans et il a été opéré de la hanche droite mardi ; aujourd'hui, c'est le troisième jour.", "va": "lunge",
+     "puis": [{"qui": "sommer", "air": "attentive", "t": "Ah ja, {brandt:akk} kenne ich. Was gibt's Neues?", "fr": "Ah oui, {brandt}, je le connais. Quoi de neuf ?"}]},
+    {"faux": true, "t": "Jetzt kommt {brandt}. Der ist ein bisschen schwierig, er meckert immer.", "fr": "Maintenant, c'est {brandt}. Il est un peu difficile, il râle tout le temps.",
+     "puis": [{"qui": "sommer", "air": "perplexe", "t": "Hm. Und medizinisch? Warum liegt er bei uns?", "fr": "Hum. Et sur le plan médical ? Pourquoi est-il chez nous ?"}],
+     "aide": {"fr": "<b>À la visite, on commence par les faits : la chambre, le nom, l'âge, le motif, le jour après l'opération.</b> « Zimmer 12, Herr Brandt, 82 Jahre, dritter Tag nach der Hüftoperation rechts. » Un jugement sur le caractère du patient n'a pas sa place ici."}}
+   ]
+  },
+  "lunge": {
+   "dit": [],
+   "choix": [
+    {"t": "Im CT ist keine Lungenembolie gefunden worden, aber eine Lungenentzündung rechts. Seit gestern bekommt er ein Antibiotikum.", "fr": "Le scanner n'a pas montré d'embolie pulmonaire, mais une pneumonie à droite. Depuis hier, il reçoit un antibiotique.", "va": "werte",
+     "relire": true, "relire_note": "Résultat du scanner et début de l'antibiotique (le 12 nov.).",
+     "puis": [{"qui": "sommer", "air": "attentive", "t": "Richtig. Und wie sind die Werte heute?", "fr": "C'est ça. Et comment sont les valeurs aujourd'hui ?"}]},
+    {"t": "Das CT war ohne Embolie, es zeigt eine Pneumonie rechts. Das Antibiotikum läuft seit gestern.", "fr": "Au scanner, pas d'embolie ; il montre une pneumonie à droite. L'antibiotique est en cours depuis hier.", "va": "werte",
+     "puis": [{"qui": "sommer", "air": "attentive", "t": "Richtig. Und wie sind die Werte heute?", "fr": "C'est ça. Et comment sont les valeurs aujourd'hui ?"}]},
+    {"faux": true, "t": "Er hat Fieber gehabt, glaube ich. Und irgendwas mit der Lunge.", "fr": "Il a eu de la fièvre, je crois. Et quelque chose aux poumons.",
+     "puis": [{"qui": "sommer", "air": "perplexe", "t": "„Glaube ich“? Haben Sie die Kurve nicht dabei?", "fr": "« Je crois » ? Vous n'avez pas le dossier avec vous ?"}],
+     "aide": {"fr": "<b>On ne dit pas « glaube ich » à la visite : on dit ce qui est écrit et mesuré.</b> « Im CT ist eine Lungenentzündung rechts gefunden worden. » Prépare la visite avec la feuille de transmission et le dossier."}}
+   ]
+  },
+  "werte": {
+   "dit": [],
+   "choix": [
+    {"t": "Die Temperatur geht runter, heute früh 37,6. Die Sättigung liegt bei 94 Prozent mit zwei Litern Sauerstoff.", "dit": "Die Temperatur geht runter, heute früh siebenunddreißig Komma sechs. Die Sättigung liegt bei vierundneunzig Prozent mit zwei Litern Sauerstoff.", "fr": "La température baisse : ce matin, 37,6. La saturation est à 94 % avec deux litres d'oxygène.", "va": "schmerz",
+     "relire": true, "relire_note": "Valeurs du cas.",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Das sieht besser aus. Und die Schmerzen?", "fr": "Ça va mieux. Et la douleur ?"}]},
+    {"t": "Heute früh 37,6 Grad, also weniger als gestern. Sättigung 94 Prozent unter zwei Litern Sauerstoff.", "dit": "Heute früh siebenunddreißig Komma sechs Grad, also weniger als gestern. Sättigung vierundneunzig Prozent unter zwei Litern Sauerstoff.", "fr": "Ce matin, 37,6 °C, donc moins qu'hier. Saturation 94 % sous deux litres d'oxygène.", "va": "schmerz",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Das sieht besser aus. Und die Schmerzen?", "fr": "Ça va mieux. Et la douleur ?"}]},
+    {"repete": true, "t": "Einen Moment bitte, ich schaue kurz in die Kurve.", "fr": "Un instant, s'il vous plaît, je regarde dans le dossier.", "va": "werte",
+     "puis": [{"qui": "sommer", "air": "attentive", "t": "Kein Problem.", "fr": "Pas de problème."}]}
+   ]
+  },
+  "schmerz": {
+   "dit": [],
+   "choix": [
+    {"t": "In Ruhe drei von zehn, beim Gehen fünf. Er ist gestern in den Sessel mobilisiert worden und ist ein paar Schritte mit dem Rollator gegangen.", "fr": "Au repos, 3 sur 10 ; à la marche, 5. Hier, il a été levé au fauteuil et il a fait quelques pas avec le déambulateur.", "va": "wunde",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Sehr schön. Wie sieht die Wunde aus?", "fr": "Très bien. Comment est la plaie ?"}]},
+    {"t": "Die Schmerzen sind gut eingestellt: drei in Ruhe, fünf bei Belastung. Mobilisation in den Sessel und ein paar Schritte mit dem Rollator.", "fr": "La douleur est bien contrôlée : 3 au repos, 5 à l'effort. Lever au fauteuil et quelques pas avec le déambulateur.", "va": "wunde",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Sehr schön. Wie sieht die Wunde aus?", "fr": "Très bien. Comment est la plaie ?"}]},
+    {"faux": true, "t": "Er hat gestern in den Sessel mobilisiert.", "fr": "Hier, il « a levé » au fauteuil. (mal dit)",
+     "puis": [{"qui": "sommer", "air": "perplexe", "t": "Er hat wen mobilisiert? Ach, Sie meinen, er ist mobilisiert worden.", "fr": "Il a levé qui ? Ah, vous voulez dire qu'on l'a levé."}],
+     "aide": {"fr": "<b>Le patient ne mobilise pas, on le mobilise : le passif.</b> « Er ist in den Sessel mobilisiert worden » (Perfekt du passif). Ou à l'actif, avec le soignant comme sujet : « Wir haben ihn in den Sessel mobilisiert. »"}}
+   ]
+  },
+  "wunde": {
+   "dit": [],
+   "choix": [
+    {"t": "Der Verband ist trocken. Er isst wenig und trinkt nur etwa einen Liter am Tag. Und er fragt jeden Tag, wann er nach Hause darf.", "fr": "Le pansement est sec. Il mange peu et ne boit qu'environ un litre par jour. Et il demande chaque jour quand il pourra rentrer chez lui.", "va": "anordnungen",
+     "puis": [{"qui": "sommer", "air": "attentive", "t": "Nach Hause geht es wohl erst über die Reha, das klären wir mit dem Sozialdienst.", "fr": "Il passera sûrement d'abord par la rééducation ; on voit ça avec le service social.", "relire": true, "relire_note": "Sortie vers la rééducation (AHB) : vit seul au 2e étage sans ascenseur."}]},
+    {"t": "Die Wunde ist reizlos, der Verband trocken. Problem ist das Trinken: nur ungefähr ein Liter am Tag. Er möchte wissen, wann er entlassen wird.", "fr": "La plaie est calme, le pansement sec. Le problème, c'est la boisson : seulement un litre par jour environ. Il voudrait savoir quand il sortira.", "va": "anordnungen",
+     "puis": [{"qui": "sommer", "air": "attentive", "t": "Nach Hause geht es wohl erst über die Reha, das klären wir mit dem Sozialdienst.", "fr": "Il passera sûrement d'abord par la rééducation ; on voit ça avec le service social."}]}
+   ]
+  },
+  "anordnungen": {
+   "dit": [
+    {"qui": "sommer", "air": "attentive", "t": "Also, für heute: Morgen früh Blutabnahme, kleines Blutbild und CRP. Den Sauerstoff reduzieren, wenn die Sättigung über 92 Prozent bleibt. Physiotherapie zweimal am Tag. Den Blasenkatheter können wir heute ziehen. Und bitte weiter die Ein- und Ausfuhr bilanzieren.", "dit": "Also, für heute: Morgen früh Blutabnahme, kleines Blutbild und CRP. Den Sauerstoff reduzieren, wenn die Sättigung über zweiundneunzig Prozent bleibt. Physiotherapie zweimal am Tag. Den Blasenkatheter können wir heute ziehen. Und bitte weiter die Ein- und Ausfuhr bilanzieren.", "fr": "Bon, pour aujourd'hui : prise de sang demain matin, numération et CRP. Réduire l'oxygène si la saturation reste au-dessus de 92 %. Kiné deux fois par jour. La sonde urinaire, on peut la retirer aujourd'hui. Et continuez le bilan entrées-sorties, s'il vous plaît.", "relire": true, "relire_note": "Prescriptions du cas."}
+   ],
+   "choix": [
+    {"t": "Ich schreibe mit. Darf ich noch etwas fragen: Darf er schon duschen?", "fr": "Je note. Je peux poser une question : il peut déjà prendre une douche ?", "va": "zusammenfassen",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Ab morgen, mit einem wasserdichten Pflaster. Die Wunde soll nicht nass werden.", "fr": "À partir de demain, avec un pansement étanche. La plaie ne doit pas être mouillée.", "relire": true, "relire_note": "Douche après prothèse de hanche, pansement étanche."}]},
+    {"t": "Danke, ich habe alles notiert. Eine Frage noch: Ab wann darf er duschen?", "fr": "Merci, j'ai tout noté. Encore une question : à partir de quand peut-il prendre une douche ?", "va": "zusammenfassen",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Ab morgen, mit einem wasserdichten Pflaster. Die Wunde soll nicht nass werden.", "fr": "À partir de demain, avec un pansement étanche. La plaie ne doit pas être mouillée."}]},
+    {"repete": true, "t": "Entschuldigung, das ging etwas schnell. Können Sie die Anordnungen bitte noch einmal sagen?", "fr": "Pardon, c'est allé un peu vite. Pouvez-vous redire les prescriptions, s'il vous plaît ?", "va": "anordnungen",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Natürlich, langsam.", "fr": "Bien sûr, lentement."}]}
+   ]
+  },
+  "zusammenfassen": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich fasse kurz zusammen: morgen früh Blutabnahme, kleines Blutbild und CRP. Sauerstoff reduzieren, wenn die Sättigung über 92 Prozent bleibt. Physiotherapie zweimal täglich. Der Blasenkatheter wird heute gezogen. Bilanz weiter, und duschen ab morgen mit wasserdichtem Pflaster.", "dit": "Ich fasse kurz zusammen: morgen früh Blutabnahme, kleines Blutbild und CRP. Sauerstoff reduzieren, wenn die Sättigung über zweiundneunzig Prozent bleibt. Physiotherapie zweimal täglich. Der Blasenkatheter wird heute gezogen. Bilanz weiter, und duschen ab morgen mit wasserdichtem Pflaster.", "fr": "Je résume : prise de sang demain matin, numération et CRP. Réduire l'oxygène si la saturation reste au-dessus de 92 %. Kiné deux fois par jour. La sonde urinaire est retirée aujourd'hui. On continue le bilan, et la douche à partir de demain avec un pansement étanche.", "va": "unterschrift",
+     "relire": true, "relire_note": "Relecture des prescriptions (boucle fermée).",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Perfekt, genau so.", "fr": "Parfait, c'est exactement ça."}]},
+    {"t": "Darf ich wiederholen? Blutabnahme morgen früh, kleines Blutbild und CRP; Sauerstoff runter, wenn die Sättigung über 92 Prozent bleibt; zweimal am Tag Physio; Katheter heute ex; Bilanz weiterführen; Duschen ab morgen.", "dit": "Darf ich wiederholen? Blutabnahme morgen früh, kleines Blutbild und CRP; Sauerstoff runter, wenn die Sättigung über zweiundneunzig Prozent bleibt; zweimal am Tag Physio; Katheter heute ex; Bilanz weiterführen; Duschen ab morgen.", "fr": "Je peux répéter ? Prise de sang demain matin, numération et CRP ; baisser l'oxygène si la saturation reste au-dessus de 92 % ; kiné deux fois par jour ; sonde retirée aujourd'hui ; continuer le bilan ; douche à partir de demain.", "va": "unterschrift",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Perfekt, genau so.", "fr": "Parfait, c'est exactement ça."}]},
+    {"faux": true, "t": "Alles klar, ich merke mir das.", "fr": "C'est bon, je retiens tout ça.",
+     "puis": [{"qui": "sommer", "air": "perplexe", "t": "Fünf Anordnungen im Kopf? Lesen Sie sie mir lieber einmal vor.", "fr": "Cinq prescriptions de tête ? Relisez-les-moi plutôt une fois."}],
+     "aide": {"fr": "<b>Les prescriptions de la visite se notent et se relisent à la médecin.</b> « Ich fasse kurz zusammen: … » C'est la boucle fermée : une erreur se voit tout de suite, pas trois heures plus tard."}}
+   ]
+  },
+  "unterschrift": {
+   "dit": [],
+   "choix": [
+    {"t": "Könnten Sie die Anordnungen bitte noch in der Kurve abzeichnen? Dann kann ich gleich anfangen.", "fr": "Pourriez-vous signer les prescriptions dans le dossier, s'il vous plaît ? Comme ça, je peux commencer tout de suite.", "va": null,
+     "relire": true, "relire_note": "Prescriptions signées dans le dossier avant exécution.",
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Mache ich direkt nach der Visite. Danke, {elif}, das war eine sehr klare Übergabe.", "fr": "Je le fais juste après la visite. Merci, {elif}, c'était une transmission très claire."}]},
+    {"t": "Und tragen Sie die Anordnungen bitte noch in die Kurve ein? Ich sage {brandt:dat} dann, dass er ab morgen duschen darf.", "fr": "Et vous notez les prescriptions dans le dossier, s'il vous plaît ? Je dirai alors à {brandt} qu'il pourra prendre une douche à partir de demain.", "va": null,
+     "puis": [{"qui": "sommer", "air": "sourire", "t": "Ja, gleich nach der Visite. Das freut ihn bestimmt.", "fr": "Oui, juste après la visite. Ça lui fera sûrement plaisir."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Was hat das CT bei {brandt:dat} gezeigt?", "fr": "Qu'a montré le scanner de {brandt} ?"},
+   "options": [{"t": "Eine Lungenembolie.", "fr": "Une embolie pulmonaire."}, {"t": "Eine Lungenentzündung rechts.", "fr": "Une pneumonie à droite."}, {"t": "Nichts, alles war normal.", "fr": "Rien, tout était normal."}],
+   "juste": 1},
+  {"q": {"t": "Wann soll der Sauerstoff reduziert werden?", "fr": "Quand faut-il réduire l'oxygène ?"},
+   "options": [{"t": "Wenn die Sättigung über zweiundneunzig Prozent bleibt.", "fr": "Si la saturation reste au-dessus de 92 %."}, {"t": "Sofort nach der Visite.", "fr": "Tout de suite après la visite."}, {"t": "Wenn das Fieber steigt.", "fr": "Si la fièvre monte."}],
+   "juste": 0},
+  {"q": {"t": "Ab wann darf {brandt} duschen?", "fr": "À partir de quand {brandt} peut-il prendre une douche ?"},
+   "options": [{"t": "Heute nach der Visite.", "fr": "Aujourd'hui, après la visite."}, {"t": "Erst nach der Reha.", "fr": "Seulement après la rééducation."}, {"t": "Ab morgen, mit einem wasserdichten Pflaster.", "fr": "À partir de demain, avec un pansement étanche."}],
+   "juste": 2}
+ ]
+}

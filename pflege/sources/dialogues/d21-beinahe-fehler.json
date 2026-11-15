@@ -1,0 +1,143 @@
+{
+ "id": "d21-beinahe-fehler",
+ "numero": 21,
+ "niveau": "B2",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 2,
+ "role": "elif",
+ "personnes": ["hoffmann"],
+ "titre": {"t": "Einen Beinahe-Fehler melden", "fr": "Signaler un presque-incident"},
+ "intro": {"fr": "Mercredi matin. À 7 heures, {elif} a donné à {lehmann} son insuline selon le schéma, mais elle ne l'a pas notée tout de suite. À 7 h 30, {jonas} a voulu la donner une seconde fois ; il lui a demandé avant, et rien n'est arrivé. Tu joues {elif} : tu vas voir la cadre, {hoffmann}, pour le signaler. Tu racontes les faits sans te cacher et sans t'accabler, tu dis ce qui aurait pu arriver et ce que tu as fait, tu demandes comment se passe la déclaration, et tu proposes une amélioration."},
+ "but": {"fr": "Signaler une erreur évitée : les faits dans l'ordre (Perfekt, passif), ce qui aurait pu arriver (Konjunktiv II passé : « Das hätte … führen können »), ce qu'on a fait ensuite ; dire son inquiétude ; demander la marche à suivre (CIRS) ; proposer une solution (Wir könnten …)."},
+ "grammaire": ["g14", "g17", "g13"],
+ "telc": ["oral-3", "schreiben"],
+ "relire_notes": {"fr": "Conduite après une double administration d'insuline évitée (glycémie de contrôle, information de la médecin, documentation a posteriori avec l'heure réelle) ; valeurs du cas (glycémie 190 mg/dl à 7 h, 4 unités d'insuline rapide selon le schéma, contrôle 150 mg/dl à 8 h) ; CIRS (déclaration anonyme des événements indésirables) et culture de l'erreur ; documenter au lit, tout de suite après l'administration."},
+ "redemittel": [
+  {"t": "Mir ist heute früh ein Beinahe-Fehler passiert, und ich möchte ihn melden.", "fr": "Ce matin, j'ai failli faire une erreur, et je voudrais la signaler.", "fonction": "annoncer"},
+  {"t": "Ich habe die Gabe nicht sofort dokumentiert.", "fr": "Je n'ai pas noté l'administration tout de suite.", "fonction": "transmettre"},
+  {"t": "Das hätte zu einer Unterzuckerung führen können.", "fr": "Ça aurait pu provoquer une hypoglycémie.", "fonction": "transmettre", "relire": true, "relire_note": "Risque de la double dose d'insuline."},
+  {"t": "Ich habe den Blutzucker kontrolliert und die Ärztin informiert.", "fr": "J'ai contrôlé la glycémie et j'ai prévenu la médecin.", "fonction": "transmettre"},
+  {"t": "Was passiert jetzt?", "fr": "Qu'est-ce qui se passe maintenant ?", "fonction": "demander"},
+  {"t": "Wie funktioniert das genau mit dem CIRS?", "fr": "Comment ça marche exactement, le CIRS ?", "fonction": "redemander"},
+  {"t": "Ich hätte einen Vorschlag: Wir könnten …", "fr": "J'aurais une proposition : nous pourrions…", "fonction": "annoncer"}
+ ],
+ "debut": "anklopfen",
+ "noeuds": {
+  "anklopfen": {
+   "dit": [
+    {"recit": {"fr": "9 h 15. {elif} frappe à la porte du bureau de {hoffmann}. Elle a le cœur qui bat un peu vite."}},
+    {"qui": "hoffmann", "air": "question", "t": "Ja, {elif}, kommen Sie rein. Was gibt's?", "fr": "Oui, {elif}, entrez. Qu'est-ce qu'il y a ?"}
+   ],
+   "choix": [
+    {"t": "Haben Sie kurz Zeit? Mir ist heute früh ein Beinahe-Fehler passiert, und ich möchte ihn melden.", "fr": "Vous avez un moment ? Ce matin, j'ai failli faire une erreur, et je voudrais la signaler.", "va": "was",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Natürlich. Setzen Sie sich. Erzählen Sie in Ruhe.", "fr": "Bien sûr. Asseyez-vous. Racontez tranquillement."}]},
+    {"t": "Ich muss Ihnen etwas sagen. Heute früh wäre beinahe ein Fehler passiert, und das möchte ich melden.", "fr": "Je dois vous dire quelque chose. Ce matin, une erreur a failli se produire, et je voudrais la signaler.", "va": "was",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Natürlich. Setzen Sie sich. Erzählen Sie in Ruhe.", "fr": "Bien sûr. Asseyez-vous. Racontez tranquillement."}]},
+    {"faux": true, "t": "Ach, nichts Schlimmes. Nur eine Kleinigkeit mit dem Insulin.", "fr": "Oh, rien de grave. Juste un petit détail avec l'insuline.",
+     "puis": [{"qui": "hoffmann", "air": "perplexe", "t": "Beim Insulin gibt es keine Kleinigkeiten. Was ist passiert?", "fr": "Avec l'insuline, il n'y a pas de petits détails. Qu'est-ce qui s'est passé ?"}],
+     "aide": {"fr": "<b>Ne minimise pas : dis clairement que tu viens signaler un presque-incident.</b> « Mir ist heute früh ein Beinahe-Fehler passiert, und ich möchte ihn melden. » Une erreur évitée est une information précieuse pour toute l'équipe."}}
+   ]
+  },
+  "was": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich habe {lehmann} um sieben Uhr Insulin nach Schema gegeben, vier Einheiten. Aber ich habe die Gabe nicht sofort dokumentiert.", "fr": "À 7 heures, j'ai donné à {lehmann} son insuline selon le schéma, quatre unités. Mais je n'ai pas noté l'administration tout de suite.", "va": "dann",
+     "relire": true, "relire_note": "Dose du cas.",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Verstehe. Und dann?", "fr": "Je vois. Et ensuite ?"}]},
+    {"t": "Um sieben habe ich bei {lehmann} den Blutzucker gemessen, 190, und vier Einheiten nach Schema gespritzt. Den Blutzucker habe ich eingetragen, das Insulin aber nicht.", "dit": "Um sieben habe ich bei {lehmann} den Blutzucker gemessen, hundertneunzig, und vier Einheiten nach Schema gespritzt. Den Blutzucker habe ich eingetragen, das Insulin aber nicht.", "fr": "À 7 heures, j'ai mesuré la glycémie de {lehmann}, 190, et j'ai injecté quatre unités selon le schéma. J'ai noté la glycémie, mais pas l'insuline.", "va": "dann",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Verstehe. Und dann?", "fr": "Je vois. Et ensuite ?"}]},
+    {"faux": true, "t": "{jonas} hätte {lehmann} heute fast doppelt Insulin gegeben.", "fr": "{jonas} a failli donner une double dose d'insuline à {lehmann} ce matin.",
+     "puis": [{"qui": "hoffmann", "air": "perplexe", "t": "{jonas}? Ich dachte, Sie wollten etwas von sich erzählen.", "fr": "{jonas} ? Je croyais que vous vouliez parler de vous."}],
+     "aide": {"fr": "<b>Commence par ta part, pas par celle d'un collègue.</b> « Ich habe das Insulin gegeben und die Gabe nicht sofort dokumentiert. » Dire « ich » montre que tu prends ta responsabilité ; ce n'est pas une accusation."}}
+   ]
+  },
+  "dann": {
+   "dit": [],
+   "choix": [
+    {"t": "Um halb acht wollte {jonas} ihr das Insulin noch einmal geben, weil es nicht in der Kurve stand. Er hat mich vorher gefragt, deshalb ist nichts passiert.", "fr": "À 7 h 30, {jonas} a voulu lui redonner l'insuline, parce que ce n'était pas noté dans le dossier. Il m'a demandé avant, c'est pour ça qu'il ne s'est rien passé.", "va": "folgen",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Zum Glück hat er gefragt. Was hätte passieren können?", "fr": "Heureusement qu'il a demandé. Qu'est-ce qui aurait pu arriver ?"}]},
+    {"t": "Eine halbe Stunde später hat {jonas} den Blutzucker in der Kurve gesehen, aber kein Insulin. Bevor er es gegeben hat, hat er mich gefragt.", "fr": "Une demi-heure plus tard, {jonas} a vu la glycémie dans le dossier, mais pas d'insuline. Avant de la donner, il m'a demandé.", "va": "folgen",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Zum Glück hat er gefragt. Was hätte passieren können?", "fr": "Heureusement qu'il a demandé. Qu'est-ce qui aurait pu arriver ?"}]}
+   ]
+  },
+  "folgen": {
+   "dit": [],
+   "choix": [
+    {"t": "Sie hätte die doppelte Dosis bekommen. Das hätte zu einer Unterzuckerung führen können.", "fr": "Elle aurait reçu une double dose. Ça aurait pu provoquer une hypoglycémie.", "va": "danach",
+     "relire": true, "relire_note": "Conséquence possible.",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Richtig. Was haben Sie danach gemacht?", "fr": "C'est ça. Qu'avez-vous fait ensuite ?"}]},
+    {"t": "Wenn {jonas} nicht gefragt hätte, hätte sie zweimal Insulin bekommen. Sie hätte stark unterzuckern können.", "fr": "Si {jonas} n'avait pas demandé, elle aurait reçu deux fois l'insuline. Elle aurait pu faire une forte hypoglycémie.", "va": "danach",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Richtig. Was haben Sie danach gemacht?", "fr": "C'est ça. Qu'avez-vous fait ensuite ?"}]},
+    {"faux": true, "t": "Es war ja nicht so schlimm. Es ist ja nichts passiert.", "fr": "Ce n'était pas si grave. Il ne s'est rien passé.",
+     "puis": [{"qui": "hoffmann", "air": "perplexe", "t": "Diesmal nicht. Aber was wäre gewesen, wenn {jonas} nicht gefragt hätte?", "fr": "Cette fois, non. Mais que se serait-il passé si {jonas} n'avait pas demandé ?"}],
+     "aide": {"fr": "<b>Dis ce qui aurait pu arriver, avec le Konjunktiv II du passé.</b> « Sie hätte die doppelte Dosis bekommen. Das hätte zu einer Unterzuckerung führen können. » C'est justement ce risque qui rend la déclaration utile."}}
+   ]
+  },
+  "danach": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich habe die Gabe sofort nachgetragen, mit der richtigen Uhrzeit. Um acht habe ich den Blutzucker kontrolliert, er lag bei 150. Und ich habe die Ärztin informiert.", "dit": "Ich habe die Gabe sofort nachgetragen, mit der richtigen Uhrzeit. Um acht habe ich den Blutzucker kontrolliert, er lag bei hundertfünfzig. Und ich habe die Ärztin informiert.", "fr": "J'ai tout de suite noté l'administration, avec l'heure réelle. À 8 heures, j'ai contrôlé la glycémie : 150. Et j'ai prévenu la médecin.", "va": "angst",
+     "relire": true, "relire_note": "Conduite après l'incident évité.",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Sehr gut, das war richtig. Danke, dass Sie das melden.", "fr": "Très bien, c'était ce qu'il fallait faire. Merci de le signaler."}]},
+    {"t": "Die Insulingabe ist sofort nachgetragen worden, mit der echten Uhrzeit. Der Kontrollwert um acht war 150, und die Ärztin ist informiert.", "dit": "Die Insulingabe ist sofort nachgetragen worden, mit der echten Uhrzeit. Der Kontrollwert um acht war hundertfünfzig, und die Ärztin ist informiert.", "fr": "L'insuline a tout de suite été notée, avec l'heure réelle. La glycémie de contrôle à 8 heures était à 150, et la médecin est prévenue.", "va": "angst",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Sehr gut, das war richtig. Danke, dass Sie das melden.", "fr": "Très bien, c'était ce qu'il fallait faire. Merci de le signaler."}]},
+    {"faux": true, "t": "Ich habe das Insulin dann um halb acht eingetragen.", "fr": "Après, j'ai noté l'insuline à 7 h 30.",
+     "puis": [{"qui": "hoffmann", "air": "question", "t": "Mit welcher Uhrzeit? Gegeben haben Sie es doch um sieben.", "fr": "Avec quelle heure ? Vous l'avez donnée à 7 heures, pourtant."}],
+     "aide": {"fr": "<b>On rattrape la documentation avec l'heure réelle du soin, et on contrôle le patient.</b> « Ich habe die Gabe nachgetragen, mit der richtigen Uhrzeit, und den Blutzucker kontrolliert. » Dis aussi qui tu as prévenu."},
+     "relire": true, "relire_note": "Documentation a posteriori."}
+   ]
+  },
+  "angst": {
+   "dit": [],
+   "choix": [
+    {"t": "Ehrlich gesagt habe ich Angst, dass das Folgen für mich hat. Was passiert jetzt?", "fr": "Pour être honnête, j'ai peur que ça ait des conséquences pour moi. Qu'est-ce qui se passe maintenant ?", "va": "cirs",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Das verstehe ich. Aber bei uns geht es nicht um Schuld. Wer einen Fehler meldet, hilft uns allen. Ich möchte Sie bitten, ihn auch im CIRS zu melden.", "fr": "Je comprends. Mais chez nous, il ne s'agit pas de faute. Celui qui signale une erreur nous aide tous. Je vais vous demander de la déclarer aussi dans le CIRS.", "relire": true, "relire_note": "Culture de l'erreur, CIRS."}]},
+    {"t": "Es tut mir leid, ich schäme mich ein bisschen. Was passiert jetzt?", "fr": "Je suis désolée, j'ai un peu honte. Qu'est-ce qui se passe maintenant ?", "va": "cirs",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Das verstehe ich. Aber bei uns geht es nicht um Schuld. Wer einen Fehler meldet, hilft uns allen. Ich möchte Sie bitten, ihn auch im CIRS zu melden.", "fr": "Je comprends. Mais chez nous, il ne s'agit pas de faute. Celui qui signale une erreur nous aide tous. Je vais vous demander de la déclarer aussi dans le CIRS."}]}
+   ]
+  },
+  "cirs": {
+   "dit": [],
+   "choix": [
+    {"t": "Wie funktioniert das genau mit dem CIRS? Das kenne ich noch nicht.", "fr": "Comment ça marche exactement, le CIRS ? Je ne connais pas encore.", "va": "vorschlag",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Im Intranet gibt es ein Formular. Sie beschreiben, was passiert ist, ohne Namen. Ein Team schaut sich alle Meldungen an und sucht nach Lösungen.", "fr": "Il y a un formulaire sur l'intranet. Vous décrivez ce qui s'est passé, sans nom. Une équipe examine toutes les déclarations et cherche des solutions.", "relire": true, "relire_note": "Fonctionnement du CIRS."}]},
+    {"t": "Gern. Könnten Sie mir zeigen, wo ich das Formular finde?", "fr": "Volontiers. Pourriez-vous me montrer où se trouve le formulaire ?", "va": "vorschlag",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Im Intranet, unter „CIRS“. Sie beschreiben, was passiert ist, ohne Namen. Ein Team schaut sich alle Meldungen an und sucht nach Lösungen.", "fr": "Sur l'intranet, sous « CIRS ». Vous décrivez ce qui s'est passé, sans nom. Une équipe examine toutes les déclarations et cherche des solutions."}]},
+    {"faux": true, "t": "Ich schreibe lieber nichts auf. Sonst wissen es alle.", "fr": "Je préfère ne rien écrire. Sinon, tout le monde va le savoir.",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Das CIRS ist anonym, {elif}. Es geht um das Problem, nicht um Sie.", "fr": "Le CIRS est anonyme, {elif}. Il s'agit du problème, pas de vous."}],
+     "aide": {"fr": "<b>Le CIRS est anonyme et sert à apprendre, pas à punir.</b> Demande plutôt comment il fonctionne : « Wie funktioniert das genau mit dem CIRS? »"}}
+   ]
+  },
+  "vorschlag": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich hätte auch einen Vorschlag: Wir könnten die Kurve mit ins Zimmer nehmen und jede Insulingabe direkt am Bett eintragen.", "fr": "J'aurais aussi une proposition : nous pourrions prendre le dossier dans la chambre et noter chaque injection d'insuline directement au lit.", "va": "ende",
+     "relire": true, "relire_note": "Documenter au lit.",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Gute Idee. Bringen Sie das bitte in der Teambesprechung am Donnerstag ein.", "fr": "Bonne idée. Présentez-la à la réunion d'équipe de jeudi, s'il vous plaît."}]},
+    {"t": "Für mich nehme ich mit: Ich dokumentiere jede Gabe sofort. Und vielleicht könnten wir für das Team eine Regel daraus machen.", "fr": "Pour moi, je retiens : je note chaque administration tout de suite. Et nous pourrions peut-être en faire une règle pour l'équipe.", "va": "ende",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Gute Idee. Bringen Sie das bitte in der Teambesprechung am Donnerstag ein.", "fr": "Bonne idée. Présentez-la à la réunion d'équipe de jeudi, s'il vous plaît."}]}
+   ]
+  },
+  "ende": {
+   "dit": [],
+   "choix": [
+    {"t": "Mache ich. Danke, dass Sie so ruhig reagiert haben.", "fr": "Je le ferai. Merci d'avoir réagi aussi calmement.", "va": null,
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Ich danke Ihnen für Ihre Ehrlichkeit. So lernen wir alle.", "fr": "C'est moi qui vous remercie de votre honnêteté. C'est comme ça qu'on apprend tous."}]},
+    {"t": "Gern. Ich fülle das Formular heute noch aus.", "fr": "Volontiers. Je remplis le formulaire dès aujourd'hui.", "va": null,
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Danke für Ihre Ehrlichkeit, {elif}. So lernen wir alle.", "fr": "Merci pour votre honnêteté, {elif}. C'est comme ça qu'on apprend tous."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Was hat {elif} um sieben Uhr vergessen?", "fr": "Qu'est-ce que {elif} a oublié à 7 heures ?"},
+   "options": [{"t": "Den Blutzucker zu messen.", "fr": "De mesurer la glycémie."}, {"t": "Die Insulingabe zu dokumentieren.", "fr": "De noter l'injection d'insuline."}, {"t": "Das Insulin zu geben.", "fr": "De donner l'insuline."}],
+   "juste": 1},
+  {"q": {"t": "Warum ist nichts passiert?", "fr": "Pourquoi ne s'est-il rien passé ?"},
+   "options": [{"t": "{jonas} hat vorher gefragt.", "fr": "{jonas} a demandé avant."}, {"t": "Die Ärztin hat es bemerkt.", "fr": "La médecin s'en est aperçue."}, {"t": "{lehmann} hat das Insulin abgelehnt.", "fr": "{lehmann} a refusé l'insuline."}],
+   "juste": 0},
+  {"q": {"t": "Was soll {elif} noch tun?", "fr": "Que doit encore faire {elif} ?"},
+   "options": [{"t": "Mit {lehmann} sprechen.", "fr": "Parler à {lehmann}."}, {"t": "Eine Abmahnung unterschreiben.", "fr": "Signer un avertissement."}, {"t": "Den Fehler im CIRS melden.", "fr": "Déclarer l'erreur dans le CIRS."}],
+   "juste": 2}
+ ]
+}
