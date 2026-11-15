@@ -125,12 +125,22 @@ def main():
     if sans_voix or a_chiffres:
         sys.exit(1)
 
-    a_faire = []
+    a_faire, partages = [], []
+    prevus = set()
     for cle, lignes in tout.items():
         f = "soins/" + V.nom_fichier(lignes, voix)
-        if manifeste.get(cle) == f and os.path.exists(os.path.join(V.PRINCIPAL, "audio", "mp3", "dtz", f)):
+        present = os.path.exists(os.path.join(V.PRINCIPAL, "audio", "mp3", "dtz", f))
+        if manifeste.get(cle) == f and present:
             continue
+        # le meme fichier (memes voix, memes textes) sous une autre cle : deja fait ou deja prevu, il ne se repaie pas
+        # (les consignes d'Aurora, identiques d'une serie a l'autre)
+        if present or f in prevus:
+            partages.append((cle, f))
+            continue
+        prevus.add(f)
         a_faire.append((cle, lignes, f, sum(len(l["text"]) for l in lignes)))
+    if partages:
+        print("Pistes qui reprennent un fichier deja fait ou deja prevu (gratuites) : %d" % len(partages))
     cout = sum(x[3] for x in a_faire)
     par_voix = {}
     for _, lignes, _, _ in a_faire:
@@ -169,7 +179,14 @@ def main():
             continue
         depense += c
         manifeste[cle] = f
+        for c2, f2 in partages:
+            if f2 == f:
+                manifeste[c2] = f
         io.open(MANIFESTE, "w", encoding="utf-8", newline="\n").write(json.dumps(manifeste, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
+    for c2, f2 in partages:
+        if os.path.exists(os.path.join(V.PRINCIPAL, "audio", "mp3", "dtz", f2)):
+            manifeste[c2] = f2
+    io.open(MANIFESTE, "w", encoding="utf-8", newline="\n").write(json.dumps(manifeste, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
     print("\nEnviron %d credits depenses. Fichiers : %s ; manifeste : %s" % (depense, SORTIE, os.path.relpath(MANIFESTE, DEPOT)))
 
 

@@ -137,7 +137,7 @@ crochets.
 | `redemittel` | `ref` (un groupe : `patient`, `famille`, `collegues`, `releve`, `sbar`, `visite`, `negociation`, `telephone`), `titre_*` (facultatif) | les cartes de ce groupe, lues dans la **source unique** `pflege/datos/redemittel.json` (FORMAT-DONNEES.md § 2 bis), rangées par fonction puis par niveau, avec leur son |
 | `exercice` | `cle`, `consigne_de` (facultatif), `consigne_*`, `doc` (facultatif), `items`: [question] | des questions à faire sur place, puis « Corriger » |
 | `serie` | `epreuve`, `serie` (id d'entraînement), `teil` (facultatif), `texte_*` | un bouton vers une série d'entraînement, ouverte à cette partie |
-| `renvoi` | `vers` (`dialogue:<id>`, `grammaire:<id>`, `ecrit:<id>`, `theme:<id>`, `scene:<id>`, `chapitre:<id>`), `titre_*` | « Dans l'app : … ». Un `chapitre:` s'ouvre dans la page ; les autres envoient `parler("ouvrir", {vers})` à l'app |
+| `renvoi` | `vers` : les **id réels** de `pflege/datos/` (`dialogue:soins_dlg_07_sbar`, `ecrit:soins_ecrit_aufnahme_01`, `grammaire:soins_gr_01_sie_imperativ`, `theme:soins_<thème>`, `scene:<nom>`) ou `chapitre:<id>` ; `titre_*` | « Dans l'app : … ». Un `chapitre:` s'ouvre dans la page ; les autres envoient `parler("ouvrir", {vers})` à l'app |
 
 - **Une question d'`exercice`** suit le modèle des examens : `nr` (1, 2, 3… dans le bloc), `typ` (« abc » ou « rf »),
   `frage`, `o` (trois choix pour « abc »), `bon`, `erkl_*` et, facultatif, `pas_*`. `pas_*` est une liste de

@@ -487,7 +487,15 @@ for c in VOIX_CHAPITRES:
 GROUPES_RM = ["patient", "famille", "collegues", "releve", "sbar", "visite", "negociation", "telephone"]
 RM = lire(os.path.join(DEPOT, "pflege", "datos", "redemittel.json"))
 BLOCS = {"p", "titre", "liste", "de", "piege", "tableau", "doc", "redemittel", "exercice", "serie", "renvoi"}
-VERS = re.compile(r"^(dialogue|grammaire|ecrit|theme|scene):[A-Za-z0-9_-]+$|^chapitre:(%s)$" % "|".join(i for i, _ in ATTENDUS))
+# les renvois portent les id de la section Soins (pflege/datos/) : soins_dlg_07_sbar, soins_ecrit_aufnahme_01,
+# soins_gr_01_sie_imperativ, soins_<theme>, une scene par son nom ; verifies contre pflege/datos/ quand il est la
+VERS = re.compile(r"^dialogue:soins_dlg_\d\d_[a-z0-9_]+$|^ecrit:soins_ecrit_[a-z0-9_]+$|^grammaire:soins_gr_\d\d_[a-z0-9_]+$"
+                  r"|^theme:soins_[a-z0-9_]+$|^scene:[a-z0-9_-]+$|^chapitre:(%s)$" % "|".join(i for i, _ in ATTENDUS))
+IDS_SOINS = {}
+for genre, fichier, liste in (("dialogue", "dialogues", "dialogues"), ("ecrit", "ecrit", "sujets"), ("grammaire", "grammaire", "points")):
+    d = lire(os.path.join(DEPOT, "pflege", "datos", fichier + ".json"))
+    if d:
+        IDS_SOINS[genre] = {x.get("id") for x in d.get(liste, [])}
 cles_manuel = {}
 n_chap = n_blocs = n_ex = 0
 fichiers = sorted(x for x in os.listdir(MANUEL) if x.endswith(".json") and x != "sommaire.json" and not x.startswith("voix-")) if os.path.isdir(MANUEL) else []
@@ -624,8 +632,12 @@ for nom in fichiers:
                 if b.get("texte_fr"):
                     langues_de(b, "texte", ob, exiger)
             elif t == "renvoi":
-                if not VERS.match(b.get("vers") or ""):
-                    faute(ob + " : « vers » %r (dialogue:, grammaire:, ecrit:, theme:, scene:, chapitre:)" % b.get("vers"))
+                v = b.get("vers") or ""
+                if not VERS.match(v):
+                    faute(ob + " : « vers » %r ; les id de pflege/datos/ (dialogue:soins_dlg_07_sbar, ecrit:soins_ecrit_aufnahme_01, "
+                               "grammaire:soins_gr_01_sie_imperativ, theme:soins_…, scene:…) ou chapitre:<id>" % v)
+                elif v.split(":")[0] in IDS_SOINS and v.split(":", 1)[1] not in IDS_SOINS[v.split(":")[0]]:
+                    faute(ob + " : %s n'existe pas dans pflege/datos/" % v)
                 langues_de(b, "titre", ob, exiger)
 notes.append("manuel : %d chapitre(s) ecrit(s) sur 9, %d bloc(s), %d exercice(s)" % (n_chap, n_blocs, n_ex))
 # ce qu'une infirmiere doit valider : relire: true sur un bloc, une phrase de Redemittel, une question d'exercice
