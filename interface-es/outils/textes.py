@@ -47,6 +47,10 @@ def controle(source, lot, silencieux=False):
         if k not in src:
             continue
         f, e = src[k]["fr"], src[k].get("en", "")
+        # Un francais vide (des textes du telc n'existent qu'en anglais) : la reference
+        # des marques et des balises est alors l'anglais.
+        if not f and e:
+            f = e
         if not isinstance(v, str) or not v.strip():
             fautes.append("vide : " + k)
             continue
