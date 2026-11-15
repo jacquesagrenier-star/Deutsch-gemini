@@ -17,12 +17,12 @@ s'ouvre toujours en anglais. L'ouverture à tous = retirer la garde dans `UI_LAN
 | 0 | Câblage (`outils/cablage_es.py`), 76 clés d'interface (`outils/cles_i18n.py`), outils de `tests/` étendus, sonde (`outils/sonde_essai.py`) | fait, non publié |
 | 1 | Corpus A1-A2 : 2 133 cartes sur 2 133 (`outils/corpus_lots.py`, sources `sources/corpus-*`, lots `lots/corpus-*`), traduction, phrase et, pour les verbes, les trois temps | fait, non publié |
 | 2 | Fiches (`grammaire.json`, 237 textes, 17 comparaisons réécrites contre l'espagnol), Premiers pas (666), A1 voyage (646), conjugaison (336), étapes et « Tu sais… » (161, `etapes/traductions/es.json`), repères (57, `tests/reperes_es.json`), prononciation (25 règles réécrites sur les sons de l'espagnol, table `ES` de `tests/prononciation.py`) | fait, non publié |
-| 3 | `exercices.json` : 3 594 champs allemands recopiés, 2 721 exercices à traduire en 20 sources (`outils/exos.py`) ; exercices d'articles codés en dur | en cours (3 sources posées sur 20) |
-| 4 | Corpus B1-C1 | à faire |
-| 5 | Examen (`pruefung.json`, `LANGUES_PRUEFUNG`), telc (`LANGUES_PAGES_TELC`, `visuel/prototype/telc/telc-commun.js`), DTZ et telc-pflege : `visuel/prototype/dtz/commun.js` refuse `lang=es` (sa liste `LANGUE`, ligne 27 ; signalé par pflege-examen via le chef, 15 nov. ; pflege-examen n'y touche pas), étoiles | à faire |
-| 6 | Scènes et thèmes illustrés | à faire |
+| 3 | `exercices.json` complet (2 721 exercices ; 3 594 champs allemands recopiés ; 20 lots), exercices d'articles codés en dur (219 textes, `outils/patch_articles_es.py`) | fait, non publié |
+| 4 | Corpus B1-C1 : le corpus entier est à **8 106 / 8 106** | fait, non publié |
+| 5 | Examen (`pruefung.json`, 720 textes, `LANGUES_PRUEFUNG`), pages telc (1 454 textes, `telc/langues/es.json` → `es.js`, `LANGUES_PAGES_TELC`), `dtz/commun.js`, `telc.html`, `oral.html`, `telc-pflege/telc.html` ouverts à `lang=es` (`outils/cablage_telc_es.py`) ; étoiles : déjà en espagnol | fait, non publié |
+| 6 | Scènes : 53 scènes, 3 021 textes (`visuel/prototype/traductions/<scène>.es.json`, `outils/scenes_textes.py`) et le mot de chaque zone (`construire.py`), page des scènes au repli es → en → fr ; **thèmes illustrés : en attente** de la fusion de la ligne 96 (alignement-langues), qui touche leur générateur (et `themes/tirage.js`, `themes/zoom.js`) | scènes faites, thèmes à faire |
 | 7 | Pflege (`LANGUES` des outils Pflege, dossier `pflege/sources/traductions/es/`, `tests/pflege*.py`), et le lecteur des dialogues des Soins (`visuel/prototype/conversation.html?soins=1` : `LANGUES_UI` + un bloc `UI_SOINS.es`, 35 textes). En dernier : la session Pflege architecture prévient quand le contenu est figé (d13-d26, paires, cartes-phrases arrivent la semaine du 15 nov.) | à faire |
-| 8 | Relecture croisée complète, captures, mesure langue × contenu | à faire |
+| 8 | Contrôles mécaniques (0 suspect, collisions 41 départagées / 47 acceptées), relecture croisée d'un échantillon de 467 entrées + étalonnage (`relecture/BILAN.md`) | fait ; relecture native à venir |
 
 ## Le câblage (lot 0)
 
