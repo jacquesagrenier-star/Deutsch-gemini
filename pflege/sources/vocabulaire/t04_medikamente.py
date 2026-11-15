@@ -187,6 +187,11 @@ MOTS = [
     N("B2", "der Medikationsfehler", "Medikationsfehler",
       "l'erreur médicamenteuse | medication error | ilaç hatası | медикаментозна помилка | خطای دارویی | خطأ دوائي | erro de medicação | błąd lekowy | медикаментозная ошибка",
       "Einen Medikationsfehler melden wir sofort, ohne Angst vor Schuldzuweisungen. | Une erreur médicamenteuse se signale immédiatement, sans crainte d'être accusé. | We report a medication error immediately, without fear of blame. | Bir ilaç hatasını suçlanma korkusu olmadan hemen bildiririz. | Про медикаментозну помилку ми повідомляємо одразу, не боячись звинувачень. | خطای دارویی را فوراً گزارش می‌دهیم، بدون ترس از مقصر شناخته شدن. | نبلّغ عن الخطأ الدوائي فورًا، دون خوف من اللوم. | Um erro de medicação nós notificamos imediatamente, sem medo de culpa. | Błąd lekowy zgłaszamy od razu, bez obawy przed obwinianiem. | О медикаментозной ошибке мы сообщаем сразу, не боясь обвинений."),
+    # ── ajout du 14 nov. (scenes salle de bain, releve, visite), A LA FIN ──
+    N("B1", "der Medikamentenbecher", "Medikamentenbecher",
+      "le godet à médicaments | medicine cup | ilaç kabı | стаканчик для ліків | لیوان دارو | كوب الدواء | copinho de medicação | kubeczek na leki | стаканчик для лекарств",
+      "Die Tabletten für mittags liegen schon im Medikamentenbecher mit ihrem Namen. | Les comprimés de midi sont déjà dans le godet à son nom. | The midday tablets are already in the medicine cup with her name on it. | Öğle tabletleri zaten üzerinde adı yazan ilaç kabında. | Таблетки на обід уже лежать у стаканчику з її іменем. | قرص‌های ظهر از قبل در لیوان دارویی است که اسم او رویش نوشته شده. | أقراص الظهر موجودة في كوب الدواء الذي يحمل اسمها. | Os comprimidos do almoço já estão no copinho com o nome dela. | Tabletki na południe leżą już w kubeczku z jej imieniem. | Таблетки на обед уже лежат в стаканчике с её именем.",
+      relire=True, note="Godet, gobelet à médicaments ou pilulier de prise : le mot français varie selon le service."),
 ]
 
 # Les nombres en lettres (CLAUDE.md, audio/lectures/) : { texte ecrit : texte dit }
