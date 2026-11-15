@@ -824,34 +824,23 @@ window.SCENE = {
  "consigne": "Touche un objet de la chambre, ou Herr Brandt.",
  "couches": {
   "SIT": {
-   "titre": "Que faites-vous ?",
-   "niveau": "B2",
+   "titre": "Que répondez-vous ?",
+   "niveau": "B1",
    "qs": [
     {
-     "q": "Herr Brandt will allein zur Toilette gehen. Er ist sturzgefährdet. Was tun Sie zuerst?",
+     "q": "Sie helfen Herrn Brandt, sich aufzusetzen. Er sagt: „Ja, allein schaff ich das noch nicht.“",
      "c": [
-      "Ich bleibe bei ihm und gebe ihm den Rollator.",
-      "Ich ziehe das Bettgitter hoch, damit er liegen bleibt.",
-      "Ich sage ihm, er soll warten, und gehe weiter."
+      "Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.",
+      "Wenn Sie etwas brauchen, rufen Sie einfach laut.",
+      "Stehen Sie jetzt auf. Wir müssen laufen."
      ],
-     "f": "rollator",
-     "phrase": "Ich bleibe bei ihm und gebe ihm den Rollator.",
-     "sens": "Je reste avec lui et je lui donne le déambulateur.",
-     "n": "La sécurité d'abord, sans l'enfermer : on l'accompagne avec son déambulateur. Remonter la barrière contre son gré serait une mesure privative de liberté ⚕️.",
-     "type": "situation"
-    },
-    {
-     "q": "Herr Brandt will mit dem Rollator gehen. Sein Urinbeutel hängt noch am Bett. Was tun Sie?",
-     "c": [
-      "Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.",
-      "Ich lege den Urinbeutel auf das Bett.",
-      "Ich hänge den Urinbeutel oben an den Infusionsständer."
-     ],
-     "f": "urinbeutel",
-     "phrase": "Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.",
-     "sens": "J'accroche la poche à urine au déambulateur, sous le niveau de la vessie.",
-     "n": "La poche reste toujours plus bas que la vessie : sinon l'urine remonte, avec un risque d'infection ⚕️.",
-     "type": "situation"
+     "f": "patient",
+     "type": "situation",
+     "phrase": "Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.",
+     "sens": "Voici votre sonnette. S'il vous plaît, ne vous levez pas encore seul, sonnez plutôt.",
+     "n": "<b>À l'hôpital, on montre la sonnette : « die Klingel ».</b> « Drücken Sie bitte hier » : appuyez ici. Un patient opéré ne doit pas avoir à crier pour être aidé. ⚕️",
+     "source": "d01-vorstellung/klingel",
+     "r": "klingel"
     }
    ]
   }
@@ -870,15 +859,13 @@ window.SCENE = {
     "nom_vue": "Herr Brandt gets up"
    },
    "couches": {
-    "SIT": "What do you do?"
+    "SIT": "What do you answer?"
    },
    "questions": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "Safety first, without confining him: you go with him and his rollator. Raising the bed rail against his will would be a deprivation of liberty ⚕️.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "The bag always stays below the bladder: otherwise urine flows back, with a risk of infection ⚕️."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>In hospital, you show the patient the call button: “die Klingel”.</b> “Drücken Sie bitte hier”: please press here. A patient after surgery should not have to shout to get help. ⚕️"
    },
    "sens": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "I stay with him and give him the rollator.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "I hang the urine bag on the rollator, below bladder level."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Here's your call button. Please don't get up on your own yet; ring for us instead."
    }
   },
   "tr": {
@@ -888,15 +875,13 @@ window.SCENE = {
     "nom_vue": "Herr Brandt kalkıyor"
    },
    "couches": {
-    "SIT": "Ne yaparsınız?"
+    "SIT": "Ne cevap verirsiniz?"
    },
    "questions": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "Önce güvenlik, ama onu kısıtlamadan: yürüteciyle ona eşlik edilir. Korkuluğu isteği dışında kaldırmak, özgürlüğü kısıtlayıcı bir önlem olur ⚕️.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "Torba her zaman mesane seviyesinin altında kalır: yoksa idrar geri akar ve enfeksiyon riski doğar ⚕️."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>Hastanede hastaya çağrı zili gösterilir: “die Klingel”.</b> “Drücken Sie bitte hier”: lütfen buraya basın. Ameliyat olmuş bir hasta yardım almak için bağırmak zorunda kalmamalı. ⚕️"
    },
    "sens": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "Yanında kalırım ve ona yürüteci veririm.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "İdrar torbasını yürütece, mesane seviyesinin altına asarım."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "İşte çağrı ziliniz. Lütfen henüz tek başınıza kalkmayın, onun yerine zili çalın."
    }
   },
   "uk": {
@@ -906,15 +891,13 @@ window.SCENE = {
     "nom_vue": "Herr Brandt підводиться"
    },
    "couches": {
-    "SIT": "Що ви робите?"
+    "SIT": "Що ви відповісте?"
    },
    "questions": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "Безпека понад усе, але без обмежень: його супроводжують із ходунками. Підняти поручні всупереч його волі — це захід позбавлення свободи ⚕️.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "Сечоприймач завжди нижче за сечовий міхур: інакше сеча тече назад і є ризик інфекції ⚕️."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>У лікарні показують кнопку виклику: «die Klingel».</b> «Drücken Sie bitte hier»: натисніть ось тут. Прооперований пацієнт не повинен кричати, щоб отримати допомогу. ⚕️"
    },
    "sens": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "Я залишаюся з ним і даю йому ходунки.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "Я чіпляю сечоприймач на ходунки, нижче рівня сечового міхура."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Ось ваша кнопка виклику. Будь ласка, поки що не вставайте самі, краще натисніть на кнопку."
    }
   },
   "fa": {
@@ -924,15 +907,13 @@ window.SCENE = {
     "nom_vue": "<span lang=\"de\">Herr Brandt</span> بلند می‌شود"
    },
    "couches": {
-    "SIT": "چه می‌کنید؟"
+    "SIT": "چه جواب می‌دهید؟"
    },
    "questions": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "اول ایمنی، بی‌آنکه محبوسش کنیم: با واکرش همراهی‌اش می‌کنیم. بالا کشیدنِ نرده برخلافِ میلش اقدامی سالبِ آزادی است ⚕️.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "کیسه همیشه پایین‌تر از مثانه می‌ماند: وگرنه ادرار برمی‌گردد و خطرِ عفونت هست ⚕️."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>در بیمارستان زنگ را نشان می‌دهیم: «die Klingel».</b> «Drücken Sie bitte hier»: لطفاً اینجا را فشار دهید. بیماری که عمل شده نباید برای کمک گرفتن مجبور به فریاد زدن باشد. ⚕️"
    },
    "sens": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "پیشش می‌مانم و واکر را به او می‌دهم.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "کیسهٔ ادرار را به واکر آویزان می‌کنم، پایین‌تر از سطحِ مثانه."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "این زنگ شماست. لطفاً هنوز تنهایی بلند نشوید، بهتر است زنگ بزنید."
    }
   },
   "ar": {
@@ -942,15 +923,13 @@ window.SCENE = {
     "nom_vue": "<span lang=\"de\">Herr Brandt</span> ينهض"
    },
    "couches": {
-    "SIT": "ما التصرّف الصحيح؟"
+    "SIT": "ما الردّ المناسب؟"
    },
    "questions": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "السلامة أولًا، دون حبسه: نرافقه بمشّايته. ورفع الحاجز رغمًا عنه إجراء مقيِّد للحرية ⚕️.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "يبقى الكيس دائمًا أدنى من المثانة: وإلا ارتدّ البول، مع خطر العدوى ⚕️."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>في المستشفى نُري المريض جرس الاستدعاء: «die Klingel».</b> «Drücken Sie bitte hier»: اضغط هنا من فضلك. يجب ألا يضطر مريض أُجريت له عملية إلى الصراخ ليحصل على المساعدة. ⚕️"
    },
    "sens": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "أبقى معه وأعطيه المشّاية.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "أعلّق كيس البول على المشّاية، تحت مستوى المثانة."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "هذا جرس الاستدعاء. من فضلك لا تنهض وحدك بعد، بل اضغط على الجرس."
    }
   },
   "pt": {
@@ -960,15 +939,13 @@ window.SCENE = {
     "nom_vue": "Herr Brandt se levanta"
    },
    "couches": {
-    "SIT": "O que fazer?"
+    "SIT": "O que responder?"
    },
    "questions": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "Segurança em primeiro lugar, sem prendê-lo: acompanha-se o paciente com o andador. Levantar a grade contra a vontade dele seria uma medida de restrição de liberdade ⚕️.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "A bolsa fica sempre abaixo do nível da bexiga: senão a urina volta, com risco de infecção ⚕️."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>No hospital, mostra-se a campainha ao paciente: “die Klingel”.</b> “Drücken Sie bitte hier”: aperte aqui, por favor. Um paciente operado não deve ter que gritar para ser atendido. ⚕️"
    },
    "sens": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "Fico com ele e lhe entrego o andador.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "Penduro a bolsa coletora de urina no andador, abaixo do nível da bexiga."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Aqui está a sua campainha. Por favor, não se levante sozinho ainda; é melhor tocar a campainha."
    }
   },
   "pl": {
@@ -978,15 +955,13 @@ window.SCENE = {
     "nom_vue": "Herr Brandt wstaje"
    },
    "couches": {
-    "SIT": "Co zrobić?"
+    "SIT": "Co odpowiedzieć?"
    },
    "questions": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "Najpierw bezpieczeństwo, ale bez zamykania: towarzyszy mu się z jego rolatorem. Podniesienie barierek wbrew jego woli byłoby środkiem ograniczającym wolność ⚕️.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "Worek zawsze wisi niżej niż pęcherz: inaczej mocz się cofa i grozi zakażenie ⚕️."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>W szpitalu pokazuje się dzwonek: „die Klingel”.</b> „Drücken Sie bitte hier”: proszę nacisnąć tutaj. Pacjent po operacji nie powinien musieć krzyczeć, żeby dostać pomoc. ⚕️"
    },
    "sens": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "Zostaję z nim i podaję mu rolator.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "Wieszam worek na mocz na rolatorze, poniżej poziomu pęcherza."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Tu jest pana dzwonek. Proszę jeszcze nie wstawać samodzielnie, lepiej niech pan zadzwoni."
    }
   },
   "ru": {
@@ -996,15 +971,13 @@ window.SCENE = {
     "nom_vue": "Herr Brandt встаёт"
    },
    "couches": {
-    "SIT": "Что делать?"
+    "SIT": "Что ответить?"
    },
    "questions": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "Сначала безопасность, но без запирания: пациента сопровождают с его ходунками. Поднять ограждение против его воли — мера, ограничивающая свободу ⚕️.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "Мочеприёмник всегда должен быть ниже мочевого пузыря: иначе моча затекает обратно и возникает риск инфекции ⚕️."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>В больнице показывают кнопку вызова: «die Klingel».</b> «Drücken Sie bitte hier»: нажмите вот здесь. Прооперированному пациенту не нужно кричать, чтобы получить помощь. ⚕️"
    },
    "sens": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "Я остаюсь с ним и даю ему ходунки.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "Я вешаю мочеприёмник на ходунки, ниже уровня мочевого пузыря."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Вот ваша кнопка вызова. Пожалуйста, пока не вставайте сами, лучше нажмите на кнопку."
    }
   }
  }
