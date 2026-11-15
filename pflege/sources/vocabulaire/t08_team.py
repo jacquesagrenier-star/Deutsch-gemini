@@ -187,6 +187,16 @@ MOTS = [
       "la cliente (des soins à domicile) | client (woman, home care) | (evde bakım) kadın danışan | клієнтка (догляду вдома) | مددجوی زن (مراقبت در منزل) | العميلة (في الرعاية المنزلية) | cliente (do atendimento domiciliar) | podopieczna (opieki domowej) | клиентка (ухода на дому)",
       "{Amira} besucht die Klientin jeden Morgen um acht Uhr. | {Amira} passe chez la cliente tous les matins à huit heures. | {Amira} visits the client every morning at eight o'clock. | {Amira} danışanı her sabah saat sekizde ziyaret ediyor. | {Amira} щоранку о восьмій годині приходить до клієнтки. | {Amira} هر روز صبح ساعت هشت به مددجو سر می‌زند. | تزور {Amira} العميلة كل صباح في الساعة الثامنة. | {Amira} visita a cliente todas as manhãs às oito horas. | {Amira} odwiedza podopieczną codziennie rano o ósmej. | {Amira} каждое утро в восемь часов приходит к клиентке.",
       masculin="Klient"),
+    # ── ajout du 14 nov. (scenes salle de bain, releve, visite), A LA FIN ──
+    N("B1", "der Pflegefachmann", "Pflegefachmänner",
+      "l'infirmier (diplômé ; titre allemand depuis 2020) | registered nurse | hemşire, erkek hemşire (diplomalı) | медбрат (дипломований) | پرستار (مرد، دارای مدرک) | ممرّض مؤهّل | enfermeiro | pielęgniarz (dyplomowany) | медбрат (дипломированный)",
+      "Er hat die Ausbildung abgeschlossen und ist jetzt Pflegefachmann. | Il a terminé sa formation et il est maintenant infirmier. | He has finished his training and is now a registered nurse. | Eğitimini tamamladı ve artık hemşire. | Він закінчив навчання і тепер працює медбратом. | او دوره‌اش را تمام کرده و حالا پرستار است. | أنهى تدريبه وأصبح الآن ممرّضًا. | Ele terminou a formação e agora é enfermeiro. | Skończył szkolenie i jest teraz pielęgniarzem. | Он закончил обучение и теперь работает медбратом.",
+      feminin="Pflegefachfrau",
+      note="Pluriel : Pflegefachmänner, ou Pflegefachleute pour un groupe mixte."),
+    N("A2", "der Kittel", "Kittel",
+      "la blouse | white coat, smock | önlük | халат | روپوش | المعطف الأبيض (المريلة) | jaleco | fartuch | халат",
+      "Die Ärztin hat das Stethoskop in der Tasche ihres Kittels. | La médecin a le stéthoscope dans la poche de sa blouse. | The doctor has her stethoscope in the pocket of her white coat. | Doktor stetoskobu önlüğünün cebinde taşıyor. | Лікарка тримає стетоскоп у кишені халата. | پزشک گوشی پزشکی را در جیب روپوشش دارد. | تضع الطبيبة السمّاعة في جيب معطفها الأبيض. | A médica leva o estetoscópio no bolso do jaleco. | Lekarka ma stetoskop w kieszeni fartucha. | Врач держит стетоскоп в кармане халата.",
+      note="La surblouse de protection est der Schutzkittel (thème hygiène)."),
 ]
 
 # Les nombres en lettres (CLAUDE.md, audio/lectures/) : { texte ecrit : texte dit }

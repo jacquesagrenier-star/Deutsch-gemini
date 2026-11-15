@@ -1,0 +1,911 @@
+{
+  "_note": "telc Deutsch B1·B2 Pflege, les séries (une série = un examen blanc complet) von Wortando : SPRECHEN (14 nov. 2026, session pflege-examen). Le FORMAT du telc (pflege/FORMAT-TELC-PFLEGE.md) : 1A décrire une photo (5), 1B répondre aux questions (5), 2A exposé de deux minutes sur un sujet choisi parmi deux (15), 2B questions sur l'exposé (5), 3 discussion avec le partenaire (20) ; la langue (50) se note sur l'ensemble (bareme.js). La Prüferin est Frau Neumann, la partenaire est Elif, qui passe l'examen elle aussi. « tours » : ce que disent la Prüferin ou Elif (dit), puis la réponse de l'apprenant (consigne, limite en secondes) ; « tours_nach_thema » : selon le sujet choisi en 2A. « kriterien » : ce que l'app sait repérer dans ce qui a été dit (mots minimum, mots repères, « mindestens » combien) ; le contrôle vérifie que chaque réponse modèle les remplit. Les photos de 1A et 2A seront faites après la validation des personnages : d'ici là, leur description écrite. Les nombres de l'audio en lettres. Les 9 langues d'interface sont dans les objets (X_fr, X_en, X_tr, X_uk, X_fa, X_pt, X_ar, X_pl, X_ru) ; outils/a_traduire.py liste ce qui manque et replie un fichier de traductions. Voix : la liste unique de pflege-dialogues (pflege/VOIX.md, ids de pflege/sources/noms.json), une voix jamais deux fois dans une même partie.",
+  "voix": {
+    "neumann": {
+      "nom": "Frau Neumann, la Prüferin (aurora, recommandation de pflege-dialogues)",
+      "sexe": "f",
+      "voice_id": "8HePnvwzEdJ614CQMPqF"
+    },
+    "elif": {
+      "nom": "Elif, la partenaire (VOIX.md : f_jung)",
+      "sexe": "f",
+      "voice_id": "KdxIdEwcPWzvsuKFEGL2"
+    }
+  },
+  "series": [
+    {
+      "id": 1,
+      "titre": "Modellprüfung 1",
+      "taches": [
+        {
+          "cle": "sp1a",
+          "teil": "Teil 1A",
+          "sur": 5,
+          "consigne_de": "Beschreiben Sie das Bild: die Situation, die Personen, was sie tun. Was denken Sie: Was ist hier los?",
+          "bild": {
+            "beschreibung": "Ein heller Flur in einem Pflegeheim. Eine Pflegerin in grüner Dienstkleidung geht neben einer älteren Frau mit weißen lockigen Haaren. Die Frau geht langsam mit einem Rollator und trägt Hausschuhe. Die Pflegerin hat eine Hand am Rücken der Frau und schaut auf ihre Füße, beide lächeln. An der Wand gibt es einen Handlauf, im Hintergrund ein großes Fenster und Pflanzen.",
+            "src": "img/oral-1a.webp"
+          },
+          "tours": [
+            {
+              "dit": [
+                {
+                  "wer": "neumann",
+                  "text": "Guten Tag und herzlich willkommen. Wir beginnen mit Teil eins. Bitte sehen Sie sich das Bild an. Was sehen Sie? Welche Situation zeigt das Bild?"
+                }
+              ],
+              "consigne": "pf_a_toi_photo",
+              "limite": 90
+            }
+          ],
+          "kriterien": [
+            {
+              "cle": "k1a1",
+              "min_woerter": 45,
+              "label_fr": "assez long (environ une minute)",
+              "label_en": "long enough (about a minute)",
+              "label_tr": "yeterince uzun (yaklaşık bir dakika)",
+              "label_uk": "достатньо довго (приблизно хвилина)",
+              "label_fa": "به اندازهٔ کافی طولانی (حدود یک دقیقه)",
+              "label_pt": "longo o suficiente (cerca de um minuto)",
+              "label_ar": "طول كافٍ (نحو دقيقة)",
+              "label_pl": "wystarczająco długo (około minuty)",
+              "label_ru": "достаточно долго (примерно минуту)"
+            },
+            {
+              "cle": "k1a2",
+              "mots": [
+                "pflegerin|pflegekraft|pfleger|schwester|altenpfleger",
+                "frau|bewohnerin|patientin|seniorin|dame"
+              ],
+              "mindestens": 2,
+              "label_fr": "les personnes (la soignante, la résidente)",
+              "label_en": "the people (the carer, the resident)",
+              "label_tr": "kişiler (bakıcı, huzurevi sakini)",
+              "label_uk": "люди (доглядальниця, мешканка)",
+              "label_fa": "آدم‌ها (پرستار، سالمندِ ساکن)",
+              "label_pt": "as pessoas (a cuidadora, a moradora)",
+              "label_ar": "الأشخاص (الممرضة، المقيمة في الدار)",
+              "label_pl": "osoby (opiekunka, mieszkanka)",
+              "label_ru": "люди (сотрудница по уходу, проживающая)"
+            },
+            {
+              "cle": "k1a3",
+              "mots": [
+                "flur|pflegeheim|heim|krankenhaus|station|gang|altenheim"
+              ],
+              "label_fr": "le lieu",
+              "label_en": "the place",
+              "label_tr": "yer",
+              "label_uk": "місце",
+              "label_fa": "مکان",
+              "label_pt": "o lugar",
+              "label_ar": "المكان",
+              "label_pl": "miejsce",
+              "label_ru": "место"
+            },
+            {
+              "cle": "k1a4",
+              "mots": [
+                "rollator|gehhilfe",
+                "hand|r(ü|ue)cken|l(ä|ae)chel|fenster|handlauf|haare|hausschuhe|pflanze|kleidung"
+              ],
+              "mindestens": 2,
+              "label_fr": "des détails (déambulateur, main, fenêtre…)",
+              "label_en": "details (walker, hand, window…)",
+              "label_tr": "ayrıntılar (yürüteç, el, pencere…)",
+              "label_uk": "деталі (ходунки, рука, вікно…)",
+              "label_fa": "جزئیات (واکر، دست، پنجره…)",
+              "label_pt": "detalhes (andador, mão, janela…)",
+              "label_ar": "تفاصيل (المشّاية، اليد، النافذة…)",
+              "label_pl": "szczegóły (balkonik, ręka, okno…)",
+              "label_ru": "детали (ходунки, рука, окно…)"
+            },
+            {
+              "cle": "k1a5",
+              "mots": [
+                "ich denke|ich glaube|vielleicht|wahrscheinlich|vermutlich|ich vermute|es k(ö|oe)nnte|sieht so aus|ich nehme an"
+              ],
+              "label_fr": "une hypothèse (ich denke, vielleicht…)",
+              "label_en": "a guess (ich denke, vielleicht…)",
+              "label_tr": "bir tahmin (ich denke, vielleicht…)",
+              "label_uk": "припущення (ich denke, vielleicht…)",
+              "label_fa": "یک حدس (ich denke, vielleicht…)",
+              "label_pt": "uma hipótese (ich denke, vielleicht…)",
+              "label_ar": "افتراض (ich denke, vielleicht…)",
+              "label_pl": "przypuszczenie (ich denke, vielleicht…)",
+              "label_ru": "предположение (ich denke, vielleicht…)"
+            }
+          ],
+          "redemittel": [
+            "Auf dem Bild sehe ich …",
+            "Im Vordergrund / Im Hintergrund …",
+            "Die Pflegerin hilft der Frau beim …",
+            "Die Frau trägt … / hat …",
+            "Ich denke, das ist … / Vielleicht …",
+            "Es sieht so aus, als ob …",
+            "Die Situation kenne ich auch von meiner Station: …"
+          ],
+          "muster": [
+            "Auf dem Bild sehe ich einen hellen Flur, ich denke, das ist ein Pflegeheim. Eine Pflegerin in grüner Dienstkleidung geht neben einer älteren Frau. Die Frau hat weiße lockige Haare und geht mit einem Rollator. Die Pflegerin hat eine Hand an ihrem Rücken, damit sie sich sicher fühlt. Beide lächeln, die Stimmung ist gut. Im Hintergrund sieht man ein großes Fenster und Pflanzen. Vielleicht übt die Frau nach einer Operation wieder das Gehen, oder sie geht zum Speisesaal. Das kenne ich auch von meiner Station."
+          ],
+          "nom_fr": "Décrire une photo",
+          "nom_en": "Describing a photo",
+          "nom_tr": "Bir fotoğrafı anlatmak",
+          "nom_uk": "Опис фото",
+          "nom_fa": "توصیف یک عکس",
+          "nom_pt": "Descrever uma foto",
+          "nom_ar": "وصف صورة",
+          "nom_pl": "Opis zdjęcia",
+          "nom_ru": "Описание фотографии",
+          "consigne_fr": "Décris la photo : où l'on est, qui on voit, ce que font les personnes, quelques détails. Puis dis ce que tu en penses (« Ich denke, … »). Environ une minute.",
+          "consigne_en": "Describe the photo: where it is, who you see, what the people are doing, a few details. Then say what you think is happening (“Ich denke, …”). About one minute.",
+          "consigne_tr": "Fotoğrafı anlat: nerede olunduğunu, kimin göründüğünü, kişilerin ne yaptığını, birkaç ayrıntıyı. Sonra ne düşündüğünü söyle (“Ich denke, …”). Yaklaşık bir dakika.",
+          "consigne_uk": "Опиши фото: де це, кого видно, що роблять люди, кілька деталей. Потім скажи, що ти про це думаєш («Ich denke, …»). Приблизно одна хвилина.",
+          "consigne_fa": "عکس را توصیف کن: کجاست، چه کسانی را می‌بینی، آدم‌ها چه می‌کنند، چند جزئیات. بعد بگو به نظرت چه می‌گذرد («Ich denke, …»). حدود یک دقیقه.",
+          "consigne_pt": "Descreva a foto: onde é, quem aparece, o que as pessoas estão fazendo, alguns detalhes. Depois diga o que você acha que está acontecendo (“Ich denke, …”). Cerca de um minuto.",
+          "consigne_ar": "صف الصورة: أين يجري المشهد، من تراه، ماذا يفعل الأشخاص، بعض التفاصيل. ثم قل ما تظنه («Ich denke, …»). نحو دقيقة واحدة.",
+          "consigne_pl": "Opisz zdjęcie: gdzie to jest, kogo widać, co robią osoby, kilka szczegółów. Potem powiedz, co o tym myślisz („Ich denke, …”). Około minuty.",
+          "consigne_ru": "Опиши фотографию: где это, кого видно, что делают люди, несколько деталей. Затем скажи, что ты об этом думаешь («Ich denke, …»). Примерно одну минуту."
+        },
+        {
+          "cle": "sp1b",
+          "teil": "Teil 1B",
+          "sur": 5,
+          "consigne_de": "Die Prüferin stellt Ihnen Fragen zum Thema des Bildes. Antworten Sie ausführlich und erzählen Sie von Ihren Erfahrungen.",
+          "tours": [
+            {
+              "dit": [
+                {
+                  "wer": "neumann",
+                  "text": "Danke. Das Thema ist: Mobilisation und Sturzprophylaxe. Welche Erfahrungen haben Sie in Ihrem Beruf damit gemacht?"
+                }
+              ],
+              "consigne": "pf_a_toi_question",
+              "limite": 60
+            },
+            {
+              "dit": [
+                {
+                  "wer": "neumann",
+                  "text": "Was kann man im Alltag tun, damit ältere Menschen nicht stürzen?"
+                }
+              ],
+              "consigne": "pf_a_toi_question",
+              "limite": 60
+            },
+            {
+              "dit": [
+                {
+                  "wer": "neumann",
+                  "text": "Und wenn ein Patient gar nicht aufstehen möchte: Wie gehen Sie damit um?"
+                }
+              ],
+              "consigne": "pf_a_toi_question",
+              "limite": 60
+            }
+          ],
+          "kriterien": [
+            {
+              "cle": "k1b1",
+              "min_woerter": 70,
+              "label_fr": "des réponses développées",
+              "label_en": "developed answers",
+              "label_tr": "ayrıntılı cevaplar",
+              "label_uk": "розгорнуті відповіді",
+              "label_fa": "پاسخ‌های مفصل",
+              "label_pt": "respostas desenvolvidas",
+              "label_ar": "إجابات مفصّلة",
+              "label_pl": "rozbudowane odpowiedzi",
+              "label_ru": "развёрнутые ответы"
+            },
+            {
+              "cle": "k1b2",
+              "mots": [
+                "ich habe|bei uns|in meinem|erfahrung|auf meiner station|fr(ü|ue)her|in der t(ü|ue)rkei|in meinem heimatland"
+              ],
+              "label_fr": "ton expérience",
+              "label_en": "your experience",
+              "label_tr": "kendi deneyimin",
+              "label_uk": "твій досвід",
+              "label_fa": "تجربهٔ تو",
+              "label_pt": "a sua experiência",
+              "label_ar": "تجربتك",
+              "label_pl": "twoje doświadczenie",
+              "label_ru": "твой опыт"
+            },
+            {
+              "cle": "k1b3",
+              "mots": [
+                "rollator|gehhilfe",
+                "schuhe|hausschuhe",
+                "licht|beleuchtung",
+                "klingel",
+                "teppich|stolper",
+                "sensormatte",
+                "begleit",
+                "bett.{0,20}(niedrig|tief)|niedrig",
+                "brille",
+                "trinken|fl(ü|ue)ssigkeit",
+                "physiotherap|(ü|ue)bung"
+              ],
+              "mindestens": 2,
+              "label_fr": "au moins deux mesures concrètes",
+              "label_en": "at least two concrete measures",
+              "label_tr": "en az iki somut önlem",
+              "label_uk": "щонайменше два конкретні заходи",
+              "label_fa": "دست‌کم دو اقدام مشخص",
+              "label_pt": "pelo menos duas medidas concretas",
+              "label_ar": "إجراءان ملموسان على الأقل",
+              "label_pl": "co najmniej dwa konkretne działania",
+              "label_ru": "не меньше двух конкретных мер"
+            },
+            {
+              "cle": "k1b4",
+              "mots": [
+                "weil|denn|deshalb|darum|damit"
+              ],
+              "label_fr": "tu justifies (weil, denn, deshalb)",
+              "label_en": "you give reasons (weil, denn, deshalb)",
+              "label_tr": "gerekçe gösteriyorsun (weil, denn, deshalb)",
+              "label_uk": "ти обґрунтовуєш (weil, denn, deshalb)",
+              "label_fa": "دلیل می‌آوری (weil, denn, deshalb)",
+              "label_pt": "você justifica (weil, denn, deshalb)",
+              "label_ar": "التعليل (weil, denn, deshalb)",
+              "label_pl": "uzasadniasz (weil, denn, deshalb)",
+              "label_ru": "ты обосновываешь (weil, denn, deshalb)"
+            }
+          ],
+          "redemittel": [
+            "Auf meiner Station in … haben wir …",
+            "Ich habe erlebt, dass …",
+            "Wichtig ist, dass … / Man sollte …",
+            "Zum Beispiel …",
+            "Wenn ein Patient nicht möchte, dann …",
+            "Ich versuche zuerst zu verstehen, warum …"
+          ],
+          "muster": [
+            "In der Türkei habe ich fünf Jahre auf einer chirurgischen Station gearbeitet. Dort haben wir die Patienten nach einer Operation möglichst früh mobilisiert, weil sie dann schneller wieder selbstständig werden. Im Alltag helfen kleine Dinge: feste Schuhe statt Hausschuhe, gutes Licht in der Nacht, die Klingel in Reichweite und keine Teppiche, über die man stolpern kann. Wichtig ist auch, dass die Menschen genug trinken. Wenn ein Patient nicht aufstehen möchte, versuche ich zuerst zu verstehen, warum: Hat er Schmerzen, hat er Angst? Dann erkläre ich ihm, warum die Bewegung wichtig ist, und wir machen zuerst nur ein paar Schritte."
+          ],
+          "nom_fr": "Répondre aux questions",
+          "nom_en": "Answering questions",
+          "nom_tr": "Soruları cevaplamak",
+          "nom_uk": "Відповіді на питання",
+          "nom_fa": "پاسخ به پرسش‌ها",
+          "nom_pt": "Responder às perguntas",
+          "nom_ar": "الإجابة عن الأسئلة",
+          "nom_pl": "Odpowiedzi na pytania",
+          "nom_ru": "Ответы на вопросы",
+          "consigne_fr": "La Prüferin te pose des questions sur le thème de la photo : la mobilisation et la prévention des chutes. Réponds en quelques phrases, avec ton expérience et des exemples.",
+          "consigne_en": "The examiner asks you questions on the photo's topic: mobilising patients and preventing falls. Answer in a few sentences, with your experience and examples.",
+          "consigne_tr": "Prüferin sana fotoğrafın konusuyla ilgili sorular soruyor: hastanın harekete geçirilmesi (mobilizasyon) ve düşmelerin önlenmesi. Kendi deneyiminden ve örneklerden yararlanarak birkaç cümleyle cevap ver.",
+          "consigne_uk": "Prüferin ставить тобі питання на тему фото: мобілізація пацієнтів і профілактика падінь. Відповідай кількома реченнями, спираючись на свій досвід і приклади.",
+          "consigne_fa": "ممتحن (Prüferin) دربارهٔ موضوع عکس از تو پرسش‌هایی می‌کند: تحرک‌بخشی به بیمار و پیشگیری از زمین خوردن. با چند جمله پاسخ بده، با تجربه‌ات و چند مثال.",
+          "consigne_pt": "A Prüferin faz perguntas sobre o tema da foto: a mobilização e a prevenção de quedas. Responda em algumas frases, com a sua experiência e exemplos.",
+          "consigne_ar": "تطرح عليك الممتحِنة (Prüferin) أسئلة حول موضوع الصورة: مساعدة المرضى على الحركة والوقاية من السقوط. أجب ببضع جمل، مع ذكر تجربتك وأمثلة.",
+          "consigne_pl": "Prüferin zadaje ci pytania na temat zdjęcia: mobilizacja pacjentów i zapobieganie upadkom. Odpowiedz kilkoma zdaniami, z odwołaniem do swojego doświadczenia i z przykładami.",
+          "consigne_ru": "Экзаменатор (Prüferin) задаёт тебе вопросы по теме фотографии: мобилизация и профилактика падений. Ответь несколькими предложениями, со своим опытом и примерами."
+        },
+        {
+          "cle": "sp2a",
+          "teil": "Teil 2A",
+          "sur": 15,
+          "consigne_de": "Wählen Sie ein Thema und halten Sie einen kurzen Vortrag (etwa zwei Minuten). Nennen Sie zuerst Ihre Gliederung, sprechen Sie über mindestens zwei Punkte und sagen Sie am Ende Ihre Meinung.",
+          "themen": [
+            {
+              "id": "schmerz",
+              "titre": "Schmerzen erkennen, wenn jemand sie nicht sagen kann",
+              "stichworte": [
+                "Menschen mit Demenz",
+                "Mimik und Körperhaltung",
+                "Unruhe, Rufen, Abwehr",
+                "Schmerzskala für Beobachtung",
+                "Angehörige fragen",
+                "Dokumentation und Arzt informieren"
+              ],
+              "bilder": [
+                {
+                  "beschreibung": "Eine alte Frau im Sessel hält sich mit verzerrtem Gesicht die Hand an die Hüfte.",
+                  "src": "img/oral-schmerz-1.webp"
+                },
+                {
+                  "beschreibung": "Eine Pflegekraft füllt am Bett einen Bogen mit Gesichtern und Punkten aus.",
+                  "src": "img/oral-schmerz-2.webp"
+                },
+                {
+                  "beschreibung": "Eine Tochter spricht im Flur mit einem Pfleger.",
+                  "src": "img/oral-schmerz-3.webp"
+                }
+              ],
+              "kriterien": [
+                {
+                  "cle": "k2a_schmerz_1",
+                  "min_woerter": 140,
+                  "label_fr": "assez long (environ deux minutes)",
+                  "label_en": "long enough (about two minutes)",
+                  "label_tr": "yeterince uzun (yaklaşık iki dakika)",
+                  "label_uk": "достатньо довго (приблизно дві хвилини)",
+                  "label_fa": "به اندازهٔ کافی طولانی (حدود دو دقیقه)",
+                  "label_pt": "longa o suficiente (cerca de dois minutos)",
+                  "label_ar": "طول كافٍ (نحو دقيقتين)",
+                  "label_pl": "wystarczająco długo (około dwóch minut)",
+                  "label_ru": "достаточно долго (примерно две минуты)"
+                },
+                {
+                  "cle": "k2a_schmerz_2",
+                  "mots": [
+                    "ich m(ö|oe)chte (heute )?(ü|ue)ber|mein (kurz)?vortrag|mein thema|ich spreche (heute )?(ü|ue)ber|zuerst|erstens|zun(ä|ae)chst"
+                  ],
+                  "label_fr": "tu annonces ton plan",
+                  "label_en": "you announce your plan",
+                  "label_tr": "planını söylüyorsun",
+                  "label_uk": "ти називаєш свій план",
+                  "label_fa": "طرح کلی‌ات را می‌گویی",
+                  "label_pt": "você anuncia o seu roteiro",
+                  "label_ar": "عرض خطتك في البداية",
+                  "label_pl": "zapowiadasz plan",
+                  "label_ru": "ты называешь план"
+                },
+                {
+                  "cle": "k2a_schmerz_3",
+                  "mots": [
+                    "demenz",
+                    "mimik|gesicht|k(ö|oe)rperhaltung",
+                    "unruh|rufen|abwehr|aggressiv",
+                    "skala|bogen|einsch(ä|ae)tz",
+                    "angeh(ö|oe)rig|familie|tochter|sohn",
+                    "dokument|arzt|(ä|ae)rztin"
+                  ],
+                  "mindestens": 2,
+                  "label_fr": "au moins deux points du sujet",
+                  "label_en": "at least two points of the topic",
+                  "label_tr": "konunun en az iki noktası",
+                  "label_uk": "щонайменше два пункти теми",
+                  "label_fa": "دست‌کم دو نکته از موضوع",
+                  "label_pt": "pelo menos dois pontos do tema",
+                  "label_ar": "نقطتان على الأقل من الموضوع",
+                  "label_pl": "co najmniej dwa punkty tematu",
+                  "label_ru": "не меньше двух пунктов темы"
+                },
+                {
+                  "cle": "k2a_schmerz_4",
+                  "mots": [
+                    "zum beispiel|z\\. ?b\\.|ich habe erlebt|in meinem heimatland|bei uns|erfahrung|auf meiner station|einmal"
+                  ],
+                  "label_fr": "un exemple ou ton expérience",
+                  "label_en": "an example or your experience",
+                  "label_tr": "bir örnek ya da kendi deneyimin",
+                  "label_uk": "приклад або твій досвід",
+                  "label_fa": "یک مثال یا تجربهٔ تو",
+                  "label_pt": "um exemplo ou a sua experiência",
+                  "label_ar": "مثال أو تجربتك",
+                  "label_pl": "przykład albo twoje doświadczenie",
+                  "label_ru": "пример или твой опыт"
+                },
+                {
+                  "cle": "k2a_schmerz_5",
+                  "mots": [
+                    "meiner meinung|ich finde|ich denke|ich bin der meinung|meines erachtens|f(ü|ue)r mich"
+                  ],
+                  "label_fr": "ton avis",
+                  "label_en": "your opinion",
+                  "label_tr": "görüşün",
+                  "label_uk": "твоя думка",
+                  "label_fa": "نظر تو",
+                  "label_pt": "a sua opinião",
+                  "label_ar": "رأيك",
+                  "label_pl": "twoja opinia",
+                  "label_ru": "твоё мнение"
+                },
+                {
+                  "cle": "k2a_schmerz_6",
+                  "mots": [
+                    "zum schluss|zusammenfassend|abschlie(ß|ss)end|am ende|zuletzt|insgesamt|danke"
+                  ],
+                  "label_fr": "une conclusion",
+                  "label_en": "a conclusion",
+                  "label_tr": "bir sonuç",
+                  "label_uk": "висновок",
+                  "label_fa": "یک جمع‌بندی",
+                  "label_pt": "uma conclusão",
+                  "label_ar": "خاتمة",
+                  "label_pl": "zakończenie",
+                  "label_ru": "вывод"
+                }
+              ],
+              "redemittel": [
+                "Ich möchte heute über … sprechen.",
+                "Zuerst erkläre ich …, dann …, und zum Schluss sage ich meine Meinung.",
+                "Ein wichtiger Punkt ist …",
+                "Man erkennt Schmerzen zum Beispiel an …",
+                "In meinem Heimatland … / Auf meiner Station …",
+                "Meiner Meinung nach …",
+                "Zusammenfassend kann man sagen, dass …"
+              ],
+              "muster": [
+                "Ich möchte heute darüber sprechen, wie man Schmerzen erkennt, wenn ein Mensch sie nicht sagen kann. Zuerst spreche ich über die Zeichen, dann über die Hilfsmittel, und zum Schluss sage ich meine Meinung.",
+                "Viele alte Menschen, vor allem Menschen mit Demenz, können nicht mehr sagen, dass ihnen etwas wehtut. Deshalb müssen wir genau beobachten: die Mimik, zum Beispiel ein verzerrtes Gesicht, die Körperhaltung, aber auch Unruhe, Rufen oder Abwehr bei der Pflege. Ein Patient, der plötzlich aggressiv ist, hat vielleicht einfach Schmerzen.",
+                "Ein wichtiges Hilfsmittel ist eine Schmerzskala für die Beobachtung. Damit können alle im Team die Schmerzen auf die gleiche Weise einschätzen. Auch die Angehörigen helfen sehr, weil sie den Menschen gut kennen. Auf meiner Station in Izmir hatten wir keine solche Skala; wir haben oft zu spät reagiert.",
+                "Meiner Meinung nach ist das eine der wichtigsten Aufgaben in der Pflege, denn Schmerzen machen unruhig, traurig und manchmal verwirrt. Zusammenfassend: genau beobachten, eine Skala benutzen, alles dokumentieren und den Arzt informieren. Danke."
+              ]
+            },
+            {
+              "id": "schicht",
+              "titre": "Schichtarbeit und die Gesundheit von Pflegekräften",
+              "stichworte": [
+                "Früh-, Spät- und Nachtdienst",
+                "Schlaf",
+                "Essen und Trinken im Dienst",
+                "Familie und Freizeit",
+                "Sport und Erholung",
+                "Unterstützung im Team"
+              ],
+              "bilder": [
+                {
+                  "beschreibung": "Ein Pfleger sitzt nachts allein im Stationszimmer vor einem Bildschirm und gähnt.",
+                  "src": "img/oral-schicht-1.webp"
+                },
+                {
+                  "beschreibung": "Eine Pflegerin isst im Stehen ein Brötchen auf dem Flur.",
+                  "src": "img/oral-schicht-2.webp"
+                },
+                {
+                  "beschreibung": "Drei Kolleginnen joggen zusammen im Park.",
+                  "src": "img/oral-schicht-3.webp"
+                }
+              ],
+              "kriterien": [
+                {
+                  "cle": "k2a_schicht_1",
+                  "min_woerter": 140,
+                  "label_fr": "assez long (environ deux minutes)",
+                  "label_en": "long enough (about two minutes)",
+                  "label_tr": "yeterince uzun (yaklaşık iki dakika)",
+                  "label_uk": "достатньо довго (приблизно дві хвилини)",
+                  "label_fa": "به اندازهٔ کافی طولانی (حدود دو دقیقه)",
+                  "label_pt": "longa o suficiente (cerca de dois minutos)",
+                  "label_ar": "طول كافٍ (نحو دقيقتين)",
+                  "label_pl": "wystarczająco długo (około dwóch minut)",
+                  "label_ru": "достаточно долго (примерно две минуты)"
+                },
+                {
+                  "cle": "k2a_schicht_2",
+                  "mots": [
+                    "ich m(ö|oe)chte (heute )?(ü|ue)ber|mein (kurz)?vortrag|mein thema|ich spreche (heute )?(ü|ue)ber|zuerst|erstens|zun(ä|ae)chst"
+                  ],
+                  "label_fr": "tu annonces ton plan",
+                  "label_en": "you announce your plan",
+                  "label_tr": "planını söylüyorsun",
+                  "label_uk": "ти називаєш свій план",
+                  "label_fa": "طرح کلی‌ات را می‌گویی",
+                  "label_pt": "você anuncia o seu roteiro",
+                  "label_ar": "عرض خطتك في البداية",
+                  "label_pl": "zapowiadasz plan",
+                  "label_ru": "ты называешь план"
+                },
+                {
+                  "cle": "k2a_schicht_3",
+                  "mots": [
+                    "nachtdienst|fr(ü|ue)hdienst|sp(ä|ae)tdienst|schicht",
+                    "schlaf|m(ü|ue)de",
+                    "essen|trinken|pause",
+                    "familie|freizeit|kinder|freunde",
+                    "sport|erholung|bewegung|joggen",
+                    "team|kolleg"
+                  ],
+                  "mindestens": 2,
+                  "label_fr": "au moins deux points du sujet",
+                  "label_en": "at least two points of the topic",
+                  "label_tr": "konunun en az iki noktası",
+                  "label_uk": "щонайменше два пункти теми",
+                  "label_fa": "دست‌کم دو نکته از موضوع",
+                  "label_pt": "pelo menos dois pontos do tema",
+                  "label_ar": "نقطتان على الأقل من الموضوع",
+                  "label_pl": "co najmniej dwa punkty tematu",
+                  "label_ru": "не меньше двух пунктов темы"
+                },
+                {
+                  "cle": "k2a_schicht_4",
+                  "mots": [
+                    "zum beispiel|z\\. ?b\\.|ich habe erlebt|in meinem heimatland|bei uns|erfahrung|auf meiner station|einmal"
+                  ],
+                  "label_fr": "un exemple ou ton expérience",
+                  "label_en": "an example or your experience",
+                  "label_tr": "bir örnek ya da kendi deneyimin",
+                  "label_uk": "приклад або твій досвід",
+                  "label_fa": "یک مثال یا تجربهٔ تو",
+                  "label_pt": "um exemplo ou a sua experiência",
+                  "label_ar": "مثال أو تجربتك",
+                  "label_pl": "przykład albo twoje doświadczenie",
+                  "label_ru": "пример или твой опыт"
+                },
+                {
+                  "cle": "k2a_schicht_5",
+                  "mots": [
+                    "meiner meinung|ich finde|ich denke|ich bin der meinung|meines erachtens|f(ü|ue)r mich"
+                  ],
+                  "label_fr": "ton avis",
+                  "label_en": "your opinion",
+                  "label_tr": "görüşün",
+                  "label_uk": "твоя думка",
+                  "label_fa": "نظر تو",
+                  "label_pt": "a sua opinião",
+                  "label_ar": "رأيك",
+                  "label_pl": "twoja opinia",
+                  "label_ru": "твоё мнение"
+                },
+                {
+                  "cle": "k2a_schicht_6",
+                  "mots": [
+                    "zum schluss|zusammenfassend|abschlie(ß|ss)end|am ende|zuletzt|insgesamt|danke"
+                  ],
+                  "label_fr": "une conclusion",
+                  "label_en": "a conclusion",
+                  "label_tr": "bir sonuç",
+                  "label_uk": "висновок",
+                  "label_fa": "یک جمع‌بندی",
+                  "label_pt": "uma conclusão",
+                  "label_ar": "خاتمة",
+                  "label_pl": "zakończenie",
+                  "label_ru": "вывод"
+                }
+              ],
+              "redemittel": [
+                "Mein Thema ist …",
+                "Ich spreche zuerst über …, danach über …",
+                "Ein großes Problem ist …",
+                "Was hilft, ist …",
+                "Ich selbst habe erlebt, dass …",
+                "Ich finde, dass …",
+                "Zum Schluss möchte ich sagen …"
+              ],
+              "muster": [
+                "Mein Thema ist die Schichtarbeit und die Gesundheit von Pflegekräften. Ich spreche zuerst über die Probleme, danach über das, was hilft, und am Ende sage ich meine Meinung.",
+                "Wer im Früh-, Spät- und Nachtdienst arbeitet, hat oft Probleme mit dem Schlaf. Nach einem Nachtdienst ist man müde, aber tagsüber kann man schlecht schlafen. Viele essen im Dienst zu schnell oder gar nicht, weil keine Zeit für eine Pause ist. Und die Familie und die Freizeit leiden auch: Wenn alle frei haben, muss man arbeiten.",
+                "Was hilft? Zum Beispiel feste Schlafzeiten, ein dunkles Zimmer und gesundes Essen statt Süßigkeiten. Sport ist auch wichtig, vielleicht zusammen mit Kolleginnen. Ich habe in Izmir erlebt, wie sehr ein gutes Team hilft: Wir haben aufeinander geachtet und die Pausen wirklich gemacht.",
+                "Ich finde, dass nicht nur jede Pflegekraft selbst verantwortlich ist, sondern auch der Arbeitgeber, zum Beispiel mit einem guten Dienstplan. Zusammenfassend kann man sagen: Schichtarbeit ist anstrengend, aber mit guten Regeln kann man gesund bleiben. Danke."
+              ]
+            }
+          ],
+          "tours": [
+            {
+              "dit": [
+                {
+                  "wer": "neumann",
+                  "text": "Vielen Dank. Kommen wir zu Teil zwei. Sie haben sich ein Thema für Ihren Kurzvortrag ausgesucht. Sie haben etwa zwei Minuten Zeit. Bitte beginnen Sie."
+                }
+              ],
+              "consigne": "pf_a_toi_vortrag",
+              "limite": 150
+            }
+          ],
+          "nom_fr": "L'exposé",
+          "nom_en": "The talk",
+          "nom_tr": "Sunum",
+          "nom_uk": "Доповідь",
+          "nom_fa": "ارائه",
+          "nom_pt": "A apresentação",
+          "nom_ar": "العرض",
+          "nom_pl": "Prezentacja",
+          "nom_ru": "Доклад",
+          "consigne_fr": "Choisis un des deux sujets et fais un exposé d'environ deux minutes : annonce ton plan, traite au moins deux points (les mots-clés et les photos t'aident), donne un exemple, termine par ton avis. Parle librement : un exposé lu ne dépasse pas A2.",
+          "consigne_en": "Choose one of the two topics and give a talk of about two minutes: announce your plan, cover at least two points (the key words and photos help), give an example, end with your opinion. Speak freely: a talk that is read out can't score above A2.",
+          "consigne_tr": "İki konudan birini seç ve yaklaşık iki dakikalık bir sunum yap: planını söyle, en az iki noktayı ele al (anahtar kelimeler ve fotoğraflar sana yardımcı olur), bir örnek ver, görüşünle bitir. Serbestçe konuş: okunan bir sunum A2'yi geçemez.",
+          "consigne_uk": "Обери одну з двох тем і зроби доповідь приблизно на дві хвилини: назви план, розкрий щонайменше два пункти (допоможуть ключові слова й фото), наведи приклад, заверши своєю думкою. Говори вільно: прочитана з аркуша доповідь не може бути оцінена вище за A2.",
+          "consigne_fa": "یکی از دو موضوع را انتخاب کن و حدود دو دقیقه ارائه بده: طرح کلی‌ات را بگو، دست‌کم به دو نکته بپرداز (واژه‌های کلیدی و عکس‌ها کمکت می‌کنند)، یک مثال بزن، با نظرت تمام کن. آزادانه صحبت کن: ارائه‌ای که از روی متن خوانده شود از A2 بالاتر نمی‌رود.",
+          "consigne_pt": "Escolha um dos dois temas e faça uma apresentação de cerca de dois minutos: anuncie o seu roteiro, trate de pelo menos dois pontos (as palavras-chave e as fotos ajudam), dê um exemplo e termine com a sua opinião. Fale livremente: uma apresentação lida não passa do A2.",
+          "consigne_ar": "اختر أحد الموضوعين وقدّم عرضًا مدته نحو دقيقتين: اعرض خطتك في البداية، وتناول نقطتين على الأقل (الكلمات المفتاحية والصور تساعدك)، وأعطِ مثالًا، واختم برأيك. تحدّث بحرية: العرض المقروء لا يتجاوز مستوى A2.",
+          "consigne_pl": "Wybierz jeden z dwóch tematów i wygłoś około dwuminutową prezentację: zapowiedz plan, omów co najmniej dwa punkty (pomogą ci słowa kluczowe i zdjęcia), podaj przykład, zakończ swoją opinią. Mów swobodnie: przeczytana prezentacja nie przekroczy A2.",
+          "consigne_ru": "Выбери одну из двух тем и сделай доклад примерно на две минуты: назови план, раскрой не меньше двух пунктов (помогут ключевые слова и фотографии), приведи пример, закончи своим мнением. Говори свободно: прочитанный доклад не выше A2."
+        },
+        {
+          "cle": "sp2b",
+          "teil": "Teil 2B",
+          "sur": 5,
+          "consigne_de": "Die Prüferin stellt Ihnen Fragen zu Ihrem Vortrag. Antworten Sie und begründen Sie Ihre Antwort.",
+          "tours_nach_thema": {
+            "schmerz": [
+              {
+                "dit": [
+                  {
+                    "wer": "neumann",
+                    "text": "Danke für Ihren Vortrag. Sie haben über Schmerzskalen gesprochen. Wie hat man das in Ihrem Heimatland gemacht?"
+                  }
+                ],
+                "consigne": "pf_a_toi_question",
+                "limite": 60
+              },
+              {
+                "dit": [
+                  {
+                    "wer": "neumann",
+                    "text": "Und was tun Sie, wenn die Angehörigen sagen, der Patient hat keine Schmerzen, Sie sind aber nicht sicher?"
+                  }
+                ],
+                "consigne": "pf_a_toi_question",
+                "limite": 60
+              }
+            ],
+            "schicht": [
+              {
+                "dit": [
+                  {
+                    "wer": "neumann",
+                    "text": "Danke für Ihren Vortrag. Arbeiten Sie selbst lieber nachts oder am Tag? Und warum?"
+                  }
+                ],
+                "consigne": "pf_a_toi_question",
+                "limite": 60
+              },
+              {
+                "dit": [
+                  {
+                    "wer": "neumann",
+                    "text": "Was könnte ein Arbeitgeber noch tun, damit Pflegekräfte im Schichtdienst gesund bleiben?"
+                  }
+                ],
+                "consigne": "pf_a_toi_question",
+                "limite": 60
+              }
+            ]
+          },
+          "kriterien": [
+            {
+              "cle": "k2b1",
+              "min_woerter": 40,
+              "label_fr": "des réponses développées",
+              "label_en": "developed answers",
+              "label_tr": "ayrıntılı cevaplar",
+              "label_uk": "розгорнуті відповіді",
+              "label_fa": "پاسخ‌های مفصل",
+              "label_pt": "respostas desenvolvidas",
+              "label_ar": "إجابات مفصّلة",
+              "label_pl": "rozbudowane odpowiedzi",
+              "label_ru": "развёрнутые ответы"
+            },
+            {
+              "cle": "k2b2",
+              "mots": [
+                "weil|denn|deshalb|darum|da "
+              ],
+              "label_fr": "tu justifies (weil, denn, deshalb)",
+              "label_en": "you give reasons (weil, denn, deshalb)",
+              "label_tr": "gerekçe gösteriyorsun (weil, denn, deshalb)",
+              "label_uk": "ти обґрунтовуєш (weil, denn, deshalb)",
+              "label_fa": "دلیل می‌آوری (weil, denn, deshalb)",
+              "label_pt": "você justifica (weil, denn, deshalb)",
+              "label_ar": "التعليل (weil, denn, deshalb)",
+              "label_pl": "uzasadniasz (weil, denn, deshalb)",
+              "label_ru": "ты обосновываешь (weil, denn, deshalb)"
+            },
+            {
+              "cle": "k2b3",
+              "mots": [
+                "ich|bei uns|man sollte|man kann|der arbeitgeber|die klinik"
+              ],
+              "label_fr": "tu réponds vraiment à la question",
+              "label_en": "you really answer the question",
+              "label_tr": "soruyu gerçekten cevaplıyorsun",
+              "label_uk": "ти справді відповідаєш на питання",
+              "label_fa": "واقعاً به پرسش پاسخ می‌دهی",
+              "label_pt": "você responde de fato à pergunta",
+              "label_ar": "إجابة فعلية عن السؤال",
+              "label_pl": "naprawdę odpowiadasz na pytanie",
+              "label_ru": "ты действительно отвечаешь на вопрос"
+            }
+          ],
+          "muster_nach_thema": {
+            "schmerz": [
+              "In meinem Heimatland haben wir die Patienten meistens einfach gefragt. Bei Menschen, die nicht sprechen konnten, haben wir uns auf unser Gefühl verlassen, deshalb finde ich eine Skala besser. Wenn die Angehörigen sagen, er hat keine Schmerzen, ich bin aber unsicher, dann beobachte ich weiter, dokumentiere es und spreche mit dem Arzt, denn lieber einmal zu viel als zu wenig."
+            ],
+            "schicht": [
+              "Ich arbeite lieber am Tag, weil ich nach dem Nachtdienst schlecht schlafe und dann den ganzen Tag müde bin. Der Arbeitgeber könnte zum Beispiel weniger Nachtdienste hintereinander planen und einen ruhigen Pausenraum einrichten. Man sollte auch gesundes Essen in der Nacht anbieten, denn die Cafeteria ist dann geschlossen."
+            ]
+          },
+          "nom_fr": "Les questions sur l'exposé",
+          "nom_en": "Questions on the talk",
+          "nom_tr": "Sunumla ilgili sorular",
+          "nom_uk": "Питання до доповіді",
+          "nom_fa": "پرسش‌های مربوط به ارائه",
+          "nom_pt": "As perguntas sobre a apresentação",
+          "nom_ar": "الأسئلة عن العرض",
+          "nom_pl": "Pytania do prezentacji",
+          "nom_ru": "Вопросы к докладу",
+          "consigne_fr": "La Prüferin te pose une ou deux questions sur ton exposé. Réponds et explique pourquoi.",
+          "consigne_en": "The examiner asks you one or two questions about your talk. Answer and explain why.",
+          "consigne_tr": "Prüferin sunumunla ilgili bir ya da iki soru soruyor. Cevap ver ve nedenini açıkla.",
+          "consigne_uk": "Prüferin ставить тобі одне-два питання про твою доповідь. Відповідай і поясни чому.",
+          "consigne_fa": "ممتحن (Prüferin) یکی دو پرسش دربارهٔ ارائه‌ات از تو می‌پرسد. پاسخ بده و توضیح بده چرا.",
+          "consigne_pt": "A Prüferin faz uma ou duas perguntas sobre a sua apresentação. Responda e explique por quê.",
+          "consigne_ar": "تطرح عليك الممتحِنة (Prüferin) سؤالًا أو سؤالين عن عرضك. أجب واشرح السبب.",
+          "consigne_pl": "Prüferin zadaje ci jedno lub dwa pytania dotyczące twojej prezentacji. Odpowiedz i wyjaśnij dlaczego.",
+          "consigne_ru": "Экзаменатор (Prüferin) задаёт тебе один-два вопроса по твоему докладу. Ответь и объясни почему."
+        },
+        {
+          "cle": "sp3",
+          "teil": "Teil 3",
+          "sur": 20,
+          "consigne_de": "Diskutieren Sie mit Ihrer Partnerin. Sagen Sie Ihre Meinung, begründen Sie sie, erzählen Sie von Ihren Erfahrungen und fragen Sie Ihre Partnerin nach ihrer Meinung.",
+          "situation_de": "Das Haus Lindenhof überlegt, einen Therapiehund anzuschaffen. Eine Pflegekraft würde ihn jeden Tag mit zur Arbeit bringen. Was spricht dafür, was dagegen?",
+          "aussagen": [
+            "Ein Hund bringt Leben ins Haus.",
+            "Und wer macht hinterher sauber?",
+            "Manche Menschen haben Angst vor Hunden.",
+            "Bei Demenz helfen Tiere oft mehr als Worte.",
+            "Was ist mit Allergien und Hygiene?"
+          ],
+          "tours": [
+            {
+              "dit": [
+                {
+                  "wer": "neumann",
+                  "text": "Danke. Und jetzt zu Teil drei, der Diskussion. Das Haus Lindenhof überlegt, einen Therapiehund anzuschaffen. Bitte sprechen Sie jetzt miteinander darüber."
+                },
+                {
+                  "wer": "elif",
+                  "text": "Gut, dann fange ich mal an. Ich finde die Idee eigentlich schön. In meinem Krankenhaus in Izmir gab es so etwas nicht, aber ich habe gelesen, dass Tiere Menschen mit Demenz ruhiger machen. Was meinst du?"
+                }
+              ],
+              "consigne": "pf_a_toi_diskussion",
+              "limite": 75
+            },
+            {
+              "dit": [
+                {
+                  "wer": "elif",
+                  "text": "Das verstehe ich. Aber denk mal an Frau Weber: Sie ist letzte Woche gestürzt. Wenn ein Hund im Flur herumläuft, ist das nicht gefährlich? Und wer ist verantwortlich, wenn etwas passiert?"
+                }
+              ],
+              "consigne": "pf_a_toi_diskussion",
+              "limite": 75
+            },
+            {
+              "dit": [
+                {
+                  "wer": "elif",
+                  "text": "Hm, da hast du recht. Vielleicht könnte man feste Zeiten machen, zum Beispiel zweimal in der Woche eine Stunde im Gemeinschaftsraum. Hast du in deinem Heimatland Erfahrungen mit Tieren in der Pflege gemacht?"
+                }
+              ],
+              "consigne": "pf_a_toi_diskussion",
+              "limite": 75
+            },
+            {
+              "dit": [
+                {
+                  "wer": "elif",
+                  "text": "Interessant. Also, wenn ich das zusammenfasse: Wir sind beide eher dafür, aber nur mit klaren Regeln. Siehst du das auch so?"
+                }
+              ],
+              "consigne": "pf_a_toi_diskussion",
+              "limite": 45
+            }
+          ],
+          "kriterien": [
+            {
+              "cle": "k31",
+              "min_woerter": 110,
+              "label_fr": "tu as beaucoup parlé (environ la moitié des quatre minutes)",
+              "label_en": "you spoke a lot (about half of the four minutes)",
+              "label_tr": "çok konuştun (dört dakikanın yaklaşık yarısı)",
+              "label_uk": "ти говориш багато (приблизно половину з чотирьох хвилин)",
+              "label_fa": "زیاد صحبت کردی (حدود نیمی از چهار دقیقه)",
+              "label_pt": "você falou bastante (cerca da metade dos quatro minutos)",
+              "label_ar": "تحدثت كثيرًا (نحو نصف الدقائق الأربع)",
+              "label_pl": "dużo mówisz (około połowy z czterech minut)",
+              "label_ru": "ты много говоришь (примерно половину из четырёх минут)"
+            },
+            {
+              "cle": "k32",
+              "mots": [
+                "daf(ü|ue)r|vorteil|positiv|freude|ruhiger|gl(ü|ue)cklich|gut f(ü|ue)r|bringt leben"
+              ],
+              "label_fr": "un argument pour",
+              "label_en": "an argument for",
+              "label_tr": "lehte bir gerekçe",
+              "label_uk": "аргумент за",
+              "label_fa": "یک استدلال موافق",
+              "label_pt": "um argumento a favor",
+              "label_ar": "حجة مؤيدة",
+              "label_pl": "argument za",
+              "label_ru": "довод «за»"
+            },
+            {
+              "cle": "k33",
+              "mots": [
+                "dagegen|nachteil|problem|gefahr|gef(ä|ae)hrlich|risiko|allergie|angst|hygiene|sauber|dreck|stolper"
+              ],
+              "label_fr": "un argument contre",
+              "label_en": "an argument against",
+              "label_tr": "aleyhte bir gerekçe",
+              "label_uk": "аргумент проти",
+              "label_fa": "یک استدلال مخالف",
+              "label_pt": "um argumento contra",
+              "label_ar": "حجة معارضة",
+              "label_pl": "argument przeciw",
+              "label_ru": "довод «против»"
+            },
+            {
+              "cle": "k34",
+              "mots": [
+                "in meinem heimatland|bei uns in|ich habe erlebt|erfahrung|fr(ü|ue)her|in der t(ü|ue)rkei|in tunesien|in indien|in syrien|in der ukraine"
+              ],
+              "label_fr": "ton expérience",
+              "label_en": "your experience",
+              "label_tr": "kendi deneyimin",
+              "label_uk": "твій досвід",
+              "label_fa": "تجربهٔ تو",
+              "label_pt": "a sua experiência",
+              "label_ar": "تجربتك",
+              "label_pl": "twoje doświadczenie",
+              "label_ru": "твой опыт"
+            },
+            {
+              "cle": "k35",
+              "mots": [
+                "da hast du recht|das stimmt|stimmt|einverstanden|ich sehe das (anders|auch so)|ja, aber|genau|da bin ich|guter punkt|gute idee|das verstehe ich"
+              ],
+              "label_fr": "tu réagis à ce que dit Elif",
+              "label_en": "you react to what Elif says",
+              "label_tr": "Elif'in söylediklerine tepki veriyorsun",
+              "label_uk": "ти реагуєш на слова Elif",
+              "label_fa": "به حرف‌های Elif واکنش نشان می‌دهی",
+              "label_pt": "você reage ao que a Elif diz",
+              "label_ar": "التفاعل مع ما تقوله Elif",
+              "label_pl": "reagujesz na to, co mówi Elif",
+              "label_ru": "ты реагируешь на слова Elif"
+            },
+            {
+              "cle": "k36",
+              "mots": [
+                "\\?|was meinst du|was denkst du|wie siehst du|findest du|hast du|glaubst du|und du|wie ist das bei dir|was w(ü|ue)rdest du"
+              ],
+              "label_fr": "tu poses une question à Elif",
+              "label_en": "you ask Elif a question",
+              "label_tr": "Elif'e bir soru soruyorsun",
+              "label_uk": "ти ставиш Elif питання",
+              "label_fa": "از Elif یک پرسش می‌پرسی",
+              "label_pt": "você faz uma pergunta à Elif",
+              "label_ar": "طرح سؤال على Elif",
+              "label_pl": "zadajesz Elif pytanie",
+              "label_ru": "ты задаёшь Elif вопрос"
+            }
+          ],
+          "redemittel": [
+            "Ich bin dafür / dagegen, weil …",
+            "Ein Vorteil ist … / Ein Nachteil ist …",
+            "Da hast du recht, aber …",
+            "Das sehe ich anders: …",
+            "Bei uns in … war das so: …",
+            "Was meinst du dazu? / Wie siehst du das?",
+            "Entschuldigung, kannst du das bitte wiederholen?",
+            "Wir könnten doch …"
+          ],
+          "muster": [
+            "Ich finde die Idee auch gut. Ein Hund bringt Leben ins Haus, und viele Bewohner freuen sich, wenn sie ein Tier streicheln können. Bei Menschen mit Demenz helfen Tiere oft mehr als Worte.",
+            "Da hast du recht, das ist ein Problem. Der Hund dürfte nicht frei im Flur laufen, und manche Menschen haben Angst vor Hunden oder eine Allergie. Wer ist für die Hygiene verantwortlich? Das müsste die Leitung vorher klären.",
+            "Ja, in Tunesien hatte eine Patientin eine Katze zu Hause, und ihre Tochter hat sie manchmal mitgebracht. Die Patientin war danach immer viel ruhiger. Feste Zeiten im Gemeinschaftsraum finde ich eine gute Idee. Was meinst du, sollten die Bewohner vorher gefragt werden?",
+            "Genau, ich sehe das auch so: dafür, aber mit klaren Regeln, festen Zeiten und nur für die Bewohner, die es möchten."
+          ],
+          "nom_fr": "La discussion",
+          "nom_en": "The discussion",
+          "nom_tr": "Tartışma",
+          "nom_uk": "Обговорення",
+          "nom_fa": "بحث",
+          "nom_pt": "A discussão",
+          "nom_ar": "النقاش",
+          "nom_pl": "Dyskusja",
+          "nom_ru": "Обсуждение",
+          "consigne_fr": "Discute avec Elif : donne ton avis et tes raisons, le pour et le contre, ton expérience, et pose-lui des questions. Si tu n'as pas compris, demande-lui de répéter : ce n'est pas une faute.",
+          "consigne_en": "Discuss with Elif: give your opinion and your reasons, the pros and cons, your experience, and ask her questions. If you didn't understand, ask her to repeat: that's not a mistake.",
+          "consigne_tr": "Elif'le tartış: görüşünü ve gerekçelerini, artılarını ve eksilerini, kendi deneyimini söyle, ona sorular sor. Anlamadıysan tekrar etmesini iste: bu bir hata değildir.",
+          "consigne_uk": "Обговори тему з Elif: висловь свою думку й причини, аргументи за і проти, свій досвід, і постав їй питання. Якщо щось незрозуміло, попроси її повторити: це не помилка.",
+          "consigne_fa": "با Elif بحث کن: نظر و دلیل‌هایت را بگو، موافق و مخالف، تجربه‌ات، و از او پرسش بپرس. اگر نفهمیدی، از او بخواه تکرار کند: این غلط نیست.",
+          "consigne_pt": "Discuta com a Elif: dê a sua opinião e os seus motivos, os prós e os contras, a sua experiência, e faça perguntas a ela. Se você não entendeu, peça para ela repetir: isso não é um erro.",
+          "consigne_ar": "ناقش مع Elif: أبدِ رأيك وأسبابك، والإيجابيات والسلبيات، وتجربتك، واطرح عليها أسئلة. إن لم تفهم، اطلب منها أن تعيد: هذا ليس خطأ.",
+          "consigne_pl": "Porozmawiaj z Elif: podaj swoją opinię i argumenty, za i przeciw, swoje doświadczenie, i zadawaj jej pytania. Jeśli coś jest niejasne, poproś, żeby powtórzyła: to nie jest błąd.",
+          "consigne_ru": "Обсуди тему с Elif: выскажи своё мнение и причины, доводы за и против, свой опыт, и задавай ей вопросы. Если что-то непонятно, попроси её повторить: это не ошибка."
+        }
+      ]
+    }
+  ]
+}

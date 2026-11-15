@@ -41,6 +41,7 @@ personnage (Philippines, anglais) reste possible si une agence philippine devien
 | **Herr Schulze**, 87 ans | Résident, démence modérée, ancien conducteur de tramway | |
 | **Frau Weber**, 81 ans | Résidente, la chute du dialogue 8 | |
 | **Frau Kowalski**, 79 ans | Cliente des soins à domicile, insuline, un chat | |
+| **Dr. Krämer** | Médecin de garde (un homme), la nuit : l'appel SBAR (dialogue 7) et l'examen blanc | rôle secondaire, nom retenu avec l'examen blanc le 14 nov. (le chef a écarté « Neumann ») ; hors de la liste validée par Jacques, comme les patients |
 
 **Enfants** : aucun n'est nécessaire. Si une scène en montre (des petits-enfants en visite), ils
 sont souriants ou neutres, jamais tristes ni apeurés (le filtre de fal les refuse, et la règle

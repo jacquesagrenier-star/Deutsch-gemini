@@ -625,6 +625,8 @@ const TEXTES = {
   grosPlan:    {fr: "Gros plan", en: "Close-up", tr: "Yakın plan", uk: "Крупний план", fa: "نمای نزدیک", ar: "لقطة مقرّبة", pt: "Close", pl: "Zbliżenie", ru: "Крупный план", de: "Nahaufnahme", es: "Primer plano"},
   scene:       {fr: "Scène", en: "Scene", tr: "Sahne", uk: "Сцена", fa: "صحنه", ar: "مشهد", pt: "Cena", pl: "Scena", ru: "Сцена", de: "Szene", es: "Escena"},
   nomsArticles:{fr: "Noms et articles", en: "Nouns and articles", tr: "İsimler ve artikeller", uk: "Іменники й артиклі", fa: "اسم‌ها و حرف‌های تعریف", ar: "الأسماء وأدوات التعريف", pt: "Substantivos e artigos", pl: "Rzeczowniki i rodzajniki", ru: "Существительные и артикли", de: "Nomen und Artikel", es: "Sustantivos y artículos"},
+  // La couche « Situation » des scenes des Soins (cle SIT, Wortando Pflege, 14 nov. 2026) : la pastille dit le mot.
+  situation:   {fr: "Situation", en: "Situation", tr: "Durum", uk: "Ситуація", fa: "موقعیت", ar: "موقف", pt: "Situação", pl: "Sytuacja", ru: "Ситуация", de: "Situation", es: "Situación"},
   pluriel:     {fr: "pl.", en: "pl.", tr: "çoğ.", uk: "мн.", fa: "جمع:", ar: "الجمع:", pt: "pl.", pl: "l. mn.", ru: "мн.", de: "Pl.", es: "pl."},
   pince:       {fr: "Écarte deux doigts pour agrandir", en: "Spread two fingers to zoom in", tr: "Yakınlaştırmak için iki parmağını aç", uk: "Розведи два пальці, щоб збільшити", fa: "برای بزرگ‌نمایی دو انگشتت را از هم باز کن", ar: "باعِد بين إصبعين للتكبير", pt: "Afaste dois dedos para ampliar", pl: "Rozsuń dwa palce, aby powiększyć", ru: "Разведи два пальца, чтобы увеличить", de: "Spreize zwei Finger zum Vergrößern", es: "Separa dos dedos para ampliar"},
   indice:      {fr: "Touche un objet : tu entends son nom.", en: "Tap an object to hear its name.", tr: "Bir nesneye dokun, adını duy.", uk: "Торкнися предмета — почуєш його назву.", fa: "روی یک شیء بزن تا نامش را بشنوی.", ar: "المس شيئًا لتسمع اسمه.", pt: "Toque num objeto para ouvir o nome.", pl: "Dotknij przedmiotu, by usłyszeć jego nazwę.", ru: "Нажми на предмет — услышишь его название.", de: "Tippe auf einen Gegenstand: Du hörst seinen Namen.", es: "Toca un objeto: oirás su nombre."},
@@ -1473,12 +1475,14 @@ function ordreSeance(niv){
 /* les pastilles */
 for (const n of Object.keys(COUCHES)){
   const b = document.createElement("button");
-  b.textContent = n; b.setAttribute("aria-pressed", n === niveau);
+  // La cle de la couche reste dans data-niv ; le texte peut differer (SIT -> « Situation »).
+  b.dataset.niv = n;
+  b.textContent = n === "SIT" ? T("situation") : n; b.setAttribute("aria-pressed", n === niveau);
   b.addEventListener("click", () => { niveau = n; demarrer(); });
   $("niveaux").appendChild(b);
 }
 function demarrer(){
-  $("niveaux").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.textContent === niveau));
+  $("niveaux").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", (b.dataset.niv || b.textContent) === niveau));
   i = 0; bons = 0; faits = 0; attenteToucher = null; verrou = false; etapeTrouve = false; fermerGrosPlan(); effacer();
   if (niveau === "A1") return modeA1 === "decouvrir" ? decouvrir() : trouver();
   COUCHES[niveau].ordre = EN_SEANCE ? ordreSeance(niveau) : melanger(COUCHES[niveau].qs);

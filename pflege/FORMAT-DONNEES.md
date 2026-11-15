@@ -121,8 +121,14 @@ corpus, relire} ] } ] }`.
 
 - `apprenant` : le personnage dont l'apprenant joue les répliques (« jouer son rôle »).
 - `qui` : un id de personnage en minuscules (`elif`, `jonas`, `hoffmann`, `sommer`, `brandt`, `lehmann`,
-  `lehmann_tochter`, `schulze`, `weber`, `kowalski`, `amira`, `arun`, `yusuf`, `olena`).
-- L'allemand **parlé** (*mal*, *genau*, *ne*), 12 à 20 répliques.
+  `lehmann_tochter`, `schulze`, `weber`, `kowalski`, `amira`, `arun`, `yusuf`, `olena`, `kraemer`).
+  `kraemer` = **Dr. Krämer**, médecin de garde (un homme), rôle secondaire retenu avec l'examen blanc
+  (14 nov. ; le chef a écarté « Neumann »).
+- L'allemand **parlé** (*mal*, *genau*, *ne*), 12 à 20 répliques en principe ; `repliques` est le **chemin
+  modèle** (jusqu'à 24, comme d01).
+- **Champs en plus, acceptés** (14 nov., session « dialogues ») : `source`, `registre`, `intro`, et l'arbre
+  des branches `debut` + `noeuds`, au format des conversations jouées (`visuel/prototype/conversation/` :
+  choix justes, fautes avec leur aide, répétitions). L'app lira l'arbre quand il existe, sinon `repliques`.
 - `prepare` : les parties du telc qu'il prépare (`hoeren_1`…`hoeren_4`, `lesen_1`…, `sprechen_1`…`sprechen_3`,
   `schreiben`).
 
@@ -146,8 +152,11 @@ corpus, relire} ] } ] }`.
 
 - `type` : `choix` (trou à choix), `ordre` (remettre les mots dans l'ordre : `mots` au lieu de `choix`),
   `vrai_faux`. 10 questions par série.
-- `renvoi` : la fiche générale de l'app qui explique la règle, si elle existe (nom de la fonction ou de la
-  carte ; laisser vide sinon, l'intégration le complétera).
+- `renvoi` : l'**id de la `<section>`** d'`index.html` qui explique la règle générale (`praepInfo`,
+  `konjunktionenInfo`, `relativInfo`, `wortstellungInfo`, `verbenTempsInfo`, `adverbienInfo`,
+  `personalpronomenInfo`…), ou `""`. L'app l'ouvre par `showScreen(renvoi)`.
+- **Champs en plus, acceptés** : `resume`, `tableau`, `piege`, `dialogues` (les dialogues où le point sert).
+  Une question « choisir la bonne phrase » est un `choix` avec `"de": "___"` et une `consigne`.
 
 ## 4. L'écrit — `pflege/datos/ecrit.json` (session « dialogues »)
 
@@ -175,6 +184,13 @@ corpus, relire} ] } ] }`.
   `nachricht`.
 - `points_cles` : chaque information de la fiche qu'un bon texte reprend (sert à l'autocorrection :
   l'examen enlève des points pour chaque information oubliée).
+- `niveau` : `"B1"`, avec **`niveau_max`** `"B2"` pour les 8 sujets d'examen (aufnahme, biografie).
+- **Champs en plus, acceptés** : `titre`, `consigne_de`, la rubrique traduite, `briques_groupes`, `corrige`
+  (traduit), `corrige_b1_de` / `corrige_b1` (un texte modèle de niveau B1 à côté du B2), `points` (avec `id`
+  et traduction), `pieges`, `grille` ; et au niveau du fichier, **`grilles`** : la grille d'auto-évaluation
+  sur les quatre critères du telc (contenu, forme, correction, vocabulaire).
+- Ces trois fichiers sont fabriqués par **`pflege/outils/textes.py`** à partir de
+  `pflege/sources/{dialogues,grammaire,ecrit}/` ; contrôle : `python tests/pflege_dialogues.py`.
 
 ## 5. Les scènes — `visuel/prototype/soins-<nom>.points.json` (session « scènes »)
 
