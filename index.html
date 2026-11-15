@@ -69694,7 +69694,9 @@ function remarqueAccent(oublis, faux){
     if(!oublis || !oublis.length) return "";
     const trema = oublis.some(p => /[\u00e4\u00eb\u00ef\u00f6\u00fc]/i.test(p.a));
     const cle = "rem_" + (trema ? "trema" : "accent") + (faux ? "_faux" : "");
-    const mots = oublis.map(p => lettresCorrigees(p.s, p.a, true)).join(", ");
+    // Le mot seul, sans la ponctuation de la phrase (« schön », pas « schön. »).
+    const nu = m => String(m || "").replace(/[.,!?;:\u00bf\u00a1\u00ab\u00bb"()\u201c\u201d\u201e]/g, "");
+    const mots = oublis.map(p => lettresCorrigees(nu(p.s), nu(p.a), true)).join(", ");
     return '<p class="cp-dic-titre cp-rem-accent">' + echapperHtml(t(cle)).replace("{m}", '<bdi class="cp-dic-phrase">' + mots + "</bdi>") + "</p>";
 }
 // Les mots du corpus, pour la garde de la dictee : { plies (quatre lettres ou plus), formes (toutes longueurs : « él »,
@@ -69799,6 +69801,8 @@ function lettresCorrigees(ecrit, attendu, umlaut){
         } else if(j > 0 && D[i][j] === D[i][j - 1] + 1){ gras[j - 1] = true; j--; }
         else i--;
     }
+    // 15 nov. 2026 : la ponctuation n'est jamais une lettre a corriger (le point de « schön. » se soulignait).
+    B.forEach((c, k) => { if(/[.,!?;:\u00bf\u00a1\u00ab\u00bb"()\u201c\u201d\u201e]/.test(c)) gras[k] = false; });
     // Une lettre en trop dans le mot ecrit n'a pas de lettre a mettre en gras : le mot entier reste en vert.
     let html = "", ouvert = false;
     B.forEach((c, k) => {
