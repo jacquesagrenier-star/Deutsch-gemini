@@ -110,3 +110,20 @@ signalé :
 - **es** (10e langue, sans interface à comparer) :
   - « comprensión auditiva », « expresión escrita » ;
   - « resolución de reconocimiento ».
+
+## L'espagnol de la page et de l'examen 1 (15 nov. 2026)
+
+Un agent a traduit 386 textes (226 d'interface, 160 aides de l'examen 1), selon les consignes de la session de
+l'espagnol (`interface-es/CONSIGNES.md`). Sans relecture native. Ce qu'il a signalé :
+- grille → « tabla (de evaluación) » ;
+- corrigé → « Las soluciones » ;
+- « Je suis prêt·e, l'oral » → « Listo, a la prueba oral » ;
+- formation → « formación » (« capacitación » ?) ;
+- lunettes → « gafas » (« lentes » au Mexique) ;
+- bureau infirmier → « estación de enfermería » ;
+- médecine du travail → « servicio de salud ocupacional » ;
+- jardin ouvrier → « huerto familiar » ;
+- la visite → « la visita médica » ;
+- reprises → « reformulaciones » ;
+- voisins trompeurs → « parecidos engañosos » ;
+- Version d'essai → « Versión preliminar ».
