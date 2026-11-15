@@ -611,6 +611,21 @@ for nom in fichiers:
                     faute(ob + " : « vers » %r (dialogue:, grammaire:, ecrit:, theme:, scene:, chapitre:)" % b.get("vers"))
                 langues_de(b, "titre", ob, exiger)
 notes.append("manuel : %d chapitre(s) ecrit(s) sur 9, %d bloc(s), %d exercice(s)" % (n_chap, n_blocs, n_ex))
+# ce qu'une infirmiere doit valider : relire: true sur un bloc, une phrase de Redemittel, une question d'exercice
+a_relire = []
+for nom in fichiers:
+    if nom.startswith("_"):
+        continue
+    C = lire(os.path.join(MANUEL, nom)) or {}
+    for r in C.get("rubriques") or []:
+        for k, b in enumerate(r.get("blocs") or []):
+            for o in [b] + list(b.get("phrases") or []) + list(b.get("items") or []):
+                if o.get("relire"):
+                    a_relire.append("%s %s bloc %d : %s" % (nom[:-5], r.get("id"), k + 1, (o.get("de") or o.get("frage") or o.get("texte_fr") or o.get("titre_fr") or "")[:90]))
+notes.append("manuel : %d point(s) a relire par une infirmiere (--relire pour la liste)" % len(a_relire))
+if "--relire" in sys.argv:
+    for x in a_relire:
+        print("  ⚕ " + x)
 if manque_es:
     notes.append("espagnol (10e langue, pas encore exigee) : %d texte(s) a traduire" % len(manque_es))
 

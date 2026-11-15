@@ -140,6 +140,9 @@ crochets.
 - **Une question d'`exercice`** suit le modèle des examens : `nr` (1, 2, 3… dans le bloc), `typ` (« abc » ou « rf »),
   `frage`, `o` (trois choix pour « abc »), `bon`, `erkl_*` et, facultatif, `pas_*`. `pas_*` est une liste de
   phrases : le raisonnement pas à pas, montré après « Corriger » ; il sert à l'exercice guidé.
+- **`relire: true`** se pose sur tout bloc, sur une phrase de Redemittel ou sur une question d'exercice dont le
+  contenu métier doit être validé par une infirmière : dose, geste, soin, droit. `python tests/pflege_examen.py
+  --relire` en sort la liste.
 - **Les `cle`** (`exercice`, `redemittel` et ses phrases) sont uniques dans tout le manuel. La progression et les
   pistes enregistrées s'y rattachent : une phrase de Redemittel `rm-patient-03` aura la piste `m-rm-patient-03`.
 - La phrase d'un Redemittel se dit **comme écrite**, donc sans chiffres : on écrit « hundertdreißig zu

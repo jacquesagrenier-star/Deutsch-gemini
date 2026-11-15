@@ -5,6 +5,9 @@
     python pflege/examen/outils/generer_image.py oral-1a --payer      # APRES l'accord (chef ET Jacques)
     python pflege/examen/outils/generer_image.py --web                 # les PNG faits -> visuel/prototype/telc-pflege/img/*.webp
                                                                        # et leur « src » dans donnees/sprechen.json
+    python pflege/examen/outils/generer_image.py entr-2a-1 --prompts pflege/examen/images/prompts_entrainement.py
+        # une AUTRE liste de photos (le manuel, 15 nov.) : meme PHOTOS = {nom: {"refs": [...]}} et memes <nom>.prompt.txt
+        # dans pflege/examen/images/ ; --web ne place que l'examen blanc, la session place ses images elle-meme
 
 C'EST visuel/generer_scene.py, SANS EN CHANGER UNE LIGNE, comme pflege/outils/generer_scene.py de pflege-scenes :
 meme controle (video/verifier_prompt.py), meme regle de paiement (--payer), meme rangement des prises precedentes.
@@ -38,8 +41,8 @@ PLACE = {"oral-1a": ("sp1a", None, None),
          "oral-schicht-1": ("sp2a", "schicht", 0), "oral-schicht-2": ("sp2a", "schicht", 1), "oral-schicht-3": ("sp2a", "schicht", 2)}
 
 
-def charger_prompts():
-    spec = importlib.util.spec_from_file_location("prompts_oral", os.path.join(IMAGES, "prompts.py"))
+def charger_prompts(chemin=None):
+    spec = importlib.util.spec_from_file_location("prompts_oral", chemin or os.path.join(IMAGES, "prompts.py"))
     m = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(m)
     return m.PHOTOS
@@ -91,7 +94,11 @@ def main():
     if not noms:
         sys.exit(__doc__)
     nom = noms[0]
-    photos = charger_prompts()
+    autre = args[args.index("--prompts") + 1] if "--prompts" in args else None
+    if autre:
+        noms = [n for n in noms if n != autre]
+        nom = noms[0] if noms else sys.exit(__doc__)
+    photos = charger_prompts(os.path.join(RACINE, autre) if autre and not os.path.isabs(autre) else autre)
     if nom not in photos:
         sys.exit("  inconnue : %s (connues : %s)" % (nom, ", ".join(photos)))
     src = os.path.join(IMAGES, nom + ".prompt.txt")
