@@ -1,0 +1,410 @@
+{
+ "_langue": "ru",
+ "_source": "pflege/sources/dialogues/d19-telefon.json",
+ "cles": {
+  "titre": {
+   "fr": "Au téléphone : le laboratoire et la pharmacie",
+   "de": "Am Telefon: Labor und Apotheke",
+   "ru": "По телефону: лаборатория и аптека"
+  },
+  "intro": {
+   "fr": "Fin de matinée au poste de soins. Le téléphone sonne : c'est {aksoy}, du laboratoire, avec une valeur critique pour {lehmann}. Tu joues {elif} : tu notes, tu vérifies l'identité de la patiente, tu relis la valeur et tu demandes le nom de ton interlocutrice. Puis tu appelles toi-même la pharmacie de l'hôpital, {richter}, pour commander de l'insuline et poser une question sur un comprimé.",
+   "ru": "Конец утра на сестринском посту. Звонит телефон: это {aksoy} из лаборатории, с критическим значением у {lehmann:gen}. Ты играешь роль {elif:gen}: ты записываешь, проверяешь личность пациентки, повторяешь значение вслух и спрашиваешь, как зовут собеседницу. Потом ты сама звонишь в больничную аптеку, {richter:dat}, чтобы заказать инсулин и задать вопрос о таблетке."
+  },
+  "but": {
+   "fr": "Répondre au téléphone d'un service (nom du service, son nom) ; recevoir une valeur critique : identifier la patiente (nom, date de naissance), relire la valeur, demander le nom de la personne, dire ce qu'on fait ; appeler un service : se présenter, dire ce qu'on veut avec précision (produit, dosage), poser une question ; résumer avant de raccrocher.",
+   "ru": "Отвечать на телефонный звонок в отделении (название отделения, своё имя); принять критическое значение: идентифицировать пациентку (фамилия, дата рождения), повторить значение вслух, спросить имя звонящего, сказать, что будешь делать; позвонить в службу: представиться, точно сказать, что нужно (препарат, дозировка), задать вопрос; подвести итог, прежде чем положить трубку."
+  },
+  "relire_notes": {
+   "fr": "Valeur critique : potassium 6,2 mmol/l (seuil d'appel du laboratoire), échantillon non hémolysé, conduite (relire, noter l'heure et le nom, informer la médecin tout de suite) ; insuline lispro 100 UI/ml en stylo prérempli (cohérence avec le schéma de Frau Lehmann) ; un comprimé à libération prolongée (métoprolol retard) ne s'écrase pas : demander une autre forme à la médecin.",
+   "ru": "Критическое значение: калий 6,2 ммоль/л (порог, при котором звонит лаборатория), проба не гемолизирована, порядок действий (повторить вслух, записать время и имя, сразу сообщить врачу); инсулин лизпро 100 ЕД/мл в готовой шприц-ручке (в соответствии со схемой госпожи Леман); таблетку с пролонгированным высвобождением (метопролол ретард) не измельчают: попросить у врача другую лекарственную форму."
+  },
+  "redemittel.0": {
+   "fr": "{station}, {elif} à l'appareil, bonjour.",
+   "de": "{station}, {elif} am Apparat, guten Tag.",
+   "ru": "Здравствуйте, {station}, у телефона {elif}."
+  },
+  "redemittel.1": {
+   "fr": "Un instant, je prends de quoi écrire.",
+   "de": "Einen Moment, ich nehme mir etwas zum Schreiben.",
+   "ru": "Минутку, я возьму, чем записать."
+  },
+  "redemittel.2": {
+   "fr": "C'est pour quel patient ? Pouvez-vous me donner la date de naissance, s'il vous plaît ?",
+   "de": "Um welchen Patienten geht es? Können Sie mir bitte das Geburtsdatum sagen?",
+   "ru": "О каком пациенте идёт речь? Назовите, пожалуйста, дату рождения."
+  },
+  "redemittel.3": {
+   "fr": "Je répète : potassium six virgule deux millimoles par litre.",
+   "de": "Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter.",
+   "ru": "Повторяю: калий шесть целых две десятых миллимоля на литр."
+  },
+  "redemittel.4": {
+   "fr": "Quel est votre nom, s'il vous plaît ?",
+   "de": "Wie war Ihr Name, bitte?",
+   "ru": "Как вас зовут, пожалуйста?"
+  },
+  "redemittel.5": {
+   "fr": "Je transmets tout de suite la valeur à la médecin.",
+   "de": "Ich gebe den Wert sofort an die Ärztin weiter.",
+   "ru": "Я сразу передам это значение врачу."
+  },
+  "redemittel.6": {
+   "fr": "Pourriez-vous nous en livrer encore aujourd'hui ?",
+   "de": "Könnten Sie uns heute noch welche liefern?",
+   "ru": "Не могли бы вы доставить нам ещё сегодня?"
+  },
+  "redemittel.7": {
+   "fr": "A-t-on le droit d'écraser ce comprimé ?",
+   "de": "Darf man diese Tablette mörsern?",
+   "ru": "Можно ли измельчать эту таблетку?"
+  },
+  "noeuds.melden.dit.0.recit": {
+   "fr": "11 h 20, au poste de soins. {elif} est seule, ses collègues sont dans les chambres. Le téléphone sonne.",
+   "ru": "11:20, сестринский пост. {elif} одна, коллеги в палатах. Звонит телефон."
+  },
+  "noeuds.melden.choix.0": {
+   "fr": "{station}, {elif} à l'appareil, bonjour.",
+   "de": "{station}, {elif} am Apparat, guten Tag.",
+   "ru": "Здравствуйте, {station}, у телефона {elif}."
+  },
+  "noeuds.melden.choix.0.puis.0": {
+   "fr": "Bonjour, ici {aksoy}, du laboratoire central. J'ai une valeur critique pour vous.",
+   "de": "Guten Tag, hier ist {aksoy} aus dem Zentrallabor. Ich habe einen kritischen Wert für Sie.",
+   "ru": "Здравствуйте, это {aksoy} из центральной лаборатории. У меня для вас критическое значение."
+  },
+  "noeuds.melden.choix.1": {
+   "fr": "Bonjour, {station}, vous parlez à {elif}.",
+   "de": "Guten Tag, {station}, Sie sprechen mit {elif}.",
+   "ru": "Добрый день, {station}, с вами говорит {elif}."
+  },
+  "noeuds.melden.choix.1.puis.0": {
+   "fr": "Bonjour, ici {aksoy}, du laboratoire central. J'ai une valeur critique pour vous.",
+   "de": "Guten Tag, hier ist {aksoy} aus dem Zentrallabor. Ich habe einen kritischen Wert für Sie.",
+   "ru": "Здравствуйте, это {aksoy} из центральной лаборатории. У меня для вас критическое значение."
+  },
+  "noeuds.melden.choix.2": {
+   "fr": "Allô ?",
+   "de": "Hallo?",
+   "ru": "Алло?"
+  },
+  "noeuds.melden.choix.2.puis.0": {
+   "fr": "Euh… je suis bien au service 4B ?",
+   "de": "Äh … bin ich auf der Station vier B?",
+   "ru": "Э-э… я попала в отделение 4B?"
+  },
+  "noeuds.melden.choix.2.aide": {
+   "fr": "<b>Au téléphone de l'hôpital, on répond avec le service et son nom.</b> « Station 4B, Elif am Apparat, guten Tag. » La personne sait tout de suite qu'elle a le bon service et à qui elle parle.",
+   "ru": "<b>По больничному телефону отвечают, называя отделение и своё имя.</b> «Station 4B, Elif am Apparat, guten Tag.» Звонящий сразу знает, что попал в нужное отделение и с кем говорит."
+  },
+  "noeuds.patient.choix.0": {
+   "fr": "Un instant, je prends de quoi écrire. Voilà, c'est pour quel patient ?",
+   "de": "Einen Moment, ich nehme mir etwas zum Schreiben. So, um welchen Patienten geht es?",
+   "ru": "Минутку, я возьму, чем записать. Так, о каком пациенте идёт речь?"
+  },
+  "noeuds.patient.choix.0.puis.0": {
+   "fr": "Pour {lehmann}, née le 21 août 1952.",
+   "de": "Um {lehmann}, geboren am 21. August 1952.",
+   "ru": "О {lehmann:loc}, дата рождения 21 августа 1952 года."
+  },
+  "noeuds.patient.choix.1": {
+   "fr": "Un instant, s'il vous plaît, je note. Pouvez-vous me donner le nom et la date de naissance ?",
+   "de": "Moment bitte, ich schreibe mit. Können Sie mir den Namen und das Geburtsdatum sagen?",
+   "ru": "Минутку, пожалуйста, я записываю. Назовите, пожалуйста, фамилию и дату рождения."
+  },
+  "noeuds.patient.choix.1.puis.0": {
+   "fr": "Pour {lehmann}, née le 21 août 1952.",
+   "de": "Um {lehmann}, geboren am 21. August 1952.",
+   "ru": "О {lehmann:loc}, дата рождения 21 августа 1952 года."
+  },
+  "noeuds.patient.choix.2": {
+   "fr": "Oui, allez-y.",
+   "de": "Ja, sagen Sie.",
+   "ru": "Да, говорите."
+  },
+  "noeuds.patient.choix.2.puis.0": {
+   "fr": "Vous avez de quoi écrire ? C'est important.",
+   "de": "Haben Sie etwas zum Schreiben? Es ist wichtig.",
+   "ru": "У вас есть чем записать? Это важно."
+  },
+  "noeuds.patient.choix.2.aide": {
+   "fr": "<b>Une valeur critique ne se retient pas de tête : prends de quoi écrire, puis fais-toi dire le patient.</b> « Einen Moment, ich nehme mir etwas zum Schreiben. Um welchen Patienten geht es? »",
+   "ru": "<b>Критическое значение не запоминают: возьми, чем записать, потом попроси назвать пациента.</b> «Einen Moment, ich nehme mir etwas zum Schreiben. Um welchen Patienten geht es?»"
+  },
+  "noeuds.identitaet.choix.0": {
+   "fr": "{lehmann}, née le 21 août 1952. Oui, c'est notre patiente. Quelle valeur ?",
+   "de": "{lehmann}, geboren am 21. August 1952. Ja, das ist unsere Patientin. Welcher Wert ist es?",
+   "ru": "{lehmann}, дата рождения 21 августа 1952 года. Да, это наша пациентка. Какое значение?"
+  },
+  "noeuds.identitaet.choix.0.puis.0": {
+   "fr": "Le potassium : 6,2 millimoles par litre.",
+   "de": "Das Kalium: 6,2 Millimol pro Liter.",
+   "ru": "Калий: 6,2 миллимоля на литр."
+  },
+  "noeuds.identitaet.choix.1": {
+   "fr": "J'ai {lehmann}, 21 août 52. C'est ça, elle est chez nous. Qu'est-ce qui est anormal ?",
+   "de": "Ich habe {lehmann}, einundzwanzigster August zweiundfünfzig. Stimmt, sie liegt bei uns. Was ist auffällig?",
+   "ru": "У меня {lehmann}, 21 августа 52-го. Верно, она лежит у нас. Что отклоняется от нормы?"
+  },
+  "noeuds.identitaet.choix.1.puis.0": {
+   "fr": "Le potassium : 6,2 millimoles par litre.",
+   "de": "Das Kalium: 6,2 Millimol pro Liter.",
+   "ru": "Калий: 6,2 миллимоля на литр."
+  },
+  "noeuds.identitaet.choix.2": {
+   "fr": "Pardon, la ligne est mauvaise. Quelle était la date de naissance ?",
+   "de": "Entschuldigung, die Verbindung ist schlecht. Wie war das Geburtsdatum?",
+   "ru": "Извините, плохая связь. Какая была дата рождения?"
+  },
+  "noeuds.identitaet.choix.2.puis.0": {
+   "fr": "Vingt et un août mille neuf cent cinquante-deux.",
+   "de": "Einundzwanzigster August neunzehnhundertzweiundfünfzig.",
+   "ru": "Двадцать первое августа тысяча девятьсот пятьдесят второго."
+  },
+  "noeuds.wert.choix.0": {
+   "fr": "Je répète : potassium six virgule deux millimoles par litre. Quel est votre nom, s'il vous plaît ?",
+   "de": "Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte?",
+   "ru": "Повторяю: калий шесть целых две десятых миллимоля на литр. Как вас зовут, пожалуйста?"
+  },
+  "noeuds.wert.choix.0.puis.0": {
+   "fr": "C'est ça. {aksoy}, laboratoire central. L'échantillon n'est pas hémolysé, la valeur est donc fiable.",
+   "de": "Richtig. {aksoy}, Zentrallabor. Die Probe ist nicht hämolysiert, der Wert ist also echt.",
+   "ru": "Верно. {aksoy}, центральная лаборатория. Проба не гемолизирована, так что значение достоверное."
+  },
+  "noeuds.wert.choix.1": {
+   "fr": "Potassium six virgule deux, c'est noté. Et à qui ai-je parlé ?",
+   "de": "Kalium sechs Komma zwei, habe ich notiert. Und mit wem habe ich gesprochen?",
+   "ru": "Калий шесть целых две десятых, записала. А с кем я говорила?"
+  },
+  "noeuds.wert.choix.1.puis.0": {
+   "fr": "C'est ça. {aksoy}, laboratoire central. L'échantillon n'est pas hémolysé, la valeur est donc fiable.",
+   "de": "Richtig. {aksoy}, Zentrallabor. Die Probe ist nicht hämolysiert, der Wert ist also echt.",
+   "ru": "Верно. {aksoy}, центральная лаборатория. Проба не гемолизирована, так что значение достоверное."
+  },
+  "noeuds.wert.choix.2": {
+   "fr": "Oui oui, d'accord, je transmets. Salut !",
+   "de": "Ja ja, okay, ich sage es weiter. Tschüss!",
+   "ru": "Да-да, ладно, передам. Пока!"
+  },
+  "noeuds.wert.choix.2.puis.0": {
+   "fr": "Attendez ! Répétez la valeur, s'il vous plaît, et notez mon nom.",
+   "de": "Moment! Wiederholen Sie bitte den Wert, und notieren Sie meinen Namen.",
+   "ru": "Подождите! Повторите, пожалуйста, значение и запишите моё имя."
+  },
+  "noeuds.wert.choix.2.aide": {
+   "fr": "<b>Une valeur critique se relit à voix haute, et on note qui l'a donnée et à quelle heure.</b> « Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte? » Au téléphone, c'est la seule façon de voir une erreur.",
+   "ru": "<b>Критическое значение повторяют вслух и записывают, кто его сообщил и в котором часу.</b> «Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte?» По телефону это единственный способ заметить ошибку."
+  },
+  "noeuds.weiter.choix.0": {
+   "fr": "Merci, {aksoy}. Je transmets tout de suite la valeur à la médecin.",
+   "de": "Danke, {aksoy}. Ich gebe den Wert sofort an die Ärztin weiter.",
+   "ru": "Спасибо, {aksoy:voc}. Я сразу передам это значение врачу."
+  },
+  "noeuds.weiter.choix.0.puis.0": {
+   "fr": "Merci. Au revoir.",
+   "de": "Danke. Auf Wiederhören.",
+   "ru": "Спасибо. До свидания."
+  },
+  "noeuds.weiter.choix.1": {
+   "fr": "Merci beaucoup. Je préviens tout de suite la médecin du service et je note l'appel avec l'heure.",
+   "de": "Vielen Dank. Ich informiere gleich die Stationsärztin und dokumentiere den Anruf mit der Uhrzeit.",
+   "ru": "Большое спасибо. Я сразу сообщу врачу отделения и задокументирую звонок с указанием времени."
+  },
+  "noeuds.weiter.choix.1.puis.0": {
+   "fr": "Merci. Au revoir.",
+   "de": "Danke. Auf Wiederhören.",
+   "ru": "Спасибо. До свидания."
+  },
+  "noeuds.apotheke.dit.0.recit": {
+   "fr": "{elif} prévient tout de suite {sommer}, qui va voir {lehmann}. Puis elle prépare la commande : il ne reste qu'un stylo d'insuline pour {lehmann}. Elle appelle la pharmacie de l'hôpital.",
+   "ru": "{elif} сразу сообщает {sommer:dat}, и та идёт к {lehmann:dat}. Потом она готовит заказ: для {lehmann:gen} осталась всего одна шприц-ручка с инсулином. Она звонит в больничную аптеку."
+  },
+  "noeuds.apotheke.dit.1": {
+   "fr": "Pharmacie de l'hôpital, {richter:famille}, bonjour.",
+   "de": "Krankenhausapotheke, {richter:famille}, guten Tag.",
+   "ru": "Больничная аптека, {richter:famille}, здравствуйте."
+  },
+  "noeuds.apotheke.choix.0": {
+   "fr": "Bonjour, {richter:voc}, ici {elif}, du {station}. Nous n'avons presque plus de stylos d'insuline pour une patiente. Pourriez-vous nous en livrer encore aujourd'hui ?",
+   "de": "Guten Tag, {richter}, hier ist {elif} von der {station}. Uns gehen die Insulinpens für eine Patientin aus. Könnten Sie uns heute noch welche liefern?",
+   "ru": "Здравствуйте, {richter:voc}, это {elif} из {station:gen}. У нас заканчиваются шприц-ручки с инсулином для одной пациентки. Не могли бы вы доставить нам ещё сегодня?"
+  },
+  "noeuds.apotheke.choix.0.puis.0": {
+   "fr": "C'est possible. Quelle insuline exactement, et à quelle concentration ?",
+   "de": "Das geht. Welches Insulin genau, und in welcher Konzentration?",
+   "ru": "Можно. Какой именно инсулин и в какой концентрации?"
+  },
+  "noeuds.apotheke.choix.1": {
+   "fr": "Ici {elif}, {station}. J'appelle pour une commande : nous avons besoin d'urgence de stylos d'insuline.",
+   "de": "Hier ist {elif}, {station}. Ich rufe wegen einer Bestellung an: Wir brauchen dringend Insulinpens.",
+   "ru": "Говорит {elif}, {station}. Я звоню по поводу заказа: нам срочно нужны шприц-ручки с инсулином."
+  },
+  "noeuds.apotheke.choix.1.puis.0": {
+   "fr": "C'est possible. Quelle insuline exactement, et à quelle concentration ?",
+   "de": "Das geht. Welches Insulin genau, und in welcher Konzentration?",
+   "ru": "Можно. Какой именно инсулин и в какой концентрации?"
+  },
+  "noeuds.apotheke.choix.2": {
+   "fr": "Oui, allô, on a besoin d'insuline.",
+   "de": "Ja, hallo, wir brauchen Insulin.",
+   "ru": "Да, алло, нам нужен инсулин."
+  },
+  "noeuds.apotheke.choix.2.puis.0": {
+   "fr": "Et qui est « on » ? Vous appelez de quel service ?",
+   "de": "Und wer sind „wir“? Von welcher Station rufen Sie an?",
+   "ru": "А кто это «нам»? Из какого отделения вы звоните?"
+  },
+  "noeuds.apotheke.choix.2.aide": {
+   "fr": "<b>Quand c'est toi qui appelles, dis d'abord qui tu es et d'où tu appelles, puis ce que tu veux.</b> « Hier ist Elif von der Station 4B. Könnten Sie uns heute noch Insulinpens liefern? »",
+   "ru": "<b>Когда звонишь ты, сначала скажи, кто ты и откуда звонишь, а потом — что тебе нужно.</b> «Hier ist Elif von der Station 4B. Könnten Sie uns heute noch Insulinpens liefern?»"
+  },
+  "noeuds.insulin.choix.0": {
+   "fr": "De l'insuline lispro, 100 unités par millilitre, en stylo prérempli. Nous en voudrions cinq.",
+   "de": "Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen. Wir hätten gern fünf Stück.",
+   "ru": "Инсулин лизпро, сто единиц на миллилитр, в готовой шприц-ручке. Нам бы пять штук."
+  },
+  "noeuds.insulin.choix.0.puis.0": {
+   "fr": "On en a. Je vous envoie cinq stylos avec le transport avant 14 heures. Autre chose ?",
+   "de": "Haben wir da. Ich schicke Ihnen fünf Pens mit dem Transport vor vierzehn Uhr. Sonst noch etwas?",
+   "ru": "Есть в наличии. Пришлю вам пять ручек с доставкой до 14 часов. Что-нибудь ещё?"
+  },
+  "noeuds.insulin.choix.1": {
+   "fr": "C'est de l'insuline lispro en stylo prérempli, 100 unités par millilitre. Cinq stylos, ce serait bien.",
+   "de": "Es ist Insulin lispro im Fertigpen, hundert Einheiten pro Milliliter. Fünf Pens wären gut.",
+   "ru": "Это инсулин лизпро в готовой шприц-ручке, сто единиц на миллилитр. Пять ручек было бы хорошо."
+  },
+  "noeuds.insulin.choix.1.puis.0": {
+   "fr": "On en a. Je vous envoie cinq stylos avec le transport avant 14 heures. Autre chose ?",
+   "de": "Haben wir da. Ich schicke Ihnen fünf Pens mit dem Transport vor vierzehn Uhr. Sonst noch etwas?",
+   "ru": "Есть в наличии. Пришлю вам пять ручек с доставкой до 14 часов. Что-нибудь ещё?"
+  },
+  "noeuds.insulin.choix.2": {
+   "fr": "L'insuline normale, celle qu'elle a toujours.",
+   "de": "Das normale Insulin, das sie immer bekommt.",
+   "ru": "Обычный инсулин, который она всегда получает."
+  },
+  "noeuds.insulin.choix.2.puis.0": {
+   "fr": "« La normale », ça n'existe pas chez nous. J'ai besoin du nom et de la concentration.",
+   "de": "„Das normale“ gibt es bei uns nicht. Ich brauche den Namen und die Konzentration.",
+   "ru": "«Обычного» у нас нет. Мне нужно название и концентрация."
+  },
+  "noeuds.insulin.choix.2.aide": {
+   "fr": "<b>Un médicament se commande avec son nom exact, sa concentration et sa forme.</b> « Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen. » Lis-le sur l'emballage ou dans le dossier avant d'appeler.",
+   "ru": "<b>Лекарство заказывают по точному названию, концентрации и форме.</b> «Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen.» Прочитай это на упаковке или в листе наблюдения, прежде чем звонить."
+  },
+  "noeuds.moerser.choix.0": {
+   "fr": "Oui, encore une question : peut-on écraser des comprimés de métoprolol à libération prolongée ? Un patient avale mal depuis un AVC.",
+   "de": "Ja, eine Frage noch: Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann nach einem Schlaganfall schlecht schlucken.",
+   "ru": "Да, ещё один вопрос: можно ли измельчать таблетки метопролола ретард? Пациенту после инсульта трудно глотать."
+  },
+  "noeuds.moerser.choix.0.puis.0": {
+   "fr": "Non, un comprimé à libération prolongée ne s'écrase pas, sinon tout agit d'un coup. Demandez à la médecin une autre forme. Je vous envoie une liste des alternatives par mail.",
+   "de": "Nein, eine Retardtablette bitte nicht mörsern, sonst wirkt alles auf einmal. Fragen Sie die Ärztin nach einer anderen Darreichungsform. Ich schicke Ihnen eine Liste mit Alternativen per Mail.",
+   "ru": "Нет, таблетку ретард, пожалуйста, не измельчайте, иначе всё подействует сразу. Спросите у врача другую лекарственную форму. Я пришлю вам по почте список альтернатив."
+  },
+  "noeuds.moerser.choix.1": {
+   "fr": "J'aurais encore une question : puis-je écraser un comprimé de métoprolol à libération prolongée ? Le patient a des troubles de la déglutition.",
+   "de": "Ich hätte noch eine Frage: Kann ich eine Retardtablette von Metoprolol zerkleinern? Der Patient hat Schluckstörungen.",
+   "ru": "У меня был бы ещё вопрос: могу ли я раздробить таблетку метопролола ретард? У пациента нарушение глотания."
+  },
+  "noeuds.moerser.choix.1.puis.0": {
+   "fr": "Non, un comprimé à libération prolongée ne s'écrase pas, sinon tout agit d'un coup. Demandez à la médecin une autre forme. Je vous envoie une liste des alternatives par mail.",
+   "de": "Nein, eine Retardtablette bitte nicht mörsern, sonst wirkt alles auf einmal. Fragen Sie die Ärztin nach einer anderen Darreichungsform. Ich schicke Ihnen eine Liste mit Alternativen per Mail.",
+   "ru": "Нет, таблетку ретард, пожалуйста, не измельчайте, иначе всё подействует сразу. Спросите у врача другую лекарственную форму. Я пришлю вам по почте список альтернатив."
+  },
+  "noeuds.moerser.choix.2": {
+   "fr": "Non, merci. Ah, au fait, on peut toujours écraser les comprimés, non ?",
+   "de": "Nein, danke. Ach so, Tabletten kann man doch immer mörsern, oder?",
+   "ru": "Нет, спасибо. Ах да, таблетки ведь всегда можно измельчать, правда?"
+  },
+  "noeuds.moerser.choix.2.puis.0": {
+   "fr": "Surtout pas toujours ! Quel comprimé voulez-vous dire ?",
+   "de": "Auf keinen Fall immer! Welche Tablette meinen Sie?",
+   "ru": "Ни в коем случае не всегда! Какую таблетку вы имеете в виду?"
+  },
+  "noeuds.moerser.choix.2.aide": {
+   "fr": "<b>Pose une question précise : quel médicament, quelle forme, pourquoi.</b> « Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann schlecht schlucken. » Un comprimé « retard » ne s'écrase pas : c'est la pharmacie ou la médecin qui donne une autre forme.",
+   "ru": "<b>Задай точный вопрос: какое лекарство, какая форма, почему.</b> «Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann schlecht schlucken.» Таблетку «ретард» не измельчают: другую форму подбирает аптека или врач."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Donc : cinq stylos d'insuline lispro avant 14 heures, et on n'écrase pas les comprimés retard, j'en parle à la médecin. Merci beaucoup !",
+   "de": "Also: fünf Pens Insulin lispro vor vierzehn Uhr, und die Retardtabletten nicht mörsern, ich spreche mit der Ärztin. Vielen Dank!",
+   "ru": "Итак: пять шприц-ручек инсулина лизпро до 14 часов, а таблетки ретард не измельчать, я поговорю с врачом. Большое спасибо!"
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Exactement. Avec plaisir, au revoir.",
+   "de": "Genau. Gern geschehen, auf Wiederhören.",
+   "ru": "Точно. Пожалуйста, до свидания."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Merci, ça m'aide beaucoup. J'attends les stylos et la liste. Au revoir !",
+   "de": "Danke, das hilft mir sehr. Ich warte auf die Pens und die Liste. Auf Wiederhören!",
+   "ru": "Спасибо, это мне очень помогает. Жду ручки и список. До свидания!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Avec plaisir, au revoir.",
+   "de": "Gern geschehen, auf Wiederhören.",
+   "ru": "Пожалуйста, до свидания."
+  },
+  "ecouter.0.q": {
+   "fr": "Quelle valeur est critique chez {lehmann} ?",
+   "de": "Welcher Wert ist bei {lehmann} kritisch?",
+   "ru": "Какое значение у {lehmann:gen} критическое?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "La glycémie.",
+   "de": "Der Blutzucker.",
+   "ru": "Сахар в крови."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Le potassium.",
+   "de": "Das Kalium.",
+   "ru": "Калий."
+  },
+  "ecouter.0.options.2": {
+   "fr": "La tension.",
+   "de": "Der Blutdruck.",
+   "ru": "Давление."
+  },
+  "ecouter.1.q": {
+   "fr": "Que fait {elif} tout de suite après l'appel du laboratoire ?",
+   "de": "Was macht {elif} sofort nach dem Anruf des Labors?",
+   "ru": "Что {elif} делает сразу после звонка из лаборатории?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Elle prévient la médecin.",
+   "de": "Sie informiert die Ärztin.",
+   "ru": "Сообщает врачу."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Elle appelle la fille.",
+   "de": "Sie ruft die Tochter an.",
+   "ru": "Звонит дочери."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Elle attend la visite.",
+   "de": "Sie wartet bis zur Visite.",
+   "ru": "Ждёт обхода."
+  },
+  "ecouter.2.q": {
+   "fr": "Que dit {richter} des comprimés à libération prolongée ?",
+   "de": "Was sagt {richter} über die Retardtabletten?",
+   "ru": "Что {richter} говорит о таблетках с пролонгированным высвобождением?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "On peut toujours les écraser.",
+   "de": "Man kann sie immer mörsern.",
+   "ru": "Их всегда можно измельчать."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Il faut les dissoudre dans l'eau.",
+   "de": "Man soll sie in Wasser auflösen.",
+   "ru": "Их нужно растворять в воде."
+  },
+  "ecouter.2.options.2": {
+   "fr": "On ne doit pas les écraser.",
+   "de": "Man darf sie nicht mörsern.",
+   "ru": "Их нельзя измельчать."
+  }
+ }
+}

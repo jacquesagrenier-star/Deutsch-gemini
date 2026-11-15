@@ -1,0 +1,368 @@
+{
+ "_langue": "ar",
+ "_source": "pflege/sources/dialogues/d17-visite.json",
+ "cles": {
+  "titre": {
+   "fr": "La visite : présenter un patient",
+   "de": "Die Visite",
+   "ar": "الجولة الطبية: عرض حالة مريض"
+  },
+  "intro": {
+   "fr": "Vendredi 13 novembre, la visite du matin. Devant la chambre 12, {sommer} demande où en est {brandt}. Tu joues {elif} : tu présentes le patient en peu de mots, dans l'ordre, avec des valeurs précises. Puis tu notes les prescriptions, tu poses ta question et tu relis tout à la médecin.",
+   "ar": "الجمعة 13 نوفمبر، الجولة الطبية الصباحية. أمام الغرفة 12 تسأل {sommer} عن حالة {brandt}. أنت تؤدي دور {elif}: تعرض حالة المريض بكلمات قليلة، بالترتيب، وبقيم دقيقة. ثم تدوّن الأوامر الطبية، وتطرح سؤالك، وتعيد قراءة كل شيء على الطبيبة."
+  },
+  "but": {
+   "fr": "Présenter un patient à la visite (qui, pourquoi, quel jour après l'opération, ce qui a changé, les valeurs, la douleur, la mobilité, la plaie, l'alimentation) ; écouter et noter des prescriptions ; poser une question ; relire les prescriptions et les faire signer.",
+   "ar": "عرض حالة مريض في الجولة الطبية (من هو، ولماذا هو هنا، وأي يوم بعد العملية، وما الذي تغيّر، والقيم، والألم، والحركة، والجرح، والتغذية)؛ الاستماع إلى الأوامر الطبية وتدوينها؛ طرح سؤال؛ إعادة قراءة الأوامر وطلب توقيعها."
+  },
+  "relire_notes": {
+   "fr": "Cohérence du cas : prothèse de hanche droite le 10 nov., scanner du 11 nov. (pas d'embolie, pneumonie droite), antibiotique depuis le 12 nov. (pas une pénicilline : allergie, voir d18) ; valeurs (T 37,6 °C, SpO2 94 % sous 2 l/min, douleur 3/10 au repos et 5/10 à la marche) ; prescriptions (prise de sang NFS et CRP, réduire l'O2 si SpO2 > 92 %, kiné deux fois par jour, ablation de la sonde urinaire, bilan entrées-sorties, douche avec pansement étanche) ; qui retire la sonde, qui signe.",
+   "ar": "اتساق الحالة: مفصل ورك أيمن اصطناعي في 10 نوفمبر، تصوير مقطعي في 11 نوفمبر (لا انصمام، التهاب رئوي أيمن)، مضاد حيوي منذ 12 نوفمبر (ليس من البنسلينات: حساسية، انظر d18)؛ القيم (الحرارة 37,6 °C، SpO2 94 % مع 2 لتر/دقيقة، الألم 3/10 في الراحة و5/10 عند المشي)؛ الأوامر (سحب دم: تعداد الدم الكامل وCRP، تخفيض الأكسجين إذا كان SpO2 > 92 %، علاج طبيعي مرتين يوميًا، نزع القثطار البولي، موازنة السوائل الداخلة والخارجة، الاستحمام بضماد مقاوم للماء)؛ من ينزع القثطار، ومن يوقّع."
+  },
+  "redemittel.0": {
+   "fr": "Chambre 12, {brandt}, 82 ans, troisième jour après l'opération de la hanche droite.",
+   "de": "Zimmer 12, {brandt}, 82 Jahre, dritter Tag nach der Hüftoperation rechts.",
+   "ar": "الغرفة 12، {brandt}، 82 سنة، اليوم الثالث بعد عملية الورك الأيمن."
+  },
+  "redemittel.1": {
+   "fr": "Depuis hier, il reçoit un antibiotique.",
+   "de": "Seit gestern bekommt er ein Antibiotikum.",
+   "ar": "يتلقى مضادًا حيويًا منذ أمس."
+  },
+  "redemittel.2": {
+   "fr": "Hier, il a été levé au fauteuil.",
+   "de": "Er ist gestern in den Sessel mobilisiert worden.",
+   "ar": "أمس نُقل إلى الكرسي."
+  },
+  "redemittel.3": {
+   "fr": "Je peux encore poser une question ?",
+   "de": "Darf ich noch etwas fragen?",
+   "ar": "هل يمكنني أن أطرح سؤالًا آخر؟"
+  },
+  "redemittel.4": {
+   "fr": "Pardon, c'est allé un peu vite. Vous pouvez répéter, s'il vous plaît ?",
+   "de": "Entschuldigung, das ging etwas schnell. Können Sie das bitte wiederholen?",
+   "ar": "عذرًا، كان ذلك سريعًا بعض الشيء. هل يمكنكِ أن تعيدي من فضلك؟"
+  },
+  "redemittel.5": {
+   "fr": "Je résume rapidement : …",
+   "de": "Ich fasse kurz zusammen: …",
+   "ar": "سألخّص باختصار: …"
+  },
+  "redemittel.6": {
+   "fr": "Pourriez-vous signer les prescriptions dans le dossier, s'il vous plaît ?",
+   "de": "Könnten Sie die Anordnungen bitte noch in der Kurve abzeichnen?",
+   "ar": "هل يمكنكِ أن توقّعي الأوامر في ملف التمريض من فضلك؟"
+  },
+  "noeuds.anfang.dit.0.recit": {
+   "fr": "Vendredi 13 novembre, 9 heures. Le chariot de la visite s'arrête devant la chambre 12. {elif} a la feuille de transmission à la main.",
+   "ar": "الجمعة 13 نوفمبر، الساعة 9. تتوقف عربة الجولة أمام الغرفة 12. تمسك {elif} ورقة التسليم بيدها."
+  },
+  "noeuds.anfang.dit.1": {
+   "fr": "Bonjour, {elif}. Qui est le suivant ?",
+   "de": "Guten Morgen, {elif}. Wer ist der Nächste?",
+   "ar": "صباح الخير يا {elif}. من التالي؟"
+  },
+  "noeuds.anfang.choix.0": {
+   "fr": "Chambre 12, {brandt}, 82 ans. Il en est au troisième jour après l'opération de la hanche droite.",
+   "de": "Zimmer 12, {brandt}, 82 Jahre. Er ist am dritten Tag nach der Hüftoperation rechts.",
+   "ar": "الغرفة 12، {brandt}، 82 سنة. هو في اليوم الثالث بعد عملية الورك الأيمن."
+  },
+  "noeuds.anfang.choix.0.puis.0": {
+   "fr": "Ah oui, {brandt}, je le connais. Quoi de neuf ?",
+   "de": "Ah ja, {brandt:akk} kenne ich. Was gibt's Neues?",
+   "ar": "آه نعم، {brandt}، أعرفه. ما الجديد؟"
+  },
+  "noeuds.anfang.choix.1": {
+   "fr": "{brandt}, chambre 12. Il a 82 ans et il a été opéré de la hanche droite mardi ; aujourd'hui, c'est le troisième jour.",
+   "de": "{brandt}, Zimmer 12. Er ist 82 und am Dienstag an der rechten Hüfte operiert worden, heute ist der dritte Tag.",
+   "ar": "{brandt}، الغرفة 12. عمره 82 سنة، وأُجريت له عملية في الورك الأيمن يوم الثلاثاء؛ اليوم هو اليوم الثالث."
+  },
+  "noeuds.anfang.choix.1.puis.0": {
+   "fr": "Ah oui, {brandt}, je le connais. Quoi de neuf ?",
+   "de": "Ah ja, {brandt:akk} kenne ich. Was gibt's Neues?",
+   "ar": "آه نعم، {brandt}، أعرفه. ما الجديد؟"
+  },
+  "noeuds.anfang.choix.2": {
+   "fr": "Maintenant, c'est {brandt}. Il est un peu difficile, il râle tout le temps.",
+   "de": "Jetzt kommt {brandt}. Der ist ein bisschen schwierig, er meckert immer.",
+   "ar": "الآن دور {brandt}. إنه صعب قليلًا، يتذمّر طوال الوقت."
+  },
+  "noeuds.anfang.choix.2.puis.0": {
+   "fr": "Hum. Et sur le plan médical ? Pourquoi est-il chez nous ?",
+   "de": "Hm. Und medizinisch? Warum liegt er bei uns?",
+   "ar": "همم. ومن الناحية الطبية؟ لماذا هو عندنا؟"
+  },
+  "noeuds.anfang.choix.2.aide": {
+   "fr": "<b>À la visite, on commence par les faits : la chambre, le nom, l'âge, le motif, le jour après l'opération.</b> « Zimmer 12, Herr Brandt, 82 Jahre, dritter Tag nach der Hüftoperation rechts. » Un jugement sur le caractère du patient n'a pas sa place ici.",
+   "ar": "<b>في الجولة الطبية نبدأ بالوقائع: الغرفة، الاسم، العمر، سبب الدخول، اليوم بعد العملية.</b> «Zimmer 12, Herr Brandt, 82 Jahre, dritter Tag nach der Hüftoperation rechts.» الحكم على طباع المريض لا مكان له هنا."
+  },
+  "noeuds.lunge.choix.0": {
+   "fr": "Le scanner n'a pas montré d'embolie pulmonaire, mais une pneumonie à droite. Depuis hier, il reçoit un antibiotique.",
+   "de": "Im CT ist keine Lungenembolie gefunden worden, aber eine Lungenentzündung rechts. Seit gestern bekommt er ein Antibiotikum.",
+   "ar": "لم يُظهر التصوير المقطعي انصمامًا رئويًا، بل التهابًا رئويًا في الجهة اليمنى. ويتلقى مضادًا حيويًا منذ أمس."
+  },
+  "noeuds.lunge.choix.0.puis.0": {
+   "fr": "C'est ça. Et comment sont les valeurs aujourd'hui ?",
+   "de": "Richtig. Und wie sind die Werte heute?",
+   "ar": "صحيح. وكيف القيم اليوم؟"
+  },
+  "noeuds.lunge.choix.1": {
+   "fr": "Au scanner, pas d'embolie ; il montre une pneumonie à droite. L'antibiotique est en cours depuis hier.",
+   "de": "Das CT war ohne Embolie, es zeigt eine Pneumonie rechts. Das Antibiotikum läuft seit gestern.",
+   "ar": "التصوير المقطعي بلا انصمام؛ يُظهر التهابًا رئويًا في الجهة اليمنى. المضاد الحيوي جارٍ منذ أمس."
+  },
+  "noeuds.lunge.choix.1.puis.0": {
+   "fr": "C'est ça. Et comment sont les valeurs aujourd'hui ?",
+   "de": "Richtig. Und wie sind die Werte heute?",
+   "ar": "صحيح. وكيف القيم اليوم؟"
+  },
+  "noeuds.lunge.choix.2": {
+   "fr": "Il a eu de la fièvre, je crois. Et quelque chose aux poumons.",
+   "de": "Er hat Fieber gehabt, glaube ich. Und irgendwas mit der Lunge.",
+   "ar": "كانت عنده حرارة على ما أظن. وشيء ما في الرئتين."
+  },
+  "noeuds.lunge.choix.2.puis.0": {
+   "fr": "« Je crois » ? Vous n'avez pas le dossier avec vous ?",
+   "de": "„Glaube ich“? Haben Sie die Kurve nicht dabei?",
+   "ar": "«على ما أظن»؟ أليس ملف التمريض معكِ؟"
+  },
+  "noeuds.lunge.choix.2.aide": {
+   "fr": "<b>On ne dit pas « glaube ich » à la visite : on dit ce qui est écrit et mesuré.</b> « Im CT ist eine Lungenentzündung rechts gefunden worden. » Prépare la visite avec la feuille de transmission et le dossier.",
+   "ar": "<b>لا نقول «glaube ich» في الجولة الطبية: نقول ما هو مكتوب ومُقاس.</b> «Im CT ist eine Lungenentzündung rechts gefunden worden.» حضّر للجولة بورقة التسليم وبملف التمريض."
+  },
+  "noeuds.werte.choix.0": {
+   "fr": "La température baisse : ce matin, 37,6. La saturation est à 94 % avec deux litres d'oxygène.",
+   "de": "Die Temperatur geht runter, heute früh 37,6. Die Sättigung liegt bei 94 Prozent mit zwei Litern Sauerstoff.",
+   "ar": "الحرارة تنخفض: هذا الصباح 37,6. التشبّع 94 % مع لترين من الأكسجين."
+  },
+  "noeuds.werte.choix.0.puis.0": {
+   "fr": "Ça va mieux. Et la douleur ?",
+   "de": "Das sieht besser aus. Und die Schmerzen?",
+   "ar": "هذا أفضل. والألم؟"
+  },
+  "noeuds.werte.choix.1": {
+   "fr": "Ce matin, 37,6 °C, donc moins qu'hier. Saturation 94 % sous deux litres d'oxygène.",
+   "de": "Heute früh 37,6 Grad, also weniger als gestern. Sättigung 94 Prozent unter zwei Litern Sauerstoff.",
+   "ar": "هذا الصباح 37,6 °C، أي أقل من أمس. التشبّع 94 % مع لترين من الأكسجين."
+  },
+  "noeuds.werte.choix.1.puis.0": {
+   "fr": "Ça va mieux. Et la douleur ?",
+   "de": "Das sieht besser aus. Und die Schmerzen?",
+   "ar": "هذا أفضل. والألم؟"
+  },
+  "noeuds.werte.choix.2": {
+   "fr": "Un instant, s'il vous plaît, je regarde dans le dossier.",
+   "de": "Einen Moment bitte, ich schaue kurz in die Kurve.",
+   "ar": "لحظة من فضلك، سأنظر في ملف التمريض."
+  },
+  "noeuds.werte.choix.2.puis.0": {
+   "fr": "Pas de problème.",
+   "de": "Kein Problem.",
+   "ar": "لا مشكلة."
+  },
+  "noeuds.schmerz.choix.0": {
+   "fr": "Au repos, 3 sur 10 ; à la marche, 5. Hier, il a été levé au fauteuil et il a fait quelques pas avec le déambulateur.",
+   "de": "In Ruhe drei von zehn, beim Gehen fünf. Er ist gestern in den Sessel mobilisiert worden und ist ein paar Schritte mit dem Rollator gegangen.",
+   "ar": "في الراحة 3 من 10، وعند المشي 5. أمس نُقل إلى الكرسي ومشى بضع خطوات بالمشّاية."
+  },
+  "noeuds.schmerz.choix.0.puis.0": {
+   "fr": "Très bien. Comment est la plaie ?",
+   "de": "Sehr schön. Wie sieht die Wunde aus?",
+   "ar": "جيد جدًا. كيف يبدو الجرح؟"
+  },
+  "noeuds.schmerz.choix.1": {
+   "fr": "La douleur est bien contrôlée : 3 au repos, 5 à l'effort. Lever au fauteuil et quelques pas avec le déambulateur.",
+   "de": "Die Schmerzen sind gut eingestellt: drei in Ruhe, fünf bei Belastung. Mobilisation in den Sessel und ein paar Schritte mit dem Rollator.",
+   "ar": "الألم مضبوط جيدًا: 3 في الراحة، 5 عند الجهد. نقل إلى الكرسي وبضع خطوات بالمشّاية."
+  },
+  "noeuds.schmerz.choix.1.puis.0": {
+   "fr": "Très bien. Comment est la plaie ?",
+   "de": "Sehr schön. Wie sieht die Wunde aus?",
+   "ar": "جيد جدًا. كيف يبدو الجرح؟"
+  },
+  "noeuds.schmerz.choix.2": {
+   "fr": "Hier, il « a levé » au fauteuil. (mal dit)",
+   "de": "Er hat gestern in den Sessel mobilisiert.",
+   "ar": "أمس «نَقَلَ» إلى الكرسي. (صياغة خاطئة)"
+  },
+  "noeuds.schmerz.choix.2.puis.0": {
+   "fr": "Il a levé qui ? Ah, vous voulez dire qu'on l'a levé.",
+   "de": "Er hat wen mobilisiert? Ach, Sie meinen, er ist mobilisiert worden.",
+   "ar": "نقل مَن؟ آه، تقصدين أنه نُقل إلى الكرسي."
+  },
+  "noeuds.schmerz.choix.2.aide": {
+   "fr": "<b>Le patient ne mobilise pas, on le mobilise : le passif.</b> « Er ist in den Sessel mobilisiert worden » (Perfekt du passif). Ou à l'actif, avec le soignant comme sujet : « Wir haben ihn in den Sessel mobilisiert. »",
+   "ar": "<b>المريض لا يحرّك أحدًا، بل نحن نحرّكه: المبني للمجهول.</b> «Er ist in den Sessel mobilisiert worden» (Perfekt المجهول). أو بالمبني للمعلوم، ويكون الممرض هو الفاعل: «Wir haben ihn in den Sessel mobilisiert.»"
+  },
+  "noeuds.wunde.choix.0": {
+   "fr": "Le pansement est sec. Il mange peu et ne boit qu'environ un litre par jour. Et il demande chaque jour quand il pourra rentrer chez lui.",
+   "de": "Der Verband ist trocken. Er isst wenig und trinkt nur etwa einen Liter am Tag. Und er fragt jeden Tag, wann er nach Hause darf.",
+   "ar": "الضماد جاف. يأكل قليلًا ولا يشرب إلا نحو لتر واحد في اليوم. ويسأل كل يوم متى يمكنه العودة إلى البيت."
+  },
+  "noeuds.wunde.choix.0.puis.0": {
+   "fr": "Il passera sûrement d'abord par la rééducation ; on voit ça avec le service social.",
+   "de": "Nach Hause geht es wohl erst über die Reha, das klären wir mit dem Sozialdienst.",
+   "ar": "العودة إلى البيت ستمرّ غالبًا أولًا عبر إعادة التأهيل؛ سنرتّب ذلك مع الخدمة الاجتماعية."
+  },
+  "noeuds.wunde.choix.1": {
+   "fr": "La plaie est calme, le pansement sec. Le problème, c'est la boisson : seulement un litre par jour environ. Il voudrait savoir quand il sortira.",
+   "de": "Die Wunde ist reizlos, der Verband trocken. Problem ist das Trinken: nur ungefähr ein Liter am Tag. Er möchte wissen, wann er entlassen wird.",
+   "ar": "الجرح هادئ بلا علامات التهاب، والضماد جاف. المشكلة في الشرب: لتر واحد فقط في اليوم تقريبًا. ويريد أن يعرف متى سيخرج."
+  },
+  "noeuds.wunde.choix.1.puis.0": {
+   "fr": "Il passera sûrement d'abord par la rééducation ; on voit ça avec le service social.",
+   "de": "Nach Hause geht es wohl erst über die Reha, das klären wir mit dem Sozialdienst.",
+   "ar": "العودة إلى البيت ستمرّ غالبًا أولًا عبر إعادة التأهيل؛ سنرتّب ذلك مع الخدمة الاجتماعية."
+  },
+  "noeuds.anordnungen.dit.0": {
+   "fr": "Bon, pour aujourd'hui : prise de sang demain matin, numération et CRP. Réduire l'oxygène si la saturation reste au-dessus de 92 %. Kiné deux fois par jour. La sonde urinaire, on peut la retirer aujourd'hui. Et continuez le bilan entrées-sorties, s'il vous plaît.",
+   "de": "Also, für heute: Morgen früh Blutabnahme, kleines Blutbild und CRP. Den Sauerstoff reduzieren, wenn die Sättigung über 92 Prozent bleibt. Physiotherapie zweimal am Tag. Den Blasenkatheter können wir heute ziehen. Und bitte weiter die Ein- und Ausfuhr bilanzieren.",
+   "ar": "حسنًا، لليوم: سحب دم صباح الغد، تعداد الدم وCRP. تخفيض الأكسجين إذا بقي التشبّع فوق 92 %. علاج طبيعي مرتين في اليوم. القثطار البولي يمكننا نزعه اليوم. ومن فضلكِ واصلي موازنة السوائل الداخلة والخارجة."
+  },
+  "noeuds.anordnungen.choix.0": {
+   "fr": "Je note. Je peux poser une question : il peut déjà prendre une douche ?",
+   "de": "Ich schreibe mit. Darf ich noch etwas fragen: Darf er schon duschen?",
+   "ar": "أنا أدوّن. هل يمكنني أن أسأل شيئًا آخر: هل يُسمح له بالاستحمام الآن؟"
+  },
+  "noeuds.anordnungen.choix.0.puis.0": {
+   "fr": "À partir de demain, avec un pansement étanche. La plaie ne doit pas être mouillée.",
+   "de": "Ab morgen, mit einem wasserdichten Pflaster. Die Wunde soll nicht nass werden.",
+   "ar": "ابتداءً من الغد، بضماد مقاوم للماء. يجب ألا يبتلّ الجرح."
+  },
+  "noeuds.anordnungen.choix.1": {
+   "fr": "Merci, j'ai tout noté. Encore une question : à partir de quand peut-il prendre une douche ?",
+   "de": "Danke, ich habe alles notiert. Eine Frage noch: Ab wann darf er duschen?",
+   "ar": "شكرًا، دوّنت كل شيء. سؤال آخر: من متى يُسمح له بالاستحمام؟"
+  },
+  "noeuds.anordnungen.choix.1.puis.0": {
+   "fr": "À partir de demain, avec un pansement étanche. La plaie ne doit pas être mouillée.",
+   "de": "Ab morgen, mit einem wasserdichten Pflaster. Die Wunde soll nicht nass werden.",
+   "ar": "ابتداءً من الغد، بضماد مقاوم للماء. يجب ألا يبتلّ الجرح."
+  },
+  "noeuds.anordnungen.choix.2": {
+   "fr": "Pardon, c'est allé un peu vite. Pouvez-vous redire les prescriptions, s'il vous plaît ?",
+   "de": "Entschuldigung, das ging etwas schnell. Können Sie die Anordnungen bitte noch einmal sagen?",
+   "ar": "عذرًا، كان ذلك سريعًا بعض الشيء. هل يمكنكِ أن تعيدي الأوامر من فضلك؟"
+  },
+  "noeuds.anordnungen.choix.2.puis.0": {
+   "fr": "Bien sûr, lentement.",
+   "de": "Natürlich, langsam.",
+   "ar": "طبعًا، ببطء."
+  },
+  "noeuds.zusammenfassen.choix.0": {
+   "fr": "Je résume : prise de sang demain matin, numération et CRP. Réduire l'oxygène si la saturation reste au-dessus de 92 %. Kiné deux fois par jour. La sonde urinaire est retirée aujourd'hui. On continue le bilan, et la douche à partir de demain avec un pansement étanche.",
+   "de": "Ich fasse kurz zusammen: morgen früh Blutabnahme, kleines Blutbild und CRP. Sauerstoff reduzieren, wenn die Sättigung über 92 Prozent bleibt. Physiotherapie zweimal täglich. Der Blasenkatheter wird heute gezogen. Bilanz weiter, und duschen ab morgen mit wasserdichtem Pflaster.",
+   "ar": "سألخّص: سحب دم صباح الغد، تعداد الدم وCRP. تخفيض الأكسجين إذا بقي التشبّع فوق 92 %. علاج طبيعي مرتين يوميًا. يُنزع القثطار البولي اليوم. نواصل الموازنة، والاستحمام ابتداءً من الغد بضماد مقاوم للماء."
+  },
+  "noeuds.zusammenfassen.choix.0.puis.0": {
+   "fr": "Parfait, c'est exactement ça.",
+   "de": "Perfekt, genau so.",
+   "ar": "ممتاز، هذا بالضبط."
+  },
+  "noeuds.zusammenfassen.choix.1": {
+   "fr": "Je peux répéter ? Prise de sang demain matin, numération et CRP ; baisser l'oxygène si la saturation reste au-dessus de 92 % ; kiné deux fois par jour ; sonde retirée aujourd'hui ; continuer le bilan ; douche à partir de demain.",
+   "de": "Darf ich wiederholen? Blutabnahme morgen früh, kleines Blutbild und CRP; Sauerstoff runter, wenn die Sättigung über 92 Prozent bleibt; zweimal am Tag Physio; Katheter heute ex; Bilanz weiterführen; Duschen ab morgen.",
+   "ar": "هل يمكنني أن أعيد؟ سحب دم صباح الغد، تعداد الدم وCRP؛ تخفيض الأكسجين إذا بقي التشبّع فوق 92 %؛ علاج طبيعي مرتين في اليوم؛ نزع القثطار اليوم؛ مواصلة الموازنة؛ الاستحمام ابتداءً من الغد."
+  },
+  "noeuds.zusammenfassen.choix.1.puis.0": {
+   "fr": "Parfait, c'est exactement ça.",
+   "de": "Perfekt, genau so.",
+   "ar": "ممتاز، هذا بالضبط."
+  },
+  "noeuds.zusammenfassen.choix.2": {
+   "fr": "C'est bon, je retiens tout ça.",
+   "de": "Alles klar, ich merke mir das.",
+   "ar": "تمام، سأحفظ كل هذا."
+  },
+  "noeuds.zusammenfassen.choix.2.puis.0": {
+   "fr": "Cinq prescriptions de tête ? Relisez-les-moi plutôt une fois.",
+   "de": "Fünf Anordnungen im Kopf? Lesen Sie sie mir lieber einmal vor.",
+   "ar": "خمسة أوامر في الرأس؟ الأفضل أن تقرئيها عليّ مرة."
+  },
+  "noeuds.zusammenfassen.choix.2.aide": {
+   "fr": "<b>Les prescriptions de la visite se notent et se relisent à la médecin.</b> « Ich fasse kurz zusammen: … » C'est la boucle fermée : une erreur se voit tout de suite, pas trois heures plus tard.",
+   "ar": "<b>أوامر الجولة الطبية تُدوَّن وتُعاد قراءتها على الطبيبة.</b> «Ich fasse kurz zusammen: …» هذه هي الحلقة المغلقة: يظهر الخطأ فورًا، لا بعد ثلاث ساعات."
+  },
+  "noeuds.unterschrift.choix.0": {
+   "fr": "Pourriez-vous signer les prescriptions dans le dossier, s'il vous plaît ? Comme ça, je peux commencer tout de suite.",
+   "de": "Könnten Sie die Anordnungen bitte noch in der Kurve abzeichnen? Dann kann ich gleich anfangen.",
+   "ar": "هل يمكنكِ أن توقّعي الأوامر في ملف التمريض من فضلك؟ هكذا أستطيع أن أبدأ فورًا."
+  },
+  "noeuds.unterschrift.choix.0.puis.0": {
+   "fr": "Je le fais juste après la visite. Merci, {elif}, c'était une transmission très claire.",
+   "de": "Mache ich direkt nach der Visite. Danke, {elif}, das war eine sehr klare Übergabe.",
+   "ar": "سأفعل ذلك مباشرة بعد الجولة. شكرًا يا {elif}، كان تسليمًا واضحًا جدًا."
+  },
+  "noeuds.unterschrift.choix.1": {
+   "fr": "Et vous notez les prescriptions dans le dossier, s'il vous plaît ? Je dirai alors à {brandt} qu'il pourra prendre une douche à partir de demain.",
+   "de": "Und tragen Sie die Anordnungen bitte noch in die Kurve ein? Ich sage {brandt:dat} dann, dass er ab morgen duschen darf.",
+   "ar": "وهل تسجّلين الأوامر في ملف التمريض من فضلك؟ وسأقول لـ{brandt} بعدها إنه يستطيع الاستحمام ابتداءً من الغد."
+  },
+  "noeuds.unterschrift.choix.1.puis.0": {
+   "fr": "Oui, juste après la visite. Ça lui fera sûrement plaisir.",
+   "de": "Ja, gleich nach der Visite. Das freut ihn bestimmt.",
+   "ar": "نعم، مباشرة بعد الجولة. سيفرح بذلك بالتأكيد."
+  },
+  "ecouter.0.q": {
+   "fr": "Qu'a montré le scanner de {brandt} ?",
+   "de": "Was hat das CT bei {brandt:dat} gezeigt?",
+   "ar": "ماذا أظهر التصوير المقطعي عند {brandt}؟"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Une embolie pulmonaire.",
+   "de": "Eine Lungenembolie.",
+   "ar": "انصمامًا رئويًا."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Une pneumonie à droite.",
+   "de": "Eine Lungenentzündung rechts.",
+   "ar": "التهابًا رئويًا في الجهة اليمنى."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Rien, tout était normal.",
+   "de": "Nichts, alles war normal.",
+   "ar": "لا شيء، كل شيء كان طبيعيًا."
+  },
+  "ecouter.1.q": {
+   "fr": "Quand faut-il réduire l'oxygène ?",
+   "de": "Wann soll der Sauerstoff reduziert werden?",
+   "ar": "متى يجب تخفيض الأكسجين؟"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Si la saturation reste au-dessus de 92 %.",
+   "de": "Wenn die Sättigung über zweiundneunzig Prozent bleibt.",
+   "ar": "إذا بقي التشبّع فوق 92 %."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Tout de suite après la visite.",
+   "de": "Sofort nach der Visite.",
+   "ar": "فورًا بعد الجولة الطبية."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Si la fièvre monte.",
+   "de": "Wenn das Fieber steigt.",
+   "ar": "إذا ارتفعت الحرارة."
+  },
+  "ecouter.2.q": {
+   "fr": "À partir de quand {brandt} peut-il prendre une douche ?",
+   "de": "Ab wann darf {brandt} duschen?",
+   "ar": "من متى يُسمح لـ{brandt} بالاستحمام؟"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Aujourd'hui, après la visite.",
+   "de": "Heute nach der Visite.",
+   "ar": "اليوم، بعد الجولة الطبية."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Seulement après la rééducation.",
+   "de": "Erst nach der Reha.",
+   "ar": "فقط بعد إعادة التأهيل."
+  },
+  "ecouter.2.options.2": {
+   "fr": "À partir de demain, avec un pansement étanche.",
+   "de": "Ab morgen, mit einem wasserdichten Pflaster.",
+   "ar": "ابتداءً من الغد، بضماد مقاوم للماء."
+  }
+ }
+}

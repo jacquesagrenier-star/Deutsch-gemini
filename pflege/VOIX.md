@@ -141,3 +141,33 @@ Chiffrage :
 - **refonte** : les 100 répliques à accent des cinq soignants (Elif 58, Arun 17, Olena 10, Amira 8,
   Yusuf 7), **8 819 caractères, soit ≈ 8 800 crédits** (≈ 1,5 $), les fichiers neutres restant tels quels.
 Rien n'est lancé sans l'autorisation de Jacques écrite dans la session.
+
+## Les 14 dialogues de plus, d13 à d26 (mandat B, chiffrage du 15 nov. 2026)
+
+Mesuré à blanc par `python pflege/outils/voix.py` (rien n'est dépensé), sur le même périmètre que le premier
+lot : chemin modèle, Redemittel et questions d'écoute, nombres en lettres, fichiers déjà faits déduits.
+
+| Ce qui est dit | Caractères |
+|---|---|
+| Répliques du chemin modèle (`r/…`) | 24 769 |
+| Redemittel (`rm/…`, Aurora) | 5 627 |
+| Questions d'écoute et leurs choix (`q/…`, Aurora) | 5 037 |
+| **Total à produire** : 529 fichiers distincts | **≈ 35 300 crédits** |
+| Coût | **≈ 6,0 $** (≈ 7,8 $ avec 30 % de reprises ; le premier lot en a demandé 2 %) |
+
+- Par voix : `f_jung` (Elif) 12 456, `aurora` 10 555, `f_reif` (Hoffmann, Frau Aksoy, Monika Schulze)
+  2 457, `f_mittel` (Frau Krüger, Olena) 2 456, `radio_m` (Jonas, Arun) 2 407, `radio_f` (Dr. Sommer) 1 403,
+  `f_alt` (Frau Lehmann) 1 315, `m_alt` (Herr Brandt, Herr Schulze) 1 118, `m_jung` (Yusuf) 730,
+  `m_mittel` (Herr Richter) 427.
+- **Plus que les ≈ 4 $ du plan** (« la moitié du chemin modèle ») : les dix dialogues B2 ont des
+  répliques plus longues (la visite, le téléphone, la sortie), et le lot est en fait de la taille du
+  premier (≈ 34 500 crédits). C'est au-delà des 20 % de l'estimation : **nouvel accord nécessaire** (règle 9).
+- Trois rôles de l'examen parlent hors de l'examen, avec une voix déjà au compte : Frau Aksoy (labo) et
+  Monika Schulze en `f_reif`, Herr Richter (pharmacie) en `m_mittel` (`pflege/sources/voix.json`). Aucune
+  des deux ne croise l'autre voix `f_reif` (Frau Hoffmann) dans un même dialogue. À aligner avec l'examen
+  blanc s'il leur a donné d'autres voix.
+- **Si l'accent des soignants est retenu** (section précédente), leurs répliques de d13-d26 demandent en plus
+  leur fichier à accent (`ra/…`) : Elif 12 456, Olena 1 479, Arun 1 047, Yusuf 730 caractères, soit
+  **≈ 15 700 crédits (≈ 2,7 $)**, et 0 pour Amira (absente de d13-d26). Les fichiers neutres restent
+  nécessaires (« à répéter », « jouer son rôle ») : la part à accent s'ajoute, elle ne remplace rien.
+- Rien n'est lancé : ni le lot, ni sa part à accent. C'est le chef qui le présente à Jacques.

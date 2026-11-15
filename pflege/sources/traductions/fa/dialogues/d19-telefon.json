@@ -1,0 +1,410 @@
+{
+ "_langue": "fa",
+ "_source": "pflege/sources/dialogues/d19-telefon.json",
+ "cles": {
+  "titre": {
+   "fr": "Au téléphone : le laboratoire et la pharmacie",
+   "de": "Am Telefon: Labor und Apotheke",
+   "fa": "پشت تلفن: آزمایشگاه و داروخانه"
+  },
+  "intro": {
+   "fr": "Fin de matinée au poste de soins. Le téléphone sonne : c'est {aksoy}, du laboratoire, avec une valeur critique pour {lehmann}. Tu joues {elif} : tu notes, tu vérifies l'identité de la patiente, tu relis la valeur et tu demandes le nom de ton interlocutrice. Puis tu appelles toi-même la pharmacie de l'hôpital, {richter}, pour commander de l'insuline et poser une question sur un comprimé.",
+   "fa": "اواخر صبح در ایستگاه پرستاری. تلفن زنگ می‌زند: {aksoy} از آزمایشگاه است، با یک مقدار بحرانی برای {lehmann}. تو نقش {elif} را بازی می‌کنی: یادداشت می‌کنی، هویت بیمار را بررسی می‌کنی، مقدار را تکرار می‌کنی و نام طرف صحبتت را می‌پرسی. بعد خودت به داروخانه‌ی بیمارستان، {richter}، زنگ می‌زنی تا انسولین سفارش بدهی و درباره‌ی یک قرص سؤال کنی."
+  },
+  "but": {
+   "fr": "Répondre au téléphone d'un service (nom du service, son nom) ; recevoir une valeur critique : identifier la patiente (nom, date de naissance), relire la valeur, demander le nom de la personne, dire ce qu'on fait ; appeler un service : se présenter, dire ce qu'on veut avec précision (produit, dosage), poser une question ; résumer avant de raccrocher.",
+   "fa": "جواب دادن به تلفن بخش (نام بخش، نام خود)؛ دریافت یک مقدار بحرانی: شناسایی بیمار (نام، تاریخ تولد)، تکرار مقدار، پرسیدن نام فرد، گفتن اقدام بعدی؛ تماس با یک بخش: معرفی خود، گفتن دقیق درخواست (فرآورده، دوز)، پرسیدن سؤال؛ جمع‌بندی پیش از قطع تماس."
+  },
+  "relire_notes": {
+   "fr": "Valeur critique : potassium 6,2 mmol/l (seuil d'appel du laboratoire), échantillon non hémolysé, conduite (relire, noter l'heure et le nom, informer la médecin tout de suite) ; insuline lispro 100 UI/ml en stylo prérempli (cohérence avec le schéma de Frau Lehmann) ; un comprimé à libération prolongée (métoprolol retard) ne s'écrase pas : demander une autre forme à la médecin.",
+   "fa": "مقدار بحرانی: پتاسیم 6,2 mmol/l (آستانه‌ی تماس آزمایشگاه)، نمونه‌ی بدون همولیز، اقدام (تکرار، ثبت ساعت و نام، اطلاع فوری به پزشک)؛ انسولین لیسپرو 100 واحد در میلی‌لیتر در قلم آماده (هماهنگ با برنامه‌ی انسولین بیمار)؛ قرص آهسته‌رهش (متوپرولول ریتارد) را نباید خرد کرد: شکل دارویی دیگری از پزشک بخواهید."
+  },
+  "redemittel.0": {
+   "fr": "{station}, {elif} à l'appareil, bonjour.",
+   "de": "{station}, {elif} am Apparat, guten Tag.",
+   "fa": "{station}، {elif} هستم، روز بخیر."
+  },
+  "redemittel.1": {
+   "fr": "Un instant, je prends de quoi écrire.",
+   "de": "Einen Moment, ich nehme mir etwas zum Schreiben.",
+   "fa": "یک لحظه، کاغذ و قلم برمی‌دارم."
+  },
+  "redemittel.2": {
+   "fr": "C'est pour quel patient ? Pouvez-vous me donner la date de naissance, s'il vous plaît ?",
+   "de": "Um welchen Patienten geht es? Können Sie mir bitte das Geburtsdatum sagen?",
+   "fa": "درباره‌ی کدام بیمار است؟ لطفاً می‌توانید تاریخ تولد را بگویید؟"
+  },
+  "redemittel.3": {
+   "fr": "Je répète : potassium six virgule deux millimoles par litre.",
+   "de": "Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter.",
+   "fa": "تکرار می‌کنم: پتاسیم شش ممیز دو میلی‌مول در لیتر."
+  },
+  "redemittel.4": {
+   "fr": "Quel est votre nom, s'il vous plaît ?",
+   "de": "Wie war Ihr Name, bitte?",
+   "fa": "لطفاً نامتان چه بود؟"
+  },
+  "redemittel.5": {
+   "fr": "Je transmets tout de suite la valeur à la médecin.",
+   "de": "Ich gebe den Wert sofort an die Ärztin weiter.",
+   "fa": "مقدار را همین الان به خانم دکتر اطلاع می‌دهم."
+  },
+  "redemittel.6": {
+   "fr": "Pourriez-vous nous en livrer encore aujourd'hui ?",
+   "de": "Könnten Sie uns heute noch welche liefern?",
+   "fa": "می‌توانید همین امروز چند تا برایمان بفرستید؟"
+  },
+  "redemittel.7": {
+   "fr": "A-t-on le droit d'écraser ce comprimé ?",
+   "de": "Darf man diese Tablette mörsern?",
+   "fa": "اجازه هست این قرص را خرد کرد؟"
+  },
+  "noeuds.melden.dit.0.recit": {
+   "fr": "11 h 20, au poste de soins. {elif} est seule, ses collègues sont dans les chambres. Le téléphone sonne.",
+   "fa": "ساعت 11:20، در ایستگاه پرستاری. {elif} تنهاست، همکارانش در اتاق‌ها هستند. تلفن زنگ می‌زند."
+  },
+  "noeuds.melden.choix.0": {
+   "fr": "{station}, {elif} à l'appareil, bonjour.",
+   "de": "{station}, {elif} am Apparat, guten Tag.",
+   "fa": "{station}، {elif} هستم، روز بخیر."
+  },
+  "noeuds.melden.choix.0.puis.0": {
+   "fr": "Bonjour, ici {aksoy}, du laboratoire central. J'ai une valeur critique pour vous.",
+   "de": "Guten Tag, hier ist {aksoy} aus dem Zentrallabor. Ich habe einen kritischen Wert für Sie.",
+   "fa": "روز بخیر، {aksoy} هستم از آزمایشگاه مرکزی. یک مقدار بحرانی برایتان دارم."
+  },
+  "noeuds.melden.choix.1": {
+   "fr": "Bonjour, {station}, vous parlez à {elif}.",
+   "de": "Guten Tag, {station}, Sie sprechen mit {elif}.",
+   "fa": "روز بخیر، {station}، با {elif} صحبت می‌کنید."
+  },
+  "noeuds.melden.choix.1.puis.0": {
+   "fr": "Bonjour, ici {aksoy}, du laboratoire central. J'ai une valeur critique pour vous.",
+   "de": "Guten Tag, hier ist {aksoy} aus dem Zentrallabor. Ich habe einen kritischen Wert für Sie.",
+   "fa": "روز بخیر، {aksoy} هستم از آزمایشگاه مرکزی. یک مقدار بحرانی برایتان دارم."
+  },
+  "noeuds.melden.choix.2": {
+   "fr": "Allô ?",
+   "de": "Hallo?",
+   "fa": "الو؟"
+  },
+  "noeuds.melden.choix.2.puis.0": {
+   "fr": "Euh… je suis bien au service 4B ?",
+   "de": "Äh … bin ich auf der Station vier B?",
+   "fa": "اِ… بخش 4B است؟"
+  },
+  "noeuds.melden.choix.2.aide": {
+   "fr": "<b>Au téléphone de l'hôpital, on répond avec le service et son nom.</b> « Station 4B, Elif am Apparat, guten Tag. » La personne sait tout de suite qu'elle a le bon service et à qui elle parle.",
+   "fa": "<b>پشت تلفن بیمارستان با نام بخش و نام خود جواب می‌دهند.</b> «Station 4B, Elif am Apparat, guten Tag.» طرف مقابل فوراً می‌فهمد که بخش را درست گرفته و با چه کسی صحبت می‌کند."
+  },
+  "noeuds.patient.choix.0": {
+   "fr": "Un instant, je prends de quoi écrire. Voilà, c'est pour quel patient ?",
+   "de": "Einen Moment, ich nehme mir etwas zum Schreiben. So, um welchen Patienten geht es?",
+   "fa": "یک لحظه، کاغذ و قلم برمی‌دارم. خب، درباره‌ی کدام بیمار است؟"
+  },
+  "noeuds.patient.choix.0.puis.0": {
+   "fr": "Pour {lehmann}, née le 21 août 1952.",
+   "de": "Um {lehmann}, geboren am 21. August 1952.",
+   "fa": "درباره‌ی {lehmann}، متولد 21 اوت 1952."
+  },
+  "noeuds.patient.choix.1": {
+   "fr": "Un instant, s'il vous plaît, je note. Pouvez-vous me donner le nom et la date de naissance ?",
+   "de": "Moment bitte, ich schreibe mit. Können Sie mir den Namen und das Geburtsdatum sagen?",
+   "fa": "یک لحظه لطفاً، یادداشت می‌کنم. می‌توانید نام و تاریخ تولد را بگویید؟"
+  },
+  "noeuds.patient.choix.1.puis.0": {
+   "fr": "Pour {lehmann}, née le 21 août 1952.",
+   "de": "Um {lehmann}, geboren am 21. August 1952.",
+   "fa": "درباره‌ی {lehmann}، متولد 21 اوت 1952."
+  },
+  "noeuds.patient.choix.2": {
+   "fr": "Oui, allez-y.",
+   "de": "Ja, sagen Sie.",
+   "fa": "بله، بفرمایید."
+  },
+  "noeuds.patient.choix.2.puis.0": {
+   "fr": "Vous avez de quoi écrire ? C'est important.",
+   "de": "Haben Sie etwas zum Schreiben? Es ist wichtig.",
+   "fa": "کاغذ و قلم دارید؟ مهم است."
+  },
+  "noeuds.patient.choix.2.aide": {
+   "fr": "<b>Une valeur critique ne se retient pas de tête : prends de quoi écrire, puis fais-toi dire le patient.</b> « Einen Moment, ich nehme mir etwas zum Schreiben. Um welchen Patienten geht es? »",
+   "fa": "<b>مقدار بحرانی را از حفظ نگه نمی‌دارند: کاغذ و قلم بردار، بعد بپرس کدام بیمار.</b> «Einen Moment, ich nehme mir etwas zum Schreiben. Um welchen Patienten geht es?»"
+  },
+  "noeuds.identitaet.choix.0": {
+   "fr": "{lehmann}, née le 21 août 1952. Oui, c'est notre patiente. Quelle valeur ?",
+   "de": "{lehmann}, geboren am 21. August 1952. Ja, das ist unsere Patientin. Welcher Wert ist es?",
+   "fa": "{lehmann}، متولد 21 اوت 1952. بله، بیمار ماست. کدام مقدار است؟"
+  },
+  "noeuds.identitaet.choix.0.puis.0": {
+   "fr": "Le potassium : 6,2 millimoles par litre.",
+   "de": "Das Kalium: 6,2 Millimol pro Liter.",
+   "fa": "پتاسیم: 6,2 میلی‌مول در لیتر."
+  },
+  "noeuds.identitaet.choix.1": {
+   "fr": "J'ai {lehmann}, 21 août 52. C'est ça, elle est chez nous. Qu'est-ce qui est anormal ?",
+   "de": "Ich habe {lehmann}, einundzwanzigster August zweiundfünfzig. Stimmt, sie liegt bei uns. Was ist auffällig?",
+   "fa": "{lehmann} را دارم، 21 اوت 52. درست است، پیش ما بستری است. چه چیزی غیرطبیعی است؟"
+  },
+  "noeuds.identitaet.choix.1.puis.0": {
+   "fr": "Le potassium : 6,2 millimoles par litre.",
+   "de": "Das Kalium: 6,2 Millimol pro Liter.",
+   "fa": "پتاسیم: 6,2 میلی‌مول در لیتر."
+  },
+  "noeuds.identitaet.choix.2": {
+   "fr": "Pardon, la ligne est mauvaise. Quelle était la date de naissance ?",
+   "de": "Entschuldigung, die Verbindung ist schlecht. Wie war das Geburtsdatum?",
+   "fa": "ببخشید، خط خراب است. تاریخ تولد چه بود؟"
+  },
+  "noeuds.identitaet.choix.2.puis.0": {
+   "fr": "Vingt et un août mille neuf cent cinquante-deux.",
+   "de": "Einundzwanzigster August neunzehnhundertzweiundfünfzig.",
+   "fa": "بیست و یکم اوت هزار و نهصد و پنجاه و دو."
+  },
+  "noeuds.wert.choix.0": {
+   "fr": "Je répète : potassium six virgule deux millimoles par litre. Quel est votre nom, s'il vous plaît ?",
+   "de": "Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte?",
+   "fa": "تکرار می‌کنم: پتاسیم شش ممیز دو میلی‌مول در لیتر. لطفاً نامتان چه بود؟"
+  },
+  "noeuds.wert.choix.0.puis.0": {
+   "fr": "C'est ça. {aksoy}, laboratoire central. L'échantillon n'est pas hémolysé, la valeur est donc fiable.",
+   "de": "Richtig. {aksoy}, Zentrallabor. Die Probe ist nicht hämolysiert, der Wert ist also echt.",
+   "fa": "درست است. {aksoy}، آزمایشگاه مرکزی. نمونه همولیز نشده، پس مقدار واقعی است."
+  },
+  "noeuds.wert.choix.1": {
+   "fr": "Potassium six virgule deux, c'est noté. Et à qui ai-je parlé ?",
+   "de": "Kalium sechs Komma zwei, habe ich notiert. Und mit wem habe ich gesprochen?",
+   "fa": "پتاسیم شش ممیز دو، یادداشت کردم. و با چه کسی صحبت کردم؟"
+  },
+  "noeuds.wert.choix.1.puis.0": {
+   "fr": "C'est ça. {aksoy}, laboratoire central. L'échantillon n'est pas hémolysé, la valeur est donc fiable.",
+   "de": "Richtig. {aksoy}, Zentrallabor. Die Probe ist nicht hämolysiert, der Wert ist also echt.",
+   "fa": "درست است. {aksoy}، آزمایشگاه مرکزی. نمونه همولیز نشده، پس مقدار واقعی است."
+  },
+  "noeuds.wert.choix.2": {
+   "fr": "Oui oui, d'accord, je transmets. Salut !",
+   "de": "Ja ja, okay, ich sage es weiter. Tschüss!",
+   "fa": "بله بله، باشه، خبر می‌دهم. خداحافظ!"
+  },
+  "noeuds.wert.choix.2.puis.0": {
+   "fr": "Attendez ! Répétez la valeur, s'il vous plaît, et notez mon nom.",
+   "de": "Moment! Wiederholen Sie bitte den Wert, und notieren Sie meinen Namen.",
+   "fa": "صبر کنید! لطفاً مقدار را تکرار کنید، و نام مرا یادداشت کنید."
+  },
+  "noeuds.wert.choix.2.aide": {
+   "fr": "<b>Une valeur critique se relit à voix haute, et on note qui l'a donnée et à quelle heure.</b> « Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte? » Au téléphone, c'est la seule façon de voir une erreur.",
+   "fa": "<b>مقدار بحرانی را با صدای بلند تکرار می‌کنند، و یادداشت می‌کنند چه کسی و چه ساعتی آن را داده است.</b> «Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte?» پشت تلفن این تنها راه دیدن خطاست."
+  },
+  "noeuds.weiter.choix.0": {
+   "fr": "Merci, {aksoy}. Je transmets tout de suite la valeur à la médecin.",
+   "de": "Danke, {aksoy}. Ich gebe den Wert sofort an die Ärztin weiter.",
+   "fa": "ممنون، {aksoy}. مقدار را همین الان به خانم دکتر اطلاع می‌دهم."
+  },
+  "noeuds.weiter.choix.0.puis.0": {
+   "fr": "Merci. Au revoir.",
+   "de": "Danke. Auf Wiederhören.",
+   "fa": "ممنون. خداحافظ."
+  },
+  "noeuds.weiter.choix.1": {
+   "fr": "Merci beaucoup. Je préviens tout de suite la médecin du service et je note l'appel avec l'heure.",
+   "de": "Vielen Dank. Ich informiere gleich die Stationsärztin und dokumentiere den Anruf mit der Uhrzeit.",
+   "fa": "خیلی ممنون. همین الان به پزشک بخش خبر می‌دهم و تماس را با ساعتش ثبت می‌کنم."
+  },
+  "noeuds.weiter.choix.1.puis.0": {
+   "fr": "Merci. Au revoir.",
+   "de": "Danke. Auf Wiederhören.",
+   "fa": "ممنون. خداحافظ."
+  },
+  "noeuds.apotheke.dit.0.recit": {
+   "fr": "{elif} prévient tout de suite {sommer}, qui va voir {lehmann}. Puis elle prépare la commande : il ne reste qu'un stylo d'insuline pour {lehmann}. Elle appelle la pharmacie de l'hôpital.",
+   "fa": "{elif} فوراً به {sommer} خبر می‌دهد و او به دیدن {lehmann} می‌رود. بعد سفارش را آماده می‌کند: فقط یک قلم انسولین برای {lehmann} مانده است. به داروخانه‌ی بیمارستان زنگ می‌زند."
+  },
+  "noeuds.apotheke.dit.1": {
+   "fr": "Pharmacie de l'hôpital, {richter:famille}, bonjour.",
+   "de": "Krankenhausapotheke, {richter:famille}, guten Tag.",
+   "fa": "داروخانه‌ی بیمارستان، {richter:famille}، روز بخیر."
+  },
+  "noeuds.apotheke.choix.0": {
+   "fr": "Bonjour, {richter:voc}, ici {elif}, du {station}. Nous n'avons presque plus de stylos d'insuline pour une patiente. Pourriez-vous nous en livrer encore aujourd'hui ?",
+   "de": "Guten Tag, {richter}, hier ist {elif} von der {station}. Uns gehen die Insulinpens für eine Patientin aus. Könnten Sie uns heute noch welche liefern?",
+   "fa": "روز بخیر، {richter:voc}، {elif} هستم از {station}. قلم‌های انسولین یکی از بیماران دارد تمام می‌شود. می‌توانید همین امروز چند تا برایمان بفرستید؟"
+  },
+  "noeuds.apotheke.choix.0.puis.0": {
+   "fr": "C'est possible. Quelle insuline exactement, et à quelle concentration ?",
+   "de": "Das geht. Welches Insulin genau, und in welcher Konzentration?",
+   "fa": "امکانش هست. دقیقاً کدام انسولین، و با چه غلظتی؟"
+  },
+  "noeuds.apotheke.choix.1": {
+   "fr": "Ici {elif}, {station}. J'appelle pour une commande : nous avons besoin d'urgence de stylos d'insuline.",
+   "de": "Hier ist {elif}, {station}. Ich rufe wegen einer Bestellung an: Wir brauchen dringend Insulinpens.",
+   "fa": "{elif} هستم، {station}. برای یک سفارش زنگ می‌زنم: فوری قلم انسولین لازم داریم."
+  },
+  "noeuds.apotheke.choix.1.puis.0": {
+   "fr": "C'est possible. Quelle insuline exactement, et à quelle concentration ?",
+   "de": "Das geht. Welches Insulin genau, und in welcher Konzentration?",
+   "fa": "امکانش هست. دقیقاً کدام انسولین، و با چه غلظتی؟"
+  },
+  "noeuds.apotheke.choix.2": {
+   "fr": "Oui, allô, on a besoin d'insuline.",
+   "de": "Ja, hallo, wir brauchen Insulin.",
+   "fa": "بله، الو، ما انسولین لازم داریم."
+  },
+  "noeuds.apotheke.choix.2.puis.0": {
+   "fr": "Et qui est « on » ? Vous appelez de quel service ?",
+   "de": "Und wer sind „wir“? Von welcher Station rufen Sie an?",
+   "fa": "«ما» یعنی چه کسی؟ از کدام بخش زنگ می‌زنید؟"
+  },
+  "noeuds.apotheke.choix.2.aide": {
+   "fr": "<b>Quand c'est toi qui appelles, dis d'abord qui tu es et d'où tu appelles, puis ce que tu veux.</b> « Hier ist Elif von der Station 4B. Könnten Sie uns heute noch Insulinpens liefern? »",
+   "fa": "<b>وقتی خودت زنگ می‌زنی، اول بگو کی هستی و از کجا زنگ می‌زنی، بعد چه می‌خواهی.</b> «Hier ist Elif von der Station 4B. Könnten Sie uns heute noch Insulinpens liefern?»"
+  },
+  "noeuds.insulin.choix.0": {
+   "fr": "De l'insuline lispro, 100 unités par millilitre, en stylo prérempli. Nous en voudrions cinq.",
+   "de": "Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen. Wir hätten gern fünf Stück.",
+   "fa": "انسولین لیسپرو، صد واحد در میلی‌لیتر، به شکل قلم آماده. پنج عدد می‌خواستیم."
+  },
+  "noeuds.insulin.choix.0.puis.0": {
+   "fr": "On en a. Je vous envoie cinq stylos avec le transport avant 14 heures. Autre chose ?",
+   "de": "Haben wir da. Ich schicke Ihnen fünf Pens mit dem Transport vor vierzehn Uhr. Sonst noch etwas?",
+   "fa": "داریم. پنج قلم با سرویس حمل قبل از ساعت 14 برایتان می‌فرستم. چیز دیگری هم هست؟"
+  },
+  "noeuds.insulin.choix.1": {
+   "fr": "C'est de l'insuline lispro en stylo prérempli, 100 unités par millilitre. Cinq stylos, ce serait bien.",
+   "de": "Es ist Insulin lispro im Fertigpen, hundert Einheiten pro Milliliter. Fünf Pens wären gut.",
+   "fa": "انسولین لیسپرو در قلم آماده است، صد واحد در میلی‌لیتر. پنج قلم خوب می‌شود."
+  },
+  "noeuds.insulin.choix.1.puis.0": {
+   "fr": "On en a. Je vous envoie cinq stylos avec le transport avant 14 heures. Autre chose ?",
+   "de": "Haben wir da. Ich schicke Ihnen fünf Pens mit dem Transport vor vierzehn Uhr. Sonst noch etwas?",
+   "fa": "داریم. پنج قلم با سرویس حمل قبل از ساعت 14 برایتان می‌فرستم. چیز دیگری هم هست؟"
+  },
+  "noeuds.insulin.choix.2": {
+   "fr": "L'insuline normale, celle qu'elle a toujours.",
+   "de": "Das normale Insulin, das sie immer bekommt.",
+   "fa": "همان انسولین معمولی، همانی که همیشه می‌گیرد."
+  },
+  "noeuds.insulin.choix.2.puis.0": {
+   "fr": "« La normale », ça n'existe pas chez nous. J'ai besoin du nom et de la concentration.",
+   "de": "„Das normale“ gibt es bei uns nicht. Ich brauche den Namen und die Konzentration.",
+   "fa": "«معمولی» پیش ما وجود ندارد. نام و غلظت را لازم دارم."
+  },
+  "noeuds.insulin.choix.2.aide": {
+   "fr": "<b>Un médicament se commande avec son nom exact, sa concentration et sa forme.</b> « Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen. » Lis-le sur l'emballage ou dans le dossier avant d'appeler.",
+   "fa": "<b>دارو را با نام دقیق، غلظت و شکل دارویی‌اش سفارش می‌دهند.</b> «Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen.» پیش از تماس آن را روی بسته‌بندی یا در پرونده بخوان."
+  },
+  "noeuds.moerser.choix.0": {
+   "fr": "Oui, encore une question : peut-on écraser des comprimés de métoprolol à libération prolongée ? Un patient avale mal depuis un AVC.",
+   "de": "Ja, eine Frage noch: Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann nach einem Schlaganfall schlecht schlucken.",
+   "fa": "بله، یک سؤال دیگر: اجازه هست قرص‌های متوپرولول ریتارد را خرد کرد؟ یک بیمار بعد از سکته‌ی مغزی به‌سختی قورت می‌دهد."
+  },
+  "noeuds.moerser.choix.0.puis.0": {
+   "fr": "Non, un comprimé à libération prolongée ne s'écrase pas, sinon tout agit d'un coup. Demandez à la médecin une autre forme. Je vous envoie une liste des alternatives par mail.",
+   "de": "Nein, eine Retardtablette bitte nicht mörsern, sonst wirkt alles auf einmal. Fragen Sie die Ärztin nach einer anderen Darreichungsform. Ich schicke Ihnen eine Liste mit Alternativen per Mail.",
+   "fa": "نه، قرص آهسته‌رهش را لطفاً خرد نکنید، وگرنه همه‌اش یک‌جا اثر می‌کند. از پزشک شکل دارویی دیگری بخواهید. فهرستی از جایگزین‌ها را برایتان ایمیل می‌کنم."
+  },
+  "noeuds.moerser.choix.1": {
+   "fr": "J'aurais encore une question : puis-je écraser un comprimé de métoprolol à libération prolongée ? Le patient a des troubles de la déglutition.",
+   "de": "Ich hätte noch eine Frage: Kann ich eine Retardtablette von Metoprolol zerkleinern? Der Patient hat Schluckstörungen.",
+   "fa": "یک سؤال دیگر هم داشتم: می‌توانم قرص آهسته‌رهش متوپرولول را خرد کنم؟ بیمار اختلال بلع دارد."
+  },
+  "noeuds.moerser.choix.1.puis.0": {
+   "fr": "Non, un comprimé à libération prolongée ne s'écrase pas, sinon tout agit d'un coup. Demandez à la médecin une autre forme. Je vous envoie une liste des alternatives par mail.",
+   "de": "Nein, eine Retardtablette bitte nicht mörsern, sonst wirkt alles auf einmal. Fragen Sie die Ärztin nach einer anderen Darreichungsform. Ich schicke Ihnen eine Liste mit Alternativen per Mail.",
+   "fa": "نه، قرص آهسته‌رهش را لطفاً خرد نکنید، وگرنه همه‌اش یک‌جا اثر می‌کند. از پزشک شکل دارویی دیگری بخواهید. فهرستی از جایگزین‌ها را برایتان ایمیل می‌کنم."
+  },
+  "noeuds.moerser.choix.2": {
+   "fr": "Non, merci. Ah, au fait, on peut toujours écraser les comprimés, non ?",
+   "de": "Nein, danke. Ach so, Tabletten kann man doch immer mörsern, oder?",
+   "fa": "نه، ممنون. آهان راستی، قرص‌ها را همیشه می‌شود خرد کرد، نه؟"
+  },
+  "noeuds.moerser.choix.2.puis.0": {
+   "fr": "Surtout pas toujours ! Quel comprimé voulez-vous dire ?",
+   "de": "Auf keinen Fall immer! Welche Tablette meinen Sie?",
+   "fa": "به هیچ وجه همیشه نه! منظورتان کدام قرص است؟"
+  },
+  "noeuds.moerser.choix.2.aide": {
+   "fr": "<b>Pose une question précise : quel médicament, quelle forme, pourquoi.</b> « Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann schlecht schlucken. » Un comprimé « retard » ne s'écrase pas : c'est la pharmacie ou la médecin qui donne une autre forme.",
+   "fa": "<b>سؤال دقیق بپرس: کدام دارو، کدام شکل دارویی، چرا.</b> «Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann schlecht schlucken.» قرص «retard» خرد نمی‌شود: داروخانه یا پزشک شکل دارویی دیگری می‌دهد."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Donc : cinq stylos d'insuline lispro avant 14 heures, et on n'écrase pas les comprimés retard, j'en parle à la médecin. Merci beaucoup !",
+   "de": "Also: fünf Pens Insulin lispro vor vierzehn Uhr, und die Retardtabletten nicht mörsern, ich spreche mit der Ärztin. Vielen Dank!",
+   "fa": "پس: پنج قلم انسولین لیسپرو قبل از ساعت 14، و قرص‌های آهسته‌رهش را خرد نمی‌کنیم، با خانم دکتر صحبت می‌کنم. خیلی ممنون!"
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Exactement. Avec plaisir, au revoir.",
+   "de": "Genau. Gern geschehen, auf Wiederhören.",
+   "fa": "دقیقاً. خواهش می‌کنم، خداحافظ."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Merci, ça m'aide beaucoup. J'attends les stylos et la liste. Au revoir !",
+   "de": "Danke, das hilft mir sehr. Ich warte auf die Pens und die Liste. Auf Wiederhören!",
+   "fa": "ممنون، خیلی کمکم کرد. منتظر قلم‌ها و فهرست هستم. خداحافظ!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Avec plaisir, au revoir.",
+   "de": "Gern geschehen, auf Wiederhören.",
+   "fa": "خواهش می‌کنم، خداحافظ."
+  },
+  "ecouter.0.q": {
+   "fr": "Quelle valeur est critique chez {lehmann} ?",
+   "de": "Welcher Wert ist bei {lehmann} kritisch?",
+   "fa": "کدام مقدار در {lehmann} بحرانی است؟"
+  },
+  "ecouter.0.options.0": {
+   "fr": "La glycémie.",
+   "de": "Der Blutzucker.",
+   "fa": "قند خون."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Le potassium.",
+   "de": "Das Kalium.",
+   "fa": "پتاسیم."
+  },
+  "ecouter.0.options.2": {
+   "fr": "La tension.",
+   "de": "Der Blutdruck.",
+   "fa": "فشار خون."
+  },
+  "ecouter.1.q": {
+   "fr": "Que fait {elif} tout de suite après l'appel du laboratoire ?",
+   "de": "Was macht {elif} sofort nach dem Anruf des Labors?",
+   "fa": "{elif} بلافاصله بعد از تماس آزمایشگاه چه کار می‌کند؟"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Elle prévient la médecin.",
+   "de": "Sie informiert die Ärztin.",
+   "fa": "به خانم دکتر خبر می‌دهد."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Elle appelle la fille.",
+   "de": "Sie ruft die Tochter an.",
+   "fa": "به دختر بیمار زنگ می‌زند."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Elle attend la visite.",
+   "de": "Sie wartet bis zur Visite.",
+   "fa": "تا ویزیت صبر می‌کند."
+  },
+  "ecouter.2.q": {
+   "fr": "Que dit {richter} des comprimés à libération prolongée ?",
+   "de": "Was sagt {richter} über die Retardtabletten?",
+   "fa": "{richter} درباره‌ی قرص‌های آهسته‌رهش چه می‌گوید؟"
+  },
+  "ecouter.2.options.0": {
+   "fr": "On peut toujours les écraser.",
+   "de": "Man kann sie immer mörsern.",
+   "fa": "همیشه می‌شود خردشان کرد."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Il faut les dissoudre dans l'eau.",
+   "de": "Man soll sie in Wasser auflösen.",
+   "fa": "باید آن‌ها را در آب حل کرد."
+  },
+  "ecouter.2.options.2": {
+   "fr": "On ne doit pas les écraser.",
+   "de": "Man darf sie nicht mörsern.",
+   "fa": "نباید خردشان کرد."
+  }
+ }
+}

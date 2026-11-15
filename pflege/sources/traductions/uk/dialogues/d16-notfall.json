@@ -1,0 +1,387 @@
+{
+ "_langue": "uk",
+ "_source": "pflege/sources/dialogues/d16-notfall.json",
+ "cles": {
+  "titre": {
+   "fr": "L'urgence : appeler à l'aide, réanimer",
+   "de": "Notfall im Zimmer",
+   "uk": "Невідкладний стан: покликати на допомогу, реанімувати"
+  },
+  "intro": {
+   "fr": "10 h 12. {elif} entre dans la chambre 14 : le patient ne bouge pas. Tu joues {elif} : vérifie s'il réagit, appelle à l'aide depuis la chambre (le bouton d'appel d'urgence, sans quitter le patient), dis l'essentiel en phrases courtes à {jonas}, commence le massage cardiaque, puis transmets à {sommer} quand l'équipe de réanimation arrive. Après, {jonas} te demande ce que tu ferais dans la rue.",
+   "uk": "10:12. {elif} заходить у палату 14: пацієнт не рухається. Ти в ролі {elif}: перевір, чи він реагує, поклич на допомогу з палати (кнопка екстреного виклику, не залишаючи пацієнта), скажи {jonas:dat} головне короткими фразами, почни непрямий масаж серця, а потім передай пацієнта {sommer:dat}, коли прийде реанімаційна бригада. Після цього {jonas} питає тебе, що робити, якщо таке трапиться на вулиці."
+  },
+  "but": {
+   "fr": "Agir et parler sous stress : vérifier la réaction, appeler à l'aide, dire l'essentiel en phrases courtes (style télégraphique), suivre la séquence de réanimation, se relayer ; transmettre au médecin (l'heure, l'état, ce qui a été fait) ; connaître les questions du 112 hors de l'hôpital.",
+   "uk": "Діяти й говорити в стресі: перевірити реакцію, покликати на допомогу, казати головне короткими фразами (телеграфний стиль), дотримуватися алгоритму реанімації, змінювати одне одного; передати пацієнта лікарці (час, стан, що вже зроблено); знати запитання служби 112 поза лікарнею."
+  },
+  "relire_notes": {
+   "fr": "Séquence de réanimation de base (ERC 2021 : réaction, appel à l'aide, voies aériennes, respiration au plus 10 secondes, respiration anormale ou gasps = arrêt, 30 compressions pour 2 insufflations, défibrillateur au plus tôt, relais toutes les 2 minutes) ; à l'hôpital, le numéro d'urgence interne et non le 112 ; le contenu de la transmission à l'équipe ; les questions du 112 (les « W-Fragen ») ; ce qu'une assistante de soins fait et ne fait pas dans une réanimation.",
+   "uk": "Алгоритм базової реанімації (ERC 2021: реакція, виклик допомоги, дихальні шляхи, оцінка дихання не довше 10 секунд, ненормальне дихання або агональні вдихи = зупинка серця, 30 компресій на 2 вдихи, дефібрилятор якомога раніше, зміна кожні 2 хвилини); у лікарні — внутрішній номер екстреного виклику, а не 112; зміст передачі пацієнта бригаді; запитання служби 112 (так звані «W-Fragen»); що помічниця медсестри робить і чого не робить під час реанімації."
+  },
+  "redemittel.0": {
+   "fr": "Allô ! Vous m'entendez ? Ouvrez les yeux !",
+   "de": "Hallo! Hören Sie mich? Machen Sie die Augen auf!",
+   "uk": "Алло! Ви мене чуєте? Розплющте очі!"
+  },
+  "redemittel.1": {
+   "fr": "À l'aide ! Urgence chambre 14 !",
+   "de": "Hilfe! Notfall in Zimmer 14!",
+   "uk": "Допоможіть! Невідкладний стан у палаті 14!"
+  },
+  "redemittel.2": {
+   "fr": "Inconscient, pas de respiration normale.",
+   "de": "Nicht ansprechbar, keine normale Atmung.",
+   "uk": "Без свідомості, нормального дихання немає."
+  },
+  "redemittel.3": {
+   "fr": "Appelle l'équipe de réanimation et apporte le défibrillateur !",
+   "de": "Ruf das Reanimationsteam und bring den Defi!",
+   "uk": "Виклич реанімаційну бригаду й принеси дефібрилятор!"
+  },
+  "redemittel.4": {
+   "fr": "Je fais les compressions, tu ventiles.",
+   "de": "Ich drücke, du beatmest.",
+   "uk": "Я роблю компресії, ти вентилюєш."
+  },
+  "redemittel.5": {
+   "fr": "Deux minutes sont passées. On change.",
+   "de": "Zwei Minuten sind um. Wir wechseln.",
+   "uk": "Дві хвилини минули. Міняємося."
+  },
+  "redemittel.6": {
+   "fr": "Réanimation depuis 10 h 13, un choc délivré.",
+   "de": "Reanimation seit zehn Uhr dreizehn, ein Schock abgegeben.",
+   "uk": "Реанімація з 10:13, один розряд проведено."
+  },
+  "redemittel.7": {
+   "fr": "Où ? Que s'est-il passé ? Combien de blessés ? Quelles blessures ? Attendre les questions.",
+   "de": "Wo ist es passiert? Was ist passiert? Wie viele Verletzte? Welche Verletzungen? Warten auf Rückfragen.",
+   "uk": "Де? Що сталося? Скільки постраждалих? Які травми? Чекати на уточнювальні запитання."
+  },
+  "noeuds.finden.dit.0.recit": {
+   "fr": "10 h 12. {elif} entre dans la chambre 14 avec le petit-déjeuner. Le patient est couché sur le dos, la tête sur le côté, les yeux fermés. Il ne bouge pas.",
+   "uk": "10:12. {elif} заходить у палату 14 зі сніданком. Пацієнт лежить на спині, голова повернута набік, очі заплющені. Він не рухається."
+  },
+  "noeuds.finden.choix.0": {
+   "fr": "Allô ! Vous m'entendez ? Ouvrez les yeux, s'il vous plaît !",
+   "de": "Hallo! Hören Sie mich? Machen Sie bitte die Augen auf!",
+   "uk": "Алло! Ви мене чуєте? Розплющте, будь ласка, очі!"
+  },
+  "noeuds.finden.choix.1": {
+   "fr": "Vous pouvez m'entendre ? Serrez-moi la main !",
+   "de": "Können Sie mich hören? Drücken Sie meine Hand!",
+   "uk": "Ви мене чуєте? Стисніть мою руку!"
+  },
+  "noeuds.rufen.dit.0.recit": {
+   "fr": "{elif} lui secoue doucement les épaules. Aucune réaction.",
+   "uk": "{elif} обережно трясе його за плечі. Жодної реакції."
+  },
+  "noeuds.rufen.choix.0": {
+   "fr": "À l'aide ! Urgence chambre 14 ! J'ai besoin d'aide !",
+   "de": "Hilfe! Notfall in Zimmer 14! Ich brauche Hilfe!",
+   "uk": "Допоможіть! Невідкладний стан у палаті 14! Мені потрібна допомога!"
+  },
+  "noeuds.rufen.choix.0.puis.0": {
+   "fr": "Je suis là ! Qu'est-ce qui se passe ?",
+   "de": "Ich bin da! Was ist los?",
+   "uk": "Я тут! Що сталося?"
+  },
+  "noeuds.rufen.choix.1": {
+   "fr": "Urgence ! Venez vite à la 14, s'il vous plaît !",
+   "de": "Notfall! Kommt bitte schnell in die Vierzehn!",
+   "uk": "Невідкладний стан! Швидко до чотирнадцятої, будь ласка!"
+  },
+  "noeuds.rufen.choix.1.puis.0": {
+   "fr": "Je suis là ! Qu'est-ce qui se passe ?",
+   "de": "Ich bin da! Was ist los?",
+   "uk": "Я тут! Що сталося?"
+  },
+  "noeuds.melden.choix.0": {
+   "fr": "Il ne réagit pas. Je libère les voies aériennes et je vérifie la respiration.",
+   "de": "Er reagiert nicht. Ich mache die Atemwege frei und prüfe die Atmung.",
+   "uk": "Він не реагує. Я звільняю дихальні шляхи й перевіряю дихання."
+  },
+  "noeuds.melden.choix.1": {
+   "fr": "Inconscient. Je vérifie la respiration.",
+   "de": "Nicht ansprechbar. Ich prüfe jetzt die Atmung.",
+   "uk": "Без свідомості. Перевіряю дихання."
+  },
+  "noeuds.melden.choix.2": {
+   "fr": "Alors, je suis entrée parce que je voulais lui apporter le petit-déjeuner, et là, j'ai vu qu'il était couché bizarrement…",
+   "de": "Also, ich bin reingekommen, weil ich ihm das Frühstück bringen wollte, und da habe ich gesehen, dass er irgendwie komisch daliegt …",
+   "uk": "Ну, я зайшла, бо хотіла принести йому сніданок, а тоді побачила, що він якось дивно лежить…"
+  },
+  "noeuds.melden.choix.2.puis.0": {
+   "fr": "Bref, {elif} ! Il réagit ?",
+   "de": "Kurz, {elif}! Reagiert er?",
+   "uk": "Коротше, {elif}! Він реагує?"
+  },
+  "noeuds.melden.choix.2.aide": {
+   "fr": "<b>Dans l'urgence, des phrases courtes : l'essentiel d'abord.</b> « Nicht ansprechbar. Ich prüfe die Atmung. » Le récit vient plus tard, dans la documentation.",
+   "uk": "<b>У невідкладній ситуації — короткі фрази: спершу головне.</b> «Nicht ansprechbar. Ich prüfe die Atmung.» Розповідь буде пізніше, у документації."
+  },
+  "noeuds.atmung.dit.0.recit": {
+   "fr": "{elif} bascule la tête en arrière, soulève le menton. Elle regarde, écoute, sent : dix secondes. Seulement un hoquet irrégulier, de temps en temps.",
+   "uk": "{elif} закидає йому голову назад, піднімає підборіддя. Вона дивиться, слухає, відчуває: десять секунд. Лише час від часу нерегулярний схлип."
+  },
+  "noeuds.atmung.dit.1": {
+   "fr": "Alors ? Il respire ?",
+   "de": "Und? Atmet er?",
+   "uk": "Ну? Він дихає?"
+  },
+  "noeuds.atmung.choix.0": {
+   "fr": "Non, pas de respiration normale ! Appelle l'équipe de réanimation et apporte le défibrillateur !",
+   "de": "Nein, keine normale Atmung! Ruf das Reanimationsteam und bring den Defi!",
+   "uk": "Ні, нормального дихання немає! Виклич реанімаційну бригаду й принеси дефібрилятор!"
+  },
+  "noeuds.atmung.choix.0.puis.0": {
+   "fr": "J'y vais ! Commence le massage cardiaque !",
+   "de": "Mach ich! Fang mit der Herzdruckmassage an!",
+   "uk": "Біжу! Починай непрямий масаж серця!"
+  },
+  "noeuds.atmung.choix.1": {
+   "fr": "Il ne respire pas normalement, ce sont des gasps. Il faut réanimer. Tu appelles l'équipe ?",
+   "de": "Er atmet nicht richtig, nur Schnappatmung. Wir müssen reanimieren. Rufst du das Team?",
+   "uk": "Він дихає ненормально, лише агональні вдихи. Треба реанімувати. Ти викличеш бригаду?"
+  },
+  "noeuds.atmung.choix.1.puis.0": {
+   "fr": "J'y vais ! Commence le massage cardiaque !",
+   "de": "Mach ich! Fang mit der Herzdruckmassage an!",
+   "uk": "Біжу! Починай непрямий масаж серця!"
+  },
+  "noeuds.atmung.choix.2": {
+   "fr": "J'appelle tout de suite le 112 !",
+   "de": "Ich rufe sofort die 112 an!",
+   "uk": "Я негайно телефоную на 112!"
+  },
+  "noeuds.atmung.choix.2.puis.0": {
+   "fr": "Le 112 ? On est à l'hôpital ! J'appelle l'équipe de réanimation.",
+   "de": "Die 112? Wir sind im Krankenhaus! Ich rufe das Reanimationsteam.",
+   "uk": "На 112? Ми ж у лікарні! Я викликаю реанімаційну бригаду."
+  },
+  "noeuds.atmung.choix.2.aide": {
+   "fr": "<b>À l'hôpital, on appelle le numéro d'urgence interne, l'équipe de réanimation.</b> Le 112, c'est pour l'extérieur. Retiens le numéro de ta clinique : il est souvent sur le téléphone du poste et sur le chariot d'urgence.",
+   "uk": "<b>У лікарні телефонують на внутрішній номер екстреного виклику — реанімаційній бригаді.</b> 112 — це для ситуацій поза лікарнею. Запамʼятай номер своєї клініки: він часто є на телефоні сестринського поста й на реанімаційному візку."
+  },
+  "noeuds.druecken.choix.0": {
+   "fr": "Je commence. Trente compressions, deux insufflations.",
+   "de": "Ich fange an. Dreißig Kompressionen, zwei Beatmungen.",
+   "uk": "Починаю. Тридцять компресій, два вдихи."
+  },
+  "noeuds.druecken.choix.1": {
+   "fr": "D'accord. Je fais les compressions, tu ventiles dès que tu es là avec le ballon.",
+   "de": "Okay. Ich drücke, du beatmest, sobald du mit dem Beutel da bist.",
+   "uk": "Гаразд. Я роблю компресії, ти вентилюєш, щойно будеш тут із мішком Амбу."
+  },
+  "noeuds.druecken.choix.2": {
+   "fr": "Je cherche d'abord le pouls, tranquillement.",
+   "de": "Ich suche erst mal den Puls, ganz in Ruhe.",
+   "uk": "Спочатку спокійно пошукаю пульс."
+  },
+  "noeuds.druecken.choix.2.puis.0": {
+   "fr": "Non ! Ne perds pas de temps, appuie !",
+   "de": "Nein! Keine Zeit verlieren, drück!",
+   "uk": "Ні! Не гай часу, тисни!"
+  },
+  "noeuds.druecken.choix.2.aide": {
+   "fr": "<b>Pas de recherche de pouls qui dure : on commence le massage.</b> Pas de réaction et pas de respiration normale, cela suffit. Chaque minute sans massage diminue les chances du patient.",
+   "uk": "<b>Ніякого довгого пошуку пульсу: починають масаж.</b> Немає реакції і немає нормального дихання — цього досить. Кожна хвилина без масажу зменшує шанси пацієнта."
+  },
+  "noeuds.wechsel.dit.0.recit": {
+   "fr": "{elif} pose ses mains au milieu du thorax et appuie, fort et vite. Une minute plus tard, {jonas} revient avec le chariot d'urgence et le défibrillateur.",
+   "uk": "{elif} кладе руки на середину грудної клітки й тисне, сильно й швидко. За хвилину {jonas} повертається з реанімаційним візком і дефібрилятором."
+  },
+  "noeuds.wechsel.dit.1": {
+   "fr": "L'équipe est alertée. Je ventile au ballon, tu continues les compressions. Je colle les électrodes.",
+   "de": "Das Team ist alarmiert. Ich beatme mit dem Beutel, du drückst weiter. Ich klebe die Elektroden.",
+   "uk": "Бригаду викликано. Я вентилюю мішком, ти продовжуєш компресії. Я клею електроди."
+  },
+  "noeuds.wechsel.choix.0": {
+   "fr": "Deux minutes sont passées. On change, je fatigue.",
+   "de": "Zwei Minuten sind um. Wir wechseln, ich werde müde.",
+   "uk": "Дві хвилини минули. Міняємося, я втомлююся."
+  },
+  "noeuds.wechsel.choix.0.puis.0": {
+   "fr": "D'accord, je prends le relais. Le défibrillateur analyse. Tout le monde s'écarte du patient !",
+   "de": "Okay, ich übernehme. Der Defi analysiert. Alle weg vom Patienten!",
+   "uk": "Гаразд, я беру на себе. Дефібрилятор аналізує. Усі відійшли від пацієнта!"
+  },
+  "noeuds.wechsel.choix.1": {
+   "fr": "Tu peux prendre le relais après ce cycle ? Alors je ventile.",
+   "de": "Kannst du nach diesem Zyklus übernehmen? Dann beatme ich.",
+   "uk": "Можеш змінити мене після цього циклу? Тоді я вентилюватиму."
+  },
+  "noeuds.wechsel.choix.1.puis.0": {
+   "fr": "D'accord, je prends le relais. Le défibrillateur analyse. Tout le monde s'écarte du patient !",
+   "de": "Okay, ich übernehme. Der Defi analysiert. Alle weg vom Patienten!",
+   "uk": "Гаразд, я беру на себе. Дефібрилятор аналізує. Усі відійшли від пацієнта!"
+  },
+  "noeuds.uebergabe.dit.0.recit": {
+   "fr": "Le défibrillateur conseille un choc. {jonas} le délivre, puis reprend aussitôt les compressions. Des pas dans le couloir : l'équipe de réanimation arrive, avec {sommer}.",
+   "uk": "Дефібрилятор рекомендує розряд. {jonas} проводить його й одразу відновлює компресії. Кроки в коридорі: прибуває реанімаційна бригада разом із {sommer:ins}."
+  },
+  "noeuds.uebergabe.dit.1": {
+   "fr": "Qu'est-ce qu'on a ?",
+   "de": "Was haben wir?",
+   "uk": "Що маємо?"
+  },
+  "noeuds.uebergabe.choix.0": {
+   "fr": "Patient de la chambre 14, trouvé inconscient à 10 h 12, pas de respiration normale. Réanimation depuis 10 h 13, un choc délivré.",
+   "de": "Patient aus Zimmer 14, um zehn Uhr zwölf nicht ansprechbar gefunden, keine normale Atmung. Reanimation seit zehn Uhr dreizehn, ein Schock abgegeben.",
+   "uk": "Пацієнт із палати 14, знайдений без свідомості о 10:12, нормального дихання немає. Реанімація з 10:13, один розряд проведено."
+  },
+  "noeuds.uebergabe.choix.0.puis.0": {
+   "fr": "Merci. Nous prenons le relais. Restez ici, s'il vous plaît, et notez les heures.",
+   "de": "Danke. Wir übernehmen. Bleiben Sie bitte hier und schreiben Sie die Uhrzeiten mit.",
+   "uk": "Дякую. Ми беремо на себе. Залишайтеся, будь ласка, тут і записуйте час."
+  },
+  "noeuds.uebergabe.choix.1": {
+   "fr": "Trouvé inconscient à 10 h 12. Massage et ventilation depuis 10 h 13. Le défibrillateur a choqué une fois.",
+   "de": "Bewusstlos aufgefunden um zehn Uhr zwölf. Seit zehn Uhr dreizehn Herzdruckmassage und Beatmung. Der Defi hat einmal geschockt.",
+   "uk": "Знайдений без свідомості о 10:12. З 10:13 непрямий масаж серця і вентиляція. Дефібрилятор дав один розряд."
+  },
+  "noeuds.uebergabe.choix.1.puis.0": {
+   "fr": "Merci. Nous prenons le relais. Restez ici, s'il vous plaît, et notez les heures.",
+   "de": "Danke. Wir übernehmen. Bleiben Sie bitte hier und schreiben Sie die Uhrzeiten mit.",
+   "uk": "Дякую. Ми беремо на себе. Залишайтеся, будь ласка, тут і записуйте час."
+  },
+  "noeuds.uebergabe.choix.2": {
+   "fr": "Je ne sais pas exactement quand ça a commencé. Il y a quelques minutes, je crois.",
+   "de": "Ich weiß nicht genau, wann es angefangen hat. Vor ein paar Minuten, glaube ich.",
+   "uk": "Я точно не знаю, коли це почалося. Здається, кілька хвилин тому."
+  },
+  "noeuds.uebergabe.choix.2.puis.0": {
+   "fr": "Combien de minutes exactement ? Quand l'avez-vous trouvé ?",
+   "de": "Wie viele Minuten genau? Wann haben Sie ihn gefunden?",
+   "uk": "Скільки саме хвилин? Коли ви його знайшли?"
+  },
+  "noeuds.uebergabe.choix.2.aide": {
+   "fr": "<b>L'équipe a besoin des heures : quand trouvé, depuis quand le massage, combien de chocs.</b> « Um zehn Uhr zwölf nicht ansprechbar gefunden. Reanimation seit zehn Uhr dreizehn. » Regarde l'heure dès que tu trouves le patient.",
+   "uk": "<b>Бригаді потрібен час: коли знайшли, відколи масаж, скільки розрядів.</b> «Um zehn Uhr zwölf nicht ansprechbar gefunden. Reanimation seit zehn Uhr dreizehn.» Глянь на годинник, щойно знайдеш пацієнта."
+  },
+  "noeuds.nachbesprechung.dit.0.recit": {
+   "fr": "Vingt minutes plus tard, le cœur du patient bat de nouveau. Il part en soins intensifs. Dans le poste de soins, {jonas} tend un verre d'eau à {elif}.",
+   "uk": "Через двадцять хвилин серце пацієнта знову бʼється. Його переводять у відділення інтенсивної терапії. На сестринському посту {jonas} подає {elif} склянку води."
+  },
+  "noeuds.nachbesprechung.dit.1": {
+   "fr": "Tu t'en es vraiment bien sortie. Comment tu vas ?",
+   "de": "Du hast das richtig gut gemacht. Wie geht's dir?",
+   "uk": "Ти справді добре впоралася. Як ти?"
+  },
+  "noeuds.nachbesprechung.choix.0": {
+   "fr": "Je tremble encore un peu. Mais ça va. Merci d'être arrivé si vite.",
+   "de": "Ich zittere noch ein bisschen. Aber es geht. Danke, dass du so schnell da warst.",
+   "uk": "Мене ще трохи трусить. Але все гаразд. Дякую, що так швидко прибіг."
+  },
+  "noeuds.nachbesprechung.choix.0.puis.0": {
+   "fr": "C'est normal, ça nous fait tous ça. Dis-moi : et si ça arrive dehors, dans la rue ? Tu fais quoi ?",
+   "de": "Das ist normal, das geht uns allen so. Sag mal: Und wenn so was draußen passiert, auf der Straße? Was machst du dann?",
+   "uk": "Це нормально, з усіма нами таке буває. Скажи-но: а якщо таке станеться надворі, на вулиці? Що ти тоді робитимеш?"
+  },
+  "noeuds.nachbesprechung.choix.1": {
+   "fr": "Honnêtement, j'ai eu peur. C'était ma première réanimation. On peut en reparler plus tard ?",
+   "de": "Ehrlich gesagt hatte ich Angst. Ich habe zum ersten Mal reanimiert. Können wir später noch einmal darüber sprechen?",
+   "uk": "Чесно кажучи, мені було страшно. Я вперше реанімувала. Можемо пізніше ще раз про це поговорити?"
+  },
+  "noeuds.nachbesprechung.choix.1.puis.0": {
+   "fr": "Bien sûr, absolument. Dis-moi : et si ça arrive dehors, dans la rue ? Tu fais quoi ?",
+   "de": "Klar, auf jeden Fall. Sag mal: Und wenn so was draußen passiert, auf der Straße? Was machst du dann?",
+   "uk": "Звісно, обовʼязково. Скажи-но: а якщо таке станеться надворі, на вулиці? Що ти тоді робитимеш?"
+  },
+  "noeuds.notruf.choix.0": {
+   "fr": "Alors j'appelle le 112 et je dis : où ça s'est passé, ce qui s'est passé, combien de blessés, quelles blessures. Et ensuite j'attends les questions.",
+   "de": "Dann rufe ich die 112 an und sage: Wo ist es passiert, was ist passiert, wie viele Verletzte, welche Verletzungen. Und dann warte ich auf Rückfragen.",
+   "uk": "Тоді я телефоную на 112 і кажу: де це сталося, що сталося, скільки постраждалих, які травми. А потім чекаю на уточнювальні запитання."
+  },
+  "noeuds.notruf.choix.0.puis.0": {
+   "fr": "Exactement. Et ne raccroche jamais la première. C'est le centre d'appels qui raccroche, pas toi.",
+   "de": "Genau. Und nie zuerst auflegen. Die Leitstelle legt auf, nicht du.",
+   "uk": "Саме так. І ніколи не клади слухавку першою. Слухавку кладе диспетчер, а не ти."
+  },
+  "noeuds.notruf.choix.1": {
+   "fr": "J'appelle le 112, je dis où je suis et ce qui s'est passé, et je commence le massage cardiaque. Le centre d'appels m'aide au téléphone.",
+   "de": "Ich rufe die 112 an, sage, wo ich bin und was passiert ist, und fange mit der Herzdruckmassage an. Die Leitstelle hilft mir am Telefon.",
+   "uk": "Я телефоную на 112, кажу, де я і що сталося, і починаю непрямий масаж серця. Диспетчер допомагає мені по телефону."
+  },
+  "noeuds.notruf.choix.1.puis.0": {
+   "fr": "Exactement. Et ne raccroche jamais la première. C'est le centre d'appels qui raccroche, pas toi.",
+   "de": "Genau. Und nie zuerst auflegen. Die Leitstelle legt auf, nicht du.",
+   "uk": "Саме так. І ніколи не клади слухавку першою. Слухавку кладе диспетчер, а не ти."
+  },
+  "noeuds.notruf.choix.2": {
+   "fr": "J'appelle, je dis « Venez vite ! » et je raccroche.",
+   "de": "Ich rufe an, sage „Kommen Sie schnell!“ und lege auf.",
+   "uk": "Я телефоную, кажу «Приїжджайте швидше!» і кладу слухавку."
+  },
+  "noeuds.notruf.choix.2.puis.0": {
+   "fr": "Et où doivent-ils venir ? Comment le centre d'appels sait ce qui se passe ?",
+   "de": "Und wohin sollen sie kommen? Woher weiß die Leitstelle, was los ist?",
+   "uk": "А куди їм їхати? Звідки диспетчер знатиме, що сталося?"
+  },
+  "noeuds.notruf.choix.2.aide": {
+   "fr": "<b>Au 112, on répond aux questions, et on ne raccroche pas.</b> Où ? Que s'est-il passé ? Combien de blessés ? Quelles blessures ? Puis on attend les questions de la Leitstelle, qui peut aussi te guider pour le massage.",
+   "uk": "<b>Телефонуючи на 112, відповідають на запитання й не кладуть слухавку.</b> Де? Що сталося? Скільки постраждалих? Які травми? Потім чекають на запитання Leitstelle — диспетчерської служби, яка може також підказати тобі, як робити масаж."
+  },
+  "ecouter.0.q": {
+   "fr": "Qui {jonas} appelle-t-il à l'hôpital ?",
+   "de": "Wen ruft {jonas} im Krankenhaus an?",
+   "uk": "Кого {jonas} викликає в лікарні?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "L'équipe de réanimation.",
+   "de": "Das Reanimationsteam.",
+   "uk": "Реанімаційну бригаду."
+  },
+  "ecouter.0.options.1": {
+   "fr": "La police.",
+   "de": "Die Polizei.",
+   "uk": "Поліцію."
+  },
+  "ecouter.0.options.2": {
+   "fr": "La famille du patient.",
+   "de": "Die Familie des Patienten.",
+   "uk": "Родину пацієнта."
+  },
+  "ecouter.1.q": {
+   "fr": "Combien de compressions {elif} fait-elle avant les insufflations ?",
+   "de": "Wie viele Kompressionen macht {elif}, bevor beatmet wird?",
+   "uk": "Скільки компресій робить {elif} перед вдихами?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Dix.",
+   "de": "Zehn.",
+   "uk": "Десять."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Vingt.",
+   "de": "Zwanzig.",
+   "uk": "Двадцять."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Trente.",
+   "de": "Dreißig.",
+   "uk": "Тридцять."
+  },
+  "ecouter.2.q": {
+   "fr": "Que ne faut-il pas faire en appelant le 112 dans la rue ?",
+   "de": "Was soll man beim Notruf auf der Straße nicht tun?",
+   "uk": "Чого не слід робити, телефонуючи на 112 з вулиці?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Dire où l'on est.",
+   "de": "Sagen, wo man ist.",
+   "uk": "Казати, де ти є."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Raccrocher le premier.",
+   "de": "Zuerst auflegen.",
+   "uk": "Першим класти слухавку."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Attendre les questions.",
+   "de": "Auf Rückfragen warten.",
+   "uk": "Чекати на запитання."
+  }
+ }
+}
