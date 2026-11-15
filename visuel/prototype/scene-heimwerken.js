@@ -693,16 +693,19 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "ongle",
+   "fr": "clou",
    "en": "nail",
-   "tr": "tırnak",
-   "uk": "ніготь",
-   "fa": "ناخن، میخ",
-   "pt": "unha",
-   "ar": "ظفر",
-   "pl": "paznokieć",
-   "ru": "ноготь",
-   "es": "la uña"
+   "tr": "çivi",
+   "uk": "цвях",
+   "fa": "میخ",
+   "pt": "prego",
+   "ar": "مسمار",
+   "pl": "gwóźdź",
+   "ru": "гвоздь",
+   "es": "el clavo",
+   "zone": {
+    "pt_mot": "o prego"
+   }
   },
   {
    "id": "zollstock",

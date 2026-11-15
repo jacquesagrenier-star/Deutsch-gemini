@@ -1495,7 +1495,7 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "guichet ; interrupteur",
+   "fr": "guichet",
    "es": "la ventanilla"
   },
   {

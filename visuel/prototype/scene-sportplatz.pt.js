@@ -158,7 +158,7 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "la banque"
+   "fr": "le banc"
   },
   {
    "id": "mann",
@@ -318,8 +318,8 @@ window.SCENE = {
   },
   {
    "id": "hose",
-   "mot": "calças",
-   "genre": "as",
+   "mot": "calções",
+   "genre": "os",
    "niveau": "A1",
    "theme": "roupa_pt",
    "personne": null,
@@ -334,7 +334,11 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "pantalon"
+   "fr": "short, pantalon court",
+   "br": {
+    "mot": "short",
+    "genre": "o"
+   }
   },
   {
    "id": "socke",
@@ -425,7 +429,7 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "la pipe, le sifflet"
+   "fr": "le sifflet"
   },
   {
    "id": "trainerin",

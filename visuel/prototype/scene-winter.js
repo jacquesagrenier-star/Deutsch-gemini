@@ -471,16 +471,26 @@ window.SCENE = {
      18.5
     ]
    ],
-   "fr": "la banque",
-   "en": "bank",
-   "tr": "banka",
-   "uk": "банк",
-   "fa": "بانک",
-   "pt": "banco (dinheiro)",
-   "ar": "بنك، مصرف",
-   "pl": "bank",
-   "ru": "банк",
-   "es": "el banco"
+   "fr": "le banc",
+   "en": "bench",
+   "tr": "bank",
+   "uk": "лавка",
+   "fa": "نیمکت",
+   "pt": "banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
+   "es": "el banco",
+   "zone": {
+    "en_mot": "bench",
+    "es_sens": {
+     "fr": "le banc",
+     "en": "the bench",
+     "pt": "o banco (assento)",
+     "ar": "مقعد",
+     "de": "die Bank"
+    }
+   }
   },
   {
    "id": "hut",

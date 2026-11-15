@@ -579,8 +579,8 @@ window.SCENE = {
    "en": "the counter, the window",
    "pt": "o guichê",
    "ar": "شبّاك (الخدمة)",
-   "pl": "okienko, kasa; włącznik",
-   "ru": "окошко, касса; выключатель",
+   "pl": "okienko, kasa",
+   "ru": "окошко, касса",
    "de": "der Schalter (am Amt)",
    "latam": null
   },
@@ -743,12 +743,12 @@ window.SCENE = {
      36
     ]
    ],
-   "fr": "la banque, le banc",
-   "en": "the bank, the bench",
-   "pt": "o banco",
-   "ar": "بنك، مقعد",
-   "pl": "bank",
-   "ru": "банк",
+   "fr": "le banc",
+   "en": "the bench",
+   "pt": "o banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
    "de": "die Bank",
    "latam": null
   },

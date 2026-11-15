@@ -1822,8 +1822,8 @@ window.SCENE = {
    "en": "the desk, the counter",
    "pt": "o balcão, o guichê",
    "ar": "مكتب، منضدة",
-   "pl": "okienko, kasa; włącznik",
-   "ru": "окошко, касса; выключатель",
+   "pl": "okienko, kasa",
+   "ru": "окошко, касса",
    "de": "der Schalter (Theke), die Ladentheke",
    "latam": null
   },

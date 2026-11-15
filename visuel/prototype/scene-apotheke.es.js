@@ -65,8 +65,8 @@ window.SCENE = {
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
    "ar": "سقف",
-   "pl": "koc",
-   "ru": "одеяло, плед",
+   "pl": "sufit",
+   "ru": "потолок",
    "de": "die Zimmerdecke",
    "latam": null
   },
@@ -245,8 +245,8 @@ window.SCENE = {
    "en": "the bandage",
    "pt": "o curativo, a bandagem",
    "ar": "ضمادة",
-   "pl": "opatrunek, bandaż; związek, stowarzyszenie",
-   "ru": "повязка; союз, объединение",
+   "pl": "opatrunek, bandaż",
+   "ru": "повязка",
    "de": "der Verband",
    "latam": null
   },
@@ -761,8 +761,8 @@ window.SCENE = {
    "en": "the prescription",
    "pt": "a receita (médica)",
    "ar": "وصفة طبية",
-   "pl": "przepis",
-   "ru": "рецепт",
+   "pl": "recepta",
+   "ru": "рецепт (врача)",
    "de": "das Rezept (ärztliche Verordnung)",
    "latam": null
   },
@@ -1333,8 +1333,8 @@ window.SCENE = {
    "en": "the desk, the counter",
    "pt": "o balcão, o guichê",
    "ar": "مكتب، منضدة",
-   "pl": "okienko, kasa; włącznik",
-   "ru": "окошко, касса; выключатель",
+   "pl": "okienko, kasa",
+   "ru": "окошко, касса",
    "de": "der Schalter (Theke), die Ladentheke",
    "latam": null
   },

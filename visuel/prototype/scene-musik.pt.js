@@ -315,11 +315,11 @@ window.SCENE = {
   },
   {
    "id": "note",
-   "mot": "nota",
+   "mot": "partitura",
    "genre": "a",
-   "pluriel": "as notas",
-   "niveau": "A1",
-   "theme": "escola_pt",
+   "pluriel": "as partituras",
+   "niveau": "C1",
+   "theme": "cultura_c1_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -332,7 +332,7 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "note"
+   "fr": "la note (de musique)"
   },
   {
    "id": "mark",

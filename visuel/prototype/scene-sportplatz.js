@@ -213,16 +213,26 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "la banque",
-   "en": "bank",
-   "tr": "banka",
-   "uk": "банк",
-   "fa": "بانک",
-   "pt": "banco (dinheiro)",
-   "ar": "بنك، مصرف",
-   "pl": "bank",
-   "ru": "банк",
-   "es": "el banco"
+   "fr": "le banc",
+   "en": "bench",
+   "tr": "bank",
+   "uk": "лавка",
+   "fa": "نیمکت",
+   "pt": "banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
+   "es": "el banco",
+   "zone": {
+    "en_mot": "bench",
+    "es_sens": {
+     "fr": "le banc",
+     "en": "the bench",
+     "pt": "o banco (assento)",
+     "ar": "مقعد",
+     "de": "die Bank"
+    }
+   }
   },
   {
    "id": "mann",
@@ -459,16 +469,20 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "pantalon",
-   "en": "pants",
-   "tr": "pantolon",
-   "uk": "штани",
-   "fa": "شلوار",
-   "pt": "calça",
-   "ar": "بنطال",
-   "pl": "spodnie",
-   "ru": "брюки",
-   "es": "el pantalón"
+   "fr": "short, pantalon court",
+   "en": "shorts",
+   "tr": "şort",
+   "uk": "шорти",
+   "fa": "شلوارک",
+   "pt": "calção",
+   "ar": "شورت",
+   "pl": "spodenki",
+   "ru": "шорты",
+   "es": "el pantalón corto",
+   "zone": {
+    "en_mot": "shorts",
+    "pt_mot": "os calções"
+   }
   },
   {
    "id": "socke",
@@ -596,16 +610,16 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "la pipe, le sifflet",
-   "en": "pipe, whistle",
-   "tr": "pipo, düdük",
-   "uk": "люлька; свисток",
-   "fa": "پیپ؛ سوت",
-   "pt": "cachimbo; apito",
-   "ar": "غليون؛ صفّارة",
-   "pl": "fajka; gwizdek",
-   "ru": "трубка; свисток",
-   "es": "la pipa, el silbato"
+   "fr": "le sifflet",
+   "en": "whistle",
+   "tr": "düdük",
+   "uk": "свисток",
+   "fa": "سوت",
+   "pt": "apito",
+   "ar": "صفّارة",
+   "pl": "gwizdek",
+   "ru": "свисток",
+   "es": "el silbato"
   },
   {
    "id": "trainerin",

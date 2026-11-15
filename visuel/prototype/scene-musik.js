@@ -441,16 +441,27 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "note",
-   "en": "grade",
-   "tr": "not",
-   "uk": "оцінка",
-   "fa": "نمره",
-   "pt": "nota",
-   "ar": "علامة، درجة",
-   "pl": "ocena, stopień",
-   "ru": "оценка",
-   "es": "la nota"
+   "fr": "la note (de musique)",
+   "en": "note (music)",
+   "tr": "nota",
+   "uk": "нота",
+   "fa": "نت موسیقی",
+   "pt": "nota musical",
+   "ar": "نوتة موسيقية",
+   "pl": "nuta",
+   "ru": "нота",
+   "es": "la nota (musical)",
+   "zone": {
+    "en_mot": "sheet music",
+    "pt_mot": "a partitura",
+    "es_sens": {
+     "fr": "la note (de musique)",
+     "en": "the (musical) note",
+     "pt": "a nota musical",
+     "ar": "نوتة موسيقية",
+     "de": "die Note (Musik)"
+    }
+   }
   },
   {
    "id": "mark",

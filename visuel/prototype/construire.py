@@ -81,6 +81,8 @@ def corpus(nom=""):
             # Premiere occurrence = le niveau le plus bas ou le mot apparait.
             idx.setdefault(m["mot"], dict(m, theme=t["id"],
                                           niveau=t.get("niveau")))
+            # Toutes les entrees, pour « entree » (le sens de la zone, 15 nov. 2026).
+            idx.setdefault("#%s#%s" % (m["mot"], t["id"]), dict(m, theme=t["id"], niveau=t.get("niveau")))
     return idx
 
 
@@ -100,6 +102,40 @@ CHAMPS_MOT = {"fr": "traduction", "en": "traduction_en", "tr": "traduction_tr",
 
 def sens(m):
     return {l: m.get(c) for l, c in CHAMPS_MOT.items() if m.get(c)}
+
+
+# LE SENS DE LA ZONE (15 nov. 2026, revue des images) : le corpus ne connait
+# qu'un sens par mot (la premiere entree), et l'image en montre parfois un autre.
+# « die Decke » est un PLAFOND dans dix scenes mais « couverture » au corpus ;
+# « die Bank » un BANC, « la banque » au corpus. Deux reglages dans points.json :
+#   - « entree » : l'id du theme dont prendre le mot quand le corpus l'a deux
+#     fois (Rezept : gesundheit_a1, l'ordonnance, et non la recette) ;
+#   - « sens_zone » : les traductions d'interface de CETTE zone (fr, en, tr,
+#     uk, fa, ar, pt, pl, ru, es -- toutes, sinon une langue garderait le
+#     mauvais sens), et le mot des langues APPRISES quand il differe de leur
+#     table commune : « en_mot » (anglais/outils/scenes.py), « pt_mot »
+#     (portugais/outils/scenes.py, au format de MOTS : « o teto »), « es_mot »
+#     (espanol/mots.json : « el techo ») et « es_sens » (fr, en, pt, ar, de :
+#     le sens a montrer quand le mot espagnol a plusieurs sens au corpus).
+# La zone garde son mot allemand et sa carte ; seul ce qu'elle affiche change.
+LANGUES_ZONE = ("fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es")
+CLES_ZONE_APPRISES = ("en_mot", "pt_mot", "es_mot", "es_sens")
+
+
+def sens_de_zone(p, m):
+    s = sens(m)
+    z = p.get("sens_zone")
+    if not z:
+        return s
+    manque = [l for l in LANGUES_ZONE if not z.get(l)]
+    if manque:
+        sys.exit("  %s : sens_zone sans %s (toutes les langues d'interface, sinon le mauvais sens reste)"
+                 % (p["id"], ", ".join(manque)))
+    s.update({l: z[l] for l in LANGUES_ZONE})
+    apprises = {k: z[k] for k in CLES_ZONE_APPRISES if z.get(k)}
+    if apprises:
+        s["zone"] = apprises
+    return s
 
 
 def cle_question(niv, q):
@@ -211,6 +247,10 @@ def main():
     sortie, manquants = [], []
     for p in pts["points"]:
         m = idx.get(p["mot"])
+        if p.get("entree"):
+            m = idx.get("#%s#%s" % (p["mot"], p["entree"]))
+            if not m:
+                sys.exit("  %s : entree=%r -- %s n'est pas dans ce theme du corpus" % (p["id"], p["entree"], p["mot"]))
         if not m:
             manquants.append(p["mot"])
             continue
@@ -235,7 +275,7 @@ def main():
                            **sens(idx[a]))
                       for a in p.get("aussi", [])],
             "sur": p.get("sur"), "devant": p.get("devant", 0),
-            "boites": boites}, **sens(m)))
+            "boites": boites}, **sens_de_zone(p, m)))
     # LES GROS PLANS (Jacques, 6 oct.) : toucher le visage du prof l'agrandit,
     # et ses parties -- l'oeil, le nez, la bouche -- deviennent des cibles a
     # la taille du doigt. Une partie est une ellipse [cx, cy, rx, ry] en % de
@@ -445,7 +485,8 @@ def construire_espagnol(nom, scene_de):
     manque, inconnus = [], []
 
     def traduire(m):
-        v = table.get(m["mot"])
+        # Le sens de la zone (15 nov. 2026) : « es_mot » passe avant la table.
+        v = (m.get("zone") or {}).get("es_mot") or table.get(m["mot"])
         if v is None:
             manque.append(m["mot"])
             return None
@@ -464,8 +505,12 @@ def construire_espagnol(nom, scene_de):
                 vus.add(ra["mot"])
                 aussi.append({k: v for k, v in ra.items() if k != "pluriel"})
         if r:
-            points.append(dict(p, aussi=aussi, **{k: r.get(k) for k in
-                          ("mot", "genre", "pluriel", "niveau", "theme", "fr", "en", "pt", "ar", "de", "latam")}))
+            es_sens = (p.get("zone") or {}).get("es_sens") or {}
+            q = dict(p, aussi=aussi, **{k: r.get(k) for k in
+                     ("mot", "genre", "pluriel", "niveau", "theme", "fr", "en", "pt", "ar", "de", "latam")})
+            q.update({k: v for k, v in es_sens.items() if k in ("fr", "en", "pt", "ar", "de")})
+            q.pop("zone", None)
+            points.append(q)
     # « es » (15 nov. 2026) : l'espagnol, langue d'interface de l'ALLEMAND, n'a pas de sens dans une scene de l'espagnol appris.
     for cle in ("tr", "uk", "fa", "es"):     # le corpus espagnol n'a que fr, en, pt (v782) et ar
         for p in points:

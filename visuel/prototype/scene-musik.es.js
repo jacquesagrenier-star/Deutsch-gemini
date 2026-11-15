@@ -417,13 +417,13 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "la note",
-   "en": "the mark, the grade",
-   "pt": "a nota",
-   "ar": "علامة، درجة",
-   "pl": "ocena, stopień",
-   "ru": "оценка",
-   "de": "die Note",
+   "fr": "la note (de musique)",
+   "en": "the (musical) note",
+   "pt": "a nota musical",
+   "ar": "نوتة موسيقية",
+   "pl": "nuta",
+   "ru": "нота",
+   "de": "die Note (Musik)",
    "latam": null
   },
   {

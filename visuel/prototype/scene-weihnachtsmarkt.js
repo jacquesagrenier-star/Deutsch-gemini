@@ -948,16 +948,25 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "l'état, le stand",
-   "en": "state, stall",
-   "tr": "durum; tezgâh",
-   "uk": "стан; ятка",
-   "fa": "وضع کنونی؛ غرفه",
-   "pt": "situação, estado; barraca",
-   "ar": "وضع، حالة؛ كشك",
-   "pl": "stan; stoisko",
-   "ru": "состояние; стенд, ларёк",
-   "es": "el estado, el puesto"
+   "fr": "le stand",
+   "en": "stall",
+   "tr": "tezgâh",
+   "uk": "ятка",
+   "fa": "غرفه",
+   "pt": "barraca",
+   "ar": "كشك",
+   "pl": "stoisko",
+   "ru": "ларёк",
+   "es": "el puesto",
+   "zone": {
+    "es_sens": {
+     "fr": "le stand",
+     "en": "the stall",
+     "pt": "a barraca",
+     "ar": "كشك",
+     "de": "der Stand"
+    }
+   }
   },
   {
    "id": "stand-2",
@@ -978,16 +987,25 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "l'état, le stand",
-   "en": "state, stall",
-   "tr": "durum; tezgâh",
-   "uk": "стан; ятка",
-   "fa": "وضع کنونی؛ غرفه",
-   "pt": "situação, estado; barraca",
-   "ar": "وضع، حالة؛ كشك",
-   "pl": "stan; stoisko",
-   "ru": "состояние; стенд, ларёк",
-   "es": "el estado, el puesto"
+   "fr": "le stand",
+   "en": "stall",
+   "tr": "tezgâh",
+   "uk": "ятка",
+   "fa": "غرفه",
+   "pt": "barraca",
+   "ar": "كشك",
+   "pl": "stoisko",
+   "ru": "ларёк",
+   "es": "el puesto",
+   "zone": {
+    "es_sens": {
+     "fr": "le stand",
+     "en": "the stall",
+     "pt": "a barraca",
+     "ar": "كشك",
+     "de": "der Stand"
+    }
+   }
   },
   {
    "id": "brezel",

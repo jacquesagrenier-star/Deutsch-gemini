@@ -661,8 +661,8 @@ window.SCENE = {
    "en": "the nail",
    "pt": "o prego",
    "ar": "مسمار",
-   "pl": "paznokieć",
-   "ru": "ноготь",
+   "pl": "gwóźdź",
+   "ru": "гвоздь",
    "de": "der Nagel",
    "latam": null
   },

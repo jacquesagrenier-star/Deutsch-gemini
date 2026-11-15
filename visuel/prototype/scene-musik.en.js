@@ -318,11 +318,10 @@ window.SCENE = {
   },
   {
    "id": "note",
-   "mot": "grade",
+   "mot": "sheet music",
    "genre": "",
-   "pluriel": "grades",
-   "niveau": "A1",
-   "theme": "school_a1",
+   "niveau": "C1",
+   "theme": "culture_c1_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -335,12 +334,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "note",
-   "es": "la nota, la calificación",
-   "gb": {
-    "mot": "mark",
-    "pluriel": "marks"
-   }
+   "fr": "la note (de musique)",
+   "es": "la nota"
   },
   {
    "id": "mark",

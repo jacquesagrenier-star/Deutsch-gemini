@@ -451,11 +451,11 @@ window.SCENE = {
   },
   {
    "id": "schirm",
-   "mot": "guarda-chuva",
+   "mot": "guarda-sol",
    "genre": "o",
-   "pluriel": "os guarda-chuvas",
-   "niveau": "A1",
-   "theme": "clima_pt",
+   "pluriel": "os guardas-sóis",
+   "niveau": "A2",
+   "theme": "viagens_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -468,7 +468,7 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "parapluie"
+   "fr": "parasol"
   },
   {
    "id": "baum",
@@ -1056,7 +1056,7 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "la banque"
+   "fr": "le banc"
   },
   {
    "id": "platz",

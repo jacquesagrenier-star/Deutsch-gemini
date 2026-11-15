@@ -687,7 +687,7 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "l'état, le stand"
+   "fr": "le stand"
   },
   {
    "id": "stand-2",
@@ -708,7 +708,7 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "l'état, le stand"
+   "fr": "le stand"
   },
   {
    "id": "brezel",

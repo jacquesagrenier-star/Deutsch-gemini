@@ -683,7 +683,7 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "pansement ; fédération",
+   "fr": "pansement",
    "es": "el vendaje"
   },
   {

@@ -626,16 +626,19 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "parapluie",
-   "en": "umbrella",
-   "tr": "şemsiye",
-   "uk": "парасолька",
-   "fa": "چتر",
-   "pt": "guarda-chuva, sombrinha",
-   "ar": "مظلّة",
+   "fr": "parasol",
+   "en": "umbrella, parasol",
+   "tr": "güneş şemsiyesi",
+   "uk": "парасоля від сонця",
+   "fa": "چتر آفتابی",
+   "pt": "guarda-sol",
+   "ar": "مظلّة شمسية",
    "pl": "parasol",
-   "ru": "зонт",
-   "es": "el paraguas"
+   "ru": "зонт от солнца",
+   "es": "la sombrilla",
+   "zone": {
+    "pt_mot": "o guarda-sol|pl=guarda-sóis"
+   }
   },
   {
    "id": "baum",
@@ -1440,16 +1443,26 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "la banque",
-   "en": "bank",
-   "tr": "banka",
-   "uk": "банк",
-   "fa": "بانک",
-   "pt": "banco (dinheiro)",
-   "ar": "بنك، مصرف",
-   "pl": "bank",
-   "ru": "банк",
-   "es": "el banco"
+   "fr": "le banc",
+   "en": "bench",
+   "tr": "bank",
+   "uk": "лавка",
+   "fa": "نیمکت",
+   "pt": "banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
+   "es": "el banco",
+   "zone": {
+    "en_mot": "bench",
+    "es_sens": {
+     "fr": "le banc",
+     "en": "the bench",
+     "pt": "o banco (assento)",
+     "ar": "مقعد",
+     "de": "die Bank"
+    }
+   }
   },
   {
    "id": "platz",

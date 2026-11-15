@@ -206,7 +206,8 @@ def corpus():
 def portugais_de(point, idx):
     """La zone allemande -> son mot portugais (dict). Arrete tout si le mot
     allemand n'a pas sa ligne dans MOTS."""
-    brut = MOTS.get(point["mot"])
+    # Le sens de la zone (15 nov. 2026, construire.py) : « pt_mot » passe avant MOTS.
+    brut = (point.get("zone") or {}).get("pt_mot") or MOTS.get(point["mot"])
     if brut is None:
         sys.exit("⚠ « %s » (scene) n'a pas de mot portugais dans MOTS : ajoute-le." % point["mot"])
     tete, _, pl = brut.partition("|pl=")
@@ -288,7 +289,7 @@ def construire_scene(nom, idx):
             if ra["mot"] not in vus:
                 vus.add(ra["mot"])
                 aussi.append(nettoyer({k: ra.get(k) for k in ("mot", "genre", "niveau", "theme", "fr")}))
-        q = {k: v for k, v in p.items() if k not in ("tr", "uk", "fa", "pt", "ar", "pl", "ru", "en", "es")}   # es : interface de l'allemand (15 nov. 2026)
+        q = {k: v for k, v in p.items() if k not in ("tr", "uk", "fa", "pt", "ar", "pl", "ru", "en", "es", "zone")}   # es : interface de l'allemand (15 nov. 2026) ; zone : le sens de la zone
         q.update(nettoyer(r))
         for k in ("theme", "pluriel"):
             if not r.get(k):

@@ -38,9 +38,9 @@ window.SCENE = {
   },
   {
    "id": "decke",
-   "mot": "blanket",
+   "mot": "ceiling",
    "genre": "",
-   "pluriel": "blankets",
+   "pluriel": "ceilings",
    "niveau": "A1",
    "theme": "home_a1",
    "personne": null,
@@ -55,9 +55,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "couverture",
-   "es": "la cobija, la manta",
-   "esp": "la manta"
+   "fr": "plafond",
+   "es": "el techo"
   },
   {
    "id": "wand",
@@ -900,7 +899,7 @@ window.SCENE = {
      32
     ]
    ],
-   "fr": "guichet ; interrupteur",
+   "fr": "guichet",
    "es": "la ventanilla"
   },
   {

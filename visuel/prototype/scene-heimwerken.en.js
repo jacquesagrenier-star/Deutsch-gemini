@@ -532,7 +532,7 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "ongle",
+   "fr": "clou",
    "es": "la uña"
   },
   {

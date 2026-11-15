@@ -853,8 +853,8 @@ window.SCENE = {
    "en": "the bandage",
    "pt": "o curativo, a bandagem",
    "ar": "ضمادة",
-   "pl": "opatrunek, bandaż; związek, stowarzyszenie",
-   "ru": "повязка; союз, объединение",
+   "pl": "opatrunek, bandaż",
+   "ru": "повязка",
    "de": "der Verband",
    "latam": null
   },

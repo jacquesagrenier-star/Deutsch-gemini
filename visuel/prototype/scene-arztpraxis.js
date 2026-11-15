@@ -912,16 +912,16 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "pansement ; fédération",
-   "en": "bandage; association",
+   "fr": "pansement",
+   "en": "bandage",
    "tr": "sargı",
-   "uk": "повʼязка; спілка",
-   "fa": "باند زخم؛ اتحادیه",
-   "pt": "curativo, atadura; associação",
-   "ar": "ضمادة؛ اتحاد، جمعية",
-   "pl": "opatrunek, bandaż; związek, stowarzyszenie",
-   "ru": "повязка; союз, объединение",
-   "es": "el vendaje, la asociación"
+   "uk": "повʼязка",
+   "fa": "باند زخم",
+   "pt": "curativo, atadura",
+   "ar": "ضمادة",
+   "pl": "opatrunek, bandaż",
+   "ru": "повязка",
+   "es": "el vendaje"
   },
   {
    "id": "stethoskop",

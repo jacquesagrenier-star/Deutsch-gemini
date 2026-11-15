@@ -63,16 +63,20 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "couverture",
-   "en": "blanket",
-   "tr": "battaniye",
-   "uk": "ковдра",
-   "fa": "پتو",
-   "pt": "cobertor",
-   "ar": "بطانية",
-   "pl": "koc",
-   "ru": "одеяло, плед",
-   "es": "la cobija, la manta"
+   "fr": "plafond",
+   "en": "ceiling",
+   "tr": "tavan",
+   "uk": "стеля",
+   "fa": "سقف",
+   "pt": "teto",
+   "ar": "سقف",
+   "pl": "sufit",
+   "ru": "потолок",
+   "es": "el techo",
+   "zone": {
+    "en_mot": "ceiling",
+    "pt_mot": "o teto"
+   }
   },
   {
    "id": "wand",
@@ -260,16 +264,16 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "pansement ; fédération",
-   "en": "bandage; association",
+   "fr": "pansement",
+   "en": "bandage",
    "tr": "sargı",
-   "uk": "повʼязка; спілка",
-   "fa": "باند زخم؛ اتحادیه",
-   "pt": "curativo, atadura; associação",
-   "ar": "ضمادة؛ اتحاد، جمعية",
-   "pl": "opatrunek, bandaż; związek, stowarzyszenie",
-   "ru": "повязка; союз, объединение",
-   "es": "el vendaje, la asociación"
+   "uk": "повʼязка",
+   "fa": "باند زخم",
+   "pt": "curativo, atadura",
+   "ar": "ضمادة",
+   "pl": "opatrunek, bandaż",
+   "ru": "повязка",
+   "es": "el vendaje"
   },
   {
    "id": "pflaster",
@@ -811,8 +815,8 @@ window.SCENE = {
    "mot": "Rezept",
    "genre": "das",
    "pluriel": "Rezepte",
-   "niveau": "B1",
-   "theme": "essen_trinken_b1",
+   "niveau": "A1",
+   "theme": "gesundheit_a1",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -825,16 +829,16 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "recette",
-   "en": "recipe",
-   "tr": "tarif",
+   "fr": "ordonnance",
+   "en": "prescription",
+   "tr": "reçete",
    "uk": "рецепт",
-   "fa": "دستور پخت؛ نسخه",
-   "pt": "receita (culinária)",
-   "ar": "وصفة طبخ",
-   "pl": "przepis",
-   "ru": "рецепт",
-   "es": "la receta"
+   "fa": "نسخه",
+   "pt": "receita (médica)",
+   "ar": "وصفة طبية",
+   "pl": "recepta",
+   "ru": "рецепт (врача)",
+   "es": "la receta (médica)"
   },
   {
    "id": "mark",
@@ -1442,16 +1446,16 @@ window.SCENE = {
      36
     ]
    ],
-   "fr": "guichet ; interrupteur",
-   "en": "counter; switch",
+   "fr": "guichet",
+   "en": "counter",
    "tr": "gişe",
-   "uk": "віконце; вимикач",
-   "fa": "باجه؛ کلید برق",
-   "pt": "guichê; interruptor",
-   "ar": "شبّاك؛ مفتاح كهربائي",
-   "pl": "okienko, kasa; włącznik",
-   "ru": "окошко, касса; выключатель",
-   "es": "la ventanilla, el interruptor"
+   "uk": "віконце",
+   "fa": "باجه",
+   "pt": "guichê",
+   "ar": "شبّاك",
+   "pl": "okienko, kasa",
+   "ru": "окошко, касса",
+   "es": "la ventanilla"
   },
   {
    "id": "karton",

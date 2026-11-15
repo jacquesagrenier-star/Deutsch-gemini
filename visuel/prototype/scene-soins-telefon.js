@@ -553,16 +553,16 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "auditeur ; combiné",
-   "en": "listener; receiver",
-   "tr": "dinleyici (radyo)",
-   "uk": "слухач; телефонна слухавка",
-   "fa": "شنوندهٔ رادیو؛ گوشی تلفن",
-   "pt": "ouvinte; fone (do telefone)",
-   "ar": "مستمع؛ سمّاعة الهاتف",
-   "pl": "słuchacz; słuchawka",
-   "ru": "слушатель; телефонная трубка",
-   "es": "el radioescucha, el auricular"
+   "fr": "combiné",
+   "en": "receiver",
+   "tr": "ahize",
+   "uk": "телефонна слухавка",
+   "fa": "گوشی تلفن",
+   "pt": "fone (do telefone)",
+   "ar": "سمّاعة الهاتف",
+   "pl": "słuchawka",
+   "ru": "телефонная трубка",
+   "es": "el auricular"
   },
   {
    "id": "klemmbrett",

@@ -63,16 +63,20 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "couverture",
-   "en": "blanket",
-   "tr": "battaniye",
-   "uk": "ковдра",
-   "fa": "پتو",
-   "pt": "cobertor",
-   "ar": "بطانية",
-   "pl": "koc",
-   "ru": "одеяло, плед",
-   "es": "la cobija, la manta"
+   "fr": "plafond",
+   "en": "ceiling",
+   "tr": "tavan",
+   "uk": "стеля",
+   "fa": "سقف",
+   "pt": "teto",
+   "ar": "سقف",
+   "pl": "sufit",
+   "ru": "потолок",
+   "es": "el techo",
+   "zone": {
+    "en_mot": "ceiling",
+    "pt_mot": "o teto"
+   }
   },
   {
    "id": "wand",
@@ -1204,16 +1208,16 @@ window.SCENE = {
      32
     ]
    ],
-   "fr": "guichet ; interrupteur",
-   "en": "counter; switch",
+   "fr": "guichet",
+   "en": "counter",
    "tr": "gişe",
-   "uk": "віконце; вимикач",
-   "fa": "باجه؛ کلید برق",
-   "pt": "guichê; interruptor",
-   "ar": "شبّاك؛ مفتاح كهربائي",
-   "pl": "okienko, kasa; włącznik",
-   "ru": "окошко, касса; выключатель",
-   "es": "la ventanilla, el interruptor"
+   "uk": "віконце",
+   "fa": "باجه",
+   "pt": "guichê",
+   "ar": "شبّاك",
+   "pl": "okienko, kasa",
+   "ru": "окошко, касса",
+   "es": "la ventanilla"
   },
   {
    "id": "rucksack",

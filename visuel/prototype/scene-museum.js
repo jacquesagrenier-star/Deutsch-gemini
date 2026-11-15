@@ -51,16 +51,20 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "couverture",
-   "en": "blanket",
-   "tr": "battaniye",
-   "uk": "ковдра",
-   "fa": "پتو",
-   "pt": "cobertor",
-   "ar": "بطانية",
-   "pl": "koc",
-   "ru": "одеяло, плед",
-   "es": "la cobija, la manta"
+   "fr": "plafond",
+   "en": "ceiling",
+   "tr": "tavan",
+   "uk": "стеля",
+   "fa": "سقف",
+   "pt": "teto",
+   "ar": "سقف",
+   "pl": "sufit",
+   "ru": "потолок",
+   "es": "el techo",
+   "zone": {
+    "en_mot": "ceiling",
+    "pt_mot": "o teto"
+   }
   },
   {
    "id": "lampe-2",
@@ -1193,16 +1197,26 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "la banque",
-   "en": "bank",
-   "tr": "banka",
-   "uk": "банк",
-   "fa": "بانک",
-   "pt": "banco (dinheiro)",
-   "ar": "بنك، مصرف",
-   "pl": "bank",
-   "ru": "банк",
-   "es": "el banco"
+   "fr": "le banc",
+   "en": "bench",
+   "tr": "bank",
+   "uk": "лавка",
+   "fa": "نیمکت",
+   "pt": "banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
+   "es": "el banco",
+   "zone": {
+    "en_mot": "bench",
+    "es_sens": {
+     "fr": "le banc",
+     "en": "the bench",
+     "pt": "o banco (assento)",
+     "ar": "مقعد",
+     "de": "die Bank"
+    }
+   }
   },
   {
    "id": "rucksack",

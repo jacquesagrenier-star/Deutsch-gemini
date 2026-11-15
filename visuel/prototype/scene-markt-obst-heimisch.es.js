@@ -862,13 +862,13 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "le poste",
-   "en": "the position",
-   "pt": "o cargo, a vaga",
-   "ar": "وظيفة، منصب",
-   "pl": "stan; stoisko",
-   "ru": "состояние; стенд, ларёк",
-   "de": "die Stelle (Arbeitsplatz)",
+   "fr": "le stand",
+   "en": "the stall",
+   "pt": "a barraca",
+   "ar": "كشك",
+   "pl": "stoisko",
+   "ru": "ларёк",
+   "de": "der Stand",
    "latam": null
   }
  ],

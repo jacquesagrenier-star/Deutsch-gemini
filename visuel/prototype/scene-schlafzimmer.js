@@ -428,16 +428,16 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "caméra",
+   "fr": "appareil photo",
    "en": "camera",
-   "tr": "kamera",
-   "uk": "камера",
-   "fa": "دوربین",
-   "pt": "câmera",
+   "tr": "fotoğraf makinesi",
+   "uk": "фотоапарат",
+   "fa": "دوربین عکاسی",
+   "pt": "câmera fotográfica",
    "ar": "كاميرا",
-   "pl": "aparat, kamera",
-   "ru": "фотоаппарат, камера",
-   "es": "la cámara"
+   "pl": "aparat fotograficzny",
+   "ru": "фотоаппарат",
+   "es": "la cámara (de fotos)"
   },
   {
    "id": "handy",

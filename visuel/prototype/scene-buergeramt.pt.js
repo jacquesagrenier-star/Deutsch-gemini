@@ -29,9 +29,9 @@ window.SCENE = {
   },
   {
    "id": "decke",
-   "mot": "cobertor",
+   "mot": "teto",
    "genre": "o",
-   "pluriel": "os cobertores",
+   "pluriel": "os tetos",
    "niveau": "A1",
    "theme": "casa_pt",
    "personne": null,
@@ -46,7 +46,7 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "couverture"
+   "fr": "plafond"
   },
   {
    "id": "wand",
@@ -541,10 +541,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     23,
-     53,
-     13,
-     4
+     32.4,
+     53.8,
+     11.8,
+     4.1
     ]
    ],
    "fr": "le papier"

@@ -1977,16 +1977,16 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "guichet ; interrupteur",
-   "en": "counter; switch",
+   "fr": "guichet",
+   "en": "counter",
    "tr": "gişe",
-   "uk": "віконце; вимикач",
-   "fa": "باجه؛ کلید برق",
-   "pt": "guichê; interruptor",
-   "ar": "شبّاك؛ مفتاح كهربائي",
-   "pl": "okienko, kasa; włącznik",
-   "ru": "окошко, касса; выключатель",
-   "es": "la ventanilla, el interruptor"
+   "uk": "віконце",
+   "fa": "باجه",
+   "pt": "guichê",
+   "ar": "شبّاك",
+   "pl": "okienko, kasa",
+   "ru": "окошко, касса",
+   "es": "la ventanilla"
   },
   {
    "id": "pflanze",

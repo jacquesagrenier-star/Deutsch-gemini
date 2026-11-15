@@ -413,8 +413,8 @@ window.SCENE = {
    "en": "the camera",
    "pt": "a câmera",
    "ar": "كاميرا",
-   "pl": "aparat, kamera",
-   "ru": "фотоаппарат, камера",
+   "pl": "aparat fotograficzny",
+   "ru": "фотоаппарат",
    "de": "die Kamera",
    "latam": null
   },

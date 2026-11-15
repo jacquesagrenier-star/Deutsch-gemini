@@ -201,12 +201,12 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "la banque, le banc",
-   "en": "the bank, the bench",
-   "pt": "o banco",
-   "ar": "بنك، مقعد",
-   "pl": "bank",
-   "ru": "банк",
+   "fr": "le banc",
+   "en": "the bench",
+   "pt": "o banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
    "de": "die Bank",
    "latam": null
   },
@@ -435,8 +435,8 @@ window.SCENE = {
    "en": "the trousers",
    "pt": "a calça",
    "ar": "بنطال، سروال",
-   "pl": "spodnie",
-   "ru": "брюки",
+   "pl": "spodenki",
+   "ru": "шорты",
    "de": "die Hose",
    "latam": null
   },
@@ -559,8 +559,8 @@ window.SCENE = {
    "en": "the whistle",
    "pt": "o apito",
    "ar": "صفّارة",
-   "pl": "fajka; gwizdek",
-   "ru": "трубка; свисток",
+   "pl": "gwizdek",
+   "ru": "свисток",
    "de": "die Trillerpfeife",
    "latam": null
   },

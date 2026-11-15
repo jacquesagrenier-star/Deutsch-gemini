@@ -51,16 +51,20 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "couverture",
-   "en": "blanket",
-   "tr": "battaniye",
-   "uk": "ковдра",
-   "fa": "پتو",
-   "pt": "cobertor",
-   "ar": "بطانية",
-   "pl": "koc",
-   "ru": "одеяло, плед",
-   "es": "la cobija, la manta"
+   "fr": "plafond",
+   "en": "ceiling",
+   "tr": "tavan",
+   "uk": "стеля",
+   "fa": "سقف",
+   "pt": "teto",
+   "ar": "سقف",
+   "pl": "sufit",
+   "ru": "потолок",
+   "es": "el techo",
+   "zone": {
+    "en_mot": "ceiling",
+    "pt_mot": "o teto"
+   }
   },
   {
    "id": "wand",
@@ -764,10 +768,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     23,
-     53,
-     13,
-     4
+     32.4,
+     53.8,
+     11.8,
+     4.1
     ]
    ],
    "fr": "le papier",

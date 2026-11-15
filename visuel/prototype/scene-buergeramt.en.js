@@ -26,9 +26,9 @@ window.SCENE = {
   },
   {
    "id": "decke",
-   "mot": "blanket",
+   "mot": "ceiling",
    "genre": "",
-   "pluriel": "blankets",
+   "pluriel": "ceilings",
    "niveau": "A1",
    "theme": "home_a1",
    "personne": null,
@@ -43,9 +43,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "couverture",
-   "es": "la cobija, la manta",
-   "esp": "la manta"
+   "fr": "plafond",
+   "es": "el techo"
   },
   {
    "id": "wand",
@@ -569,10 +568,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     23,
-     53,
-     13,
-     4
+     32.4,
+     53.8,
+     11.8,
+     4.1
     ]
    ],
    "fr": "le papier",

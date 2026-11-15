@@ -53,8 +53,8 @@ window.SCENE = {
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
    "ar": "سقف",
-   "pl": "koc",
-   "ru": "одеяло, плед",
+   "pl": "sufit",
+   "ru": "потолок",
    "de": "die Zimmerdecke",
    "latam": null
   },
@@ -719,10 +719,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     23,
-     53,
-     13,
-     4
+     32.4,
+     53.8,
+     11.8,
+     4.1
     ]
    ],
    "fr": "le papier",

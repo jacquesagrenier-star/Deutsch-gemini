@@ -1421,7 +1421,7 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "guichet ; interrupteur",
+   "fr": "guichet",
    "br": {
     "mot": "guichê",
     "pluriel": "os guichês"
