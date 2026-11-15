@@ -55032,6 +55032,11 @@ function repereApresVisite(){
     if(!essaiActif("reperes")) return;
     setTimeout(() => {
         installerReperes();
+        // Seulement sur l'accueil, son bouton ▶ a l'ecran (ligne 97, 14 nov. 2026) : toucher ▶ dans les 0,7 s ouvrait la
+        // seance, puis la bulle s'y posait en haut a gauche, sur une ancre cachee, et retenait le defilement du verso
+        // (garderVersoVisible attend qu'elle parte). On a deja trouve ▶ : la bulle n'a plus rien a dire.
+        const ancre = document.querySelector("#home.active #seancePilule .pa-play");
+        if(!ancre || !ancre.offsetParent) return;
         if(reperesVus().indexOf("seance") < 0) ouvrirRepere("seance");
     }, 700);
 }
@@ -77930,6 +77935,12 @@ function nextFlashcard(){
     oublierCarteJugee();
     noterEtape("reponse");
     currentFlashcard++;
+    // PREMIERS PAS AVANCE AU-DELA DE LA CARTE QU'ON QUITTE (ligne 97, 14 nov. 2026). La position n'avancait qu'a
+    // l'affichage de la carte SUIVANTE du parcours (loadFlashcard) : une carte jugee, puis une carte redemandee plus
+    // loin (sa position est plus basse), puis « ‹ » -- et la seance rouverte refaisait la carte deja jugee
+    // (tests/premiers_pas_suite.py, chemin « milieu » : passees [1, 2, 3, 4, 1], rouverte [4, 5, ...]). Une carte
+    // affichee et quittee sans reponse, elle, reste a faire : seul ce chemin-ci la depasse.
+    try{ const quittee = currentCards[currentFlashcard - 1]; if(quittee && typeof quittee.ppPos === "number") marquerPositionPremiersPas(quittee.ppPos + 1); }catch(e){}
     carteSeanceSuivie();
     try{ revoirCartePassee(currentCards[currentFlashcard - 1]); }catch(e){}   // v905
     // UN CARREAU PAR CARTE TRAVERSEE (v543). Ici et dans skipFlashcard() : ce
