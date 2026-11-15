@@ -1527,7 +1527,7 @@ window.SCENE = {
   },
   "tr": {
    "champs": {
-    "alt": "Berlin'de bir parkta bir pazar günü: Anna, bir piknik örtüsünde oturmuş bir köpeğe top atıyor; arkasında yolda bisikletli bir çocuk, bankta gazete okuyan bir adam, kayıklı bir göl, bir köprü ve bir çeşme var.",
+    "alt": "Berlin'de bir parkta bir pazar günü: Anna, bir piknik örtüsünde oturmuş bir köpeğe top atıyor; arkasında yolda bisikletli bir çocuk, bankta okuyan bir adam, kayıklı bir göl, bir köprü ve bir çeşme var.",
     "consigne": "Anna parkta piknik yapıyor. Bir nesneye dokun."
    },
    "couches": {

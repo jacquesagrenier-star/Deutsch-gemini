@@ -1627,7 +1627,7 @@ window.SCENE = {
     "B2 | La puerta está abierta desde anoche.": "The door has been open since last night.",
     "C1 | La fiesta debió de terminar muy tarde.": "The party must have ended very late.",
     "C1 | Podría ser de uno de los invitados.": "It could belong to one of the guests.",
-    "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "If Mark had not been travelling, he would now be as tired as his flatmates.",
+    "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "If Mark had not travelled, he would now be as tired as his flatmates.",
     "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "When Mark sees the living room, he will surely be a little annoyed.",
     "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "When Mark sees the living room, he will surely be a little annoyed."
    }
@@ -1725,8 +1725,8 @@ window.SCENE = {
     "A2 | La bicicleta está delante de la estantería.": "الدراجة أمام الرفّ.",
     "A2 | La guitarra está entre el clóset y el sofá.": "الغيتار بين الخزانة والأريكة.",
     "A2 | La guitarra está entre el armario y el sofá.": "الغيتار بين الخزانة والأريكة.",
-    "A2 | Los tenis están debajo del sofá.": "الحذاء الرياضي تحت الأريكة.",
-    "A2 | Las zapatillas están debajo del sofá.": "الحذاء الرياضي تحت الأريكة.",
+    "A2 | Los tenis están debajo del sofá.": "الأحذية الرياضية تحت الأريكة.",
+    "A2 | Las zapatillas están debajo del sofá.": "الأحذية الرياضية تحت الأريكة.",
     "A2 | El radiador está debajo de la ventana.": "المدفأة تحت النافذة.",
     "A2 | El calcetín está colgado de la lámpara de pie.": "الجورب معلّق على المصباح الأرضي.",
     "A2 | La pecera con el pez dorado está encima de la estantería.": "الحوض الذي فيه السمكة الذهبية فوق الرفّ.",

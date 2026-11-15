@@ -2167,7 +2167,7 @@ window.SCENE = {
     "B2 | La niña jugará hasta que su abuela termine el periódico.": "A menina vai brincar até a avó terminar o jornal.",
     "B2 | Cuando Anna viene a la lavandería, siempre trae su cesta.": "Quando Anna vem à lavanderia, sempre traz a sua cesta.",
     "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "Assim que dobrar as toalhas, vai colocá-las na prateleira.",
-    "C1 | Debe de llevar tiempo sin lavar.": "Ela deve estar há tempo sem lavar roupa.",
+    "C1 | Debe de llevar tiempo sin lavar.": "Ela deve estar há muito tempo sem lavar roupa.",
     "C1 | Puede que la niña sea la nieta de la señora.": "Pode ser que a menina seja a neta da senhora.",
     "C1 | Estará lista en una hora.": "Deve ficar pronta em uma hora.",
     "C1 | Dicen que esta lavandería cierra pronto.": "Dizem que esta lavanderia fecha em breve."

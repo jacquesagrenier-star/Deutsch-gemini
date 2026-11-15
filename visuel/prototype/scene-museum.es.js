@@ -1761,7 +1761,7 @@ window.SCENE = {
     "A1": "Nomen und Artikel",
     "A2": "¿Dónde está? — estar und die Präpositionen",
     "B1": "Saber oder conocer?",
-    "B2": "Der gerundio der Art und Weise: aprende dibujando",
+    "B2": "Das Gerundio der Art und Weise: aprende dibujando",
     "C1": "Vermutungen und Wahrscheinlichkeit"
    },
    "questions": {

@@ -1465,7 +1465,7 @@ window.SCENE = {
    "couches": {
     "A1": "Substantivos e artigos",
     "A2": "¿Dónde está? — estar e as preposições",
-    "B1": "estar + gerúndio: em andamento",
+    "B1": "estar + gerúndio: estar fazendo",
     "B2": "Relativas e passiva",
     "C1": "Hipóteses e probabilidade"
    },
@@ -1515,7 +1515,7 @@ window.SCENE = {
     "B1 | Mark está hablando por teléfono.": "Mark está falando ao telefone.",
     "B1 | Está apuntando el número en el cuaderno.": "Ele está anotando o número no caderno.",
     "B1 | La compañera está leyendo un papel.": "A colega está lendo um papel.",
-    "B1 | Mark lo apunta en el cuaderno.": "Mark anota no caderno.",
+    "B1 | Mark lo apunta en el cuaderno.": "Mark o anota no caderno.",
     "B1 | La impresora está imprimiendo una carta.": "A impressora está imprimindo uma carta.",
     "B1 | ¿Me llamas mañana, por favor?": "Você me liga amanhã, por favor?",
     "B1 | Mark termina de trabajar a las cinco.": "Mark termina de trabalhar às cinco.",

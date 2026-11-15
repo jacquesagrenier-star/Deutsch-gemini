@@ -1683,7 +1683,7 @@ window.SCENE = {
     "C1 | Das muss sein erstes Tor sein.": "Esse deve ser o primeiro gol dele.",
     "C1 | Der alte Mann könnte Marks Nachbar sein.": "O senhor idoso talvez seja vizinho de Mark.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "O jogo provavelmente acaba logo.",
-    "C1 | Die Trainerin soll früher Profi gewesen sein.": "Dizem que a treinadora foi profissional."
+    "C1 | Die Trainerin soll früher Profi gewesen sein.": "Dizem que a treinadora já foi profissional."
    }
   },
   "pl": {

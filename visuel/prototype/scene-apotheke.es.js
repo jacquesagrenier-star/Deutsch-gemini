@@ -2384,7 +2384,7 @@ window.SCENE = {
     "B1 | Mark nunca ha tenido fiebre.": "لم يُصب مارك بالحمّى قطّ.",
     "B1 | ¿Con qué frecuencia toma el jarabe?": "كم مرة يأخذ الشراب؟",
     "B1 | El señor viene a la farmacia una vez a la semana.": "يأتي الرجل إلى الصيدلية مرة في الأسبوع.",
-    "B2 | Si Mark tiene fiebre, tomará una pastilla.": "إذا أصاب مارك الحمّى، فسيأخذ قرصاً.",
+    "B2 | Si Mark tiene fiebre, tomará una pastilla.": "إذا أصابت الحمّى مارك، فسيأخذ قرصاً.",
     "B2 | Si no mejora, vaya al médico.": "إذا لم تتحسّن، فاذهب إلى الطبيب.",
     "B2 | Si el jarabe no funciona, vuelva a la farmacia.": "إذا لم ينفع الشراب، فعُد إلى الصيدلية.",
     "B2 | Si toma las pastillas, estará mejor mañana.": "إذا أخذ الأقراص، فسيكون أفضل غداً.",

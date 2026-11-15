@@ -2738,7 +2738,7 @@ window.SCENE = {
     "B1 | Bitte atmen Sie tief ein!": "Respire fundo, por favor!",
     "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "Mark tirou a roupa, ficando só de cueca.",
     "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "A médica põe o estetoscópio no peito dele.",
-    "B1 | Gleich stellt sich Mark auf die Waage.": "Mark vai já subir na balança.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Mark já vai subir na balança.",
     "B1 | Danach steht er still auf der Waage.": "Depois ele fica parado na balança.",
     "B2 | Seine Lunge wird gerade abgehört.": "Os pulmões dele estão sendo auscultados.",
     "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "O paciente cujo peito está sendo auscultado se chama Mark.",

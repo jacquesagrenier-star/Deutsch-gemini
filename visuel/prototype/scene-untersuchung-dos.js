@@ -1900,7 +1900,7 @@ window.SCENE = {
     "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "شرط دون <b>wenn</b>، والفعل في البداية؛ غير الواقع في الماضي مع <b>hätte</b>."
    },
    "sens": {
-    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "تضع الطبيبة السمّاعة على ظهره.",
+    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "تُمسك الطبيبة السمّاعة على ظهره.",
     "A2 | Die Ärztin steht neben dem Patienten.": "الطبيبة واقفة بجانب المريض.",
     "A2 | Seine Hände sind neben seinem Po.": "يداه بجانب مؤخّرته.",
     "A2 | Die Wirbelsäule ist zwischen den Schulterblättern.": "العمود الفقري بين لوحي الكتف.",
@@ -2117,7 +2117,7 @@ window.SCENE = {
     "B2 | Das ist der Patient, dessen Rücken die Ärztin abhört.": "Это пациент, которому врач прослушивает спину.",
     "B2 | Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.": "Врач, чей стетоскоп на его спине, внимательно слушает.",
     "B2 | Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.": "После того как он повернулся, она прослушала спину.",
-    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "Прежде чем прослушать спину, он должен глубоко вдохнуть.",
+    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "Прежде чем ему прослушают спину, он должен глубоко вдохнуть.",
     "B2 | Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.": "Лопатки, между которыми находится позвоночник, хорошо видны.",
     "C1 | Er dürfte schon oft abgehört worden sein.": "Его, вероятно, уже много раз прослушивали.",
     "C1 | Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.": "Если бы у него болела спина, он сказал бы об этом врачу.",

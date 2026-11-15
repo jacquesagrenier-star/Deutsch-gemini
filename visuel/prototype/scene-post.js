@@ -1584,7 +1584,7 @@ window.SCENE = {
     "A2 | Die Briefe sind im Korb.": "الرسائل في السلّة.",
     "A2 | Die Pflanze steht auf dem Schalter.": "النبتة على المنضدة.",
     "A2 | Der Regenschirm steht neben der Bank.": "المظلّة بجانب المقعد.",
-    "A2 | Das große Paket steht vor dem Schalter.": "الطرد الكبير أمام المنضدة.",
+    "A2 | Das große Paket steht vor dem Schalter.": "الطرد الكبير أمام الشبّاك.",
     "B1 | Anna schickt ihrer Mutter einen Brief.": "ترسل آنا رسالة إلى أمّها.",
     "B1 | Der Mann gibt ihr eine Quittung.": "يعطيها الرجل إيصالاً.",
     "B1 | Anna gibt ihm den Brief.": "تعطيه آنا الرسالة.",

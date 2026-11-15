@@ -1588,7 +1588,7 @@ window.SCENE = {
     "B2 | La maleta ya está medio hecha.": "Der Koffer ist schon halb gepackt.",
     "B2 | Mañana temprano todo tiene que estar ya guardado.": "Morgen früh muss alles schon verstaut sein.",
     "B2 | La cámara con la que Anna quiere hacer fotos está en la cama.": "Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.",
-    "C1 | Debe de estar contenta con el viaje.": "Sie muss sich auf die Reise freuen.",
+    "C1 | Debe de estar contenta con el viaje.": "Sie muss mit der Reise zufrieden sein.",
     "C1 | Puede que el suéter sea demasiado caliente para el sur.": "Vielleicht ist der Pullover zu warm für den Süden.",
     "C1 | Puede que el jersey sea demasiado caliente para el sur.": "Vielleicht ist der Pullover zu warm für den Süden.",
     "C1 | Saldrá mañana temprano.": "Sie wird wohl morgen früh abreisen.",

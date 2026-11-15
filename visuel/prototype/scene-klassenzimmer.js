@@ -2337,7 +2337,7 @@ window.SCENE = {
     "B1 | Das Handy liegt auf dem Schreibtisch.": "<b>liegen</b> = yatay durmak (durum). <b>legen</b> = yatırarak koymak (hareket).",
     "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "Hareket: <b>legen</b> → gelegt, ve Akkusativ: auf <b>den</b> Schreibtisch.",
     "B1 | Anna sitzt neben Mark.": "<b>sitzen</b> = oturuyor olmak. <b>sich setzen</b> = oturmak (oturma hareketi).",
-    "B1 | Mark hat seine Jacke an die Tür gehängt.": "<b>hängen</b> fiilinin iki Partizip'i var: biri onu <i>astı</i> → gehängt; o <i>asılıydı</i> → gehangen.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "<b>hängen</b> fiilinin iki Partizip'i var: biri onu <b>astı</b> → gehängt; o <b>asılıydı</b> → gehangen.",
     "B1 | Mark hängt seine Jacke an die Tür.": "<b>Wohin?</b> → Akkusativ: an <b>die</b> Tür. (Wo? → an der Tür.)",
     "B1 | Die Jacke hängt jetzt an der Tür.": "Durum: <b>hängen</b> + Dativ — an <b>der</b> Tür.",
     "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "İlgi cümlesinin öznesi, dişil → <b>die</b>.",

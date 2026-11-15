@@ -1496,8 +1496,8 @@ window.SCENE = {
     "B1 | Mark fährt mit dem Zug.": "<b>mit</b> همیشه Dativ می‌خواهد: <span lang=\"de\">der Zug → mit <b>dem</b> Zug</span>.",
     "B1 | Er fährt in die Berge.": "<b>Wohin?</b> ← Akkusativ؛ در جمع: <span lang=\"de\">in <b>die</b> Berge</span>.",
     "B1 | Er schaut aus dem Fenster.": "<b>aus</b> همیشه Dativ می‌خواهد: <span lang=\"de\">das Fenster → aus <b>dem</b> Fenster</span>.",
-    "B1 | Er hat seinen Koffer auf die Gepäckablage gelegt.": "<b>legen</b> = حرکت, <b>Wohin?</b> ← Akkusativ: <span lang=\"de\">auf <b>die</b> Gepäckablage</span>.",
-    "B1 | Jetzt liegt der Koffer auf der Gepäckablage.": "<b>liegen</b> = حالت, <b>Wo?</b> ← Dativ: <span lang=\"de\">auf <b>der</b> Gepäckablage</span>.",
+    "B1 | Er hat seinen Koffer auf die Gepäckablage gelegt.": "<b>legen</b> = حرکت، <b>Wohin?</b> ← Akkusativ: <span lang=\"de\">auf <b>die</b> Gepäckablage</span>.",
+    "B1 | Jetzt liegt der Koffer auf der Gepäckablage.": "<b>liegen</b> = حالت، <b>Wo?</b> ← Dativ: <span lang=\"de\">auf <b>der</b> Gepäckablage</span>.",
     "B1 | Die Kühe stehen auf der Wiese.": "<b>stehen</b> = حالت ← Dativ: <span lang=\"de\">auf <b>der</b> Wiese</span>.",
     "B1 | Der Zug fährt über den Fluss.": "از رویش می‌گذرد: <b>über</b> + Akkusativ ← <span lang=\"de\"><b>den</b> Fluss</span>.",
     "B1 | Mark hat die Fahrkarte auf den Tisch gelegt.": "<b>Wohin?</b> ← Akkusativ: <span lang=\"de\">auf <b>den</b> Tisch</span>.",
@@ -1565,8 +1565,8 @@ window.SCENE = {
     "B1 | Mark fährt mit dem Zug.": "<b>mit</b> يتطلّب دائمًا Dativ: <span lang=\"de\">der Zug → mit <b>dem</b> Zug</span>.",
     "B1 | Er fährt in die Berge.": "<b>Wohin?</b> ← Akkusativ؛ في الجمع: <span lang=\"de\">in <b>die</b> Berge</span>.",
     "B1 | Er schaut aus dem Fenster.": "<b>aus</b> يتطلّب دائمًا Dativ: <span lang=\"de\">das Fenster → aus <b>dem</b> Fenster</span>.",
-    "B1 | Er hat seinen Koffer auf die Gepäckablage gelegt.": "<b>legen</b> = حركة, <b>Wohin?</b> ← Akkusativ: <span lang=\"de\">auf <b>die</b> Gepäckablage</span>.",
-    "B1 | Jetzt liegt der Koffer auf der Gepäckablage.": "<b>liegen</b> = حالة, <b>Wo?</b> ← Dativ: <span lang=\"de\">auf <b>der</b> Gepäckablage</span>.",
+    "B1 | Er hat seinen Koffer auf die Gepäckablage gelegt.": "<b>legen</b> = حركة، <b>Wohin?</b> ← Akkusativ: <span lang=\"de\">auf <b>die</b> Gepäckablage</span>.",
+    "B1 | Jetzt liegt der Koffer auf der Gepäckablage.": "<b>liegen</b> = حالة، <b>Wo?</b> ← Dativ: <span lang=\"de\">auf <b>der</b> Gepäckablage</span>.",
     "B1 | Die Kühe stehen auf der Wiese.": "<b>stehen</b> = حالة ← Dativ: <span lang=\"de\">auf <b>der</b> Wiese</span>.",
     "B1 | Der Zug fährt über den Fluss.": "يعبره: <b>über</b> + Akkusativ ← <span lang=\"de\"><b>den</b> Fluss</span>.",
     "B1 | Mark hat die Fahrkarte auf den Tisch gelegt.": "<b>Wohin?</b> ← Akkusativ: <span lang=\"de\">auf <b>den</b> Tisch</span>.",
@@ -1883,7 +1883,7 @@ window.SCENE = {
     "C1 | Die Landschaft muss ihm gefallen.": "El paisaje debe de gustarle.",
     "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "La bufanda roja podría ser de alguien que regresa enseguida.",
     "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "El tren probablemente llega a Múnich en una hora.",
-    "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "Dicen que en este pueblo hay el mejor queso de la zona."
+    "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "Dicen que en este pueblo se encuentra el mejor queso de la zona."
    }
   }
  }

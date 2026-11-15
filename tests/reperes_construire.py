@@ -249,8 +249,9 @@ def suites(mots, sens, tailles):
     out, i = [], 0
     for n in tailles:
         morceau = list(range(i, i + n))
+        # la virgule arabe en persan et en arabe (revue des traductions du 15 nov. 2026)
         out.append([", ".join(mots[k] for k in morceau),
-                    {lg: ", ".join(sens[k][j] for k in morceau) for j, lg in enumerate(LANGUES)}])
+                    {lg: ("، " if lg in ("fa", "ar") else ", ").join(sens[k][j] for k in morceau) for j, lg in enumerate(LANGUES)}])
         i += n
     return out
 

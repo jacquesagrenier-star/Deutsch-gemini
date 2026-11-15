@@ -2104,7 +2104,7 @@ window.SCENE = {
     "B1 | Mark hängt den Regenschirm an die Tür.": "Mark pendura o guarda-chuva na porta.",
     "B1 | Mark legt das Buch ins Regal.": "Mark põe o livro na estante.",
     "B1 | Die Flaschen stehen im Eimer.": "As garrafas estão no balde.",
-    "B1 | Die Katze springt gleich auf das Sofa.": "O gato vai já pular no sofá.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "O gato já vai pular no sofá.",
     "B1 | Die Luftballons liegen auf dem Boden.": "Os balões estão no chão.",
     "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "A luminária em que está pendurado um guarda-chuva é redonda.",
     "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "O cachorro que dorme debaixo da mesa perdeu a festa.",

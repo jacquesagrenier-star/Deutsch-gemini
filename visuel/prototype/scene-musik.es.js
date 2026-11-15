@@ -1312,7 +1312,7 @@ window.SCENE = {
   },
   "ar": {
    "champs": {
-    "alt": "درس الغيتار: في غرفة صغيرة في مدرسة موسيقى يعزف مارك بتركيز وعيناه على النوتة؛ ومعلّمته ذات الشعر الأبيض والوشاح البنفسجي تريه نغمة؛ وحولهما بيانو وكمان في علبته وحامل نوتة وزجاجة ماء وملصق بوق ومصباح ونبتة كبيرة؛ ومن النافذة سطوح برلين.",
+    "alt": "درس الغيتار: في غرفة صغيرة في مدرسة موسيقى يعزف مارك بتركيز وعيناه على النوتة؛ ومعلّمته ذات الشعر الأبيض والوشاح البنفسجي تريه تآلفًا (كوردًا)؛ وحولهما بيانو وكمان في علبته وحامل نوتة وزجاجة ماء وملصق بوق ومصباح ونبتة كبيرة؛ ومن النافذة سطوح برلين.",
     "consigne": "مارك يأخذ درس غيتار. المس شيئًا."
    },
    "couches": {
@@ -1519,7 +1519,7 @@ window.SCENE = {
     "B1 | Mark tiene que practicar cada día.": "Mark muss jeden Tag üben.",
     "B1 | En clase no se puede usar el teléfono.": "Im Unterricht darf man das Handy nicht benutzen.",
     "B1 | Mark quiere tocar en un grupo algún día.": "Mark will eines Tages in einer Band spielen.",
-    "B1 | No debes apretar tanto la guitarra.": "Du darfst die Gitarre nicht so fest drücken.",
+    "B1 | No debes apretar tanto la guitarra.": "Du solltest die Gitarre nicht so fest drücken.",
     "B1 | ¿Puedo abrir la ventana?": "Darf ich das Fenster öffnen?",
     "B2 | La profesora quiere que Mark toque más despacio.": "Die Lehrerin will, dass Mark langsamer spielt.",
     "B2 | Le pide que practique cada día.": "Sie bittet ihn, jeden Tag zu üben.",

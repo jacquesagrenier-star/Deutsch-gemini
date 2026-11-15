@@ -2512,7 +2512,7 @@ window.SCENE = {
     "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "Passe pela farmácia e você chegou.",
     "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "A van sai da rua lateral.",
     "B1 | Die Fußgänger gehen über den Zebrastreifen.": "Os pedestres atravessam na faixa de pedestres.",
-    "B1 | Gleich geht Anna in die Bäckerei.": "Anna vai já entrar na padaria.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Anna já vai entrar na padaria.",
     "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "Por favor, não atravesse a rua no vermelho!",
     "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "O café fica na esquina, logo ao lado da rua lateral.",
     "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "Ao longo da calçada passa uma ciclovia vermelha.",

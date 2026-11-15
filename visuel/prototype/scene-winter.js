@@ -1522,7 +1522,7 @@ window.SCENE = {
     "B1 | Mit dem Besen macht sie den Weg frei.": "<b>mit</b> + Dativ: <span lang=\"de\">der Besen → mit <b>dem</b> Besen</span>.",
     "B2 | Die Frau, die einen Schneemann baut, heißt Anna.": "فاعلِ جملهٔ موصولی، مؤنث ← <b>die</b>.",
     "B2 | Der Hund, dessen Mantel rot ist, schnuppert am Schnee.": "مالکیت، مرجعِ مذکر ← <b>dessen</b> (که پالتویش).",
-    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "<b>vor</b> + <span lang=\"de\">Wo?</span> ← Dativ, خنثی ← <b>dem</b>.",
+    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "<b>vor</b> + <span lang=\"de\">Wo?</span> ← Dativ، خنثی ← <b>dem</b>.",
     "B2 | Das Auto ist mit Schnee bedeckt.": "مجهولِ حالت: <b>sein</b> + صفت مفعولی (پوشیده).",
     "B2 | Der Weg muss noch gefegt werden.": "مجهول با فعل وجهی: صفت مفعولی + <b>werden</b> در آخر.",
     "B2 | Die brennende Kerze steht im Fenster.": "صفت فاعلی (<span lang=\"de\">Partizip I</span>) در نقش صفت: <span lang=\"de\">brennen + <b>d</b></span> + پسوند ← <b>brennende</b> (روشن).",

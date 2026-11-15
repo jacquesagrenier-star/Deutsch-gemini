@@ -3126,7 +3126,7 @@ window.SCENE = {
     "B2 | Gibt es heute etwas Neues auf der Karte?": "<span lang=\"de\">etwas Neu<b>es</b></span> = شيء جديد.",
     "B2 | Auf der Karte steht viel Gutes.": "بعد <b>viel</b> أيضًا: <span lang=\"de\">viel Gut<b>es</b></span>.",
     "B2 | Das Beste an diesem Restaurant ist die Küche.": "بعد أداة التعريف <b>das</b> تأخذ الصفة المستعملة اسمًا <b>-e</b>: <span lang=\"de\">das Best<b>e</b></span>.",
-    "B2 | Mark probiert gern alles Neue.": "بعد <b>alles</b>, كما بعد <span lang=\"de\">das</span>: <span lang=\"de\">alles Neu<b>e</b></span>.",
+    "B2 | Mark probiert gern alles Neue.": "بعد <b>alles</b>، كما بعد <span lang=\"de\">das</span>: <span lang=\"de\">alles Neu<b>e</b></span>.",
     "C1 | Er muss Hunger haben.": "<b>müssen</b> = استنتاج شبه مؤكَّد.",
     "C1 | Das Paar könnte jeden Abend hier essen.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Die Pizza dürfte für den Tisch am Fenster sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",

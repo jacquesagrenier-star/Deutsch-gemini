@@ -2733,7 +2733,7 @@ window.SCENE = {
     "B1 | Er bleibt bis Sonntag.": "Se queda hasta el domingo.",
     "B1 | Das Zimmer ist um drei Uhr fertig.": "La habitación está lista a las tres.",
     "B1 | Im Winter ist das Hotel ruhig.": "En invierno, el hotel es tranquilo.",
-    "B1 | Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.": "La recepción está atendida de las siete a las veintitrés horas.",
+    "B1 | Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.": "La recepción atiende de las siete a las veintitrés horas.",
     "B1 | Nach dem Frühstück geht Mark in die Stadt.": "Después del desayuno, Mark va al centro.",
     "B1 | Die Frau liest am Abend Zeitung.": "La mujer lee el periódico por la noche.",
     "B2 | Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.": "Mientras Mark espera la llave, la mujer lee el periódico.",

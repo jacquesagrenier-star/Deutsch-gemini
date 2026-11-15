@@ -1567,7 +1567,7 @@ window.SCENE = {
   },
   "tr": {
    "champs": {
-    "alt": "Berlin'de bir parkta bir pazar günü: Anna, bir piknik örtüsünde oturmuş bir köpeğe top atıyor; arkasında yolda bisikletli bir çocuk, bankta gazete okuyan bir adam, kayıklı bir göl, bir köprü ve bir çeşme var.",
+    "alt": "Berlin'de bir parkta bir pazar günü: Anna, bir piknik örtüsünde oturmuş bir köpeğe top atıyor; arkasında yolda bisikletli bir çocuk, bankta okuyan bir adam, kayıklı bir göl, bir köprü ve bir çeşme var.",
     "consigne": "Anna parkta piknik yapıyor. Bir nesneye dokun."
    },
    "couches": {
@@ -1780,7 +1780,7 @@ window.SCENE = {
    "couches": {
     "A1": "الأسماء وأدوات التعريف",
     "A2": "<span lang=\"de\">Wo?</span> — حروف الجر",
-    "B1": "<span lang=\"de\">Wo?</span> أم <span lang=\"de\">Wohin?</span>؟",
+    "B1": "<span lang=\"de\">Wo?</span> أم <span lang=\"de\">Wohin?</span>",
     "B2": "الجمل الموصولة واسما الفاعل والمفعول",
     "C1": "الافتراضات"
    },

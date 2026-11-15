@@ -1718,7 +1718,7 @@ window.SCENE = {
     "B1 | Der Freund macht ein Foto von Mark.": "O amigo tira uma foto de Mark.",
     "B1 | Mark dankt seinen Freunden für die Party.": "Mark agradece aos amigos pela festa.",
     "B1 | Die Kerzen stehen auf der Torte.": "As velas estão no bolo.",
-    "B1 | Gleich bringt Anna den Gästen Saft.": "Anna vai já trazer suco para os convidados.",
+    "B1 | Gleich bringt Anna den Gästen Saft.": "Anna já vai trazer suco para os convidados.",
     "B2 | Das Geschenk, das Anna in der Hand hält, ist grün.": "O presente que Anna tem na mão é verde.",
     "B2 | Der Freund, der Mark fotografiert, sitzt auf dem Sofa.": "O amigo que fotografa Mark está sentado no sofá.",
     "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "O bolo em que ardem cinco velas é de chocolate.",
