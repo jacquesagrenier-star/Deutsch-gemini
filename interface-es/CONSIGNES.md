@@ -16,6 +16,8 @@ Les textes à traduire sont dans `interface-es/sources/`. Tu écris tes traducti
   (`add`, `stash`, `reset`, `checkout`, `switch`…). `git diff` / `git status` en lecture : oui.
 - **Pas d'API payante**, pas d'appel réseau, pas de service de traduction : c'est toi qui traduis.
 - **Pas d'autre agent** : ne lance aucun sous-agent ni aucune session.
+- **Ton dossier scratchpad est partagé avec les autres traducteurs** : un script s'y nomme par ta part
+  (`exos-11_verif.py`, jamais `dump.py`), sinon un autre agent l'écrase en cours de route.
 - **Jamais de script Python par heredoc dans Git Bash** (il mange les antislashs). Si tu as
   besoin d'un script, écris-le avec l'outil Write dans ton dossier scratchpad, puis lance-le.
 - N'écris que dans `interface-es/lots/`. Ne lance jamais `corpus_lots.py pose` (seul
