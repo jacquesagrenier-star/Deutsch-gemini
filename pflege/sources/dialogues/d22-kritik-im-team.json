@@ -1,0 +1,125 @@
+{
+ "id": "d22-kritik-im-team",
+ "numero": 22,
+ "niveau": "B2",
+ "registre": "du",
+ "lieu": "klinikum",
+ "scene_annexe": 4,
+ "role": "elif",
+ "personnes": ["yusuf"],
+ "titre": {"t": "Kritik unter Kollegen", "fr": "Une critique entre collègues"},
+ "intro": {"fr": "Six heures et quart, après la relève du matin. {hoffmann} vient de faire remarquer à {elif} que le protocole de boissons de {brandt} est vide depuis hier soir. Or c'est {yusuf} qui était de nuit. Avant qu'il rentre chez lui, {elif} lui en parle dans la salle du personnel. Tu joues {elif} : dire un fait sans reproche, parler en « je », écouter, accepter une critique en retour et trouver une solution ensemble."},
+ "but": {"fr": "Faire une critique entre collègues, au « du » : demander un moment, décrire un fait précis (Mir ist aufgefallen, dass …), parler de soi plutôt que de l'autre, écouter ses raisons, reconnaître une critique en retour (Da hast du recht …), proposer une solution commune (Was hältst du davon, wenn wir …?)."},
+ "grammaire": ["g21", "g17", "g07"],
+ "telc": ["oral-3"],
+ "relire_notes": {"fr": "Le protocole de boissons (Trinkprotokoll) : qui le remplit la nuit, ce qu'on y note (boissons, perfusion) ; compléter après coup en le signalant (« nachgetragen », avec l'heure) ; l'usage d'en parler d'abord au collègue avant d'aller voir la cadre ; l'heure de la relève du matin."},
+ "redemittel": [
+  {"t": "Hast du kurz fünf Minuten für mich? Ich möchte etwas mit dir besprechen.", "fr": "Tu as cinq minutes pour moi ? J'aimerais te parler de quelque chose.", "fonction": "demander"},
+  {"t": "Mir ist aufgefallen, dass im Trinkprotokoll für die Nacht nichts eingetragen ist.", "fr": "J'ai remarqué que rien n'est noté pour la nuit dans le protocole de boissons.", "fonction": "transmettre"},
+  {"t": "Ich sage das nicht als Vorwurf. Ich möchte es nur klären.", "fr": "Je ne te le dis pas pour te faire un reproche. Je veux juste qu'on clarifie.", "fonction": "rassurer"},
+  {"t": "Das verstehe ich. Bei so einer Nacht bleibt natürlich etwas liegen.", "fr": "Je comprends. Avec une nuit pareille, forcément, il y a des choses qui restent en plan.", "fonction": "reformuler"},
+  {"t": "Da hast du recht. Das tut mir leid, ich achte in Zukunft darauf.", "fr": "Tu as raison. Je suis désolée, j'y ferai attention à l'avenir.", "fonction": "rassurer"},
+  {"t": "Was hältst du davon, wenn wir bei der Übergabe kurz eine Checkliste durchgehen?", "fr": "Qu'est-ce que tu dirais de passer une petite liste en revue à la relève ?", "fonction": "demander"},
+  {"t": "Gut, dass wir darüber gesprochen haben.", "fr": "C'est bien qu'on en ait parlé.", "fonction": "annoncer"}
+ ],
+ "debut": "pause",
+ "noeuds": {
+  "pause": {
+   "dit": [
+    {"recit": {"fr": "Dans la salle du personnel. {yusuf} enfile sa veste, les yeux rouges de fatigue après une nuit de garde."}},
+    {"qui": "yusuf", "air": "question", "t": "Puh, endlich Feierabend. Was gibt's, {elif}? Du guckst so ernst.", "fr": "Ouf, enfin fini. Qu'est-ce qu'il y a, {elif} ? Tu as l'air bien sérieuse."}
+   ],
+   "choix": [
+    {"t": "Hast du kurz fünf Minuten für mich? Ich möchte etwas mit dir besprechen.", "fr": "Tu as cinq minutes pour moi ? J'aimerais te parler de quelque chose.", "va": "fakt",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Klar. Aber wirklich nur fünf, ich falle gleich um.", "fr": "Bien sûr. Mais vraiment cinq, je tiens à peine debout."}]},
+    {"t": "Bevor du gehst: Können wir kurz reden? Es geht um die Übergabe.", "fr": "Avant que tu partes : on peut parler un instant ? C'est au sujet de la relève.", "va": "fakt",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Klar. Aber wirklich nur fünf Minuten, ich falle gleich um.", "fr": "Bien sûr. Mais vraiment cinq minutes, je tiens à peine debout."}]},
+    {"faux": true, "t": "Sag mal, warum hast du heute Nacht nichts dokumentiert?", "fr": "Dis donc, pourquoi tu n'as rien noté cette nuit ?",
+     "puis": [{"qui": "yusuf", "air": "surprise", "t": "Wie bitte? Ich habe die ganze Nacht durchgearbeitet!", "fr": "Pardon ? J'ai travaillé toute la nuit sans m'arrêter !"}],
+     "aide": {"fr": "<b>On commence par demander un moment, sans attaque.</b> « Hast du kurz fünf Minuten? Ich möchte etwas mit dir besprechen. » Une question qui accuse (« warum hast du nicht … ? ») ferme la conversation avant qu'elle commence."}}
+   ]
+  },
+  "fakt": {
+   "dit": [],
+   "choix": [
+    {"t": "Mir ist aufgefallen, dass im Trinkprotokoll von {brandt:dat} für die Nacht nichts eingetragen ist. {hoffmann} hat mich bei der Übergabe darauf angesprochen.", "fr": "J'ai remarqué que rien n'est noté pour la nuit dans le protocole de boissons de {brandt}. {hoffmann} me l'a fait remarquer à la relève.", "va": "ich",
+     "puis": [{"qui": "yusuf", "air": "perplexe", "t": "Dich? Aber das war doch meine Nacht.", "fr": "À toi ? Mais c'était ma nuit, pourtant."}]},
+    {"t": "Bei der Übergabe hat {hoffmann} gesehen, dass das Trinkprotokoll von {brandt:dat} seit gestern Abend leer ist. Sie hat mich darauf angesprochen.", "fr": "À la relève, {hoffmann} a vu que le protocole de boissons de {brandt} est vide depuis hier soir. Elle m'en a parlé.", "va": "ich",
+     "puis": [{"qui": "yusuf", "air": "perplexe", "t": "Dich? Aber das war doch meine Nacht.", "fr": "À toi ? Mais c'était ma nuit, pourtant."}]},
+    {"faux": true, "t": "Du hast das Trinkprotokoll schon wieder vergessen. Das machst du immer.", "fr": "Tu as encore oublié le protocole de boissons. Tu fais toujours ça.",
+     "puis": [{"qui": "yusuf", "air": "surprise", "t": "Immer? Das stimmt doch gar nicht!", "fr": "Toujours ? Mais c'est complètement faux !"}],
+     "aide": {"fr": "<b>Un fait précis, pas un jugement.</b> « immer », « nie », « schon wieder » transforment un oubli en reproche sur la personne. Décris ce que tu as vu : « Mir ist aufgefallen, dass im Trinkprotokoll … nichts eingetragen ist. »"}}
+   ]
+  },
+  "ich": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja, und für mich war das unangenehm, weil ich nicht wusste, was er getrunken hat. Ich sage das nicht als Vorwurf, ich möchte es nur klären.", "fr": "Oui, et pour moi c'était gênant, parce que je ne savais pas ce qu'il avait bu. Je ne te le dis pas pour te faire un reproche, je veux juste qu'on clarifie.", "va": "verstehen",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Okay … Ehrlich gesagt war die Nacht der Wahnsinn. Mit {brandt:dat} und dem Dienstarzt war ich zwei Stunden beschäftigt, und dann kam noch eine Aufnahme.", "fr": "D'accord… Honnêtement, la nuit a été folle. Avec {brandt} et le médecin de garde, j'ai été occupé deux heures, et ensuite il y a eu une entrée."}]},
+    {"t": "Ich hatte deswegen bei der Übergabe ein ungutes Gefühl. Ich möchte einfach, dass wir das zusammen klären.", "fr": "Du coup, je me suis sentie mal à l'aise à la relève. J'aimerais simplement qu'on règle ça ensemble.", "va": "verstehen",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Okay … Ehrlich gesagt war die Nacht der Wahnsinn. Mit {brandt:dat} und dem Dienstarzt war ich zwei Stunden beschäftigt, und dann kam noch eine Aufnahme.", "fr": "D'accord… Honnêtement, la nuit a été folle. Avec {brandt} et le médecin de garde, j'ai été occupé deux heures, et ensuite il y a eu une entrée."}]},
+    {"faux": true, "t": "Wegen dir hatte ich heute Morgen Ärger mit der Chefin.", "fr": "À cause de toi, je me suis fait reprendre par la cheffe ce matin.",
+     "puis": [{"qui": "yusuf", "air": "perplexe", "t": "Wegen mir? Na, danke auch.", "fr": "À cause de moi ? Eh bien, merci."}],
+     "aide": {"fr": "<b>Parle de toi (message en « je »), pas de lui.</b> « Wegen dir … » fait de lui le coupable. « Für mich war das unangenehm, weil … » dit la même chose sans l'attaquer."}}
+   ]
+  },
+  "verstehen": {
+   "dit": [],
+   "choix": [
+    {"t": "Das verstehe ich. Bei so einer Nacht bleibt natürlich etwas liegen. Weißt du noch, was er getrunken hat?", "fr": "Je comprends. Avec une nuit pareille, forcément, il y a des choses qui restent en plan. Tu te souviens de ce qu'il a bu ?", "va": "zurueck",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Ja, ungefähr zwei Becher Tee, und dazu lief die Infusion. Ich trage es gleich nach, bevor ich gehe.", "fr": "Oui, à peu près deux gobelets de thé, et la perfusion passait en plus. Je le note tout de suite, avant de partir.", "relire": true, "relire_note": "Compléter un protocole après coup : le signaler comme ajout (nachgetragen), avec l'heure réelle."}]},
+    {"t": "Okay, das wusste ich nicht. Dann ist klar, warum das Protokoll liegen geblieben ist. Kannst du es noch nachtragen?", "fr": "D'accord, je ne le savais pas. Alors on comprend pourquoi le protocole est resté vide. Tu peux encore le compléter ?", "va": "zurueck",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Ja, er hat ungefähr zwei Becher Tee getrunken, und dazu lief die Infusion. Ich trage es gleich nach, bevor ich gehe.", "fr": "Oui, il a bu à peu près deux gobelets de thé, et la perfusion passait en plus. Je le note tout de suite, avant de partir."}]},
+    {"faux": true, "t": "Stress haben wir alle. Das ist keine Ausrede.", "fr": "Du stress, on en a tous. Ce n'est pas une excuse.",
+     "puis": [{"qui": "yusuf", "air": "perplexe", "t": "Super. Dann brauchen wir ja gar nicht weiterzureden.", "fr": "Super. Alors pas la peine de continuer à parler."}],
+     "aide": {"fr": "<b>Écouter ses raisons avant de chercher la solution.</b> « Das verstehe ich » reconnaît sa nuit sans effacer le problème. Puis on revient au concret : « Weißt du noch, was er getrunken hat? »"}}
+   ]
+  },
+  "zurueck": {
+   "dit": [
+    {"qui": "yusuf", "air": "attentive", "t": "Aber wo wir schon dabei sind, {elif}: Du kommst morgens oft fünf, zehn Minuten zu spät zur Übergabe. Dann muss ich warten, und meine Nacht wird noch länger.", "fr": "Mais puisqu'on en parle, {elif} : le matin, tu arrives souvent cinq, dix minutes en retard à la relève. Du coup, je dois attendre, et ma nuit s'allonge encore."}
+   ],
+   "choix": [
+    {"t": "Da hast du recht, das ist mir in letzter Zeit ein paar Mal passiert. Das tut mir leid. Ich achte darauf, pünktlich zu sein.", "fr": "Tu as raison, ça m'est arrivé plusieurs fois ces derniers temps. Je suis désolée. Je vais faire attention à être à l'heure.", "va": "loesung",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Danke. Das wollte ich schon länger mal sagen.", "fr": "Merci. Ça fait un moment que je voulais te le dire."}]},
+    {"t": "Stimmt, das war dir gegenüber nicht fair. Ab morgen bin ich um Viertel vor sechs da.", "fr": "C'est vrai, ce n'était pas correct envers toi. À partir de demain, je suis là à six heures moins le quart.", "va": "loesung",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Danke. Das wollte ich schon länger mal sagen.", "fr": "Merci. Ça fait un moment que je voulais te le dire."}]},
+    {"faux": true, "t": "Das ist doch etwas ganz anderes! Hier geht es um das Protokoll.", "fr": "Mais ça n'a rien à voir ! Là, on parle du protocole.",
+     "puis": [{"qui": "yusuf", "air": "perplexe", "t": "Ach so. Kritik geht also nur in eine Richtung?", "fr": "Ah, je vois. La critique, ça ne marche que dans un sens ?"}],
+     "aide": {"fr": "<b>Une critique en retour mérite la même écoute.</b> Si elle est juste, on la reconnaît : « Da hast du recht, das tut mir leid. » On revient ensuite à la solution. Sinon, la discussion devient un match."}}
+   ]
+  },
+  "loesung": {
+   "dit": [],
+   "choix": [
+    {"t": "Was hältst du davon, wenn wir bei der Übergabe kurz eine Checkliste durchgehen? Trinkprotokoll, Lagerung, Schmerzen – dann vergisst keiner etwas.", "fr": "Qu'est-ce que tu dirais de passer une petite liste en revue à la relève ? Protocole de boissons, positionnement, douleur : comme ça, personne n'oublie rien.", "va": "abschluss",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Gute Idee. Und wenn mal etwas fehlt, sagst du es mir direkt, okay? Dann trage ich es nach.", "fr": "Bonne idée. Et s'il manque quelque chose, tu me le dis directement, d'accord ? Je le complète."}]},
+    {"t": "Ich schlage vor, dass wir am Ende der Übergabe die offenen Punkte zusammen anschauen. Dann sehen wir sofort, wenn etwas fehlt.", "fr": "Je propose qu'à la fin de la relève on regarde ensemble ce qui reste ouvert. Comme ça, on voit tout de suite s'il manque quelque chose.", "va": "abschluss",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Gute Idee. Und wenn mal etwas fehlt, sagst du es mir direkt, okay? Dann trage ich es nach.", "fr": "Bonne idée. Et s'il manque quelque chose, tu me le dis directement, d'accord ? Je le complète."}]},
+    {"faux": true, "t": "Beim nächsten Mal sage ich {hoffmann} einfach gleich, dass du es warst.", "fr": "La prochaine fois, je dirai tout de suite à {hoffmann} que c'était toi.",
+     "puis": [{"qui": "yusuf", "air": "surprise", "t": "Echt jetzt? Dann rede ich lieber gar nicht mehr mit dir.", "fr": "Sérieusement ? Alors je préfère ne plus te parler du tout."}],
+     "aide": {"fr": "<b>La solution se cherche avec le collègue, pas contre lui.</b> « Was hältst du davon, wenn wir … ? » ou « Ich schlage vor, dass wir … » : une proposition pour l'équipe, pas une menace."}}
+   ]
+  },
+  "abschluss": {
+   "dit": [],
+   "choix": [
+    {"t": "Abgemacht. Danke, dass du so offen warst. Und jetzt ab nach Hause, schlaf gut!", "fr": "Marché conclu. Merci d'avoir été aussi franc. Et maintenant, file à la maison, dors bien !", "va": null,
+     "puis": [{"qui": "yusuf", "air": "amuse", "t": "Danke dir. Bis morgen – und pünktlich, ja?", "fr": "Merci. À demain, et à l'heure, hein ?"}]},
+    {"t": "Gut, dass wir darüber gesprochen haben. Die Checkliste schlagen wir morgen auch {hoffmann} vor. Schlaf gut!", "fr": "C'est bien qu'on en ait parlé. La liste, on la proposera aussi à {hoffmann} demain. Dors bien !", "va": null,
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Machen wir. Bis morgen!", "fr": "D'accord. À demain !"}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Warum ist das Trinkprotokoll leer geblieben?", "fr": "Pourquoi le protocole de boissons est-il resté vide ?"},
+   "options": [{"t": "Weil {brandt} nichts getrunken hat.", "fr": "Parce que {brandt} n'a rien bu."}, {"t": "Weil die Nacht sehr stressig war, mit dem Arzt und einer Aufnahme.", "fr": "Parce que la nuit a été très chargée, avec le médecin et une entrée."}, {"t": "Weil {yusuf} das Protokoll nicht kennt.", "fr": "Parce que {yusuf} ne connaît pas le protocole."}],
+   "juste": 1},
+  {"q": {"t": "Was kritisiert {yusuf} an {elif}?", "fr": "Que reproche {yusuf} à {elif} ?"},
+   "options": [{"t": "Sie kommt morgens oft zu spät zur Übergabe.", "fr": "Elle arrive souvent en retard à la relève du matin."}, {"t": "Sie spricht bei der Übergabe zu leise.", "fr": "Elle parle trop bas à la relève."}, {"t": "Sie dokumentiert zu viel.", "fr": "Elle documente trop."}],
+   "juste": 0},
+  {"q": {"t": "Was schlagen die beiden vor?", "fr": "Que proposent-ils tous les deux ?"},
+   "options": [{"t": "Den Dienst zu tauschen.", "fr": "D'échanger leurs postes."}, {"t": "Mit dem Dienstarzt zu sprechen.", "fr": "De parler au médecin de garde."}, {"t": "Bei der Übergabe die offenen Punkte zusammen durchzugehen.", "fr": "De passer ensemble en revue ce qui reste ouvert, à la relève."}],
+   "juste": 2}
+ ]
+}

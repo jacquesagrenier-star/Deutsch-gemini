@@ -1,0 +1,550 @@
+{
+ "id": "d25-entlassung",
+ "numero": 25,
+ "niveau": "B2",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 1,
+ "role": "elif",
+ "personnes": [
+  "lehmann",
+  "lehmann_tochter"
+ ],
+ "titre": {
+  "t": "Die Entlassung",
+  "fr": "La sortie : préparer le retour à la maison"
+ },
+ "intro": {
+  "fr": "Vendredi 20 novembre, le matin. {lehmann} rentre chez elle ; sa fille, {lehmann_tochter}, est venue la chercher. Avant le départ, {elif} leur explique tout : les papiers, les médicaments, le pansement à la maison, la chaussure de décharge, les signes d'alerte et qui appeler. Tu joues {elif} : expliquer par étapes, simplement, puis vérifier qu'elles ont compris."
+ },
+ "but": {
+  "fr": "Préparer une sortie : annoncer l'entretien, remettre et expliquer les papiers (Entlassbrief, Medikamentenplan), donner des consignes claires (müssen, dürfen, sollen ; nicht müssen ≠ nicht dürfen), dire les signes d'alerte et qui appeler (wenn …, dann …), faire redire l'essentiel avec ses mots (teach-back)."
+ },
+ "grammaire": [
+  "g08",
+  "g06",
+  "g12"
+ ],
+ "telc": [
+  "oral-2",
+  "lesen"
+ ],
+ "relire_notes": {
+  "fr": "Consignes de sortie d'un pied diabétique : décharge permanente avec la chaussure (aussi dans l'appartement), inspection quotidienne des pieds au miroir, signes d'infection (rougeur, chaleur, gonflement, odeur, fièvre) ; organisation : lettre de sortie pour la médecin traitante, plan de médicaments, rendez-vous lundi, soins à domicile pour le pansement quotidien ; la crème pour la peau sèche est inventée, à valider ; numéros 116 117 (permanence médicale) et 112 ; la méthode du teach-back."
+ },
+ "redemittel": [
+  {
+   "t": "Bevor Sie gehen, möchte ich mit Ihnen noch alles Wichtige besprechen.",
+   "fr": "Avant votre départ, j'aimerais encore voir avec vous tout ce qui est important.",
+   "fonction": "annoncer"
+  },
+  {
+   "t": "Das ist der Entlassbrief für Ihre Hausärztin.",
+   "fr": "Voici la lettre de sortie pour votre médecin traitante.",
+   "fonction": "transmettre"
+  },
+  {
+   "t": "Neu ist nur eine Creme für die trockene Haut.",
+   "fr": "La seule nouveauté, c'est une crème pour la peau sèche.",
+   "fonction": "transmettre",
+   "relire": true,
+   "relire_note": "Plan de médicaments fictif."
+  },
+  {
+   "t": "Bitte tragen Sie beim Gehen immer den Verbandsschuh, auch in der Wohnung.",
+   "fr": "Portez toujours la chaussure de décharge pour marcher, s'il vous plaît, même dans l'appartement.",
+   "fonction": "annoncer"
+  },
+  {
+   "t": "Wenn die Wunde rot oder warm wird oder wenn Sie Fieber bekommen, rufen Sie bitte sofort Ihre Hausärztin an.",
+   "fr": "Si la plaie devient rouge ou chaude, ou si vous avez de la fièvre, appelez tout de suite votre médecin traitante.",
+   "fonction": "transmettre",
+   "relire": true,
+   "relire_note": "Signes d'alerte."
+  },
+  {
+   "t": "Am Wochenende erreichen Sie den ärztlichen Bereitschaftsdienst unter 116 117.",
+   "dit": "Am Wochenende erreichen Sie den ärztlichen Bereitschaftsdienst unter eins eins sechs, eins eins sieben.",
+   "fr": "Le week-end, vous joignez la permanence médicale au 116 117.",
+   "fonction": "transmettre"
+  },
+  {
+   "t": "Können Sie mir noch einmal sagen, wann Sie die Ärztin anrufen?",
+   "fr": "Pouvez-vous me redire quand vous appelez la médecin ?",
+   "fonction": "reformuler"
+  }
+ ],
+ "debut": "zimmer",
+ "noeuds": {
+  "zimmer": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Neuf heures. {lehmann} est assise sur son lit, habillée, son sac à côté d'elle. {lehmann_tochter} range les dernières affaires."
+     }
+    },
+    {
+     "qui": "lehmann",
+     "air": "sourire",
+     "t": "Na, {elif}, heute ist es so weit. Ich darf endlich nach Hause!",
+     "fr": "Alors, {elif}, ça y est, c'est aujourd'hui. Je rentre enfin à la maison !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, {lehmann}, heute ist Ihr großer Tag! Bevor Sie gehen, möchte ich mit Ihnen und Ihrer Tochter noch alles Wichtige besprechen. Das dauert etwa zehn Minuten.",
+     "fr": "Oui, {lehmann:voc}, c'est votre grand jour ! Avant votre départ, j'aimerais encore voir avec vous et votre fille tout ce qui est important. Ça prend une dizaine de minutes.",
+     "va": "papiere",
+     "puis": [
+      {
+       "qui": "lehmann_tochter",
+       "air": "attentive",
+       "t": "Deshalb bin ich ja da. Ich habe auch ein paar Fragen.",
+       "fr": "C'est pour ça que je suis là. J'ai aussi quelques questions."
+      }
+     ]
+    },
+    {
+     "t": "Guten Morgen, {lehmann}, guten Morgen, {lehmann_tochter}. Ich gehe mit Ihnen noch kurz die Entlassung durch, damit zu Hause alles klappt.",
+     "fr": "Bonjour, {lehmann:voc}, bonjour, {lehmann_tochter:voc}. Je reprends encore rapidement la sortie avec vous, pour que tout se passe bien à la maison.",
+     "va": "papiere",
+     "puis": [
+      {
+       "qui": "lehmann_tochter",
+       "air": "attentive",
+       "t": "Gut. Ich habe auch ein paar Fragen.",
+       "fr": "Bien. J'ai aussi quelques questions."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Hier sind Ihre Papiere. Tschüss und alles Gute!",
+     "fr": "Voici vos papiers. Au revoir et bonne continuation !",
+     "puis": [
+      {
+       "qui": "lehmann_tochter",
+       "air": "perplexe",
+       "t": "Moment, und was müssen wir jetzt zu Hause machen?",
+       "fr": "Attendez, et qu'est-ce qu'on doit faire maintenant à la maison ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Une sortie s'explique, elle ne se remet pas.</b> Annonce l'entretien et sa durée : « Bevor Sie gehen, möchte ich mit Ihnen noch alles Wichtige besprechen. » La fille est là pour ça."
+     }
+    }
+   ]
+  },
+  "papiere": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Das ist der Entlassbrief für Ihre Hausärztin. Darin steht alles über Ihren Aufenthalt. Bitte nehmen Sie ihn zum nächsten Termin mit, am Montag um neun Uhr.",
+     "fr": "Voici la lettre de sortie pour votre médecin traitante. Tout votre séjour y est décrit. Emportez-la à votre prochain rendez-vous, s'il vous plaît, lundi à neuf heures.",
+     "va": "medikamente",
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "question",
+       "t": "Montag um neun. Kind, schreibst du dir das auf?",
+       "fr": "Lundi à neuf heures. Ma chérie, tu le notes ?"
+      },
+      {
+       "qui": "lehmann_tochter",
+       "air": "sourire",
+       "t": "Schon notiert, Mama. Hat sich bei den Medikamenten etwas geändert?",
+       "fr": "C'est noté, maman. Est-ce que quelque chose a changé dans les médicaments ?"
+      }
+     ]
+    },
+    {
+     "t": "Hier sind der Entlassbrief und der Medikamentenplan. Am Montag um neun Uhr haben Sie einen Termin bei Ihrer Hausärztin; da nehmen Sie bitte beides mit.",
+     "fr": "Voici la lettre de sortie et le plan de médicaments. Lundi à neuf heures, vous avez rendez-vous chez votre médecin traitante ; emportez les deux, s'il vous plaît.",
+     "va": "medikamente",
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "question",
+       "t": "Montag um neun. Kind, schreibst du dir das auf?",
+       "fr": "Lundi à neuf heures. Ma chérie, tu le notes ?"
+      },
+      {
+       "qui": "lehmann_tochter",
+       "air": "sourire",
+       "t": "Schon notiert, Mama. Hat sich bei den Medikamenten etwas geändert?",
+       "fr": "C'est noté, maman. Est-ce que quelque chose a changé dans les médicaments ?"
+      }
+     ]
+    }
+   ]
+  },
+  "medikamente": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Fast nichts. Das Insulin spritzen Sie weiter nach Ihrem Schema. Neu ist nur eine Creme für die trockene Haut an den Beinen, einmal am Tag. Es steht alles im Medikamentenplan.",
+     "fr": "Presque rien. Vous continuez l'insuline selon votre schéma. La seule nouveauté, c'est une crème pour la peau sèche des jambes, une fois par jour. Tout est dans le plan de médicaments.",
+     "va": "wunde",
+     "relire": true,
+     "relire_note": "Plan de médicaments (fictif) : insuline selon le schéma, crème émolliente.",
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "amuse",
+       "t": "Eine Creme, das schaffe ich gerade noch.",
+       "fr": "Une crème, ça, je devrais y arriver."
+      }
+     ]
+    },
+    {
+     "t": "Die Ärztin hat nur eine Hautcreme dazugeschrieben, für die trockenen Beine. Beim Insulin bleibt alles wie vorher, nach Ihrem Schema.",
+     "fr": "La médecin a seulement ajouté une crème, pour les jambes sèches. Pour l'insuline, rien ne change, toujours selon votre schéma.",
+     "va": "wunde",
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "amuse",
+       "t": "Eine Creme, das schaffe ich gerade noch.",
+       "fr": "Une crème, ça, je devrais y arriver."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ich glaube, es ist alles wie immer. Schauen Sie einfach mal in den Plan.",
+     "fr": "Je crois que tout est comme d'habitude. Regardez simplement le plan.",
+     "puis": [
+      {
+       "qui": "lehmann_tochter",
+       "air": "perplexe",
+       "t": "Sie glauben? Wir wollen ja nichts falsch machen.",
+       "fr": "Vous croyez ? On ne voudrait pas se tromper."
+      }
+     ],
+     "aide": {
+      "fr": "<b>Pour les médicaments, on vérifie et on dit précisément.</b> « Neu ist nur … », « Beim Insulin bleibt alles wie vorher. » Le plan écrit complète l'explication, il ne la remplace pas."
+     }
+    }
+   ]
+  },
+  "wunde": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Für die Wunde kommt ab morgen jeden Tag der Pflegedienst zu Ihnen und macht den Verbandswechsel. Und bitte tragen Sie beim Gehen immer den Verbandsschuh, damit der Fuß entlastet wird.",
+     "fr": "Pour la plaie, le service de soins à domicile passe chez vous chaque jour à partir de demain et refait le pansement. Et portez toujours la chaussure de décharge pour marcher, s'il vous plaît, pour soulager le pied.",
+     "va": "schuh",
+     "relire": true,
+     "relire_note": "Relais des soins à domicile.",
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "perplexe",
+       "t": "Immer? Auch in der Wohnung? Der Schuh ist so klobig.",
+       "fr": "Toujours ? Même dans l'appartement ? Elle est si lourde, cette chaussure."
+      }
+     ]
+    },
+    {
+     "t": "Ab morgen kommt jeden Tag der Pflegedienst für den Verbandswechsel. Wichtig ist, dass der rechte Fuß entlastet wird: Beim Gehen tragen Sie also immer den Verbandsschuh.",
+     "fr": "À partir de demain, le service de soins à domicile vient chaque jour pour le pansement. L'important, c'est de soulager le pied droit : pour marcher, vous portez donc toujours la chaussure de décharge.",
+     "va": "schuh",
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "perplexe",
+       "t": "Immer? Auch in der Wohnung? Der Schuh ist so klobig.",
+       "fr": "Toujours ? Même dans l'appartement ? Elle est si lourde, cette chaussure."
+      }
+     ]
+    }
+   ]
+  },
+  "schuh": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Ja, auch in der Wohnung, auch nur für ein paar Schritte. Sie spüren den Fuß ja kaum, deshalb merken Sie nicht, wenn er wieder Druck bekommt.",
+     "fr": "Oui, même dans l'appartement, même pour quelques pas. Vous ne sentez presque plus votre pied : c'est pour ça que vous ne remarquez pas quand il reçoit de nouveau de la pression.",
+     "va": "warnzeichen",
+     "relire": true,
+     "relire_note": "Décharge permanente, polyneuropathie.",
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "sourire",
+       "t": "Na gut. Wenn's hilft.",
+       "fr": "Bon, d'accord. Si ça aide."
+      }
+     ]
+    },
+    {
+     "t": "Leider ja. Weil Sie im Fuß wenig spüren, merken Sie den Druck nicht. Der Schuh schützt die Wunde, bis sie ganz zu ist.",
+     "fr": "Malheureusement, oui. Comme vous sentez peu votre pied, vous ne remarquez pas la pression. La chaussure protège la plaie jusqu'à ce qu'elle soit complètement fermée.",
+     "va": "warnzeichen",
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "sourire",
+       "t": "Na gut. Wenn's hilft.",
+       "fr": "Bon, d'accord. Si ça aide."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Nein, in der Wohnung müssen Sie ihn nicht tragen.",
+     "fr": "Non, dans l'appartement, vous n'êtes pas obligée de la porter.",
+     "puis": [
+      {
+       "qui": "lehmann_tochter",
+       "air": "surprise",
+       "t": "Wirklich? Im Krankenhaus hieß es aber immer: den ganzen Tag.",
+       "fr": "Vraiment ? À l'hôpital, on nous a pourtant toujours dit : toute la journée."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« nicht müssen » veut dire « pas obligé », « nicht dürfen » veut dire « interdit ».</b> Ici, la consigne est l'inverse : le pied ne doit jamais porter sans la chaussure. « Bitte tragen Sie ihn auch in der Wohnung. » Dire « Sie müssen ihn nicht tragen » autoriserait à s'en passer."
+     },
+     "relire": true,
+     "relire_note": "Vérifier l'aide."
+    }
+   ]
+  },
+  "warnzeichen": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Bitte schauen Sie sich jeden Tag die Füße an, auch die Sohle, mit einem Spiegel. Wenn die Wunde rot, warm oder geschwollen ist, wenn sie riecht oder wenn Sie Fieber bekommen, rufen Sie sofort Ihre Hausärztin an.",
+     "fr": "Regardez vos pieds chaque jour, s'il vous plaît, la plante aussi, avec un miroir. Si la plaie est rouge, chaude ou gonflée, si elle sent mauvais ou si vous avez de la fièvre, appelez tout de suite votre médecin traitante.",
+     "va": "wochenende",
+     "relire": true,
+     "relire_note": "Signes d'infection, inspection quotidienne.",
+     "puis": [
+      {
+       "qui": "lehmann_tochter",
+       "air": "question",
+       "t": "Und wenn das am Wochenende ist? Da ist die Praxis zu.",
+       "fr": "Et si c'est le week-end ? Le cabinet est fermé."
+      }
+     ]
+    },
+    {
+     "t": "Wichtig sind die Warnzeichen: Rötung, Schwellung, Wärme, ein schlechter Geruch oder Fieber. Dann bitte sofort die Hausärztin anrufen oder dem Pflegedienst Bescheid sagen. Und jeden Tag die Füße mit einem Spiegel kontrollieren.",
+     "fr": "L'important, ce sont les signes d'alerte : rougeur, gonflement, chaleur, mauvaise odeur ou fièvre. Dans ce cas, appelez tout de suite la médecin traitante ou prévenez le service de soins à domicile. Et contrôlez vos pieds chaque jour avec un miroir.",
+     "va": "wochenende",
+     "puis": [
+      {
+       "qui": "lehmann_tochter",
+       "air": "question",
+       "t": "Und wenn das am Wochenende ist? Da ist die Praxis zu.",
+       "fr": "Et si c'est le week-end ? Le cabinet est fermé."
+      }
+     ]
+    }
+   ]
+  },
+  "wochenende": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Dann rufen Sie den ärztlichen Bereitschaftsdienst an, die 116 117. Und wenn es Ihrer Mutter sehr schlecht geht, zum Beispiel mit hohem Fieber und Verwirrtheit, die 112.",
+     "dit": "Dann rufen Sie den ärztlichen Bereitschaftsdienst an, die eins eins sechs, eins eins sieben. Und wenn es Ihrer Mutter sehr schlecht geht, zum Beispiel mit hohem Fieber und Verwirrtheit, die eins eins zwei.",
+     "fr": "Dans ce cas, vous appelez la permanence médicale, le 116 117. Et si votre mère va très mal, par exemple avec une forte fièvre et de la confusion, le 112.",
+     "va": "nachfragen",
+     "relire": true,
+     "relire_note": "116 117 et 112 : quand appeler l'un ou l'autre.",
+     "puis": [
+      {
+       "qui": "lehmann_tochter",
+       "air": "sourire",
+       "t": "116 117. Die speichere ich gleich ein.",
+       "dit": "Eins eins sechs, eins eins sieben. Die speichere ich gleich ein.",
+       "fr": "116 117. Je l'enregistre tout de suite."
+      }
+     ]
+    },
+    {
+     "t": "Am Wochenende erreichen Sie den ärztlichen Bereitschaftsdienst unter 116 117. Im Notfall natürlich die 112.",
+     "dit": "Am Wochenende erreichen Sie den ärztlichen Bereitschaftsdienst unter eins eins sechs, eins eins sieben. Im Notfall natürlich die eins eins zwei.",
+     "fr": "Le week-end, vous joignez la permanence médicale au 116 117. En cas d'urgence, bien sûr, le 112.",
+     "va": "nachfragen",
+     "puis": [
+      {
+       "qui": "lehmann_tochter",
+       "air": "sourire",
+       "t": "116 117. Die speichere ich gleich ein.",
+       "dit": "Eins eins sechs, eins eins sieben. Die speichere ich gleich ein.",
+       "fr": "116 117. Je l'enregistre tout de suite."
+      }
+     ]
+    }
+   ]
+  },
+  "nachfragen": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Damit ich sicher bin, dass ich alles gut erklärt habe: Können Sie mir noch einmal sagen, wann Sie den Schuh tragen und wann Sie die Ärztin anrufen?",
+     "fr": "Pour être sûre d'avoir bien tout expliqué : pouvez-vous me redire quand vous portez la chaussure et quand vous appelez la médecin ?",
+     "va": "abschied",
+     "relire": true,
+     "relire_note": "Teach-back.",
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "attentive",
+       "t": "Den Schuh immer, wenn ich laufe, auch zu Hause. Und die Ärztin, wenn die Wunde rot ist oder riecht, oder bei Fieber.",
+       "fr": "La chaussure, toujours quand je marche, même à la maison. Et la médecin si la plaie est rouge ou sent mauvais, ou s'il y a de la fièvre."
+      },
+      {
+       "qui": "lehmann_tochter",
+       "air": "sourire",
+       "t": "Und am Wochenende die 116 117.",
+       "dit": "Und am Wochenende die eins eins sechs, eins eins sieben.",
+       "fr": "Et le week-end, le 116 117."
+      }
+     ]
+    },
+    {
+     "t": "Fassen Sie mir zum Schluss bitte noch einmal zusammen, was für Sie zu Hause am wichtigsten ist?",
+     "fr": "Pour finir, pouvez-vous me résumer ce qui est le plus important pour vous à la maison ?",
+     "va": "abschied",
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "attentive",
+       "t": "Den Schuh immer, wenn ich laufe, auch zu Hause. Und die Ärztin, wenn die Wunde rot ist oder riecht, oder bei Fieber.",
+       "fr": "La chaussure, toujours quand je marche, même à la maison. Et la médecin si la plaie est rouge ou sent mauvais, ou s'il y a de la fièvre."
+      },
+      {
+       "qui": "lehmann_tochter",
+       "air": "sourire",
+       "t": "Und am Wochenende die 116 117.",
+       "dit": "Und am Wochenende die eins eins sechs, eins eins sieben.",
+       "fr": "Et le week-end, le 116 117."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Haben Sie alles verstanden?",
+     "fr": "Vous avez tout compris ?",
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "sourire",
+       "t": "Ja, ja …",
+       "fr": "Oui, oui…"
+      },
+      {
+       "qui": "lehmann_tochter",
+       "air": "perplexe",
+       "t": "Ehrlich gesagt, Mama, ich weiß gar nicht mehr, wann wir anrufen sollen.",
+       "fr": "Honnêtement, maman, je ne sais plus du tout quand on doit appeler."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Haben Sie alles verstanden? » appelle un « oui » poli.</b> Faire redire avec ses propres mots (teach-back) vérifie vraiment : « Können Sie mir noch einmal sagen, wann Sie … ? » On vérifie son explication, on ne teste pas la patiente."
+     }
+    }
+   ]
+  },
+  "abschied": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Genau so. Das haben Sie beide wunderbar zusammengefasst. Ich wünsche Ihnen alles Gute, {lehmann}, und eine gute Heimfahrt!",
+     "fr": "Exactement. Vous l'avez parfaitement résumé, toutes les deux. Je vous souhaite tout de bon, {lehmann:voc}, et un bon retour à la maison !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "sourire",
+       "t": "Danke, {elif}. Sie waren immer so geduldig mit mir.",
+       "fr": "Merci, {elif}. Vous avez toujours été si patiente avec moi."
+      }
+     ]
+    },
+    {
+     "t": "Perfekt, dann kann zu Hause nichts schiefgehen. Alles Gute für Sie beide!",
+     "fr": "Parfait, alors rien ne peut mal tourner à la maison. Tout de bon à vous deux !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "lehmann",
+       "air": "sourire",
+       "t": "Danke, {elif}. Sie waren immer so geduldig mit mir.",
+       "fr": "Merci, {elif}. Vous avez toujours été si patiente avec moi."
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "ecouter": [
+  {
+   "q": {
+    "t": "Wann hat {lehmann} einen Termin bei der Hausärztin?",
+    "fr": "Quand {lehmann} a-t-elle rendez-vous chez sa médecin traitante ?"
+   },
+   "options": [
+    {
+     "t": "Am Montag um neun Uhr.",
+     "fr": "Lundi à neuf heures."
+    },
+    {
+     "t": "Morgen früh.",
+     "fr": "Demain matin."
+    },
+    {
+     "t": "In zwei Wochen.",
+     "fr": "Dans deux semaines."
+    }
+   ],
+   "juste": 0
+  },
+  {
+   "q": {
+    "t": "Wann soll {lehmann} den Verbandsschuh tragen?",
+    "fr": "Quand {lehmann} doit-elle porter la chaussure de décharge ?"
+   },
+   "options": [
+    {
+     "t": "Nur draußen.",
+     "fr": "Seulement dehors."
+    },
+    {
+     "t": "Nur in der Nacht.",
+     "fr": "Seulement la nuit."
+    },
+    {
+     "t": "Immer beim Gehen, auch in der Wohnung.",
+     "fr": "Toujours pour marcher, même dans l'appartement."
+    }
+   ],
+   "juste": 2
+  },
+  {
+   "q": {
+    "t": "Wen ruft man am Wochenende an, wenn die Wunde rot wird?",
+    "fr": "Qui appelle-t-on le week-end si la plaie devient rouge ?"
+   },
+   "options": [
+    {
+     "t": "Die Apotheke.",
+     "fr": "La pharmacie."
+    },
+    {
+     "t": "Den ärztlichen Bereitschaftsdienst.",
+     "fr": "La permanence médicale."
+    },
+    {
+     "t": "Die Station im Krankenhaus.",
+     "fr": "Le service de l'hôpital."
+    }
+   ],
+   "juste": 1
+  }
+ ]
+}

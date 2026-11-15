@@ -1,0 +1,132 @@
+{
+ "id": "d23-schweigepflicht",
+ "numero": 23,
+ "niveau": "B2",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 2,
+ "role": "elif",
+ "personnes": ["lehmann_tochter"],
+ "titre": {"t": "Angehörige am Telefon: die Schweigepflicht", "fr": "La famille au téléphone : le secret professionnel"},
+ "intro": {"fr": "Le soir, au poste de soins. Le téléphone sonne : c'est {lehmann_tochter}, la fille de {lehmann}. Elle a une levée du secret professionnel au dossier, mais au téléphone, {elif} ne voit pas qui appelle. Demain à dix heures, {lehmann_tochter} a déjà un entretien avec {sommer}. Tu joues {elif} : vérifier l'identité, dire ce qu'une soignante peut dire, renvoyer les résultats à la médecin, et ne rien dire des autres patients."},
+ "but": {"fr": "Répondre à un proche au téléphone en respectant le secret professionnel (Schweigepflicht) : vérifier l'identité (le mot de passe convenu), donner des nouvelles qui relèvent des soins, ne pas interpréter un résultat (Die Laborwerte bespricht die Ärztin mit Ihnen), refuser poliment toute information sur un autre patient, rassurer sans promettre."},
+ "grammaire": ["g18", "g08", "g16"],
+ "telc": ["hoeren", "oral-3"],
+ "relire_notes": {"fr": "Secret professionnel (§ 203 StGB) et levée du secret (Schweigepflichtentbindung) au dossier ; vérifier l'identité au téléphone : mot de passe convenu à l'admission, ou rappel au numéro du dossier (selon la maison) ; ce qu'une assistante de soins peut dire (soins, repas, mobilité, humeur) et ce qui revient à la médecin (résultats, diagnostic) ; aucune information sur les autres patients."},
+ "redemittel": [
+  {"t": "Bevor ich Ihnen etwas sage: Können Sie mir bitte das vereinbarte Kennwort nennen?", "fr": "Avant de vous dire quoi que ce soit : pouvez-vous me donner le mot de passe convenu, s'il vous plaît ?", "fonction": "demander", "relire": true, "relire_note": "Usage du mot de passe téléphonique."},
+  {"t": "Am Telefon darf ich nur Auskunft geben, wenn ich weiß, mit wem ich spreche.", "fr": "Au téléphone, je ne peux donner des informations que si je sais à qui je parle.", "fonction": "annoncer"},
+  {"t": "Ihrer Mutter geht es heute ganz gut. Sie hat gut gegessen.", "fr": "Votre mère va plutôt bien aujourd'hui. Elle a bien mangé.", "fonction": "transmettre"},
+  {"t": "Die Laborwerte bespricht die Ärztin mit Ihnen.", "fr": "Les résultats de laboratoire, c'est la médecin qui en parlera avec vous.", "fonction": "refuser"},
+  {"t": "Ich verstehe, dass Sie sich Sorgen machen.", "fr": "Je comprends que vous soyez inquiète.", "fonction": "rassurer"},
+  {"t": "Über andere Patienten darf ich Ihnen leider nichts sagen.", "fr": "Je ne peux malheureusement rien vous dire sur les autres patients.", "fonction": "refuser"},
+  {"t": "Ich sage Ihrer Mutter, dass Sie angerufen haben.", "fr": "Je dirai à votre mère que vous avez appelé.", "fonction": "annoncer"}
+ ],
+ "debut": "anruf",
+ "noeuds": {
+  "anruf": {
+   "dit": [
+    {"recit": {"fr": "Dix-neuf heures, au poste de soins. Le téléphone sonne."}},
+    {"qui": "lehmann_tochter", "air": "question", "t": "Guten Abend, hier ist {lehmann_tochter}, die Tochter von {lehmann}. Ich war heute Mittag kurz da, aber ich mache mir Sorgen. Wie geht es meiner Mutter?", "fr": "Bonsoir, ici {lehmann_tochter}, la fille de {lehmann}. Je suis passée un moment ce midi, mais je suis inquiète. Comment va ma mère ?"}
+   ],
+   "choix": [
+    {"t": "Guten Abend, {lehmann_tochter}. Hier ist {elif} von der {station}. Bevor ich Ihnen etwas sage: Können Sie mir bitte das Kennwort nennen, das bei der Aufnahme vereinbart wurde?", "dit": "Guten Abend, {lehmann_tochter}. Hier ist {elif} von der {station:dit}. Bevor ich Ihnen etwas sage: Können Sie mir bitte das Kennwort nennen, das bei der Aufnahme vereinbart wurde?", "fr": "Bonsoir, {lehmann_tochter:voc}. Ici {elif}, du {station}. Avant de vous dire quoi que ce soit : pouvez-vous me donner le mot de passe convenu à l'admission, s'il vous plaît ?", "va": "kennwort",
+     "relire": true, "relire_note": "Vérification de l'identité au téléphone.",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Ein Kennwort? Ach ja … „Sonnenblume“. Aber Sie kennen mich doch!", "fr": "Un mot de passe ? Ah oui… « Sonnenblume ». Mais vous me connaissez, pourtant !"}]},
+    {"t": "Guten Abend. Hier spricht {elif} von der {station}. Am Telefon darf ich nur Auskunft geben, wenn ich weiß, mit wem ich spreche. Wie lautet bitte Ihr Kennwort?", "dit": "Guten Abend. Hier spricht {elif} von der {station:dit}. Am Telefon darf ich nur Auskunft geben, wenn ich weiß, mit wem ich spreche. Wie lautet bitte Ihr Kennwort?", "fr": "Bonsoir. {elif} à l'appareil, du {station}. Au téléphone, je ne peux donner des informations que si je sais à qui je parle. Quel est votre mot de passe, s'il vous plaît ?", "va": "kennwort",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Ein Kennwort? Ach ja … „Sonnenblume“. Aber Sie kennen mich doch!", "fr": "Un mot de passe ? Ah oui… « Sonnenblume ». Mais vous me connaissez, pourtant !"}]},
+    {"faux": true, "t": "Guten Abend! Ihrer Mutter geht es gut. Nur ihr Kalium war heute zu hoch, sonst ist alles okay.", "fr": "Bonsoir ! Votre mère va bien. Seul son potassium était trop élevé aujourd'hui, sinon tout va bien.",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Kalium? Was heißt das? Ist das gefährlich?", "fr": "Le potassium ? Qu'est-ce que ça veut dire ? C'est dangereux ?"}],
+     "aide": {"fr": "<b>Au téléphone, savoir d'abord qui appelle.</b> Même avec une levée du secret au dossier, on vérifie l'identité (le mot de passe convenu, ou on rappelle au numéro du dossier). Et un résultat de laboratoire, c'est la médecin qui l'explique."},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  },
+  "kennwort": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja, ich erkenne Ihre Stimme. Aber am Telefon kann jeder anrufen, und das Kennwort schützt Ihre Mutter. Danke für Ihr Verständnis.", "fr": "Oui, je reconnais votre voix. Mais au téléphone, n'importe qui peut appeler, et le mot de passe protège votre mère. Merci de votre compréhension.", "va": "befinden",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Na gut, eigentlich ist das ja richtig so. Also, wie geht es ihr?", "fr": "Bon, au fond, c'est très bien comme ça. Alors, comment va-t-elle ?"}]},
+    {"t": "Das Kennwort stimmt, danke. Wir machen das bei allen Anrufen so, damit keine Fremden Auskunft bekommen.", "fr": "Le mot de passe est juste, merci. Nous faisons ainsi pour tous les appels, pour qu'aucun inconnu n'obtienne d'informations.", "va": "befinden",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Na gut, eigentlich ist das ja richtig so. Also, wie geht es ihr?", "fr": "Bon, au fond, c'est très bien comme ça. Alors, comment va-t-elle ?"}]},
+    {"repete": true, "t": "Entschuldigung, die Verbindung ist schlecht. Können Sie das Kennwort bitte noch einmal sagen?", "fr": "Pardon, la ligne est mauvaise. Pouvez-vous répéter le mot de passe, s'il vous plaît ?", "va": "kennwort",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "„Sonnenblume“. Wie die Blume.", "fr": "« Sonnenblume », comme la fleur (le tournesol)."}]}
+   ]
+  },
+  "befinden": {
+   "dit": [],
+   "choix": [
+    {"t": "Ihrer Mutter geht es heute ganz gut. Sie hat zu Abend fast alles gegessen und war am Nachmittag mit dem Gehstock auf dem Flur.", "fr": "Votre mère va plutôt bien aujourd'hui. Elle a mangé presque tout son dîner et elle a marché dans le couloir avec sa canne cet après-midi.", "va": "werte",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "Das freut mich. Und die Blutwerte? Die Ärztin hat heute Morgen Blut abgenommen.", "fr": "Ça me fait plaisir. Et les analyses de sang ? La médecin lui a fait une prise de sang ce matin."}]},
+    {"t": "Sie hat heute gut mitgemacht. Der Verband wurde gewechselt, und beim Abendessen hatte sie guten Appetit.", "fr": "Elle a bien participé aujourd'hui. Le pansement a été refait, et elle avait bon appétit au dîner.", "va": "werte",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "Das freut mich. Und die Blutwerte? Die Ärztin hat heute Morgen Blut abgenommen.", "fr": "Ça me fait plaisir. Et les analyses de sang ? La médecin lui a fait une prise de sang ce matin."}]},
+    {"faux": true, "t": "Ihre Mutter hat eine Hyperkaliämie bei Polyneuropathie und diabetischem Fußsyndrom.", "fr": "Votre mère a une hyperkaliémie sur fond de polyneuropathie et de pied diabétique.",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Eine was? Bitte so, dass ich es auch verstehe.", "fr": "Une quoi ? S'il vous plaît, dites-le de façon que je comprenne."}],
+     "aide": {"fr": "<b>Avec la famille : des mots simples, et ce qui relève des soins.</b> Ce qu'elle a mangé, si elle a marché, comment elle se sent : « Sie hat gut gegessen und war auf dem Flur. » Les diagnostics, c'est la médecin qui les explique."}}
+   ]
+  },
+  "werte": {
+   "dit": [],
+   "choix": [
+    {"t": "Die Laborwerte bespricht die Ärztin mit Ihnen. Sie haben ja morgen um zehn das Gespräch mit {sommer}. Da kann sie Ihnen alles genau erklären.", "fr": "Les résultats de laboratoire, c'est la médecin qui en parlera avec vous. Vous avez justement demain à dix heures votre entretien avec {sommer}. Elle pourra tout vous expliquer en détail.", "va": "sorge",
+     "relire": true, "relire_note": "Ce qui revient à la médecin.",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Ja, schon … Aber ist denn etwas nicht in Ordnung?", "fr": "Oui, bien sûr… Mais est-ce qu'il y a quelque chose qui ne va pas ?"}]},
+    {"t": "Dazu darf ich Ihnen leider nichts sagen, das ist Sache der Ärztin. Morgen um zehn sehen Sie ja {sommer}; sie erklärt Ihnen die Werte.", "fr": "Là-dessus, je ne peux malheureusement rien vous dire, c'est du ressort de la médecin. Demain à dix heures, vous voyez {sommer} ; elle vous expliquera les résultats.", "va": "sorge",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Ja, schon … Aber ist denn etwas nicht in Ordnung?", "fr": "Oui, bien sûr… Mais est-ce qu'il y a quelque chose qui ne va pas ?"}]},
+    {"faux": true, "t": "Die sind, glaube ich, ganz okay.", "fr": "Ils sont plutôt corrects, je crois.",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "„Glaube ich“? Sind sie nun in Ordnung oder nicht?", "fr": "« Je crois » ? Alors, ils sont bons ou pas ?"}],
+     "aide": {"fr": "<b>Ne pas deviner, ne pas interpréter un résultat.</b> « Die Laborwerte bespricht die Ärztin mit Ihnen. » Puis proposer quelque chose de concret : l'entretien avec elle, demain."}}
+   ]
+  },
+  "sorge": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich verstehe, dass Sie sich Sorgen machen. Die Ärztin hat die Werte gesehen und kümmert sich darum. Morgen kann sie Ihnen alle Fragen beantworten.", "fr": "Je comprends que vous soyez inquiète. La médecin a vu les résultats et elle s'en occupe. Demain, elle pourra répondre à toutes vos questions.", "va": "nachbar",
+     "relire": true, "relire_note": "Rassurer sans promettre ni révéler.",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Gut. Das beruhigt mich ein bisschen.", "fr": "Bien. Ça me rassure un peu."}]},
+    {"t": "Ihre Mutter ist gut versorgt, und die Ärztin weiß Bescheid. Schreiben Sie sich Ihre Fragen für morgen auf, dann vergessen Sie nichts.", "fr": "Votre mère est bien prise en charge, et la médecin est au courant. Notez vos questions pour demain, comme ça vous n'oublierez rien.", "va": "nachbar",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Gute Idee. Das beruhigt mich ein bisschen.", "fr": "Bonne idée. Ça me rassure un peu."}]},
+    {"faux": true, "t": "Nein, nein, es ist alles bestens. Keine Sorge!", "fr": "Non, non, tout va très bien. Ne vous inquiétez pas !",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Wirklich? Warum soll ich dann mit der Ärztin sprechen?", "fr": "Vraiment ? Alors pourquoi je dois parler à la médecin ?"}],
+     "aide": {"fr": "<b>Rassurer sans promettre.</b> Tu ne peux pas dire « alles bestens » sans le savoir. « Ich verstehe, dass Sie sich Sorgen machen. Die Ärztin kümmert sich darum » rassure et reste vrai."}}
+   ]
+  },
+  "nachbar": {
+   "dit": [
+    {"qui": "lehmann_tochter", "air": "question", "t": "Ach, und noch etwas: Wie geht es eigentlich dem netten Herrn von nebenan, {brandt:dat}? Meine Mutter sagt, er war neulich nachts so krank.", "fr": "Ah, et encore une chose : comment va le gentil monsieur d'à côté, {brandt} ? Ma mère dit qu'il a été très malade l'autre nuit."}
+   ],
+   "choix": [
+    {"t": "Das ist nett, dass Sie fragen. Aber über andere Patienten darf ich Ihnen leider nichts sagen. Das gilt für alle, auch für Ihre Mutter.", "fr": "C'est gentil de demander. Mais je ne peux malheureusement rien vous dire sur les autres patients. C'est valable pour tout le monde, pour votre mère aussi.", "va": "ende",
+     "relire": true, "relire_note": "Secret professionnel : rien sur les autres patients.",
+     "puis": [{"qui": "lehmann_tochter", "air": "amuse", "t": "Natürlich, Sie haben recht. Das würde ich ja auch nicht wollen.", "fr": "Bien sûr, vous avez raison. Je ne voudrais pas non plus qu'on parle de ma mère."}]},
+    {"t": "Dazu darf ich Ihnen leider keine Auskunft geben, ich habe Schweigepflicht. Sie möchten ja auch nicht, dass ich mit anderen über Ihre Mutter spreche.", "fr": "Là-dessus, je ne peux malheureusement pas vous renseigner, je suis tenue au secret professionnel. Vous non plus, vous ne voudriez pas que je parle de votre mère à d'autres personnes.", "va": "ende",
+     "puis": [{"qui": "lehmann_tochter", "air": "amuse", "t": "Natürlich, Sie haben recht. Das würde ich ja auch nicht wollen.", "fr": "Bien sûr, vous avez raison. Je ne voudrais pas non plus qu'on parle de ma mère."}]},
+    {"faux": true, "t": "Ach, dem geht es schon besser. Er hatte eine Lungenentzündung.", "fr": "Oh, il va déjà mieux. Il a eu une pneumonie.",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Eine Lungenentzündung? Ist das ansteckend? Ist meine Mutter in Gefahr?", "fr": "Une pneumonie ? C'est contagieux ? Ma mère est en danger ?"}],
+     "aide": {"fr": "<b>Jamais d'information sur un autre patient, même demandée gentiment.</b> « Über andere Patienten darf ich Ihnen leider nichts sagen. » Le secret professionnel protège chaque patient, la mère de l'appelante aussi."}}
+   ]
+  },
+  "ende": {
+   "dit": [],
+   "choix": [
+    {"t": "Dann sehen wir uns morgen um zehn. Ich sage Ihrer Mutter, dass Sie angerufen haben. Einen schönen Abend noch!", "fr": "Alors à demain, dix heures. Je dirai à votre mère que vous avez appelé. Bonne soirée !", "va": null,
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Danke, Sie sind sehr freundlich. Gute Nacht!", "fr": "Merci, vous êtes très aimable. Bonne nuit !"}]},
+    {"t": "Ich richte Ihrer Mutter liebe Grüße aus. Bis morgen, und auf Wiederhören, {lehmann_tochter}.", "fr": "Je transmettrai vos amitiés à votre mère. À demain, et au revoir, {lehmann_tochter:voc}.", "va": null,
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Auf Wiederhören, und vielen Dank!", "fr": "Au revoir, et merci beaucoup !"}]},
+    {"faux": true, "t": "Okay, tschüss!", "fr": "OK, salut !",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Äh … tschüss.", "fr": "Euh… au revoir."}],
+     "aide": {"fr": "<b>Finir l'appel comme on l'a commencé : poliment, avec la suite.</b> « Ich sage Ihrer Mutter, dass Sie angerufen haben. Einen schönen Abend noch! » Au téléphone, on dit « Auf Wiederhören »."}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Warum fragt {elif} nach dem Kennwort?", "fr": "Pourquoi {elif} demande-t-elle le mot de passe ?"},
+   "options": [{"t": "Weil sie die Stimme nicht kennt.", "fr": "Parce qu'elle ne connaît pas la voix."}, {"t": "Weil sie am Telefon nicht sicher wissen kann, wer anruft.", "fr": "Parce qu'au téléphone, elle ne peut pas être sûre de qui appelle."}, {"t": "Weil die Tochter keine Schweigepflichtentbindung hat.", "fr": "Parce que la fille n'a pas de levée du secret."}],
+   "juste": 1},
+  {"q": {"t": "Wer erklärt die Blutwerte von {lehmann}?", "fr": "Qui explique les résultats sanguins de {lehmann} ?"},
+   "options": [{"t": "Die Ärztin, morgen um zehn Uhr.", "fr": "La médecin, demain à dix heures."}, {"t": "{elif}, gleich am Telefon.", "fr": "{elif}, tout de suite au téléphone."}, {"t": "Das Labor, mit einem Brief.", "fr": "Le laboratoire, par une lettre."}],
+   "juste": 0},
+  {"q": {"t": "Was antwortet {elif} auf die Frage nach {brandt:dat}?", "fr": "Que répond {elif} quand on lui demande des nouvelles de {brandt} ?"},
+   "options": [{"t": "Dass es ihm schon besser geht.", "fr": "Qu'il va déjà mieux."}, {"t": "Dass er eine Lungenentzündung hatte.", "fr": "Qu'il a eu une pneumonie."}, {"t": "Dass sie über andere Patienten nichts sagen darf.", "fr": "Qu'elle ne peut rien dire sur les autres patients."}],
+   "juste": 2}
+ ]
+}

@@ -1,0 +1,128 @@
+{
+ "id": "d20-praxisanleitung",
+ "numero": 20,
+ "niveau": "B2",
+ "registre": "du",
+ "lieu": "klinikum",
+ "scene_annexe": 2,
+ "role": "elif",
+ "personnes": ["jonas"],
+ "titre": {"t": "Das Gespräch mit dem Praxisanleiter", "fr": "La première semaine : l'entretien avec le tuteur"},
+ "intro": {"fr": "Vendredi 13 novembre, 14 h 30 : la première semaine d'{elif} au {station} se termine. {jonas}, son tuteur, l'attend pour l'entretien de fin de semaine (Praxisanleitung). Entre collègues, on se dit « du ». Tu joues {elif} : tu dis honnêtement ce qui va et ce qui est difficile, tu demandes des explications, tu reçois une critique sans te justifier, tu la reformules et tu fixes deux objectifs."},
+ "but": {"fr": "Parler de son travail avec son tuteur : dire ce qui va et ce qui est difficile ; demander une explication (Kannst du mir erklären, was … bedeutet?) ; recevoir une critique et la reformuler (Wenn ich dich richtig verstehe, …) ; fixer des objectifs concrets ; demander de l'aide."},
+ "grammaire": ["g21", "g07", "g09"],
+ "telc": ["oral-3"],
+ "relire_notes": {"fr": "Cadre de la Praxisanleitung pour une soignante en adaptation (entretien d'étape, objectifs) ; abréviations : « n. B. » = nach Bedarf (si besoin), « RR » = tension artérielle (Riva-Rocci) ; règle de documentation : tout de suite après le soin."},
+ "redemittel": [
+  {"t": "Am schwierigsten ist für mich das Telefon.", "fr": "Le plus difficile pour moi, c'est le téléphone.", "fonction": "transmettre"},
+  {"t": "Kannst du mir erklären, was das genau bedeutet?", "fr": "Tu peux m'expliquer ce que ça veut dire exactement ?", "fonction": "demander"},
+  {"t": "Wenn ich dich richtig verstehe, soll ich …", "fr": "Si je te comprends bien, je dois…", "fonction": "reformuler"},
+  {"t": "Du hast recht. Das nehme ich mir vor.", "fr": "Tu as raison. Je vais y travailler.", "fonction": "annoncer"},
+  {"t": "Nächste Woche möchte ich direkt nach jeder Maßnahme dokumentieren.", "fr": "La semaine prochaine, je veux noter tout de suite après chaque soin.", "fonction": "annoncer"},
+  {"t": "Könntest du mir einmal zeigen, wie du das machst?", "fr": "Tu pourrais me montrer une fois comment tu fais ?", "fonction": "demander"},
+  {"t": "Darf ich kurz nachfragen?", "fr": "Je peux te demander une précision ?", "fonction": "redemander"}
+ ],
+ "debut": "start",
+ "noeuds": {
+  "start": {
+   "dit": [
+    {"recit": {"fr": "Vendredi, 14 h 30. La relève est faite. {jonas} a posé deux tasses de thé sur la table de la salle de soins et un formulaire d'entretien."}},
+    {"qui": "jonas", "air": "sourire", "t": "So, {elif}, deine erste Woche auf der Vier B ist fast rum. Wie geht's dir?", "fr": "Alors, {elif}, ta première semaine au 4B est presque finie. Comment ça va ?"}
+   ],
+   "choix": [
+    {"t": "Ehrlich gesagt: Ich bin ziemlich müde, aber zufrieden. Die Arbeit mit den Patienten macht mir richtig Spaß.", "fr": "Pour être honnête : je suis assez fatiguée, mais contente. Le travail avec les patients me plaît vraiment.", "va": "schwierig",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Das sieht man. Und was war schwierig?", "fr": "Ça se voit. Et qu'est-ce qui a été difficile ?"}]},
+    {"t": "Gut, danke. Es war viel Neues, aber ich habe das Gefühl, ich komme langsam rein.", "fr": "Bien, merci. Il y a eu beaucoup de nouveau, mais j'ai l'impression que je commence à m'y faire.", "va": "schwierig",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Das sieht man. Und was war schwierig?", "fr": "Ça se voit. Et qu'est-ce qui a été difficile ?"}]},
+    {"faux": true, "t": "Danke, gut. Und wie geht es Ihnen?", "fr": "Bien, merci. Et vous, comment allez-vous ?",
+     "puis": [{"qui": "jonas", "air": "amuse", "t": "„Ihnen“? Wir sind doch per du, {elif}!", "fr": "« Vous » ? On se tutoie, {elif} !"}],
+     "aide": {"fr": "<b>Avec ton tuteur, comme avec tes collègues, c'est « du ».</b> Même dans un entretien un peu officiel : « Danke, gut. Und dir? »"}}
+   ]
+  },
+  "schwierig": {
+   "dit": [],
+   "choix": [
+    {"t": "Am schwierigsten ist das Telefon. Die Leute sprechen schnell, und ich verstehe die Abkürzungen nicht immer.", "fr": "Le plus difficile, c'est le téléphone. Les gens parlent vite, et je ne comprends pas toujours les abréviations.", "va": "abkuerzung",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Das geht am Anfang allen so. Welche Abkürzungen zum Beispiel?", "fr": "C'est pareil pour tout le monde au début. Quelles abréviations, par exemple ?"}]},
+    {"t": "Für mich sind die Abkürzungen schwierig, in der Kurve und bei der Übergabe. Und am Telefon bin ich oft unsicher.", "fr": "Pour moi, ce sont les abréviations qui sont difficiles, dans le dossier et à la relève. Et au téléphone, je ne suis souvent pas sûre de moi.", "va": "abkuerzung",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Das geht am Anfang allen so. Welche Abkürzungen zum Beispiel?", "fr": "C'est pareil pour tout le monde au début. Quelles abréviations, par exemple ?"}]},
+    {"faux": true, "t": "Nichts, eigentlich. Alles war leicht.", "fr": "Rien, en fait. Tout était facile.",
+     "puis": [{"qui": "jonas", "air": "perplexe", "t": "Wirklich alles? Nach einer Woche auf einer neuen Station?", "fr": "Vraiment tout ? Après une semaine dans un nouveau service ?"}],
+     "aide": {"fr": "<b>L'entretien sert à dire ce qui est difficile : sois concrète.</b> « Am schwierigsten ist das Telefon. Ich verstehe die Abkürzungen nicht immer. » Ton tuteur ne peut t'aider que s'il sait où tu bloques."}}
+   ]
+  },
+  "abkuerzung": {
+   "dit": [],
+   "choix": [
+    {"t": "Zum Beispiel „n. B.“ in der Kurve. Kannst du mir erklären, was das genau bedeutet?", "dit": "Zum Beispiel „en Be“ in der Kurve. Kannst du mir erklären, was das genau bedeutet?", "fr": "Par exemple « n. B. » dans le dossier. Tu peux m'expliquer ce que ça veut dire exactement ?", "va": "kritik",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "„Nach Bedarf“, also nur, wenn es nötig ist. Wie „b. B.“, bei Bedarf. Ich mache dir eine Liste mit den wichtigsten Abkürzungen.", "dit": "„Nach Bedarf“, also nur, wenn es nötig ist. Wie „be Be“, bei Bedarf. Ich mache dir eine Liste mit den wichtigsten Abkürzungen.", "fr": "« Nach Bedarf », donc seulement quand c'est nécessaire. Comme « b. B. », bei Bedarf : si besoin. Je te fais une liste des abréviations les plus importantes.", "relire": true, "relire_note": "n. B. / b. B."}]},
+    {"t": "Was genau heißt eigentlich „RR“? Das höre ich bei jeder Übergabe.", "dit": "Was genau heißt eigentlich „Er Er“? Das höre ich bei jeder Übergabe.", "fr": "Que veut dire exactement « RR », en fait ? Je l'entends à chaque relève.", "va": "kritik",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Das ist der Blutdruck, nach Riva-Rocci, dem Arzt, der das Messgerät erfunden hat. Ich mache dir eine Liste mit den wichtigsten Abkürzungen.", "fr": "C'est la tension artérielle, d'après Riva-Rocci, le médecin qui a inventé l'appareil de mesure. Je te fais une liste des abréviations les plus importantes.", "relire": true, "relire_note": "RR = tension artérielle."}]}
+   ]
+  },
+  "kritik": {
+   "dit": [
+    {"qui": "jonas", "air": "attentive", "t": "Darf ich dir auch sagen, was mir aufgefallen ist? Du dokumentierst oft erst am Ende der Schicht. Dann fehlen tagsüber Infos in der Kurve. Und du fragst selten nach, auch wenn du unsicher bist.", "fr": "Je peux te dire aussi ce que j'ai remarqué ? Tu notes souvent seulement à la fin du poste. Du coup, il manque des informations dans le dossier pendant la journée. Et tu demandes rarement, même quand tu n'es pas sûre."}
+   ],
+   "choix": [
+    {"t": "Okay. Wenn ich dich richtig verstehe: Ich soll direkt nach jeder Maßnahme dokumentieren und öfter fragen, wenn ich unsicher bin.", "fr": "D'accord. Si je te comprends bien : je dois noter tout de suite après chaque soin, et demander plus souvent quand je ne suis pas sûre.", "va": "erklaeren",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Genau das. Was meinst du, woran liegt das?", "fr": "C'est exactement ça. À ton avis, ça vient d'où ?"}]},
+    {"t": "Danke, dass du das so offen sagst. Also: sofort dokumentieren und mehr nachfragen. Habe ich das richtig verstanden?", "fr": "Merci de le dire aussi franchement. Donc : noter tout de suite et demander davantage. J'ai bien compris ?", "va": "erklaeren",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Genau das. Was meinst du, woran liegt das?", "fr": "C'est exactement ça. À ton avis, ça vient d'où ?"}]},
+    {"faux": true, "t": "Aber das ist nicht meine Schuld! Wir haben so viel zu tun, da habe ich keine Zeit.", "fr": "Mais ce n'est pas ma faute ! On a tellement à faire, je n'ai pas le temps.",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Ich mache dir keinen Vorwurf, {elif}. Ich möchte nur, dass es dir leichter fällt.", "fr": "Je ne te fais pas de reproche, {elif}. Je veux seulement que ce soit plus facile pour toi."}],
+     "aide": {"fr": "<b>Devant une critique, ne te justifie pas tout de suite : reformule-la d'abord.</b> « Wenn ich dich richtig verstehe, soll ich … » Tu montres que tu as écouté, et vous parlez ensuite des raisons et des solutions."}}
+   ]
+  },
+  "erklaeren": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich traue mich manchmal nicht zu fragen. Ich will nicht dumm wirken, und ihr habt alle so viel zu tun.", "fr": "Parfois, je n'ose pas demander. Je ne veux pas avoir l'air bête, et vous avez tous tellement à faire.", "va": "ziele",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Fragen ist nicht dumm. Nicht fragen ist gefährlich. Also: lieber zehnmal fragen. Was nimmst du dir für nächste Woche vor?", "fr": "Demander, ce n'est pas bête. Ne pas demander, c'est dangereux. Donc : mieux vaut demander dix fois. Qu'est-ce que tu te fixes pour la semaine prochaine ?"}]},
+    {"t": "Du hast recht. Ich dokumentiere am Ende, weil ich dann Ruhe habe. Und ich habe Angst, euch zu stören.", "fr": "Tu as raison. Je note à la fin parce que j'ai alors du calme. Et j'ai peur de vous déranger.", "va": "ziele",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Du störst nicht. Nicht fragen ist gefährlich, fragen nie. Was nimmst du dir für nächste Woche vor?", "fr": "Tu ne déranges pas. Ne pas demander, c'est dangereux ; demander, jamais. Qu'est-ce que tu te fixes pour la semaine prochaine ?"}]}
+   ]
+  },
+  "ziele": {
+   "dit": [],
+   "choix": [
+    {"t": "Erstens: Ich dokumentiere direkt nach jeder Maßnahme. Zweitens: Ich führe selbst ein Telefonat mit dem Labor, und du hörst zu.", "fr": "Un : je note tout de suite après chaque soin. Deux : je passe moi-même un appel au laboratoire, et tu écoutes.", "va": "wunsch",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Sehr gut, das sind klare Ziele. Ich schreibe sie auf.", "fr": "Très bien, ce sont des objectifs clairs. Je les note."}]},
+    {"t": "Nächste Woche möchte ich sofort nach dem Blutzuckermessen und nach jeder Medikamentengabe dokumentieren. Und ich möchte jeden Tag mindestens eine Frage stellen.", "fr": "La semaine prochaine, je veux noter tout de suite après chaque glycémie et chaque médicament donné. Et je veux poser au moins une question par jour.", "va": "wunsch",
+     "puis": [{"qui": "jonas", "air": "amuse", "t": "Mindestens eine Frage pro Tag, das gefällt mir! Ich schreibe es auf.", "fr": "Au moins une question par jour, ça me plaît ! Je le note."}]},
+    {"faux": true, "t": "Ich will einfach besser werden.", "fr": "Je veux simplement m'améliorer.",
+     "puis": [{"qui": "jonas", "air": "question", "t": "Gut, aber wobei genau? Was willst du nächste Woche anders machen?", "fr": "D'accord, mais en quoi exactement ? Qu'est-ce que tu veux faire autrement la semaine prochaine ?"}],
+     "aide": {"fr": "<b>Un objectif se dit de façon concrète : quoi, quand, comment.</b> « Nächste Woche möchte ich direkt nach jeder Maßnahme dokumentieren. » On pourra vérifier vendredi prochain si c'est fait."}}
+   ]
+  },
+  "wunsch": {
+   "dit": [],
+   "choix": [
+    {"t": "Und noch eine Bitte: Könntest du mir nächste Woche einmal zeigen, wie du die Übergabe am Bett machst?", "fr": "Et encore une demande : tu pourrais me montrer la semaine prochaine comment tu fais la relève au lit du patient ?", "va": "ende",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Klar, am Montag im Frühdienst. Und nächsten Freitag reden wir wieder, gleiche Zeit.", "fr": "Bien sûr, lundi au poste du matin. Et vendredi prochain, on refait le point, même heure."}]},
+    {"t": "Darf ich kurz nachfragen: Wann sprechen wir das nächste Mal? Und könntest du mir dann sagen, ob es besser geworden ist?", "fr": "Je peux te demander une précision : quand est-ce qu'on refait le point ? Et tu pourrais me dire alors si ça s'est amélioré ?", "va": "ende",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Nächsten Freitag, gleiche Zeit. Und ja, ich sage es dir ehrlich.", "fr": "Vendredi prochain, même heure. Et oui, je te le dirai franchement."}]}
+   ]
+  },
+  "ende": {
+   "dit": [],
+   "choix": [
+    {"t": "Danke für das ehrliche Feedback, {jonas}. Das hilft mir wirklich.", "fr": "Merci pour ce retour honnête, {jonas}. Ça m'aide vraiment.", "va": null,
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Gern. Und noch was: Die Patienten mögen dich. {brandt} hat heute gelacht, das schafft nicht jeder.", "fr": "Avec plaisir. Et autre chose : les patients t'aiment bien. {brandt} a ri aujourd'hui, ce n'est pas donné à tout le monde."}]},
+    {"t": "Danke dir. Ich bin froh, dass du mein Praxisanleiter bist.", "fr": "Merci à toi. Je suis contente que tu sois mon tuteur.", "va": null,
+     "puis": [{"qui": "jonas", "air": "amuse", "t": "Sag das nicht zu laut, sonst werde ich noch rot. Schönes Wochenende, {elif}!", "fr": "Ne le dis pas trop fort, je vais rougir. Bon week-end, {elif} !"}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Was ist für {elif} am schwierigsten?", "fr": "Qu'est-ce qui est le plus difficile pour {elif} ?"},
+   "options": [{"t": "Die Arbeit mit den Patienten.", "fr": "Le travail avec les patients."}, {"t": "Das Telefon und die Abkürzungen.", "fr": "Le téléphone et les abréviations."}, {"t": "Der Frühdienst.", "fr": "Le poste du matin."}],
+   "juste": 1},
+  {"q": {"t": "Was hat {jonas} bei {elif} beobachtet?", "fr": "Qu'est-ce que {jonas} a remarqué chez {elif} ?"},
+   "options": [{"t": "Sie dokumentiert oft erst am Ende der Schicht.", "fr": "Elle note souvent seulement à la fin du poste."}, {"t": "Sie kommt oft zu spät.", "fr": "Elle arrive souvent en retard."}, {"t": "Sie spricht zu wenig mit den Patienten.", "fr": "Elle parle trop peu avec les patients."}],
+   "juste": 0},
+  {"q": {"t": "Wann sprechen {elif} und {jonas} wieder miteinander?", "fr": "Quand {elif} et {jonas} refont-ils le point ?"},
+   "options": [{"t": "Morgen früh.", "fr": "Demain matin."}, {"t": "In einem Monat.", "fr": "Dans un mois."}, {"t": "Nächsten Freitag.", "fr": "Vendredi prochain."}],
+   "juste": 2}
+ ]
+}

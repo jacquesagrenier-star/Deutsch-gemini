@@ -1,0 +1,387 @@
+{
+ "_langue": "tr",
+ "_source": "pflege/sources/dialogues/d16-notfall.json",
+ "cles": {
+  "titre": {
+   "fr": "L'urgence : appeler à l'aide, réanimer",
+   "de": "Notfall im Zimmer",
+   "tr": "Acil durum: yardım çağırmak, resüsitasyon yapmak"
+  },
+  "intro": {
+   "fr": "10 h 12. {elif} entre dans la chambre 14 : le patient ne bouge pas. Tu joues {elif} : vérifie s'il réagit, appelle à l'aide depuis la chambre (le bouton d'appel d'urgence, sans quitter le patient), dis l'essentiel en phrases courtes à {jonas}, commence le massage cardiaque, puis transmets à {sommer} quand l'équipe de réanimation arrive. Après, {jonas} te demande ce que tu ferais dans la rue.",
+   "tr": "Saat 10.12. {elif} 14 numaralı odaya giriyor: hasta kıpırdamıyor. Sen {elif:acc} canlandırıyorsun: tepki verip vermediğini kontrol et, odadan yardım çağır (acil çağrı butonuyla, hastayı bırakmadan), en önemli bilgiyi kısa cümlelerle {jonas} ile paylaş, kalp masajına başla, sonra resüsitasyon ekibi geldiğinde hastayı {sommer:dat} devret. Ardından {jonas} sana sokakta olsa ne yapacağını soruyor."
+  },
+  "but": {
+   "fr": "Agir et parler sous stress : vérifier la réaction, appeler à l'aide, dire l'essentiel en phrases courtes (style télégraphique), suivre la séquence de réanimation, se relayer ; transmettre au médecin (l'heure, l'état, ce qui a été fait) ; connaître les questions du 112 hors de l'hôpital.",
+   "tr": "Stres altında hareket etmek ve konuşmak: tepkiyi kontrol etmek, yardım çağırmak, en önemli bilgiyi kısa cümlelerle (telgraf üslubuyla) söylemek, resüsitasyon sırasını izlemek, nöbetleşmek; doktora devretmek (saat, durum, yapılanlar); hastane dışında 112'nin sorularını bilmek."
+  },
+  "relire_notes": {
+   "fr": "Séquence de réanimation de base (ERC 2021 : réaction, appel à l'aide, voies aériennes, respiration au plus 10 secondes, respiration anormale ou gasps = arrêt, 30 compressions pour 2 insufflations, défibrillateur au plus tôt, relais toutes les 2 minutes) ; à l'hôpital, le numéro d'urgence interne et non le 112 ; le contenu de la transmission à l'équipe ; les questions du 112 (les « W-Fragen ») ; ce qu'une assistante de soins fait et ne fait pas dans une réanimation.",
+   "tr": "Temel yaşam desteği sırası (ERC 2021: tepki, yardım çağırma, hava yolu, en fazla 10 saniye solunum kontrolü, anormal solunum ya da agonal solunum = arrest, 2 solunuma 30 kompresyon, mümkün olan en kısa sürede defibrilatör, her 2 dakikada bir değişim); hastanede 112 değil, hastane içi acil numarası; ekibe devir bilgisinin içeriği; 112'nin soruları (“W-Fragen”); bir hemşire yardımcısının resüsitasyonda yaptıkları ve yapmadıkları."
+  },
+  "redemittel.0": {
+   "fr": "Allô ! Vous m'entendez ? Ouvrez les yeux !",
+   "de": "Hallo! Hören Sie mich? Machen Sie die Augen auf!",
+   "tr": "Alo! Beni duyuyor musunuz? Gözlerinizi açın!"
+  },
+  "redemittel.1": {
+   "fr": "À l'aide ! Urgence chambre 14 !",
+   "de": "Hilfe! Notfall in Zimmer 14!",
+   "tr": "Yardım edin! 14 numaralı odada acil durum!"
+  },
+  "redemittel.2": {
+   "fr": "Inconscient, pas de respiration normale.",
+   "de": "Nicht ansprechbar, keine normale Atmung.",
+   "tr": "Bilinci kapalı, normal solunum yok."
+  },
+  "redemittel.3": {
+   "fr": "Appelle l'équipe de réanimation et apporte le défibrillateur !",
+   "de": "Ruf das Reanimationsteam und bring den Defi!",
+   "tr": "Resüsitasyon ekibini çağır ve defibrilatörü getir!"
+  },
+  "redemittel.4": {
+   "fr": "Je fais les compressions, tu ventiles.",
+   "de": "Ich drücke, du beatmest.",
+   "tr": "Ben kompresyon yapıyorum, sen solunum ver."
+  },
+  "redemittel.5": {
+   "fr": "Deux minutes sont passées. On change.",
+   "de": "Zwei Minuten sind um. Wir wechseln.",
+   "tr": "İki dakika doldu. Değişiyoruz."
+  },
+  "redemittel.6": {
+   "fr": "Réanimation depuis 10 h 13, un choc délivré.",
+   "de": "Reanimation seit zehn Uhr dreizehn, ein Schock abgegeben.",
+   "tr": "Saat 10.13'ten beri resüsitasyon, bir şok verildi."
+  },
+  "redemittel.7": {
+   "fr": "Où ? Que s'est-il passé ? Combien de blessés ? Quelles blessures ? Attendre les questions.",
+   "de": "Wo ist es passiert? Was ist passiert? Wie viele Verletzte? Welche Verletzungen? Warten auf Rückfragen.",
+   "tr": "Nerede oldu? Ne oldu? Kaç yaralı var? Hangi yaralanmalar? Soruları bekle."
+  },
+  "noeuds.finden.dit.0.recit": {
+   "fr": "10 h 12. {elif} entre dans la chambre 14 avec le petit-déjeuner. Le patient est couché sur le dos, la tête sur le côté, les yeux fermés. Il ne bouge pas.",
+   "tr": "Saat 10.12. {elif} kahvaltıyla 14 numaralı odaya giriyor. Hasta sırtüstü yatıyor, başı yana düşmüş, gözleri kapalı. Kıpırdamıyor."
+  },
+  "noeuds.finden.choix.0": {
+   "fr": "Allô ! Vous m'entendez ? Ouvrez les yeux, s'il vous plaît !",
+   "de": "Hallo! Hören Sie mich? Machen Sie bitte die Augen auf!",
+   "tr": "Alo! Beni duyuyor musunuz? Lütfen gözlerinizi açın!"
+  },
+  "noeuds.finden.choix.1": {
+   "fr": "Vous pouvez m'entendre ? Serrez-moi la main !",
+   "de": "Können Sie mich hören? Drücken Sie meine Hand!",
+   "tr": "Beni duyabiliyor musunuz? Elimi sıkın!"
+  },
+  "noeuds.rufen.dit.0.recit": {
+   "fr": "{elif} lui secoue doucement les épaules. Aucune réaction.",
+   "tr": "{elif} hastanın omuzlarını hafifçe sarsıyor. Hiçbir tepki yok."
+  },
+  "noeuds.rufen.choix.0": {
+   "fr": "À l'aide ! Urgence chambre 14 ! J'ai besoin d'aide !",
+   "de": "Hilfe! Notfall in Zimmer 14! Ich brauche Hilfe!",
+   "tr": "Yardım edin! 14 numaralı odada acil durum! Yardıma ihtiyacım var!"
+  },
+  "noeuds.rufen.choix.0.puis.0": {
+   "fr": "Je suis là ! Qu'est-ce qui se passe ?",
+   "de": "Ich bin da! Was ist los?",
+   "tr": "Geldim! Ne oldu?"
+  },
+  "noeuds.rufen.choix.1": {
+   "fr": "Urgence ! Venez vite à la 14, s'il vous plaît !",
+   "de": "Notfall! Kommt bitte schnell in die Vierzehn!",
+   "tr": "Acil durum! Lütfen çabuk 14'e gelin!"
+  },
+  "noeuds.rufen.choix.1.puis.0": {
+   "fr": "Je suis là ! Qu'est-ce qui se passe ?",
+   "de": "Ich bin da! Was ist los?",
+   "tr": "Geldim! Ne oldu?"
+  },
+  "noeuds.melden.choix.0": {
+   "fr": "Il ne réagit pas. Je libère les voies aériennes et je vérifie la respiration.",
+   "de": "Er reagiert nicht. Ich mache die Atemwege frei und prüfe die Atmung.",
+   "tr": "Tepki vermiyor. Hava yolunu açıyorum ve solunumu kontrol ediyorum."
+  },
+  "noeuds.melden.choix.1": {
+   "fr": "Inconscient. Je vérifie la respiration.",
+   "de": "Nicht ansprechbar. Ich prüfe jetzt die Atmung.",
+   "tr": "Bilinci kapalı. Şimdi solunumu kontrol ediyorum."
+  },
+  "noeuds.melden.choix.2": {
+   "fr": "Alors, je suis entrée parce que je voulais lui apporter le petit-déjeuner, et là, j'ai vu qu'il était couché bizarrement…",
+   "de": "Also, ich bin reingekommen, weil ich ihm das Frühstück bringen wollte, und da habe ich gesehen, dass er irgendwie komisch daliegt …",
+   "tr": "Şey, ona kahvaltısını getirmek istediğim için içeri girdim, bir de baktım ki tuhaf bir şekilde yatıyor…"
+  },
+  "noeuds.melden.choix.2.puis.0": {
+   "fr": "Bref, {elif} ! Il réagit ?",
+   "de": "Kurz, {elif}! Reagiert er?",
+   "tr": "Kısa kes, {elif}! Tepki veriyor mu?"
+  },
+  "noeuds.melden.choix.2.aide": {
+   "fr": "<b>Dans l'urgence, des phrases courtes : l'essentiel d'abord.</b> « Nicht ansprechbar. Ich prüfe die Atmung. » Le récit vient plus tard, dans la documentation.",
+   "tr": "<b>Acil durumda kısa cümleler: önce en önemlisi.</b> “Nicht ansprechbar. Ich prüfe die Atmung.” Olayın anlatımı sonra, kayıtta yer alır."
+  },
+  "noeuds.atmung.dit.0.recit": {
+   "fr": "{elif} bascule la tête en arrière, soulève le menton. Elle regarde, écoute, sent : dix secondes. Seulement un hoquet irrégulier, de temps en temps.",
+   "tr": "{elif} hastanın başını geriye yatırıp çenesini kaldırıyor. Bakıyor, dinliyor, hissediyor: on saniye. Sadece arada bir düzensiz bir hıçkırık."
+  },
+  "noeuds.atmung.dit.1": {
+   "fr": "Alors ? Il respire ?",
+   "de": "Und? Atmet er?",
+   "tr": "Ee? Nefes alıyor mu?"
+  },
+  "noeuds.atmung.choix.0": {
+   "fr": "Non, pas de respiration normale ! Appelle l'équipe de réanimation et apporte le défibrillateur !",
+   "de": "Nein, keine normale Atmung! Ruf das Reanimationsteam und bring den Defi!",
+   "tr": "Hayır, normal solunum yok! Resüsitasyon ekibini çağır ve defibrilatörü getir!"
+  },
+  "noeuds.atmung.choix.0.puis.0": {
+   "fr": "J'y vais ! Commence le massage cardiaque !",
+   "de": "Mach ich! Fang mit der Herzdruckmassage an!",
+   "tr": "Tamam! Kalp masajına başla!"
+  },
+  "noeuds.atmung.choix.1": {
+   "fr": "Il ne respire pas normalement, ce sont des gasps. Il faut réanimer. Tu appelles l'équipe ?",
+   "de": "Er atmet nicht richtig, nur Schnappatmung. Wir müssen reanimieren. Rufst du das Team?",
+   "tr": "Normal nefes almıyor, sadece agonal solunum var. Resüsitasyona başlamamız gerek. Ekibi sen çağırır mısın?"
+  },
+  "noeuds.atmung.choix.1.puis.0": {
+   "fr": "J'y vais ! Commence le massage cardiaque !",
+   "de": "Mach ich! Fang mit der Herzdruckmassage an!",
+   "tr": "Tamam! Kalp masajına başla!"
+  },
+  "noeuds.atmung.choix.2": {
+   "fr": "J'appelle tout de suite le 112 !",
+   "de": "Ich rufe sofort die 112 an!",
+   "tr": "Hemen 112'yi arıyorum!"
+  },
+  "noeuds.atmung.choix.2.puis.0": {
+   "fr": "Le 112 ? On est à l'hôpital ! J'appelle l'équipe de réanimation.",
+   "de": "Die 112? Wir sind im Krankenhaus! Ich rufe das Reanimationsteam.",
+   "tr": "112 mi? Hastanedeyiz! Ben resüsitasyon ekibini çağırıyorum."
+  },
+  "noeuds.atmung.choix.2.aide": {
+   "fr": "<b>À l'hôpital, on appelle le numéro d'urgence interne, l'équipe de réanimation.</b> Le 112, c'est pour l'extérieur. Retiens le numéro de ta clinique : il est souvent sur le téléphone du poste et sur le chariot d'urgence.",
+   "tr": "<b>Hastanede hastane içi acil numarası, yani resüsitasyon ekibi aranır.</b> 112 dışarısı içindir. Kliniğinin numarasını aklında tut: çoğu zaman hemşire odasındaki telefonda ve acil arabasında yazar."
+  },
+  "noeuds.druecken.choix.0": {
+   "fr": "Je commence. Trente compressions, deux insufflations.",
+   "de": "Ich fange an. Dreißig Kompressionen, zwei Beatmungen.",
+   "tr": "Başlıyorum. Otuz kompresyon, iki solunum."
+  },
+  "noeuds.druecken.choix.1": {
+   "fr": "D'accord. Je fais les compressions, tu ventiles dès que tu es là avec le ballon.",
+   "de": "Okay. Ich drücke, du beatmest, sobald du mit dem Beutel da bist.",
+   "tr": "Tamam. Ben kompresyon yapıyorum, sen ambuyla gelir gelmez solunum ver."
+  },
+  "noeuds.druecken.choix.2": {
+   "fr": "Je cherche d'abord le pouls, tranquillement.",
+   "de": "Ich suche erst mal den Puls, ganz in Ruhe.",
+   "tr": "Önce sakin sakin nabzını arayayım."
+  },
+  "noeuds.druecken.choix.2.puis.0": {
+   "fr": "Non ! Ne perds pas de temps, appuie !",
+   "de": "Nein! Keine Zeit verlieren, drück!",
+   "tr": "Hayır! Vakit kaybetme, bas!"
+  },
+  "noeuds.druecken.choix.2.aide": {
+   "fr": "<b>Pas de recherche de pouls qui dure : on commence le massage.</b> Pas de réaction et pas de respiration normale, cela suffit. Chaque minute sans massage diminue les chances du patient.",
+   "tr": "<b>Uzun süren nabız araması yok: kalp masajına başlanır.</b> Tepki yok ve normal solunum yok, bu yeterli. Masajsız geçen her dakika hastanın şansını azaltır."
+  },
+  "noeuds.wechsel.dit.0.recit": {
+   "fr": "{elif} pose ses mains au milieu du thorax et appuie, fort et vite. Une minute plus tard, {jonas} revient avec le chariot d'urgence et le défibrillateur.",
+   "tr": "{elif} ellerini göğsün ortasına koyup güçlü ve hızlı bastırıyor. Bir dakika sonra {jonas} acil arabası ve defibrilatörle geri geliyor."
+  },
+  "noeuds.wechsel.dit.1": {
+   "fr": "L'équipe est alertée. Je ventile au ballon, tu continues les compressions. Je colle les électrodes.",
+   "de": "Das Team ist alarmiert. Ich beatme mit dem Beutel, du drückst weiter. Ich klebe die Elektroden.",
+   "tr": "Ekibe haber verildi. Ben ambuyla solunum veriyorum, sen basmaya devam et. Elektrotları yapıştırıyorum."
+  },
+  "noeuds.wechsel.choix.0": {
+   "fr": "Deux minutes sont passées. On change, je fatigue.",
+   "de": "Zwei Minuten sind um. Wir wechseln, ich werde müde.",
+   "tr": "İki dakika doldu. Değişelim, yoruluyorum."
+  },
+  "noeuds.wechsel.choix.0.puis.0": {
+   "fr": "D'accord, je prends le relais. Le défibrillateur analyse. Tout le monde s'écarte du patient !",
+   "de": "Okay, ich übernehme. Der Defi analysiert. Alle weg vom Patienten!",
+   "tr": "Tamam, ben devralıyorum. Defibrilatör analiz ediyor. Herkes hastadan uzaklaşsın!"
+  },
+  "noeuds.wechsel.choix.1": {
+   "fr": "Tu peux prendre le relais après ce cycle ? Alors je ventile.",
+   "de": "Kannst du nach diesem Zyklus übernehmen? Dann beatme ich.",
+   "tr": "Bu döngüden sonra devralabilir misin? O zaman ben solunum veririm."
+  },
+  "noeuds.wechsel.choix.1.puis.0": {
+   "fr": "D'accord, je prends le relais. Le défibrillateur analyse. Tout le monde s'écarte du patient !",
+   "de": "Okay, ich übernehme. Der Defi analysiert. Alle weg vom Patienten!",
+   "tr": "Tamam, ben devralıyorum. Defibrilatör analiz ediyor. Herkes hastadan uzaklaşsın!"
+  },
+  "noeuds.uebergabe.dit.0.recit": {
+   "fr": "Le défibrillateur conseille un choc. {jonas} le délivre, puis reprend aussitôt les compressions. Des pas dans le couloir : l'équipe de réanimation arrive, avec {sommer}.",
+   "tr": "Defibrilatör şok öneriyor. {jonas} şoku veriyor, sonra hemen kompresyonlara devam ediyor. Koridorda ayak sesleri: resüsitasyon ekibi {sommer} ile birlikte geliyor."
+  },
+  "noeuds.uebergabe.dit.1": {
+   "fr": "Qu'est-ce qu'on a ?",
+   "de": "Was haben wir?",
+   "tr": "Durum ne?"
+  },
+  "noeuds.uebergabe.choix.0": {
+   "fr": "Patient de la chambre 14, trouvé inconscient à 10 h 12, pas de respiration normale. Réanimation depuis 10 h 13, un choc délivré.",
+   "de": "Patient aus Zimmer 14, um zehn Uhr zwölf nicht ansprechbar gefunden, keine normale Atmung. Reanimation seit zehn Uhr dreizehn, ein Schock abgegeben.",
+   "tr": "14 numaralı odadaki hasta, saat 10.12'de bilinci kapalı bulundu, normal solunum yok. Saat 10.13'ten beri resüsitasyon, bir şok verildi."
+  },
+  "noeuds.uebergabe.choix.0.puis.0": {
+   "fr": "Merci. Nous prenons le relais. Restez ici, s'il vous plaît, et notez les heures.",
+   "de": "Danke. Wir übernehmen. Bleiben Sie bitte hier und schreiben Sie die Uhrzeiten mit.",
+   "tr": "Teşekkürler. Biz devralıyoruz. Lütfen burada kalın ve saatleri not edin."
+  },
+  "noeuds.uebergabe.choix.1": {
+   "fr": "Trouvé inconscient à 10 h 12. Massage et ventilation depuis 10 h 13. Le défibrillateur a choqué une fois.",
+   "de": "Bewusstlos aufgefunden um zehn Uhr zwölf. Seit zehn Uhr dreizehn Herzdruckmassage und Beatmung. Der Defi hat einmal geschockt.",
+   "tr": "Saat 10.12'de bilinçsiz bulundu. Saat 10.13'ten beri kalp masajı ve solunum. Defibrilatör bir kez şok verdi."
+  },
+  "noeuds.uebergabe.choix.1.puis.0": {
+   "fr": "Merci. Nous prenons le relais. Restez ici, s'il vous plaît, et notez les heures.",
+   "de": "Danke. Wir übernehmen. Bleiben Sie bitte hier und schreiben Sie die Uhrzeiten mit.",
+   "tr": "Teşekkürler. Biz devralıyoruz. Lütfen burada kalın ve saatleri not edin."
+  },
+  "noeuds.uebergabe.choix.2": {
+   "fr": "Je ne sais pas exactement quand ça a commencé. Il y a quelques minutes, je crois.",
+   "de": "Ich weiß nicht genau, wann es angefangen hat. Vor ein paar Minuten, glaube ich.",
+   "tr": "Ne zaman başladığını tam bilmiyorum. Birkaç dakika önce galiba."
+  },
+  "noeuds.uebergabe.choix.2.puis.0": {
+   "fr": "Combien de minutes exactement ? Quand l'avez-vous trouvé ?",
+   "de": "Wie viele Minuten genau? Wann haben Sie ihn gefunden?",
+   "tr": "Tam olarak kaç dakika? Onu ne zaman buldunuz?"
+  },
+  "noeuds.uebergabe.choix.2.aide": {
+   "fr": "<b>L'équipe a besoin des heures : quand trouvé, depuis quand le massage, combien de chocs.</b> « Um zehn Uhr zwölf nicht ansprechbar gefunden. Reanimation seit zehn Uhr dreizehn. » Regarde l'heure dès que tu trouves le patient.",
+   "tr": "<b>Ekibin saatlere ihtiyacı var: ne zaman bulundu, masaj ne zamandan beri yapılıyor, kaç şok verildi.</b> “Um zehn Uhr zwölf nicht ansprechbar gefunden. Reanimation seit zehn Uhr dreizehn.” Hastayı bulur bulmaz saate bak."
+  },
+  "noeuds.nachbesprechung.dit.0.recit": {
+   "fr": "Vingt minutes plus tard, le cœur du patient bat de nouveau. Il part en soins intensifs. Dans le poste de soins, {jonas} tend un verre d'eau à {elif}.",
+   "tr": "Yirmi dakika sonra hastanın kalbi yeniden atıyor. Yoğun bakıma gidiyor. Hemşire odasında {jonas}, {elif:dat} bir bardak su uzatıyor."
+  },
+  "noeuds.nachbesprechung.dit.1": {
+   "fr": "Tu t'en es vraiment bien sortie. Comment tu vas ?",
+   "de": "Du hast das richtig gut gemacht. Wie geht's dir?",
+   "tr": "Gerçekten çok iyi iş çıkardın. Nasılsın?"
+  },
+  "noeuds.nachbesprechung.choix.0": {
+   "fr": "Je tremble encore un peu. Mais ça va. Merci d'être arrivé si vite.",
+   "de": "Ich zittere noch ein bisschen. Aber es geht. Danke, dass du so schnell da warst.",
+   "tr": "Hâlâ biraz titriyorum. Ama iyiyim. Bu kadar çabuk geldiğin için teşekkürler."
+  },
+  "noeuds.nachbesprechung.choix.0.puis.0": {
+   "fr": "C'est normal, ça nous fait tous ça. Dis-moi : et si ça arrive dehors, dans la rue ? Tu fais quoi ?",
+   "de": "Das ist normal, das geht uns allen so. Sag mal: Und wenn so was draußen passiert, auf der Straße? Was machst du dann?",
+   "tr": "Bu normal, hepimiz böyle oluyoruz. Söylesene: peki böyle bir şey dışarıda, sokakta olursa? O zaman ne yaparsın?"
+  },
+  "noeuds.nachbesprechung.choix.1": {
+   "fr": "Honnêtement, j'ai eu peur. C'était ma première réanimation. On peut en reparler plus tard ?",
+   "de": "Ehrlich gesagt hatte ich Angst. Ich habe zum ersten Mal reanimiert. Können wir später noch einmal darüber sprechen?",
+   "tr": "Dürüst olmak gerekirse korktum. İlk kez resüsitasyon yaptım. Sonra bunu bir daha konuşabilir miyiz?"
+  },
+  "noeuds.nachbesprechung.choix.1.puis.0": {
+   "fr": "Bien sûr, absolument. Dis-moi : et si ça arrive dehors, dans la rue ? Tu fais quoi ?",
+   "de": "Klar, auf jeden Fall. Sag mal: Und wenn so was draußen passiert, auf der Straße? Was machst du dann?",
+   "tr": "Tabii, kesinlikle. Söylesene: peki böyle bir şey dışarıda, sokakta olursa? O zaman ne yaparsın?"
+  },
+  "noeuds.notruf.choix.0": {
+   "fr": "Alors j'appelle le 112 et je dis : où ça s'est passé, ce qui s'est passé, combien de blessés, quelles blessures. Et ensuite j'attends les questions.",
+   "de": "Dann rufe ich die 112 an und sage: Wo ist es passiert, was ist passiert, wie viele Verletzte, welche Verletzungen. Und dann warte ich auf Rückfragen.",
+   "tr": "O zaman 112'yi arar ve şunları söylerim: nerede oldu, ne oldu, kaç yaralı var, hangi yaralanmalar. Sonra da soruları beklerim."
+  },
+  "noeuds.notruf.choix.0.puis.0": {
+   "fr": "Exactement. Et ne raccroche jamais la première. C'est le centre d'appels qui raccroche, pas toi.",
+   "de": "Genau. Und nie zuerst auflegen. Die Leitstelle legt auf, nicht du.",
+   "tr": "Aynen. Ve asla önce sen kapatma. Telefonu çağrı merkezi kapatır, sen değil."
+  },
+  "noeuds.notruf.choix.1": {
+   "fr": "J'appelle le 112, je dis où je suis et ce qui s'est passé, et je commence le massage cardiaque. Le centre d'appels m'aide au téléphone.",
+   "de": "Ich rufe die 112 an, sage, wo ich bin und was passiert ist, und fange mit der Herzdruckmassage an. Die Leitstelle hilft mir am Telefon.",
+   "tr": "112'yi ararım, nerede olduğumu ve ne olduğunu söylerim, kalp masajına başlarım. Çağrı merkezi telefonda bana yardım eder."
+  },
+  "noeuds.notruf.choix.1.puis.0": {
+   "fr": "Exactement. Et ne raccroche jamais la première. C'est le centre d'appels qui raccroche, pas toi.",
+   "de": "Genau. Und nie zuerst auflegen. Die Leitstelle legt auf, nicht du.",
+   "tr": "Aynen. Ve asla önce sen kapatma. Telefonu çağrı merkezi kapatır, sen değil."
+  },
+  "noeuds.notruf.choix.2": {
+   "fr": "J'appelle, je dis « Venez vite ! » et je raccroche.",
+   "de": "Ich rufe an, sage „Kommen Sie schnell!“ und lege auf.",
+   "tr": "Ararım, “Çabuk gelin!” der ve kapatırım."
+  },
+  "noeuds.notruf.choix.2.puis.0": {
+   "fr": "Et où doivent-ils venir ? Comment le centre d'appels sait ce qui se passe ?",
+   "de": "Und wohin sollen sie kommen? Woher weiß die Leitstelle, was los ist?",
+   "tr": "Peki nereye gelecekler? Çağrı merkezi ne olduğunu nereden bilecek?"
+  },
+  "noeuds.notruf.choix.2.aide": {
+   "fr": "<b>Au 112, on répond aux questions, et on ne raccroche pas.</b> Où ? Que s'est-il passé ? Combien de blessés ? Quelles blessures ? Puis on attend les questions de la Leitstelle, qui peut aussi te guider pour le massage.",
+   "tr": "<b>112'de sorular yanıtlanır ve telefon kapatılmaz.</b> Nerede? Ne oldu? Kaç yaralı var? Hangi yaralanmalar? Sonra “Leitstelle”nin, yani çağrı merkezinin sorularını beklersin; o sana masaj için de yol gösterebilir."
+  },
+  "ecouter.0.q": {
+   "fr": "Qui {jonas} appelle-t-il à l'hôpital ?",
+   "de": "Wen ruft {jonas} im Krankenhaus an?",
+   "tr": "{jonas} hastanede kimi arıyor?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "L'équipe de réanimation.",
+   "de": "Das Reanimationsteam.",
+   "tr": "Resüsitasyon ekibini."
+  },
+  "ecouter.0.options.1": {
+   "fr": "La police.",
+   "de": "Die Polizei.",
+   "tr": "Polisi."
+  },
+  "ecouter.0.options.2": {
+   "fr": "La famille du patient.",
+   "de": "Die Familie des Patienten.",
+   "tr": "Hastanın ailesini."
+  },
+  "ecouter.1.q": {
+   "fr": "Combien de compressions {elif} fait-elle avant les insufflations ?",
+   "de": "Wie viele Kompressionen macht {elif}, bevor beatmet wird?",
+   "tr": "{elif} solunum verilmeden önce kaç kompresyon yapıyor?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Dix.",
+   "de": "Zehn.",
+   "tr": "On."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Vingt.",
+   "de": "Zwanzig.",
+   "tr": "Yirmi."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Trente.",
+   "de": "Dreißig.",
+   "tr": "Otuz."
+  },
+  "ecouter.2.q": {
+   "fr": "Que ne faut-il pas faire en appelant le 112 dans la rue ?",
+   "de": "Was soll man beim Notruf auf der Straße nicht tun?",
+   "tr": "Sokakta 112'yi ararken ne yapılmamalı?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Dire où l'on est.",
+   "de": "Sagen, wo man ist.",
+   "tr": "Nerede olduğunu söylemek."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Raccrocher le premier.",
+   "de": "Zuerst auflegen.",
+   "tr": "Telefonu önce kapatmak."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Attendre les questions.",
+   "de": "Auf Rückfragen warten.",
+   "tr": "Soruları beklemek."
+  }
+ }
+}

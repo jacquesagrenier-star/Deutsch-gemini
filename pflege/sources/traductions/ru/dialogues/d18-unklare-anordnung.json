@@ -1,0 +1,367 @@
+{
+ "_langue": "ru",
+ "_source": "pflege/sources/dialogues/d18-unklare-anordnung.json",
+ "cles": {
+  "titre": {
+   "fr": "Une prescription floue : redemander, refuser poliment",
+   "de": "Eine unklare Anordnung",
+   "ru": "Неясное назначение: переспросить, вежливо отказать"
+  },
+  "intro": {
+   "fr": "Jeudi 12 novembre, 7 h 40. {elif} prépare les médicaments de 8 heures. Dans le dossier de {brandt}, deux prescriptions ont été ajoutées la veille au soir : un antibiotique, alors qu'il est allergique à la pénicilline, et un antidouleur « si besoin », sans dose. Tu joues {elif} : tu arrêtes {sommer} dans le couloir, tu signales le problème sans accuser personne, tu demandes la dose exacte et tu refuses poliment un ordre trop vague.",
+   "ru": "Четверг, 12 ноября, 7:40. {elif} готовит лекарства на 8 часов. В листе наблюдения {brandt:gen} вчера вечером добавили два назначения: антибиотик, хотя у него аллергия на пенициллин, и обезболивающее «по требованию», без дозы. Ты играешь роль {elif:gen}: ты останавливаешь {sommer:acc} в коридоре, сообщаешь о проблеме, никого не обвиняя, спрашиваешь точную дозу и вежливо отказываешься выполнять слишком расплывчатое распоряжение."
+  },
+  "but": {
+   "fr": "Signaler un risque à une médecin pressée (faits, source, question) ; redemander une prescription incomplète (dose, intervalle, maximum) ; refuser poliment de donner un médicament sans prescription précise ; relire la prescription ; demander l'ordre écrit.",
+   "ru": "Сообщить о риске спешащему врачу (факты, источник, вопрос); переспросить неполное назначение (доза, интервал, максимум); вежливо отказаться давать лекарство без точного назначения; повторить назначение вслух; попросить письменное назначение."
+  },
+  "relire_notes": {
+   "fr": "TOUT le dialogue. Amoxicilline + acide clavulanique = une pénicilline, contre-indiquée chez un patient allergique (éruption) ; la première dose n'a pas été donnée ; « bei Bedarf » sans dose : une prescription incomplète ne s'exécute pas ; métamizole 1 g, intervalle d'au moins 6 h, maximum 4 g par jour, si douleur > 3/10 (à vérifier selon le protocole du service) ; prescription orale : seulement en urgence, et à faire signer ; qui modifie le dossier (la médecin).",
+   "ru": "ВЕСЬ диалог. Амоксициллин + клавулановая кислота = пенициллин, противопоказан пациенту с аллергией (сыпь); первая доза не была дана; «bei Bedarf» без дозы: неполное назначение не выполняют; метамизол 1 г, интервал не менее 6 ч, максимум 4 г в сутки, при боли > 3/10 (проверить по протоколу отделения); устное назначение — только в экстренной ситуации, и потом на подпись; кто вносит изменения в лист наблюдения (врач)."
+  },
+  "redemittel.0": {
+   "fr": "Vous avez un instant ? C'est au sujet d'une prescription pour {brandt}.",
+   "de": "Haben Sie kurz einen Moment? Es geht um eine Anordnung bei {brandt:dat}.",
+   "ru": "У вас найдётся минутка? Речь о назначении для {brandt:gen}."
+  },
+  "redemittel.1": {
+   "fr": "D'après la fiche d'admission, {brandt} est allergique à la pénicilline.",
+   "de": "Laut Aufnahmebogen hat {brandt} eine Penicillinallergie.",
+   "ru": "Согласно листу поступления, у {brandt:gen} аллергия на пенициллин."
+  },
+  "redemittel.2": {
+   "fr": "Dans le dossier, il n'y a que « si besoin ». Il manque la dose et le maximum par jour.",
+   "de": "In der Kurve steht nur „bei Bedarf“. Es fehlen die Dosis und die Höchstmenge pro Tag.",
+   "ru": "В листе наблюдения написано только «по требованию». Нет дозы и максимального количества в сутки."
+  },
+  "redemittel.3": {
+   "fr": "Combien doit-il recevoir, et combien de fois au maximum ?",
+   "de": "Wie viel soll er bekommen, und wie oft höchstens?",
+   "ru": "Сколько ему давать и как часто максимум?"
+  },
+  "redemittel.4": {
+   "fr": "Je ne peux malheureusement pas. Sans dose précise, je n'ai pas le droit de le donner.",
+   "de": "Das kann ich leider nicht. Ohne genaue Dosis darf ich das nicht geben.",
+   "ru": "К сожалению, я не могу. Без точной дозы я не имею права это давать."
+  },
+  "redemittel.5": {
+   "fr": "Je répète la posologie : …",
+   "de": "Ich wiederhole die Dosierung: …",
+   "ru": "Повторяю дозировку: …"
+  },
+  "redemittel.6": {
+   "fr": "Pourriez-vous le corriger tout de suite dans le dossier, s'il vous plaît ?",
+   "de": "Könnten Sie das bitte gleich in der Kurve ändern?",
+   "ru": "Не могли бы вы сразу исправить это в листе наблюдения?"
+  },
+  "noeuds.ansprechen.dit.0.recit": {
+   "fr": "Jeudi 12 novembre, 7 h 40. Dans le dossier de {brandt}, deux prescriptions de la veille au soir : « Amoxicillin/Clavulansäure 3 x tägl. » et « Metamizol b. B. ». La première dose d'antibiotique est prévue à 8 heures. {sommer} passe dans le couloir, un gobelet de café à la main.",
+   "ru": "Четверг, 12 ноября, 7:40. В листе наблюдения {brandt:gen} два назначения со вчерашнего вечера: «Amoxicillin/Clavulansäure 3 x tägl.» и «Metamizol b. B.». Первая доза антибиотика запланирована на 8 часов. {sommer} идёт по коридору со стаканчиком кофе в руке."
+  },
+  "noeuds.ansprechen.dit.1": {
+   "fr": "Oui, {elif} ? Je suis un peu pressée.",
+   "de": "Ja, {elif}? Ich bin ein bisschen in Eile.",
+   "ru": "Да, {elif:voc}? Я немного спешу."
+  },
+  "noeuds.ansprechen.choix.0": {
+   "fr": "Pardon, {sommer:voc}, vous avez un instant ? C'est au sujet de deux prescriptions pour {brandt}.",
+   "de": "Entschuldigung, {sommer:voc}, haben Sie kurz einen Moment? Es geht um zwei Anordnungen bei {brandt:dat}.",
+   "ru": "Извините, {sommer:voc}, у вас найдётся минутка? Речь о двух назначениях для {brandt:gen}."
+  },
+  "noeuds.ansprechen.choix.0.puis.0": {
+   "fr": "Deux minutes. De quoi s'agit-il ?",
+   "de": "Zwei Minuten. Worum geht's?",
+   "ru": "Две минуты. В чём дело?"
+  },
+  "noeuds.ansprechen.choix.1": {
+   "fr": "Je peux vous déranger une seconde ? J'ai une question sur les nouvelles prescriptions de {brandt}, avant de donner les médicaments.",
+   "de": "Darf ich Sie ganz kurz stören? Ich habe eine Frage zu den neuen Anordnungen bei {brandt:dat}, bevor ich die Medikamente gebe.",
+   "ru": "Можно вас буквально на секунду? У меня вопрос по новым назначениям для {brandt:gen}, прежде чем я раздам лекарства."
+  },
+  "noeuds.ansprechen.choix.1.puis.0": {
+   "fr": "Deux minutes. De quoi s'agit-il ?",
+   "de": "Zwei Minuten. Worum geht's?",
+   "ru": "Две минуты. В чём дело?"
+  },
+  "noeuds.ansprechen.choix.2": {
+   "fr": "{sommer:voc}, il y a une erreur dans le dossier de {brandt}.",
+   "de": "{sommer:voc}, in der Kurve von {brandt:dat} ist ein Fehler.",
+   "ru": "{sommer:voc}, в листе наблюдения {brandt:gen} ошибка."
+  },
+  "noeuds.ansprechen.choix.2.puis.0": {
+   "fr": "Une erreur ? De qui, donc ?",
+   "de": "Ein Fehler? Von wem denn?",
+   "ru": "Ошибка? И чья же?"
+  },
+  "noeuds.ansprechen.choix.2.aide": {
+   "fr": "<b>Ne commence pas par « une erreur » : demande un moment, puis décris ce que tu vois.</b> « Haben Sie kurz einen Moment? Es geht um zwei Anordnungen bei Herrn Brandt. » Le but est la sécurité du patient, pas de trouver un coupable.",
+   "ru": "<b>Не начинай со слова «ошибка»: попроси минутку, потом опиши то, что видишь.</b> «Haben Sie kurz einen Moment? Es geht um zwei Anordnungen bei Herrn Brandt.» Цель — безопасность пациента, а не поиск виноватого."
+  },
+  "noeuds.allergie.choix.0": {
+   "fr": "Hier soir, on a prescrit de l'amoxicilline avec de l'acide clavulanique. Mais d'après la fiche d'admission, {brandt} est allergique à la pénicilline : il fait une éruption.",
+   "de": "Gestern Abend ist Amoxicillin mit Clavulansäure angeordnet worden. Laut Aufnahmebogen hat {brandt} aber eine Penicillinallergie, er bekommt davon einen Hautausschlag.",
+   "ru": "Вчера вечером назначили амоксициллин с клавулановой кислотой. Но согласно листу поступления, у {brandt:gen} аллергия на пенициллин: от него появляется сыпь."
+  },
+  "noeuds.allergie.choix.0.puis.0": {
+   "fr": "Oh. C'est une pénicilline, il ne doit surtout pas en recevoir. Il a déjà eu une dose ?",
+   "de": "Oh. Das ist ein Penicillin, das darf er auf keinen Fall bekommen. Hat er schon eine Dosis bekommen?",
+   "ru": "Ох. Это пенициллин, его ему ни в коем случае нельзя. Он уже получил дозу?"
+  },
+  "noeuds.allergie.choix.1": {
+   "fr": "L'antibiotique prescrit hier, c'est de l'amoxicilline. Mais sur la fiche d'admission, il y a une allergie à la pénicilline avec éruption.",
+   "de": "Das Antibiotikum, das gestern angeordnet wurde, ist Amoxicillin. Im Aufnahmebogen steht aber eine Penicillinallergie mit Hautausschlag.",
+   "ru": "Антибиотик, который назначили вчера, — это амоксициллин. А в листе поступления указана аллергия на пенициллин с сыпью."
+  },
+  "noeuds.allergie.choix.1.puis.0": {
+   "fr": "Oh. C'est une pénicilline, il ne doit surtout pas en recevoir. Il a déjà eu une dose ?",
+   "de": "Oh. Das ist ein Penicillin, das darf er auf keinen Fall bekommen. Hat er schon eine Dosis bekommen?",
+   "ru": "Ох. Это пенициллин, его ему ни в коем случае нельзя. Он уже получил дозу?"
+  },
+  "noeuds.allergie.choix.2": {
+   "fr": "Le collègue a prescrit hier un mauvais antibiotique. C'est dangereux !",
+   "de": "Der Kollege hat gestern ein falsches Antibiotikum aufgeschrieben. Das ist gefährlich!",
+   "ru": "Коллега вчера выписал не тот антибиотик. Это опасно!"
+  },
+  "noeuds.allergie.choix.2.puis.0": {
+   "fr": "Doucement. Qu'est-ce qui est écrit exactement, et quel est le problème ?",
+   "de": "Langsam. Was genau steht da, und was ist das Problem?",
+   "ru": "Спокойно. Что именно там написано и в чём проблема?"
+  },
+  "noeuds.allergie.choix.2.aide": {
+   "fr": "<b>Donne les faits et leur source, sans juger le collègue.</b> « Angeordnet ist Amoxicillin. Laut Aufnahmebogen hat er eine Penicillinallergie. » La médecin décide elle-même ; ton rôle est de lui donner l'information exacte.",
+   "ru": "<b>Назови факты и их источник, не осуждая коллегу.</b> «Angeordnet ist Amoxicillin. Laut Aufnahmebogen hat er eine Penicillinallergie.» Решение принимает врач; твоя задача — дать ей точную информацию."
+  },
+  "noeuds.gegeben.choix.0": {
+   "fr": "Non, la première dose était prévue à 8 heures. Je ne l'ai pas encore donnée.",
+   "de": "Nein, die erste Gabe war für acht Uhr geplant. Ich habe sie noch nicht gegeben.",
+   "ru": "Нет, первое введение было запланировано на восемь часов. Я его ещё не давала."
+  },
+  "noeuds.gegeben.choix.0.puis.0": {
+   "fr": "Vous avez bien fait de demander. Je l'arrête et je prescris un autre antibiotique. C'est tout ?",
+   "de": "Gut, dass Sie nachgefragt haben. Ich setze es ab und ordne ein anderes Antibiotikum an. War das alles?",
+   "ru": "Хорошо, что вы переспросили. Я его отменяю и назначаю другой антибиотик. Это всё?"
+  },
+  "noeuds.gegeben.choix.1": {
+   "fr": "Non, pas encore. Je voulais d'abord vous en parler.",
+   "de": "Nein, noch nicht. Ich wollte zuerst mit Ihnen sprechen.",
+   "ru": "Нет, ещё нет. Я хотела сначала поговорить с вами."
+  },
+  "noeuds.gegeben.choix.1.puis.0": {
+   "fr": "Vous avez bien fait de demander. Je l'arrête et je prescris un autre antibiotique. C'est tout ?",
+   "de": "Gut, dass Sie nachgefragt haben. Ich setze es ab und ordne ein anderes Antibiotikum an. War das alles?",
+   "ru": "Хорошо, что вы переспросили. Я его отменяю и назначаю другой антибиотик. Это всё?"
+  },
+  "noeuds.metamizol.choix.0": {
+   "fr": "Encore une question : pour le métamizole, il n'y a que « si besoin ». Il manque la dose par prise et le maximum par jour.",
+   "de": "Noch eine Frage: Bei Metamizol steht nur „bei Bedarf“. Es fehlen die Einzeldosis und die Höchstmenge pro Tag.",
+   "ru": "Ещё один вопрос: у метамизола написано только «по требованию». Нет разовой дозы и максимального количества в сутки."
+  },
+  "noeuds.metamizol.choix.0.puis.0": {
+   "fr": "Oh, faites comme d'habitude.",
+   "de": "Ach, machen Sie das einfach wie immer.",
+   "ru": "Ах, делайте как обычно."
+  },
+  "noeuds.metamizol.choix.1": {
+   "fr": "Et pour le métamizole, je ne suis pas sûre : combien peut-il recevoir, et à quelle fréquence ? Dans le dossier, il n'y a que « si besoin ».",
+   "de": "Und beim Metamizol bin ich unsicher: Wie viel darf er bekommen, und wie oft? In der Kurve steht nur „bei Bedarf“.",
+   "ru": "А с метамизолом я не уверена: сколько ему можно и как часто? В листе наблюдения написано только «по требованию»."
+  },
+  "noeuds.metamizol.choix.1.puis.0": {
+   "fr": "Oh, faites comme d'habitude.",
+   "de": "Ach, machen Sie das einfach wie immer.",
+   "ru": "Ах, делайте как обычно."
+  },
+  "noeuds.metamizol.choix.2": {
+   "fr": "Non, c'est tout. Le métamizole, je le donnerai simplement quand il aura mal.",
+   "de": "Nein, das war alles. Metamizol gebe ich dann einfach, wenn er Schmerzen hat.",
+   "ru": "Нет, это всё. Метамизол я просто дам, когда у него будет болеть."
+  },
+  "noeuds.metamizol.choix.2.puis.0": {
+   "fr": "Combien, alors ? Il y a au moins une dose d'écrite ?",
+   "de": "Wie viel denn? Steht da überhaupt eine Dosis?",
+   "ru": "Сколько же? Там вообще указана доза?"
+  },
+  "noeuds.metamizol.choix.2.aide": {
+   "fr": "<b>« Bei Bedarf » ne suffit pas : il faut la dose, l'intervalle et le maximum par jour.</b> Une prescription incomplète se redemande avant de la donner : « Es fehlen die Einzeldosis und die Höchstmenge pro Tag. »",
+   "ru": "<b>«Bei Bedarf» недостаточно: нужны доза, интервал и максимум в сутки.</b> Неполное назначение переспрашивают, прежде чем выполнять: «Es fehlen die Einzeldosis und die Höchstmenge pro Tag.»"
+  },
+  "noeuds.wie_immer.choix.0": {
+   "fr": "Je ne peux malheureusement pas. Sans dose précise, je n'ai pas le droit de le donner. Combien doit-il recevoir, et combien de fois au maximum ?",
+   "de": "Das kann ich leider nicht. Ohne genaue Dosis darf ich es nicht geben. Wie viel soll er bekommen, und wie oft höchstens?",
+   "ru": "К сожалению, я не могу. Без точной дозы я не имею права это давать. Сколько ему давать и как часто максимум?"
+  },
+  "noeuds.wie_immer.choix.0.puis.0": {
+   "fr": "Vous avez raison. Un gramme si la douleur est au-dessus de 3, au plus tôt toutes les six heures, quatre grammes par jour au maximum.",
+   "de": "Sie haben recht. Ein Gramm, wenn die Schmerzen über drei liegen, frühestens alle sechs Stunden, höchstens vier Gramm am Tag.",
+   "ru": "Вы правы. Один грамм, если боль выше трёх, не чаще чем раз в шесть часов, максимум четыре грамма в сутки."
+  },
+  "noeuds.wie_immer.choix.1": {
+   "fr": "Je comprends que vous ayez peu de temps. Mais j'ai besoin d'une prescription précise : la dose par prise, l'intervalle et le maximum par jour.",
+   "de": "Ich verstehe, dass Sie wenig Zeit haben. Aber ich brauche eine genaue Anordnung: die Einzeldosis, den Abstand und die Höchstmenge am Tag.",
+   "ru": "Я понимаю, что у вас мало времени. Но мне нужно точное назначение: разовая доза, интервал и максимум в сутки."
+  },
+  "noeuds.wie_immer.choix.1.puis.0": {
+   "fr": "Vous avez raison. Un gramme si la douleur est au-dessus de 3, au plus tôt toutes les six heures, quatre grammes par jour au maximum.",
+   "de": "Sie haben recht. Ein Gramm, wenn die Schmerzen über drei liegen, frühestens alle sechs Stunden, höchstens vier Gramm am Tag.",
+   "ru": "Вы правы. Один грамм, если боль выше трёх, не чаще чем раз в шесть часов, максимум четыре грамма в сутки."
+  },
+  "noeuds.wie_immer.choix.2": {
+   "fr": "D'accord, je lui donnerai deux comprimés, ça ira.",
+   "de": "Okay, dann gebe ich ihm zwei Tabletten, das passt schon.",
+   "ru": "Ладно, тогда дам ему две таблетки, нормально будет."
+  },
+  "noeuds.wie_immer.choix.2.puis.0": {
+   "fr": "Attendez, non ! Ne devinez pas une dose, s'il vous plaît.",
+   "de": "Moment, nein! Raten Sie bitte keine Dosis.",
+   "ru": "Подождите, нет! Не угадывайте дозу, пожалуйста."
+  },
+  "noeuds.wie_immer.choix.2.aide": {
+   "fr": "<b>Tu as le droit, et le devoir, de refuser poliment un ordre trop vague.</b> « Das kann ich leider nicht. Ohne genaue Dosis darf ich es nicht geben. » Puis repose la question : « Wie viel soll er bekommen, und wie oft höchstens? »",
+   "ru": "<b>У тебя есть право, и даже обязанность, вежливо отказаться от слишком расплывчатого распоряжения.</b> «Das kann ich leider nicht. Ohne genaue Dosis darf ich es nicht geben.» Потом снова задай вопрос: «Wie viel soll er bekommen, und wie oft höchstens?»"
+  },
+  "noeuds.wiederholen.choix.0": {
+   "fr": "Je répète : métamizole un gramme si la douleur dépasse 3, au plus tôt toutes les six heures, quatre grammes par jour au maximum.",
+   "de": "Ich wiederhole: Metamizol ein Gramm bei Schmerzen über drei, frühestens alle sechs Stunden, höchstens vier Gramm am Tag.",
+   "ru": "Повторяю: метамизол один грамм при боли выше трёх, не чаще чем раз в шесть часов, максимум четыре грамма в сутки."
+  },
+  "noeuds.wiederholen.choix.0.puis.0": {
+   "fr": "Exactement.",
+   "de": "Genau.",
+   "ru": "Точно."
+  },
+  "noeuds.wiederholen.choix.1": {
+   "fr": "Donc : un gramme à partir d'une douleur de 4, au moins six heures d'intervalle et quatre grammes par jour au maximum. C'est bien ça ?",
+   "de": "Also: ein Gramm, ab Schmerzstärke vier, mindestens sechs Stunden Abstand und maximal vier Gramm pro Tag. Richtig?",
+   "ru": "Итак: один грамм, начиная с силы боли четыре, интервал не менее шести часов и максимум четыре грамма в сутки. Верно?"
+  },
+  "noeuds.wiederholen.choix.1.puis.0": {
+   "fr": "Exactement.",
+   "de": "Genau.",
+   "ru": "Точно."
+  },
+  "noeuds.wiederholen.choix.2": {
+   "fr": "Pardon, combien de fois au maximum, vous avez dit ?",
+   "de": "Entschuldigung, wie oft höchstens, haben Sie gesagt?",
+   "ru": "Извините, как часто максимум, вы сказали?"
+  },
+  "noeuds.wiederholen.choix.2.puis.0": {
+   "fr": "Au plus tôt toutes les six heures, quatre grammes par jour au maximum.",
+   "de": "Frühestens alle sechs Stunden, höchstens vier Gramm am Tag.",
+   "ru": "Не чаще чем раз в шесть часов, максимум четыре грамма в сутки."
+  },
+  "noeuds.schriftlich.choix.0": {
+   "fr": "Pourriez-vous corriger les deux tout de suite dans le dossier, s'il vous plaît ? Une prescription orale, je ne peux l'accepter qu'en urgence.",
+   "de": "Könnten Sie beides bitte gleich in der Kurve ändern? Eine mündliche Anordnung kann ich nur im Notfall annehmen.",
+   "ru": "Не могли бы вы сразу исправить оба назначения в листе наблюдения? Устное назначение я могу принять только в экстренной ситуации."
+  },
+  "noeuds.schriftlich.choix.0.puis.0": {
+   "fr": "Je le fais tout de suite, avant la visite. J'écris le nouvel antibiotique en même temps.",
+   "de": "Mache ich sofort, noch vor der Visite. Das neue Antibiotikum schreibe ich direkt dazu.",
+   "ru": "Сделаю прямо сейчас, ещё до обхода. Новый антибиотик сразу допишу."
+  },
+  "noeuds.schriftlich.choix.1": {
+   "fr": "Vous voudriez bien noter les changements par écrit dans le dossier ? Je donnerai les médicaments après.",
+   "de": "Würden Sie die Änderungen bitte schriftlich in die Kurve eintragen? Dann gebe ich die Medikamente danach.",
+   "ru": "Внесите, пожалуйста, изменения письменно в лист наблюдения. Тогда я дам лекарства после этого."
+  },
+  "noeuds.schriftlich.choix.1.puis.0": {
+   "fr": "Je le fais tout de suite, avant la visite. J'écris le nouvel antibiotique en même temps.",
+   "de": "Mache ich sofort, noch vor der Visite. Das neue Antibiotikum schreibe ich direkt dazu.",
+   "ru": "Сделаю прямо сейчас, ещё до обхода. Новый антибиотик сразу допишу."
+  },
+  "noeuds.schriftlich.choix.2": {
+   "fr": "Pas de problème, je le corrige moi-même dans le dossier.",
+   "de": "Kein Problem, ich ändere das selbst in der Kurve.",
+   "ru": "Без проблем, я сама исправлю в листе наблюдения."
+  },
+  "noeuds.schriftlich.choix.2.puis.0": {
+   "fr": "Non, non, c'est moi qui écris les prescriptions. Sinon, on ne sait plus qui a prescrit quoi.",
+   "de": "Nein, nein, Anordnungen trage ich ein. Sonst ist nicht klar, wer was angeordnet hat.",
+   "ru": "Нет-нет, назначения вношу я. Иначе непонятно, кто что назначил."
+  },
+  "noeuds.schriftlich.choix.2.aide": {
+   "fr": "<b>Une prescription s'écrit et se signe par la médecin, pas par la soignante.</b> Demande-le poliment : « Könnten Sie das bitte gleich in der Kurve ändern? » Une prescription orale ne s'accepte qu'en urgence, et se fait signer ensuite.",
+   "ru": "<b>Назначение пишет и подписывает врач, а не медсестра.</b> Попроси об этом вежливо: «Könnten Sie das bitte gleich in der Kurve ändern?» Устное назначение принимают только в экстренной ситуации, а потом дают на подпись."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Merci. Je signale encore une fois l'allergie bien visiblement sur la première page du dossier.",
+   "de": "Danke. Ich markiere die Allergie noch einmal deutlich auf der ersten Seite der Kurve.",
+   "ru": "Спасибо. Я ещё раз хорошо заметно отмечу аллергию на первой странице листа наблюдения."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Bonne idée. Et, {elif} : merci. C'est exactement comme ça qu'il faut faire.",
+   "de": "Gute Idee. Und, {elif}: danke. Genau so soll es laufen.",
+   "ru": "Хорошая идея. И, {elif:voc}, спасибо. Именно так и надо действовать."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Merci beaucoup. Vous parlez à {brandt} du nouvel antibiotique, ou je le lui dis ?",
+   "de": "Vielen Dank. Sprechen Sie mit {brandt:dat} über das neue Antibiotikum, oder soll ich es ihm sagen?",
+   "ru": "Большое спасибо. Вы поговорите с {brandt:ins} о новом антибиотике или мне ему сказать?"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Je le lui dirai à la visite. Et, {elif} : merci. C'est exactement comme ça qu'il faut faire.",
+   "de": "Ich sage es ihm bei der Visite. Und, {elif}: danke. Genau so soll es laufen.",
+   "ru": "Я скажу ему на обходе. И, {elif:voc}, спасибо. Именно так и надо действовать."
+  },
+  "ecouter.0.q": {
+   "fr": "Pourquoi {brandt} ne doit-il pas recevoir l'antibiotique ?",
+   "de": "Warum darf {brandt} das Antibiotikum nicht bekommen?",
+   "ru": "Почему {brandt:dat} нельзя давать этот антибиотик?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Il est allergique à la pénicilline.",
+   "de": "Er hat eine Penicillinallergie.",
+   "ru": "У него аллергия на пенициллин."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Il n'a plus de fièvre.",
+   "de": "Er hat kein Fieber mehr.",
+   "ru": "У него больше нет температуры."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Il prend déjà du métamizole.",
+   "de": "Er nimmt schon Metamizol.",
+   "ru": "Он уже принимает метамизол."
+  },
+  "ecouter.1.q": {
+   "fr": "Qu'est-ce qui manque dans la prescription de métamizole ?",
+   "de": "Was fehlt bei der Anordnung von Metamizol?",
+   "ru": "Чего не хватает в назначении метамизола?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Le nom du patient.",
+   "de": "Der Name des Patienten.",
+   "ru": "Имени пациента."
+  },
+  "ecouter.1.options.1": {
+   "fr": "La dose et le maximum par jour.",
+   "de": "Die Dosis und die Höchstmenge pro Tag.",
+   "ru": "Дозы и максимального количества в сутки."
+  },
+  "ecouter.1.options.2": {
+   "fr": "La signature de la soignante.",
+   "de": "Die Unterschrift der Pflege.",
+   "ru": "Подписи медсестры."
+  },
+  "ecouter.2.q": {
+   "fr": "Combien de métamizole {brandt} peut-il recevoir au maximum par jour ?",
+   "de": "Wie viel Metamizol darf {brandt} höchstens am Tag bekommen?",
+   "ru": "Сколько метамизола максимум можно давать {brandt:dat} в сутки?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Un gramme.",
+   "de": "Ein Gramm.",
+   "ru": "Один грамм."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Six grammes.",
+   "de": "Sechs Gramm.",
+   "ru": "Шесть граммов."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Quatre grammes.",
+   "de": "Vier Gramm.",
+   "ru": "Четыре грамма."
+  }
+ }
+}
