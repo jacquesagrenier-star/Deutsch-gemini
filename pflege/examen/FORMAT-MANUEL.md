@@ -163,17 +163,25 @@ crochets.
 - L'examen blanc garde son état par modèle (`blanc_<id>`). Le résultat part vers l'app au format du contrat
   (`resultat_examen`, `soins_telc`, `serie`).
 
-## 7. La répartition (décision du chef, 15 nov.)
+## 7. La répartition (consigne de Jacques du 15 nov. : « rapidement, pas en 2 ou 3 semaines »)
 
-- **pflege-examen** :
-  - le code, ce contrat et le contrôle ;
-  - les examens blancs (`donnees/<épreuve>.json`) ;
-  - `manuel/sommaire.json` et les chapitres `examen`, `schreiben`, `sprechen`, `kommunikation`, `beruf`,
-    `grammatik` ;
-  - `entrainement/schreiben.json` et `entrainement/sprechen.json`.
-- **La seconde session** :
-  - `entrainement/hoeren.json`, `entrainement/lesen.json`, `entrainement/sprachbausteine.json`, et
-    `entrainement/voix-hoeren.json` ;
-  - les chapitres `hoeren`, `lesen` et `sprachbausteine` (ce qu'on attend, les pièges, les stratégies, l'exercice
-    guidé).
-- **Les Redemittel du chapitre 6** : leur source unique est à fixer avec l'architecture (local_eb28671b).
+Cinq sessions en parallèle, chacune dans son worktree tiré de `claude/pflege-examen-1cc3a5`. Chacune n'écrit **que**
+ses fichiers. Elle ne touche ni `examen.js`, ni `telc.html`, ni `interface.json`, ni `tests/`, ni les outils
+existants : un besoin dans l'un d'eux se demande à pflege-examen.
+
+| Session | Chapitres | Fichiers (sous `visuel/prototype/telc-pflege/`, sauf mention) | Voix (plafond) | Images |
+|---|---|---|---|---|
+| A · Hören et Lesen | 1, 2 | `donnees/entrainement/hoeren.json`, `lesen.json`, `voix-hoeren.json` ; `donnees/manuel/hoeren.json`, `lesen.json` | 53 000 crédits (≈ 8,75 $) | — |
+| B · Sprachbausteine et grammaire | 3, 8 | `donnees/entrainement/sprachbausteine.json` ; `donnees/manuel/sprachbausteine.json`, `grammatik.json` | — | — |
+| C · L'écrit | 4, 7 | `donnees/entrainement/schreiben.json` ; `donnees/manuel/schreiben.json`, `beruf.json` | — | — |
+| D · L'oral et la communication | 5, 6 | `donnees/entrainement/sprechen.json`, `voix-sprechen.json` ; `donnees/manuel/sprechen.json`, `kommunikation.json` ; `img/entr-*.webp` ; `pflege/examen/images/prompts_entrainement.py` et ses `entr-*` ; un outil neuf pour les sons des Redemittel (`outils/voix_redemittel.py`, pistes `m-<cle>`) | 64 000 crédits (≈ 10,50 $) | 16 photos 2A (plafond 3 $) ; les 1A reprennent les scènes |
+| E · pflege-examen | 0, 9 | `donnees/manuel/sommaire.json`, `examen.json` ; l'examen blanc 2 (`donnees/<épreuve>.json`, série 2) ; le code, ce contrat, le contrôle, l'intégration | 15 600 crédits (≈ 2,60 $) | 7 photos (plafond 1,50 $) |
+
+- **Les Redemittel du chapitre 6** : leur source unique est à fixer avec l'architecture (local_eb28671b). La
+  question lui est posée ; D commence par le chapitre 5 en attendant.
+- **Les voix** : chaque lot est annoncé au chef avec son coût réel avant d'être lancé. Il faut l'accord de Jacques,
+  confirmé dans la session qui dépense si ses permissions l'exigent. Après chaque lot : `python
+  audio/controler_sons.py`.
+- **Les essais au navigateur** : un port à soi. Le 8794 est déjà pris par deux serveurs : un `python -m
+  http.server` sur un port occupé répond pour l'autre dossier. Une sonde Playwright passe sous le verrou
+  `~/.wortando/verrou-parcours`.
