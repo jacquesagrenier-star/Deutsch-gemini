@@ -559,8 +559,9 @@ const REPLI = {fr: ["fr"], en: ["en", "fr"], tr: ["tr", "en", "fr"], uk: ["uk", 
                fa: ["fa", "en", "fr"], ar: ["ar", "en", "fr"], pt: ["pt", "en", "fr"], pl: ["pl", "en", "fr"], ru: ["ru", "en", "fr"],
                /* l'allemand : interface de l'espagnol seulement (1er nov. 2026) */
                de: ["de", "en", "fr"],
-               /* l'espagnol : interface de l'anglais appris -- jamais par l'anglais, la langue apprise */
-               es: ["es", "fr"]}[LANGUE];
+               /* l'espagnol : interface de l'anglais appris -- jamais par l'anglais, la langue apprise --
+                  et, depuis le 15 nov. 2026, de l'allemand appris (es -> en -> fr, comme les autres) */
+               es: APPRENDRE === "en" ? ["es", "fr"] : ["es", "en", "fr"]}[LANGUE];
 /* L'espagnol d'Espagne (2 nov. 2026) : le sens propre a l'Espagne d'un mot (m.esp), sinon l'Amerique latine. */
 const VARIANTE_ES = new URLSearchParams(location.search).get("varianteEs") === "es" ? "es" : "latam";
 const sensDe = m => {
