@@ -61,10 +61,24 @@ const Tirage = {
     for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
     return h.toString(36) + s.length.toString(36);
   },
+  // LA CLE DE REVISION : la cle de la page (cleQuestion) ET le mot vise (motQ, variable de chaque page). Certaines
+  // sortes ont un enonce fixe (« Welcher Satz ist richtig? », une ecoute sans texte) : sans le mot, toutes leurs
+  // questions auraient la meme cle, et en reussir une aurait ecarte la sorte entiere pour 60 jours.
+  motDeLaQuestion(){
+    try{
+      const m = typeof motQ !== "undefined" ? motQ : null;
+      if (!m) return "";
+      if (Array.isArray(m)) return m.join(" ");
+      if (typeof m === "object") return ((m.genre || "") + " " + (m.mot || "")).trim();
+      return String(m);
+    }catch(e){ return ""; }
+  },
+  cleRevision(k){ const m = Tirage.motDeLaQuestion(); return m ? k + "|" + m : k; },
+  // la question tiree a l'instant (cle de la page, avec son mot)
   statut(cle){
     const r = Tirage.revisions;
     if (!r || !r.etat) return "jamais";
-    const x = r.etat[Tirage.idQuestion(Tirage.texteQuestion(cle))];
+    const x = r.etat[Tirage.idQuestion(Tirage.texteQuestion(Tirage.cleRevision(cle)))];
     if (!x) return "jamais";
     return x[1] > r.jour ? "attente" : "due";
   },
@@ -81,7 +95,7 @@ const Tirage = {
         if (tirages <= Tirage.PALIER_JAMAIS + Tirage.PALIER_DUE) return s === "attente";
         return false;
       },
-      add(k){ base.add(k); tirages = 0; Tirage.courante = k; return this; },
+      add(k){ base.add(k); tirages = 0; Tirage.courante = Tirage.cleRevision(k); return this; },
       delete(k){ return base.delete(k); },
       clear(){ base.clear(); tirages = 0; },
       values(){ return base.values(); },

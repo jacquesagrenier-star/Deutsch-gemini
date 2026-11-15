@@ -45,8 +45,11 @@ async ([jour]) => {
 QUESTION = r"""
 async () => {
   if(!file.length || rang >= file.length) return null;
-  const cle = (typeof Tirage !== 'undefined' && Tirage.courante) ? Tirage.courante : cleQuestion();
-  const statut = (typeof Tirage !== 'undefined' && Tirage.statut) ? Tirage.statut(cle) : null;
+  // la meme cle avant et apres la ligne 95 : celle de la page et le mot vise
+  const m = typeof motQ !== 'undefined' ? motQ : null;
+  const mt = !m ? '' : Array.isArray(m) ? m.join(' ') : typeof m === 'object' ? ((m.genre || '') + ' ' + (m.mot || '')).trim() : String(m);
+  const brute = cleQuestion(), cle = mt ? brute + '|' + mt : brute;
+  const statut = (typeof Tirage !== 'undefined' && Tirage.statut) ? Tirage.statut(brute) : null;
   const t0 = performance.now();
   juger(true, '');
   const s = document.getElementById('suite');
