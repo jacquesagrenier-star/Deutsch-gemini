@@ -42511,7 +42511,9 @@ function echapperSchema(s){ return String(s).replace(/[&<>"]/g, c => ({ "&": "&a
 // SUR UN PETIT ECRAN, LE SCHEMA SE DEPLIE (option B du chef, 14 nov. 2026). Sous 600 px de haut (un iPhone SE dans
 // Safari : 548), la carte « zwischen » avec sa phrase, sa traduction, son cas et le schema ne tenait pas au-dessus des
 // boutons (57 px dessous). Le schema y attend derriere « Voir le schema ▸ » ; un toucher le deplie, la carte se
-// remesure et le defilement doux (garderVersoVisible) ramene son bas au-dessus des boutons. Les boutons ne changent pas.
+// remesure et la page defile jusqu'au bas du SCHEMA (montrerSchemaPraep) : la personne l'a demande, le haut de la carte
+// peut sortir de l'ecran (garderVersoVisible, lui, le garde toujours visible et laissait le bas du schema 42 px sous les
+// boutons a 375x548). Les boutons ne changent pas.
 const SCHEMA_PRAEP_HAUTEUR_MIN = 600;
 function cadreSchemaPraep(prep){
     const svg = praepSchemaSvg(prep);
@@ -42528,6 +42530,25 @@ function deplierSchemaPraep(bouton){
     cadre.classList.remove("hidden");
     bouton.remove();
     try{ resizeFlashcard(); }catch(e){}
+    // Deux regards, comme planifierVersoVisible : apres la transition de hauteur, puis une fois tout pose. Une cible
+    // ABSOLUE (scrollTo), pour qu'un second regard pendant le premier defilement vise le meme point au lieu d'ajouter.
+    setTimeout(() => { montrerSchemaPraep(cadre); setTimeout(() => montrerSchemaPraep(cadre), 700); }, 650);
+}
+function montrerSchemaPraep(cadre){
+    const act = document.getElementById("flashcardActions");
+    if(!cadre || !cadre.isConnected || !cadre.offsetParent || !act || act.classList.contains("hidden")) return;
+    const boutons = [...act.querySelectorAll("button")].filter(b => b.offsetParent && b.getBoundingClientRect().height > 0);
+    if(!boutons.length) return;
+    const hautBoutons = Math.min(...boutons.map(b => b.getBoundingClientRect().top));
+    const r = cadre.getBoundingClientRect();
+    const MARGE = 10;
+    // Le bas du schema au-dessus des boutons, sans faire sortir son haut de l'ecran.
+    const defile = Math.min(Math.ceil(r.bottom + MARGE - hautBoutons), Math.floor(r.top - MARGE));
+    if(defile <= 0) return;
+    let reduit = false;
+    try{ reduit = matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
+    defileParLeVerso = true;
+    window.scrollTo({ top: window.scrollY + defile, behavior: reduit ? "auto" : "smooth" });
 }
 function praepSchemaSvg(prep){
     const p = String(prep || "").toLowerCase();
