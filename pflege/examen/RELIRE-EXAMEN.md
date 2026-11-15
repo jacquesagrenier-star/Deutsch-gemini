@@ -51,3 +51,47 @@ La question à se poser à chaque ligne : **est-ce ainsi que cela se dit et se f
 | 1A, 1B | la photo décrite (aide à la marche avec déambulateur) et les mesures de prévention des chutes de la réponse modèle |
 | 2A | les deux exposés modèles : reconnaître la douleur chez une personne démente (échelle d'observation, mimique, agitation, proches, documentation), le travail posté et la santé |
 | 3 | le chien de thérapie en maison de retraite : les arguments pour et contre sont-ils réalistes (hygiène, chutes, allergies, responsabilité) ? |
+
+## L'examen blanc, modèle 2 (15 nov. 2026)
+
+Écrit par trois agents de la session pflege-examen, au format du modèle 1. Les points marqués `relire: true` dans
+les données sont listés ci-dessous. À vérifier en priorité :
+
+- **Écoute 2, conversation 4 (n11-n12)** : la perfusion passe à côté de la veine (Paravasat), la nuit. Yusuf arrête
+  la perfusion, retire la canule, surélève le bras, marque l'œdème et prévient la médecin de garde, qui décide du
+  nouvel accès. Le premier jet disait de ne pas l'appeler ; je l'ai corrigé par prudence. Ce geste est-il juste ?
+- **Écoute 2, conversation 2 (n7-n8)** : la gastroscopie d'une diabétique :
+  - à jeun après minuit, eau ou thé sans sucre jusqu'à six heures ;
+  - insuline lente du soir réduite de moitié, celle du petit-déjeuner supprimée ;
+  - glycémie à six et huit heures, glucose en perfusion sous 70.
+- **Écoute 1 et 2** :
+  - n1, un potassium à 6,9 signalé tout de suite ;
+  - n2, le bon de stupéfiant original signé ;
+  - n6, un laxatif en poudre et un litre et demi de boisson ;
+  - n14, le comprimé « retard » qu'on n'écrase pas ;
+  - n17, les diurétiques et les ventilateurs interdits pendant la canicule.
+- **Lecture 2** : le plan de soins de Frau Kessler, selon les ATL :
+  - méthotrexate une fois par semaine, acide folique le lendemain ;
+  - attelles de nuit, enfile-bas ;
+  - risque infectieux.
+- **Lecture 3** :
+  - la notice du matelas à air alternatif (poignée de réanimation) ;
+  - la circulaire canicule ;
+  - la fiche sur la protection de la maternité (5 kg / 10 kg, pas de piqûres, pas de travail de 20 h à 6 h, les
+    semaines avant et après la naissance).
+- **Éléments de langue** :
+  - le rapport du zona (aciclovir sur une heure) ;
+  - le rapport rhumatologique (froid en poussée, ponction du poignet avec consentement).
+- **Écrit** :
+  - A, Frau Sander (infection urinaire fébrile, confusion, au moins deux litres par jour, allergie à la pénicilline,
+    incontinence par urgence) ;
+  - B, Frau Hartwig (démence vasculaire légère, DMLA).
+- **Oral** : les réponses modèles de 1B (mesurer à nouveau, prévenir le médecin) et de l'exposé sur la fin de vie
+  (douleur, essoufflement, soins de bouche). Dans l'exposé sur les soins et les cultures : « Kinder sollten
+  möglichst nicht übersetzen ».
+
+Pour un natif allemand : dans les éléments de langue 1 (42-49), deux trous (43, 44) ne se tranchent qu'au fil du
+récit.
+
+Noms nouveaux du modèle 2, à ne pas reprendre : Wendt, Gerlach, Lea (apprentie), Kessler, Pohl, Sander, Hartwig,
+Kroll.
