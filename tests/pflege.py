@@ -80,6 +80,8 @@ def main():
                 if not tr or not ex:
                     problemes.append(ou + " : traduction ou exemple %s vide" % l)
             cle = (m.get("genre"), m.get("mot"))
+            if sorte == "paire":  # une paire est un lien : son cote du service peut etre aussi une carte du theme
+                cle = ("paire", m.get("mot"), m.get("patient"))
             if cle in vus:
                 problemes.append(ou + " : deux fois dans les Soins")
             vus.add(cle)
