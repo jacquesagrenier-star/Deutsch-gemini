@@ -17,6 +17,8 @@ LA RÈGLE (pflege/PLAN.md, décisions de Jacques du 15 nov., § D)
         « faux » d'un dialogue, faux ici aussi ;
       - n : l'aide (« aide ») du choix faux du nœud, ⚕️ si un des deux choix est à relire ;
       - sens : la traduction du choix juste.
+    Les nombres : la forme « dit » du dialogue (en lettres) est prise quand elle existe, car aucun
+    chiffre ne se dit à voix haute (pflege/FORMAT-DONNEES.md, règle 4) ; un chiffre restant arrête le script.
     Seuls s'écrivent ici le cadre de la question (« Herr Brandt fragt: „…“ », « Am Telefon … »),
     le titre de la couche et la zone de l'image où la personne se trouve.
 
@@ -75,15 +77,25 @@ SCENES = {
           cadre="Sie helfen {nom_dat}, sich aufzusetzen. Er sagt: „{t}“"),
     ]},
     # 2. Le poste de soins : personne dans l'image, on parle au téléphone (d07, d11) ou devant le planning.
-    "soins-stationszimmer": {"niveau": "B2", "qui": {"kraemer": "telefon", "hoffmann": "telefon",
-                                                     "jonas": "dienstplan"}, "qs": [
+    "soins-stationszimmer": {"niveau": "B2", "qui": {"kraemer": "telefon"}, "qs": [
         Q(D07, "melden", 1, 2, (D11, "anruf", 2), cadre="Nachts rufen Sie den Dienstarzt an. Er meldet sich: „{t}“"),
         Q(D07, "hintergrund", 1, 2, (D07, "einschaetzung", 2), cadre=TELEFON),
         Q(D07, "einschaetzung", 0, 2, (D07, "empfehlung", 2), cadre=TELEFON),
+    ]},
+    # 9. Le téléphone du poste (15 nov.) : la fin de l'appel SBAR (d07) et l'appel à la cadre (d11).
+    #    Le combiné tenu (zone hoerer) porte les deux voix.
+    "soins-telefon": {"niveau": "B2", "qui": {"kraemer": "hoerer", "hoffmann": "hoerer"}, "qs": [
+        Q(D07, "empfehlung", 0, 2, (D07, "einschaetzung", 2), cadre="Am Telefon sagt {nom}: „{t}“"),
         Q(D07, "wiederholen", 0, 2, (D07, "melden", 2), cadre="Am Telefon sagt {nom}: „{t}“"),
-        Q(D11, "fragen", 0, 2, (D11, "angebot", 2), cadre="Vor dem Dienstplan fragt {nom}: „{t}“"),
         Q(D11, "anruf", 0, 2, (D07, "wiederholen", 2),
           cadre="Sie sind krank und rufen früh morgens Ihre Stationsleitung an. Sie meldet sich: „{t}“"),
+    ]},
+    # 10. La salle de pause (15 nov.) : l'échange de poste avec Jonas (d11) et la relève autour d'un café
+    #     (d06, « Jonas s'assoit avec un café » ; la même question est dans soins-uebergabe).
+    "soins-pause": {"niveau": "B1", "qui": {"jonas": "pflegefachmann"}, "qs": [
+        Q(D11, "fragen", 0, 2, (D01, "tuer", 2), cadre="In der Pause fragt {nom}: „{t}“"),
+        Q(D11, "angebot", 0, 2, (D11, "anruf", 2)),
+        Q(D06, "start", 0, 2, (D06, "zucker", 2), cadre="Mit einem Kaffee am Tisch fragt {nom}: „{t}“"),
     ]},
     # 3. La salle de bain : Frau Lehmann, le pansement du pied changé après la toilette (d03).
     "soins-bad": {"niveau": "B1", "qui": {"lehmann": "patientin"}, "qs": [
@@ -98,7 +110,7 @@ SCENES = {
     "soins-uebergabe": {"niveau": "B2", "qui": {"jonas": "pflegefachmann"}, "qs": [
         Q(D06, "start", 0, 2, (D06, "zucker", 2)),
         Q(D06, "zucker", 0, 2, (D06, "start", 2), r="fieberkurve"),
-        Q(D06, "mobi", 1, 2, (D04, "erklaeren", 2), cadre="{nom} fragt nach Herrn Brandt, Zimmer 12: „{t}“"),
+        Q(D06, "mobi", 1, 2, (D04, "erklaeren", 2), cadre="{nom} fragt nach Herrn Brandt, Zimmer zwölf: „{t}“"),
     ]},
     # 5. L'admission : Frau Krüger, la fille de Frau Lehmann (d05).
     "soins-aufnahme": {"niveau": "B2", "qui": {"lehmann_tochter": "tochter"}, "qs": [
@@ -225,11 +237,13 @@ def construire(src):
             if not zone:
                 fautes.append("%s/%s : %s parle, sans zone dans %s" % (item["d"], item["noeud"], ligne["qui"], scene))
             de = lambda t: remplacer(t, noms["de"], manque)
-            parle = de(ligne["t"])
+            parle = de(ligne.get("dit") or ligne["t"])     # « dit » : les nombres en lettres (contrat, règle 4)
             cadre = item["cadre"] or ("{nom} fragt: „{t}“" if "?" in parle else "{nom} sagt: „{t}“")
             formes = noms["de"].get(ligne["qui"]) or {}
             nom = formes.get("") or ligne["qui"]
-            c = [de(bon["t"]), de(faux["t"]), de(autre["t"])]
+            c = [de(x.get("dit") or x["t"]) for x in (bon, faux, autre)]
+            if any(ch.isdigit() for x in c + [parle, cadre] for ch in x):
+                fautes.append("%s/%s : un chiffre dans l'allemand dit (règle 4)" % (item["d"], item["noeud"]))
             if len(set(c)) != 3:
                 fautes.append("%s/%s : choix en double" % (item["d"], item["noeud"]))
             relire = bon.get("relire") or faux.get("relire")

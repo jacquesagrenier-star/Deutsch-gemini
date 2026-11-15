@@ -1109,13 +1109,13 @@ window.SCENE = {
     {
      "q": "Jonas fragt: „So, Elif, dann leg mal los. Wer ist neu, wer macht Probleme?“",
      "c": [
-      "Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.",
+      "Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.",
       "Frau Lehmann ist sehr nett, und ihre Tochter kommt jeden Tag.",
       "Der Zucker war ziemlich hoch, aber ich weiß nicht mehr genau, wie hoch."
      ],
      "f": "pflegefachmann",
      "type": "situation",
-     "phrase": "Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.",
+     "phrase": "Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.",
      "sens": "Je commence par la chambre 14. Mme Lehmann, 74 ans, admise pour une plaie au pied droit, sur un diabète.",
      "n": "<b>Une relève a un ordre : qui, pourquoi, ce qui s'est passé, ce qui reste à faire.</b> Commence par la chambre, le nom, l'âge et le motif d'admission. Le reste vient après, s'il compte pour les soins.",
      "source": "d06-uebergabe/start"
@@ -1123,20 +1123,20 @@ window.SCENE = {
     {
      "q": "Jonas fragt: „Gut. Und der Zucker?“",
      "c": [
-      "Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.",
+      "Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.",
       "Der Zucker war ziemlich hoch, aber ich weiß nicht mehr genau, wie hoch.",
       "Frau Lehmann ist sehr nett, und ihre Tochter kommt jeden Tag."
      ],
      "f": "pflegefachmann",
      "type": "situation",
-     "phrase": "Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.",
+     "phrase": "Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.",
      "sens": "Glycémie à 7 h : 180. Elle a eu son insuline selon le schéma. À midi, elle était à 140.",
      "n": "<b>Une valeur se transmet avec son chiffre et son heure.</b> « Blutzucker um 7 Uhr: 180 ». Si tu ne t'en souviens pas, relis le dossier avant la relève. ⚕️",
      "source": "d06-uebergabe/zucker",
      "r": "fieberkurve"
     },
     {
-     "q": "Jonas fragt nach Herrn Brandt, Zimmer 12: „Gut. Und die Mobilisation?“",
+     "q": "Jonas fragt nach Herrn Brandt, Zimmer zwölf: „Gut. Und die Mobilisation?“",
      "c": [
       "Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.",
       "Er wollte nicht laufen, er ist halt ein bisschen faul.",
@@ -1191,8 +1191,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation, in German <b>Empfehlung</b>: what the colleague needs to do.",
     "C1 | Das gehört zur Einschätzung.": "What you have observed and what you make of it: the <b>Einschätzung</b>. <b>reizlos</b> = with no signs of inflammation ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "What still needs to be done: the <b>Empfehlung</b>, with a specific time ⚕️.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>A handoff has an order: who, why, what has happened, what still needs doing.</b> Start with the room, the name, the age and the reason for admission. The rest comes afterwards, if it matters for her care.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "<b>A value is handed off with its number and its time.</b> “Blutzucker um 7 Uhr: 180”. If you can't remember it, look at the chart again before the handoff. ⚕️",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>A handoff has an order: who, why, what has happened, what still needs doing.</b> Start with the room, the name, the age and the reason for admission. The rest comes afterwards, if it matters for her care.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>A value is handed off with its number and its time.</b> “Blutzucker um 7 Uhr: 180”. If you can't remember it, look at the chart again before the handoff. ⚕️",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>A handoff is objective: facts, not judgments.</b> Say what happened and the reason the patient gave: “Mobilisation abgelehnt, wegen Angst vor einem Sturz”."
    },
    "sens": {
@@ -1220,8 +1220,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Finally, the recommendation: what should happen next?",
     "C1 | Das gehört zur Einschätzung.": "That is part of the assessment.",
     "C1 | Das gehört zur Empfehlung.": "That is part of the recommendation.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "I'll start with room 14. Mrs. Lehmann, 74, admitted for a wound on her right foot; she's diabetic.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "Blood sugar at 7:00: 180. She got insulin per sliding scale. At noon she was at 140.",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "I'll start with room 14. Mrs. Lehmann, 74, admitted for a wound on her right foot; she's diabetic.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Blood sugar at 7:00: 180. She got insulin per sliding scale. At noon she was at 140.",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Mobilization refused today, due to fear of another fall. It's documented, and the doctor knows."
    }
   },
@@ -1263,8 +1263,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation (öneri), Almancası <b>Empfehlung</b>: meslektaşın yapması gerekenler.",
     "C1 | Das gehört zur Einschätzung.": "Gözlemlenen ve bunun hakkında düşünülen: <b>Einschätzung</b>. <b>reizlos</b> = iltihap belirtisi olmayan ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "Yapılması gerekenler: <b>Empfehlung</b>, belirli bir saatle ⚕️.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Nöbet tesliminin bir sırası vardır: kim, neden, neler oldu, neler yapılacak.</b> Odayla, adla, yaşla ve yatış nedeniyle başla. Gerisi, bakım için önemliyse, sonra gelir.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "<b>Bir değer, sayısı ve saatiyle aktarılır.</b> “Blutzucker um 7 Uhr: 180”. Hatırlamıyorsan, nöbet tesliminden önce dosyaya tekrar bak. ⚕️",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Nöbet tesliminin bir sırası vardır: kim, neden, neler oldu, neler yapılacak.</b> Odayla, adla, yaşla ve yatış nedeniyle başla. Gerisi, bakım için önemliyse, sonra gelir.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Bir değer, sayısı ve saatiyle aktarılır.</b> “Blutzucker um 7 Uhr: 180”. Hatırlamıyorsan, nöbet tesliminden önce dosyaya tekrar bak. ⚕️",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Nöbet teslimi nesneldir: yargı değil, gerçekler.</b> Ne olduğunu ve hastanın söylediği nedeni aktar: “Mobilisation abgelehnt, wegen Angst vor einem Sturz”."
    },
    "sens": {
@@ -1292,8 +1292,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Son olarak öneri: bundan sonra ne olmalı?",
     "C1 | Das gehört zur Einschätzung.": "Bu, değerlendirmeye aittir.",
     "C1 | Das gehört zur Empfehlung.": "Bu, öneriye aittir.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "14 numaralı odayla başlıyorum. Bayan Lehmann, 74 yaşında, diyabete bağlı sağ ayağındaki bir yara nedeniyle yatırıldı.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "Saat 7'de kan şekeri: 180. Şemaya göre insülinini aldı. Öğlen 140'tı.",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "14 numaralı odayla başlıyorum. Bayan Lehmann, 74 yaşında, diyabete bağlı sağ ayağındaki bir yara nedeniyle yatırıldı.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Saat 7'de kan şekeri: 180. Şemaya göre insülinini aldı. Öğlen 140'tı.",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Mobilizasyonu bugün reddetti, tekrar düşme korkusu nedeniyle. Kaydedildi, doktorun da bilgisi var."
    }
   },
@@ -1335,8 +1335,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation (рекомендація), німецькою <b>Empfehlung</b>: що має зробити колега.",
     "C1 | Das gehört zur Einschätzung.": "Те, що спостерігали, і що про це думаємо: <b>Einschätzung</b>. <b>reizlos</b> = без ознак запалення ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "Те, що ще треба зробити: <b>Empfehlung</b>, із точним часом ⚕️.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Передача зміни має порядок: хто, чому, що сталося, що ще треба зробити.</b> Почни з палати, прізвища, віку й причини госпіталізації. Решта — потім, якщо це важливо для догляду.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "<b>Показник передають із числом і часом.</b> «Blutzucker um 7 Uhr: 180». Якщо не памʼятаєш, перечитай документацію перед передачею зміни. ⚕️",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Передача зміни має порядок: хто, чому, що сталося, що ще треба зробити.</b> Почни з палати, прізвища, віку й причини госпіталізації. Решта — потім, якщо це важливо для догляду.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Показник передають із числом і часом.</b> «Blutzucker um 7 Uhr: 180». Якщо не памʼятаєш, перечитай документацію перед передачею зміни. ⚕️",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Передача зміни обʼєктивна: факти, а не оцінки.</b> Скажи, що сталося і яку причину назвав пацієнт: «Mobilisation abgelehnt, wegen Angst vor einem Sturz»."
    },
    "sens": {
@@ -1364,8 +1364,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Наостанок — рекомендація: що має відбутися далі?",
     "C1 | Das gehört zur Einschätzung.": "Це належить до оцінки.",
     "C1 | Das gehört zur Empfehlung.": "Це належить до рекомендації.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Я почну з чотирнадцятої палати. пані Леман, 74 роки, госпіталізована з раною на правій стопі на тлі діабету.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "Глюкоза о 7:00: 180. Вона отримала інсулін за схемою. Опівдні було 140.",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Я почну з чотирнадцятої палати. пані Леман, 74 роки, госпіталізована з раною на правій стопі на тлі діабету.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Глюкоза о 7:00: 180. Вона отримала інсулін за схемою. Опівдні було 140.",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Мобілізація сьогодні — відмова, через страх повторного падіння. Задокументовано, і лікарка в курсі."
    }
   },
@@ -1407,8 +1407,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation، به آلمانی <b>Empfehlung</b>: کاری که همکار باید انجام دهد.",
     "C1 | Das gehört zur Einschätzung.": "آنچه دیده‌ایم و برداشتمان از آن: <b>Einschätzung</b>. <b>reizlos</b> = بدونِ نشانهٔ التهاب ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "کاری که باقی مانده: <b>Empfehlung</b>، با ساعتِ دقیق ⚕️.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>تحویل شیفت ترتیب دارد: چه کسی، به چه دلیل، چه اتفاقی افتاده، چه کارهایی مانده.</b> با اتاق، نام، سن و علت بستری شروع کن. بقیه بعداً می‌آید، اگر برای مراقبت مهم باشد.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "<b>هر مقدار با عدد و ساعتش منتقل می‌شود.</b> «Blutzucker um 7 Uhr: 180». اگر یادت نیست، پیش از تحویل شیفت پرونده را دوباره بخوان. ⚕️",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>تحویل شیفت ترتیب دارد: چه کسی، به چه دلیل، چه اتفاقی افتاده، چه کارهایی مانده.</b> با اتاق، نام، سن و علت بستری شروع کن. بقیه بعداً می‌آید، اگر برای مراقبت مهم باشد.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>هر مقدار با عدد و ساعتش منتقل می‌شود.</b> «Blutzucker um 7 Uhr: 180». اگر یادت نیست، پیش از تحویل شیفت پرونده را دوباره بخوان. ⚕️",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>تحویل شیفت عینی است: واقعیت‌ها، نه قضاوت.</b> بگو چه اتفاقی افتاده و بیمار چه دلیلی آورده: «Mobilisation abgelehnt, wegen Angst vor einem Sturz»."
    },
    "sens": {
@@ -1436,8 +1436,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "در پایان، توصیه: بعد از این چه باید بشود؟",
     "C1 | Das gehört zur Einschätzung.": "این بخشی از ارزیابی است.",
     "C1 | Das gehört zur Empfehlung.": "این بخشی از توصیه است.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "از اتاق 14 شروع می‌کنم. خانم لمان، 74 ساله، به خاطر زخم پای راست در زمینه‌ی دیابت بستری شده.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "قند خون ساعت 7: 180. طبق جدول انسولین گرفت. ظهر 140 بود.",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "از اتاق 14 شروع می‌کنم. خانم لمان، 74 ساله، به خاطر زخم پای راست در زمینه‌ی دیابت بستری شده.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "قند خون ساعت 7: 180. طبق جدول انسولین گرفت. ظهر 140 بود.",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "تحرک‌بخشی امروز رد شد، به دلیل ترس از زمین خوردن دوباره. ثبت شده و خانم دکتر در جریان است."
    }
   },
@@ -1479,8 +1479,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation، وبالألمانية <b>Empfehlung</b>: ما يجب أن تفعله الزميلة.",
     "C1 | Das gehört zur Einschätzung.": "ما لاحظناه وما نستنتجه منه: <b>Einschätzung</b>. <b>reizlos</b> = بلا علامات التهاب ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "ما بقي من عمل: <b>Empfehlung</b>، مع ساعة محدّدة ⚕️.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>لتسليم المناوبة ترتيب: من هو، ولماذا هو هنا، وما الذي حدث، وما الذي بقي لفعله.</b> ابدأ بالغرفة والاسم والعمر وسبب الدخول. وما تبقّى يأتي بعد ذلك، إن كان مهمًا للرعاية.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "<b>القيمة تُنقل مع رقمها وساعتها.</b> «Blutzucker um 7 Uhr: 180». إن لم تتذكرها، فراجع الملف قبل تسليم المناوبة. ⚕️",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>لتسليم المناوبة ترتيب: من هو، ولماذا هو هنا، وما الذي حدث، وما الذي بقي لفعله.</b> ابدأ بالغرفة والاسم والعمر وسبب الدخول. وما تبقّى يأتي بعد ذلك، إن كان مهمًا للرعاية.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>القيمة تُنقل مع رقمها وساعتها.</b> «Blutzucker um 7 Uhr: 180». إن لم تتذكرها، فراجع الملف قبل تسليم المناوبة. ⚕️",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>تسليم المناوبة موضوعي: وقائع، لا أحكام.</b> قل ما حدث والسبب الذي ذكره المريض: «Mobilisation abgelehnt, wegen Angst vor einem Sturz»."
    },
    "sens": {
@@ -1508,8 +1508,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "وأخيرًا التوصية: ما الذي يجب أن يحدث بعد ذلك؟",
     "C1 | Das gehört zur Einschätzung.": "هذا جزء من التقييم.",
     "C1 | Das gehört zur Empfehlung.": "هذا جزء من التوصية.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "أبدأ بالغرفة 14. السيدة ليمان، 74 سنة، دخلت بسبب جرح في القدم اليمنى، مع سكري.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "سكر الدم في السابعة: 180. أخذت الإنسولين حسب الجدول. وفي الظهر كان 140.",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "أبدأ بالغرفة 14. السيدة ليمان، 74 سنة، دخلت بسبب جرح في القدم اليمنى، مع سكري.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "سكر الدم في السابعة: 180. أخذت الإنسولين حسب الجدول. وفي الظهر كان 140.",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "رفض التحريك اليوم، خوفًا من سقوط جديد. هذا موثّق، والطبيبة على علم."
    }
   },
@@ -1551,8 +1551,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation (recomendação), em alemão <b>Empfehlung</b>: o que o colega deve fazer.",
     "C1 | Das gehört zur Einschätzung.": "O que se observou e o que se pensa disso: a <b>Einschätzung</b>. <b>reizlos</b> = sem sinais de inflamação ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "O que ainda falta fazer: a <b>Empfehlung</b>, com um horário preciso ⚕️.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Uma passagem de plantão tem uma ordem: quem, por quê, o que aconteceu, o que falta fazer.</b> Comece pelo quarto, o nome, a idade e o motivo da internação. O resto vem depois, se for importante para os cuidados.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "<b>Um valor se passa com o número e o horário.</b> “Blutzucker um 7 Uhr: 180”. Se você não lembrar, releia o prontuário antes da passagem de plantão. ⚕️",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Uma passagem de plantão tem uma ordem: quem, por quê, o que aconteceu, o que falta fazer.</b> Comece pelo quarto, o nome, a idade e o motivo da internação. O resto vem depois, se for importante para os cuidados.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Um valor se passa com o número e o horário.</b> “Blutzucker um 7 Uhr: 180”. Se você não lembrar, releia o prontuário antes da passagem de plantão. ⚕️",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Uma passagem de plantão é objetiva: fatos, não julgamentos.</b> Diga o que aconteceu e o motivo dado pelo paciente: “Mobilisation abgelehnt, wegen Angst vor einem Sturz”."
    },
    "sens": {
@@ -1580,8 +1580,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Por fim, a recomendação: o que deve acontecer em seguida?",
     "C1 | Das gehört zur Einschätzung.": "Isso faz parte da avaliação.",
     "C1 | Das gehört zur Empfehlung.": "Isso faz parte da recomendação.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Vou começar pelo quarto 14. Sra. Lehmann, 74 anos, internada por causa de uma ferida no pé direito, diabética.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "Glicemia às 7 h: 180. Ela recebeu insulina conforme o esquema. Ao meio-dia, estava em 140.",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Vou começar pelo quarto 14. Sra. Lehmann, 74 anos, internada por causa de uma ferida no pé direito, diabética.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Glicemia às 7 h: 180. Ela recebeu insulina conforme o esquema. Ao meio-dia, estava em 140.",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Mobilização recusada hoje, por medo de uma nova queda. Está registrado, e a médica está ciente."
    }
   },
@@ -1623,8 +1623,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation, po niemiecku <b>Empfehlung</b>: co ma zrobić osoba, która przejmuje dyżur.",
     "C1 | Das gehört zur Einschätzung.": "To, co się zaobserwowało, i co się o tym myśli: <b>Einschätzung</b>. <b>reizlos</b> = bez cech stanu zapalnego ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "To, co zostaje do zrobienia: <b>Empfehlung</b>, z dokładną godziną ⚕️.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Raport ma swoją kolejność: kto, z jakiego powodu, co się wydarzyło, co zostało do zrobienia.</b> Zacznij od sali, nazwiska, wieku i powodu przyjęcia. Reszta potem, jeśli ma znaczenie dla opieki.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "<b>Wartość przekazuje się z liczbą i godziną.</b> „Blutzucker um 7 Uhr: 180”. Jeśli jej nie pamiętasz, przejrzyj dokumentację przed raportem. ⚕️",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Raport ma swoją kolejność: kto, z jakiego powodu, co się wydarzyło, co zostało do zrobienia.</b> Zacznij od sali, nazwiska, wieku i powodu przyjęcia. Reszta potem, jeśli ma znaczenie dla opieki.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Wartość przekazuje się z liczbą i godziną.</b> „Blutzucker um 7 Uhr: 180”. Jeśli jej nie pamiętasz, przejrzyj dokumentację przed raportem. ⚕️",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Raport jest obiektywny: fakty, bez ocen.</b> Powiedz, co się wydarzyło i jaki powód podał pacjent: „Mobilisation abgelehnt, wegen Angst vor einem Sturz”."
    },
    "sens": {
@@ -1652,8 +1652,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Na koniec zalecenie: co ma się stać dalej?",
     "C1 | Das gehört zur Einschätzung.": "To należy do oceny.",
     "C1 | Das gehört zur Empfehlung.": "To należy do zalecenia.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Zacznę od sali 14. Pani Lehmann, 74 lata, przyjęta z powodu rany na prawej stopie, na tle cukrzycy.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "Glikemia o 7:00: 180. Dostała insulinę według schematu. W południe było 140.",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Zacznę od sali 14. Pani Lehmann, 74 lata, przyjęta z powodu rany na prawej stopie, na tle cukrzycy.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Glikemia o 7:00: 180. Dostała insulinę według schematu. W południe było 140.",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Pionizacja dziś odmówiona, z powodu strachu przed ponownym upadkiem. Jest to udokumentowane, a lekarka wie."
    }
   },
@@ -1695,8 +1695,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation, по-немецки <b>Empfehlung</b>: что нужно сделать следующей смене.",
     "C1 | Das gehört zur Einschätzung.": "То, что наблюдали, и что об этом думают: <b>Einschätzung</b>. <b>reizlos</b> = без признаков воспаления ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "То, что ещё нужно сделать: <b>Empfehlung</b>, с точным временем ⚕️.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>У передачи смены есть порядок: кто, почему, что произошло, что осталось сделать.</b> Начни с палаты, имени, возраста и причины госпитализации. Остальное — потом, если это важно для ухода.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "<b>Показатель передают с цифрой и временем.</b> «Blutzucker um 7 Uhr: 180». Если не помнишь, перечитай документацию перед передачей смены. ⚕️",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>У передачи смены есть порядок: кто, почему, что произошло, что осталось сделать.</b> Начни с палаты, имени, возраста и причины госпитализации. Остальное — потом, если это важно для ухода.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Показатель передают с цифрой и временем.</b> «Blutzucker um 7 Uhr: 180». Если не помнишь, перечитай документацию перед передачей смены. ⚕️",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Передача смены объективна: факты, никаких оценок.</b> Скажи, что произошло и какую причину назвал пациент: «Mobilisation abgelehnt, wegen Angst vor einem Sturz»."
    },
    "sens": {
@@ -1724,8 +1724,8 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "В конце рекомендация: что должно произойти дальше?",
     "C1 | Das gehört zur Einschätzung.": "Это относится к оценке.",
     "C1 | Das gehört zur Empfehlung.": "Это относится к рекомендации.",
-    "SIT | Ich fange mit Zimmer 14 an. Frau Lehmann, 74 Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Начну с 14-й палаты. госпожа Леман, 74 года, поступила с раной на правой стопе на фоне диабета.",
-    "SIT | Blutzucker um 7 Uhr: 180. Sie hat nach Schema Insulin bekommen. Mittags lag er bei 140.": "Сахар крови в 7:00 — 180. Она получила инсулин по схеме. В полдень было 140.",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Начну с 14-й палаты. госпожа Леман, 74 года, поступила с раной на правой стопе на фоне диабета.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Сахар крови в 7:00 — 180. Она получила инсулин по схеме. В полдень было 140.",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Мобилизация сегодня отклонена из-за страха повторного падения. Задокументировано, врач в курсе."
    }
   }
