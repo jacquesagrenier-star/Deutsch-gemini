@@ -99,10 +99,12 @@ def manques(l):
 
 def appliquer(fichier, l):
     lot = lire(fichier)
-    ui = lire(os.path.join(DONNEES, "interface.json"))
-    ui.setdefault(l, {}).update({k: v for k, v in lot.get("interface", {}).items() if k in ui["fr"]})
-    ui[l] = {k: ui[l][k] for k in ui["fr"] if k in ui[l]}
-    ecrire(os.path.join(DONNEES, "interface.json"), ui)
+    # l'interface n'est reecrite que si le lot en porte (sinon : ni ligne changee, ni langue vide ajoutee)
+    if lot.get("interface"):
+        ui = lire(os.path.join(DONNEES, "interface.json"))
+        ui.setdefault(l, {}).update({k: v for k, v in lot["interface"].items() if k in ui["fr"]})
+        ui[l] = {k: ui[l][k] for k in ui["fr"] if k in ui[l]}
+        ecrire(os.path.join(DONNEES, "interface.json"), ui)
     n = 0
     for e, chemin, seul in fichiers():
         if not lot.get(e) or not os.path.exists(chemin):
