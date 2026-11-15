@@ -10340,7 +10340,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
              7 704 : rien n'est cache, c'est la mise en avant qui change. -->
         <div id="carteVocab" class="carte-vocab hidden">
             <button type="button" id="vocabTete" class="carte-vocab-tete"
-                    onclick="basculerVocabNiveaux()" aria-expanded="true" aria-controls="vocabNiveaux">
+                    onclick="basculerVocabNiveaux()" aria-expanded="false" aria-controls="vocabNiveaux">
                 <span class="carte-vocab-nom"><span data-i18n="vocab_titre">Progression du vocabulaire</span>
                     <span id="vocabNiveauCourant" class="carte-vocab-niveau"></span></span>
                 <span id="vocabCompte" class="carte-vocab-compte">0 / 0</span>
@@ -10351,7 +10351,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
                 <div id="vocabCours" class="carte-vocab-part cours" style="width:0%"></div>
             </div>
             <div id="vocabDetail" class="vocab-legende vocab-detail"></div>
-            <div id="vocabNiveaux" class="carte-vocab-niveaux"></div>
+            <div id="vocabNiveaux" class="carte-vocab-niveaux hidden"></div>
         </div>
 
         <!-- LE ⓘ DE LA CARTE, APRES TOUT CE QU'IL EXPLIQUE (v584).
@@ -67195,7 +67195,14 @@ function ouvrirGalerieMosaiques(){
 // avant le 11e jour. « En cours » bouge des la premiere carte, et c'est lui qui
 // dit qu'il se passe quelque chose.
 const NIVEAUX_VOCAB = ["A1", "A2", "B1", "B2", "C1"];
-let vocabDeplie = true;   // v1003 : depliee par defaut (Jacques : voir Premiers pas, A1, A2...)
+// 15 nov. 2026 (decision de Jacques, c09917b) : REPLIEE PAR DEFAUT, ET ELLE LE RESTE. « Soit ferme par defaut.
+// Qu'on puisse l'ouvrir, mais que si on la ferme, puis qu'on revient, elle demeure fermee. » L'etat choisi est
+// retenu par langue apprise (PREFIXE_STOCKAGE) et relu au chargement. Avant (v1003), depliee a chaque ouverture.
+const VOCAB_DEPLIE_KEY = PREFIXE_STOCKAGE + "vocabDeplie";
+function lireVocabDeplie(){
+    try{ return localStorage.getItem(VOCAB_DEPLIE_KEY) === "1"; }catch(e){ return false; }
+}
+let vocabDeplie = lireVocabDeplie();
 let vocabVue = null;   // v945 : la ligne montree par la carte ("PP", "A1"...), null = ce qu'on travaille
 
 function etatsDuNiveau(niveau){
@@ -67229,8 +67236,8 @@ function etatsPremiersPas(){
     return total ? { sus: sus, cours: cours, total: total } : null;
 }
 
-function basculerVocabNiveaux(){
-    vocabDeplie = !vocabDeplie;
+// La liste, l'attribut et la fleche suivent vocabDeplie (au chargement comme au toucher).
+function poserEtatVocab(){
     const bloc = document.getElementById("vocabNiveaux");
     const tete = document.getElementById("vocabTete");
     if(bloc) bloc.classList.toggle("hidden", !vocabDeplie);
@@ -67238,6 +67245,11 @@ function basculerVocabNiveaux(){
         tete.setAttribute("aria-expanded", vocabDeplie ? "true" : "false");
         tete.classList.toggle("ouvert", vocabDeplie);
     }
+}
+function basculerVocabNiveaux(){
+    vocabDeplie = !vocabDeplie;
+    try{ localStorage.setItem(VOCAB_DEPLIE_KEY, vocabDeplie ? "1" : "0"); }catch(e){}
+    poserEtatVocab();
     majCarteVocab();
 }
 
@@ -67281,6 +67293,7 @@ function majCarteVocab(){
     if(detail) detail.innerHTML = '<span><i class="pt-sus"></i>' + t("vocab_sus") + ' <b>' + e.sus + '</b></span>'
         + '<span><i class="pt-cours"></i>' + t("vocab_cours") + ' <b>' + e.cours + '</b></span>';
 
+    poserEtatVocab();
     const liste = document.getElementById("vocabNiveaux");
     if(liste && vocabDeplie){
         // La ligne 🌱 tant que Premiers pas compte pour la personne : en cours,
