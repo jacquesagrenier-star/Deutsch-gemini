@@ -1,5 +1,2606 @@
 {
-  "_note": "Le chapitre « lesen » du manuel (pflege/examen/FORMAT-MANUEL.md, § 5). Vide = « a venir ». Ecrit par : la seconde session.",
+  "_note": "Le chapitre « lesen » du manuel (pflege/examen/FORMAT-MANUEL.md, § 5), 15 nov. 2026, session manuel-lesen-sprach : ce qu'on attend, les pieges, les strategies partie par partie, deux exercices guides, les deux grilles du plan de soins (AEDL de Krohwinkel, ATL de Juchli) et le vocabulaire des notices. Les series sont dans entrainement/lesen.json (101-104).",
   "id": "lesen",
-  "rubriques": []
+  "rubriques": [
+    {
+      "id": "attendu",
+      "blocs": [
+        {
+          "t": "p",
+          "texte_fr": "La lecture ([[Leseverstehen]]) a quatre parties et rapporte 18 points, un par réponse juste. Elle se fait dans le même bloc de 60 minutes que les éléments de langue, juste après l'écoute, dans l'ordre que tu veux. Compte environ 40 minutes pour la lecture et 20 pour les éléments de langue.",
+          "texte_en": "Reading ([[Leseverstehen]]) has four parts and is worth 18 points, one per correct answer. It is done in the same 60-minute block as the language elements, right after listening, in any order you like. Allow about 40 minutes for reading and 20 for the language elements.",
+          "texte_tr": "Okuma bölümü ([[Leseverstehen]]) dört kısımdan oluşur ve her doğru cevaba bir puan olmak üzere 18 puan getirir. Dinlemenin hemen ardından, dil unsurlarıyla aynı 60 dakikalık blokta, istediğin sırayla yapılır. Okuma için yaklaşık 40, dil unsurları için 20 dakika ayır.",
+          "texte_uk": "Читання ([[Leseverstehen]]) має чотири частини й дає 18 балів, по одному за кожну правильну відповідь. Воно входить до того самого 60-хвилинного блоку, що й мовні елементи, одразу після аудіювання, у будь-якому порядку. Розраховуй приблизно 40 хвилин на читання і 20 на мовні елементи.",
+          "texte_fa": "بخش خواندن ([[Leseverstehen]]) چهار قسمت دارد و 18 امتیاز می‌آورد، یک امتیاز برای هر پاسخ درست. این بخش در همان بلوک 60 دقیقه‌ای عناصر زبانی برگزار می‌شود، درست بعد از شنیدن، به هر ترتیبی که بخواهی. حدود 40 دقیقه برای خواندن و 20 دقیقه برای عناصر زبانی در نظر بگیر.",
+          "texte_pt": "A leitura ([[Leseverstehen]]) tem quatro partes e vale 18 pontos, um por resposta certa. Ela é feita no mesmo bloco de 60 minutos que os elementos de língua, logo depois da compreensão auditiva, na ordem que você quiser. Conte cerca de 40 minutos para a leitura e 20 para os elementos de língua.",
+          "texte_ar": "القراءة ([[Leseverstehen]]) لها أربعة أجزاء وتمنح 18 نقطة، نقطة لكل إجابة صحيحة. وهي تجري في الكتلة نفسها ذات الـ60 دقيقة مع عناصر اللغة، مباشرة بعد الاستماع، بالترتيب الذي تريده. احسب نحو 40 دقيقة للقراءة و20 لعناصر اللغة.",
+          "texte_pl": "Czytanie ([[Leseverstehen]]) ma cztery części i daje 18 punktów, po jednym za każdą dobrą odpowiedź. Odbywa się w tym samym 60-minutowym bloku co elementy językowe, zaraz po słuchaniu, w dowolnej kolejności. Licz około 40 minut na czytanie i 20 na elementy językowe.",
+          "texte_ru": "Чтение ([[Leseverstehen]]) состоит из четырёх частей и приносит 18 баллов, по одному за каждый правильный ответ. Оно проходит в том же 60-минутном блоке, что и языковые элементы, сразу после аудирования, в любом порядке. Рассчитывай примерно 40 минут на чтение и 20 на языковые элементы.",
+          "texte_es": "La comprensión lectora ([[Leseverstehen]]) tiene cuatro partes y da 18 puntos, uno por cada respuesta correcta. Se hace en el mismo bloque de 60 minutos que los elementos de lengua, justo después de la comprensión auditiva, en el orden que quieras. Calcula unos 40 minutos para la lectura y 20 para los elementos de lengua."
+        },
+        {
+          "t": "tableau",
+          "entetes": [
+            {
+              "texte_fr": "Partie",
+              "texte_en": "Part",
+              "texte_tr": "Kısım",
+              "texte_uk": "Частина",
+              "texte_fa": "قسمت",
+              "texte_pt": "Parte",
+              "texte_ar": "الجزء",
+              "texte_pl": "Część",
+              "texte_ru": "Часть",
+              "texte_es": "Parte"
+            },
+            {
+              "texte_fr": "Ce qu'on lit",
+              "texte_en": "What you read",
+              "texte_tr": "Ne okunuyor",
+              "texte_uk": "Що читаємо",
+              "texte_fa": "چه می‌خوانیم",
+              "texte_pt": "O que se lê",
+              "texte_ar": "ما تقرؤه",
+              "texte_pl": "Co czytasz",
+              "texte_ru": "Что читаем",
+              "texte_es": "Qué se lee"
+            },
+            {
+              "texte_fr": "Ce qu'on fait",
+              "texte_en": "What you do",
+              "texte_tr": "Ne yapılıyor",
+              "texte_uk": "Що робимо",
+              "texte_fa": "چه می‌کنیم",
+              "texte_pt": "O que se faz",
+              "texte_ar": "ما تفعله",
+              "texte_pl": "Co robisz",
+              "texte_ru": "Что делаем",
+              "texte_es": "Qué se hace"
+            },
+            {
+              "texte_fr": "Points",
+              "texte_en": "Points",
+              "texte_tr": "Puan",
+              "texte_uk": "Бали",
+              "texte_fa": "امتیاز",
+              "texte_pt": "Pontos",
+              "texte_ar": "النقاط",
+              "texte_pl": "Punkty",
+              "texte_ru": "Баллы",
+              "texte_es": "Puntos"
+            },
+            {
+              "texte_fr": "Temps conseillé",
+              "texte_en": "Suggested time",
+              "texte_tr": "Önerilen süre",
+              "texte_uk": "Рекомендований час",
+              "texte_fa": "زمان پیشنهادی",
+              "texte_pt": "Tempo sugerido",
+              "texte_ar": "الوقت المقترح",
+              "texte_pl": "Zalecany czas",
+              "texte_ru": "Рекомендуемое время",
+              "texte_es": "Tiempo recomendado"
+            }
+          ],
+          "lignes": [
+            [
+              {
+                "de": "Teil 1"
+              },
+              {
+                "texte_fr": "Quatre courriels de l'établissement",
+                "texte_en": "Four emails from the workplace",
+                "texte_tr": "Kurumdan dört e-posta",
+                "texte_uk": "Чотири електронні листи закладу",
+                "texte_fa": "چهار ایمیل از مرکز درمانی",
+                "texte_pt": "Quatro e-mails da instituição",
+                "texte_ar": "أربع رسائل إلكترونية من المؤسسة",
+                "texte_pl": "Cztery e-maile z placówki",
+                "texte_ru": "Четыре электронных письма учреждения",
+                "texte_es": "Cuatro correos del centro"
+              },
+              {
+                "texte_fr": "Donner à chacun son objet, parmi six. Deux objets restent.",
+                "texte_en": "Give each one its subject line, out of six. Two subject lines are left over.",
+                "texte_tr": "Her birine altı konu başlığından birini vermek. İki başlık artar.",
+                "texte_uk": "Дібрати до кожного тему з шести. Дві теми залишаються.",
+                "texte_fa": "به هر کدام موضوعش را از میان شش موضوع دادن. دو موضوع می‌مانند.",
+                "texte_pt": "Dar a cada um o seu assunto, entre seis. Sobram dois assuntos.",
+                "texte_ar": "إعطاء كل رسالة موضوعها، من بين ستة. يبقى موضوعان.",
+                "texte_pl": "Przypisać każdemu temat, spośród sześciu. Dwa tematy zostają.",
+                "texte_ru": "Подобрать к каждому тему из шести. Две темы остаются лишними.",
+                "texte_es": "Asignar a cada uno su asunto, entre seis. Sobran dos asuntos."
+              },
+              {
+                "texte_fr": "4",
+                "texte_en": "4",
+                "texte_tr": "4",
+                "texte_uk": "4",
+                "texte_fa": "4",
+                "texte_pt": "4",
+                "texte_ar": "4",
+                "texte_pl": "4",
+                "texte_ru": "4",
+                "texte_es": "4"
+              },
+              {
+                "texte_fr": "8 min",
+                "texte_en": "8 min",
+                "texte_tr": "8 dk",
+                "texte_uk": "8 хв",
+                "texte_fa": "8 دقیقه",
+                "texte_pt": "8 min",
+                "texte_ar": "8 دقائق",
+                "texte_pl": "8 min",
+                "texte_ru": "8 мин",
+                "texte_es": "8 min"
+              }
+            ],
+            [
+              {
+                "de": "Teil 2"
+              },
+              {
+                "texte_fr": "Un extrait de plan de soins en huit lignes, rangé selon les AEDL ou les ATL",
+                "texte_en": "An extract from a care plan in eight lines, organised by the AEDL or the ATL",
+                "texte_tr": "AEDL'ye ya da ATL'ye göre sıralanmış, sekiz satırlık bir bakım planı kesiti",
+                "texte_uk": "Уривок плану догляду з восьми рядків, упорядкований за AEDL або ATL",
+                "texte_fa": "بخشی از یک برنامهٔ مراقبت در هشت ردیف، مرتب‌شده بر اساس AEDL یا ATL",
+                "texte_pt": "Um trecho de plano de cuidados em oito linhas, organizado segundo as AEDL ou as ATL",
+                "texte_ar": "مقتطف من خطة رعاية في ثمانية أسطر، مرتب حسب AEDL أو ATL",
+                "texte_pl": "Fragment planu opieki w ośmiu wierszach, uporządkowany według AEDL lub ATL",
+                "texte_ru": "Отрывок плана ухода из восьми строк, по AEDL или ATL",
+                "texte_es": "Un extracto de plan de cuidados en ocho líneas, ordenado según las AEDL o las ATL"
+              },
+              {
+                "texte_fr": "Associer cinq phrases à une ligne. Une phrase ne va avec aucune : « x ».",
+                "texte_en": "Match five sentences to a line. One sentence goes with none: “x”.",
+                "texte_tr": "Beş cümleyi bir satırla eşleştirmek. Bir cümle hiçbirine uymaz: “x”.",
+                "texte_uk": "Зіставити п'ять речень із рядками. Одне речення не підходить до жодного: «x».",
+                "texte_fa": "هر یک از پنج جمله را به یک ردیف وصل کردن. یک جمله با هیچ ردیفی جور نیست: «x».",
+                "texte_pt": "Associar cinco frases a uma linha. Uma frase não combina com nenhuma: “x”.",
+                "texte_ar": "ربط خمس جمل بسطر. جملة واحدة لا توافق أي سطر: «x».",
+                "texte_pl": "Dopasować pięć zdań do wierszy. Jedno zdanie nie pasuje do żadnego: „x”.",
+                "texte_ru": "Соотнести пять фраз со строками. Одна фраза не подходит ни к одной: «x».",
+                "texte_es": "Relacionar cinco frases con una línea. Una frase no corresponde a ninguna: «x»."
+              },
+              {
+                "texte_fr": "5",
+                "texte_en": "5",
+                "texte_tr": "5",
+                "texte_uk": "5",
+                "texte_fa": "5",
+                "texte_pt": "5",
+                "texte_ar": "5",
+                "texte_pl": "5",
+                "texte_ru": "5",
+                "texte_es": "5"
+              },
+              {
+                "texte_fr": "12 min",
+                "texte_en": "12 min",
+                "texte_tr": "12 dk",
+                "texte_uk": "12 хв",
+                "texte_fa": "12 دقیقه",
+                "texte_pt": "12 min",
+                "texte_ar": "12 دقيقة",
+                "texte_pl": "12 min",
+                "texte_ru": "12 мин",
+                "texte_es": "12 min"
+              }
+            ],
+            [
+              {
+                "de": "Teil 3"
+              },
+              {
+                "texte_fr": "Trois textes : notice de médicament, consigne de service, règlement…",
+                "texte_en": "Three texts: medication leaflet, ward instruction, house rules…",
+                "texte_tr": "Üç metin: ilaç prospektüsü, servis talimatı, yönetmelik…",
+                "texte_uk": "Три тексти: інструкція до ліків, службова вказівка, правила…",
+                "texte_fa": "سه متن: بروشور دارو، دستورالعمل بخش، آیین‌نامه…",
+                "texte_pt": "Três textos: bula de medicamento, instrução de serviço, regulamento…",
+                "texte_ar": "ثلاثة نصوص: نشرة دواء، تعليمات عمل، نظام داخلي…",
+                "texte_pl": "Trzy teksty: ulotka leku, instrukcja służbowa, regulamin…",
+                "texte_ru": "Три текста: инструкция к лекарству, служебное распоряжение, правила…",
+                "texte_es": "Tres textos: prospecto de un medicamento, instrucción de servicio, reglamento…"
+              },
+              {
+                "texte_fr": "Deux questions par texte, choix a, b ou c.",
+                "texte_en": "Two questions per text, choice a, b or c.",
+                "texte_tr": "Her metin için iki soru, a, b ya da c seçeneği.",
+                "texte_uk": "Два питання до кожного тексту, варіанти a, b або c.",
+                "texte_fa": "برای هر متن دو پرسش، گزینهٔ a، b یا c.",
+                "texte_pt": "Duas questões por texto, opções a, b ou c.",
+                "texte_ar": "سؤالان لكل نص، الاختيار a أو b أو c.",
+                "texte_pl": "Dwa pytania do każdego tekstu, odpowiedź a, b lub c.",
+                "texte_ru": "Два вопроса к каждому тексту, выбор a, b или c.",
+                "texte_es": "Dos preguntas por texto, opción a, b o c."
+              },
+              {
+                "texte_fr": "6",
+                "texte_en": "6",
+                "texte_tr": "6",
+                "texte_uk": "6",
+                "texte_fa": "6",
+                "texte_pt": "6",
+                "texte_ar": "6",
+                "texte_pl": "6",
+                "texte_ru": "6",
+                "texte_es": "6"
+              },
+              {
+                "texte_fr": "12 min",
+                "texte_en": "12 min",
+                "texte_tr": "12 dk",
+                "texte_uk": "12 хв",
+                "texte_fa": "12 دقیقه",
+                "texte_pt": "12 min",
+                "texte_ar": "12 دقيقة",
+                "texte_pl": "12 min",
+                "texte_ru": "12 мин",
+                "texte_es": "12 min"
+              }
+            ],
+            [
+              {
+                "de": "Teil 4"
+              },
+              {
+                "texte_fr": "Un texte d'information pour le personnel ou les patients",
+                "texte_en": "An information text for staff or patients",
+                "texte_tr": "Personel ya da hastalar için bir bilgilendirme metni",
+                "texte_uk": "Інформаційний текст для персоналу або пацієнтів",
+                "texte_fa": "یک متن اطلاع‌رسانی برای کارکنان یا بیماران",
+                "texte_pt": "Um texto informativo para a equipe ou para os pacientes",
+                "texte_ar": "نص إعلامي للعاملين أو للمرضى",
+                "texte_pl": "Tekst informacyjny dla personelu lub pacjentów",
+                "texte_ru": "Информационный текст для персонала или пациентов",
+                "texte_es": "Un texto informativo para el personal o los pacientes"
+              },
+              {
+                "texte_fr": "Trois phrases : vrai ou faux, d'après le texte seulement.",
+                "texte_en": "Three sentences: true or false, based only on the text.",
+                "texte_tr": "Üç cümle: yalnızca metne göre doğru ya da yanlış.",
+                "texte_uk": "Три речення: правильно чи неправильно, лише за текстом.",
+                "texte_fa": "سه جمله: درست یا نادرست، فقط بر اساس متن.",
+                "texte_pt": "Três frases: verdadeiro ou falso, apenas de acordo com o texto.",
+                "texte_ar": "ثلاث جمل: صح أو خطأ، حسب النص وحده.",
+                "texte_pl": "Trzy zdania: prawda czy fałsz, wyłącznie na podstawie tekstu.",
+                "texte_ru": "Три утверждения: верно или неверно, только по тексту.",
+                "texte_es": "Tres frases: verdadero o falso, solo según el texto."
+              },
+              {
+                "texte_fr": "3",
+                "texte_en": "3",
+                "texte_tr": "3",
+                "texte_uk": "3",
+                "texte_fa": "3",
+                "texte_pt": "3",
+                "texte_ar": "3",
+                "texte_pl": "3",
+                "texte_ru": "3",
+                "texte_es": "3"
+              },
+              {
+                "texte_fr": "8 min",
+                "texte_en": "8 min",
+                "texte_tr": "8 dk",
+                "texte_uk": "8 хв",
+                "texte_fa": "8 دقیقه",
+                "texte_pt": "8 min",
+                "texte_ar": "8 دقائق",
+                "texte_pl": "8 min",
+                "texte_ru": "8 мин",
+                "texte_es": "8 min"
+              }
+            ]
+          ]
+        },
+        {
+          "t": "p",
+          "texte_fr": "Les textes sont ceux du service : la cadre qui change les horaires de la relève, l'hygiène, la pharmacie, le planning, un plan de soins, une notice, une information du personnel. Tu les lis déjà au travail ; l'examen vérifie que tu en comprends l'idée générale (parties 1 et 4) et les détails qui comptent (parties 2 et 3).",
+          "texte_en": "The texts come from the ward: the ward manager changing the handover times, hygiene, the pharmacy, the roster, a care plan, a leaflet, staff information. You already read them at work; the exam checks that you understand the general idea (parts 1 and 4) and the details that matter (parts 2 and 3).",
+          "texte_tr": "Metinler servisin metinleri: devir teslim saatlerini değiştiren sorumlu hemşire, hijyen, eczane, vardiya planı, bir bakım planı, bir prospektüs, bir personel duyurusu. Bunları zaten işte okuyorsun; sınav, genel fikri (1. ve 4. kısımlar) ve önemli ayrıntıları (2. ve 3. kısımlar) anlayıp anlamadığını kontrol eder.",
+          "texte_uk": "Тексти — ті, що є у відділенні: старша медсестра змінює час передачі зміни, гігієна, аптека, графік змін, план догляду, інструкція, інформація для персоналу. Ти вже читаєш їх на роботі; іспит перевіряє, чи розумієш ти загальну думку (частини 1 і 4) і важливі деталі (частини 2 і 3).",
+          "texte_fa": "متن‌ها همان متن‌های بخش هستند: سرپرستاری که ساعت‌های تحویل شیفت را عوض می‌کند، بهداشت، داروخانه، برنامهٔ شیفت، یک برنامهٔ مراقبت، یک بروشور، یک اطلاعیه برای کارکنان. تو همین حالا هم آن‌ها را سر کار می‌خوانی؛ آزمون بررسی می‌کند که ایدهٔ کلی‌شان را (قسمت‌های 1 و 4) و جزئیات مهمشان را (قسمت‌های 2 و 3) می‌فهمی.",
+          "texte_pt": "Os textos são os do serviço: a chefe que muda os horários da passagem de plantão, a higiene, a farmácia, a escala, um plano de cuidados, uma bula, uma informação para a equipe. Você já os lê no trabalho; a prova verifica se você entende a ideia geral (partes 1 e 4) e os detalhes que importam (partes 2 e 3).",
+          "texte_ar": "النصوص هي نصوص القسم: المسؤولة التي تغيّر مواعيد تسليم المناوبة، النظافة الصحية، الصيدلية، جدول المناوبات، خطة رعاية، نشرة دواء، إعلام للعاملين. أنت تقرؤها أصلًا في العمل؛ والامتحان يتحقق من أنك تفهم فكرتها العامة (الجزءان 1 و4) والتفاصيل المهمة (الجزءان 2 و3).",
+          "texte_pl": "Teksty pochodzą z oddziału: pielęgniarka oddziałowa zmienia godziny przekazania zmiany, higiena, apteka, grafik, plan opieki, ulotka, informacja dla personelu. Czytasz je już w pracy; egzamin sprawdza, czy rozumiesz ogólną myśl (części 1 i 4) i ważne szczegóły (części 2 i 3).",
+          "texte_ru": "Тексты — из жизни отделения: старшая медсестра меняет время передачи смены, гигиена, аптека, график смен, план ухода, инструкция, информация для персонала. Ты уже читаешь их на работе; экзамен проверяет, понимаешь ли ты общую мысль (части 1 и 4) и важные детали (части 2 и 3).",
+          "texte_es": "Los textos son los del servicio: la supervisora que cambia los horarios del relevo, la higiene, la farmacia, el cuadrante, un plan de cuidados, un prospecto, una información para el personal. Ya los lees en el trabajo; el examen comprueba que entiendes la idea general (partes 1 y 4) y los detalles que importan (partes 2 y 3)."
+        },
+        {
+          "t": "p",
+          "texte_fr": "Au B1, on comprend de quoi parle un texte. Au B2, on voit aussi ses restrictions : [[nur]], [[höchstens]], [[erst]], [[außer]], [[allerdings]]. C'est là que se gagnent les points du B2.",
+          "texte_en": "At B1, you understand what a text is about. At B2, you also see its restrictions: [[nur]], [[höchstens]], [[erst]], [[außer]], [[allerdings]]. That's where the B2 points are won.",
+          "texte_tr": "B1'de bir metnin neden söz ettiği anlaşılır. B2'de kısıtlamaları da görülür: [[nur]], [[höchstens]], [[erst]], [[außer]], [[allerdings]]. B2'nin puanları burada kazanılır.",
+          "texte_uk": "На рівні B1 розуміють, про що текст. На рівні B2 бачать і його обмеження: [[nur]], [[höchstens]], [[erst]], [[außer]], [[allerdings]]. Саме тут здобувають бали B2.",
+          "texte_fa": "در B1، می‌فهمیم متن دربارهٔ چیست. در B2، محدودیت‌هایش را هم می‌بینیم: [[nur]]، [[höchstens]]، [[erst]]، [[außer]]، [[allerdings]]. امتیازهای B2 همین‌جا به دست می‌آیند.",
+          "texte_pt": "No B1, entende-se de que fala um texto. No B2, percebem-se também as suas restrições: [[nur]], [[höchstens]], [[erst]], [[außer]], [[allerdings]]. É aí que se ganham os pontos do B2.",
+          "texte_ar": "في B1 تفهم عمّ يتحدث النص. وفي B2 ترى أيضًا قيوده: [[nur]]، [[höchstens]]، [[erst]]، [[außer]]، [[allerdings]]. هنا تُكسب نقاط B2.",
+          "texte_pl": "Na B1 rozumiesz, o czym jest tekst. Na B2 widzisz też jego ograniczenia: [[nur]], [[höchstens]], [[erst]], [[außer]], [[allerdings]]. Właśnie tu zdobywa się punkty na B2.",
+          "texte_ru": "На уровне B1 понимают, о чём текст. На уровне B2 видят и его ограничения: [[nur]], [[höchstens]], [[erst]], [[außer]], [[allerdings]]. Именно здесь зарабатываются баллы B2.",
+          "texte_es": "En el B1 se entiende de qué habla un texto. En el B2 se ven también sus restricciones: [[nur]], [[höchstens]], [[erst]], [[außer]], [[allerdings]]. Ahí es donde se ganan los puntos del B2."
+        },
+        {
+          "t": "renvoi",
+          "vers": "chapitre:examen",
+          "titre_fr": "L'examen en un coup d'œil : les points et le temps",
+          "titre_en": "The exam at a glance: points and time",
+          "titre_tr": "Bir bakışta sınav: puanlar ve süre",
+          "titre_uk": "Іспит з першого погляду: бали й час",
+          "titre_fa": "آزمون در یک نگاه: امتیازها و زمان",
+          "titre_pt": "A prova num relance: os pontos e o tempo",
+          "titre_ar": "الامتحان في لمحة: النقاط والوقت",
+          "titre_pl": "Egzamin w skrócie: punkty i czas",
+          "titre_ru": "Экзамен с первого взгляда: баллы и время",
+          "titre_es": "El examen de un vistazo: los puntos y el tiempo"
+        }
+      ]
+    },
+    {
+      "id": "pieges",
+      "blocs": [
+        {
+          "t": "piege",
+          "de": "Betreff: Neue Dienstkleidung für alle Stationen\nE-Mail: … Bitte ziehen Sie zur Brandschutzübung am Freitag feste Schuhe zu Ihrer Dienstkleidung an.",
+          "titre_fr": "Le même mot n'est pas une preuve",
+          "titre_en": "The same word is no proof",
+          "titre_tr": "Aynı kelime bir kanıt değildir",
+          "titre_uk": "Однакове слово — ще не доказ",
+          "titre_fa": "واژهٔ یکسان دلیل نیست",
+          "titre_pt": "A mesma palavra não é uma prova",
+          "titre_ar": "الكلمة نفسها ليست دليلًا",
+          "titre_pl": "To samo słowo nie jest dowodem",
+          "titre_ru": "Одно и то же слово — не доказательство",
+          "titre_es": "La misma palabra no es una prueba",
+          "texte_fr": "On lit [[Dienstkleidung]] dans l'objet et dans le courriel, mais le courriel parle d'un exercice d'évacuation ([[Brandschutzübung]]). Dans la partie 1, chaque série a un objet piège qui reprend un mot d'un courriel. Demande-toi ce que le courriel demande de FAIRE, pas quels mots il répète.",
+          "texte_en": "You read [[Dienstkleidung]] in the subject line and in the email, but the email is about an evacuation drill ([[Brandschutzübung]]). In part 1, each set has a trap subject line that repeats a word from an email. Ask yourself what the email asks you to DO, not which words it repeats.",
+          "texte_tr": "[[Dienstkleidung]] kelimesi hem başlıkta hem e-postada geçiyor, ama e-posta bir tahliye tatbikatından ([[Brandschutzübung]]) söz ediyor. 1. kısımda her dizide, bir e-postadaki kelimeyi tekrarlayan tuzak bir başlık vardır. E-postanın hangi kelimeleri tekrarladığını değil, ne YAPMANI istediğini kendine sor.",
+          "texte_uk": "Слово [[Dienstkleidung]] є і в темі, і в листі, але лист говорить про навчання з евакуації ([[Brandschutzübung]]). У частині 1 у кожній серії є тема-пастка, яка повторює слово з листа. Запитай себе, що лист просить ЗРОБИТИ, а не які слова він повторює.",
+          "texte_fa": "[[Dienstkleidung]] را هم در موضوع و هم در ایمیل می‌خوانیم، ولی ایمیل دربارهٔ یک تمرین تخلیه ([[Brandschutzübung]]) است. در قسمت 1، هر سری یک موضوع دام دارد که واژه‌ای از یک ایمیل را تکرار می‌کند. از خودت بپرس ایمیل از تو می‌خواهد چه کاری انجام دهی، نه اینکه چه واژه‌هایی را تکرار می‌کند.",
+          "texte_pt": "Lê-se [[Dienstkleidung]] no assunto e no e-mail, mas o e-mail fala de um simulado de evacuação ([[Brandschutzübung]]). Na parte 1, cada série tem um assunto armadilha que retoma uma palavra de um e-mail. Pergunte-se o que o e-mail pede para FAZER, não quais palavras ele repete.",
+          "texte_ar": "تقرأ [[Dienstkleidung]] في الموضوع وفي الرسالة، لكن الرسالة تتحدث عن تمرين إخلاء ([[Brandschutzübung]]). في الجزء 1، كل مجموعة فيها موضوع فخ يكرر كلمة من رسالة. اسأل نفسك ماذا تطلب الرسالة أن تفعل، لا أي كلمات تكررها.",
+          "texte_pl": "W temacie i w e-mailu czytasz [[Dienstkleidung]], ale e-mail mówi o ćwiczeniach ewakuacyjnych ([[Brandschutzübung]]). W części 1 każda seria ma temat-pułapkę, który powtarza słowo z e-maila. Zadaj sobie pytanie, co e-mail każe ZROBIĆ, a nie jakie słowa powtarza.",
+          "texte_ru": "Слово [[Dienstkleidung]] есть и в теме, и в письме, но письмо говорит об учебной эвакуации ([[Brandschutzübung]]). В части 1 в каждой серии есть тема-ловушка, которая повторяет слово из письма. Спроси себя, что письмо просит СДЕЛАТЬ, а не какие слова в нём повторяются.",
+          "texte_es": "Se lee [[Dienstkleidung]] en el asunto y en el correo, pero el correo habla de un simulacro de evacuación ([[Brandschutzübung]]). En la parte 1, cada serie tiene un asunto trampa que repite una palabra de un correo. Pregúntate qué pide HACER el correo, no qué palabras repite."
+        },
+        {
+          "t": "piege",
+          "de": "Text: Wer später abgeholt wird, wartet in der Entlasslounge im Erdgeschoss.\nLösung: … wartet in einem Raum im Erdgeschoss.",
+          "titre_fr": "La bonne réponse dit la même chose avec d'autres mots",
+          "titre_en": "The right answer says the same thing in other words",
+          "titre_tr": "Doğru cevap aynı şeyi başka kelimelerle söyler",
+          "titre_uk": "Правильна відповідь каже те саме іншими словами",
+          "titre_fa": "پاسخ درست همان چیز را با واژه‌های دیگر می‌گوید",
+          "titre_pt": "A resposta certa diz a mesma coisa com outras palavras",
+          "titre_ar": "الإجابة الصحيحة تقول الشيء نفسه بكلمات أخرى",
+          "titre_pl": "Dobra odpowiedź mówi to samo innymi słowami",
+          "titre_ru": "Правильный ответ говорит то же самое другими словами",
+          "titre_es": "La respuesta correcta dice lo mismo con otras palabras",
+          "texte_fr": "[[Entlasslounge]] devient [[ein Raum]], [[30 Minuten]] devient [[eine halbe Stunde]], [[informieren]] devient [[benachrichtigen]]. Une réponse qui reprend le texte mot pour mot est souvent un piège : elle copie un morceau, mais change le sens.",
+          "texte_en": "[[Entlasslounge]] becomes [[ein Raum]], [[30 Minuten]] becomes [[eine halbe Stunde]], [[informieren]] becomes [[benachrichtigen]]. An answer that repeats the text word for word is often a trap: it copies a piece, but changes the meaning.",
+          "texte_tr": "[[Entlasslounge]] [[ein Raum]] olur, [[30 Minuten]] [[eine halbe Stunde]] olur, [[informieren]] [[benachrichtigen]] olur. Metni kelimesi kelimesine tekrarlayan bir cevap çoğu zaman tuzaktır: bir parçayı kopyalar, ama anlamı değiştirir.",
+          "texte_uk": "[[Entlasslounge]] стає [[ein Raum]], [[30 Minuten]] стає [[eine halbe Stunde]], [[informieren]] стає [[benachrichtigen]]. Відповідь, яка дослівно повторює текст, часто є пасткою: вона копіює уривок, але змінює зміст.",
+          "texte_fa": "[[Entlasslounge]] می‌شود [[ein Raum]]، [[30 Minuten]] می‌شود [[eine halbe Stunde]]، [[informieren]] می‌شود [[benachrichtigen]]. پاسخی که متن را واژه‌به‌واژه تکرار می‌کند اغلب دام است: تکه‌ای را رونویسی می‌کند، ولی معنا را عوض می‌کند.",
+          "texte_pt": "[[Entlasslounge]] vira [[ein Raum]], [[30 Minuten]] vira [[eine halbe Stunde]], [[informieren]] vira [[benachrichtigen]]. Uma resposta que repete o texto palavra por palavra muitas vezes é uma armadilha: ela copia um pedaço, mas muda o sentido.",
+          "texte_ar": "[[Entlasslounge]] تصبح [[ein Raum]]، و[[30 Minuten]] تصبح [[eine halbe Stunde]]، و[[informieren]] تصبح [[benachrichtigen]]. الإجابة التي تكرر النص حرفيًا غالبًا ما تكون فخًا: تنسخ جزءًا منه لكنها تغيّر المعنى.",
+          "texte_pl": "[[Entlasslounge]] zmienia się w [[ein Raum]], [[30 Minuten]] w [[eine halbe Stunde]], [[informieren]] w [[benachrichtigen]]. Odpowiedź, która powtarza tekst słowo w słowo, często jest pułapką: kopiuje fragment, ale zmienia sens.",
+          "texte_ru": "[[Entlasslounge]] становится [[ein Raum]], [[30 Minuten]] становится [[eine halbe Stunde]], [[informieren]] становится [[benachrichtigen]]. Ответ, который повторяет текст слово в слово, часто ловушка: он копирует кусок, но меняет смысл.",
+          "texte_es": "[[Entlasslounge]] se convierte en [[ein Raum]], [[30 Minuten]] en [[eine halbe Stunde]], [[informieren]] en [[benachrichtigen]]. Una respuesta que repite el texto palabra por palabra suele ser una trampa: copia un trozo, pero cambia el sentido."
+        },
+        {
+          "t": "piege",
+          "de": "höchstens 3 Tabletten in 24 Stunden\nmindestens 6 Stunden Abstand\nfrühestens 48 Stunden nach dem Ende der Beschwerden\nnur nach Absprache mit dem Team",
+          "relire": true,
+          "titre_fr": "Les petits mots qui changent tout",
+          "titre_en": "The small words that change everything",
+          "titre_tr": "Her şeyi değiştiren küçük kelimeler",
+          "titre_uk": "Маленькі слова, що змінюють усе",
+          "titre_fa": "واژه‌های کوچکی که همه چیز را عوض می‌کنند",
+          "titre_pt": "As palavrinhas que mudam tudo",
+          "titre_ar": "الكلمات الصغيرة التي تغيّر كل شيء",
+          "titre_pl": "Małe słowa, które zmieniają wszystko",
+          "titre_ru": "Маленькие слова, которые меняют всё",
+          "titre_es": "Las palabritas que lo cambian todo",
+          "texte_fr": "[[höchstens]] = au plus, [[mindestens]] = au moins, [[frühestens]] = pas avant, [[spätestens]] = au plus tard, [[nur]] = seulement, [[erst]] = pas avant. Une réponse fausse garde souvent le bon chiffre et change le petit mot : « au moins trois comprimés » au lieu de « au plus trois ».",
+          "texte_en": "[[höchstens]] = at most, [[mindestens]] = at least, [[frühestens]] = not before, [[spätestens]] = at the latest, [[nur]] = only, [[erst]] = not before. A wrong answer often keeps the right number and changes the small word: “at least three tablets” instead of “at most three”.",
+          "texte_tr": "[[höchstens]] = en fazla, [[mindestens]] = en az, [[frühestens]] = en erken, [[spätestens]] = en geç, [[nur]] = yalnızca, [[erst]] = ancak, -den önce değil. Yanlış bir cevap çoğu zaman doğru rakamı korur ve küçük kelimeyi değiştirir: “en fazla üç tablet” yerine “en az üç tablet”.",
+          "texte_uk": "[[höchstens]] = щонайбільше, [[mindestens]] = щонайменше, [[frühestens]] = не раніше, [[spätestens]] = найпізніше, [[nur]] = лише, [[erst]] = не раніше ніж. Неправильна відповідь часто зберігає правильне число і змінює маленьке слово: «щонайменше три таблетки» замість «щонайбільше три».",
+          "texte_fa": "[[höchstens]] = حداکثر، [[mindestens]] = دست‌کم، [[frühestens]] = نه زودتر از، [[spätestens]] = حداکثر تا، [[nur]] = فقط، [[erst]] = نه پیش از. پاسخ نادرست اغلب عدد درست را نگه می‌دارد و واژهٔ کوچک را عوض می‌کند: «دست‌کم سه قرص» به‌جای «حداکثر سه قرص».",
+          "texte_pt": "[[höchstens]] = no máximo, [[mindestens]] = no mínimo, [[frühestens]] = não antes de, [[spätestens]] = no mais tardar, [[nur]] = somente, [[erst]] = não antes de. Uma resposta errada muitas vezes mantém o número certo e muda a palavrinha: “no mínimo três comprimidos” em vez de “no máximo três”.",
+          "texte_ar": "[[höchstens]] = على الأكثر، [[mindestens]] = على الأقل، [[frühestens]] = ليس قبل، [[spätestens]] = في موعد أقصاه، [[nur]] = فقط، [[erst]] = ليس قبل. الإجابة الخاطئة غالبًا ما تحتفظ بالرقم الصحيح وتغيّر الكلمة الصغيرة: «ثلاثة أقراص على الأقل» بدلًا من «ثلاثة على الأكثر».",
+          "texte_pl": "[[höchstens]] = najwyżej, [[mindestens]] = co najmniej, [[frühestens]] = nie wcześniej niż, [[spätestens]] = najpóźniej, [[nur]] = tylko, [[erst]] = dopiero. Błędna odpowiedź często zachowuje dobrą liczbę i zmienia małe słowo: „co najmniej trzy tabletki” zamiast „najwyżej trzy”.",
+          "texte_ru": "[[höchstens]] = не больше, [[mindestens]] = не меньше, [[frühestens]] = не раньше, [[spätestens]] = не позже, [[nur]] = только, [[erst]] = не раньше. Неверный ответ часто сохраняет правильное число и меняет маленькое слово: «не меньше трёх таблеток» вместо «не больше трёх».",
+          "texte_es": "[[höchstens]] = como máximo, [[mindestens]] = como mínimo, [[frühestens]] = no antes de, [[spätestens]] = a más tardar, [[nur]] = solo, [[erst]] = no antes de. Una respuesta falsa suele mantener la cifra correcta y cambiar la palabrita: «como mínimo tres comprimidos» en lugar de «como máximo tres»."
+        },
+        {
+          "t": "piege",
+          "de": "Der Kurs ist kostenlos, die Zeit gilt allerdings nicht als Arbeitszeit.",
+          "titre_fr": "Ce qui suit « aber », « allerdings », « leider »",
+          "titre_en": "What follows “aber”, “allerdings”, “leider”",
+          "titre_tr": "“aber”, “allerdings”, “leider”den sonra gelen",
+          "titre_uk": "Що йде після «aber», «allerdings», «leider»",
+          "titre_fa": "آنچه بعد از «aber»، «allerdings»، «leider» می‌آید",
+          "titre_pt": "O que vem depois de “aber”, “allerdings”, “leider”",
+          "titre_ar": "ما يأتي بعد «aber» و«allerdings» و«leider»",
+          "titre_pl": "To, co następuje po „aber”, „allerdings”, „leider”",
+          "titre_ru": "Что идёт после «aber», «allerdings», «leider»",
+          "titre_es": "Lo que viene después de «aber», «allerdings», «leider»",
+          "texte_fr": "Après [[aber]], [[allerdings]], [[jedoch]], [[leider]] ou [[außer]] vient la restriction : l'exception à la règle. Les questions la visent très souvent. Souligne ces mots en lisant.",
+          "texte_en": "After [[aber]], [[allerdings]], [[jedoch]], [[leider]] or [[außer]] comes the restriction: the exception to the rule. The questions very often target it. Underline these words as you read.",
+          "texte_tr": "[[aber]], [[allerdings]], [[jedoch]], [[leider]] ya da [[außer]]dan sonra kısıtlama gelir: kuralın istisnası. Sorular çok sık onu hedefler. Okurken bu kelimelerin altını çiz.",
+          "texte_uk": "Після [[aber]], [[allerdings]], [[jedoch]], [[leider]] або [[außer]] іде обмеження: виняток із правила. Питання дуже часто стосуються саме його. Підкреслюй ці слова під час читання.",
+          "texte_fa": "بعد از [[aber]]، [[allerdings]]، [[jedoch]]، [[leider]] یا [[außer]] محدودیت می‌آید: استثنای قاعده. پرسش‌ها خیلی وقت‌ها همین را هدف می‌گیرند. هنگام خواندن زیر این واژه‌ها خط بکش.",
+          "texte_pt": "Depois de [[aber]], [[allerdings]], [[jedoch]], [[leider]] ou [[außer]] vem a restrição: a exceção à regra. As questões miram nela com muita frequência. Sublinhe essas palavras durante a leitura.",
+          "texte_ar": "بعد [[aber]] أو [[allerdings]] أو [[jedoch]] أو [[leider]] أو [[außer]] يأتي القيد: الاستثناء من القاعدة. الأسئلة تستهدفه كثيرًا جدًا. ضع خطًا تحت هذه الكلمات وأنت تقرأ.",
+          "texte_pl": "Po [[aber]], [[allerdings]], [[jedoch]], [[leider]] lub [[außer]] pojawia się ograniczenie: wyjątek od reguły. Pytania bardzo często go dotyczą. Podkreślaj te słowa podczas czytania.",
+          "texte_ru": "После [[aber]], [[allerdings]], [[jedoch]], [[leider]] или [[außer]] идёт ограничение: исключение из правила. Вопросы очень часто нацелены на него. Подчёркивай эти слова при чтении.",
+          "texte_es": "Después de [[aber]], [[allerdings]], [[jedoch]], [[leider]] o [[außer]] viene la restricción: la excepción a la regla. Las preguntas apuntan a ella muy a menudo. Subraya estas palabras al leer."
+        },
+        {
+          "t": "piege",
+          "de": "Satz: Frau K. bekommt jeden Mittag Essen auf Rädern.\nZeile h, Maßnahme: Gespräch über weitere Hilfen, zum Beispiel Essen auf Rädern.",
+          "titre_fr": "La phrase « x » ressemble à une ligne du plan",
+          "titre_en": "The “x” sentence looks like a line of the plan",
+          "titre_tr": "“x” cümlesi planın bir satırına benzer",
+          "titre_uk": "Речення «x» схоже на рядок плану",
+          "titre_fa": "جملهٔ «x» به یکی از ردیف‌های برنامه شبیه است",
+          "titre_pt": "A frase “x” se parece com uma linha do plano",
+          "titre_ar": "الجملة «x» تشبه سطرًا من الخطة",
+          "titre_pl": "Zdanie „x” przypomina wiersz planu",
+          "titre_ru": "Фраза «x» похожа на строку плана",
+          "titre_es": "La frase «x» se parece a una línea del plan",
+          "texte_fr": "La ligne parle d'une aide dont on va PARLER, pas d'une aide en place. La phrase « x » reprend souvent un mot du plan, mais avec autre chose : un projet au lieu d'un fait, une autre fréquence, une autre personne, une autre activité.",
+          "texte_en": "The line is about help that WILL BE DISCUSSED, not help already in place. The “x” sentence often repeats a word from the plan, but with something else: a plan instead of a fact, a different frequency, a different person, a different activity.",
+          "texte_tr": "Satır, zaten verilen bir yardımdan değil, KONUŞULACAK bir yardımdan söz ediyor. “x” cümlesi çoğu zaman plandan bir kelimeyi tekrarlar, ama başka bir şeyle: bir olgu yerine bir plan, başka bir sıklık, başka bir kişi, başka bir etkinlik.",
+          "texte_uk": "Рядок говорить про допомогу, про яку ще ПОГОВОРЯТЬ, а не про ту, що вже є. Речення «x» часто повторює слово з плану, але з іншим змістом: намір замість факту, інша частота, інша людина, інше заняття.",
+          "texte_fa": "ردیف از کمکی حرف می‌زند که قرار است درباره‌اش صحبت شود، نه کمکی که برقرار است. جملهٔ «x» اغلب واژه‌ای از برنامه را تکرار می‌کند، ولی با چیز دیگری: یک طرح به‌جای یک واقعیت، تکرار دیگری، شخص دیگری، فعالیت دیگری.",
+          "texte_pt": "A linha fala de uma ajuda sobre a qual se vai CONVERSAR, não de uma ajuda já existente. A frase “x” muitas vezes retoma uma palavra do plano, mas com outra coisa: um projeto em vez de um fato, outra frequência, outra pessoa, outra atividade.",
+          "texte_ar": "السطر يتحدث عن مساعدة سيُتحدَّث عنها، لا عن مساعدة قائمة. الجملة «x» غالبًا ما تكرر كلمة من الخطة، لكن مع شيء آخر: مشروع بدلًا من واقع، أو تواتر آخر، أو شخص آخر، أو نشاط آخر.",
+          "texte_pl": "Wiersz mówi o pomocy, o której się POROZMAWIA, a nie o pomocy już działającej. Zdanie „x” często powtarza słowo z planu, ale z czymś innym: zamiar zamiast faktu, inna częstotliwość, inna osoba, inna czynność.",
+          "texte_ru": "Строка говорит о помощи, о которой ещё ПОГОВОРЯТ, а не о помощи, которая уже есть. Фраза «x» часто повторяет слово из плана, но с другим содержанием: план вместо факта, другая частота, другой человек, другое занятие.",
+          "texte_es": "La línea habla de una ayuda de la que se va a HABLAR, no de una ayuda que ya existe. La frase «x» suele repetir una palabra del plan, pero con otra cosa: un proyecto en vez de un hecho, otra frecuencia, otra persona, otra actividad."
+        },
+        {
+          "t": "piege",
+          "de": "Maßnahme: bei Atemnot bei ihm bleiben und ruhig mit ihm atmen.",
+          "relire": true,
+          "titre_fr": "La même idée peut vivre dans une autre ligne",
+          "titre_en": "The same idea can live in another line",
+          "titre_tr": "Aynı fikir başka bir satırda olabilir",
+          "titre_uk": "Та сама думка може бути в іншому рядку",
+          "titre_fa": "یک ایده می‌تواند در ردیف دیگری باشد",
+          "titre_pt": "A mesma ideia pode estar em outra linha",
+          "titre_ar": "الفكرة نفسها قد تكون في سطر آخر",
+          "titre_pl": "Ta sama myśl może być w innym wierszu",
+          "titre_ru": "Та же мысль может стоять в другой строке",
+          "titre_es": "La misma idea puede estar en otra línea",
+          "texte_fr": "On pense à la ligne [[Atmen]], mais ce plan range cette mesure sous [[Sich sicher fühlen und verhalten]] : elle soigne la peur, pas les poumons. Une ligne se reconnaît à son objectif ([[Ziel]]) et à sa raison, pas au mot du corps qu'elle nomme. Le plan de l'examen fait foi, pas l'habitude de ton service.",
+          "texte_en": "You think of the [[Atmen]] line, but this plan puts the measure under [[Sich sicher fühlen und verhalten]]: it treats fear, not the lungs. You recognise a line by its goal ([[Ziel]]) and its reason, not by the body word it names. The exam's plan counts, not the habits of your ward.",
+          "texte_tr": "[[Atmen]] satırı akla geliyor, ama bu plan bu önlemi [[Sich sicher fühlen und verhalten]] altında sıralıyor: akciğerleri değil, korkuyu tedavi ediyor. Bir satır, andığı vücut kelimesinden değil, hedefinden ([[Ziel]]) ve nedeninden tanınır. Esas olan sınavdaki plan, senin servisindeki alışkanlık değil.",
+          "texte_uk": "Думаєш про рядок [[Atmen]], але цей план відносить захід до [[Sich sicher fühlen und verhalten]]: він лікує страх, а не легені. Рядок упізнають за його метою ([[Ziel]]) і причиною, а не за назвою частини тіла. Вирішальний — план іспиту, а не звичка твого відділення.",
+          "texte_fa": "آدم به ردیف [[Atmen]] فکر می‌کند، ولی این برنامه این اقدام را زیر [[Sich sicher fühlen und verhalten]] می‌گذارد: این اقدام ترس را درمان می‌کند، نه ریه‌ها را. هر ردیف را از هدفش ([[Ziel]]) و دلیلش می‌شناسیم، نه از عضوی از بدن که نام می‌برد. برنامهٔ آزمون ملاک است، نه عادت بخش تو.",
+          "texte_pt": "Pensa-se na linha [[Atmen]], mas este plano coloca essa medida em [[Sich sicher fühlen und verhalten]]: ela trata o medo, não os pulmões. Uma linha se reconhece pelo seu objetivo ([[Ziel]]) e pelo seu motivo, não pela parte do corpo que ela nomeia. O que vale é o plano da prova, não o costume do seu serviço.",
+          "texte_ar": "تفكّر في سطر [[Atmen]]، لكن هذه الخطة تضع هذا الإجراء تحت [[Sich sicher fühlen und verhalten]]: إنه يعالج الخوف، لا الرئتين. يُعرف السطر من هدفه ([[Ziel]]) ومن سببه، لا من كلمة الجسم التي يذكرها. خطة الامتحان هي المرجع، لا عادات قسمك.",
+          "texte_pl": "Myślisz o wierszu [[Atmen]], ale ten plan umieszcza to działanie w [[Sich sicher fühlen und verhalten]]: leczy lęk, a nie płuca. Wiersz rozpoznaje się po jego celu ([[Ziel]]) i uzasadnieniu, a nie po nazwanej w nim części ciała. Rozstrzyga plan z egzaminu, a nie zwyczaj twojego oddziału.",
+          "texte_ru": "Думаешь о строке [[Atmen]], но этот план относит эту меру к [[Sich sicher fühlen und verhalten]]: она лечит страх, а не лёгкие. Строку узнают по её цели ([[Ziel]]) и причине, а не по части тела, которую она называет. Решает план экзамена, а не привычка твоего отделения.",
+          "texte_es": "Uno piensa en la línea [[Atmen]], pero este plan coloca esta medida en [[Sich sicher fühlen und verhalten]]: trata el miedo, no los pulmones. Una línea se reconoce por su objetivo ([[Ziel]]) y por su motivo, no por la parte del cuerpo que nombra. Lo que vale es el plan del examen, no la costumbre de tu servicio."
+        },
+        {
+          "t": "piege",
+          "de": "Text: Die Trainings sind für Sie kostenlos.\nAussage: Die Pflegekasse bezahlt auch die Fahrt zum Kurs.",
+          "titre_fr": "D'après le texte seulement",
+          "titre_en": "Based only on the text",
+          "titre_tr": "Yalnızca metne göre",
+          "titre_uk": "Лише за текстом",
+          "titre_fa": "فقط بر اساس متن",
+          "titre_pt": "Apenas de acordo com o texto",
+          "titre_ar": "حسب النص وحده",
+          "titre_pl": "Wyłącznie na podstawie tekstu",
+          "titre_ru": "Только по тексту",
+          "titre_es": "Solo según el texto",
+          "texte_fr": "C'est peut-être vrai dans la réalité, mais le texte ne le dit pas : la réponse est [[falsch]]. Dans la partie 4, il n'y a que deux cases. Ce que tu sais du métier ne compte pas : seul compte ce qui est écrit.",
+          "texte_en": "It may be true in real life, but the text doesn't say it: the answer is [[falsch]]. In part 4, there are only two boxes. What you know about the job doesn't count: only what is written counts.",
+          "texte_tr": "Gerçek hayatta belki doğru, ama metin bunu söylemiyor: cevap [[falsch]]. 4. kısımda yalnızca iki kutu var. Meslek hakkında bildiklerin sayılmaz: yalnızca yazılı olan sayılır.",
+          "texte_uk": "Можливо, у реальності це правда, але текст цього не каже: відповідь — [[falsch]]. У частині 4 є лише два варіанти. Те, що ти знаєш про професію, не враховується: важить лише написане.",
+          "texte_fa": "شاید در واقعیت درست باشد، ولی متن آن را نمی‌گوید: پاسخ [[falsch]] است. در قسمت 4 فقط دو خانه هست. آنچه از حرفه‌ات می‌دانی حساب نیست: فقط چیزی حساب است که نوشته شده.",
+          "texte_pt": "Talvez seja verdade na realidade, mas o texto não diz isso: a resposta é [[falsch]]. Na parte 4, só há duas opções. O que você sabe da profissão não conta: só conta o que está escrito.",
+          "texte_ar": "ربما يكون صحيحًا في الواقع، لكن النص لا يقوله: الإجابة [[falsch]]. في الجزء 4 لا يوجد إلا خياران. ما تعرفه عن المهنة لا يُحتسب: المهم فقط ما هو مكتوب.",
+          "texte_pl": "Może to i prawda w rzeczywistości, ale tekst tego nie mówi: odpowiedź to [[falsch]]. W części 4 są tylko dwie kratki. To, co wiesz o zawodzie, się nie liczy: liczy się tylko to, co jest napisane.",
+          "texte_ru": "Может быть, в жизни это и так, но в тексте этого нет: ответ [[falsch]]. В части 4 только два варианта. Твои профессиональные знания не считаются: считается только то, что написано.",
+          "texte_es": "Puede que sea verdad en la realidad, pero el texto no lo dice: la respuesta es [[falsch]]. En la parte 4 solo hay dos casillas. Lo que sabes de la profesión no cuenta: solo cuenta lo que está escrito."
+        },
+        {
+          "t": "piege",
+          "de": "Eine Kontrollmessung ist nötig, … nach jedem Sturz des Geräts.",
+          "titre_fr": "Le mot connu dans un autre sens",
+          "titre_en": "The known word with another meaning",
+          "titre_tr": "Bildiğin kelime başka bir anlamda",
+          "titre_uk": "Знайоме слово в іншому значенні",
+          "titre_fa": "واژهٔ آشنا با معنایی دیگر",
+          "titre_pt": "A palavra conhecida em outro sentido",
+          "titre_ar": "الكلمة المعروفة بمعنى آخر",
+          "titre_pl": "Znane słowo w innym znaczeniu",
+          "titre_ru": "Знакомое слово в другом значении",
+          "titre_es": "La palabra conocida con otro sentido",
+          "texte_fr": "Pour une soignante, [[Sturz]], c'est la chute d'un patient. Ici, c'est l'appareil qui tombe. Avant de choisir, relis la phrase entière : qui fait quoi ?",
+          "texte_en": "For a nurse, [[Sturz]] means a patient's fall. Here, it's the device that falls. Before choosing, reread the whole sentence: who does what?",
+          "texte_tr": "Bir bakıcı için [[Sturz]] bir hastanın düşmesidir. Burada düşen cihaz. Seçmeden önce cümlenin tamamını yeniden oku: kim ne yapıyor?",
+          "texte_uk": "Для доглядальниці [[Sturz]] — це падіння пацієнта. Тут падає прилад. Перш ніж вибрати, перечитай усе речення: хто що робить?",
+          "texte_fa": "برای یک پرستار، [[Sturz]] یعنی زمین خوردن بیمار. اینجا دستگاه است که می‌افتد. پیش از انتخاب، کل جمله را دوباره بخوان: چه کسی چه می‌کند؟",
+          "texte_pt": "Para uma cuidadora, [[Sturz]] é a queda de um paciente. Aqui, é o aparelho que cai. Antes de escolher, releia a frase inteira: quem faz o quê?",
+          "texte_ar": "بالنسبة إلى العاملة في الرعاية، [[Sturz]] هو سقوط مريض. أما هنا فالجهاز هو الذي يسقط. قبل أن تختار، أعد قراءة الجملة كاملة: من يفعل ماذا؟",
+          "texte_pl": "Dla opiekunki [[Sturz]] to upadek pacjenta. Tutaj spada urządzenie. Zanim wybierzesz, przeczytaj jeszcze raz całe zdanie: kto co robi?",
+          "texte_ru": "Для медсестры [[Sturz]] — это падение пациента. Здесь падает прибор. Прежде чем выбрать, перечитай всё предложение: кто что делает?",
+          "texte_es": "Para una cuidadora, [[Sturz]] es la caída de un paciente. Aquí es el aparato el que se cae. Antes de elegir, vuelve a leer la frase entera: ¿quién hace qué?"
+        }
+      ]
+    },
+    {
+      "id": "strategies",
+      "blocs": [
+        {
+          "t": "titre",
+          "texte_fr": "Partie 1 : les courriels",
+          "texte_en": "Part 1: the emails",
+          "texte_tr": "1. kısım: e-postalar",
+          "texte_uk": "Частина 1: електронні листи",
+          "texte_fa": "قسمت 1: ایمیل‌ها",
+          "texte_pt": "Parte 1: os e-mails",
+          "texte_ar": "الجزء 1: الرسائل الإلكترونية",
+          "texte_pl": "Część 1: e-maile",
+          "texte_ru": "Часть 1: электронные письма",
+          "texte_es": "Parte 1: los correos"
+        },
+        {
+          "t": "liste",
+          "ordre": true,
+          "items": [
+            {
+              "texte_fr": "Lis d'abord les six objets et résume chacun en deux mots dans ta langue.",
+              "texte_en": "First read the six subject lines and sum up each one in two words in your language.",
+              "texte_tr": "Önce altı başlığı oku ve her birini kendi dilinde iki kelimeyle özetle.",
+              "texte_uk": "Спершу прочитай шість тем і підсумуй кожну двома словами своєю мовою.",
+              "texte_fa": "اول شش موضوع را بخوان و هر کدام را در دو واژه به زبان خودت خلاصه کن.",
+              "texte_pt": "Leia primeiro os seis assuntos e resuma cada um em duas palavras na sua língua.",
+              "texte_ar": "اقرأ أولًا المواضيع الستة ولخّص كل واحد منها في كلمتين بلغتك.",
+              "texte_pl": "Najpierw przeczytaj sześć tematów i streść każdy dwoma słowami w swoim języku.",
+              "texte_ru": "Сначала прочитай шесть тем и коротко, в двух словах, перескажи каждую на своём языке.",
+              "texte_es": "Lee primero los seis asuntos y resume cada uno en dos palabras en tu idioma."
+            },
+            {
+              "texte_fr": "Pour chaque courriel, regarde qui écrit à qui ([[Von]], [[An]]), puis cherche ce qu'on demande : souvent la phrase avec [[bitte]] ou [[ab sofort]].",
+              "texte_en": "For each email, look at who is writing to whom ([[Von]], [[An]]), then find what is being asked: often the sentence with [[bitte]] or [[ab sofort]].",
+              "texte_tr": "Her e-posta için kimin kime yazdığına bak ([[Von]], [[An]]), sonra ne istendiğini ara: çoğu zaman [[bitte]] ya da [[ab sofort]] geçen cümle.",
+              "texte_uk": "У кожному листі подивись, хто кому пише ([[Von]], [[An]]), потім шукай, що просять: часто це речення з [[bitte]] або [[ab sofort]].",
+              "texte_fa": "برای هر ایمیل ببین چه کسی به چه کسی می‌نویسد ([[Von]]، [[An]])، بعد دنبال چیزی بگرد که درخواست می‌شود: اغلب جمله‌ای با [[bitte]] یا [[ab sofort]].",
+              "texte_pt": "Para cada e-mail, veja quem escreve para quem ([[Von]], [[An]]) e depois procure o que está sendo pedido: muitas vezes a frase com [[bitte]] ou [[ab sofort]].",
+              "texte_ar": "في كل رسالة، انظر من يكتب إلى من ([[Von]]، [[An]])، ثم ابحث عمّا يُطلب: غالبًا الجملة التي فيها [[bitte]] أو [[ab sofort]].",
+              "texte_pl": "Przy każdym e-mailu sprawdź, kto pisze do kogo ([[Von]], [[An]]), potem szukaj, o co się prosi: często to zdanie z [[bitte]] lub [[ab sofort]].",
+              "texte_ru": "В каждом письме посмотри, кто кому пишет ([[Von]], [[An]]), затем найди, о чём просят: часто это фраза с [[bitte]] или [[ab sofort]].",
+              "texte_es": "En cada correo, mira quién escribe a quién ([[Von]], [[An]]) y luego busca qué se pide: a menudo es la frase con [[bitte]] o [[ab sofort]]."
+            },
+            {
+              "texte_fr": "Dis en une ligne de quoi parle le courriel, PUIS cherche l'objet. Pas l'inverse.",
+              "texte_en": "Say in one line what the email is about, THEN look for the subject line. Not the other way round.",
+              "texte_tr": "E-postanın neden söz ettiğini tek satırda söyle, SONRA başlığı ara. Tersini değil.",
+              "texte_uk": "Скажи одним рядком, про що лист, ПОТІМ шукай тему. Не навпаки.",
+              "texte_fa": "در یک سطر بگو ایمیل دربارهٔ چیست، بعد دنبال موضوع بگرد. نه برعکس.",
+              "texte_pt": "Diga em uma linha do que o e-mail fala, DEPOIS procure o assunto. Não o contrário.",
+              "texte_ar": "قل في سطر واحد عمّ تتحدث الرسالة، ثم ابحث عن الموضوع. لا العكس.",
+              "texte_pl": "Powiedz w jednym zdaniu, o czym jest e-mail, A POTEM szukaj tematu. Nie odwrotnie.",
+              "texte_ru": "Скажи одной строкой, о чём письмо, ПОТОМ ищи тему. Не наоборот.",
+              "texte_es": "Di en una línea de qué habla el correo, Y DESPUÉS busca el asunto. No al revés."
+            },
+            {
+              "texte_fr": "Barre l'objet choisi. Des deux qui restent, l'un est presque toujours le piège qui reprend un mot.",
+              "texte_en": "Cross out the subject line you chose. Of the two left over, one is almost always the trap that repeats a word.",
+              "texte_tr": "Seçtiğin başlığın üstünü çiz. Kalan ikisinden biri neredeyse her zaman bir kelimeyi tekrarlayan tuzaktır.",
+              "texte_uk": "Закресли вибрану тему. З двох, що залишилися, одна майже завжди — пастка, яка повторює слово.",
+              "texte_fa": "موضوع انتخاب‌شده را خط بزن. از دو موضوعی که می‌مانند، یکی تقریباً همیشه دامی است که واژه‌ای را تکرار می‌کند.",
+              "texte_pt": "Risque o assunto escolhido. Dos dois que sobram, um é quase sempre a armadilha que retoma uma palavra.",
+              "texte_ar": "اشطب الموضوع الذي اخترته. من الموضوعين الباقيين، يكون أحدهما في الغالب الفخ الذي يكرر كلمة.",
+              "texte_pl": "Skreśl wybrany temat. Z dwóch, które zostaną, jeden prawie zawsze jest pułapką powtarzającą słowo.",
+              "texte_ru": "Вычеркни выбранную тему. Из двух оставшихся одна почти всегда — ловушка, повторяющая слово.",
+              "texte_es": "Tacha el asunto elegido. De los dos que sobran, uno es casi siempre la trampa que repite una palabra."
+            }
+          ]
+        },
+        {
+          "t": "serie",
+          "epreuve": "lesen",
+          "serie": 101,
+          "teil": 1,
+          "texte_fr": "Entraîne-toi : la partie 1 de la série 1.",
+          "texte_en": "Practise: part 1 of set 1.",
+          "texte_tr": "Alıştırma yap: 1. dizinin 1. kısmı.",
+          "texte_uk": "Потренуйся: частина 1 серії 1.",
+          "texte_fa": "تمرین کن: قسمت 1 از سری 1.",
+          "texte_pt": "Pratique: a parte 1 da série 1.",
+          "texte_ar": "تدرّب: الجزء 1 من المجموعة 1.",
+          "texte_pl": "Poćwicz: część 1 serii 1.",
+          "texte_ru": "Потренируйся: часть 1 серии 1.",
+          "texte_es": "Practica: la parte 1 de la serie 1."
+        },
+        {
+          "t": "titre",
+          "texte_fr": "Partie 2 : le plan de soins",
+          "texte_en": "Part 2: the care plan",
+          "texte_tr": "2. kısım: bakım planı",
+          "texte_uk": "Частина 2: план догляду",
+          "texte_fa": "قسمت 2: برنامهٔ مراقبت",
+          "texte_pt": "Parte 2: o plano de cuidados",
+          "texte_ar": "الجزء 2: خطة الرعاية",
+          "texte_pl": "Część 2: plan opieki",
+          "texte_ru": "Часть 2: план ухода",
+          "texte_es": "Parte 2: el plan de cuidados"
+        },
+        {
+          "t": "liste",
+          "ordre": true,
+          "items": [
+            {
+              "texte_fr": "Lis le rapport d'introduction : il donne les problèmes de la personne, et donc les lignes qui comptent.",
+              "texte_en": "Read the introductory report: it gives the person's problems, and so the lines that matter.",
+              "texte_tr": "Giriş raporunu oku: kişinin sorunlarını, dolayısıyla önemli olan satırları verir.",
+              "texte_uk": "Прочитай вступний звіт: він називає проблеми людини, а отже, і важливі рядки.",
+              "texte_fa": "گزارش آغازین را بخوان: مشکلات شخص را می‌گوید، و در نتیجه ردیف‌هایی را که مهم‌اند.",
+              "texte_pt": "Leia o relatório de introdução: ele dá os problemas da pessoa e, portanto, as linhas que importam.",
+              "texte_ar": "اقرأ التقرير التمهيدي: فهو يعطي مشكلات الشخص، وبالتالي الأسطر المهمة.",
+              "texte_pl": "Przeczytaj raport wstępny: podaje problemy danej osoby, a więc wiersze, które się liczą.",
+              "texte_ru": "Прочитай вводный отчёт: в нём названы проблемы человека, а значит, и важные строки.",
+              "texte_es": "Lee el informe de introducción: da los problemas de la persona y, por tanto, las líneas que importan."
+            },
+            {
+              "texte_fr": "Lis les huit titres (AEDL ou ATL). Pour chaque phrase, devine d'abord le domaine : manger, bouger, dormir, la sécurité, la famille…",
+              "texte_en": "Read the eight headings (AEDL or ATL). For each sentence, first guess the area: eating, moving, sleeping, safety, family…",
+              "texte_tr": "Sekiz başlığı oku (AEDL ya da ATL). Her cümle için önce alanı tahmin et: yemek, hareket, uyku, güvenlik, aile…",
+              "texte_uk": "Прочитай вісім заголовків (AEDL або ATL). Для кожного речення спершу вгадай сферу: їжа, рух, сон, безпека, родина…",
+              "texte_fa": "هشت عنوان (AEDL یا ATL) را بخوان. برای هر جمله، اول حوزه را حدس بزن: غذا خوردن، حرکت، خواب، ایمنی، خانواده…",
+              "texte_pt": "Leia os oito títulos (AEDL ou ATL). Para cada frase, adivinhe primeiro a área: comer, se movimentar, dormir, a segurança, a família…",
+              "texte_ar": "اقرأ العناوين الثمانية (AEDL أو ATL). لكل جملة، خمّن أولًا المجال: الأكل، الحركة، النوم، السلامة، العائلة…",
+              "texte_pl": "Przeczytaj osiem tytułów (AEDL lub ATL). Przy każdym zdaniu najpierw odgadnij obszar: jedzenie, ruch, sen, bezpieczeństwo, rodzina…",
+              "texte_ru": "Прочитай восемь заголовков (AEDL или ATL). Для каждой фразы сначала угадай область: еда, движение, сон, безопасность, семья…",
+              "texte_es": "Lee los ocho títulos (AEDL o ATL). Para cada frase, adivina primero el ámbito: comer, moverse, dormir, la seguridad, la familia…"
+            },
+            {
+              "texte_fr": "Cherche dans la ligne la mesure ([[Maßnahme]]) ou l'objectif ([[Ziel]]) qui dit la même chose que la phrase. Les mots seront différents.",
+              "texte_en": "In the line, look for the measure ([[Maßnahme]]) or the goal ([[Ziel]]) that says the same thing as the sentence. The words will be different.",
+              "texte_tr": "Satırda, cümleyle aynı şeyi söyleyen önlemi ([[Maßnahme]]) ya da hedefi ([[Ziel]]) ara. Kelimeler farklı olacak.",
+              "texte_uk": "Шукай у рядку захід ([[Maßnahme]]) або мету ([[Ziel]]), що каже те саме, що й речення. Слова будуть інші.",
+              "texte_fa": "در ردیف دنبال اقدام ([[Maßnahme]]) یا هدفی ([[Ziel]]) بگرد که همان چیز جمله را می‌گوید. واژه‌ها متفاوت خواهند بود.",
+              "texte_pt": "Procure na linha a medida ([[Maßnahme]]) ou o objetivo ([[Ziel]]) que diz a mesma coisa que a frase. As palavras serão diferentes.",
+              "texte_ar": "ابحث في السطر عن الإجراء ([[Maßnahme]]) أو الهدف ([[Ziel]]) الذي يقول الشيء نفسه الذي تقوله الجملة. الكلمات ستكون مختلفة.",
+              "texte_pl": "Szukaj w wierszu działania ([[Maßnahme]]) lub celu ([[Ziel]]), które mówią to samo co zdanie. Słowa będą inne.",
+              "texte_ru": "Найди в строке меру ([[Maßnahme]]) или цель ([[Ziel]]), которая говорит то же, что фраза. Слова будут другими.",
+              "texte_es": "Busca en la línea la medida ([[Maßnahme]]) o el objetivo ([[Ziel]]) que dice lo mismo que la frase. Las palabras serán distintas."
+            },
+            {
+              "texte_fr": "Si deux lignes semblent aller, demande-toi POURQUOI on fait ce geste : la raison décide.",
+              "texte_en": "If two lines seem to fit, ask yourself WHY this is done: the reason decides.",
+              "texte_tr": "İki satır uyuyor gibiyse, bu işin NEDEN yapıldığını kendine sor: kararı neden verir.",
+              "texte_uk": "Якщо здається, що підходять два рядки, запитай себе, НАВІЩО роблять цю дію: вирішує причина.",
+              "texte_fa": "اگر دو ردیف به نظر جور می‌آیند، از خودت بپرس چرا این کار را انجام می‌دهیم: دلیل تعیین می‌کند.",
+              "texte_pt": "Se duas linhas parecerem servir, pergunte-se POR QUE se faz esse gesto: o motivo decide.",
+              "texte_ar": "إذا بدا أن سطرين يناسبان، اسأل نفسك لماذا يُفعل هذا الإجراء: السبب هو الذي يحسم.",
+              "texte_pl": "Jeśli dwa wiersze wydają się pasować, zapytaj siebie, PO CO wykonuje się tę czynność: decyduje powód.",
+              "texte_ru": "Если подходят две строки, спроси себя, ЗАЧЕМ делают это действие: решает причина.",
+              "texte_es": "Si dos líneas parecen valer, pregúntate POR QUÉ se hace ese gesto: el motivo decide."
+            },
+            {
+              "texte_fr": "Il y a une seule phrase « x ». Garde-la pour la fin : c'est celle qui ne trouve aucune ligne sûre.",
+              "texte_en": "There is only one “x” sentence. Keep it for the end: it's the one that finds no sure line.",
+              "texte_tr": "Tek bir “x” cümlesi var. Onu sona bırak: hiçbir satıra kesin olarak uymayan cümle odur.",
+              "texte_uk": "Речення «x» лише одне. Залиш його на кінець: це те, для якого немає жодного певного рядка.",
+              "texte_fa": "فقط یک جملهٔ «x» هست. آن را برای آخر نگه دار: همان جمله‌ای است که هیچ ردیف مطمئنی برایش پیدا نمی‌شود.",
+              "texte_pt": "Há uma única frase “x”. Deixe-a para o fim: é a que não encontra nenhuma linha segura.",
+              "texte_ar": "هناك جملة «x» واحدة فقط. اتركها للنهاية: إنها الجملة التي لا تجد سطرًا أكيدًا.",
+              "texte_pl": "Jest tylko jedno zdanie „x”. Zostaw je na koniec: to to, które nie znajduje żadnego pewnego wiersza.",
+              "texte_ru": "Фраза «x» только одна. Оставь её на конец: это та, для которой нет ни одной надёжной строки.",
+              "texte_es": "Solo hay una frase «x». Déjala para el final: es la que no encuentra ninguna línea segura."
+            }
+          ]
+        },
+        {
+          "t": "serie",
+          "epreuve": "lesen",
+          "serie": 102,
+          "teil": 2,
+          "texte_fr": "Entraîne-toi : un plan de soins rangé selon les ATL.",
+          "texte_en": "Practise: a care plan organised by the ATL.",
+          "texte_tr": "Alıştırma yap: ATL'ye göre sıralanmış bir bakım planı.",
+          "texte_uk": "Потренуйся: план догляду, упорядкований за ATL.",
+          "texte_fa": "تمرین کن: یک برنامهٔ مراقبت مرتب‌شده بر اساس ATL.",
+          "texte_pt": "Pratique: um plano de cuidados organizado segundo as ATL.",
+          "texte_ar": "تدرّب: خطة رعاية مرتبة حسب ATL.",
+          "texte_pl": "Poćwicz: plan opieki uporządkowany według ATL.",
+          "texte_ru": "Потренируйся: план ухода по ATL.",
+          "texte_es": "Practica: un plan de cuidados ordenado según las ATL."
+        },
+        {
+          "t": "titre",
+          "texte_fr": "Partie 3 : notices et textes réglementaires",
+          "texte_en": "Part 3: leaflets and rules",
+          "texte_tr": "3. kısım: prospektüsler ve yönetmelik metinleri",
+          "texte_uk": "Частина 3: інструкції та нормативні тексти",
+          "texte_fa": "قسمت 3: بروشورها و متن‌های مقرراتی",
+          "texte_pt": "Parte 3: bulas e textos de regras",
+          "texte_ar": "الجزء 3: النشرات والنصوص التنظيمية",
+          "texte_pl": "Część 3: ulotki i teksty z przepisami",
+          "texte_ru": "Часть 3: инструкции и нормативные тексты",
+          "texte_es": "Parte 3: prospectos y textos normativos"
+        },
+        {
+          "t": "liste",
+          "ordre": true,
+          "items": [
+            {
+              "texte_fr": "Lis les deux questions avant le texte : elles disent quel paragraphe chercher.",
+              "texte_en": "Read the two questions before the text: they tell you which paragraph to look for.",
+              "texte_tr": "Metinden önce iki soruyu oku: hangi paragrafı araman gerektiğini söylerler.",
+              "texte_uk": "Прочитай обидва питання перед текстом: вони підказують, який абзац шукати.",
+              "texte_fa": "دو پرسش را پیش از متن بخوان: می‌گویند دنبال کدام بند بگردی.",
+              "texte_pt": "Leia as duas questões antes do texto: elas dizem qual parágrafo procurar.",
+              "texte_ar": "اقرأ السؤالين قبل النص: فهما يقولان أي فقرة تبحث عنها.",
+              "texte_pl": "Przeczytaj oba pytania przed tekstem: mówią, którego akapitu szukać.",
+              "texte_ru": "Прочитай оба вопроса до текста: они подскажут, какой абзац искать.",
+              "texte_es": "Lee las dos preguntas antes del texto: te dicen qué párrafo buscar."
+            },
+            {
+              "texte_fr": "Le titre et l'objet ([[Betreff]]) disent la sorte de texte : notice, consigne de service, règlement intérieur.",
+              "texte_en": "The title and the subject line ([[Betreff]]) tell you the kind of text: leaflet, ward instruction, house rules.",
+              "texte_tr": "Başlık ve konu ([[Betreff]]) metnin türünü söyler: prospektüs, servis talimatı, iç yönetmelik.",
+              "texte_uk": "Заголовок і тема ([[Betreff]]) показують вид тексту: інструкція, службова вказівка, внутрішній розпорядок.",
+              "texte_fa": "عنوان و موضوع ([[Betreff]]) نوع متن را می‌گویند: بروشور، دستورالعمل بخش، آیین‌نامهٔ داخلی.",
+              "texte_pt": "O título e o assunto ([[Betreff]]) dizem o tipo de texto: bula, instrução de serviço, regulamento interno.",
+              "texte_ar": "العنوان والموضوع ([[Betreff]]) يقولان نوع النص: نشرة دواء، تعليمات عمل، نظام داخلي.",
+              "texte_pl": "Tytuł i temat ([[Betreff]]) mówią, jaki to rodzaj tekstu: ulotka, instrukcja służbowa, regulamin wewnętrzny.",
+              "texte_ru": "Заголовок и тема ([[Betreff]]) показывают тип текста: инструкция, служебное распоряжение, внутренний распорядок.",
+              "texte_es": "El título y el asunto ([[Betreff]]) dicen qué tipo de texto es: prospecto, instrucción de servicio, reglamento interno."
+            },
+            {
+              "texte_fr": "Lis le passage, puis élimine : un choix contredit le texte, un autre ajoute ce qui n'y est pas. Il reste le bon.",
+              "texte_en": "Read the passage, then rule out: one choice contradicts the text, another adds something that isn't there. The right one is left.",
+              "texte_tr": "Bölümü oku, sonra ele: bir seçenek metinle çelişir, bir başkası metinde olmayan bir şey ekler. Geriye doğrusu kalır.",
+              "texte_uk": "Прочитай уривок, потім відкидай: один варіант суперечить текстові, інший додає те, чого там немає. Залишається правильний.",
+              "texte_fa": "آن بخش را بخوان، بعد حذف کن: یک گزینه با متن تناقض دارد، گزینهٔ دیگر چیزی اضافه می‌کند که در متن نیست. آنچه می‌ماند درست است.",
+              "texte_pt": "Leia o trecho e depois elimine: uma opção contradiz o texto, outra acrescenta o que não está nele. Sobra a certa.",
+              "texte_ar": "اقرأ المقطع، ثم استبعد: خيار يناقض النص، وآخر يضيف ما ليس فيه. يبقى الصحيح.",
+              "texte_pl": "Przeczytaj fragment, potem eliminuj: jedna odpowiedź przeczy tekstowi, inna dodaje coś, czego w nim nie ma. Zostaje dobra.",
+              "texte_ru": "Прочитай отрывок, затем исключай: один вариант противоречит тексту, другой добавляет то, чего там нет. Остаётся правильный.",
+              "texte_es": "Lee el pasaje y luego elimina: una opción contradice el texto, otra añade lo que no está. Queda la correcta."
+            },
+            {
+              "texte_fr": "Les questions suivent l'ordre du texte : la deuxième se trouve plus loin que la première.",
+              "texte_en": "The questions follow the order of the text: the second one is further on than the first.",
+              "texte_tr": "Sorular metnin sırasını izler: ikincisi birincisinden daha ileridedir.",
+              "texte_uk": "Питання йдуть за порядком тексту: друге міститься далі, ніж перше.",
+              "texte_fa": "پرسش‌ها به ترتیب متن می‌آیند: پاسخ دومی جلوتر از اولی است.",
+              "texte_pt": "As questões seguem a ordem do texto: a segunda está mais adiante que a primeira.",
+              "texte_ar": "الأسئلة تتبع ترتيب النص: الثاني يوجد بعد الأول.",
+              "texte_pl": "Pytania idą w kolejności tekstu: drugie znajduje się dalej niż pierwsze.",
+              "texte_ru": "Вопросы идут в порядке текста: ответ на второй находится дальше, чем на первый.",
+              "texte_es": "Las preguntas siguen el orden del texto: la segunda está más adelante que la primera."
+            }
+          ]
+        },
+        {
+          "t": "serie",
+          "epreuve": "lesen",
+          "serie": 103,
+          "teil": 3,
+          "texte_fr": "Entraîne-toi : une notice, une procédure et une fiche pour les patients.",
+          "texte_en": "Practise: a leaflet, a procedure and an information sheet for patients.",
+          "texte_tr": "Alıştırma yap: bir prospektüs, bir prosedür ve hastalar için bir bilgi formu.",
+          "texte_uk": "Потренуйся: інструкція, процедура й листок для пацієнтів.",
+          "texte_fa": "تمرین کن: یک بروشور، یک روش کار و یک برگه برای بیماران.",
+          "texte_pt": "Pratique: uma bula, um procedimento e uma ficha para os pacientes.",
+          "texte_ar": "تدرّب: نشرة دواء، وإجراء، وورقة للمرضى.",
+          "texte_pl": "Poćwicz: ulotka, procedura i karta dla pacjentów.",
+          "texte_ru": "Потренируйся: инструкция, процедура и памятка для пациентов.",
+          "texte_es": "Practica: un prospecto, un procedimiento y una hoja para los pacientes."
+        },
+        {
+          "t": "titre",
+          "texte_fr": "Partie 4 : le texte d'information",
+          "texte_en": "Part 4: the information text",
+          "texte_tr": "4. kısım: bilgilendirme metni",
+          "texte_uk": "Частина 4: інформаційний текст",
+          "texte_fa": "قسمت 4: متن اطلاع‌رسانی",
+          "texte_pt": "Parte 4: o texto informativo",
+          "texte_ar": "الجزء 4: النص الإعلامي",
+          "texte_pl": "Część 4: tekst informacyjny",
+          "texte_ru": "Часть 4: информационный текст",
+          "texte_es": "Parte 4: el texto informativo"
+        },
+        {
+          "t": "liste",
+          "ordre": true,
+          "items": [
+            {
+              "texte_fr": "Lis les trois phrases d'abord, puis le texte : les phrases suivent l'ordre du texte.",
+              "texte_en": "Read the three sentences first, then the text: the sentences follow the order of the text.",
+              "texte_tr": "Önce üç cümleyi, sonra metni oku: cümleler metnin sırasını izler.",
+              "texte_uk": "Спершу прочитай три речення, потім текст: речення йдуть за порядком тексту.",
+              "texte_fa": "اول سه جمله را بخوان، بعد متن را: جمله‌ها به ترتیب متن می‌آیند.",
+              "texte_pt": "Leia primeiro as três frases, depois o texto: as frases seguem a ordem do texto.",
+              "texte_ar": "اقرأ الجمل الثلاث أولًا، ثم النص: الجمل تتبع ترتيب النص.",
+              "texte_pl": "Najpierw przeczytaj trzy zdania, potem tekst: zdania idą w kolejności tekstu.",
+              "texte_ru": "Сначала прочитай три утверждения, потом текст: утверждения идут в порядке текста.",
+              "texte_es": "Lee primero las tres frases y luego el texto: las frases siguen el orden del texto."
+            },
+            {
+              "texte_fr": "[[richtig]] : le texte le dit, même avec d'autres mots.",
+              "texte_en": "[[richtig]]: the text says it, even in other words.",
+              "texte_tr": "[[richtig]]: metin bunu söylüyor, başka kelimelerle de olsa.",
+              "texte_uk": "[[richtig]]: текст це каже, навіть іншими словами.",
+              "texte_fa": "[[richtig]]: متن آن را می‌گوید، حتی با واژه‌های دیگر.",
+              "texte_pt": "[[richtig]]: o texto diz isso, mesmo com outras palavras.",
+              "texte_ar": "[[richtig]]: النص يقوله، حتى بكلمات أخرى.",
+              "texte_pl": "[[richtig]]: tekst to mówi, nawet innymi słowami.",
+              "texte_ru": "[[richtig]]: текст это говорит, пусть и другими словами.",
+              "texte_es": "[[richtig]]: el texto lo dice, aunque sea con otras palabras."
+            },
+            {
+              "texte_fr": "[[falsch]] : le texte dit le contraire, OU il ne le dit pas.",
+              "texte_en": "[[falsch]]: the text says the opposite, OR it doesn't say it.",
+              "texte_tr": "[[falsch]]: metin tersini söylüyor, YA DA bunu söylemiyor.",
+              "texte_uk": "[[falsch]]: текст каже протилежне АБО цього не каже.",
+              "texte_fa": "[[falsch]]: متن برعکس آن را می‌گوید، یا اصلاً آن را نمی‌گوید.",
+              "texte_pt": "[[falsch]]: o texto diz o contrário, OU não diz isso.",
+              "texte_ar": "[[falsch]]: النص يقول العكس، أو لا يقوله.",
+              "texte_pl": "[[falsch]]: tekst mówi coś przeciwnego ALBO w ogóle tego nie mówi.",
+              "texte_ru": "[[falsch]]: текст говорит обратное ИЛИ вообще этого не говорит.",
+              "texte_es": "[[falsch]]: el texto dice lo contrario, O no lo dice."
+            },
+            {
+              "texte_fr": "Méfie-toi des mots absolus dans la phrase : [[immer]], [[nie]], [[alle]], [[jeder]], [[so lange, wie man möchte]].",
+              "texte_en": "Be careful with absolute words in the sentence: [[immer]], [[nie]], [[alle]], [[jeder]], [[so lange, wie man möchte]].",
+              "texte_tr": "Cümledeki kesin kelimelere dikkat et: [[immer]], [[nie]], [[alle]], [[jeder]], [[so lange, wie man möchte]].",
+              "texte_uk": "Остерігайся абсолютних слів у реченні: [[immer]], [[nie]], [[alle]], [[jeder]], [[so lange, wie man möchte]].",
+              "texte_fa": "به واژه‌های مطلق در جمله بدگمان باش: [[immer]]، [[nie]]، [[alle]]، [[jeder]]، [[so lange, wie man möchte]].",
+              "texte_pt": "Desconfie das palavras absolutas na frase: [[immer]], [[nie]], [[alle]], [[jeder]], [[so lange, wie man möchte]].",
+              "texte_ar": "احذر الكلمات المطلقة في الجملة: [[immer]]، [[nie]]، [[alle]]، [[jeder]]، [[so lange, wie man möchte]].",
+              "texte_pl": "Uważaj na słowa bezwzględne w zdaniu: [[immer]], [[nie]], [[alle]], [[jeder]], [[so lange, wie man möchte]].",
+              "texte_ru": "Остерегайся абсолютных слов в утверждении: [[immer]], [[nie]], [[alle]], [[jeder]], [[so lange, wie man möchte]].",
+              "texte_es": "Desconfía de las palabras absolutas en la frase: [[immer]], [[nie]], [[alle]], [[jeder]], [[so lange, wie man möchte]]."
+            }
+          ]
+        },
+        {
+          "t": "serie",
+          "epreuve": "lesen",
+          "serie": 104,
+          "teil": 4,
+          "texte_fr": "Entraîne-toi : un texte d'information pour les familles.",
+          "texte_en": "Practise: an information text for families.",
+          "texte_tr": "Alıştırma yap: aileler için bir bilgilendirme metni.",
+          "texte_uk": "Потренуйся: інформаційний текст для родин.",
+          "texte_fa": "تمرین کن: یک متن اطلاع‌رسانی برای خانواده‌ها.",
+          "texte_pt": "Pratique: um texto informativo para as famílias.",
+          "texte_ar": "تدرّب: نص إعلامي للعائلات.",
+          "texte_pl": "Poćwicz: tekst informacyjny dla rodzin.",
+          "texte_ru": "Потренируйся: информационный текст для родственников.",
+          "texte_es": "Practica: un texto informativo para las familias."
+        },
+        {
+          "t": "titre",
+          "texte_fr": "Le temps",
+          "texte_en": "Time",
+          "texte_tr": "Süre",
+          "texte_uk": "Час",
+          "texte_fa": "زمان",
+          "texte_pt": "O tempo",
+          "texte_ar": "الوقت",
+          "texte_pl": "Czas",
+          "texte_ru": "Время",
+          "texte_es": "El tiempo"
+        },
+        {
+          "t": "p",
+          "texte_fr": "Ne reste jamais bloquée sur une question : choisis la réponse la plus probable, note le numéro et reviens à la fin. Une case vide ne rapporte rien ; une réponse au hasard a une chance sur trois. À l'examen, reporte tes réponses sur la feuille de réponses ([[Antwortbogen]]) avant la fin des 60 minutes : il n'y a pas de temps en plus pour le faire.",
+          "texte_en": "Never get stuck on a question: choose the most likely answer, note the number and come back at the end. An empty box earns nothing; a guess has a one-in-three chance. In the exam, copy your answers onto the answer sheet ([[Antwortbogen]]) before the 60 minutes are up: there is no extra time for this.",
+          "texte_tr": "Hiçbir soruda takılıp kalma: en olası cevabı seç, numarayı not et ve sonunda geri dön. Boş bir kutu puan getirmez; rastgele bir cevabın üçte bir şansı vardır. Sınavda cevaplarını 60 dakika bitmeden cevap kâğıdına ([[Antwortbogen]]) geçir: bunun için ek süre yok.",
+          "texte_uk": "Ніколи не застрягай на одному питанні: вибери найімовірнішу відповідь, запиши номер і повернись наприкінці. Порожня клітинка не дає нічого; відповідь навмання має один шанс із трьох. На іспиті перенеси відповіді в бланк відповідей ([[Antwortbogen]]) до кінця 60 хвилин: додаткового часу на це немає.",
+          "texte_fa": "هیچ وقت روی یک پرسش گیر نکن: محتمل‌ترین پاسخ را انتخاب کن، شماره را یادداشت کن و در آخر برگرد. خانهٔ خالی امتیازی نمی‌آورد؛ یک پاسخ تصادفی یک شانس از سه دارد. در آزمون، پاسخ‌هایت را پیش از پایان 60 دقیقه به پاسخ‌نامه ([[Antwortbogen]]) منتقل کن: برای این کار وقت اضافه نیست.",
+          "texte_pt": "Nunca fique parado numa questão: escolha a resposta mais provável, anote o número e volte no fim. Uma questão em branco não vale nada; uma resposta no chute tem uma chance em três. Na prova, passe suas respostas para a folha de respostas ([[Antwortbogen]]) antes do fim dos 60 minutos: não há tempo extra para isso.",
+          "texte_ar": "لا تبقَ عالقًا أبدًا عند سؤال: اختر الإجابة الأرجح، وسجّل رقمه وعد إليه في النهاية. الخانة الفارغة لا تمنح شيئًا؛ والإجابة العشوائية لها فرصة من ثلاث. في الامتحان، انقل إجاباتك إلى ورقة الإجابات ([[Antwortbogen]]) قبل نهاية الـ60 دقيقة: لا يوجد وقت إضافي لذلك.",
+          "texte_pl": "Nigdy nie utykaj na jednym pytaniu: wybierz najbardziej prawdopodobną odpowiedź, zanotuj numer i wróć na końcu. Pusta kratka nic nie daje; odpowiedź na chybił trafił ma jedną szansę na trzy. Na egzaminie przenieś odpowiedzi na arkusz odpowiedzi ([[Antwortbogen]]) przed upływem 60 minut: nie ma na to dodatkowego czasu.",
+          "texte_ru": "Никогда не застревай на одном вопросе: выбери самый вероятный ответ, запиши номер и вернись в конце. Пустая клетка ничего не приносит; ответ наугад даёт один шанс из трёх. На экзамене перенеси ответы в бланк ответов ([[Antwortbogen]]) до конца 60 минут: дополнительного времени на это нет.",
+          "texte_es": "No te quedes nunca atascada en una pregunta: elige la respuesta más probable, apunta el número y vuelve al final. Una casilla vacía no da nada; una respuesta al azar tiene una posibilidad entre tres. En el examen, pasa tus respuestas a la hoja de respuestas ([[Antwortbogen]]) antes de que terminen los 60 minutos: no hay tiempo extra para hacerlo."
+        },
+        {
+          "t": "renvoi",
+          "vers": "chapitre:sprachbausteine",
+          "titre_fr": "Les éléments de langue, l'autre partie du bloc de 60 minutes",
+          "titre_en": "Language elements, the other part of the 60-minute block",
+          "titre_tr": "Dil unsurları, 60 dakikalık bloğun öbür kısmı",
+          "titre_uk": "Мовні елементи, друга частина 60-хвилинного блоку",
+          "titre_fa": "عناصر زبانی، قسمت دیگر بلوک 60 دقیقه‌ای",
+          "titre_pt": "Os elementos de língua, a outra parte do bloco de 60 minutos",
+          "titre_ar": "عناصر اللغة، الجزء الآخر من كتلة الـ60 دقيقة",
+          "titre_pl": "Elementy językowe, druga część 60-minutowego bloku",
+          "titre_ru": "Языковые элементы — вторая часть 60-минутного блока",
+          "titre_es": "Los elementos de lengua, la otra parte del bloque de 60 minutos"
+        }
+      ]
+    },
+    {
+      "id": "guide",
+      "blocs": [
+        {
+          "t": "p",
+          "texte_fr": "Fais cet exercice en pensant à voix haute. Après « Corriger », lis le raisonnement pas à pas : c'est celui qu'il faut avoir à l'examen, en moins d'une minute par question.",
+          "texte_en": "Do this exercise thinking aloud. After “Check”, read the step-by-step reasoning: it's the reasoning you need in the exam, in less than a minute per question.",
+          "texte_tr": "Bu alıştırmayı sesli düşünerek yap. “Düzelt”ten sonra adım adım akıl yürütmeyi oku: sınavda, soru başına bir dakikadan kısa sürede yapman gereken akıl yürütme bu.",
+          "texte_uk": "Виконуй цю вправу, міркуючи вголос. Після «Перевірити» прочитай міркування крок за кроком: саме таке потрібне на іспиті, менш ніж за хвилину на питання.",
+          "texte_fa": "این تمرین را با بلند فکر کردن انجام بده. بعد از «تصحیح»، استدلال گام‌به‌گام را بخوان: این همان استدلالی است که در آزمون باید داشته باشی، در کمتر از یک دقیقه برای هر پرسش.",
+          "texte_pt": "Faça este exercício pensando em voz alta. Depois de “Corrigir”, leia o raciocínio passo a passo: é o que você precisa ter na prova, em menos de um minuto por questão.",
+          "texte_ar": "حلّ هذا التمرين وأنت تفكّر بصوت عالٍ. بعد «تصحيح»، اقرأ الاستدلال خطوة بخطوة: هو الاستدلال الذي يجب أن تتبعه في الامتحان، في أقل من دقيقة لكل سؤال.",
+          "texte_pl": "Rób to ćwiczenie, myśląc na głos. Po „Sprawdź” przeczytaj rozumowanie krok po kroku: takie trzeba mieć na egzaminie, w mniej niż minutę na pytanie.",
+          "texte_ru": "Делай это упражнение, рассуждая вслух. После «Проверить» прочитай рассуждение шаг за шагом: именно так нужно думать на экзамене, меньше минуты на вопрос.",
+          "texte_es": "Haz este ejercicio pensando en voz alta. Después de «Corregir», lee el razonamiento paso a paso: es el que hay que tener en el examen, en menos de un minuto por pregunta."
+        },
+        {
+          "t": "exercice",
+          "cle": "ex-lesen-guide-1",
+          "consigne_de": "Lesen Sie den Text. Welche Lösung passt am besten?",
+          "doc": {
+            "art": "Hausmitteilung der Hygienekommission",
+            "betreff": "Schmuck, Uhren und Fingernägel im Patientenkontakt",
+            "absaetze": [
+              "Bei der Arbeit mit Patientinnen und Patienten dürfen an Händen und Unterarmen weder Ringe noch Armbänder noch Uhren getragen werden, auch kein Ehering. Unter Schmuck sammeln sich Bakterien, und die Händedesinfektion wirkt dort nicht richtig.",
+              "Die Fingernägel müssen kurz und sauber sein. Künstliche Nägel und Nagellack sind nicht erlaubt. Eine Uhr können Sie zum Beispiel an der Kitteltasche befestigen.",
+              "Ohrringe und Halsketten sind erlaubt, wenn sie bei der Arbeit nicht stören. Wer aus religiösen Gründen ein Armband tragen möchte, spricht bitte vorher mit der Hygienefachkraft."
+            ]
+          },
+          "items": [
+            {
+              "nr": 1,
+              "typ": "abc",
+              "frage": "Während der Arbeit mit Patienten darf man",
+              "o": [
+                "seinen Ehering tragen, wenn er glatt ist.",
+                "eine Uhr an der Kitteltasche tragen.",
+                "Nagellack tragen, wenn er frisch ist."
+              ],
+              "bon": 1,
+              "erkl_fr": "La montre est permise, accrochée à la poche de la blouse. L'alliance et le vernis sont interdits.",
+              "erkl_en": "The watch is allowed, clipped to the pocket of the tunic. Wedding rings and nail polish are not allowed.",
+              "erkl_tr": "Önlüğün cebine takılı saate izin var. Alyans ve oje yasak.",
+              "erkl_uk": "Годинник дозволено, якщо він прикріплений до кишені халата. Обручку й лак заборонено.",
+              "erkl_fa": "ساعت مجاز است، اگر به جیب روپوش آویزان باشد. حلقهٔ ازدواج و لاک ناخن ممنوع‌اند.",
+              "erkl_pt": "O relógio é permitido, preso no bolso do jaleco. A aliança e o esmalte são proibidos.",
+              "erkl_ar": "الساعة مسموحة، معلّقة بجيب الرداء. خاتم الزواج وطلاء الأظافر ممنوعان.",
+              "erkl_pl": "Zegarek jest dozwolony, przypięty do kieszeni fartucha. Obrączka i lakier są zabronione.",
+              "erkl_ru": "Часы разрешены, если прикрепить их к карману халата. Обручальное кольцо и лак запрещены.",
+              "erkl_es": "El reloj está permitido, sujeto al bolsillo de la bata. La alianza y el esmalte de uñas están prohibidos.",
+              "pas_fr": [
+                "Je lis la question : on cherche ce qui est PERMIS.",
+                "Premier paragraphe : pas de bague, « auch kein Ehering ». Le choix a tombe : « glatt » (lisse) n'est pas dans le texte.",
+                "Deuxième paragraphe : le vernis est interdit. Le choix c tombe, et « frisch » n'est pas dans le texte non plus.",
+                "Il reste b : la montre peut s'accrocher à la poche ([[an der Kitteltasche befestigen]]). Elle n'est interdite qu'au poignet."
+              ],
+              "pas_en": [
+                "I read the question: we are looking for what is ALLOWED.",
+                "First paragraph: no rings, “auch kein Ehering”. Choice a is out: “glatt” (smooth) isn't in the text.",
+                "Second paragraph: nail polish is not allowed. Choice c is out, and “frisch” isn't in the text either.",
+                "That leaves b: the watch can be clipped to the pocket ([[an der Kitteltasche befestigen]]). It's only forbidden on the wrist."
+              ],
+              "pas_tr": [
+                "Soruyu okuyorum: İZİN VERİLENİ arıyoruz.",
+                "Birinci paragraf: yüzük yok, “auch kein Ehering”. a seçeneği eleniyor: “glatt” (düz) metinde yok.",
+                "İkinci paragraf: oje yasak. c seçeneği eleniyor, “frisch” de metinde yok.",
+                "Geriye b kalıyor: saat cebe takılabilir ([[an der Kitteltasche befestigen]]). Yalnızca bilekte yasak."
+              ],
+              "pas_uk": [
+                "Читаю питання: шукаємо, що ДОЗВОЛЕНО.",
+                "Перший абзац: жодних каблучок, «auch kein Ehering». Варіант a відпадає: «glatt» (гладка) у тексті немає.",
+                "Другий абзац: лак заборонено. Варіант c відпадає, і «frisch» у тексті теж немає.",
+                "Залишається b: годинник можна прикріпити до кишені ([[an der Kitteltasche befestigen]]). Заборонено лише на зап'ясті."
+              ],
+              "pas_fa": [
+                "پرسش را می‌خوانم: دنبال چیزی هستیم که مجاز است.",
+                "بند اول: انگشتر نه، «auch kein Ehering». گزینهٔ a حذف می‌شود: «glatt» (صاف) در متن نیست.",
+                "بند دوم: لاک ناخن ممنوع است. گزینهٔ c حذف می‌شود، و «frisch» هم در متن نیست.",
+                "b می‌ماند: ساعت را می‌شود به جیب آویزان کرد ([[an der Kitteltasche befestigen]]). فقط روی مچ ممنوع است."
+              ],
+              "pas_pt": [
+                "Leio a questão: procura-se o que é PERMITIDO.",
+                "Primeiro parágrafo: nenhum anel, “auch kein Ehering”. A opção a cai: “glatt” (liso) não está no texto.",
+                "Segundo parágrafo: o esmalte é proibido. A opção c cai, e “frisch” também não está no texto.",
+                "Sobra b: o relógio pode ser preso no bolso ([[an der Kitteltasche befestigen]]). Ele só é proibido no pulso."
+              ],
+              "pas_ar": [
+                "أقرأ السؤال: نبحث عمّا هو مسموح.",
+                "الفقرة الأولى: لا خواتم، «auch kein Ehering». يسقط الخيار a: كلمة «glatt» (أملس) ليست في النص.",
+                "الفقرة الثانية: طلاء الأظافر ممنوع. يسقط الخيار c، وكلمة «frisch» ليست في النص أيضًا.",
+                "يبقى b: يمكن تعليق الساعة بالجيب ([[an der Kitteltasche befestigen]]). وهي ممنوعة فقط في المعصم."
+              ],
+              "pas_pl": [
+                "Czytam pytanie: szukamy tego, co jest DOZWOLONE.",
+                "Pierwszy akapit: żadnych pierścionków, „auch kein Ehering”. Odpowiedź a odpada: „glatt” (gładki) nie ma w tekście.",
+                "Drugi akapit: lakier jest zabroniony. Odpowiedź c odpada, a „frisch” też nie ma w tekście.",
+                "Zostaje b: zegarek można przypiąć do kieszeni ([[an der Kitteltasche befestigen]]). Zabroniony jest tylko na nadgarstku."
+              ],
+              "pas_ru": [
+                "Читаю вопрос: ищем то, что РАЗРЕШЕНО.",
+                "Первый абзац: никаких колец, «auch kein Ehering». Вариант a отпадает: «glatt» (гладкое) в тексте нет.",
+                "Второй абзац: лак запрещён. Вариант c отпадает, и «frisch» в тексте тоже нет.",
+                "Остаётся b: часы можно прикрепить к карману ([[an der Kitteltasche befestigen]]). Запрещены они только на запястье."
+              ],
+              "pas_es": [
+                "Leo la pregunta: se busca lo que está PERMITIDO.",
+                "Primer párrafo: nada de anillos, «auch kein Ehering». La opción a cae: «glatt» (liso) no está en el texto.",
+                "Segundo párrafo: el esmalte está prohibido. La opción c cae, y «frisch» tampoco está en el texto.",
+                "Queda b: el reloj se puede sujetar al bolsillo ([[an der Kitteltasche befestigen]]). Solo está prohibido en la muñeca."
+              ]
+            },
+            {
+              "nr": 2,
+              "typ": "abc",
+              "frage": "Ohrringe",
+              "o": [
+                "sind immer verboten.",
+                "muss man mit der Hygienefachkraft besprechen.",
+                "sind erlaubt, wenn sie bei der Arbeit nicht stören."
+              ],
+              "bon": 2,
+              "erkl_fr": "Les boucles d'oreilles sont permises si elles ne gênent pas. L'hygiéniste n'est nommée que pour un bracelet religieux.",
+              "erkl_en": "Earrings are allowed if they don't get in the way. The hygiene specialist is only mentioned for a religious bracelet.",
+              "erkl_tr": "Küpelere, rahatsız etmiyorlarsa izin var. Hijyen uzmanının adı yalnızca dini bir bileklik için geçiyor.",
+              "erkl_uk": "Сережки дозволені, якщо не заважають. Фахівчиню з гігієни згадано лише щодо релігійного браслета.",
+              "erkl_fa": "گوشواره مجاز است اگر مزاحم کار نباشد. از کارشناس بهداشت فقط برای دستبند مذهبی نام برده می‌شود.",
+              "erkl_pt": "Os brincos são permitidos se não atrapalharem. A profissional de higiene só é citada para uma pulseira religiosa.",
+              "erkl_ar": "الأقراط مسموحة إذا لم تعرقل العمل. أخصائية النظافة الصحية لا تُذكر إلا بشأن سوار ديني.",
+              "erkl_pl": "Kolczyki są dozwolone, jeśli nie przeszkadzają. Specjalistka ds. higieny jest wymieniona tylko w sprawie bransoletki religijnej.",
+              "erkl_ru": "Серьги разрешены, если они не мешают. Специалист по гигиене упоминается только для религиозного браслета.",
+              "erkl_es": "Los pendientes están permitidos si no molestan. La responsable de higiene solo se menciona para una pulsera religiosa.",
+              "pas_fr": [
+                "Je cherche le mot [[Ohrringe]] dans le texte : il est au troisième paragraphe.",
+                "« erlaubt, wenn sie bei der Arbeit nicht stören » : c'est le choix c.",
+                "Le choix b est le piège : [[Hygienefachkraft]] est bien dans ce paragraphe, mais pour un autre cas, le bracelet porté pour une raison religieuse."
+              ],
+              "pas_en": [
+                "I look for the word [[Ohrringe]] in the text: it's in the third paragraph.",
+                "“erlaubt, wenn sie bei der Arbeit nicht stören”: that's choice c.",
+                "Choice b is the trap: [[Hygienefachkraft]] is in this paragraph, but for another case, the bracelet worn for a religious reason."
+              ],
+              "pas_tr": [
+                "Metinde [[Ohrringe]] kelimesini arıyorum: üçüncü paragrafta.",
+                "“erlaubt, wenn sie bei der Arbeit nicht stören”: bu c seçeneği.",
+                "b seçeneği tuzak: [[Hygienefachkraft]] gerçekten bu paragrafta, ama başka bir durum için, dini bir nedenle takılan bileklik için."
+              ],
+              "pas_uk": [
+                "Шукаю слово [[Ohrringe]] у тексті: воно в третьому абзаці.",
+                "«erlaubt, wenn sie bei der Arbeit nicht stören»: це варіант c.",
+                "Варіант b — пастка: [[Hygienefachkraft]] справді є в цьому абзаці, але для іншого випадку — браслета, який носять із релігійних причин."
+              ],
+              "pas_fa": [
+                "واژهٔ [[Ohrringe]] را در متن جست‌وجو می‌کنم: در بند سوم است.",
+                "«erlaubt, wenn sie bei der Arbeit nicht stören»: این گزینهٔ c است.",
+                "گزینهٔ b دام است: [[Hygienefachkraft]] واقعاً در این بند هست، ولی برای مورد دیگری، دستبندی که به دلیل مذهبی بسته می‌شود."
+              ],
+              "pas_pt": [
+                "Procuro a palavra [[Ohrringe]] no texto: ela está no terceiro parágrafo.",
+                "“erlaubt, wenn sie bei der Arbeit nicht stören”: é a opção c.",
+                "A opção b é a armadilha: [[Hygienefachkraft]] está mesmo nesse parágrafo, mas para outro caso, a pulseira usada por motivo religioso."
+              ],
+              "pas_ar": [
+                "أبحث عن كلمة [[Ohrringe]] في النص: إنها في الفقرة الثالثة.",
+                "«erlaubt, wenn sie bei der Arbeit nicht stören»: هذا هو الخيار c.",
+                "الخيار b هو الفخ: [[Hygienefachkraft]] موجودة فعلًا في هذه الفقرة، لكن لحالة أخرى، السوار الذي يُلبس لسبب ديني."
+              ],
+              "pas_pl": [
+                "Szukam w tekście słowa [[Ohrringe]]: jest w trzecim akapicie.",
+                "„erlaubt, wenn sie bei der Arbeit nicht stören”: to odpowiedź c.",
+                "Odpowiedź b to pułapka: [[Hygienefachkraft]] rzeczywiście jest w tym akapicie, ale w innym przypadku, bransoletki noszonej z powodów religijnych."
+              ],
+              "pas_ru": [
+                "Ищу слово [[Ohrringe]] в тексте: оно в третьем абзаце.",
+                "«erlaubt, wenn sie bei der Arbeit nicht stören»: это вариант c.",
+                "Вариант b — ловушка: [[Hygienefachkraft]] действительно есть в этом абзаце, но для другого случая — браслета, который носят по религиозной причине."
+              ],
+              "pas_es": [
+                "Busco la palabra [[Ohrringe]] en el texto: está en el tercer párrafo.",
+                "«erlaubt, wenn sie bei der Arbeit nicht stören»: es la opción c.",
+                "La opción b es la trampa: [[Hygienefachkraft]] sí está en ese párrafo, pero para otro caso, la pulsera que se lleva por motivos religiosos."
+              ]
+            },
+            {
+              "nr": 3,
+              "typ": "rf",
+              "frage": "Wer aus religiösen Gründen ein Armband tragen möchte, darf das ohne Weiteres tun.",
+              "bon": 1,
+              "erkl_fr": "Faux : il faut d'abord en parler à l'hygiéniste. « ohne Weiteres » (sans condition) contredit le texte.",
+              "erkl_en": "False: you must first talk to the hygiene specialist. “ohne Weiteres” (without conditions) contradicts the text.",
+              "erkl_tr": "Yanlış: önce hijyen uzmanıyla konuşmak gerekiyor. “ohne Weiteres” (koşulsuz) metinle çelişiyor.",
+              "erkl_uk": "Неправильно: спершу треба поговорити з фахівчинею з гігієни. «ohne Weiteres» (без умов) суперечить текстові.",
+              "erkl_fa": "نادرست: اول باید با کارشناس بهداشت صحبت کرد. «ohne Weiteres» (بی‌قید و شرط) با متن تناقض دارد.",
+              "erkl_pt": "Falso: é preciso primeiro falar com a profissional de higiene. “ohne Weiteres” (sem condição) contradiz o texto.",
+              "erkl_ar": "خطأ: يجب أولًا التحدث إلى أخصائية النظافة الصحية. «ohne Weiteres» (دون شرط) تناقض النص.",
+              "erkl_pl": "Fałsz: najpierw trzeba porozmawiać ze specjalistką ds. higieny. „ohne Weiteres” (bez żadnych warunków) przeczy tekstowi.",
+              "erkl_ru": "Неверно: сначала нужно поговорить со специалистом по гигиене. «ohne Weiteres» (без условий) противоречит тексту.",
+              "erkl_es": "Falso: primero hay que hablarlo con la responsable de higiene. «ohne Weiteres» (sin condiciones) contradice el texto.",
+              "pas_fr": [
+                "[[ohne Weiteres]] veut dire : sans condition, sans rien demander.",
+                "Le texte dit : « spricht bitte mit der Hygienefachkraft ». Il y a donc une condition.",
+                "La phrase contredit le texte : [[falsch]]."
+              ],
+              "pas_en": [
+                "[[ohne Weiteres]] means: without conditions, without asking anything.",
+                "The text says: “spricht bitte mit der Hygienefachkraft”. So there is a condition.",
+                "The sentence contradicts the text: [[falsch]]."
+              ],
+              "pas_tr": [
+                "[[ohne Weiteres]] şu demek: koşulsuz, hiçbir şey sormadan.",
+                "Metin diyor ki: “spricht bitte mit der Hygienefachkraft”. Demek ki bir koşul var.",
+                "Cümle metinle çelişiyor: [[falsch]]."
+              ],
+              "pas_uk": [
+                "[[ohne Weiteres]] означає: без умов, нічого не питаючи.",
+                "Текст каже: «spricht bitte mit der Hygienefachkraft». Отже, умова є.",
+                "Речення суперечить текстові: [[falsch]]."
+              ],
+              "pas_fa": [
+                "[[ohne Weiteres]] یعنی: بی‌قید و شرط، بی‌آنکه چیزی پرسیده شود.",
+                "متن می‌گوید: «spricht bitte mit der Hygienefachkraft». پس یک شرط هست.",
+                "جمله با متن تناقض دارد: [[falsch]]."
+              ],
+              "pas_pt": [
+                "[[ohne Weiteres]] quer dizer: sem condição, sem pedir nada.",
+                "O texto diz: “spricht bitte mit der Hygienefachkraft”. Então existe uma condição.",
+                "A frase contradiz o texto: [[falsch]]."
+              ],
+              "pas_ar": [
+                "[[ohne Weiteres]] تعني: دون شرط، دون طلب أي شيء.",
+                "النص يقول: «spricht bitte mit der Hygienefachkraft». إذن هناك شرط.",
+                "الجملة تناقض النص: [[falsch]]."
+              ],
+              "pas_pl": [
+                "[[ohne Weiteres]] znaczy: bez warunków, bez pytania o zgodę.",
+                "Tekst mówi: „spricht bitte mit der Hygienefachkraft”. Jest więc warunek.",
+                "Zdanie przeczy tekstowi: [[falsch]]."
+              ],
+              "pas_ru": [
+                "[[ohne Weiteres]] значит: без условий, ничего не спрашивая.",
+                "Текст говорит: «spricht bitte mit der Hygienefachkraft». Значит, условие есть.",
+                "Утверждение противоречит тексту: [[falsch]]."
+              ],
+              "pas_es": [
+                "[[ohne Weiteres]] quiere decir: sin condiciones, sin pedir nada.",
+                "El texto dice: «spricht bitte mit der Hygienefachkraft». Por tanto, hay una condición.",
+                "La frase contradice el texto: [[falsch]]."
+              ]
+            }
+          ],
+          "relire": true,
+          "consigne_fr": "Lis la note interne, puis réponds. Pour chaque question, cherche d'abord le paragraphe qui en parle.",
+          "consigne_en": "Read the internal memo, then answer. For each question, first find the paragraph that talks about it.",
+          "consigne_tr": "İç duyuruyu oku, sonra cevap ver. Her soru için önce ondan söz eden paragrafı ara.",
+          "consigne_uk": "Прочитай внутрішню записку, потім відповідай. Для кожного питання спершу знайди абзац, у якому про це йдеться.",
+          "consigne_fa": "یادداشت داخلی را بخوان، بعد پاسخ بده. برای هر پرسش، اول بندی را پیدا کن که درباره‌اش حرف می‌زند.",
+          "consigne_pt": "Leia o comunicado interno e depois responda. Para cada questão, procure primeiro o parágrafo que fala dela.",
+          "consigne_ar": "اقرأ المذكرة الداخلية، ثم أجب. لكل سؤال، ابحث أولًا عن الفقرة التي تتحدث عنه.",
+          "consigne_pl": "Przeczytaj notatkę wewnętrzną, potem odpowiedz. Przy każdym pytaniu najpierw szukaj akapitu, który o nim mówi.",
+          "consigne_ru": "Прочитай внутреннее сообщение, затем ответь. Для каждого вопроса сначала найди абзац, в котором об этом говорится.",
+          "consigne_es": "Lee la nota interna y luego responde. Para cada pregunta, busca primero el párrafo que habla de ella."
+        },
+        {
+          "t": "p",
+          "texte_fr": "Le deuxième exercice entraîne le réflexe de la partie 2 : reconnaître la ligne d'un plan de soins à son objectif. La grille est indiquée entre parenthèses.",
+          "texte_en": "The second exercise trains the reflex for part 2: recognising a care plan line by its goal. The model is given in brackets.",
+          "texte_tr": "İkinci alıştırma 2. kısmın refleksini çalıştırır: bir bakım planının satırını hedefinden tanımak. Sistem parantez içinde belirtilmiş.",
+          "texte_uk": "Друга вправа тренує рефлекс частини 2: упізнавати рядок плану догляду за його метою. Систему вказано в дужках.",
+          "texte_fa": "تمرین دوم واکنش لازم برای قسمت 2 را تمرین می‌دهد: شناختن ردیف یک برنامهٔ مراقبت از روی هدفش. نظام دسته‌بندی در پرانتز آمده است.",
+          "texte_pt": "O segundo exercício treina o reflexo da parte 2: reconhecer a linha de um plano de cuidados pelo seu objetivo. A grade está indicada entre parênteses.",
+          "texte_ar": "التمرين الثاني يدرّب ردّ الفعل الخاص بالجزء 2: التعرّف على سطر خطة الرعاية من هدفه. التصنيف مذكور بين قوسين.",
+          "texte_pl": "Drugie ćwiczenie trenuje odruch z części 2: rozpoznawać wiersz planu opieki po jego celu. Schemat jest podany w nawiasie.",
+          "texte_ru": "Второе упражнение тренирует навык части 2: узнавать строку плана ухода по её цели. Система указана в скобках.",
+          "texte_es": "El segundo ejercicio entrena el reflejo de la parte 2: reconocer la línea de un plan de cuidados por su objetivo. El modelo se indica entre paréntesis."
+        },
+        {
+          "t": "exercice",
+          "cle": "ex-lesen-guide-2",
+          "consigne_de": "Zu welcher Zeile der Pflegeplanung passt der Satz?",
+          "items": [
+            {
+              "nr": 1,
+              "typ": "abc",
+              "frage": "(AEDL) Frau M. trinkt zu wenig. Die Pflege stellt ihr jede Stunde ein Glas Wasser hin.",
+              "o": [
+                "Ausscheiden",
+                "Essen und trinken",
+                "Vitale Funktionen des Lebens aufrechterhalten"
+              ],
+              "bon": 1,
+              "erkl_fr": "Boire : « Essen und trinken ». Le manque de boisson aura des effets sur l'élimination, mais le geste vise à faire boire.",
+              "erkl_en": "Drinking: “Essen und trinken”. Not drinking enough will affect elimination, but the aim is to make her drink.",
+              "erkl_tr": "İçmek: “Essen und trinken”. Sıvı eksikliği boşaltımı etkiler, ama bu iş içirmeyi amaçlıyor.",
+              "erkl_uk": "Пити: «Essen und trinken». Нестача рідини вплине на виділення, але дія має на меті, щоб вона пила.",
+              "erkl_fa": "نوشیدن: «Essen und trinken». کم‌نوشیدن بر دفع اثر خواهد داشت، ولی هدف این کار نوشاندن است.",
+              "erkl_pt": "Beber: “Essen und trinken”. A falta de líquidos terá efeitos na eliminação, mas o gesto serve para fazer a pessoa beber.",
+              "erkl_ar": "الشرب: «Essen und trinken». قلة الشرب ستؤثر في الإخراج، لكن الإجراء يهدف إلى جعلها تشرب.",
+              "erkl_pl": "Picie: „Essen und trinken”. Brak płynów wpłynie na wydalanie, ale czynność ma na celu, żeby piła.",
+              "erkl_ru": "Пить: «Essen und trinken». Нехватка жидкости скажется на выделении, но действие направлено на то, чтобы человек пил.",
+              "erkl_es": "Beber: «Essen und trinken». La falta de líquido tendrá efectos en la eliminación, pero el gesto busca que beba.",
+              "pas_fr": [
+                "Le geste : poser un verre d'eau. Le but : qu'elle boive assez.",
+                "[[Ausscheiden]] serait l'urine ou les selles : ce n'est pas le but du geste.",
+                "Le but est de boire : [[Essen und trinken]]."
+              ],
+              "pas_en": [
+                "The action: putting down a glass of water. The aim: that she drinks enough.",
+                "[[Ausscheiden]] would be urine or stools: that's not the aim of the action.",
+                "The aim is drinking: [[Essen und trinken]]."
+              ],
+              "pas_tr": [
+                "İş: bir bardak su koymak. Amaç: yeterince içmesi.",
+                "[[Ausscheiden]] idrar ya da dışkı olurdu: işin amacı bu değil.",
+                "Amaç içmek: [[Essen und trinken]]."
+              ],
+              "pas_uk": [
+                "Дія: поставити склянку води. Мета: щоб вона пила достатньо.",
+                "[[Ausscheiden]] — це сеча або кал: це не мета дії.",
+                "Мета — пити: [[Essen und trinken]]."
+              ],
+              "pas_fa": [
+                "کار: گذاشتن یک لیوان آب. هدف: اینکه به اندازهٔ کافی بنوشد.",
+                "[[Ausscheiden]] یعنی ادرار یا مدفوع: هدف این کار این نیست.",
+                "هدف نوشیدن است: [[Essen und trinken]]."
+              ],
+              "pas_pt": [
+                "O gesto: colocar um copo de água. O objetivo: que ela beba o suficiente.",
+                "[[Ausscheiden]] seria a urina ou as fezes: não é o objetivo do gesto.",
+                "O objetivo é beber: [[Essen und trinken]]."
+              ],
+              "pas_ar": [
+                "الإجراء: وضع كوب ماء. الهدف: أن تشرب ما يكفي.",
+                "[[Ausscheiden]] تخص البول أو البراز: وهذا ليس هدف الإجراء.",
+                "الهدف هو الشرب: [[Essen und trinken]]."
+              ],
+              "pas_pl": [
+                "Czynność: postawić szklankę wody. Cel: żeby piła wystarczająco dużo.",
+                "[[Ausscheiden]] to byłby mocz lub stolec: to nie jest cel tej czynności.",
+                "Celem jest picie: [[Essen und trinken]]."
+              ],
+              "pas_ru": [
+                "Действие: поставить стакан воды. Цель: чтобы она пила достаточно.",
+                "[[Ausscheiden]] — это моча или стул: не цель этого действия.",
+                "Цель — пить: [[Essen und trinken]]."
+              ],
+              "pas_es": [
+                "El gesto: dejarle un vaso de agua. El objetivo: que beba lo suficiente.",
+                "[[Ausscheiden]] sería la orina o las heces: no es el objetivo del gesto.",
+                "El objetivo es beber: [[Essen und trinken]]."
+              ]
+            },
+            {
+              "nr": 2,
+              "typ": "abc",
+              "frage": "(AEDL) Herr P. vermisst seinen Hund. Seine Tochter darf ihn jeden Sonntag mitbringen.",
+              "o": [
+                "Soziale Bereiche des Lebens sichern",
+                "Für eine sichere Umgebung sorgen",
+                "Sich pflegen"
+              ],
+              "bon": 0,
+              "erkl_fr": "La visite de la fille avec le chien entretient ses liens : « Soziale Bereiche des Lebens sichern ».",
+              "erkl_en": "The daughter's visit with the dog keeps up his ties: “Soziale Bereiche des Lebens sichern”.",
+              "erkl_tr": "Kızının köpekle ziyareti bağlarını sürdürür: “Soziale Bereiche des Lebens sichern”.",
+              "erkl_uk": "Візит доньки із собакою підтримує його зв'язки: «Soziale Bereiche des Lebens sichern».",
+              "erkl_fa": "ملاقات دختر همراه با سگ پیوندهایش را حفظ می‌کند: «Soziale Bereiche des Lebens sichern».",
+              "erkl_pt": "A visita da filha com o cachorro mantém os vínculos dele: “Soziale Bereiche des Lebens sichern”.",
+              "erkl_ar": "زيارة الابنة مع الكلب تحافظ على روابطه: «Soziale Bereiche des Lebens sichern».",
+              "erkl_pl": "Wizyta córki z psem podtrzymuje jego więzi: „Soziale Bereiche des Lebens sichern”.",
+              "erkl_ru": "Визит дочери с собакой поддерживает его связи: «Soziale Bereiche des Lebens sichern».",
+              "erkl_es": "La visita de la hija con el perro mantiene sus vínculos: «Soziale Bereiche des Lebens sichern».",
+              "pas_fr": [
+                "Le geste : permettre une visite, avec l'animal.",
+                "Le but : garder le lien avec sa famille et ce qu'il aime.",
+                "Chez Krohwinkel, la famille et les contacts vont dans [[Soziale Bereiche des Lebens sichern]]."
+              ],
+              "pas_en": [
+                "The action: allowing a visit, with the animal.",
+                "The aim: keeping the link with his family and the things he loves.",
+                "In Krohwinkel's model, family and contacts go in [[Soziale Bereiche des Lebens sichern]]."
+              ],
+              "pas_tr": [
+                "İş: hayvanla birlikte bir ziyarete izin vermek.",
+                "Amaç: ailesiyle ve sevdiği şeylerle bağını korumak.",
+                "Krohwinkel'de aile ve ilişkiler [[Soziale Bereiche des Lebens sichern]] altına girer."
+              ],
+              "pas_uk": [
+                "Дія: дозволити візит із твариною.",
+                "Мета: зберегти зв'язок із родиною і з тим, що він любить.",
+                "У Krohwinkel родина й контакти належать до [[Soziale Bereiche des Lebens sichern]]."
+              ],
+              "pas_fa": [
+                "کار: اجازهٔ یک ملاقات، همراه با حیوان.",
+                "هدف: حفظ پیوند با خانواده‌اش و با چیزهایی که دوست دارد.",
+                "نزد Krohwinkel، خانواده و ارتباط‌ها در [[Soziale Bereiche des Lebens sichern]] قرار می‌گیرند."
+              ],
+              "pas_pt": [
+                "O gesto: permitir uma visita, com o animal.",
+                "O objetivo: manter o vínculo com a família e com o que ele gosta.",
+                "Em Krohwinkel, a família e os contatos ficam em [[Soziale Bereiche des Lebens sichern]]."
+              ],
+              "pas_ar": [
+                "الإجراء: السماح بزيارة، مع الحيوان.",
+                "الهدف: الحفاظ على الصلة بعائلته وبما يحب.",
+                "عند Krohwinkel، العائلة والعلاقات توضع في [[Soziale Bereiche des Lebens sichern]]."
+              ],
+              "pas_pl": [
+                "Czynność: umożliwić wizytę, ze zwierzęciem.",
+                "Cel: zachować więź z rodziną i z tym, co lubi.",
+                "U Krohwinkel rodzina i kontakty należą do [[Soziale Bereiche des Lebens sichern]]."
+              ],
+              "pas_ru": [
+                "Действие: разрешить визит, с животным.",
+                "Цель: сохранить связь с семьёй и тем, что он любит.",
+                "У Krohwinkel семья и контакты относятся к [[Soziale Bereiche des Lebens sichern]]."
+              ],
+              "pas_es": [
+                "El gesto: permitir una visita, con el animal.",
+                "El objetivo: mantener el vínculo con su familia y con lo que le gusta.",
+                "En Krohwinkel, la familia y los contactos van en [[Soziale Bereiche des Lebens sichern]]."
+              ]
+            },
+            {
+              "nr": 3,
+              "typ": "abc",
+              "frage": "(ATL) Frau W. hört schlecht. Die Pflegekraft spricht sie immer von vorn und deutlich an.",
+              "o": [
+                "Kommunizieren",
+                "Sich sicher fühlen und verhalten",
+                "Raum und Zeit gestalten – arbeiten und spielen"
+              ],
+              "bon": 0,
+              "erkl_fr": "Être comprise malgré la surdité : « Kommunizieren ».",
+              "erkl_en": "Being understood despite deafness: “Kommunizieren”.",
+              "erkl_tr": "İşitme kaybına rağmen anlaşılmak: “Kommunizieren”.",
+              "erkl_uk": "Щоб її розуміли, попри глухоту: «Kommunizieren».",
+              "erkl_fa": "فهمیده شدن با وجود ناشنوایی: «Kommunizieren».",
+              "erkl_pt": "Ser compreendida apesar da surdez: “Kommunizieren”.",
+              "erkl_ar": "أن تُفهَم رغم ضعف السمع: «Kommunizieren».",
+              "erkl_pl": "Być rozumianą mimo głuchoty: „Kommunizieren”.",
+              "erkl_ru": "Чтобы её понимали, несмотря на глухоту: «Kommunizieren».",
+              "erkl_es": "Que la entiendan a pesar de la sordera: «Kommunizieren».",
+              "pas_fr": [
+                "Le problème : elle entend mal.",
+                "Le but du geste : qu'elle comprenne ce qu'on lui dit.",
+                "C'est la ligne [[Kommunizieren]], qui couvre aussi la vue et l'ouïe."
+              ],
+              "pas_en": [
+                "The problem: she doesn't hear well.",
+                "The aim of the action: that she understands what is said to her.",
+                "It's the [[Kommunizieren]] line, which also covers sight and hearing."
+              ],
+              "pas_tr": [
+                "Sorun: iyi duymuyor.",
+                "İşin amacı: kendisine söyleneni anlaması.",
+                "Bu, görmeyi ve işitmeyi de kapsayan [[Kommunizieren]] satırı."
+              ],
+              "pas_uk": [
+                "Проблема: вона погано чує.",
+                "Мета дії: щоб вона розуміла, що їй кажуть.",
+                "Це рядок [[Kommunizieren]], який охоплює також зір і слух."
+              ],
+              "pas_fa": [
+                "مشکل: او خوب نمی‌شنود.",
+                "هدف کار: اینکه آنچه به او گفته می‌شود را بفهمد.",
+                "این ردیف [[Kommunizieren]] است، که بینایی و شنوایی را هم دربر می‌گیرد."
+              ],
+              "pas_pt": [
+                "O problema: ela ouve mal.",
+                "O objetivo do gesto: que ela entenda o que lhe dizem.",
+                "É a linha [[Kommunizieren]], que também abrange a visão e a audição."
+              ],
+              "pas_ar": [
+                "المشكلة: سمعها ضعيف.",
+                "هدف الإجراء: أن تفهم ما يُقال لها.",
+                "إنه سطر [[Kommunizieren]]، الذي يشمل أيضًا البصر والسمع."
+              ],
+              "pas_pl": [
+                "Problem: źle słyszy.",
+                "Cel czynności: żeby rozumiała, co się do niej mówi.",
+                "To wiersz [[Kommunizieren]], który obejmuje też wzrok i słuch."
+              ],
+              "pas_ru": [
+                "Проблема: она плохо слышит.",
+                "Цель действия: чтобы она понимала, что ей говорят.",
+                "Это строка [[Kommunizieren]], которая охватывает также зрение и слух."
+              ],
+              "pas_es": [
+                "El problema: oye mal.",
+                "El objetivo del gesto: que entienda lo que se le dice.",
+                "Es la línea [[Kommunizieren]], que abarca también la vista y el oído."
+              ]
+            },
+            {
+              "nr": 4,
+              "typ": "abc",
+              "frage": "(ATL) Herr K. wacht nachts vom Husten auf. Er bekommt warmen Tee ans Bett.",
+              "o": [
+                "Atmen",
+                "Essen und trinken",
+                "Wach sein und schlafen"
+              ],
+              "bon": 2,
+              "relire": true,
+              "erkl_fr": "Le thé est là pour qu'il se rendorme : « Wach sein und schlafen ». Le mot « Tee » et le mot « Husten » sont les deux pièges.",
+              "erkl_en": "The tea is there so he goes back to sleep: “Wach sein und schlafen”. The word “Tee” and the word “Husten” are the two traps.",
+              "erkl_tr": "Çay yeniden uykuya dalsın diye orada: “Wach sein und schlafen”. “Tee” ve “Husten” kelimeleri iki tuzak.",
+              "erkl_uk": "Чай для того, щоб він знову заснув: «Wach sein und schlafen». Слова «Tee» і «Husten» — дві пастки.",
+              "erkl_fa": "چای برای این است که دوباره خوابش ببرد: «Wach sein und schlafen». واژهٔ «Tee» و واژهٔ «Husten» دو دام‌اند.",
+              "erkl_pt": "O chá está ali para que ele volte a dormir: “Wach sein und schlafen”. A palavra “Tee” e a palavra “Husten” são as duas armadilhas.",
+              "erkl_ar": "الشاي موجود ليعود إلى النوم: «Wach sein und schlafen». كلمة «Tee» وكلمة «Husten» هما الفخّان.",
+              "erkl_pl": "Herbata jest po to, żeby znowu zasnął: „Wach sein und schlafen”. Słowo „Tee” i słowo „Husten” to dwie pułapki.",
+              "erkl_ru": "Чай нужен, чтобы он снова заснул: «Wach sein und schlafen». Слова «Tee» и «Husten» — две ловушки.",
+              "erkl_es": "El té está ahí para que vuelva a dormirse: «Wach sein und schlafen». La palabra «Tee» y la palabra «Husten» son las dos trampas.",
+              "pas_fr": [
+                "Deux pièges : [[Husten]] fait penser à [[Atmen]], [[Tee]] fait penser à [[Essen und trinken]].",
+                "Le problème posé : il se RÉVEILLE la nuit.",
+                "Le but du thé : qu'il dorme mieux. La ligne est [[Wach sein und schlafen]]."
+              ],
+              "pas_en": [
+                "Two traps: [[Husten]] makes you think of [[Atmen]], [[Tee]] makes you think of [[Essen und trinken]].",
+                "The problem: he WAKES UP at night.",
+                "The aim of the tea: that he sleeps better. The line is [[Wach sein und schlafen]]."
+              ],
+              "pas_tr": [
+                "İki tuzak: [[Husten]] [[Atmen]]ı, [[Tee]] [[Essen und trinken]]i düşündürüyor.",
+                "Ortadaki sorun: gece UYANIYOR.",
+                "Çayın amacı: daha iyi uyuması. Satır [[Wach sein und schlafen]]."
+              ],
+              "pas_uk": [
+                "Дві пастки: [[Husten]] наводить на думку про [[Atmen]], [[Tee]] — про [[Essen und trinken]].",
+                "Поставлена проблема: він ПРОКИДАЄТЬСЯ вночі.",
+                "Мета чаю: щоб він краще спав. Рядок — [[Wach sein und schlafen]]."
+              ],
+              "pas_fa": [
+                "دو دام: [[Husten]] آدم را یاد [[Atmen]] می‌اندازد، [[Tee]] یاد [[Essen und trinken]].",
+                "مشکل مطرح‌شده: او شب‌ها بیدار می‌شود.",
+                "هدف چای: اینکه بهتر بخوابد. ردیف [[Wach sein und schlafen]] است."
+              ],
+              "pas_pt": [
+                "Duas armadilhas: [[Husten]] faz pensar em [[Atmen]], [[Tee]] faz pensar em [[Essen und trinken]].",
+                "O problema apresentado: ele ACORDA à noite.",
+                "O objetivo do chá: que ele durma melhor. A linha é [[Wach sein und schlafen]]."
+              ],
+              "pas_ar": [
+                "فخّان: [[Husten]] تذكّر بـ[[Atmen]]، و[[Tee]] تذكّر بـ[[Essen und trinken]].",
+                "المشكلة المطروحة: إنه يستيقظ في الليل.",
+                "هدف الشاي: أن ينام أفضل. السطر هو [[Wach sein und schlafen]]."
+              ],
+              "pas_pl": [
+                "Dwie pułapki: [[Husten]] kojarzy się z [[Atmen]], [[Tee]] kojarzy się z [[Essen und trinken]].",
+                "Postawiony problem: w nocy się BUDZI.",
+                "Cel herbaty: żeby lepiej spał. Wiersz to [[Wach sein und schlafen]]."
+              ],
+              "pas_ru": [
+                "Две ловушки: [[Husten]] наводит на мысль об [[Atmen]], [[Tee]] — об [[Essen und trinken]].",
+                "Проблема: он ПРОСЫПАЕТСЯ ночью.",
+                "Цель чая: чтобы он лучше спал. Строка — [[Wach sein und schlafen]]."
+              ],
+              "pas_es": [
+                "Dos trampas: [[Husten]] hace pensar en [[Atmen]], [[Tee]] hace pensar en [[Essen und trinken]].",
+                "El problema planteado: se DESPIERTA por la noche.",
+                "El objetivo del té: que duerma mejor. La línea es [[Wach sein und schlafen]]."
+              ]
+            },
+            {
+              "nr": 5,
+              "typ": "rf",
+              "frage": "In einer Pflegeplanung nach Juchli gibt es die Zeile „Sich beschäftigen“.",
+              "bon": 1,
+              "erkl_fr": "Faux : « Sich beschäftigen » est une AEDL de Krohwinkel. Chez Juchli, les occupations sont dans « Raum und Zeit gestalten – arbeiten und spielen ».",
+              "erkl_en": "False: “Sich beschäftigen” is one of Krohwinkel's AEDL. In Juchli's model, activities are in “Raum und Zeit gestalten – arbeiten und spielen”.",
+              "erkl_tr": "Yanlış: “Sich beschäftigen” Krohwinkel'in bir AEDL'si. Juchli'de uğraşlar “Raum und Zeit gestalten – arbeiten und spielen” içinde.",
+              "erkl_uk": "Неправильно: «Sich beschäftigen» — це AEDL Krohwinkel. У Juchli заняття належать до «Raum und Zeit gestalten – arbeiten und spielen».",
+              "erkl_fa": "نادرست: «Sich beschäftigen» یک AEDL از Krohwinkel است. نزد Juchli، سرگرمی‌ها در «Raum und Zeit gestalten – arbeiten und spielen» هستند.",
+              "erkl_pt": "Falso: “Sich beschäftigen” é uma AEDL de Krohwinkel. Em Juchli, as ocupações estão em “Raum und Zeit gestalten – arbeiten und spielen”.",
+              "erkl_ar": "خطأ: «Sich beschäftigen» من AEDL عند Krohwinkel. أما عند Juchli فالأنشطة في «Raum und Zeit gestalten – arbeiten und spielen».",
+              "erkl_pl": "Fałsz: „Sich beschäftigen” to AEDL Krohwinkel. U Juchli zajęcia są w „Raum und Zeit gestalten – arbeiten und spielen”.",
+              "erkl_ru": "Неверно: «Sich beschäftigen» — это AEDL Krohwinkel. У Juchli занятия относятся к «Raum und Zeit gestalten – arbeiten und spielen».",
+              "erkl_es": "Falso: «Sich beschäftigen» es una AEDL de Krohwinkel. En Juchli, las ocupaciones están en «Raum und Zeit gestalten – arbeiten und spielen».",
+              "pas_fr": [
+                "Je cherche la ligne dans le tableau des deux grilles (rubrique suivante).",
+                "[[Sich beschäftigen]] est la 9e AEDL de Krohwinkel.",
+                "Chez Juchli, la même idée s'appelle [[Raum und Zeit gestalten – arbeiten und spielen]] : la phrase est [[falsch]]."
+              ],
+              "pas_en": [
+                "I look for the line in the table of the two models (next section).",
+                "[[Sich beschäftigen]] is Krohwinkel's 9th AEDL.",
+                "In Juchli's model, the same idea is called [[Raum und Zeit gestalten – arbeiten und spielen]]: the sentence is [[falsch]]."
+              ],
+              "pas_tr": [
+                "Satırı iki sistemin tablosunda arıyorum (bir sonraki bölüm).",
+                "[[Sich beschäftigen]] Krohwinkel'in 9. AEDL'si.",
+                "Juchli'de aynı fikrin adı [[Raum und Zeit gestalten – arbeiten und spielen]]: cümle [[falsch]]."
+              ],
+              "pas_uk": [
+                "Шукаю рядок у таблиці двох систем (наступний розділ).",
+                "[[Sich beschäftigen]] — 9-та AEDL Krohwinkel.",
+                "У Juchli та сама думка називається [[Raum und Zeit gestalten – arbeiten und spielen]]: речення — [[falsch]]."
+              ],
+              "pas_fa": [
+                "ردیف را در جدول دو نظام دسته‌بندی پیدا می‌کنم (بخش بعدی).",
+                "[[Sich beschäftigen]] نهمین AEDL از Krohwinkel است.",
+                "نزد Juchli، همین ایده [[Raum und Zeit gestalten – arbeiten und spielen]] نام دارد: جمله [[falsch]] است."
+              ],
+              "pas_pt": [
+                "Procuro a linha na tabela das duas grades (seção seguinte).",
+                "[[Sich beschäftigen]] é a 9ª AEDL de Krohwinkel.",
+                "Em Juchli, a mesma ideia se chama [[Raum und Zeit gestalten – arbeiten und spielen]]: a frase é [[falsch]]."
+              ],
+              "pas_ar": [
+                "أبحث عن السطر في جدول التصنيفين (القسم التالي).",
+                "[[Sich beschäftigen]] هي الـAEDL التاسعة عند Krohwinkel.",
+                "عند Juchli، الفكرة نفسها اسمها [[Raum und Zeit gestalten – arbeiten und spielen]]: الجملة [[falsch]]."
+              ],
+              "pas_pl": [
+                "Szukam wiersza w tabeli obu schematów (następny rozdział).",
+                "[[Sich beschäftigen]] to 9. AEDL Krohwinkel.",
+                "U Juchli ta sama myśl nazywa się [[Raum und Zeit gestalten – arbeiten und spielen]]: zdanie jest [[falsch]]."
+              ],
+              "pas_ru": [
+                "Ищу строку в таблице двух систем (следующий раздел).",
+                "[[Sich beschäftigen]] — 9-я AEDL Krohwinkel.",
+                "У Juchli та же мысль называется [[Raum und Zeit gestalten – arbeiten und spielen]]: утверждение [[falsch]]."
+              ],
+              "pas_es": [
+                "Busco la línea en la tabla de los dos modelos (apartado siguiente).",
+                "[[Sich beschäftigen]] es la 9.ª AEDL de Krohwinkel.",
+                "En Juchli, la misma idea se llama [[Raum und Zeit gestalten – arbeiten und spielen]]: la frase es [[falsch]]."
+              ]
+            }
+          ],
+          "consigne_fr": "Pour chaque phrase, choisis la ligne du plan de soins où on la rangerait. Demande-toi à chaque fois : pourquoi fait-on ce geste ?",
+          "consigne_en": "For each sentence, choose the care plan line where it would go. Ask yourself each time: why is this done?",
+          "consigne_tr": "Her cümle için, onun yer alacağı bakım planı satırını seç. Her seferinde kendine sor: bu iş neden yapılıyor?",
+          "consigne_uk": "Для кожного речення вибери рядок плану догляду, до якого його віднесли б. Щоразу питай себе: навіщо роблять цю дію?",
+          "consigne_fa": "برای هر جمله، ردیفی از برنامهٔ مراقبت را انتخاب کن که آن را در آن می‌گذاشتیم. هر بار از خودت بپرس: چرا این کار را انجام می‌دهیم؟",
+          "consigne_pt": "Para cada frase, escolha a linha do plano de cuidados onde ela seria colocada. Pergunte-se toda vez: por que se faz esse gesto?",
+          "consigne_ar": "لكل جملة، اختر سطر خطة الرعاية الذي توضع فيه. اسأل نفسك في كل مرة: لماذا يُفعل هذا الإجراء؟",
+          "consigne_pl": "Do każdego zdania wybierz wiersz planu opieki, w którym by się znalazło. Za każdym razem zapytaj siebie: po co wykonuje się tę czynność?",
+          "consigne_ru": "Для каждой фразы выбери строку плана ухода, в которую её можно отнести. Каждый раз спрашивай себя: зачем делают это действие?",
+          "consigne_es": "Para cada frase, elige la línea del plan de cuidados en la que la colocarías. Pregúntate cada vez: ¿por qué se hace este gesto?"
+        }
+      ]
+    },
+    {
+      "id": "grilles",
+      "blocs": [
+        {
+          "t": "p",
+          "relire": true,
+          "texte_fr": "Un plan de soins allemand est rangé selon une grille. L'examen peut prendre l'une ou l'autre : les AEDL de Monika Krohwinkel (13 lignes) ou les ATL de Liliane Juchli (12 lignes). Il n'en montre que huit. Le tableau met côte à côte ce qui se correspond.",
+          "texte_en": "A German care plan is organised by a model. The exam can use either one: Monika Krohwinkel's AEDL (13 lines) or Liliane Juchli's ATL (12 lines). It only shows eight. The table puts what matches side by side.",
+          "texte_tr": "Alman bakım planı bir sisteme göre sıralanır. Sınav ikisinden birini kullanabilir: Monika Krohwinkel'in AEDL'leri (13 satır) ya da Liliane Juchli'nin ATL'leri (12 satır). Yalnızca sekizini gösterir. Tablo birbirine karşılık gelenleri yan yana koyuyor.",
+          "texte_uk": "Німецький план догляду впорядковано за певною системою. Іспит може взяти будь-яку з них: AEDL Моніки Кровінкель (13 рядків) або ATL Ліліани Юхлі (12 рядків). Він показує лише вісім. Таблиця ставить поруч те, що відповідає одне одному.",
+          "texte_fa": "برنامهٔ مراقبت آلمانی بر اساس یک نظام دسته‌بندی مرتب می‌شود. آزمون ممکن است هر یک از این دو را بیاورد: AEDLهای Monika Krohwinkel (13 ردیف) یا ATLهای Liliane Juchli (12 ردیف). فقط هشت ردیف را نشان می‌دهد. جدول، ردیف‌های متناظر را کنار هم می‌گذارد.",
+          "texte_pt": "Um plano de cuidados alemão é organizado segundo uma grade. A prova pode usar uma ou outra: as AEDL de Monika Krohwinkel (13 linhas) ou as ATL de Liliane Juchli (12 linhas). Ela mostra só oito. A tabela põe lado a lado o que se corresponde.",
+          "texte_ar": "خطة الرعاية الألمانية مرتبة حسب تصنيف. قد يأخذ الامتحان أحدهما: AEDL عند Monika Krohwinkel (13 سطرًا) أو ATL عند Liliane Juchli (12 سطرًا). ولا يعرض إلا ثمانية منها. الجدول يضع جنبًا إلى جنب ما يتقابل.",
+          "texte_pl": "Niemiecki plan opieki jest uporządkowany według schematu. Egzamin może użyć jednego lub drugiego: AEDL Moniki Krohwinkel (13 wierszy) albo ATL Liliane Juchli (12 wierszy). Pokazuje tylko osiem. Tabela zestawia obok siebie to, co sobie odpowiada.",
+          "texte_ru": "Немецкий план ухода строится по определённой системе. На экзамене может быть любая из двух: AEDL Моники Кровинкель (Krohwinkel, 13 строк) или ATL Лилиан Юхли (Juchli, 12 строк). Показывают только восемь строк. В таблице рядом стоит то, что соответствует друг другу.",
+          "texte_es": "Un plan de cuidados alemán se ordena según un modelo. El examen puede usar uno u otro: las AEDL de Monika Krohwinkel (13 líneas) o las ATL de Liliane Juchli (12 líneas). Solo muestra ocho. La tabla pone una al lado de la otra las que se corresponden."
+        },
+        {
+          "t": "tableau",
+          "entetes": [
+            {
+              "texte_fr": "AEDL (Krohwinkel)",
+              "texte_en": "AEDL (Krohwinkel)",
+              "texte_tr": "AEDL (Krohwinkel)",
+              "texte_uk": "AEDL (Krohwinkel)",
+              "texte_fa": "AEDL (Krohwinkel)",
+              "texte_pt": "AEDL (Krohwinkel)",
+              "texte_ar": "AEDL (Krohwinkel)",
+              "texte_pl": "AEDL (Krohwinkel)",
+              "texte_ru": "AEDL (Krohwinkel)",
+              "texte_es": "AEDL (Krohwinkel)"
+            },
+            {
+              "texte_fr": "ATL (Juchli)",
+              "texte_en": "ATL (Juchli)",
+              "texte_tr": "ATL (Juchli)",
+              "texte_uk": "ATL (Juchli)",
+              "texte_fa": "ATL (Juchli)",
+              "texte_pt": "ATL (Juchli)",
+              "texte_ar": "ATL (Juchli)",
+              "texte_pl": "ATL (Juchli)",
+              "texte_ru": "ATL (Juchli)",
+              "texte_es": "ATL (Juchli)"
+            },
+            {
+              "texte_fr": "Ce qu'on y range",
+              "texte_en": "What goes there",
+              "texte_tr": "Neler girer",
+              "texte_uk": "Що сюди належить",
+              "texte_fa": "چه چیزی در آن قرار می‌گیرد",
+              "texte_pt": "O que entra aqui",
+              "texte_ar": "ما يوضع فيه",
+              "texte_pl": "Co tam należy",
+              "texte_ru": "Что сюда относится",
+              "texte_es": "Qué se incluye"
+            }
+          ],
+          "lignes": [
+            [
+              {
+                "de": "Kommunizieren"
+              },
+              {
+                "de": "Kommunizieren"
+              },
+              {
+                "texte_fr": "Parler, comprendre, voir, entendre, les appareils auditifs et les lunettes",
+                "texte_en": "Speaking, understanding, seeing, hearing, hearing aids and glasses",
+                "texte_tr": "Konuşmak, anlamak, görmek, duymak, işitme cihazları ve gözlükler",
+                "texte_uk": "Говорити, розуміти, бачити, чути, слухові апарати й окуляри",
+                "texte_fa": "حرف زدن، فهمیدن، دیدن، شنیدن، سمعک و عینک",
+                "texte_pt": "Falar, entender, ver, ouvir, os aparelhos auditivos e os óculos",
+                "texte_ar": "الكلام، الفهم، البصر، السمع، السماعات والنظارات",
+                "texte_pl": "Mówienie, rozumienie, wzrok, słuch, aparaty słuchowe i okulary",
+                "texte_ru": "Говорить, понимать, видеть, слышать, слуховые аппараты и очки",
+                "texte_es": "Hablar, entender, ver, oír, los audífonos y las gafas"
+              }
+            ],
+            [
+              {
+                "de": "Sich bewegen"
+              },
+              {
+                "de": "Sich bewegen"
+              },
+              {
+                "texte_fr": "Marcher, se lever, changer de position, les aides à la marche",
+                "texte_en": "Walking, getting up, changing position, walking aids",
+                "texte_tr": "Yürümek, kalkmak, pozisyon değiştirmek, yürüme yardımcıları",
+                "texte_uk": "Ходити, вставати, змінювати положення, засоби для ходьби",
+                "texte_fa": "راه رفتن، بلند شدن، تغییر وضعیت، وسایل کمکی راه رفتن",
+                "texte_pt": "Andar, levantar-se, mudar de posição, os auxílios para a marcha",
+                "texte_ar": "المشي، النهوض، تغيير الوضعية، وسائل المساعدة على المشي",
+                "texte_pl": "Chodzenie, wstawanie, zmiana pozycji, pomoce do chodzenia",
+                "texte_ru": "Ходить, вставать, менять положение, средства для ходьбы",
+                "texte_es": "Caminar, levantarse, cambiar de posición, las ayudas para caminar"
+              }
+            ],
+            [
+              {
+                "de": "Vitale Funktionen des Lebens aufrechterhalten"
+              },
+              {
+                "de": "Atmen · Körpertemperatur regulieren"
+              },
+              {
+                "texte_fr": "Respiration, circulation, température, tension, glycémie",
+                "texte_en": "Breathing, circulation, temperature, blood pressure, blood sugar",
+                "texte_tr": "Solunum, dolaşım, vücut ısısı, tansiyon, kan şekeri",
+                "texte_uk": "Дихання, кровообіг, температура, тиск, цукор у крові",
+                "texte_fa": "تنفس، گردش خون، دما، فشار خون، قند خون",
+                "texte_pt": "Respiração, circulação, temperatura, pressão, glicemia",
+                "texte_ar": "التنفس، الدورة الدموية، الحرارة، ضغط الدم، سكر الدم",
+                "texte_pl": "Oddech, krążenie, temperatura, ciśnienie, glikemia",
+                "texte_ru": "Дыхание, кровообращение, температура, давление, сахар в крови",
+                "texte_es": "Respiración, circulación, temperatura, tensión, glucemia"
+              }
+            ],
+            [
+              {
+                "de": "Sich pflegen"
+              },
+              {
+                "de": "Sich waschen und kleiden"
+              },
+              {
+                "texte_fr": "La toilette, la peau, les dents, les cheveux",
+                "texte_en": "Washing, skin, teeth, hair",
+                "texte_tr": "Vücut bakımı, cilt, dişler, saçlar",
+                "texte_uk": "Миття, шкіра, зуби, волосся",
+                "texte_fa": "شستشو، پوست، دندان‌ها، مو",
+                "texte_pt": "A higiene, a pele, os dentes, os cabelos",
+                "texte_ar": "الغسل، الجلد، الأسنان، الشعر",
+                "texte_pl": "Toaleta, skóra, zęby, włosy",
+                "texte_ru": "Гигиена, кожа, зубы, волосы",
+                "texte_es": "El aseo, la piel, los dientes, el pelo"
+              }
+            ],
+            [
+              {
+                "de": "Essen und trinken"
+              },
+              {
+                "de": "Essen und trinken"
+              },
+              {
+                "texte_fr": "Repas, boissons, déglutition, poids",
+                "texte_en": "Meals, drinks, swallowing, weight",
+                "texte_tr": "Yemekler, içecekler, yutma, kilo",
+                "texte_uk": "Їжа, напої, ковтання, вага",
+                "texte_fa": "غذا، نوشیدنی، بلع، وزن",
+                "texte_pt": "Refeições, bebidas, deglutição, peso",
+                "texte_ar": "الوجبات، المشروبات، البلع، الوزن",
+                "texte_pl": "Posiłki, napoje, połykanie, waga",
+                "texte_ru": "Еда, питьё, глотание, вес",
+                "texte_es": "Comidas, bebidas, deglución, peso"
+              }
+            ],
+            [
+              {
+                "de": "Ausscheiden"
+              },
+              {
+                "de": "Ausscheiden"
+              },
+              {
+                "texte_fr": "Urine, selles, continence, toilettes",
+                "texte_en": "Urine, stools, continence, toilet",
+                "texte_tr": "İdrar, dışkı, kontinans, tuvalet",
+                "texte_uk": "Сеча, кал, утримання, туалет",
+                "texte_fa": "ادرار، مدفوع، کنترل ادرار و مدفوع، توالت",
+                "texte_pt": "Urina, fezes, continência, banheiro",
+                "texte_ar": "البول، البراز، التحكم في الإخراج، المرحاض",
+                "texte_pl": "Mocz, stolec, trzymanie moczu, toaleta",
+                "texte_ru": "Моча, стул, удержание, туалет",
+                "texte_es": "Orina, heces, continencia, aseo"
+              }
+            ],
+            [
+              {
+                "de": "Sich kleiden"
+              },
+              {
+                "de": "Sich waschen und kleiden"
+              },
+              {
+                "texte_fr": "S'habiller, les bas de contention",
+                "texte_en": "Dressing, compression stockings",
+                "texte_tr": "Giyinmek, varis çorapları",
+                "texte_uk": "Одягатися, компресійні панчохи",
+                "texte_fa": "لباس پوشیدن، جوراب‌های واریس",
+                "texte_pt": "Vestir-se, as meias de compressão",
+                "texte_ar": "اللبس، الجوارب الضاغطة",
+                "texte_pl": "Ubieranie się, pończochy uciskowe",
+                "texte_ru": "Одевание, компрессионные чулки",
+                "texte_es": "Vestirse, las medias de compresión"
+              }
+            ],
+            [
+              {
+                "de": "Ruhen und schlafen"
+              },
+              {
+                "de": "Wach sein und schlafen"
+              },
+              {
+                "texte_fr": "Le sommeil, le repos, le rythme du jour et de la nuit",
+                "texte_en": "Sleep, rest, the day and night rhythm",
+                "texte_tr": "Uyku, dinlenme, gece-gündüz ritmi",
+                "texte_uk": "Сон, відпочинок, ритм дня і ночі",
+                "texte_fa": "خواب، استراحت، ریتم روز و شب",
+                "texte_pt": "O sono, o descanso, o ritmo do dia e da noite",
+                "texte_ar": "النوم، الراحة، إيقاع النهار والليل",
+                "texte_pl": "Sen, odpoczynek, rytm dnia i nocy",
+                "texte_ru": "Сон, отдых, ритм дня и ночи",
+                "texte_es": "El sueño, el descanso, el ritmo del día y de la noche"
+              }
+            ],
+            [
+              {
+                "de": "Sich beschäftigen"
+              },
+              {
+                "de": "Raum und Zeit gestalten – arbeiten und spielen"
+              },
+              {
+                "texte_fr": "Occupations, loisirs, organisation de la journée",
+                "texte_en": "Activities, hobbies, planning the day",
+                "texte_tr": "Uğraşlar, boş zaman, günün düzeni",
+                "texte_uk": "Заняття, дозвілля, організація дня",
+                "texte_fa": "سرگرمی‌ها، اوقات فراغت، برنامهٔ روز",
+                "texte_pt": "Ocupações, lazer, organização do dia",
+                "texte_ar": "الأنشطة، الترفيه، تنظيم اليوم",
+                "texte_pl": "Zajęcia, czas wolny, organizacja dnia",
+                "texte_ru": "Занятия, досуг, распорядок дня",
+                "texte_es": "Ocupaciones, ocio, organización del día"
+              }
+            ],
+            [
+              {
+                "de": "Sich als Mann oder Frau fühlen und verhalten"
+              },
+              {
+                "de": "Kind, Frau, Mann sein"
+              },
+              {
+                "texte_fr": "L'intimité, la pudeur, l'image de soi",
+                "texte_en": "Privacy, modesty, self-image",
+                "texte_tr": "Mahremiyet, utanma duygusu, benlik algısı",
+                "texte_uk": "Інтимність, сором'язливість, образ себе",
+                "texte_fa": "حریم خصوصی، شرم و حیا، تصویر از خود",
+                "texte_pt": "A intimidade, o pudor, a autoimagem",
+                "texte_ar": "الخصوصية، الحياء، صورة الذات",
+                "texte_pl": "Intymność, wstyd, obraz siebie",
+                "texte_ru": "Интимность, стыдливость, образ себя",
+                "texte_es": "La intimidad, el pudor, la imagen de uno mismo"
+              }
+            ],
+            [
+              {
+                "de": "Für eine sichere Umgebung sorgen"
+              },
+              {
+                "de": "Sich sicher fühlen und verhalten"
+              },
+              {
+                "texte_fr": "Les chutes, les médicaments, l'orientation, la peur",
+                "texte_en": "Falls, medication, orientation, fear",
+                "texte_tr": "Düşmeler, ilaçlar, yönelim, korku",
+                "texte_uk": "Падіння, ліки, орієнтація, страх",
+                "texte_fa": "زمین خوردن، داروها، جهت‌یابی، ترس",
+                "texte_pt": "As quedas, os medicamentos, a orientação, o medo",
+                "texte_ar": "السقوط، الأدوية، التوجّه، الخوف",
+                "texte_pl": "Upadki, leki, orientacja, lęk",
+                "texte_ru": "Падения, лекарства, ориентация, страх",
+                "texte_es": "Las caídas, los medicamentos, la orientación, el miedo"
+              }
+            ],
+            [
+              {
+                "de": "Soziale Bereiche des Lebens sichern"
+              },
+              {
+                "de": "—"
+              },
+              {
+                "texte_fr": "La famille, les contacts, le logement, les aides à domicile",
+                "texte_en": "Family, contacts, housing, home help",
+                "texte_tr": "Aile, ilişkiler, konut, evde yardım",
+                "texte_uk": "Родина, контакти, житло, допомога вдома",
+                "texte_fa": "خانواده، ارتباط‌ها، مسکن، کمک‌های در منزل",
+                "texte_pt": "A família, os contatos, a moradia, a ajuda em casa",
+                "texte_ar": "العائلة، العلاقات، السكن، المساعدة في البيت",
+                "texte_pl": "Rodzina, kontakty, mieszkanie, pomoc domowa",
+                "texte_ru": "Семья, контакты, жильё, помощь на дому",
+                "texte_es": "La familia, los contactos, la vivienda, las ayudas a domicilio"
+              }
+            ],
+            [
+              {
+                "de": "Mit existenziellen Erfahrungen des Lebens umgehen"
+              },
+              {
+                "de": "Sinn finden im Werden – Sein – Vergehen"
+              },
+              {
+                "texte_fr": "Les peurs, le deuil, la maladie grave, la religion, la fin de vie",
+                "texte_en": "Fears, grief, serious illness, religion, end of life",
+                "texte_tr": "Korkular, yas, ağır hastalık, din, yaşamın sonu",
+                "texte_uk": "Страхи, горе, тяжка хвороба, релігія, кінець життя",
+                "texte_fa": "ترس‌ها، سوگ، بیماری سخت، دین، پایان زندگی",
+                "texte_pt": "Os medos, o luto, a doença grave, a religião, o fim da vida",
+                "texte_ar": "المخاوف، الحداد، المرض الخطير، الدين، نهاية الحياة",
+                "texte_pl": "Lęki, żałoba, ciężka choroba, religia, koniec życia",
+                "texte_ru": "Страхи, горе, тяжёлая болезнь, религия, конец жизни",
+                "texte_es": "Los miedos, el duelo, la enfermedad grave, la religión, el final de la vida"
+              }
+            ]
+          ],
+          "relire": true
+        },
+        {
+          "t": "p",
+          "texte_fr": "Ce qui change d'une grille à l'autre : Krohwinkel réunit respiration, circulation et température dans une seule ligne, Juchli les sépare ([[Atmen]], [[Körpertemperatur regulieren]]). Krohwinkel a une ligne pour la vie sociale, que Juchli n'a pas. Juchli réunit la toilette et l'habillage.",
+          "texte_en": "What changes from one model to the other: Krohwinkel puts breathing, circulation and temperature in a single line, Juchli separates them ([[Atmen]], [[Körpertemperatur regulieren]]). Krohwinkel has a line for social life, which Juchli doesn't. Juchli puts washing and dressing together.",
+          "texte_tr": "Bir sistemden ötekine değişen: Krohwinkel solunumu, dolaşımı ve vücut ısısını tek bir satırda toplar, Juchli onları ayırır ([[Atmen]], [[Körpertemperatur regulieren]]). Krohwinkel'de sosyal yaşam için bir satır vardır, Juchli'de yoktur. Juchli vücut bakımını ve giyinmeyi bir araya getirir.",
+          "texte_uk": "Що відрізняється між системами: Krohwinkel об'єднує дихання, кровообіг і температуру в одному рядку, Juchli їх розділяє ([[Atmen]], [[Körpertemperatur regulieren]]). У Krohwinkel є рядок для соціального життя, якого в Juchli немає. Juchli об'єднує миття й одягання.",
+          "texte_fa": "تفاوت دو نظام: Krohwinkel تنفس، گردش خون و دما را در یک ردیف جمع می‌کند، Juchli آن‌ها را جدا می‌کند ([[Atmen]]، [[Körpertemperatur regulieren]]). Krohwinkel یک ردیف برای زندگی اجتماعی دارد که Juchli ندارد. Juchli شستشو و لباس پوشیدن را با هم جمع می‌کند.",
+          "texte_pt": "O que muda de uma grade para a outra: Krohwinkel reúne respiração, circulação e temperatura numa só linha, Juchli as separa ([[Atmen]], [[Körpertemperatur regulieren]]). Krohwinkel tem uma linha para a vida social, que Juchli não tem. Juchli reúne a higiene e o vestir-se.",
+          "texte_ar": "ما يتغيّر من تصنيف إلى آخر: Krohwinkel تجمع التنفس والدورة الدموية والحرارة في سطر واحد، وJuchli تفصلها ([[Atmen]]، [[Körpertemperatur regulieren]]). لدى Krohwinkel سطر للحياة الاجتماعية، ليس لدى Juchli. وJuchli تجمع الغسل واللبس.",
+          "texte_pl": "Czym różnią się schematy: Krohwinkel łączy oddech, krążenie i temperaturę w jednym wierszu, Juchli je rozdziela ([[Atmen]], [[Körpertemperatur regulieren]]). Krohwinkel ma wiersz o życiu społecznym, którego Juchli nie ma. Juchli łączy toaletę i ubieranie się.",
+          "texte_ru": "Чем различаются системы: Krohwinkel объединяет дыхание, кровообращение и температуру в одну строку, Juchli их разделяет ([[Atmen]], [[Körpertemperatur regulieren]]). У Krohwinkel есть строка для социальной жизни, которой нет у Juchli. Juchli объединяет гигиену и одевание.",
+          "texte_es": "Lo que cambia de un modelo a otro: Krohwinkel junta respiración, circulación y temperatura en una sola línea, Juchli las separa ([[Atmen]], [[Körpertemperatur regulieren]]). Krohwinkel tiene una línea para la vida social, que Juchli no tiene. Juchli junta el aseo y el vestirse."
+        },
+        {
+          "t": "titre",
+          "texte_fr": "Une ligne, quatre rubriques",
+          "texte_en": "One line, four sections",
+          "texte_tr": "Bir satır, dört başlık",
+          "texte_uk": "Один рядок, чотири розділи",
+          "texte_fa": "یک ردیف، چهار ستون",
+          "texte_pt": "Uma linha, quatro seções",
+          "texte_ar": "سطر واحد، أربع خانات",
+          "texte_pl": "Jeden wiersz, cztery rubryki",
+          "texte_ru": "Одна строка, четыре графы",
+          "texte_es": "Una línea, cuatro apartados"
+        },
+        {
+          "t": "tableau",
+          "entetes": [
+            {
+              "texte_fr": "Rubrique",
+              "texte_en": "Section",
+              "texte_tr": "Başlık",
+              "texte_uk": "Розділ",
+              "texte_fa": "ستون",
+              "texte_pt": "Seção",
+              "texte_ar": "الخانة",
+              "texte_pl": "Rubryka",
+              "texte_ru": "Графа",
+              "texte_es": "Apartado"
+            },
+            {
+              "texte_fr": "Ce qu'elle dit",
+              "texte_en": "What it says",
+              "texte_tr": "Ne söyler",
+              "texte_uk": "Що він каже",
+              "texte_fa": "چه می‌گوید",
+              "texte_pt": "O que ela diz",
+              "texte_ar": "ما تقوله",
+              "texte_pl": "Co mówi",
+              "texte_ru": "Что в ней говорится",
+              "texte_es": "Qué dice"
+            },
+            {
+              "texte_fr": "Comment elle s'écrit",
+              "texte_en": "How it is written",
+              "texte_tr": "Nasıl yazılır",
+              "texte_uk": "Як його пишуть",
+              "texte_fa": "چطور نوشته می‌شود",
+              "texte_pt": "Como se escreve",
+              "texte_ar": "كيف تُكتب",
+              "texte_pl": "Jak się ją pisze",
+              "texte_ru": "Как она пишется",
+              "texte_es": "Cómo se escribe"
+            }
+          ],
+          "lignes": [
+            [
+              {
+                "de": "Problem"
+              },
+              {
+                "texte_fr": "Ce qui pose difficulté",
+                "texte_en": "What is difficult",
+                "texte_tr": "Güçlük çıkaran şey",
+                "texte_uk": "Що викликає труднощі",
+                "texte_fa": "آنچه مشکل‌ساز است",
+                "texte_pt": "O que é difícil",
+                "texte_ar": "ما يمثّل صعوبة",
+                "texte_pl": "Co sprawia trudność",
+                "texte_ru": "Что вызывает трудности",
+                "texte_es": "Lo que causa dificultad"
+              },
+              {
+                "texte_fr": "Un verbe conjugué sans sujet : [[kann … nicht]], [[vergisst zu trinken]]",
+                "texte_en": "A conjugated verb without a subject: [[kann … nicht]], [[vergisst zu trinken]]",
+                "texte_tr": "Öznesiz çekimli bir fiil: [[kann … nicht]], [[vergisst zu trinken]]",
+                "texte_uk": "Відмінюване дієслово без підмета: [[kann … nicht]], [[vergisst zu trinken]]",
+                "texte_fa": "فعل صرف‌شده بدون فاعل: [[kann … nicht]]، [[vergisst zu trinken]]",
+                "texte_pt": "Um verbo conjugado sem sujeito: [[kann … nicht]], [[vergisst zu trinken]]",
+                "texte_ar": "فعل مصرّف دون فاعل: [[kann … nicht]]، [[vergisst zu trinken]]",
+                "texte_pl": "Czasownik odmieniony bez podmiotu: [[kann … nicht]], [[vergisst zu trinken]]",
+                "texte_ru": "Спрягаемый глагол без подлежащего: [[kann … nicht]], [[vergisst zu trinken]]",
+                "texte_es": "Un verbo conjugado sin sujeto: [[kann … nicht]], [[vergisst zu trinken]]"
+              }
+            ],
+            [
+              {
+                "de": "Ressource"
+              },
+              {
+                "texte_fr": "Ce que la personne sait encore faire seule",
+                "texte_en": "What the person can still do alone",
+                "texte_tr": "Kişinin hâlâ kendi başına yapabildiği",
+                "texte_uk": "Що людина ще вміє робити сама",
+                "texte_fa": "آنچه شخص هنوز خودش می‌تواند انجام دهد",
+                "texte_pt": "O que a pessoa ainda consegue fazer sozinha",
+                "texte_ar": "ما لا يزال الشخص يستطيع فعله وحده",
+                "texte_pl": "Co osoba jeszcze potrafi zrobić sama",
+                "texte_ru": "Что человек ещё может делать сам",
+                "texte_es": "Lo que la persona todavía sabe hacer sola"
+              },
+              {
+                "texte_fr": "[[geht mit dem Rollator sicher]], [[liest gern]]",
+                "texte_en": "[[geht mit dem Rollator sicher]], [[liest gern]]",
+                "texte_tr": "[[geht mit dem Rollator sicher]], [[liest gern]]",
+                "texte_uk": "[[geht mit dem Rollator sicher]], [[liest gern]]",
+                "texte_fa": "[[geht mit dem Rollator sicher]]، [[liest gern]]",
+                "texte_pt": "[[geht mit dem Rollator sicher]], [[liest gern]]",
+                "texte_ar": "[[geht mit dem Rollator sicher]]، [[liest gern]]",
+                "texte_pl": "[[geht mit dem Rollator sicher]], [[liest gern]]",
+                "texte_ru": "[[geht mit dem Rollator sicher]], [[liest gern]]",
+                "texte_es": "[[geht mit dem Rollator sicher]], [[liest gern]]"
+              }
+            ],
+            [
+              {
+                "de": "Ziel"
+              },
+              {
+                "texte_fr": "Le résultat attendu",
+                "texte_en": "The expected result",
+                "texte_tr": "Beklenen sonuç",
+                "texte_uk": "Очікуваний результат",
+                "texte_fa": "نتیجهٔ مورد انتظار",
+                "texte_pt": "O resultado esperado",
+                "texte_ar": "النتيجة المنتظرة",
+                "texte_pl": "Oczekiwany rezultat",
+                "texte_ru": "Ожидаемый результат",
+                "texte_es": "El resultado esperado"
+              },
+              {
+                "texte_fr": "Au présent, comme si c'était fait : [[trinkt 1,5 Liter am Tag]]",
+                "texte_en": "In the present, as if it were done: [[trinkt 1,5 Liter am Tag]]",
+                "texte_tr": "Şimdiki zamanda, yapılmış gibi: [[trinkt 1,5 Liter am Tag]]",
+                "texte_uk": "У теперішньому часі, наче вже зроблено: [[trinkt 1,5 Liter am Tag]]",
+                "texte_fa": "در زمان حال، انگار انجام شده: [[trinkt 1,5 Liter am Tag]]",
+                "texte_pt": "No presente, como se já estivesse feito: [[trinkt 1,5 Liter am Tag]]",
+                "texte_ar": "بالمضارع، كأنها تحققت: [[trinkt 1,5 Liter am Tag]]",
+                "texte_pl": "W czasie teraźniejszym, jakby już było zrobione: [[trinkt 1,5 Liter am Tag]]",
+                "texte_ru": "В настоящем времени, как будто уже сделано: [[trinkt 1,5 Liter am Tag]]",
+                "texte_es": "En presente, como si ya estuviera hecho: [[trinkt 1,5 Liter am Tag]]"
+              }
+            ],
+            [
+              {
+                "de": "Maßnahme"
+              },
+              {
+                "texte_fr": "Ce que fait l'équipe",
+                "texte_en": "What the team does",
+                "texte_tr": "Ekibin yaptığı",
+                "texte_uk": "Що робить команда",
+                "texte_fa": "آنچه تیم انجام می‌دهد",
+                "texte_pt": "O que a equipe faz",
+                "texte_ar": "ما يفعله الفريق",
+                "texte_pl": "Co robi zespół",
+                "texte_ru": "Что делает команда",
+                "texte_es": "Lo que hace el equipo"
+              },
+              {
+                "texte_fr": "Le style télégraphique : infinitif à la fin ([[Getränke anbieten]]), noms en -ung ([[Beratung]])",
+                "texte_en": "Telegraphic style: infinitive at the end ([[Getränke anbieten]]), nouns in -ung ([[Beratung]])",
+                "texte_tr": "Telgraf üslubu: sonda mastar ([[Getränke anbieten]]), -ung ile biten isimler ([[Beratung]])",
+                "texte_uk": "Телеграфний стиль: інфінітив у кінці ([[Getränke anbieten]]), іменники на -ung ([[Beratung]])",
+                "texte_fa": "سبک تلگرافی: مصدر در آخر ([[Getränke anbieten]])، اسم‌های ‎-ung ([[Beratung]])",
+                "texte_pt": "O estilo telegráfico: infinitivo no fim ([[Getränke anbieten]]), substantivos em -ung ([[Beratung]])",
+                "texte_ar": "أسلوب برقي: المصدر في الآخر ([[Getränke anbieten]])، أسماء تنتهي بـ-ung ([[Beratung]])",
+                "texte_pl": "Styl telegraficzny: bezokolicznik na końcu ([[Getränke anbieten]]), rzeczowniki na -ung ([[Beratung]])",
+                "texte_ru": "Телеграфный стиль: инфинитив в конце ([[Getränke anbieten]]), существительные на -ung ([[Beratung]])",
+                "texte_es": "El estilo telegráfico: infinitivo al final ([[Getränke anbieten]]), sustantivos en -ung ([[Beratung]])"
+              }
+            ]
+          ]
+        },
+        {
+          "t": "p",
+          "texte_fr": "Pour la partie 2, ce sont l'objectif et la mesure qui rapportent : les phrases de l'examen les redisent avec d'autres mots.",
+          "texte_en": "For part 2, the goal and the measure are what earn points: the exam sentences say them again in other words.",
+          "texte_tr": "2. kısımda puan getiren, hedef ve önlemdir: sınavın cümleleri onları başka kelimelerle yeniden söyler.",
+          "texte_uk": "Для частини 2 бали приносять мета й захід: речення іспиту переказують їх іншими словами.",
+          "texte_fa": "برای قسمت 2، هدف و اقدام‌اند که امتیاز می‌آورند: جمله‌های آزمون آن‌ها را با واژه‌های دیگر دوباره می‌گویند.",
+          "texte_pt": "Na parte 2, o que dá pontos são o objetivo e a medida: as frases da prova os repetem com outras palavras.",
+          "texte_ar": "في الجزء 2، الهدف والإجراء هما ما يمنح النقاط: جمل الامتحان تعيد قولهما بكلمات أخرى.",
+          "texte_pl": "W części 2 punkty dają cel i działanie: zdania z egzaminu powtarzają je innymi słowami.",
+          "texte_ru": "В части 2 баллы приносят цель и мера: фразы экзамена пересказывают их другими словами.",
+          "texte_es": "En la parte 2, lo que da puntos son el objetivo y la medida: las frases del examen los repiten con otras palabras."
+        }
+      ],
+      "titre_fr": "Les deux grilles du plan de soins : AEDL et ATL",
+      "titre_en": "The two care plan models: AEDL and ATL",
+      "titre_tr": "Bakım planının iki sistemi: AEDL ve ATL",
+      "titre_uk": "Дві системи плану догляду: AEDL і ATL",
+      "titre_fa": "دو نظام دسته‌بندی برنامهٔ مراقبت: AEDL و ATL",
+      "titre_pt": "As duas grades do plano de cuidados: AEDL e ATL",
+      "titre_ar": "تصنيفا خطة الرعاية: AEDL وATL",
+      "titre_pl": "Dwa schematy planu opieki: AEDL i ATL",
+      "titre_ru": "Две системы плана ухода: AEDL и ATL",
+      "titre_es": "Los dos modelos del plan de cuidados: AEDL y ATL"
+    },
+    {
+      "id": "notices",
+      "blocs": [
+        {
+          "t": "p",
+          "relire": true,
+          "texte_fr": "Les textes de la partie 3 ont leur vocabulaire. Ces mots reviennent d'une notice ou d'une consigne à l'autre : reconnais-les, et tu sais où chercher.",
+          "texte_en": "The texts in part 3 have their own vocabulary. These words come back from one leaflet or instruction to the next: recognise them, and you know where to look.",
+          "texte_tr": "3. kısmın metinlerinin kendi kelimeleri var. Bu kelimeler bir prospektüsten ya da talimattan ötekine tekrar tekrar geçer: onları tanırsan nereye bakacağını bilirsin.",
+          "texte_uk": "Тексти частини 3 мають свою лексику. Ці слова повторюються від інструкції до інструкції, від вказівки до вказівки: упізнай їх — і знатимеш, де шукати.",
+          "texte_fa": "متن‌های قسمت 3 واژگان خودشان را دارند. این واژه‌ها از یک بروشور یا دستورالعمل به دیگری تکرار می‌شوند: آن‌ها را بشناس، و می‌دانی کجا را بگردی.",
+          "texte_pt": "Os textos da parte 3 têm seu próprio vocabulário. Estas palavras voltam de uma bula ou de uma instrução para a outra: reconheça-as, e você saberá onde procurar.",
+          "texte_ar": "لنصوص الجزء 3 مفرداتها. هذه الكلمات تتكرر من نشرة أو تعليمات إلى أخرى: تعرّف عليها، فتعرف أين تبحث.",
+          "texte_pl": "Teksty z części 3 mają swoje słownictwo. Te słowa powtarzają się w kolejnych ulotkach i instrukcjach: rozpoznaj je, a będziesz wiedzieć, gdzie szukać.",
+          "texte_ru": "У текстов части 3 своя лексика. Эти слова повторяются из инструкции в инструкцию, из распоряжения в распоряжение: узнаешь их — и знаешь, где искать.",
+          "texte_es": "Los textos de la parte 3 tienen su vocabulario. Estas palabras se repiten de un prospecto o una instrucción a otro: reconócelas y sabrás dónde buscar."
+        },
+        {
+          "t": "tableau",
+          "entetes": [
+            {
+              "texte_fr": "Allemand",
+              "texte_en": "German",
+              "texte_tr": "Almanca",
+              "texte_uk": "Німецькою",
+              "texte_fa": "آلمانی",
+              "texte_pt": "Alemão",
+              "texte_ar": "الألمانية",
+              "texte_pl": "Niemiecki",
+              "texte_ru": "Немецкий",
+              "texte_es": "Alemán"
+            },
+            {
+              "texte_fr": "Sens",
+              "texte_en": "Meaning",
+              "texte_tr": "Anlamı",
+              "texte_uk": "Значення",
+              "texte_fa": "معنا",
+              "texte_pt": "Sentido",
+              "texte_ar": "المعنى",
+              "texte_pl": "Znaczenie",
+              "texte_ru": "Значение",
+              "texte_es": "Significado"
+            }
+          ],
+          "lignes": [
+            [
+              {
+                "de": "Anwendungsgebiete"
+              },
+              {
+                "texte_fr": "Indications : à quoi sert le médicament",
+                "texte_en": "Indications: what the medication is for",
+                "texte_tr": "Endikasyonlar: ilaç ne işe yarar",
+                "texte_uk": "Показання: для чого ліки",
+                "texte_fa": "موارد مصرف: دارو برای چیست",
+                "texte_pt": "Indicações: para que serve o medicamento",
+                "texte_ar": "دواعي الاستعمال: فيمَ يُستعمل الدواء",
+                "texte_pl": "Wskazania: do czego służy lek",
+                "texte_ru": "Показания: для чего лекарство",
+                "texte_es": "Indicaciones: para qué sirve el medicamento"
+              }
+            ],
+            [
+              {
+                "de": "Gegenanzeigen"
+              },
+              {
+                "texte_fr": "Contre-indications : quand il ne faut pas le prendre",
+                "texte_en": "Contraindications: when not to take it",
+                "texte_tr": "Kontrendikasyonlar: ne zaman alınmamalı",
+                "texte_uk": "Протипоказання: коли не можна їх приймати",
+                "texte_fa": "موارد منع مصرف: چه وقت نباید آن را مصرف کرد",
+                "texte_pt": "Contraindicações: quando não se deve tomá-lo",
+                "texte_ar": "موانع الاستعمال: متى لا يجب تناوله",
+                "texte_pl": "Przeciwwskazania: kiedy nie wolno go przyjmować",
+                "texte_ru": "Противопоказания: когда его нельзя принимать",
+                "texte_es": "Contraindicaciones: cuándo no hay que tomarlo"
+              }
+            ],
+            [
+              {
+                "de": "Wechselwirkungen"
+              },
+              {
+                "texte_fr": "Interactions avec d'autres médicaments",
+                "texte_en": "Interactions with other medications",
+                "texte_tr": "Diğer ilaçlarla etkileşimler",
+                "texte_uk": "Взаємодія з іншими ліками",
+                "texte_fa": "تداخل با داروهای دیگر",
+                "texte_pt": "Interações com outros medicamentos",
+                "texte_ar": "التداخلات مع أدوية أخرى",
+                "texte_pl": "Interakcje z innymi lekami",
+                "texte_ru": "Взаимодействие с другими лекарствами",
+                "texte_es": "Interacciones con otros medicamentos"
+              }
+            ],
+            [
+              {
+                "de": "Nebenwirkungen"
+              },
+              {
+                "texte_fr": "Effets indésirables",
+                "texte_en": "Side effects",
+                "texte_tr": "Yan etkiler",
+                "texte_uk": "Побічні ефекти",
+                "texte_fa": "عوارض ناخواسته",
+                "texte_pt": "Efeitos colaterais",
+                "texte_ar": "الآثار الجانبية",
+                "texte_pl": "Działania niepożądane",
+                "texte_ru": "Побочные действия",
+                "texte_es": "Efectos adversos"
+              }
+            ],
+            [
+              {
+                "de": "Dosierung"
+              },
+              {
+                "texte_fr": "Posologie : combien et à quel rythme",
+                "texte_en": "Dosage: how much and how often",
+                "texte_tr": "Dozaj: ne kadar ve hangi sıklıkla",
+                "texte_uk": "Дозування: скільки і як часто",
+                "texte_fa": "مقدار مصرف: چقدر و هر چند وقت",
+                "texte_pt": "Posologia: quanto e com que frequência",
+                "texte_ar": "الجرعات: كم وبأي وتيرة",
+                "texte_pl": "Dawkowanie: ile i jak często",
+                "texte_ru": "Дозировка: сколько и как часто",
+                "texte_es": "Posología: cuánto y con qué frecuencia"
+              }
+            ],
+            [
+              {
+                "de": "Einzeldosis"
+              },
+              {
+                "texte_fr": "La dose d'une prise",
+                "texte_en": "The dose per intake",
+                "texte_tr": "Bir alımdaki doz",
+                "texte_uk": "Разова доза",
+                "texte_fa": "مقدار هر نوبت",
+                "texte_pt": "A dose de uma tomada",
+                "texte_ar": "جرعة المرة الواحدة",
+                "texte_pl": "Dawka jednorazowa",
+                "texte_ru": "Разовая доза",
+                "texte_es": "La dosis de una toma"
+              }
+            ],
+            [
+              {
+                "de": "Tageshöchstdosis"
+              },
+              {
+                "texte_fr": "La dose maximale par jour",
+                "texte_en": "The maximum daily dose",
+                "texte_tr": "Günlük en yüksek doz",
+                "texte_uk": "Максимальна добова доза",
+                "texte_fa": "حداکثر مقدار در روز",
+                "texte_pt": "A dose máxima por dia",
+                "texte_ar": "الجرعة القصوى في اليوم",
+                "texte_pl": "Maksymalna dawka dobowa",
+                "texte_ru": "Максимальная суточная доза",
+                "texte_es": "La dosis máxima al día"
+              }
+            ],
+            [
+              {
+                "de": "Art der Anwendung"
+              },
+              {
+                "texte_fr": "Mode d'administration",
+                "texte_en": "Method of administration",
+                "texte_tr": "Uygulama şekli",
+                "texte_uk": "Спосіб застосування",
+                "texte_fa": "روش مصرف",
+                "texte_pt": "Modo de administração",
+                "texte_ar": "طريقة الإعطاء",
+                "texte_pl": "Sposób podania",
+                "texte_ru": "Способ применения",
+                "texte_es": "Forma de administración"
+              }
+            ],
+            [
+              {
+                "de": "die Einnahme"
+              },
+              {
+                "texte_fr": "La prise (par la bouche)",
+                "texte_en": "Intake (by mouth)",
+                "texte_tr": "Alım (ağızdan)",
+                "texte_uk": "Прийом (через рот)",
+                "texte_fa": "مصرف (از راه دهان)",
+                "texte_pt": "A ingestão (pela boca)",
+                "texte_ar": "التناول (عن طريق الفم)",
+                "texte_pl": "Przyjmowanie (doustnie)",
+                "texte_ru": "Приём (внутрь)",
+                "texte_es": "La toma (por vía oral)"
+              }
+            ],
+            [
+              {
+                "de": "nüchtern"
+              },
+              {
+                "texte_fr": "À jeun",
+                "texte_en": "On an empty stomach",
+                "texte_tr": "Aç karnına",
+                "texte_uk": "Натщесерце",
+                "texte_fa": "ناشتا",
+                "texte_pt": "Em jejum",
+                "texte_ar": "على معدة فارغة",
+                "texte_pl": "Na czczo",
+                "texte_ru": "Натощак",
+                "texte_es": "En ayunas"
+              }
+            ],
+            [
+              {
+                "de": "die Überdosierung"
+              },
+              {
+                "texte_fr": "Le surdosage",
+                "texte_en": "Overdose",
+                "texte_tr": "Doz aşımı",
+                "texte_uk": "Передозування",
+                "texte_fa": "مصرف بیش از حد",
+                "texte_pt": "A superdosagem",
+                "texte_ar": "الجرعة الزائدة",
+                "texte_pl": "Przedawkowanie",
+                "texte_ru": "Передозировка",
+                "texte_es": "La sobredosis"
+              }
+            ],
+            [
+              {
+                "de": "die Aufbewahrung"
+              },
+              {
+                "texte_fr": "La conservation",
+                "texte_en": "Storage",
+                "texte_tr": "Saklama",
+                "texte_uk": "Зберігання",
+                "texte_fa": "نگهداری",
+                "texte_pt": "A conservação",
+                "texte_ar": "الحفظ",
+                "texte_pl": "Przechowywanie",
+                "texte_ru": "Хранение",
+                "texte_es": "La conservación"
+              }
+            ],
+            [
+              {
+                "de": "haltbar bis"
+              },
+              {
+                "texte_fr": "À utiliser avant le",
+                "texte_en": "Use before",
+                "texte_tr": "Son kullanma tarihi",
+                "texte_uk": "Використати до",
+                "texte_fa": "قابل مصرف تا",
+                "texte_pt": "Válido até",
+                "texte_ar": "يُستعمل قبل",
+                "texte_pl": "Zużyć przed",
+                "texte_ru": "Использовать до",
+                "texte_es": "Usar antes de"
+              }
+            ],
+            [
+              {
+                "de": "verschreibungspflichtig"
+              },
+              {
+                "texte_fr": "Seulement sur ordonnance",
+                "texte_en": "Prescription only",
+                "texte_tr": "Yalnızca reçeteyle",
+                "texte_uk": "Лише за рецептом",
+                "texte_fa": "فقط با نسخه",
+                "texte_pt": "Somente com receita",
+                "texte_ar": "بوصفة طبية فقط",
+                "texte_pl": "Tylko na receptę",
+                "texte_ru": "Только по рецепту",
+                "texte_es": "Solo con receta"
+              }
+            ],
+            [
+              {
+                "de": "die Dienstanweisung"
+              },
+              {
+                "texte_fr": "La consigne de service",
+                "texte_en": "Ward instruction",
+                "texte_tr": "Servis talimatı",
+                "texte_uk": "Службова вказівка",
+                "texte_fa": "دستورالعمل بخش",
+                "texte_pt": "A instrução de serviço",
+                "texte_ar": "تعليمات العمل",
+                "texte_pl": "Instrukcja służbowa",
+                "texte_ru": "Служебное распоряжение",
+                "texte_es": "La instrucción de servicio"
+              }
+            ],
+            [
+              {
+                "de": "die Verfahrensanweisung"
+              },
+              {
+                "texte_fr": "La procédure écrite",
+                "texte_en": "Written procedure",
+                "texte_tr": "Yazılı prosedür",
+                "texte_uk": "Письмова процедура",
+                "texte_fa": "روش کار مکتوب",
+                "texte_pt": "O procedimento escrito",
+                "texte_ar": "الإجراء المكتوب",
+                "texte_pl": "Procedura pisemna",
+                "texte_ru": "Письменная процедура",
+                "texte_es": "El procedimiento escrito"
+              }
+            ],
+            [
+              {
+                "de": "die Hausmitteilung"
+              },
+              {
+                "texte_fr": "La note interne",
+                "texte_en": "Internal memo",
+                "texte_tr": "İç duyuru",
+                "texte_uk": "Внутрішня записка",
+                "texte_fa": "یادداشت داخلی",
+                "texte_pt": "O comunicado interno",
+                "texte_ar": "المذكرة الداخلية",
+                "texte_pl": "Notatka wewnętrzna",
+                "texte_ru": "Внутреннее сообщение",
+                "texte_es": "La nota interna"
+              }
+            ],
+            [
+              {
+                "de": "ab sofort"
+              },
+              {
+                "texte_fr": "Dès maintenant",
+                "texte_en": "From now on",
+                "texte_tr": "Şu andan itibaren",
+                "texte_uk": "Відтепер",
+                "texte_fa": "از همین حالا",
+                "texte_pt": "A partir de agora",
+                "texte_ar": "ابتداءً من الآن",
+                "texte_pl": "Od teraz",
+                "texte_ru": "С этого момента",
+                "texte_es": "A partir de ahora"
+              }
+            ],
+            [
+              {
+                "de": "ist untersagt / ist nicht gestattet"
+              },
+              {
+                "texte_fr": "Est interdit",
+                "texte_en": "Is not allowed",
+                "texte_tr": "Yasaktır",
+                "texte_uk": "Заборонено",
+                "texte_fa": "ممنوع است",
+                "texte_pt": "É proibido",
+                "texte_ar": "ممنوع",
+                "texte_pl": "Jest zabronione",
+                "texte_ru": "Запрещено",
+                "texte_es": "Está prohibido"
+              }
+            ],
+            [
+              {
+                "de": "ist zulässig"
+              },
+              {
+                "texte_fr": "Est permis",
+                "texte_en": "Is allowed",
+                "texte_tr": "İzinlidir",
+                "texte_uk": "Дозволено",
+                "texte_fa": "مجاز است",
+                "texte_pt": "É permitido",
+                "texte_ar": "مسموح",
+                "texte_pl": "Jest dozwolone",
+                "texte_ru": "Разрешено",
+                "texte_es": "Está permitido"
+              }
+            ],
+            [
+              {
+                "de": "ist verpflichtet"
+              },
+              {
+                "texte_fr": "Est obligé de",
+                "texte_en": "Is required to",
+                "texte_tr": "Zorundadır",
+                "texte_uk": "Зобов'язаний",
+                "texte_fa": "موظف است",
+                "texte_pt": "É obrigado a",
+                "texte_ar": "مُلزَم بـ",
+                "texte_pl": "Jest zobowiązany do",
+                "texte_ru": "Обязан",
+                "texte_es": "Está obligado a"
+              }
+            ],
+            [
+              {
+                "de": "nach Absprache mit"
+              },
+              {
+                "texte_fr": "Après accord avec",
+                "texte_en": "After agreement with",
+                "texte_tr": "… ile görüştükten sonra",
+                "texte_uk": "За погодженням із",
+                "texte_fa": "پس از هماهنگی با",
+                "texte_pt": "Após acordo com",
+                "texte_ar": "بعد الاتفاق مع",
+                "texte_pl": "Po uzgodnieniu z",
+                "texte_ru": "По согласованию с",
+                "texte_es": "Previo acuerdo con"
+              }
+            ],
+            [
+              {
+                "de": "unverzüglich"
+              },
+              {
+                "texte_fr": "Sans délai, immédiatement",
+                "texte_en": "Without delay, immediately",
+                "texte_tr": "Gecikmeden, hemen",
+                "texte_uk": "Негайно, без зволікань",
+                "texte_fa": "بی‌درنگ، فوراً",
+                "texte_pt": "Sem demora, imediatamente",
+                "texte_ar": "دون تأخير، فورًا",
+                "texte_pl": "Bezzwłocznie, natychmiast",
+                "texte_ru": "Без промедления, немедленно",
+                "texte_es": "Sin demora, inmediatamente"
+              }
+            ],
+            [
+              {
+                "de": "bei Bedarf"
+              },
+              {
+                "texte_fr": "Au besoin",
+                "texte_en": "If needed",
+                "texte_tr": "Gerektiğinde",
+                "texte_uk": "За потреби",
+                "texte_fa": "در صورت نیاز",
+                "texte_pt": "Se necessário",
+                "texte_ar": "عند الحاجة",
+                "texte_pl": "W razie potrzeby",
+                "texte_ru": "При необходимости",
+                "texte_es": "Si es necesario"
+              }
+            ],
+            [
+              {
+                "de": "zuständig für"
+              },
+              {
+                "texte_fr": "Responsable de, chargé de",
+                "texte_en": "Responsible for, in charge of",
+                "texte_tr": "… den sorumlu, … ile görevli",
+                "texte_uk": "Відповідальний за",
+                "texte_fa": "مسئول",
+                "texte_pt": "Responsável por, encarregado de",
+                "texte_ar": "مسؤول عن، مكلّف بـ",
+                "texte_pl": "Odpowiedzialny za",
+                "texte_ru": "Ответственный за",
+                "texte_es": "Responsable de, encargado de"
+              }
+            ]
+          ],
+          "relire": true
+        },
+        {
+          "t": "renvoi",
+          "vers": "chapitre:grammatik",
+          "titre_fr": "La grammaire qui rapporte des points : les participes des notices",
+          "titre_en": "The grammar that earns points: participles in leaflets",
+          "titre_tr": "Puan getiren dilbilgisi: prospektüslerin ortaçları",
+          "titre_uk": "Граматика, що приносить бали: дієприкметники інструкцій",
+          "titre_fa": "دستور زبانی که امتیاز می‌آورد: وجه‌های وصفی در بروشورها",
+          "titre_pt": "A gramática que dá pontos: os particípios das bulas",
+          "titre_ar": "القواعد التي تمنح النقاط: اسم المفعول في النشرات",
+          "titre_pl": "Gramatyka, która daje punkty: imiesłowy w ulotkach",
+          "titre_ru": "Грамматика, которая приносит баллы: причастия в инструкциях",
+          "titre_es": "La gramática que da puntos: los participios de los prospectos"
+        }
+      ],
+      "titre_fr": "Le vocabulaire des notices et des consignes",
+      "titre_en": "The vocabulary of leaflets and instructions",
+      "titre_tr": "Prospektüslerin ve talimatların kelimeleri",
+      "titre_uk": "Лексика інструкцій і вказівок",
+      "titre_fa": "واژگان بروشورها و دستورالعمل‌ها",
+      "titre_pt": "O vocabulário das bulas e das instruções",
+      "titre_ar": "مفردات النشرات والتعليمات",
+      "titre_pl": "Słownictwo ulotek i instrukcji",
+      "titre_ru": "Лексика инструкций и распоряжений",
+      "titre_es": "El vocabulario de los prospectos y las instrucciones"
+    }
+  ]
 }
