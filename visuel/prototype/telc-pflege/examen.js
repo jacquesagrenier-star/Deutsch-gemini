@@ -559,6 +559,14 @@ function estimer(tache, rep, thema){
   const idx = !n ? 5 : r >= 1 ? 0 : r >= 0.75 ? 1 : r >= 0.5 ? 2 : r >= 0.25 ? 3 : 4;
   return { res, punkte: B.CRANS[tache.sur][idx], idx };
 }
+// UNE PHOTO DE L'ORAL : {src, beschreibung} ; tant que l'image n'existe pas (src absent), sa description en allemand.
+// La description sert aussi de texte de remplacement pour les lecteurs d'ecran.
+function photo(b, grande){
+  if (typeof b === "string") b = { beschreibung: b };
+  if (b.src) return '<figure class="photo-oral' + (grande ? " grande" : "") + '"><img src="' + esc(b.src) + '" alt="' + esc(b.beschreibung) + '" lang="de" loading="lazy"></figure>';
+  return '<div class="photo-texte"><div class="k">' + esc(T("pf_bild")) + '</div><p lang="de">' + esc(b.beschreibung) + '</p>' +
+    (grande ? '<p class="petit">' + esc(T("pf_bild_bientot")) + '</p>' : "") + '</div>';
+}
 function sprechen(mode, depart){
   const S = PF.d.sprechen, ex = mode === "ex";
   const etat = ex ? BL.sprechen : { thema: null, reponses: {} };
@@ -585,9 +593,9 @@ function sprechen(mode, depart){
     const bloc = document.createElement("div"); bloc.className = "bloc";
     bloc.innerHTML = '<div class="section">' + esc(t.teil) + ' · ' + esc(tr(t, "nom")) + '</div>' +
       '<p class="consigne" lang="de">' + esc(t.consigne_de) + '<span class="fr">' + esc(tr(t, "consigne")) + '</span></p>' +
-      (t.bild ? '<div class="photo-texte"><div class="k">' + esc(T("pf_bild")) + '</div><p lang="de">' + esc(t.bild.beschreibung) + '</p><p class="petit">' + esc(T("pf_bild_bientot")) + '</p></div>' : "") +
+      (t.bild ? photo(t.bild, true) : "") +
       (th ? '<div class="doc"><div class="k" lang="de">' + esc(th.titre) + '</div><p lang="de">' + esc(th.stichworte.join(" · ")) + '</p>' +
-        (th.bilder || []).map(b => '<p class="petit" lang="de">▫ ' + esc(b) + '</p>').join("") + '</div>' : "") +
+        ((th.bilder || []).length ? '<div class="photos">' + th.bilder.map(b => photo(b, false)).join("") + '</div>' : "") + '</div>' : "") +
       (t.situation_de ? '<p lang="de"><b>' + esc(t.situation_de) + '</b></p>' : "") +
       (t.aussagen ? '<div class="doc liste">' + t.aussagen.map(a => '<p lang="de">„' + esc(a) + '“</p>').join("") + '</div>' : "") +
       (!ex && redemittel ? '<details><summary>' + esc(T("pf_redemittel")) + '</summary><ul class="redemittel">' + redemittel.map(r => '<li lang="de">' + esc(r) + '</li>').join("") + '</ul></details>' : "");

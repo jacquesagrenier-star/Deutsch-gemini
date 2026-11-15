@@ -1,13 +1,13 @@
 {
-  "_note": "telc Deutsch B1·B2 Pflege, les séries (une série = un examen blanc complet) von Wortando : SPRECHEN (14 nov. 2026, session pflege-examen). Le FORMAT du telc (pflege/FORMAT-TELC-PFLEGE.md) : 1A décrire une photo (5), 1B répondre aux questions (5), 2A exposé de deux minutes sur un sujet choisi parmi deux (15), 2B questions sur l'exposé (5), 3 discussion avec le partenaire (20) ; la langue (50) se note sur l'ensemble (bareme.js). La Prüferin est Frau Neumann, la partenaire est Elif, qui passe l'examen elle aussi. « tours » : ce que disent la Prüferin ou Elif (dit), puis la réponse de l'apprenant (consigne, limite en secondes) ; « tours_nach_thema » : selon le sujet choisi en 2A. « kriterien » : ce que l'app sait repérer dans ce qui a été dit (mots minimum, mots repères, « mindestens » combien) ; le contrôle vérifie que chaque réponse modèle les remplit. Les photos de 1A et 2A seront faites après la validation des personnages : d'ici là, leur description écrite. Les nombres de l'audio en lettres. Les 9 langues d'interface sont dans les objets (X_fr, X_en, X_tr, X_uk, X_fa, X_pt, X_ar, X_pl, X_ru) ; outils/a_traduire.py liste ce qui manque et replie un fichier de traductions.",
+  "_note": "telc Deutsch B1·B2 Pflege, les séries (une série = un examen blanc complet) von Wortando : SPRECHEN (14 nov. 2026, session pflege-examen). Le FORMAT du telc (pflege/FORMAT-TELC-PFLEGE.md) : 1A décrire une photo (5), 1B répondre aux questions (5), 2A exposé de deux minutes sur un sujet choisi parmi deux (15), 2B questions sur l'exposé (5), 3 discussion avec le partenaire (20) ; la langue (50) se note sur l'ensemble (bareme.js). La Prüferin est Frau Neumann, la partenaire est Elif, qui passe l'examen elle aussi. « tours » : ce que disent la Prüferin ou Elif (dit), puis la réponse de l'apprenant (consigne, limite en secondes) ; « tours_nach_thema » : selon le sujet choisi en 2A. « kriterien » : ce que l'app sait repérer dans ce qui a été dit (mots minimum, mots repères, « mindestens » combien) ; le contrôle vérifie que chaque réponse modèle les remplit. Les photos de 1A et 2A seront faites après la validation des personnages : d'ici là, leur description écrite. Les nombres de l'audio en lettres. Les 9 langues d'interface sont dans les objets (X_fr, X_en, X_tr, X_uk, X_fa, X_pt, X_ar, X_pl, X_ru) ; outils/a_traduire.py liste ce qui manque et replie un fichier de traductions. Voix : la liste unique de pflege-dialogues (pflege/VOIX.md, ids de pflege/sources/noms.json), une voix jamais deux fois dans une même partie.",
   "voix": {
     "neumann": {
-      "nom": "Frau Neumann, la Prüferin (voix de Frau Brandt du telc)",
+      "nom": "Frau Neumann, la Prüferin (aurora, recommandation de pflege-dialogues)",
       "sexe": "f",
-      "voice_id": "cDlEZdkTayS2jHnyaXx6"
+      "voice_id": "8HePnvwzEdJ614CQMPqF"
     },
     "elif": {
-      "nom": "Elif, 29 ans, la partenaire (voix f_jung du telc)",
+      "nom": "Elif, la partenaire (VOIX.md : f_jung)",
       "sexe": "f",
       "voice_id": "KdxIdEwcPWzvsuKFEGL2"
     }
@@ -23,7 +23,8 @@
           "sur": 5,
           "consigne_de": "Beschreiben Sie das Bild: die Situation, die Personen, was sie tun. Was denken Sie: Was ist hier los?",
           "bild": {
-            "beschreibung": "Ein heller Flur in einem Pflegeheim. Eine junge Pflegerin in weißer Dienstkleidung geht neben einer älteren Frau mit kurzen weißen Haaren. Die Frau geht langsam mit einem Rollator und trägt Hausschuhe. Die Pflegerin hat eine Hand am Rücken der Frau, beide lächeln. An der Wand gibt es einen Handlauf, im Hintergrund ein großes Fenster und Pflanzen."
+            "beschreibung": "Ein heller Flur in einem Pflegeheim. Eine Pflegerin in grüner Dienstkleidung geht neben einer älteren Frau mit weißen lockigen Haaren. Die Frau geht langsam mit einem Rollator und trägt Hausschuhe. Die Pflegerin hat eine Hand am Rücken der Frau und schaut auf ihre Füße, beide lächeln. An der Wand gibt es einen Handlauf, im Hintergrund ein großes Fenster und Pflanzen.",
+            "src": null
           },
           "tours": [
             {
@@ -126,7 +127,7 @@
             "Die Situation kenne ich auch von meiner Station: …"
           ],
           "muster": [
-            "Auf dem Bild sehe ich einen hellen Flur, ich denke, das ist ein Pflegeheim. Eine junge Pflegerin in weißer Dienstkleidung geht neben einer älteren Frau. Die Frau hat kurze weiße Haare und geht mit einem Rollator. Die Pflegerin hat eine Hand an ihrem Rücken, damit sie sich sicher fühlt. Beide lächeln, die Stimmung ist gut. Im Hintergrund sieht man ein großes Fenster und Pflanzen. Vielleicht übt die Frau nach einer Operation wieder das Gehen, oder sie geht zum Speisesaal. Das kenne ich auch von meiner Station."
+            "Auf dem Bild sehe ich einen hellen Flur, ich denke, das ist ein Pflegeheim. Eine Pflegerin in grüner Dienstkleidung geht neben einer älteren Frau. Die Frau hat weiße lockige Haare und geht mit einem Rollator. Die Pflegerin hat eine Hand an ihrem Rücken, damit sie sich sicher fühlt. Beide lächeln, die Stimmung ist gut. Im Hintergrund sieht man ein großes Fenster und Pflanzen. Vielleicht übt die Frau nach einer Operation wieder das Gehen, oder sie geht zum Speisesaal. Das kenne ich auch von meiner Station."
           ],
           "nom_fr": "Décrire une photo",
           "nom_en": "Describing a photo",
@@ -303,9 +304,18 @@
                 "Dokumentation und Arzt informieren"
               ],
               "bilder": [
-                "Foto 1: Eine alte Frau im Sessel hält sich mit verzerrtem Gesicht die Hand an die Hüfte.",
-                "Foto 2: Eine Pflegekraft füllt am Bett einen Bogen mit Gesichtern und Punkten aus.",
-                "Foto 3: Eine Tochter spricht im Flur mit einem Pfleger."
+                {
+                  "beschreibung": "Eine alte Frau im Sessel hält sich mit verzerrtem Gesicht die Hand an die Hüfte.",
+                  "src": null
+                },
+                {
+                  "beschreibung": "Eine Pflegekraft füllt am Bett einen Bogen mit Gesichtern und Punkten aus.",
+                  "src": null
+                },
+                {
+                  "beschreibung": "Eine Tochter spricht im Flur mit einem Pfleger.",
+                  "src": null
+                }
               ],
               "kriterien": [
                 {
@@ -431,9 +441,18 @@
                 "Unterstützung im Team"
               ],
               "bilder": [
-                "Foto 1: Ein Pfleger sitzt nachts allein im Stationszimmer vor einem Bildschirm und gähnt.",
-                "Foto 2: Eine Pflegerin isst im Stehen ein Brötchen auf dem Flur.",
-                "Foto 3: Drei Kolleginnen joggen zusammen im Park."
+                {
+                  "beschreibung": "Ein Pfleger sitzt nachts allein im Stationszimmer vor einem Bildschirm und gähnt.",
+                  "src": null
+                },
+                {
+                  "beschreibung": "Eine Pflegerin isst im Stehen ein Brötchen auf dem Flur.",
+                  "src": null
+                },
+                {
+                  "beschreibung": "Drei Kolleginnen joggen zusammen im Park.",
+                  "src": null
+                }
               ],
               "kriterien": [
                 {

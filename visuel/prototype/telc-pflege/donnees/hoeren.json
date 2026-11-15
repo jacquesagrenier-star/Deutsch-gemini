@@ -1,5 +1,5 @@
 {
-  "_note": "telc Deutsch B1·B2 Pflege, les séries (une série = un examen blanc complet) von Wortando : HÖREN, items 1-23 (14 nov. 2026, session pflege-examen). Le FORMAT du telc (pflege/FORMAT-TELC-PFLEGE.md : 4 parties, 4 + 10 + 6 + 3 points, chaque texte entendu une seule fois), jamais son contenu : tout est écrit pour Wortando, avec les personnages de pflege/PERSONNAGES.md. Chaque objet traduit a une clé « cle » ; ses champs « X_fr » / « X_en » ont leur traduction dans langues/hoeren.<langue>.json sous « cle.X ». « bon » : l'indice de la bonne réponse dans « o » (0 = a) ; pour un vrai / faux, 0 = richtig, 1 = falsch ; pour Teil 4, l'indice dans « saetze ». « relire » : contenu métier qu'une infirmière germanophone doit valider (pflege/examen/RELIRE-EXAMEN.md). Les nombres de l'audio sont écrits en lettres : la voix les dit tels quels, aucune lecture n'est nécessaire dans audio/lectures/de.json. Voix : provisoires, reprises du telc A2·B1 (visuel/prototype/telc/donnees/hoeren.json), à aligner sur celles que la session des dialogues donnera à l'équipe. Les 9 langues d'interface sont dans les objets (X_fr, X_en, X_tr, X_uk, X_fa, X_pt, X_ar, X_pl, X_ru) ; outils/a_traduire.py liste ce qui manque et replie un fichier de traductions.",
+  "_note": "telc Deutsch B1·B2 Pflege, les séries (une série = un examen blanc complet) von Wortando : HÖREN, items 1-23 (14 nov. 2026, session pflege-examen). Le FORMAT du telc (pflege/FORMAT-TELC-PFLEGE.md : 4 parties, 4 + 10 + 6 + 3 points, chaque texte entendu une seule fois), jamais son contenu : tout est écrit pour Wortando, avec les personnages de pflege/PERSONNAGES.md. Chaque objet traduit a une clé « cle » ; ses champs « X_fr » / « X_en » ont leur traduction dans langues/hoeren.<langue>.json sous « cle.X ». « bon » : l'indice de la bonne réponse dans « o » (0 = a) ; pour un vrai / faux, 0 = richtig, 1 = falsch ; pour Teil 4, l'indice dans « saetze ». « relire » : contenu métier qu'une infirmière germanophone doit valider (pflege/examen/RELIRE-EXAMEN.md). Les nombres de l'audio sont écrits en lettres : la voix les dit tels quels, aucune lecture n'est nécessaire dans audio/lectures/de.json. Voix : la liste unique de pflege-dialogues (pflege/VOIX.md, ids de pflege/sources/noms.json), une voix jamais deux fois dans une même partie.",
   "voix": {
     "aurora": {
       "nom": "Aurora, les consignes",
@@ -7,84 +7,84 @@
       "voice_id": "8HePnvwzEdJ614CQMPqF"
     },
     "elif": {
-      "nom": "Elif, 29 ans (voix f_jung du telc)",
+      "nom": "Elif (pflege/VOIX.md : f_jung)",
       "sexe": "f",
       "voice_id": "KdxIdEwcPWzvsuKFEGL2"
     },
     "jonas": {
-      "nom": "Jonas, 38 ans (voix radio_m du telc)",
+      "nom": "Jonas (VOIX.md : radio_m)",
       "sexe": "m",
       "voice_id": "KMSBmY3yNdCjbnsEvXc6"
     },
     "hoffmann": {
-      "nom": "Frau Hoffmann, 52 ans (voix de Frau Brandt du telc)",
+      "nom": "Frau Hoffmann (VOIX.md : f_reif)",
       "sexe": "f",
       "voice_id": "cDlEZdkTayS2jHnyaXx6"
     },
     "sommer": {
-      "nom": "Dr. Sommer, 40 ans (voix m_mittel du telc)",
+      "nom": "Dr. Sommer, la médecin du service (VOIX.md : radio_f)",
+      "sexe": "f",
+      "voice_id": "eynqyfGtOX7SMOw161Ca"
+    },
+    "kraemer": {
+      "nom": "Dr. Krämer, médecin de garde (VOIX.md : m_mittel)",
       "sexe": "m",
       "voice_id": "lwbCRuiP1VdfP1CRfjHk"
     },
-    "kraemer": {
-      "nom": "Dr. Krämer, médecin de garde (voix radio_m du telc)",
-      "sexe": "m",
-      "voice_id": "KMSBmY3yNdCjbnsEvXc6"
-    },
-    "herr_brandt": {
-      "nom": "Herr Brandt, 82 ans (voix m_alt du telc)",
+    "brandt": {
+      "nom": "Herr Brandt (VOIX.md : m_alt)",
       "sexe": "m",
       "voice_id": "o66wtFhUpq7rflsMnh38"
     },
-    "herr_schulze": {
-      "nom": "Herr Schulze, 87 ans (voix m_alt du telc)",
+    "schulze": {
+      "nom": "Herr Schulze (VOIX.md : m_alt)",
       "sexe": "m",
       "voice_id": "o66wtFhUpq7rflsMnh38"
     },
-    "frau_lehmann": {
-      "nom": "Frau Lehmann, 74 ans (voix f_alt du telc)",
+    "lehmann": {
+      "nom": "Frau Lehmann (VOIX.md : f_alt)",
       "sexe": "f",
       "voice_id": "VTPbgxY1fFa6FwTfzLEB"
     },
-    "frau_kowalski": {
-      "nom": "Frau Kowalski, 79 ans (voix f_alt du telc)",
+    "kowalski": {
+      "nom": "Frau Kowalski (VOIX.md : f_alt)",
       "sexe": "f",
       "voice_id": "VTPbgxY1fFa6FwTfzLEB"
     },
-    "wendt": {
-      "nom": "Sabine Wendt, la fille de Frau Lehmann (voix de Frau Brandt du telc)",
-      "sexe": "f",
-      "voice_id": "cDlEZdkTayS2jHnyaXx6"
-    },
-    "olena": {
-      "nom": "Olena, 44 ans (voix f_mittel du telc)",
+    "lehmann_tochter": {
+      "nom": "Sabine Krüger, la fille de Frau Lehmann (VOIX.md : f_mittel)",
       "sexe": "f",
       "voice_id": "N85Zhun98cg4usHJ1afQ"
     },
-    "aksoy": {
-      "nom": "Frau Aksoy, laboratoire (voix f_mittel du telc)",
+    "olena": {
+      "nom": "Olena (VOIX.md : f_mittel)",
       "sexe": "f",
       "voice_id": "N85Zhun98cg4usHJ1afQ"
     },
     "amira": {
-      "nom": "Amira, 26 ans (voix radio_f du telc)",
+      "nom": "Amira (VOIX.md : radio_f)",
       "sexe": "f",
       "voice_id": "eynqyfGtOX7SMOw161Ca"
     },
     "yusuf": {
-      "nom": "Yusuf, 34 ans (voix m_jung du telc)",
+      "nom": "Yusuf (VOIX.md : m_jung)",
       "sexe": "m",
       "voice_id": "YsKUFZvQZDgRvcfwUT4X"
     },
-    "lorenz": {
-      "nom": "Herr Lorenz, transport sanitaire (voix m_jung du telc)",
-      "sexe": "m",
-      "voice_id": "YsKUFZvQZDgRvcfwUT4X"
+    "aksoy": {
+      "nom": "Frau Aksoy, laboratoire (f_reif : Frau Krüger, f_mittel, parle dans la même partie)",
+      "sexe": "f",
+      "voice_id": "cDlEZdkTayS2jHnyaXx6"
     },
     "richter": {
-      "nom": "Herr Richter, pharmacie de l'hôpital (voix m_mittel du telc)",
+      "nom": "Herr Richter, pharmacie (m_mittel)",
       "sexe": "m",
       "voice_id": "lwbCRuiP1VdfP1CRfjHk"
+    },
+    "lorenz": {
+      "nom": "Herr Lorenz, transport sanitaire (m_jung)",
+      "sexe": "m",
+      "voice_id": "YsKUFZvQZDgRvcfwUT4X"
     }
   },
   "series": [
@@ -193,11 +193,11 @@
               "typ": "abc",
               "audio": [
                 {
-                  "wer": "wendt",
-                  "text": "Guten Tag, hier spricht Sabine Wendt, ich bin die Tochter von Frau Lehmann aus Zimmer neun. Ich schaffe es heute leider nicht zu kommen, mein Sohn ist krank. Morgen Nachmittag bin ich wieder da und bringe dann ihre Lesebrille und die Hausschuhe mit. Meine Mutter isst abends oft zu wenig, wenn niemand bei ihr ist. Könnten Sie bitte beim Abendessen ein bisschen auf sie achten? Und sagen Sie ihr bitte, dass ich angerufen habe. Vielen Dank."
+                  "wer": "lehmann_tochter",
+                  "text": "Guten Tag, hier spricht Sabine Krüger, ich bin die Tochter von Frau Lehmann aus Zimmer neun. Ich schaffe es heute leider nicht zu kommen, mein Sohn ist krank. Morgen Nachmittag bin ich wieder da und bringe dann ihre Lesebrille und die Hausschuhe mit. Meine Mutter isst abends oft zu wenig, wenn niemand bei ihr ist. Könnten Sie bitte beim Abendessen ein bisschen auf sie achten? Und sagen Sie ihr bitte, dass ich angerufen habe. Vielen Dank."
                 }
               ],
-              "frage": "Frau Wendt bittet die Station,",
+              "frage": "Frau Krüger bittet die Station,",
               "o": [
                 "ihrer Mutter heute die Lesebrille zu geben.",
                 "beim Abendessen auf ihre Mutter zu achten.",
@@ -277,7 +277,7 @@
                   "text": "Nicht so gut. Herr Brandt hatte gegen drei Uhr starke Schmerzen in der Hüfte, ungefähr sieben von zehn. Der Nachtdienst hat ihm die Bedarfsmedikation gegeben, danach konnte er wieder schlafen."
                 },
                 {
-                  "wer": "herr_brandt",
+                  "wer": "brandt",
                   "text": "Na ja, schlafen … ein bisschen. Wenn ich mich auf die Seite drehe, tut es richtig weh."
                 },
                 {
@@ -293,7 +293,7 @@
                   "text": "Gut, dann reicht ein Verbandswechsel morgen. Die Physiotherapeutin kommt heute um zwei. Herr Brandt, Sie gehen mit ihr ein paar Schritte mit dem Rollator, auch wenn es am Anfang schwerfällt."
                 },
                 {
-                  "wer": "herr_brandt",
+                  "wer": "brandt",
                   "text": "Wenn's sein muss."
                 },
                 {
@@ -306,7 +306,7 @@
                   "cle": "n5",
                   "nr": 5,
                   "typ": "rf",
-                  "frage": "Der Arzt und Elif sprechen über die Schmerzen und die Mobilisation von Herrn Brandt.",
+                  "frage": "Die Ärztin und Elif sprechen über die Schmerzen und die Mobilisation von Herrn Brandt.",
                   "bon": 0,
                   "erkl_fr": "Vrai : toute la conversation porte sur ses douleurs (la nuit, le nouveau traitement) et sur la marche avec la kiné.",
                   "erkl_en": "True: the whole conversation is about his pain (the night, the new medication) and walking with the physiotherapist.",
@@ -359,15 +359,15 @@
                   "text": "Guten Morgen, Frau Lehmann. Ich messe kurz Ihren Blutzucker, bevor das Frühstück kommt."
                 },
                 {
-                  "wer": "frau_lehmann",
+                  "wer": "lehmann",
                   "text": "Schon wieder? Gestern Abend haben Sie doch auch gemessen."
                 },
                 {
                   "wer": "elif",
-                  "text": "Ja, vor jeder Mahlzeit. Der Arzt möchte sehen, wie das neue Insulin wirkt. So, ein kleiner Piks in den Finger … schon fertig. Hundertachtunddreißig, das ist in Ordnung."
+                  "text": "Ja, vor jeder Mahlzeit. Die Ärztin möchte sehen, wie das neue Insulin wirkt. So, ein kleiner Piks in den Finger … schon fertig. Hundertachtunddreißig, das ist in Ordnung."
                 },
                 {
-                  "wer": "frau_lehmann",
+                  "wer": "lehmann",
                   "text": "Und die Spritze? Ich mag diese Spritzen in den Bauch nicht. Zu Hause hat das immer meine Tochter gemacht."
                 },
                 {
@@ -375,7 +375,7 @@
                   "text": "Das verstehe ich. Ich zeige Ihnen heute, wie Sie es selbst machen können, ganz langsam. Wenn Sie wieder zu Hause sind, sollen Sie das ja allein schaffen."
                 },
                 {
-                  "wer": "frau_lehmann",
+                  "wer": "lehmann",
                   "text": "Allein? Ich sehe doch so schlecht. Ich glaube nicht, dass ich das kann."
                 },
                 {
@@ -436,7 +436,7 @@
               "cle": "H2g3",
               "audio": [
                 {
-                  "wer": "herr_schulze",
+                  "wer": "schulze",
                   "text": "Wo ist meine Mütze? Ich muss los, die Bahn wartet nicht."
                 },
                 {
@@ -444,7 +444,7 @@
                   "text": "Herr Schulze, Sie wollen zur Arbeit?"
                 },
                 {
-                  "wer": "herr_schulze",
+                  "wer": "schulze",
                   "text": "Natürlich! Die Vier fährt um fünf ab Depot. Ohne mich fährt da keiner."
                 },
                 {
@@ -452,7 +452,7 @@
                   "text": "Sie waren immer sehr pünktlich, oder?"
                 },
                 {
-                  "wer": "herr_schulze",
+                  "wer": "schulze",
                   "text": "Vierzig Jahre lang. Nie einen Tag zu spät."
                 },
                 {
@@ -460,7 +460,7 @@
                   "text": "Das glaube ich Ihnen sofort. Erzählen Sie mal: War es im Winter nicht sehr kalt in der Straßenbahn?"
                 },
                 {
-                  "wer": "herr_schulze",
+                  "wer": "schulze",
                   "text": "Kalt? Vorne beim Fahrer gab es damals keine Heizung. Ich hatte immer zwei Pullover an."
                 },
                 {
@@ -468,7 +468,7 @@
                   "text": "Zwei Pullover! Kommen Sie, wir setzen uns kurz hin. Ich habe Kaffee gemacht, und Ihre Tochter hat das Fotoalbum mitgebracht, mit den Bildern von der alten Bahn."
                 },
                 {
-                  "wer": "herr_schulze",
+                  "wer": "schulze",
                   "text": "Das Album? … Na gut, einen Kaffee. Aber dann muss ich los."
                 },
                 {
@@ -534,7 +534,7 @@
                   "text": "Guten Morgen, Frau Kowalski! Der Pflegedienst ist da, ich bin's, Amira."
                 },
                 {
-                  "wer": "frau_kowalski",
+                  "wer": "kowalski",
                   "text": "Kommen Sie rein. Passen Sie auf, Mimi liegt wieder direkt hinter der Tür."
                 },
                 {
@@ -542,7 +542,7 @@
                   "text": "Hallo, Mimi. So, Frau Kowalski, zuerst messen wir den Zucker, dann kommt das Insulin. Wo ist denn Ihr Pen?"
                 },
                 {
-                  "wer": "frau_kowalski",
+                  "wer": "kowalski",
                   "text": "Auf dem Küchentisch, neben dem Brot."
                 },
                 {
@@ -550,7 +550,7 @@
                   "text": "Der Pen, den Sie gerade benutzen, darf ruhig draußen liegen. Aber die neuen Pens gehören in den Kühlschrank, nicht ins Gefrierfach. Sagen Sie, gestern Abend: Haben Sie Ihr Langzeitinsulin gespritzt? Im Heft steht nichts."
                 },
                 {
-                  "wer": "frau_kowalski",
+                  "wer": "kowalski",
                   "text": "Gestern Abend? Das weiß ich nicht mehr. Ich glaube, nicht. Da lief ein Film …"
                 },
                 {
@@ -558,7 +558,7 @@
                   "text": "Okay. Bitte jetzt nicht einfach die doppelte Menge spritzen. Ich rufe gleich Ihren Hausarzt an und frage, was wir machen. Und ich hänge Ihnen einen Zettel an den Fernseher: zwanzig Uhr, Insulin."
                 },
                 {
-                  "wer": "frau_kowalski",
+                  "wer": "kowalski",
                   "text": "Einen Zettel am Fernseher! Da schaue ich wenigstens jeden Abend hin."
                 }
               ],
@@ -621,7 +621,7 @@
                 },
                 {
                   "wer": "yusuf",
-                  "text": "Guten Abend, Herr Doktor, hier ist Yusuf Haddad von der Geriatrie, Station drei. Ich rufe wegen Herrn Albrecht an, Zimmer elf. Er ist seit gestern bei uns, mit einer Lungenentzündung."
+                  "text": "Guten Abend, Herr Doktor, hier ist Yusuf Haddad von der Geriatrie, Station vier B. Ich rufe wegen Herrn Albrecht an, Zimmer elf. Er ist seit gestern bei uns, mit einer Lungenentzündung."
                 },
                 {
                   "wer": "kraemer",

@@ -14,7 +14,7 @@
   du niveau et du certificat, pur) et examen.js (le module).
 
   Parametres : lang (fr, en, tr, uk, fa, ar, pt, pl, ru), nuit=1, partie=hoeren|lesen|sprachbausteine|schreiben|
-  sprechen|BLANC (ouvre directement l'entrainement d'une epreuve, ou l'examen blanc), rapide=1 (essais seulement :
+  sprechen|blanc (ouvre directement l'entrainement d'une epreuve, ou l'examen blanc), rapide=1 (essais seulement :
   pauses et chronometres raccourcis). Ouverte par l'app dans le cadre des scenes, comme le telc A2·B1 ; l'app l'ouvre
   par ouvrirTelcPflege(partie) depuis l'ecran Soins (session architecture).
   serie=N : la serie (un examen blanc complet) ; la premiere par defaut.
@@ -44,6 +44,8 @@
 .zeile{display:flex;justify-content:space-between;gap:10px;font-size:14px;line-height:1.4;padding:2px 0}
 .zeile b{text-align:right}
 .photo-texte{background:var(--carte);border:2px dashed var(--trait);border-radius:14px;padding:12px}
+.photo-oral{margin:0}.photo-oral img{display:block;width:100%;border-radius:14px;background:var(--carte)}
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}.photos .photo-texte{padding:6px;font-size:12px}
 .dit-oral{display:flex;gap:8px;align-items:flex-start}
 .dit-oral p{margin:0;line-height:1.45}
 .micro-zone{display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 0}
@@ -94,7 +96,8 @@ window.PROFIL_EXAMEN = { id: "soins_telc", titre: "telc Deutsch B1·B2 Pflege", 
 <script src="examen.js?v=1"></script>
 <script>
 Promise.all(DTZ.chargements).then(() => {
-  const p = Q.get("partie"), partie = p && DTZ.parties.find(x => x.id === p);
+  // « blanc » ou « BLANC » : l'examen blanc (ouvrirTelcPflege("blanc") de l'ecran Soins)
+  const p = (Q.get("partie") || "").toLowerCase(), partie = p && DTZ.parties.find(x => x.id.toLowerCase() === p);
   if (partie){ TELC.direct = true; partie.ouvrir(); } else accueil();
 }).catch(e => { console.error(e); $("zone").innerHTML = '<div class="bloc"><p>Les données de l’examen ne se chargent pas.</p></div>'; });
 </script>
