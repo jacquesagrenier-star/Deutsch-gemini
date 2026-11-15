@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "fenster",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "sichtschutz",
@@ -116,7 +118,8 @@ window.SCENE = {
    "pt": "criado-mudo",
    "ar": "طاولة جانب السرير",
    "pl": "szafka nocna",
-   "ru": "прикроватная тумбочка"
+   "ru": "прикроватная тумбочка",
+   "es": "la mesa de noche"
   },
   {
    "id": "wasserglas",
@@ -203,7 +206,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "prothesendose",
@@ -256,7 +260,8 @@ window.SCENE = {
      "pt": "cama",
      "ar": "سرير",
      "pl": "łóżko",
-     "ru": "кровать"
+     "ru": "кровать",
+     "es": "la cama"
     }
    ],
    "sur": null,
@@ -306,7 +311,8 @@ window.SCENE = {
    "pt": "poltrona",
    "ar": "كرسي بذراعين",
    "pl": "fotel",
-   "ru": "кресло"
+   "ru": "кресло",
+   "es": "el sillón"
   },
   {
    "id": "patientin",
@@ -330,7 +336,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     }
    ],
    "sur": "sessel",
@@ -351,7 +358,8 @@ window.SCENE = {
    "pt": "paciente (mulher)",
    "ar": "مريضة",
    "pl": "pacjentka",
-   "ru": "пациентка"
+   "ru": "пациентка",
+   "es": "la paciente"
   },
   {
    "id": "brille",
@@ -380,7 +388,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "verband",
@@ -409,7 +418,8 @@ window.SCENE = {
    "pt": "curativo, atadura; associação",
    "ar": "ضمادة؛ اتحاد، جمعية",
    "pl": "opatrunek, bandaż; związek, stowarzyszenie",
-   "ru": "повязка; союз, объединение"
+   "ru": "повязка; союз, объединение",
+   "es": "el vendaje, la asociación"
   },
   {
    "id": "schuh-l",
@@ -438,7 +448,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "schuh-r",
@@ -467,7 +478,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "tochter",
@@ -491,7 +503,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     }
    ],
    "sur": null,
@@ -512,7 +525,8 @@ window.SCENE = {
    "pt": "filha",
    "ar": "ابنة",
    "pl": "córka",
-   "ru": "дочь"
+   "ru": "дочь",
+   "es": "la hija"
   },
   {
    "id": "mappe",
@@ -570,7 +584,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "blutdruckmessgeraet",
@@ -657,7 +672,8 @@ window.SCENE = {
    "pt": "cartão do seguro-saúde",
    "ar": "بطاقة التأمين الصحي",
    "pl": "karta ubezpieczenia zdrowotnego",
-   "ru": "карточка медицинского страхования"
+   "ru": "карточка медицинского страхования",
+   "es": "la tarjeta del seguro médico"
   },
   {
    "id": "einweisung",
@@ -710,7 +726,8 @@ window.SCENE = {
      "pt": "formulário",
      "ar": "استمارة",
      "pl": "formularz",
-     "ru": "бланк, форма"
+     "ru": "бланк, форма",
+     "es": "el formulario"
     }
    ],
    "sur": "tisch",
@@ -760,7 +777,8 @@ window.SCENE = {
    "pt": "caneta esferográfica",
    "ar": "قلم حبر جاف",
    "pl": "długopis",
-   "ru": "шариковая ручка"
+   "ru": "шариковая ручка",
+   "es": "el bolígrafo (de tinta)"
   },
   {
    "id": "wertsachenbeutel",
@@ -813,7 +831,8 @@ window.SCENE = {
      "pt": "porta-moedas, carteira",
      "ar": "محفظة نقود",
      "pl": "portmonetka, portfel",
-     "ru": "кошелёк"
+     "ru": "кошелёк",
+     "es": "el monedero"
     }
    ],
    "sur": "wertsachenbeutel",
@@ -834,7 +853,8 @@ window.SCENE = {
    "pt": "porta-moedas, carteira",
    "ar": "محفظة نقود",
    "pl": "portmonetka",
-   "ru": "кошелёк"
+   "ru": "кошелёк",
+   "es": "el portamonedas"
   },
   {
    "id": "armbanduhr",
@@ -863,7 +883,8 @@ window.SCENE = {
    "pt": "relógio de pulso",
    "ar": "ساعة يد",
    "pl": "zegarek (na rękę)",
-   "ru": "наручные часы"
+   "ru": "наручные часы",
+   "es": "el reloj de pulsera"
   },
   {
    "id": "schluessel",
@@ -892,7 +913,8 @@ window.SCENE = {
    "pt": "chave",
    "ar": "مفتاح",
    "pl": "klucz",
-   "ru": "ключ"
+   "ru": "ключ",
+   "es": "la llave"
   },
   {
    "id": "tablet",
@@ -921,7 +943,8 @@ window.SCENE = {
    "pt": "tablet",
    "ar": "جهاز لوحي",
    "pl": "tablet",
-   "ru": "планшет"
+   "ru": "планшет",
+   "es": "la tableta"
   },
   {
    "id": "gehstock",
@@ -979,7 +1002,8 @@ window.SCENE = {
    "pt": "bolsa",
    "ar": "حقيبة",
    "pl": "torba, torebka",
-   "ru": "сумка"
+   "ru": "сумка",
+   "es": "la bolsa, el bolso"
   },
   {
    "id": "koffer",
@@ -1008,7 +1032,8 @@ window.SCENE = {
    "pt": "mala",
    "ar": "حقيبة سفر",
    "pl": "walizka",
-   "ru": "чемодан"
+   "ru": "чемодан",
+   "es": "la maleta"
   },
   {
    "id": "waage",
@@ -1037,7 +1062,8 @@ window.SCENE = {
    "pt": "balança",
    "ar": "ميزان",
    "pl": "waga (kuchenna)",
-   "ru": "весы"
+   "ru": "весы",
+   "es": "la báscula, la balanza"
   },
   {
    "id": "messlatte",
@@ -1095,7 +1121,8 @@ window.SCENE = {
    "pt": "armário",
    "ar": "خزانة",
    "pl": "szafa",
-   "ru": "шкаф"
+   "ru": "шкаф",
+   "es": "el armario, el clóset"
   }
  ],
  "grosPlans": [],
@@ -2038,6 +2065,78 @@ window.SCENE = {
     "SIT | Ich schreibe die Wertsachen auf, Frau Lehmann unterschreibt, und ihre Tochter nimmt sie mit.": "Я составляю опись ценных вещей, госпожа Леман подписывает, и дочь забирает их.",
     "SIT | Ich trage die Allergie in die Akte ein und sage der Ärztin Bescheid.": "Я вношу аллергию в историю болезни и сообщаю врачу.",
     "SIT | Ich helfe ihr ins Bett und führe das Gespräch später weiter.": "Я помогаю ей лечь в кровать и продолжаю беседу позже."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Una habitación de hospital en el momento del ingreso: la señora Lehmann, de 74 años, con el pie vendado en un zapato de descarga, está sentada en un sillón; su hija le alcanza una carpeta con documentos; sobre la mesita, la hoja de ingreso, la tarjeta del seguro médico, el carné de alergias, la bolsita de los objetos de valor; al lado, un bastón, una maleta, un bolso, el tallímetro.",
+    "consigne": "Toca un objeto, a la señora Lehmann o a su hija."
+   },
+   "couches": {
+    "A1": "Los objetos del ingreso",
+    "A2": "Las preguntas con W",
+    "B1": "Las preguntas indirectas",
+    "B2": "Las preguntas de la anamnesis",
+    "C1": "Reformular para comprobar",
+    "SIT": "¿Qué haces?"
+   },
+   "questions": {
+    "A2 | Wie heißen Sie?": "<b>Wie</b> heißen Sie? — nunca «Was heißen Sie»; como el «¿cómo?» del español. A una paciente: <b>Sie</b>.",
+    "A2 | Wann sind Sie geboren?": "La fecha: <b>wann</b>; el lugar: <b>wo</b> (Wo sind Sie geboren?).",
+    "A2 | Wer ist die Dame neben Ihnen?": "<b>Wer?</b> para una persona, <b>Was?</b> para una cosa.",
+    "A2 | Welche Medikamente nehmen Sie?": "<b>welche</b> + sustantivo en plural = qué, cuáles.",
+    "A2 | Wie groß sind Sie?": "La estatura de una persona: <b>Wie groß</b>? El peso: <b>Wie viel</b> wiegen Sie?",
+    "A2 | Wo ist Ihre Versichertenkarte?": "<b>Wo?</b> = dónde. <b>Ihre</b>, con mayúscula = su (de usted).",
+    "B1 | Können Sie mir sagen, ob Sie Allergien haben?": "Una pregunta de sí o no se vuelve indirecta con <b>ob</b>; el verbo va al final (haben).",
+    "B1 | Darf ich fragen, mit wem Sie zu Hause wohnen?": "<b>mit</b> + dativo: mit <b>wem</b> (con quién).",
+    "B1 | Wissen Sie, wann Sie die letzte Tablette genommen haben?": "En una pregunta indirecta, el verbo conjugado (<b>haben</b>) va al final de todo.",
+    "B1 | Ich möchte wissen, wie oft Ihre Tochter Sie besucht.": "<b>wie oft</b> = con qué frecuencia; el verbo (besucht) va al final.",
+    "B1 | Können Sie mir zeigen, wo Ihre Wertsachen sind?": "<b>wo</b>: el lugar, sin movimiento (wohin = adónde se va, woher = de dónde).",
+    "B1 | Frau Krüger, wissen Sie, ob Ihre Mutter eine Patientenverfügung hat?": "Otra vez <b>ob</b>: no se sabe si la respuesta es sí o no.",
+    "B2 | Seit wann haben Sie die Wunde am Fuß?": "<b>Seit wann</b> + presente: la herida sigue ahí (el español también usa el presente: «¿desde cuándo tiene…?»).",
+    "B2 | Wie oft messen Sie zu Hause Ihren Blutzucker?": "La frecuencia: <b>wie oft</b>; la duración: wie lange; la cantidad: wie viel.",
+    "B2 | Unter welchen Umständen haben Sie Schmerzen?": "<b>unter</b> + dativo plural: unter welch<b>en</b> Umständen.",
+    "B2 | Tut es weh, wenn Sie mit dem Fuß auftreten?": "<b>wenn</b> = cada vez que; <b>als</b> = una sola vez, en el pasado. El español dice «cuando» en los dos casos.",
+    "B2 | Wie lange haben Sie schon Diabetes?": "<b>schon</b> + presente: todavía dura hoy.",
+    "B2 | Nehmen Sie das Schmerzmittel regelmäßig oder nur bei Bedarf?": "<b>oder</b> = o. <b>bei Bedarf</b> = si es necesario, una fórmula de las indicaciones médicas.",
+    "C1 | Habe ich Sie richtig verstanden, dass Sie zweimal täglich Insulin spritzen?": "<b>Habe ich Sie richtig verstanden, dass</b> …: se retoman sus palabras en términos precisos; el verbo va al final.",
+    "C1 | Wenn ich Sie richtig verstehe, ist Ihre Mutter in den letzten Wochen mehrmals gestürzt?": "Reformular en el registro de la enfermería: hinfallen → <b>stürzen</b>; öfter → <b>mehrmals</b>. Una caída siempre se reporta ⚕️.",
+    "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "<b>Sie meinen, …?</b>: se propone el término exacto. <b>allergisch gegen</b> + acusativo.",
+    "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Precisar sin juzgar: el Konjunktiv II de cortesía (<b>Könnten Sie</b>) y opciones concretas para proponer.",
+    "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Se anuncia el resumen (<b>Darf ich kurz zusammenfassen</b>) y luego se pide confirmarlo con una pregunta.",
+    "SIT | Ich lege eine Kopie in die Akte und informiere die Ärztin.": "La voluntad anticipada va al expediente (la norma de la institución dice quién hace la copia), y el médico debe conocerla ⚕️.",
+    "SIT | Ich schreibe die Wertsachen auf, Frau Lehmann unterschreibt, und ihre Tochter nimmt sie mit.": "Los objetos de valor se anotan en una lista y se firman; luego se van a casa o a la caja fuerte, según la norma de la institución ⚕️.",
+    "SIT | Ich trage die Allergie in die Akte ein und sage der Ärztin Bescheid.": "El documento escrito pesa más que un recuerdo dudoso: se anota y se avisa ⚕️.",
+    "SIT | Ich helfe ihr ins Bett und führe das Gespräch später weiter.": "Primero la paciente. La hija puede completar, pero no responde en lugar de su madre."
+   },
+   "sens": {
+    "A2 | Wie heißen Sie?": "¿Cómo se llama usted?",
+    "A2 | Wann sind Sie geboren?": "¿Cuándo nació usted?",
+    "A2 | Wer ist die Dame neben Ihnen?": "¿Quién es la señora que está a su lado?",
+    "A2 | Welche Medikamente nehmen Sie?": "¿Qué medicamentos toma usted?",
+    "A2 | Wie groß sind Sie?": "¿Cuánto mide usted?",
+    "A2 | Wo ist Ihre Versichertenkarte?": "¿Dónde está su tarjeta del seguro médico?",
+    "B1 | Können Sie mir sagen, ob Sie Allergien haben?": "¿Puede decirme si tiene alergias?",
+    "B1 | Darf ich fragen, mit wem Sie zu Hause wohnen?": "¿Puedo preguntarle con quién vive en su casa?",
+    "B1 | Wissen Sie, wann Sie die letzte Tablette genommen haben?": "¿Sabe cuándo tomó la última pastilla?",
+    "B1 | Ich möchte wissen, wie oft Ihre Tochter Sie besucht.": "Quisiera saber con qué frecuencia la visita su hija.",
+    "B1 | Können Sie mir zeigen, wo Ihre Wertsachen sind?": "¿Puede mostrarme dónde están sus objetos de valor?",
+    "B1 | Frau Krüger, wissen Sie, ob Ihre Mutter eine Patientenverfügung hat?": "Sra. Krüger, ¿sabe si su madre tiene una voluntad anticipada?",
+    "B2 | Seit wann haben Sie die Wunde am Fuß?": "¿Desde cuándo tiene la herida en el pie?",
+    "B2 | Wie oft messen Sie zu Hause Ihren Blutzucker?": "¿Con qué frecuencia se mide la glucosa en casa?",
+    "B2 | Unter welchen Umständen haben Sie Schmerzen?": "¿En qué circunstancias tiene dolor?",
+    "B2 | Tut es weh, wenn Sie mit dem Fuß auftreten?": "¿Le duele cuando apoya el pie?",
+    "B2 | Wie lange haben Sie schon Diabetes?": "¿Cuánto tiempo hace que tiene diabetes?",
+    "B2 | Nehmen Sie das Schmerzmittel regelmäßig oder nur bei Bedarf?": "¿Toma el analgésico con regularidad o solo cuando lo necesita?",
+    "C1 | Habe ich Sie richtig verstanden, dass Sie zweimal täglich Insulin spritzen?": "¿Le entendí bien: se inyecta insulina dos veces al día?",
+    "C1 | Wenn ich Sie richtig verstehe, ist Ihre Mutter in den letzten Wochen mehrmals gestürzt?": "Si le entiendo bien, ¿su madre se ha caído varias veces en las últimas semanas?",
+    "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "¿Quiere decir que es alérgica a la penicilina?",
+    "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "¿Podría decirlo con un poco más de precisión: desde hace días, semanas o meses?",
+    "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "¿Puedo resumir un momento: usted vive sola y su hija viene todos los días?",
+    "SIT | Ich lege eine Kopie in die Akte und informiere die Ärztin.": "Pongo una copia en el expediente e informo a la doctora.",
+    "SIT | Ich schreibe die Wertsachen auf, Frau Lehmann unterschreibt, und ihre Tochter nimmt sie mit.": "Anoto los objetos de valor, la Sra. Lehmann firma y su hija se los lleva.",
+    "SIT | Ich trage die Allergie in die Akte ein und sage der Ärztin Bescheid.": "Anoto la alergia en el expediente y le aviso a la doctora.",
+    "SIT | Ich helfe ihr ins Bett und führe das Gespräch später weiter.": "La ayudo a acostarse y continúo la conversación más tarde."
    }
   }
  }

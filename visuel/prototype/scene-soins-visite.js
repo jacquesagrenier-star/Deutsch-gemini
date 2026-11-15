@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "fenster",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "sichtschutz",
@@ -174,7 +176,8 @@ window.SCENE = {
    "pt": "criado-mudo",
    "ar": "طاولة جانب السرير",
    "pl": "szafka nocna",
-   "ru": "прикроватная тумбочка"
+   "ru": "прикроватная тумбочка",
+   "es": "la mesa de noche"
   },
   {
    "id": "wasserglas",
@@ -261,7 +264,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "prothesendose",
@@ -319,7 +323,8 @@ window.SCENE = {
    "pt": "paciente",
    "ar": "مريض",
    "pl": "pacjent",
-   "ru": "пациент, больной"
+   "ru": "пациент, больной",
+   "es": "el paciente"
   },
   {
    "id": "schlafanzug",
@@ -348,7 +353,8 @@ window.SCENE = {
    "pt": "pijama",
    "ar": "بيجامة",
    "pl": "piżama",
-   "ru": "пижама"
+   "ru": "пижама",
+   "es": "la piyama"
   },
   {
    "id": "patientenarmband",
@@ -435,7 +441,8 @@ window.SCENE = {
    "pt": "controle remoto",
    "ar": "جهاز التحكّم عن بعد",
    "pl": "pilot (do telewizora)",
-   "ru": "пульт дистанционного управления"
+   "ru": "пульт дистанционного управления",
+   "es": "el control remoto"
   },
   {
    "id": "pflegebett",
@@ -522,7 +529,8 @@ window.SCENE = {
    "pt": "médica",
    "ar": "طبيبة",
    "pl": "lekarka",
-   "ru": "врач (женщина)"
+   "ru": "врач (женщина)",
+   "es": "la doctora, la médica"
   },
   {
    "id": "stethoskop",
@@ -551,7 +559,8 @@ window.SCENE = {
    "pt": "estetoscópio",
    "ar": "سمّاعة الطبيب",
    "pl": "stetoskop",
-   "ru": "стетоскоп"
+   "ru": "стетоскоп",
+   "es": "el estetoscopio"
   },
   {
    "id": "kittel",
@@ -667,7 +676,8 @@ window.SCENE = {
    "pt": "caneta esferográfica",
    "ar": "قلم حبر جاف",
    "pl": "długopis",
-   "ru": "шариковая ручка"
+   "ru": "шариковая ручка",
+   "es": "el bolígrafo (de tinta)"
   },
   {
    "id": "visitenwagen",
@@ -725,7 +735,8 @@ window.SCENE = {
    "pt": "notebook",
    "ar": "حاسوب محمول",
    "pl": "laptop",
-   "ru": "ноутбук"
+   "ru": "ноутбук",
+   "es": "la computadora portátil, la laptop"
   },
   {
    "id": "roentgenbild",
@@ -1752,6 +1763,78 @@ window.SCENE = {
     "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Я уточняю у врача, прежде чем дать лекарство.",
     "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "Я ещё раз объясняю ему простыми словами и при необходимости спрашиваю врача.",
     "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Я повторяю назначение, записываю его и прошу врача внести его в документацию."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Una habitación de hospital, en la mañana, durante la visita médica: Herr Brandt, operado de la cadera, está sentado en su cama; Dr. Sommer, la doctora, le explica lo que sigue, y Elif, la enfermera, toma notas; delante de ellas, el carrito de visita con la computadora portátil que muestra la radiografía de la cadera, una carpeta azul y una caja de guantes; a la izquierda, el suero, la mesita de noche, el biombo y el reloj.",
+    "consigne": "Toca un objeto de la habitación, a Herr Brandt, a la doctora o a Elif."
+   },
+   "couches": {
+    "A1": "Los objetos de la visita médica",
+    "A2": "Entender una indicación",
+    "B1": "Los verbos de la indicación médica",
+    "B2": "Transmitir una indicación",
+    "C1": "Pedir una aclaración con tacto",
+    "SIT": "¿Qué hace usted?"
+   },
+   "questions": {
+    "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "<b>sollen</b>: lo que otra persona pide, aquí la doctora. El segundo verbo va al final, en infinitivo.",
+    "A2 | Er muss viel trinken.": "<b>müssen</b>: er <b>muss</b>, sin -t en la 3.ª persona.",
+    "A2 | Er darf das Bein noch nicht ganz belasten.": "<b>nicht dürfen</b> = no tener permiso, no deber. <b>belasten</b> = apoyar peso en la pierna ⚕️.",
+    "A2 | Die Ärztin schaut sich das Röntgenbild an.": "<b>sich etwas anschauen</b> = mirar con atención. <b>das Röntgenbild</b> = la radiografía.",
+    "A2 | Haben Sie noch Schmerzen?": "<b>Schmerzen</b> va casi siempre en plural, donde el español dice «tengo dolor»: Ich habe <b>Schmerzen</b>.",
+    "A2 | Elif schreibt alles auf.": "<b>aufschreiben</b>: la partícula <b>auf</b> va al final.",
+    "B1 | Die Ärztin setzt das Schmerzmittel ab.": "<b>absetzen</b> = suspender un medicamento; <b>ansetzen</b> = iniciarlo ⚕️.",
+    "B1 | Die Ärztin erhöht die Dosis vom Blutdruckmittel.": "<b>erhöhen</b> = aumentar; <b>reduzieren</b> = reducir.",
+    "B1 | Die Ärztin reduziert das Blutdruckmittel.": "<b>reduzieren</b> = reducir una dosis. El mareo después de una operación siempre se reporta ⚕️.",
+    "B1 | Die Ärztin hat Krankengymnastik angeordnet.": "<b>anordnen</b> = indicar un cuidado o un examen; participio: an<b>ge</b>ordnet. La enfermera ejecuta lo que está <b>angeordnet</b> ⚕️.",
+    "B1 | Wegen der Entzündung setzt die Ärztin ein Antibiotikum an.": "<b>ein Medikament ansetzen</b> = iniciar un tratamiento; la partícula <b>an</b> va al final.",
+    "B1 | Die Infusion kann heute abgehängt werden.": "<b>die Infusion abhängen</b> = retirar el suero; en pasiva con un verbo modal: kann <b>abgehängt</b> werden.",
+    "B2 | Die Ärztin hat gesagt, der Patient solle ab morgen mobilisiert werden.": "Estilo indirecto, sobre todo por escrito: Konjunktiv I, <b>solle</b>. Al hablar, se oye a menudo «soll».",
+    "B2 | Sie hat gesagt, dass die Infusion heute Abend abgehängt wird.": "<b>dass</b> + verbo al final: la forma más sencilla de transmitir una indicación.",
+    "B2 | Herr Brandt sagt, er könne schon allein aufstehen.": "Konjunktiv I, <b>könne</b>: se repiten sus palabras sin decir que uno las cree. Antes de dejarlo levantarse solo, se comprueba ⚕️.",
+    "B2 | Die Ärztin hat gefragt, ob er nachts gut schläft.": "Una pregunta indirecta sin palabra interrogativa: <b>ob</b> (= si).",
+    "B2 | Laut Ärztin soll der Verband morgen gewechselt werden.": "<b>laut</b> = según; <b>soll</b> muestra que se transmite la indicación de otra persona.",
+    "B2 | Die Ärztin hat angeordnet, dass er zweimal am Tag aufsteht.": "<b>anordnen, dass …</b>: la indicación en una subordinada, el verbo al final.",
+    "C1 | Entschuldigung, darf ich kurz nachfragen?": "<b>Darf ich kurz nachfragen?</b>: se interrumpe con cortesía, sin dejar mal a la doctora.",
+    "C1 | Habe ich Sie richtig verstanden, dass die Infusion heute Abend abgehängt wird?": "<b>Habe ich Sie richtig verstanden, dass …?</b>: se reformula para comprobar ⚕️.",
+    "C1 | Könnten Sie mir die Dosis bitte noch einmal nennen?": "El Konjunktiv II <b>Könnten Sie …?</b> suaviza la petición, como «¿Podría…?».",
+    "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "<b>Mir ist noch nicht ganz klar, ob …</b>: se dice lo que no se entendió, sin reproche.",
+    "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "Una indicación verbal se hace confirmar por escrito (<b>schriftlich</b>) ⚕️.",
+    "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Repetir la indicación y preguntar <b>richtig?</b>: la comunicación en circuito cerrado ⚕️.",
+    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Una indicación médica incompleta no se interpreta: se le pregunta al médico antes de dar el medicamento ⚕️.",
+    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "El paciente tiene derecho a una información que entienda: se le explica de nuevo con palabras sencillas, y la doctora vuelve para lo que es médico ⚕️.",
+    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Una indicación verbal: se repite, se anota, y la doctora la registra ella misma (regla de la institución) ⚕️."
+   },
+   "sens": {
+    "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "El Sr. Brandt debe levantarse hoy y caminar un poco.",
+    "A2 | Er muss viel trinken.": "Tiene que beber mucho.",
+    "A2 | Er darf das Bein noch nicht ganz belasten.": "Todavía no puede apoyar todo el peso en la pierna.",
+    "A2 | Die Ärztin schaut sich das Röntgenbild an.": "La doctora mira la radiografía.",
+    "A2 | Haben Sie noch Schmerzen?": "¿Todavía tiene dolor?",
+    "A2 | Elif schreibt alles auf.": "Elif lo anota todo.",
+    "B1 | Die Ärztin setzt das Schmerzmittel ab.": "La doctora suspende el analgésico.",
+    "B1 | Die Ärztin erhöht die Dosis vom Blutdruckmittel.": "La doctora aumenta la dosis del medicamento para la presión.",
+    "B1 | Die Ärztin reduziert das Blutdruckmittel.": "La doctora reduce el medicamento para la presión.",
+    "B1 | Die Ärztin hat Krankengymnastik angeordnet.": "La doctora indicó fisioterapia.",
+    "B1 | Wegen der Entzündung setzt die Ärztin ein Antibiotikum an.": "Por la inflamación, la doctora inicia un antibiótico.",
+    "B1 | Die Infusion kann heute abgehängt werden.": "El suero se puede retirar hoy.",
+    "B2 | Die Ärztin hat gesagt, der Patient solle ab morgen mobilisiert werden.": "La doctora dijo que el paciente debía ser movilizado a partir de mañana.",
+    "B2 | Sie hat gesagt, dass die Infusion heute Abend abgehängt wird.": "Dijo que el suero se retira hoy en la noche.",
+    "B2 | Herr Brandt sagt, er könne schon allein aufstehen.": "El Sr. Brandt dice que ya puede levantarse solo.",
+    "B2 | Die Ärztin hat gefragt, ob er nachts gut schläft.": "La doctora preguntó si duerme bien de noche.",
+    "B2 | Laut Ärztin soll der Verband morgen gewechselt werden.": "Según la doctora, el vendaje debe cambiarse mañana.",
+    "B2 | Die Ärztin hat angeordnet, dass er zweimal am Tag aufsteht.": "La doctora indicó que se levante dos veces al día.",
+    "C1 | Entschuldigung, darf ich kurz nachfragen?": "Disculpe, ¿puedo hacer una pregunta rápida?",
+    "C1 | Habe ich Sie richtig verstanden, dass die Infusion heute Abend abgehängt wird?": "¿Le entendí bien que el suero se retira hoy en la noche?",
+    "C1 | Könnten Sie mir die Dosis bitte noch einmal nennen?": "¿Podría decirme la dosis otra vez, por favor?",
+    "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "Todavía no me queda del todo claro si puede levantarse solo.",
+    "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "¿Podría además registrar la indicación por escrito, por favor?",
+    "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Repito brevemente: a partir de hoy en la noche, dos tabletas en lugar de una, ¿correcto?",
+    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Le pregunto a la doctora antes de dar el medicamento.",
+    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "Se lo explico otra vez con palabras sencillas y, si hace falta, le pregunto a la doctora.",
+    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Repito la indicación, la anoto y le pido a ella que la registre."
    }
   }
  }

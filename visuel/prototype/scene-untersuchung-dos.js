@@ -24,7 +24,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     },
     {
      "mot": "Körper",
@@ -39,7 +40,8 @@ window.SCENE = {
      "pt": "corpo",
      "ar": "جسم",
      "pl": "ciało",
-     "ru": "тело"
+     "ru": "тело",
+     "es": "el cuerpo"
     }
    ],
    "sur": null,
@@ -72,7 +74,8 @@ window.SCENE = {
    "pt": "paciente",
    "ar": "مريض",
    "pl": "pacjent",
-   "ru": "пациент, больной"
+   "ru": "пациент, больной",
+   "es": "el paciente"
   },
   {
    "id": "kopf",
@@ -101,7 +104,8 @@ window.SCENE = {
    "pt": "cabeça",
    "ar": "رأس",
    "pl": "głowa",
-   "ru": "голова"
+   "ru": "голова",
+   "es": "la cabeza"
   },
   {
    "id": "haar",
@@ -130,7 +134,8 @@ window.SCENE = {
    "pt": "cabelo",
    "ar": "شعر",
    "pl": "włos, włosy",
-   "ru": "волосы"
+   "ru": "волосы",
+   "es": "el pelo, el cabello"
   },
   {
    "id": "ohr",
@@ -165,7 +170,8 @@ window.SCENE = {
    "pt": "orelha, ouvido",
    "ar": "أذن",
    "pl": "ucho",
-   "ru": "ухо"
+   "ru": "ухо",
+   "es": "la oreja, el oído"
   },
   {
    "id": "nacken",
@@ -189,7 +195,8 @@ window.SCENE = {
      "pt": "pescoço, garganta",
      "ar": "رقبة، حلق",
      "pl": "szyja, gardło",
-     "ru": "шея, горло"
+     "ru": "шея, горло",
+     "es": "el cuello, la garganta"
     }
    ],
    "sur": "mark",
@@ -210,7 +217,8 @@ window.SCENE = {
    "pt": "nuca",
    "ar": "مؤخرة العنق، القفا",
    "pl": "kark",
-   "ru": "затылок, шея сзади"
+   "ru": "затылок, шея сзади",
+   "es": "la nuca"
   },
   {
    "id": "schulter",
@@ -245,7 +253,8 @@ window.SCENE = {
    "pt": "ombro",
    "ar": "كتف",
    "pl": "ramię, bark",
-   "ru": "плечо"
+   "ru": "плечо",
+   "es": "el hombro"
   },
   {
    "id": "schulterblatt",
@@ -280,7 +289,8 @@ window.SCENE = {
    "pt": "omoplata, escápula",
    "ar": "لوح الكتف",
    "pl": "łopatka",
-   "ru": "лопатка"
+   "ru": "лопатка",
+   "es": "el omóplato"
   },
   {
    "id": "wirbelsaeule",
@@ -309,7 +319,8 @@ window.SCENE = {
    "pt": "coluna vertebral",
    "ar": "العمود الفقري",
    "pl": "kręgosłup",
-   "ru": "позвоночник"
+   "ru": "позвоночник",
+   "es": "la columna vertebral"
   },
   {
    "id": "ruecken",
@@ -338,7 +349,8 @@ window.SCENE = {
    "pt": "costas",
    "ar": "ظهر",
    "pl": "plecy",
-   "ru": "спина"
+   "ru": "спина",
+   "es": "la espalda"
   },
   {
    "id": "po",
@@ -362,7 +374,8 @@ window.SCENE = {
      "pt": "nádegas, bumbum",
      "ar": "الأرداف، المؤخّرة",
      "pl": "pośladki",
-     "ru": "ягодицы"
+     "ru": "ягодицы",
+     "es": "los glúteos, las nalgas"
     },
     {
      "mot": "Unterhose",
@@ -377,7 +390,8 @@ window.SCENE = {
      "pt": "cueca, calcinha",
      "ar": "سروال داخلي",
      "pl": "majtki, slipy",
-     "ru": "трусы"
+     "ru": "трусы",
+     "es": "los calzoncillos"
     }
    ],
    "sur": "mark",
@@ -398,7 +412,8 @@ window.SCENE = {
    "pt": "bumbum",
    "ar": "مؤخّرة",
    "pl": "pupa, pośladki",
-   "ru": "попа"
+   "ru": "попа",
+   "es": "el trasero, las nalgas"
   },
   {
    "id": "arm-l",
@@ -433,7 +448,8 @@ window.SCENE = {
    "pt": "braço",
    "ar": "ذراع",
    "pl": "ręka, ramię",
-   "ru": "рука"
+   "ru": "рука",
+   "es": "el brazo"
   },
   {
    "id": "arm-r",
@@ -468,7 +484,8 @@ window.SCENE = {
    "pt": "braço",
    "ar": "ذراع",
    "pl": "ręka, ramię",
-   "ru": "рука"
+   "ru": "рука",
+   "es": "el brazo"
   },
   {
    "id": "ellbogen",
@@ -503,7 +520,8 @@ window.SCENE = {
    "pt": "cotovelo",
    "ar": "مرفق، كوع",
    "pl": "łokieć",
-   "ru": "локоть"
+   "ru": "локоть",
+   "es": "el codo"
   },
   {
    "id": "hand-l",
@@ -532,7 +550,8 @@ window.SCENE = {
    "pt": "mão",
    "ar": "يد",
    "pl": "ręka, dłoń",
-   "ru": "рука (кисть)"
+   "ru": "рука (кисть)",
+   "es": "la mano"
   },
   {
    "id": "hand-r",
@@ -561,7 +580,8 @@ window.SCENE = {
    "pt": "mão",
    "ar": "يد",
    "pl": "ręka, dłoń",
-   "ru": "рука (кисть)"
+   "ru": "рука (кисть)",
+   "es": "la mano"
   },
   {
    "id": "handflaeche-r",
@@ -590,7 +610,8 @@ window.SCENE = {
    "pt": "palma da mão",
    "ar": "راحة اليد",
    "pl": "dłoń, wnętrze dłoni",
-   "ru": "ладонь"
+   "ru": "ладонь",
+   "es": "la palma (de la mano)"
   },
   {
    "id": "oberschenkel",
@@ -625,7 +646,8 @@ window.SCENE = {
    "pt": "coxa",
    "ar": "فخذ",
    "pl": "udo",
-   "ru": "бедро"
+   "ru": "бедро",
+   "es": "el muslo"
   },
   {
    "id": "kniekehle",
@@ -660,7 +682,8 @@ window.SCENE = {
    "pt": "dobra de trás do joelho",
    "ar": "باطن الركبة",
    "pl": "dół podkolanowy",
-   "ru": "подколенная ямка"
+   "ru": "подколенная ямка",
+   "es": "la corva (parte de atrás de la rodilla)"
   },
   {
    "id": "wade",
@@ -695,7 +718,8 @@ window.SCENE = {
    "pt": "panturrilha",
    "ar": "ربلة الساق",
    "pl": "łydka",
-   "ru": "икра (ноги)"
+   "ru": "икра (ноги)",
+   "es": "la pantorrilla"
   },
   {
    "id": "bein-l",
@@ -724,7 +748,8 @@ window.SCENE = {
    "pt": "perna",
    "ar": "ساق",
    "pl": "noga",
-   "ru": "нога"
+   "ru": "нога",
+   "es": "la pierna"
   },
   {
    "id": "bein-r",
@@ -753,7 +778,8 @@ window.SCENE = {
    "pt": "perna",
    "ar": "ساق",
    "pl": "noga",
-   "ru": "нога"
+   "ru": "нога",
+   "es": "la pierna"
   },
   {
    "id": "ferse",
@@ -788,7 +814,8 @@ window.SCENE = {
    "pt": "calcanhar",
    "ar": "كعب القدم",
    "pl": "pięta",
-   "ru": "пятка"
+   "ru": "пятка",
+   "es": "el talón"
   },
   {
    "id": "fuss-l",
@@ -817,7 +844,8 @@ window.SCENE = {
    "pt": "pé",
    "ar": "قدم",
    "pl": "stopa",
-   "ru": "нога (ступня)"
+   "ru": "нога (ступня)",
+   "es": "el pie"
   },
   {
    "id": "fuss-r",
@@ -846,7 +874,8 @@ window.SCENE = {
    "pt": "pé",
    "ar": "قدم",
    "pl": "stopa",
-   "ru": "нога (ступня)"
+   "ru": "нога (ступня)",
+   "es": "el pie"
   },
   {
    "id": "aerztin",
@@ -870,7 +899,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     }
    ],
    "sur": null,
@@ -903,7 +933,8 @@ window.SCENE = {
    "pt": "médica",
    "ar": "طبيبة",
    "pl": "lekarka",
-   "ru": "врач (женщина)"
+   "ru": "врач (женщина)",
+   "es": "la doctora, la médica"
   },
   {
    "id": "hand-aerztin-haut",
@@ -932,7 +963,8 @@ window.SCENE = {
    "pt": "mão",
    "ar": "يد",
    "pl": "ręka, dłoń",
-   "ru": "рука (кисть)"
+   "ru": "рука (кисть)",
+   "es": "la mano"
   },
   {
    "id": "hand-aerztin-bas",
@@ -961,7 +993,8 @@ window.SCENE = {
    "pt": "mão",
    "ar": "يد",
    "pl": "ręka, dłoń",
-   "ru": "рука (кисть)"
+   "ru": "рука (кисть)",
+   "es": "la mano"
   },
   {
    "id": "stethoskop",
@@ -996,7 +1029,8 @@ window.SCENE = {
    "pt": "estetoscópio",
    "ar": "سمّاعة الطبيب",
    "pl": "stetoskop",
-   "ru": "стетоскоп"
+   "ru": "стетоскоп",
+   "es": "el estetoscopio"
   },
   {
    "id": "waage",
@@ -1037,7 +1071,8 @@ window.SCENE = {
    "pt": "balança",
    "ar": "ميزان",
    "pl": "waga (kuchenna)",
-   "ru": "весы"
+   "ru": "весы",
+   "es": "la báscula, la balanza"
   },
   {
    "id": "wand",
@@ -1066,7 +1101,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -1095,7 +1131,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   },
   {
    "id": "handflaeche-l",
@@ -1125,7 +1162,8 @@ window.SCENE = {
    "pt": "palma da mão",
    "ar": "راحة اليد",
    "pl": "dłoń, wnętrze dłoni",
-   "ru": "ладонь"
+   "ru": "ладонь",
+   "es": "la palma (de la mano)"
   },
   {
    "id": "finger-dos",
@@ -1155,7 +1193,8 @@ window.SCENE = {
    "pt": "dedo",
    "ar": "إصبع",
    "pl": "palec",
-   "ru": "палец"
+   "ru": "палец",
+   "es": "el dedo"
   }
  ],
  "grosPlans": [
@@ -2086,6 +2125,73 @@ window.SCENE = {
     "C1 | Mark soll nie ernsthaft krank gewesen sein.": "Говорят, Марк никогда серьёзно не болел.",
     "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "Его прямая осанка, вероятно, от занятий спортом.",
     "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Если бы она ничего не услышала, она давно бы закончила."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Mark, de espaldas, en bóxer azul marino, descalzo, con las palmas hacia nosotros; su doctora le ausculta la espalda con el estetoscopio.",
+    "consigne": "Toca una parte del cuerpo de Mark, visto de espaldas. Toca su mano izquierda para verla de cerca.",
+    "nom_vue": "Mark, de espaldas",
+    "autre_vue": "↻ Girar a Mark"
+   },
+   "couches": {
+    "A1": "El cuerpo humano, de espaldas",
+    "A2": "Wo? — las preposiciones y el cuerpo",
+    "B1": "Las indicaciones de la doctora",
+    "B2": "Pasiva y relativas",
+    "C1": "Suposiciones y Konjunktiv II"
+   },
+   "questions": {
+    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "der Rücken → auf <b>seinem</b> Rücken (dativo masculino).",
+    "A2 | Die Ärztin steht neben dem Patienten.": "<b>neben</b> + dativo: dem Patient<b>en</b>.",
+    "A2 | Seine Hände sind neben seinem Po.": "der Po → neben <b>seinem</b> Po (dativo).",
+    "A2 | Die Wirbelsäule ist zwischen den Schulterblättern.": "<b>zwischen</b> + dativo plural: <b>den</b> Schulterblätter<b>n</b>.",
+    "A2 | Die Waden sind unter den Kniekehlen.": "<b>unter</b> + dativo plural: <b>den</b> Kniekehle<b>n</b>.",
+    "A2 | Die Waage steht an der Wand.": "<b>an</b> + dativo: an <b>der</b> Wand.",
+    "B1 | Bitte drehen Sie sich um!": "<b>sich umdrehen</b> = darse la vuelta. La partícula separable va al final del imperativo.",
+    "B1 | Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.": "Participio II de un verbo separable: <b>um-ge-dreht</b>. <b>damit</b> = para que.",
+    "B1 | Die Ärztin setzt das Stethoskop auf seinen Rücken.": "Movimiento → <b>setzen</b> + acusativo: auf <b>seinen</b> Rücken.",
+    "B1 | Er lässt seine Arme locker hängen.": "<b>lassen</b> + infinitivo: dejar (colgar).",
+    "B1 | Er hält die Hände so, dass man die Handflächen sieht.": "<b>man</b> se conjuga en 3.ª persona del singular, como «uno»: man <b>sieht</b>.",
+    "B1 | Atmen Sie bitte ruhig aus und ein!": "<b>ausatmen</b> = exhalar, <b>einatmen</b> = inhalar.",
+    "B2 | Sein Rücken wird gerade abgehört.": "Pasiva de acción: <b>werden</b> + participio II.",
+    "B2 | Das ist der Patient, dessen Rücken die Ärztin abhört.": "Posesión, antecedente masculino → <b>dessen</b> (cuya espalda).",
+    "B2 | Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.": "Posesión, antecedente femenino → <b>deren</b> (cuyo estetoscopio).",
+    "B2 | Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.": "<b>nachdem</b> + Plusquamperfekt. Un verbo reflexivo toma <b>haben</b>.",
+    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "Pasiva con verbo modal: participio II + <b>werden</b> + modal (kann).",
+    "B2 | Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.": "Pronombre relativo en dativo plural: <b>denen</b>, no «den».",
+    "C1 | Er dürfte schon oft abgehört worden sein.": "<b>dürfte</b> + infinitivo perfecto de la pasiva: suposición probable sobre el pasado.",
+    "C1 | Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.": "Irreal del pasado: <b>hätte</b> + participio II (gesagt).",
+    "C1 | Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.": "Konjunktiv II de <b>hören</b> = <b>hörte</b> (la misma forma que el Präteritum).",
+    "C1 | Mark soll nie ernsthaft krank gewesen sein.": "<b>sollen</b> + infinitivo perfecto: se cuenta, sin garantizarlo.",
+    "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "<b>dürfte</b> = suposición probable de quien habla.",
+    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Condición sin <b>wenn</b>, con el verbo al principio; irreal del pasado con <b>hätte</b>."
+   },
+   "sens": {
+    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "La doctora sostiene el estetoscopio sobre su espalda.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "La doctora está de pie al lado del paciente.",
+    "A2 | Seine Hände sind neben seinem Po.": "Sus manos están al lado de sus nalgas.",
+    "A2 | Die Wirbelsäule ist zwischen den Schulterblättern.": "La columna vertebral está entre los omóplatos.",
+    "A2 | Die Waden sind unter den Kniekehlen.": "Las pantorrillas están debajo de las corvas.",
+    "A2 | Die Waage steht an der Wand.": "La báscula está contra la pared.",
+    "B1 | Bitte drehen Sie sich um!": "¡Dese la vuelta, por favor!",
+    "B1 | Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.": "Mark se dio la vuelta para que ella pueda auscultarle la espalda.",
+    "B1 | Die Ärztin setzt das Stethoskop auf seinen Rücken.": "La doctora le pone el estetoscopio en la espalda.",
+    "B1 | Er lässt seine Arme locker hängen.": "Deja colgar los brazos, relajados.",
+    "B1 | Er hält die Hände so, dass man die Handflächen sieht.": "Pone las manos de modo que se vean las palmas.",
+    "B1 | Atmen Sie bitte ruhig aus und ein!": "¡Exhale e inhale con calma, por favor!",
+    "B2 | Sein Rücken wird gerade abgehört.": "Le están auscultando la espalda.",
+    "B2 | Das ist der Patient, dessen Rücken die Ärztin abhört.": "Ese es el paciente cuya espalda ausculta la doctora.",
+    "B2 | Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.": "La doctora, cuyo estetoscopio está sobre su espalda, escucha con atención.",
+    "B2 | Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.": "Después de que él se dio la vuelta, ella le auscultó la espalda.",
+    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "Antes de que se le pueda auscultar la espalda, tiene que inhalar profundo.",
+    "B2 | Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.": "Los omóplatos, entre los cuales se encuentra la columna vertebral, se ven bien.",
+    "C1 | Er dürfte schon oft abgehört worden sein.": "Probablemente ya lo han auscultado muchas veces.",
+    "C1 | Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.": "Si tuviera dolor de espalda, se lo habría dicho a la doctora.",
+    "C1 | Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.": "Suponiendo que oyera un ruido, lo mandaría a hacerse una radiografía.",
+    "C1 | Mark soll nie ernsthaft krank gewesen sein.": "Dicen que Mark nunca ha estado gravemente enfermo.",
+    "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "Su postura erguida probablemente viene de todo el deporte que hace.",
+    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Si no hubiera oído nada, habría parado hace rato."
    }
   }
  }

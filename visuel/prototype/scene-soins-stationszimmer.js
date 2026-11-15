@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "tafel",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "quadro (lousa)",
    "ar": "سبّورة",
    "pl": "tablica",
-   "ru": "доска"
+   "ru": "доска",
+   "es": "la pizarra"
   },
   {
    "id": "pinnwand",
@@ -203,7 +205,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "desinfektionsmittel",
@@ -261,7 +264,8 @@ window.SCENE = {
    "pt": "geladeira",
    "ar": "ثلّاجة",
    "pl": "lodówka",
-   "ru": "холодильник"
+   "ru": "холодильник",
+   "es": "el refrigerador"
   },
   {
    "id": "computer",
@@ -285,7 +289,8 @@ window.SCENE = {
      "pt": "tela",
      "ar": "شاشة",
      "pl": "ekran",
-     "ru": "экран"
+     "ru": "экран",
+     "es": "la pantalla"
     }
    ],
    "sur": "schreibtisch",
@@ -306,7 +311,8 @@ window.SCENE = {
    "pt": "computador",
    "ar": "حاسوب",
    "pl": "komputer",
-   "ru": "компьютер"
+   "ru": "компьютер",
+   "es": "la computadora"
   },
   {
    "id": "tastatur",
@@ -335,7 +341,8 @@ window.SCENE = {
    "pt": "teclado",
    "ar": "لوحة المفاتيح",
    "pl": "klawiatura",
-   "ru": "клавиатура"
+   "ru": "клавиатура",
+   "es": "el teclado"
   },
   {
    "id": "maus",
@@ -364,7 +371,8 @@ window.SCENE = {
    "pt": "rato",
    "ar": "فأر",
    "pl": "mysz",
-   "ru": "мышь"
+   "ru": "мышь",
+   "es": "el ratón"
   },
   {
    "id": "telefon",
@@ -393,7 +401,8 @@ window.SCENE = {
    "pt": "telefone",
    "ar": "هاتف",
    "pl": "telefon",
-   "ru": "телефон"
+   "ru": "телефон",
+   "es": "el teléfono"
   },
   {
    "id": "drucker",
@@ -422,7 +431,8 @@ window.SCENE = {
    "pt": "impressora",
    "ar": "طابعة",
    "pl": "drukarka",
-   "ru": "принтер"
+   "ru": "принтер",
+   "es": "la impresora"
   },
   {
    "id": "klemmbrett",
@@ -509,7 +519,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "blutdruckmessgeraet",
@@ -625,7 +636,8 @@ window.SCENE = {
    "pt": "escrivaninha",
    "ar": "مكتب (قطعة أثاث)",
    "pl": "biurko",
-   "ru": "письменный стол"
+   "ru": "письменный стол",
+   "es": "el escritorio"
   },
   {
    "id": "stuhl",
@@ -654,7 +666,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "medikamentenwagen",
@@ -741,7 +754,8 @@ window.SCENE = {
    "pt": "comprimido",
    "ar": "قرص دواء",
    "pl": "tabletka",
-   "ru": "таблетка"
+   "ru": "таблетка",
+   "es": "la pastilla, la tableta"
   },
   {
    "id": "handschuhe",
@@ -770,7 +784,8 @@ window.SCENE = {
    "pt": "luva",
    "ar": "قفاز",
    "pl": "rękawiczka",
-   "ru": "перчатка"
+   "ru": "перчатка",
+   "es": "el guante"
   },
   {
    "id": "handschuhe-2",
@@ -799,7 +814,8 @@ window.SCENE = {
    "pt": "luva",
    "ar": "قفاز",
    "pl": "rękawiczka",
-   "ru": "перчатка"
+   "ru": "перчатка",
+   "es": "el guante"
   },
   {
    "id": "abwurfbehaelter",
@@ -1827,6 +1843,78 @@ window.SCENE = {
     "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Я запираю его и сразу сообщаю старшей медсестре отделения.",
     "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Я сразу сообщаю ответственной медсестре или медбрату.",
     "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Я осторожно поднимаю её и выбрасываю в контейнер для игл."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "La estación de enfermería de un servicio hospitalario, vacía por un momento: en la pared, una pizarra magnética, el horario de turnos del equipo y un reloj; un armario de medicamentos con puertas de vidrio, una pequeña caja fuerte gris cerrada; sobre el escritorio, la computadora, el teléfono, la impresora, la hoja de entrega de turno, un café, el tensiómetro; el carrito de medicamentos, el contenedor amarillo para agujas, el refrigerador y el carro de paro rojo con su desfibrilador.",
+    "consigne": "Toca un objeto de la estación de enfermería."
+   },
+   "couches": {
+    "A1": "Los objetos de la estación de enfermería",
+    "A2": "La hora del turno",
+    "B1": "Los verbos separables del servicio",
+    "B2": "Los modales de la norma",
+    "C1": "El Konjunktiv I de las indicaciones",
+    "SIT": "¿Qué haces?"
+   },
+   "questions": {
+    "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "En el trabajo, la hora <b>oficial</b>, de veinticuatro horas: dreizehn Uhr dreißig.",
+    "A2 | Es ist halb zwei.": "<b>halb zwei</b> = la 1:30: la media ANTES de las dos. ¡La trampa para los hispanohablantes!",
+    "A2 | Die Übergabe beginnt um dreizehn Uhr fünfzehn, also um Viertel nach eins.": "<b>Viertel nach eins</b> = la una y cuarto; <b>Viertel vor zwei</b> = cuarto para las dos.",
+    "A2 | Der Nachtdienst dauert von zweiundzwanzig bis sechs Uhr.": "<b>von … bis …</b> = de … a …",
+    "A2 | Ich habe am Wochenende Dienst.": "<b>am</b> + día o Wochenende; <b>um</b> + hora; <b>im</b> + mes.",
+    "A2 | Nach Donnerstag kommt Freitag.": "Los días del horario de turnos: Montag, Dienstag, Mittwoch, Donnerstag, <b>Freitag</b>, Samstag, Sonntag.",
+    "B1 | Jonas stellt die Tabletten für den Abend bereit.": "<b>bereitstellen</b>: el verbo conjugado en la 2.ª posición, la partícula <b>bereit</b> al final.",
+    "B1 | Kannst du morgen für Yusuf einspringen? Er ist krank.": "Con un modal, el verbo separable queda entero al final: <b>einspringen</b> (cubrir a alguien de improviso). Entre colegas: <b>du</b>.",
+    "B1 | Bitte zeichnen Sie die Gabe im Plan ab.": "<b>abzeichnen</b> = firmar con iniciales lo que se dio o se hizo ⚕️. En imperativo, <b>ab</b> va al final.",
+    "B1 | Ich habe den Blutdruck schon in die Akte eingetragen.": "El participio de un verbo separable: ein<b>ge</b>tragen (el ge- entre la partícula y el verbo).",
+    "B1 | Die Handschuhe sind fast leer. Ich fülle sie gleich nach.": "<b>nachfüllen</b> = reponer lo que falta; <b>nach</b> va al final.",
+    "B1 | Frau Hoffmann ist im Gespräch. Sie ruft Sie gleich zurück.": "<b>zurückrufen</b> = devolver la llamada; <b>anrufen</b> = llamar.",
+    "B2 | Betäubungsmittel dürfen nur im verschlossenen Schrank aufbewahrt werden.": "<b>dürfen nur</b> = solo se permite: todo lo demás está prohibido ⚕️. Modal + participio + <b>werden</b>: la pasiva.",
+    "B2 | Gebrauchte Nadeln dürfen nicht in den normalen Müll geworfen werden.": "<b>nicht dürfen</b> = prohibido; <b>nicht müssen</b> = no es obligatorio. ¡Cuidado: «no debe» prohíbe en español, pero «nicht müssen» no!",
+    "B2 | Die Temperatur im Medikamentenkühlschrank muss jeden Tag kontrolliert werden.": "<b>müssen</b> = una obligación sin excepción ⚕️.",
+    "B2 | Laut Hygieneplan sollen wir nach dem Ausziehen der Handschuhe die Hände desinfizieren.": "<b>sollen</b> = la norma viene de otra parte (el plan de higiene, la jefa de la unidad).",
+    "B2 | Der Notfallwagen muss immer vollständig sein.": "<b>muss</b>: se revisa según la norma de la institución ⚕️.",
+    "B2 | Am Telefon dürfen wir keine Auskunft über Patienten geben.": "<b>keine … dürfen</b> = prohibición: el secreto profesional ⚕️.",
+    "C1 | Die Ärztin sagte, die Patientin solle nüchtern bleiben.": "Estilo indirecto por escrito: Konjunktiv I (<b>solle</b>). Al hablar, se oye a menudo «soll».",
+    "C1 | Herr Brandt gab an, er habe keine Schmerzen.": "<b>angeben</b> + Konjunktiv I: se refiere lo que dice el paciente, sin confirmarlo.",
+    "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Konjunktiv I de sein: <b>sei</b>; aquí con una pasiva en pasado (sei … geändert worden).",
+    "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I de werden: <b>werde</b> (er / sie werde).",
+    "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "El pasado en estilo indirecto: <b>habe</b> + participio (schlafen va con haben).",
+    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "El secreto profesional: no se sabe quién llama, y el diagnóstico le corresponde decirlo al médico ⚕️.",
+    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Los estupefacientes están bajo llave y la llave la lleva consigo una persona; una diferencia se reporta enseguida ⚕️.",
+    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Los medicamentos que salieron del frío pueden echarse a perder: se avisa sin esperar, y se documenta ⚕️.",
+    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Todo lo que pincha va al contenedor, nunca a la basura: alguien podría lastimarse ⚕️."
+   },
+   "sens": {
+    "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "El turno de la tarde empieza a las 13:30.",
+    "A2 | Es ist halb zwei.": "Es la una y media.",
+    "A2 | Die Übergabe beginnt um dreizehn Uhr fünfzehn, also um Viertel nach eins.": "La entrega de turno empieza a las 13:15, o sea, a la una y cuarto.",
+    "A2 | Der Nachtdienst dauert von zweiundzwanzig bis sechs Uhr.": "El turno de la noche dura de las 22:00 a las 6:00.",
+    "A2 | Ich habe am Wochenende Dienst.": "Tengo turno el fin de semana.",
+    "A2 | Nach Donnerstag kommt Freitag.": "Después del jueves viene el viernes.",
+    "B1 | Jonas stellt die Tabletten für den Abend bereit.": "Jonas deja listas las pastillas para la noche.",
+    "B1 | Kannst du morgen für Yusuf einspringen? Er ist krank.": "¿Puedes cubrir a Yusuf mañana? Está enfermo.",
+    "B1 | Bitte zeichnen Sie die Gabe im Plan ab.": "Por favor, firme la administración en el plan.",
+    "B1 | Ich habe den Blutdruck schon in die Akte eingetragen.": "Ya anoté la presión arterial en el expediente.",
+    "B1 | Die Handschuhe sind fast leer. Ich fülle sie gleich nach.": "Casi no quedan guantes. Enseguida los repongo.",
+    "B1 | Frau Hoffmann ist im Gespräch. Sie ruft Sie gleich zurück.": "La Sra. Hoffmann está atendiendo a alguien. Enseguida le devuelve la llamada.",
+    "B2 | Betäubungsmittel dürfen nur im verschlossenen Schrank aufbewahrt werden.": "Los estupefacientes solo pueden guardarse en el armario cerrado con llave.",
+    "B2 | Gebrauchte Nadeln dürfen nicht in den normalen Müll geworfen werden.": "Las agujas usadas no deben tirarse a la basura común.",
+    "B2 | Die Temperatur im Medikamentenkühlschrank muss jeden Tag kontrolliert werden.": "La temperatura del refrigerador de medicamentos debe controlarse todos los días.",
+    "B2 | Laut Hygieneplan sollen wir nach dem Ausziehen der Handschuhe die Hände desinfizieren.": "Según el plan de higiene, debemos desinfectarnos las manos después de quitarnos los guantes.",
+    "B2 | Der Notfallwagen muss immer vollständig sein.": "El carro de paro debe estar siempre completo.",
+    "B2 | Am Telefon dürfen wir keine Auskunft über Patienten geben.": "Por teléfono no podemos dar información sobre pacientes.",
+    "C1 | Die Ärztin sagte, die Patientin solle nüchtern bleiben.": "La doctora dijo que la paciente debía permanecer en ayunas.",
+    "C1 | Herr Brandt gab an, er habe keine Schmerzen.": "El Sr. Brandt indicó que no tenía dolor.",
+    "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "La Sra. Hoffmann comunicó que el horario de turnos había sido modificado.",
+    "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "La hija comentó por teléfono que su madre se marea a menudo en casa.",
+    "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "El turno de la noche informó que la Sra. Lehmann había dormido intranquila.",
+    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "Por teléfono no puedo dar información. Le comunico con la doctora.",
+    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Lo cierro con llave e informo enseguida a la jefa de la unidad.",
+    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Aviso enseguida a la enfermera o al enfermero responsable.",
+    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "La recojo con cuidado y la tiro en el contenedor para agujas."
    }
   }
  }

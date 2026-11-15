@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "cobertor",
    "ar": "بطانية",
    "pl": "koc",
-   "ru": "одеяло, плед"
+   "ru": "одеяло, плед",
+   "es": "la cobija, la manta"
   },
   {
    "id": "wand",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   },
   {
    "id": "lampe",
@@ -111,7 +114,8 @@ window.SCENE = {
      "pt": "cúpula (de abajur)",
      "ar": "غطاء المصباح",
      "pl": "abażur",
-     "ru": "абажур"
+     "ru": "абажур",
+     "es": "la pantalla (de lámpara)"
     }
    ],
    "sur": null,
@@ -132,7 +136,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "regenschirm",
@@ -161,7 +166,8 @@ window.SCENE = {
    "pt": "guarda-chuva",
    "ar": "مظلّة",
    "pl": "parasol",
-   "ru": "зонт"
+   "ru": "зонт",
+   "es": "el paraguas"
   },
   {
    "id": "schrank",
@@ -190,7 +196,8 @@ window.SCENE = {
    "pt": "armário",
    "ar": "خزانة",
    "pl": "szafa",
-   "ru": "шкаф"
+   "ru": "шкаф",
+   "es": "el armario, el clóset"
   },
   {
    "id": "ball",
@@ -214,7 +221,8 @@ window.SCENE = {
      "pt": "futebol",
      "ar": "كرة القدم",
      "pl": "piłka nożna",
-     "ru": "футбол"
+     "ru": "футбол",
+     "es": "el fútbol"
     }
    ],
    "sur": "schrank",
@@ -235,7 +243,8 @@ window.SCENE = {
    "pt": "bola",
    "ar": "كرة",
    "pl": "piłka",
-   "ru": "мяч"
+   "ru": "мяч",
+   "es": "la pelota, el balón"
   },
   {
    "id": "bild",
@@ -259,7 +268,8 @@ window.SCENE = {
      "pt": "pintura, quadro",
      "ar": "لوحة زيتية",
      "pl": "obraz (malowany)",
-     "ru": "картина (живопись)"
+     "ru": "картина (живопись)",
+     "es": "el cuadro, la pintura"
     }
    ],
    "sur": "wand",
@@ -280,7 +290,8 @@ window.SCENE = {
    "pt": "quadro",
    "ar": "صورة، لوحة",
    "pl": "obraz",
-   "ru": "картина, изображение"
+   "ru": "картина, изображение",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "fenster",
@@ -309,7 +320,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "heizkoerper",
@@ -338,7 +350,8 @@ window.SCENE = {
    "pt": "aquecedor (radiador)",
    "ar": "مشعاع التدفئة",
    "pl": "grzejnik, kaloryfer",
-   "ru": "батарея (отопления)"
+   "ru": "батарея (отопления)",
+   "es": "el radiador"
   },
   {
    "id": "pflanze",
@@ -362,7 +375,8 @@ window.SCENE = {
      "pt": "pisca-pisca, cordão de luzes",
      "ar": "سلسلة أضواء",
      "pl": "girlanda świetlna, lampki",
-     "ru": "гирлянда"
+     "ru": "гирлянда",
+     "es": "la guirnalda de luces"
     }
    ],
    "sur": null,
@@ -383,7 +397,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "stehlampe",
@@ -407,7 +422,8 @@ window.SCENE = {
      "pt": "luminária",
      "ar": "مصباح",
      "pl": "lampa",
-     "ru": "лампа"
+     "ru": "лампа",
+     "es": "la lámpara"
     },
     {
      "mot": "Lampenschirm",
@@ -422,7 +438,8 @@ window.SCENE = {
      "pt": "cúpula (de abajur)",
      "ar": "غطاء المصباح",
      "pl": "abażur",
-     "ru": "абажур"
+     "ru": "абажур",
+     "es": "la pantalla (de lámpara)"
     }
    ],
    "sur": null,
@@ -443,7 +460,8 @@ window.SCENE = {
    "pt": "luminária de chão",
    "ar": "مصباح أرضي",
    "pl": "lampa stojąca",
-   "ru": "торшер"
+   "ru": "торшер",
+   "es": "la lámpara de pie"
   },
   {
    "id": "socke",
@@ -472,7 +490,8 @@ window.SCENE = {
    "pt": "meia",
    "ar": "جورب",
    "pl": "skarpetka",
-   "ru": "носок"
+   "ru": "носок",
+   "es": "el calcetín, la media"
   },
   {
    "id": "regal",
@@ -501,7 +520,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "goldfisch",
@@ -525,7 +545,8 @@ window.SCENE = {
      "pt": "peixe",
      "ar": "سمكة",
      "pl": "ryba",
-     "ru": "рыба"
+     "ru": "рыба",
+     "es": "el pez, el pescado"
     }
    ],
    "sur": "regal",
@@ -546,7 +567,8 @@ window.SCENE = {
    "pt": "peixinho dourado",
    "ar": "سمكة ذهبية",
    "pl": "złota rybka",
-   "ru": "золотая рыбка"
+   "ru": "золотая рыбка",
+   "es": "el pez dorado"
   },
   {
    "id": "fahrrad",
@@ -575,7 +597,8 @@ window.SCENE = {
    "pt": "bicicleta",
    "ar": "درّاجة",
    "pl": "rower",
-   "ru": "велосипед"
+   "ru": "велосипед",
+   "es": "la bicicleta"
   },
   {
    "id": "tuer",
@@ -604,7 +627,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "sofa",
@@ -633,7 +657,8 @@ window.SCENE = {
    "pt": "sofá",
    "ar": "أريكة، كنبة",
    "pl": "kanapa",
-   "ru": "диван"
+   "ru": "диван",
+   "es": "el sofá"
   },
   {
    "id": "buch",
@@ -662,7 +687,8 @@ window.SCENE = {
    "pt": "livro",
    "ar": "كتاب",
    "pl": "książka",
-   "ru": "книга"
+   "ru": "книга",
+   "es": "el libro"
   },
   {
    "id": "gitarre",
@@ -691,7 +717,8 @@ window.SCENE = {
    "pt": "violão, guitarra",
    "ar": "غيتار",
    "pl": "gitara",
-   "ru": "гитара"
+   "ru": "гитара",
+   "es": "la guitarra"
   },
   {
    "id": "turnschuh",
@@ -715,7 +742,8 @@ window.SCENE = {
      "pt": "sapato",
      "ar": "حذاء",
      "pl": "but",
-     "ru": "ботинок, туфля"
+     "ru": "ботинок, туфля",
+     "es": "el zapato"
     }
    ],
    "sur": null,
@@ -736,7 +764,8 @@ window.SCENE = {
    "pt": "tênis (calçado)",
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
-   "ru": "кроссовки, кеды"
+   "ru": "кроссовки, кеды",
+   "es": "el tenis"
   },
   {
    "id": "fernseher",
@@ -765,7 +794,8 @@ window.SCENE = {
    "pt": "televisão, TV",
    "ar": "تلفاز",
    "pl": "telewizor",
-   "ru": "телевизор"
+   "ru": "телевизор",
+   "es": "el televisor"
   },
   {
    "id": "pizza",
@@ -789,7 +819,8 @@ window.SCENE = {
      "pt": "prato",
      "ar": "صحن",
      "pl": "talerz",
-     "ru": "тарелка"
+     "ru": "тарелка",
+     "es": "el plato"
     }
    ],
    "sur": null,
@@ -810,7 +841,8 @@ window.SCENE = {
    "pt": "pizza",
    "ar": "بيتزا",
    "pl": "pizza",
-   "ru": "пицца"
+   "ru": "пицца",
+   "es": "la pizza"
   },
   {
    "id": "couchtisch",
@@ -834,7 +866,8 @@ window.SCENE = {
      "pt": "mesa",
      "ar": "طاولة",
      "pl": "stół",
-     "ru": "стол"
+     "ru": "стол",
+     "es": "la mesa"
     }
    ],
    "sur": null,
@@ -855,7 +888,8 @@ window.SCENE = {
    "pt": "mesa de centro",
    "ar": "طاولة القهوة",
    "pl": "stolik kawowy, ława",
-   "ru": "журнальный столик"
+   "ru": "журнальный столик",
+   "es": "la mesa de centro"
   },
   {
    "id": "tasse",
@@ -884,7 +918,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "pizzakarton",
@@ -908,7 +943,8 @@ window.SCENE = {
      "pt": "pizza",
      "ar": "بيتزا",
      "pl": "pizza",
-     "ru": "пицца"
+     "ru": "пицца",
+     "es": "la pizza"
     }
    ],
    "sur": "couchtisch",
@@ -929,7 +965,8 @@ window.SCENE = {
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
-   "ru": "картонная коробка"
+   "ru": "картонная коробка",
+   "es": "la caja de cartón"
   },
   {
    "id": "hund",
@@ -958,7 +995,8 @@ window.SCENE = {
    "pt": "cachorro",
    "ar": "كلب",
    "pl": "pies",
-   "ru": "собака"
+   "ru": "собака",
+   "es": "el perro"
   },
   {
    "id": "eimer",
@@ -987,7 +1025,8 @@ window.SCENE = {
    "pt": "balde",
    "ar": "دلو",
    "pl": "wiadro",
-   "ru": "ведро"
+   "ru": "ведро",
+   "es": "el balde"
   },
   {
    "id": "flasche",
@@ -1016,7 +1055,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "karton",
@@ -1045,7 +1085,8 @@ window.SCENE = {
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
-   "ru": "картонная коробка"
+   "ru": "картонная коробка",
+   "es": "la caja de cartón"
   },
   {
    "id": "katze",
@@ -1074,7 +1115,8 @@ window.SCENE = {
    "pt": "gato",
    "ar": "قطة",
    "pl": "kot",
-   "ru": "кошка"
+   "ru": "кошка",
+   "es": "el gato"
   },
   {
    "id": "luftballon",
@@ -1103,7 +1145,8 @@ window.SCENE = {
    "pt": "bexiga, balão",
    "ar": "بالون",
    "pl": "balon, balonik",
-   "ru": "воздушный шарик"
+   "ru": "воздушный шарик",
+   "es": "el globo"
   },
   {
    "id": "luftballon-links",
@@ -1132,7 +1175,8 @@ window.SCENE = {
    "pt": "bexiga, balão",
    "ar": "بالون",
    "pl": "balon, balonik",
-   "ru": "воздушный шарик"
+   "ru": "воздушный шарик",
+   "es": "el globo"
   },
   {
    "id": "koffer",
@@ -1161,7 +1205,8 @@ window.SCENE = {
    "pt": "mala",
    "ar": "حقيبة سفر",
    "pl": "walizka",
-   "ru": "чемодан"
+   "ru": "чемодан",
+   "es": "la maleta"
   }
  ],
  "grosPlans": [],
@@ -2225,6 +2270,83 @@ window.SCENE = {
     "C1 | Das dürfte einer der Gäste gewesen sein.": "Это, вероятно, был один из гостей.",
     "C1 | Sie könnte einem Gast gehören.": "Она, возможно, принадлежит кому-то из гостей.",
     "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Если бы Марк не пропустил вечеринку, он тоже сейчас был бы уставшим."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "La sala del apartamento compartido de Mark al día siguiente de una fiesta: una pelota sobre el armario, un paraguas colgado de la lámpara, un calcetín en la lámpara de pie, un gato en una caja de cartón, un perro debajo de la mesa de centro, y la maleta de Mark en la entrada.",
+    "consigne": "Mark vuelve de viaje… y sus compañeros de apartamento hicieron una fiesta. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Wo? o Wohin? — Mark ordena",
+    "B2": "Relativas y pasiva de estado",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Der Ball liegt auf dem Schrank.": "<b>Wo?</b> → dativo: der Schrank → auf <b>dem</b> Schrank.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "<b>unter</b> = debajo de. Dativo: der Couchtisch → unter <b>dem</b> Couchtisch.",
+    "A2 | Die Katze sitzt im Karton.": "<b>im</b> = in + dem. Dativo: der Karton → in <b>dem</b> (im) Karton.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "Colgado: <b>an</b> + dativo. die Lampe → an <b>der</b> Lampe.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "<b>vor</b> = delante de. Dativo: das Regal → vor <b>dem</b> Regal.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "<b>zwischen</b> = entre, con dativo para los dos: zwischen <b>dem</b> Schrank und <b>dem</b> Sofa.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "Plural: die Turnschuhe <b>liegen</b>. Dativo: unter <b>dem</b> Sofa.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "<b>auf</b> + dativo: auf <b>dem</b> Regal. Y <b>mit</b> va siempre con dativo: mit <b>dem</b> Goldfisch.",
+    "A2 | Die Socke hängt an der Stehlampe.": "<b>an</b> + dativo: die Stehlampe → an <b>der</b> Stehlampe.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "<b>unter</b> + dativo: das Fenster → unter <b>dem</b> Fenster.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "Un estado (<b>liegen</b>, Wo?) → dativo: auf <b>dem</b> Schrank.",
+    "B1 | Mark legt den Ball in den Schrank.": "<b>legen</b> = poner acostado, una acción (Wohin?) → acusativo: in <b>den</b> Schrank. <b>liegen</b> = estar puesto, un estado.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "Un estado → <b>stehen</b> + dativo: auf <b>dem</b> Couchtisch.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "<b>stellen</b> = poner de pie, una acción (Wohin?) → acusativo: das Regal → auf <b>das</b> Regal (aufs Regal).",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "<b>hängen</b> para un estado (Wo?) → dativo: an <b>der</b> Lampe.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "El mismo verbo <b>hängen</b>, pero una acción (Wohin?) → acusativo: an <b>die</b> Tür. Es el caso el que dice si hay movimiento.",
+    "B1 | Mark legt das Buch ins Regal.": "Wohin? → acusativo: in + das = <b>ins</b>. <b>im</b> (in dem) respondería a Wo?",
+    "B1 | Die Flaschen stehen im Eimer.": "Un estado (<b>stehen</b>) → dativo: in dem = <b>im</b> Eimer.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "Un movimiento hacia un lugar (Wohin?) → acusativo: auf <b>das</b> Sofa (aufs Sofa).",
+    "B1 | Die Luftballons liegen auf dem Boden.": "Un estado → dativo: der Boden → auf <b>dem</b> Boden.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "Preposición + relativo: <b>an der</b> (die Lampe, dativo femenino).",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "Sujeto de la relativa, masculino → <b>der</b>.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "Posesión, antecedente femenino (die Katze) → <b>deren</b> (cuya cabeza). Se elige según el poseedor, no según lo poseído como «cuyo».",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "<b>vor</b> + relativo, un estado (Wo?) → dativo: das Regal → <b>vor dem</b>.",
+    "B2 | Die Tür ist geöffnet.": "Pasiva de estado: <b>sein</b> + participio pasado, como «estar abierta». Alguien abrió la puerta, y así sigue.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "Pasiva de estado: <b>ist</b> + participio. Y <b>um</b> va siempre con acusativo: um <b>die</b> Pflanze.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "<b>müssen</b> + infinitivo pasado = casi seguro, deducido de lo que se ve: los globos por todas partes. Como «debe de haber sido».",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + infinitivo pasado = probablemente: una suposición prudente.",
+    "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = es posible, pero nada lo prueba. <b>muss</b> sería una certeza.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Condición irreal (hätte … verpasst), consecuencia en presente → Konjunktiv II: <b>wäre</b>, como «estaría»."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf dem Schrank.": "La pelota está sobre el armario.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "El perro está echado debajo de la mesa de centro.",
+    "A2 | Die Katze sitzt im Karton.": "El gato está sentado en la caja de cartón.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "El paraguas está colgado de la lámpara.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "La bicicleta está delante del estante.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "La guitarra está entre el armario y el sofá.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "Los tenis están debajo del sofá.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "La pecera con el pez dorado está sobre el estante.",
+    "A2 | Die Socke hängt an der Stehlampe.": "El calcetín está colgado de la lámpara de pie.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "El radiador está debajo de la ventana.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "La pelota todavía está sobre el armario.",
+    "B1 | Mark legt den Ball in den Schrank.": "Mark mete la pelota en el armario.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "La taza está sobre la mesa de centro.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "Mark pone la taza en el estante.",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "El paraguas todavía está colgado de la lámpara.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "Mark cuelga el paraguas en la puerta.",
+    "B1 | Mark legt das Buch ins Regal.": "Mark pone el libro en el estante.",
+    "B1 | Die Flaschen stehen im Eimer.": "Las botellas están en la cubeta.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "El gato está a punto de saltar al sofá.",
+    "B1 | Die Luftballons liegen auf dem Boden.": "Los globos están en el piso.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "La lámpara de la que cuelga un paraguas es redonda.",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "El perro que duerme debajo de la mesa se perdió la fiesta.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "El gato, cuya cabeza se asoma por la caja de cartón, se ve muy tranquilo.",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "El estante delante del cual está la bicicleta está lleno de libros.",
+    "B2 | Die Tür ist geöffnet.": "La puerta está abierta.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "La guirnalda de luces está enrollada alrededor de la planta.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "La fiesta debe de haber sido muy larga.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "Probablemente fue uno de los invitados.",
+    "C1 | Sie könnte einem Gast gehören.": "Podría ser de un invitado.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Si Mark no se hubiera perdido la fiesta, ahora él también estaría cansado."
    }
   }
  }

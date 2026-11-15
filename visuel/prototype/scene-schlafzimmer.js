@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   },
   {
    "id": "fenster",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "vorhang",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "cortina",
    "ar": "ستارة",
    "pl": "zasłona",
-   "ru": "штора, занавеска"
+   "ru": "штора, занавеска",
+   "es": "la cortina"
   },
   {
    "id": "bild",
@@ -140,7 +144,8 @@ window.SCENE = {
      "pt": "pôster",
      "ar": "ملصق، بوستر",
      "pl": "plakat",
-     "ru": "постер, плакат"
+     "ru": "постер, плакат",
+     "es": "el póster"
     }
    ],
    "sur": null,
@@ -161,7 +166,8 @@ window.SCENE = {
    "pt": "quadro",
    "ar": "صورة، لوحة",
    "pl": "obraz",
-   "ru": "картина, изображение"
+   "ru": "картина, изображение",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "schrank",
@@ -190,7 +196,8 @@ window.SCENE = {
    "pt": "armário",
    "ar": "خزانة",
    "pl": "szafa",
-   "ru": "шкаф"
+   "ru": "шкаф",
+   "es": "el armario, el clóset"
   },
   {
    "id": "lampe",
@@ -219,7 +226,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "wecker",
@@ -248,7 +256,8 @@ window.SCENE = {
    "pt": "despertador",
    "ar": "منبّه",
    "pl": "budzik",
-   "ru": "будильник"
+   "ru": "будильник",
+   "es": "el despertador"
   },
   {
    "id": "laptop",
@@ -277,7 +286,8 @@ window.SCENE = {
    "pt": "notebook",
    "ar": "حاسوب محمول",
    "pl": "laptop",
-   "ru": "ноутбук"
+   "ru": "ноутбук",
+   "es": "la computadora portátil, la laptop"
   },
   {
    "id": "schreibtisch",
@@ -306,7 +316,8 @@ window.SCENE = {
    "pt": "escrivaninha",
    "ar": "مكتب (قطعة أثاث)",
    "pl": "biurko",
-   "ru": "письменный стол"
+   "ru": "письменный стол",
+   "es": "el escritorio"
   },
   {
    "id": "kissen",
@@ -335,7 +346,8 @@ window.SCENE = {
    "pt": "almofada",
    "ar": "وسادة",
    "pl": "poduszka",
-   "ru": "подушка"
+   "ru": "подушка",
+   "es": "el cojín, la almohada"
   },
   {
    "id": "koffer",
@@ -364,7 +376,8 @@ window.SCENE = {
    "pt": "mala",
    "ar": "حقيبة سفر",
    "pl": "walizka",
-   "ru": "чемодан"
+   "ru": "чемодан",
+   "es": "la maleta"
   },
   {
    "id": "hut",
@@ -393,7 +406,8 @@ window.SCENE = {
    "pt": "chapéu",
    "ar": "قبّعة",
    "pl": "kapelusz",
-   "ru": "шляпа"
+   "ru": "шляпа",
+   "es": "el sombrero"
   },
   {
    "id": "kamera",
@@ -422,7 +436,8 @@ window.SCENE = {
    "pt": "câmera",
    "ar": "كاميرا",
    "pl": "aparat, kamera",
-   "ru": "фотоаппарат, камера"
+   "ru": "фотоаппарат, камера",
+   "es": "la cámara"
   },
   {
    "id": "handy",
@@ -451,7 +466,8 @@ window.SCENE = {
    "pt": "celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
-   "ru": "мобильный телефон"
+   "ru": "мобильный телефон",
+   "es": "el celular"
   },
   {
    "id": "pass",
@@ -480,7 +496,8 @@ window.SCENE = {
    "pt": "passaporte",
    "ar": "جواز سفر",
    "pl": "paszport",
-   "ru": "паспорт"
+   "ru": "паспорт",
+   "es": "el pasaporte"
   },
   {
    "id": "portemonnaie",
@@ -509,7 +526,8 @@ window.SCENE = {
    "pt": "porta-moedas, carteira",
    "ar": "محفظة نقود",
    "pl": "portmonetka",
-   "ru": "кошелёк"
+   "ru": "кошелёк",
+   "es": "el portamonedas"
   },
   {
    "id": "landkarte",
@@ -538,7 +556,8 @@ window.SCENE = {
    "pt": "mapa",
    "ar": "خريطة",
    "pl": "mapa",
-   "ru": "карта (географическая)"
+   "ru": "карта (географическая)",
+   "es": "el mapa"
   },
   {
    "id": "ladegeraet",
@@ -567,7 +586,8 @@ window.SCENE = {
    "pt": "carregador",
    "ar": "شاحن",
    "pl": "ładowarka",
-   "ru": "зарядное устройство"
+   "ru": "зарядное устройство",
+   "es": "el cargador"
   },
   {
    "id": "bett",
@@ -596,7 +616,8 @@ window.SCENE = {
    "pt": "cama",
    "ar": "سرير",
    "pl": "łóżko",
-   "ru": "кровать"
+   "ru": "кровать",
+   "es": "la cama"
   },
   {
    "id": "anna",
@@ -625,7 +646,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "pullover",
@@ -654,7 +676,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "hose",
@@ -683,7 +706,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "socke",
@@ -712,7 +736,8 @@ window.SCENE = {
    "pt": "meia",
    "ar": "جورب",
    "pl": "skarpetka",
-   "ru": "носок"
+   "ru": "носок",
+   "es": "el calcetín, la media"
   },
   {
    "id": "teppich",
@@ -741,7 +766,8 @@ window.SCENE = {
    "pt": "tapete",
    "ar": "سجّادة",
    "pl": "dywan",
-   "ru": "ковёр"
+   "ru": "ковёр",
+   "es": "la alfombra, el tapete"
   },
   {
    "id": "tuer",
@@ -776,7 +802,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "nachttisch",
@@ -805,7 +832,8 @@ window.SCENE = {
    "pt": "criado-mudo",
    "ar": "طاولة جانب السرير",
    "pl": "szafka nocna",
-   "ru": "прикроватная тумбочка"
+   "ru": "прикроватная тумбочка",
+   "es": "la mesa de noche"
   }
  ],
  "grosPlans": [],
@@ -1767,6 +1795,75 @@ window.SCENE = {
     "C1 | Der Pullover könnte zu warm für den Süden sein.": "Свитер, возможно, слишком тёплый для юга.",
     "C1 | Sie dürfte morgen früh abfliegen.": "Она, вероятно, вылетает завтра утром.",
     "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "Говорят, на том пляже тепло круглый год."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Anna en su dormitorio, una mañana: tiene un suéter verde en las manos y mira su maleta abierta sobre la cama; sobre la cama, un sombrero de paja, una cámara, un celular, un pasaporte, una billetera, un mapa y un cargador.",
+    "consigne": "Anna hace su maleta para irse de viaje. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Wo? o Wohin?",
+    "B2": "Relativas y pasiva",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Der Hut liegt auf dem Bett.": "<b>Wo?</b> → dativo: das Bett → auf <b>dem</b> Bett.",
+    "A2 | Der Wecker steht neben der Lampe.": "die Lampe → neben <b>der</b> Lampe: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Das Bild hängt über dem Bett.": "<b>über</b> = encima de. das Bett → über <b>dem</b> Bett.",
+    "A2 | Der Laptop steht auf dem Schreibtisch.": "der Schreibtisch → auf <b>dem</b> Schreibtisch.",
+    "A2 | Anna steht auf dem Teppich.": "der Teppich → auf <b>dem</b> Teppich.",
+    "A2 | Der Pass liegt neben dem Portemonnaie.": "das Portemonnaie es neutro: en dativo → neben <b>dem</b> Portemonnaie.",
+    "A2 | Das Ladegerät liegt neben der Landkarte.": "die Landkarte → neben <b>der</b> Landkarte.",
+    "A2 | Der Vorhang hängt am Fenster.": "<b>am</b> = an + <b>dem</b>: das Fenster → am Fenster.",
+    "B1 | Anna legt den Pullover in den Koffer.": "<b>legen</b> = movimiento, <b>Wohin?</b> → acusativo: in <b>den</b> Koffer.",
+    "B1 | Gleich liegt der Pullover in dem Koffer.": "<b>liegen</b> = estado, <b>Wo?</b> → dativo: in <b>dem</b> (= im) Koffer.",
+    "B1 | Anna hat den Hut auf das Bett gelegt.": "<b>Wohin?</b> → acusativo, neutro: auf <b>das</b> (= aufs) Bett.",
+    "B1 | Die Kamera liegt auf dem Bett.": "<b>Wo?</b> → dativo: auf <b>dem</b> Bett.",
+    "B1 | Anna hat das Ladegerät fast vergessen.": "Verbo con <b>ver-</b>: sin <b>ge-</b> en el participio → vergessen.",
+    "B1 | Der Wecker steht auf dem Nachttisch.": "<b>stehen</b> = estado → dativo: der Nachttisch → auf <b>dem</b> Nachttisch.",
+    "B1 | Anna steht neben dem Bett.": "<b>Wo?</b> → dativo, neutro: neben <b>dem</b> Bett.",
+    "B1 | Morgen fliegt Anna in den Süden.": "<b>Wohin?</b> → acusativo: der Süden → in <b>den</b> Süden.",
+    "B2 | Der Koffer, der auf dem Bett liegt, ist blau.": "Sujeto de la relativa, masculino → <b>der</b>.",
+    "B2 | Der Pass, ohne den Anna nicht reisen kann, liegt auf dem Bett.": "<b>ohne</b> siempre pide acusativo → <b>den</b>.",
+    "B2 | Die Frau, deren Pullover grün ist, denkt nach.": "Posesión, antecedente femenino → <b>deren</b> (cuyo suéter). Al revés que «cuyo», concuerda con el poseedor.",
+    "B2 | Der Koffer ist schon halb gepackt.": "Pasiva de estado: <b>sein</b> + participio → gepackt, como «está hecha».",
+    "B2 | Alles muss heute noch eingepackt werden.": "Pasiva con un verbo modal: participio + <b>werden</b> al final.",
+    "B2 | Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.": "<b>mit</b> + dativo, femenino → <b>der</b>.",
+    "C1 | Sie muss sich auf die Reise freuen.": "<b>müssen</b> = deducción casi segura, como «debe de». Sonríe mientras hace su maleta.",
+    "C1 | Der Pullover könnte zu warm für den Süden sein.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Sie dürfte morgen früh abfliegen.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "<b>sollen</b> = según dicen: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Der Hut liegt auf dem Bett.": "El sombrero está sobre la cama.",
+    "A2 | Der Wecker steht neben der Lampe.": "El despertador está al lado de la lámpara.",
+    "A2 | Das Bild hängt über dem Bett.": "El cuadro está colgado encima de la cama.",
+    "A2 | Der Laptop steht auf dem Schreibtisch.": "La computadora portátil está sobre el escritorio.",
+    "A2 | Anna steht auf dem Teppich.": "Anna está de pie sobre la alfombra.",
+    "A2 | Der Pass liegt neben dem Portemonnaie.": "El pasaporte está al lado de la billetera.",
+    "A2 | Das Ladegerät liegt neben der Landkarte.": "El cargador está al lado del mapa.",
+    "A2 | Der Vorhang hängt am Fenster.": "La cortina cuelga en la ventana.",
+    "B1 | Anna legt den Pullover in den Koffer.": "Anna pone el suéter en la maleta.",
+    "B1 | Gleich liegt der Pullover in dem Koffer.": "En un momento el suéter estará en la maleta.",
+    "B1 | Anna hat den Hut auf das Bett gelegt.": "Anna puso el sombrero sobre la cama.",
+    "B1 | Die Kamera liegt auf dem Bett.": "La cámara está sobre la cama.",
+    "B1 | Anna hat das Ladegerät fast vergessen.": "Anna casi olvidó el cargador.",
+    "B1 | Der Wecker steht auf dem Nachttisch.": "El despertador está sobre la mesita de noche.",
+    "B1 | Anna steht neben dem Bett.": "Anna está de pie al lado de la cama.",
+    "B1 | Morgen fliegt Anna in den Süden.": "Mañana Anna vuela al sur.",
+    "B2 | Der Koffer, der auf dem Bett liegt, ist blau.": "La maleta que está sobre la cama es azul.",
+    "B2 | Der Pass, ohne den Anna nicht reisen kann, liegt auf dem Bett.": "El pasaporte, sin el cual Anna no puede viajar, está sobre la cama.",
+    "B2 | Die Frau, deren Pullover grün ist, denkt nach.": "La mujer, cuyo suéter es verde, está pensando.",
+    "B2 | Der Koffer ist schon halb gepackt.": "La maleta ya está hecha a medias.",
+    "B2 | Alles muss heute noch eingepackt werden.": "Todo tiene que quedar empacado hoy mismo.",
+    "B2 | Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.": "La cámara con la que Anna quiere tomar fotos está sobre la cama.",
+    "C1 | Sie muss sich auf die Reise freuen.": "Debe de estar ilusionada con el viaje.",
+    "C1 | Der Pullover könnte zu warm für den Süden sein.": "El suéter podría ser demasiado abrigador para el sur.",
+    "C1 | Sie dürfte morgen früh abfliegen.": "Probablemente sale en avión mañana temprano.",
+    "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "Dicen que en la playa de allá hace calor todo el año."
    }
   }
  }

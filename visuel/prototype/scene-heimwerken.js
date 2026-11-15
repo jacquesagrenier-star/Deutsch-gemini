@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "farbe",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "cor",
    "ar": "لون",
    "pl": "kolor",
-   "ru": "цвет, краска"
+   "ru": "цвет, краска",
+   "es": "el color"
   },
   {
    "id": "wand",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "fenster",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "katze",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "gato",
    "ar": "قطة",
    "pl": "kot",
-   "ru": "кошка"
+   "ru": "кошка",
+   "es": "el gato"
   },
   {
    "id": "steckdose",
@@ -174,7 +179,8 @@ window.SCENE = {
    "pt": "tomada (na parede)",
    "ar": "مقبس كهربائي (في الحائط)",
    "pl": "gniazdko (elektryczne)",
-   "ru": "розетка"
+   "ru": "розетка",
+   "es": "el tomacorriente"
   },
   {
    "id": "kabel",
@@ -203,7 +209,8 @@ window.SCENE = {
    "pt": "cabo",
    "ar": "كابل، سلك",
    "pl": "kabel",
-   "ru": "кабель"
+   "ru": "кабель",
+   "es": "el cable"
   },
   {
    "id": "schrank",
@@ -232,7 +239,8 @@ window.SCENE = {
    "pt": "armário",
    "ar": "خزانة",
    "pl": "szafa",
-   "ru": "шкаф"
+   "ru": "шкаф",
+   "es": "el armario, el clóset"
   },
   {
    "id": "karton",
@@ -261,7 +269,8 @@ window.SCENE = {
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
-   "ru": "картонная коробка"
+   "ru": "картонная коробка",
+   "es": "la caja de cartón"
   },
   {
    "id": "leiter",
@@ -302,7 +311,8 @@ window.SCENE = {
    "pt": "escada (de mão)",
    "ar": "سُلّم",
    "pl": "drabina",
-   "ru": "лестница (стремянка)"
+   "ru": "лестница (стремянка)",
+   "es": "la escalera (de mano)"
   },
   {
    "id": "regal",
@@ -331,7 +341,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "eimer",
@@ -360,7 +371,8 @@ window.SCENE = {
    "pt": "balde",
    "ar": "دلو",
    "pl": "wiadro",
-   "ru": "ведро"
+   "ru": "ведро",
+   "es": "el balde"
   },
   {
    "id": "pinsel",
@@ -389,7 +401,8 @@ window.SCENE = {
    "pt": "pincel",
    "ar": "فرشاة رسم",
    "pl": "pędzel",
-   "ru": "кисть"
+   "ru": "кисть",
+   "es": "el pincel"
   },
   {
    "id": "t-shirt",
@@ -418,7 +431,8 @@ window.SCENE = {
    "pt": "camiseta",
    "ar": "قميص قصير الأكمام (تي شيرت)",
    "pl": "T-shirt, koszulka",
-   "ru": "футболка"
+   "ru": "футболка",
+   "es": "la camiseta"
   },
   {
    "id": "hose",
@@ -447,7 +461,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "mark",
@@ -476,7 +491,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "schuh",
@@ -505,7 +521,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "holz",
@@ -534,7 +551,8 @@ window.SCENE = {
    "pt": "madeira",
    "ar": "خشب",
    "pl": "drewno",
-   "ru": "дерево (материал)"
+   "ru": "дерево (материал)",
+   "es": "la madera"
   },
   {
    "id": "handschuh",
@@ -563,7 +581,8 @@ window.SCENE = {
    "pt": "luva",
    "ar": "قفاز",
    "pl": "rękawiczka",
-   "ru": "перчатка"
+   "ru": "перчатка",
+   "es": "el guante"
   },
   {
    "id": "werkzeug",
@@ -592,7 +611,8 @@ window.SCENE = {
    "pt": "ferramenta",
    "ar": "أدوات، عُدّة",
    "pl": "narzędzie, narzędzia",
-   "ru": "инструмент"
+   "ru": "инструмент",
+   "es": "la herramienta"
   },
   {
    "id": "hammer",
@@ -621,7 +641,8 @@ window.SCENE = {
    "pt": "martelo",
    "ar": "مطرقة",
    "pl": "młotek",
-   "ru": "молоток"
+   "ru": "молоток",
+   "es": "el martillo"
   },
   {
    "id": "papier",
@@ -650,7 +671,8 @@ window.SCENE = {
    "pt": "papel",
    "ar": "ورق",
    "pl": "papier",
-   "ru": "бумага"
+   "ru": "бумага",
+   "es": "el papel"
   },
   {
    "id": "nagel",
@@ -679,7 +701,8 @@ window.SCENE = {
    "pt": "unha",
    "ar": "ظفر",
    "pl": "paznokieć",
-   "ru": "ноготь"
+   "ru": "ноготь",
+   "es": "la uña"
   },
   {
    "id": "zollstock",
@@ -708,7 +731,8 @@ window.SCENE = {
    "pt": "metro dobrável",
    "ar": "مسطرة قابلة للطيّ",
    "pl": "miarka składana",
-   "ru": "складной метр"
+   "ru": "складной метр",
+   "es": "el metro plegable"
   },
   {
    "id": "holz-2",
@@ -737,7 +761,8 @@ window.SCENE = {
    "pt": "madeira",
    "ar": "خشب",
    "pl": "drewno",
-   "ru": "дерево (материал)"
+   "ru": "дерево (материал)",
+   "es": "la madera"
   },
   {
    "id": "karton-2",
@@ -766,7 +791,8 @@ window.SCENE = {
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
-   "ru": "картонная коробка"
+   "ru": "картонная коробка",
+   "es": "la caja de cartón"
   },
   {
    "id": "boden",
@@ -795,7 +821,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   },
   {
    "id": "bohrmaschine",
@@ -824,7 +851,8 @@ window.SCENE = {
    "pt": "furadeira",
    "ar": "مثقاب",
    "pl": "wiertarka",
-   "ru": "дрель"
+   "ru": "дрель",
+   "es": "el taladro"
   },
   {
    "id": "zange",
@@ -853,7 +881,8 @@ window.SCENE = {
    "pt": "alicate",
    "ar": "كمّاشة",
    "pl": "kombinerki, obcęgi",
-   "ru": "плоскогубцы, клещи"
+   "ru": "плоскогубцы, клещи",
+   "es": "los alicates, las pinzas"
   }
  ],
  "grosPlans": [],
@@ -1810,6 +1839,75 @@ window.SCENE = {
     "C1 | Die Katze könnte dem Nachbarn gehören.": "Кошка, возможно, принадлежит соседу.",
     "C1 | Das Regal dürfte heute Abend fertig sein.": "Полка, вероятно, будет готова сегодня вечером.",
     "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "Говорят, раньше в этой квартире жил художник."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Mark acaba de mudarse: de rodillas sobre el piso de madera, con una tabla en una mano y un destornillador en la otra, mira con cara de perplejidad las instrucciones de un estante; a su alrededor, una caja de herramientas roja, un taladro, clavos, un metro plegable, cajas de cartón; una pared a medio pintar de azul, una escalera, un armario, y el gato en el borde de la ventana.",
+    "consigne": "Mark arma un estante en su nuevo apartamento. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "El imperativo",
+    "B2": "La finalidad: um … zu, damit",
+    "C1": "Hipótesis"
+   },
+   "questions": {
+    "A2 | Die Katze sitzt am Fenster.": "<b>am</b> = an + <b>dem</b>: das Fenster → am Fenster.",
+    "A2 | Der Eimer steht auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
+    "A2 | Der Pinsel liegt auf dem Eimer.": "der Eimer → auf <b>dem</b> Eimer.",
+    "A2 | Die Leiter steht neben dem Regal.": "<b>neben</b> = al lado de. das Regal → neben <b>dem</b> Regal.",
+    "A2 | Die Lampe hängt an der Decke.": "die Decke → an <b>der</b> Decke: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Die Kartons stehen neben dem Schrank.": "<b>neben</b> = al lado de. der Schrank → neben <b>dem</b> Schrank.",
+    "A2 | Die Handschuhe liegen neben dem Karton.": "<b>neben</b> = al lado de. der Karton → neben <b>dem</b> Karton.",
+    "A2 | Das Holz ist im Karton.": "<b>im</b> = in + <b>dem</b>: der Karton → im Karton.",
+    "B1 | Mark, gib mir bitte den Hammer!": "Imperativo (du): <b>geben</b> → <b>gib</b> (e → i).",
+    "B1 | Lies die Anleitung genau!": "<b>lesen</b> → <b>lies</b> (e → ie).",
+    "B1 | Leg den Pinsel auf den Eimer!": "Imperativo (du): solo la raíz → <b>leg</b>.",
+    "B1 | Zieh die Handschuhe an!": "<b>anziehen</b>: imperativo <b>zieh … an</b>, la partícula al final.",
+    "B1 | Mark, fall nicht von der Leiter!": "<b>fallen</b> → <b>fall</b>: sin Umlaut en el imperativo.",
+    "B1 | Lass uns eine Pause machen!": "<b>Lass uns…</b> = hagamos…",
+    "B1 | Katze, komm vom Fenster herunter!": "Imperativo (du): <b>komm</b>.",
+    "B1 | Herr Nachbar, halten Sie mir bitte die Leiter!": "Imperativo de cortesía: <b>verbo + Sie</b> → halten Sie.",
+    "B2 | Mark hat Farbe gekauft, um die Wand blau zu streichen.": "<b>um … zu</b> + infinitivo: una finalidad, mismo sujeto, como «para» + infinitivo.",
+    "B2 | Er liest die Anleitung, damit das Regal nicht umfällt.": "<b>damit</b>: sujeto distinto, el verbo conjugado al final, como «para que».",
+    "B2 | Er hat vergessen, die Handschuhe anzuziehen.": "Verbo separable: <b>zu</b> entre la partícula y el verbo → an<b>zu</b>ziehen.",
+    "B2 | Es ist nicht leicht, ein Regal allein aufzubauen.": "<b>aufbauen</b> → auf<b>zu</b>bauen.",
+    "B2 | Die Wand ist schon halb gestrichen.": "Pasiva de estado: <b>sein</b> + participio. <b>streichen</b> → gestrichen.",
+    "B2 | Ohne die Anleitung zu lesen, baut man kein Regal.": "<b>ohne … zu</b> + infinitivo = sin + infinitivo.",
+    "C1 | Die Anleitung muss schwer zu verstehen sein.": "<b>müssen</b> = deducción casi segura, como «debe de».",
+    "C1 | Die Katze könnte dem Nachbarn gehören.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Das Regal dürfte heute Abend fertig sein.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "<b>sollen</b> = según lo que se dice: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt am Fenster.": "El gato está sentado junto a la ventana.",
+    "A2 | Der Eimer steht auf dem Boden.": "El balde está en el suelo.",
+    "A2 | Der Pinsel liegt auf dem Eimer.": "La brocha está sobre el balde.",
+    "A2 | Die Leiter steht neben dem Regal.": "La escalera está al lado del estante.",
+    "A2 | Die Lampe hängt an der Decke.": "La lámpara cuelga del techo.",
+    "A2 | Die Kartons stehen neben dem Schrank.": "Las cajas de cartón están al lado del armario.",
+    "A2 | Die Handschuhe liegen neben dem Karton.": "Los guantes están al lado de la caja de cartón.",
+    "A2 | Das Holz ist im Karton.": "La madera está en la caja de cartón.",
+    "B1 | Mark, gib mir bitte den Hammer!": "Mark, ¡dame el martillo, por favor!",
+    "B1 | Lies die Anleitung genau!": "¡Lee bien las instrucciones!",
+    "B1 | Leg den Pinsel auf den Eimer!": "¡Pon la brocha sobre el balde!",
+    "B1 | Zieh die Handschuhe an!": "¡Ponte los guantes!",
+    "B1 | Mark, fall nicht von der Leiter!": "Mark, ¡no te caigas de la escalera!",
+    "B1 | Lass uns eine Pause machen!": "¡Hagamos una pausa!",
+    "B1 | Katze, komm vom Fenster herunter!": "Gato, ¡bájate de la ventana!",
+    "B1 | Herr Nachbar, halten Sie mir bitte die Leiter!": "Señor vecino, ¡sosténgame la escalera, por favor!",
+    "B2 | Mark hat Farbe gekauft, um die Wand blau zu streichen.": "Mark compró pintura para pintar la pared de azul.",
+    "B2 | Er liest die Anleitung, damit das Regal nicht umfällt.": "Lee las instrucciones para que el estante no se caiga.",
+    "B2 | Er hat vergessen, die Handschuhe anzuziehen.": "Olvidó ponerse los guantes.",
+    "B2 | Es ist nicht leicht, ein Regal allein aufzubauen.": "No es fácil armar un estante solo.",
+    "B2 | Die Wand ist schon halb gestrichen.": "La pared ya está pintada a medias.",
+    "B2 | Ohne die Anleitung zu lesen, baut man kein Regal.": "Sin leer las instrucciones, no se arma ningún estante.",
+    "C1 | Die Anleitung muss schwer zu verstehen sein.": "Las instrucciones deben de ser difíciles de entender.",
+    "C1 | Die Katze könnte dem Nachbarn gehören.": "El gato podría ser del vecino.",
+    "C1 | Das Regal dürfte heute Abend fertig sein.": "El estante probablemente estará listo esta noche.",
+    "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "Dicen que antes vivió un pintor en el apartamento."
    }
   }
  }

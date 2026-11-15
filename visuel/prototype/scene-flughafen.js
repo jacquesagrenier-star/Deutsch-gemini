@@ -41,7 +41,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "decke",
@@ -70,7 +71,8 @@ window.SCENE = {
    "pt": "cobertor",
    "ar": "بطانية",
    "pl": "koc",
-   "ru": "одеяло, плед"
+   "ru": "одеяло, плед",
+   "es": "la cobija, la manta"
   },
   {
    "id": "wand",
@@ -99,7 +101,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "uhr",
@@ -128,7 +131,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "schild",
@@ -157,7 +161,8 @@ window.SCENE = {
    "pt": "placa",
    "ar": "لافتة",
    "pl": "tabliczka, szyld",
-   "ru": "табличка, вывеска"
+   "ru": "табличка, вывеска",
+   "es": "el letrero"
   },
   {
    "id": "treppe",
@@ -186,7 +191,8 @@ window.SCENE = {
    "pt": "escada",
    "ar": "درج، سلّم",
    "pl": "schody",
-   "ru": "лестница"
+   "ru": "лестница",
+   "es": "la escalera"
   },
   {
    "id": "fenster",
@@ -215,7 +221,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "himmel",
@@ -244,7 +251,8 @@ window.SCENE = {
    "pt": "céu",
    "ar": "سماء",
    "pl": "niebo",
-   "ru": "небо"
+   "ru": "небо",
+   "es": "el cielo"
   },
   {
    "id": "wolke",
@@ -279,7 +287,8 @@ window.SCENE = {
    "pt": "nuvem",
    "ar": "غيمة، سحابة",
    "pl": "chmura",
-   "ru": "облако, туча"
+   "ru": "облако, туча",
+   "es": "la nube"
   },
   {
    "id": "flugzeug",
@@ -308,7 +317,8 @@ window.SCENE = {
    "pt": "avião",
    "ar": "طائرة",
    "pl": "samolot",
-   "ru": "самолёт"
+   "ru": "самолёт",
+   "es": "el avión"
   },
   {
    "id": "pilot",
@@ -332,7 +342,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     }
    ],
    "sur": null,
@@ -353,7 +364,8 @@ window.SCENE = {
    "pt": "piloto",
    "ar": "طيّار",
    "pl": "pilot",
-   "ru": "пилот"
+   "ru": "пилот",
+   "es": "el piloto"
   },
   {
    "id": "koffer-2",
@@ -382,7 +394,8 @@ window.SCENE = {
    "pt": "mala",
    "ar": "حقيبة سفر",
    "pl": "walizka",
-   "ru": "чемодан"
+   "ru": "чемодан",
+   "es": "la maleta"
   },
   {
    "id": "stuhl",
@@ -411,7 +424,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "muelleimer",
@@ -440,7 +454,8 @@ window.SCENE = {
    "pt": "lixeira",
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
-   "ru": "мусорное ведро"
+   "ru": "мусорное ведро",
+   "es": "el basurero"
   },
   {
    "id": "tuer",
@@ -469,7 +484,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "pflanze",
@@ -498,7 +514,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "stuhl-2",
@@ -527,7 +544,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "zeitung",
@@ -556,7 +574,8 @@ window.SCENE = {
    "pt": "jornal",
    "ar": "جريدة",
    "pl": "gazeta",
-   "ru": "газета"
+   "ru": "газета",
+   "es": "el periódico"
   },
   {
    "id": "frau",
@@ -585,7 +604,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "jacke",
@@ -614,7 +634,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "bildschirm",
@@ -638,7 +659,8 @@ window.SCENE = {
      "pt": "computador",
      "ar": "حاسوب",
      "pl": "komputer",
-     "ru": "компьютер"
+     "ru": "компьютер",
+     "es": "la computadora"
     }
    ],
    "sur": null,
@@ -659,7 +681,8 @@ window.SCENE = {
    "pt": "tela",
    "ar": "شاشة",
    "pl": "ekran",
-   "ru": "экран"
+   "ru": "экран",
+   "es": "la pantalla"
   },
   {
    "id": "pflanze-2",
@@ -688,7 +711,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "tastatur",
@@ -717,7 +741,8 @@ window.SCENE = {
    "pt": "teclado",
    "ar": "لوحة المفاتيح",
    "pl": "klawiatura",
-   "ru": "клавиатура"
+   "ru": "клавиатура",
+   "es": "el teclado"
   },
   {
    "id": "telefon",
@@ -746,7 +771,8 @@ window.SCENE = {
    "pt": "telefone",
    "ar": "هاتف",
    "pl": "telefon",
-   "ru": "телефон"
+   "ru": "телефон",
+   "es": "el teléfono"
   },
   {
    "id": "ticket",
@@ -775,7 +801,8 @@ window.SCENE = {
    "pt": "passagem, ingresso",
    "ar": "تذكرة",
    "pl": "bilet",
-   "ru": "билет"
+   "ru": "билет",
+   "es": "el boleto"
   },
   {
    "id": "pass",
@@ -804,7 +831,8 @@ window.SCENE = {
    "pt": "passaporte",
    "ar": "جواز سفر",
    "pl": "paszport",
-   "ru": "паспорт"
+   "ru": "паспорт",
+   "es": "el pasaporte"
   },
   {
    "id": "anna",
@@ -833,7 +861,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "schal",
@@ -862,7 +891,8 @@ window.SCENE = {
    "pt": "cachecol",
    "ar": "وشاح، شال",
    "pl": "szalik",
-   "ru": "шарф"
+   "ru": "шарф",
+   "es": "la bufanda"
   },
   {
    "id": "mantel",
@@ -891,7 +921,8 @@ window.SCENE = {
    "pt": "casaco (sobretudo)",
    "ar": "معطف",
    "pl": "płaszcz",
-   "ru": "пальто"
+   "ru": "пальто",
+   "es": "el abrigo"
   },
   {
    "id": "pullover",
@@ -920,7 +951,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "tasche",
@@ -949,7 +981,8 @@ window.SCENE = {
    "pt": "bolsa",
    "ar": "حقيبة",
    "pl": "torba, torebka",
-   "ru": "сумка"
+   "ru": "сумка",
+   "es": "la bolsa, el bolso"
   },
   {
    "id": "hose",
@@ -973,7 +1006,8 @@ window.SCENE = {
      "pt": "calça jeans",
      "ar": "جينز",
      "pl": "dżinsy",
-     "ru": "джинсы"
+     "ru": "джинсы",
+     "es": "los jeans"
     }
    ],
    "sur": "anna",
@@ -994,7 +1028,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "schuh",
@@ -1018,7 +1053,8 @@ window.SCENE = {
      "pt": "tênis (calçado)",
      "ar": "حذاء رياضي",
      "pl": "trampek, but sportowy",
-     "ru": "кроссовки, кеды"
+     "ru": "кроссовки, кеды",
+     "es": "el tenis"
     }
    ],
    "sur": "anna",
@@ -1039,7 +1075,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "koffer",
@@ -1068,7 +1105,8 @@ window.SCENE = {
    "pt": "mala",
    "ar": "حقيبة سفر",
    "pl": "walizka",
-   "ru": "чемодан"
+   "ru": "чемодан",
+   "es": "la maleta"
   },
   {
    "id": "koffer-3",
@@ -1092,7 +1130,8 @@ window.SCENE = {
      "pt": "bagagem",
      "ar": "أمتعة",
      "pl": "bagaż",
-     "ru": "багаж"
+     "ru": "багаж",
+     "es": "el equipaje"
     }
    ],
    "sur": "waage",
@@ -1113,7 +1152,8 @@ window.SCENE = {
    "pt": "mala",
    "ar": "حقيبة سفر",
    "pl": "walizka",
-   "ru": "чемодан"
+   "ru": "чемодан",
+   "es": "la maleta"
   },
   {
    "id": "waage",
@@ -1142,7 +1182,8 @@ window.SCENE = {
    "pt": "balança",
    "ar": "ميزان",
    "pl": "waga (kuchenna)",
-   "ru": "весы"
+   "ru": "весы",
+   "es": "la báscula, la balanza"
   },
   {
    "id": "schalter",
@@ -1171,7 +1212,8 @@ window.SCENE = {
    "pt": "guichê; interruptor",
    "ar": "شبّاك؛ مفتاح كهربائي",
    "pl": "okienko, kasa; włącznik",
-   "ru": "окошко, касса; выключатель"
+   "ru": "окошко, касса; выключатель",
+   "es": "la ventanilla, el interruptor"
   },
   {
    "id": "rucksack",
@@ -1200,7 +1242,8 @@ window.SCENE = {
    "pt": "mochila",
    "ar": "حقيبة ظهر",
    "pl": "plecak",
-   "ru": "рюкзак"
+   "ru": "рюкзак",
+   "es": "la mochila"
   },
   {
    "id": "flasche",
@@ -1224,7 +1267,8 @@ window.SCENE = {
      "pt": "água",
      "ar": "ماء",
      "pl": "woda",
-     "ru": "вода"
+     "ru": "вода",
+     "es": "el agua"
     }
    ],
    "sur": null,
@@ -1245,7 +1289,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "boden",
@@ -1274,7 +1319,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   }
  ],
  "grosPlans": [],
@@ -2240,6 +2286,75 @@ window.SCENE = {
     "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "Пилот, возможно, поведёт её самолёт.",
     "C1 | Der große Koffer dürfte zu schwer sein.": "Большой чемодан, вероятно, слишком тяжёлый.",
     "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "Говорят, этот аэропорт — самый современный в Германии."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Anna en el aeropuerto de Berlín: le entrega su pasaporte a la empleada del mostrador de check-in; su maleta gris grande está sobre la báscula, su maleta roja pequeña a su lado, su bolso en el hombro; sobre el mostrador, una pantalla, un teclado, un teléfono, un boleto y una planta; detrás del ventanal, un avión blanco bajo el cielo azul; un piloto pasa con su maleta, cerca de una escalera, un reloj y una fila de asientos.",
+    "consigne": "Anna sale de viaje: registra su maleta en el aeropuerto. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "El infinitivo con zu",
+    "B2": "Las preguntas indirectas",
+    "C1": "Hipótesis"
+   },
+   "questions": {
+    "A2 | Der große Koffer liegt auf der Waage.": "die Waage → auf <b>der</b> Waage: en dativo, el femenino <b>die</b> se convierte en <b>der</b>.",
+    "A2 | Die Uhr hängt an der Wand.": "die Wand → an <b>der</b> Wand: en dativo, el femenino <b>die</b> se convierte en <b>der</b>.",
+    "A2 | Das Flugzeug steht hinter dem Fenster.": "<b>hinter</b> = detrás de. das Fenster → hinter <b>dem</b> Fenster.",
+    "A2 | Die Zeitung liegt auf dem Stuhl.": "der Stuhl → auf <b>dem</b> Stuhl.",
+    "A2 | Die Flasche steht auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
+    "A2 | Der Mülleimer steht neben der Tür.": "die Tür → neben <b>der</b> Tür: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Das Ticket liegt auf dem Schalter.": "der Schalter → auf <b>dem</b> Schalter.",
+    "A2 | Das Schild hängt an der Decke.": "die Decke → an <b>der</b> Decke: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "B1 | Anna hat vor, nach Spanien zu fliegen.": "<b>vorhaben</b> + <b>zu</b> + infinitivo al final.",
+    "B1 | Sie vergisst nicht, der Frau den Pass zu zeigen.": "<b>vergessen</b> + <b>zu</b> + infinitivo.",
+    "B1 | Es ist wichtig, pünktlich am Flughafen zu sein.": "<b>Es ist wichtig,</b> … <b>zu</b> + infinitivo.",
+    "B1 | Die Frau bittet Anna, den Koffer auf die Waage zu stellen.": "<b>bitten</b> + <b>zu</b> + infinitivo.",
+    "B1 | Der Pilot hat keine Zeit, die Zeitung zu lesen.": "<b>keine Zeit haben</b> + <b>zu</b> + infinitivo.",
+    "B1 | Anna versucht, den Rucksack nicht zu vergessen.": "<b>versuchen</b> + <b>zu</b> + infinitivo; <b>nicht</b> justo antes de <b>zu</b>.",
+    "B1 | Anna hofft, pünktlich anzukommen.": "Verbo separable: <b>zu</b> se mete en medio → an<b>zu</b>kommen.",
+    "B1 | Anna muss der Frau den Pass zeigen.": "Después de un verbo modal (<b>müssen</b>), sin <b>zu</b>.",
+    "B2 | Anna fragt die Frau, ob das Flugzeug pünktlich ist.": "Pregunta cerrada (sí/no) → <b>ob</b>, verbo al final.",
+    "B2 | Sie weiß nicht, wie viel der Koffer wiegt.": "La palabra interrogativa se queda: <b>wie viel</b> … + verbo al final.",
+    "B2 | Der Pilot weiß, wo das Flugzeug steht.": "En la pregunta indirecta, el verbo va al <b>final</b>.",
+    "B2 | Die Frau fragt, ob Anna Handgepäck hat.": "Pregunta cerrada (sí/no) → <b>ob</b>, verbo al final.",
+    "B2 | Anna möchte wissen, wann das Flugzeug abfliegt.": "Pregunta sobre la hora → <b>wann</b>; el verbo separable se vuelve a unir al final: <b>abfliegt</b>.",
+    "B2 | Weißt du, wem die Zeitung gehört?": "<b>gehören</b> + dativo → <b>wem</b>.",
+    "C1 | Sie muss sich auf die Reise freuen.": "<b>müssen</b> = deducción casi segura, como «debe de».",
+    "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Der große Koffer dürfte zu schwer sein.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "<b>sollen</b> = según lo que se dice: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Der große Koffer liegt auf der Waage.": "La maleta grande está sobre la báscula.",
+    "A2 | Die Uhr hängt an der Wand.": "El reloj está colgado en la pared.",
+    "A2 | Das Flugzeug steht hinter dem Fenster.": "El avión está detrás de la ventana.",
+    "A2 | Die Zeitung liegt auf dem Stuhl.": "El periódico está sobre la silla.",
+    "A2 | Die Flasche steht auf dem Boden.": "La botella está en el suelo.",
+    "A2 | Der Mülleimer steht neben der Tür.": "El basurero está al lado de la puerta.",
+    "A2 | Das Ticket liegt auf dem Schalter.": "El boleto está sobre el mostrador.",
+    "A2 | Das Schild hängt an der Decke.": "El letrero cuelga del techo.",
+    "B1 | Anna hat vor, nach Spanien zu fliegen.": "Anna tiene pensado volar a España.",
+    "B1 | Sie vergisst nicht, der Frau den Pass zu zeigen.": "Ella no olvida mostrarle el pasaporte a la mujer.",
+    "B1 | Es ist wichtig, pünktlich am Flughafen zu sein.": "Es importante estar a tiempo en el aeropuerto.",
+    "B1 | Die Frau bittet Anna, den Koffer auf die Waage zu stellen.": "La mujer le pide a Anna que ponga la maleta en la báscula.",
+    "B1 | Der Pilot hat keine Zeit, die Zeitung zu lesen.": "El piloto no tiene tiempo de leer el periódico.",
+    "B1 | Anna versucht, den Rucksack nicht zu vergessen.": "Anna intenta no olvidar la mochila.",
+    "B1 | Anna hofft, pünktlich anzukommen.": "Anna espera llegar a tiempo.",
+    "B1 | Anna muss der Frau den Pass zeigen.": "Anna tiene que mostrarle el pasaporte a la mujer.",
+    "B2 | Anna fragt die Frau, ob das Flugzeug pünktlich ist.": "Anna le pregunta a la mujer si el avión sale a tiempo.",
+    "B2 | Sie weiß nicht, wie viel der Koffer wiegt.": "Ella no sabe cuánto pesa la maleta.",
+    "B2 | Der Pilot weiß, wo das Flugzeug steht.": "El piloto sabe dónde está el avión.",
+    "B2 | Die Frau fragt, ob Anna Handgepäck hat.": "La mujer pregunta si Anna lleva equipaje de mano.",
+    "B2 | Anna möchte wissen, wann das Flugzeug abfliegt.": "Anna quiere saber cuándo despega el avión.",
+    "B2 | Weißt du, wem die Zeitung gehört?": "¿Sabes de quién es el periódico?",
+    "C1 | Sie muss sich auf die Reise freuen.": "Debe de estar emocionada por el viaje.",
+    "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "Puede que el piloto pilotee el avión de ella.",
+    "C1 | Der große Koffer dürfte zu schwer sein.": "La maleta grande probablemente pesa demasiado.",
+    "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "Dicen que este aeropuerto es el más moderno de Alemania."
    }
   }
  }

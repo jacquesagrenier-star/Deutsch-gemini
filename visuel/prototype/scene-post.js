@@ -35,7 +35,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "fenster",
@@ -64,7 +65,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "briefkasten",
@@ -93,7 +95,8 @@ window.SCENE = {
    "pt": "caixa de correio",
    "ar": "صندوق البريد",
    "pl": "skrzynka pocztowa",
-   "ru": "почтовый ящик"
+   "ru": "почтовый ящик",
+   "es": "el buzón"
   },
   {
    "id": "karton",
@@ -122,7 +125,8 @@ window.SCENE = {
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
-   "ru": "картонная коробка"
+   "ru": "картонная коробка",
+   "es": "la caja de cartón"
   },
   {
    "id": "uhr",
@@ -151,7 +155,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "regal",
@@ -180,7 +185,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "pflanze",
@@ -209,7 +215,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "mann",
@@ -238,7 +245,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "paket",
@@ -267,7 +275,8 @@ window.SCENE = {
    "pt": "pacote, encomenda",
    "ar": "طرد",
    "pl": "paczka",
-   "ru": "посылка"
+   "ru": "посылка",
+   "es": "el paquete"
   },
   {
    "id": "waage",
@@ -296,7 +305,8 @@ window.SCENE = {
    "pt": "balança",
    "ar": "ميزان",
    "pl": "waga (kuchenna)",
-   "ru": "весы"
+   "ru": "весы",
+   "es": "la báscula, la balanza"
   },
   {
    "id": "brief",
@@ -320,7 +330,8 @@ window.SCENE = {
      "pt": "envelope",
      "ar": "ظرف",
      "pl": "koperta",
-     "ru": "конверт"
+     "ru": "конверт",
+     "es": "el sobre"
     }
    ],
    "sur": null,
@@ -341,7 +352,8 @@ window.SCENE = {
    "pt": "carta",
    "ar": "رسالة (بريدية)",
    "pl": "list",
-   "ru": "письмо"
+   "ru": "письмо",
+   "es": "la carta"
   },
   {
    "id": "paket-2",
@@ -370,7 +382,8 @@ window.SCENE = {
    "pt": "pacote, encomenda",
    "ar": "طرد",
    "pl": "paczka",
-   "ru": "посылка"
+   "ru": "посылка",
+   "es": "el paquete"
   },
   {
    "id": "tasche",
@@ -399,7 +412,8 @@ window.SCENE = {
    "pt": "bolsa",
    "ar": "حقيبة",
    "pl": "torba, torebka",
-   "ru": "сумка"
+   "ru": "сумка",
+   "es": "la bolsa, el bolso"
   },
   {
    "id": "anna",
@@ -428,7 +442,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "paket-3",
@@ -457,7 +472,8 @@ window.SCENE = {
    "pt": "pacote, encomenda",
    "ar": "طرد",
    "pl": "paczka",
-   "ru": "посылка"
+   "ru": "посылка",
+   "es": "el paquete"
   },
   {
    "id": "frau",
@@ -486,7 +502,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "umschlag",
@@ -515,7 +532,8 @@ window.SCENE = {
    "pt": "envelope",
    "ar": "ظرف",
    "pl": "koperta",
-   "ru": "конверт"
+   "ru": "конверт",
+   "es": "el sobre"
   },
   {
    "id": "briefmarke",
@@ -544,7 +562,8 @@ window.SCENE = {
    "pt": "selo (postal)",
    "ar": "طابع بريدي",
    "pl": "znaczek pocztowy",
-   "ru": "почтовая марка"
+   "ru": "почтовая марка",
+   "es": "la estampilla, el timbre postal"
   },
   {
    "id": "kugelschreiber",
@@ -573,7 +592,8 @@ window.SCENE = {
    "pt": "caneta esferográfica",
    "ar": "قلم حبر جاف",
    "pl": "długopis",
-   "ru": "шариковая ручка"
+   "ru": "шариковая ручка",
+   "es": "el bolígrafo (de tinta)"
   },
   {
    "id": "schalter",
@@ -602,7 +622,8 @@ window.SCENE = {
    "pt": "guichê; interruptor",
    "ar": "شبّاك؛ مفتاح كهربائي",
    "pl": "okienko, kasa; włącznik",
-   "ru": "окошко, касса; выключатель"
+   "ru": "окошко, касса; выключатель",
+   "es": "la ventanilla, el interruptor"
   },
   {
    "id": "paket-4",
@@ -631,7 +652,8 @@ window.SCENE = {
    "pt": "pacote, encomenda",
    "ar": "طرد",
    "pl": "paczka",
-   "ru": "посылка"
+   "ru": "посылка",
+   "es": "el paquete"
   },
   {
    "id": "brief-2",
@@ -660,7 +682,8 @@ window.SCENE = {
    "pt": "carta",
    "ar": "رسالة (بريدية)",
    "pl": "list",
-   "ru": "письмо"
+   "ru": "письмо",
+   "es": "la carta"
   },
   {
    "id": "korb",
@@ -689,7 +712,8 @@ window.SCENE = {
    "pt": "cesto, cesta",
    "ar": "سلّة",
    "pl": "koszyk, kosz",
-   "ru": "корзина"
+   "ru": "корзина",
+   "es": "la canasta"
   },
   {
    "id": "schuh",
@@ -718,7 +742,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "regenschirm",
@@ -747,7 +772,8 @@ window.SCENE = {
    "pt": "guarda-chuva",
    "ar": "مظلّة",
    "pl": "parasol",
-   "ru": "зонт"
+   "ru": "зонт",
+   "es": "el paraguas"
   },
   {
    "id": "bank",
@@ -776,7 +802,8 @@ window.SCENE = {
    "pt": "banco (dinheiro)",
    "ar": "بنك، مصرف",
    "pl": "bank",
-   "ru": "банк"
+   "ru": "банк",
+   "es": "el banco"
   },
   {
    "id": "boden",
@@ -805,7 +832,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   },
   {
    "id": "wand",
@@ -834,7 +862,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   }
  ],
  "grosPlans": [],
@@ -1781,6 +1810,75 @@ window.SCENE = {
     "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "Посылка пожилой дамы, возможно, подарок.",
     "C1 | Der Brief dürfte in zwei Tagen ankommen.": "Письмо, вероятно, придёт через два дня.",
     "C1 | Diese Post soll bald schließen.": "Говорят, эта почта скоро закроется."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Anna en el correo: le entrega una carta al empleado, que pesa su paquete en una báscula; sobre el mostrador, sobres, una hoja de estampillas, una terminal de pago y un bolígrafo; una señora mayor espera su turno con un paquete en la mano; afuera, un buzón amarillo.",
+    "consigne": "Anna envía una carta y un paquete. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Dativo y acusativo: ¿a quién? ¿qué?",
+    "B2": "La pasiva",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Das Paket liegt auf der Waage.": "die Waage → auf <b>der</b> Waage: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Der Briefkasten steht hinter dem Fenster.": "<b>hinter</b> = detrás de. das Fenster → hinter <b>dem</b> Fenster.",
+    "A2 | Die Uhr hängt an der Wand.": "die Wand → an <b>der</b> Wand: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Die Briefmarken liegen auf dem Schalter.": "der Schalter → auf <b>dem</b> Schalter.",
+    "A2 | Die Briefe sind im Korb.": "<b>im</b> = in + <b>dem</b>: der Korb → im Korb.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "der Schalter → auf <b>dem</b> Schalter.",
+    "A2 | Der Regenschirm steht neben der Bank.": "die Bank → neben <b>der</b> Bank: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Das große Paket steht vor dem Schalter.": "<b>vor</b> = delante de. der Schalter → vor <b>dem</b> Schalter.",
+    "B1 | Anna schickt ihrer Mutter einen Brief.": "Quien recibe → dativo: ihre Mutter → <b>ihrer</b> Mutter.",
+    "B1 | Der Mann gibt ihr eine Quittung.": "<b>geben</b> + dativo: sie → <b>ihr</b>.",
+    "B1 | Anna gibt ihm den Brief.": "<b>geben</b> + dativo: er → <b>ihm</b>.",
+    "B1 | Den Brief? Sie gibt ihn ihm.": "Dos pronombres: primero el acusativo → <b>ihn</b> ihm. Al revés que «se la da».",
+    "B1 | Die Frau will ihrem Enkel ein Paket schicken.": "der Enkel recibe → dativo → <b>ihrem</b> Enkel.",
+    "B1 | Kannst du mir eine Briefmarke kaufen?": "Para mí → dativo: <b>mir</b>.",
+    "B1 | Anna zeigt dem Mann ihren Ausweis.": "der Ausweis, acusativo masculino → <b>ihren</b>.",
+    "B1 | Der Mann erklärt der Frau den Preis.": "Dativo femenino → <b>der</b> Frau.",
+    "B2 | Das Paket wird gerade gewogen.": "Pasiva de acción: <b>werden</b> + participio → wird gewogen.",
+    "B2 | Der Brief wird morgen zugestellt.": "Participio de un verbo separable: zu<b>ge</b>stellt.",
+    "B2 | Das Paket wurde gestern abgeschickt.": "Pasiva en pasado: <b>wurde</b> + participio.",
+    "B2 | Die Briefe sind schon sortiert.": "Pasiva de estado: <b>sein</b> + participio, como «están clasificadas».",
+    "B2 | Hier werden auch Pakete verschickt.": "Sujeto plural (Pakete) → <b>werden</b>.",
+    "B2 | Die Briefmarke muss auf den Umschlag geklebt werden.": "Pasiva con un verbo modal: participio + <b>werden</b> al final.",
+    "C1 | Der Brief muss für jemand Wichtiges sein.": "<b>müssen</b> = deducción casi segura, como «debe de ser».",
+    "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Der Brief dürfte in zwei Tagen ankommen.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Diese Post soll bald schließen.": "<b>sollen</b> = según dicen: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Das Paket liegt auf der Waage.": "El paquete está en la báscula.",
+    "A2 | Der Briefkasten steht hinter dem Fenster.": "El buzón está detrás de la ventana.",
+    "A2 | Die Uhr hängt an der Wand.": "El reloj está colgado en la pared.",
+    "A2 | Die Briefmarken liegen auf dem Schalter.": "Las estampillas están sobre el mostrador.",
+    "A2 | Die Briefe sind im Korb.": "Las cartas están en la canasta.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "La planta está sobre el mostrador.",
+    "A2 | Der Regenschirm steht neben der Bank.": "El paraguas está al lado de la banca.",
+    "A2 | Das große Paket steht vor dem Schalter.": "El paquete grande está delante del mostrador.",
+    "B1 | Anna schickt ihrer Mutter einen Brief.": "Anna le envía una carta a su mamá.",
+    "B1 | Der Mann gibt ihr eine Quittung.": "El hombre le da un recibo.",
+    "B1 | Anna gibt ihm den Brief.": "Anna le da la carta.",
+    "B1 | Den Brief? Sie gibt ihn ihm.": "¿La carta? Ella se la da.",
+    "B1 | Die Frau will ihrem Enkel ein Paket schicken.": "La mujer quiere enviarle un paquete a su nieto.",
+    "B1 | Kannst du mir eine Briefmarke kaufen?": "¿Puedes comprarme una estampilla?",
+    "B1 | Anna zeigt dem Mann ihren Ausweis.": "Anna le muestra su identificación al hombre.",
+    "B1 | Der Mann erklärt der Frau den Preis.": "El hombre le explica el precio a la mujer.",
+    "B2 | Das Paket wird gerade gewogen.": "Están pesando el paquete en este momento.",
+    "B2 | Der Brief wird morgen zugestellt.": "La carta será entregada mañana.",
+    "B2 | Das Paket wurde gestern abgeschickt.": "El paquete fue enviado ayer.",
+    "B2 | Die Briefe sind schon sortiert.": "Las cartas ya están clasificadas.",
+    "B2 | Hier werden auch Pakete verschickt.": "Aquí también se envían paquetes.",
+    "B2 | Die Briefmarke muss auf den Umschlag geklebt werden.": "La estampilla debe pegarse en el sobre.",
+    "C1 | Der Brief muss für jemand Wichtiges sein.": "La carta debe de ser para alguien importante.",
+    "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "El paquete de la señora mayor podría ser un regalo.",
+    "C1 | Der Brief dürfte in zwei Tagen ankommen.": "La carta probablemente llegará en dos días.",
+    "C1 | Diese Post soll bald schließen.": "Dicen que este correo va a cerrar pronto."
    }
   }
  }

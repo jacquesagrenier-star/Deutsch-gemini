@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "fenster",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "lampe",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "bild",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "quadro",
    "ar": "صورة، لوحة",
    "pl": "obraz",
-   "ru": "картина, изображение"
+   "ru": "картина, изображение",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "regal",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "buch",
@@ -174,7 +179,8 @@ window.SCENE = {
    "pt": "livro",
    "ar": "كتاب",
    "pl": "książka",
-   "ru": "книга"
+   "ru": "книга",
+   "es": "el libro"
   },
   {
    "id": "luftballon",
@@ -203,7 +209,8 @@ window.SCENE = {
    "pt": "bexiga, balão",
    "ar": "بالون",
    "pl": "balon, balonik",
-   "ru": "воздушный шарик"
+   "ru": "воздушный шарик",
+   "es": "el globo"
   },
   {
    "id": "gitarre",
@@ -232,7 +239,8 @@ window.SCENE = {
    "pt": "violão, guitarra",
    "ar": "غيتار",
    "pl": "gitara",
-   "ru": "гитара"
+   "ru": "гитара",
+   "es": "la guitarra"
   },
   {
    "id": "mark",
@@ -261,7 +269,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "anna",
@@ -290,7 +299,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "geschenk",
@@ -319,7 +329,8 @@ window.SCENE = {
    "pt": "presente",
    "ar": "هدية",
    "pl": "prezent",
-   "ru": "подарок"
+   "ru": "подарок",
+   "es": "el regalo"
   },
   {
    "id": "freund",
@@ -343,7 +354,8 @@ window.SCENE = {
      "pt": "amigo",
      "ar": "صديق",
      "pl": "przyjaciel, kolega",
-     "ru": "друг"
+     "ru": "друг",
+     "es": "el amigo"
     }
    ],
    "sur": null,
@@ -364,7 +376,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "handy",
@@ -393,7 +406,8 @@ window.SCENE = {
    "pt": "celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
-   "ru": "мобильный телефон"
+   "ru": "мобильный телефон",
+   "es": "el celular"
   },
   {
    "id": "freundin",
@@ -422,7 +436,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "sofa",
@@ -451,7 +466,8 @@ window.SCENE = {
    "pt": "sofá",
    "ar": "أريكة، كنبة",
    "pl": "kanapa",
-   "ru": "диван"
+   "ru": "диван",
+   "es": "el sofá"
   },
   {
    "id": "flasche",
@@ -475,7 +491,8 @@ window.SCENE = {
      "pt": "água",
      "ar": "ماء",
      "pl": "woda",
-     "ru": "вода"
+     "ru": "вода",
+     "es": "el agua"
     }
    ],
    "sur": "tisch",
@@ -502,7 +519,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "saft",
@@ -531,7 +549,8 @@ window.SCENE = {
    "pt": "suco",
    "ar": "عصير",
    "pl": "sok",
-   "ru": "сок"
+   "ru": "сок",
+   "es": "el jugo"
   },
   {
    "id": "glas",
@@ -560,7 +579,8 @@ window.SCENE = {
    "pt": "copo",
    "ar": "كوب زجاجي",
    "pl": "szklanka, szkło",
-   "ru": "стакан"
+   "ru": "стакан",
+   "es": "el vaso"
   },
   {
    "id": "glas-2",
@@ -589,7 +609,8 @@ window.SCENE = {
    "pt": "copo",
    "ar": "كوب زجاجي",
    "pl": "szklanka, szkło",
-   "ru": "стакан"
+   "ru": "стакан",
+   "es": "el vaso"
   },
   {
    "id": "glas-3",
@@ -618,7 +639,8 @@ window.SCENE = {
    "pt": "copo",
    "ar": "كوب زجاجي",
    "pl": "szklanka, szkło",
-   "ru": "стакан"
+   "ru": "стакан",
+   "es": "el vaso"
   },
   {
    "id": "kerze",
@@ -647,7 +669,8 @@ window.SCENE = {
    "pt": "vela",
    "ar": "شمعة",
    "pl": "świeczka",
-   "ru": "свеча"
+   "ru": "свеча",
+   "es": "la vela"
   },
   {
    "id": "torte",
@@ -676,7 +699,8 @@ window.SCENE = {
    "pt": "torta, bolo confeitado",
    "ar": "كعكة (بطبقات)",
    "pl": "tort",
-   "ru": "торт"
+   "ru": "торт",
+   "es": "el pastel de capas, la torta"
   },
   {
    "id": "teller",
@@ -705,7 +729,8 @@ window.SCENE = {
    "pt": "prato",
    "ar": "صحن",
    "pl": "talerz",
-   "ru": "тарелка"
+   "ru": "тарелка",
+   "es": "el plato"
   },
   {
    "id": "teller-2",
@@ -734,7 +759,8 @@ window.SCENE = {
    "pt": "prato",
    "ar": "صحن",
    "pl": "talerz",
-   "ru": "тарелка"
+   "ru": "тарелка",
+   "es": "el plato"
   },
   {
    "id": "pizza",
@@ -763,7 +789,8 @@ window.SCENE = {
    "pt": "pizza",
    "ar": "بيتزا",
    "pl": "pizza",
-   "ru": "пицца"
+   "ru": "пицца",
+   "es": "la pizza"
   },
   {
    "id": "erdbeere",
@@ -792,7 +819,8 @@ window.SCENE = {
    "pt": "morango",
    "ar": "فراولة",
    "pl": "truskawka",
-   "ru": "клубника"
+   "ru": "клубника",
+   "es": "la fresa"
   },
   {
    "id": "geschenk-2",
@@ -821,7 +849,8 @@ window.SCENE = {
    "pt": "presente",
    "ar": "هدية",
    "pl": "prezent",
-   "ru": "подарок"
+   "ru": "подарок",
+   "es": "el regalo"
   },
   {
    "id": "karte",
@@ -850,7 +879,8 @@ window.SCENE = {
    "pt": "ingresso, cartão",
    "ar": "بطاقة، تذكرة",
    "pl": "bilet, karta",
-   "ru": "карта, билет"
+   "ru": "карта, билет",
+   "es": "la tarjeta, el boleto"
   },
   {
    "id": "tisch",
@@ -879,7 +909,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   }
  ],
  "grosPlans": [],
@@ -1836,6 +1867,75 @@ window.SCENE = {
     "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "Красный подарок, возможно, от его родителей.",
     "C1 | Die Pizza dürfte gleich alle sein.": "Пицца, вероятно, скоро закончится.",
     "C1 | Anna soll die Torte selbst gebacken haben.": "Говорят, Анна сама испекла торт."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "El cumpleaños de Mark en la sala de su apartamento compartido: Anna le entrega un regalo, un amigo le toma una foto, una amiga aplaude; sobre la mesa, un pastel de chocolate con sus velas, una pizza, fresas, jugo de naranja, un regalo grande rojo y una tarjeta.",
+    "consigne": "Es el cumpleaños de Mark. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "El dativo: dar, regalar, felicitar",
+    "B2": "Relativas y pasiva",
+    "C1": "Hipótesis"
+   },
+   "questions": {
+    "A2 | Die Torte steht auf dem Tisch.": "<b>Wo?</b> → dativo: der Tisch → auf <b>dem</b> Tisch.",
+    "A2 | Die Luftballons sind vor dem Fenster.": "<b>vor</b> = delante de. das Fenster → vor <b>dem</b> Fenster.",
+    "A2 | Mark sitzt auf dem Sofa.": "das Sofa es neutro: en dativo → auf <b>dem</b> Sofa.",
+    "A2 | Die Gitarre steht neben dem Sofa.": "<b>neben</b> = al lado de. das Sofa → neben <b>dem</b> Sofa.",
+    "A2 | Das Bild hängt an der Wand.": "<b>an</b> = contra una superficie vertical. die Wand → an <b>der</b> Wand.",
+    "A2 | Die Karte liegt vor dem Geschenk.": "das Geschenk → vor <b>dem</b> Geschenk.",
+    "A2 | Die Bücher stehen im Regal.": "<b>im</b> = in + <b>dem</b>: das Regal → im Regal.",
+    "A2 | Die Lampe steht neben dem Regal.": "das Regal → neben <b>dem</b> Regal.",
+    "B1 | Anna gibt ihm ein Geschenk.": "Se le da algo <b>a</b> alguien → dativo: er → <b>ihm</b>.",
+    "B1 | Alle gratulieren ihm zum Geburtstag.": "<b>gratulieren</b> + dativo: el español dice «lo felicitan», pero en alemán se le felicita <b>a</b> él en dativo → ihm (no ihn).",
+    "B1 | Das Geschenk gefällt ihm.": "<b>gefallen</b> + dativo, como «gustar»: el regalo le gusta <b>a él</b> → ihm.",
+    "B1 | Anna schenkt ihrem Freund eine Kleinigkeit.": "<b>schenken</b>: la persona en dativo. Posesivo masculino en dativo → ihr<b>em</b>.",
+    "B1 | Der Freund macht ein Foto von Mark.": "Una foto <b>de</b> alguien → <b>von</b> + dativo.",
+    "B1 | Mark dankt seinen Freunden für die Party.": "<b>danken</b> + dativo; en dativo plural: posesivo en <b>-en</b>, y el sustantivo toma una <b>-n</b> (Freunde<b>n</b>).",
+    "B1 | Die Kerzen stehen auf der Torte.": "<b>Wo?</b> → dativo: die Torte → auf <b>der</b> Torte.",
+    "B1 | Gleich bringt Anna den Gästen Saft.": "¿A quién? → dativo plural: die Gäste → <b>den</b> Gäste<b>n</b>.",
+    "B2 | Das Geschenk, das Anna in der Hand hält, ist grün.": "Complemento directo (acusativo), neutro → <b>das</b>.",
+    "B2 | Der Freund, der Mark fotografiert, sitzt auf dem Sofa.": "Es él quien toma la foto: sujeto → <b>der</b>.",
+    "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "<b>auf</b> + Wo? → dativo, femenino → <b>der</b>.",
+    "B2 | Die Kerzen werden gleich ausgeblasen.": "Una acción (dentro de poco) → pasiva con <b>werden</b>.",
+    "B2 | Das rote Geschenk ist schön eingepackt.": "Pasiva de estado: <b>sein</b> + participio. Verbo separable: ein<b>ge</b>packt.",
+    "B2 | Die Freundin, deren Haare rot sind, klatscht.": "Posesión, antecedente femenino → <b>deren</b> (cuyo pelo).",
+    "C1 | Das Geschenk muss eine Überraschung sein.": "<b>müssen</b> = deducción casi segura. Se ríe, no se lo esperaba.",
+    "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Die Pizza dürfte gleich alle sein.": "<b>dürfte</b> = probable, sin estar seguro. <b>alle sein</b> (coloquial) = haberse acabado.",
+    "C1 | Anna soll die Torte selbst gebacken haben.": "<b>sollen</b> + infinitivo compuesto = según lo que se dice, ella lo hizo."
+   },
+   "sens": {
+    "A2 | Die Torte steht auf dem Tisch.": "El pastel está sobre la mesa.",
+    "A2 | Die Luftballons sind vor dem Fenster.": "Los globos están delante de la ventana.",
+    "A2 | Mark sitzt auf dem Sofa.": "Mark está sentado en el sofá.",
+    "A2 | Die Gitarre steht neben dem Sofa.": "La guitarra está al lado del sofá.",
+    "A2 | Das Bild hängt an der Wand.": "El cuadro está colgado en la pared.",
+    "A2 | Die Karte liegt vor dem Geschenk.": "La tarjeta está delante del regalo.",
+    "A2 | Die Bücher stehen im Regal.": "Los libros están en el estante.",
+    "A2 | Die Lampe steht neben dem Regal.": "La lámpara está al lado del estante.",
+    "B1 | Anna gibt ihm ein Geschenk.": "Anna le da un regalo.",
+    "B1 | Alle gratulieren ihm zum Geburtstag.": "Todos lo felicitan por su cumpleaños.",
+    "B1 | Das Geschenk gefällt ihm.": "El regalo le gusta.",
+    "B1 | Anna schenkt ihrem Freund eine Kleinigkeit.": "Anna le regala un detalle a su amigo.",
+    "B1 | Der Freund macht ein Foto von Mark.": "El amigo le toma una foto a Mark.",
+    "B1 | Mark dankt seinen Freunden für die Party.": "Mark les da las gracias a sus amigos por la fiesta.",
+    "B1 | Die Kerzen stehen auf der Torte.": "Las velas están sobre el pastel.",
+    "B1 | Gleich bringt Anna den Gästen Saft.": "Enseguida Anna les trae jugo a los invitados.",
+    "B2 | Das Geschenk, das Anna in der Hand hält, ist grün.": "El regalo que Anna tiene en la mano es verde.",
+    "B2 | Der Freund, der Mark fotografiert, sitzt auf dem Sofa.": "El amigo que fotografía a Mark está sentado en el sofá.",
+    "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "El pastel, sobre el que arden cinco velas, es de chocolate.",
+    "B2 | Die Kerzen werden gleich ausgeblasen.": "Enseguida se van a soplar las velas.",
+    "B2 | Das rote Geschenk ist schön eingepackt.": "El regalo rojo está envuelto muy bonito.",
+    "B2 | Die Freundin, deren Haare rot sind, klatscht.": "La amiga, cuyo pelo es rojo, aplaude.",
+    "C1 | Das Geschenk muss eine Überraschung sein.": "El regalo debe de ser una sorpresa.",
+    "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "El regalo rojo podría ser de sus padres.",
+    "C1 | Die Pizza dürfte gleich alle sein.": "La pizza probablemente se va a acabar pronto.",
+    "C1 | Anna soll die Torte selbst gebacken haben.": "Dicen que Anna misma horneó el pastel."
    }
   }
  }

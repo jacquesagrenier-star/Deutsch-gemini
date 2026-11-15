@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "uhr",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "katze",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "gato",
    "ar": "قطة",
    "pl": "kot",
-   "ru": "кошка"
+   "ru": "кошка",
+   "es": "el gato"
   },
   {
    "id": "haken",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "gancho",
    "ar": "علّاقة، خطّاف",
    "pl": "wieszak, hak",
-   "ru": "крючок"
+   "ru": "крючок",
+   "es": "el gancho"
   },
   {
    "id": "schluessel",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "chave",
    "ar": "مفتاح",
    "pl": "klucz",
-   "ru": "ключ"
+   "ru": "ключ",
+   "es": "la llave"
   },
   {
    "id": "kueche",
@@ -174,7 +179,8 @@ window.SCENE = {
    "pt": "cozinha",
    "ar": "مطبخ",
    "pl": "kuchnia",
-   "ru": "кухня"
+   "ru": "кухня",
+   "es": "la cocina"
   },
   {
    "id": "kaffeemaschine",
@@ -203,7 +209,8 @@ window.SCENE = {
    "pt": "máquina de café",
    "ar": "آلة القهوة",
    "pl": "ekspres do kawy",
-   "ru": "кофемашина"
+   "ru": "кофемашина",
+   "es": "la cafetera"
   },
   {
    "id": "kuehlschrank",
@@ -232,7 +239,8 @@ window.SCENE = {
    "pt": "geladeira",
    "ar": "ثلّاجة",
    "pl": "lodówka",
-   "ru": "холодильник"
+   "ru": "холодильник",
+   "es": "el refrigerador"
   },
   {
    "id": "tuer",
@@ -261,7 +269,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "pflegebett",
@@ -285,7 +294,8 @@ window.SCENE = {
      "pt": "cama",
      "ar": "سرير",
      "pl": "łóżko",
-     "ru": "кровать"
+     "ru": "кровать",
+     "es": "la cama"
     }
    ],
    "sur": null,
@@ -364,7 +374,8 @@ window.SCENE = {
    "pt": "almofada",
    "ar": "وسادة",
    "pl": "poduszka",
-   "ru": "подушка"
+   "ru": "подушка",
+   "es": "el cojín, la almohada"
   },
   {
    "id": "fernbedienung",
@@ -393,7 +404,8 @@ window.SCENE = {
    "pt": "controle remoto",
    "ar": "جهاز التحكّم عن بعد",
    "pl": "pilot (do telewizora)",
-   "ru": "пульт дистанционного управления"
+   "ru": "пульт дистанционного управления",
+   "es": "el control remoto"
   },
   {
    "id": "heizkoerper",
@@ -422,7 +434,8 @@ window.SCENE = {
    "pt": "aquecedor (radiador)",
    "ar": "مشعاع التدفئة",
    "pl": "grzejnik, kaloryfer",
-   "ru": "батарея (отопления)"
+   "ru": "батарея (отопления)",
+   "es": "el radiador"
   },
   {
    "id": "sessel",
@@ -451,7 +464,8 @@ window.SCENE = {
    "pt": "poltrona",
    "ar": "كرسي بذراعين",
    "pl": "fotel",
-   "ru": "кресло"
+   "ru": "кресло",
+   "es": "el sillón"
   },
   {
    "id": "klientin",
@@ -475,7 +489,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     },
     {
      "mot": "Rentnerin",
@@ -490,7 +505,8 @@ window.SCENE = {
      "pt": "aposentada",
      "ar": "متقاعدة",
      "pl": "emerytka",
-     "ru": "пенсионерка"
+     "ru": "пенсионерка",
+     "es": "la jubilada"
     }
    ],
    "sur": "sessel",
@@ -540,7 +556,8 @@ window.SCENE = {
    "pt": "roupão",
    "ar": "رداء الحمّام",
    "pl": "szlafrok",
-   "ru": "халат"
+   "ru": "халат",
+   "es": "la bata de baño"
   },
   {
    "id": "hausnotruf",
@@ -598,7 +615,8 @@ window.SCENE = {
    "pt": "banquinho",
    "ar": "مقعد بلا ظهر",
    "pl": "taboret",
-   "ru": "табурет"
+   "ru": "табурет",
+   "es": "el taburete"
   },
   {
    "id": "tisch",
@@ -627,7 +645,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "ordner",
@@ -656,7 +675,8 @@ window.SCENE = {
    "pt": "pasta",
    "ar": "مجلّد",
    "pl": "folder; segregator",
-   "ru": "папка"
+   "ru": "папка",
+   "es": "la carpeta"
   },
   {
    "id": "tasse",
@@ -685,7 +705,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "telefon",
@@ -714,7 +735,8 @@ window.SCENE = {
    "pt": "telefone",
    "ar": "هاتف",
    "pl": "telefon",
-   "ru": "телефон"
+   "ru": "телефон",
+   "es": "el teléfono"
   },
   {
    "id": "dispenser",
@@ -830,7 +852,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "tasche",
@@ -859,7 +882,8 @@ window.SCENE = {
    "pt": "bolsa",
    "ar": "حقيبة",
    "pl": "torba, torebka",
-   "ru": "сумка"
+   "ru": "сумка",
+   "es": "la bolsa, el bolso"
   },
   {
    "id": "diensthandy",
@@ -883,7 +907,8 @@ window.SCENE = {
      "pt": "smartphone",
      "ar": "هاتف ذكي",
      "pl": "smartfon",
-     "ru": "смартфон"
+     "ru": "смартфон",
+     "es": "el teléfono inteligente, el smartphone"
     }
    ],
    "sur": "stuhl",
@@ -904,7 +929,8 @@ window.SCENE = {
    "pt": "celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
-   "ru": "мобильный телефон"
+   "ru": "мобильный телефон",
+   "es": "el celular"
   },
   {
    "id": "strumpf",
@@ -928,7 +954,8 @@ window.SCENE = {
      "pt": "meia (meia-calça)",
      "ar": "جورب طويل",
      "pl": "pończocha, skarpeta",
-     "ru": "чулок, носок"
+     "ru": "чулок, носок",
+     "es": "la media, el calcetín"
     }
    ],
    "sur": "stuhl",
@@ -1957,6 +1984,78 @@ window.SCENE = {
     "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Я сразу даю ей сахар или сок, а потом снова измеряю.",
     "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Я собираю все, сравниваю таблетницу с планом и сообщаю, если одной не хватает.",
     "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Я не надеваю чулки и сразу сообщаю семейному врачу."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "La sala de Frau Kowalski, en un edificio antiguo, por la mañana: está sentada en su sillón, en bata, con los pies sobre un reposapiés y un botón de emergencia en la muñeca, y mira a su gato en el borde de la ventana; sobre la mesita, el café, el pastillero, la pluma de insulina, el glucómetro y la carpeta de cuidados; sobre la silla, el maletín y el celular de la cuidadora, las medias de compresión y una muleta; la cama hospitalaria, el andador, las llaves en el gancho, la cocina.",
+    "consigne": "Toca un objeto del apartamento, o a Frau Kowalski."
+   },
+   "couches": {
+    "A1": "Los objetos del apartamento",
+    "A2": "La ronda de la mañana",
+    "B1": "Aconsejar con «sollten»",
+    "B2": "Llamar al consultorio médico",
+    "C1": "Documentar una negativa",
+    "SIT": "¿Qué haces?"
+   },
+   "questions": {
+    "A2 | Sie kommt um acht Uhr.": "<b>um</b> + hora; am + día; im + mes.",
+    "A2 | Frau Kowalski wohnt im dritten Stock.": "<b>im</b> dritten Stock (in + dem) = en el tercer piso.",
+    "A2 | Die Katze sitzt am Fenster.": "<b>am</b> = an + dem: junto a, pegado a.",
+    "A2 | Auf dem Tisch.": "<b>auf</b> + dativo: puesto sobre una superficie.",
+    "A2 | Die Schlüssel hängen am Haken.": "Lo que cuelga: <b>hängen an</b> + dativo (am Haken).",
+    "A2 | Die Tasche steht auf dem Stuhl.": "<b>auf</b> dem Stuhl: sobre el asiento de la silla.",
+    "B1 | Sie sollten die Strümpfe morgens vor dem Aufstehen anziehen.": "<b>sollten</b> (Konjunktiv II) = un consejo cortés. Las medias se ponen en la mañana, con las piernas todavía poco hinchadas ⚕️.",
+    "B1 | Sie sollten mehr trinken.": "Después de un verbo modal, el infinitivo va al final.",
+    "B1 | Sie sollten den Notrufknopf immer tragen, auch nachts.": "Con Sie: <b>sollten</b> (como en plural).",
+    "B1 | Könnten Sie Ihren Blutzucker vor dem Frühstück messen?": "<b>Könnten Sie …?</b> (Konjunktiv II): una petición cortés. Konnten = el pasado.",
+    "B1 | Sie sollten den Rollator immer in der Nähe haben.": "Modal + infinitivo al final: sollten … <b>haben</b>.",
+    "B1 | An Ihrer Stelle würde ich die Katze nicht ins Bett lassen.": "<b>An Ihrer Stelle würde ich …</b> = en su lugar, yo …: aconsejar con tacto.",
+    "B2 | Guten Tag, hier ist Amira vom Pflegedienst. Ich rufe wegen Frau Kowalski an.": "Quién llama, de dónde y por quién: <b>Ich rufe wegen … an</b>.",
+    "B2 | Ihr Blutzucker ist heute Morgen deutlich höher als sonst.": "Comparar: <b>höher als</b> sonst; <b>deutlich</b> refuerza el comparativo.",
+    "B2 | Könnten Sie mir bitte sagen, wann die Ärztin zurückruft?": "Pregunta indirecta: <b>wann</b>, el verbo al final (zurückruft).",
+    "B2 | Ich würde gern einen Hausbesuch vereinbaren.": "<b>Ich würde gern …</b>: una petición cortés por teléfono.",
+    "B2 | Soll ich die Insulindosis anpassen oder so lassen?": "Una dosis solo se cambia con indicación médica: se pregunta ⚕️. Modal + infinitivo completo al final: <b>anpassen</b>.",
+    "B2 | Darf ich das kurz wiederholen: ab morgen zwei Einheiten mehr?": "Una indicación recibida por teléfono se repite para comprobarla ⚕️.",
+    "C1 | Klientin lehnt das Anziehen der Kompressionsstrümpfe ab, wurde über mögliche Folgen aufgeklärt.": "La fórmula de la negativa: <b>lehnt … ab</b>, y luego <b>wurde über mögliche Folgen aufgeklärt</b>: la información se dio, la decisión se respeta ⚕️.",
+    "C1 | Einnahme der Morgenmedikation verweigert, Hausärztin informiert.": "El estilo nominal (<b>Einnahme … verweigert</b>): el hecho, y luego a quién se informó ⚕️.",
+    "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "Una nota en el expediente: hechos con fecha y hora, comprobables, nunca una opinión.",
+    "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "<b>trotz</b> + genitivo (a menudo dativo al hablar); <b>BZ</b> = Blutzucker ⚕️.",
+    "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Se anota la decisión de la persona Y lo que se hizo: <b>Risiko mit ihr besprochen</b>.",
+    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Nunca irse, nunca forzar nada sola: se da aviso y se sigue el procedimiento del servicio (familiares, llave, emergencias) ⚕️.",
+    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Hipoglucemia: azúcar de acción rápida enseguida, y luego un control; nunca insulina ⚕️.",
+    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Una pastilla que se tragó el gato, o que se olvidó, cambia el tratamiento: se cuentan y se avisa.",
+    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Una pierna roja, caliente e hinchada puede ser una trombosis: ni medias ni masaje, se llama ⚕️."
+   },
+   "sens": {
+    "A2 | Sie kommt um acht Uhr.": "Ella llega a las ocho.",
+    "A2 | Frau Kowalski wohnt im dritten Stock.": "La Sra. Kowalski vive en el tercer piso.",
+    "A2 | Die Katze sitzt am Fenster.": "El gato está sentado junto a la ventana.",
+    "A2 | Auf dem Tisch.": "Sobre la mesa.",
+    "A2 | Die Schlüssel hängen am Haken.": "Las llaves están colgadas en el gancho.",
+    "A2 | Die Tasche steht auf dem Stuhl.": "El bolso está sobre la silla.",
+    "B1 | Sie sollten die Strümpfe morgens vor dem Aufstehen anziehen.": "Debería ponerse las medias en la mañana, antes de levantarse.",
+    "B1 | Sie sollten mehr trinken.": "Debería beber más.",
+    "B1 | Sie sollten den Notrufknopf immer tragen, auch nachts.": "Debería llevar siempre el botón de emergencia, también de noche.",
+    "B1 | Könnten Sie Ihren Blutzucker vor dem Frühstück messen?": "¿Podría medirse la glucosa antes del desayuno?",
+    "B1 | Sie sollten den Rollator immer in der Nähe haben.": "Debería tener siempre el andador cerca.",
+    "B1 | An Ihrer Stelle würde ich die Katze nicht ins Bett lassen.": "En su lugar, yo no dejaría que el gato se subiera a la cama.",
+    "B2 | Guten Tag, hier ist Amira vom Pflegedienst. Ich rufe wegen Frau Kowalski an.": "Buenos días, habla Amira, del servicio de enfermería a domicilio. Llamo por la Sra. Kowalski.",
+    "B2 | Ihr Blutzucker ist heute Morgen deutlich höher als sonst.": "Esta mañana, su glucosa está notablemente más alta que de costumbre.",
+    "B2 | Könnten Sie mir bitte sagen, wann die Ärztin zurückruft?": "¿Podría decirme, por favor, cuándo devuelve la llamada la doctora?",
+    "B2 | Ich würde gern einen Hausbesuch vereinbaren.": "Me gustaría acordar una visita a domicilio.",
+    "B2 | Soll ich die Insulindosis anpassen oder so lassen?": "¿Ajusto la dosis de insulina o la dejo así?",
+    "B2 | Darf ich das kurz wiederholen: ab morgen zwei Einheiten mehr?": "¿Puedo repetirlo un momento: a partir de mañana, dos unidades más?",
+    "C1 | Klientin lehnt das Anziehen der Kompressionsstrümpfe ab, wurde über mögliche Folgen aufgeklärt.": "La usuaria se niega a ponerse las medias de compresión; se le informó de las posibles consecuencias.",
+    "C1 | Einnahme der Morgenmedikation verweigert, Hausärztin informiert.": "Toma de los medicamentos de la mañana rechazada, médica de cabecera informada.",
+    "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "La hora, la observación, la medida tomada y a quién se informó.",
+    "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "A pesar de las instrucciones, la usuaria no se mide la glucosa por sí sola.",
+    "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "La usuaria no lleva el botón de emergencia de noche; se habló del riesgo con ella.",
+    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Llamo a la jefa del servicio de enfermería y sigo el plan de emergencia.",
+    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Le doy enseguida pastillas de glucosa o jugo, y después mido otra vez.",
+    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Las recojo todas, comparo el pastillero con el plan y aviso si falta una.",
+    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "No le pongo las medias y aviso enseguida a la médica de cabecera."
    }
   }
  }

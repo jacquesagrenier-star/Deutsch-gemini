@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "tafel",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "quadro (lousa)",
    "ar": "سبّورة",
    "pl": "tablica",
-   "ru": "доска"
+   "ru": "доска",
+   "es": "la pizarra"
   },
   {
    "id": "lehrer",
@@ -82,7 +84,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     },
     {
      "mot": "Brille",
@@ -97,7 +100,8 @@ window.SCENE = {
      "pt": "óculos",
      "ar": "نظّارة",
      "pl": "okulary",
-     "ru": "очки"
+     "ru": "очки",
+     "es": "los lentes"
     },
     {
      "mot": "Bart",
@@ -112,7 +116,8 @@ window.SCENE = {
      "pt": "barba",
      "ar": "لحية",
      "pl": "broda, zarost",
-     "ru": "борода"
+     "ru": "борода",
+     "es": "la barba"
     }
    ],
    "sur": null,
@@ -139,7 +144,8 @@ window.SCENE = {
    "pt": "professor",
    "ar": "معلّم",
    "pl": "nauczyciel",
-   "ru": "учитель"
+   "ru": "учитель",
+   "es": "el maestro, el profesor"
   },
   {
    "id": "hemd",
@@ -168,7 +174,8 @@ window.SCENE = {
    "pt": "camisa",
    "ar": "قميص",
    "pl": "koszula",
-   "ru": "рубашка"
+   "ru": "рубашка",
+   "es": "la camisa"
   },
   {
    "id": "brille",
@@ -197,7 +204,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "bart",
@@ -226,7 +234,8 @@ window.SCENE = {
    "pt": "barba",
    "ar": "لحية",
    "pl": "broda, zarost",
-   "ru": "борода"
+   "ru": "борода",
+   "es": "la barba"
   },
   {
    "id": "kreide",
@@ -255,7 +264,8 @@ window.SCENE = {
    "pt": "giz",
    "ar": "طبشور",
    "pl": "kreda",
-   "ru": "мел"
+   "ru": "мел",
+   "es": "la tiza"
   },
   {
    "id": "tuer",
@@ -284,7 +294,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "haken",
@@ -313,7 +324,8 @@ window.SCENE = {
    "pt": "gancho",
    "ar": "علّاقة، خطّاف",
    "pl": "wieszak, hak",
-   "ru": "крючок"
+   "ru": "крючок",
+   "es": "el gancho"
   },
   {
    "id": "mantel",
@@ -342,7 +354,8 @@ window.SCENE = {
    "pt": "casaco (sobretudo)",
    "ar": "معطف",
    "pl": "płaszcz",
-   "ru": "пальто"
+   "ru": "пальто",
+   "es": "el abrigo"
   },
   {
    "id": "jacke",
@@ -371,7 +384,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "bild",
@@ -400,7 +414,8 @@ window.SCENE = {
    "pt": "quadro",
    "ar": "صورة، لوحة",
    "pl": "obraz",
-   "ru": "картина, изображение"
+   "ru": "картина, изображение",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "lampe",
@@ -429,7 +444,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "fenster",
@@ -458,7 +474,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "regal",
@@ -487,7 +504,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "pflanze",
@@ -516,7 +534,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "mark",
@@ -540,7 +559,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     },
     {
      "mot": "Student",
@@ -555,7 +575,8 @@ window.SCENE = {
      "pt": "estudante (universitário)",
      "ar": "طالب جامعي",
      "pl": "student",
-     "ru": "студент"
+     "ru": "студент",
+     "es": "el estudiante (universitario)"
     },
     {
      "mot": "Stift",
@@ -570,7 +591,8 @@ window.SCENE = {
      "pt": "caneta",
      "ar": "قلم",
      "pl": "długopis, ołówek",
-     "ru": "ручка, карандаш"
+     "ru": "ручка, карандаш",
+     "es": "el bolígrafo"
     }
    ],
    "sur": null,
@@ -603,7 +625,8 @@ window.SCENE = {
    "pt": "participante",
    "ar": "مشارك",
    "pl": "uczestnik",
-   "ru": "участник"
+   "ru": "участник",
+   "es": "el participante"
   },
   {
    "id": "pullover",
@@ -632,7 +655,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "anna",
@@ -656,7 +680,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     },
     {
      "mot": "Stift",
@@ -671,7 +696,8 @@ window.SCENE = {
      "pt": "caneta",
      "ar": "قلم",
      "pl": "długopis, ołówek",
-     "ru": "ручка, карандаш"
+     "ru": "ручка, карандаш",
+     "es": "el bolígrafo"
     },
     {
      "mot": "Studentin",
@@ -686,7 +712,8 @@ window.SCENE = {
      "pt": "estudante (universitária)",
      "ar": "طالبة جامعية",
      "pl": "studentka",
-     "ru": "студентка"
+     "ru": "студентка",
+     "es": "la estudiante"
     }
    ],
    "sur": null,
@@ -719,7 +746,8 @@ window.SCENE = {
    "pt": "participante (mulher)",
    "ar": "مشاركة",
    "pl": "uczestniczka",
-   "ru": "участница"
+   "ru": "участница",
+   "es": "la participante"
   },
   {
    "id": "pullover-2",
@@ -748,7 +776,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "rock",
@@ -777,7 +806,8 @@ window.SCENE = {
    "pt": "saia",
    "ar": "تنورة",
    "pl": "spódnica",
-   "ru": "юбка"
+   "ru": "юбка",
+   "es": "la falda"
   },
   {
    "id": "heft",
@@ -806,7 +836,8 @@ window.SCENE = {
    "pt": "caderno",
    "ar": "دفتر",
    "pl": "zeszyt",
-   "ru": "тетрадь"
+   "ru": "тетрадь",
+   "es": "el cuaderno"
   },
   {
    "id": "heft-mark",
@@ -835,7 +866,8 @@ window.SCENE = {
    "pt": "caderno",
    "ar": "دفتر",
    "pl": "zeszyt",
-   "ru": "тетрадь"
+   "ru": "тетрадь",
+   "es": "el cuaderno"
   },
   {
    "id": "heft-noir",
@@ -864,7 +896,8 @@ window.SCENE = {
    "pt": "caderno",
    "ar": "دفتر",
    "pl": "zeszyt",
-   "ru": "тетрадь"
+   "ru": "тетрадь",
+   "es": "el cuaderno"
   },
   {
    "id": "heft-studentin",
@@ -893,7 +926,8 @@ window.SCENE = {
    "pt": "caderno",
    "ar": "دفتر",
    "pl": "zeszyt",
-   "ru": "тетрадь"
+   "ru": "тетрадь",
+   "es": "el cuaderno"
   },
   {
    "id": "stift",
@@ -922,7 +956,8 @@ window.SCENE = {
    "pt": "caneta",
    "ar": "قلم",
    "pl": "długopis, ołówek",
-   "ru": "ручка, карандаш"
+   "ru": "ручка, карандаш",
+   "es": "el bolígrafo"
   },
   {
    "id": "stift-mark",
@@ -951,7 +986,8 @@ window.SCENE = {
    "pt": "caneta",
    "ar": "قلم",
    "pl": "długopis, ołówek",
-   "ru": "ручка, карандаш"
+   "ru": "ручка, карандаш",
+   "es": "el bolígrafo"
   },
   {
    "id": "stift-noir",
@@ -980,7 +1016,8 @@ window.SCENE = {
    "pt": "caneta",
    "ar": "قلم",
    "pl": "długopis, ołówek",
-   "ru": "ручка, карандаш"
+   "ru": "ручка, карандаш",
+   "es": "el bolígrafo"
   },
   {
    "id": "stift-studentin",
@@ -1009,7 +1046,8 @@ window.SCENE = {
    "pt": "caneta",
    "ar": "قلم",
    "pl": "długopis, ołówek",
-   "ru": "ручка, карандаш"
+   "ru": "ручка, карандаш",
+   "es": "el bolígrafo"
   },
   {
    "id": "stift-bureau",
@@ -1038,7 +1076,8 @@ window.SCENE = {
    "pt": "caneta",
    "ar": "قلم",
    "pl": "długopis, ołówek",
-   "ru": "ручка, карандаш"
+   "ru": "ручка, карандаш",
+   "es": "el bolígrafo"
   },
   {
    "id": "heft-bureau",
@@ -1067,7 +1106,8 @@ window.SCENE = {
    "pt": "caderno",
    "ar": "دفتر",
    "pl": "zeszyt",
-   "ru": "тетрадь"
+   "ru": "тетрадь",
+   "es": "el cuaderno"
   },
   {
    "id": "tisch",
@@ -1096,7 +1136,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "stuhl",
@@ -1125,7 +1166,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "stuhl-bureau",
@@ -1154,7 +1196,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "rucksack",
@@ -1183,7 +1226,8 @@ window.SCENE = {
    "pt": "mochila",
    "ar": "حقيبة ظهر",
    "pl": "plecak",
-   "ru": "рюкзак"
+   "ru": "рюкзак",
+   "es": "la mochila"
   },
   {
    "id": "mann",
@@ -1207,7 +1251,8 @@ window.SCENE = {
      "pt": "participante",
      "ar": "مشارك",
      "pl": "uczestnik",
-     "ru": "участник"
+     "ru": "участник",
+     "es": "el participante"
     },
     {
      "mot": "Bart",
@@ -1222,7 +1267,8 @@ window.SCENE = {
      "pt": "barba",
      "ar": "لحية",
      "pl": "broda, zarost",
-     "ru": "борода"
+     "ru": "борода",
+     "es": "la barba"
     },
     {
      "mot": "Student",
@@ -1237,7 +1283,8 @@ window.SCENE = {
      "pt": "estudante (universitário)",
      "ar": "طالب جامعي",
      "pl": "student",
-     "ru": "студент"
+     "ru": "студент",
+     "es": "el estudiante (universitario)"
     }
    ],
    "sur": null,
@@ -1264,7 +1311,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "hemd-2",
@@ -1293,7 +1341,8 @@ window.SCENE = {
    "pt": "camisa",
    "ar": "قميص",
    "pl": "koszula",
-   "ru": "рубашка"
+   "ru": "рубашка",
+   "es": "la camisa"
   },
   {
    "id": "studentin",
@@ -1317,7 +1366,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     },
     {
      "mot": "Teilnehmerin",
@@ -1332,7 +1382,8 @@ window.SCENE = {
      "pt": "participante (mulher)",
      "ar": "مشاركة",
      "pl": "uczestniczka",
-     "ru": "участница"
+     "ru": "участница",
+     "es": "la participante"
     }
    ],
    "sur": null,
@@ -1353,7 +1404,8 @@ window.SCENE = {
    "pt": "estudante (universitária)",
    "ar": "طالبة جامعية",
    "pl": "studentka",
-   "ru": "студентка"
+   "ru": "студентка",
+   "es": "la estudiante"
   },
   {
    "id": "pullover-3",
@@ -1382,7 +1434,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "frau",
@@ -1406,7 +1459,8 @@ window.SCENE = {
      "pt": "participante (mulher)",
      "ar": "مشاركة",
      "pl": "uczestniczka",
-     "ru": "участница"
+     "ru": "участница",
+     "es": "la participante"
     },
     {
      "mot": "Brille",
@@ -1421,7 +1475,8 @@ window.SCENE = {
      "pt": "óculos",
      "ar": "نظّارة",
      "pl": "okulary",
-     "ru": "очки"
+     "ru": "очки",
+     "es": "los lentes"
     },
     {
      "mot": "Studentin",
@@ -1436,7 +1491,8 @@ window.SCENE = {
      "pt": "estudante (universitária)",
      "ar": "طالبة جامعية",
      "pl": "studentka",
-     "ru": "студентка"
+     "ru": "студентка",
+     "es": "la estudiante"
     }
    ],
    "sur": null,
@@ -1457,7 +1513,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "brille-frau",
@@ -1486,7 +1543,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "kleid",
@@ -1515,7 +1573,8 @@ window.SCENE = {
    "pt": "vestido",
    "ar": "فستان",
    "pl": "sukienka",
-   "ru": "платье"
+   "ru": "платье",
+   "es": "el vestido"
   },
   {
    "id": "schuhe",
@@ -1544,7 +1603,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "laptop",
@@ -1573,7 +1633,8 @@ window.SCENE = {
    "pt": "notebook",
    "ar": "حاسوب محمول",
    "pl": "laptop",
-   "ru": "ноутбук"
+   "ru": "ноутбук",
+   "es": "la computadora portátil, la laptop"
   },
   {
    "id": "handy",
@@ -1602,7 +1663,8 @@ window.SCENE = {
    "pt": "celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
-   "ru": "мобильный телефон"
+   "ru": "мобильный телефон",
+   "es": "el celular"
   },
   {
    "id": "tasse",
@@ -1631,7 +1693,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "kabel",
@@ -1660,7 +1723,8 @@ window.SCENE = {
    "pt": "cabo",
    "ar": "كابل، سلك",
    "pl": "kabel",
-   "ru": "кабель"
+   "ru": "кабель",
+   "es": "el cable"
   },
   {
    "id": "schreibtisch",
@@ -1689,7 +1753,8 @@ window.SCENE = {
    "pt": "escrivaninha",
    "ar": "مكتب (قطعة أثاث)",
    "pl": "biurko",
-   "ru": "письменный стол"
+   "ru": "письменный стол",
+   "es": "el escritorio"
   },
   {
    "id": "wand",
@@ -1718,7 +1783,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -1747,7 +1813,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   }
  ],
  "grosPlans": [
@@ -2725,6 +2792,75 @@ window.SCENE = {
     "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "Женщина в платье, возможно, опоздала.",
     "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "Учитель, вероятно, давно преподаёт испанский.",
     "C1 | Der Lehrer soll aus Sevilla kommen.": "Говорят, учитель из Севильи."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Una clase nocturna de español en Berlín: el profesor frente a la pizarra, Mark y Anna sentados uno al lado del otro, y otros tres estudiantes.",
+    "consigne": "Toca un objeto o a una persona. Toca la cara del profesor para ver de cerca sus lentes y su barba."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "stehen / stellen, liegen / legen",
+    "B2": "Relativas y pasiva de estado",
+    "C1": "Hipótesis"
+   },
+   "questions": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "<b>Wo?</b> → dativo: der Tisch → unter <b>dem</b> Tisch.",
+    "A2 | Die Uhr hängt über der Tafel.": "<b>Wo?</b> → dativo: die Tafel → über <b>der</b> Tafel.",
+    "A2 | Die Pflanze steht auf dem Regal.": "<b>Wo?</b> → dativo: das Regal → auf <b>dem</b> Regal.",
+    "A2 | Der Mantel hängt an der Tür.": "<b>Wo?</b> → dativo: die Tür → an <b>der</b> Tür.",
+    "A2 | Der Lehrer steht vor der Tafel.": "<b>vor</b> = delante de. Dativo: vor <b>der</b> Tafel.",
+    "A2 | Das Handy liegt neben dem Laptop.": "<b>neben</b> = al lado de. der Laptop → neben <b>dem</b> Laptop.",
+    "A2 | Anna sitzt neben Mark.": "Con un nombre de pila, sin artículo: neben Mark.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "<b>zwischen</b> = entre, y los dos sustantivos en dativo: <b>der</b> Tür, <b>dem</b> Fenster.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "<b>stehen</b> = estar de pie, un estado (Wo?). <b>stellen</b> = poner de pie, un movimiento (Wohin?). El español dice solo «estar» y «poner».",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "Un movimiento (Wohin?): <b>stellen</b> + acusativo — unter <b>den</b> Tisch.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "<b>liegen</b> = estar acostado, en plano (estado). <b>legen</b> = poner en plano (movimiento).",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "Movimiento: <b>legen</b> → gelegt, y el acusativo: auf <b>den</b> Schreibtisch.",
+    "B1 | Anna sitzt neben Mark.": "<b>sitzen</b> = estar sentado. <b>sich setzen</b> = sentarse.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "<b>hängen</b> tiene dos participios: alguien <b>colgó</b> algo → gehängt; algo <b>estaba colgado</b> → gehangen.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "<b>Wohin?</b> → acusativo: an <b>die</b> Tür. (Wo? → an der Tür.)",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "El estado: <b>hängen</b> + dativo — an <b>der</b> Tür.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "Sujeto de la relativa, femenino → <b>die</b>. El español dice «que» para todo.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "Sujeto, masculino → <b>der</b>.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "Posesión, antecedente masculino → <b>dessen</b> (cuyos lentes). Manda el poseedor, no lo poseído.",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "Posesión, antecedente femenino → <b>deren</b> (cuyo cuaderno).",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "Preposición + dativo (Wo?), masculino → unter <b>dem</b>.",
+    "B2 | Die Tafel ist schon gewischt.": "Pasiva de <b>estado</b>: sein + participio, como «estar» + participio. El resultado se ve: está limpia.",
+    "C1 | Mark und Anna müssen sich kennen.": "<b>müssen</b> + infinitivo = casi seguro, como «deben de». Los dos sonríen, sorprendidos.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = una posibilidad entre otras. Ella sigue de pie…",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = se dice, lo repito sin garantizarlo."
+   },
+   "sens": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "La mochila está debajo de la mesa.",
+    "A2 | Die Uhr hängt über der Tafel.": "El reloj cuelga encima de la pizarra.",
+    "A2 | Die Pflanze steht auf dem Regal.": "La planta está sobre el estante.",
+    "A2 | Der Mantel hängt an der Tür.": "El abrigo cuelga en la puerta.",
+    "A2 | Der Lehrer steht vor der Tafel.": "El profesor está de pie frente a la pizarra.",
+    "A2 | Das Handy liegt neben dem Laptop.": "El celular está junto a la laptop.",
+    "A2 | Anna sitzt neben Mark.": "Anna está sentada al lado de Mark.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "El cuadro cuelga entre la puerta y la ventana.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "La mochila está debajo de la mesa.",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "Anna puso su mochila debajo de la mesa.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "El celular está sobre el escritorio.",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "El profesor puso su celular sobre el escritorio.",
+    "B1 | Anna sitzt neben Mark.": "Anna está sentada al lado de Mark.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "Mark colgó su chaqueta en la puerta.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "Mark cuelga su chaqueta en la puerta.",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "La chaqueta ahora cuelga en la puerta.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "La mujer que lleva un libro bajo el brazo sigue de pie.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "El hombre que está de pie frente a la pizarra es el profesor.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "El hombre cuyos lentes descansan sobre la nariz es el profesor.",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "La participante cuyo cuaderno está abierto sobre la mesa se llama Anna.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "La mesa debajo de la cual está la mochila es de madera.",
+    "B2 | Die Tafel ist schon gewischt.": "La pizarra ya está borrada.",
+    "C1 | Mark und Anna müssen sich kennen.": "Mark y Anna deben de conocerse.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "La mujer del vestido podría haber llegado tarde.",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "El profesor probablemente enseña español desde hace mucho tiempo.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "Dicen que el profesor es de Sevilla."
    }
   }
  }

@@ -288,7 +288,7 @@ def construire_scene(nom, idx):
             if ra["mot"] not in vus:
                 vus.add(ra["mot"])
                 aussi.append(nettoyer({k: ra.get(k) for k in ("mot", "genre", "niveau", "theme", "fr")}))
-        q = {k: v for k, v in p.items() if k not in ("tr", "uk", "fa", "pt", "ar", "pl", "ru", "en")}
+        q = {k: v for k, v in p.items() if k not in ("tr", "uk", "fa", "pt", "ar", "pl", "ru", "en", "es")}   # es : interface de l'allemand (15 nov. 2026)
         q.update(nettoyer(r))
         for k in ("theme", "pluriel"):
             if not r.get(k):

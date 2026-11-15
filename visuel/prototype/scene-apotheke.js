@@ -41,7 +41,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "decke",
@@ -70,7 +71,8 @@ window.SCENE = {
    "pt": "cobertor",
    "ar": "بطانية",
    "pl": "koc",
-   "ru": "одеяло, плед"
+   "ru": "одеяло, плед",
+   "es": "la cobija, la manta"
   },
   {
    "id": "wand",
@@ -99,7 +101,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "uhr",
@@ -128,7 +131,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "glas",
@@ -152,7 +156,8 @@ window.SCENE = {
      "pt": "chá",
      "ar": "شاي",
      "pl": "herbata",
-     "ru": "чай"
+     "ru": "чай",
+     "es": "el té"
     }
    ],
    "sur": "regal",
@@ -173,7 +178,8 @@ window.SCENE = {
    "pt": "copo",
    "ar": "كوب زجاجي",
    "pl": "szklanka, szkło",
-   "ru": "стакан"
+   "ru": "стакан",
+   "es": "el vaso"
   },
   {
    "id": "vitamin",
@@ -202,7 +208,8 @@ window.SCENE = {
    "pt": "vitamina",
    "ar": "فيتامين",
    "pl": "witamina",
-   "ru": "витамин"
+   "ru": "витамин",
+   "es": "la vitamina"
   },
   {
    "id": "seife",
@@ -231,7 +238,8 @@ window.SCENE = {
    "pt": "sabonete",
    "ar": "صابون",
    "pl": "mydło",
-   "ru": "мыло"
+   "ru": "мыло",
+   "es": "el jabón"
   },
   {
    "id": "verband",
@@ -260,7 +268,8 @@ window.SCENE = {
    "pt": "curativo, atadura; associação",
    "ar": "ضمادة؛ اتحاد، جمعية",
    "pl": "opatrunek, bandaż; związek, stowarzyszenie",
-   "ru": "повязка; союз, объединение"
+   "ru": "повязка; союз, объединение",
+   "es": "el vendaje, la asociación"
   },
   {
    "id": "pflaster",
@@ -289,7 +298,8 @@ window.SCENE = {
    "pt": "curativo (band-aid)",
    "ar": "لصقة جروح",
    "pl": "plaster",
-   "ru": "пластырь"
+   "ru": "пластырь",
+   "es": "la curita"
   },
   {
    "id": "regal",
@@ -318,7 +328,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "medikament",
@@ -342,7 +353,8 @@ window.SCENE = {
      "pt": "caixinha",
      "ar": "علبة",
      "pl": "pudełko",
-     "ru": "коробка, коробочка"
+     "ru": "коробка, коробочка",
+     "es": "la caja (pequeña)"
     }
    ],
    "sur": "regal",
@@ -363,7 +375,8 @@ window.SCENE = {
    "pt": "remédio",
    "ar": "دواء",
    "pl": "lek",
-   "ru": "лекарство"
+   "ru": "лекарство",
+   "es": "el medicamento"
   },
   {
    "id": "flasche",
@@ -392,7 +405,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "flasche-2",
@@ -421,7 +435,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "medikament-2",
@@ -445,7 +460,8 @@ window.SCENE = {
      "pt": "caixinha",
      "ar": "علبة",
      "pl": "pudełko",
-     "ru": "коробка, коробочка"
+     "ru": "коробка, коробочка",
+     "es": "la caja (pequeña)"
     }
    ],
    "sur": "regal",
@@ -466,7 +482,8 @@ window.SCENE = {
    "pt": "remédio",
    "ar": "دواء",
    "pl": "lek",
-   "ru": "лекарство"
+   "ru": "лекарство",
+   "es": "el medicamento"
   },
   {
    "id": "medikament-3",
@@ -490,7 +507,8 @@ window.SCENE = {
      "pt": "caixinha",
      "ar": "علبة",
      "pl": "pudełko",
-     "ru": "коробка, коробочка"
+     "ru": "коробка, коробочка",
+     "es": "la caja (pequeña)"
     }
    ],
    "sur": "regal",
@@ -511,7 +529,8 @@ window.SCENE = {
    "pt": "remédio",
    "ar": "دواء",
    "pl": "lek",
-   "ru": "лекарство"
+   "ru": "лекарство",
+   "es": "el medicamento"
   },
   {
    "id": "flasche-3",
@@ -540,7 +559,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "medikament-4",
@@ -564,7 +584,8 @@ window.SCENE = {
      "pt": "caixinha",
      "ar": "علبة",
      "pl": "pudełko",
-     "ru": "коробка, коробочка"
+     "ru": "коробка, коробочка",
+     "es": "la caja (pequeña)"
     }
    ],
    "sur": "regal",
@@ -585,7 +606,8 @@ window.SCENE = {
    "pt": "remédio",
    "ar": "دواء",
    "pl": "lek",
-   "ru": "лекарство"
+   "ru": "лекарство",
+   "es": "el medicamento"
   },
   {
    "id": "medikament-5",
@@ -609,7 +631,8 @@ window.SCENE = {
      "pt": "caixinha",
      "ar": "علبة",
      "pl": "pudełko",
-     "ru": "коробка, коробочка"
+     "ru": "коробка, коробочка",
+     "es": "la caja (pequeña)"
     }
    ],
    "sur": "regal",
@@ -630,7 +653,8 @@ window.SCENE = {
    "pt": "remédio",
    "ar": "دواء",
    "pl": "lek",
-   "ru": "лекарство"
+   "ru": "лекарство",
+   "es": "el medicamento"
   },
   {
    "id": "flasche-4",
@@ -659,7 +683,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "frau",
@@ -688,7 +713,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "brille",
@@ -717,7 +743,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "bluse",
@@ -746,7 +773,8 @@ window.SCENE = {
    "pt": "blusa",
    "ar": "بلوزة",
    "pl": "bluzka",
-   "ru": "блузка"
+   "ru": "блузка",
+   "es": "la blusa"
   },
   {
    "id": "jacke",
@@ -775,7 +803,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "rezept",
@@ -804,7 +833,8 @@ window.SCENE = {
    "pt": "receita (culinária)",
    "ar": "وصفة طبخ",
    "pl": "przepis",
-   "ru": "рецепт"
+   "ru": "рецепт",
+   "es": "la receta"
   },
   {
    "id": "mark",
@@ -833,7 +863,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "schal",
@@ -862,7 +893,8 @@ window.SCENE = {
    "pt": "cachecol",
    "ar": "وشاح، شال",
    "pl": "szalik",
-   "ru": "шарф"
+   "ru": "шарф",
+   "es": "la bufanda"
   },
   {
    "id": "taschentuch",
@@ -891,7 +923,8 @@ window.SCENE = {
    "pt": "lenço",
    "ar": "منديل",
    "pl": "chusteczka",
-   "ru": "носовой платок"
+   "ru": "носовой платок",
+   "es": "el pañuelo"
   },
   {
    "id": "jacke-2",
@@ -920,7 +953,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "pullover",
@@ -955,7 +989,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "hose",
@@ -979,7 +1014,8 @@ window.SCENE = {
      "pt": "calça jeans",
      "ar": "جينز",
      "pl": "dżinsy",
-     "ru": "джинсы"
+     "ru": "джинсы",
+     "es": "los jeans"
     }
    ],
    "sur": "mark",
@@ -1000,7 +1036,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "schuh",
@@ -1024,7 +1061,8 @@ window.SCENE = {
      "pt": "tênis (calçado)",
      "ar": "حذاء رياضي",
      "pl": "trampek, but sportowy",
-     "ru": "кроссовки, кеды"
+     "ru": "кроссовки, кеды",
+     "es": "el tenis"
     }
    ],
    "sur": "mark",
@@ -1045,7 +1083,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "bildschirm",
@@ -1069,7 +1108,8 @@ window.SCENE = {
      "pt": "computador",
      "ar": "حاسوب",
      "pl": "komputer",
-     "ru": "компьютер"
+     "ru": "компьютер",
+     "es": "la computadora"
     }
    ],
    "sur": null,
@@ -1090,7 +1130,8 @@ window.SCENE = {
    "pt": "tela",
    "ar": "شاشة",
    "pl": "ekran",
-   "ru": "экран"
+   "ru": "экран",
+   "es": "la pantalla"
   },
   {
    "id": "tastatur",
@@ -1119,7 +1160,8 @@ window.SCENE = {
    "pt": "teclado",
    "ar": "لوحة المفاتيح",
    "pl": "klawiatura",
-   "ru": "клавиатура"
+   "ru": "клавиатура",
+   "es": "el teclado"
   },
   {
    "id": "kasse",
@@ -1148,7 +1190,8 @@ window.SCENE = {
    "pt": "caixa",
    "ar": "صندوق الدفع",
    "pl": "kasa",
-   "ru": "касса"
+   "ru": "касса",
+   "es": "la caja"
   },
   {
    "id": "tuete",
@@ -1177,7 +1220,8 @@ window.SCENE = {
    "pt": "sacola",
    "ar": "كيس (ورقي أو بلاستيكي)",
    "pl": "torba, torebka (papierowa, foliowa)",
-   "ru": "пакет"
+   "ru": "пакет",
+   "es": "la bolsa"
   },
   {
    "id": "medikament-6",
@@ -1201,7 +1245,8 @@ window.SCENE = {
      "pt": "comprimido",
      "ar": "قرص دواء",
      "pl": "tabletka",
-     "ru": "таблетка"
+     "ru": "таблетка",
+     "es": "la pastilla, la tableta"
     },
     {
      "mot": "Schachtel",
@@ -1216,7 +1261,8 @@ window.SCENE = {
      "pt": "caixinha",
      "ar": "علبة",
      "pl": "pudełko",
-     "ru": "коробка, коробочка"
+     "ru": "коробка, коробочка",
+     "es": "la caja (pequeña)"
     }
    ],
    "sur": "schalter",
@@ -1237,7 +1283,8 @@ window.SCENE = {
    "pt": "remédio",
    "ar": "دواء",
    "pl": "lek",
-   "ru": "лекарство"
+   "ru": "лекарство",
+   "es": "el medicamento"
   },
   {
    "id": "flasche-5",
@@ -1266,7 +1313,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "taschentuch-2",
@@ -1295,7 +1343,8 @@ window.SCENE = {
    "pt": "lenço",
    "ar": "منديل",
    "pl": "chusteczka",
-   "ru": "носовой платок"
+   "ru": "носовой платок",
+   "es": "el pañuelo"
   },
   {
    "id": "karte",
@@ -1319,7 +1368,8 @@ window.SCENE = {
      "pt": "cartão do seguro-saúde",
      "ar": "بطاقة التأمين الصحي",
      "pl": "karta ubezpieczenia zdrowotnego",
-     "ru": "карточка медицинского страхования"
+     "ru": "карточка медицинского страхования",
+     "es": "la tarjeta del seguro médico"
     }
    ],
    "sur": "schalter",
@@ -1340,7 +1390,8 @@ window.SCENE = {
    "pt": "ingresso, cartão",
    "ar": "بطاقة، تذكرة",
    "pl": "bilet, karta",
-   "ru": "карта, билет"
+   "ru": "карта, билет",
+   "es": "la tarjeta, el boleto"
   },
   {
    "id": "pflanze",
@@ -1369,7 +1420,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "schalter",
@@ -1398,7 +1450,8 @@ window.SCENE = {
    "pt": "guichê; interruptor",
    "ar": "شبّاك؛ مفتاح كهربائي",
    "pl": "okienko, kasa; włącznik",
-   "ru": "окошко, касса; выключатель"
+   "ru": "окошко, касса; выключатель",
+   "es": "la ventanilla, el interruptor"
   },
   {
    "id": "karton",
@@ -1427,7 +1480,8 @@ window.SCENE = {
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
-   "ru": "картонная коробка"
+   "ru": "картонная коробка",
+   "es": "la caja de cartón"
   },
   {
    "id": "tuer",
@@ -1456,7 +1510,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "muelleimer",
@@ -1485,7 +1540,8 @@ window.SCENE = {
    "pt": "lixeira",
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
-   "ru": "мусорное ведро"
+   "ru": "мусорное ведро",
+   "es": "el basurero"
   },
   {
    "id": "fenster",
@@ -1509,7 +1565,8 @@ window.SCENE = {
      "pt": "vitrine",
      "ar": "واجهة المحلّ",
      "pl": "wystawa sklepowa, witryna",
-     "ru": "витрина"
+     "ru": "витрина",
+     "es": "la vitrina, el aparador"
     }
    ],
    "sur": null,
@@ -1530,7 +1587,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "baum",
@@ -1559,7 +1617,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "auto",
@@ -1588,7 +1647,8 @@ window.SCENE = {
    "pt": "carro",
    "ar": "سيارة",
    "pl": "samochód",
-   "ru": "машина, автомобиль"
+   "ru": "машина, автомобиль",
+   "es": "el carro"
   },
   {
    "id": "strasse",
@@ -1617,7 +1677,8 @@ window.SCENE = {
    "pt": "rua",
    "ar": "شارع",
    "pl": "ulica",
-   "ru": "улица"
+   "ru": "улица",
+   "es": "la calle"
   },
   {
    "id": "mann",
@@ -1646,7 +1707,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "muetze",
@@ -1675,7 +1737,8 @@ window.SCENE = {
    "pt": "gorro",
    "ar": "قبعة صوفية",
    "pl": "czapka",
-   "ru": "шапка"
+   "ru": "шапка",
+   "es": "el gorro"
   },
   {
    "id": "mantel",
@@ -1704,7 +1767,8 @@ window.SCENE = {
    "pt": "casaco (sobretudo)",
    "ar": "معطف",
    "pl": "płaszcz",
-   "ru": "пальто"
+   "ru": "пальто",
+   "es": "el abrigo"
   },
   {
    "id": "stock",
@@ -1733,7 +1797,8 @@ window.SCENE = {
    "pt": "bengala, vara",
    "ar": "عصا",
    "pl": "laska, kij",
-   "ru": "палка, трость"
+   "ru": "палка, трость",
+   "es": "el bastón, el palo"
   },
   {
    "id": "hose-2",
@@ -1762,7 +1827,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "schuh-2",
@@ -1791,7 +1857,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "stuhl",
@@ -1820,7 +1887,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "waage",
@@ -1849,7 +1917,8 @@ window.SCENE = {
    "pt": "balança",
    "ar": "ميزان",
    "pl": "waga (kuchenna)",
-   "ru": "весы"
+   "ru": "весы",
+   "es": "la báscula, la balanza"
   },
   {
    "id": "boden",
@@ -1878,7 +1947,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   }
  ],
  "grosPlans": [],
@@ -2823,6 +2893,75 @@ window.SCENE = {
     "C1 | Der alte Mann könnte auf sein Medikament warten.": "Старик, возможно, ждёт своё лекарство.",
     "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "Марк, вероятно, поправится через два дня.",
     "C1 | Diese Apotheke soll die älteste im Kiez sein.": "Говорят, эта аптека — самая старая в районе."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Mark, resfriado, en la farmacia de su barrio: con un pañuelo en la nariz, le entrega su receta rosa a la farmacéutica de bata blanca; sobre el mostrador, una pantalla, un teclado, la caja registradora, una bolsita blanca, una caja de pastillas, un frasco de jarabe, pañuelos, su tarjeta del seguro médico y una planta; en los estantes, cajas de medicamentos, frascos, un tarro de té de hierbas, un bote de vitaminas, jabón, vendas y curitas, debajo de un reloj; junto al ventanal, un señor mayor con gorra espera en una silla, con las manos sobre su bastón, al lado de una báscula y de un basurero; afuera, un carro rojo; en primer plano, una caja de cartón de un envío.",
+    "consigne": "Mark está resfriado: va a la farmacia de su barrio. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "La negación: ¿nicht o kein?",
+    "B2": "El estilo indirecto: Konjunktiv I",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Die Uhr hängt an der Wand.": "die Wand → an <b>der</b> Wand: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Die Medikamente stehen im Regal.": "<b>im</b> = in + <b>dem</b>: das Regal → im Regal.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "der Schalter → auf <b>dem</b> Schalter.",
+    "A2 | Der alte Mann sitzt auf dem Stuhl.": "der Stuhl → auf <b>dem</b> Stuhl.",
+    "A2 | Die Waage steht neben dem Stuhl.": "<b>neben</b> = al lado de. der Stuhl → neben <b>dem</b> Stuhl.",
+    "A2 | Das Auto steht auf der Straße.": "die Straße → auf <b>der</b> Straße: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Der Mülleimer steht neben der Tür.": "die Tür → neben <b>der</b> Tür: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Der Karton steht auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
+    "B1 | Mark hat kein Fieber, nur Schnupfen.": "<b>kein</b> niega un sustantivo sin artículo: kein Fieber.",
+    "B1 | Die Tabletten sind nicht teuer.": "<b>nicht</b> niega un adjetivo: nicht teuer.",
+    "B1 | Mark hat keine Zeit, zum Arzt zu gehen.": "die Zeit (femenino) → <b>keine</b> Zeit.",
+    "B1 | Der alte Mann wartet nicht lange.": "<b>nicht</b> niega un adverbio: nicht lange.",
+    "B1 | Mark nimmt die Tabletten nicht mit Kaffee.": "<b>nicht</b> niega el verbo o un complemento con preposición.",
+    "B1 | Die Apothekerin hat keine Pflaster mehr.": "Plural sin artículo (Pflaster) → <b>keine</b>.",
+    "B1 | Das ist nicht mein Rezept!": "Delante de un posesivo (mein) → <b>nicht</b>.",
+    "B1 | Mark hat keinen Hustensaft gekauft.": "der Hustensaft, acusativo masculino → <b>keinen</b>.",
+    "B2 | Die Apothekerin sagt, Mark habe eine starke Erkältung.": "Estilo indirecto: Konjunktiv I de haben → <b>habe</b>.",
+    "B2 | Sie sagt, er solle die Tabletten dreimal täglich nehmen.": "Konjunktiv I de sollen → <b>solle</b>.",
+    "B2 | Der Arzt hat gesagt, Mark sei nicht ansteckend.": "Konjunktiv I de sein → <b>sei</b>.",
+    "B2 | Mark sagt, er habe seit drei Tagen Husten.": "Estilo indirecto: Konjunktiv I de haben → <b>habe</b>.",
+    "B2 | Die Apothekerin erklärt, der Saft helfe gegen den Husten.": "Konjunktiv I: raíz + <b>-e</b> → helfe.",
+    "B2 | Der alte Mann sagt, er warte schon lange hier.": "Konjunktiv I: raíz + <b>-e</b> → warte.",
+    "C1 | Er muss erkältet sein.": "<b>müssen</b> = deducción casi segura, como «debe de estar».",
+    "C1 | Der alte Mann könnte auf sein Medikament warten.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Diese Apotheke soll die älteste im Kiez sein.": "<b>sollen</b> = según dicen: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "El reloj está colgado en la pared.",
+    "A2 | Die Medikamente stehen im Regal.": "Los medicamentos están en el estante.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "La planta está sobre el mostrador.",
+    "A2 | Der alte Mann sitzt auf dem Stuhl.": "El señor mayor está sentado en la silla.",
+    "A2 | Die Waage steht neben dem Stuhl.": "La báscula está al lado de la silla.",
+    "A2 | Das Auto steht auf der Straße.": "El carro está en la calle.",
+    "A2 | Der Mülleimer steht neben der Tür.": "El basurero está al lado de la puerta.",
+    "A2 | Der Karton steht auf dem Boden.": "La caja de cartón está en el piso.",
+    "B1 | Mark hat kein Fieber, nur Schnupfen.": "Mark no tiene fiebre, solo un resfriado.",
+    "B1 | Die Tabletten sind nicht teuer.": "Las pastillas no son caras.",
+    "B1 | Mark hat keine Zeit, zum Arzt zu gehen.": "Mark no tiene tiempo de ir al médico.",
+    "B1 | Der alte Mann wartet nicht lange.": "El señor mayor no espera mucho tiempo.",
+    "B1 | Mark nimmt die Tabletten nicht mit Kaffee.": "Mark no toma las pastillas con café.",
+    "B1 | Die Apothekerin hat keine Pflaster mehr.": "A la farmacéutica ya no le quedan curitas.",
+    "B1 | Das ist nicht mein Rezept!": "¡Esa no es mi receta!",
+    "B1 | Mark hat keinen Hustensaft gekauft.": "Mark no compró jarabe para la tos.",
+    "B2 | Die Apothekerin sagt, Mark habe eine starke Erkältung.": "La farmacéutica dice que Mark tiene un resfriado fuerte.",
+    "B2 | Sie sagt, er solle die Tabletten dreimal täglich nehmen.": "Dice que debe tomar las pastillas tres veces al día.",
+    "B2 | Der Arzt hat gesagt, Mark sei nicht ansteckend.": "El médico dijo que Mark no es contagioso.",
+    "B2 | Mark sagt, er habe seit drei Tagen Husten.": "Mark dice que tiene tos desde hace tres días.",
+    "B2 | Die Apothekerin erklärt, der Saft helfe gegen den Husten.": "La farmacéutica explica que el jarabe ayuda contra la tos.",
+    "B2 | Der alte Mann sagt, er warte schon lange hier.": "El señor mayor dice que lleva mucho tiempo esperando aquí.",
+    "C1 | Er muss erkältet sein.": "Debe de estar resfriado.",
+    "C1 | Der alte Mann könnte auf sein Medikament warten.": "El señor mayor podría estar esperando su medicamento.",
+    "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "Mark probablemente estará sano de nuevo en dos días.",
+    "C1 | Diese Apotheke soll die älteste im Kiez sein.": "Dicen que esta farmacia es la más antigua del barrio."
    }
   }
  }

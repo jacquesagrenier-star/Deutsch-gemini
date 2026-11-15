@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   },
   {
    "id": "fenster",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "lampe",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "uhr",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "pflanze",
@@ -174,7 +179,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "pflanze-fenster",
@@ -203,7 +209,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "kuehlschrank",
@@ -232,7 +239,8 @@ window.SCENE = {
    "pt": "geladeira",
    "ar": "ثلّاجة",
    "pl": "lodówka",
-   "ru": "холодильник"
+   "ru": "холодильник",
+   "es": "el refrigerador"
   },
   {
    "id": "teller",
@@ -261,7 +269,8 @@ window.SCENE = {
    "pt": "prato",
    "ar": "صحن",
    "pl": "talerz",
-   "ru": "тарелка"
+   "ru": "тарелка",
+   "es": "el plato"
   },
   {
    "id": "glas",
@@ -290,7 +299,8 @@ window.SCENE = {
    "pt": "copo",
    "ar": "كوب زجاجي",
    "pl": "szklanka, szkło",
-   "ru": "стакан"
+   "ru": "стакан",
+   "es": "el vaso"
   },
   {
    "id": "tasse",
@@ -319,7 +329,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "regal",
@@ -348,7 +359,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "topf",
@@ -377,7 +389,8 @@ window.SCENE = {
    "pt": "panela",
    "ar": "قِدر",
    "pl": "garnek",
-   "ru": "кастрюля"
+   "ru": "кастрюля",
+   "es": "la olla"
   },
   {
    "id": "deckel",
@@ -406,7 +419,8 @@ window.SCENE = {
    "pt": "tampa",
    "ar": "غطاء",
    "pl": "pokrywka",
-   "ru": "крышка"
+   "ru": "крышка",
+   "es": "la tapa"
   },
   {
    "id": "pfanne",
@@ -435,7 +449,8 @@ window.SCENE = {
    "pt": "frigideira",
    "ar": "مقلاة",
    "pl": "patelnia",
-   "ru": "сковорода"
+   "ru": "сковорода",
+   "es": "la sartén"
   },
   {
    "id": "ei",
@@ -464,7 +479,8 @@ window.SCENE = {
    "pt": "ovo",
    "ar": "بيضة",
    "pl": "jajko",
-   "ru": "яйцо"
+   "ru": "яйцо",
+   "es": "el huevo"
   },
   {
    "id": "backofen",
@@ -493,7 +509,8 @@ window.SCENE = {
    "pt": "forno",
    "ar": "فرن",
    "pl": "piekarnik",
-   "ru": "духовка"
+   "ru": "духовка",
+   "es": "el horno"
   },
   {
    "id": "handtuch",
@@ -522,7 +539,8 @@ window.SCENE = {
    "pt": "toalha",
    "ar": "منشفة",
    "pl": "ręcznik",
-   "ru": "полотенце"
+   "ru": "полотенце",
+   "es": "la toalla"
   },
   {
    "id": "spuelmaschine",
@@ -551,7 +569,8 @@ window.SCENE = {
    "pt": "lava-louças",
    "ar": "غسّالة الصحون",
    "pl": "zmywarka",
-   "ru": "посудомоечная машина"
+   "ru": "посудомоечная машина",
+   "es": "el lavavajillas"
   },
   {
    "id": "mark",
@@ -580,7 +599,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "messer",
@@ -609,7 +629,8 @@ window.SCENE = {
    "pt": "faca",
    "ar": "سكّين",
    "pl": "nóż",
-   "ru": "нож"
+   "ru": "нож",
+   "es": "el cuchillo"
   },
   {
    "id": "karotte",
@@ -638,7 +659,8 @@ window.SCENE = {
    "pt": "cenoura",
    "ar": "جزر",
    "pl": "marchewka",
-   "ru": "морковь"
+   "ru": "морковь",
+   "es": "la zanahoria"
   },
   {
    "id": "zwiebel",
@@ -667,7 +689,8 @@ window.SCENE = {
    "pt": "cebola",
    "ar": "بصل",
    "pl": "cebula",
-   "ru": "лук"
+   "ru": "лук",
+   "es": "la cebolla"
   },
   {
    "id": "oel",
@@ -691,7 +714,8 @@ window.SCENE = {
      "pt": "garrafa",
      "ar": "زجاجة",
      "pl": "butelka",
-     "ru": "бутылка"
+     "ru": "бутылка",
+     "es": "la botella"
     }
    ],
    "sur": "tisch",
@@ -712,7 +736,8 @@ window.SCENE = {
    "pt": "óleo, azeite",
    "ar": "زيت",
    "pl": "olej",
-   "ru": "масло (растительное)"
+   "ru": "масло (растительное)",
+   "es": "el aceite"
   },
   {
    "id": "loeffel",
@@ -741,7 +766,8 @@ window.SCENE = {
    "pt": "colher",
    "ar": "ملعقة",
    "pl": "łyżka",
-   "ru": "ложка"
+   "ru": "ложка",
+   "es": "la cuchara"
   },
   {
    "id": "milch",
@@ -765,7 +791,8 @@ window.SCENE = {
      "pt": "garrafa",
      "ar": "زجاجة",
      "pl": "butelka",
-     "ru": "бутылка"
+     "ru": "бутылка",
+     "es": "la botella"
     }
    ],
    "sur": "tisch",
@@ -786,7 +813,8 @@ window.SCENE = {
    "pt": "leite",
    "ar": "حليب",
    "pl": "mleko",
-   "ru": "молоко"
+   "ru": "молоко",
+   "es": "la leche"
   },
   {
    "id": "brot",
@@ -815,7 +843,8 @@ window.SCENE = {
    "pt": "pão",
    "ar": "خبز",
    "pl": "chleb",
-   "ru": "хлеб"
+   "ru": "хлеб",
+   "es": "el pan"
   },
   {
    "id": "salz",
@@ -844,7 +873,8 @@ window.SCENE = {
    "pt": "sal",
    "ar": "ملح",
    "pl": "sól",
-   "ru": "соль"
+   "ru": "соль",
+   "es": "la sal"
   },
   {
    "id": "pfeffer",
@@ -873,7 +903,8 @@ window.SCENE = {
    "pt": "pimenta-do-reino",
    "ar": "فلفل أسود",
    "pl": "pieprz",
-   "ru": "перец (молотый)"
+   "ru": "перец (молотый)",
+   "es": "la pimienta"
   },
   {
    "id": "kartoffel",
@@ -902,7 +933,8 @@ window.SCENE = {
    "pt": "batata",
    "ar": "بطاطس",
    "pl": "ziemniak",
-   "ru": "картофель"
+   "ru": "картофель",
+   "es": "la papa"
   },
   {
    "id": "tomate",
@@ -931,7 +963,8 @@ window.SCENE = {
    "pt": "tomate",
    "ar": "طماطم",
    "pl": "pomidor",
-   "ru": "помидор"
+   "ru": "помидор",
+   "es": "el tomate"
   },
   {
    "id": "butter",
@@ -960,7 +993,8 @@ window.SCENE = {
    "pt": "manteiga",
    "ar": "زبدة",
    "pl": "masło",
-   "ru": "сливочное масло"
+   "ru": "сливочное масло",
+   "es": "la mantequilla"
   },
   {
    "id": "apfel",
@@ -989,7 +1023,8 @@ window.SCENE = {
    "pt": "maçã",
    "ar": "تفاحة",
    "pl": "jabłko",
-   "ru": "яблоко"
+   "ru": "яблоко",
+   "es": "la manzana"
   },
   {
    "id": "banane",
@@ -1018,7 +1053,8 @@ window.SCENE = {
    "pt": "banana",
    "ar": "موزة",
    "pl": "banan",
-   "ru": "банан"
+   "ru": "банан",
+   "es": "el plátano, el banano"
   },
   {
    "id": "buch",
@@ -1047,7 +1083,8 @@ window.SCENE = {
    "pt": "livro",
    "ar": "كتاب",
    "pl": "książka",
-   "ru": "книга"
+   "ru": "книга",
+   "es": "el libro"
   },
   {
    "id": "tisch",
@@ -1076,7 +1113,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "muelleimer",
@@ -1105,7 +1143,8 @@ window.SCENE = {
    "pt": "lixeira",
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
-   "ru": "мусорное ведро"
+   "ru": "мусорное ведро",
+   "es": "el basurero"
   },
   {
    "id": "katze",
@@ -1134,7 +1173,8 @@ window.SCENE = {
    "pt": "gato",
    "ar": "قطة",
    "pl": "kot",
-   "ru": "кошка"
+   "ru": "кошка",
+   "es": "el gato"
   },
   {
    "id": "stuhl",
@@ -1163,7 +1203,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "stuhl-2",
@@ -1192,7 +1233,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "handtuch-stuhl",
@@ -1221,7 +1263,8 @@ window.SCENE = {
    "pt": "toalha",
    "ar": "منشفة",
    "pl": "ręcznik",
-   "ru": "полотенце"
+   "ru": "полотенце",
+   "es": "la toalla"
   },
   {
    "id": "schuh",
@@ -1250,7 +1293,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "tuer",
@@ -1279,7 +1323,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "spuele",
@@ -1308,7 +1353,8 @@ window.SCENE = {
    "pt": "pia",
    "ar": "حوض المطبخ",
    "pl": "zlew",
-   "ru": "мойка"
+   "ru": "мойка",
+   "es": "el fregadero"
   },
   {
    "id": "wasserhahn",
@@ -1337,7 +1383,8 @@ window.SCENE = {
    "pt": "torneira",
    "ar": "صنبور الماء",
    "pl": "kran",
-   "ru": "кран"
+   "ru": "кран",
+   "es": "la llave del agua"
   },
   {
    "id": "schuerze",
@@ -1366,7 +1413,8 @@ window.SCENE = {
    "pt": "avental",
    "ar": "مريلة",
    "pl": "fartuch",
-   "ru": "фартук"
+   "ru": "фартук",
+   "es": "el delantal"
   },
   {
    "id": "dampf",
@@ -1395,7 +1443,8 @@ window.SCENE = {
    "pt": "vapor",
    "ar": "بخار",
    "pl": "para",
-   "ru": "пар"
+   "ru": "пар",
+   "es": "el vapor"
   },
   {
    "id": "flasche",
@@ -1424,7 +1473,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   }
  ],
  "grosPlans": [],
@@ -2377,6 +2427,75 @@ window.SCENE = {
     "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "Кошка, возможно, надеется на кусочек моркови.",
     "C1 | Mark dürfte Gäste erwarten.": "Марк, вероятно, ждёт гостей.",
     "C1 | Mark soll die beste Suppe der WG kochen.": "Говорят, Марк варит лучший суп в квартире."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Mark en la cocina de su apartamento compartido en Berlín: corta una zanahoria sobre la mesa, una olla roja humea en la estufa, con una sartén con dos huevos al lado; sobre la mesa, papas, tomates, manzanas, plátanos, pan, leche, y un gato gris sentado en una silla.",
+    "consigne": "Mark prepara una sopa. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "El Perfekt",
+    "B2": "Relativas y pasiva",
+    "C1": "Hipótesis"
+   },
+   "questions": {
+    "A2 | Der Topf steht neben der Pfanne.": "die Pfanne → neben <b>der</b> Pfanne: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Die Uhr hängt über dem Regal.": "<b>über</b> = encima de. das Regal → über <b>dem</b> Regal.",
+    "A2 | Die Pflanze steht auf dem Kühlschrank.": "der Kühlschrank → auf <b>dem</b> Kühlschrank.",
+    "A2 | Die Katze sitzt auf dem Stuhl.": "<b>Wo?</b> → dativo: der Stuhl → auf <b>dem</b> Stuhl.",
+    "A2 | Die Kartoffeln liegen auf dem Tisch.": "der Tisch → auf <b>dem</b> Tisch. En plural, el verbo también: <b>liegen</b>.",
+    "A2 | Das Handtuch hängt am Backofen.": "<b>am</b> = an + <b>dem</b>: der Backofen → am Backofen.",
+    "A2 | Der Mülleimer steht neben dem Kühlschrank.": "<b>neben</b> = al lado de. der Kühlschrank → neben <b>dem</b> Kühlschrank.",
+    "A2 | Die Milch steht neben dem Brot.": "das Brot es neutro: en dativo, igual que el masculino → neben <b>dem</b> Brot.",
+    "B1 | Mark hat die Karotte geschnitten.": "<b>schneiden</b> es irregular → <b>geschnitten</b>.",
+    "B1 | Er hat zwei Eier gebraten.": "<b>braten</b> → <b>gebraten</b>, con <b>-en</b>, como un verbo fuerte.",
+    "B1 | Die Suppe hat schon eine Stunde gekocht.": "<b>kochen</b> es regular → <b>ge</b>koch<b>t</b>.",
+    "B1 | Mark hat das Brot auf den Tisch gelegt.": "<b>legen</b> tiene un complemento (das Brot) → Perfekt con <b>haben</b>.",
+    "B1 | Die Katze ist auf den Stuhl gesprungen.": "Un desplazamiento de un lugar a otro → Perfekt con <b>sein</b>, no con haben.",
+    "B1 | Mark hat die Milch auf den Tisch gestellt.": "<b>stellen</b> (poner de pie) → gestellt. <b>stehen</b> (estar de pie) → gestanden.",
+    "B1 | Mark hat das Handtuch an den Backofen gehängt.": "<b>hängen</b> + complemento (colgar algo) → <b>gehängt</b>. Sin complemento (estar colgado) → gehangen.",
+    "B1 | Heute Abend hat Mark für seine Mitbewohner gekocht.": "<b>kochen</b> → Perfekt con <b>haben</b>. El verbo conjugado se queda en 2.ª posición.",
+    "B2 | Die Karotte wird gerade geschnitten.": "La acción en curso → pasiva con <b>werden</b>.",
+    "B2 | Der Tisch, auf dem das Gemüse liegt, ist aus Holz.": "<b>auf</b> + Wo? → dativo, masculino → <b>dem</b>.",
+    "B2 | Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.": "Sujeto de la relativa, femenino (die Katze) → <b>die</b>.",
+    "B2 | Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.": "Posesión, antecedente neutro → <b>dessen</b> (cuyas páginas).",
+    "B2 | Die Eier in der Pfanne sind schon gebraten.": "<b>sein</b> + participio = pasiva de estado: el resultado, como «están fritos».",
+    "B2 | Die Suppe muss noch zehn Minuten gekocht werden.": "Pasiva con un verbo modal: participio + <b>werden</b> al final.",
+    "C1 | Die Suppe muss gut riechen.": "<b>müssen</b> = deducción casi segura: él sonríe.",
+    "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Mark dürfte Gäste erwarten.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Mark soll die beste Suppe der WG kochen.": "<b>sollen</b> = según lo que se dice: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Der Topf steht neben der Pfanne.": "La olla está junto a la sartén.",
+    "A2 | Die Uhr hängt über dem Regal.": "El reloj cuelga encima del estante.",
+    "A2 | Die Pflanze steht auf dem Kühlschrank.": "La planta está sobre el refrigerador.",
+    "A2 | Die Katze sitzt auf dem Stuhl.": "El gato está sentado en la silla.",
+    "A2 | Die Kartoffeln liegen auf dem Tisch.": "Las papas están sobre la mesa.",
+    "A2 | Das Handtuch hängt am Backofen.": "La toalla cuelga del horno.",
+    "A2 | Der Mülleimer steht neben dem Kühlschrank.": "El basurero está junto al refrigerador.",
+    "A2 | Die Milch steht neben dem Brot.": "La leche está junto al pan.",
+    "B1 | Mark hat die Karotte geschnitten.": "Mark cortó la zanahoria.",
+    "B1 | Er hat zwei Eier gebraten.": "Frió dos huevos.",
+    "B1 | Die Suppe hat schon eine Stunde gekocht.": "La sopa ya se cocinó una hora.",
+    "B1 | Mark hat das Brot auf den Tisch gelegt.": "Mark puso el pan sobre la mesa.",
+    "B1 | Die Katze ist auf den Stuhl gesprungen.": "El gato saltó a la silla.",
+    "B1 | Mark hat die Milch auf den Tisch gestellt.": "Mark puso la leche sobre la mesa.",
+    "B1 | Mark hat das Handtuch an den Backofen gehängt.": "Mark colgó la toalla en el horno.",
+    "B1 | Heute Abend hat Mark für seine Mitbewohner gekocht.": "Esta noche, Mark cocinó para sus compañeros de apartamento.",
+    "B2 | Die Karotte wird gerade geschnitten.": "La zanahoria está siendo cortada.",
+    "B2 | Der Tisch, auf dem das Gemüse liegt, ist aus Holz.": "La mesa sobre la que están las verduras es de madera.",
+    "B2 | Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.": "El gato que está sentado en la silla mira hacia la mesa.",
+    "B2 | Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.": "El libro cuyas páginas están llenas de imágenes está sobre la mesa.",
+    "B2 | Die Eier in der Pfanne sind schon gebraten.": "Los huevos de la sartén ya están fritos.",
+    "B2 | Die Suppe muss noch zehn Minuten gekocht werden.": "La sopa todavía tiene que cocinarse diez minutos.",
+    "C1 | Die Suppe muss gut riechen.": "La sopa debe de oler bien.",
+    "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "El gato podría estar esperando un pedacito de zanahoria.",
+    "C1 | Mark dürfte Gäste erwarten.": "Mark probablemente espera invitados.",
+    "C1 | Mark soll die beste Suppe der WG kochen.": "Dicen que Mark hace la mejor sopa del apartamento compartido."
    }
   }
  }

@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "cobertor",
    "ar": "بطانية",
    "pl": "koc",
-   "ru": "одеяло, плед"
+   "ru": "одеяло, плед",
+   "es": "la cobija, la manta"
   },
   {
    "id": "lampe",
@@ -76,7 +77,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "wand",
@@ -111,7 +113,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "flasche-2",
@@ -135,7 +138,8 @@ window.SCENE = {
      "pt": "vinho",
      "ar": "نبيذ",
      "pl": "wino",
-     "ru": "вино"
+     "ru": "вино",
+     "es": "el vino"
     },
     {
      "mot": "Bier",
@@ -150,7 +154,8 @@ window.SCENE = {
      "pt": "cerveja",
      "ar": "بيرة",
      "pl": "piwo",
-     "ru": "пиво"
+     "ru": "пиво",
+     "es": "la cerveza"
     }
    ],
    "sur": "regal",
@@ -171,7 +176,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "regal",
@@ -200,7 +206,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "glas-2",
@@ -229,7 +236,8 @@ window.SCENE = {
    "pt": "copo",
    "ar": "كوب زجاجي",
    "pl": "szklanka, szkło",
-   "ru": "стакан"
+   "ru": "стакан",
+   "es": "el vaso"
   },
   {
    "id": "tafel",
@@ -258,7 +266,8 @@ window.SCENE = {
    "pt": "quadro (lousa)",
    "ar": "سبّورة",
    "pl": "tablica",
-   "ru": "доска"
+   "ru": "доска",
+   "es": "la pizarra"
   },
   {
    "id": "tasse",
@@ -287,7 +296,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "kaffeemaschine",
@@ -316,7 +326,8 @@ window.SCENE = {
    "pt": "máquina de café",
    "ar": "آلة القهوة",
    "pl": "ekspres do kawy",
-   "ru": "кофемашина"
+   "ru": "кофемашина",
+   "es": "la cafetera"
   },
   {
    "id": "kuchen",
@@ -345,7 +356,8 @@ window.SCENE = {
    "pt": "bolo",
    "ar": "كعكة",
    "pl": "ciasto",
-   "ru": "пирог, торт"
+   "ru": "пирог, торт",
+   "es": "el pastel"
   },
   {
    "id": "pizza",
@@ -380,7 +392,8 @@ window.SCENE = {
    "pt": "pizza",
    "ar": "بيتزا",
    "pl": "pizza",
-   "ru": "пицца"
+   "ru": "пицца",
+   "es": "la pizza"
   },
   {
    "id": "flasche-3",
@@ -404,7 +417,8 @@ window.SCENE = {
      "pt": "vinho",
      "ar": "نبيذ",
      "pl": "wino",
-     "ru": "вино"
+     "ru": "вино",
+     "es": "el vino"
     }
    ],
    "sur": null,
@@ -425,7 +439,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "kellner",
@@ -449,7 +464,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     }
    ],
    "sur": null,
@@ -470,7 +486,8 @@ window.SCENE = {
    "pt": "garçom",
    "ar": "نادل",
    "pl": "kelner",
-   "ru": "официант"
+   "ru": "официант",
+   "es": "el mesero"
   },
   {
    "id": "hemd-2",
@@ -499,7 +516,8 @@ window.SCENE = {
    "pt": "camisa",
    "ar": "قميص",
    "pl": "koszula",
-   "ru": "рубашка"
+   "ru": "рубашка",
+   "es": "la camisa"
   },
   {
    "id": "theke",
@@ -528,7 +546,8 @@ window.SCENE = {
    "pt": "balcão",
    "ar": "منضدة",
    "pl": "lada",
-   "ru": "стойка"
+   "ru": "стойка",
+   "es": "la barra, el mostrador"
   },
   {
    "id": "fenster",
@@ -557,7 +576,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "himmel",
@@ -586,7 +606,8 @@ window.SCENE = {
    "pt": "céu",
    "ar": "سماء",
    "pl": "niebo",
-   "ru": "небо"
+   "ru": "небо",
+   "es": "el cielo"
   },
   {
    "id": "laterne",
@@ -615,7 +636,8 @@ window.SCENE = {
    "pt": "poste de luz",
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
-   "ru": "фонарь"
+   "ru": "фонарь",
+   "es": "el farol, el poste de luz"
   },
   {
    "id": "vorhang",
@@ -644,7 +666,8 @@ window.SCENE = {
    "pt": "cortina",
    "ar": "ستارة",
    "pl": "zasłona",
-   "ru": "штора, занавеска"
+   "ru": "штора, занавеска",
+   "es": "la cortina"
   },
   {
    "id": "uhr",
@@ -673,7 +696,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "bild",
@@ -697,7 +721,8 @@ window.SCENE = {
      "pt": "pintura, quadro",
      "ar": "لوحة زيتية",
      "pl": "obraz (malowany)",
-     "ru": "картина (живопись)"
+     "ru": "картина (живопись)",
+     "es": "el cuadro, la pintura"
     }
    ],
    "sur": null,
@@ -718,7 +743,8 @@ window.SCENE = {
    "pt": "quadro",
    "ar": "صورة، لوحة",
    "pl": "obraz",
-   "ru": "картина, изображение"
+   "ru": "картина, изображение",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "pflanze",
@@ -747,7 +773,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "tuer",
@@ -776,7 +803,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "stuhl",
@@ -805,7 +833,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "mann",
@@ -834,7 +863,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "brille",
@@ -869,7 +899,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "hemd-3",
@@ -898,7 +929,8 @@ window.SCENE = {
    "pt": "camisa",
    "ar": "قميص",
    "pl": "koszula",
-   "ru": "рубашка"
+   "ru": "рубашка",
+   "es": "la camisa"
   },
   {
    "id": "jacke",
@@ -927,7 +959,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "frau",
@@ -956,7 +989,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "pullover-2",
@@ -980,7 +1014,8 @@ window.SCENE = {
      "pt": "jaqueta",
      "ar": "سترة، جاكيت",
      "pl": "kurtka",
-     "ru": "куртка"
+     "ru": "куртка",
+     "es": "la chaqueta"
     }
    ],
    "sur": "frau",
@@ -1001,7 +1036,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "teller-3",
@@ -1030,7 +1066,8 @@ window.SCENE = {
    "pt": "prato",
    "ar": "صحن",
    "pl": "talerz",
-   "ru": "тарелка"
+   "ru": "тарелка",
+   "es": "el plato"
   },
   {
    "id": "fleisch",
@@ -1054,7 +1091,8 @@ window.SCENE = {
      "pt": "batata",
      "ar": "بطاطس",
      "pl": "ziemniak",
-     "ru": "картофель"
+     "ru": "картофель",
+     "es": "la papa"
     }
    ],
    "sur": "teller-3",
@@ -1075,7 +1113,8 @@ window.SCENE = {
    "pt": "carne",
    "ar": "لحم",
    "pl": "mięso",
-   "ru": "мясо"
+   "ru": "мясо",
+   "es": "la carne"
   },
   {
    "id": "suppe",
@@ -1099,7 +1138,8 @@ window.SCENE = {
      "pt": "prato",
      "ar": "صحن",
      "pl": "talerz",
-     "ru": "тарелка"
+     "ru": "тарелка",
+     "es": "el plato"
     }
    ],
    "sur": "tisch-2",
@@ -1120,7 +1160,8 @@ window.SCENE = {
    "pt": "sopa",
    "ar": "حساء، شوربة",
    "pl": "zupa",
-   "ru": "суп"
+   "ru": "суп",
+   "es": "la sopa"
   },
   {
    "id": "glas-3",
@@ -1144,7 +1185,8 @@ window.SCENE = {
      "pt": "vinho",
      "ar": "نبيذ",
      "pl": "wino",
-     "ru": "вино"
+     "ru": "вино",
+     "es": "el vino"
     }
    ],
    "sur": "tisch-2",
@@ -1165,7 +1207,8 @@ window.SCENE = {
    "pt": "copo",
    "ar": "كوب زجاجي",
    "pl": "szklanka, szkło",
-   "ru": "стакан"
+   "ru": "стакан",
+   "es": "el vaso"
   },
   {
    "id": "glas-4",
@@ -1189,7 +1232,8 @@ window.SCENE = {
      "pt": "vinho",
      "ar": "نبيذ",
      "pl": "wino",
-     "ru": "вино"
+     "ru": "вино",
+     "es": "el vino"
     }
    ],
    "sur": "tisch-2",
@@ -1210,7 +1254,8 @@ window.SCENE = {
    "pt": "copo",
    "ar": "كوب زجاجي",
    "pl": "szklanka, szkło",
-   "ru": "стакан"
+   "ru": "стакан",
+   "es": "el vaso"
   },
   {
    "id": "salz-2",
@@ -1234,7 +1279,8 @@ window.SCENE = {
      "pt": "pimenta-do-reino",
      "ar": "فلفل أسود",
      "pl": "pieprz",
-     "ru": "перец (молотый)"
+     "ru": "перец (молотый)",
+     "es": "la pimienta"
     }
    ],
    "sur": "tisch-2",
@@ -1255,7 +1301,8 @@ window.SCENE = {
    "pt": "sal",
    "ar": "ملح",
    "pl": "sól",
-   "ru": "соль"
+   "ru": "соль",
+   "es": "la sal"
   },
   {
    "id": "kerze-2",
@@ -1284,7 +1331,8 @@ window.SCENE = {
    "pt": "vela",
    "ar": "شمعة",
    "pl": "świeczka",
-   "ru": "свеча"
+   "ru": "свеча",
+   "es": "la vela"
   },
   {
    "id": "tisch-2",
@@ -1313,7 +1361,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "kellnerin",
@@ -1337,7 +1386,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     }
    ],
    "sur": null,
@@ -1358,7 +1408,8 @@ window.SCENE = {
    "pt": "garçonete",
    "ar": "نادلة",
    "pl": "kelnerka",
-   "ru": "официантка"
+   "ru": "официантка",
+   "es": "la mesera"
   },
   {
    "id": "hemd-4",
@@ -1387,7 +1438,8 @@ window.SCENE = {
    "pt": "camisa",
    "ar": "قميص",
    "pl": "koszula",
-   "ru": "рубашка"
+   "ru": "рубашка",
+   "es": "la camisa"
   },
   {
    "id": "zettel",
@@ -1411,7 +1463,8 @@ window.SCENE = {
      "pt": "papel",
      "ar": "ورق",
      "pl": "papier",
-     "ru": "бумага"
+     "ru": "бумага",
+     "es": "el papel"
     }
    ],
    "sur": null,
@@ -1432,7 +1485,8 @@ window.SCENE = {
    "pt": "papelzinho, bilhete",
    "ar": "ورقة صغيرة",
    "pl": "karteczka, świstek",
-   "ru": "записка, листок"
+   "ru": "записка, листок",
+   "es": "el papelito, la nota (en un papel)"
   },
   {
    "id": "kugelschreiber",
@@ -1461,7 +1515,8 @@ window.SCENE = {
    "pt": "caneta esferográfica",
    "ar": "قلم حبر جاف",
    "pl": "długopis",
-   "ru": "шариковая ручка"
+   "ru": "шариковая ручка",
+   "es": "el bolígrafo (de tinta)"
   },
   {
    "id": "schuh-2",
@@ -1490,7 +1545,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "mark",
@@ -1519,7 +1575,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "hemd",
@@ -1548,7 +1605,8 @@ window.SCENE = {
    "pt": "camisa",
    "ar": "قميص",
    "pl": "koszula",
-   "ru": "рубашка"
+   "ru": "рубашка",
+   "es": "la camisa"
   },
   {
    "id": "pullover",
@@ -1577,7 +1635,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "hose",
@@ -1606,7 +1665,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "schuh",
@@ -1635,7 +1695,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "mantel",
@@ -1664,7 +1725,8 @@ window.SCENE = {
    "pt": "casaco (sobretudo)",
    "ar": "معطف",
    "pl": "płaszcz",
-   "ru": "пальто"
+   "ru": "пальто",
+   "es": "el abrigo"
   },
   {
    "id": "stuhl-2",
@@ -1699,7 +1761,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "rucksack",
@@ -1728,7 +1791,8 @@ window.SCENE = {
    "pt": "mochila",
    "ar": "حقيبة ظهر",
    "pl": "plecak",
-   "ru": "рюкзак"
+   "ru": "рюкзак",
+   "es": "la mochila"
   },
   {
    "id": "speisekarte",
@@ -1757,7 +1821,8 @@ window.SCENE = {
    "pt": "cardápio",
    "ar": "قائمة الطعام",
    "pl": "karta dań, menu",
-   "ru": "меню"
+   "ru": "меню",
+   "es": "la carta (del restaurante)"
   },
   {
    "id": "serviette",
@@ -1786,7 +1851,8 @@ window.SCENE = {
    "pt": "guardanapo",
    "ar": "منديل المائدة",
    "pl": "serwetka",
-   "ru": "салфетка"
+   "ru": "салфетка",
+   "es": "la servilleta"
   },
   {
    "id": "teller",
@@ -1815,7 +1881,8 @@ window.SCENE = {
    "pt": "prato",
    "ar": "صحن",
    "pl": "talerz",
-   "ru": "тарелка"
+   "ru": "тарелка",
+   "es": "el plato"
   },
   {
    "id": "loeffel",
@@ -1844,7 +1911,8 @@ window.SCENE = {
    "pt": "colher",
    "ar": "ملعقة",
    "pl": "łyżka",
-   "ru": "ложка"
+   "ru": "ложка",
+   "es": "la cuchara"
   },
   {
    "id": "messer",
@@ -1873,7 +1941,8 @@ window.SCENE = {
    "pt": "faca",
    "ar": "سكّين",
    "pl": "nóż",
-   "ru": "нож"
+   "ru": "нож",
+   "es": "el cuchillo"
   },
   {
    "id": "broetchen",
@@ -1897,7 +1966,8 @@ window.SCENE = {
      "pt": "pão",
      "ar": "خبز",
      "pl": "chleb",
-     "ru": "хлеб"
+     "ru": "хлеб",
+     "es": "el pan"
     }
    ],
    "sur": "korb",
@@ -1918,7 +1988,8 @@ window.SCENE = {
    "pt": "pãozinho",
    "ar": "خبز صغير (كعك)",
    "pl": "bułka",
-   "ru": "булочка"
+   "ru": "булочка",
+   "es": "el panecillo"
   },
   {
    "id": "korb",
@@ -1947,7 +2018,8 @@ window.SCENE = {
    "pt": "cesto, cesta",
    "ar": "سلّة",
    "pl": "koszyk, kosz",
-   "ru": "корзина"
+   "ru": "корзина",
+   "es": "la canasta"
   },
   {
    "id": "salz",
@@ -1971,7 +2043,8 @@ window.SCENE = {
      "pt": "pimenta-do-reino",
      "ar": "فلفل أسود",
      "pl": "pieprz",
-     "ru": "перец (молотый)"
+     "ru": "перец (молотый)",
+     "es": "la pimienta"
     }
    ],
    "sur": "tisch",
@@ -1992,7 +2065,8 @@ window.SCENE = {
    "pt": "sal",
    "ar": "ملح",
    "pl": "sól",
-   "ru": "соль"
+   "ru": "соль",
+   "es": "la sal"
   },
   {
    "id": "blume",
@@ -2021,7 +2095,8 @@ window.SCENE = {
    "pt": "flor",
    "ar": "زهرة",
    "pl": "kwiat",
-   "ru": "цветок"
+   "ru": "цветок",
+   "es": "la flor"
   },
   {
    "id": "kerze",
@@ -2050,7 +2125,8 @@ window.SCENE = {
    "pt": "vela",
    "ar": "شمعة",
    "pl": "świeczka",
-   "ru": "свеча"
+   "ru": "свеча",
+   "es": "la vela"
   },
   {
    "id": "glas",
@@ -2074,7 +2150,8 @@ window.SCENE = {
      "pt": "água",
      "ar": "ماء",
      "pl": "woda",
-     "ru": "вода"
+     "ru": "вода",
+     "es": "el agua"
     }
    ],
    "sur": "tisch",
@@ -2095,7 +2172,8 @@ window.SCENE = {
    "pt": "copo",
    "ar": "كوب زجاجي",
    "pl": "szklanka, szkło",
-   "ru": "стакан"
+   "ru": "стакан",
+   "es": "el vaso"
   },
   {
    "id": "flasche",
@@ -2119,7 +2197,8 @@ window.SCENE = {
      "pt": "água",
      "ar": "ماء",
      "pl": "woda",
-     "ru": "вода"
+     "ru": "вода",
+     "es": "el agua"
     }
    ],
    "sur": "tisch",
@@ -2140,7 +2219,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "messer-2",
@@ -2169,7 +2249,8 @@ window.SCENE = {
    "pt": "faca",
    "ar": "سكّين",
    "pl": "nóż",
-   "ru": "нож"
+   "ru": "нож",
+   "es": "el cuchillo"
   },
   {
    "id": "serviette-2",
@@ -2198,7 +2279,8 @@ window.SCENE = {
    "pt": "guardanapo",
    "ar": "منديل المائدة",
    "pl": "serwetka",
-   "ru": "салфетка"
+   "ru": "салфетка",
+   "es": "la servilleta"
   },
   {
    "id": "teller-2",
@@ -2227,7 +2309,8 @@ window.SCENE = {
    "pt": "prato",
    "ar": "صحن",
    "pl": "talerz",
-   "ru": "тарелка"
+   "ru": "тарелка",
+   "es": "el plato"
   },
   {
    "id": "gabel",
@@ -2256,7 +2339,8 @@ window.SCENE = {
    "pt": "garfo",
    "ar": "شوكة",
    "pl": "widelec",
-   "ru": "вилка"
+   "ru": "вилка",
+   "es": "el tenedor"
   },
   {
    "id": "tisch",
@@ -2285,7 +2369,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "boden",
@@ -2320,7 +2405,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   }
  ],
  "grosPlans": [],
@@ -3280,6 +3366,75 @@ window.SCENE = {
     "C1 | Das Paar könnte jeden Abend hier essen.": "Возможно, пара ужинает здесь каждый вечер.",
     "C1 | Die Pizza dürfte für den Tisch am Fenster sein.": "Пицца, наверное, для столика у окна.",
     "C1 | Dieses Restaurant soll die beste Küche im Kiez haben.": "Говорят, в этом ресторане лучшая кухня в квартале."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Mark en el restaurante, una noche de otoño en Berlín: sentado a una mesa con mantel blanco, con la carta abierta en una mano, le señala un plato con el dedo a la mesera, que anota el pedido en su libreta; sobre la mesa, una canasta de panecillos, un plato con una servilleta, un cuchillo, una cuchara, un tenedor, un vaso y una botella de agua, una vela, una flor amarilla, la sal y la pimienta; su abrigo gris está sobre el respaldo de su silla, su mochila en el piso; en la mesa de al lado, un señor mayor de lentes corta su carne y una señora de suéter rojo come una sopa, frente a dos copas de vino; al fondo, la barra con su cafetera, sus tazas y un pastel bajo una campana de vidrio, las botellas y las copas colgadas, un mesero que trae dos pizzas, una ventana a la calle con su farol, un reloj, un cuadro y una planta.",
+    "consigne": "Mark pide su comida en el restaurante. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Las cantidades: ein Glas Wasser, ein Stück Kuchen",
+    "B2": "Los adjetivos sustantivados: etwas Warmes, nichts Süßes",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Die Uhr hängt an der Wand.": "die Wand → an <b>der</b> Wand: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Die Flaschen stehen im Regal.": "<b>im</b> = in + <b>dem</b>: das Regal → im Regal.",
+    "A2 | Der Rucksack steht auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
+    "A2 | Der Mantel hängt über dem Stuhl.": "<b>über</b> = encima de. der Stuhl → über <b>dem</b> Stuhl.",
+    "A2 | Die Kerze steht auf dem Tisch.": "der Tisch → auf <b>dem</b> Tisch.",
+    "A2 | Die Brötchen liegen im Korb.": "<b>im</b> = in + <b>dem</b>: der Korb → im Korb.",
+    "A2 | Das Bild hängt neben dem Fenster.": "<b>neben</b> = al lado de. das Fenster → neben <b>dem</b> Fenster.",
+    "A2 | Der Kuchen steht auf der Theke.": "die Theke → auf <b>der</b> Theke: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "B1 | Mark bestellt ein Glas Wasser.": "Una cantidad se dice sin «de»: ein <b>Glas</b> Wasser.",
+    "B1 | Die Frau isst einen Teller Suppe.": "Primero la medida, luego la cosa sin artículo: einen <b>Teller</b> Suppe.",
+    "B1 | Auf dem Tisch steht eine Flasche Wasser.": "eine <b>Flasche</b> Wasser: en singular, sin «de».",
+    "B1 | Mark möchte ein Stück Kuchen.": "ein <b>Stück</b> Kuchen = un pedazo de pastel.",
+    "B1 | Die Kellnerin bringt einen Korb Brötchen.": "einen <b>Korb</b> Brötchen: la medida en acusativo, la cosa sin artículo.",
+    "B1 | Mark bestellt auch eine Tasse Kaffee.": "eine <b>Tasse</b> Kaffee = una taza de café.",
+    "B1 | Im Regal stehen viele Flaschen Wein.": "Una medida femenina va en plural: viele <b>Flaschen</b> Wein.",
+    "B1 | Der Mann isst ein Stück Fleisch.": "Una medida neutra se queda en singular: ein <b>Stück</b> Fleisch.",
+    "B2 | Mark möchte etwas Warmes essen.": "Después de <b>etwas</b>, el adjetivo se vuelve un sustantivo neutro, con mayúscula: etwas Warm<b>es</b>.",
+    "B2 | Die Frau isst nichts Süßes.": "Después de <b>nichts</b>: nichts Süß<b>es</b>.",
+    "B2 | Gibt es heute etwas Neues auf der Karte?": "etwas Neu<b>es</b> = algo nuevo.",
+    "B2 | Auf der Karte steht viel Gutes.": "Después de <b>viel</b> también: viel Gut<b>es</b>.",
+    "B2 | Das Beste an diesem Restaurant ist die Küche.": "Después del artículo definido <b>das</b>, el adjetivo sustantivado toma <b>-e</b>: das Best<b>e</b>, como «lo mejor».",
+    "B2 | Mark probiert gern alles Neue.": "Después de <b>alles</b>, como después de das: alles Neu<b>e</b>.",
+    "C1 | Er muss Hunger haben.": "<b>müssen</b> = deducción casi segura, como «debe de tener».",
+    "C1 | Das Paar könnte jeden Abend hier essen.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Die Pizza dürfte für den Tisch am Fenster sein.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Dieses Restaurant soll die beste Küche im Kiez haben.": "<b>sollen</b> = según dicen: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "El reloj está colgado en la pared.",
+    "A2 | Die Flaschen stehen im Regal.": "Las botellas están en el estante.",
+    "A2 | Der Rucksack steht auf dem Boden.": "La mochila está en el piso.",
+    "A2 | Der Mantel hängt über dem Stuhl.": "El abrigo está colgado sobre la silla.",
+    "A2 | Die Kerze steht auf dem Tisch.": "La vela está sobre la mesa.",
+    "A2 | Die Brötchen liegen im Korb.": "Los panecillos están en la canasta.",
+    "A2 | Das Bild hängt neben dem Fenster.": "El cuadro está colgado al lado de la ventana.",
+    "A2 | Der Kuchen steht auf der Theke.": "El pastel está sobre la barra.",
+    "B1 | Mark bestellt ein Glas Wasser.": "Mark pide un vaso de agua.",
+    "B1 | Die Frau isst einen Teller Suppe.": "La mujer come un plato de sopa.",
+    "B1 | Auf dem Tisch steht eine Flasche Wasser.": "Sobre la mesa hay una botella de agua.",
+    "B1 | Mark möchte ein Stück Kuchen.": "Mark quisiera un pedazo de pastel.",
+    "B1 | Die Kellnerin bringt einen Korb Brötchen.": "La mesera trae una canasta de panecillos.",
+    "B1 | Mark bestellt auch eine Tasse Kaffee.": "Mark también pide una taza de café.",
+    "B1 | Im Regal stehen viele Flaschen Wein.": "En el estante hay muchas botellas de vino.",
+    "B1 | Der Mann isst ein Stück Fleisch.": "El hombre come un pedazo de carne.",
+    "B2 | Mark möchte etwas Warmes essen.": "Mark quisiera comer algo caliente.",
+    "B2 | Die Frau isst nichts Süßes.": "La mujer no come nada dulce.",
+    "B2 | Gibt es heute etwas Neues auf der Karte?": "¿Hay algo nuevo en la carta hoy?",
+    "B2 | Auf der Karte steht viel Gutes.": "En la carta hay muchas cosas buenas.",
+    "B2 | Das Beste an diesem Restaurant ist die Küche.": "Lo mejor de este restaurante es la cocina.",
+    "B2 | Mark probiert gern alles Neue.": "A Mark le gusta probar todo lo nuevo.",
+    "C1 | Er muss Hunger haben.": "Debe de tener hambre.",
+    "C1 | Das Paar könnte jeden Abend hier essen.": "La pareja podría cenar aquí todas las noches.",
+    "C1 | Die Pizza dürfte für den Tisch am Fenster sein.": "La pizza probablemente es para la mesa junto a la ventana.",
+    "C1 | Dieses Restaurant soll die beste Küche im Kiez haben.": "Dicen que este restaurante tiene la mejor cocina del barrio."
    }
   }
  }

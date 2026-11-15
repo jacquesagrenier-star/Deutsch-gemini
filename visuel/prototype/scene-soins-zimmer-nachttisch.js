@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "criado-mudo",
    "ar": "طاولة جانب السرير",
    "pl": "szafka nocna",
-   "ru": "прикроватная тумбочка"
+   "ru": "прикроватная тумбочка",
+   "es": "la mesa de noche"
   },
   {
    "id": "taschentuch",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "lenço",
    "ar": "منديل",
    "pl": "chusteczka",
-   "ru": "носовой платок"
+   "ru": "носовой платок",
+   "es": "el pañuelo"
   },
   {
    "id": "hoergeraet",
@@ -174,7 +176,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "prothesendose",
@@ -285,7 +288,8 @@ window.SCENE = {
      "pt": "cama",
      "ar": "سرير",
      "pl": "łóżko",
-     "ru": "кровать"
+     "ru": "кровать",
+     "es": "la cama"
     }
    ],
    "sur": null,
@@ -364,7 +368,8 @@ window.SCENE = {
    "pt": "almofada",
    "ar": "وسادة",
    "pl": "poduszka",
-   "ru": "подушка"
+   "ru": "подушка",
+   "es": "el cojín, la almohada"
   },
   {
    "id": "patient",
@@ -388,7 +393,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     }
    ],
    "sur": null,
@@ -409,7 +415,8 @@ window.SCENE = {
    "pt": "paciente",
    "ar": "مريض",
    "pl": "pacjent",
-   "ru": "пациент, больной"
+   "ru": "пациент, больной",
+   "es": "el paciente"
   },
   {
    "id": "armband",
@@ -723,6 +730,31 @@ window.SCENE = {
     "B1 | Setzen Sie bitte Ihre Brille auf.": "Наденьте, пожалуйста, очки.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Выпито до 10:00: половина поильника, пациента побуждали пить.",
     "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Я даю ему слуховой аппарат и говорю медленно и чётко."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "La mesita de noche de Herr Brandt vista de cerca: un vaso de agua, un vaso con boquilla, sus lentes, sus audífonos sobre un pañuelo y, en la repisa, la caja de su prótesis dental; a la derecha, su mano apoyada sobre la cobija, con su pulsera.",
+    "consigne": "Toca un objeto de la mesita de noche.",
+    "nom_vue": "La mesita de noche"
+   },
+   "couches": {
+    "A2": "Wo? — junto a la cama del paciente",
+    "B1": "El imperativo de cortesía — Sie",
+    "C1": "El estilo de los registros de enfermería",
+    "SIT": "¿Qué hace usted?"
+   },
+   "questions": {
+    "A2 | Die Brille liegt auf dem Nachttisch.": "<b>Wo?</b> → dativo: der Nachttisch → auf <b>dem</b> Nachttisch.",
+    "B1 | Setzen Sie bitte Ihre Brille auf.": "A Sie le corresponde <b>Ihr</b>, con mayúscula: Ihre Brille = sus lentes (los de usted).",
+    "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Una cantidad (<b>ein halber Becher</b>) y una acción (<b>motiviert</b>), no una impresión. ⚕️ Pat. = Patient.",
+    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Primero sus ayudas (audífono, lentes), luego una voz tranquila, frente a él: gritar no hace que se entienda mejor."
+   },
+   "sens": {
+    "A2 | Die Brille liegt auf dem Nachttisch.": "Los lentes están sobre la mesita de noche.",
+    "B1 | Setzen Sie bitte Ihre Brille auf.": "Póngase sus lentes, por favor.",
+    "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Cantidad de líquido tomada hasta las diez: medio vaso, pac. animado a beber.",
+    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Le doy su audífono y hablo despacio y claro."
    }
   }
  }

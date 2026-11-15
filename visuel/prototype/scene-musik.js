@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "quadro",
    "ar": "صورة، لوحة",
    "pl": "obraz",
-   "ru": "картина, изображение"
+   "ru": "картина, изображение",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "fenster",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "dach",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "telhado",
    "ar": "سقف",
    "pl": "dach",
-   "ru": "крыша"
+   "ru": "крыша",
+   "es": "el techo, el tejado"
   },
   {
    "id": "lampe",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "lampe-2",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "buch",
@@ -174,7 +179,8 @@ window.SCENE = {
    "pt": "livro",
    "ar": "كتاب",
    "pl": "książka",
-   "ru": "книга"
+   "ru": "книга",
+   "es": "el libro"
   },
   {
    "id": "regal",
@@ -203,7 +209,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "pflanze",
@@ -232,7 +239,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "klavier",
@@ -261,7 +269,8 @@ window.SCENE = {
    "pt": "piano",
    "ar": "بيانو",
    "pl": "fortepian, pianino",
-   "ru": "пианино, фортепиано"
+   "ru": "пианино, фортепиано",
+   "es": "el piano"
   },
   {
    "id": "geige",
@@ -290,7 +299,8 @@ window.SCENE = {
    "pt": "violino",
    "ar": "كمان",
    "pl": "skrzypce",
-   "ru": "скрипка"
+   "ru": "скрипка",
+   "es": "el violín"
   },
   {
    "id": "schrank",
@@ -319,7 +329,8 @@ window.SCENE = {
    "pt": "armário",
    "ar": "خزانة",
    "pl": "szafa",
-   "ru": "шкаф"
+   "ru": "шкаф",
+   "es": "el armario, el clóset"
   },
   {
    "id": "tuer",
@@ -348,7 +359,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "gitarre",
@@ -377,7 +389,8 @@ window.SCENE = {
    "pt": "violão, guitarra",
    "ar": "غيتار",
    "pl": "gitara",
-   "ru": "гитара"
+   "ru": "гитара",
+   "es": "la guitarra"
   },
   {
    "id": "gitarre-2",
@@ -406,7 +419,8 @@ window.SCENE = {
    "pt": "violão, guitarra",
    "ar": "غيتار",
    "pl": "gitara",
-   "ru": "гитара"
+   "ru": "гитара",
+   "es": "la guitarra"
   },
   {
    "id": "note",
@@ -435,7 +449,8 @@ window.SCENE = {
    "pt": "nota",
    "ar": "علامة، درجة",
    "pl": "ocena, stopień",
-   "ru": "оценка"
+   "ru": "оценка",
+   "es": "la nota"
   },
   {
    "id": "mark",
@@ -464,7 +479,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "brille",
@@ -493,7 +509,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "schal",
@@ -522,7 +539,8 @@ window.SCENE = {
    "pt": "cachecol",
    "ar": "وشاح، شال",
    "pl": "szalik",
-   "ru": "шарф"
+   "ru": "шарф",
+   "es": "la bufanda"
   },
   {
    "id": "frau",
@@ -551,7 +569,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "flasche",
@@ -575,7 +594,8 @@ window.SCENE = {
      "pt": "água",
      "ar": "ماء",
      "pl": "woda",
-     "ru": "вода"
+     "ru": "вода",
+     "es": "el agua"
     }
    ],
    "sur": null,
@@ -596,7 +616,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "stuhl",
@@ -631,7 +652,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "schuh",
@@ -666,7 +688,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "boden",
@@ -695,7 +718,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   },
   {
    "id": "wand",
@@ -724,7 +748,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "trommel",
@@ -753,7 +778,8 @@ window.SCENE = {
    "pt": "tambor",
    "ar": "طبل",
    "pl": "bęben",
-   "ru": "барабан"
+   "ru": "барабан",
+   "es": "el tambor"
   },
   {
    "id": "heizung",
@@ -782,7 +808,8 @@ window.SCENE = {
    "pt": "aquecimento",
    "ar": "تدفئة",
    "pl": "ogrzewanie",
-   "ru": "отопление"
+   "ru": "отопление",
+   "es": "la calefacción"
   },
   {
    "id": "lautsprecher",
@@ -811,7 +838,8 @@ window.SCENE = {
    "pt": "caixa de som, alto-falante",
    "ar": "مكبّر الصوت",
    "pl": "głośnik",
-   "ru": "динамик, колонка"
+   "ru": "динамик, колонка",
+   "es": "el altavoz"
   },
   {
    "id": "gitarrenkoffer",
@@ -840,7 +868,8 @@ window.SCENE = {
    "pt": "estojo de violão",
    "ar": "حقيبة الغيتار",
    "pl": "futerał na gitarę",
-   "ru": "чехол для гитары"
+   "ru": "чехол для гитары",
+   "es": "el estuche de guitarra"
   }
  ],
  "grosPlans": [],
@@ -1778,6 +1807,75 @@ window.SCENE = {
     "C1 | Die Geige könnte der Lehrerin gehören.": "Скрипка, возможно, принадлежит учительнице.",
     "C1 | Mark dürfte in ein paar Monaten gut spielen.": "Марк, вероятно, будет хорошо играть через несколько месяцев.",
     "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "Говорят, учительница раньше играла в оркестре."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "La clase de guitarra: en un salón pequeño de una escuela de música, Mark toca, concentrado, con los ojos en la partitura; su profesora, de pelo blanco y bufanda violeta, le muestra un acorde; alrededor de ellos, un piano, un violín en su estuche, un atril, una botella de agua, un póster de una trompeta, una lámpara y una planta grande; por la ventana, los techos de Berlín.",
+    "consigne": "Mark toma una clase de guitarra. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Los verbos modales",
+    "B2": "La declinación del adjetivo",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Die kleine Lampe steht auf dem Klavier.": "das Klavier → auf <b>dem</b> Klavier.",
+    "A2 | Die Geige liegt auf dem Schrank.": "der Schrank → auf <b>dem</b> Schrank.",
+    "A2 | Das Bild hängt an der Wand.": "die Wand → an <b>der</b> Wand: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Die Bücher stehen auf dem Regal.": "das Regal → auf <b>dem</b> Regal.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "<b>neben</b> = al lado de. das Fenster → neben <b>dem</b> Fenster.",
+    "A2 | Die Flasche steht auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
+    "A2 | Mark sitzt auf dem Stuhl.": "der Stuhl → auf <b>dem</b> Stuhl.",
+    "A2 | Die große Lampe steht neben dem Fenster.": "<b>neben</b> = al lado de. das Fenster → neben <b>dem</b> Fenster.",
+    "B1 | Mark kann schon drei Akkorde spielen.": "<b>können</b> = saber, poder: una capacidad.",
+    "B1 | Er muss jeden Tag üben.": "<b>müssen</b> = tener que, deber: una obligación.",
+    "B1 | Im Unterricht darf man nicht telefonieren.": "<b>nicht dürfen</b> = no tener permiso, estar prohibido.",
+    "B1 | Mark will später in einer Band spielen.": "<b>wollen</b> = querer: un plan.",
+    "B1 | Die Frau möchte, dass Mark langsamer spielt.": "<b>möchte</b> = quisiera: un deseo cortés.",
+    "B1 | Du sollst die Gitarre nicht so fest halten.": "<b>sollen</b> = un consejo, una indicación; du → sollst.",
+    "B1 | Mark kann die Noten noch nicht gut lesen.": "Verbo modal + infinitivo al final: <b>lesen</b>.",
+    "B1 | Darf ich das Fenster öffnen?": "<b>Darf ich…?</b> = ¿puedo…? (permiso)",
+    "B2 | Mark spielt auf einer neuen Gitarre.": "Después de <b>einer</b> (dativo femenino) → <b>-en</b>.",
+    "B2 | Die Frau trägt einen violetten Schal.": "Acusativo masculino después de <b>einen</b> → <b>-en</b>.",
+    "B2 | Das schwarze Klavier steht an der Wand.": "Después de <b>das</b> (nominativo) → <b>-e</b>.",
+    "B2 | Auf dem Schrank liegt eine alte Geige.": "Nominativo femenino después de <b>eine</b> → <b>-e</b>.",
+    "B2 | Neben dem großen Fenster steht eine Lampe.": "Dativo después de <b>dem</b> → <b>-en</b>.",
+    "B2 | Mark trägt ein grünes T-Shirt.": "Acusativo neutro después de <b>ein</b> → <b>-es</b>.",
+    "C1 | Der Akkord muss schwierig sein.": "<b>müssen</b> = deducción casi segura, como «debe de» + infinitivo.",
+    "C1 | Die Geige könnte der Lehrerin gehören.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Mark dürfte in ein paar Monaten gut spielen.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "<b>sollen</b> = según dicen: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Die kleine Lampe steht auf dem Klavier.": "La lámpara pequeña está sobre el piano.",
+    "A2 | Die Geige liegt auf dem Schrank.": "El violín está sobre el armario.",
+    "A2 | Das Bild hängt an der Wand.": "El cuadro está colgado en la pared.",
+    "A2 | Die Bücher stehen auf dem Regal.": "Los libros están en el estante.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "La planta está al lado de la ventana.",
+    "A2 | Die Flasche steht auf dem Boden.": "La botella está en el piso.",
+    "A2 | Mark sitzt auf dem Stuhl.": "Mark está sentado en la silla.",
+    "A2 | Die große Lampe steht neben dem Fenster.": "La lámpara grande está al lado de la ventana.",
+    "B1 | Mark kann schon drei Akkorde spielen.": "Mark ya sabe tocar tres acordes.",
+    "B1 | Er muss jeden Tag üben.": "Tiene que practicar todos los días.",
+    "B1 | Im Unterricht darf man nicht telefonieren.": "En clase no se permite hablar por teléfono.",
+    "B1 | Mark will später in einer Band spielen.": "Mark quiere tocar en una banda más adelante.",
+    "B1 | Die Frau möchte, dass Mark langsamer spielt.": "La mujer quisiera que Mark tocara más despacio.",
+    "B1 | Du sollst die Gitarre nicht so fest halten.": "No debes sujetar la guitarra con tanta fuerza.",
+    "B1 | Mark kann die Noten noch nicht gut lesen.": "Mark todavía no sabe leer bien las notas.",
+    "B1 | Darf ich das Fenster öffnen?": "¿Puedo abrir la ventana?",
+    "B2 | Mark spielt auf einer neuen Gitarre.": "Mark toca una guitarra nueva.",
+    "B2 | Die Frau trägt einen violetten Schal.": "La mujer lleva una bufanda violeta.",
+    "B2 | Das schwarze Klavier steht an der Wand.": "El piano negro está contra la pared.",
+    "B2 | Auf dem Schrank liegt eine alte Geige.": "Sobre el armario hay un violín viejo.",
+    "B2 | Neben dem großen Fenster steht eine Lampe.": "Al lado de la ventana grande hay una lámpara.",
+    "B2 | Mark trägt ein grünes T-Shirt.": "Mark lleva una camiseta verde.",
+    "C1 | Der Akkord muss schwierig sein.": "El acorde debe de ser difícil.",
+    "C1 | Die Geige könnte der Lehrerin gehören.": "El violín podría ser de la profesora.",
+    "C1 | Mark dürfte in ein paar Monaten gut spielen.": "Mark probablemente tocará bien dentro de unos meses.",
+    "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "Dicen que la profesora antes tocaba en una orquesta."
    }
   }
  }

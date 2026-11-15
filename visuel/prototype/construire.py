@@ -90,12 +90,12 @@ def corpus_cat(fichier, cle):
     return {e[cle] for niv in d.values() for e in niv if e.get(cle)}
 
 
-LANGUES = ["en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"]
+LANGUES = ["en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"]   # es : 15 nov. 2026 (interface-es/)
 # Les traductions d'un mot dans le corpus : traduction (fr), traduction_en...
 CHAMPS_MOT = {"fr": "traduction", "en": "traduction_en", "tr": "traduction_tr",
               "uk": "traduction_uk", "fa": "traduction_fa",
               "pt": "traduction_pt", "ar": "traduction_ar", "pl": "traduction_pl",
-              "ru": "traduction_ru"}
+              "ru": "traduction_ru", "es": "traduction_es"}
 
 
 def sens(m):
@@ -466,7 +466,8 @@ def construire_espagnol(nom, scene_de):
         if r:
             points.append(dict(p, aussi=aussi, **{k: r.get(k) for k in
                           ("mot", "genre", "pluriel", "niveau", "theme", "fr", "en", "pt", "ar", "de", "latam")}))
-    for cle in ("tr", "uk", "fa"):     # le corpus espagnol n'a que fr, en, pt (v782) et ar
+    # « es » (15 nov. 2026) : l'espagnol, langue d'interface de l'ALLEMAND, n'a pas de sens dans une scene de l'espagnol appris.
+    for cle in ("tr", "uk", "fa", "es"):     # le corpus espagnol n'a que fr, en, pt (v782) et ar
         for p in points:
             p.pop(cle, None)
             for a in p["aussi"]:
@@ -581,6 +582,8 @@ def construire_espagnol(nom, scene_de):
     scene["couches"] = couches
     traductions = {}
     for l, t in (scene_de.get("traductions") or {}).items():
+        if l == "es":   # l'espagnol, interface de l'ALLEMAND (15 nov. 2026) : sans objet ici
+            continue
         traductions[l] = {"champs": t.get("champs", {}),
                           "couches": {k: v for k, v in t.get("couches", {}).items() if k == "A1"},
                           "questions": {}, "sens": {}}

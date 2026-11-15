@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   },
   {
    "id": "fenster",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "lampe",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "lampe-2",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "hut",
@@ -174,7 +179,8 @@ window.SCENE = {
    "pt": "chapéu",
    "ar": "قبّعة",
    "pl": "kapelusz",
-   "ru": "шляпа"
+   "ru": "шляпа",
+   "es": "el sombrero"
   },
   {
    "id": "muetze",
@@ -203,7 +209,8 @@ window.SCENE = {
    "pt": "gorro",
    "ar": "قبعة صوفية",
    "pl": "czapka",
-   "ru": "шапка"
+   "ru": "шапка",
+   "es": "el gorro"
   },
   {
    "id": "tasche-noire",
@@ -232,7 +239,8 @@ window.SCENE = {
    "pt": "bolsa",
    "ar": "حقيبة",
    "pl": "torba, torebka",
-   "ru": "сумка"
+   "ru": "сумка",
+   "es": "la bolsa, el bolso"
   },
   {
    "id": "tasche-brune",
@@ -261,7 +269,8 @@ window.SCENE = {
    "pt": "bolsa",
    "ar": "حقيبة",
    "pl": "torba, torebka",
-   "ru": "сумка"
+   "ru": "сумка",
+   "es": "la bolsa, el bolso"
   },
   {
    "id": "regal",
@@ -314,7 +323,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "pullover-stapel",
@@ -355,7 +365,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "hosen-stapel",
@@ -379,7 +390,8 @@ window.SCENE = {
      "pt": "calça",
      "ar": "بنطال",
      "pl": "spodnie",
-     "ru": "брюки"
+     "ru": "брюки",
+     "es": "el pantalón"
     }
    ],
    "sur": "regal",
@@ -400,7 +412,8 @@ window.SCENE = {
    "pt": "calça jeans",
    "ar": "جينز",
    "pl": "dżinsy",
-   "ru": "джинсы"
+   "ru": "джинсы",
+   "es": "los jeans"
   },
   {
    "id": "kleid",
@@ -429,7 +442,8 @@ window.SCENE = {
    "pt": "vestido",
    "ar": "فستان",
    "pl": "sukienka",
-   "ru": "платье"
+   "ru": "платье",
+   "es": "el vestido"
   },
   {
    "id": "rock",
@@ -458,7 +472,8 @@ window.SCENE = {
    "pt": "saia",
    "ar": "تنورة",
    "pl": "spódnica",
-   "ru": "юбка"
+   "ru": "юбка",
+   "es": "la falda"
   },
   {
    "id": "hemd",
@@ -487,7 +502,8 @@ window.SCENE = {
    "pt": "camisa",
    "ar": "قميص",
    "pl": "koszula",
-   "ru": "рубашка"
+   "ru": "рубашка",
+   "es": "la camisa"
   },
   {
    "id": "bluse",
@@ -516,7 +532,8 @@ window.SCENE = {
    "pt": "blusa",
    "ar": "بلوزة",
    "pl": "bluzka",
-   "ru": "блузка"
+   "ru": "блузка",
+   "es": "la blusa"
   },
   {
    "id": "anzug",
@@ -545,7 +562,8 @@ window.SCENE = {
    "pt": "terno",
    "ar": "بدلة",
    "pl": "garnitur",
-   "ru": "костюм"
+   "ru": "костюм",
+   "es": "el traje"
   },
   {
    "id": "anzug-hose",
@@ -574,7 +592,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "mantel",
@@ -603,7 +622,8 @@ window.SCENE = {
    "pt": "casaco (sobretudo)",
    "ar": "معطف",
    "pl": "płaszcz",
-   "ru": "пальто"
+   "ru": "пальто",
+   "es": "el abrigo"
   },
   {
    "id": "jacke",
@@ -632,7 +652,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "kabine",
@@ -656,7 +677,8 @@ window.SCENE = {
      "pt": "cortina",
      "ar": "ستارة",
      "pl": "zasłona",
-     "ru": "штора, занавеска"
+     "ru": "штора, занавеска",
+     "es": "la cortina"
     }
    ],
    "sur": null,
@@ -677,7 +699,8 @@ window.SCENE = {
    "pt": "provador",
    "ar": "غرفة القياس",
    "pl": "przymierzalnia",
-   "ru": "примерочная"
+   "ru": "примерочная",
+   "es": "el probador"
   },
   {
    "id": "spiegel",
@@ -706,7 +729,8 @@ window.SCENE = {
    "pt": "espelho",
    "ar": "مرآة",
    "pl": "lustro",
-   "ru": "зеркало"
+   "ru": "зеркало",
+   "es": "el espejo"
   },
   {
    "id": "hocker",
@@ -735,7 +759,8 @@ window.SCENE = {
    "pt": "banquinho",
    "ar": "مقعد بلا ظهر",
    "pl": "taboret",
-   "ru": "табурет"
+   "ru": "табурет",
+   "es": "el taburete"
   },
   {
    "id": "guertel",
@@ -764,7 +789,8 @@ window.SCENE = {
    "pt": "cinto",
    "ar": "حزام",
    "pl": "pasek",
-   "ru": "ремень, пояс"
+   "ru": "ремень, пояс",
+   "es": "el cinturón"
   },
   {
    "id": "krawatte",
@@ -793,7 +819,8 @@ window.SCENE = {
    "pt": "gravata",
    "ar": "ربطة عنق",
    "pl": "krawat",
-   "ru": "галстук"
+   "ru": "галстук",
+   "es": "la corbata"
   },
   {
    "id": "pflanze",
@@ -822,7 +849,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "anna",
@@ -851,7 +879,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "pullover",
@@ -880,7 +909,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "tasche-anna",
@@ -909,7 +939,8 @@ window.SCENE = {
    "pt": "bolsa",
    "ar": "حقيبة",
    "pl": "torba, torebka",
-   "ru": "сумка"
+   "ru": "сумка",
+   "es": "la bolsa, el bolso"
   },
   {
    "id": "hose-anna",
@@ -933,7 +964,8 @@ window.SCENE = {
      "pt": "calça",
      "ar": "بنطال",
      "pl": "spodnie",
-     "ru": "брюки"
+     "ru": "брюки",
+     "es": "el pantalón"
     }
    ],
    "sur": "anna",
@@ -954,7 +986,8 @@ window.SCENE = {
    "pt": "calça jeans",
    "ar": "جينز",
    "pl": "dżinsy",
-   "ru": "джинсы"
+   "ru": "джинсы",
+   "es": "los jeans"
   },
   {
    "id": "schuhe-anna",
@@ -989,7 +1022,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "stiefel",
@@ -1018,7 +1052,8 @@ window.SCENE = {
    "pt": "bota",
    "ar": "جزمة",
    "pl": "kozak, but z cholewą",
-   "ru": "сапог"
+   "ru": "сапог",
+   "es": "la bota"
   },
   {
    "id": "turnschuh",
@@ -1047,7 +1082,8 @@ window.SCENE = {
    "pt": "tênis (calçado)",
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
-   "ru": "кроссовки, кеды"
+   "ru": "кроссовки, кеды",
+   "es": "el tenis"
   },
   {
    "id": "sandale",
@@ -1076,7 +1112,8 @@ window.SCENE = {
    "pt": "sandália",
    "ar": "صندل",
    "pl": "sandał",
-   "ru": "сандалия"
+   "ru": "сандалия",
+   "es": "la sandalia"
   },
   {
    "id": "schuhe-regal",
@@ -1105,7 +1142,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "verkaeuferin",
@@ -1129,7 +1167,8 @@ window.SCENE = {
      "pt": "vendedora",
      "ar": "بائعة",
      "pl": "sprzedawczyni, ekspedientka",
-     "ru": "продавщица"
+     "ru": "продавщица",
+     "es": "la vendedora"
     }
    ],
    "sur": null,
@@ -1150,7 +1189,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "schal",
@@ -1179,7 +1219,8 @@ window.SCENE = {
    "pt": "cachecol",
    "ar": "وشاح، شال",
    "pl": "szalik",
-   "ru": "шарф"
+   "ru": "шарф",
+   "es": "la bufanda"
   },
   {
    "id": "korb",
@@ -1208,7 +1249,8 @@ window.SCENE = {
    "pt": "cesto, cesta",
    "ar": "سلّة",
    "pl": "koszyk, kosz",
-   "ru": "корзина"
+   "ru": "корзина",
+   "es": "la canasta"
   },
   {
    "id": "socken",
@@ -1237,7 +1279,8 @@ window.SCENE = {
    "pt": "meia",
    "ar": "جورب",
    "pl": "skarpetka",
-   "ru": "носок"
+   "ru": "носок",
+   "es": "el calcetín, la media"
   },
   {
    "id": "handschuh",
@@ -1266,7 +1309,8 @@ window.SCENE = {
    "pt": "luva",
    "ar": "قفاز",
    "pl": "rękawiczka",
-   "ru": "перчатка"
+   "ru": "перчатка",
+   "es": "el guante"
   },
   {
    "id": "monsieur",
@@ -1290,7 +1334,8 @@ window.SCENE = {
      "pt": "cliente",
      "ar": "زبون",
      "pl": "klient",
-     "ru": "клиент, покупатель"
+     "ru": "клиент, покупатель",
+     "es": "el cliente"
     }
    ],
    "sur": null,
@@ -1311,7 +1356,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "schuh-main",
@@ -1340,7 +1386,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "schuh-sol",
@@ -1369,7 +1416,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "bank",
@@ -1398,7 +1446,8 @@ window.SCENE = {
    "pt": "banco (dinheiro)",
    "ar": "بنك، مصرف",
    "pl": "bank",
-   "ru": "банк"
+   "ru": "банк",
+   "es": "el banco"
   },
   {
    "id": "theke",
@@ -1427,7 +1476,8 @@ window.SCENE = {
    "pt": "balcão",
    "ar": "منضدة",
    "pl": "lada",
-   "ru": "стойка"
+   "ru": "стойка",
+   "es": "la barra, el mostrador"
   }
  ],
  "grosPlans": [],
@@ -2357,6 +2407,75 @@ window.SCENE = {
     "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "Она, возможно, сейчас примерит его в примерочной.",
     "C1 | Der Mann dürfte die Schuhe kaufen.": "Мужчина, вероятно, купит ботинки.",
     "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "Говорят, продавщица работает здесь уже тридцать лет."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Anna en una tienda de ropa en Berlín: sostiene un suéter amarillo frente a ella; a su alrededor, vestidos, camisas, abrigos, zapatos, un probador, y la vendedora que dobla una bufanda en el mostrador.",
+    "consigne": "Anna va de compras. Toca una prenda o un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Los adjetivos después del artículo",
+    "B2": "Relativas y pasiva",
+    "C1": "Hipótesis"
+   },
+   "questions": {
+    "A2 | Der Hut ist auf dem Regal.": "<b>Wo?</b> → dativo: das Regal → auf <b>dem</b> Regal.",
+    "A2 | Der Mann sitzt auf der Bank.": "die Bank → auf <b>der</b> Bank: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Der Hocker steht vor dem Spiegel.": "<b>vor</b> = delante de. der Spiegel → vor <b>dem</b> Spiegel.",
+    "A2 | Der Gürtel hängt neben der Krawatte.": "die Krawatte → neben <b>der</b> Krawatte.",
+    "A2 | Die Socken sind im Korb.": "<b>im</b> = in + <b>dem</b>: der Korb → im Korb.",
+    "A2 | Anna steht vor der Umkleidekabine.": "die Umkleidekabine → vor <b>der</b> Umkleidekabine.",
+    "A2 | Der zweite Schuh steht auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
+    "A2 | Das Kleid hängt neben dem Rock.": "der Rock → neben <b>dem</b> Rock.",
+    "B1 | Anna hält einen gelben Pullover.": "<b>einen</b> = masculino en acusativo: el adjetivo toma <b>-en</b>.",
+    "B1 | Das rote Kleid hängt ganz links.": "Después de <b>das</b>, en nominativo: <b>-e</b>. El artículo ya muestra el género.",
+    "B1 | Der Mann probiert einen braunen Schuh an.": "<b>einen</b> (acusativo masculino) → <b>-en</b>.",
+    "B1 | Die Verkäuferin faltet einen gestreiften Schal.": "La misma regla: <b>einen</b> → gestreift<b>en</b> (de rayas).",
+    "B1 | Auf dem Regal steht eine schwarze Tasche.": "<b>eine</b> + femenino, en nominativo → <b>-e</b>.",
+    "B1 | Anna trägt eine hellblaue Hose.": "En femenino, el acusativo es igual al nominativo: <b>eine</b> → <b>-e</b>.",
+    "B1 | Der Mann mit den grauen Haaren probiert Schuhe an.": "<b>mit</b> → dativo; en dativo plural, el adjetivo siempre toma <b>-en</b>.",
+    "B1 | Ein brauner Mantel hängt neben dem Anzug.": "<b>ein</b> no dice el género: lo muestra el adjetivo → braun<b>er</b> (masculino).",
+    "B2 | Die Frau, die den gelben Pullover hält, heißt Anna.": "Sujeto de la relativa, femenino → <b>die</b>.",
+    "B2 | Der Mann, dessen Schuh noch auf dem Boden steht, probiert den anderen an.": "Posesión, antecedente masculino → <b>dessen</b> (cuyo zapato).",
+    "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "<b>vor</b> + Wo? → dativo: der Spiegel → vor <b>dem</b>.",
+    "B2 | Die Socken, die im Korb liegen, sind bunt.": "Sujeto de la relativa, plural → <b>die</b>. <b>denen</b> sería el dativo plural.",
+    "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "<b>sein</b> + participio = pasiva de estado: el resultado, como «están doblados». <b>falten</b> es regular → gefaltet.",
+    "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "La acción en curso → pasiva con <b>werden</b>. El resultado sería <b>ist</b> gefaltet.",
+    "C1 | Der Pullover muss ihr gefallen.": "<b>müssen</b> = deducción casi segura: ella sonríe.",
+    "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Der Mann dürfte die Schuhe kaufen.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "<b>sollen</b> = según lo que se dice: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Der Hut ist auf dem Regal.": "El sombrero está en el estante.",
+    "A2 | Der Mann sitzt auf der Bank.": "El hombre está sentado en la banca.",
+    "A2 | Der Hocker steht vor dem Spiegel.": "El taburete está frente al espejo.",
+    "A2 | Der Gürtel hängt neben der Krawatte.": "El cinturón cuelga junto a la corbata.",
+    "A2 | Die Socken sind im Korb.": "Los calcetines están en la canasta.",
+    "A2 | Anna steht vor der Umkleidekabine.": "Anna está de pie frente al probador.",
+    "A2 | Der zweite Schuh steht auf dem Boden.": "El segundo zapato está en el piso.",
+    "A2 | Das Kleid hängt neben dem Rock.": "El vestido cuelga junto a la falda.",
+    "B1 | Anna hält einen gelben Pullover.": "Anna sostiene un suéter amarillo.",
+    "B1 | Das rote Kleid hängt ganz links.": "El vestido rojo cuelga en el extremo izquierdo.",
+    "B1 | Der Mann probiert einen braunen Schuh an.": "El hombre se prueba un zapato café.",
+    "B1 | Die Verkäuferin faltet einen gestreiften Schal.": "La vendedora dobla una bufanda de rayas.",
+    "B1 | Auf dem Regal steht eine schwarze Tasche.": "En el estante hay un bolso negro.",
+    "B1 | Anna trägt eine hellblaue Hose.": "Anna lleva un pantalón azul claro.",
+    "B1 | Der Mann mit den grauen Haaren probiert Schuhe an.": "El hombre de cabello gris se prueba zapatos.",
+    "B1 | Ein brauner Mantel hängt neben dem Anzug.": "Un abrigo café cuelga junto al traje.",
+    "B2 | Die Frau, die den gelben Pullover hält, heißt Anna.": "La mujer que sostiene el suéter amarillo se llama Anna.",
+    "B2 | Der Mann, dessen Schuh noch auf dem Boden steht, probiert den anderen an.": "El hombre cuyo zapato todavía está en el piso se prueba el otro.",
+    "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "El espejo frente al cual está el taburete tiene un marco de madera.",
+    "B2 | Die Socken, die im Korb liegen, sind bunt.": "Los calcetines que están en la canasta son de colores.",
+    "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "Los suéteres del estante están bien doblados.",
+    "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "La bufanda está siendo doblada por la vendedora.",
+    "C1 | Der Pullover muss ihr gefallen.": "El suéter debe de gustarle.",
+    "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "Podría probárselo ahora mismo en el probador.",
+    "C1 | Der Mann dürfte die Schuhe kaufen.": "El hombre probablemente va a comprar los zapatos.",
+    "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "Dicen que la vendedora trabaja aquí desde hace treinta años."
    }
   }
  }
