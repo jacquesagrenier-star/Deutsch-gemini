@@ -77,3 +77,36 @@ sont écrites en français et en anglais, puis traduites depuis le français dan
   « razem z Elif byłby powód do świętowania ».
 - balkonik, edukatorka diabetologiczna, « kontroluje oddawanie moczu i stolca », endoproteza biodra, dyżurka
   pielęgniarek, medycyna pracy ; « Arkusz oceny », « Elementy językowe », « 75 ze 100 ».
+
+## Le manuel, chapitre 0 « L'examen en un coup d'œil » (15 nov. 2026)
+
+Traduit depuis le français par deux agents, sans relecture native (`donnees/manuel/examen.json`). Ce qu'ils ont
+signalé :
+- **Partout** : la décimale (« 74,5 » ou « 74.5 »), et « Land », gardé ou traduit (estado alemão, ولاية, land,
+  федеральная земля ; gardé en espagnol).
+- **tr** :
+  - reconnaissance → « denklik » (denklik makamı, denklik kararı), plutôt que « tanınma » ;
+  - seuils → « geçme sınırları » (ou « baraj puanları ») ;
+  - terminaisons → « çekim ekleri ».
+- **uk** :
+  - « Частина » sert à la fois pour l'épreuve et pour la partie, comme dans l'interface ;
+  - soignants → « працівники сфери догляду ».
+- **fa** :
+  - Anerkennung → « به رسمیت شناختن » (« ارزشیابی مدرک » est-il plus courant ?) ;
+  - décimale « 74.5 », et chiffres occidentaux (le sommaire est aligné).
+- **pt** :
+  - seuils → « notas mínimas » ;
+  - infirmière ou infirmier diplômé → « enfermeira ou enfermeiro com diploma ».
+- **ar** :
+  - épreuve → « الاختبار » ;
+  - seuils → « العتبات » ;
+  - à deux → « مرشحان معًا ».
+- **pl** :
+  - épreuve → « Część egzaminu » ;
+  - autorité de reconnaissance → « urząd ds. uznawania kwalifikacji ».
+- **ru** :
+  - épreuve → « Часть экзамена » ;
+  - autorité de reconnaissance → « ведомство по признанию ».
+- **es** (10e langue, sans interface à comparer) :
+  - « comprensión auditiva », « expresión escrita » ;
+  - « resolución de reconocimiento ».
