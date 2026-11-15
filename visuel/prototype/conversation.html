@@ -478,7 +478,7 @@ function dire(texte, qui){
   });
 }
 // Dire une replique : son fichier enregistre s'il en a un (« son », les Soins), sinon la voix du telephone.
-function jouer(texte, qui, son){
+function direReplique(texte, qui, son){
   if (!son) return dire(texte, qui);
   return new Promise(fini => {
     taire();
@@ -574,7 +574,7 @@ const MIC_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
 function boutonHP(texte, qui, libelle, son){
   const b = el("button"); b.type = "button"; b.innerHTML = HP_SVG; b.appendChild(document.createTextNode(libelle == null ? " " + u("reecouter") : libelle));
   if (!libelle) b.setAttribute("aria-label", u("reecouter"));
-  b.onclick = () => jouer(texte, qui, son);
+  b.onclick = () => direReplique(texte, qui, son);
   return b;
 }
 let dernier = null, fil, repondre, sansFilet = Q.get("sansfilet") === "1", noeud = null, ecouteEnCours = null;
@@ -601,7 +601,7 @@ async function replique(r){
   const tr = el("button", null, u("traduire")); tr.type = "button"; tr.onclick = () => { f.hidden = !f.hidden; }; outils.appendChild(tr);
   b.appendChild(outils); ligne.appendChild(b); fil.appendChild(ligne); defiler();
   quiParle(qui); dernier = qui;
-  await jouer(dit, qui, r.son);
+  await direReplique(dit, qui, r.son);
   quiParle(null);
   await attendre(250);
 }
@@ -720,7 +720,7 @@ async function choisir(c, touchee){
   maReplique(c);
   S.dit.push(c);
   // touchee : on ne l'a pas dite soi-meme, la voix la dit (au micro, on vient de la dire) ; puis un temps pour la voir
-  if (touchee) await jouer(T(c, "dit") ? gabarit(T(c, "dit"), LANGUE) : gabarit(T(c, "t"), LANGUE), "toi", c.son);
+  if (touchee) await direReplique(T(c, "dit") ? gabarit(T(c, "dit"), LANGUE) : gabarit(T(c, "t"), LANGUE), "toi", c.son);
   await attendre(touchee ? 450 : 700);
   if (c.faux || c.repete){
     essayes(noeud).add(c.i);
