@@ -24,6 +24,11 @@ Ce qu'il verifie (pflege/FORMAT-TELC-PFLEGE.md) :
   9. le CODE : chaque T("pf_…") de examen.js existe dans l'interface ; la page envoie le resultat au format du contrat
      (resultat_examen, soins_telc).
 Les donnees sont en « series » (une serie = un examen blanc complet) : chaque serie est controlee.
+ 10. le MANUEL (pflege/examen/FORMAT-MANUEL.md) : les series d'entrainement (entrainement/<epreuve>.json : id 101 et
+     plus, des parties entieres au format et a la numerotation de l'examen) ; la RESERVE (aucune phrase allemande d'un
+     examen blanc dans l'entrainement) ; le sommaire (dix chapitres) et chaque chapitre (sortes de blocs, 9 langues,
+     memes [[allemand]] et {x} que le francais, cles uniques, series et renvois existants, phrases dites sans
+     chiffres). L'espagnol, 10e langue prevue, est compte, pas encore exige.
 """
 import io
 import json
@@ -102,20 +107,39 @@ for e in EPREUVES:
     if FICHIERS[e] and sorted(s["id"] for s in FICHIERS[e]["series"]) != IDS:
         faute("%s.json : les series %s, les autres epreuves ont %s" % (e, [s["id"] for s in FICHIERS[e]["series"]], IDS))
 
-def controler(D, tous_nr):
-    """Les controles 1 a 7 sur une serie : D = {epreuve: contenu de la serie (avec « voix »)}."""
+def controler(D, tous_nr, complet=True, ou=""):
+    """Les controles 1 a 7 sur une serie : D = {epreuve: contenu de la serie (avec « voix »)}.
+    complet=False : une serie d'ENTRAINEMENT (FORMAT-MANUEL.md, § 3) : des parties entieres, pas toutes."""
     # 1-2. le format et les bonnes reponses
     for e, nombres in FORMAT.items():
         d = D[e]
         if not d:
             continue
         teile = d.get("teile", [])
-        if [len(items_de(t)) for t in teile] != nombres:
-            faute("%s : %s questions par partie, le telc en demande %s" % (e, [len(items_de(t)) for t in teile], nombres))
-        nr = [it["nr"] for t in teile for it in items_de(t)]
-        attendu = list(range(DEBUT[e], DEBUT[e] + sum(nombres)))
-        if nr != attendu:
-            faute("%s : numeros %s, attendus %d a %d dans l'ordre" % (e, nr, attendu[0], attendu[-1]))
+        if complet:
+            if [len(items_de(t)) for t in teile] != nombres:
+                faute("%s : %s questions par partie, le telc en demande %s" % (e, [len(items_de(t)) for t in teile], nombres))
+            nr = [it["nr"] for t in teile for it in items_de(t)]
+            attendu = list(range(DEBUT[e], DEBUT[e] + sum(nombres)))
+            if nr != attendu:
+                faute("%s : numeros %s, attendus %d a %d dans l'ordre" % (e, nr, attendu[0], attendu[-1]))
+        else:
+            if not teile:
+                faute("%s%s : aucune partie" % (e, ou))
+            vus = [t.get("teil") for t in teile]
+            if len(set(vus)) != len(vus) or vus != sorted(vus):
+                faute("%s%s : parties %s, chacune une fois et dans l'ordre" % (e, ou, vus))
+            nr = []
+            for t in teile:
+                k = t.get("teil")
+                if k not in range(1, len(nombres) + 1):
+                    faute("%s%s : partie %r inconnue" % (e, ou, k))
+                    continue
+                n_t = [it["nr"] for it in items_de(t)]
+                debut = DEBUT[e] + sum(nombres[:k - 1])
+                if n_t != list(range(debut, debut + nombres[k - 1])):
+                    faute("%s%s T%d : numeros %s, attendus %d a %d (ceux de l'examen)" % (e, ou, k, n_t, debut, debut + nombres[k - 1] - 1))
+                nr.extend(n_t)
         tous_nr.extend(nr)
         for t in teile:
             its = items_de(t)
@@ -221,8 +245,17 @@ def controler(D, tous_nr):
     # 6. l'ecrit
     S = D["schreiben"]
     if S:
-        if [a["id"] for a in S.get("aufgaben", [])] != ["A", "B"]:
+        if complet and [a["id"] for a in S.get("aufgaben", [])] != ["A", "B"]:
             faute("schreiben : les taches A et B attendues")
+        if not complet:
+            ids_a = [a.get("id") for a in S.get("aufgaben", [])]
+            if not ids_a or len(set(ids_a)) != len(ids_a):
+                faute("schreiben%s : des taches aux id uniques attendues (%s)" % (ou, ids_a))
+            for a in S.get("aufgaben", []):
+                if a.get("art") not in ("A", "B"):
+                    faute("schreiben%s %s : « art » A ou B attendu" % (ou, a.get("id")))
+            if not S.get("consigne_de"):
+                faute("schreiben%s : pas de consigne_de" % ou)
         for a in S.get("aufgaben", []):
             if len(a.get("infos", [])) < 10:
                 faute("schreiben %s : %d informations sur la fiche, trop peu" % (a["id"], len(a.get("infos", []))))
@@ -245,11 +278,14 @@ def controler(D, tous_nr):
     SP = D["sprechen"]
     if SP:
         attendu = [("sp1a", 5), ("sp1b", 5), ("sp2a", 15), ("sp2b", 5), ("sp3", 20)]
-        if [(t["cle"], t["sur"]) for t in SP.get("taches", [])] != attendu:
-            faute("sprechen : taches %s, attendues %s" % ([(t["cle"], t["sur"]) for t in SP.get("taches", [])], attendu))
+        faites = [(t["cle"], t["sur"]) for t in SP.get("taches", [])]
+        if complet and faites != attendu:
+            faute("sprechen : taches %s, attendues %s" % (faites, attendu))
+        if not complet and (not faites or [x for x in attendu if x in faites] != faites):
+            faute("sprechen%s : taches %s, des taches de l'examen (cle et points) dans l'ordre attendues" % (ou, faites))
         t2a = next((t for t in SP.get("taches", []) if t.get("themen")), None)
-        if not t2a or len(t2a["themen"]) != 2:
-            faute("sprechen : deux sujets d'expose attendus en 2A")
+        if (complet or t2a or any(t["cle"] == "sp2b" for t in SP.get("taches", []))) and (not t2a or len(t2a["themen"]) != 2):
+            faute("sprechen%s : deux sujets d'expose attendus en 2A" % ou)
         ids = [th["id"] for th in (t2a or {}).get("themen", [])]
 
         def verifier_muster(nom, kriterien, muster):
@@ -314,6 +350,269 @@ for sid in IDS:
     if not PARTIEL and len(tous) != 59:
         faute("serie %s : %d questions en tout, le telc en compte 59" % (sid, len(tous)))
     notes.append("serie %s : %d questions controlees" % (sid, len(tous)))
+
+# ------------------------------------------------------------------ 10. le manuel (pflege/examen/FORMAT-MANUEL.md)
+# Les series d'entrainement (donnees/entrainement/<epreuve>.json), la reserve des examens blancs, le sommaire et les
+# chapitres (donnees/manuel/). L'espagnol, 10e langue prevue, n'est pas exige : on compte ce qui manque.
+LANGUES_MANUEL = LANGUES + ["es"]
+manque_es = []
+
+
+def langues_de(o, c, ou, exiger):
+    """Le champ traduit c d'un objet o : 9 langues (si exiger), memes {x} et memes [[…]] que le francais."""
+    fr = o.get(c + "_fr") or ""
+    if not fr.strip():
+        faute("%s.%s : pas de francais" % (ou, c))
+        return
+    for l in LANGUES_MANUEL[1:]:
+        v = (o.get(c + "_" + l) or "").strip()
+        if not v:
+            if l == "es":
+                if exiger:
+                    manque_es.append(ou + "." + c)
+            elif exiger or l == "en":
+                faute("%s.%s : pas de %s" % (ou, c, l))
+            continue
+        if sorted(re.findall(r"\{[a-z]+\}", v)) != sorted(re.findall(r"\{[a-z]+\}", fr)):
+            faute("%s.%s %s : les {x} different du francais" % (ou, c, l))
+        if sorted(re.findall(r"\[\[([^\]]+)\]\]", v)) != sorted(re.findall(r"\[\[([^\]]+)\]\]", fr)):
+            faute("%s.%s %s : les [[allemand]] different du francais" % (ou, c, l))
+    for l in LANGUES_MANUEL:
+        v = o.get(c + "_" + l) or ""
+        if v.count("[[") != v.count("]]"):
+            faute("%s.%s %s : [[ … ]] mal fermes" % (ou, c, l))
+
+
+def allemand_de(x):
+    """Les phrases allemandes d'une serie (questions, choix, documents, repliques, modeles), pour la reserve."""
+    if isinstance(x, dict):
+        for k, v in x.items():
+            if k in ("frage", "titre", "betreff", "text", "consigne_de") and isinstance(v, str):
+                yield v
+            elif k in ("o", "absaetze", "modele", "muster", "wahl", "aussagen", "redemittel", "stichworte") and isinstance(v, list):
+                for w in v:
+                    if isinstance(w, str):
+                        yield w
+                    else:
+                        yield from allemand_de(w)
+            else:
+                yield from allemand_de(v)
+    elif isinstance(x, list):
+        for v in x:
+            yield from allemand_de(v)
+
+
+ENTR_DIR = os.path.join(DONNEES, "entrainement")
+ENTR = {e: lire(os.path.join(ENTR_DIR, e + ".json")) for e in EPREUVES}
+# la reserve : aucune phrase allemande d'un examen blanc dans l'entrainement (consignes et titres communs exceptes :
+# ce sont ceux du telc, identiques d'une serie a l'autre)
+communs = set()
+for e in EPREUVES:
+    for s in (FICHIERS[e] or {}).get("series", []):
+        for t in s.get("teile", []):
+            communs.update(x for x in (t.get("consigne_de"), t.get("titre")) if x)
+            # les noms des AEDL et des ATL (titres des lignes d'un plan de soins) reviennent dans tout plan
+            communs.update(w["titre"] for w in t.get("wahl") or [] if isinstance(w, dict) and w.get("titre"))
+        communs.update(x for x in (s.get("consigne_de"),) if x)
+        for t in s.get("taches", []):
+            communs.update(x for x in (t.get("consigne_de"), t.get("teil")) if x)
+examen_de = {}
+for e in EPREUVES:
+    for s in (FICHIERS[e] or {}).get("series", []):
+        for phrase in allemand_de(s):
+            if len(phrase) >= 25 and phrase not in communs:
+                examen_de[phrase] = "%s modele %s" % (e, s["id"])
+n_series = 0
+for e in EPREUVES:
+    f = ENTR[e]
+    if f is None:
+        continue
+    series = f.get("series")
+    if not isinstance(series, list):
+        faute("entrainement/%s.json : pas de « series »" % e)
+        continue
+    ids = [s.get("id") for s in series]
+    if len(set(ids)) != len(ids) or any(not isinstance(i, int) or i < 101 for i in ids):
+        faute("entrainement/%s.json : id %s, uniques et a partir de 101 attendus" % (e, ids))
+    voix = dict((FICHIERS["hoeren"] or {}).get("voix", {}))
+    voix.update((FICHIERS[e] or {}).get("voix", {}))
+    voix.update(f.get("voix", {}))
+    for s in series:
+        ou = " (entrainement %s)" % s.get("id")
+        D = {x: None for x in EPREUVES}
+        D[e] = dict(s, voix=voix)
+        if e != "hoeren" and e in ("sprechen",):
+            D["hoeren"] = {"voix": voix}
+        tous = []
+        controler(D, tous, complet=False, ou=ou)
+        if e in FORMAT and len(tous) != len(set(tous)):
+            faute("%s%s : un numero en double" % (e, ou))
+        for phrase in allemand_de(s):
+            if phrase in examen_de:
+                faute("%s%s reprend une phrase de l'examen blanc (%s) : %s" % (e, ou, examen_de[phrase], phrase[:60]))
+        for o, champs, ch in objets_traduits(s):
+            for c in champs:
+                if o.get(c + "_fr") and not o.get(c + "_es"):
+                    manque_es.append("%s%s %s.%s" % (e, ou, o.get("cle", ch), c))
+        n_series += 1
+    m = lire(os.path.join(ENTR_DIR, "voix-" + e + ".json"))
+    if m is not None and any(not k.startswith("_") and not re.match(r"s1\d\d-", k) for k in m):
+        faute("entrainement/voix-%s.json : une cle hors des series d'entrainement (s101-…)" % e)
+notes.append("entrainement : %d serie(s) controlee(s)" % n_series)
+
+# le sommaire
+MANUEL = os.path.join(DONNEES, "manuel")
+ATTENDUS = [("examen", None), ("hoeren", "hoeren"), ("lesen", "lesen"), ("sprachbausteine", "sprachbausteine"),
+            ("schreiben", "schreiben"), ("sprechen", "sprechen"), ("kommunikation", None), ("beruf", None),
+            ("grammatik", None), ("examens", None)]
+SOM = lire(os.path.join(MANUEL, "sommaire.json"))
+if SOM is None:
+    faute("manuel/sommaire.json absent")
+    SOM = {"chapitres": []}
+chap = SOM.get("chapitres", [])
+if [(c.get("id"), c.get("epreuve")) for c in chap] != ATTENDUS or [c.get("nr") for c in chap] != list(range(len(ATTENDUS))):
+    faute("manuel/sommaire.json : chapitres %s, attendus %s numerotes de 0 a 9" % ([(c.get("id"), c.get("epreuve"), c.get("nr")) for c in chap], ATTENDUS))
+for c in chap:
+    for champ in ("titre", "resume"):
+        langues_de(c, champ, "sommaire " + str(c.get("id")), True)
+
+# les chapitres
+BLOCS = {"p", "titre", "liste", "de", "piege", "tableau", "doc", "redemittel", "exercice", "serie", "renvoi"}
+VERS = re.compile(r"^(dialogue|grammaire|ecrit|theme|scene):[A-Za-z0-9_-]+$|^chapitre:(%s)$" % "|".join(i for i, _ in ATTENDUS))
+cles_manuel = {}
+n_chap = n_blocs = n_ex = 0
+fichiers = sorted(x for x in os.listdir(MANUEL) if x.endswith(".json") and x != "sommaire.json") if os.path.isdir(MANUEL) else []
+for nom in fichiers:
+    cid = nom[:-5]
+    exemple = cid.startswith("_")
+    if not exemple and cid not in [i for i, _ in ATTENDUS]:
+        faute("manuel/%s : pas un chapitre du sommaire" % nom)
+        continue
+    if cid == "examens":
+        faute("manuel/examens.json : le chapitre 9 n'a pas de fichier (la page liste les modeles)")
+    C = lire(os.path.join(MANUEL, nom))
+    if C.get("id") != cid:
+        faute("manuel/%s : « id » %r, attendu %r" % (nom, C.get("id"), cid))
+    rub = C.get("rubriques")
+    if not isinstance(rub, list) or (exemple and not rub):
+        faute("manuel/%s : « rubriques » doit etre une liste (vide = a venir)" % nom)
+        rub = []
+    r_ids = [r.get("id") for r in rub]
+    if len(set(r_ids)) != len(r_ids) or not all(r_ids):
+        faute("manuel/%s : id de rubrique manquant ou en double %s" % (nom, r_ids))
+    exiger = not exemple
+    n_chap += 1 if rub and not exemple else 0
+    for r in rub:
+        ou = "manuel/%s %s" % (cid, r.get("id"))
+        if r.get("id") not in ("attendu", "pieges", "strategies", "guide"):
+            langues_de(r, "titre", ou, exiger)
+        if not r.get("blocs"):
+            faute(ou + " : rubrique vide")
+        for k, b in enumerate(r.get("blocs") or []):
+            n_blocs += 1
+            ob = "%s bloc %d (%s)" % (ou, k + 1, b.get("t"))
+            t = b.get("t")
+            if t not in BLOCS:
+                faute(ob + " : sorte de bloc inconnue")
+                continue
+            for cle_de in ("de",):
+                if cle_de in b and ("[[" in str(b[cle_de])):
+                    faute(ob + " : pas de [[…]] dans un champ allemand")
+            if t in ("p", "titre"):
+                langues_de(b, "texte", ob, exiger)
+            elif t == "liste":
+                if not b.get("items"):
+                    faute(ob + " : liste vide")
+                for i in b.get("items") or []:
+                    langues_de(i, "texte", ob, exiger)
+            elif t == "de":
+                if not b.get("de"):
+                    faute(ob + " : pas d'allemand")
+                if b.get("texte_fr"):
+                    langues_de(b, "texte", ob, exiger)
+            elif t == "piege":
+                langues_de(b, "texte", ob, exiger)
+                if b.get("titre_fr"):
+                    langues_de(b, "titre", ob, exiger)
+            elif t == "tableau":
+                lignes = b.get("lignes") or []
+                larg = {len(l) for l in lignes} | ({len(b["entetes"])} if b.get("entetes") else set())
+                if not lignes or len(larg) != 1:
+                    faute(ob + " : lignes de largeurs differentes ou tableau vide")
+                for cel in (b.get("entetes") or []) + [c for l in lignes for c in l]:
+                    if "de" not in cel:
+                        langues_de(cel, "texte", ob, exiger)
+            elif t == "doc":
+                if not (b.get("doc") or {}).get("absaetze"):
+                    faute(ob + " : document sans paragraphes")
+            elif t == "redemittel":
+                langues_de(b, "titre", ob, exiger)
+                for cle in [b.get("cle")] + [p.get("cle") for p in b.get("phrases") or []]:
+                    if not cle or cle in cles_manuel:
+                        faute(ob + " : cle %r manquante ou en double (deja dans %s)" % (cle, cles_manuel.get(cle)))
+                    cles_manuel[cle] = ob
+                if not b.get("phrases"):
+                    faute(ob + " : aucune phrase")
+                for p in b.get("phrases") or []:
+                    if not p.get("de"):
+                        faute(ob + " %s : pas d'allemand" % p.get("cle"))
+                    if re.search(r"\d", p.get("de") or ""):
+                        faute(ob + " %s : chiffres dans une phrase dite (en lettres) : %s" % (p.get("cle"), p.get("de")))
+                    if p.get("registre") not in ("Sie", "du", None):
+                        faute(ob + " %s : registre %r" % (p.get("cle"), p.get("registre")))
+                    langues_de(p, "texte", ob + " " + str(p.get("cle")), exiger)
+            elif t == "exercice":
+                n_ex += 1
+                if not b.get("cle") or b["cle"] in cles_manuel:
+                    faute(ob + " : cle %r manquante ou en double" % b.get("cle"))
+                cles_manuel[b.get("cle")] = ob
+                langues_de(b, "consigne", ob, exiger)
+                its = b.get("items") or []
+                if [it.get("nr") for it in its] != list(range(1, len(its) + 1)) or not its:
+                    faute(ob + " : questions numerotees 1, 2, 3… attendues")
+                for it in its:
+                    oi = "%s n%s" % (ob, it.get("nr"))
+                    if it.get("typ") == "abc":
+                        if len(it.get("o") or []) != 3 or len(set(it["o"])) != 3 or it.get("bon") not in (0, 1, 2):
+                            faute(oi + " : trois choix distincts et « bon » 0, 1 ou 2 attendus")
+                    elif it.get("typ") == "rf":
+                        if it.get("bon") not in (0, 1):
+                            faute(oi + " : vrai / faux sans 0 ou 1")
+                    else:
+                        faute(oi + " : type %r (abc ou rf)" % it.get("typ"))
+                    if not it.get("frage"):
+                        faute(oi + " : pas de question")
+                    langues_de(it, "erkl", oi, exiger)
+                    if "pas_fr" in it:
+                        pas = it["pas_fr"]
+                        if not isinstance(pas, list) or not pas:
+                            faute(oi + " : pas_fr doit etre une liste")
+                        for l in LANGUES_MANUEL[1:]:
+                            v = it.get("pas_" + l)
+                            if v is None:
+                                if l == "es":
+                                    if exiger:
+                                        manque_es.append(oi + ".pas")
+                                elif exiger or l == "en":
+                                    faute(oi + " : pas de pas_%s" % l)
+                            elif not isinstance(v, list) or len(v) != len(pas):
+                                faute(oi + " : pas_%s n'a pas les %d etapes du francais" % (l, len(pas)))
+            elif t == "serie":
+                e = b.get("epreuve")
+                ids = [s.get("id") for s in ((ENTR.get(e) or {}).get("series") or [])]
+                if e not in EPREUVES:
+                    faute(ob + " : epreuve %r" % e)
+                elif b.get("serie") not in ids and not exemple:
+                    faute(ob + " : la serie %s n'existe pas dans entrainement/%s.json" % (b.get("serie"), e))
+                if b.get("texte_fr"):
+                    langues_de(b, "texte", ob, exiger)
+            elif t == "renvoi":
+                if not VERS.match(b.get("vers") or ""):
+                    faute(ob + " : « vers » %r (dialogue:, grammaire:, ecrit:, theme:, scene:, chapitre:)" % b.get("vers"))
+                langues_de(b, "titre", ob, exiger)
+notes.append("manuel : %d chapitre(s) ecrit(s) sur 9, %d bloc(s), %d exercice(s)" % (n_chap, n_blocs, n_ex))
+if manque_es:
+    notes.append("espagnol (10e langue, pas encore exigee) : %d texte(s) a traduire" % len(manque_es))
 
 # 8. le bareme, par node
 SONDE = r"""

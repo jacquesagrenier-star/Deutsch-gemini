@@ -24,7 +24,8 @@ const EPR = ["hoeren", "lesen", "sprachbausteine", "schreiben", "sprechen"];
 const AUTRES = !["fr", "en"].includes(LANGUE);
 const PF = { d: {}, items: [], parNr: {}, teile: [], lecture: null, serie: 1 };
 const ANTWORTZEIT = 8;          // secondes pour repondre apres chaque texte de l'ecoute, a l'examen
-const prefixePiste = () => "s" + PF.serie + "-";   // les cles des pistes enregistrees (donnees/voix-soins.json)
+// les cles des pistes enregistrees : s<id de la serie>-<cle> (donnees/voix-soins.json, entrainement/voix-<epreuve>.json)
+const prefixePiste = e => "s" + ((PF.d[e || "hoeren"] || {}).id || PF.serie) + "-";
 
 // ---------------------------------------------------------------- le chargement
 // donnees/<epreuve>.json : {_note, voix, series: [{id, titre, …}]} ; une serie est un examen blanc complet. Les 9 langues
@@ -35,26 +36,61 @@ function json(url, facultatif){
     .then(r => { if (!r.ok) throw new Error(url); return r.json(); })
     .catch(e => { if (facultatif) return {}; throw e; });
 }
-PF.serie = Number(Q.get("serie")) || (lire("blanc", null) || {}).serie || 1;
+// LE MANUEL (15 nov. 2026, decision de Jacques : « un manuel de preparation qui est etoffe pour l'examen du B2 ») :
+// le contrat des donnees est pflege/examen/FORMAT-MANUEL.md. Les examens blancs (donnees/<epreuve>.json) sont
+// RESERVES a l'examen blanc ; l'entrainement ne lit que donnees/entrainement/<epreuve>.json (series 101 et plus) ;
+// le texte des chapitres vit dans donnees/manuel/ (sommaire.json, puis un fichier par chapitre, facultatif).
+const CHAPITRES = ["examen", "hoeren", "lesen", "sprachbausteine", "schreiben", "sprechen", "kommunikation", "beruf", "grammatik"];   // le 9 (examens) n'a pas de fichier
+Object.assign(PF, { examens: {}, entr: {}, voix: {}, sommaire: [], chap: {} });
+// le modele d'examen blanc : ?serie=N, sinon le dernier commence, sinon le premier
+PF.serie = Number(Q.get("serie")) || lire("modele", 0) || (lire("blanc", null) || {}).serie || 1;
 DTZ.charger(Promise.all([
   json("donnees/interface.json"),
   // une epreuve pas encore ecrite laisse sa tuile grisee (« bientot ») : son fichier est facultatif
   ...EPR.map(e => json("donnees/" + e + ".json", true)),
-  json("donnees/voix-soins.json", true)
+  json("donnees/voix-soins.json", true),
+  ...EPR.map(e => json("donnees/entrainement/" + e + ".json", true)),
+  ...["hoeren", "sprechen"].map(e => json("donnees/entrainement/voix-" + e + ".json", true)),
+  json("donnees/manuel/sommaire.json", true),
+  ...CHAPITRES.map(c => json("donnees/manuel/" + c + ".json", true)),
+  Q.get("exemple") ? json("donnees/manuel/_exemple.json", true) : Promise.resolve(null)
 ]).then(([ui, ...reste]) => {
   textesTelc({ fr: ui.fr, en: ui.en });
   if (AUTRES) Object.assign(TXT, ui[LANGUE] || {});
+  const n = EPR.length, pistes = [reste[n], reste[2 * n + 1], reste[2 * n + 2]];
   EPR.forEach((e, k) => {
-    const d = reste[k] || {}, series = d.series || [];
-    const s = series.find(x => x.id === PF.serie) || series[0] || {};
-    PF.d[e] = Object.assign({ voix: d.voix || {} }, s);
+    const d = reste[k] || {}, t = reste[n + 1 + k] || {};
+    PF.examens[e] = d.series || [];
+    PF.entr[e] = t.series || [];
+    PF.voix[e] = Object.assign({}, d.voix || {}, t.voix || {});
   });
-  const m = reste[EPR.length] || {};
-  for (const k in m) if (k[0] !== "_") DTZ_PISTES[k] = m[k];
-  for (const e of EPR) for (const w in (PF.d[e].voix || {})) DTZ_VOIX[w] = { sexe: PF.d[e].voix[w].sexe };
-  indexer();
+  for (const m of pistes) for (const k in (m || {})) if (k[0] !== "_") DTZ_PISTES[k] = m[k];
+  for (const e of EPR) for (const w in PF.voix[e]) DTZ_VOIX[w] = { sexe: PF.voix[e][w].sexe };
+  PF.sommaire = (reste[2 * n + 3] || {}).chapitres || [];
+  CHAPITRES.forEach((c, k) => { const f = reste[2 * n + 4 + k]; if (f && f.rubriques && f.rubriques.length) PF.chap[c] = f; });
+  const ex = reste[2 * n + 4 + CHAPITRES.length];
+  if (ex && ex.rubriques){
+    PF.chap._exemple = ex;
+    PF.sommaire = [{ id: "_exemple", nr: "·", titre_fr: "Exemple : chaque sorte de bloc", titre_en: "Example: every kind of block", resume_fr: "Pour voir le rendu du format (?exemple=1).", resume_en: "To see how the format renders (?exemple=1)." }].concat(PF.sommaire);
+  }
+  // l'ancien etat de l'examen blanc (avant le manuel, une seule cle « blanc ») devient celui de son modele
+  const ancien = lire("blanc", null);
+  if (ancien && !lire("blanc_" + (ancien.serie || 1), null)) ecrire("blanc_" + (ancien.serie || 1), ancien);
+  if (!modeles().includes(PF.serie)) PF.serie = modeles()[0] || 1;
+  utiliserExamen(PF.serie);
   inscrire();
 }));
+// les modeles d'examen blanc : les id presents dans les cinq epreuves
+function modeles(){
+  const ids = (PF.examens.hoeren || []).map(s => s.id);
+  return ids.filter(id => EPR.every(e => !PF.examens[e].length || PF.examens[e].some(s => s.id === id)));
+}
+// la serie en cours d'une epreuve : PF.d[e] (l'examen blanc et l'entrainement passent tous deux par la)
+function utiliser(e, s){ PF.d[e] = Object.assign({ voix: PF.voix[e] || {} }, s || {}); indexer(); }
+function utiliserExamen(id){
+  PF.serie = id;
+  EPR.forEach(e => utiliser(e, PF.examens[e].find(x => x.id === id) || PF.examens[e][0]));
+}
 
 // une aide dans la langue d'interface (X_<langue>), sinon le francais
 function tr(o, champ){
@@ -68,7 +104,7 @@ const itemsDe = teil => teil.items || [].concat(...(groupesDe(teil) || []).map(g
 
 function indexer(){
   PF.items = []; PF.teile = [];
-  ["hoeren", "lesen", "sprachbausteine"].forEach(e => (PF.d[e].teile || []).forEach(t => {
+  ["hoeren", "lesen", "sprachbausteine"].forEach(e => ((PF.d[e] || {}).teile || []).forEach(t => {
     PF.teile.push({ epr: e, teil: t });
     itemsDe(t).forEach(it => { PF.items.push({ epr: e, teil: t, it }); PF.parNr[it.nr] = { epr: e, teil: t, it }; });
   }));
@@ -223,36 +259,41 @@ function cleAudio(teil, cle){
   const g = (groupesDe(teil) || []).find(x => x.cle === cle); if (g) return g.audio;
   const it = itemsDe(teil).find(x => x.cle === cle); return it && it.audio;
 }
-const jouerCle = (cle, audio) => jouerPiste(prefixePiste() + cle, audio);
+const jouerCle = (cle, audio, e) => jouerPiste(prefixePiste(e) + cle, audio);
 
 // ================================================================= L'ENTRAINEMENT PAR EPREUVE
 // Une epreuve a la fois, partie par partie, sans chronometre ; « Corriger » montre les reponses, l'explication et,
 // pour l'ecoute, la transcription. Rien ne compte pour l'examen blanc.
-function entrainement(epr, k){
+// La serie vient de donnees/entrainement/<epreuve>.json (jamais d'un examen blanc) ; le retour mene au chapitre.
+function entrainement(epr, id, k){
+  const s = PF.entr[epr].find(x => x.id === id);
+  if (!s) return chapitre(epr);
+  utiliser(epr, s);
   const teile = PF.d[epr].teile;
   k = k || 0;
   const teil = teile[k], rep = {}; let mode = "tr";
-  ecran(T("pf_epr_" + epr));
-  DTZ.surRetour(() => { accueil(); return true; });
+  ecran(T("pf_epr_" + epr) + " · " + nomSerie(epr, s));
+  DTZ.surRetour(() => { chapitre(epr); return true; });
   const rendre = () => {
     $("zone").innerHTML = ongletsTeile(epr, k) + (k === 0 && mode === "tr" ? '<div class="bloc">' + jonas(T("pf_jonas_" + epr)) + '</div>' : "") +
       vueTeil(epr, teil, { mode, rep, ecoute: epr === "hoeren" });
     brancherChoix(rep, mode, rendre);
     $("zone").querySelectorAll("[data-jouer]").forEach(b => b.onclick = () => { debloquerSon(); arreterSon(); jouerCle(b.dataset.jouer, cleAudio(teil, b.dataset.jouer)); });
-    $("zone").querySelectorAll("[data-teil]").forEach(b => b.onclick = () => entrainement(epr, Number(b.dataset.teil)));
+    $("zone").querySelectorAll("[data-teil]").forEach(b => b.onclick = () => entrainement(epr, id, Number(b.dataset.teil)));
     if (mode === "tr") bouton(T("pf_corriger"), () => {
       mode = "co";
       itemsDe(teil).forEach(it => { if (rep[it.nr] !== null && rep[it.nr] !== undefined) parler("exercice", { juste: juste(it, rep[it.nr]) }); });
       const n = itemsDe(teil).filter(it => juste(it, rep[it.nr])).length;
-      resultat("tr_" + teil.cle, { bons: n, sur: itemsDe(teil).length });
+      resultat("tr_" + epr + "_" + id + "_" + teil.cle, { bons: n, sur: itemsDe(teil).length });
+      noterSerie(epr, id, teil.cle, n, itemsDe(teil).length);
       rendre(); window.scrollTo(0, 0);
     });
     else {
       const n = itemsDe(teil).filter(it => juste(it, rep[it.nr])).length;
       const tete = $("zone").querySelector(".bloc .section");
       if (tete) tete.insertAdjacentHTML("afterend", '<div class="score">' + n + ' / ' + itemsDe(teil).length + '</div>');
-      if (k + 1 < teile.length) bouton(T("pf_partie_suivante", { t: teile[k + 1].titre }), () => entrainement(epr, k + 1));
-      else bouton(T("pf_retour_accueil"), accueil);
+      if (k + 1 < teile.length) bouton(T("pf_partie_suivante", { t: teile[k + 1].titre }), () => entrainement(epr, id, k + 1));
+      else bouton(T("pf_retour_chapitre"), () => chapitre(epr));
     }
   };
   rendre();
@@ -268,14 +309,18 @@ function ongletsTeile(epr, k){
 const ETAPES = ["hoeren", "lesen", "schreiben", "vorbereitung", "sprechen", "grilles"];
 const MINUTES = { hoeren: 25, lesen: 60, schreiben: 30, vorbereitung: 20, sprechen: 16 };
 let BL = null;
-const sauver = () => ecrire("blanc", BL);
+const sauver = () => ecrire("blanc_" + BL.serie, BL);
 function garderRetourExamen(){
-  DTZ.surRetour(() => { confirmer(T("pf_quitter_q"), () => { arreterLecture(); arreterChrono(); accueil(); }, T("pf_quitter")); return true; });
+  DTZ.surRetour(() => { confirmer(T("pf_quitter_q"), () => { arreterLecture(); arreterChrono(); chapitre("examens"); }, T("pf_quitter")); return true; });
 }
-function blancIntro(){
-  ecran(T("pf_blanc"));
-  BL = lire("blanc", null);
-  DTZ.surRetour(() => { accueil(); return true; });
+// un modele (une serie des examens blancs) : son etat a lui, wortando_soins_telc_blanc_<id>
+function blancIntro(id){
+  if (id) PF.serie = id;
+  ecrire("modele", PF.serie);
+  utiliserExamen(PF.serie);
+  ecran(T("pf_blanc") + " · " + T("pf_modele_n", { n: rangModele(PF.serie) }));
+  BL = lire("blanc_" + PF.serie, null);
+  DTZ.surRetour(() => { chapitre("examens"); return true; });
   const enCours = BL && !BL.fini;
   const lignes = ETAPES.map((e, k) => '<div class="mode" style="cursor:default"><b>' + (k + 1) + '. ' + esc(T("pf_e_" + e)) + '</b>' +
     '<span>' + esc(T("pf_e_" + e + "_s")) + '</span><span style="font-weight:600;color:var(--encre)">' + esc(T("pf_e_" + e + "_q")) + '</span></div>').join("");
@@ -294,6 +339,7 @@ function nouveau(){
 function suivante(){ arreterChrono(); BL.etape++; sauver(); etape(); }
 function etape(){
   arreterChrono();
+  utiliserExamen(BL.serie);   // toujours : un entrainement a pu mettre sa serie a la place (PF.d)
   const e = ETAPES[BL.etape];
   if (!e) return verdict();
   ecran(T("pf_e_" + e));
@@ -389,7 +435,7 @@ function schreiben(mode, choix){
   const S = PF.d.schreiben;
   const ex = mode === "ex";
   ecran(T("pf_epr_schreiben"));
-  if (ex) garderRetourExamen(); else DTZ.surRetour(() => { accueil(); return true; });
+  if (ex) garderRetourExamen(); else DTZ.surRetour(() => { chapitre("schreiben"); return true; });
   const etat = ex ? (BL.schreiben = BL.schreiben || { aufgabe: null, text: "" }) : { aufgabe: choix || null, text: "" };
   if (!etat.aufgabe){
     $("zone").innerHTML = (ex ? "" : '<div class="bloc">' + jonas(T("pf_jonas_schreiben")) + '</div>') +
@@ -405,9 +451,11 @@ function schreiben(mode, choix){
     etat.text = $("pfTexte") ? $("pfTexte").value : etat.text;
     if (ex){ sauver(); suivante(); } else grilleSchreiben(a, etat.text, g => {
       const p = B.punkteSchreiben(g);
-      resultat("tr_schreiben", { aufgabe: a.id, punkte: p });
+      resultat("tr_schreiben_" + S.id + "_" + a.id, { aufgabe: a.id, punkte: p });
+      noterSerie("schreiben", S.id, a.id, p, 20);
       parler("exercice", { juste: p >= 7 });
-    });
+      chapitre("schreiben");
+    }, T("pf_retour_chapitre"));
   };
   if (ex) chrono(RAPIDE ? 30 : MINUTES.schreiben * 60, "bas", rendreTexte);
   $("zone").innerHTML =
@@ -573,13 +621,13 @@ function sprechen(mode, depart){
   if (ex) etat.reponses = etat.reponses || {};
   const taches = S.taches;
   let k = depart || 0;
-  if (ex) garderRetourExamen(); else DTZ.surRetour(() => { accueil(); return true; });
+  if (ex) garderRetourExamen(); else DTZ.surRetour(() => { chapitre("sprechen"); return true; });
   if (ex) chrono(MINUTES.sprechen * 60, "haut");
   const suite = () => { k++; if (k < taches.length) tache(); else fin(); };
   const tache = async () => {
     const t = taches[k];
     ecran(T("pf_epr_sprechen") + " · " + t.teil);
-    if (ex) garderRetourExamen(); else DTZ.surRetour(() => { accueil(); return true; });
+    if (ex) garderRetourExamen(); else DTZ.surRetour(() => { chapitre("sprechen"); return true; });
     // 2A : le sujet d'abord (deux au choix) ; 2B suit le sujet choisi
     if (t.themen && !etat.thema){
       $("zone").innerHTML = '<div class="bloc"><div class="section">' + esc(t.teil) + ' · ' + esc(tr(t, "nom")) + '</div>' +
@@ -610,7 +658,7 @@ function sprechen(mode, depart){
     for (let j = 0; j < tours.length; j++){
       const tour = tours[j], dits = [].concat(tour.dit || []);
       for (const l of dits) bulle(l.wer, l.text);
-      if (dits.length) await jouerCle(t.cle + (th && t.tours_nach_thema ? "-" + th.id : "") + "-" + j, dits);
+      if (dits.length) await jouerCle(t.cle + (th && t.tours_nach_thema ? "-" + th.id : "") + "-" + j, dits, "sprechen");
       if (!document.body.contains(fil)) return;   // on a quitte l'ecran pendant la voix
       const rep = await new Promise(r => aToi(fil, T(tour.consigne || t.consigne_micro || "pf_a_toi"), tour.limite || t.limite, r));
       textes.push(rep.text); sec += rep.sec;
@@ -632,7 +680,12 @@ function sprechen(mode, depart){
   };
   const fin = () => {
     if (ex){ arreterChrono(); sauver(); suivante(); return; }
-    grilleSprechen(etat, g => { resultat("tr_sprechen", { punkte: B.punkteSprechen(g) }); accueil(); }, T("pf_retour_accueil"));
+    grilleSprechen(etat, g => {
+      const p = B.punkteSprechen(g);
+      resultat("tr_sprechen_" + S.id, { punkte: p });
+      noterSerie("sprechen", S.id, taches.map(t => t.cle).join("+"), p, 100);
+      chapitre("sprechen");
+    }, T("pf_retour_chapitre"));
   };
   tache();
 }
@@ -692,10 +745,11 @@ function grilles(){
 }
 function verdict(){
   arreterChrono();
-  BL = BL || lire("blanc", null);
+  BL = BL || lire("blanc_" + PF.serie, null);
   if (!BL) return blancIntro();
+  utiliserExamen(BL.serie);
   ecran(T("pf_verdict"));
-  DTZ.surRetour(() => { accueil(); return true; });
+  DTZ.surRetour(() => { chapitre("examens"); return true; });
   const hls = pointsDe(BL.rep), ph = pointsDe(BL.rep, "hoeren"), pl = pointsDe(BL.rep, "lesen"), ps = pointsDe(BL.rep, "sprachbausteine");
   const schr = B.punkteSchreiben(BL.grilles.schreiben || {}), spr = B.punkteSprechen(BL.grilles.sprechen || {});
   const r = B.resultat({ hls, schreiben: schr, sprechen: spr });
@@ -714,15 +768,16 @@ function verdict(){
     '<div class="bloc boutons"><button class="secondaire" id="pfRefaire">' + esc(T("pf_refaire")) + '</button></div>';
   $("zone").querySelectorAll("[data-cor]").forEach(b => b.onclick = () => corrige(Number(b.dataset.cor)));
   $("pfRefaire").onclick = () => confirmer(T("pf_recommencer_q"), nouveau, T("pf_recommencer"));
-  bouton(T("pf_retour_accueil"), accueil);
+  bouton(T("pf_retour_examens"), () => chapitre("examens"));
   if (!BL.fini){
     BL.fini = true; sauver();
     const res = { hls, hoeren: ph, lesen: pl, sprachbausteine: ps, schreiben: schr, sprechen: spr, niveaux: r, zertifikat: r.zertifikat };
-    ecrire("dernier", { date: new Date().toLocaleDateString(DATE_TELC), zertifikat: r.zertifikat, hls, schreiben: schr, sprechen: spr });
-    resultat("blanc", res);
+    const der = { date: new Date().toLocaleDateString(DATE_TELC), serie: BL.serie, zertifikat: r.zertifikat, hls, schreiben: schr, sprechen: spr };
+    ecrire("dernier", der); ecrire("dernier_" + BL.serie, der);
+    resultat("blanc_" + BL.serie, res);
     // LE MESSAGE A L'APP (contrat pflege/FORMAT-DONNEES.md, § 6) : c'est ce que lit le tableau de bord ; l'app
     // recalcule le certificat elle-meme (certificatSoins, memes seuils que bareme.js)
-    parler("resultat_examen", { examen: "soins_telc", serie: PF.serie, date: new Date().toISOString(),
+    parler("resultat_examen", { examen: "soins_telc", serie: BL.serie, date: new Date().toISOString(),
       points: { hls, schreiben: schr, sprechen: spr },
       certificat: r.zertifikat ? r.zertifikat.toUpperCase() : "aucun", detail: res });
   }
@@ -737,39 +792,230 @@ function corrige(j){
   else bouton(T("pf_verdict"), verdict);
 }
 
-// ================================================================= L'ACCUEIL ET LES INSCRIPTIONS
-// L'accueil de commun.js est ecrit pour Mark (son image, sa bulle) : celui des Soins le remplace. Les tuiles
-// gardent data-ent, que le « ‹ » de commun.js lit pour savoir qu'on est a l'accueil (et fermer alors le cadre).
+// ================================================================= LE MANUEL : SOMMAIRE, CHAPITRES, BLOCS
+// L'accueil de commun.js est ecrit pour Mark (son image, sa bulle) : celui des Soins le remplace par le SOMMAIRE du
+// manuel (pflege/examen/FORMAT-MANUEL.md). Les lignes gardent data-ent, que le « ‹ » de commun.js lit pour savoir
+// qu'on est a l'accueil (et fermer alors le cadre).
+
+// ---------------------------------------------------------------- la progression (stockage local « manuel »)
+const etatManuel = () => Object.assign({ vu: {}, series: {}, ex: {} }, lire("manuel", {}));
+function noterManuel(f){ const m = etatManuel(); f(m); ecrire("manuel", m); }
+function noterSerie(epr, id, cle, bons, surN){ noterManuel(m => { const k = epr + ":" + id; m.series[k] = m.series[k] || {}; m.series[k][cle] = { bons, sur: surN }; }); }
+// les « parties » d'une serie d'entrainement : ses parties (ecoute, lecture, elements de langue), ses taches d'ecrit,
+// ou une seule pour l'oral (on joue toutes ses taches a la suite)
+function partiesDe(epr, s){
+  if (epr === "schreiben") return (s.aufgaben || []).map(a => a.id);
+  if (epr === "sprechen") return [(s.taches || []).map(t => t.cle).join("+")];
+  return (s.teile || []).map(t => t.cle);
+}
+function progresSerie(epr, s){
+  const fait = etatManuel().series[epr + ":" + s.id] || {}, p = partiesDe(epr, s);
+  const faites = p.filter(c => fait[c]);
+  return { faites: faites.length, total: p.length, bons: faites.reduce((x, c) => x + fait[c].bons, 0), sur: faites.reduce((x, c) => x + fait[c].sur, 0) };
+}
+function nomSerie(epr, s){
+  if (tr(s, "titre")) return tr(s, "titre");
+  const n = PF.entr[epr].indexOf(s) + 1, teile = s.teile || [];
+  return T("pf_serie_n", { n }) + (teile.length === 1 && (PF.examens[epr][0] || {}).teile && PF.examens[epr][0].teile.length > 1 ? " · " + T("pf_teil", { n: teile[0].teil }) : "");
+}
+const rangModele = id => Math.max(1, modeles().indexOf(id) + 1);
+// tous les exercices d'un chapitre (blocs « exercice »)
+const exercicesDe = c => ((PF.chap[c] || {}).rubriques || []).flatMap(r => (r.blocs || []).filter(b => b.t === "exercice"));
+function progresChapitre(c){
+  const ch = PF.sommaire.find(x => x.id === c) || {}, m = etatManuel();
+  if (c === "examens"){
+    const faits = modeles().filter(id => (lire("blanc_" + id, null) || {}).fini).length;
+    return modeles().length ? T("pf_prog_modeles", { f: faits, t: modeles().length }) : "";
+  }
+  if (ch.epreuve && PF.entr[ch.epreuve] && PF.entr[ch.epreuve].length){
+    let f = 0, t = 0;
+    PF.entr[ch.epreuve].forEach(s => { const p = progresSerie(ch.epreuve, s); f += p.faites; t += p.total; });
+    return T("pf_prog_parties", { f, t });
+  }
+  const ex = exercicesDe(c);
+  if (ex.length) return T("pf_prog_exercices", { f: ex.filter(b => m.ex[b.cle]).length, t: ex.length });
+  if (!PF.chap[c]) return T("pf_a_venir_court");
+  return m.vu[c] ? T("pf_lu") : "";
+}
+
+// ---------------------------------------------------------------- le sommaire (l'accueil)
 const pret = e => !!(PF.d[e] && (PF.d[e].teile || PF.d[e].aufgaben || PF.d[e].taches));
 function pfAccueil(){
   silence(); arreterSon(); arreterChrono(); fermerPanneau(); arreterLecture(); DTZ.retour = null;
   $("titre").textContent = T("pf_titre"); $("suite").hidden = true;
-  const der = lire("dernier", null), bl = lire("blanc", null);
+  const ligne = c => '<button class="mode chap" data-ent="' + esc(c.id) + '"><b><span class="chap-nr">' + esc(String(c.nr)) + '</span> ' + esc(tr(c, "titre")) + '</b>' +
+    '<span>' + esc(tr(c, "resume")) + '</span>' + (progresChapitre(c.id) ? '<span class="chap-prog">' + esc(progresChapitre(c.id)) + '</span>' : "") + '</button>';
   $("zone").innerHTML =
-    '<div class="bloc">' + jonas(T("pf_intro")) + '</div>' +
-    '<div class="bloc"><h2>' + esc(T("pf_blanc")) + '</h2><p class="petit">' + esc(T("pf_blanc_s")) + '</p>' +
-      '<button class="mode" id="pfBlanc"><b>' + esc(bl && !bl.fini ? T("pf_reprendre", { e: T("pf_e_" + ETAPES[bl.etape]) }) : T("pf_commencer")) + '</b><span>' + esc(T("pf_blanc_d")) + '</span></button>' +
-      (der ? '<p class="dernier">' + esc(T("pf_dernier", { d: der.date, z: der.zertifikat ? T("pf_zertifikat", { n: der.zertifikat.toUpperCase() }) : T("pf_kein_zertifikat") })) + '</p>' : "") + '</div>' +
-    '<div class="bloc"><h2>' + esc(T("pf_entrainement")) + '</h2><p class="petit">' + esc(T("pf_entrainement_s")) + '</p><div class="tuiles">' +
-      EPR.map(e => pret(e) ? '<button class="tuile" data-ent="' + e + '">' + esc(T("pf_epr_" + e)) + '<small>' + esc(T("pf_epr_" + e + "_s")) + '</small></button>'
-        : '<button class="tuile" disabled>' + esc(T("pf_epr_" + e)) + '<small>' + esc(T("bientot")) + '</small></button>').join("") + '</div></div>' +
+    '<div class="bloc">' + jonas(T("pf_intro_manuel")) + '</div>' +
+    '<div class="bloc"><h2>' + esc(T("pf_manuel")) + '</h2><p class="petit">' + esc(T("pf_manuel_s")) + '</p>' +
+      (PF.sommaire.length ? PF.sommaire.map(ligne).join("") : '<p>' + esc(T("pf_a_venir")) + '</p>') + '</div>' +
     '<p class="petit" style="text-align:center">' + esc(T("pf_maquette")) + '</p>';
-  $("pfBlanc").onclick = blancIntro;
-  document.querySelectorAll("[data-ent]").forEach(b => b.onclick = () => {
-    const e = b.dataset.ent;
-    if (e === "schreiben") return schreiben("tr");
-    if (e === "sprechen") return sprechen("tr");
-    entrainement(e, 0);
-  });
+  document.querySelectorAll("[data-ent]").forEach(b => b.onclick = () => chapitre(b.dataset.ent));
   window.scrollTo(0, 0);
 }
+
+// ---------------------------------------------------------------- un chapitre
+const TITRES_RUBRIQUES = { attendu: "pf_rub_attendu", pieges: "pf_rub_pieges", strategies: "pf_rub_strategies", guide: "pf_rub_guide" };
+function chapitre(c, rubrique){
+  if (c === "examens") return examens();
+  const ch = PF.sommaire.find(x => x.id === c);
+  if (!ch) return accueil();
+  ecran(tr(ch, "titre"));
+  DTZ.surRetour(() => { accueil(); return true; });
+  noterManuel(m => { m.vu[c] = true; });
+  const f = PF.chap[c], rubriques = (f && f.rubriques) || [];
+  let h = '<div class="bloc"><div class="section">' + esc(T("pf_chap_n", { n: ch.nr })) + '</div><h2>' + esc(tr(ch, "titre")) + '</h2><p>' + esc(tr(ch, "resume")) + '</p>' +
+    (rubriques.length > 1 || ch.epreuve ? '<div class="onglets">' + rubriques.map(r => '<button class="onglet" data-rub="' + esc(r.id) + '">' + esc(titreRubrique(r)) + '</button>').join("") +
+      (ch.epreuve ? '<button class="onglet" data-rub="_entr">' + esc(T("pf_rub_entrainement")) + '</button>' : "") + '</div>' : "") + '</div>';
+  if (!rubriques.length) h += '<div class="bloc"><p>' + esc(T("pf_a_venir")) + '</p></div>';
+  rubriques.forEach(r => { h += '<div class="bloc rubrique" id="rub-' + esc(r.id) + '"><h2>' + esc(titreRubrique(r)) + '</h2>' + (r.blocs || []).map(blocHtml).join("") + '</div>'; });
+  if (ch.epreuve) h += '<div class="bloc rubrique" id="rub-_entr"><h2>' + esc(T("pf_rub_entrainement")) + '</h2>' + seriesHtml(ch.epreuve) + '</div>';
+  $("zone").innerHTML = h;
+  brancherBlocs(c);
+  $("zone").querySelectorAll("[data-rub]").forEach(b => b.onclick = () => { const x = $("rub-" + b.dataset.rub); if (x) x.scrollIntoView({ behavior: "auto", block: "start" }); });
+  const vise = rubrique && $("rub-" + rubrique);
+  if (vise) vise.scrollIntoView({ block: "start" }); else window.scrollTo(0, 0);
+}
+const titreRubrique = r => TITRES_RUBRIQUES[r.id] ? T(TITRES_RUBRIQUES[r.id]) : tr(r, "titre");
+
+// les series d'entrainement d'une epreuve, avec leur progression
+function seriesHtml(epr){
+  const liste = PF.entr[epr] || [];
+  if (!liste.length) return '<p>' + esc(T("pf_series_a_venir")) + '</p>';
+  return liste.map(s => {
+    const p = progresSerie(epr, s);
+    const etat = p.faites ? T("pf_serie_prog", { f: p.faites, t: p.total }) + (epr === "schreiben" || epr === "sprechen" ? "" : " · " + T("pf_serie_justes", { b: p.bons, s: p.sur })) : T("pf_serie_neuve");
+    if (epr === "schreiben") return (s.aufgaben || []).map(a => {
+      const fait = (etatManuel().series["schreiben:" + s.id] || {})[a.id];
+      return '<button class="mode" data-serie="' + s.id + '" data-auf="' + esc(a.id) + '"><b lang="de">' + esc(T("pf_aufgabe", { a: a.art || a.id })) + ' · ' + esc(a.titre) + '</b><span>' + esc(tr(a, "resume")) + '</span>' +
+        '<span class="chap-prog">' + esc(fait ? fait.bons + " / 20" : T("pf_serie_neuve")) + '</span></button>';
+    }).join("");
+    return '<button class="mode" data-serie="' + s.id + '"><b>' + esc(nomSerie(epr, s)) + '</b><span class="chap-prog">' + esc(etat) + '</span></button>';
+  }).join("");
+}
+function ouvrirSerie(epr, id, teil, aufgabe){
+  const s = PF.entr[epr].find(x => x.id === id);
+  if (!s) return;
+  if (epr === "schreiben"){ utiliser("schreiben", s); return schreiben("tr", aufgabe || null); }
+  if (epr === "sprechen"){ utiliser("sprechen", s); return sprechen("tr"); }
+  const k = teil ? Math.max(0, (s.teile || []).findIndex(t => t.teil === teil)) : 0;
+  entrainement(epr, id, k);
+}
+
+// ---------------------------------------------------------------- les blocs d'un chapitre
+// [[…]] dans un texte d'aide : de l'allemand, montre comme tel (lang="de", de gauche a droite)
+const aide = (o, champ) => esc(tr(o, champ || "texte")).replace(/\[\[([^\]]+)\]\]/g, (m, d) => '<span lang="de" dir="ltr" class="de">' + d + '</span>');
+const deHtml = t => esc(t || "").split("\n").join("<br>");
+const cellule = c => c && c.de !== undefined ? '<span lang="de" dir="ltr">' + deHtml(c.de) + '</span>' : aide(c);
+function blocHtml(b){
+  switch (b.t){
+    case "p": return '<p>' + aide(b) + '</p>';
+    case "titre": return '<h3>' + aide(b) + '</h3>';
+    case "liste": { const tag = b.ordre ? "ol" : "ul"; return '<' + tag + ' class="liste-manuel">' + (b.items || []).map(i => '<li>' + aide(i) + '</li>').join("") + '</' + tag + '>'; }
+    case "de": return '<div class="exemple-de"><p lang="de" dir="ltr">' + deHtml(b.de) + '</p>' +
+      (tr(b, "texte") ? '<details><summary>' + esc(T("pf_traduction")) + '</summary><p>' + aide(b) + '</p></details>' : "") + '</div>';
+    case "piege": return '<div class="piege"><div class="piege-t">⚠ ' + esc(T("pf_piege")) + (tr(b, "titre") ? deuxPts + aide(b, "titre") : "") + '</div>' +
+      (b.de ? '<p lang="de" dir="ltr" class="piege-de">' + deHtml(b.de) + '</p>' : "") + '<p>' + aide(b) + '</p></div>';
+    case "tableau": return '<div class="tableau-manuel"><table>' + (b.entetes ? '<thead><tr>' + b.entetes.map(c => '<th>' + cellule(c) + '</th>').join("") + '</tr></thead>' : "") +
+      '<tbody>' + (b.lignes || []).map(l => '<tr>' + l.map(c => '<td>' + cellule(c) + '</td>').join("") + '</tr>').join("") + '</tbody></table></div>';
+    case "doc": return docHtml(b.doc, { items: [] }, {}, "tr");
+    case "redemittel": return '<div class="rm"><div class="rm-t">' + aide(b, "titre") + '</div>' + (b.phrases || []).map(p =>
+      '<div class="rm-l"><button class="jouer petit-jouer" data-rm="' + esc(p.cle) + '" aria-label="' + esc(T("pf_ecouter")) + '">' + ICONE_SON + '</button>' +
+      '<div><span lang="de" dir="ltr" class="rm-de">' + esc(p.de) + '</span>' + (p.registre ? ' <span class="rm-reg" lang="de">' + esc(p.registre) + '</span>' : "") +
+      (tr(p, "texte") ? '<span class="rm-tr">' + aide(p) + '</span>' : "") + '</div></div>').join("") + '</div>';
+    case "exercice": return '<div class="exercice-manuel" data-ex="' + esc(b.cle) + '"></div>';
+    case "serie": {
+      const s = (PF.entr[b.epreuve] || []).find(x => x.id === b.serie);
+      return '<button class="mode" data-serie-bloc="' + esc(b.epreuve) + ':' + b.serie + ':' + (b.teil || "") + '"' + (s ? "" : " disabled") + '><b>' + esc(T("pf_epr_" + b.epreuve)) + ' · ' +
+        esc(s ? nomSerie(b.epreuve, s) : T("bientot")) + (b.teil ? ' · ' + esc(T("pf_teil", { n: b.teil })) : "") + '</b>' + (tr(b, "texte") ? '<span>' + aide(b) + '</span>' : "") + '</button>';
+    }
+    case "renvoi": return '<button class="mode renvoi" data-vers="' + esc(b.vers) + '"' + (/^chapitre:/.test(b.vers) || DANS_APP ? "" : " disabled") + '><b>' +
+      esc(/^chapitre:/.test(b.vers) ? T("pf_voir_chapitre") : T("pf_dans_app")) + '</b><span>' + aide(b, "titre") + '</span></button>';
+    default: return "";
+  }
+}
+// les exercices sur place : on repond, « Corriger », l'explication et le pas a pas (pas_*)
+function exerciceManuel(el, b){
+  const rep = {}; let mode = "tr";
+  const teil = { items: b.items };
+  const rendre = () => {
+    el.innerHTML = (tr(b, "consigne") || b.consigne_de ? '<p class="consigne">' + (b.consigne_de ? '<span lang="de">' + esc(b.consigne_de) + '</span>' : "") + '<span class="fr">' + aide(b, "consigne") + '</span></p>' : "") +
+      (b.doc ? docHtml(b.doc, teil, rep, mode) : "") +
+      b.items.map(it => carteQuestion(teil, it, rep, mode) + (mode === "co" && tr(it, "pas") ? pasHtml(it) : "")).join("") +
+      '<div class="boutons">' + (mode === "tr" ? '<button class="secondaire" data-corriger>' + esc(T("pf_corriger")) + '</button>'
+        : '<div class="score">' + b.items.filter(it => juste(it, rep[it.nr])).length + ' / ' + b.items.length + '</div><button class="lien" data-refaire>' + esc(T("pf_refaire_ex")) + '</button>') + '</div>';
+    el.querySelectorAll("[data-nr][data-v]").forEach(x => x.onclick = () => {
+      if (mode === "co") return;
+      const nr = Number(x.dataset.nr), v = Number(x.dataset.v);
+      rep[nr] = rep[nr] === v ? null : v;
+      garderScroll(rendre);
+    });
+    const c = el.querySelector("[data-corriger]");
+    if (c) c.onclick = () => {
+      mode = "co";
+      const n = b.items.filter(it => juste(it, rep[it.nr])).length;
+      b.items.forEach(it => { if (rep[it.nr] !== null && rep[it.nr] !== undefined) parler("exercice", { juste: juste(it, rep[it.nr]) }); });
+      noterManuel(m => { m.ex[b.cle] = { bons: n, sur: b.items.length }; });
+      garderScroll(rendre);
+    };
+    const r = el.querySelector("[data-refaire]");
+    if (r) r.onclick = () => { for (const k in rep) delete rep[k]; mode = "tr"; garderScroll(rendre); };
+  };
+  rendre();
+}
+// tr() renvoie le champ de la langue ; pas_* est une liste : on la lit a part
+function pasHtml(it){
+  const p = it["pas_" + LANGUE] || it.pas_fr || [];
+  return '<ol class="pas">' + p.map(x => '<li>' + esc(x).replace(/\[\[([^\]]+)\]\]/g, (m, d) => '<span lang="de" dir="ltr" class="de">' + d + '</span>') + '</li>').join("") + '</ol>';
+}
+function brancherBlocs(c){
+  const rub = (PF.chap[c] || {}).rubriques || [];
+  const tous = rub.flatMap(r => r.blocs || []);
+  $("zone").querySelectorAll("[data-ex]").forEach(el => { const b = tous.find(x => x.t === "exercice" && x.cle === el.dataset.ex); if (b) exerciceManuel(el, b); });
+  $("zone").querySelectorAll("[data-rm]").forEach(x => x.onclick = () => {
+    const b = tous.find(y => y.t === "redemittel" && (y.phrases || []).some(p => p.cle === x.dataset.rm));
+    const p = b && b.phrases.find(y => y.cle === x.dataset.rm);
+    if (p){ debloquerSon(); arreterSon(); jouerPiste("m-" + p.cle, [{ wer: "neutral", text: p.de }]); }
+  });
+  $("zone").querySelectorAll("[data-serie]").forEach(x => x.onclick = () => {
+    const ch = PF.sommaire.find(y => y.id === c);
+    ouvrirSerie(ch.epreuve, Number(x.dataset.serie), null, x.dataset.auf);
+  });
+  $("zone").querySelectorAll("[data-serie-bloc]").forEach(x => x.onclick = () => {
+    const [e, id, teil] = x.dataset.serieBloc.split(":");
+    ouvrirSerie(e, Number(id), Number(teil) || null);
+  });
+  $("zone").querySelectorAll("[data-vers]").forEach(x => x.onclick = () => {
+    const v = x.dataset.vers;
+    if (/^chapitre:/.test(v)) return chapitre(v.slice(9));
+    parler("ouvrir", { vers: v });
+  });
+}
+
+// ---------------------------------------------------------------- le chapitre 9 : les examens blancs, un par modele
+function examens(){
+  const ch = PF.sommaire.find(x => x.id === "examens") || {};
+  ecran(tr(ch, "titre") || T("pf_examens"));
+  DTZ.surRetour(() => { accueil(); return true; });
+  noterManuel(m => { m.vu.examens = true; });
+  $("zone").innerHTML = '<div class="bloc">' + jonas(T("pf_blanc_intro")) + '</div>' +
+    '<div class="bloc"><h2>' + esc(T("pf_examens")) + '</h2><p class="petit">' + esc(T("pf_examens_s")) + '</p>' +
+    modeles().map(id => {
+      const bl = lire("blanc_" + id, null), der = lire("dernier_" + id, null);
+      const etat = bl && !bl.fini ? T("pf_reprendre", { e: T("pf_e_" + ETAPES[bl.etape]) }) :
+        der ? T("pf_dernier", { d: der.date, z: der.zertifikat ? T("pf_zertifikat", { n: der.zertifikat.toUpperCase() }) : T("pf_kein_zertifikat") }) : T("pf_blanc_d");
+      return '<button class="mode" data-modele="' + id + '"><b>' + esc(T("pf_modele_n", { n: rangModele(id) })) + '</b><span>' + esc(etat) + '</span></button>';
+    }).join("") + '</div>';
+  $("zone").querySelectorAll("[data-modele]").forEach(b => b.onclick = () => blancIntro(Number(b.dataset.modele)));
+}
+
 function inscrire(){
   accueil = pfAccueil;   // la fonction globale de commun.js, que son « ‹ » appelle
-  EPR.forEach((e, k) => DTZ.partie({ id: e, ordre: 10 * (k + 1), titre: T("pf_epr_" + e), sous: T("pf_epr_" + e + "_s"),
-    ouvrir: () => e === "schreiben" ? schreiben("tr") : e === "sprechen" ? sprechen("tr") : entrainement(e, 0) }));
-  DTZ.partie({ id: "BLANC", ordre: 99, titre: T("pf_blanc"), sous: T("pf_blanc_s"), ouvrir: blancIntro });
+  // ouvrirTelcPflege(partie) de l'ecran Soins : une epreuve ouvre son chapitre, « blanc » les examens blancs
+  EPR.forEach((e, k) => DTZ.partie({ id: e, ordre: 10 * (k + 1), titre: T("pf_epr_" + e), sous: T("pf_epr_" + e + "_s"), ouvrir: () => chapitre(e) }));
+  DTZ.partie({ id: "BLANC", ordre: 99, titre: T("pf_blanc"), sous: T("pf_blanc_s"), ouvrir: () => Q.get("serie") ? blancIntro(Number(Q.get("serie"))) : examens() });
 }
 
 // pour le controle et les sondes : le calcul, et l'index des questions (rien d'ecrit)
-window.SOINS_EXAMEN = { PF, juste, pointsDe, estimer, infosTrouvees, itemsDe, choixDe };
+window.SOINS_EXAMEN = { PF, juste, pointsDe, estimer, infosTrouvees, itemsDe, choixDe, modeles, progresChapitre, chapitre };
 })();

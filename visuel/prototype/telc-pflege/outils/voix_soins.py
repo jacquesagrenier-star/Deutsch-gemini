@@ -3,6 +3,9 @@
     python visuel/prototype/telc-pflege/outils/voix_soins.py                    # a blanc : ce qui manque, ce que ca coute
     python visuel/prototype/telc-pflege/outils/voix_soins.py --detail           # le compte par piste
     python visuel/prototype/telc-pflege/outils/voix_soins.py --pour-de-vrai --plafond N   # APRES l'accord du chef
+    python visuel/prototype/telc-pflege/outils/voix_soins.py --entrainement hoeren       # les series d'ENTRAINEMENT
+        (donnees/entrainement/hoeren.json ou sprechen.json, cles s101-…, manifeste entrainement/voix-<epreuve>.json ;
+        pflege/examen/FORMAT-MANUEL.md, § 3)
 
 AUCUNE DEPENSE SANS ACCORD (decision de Jacques du 14 nov. 2026, Q7 : chaque lot annonce au chef avec son cout avant
 d'etre lance). ElevenLabs multilingual v2 SEULEMENT, jamais Flash (regle du 12 oct.).
@@ -49,9 +52,11 @@ def pistes(H, S):
     """{cle: [{wer, text}]} : tout ce que la page fait entendre, serie par serie, avec les cles de examen.js
     (« s1-H1-consigne », « s1-n1 », « s1-H2g1 », « s1-sp2b-schmerz-0 »…)."""
     out = {}
-    for sh in H.get("series", []):
-        ss = next((x for x in S.get("series", []) if x["id"] == sh["id"]), {})
-        out.update(pistes_serie(sh, ss, "s%d-" % sh["id"]))
+    ids = sorted({x["id"] for x in H.get("series", [])} | {x["id"] for x in S.get("series", [])})
+    for i in ids:
+        sh = next((x for x in H.get("series", []) if x["id"] == i), {})
+        ss = next((x for x in S.get("series", []) if x["id"] == i), {})
+        out.update(pistes_serie(sh, ss, "s%d-" % i))
     return out
 
 
@@ -85,10 +90,19 @@ def main():
     ap.add_argument("--plafond", type=int, default=0, help="credits au plus pour ce lancement")
     ap.add_argument("--detail", action="store_true", help="le compte par piste")
     ap.add_argument("--seulement", default="", help="ne produire que ces cles (separees par des virgules), pour un essai")
+    ap.add_argument("--entrainement", choices=["hoeren", "sprechen"], help="les series d'entrainement de cette epreuve")
     a = ap.parse_args()
+    global MANIFESTE
     H, S = charger("hoeren"), charger("sprechen")
     voix = dict(H.get("voix", {}))
     voix.update(S.get("voix", {}))
+    if a.entrainement:
+        # les voix de l'examen servent aussi a l'entrainement (pas d'accent, comme au vrai telc) ; un fichier
+        # d'entrainement peut en ajouter
+        E = charger(os.path.join("entrainement", a.entrainement))
+        voix.update(E.get("voix", {}))
+        H, S = (E, {}) if a.entrainement == "hoeren" else ({}, E)
+        MANIFESTE = os.path.join(DONNEES, "entrainement", "voix-" + a.entrainement + ".json")
     tout = pistes(H, S)
     if a.seulement:
         tout = {k: v for k, v in tout.items() if k in a.seulement.split(",")}
