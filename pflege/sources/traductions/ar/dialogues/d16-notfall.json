@@ -1,0 +1,387 @@
+{
+ "_langue": "ar",
+ "_source": "pflege/sources/dialogues/d16-notfall.json",
+ "cles": {
+  "titre": {
+   "fr": "L'urgence : appeler à l'aide, réanimer",
+   "de": "Notfall im Zimmer",
+   "ar": "الطوارئ: طلب النجدة والإنعاش"
+  },
+  "intro": {
+   "fr": "10 h 12. {elif} entre dans la chambre 14 : le patient ne bouge pas. Tu joues {elif} : vérifie s'il réagit, appelle à l'aide depuis la chambre (le bouton d'appel d'urgence, sans quitter le patient), dis l'essentiel en phrases courtes à {jonas}, commence le massage cardiaque, puis transmets à {sommer} quand l'équipe de réanimation arrive. Après, {jonas} te demande ce que tu ferais dans la rue.",
+   "ar": "الساعة 10:12. تدخل {elif} الغرفة 14: المريض لا يتحرك. أنت تؤدي دور {elif}: تحقّق مما إذا كان يستجيب، واطلب النجدة من داخل الغرفة (زر نداء الطوارئ، دون أن تترك المريض)، وقل الأساسي بجمل قصيرة لـ{jonas}، وابدأ تدليك القلب، ثم سلّم الحالة إلى {sommer} عند وصول فريق الإنعاش. بعد ذلك يسألك {jonas} ماذا كنت ستفعل في الشارع."
+  },
+  "but": {
+   "fr": "Agir et parler sous stress : vérifier la réaction, appeler à l'aide, dire l'essentiel en phrases courtes (style télégraphique), suivre la séquence de réanimation, se relayer ; transmettre au médecin (l'heure, l'état, ce qui a été fait) ; connaître les questions du 112 hors de l'hôpital.",
+   "ar": "التصرف والكلام تحت الضغط: التحقق من الاستجابة، وطلب النجدة، وقول الأساسي بجمل قصيرة (أسلوب برقي)، واتباع تسلسل الإنعاش، والتناوب؛ والتسليم إلى الطبيب (الوقت، الحالة، ما تمّ فعله)؛ ومعرفة أسئلة الرقم 112 خارج المستشفى."
+  },
+  "relire_notes": {
+   "fr": "Séquence de réanimation de base (ERC 2021 : réaction, appel à l'aide, voies aériennes, respiration au plus 10 secondes, respiration anormale ou gasps = arrêt, 30 compressions pour 2 insufflations, défibrillateur au plus tôt, relais toutes les 2 minutes) ; à l'hôpital, le numéro d'urgence interne et non le 112 ; le contenu de la transmission à l'équipe ; les questions du 112 (les « W-Fragen ») ; ce qu'une assistante de soins fait et ne fait pas dans une réanimation.",
+   "ar": "تسلسل الإنعاش الأساسي (ERC 2021: الاستجابة، طلب النجدة، مجرى الهواء، التنفس 10 ثوانٍ على الأكثر، التنفس غير الطبيعي أو اللهاث الاحتضاري = توقف القلب، 30 ضغطة مقابل نفسين، جهاز الصدمات في أقرب وقت، التناوب كل دقيقتين)؛ في المستشفى رقم الطوارئ الداخلي لا 112؛ محتوى التسليم إلى الفريق؛ أسئلة الرقم 112 (الـ«W-Fragen»)؛ ما تفعله مساعدة التمريض وما لا تفعله أثناء الإنعاش."
+  },
+  "redemittel.0": {
+   "fr": "Allô ! Vous m'entendez ? Ouvrez les yeux !",
+   "de": "Hallo! Hören Sie mich? Machen Sie die Augen auf!",
+   "ar": "ألو! هل تسمعني؟ افتح عينيك!"
+  },
+  "redemittel.1": {
+   "fr": "À l'aide ! Urgence chambre 14 !",
+   "de": "Hilfe! Notfall in Zimmer 14!",
+   "ar": "النجدة! حالة طوارئ في الغرفة 14!"
+  },
+  "redemittel.2": {
+   "fr": "Inconscient, pas de respiration normale.",
+   "de": "Nicht ansprechbar, keine normale Atmung.",
+   "ar": "فاقد للوعي، لا تنفس طبيعي."
+  },
+  "redemittel.3": {
+   "fr": "Appelle l'équipe de réanimation et apporte le défibrillateur !",
+   "de": "Ruf das Reanimationsteam und bring den Defi!",
+   "ar": "اتصل بفريق الإنعاش وأحضر جهاز الصدمات!"
+  },
+  "redemittel.4": {
+   "fr": "Je fais les compressions, tu ventiles.",
+   "de": "Ich drücke, du beatmest.",
+   "ar": "أنا أضغط، وأنت تعطي التنفس."
+  },
+  "redemittel.5": {
+   "fr": "Deux minutes sont passées. On change.",
+   "de": "Zwei Minuten sind um. Wir wechseln.",
+   "ar": "انقضت دقيقتان. نتبادل."
+  },
+  "redemittel.6": {
+   "fr": "Réanimation depuis 10 h 13, un choc délivré.",
+   "de": "Reanimation seit zehn Uhr dreizehn, ein Schock abgegeben.",
+   "ar": "الإنعاش منذ 10:13، أُعطيت صدمة واحدة."
+  },
+  "redemittel.7": {
+   "fr": "Où ? Que s'est-il passé ? Combien de blessés ? Quelles blessures ? Attendre les questions.",
+   "de": "Wo ist es passiert? Was ist passiert? Wie viele Verletzte? Welche Verletzungen? Warten auf Rückfragen.",
+   "ar": "أين؟ ماذا حدث؟ كم عدد المصابين؟ ما الإصابات؟ انتظار الأسئلة."
+  },
+  "noeuds.finden.dit.0.recit": {
+   "fr": "10 h 12. {elif} entre dans la chambre 14 avec le petit-déjeuner. Le patient est couché sur le dos, la tête sur le côté, les yeux fermés. Il ne bouge pas.",
+   "ar": "الساعة 10:12. تدخل {elif} الغرفة 14 ومعها الفطور. المريض مستلقٍ على ظهره، ورأسه مائل إلى جانب، وعيناه مغمضتان. لا يتحرك."
+  },
+  "noeuds.finden.choix.0": {
+   "fr": "Allô ! Vous m'entendez ? Ouvrez les yeux, s'il vous plaît !",
+   "de": "Hallo! Hören Sie mich? Machen Sie bitte die Augen auf!",
+   "ar": "ألو! هل تسمعني؟ افتح عينيك من فضلك!"
+  },
+  "noeuds.finden.choix.1": {
+   "fr": "Vous pouvez m'entendre ? Serrez-moi la main !",
+   "de": "Können Sie mich hören? Drücken Sie meine Hand!",
+   "ar": "هل تستطيع أن تسمعني؟ اضغط على يدي!"
+  },
+  "noeuds.rufen.dit.0.recit": {
+   "fr": "{elif} lui secoue doucement les épaules. Aucune réaction.",
+   "ar": "تهزّ {elif} كتفيه برفق. لا استجابة."
+  },
+  "noeuds.rufen.choix.0": {
+   "fr": "À l'aide ! Urgence chambre 14 ! J'ai besoin d'aide !",
+   "de": "Hilfe! Notfall in Zimmer 14! Ich brauche Hilfe!",
+   "ar": "النجدة! حالة طوارئ في الغرفة 14! أحتاج إلى مساعدة!"
+  },
+  "noeuds.rufen.choix.0.puis.0": {
+   "fr": "Je suis là ! Qu'est-ce qui se passe ?",
+   "de": "Ich bin da! Was ist los?",
+   "ar": "أنا هنا! ماذا يحدث؟"
+  },
+  "noeuds.rufen.choix.1": {
+   "fr": "Urgence ! Venez vite à la 14, s'il vous plaît !",
+   "de": "Notfall! Kommt bitte schnell in die Vierzehn!",
+   "ar": "طوارئ! تعالوا بسرعة إلى الغرفة 14 من فضلكم!"
+  },
+  "noeuds.rufen.choix.1.puis.0": {
+   "fr": "Je suis là ! Qu'est-ce qui se passe ?",
+   "de": "Ich bin da! Was ist los?",
+   "ar": "أنا هنا! ماذا يحدث؟"
+  },
+  "noeuds.melden.choix.0": {
+   "fr": "Il ne réagit pas. Je libère les voies aériennes et je vérifie la respiration.",
+   "de": "Er reagiert nicht. Ich mache die Atemwege frei und prüfe die Atmung.",
+   "ar": "لا يستجيب. سأفتح مجرى الهواء وأتحقق من التنفس."
+  },
+  "noeuds.melden.choix.1": {
+   "fr": "Inconscient. Je vérifie la respiration.",
+   "de": "Nicht ansprechbar. Ich prüfe jetzt die Atmung.",
+   "ar": "فاقد للوعي. أتحقق الآن من التنفس."
+  },
+  "noeuds.melden.choix.2": {
+   "fr": "Alors, je suis entrée parce que je voulais lui apporter le petit-déjeuner, et là, j'ai vu qu'il était couché bizarrement…",
+   "de": "Also, ich bin reingekommen, weil ich ihm das Frühstück bringen wollte, und da habe ich gesehen, dass er irgendwie komisch daliegt …",
+   "ar": "حسنًا، دخلت لأنني كنت أريد أن أحضر له الفطور، وعندها رأيت أنه مستلقٍ بشكل غريب نوعًا ما…"
+  },
+  "noeuds.melden.choix.2.puis.0": {
+   "fr": "Bref, {elif} ! Il réagit ?",
+   "de": "Kurz, {elif}! Reagiert er?",
+   "ar": "باختصار يا {elif}! هل يستجيب؟"
+  },
+  "noeuds.melden.choix.2.aide": {
+   "fr": "<b>Dans l'urgence, des phrases courtes : l'essentiel d'abord.</b> « Nicht ansprechbar. Ich prüfe die Atmung. » Le récit vient plus tard, dans la documentation.",
+   "ar": "<b>في الطوارئ جمل قصيرة: الأساسي أولًا.</b> «Nicht ansprechbar. Ich prüfe die Atmung.» أما السرد فيأتي لاحقًا، في التوثيق."
+  },
+  "noeuds.atmung.dit.0.recit": {
+   "fr": "{elif} bascule la tête en arrière, soulève le menton. Elle regarde, écoute, sent : dix secondes. Seulement un hoquet irrégulier, de temps en temps.",
+   "ar": "تميل {elif} رأسه إلى الخلف وترفع ذقنه. تنظر وتسمع وتتحسّس: عشر ثوانٍ. لا شيء سوى شهقة غير منتظمة بين حين وآخر."
+  },
+  "noeuds.atmung.dit.1": {
+   "fr": "Alors ? Il respire ?",
+   "de": "Und? Atmet er?",
+   "ar": "إذن؟ هل يتنفس؟"
+  },
+  "noeuds.atmung.choix.0": {
+   "fr": "Non, pas de respiration normale ! Appelle l'équipe de réanimation et apporte le défibrillateur !",
+   "de": "Nein, keine normale Atmung! Ruf das Reanimationsteam und bring den Defi!",
+   "ar": "لا، لا تنفس طبيعي! اتصل بفريق الإنعاش وأحضر جهاز الصدمات!"
+  },
+  "noeuds.atmung.choix.0.puis.0": {
+   "fr": "J'y vais ! Commence le massage cardiaque !",
+   "de": "Mach ich! Fang mit der Herzdruckmassage an!",
+   "ar": "حاضر! ابدئي تدليك القلب!"
+  },
+  "noeuds.atmung.choix.1": {
+   "fr": "Il ne respire pas normalement, ce sont des gasps. Il faut réanimer. Tu appelles l'équipe ?",
+   "de": "Er atmet nicht richtig, nur Schnappatmung. Wir müssen reanimieren. Rufst du das Team?",
+   "ar": "لا يتنفس بشكل صحيح، مجرد لهاث احتضاري. يجب أن نبدأ الإنعاش. هل تتصل بالفريق؟"
+  },
+  "noeuds.atmung.choix.1.puis.0": {
+   "fr": "J'y vais ! Commence le massage cardiaque !",
+   "de": "Mach ich! Fang mit der Herzdruckmassage an!",
+   "ar": "حاضر! ابدئي تدليك القلب!"
+  },
+  "noeuds.atmung.choix.2": {
+   "fr": "J'appelle tout de suite le 112 !",
+   "de": "Ich rufe sofort die 112 an!",
+   "ar": "سأتصل فورًا بالرقم 112!"
+  },
+  "noeuds.atmung.choix.2.puis.0": {
+   "fr": "Le 112 ? On est à l'hôpital ! J'appelle l'équipe de réanimation.",
+   "de": "Die 112? Wir sind im Krankenhaus! Ich rufe das Reanimationsteam.",
+   "ar": "112؟ نحن في المستشفى! سأتصل بفريق الإنعاش."
+  },
+  "noeuds.atmung.choix.2.aide": {
+   "fr": "<b>À l'hôpital, on appelle le numéro d'urgence interne, l'équipe de réanimation.</b> Le 112, c'est pour l'extérieur. Retiens le numéro de ta clinique : il est souvent sur le téléphone du poste et sur le chariot d'urgence.",
+   "ar": "<b>في المستشفى نتصل برقم الطوارئ الداخلي، أي بفريق الإنعاش.</b> الرقم 112 للخارج. احفظ رقم مستشفاك: غالبًا ما يكون مكتوبًا على هاتف غرفة التمريض وعلى عربة الطوارئ."
+  },
+  "noeuds.druecken.choix.0": {
+   "fr": "Je commence. Trente compressions, deux insufflations.",
+   "de": "Ich fange an. Dreißig Kompressionen, zwei Beatmungen.",
+   "ar": "سأبدأ. ثلاثون ضغطة، ونفسان."
+  },
+  "noeuds.druecken.choix.1": {
+   "fr": "D'accord. Je fais les compressions, tu ventiles dès que tu es là avec le ballon.",
+   "de": "Okay. Ich drücke, du beatmest, sobald du mit dem Beutel da bist.",
+   "ar": "حسنًا. أنا أضغط، وأنت تعطي التنفس حالما تصل بالكيس."
+  },
+  "noeuds.druecken.choix.2": {
+   "fr": "Je cherche d'abord le pouls, tranquillement.",
+   "de": "Ich suche erst mal den Puls, ganz in Ruhe.",
+   "ar": "سأبحث أولًا عن النبض، بهدوء تام."
+  },
+  "noeuds.druecken.choix.2.puis.0": {
+   "fr": "Non ! Ne perds pas de temps, appuie !",
+   "de": "Nein! Keine Zeit verlieren, drück!",
+   "ar": "لا! لا تضيّعي الوقت، اضغطي!"
+  },
+  "noeuds.druecken.choix.2.aide": {
+   "fr": "<b>Pas de recherche de pouls qui dure : on commence le massage.</b> Pas de réaction et pas de respiration normale, cela suffit. Chaque minute sans massage diminue les chances du patient.",
+   "ar": "<b>لا بحث طويل عن النبض: نبدأ التدليك.</b> لا استجابة ولا تنفس طبيعي، هذا يكفي. كل دقيقة بلا تدليك تقلّل فرص المريض."
+  },
+  "noeuds.wechsel.dit.0.recit": {
+   "fr": "{elif} pose ses mains au milieu du thorax et appuie, fort et vite. Une minute plus tard, {jonas} revient avec le chariot d'urgence et le défibrillateur.",
+   "ar": "تضع {elif} يديها في وسط الصدر وتضغط بقوة وبسرعة. بعد دقيقة يعود {jonas} بعربة الطوارئ وجهاز الصدمات."
+  },
+  "noeuds.wechsel.dit.1": {
+   "fr": "L'équipe est alertée. Je ventile au ballon, tu continues les compressions. Je colle les électrodes.",
+   "de": "Das Team ist alarmiert. Ich beatme mit dem Beutel, du drückst weiter. Ich klebe die Elektroden.",
+   "ar": "تمّ إبلاغ الفريق. أنا أعطي التنفس بالكيس، وأنتِ تواصلين الضغط. سألصق الأقطاب."
+  },
+  "noeuds.wechsel.choix.0": {
+   "fr": "Deux minutes sont passées. On change, je fatigue.",
+   "de": "Zwei Minuten sind um. Wir wechseln, ich werde müde.",
+   "ar": "انقضت دقيقتان. نتبادل، بدأت أتعب."
+  },
+  "noeuds.wechsel.choix.0.puis.0": {
+   "fr": "D'accord, je prends le relais. Le défibrillateur analyse. Tout le monde s'écarte du patient !",
+   "de": "Okay, ich übernehme. Der Defi analysiert. Alle weg vom Patienten!",
+   "ar": "حسنًا، سأتولى أنا. جهاز الصدمات يحلّل. الجميع بعيدًا عن المريض!"
+  },
+  "noeuds.wechsel.choix.1": {
+   "fr": "Tu peux prendre le relais après ce cycle ? Alors je ventile.",
+   "de": "Kannst du nach diesem Zyklus übernehmen? Dann beatme ich.",
+   "ar": "هل يمكنك أن تتولى بعد هذه الدورة؟ عندها أعطي أنا التنفس."
+  },
+  "noeuds.wechsel.choix.1.puis.0": {
+   "fr": "D'accord, je prends le relais. Le défibrillateur analyse. Tout le monde s'écarte du patient !",
+   "de": "Okay, ich übernehme. Der Defi analysiert. Alle weg vom Patienten!",
+   "ar": "حسنًا، سأتولى أنا. جهاز الصدمات يحلّل. الجميع بعيدًا عن المريض!"
+  },
+  "noeuds.uebergabe.dit.0.recit": {
+   "fr": "Le défibrillateur conseille un choc. {jonas} le délivre, puis reprend aussitôt les compressions. Des pas dans le couloir : l'équipe de réanimation arrive, avec {sommer}.",
+   "ar": "ينصح جهاز الصدمات بإعطاء صدمة. يعطيها {jonas}، ثم يستأنف الضغط فورًا. خطوات في الممر: فريق الإنعاش يصل، ومعه {sommer}."
+  },
+  "noeuds.uebergabe.dit.1": {
+   "fr": "Qu'est-ce qu'on a ?",
+   "de": "Was haben wir?",
+   "ar": "ما الوضع؟"
+  },
+  "noeuds.uebergabe.choix.0": {
+   "fr": "Patient de la chambre 14, trouvé inconscient à 10 h 12, pas de respiration normale. Réanimation depuis 10 h 13, un choc délivré.",
+   "de": "Patient aus Zimmer 14, um zehn Uhr zwölf nicht ansprechbar gefunden, keine normale Atmung. Reanimation seit zehn Uhr dreizehn, ein Schock abgegeben.",
+   "ar": "مريض الغرفة 14، وُجد فاقدًا للوعي الساعة 10:12، لا تنفس طبيعي. الإنعاش منذ 10:13، أُعطيت صدمة واحدة."
+  },
+  "noeuds.uebergabe.choix.0.puis.0": {
+   "fr": "Merci. Nous prenons le relais. Restez ici, s'il vous plaît, et notez les heures.",
+   "de": "Danke. Wir übernehmen. Bleiben Sie bitte hier und schreiben Sie die Uhrzeiten mit.",
+   "ar": "شكرًا. سنتولى الأمر. ابقي هنا من فضلك، ودوّني الأوقات."
+  },
+  "noeuds.uebergabe.choix.1": {
+   "fr": "Trouvé inconscient à 10 h 12. Massage et ventilation depuis 10 h 13. Le défibrillateur a choqué une fois.",
+   "de": "Bewusstlos aufgefunden um zehn Uhr zwölf. Seit zehn Uhr dreizehn Herzdruckmassage und Beatmung. Der Defi hat einmal geschockt.",
+   "ar": "وُجد فاقدًا للوعي الساعة 10:12. تدليك القلب والتنفس منذ 10:13. أعطى جهاز الصدمات صدمة واحدة."
+  },
+  "noeuds.uebergabe.choix.1.puis.0": {
+   "fr": "Merci. Nous prenons le relais. Restez ici, s'il vous plaît, et notez les heures.",
+   "de": "Danke. Wir übernehmen. Bleiben Sie bitte hier und schreiben Sie die Uhrzeiten mit.",
+   "ar": "شكرًا. سنتولى الأمر. ابقي هنا من فضلك، ودوّني الأوقات."
+  },
+  "noeuds.uebergabe.choix.2": {
+   "fr": "Je ne sais pas exactement quand ça a commencé. Il y a quelques minutes, je crois.",
+   "de": "Ich weiß nicht genau, wann es angefangen hat. Vor ein paar Minuten, glaube ich.",
+   "ar": "لا أعرف بالضبط متى بدأ ذلك. قبل بضع دقائق على ما أظن."
+  },
+  "noeuds.uebergabe.choix.2.puis.0": {
+   "fr": "Combien de minutes exactement ? Quand l'avez-vous trouvé ?",
+   "de": "Wie viele Minuten genau? Wann haben Sie ihn gefunden?",
+   "ar": "كم دقيقة بالضبط؟ متى وجدتِه؟"
+  },
+  "noeuds.uebergabe.choix.2.aide": {
+   "fr": "<b>L'équipe a besoin des heures : quand trouvé, depuis quand le massage, combien de chocs.</b> « Um zehn Uhr zwölf nicht ansprechbar gefunden. Reanimation seit zehn Uhr dreizehn. » Regarde l'heure dès que tu trouves le patient.",
+   "ar": "<b>الفريق يحتاج إلى الأوقات: متى وُجد المريض، ومنذ متى التدليك، وكم صدمة.</b> «Um zehn Uhr zwölf nicht ansprechbar gefunden. Reanimation seit zehn Uhr dreizehn.» انظر إلى الساعة حالما تجد المريض."
+  },
+  "noeuds.nachbesprechung.dit.0.recit": {
+   "fr": "Vingt minutes plus tard, le cœur du patient bat de nouveau. Il part en soins intensifs. Dans le poste de soins, {jonas} tend un verre d'eau à {elif}.",
+   "ar": "بعد عشرين دقيقة عاد قلب المريض ينبض. نُقل إلى العناية المركزة. في غرفة التمريض يناول {jonas} كأس ماء لـ{elif}."
+  },
+  "noeuds.nachbesprechung.dit.1": {
+   "fr": "Tu t'en es vraiment bien sortie. Comment tu vas ?",
+   "de": "Du hast das richtig gut gemacht. Wie geht's dir?",
+   "ar": "لقد أحسنتِ فعلًا. كيف حالك؟"
+  },
+  "noeuds.nachbesprechung.choix.0": {
+   "fr": "Je tremble encore un peu. Mais ça va. Merci d'être arrivé si vite.",
+   "de": "Ich zittere noch ein bisschen. Aber es geht. Danke, dass du so schnell da warst.",
+   "ar": "ما زلت أرتجف قليلًا. لكنني بخير. شكرًا لأنك وصلت بهذه السرعة."
+  },
+  "noeuds.nachbesprechung.choix.0.puis.0": {
+   "fr": "C'est normal, ça nous fait tous ça. Dis-moi : et si ça arrive dehors, dans la rue ? Tu fais quoi ?",
+   "de": "Das ist normal, das geht uns allen so. Sag mal: Und wenn so was draußen passiert, auf der Straße? Was machst du dann?",
+   "ar": "هذا طبيعي، كلنا نمرّ بهذا. قولي لي: وإن حدث شيء كهذا في الخارج، في الشارع؟ ماذا تفعلين؟"
+  },
+  "noeuds.nachbesprechung.choix.1": {
+   "fr": "Honnêtement, j'ai eu peur. C'était ma première réanimation. On peut en reparler plus tard ?",
+   "de": "Ehrlich gesagt hatte ich Angst. Ich habe zum ersten Mal reanimiert. Können wir später noch einmal darüber sprechen?",
+   "ar": "بصراحة، خفت. كانت أول مرة أقوم فيها بالإنعاش. هل يمكننا أن نتحدث عن ذلك لاحقًا؟"
+  },
+  "noeuds.nachbesprechung.choix.1.puis.0": {
+   "fr": "Bien sûr, absolument. Dis-moi : et si ça arrive dehors, dans la rue ? Tu fais quoi ?",
+   "de": "Klar, auf jeden Fall. Sag mal: Und wenn so was draußen passiert, auf der Straße? Was machst du dann?",
+   "ar": "طبعًا، بالتأكيد. قولي لي: وإن حدث شيء كهذا في الخارج، في الشارع؟ ماذا تفعلين؟"
+  },
+  "noeuds.notruf.choix.0": {
+   "fr": "Alors j'appelle le 112 et je dis : où ça s'est passé, ce qui s'est passé, combien de blessés, quelles blessures. Et ensuite j'attends les questions.",
+   "de": "Dann rufe ich die 112 an und sage: Wo ist es passiert, was ist passiert, wie viele Verletzte, welche Verletzungen. Und dann warte ich auf Rückfragen.",
+   "ar": "عندها أتصل بالرقم 112 وأقول: أين حدث ذلك، وماذا حدث، وكم عدد المصابين، وما الإصابات. ثم أنتظر أسئلتهم."
+  },
+  "noeuds.notruf.choix.0.puis.0": {
+   "fr": "Exactement. Et ne raccroche jamais la première. C'est le centre d'appels qui raccroche, pas toi.",
+   "de": "Genau. Und nie zuerst auflegen. Die Leitstelle legt auf, nicht du.",
+   "ar": "بالضبط. ولا تغلقي الخط أولًا أبدًا. مركز الإسعاف هو الذي يغلق الخط، لا أنتِ."
+  },
+  "noeuds.notruf.choix.1": {
+   "fr": "J'appelle le 112, je dis où je suis et ce qui s'est passé, et je commence le massage cardiaque. Le centre d'appels m'aide au téléphone.",
+   "de": "Ich rufe die 112 an, sage, wo ich bin und was passiert ist, und fange mit der Herzdruckmassage an. Die Leitstelle hilft mir am Telefon.",
+   "ar": "أتصل بالرقم 112، وأقول أين أنا وماذا حدث، وأبدأ تدليك القلب. مركز الإسعاف يساعدني على الهاتف."
+  },
+  "noeuds.notruf.choix.1.puis.0": {
+   "fr": "Exactement. Et ne raccroche jamais la première. C'est le centre d'appels qui raccroche, pas toi.",
+   "de": "Genau. Und nie zuerst auflegen. Die Leitstelle legt auf, nicht du.",
+   "ar": "بالضبط. ولا تغلقي الخط أولًا أبدًا. مركز الإسعاف هو الذي يغلق الخط، لا أنتِ."
+  },
+  "noeuds.notruf.choix.2": {
+   "fr": "J'appelle, je dis « Venez vite ! » et je raccroche.",
+   "de": "Ich rufe an, sage „Kommen Sie schnell!“ und lege auf.",
+   "ar": "أتصل، وأقول «تعالوا بسرعة!» وأغلق الخط."
+  },
+  "noeuds.notruf.choix.2.puis.0": {
+   "fr": "Et où doivent-ils venir ? Comment le centre d'appels sait ce qui se passe ?",
+   "de": "Und wohin sollen sie kommen? Woher weiß die Leitstelle, was los ist?",
+   "ar": "وإلى أين يأتون؟ ومن أين يعرف مركز الإسعاف ما الذي يجري؟"
+  },
+  "noeuds.notruf.choix.2.aide": {
+   "fr": "<b>Au 112, on répond aux questions, et on ne raccroche pas.</b> Où ? Que s'est-il passé ? Combien de blessés ? Quelles blessures ? Puis on attend les questions de la Leitstelle, qui peut aussi te guider pour le massage.",
+   "ar": "<b>على الرقم 112 نجيب عن الأسئلة، ولا نغلق الخط.</b> أين؟ ماذا حدث؟ كم عدد المصابين؟ ما الإصابات؟ ثم ننتظر أسئلة الـLeitstelle، التي يمكنها أيضًا أن ترشدك في التدليك."
+  },
+  "ecouter.0.q": {
+   "fr": "Qui {jonas} appelle-t-il à l'hôpital ?",
+   "de": "Wen ruft {jonas} im Krankenhaus an?",
+   "ar": "بمن يتصل {jonas} في المستشفى؟"
+  },
+  "ecouter.0.options.0": {
+   "fr": "L'équipe de réanimation.",
+   "de": "Das Reanimationsteam.",
+   "ar": "بفريق الإنعاش."
+  },
+  "ecouter.0.options.1": {
+   "fr": "La police.",
+   "de": "Die Polizei.",
+   "ar": "بالشرطة."
+  },
+  "ecouter.0.options.2": {
+   "fr": "La famille du patient.",
+   "de": "Die Familie des Patienten.",
+   "ar": "بعائلة المريض."
+  },
+  "ecouter.1.q": {
+   "fr": "Combien de compressions {elif} fait-elle avant les insufflations ?",
+   "de": "Wie viele Kompressionen macht {elif}, bevor beatmet wird?",
+   "ar": "كم ضغطة تقوم بها {elif} قبل إعطاء التنفس؟"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Dix.",
+   "de": "Zehn.",
+   "ar": "عشر."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Vingt.",
+   "de": "Zwanzig.",
+   "ar": "عشرون."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Trente.",
+   "de": "Dreißig.",
+   "ar": "ثلاثون."
+  },
+  "ecouter.2.q": {
+   "fr": "Que ne faut-il pas faire en appelant le 112 dans la rue ?",
+   "de": "Was soll man beim Notruf auf der Straße nicht tun?",
+   "ar": "ما الذي يجب ألا يُفعل عند الاتصال بالرقم 112 في الشارع؟"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Dire où l'on est.",
+   "de": "Sagen, wo man ist.",
+   "ar": "قول المكان الذي نحن فيه."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Raccrocher le premier.",
+   "de": "Zuerst auflegen.",
+   "ar": "إغلاق الخط أولًا."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Attendre les questions.",
+   "de": "Auf Rückfragen warten.",
+   "ar": "انتظار الأسئلة."
+  }
+ }
+}

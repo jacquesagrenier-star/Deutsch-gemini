@@ -1,0 +1,446 @@
+{
+ "_langue": "pl",
+ "_source": "pflege/sources/dialogues/d13-aufnahmegespraech.json",
+ "cles": {
+  "titre": {
+   "fr": "L'entretien d'admission",
+   "de": "Das Aufnahmegespräch",
+   "pl": "Wywiad przy przyjęciu"
+  },
+  "intro": {
+   "fr": "Lundi matin, 10 h 30. {lehmann} arrive au {station} avec sa canne et la lettre de sa médecin traitante : une plaie au pied qui ne guérit pas. Tu joues {elif} : tu fais l'entretien d'admission à l'oral, avant de remplir la fiche. Pose tes questions poliment, vérifie ce qui reste vague, puis résume et explique la suite.",
+   "pl": "Poniedziałek rano, 10:30. {lehmann:maj} przychodzi na {station} z laską i skierowaniem od swojej lekarki rodzinnej: rana na stopie, która się nie goi. Grasz jako {elif}: przeprowadzasz ustny wywiad przy przyjęciu, zanim wypełnisz kartę. Zadawaj pytania uprzejmie, dopytuj o to, co niejasne, a potem podsumuj i wyjaśnij, co będzie dalej."
+  },
+  "but": {
+   "fr": "Mener un entretien d'admission : se présenter et l'annoncer ; poser des questions polies et indirectes (Darf ich fragen, ob … ? Können Sie mir sagen, welche … ?) ; demander une précision quand une réponse est vague ; résumer ; expliquer ce qui va se passer.",
+   "pl": "Przeprowadzić wywiad przy przyjęciu: przedstawić się i zapowiedzieć rozmowę; zadawać uprzejme pytania pośrednie (Darf ich fragen, ob … ? Können Sie mir sagen, welche … ?); dopytać, gdy odpowiedź jest niejasna; podsumować; wyjaśnić, co będzie się działo dalej."
+  },
+  "relire_notes": {
+   "fr": "Les rubriques de l'entretien d'admission infirmier et leur ordre ; la dose d'insuline : se fier au plan de médicaments, jamais à la mémoire ; la levée du secret pour la fille ; ce qui se passe après l'admission (glycémie, médecin, pansement).",
+   "pl": "Części pielęgniarskiego wywiadu przy przyjęciu i ich kolejność; dawka insuliny: opierać się na planie leków, nigdy na pamięci; zwolnienie z tajemnicy wobec córki; co dzieje się po przyjęciu (glikemia, lekarka, opatrunek)."
+  },
+  "redemittel.0": {
+   "fr": "J'aimerais maintenant vous poser quelques questions. Cela dure environ un quart d'heure.",
+   "de": "Ich möchte Ihnen jetzt ein paar Fragen stellen. Das dauert ungefähr eine Viertelstunde.",
+   "pl": "Chciałabym teraz zadać pani kilka pytań. To potrwa około kwadransa."
+  },
+  "redemittel.1": {
+   "fr": "Pouvez-vous me dire pourquoi vous venez chez nous aujourd'hui ?",
+   "de": "Können Sie mir sagen, warum Sie heute zu uns kommen?",
+   "pl": "Czy może mi pani powiedzieć, dlaczego przychodzi pani dziś do nas?"
+  },
+  "redemittel.2": {
+   "fr": "Puis-je vous demander si vous avez des allergies ?",
+   "de": "Darf ich fragen, ob Sie Allergien haben?",
+   "pl": "Czy mogę zapytać, czy ma pani jakieś alergie?"
+  },
+  "redemittel.3": {
+   "fr": "Savez-vous combien d'unités d'insuline vous vous injectez le matin ?",
+   "de": "Wissen Sie, wie viele Einheiten Insulin Sie morgens spritzen?",
+   "pl": "Czy wie pani, ile jednostek insuliny wstrzykuje pani sobie rano?"
+  },
+  "redemittel.4": {
+   "fr": "Avez-vous peut-être votre plan de médicaments sur vous ?",
+   "de": "Haben Sie vielleicht Ihren Medikamentenplan dabei?",
+   "pl": "Czy ma pani może przy sobie swój plan leków?"
+  },
+  "redemittel.5": {
+   "fr": "Qui pouvons-nous appeler en cas d'urgence ?",
+   "de": "Wen dürfen wir im Notfall anrufen?",
+   "pl": "Do kogo możemy zadzwonić w nagłym wypadku?"
+  },
+  "redemittel.6": {
+   "fr": "Je résume rapidement : …",
+   "de": "Ich fasse kurz zusammen: …",
+   "pl": "Krótko podsumuję: …"
+  },
+  "redemittel.7": {
+   "fr": "Tout à l'heure, je mesure votre glycémie, et ensuite la médecin passe vous voir.",
+   "de": "Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen.",
+   "pl": "Za chwilę zmierzę pani cukier, a potem przyjdzie do pani lekarka."
+  },
+  "noeuds.begruessen.dit.0.recit": {
+   "fr": "{lehmann} s'assoit dans la chambre, sa canne posée contre le lit. Elle tient une enveloppe : la lettre de sa médecin traitante.",
+   "pl": "{lehmann:maj} siada w sali, laskę opiera o łóżko. Trzyma kopertę: skierowanie od swojej lekarki rodzinnej."
+  },
+  "noeuds.begruessen.dit.1": {
+   "fr": "Bonjour. On m'a dit en bas que je devais me présenter ici.",
+   "de": "Guten Morgen. Hier soll ich mich melden, hat man mir unten gesagt.",
+   "pl": "Dzień dobry. Na dole powiedziano mi, że mam się zgłosić tutaj."
+  },
+  "noeuds.begruessen.choix.0": {
+   "fr": "Bonjour, {lehmann:voc}. Je suis {elif}, je travaille ici dans les soins. J'aimerais vous poser quelques questions, cela dure environ un quart d'heure.",
+   "de": "Guten Morgen, {lehmann}. Ich bin {elif}, ich arbeite hier in der Pflege. Ich möchte Ihnen ein paar Fragen stellen, das dauert ungefähr eine Viertelstunde.",
+   "pl": "Dzień dobry, {lehmann:voc}. Jestem {elif}, pracuję tu w pielęgniarstwie. Chciałabym zadać pani kilka pytań, to potrwa około kwadransa."
+  },
+  "noeuds.begruessen.choix.0.puis.0": {
+   "fr": "Oui, bien sûr. Allez-y.",
+   "de": "Ja, natürlich. Fragen Sie nur.",
+   "pl": "Tak, oczywiście. Proszę pytać."
+  },
+  "noeuds.begruessen.choix.1": {
+   "fr": "Bienvenue au {station}, {lehmann:voc}. Je m'appelle {elif}. Avant de tout vous montrer, j'aimerais parler un peu avec vous. Ça vous va ?",
+   "de": "Herzlich willkommen auf der {station}, {lehmann}. Mein Name ist {elif}. Bevor ich Ihnen alles zeige, würde ich gern kurz mit Ihnen sprechen. Ist das in Ordnung?",
+   "pl": "Witamy na {station:loc}, {lehmann:voc}. Nazywam się {elif}. Zanim wszystko pani pokażę, chciałabym chwilę z panią porozmawiać. Czy to w porządku?"
+  },
+  "noeuds.begruessen.choix.1.puis.0": {
+   "fr": "Oui, bien sûr. Allez-y.",
+   "de": "Ja, natürlich. Fragen Sie nur.",
+   "pl": "Tak, oczywiście. Proszę pytać."
+  },
+  "noeuds.begruessen.choix.2": {
+   "fr": "Salut ! Assieds-toi, j'ai quelques questions.",
+   "de": "Hallo! Setz dich, ich hab ein paar Fragen.",
+   "pl": "Cześć! Siadaj, mam parę pytań."
+  },
+  "noeuds.begruessen.choix.2.puis.0": {
+   "fr": "Mais on ne se connaît pas, jeune femme.",
+   "de": "Wir kennen uns doch gar nicht, junge Frau.",
+   "pl": "Przecież my się wcale nie znamy, młoda damo."
+  },
+  "noeuds.begruessen.choix.2.aide": {
+   "fr": "<b>Avec une patiente, toujours « Sie », et on se présente.</b> « Guten Morgen, Frau Lehmann. Ich bin Elif, ich arbeite hier in der Pflege. » Puis on annonce l'entretien et sa durée : « Ich möchte Ihnen ein paar Fragen stellen. »",
+   "pl": "<b>Do pacjentki zawsze „Sie” i trzeba się przedstawić.</b> „Guten Morgen, Frau Lehmann. Ich bin Elif, ich arbeite hier in der Pflege.” Potem zapowiada się rozmowę i jej długość: „Ich möchte Ihnen ein paar Fragen stellen.”"
+  },
+  "noeuds.grund.choix.0": {
+   "fr": "Pouvez-vous me dire pourquoi vous venez chez nous aujourd'hui ?",
+   "de": "Können Sie mir sagen, warum Sie heute zu uns kommen?",
+   "pl": "Czy może mi pani powiedzieć, dlaczego przychodzi pani dziś do nas?"
+  },
+  "noeuds.grund.choix.0.puis.0": {
+   "fr": "À cause de mon pied. J'ai une plaie à l'avant, qui ne veut pas guérir. Je suis diabétique, depuis quinze ans déjà.",
+   "de": "Wegen meinem Fuß. Ich habe da vorne eine Wunde, die will einfach nicht heilen. Ich bin ja Diabetikerin, schon seit fünfzehn Jahren.",
+   "pl": "Z powodu stopy. Mam tu z przodu ranę, która po prostu nie chce się zagoić. Jestem przecież cukrzyczką, już od piętnastu lat."
+  },
+  "noeuds.grund.choix.1": {
+   "fr": "Qu'a dit votre médecin traitante, pourquoi devez-vous venir à l'hôpital ?",
+   "de": "Was hat Ihre Hausärztin gesagt, warum Sie ins Krankenhaus sollen?",
+   "pl": "Co powiedziała pani lekarka rodzinna, dlaczego ma pani iść do szpitala?"
+  },
+  "noeuds.grund.choix.1.puis.0": {
+   "fr": "À cause de mon pied. J'ai une plaie à l'avant, qui ne veut pas guérir. Je suis diabétique, depuis quinze ans déjà.",
+   "de": "Wegen meinem Fuß. Ich habe da vorne eine Wunde, die will einfach nicht heilen. Ich bin ja Diabetikerin, schon seit fünfzehn Jahren.",
+   "pl": "Z powodu stopy. Mam tu z przodu ranę, która po prostu nie chce się zagoić. Jestem przecież cukrzyczką, już od piętnastu lat."
+  },
+  "noeuds.grund.choix.2": {
+   "fr": "Avez-vous un syndrome du pied diabétique avec polyneuropathie ?",
+   "de": "Haben Sie ein diabetisches Fußsyndrom mit Polyneuropathie?",
+   "pl": "Czy ma pani zespół stopy cukrzycowej z polineuropatią?"
+  },
+  "noeuds.grund.choix.2.puis.0": {
+   "fr": "Un quoi ? Je ne sais pas. J'ai une plaie au pied.",
+   "de": "Ein was? Das weiß ich nicht. Ich habe eine Wunde am Fuß.",
+   "pl": "Co takiego? Tego nie wiem. Mam ranę na stopie."
+  },
+  "noeuds.grund.choix.2.aide": {
+   "fr": "<b>Pose une question ouverte, avec les mots de tous les jours.</b> « Können Sie mir sagen, warum Sie heute zu uns kommen? » Les termes médicaux sont pour la fiche et pour l'équipe, pas pour la patiente.",
+   "pl": "<b>Zadaj pytanie otwarte, codziennymi słowami.</b> „Können Sie mir sagen, warum Sie heute zu uns kommen?” Terminy medyczne są do karty i dla zespołu, nie dla pacjentki."
+  },
+  "noeuds.allergien.choix.0": {
+   "fr": "Merci. Puis-je vous demander si vous avez des allergies ? À des médicaments, à des pansements ou à des aliments ?",
+   "de": "Danke. Darf ich fragen, ob Sie Allergien haben? Gegen Medikamente, Pflaster oder Lebensmittel?",
+   "pl": "Dziękuję. Czy mogę zapytać, czy ma pani jakieś alergie? Na leki, plastry albo żywność?"
+  },
+  "noeuds.allergien.choix.0.puis.0": {
+   "fr": "Non, pas que je sache.",
+   "de": "Nein, da ist mir nichts bekannt.",
+   "pl": "Nie, nic mi o tym nie wiadomo."
+  },
+  "noeuds.allergien.choix.1": {
+   "fr": "Est-ce que vous supportez tous les médicaments ? Ou est-ce que vous avez une allergie connue ?",
+   "de": "Vertragen Sie alle Medikamente? Oder wissen Sie von einer Allergie?",
+   "pl": "Czy dobrze pani toleruje wszystkie leki? Albo czy wie pani o jakiejś alergii?"
+  },
+  "noeuds.allergien.choix.1.puis.0": {
+   "fr": "Non, pas que je sache.",
+   "de": "Nein, da ist mir nichts bekannt.",
+   "pl": "Nie, nic mi o tym nie wiadomo."
+  },
+  "noeuds.allergien.choix.2": {
+   "fr": "Pardon, j'ai bien compris : vous avez du diabète depuis quinze ans ?",
+   "de": "Entschuldigung, habe ich das richtig verstanden: Sie haben seit fünfzehn Jahren Diabetes?",
+   "pl": "Przepraszam, czy dobrze zrozumiałam: ma pani cukrzycę od piętnastu lat?"
+  },
+  "noeuds.allergien.choix.2.puis.0": {
+   "fr": "Oui, c'est ça. Depuis quinze ans. Et depuis quelques années avec de l'insuline.",
+   "de": "Ja, genau. Seit fünfzehn Jahren. Und seit ein paar Jahren mit Insulin.",
+   "pl": "Tak, właśnie. Od piętnastu lat. A od kilku lat na insulinie."
+  },
+  "noeuds.medikamente.choix.0": {
+   "fr": "Bien. Quels médicaments prenez-vous à la maison ? Et savez-vous combien d'unités d'insuline vous vous injectez ?",
+   "de": "Gut. Welche Medikamente nehmen Sie zu Hause? Und wissen Sie, wie viele Einheiten Insulin Sie spritzen?",
+   "pl": "Dobrze. Jakie leki bierze pani w domu? I czy wie pani, ile jednostek insuliny pani wstrzykuje?"
+  },
+  "noeuds.medikamente.choix.0.puis.0": {
+   "fr": "De l'insuline le matin et le soir, et un comprimé pour la tension. Combien exactement… ça a changé la semaine dernière. Douze, je crois. Ou quatorze ?",
+   "de": "Insulin morgens und abends, und eine Tablette für den Blutdruck. Wie viel genau … das hat sich letzte Woche geändert. Ich glaube, zwölf. Oder vierzehn?",
+   "pl": "Insulinę rano i wieczorem, i tabletkę na ciśnienie. Ile dokładnie… to się zmieniło w zeszłym tygodniu. Chyba dwanaście. Albo czternaście?"
+  },
+  "noeuds.medikamente.choix.1": {
+   "fr": "Pouvez-vous me dire quels médicaments vous prenez régulièrement, et quand ?",
+   "de": "Können Sie mir sagen, welche Medikamente Sie regelmäßig nehmen, und wann?",
+   "pl": "Czy może mi pani powiedzieć, jakie leki bierze pani regularnie i kiedy?"
+  },
+  "noeuds.medikamente.choix.1.puis.0": {
+   "fr": "De l'insuline le matin et le soir, et un comprimé pour la tension. Combien exactement… ça a changé la semaine dernière. Douze, je crois. Ou quatorze ?",
+   "de": "Insulin morgens und abends, und eine Tablette für den Blutdruck. Wie viel genau … das hat sich letzte Woche geändert. Ich glaube, zwölf. Oder vierzehn?",
+   "pl": "Insulinę rano i wieczorem, i tabletkę na ciśnienie. Ile dokładnie… to się zmieniło w zeszłym tygodniu. Chyba dwanaście. Albo czternaście?"
+  },
+  "noeuds.plan.choix.0": {
+   "fr": "C'est important, je veux en être sûre. Avez-vous peut-être votre plan de médicaments sur vous ? Ou est-ce que c'est dans la lettre de votre médecin traitante ?",
+   "de": "Das ist wichtig, da möchte ich sicher sein. Haben Sie vielleicht Ihren Medikamentenplan dabei? Oder steht es im Brief Ihrer Hausärztin?",
+   "pl": "To ważne, chcę mieć pewność. Czy ma pani może przy sobie swój plan leków? Albo czy jest to w piśmie od pani lekarki rodzinnej?"
+  },
+  "noeuds.plan.choix.0.puis.0": {
+   "fr": "Ah oui, le plan ! Il est là, dans l'enveloppe, avec la lettre.",
+   "de": "Ach ja, der Plan! Der ist hier im Umschlag, bei dem Brief.",
+   "pl": "A tak, plan! Jest tutaj w kopercie, razem z pismem."
+  },
+  "noeuds.plan.choix.1": {
+   "fr": "Alors vérifions plutôt. Je peux regarder la lettre de votre médecin traitante ? La dose y est sûrement.",
+   "de": "Dann schauen wir lieber nach. Darf ich mir den Brief von Ihrer Hausärztin ansehen? Da steht die Dosis bestimmt drin.",
+   "pl": "To lepiej sprawdźmy. Czy mogę zajrzeć do pisma od pani lekarki rodzinnej? Dawka na pewno tam jest."
+  },
+  "noeuds.plan.choix.1.puis.0": {
+   "fr": "Ah oui, bien sûr. Mon plan de médicaments est dedans aussi.",
+   "de": "Ach ja, natürlich. Da ist auch mein Medikamentenplan drin.",
+   "pl": "A tak, oczywiście. Jest tam też mój plan leków."
+  },
+  "noeuds.plan.choix.2": {
+   "fr": "D'accord, alors je note douze unités.",
+   "de": "Okay, dann schreibe ich zwölf Einheiten auf.",
+   "pl": "Okej, to zapisuję dwanaście jednostek."
+  },
+  "noeuds.plan.choix.2.puis.0": {
+   "fr": "Mais je n'en suis pas du tout sûre…",
+   "de": "Aber ich bin mir doch gar nicht sicher …",
+   "pl": "Ale ja wcale nie jestem tego pewna…"
+  },
+  "noeuds.plan.choix.2.aide": {
+   "fr": "<b>Une réponse vague sur une dose ne se note pas : on vérifie.</b> « Haben Sie Ihren Medikamentenplan dabei? » ou la lettre de la médecin. Une erreur de dose d'insuline peut être dangereuse.",
+   "pl": "<b>Niejasnej odpowiedzi o dawce się nie zapisuje: trzeba ją sprawdzić.</b> „Haben Sie Ihren Medikamentenplan dabei?” albo pismo od lekarki. Błąd w dawce insuliny może być niebezpieczny."
+  },
+  "noeuds.hilfsmittel.choix.0": {
+   "fr": "Merci, je le mets tout de suite avec votre dossier. Avez-vous besoin de lunettes ou d'un appareil auditif ? Et marchez-vous toujours avec la canne ?",
+   "de": "Danke, den lege ich gleich zu Ihren Unterlagen. Brauchen Sie eine Brille oder ein Hörgerät? Und gehen Sie immer mit dem Stock?",
+   "pl": "Dziękuję, od razu dołączę go do pani dokumentów. Czy potrzebuje pani okularów albo aparatu słuchowego? I czy zawsze chodzi pani z laską?"
+  },
+  "noeuds.hilfsmittel.choix.0.puis.0": {
+   "fr": "Des lunettes, oui. J'entends encore bien. Et la canne, je la prends depuis cette histoire de pied. Je ne sens plus très bien mes pieds.",
+   "de": "Eine Brille, ja. Hören tue ich noch gut. Und den Stock nehme ich, seit das mit dem Fuß ist. Ich spüre meine Füße nicht mehr so richtig.",
+   "pl": "Okulary tak. Słyszę jeszcze dobrze. A laskę biorę, odkąd mam ten kłopot ze stopą. Nie czuję już dobrze stóp."
+  },
+  "noeuds.hilfsmittel.choix.1": {
+   "fr": "Merci beaucoup. Encore une petite question : portez-vous des lunettes ? Et marchez-vous bien toute seule ?",
+   "de": "Danke schön. Ich frage noch kurz: Tragen Sie eine Brille? Und wie gut können Sie allein gehen?",
+   "pl": "Bardzo dziękuję. Jeszcze krótkie pytanie: czy nosi pani okulary? I jak dobrze chodzi pani sama?"
+  },
+  "noeuds.hilfsmittel.choix.1.puis.0": {
+   "fr": "Des lunettes, oui. J'entends encore bien. Et la canne, je la prends depuis cette histoire de pied. Je ne sens plus très bien mes pieds.",
+   "de": "Eine Brille, ja. Hören tue ich noch gut. Und den Stock nehme ich, seit das mit dem Fuß ist. Ich spüre meine Füße nicht mehr so richtig.",
+   "pl": "Okulary tak. Słyszę jeszcze dobrze. A laskę biorę, odkąd mam ten kłopot ze stopą. Nie czuję już dobrze stóp."
+  },
+  "noeuds.nacht.choix.0": {
+   "fr": "C'est bon à savoir. Et la nuit : devez-vous aller aux toilettes ? Environ combien de fois ?",
+   "de": "Das ist gut zu wissen. Und nachts: Müssen Sie zur Toilette? Wie oft ungefähr?",
+   "pl": "Dobrze to wiedzieć. A w nocy: czy musi pani chodzić do toalety? Mniej więcej ile razy?"
+  },
+  "noeuds.nacht.choix.0.puis.0": {
+   "fr": "Deux fois, en général. Mais je me rendors bien après.",
+   "de": "Zweimal, meistens. Aber ich schlafe danach wieder gut ein.",
+   "pl": "Zwykle dwa razy. Ale potem znowu dobrze zasypiam."
+  },
+  "noeuds.nacht.choix.1": {
+   "fr": "Merci. Et comment dormez-vous ? Vous vous levez la nuit ?",
+   "de": "Danke. Wie schlafen Sie denn? Stehen Sie nachts auf?",
+   "pl": "Dziękuję. A jak pani śpi? Czy wstaje pani w nocy?"
+  },
+  "noeuds.nacht.choix.1.puis.0": {
+   "fr": "Deux fois, en général. Mais je me rendors bien après.",
+   "de": "Zweimal, meistens. Aber ich schlafe danach wieder gut ein.",
+   "pl": "Zwykle dwa razy. Ale potem znowu dobrze zasypiam."
+  },
+  "noeuds.nacht.choix.2": {
+   "fr": "Vous êtes incontinente ?",
+   "de": "Sind Sie inkontinent?",
+   "pl": "Czy ma pani nietrzymanie moczu?"
+  },
+  "noeuds.nacht.choix.2.puis.0": {
+   "fr": "Pardon ? Non ! Qu'est-ce que c'est que cette question ?",
+   "de": "Wie bitte? Nein! Was ist denn das für eine Frage?",
+   "pl": "Słucham? Nie! Co to za pytanie?"
+  },
+  "noeuds.nacht.choix.2.aide": {
+   "fr": "<b>Les questions intimes se posent avec tact, par la vie de tous les jours.</b> « Müssen Sie nachts zur Toilette? Wie oft? » La patiente répond, et tu notes ensuite « kontinent » sur la fiche.",
+   "pl": "<b>O sprawy intymne pyta się taktownie, przez codzienne życie.</b> „Müssen Sie nachts zur Toilette? Wie oft?” Pacjentka odpowiada, a ty potem wpisujesz w kartę „kontinent”."
+  },
+  "noeuds.essen.choix.0": {
+   "fr": "Et pour les repas : y a-t-il quelque chose que vous aimez manger, ou quelque chose que vous n'aimez pas du tout ?",
+   "de": "Und beim Essen: Gibt es etwas, das Sie gern essen, oder etwas, das Sie gar nicht mögen?",
+   "pl": "A jeśli chodzi o jedzenie: czy jest coś, co pani lubi jeść, albo coś, czego pani w ogóle nie lubi?"
+  },
+  "noeuds.essen.choix.0.puis.0": {
+   "fr": "Pour être honnête, j'aime le sucré. Je sais, je sais, avec mon diabète, je ne devrais pas.",
+   "de": "Ehrlich gesagt esse ich gern Süßes. Ich weiß, ich weiß, beim Zucker soll ich das nicht.",
+   "pl": "Szczerze mówiąc, lubię słodycze. Wiem, wiem, przy cukrzycy nie powinnam."
+  },
+  "noeuds.essen.choix.1": {
+   "fr": "Qu'est-ce que vous mangez et buvez dans la journée ? Avez-vous des souhaits pour les repas ici ?",
+   "de": "Was essen und trinken Sie denn so am Tag? Haben Sie Wünsche für das Essen hier?",
+   "pl": "Co pani zwykle je i pije w ciągu dnia? Czy ma pani jakieś życzenia co do posiłków tutaj?"
+  },
+  "noeuds.essen.choix.1.puis.0": {
+   "fr": "Pour être honnête, j'aime le sucré. Je sais, je sais, avec mon diabète, je ne devrais pas.",
+   "de": "Ehrlich gesagt esse ich gern Süßes. Ich weiß, ich weiß, beim Zucker soll ich das nicht.",
+   "pl": "Szczerze mówiąc, lubię słodycze. Wiem, wiem, przy cukrzycy nie powinnam."
+  },
+  "noeuds.angehoerige.choix.0": {
+   "fr": "Merci pour votre franchise. Nous en parlerons avec le conseil en diabétologie. Qui pouvons-nous appeler en cas d'urgence ?",
+   "de": "Danke für Ihre Ehrlichkeit. Wir sprechen mit der Diabetesberatung darüber. Wen dürfen wir im Notfall anrufen?",
+   "pl": "Dziękuję za szczerość. Porozmawiamy o tym z edukatorką diabetologiczną. Do kogo możemy zadzwonić w nagłym wypadku?"
+  },
+  "noeuds.angehoerige.choix.0.puis.0": {
+   "fr": "Ma fille, Sabine. Elle vient tous les jours. Elle peut tout savoir aussi, je l'ai signé chez le médecin.",
+   "de": "Meine Tochter, Sabine. Die kommt jeden Tag. Sie darf auch alles wissen, das habe ich beim Arzt unterschrieben.",
+   "pl": "Do mojej córki, Sabine. Przychodzi codziennie. Może też wiedzieć wszystko, podpisałam to u lekarza."
+  },
+  "noeuds.angehoerige.choix.1": {
+   "fr": "Je le note. Y a-t-il quelqu'un que nous devons informer ? Et cette personne peut-elle aussi recevoir des informations ?",
+   "de": "Das notiere ich. Gibt es jemanden, den wir informieren sollen? Und darf diese Person auch Auskunft bekommen?",
+   "pl": "Zapisuję to. Czy jest ktoś, kogo mamy poinformować? I czy ta osoba może też otrzymywać informacje?"
+  },
+  "noeuds.angehoerige.choix.1.puis.0": {
+   "fr": "Ma fille, Sabine. Elle vient tous les jours. Elle peut tout savoir aussi, je l'ai signé chez le médecin.",
+   "de": "Meine Tochter, Sabine. Die kommt jeden Tag. Sie darf auch alles wissen, das habe ich beim Arzt unterschrieben.",
+   "pl": "Moja córka, Sabine. Przychodzi codziennie. Może też wiedzieć wszystko, podpisałam to u lekarza."
+  },
+  "noeuds.angehoerige.choix.2": {
+   "fr": "Vous n'avez pas le droit de manger des sucreries ici. C'est interdit.",
+   "de": "Sie dürfen hier keine Süßigkeiten essen. Das ist verboten.",
+   "pl": "Tutaj nie wolno pani jeść słodyczy. To zabronione."
+  },
+  "noeuds.angehoerige.choix.2.puis.0": {
+   "fr": "Interdit ? Je ne suis pas une enfant.",
+   "de": "Verboten? Ich bin doch kein Kind.",
+   "pl": "Zabronione? Przecież nie jestem dzieckiem."
+  },
+  "noeuds.angehoerige.choix.2.aide": {
+   "fr": "<b>À l'admission, on écoute et on note ; on ne fait pas la leçon.</b> « Danke für Ihre Ehrlichkeit. Wir sprechen mit der Diabetesberatung darüber. » Puis on passe à la question suivante : « Wen dürfen wir im Notfall anrufen? »",
+   "pl": "<b>Przy przyjęciu słucha się i zapisuje, nie prawi się kazań.</b> „Danke für Ihre Ehrlichkeit. Wir sprechen mit der Diabetesberatung darüber.” Potem przechodzi się do następnego pytania: „Wen dürfen wir im Notfall anrufen?”"
+  },
+  "noeuds.zusammenfassen.choix.0": {
+   "fr": "Je résume rapidement : vous venez pour la plaie au pied droit, vous n'avez pas d'allergie, vous vous injectez l'insuline selon votre plan, vous avez besoin de lunettes et de la canne. C'est exact ?",
+   "de": "Ich fasse kurz zusammen: Sie kommen wegen der Wunde am rechten Fuß, Sie haben keine Allergien, Sie spritzen Insulin nach Plan, Sie brauchen eine Brille und den Stock. Ist das richtig?",
+   "pl": "Krótko podsumuję: przychodzi pani z powodu rany na prawej stopie, nie ma pani alergii, wstrzykuje pani insulinę według planu, potrzebuje pani okularów i laski. Czy to się zgadza?"
+  },
+  "noeuds.zusammenfassen.choix.0.puis.0": {
+   "fr": "Oui, c'est tout à fait ça.",
+   "de": "Ja, das stimmt alles.",
+   "pl": "Tak, wszystko się zgadza."
+  },
+  "noeuds.zusammenfassen.choix.1": {
+   "fr": "Je peux répéter ce que j'ai noté ? Plaie à l'avant du pied droit, pas d'allergie, insuline selon le plan de votre médecin traitante, lunettes, canne, et votre fille comme contact.",
+   "de": "Darf ich noch einmal wiederholen, was ich notiert habe? Wunde am rechten Vorfuß, keine Allergien, Insulin nach dem Plan Ihrer Hausärztin, Brille, Gehstock, und Ihre Tochter als Kontakt.",
+   "pl": "Czy mogę jeszcze raz powtórzyć, co zanotowałam? Rana na przodostopiu prawym, brak alergii, insulina według planu pani lekarki rodzinnej, okulary, laska, a jako osoba do kontaktu pani córka."
+  },
+  "noeuds.zusammenfassen.choix.1.puis.0": {
+   "fr": "Oui, c'est tout à fait ça.",
+   "de": "Ja, das stimmt alles.",
+   "pl": "Tak, wszystko się zgadza."
+  },
+  "noeuds.naechste.choix.0": {
+   "fr": "Bien. Tout à l'heure, je mesure votre glycémie, et ensuite la médecin passe vous voir. Le pansement du pied, nous le regarderons ensemble cet après-midi.",
+   "de": "Gut. Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen. Den Verband am Fuß sehen wir uns heute Nachmittag zusammen an.",
+   "pl": "Dobrze. Za chwilę zmierzę pani cukier, a potem przyjdzie do pani lekarka. Opatrunek na stopie obejrzymy razem dziś po południu."
+  },
+  "noeuds.naechste.choix.0.puis.0": {
+   "fr": "Merci, jeune femme. Vous avez été très gentille.",
+   "de": "Danke, junge Frau. Sie haben das sehr nett gemacht.",
+   "pl": "Dziękuję, młoda damo. Bardzo miło to pani zrobiła."
+  },
+  "noeuds.naechste.choix.1": {
+   "fr": "Merci, {lehmann:voc}. Je vais encore mesurer votre glycémie. La médecin passe ce matin, et si vous avez besoin de quelque chose, appuyez ici sur la sonnette.",
+   "de": "Danke, {lehmann}. Ich messe jetzt noch Ihren Blutzucker. Die Ärztin kommt heute Vormittag, und wenn Sie etwas brauchen, drücken Sie hier auf die Klingel.",
+   "pl": "Dziękuję, {lehmann:voc}. Teraz jeszcze zmierzę pani cukier. Lekarka przyjdzie dziś przed południem, a jeśli będzie pani czegoś potrzebować, proszę nacisnąć tutaj dzwonek."
+  },
+  "noeuds.naechste.choix.1.puis.0": {
+   "fr": "Merci, jeune femme. Vous avez été très gentille.",
+   "de": "Danke, junge Frau. Sie haben das sehr nett gemacht.",
+   "pl": "Dziękuję, młoda damo. Bardzo miło to pani zrobiła."
+  },
+  "noeuds.naechste.choix.2": {
+   "fr": "Terminé. Salut !",
+   "de": "Fertig. Tschüss!",
+   "pl": "Gotowe. Cześć!"
+  },
+  "noeuds.naechste.choix.2.puis.0": {
+   "fr": "Et qu'est-ce qui va se passer pour moi maintenant ?",
+   "de": "Und was passiert jetzt mit mir?",
+   "pl": "A co teraz będzie się ze mną działo?"
+  },
+  "noeuds.naechste.choix.2.aide": {
+   "fr": "<b>À la fin, on dit ce qui va se passer.</b> « Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen. » Et on montre la sonnette.",
+   "pl": "<b>Na koniec mówi się, co będzie dalej.</b> „Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen.” I pokazuje się dzwonek."
+  },
+  "ecouter.0.q": {
+   "fr": "Pourquoi {lehmann} vient-elle à l'hôpital ?",
+   "de": "Warum kommt {lehmann} ins Krankenhaus?",
+   "pl": "Dlaczego {lehmann} przychodzi do szpitala?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "À cause d'une plaie au pied.",
+   "de": "Wegen einer Wunde am Fuß.",
+   "pl": "Z powodu rany na stopie."
+  },
+  "ecouter.0.options.1": {
+   "fr": "À cause d'une allergie.",
+   "de": "Wegen einer Allergie.",
+   "pl": "Z powodu alergii."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Parce qu'elle est tombée.",
+   "de": "Weil sie gestürzt ist.",
+   "pl": "Bo się przewróciła."
+  },
+  "ecouter.1.q": {
+   "fr": "Qu'est-ce que {lehmann} ne sait pas exactement ?",
+   "de": "Was weiß {lehmann} nicht genau?",
+   "pl": "Czego {lehmann} nie wie dokładnie?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Combien de fois elle se lève la nuit.",
+   "de": "Wie oft sie nachts aufsteht.",
+   "pl": "Ile razy wstaje w nocy."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Combien d'unités d'insuline elle s'injecte.",
+   "de": "Wie viele Einheiten Insulin sie spritzt.",
+   "pl": "Ile jednostek insuliny sobie wstrzykuje."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Comment s'appelle sa fille.",
+   "de": "Wie ihre Tochter heißt.",
+   "pl": "Jak ma na imię jej córka."
+  },
+  "ecouter.2.q": {
+   "fr": "Qui l'hôpital peut-il appeler en cas d'urgence ?",
+   "de": "Wen darf das Krankenhaus im Notfall anrufen?",
+   "pl": "Do kogo szpital może zadzwonić w nagłym wypadku?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Sa médecin traitante.",
+   "de": "Ihre Hausärztin.",
+   "pl": "Do jej lekarki rodzinnej."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Son voisin.",
+   "de": "Ihren Nachbarn.",
+   "pl": "Do jej sąsiada."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Sa fille.",
+   "de": "Ihre Tochter.",
+   "pl": "Do jej córki."
+  }
+ }
+}

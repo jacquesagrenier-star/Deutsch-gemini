@@ -1143,47 +1143,64 @@ window.SCENE = {
    ]
   },
   "SIT": {
-   "titre": "Que faites-vous ?",
+   "titre": "Que répondez-vous ?",
    "niveau": "B2",
    "qs": [
     {
-     "q": "In der Anordnung im Laptop fehlt bei einem Medikament die Abenddosis. Was tun Sie?",
+     "q": "Herr Brandt sagt: „Nein. Heute nicht. Lassen Sie mich in Ruhe.“",
      "c": [
-      "Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.",
-      "Ich gebe die Morgendosis noch einmal.",
-      "Ich lasse das Medikament heute Abend weg."
-     ],
-     "f": "laptop",
-     "type": "situation",
-     "phrase": "Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.",
-     "sens": "Je demande à la médecin avant de donner le médicament.",
-     "n": "Une prescription incomplète ne s'interprète pas : on demande au médecin avant de donner ⚕️."
-    },
-    {
-     "q": "Herr Brandt sagt nach der Visite: „Ich habe nichts verstanden.“ Was tun Sie?",
-     "c": [
-      "Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.",
-      "Ich sage ihm, die Ärztin hat doch alles erklärt.",
-      "Ich gebe ihm den Ausdruck vom Befund."
+      "Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?",
+      "Aber das ist doch wichtig! Sie müssen das machen.",
+      "Stehen Sie jetzt auf. Wir müssen laufen."
      ],
      "f": "patient",
      "type": "situation",
-     "phrase": "Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.",
-     "sens": "Je lui réexplique avec des mots simples, et je demande à la médecin si nécessaire.",
-     "n": "Le patient a droit à une information qu'il comprend : on reformule simplement, et la médecin revient pour ce qui est médical ⚕️."
+     "phrase": "Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?",
+     "sens": "Je comprends que vous n'ayez pas envie aujourd'hui. Puis-je vous demander pourquoi ?",
+     "n": "<b>D'abord écouter, ensuite expliquer.</b> Demande la raison du refus : « Darf ich fragen, warum? ». Sans la raison, tu ne peux pas trouver de solution.",
+     "source": "d04-ablehnung/verstehen"
     },
     {
-     "q": "Die Ärztin ordnet mündlich ein neues Medikament an und geht schnell weiter. Was tun Sie?",
+     "q": "Herr Brandt fragt: „Hm. Und warum ist das eigentlich so wichtig mit dem Laufen?“",
      "c": [
-      "Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.",
-      "Ich merke sie mir und trage sie später selbst ein.",
-      "Ich gebe das Medikament und frage morgen nach."
+      "Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.",
+      "Wenn Sie nicht laufen, werden Sie nie wieder gesund.",
+      "Weil der Arzt das so will."
      ],
-     "f": "notizblock",
+     "f": "patient",
      "type": "situation",
-     "phrase": "Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.",
-     "sens": "Je répète la prescription, je la note et je lui demande de l'inscrire.",
-     "n": "Une prescription orale : on la répète, on la note, et la médecin l'inscrit elle-même (règle de la maison) ⚕️."
+     "phrase": "Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.",
+     "sens": "Si vous restez longtemps couché, les muscles s'affaiblissent, et le risque de thrombose ou de pneumonie augmente.",
+     "n": "<b>Pas de menace ni d'exagération : un risque, dit avec des faits.</b> « Wenn Sie lange liegen bleiben, steigt das Risiko für … ». La peur ne motive pas, elle bloque. ⚕️",
+     "source": "d04-ablehnung/erklaeren"
+    },
+    {
+     "q": "Herr Brandt sagt: „Thrombose … das hatte mein Bruder. Aber heute schaff ich das nicht, wirklich nicht.“",
+     "c": [
+      "Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.",
+      "Wie ist es, wenn wir uns an die Bettkante setzen?",
+      "Bewegen Sie das Bein ganz viel, dann geht der Schmerz weg."
+     ],
+     "f": "patient",
+     "type": "situation",
+     "phrase": "Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.",
+     "sens": "Et si, aujourd'hui, on s'asseyait seulement au bord du lit ? Juste quelques minutes.",
+     "n": "<b>Pour proposer, le Konjunktiv II : « Wie wäre es, wenn …? »</b> « Wie ist es » demande comment est une chose, ce n'est pas une proposition. Autre tournure : « Was halten Sie davon, wenn …? » ⚕️",
+     "source": "d04-ablehnung/kompromiss"
+    },
+    {
+     "q": "Herr Brandt sagt: „Hm … Nein. Ich hab's mir überlegt. Heute bleib ich liegen, basta.“",
+     "c": [
+      "In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.",
+      "Nein, das geht nicht. Ich hole jetzt Jonas, und dann stehen Sie auf.",
+      "Das ist nicht schlimm."
+     ],
+     "f": "patient",
+     "type": "situation",
+     "phrase": "In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.",
+     "sens": "D'accord, je le respecte. Je le note dans le dossier et je préviens la docteure Sommer.",
+     "n": "<b>Un patient capable de décider a le droit de refuser un soin.</b> On ne le force pas : on respecte, on documente (« Ich dokumentiere es ») et on informe le médecin. On peut reproposer plus tard. ⚕️",
+     "source": "d04-ablehnung/entscheidung"
     }
    ]
   }
@@ -1200,7 +1217,7 @@ window.SCENE = {
     "B1": "The verbs of prescribing",
     "B2": "Reporting an instruction",
     "C1": "Asking for clarification tactfully",
-    "SIT": "What do you do?"
+    "SIT": "What do you answer?"
    },
    "questions": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "<b>sollen</b>: what someone else asks for, here the doctor. The second verb goes to the end, in the infinitive.",
@@ -1227,9 +1244,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "<b>Mir ist noch nicht ganz klar, ob …</b>: you say what you haven't understood, without blaming anyone.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "A verbal order is confirmed in writing (<b>schriftlich</b>) ⚕️.",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Repeating the order and asking <b>richtig?</b>: closed-loop communication ⚕️.",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "An incomplete prescription is never interpreted: ask the doctor before giving anything ⚕️.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "The patient has the right to information he can understand: rephrase it simply, and the doctor comes back for anything medical ⚕️.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "A verbal order: repeat it, write it down, and the doctor enters it herself (hospital rule) ⚕️."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "<b>Listen first, explain afterwards.</b> Ask the reason for the refusal: “Darf ich fragen, warum?”. Without the reason, you can't find a solution.",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "<b>No threats and no exaggeration: state a risk, with facts.</b> “Wenn Sie lange liegen bleiben, steigt das Risiko für …”. Fear doesn't motivate, it blocks. ⚕️",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "<b>To make a suggestion, use the Konjunktiv II: “Wie wäre es, wenn …?”</b> “Wie ist es” asks what something is like; it isn't a suggestion. Another way to say it: “Was halten Sie davon, wenn …?” ⚕️",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "<b>A patient who has decision-making capacity has the right to refuse care.</b> You don't force him: you respect it, you document it (“Ich dokumentiere es”) and you inform the doctor. You can offer again later. ⚕️"
    },
    "sens": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "Herr Brandt is supposed to get up today and walk a little.",
@@ -1256,9 +1274,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "I'm not quite sure yet whether he is allowed to get up on his own.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "Would you please also enter the order in writing?",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Let me repeat quickly: from this evening, two tablets instead of one, correct?",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "I check with the doctor before I give the medication.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "I explain it to him again in simple words and ask the doctor if necessary.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "I repeat the order, write it down and ask her to enter it."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "I understand that you don't feel like it today. May I ask why?",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "If you stay in bed for a long time, your muscles get weak, and the risk of thrombosis or pneumonia goes up.",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "How about we just sit on the edge of the bed today? Just for a few minutes.",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "All right, I respect that. I'll document it and let Dr. Sommer know."
    }
   },
   "tr": {
@@ -1272,7 +1291,7 @@ window.SCENE = {
     "B1": "Hekim istemi fiilleri",
     "B2": "Bir talimatı aktarmak",
     "C1": "Nezaketle açıklama istemek",
-    "SIT": "Ne yaparsınız?"
+    "SIT": "Ne cevap verirsiniz?"
    },
    "questions": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "<b>sollen</b>: başka birinin istediği şey, burada doktorun. İkinci fiil mastar hâlinde sona gider.",
@@ -1299,9 +1318,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "<b>Mir ist noch nicht ganz klar, ob …</b>: anlaşılmayan şey sitem etmeden söylenir.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "Sözlü bir talimat yazılı olarak (<b>schriftlich</b>) teyit ettirilir ⚕️.",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Talimatı tekrarlamak ve <b>richtig?</b> diye sormak: kapalı döngü iletişimle doğrulama ⚕️.",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Eksik bir hekim istemi yoruma bırakılmaz: ilacı vermeden önce doktora sorulur ⚕️.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "Hastanın anlayabileceği bir bilgilendirmeye hakkı vardır: basitçe yeniden anlatılır, tıbbi konular için doktor tekrar gelir ⚕️.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Sözlü bir hekim istemi: tekrarlanır, not edilir ve doktor onu kendisi kayda geçirir (kurum kuralı) ⚕️."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "<b>Önce dinle, sonra açıkla.</b> Reddin nedenini sor: “Darf ich fragen, warum?”. Nedeni bilmeden çözüm bulamazsın.",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "<b>Tehdit de abartı da yok: gerçeklere dayanan bir risk.</b> “Wenn Sie lange liegen bleiben, steigt das Risiko für …”. Korku motive etmez, kilitler. ⚕️",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "<b>Öneride bulunmak için Konjunktiv II: “Wie wäre es, wenn …?”</b> “Wie ist es” bir şeyin nasıl olduğunu sorar, öneri değildir. Başka bir kalıp: “Was halten Sie davon, wenn …?” ⚕️",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "<b>Karar verme yetisi olan bir hastanın bir bakım işlemini reddetme hakkı vardır.</b> Zorlanmaz: saygı gösterilir, kayıt tutulur (“Ich dokumentiere es”) ve doktora haber verilir. Daha sonra yeniden önerilebilir. ⚕️"
    },
    "sens": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "Herr Brandt bugün kalkıp biraz yürümeli.",
@@ -1328,9 +1348,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "Tek başına kalkmasına izin olup olmadığı bana henüz tam açık değil.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "Hekim istemini lütfen yazılı olarak da girer misiniz?",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Kısaca tekrarlıyorum: bu akşamdan itibaren bir yerine iki tablet, doğru mu?",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "İlacı vermeden önce doktora sorarım.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "Ona bir kez daha basit sözcüklerle açıklarım ve gerekirse doktora sorarım.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Hekim istemini tekrarlarım, not ederim ve doktordan onu kayda geçirmesini rica ederim."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "Bugün canınızın istemediğini anlıyorum. Nedenini sorabilir miyim?",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "Uzun süre yatarsanız kaslarınız zayıflar ve tromboz ya da zatürre riski artar.",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "Bugün sadece yatağın kenarına otursak nasıl olur? Sadece birkaç dakika.",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "Tamam, buna saygı duyuyorum. Dosyaya kaydedip Dr. Sommer'e haber veriyorum."
    }
   },
   "uk": {
@@ -1344,7 +1365,7 @@ window.SCENE = {
     "B1": "Дієслова призначень",
     "B2": "Переказати вказівку",
     "C1": "Тактовно попросити уточнення",
-    "SIT": "Що ви робите?"
+    "SIT": "Що ви відповісте?"
    },
    "questions": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "<b>sollen</b>: те, чого вимагає інша людина, тут — лікарка. Друге дієслово йде в кінець, в інфінітиві.",
@@ -1371,9 +1392,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "<b>Mir ist noch nicht ganz klar, ob …</b>: кажемо, що саме незрозуміло, без докору.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "Усну вказівку просять підтвердити письмово (<b>schriftlich</b>) ⚕️.",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Повторити вказівку й спитати <b>richtig?</b>: перевірка за принципом замкненого циклу ⚕️.",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Неповне призначення не тлумачать на власний розсуд: перш ніж дати ліки, питають лікаря ⚕️.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "Пацієнт має право на зрозумілу йому інформацію: пояснюємо простими словами, а з медичних питань лікарка приходить ще раз ⚕️.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Усне призначення: його повторюють, записують, а лікарка сама вносить його в документацію (правило закладу) ⚕️."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "<b>Спершу вислухати, потім пояснювати.</b> Запитай про причину відмови: «Darf ich fragen, warum?». Не знаючи причини, ти не знайдеш рішення.",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "<b>Жодних погроз і перебільшень: ризик, названий через факти.</b> «Wenn Sie lange liegen bleiben, steigt das Risiko für …». Страх не мотивує, він блокує. ⚕️",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "<b>Щоб запропонувати, вживають Konjunktiv II: «Wie wäre es, wenn …?»</b> «Wie ist es» питає, яка якась річ, це не пропозиція. Інший зворот: «Was halten Sie davon, wenn …?» ⚕️",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "<b>Пацієнт, здатний ухвалювати рішення, має право відмовитися від процедури.</b> Його не змушують: поважають, документують («Ich dokumentiere es») і повідомляють лікаря. Пізніше можна запропонувати ще раз. ⚕️"
    },
    "sens": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "Herr Brandt має сьогодні встати й трохи походити.",
@@ -1400,9 +1422,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "Мені ще не зовсім зрозуміло, чи можна йому вставати самому.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "Чи не могли б ви ще внести призначення письмово?",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Коротко повторю: з сьогоднішнього вечора дві таблетки замість однієї, правильно?",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Перш ніж дати ліки, я перепитую в лікарки.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "Я ще раз пояснюю йому простими словами й, якщо треба, питаю лікарку.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Я повторюю призначення, записую його й прошу лікарку внести його в документацію."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "Я розумію, що сьогодні вам не хочеться. Можна спитати чому?",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "Якщо ви довго лежатимете, мʼязи слабшають, і зростає ризик тромбозу чи пневмонії.",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "А що, як сьогодні ми лише сядемо на край ліжка? Усього на кілька хвилин.",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "Гаразд, я це поважаю. Я задокументую це й повідомлю лікарку Зоммер."
    }
   },
   "fa": {
@@ -1416,7 +1439,7 @@ window.SCENE = {
     "B1": "فعل‌های دستورِ پزشک",
     "B2": "نقل کردنِ یک دستور",
     "C1": "پرسیدنِ توضیحِ بیشتر با نزاکت",
-    "SIT": "چه می‌کنید؟"
+    "SIT": "چه جواب می‌دهید؟"
    },
    "questions": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "<b>sollen</b>: آنچه شخصِ دیگری می‌خواهد، اینجا پزشک. فعلِ دوم به شکلِ مصدر به آخر می‌رود.",
@@ -1443,9 +1466,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "<b>Mir ist noch nicht ganz klar, ob …</b>: می‌گوییم چه چیزی را نفهمیده‌ایم، بدونِ سرزنش.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "دستورِ شفاهی باید کتبی (<b>schriftlich</b>) هم تأیید شود ⚕️.",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "دستور را تکرار می‌کنیم و می‌پرسیم <b>richtig?</b>: تأیید به روشِ «حلقهٔ بسته» ⚕️.",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "دستورِ ناقص را خودمان تفسیر نمی‌کنیم: پیش از دادنِ دارو از پزشک می‌پرسیم ⚕️.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "بیمار حق دارد اطلاعاتی بگیرد که بفهمد: به زبانِ ساده دوباره توضیح می‌دهیم، و برای مسائلِ پزشکی، پزشک دوباره می‌آید ⚕️.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "دستورِ شفاهی: تکرارش می‌کنیم، یادداشتش می‌کنیم، و پزشک خودش آن را ثبت می‌کند (طبقِ مقرراتِ بیمارستان) ⚕️."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "<b>اول گوش بده، بعد توضیح بده.</b> دلیل امتناع را بپرس: «Darf ich fragen, warum?». بدون دانستن دلیل، نمی‌توانی راه‌حلی پیدا کنی.",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "<b>نه تهدید، نه اغراق: یک خطر، با بیان واقعیت‌ها.</b> «Wenn Sie lange liegen bleiben, steigt das Risiko für …». ترس انگیزه نمی‌دهد، آدم را از کار می‌اندازد. ⚕️",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "<b>برای پیشنهاد دادن، Konjunktiv II: «Wie wäre es, wenn …?»</b> «Wie ist es» می‌پرسد چیزی چگونه است، پیشنهاد نیست. عبارت دیگر: «Was halten Sie davon, wenn …?» ⚕️",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "<b>بیماری که توان تصمیم‌گیری دارد، حق دارد یک کار مراقبتی را نپذیرد.</b> مجبورش نمی‌کنیم: احترام می‌گذاریم، ثبت می‌کنیم («Ich dokumentiere es») و به پزشک اطلاع می‌دهیم. می‌توان بعداً دوباره پیشنهاد داد. ⚕️"
    },
    "sens": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "<span lang=\"de\">Herr Brandt</span> امروز باید از جایش بلند شود و کمی راه برود.",
@@ -1472,9 +1496,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "هنوز کاملاً برایم روشن نیست که آیا اجازه دارد تنهایی بلند شود.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "ممکن است لطفاً دستور را کتبی هم ثبت کنید؟",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "کوتاه تکرار می‌کنم: از امشب دو قرص به جای یکی، درست است؟",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "پیش از دادنِ دارو از پزشک می‌پرسم.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "یک بار دیگر با کلماتِ ساده برایش توضیح می‌دهم و اگر لازم بود، از پزشک می‌پرسم.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "دستور را تکرار می‌کنم، یادداشتش می‌کنم و از پزشک می‌خواهم آن را ثبت کند."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "درک می‌کنم که امروز حوصله‌اش را ندارید. می‌توانم بپرسم چرا؟",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "اگر مدت طولانی دراز بکشید، عضلات ضعیف می‌شوند و خطر ترومبوز یا ذات‌الریه بیشتر می‌شود.",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "نظرتان چیست که امروز فقط لبه‌ی تخت بنشینیم؟ فقط چند دقیقه.",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "بسیار خب، به تصمیمتان احترام می‌گذارم. در پرونده ثبتش می‌کنم و به دکتر زومر خبر می‌دهم."
    }
   },
   "ar": {
@@ -1488,7 +1513,7 @@ window.SCENE = {
     "B1": "أفعال الوصفة الطبية",
     "B2": "نقل التعليمات",
     "C1": "طلب التوضيح بلباقة",
-    "SIT": "ما التصرّف الصحيح؟"
+    "SIT": "ما الردّ المناسب؟"
    },
    "questions": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "<b>sollen</b>: ما يطلبه شخص آخر، وهنا الطبيبة. ويذهب الفعل الثاني إلى الآخر بصيغة المصدر.",
@@ -1515,9 +1540,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "<b>Mir ist noch nicht ganz klar, ob …</b>: نقول ما لم نفهمه، دون لوم.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "التعليمات الشفهية تُؤكَّد كتابةً (<b>schriftlich</b>) ⚕️.",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "نكرّر التعليمات ونسأل <b>richtig?</b>: التحقّق بطريقة «الحلقة المغلقة» ⚕️.",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "الوصفة الناقصة لا نفسّرها بأنفسنا: نسأل الطبيب قبل إعطاء الدواء ⚕️.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "من حقّ المريض أن يحصل على معلومات يفهمها: نعيد الشرح ببساطة، وتعود الطبيبة لما هو طبي ⚕️.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "الوصفة الشفهية: نكرّرها ونكتبها، وتسجّلها الطبيبة بنفسها (وفق قواعد المؤسسة) ⚕️."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "<b>استمع أولًا، ثم اشرح.</b> اسأل عن سبب الرفض: «Darf ich fragen, warum?». من دون معرفة السبب لا يمكنك أن تجد حلًّا.",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "<b>لا تهديد ولا مبالغة: خطر يُقال بالحقائق.</b> «Wenn Sie lange liegen bleiben, steigt das Risiko für …». الخوف لا يحفّز، بل يشلّ. ⚕️",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "<b>للاقتراح نستعمل الـKonjunktiv II: «Wie wäre es, wenn …?»</b> أما «Wie ist es» فتسأل كيف هو الشيء، وليست اقتراحًا. صيغة أخرى: «Was halten Sie davon, wenn …?» ⚕️",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "<b>المريض القادر على اتخاذ القرار له الحق في رفض الإجراء.</b> لا نجبره: نحترم قراره، ونوثّق («Ich dokumentiere es»)، ونبلغ الطبيب. ويمكننا أن نعيد الاقتراح لاحقًا. ⚕️"
    },
    "sens": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "يجب أن ينهض السيد <span lang=\"de\">Brandt</span> اليوم ويمشي قليلًا.",
@@ -1544,9 +1570,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "لم يتّضح لي تمامًا بعدُ إن كان يحقّ له النهوض وحده.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "هل يمكنكِ من فضلك تسجيل التعليمات كتابةً أيضًا؟",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "أكرّر باختصار: ابتداءً من هذا المساء قرصان بدلًا من قرص واحد، صحيح؟",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "أسأل الطبيبة قبل أن أعطي الدواء.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "أشرح له مرة أخرى بكلمات بسيطة، وأسأل الطبيبة إذا لزم الأمر.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "أكرّر التعليمات وأكتبها وأطلب منها أن تسجّلها."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "أفهم أنك لا ترغب في ذلك اليوم. هل يمكنني أن أسألك لماذا؟",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "إذا بقيت مستلقيًا مدة طويلة، تضعف العضلات، ويزداد خطر الإصابة بالخثار أو بالتهاب رئوي.",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "ما رأيك لو جلسنا اليوم على حافة السرير فقط؟ بضع دقائق لا أكثر.",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "حسنًا، أحترم ذلك. سأوثّقه في الملف وأخبر الدكتورة زومر."
    }
   },
   "pt": {
@@ -1560,7 +1587,7 @@ window.SCENE = {
     "B1": "Os verbos da prescrição",
     "B2": "Relatar uma orientação",
     "C1": "Pedir um esclarecimento com tato",
-    "SIT": "O que fazer?"
+    "SIT": "O que responder?"
    },
    "questions": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "<b>sollen</b>: o que outra pessoa pede, aqui a médica. O segundo verbo vai para o final, no infinitivo.",
@@ -1587,9 +1614,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "<b>Mir ist noch nicht ganz klar, ob …</b>: diz-se o que não se entendeu, sem censura.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "Uma orientação verbal deve ser confirmada por escrito (<b>schriftlich</b>) ⚕️.",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Repetir a orientação e perguntar <b>richtig?</b>: a comunicação em circuito fechado ⚕️.",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Uma prescrição incompleta não se interpreta: pergunta-se ao médico antes de administrar ⚕️.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "O paciente tem direito a uma informação que ele entenda: reformula-se de forma simples, e a médica volta para o que é médico ⚕️.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Uma prescrição verbal: repete-se, anota-se, e a médica a registra ela mesma (regra do hospital) ⚕️."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "<b>Primeiro escutar, depois explicar.</b> Pergunte o motivo da recusa: “Darf ich fragen, warum?”. Sem o motivo, você não consegue encontrar uma solução.",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "<b>Nada de ameaça nem de exagero: um risco, dito com fatos.</b> “Wenn Sie lange liegen bleiben, steigt das Risiko für …”. O medo não motiva, ele paralisa. ⚕️",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "<b>Para propor, o Konjunktiv II: “Wie wäre es, wenn …?”</b> “Wie ist es” pergunta como uma coisa é, não é uma proposta. Outra forma: “Was halten Sie davon, wenn …?” ⚕️",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "<b>Um paciente capaz de decidir tem o direito de recusar um cuidado.</b> Ninguém o obriga: respeita-se, registra-se (“Ich dokumentiere es”) e informa-se o médico. Pode-se propor de novo mais tarde. ⚕️"
    },
    "sens": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "Herr Brandt deve se levantar hoje e andar um pouco.",
@@ -1616,9 +1644,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "Ainda não está bem claro para mim se ele pode se levantar sozinho.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "A senhora poderia registrar a prescrição também por escrito, por favor?",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Vou repetir rapidinho: a partir de hoje à noite, dois comprimidos em vez de um, certo?",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Confirmo com a médica antes de dar o medicamento.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "Explico de novo para ele com palavras simples e pergunto à médica, se for preciso.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Repito a prescrição, anoto e peço que ela a registre."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "Eu entendo que o senhor não esteja com vontade hoje. Posso perguntar por quê?",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "Se o senhor ficar deitado por muito tempo, os músculos enfraquecem, e o risco de trombose ou de pneumonia aumenta.",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "Que tal se hoje a gente só se sentasse na beira da cama? Só por alguns minutos.",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "Tudo bem, eu respeito. Vou registrar no prontuário e avisar a Dra. Sommer."
    }
   },
   "pl": {
@@ -1632,7 +1661,7 @@ window.SCENE = {
     "B1": "Czasowniki zleceń lekarskich",
     "B2": "Przekazać czyjeś polecenie",
     "C1": "Taktownie poprosić o doprecyzowanie",
-    "SIT": "Co zrobić?"
+    "SIT": "Co odpowiedzieć?"
    },
    "questions": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "<b>sollen</b>: to, o co prosi ktoś inny, tutaj lekarka. Drugi czasownik idzie na koniec, w bezokoliczniku.",
@@ -1659,9 +1688,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "<b>Mir ist noch nicht ganz klar, ob …</b>: mówi się, czego się nie zrozumiało, bez wyrzutu.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "Ustne polecenie potwierdza się na piśmie (<b>schriftlich</b>) ⚕️.",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Powtórzyć polecenie i zapytać <b>richtig?</b>: komunikacja w zamkniętej pętli ⚕️.",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Niepełnego zlecenia się nie interpretuje: przed podaniem leku pyta się lekarza ⚕️.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "Pacjent ma prawo do informacji, którą rozumie: przekazuje się ją prostymi słowami, a w sprawach medycznych wraca do niego lekarka ⚕️.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Ustne zlecenie: powtarza się je, zapisuje, a lekarka sama je wpisuje (zasada obowiązująca w szpitalu) ⚕️."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "<b>Najpierw wysłuchać, potem wyjaśniać.</b> Zapytaj o powód odmowy: „Darf ich fragen, warum?”. Bez znajomości powodu nie znajdziesz rozwiązania.",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "<b>Bez gróźb i przesady: ryzyko przedstawione za pomocą faktów.</b> „Wenn Sie lange liegen bleiben, steigt das Risiko für …”. Strach nie motywuje, tylko blokuje. ⚕️",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "<b>Żeby coś zaproponować, użyj Konjunktiv II: „Wie wäre es, wenn …?”</b> „Wie ist es” pyta, jaka jest jakaś rzecz, to nie jest propozycja. Inny zwrot: „Was halten Sie davon, wenn …?” ⚕️",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "<b>Pacjent zdolny do podejmowania decyzji ma prawo odmówić czynności.</b> Nie zmusza się go: szanuje się decyzję, dokumentuje ją („Ich dokumentiere es”) i informuje lekarza. Można zaproponować ponownie później. ⚕️"
    },
    "sens": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "Herr Brandt ma dziś wstać i trochę pochodzić.",
@@ -1688,9 +1718,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "Nie jest dla mnie jeszcze do końca jasne, czy może sam wstawać.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "Czy mogłaby pani jeszcze wpisać to zlecenie na piśmie?",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Krótko powtórzę: od dziś wieczorem dwie tabletki zamiast jednej, zgadza się?",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Zanim podam lek, dopytuję lekarkę.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "Wyjaśniam mu to jeszcze raz prostymi słowami i w razie potrzeby pytam lekarkę.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Powtarzam zlecenie, zapisuję je i proszę lekarkę, żeby je wpisała."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "Rozumiem, że nie ma pan dziś ochoty. Czy mogę zapytać dlaczego?",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "Jeśli długo pan leży, mięśnie słabną i rośnie ryzyko zakrzepicy albo zapalenia płuc.",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "A może dziś tylko usiądziemy na brzegu łóżka? Tylko na kilka minut.",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "Dobrze, szanuję to. Udokumentuję to i dam znać doktor Sommer."
    }
   },
   "ru": {
@@ -1704,7 +1735,7 @@ window.SCENE = {
     "B1": "Глаголы врачебных назначений",
     "B2": "Передать чужое указание",
     "C1": "Тактично попросить уточнения",
-    "SIT": "Что делать?"
+    "SIT": "Что ответить?"
    },
    "questions": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "<b>sollen</b>: то, о чём просит другой человек, здесь — врач. Второй глагол уходит в конец, в инфинитиве.",
@@ -1731,9 +1762,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "<b>Mir ist noch nicht ganz klar, ob …</b>: говорят, что осталось непонятным, без упрёка.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "Устное назначение подтверждают письменно (<b>schriftlich</b>) ⚕️.",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Повторить назначение и спросить <b>richtig?</b>: проверка по принципу замкнутой петли ⚕️.",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Неполное назначение не толкуют сами: прежде чем дать лекарство, спрашивают врача ⚕️.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "Пациент имеет право на понятную ему информацию: её переформулируют простыми словами, а по медицинским вопросам к нему снова приходит врач ⚕️.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Устное назначение: его повторяют, записывают, а врач сама вносит его в документацию (правило учреждения) ⚕️."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "<b>Сначала выслушать, потом объяснять.</b> Спроси о причине отказа: «Darf ich fragen, warum?». Не зная причины, решения не найти.",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "<b>Никаких угроз и преувеличений: риск, названный с фактами.</b> «Wenn Sie lange liegen bleiben, steigt das Risiko für …». Страх не мотивирует, он парализует. ⚕️",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "<b>Чтобы предложить, нужен Konjunktiv II: «Wie wäre es, wenn …?»</b> «Wie ist es» спрашивает, какова вещь, — это не предложение. Другой оборот: «Was halten Sie davon, wenn …?» ⚕️",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "<b>Пациент, способный принимать решения, имеет право отказаться от процедуры.</b> Его не принуждают: уважают его решение, документируют («Ich dokumentiere es») и сообщают врачу. Позже можно предложить ещё раз. ⚕️"
    },
    "sens": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "Herr Brandt должен сегодня встать и немного походить.",
@@ -1760,9 +1792,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "Мне пока не совсем ясно, можно ли ему вставать одному.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "Не могли бы вы ещё внести назначение письменно?",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Коротко повторю: с сегодняшнего вечера две таблетки вместо одной, правильно?",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Я уточняю у врача, прежде чем дать лекарство.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "Я ещё раз объясняю ему простыми словами и при необходимости спрашиваю врача.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Я повторяю назначение, записываю его и прошу врача внести его в документацию."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "Я понимаю, что сегодня вам не хочется. Можно спросить почему?",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "Если вы будете долго лежать, мышцы ослабнут, и повысится риск тромбоза или пневмонии.",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "А что если сегодня мы только сядем на край кровати? Всего на несколько минут.",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "Хорошо, я это уважаю. Я внесу это в документацию и поставлю в известность доктора Зоммер."
    }
   },
   "es": {

@@ -1,0 +1,446 @@
+{
+ "_langue": "ru",
+ "_source": "pflege/sources/dialogues/d13-aufnahmegespraech.json",
+ "cles": {
+  "titre": {
+   "fr": "L'entretien d'admission",
+   "de": "Das Aufnahmegespräch",
+   "ru": "Беседа при поступлении"
+  },
+  "intro": {
+   "fr": "Lundi matin, 10 h 30. {lehmann} arrive au {station} avec sa canne et la lettre de sa médecin traitante : une plaie au pied qui ne guérit pas. Tu joues {elif} : tu fais l'entretien d'admission à l'oral, avant de remplir la fiche. Pose tes questions poliment, vérifie ce qui reste vague, puis résume et explique la suite.",
+   "ru": "Понедельник, 10:30 утра. {lehmann} поступает в {station} с тростью и письмом от своего семейного врача: рана на стопе, которая не заживает. Ты играешь роль {elif:gen}: ты проводишь беседу при поступлении устно, прежде чем заполнить анкету. Задавай вопросы вежливо, уточняй то, что осталось неясным, затем подведи итог и объясни, что будет дальше."
+  },
+  "but": {
+   "fr": "Mener un entretien d'admission : se présenter et l'annoncer ; poser des questions polies et indirectes (Darf ich fragen, ob … ? Können Sie mir sagen, welche … ?) ; demander une précision quand une réponse est vague ; résumer ; expliquer ce qui va se passer.",
+   "ru": "Провести беседу при поступлении: представиться и объявить беседу; задавать вежливые косвенные вопросы (Darf ich fragen, ob … ? Können Sie mir sagen, welche … ?); попросить уточнить, если ответ расплывчатый; подвести итог; объяснить, что будет дальше."
+  },
+  "relire_notes": {
+   "fr": "Les rubriques de l'entretien d'admission infirmier et leur ordre ; la dose d'insuline : se fier au plan de médicaments, jamais à la mémoire ; la levée du secret pour la fille ; ce qui se passe après l'admission (glycémie, médecin, pansement).",
+   "ru": "Разделы сестринского сбора анамнеза при поступлении и их порядок; доза инсулина: опираться на план приёма лекарств, а не на память; освобождение от врачебной тайны для дочери; что происходит после поступления (глюкоза крови, врач, перевязка)."
+  },
+  "redemittel.0": {
+   "fr": "J'aimerais maintenant vous poser quelques questions. Cela dure environ un quart d'heure.",
+   "de": "Ich möchte Ihnen jetzt ein paar Fragen stellen. Das dauert ungefähr eine Viertelstunde.",
+   "ru": "Сейчас я хотела бы задать вам несколько вопросов. Это займёт примерно четверть часа."
+  },
+  "redemittel.1": {
+   "fr": "Pouvez-vous me dire pourquoi vous venez chez nous aujourd'hui ?",
+   "de": "Können Sie mir sagen, warum Sie heute zu uns kommen?",
+   "ru": "Можете сказать, почему вы сегодня пришли к нам?"
+  },
+  "redemittel.2": {
+   "fr": "Puis-je vous demander si vous avez des allergies ?",
+   "de": "Darf ich fragen, ob Sie Allergien haben?",
+   "ru": "Можно спросить, есть ли у вас аллергия?"
+  },
+  "redemittel.3": {
+   "fr": "Savez-vous combien d'unités d'insuline vous vous injectez le matin ?",
+   "de": "Wissen Sie, wie viele Einheiten Insulin Sie morgens spritzen?",
+   "ru": "Вы знаете, сколько единиц инсулина вы колете утром?"
+  },
+  "redemittel.4": {
+   "fr": "Avez-vous peut-être votre plan de médicaments sur vous ?",
+   "de": "Haben Sie vielleicht Ihren Medikamentenplan dabei?",
+   "ru": "У вас, случайно, нет с собой плана приёма лекарств?"
+  },
+  "redemittel.5": {
+   "fr": "Qui pouvons-nous appeler en cas d'urgence ?",
+   "de": "Wen dürfen wir im Notfall anrufen?",
+   "ru": "Кому мы можем позвонить в экстренном случае?"
+  },
+  "redemittel.6": {
+   "fr": "Je résume rapidement : …",
+   "de": "Ich fasse kurz zusammen: …",
+   "ru": "Коротко подведу итог: …"
+  },
+  "redemittel.7": {
+   "fr": "Tout à l'heure, je mesure votre glycémie, et ensuite la médecin passe vous voir.",
+   "de": "Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen.",
+   "ru": "Сейчас я измерю вам сахар в крови, а потом к вам придёт врач."
+  },
+  "noeuds.begruessen.dit.0.recit": {
+   "fr": "{lehmann} s'assoit dans la chambre, sa canne posée contre le lit. Elle tient une enveloppe : la lettre de sa médecin traitante.",
+   "ru": "{lehmann} садится в палате, прислонив трость к кровати. В руках у неё конверт: письмо от семейного врача."
+  },
+  "noeuds.begruessen.dit.1": {
+   "fr": "Bonjour. On m'a dit en bas que je devais me présenter ici.",
+   "de": "Guten Morgen. Hier soll ich mich melden, hat man mir unten gesagt.",
+   "ru": "Доброе утро. Мне внизу сказали, что нужно подойти сюда."
+  },
+  "noeuds.begruessen.choix.0": {
+   "fr": "Bonjour, {lehmann:voc}. Je suis {elif}, je travaille ici dans les soins. J'aimerais vous poser quelques questions, cela dure environ un quart d'heure.",
+   "de": "Guten Morgen, {lehmann}. Ich bin {elif}, ich arbeite hier in der Pflege. Ich möchte Ihnen ein paar Fragen stellen, das dauert ungefähr eine Viertelstunde.",
+   "ru": "Доброе утро, {lehmann:voc}. Я {elif}, работаю здесь медсестрой. Я хотела бы задать вам несколько вопросов, это займёт примерно четверть часа."
+  },
+  "noeuds.begruessen.choix.0.puis.0": {
+   "fr": "Oui, bien sûr. Allez-y.",
+   "de": "Ja, natürlich. Fragen Sie nur.",
+   "ru": "Да, конечно. Спрашивайте."
+  },
+  "noeuds.begruessen.choix.1": {
+   "fr": "Bienvenue au {station}, {lehmann:voc}. Je m'appelle {elif}. Avant de tout vous montrer, j'aimerais parler un peu avec vous. Ça vous va ?",
+   "de": "Herzlich willkommen auf der {station}, {lehmann}. Mein Name ist {elif}. Bevor ich Ihnen alles zeige, würde ich gern kurz mit Ihnen sprechen. Ist das in Ordnung?",
+   "ru": "Добро пожаловать в {station}, {lehmann:voc}. Меня зовут {elif}. Прежде чем я вам всё покажу, я хотела бы немного с вами поговорить. Вы не против?"
+  },
+  "noeuds.begruessen.choix.1.puis.0": {
+   "fr": "Oui, bien sûr. Allez-y.",
+   "de": "Ja, natürlich. Fragen Sie nur.",
+   "ru": "Да, конечно. Спрашивайте."
+  },
+  "noeuds.begruessen.choix.2": {
+   "fr": "Salut ! Assieds-toi, j'ai quelques questions.",
+   "de": "Hallo! Setz dich, ich hab ein paar Fragen.",
+   "ru": "Привет! Садись, у меня к тебе пара вопросов."
+  },
+  "noeuds.begruessen.choix.2.puis.0": {
+   "fr": "Mais on ne se connaît pas, jeune femme.",
+   "de": "Wir kennen uns doch gar nicht, junge Frau.",
+   "ru": "Мы ведь даже не знакомы, девушка."
+  },
+  "noeuds.begruessen.choix.2.aide": {
+   "fr": "<b>Avec une patiente, toujours « Sie », et on se présente.</b> « Guten Morgen, Frau Lehmann. Ich bin Elif, ich arbeite hier in der Pflege. » Puis on annonce l'entretien et sa durée : « Ich möchte Ihnen ein paar Fragen stellen. »",
+   "ru": "<b>С пациенткой всегда на «Sie», и сначала нужно представиться.</b> «Guten Morgen, Frau Lehmann. Ich bin Elif, ich arbeite hier in der Pflege.» Затем объявляют беседу и сколько она продлится: «Ich möchte Ihnen ein paar Fragen stellen.»"
+  },
+  "noeuds.grund.choix.0": {
+   "fr": "Pouvez-vous me dire pourquoi vous venez chez nous aujourd'hui ?",
+   "de": "Können Sie mir sagen, warum Sie heute zu uns kommen?",
+   "ru": "Можете сказать, почему вы сегодня пришли к нам?"
+  },
+  "noeuds.grund.choix.0.puis.0": {
+   "fr": "À cause de mon pied. J'ai une plaie à l'avant, qui ne veut pas guérir. Je suis diabétique, depuis quinze ans déjà.",
+   "de": "Wegen meinem Fuß. Ich habe da vorne eine Wunde, die will einfach nicht heilen. Ich bin ja Diabetikerin, schon seit fünfzehn Jahren.",
+   "ru": "Из-за ноги. У меня спереди на стопе рана, никак не заживает. Я ведь диабетик, уже пятнадцать лет."
+  },
+  "noeuds.grund.choix.1": {
+   "fr": "Qu'a dit votre médecin traitante, pourquoi devez-vous venir à l'hôpital ?",
+   "de": "Was hat Ihre Hausärztin gesagt, warum Sie ins Krankenhaus sollen?",
+   "ru": "Что сказал ваш семейный врач, почему вам нужно в больницу?"
+  },
+  "noeuds.grund.choix.1.puis.0": {
+   "fr": "À cause de mon pied. J'ai une plaie à l'avant, qui ne veut pas guérir. Je suis diabétique, depuis quinze ans déjà.",
+   "de": "Wegen meinem Fuß. Ich habe da vorne eine Wunde, die will einfach nicht heilen. Ich bin ja Diabetikerin, schon seit fünfzehn Jahren.",
+   "ru": "Из-за ноги. У меня спереди на стопе рана, никак не заживает. Я ведь диабетик, уже пятнадцать лет."
+  },
+  "noeuds.grund.choix.2": {
+   "fr": "Avez-vous un syndrome du pied diabétique avec polyneuropathie ?",
+   "de": "Haben Sie ein diabetisches Fußsyndrom mit Polyneuropathie?",
+   "ru": "У вас синдром диабетической стопы с полинейропатией?"
+  },
+  "noeuds.grund.choix.2.puis.0": {
+   "fr": "Un quoi ? Je ne sais pas. J'ai une plaie au pied.",
+   "de": "Ein was? Das weiß ich nicht. Ich habe eine Wunde am Fuß.",
+   "ru": "Синдром чего? Не знаю. У меня рана на ноге."
+  },
+  "noeuds.grund.choix.2.aide": {
+   "fr": "<b>Pose une question ouverte, avec les mots de tous les jours.</b> « Können Sie mir sagen, warum Sie heute zu uns kommen? » Les termes médicaux sont pour la fiche et pour l'équipe, pas pour la patiente.",
+   "ru": "<b>Задай открытый вопрос, простыми повседневными словами.</b> «Können Sie mir sagen, warum Sie heute zu uns kommen?» Медицинские термины — для документации и для команды, а не для пациентки."
+  },
+  "noeuds.allergien.choix.0": {
+   "fr": "Merci. Puis-je vous demander si vous avez des allergies ? À des médicaments, à des pansements ou à des aliments ?",
+   "de": "Danke. Darf ich fragen, ob Sie Allergien haben? Gegen Medikamente, Pflaster oder Lebensmittel?",
+   "ru": "Спасибо. Можно спросить, есть ли у вас аллергия? На лекарства, пластырь или продукты?"
+  },
+  "noeuds.allergien.choix.0.puis.0": {
+   "fr": "Non, pas que je sache.",
+   "de": "Nein, da ist mir nichts bekannt.",
+   "ru": "Нет, насколько я знаю, нет."
+  },
+  "noeuds.allergien.choix.1": {
+   "fr": "Est-ce que vous supportez tous les médicaments ? Ou est-ce que vous avez une allergie connue ?",
+   "de": "Vertragen Sie alle Medikamente? Oder wissen Sie von einer Allergie?",
+   "ru": "Вы переносите все лекарства? Или у вас есть известная аллергия?"
+  },
+  "noeuds.allergien.choix.1.puis.0": {
+   "fr": "Non, pas que je sache.",
+   "de": "Nein, da ist mir nichts bekannt.",
+   "ru": "Нет, насколько я знаю, нет."
+  },
+  "noeuds.allergien.choix.2": {
+   "fr": "Pardon, j'ai bien compris : vous avez du diabète depuis quinze ans ?",
+   "de": "Entschuldigung, habe ich das richtig verstanden: Sie haben seit fünfzehn Jahren Diabetes?",
+   "ru": "Простите, я правильно поняла: у вас диабет уже пятнадцать лет?"
+  },
+  "noeuds.allergien.choix.2.puis.0": {
+   "fr": "Oui, c'est ça. Depuis quinze ans. Et depuis quelques années avec de l'insuline.",
+   "de": "Ja, genau. Seit fünfzehn Jahren. Und seit ein paar Jahren mit Insulin.",
+   "ru": "Да, именно. Пятнадцать лет. И уже несколько лет на инсулине."
+  },
+  "noeuds.medikamente.choix.0": {
+   "fr": "Bien. Quels médicaments prenez-vous à la maison ? Et savez-vous combien d'unités d'insuline vous vous injectez ?",
+   "de": "Gut. Welche Medikamente nehmen Sie zu Hause? Und wissen Sie, wie viele Einheiten Insulin Sie spritzen?",
+   "ru": "Хорошо. Какие лекарства вы принимаете дома? И вы знаете, сколько единиц инсулина вы колете?"
+  },
+  "noeuds.medikamente.choix.0.puis.0": {
+   "fr": "De l'insuline le matin et le soir, et un comprimé pour la tension. Combien exactement… ça a changé la semaine dernière. Douze, je crois. Ou quatorze ?",
+   "de": "Insulin morgens und abends, und eine Tablette für den Blutdruck. Wie viel genau … das hat sich letzte Woche geändert. Ich glaube, zwölf. Oder vierzehn?",
+   "ru": "Инсулин утром и вечером, и таблетку от давления. Сколько точно… это поменяли на прошлой неделе. Кажется, двенадцать. Или четырнадцать?"
+  },
+  "noeuds.medikamente.choix.1": {
+   "fr": "Pouvez-vous me dire quels médicaments vous prenez régulièrement, et quand ?",
+   "de": "Können Sie mir sagen, welche Medikamente Sie regelmäßig nehmen, und wann?",
+   "ru": "Можете сказать, какие лекарства вы принимаете постоянно и когда?"
+  },
+  "noeuds.medikamente.choix.1.puis.0": {
+   "fr": "De l'insuline le matin et le soir, et un comprimé pour la tension. Combien exactement… ça a changé la semaine dernière. Douze, je crois. Ou quatorze ?",
+   "de": "Insulin morgens und abends, und eine Tablette für den Blutdruck. Wie viel genau … das hat sich letzte Woche geändert. Ich glaube, zwölf. Oder vierzehn?",
+   "ru": "Инсулин утром и вечером, и таблетку от давления. Сколько точно… это поменяли на прошлой неделе. Кажется, двенадцать. Или четырнадцать?"
+  },
+  "noeuds.plan.choix.0": {
+   "fr": "C'est important, je veux en être sûre. Avez-vous peut-être votre plan de médicaments sur vous ? Ou est-ce que c'est dans la lettre de votre médecin traitante ?",
+   "de": "Das ist wichtig, da möchte ich sicher sein. Haben Sie vielleicht Ihren Medikamentenplan dabei? Oder steht es im Brief Ihrer Hausärztin?",
+   "ru": "Это важно, тут я хочу быть уверенной. У вас, случайно, нет с собой плана приёма лекарств? Или это написано в письме вашего семейного врача?"
+  },
+  "noeuds.plan.choix.0.puis.0": {
+   "fr": "Ah oui, le plan ! Il est là, dans l'enveloppe, avec la lettre.",
+   "de": "Ach ja, der Plan! Der ist hier im Umschlag, bei dem Brief.",
+   "ru": "Ах да, план! Он здесь, в конверте, вместе с письмом."
+  },
+  "noeuds.plan.choix.1": {
+   "fr": "Alors vérifions plutôt. Je peux regarder la lettre de votre médecin traitante ? La dose y est sûrement.",
+   "de": "Dann schauen wir lieber nach. Darf ich mir den Brief von Ihrer Hausärztin ansehen? Da steht die Dosis bestimmt drin.",
+   "ru": "Тогда лучше проверим. Можно мне посмотреть письмо вашего семейного врача? Там наверняка указана доза."
+  },
+  "noeuds.plan.choix.1.puis.0": {
+   "fr": "Ah oui, bien sûr. Mon plan de médicaments est dedans aussi.",
+   "de": "Ach ja, natürlich. Da ist auch mein Medikamentenplan drin.",
+   "ru": "Ах да, конечно. Там и мой план приёма лекарств."
+  },
+  "noeuds.plan.choix.2": {
+   "fr": "D'accord, alors je note douze unités.",
+   "de": "Okay, dann schreibe ich zwölf Einheiten auf.",
+   "ru": "Ладно, тогда записываю двенадцать единиц."
+  },
+  "noeuds.plan.choix.2.puis.0": {
+   "fr": "Mais je n'en suis pas du tout sûre…",
+   "de": "Aber ich bin mir doch gar nicht sicher …",
+   "ru": "Но я ведь совсем не уверена…"
+  },
+  "noeuds.plan.choix.2.aide": {
+   "fr": "<b>Une réponse vague sur une dose ne se note pas : on vérifie.</b> « Haben Sie Ihren Medikamentenplan dabei? » ou la lettre de la médecin. Une erreur de dose d'insuline peut être dangereuse.",
+   "ru": "<b>Расплывчатый ответ о дозе не записывают: его проверяют.</b> «Haben Sie Ihren Medikamentenplan dabei?» или письмо врача. Ошибка в дозе инсулина может быть опасной."
+  },
+  "noeuds.hilfsmittel.choix.0": {
+   "fr": "Merci, je le mets tout de suite avec votre dossier. Avez-vous besoin de lunettes ou d'un appareil auditif ? Et marchez-vous toujours avec la canne ?",
+   "de": "Danke, den lege ich gleich zu Ihren Unterlagen. Brauchen Sie eine Brille oder ein Hörgerät? Und gehen Sie immer mit dem Stock?",
+   "ru": "Спасибо, я сразу положу его к вашим документам. Вам нужны очки или слуховой аппарат? И вы всегда ходите с тростью?"
+  },
+  "noeuds.hilfsmittel.choix.0.puis.0": {
+   "fr": "Des lunettes, oui. J'entends encore bien. Et la canne, je la prends depuis cette histoire de pied. Je ne sens plus très bien mes pieds.",
+   "de": "Eine Brille, ja. Hören tue ich noch gut. Und den Stock nehme ich, seit das mit dem Fuß ist. Ich spüre meine Füße nicht mehr so richtig.",
+   "ru": "Очки — да. Слышу я ещё хорошо. А трость беру с тех пор, как началось с ногой. Я плохо чувствую свои стопы."
+  },
+  "noeuds.hilfsmittel.choix.1": {
+   "fr": "Merci beaucoup. Encore une petite question : portez-vous des lunettes ? Et marchez-vous bien toute seule ?",
+   "de": "Danke schön. Ich frage noch kurz: Tragen Sie eine Brille? Und wie gut können Sie allein gehen?",
+   "ru": "Большое спасибо. Ещё короткий вопрос: вы носите очки? И насколько хорошо вы ходите сами?"
+  },
+  "noeuds.hilfsmittel.choix.1.puis.0": {
+   "fr": "Des lunettes, oui. J'entends encore bien. Et la canne, je la prends depuis cette histoire de pied. Je ne sens plus très bien mes pieds.",
+   "de": "Eine Brille, ja. Hören tue ich noch gut. Und den Stock nehme ich, seit das mit dem Fuß ist. Ich spüre meine Füße nicht mehr so richtig.",
+   "ru": "Очки — да. Слышу я ещё хорошо. А трость беру с тех пор, как началось с ногой. Я плохо чувствую свои стопы."
+  },
+  "noeuds.nacht.choix.0": {
+   "fr": "C'est bon à savoir. Et la nuit : devez-vous aller aux toilettes ? Environ combien de fois ?",
+   "de": "Das ist gut zu wissen. Und nachts: Müssen Sie zur Toilette? Wie oft ungefähr?",
+   "ru": "Хорошо, что я это знаю. А ночью: вам приходится вставать в туалет? Примерно сколько раз?"
+  },
+  "noeuds.nacht.choix.0.puis.0": {
+   "fr": "Deux fois, en général. Mais je me rendors bien après.",
+   "de": "Zweimal, meistens. Aber ich schlafe danach wieder gut ein.",
+   "ru": "Обычно два раза. Но потом я снова хорошо засыпаю."
+  },
+  "noeuds.nacht.choix.1": {
+   "fr": "Merci. Et comment dormez-vous ? Vous vous levez la nuit ?",
+   "de": "Danke. Wie schlafen Sie denn? Stehen Sie nachts auf?",
+   "ru": "Спасибо. А как вы спите? Встаёте ночью?"
+  },
+  "noeuds.nacht.choix.1.puis.0": {
+   "fr": "Deux fois, en général. Mais je me rendors bien après.",
+   "de": "Zweimal, meistens. Aber ich schlafe danach wieder gut ein.",
+   "ru": "Обычно два раза. Но потом я снова хорошо засыпаю."
+  },
+  "noeuds.nacht.choix.2": {
+   "fr": "Vous êtes incontinente ?",
+   "de": "Sind Sie inkontinent?",
+   "ru": "У вас недержание?"
+  },
+  "noeuds.nacht.choix.2.puis.0": {
+   "fr": "Pardon ? Non ! Qu'est-ce que c'est que cette question ?",
+   "de": "Wie bitte? Nein! Was ist denn das für eine Frage?",
+   "ru": "Что-что? Нет! Что это за вопрос такой?"
+  },
+  "noeuds.nacht.choix.2.aide": {
+   "fr": "<b>Les questions intimes se posent avec tact, par la vie de tous les jours.</b> « Müssen Sie nachts zur Toilette? Wie oft? » La patiente répond, et tu notes ensuite « kontinent » sur la fiche.",
+   "ru": "<b>Интимные вопросы задают тактично, через повседневную жизнь.</b> «Müssen Sie nachts zur Toilette? Wie oft?» Пациентка отвечает, а потом ты пишешь в анкете «kontinent»."
+  },
+  "noeuds.essen.choix.0": {
+   "fr": "Et pour les repas : y a-t-il quelque chose que vous aimez manger, ou quelque chose que vous n'aimez pas du tout ?",
+   "de": "Und beim Essen: Gibt es etwas, das Sie gern essen, oder etwas, das Sie gar nicht mögen?",
+   "ru": "А насчёт еды: есть что-то, что вы любите, или что-то, что совсем не едите?"
+  },
+  "noeuds.essen.choix.0.puis.0": {
+   "fr": "Pour être honnête, j'aime le sucré. Je sais, je sais, avec mon diabète, je ne devrais pas.",
+   "de": "Ehrlich gesagt esse ich gern Süßes. Ich weiß, ich weiß, beim Zucker soll ich das nicht.",
+   "ru": "Честно говоря, я люблю сладкое. Знаю, знаю, при сахаре мне нельзя."
+  },
+  "noeuds.essen.choix.1": {
+   "fr": "Qu'est-ce que vous mangez et buvez dans la journée ? Avez-vous des souhaits pour les repas ici ?",
+   "de": "Was essen und trinken Sie denn so am Tag? Haben Sie Wünsche für das Essen hier?",
+   "ru": "Что вы обычно едите и пьёте в течение дня? У вас есть пожелания по питанию здесь?"
+  },
+  "noeuds.essen.choix.1.puis.0": {
+   "fr": "Pour être honnête, j'aime le sucré. Je sais, je sais, avec mon diabète, je ne devrais pas.",
+   "de": "Ehrlich gesagt esse ich gern Süßes. Ich weiß, ich weiß, beim Zucker soll ich das nicht.",
+   "ru": "Честно говоря, я люблю сладкое. Знаю, знаю, при сахаре мне нельзя."
+  },
+  "noeuds.angehoerige.choix.0": {
+   "fr": "Merci pour votre franchise. Nous en parlerons avec le conseil en diabétologie. Qui pouvons-nous appeler en cas d'urgence ?",
+   "de": "Danke für Ihre Ehrlichkeit. Wir sprechen mit der Diabetesberatung darüber. Wen dürfen wir im Notfall anrufen?",
+   "ru": "Спасибо за откровенность. Мы обсудим это с консультантом по диабету. Кому мы можем позвонить в экстренном случае?"
+  },
+  "noeuds.angehoerige.choix.0.puis.0": {
+   "fr": "Ma fille, Sabine. Elle vient tous les jours. Elle peut tout savoir aussi, je l'ai signé chez le médecin.",
+   "de": "Meine Tochter, Sabine. Die kommt jeden Tag. Sie darf auch alles wissen, das habe ich beim Arzt unterschrieben.",
+   "ru": "Дочери, Сабине. Она приходит каждый день. Ей можно всё рассказывать, я подписала это у врача."
+  },
+  "noeuds.angehoerige.choix.1": {
+   "fr": "Je le note. Y a-t-il quelqu'un que nous devons informer ? Et cette personne peut-elle aussi recevoir des informations ?",
+   "de": "Das notiere ich. Gibt es jemanden, den wir informieren sollen? Und darf diese Person auch Auskunft bekommen?",
+   "ru": "Я записываю. Есть ли кто-то, кого нам нужно сообщать? И можно ли этому человеку давать информацию о вас?"
+  },
+  "noeuds.angehoerige.choix.1.puis.0": {
+   "fr": "Ma fille, Sabine. Elle vient tous les jours. Elle peut tout savoir aussi, je l'ai signé chez le médecin.",
+   "de": "Meine Tochter, Sabine. Die kommt jeden Tag. Sie darf auch alles wissen, das habe ich beim Arzt unterschrieben.",
+   "ru": "Дочери, Сабине. Она приходит каждый день. Ей можно всё рассказывать, я подписала это у врача."
+  },
+  "noeuds.angehoerige.choix.2": {
+   "fr": "Vous n'avez pas le droit de manger des sucreries ici. C'est interdit.",
+   "de": "Sie dürfen hier keine Süßigkeiten essen. Das ist verboten.",
+   "ru": "Сладкое вам здесь есть нельзя. Это запрещено."
+  },
+  "noeuds.angehoerige.choix.2.puis.0": {
+   "fr": "Interdit ? Je ne suis pas une enfant.",
+   "de": "Verboten? Ich bin doch kein Kind.",
+   "ru": "Запрещено? Я ведь не ребёнок."
+  },
+  "noeuds.angehoerige.choix.2.aide": {
+   "fr": "<b>À l'admission, on écoute et on note ; on ne fait pas la leçon.</b> « Danke für Ihre Ehrlichkeit. Wir sprechen mit der Diabetesberatung darüber. » Puis on passe à la question suivante : « Wen dürfen wir im Notfall anrufen? »",
+   "ru": "<b>При поступлении слушают и записывают, а не читают нотаций.</b> «Danke für Ihre Ehrlichkeit. Wir sprechen mit der Diabetesberatung darüber.» Потом переходят к следующему вопросу: «Wen dürfen wir im Notfall anrufen?»"
+  },
+  "noeuds.zusammenfassen.choix.0": {
+   "fr": "Je résume rapidement : vous venez pour la plaie au pied droit, vous n'avez pas d'allergie, vous vous injectez l'insuline selon votre plan, vous avez besoin de lunettes et de la canne. C'est exact ?",
+   "de": "Ich fasse kurz zusammen: Sie kommen wegen der Wunde am rechten Fuß, Sie haben keine Allergien, Sie spritzen Insulin nach Plan, Sie brauchen eine Brille und den Stock. Ist das richtig?",
+   "ru": "Коротко подведу итог: вы пришли из-за раны на правой стопе, аллергии у вас нет, инсулин вы колете по плану, вам нужны очки и трость. Всё верно?"
+  },
+  "noeuds.zusammenfassen.choix.0.puis.0": {
+   "fr": "Oui, c'est tout à fait ça.",
+   "de": "Ja, das stimmt alles.",
+   "ru": "Да, всё верно."
+  },
+  "noeuds.zusammenfassen.choix.1": {
+   "fr": "Je peux répéter ce que j'ai noté ? Plaie à l'avant du pied droit, pas d'allergie, insuline selon le plan de votre médecin traitante, lunettes, canne, et votre fille comme contact.",
+   "de": "Darf ich noch einmal wiederholen, was ich notiert habe? Wunde am rechten Vorfuß, keine Allergien, Insulin nach dem Plan Ihrer Hausärztin, Brille, Gehstock, und Ihre Tochter als Kontakt.",
+   "ru": "Можно я ещё раз повторю, что записала? Рана на передней части правой стопы, аллергии нет, инсулин по плану вашего семейного врача, очки, трость, и ваша дочь как контактное лицо."
+  },
+  "noeuds.zusammenfassen.choix.1.puis.0": {
+   "fr": "Oui, c'est tout à fait ça.",
+   "de": "Ja, das stimmt alles.",
+   "ru": "Да, всё верно."
+  },
+  "noeuds.naechste.choix.0": {
+   "fr": "Bien. Tout à l'heure, je mesure votre glycémie, et ensuite la médecin passe vous voir. Le pansement du pied, nous le regarderons ensemble cet après-midi.",
+   "de": "Gut. Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen. Den Verband am Fuß sehen wir uns heute Nachmittag zusammen an.",
+   "ru": "Хорошо. Сейчас я измерю вам сахар в крови, а потом к вам придёт врач. Повязку на ноге мы посмотрим вместе сегодня после обеда."
+  },
+  "noeuds.naechste.choix.0.puis.0": {
+   "fr": "Merci, jeune femme. Vous avez été très gentille.",
+   "de": "Danke, junge Frau. Sie haben das sehr nett gemacht.",
+   "ru": "Спасибо, девушка. Вы были очень любезны."
+  },
+  "noeuds.naechste.choix.1": {
+   "fr": "Merci, {lehmann:voc}. Je vais encore mesurer votre glycémie. La médecin passe ce matin, et si vous avez besoin de quelque chose, appuyez ici sur la sonnette.",
+   "de": "Danke, {lehmann}. Ich messe jetzt noch Ihren Blutzucker. Die Ärztin kommt heute Vormittag, und wenn Sie etwas brauchen, drücken Sie hier auf die Klingel.",
+   "ru": "Спасибо, {lehmann:voc}. Сейчас я ещё измерю вам сахар в крови. Врач придёт сегодня до обеда, а если вам что-то понадобится, нажмите вот сюда, на кнопку вызова."
+  },
+  "noeuds.naechste.choix.1.puis.0": {
+   "fr": "Merci, jeune femme. Vous avez été très gentille.",
+   "de": "Danke, junge Frau. Sie haben das sehr nett gemacht.",
+   "ru": "Спасибо, девушка. Вы были очень любезны."
+  },
+  "noeuds.naechste.choix.2": {
+   "fr": "Terminé. Salut !",
+   "de": "Fertig. Tschüss!",
+   "ru": "Всё. Пока!"
+  },
+  "noeuds.naechste.choix.2.puis.0": {
+   "fr": "Et qu'est-ce qui va se passer pour moi maintenant ?",
+   "de": "Und was passiert jetzt mit mir?",
+   "ru": "А что со мной теперь будет?"
+  },
+  "noeuds.naechste.choix.2.aide": {
+   "fr": "<b>À la fin, on dit ce qui va se passer.</b> « Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen. » Et on montre la sonnette.",
+   "ru": "<b>В конце говорят, что будет дальше.</b> «Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen.» И показывают кнопку вызова."
+  },
+  "ecouter.0.q": {
+   "fr": "Pourquoi {lehmann} vient-elle à l'hôpital ?",
+   "de": "Warum kommt {lehmann} ins Krankenhaus?",
+   "ru": "Почему {lehmann} поступает в больницу?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "À cause d'une plaie au pied.",
+   "de": "Wegen einer Wunde am Fuß.",
+   "ru": "Из-за раны на стопе."
+  },
+  "ecouter.0.options.1": {
+   "fr": "À cause d'une allergie.",
+   "de": "Wegen einer Allergie.",
+   "ru": "Из-за аллергии."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Parce qu'elle est tombée.",
+   "de": "Weil sie gestürzt ist.",
+   "ru": "Потому что она упала."
+  },
+  "ecouter.1.q": {
+   "fr": "Qu'est-ce que {lehmann} ne sait pas exactement ?",
+   "de": "Was weiß {lehmann} nicht genau?",
+   "ru": "Чего {lehmann} точно не знает?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Combien de fois elle se lève la nuit.",
+   "de": "Wie oft sie nachts aufsteht.",
+   "ru": "Сколько раз она встаёт ночью."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Combien d'unités d'insuline elle s'injecte.",
+   "de": "Wie viele Einheiten Insulin sie spritzt.",
+   "ru": "Сколько единиц инсулина она колет."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Comment s'appelle sa fille.",
+   "de": "Wie ihre Tochter heißt.",
+   "ru": "Как зовут её дочь."
+  },
+  "ecouter.2.q": {
+   "fr": "Qui l'hôpital peut-il appeler en cas d'urgence ?",
+   "de": "Wen darf das Krankenhaus im Notfall anrufen?",
+   "ru": "Кому больница может позвонить в экстренном случае?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Sa médecin traitante.",
+   "de": "Ihre Hausärztin.",
+   "ru": "Её семейному врачу."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Son voisin.",
+   "de": "Ihren Nachbarn.",
+   "ru": "Её соседу."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Sa fille.",
+   "de": "Ihre Tochter.",
+   "ru": "Её дочери."
+  }
+ }
+}

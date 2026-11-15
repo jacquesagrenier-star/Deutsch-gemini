@@ -1,0 +1,149 @@
+{
+ "id": "d19-telefon",
+ "numero": 19,
+ "niveau": "B2",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 2,
+ "role": "elif",
+ "personnes": ["aksoy", "richter"],
+ "titre": {"t": "Am Telefon: Labor und Apotheke", "fr": "Au téléphone : le laboratoire et la pharmacie"},
+ "intro": {"fr": "Fin de matinée au poste de soins. Le téléphone sonne : c'est {aksoy}, du laboratoire, avec une valeur critique pour {lehmann}. Tu joues {elif} : tu notes, tu vérifies l'identité de la patiente, tu relis la valeur et tu demandes le nom de ton interlocutrice. Puis tu appelles toi-même la pharmacie de l'hôpital, {richter}, pour commander de l'insuline et poser une question sur un comprimé."},
+ "but": {"fr": "Répondre au téléphone d'un service (nom du service, son nom) ; recevoir une valeur critique : identifier la patiente (nom, date de naissance), relire la valeur, demander le nom de la personne, dire ce qu'on fait ; appeler un service : se présenter, dire ce qu'on veut avec précision (produit, dosage), poser une question ; résumer avant de raccrocher."},
+ "grammaire": ["g09", "g06", "g07"],
+ "telc": ["hoeren", "oral-1"],
+ "relire_notes": {"fr": "Valeur critique : potassium 6,2 mmol/l (seuil d'appel du laboratoire), échantillon non hémolysé, conduite (relire, noter l'heure et le nom, informer la médecin tout de suite) ; insuline lispro 100 UI/ml en stylo prérempli (cohérence avec le schéma de Frau Lehmann) ; un comprimé à libération prolongée (métoprolol retard) ne s'écrase pas : demander une autre forme à la médecin."},
+ "redemittel": [
+  {"t": "{station}, {elif} am Apparat, guten Tag.", "dit": "{station:dit}, {elif} am Apparat, guten Tag.", "fr": "{station}, {elif} à l'appareil, bonjour.", "fonction": "annoncer"},
+  {"t": "Einen Moment, ich nehme mir etwas zum Schreiben.", "fr": "Un instant, je prends de quoi écrire.", "fonction": "annoncer"},
+  {"t": "Um welchen Patienten geht es? Können Sie mir bitte das Geburtsdatum sagen?", "fr": "C'est pour quel patient ? Pouvez-vous me donner la date de naissance, s'il vous plaît ?", "fonction": "demander"},
+  {"t": "Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter.", "fr": "Je répète : potassium six virgule deux millimoles par litre.", "fonction": "reformuler", "relire": true, "relire_note": "Valeur critique."},
+  {"t": "Wie war Ihr Name, bitte?", "fr": "Quel est votre nom, s'il vous plaît ?", "fonction": "redemander"},
+  {"t": "Ich gebe den Wert sofort an die Ärztin weiter.", "fr": "Je transmets tout de suite la valeur à la médecin.", "fonction": "transmettre"},
+  {"t": "Könnten Sie uns heute noch welche liefern?", "fr": "Pourriez-vous nous en livrer encore aujourd'hui ?", "fonction": "demander"},
+  {"t": "Darf man diese Tablette mörsern?", "fr": "A-t-on le droit d'écraser ce comprimé ?", "fonction": "demander", "relire": true, "relire_note": "Écraser un comprimé."}
+ ],
+ "debut": "melden",
+ "noeuds": {
+  "melden": {
+   "dit": [
+    {"recit": {"fr": "11 h 20, au poste de soins. {elif} est seule, ses collègues sont dans les chambres. Le téléphone sonne."}}
+   ],
+   "choix": [
+    {"t": "{station}, {elif} am Apparat, guten Tag.", "dit": "{station:dit}, {elif} am Apparat, guten Tag.", "fr": "{station}, {elif} à l'appareil, bonjour.", "va": "patient",
+     "puis": [{"qui": "aksoy", "air": "attentive", "t": "Guten Tag, hier ist {aksoy} aus dem Zentrallabor. Ich habe einen kritischen Wert für Sie.", "fr": "Bonjour, ici {aksoy}, du laboratoire central. J'ai une valeur critique pour vous."}]},
+    {"t": "Guten Tag, {station}, Sie sprechen mit {elif}.", "dit": "Guten Tag, {station:dit}, Sie sprechen mit {elif}.", "fr": "Bonjour, {station}, vous parlez à {elif}.", "va": "patient",
+     "puis": [{"qui": "aksoy", "air": "attentive", "t": "Guten Tag, hier ist {aksoy} aus dem Zentrallabor. Ich habe einen kritischen Wert für Sie.", "fr": "Bonjour, ici {aksoy}, du laboratoire central. J'ai une valeur critique pour vous."}]},
+    {"faux": true, "t": "Hallo?", "fr": "Allô ?",
+     "puis": [{"qui": "aksoy", "air": "perplexe", "t": "Äh … bin ich auf der Station vier B?", "fr": "Euh… je suis bien au service 4B ?"}],
+     "aide": {"fr": "<b>Au téléphone de l'hôpital, on répond avec le service et son nom.</b> « Station 4B, Elif am Apparat, guten Tag. » La personne sait tout de suite qu'elle a le bon service et à qui elle parle."}}
+   ]
+  },
+  "patient": {
+   "dit": [],
+   "choix": [
+    {"t": "Einen Moment, ich nehme mir etwas zum Schreiben. So, um welchen Patienten geht es?", "fr": "Un instant, je prends de quoi écrire. Voilà, c'est pour quel patient ?", "va": "identitaet",
+     "puis": [{"qui": "aksoy", "air": "attentive", "t": "Um {lehmann}, geboren am 21. August 1952.", "dit": "Um {lehmann}, geboren am einundzwanzigsten August neunzehnhundertzweiundfünfzig.", "fr": "Pour {lehmann}, née le 21 août 1952."}]},
+    {"t": "Moment bitte, ich schreibe mit. Können Sie mir den Namen und das Geburtsdatum sagen?", "fr": "Un instant, s'il vous plaît, je note. Pouvez-vous me donner le nom et la date de naissance ?", "va": "identitaet",
+     "puis": [{"qui": "aksoy", "air": "attentive", "t": "Um {lehmann}, geboren am 21. August 1952.", "dit": "Um {lehmann}, geboren am einundzwanzigsten August neunzehnhundertzweiundfünfzig.", "fr": "Pour {lehmann}, née le 21 août 1952."}]},
+    {"faux": true, "t": "Ja, sagen Sie.", "fr": "Oui, allez-y.",
+     "puis": [{"qui": "aksoy", "air": "question", "t": "Haben Sie etwas zum Schreiben? Es ist wichtig.", "fr": "Vous avez de quoi écrire ? C'est important."}],
+     "aide": {"fr": "<b>Une valeur critique ne se retient pas de tête : prends de quoi écrire, puis fais-toi dire le patient.</b> « Einen Moment, ich nehme mir etwas zum Schreiben. Um welchen Patienten geht es? »"}}
+   ]
+  },
+  "identitaet": {
+   "dit": [],
+   "choix": [
+    {"t": "{lehmann}, geboren am 21. August 1952. Ja, das ist unsere Patientin. Welcher Wert ist es?", "dit": "{lehmann}, geboren am einundzwanzigsten August neunzehnhundertzweiundfünfzig. Ja, das ist unsere Patientin. Welcher Wert ist es?", "fr": "{lehmann}, née le 21 août 1952. Oui, c'est notre patiente. Quelle valeur ?", "va": "wert",
+     "puis": [{"qui": "aksoy", "air": "attentive", "t": "Das Kalium: 6,2 Millimol pro Liter.", "dit": "Das Kalium: sechs Komma zwei Millimol pro Liter.", "fr": "Le potassium : 6,2 millimoles par litre.", "relire": true, "relire_note": "Valeur critique du cas."}]},
+    {"t": "Ich habe {lehmann}, einundzwanzigster August zweiundfünfzig. Stimmt, sie liegt bei uns. Was ist auffällig?", "fr": "J'ai {lehmann}, 21 août 52. C'est ça, elle est chez nous. Qu'est-ce qui est anormal ?", "va": "wert",
+     "puis": [{"qui": "aksoy", "air": "attentive", "t": "Das Kalium: 6,2 Millimol pro Liter.", "dit": "Das Kalium: sechs Komma zwei Millimol pro Liter.", "fr": "Le potassium : 6,2 millimoles par litre."}]},
+    {"repete": true, "t": "Entschuldigung, die Verbindung ist schlecht. Wie war das Geburtsdatum?", "fr": "Pardon, la ligne est mauvaise. Quelle était la date de naissance ?", "va": "identitaet",
+     "puis": [{"qui": "aksoy", "air": "attentive", "t": "Einundzwanzigster August neunzehnhundertzweiundfünfzig.", "fr": "Vingt et un août mille neuf cent cinquante-deux."}]}
+   ]
+  },
+  "wert": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte?", "fr": "Je répète : potassium six virgule deux millimoles par litre. Quel est votre nom, s'il vous plaît ?", "va": "weiter",
+     "relire": true, "relire_note": "Relecture de la valeur critique, nom de l'interlocutrice.",
+     "puis": [{"qui": "aksoy", "air": "sourire", "t": "Richtig. {aksoy}, Zentrallabor. Die Probe ist nicht hämolysiert, der Wert ist also echt.", "fr": "C'est ça. {aksoy}, laboratoire central. L'échantillon n'est pas hémolysé, la valeur est donc fiable.", "relire": true, "relire_note": "Hémolyse et fausse hyperkaliémie."}]},
+    {"t": "Kalium sechs Komma zwei, habe ich notiert. Und mit wem habe ich gesprochen?", "fr": "Potassium six virgule deux, c'est noté. Et à qui ai-je parlé ?", "va": "weiter",
+     "puis": [{"qui": "aksoy", "air": "sourire", "t": "Richtig. {aksoy}, Zentrallabor. Die Probe ist nicht hämolysiert, der Wert ist also echt.", "fr": "C'est ça. {aksoy}, laboratoire central. L'échantillon n'est pas hémolysé, la valeur est donc fiable."}]},
+    {"faux": true, "t": "Ja ja, okay, ich sage es weiter. Tschüss!", "fr": "Oui oui, d'accord, je transmets. Salut !",
+     "puis": [{"qui": "aksoy", "air": "perplexe", "t": "Moment! Wiederholen Sie bitte den Wert, und notieren Sie meinen Namen.", "fr": "Attendez ! Répétez la valeur, s'il vous plaît, et notez mon nom."}],
+     "aide": {"fr": "<b>Une valeur critique se relit à voix haute, et on note qui l'a donnée et à quelle heure.</b> « Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte? » Au téléphone, c'est la seule façon de voir une erreur."}}
+   ]
+  },
+  "weiter": {
+   "dit": [],
+   "choix": [
+    {"t": "Danke, {aksoy}. Ich gebe den Wert sofort an die Ärztin weiter.", "fr": "Merci, {aksoy}. Je transmets tout de suite la valeur à la médecin.", "va": "apotheke",
+     "relire": true, "relire_note": "Conduite devant une valeur critique.",
+     "puis": [{"qui": "aksoy", "air": "sourire", "t": "Danke. Auf Wiederhören.", "fr": "Merci. Au revoir."}]},
+    {"t": "Vielen Dank. Ich informiere gleich die Stationsärztin und dokumentiere den Anruf mit der Uhrzeit.", "fr": "Merci beaucoup. Je préviens tout de suite la médecin du service et je note l'appel avec l'heure.", "va": "apotheke",
+     "puis": [{"qui": "aksoy", "air": "sourire", "t": "Danke. Auf Wiederhören.", "fr": "Merci. Au revoir."}]}
+   ]
+  },
+  "apotheke": {
+   "dit": [
+    {"recit": {"fr": "{elif} prévient tout de suite {sommer}, qui va voir {lehmann}. Puis elle prépare la commande : il ne reste qu'un stylo d'insuline pour {lehmann}. Elle appelle la pharmacie de l'hôpital."}, "relire": true, "relire_note": "Information immédiate de la médecin."},
+    {"qui": "richter", "air": "attentive", "t": "Krankenhausapotheke, {richter:famille}, guten Tag.", "fr": "Pharmacie de l'hôpital, {richter:famille}, bonjour."}
+   ],
+   "choix": [
+    {"t": "Guten Tag, {richter}, hier ist {elif} von der {station}. Uns gehen die Insulinpens für eine Patientin aus. Könnten Sie uns heute noch welche liefern?", "dit": "Guten Tag, {richter}, hier ist {elif} von der {station:dit}. Uns gehen die Insulinpens für eine Patientin aus. Könnten Sie uns heute noch welche liefern?", "fr": "Bonjour, {richter:voc}, ici {elif}, du {station}. Nous n'avons presque plus de stylos d'insuline pour une patiente. Pourriez-vous nous en livrer encore aujourd'hui ?", "va": "insulin",
+     "puis": [{"qui": "richter", "air": "question", "t": "Das geht. Welches Insulin genau, und in welcher Konzentration?", "fr": "C'est possible. Quelle insuline exactement, et à quelle concentration ?"}]},
+    {"t": "Hier ist {elif}, {station}. Ich rufe wegen einer Bestellung an: Wir brauchen dringend Insulinpens.", "dit": "Hier ist {elif}, {station:dit}. Ich rufe wegen einer Bestellung an: Wir brauchen dringend Insulinpens.", "fr": "Ici {elif}, {station}. J'appelle pour une commande : nous avons besoin d'urgence de stylos d'insuline.", "va": "insulin",
+     "puis": [{"qui": "richter", "air": "question", "t": "Das geht. Welches Insulin genau, und in welcher Konzentration?", "fr": "C'est possible. Quelle insuline exactement, et à quelle concentration ?"}]},
+    {"faux": true, "t": "Ja, hallo, wir brauchen Insulin.", "fr": "Oui, allô, on a besoin d'insuline.",
+     "puis": [{"qui": "richter", "air": "perplexe", "t": "Und wer sind „wir“? Von welcher Station rufen Sie an?", "fr": "Et qui est « on » ? Vous appelez de quel service ?"}],
+     "aide": {"fr": "<b>Quand c'est toi qui appelles, dis d'abord qui tu es et d'où tu appelles, puis ce que tu veux.</b> « Hier ist Elif von der Station 4B. Könnten Sie uns heute noch Insulinpens liefern? »"}}
+   ]
+  },
+  "insulin": {
+   "dit": [],
+   "choix": [
+    {"t": "Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen. Wir hätten gern fünf Stück.", "fr": "De l'insuline lispro, 100 unités par millilitre, en stylo prérempli. Nous en voudrions cinq.", "va": "moerser",
+     "relire": true, "relire_note": "Insuline du schéma de Frau Lehmann.",
+     "puis": [{"qui": "richter", "air": "sourire", "t": "Haben wir da. Ich schicke Ihnen fünf Pens mit dem Transport vor vierzehn Uhr. Sonst noch etwas?", "fr": "On en a. Je vous envoie cinq stylos avec le transport avant 14 heures. Autre chose ?"}]},
+    {"t": "Es ist Insulin lispro im Fertigpen, hundert Einheiten pro Milliliter. Fünf Pens wären gut.", "fr": "C'est de l'insuline lispro en stylo prérempli, 100 unités par millilitre. Cinq stylos, ce serait bien.", "va": "moerser",
+     "puis": [{"qui": "richter", "air": "sourire", "t": "Haben wir da. Ich schicke Ihnen fünf Pens mit dem Transport vor vierzehn Uhr. Sonst noch etwas?", "fr": "On en a. Je vous envoie cinq stylos avec le transport avant 14 heures. Autre chose ?"}]},
+    {"faux": true, "t": "Das normale Insulin, das sie immer bekommt.", "fr": "L'insuline normale, celle qu'elle a toujours.",
+     "puis": [{"qui": "richter", "air": "perplexe", "t": "„Das normale“ gibt es bei uns nicht. Ich brauche den Namen und die Konzentration.", "fr": "« La normale », ça n'existe pas chez nous. J'ai besoin du nom et de la concentration."}],
+     "aide": {"fr": "<b>Un médicament se commande avec son nom exact, sa concentration et sa forme.</b> « Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen. » Lis-le sur l'emballage ou dans le dossier avant d'appeler."}}
+   ]
+  },
+  "moerser": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja, eine Frage noch: Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann nach einem Schlaganfall schlecht schlucken.", "fr": "Oui, encore une question : peut-on écraser des comprimés de métoprolol à libération prolongée ? Un patient avale mal depuis un AVC.", "va": "ende",
+     "puis": [{"qui": "richter", "air": "attentive", "t": "Nein, eine Retardtablette bitte nicht mörsern, sonst wirkt alles auf einmal. Fragen Sie die Ärztin nach einer anderen Darreichungsform. Ich schicke Ihnen eine Liste mit Alternativen per Mail.", "fr": "Non, un comprimé à libération prolongée ne s'écrase pas, sinon tout agit d'un coup. Demandez à la médecin une autre forme. Je vous envoie une liste des alternatives par mail.", "relire": true, "relire_note": "Comprimés à libération prolongée."}]},
+    {"t": "Ich hätte noch eine Frage: Kann ich eine Retardtablette von Metoprolol zerkleinern? Der Patient hat Schluckstörungen.", "fr": "J'aurais encore une question : puis-je écraser un comprimé de métoprolol à libération prolongée ? Le patient a des troubles de la déglutition.", "va": "ende",
+     "puis": [{"qui": "richter", "air": "attentive", "t": "Nein, eine Retardtablette bitte nicht mörsern, sonst wirkt alles auf einmal. Fragen Sie die Ärztin nach einer anderen Darreichungsform. Ich schicke Ihnen eine Liste mit Alternativen per Mail.", "fr": "Non, un comprimé à libération prolongée ne s'écrase pas, sinon tout agit d'un coup. Demandez à la médecin une autre forme. Je vous envoie une liste des alternatives par mail."}]},
+    {"faux": true, "t": "Nein, danke. Ach so, Tabletten kann man doch immer mörsern, oder?", "fr": "Non, merci. Ah, au fait, on peut toujours écraser les comprimés, non ?",
+     "puis": [{"qui": "richter", "air": "surprise", "t": "Auf keinen Fall immer! Welche Tablette meinen Sie?", "fr": "Surtout pas toujours ! Quel comprimé voulez-vous dire ?"}],
+     "aide": {"fr": "<b>Pose une question précise : quel médicament, quelle forme, pourquoi.</b> « Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann schlecht schlucken. » Un comprimé « retard » ne s'écrase pas : c'est la pharmacie ou la médecin qui donne une autre forme."}}
+   ]
+  },
+  "ende": {
+   "dit": [],
+   "choix": [
+    {"t": "Also: fünf Pens Insulin lispro vor vierzehn Uhr, und die Retardtabletten nicht mörsern, ich spreche mit der Ärztin. Vielen Dank!", "fr": "Donc : cinq stylos d'insuline lispro avant 14 heures, et on n'écrase pas les comprimés retard, j'en parle à la médecin. Merci beaucoup !", "va": null,
+     "puis": [{"qui": "richter", "air": "sourire", "t": "Genau. Gern geschehen, auf Wiederhören.", "fr": "Exactement. Avec plaisir, au revoir."}]},
+    {"t": "Danke, das hilft mir sehr. Ich warte auf die Pens und die Liste. Auf Wiederhören!", "fr": "Merci, ça m'aide beaucoup. J'attends les stylos et la liste. Au revoir !", "va": null,
+     "puis": [{"qui": "richter", "air": "sourire", "t": "Gern geschehen, auf Wiederhören.", "fr": "Avec plaisir, au revoir."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Welcher Wert ist bei {lehmann} kritisch?", "fr": "Quelle valeur est critique chez {lehmann} ?"},
+   "options": [{"t": "Der Blutzucker.", "fr": "La glycémie."}, {"t": "Das Kalium.", "fr": "Le potassium."}, {"t": "Der Blutdruck.", "fr": "La tension."}],
+   "juste": 1},
+  {"q": {"t": "Was macht {elif} sofort nach dem Anruf des Labors?", "fr": "Que fait {elif} tout de suite après l'appel du laboratoire ?"},
+   "options": [{"t": "Sie informiert die Ärztin.", "fr": "Elle prévient la médecin."}, {"t": "Sie ruft die Tochter an.", "fr": "Elle appelle la fille."}, {"t": "Sie wartet bis zur Visite.", "fr": "Elle attend la visite."}],
+   "juste": 0},
+  {"q": {"t": "Was sagt {richter} über die Retardtabletten?", "fr": "Que dit {richter} des comprimés à libération prolongée ?"},
+   "options": [{"t": "Man kann sie immer mörsern.", "fr": "On peut toujours les écraser."}, {"t": "Man soll sie in Wasser auflösen.", "fr": "Il faut les dissoudre dans l'eau."}, {"t": "Man darf sie nicht mörsern.", "fr": "On ne doit pas les écraser."}],
+   "juste": 2}
+ ]
+}

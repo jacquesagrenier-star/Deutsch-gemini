@@ -1,0 +1,157 @@
+{
+ "id": "d14-mobilisation",
+ "numero": 14,
+ "niveau": "B1",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 1,
+ "role": "elif",
+ "personnes": ["brandt"],
+ "titre": {"t": "Aufstehen und in den Sessel", "fr": "Se lever et aller au fauteuil"},
+ "intro": {"fr": "Deux jours après sa prothèse de hanche, {brandt} se lève pour la première fois avec un déambulateur, du lit jusqu'au fauteuil. Tu joues {elif} : annonce chaque étape avant de la faire, avec des phrases courtes, vérifie qu'il va bien, et laisse-le faire ce qu'il peut faire seul."},
+ "but": {"fr": "Guider un transfert pas à pas avec les verbes à particule (sich aufsetzen, aufstehen, sich festhalten, sich abstützen, sich hinsetzen) et l'impératif poli ; vérifier la douleur et le vertige ; réagir à un malaise ; respecter l'autonomie du patient et les précautions après une prothèse de hanche."},
+ "grammaire": ["g04", "g01", "g12"],
+ "telc": ["oral-2"],
+ "relire_notes": {"fr": "Précautions après une prothèse totale de hanche (ne pas trop plier la hanche, ne pas croiser les jambes, fauteuil assez haut, côté de sortie du lit selon la consigne de la kinésithérapie) ; conduite en cas de vertige au bord du lit ; ne jamais tirer le patient par les bras ni le laisser s'accrocher au cou de la soignante ; chaussures fermées."},
+ "redemittel": [
+  {"t": "Heute stehen Sie zum ersten Mal auf und setzen sich in den Sessel.", "fr": "Aujourd'hui, vous vous levez pour la première fois et vous vous asseyez dans le fauteuil.", "fonction": "annoncer"},
+  {"t": "Bevor wir anfangen: Haben Sie gerade Schmerzen? Ist Ihnen schwindelig?", "fr": "Avant de commencer : avez-vous mal en ce moment ? Avez-vous le vertige ?", "fonction": "demander"},
+  {"t": "Setzen Sie sich bitte langsam an die Bettkante.", "fr": "Asseyez-vous lentement au bord du lit, s'il vous plaît.", "fonction": "annoncer"},
+  {"t": "Bleiben Sie ruhig sitzen. Wir warten, bis es besser ist.", "fr": "Restez tranquillement assis. Nous attendons que ça aille mieux.", "fonction": "rassurer"},
+  {"t": "Stützen Sie sich mit den Händen auf dem Bett ab. Auf drei stehen Sie auf.", "fr": "Appuyez-vous avec les mains sur le lit. À trois, vous vous levez.", "fonction": "annoncer"},
+  {"t": "Halten Sie sich am Rollator fest und machen Sie kleine Schritte.", "fr": "Tenez-vous au déambulateur et faites de petits pas.", "fonction": "annoncer"},
+  {"t": "Schlagen Sie bitte die Beine nicht übereinander.", "fr": "Ne croisez pas les jambes, s'il vous plaît.", "fonction": "refuser", "relire": true, "relire_note": "Précaution après une prothèse de hanche."}
+ ],
+ "debut": "ankuendigen",
+ "noeuds": {
+  "ankuendigen": {
+   "dit": [
+    {"recit": {"fr": "Jeudi matin. Le déambulateur est au pied du lit, le fauteuil à côté de la fenêtre. {brandt} regarde le plafond."}},
+    {"qui": "brandt", "air": "perplexe", "t": "Was soll denn das Ding da? Ich will meine Ruhe.", "fr": "C'est quoi, ce truc ? Je veux qu'on me laisse tranquille."}
+   ],
+   "choix": [
+    {"t": "Guten Morgen, {brandt}. Das ist ein Rollator. Heute stehen Sie zum ersten Mal auf und setzen sich in den Sessel. Ich bleibe die ganze Zeit bei Ihnen.", "fr": "Bonjour, {brandt:voc}. C'est un déambulateur. Aujourd'hui, vous vous levez pour la première fois et vous vous asseyez dans le fauteuil. Je reste avec vous tout le temps.", "va": "vorher",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Jetzt schon? Na gut. Wenn's sein muss.", "fr": "Déjà ? Bon. S'il le faut."}]},
+    {"t": "Ich verstehe, {brandt}. Aber die Ärztin möchte, dass Sie heute aufstehen. Das ist gut für die Hüfte und für die Lunge. Wir machen es langsam, Schritt für Schritt.", "fr": "Je comprends, {brandt:voc}. Mais la médecin veut que vous vous leviez aujourd'hui. C'est bon pour la hanche et pour les poumons. Nous allons lentement, étape par étape.", "va": "vorher",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Jetzt schon? Na gut. Wenn's sein muss.", "fr": "Déjà ? Bon. S'il le faut."}]},
+    {"faux": true, "t": "So, aufstehen! Los geht's!", "fr": "Allez, debout ! C'est parti !",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Was? Jetzt sofort? Mir sagt hier ja keiner was!", "fr": "Quoi ? Tout de suite ? Personne ne me dit rien, ici !"}],
+     "aide": {"fr": "<b>D'abord on annonce ce qu'on va faire, et pourquoi.</b> « Heute stehen Sie zum ersten Mal auf und setzen sich in den Sessel. Ich bleibe bei Ihnen. » Un patient qui sait ce qui l'attend coopère mieux."}}
+   ]
+  },
+  "vorher": {
+   "dit": [],
+   "choix": [
+    {"t": "Bevor wir anfangen: Haben Sie gerade Schmerzen? Und ist Ihnen schwindelig?", "fr": "Avant de commencer : avez-vous mal en ce moment ? Et avez-vous le vertige ?", "va": "aufsetzen",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Die Hüfte zieht ein bisschen. So eine Drei, würde ich sagen. Schwindelig ist mir nicht.", "fr": "La hanche tire un peu. Disons trois. Je n'ai pas le vertige."}]},
+    {"t": "Wie geht es Ihnen jetzt gerade? Tut die Hüfte weh, von null bis zehn?", "fr": "Comment allez-vous, là, maintenant ? La hanche vous fait mal, de zéro à dix ?", "va": "aufsetzen",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Die Hüfte zieht ein bisschen. So eine Drei, würde ich sagen. Schwindelig ist mir nicht.", "fr": "La hanche tire un peu. Disons trois. Je n'ai pas le vertige."}]}
+   ]
+  },
+  "aufsetzen": {
+   "dit": [],
+   "choix": [
+    {"t": "Gut. Ich stelle das Kopfteil hoch. Dann drehen Sie sich über die rechte Seite, so wie die Physiotherapeutin es Ihnen gezeigt hat, und setzen sich langsam an die Bettkante.", "fr": "Bien. Je relève la tête du lit. Ensuite, vous vous tournez par le côté droit, comme la kiné vous l'a montré, et vous vous asseyez lentement au bord du lit.", "va": "schwindel",
+     "relire": true, "relire_note": "Côté de sortie du lit après la prothèse : selon la consigne de la kinésithérapie.",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Uff … so? Oh. Oh, jetzt dreht sich alles.", "fr": "Ouf… comme ça ? Oh. Oh, tout tourne, maintenant."}]},
+    {"t": "Dann geht es los. Ich helfe Ihnen an der Schulter und an den Beinen. Setzen Sie sich bitte ganz langsam auf, an die Bettkante.", "fr": "Alors on y va. Je vous aide à l'épaule et aux jambes. Redressez-vous tout doucement, s'il vous plaît, au bord du lit.", "va": "schwindel",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Uff … so? Oh. Oh, jetzt dreht sich alles.", "fr": "Ouf… comme ça ? Oh. Oh, tout tourne, maintenant."}]}
+   ]
+  },
+  "schwindel": {
+   "dit": [],
+   "choix": [
+    {"t": "Bleiben Sie ruhig sitzen, ich halte Sie. Atmen Sie tief ein und aus. Wir warten, bis es besser ist.", "fr": "Restez tranquillement assis, je vous tiens. Respirez profondément. Nous attendons que ça aille mieux.", "va": "schuhe",
+     "relire": true, "relire_note": "Conduite en cas de vertige au bord du lit.",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "… Ja. Ja, jetzt geht's wieder.", "fr": "… Oui. Oui, ça va de nouveau."}]},
+    {"t": "Das ist normal nach so vielen Tagen im Bett. Wir haben Zeit. Sagen Sie mir, wenn der Schwindel weg ist.", "fr": "C'est normal après tant de jours au lit. Nous avons le temps. Dites-moi quand le vertige est passé.", "va": "schuhe",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "… Ja. Ja, jetzt geht's wieder.", "fr": "… Oui. Oui, ça va de nouveau."}]},
+    {"faux": true, "t": "Das geht gleich weg. Stehen Sie schnell auf!", "fr": "Ça va passer. Levez-vous vite !",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Nein, nein! Ich falle gleich um!", "fr": "Non, non ! Je vais tomber !"}],
+     "aide": {"fr": "<b>Un vertige au bord du lit : on attend, assis, jamais debout.</b> « Bleiben Sie ruhig sitzen. Wir warten, bis es besser ist. » S'il ne passe pas, on le recouche et on prend la tension."},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  },
+  "schuhe": {
+   "dit": [],
+   "choix": [
+    {"t": "Prima. Jetzt ziehe ich Ihnen die Schuhe an, die mit dem Klettverschluss.", "fr": "Parfait. Maintenant, je vous mets vos chaussures, celles avec le scratch.", "va": "selbst",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Das kann ich allein! Ich bin doch kein Kleinkind.", "fr": "Je peux le faire tout seul ! Je ne suis pas un petit enfant."}]},
+    {"t": "Sehr gut. Bevor Sie aufstehen, brauchen Sie feste Schuhe. Hier sind Ihre.", "fr": "Très bien. Avant de vous lever, il vous faut des chaussures fermées. Voici les vôtres.", "va": "selbst",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Das kann ich allein! Ich bin doch kein Kleinkind.", "fr": "Je peux le faire tout seul ! Je ne suis pas un petit enfant."}]}
+   ]
+  },
+  "selbst": {
+   "dit": [],
+   "choix": [
+    {"t": "Natürlich, machen Sie das. Aber bücken Sie sich bitte nicht so weit nach vorn, wegen der neuen Hüfte. Ich stelle Ihnen die Schuhe vor die Füße.", "fr": "Bien sûr, faites-le. Mais ne vous penchez pas trop en avant, s'il vous plaît, à cause de la nouvelle hanche. Je vous pose les chaussures devant les pieds.", "va": "aufstehen",
+     "relire": true, "relire_note": "Ne pas trop plier la hanche après la prothèse.",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Na also. Geht doch.", "fr": "Voilà. Ça marche."}]},
+    {"t": "Gern, Sie wissen am besten, was Sie können. Nur nicht zu tief bücken, das ist wichtig für die Hüfte. Darf ich Ihnen den Schuhlöffel geben?", "fr": "Volontiers, c'est vous qui savez le mieux ce que vous pouvez faire. Juste ne pas vous pencher trop bas, c'est important pour la hanche. Je vous donne le chausse-pied ?", "va": "aufstehen",
+     "relire": true, "relire_note": "Ne pas trop plier la hanche après la prothèse.",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Na also. Geht doch.", "fr": "Voilà. Ça marche."}]},
+    {"faux": true, "t": "Nein, das mache ich. Das geht schneller.", "fr": "Non, c'est moi qui le fais. Ça va plus vite.",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Schneller, schneller. Bei Ihnen muss immer alles schnell gehen.", "fr": "Plus vite, plus vite. Avec vous, il faut toujours que tout aille vite."}],
+     "aide": {"fr": "<b>Ce que le patient peut faire seul, il le fait seul.</b> « Natürlich, machen Sie das. » C'est bon pour son autonomie et pour son moral. Tu aides seulement là où c'est nécessaire, ici à cause de la hanche : « Bücken Sie sich bitte nicht so weit nach vorn. »"}}
+   ]
+  },
+  "aufstehen": {
+   "dit": [],
+   "choix": [
+    {"t": "Jetzt stellen Sie beide Füße fest auf den Boden. Stützen Sie sich mit den Händen auf dem Bett ab. Auf drei stehen Sie auf. Eins, zwei, drei!", "fr": "Maintenant, posez les deux pieds bien à plat par terre. Appuyez-vous avec les mains sur le lit. À trois, vous vous levez. Un, deux, trois !", "va": "rollator",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Hoppla! Ich stehe. Ich stehe tatsächlich!", "fr": "Oh là ! Je suis debout. Je suis vraiment debout !"}]},
+    {"t": "Rutschen Sie ein bisschen nach vorn, bis die Füße flach auf dem Boden stehen. Drücken Sie sich mit beiden Händen vom Bett hoch. Ich halte Sie am Gürtel fest.", "fr": "Glissez un peu vers l'avant, jusqu'à ce que vos pieds soient à plat par terre. Poussez avec les deux mains sur le lit pour vous relever. Je vous tiens par la ceinture.", "va": "rollator",
+     "relire": true, "relire_note": "La ceinture de transfert ou la prise à la taille.",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Hoppla! Ich stehe. Ich stehe tatsächlich!", "fr": "Oh là ! Je suis debout. Je suis vraiment debout !"}]},
+    {"faux": true, "t": "Halten Sie sich an meinem Hals fest, ich ziehe Sie an den Armen hoch.", "fr": "Accrochez-vous à mon cou, je vous tire par les bras.",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Au! Mein Arm!", "fr": "Aïe ! Mon bras !"}],
+     "aide": {"fr": "<b>On ne tire jamais un patient par les bras, et il ne s'accroche pas au cou.</b> Il pousse lui-même avec les mains : « Stützen Sie sich mit den Händen auf dem Bett ab. » Toi, tu le tiens à la taille. Tirer fait mal aux épaules, et vous risquez de tomber tous les deux."},
+     "relire": true, "relire_note": "Règle de manutention."}
+   ]
+  },
+  "rollator": {
+   "dit": [],
+   "choix": [
+    {"t": "Super! Jetzt halten Sie sich am Rollator fest. Machen Sie kleine Schritte, bis zum Sessel am Fenster.", "fr": "Super ! Maintenant, tenez-vous au déambulateur. Faites de petits pas, jusqu'au fauteuil près de la fenêtre.", "va": "hinsetzen",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Wie ein Rentner auf dem Weihnachtsmarkt. Na ja, bin ich ja auch.", "fr": "Comme un retraité au marché de Noël. Bon, c'est ce que je suis, aussi."}]},
+    {"t": "Sehr gut gemacht! Die Hände an den Rollator, und dann ganz in Ruhe. Erst das rechte Bein, dann das linke.", "fr": "Très bien ! Les mains sur le déambulateur, et puis tout tranquillement. D'abord la jambe droite, puis la gauche.", "va": "hinsetzen",
+     "relire": true, "relire_note": "Quelle jambe avance en premier avec le déambulateur : selon la consigne de la kinésithérapie.",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Wie ein Rentner auf dem Weihnachtsmarkt. Na ja, bin ich ja auch.", "fr": "Comme un retraité au marché de Noël. Bon, c'est ce que je suis, aussi."}]}
+   ]
+  },
+  "hinsetzen": {
+   "dit": [],
+   "choix": [
+    {"t": "Gleich geschafft. Gehen Sie rückwärts, bis Sie den Sessel hinten an den Beinen spüren. Dann greifen Sie nach den Armlehnen und setzen sich langsam hin.", "fr": "C'est presque fini. Reculez jusqu'à ce que vous sentiez le fauteuil à l'arrière des jambes. Ensuite, attrapez les accoudoirs et asseyez-vous lentement.", "va": "abschluss",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "So. Puh. Das war mehr Sport als in den letzten zehn Jahren.", "fr": "Voilà. Pff. C'était plus de sport que ces dix dernières années."}]},
+    {"t": "Drehen Sie sich mit dem Rollator um, bis der Sessel hinter Ihnen ist. Fassen Sie die Armlehnen an, und dann ganz langsam hinsetzen.", "fr": "Tournez-vous avec le déambulateur jusqu'à ce que le fauteuil soit derrière vous. Prenez les accoudoirs, et puis asseyez-vous tout doucement.", "va": "abschluss",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "So. Puh. Das war mehr Sport als in den letzten zehn Jahren.", "fr": "Voilà. Pff. C'était plus de sport que ces dix dernières années."}]},
+    {"faux": true, "t": "Lassen Sie sich einfach in den Sessel fallen.", "fr": "Laissez-vous simplement tomber dans le fauteuil.",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Fallen? Mit der neuen Hüfte?", "fr": "Tomber ? Avec la nouvelle hanche ?"}],
+     "aide": {"fr": "<b>On s'assoit lentement, en se tenant aux accoudoirs.</b> « Greifen Sie nach den Armlehnen und setzen Sie sich langsam hin. » Se laisser tomber plie brusquement la hanche."}}
+   ]
+  },
+  "abschluss": {
+   "dit": [],
+   "choix": [
+    {"t": "Das haben Sie toll gemacht! Wie geht es Ihnen? Und bitte schlagen Sie die Beine nicht übereinander, das ist nicht gut für die neue Hüfte. Die Klingel lege ich Ihnen hierhin.", "fr": "Vous avez été formidable ! Comment allez-vous ? Et ne croisez pas les jambes, s'il vous plaît, ce n'est pas bon pour la nouvelle hanche. Je vous mets la sonnette ici.", "va": null,
+     "relire": true, "relire_note": "Ne pas croiser les jambes après la prothèse ; durée au fauteuil.",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Gut, gut. Und jetzt hätte ich gern meinen Kaffee. Schwarz.", "fr": "Bien, bien. Et maintenant, j'aimerais bien mon café. Noir."}]},
+    {"t": "Sie sitzen! Ich bin stolz auf Sie. Sitzen Sie bequem? Bleiben Sie ungefähr eine halbe Stunde im Sessel, und klingeln Sie, wenn Sie zurück ins Bett möchten.", "fr": "Vous êtes assis ! Je suis fière de vous. Vous êtes bien installé ? Restez environ une demi-heure dans le fauteuil, et sonnez quand vous voulez retourner au lit.", "va": null,
+     "relire": true, "relire_note": "Durée au fauteuil pour un premier lever.",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Gut, gut. Und jetzt hätte ich gern meinen Kaffee. Schwarz.", "fr": "Bien, bien. Et maintenant, j'aimerais bien mon café. Noir."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Was passiert, als {brandt} an der Bettkante sitzt?", "fr": "Que se passe-t-il quand {brandt} est assis au bord du lit ?"},
+   "options": [{"t": "Er hat starke Schmerzen.", "fr": "Il a très mal."}, {"t": "Ihm ist schwindelig.", "fr": "Il a le vertige."}, {"t": "Er möchte schlafen.", "fr": "Il veut dormir."}],
+   "juste": 1},
+  {"q": {"t": "Was möchte {brandt} allein machen?", "fr": "Qu'est-ce que {brandt} veut faire tout seul ?"},
+   "options": [{"t": "Die Schuhe anziehen.", "fr": "Mettre ses chaussures."}, {"t": "Ohne Rollator gehen.", "fr": "Marcher sans déambulateur."}, {"t": "Das Bett hochstellen.", "fr": "Relever le lit."}],
+   "juste": 0},
+  {"q": {"t": "Was soll {brandt} im Sessel nicht tun?", "fr": "Qu'est-ce que {brandt} ne doit pas faire dans le fauteuil ?"},
+   "options": [{"t": "Kaffee trinken.", "fr": "Boire du café."}, {"t": "Klingeln.", "fr": "Sonner."}, {"t": "Die Beine übereinanderschlagen.", "fr": "Croiser les jambes."}],
+   "juste": 2}
+ ]
+}

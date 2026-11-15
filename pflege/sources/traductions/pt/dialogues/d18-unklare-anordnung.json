@@ -1,0 +1,367 @@
+{
+ "_langue": "pt",
+ "_source": "pflege/sources/dialogues/d18-unklare-anordnung.json",
+ "cles": {
+  "titre": {
+   "fr": "Une prescription floue : redemander, refuser poliment",
+   "de": "Eine unklare Anordnung",
+   "pt": "Uma prescrição vaga: perguntar de novo, recusar com educação"
+  },
+  "intro": {
+   "fr": "Jeudi 12 novembre, 7 h 40. {elif} prépare les médicaments de 8 heures. Dans le dossier de {brandt}, deux prescriptions ont été ajoutées la veille au soir : un antibiotique, alors qu'il est allergique à la pénicilline, et un antidouleur « si besoin », sans dose. Tu joues {elif} : tu arrêtes {sommer} dans le couloir, tu signales le problème sans accuser personne, tu demandes la dose exacte et tu refuses poliment un ordre trop vague.",
+   "pt": "Quinta-feira, 12 de novembro, 7h40. {elif} está preparando as medicações das 8 horas. No prontuário do {brandt}, duas prescrições foram acrescentadas na noite anterior: um antibiótico, sendo que ele é alérgico à penicilina, e um analgésico “se necessário”, sem dose. Você faz o papel de {elif}: você para a {sommer} no corredor, aponta o problema sem acusar ninguém, pergunta a dose exata e recusa com educação uma ordem vaga demais."
+  },
+  "but": {
+   "fr": "Signaler un risque à une médecin pressée (faits, source, question) ; redemander une prescription incomplète (dose, intervalle, maximum) ; refuser poliment de donner un médicament sans prescription précise ; relire la prescription ; demander l'ordre écrit.",
+   "pt": "Comunicar um risco a uma médica com pressa (fatos, fonte, pergunta); pedir de novo uma prescrição incompleta (dose, intervalo, máximo); recusar com educação dar um medicamento sem prescrição precisa; reler a prescrição; pedir a ordem por escrito."
+  },
+  "relire_notes": {
+   "fr": "TOUT le dialogue. Amoxicilline + acide clavulanique = une pénicilline, contre-indiquée chez un patient allergique (éruption) ; la première dose n'a pas été donnée ; « bei Bedarf » sans dose : une prescription incomplète ne s'exécute pas ; métamizole 1 g, intervalle d'au moins 6 h, maximum 4 g par jour, si douleur > 3/10 (à vérifier selon le protocole du service) ; prescription orale : seulement en urgence, et à faire signer ; qui modifie le dossier (la médecin).",
+   "pt": "O diálogo INTEIRO. Amoxicilina + clavulanato = uma penicilina, contraindicada num paciente alérgico (exantema); a primeira dose não foi administrada; “bei Bedarf” sem dose: uma prescrição incompleta não se executa; dipirona (metamizol) 1 g, intervalo mínimo de 6 h, máximo de 4 g por dia, se dor > 3/10 (conferir conforme o protocolo do setor); prescrição verbal: só em emergência, e com assinatura depois; quem altera o prontuário (a médica)."
+  },
+  "redemittel.0": {
+   "fr": "Vous avez un instant ? C'est au sujet d'une prescription pour {brandt}.",
+   "de": "Haben Sie kurz einen Moment? Es geht um eine Anordnung bei {brandt:dat}.",
+   "pt": "A senhora tem um minutinho? É sobre uma prescrição do {brandt}."
+  },
+  "redemittel.1": {
+   "fr": "D'après la fiche d'admission, {brandt} est allergique à la pénicilline.",
+   "de": "Laut Aufnahmebogen hat {brandt} eine Penicillinallergie.",
+   "pt": "De acordo com a ficha de admissão, o {brandt} é alérgico à penicilina."
+  },
+  "redemittel.2": {
+   "fr": "Dans le dossier, il n'y a que « si besoin ». Il manque la dose et le maximum par jour.",
+   "de": "In der Kurve steht nur „bei Bedarf“. Es fehlen die Dosis und die Höchstmenge pro Tag.",
+   "pt": "No prontuário só está escrito “se necessário”. Faltam a dose e o máximo por dia."
+  },
+  "redemittel.3": {
+   "fr": "Combien doit-il recevoir, et combien de fois au maximum ?",
+   "de": "Wie viel soll er bekommen, und wie oft höchstens?",
+   "pt": "Quanto ele deve receber, e no máximo quantas vezes?"
+  },
+  "redemittel.4": {
+   "fr": "Je ne peux malheureusement pas. Sans dose précise, je n'ai pas le droit de le donner.",
+   "de": "Das kann ich leider nicht. Ohne genaue Dosis darf ich das nicht geben.",
+   "pt": "Infelizmente eu não posso. Sem uma dose precisa, eu não posso administrar."
+  },
+  "redemittel.5": {
+   "fr": "Je répète la posologie : …",
+   "de": "Ich wiederhole die Dosierung: …",
+   "pt": "Vou repetir a dosagem: …"
+  },
+  "redemittel.6": {
+   "fr": "Pourriez-vous le corriger tout de suite dans le dossier, s'il vous plaît ?",
+   "de": "Könnten Sie das bitte gleich in der Kurve ändern?",
+   "pt": "A senhora poderia corrigir isso agora no prontuário, por favor?"
+  },
+  "noeuds.ansprechen.dit.0.recit": {
+   "fr": "Jeudi 12 novembre, 7 h 40. Dans le dossier de {brandt}, deux prescriptions de la veille au soir : « Amoxicillin/Clavulansäure 3 x tägl. » et « Metamizol b. B. ». La première dose d'antibiotique est prévue à 8 heures. {sommer} passe dans le couloir, un gobelet de café à la main.",
+   "pt": "Quinta-feira, 12 de novembro, 7h40. No prontuário do {brandt}, duas prescrições da noite anterior: “Amoxicillin/Clavulansäure 3 x tägl.” e “Metamizol b. B.”. A primeira dose de antibiótico está aprazada para as 8 horas. A {sommer} passa pelo corredor, com um copo de café na mão."
+  },
+  "noeuds.ansprechen.dit.1": {
+   "fr": "Oui, {elif} ? Je suis un peu pressée.",
+   "de": "Ja, {elif}? Ich bin ein bisschen in Eile.",
+   "pt": "Sim, {elif}? Estou com um pouco de pressa."
+  },
+  "noeuds.ansprechen.choix.0": {
+   "fr": "Pardon, {sommer:voc}, vous avez un instant ? C'est au sujet de deux prescriptions pour {brandt}.",
+   "de": "Entschuldigung, {sommer:voc}, haben Sie kurz einen Moment? Es geht um zwei Anordnungen bei {brandt:dat}.",
+   "pt": "Desculpe, {sommer:voc}, a senhora tem um minutinho? É sobre duas prescrições do {brandt}."
+  },
+  "noeuds.ansprechen.choix.0.puis.0": {
+   "fr": "Deux minutes. De quoi s'agit-il ?",
+   "de": "Zwei Minuten. Worum geht's?",
+   "pt": "Dois minutos. Do que se trata?"
+  },
+  "noeuds.ansprechen.choix.1": {
+   "fr": "Je peux vous déranger une seconde ? J'ai une question sur les nouvelles prescriptions de {brandt}, avant de donner les médicaments.",
+   "de": "Darf ich Sie ganz kurz stören? Ich habe eine Frage zu den neuen Anordnungen bei {brandt:dat}, bevor ich die Medikamente gebe.",
+   "pt": "Posso incomodar só um segundinho? Tenho uma dúvida sobre as novas prescrições do {brandt}, antes de dar as medicações."
+  },
+  "noeuds.ansprechen.choix.1.puis.0": {
+   "fr": "Deux minutes. De quoi s'agit-il ?",
+   "de": "Zwei Minuten. Worum geht's?",
+   "pt": "Dois minutos. Do que se trata?"
+  },
+  "noeuds.ansprechen.choix.2": {
+   "fr": "{sommer:voc}, il y a une erreur dans le dossier de {brandt}.",
+   "de": "{sommer:voc}, in der Kurve von {brandt:dat} ist ein Fehler.",
+   "pt": "{sommer:voc}, tem um erro no prontuário do {brandt}."
+  },
+  "noeuds.ansprechen.choix.2.puis.0": {
+   "fr": "Une erreur ? De qui, donc ?",
+   "de": "Ein Fehler? Von wem denn?",
+   "pt": "Um erro? De quem, então?"
+  },
+  "noeuds.ansprechen.choix.2.aide": {
+   "fr": "<b>Ne commence pas par « une erreur » : demande un moment, puis décris ce que tu vois.</b> « Haben Sie kurz einen Moment? Es geht um zwei Anordnungen bei Herrn Brandt. » Le but est la sécurité du patient, pas de trouver un coupable.",
+   "pt": "<b>Não comece com “um erro”: peça um momento e depois descreva o que você está vendo.</b> “Haben Sie kurz einen Moment? Es geht um zwei Anordnungen bei Herrn Brandt.” O objetivo é a segurança do paciente, não encontrar um culpado."
+  },
+  "noeuds.allergie.choix.0": {
+   "fr": "Hier soir, on a prescrit de l'amoxicilline avec de l'acide clavulanique. Mais d'après la fiche d'admission, {brandt} est allergique à la pénicilline : il fait une éruption.",
+   "de": "Gestern Abend ist Amoxicillin mit Clavulansäure angeordnet worden. Laut Aufnahmebogen hat {brandt} aber eine Penicillinallergie, er bekommt davon einen Hautausschlag.",
+   "pt": "Ontem à noite foi prescrita amoxicilina com clavulanato. Mas, de acordo com a ficha de admissão, o {brandt} é alérgico à penicilina: ele tem exantema."
+  },
+  "noeuds.allergie.choix.0.puis.0": {
+   "fr": "Oh. C'est une pénicilline, il ne doit surtout pas en recevoir. Il a déjà eu une dose ?",
+   "de": "Oh. Das ist ein Penicillin, das darf er auf keinen Fall bekommen. Hat er schon eine Dosis bekommen?",
+   "pt": "Ah. Isso é uma penicilina, ele não pode receber de jeito nenhum. Ele já recebeu alguma dose?"
+  },
+  "noeuds.allergie.choix.1": {
+   "fr": "L'antibiotique prescrit hier, c'est de l'amoxicilline. Mais sur la fiche d'admission, il y a une allergie à la pénicilline avec éruption.",
+   "de": "Das Antibiotikum, das gestern angeordnet wurde, ist Amoxicillin. Im Aufnahmebogen steht aber eine Penicillinallergie mit Hautausschlag.",
+   "pt": "O antibiótico prescrito ontem é amoxicilina. Mas na ficha de admissão consta alergia à penicilina com exantema."
+  },
+  "noeuds.allergie.choix.1.puis.0": {
+   "fr": "Oh. C'est une pénicilline, il ne doit surtout pas en recevoir. Il a déjà eu une dose ?",
+   "de": "Oh. Das ist ein Penicillin, das darf er auf keinen Fall bekommen. Hat er schon eine Dosis bekommen?",
+   "pt": "Ah. Isso é uma penicilina, ele não pode receber de jeito nenhum. Ele já recebeu alguma dose?"
+  },
+  "noeuds.allergie.choix.2": {
+   "fr": "Le collègue a prescrit hier un mauvais antibiotique. C'est dangereux !",
+   "de": "Der Kollege hat gestern ein falsches Antibiotikum aufgeschrieben. Das ist gefährlich!",
+   "pt": "O colega prescreveu ontem o antibiótico errado. Isso é perigoso!"
+  },
+  "noeuds.allergie.choix.2.puis.0": {
+   "fr": "Doucement. Qu'est-ce qui est écrit exactement, et quel est le problème ?",
+   "de": "Langsam. Was genau steht da, und was ist das Problem?",
+   "pt": "Calma. O que exatamente está escrito, e qual é o problema?"
+  },
+  "noeuds.allergie.choix.2.aide": {
+   "fr": "<b>Donne les faits et leur source, sans juger le collègue.</b> « Angeordnet ist Amoxicillin. Laut Aufnahmebogen hat er eine Penicillinallergie. » La médecin décide elle-même ; ton rôle est de lui donner l'information exacte.",
+   "pt": "<b>Dê os fatos e a fonte deles, sem julgar o colega.</b> “Angeordnet ist Amoxicillin. Laut Aufnahmebogen hat er eine Penicillinallergie.” Quem decide é a médica; o seu papel é dar a ela a informação exata."
+  },
+  "noeuds.gegeben.choix.0": {
+   "fr": "Non, la première dose était prévue à 8 heures. Je ne l'ai pas encore donnée.",
+   "de": "Nein, die erste Gabe war für acht Uhr geplant. Ich habe sie noch nicht gegeben.",
+   "pt": "Não, a primeira dose estava aprazada para as 8 horas. Ainda não administrei."
+  },
+  "noeuds.gegeben.choix.0.puis.0": {
+   "fr": "Vous avez bien fait de demander. Je l'arrête et je prescris un autre antibiotique. C'est tout ?",
+   "de": "Gut, dass Sie nachgefragt haben. Ich setze es ab und ordne ein anderes Antibiotikum an. War das alles?",
+   "pt": "Fez bem em perguntar. Vou suspender e prescrever outro antibiótico. É só isso?"
+  },
+  "noeuds.gegeben.choix.1": {
+   "fr": "Non, pas encore. Je voulais d'abord vous en parler.",
+   "de": "Nein, noch nicht. Ich wollte zuerst mit Ihnen sprechen.",
+   "pt": "Não, ainda não. Eu queria falar com a senhora primeiro."
+  },
+  "noeuds.gegeben.choix.1.puis.0": {
+   "fr": "Vous avez bien fait de demander. Je l'arrête et je prescris un autre antibiotique. C'est tout ?",
+   "de": "Gut, dass Sie nachgefragt haben. Ich setze es ab und ordne ein anderes Antibiotikum an. War das alles?",
+   "pt": "Fez bem em perguntar. Vou suspender e prescrever outro antibiótico. É só isso?"
+  },
+  "noeuds.metamizol.choix.0": {
+   "fr": "Encore une question : pour le métamizole, il n'y a que « si besoin ». Il manque la dose par prise et le maximum par jour.",
+   "de": "Noch eine Frage: Bei Metamizol steht nur „bei Bedarf“. Es fehlen die Einzeldosis und die Höchstmenge pro Tag.",
+   "pt": "Mais uma pergunta: na dipirona só está escrito “se necessário”. Faltam a dose por administração e o máximo por dia."
+  },
+  "noeuds.metamizol.choix.0.puis.0": {
+   "fr": "Oh, faites comme d'habitude.",
+   "de": "Ach, machen Sie das einfach wie immer.",
+   "pt": "Ah, faça como sempre."
+  },
+  "noeuds.metamizol.choix.1": {
+   "fr": "Et pour le métamizole, je ne suis pas sûre : combien peut-il recevoir, et à quelle fréquence ? Dans le dossier, il n'y a que « si besoin ».",
+   "de": "Und beim Metamizol bin ich unsicher: Wie viel darf er bekommen, und wie oft? In der Kurve steht nur „bei Bedarf“.",
+   "pt": "E na dipirona eu não tenho certeza: quanto ele pode receber, e com que frequência? No prontuário só está escrito “se necessário”."
+  },
+  "noeuds.metamizol.choix.1.puis.0": {
+   "fr": "Oh, faites comme d'habitude.",
+   "de": "Ach, machen Sie das einfach wie immer.",
+   "pt": "Ah, faça como sempre."
+  },
+  "noeuds.metamizol.choix.2": {
+   "fr": "Non, c'est tout. Le métamizole, je le donnerai simplement quand il aura mal.",
+   "de": "Nein, das war alles. Metamizol gebe ich dann einfach, wenn er Schmerzen hat.",
+   "pt": "Não, é só isso. A dipirona eu dou quando ele estiver com dor, e pronto."
+  },
+  "noeuds.metamizol.choix.2.puis.0": {
+   "fr": "Combien, alors ? Il y a au moins une dose d'écrite ?",
+   "de": "Wie viel denn? Steht da überhaupt eine Dosis?",
+   "pt": "Quanto, então? Tem pelo menos uma dose escrita?"
+  },
+  "noeuds.metamizol.choix.2.aide": {
+   "fr": "<b>« Bei Bedarf » ne suffit pas : il faut la dose, l'intervalle et le maximum par jour.</b> Une prescription incomplète se redemande avant de la donner : « Es fehlen die Einzeldosis und die Höchstmenge pro Tag. »",
+   "pt": "<b>“Bei Bedarf” não basta: é preciso a dose, o intervalo e o máximo por dia.</b> Uma prescrição incompleta se confirma antes de administrar: “Es fehlen die Einzeldosis und die Höchstmenge pro Tag.”"
+  },
+  "noeuds.wie_immer.choix.0": {
+   "fr": "Je ne peux malheureusement pas. Sans dose précise, je n'ai pas le droit de le donner. Combien doit-il recevoir, et combien de fois au maximum ?",
+   "de": "Das kann ich leider nicht. Ohne genaue Dosis darf ich es nicht geben. Wie viel soll er bekommen, und wie oft höchstens?",
+   "pt": "Infelizmente eu não posso. Sem uma dose precisa, eu não posso administrar. Quanto ele deve receber, e no máximo quantas vezes?"
+  },
+  "noeuds.wie_immer.choix.0.puis.0": {
+   "fr": "Vous avez raison. Un gramme si la douleur est au-dessus de 3, au plus tôt toutes les six heures, quatre grammes par jour au maximum.",
+   "de": "Sie haben recht. Ein Gramm, wenn die Schmerzen über drei liegen, frühestens alle sechs Stunden, höchstens vier Gramm am Tag.",
+   "pt": "A senhora tem razão. Um grama se a dor estiver acima de 3, no mínimo de seis em seis horas, no máximo quatro gramas por dia."
+  },
+  "noeuds.wie_immer.choix.1": {
+   "fr": "Je comprends que vous ayez peu de temps. Mais j'ai besoin d'une prescription précise : la dose par prise, l'intervalle et le maximum par jour.",
+   "de": "Ich verstehe, dass Sie wenig Zeit haben. Aber ich brauche eine genaue Anordnung: die Einzeldosis, den Abstand und die Höchstmenge am Tag.",
+   "pt": "Eu entendo que a senhora tenha pouco tempo. Mas preciso de uma prescrição precisa: a dose por administração, o intervalo e o máximo por dia."
+  },
+  "noeuds.wie_immer.choix.1.puis.0": {
+   "fr": "Vous avez raison. Un gramme si la douleur est au-dessus de 3, au plus tôt toutes les six heures, quatre grammes par jour au maximum.",
+   "de": "Sie haben recht. Ein Gramm, wenn die Schmerzen über drei liegen, frühestens alle sechs Stunden, höchstens vier Gramm am Tag.",
+   "pt": "A senhora tem razão. Um grama se a dor estiver acima de 3, no mínimo de seis em seis horas, no máximo quatro gramas por dia."
+  },
+  "noeuds.wie_immer.choix.2": {
+   "fr": "D'accord, je lui donnerai deux comprimés, ça ira.",
+   "de": "Okay, dann gebe ich ihm zwei Tabletten, das passt schon.",
+   "pt": "Tá bom, então eu dou dois comprimidos para ele, deve dar certo."
+  },
+  "noeuds.wie_immer.choix.2.puis.0": {
+   "fr": "Attendez, non ! Ne devinez pas une dose, s'il vous plaît.",
+   "de": "Moment, nein! Raten Sie bitte keine Dosis.",
+   "pt": "Espere, não! Não chute uma dose, por favor."
+  },
+  "noeuds.wie_immer.choix.2.aide": {
+   "fr": "<b>Tu as le droit, et le devoir, de refuser poliment un ordre trop vague.</b> « Das kann ich leider nicht. Ohne genaue Dosis darf ich es nicht geben. » Puis repose la question : « Wie viel soll er bekommen, und wie oft höchstens? »",
+   "pt": "<b>Você tem o direito, e o dever, de recusar com educação uma ordem vaga demais.</b> “Das kann ich leider nicht. Ohne genaue Dosis darf ich es nicht geben.” Depois, refaça a pergunta: “Wie viel soll er bekommen, und wie oft höchstens?”"
+  },
+  "noeuds.wiederholen.choix.0": {
+   "fr": "Je répète : métamizole un gramme si la douleur dépasse 3, au plus tôt toutes les six heures, quatre grammes par jour au maximum.",
+   "de": "Ich wiederhole: Metamizol ein Gramm bei Schmerzen über drei, frühestens alle sechs Stunden, höchstens vier Gramm am Tag.",
+   "pt": "Vou repetir: dipirona um grama se a dor passar de 3, no mínimo de seis em seis horas, no máximo quatro gramas por dia."
+  },
+  "noeuds.wiederholen.choix.0.puis.0": {
+   "fr": "Exactement.",
+   "de": "Genau.",
+   "pt": "Exatamente."
+  },
+  "noeuds.wiederholen.choix.1": {
+   "fr": "Donc : un gramme à partir d'une douleur de 4, au moins six heures d'intervalle et quatre grammes par jour au maximum. C'est bien ça ?",
+   "de": "Also: ein Gramm, ab Schmerzstärke vier, mindestens sechs Stunden Abstand und maximal vier Gramm pro Tag. Richtig?",
+   "pt": "Então: um grama a partir de dor 4, intervalo mínimo de seis horas e no máximo quatro gramas por dia. Correto?"
+  },
+  "noeuds.wiederholen.choix.1.puis.0": {
+   "fr": "Exactement.",
+   "de": "Genau.",
+   "pt": "Exatamente."
+  },
+  "noeuds.wiederholen.choix.2": {
+   "fr": "Pardon, combien de fois au maximum, vous avez dit ?",
+   "de": "Entschuldigung, wie oft höchstens, haben Sie gesagt?",
+   "pt": "Desculpe, no máximo quantas vezes, a senhora disse?"
+  },
+  "noeuds.wiederholen.choix.2.puis.0": {
+   "fr": "Au plus tôt toutes les six heures, quatre grammes par jour au maximum.",
+   "de": "Frühestens alle sechs Stunden, höchstens vier Gramm am Tag.",
+   "pt": "No mínimo de seis em seis horas, no máximo quatro gramas por dia."
+  },
+  "noeuds.schriftlich.choix.0": {
+   "fr": "Pourriez-vous corriger les deux tout de suite dans le dossier, s'il vous plaît ? Une prescription orale, je ne peux l'accepter qu'en urgence.",
+   "de": "Könnten Sie beides bitte gleich in der Kurve ändern? Eine mündliche Anordnung kann ich nur im Notfall annehmen.",
+   "pt": "A senhora poderia corrigir as duas agora no prontuário, por favor? Prescrição verbal eu só posso aceitar em emergência."
+  },
+  "noeuds.schriftlich.choix.0.puis.0": {
+   "fr": "Je le fais tout de suite, avant la visite. J'écris le nouvel antibiotique en même temps.",
+   "de": "Mache ich sofort, noch vor der Visite. Das neue Antibiotikum schreibe ich direkt dazu.",
+   "pt": "Faço agora mesmo, antes da visita. Já escrevo o novo antibiótico junto."
+  },
+  "noeuds.schriftlich.choix.1": {
+   "fr": "Vous voudriez bien noter les changements par écrit dans le dossier ? Je donnerai les médicaments après.",
+   "de": "Würden Sie die Änderungen bitte schriftlich in die Kurve eintragen? Dann gebe ich die Medikamente danach.",
+   "pt": "A senhora poderia registrar as alterações por escrito no prontuário? Aí eu administro as medicações depois."
+  },
+  "noeuds.schriftlich.choix.1.puis.0": {
+   "fr": "Je le fais tout de suite, avant la visite. J'écris le nouvel antibiotique en même temps.",
+   "de": "Mache ich sofort, noch vor der Visite. Das neue Antibiotikum schreibe ich direkt dazu.",
+   "pt": "Faço agora mesmo, antes da visita. Já escrevo o novo antibiótico junto."
+  },
+  "noeuds.schriftlich.choix.2": {
+   "fr": "Pas de problème, je le corrige moi-même dans le dossier.",
+   "de": "Kein Problem, ich ändere das selbst in der Kurve.",
+   "pt": "Sem problema, eu mesma corrijo no prontuário."
+  },
+  "noeuds.schriftlich.choix.2.puis.0": {
+   "fr": "Non, non, c'est moi qui écris les prescriptions. Sinon, on ne sait plus qui a prescrit quoi.",
+   "de": "Nein, nein, Anordnungen trage ich ein. Sonst ist nicht klar, wer was angeordnet hat.",
+   "pt": "Não, não, quem registra as prescrições sou eu. Senão não fica claro quem prescreveu o quê."
+  },
+  "noeuds.schriftlich.choix.2.aide": {
+   "fr": "<b>Une prescription s'écrit et se signe par la médecin, pas par la soignante.</b> Demande-le poliment : « Könnten Sie das bitte gleich in der Kurve ändern? » Une prescription orale ne s'accepte qu'en urgence, et se fait signer ensuite.",
+   "pt": "<b>Uma prescrição é escrita e assinada pela médica, não pela enfermagem.</b> Peça com educação: “Könnten Sie das bitte gleich in der Kurve ändern?” Uma prescrição verbal só se aceita em emergência, e a assinatura vem depois."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Merci. Je signale encore une fois l'allergie bien visiblement sur la première page du dossier.",
+   "de": "Danke. Ich markiere die Allergie noch einmal deutlich auf der ersten Seite der Kurve.",
+   "pt": "Obrigada. Vou sinalizar a alergia de novo, bem visível, na primeira página do prontuário."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Bonne idée. Et, {elif} : merci. C'est exactement comme ça qu'il faut faire.",
+   "de": "Gute Idee. Und, {elif}: danke. Genau so soll es laufen.",
+   "pt": "Boa ideia. E, {elif}: obrigada. É exatamente assim que tem que ser."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Merci beaucoup. Vous parlez à {brandt} du nouvel antibiotique, ou je le lui dis ?",
+   "de": "Vielen Dank. Sprechen Sie mit {brandt:dat} über das neue Antibiotikum, oder soll ich es ihm sagen?",
+   "pt": "Muito obrigada. A senhora conversa com o {brandt} sobre o novo antibiótico, ou eu falo com ele?"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Je le lui dirai à la visite. Et, {elif} : merci. C'est exactement comme ça qu'il faut faire.",
+   "de": "Ich sage es ihm bei der Visite. Und, {elif}: danke. Genau so soll es laufen.",
+   "pt": "Eu falo com ele na visita. E, {elif}: obrigada. É exatamente assim que tem que ser."
+  },
+  "ecouter.0.q": {
+   "fr": "Pourquoi {brandt} ne doit-il pas recevoir l'antibiotique ?",
+   "de": "Warum darf {brandt} das Antibiotikum nicht bekommen?",
+   "pt": "Por que o {brandt} não pode receber o antibiótico?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Il est allergique à la pénicilline.",
+   "de": "Er hat eine Penicillinallergie.",
+   "pt": "Ele é alérgico à penicilina."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Il n'a plus de fièvre.",
+   "de": "Er hat kein Fieber mehr.",
+   "pt": "Ele não tem mais febre."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Il prend déjà du métamizole.",
+   "de": "Er nimmt schon Metamizol.",
+   "pt": "Ele já toma dipirona."
+  },
+  "ecouter.1.q": {
+   "fr": "Qu'est-ce qui manque dans la prescription de métamizole ?",
+   "de": "Was fehlt bei der Anordnung von Metamizol?",
+   "pt": "O que falta na prescrição de dipirona?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Le nom du patient.",
+   "de": "Der Name des Patienten.",
+   "pt": "O nome do paciente."
+  },
+  "ecouter.1.options.1": {
+   "fr": "La dose et le maximum par jour.",
+   "de": "Die Dosis und die Höchstmenge pro Tag.",
+   "pt": "A dose e o máximo por dia."
+  },
+  "ecouter.1.options.2": {
+   "fr": "La signature de la soignante.",
+   "de": "Die Unterschrift der Pflege.",
+   "pt": "A assinatura da enfermagem."
+  },
+  "ecouter.2.q": {
+   "fr": "Combien de métamizole {brandt} peut-il recevoir au maximum par jour ?",
+   "de": "Wie viel Metamizol darf {brandt} höchstens am Tag bekommen?",
+   "pt": "Quanto de dipirona o {brandt} pode receber no máximo por dia?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Un gramme.",
+   "de": "Ein Gramm.",
+   "pt": "Um grama."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Six grammes.",
+   "de": "Sechs Gramm.",
+   "pt": "Seis gramas."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Quatre grammes.",
+   "de": "Vier Gramm.",
+   "pt": "Quatro gramas."
+  }
+ }
+}

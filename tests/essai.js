@@ -214,5 +214,55 @@ CLES.forEach(k => {
     egal(n, 11, "la cle " + k + " existe dans les 11 langues d'interface");
 });
 
+// ---------- 9. Les pages en cadre (ligne 86, 13 nov. 2026) ----------
+// A : la garde aux portes, inerte avant la sortie. B : la poignee de main dans les pages.
+verifier(/function pageOuverte\(id\)\{\s*if\(accesComplet\(\)\) return true;/.test(source), "pageOuverte : tout est ouvert en acces complet (donc avant la sortie)");
+verifier(/portes: \["theme:familia", "theme:cuerpo",\s*"conversation:pp1-pass", "conversation:pp2-cafe", "conversation:pp5-hotel", "conversation:pp6-achats",\s*"scene:restaurant"\],/.test(source),
+    "GRATUIT.portes = la vitrine de Jacques du 15 nov. (famille, corps, 4 conversations de Premiers pas, restaurant)");
+verifier(/PAGES_GRATUITES_DECIDEES = \["scene:klassenzimmer"\]/.test(source), "la classe reste gratuite (2 oct.)");
+verifier(!/"telc"/.test((source.match(/portes: \[[^\]]*\]/) || [""])[0]), "le telc reste ferme (4a)");
+verifier(/function etiquetteGratuite\(id\)\{\s*return !accesComplet\(\) && pageOuverte\(id\);/.test(source), "l'etiquette « Gratuit » seulement en version gratuite");
+verifier((source.match(/^\s+gratuit_etiquette: "/mg) || []).length === 11, "gratuit_etiquette dans les 11 langues d'interface");
+["essai_annonce_titre", "essai_annonce_carte", "essai_annonce_gratuit", "essai_annonce_abo"].forEach(c =>
+    verifier((source.match(new RegExp("^\\s+" + c + ": \"", "mg")) || []).length === 11, c + " dans les 11 langues d'interface"));
+verifier((source.match(/^\s+essai_annonce_abo: "[^"]*\{mois\}[^"]*\{an\}/mg) || []).length === 11, "l'annonce donne les deux prix dans les 11 langues");
+verifier(/const voir = !!ACCES\.actif \|\| apercuAnnonceEssai;/.test(source), "l'annonce des 7 jours seulement avec ACCES.actif");
+verifier(/CA: \["CAD", 6\.99, 49\.99\]/.test(source), "le Canada a 6,99 / 49,99 $ CA (decision du 15 nov.)");
+{
+    const g = (source.match(/const PRIX_ABO_PAYS = \{([\s\S]*?)\};/) || ["", ""])[1];
+    const pays = (g.match(/\b[A-Z]{2}: \[/g) || []).length;
+    egal(pays, 17, "PRIX_ABO_PAYS : 17 pays (grille du 2 nov. + pouvoir d'achat du 15 nov.)");
+    verifier(/TR: \["TRY", 149\.99, 999\.99\]/.test(g) && /IN: \["INR", 299, 1999\]/.test(g) && /DZ: \["DZD", 499, 3499\]/.test(g), "les prix selon le pouvoir d'achat (Turquie, Inde, Algerie)");
+}
+verifier(/if\(pm && pm\.mensuel && pm\.annuel\) return \{ mois: pm\.mensuel, an: pm\.annuel \};/.test(source), "le prix du magasin d'abord");
+verifier(/if\(panneau === "scenes"\)\{\s*const sc = SCENES_TOUTES\.find/.test(source), "les scenes du panneau gardees par leur nom");
+verifier(/function ouvrirSceneLibre\(nom\)\{\s*if\(!pageOuverte\("scene:" \+ nom\)\)/.test(source), "la scene ouverte seule, en defense");
+{
+    const conv = fs.readFileSync(path.join(RACINE, "visuel", "prototype", "conversation.html"), "utf8");
+    verifier(/parent\.pageOuverte\("conversation:" \+ id\)/.test(conv) && /if \(!ouverte\(id\)\)\{ versAbonnement\(\); return; \}/.test(conv),
+        "conversation.html : une conversation fermee ouvre l'abonnement, dans la liste comme par ?c=");
+}
+verifier(/function ouvrirThemeIllustre\(nom, depuis\)\{[\s\S]{0,160}if\(!pageOuverte\("theme:" \+ nom\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte des themes illustres");
+verifier(/function ouvrirConversations\(\)\{\s*if\(!famillePageOuverte\("conversation"\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte des conversations");
+verifier(/function ouvrirTelc\(partie\)\{[\s\S]{0,160}if\(!famillePageOuverte\("telc"\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte du telc");
+verifier(/const ouverts = themesIllustresOuverts\(\)\.filter\(nom => pageOuverte\("theme:" \+ nom\)\);/.test(source), "le theme de la seance parmi les themes ouverts");
+verifier(/if\(id && pageOuverte\("conversation:" \+ id\)\) sortie\.push\(/.test(source), "la conversation de Premiers pas seulement si elle est ouverte");
+verifier(/if\(!enPremiersPas && !accesComplet\(\)\)\{\s*const libres = candidates\.filter/.test(source), "la scene de la seance parmi les scenes ouvertes");
+verifier(/window\.cadreAutorise = /.test(source), "chargerCadre pose la poignee de main (window.cadreAutorise)");
+verifier(/if\(!accesComplet\(\) && !filtrerGratuit\(\[it\]\)\.length\) return false;/.test(source), "les mots d'une scene ou d'un theme hors echantillon n'avancent pas en version gratuite");
+{
+    const accesJs = fs.readFileSync(path.join(RACINE, "visuel", "prototype", "themes", "acces.js"), "utf8");
+    const m = accesJs.match(/var ACTIF = (true|false);/);
+    const actifApp = /const ACCES = \{ actif: (true|false)/.exec(source);
+    verifier(!!m && !!actifApp, "ACTIF lisible dans acces.js et ACCES.actif dans index.html");
+    if(m && actifApp) egal(m[1], actifApp[1], "acces.js (ACTIF) et index.html (ACCES.actif) s'accordent");
+    const idx = source;
+    const pagesThemes = Array.from(new Set((idx.match(/page: *"[a-z-]+\.html"/g) || []).map(x => x.match(/"([a-z-]+\.html)"/)[1])));
+    pagesThemes.concat(["conversation.html", "index.html", "dtz-oral.html", "telc/telc.html", "telc/oral.html", "dtz/dtz.html"]).forEach(p => {
+        const page = fs.readFileSync(path.join(RACINE, "visuel", "prototype", p), "utf8");
+        verifier(page.indexOf("themes/acces.js") >= 0, "la page " + p + " charge themes/acces.js");
+    });
+}
+
 console.log("Essai de 7 jours : " + ok + " verifications passees, " + ko + " en echec.");
 if(ko){ fautes.forEach(f => console.log("  ECHEC : " + f)); process.exit(1); }

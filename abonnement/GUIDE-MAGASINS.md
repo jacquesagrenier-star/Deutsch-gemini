@@ -1,6 +1,6 @@
 # L'abonnement de Wortando : ce que Jacques fait dans les consoles
 
-Rédigé le 11 nov. 2026 (v1165), pour le lancement avec l'**essai de 7 jours sans carte, géré par l'app** (modèle B, décision du 11 nov.), puis l'abonnement : **6,99 € / mois, 49,99 € / an** (9,99 / 69,99 $ CA ; grille complète du 2 nov. dans `decisions/DECISIONS.md`).
+Rédigé le 11 nov. 2026 (v1165), pour le lancement avec l'**essai de 7 jours sans carte, géré par l'app** (modèle B, décision du 11 nov.), puis l'abonnement : **6,99 € / mois, 49,99 € / an** (6,99 / 49,99 $ CA depuis la décision du 15 nov. ; grille du 2 nov. dans `decisions/DECISIONS.md`).
 
 Rien ici ne demande de dépense. Aucune clé **secrète** ne doit jamais entrer dans le dépôt : seules les deux clés **publiques** du SDK RevenueCat (`goog_…`, `appl_…`) vont dans `index.html`, comme la clé Firebase.
 
@@ -27,7 +27,7 @@ Compte Firebase (uid)  ──►  identifiant RevenueCat = le même uid
 1. **Monétiser → Abonnements → `wortando_premium`.**
    - Activer les deux **forfaits de base** : `mensuel` et `annuel` (bouton « Activer » de chaque forfait).
    - ⚠️ **NE PAS activer les offres `essai-7-jours` et `essai-7-jours-mensuel`.** L'essai est géré par l'app ; ces offres donneraient un second essai, avec carte, par-dessus le nôtre. Les laisser en brouillon (ou les supprimer).
-   - Vérifier les prix pays par pays (zone euro 6,99 € / 49,99 €, Canada 9,99 / 69,99 $ CA, etc.). Rappel du 3 nov. : la cellule d'un pays prend le prix **TTC** ; le dialogue « Set prices » prend un prix **hors taxes**.
+   - Vérifier les prix pays par pays : la grille ci-dessous (fait le 15 nov. : les deux forfaits ACTIFS, les prix selon le pouvoir d'achat entrés). Rappel du 3 nov. : la cellule d'un pays prend le prix **TTC** ; le dialogue « Set prices » prend un prix **hors taxes**.
 2. **Testeurs de licence** (Paramètres → Test de licence) : ajouter l'adresse Gmail de Jacques. Ses achats sont alors des achats de test, jamais facturés ; un abonnement mensuel s'y renouvelle toutes les 5 minutes.
 3. **Accès de RevenueCat à Google Play** (une seule fois) :
    - Google Cloud (projet relié à la Play Console) → IAM → Comptes de service → créer `revenuecat` → Clés → Ajouter une clé JSON → télécharger le fichier.
@@ -37,6 +37,33 @@ Compte Firebase (uid)  ──►  identifiant RevenueCat = le même uid
 4. **Notifications en temps réel** (recommandé) : RevenueCat → app Google → « Connect to Google » propose de créer le sujet Pub/Sub ; sinon, Play Console → Monétiser → Configuration de la monétisation → Notifications en temps réel pour les développeurs → coller le nom du sujet donné par RevenueCat.
 5. Rappel ouvert depuis le 30 oct. : l'inscription au **programme des frais de service de 15 %** (Play Console → paramètres du compte de paiement / groupe de comptes).
 
+### La grille des prix (mensuel / annuel)
+
+Décisions du 2 nov. et du 15 nov. (Canada ; pays selon le pouvoir d'achat, entrés dans la Play Console le 15 nov.). La même grille est dans `PRIX_ABO_PAYS` (index.html), qui affiche le prix de l'annonce des 7 jours avant que le magasin réponde : **toute cellule changée ici se change aussi là**.
+
+| Pays | Mensuel | Annuel |
+|---|---|---|
+| Zone euro | 6,99 € | 49,99 € |
+| États-Unis | 6,99 $ US | 49,99 $ US |
+| Canada | 6,99 $ CA | 49,99 $ CA |
+| Royaume-Uni | 5,99 £ | 44,99 £ |
+| Suisse | 7,90 CHF | 54,90 CHF |
+| Brésil | 14,90 R$ | 99,90 R$ |
+| Mexique | 79 MX$ | 549 MX$ |
+| Turquie | 149,99 TRY | 999,99 TRY |
+| Ukraine | 99 UAH | 699 UAH |
+| Pologne | 19,99 PLN | 139,99 PLN |
+| Inde | 299 INR | 1 999 INR |
+| Philippines | 199 PHP | 1 290 PHP |
+| Indonésie | 49 000 IDR | 349 000 IDR |
+| Égypte | 149,99 EGP | 999,99 EGP |
+| Maroc | 39 MAD | 269 MAD |
+| Algérie | 499 DZD | 3 499 DZD |
+| Colombie | 14 900 COP | 99 900 COP |
+| Pérou | 14,90 PEN | 99,90 PEN |
+
+Les autres pays : la conversion automatique du magasin. Dans l'app, avant la réponse du magasin, ils voient l'euro.
+
 ## B. App Store Connect
 
 0. ⚠️ **Préalable bloquant : le contrat « Paid Apps ».** Accords, taxes et banque → Paid Apps → accepter, puis formulaires fiscaux et compte bancaire. Il attend la correction de l'adresse Business (Ville-Marie) demandée au soutien d'Apple le 30 oct. **Sans ce contrat, les abonnements ne se chargent pas, même en bac à sable** : l'iPhone ne pourra rien vendre ni rien tester.
@@ -44,9 +71,9 @@ Compte Firebase (uid)  ──►  identifiant RevenueCat = le même uid
 2. Dans ce groupe, **deux abonnements auto-renouvelables** :
    | Nom de référence | Identifiant du produit (définitif, ne se réutilise jamais) | Durée | Prix |
    |---|---|---|---|
-   | Wortando mensuel | `wortando_premium_mensuel` | 1 mois | 6,99 € (zone euro), 9,99 $ CA, 6,99 $ US… |
-   | Wortando annuel | `wortando_premium_annuel` | 1 an | 49,99 € (zone euro), 69,99 $ CA, 49,99 $ US… |
-   - Prix : choisir les États-Unis comme pays de base (6,99 $ / 49,99 $, la conversion automatique d'Apple part du $ US, décision du 2 nov.), puis régler à la main la zone euro, le Canada, le Royaume-Uni, la Suisse, le Brésil et le Mexique sur la grille du 2 nov. (le point de prix Apple le plus proche si le montant exact n'existe pas).
+   | Wortando mensuel | `wortando_premium_mensuel` | 1 mois | 6,99 € (zone euro), 6,99 $ CA, 6,99 $ US… |
+   | Wortando annuel | `wortando_premium_annuel` | 1 an | 49,99 € (zone euro), 49,99 $ CA, 49,99 $ US… |
+   - Prix : choisir les États-Unis comme pays de base (6,99 $ / 49,99 $, la conversion automatique d'Apple part du $ US, décision du 2 nov.), puis régler à la main la zone euro, le Canada, le Royaume-Uni, la Suisse, le Brésil, le Mexique et les onze pays selon le pouvoir d'achat sur **la grille des prix** (fin de la section A) (le point de prix Apple le plus proche si le montant exact n'existe pas).
    - Pour chacun : nom affiché et description localisés, **capture de l'écran d'abonnement** (pour la révision ; Claude la fournira), notes au réviseur.
    - **Pas d'offre d'introduction** (essai gratuit Apple) : l'essai est géré par l'app. Sauf si Apple refuse ce modèle : voir `abonnement/QUESTION-APPLE.md`, plan de repli.
 3. **Clé d'achat intégré** (Utilisateurs et accès → Intégrations → Achats intégrés → générer une clé) : télécharger le `.p8`, noter l'« Issuer ID » et le « Key ID ». Le `.p8` est un **secret** : dans RevenueCat (C.2) et `C:/Users/jacqu/.wortando/`, jamais dans le dépôt.
@@ -102,8 +129,10 @@ Sans l'extension, un abonné voit sur le web la version gratuite (dans l'app, to
 
 1. Recevoir les deux clés publiques → les poser dans `REVENUECAT` (une version de l'app, rien ne change pour personne : `ACCES.actif` reste `false`).
 2. Achat de test par Jacques, compte admin, sur Android (testeur de licence) : Réglages → Administration → « Écran d'abonnement » → S'abonner. Puis « Restaurer un achat », puis résiliation dans Google Play. Même chose sur iPhone dès que la nouvelle compilation et le contrat Paid Apps existent.
-3. **Le jour de la sortie** : `ACCES.lancement = "AAAA-MM-JJ"` (la date du jour), **puis** `ACCES.actif = true`, une version. Tout compte créé avant cette date reste gratuit à vie (promesse du 2 oct.).
-4. **Les testeurs du Play Store et de TestFlight (4 mois offerts)** : dans la console Firebase, document `users/<uid>` de chacun, champ `accesJusqua` (texte) = la date de fin, par ex. `2027-03-31` (accès complet jusqu'à la fin de ce jour). Ensuite, essai fini → version gratuite ou abonnement. ⚠️ Mais un testeur dont le compte a été créé **avant** la sortie est déjà gratuit à vie : le champ ne sert qu'à ceux qui créent leur compte après.
+3. **Le jour de la sortie** : `ACCES.lancement = "AAAA-MM-JJ"` (la date du jour), **puis** `ACCES.actif = true`, une version. Restent gratuits à vie les comptes qui ont consommé un code d'invitation avant cette date (promesse du 2 oct., précisée en v1178 : voir le point 4). La même date rend le code d'invitation facultatif (`codeInvitationObligatoire()`), même tant que `actif` vaut `false`.
+   - **Dans la même version, `var ACTIF = true;` dans `visuel/prototype/themes/acces.js`** (ligne 86, 13 nov.). C'est l'interrupteur des pages en cadre (thèmes illustrés, conversations, scènes, telc, DTZ) ouvertes SEULES, par un lien partagé : elles montrent alors « Ouvre Wortando pour continuer ». Dans le cadre de l'app, elles suivent déjà `ACCES.actif` (par `parent.accesComplet()`) : rien d'autre à faire. `node tests/essai.js` refuse une version où les deux valeurs diffèrent.
+   - **Avant cette version, `GRATUIT.portes`** (index.html) doit contenir les pages en cadre gratuites, la vitrine choisie par Jacques : `"theme:<nom>"`, `"conversation:<id>"`, `"telc"`, `"scene:<nom>"`. Vide, la version gratuite n'a ni thème illustré, ni conversation, ni telc, et seulement la classe parmi les scènes.
+4. **Les testeurs du Play Store et de TestFlight (4 mois offerts)** : dans la console Firebase, document `users/<uid>` de chacun, champ `accesJusqua` (texte) = la date de fin, par ex. `2027-03-31` (accès complet jusqu'à la fin de ce jour). Ensuite, essai fini → version gratuite ou abonnement. ⚠️ Le testeur gratuit à vie n'est pas « tout compte créé avant la sortie » (règle de la v1178) : c'est le compte qui a **consommé un code d'invitation** (`inviteCodes/<code>.usedBy` = son uid), créé ou relié à une adresse avant `ACCES.lancement`, jamais un compte sans compte (anonyme). Un testeur des magasins qui a un tel compte n'a pas besoin du champ ; les autres, oui. Un code utilisé ne se supprime pas (v1188) : c'est sa preuve. Si le document du code a disparu, l'alerte « Preuve de testeur manquante » du tableau de bord admin le signale, et le bouton RENDRE TESTEUR À VIE pose `accesAVie`.
 
 ## G. Les essais côté app (déjà construits, éteints)
 

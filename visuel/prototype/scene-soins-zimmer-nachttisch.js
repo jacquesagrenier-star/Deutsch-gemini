@@ -506,21 +506,23 @@ window.SCENE = {
    ]
   },
   "SIT": {
-   "titre": "Que faites-vous ?",
-   "niveau": "B2",
+   "titre": "Que répondez-vous ?",
+   "niveau": "B1",
    "qs": [
     {
-     "q": "Herr Brandt versteht Sie schlecht. Sein Hörgerät liegt auf dem Nachttisch. Was tun Sie?",
+     "q": "Herr Brandt sagt: „Seit dem Frühstück. Heute Morgen ging's noch.“",
      "c": [
-      "Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.",
-      "Ich spreche einfach sehr laut.",
-      "Ich erkläre es später seiner Tochter."
+      "Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?",
+      "Ich habe hier noch eine Tablette von gestern. Die können Sie nehmen.",
+      "Keine Ahnung. Nehmen Sie sie einfach."
      ],
-     "f": "hoergeraet",
-     "phrase": "Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.",
-     "sens": "Je lui donne son appareil auditif et je parle lentement et distinctement.",
-     "n": "D'abord ses aides (appareil auditif, lunettes), puis une voix calme, en face de lui : crier ne rend pas plus clair.",
-     "type": "situation"
+     "f": "patient",
+     "type": "situation",
+     "phrase": "Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?",
+     "sens": "Vous avez droit à un antidouleur si besoin. Voulez-vous que j'aille le chercher ?",
+     "n": "<b>C'est une faute de soin, pas de langue.</b> On ne donne que ce qui est prescrit à ce patient, préparé pour lui. Dis ce que le médecin a prescrit : « Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet. » ⚕️",
+     "source": "d02-schmerzen/mittel",
+     "r": "wasserglas"
     }
    ]
   }
@@ -542,19 +544,19 @@ window.SCENE = {
     "A2": "Wo? — at the patient's bedside",
     "B1": "The polite imperative — Sie",
     "C1": "The style of handover notes",
-    "SIT": "What do you do?"
+    "SIT": "What do you answer?"
    },
    "questions": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "<b>Wo?</b> → Dativ: der Nachttisch → auf <b>dem</b> Nachttisch.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "Sie goes with <b>Ihr</b>, with a capital letter: Ihre Brille = your glasses.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "A quantity (<b>ein halber Becher</b>) and an action (<b>motiviert</b>), not an impression. ⚕️ Pat. = Patient.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "First his aids (hearing aid, glasses), then a calm voice, facing him: shouting doesn't make it clearer."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "<b>This is a care mistake, not a language one.</b> You only give what has been prescribed for this patient and prepared for them. Say what the doctor has prescribed: “Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet.” ⚕️"
    },
    "sens": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "The glasses are on the bedside table.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "Please put your glasses on.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Fluid intake until 10 a.m.: half a cup, patient encouraged to drink.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "I give him his hearing aid and speak slowly and clearly."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "You can have a painkiller if you need it. Shall I go and get it for you?"
    }
   },
   "tr": {
@@ -567,19 +569,19 @@ window.SCENE = {
     "A2": "Wo? — hasta başında",
     "B1": "Kibar emir kipi — Sie",
     "C1": "Vardiya devri notlarının üslubu",
-    "SIT": "Ne yaparsınız?"
+    "SIT": "Ne cevap verirsiniz?"
    },
    "questions": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "<b>Wo?</b> → Dativ: der Nachttisch → auf <b>dem</b> Nachttisch.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "Sie'ye <b>Ihr</b> karşılık gelir, büyük harfle: Ihre Brille = gözlüğünüz.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Bir miktar (<b>ein halber Becher</b>) ve bir eylem (<b>motiviert</b>); izlenim değil. ⚕️ Pat. = Patient.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Önce yardımcı araçları (işitme cihazı, gözlük), sonra karşısında durarak sakin bir ses: bağırmak daha anlaşılır kılmaz."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "<b>Bu bir dil hatası değil, bakım hatası.</b> Yalnızca bu hasta için yazılmış ve onun için hazırlanmış ilaç verilir. Doktorun ne yazdığını söyle: “Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet.” ⚕️"
    },
    "sens": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "Gözlük komodinin üstünde.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "Lütfen gözlüğünüzü takın.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Saat 10'a kadar içilen miktar: yarım bardak, hasta içmeye teşvik edildi.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Ona işitme cihazını veririm, yavaş ve net konuşurum."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "Gerektiğinde bir ağrı kesici alabilirsiniz. Getireyim mi?"
    }
   },
   "uk": {
@@ -592,19 +594,19 @@ window.SCENE = {
     "A2": "Wo? — біля ліжка пацієнта",
     "B1": "Ввічливий наказовий спосіб — Sie",
     "C1": "Стиль записів при передачі зміни",
-    "SIT": "Що ви робите?"
+    "SIT": "Що ви відповісте?"
    },
    "questions": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "<b>Wo?</b> → Dativ: der Nachttisch → auf <b>dem</b> Nachttisch.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "До Sie пасує <b>Ihr</b>, з великої літери: Ihre Brille = ваші окуляри.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Кількість (<b>ein halber Becher</b>) і дія (<b>motiviert</b>), а не враження. ⚕️ Pat. = Patient.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Спершу його допоміжні засоби (слуховий апарат, окуляри), потім спокійний голос, обличчям до нього: від крику зрозуміліше не стане."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "<b>Це помилка в догляді, а не в мові.</b> Пацієнтові дають лише те, що призначено саме йому й підготовлено для нього. Скажи, що призначила лікарка: «Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet.» ⚕️"
    },
    "sens": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "Окуляри лежать на тумбочці.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "Надіньте, будь ласка, окуляри.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Випито до 10:00: пів чашки, пацієнта заохочено пити.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Я даю йому слуховий апарат і говорю повільно й чітко."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "Вам можна отримати знеболювальне за потреби. Принести його вам?"
    }
   },
   "fa": {
@@ -617,19 +619,19 @@ window.SCENE = {
     "A2": "<span lang=\"de\">Wo?</span> — بالینِ بیمار",
     "B1": "امرِ مؤدبانه — <span lang=\"de\">Sie</span>",
     "C1": "سبکِ گزارشِ تحویلِ شیفت",
-    "SIT": "چه می‌کنید؟"
+    "SIT": "چه جواب می‌دهید؟"
    },
    "questions": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "<b>Wo?</b> ← Dativ: <span lang=\"de\">der Nachttisch → auf <b>dem</b> Nachttisch</span>.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "به <span lang=\"de\">Sie</span>، <b>Ihr</b> با حرفِ بزرگ می‌خورد: <span lang=\"de\">Ihre Brille</span> = عینکِ شما.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "یک مقدار (<b>ein halber Becher</b>) و یک اقدام (<b>motiviert</b>)، نه یک برداشت. ⚕️ <span lang=\"de\">Pat. = Patient</span>.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "اول وسایلِ کمکی‌اش (سمعک، عینک)، بعد صدایی آرام، روبه‌رویش: داد زدن چیزی را روشن‌تر نمی‌کند."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "<b>این یک خطای مراقبتی است، نه زبانی.</b> فقط چیزی را می‌دهیم که برای همین بیمار تجویز و برای او آماده شده است. بگو پزشک چه تجویز کرده: «Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet.» ⚕️"
    },
    "sens": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "عینک روی میزِ کنارِ تخت است.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "لطفاً عینکتان را بزنید.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "مقدارِ نوشیده‌شده تا ساعتِ 10: نصفِ لیوان، بیمار به نوشیدن تشویق شد.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "سمعکش را به او می‌دهم و آهسته و شمرده حرف می‌زنم."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "در صورت نیاز می‌توانید مسکن بگیرید. برایتان بیاورم؟"
    }
   },
   "ar": {
@@ -642,19 +644,19 @@ window.SCENE = {
     "A2": "<span lang=\"de\">Wo?</span> — عند سرير المريض",
     "B1": "صيغة الأمر المهذّبة — <span lang=\"de\">Sie</span>",
     "C1": "أسلوب التقارير التمريضية",
-    "SIT": "ما التصرّف الصحيح؟"
+    "SIT": "ما الردّ المناسب؟"
    },
    "questions": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "<b>Wo?</b> ← Dativ: <span lang=\"de\">der Nachttisch → auf <b>dem</b> Nachttisch</span>.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "يقابل <span lang=\"de\">Sie</span> الضميرُ <b>Ihr</b> بحرف كبير: <span lang=\"de\">Ihre Brille</span> = نظّارتك.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "كمية (<b>ein halber Becher</b>) وإجراء (<b>motiviert</b>)، وليس انطباعًا. ⚕️ <span lang=\"de\">Pat.</span> = <span lang=\"de\">Patient</span>.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "أولًا وسائله المساعدة (السمّاعة، النظّارة)، ثم صوت هادئ وجهًا لوجه: الصراخ لا يجعل الكلام أوضح."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "<b>هذا خطأ في الرعاية، لا في اللغة.</b> لا نعطي إلا ما هو موصوف لهذا المريض ومحضَّر له. قل ما وصفه الطبيب: «Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet.» ⚕️"
    },
    "sens": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "النظّارة على طاولة السرير.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "ضع نظّارتك من فضلك.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "كمية السوائل حتى الساعة العاشرة: نصف كوب، وتم تشجيع المريض على الشرب.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "أعطيه سمّاعته وأتكلّم ببطء ووضوح."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "يحق لك أن تأخذ مسكّنًا عند الحاجة. هل تريد أن أحضره لك؟"
    }
   },
   "pt": {
@@ -667,19 +669,19 @@ window.SCENE = {
     "A2": "Wo? — à beira do leito",
     "B1": "O imperativo formal — Sie",
     "C1": "O estilo das anotações de enfermagem",
-    "SIT": "O que fazer?"
+    "SIT": "O que responder?"
    },
    "questions": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "<b>Wo?</b> → Dativ: der Nachttisch → auf <b>dem</b> Nachttisch.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "A Sie corresponde <b>Ihr</b>, com maiúscula: Ihre Brille = os seus óculos.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Uma quantidade (<b>ein halber Becher</b>) e uma ação (<b>motiviert</b>), não uma impressão. ⚕️ Pat. = Patient.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Primeiro os recursos dele (aparelho auditivo, óculos), depois uma voz calma, de frente para ele: gritar não deixa nada mais claro."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "<b>Isso é um erro de cuidado, não de língua.</b> Só se administra o que foi prescrito para este paciente e preparado para ele. Diga o que a médica prescreveu: “Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet.” ⚕️"
    },
    "sens": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "Os óculos estão na mesa de cabeceira.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "Ponha os óculos, por favor.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Quantidade ingerida até as 10 h: meio copo, paciente incentivado a beber.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Dou a ele o aparelho auditivo e falo devagar e com clareza."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "O senhor pode receber um analgésico se precisar. Quer que eu vá buscar?"
    }
   },
   "pl": {
@@ -692,19 +694,19 @@ window.SCENE = {
     "A2": "Wo? — przy łóżku pacjenta",
     "B1": "Grzeczny tryb rozkazujący — Sie",
     "C1": "Styl raportu pielęgniarskiego",
-    "SIT": "Co zrobić?"
+    "SIT": "Co odpowiedzieć?"
    },
    "questions": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "<b>Wo?</b> → Dativ: der Nachttisch → auf <b>dem</b> Nachttisch.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "Do Sie pasuje <b>Ihr</b>, wielką literą: Ihre Brille = pana / pani okulary.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Ilość (<b>ein halber Becher</b>) i działanie (<b>motiviert</b>), a nie wrażenie. ⚕️ Pat. = Patient.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Najpierw jego pomoce (aparat słuchowy, okulary), potem spokojny głos, twarzą w twarz: krzyk niczego nie wyjaśnia."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "<b>To błąd w opiece, nie błąd językowy.</b> Podaje się tylko to, co zostało zlecone temu pacjentowi i dla niego przygotowane. Powiedz, co zlecił lekarz: „Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet.” ⚕️"
    },
    "sens": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "Okulary leżą na szafce przyłóżkowej.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "Proszę założyć okulary.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Ilość wypitych płynów do 10:00: pół kubka, pacjent zachęcony do picia.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Daję mu aparat słuchowy i mówię powoli i wyraźnie."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "Może pan dostać lek przeciwbólowy w razie potrzeby. Mam go panu przynieść?"
    }
   },
   "ru": {
@@ -717,19 +719,19 @@ window.SCENE = {
     "A2": "Wo? — у постели пациента",
     "B1": "Вежливый императив — Sie",
     "C1": "Стиль сестринских записей",
-    "SIT": "Что делать?"
+    "SIT": "Что ответить?"
    },
    "questions": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "<b>Wo?</b> (где?) → Dativ: der Nachttisch → auf <b>dem</b> Nachttisch.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "Обращению Sie соответствует <b>Ihr</b> с большой буквы: Ihre Brille = ваши очки.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Количество (<b>ein halber Becher</b>) и действие (<b>motiviert</b>), а не впечатление. ⚕️ Pat. = Patient.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Сначала его вспомогательные средства (слуховой аппарат, очки), затем спокойный голос, лицом к лицу: от крика понятнее не становится."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "<b>Это ошибка в уходе, а не в языке.</b> Пациенту дают только то, что назначено именно ему и приготовлено для него. Скажи, что назначил врач: «Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet.» ⚕️"
    },
    "sens": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "Очки лежат на прикроватной тумбочке.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "Наденьте, пожалуйста, очки.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Выпито до 10:00: половина поильника, пациента побуждали пить.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Я даю ему слуховой аппарат и говорю медленно и чётко."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "Вам можно получить обезболивающее при необходимости. Принести его вам?"
    }
   },
   "es": {

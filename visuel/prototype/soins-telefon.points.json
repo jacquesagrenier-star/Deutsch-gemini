@@ -1,0 +1,642 @@
+{
+ "_lisez_moi": [
+  "Scene de soins 9, le telephone du poste (15 nov. 2026, plan du 15 nov., D2, depense accordee par Jacques : c09917b). Memes regles que les scenes generales ; construite par visuel/prototype/construire.py. Controle : python pflege/outils/construire_scenes.py soins-telefon.",
+  "Le poste de soins de soins-stationszimmer, la nuit : Yusuf (nuit, dialogue d07) au telephone. Trois prises : fal a redonne chaque fois un combine a fil en plus de celui pose sur la base ; le fil de la 3e prise est efface (pflege/scenes/soins-telefon-trait.json, pflege/outils/effacer_trait.py) : le combine tenu est le telephone sans fil du service (der Hörer).",
+  "Zones mesurees sur une grille de 5 % de l'image REELLE (prompt et recus : pflege/scenes/soins-telefon*). Aucun chiffre dans l'allemand dit (contrat, regle 4).",
+  "Couches : BROUILLON non relu ; ce qui porte ⚕️ attend l'infirmiere relectrice. La couche SIT vient des dialogues (pflege/outils/situations_scenes.py)."
+ ],
+ "image": "soins-telefon.webp",
+ "source": "~/.wortando/pflege/scenes/soins-telefon.png",
+ "titre": "Am Telefon",
+ "alt": "Le poste de soins, la nuit : Yusuf, l'infirmier de nuit, est assis au bureau, le combiné à l'oreille, et prend des notes sur un porte-bloc, à côté d'une chemise bleue ouverte, de la lampe allumée, du téléphone fixe, de l'ordinateur et de l'imprimante ; au mur, le tableau à aimants, le planning et l'horloge ; l'armoire à médicaments, le petit coffre gris, le réfrigérateur et le chariot d'urgence rouge avec son défibrillateur.",
+ "consigne": "Touche un objet du poste de soins, ou Yusuf.",
+ "couches": {
+  "A1": {
+   "titre": "Les objets du poste, la nuit"
+  },
+  "A2": {
+   "titre": "Au téléphone : se présenter, demander",
+   "qs": [
+    {
+     "q": "Guten Abend, hier ___ Yusuf von der Station vier B.",
+     "c": [
+      "ist",
+      "bin",
+      "sind"
+     ],
+     "f": "hoerer",
+     "phrase": "Guten Abend, hier ist Yusuf von der Station vier B.",
+     "sens": "Bonsoir, ici Yusuf, du service 4B.",
+     "n": "Au téléphone, on se présente avec <b>Hier ist …</b> (c'est … qui parle), puis le service."
+    },
+    {
+     "q": "Ich ___ wegen Herrn Brandt an.",
+     "c": [
+      "rufe",
+      "rufen",
+      "ruft"
+     ],
+     "f": "telefon",
+     "phrase": "Ich rufe wegen Herrn Brandt an.",
+     "sens": "J'appelle au sujet de M. Brandt.",
+     "n": "<b>anrufen</b> est séparable : <b>Ich rufe … an</b>. <b>wegen</b> + le nom donne la raison de l'appel."
+    },
+    {
+     "q": "Entschuldigung, können Sie das bitte ___?",
+     "c": [
+      "wiederholen",
+      "wiederhole",
+      "wiederholt"
+     ],
+     "f": "hoerer",
+     "phrase": "Entschuldigung, können Sie das bitte wiederholen?",
+     "sens": "Pardon, vous pouvez répéter, s'il vous plaît ?",
+     "n": "Après <b>können</b>, l'infinitif va à la fin : <b>… wiederholen?</b> Redemander, c'est professionnel."
+    },
+    {
+     "q": "Bitte sprechen Sie etwas ___.",
+     "c": [
+      "langsamer",
+      "langsam",
+      "am langsamsten"
+     ],
+     "f": "hoerer",
+     "phrase": "Bitte sprechen Sie etwas langsamer.",
+     "sens": "Parlez un peu plus lentement, s'il vous plaît.",
+     "n": "<b>etwas langsamer</b> : le comparatif, pour demander poliment de ralentir."
+    },
+    {
+     "q": "Einen Moment bitte, ich hole ___ Ärztin.",
+     "c": [
+      "die",
+      "der",
+      "den"
+     ],
+     "f": "telefon",
+     "phrase": "Einen Moment bitte, ich hole die Ärztin.",
+     "sens": "Un instant, s'il vous plaît, je vais chercher la médecin.",
+     "n": "<b>holen</b> + accusatif : <b>die Ärztin</b> (au féminin, l'accusatif ne change pas)."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les verbes à particule du téléphone",
+   "qs": [
+    {
+     "q": "Das Telefon klingelt, und Yusuf nimmt ___.",
+     "c": [
+      "ab",
+      "auf",
+      "zu"
+     ],
+     "f": "telefon",
+     "phrase": "Das Telefon klingelt, und Yusuf nimmt ab.",
+     "sens": "Le téléphone sonne, et Yusuf décroche.",
+     "n": "<b>abnehmen</b> = décrocher ; le contraire : <b>auflegen</b>."
+    },
+    {
+     "q": "Bitte legen Sie nicht ___, ich verbinde Sie.",
+     "c": [
+      "auf",
+      "ab",
+      "an"
+     ],
+     "f": "hoerer",
+     "phrase": "Bitte legen Sie nicht auf, ich verbinde Sie.",
+     "sens": "Ne raccrochez pas, je vous passe la communication.",
+     "n": "<b>auflegen</b> = raccrocher ; <b>verbinden</b> = passer quelqu'un au téléphone."
+    },
+    {
+     "q": "Die Ärztin ist im Notfall. Sie ruft in zehn Minuten ___.",
+     "c": [
+      "zurück",
+      "an",
+      "auf"
+     ],
+     "f": "telefon",
+     "phrase": "Sie ruft in zehn Minuten zurück.",
+     "sens": "Elle rappelle dans dix minutes.",
+     "n": "<b>zurückrufen</b> = rappeler ; <b>anrufen</b> = appeler."
+    },
+    {
+     "q": "Er schreibt die Anordnung sofort ___.",
+     "c": [
+      "auf",
+      "ab",
+      "zu"
+     ],
+     "f": "klemmbrett",
+     "phrase": "Er schreibt die Anordnung sofort auf.",
+     "sens": "Il note tout de suite la prescription.",
+     "n": "<b>aufschreiben</b> = noter. Une prescription orale se note pendant l'appel ⚕️."
+    },
+    {
+     "q": "Ich stelle Sie zur Intensivstation ___.",
+     "c": [
+      "durch",
+      "an",
+      "um"
+     ],
+     "f": "telefon",
+     "phrase": "Ich stelle Sie zur Intensivstation durch.",
+     "sens": "Je vous passe le service de réanimation.",
+     "n": "<b>durchstellen</b> = transférer un appel vers un autre poste."
+    },
+    {
+     "q": "Der Arzt hat noch nicht ___.",
+     "c": [
+      "zurückgerufen",
+      "gerufen zurück",
+      "zurückruft"
+     ],
+     "f": "telefon",
+     "phrase": "Der Arzt hat noch nicht zurückgerufen.",
+     "sens": "Le médecin n'a pas encore rappelé.",
+     "n": "Au Perfekt, <b>ge-</b> se glisse entre la particule et le verbe : <b>zurückgerufen</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le passif de l'appel SBAR",
+   "qs": [
+    {
+     "q": "Herr Brandt ist am Dienstag an der Hüfte operiert ___.",
+     "c": [
+      "worden",
+      "geworden",
+      "wurde"
+     ],
+     "f": "hoerer",
+     "phrase": "Herr Brandt ist am Dienstag an der Hüfte operiert worden.",
+     "sens": "M. Brandt a été opéré de la hanche mardi.",
+     "n": "Le passif au Perfekt : <b>ist … operiert worden</b>, et non « geworden ». C'est le B de SBAR (Background, le contexte)."
+    },
+    {
+     "q": "Die Ärztin ___ um zwei Uhr informiert.",
+     "c": [
+      "wurde",
+      "hat",
+      "ist geworden"
+     ],
+     "f": "telefon",
+     "phrase": "Die Ärztin wurde um zwei Uhr informiert.",
+     "sens": "La médecin a été informée à deux heures.",
+     "n": "Le passif au Präteritum : <b>wurde informiert</b>, la forme des transmissions."
+    },
+    {
+     "q": "Der Oberkörper soll hoch gelagert ___.",
+     "c": [
+      "werden",
+      "worden",
+      "wird"
+     ],
+     "f": "hoerer",
+     "phrase": "Der Oberkörper soll hoch gelagert werden.",
+     "sens": "Le buste doit être surélevé.",
+     "n": "Le passif avec un verbe de modalité : <b>soll … gelagert werden</b> ⚕️."
+    },
+    {
+     "q": "Die Sättigung muss alle zehn Minuten kontrolliert ___.",
+     "c": [
+      "werden",
+      "sein",
+      "haben"
+     ],
+     "f": "klemmbrett",
+     "phrase": "Die Sättigung muss alle zehn Minuten kontrolliert werden.",
+     "sens": "La saturation doit être contrôlée toutes les dix minutes.",
+     "n": "<b>muss … kontrolliert werden</b> : ce qu'il faut faire, sans dire qui le fait ⚕️."
+    },
+    {
+     "q": "Die mündliche Anordnung ___ später von der Ärztin unterschrieben werden.",
+     "c": [
+      "muss",
+      "wird",
+      "ist"
+     ],
+     "f": "mappe",
+     "phrase": "Die mündliche Anordnung muss später von der Ärztin unterschrieben werden.",
+     "sens": "La prescription orale doit être signée plus tard par la médecin.",
+     "n": "<b>von</b> + datif nomme l'auteur au passif. Une prescription orale se fait signer ensuite ⚕️."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Rapporter une consigne : le Konjunktiv I",
+   "qs": [
+    {
+     "q": "Dr. Krämer sagt, er ___ in zehn Minuten.",
+     "c": [
+      "komme",
+      "kommt",
+      "käme"
+     ],
+     "f": "hoerer",
+     "phrase": "Dr. Krämer sagt, er komme in zehn Minuten.",
+     "sens": "Le docteur Krämer dit qu'il arrive dans dix minutes.",
+     "n": "Dans un discours rapporté écrit, le Konjunktiv I : <b>er komme</b>. À l'oral, on entend souvent <b>er kommt</b>."
+    },
+    {
+     "q": "Er ordnet an, man ___ dem Patienten zwei Liter Sauerstoff geben.",
+     "c": [
+      "solle",
+      "soll",
+      "sollte"
+     ],
+     "f": "hoerer",
+     "phrase": "Er ordnet an, man solle dem Patienten zwei Liter Sauerstoff geben.",
+     "sens": "Il prescrit de donner deux litres d'oxygène au patient.",
+     "n": "<b>man solle</b> : le Konjunktiv I de <b>sollen</b>, pour une consigne rapportée ⚕️."
+    },
+    {
+     "q": "Der Arzt meint, es ___ etwas mit der Lunge sein.",
+     "c": [
+      "könne",
+      "kann",
+      "konnte"
+     ],
+     "f": "hoerer",
+     "phrase": "Der Arzt meint, es könne etwas mit der Lunge sein.",
+     "sens": "Le médecin pense que ça pourrait venir des poumons.",
+     "n": "<b>es könne</b> : le Konjunktiv I de <b>können</b> ; on rapporte un avis sans le reprendre à son compte."
+    },
+    {
+     "q": "Im Bericht steht, der Patient ___ seit einer Stunde Atemnot.",
+     "c": [
+      "habe",
+      "hat",
+      "hätte"
+     ],
+     "f": "mappe",
+     "phrase": "Im Bericht steht, der Patient habe seit einer Stunde Atemnot.",
+     "sens": "Le rapport indique que le patient a du mal à respirer depuis une heure.",
+     "n": "<b>er habe</b> : le Konjunktiv I de <b>haben</b>, dans un rapport écrit ⚕️."
+    },
+    {
+     "q": "Die Angehörigen wurden informiert, die Ärztin ___ morgen mit ihnen sprechen.",
+     "c": [
+      "werde",
+      "wird",
+      "würde"
+     ],
+     "f": "telefon",
+     "phrase": "Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.",
+     "sens": "Les proches ont été informés que la médecin leur parlerait demain.",
+     "n": "<b>sie werde</b> : le Konjunktiv I du futur, dans un compte rendu."
+    }
+   ]
+  },
+  "SIT": {
+   "titre": "Que répondez-vous ?",
+   "niveau": "B2",
+   "qs": [
+    {
+     "q": "Am Telefon sagt Dr. Krämer: „Gut, dass Sie anrufen.“",
+     "c": [
+      "Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?",
+      "Ich habe ihm schon mal ein Schmerzmittel gegeben. Das reicht vielleicht.",
+      "Ich weiß nicht … vielleicht ist es auch nichts."
+     ],
+     "f": "hoerer",
+     "type": "situation",
+     "phrase": "Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?",
+     "sens": "Pouvez-vous venir l'examiner, s'il vous plaît ? Et que dois-je faire en attendant ?",
+     "n": "<b>R comme Recommendation (Empfehlung) : dis ce que tu demandes.</b> « Können Sie bitte kommen? » Et ne donne pas de médicament sans prescription : demande ce que tu dois faire en attendant. ⚕️",
+     "source": "d07-sbar/empfehlung"
+    },
+    {
+     "q": "Am Telefon sagt Dr. Krämer: „Ich komme in zehn Minuten. Geben Sie ihm zwei Liter Sauerstoff über die Nasenbrille und lagern Sie den Oberkörper hoch.“",
+     "c": [
+      "Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.",
+      "Okay, alles klar. Tschüss!",
+      "Hallo, hier ist Yusuf. Dem Patienten geht's nicht gut."
+     ],
+     "f": "hoerer",
+     "type": "situation",
+     "phrase": "Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.",
+     "sens": "Je répète : deux litres d'oxygène aux lunettes, buste relevé. Vous arrivez dans dix minutes.",
+     "n": "<b>Une prescription orale se répète au médecin, mot pour mot.</b> « Ich wiederhole: … » Puis on la note et on la fait signer plus tard. C'est ce qui évite les erreurs au téléphone. ⚕️",
+     "source": "d07-sbar/wiederholen"
+    },
+    {
+     "q": "Sie sind krank und rufen früh morgens Ihre Stationsleitung an. Sie meldet sich: „Hoffmann, guten Morgen.“",
+     "c": [
+      "Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.",
+      "Hallo, ich bin's. Ich komm heute nicht, okay?",
+      "Okay, alles klar. Tschüss!"
+     ],
+     "f": "hoerer",
+     "type": "situation",
+     "phrase": "Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.",
+     "sens": "Bonjour, madame Hoffmann, c'est Elif. Je suis malheureusement malade et je ne peux pas venir au poste du matin aujourd'hui.",
+     "n": "<b>Avec la cadre : « Sie », ton nom, et la raison.</b> « Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen. » Et on appelle tôt, avant le début du service.",
+     "source": "d11-dienst-tauschen/anruf"
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    28,
+    19,
+    10,
+    7.5
+   ]
+  },
+  {
+   "id": "tafel",
+   "mot": "Tafel",
+   "boite": [
+    0,
+    29,
+    33,
+    17.5
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "pinnwand",
+   "mot": "Pinnwand",
+   "boite": [
+    33,
+    30,
+    22,
+    14.5
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "dienstplan",
+   "mot": "Dienstplan",
+   "boite": [
+    35,
+    30.5,
+    18.5,
+    11.5
+   ],
+   "sur": "pinnwand",
+   "rigide": "rectangle"
+  },
+  {
+   "id": "medikamentenschrank",
+   "mot": "Medikamentenschrank",
+   "boite": [
+    55.5,
+    28.5,
+    21,
+    31.5
+   ]
+  },
+  {
+   "id": "btm-schrank",
+   "mot": "Betäubungsmittelschrank",
+   "boite": [
+    78,
+    33,
+    11,
+    9.5
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "boite": [
+    92,
+    15,
+    8,
+    32
+   ]
+  },
+  {
+   "id": "desinfektionsmittel",
+   "mot": "Desinfektionsmittel",
+   "boite": [
+    92.5,
+    41.5,
+    3,
+    4.5
+   ]
+  },
+  {
+   "id": "kuehlschrank",
+   "mot": "Kühlschrank",
+   "boite": [
+    80,
+    48.5,
+    20,
+    17
+   ]
+  },
+  {
+   "id": "notfallwagen",
+   "mot": "Notfallwagen",
+   "boite": [
+    75,
+    63,
+    25,
+    32.5
+   ]
+  },
+  {
+   "id": "defibrillator",
+   "mot": "Defibrillator",
+   "boite": [
+    87,
+    57.5,
+    13,
+    12
+   ],
+   "sur": "notfallwagen"
+  },
+  {
+   "id": "computer",
+   "mot": "Computer",
+   "boite": [
+    0,
+    47.5,
+    11.5,
+    15
+   ]
+  },
+  {
+   "id": "tastatur",
+   "mot": "Tastatur",
+   "boite": [
+    1,
+    59.5,
+    14,
+    5
+   ],
+   "sur": "schreibtisch"
+  },
+  {
+   "id": "maus",
+   "mot": "Maus",
+   "boite": [
+    15.5,
+    59.2,
+    5.5,
+    2.6
+   ],
+   "sur": "schreibtisch"
+  },
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boite": [
+    15.5,
+    45.5,
+    7,
+    10.5
+   ],
+   "sur": "schreibtisch"
+  },
+  {
+   "id": "telefon",
+   "mot": "Telefon",
+   "boite": [
+    12.5,
+    53.5,
+    10.5,
+    5.8
+   ],
+   "sur": "schreibtisch"
+  },
+  {
+   "id": "drucker",
+   "mot": "Drucker",
+   "boite": [
+    22,
+    48.5,
+    16.5,
+    9
+   ],
+   "sur": "schreibtisch"
+  },
+  {
+   "id": "pflegefachmann",
+   "mot": "Pflegefachmann",
+   "boite": [
+    33.5,
+    43.5,
+    27,
+    30
+   ],
+   "sam": [
+    [
+     33.5,
+     43.5,
+     27,
+     30
+    ],
+    [
+     16,
+     57.2,
+     19,
+     4.8
+    ]
+   ]
+  },
+  {
+   "id": "hoerer",
+   "mot": "Hörer",
+   "boite": [
+    46.5,
+    48,
+    5.5,
+    5
+   ],
+   "sur": "pflegefachmann"
+  },
+  {
+   "id": "klemmbrett",
+   "mot": "Klemmbrett",
+   "boite": [
+    14,
+    60.8,
+    14,
+    4
+   ],
+   "sur": "schreibtisch"
+  },
+  {
+   "id": "mappe",
+   "mot": "Mappe",
+   "boite": [
+    10,
+    64,
+    31,
+    9.5
+   ],
+   "sur": "schreibtisch"
+  },
+  {
+   "id": "tasse",
+   "mot": "Tasse",
+   "boite": [
+    4,
+    68.5,
+    7,
+    4.5
+   ],
+   "sur": "schreibtisch"
+  },
+  {
+   "id": "blutdruckmessgeraet",
+   "mot": "Blutdruckmessgerät",
+   "boite": [
+    3,
+    71.5,
+    17,
+    10
+   ],
+   "sur": "schreibtisch"
+  },
+  {
+   "id": "blutzuckermessgeraet",
+   "mot": "Blutzuckermessgerät",
+   "boite": [
+    22,
+    71.2,
+    6.5,
+    2.8
+   ],
+   "sur": "schreibtisch"
+  },
+  {
+   "id": "thermometer",
+   "mot": "Fieberthermometer",
+   "boite": [
+    17,
+    74,
+    11,
+    4.2
+   ],
+   "sur": "schreibtisch"
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "boite": [
+    47,
+    54.5,
+    16,
+    30
+   ]
+  },
+  {
+   "id": "schreibtisch",
+   "mot": "Schreibtisch",
+   "boite": [
+    0,
+    58,
+    49,
+    42
+   ]
+  }
+ ]
+}

@@ -1,0 +1,143 @@
+{
+ "id": "d15-angst-vor-untersuchung",
+ "numero": 15,
+ "niveau": "B1",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 1,
+ "role": "elif",
+ "personnes": ["brandt"],
+ "titre": {"t": "Angst vor der Untersuchung", "fr": "Rassurer avant un examen"},
+ "intro": {"fr": "Le matin après la nuit difficile de {brandt} (dialogue 7). Le médecin de garde a demandé un scanner des poumons avec produit de contraste. {brandt} a peur des piqûres, et de « la machine ». Tu joues {elif} : écoute sa peur, explique simplement ce qui va se passer, propose ton aide, et ne promets rien que tu ne sais pas."},
+ "but": {"fr": "Rassurer un patient inquiet : reconnaître sa peur, expliquer un examen avec des mots simples, proposer poliment (Wäre es Ihnen lieber, wenn … ? Ich könnte …), relier par weil et obwohl, dire honnêtement ce qu'on ne sait pas et à qui il faut demander."},
+ "grammaire": ["g07", "g17", "g12"],
+ "telc": ["oral-3"],
+ "relire_notes": {"fr": "Le déroulé d'un scanner thoracique avec produit de contraste expliqué au patient (accès veineux, sensation de chaleur et d'envie d'uriner, durée, contact par interphone) ; la question des allergies et des réactions antérieures au produit de contraste ; le jeûne avant l'examen (selon le service) ; ce qu'une soignante peut dire du résultat : rien, c'est la médecin."},
+ "redemittel": [
+  {"t": "Ich verstehe, dass Sie Angst haben. Das ist ganz normal.", "fr": "Je comprends que vous ayez peur. C'est tout à fait normal.", "fonction": "rassurer"},
+  {"t": "Ich erkläre Ihnen genau, was passiert.", "fr": "Je vous explique exactement ce qui va se passer.", "fonction": "annoncer"},
+  {"t": "Obwohl es ein Stich ist, ist er sehr schnell vorbei.", "fr": "Même si c'est une piqûre, c'est très vite fini.", "fonction": "rassurer"},
+  {"t": "Wäre es Ihnen lieber, wenn ich Sie hinbringe?", "fr": "Préféreriez-vous que je vous y accompagne ?", "fonction": "demander"},
+  {"t": "Wenn Sie sich nicht gut fühlen, sagen Sie es einfach. Man hört Sie über ein Mikrofon.", "fr": "Si vous ne vous sentez pas bien, dites-le simplement. On vous entend par un micro.", "fonction": "rassurer"},
+  {"t": "Das kann ich Ihnen leider nicht sagen. Das Ergebnis bespricht die Ärztin mit Ihnen.", "fr": "Ça, je ne peux malheureusement pas vous le dire. C'est la médecin qui vous expliquera le résultat.", "fonction": "refuser", "relire": true, "relire_note": "Ce que la soignante peut dire d'un résultat."},
+  {"t": "Habe ich Sie richtig verstanden: Sie hatten noch nie Kontrastmittel?", "fr": "Je vous ai bien compris : vous n'avez jamais eu de produit de contraste ?", "fonction": "reformuler"}
+ ],
+ "debut": "ankuendigen",
+ "noeuds": {
+  "ankuendigen": {
+   "dit": [
+    {"recit": {"fr": "Mercredi, 8 heures. {brandt} a dormi après la nuit difficile, avec ses lunettes à oxygène. Il a l'air fatigué et méfiant."}},
+    {"qui": "brandt", "air": "perplexe", "t": "Der Pfleger heute Nacht hat was von einer Untersuchung gesagt. Was soll das denn jetzt schon wieder?", "fr": "L'infirmier de cette nuit a parlé d'un examen. Qu'est-ce que c'est encore que ça ?"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen, {brandt}. Ich erkläre Ihnen gern, was passiert. In einer Stunde machen wir eine Computertomografie von Ihrer Lunge. Man sagt auch CT.", "fr": "Bonjour, {brandt:voc}. Je vous explique volontiers ce qui va se passer. Dans une heure, on fait un scanner de vos poumons. On dit aussi « CT ».", "va": "angst",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Mit Spritze? Ich hasse Spritzen. Das wissen Sie doch.", "fr": "Avec une piqûre ? Je déteste les piqûres. Vous le savez, pourtant."}]},
+    {"t": "Guten Morgen. Weil Sie heute Nacht schlecht Luft bekommen haben, möchte der Arzt Ihre Lunge genauer ansehen. Dafür gibt es eine Untersuchung, ein CT.", "fr": "Bonjour. Comme vous avez mal respiré cette nuit, le médecin veut regarder vos poumons de plus près. Pour ça, il y a un examen, un scanner.", "va": "angst",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Mit Spritze? Ich hasse Spritzen. Das wissen Sie doch.", "fr": "Avec une piqûre ? Je déteste les piqûres. Vous le savez, pourtant."}]},
+    {"faux": true, "t": "Sie bekommen ein Thorax-CT mit Kontrastmittel zum Ausschluss einer Lungenembolie.", "fr": "Vous allez avoir un scanner thoracique avec produit de contraste pour exclure une embolie pulmonaire.",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Wie bitte? Können Sie das auch auf Deutsch sagen?", "fr": "Pardon ? Vous pouvez le dire en allemand normal ?"}],
+     "aide": {"fr": "<b>Avec le patient, des mots simples : pas de jargon.</b> « Wir machen eine Untersuchung von Ihrer Lunge, ein CT. » « Lungenembolie » fait peur et n'est pas encore un diagnostic : c'est la médecin qui en parle."}}
+   ]
+  },
+  "angst": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja, ich weiß, dass Sie Angst vor Spritzen haben. Das verstehe ich gut. Darf ich Ihnen genau erklären, was passiert?", "fr": "Oui, je sais que vous avez peur des piqûres. Je le comprends bien. Je peux vous expliquer exactement ce qui va se passer ?", "va": "zugang",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Na, erklären Sie mal.", "fr": "Bon, expliquez donc."}]},
+    {"t": "Das ist ganz normal, viele Menschen haben Angst vor Spritzen. Ich sage Ihnen jetzt Schritt für Schritt, was kommt.", "fr": "C'est tout à fait normal, beaucoup de gens ont peur des piqûres. Je vais vous dire étape par étape ce qui vous attend.", "va": "zugang",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Na, erklären Sie mal.", "fr": "Bon, expliquez donc."}]},
+    {"faux": true, "t": "Keine Angst, das ist doch nichts!", "fr": "N'ayez pas peur, ce n'est rien du tout !",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Für Sie vielleicht nicht. Sie liegen ja nicht hier.", "fr": "Pour vous, peut-être. Ce n'est pas vous qui êtes couchée là."}],
+     "aide": {"fr": "<b>On ne minimise pas une peur : on la reconnaît.</b> « Ich weiß, dass Sie Angst vor Spritzen haben. Das verstehe ich gut. » Puis on explique. « Keine Angst » ne rassure presque personne."}}
+   ]
+  },
+  "zugang": {
+   "dit": [],
+   "choix": [
+    {"t": "Sie bekommen einen kleinen Zugang in den Arm, eine dünne Kanüle. Obwohl es ein Stich ist, ist er sehr schnell vorbei. Danach bleibt nur ein weicher Schlauch in der Vene.", "fr": "On vous pose un petit accès veineux dans le bras, une fine canule. Même si c'est une piqûre, c'est très vite fini. Ensuite, il ne reste qu'un petit tuyau souple dans la veine.", "va": "ablauf",
+     "relire": true, "relire_note": "L'accès veineux pour le produit de contraste.",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Hm. Und dann? Dann komme ich in diese Röhre?", "fr": "Hum. Et ensuite ? Ensuite, je vais dans ce tube ?"}]},
+    {"t": "Zuerst legt man Ihnen eine kleine Kanüle in die Vene, für das Kontrastmittel. Das ist nur ein kurzer Pieks. Sie können dabei wegschauen und meine Hand halten.", "fr": "D'abord, on vous pose une petite canule dans la veine, pour le produit de contraste. C'est juste une petite piqûre. Vous pouvez regarder ailleurs et me tenir la main.", "va": "ablauf",
+     "relire": true, "relire_note": "L'accès veineux pour le produit de contraste.",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Hm. Und dann? Dann komme ich in diese Röhre?", "fr": "Hum. Et ensuite ? Ensuite, je vais dans ce tube ?"}]}
+   ]
+  },
+  "ablauf": {
+   "dit": [],
+   "choix": [
+    {"t": "Es ist keine enge Röhre, sondern ein großer Ring. Sie liegen auf dem Rücken, und die Liege fährt langsam hindurch. Das dauert nur ein paar Minuten.", "fr": "Ce n'est pas un tube étroit, c'est un grand anneau. Vous êtes allongé sur le dos, et la table passe lentement à travers. Ça ne dure que quelques minutes.", "va": "waerme",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Und wenn mir da drin schlecht wird? Dann bin ich ganz allein.", "fr": "Et si je me sens mal là-dedans ? Je serai tout seul."}]},
+    {"t": "Sie liegen ganz ruhig auf einer Liege. Die Liege fährt durch einen Ring, er ist offen, wie ein großer Donut. Nach ein paar Minuten ist alles vorbei.", "fr": "Vous êtes allongé tranquillement sur une table. La table passe à travers un anneau, il est ouvert, comme un grand beignet. Au bout de quelques minutes, tout est fini.", "va": "waerme",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Und wenn mir da drin schlecht wird? Dann bin ich ganz allein.", "fr": "Et si je me sens mal là-dedans ? Je serai tout seul."}]},
+    {"repete": true, "t": "Entschuldigung, meinen Sie die Röhre? Haben Sie davor besonders Angst?", "fr": "Pardon, vous parlez du tube ? C'est ça qui vous fait le plus peur ?", "va": "ablauf",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Ja. Ich mag es nicht, wenn es so eng ist.", "fr": "Oui. Je n'aime pas quand c'est étroit comme ça."}]}
+   ]
+  },
+  "waerme": {
+   "dit": [],
+   "choix": [
+    {"t": "Sie sind nicht allein. Das Team ist im Raum nebenan und hört Sie über ein Mikrofon. Wenn das Kontrastmittel kommt, wird es Ihnen kurz warm. Das ist normal und geht schnell vorbei.", "fr": "Vous n'êtes pas seul. L'équipe est dans la pièce d'à côté et vous entend par un micro. Quand le produit de contraste arrive, vous avez chaud un moment. C'est normal et ça passe vite.", "va": "angebot",
+     "relire": true, "relire_note": "Sensations normales au passage du produit de contraste.",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Hm. Und Sie? Muss ich da allein hin?", "fr": "Hum. Et vous ? Je dois y aller tout seul ?"}]},
+    {"t": "Wenn Sie sich nicht gut fühlen, sagen Sie es einfach. Man hört und sieht Sie die ganze Zeit. Manchmal wird einem warm, oder man hat das Gefühl, man muss zur Toilette. Das ist harmlos.", "fr": "Si vous ne vous sentez pas bien, dites-le simplement. On vous entend et on vous voit tout le temps. Parfois, on a chaud, ou on a l'impression de devoir aller aux toilettes. C'est sans danger.", "va": "angebot",
+     "relire": true, "relire_note": "Sensations normales au passage du produit de contraste.",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Hm. Und Sie? Muss ich da allein hin?", "fr": "Hum. Et vous ? Je dois y aller tout seul ?"}]}
+   ]
+  },
+  "angebot": {
+   "dit": [],
+   "choix": [
+    {"t": "Wäre es Ihnen lieber, wenn ich Sie hinbringe? Ich könnte Sie bis in den Raum begleiten.", "fr": "Préféreriez-vous que je vous y accompagne ? Je pourrais vous accompagner jusque dans la salle.", "va": "allergie",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Ja … das wäre nett. Wenn Sie Zeit haben.", "fr": "Oui… ce serait gentil. Si vous avez le temps."}]},
+    {"t": "Wenn Sie möchten, könnte ich Sie hinfahren und bleiben, bis Sie auf der Liege liegen. Würde Ihnen das helfen?", "fr": "Si vous voulez, je pourrais vous y emmener et rester jusqu'à ce que vous soyez sur la table. Est-ce que ça vous aiderait ?", "va": "allergie",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Ja … das wäre nett. Wenn Sie Zeit haben.", "fr": "Oui… ce serait gentil. Si vous avez le temps."}]}
+   ]
+  },
+  "allergie": {
+   "dit": [],
+   "choix": [
+    {"t": "Das mache ich gern. Eine Frage noch: Haben Sie schon einmal Kontrastmittel bekommen und dann eine Reaktion gehabt, zum Beispiel einen Ausschlag?", "fr": "Avec plaisir. Encore une question : avez-vous déjà reçu du produit de contraste et fait une réaction, une éruption par exemple ?", "va": "ergebnis",
+     "relire": true, "relire_note": "Question sur une réaction antérieure au produit de contraste ; l'allergie à la pénicilline est à signaler aussi.",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Kontrastmittel? Nie gehabt. Nur auf Penicillin, da kriege ich Ausschlag.", "fr": "Du produit de contraste ? Jamais eu. Seulement à la pénicilline, là, je fais une éruption."}]},
+    {"t": "Gern. Bevor Sie gehen, muss ich noch etwas fragen: Hatten Sie schon einmal eine Allergie auf Kontrastmittel?", "fr": "Volontiers. Avant que vous y alliez, je dois encore vous demander quelque chose : avez-vous déjà eu une allergie à un produit de contraste ?", "va": "ergebnis",
+     "relire": true, "relire_note": "Question sur une réaction antérieure au produit de contraste ; l'allergie à la pénicilline est à signaler aussi.",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Kontrastmittel? Nie gehabt. Nur auf Penicillin, da kriege ich Ausschlag.", "fr": "Du produit de contraste ? Jamais eu. Seulement à la pénicilline, là, je fais une éruption."}]}
+   ]
+  },
+  "ergebnis": {
+   "dit": [],
+   "choix": [
+    {"t": "Danke, das sage ich dem Team im CT auch. Die Penicillinallergie steht schon in Ihrer Akte.", "fr": "Merci, je le dirai aussi à l'équipe du scanner. L'allergie à la pénicilline est déjà dans votre dossier.", "va": "ehrlich",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Und sagen Sie mal ehrlich: Ist es was Schlimmes? Mit der Lunge?", "fr": "Et dites-moi franchement : c'est quelque chose de grave ? Aux poumons ?"}]},
+    {"t": "Habe ich Sie richtig verstanden: Sie hatten noch nie Kontrastmittel, aber Sie sind gegen Penicillin allergisch? Gut, das gebe ich weiter.", "fr": "Je vous ai bien compris : vous n'avez jamais eu de produit de contraste, mais vous êtes allergique à la pénicilline ? Bien, je le transmets.", "va": "ehrlich",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Und sagen Sie mal ehrlich: Ist es was Schlimmes? Mit der Lunge?", "fr": "Et dites-moi franchement : c'est quelque chose de grave ? Aux poumons ?"}]}
+   ]
+  },
+  "ehrlich": {
+   "dit": [],
+   "choix": [
+    {"t": "Das kann ich Ihnen leider nicht sagen, weil ich es nicht weiß. Genau dafür ist die Untersuchung. Die Ärztin bespricht das Ergebnis heute noch mit Ihnen.", "fr": "Ça, je ne peux malheureusement pas vous le dire, parce que je ne le sais pas. C'est justement pour ça qu'on fait l'examen. La médecin vous expliquera le résultat dès aujourd'hui.", "va": null,
+     "relire": true, "relire_note": "Ce que la soignante peut dire d'un résultat.",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Na gut. Wenigstens sind Sie ehrlich. Und Sie erklären das ordentlich. Dann los.", "fr": "Bon. Au moins, vous êtes honnête. Et vous expliquez bien. Allons-y, alors."}]},
+    {"t": "Ich verstehe, dass Sie das wissen möchten. Ehrlich gesagt weiß ich es nicht. Aber ich sage der Ärztin, dass Sie gleich nach der Untersuchung mit ihr sprechen möchten.", "fr": "Je comprends que vous vouliez le savoir. Honnêtement, je ne le sais pas. Mais je dirai à la médecin que vous voulez lui parler juste après l'examen.", "va": null,
+     "relire": true, "relire_note": "Ce que la soignante peut dire d'un résultat.",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Na gut. Wenigstens sind Sie ehrlich. Und Sie erklären das ordentlich. Dann los.", "fr": "Bon. Au moins, vous êtes honnête. Et vous expliquez bien. Allons-y, alors."}]},
+    {"faux": true, "t": "Nein, bestimmt nicht. Machen Sie sich keine Sorgen.", "fr": "Non, sûrement pas. Ne vous inquiétez pas.",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Woher wollen Sie das wissen? Sie haben doch das Bild noch gar nicht gesehen.", "fr": "Comment vous pouvez le savoir ? Vous n'avez même pas encore vu l'image."}],
+     "aide": {"fr": "<b>On ne promet pas un résultat qu'on ne connaît pas.</b> « Das kann ich Ihnen leider nicht sagen, weil ich es nicht weiß. Die Ärztin bespricht das Ergebnis mit Ihnen. » L'honnêteté rassure davantage qu'une fausse promesse."},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Wovor hat {brandt} Angst?", "fr": "De quoi {brandt} a-t-il peur ?"},
+   "options": [{"t": "Vor dem Essen im Krankenhaus.", "fr": "De la nourriture de l'hôpital."}, {"t": "Vor Spritzen und vor engen Räumen.", "fr": "Des piqûres et des espaces étroits."}, {"t": "Vor der Ärztin.", "fr": "De la médecin."}],
+   "juste": 1},
+  {"q": {"t": "Was passiert, wenn das Kontrastmittel kommt?", "fr": "Que se passe-t-il quand le produit de contraste arrive ?"},
+   "options": [{"t": "Es wird einem kurz warm.", "fr": "On a chaud un moment."}, {"t": "Man schläft ein.", "fr": "On s'endort."}, {"t": "Man bekommt Ausschlag.", "fr": "On fait une éruption."}],
+   "juste": 0},
+  {"q": {"t": "Wer bespricht das Ergebnis mit {brandt}?", "fr": "Qui explique le résultat à {brandt} ?"},
+   "options": [{"t": "{elif}.", "fr": "{elif}."}, {"t": "Der Pfleger von heute Nacht.", "fr": "L'infirmier de cette nuit."}, {"t": "Die Ärztin.", "fr": "La médecin."}],
+   "juste": 2}
+ ]
+}

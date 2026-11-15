@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<script src="themes/acces.js?v=1"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Conversations</title>
 <!--
@@ -100,6 +101,11 @@ details ul{padding-left:20px;margin:8px 0}
 .liste a img{width:52px;height:52px;border-radius:14px;object-fit:cover;flex:0 0 auto}
 .liste a b{display:block;font-size:16px}
 .liste a span{display:block;font-size:13px;color:var(--gris)}
+/* ligne 86 : la vitrine dans la liste (version gratuite seulement) -- « Gratuit » ou le cadenas */
+.liste a .gratuit{display:inline-block;margin-inline-start:auto;flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;background:#FBE7C2;color:#5A3A08}
+.liste a.verrou{opacity:.62}
+.liste a .cadenas{margin-inline-start:auto;flex:0 0 auto;font-size:15px}
+html.nuit .liste a .gratuit{background:#5A3D12;color:#FFE3B0}
 .langues{display:flex;gap:8px;margin:4px 0 6px}
 .langues[hidden]{display:none}
 .langues button{border:2px solid var(--bord);background:var(--carte);border-radius:999px;padding:6px 14px;font:800 14px var(--police);cursor:pointer}
@@ -178,9 +184,15 @@ const BCP47 = { de: "de-DE", es: "es-ES", en: GB ? "en-GB" : "en-US" }[LANGUE];
 const T = (o, champ) => (GB && o[champ + "_gb"] != null) ? o[champ + "_gb"] : o[champ];
 // LA LANGUE D'INTERFACE (lang=, comme les themes illustres) : francais, anglais et arabe (de droite a gauche) ; les
 // autres langues retombent sur le francais, comme les pages du telc avant leurs traductions.
-const LANG = ["fr", "en", "ar"].includes(Q.get("lang")) ? Q.get("lang") : "fr";
+// WORTANDO PFLEGE (15 nov. 2026, decision de Jacques : « etoffer », la communication au coeur) : les dialogues des
+// Soins dans le meme lecteur (?soins=1). Leurs donnees : pflege/datos/dialogues.json (derive de
+// pflege/sources/dialogues/), au meme format de noeuds ; leurs personnes : conversation/soins/personnes.json
+// (pflege/outils/visages.py). Les neuf langues d'interface des Soins ; hors des Soins, rien ne change.
+const SOINS = Q.get("soins") === "1" && LANGUE === "de";
+const LANGUES_UI = SOINS ? ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"] : ["fr", "en", "ar"];
+const LANG = LANGUES_UI.includes(Q.get("lang")) ? Q.get("lang") : "fr";
 document.documentElement.lang = LANG;
-document.documentElement.dir = LANG === "ar" ? "rtl" : "ltr";
+document.documentElement.dir = (LANG === "ar" || LANG === "fa") ? "rtl" : "ltr";
 // LE FOND DE LA PARTIE : B, le banc au parc (choix de Jacques du 12 nov. 2026), dans la tuile comme dans la seance.
 const PAYSAGE_CHOISI = "B";
 // Dans la seance du jour (?seance=1, la conversation de l'etape) : la fin rend la main par « Continuer ».
@@ -229,7 +241,82 @@ const UI = {
    ligne_etape: "المرحلة {n} · {niv} · {m} لحظات", ligne: "{niv} · {m} لحظات", introuvable: "هذه المحادثة غير موجودة بعد.",
    pardon: "عفوًا؟", continuer: "متابعة" }
 };
-const u = (k, v) => (UI[LANG][k] != null ? UI[LANG][k] : UI.fr[k]).replace(/\{(\w+)\}/g, (m, n) => (v || {})[n] != null ? v[n] : m);
+// Les Soins : leurs trois textes propres, et les six langues d'interface des Soins que le lecteur n'avait pas (a relire
+// par un natif, comme les autres textes d'interface : retours/A-RELIRE-CONVERSATIONS-SOINS.md). Le lecteur s'adresse a
+// la personne sans marquer son genre (« Ничего не слышно », pas « я не почул »).
+const UI_SOINS = {
+ fr: { soins_surtitre: "Soins", soins_titre: "Les dialogues du service", soins_ligne: "Tu joues {qui} · {niv} · {m} moments" },
+ en: { soins_surtitre: "Care", soins_titre: "Dialogues on the ward", soins_ligne: "You play {qui} · {niv} · {m} moments" },
+ ar: { soins_surtitre: "الرعاية", soins_titre: "حوارات القسم", soins_ligne: "دورك: {qui} · {niv} · {m} لحظات" },
+ tr: { retour: "Geri", surtitre: "Diyalog · {niv}", commencer: "Başla", sans_filet: "Yardımsız: sadece mikrofonla",
+   toi_reponds: "<b>Cevabı sen veriyorsun</b>: bir cevaba dokun ya da mikrofona söyle. Diyalog senin seçimine göre ilerler.",
+   pas_de_reco: "Bu tarayıcı sesi tanımıyor: cevaplara dokun.",
+   a_toi: "Sıra sende: cevabına dokun ya da mikrofona söyle.", a_toi_micro: "Sıra sende: mikrofona cevap ver.", a_toi_touche: "Sıra sende: cevabına dokun.",
+   sos: "Ne diyeceğimi bilmiyorum", ecoute: "Dinliyorum…", micro_indispo: "Mikrofon kullanılamıyor: cevabına dokun.",
+   rien: "Hiçbir şey duyulmadı. Telefona daha yakın tekrar dene.", micro_aria: "Mikrofona cevap ver",
+   tu_as_dit: "<b>Duyulan: “{t}”.</b> Bu cevaplardan biri değil: tekrar söyle ya da dokun.",
+   reecouter: "Tekrar dinle", traduire: "Çevir", toi: "Sen", bien: "Aferin!", parfait: "Mükemmel, hiç hata yok!",
+   erreurs: "Hataların, düzeltilmiş hâliyle", phrases: "Söylediğin cümleler", rejouer: "Başka cevaplarla tekrar oyna",
+   terminer: "Bitir", une_minute: "1 dakika", trois_minutes: "3 dakika", de: "Almanca", introuvable: "Bu diyalog henüz yok.",
+   pardon: "Efendim?", continuer: "Devam", soins_surtitre: "Bakım", soins_titre: "Serviste diyaloglar", soins_ligne: "Rolün: {qui} · {niv} · {m} an" },
+ uk: { retour: "Назад", surtitre: "Діалог · {niv}", commencer: "Почати", sans_filet: "Без підказок: лише мікрофон",
+   toi_reponds: "<b>Відповідаєш ти</b>: торкнися відповіді або скажи її в мікрофон. Діалог іде за твоїм вибором.",
+   pas_de_reco: "Цей браузер не розпізнає голос: торкайся відповідей.",
+   a_toi: "Твоя черга: торкнися відповіді або скажи її.", a_toi_micro: "Твоя черга: відповідай у мікрофон.", a_toi_touche: "Твоя черга: торкнися відповіді.",
+   sos: "Не знаю, що сказати", ecoute: "Слухаю…", micro_indispo: "Мікрофон недоступний: торкнися відповіді.",
+   rien: "Нічого не чути. Спробуй ще раз, ближче до телефона.", micro_aria: "Відповісти в мікрофон",
+   tu_as_dit: "<b>Почуто: «{t}».</b> Це не одна з відповідей: скажи ще раз або торкнися її.",
+   reecouter: "Прослухати ще раз", traduire: "Перекласти", toi: "Ти", bien: "Чудова робота!", parfait: "Чудово, без жодної помилки!",
+   erreurs: "Твої помилки, виправлені", phrases: "Твої речення", rejouer: "Зіграти ще раз з іншими відповідями",
+   terminer: "Завершити", une_minute: "1 хвилина", trois_minutes: "3 хвилини", de: "Німецька", introuvable: "Цього діалогу ще немає.",
+   pardon: "Перепрошую?", continuer: "Далі", soins_surtitre: "Догляд", soins_titre: "Діалоги у відділенні", soins_ligne: "Твоя роль: {qui} · {niv} · {m} моментів" },
+ fa: { retour: "بازگشت", surtitre: "گفت‌وگو · {niv}", commencer: "شروع", sans_filet: "بدون کمک: فقط با میکروفون",
+   toi_reponds: "<b>تو جواب می‌دهی</b>: روی یک جواب بزن یا آن را در میکروفون بگو. گفت‌وگو طبق انتخاب تو پیش می‌رود.",
+   pas_de_reco: "این مرورگر صدا را تشخیص نمی‌دهد: روی جواب‌ها بزن.",
+   a_toi: "نوبت توست: روی جوابت بزن یا آن را بگو.", a_toi_micro: "نوبت توست: در میکروفون جواب بده.", a_toi_touche: "نوبت توست: روی جوابت بزن.",
+   sos: "نمی‌دانم چه بگویم", ecoute: "گوش می‌دهم…", micro_indispo: "میکروفون در دسترس نیست: روی جوابت بزن.",
+   rien: "چیزی شنیده نشد. دوباره امتحان کن، نزدیک‌تر به گوشی.", micro_aria: "جواب دادن با میکروفون",
+   tu_as_dit: "<b>شنیده شد: «{t}».</b> این یکی از جواب‌ها نیست: دوباره بگو یا رویش بزن.",
+   reecouter: "دوباره گوش بده", traduire: "ترجمه", toi: "تو", bien: "آفرین!", parfait: "عالی، بدون هیچ اشتباهی!",
+   erreurs: "اشتباه‌هایت، تصحیح‌شده", phrases: "جمله‌هایی که گفتی", rejouer: "دوباره با جواب‌های دیگر بازی کن",
+   terminer: "پایان", une_minute: "۱ دقیقه", trois_minutes: "۳ دقیقه", de: "آلمانی", introuvable: "این گفت‌وگو هنوز وجود ندارد.",
+   pardon: "ببخشید؟", continuer: "ادامه", soins_surtitre: "پرستاری", soins_titre: "گفت‌وگوهای بخش", soins_ligne: "نقش تو: {qui} · {niv} · {m} لحظه" },
+ pt: { retour: "Voltar", surtitre: "Diálogo · {niv}", commencer: "Começar", sans_filet: "Sem ajuda: só no microfone",
+   toi_reponds: "<b>Quem responde é você</b>: toque numa resposta ou diga-a no microfone. O diálogo segue a sua escolha.",
+   pas_de_reco: "Este navegador não reconhece a voz: toque nas respostas.",
+   a_toi: "Sua vez: toque na resposta ou diga-a.", a_toi_micro: "Sua vez: responda no microfone.", a_toi_touche: "Sua vez: toque na resposta.",
+   sos: "Não sei o que dizer", ecoute: "Ouvindo…", micro_indispo: "O microfone não está disponível: toque na resposta.",
+   rien: "Não deu para ouvir nada. Tente de novo, mais perto do telefone.", micro_aria: "Responder no microfone",
+   tu_as_dit: "<b>Ouvimos: “{t}”.</b> Essa não é uma das respostas: diga de novo ou toque nela.",
+   reecouter: "Ouvir de novo", traduire: "Traduzir", toi: "Você", bien: "Muito bem!", parfait: "Perfeito, sem nenhum erro!",
+   erreurs: "Seus erros, corrigidos", phrases: "As frases que você disse", rejouer: "Jogar de novo com outras respostas",
+   terminer: "Terminar", une_minute: "1 minuto", trois_minutes: "3 minutos", de: "Alemão", introuvable: "Este diálogo ainda não existe.",
+   pardon: "Como?", continuer: "Continuar", soins_surtitre: "Cuidados", soins_titre: "Os diálogos do setor", soins_ligne: "Você é {qui} · {niv} · {m} momentos" },
+ pl: { retour: "Wstecz", surtitre: "Dialog · {niv}", commencer: "Zacznij", sans_filet: "Bez podpowiedzi: tylko mikrofon",
+   toi_reponds: "<b>To ty odpowiadasz</b>: dotknij odpowiedzi albo powiedz ją do mikrofonu. Dialog idzie za twoim wyborem.",
+   pas_de_reco: "Ta przeglądarka nie rozpoznaje głosu: dotykaj odpowiedzi.",
+   a_toi: "Twoja kolej: dotknij odpowiedzi albo ją powiedz.", a_toi_micro: "Twoja kolej: odpowiedz do mikrofonu.", a_toi_touche: "Twoja kolej: dotknij odpowiedzi.",
+   sos: "Nie wiem, co powiedzieć", ecoute: "Słucham…", micro_indispo: "Mikrofon jest niedostępny: dotknij odpowiedzi.",
+   rien: "Nic nie słychać. Spróbuj jeszcze raz, bliżej telefonu.", micro_aria: "Odpowiedz do mikrofonu",
+   tu_as_dit: "<b>Usłyszane: „{t}”.</b> To nie jest żadna z odpowiedzi: powiedz jeszcze raz albo jej dotknij.",
+   reecouter: "Posłuchaj jeszcze raz", traduire: "Przetłumacz", toi: "Ty", bien: "Brawo!", parfait: "Świetnie, bez ani jednego błędu!",
+   erreurs: "Twoje błędy, poprawione", phrases: "Twoje zdania", rejouer: "Zagraj jeszcze raz z innymi odpowiedziami",
+   terminer: "Zakończ", une_minute: "1 minuta", trois_minutes: "3 minuty", de: "Niemiecki", introuvable: "Tego dialogu jeszcze nie ma.",
+   pardon: "Słucham?", continuer: "Dalej", soins_surtitre: "Opieka", soins_titre: "Dialogi na oddziale", soins_ligne: "Twoja rola: {qui} · {niv} · {m} momentów" },
+ ru: { retour: "Назад", surtitre: "Диалог · {niv}", commencer: "Начать", sans_filet: "Без подсказок: только микрофон",
+   toi_reponds: "<b>Отвечаешь ты</b>: коснись ответа или скажи его в микрофон. Диалог идёт по твоему выбору.",
+   pas_de_reco: "Этот браузер не распознаёт голос: касайся ответов.",
+   a_toi: "Твоя очередь: коснись ответа или скажи его.", a_toi_micro: "Твоя очередь: отвечай в микрофон.", a_toi_touche: "Твоя очередь: коснись ответа.",
+   sos: "Не знаю, что сказать", ecoute: "Слушаю…", micro_indispo: "Микрофон недоступен: коснись ответа.",
+   rien: "Ничего не слышно. Попробуй ещё раз, ближе к телефону.", micro_aria: "Ответить в микрофон",
+   tu_as_dit: "<b>Услышано: «{t}».</b> Это не один из ответов: скажи ещё раз или коснись его.",
+   reecouter: "Прослушать ещё раз", traduire: "Перевести", toi: "Ты", bien: "Отличная работа!", parfait: "Отлично, ни одной ошибки!",
+   erreurs: "Твои ошибки, исправленные", phrases: "Твои фразы", rejouer: "Сыграть ещё раз с другими ответами",
+   terminer: "Закончить", une_minute: "1 минута", trois_minutes: "3 минуты", de: "Немецкий", introuvable: "Этого диалога пока нет.",
+   pardon: "Простите?", continuer: "Дальше", soins_surtitre: "Уход", soins_titre: "Диалоги в отделении", soins_ligne: "Твоя роль: {qui} · {niv} · {m} моментов" }
+};
+if (SOINS) Object.keys(UI_SOINS).forEach(l => { UI[l] = Object.assign({}, UI[l] || {}, UI_SOINS[l]); });
+const u = (k, v) => (UI[LANG] && UI[LANG][k] != null ? UI[LANG][k] : UI.fr[k]).replace(/\{(\w+)\}/g, (m, n) => (v || {})[n] != null ? v[n] : m);
 // le texte dans la langue d'interface : un objet {fr, en, ar} ; ou le champ de meme nom d'une replique, a cote de « fr »
 const loc = o => (o && (o[LANG] || o.fr || o.en)) || "";
 const trad = r => (r[LANG] != null ? r[LANG] : r.fr);
@@ -357,6 +444,15 @@ const VOIX_A_FUIR = ["albert","bad news","bahh","bells","boing","bubbles","cello
 const FEMME = /anna|petra|helena|katja|marlene|hedda|female|frau|mujer|m[oó]nica|paulina|luc[ií]a|elvira|marisol|samantha|\bava\b|allison|susan|zira|karen|serena|kate|moira|google/i;
 const HOMME = /markus|yannick|martin|conrad|stefan|hans|killian|male|mann|hombre|jorge|diego|[aá]lvaro|pablo|juan|carlos|\balex\b|daniel|\btom\b|aaron|david|arthur|oliver/i;
 let voix = { f: null, m: null };
+// La voix de « toi » : une voix de femme dans les conversations ; dans les Soins, celle du personnage qu'on joue
+// (Yusuf et Arun sont des hommes).
+let TOI_VOIX = "f";
+// LES VOIX ENREGISTREES DES SOINS (le chemin modele de chaque dialogue, enregistre le 14 nov. : pflege/datos/sons.json,
+// cles <id>/r/<n> = repliques[n], fichiers sur Firebase Hosting, dossier pflege/). Une replique dont le texte allemand
+// est celui d'une replique enregistree joue son fichier ; les autres branches, et un fichier qui n'a pas demarre en
+// 4 s (reseau, iPhone), passent par la voix du telephone.
+const BASE_SONS_SOINS = "https://deutschai-b6fbb.web.app/pflege/";
+let SONS_SOINS = {}, sonEnCours = null;
 function choisirVoix(){
   const toutes = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
   const ici = toutes.filter(v => (v.lang || "").toLowerCase().startsWith(LANGUE) && !VOIX_A_FUIR.some(f => (v.name || "").toLowerCase().includes(f)));
@@ -368,20 +464,44 @@ function choisirVoix(){
   voix.m = liste.find(v => HOMME.test(v.name)) || liste.find(v => v !== voix.f) || liste[0] || null;
 }
 try{ choisirVoix(); if (window.speechSynthesis) speechSynthesis.onvoiceschanged = choisirVoix; }catch(e){}
-function taire(){ try{ if (window.speechSynthesis) speechSynthesis.cancel(); }catch(e){} }
+function taire(){
+  try{ if (window.speechSynthesis) speechSynthesis.cancel(); }catch(e){}
+  try{ if (sonEnCours){ sonEnCours.pause(); sonEnCours = null; } }catch(e){}
+}
 function dire(texte, qui){
   return new Promise(fini => {
     taire();
     if (!window.speechSynthesis){ setTimeout(fini, 400 + texte.length * 45); return; }
     const u = new SpeechSynthesisUtterance(texte);
     u.lang = BCP47; u.rate = 0.92;
-    const g = qui === "toi" ? "f" : ((PERS[qui] || {}).voix || "f");
+    const g = qui === "toi" ? TOI_VOIX : ((PERS[qui] || {}).voix || "f");
     const v = voix[g]; if (v) u.voice = v;
     if (v && voix.f === voix.m) u.pitch = g === "m" ? 0.85 : 1.12;
     let rendu = false; const fin = () => { if (!rendu){ rendu = true; fini(); } };
     u.onend = u.onerror = fin;
     speechSynthesis.speak(u);
     setTimeout(fin, 900 + texte.length * 110);   // filet : certains moteurs n'appellent jamais onend
+  });
+}
+// Dire une replique : son fichier enregistre s'il en a un (« son », les Soins), sinon la voix du telephone.
+function direReplique(texte, qui, son){
+  if (!son) return dire(texte, qui);
+  return new Promise(fini => {
+    taire();
+    const a = new Audio(BASE_SONS_SOINS + son); sonEnCours = a;
+    let rendu = false, parti = false;
+    const fin = () => { if (!rendu){ rendu = true; if (sonEnCours === a) sonEnCours = null; fini(); } };
+    const repli = () => {
+      if (rendu || parti) return;
+      rendu = true; try{ a.pause(); }catch(e){} if (sonEnCours === a) sonEnCours = null;
+      dire(texte, qui).then(fini);
+    };
+    a.onplaying = () => { parti = true; };
+    a.onended = fin;
+    a.onerror = repli;
+    setTimeout(repli, 4000);
+    setTimeout(fin, 4900 + texte.length * 140);   // filet : un fichier qui ne finit jamais
+    try{ const p = a.play(); if (p && p.catch) p.catch(repli); }catch(e){ repli(); }
   });
 }
 
@@ -457,10 +577,10 @@ const SEUIL = 0.5;
 // ---------------------------------------------------------------- l'ecran de jeu
 const HP_SVG = '<svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
 const MIC_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.25 4.5a3.75 3.75 0 1 1 7.5 0v8.25a3.75 3.75 0 1 1-7.5 0V4.5Z"/><path d="M6 10.5a.75.75 0 0 1 .75.75v1.5a5.25 5.25 0 1 0 10.5 0v-1.5a.75.75 0 0 1 1.5 0v1.5a6.751 6.751 0 0 1-6 6.709v2.291h3a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1 0-1.5h3v-2.291a6.751 6.751 0 0 1-6-6.709v-1.5A.75.75 0 0 1 6 10.5Z"/></svg>';
-function boutonHP(texte, qui, libelle){
+function boutonHP(texte, qui, libelle, son){
   const b = el("button"); b.type = "button"; b.innerHTML = HP_SVG; b.appendChild(document.createTextNode(libelle == null ? " " + u("reecouter") : libelle));
   if (!libelle) b.setAttribute("aria-label", u("reecouter"));
-  b.onclick = () => dire(texte, qui);
+  b.onclick = () => direReplique(texte, qui, son);
   return b;
 }
 let dernier = null, fil, repondre, sansFilet = Q.get("sansfilet") === "1", noeud = null, ecouteEnCours = null;
@@ -483,11 +603,11 @@ async function replique(r){
   const d = el("div", "de appris", t); d.lang = LANGUE; d.dir = "ltr"; b.appendChild(d);
   const f = el("div", "fr", gabarit(trad(r), "fr")); f.hidden = true; b.appendChild(f);
   const outils = el("div", "outils");
-  outils.appendChild(boutonHP(dit, qui));
+  outils.appendChild(boutonHP(dit, qui, null, r.son));
   const tr = el("button", null, u("traduire")); tr.type = "button"; tr.onclick = () => { f.hidden = !f.hidden; }; outils.appendChild(tr);
   b.appendChild(outils); ligne.appendChild(b); fil.appendChild(ligne); defiler();
   quiParle(qui); dernier = qui;
-  await dire(dit, qui);
+  await direReplique(dit, qui, r.son);
   quiParle(null);
   await attendre(250);
 }
@@ -504,7 +624,8 @@ const essayes = id => (S.essaye[id] = S.essaye[id] || new Set());
 
 function presentation(){
   taire(); partieNeuve(); plateauNeuf();
-  document.getElementById("surtitre").textContent = (C.parcours === "premiers-pas" ? u("pp") : u("surtitre", { niv: C.niveau }))
+  document.getElementById("surtitre").textContent = (C.parcours === "premiers-pas" ? u("pp")
+      : C.parcours === "soins" ? u("soins_surtitre") + " · " + C.niveau : u("surtitre", { niv: C.niveau }))
     + (C.etape ? u("etape", { n: C.etape }) : "");
   document.getElementById("titre").textContent = fr(C.titre);
   ecran.textContent = ""; ecran.classList.remove("jeu"); ecran.scrollTop = 0;
@@ -605,7 +726,7 @@ async function choisir(c, touchee){
   maReplique(c);
   S.dit.push(c);
   // touchee : on ne l'a pas dite soi-meme, la voix la dit (au micro, on vient de la dire) ; puis un temps pour la voir
-  if (touchee) await dire(T(c, "dit") ? gabarit(T(c, "dit"), LANGUE) : gabarit(T(c, "t"), LANGUE), "toi");
+  if (touchee) await direReplique(T(c, "dit") ? gabarit(T(c, "dit"), LANGUE) : gabarit(T(c, "t"), LANGUE), "toi", c.son);
   await attendre(touchee ? 450 : 700);
   if (c.faux || c.repete){
     essayes(noeud).add(c.i);
@@ -641,7 +762,7 @@ function fin(){
   S.dit.filter(x => !x.faux && !x.repete).forEach(x => {
     const p = el("div", "phrase"), t = gabarit(T(x, "t"), LANGUE);
     const b = el("b", "appris", t); b.lang = LANGUE; b.dir = "ltr"; p.appendChild(b);
-    p.appendChild(boutonHP(t, "toi", ""));
+    p.appendChild(boutonHP(t, "toi", "", x.son));
     c.appendChild(p);
   });
   const re = el("button", "gros", u("rejouer")); re.type = "button"; re.onclick = () => commencer(sansFilet);
@@ -658,8 +779,75 @@ function fin(){
   fil.appendChild(c); defiler();
 }
 
+// ---------------------------------------------------------------- les dialogues des Soins
+// Un dialogue de pflege/datos/dialogues.json a deja la forme d'une conversation (debut, noeuds, dit, choix, va, puis),
+// les noms resolus et les neuf langues a cote de « fr ». Il reste : la personne qu'on joue (« apprenant ») sort du
+// plateau, sa voix devient celle de « toi », et la lecture des nombres en lettres (« lecture ») devient « dit ».
+let DIALOGUES_SOINS = [];
+function adapterSoins(d){
+  // le texte allemand d'une replique enregistree -> son fichier (sons.json, <id>/r/<n>)
+  const net = s => String(s || "").replace(/\s+/g, " ").trim();
+  const enregistre = {};
+  (d.repliques || []).forEach((r, i) => { const f = SONS_SOINS[d.id + "/r/" + i]; if (f && r.de) enregistre[net(r.de)] = f; });
+  const versDit = r => {
+    if (!r) return;
+    if (r.lecture != null && r.dit == null) r.dit = r.lecture;
+    if (r.t && enregistre[net(r.t)]) r.son = enregistre[net(r.t)];
+    (r.puis || []).forEach(versDit);
+  };
+  const noeuds = JSON.parse(JSON.stringify(d.noeuds));
+  Object.values(noeuds).forEach(n => { (n.dit || []).forEach(versDit); (n.choix || []).forEach(versDit); });
+  TOI_VOIX = (PERS[d.apprenant] || {}).voix || "f";
+  return { id: d.id, niveau: d.niveau, registre: d.registre, titre: d.titre, intro: d.intro, bilan: d.but,
+           personnes: d.personnages.filter(p => p !== d.apprenant && PERS[p]), apprenant: d.apprenant,
+           debut: d.debut, noeuds, parcours: "soins" };
+}
+const dialogueSoins = id => DIALOGUES_SOINS.find(d => d.id === id || d.source === id);
+const ORDRE_NIVEAUX = ["A1", "A2", "B1", "B2", "C1"];
+// Le dialogue de la seance du jour (?c=auto, insererDialogueSoins de l'app) : le premier jamais joue, dans l'ordre des
+// niveaux puis des numeros (le compte demarre en B1 et vise le B2) ; sinon le plus anciennement joue (joues=, du plus
+// ancien au plus recent, tenu par l'app).
+function dialogueDeLaSeance(){
+  const joues = (Q.get("joues") || "").split(",").filter(Boolean);
+  const tries = DIALOGUES_SOINS.slice().sort((a, b) => (ORDRE_NIVEAUX.indexOf(a.niveau) - ORDRE_NIVEAUX.indexOf(b.niveau)) || (a.numero - b.numero));
+  return tries.find(d => joues.indexOf(d.id) < 0) || joues.map(dialogueSoins).find(Boolean) || tries[0] || null;
+}
+async function listeSoins(){
+  plateau.textContent = "";
+  document.getElementById("surtitre").textContent = u("soins_surtitre");
+  document.getElementById("titre").textContent = u("soins_titre");
+  ecran.textContent = ""; ecran.classList.remove("jeu"); ecran.scrollTop = 0;
+  const c = el("div", "liste");
+  const tries = DIALOGUES_SOINS.slice().sort((a, b) => (ORDRE_NIVEAUX.indexOf(a.niveau) - ORDRE_NIVEAUX.indexOf(b.niveau)) || (a.numero - b.numero));
+  let groupe = null;
+  tries.forEach(d => {
+    if (d.niveau !== groupe){ c.appendChild(el("h2", null, d.niveau)); groupe = d.niveau; }
+    const a = el("a"); a.href = adresse({ c: d.id, liste: "1" });
+    a.onclick = ev => { ev.preventDefault(); ouvrirDepuisListe(d.id); };
+    const face = d.personnages.find(p => p !== d.apprenant && PERS[p]);
+    const im = el("img"); im.alt = ""; im.src = face ? visage(face, "sourire") : ""; a.appendChild(im);
+    const t = el("div"); t.appendChild(el("b", null, fr(d.titre)));
+    t.appendChild(el("span", null, u("soins_ligne", { qui: fr((PERS[d.apprenant] || {}).nom) || d.apprenant, niv: d.niveau, m: Object.keys(d.noeuds).length })));
+    a.appendChild(t); c.appendChild(a);
+  });
+  ecran.appendChild(c);
+}
+
+// ---------------------------------------------------------------- la vitrine (ligne 86, 15 nov. 2026)
+// Dans l'app, en version gratuite, seules les conversations de GRATUIT.portes s'ouvrent (les 4 de Premiers pas) ;
+// l'app le sait (pageOuverte), la page le lui demande. Hors de l'app, ou en acces complet : tout est ouvert.
+// Les dialogues des Soins (?soins=1) restent hors de la vitrine : leur acces en version gratuite n'est pas decide.
+function ouverte(id){
+  try{ return !DANS_APP || SOINS || typeof parent.pageOuverte !== "function" || parent.pageOuverte("conversation:" + id); }catch(e){ return true; }
+}
+function etiquetteGratuite(id){
+  try{ return DANS_APP && typeof parent.accesComplet === "function" && !parent.accesComplet() && ouverte(id); }catch(e){ return false; }
+}
+function versAbonnement(){ try{ parent.ouvrirAbonnement(); }catch(e){} }
+
 // ---------------------------------------------------------------- la liste (maquette)
 async function liste(){
+  if (SOINS) return listeSoins();
   plateau.textContent = "";
   document.getElementById("surtitre").textContent = DANS_APP ? u("conversations") : u("maquette");
   document.getElementById("titre").textContent = u("jouer");
@@ -687,11 +875,19 @@ async function liste(){
     const g = d.parcours === "premiers-pas" ? u("pp") : d.parcours === "voyage" ? u("voyage") : d.niveau;
     if (g !== groupe){ c.appendChild(el("h2", null, g)); groupe = g; }
     const a = el("a"); a.href = adresse({ c: e.id, liste: "1" });
-    a.onclick = ev => { ev.preventDefault(); ouvrirDepuisListe(e.id); };
+    const libre = ouverte(e.id);
+    a.onclick = ev => { ev.preventDefault(); if (libre) ouvrirDepuisListe(e.id); else versAbonnement(); };
+    if (!libre) a.classList.add("verrou");
     const im = el("img"); im.alt = ""; im.src = PERS[d.personnes[0]].visages.sourire; a.appendChild(im);
     const t = el("div"); t.appendChild(el("b", null, fr(d.titre)));
     t.appendChild(el("span", null, d.etape ? u("ligne_etape", { n: d.etape, niv: d.niveau, m: Object.keys(d.noeuds).length }) : u("ligne", { niv: d.niveau, m: Object.keys(d.noeuds).length })));
-    a.appendChild(t); c.appendChild(a);
+    a.appendChild(t);
+    if (!libre){ const k = el("span", "cadenas", "🔒"); k.setAttribute("aria-hidden", "true"); a.appendChild(k); }
+    else if (etiquetteGratuite(e.id)){
+      let x = "Gratuit"; try{ x = parent.t("gratuit_etiquette"); }catch(err){}
+      a.appendChild(el("span", "gratuit", x));
+    }
+    c.appendChild(a);
   }
   if (!DANS_APP){
     const det = el("details");
@@ -716,8 +912,10 @@ function adresse(change){
 // (le flash de l'iPhone, 12 nov.). L'adresse suit (pushState), pour que le bouton retour d'Android revienne a la liste.
 let enConversation = !!Q.get("c"), depuisListe = Q.get("liste") === "1", pousse = false;
 async function ouvrirDepuisListe(id){
+  if (!ouverte(id)){ versAbonnement(); return; }
   taire();
-  try{ C = await charger("conversation/donnees/" + id + "." + LANGUE + ".json"); }catch(e){ return; }
+  if (SOINS){ const d = dialogueSoins(id); if (!d) return; C = adapterSoins(d); }
+  else { try{ C = await charger("conversation/donnees/" + id + "." + LANGUE + ".json"); }catch(e){ return; } }
   try{ history.pushState({ c: id }, "", adresse({ c: id, liste: "1" })); pousse = true; }catch(e){}
   enConversation = true; depuisListe = true;
   presentation();
@@ -743,7 +941,7 @@ function quitter(){
   else history.back();
 }
 document.getElementById("retour").onclick = quitter;
-if (LANG === "ar") document.getElementById("retour").textContent = "›";
+if (LANG === "ar" || LANG === "fa") document.getElementById("retour").textContent = "›";
 document.getElementById("retour").setAttribute("aria-label", u("retour"));
 if (DANS_APP) document.getElementById("marque").hidden = true;
 
@@ -774,11 +972,25 @@ poserPaysage();
     // les personnes : les communes (index.json), puis celles que chaque lot declare (« personnes » de lot-<id>.json) --
     // jamais un fichier qui n'existe pas (un 404 compterait comme une erreur dans les parcours de l'app)
     PERS = {};
+    if (SOINS){
+      // les Soins : leurs personnes et leurs dialogues seulement (aucun lot des conversations)
+      const [pers, dlg, sons] = await Promise.all([charger("conversation/soins/personnes.json"), charger("../../pflege/datos/dialogues.json"),
+                                                    charger("../../pflege/datos/sons.json").catch(() => ({}))]);
+      SONS_SOINS = sons || {};
+      Object.keys(pers).filter(k => k.charAt(0) !== "_").forEach(k => { PERS[k] = pers[k]; });
+      DIALOGUES_SOINS = dlg.dialogues || [];
+      const d = Q.get("c") === "auto" ? dialogueDeLaSeance() : Q.get("c") && dialogueSoins(Q.get("c"));
+      if (d){ C = adapterSoins(d); presentation(); if (Q.get("c") === "auto") parler("dialogue", { id: d.id }); }
+      else if (Q.get("c")) ecran.textContent = u("introuvable");
+      else await listeSoins();
+      return;
+    }
     const idx = await charger("conversation/donnees/index.json");
     const lots = await Promise.all(idx.lots.map(l => charger("conversation/donnees/lot-" + l + ".json").catch(() => null)));
     const fichiers = idx.personnes.concat(lots.filter(l => l && l.personnes).map(l => l.personnes));
     (await Promise.all(fichiers.map(f => charger("conversation/" + f).catch(() => null)))).forEach(x => { if (x) Object.assign(PERS, x); });
-    if (Q.get("c")){ C = await charger("conversation/donnees/" + Q.get("c") + "." + LANGUE + ".json"); presentation(); }
+    if (Q.get("c") && !ouverte(Q.get("c"))){ versAbonnement(); await liste(); }
+    else if (Q.get("c")){ C = await charger("conversation/donnees/" + Q.get("c") + "." + LANGUE + ".json"); presentation(); }
     else await liste();
   }catch(e){ ecran.textContent = u("introuvable"); }
 })();

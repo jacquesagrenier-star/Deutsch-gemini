@@ -1,0 +1,357 @@
+{
+ "_langue": "ru",
+ "_source": "pflege/sources/dialogues/d24-beschwerde.json",
+ "cles": {
+  "titre": {
+   "fr": "Recevoir une plainte de la famille",
+   "de": "Eine Beschwerde annehmen",
+   "ru": "Принять жалобу"
+  },
+  "intro": {
+   "fr": "Samedi après-midi, au {heim}. {schulze_tochter} rend visite à son père, {schulze}. Elle sort de sa chambre, fâchée, et arrête {arun} dans le couloir. Tu joues {arun} : écouter sans interrompre, reformuler, t'excuser sans accuser personne, proposer des mesures concrètes, puis transmettre la plainte à la responsable du service.",
+   "ru": "Суббота, вторая половина дня, дом престарелых {heim}. {schulze_tochter} навещает своего отца, {schulze:acc}. Она выходит из его комнаты рассерженная и останавливает {arun:acc} в коридоре. Ты играешь роль {arun:gen}: выслушать, не перебивая, пересказать своими словами, извиниться, никого не обвиняя, предложить конкретные меры, а затем передать жалобу заведующей отделением."
+  },
+  "but": {
+   "fr": "Recevoir une plainte : accueillir tout de suite, laisser parler, reformuler (Ich fasse zusammen …), reconnaître l'émotion sans se justifier (Ich verstehe, dass Sie sich ärgern), dire ce qu'on fait maintenant et ce qu'on propose pour la suite (Konjunktiv : Wir könnten …), transmettre à qui de droit et dire quand.",
+   "ru": "Принять жалобу: сразу откликнуться, дать человеку высказаться, пересказать своими словами (Ich fasse zusammen …), признать чувства, не оправдываясь (Ich verstehe, dass Sie sich ärgern), сказать, что делаешь сейчас и что предлагаешь на будущее (Konjunktiv: Wir könnten …), передать тому, кто за это отвечает, и сказать когда."
+  },
+  "relire_notes": {
+   "fr": "Gestion des plaintes (Beschwerdemanagement) en maison de retraite : noter, transmettre à la responsable du service (Wohnbereichsleitung), réponse à la famille ; marquage du linge au nom du résident ; rasage inscrit dans la planification des soins ; associer le résident atteint de démence à ses soins (lui demander, ne pas faire à sa place sans le prévenir) ; la mention de la « Heimaufsicht » (autorité de contrôle) dans une faute.",
+   "ru": "Работа с жалобами (Beschwerdemanagement) в доме престарелых: записать, передать заведующей отделением (Wohnbereichsleitung), ответ родственникам; маркировка белья именем проживающего; бритьё внесено в план ухода; вовлекать проживающего с деменцией в уход (спросить его, не делать за него, не предупредив); упоминание «Heimaufsicht» (надзорный орган) в неверном ответе."
+  },
+  "redemittel.0": {
+   "fr": "Je vous écoute. Que s'est-il passé ?",
+   "de": "Ich höre Sie. Was ist passiert?",
+   "ru": "Я вас слушаю. Что случилось?"
+  },
+  "redemittel.1": {
+   "fr": "Je résume : … Est-ce que j'ai bien compris ?",
+   "de": "Ich fasse zusammen: … Habe ich das richtig verstanden?",
+   "ru": "Подведу итог: … Я правильно понял?"
+  },
+  "redemittel.2": {
+   "fr": "Je comprends que vous soyez fâchée.",
+   "de": "Ich verstehe, dass Sie sich ärgern.",
+   "ru": "Я понимаю, что вы сердитесь."
+  },
+  "redemittel.3": {
+   "fr": "Je suis désolé que ça n'ait pas été le cas aujourd'hui.",
+   "de": "Es tut mir leid, dass das heute nicht so war.",
+   "ru": "Мне жаль, что сегодня было не так."
+  },
+  "redemittel.4": {
+   "fr": "Voilà ce que je fais maintenant : …",
+   "de": "Ich mache jetzt Folgendes: …",
+   "ru": "Сейчас я сделаю вот что: …"
+  },
+  "redemittel.5": {
+   "fr": "Pour que ça ne se reproduise pas, nous pourrions…",
+   "de": "Damit das nicht wieder vorkommt, könnten wir …",
+   "ru": "Чтобы это не повторилось, мы могли бы…"
+  },
+  "redemittel.6": {
+   "fr": "Je transmets votre plainte à la responsable du service. Elle vous recontactera.",
+   "de": "Ich gebe Ihre Beschwerde an die Wohnbereichsleitung weiter. Sie meldet sich bei Ihnen.",
+   "ru": "Я передам вашу жалобу заведующей отделением. Она с вами свяжется."
+  },
+  "redemittel.7": {
+   "fr": "Merci de me l'avoir dit.",
+   "de": "Danke, dass Sie es mir gesagt haben.",
+   "ru": "Спасибо, что вы мне об этом сказали."
+  },
+  "noeuds.flur.dit.0.recit": {
+   "fr": "Samedi, quinze heures. {schulze_tochter} sort de la chambre de son père à grands pas et vient droit sur {arun}.",
+   "ru": "Суббота, пятнадцать часов. {schulze_tochter} быстрым шагом выходит из комнаты отца и направляется прямо к {arun:dat}."
+  },
+  "noeuds.flur.dit.1": {
+   "fr": "Excusez-moi, vous travaillez ici ? Je dois me plaindre. Ça ne peut pas continuer comme ça !",
+   "de": "Entschuldigung, arbeiten Sie hier? Ich muss mich beschweren. So geht das nicht weiter!",
+   "ru": "Извините, вы здесь работаете? Я хочу пожаловаться. Так дальше продолжаться не может!"
+  },
+  "noeuds.flur.choix.0": {
+   "fr": "Oui, je suis {arun}, je travaille ici dans les soins. Je vous écoute. Que s'est-il passé ?",
+   "de": "Ja, ich bin {arun}, ich arbeite hier in der Pflege. Ich höre Sie. Was ist passiert?",
+   "ru": "Да, я {arun}, я работаю здесь в уходе. Я вас слушаю. Что случилось?"
+  },
+  "noeuds.flur.choix.0.puis.0": {
+   "fr": "Mon père porte un pull qui n'est même pas à lui. Il n'est pas rasé. Et ses lunettes ont disparu, depuis hier déjà !",
+   "de": "Mein Vater hat einen Pullover an, der ihm gar nicht gehört. Er ist nicht rasiert. Und seine Brille ist weg, seit gestern schon!",
+   "ru": "На моём отце свитер, который ему даже не принадлежит. Он не побрит. А его очки пропали, уже со вчерашнего дня!"
+  },
+  "noeuds.flur.choix.1": {
+   "fr": "Bonjour, {schulze_tochter:voc}. Je suis {arun}. Racontez-moi calmement ce qui se passe.",
+   "de": "Guten Tag, {schulze_tochter}. Ich bin {arun}. Erzählen Sie mir in Ruhe, was los ist.",
+   "ru": "Здравствуйте, {schulze_tochter:voc}. Я {arun}. Расскажите мне спокойно, что случилось."
+  },
+  "noeuds.flur.choix.1.puis.0": {
+   "fr": "Calmement ? Mon père porte un pull qui n'est même pas à lui. Il n'est pas rasé. Et ses lunettes ont disparu, depuis hier déjà !",
+   "de": "In Ruhe? Mein Vater hat einen Pullover an, der ihm gar nicht gehört. Er ist nicht rasiert. Und seine Brille ist weg, seit gestern schon!",
+   "ru": "Спокойно? На моём отце свитер, который ему даже не принадлежит. Он не побрит. А его очки пропали, уже со вчерашнего дня!"
+  },
+  "noeuds.flur.choix.2": {
+   "fr": "Un instant, je n'ai pas le temps là. Attendez ici, s'il vous plaît.",
+   "de": "Moment, ich habe gerade keine Zeit. Bitte warten Sie hier.",
+   "ru": "Минутку, мне сейчас некогда. Подождите здесь, пожалуйста."
+  },
+  "noeuds.flur.choix.2.puis.0": {
+   "fr": "Pas le temps ? C'est exactement ça, le problème, ici !",
+   "de": "Keine Zeit? Genau das ist ja das Problem hier!",
+   "ru": "Некогда? Вот в этом-то здесь и проблема!"
+  },
+  "noeuds.flur.choix.2.aide": {
+   "fr": "<b>Une plainte s'accueille tout de suite, même brièvement.</b> Se présenter et ouvrir : « Ich höre Sie. Was ist passiert? » Si tu dois vraiment partir, dis précisément quand tu reviens.",
+   "ru": "<b>На жалобу откликаются сразу, пусть даже коротко.</b> Представиться и дать слово: «Ich höre Sie. Was ist passiert?» Если тебе действительно нужно уйти, скажи точно, когда вернёшься."
+  },
+  "noeuds.zuhoeren.choix.0": {
+   "fr": "Je résume : votre père porte le pull de quelqu'un d'autre, il n'a pas été rasé aujourd'hui, et ses lunettes manquent depuis hier. Est-ce que j'ai bien compris ?",
+   "de": "Ich fasse zusammen: Ihr Vater trägt einen fremden Pullover, er ist heute nicht rasiert worden, und seine Brille fehlt seit gestern. Habe ich das richtig verstanden?",
+   "ru": "Подведу итог: на вашем отце чужой свитер, сегодня его не побрили, а его очков нет со вчерашнего дня. Я правильно понял?"
+  },
+  "noeuds.zuhoeren.choix.0.puis.0": {
+   "fr": "Oui, exactement. Et ce n'est pas la première fois. Je paie beaucoup d'argent ici chaque mois !",
+   "de": "Ja, genau. Und das ist nicht das erste Mal. Ich zahle hier jeden Monat viel Geld!",
+   "ru": "Да, именно. И это не в первый раз. Я плачу здесь каждый месяц большие деньги!"
+  },
+  "noeuds.zuhoeren.choix.1": {
+   "fr": "Si je vous comprends bien, il s'agit de trois choses : le pull, le rasage et les lunettes.",
+   "de": "Wenn ich Sie richtig verstehe, geht es um drei Dinge: den Pullover, die Rasur und die Brille.",
+   "ru": "Если я вас правильно понимаю, речь идёт о трёх вещах: свитер, бритьё и очки."
+  },
+  "noeuds.zuhoeren.choix.1.puis.0": {
+   "fr": "Oui, exactement. Et ce n'est pas la première fois. Je paie beaucoup d'argent ici chaque mois !",
+   "de": "Ja, genau. Und das ist nicht das erste Mal. Ich zahle hier jeden Monat viel Geld!",
+   "ru": "Да, именно. И это не в первый раз. Я плачу здесь каждый месяц большие деньги!"
+  },
+  "noeuds.zuhoeren.choix.2": {
+   "fr": "Ce n'est normalement pas possible. Nous rasons tous les résidents chaque matin.",
+   "de": "Das kann eigentlich nicht sein. Wir rasieren alle Bewohner jeden Morgen.",
+   "ru": "Вообще-то такого быть не может. Мы бреем всех проживающих каждое утро."
+  },
+  "noeuds.zuhoeren.choix.2.puis.0": {
+   "fr": "Pas possible ? Eh bien, entrez et regardez-le !",
+   "de": "Kann nicht sein? Dann gehen Sie doch rein und schauen Sie ihn sich an!",
+   "ru": "Не может быть? Так зайдите и посмотрите на него сами!"
+  },
+  "noeuds.zuhoeren.choix.2.aide": {
+   "fr": "<b>Ne pas contredire ce que la famille a vu.</b> Reformuler montre que tu as entendu : « Ich fasse zusammen: … Habe ich das richtig verstanden? » La vérification viendra après.",
+   "ru": "<b>Не спорь с тем, что увидели родственники.</b> Пересказ своими словами показывает, что ты слушаешь внимательно: «Ich fasse zusammen: … Habe ich das richtig verstanden?» Проверить можно потом."
+  },
+  "noeuds.aerger.choix.0": {
+   "fr": "Je comprends que vous soyez fâchée. Vous voulez que votre père soit bien pris en charge, et c'est tout à fait votre droit. Je suis désolé que ça n'ait pas été le cas aujourd'hui.",
+   "de": "Ich verstehe, dass Sie sich ärgern. Sie möchten, dass Ihr Vater gut versorgt ist, und das ist Ihr gutes Recht. Es tut mir leid, dass das heute nicht so war.",
+   "ru": "Я понимаю, что вы сердитесь. Вы хотите, чтобы за вашим отцом хорошо ухаживали, и это ваше полное право. Мне жаль, что сегодня было не так."
+  },
+  "noeuds.aerger.choix.0.puis.0": {
+   "fr": "Oui. Avant, il était toujours si soigné. Rasé de près chaque matin : comme conducteur de tramway, c'était obligatoire.",
+   "de": "Ja. Er war früher immer so gepflegt. Jeden Morgen frisch rasiert, als Straßenbahnfahrer musste das so sein.",
+   "ru": "Да. Раньше он всегда был таким ухоженным. Каждое утро чисто выбрит: он был водителем трамвая, там без этого нельзя."
+  },
+  "noeuds.aerger.choix.1": {
+   "fr": "Je suis désolé que vous ayez vécu ça. Votre colère est compréhensible.",
+   "de": "Es tut mir leid, dass Sie das so erlebt haben. Ihr Ärger ist verständlich.",
+   "ru": "Мне жаль, что вам пришлось с этим столкнуться. Ваше возмущение понятно."
+  },
+  "noeuds.aerger.choix.1.puis.0": {
+   "fr": "Oui. Avant, il était toujours si soigné. Rasé de près chaque matin : comme conducteur de tramway, c'était obligatoire.",
+   "de": "Ja. Er war früher immer so gepflegt. Jeden Morgen frisch rasiert, als Straßenbahnfahrer musste das so sein.",
+   "ru": "Да. Раньше он всегда был таким ухоженным. Каждое утро чисто выбрит: он был водителем трамвая, там без этого нельзя."
+  },
+  "noeuds.aerger.choix.2": {
+   "fr": "Nous manquons malheureusement de personnel, vous le savez bien.",
+   "de": "Wir haben leider zu wenig Personal, das wissen Sie ja.",
+   "ru": "У нас, к сожалению, не хватает персонала, вы же знаете."
+  },
+  "noeuds.aerger.choix.2.puis.0": {
+   "fr": "Ce n'est pas mon problème ! Je veux que mon père soit correctement pris en charge.",
+   "de": "Das ist nicht mein Problem! Ich will, dass mein Vater ordentlich versorgt wird.",
+   "ru": "Это не моя проблема! Я хочу, чтобы за моим отцом ухаживали как следует."
+  },
+  "noeuds.aerger.choix.2.aide": {
+   "fr": "<b>S'excuser pour ce qu'elle a vécu, sans se justifier.</b> Le manque de personnel est peut-être vrai, mais il sonne comme une excuse. « Es tut mir leid, dass das heute nicht so war » reconnaît le problème sans accuser l'équipe.",
+   "ru": "<b>Извиниться за то, с чем ей пришлось столкнуться, не оправдываясь.</b> Нехватка персонала, может быть, и правда, но звучит как отговорка. «Es tut mir leid, dass das heute nicht so war» признаёт проблему, не обвиняя команду."
+  },
+  "noeuds.massnahmen.choix.0": {
+   "fr": "Voilà ce que je fais maintenant : je demande à votre père si je peux le raser tout de suite, et je lui mets son propre pull. Ensuite, je cherche les lunettes, aussi dans la salle à manger et dans le linge.",
+   "de": "Ich mache jetzt Folgendes: Ich frage Ihren Vater, ob ich ihn gleich rasieren darf, und ziehe ihm seinen eigenen Pullover an. Danach suche ich die Brille, auch im Speisesaal und in der Wäsche.",
+   "ru": "Сейчас я сделаю вот что: спрошу вашего отца, можно ли мне сразу его побрить, и надену на него его собственный свитер. Потом я поищу очки, в том числе в столовой и в белье."
+  },
+  "noeuds.massnahmen.choix.0.puis.0": {
+   "fr": "Bien. Mais que se passe-t-il si ça recommence la semaine prochaine ?",
+   "de": "Gut. Aber was ist, wenn das nächste Woche wieder passiert?",
+   "ru": "Хорошо. А что, если на следующей неделе это повторится?"
+  },
+  "noeuds.massnahmen.choix.1": {
+   "fr": "D'abord, je m'occupe de votre père : le rasage et le bon pull. Ensuite, on cherche les lunettes ensemble, si vous voulez.",
+   "de": "Zuerst kümmere ich mich um Ihren Vater: die Rasur und der richtige Pullover. Und dann suchen wir zusammen die Brille, wenn Sie möchten.",
+   "ru": "Сначала я займусь вашим отцом: бритьё и правильный свитер. А потом, если хотите, поищем очки вместе."
+  },
+  "noeuds.massnahmen.choix.1.puis.0": {
+   "fr": "Bien. Mais que se passe-t-il si ça recommence la semaine prochaine ?",
+   "de": "Gut. Aber was ist, wenn das nächste Woche wieder passiert?",
+   "ru": "Хорошо. А что, если на следующей неделе это повторится?"
+  },
+  "noeuds.massnahmen.choix.2": {
+   "fr": "Je vous promets que ça ne se reproduira plus jamais.",
+   "de": "Ich verspreche Ihnen, dass so etwas nie wieder passiert.",
+   "ru": "Обещаю вам, что такое больше никогда не повторится."
+  },
+  "noeuds.massnahmen.choix.2.puis.0": {
+   "fr": "Plus jamais ? C'est ce qu'on m'a déjà dit le mois dernier.",
+   "de": "Nie wieder? Das hat man mir letzten Monat auch schon gesagt.",
+   "ru": "Никогда? То же самое мне говорили и в прошлом месяце."
+  },
+  "noeuds.massnahmen.choix.2.aide": {
+   "fr": "<b>Des mesures concrètes, pas de promesse impossible.</b> « nie wieder » ne peut pas se tenir. Dis ce que tu fais maintenant : « Ich mache jetzt Folgendes: … »",
+   "ru": "<b>Конкретные меры, а не невыполнимые обещания.</b> «nie wieder» сдержать невозможно. Скажи, что делаешь сейчас: «Ich mache jetzt Folgendes: …»"
+  },
+  "noeuds.zukunft.choix.0": {
+   "fr": "Pour que ça ne se reproduise pas, nous pourrions faire marquer les vêtements de votre père à son nom. Et j'écris dans son plan de soins qu'il souhaite être rasé chaque matin.",
+   "de": "Damit das nicht wieder vorkommt, könnten wir die Kleidung Ihres Vaters mit seinem Namen kennzeichnen lassen. Und ich schreibe in seine Pflegeplanung, dass er jeden Morgen rasiert werden möchte.",
+   "ru": "Чтобы это не повторилось, мы могли бы промаркировать одежду вашего отца его именем. А в его план ухода я запишу, что он хочет, чтобы его брили каждое утро."
+  },
+  "noeuds.zukunft.choix.0.puis.0": {
+   "fr": "Ce serait bien. Je peux aussi apporter des étiquettes à son nom pour le linge.",
+   "de": "Das wäre gut. Namensschilder für die Wäsche kann ich auch mitbringen.",
+   "ru": "Это было бы хорошо. Я могу и сама принести бирки с его именем для белья."
+  },
+  "noeuds.zukunft.choix.1": {
+   "fr": "Je proposerais que ses vêtements reçoivent des étiquettes à son nom. Et j'inscris le rasage quotidien dans son plan de soins, pour que tous mes collègues soient au courant.",
+   "de": "Ich würde vorschlagen, dass seine Kleidung Namensetiketten bekommt. Und die tägliche Rasur trage ich in seine Pflegeplanung ein, damit alle Kolleginnen und Kollegen Bescheid wissen.",
+   "ru": "Я бы предложил пришить к его одежде бирки с именем. А ежедневное бритьё я внесу в его план ухода, чтобы все коллеги были в курсе."
+  },
+  "noeuds.zukunft.choix.1.puis.0": {
+   "fr": "Ce serait bien. Je peux aussi apporter des étiquettes à son nom pour le linge.",
+   "de": "Das wäre gut. Namensschilder für die Wäsche kann ich auch mitbringen.",
+   "ru": "Это было бы хорошо. Я могу и сама принести бирки с его именем для белья."
+  },
+  "noeuds.zukunft.choix.2": {
+   "fr": "Pardon, qu'avez-vous dit ? Vous parlez un peu vite pour moi.",
+   "de": "Entschuldigung, was haben Sie gesagt? Sie sprechen ein bisschen schnell für mich.",
+   "ru": "Извините, что вы сказали? Вы говорите для меня немного быстро."
+  },
+  "noeuds.zukunft.choix.2.puis.0": {
+   "fr": "J'ai demandé : que se passe-t-il si c'est encore comme ça la semaine prochaine ?",
+   "de": "Ich habe gefragt: Was passiert, wenn das nächste Woche wieder so ist?",
+   "ru": "Я спросила: что будет, если на следующей неделе опять будет так же?"
+  },
+  "noeuds.leitung.dit.0": {
+   "fr": "Malgré tout, j'aimerais parler à quelqu'un qui a son mot à dire ici.",
+   "de": "Trotzdem möchte ich mit jemandem sprechen, der hier etwas zu sagen hat.",
+   "ru": "И всё же я хотела бы поговорить с кем-нибудь, кто здесь что-то решает."
+  },
+  "noeuds.leitung.choix.0": {
+   "fr": "Je comprends. Je transmets votre plainte aujourd'hui même à notre responsable du service. Elle est de retour lundi et elle vous recontactera pour un rendez-vous.",
+   "de": "Das verstehe ich. Ich gebe Ihre Beschwerde heute noch an unsere Wohnbereichsleitung weiter. Sie ist am Montag wieder da und meldet sich bei Ihnen für einen Termin.",
+   "ru": "Понимаю. Я ещё сегодня передам вашу жалобу нашей заведующей отделением. В понедельник она вернётся и свяжется с вами, чтобы назначить встречу."
+  },
+  "noeuds.leitung.choix.0.puis.0": {
+   "fr": "Bien. Lundi après-midi, je peux. Vous avez mon numéro.",
+   "de": "Gut. Montagnachmittag kann ich. Meine Nummer haben Sie ja.",
+   "ru": "Хорошо. В понедельник после обеда я могу. Мой номер у вас есть."
+  },
+  "noeuds.leitung.choix.1": {
+   "fr": "Bien sûr. J'écris votre plainte maintenant, pour que rien ne se perde, et je la transmets à la responsable du service. Je peux lui dire que vous souhaitez un entretien ?",
+   "de": "Gern. Ich schreibe Ihre Beschwerde jetzt auf, damit nichts verloren geht, und gebe sie an die Wohnbereichsleitung weiter. Darf ich ihr sagen, dass Sie ein Gespräch wünschen?",
+   "ru": "Конечно. Я сейчас запишу вашу жалобу, чтобы ничего не потерялось, и передам её заведующей отделением. Могу я сказать ей, что вы хотели бы с ней поговорить?"
+  },
+  "noeuds.leitung.choix.1.puis.0": {
+   "fr": "Oui, s'il vous plaît. Lundi après-midi, je peux.",
+   "de": "Ja, bitte. Montagnachmittag kann ich.",
+   "ru": "Да, пожалуйста. В понедельник после обеда я могу."
+  },
+  "noeuds.leitung.choix.2": {
+   "fr": "La cheffe n'est pas là le week-end. On n'y peut rien.",
+   "de": "Die Chefin ist am Wochenende nicht da. Da kann man nichts machen.",
+   "ru": "Начальницы в выходные нет. Тут ничего не поделаешь."
+  },
+  "noeuds.leitung.choix.2.puis.0": {
+   "fr": "On n'y peut rien ? Eh bien, j'écris à l'autorité de contrôle des maisons de retraite !",
+   "de": "Nichts machen? Dann schreibe ich eben an die Heimaufsicht!",
+   "ru": "Ничего не поделаешь? Ну тогда я напишу в надзорный орган за домами престарелых!"
+  },
+  "noeuds.leitung.choix.2.aide": {
+   "fr": "<b>Transmettre la plainte, et dire à qui et quand.</b> « Ich gebe Ihre Beschwerde an die Wohnbereichsleitung weiter. Sie meldet sich bei Ihnen. » Une plainte notée et transmise calme plus qu'un « on n'y peut rien ».",
+   "ru": "<b>Передать жалобу и сказать, кому и когда.</b> «Ich gebe Ihre Beschwerde an die Wohnbereichsleitung weiter. Sie meldet sich bei Ihnen.» Записанная и переданная жалоба успокаивает больше, чем «тут ничего не поделаешь»."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Merci de me l'avoir dit. C'est comme ça qu'on peut changer les choses. Maintenant, je vais voir votre père.",
+   "de": "Danke, dass Sie es mir gesagt haben. Nur so können wir etwas ändern. Jetzt gehe ich zu Ihrem Vater.",
+   "ru": "Спасибо, что вы мне об этом сказали. Только так мы можем что-то изменить. Сейчас я пойду к вашему отцу."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Merci, {arun}. Excusez-moi d'avoir haussé le ton.",
+   "de": "Danke, {arun}. Entschuldigen Sie, dass ich so laut geworden bin.",
+   "ru": "Спасибо, {arun:voc}. Извините, что я повысила голос."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "C'est bien que vous soyez venue me voir tout de suite. Vous venez ? On va prévenir votre père ensemble.",
+   "de": "Gut, dass Sie gleich zu mir gekommen sind. Kommen Sie mit? Dann sagen wir Ihrem Vater zusammen Bescheid.",
+   "ru": "Хорошо, что вы сразу подошли ко мне. Пойдёте со мной? Тогда вместе скажем вашему отцу."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Oui, volontiers. Et merci de m'avoir écoutée.",
+   "de": "Ja, gern. Und danke, dass Sie mir zugehört haben.",
+   "ru": "Да, с удовольствием. И спасибо, что выслушали меня."
+  },
+  "ecouter.0.q": {
+   "fr": "Qu'est-ce qui manque à {schulze} depuis hier ?",
+   "de": "Was fehlt {schulze:dat} seit gestern?",
+   "ru": "Чего не хватает {schulze:dat} со вчерашнего дня?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Ses lunettes.",
+   "de": "Seine Brille.",
+   "ru": "Его очков."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Son appareil auditif.",
+   "de": "Sein Hörgerät.",
+   "ru": "Его слухового аппарата."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Sa veste.",
+   "de": "Seine Jacke.",
+   "ru": "Его куртки."
+  },
+  "ecouter.1.q": {
+   "fr": "Que propose {arun} pour les vêtements ?",
+   "de": "Was schlägt {arun} für die Kleidung vor?",
+   "ru": "Что {arun} предлагает насчёт одежды?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "D'acheter de nouveaux vêtements.",
+   "de": "Neue Kleidung zu kaufen.",
+   "ru": "Купить новую одежду."
+  },
+  "ecouter.1.options.1": {
+   "fr": "De marquer les vêtements à son nom.",
+   "de": "Die Kleidung mit dem Namen zu kennzeichnen.",
+   "ru": "Промаркировать одежду его именем."
+  },
+  "ecouter.1.options.2": {
+   "fr": "De laver les vêtements à la maison.",
+   "de": "Die Kleidung zu Hause zu waschen.",
+   "ru": "Стирать одежду дома."
+  },
+  "ecouter.2.q": {
+   "fr": "À qui {arun} transmet-il la plainte ?",
+   "de": "An wen gibt {arun} die Beschwerde weiter?",
+   "ru": "Кому {arun} передаёт жалобу?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "À l'autorité de contrôle.",
+   "de": "An die Heimaufsicht.",
+   "ru": "В надзорный орган."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Au médecin traitant.",
+   "de": "An den Hausarzt.",
+   "ru": "Семейному врачу."
+  },
+  "ecouter.2.options.2": {
+   "fr": "À la responsable du service.",
+   "de": "An die Wohnbereichsleitung.",
+   "ru": "Заведующей отделением."
+  }
+ }
+}

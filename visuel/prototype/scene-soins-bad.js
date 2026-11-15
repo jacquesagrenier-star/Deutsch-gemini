@@ -1173,60 +1173,79 @@ window.SCENE = {
    ]
   },
   "SIT": {
-   "titre": "Que faites-vous ?",
+   "titre": "Que répondez-vous ?",
    "niveau": "B1",
    "qs": [
     {
-     "q": "Frau Lehmann ist beim Waschen plötzlich schwindelig. Was tun Sie?",
+     "q": "Nach dem Waschen soll der Verband am Fuß gewechselt werden. Frau Lehmann fragt: „Guten Morgen. Was haben Sie denn da alles dabei?“",
      "c": [
-      "Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.",
-      "Ich hole schnell einen Kollegen und lasse sie kurz allein.",
-      "Ich sage ihr, sie soll aufstehen und tief atmen."
+      "Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?",
+      "Ich mache jetzt Ihren Fuß.",
+      "Ich messe jetzt Ihr Blut."
      ],
-     "f": "notrufschnur",
+     "f": "patientin",
      "type": "situation",
-     "phrase": "Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.",
-     "sens": "Je reste avec elle, je la maintiens sur la chaise et je tire le cordon d'appel.",
-     "n": "On ne laisse jamais seule une personne qui a un malaise : on la garde assise et on appelle de l'aide sans partir ⚕️."
+     "phrase": "Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?",
+     "sens": "Bonjour, madame Lehmann. Je voudrais changer le pansement de votre pied maintenant. Vous êtes d'accord ?",
+     "n": "<b>Dis exactement ce que tu vas faire, et demande l'accord.</b> « Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung? » « machen » tout seul ne dit rien au patient.",
+     "source": "d03-verbandswechsel/ankuendigen"
     },
     {
-     "q": "Frau Lehmann möchte sich im Intimbereich nicht von Ihnen waschen lassen. Was tun Sie?",
+     "q": "Frau Lehmann fragt: „Warum muss das eigentlich jeden Tag sein?“",
      "c": [
-      "Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.",
-      "Ich wasche trotzdem, das gehört zur Pflege.",
-      "Ich lasse es weg und schreibe nichts auf."
+      "Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.",
+      "Weil der Arzt das so will.",
+      "Aber das ist doch wichtig! Sie müssen das machen."
      ],
-     "f": "waschlappen",
+     "f": "patientin",
      "type": "situation",
-     "phrase": "Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.",
-     "sens": "Je lui donne le gant de toilette et je la laisse faire elle-même, autant qu'elle peut.",
-     "n": "Respecter la pudeur (<b>die Intimsphäre wahren</b>) : la personne fait elle-même ce qu'elle peut ; sinon, on en reparle et on le note ⚕️."
+     "phrase": "Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.",
+     "sens": "Pour que la plaie reste propre et puisse bien guérir. Avec le diabète, une plaie guérit souvent plus lentement.",
+     "n": "<b>Explique le but du soin, en mots simples : « damit … ».</b> « Damit die Wunde sauber bleibt und gut heilen kann. » Un patient qui comprend pourquoi coopère mieux. ⚕️",
+     "source": "d03-verbandswechsel/warum"
     },
     {
-     "q": "Beim Abtrocknen sehen Sie eine gerötete Stelle an der Ferse. Was tun Sie?",
+     "q": "Frau Lehmann fragt: „Und was machen Sie da genau? Ich will lieber nicht hinschauen.“",
      "c": [
-      "Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.",
-      "Ich creme sie ein und sage nichts.",
-      "Ich warte bis morgen und schaue dann noch einmal."
+      "Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.",
+      "Zuerst nehme ich den Verband ab, dann desinfiziere ich mir die Hände.",
+      "Ich mache jetzt Ihren Fuß."
      ],
-     "f": "hautcreme",
+     "f": "patientin",
      "type": "situation",
-     "phrase": "Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.",
-     "sens": "Je l'examine bien, je la note dans le dossier et j'informe la médecin.",
-     "n": "Une rougeur au talon d'une patiente diabétique peut annoncer une escarre ou une plaie : on l'observe, on la note et on la signale ⚕️."
+     "phrase": "Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.",
+     "sens": "D'abord, je me désinfecte les mains et je mets des gants. Ensuite, j'enlève l'ancien pansement.",
+     "n": "<b>C'est une faute de soin : l'hygiène des mains vient avant tout geste.</b> « Zuerst desinfiziere ich mir die Hände, dann … ». La patiente l'a remarqué : à l'examen comme au travail, l'ordre compte. ⚕️",
+     "source": "d03-verbandswechsel/ablauf",
+     "r": "handschuh"
     },
     {
-     "q": "Der Verband am Fuß ist beim Waschen nass geworden. Was tun Sie?",
+     "q": "Frau Lehmann fragt: „Und tut das weh?“",
      "c": [
-      "Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.",
-      "Ich trockne ihn mit dem Handtuch ab und lasse ihn so.",
-      "Ich lasse ihn so, er trocknet von allein."
+      "Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.",
+      "Nein, das tut überhaupt nicht weh.",
+      "Das ist nicht schlimm."
      ],
-     "f": "schuh",
+     "f": "patientin",
      "type": "situation",
-     "phrase": "Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.",
-     "sens": "Je fais en sorte qu'il soit changé selon la prescription, et je le note.",
-     "n": "Un pansement mouillé ne protège plus la plaie : il se change selon la prescription, et on le note ⚕️."
+     "phrase": "Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.",
+     "sens": "Ça peut tirer un peu. Dites-moi tout de suite si ça fait mal, et je fais une pause.",
+     "n": "<b>Ne promets pas qu'un soin ne fera pas mal.</b> Préviens honnêtement (« Es kann ein bisschen ziehen ») et donne à la patiente un moyen d'agir : « Sagen Sie mir bitte sofort, wenn es wehtut. »",
+     "source": "d03-verbandswechsel/weh"
+    },
+    {
+     "q": "Frau Lehmann fragt: „Und? Wie sieht es aus? Ich trau mich nicht hinzuschauen.“",
+     "c": [
+      "Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.",
+      "Die Wunde ist ziemlich eklig.",
+      "Keine Sorge, das ist normal bei alten Leuten."
+     ],
+     "f": "patientin",
+     "type": "situation",
+     "phrase": "Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.",
+     "sens": "Bien. La plaie est propre, et elle a déjà un peu rétréci.",
+     "n": "<b>Pour une plaie, des mots neutres et précis : sauber, gerötet, kleiner, größer.</b> « eklig » (dégoûtant) blesse la patiente et n'apprend rien au dossier.",
+     "source": "d03-verbandswechsel/wunde"
     }
    ]
   }
@@ -1243,7 +1262,7 @@ window.SCENE = {
     "B1": "Announcing and asking permission",
     "B2": "Time clauses",
     "C1": "The noun style of nursing notes",
-    "SIT": "What do you do?"
+    "SIT": "What do you answer?"
    },
    "questions": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "<b>sich waschen</b>: in the 3rd person, a becomes ä — sie <b>wäscht</b> sich.",
@@ -1270,10 +1289,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "<b>intakt</b>: the word used in the notes for skin with no redness or lesions. Red: <b>gerötet</b>.",
     "C1 | Verband trocken und sauber.": "No article, no verb: <b>Verband trocken und sauber</b>. A diabetic foot is checked at every wash ⚕️.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "The noun <b>Schwindel</b> (dizziness) replaces the sentence “she felt dizzy”; always note what you did ⚕️.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Never leave a person who feels faint alone: keep them seated and call for help without leaving ⚕️.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Respect the person's privacy (<b>die Intimsphäre wahren</b>): they do what they can themselves; otherwise, talk about it again and document it ⚕️.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "Redness on the heel of a diabetic patient can be the first sign of a pressure ulcer or a wound: observe it, document it and report it ⚕️.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "A wet dressing no longer protects the wound: it is changed as prescribed, and you document it ⚕️."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "<b>Say exactly what you are going to do, and ask for consent.</b> “Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?” “machen” on its own tells the patient nothing.",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "<b>Explain the purpose of the procedure in simple words: “damit …”.</b> “Damit die Wunde sauber bleibt und gut heilen kann.” A patient who understands why cooperates better. ⚕️",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "<b>This is a care mistake: hand hygiene comes before any procedure.</b> “Zuerst desinfiziere ich mir die Hände, dann …”. The patient noticed: in the exam as at work, the order matters. ⚕️",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "<b>Don't promise that a procedure won't hurt.</b> Warn honestly (“Es kann ein bisschen ziehen”) and give the patient a way to act: “Sagen Sie mir bitte sofort, wenn es wehtut.”",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "<b>For a wound, use neutral, precise words: sauber, gerötet, kleiner, größer.</b> “eklig” (gross) hurts the patient and adds nothing to the chart."
    },
    "sens": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "Frau Lehmann is washing her face.",
@@ -1300,10 +1320,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "Skin intact.",
     "C1 | Verband trocken und sauber.": "Dressing dry and clean.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "Brief dizziness during washing, vital signs checked.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "I stay with her, hold her steady on the chair and pull the emergency call cord.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "I give her the washcloth and let her do it herself, as far as she can.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "I take a close look at it, document it and inform the doctor.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "I make sure it is changed as prescribed, and I document it."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "Good morning, Mrs. Lehmann. I'd like to change the dressing on your foot now. Is that all right?",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "So that the wound stays clean and can heal properly. With diabetes, a wound often heals more slowly.",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "First, I'll disinfect my hands and put on gloves. Then I'll take off the old dressing.",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "It may pull a little. Please tell me straight away if it hurts, and I'll take a break.",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "Good. The wound is clean, and it has already gotten a little smaller."
    }
   },
   "tr": {
@@ -1317,7 +1338,7 @@ window.SCENE = {
     "B1": "Haber vermek ve izin istemek",
     "B2": "Zaman yan cümleleri",
     "C1": "Bakım raporunda isim üslubu",
-    "SIT": "Ne yaparsınız?"
+    "SIT": "Ne cevap verirsiniz?"
    },
    "questions": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "<b>sich waschen</b>: 3. tekil şahısta a, ä olur — sie <b>wäscht</b> sich.",
@@ -1344,10 +1365,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "<b>intakt</b>: kızarıklığı ya da lezyonu olmayan cilt için raporda kullanılan kelime. Kızarık: <b>gerötet</b>.",
     "C1 | Verband trocken und sauber.": "Ne artikel ne fiil: <b>Verband trocken und sauber</b>. Diyabetik ayak her yıkamada kontrol edilir ⚕️.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "<b>Schwindel</b> (baş dönmesi) ismi “başı dönüyordu” cümlesinin yerini alır; yapılan şey her zaman not edilir ⚕️.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Fenalaşan bir kişi asla yalnız bırakılmaz: oturur hâlde tutulur ve yanından ayrılmadan yardım çağrılır ⚕️.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Mahremiyete saygı (<b>die Intimsphäre wahren</b>): kişi yapabildiğini kendisi yapar; yapamazsa konu yeniden konuşulur ve not edilir ⚕️.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "Diyabetli bir hastanın topuğundaki kızarıklık bir bası yarasının ya da bir yaranın habercisi olabilir: gözlemlenir, kaydedilir ve bildirilir ⚕️.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "Islanmış bir pansuman yarayı artık korumaz: hekim istemine göre değiştirilir ve not edilir ⚕️."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "<b>Ne yapacağını tam olarak söyle ve onay iste.</b> “Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?” Tek başına “machen” hastaya hiçbir şey anlatmaz.",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "<b>İşlemin amacını basit kelimelerle açıkla: “damit …”.</b> “Damit die Wunde sauber bleibt und gut heilen kann.” Nedenini anlayan hasta daha iyi iş birliği yapar. ⚕️",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "<b>Bu bir bakım hatası: el hijyeni her işlemden önce gelir.</b> “Zuerst desinfiziere ich mir die Hände, dann …”. Hasta bunu fark etti: sınavda da işte de sıralama önemlidir. ⚕️",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "<b>Bir işlemin acımayacağına söz verme.</b> Dürüstçe önceden uyar (“Es kann ein bisschen ziehen”) ve hastaya bir şey yapabilme imkânı ver: “Sagen Sie mir bitte sofort, wenn es wehtut.”",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "<b>Bir yara için tarafsız ve kesin kelimeler: sauber, gerötet, kleiner, größer.</b> “eklig” (iğrenç) hastayı kırar ve dosyaya hiçbir bilgi katmaz."
    },
    "sens": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "Frau Lehmann yüzünü yıkıyor.",
@@ -1374,10 +1396,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "Cilt sağlam.",
     "C1 | Verband trocken und sauber.": "Pansuman kuru ve temiz.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "Yıkama sırasında kısa süreli baş dönmesi, yaşam bulguları kontrol edildi.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Yanında kalırım, onu sandalyede tutarım ve acil çağrı ipini çekerim.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Ona yıkama bezini veririm ve yapabildiği kadarını kendisinin yapmasına izin veririm.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "Kızarıklığa dikkatle bakarım, kaydederim ve doktoru bilgilendiririm.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "Hekim istemine göre değiştirilmesini sağlarım ve bunu kaydederim."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "Günaydın, Lehmann Hanım. Şimdi ayağınızdaki pansumanı değiştirmek istiyorum. Sizin için uygun mu?",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "Yara temiz kalsın ve iyi iyileşebilsin diye. Diyabette yaralar çoğu zaman daha yavaş iyileşir.",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "Önce ellerimi dezenfekte edip eldiven giyiyorum. Sonra eski pansumanı çıkarıyorum.",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "Biraz çekme hissi olabilir. Acırsa lütfen hemen söyleyin, ara veririm.",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "İyi. Yara temiz ve şimdiden biraz küçülmüş."
    }
   },
   "uk": {
@@ -1391,7 +1414,7 @@ window.SCENE = {
     "B1": "Попереджати й просити дозволу",
     "B2": "Підрядні речення часу",
     "C1": "Іменний стиль у звіті про догляд",
-    "SIT": "Що ви робите?"
+    "SIT": "Що ви відповісте?"
    },
    "questions": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "<b>sich waschen</b>: у 3-й особі однини a стає ä — sie <b>wäscht</b> sich.",
@@ -1418,10 +1441,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "<b>intakt</b>: слово зі звіту для шкіри без почервоніння й ушкоджень. Почервоніла: <b>gerötet</b>.",
     "C1 | Verband trocken und sauber.": "Ні артикля, ні дієслова: <b>Verband trocken und sauber</b>. Діабетичну стопу оглядають під час кожного миття ⚕️.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "Іменник <b>Schwindel</b> (запаморочення) замінює речення «у неї паморочилося в голові»; те, що зробили, завжди записуємо ⚕️.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Людину, якій стало зле, ніколи не залишають саму: її утримують у сидячому положенні й кличуть допомогу, не відходячи ⚕️.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Поважати інтимність (<b>die Intimsphäre wahren</b>): людина сама робить те, що може; якщо ні — про це говорять ще раз і записують ⚕️.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "Почервоніння на пʼяті в пацієнтки з діабетом може бути початком пролежня чи рани: його оглядають, записують і повідомляють про нього ⚕️.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "Мокра повʼязка вже не захищає рану: її змінюють за призначенням і записують це ⚕️."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "<b>Скажи точно, що збираєшся робити, і попроси згоди.</b> «Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?» Саме лише «machen» нічого не каже пацієнтові.",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "<b>Поясни мету процедури простими словами: «damit …».</b> «Damit die Wunde sauber bleibt und gut heilen kann.» Пацієнт, який розуміє навіщо, краще співпрацює. ⚕️",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "<b>Це помилка в догляді: гігієна рук — перед будь-якою маніпуляцією.</b> «Zuerst desinfiziere ich mir die Hände, dann …». Пацієнтка це помітила: і на іспиті, і на роботі порядок має значення. ⚕️",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "<b>Не обіцяй, що процедура не буде болючою.</b> Чесно попередь («Es kann ein bisschen ziehen») і дай пацієнтці змогу вплинути: «Sagen Sie mir bitte sofort, wenn es wehtut.»",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "<b>Про рану — нейтральні й точні слова: sauber, gerötet, kleiner, größer.</b> «eklig» (огидний) ображає пацієнтку і нічого не дає для документації."
    },
    "sens": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "Frau Lehmann вмиває обличчя.",
@@ -1448,10 +1472,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "Шкіра неушкоджена.",
     "C1 | Verband trocken und sauber.": "Повʼязка суха й чиста.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "Короткочасне запаморочення під час миття, життєві показники перевірено.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Я лишаюся з нею, притримую її на стільці й смикаю шнур виклику.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Я даю їй рукавичку для миття й дозволяю зробити це самій, наскільки вона може.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "Я уважно оглядаю почервоніння, записую його в історію хвороби й повідомляю лікарку.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "Я дбаю, щоб повʼязку змінили за призначенням, і записую це."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "Доброго ранку, пані Леман. Я хотіла б зараз змінити повʼязку на вашій стопі. Ви не проти?",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "Щоб рана залишалася чистою і могла добре загоїтися. При діабеті рана часто гоїться повільніше.",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "Спочатку я продезінфікую руки й надіну рукавички. Потім зніму стару повʼязку.",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "Може трохи тягнути. Скажіть мені, будь ласка, одразу, якщо буде боляче, і я зроблю перерву.",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "Добре. Рана чиста й уже трохи зменшилася."
    }
   },
   "fa": {
@@ -1465,7 +1490,7 @@ window.SCENE = {
     "B1": "اعلام کردن و اجازه گرفتن",
     "B2": "جمله‌های وابستهٔ زمانی",
     "C1": "سبکِ اسمیِ گزارش",
-    "SIT": "چه می‌کنید؟"
+    "SIT": "چه جواب می‌دهید؟"
    },
    "questions": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "<b>sich waschen</b>: در سوم شخص، <span lang=\"de\">a</span> به <span lang=\"de\">ä</span> تبدیل می‌شود — <span lang=\"de\">sie <b>wäscht</b> sich</span>.",
@@ -1492,10 +1517,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "<b>intakt</b>: واژهٔ گزارش برای پوستی بدونِ قرمزی و بدونِ آسیب. قرمز: <b>gerötet</b>.",
     "C1 | Verband trocken und sauber.": "نه حرفِ تعریف، نه فعل: <b>Verband trocken und sauber</b>. پای دیابتی در هر شست‌وشو بررسی می‌شود ⚕️.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "اسمِ <b>Schwindel</b> (سرگیجه) جای جملهٔ «سرش گیج می‌رفت» را می‌گیرد؛ همیشه کاری را که انجام داده‌ایم ثبت می‌کنیم ⚕️.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "بیماری را که حالش بد شده هرگز تنها نمی‌گذاریم: نشسته نگهش می‌داریم و بی‌آنکه از کنارش برویم، کمک می‌خواهیم ⚕️.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "رعایتِ حریمِ خصوصیِ بیمار (<b>die Intimsphäre wahren</b>): بیمار هر کاری را که می‌تواند خودش انجام می‌دهد؛ وگرنه دوباره با او صحبت می‌کنیم و ثبت می‌کنیم ⚕️.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "قرمزیِ پاشنهٔ پای بیمارِ دیابتی می‌تواند نشانهٔ آغازِ زخمِ فشاری (زخمِ بستر) یا زخم باشد: بررسی‌اش می‌کنیم، ثبتش می‌کنیم و گزارشش می‌دهیم ⚕️.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "پانسمانِ خیس دیگر از زخم محافظت نمی‌کند: طبقِ دستورِ پزشک عوض می‌شود و ثبت می‌شود ⚕️."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "<b>دقیقاً بگو چه کاری می‌خواهی انجام بدهی و رضایت بیمار را بپرس.</b> «Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?» «machen» به‌تنهایی هیچ چیزی به بیمار نمی‌گوید.",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "<b>هدف کار مراقبتی را با کلمات ساده توضیح بده: «damit …».</b> «Damit die Wunde sauber bleibt und gut heilen kann.» بیماری که بفهمد چرا، بهتر همکاری می‌کند. ⚕️",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "<b>این یک خطای مراقبتی است: بهداشت دست پیش از هر کاری می‌آید.</b> «Zuerst desinfiziere ich mir die Hände, dann …». بیمار متوجهش شد: در امتحان هم مثل سر کار، ترتیب مهم است. ⚕️",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "<b>قول نده که یک کار مراقبتی درد ندارد.</b> صادقانه آگاهش کن («Es kann ein bisschen ziehen») و به بیمار راهی برای واکنش بده: «Sagen Sie mir bitte sofort, wenn es wehtut.»",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "<b>برای زخم، کلمات خنثی و دقیق: sauber، gerötet، kleiner، größer.</b> «eklig» (چندش‌آور) بیمار را می‌رنجاند و هیچ اطلاعاتی به پرونده اضافه نمی‌کند."
    },
    "sens": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "<span lang=\"de\">Frau Lehmann</span> صورتش را می‌شوید.",
@@ -1522,10 +1548,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "پوست سالم.",
     "C1 | Verband trocken und sauber.": "پانسمان خشک و تمیز.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "سرگیجهٔ کوتاه هنگامِ شست‌وشو، علائمِ حیاتی کنترل شد.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "کنارش می‌مانم، روی صندلی نگهش می‌دارم و بندِ زنگِ اضطراری را می‌کشم.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "لیف را به او می‌دهم و می‌گذارم تا جایی که می‌تواند، خودش این کار را بکند.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "با دقت نگاهش می‌کنم، در پرونده ثبتش می‌کنم و به پزشک اطلاع می‌دهم.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "ترتیبی می‌دهم که طبقِ دستورِ پزشک عوض شود و ثبتش می‌کنم."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "صبح بخیر، خانم لمان. می‌خواهم الان پانسمان پایتان را عوض کنم. موافقید؟",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "برای اینکه زخم تمیز بماند و خوب جوش بخورد. در دیابت، زخم اغلب دیرتر خوب می‌شود.",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "اول دست‌هایم را ضدعفونی می‌کنم و دستکش می‌پوشم. بعد پانسمان قبلی را برمی‌دارم.",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "ممکن است کمی احساس کشیدگی کنید. لطفاً اگر درد گرفت فوراً به من بگویید، آن وقت کمی دست نگه می‌دارم.",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "خوب است. زخم تمیز است و کمی هم کوچک‌تر شده."
    }
   },
   "ar": {
@@ -1539,7 +1566,7 @@ window.SCENE = {
     "B1": "الإعلان عن الإجراء وطلب الإذن",
     "B2": "الجمل الزمنية التابعة",
     "C1": "الأسلوب الاسمي في التقرير",
-    "SIT": "ما التصرّف الصحيح؟"
+    "SIT": "ما الردّ المناسب؟"
    },
    "questions": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "<b>sich waschen</b>: في الشخص الثالث يتحوّل <span lang=\"de\">a</span> إلى <span lang=\"de\">ä</span> — <span lang=\"de\">sie <b>wäscht</b> sich</span>.",
@@ -1566,10 +1593,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "<b>intakt</b>: كلمة التقرير لجلد بلا احمرار ولا أذى. أحمر: <b>gerötet</b>.",
     "C1 | Verband trocken und sauber.": "لا أداة تعريف ولا فعل: <b>Verband trocken und sauber</b>. القدم السكرية تُراقَب في كل غسل ⚕️.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "الاسم <b>Schwindel</b> (دوار) يحلّ محلّ جملة «كانت تشعر بالدوار»؛ ونوثّق دائمًا ما فعلناه ⚕️.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "لا نترك أبدًا مريضًا أصابته وعكة وحده: نبقيه جالسًا ونطلب المساعدة دون أن نبتعد ⚕️.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "احترام الخصوصية (<b>die Intimsphäre wahren</b>): يفعل المريض بنفسه ما يستطيع؛ وإلا نعود إلى الحديث معه ونوثّق ذلك ⚕️.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "احمرار في كعب مريضة سكري قد يكون بداية قرحة فراش أو جرح: نفحصه ونوثّقه ونُبلغ عنه ⚕️.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "الضمادة المبلّلة لم تعد تحمي الجرح: تُغيَّر وفق وصفة الطبيب، ونوثّق ذلك ⚕️."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "<b>قل بالضبط ما ستفعله، واطلب الموافقة.</b> «Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?» أما «machen» وحدها فلا تقول شيئًا للمريض.",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "<b>اشرح هدف الإجراء بكلمات بسيطة: «damit …».</b> «Damit die Wunde sauber bleibt und gut heilen kann.» المريض الذي يفهم السبب يتعاون أكثر. ⚕️",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "<b>هذا خطأ في الرعاية: تطهير اليدين يأتي قبل أي إجراء.</b> «Zuerst desinfiziere ich mir die Hände, dann …». لاحظت المريضة ذلك: في الامتحان كما في العمل، الترتيب مهم. ⚕️",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "<b>لا تعد بأن الإجراء لن يؤلم.</b> نبّه بصدق («Es kann ein bisschen ziehen») وأعطِ المريضة وسيلة للتصرف: «Sagen Sie mir bitte sofort, wenn es wehtut.»",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "<b>للجرح كلمات محايدة ودقيقة: sauber، gerötet، kleiner، größer.</b> أما «eklig» (مقرف) فتجرح المريضة ولا تفيد الملف بشيء."
    },
    "sens": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "تغسل السيدة <span lang=\"de\">Lehmann</span> وجهها.",
@@ -1596,10 +1624,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "الجلد سليم.",
     "C1 | Verband trocken und sauber.": "الضمادة جافة ونظيفة.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "دوار قصير أثناء الغسل، فُحصت العلامات الحيوية.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "أبقى معها، وأثبّتها على الكرسي، وأسحب حبل النداء.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "أعطيها ليفة الغسل وأتركها تقوم بذلك بنفسها قدر ما تستطيع.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "أفحصه جيدًا، وأوثّقه في الملف، وأُبلغ الطبيبة.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "أتأكّد من تغييرها وفق وصفة الطبيب، وأوثّق ذلك."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "صباح الخير يا سيدة ليمان. أودّ أن أغيّر ضماد قدمك الآن. هل توافقين؟",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "لكي يبقى الجرح نظيفًا ويلتئم جيدًا. مع السكري، كثيرًا ما يلتئم الجرح ببطء أكبر.",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "أولًا أطهّر يديّ وألبس القفازات. ثم أنزع الضماد القديم.",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "قد تشعرين بشدّ خفيف. أخبريني فورًا من فضلك إذا آلمك ذلك، فأتوقف قليلًا.",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "جيد. الجرح نظيف، وقد صار أصغر قليلًا."
    }
   },
   "pt": {
@@ -1613,7 +1642,7 @@ window.SCENE = {
     "B1": "Anunciar e pedir permissão",
     "B2": "As orações temporais",
     "C1": "O estilo nominal das anotações de enfermagem",
-    "SIT": "O que fazer?"
+    "SIT": "O que responder?"
    },
    "questions": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "<b>sich waschen</b>: na 3ª pessoa, o a vira ä — sie <b>wäscht</b> sich.",
@@ -1640,10 +1669,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "<b>intakt</b>: a palavra das anotações para uma pele sem vermelhidão nem lesão. Avermelhada: <b>gerötet</b>.",
     "C1 | Verband trocken und sauber.": "Sem artigo nem verbo: <b>Verband trocken und sauber</b>. O pé diabético é observado a cada banho ⚕️.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "O substantivo <b>Schwindel</b> (tontura) substitui a frase “ela sentiu tontura”; registra-se sempre o que foi feito ⚕️.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Nunca se deixa sozinha uma pessoa que passa mal: mantém-se a pessoa sentada e chama-se ajuda sem sair de perto ⚕️.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Respeitar o pudor (<b>die Intimsphäre wahren</b>): a pessoa faz ela mesma o que consegue; senão, conversa-se de novo sobre isso e registra-se ⚕️.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "Uma vermelhidão no calcanhar de uma paciente diabética pode anunciar uma lesão por pressão ou uma ferida: observa-se, registra-se e comunica-se ⚕️.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "Um curativo molhado já não protege a ferida: ele é trocado conforme a prescrição, e registra-se ⚕️."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "<b>Diga exatamente o que vai fazer e peça o consentimento.</b> “Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?” “machen” sozinho não diz nada ao paciente.",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "<b>Explique o objetivo do cuidado, em palavras simples: “damit …”.</b> “Damit die Wunde sauber bleibt und gut heilen kann.” Um paciente que entende o porquê colabora melhor. ⚕️",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "<b>É um erro de cuidado: a higiene das mãos vem antes de qualquer procedimento.</b> “Zuerst desinfiziere ich mir die Hände, dann …”. A paciente percebeu: na prova como no trabalho, a ordem conta. ⚕️",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "<b>Não prometa que um cuidado não vai doer.</b> Avise com honestidade (“Es kann ein bisschen ziehen”) e dê à paciente um meio de agir: “Sagen Sie mir bitte sofort, wenn es wehtut.”",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "<b>Para uma ferida, palavras neutras e precisas: sauber, gerötet, kleiner, größer.</b> “eklig” (nojento) magoa a paciente e não acrescenta nada ao prontuário."
    },
    "sens": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "Frau Lehmann lava o rosto.",
@@ -1670,10 +1700,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "Pele íntegra.",
     "C1 | Verband trocken und sauber.": "Curativo seco e limpo.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "Tontura breve durante o banho, sinais vitais verificados.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Fico com ela, seguro-a na cadeira e puxo o cordão de chamada de emergência.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Dou a ela a luva de banho e deixo que ela mesma faça, na medida do possível.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "Examino com atenção, registro no prontuário e informo a médica.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "Garanto que ele seja trocado conforme a prescrição, e registro isso."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "Bom dia, senhora Lehmann. Eu gostaria de trocar agora o curativo do seu pé. Tudo bem para a senhora?",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "Para que a ferida fique limpa e possa cicatrizar bem. Com diabetes, uma ferida muitas vezes cicatriza mais devagar.",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "Primeiro, desinfeto as mãos e calço as luvas. Depois, tiro o curativo antigo.",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "Pode repuxar um pouco. Por favor, me avise na hora se doer, aí eu faço uma pausa.",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "Bem. A ferida está limpa e já diminuiu um pouco."
    }
   },
   "pl": {
@@ -1687,7 +1718,7 @@ window.SCENE = {
     "B1": "Zapowiadać i prosić o zgodę",
     "B2": "Zdania podrzędne czasowe",
     "C1": "Styl nominalny raportu",
-    "SIT": "Co zrobić?"
+    "SIT": "Co odpowiedzieć?"
    },
    "questions": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "<b>sich waschen</b>: w 3. osobie a zmienia się w ä — sie <b>wäscht</b> sich.",
@@ -1714,10 +1745,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "<b>intakt</b>: słowo z raportu o skórze bez zaczerwienienia i bez uszkodzeń. Zaczerwieniona: <b>gerötet</b>.",
     "C1 | Verband trocken und sauber.": "Bez rodzajnika i bez czasownika: <b>Verband trocken und sauber</b>. Stopę cukrzycową kontroluje się przy każdej toalecie ⚕️.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "Rzeczownik <b>Schwindel</b> (zawroty głowy) zastępuje zdanie „kręciło jej się w głowie”; zawsze zapisuje się też, co zrobiono ⚕️.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Osoby, która zasłabła, nigdy nie zostawia się samej: zostaje na siedząco, a pomoc wzywa się bez odchodzenia ⚕️.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Szanować intymność (<b>die Intimsphäre wahren</b>): osoba sama robi to, co może; jeśli nie, wraca się do rozmowy i zapisuje to ⚕️.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "Zaczerwienienie na pięcie u pacjentki z cukrzycą może zapowiadać odleżynę albo ranę: obserwuje się je, zapisuje i zgłasza ⚕️.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "Mokry opatrunek nie chroni już rany: zmienia się go zgodnie ze zleceniem i zapisuje to ⚕️."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "<b>Powiedz dokładnie, co zamierzasz zrobić, i zapytaj o zgodę.</b> „Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?” Samo „machen” nic pacjentowi nie mówi.",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "<b>Wyjaśnij cel czynności prostymi słowami: „damit …”.</b> „Damit die Wunde sauber bleibt und gut heilen kann.” Pacjent, który rozumie, po co coś się robi, lepiej współpracuje. ⚕️",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "<b>To błąd w opiece: higiena rąk jest przed każdą czynnością.</b> „Zuerst desinfiziere ich mir die Hände, dann …”. Pacjentka to zauważyła: na egzaminie i w pracy kolejność ma znaczenie. ⚕️",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "<b>Nie obiecuj, że czynność nie będzie bolała.</b> Uprzedź uczciwie („Es kann ein bisschen ziehen”) i daj pacjentce sposób, by mogła zareagować: „Sagen Sie mir bitte sofort, wenn es wehtut.”",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "<b>O ranie mów słowami neutralnymi i precyzyjnymi: sauber, gerötet, kleiner, größer.</b> „eklig” (obrzydliwy) rani pacjentkę i nic nie wnosi do dokumentacji."
    },
    "sens": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "Frau Lehmann myje twarz.",
@@ -1744,10 +1776,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "Skóra nienaruszona.",
     "C1 | Verband trocken und sauber.": "Opatrunek suchy i czysty.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "Krótkotrwałe zawroty głowy podczas mycia, parametry życiowe skontrolowane.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Zostaję przy niej, przytrzymuję ją na krześle i pociągam za linkę alarmową.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Daję jej myjkę i pozwalam jej zrobić to samej, na ile może.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "Dokładnie oglądam to miejsce, zapisuję je w dokumentacji i informuję lekarkę.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "Dbam o to, żeby opatrunek został zmieniony zgodnie ze zleceniem, i to dokumentuję."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "Dzień dobry, pani Lehmann. Chciałabym teraz zmienić opatrunek na pani stopie. Czy pani się zgadza?",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "Żeby rana była czysta i mogła się dobrze goić. Przy cukrzycy rany często goją się wolniej.",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "Najpierw dezynfekuję ręce i zakładam rękawiczki. Potem zdejmuję stary opatrunek.",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "Może trochę ciągnąć. Proszę mi od razu powiedzieć, jeśli będzie bolało, wtedy zrobię przerwę.",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "Dobrze. Rana jest czysta i już trochę się zmniejszyła."
    }
   },
   "ru": {
@@ -1761,7 +1794,7 @@ window.SCENE = {
     "B1": "Предупреждать и спрашивать разрешения",
     "B2": "Придаточные времени",
     "C1": "Именной стиль отчёта",
-    "SIT": "Что делать?"
+    "SIT": "Что ответить?"
    },
    "questions": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "<b>sich waschen</b>: в 3-м лице a переходит в ä — sie <b>wäscht</b> sich.",
@@ -1788,10 +1821,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "<b>intakt</b>: слово отчёта для кожи без покраснений и повреждений. Покрасневшая: <b>gerötet</b>.",
     "C1 | Verband trocken und sauber.": "Ни артикля, ни глагола: <b>Verband trocken und sauber</b>. Диабетическую стопу осматривают при каждом мытье ⚕️.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "Существительное <b>Schwindel</b> (головокружение) заменяет фразу «у неё кружилась голова»; всегда записывают и то, что было сделано ⚕️.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Человека, которому стало плохо, никогда не оставляют одного: его оставляют сидеть и зовут помощь, не уходя ⚕️.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Уважать интимность (<b>die Intimsphäre wahren</b>): человек сам делает то, что может; если нет, к этому возвращаются в разговоре и записывают ⚕️.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "Покраснение на пятке у пациентки с диабетом может быть началом пролежня или раны: его осматривают, записывают и сообщают о нём ⚕️.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "Мокрая повязка больше не защищает рану: её меняют по назначению и записывают это ⚕️."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "<b>Скажи точно, что собираешься делать, и спроси согласия.</b> «Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?» Одно «machen» пациенту ничего не говорит.",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "<b>Объясни цель процедуры простыми словами: «damit …».</b> «Damit die Wunde sauber bleibt und gut heilen kann.» Пациент, который понимает зачем, охотнее сотрудничает. ⚕️",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "<b>Это ошибка в уходе: гигиена рук — до любой манипуляции.</b> «Zuerst desinfiziere ich mir die Hände, dann …». Пациентка это заметила: и на экзамене, и на работе порядок важен. ⚕️",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "<b>Не обещай, что процедура будет безболезненной.</b> Честно предупреди («Es kann ein bisschen ziehen») и дай пациентке возможность повлиять: «Sagen Sie mir bitte sofort, wenn es wehtut.»",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "<b>Для раны — нейтральные и точные слова: sauber, gerötet, kleiner, größer.</b> «eklig» (противный) обижает пациентку и ничего не даёт для документации."
    },
    "sens": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "Frau Lehmann умывает лицо.",
@@ -1818,10 +1852,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "Кожа без повреждений.",
     "C1 | Verband trocken und sauber.": "Повязка сухая и чистая.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "Кратковременное головокружение при мытье, витальные показатели проверены.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Я остаюсь с ней, удерживаю её на стуле и дёргаю шнур вызова.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Я даю ей рукавичку для мытья и позволяю ей сделать это самой, насколько она может.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "Я внимательно осматриваю это место, записываю в документацию и сообщаю врачу.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "Я слежу за тем, чтобы повязку сменили по назначению, и документирую это."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "Доброе утро, госпожа Леман. Сейчас я хотела бы сменить повязку у вас на стопе. Вы не против?",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "Чтобы рана оставалась чистой и могла хорошо заживать. При диабете раны часто заживают медленнее.",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "Сначала я продезинфицирую руки и надену перчатки. Потом сниму старую повязку.",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "Может немного тянуть. Пожалуйста, сразу скажите мне, если будет больно, и я сделаю паузу.",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "Хорошо. Рана чистая и уже немного уменьшилась."
    }
   },
   "es": {
