@@ -192,7 +192,7 @@ egal(etat({ maintenantMs: au(3), abonne: true }).etat, "abonne", "abonne pendant
 // Les gardes que la logique pure ne peut pas voir : relues dans le source.
 const extrait = (debut, n) => { const i = source.indexOf(debut); return i < 0 ? "" : source.slice(i, i + (n || 1500)); };
 verifier(/const ACCES = \{ actif: false,/.test(source), "ACCES.actif vaut toujours false dans index.html (a ne passer a true que le jour de la sortie)");
-verifier(/cleAndroid: "",/.test(source) && /cleIos: "",/.test(source), "les cles RevenueCat sont vides (a remplir par les cles PUBLIQUES le moment venu)");
+verifier(/cleAndroid: "goog_[A-Za-z0-9]{20,}",/.test(source) && /cleIos: "(appl_[A-Za-z0-9]{20,})?",/.test(source), "les cles RevenueCat sont des cles PUBLIQUES (goog_ pour Android, posee le 15 nov. ; appl_ ou vide pour iOS)");
 verifier(!/sk_[A-Za-z0-9]{10,}/.test(source), "aucune cle secrete RevenueCat (sk_…) dans index.html");
 verifier(/function achatsPermis\(\)\{ return ACCES\.actif \|\| isAdminUser\(\); \}/.test(source), "les achats restent reserves a l'admin avant la sortie");
 verifier(extrait("function majApresChangementAcces(){", 200).indexOf("if(!ACCES.actif && !apercuEssaiJour()) return;") >= 0, "majApresChangementAcces ne fait rien avant la sortie");

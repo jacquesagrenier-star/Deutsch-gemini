@@ -83,6 +83,8 @@ Les autres pays : la conversion automatique du magasin. Dans l'app, avant la ré
 
 ## C. RevenueCat (projet « Wortando », créé le 26 oct.)
 
+**Côté Google, fait par Jacques le 15 nov.** : l'app « Wortando (Play Store) » (`com.wortando.app`) et son JSON de compte de service (« credentials need attention » le temps que Google l'accepte, jusqu'à 36 h) ; les produits `wortando_premium:mensuel` et `wortando_premium:annuel` ; le droit `premium` ; l'offre `default` (Current), `$rc_monthly` → mensuel, `$rc_annual` → annuel. Les produits du Test Store restent dans l'offre, l'ancien `wortando_pro` du test est laissé tel quel. La clé `goog_…` est dans `REVENUECAT.cleAndroid` (ligne 104). **Reste Apple** (B.3, puis les deux produits Apple, puis `appl_…`).
+
 1. **Apps** : vérifier qu'il y a bien une app **Google Play** (`com.wortando.app`) et une app **App Store** (bundle `com.wortando.app`).
 2. **Identifiants** :
    - app Google : téléverser le JSON du compte de service (A.3) ;
@@ -127,7 +129,7 @@ Sans l'extension, un abonné voit sur le web la version gratuite (dans l'app, to
 - **La recompilation Android** avec `launchMode="singleTop"` (section H). Recommandée, pas obligatoire : la compilation 19 contient déjà le module d'achat.
 - **La recompilation iPhone** (section H). OBLIGATOIRE pour vendre sur iPhone, et elle attend le contrat Paid Apps (B.1), toujours bloqué par l'adresse.
 
-1. Recevoir les deux clés publiques → les poser dans `REVENUECAT` (une version de l'app, rien ne change pour personne : `ACCES.actif` reste `false`).
+1. Recevoir les deux clés publiques → les poser dans `REVENUECAT` (une version de l'app, rien ne change pour personne : `ACCES.actif` reste `false`). **Android fait le 15 nov.** (ligne 104) : la clé est dans `index.html`, que l'app charge depuis wortando.com, donc elle arrive dans l'app installée à la publication, **sans recompilation** (la compilation 19 a le module). Seul l'admin peut alors tenter un achat de test, sur un téléphone Android dont le compte Google est **testeur de licence** (Play Console → Paramètres → Test des licences). `appl_…` : à recevoir.
 2. Achat de test par Jacques, compte admin, sur Android (testeur de licence) : Réglages → Administration → « Écran d'abonnement » → S'abonner. Puis « Restaurer un achat », puis résiliation dans Google Play. Même chose sur iPhone dès que la nouvelle compilation et le contrat Paid Apps existent.
 3. **Le jour de la sortie** : `ACCES.lancement = "AAAA-MM-JJ"` (la date du jour), **puis** `ACCES.actif = true`, une version. Restent gratuits à vie les comptes qui ont consommé un code d'invitation avant cette date (promesse du 2 oct., précisée en v1178 : voir le point 4). La même date rend le code d'invitation facultatif (`codeInvitationObligatoire()`), même tant que `actif` vaut `false`.
    - **Dans la même version, `var ACTIF = true;` dans `visuel/prototype/themes/acces.js`** (ligne 86, 13 nov.). C'est l'interrupteur des pages en cadre (thèmes illustrés, conversations, scènes, telc, DTZ) ouvertes SEULES, par un lien partagé : elles montrent alors « Ouvre Wortando pour continuer ». Dans le cadre de l'app, elles suivent déjà `ACCES.actif` (par `parent.accesComplet()`) : rien d'autre à faire. `node tests/essai.js` refuse une version où les deux valeurs diffèrent.
