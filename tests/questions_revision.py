@@ -139,6 +139,10 @@ def main():
                         reussie[q["cle"]] = jour
                         if q["fin"]:
                             break
+                notees = page.evaluate("() => typeof lireRevisions === 'function' ? Object.keys(lireRevisions().t).length : -1")
+                print("     revisions notees par l'app (type t) : %d" % notees, flush=True)
+                if a.attendu == "apres" and notees < len(reussie):
+                    fautes.append("%s %s : l'app n'a note que %d questions sur %d" % (langue, nom, notees, len(reussie)))
                 distinctes = len(reussie)
                 moy = sum(temps) / len(temps) if temps else 0
                 print("%s %-11s %d jours : %d questions posees, %d differentes, %d redites avant 60 jours (dont %d replis), "
