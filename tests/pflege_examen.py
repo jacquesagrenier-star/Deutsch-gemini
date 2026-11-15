@@ -416,11 +416,14 @@ for e in EPREUVES:
         communs.update(x for x in (s.get("consigne_de"),) if x)
         for t in s.get("taches", []):
             communs.update(x for x in (t.get("consigne_de"), t.get("teil")) if x)
+# les formules d'appel et de fin d'un courriel ou d'une lettre sont celles de tout le monde (signale par
+# manuel-lesen-sprach) : elles ne comptent pas pour la reserve
+FORMULES = re.compile(r"^(Liebe|Lieber|Sehr geehrte|Sehr geehrter|Hallo|Guten Tag|Mit freundlichen Grüßen|Viele Grüße|Beste Grüße|Freundliche Grüße)[^.!?]*[,!]?$")
 examen_de = {}
 for e in EPREUVES:
     for s in (FICHIERS[e] or {}).get("series", []):
         for phrase in allemand_de(s):
-            if len(phrase) >= 25 and phrase not in communs:
+            if len(phrase) >= 25 and phrase not in communs and not FORMULES.match(phrase.strip()):
                 examen_de[phrase] = "%s modele %s" % (e, s["id"])
 n_series = 0
 for e in EPREUVES:
