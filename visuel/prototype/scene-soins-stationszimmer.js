@@ -1222,7 +1222,7 @@ window.SCENE = {
      "type": "situation",
      "phrase": "Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.",
      "sens": "Il a 82 ans et il a été opéré de la hanche mardi. Depuis, il ne s'est presque pas levé.",
-     "n": "<b>Le patient ne fait pas l'opération, il la subit : le passif.</b> « Er ist am Dienstag operiert worden » (Perfekt du passif) ou « Er wurde am Dienstag operiert » (Präteritum). C'est le H de SBAR : le contexte.",
+     "n": "<b>Le patient ne fait pas l'opération, il la subit : le passif.</b> « Er ist am Dienstag operiert worden » (Perfekt du passif) ou « Er wurde am Dienstag operiert » (Präteritum). C'est le B de SBAR (Background, Hintergrund) : le contexte.",
      "source": "d07-sbar/hintergrund"
     },
     {
@@ -1281,7 +1281,7 @@ window.SCENE = {
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I of werden: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "The reported past: <b>habe</b> + participle (schlafen takes haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S for Situation: who you are, where you're calling from, which patient it's about.</b> “Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” The doctor doesn't know the patient yet.",
-    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>The patient doesn't perform the operation, he undergoes it: use the passive.</b> “Er ist am Dienstag operiert worden” (passive Perfekt) or “Er wurde am Dienstag operiert” (Präteritum). This is the B of SBAR (Hintergrund in German): the background.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>The patient doesn't perform the operation, he undergoes it: use the passive.</b> “Er ist am Dienstag operiert worden” (passive Perfekt) or “Er wurde am Dienstag operiert” (Präteritum). This is the B of SBAR (Background, Hintergrund in German): the background.",
     "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A for Assessment (Einschätzung): say clearly what you think.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Your concern is information for the doctor. ⚕️"
    },
    "sens": {
@@ -1351,7 +1351,7 @@ window.SCENE = {
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "werden'in Konjunktiv I'i: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Aktarılan geçmiş: <b>habe</b> + Partizip II (schlafen, haben alır).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S, yani Situation: kim olduğun, nereden aradığın, hangi hasta için aradığın.</b> “Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” Doktor hastayı henüz tanımıyor.",
-    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Ameliyatı hasta yapmaz, ona yapılır: edilgen yapı.</b> “Er ist am Dienstag operiert worden” (edilgen Perfekt) ya da “Er wurde am Dienstag operiert” (Präteritum). Bu, SBAR'daki H: arka plan.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Ameliyatı hasta yapmaz, ona yapılır: edilgen yapı.</b> “Er ist am Dienstag operiert worden” (edilgen Perfekt) ya da “Er wurde am Dienstag operiert” (Präteritum). Bu, SBAR'daki B (Background, Hintergrund): arka plan.",
     "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A, yani Assessment (Einschätzung): ne düşündüğünü açıkça söyle.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Endişen, doktor için bir bilgidir. ⚕️"
    },
    "sens": {
@@ -1421,7 +1421,7 @@ window.SCENE = {
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I від werden: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Минуле в непрямій мові: <b>habe</b> + Partizip II (schlafen вживається з haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S — Situation: хто ти, звідки телефонуєш, щодо якого пацієнта.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» Лікар ще не знає цього пацієнта.",
-    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Пацієнт не робить операцію, її роблять йому: пасив.</b> «Er ist am Dienstag operiert worden» (Perfekt пасиву) або «Er wurde am Dienstag operiert» (Präteritum). Це H у SBAR: передісторія.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Пацієнт не робить операцію, її роблять йому: пасив.</b> «Er ist am Dienstag operiert worden» (Perfekt пасиву) або «Er wurde am Dienstag operiert» (Präteritum). Це B у SBAR (Background, Hintergrund): передісторія.",
     "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A — Assessment (Einschätzung): чітко скажи, що думаєш.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Твоя тривога — це інформація для лікаря. ⚕️"
    },
    "sens": {
@@ -1491,7 +1491,7 @@ window.SCENE = {
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "<span lang=\"de\">Konjunktiv I</span>ِ <span lang=\"de\">werden</span>: <b>werde</b> (<span lang=\"de\">er / sie werde</span>).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "گذشتهٔ نقل‌شده: <b>habe</b> + Partizip II (<span lang=\"de\">schlafen</span> با <span lang=\"de\">haben</span> می‌آید).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S یعنی Situation (وضعیت): تو کی هستی، از کجا زنگ می‌زنی، درباره‌ی کدام بیمار.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» پزشک هنوز بیمار را نمی‌شناسد.",
-    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>بیمار عمل را انجام نمی‌دهد، عمل روی او انجام می‌شود: مجهول.</b> «Er ist am Dienstag operiert worden» (Perfekt مجهول) یا «Er wurde am Dienstag operiert» (Präteritum). این H در SBAR است: زمینه.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>بیمار عمل را انجام نمی‌دهد، عمل روی او انجام می‌شود: مجهول.</b> «Er ist am Dienstag operiert worden» (Perfekt مجهول) یا «Er wurde am Dienstag operiert» (Präteritum). این B در SBAR است (Background، Hintergrund): زمینه.",
     "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A یعنی Assessment (Einschätzung، ارزیابی): روشن بگو چه فکر می‌کنی.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» نگرانی تو برای پزشک یک اطلاع مهم است. ⚕️"
    },
    "sens": {
@@ -1561,7 +1561,7 @@ window.SCENE = {
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "<span lang=\"de\">Konjunktiv I</span> من <span lang=\"de\">werden</span>: <b>werde</b> (<span lang=\"de\">er / sie werde</span>).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "الماضي المنقول: <b>habe</b> + اسم المفعول (<span lang=\"de\">schlafen</span> يأخذ <span lang=\"de\">haben</span>).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S تعني Situation (الوضع): من أنت، ومن أين تتصل، وبخصوص أي مريض.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» الطبيب لا يعرف المريض بعد.",
-    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>المريض لا يُجري العملية، بل تُجرى له: المبني للمجهول.</b> «Er ist am Dienstag operiert worden» (Perfekt المجهول) أو «Er wurde am Dienstag operiert» (Präteritum). هذا هو حرف H في SBAR: الخلفية.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>المريض لا يُجري العملية، بل تُجرى له: المبني للمجهول.</b> «Er ist am Dienstag operiert worden» (Perfekt المجهول) أو «Er wurde am Dienstag operiert» (Präteritum). هذا هو حرف B في SBAR (Background، Hintergrund): الخلفية.",
     "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A تعني Assessment (Einschätzung، التقييم): قل بوضوح ما تفكر فيه.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» قلقك معلومة مهمة للطبيب. ⚕️"
    },
    "sens": {
@@ -1631,7 +1631,7 @@ window.SCENE = {
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I de werden: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "O passado relatado: <b>habe</b> + particípio (schlafen leva haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S de Situação: quem você é, de onde está ligando, sobre qual paciente.</b> “Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” O médico ainda não conhece o paciente.",
-    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>O paciente não faz a cirurgia, ele passa por ela: a voz passiva.</b> “Er ist am Dienstag operiert worden” (Perfekt da passiva) ou “Er wurde am Dienstag operiert” (Präteritum). É o H do SBAR: o contexto.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>O paciente não faz a cirurgia, ele passa por ela: a voz passiva.</b> “Er ist am Dienstag operiert worden” (Perfekt da passiva) ou “Er wurde am Dienstag operiert” (Präteritum). É o B do SBAR (Background, Hintergrund): o contexto.",
     "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A de Assessment (Einschätzung): diga claramente o que você pensa.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” A sua preocupação é uma informação para o médico. ⚕️"
    },
    "sens": {
@@ -1701,7 +1701,7 @@ window.SCENE = {
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I od werden: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Przeszłość w mowie zależnej: <b>habe</b> + imiesłów (schlafen łączy się z haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S jak Situation: kim jesteś, skąd dzwonisz, w sprawie którego pacjenta.</b> „Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” Lekarz jeszcze nie zna pacjenta.",
-    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Pacjent nie wykonuje operacji, tylko jej podlega: strona bierna.</b> „Er ist am Dienstag operiert worden” (Perfekt strony biernej) albo „Er wurde am Dienstag operiert” (Präteritum). To H w SBAR: tło.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Pacjent nie wykonuje operacji, tylko jej podlega: strona bierna.</b> „Er ist am Dienstag operiert worden” (Perfekt strony biernej) albo „Er wurde am Dienstag operiert” (Präteritum). To B w SBAR (Background, Hintergrund): tło.",
     "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A jak Assessment (Einschätzung): powiedz jasno, co myślisz.</b> „Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Twój niepokój to dla lekarza informacja. ⚕️"
    },
    "sens": {
@@ -1771,7 +1771,7 @@ window.SCENE = {
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I от werden: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Прошедшее в косвенной речи: <b>habe</b> + причастие (schlafen спрягается с haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S — Situation: кто ты, откуда звонишь, по поводу какого пациента.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» Врач ещё не знает пациента.",
-    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Пациент не делает операцию, ему её делают: это Passiv.</b> «Er ist am Dienstag operiert worden» (Perfekt пассива) или «Er wurde am Dienstag operiert» (Präteritum). Это H в SBAR: анамнез.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Пациент не делает операцию, ему её делают: это Passiv.</b> «Er ist am Dienstag operiert worden» (Perfekt пассива) или «Er wurde am Dienstag operiert» (Präteritum). Это B в SBAR (Background, Hintergrund): предыстория.",
     "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A — Assessment (Einschätzung): ясно скажи, что ты думаешь.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Твоё беспокойство — это информация для врача. ⚕️"
    },
    "sens": {
