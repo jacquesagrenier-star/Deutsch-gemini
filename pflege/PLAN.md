@@ -247,6 +247,48 @@ grandeur : 25 000-35 000 personnes par an × 2 500-5 000 € de langue ≈ **60 
 (**estimation**), aides-soignants non compris. Wortando n'en vise qu'une petite part : 1 000
 apprenants payants à 15 €/mois pendant 8 mois ≈ 120 000 €/an (**estimation**, à titre d'échelle).
 
+### 2.5 Le marché (retour d'une enseignante, 15 nov.)
+
+Message reçu par Jacques le 15 nov. 2026, d'une enseignante d'allemand qui a donné des cours en ligne
+à des soignants. C'est un témoignage de terrain, pas une source chiffrée. Son message s'arrête en
+cours de phrase (« Ab… ») : la suite a été demandée.
+
+Ce qu'elle dit :
+
+1. Le besoin de cours d'allemand pour les **Pflegefachkräfte** est grand.
+2. La plupart **arrivent en Allemagne avec un B1**. Elles font ensuite une « Anpassung » jusqu'au
+   **B2**, en même temps que l'école professionnelle et le travail, pour réussir l'Anerkennungsprüfung
+   et la Fachsprachenprüfung (B2).
+3. Elles sont recrutées dans leur pays : **Asie, Amérique du Sud, Afrique**.
+4. Les cours sont surtout des **Berufssprachkurse, payés par l'employeur** (hôpital ou maison de
+   soins).
+5. Les **Pflegehilfskräfte**, avant la reconnaissance de leur diplôme, n'auraient probablement pas
+   les moyens de payer elles-mêmes un cours ou une app.
+6. Elle recommande Klett, « Deutsch intensiv – Deutsch für die Pflege B2 » (ISBN 9783126752077).
+
+Ce que cela change, ou confirme, dans ce plan :
+
+- **Les niveaux (§ 2.2)** : le témoignage confirme le chemin B1 → B2 en Allemagne. Le corpus va
+  déjà dans ce sens : B1 238 mots, B2 187, A2 144 (`tests/pflege_vocabulaire.py`, 15 nov.). Il
+  faudrait plus de B2 à mesure que le contenu grandit.
+- **Le moment d'usage** : pendant la mesure d'adaptation, avec l'école et le service en même temps.
+  Le temps disponible est court, ce qui va dans le sens du « compagnon de 15-20 minutes par jour »
+  (§ 2.3) plutôt que d'un cours.
+- **Qui paie (§ 2.1)** : l'employeur, ce qui confirme l'ordre des acheteurs (agences et
+  établissements d'abord, vente directe plus tard). Les aides-soignantes ne sont pas un marché
+  payant direct : si on les vise, il faudrait que l'employeur paie ou un accès gratuit.
+- **Les pays** : l'Amérique du Sud s'ajoute à l'Asie et à l'Afrique du § 2.4 (Mexique, Colombie,
+  Brésil). Le portugais du Brésil est déjà une langue d'interface. L'espagnol ne l'est pas pour
+  l'allemand (Q6 : « pas d'espagnol d'interface pour l'instant ») : c'est un point à rouvrir avec
+  Jacques si les cohortes hispanophones se confirment.
+- **« Fachsprachenprüfung (B2) »** : à vérifier Land par Land. Ce nom désigne surtout l'examen des
+  médecins (C1 Medizin, Landesärztekammer). Pour les soignants, l'exigence connue est un **B2
+  général ou B2 Pflege** d'un membre de l'ALTE (§ 2.2). Certains Länder ont peut-être un examen de
+  langue professionnelle propre aux soins : on le vérifie avant de l'écrire dans l'app.
+- **Le manuel Klett** : à classer parmi les concurrents et les compléments (§ 2.3), à côté de
+  « Linie 1 Pflege B2 ». On ne l'achète pas et on n'en copie rien. Si Jacques le veut, il sert à
+  comparer la couverture des thèmes : sa table des matières publique suffit.
+
 ---
 
 ## 3. La carte du contenu
