@@ -148,7 +148,7 @@ function blancUrl(page, extra){
   for (const k in (extra || {})) p.set(k, extra[k]);
   return page + "?" + p.toString();
 }
-const vir = n => { const x = String(Math.round(n * 10) / 10); return ["fr", "tr", "uk", "ru", "pl", "pt"].includes(LANGUE) ? x.replace(".", ",") : x; };
+const vir = n => { const x = String(Math.round(n * 10) / 10); return ["fr", "tr", "uk", "ru", "pl", "pt", "es"].includes(LANGUE) ? x.replace(".", ",") : x; };
 function blancEcran(titre){ silence(); fermerPanneau(); $("titre").textContent = titre || T("bl_titre"); $("suite").hidden = true; window.scrollTo(0, 0); }
 function blancBouton(texte, action){ const s = $("suite"); s.hidden = false; s.disabled = false; s.textContent = texte; s.onclick = action; }
 const blancMark = texte => '<div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(texte) + '</div></div>';
