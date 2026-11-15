@@ -228,6 +228,12 @@ verifier((source.match(/^\s+gratuit_etiquette: "/mg) || []).length === 11, "grat
 verifier((source.match(/^\s+essai_annonce_abo: "[^"]*\{mois\}[^"]*\{an\}/mg) || []).length === 11, "l'annonce donne les deux prix dans les 11 langues");
 verifier(/const voir = !!ACCES\.actif \|\| apercuAnnonceEssai;/.test(source), "l'annonce des 7 jours seulement avec ACCES.actif");
 verifier(/CA: \["CAD", 6\.99, 49\.99\]/.test(source), "le Canada a 6,99 / 49,99 $ CA (decision du 15 nov.)");
+{
+    const g = (source.match(/const PRIX_ABO_PAYS = \{([\s\S]*?)\};/) || ["", ""])[1];
+    const pays = (g.match(/\b[A-Z]{2}: \[/g) || []).length;
+    egal(pays, 17, "PRIX_ABO_PAYS : 17 pays (grille du 2 nov. + pouvoir d'achat du 15 nov.)");
+    verifier(/TR: \["TRY", 149\.99, 999\.99\]/.test(g) && /IN: \["INR", 299, 1999\]/.test(g) && /DZ: \["DZD", 499, 3499\]/.test(g), "les prix selon le pouvoir d'achat (Turquie, Inde, Algerie)");
+}
 verifier(/if\(pm && pm\.mensuel && pm\.annuel\) return \{ mois: pm\.mensuel, an: pm\.annuel \};/.test(source), "le prix du magasin d'abord");
 verifier(/if\(panneau === "scenes"\)\{\s*const sc = SCENES_TOUTES\.find/.test(source), "les scenes du panneau gardees par leur nom");
 verifier(/function ouvrirSceneLibre\(nom\)\{\s*if\(!pageOuverte\("scene:" \+ nom\)\)/.test(source), "la scene ouverte seule, en defense");

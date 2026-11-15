@@ -53059,8 +53059,14 @@ function prixAbo(v){
 // celui du magasin s'il est deja connu (prixMagasin, garde aussi d'une visite a l'autre), sinon la grille du 2 nov. selon
 // le pays de l'appareil (navigator.languages ; le Canada a 6,99 / 49,99 $ CA depuis la decision du 15 nov.), sinon l'euro d'ABONNEMENT. Avant le compte, RevenueCat ne repond pas
 // encore : le magasin affiche de toute facon son prix exact au moment de l'achat.
+// Les prix selon le pouvoir d'achat (decision de Jacques du 15 nov., entres dans la Play Console) ; les autres pays : l'euro
+// en attendant le prix du magasin. A tenir egale a la grille des magasins (abonnement/GUIDE-MAGASINS.md, A.1 et B.2).
 const PRIX_ABO_PAYS = { US: ["USD", 6.99, 49.99], CA: ["CAD", 6.99, 49.99], GB: ["GBP", 5.99, 44.99],
-                        CH: ["CHF", 7.90, 54.90], BR: ["BRL", 14.90, 99.90], MX: ["MXN", 79, 549] };
+                        CH: ["CHF", 7.90, 54.90], BR: ["BRL", 14.90, 99.90], MX: ["MXN", 79, 549],
+                        TR: ["TRY", 149.99, 999.99], UA: ["UAH", 99, 699], PL: ["PLN", 19.99, 139.99],
+                        IN: ["INR", 299, 1999], PH: ["PHP", 199, 1290], ID: ["IDR", 49000, 349000],
+                        EG: ["EGP", 149.99, 999.99], MA: ["MAD", 39, 269], DZ: ["DZD", 499, 3499],
+                        CO: ["COP", 14900, 99900], PE: ["PEN", 14.90, 99.90] };
 const CLE_PRIX_MAGASIN = "wortando_prixMagasin";
 let apercuAnnonceEssai = false;   // la sonde et l'admin : l'annonce avant la sortie
 function prixAnnonce(){
@@ -53077,7 +53083,8 @@ function prixAnnonce(){
     }catch(e){}
     const g = PRIX_ABO_PAYS[pays];
     if(g){
-        const f = v => { try{ return new Intl.NumberFormat(LOCALES_ABO[getUiLang()] || "fr-FR", { style: "currency", currency: g[0] }).format(v); }catch(e){ return v + " " + g[0]; } };
+        // un prix rond (99 UAH, 49 000 IDR) sans « ,00 »
+        const f = v => { try{ const d = Number.isInteger(v) ? 0 : 2; return new Intl.NumberFormat(LOCALES_ABO[getUiLang()] || "fr-FR", { style: "currency", currency: g[0], minimumFractionDigits: d, maximumFractionDigits: d }).format(v); }catch(e){ return v + " " + g[0]; } };
         return { mois: f(g[1]), an: f(g[2]) };
     }
     return { mois: prixAbo(ABONNEMENT.mensuel), an: prixAbo(ABONNEMENT.annuel) };
