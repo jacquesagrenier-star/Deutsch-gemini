@@ -79,7 +79,8 @@ def ecrire_personnes():
                             "ne pas corriger a la main. Les personnes des dialogues des Soins, au format de "
                             "conversation/personnes.json ; un seul visage (sourire), ou l'initiale sans portrait maitre."}
     for qui, v in noms.items():
-        if qui.startswith("_") or v.get("genre") not in ("f", "m"):
+        # « manuel » : une personne des seuls exercices du manuel B2, jamais dans un dialogue
+        if qui.startswith("_") or v.get("genre") not in ("f", "m") or v.get("manuel"):
             continue
         nom = v.get("de", {}).get("") or v.get("fr", {}).get("") or qui
         image = os.path.join(SORTIE, qui + ".webp")
