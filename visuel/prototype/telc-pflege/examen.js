@@ -139,7 +139,7 @@ const jonas = texte => '<div class="mark"><span class="mono" aria-hidden="true">
 const deuxPts = DEUX_POINTS_TELC;
 function garderScroll(f){ const y = window.scrollY; f(); window.scrollTo(0, y); }
 function fmt(s){ s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
-const vir = n => { const x = String(Math.round(n * 10) / 10); return ["fr", "tr", "uk", "ru", "pl", "pt"].includes(LANGUE) ? x.replace(".", ",") : x; };
+const vir = n => { const x = String(Math.round(n * 10) / 10); return ["fr", "tr", "uk", "ru", "pl", "pt", "es"].includes(LANGUE) ? x.replace(".", ",") : x; };
 const nomNiveau = n => T(n === "b2" ? "pf_niv_b2" : n === "b1" ? "pf_niv_b1" : "pf_niv_unter");
 
 // ================================================================= LES QUESTIONS
