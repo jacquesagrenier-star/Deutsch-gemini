@@ -915,7 +915,7 @@ function ouvrirSerie(epr, id, teil, aufgabe){
 // ---------------------------------------------------------------- les blocs d'un chapitre
 // l'adresse des sons de la section Soins (pflege/datos/sons.json : cle -> fichier) : VIDE tant que l'architecture ne
 // l'a pas fixee (les fichiers sont faits, pas deposes) ; vide, la voix du telephone lit la carte
-const BASE_SONS_SOINS = "";
+const BASE_SONS_SOINS = "https://deutschai-b6fbb.web.app/pflege/";   // l architecture, 15 nov. : BASE + valeur de sons.json
 const ORDRE_NIVEAUX = ["A2", "B1", "B2", "C1"];
 function cartesRm(groupe){
   const fonctions = (PF.rm.fonctions || []).map(f => f.id);
