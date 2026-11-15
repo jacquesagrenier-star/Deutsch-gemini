@@ -12,6 +12,9 @@ Conversions :
   - R (reprise du corpus general) -> l'entree complete avec "corpus": True : genre, pluriel, article_fr
     et traductions pris a la fiche du corpus (precision= si le corpus ne donne pas le sens du metier),
     la phrase d'exemple de soins de la source ; adverbe du corpus -> sorte « adjectif » ;
+  - P (paire, 15 nov.) -> sorte « paire » : mot = ce que dit le service, patient = ce que dit le
+    patient, trad / trad_patient et exemple / exemple_patient ; LECTURES vaut aussi pour la phrase
+    du patient (-> "lecture_patient") ;
   - {Personnage} -> le nom de la langue (personnages.py) ;
   - LECTURES {ecrit: dit} -> "lecture" sur l'entree dont l'exemple a des chiffres ; "lecture_mot" si le
     mot lui-meme en a ;
@@ -45,6 +48,7 @@ ICONES = {
     "team": '<svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 20a5.5 5.5 0 0 1 11 0M13.5 20a4 4 0 0 1 8 0"/></svg>',
     "dokumentation": '<svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M8.5 10h7M8.5 14h7M8.5 18h4"/></svg>',
     "angehoerige": '<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-7-9.6A4 4 0 0 1 12 7.6a4 4 0 0 1 7 2.8C19 15.7 12 20 12 20z"/><path d="M9 12.5c1 1.2 2 1.7 3 1.7s2-.5 3-1.7"/></svg>',
+    "sprache": '<svg viewBox="0 0 24 24"><path d="M3 4h11v8H8l-3 3v-3H3z"/><path d="M17 8h4v8h-2v3l-3-3h-5v-1"/></svg>',
     "szenen": '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l5-4 4 3 3-2 6 4"/><circle cx="16" cy="9" r="1.5"/></svg>',
 }
 
@@ -168,6 +172,11 @@ def convertir(e, lectures):
                 d["article_fr"] = art
         d["corpus"] = True
         d["source_corpus"] = "%s %s" % (h["fichier"], h["ou"])
+    elif typ == "paire":
+        sorte = "paire"
+        d.update({"sorte": sorte, "mot": e["mot"], "patient": e["patient"]})
+        tr = dict(zip(ORDRE_SOURCE, e["trad"]))
+        d["corpus"] = False
     else:
         sorte = {"nom": "nom", "verbe": "verbe", "adjectif": "adjectif", "expression": "expression"}[typ]
         d.update({"sorte": sorte, "mot": e["mot"]})
@@ -192,6 +201,14 @@ def convertir(e, lectures):
         d["lecture"] = lectures[exemple_de]
     if d["mot"] in lectures:
         d["lecture_mot"] = lectures[d["mot"]]
+    if sorte == "paire":
+        ex_p = noms(e["ex_patient"][0], "de")
+        d["exemple_patient"] = ex_p
+        d["trad_patient"] = _trad(dict(zip(ORDRE_SOURCE, e["trad_patient"])), e["ex_patient"])
+        if ex_p in lectures:
+            d["lecture_patient"] = lectures[ex_p]
+        if d["patient"] in lectures:
+            d["lecture_mot_patient"] = lectures[d["patient"]]
     d["relire"] = ("⚕️ " + e["note"]) if (e.get("relire") and e.get("note")) else ("⚕️ à valider" if e.get("relire") else "")
     return d
 
