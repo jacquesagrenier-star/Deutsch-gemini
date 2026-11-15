@@ -227,6 +227,7 @@ verifier((source.match(/^\s+gratuit_etiquette: "/mg) || []).length === 11, "grat
     verifier((source.match(new RegExp("^\\s+" + c + ": \"", "mg")) || []).length === 11, c + " dans les 11 langues d'interface"));
 verifier((source.match(/^\s+essai_annonce_abo: "[^"]*\{mois\}[^"]*\{an\}/mg) || []).length === 11, "l'annonce donne les deux prix dans les 11 langues");
 verifier(/const voir = !!ACCES\.actif \|\| apercuAnnonceEssai;/.test(source), "l'annonce des 7 jours seulement avec ACCES.actif");
+verifier(/CA: \["CAD", 6\.99, 49\.99\]/.test(source), "le Canada a 6,99 / 49,99 $ CA (decision du 15 nov.)");
 verifier(/if\(pm && pm\.mensuel && pm\.annuel\) return \{ mois: pm\.mensuel, an: pm\.annuel \};/.test(source), "le prix du magasin d'abord");
 verifier(/if\(panneau === "scenes"\)\{\s*const sc = SCENES_TOUTES\.find/.test(source), "les scenes du panneau gardees par leur nom");
 verifier(/function ouvrirSceneLibre\(nom\)\{\s*if\(!pageOuverte\("scene:" \+ nom\)\)/.test(source), "la scene ouverte seule, en defense");

@@ -53042,7 +53042,7 @@ let ecranAvantAbonnement = "adminDashboard";
 // L'abonnement en cours, tel que le magasin (RevenueCat) ou le jeton Firebase le
 // dit. Declare ICI, avant ACCES : etatAcces() le lit.
 let aboStatut = { actif: false, source: null, expire: null, gererUrl: null };
-// Les prix du magasin, dans la monnaie de la personne (« 9,99 $ CA ») : ils
+// Les prix du magasin, dans la monnaie de la personne (« 6,99 $ CA ») : ils
 // remplacent ABONNEMENT a l'ecran des que RevenueCat les a donnes.
 let prixMagasin = null;
 // « fin » : l'ecran du 8e jour, avec « Continuer avec la version gratuite ».
@@ -53057,9 +53057,9 @@ function prixAbo(v){
 }
 // L'ANNONCE DES 7 JOURS (ligne 86, decision de Jacques du 15 nov., version B). Le prix dans la monnaie de la personne :
 // celui du magasin s'il est deja connu (prixMagasin, garde aussi d'une visite a l'autre), sinon la grille du 2 nov. selon
-// le pays de l'appareil (navigator.languages), sinon l'euro d'ABONNEMENT. Avant le compte, RevenueCat ne repond pas
+// le pays de l'appareil (navigator.languages ; le Canada a 6,99 / 49,99 $ CA depuis la decision du 15 nov.), sinon l'euro d'ABONNEMENT. Avant le compte, RevenueCat ne repond pas
 // encore : le magasin affiche de toute facon son prix exact au moment de l'achat.
-const PRIX_ABO_PAYS = { US: ["USD", 6.99, 49.99], CA: ["CAD", 9.99, 69.99], GB: ["GBP", 5.99, 44.99],
+const PRIX_ABO_PAYS = { US: ["USD", 6.99, 49.99], CA: ["CAD", 6.99, 49.99], GB: ["GBP", 5.99, 44.99],
                         CH: ["CHF", 7.90, 54.90], BR: ["BRL", 14.90, 99.90], MX: ["MXN", 79, 549] };
 const CLE_PRIX_MAGASIN = "wortando_prixMagasin";
 let apercuAnnonceEssai = false;   // la sonde et l'admin : l'annonce avant la sortie

@@ -1,6 +1,6 @@
 # L'abonnement de Wortando : ce que Jacques fait dans les consoles
 
-Rédigé le 11 nov. 2026 (v1165), pour le lancement avec l'**essai de 7 jours sans carte, géré par l'app** (modèle B, décision du 11 nov.), puis l'abonnement : **6,99 € / mois, 49,99 € / an** (9,99 / 69,99 $ CA ; grille complète du 2 nov. dans `decisions/DECISIONS.md`).
+Rédigé le 11 nov. 2026 (v1165), pour le lancement avec l'**essai de 7 jours sans carte, géré par l'app** (modèle B, décision du 11 nov.), puis l'abonnement : **6,99 € / mois, 49,99 € / an** (6,99 / 49,99 $ CA depuis la décision du 15 nov. ; grille du 2 nov. dans `decisions/DECISIONS.md`).
 
 Rien ici ne demande de dépense. Aucune clé **secrète** ne doit jamais entrer dans le dépôt : seules les deux clés **publiques** du SDK RevenueCat (`goog_…`, `appl_…`) vont dans `index.html`, comme la clé Firebase.
 
@@ -27,7 +27,7 @@ Compte Firebase (uid)  ──►  identifiant RevenueCat = le même uid
 1. **Monétiser → Abonnements → `wortando_premium`.**
    - Activer les deux **forfaits de base** : `mensuel` et `annuel` (bouton « Activer » de chaque forfait).
    - ⚠️ **NE PAS activer les offres `essai-7-jours` et `essai-7-jours-mensuel`.** L'essai est géré par l'app ; ces offres donneraient un second essai, avec carte, par-dessus le nôtre. Les laisser en brouillon (ou les supprimer).
-   - Vérifier les prix pays par pays (zone euro 6,99 € / 49,99 €, Canada 9,99 / 69,99 $ CA, etc.). Rappel du 3 nov. : la cellule d'un pays prend le prix **TTC** ; le dialogue « Set prices » prend un prix **hors taxes**.
+   - Vérifier les prix pays par pays (zone euro 6,99 € / 49,99 €, Canada 6,99 / 49,99 $ CA depuis le 15 nov., etc.). Rappel du 3 nov. : la cellule d'un pays prend le prix **TTC** ; le dialogue « Set prices » prend un prix **hors taxes**.
 2. **Testeurs de licence** (Paramètres → Test de licence) : ajouter l'adresse Gmail de Jacques. Ses achats sont alors des achats de test, jamais facturés ; un abonnement mensuel s'y renouvelle toutes les 5 minutes.
 3. **Accès de RevenueCat à Google Play** (une seule fois) :
    - Google Cloud (projet relié à la Play Console) → IAM → Comptes de service → créer `revenuecat` → Clés → Ajouter une clé JSON → télécharger le fichier.
@@ -44,9 +44,9 @@ Compte Firebase (uid)  ──►  identifiant RevenueCat = le même uid
 2. Dans ce groupe, **deux abonnements auto-renouvelables** :
    | Nom de référence | Identifiant du produit (définitif, ne se réutilise jamais) | Durée | Prix |
    |---|---|---|---|
-   | Wortando mensuel | `wortando_premium_mensuel` | 1 mois | 6,99 € (zone euro), 9,99 $ CA, 6,99 $ US… |
-   | Wortando annuel | `wortando_premium_annuel` | 1 an | 49,99 € (zone euro), 69,99 $ CA, 49,99 $ US… |
-   - Prix : choisir les États-Unis comme pays de base (6,99 $ / 49,99 $, la conversion automatique d'Apple part du $ US, décision du 2 nov.), puis régler à la main la zone euro, le Canada, le Royaume-Uni, la Suisse, le Brésil et le Mexique sur la grille du 2 nov. (le point de prix Apple le plus proche si le montant exact n'existe pas).
+   | Wortando mensuel | `wortando_premium_mensuel` | 1 mois | 6,99 € (zone euro), 6,99 $ CA, 6,99 $ US… |
+   | Wortando annuel | `wortando_premium_annuel` | 1 an | 49,99 € (zone euro), 49,99 $ CA, 49,99 $ US… |
+   - Prix : choisir les États-Unis comme pays de base (6,99 $ / 49,99 $, la conversion automatique d'Apple part du $ US, décision du 2 nov.), puis régler à la main la zone euro, le Canada, le Royaume-Uni, la Suisse, le Brésil et le Mexique sur la grille du 2 nov. (Canada : 6,99 / 49,99 $ CA, décision du 15 nov.) (le point de prix Apple le plus proche si le montant exact n'existe pas).
    - Pour chacun : nom affiché et description localisés, **capture de l'écran d'abonnement** (pour la révision ; Claude la fournira), notes au réviseur.
    - **Pas d'offre d'introduction** (essai gratuit Apple) : l'essai est géré par l'app. Sauf si Apple refuse ce modèle : voir `abonnement/QUESTION-APPLE.md`, plan de repli.
 3. **Clé d'achat intégré** (Utilisateurs et accès → Intégrations → Achats intégrés → générer une clé) : télécharger le `.p8`, noter l'« Issuer ID » et le « Key ID ». Le `.p8` est un **secret** : dans RevenueCat (C.2) et `C:/Users/jacqu/.wortando/`, jamais dans le dépôt.
