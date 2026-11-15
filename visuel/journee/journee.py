@@ -398,6 +398,9 @@ def verifier():
 
 
 def ecrire_json():
+    # le turc, l'ukrainien, le polonais et le russe (visuel/journee/langues.py, lot 1 de l'alignement, 14 nov. 2026)
+    import langues
+    langues.appliquer(SUJETS, PERSONNES, VERBES, FREQUENCES)
     dec = {"es": {}, "latam": {}, "de": {}}
     for j, i, v, s, h, m in etapes():
         cle = "%s-%d" % (j, i + 1)

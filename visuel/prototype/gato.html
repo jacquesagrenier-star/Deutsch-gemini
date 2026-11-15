@@ -241,7 +241,10 @@ const DE_APP = APPRENDRE === "de";
 const compatibles = (a, b) => a !== b && !D.places[a].aussi.includes(b) && !D.places[b].aussi.includes(a);
 // la phrase entiere traduite en francais, anglais, portugais (et en allemand pour qui apprend l'espagnol), comme la
 // famille ; ailleurs, le mot teste et sa traduction tiree du corpus (gato.json, gloses)
-const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+// le turc, l'ukrainien, le polonais et le russe aussi, pour qui apprend l'allemand (visuel/gato/langues.py, lot 1 de
+// l'alignement des themes, 14 nov. 2026 : la phrase et le groupe traduits avec leur cas, на столе / на стол)
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")
+  || (["tr", "uk", "pl", "ru"].includes(LANGUE) && APPRENDRE === "de"));
 const tradPhrase = p => PHRASE_TRADUITE ? (((D.trad[APPRENDRE] || {})[p] || {})[LANGUE] || null) : null;
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 

@@ -1,0 +1,35 @@
+# Les thèmes illustrés en russe : ce qu'un locuteur natif devrait relire
+
+14 nov. 2026, lot 1 de l'alignement des thèmes (« Où est le chat ? » et « La journée »). Pour qui apprend l'allemand
+avec l'interface en russe, la page montre désormais la phrase entière traduite, comme en français, en anglais et en
+portugais. Il n'y a pas eu de relecture native. Une rétro-traduction à l'aveugle (vers le français, sans l'allemand)
+n'a trouvé aucune faute.
+
+- Les traductions ne sont pas écrites phrase par phrase : on traduit les morceaux que la page assemble.
+  - « Où est le chat ? » : `visuel/gato/langues.py`, tables `RU` et `RU_PL` (les six cas de 16 noms), `lieu()` (la
+    préposition selon « où » ou « vers où »), `POSTURE`, `MOUVEMENT`, `PHRASES`. On corrige là, puis
+    `python visuel/gato/gato.py --json`.
+  - « La journée » : `visuel/journee/langues.py`, `VERBES` (19 verbes aux cinq personnes), `SUJETS`, `FREQUENCES`.
+    On corrige là, puis `python visuel/journee/journee.py --json`. L'heure (« в 7:15 ») et les mots de liaison
+    (« Сначала… Потом… ») sont dans `visuel/prototype/journee.html` (`heureTrad`, `LIENS_TR`).
+- Contrôle à l'écran : `python visuel/langues_themes.py verifier gato journee ru` (navigateur, verrou des parcours).
+
+## Ce que le russe fait, et qui est voulu
+
+Le russe distingue « où » et « vers où » comme l'allemand : на столе / на стол (auf dem / auf den Tisch), под
+столом / под стол, в корзине / в корзину, за диваном / за диван. Le groupe allemand du mauvais choix est traduit
+avec son cas : l'élève voit la différence qu'il a manquée. Après перед, рядом с, между, la forme est la même pour les
+deux : seul le verbe change (сидит / садится).
+
+## Points à confirmer
+
+1. **« ans Fenster » → « садится у окна »**. « к окну » marquerait la direction, mais « садится к окну » sonne mal.
+   Dans les groupes isolés, « am Fenster » = « у окна » et « ans Fenster » = « к окну ».
+2. **« im Regal » → « на полке стеллажа »** (« лежит / прыгает на полку стеллажа ») : « в стеллаже » est rare.
+   C'est le seul groupe à deux noms.
+3. **« über » + accusatif → « через »** (« прыгает через коробку ») ; « über » + datif → « над ».
+4. **« läuft hinter das Sofa » → « заходит за диван »**, « kriecht unter » → « залезает под », « klettert auf »
+   → « забирается на ».
+5. **Les noms** : Мориц, Мия (Мии, Мию, Мией), Катрин, Ян — comme dans les textes de la page.
+6. **« kocht » → « готовит »**, sans complément.
+7. **« Ben setzt die Katze auf den Tisch » → « Бен сажает кота на стол »**.

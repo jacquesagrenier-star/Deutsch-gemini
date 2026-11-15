@@ -7,25 +7,27 @@ portugais (et allemand pour qui apprend l'espagnol) : la page la fabrique avec s
 En turc, ukrainien, persan, arabe, polonais et russe, elle ne montre que la glose du mot (gloses.json), jamais la
 phrase. L'arabe manque aussi a qui apprend l'espagnol.
 
-LA METHODE (celle du telc, visuel/prototype/telc/outils/langues.js, eprouvee le 7 nov.). Un DICTIONNAIRE par langue,
-commun aux 22 themes : visuel/prototype/themes/langues/<lg>.json = { "phrase francaise affichee": "traduction" }.
-Le francais sert de pivot : toutes les pages le fabriquent, et il porte le genre et le nombre que le turc, l'arabe,
-le russe, le polonais et l'ukrainien demandent (« Anna se leve », « ils / elles »). Une page ouverte a une langue
-fabriquera la phrase en francais puis la cherchera dans le dictionnaire (branchement : lots suivants) ; sans entree,
-la glose du mot, comme aujourd'hui -- jamais de francais affiche a la place.
+LA METHODE : LE CHEMIN NATIF (decision du chef du 14 nov., apres le releve des 22 themes). Un dictionnaire de
+phrases entieres (essaye au lot 0) demanderait 12 053 entrees, environ 107 000 mots par langue, et ne serait jamais
+complet : 14 themes sont COMBINATOIRES (chaque prix des courses, chaque addition, chaque horaire, chaque suite
+d'etapes de la journee). On traduit donc les MORCEAUX que chaque theme assemble, la ou l'anglais et le portugais
+l'ont deja fait : dans le generateur (visuel/<theme>/langues.py, appele par visuel/<theme>/<theme>.py) ou dans
+l'objet de la page. Chaque langue y a sa petite grammaire (le cas apres la preposition, l'ordre des mots, le
+suffixe turc apres l'heure). Ce n'est plus le francais qui sert de pivot : la phrase allemande, qui porte son cas
+(« auf dem Tisch » / « auf den Tisch »), recoit sa traduction directement.
 
-LE FRANCAIS NE PORTE PAS TOUJOURS LE CAS (releve de gato, 14 nov.) : « sur la table » traduit aussi bien « auf dem
-Tisch » (Wo?) que « auf den Tisch » (Wohin?) -- en ukrainien « на столі » / « на стіл », en russe « на столе » /
-« на стол », en polonais « na stole » / « na stół » ; et pour l'espagnol, « a la mesa » / « sobre la mesa » donnent en
-arabe « إلى » / « على ». Une phrase francaise qui vient de PLUSIEURS sources (dans un meme theme et une meme langue
-apprise) est AMBIGUE : son entree est un objet { "source dans la langue apprise": "traduction" }, une par source
-(la page connait sa source : elle l'ecrit juste avant la traduction) ; les autres restent une simple chaine.
+Themes branches (lot par lot, dans l'ordre fixe par le chef : tr, uk, pl, ru, puis fa et ar, l'arabe de l'espagnol
+en lot 7) : BRANCHES ci-dessous. Les points douteux de chaque langue : retours/A-RELIRE-THEMES-<LG>.md.
 
-    python visuel/langues_themes.py extraire [theme...]   # joue les pages en francais (navigateur, VERROU des parcours)
-                                                          #   -> themes/langues/source.json
-    python visuel/langues_themes.py controler [lg...]     # ce qui manque, theme par theme et langue par langue
-                                                          #   (sans navigateur ; code de sortie 1 s'il manque)
-    python visuel/langues_themes.py construire <lg>       # themes/langues/<lg>.js (window.TRAD_THEMES) depuis <lg>.json
+    python visuel/langues_themes.py extraire [theme...]        # joue les pages en FRANCAIS (navigateur, VERROU des
+                                                               #   parcours) -> visuel/langues_themes/source.json
+    python visuel/langues_themes.py verifier <theme...> [lg..] # LE CONTROLE : chaque page ouverte dans chaque langue
+                                                               #   (navigateur, VERROU) ; code 1 s'il y a un defaut
+
+LE CONTROLE (verifier). La meme promenade qu'extraire, la page ouverte en allemand appris et dans la langue. Defauts :
+aucune phrase traduite ; une traduction francaise (une phrase de source.json, ou une glose francaise) ; en ukrainien
+et en russe, des lettres latines ; une erreur JavaScript. LANGUES_EXEMPLES=<fichier.json> ecrit les phrases vues,
+pour la relecture.
 
 L'EXTRACTION. Chaque page est ouverte avec lang=fr, en allemand puis en espagnol appris. On parcourt la decouverte
 (decouvrir() puis chaque bouton, sur deux niveaux : onglets puis elements), puis chaque SORTE de question (EX) pour
@@ -33,20 +35,20 @@ chaque mot du theme (motsDuTheme()), comme visuel/voix_themes.py, avec une repon
 fausse : les deux montrent une traduction, la phrase juste et le choix faux). Apres chaque geste, on releve le texte
 de chaque .trad de la page : la phrase traduite, et dans un .trad.faux ce qui suit le dernier « — » (le sens du choix
 faux). La source (la phrase de la langue apprise a cote, [lang=de|es]) est notee pour les traducteurs.
-Les GLOSES (un mot et sa traduction du corpus) ne vont pas au dictionnaire : la page les donne deja dans chaque
-langue. Est une glose un texte dont la traduction (apres le dernier « — », ou le texte entier) est une valeur
+Les GLOSES (un mot et sa traduction du corpus) ne comptent pas : la page les donne deja dans chaque langue. Est une glose un texte dont la traduction (apres le dernier « — », ou le texte entier) est une valeur
 francaise des gloses du theme (D.gloses, gloses.json, GLOSES).
 `tard` : les textes neufs des 20 % derniers tirages d'une sorte ; 0 = la sorte est epuisee. Un theme dont une sorte
 n'est pas epuisee se relance avec plus de tirages (LANGUES_TIRAGES, 2000 par defaut).
 
-Langues d'interface : allemand appris -> tr, uk, fa, ar, pl, ru par le dictionnaire (fr, en, pt : la page) ;
-espagnol appris -> ar (fr, en, pt, de : la page). Port : LANGUES_PORT (8858 par defaut, jamais 8791).
+Langues d'interface a aligner : allemand appris -> tr, uk, fa, ar, pl, ru (fr, en, pt : deja la) ; espagnol appris
+-> ar (fr, en, pt, de : deja la). Port : LANGUES_PORT (8858 par defaut, jamais 8791).
 """
 import functools, http.server, io, json, os, re, socketserver, sys, threading
 sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(ICI)
-DOSSIER = os.path.join(ICI, "prototype", "themes", "langues")
+# hors des fichiers servis (publication/construire_site.py) : le releve sert au controle, pas a la page
+DOSSIER = os.path.join(ICI, "langues_themes")
 SOURCE = os.path.join(DOSSIER, "source.json")
 PORT = int(os.environ.get("LANGUES_PORT", "8858"))
 TIRAGES = int(os.environ.get("LANGUES_TIRAGES", "2000"))
@@ -57,6 +59,9 @@ THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "
 # la langue apprise -> les langues d'interface que le DICTIONNAIRE doit couvrir (les autres, la page les fabrique)
 BESOIN = {"de": ["tr", "uk", "fa", "ar", "pl", "ru"], "es": ["ar"]}
 LANGUES = ["tr", "uk", "fa", "ar", "pl", "ru"]
+# les themes deja branches, et leurs langues (lot 1 : journee + gato, 14 nov. 2026)
+BRANCHES = {"gato": ["tr", "uk", "pl", "ru"], "journee": ["tr", "uk", "pl", "ru"]}
+BRANCHEES = ["tr", "uk", "pl", "ru"]
 
 RELEVER = r"""() => {
   const out = [];
@@ -230,83 +235,102 @@ def mots(s):
     return len(re.findall(r"\w+", s, re.U))
 
 
-def dico(lg):
-    f = os.path.join(DOSSIER, lg + ".json")
-    return json.load(io.open(f, encoding="utf-8")) if os.path.exists(f) else {}
+GLOSES_LG = r"""(lg) => {
+  const out = new Set();
+  const prendre = o => { if (!o || typeof o !== 'object') return;
+    for (const v of Object.values(o)) { if (v && typeof v === 'object') { if (typeof v[lg] === 'string') out.add(v[lg].trim()); else prendre(v); } } };
+  try { if (typeof D !== 'undefined' && D && D.gloses) prendre(D.gloses); } catch (e) {}
+  try { if (typeof GLOSES !== 'undefined') prendre(GLOSES); } catch (e) {}
+  return [...out];
+}"""
+
+# ce que la donnee du theme a traduit dans la langue (gato : D.trad.de et D.groupes.de ; journee : les frequences) --
+# pour dire combien la promenade en a montre
+ATTENDUS = r"""(lg) => {
+  const out = new Set();
+  try { for (const v of Object.values((D.trad || {})[APPRENDRE] || {})) if (v[lg]) out.add(v[lg]); } catch (e) {}
+  try { for (const f of (D.frequences || [])) if (f[lg]) out.add(f[lg]); } catch (e) {}
+  return [...out];
+}"""
+
+LATIN = re.compile(r"[A-Za-zÀ-ÿ]{3,}")
+NOMS_LATINS = {"Moritz"}
 
 
-def controler(langues):
-    if not os.path.exists(SOURCE):
-        print("pas de %s : lancer d'abord « extraire »" % os.path.relpath(SOURCE, RACINE))
-        return 2
-    source = json.load(io.open(SOURCE, encoding="utf-8"))
-    dicos = {lg: dico(lg) for lg in langues}
-    manque_total, uniques, ambigus_total = 0, {lg: {} for lg in langues}, 0
-    print("  %-12s %-3s %6s %6s %7s   %s" % ("theme", "app", "phr.", "ambig.", "mots fr", "  ".join("%-5s" % lg for lg in langues)))
-    for th in THEMES:
-        for app in ("de", "es"):
-            l = source.get(th, {}).get(app)
-            if l is None:
-                continue
-            srcs = {}
-            for x in l:
-                srcs.setdefault(x["fr"], set()).add(x.get("src", ""))
-            ambigus = {fr for fr, v in srcs.items() if len(v) > 1}
-            ambigus_total += len(ambigus)
-            cols = []
-            for lg in langues:
-                if lg not in BESOIN[app]:
-                    cols.append("  -  ")
-                    continue
-                m = []
-                for x in l:
-                    v = dicos[lg].get(x["fr"])
-                    if x["fr"] in ambigus:
-                        # une traduction par source ; une chaine seule ne suffit pas (elle ne dit pas le cas)
-                        ok = isinstance(v, dict) and (v.get(x.get("src", "")) or "").strip()
-                    else:
-                        ok = isinstance(v, str) and v.strip() or isinstance(v, dict) and (v.get(x.get("src", "")) or "").strip()
-                    if not ok:
-                        m.append(x)
-                for x in m:
-                    uniques[lg][(x["fr"], x.get("src", "") if x["fr"] in ambigus else "")] = True
-                manque_total += len(m)
-                cols.append("%5d" % len(m))
-            print("  %-12s %-3s %6d %6d %7d   %s" % (th, app, len(srcs), len(ambigus), sum(mots(fr) for fr in srcs), "  ".join(cols)))
-    print("\n  entrees DISTINCTES a traduire (un texte commun a deux themes ne se traduit qu'une fois ; une phrase ambigue "
-          "compte une fois par source) :")
-    for lg in langues:
-        print("    %s : %d entrees, %d mots" % (lg, len(uniques[lg]), sum(mots(fr) for fr, _ in uniques[lg])))
-    print("  phrases francaises ambigues (plusieurs sources) : %d" % ambigus_total)
-    defauts = 0
-    for lg in langues:
-        for k, v in dicos[lg].items():
-            vals = list(v.values()) if isinstance(v, dict) else [v]
-            if not vals or any(not isinstance(w, str) or (w.strip() and len(w.strip()) < 2 and len(k) > 3) for w in vals):
-                print("  DEFAUT %s : « %s » -> %r" % (lg, k, v))
-                defauts += 1
-    return 1 if (manque_total or defauts) else 0
-
-
-def construire(lg):
-    d = dico(lg)
-    sortie = os.path.join(DOSSIER, lg + ".js")
-    io.open(sortie, "w", encoding="utf-8", newline="\n").write(
-        "// %s : dictionnaire francais -> %s des phrases des themes illustres. DERIVE de themes/langues/%s.json par\n"
-        "// python visuel/langues_themes.py construire %s -- ne pas corriger ici.\n"
-        "window.TRAD_THEMES = %s;\n" % (lg, lg, lg, lg, json.dumps(d, ensure_ascii=False, sort_keys=True, separators=(",", ":"))))
-    print("  -> %s (%d phrases)" % (os.path.relpath(sortie, RACINE), len(d)))
+def verifier(seuls, langues):
+    """Chaque theme branche (lot par lot), ouvert en allemand appris et dans chaque langue : la promenade d'extraire
+    (decouverte, puis chaque sorte et chaque mot, une reponse au hasard), et chaque .trad releve. DEFAUTS : une page
+    sans aucune phrase traduite ; une traduction FRANCAISE (connue de source.json, ou une glose francaise) ; en
+    ukrainien et en russe, des lettres latines (un mot resté en francais, en allemand ou en anglais) ; une erreur
+    JavaScript. Le nombre de phrases traduites vues est donne, et pour gato et journee, la part de la donnee vue."""
+    class Muet(http.server.SimpleHTTPRequestHandler):
+        def log_message(self, *a): pass
+    srv = socketserver.ThreadingTCPServer(("127.0.0.1", PORT), functools.partial(Muet, directory=RACINE))
+    srv.handle_error = lambda *a: None
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    from playwright.sync_api import sync_playwright
+    source = json.load(io.open(SOURCE, encoding="utf-8")) if os.path.exists(SOURCE) else {}
+    defauts, exemples = 0, {}
+    try:
+        with sync_playwright() as p:
+            nav = p.chromium.launch()
+            for th in seuls:
+                francais = {x["fr"] for x in source.get(th, {}).get("de", []) if mots(x["fr"]) >= 2}
+                for lg in langues:
+                    page = nav.new_page()
+                    erreurs = []
+                    page.on("pageerror", lambda e: erreurs.append(str(e).split("\n")[0][:160]))
+                    page.goto("http://127.0.0.1:%d/visuel/prototype/%s.html?apprendre=de&lang=%s" % (PORT, th, lg))
+                    page.wait_for_function("() => typeof EX !== 'undefined' && (typeof IDS === 'undefined' || IDS.length > 0) && (typeof D === 'undefined' || D)", timeout=30000)
+                    page.wait_for_timeout(600)
+                    gl_fr = set(page.evaluate(GLOSES_FR))
+                    gl_lg = set(page.evaluate(GLOSES_LG, lg))
+                    attendus = set(page.evaluate(ATTENDUS, lg))
+                    e = page.evaluate(ENUMERER, [TIRAGES, RELEVER, PLAFOND])
+                    vues, fautes = set(), []
+                    for x in e["textes"]:
+                        t = x["fr"]
+                        if t in gl_lg:
+                            continue
+                        if t in francais or (t in gl_fr and mots(t) >= 2):
+                            fautes.append("en francais : « %s »" % t)
+                        elif lg in ("uk", "ru") and [w for w in LATIN.findall(t) if w not in NOMS_LATINS]:
+                            fautes.append("lettres latines : « %s »" % t)
+                        vues.add(t)
+                    if not vues:
+                        fautes.append("aucune phrase traduite")
+                    fautes += ["erreur JS : " + x for x in erreurs[:3]]
+                    defauts += len(fautes)
+                    part = (" ; donnee vue %d / %d" % (len(attendus & vues), len(attendus))) if attendus else ""
+                    print("  %-10s %s  %4d phrases traduites vues%s, %d gestes%s  %s"
+                          % (th, lg, len(vues), part, e["gestes"], " (PLAFOND ATTEINT)" if e["gestes"] >= PLAFOND else "",
+                             "DEFAUTS : %d" % len(fautes) if fautes else "ok"), flush=True)
+                    for f in fautes[:8]:
+                        print("      " + f)
+                    exemples[(th, lg)] = sorted(vues)
+                    page.close()
+            try:
+                nav.close()
+            except Exception:
+                pass
+    finally:
+        srv.shutdown()
+    if os.environ.get("LANGUES_EXEMPLES"):
+        sortie = os.environ["LANGUES_EXEMPLES"]
+        io.open(sortie, "w", encoding="utf-8", newline="\n").write(json.dumps(
+            {"%s/%s" % k: v for k, v in exemples.items()}, ensure_ascii=False, indent=1) + "\n")
+        print("  -> %s" % sortie)
+    return 1 if defauts else 0
 
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if not a or a[0] not in ("extraire", "controler", "construire"):
+    if not a or a[0] not in ("extraire", "verifier"):
         sys.exit(__doc__)
     if a[0] == "extraire":
         extraire([x for x in a[1:] if x in THEMES])
-    elif a[0] == "controler":
-        sys.exit(controler([x for x in a[1:] if x in LANGUES] or LANGUES))
     else:
-        if len(a) < 2 or a[1] not in LANGUES:
-            sys.exit("construire <lg> : une de " + ", ".join(LANGUES))
-        construire(a[1])
+        th = [x for x in a[1:] if x in THEMES]
+        if not th:
+            sys.exit("verifier <theme...> [lg...] : au moins un theme")
+        sys.exit(verifier(th, [x for x in a[1:] if x in LANGUES] or BRANCHEES))

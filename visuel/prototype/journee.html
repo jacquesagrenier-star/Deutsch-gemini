@@ -237,6 +237,14 @@ function heureTrad(h, m){
   if (LANGUE === "fr") return "à " + h + " h" + (m ? " " + String(m).padStart(2, "0") : "");
   if (LANGUE === "en") return "at " + (h % 12 || 12) + ":" + String(m).padStart(2, "0") + (h < 12 ? " a.m." : " p.m.");
   if (LANGUE === "pt") return "às " + h + "h" + (m ? String(m).padStart(2, "0") : "");
+  // le turc, l'ukrainien, le polonais, le russe (lot 1 de l'alignement des themes, 14 nov. 2026)
+  const hm = h + ":" + String(m).padStart(2, "0");
+  if (LANGUE === "ru") return "в " + hm;
+  if (LANGUE === "uk") return (h === 11 ? "об " : "о ") + hm;            // об одинадцятій
+  if (LANGUE === "pl") return "o " + hm;
+  // le suffixe suit le dernier mot DIT : 7'de (yedi), 6.30'da (otuz), 7.15'te (on beş)
+  if (LANGUE === "tr") return "saat " + h + (m ? "." + String(m).padStart(2, "0") : "") + "'"
+    + (m ? ({15: "te", 30: "da", 45: "te"})[m] : ["da", "de", "de", "te", "te", "te", "da", "de", "de", "da", "da", "de", "de", "te", "te", "te", "da", "de", "de", "da", "de", "de", "de", "te"][h]);
   return heureDe(h, m);
 }
 
@@ -495,22 +503,28 @@ const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : APPRENDRE === "pt"
 // Sous la phrase de la decouverte, et APRES la reponse, sous la phrase juste -- jamais avant. En francais, anglais,
 // portugais (et en allemand pour qui apprend l'espagnol), la phrase entiere, fabriquee avec les MEMES choix que la
 // question (le meme verbe, la meme personne, la meme heure) ; ailleurs, le mot et sa traduction du corpus (gloses.json).
-const TR = (LANGUE === APPRENDRE) ? null : (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")) ? LANGUE : null;
+// et en turc, ukrainien, polonais, russe pour qui apprend l'allemand (visuel/journee/langues.py, lot 1 de l'alignement)
+const TR = (LANGUE === APPRENDRE) ? null : (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")
+  || (["tr", "uk", "pl", "ru"].includes(LANGUE) && APPRENDRE === "de")) ? LANGUE : null;
 const POSS = {Anna: "her", Katrin: "her", Mia: "her", Mark: "his", Jan: "his", BenMia: "their", familia: "its"};
 // la phrase d'une etape (ou d'un verbe a une personne) traduite ; s : la cle du sujet, ou null (je, tu, nous)
 function traduire(vb, k, s, h, m){
   if (!TR) return null;
   if (TR === "de") return DE.phrase(vb, s ? D.sujets[s].de : D.personnes.de[k], k, h, m);
   let t = D.verbes[vb][TR][k].replace("{S}", s ? D.sujets[s][TR] : "").replace("{H}", h == null ? "" : heureTrad(h, m)).replace("{P}", POSS[s] || "their");
-  return cap(t.trim()) + ".";
+  return cap(t.replace(/\s+/g, " ").trim()) + ".";        // l'heure absente au milieu (le turc) ne laisse pas deux espaces
 }
 const tradEtape = e => traduire(e.verbe, n(e.sujet), e.sujet, e.h, e.m);
-const LIENS_TR = {fr: ["D'abord", "Ensuite", "Puis", "Enfin"], en: ["First", "Then", "After that", "Finally"], pt: ["Primeiro", "Depois", "Em seguida", "Por fim"]};
+const LIENS_TR = {fr: ["D'abord", "Ensuite", "Puis", "Enfin"], en: ["First", "Then", "After that", "Finally"], pt: ["Primeiro", "Depois", "Em seguida", "Por fim"],
+                  ru: ["Сначала", "Потом", "После этого", "Наконец"], uk: ["Спочатку", "Потім", "Після цього", "Нарешті"],
+                  pl: ["Najpierw", "Potem", "Następnie", "Na koniec"], tr: ["Önce", "Sonra", "Ardından", "En sonunda"]};
+// sans virgule apres le mot de liaison en turc, ukrainien, polonais, russe (« Потім Анна… », « Sonra Anna… »)
+const LIEN_VIRGULE = l => ["fr", "en", "pt"].includes(l) ? ", " : " ";
 const minus = (t, s) => s === "familia" ? t.charAt(0).toLowerCase() + t.slice(1) : t;
 function tradSuite(etapes){
   if (!TR) return null;
   if (TR === "de") return etapes.map((e, i) => DE.v2(DE.liens[i], e.verbe, D.sujets[e.sujet].de, n(e.sujet), e.h, e.m)).join(" ");
-  return etapes.map((e, i) => LIENS_TR[TR][i] + ", " + minus(tradEtape(e), e.sujet)).join(" ");
+  return etapes.map((e, i) => LIENS_TR[TR][i] + LIEN_VIRGULE(TR) + minus(tradEtape(e), e.sujet)).join(" ");
 }
 // l'anglais n'est pas dans gloses.json : ses adverbes et ses moments, traduits a la main (le choix faux traduit)
 const GLOSES_EN = {always: {fr: "toujours"}, sometimes: {fr: "parfois"}, never: {fr: "jamais"},

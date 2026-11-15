@@ -452,7 +452,35 @@ def construire():
         d["images"][id] = e
     gloses(d)
     groupes(d)
+    langues_natives(d)
     return d
+
+
+def langues_natives(d):
+    """Le turc, l'ukrainien, le polonais et le russe (visuel/gato/langues.py, lot 1 de l'alignement, 14 nov. 2026) :
+    chaque phrase allemande et chaque groupe allemand recoit sa traduction, fabriquee avec la grammaire de la langue.
+    Une phrase ou un groupe sans traduction arrete le script : une langue ne doit pas retomber sur la glose seule."""
+    import langues as LG
+    tr, g = d["trad"]["de"], d["groupes"]["de"]
+    for id, p in P.items():
+        prep, nom, vWo, vWohin = p["de"][:4]
+        pl = len(p["de"]) > 4 and p["de"][4]
+        de = d["places"][id]["de"]
+        for lg in LG.LANGUES:
+            pos, mv = LG.place(lg, id, prep, nom, vWo, vWohin, pl)
+            tr[de["phrase"]][lg], tr[de["mouvement"]][lg] = pos, mv
+    for phrase, t in LG.PHRASES.items():
+        tr[phrase].update(t)
+    for groupe, e in g.items():
+        if groupe in LG.GROUPES:
+            e.update(LG.GROUPES[groupe])
+        elif "cas" in e:
+            nom, pl = GROUPE_NOM[groupe]
+            for lg in LG.LANGUES:
+                e[lg] = LG.lieu(lg, e["prep"], nom, e["cas"], pl)
+    manque = [(k, lg) for dico in (tr, g) for k, v in dico.items() for lg in LG.LANGUES if not v.get(lg)]
+    if manque:
+        raise SystemExit("langues natives : %d traductions absentes, dont %s" % (len(manque), manque[:5]))
 
 
 def gloses(d):
@@ -560,6 +588,9 @@ def lieu_pt(prep, nom, pl=False):
     return p + " " + a + " " + m
 
 
+GROUPE_NOM = {}      # le groupe allemand -> (nom, pluriel), pour les langues natives (langues_natives)
+
+
 def groupes(d):
     g = {"de": {}, "es": {}}
     pluriels = ("stuhl", "kissen")
@@ -569,6 +600,7 @@ def groupes(d):
                 t = {"fr": lieu_fr(prep, nom, pl), "en": lieu_en(prep, nom, pl), "pt": lieu_pt(prep, nom, pl), "prep": prep}
                 for cas in ("dat", "akk"):
                     g["de"][groupe_de(prep, nom, cas, pl)] = dict(t, cas=cas)
+                    GROUPE_NOM[groupe_de(prep, nom, cas, pl)] = (nom, pl)
                 # les formes entieres que les choix proposent aussi (« auf dem Sofa » est deja la ; « auf das Sofa »)
             for prep in PREP_ES:
                 pd = "an" if (prep == "en" and nom in ("wand", "fenster")) else ES_DE[prep]
