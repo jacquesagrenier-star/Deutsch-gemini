@@ -250,8 +250,7 @@ apprenants payants à 15 €/mois pendant 8 mois ≈ 120 000 €/an (**estimatio
 ### 2.5 Le marché (retour d'une enseignante, 15 nov.)
 
 Message reçu par Jacques le 15 nov. 2026, d'une enseignante d'allemand qui a donné des cours en ligne
-à des soignants. C'est un témoignage de terrain, pas une source chiffrée. Son message s'arrête en
-cours de phrase (« Ab… ») : la suite a été demandée.
+à des soignants. C'est un témoignage de terrain, pas une source chiffrée.
 
 Ce qu'elle dit :
 
@@ -265,8 +264,29 @@ Ce qu'elle dit :
 5. Les **Pflegehilfskräfte**, avant la reconnaissance de leur diplôme, n'auraient probablement pas
    les moyens de payer elles-mêmes un cours ou une app.
 6. Elle recommande Klett, « Deutsch intensiv – Deutsch für die Pflege B2 » (ISBN 9783126752077).
+7. Les **hôpitaux** pourraient être intéressés si une app **coûte moins cher qu'un cours de
+   langue**. Elle cite la Charité, Vivantes et la DRK.
+8. « Der Fokus muss allerdings auf die speziellen Sprachanforderungen im Pflegealltag
+   (Kommunikation!) liegen. »
 
 Ce que cela change, ou confirme, dans ce plan :
+
+- **Le cœur du produit, c'est la communication au quotidien**, pas seulement le vocabulaire :
+  parler aux patients et à leurs proches, aux collègues, faire la relève (Übergabe), appeler le
+  médecin, documenter. Les mots servent ces situations. En pratique :
+  - les **dialogues** (12 aujourd'hui, `pflege/sources/`) passent devant de nouveaux thèmes de mots ;
+  - les **scènes** de la relève et de la visite sont à prolonger par des échanges, pas seulement des
+    objets à toucher ;
+  - l'**oral** est à entraîner chaque jour : écouter, répondre et dire la phrase, comme dans la séance
+    et l'examen blanc ;
+  - les **sons des dialogues** (§ 6.2, `pflege/VOIX.md`) deviennent prioritaires : on ne communique
+    pas avec une voix de téléphone.
+- **Le prix (§ 2.3)** : l'argument auprès d'un hôpital est le coût comparé à un cours. Les 10 à
+  30 € par apprenant et par mois sont à présenter face au prix d'un Berufssprachkurs ou d'un cours
+  privé, et face aux ≈ 2 500 € du B2 en Allemagne.
+- **Les premiers établissements à approcher** : la Charité, Vivantes et la DRK, qu'elle cite. La
+  Charité porte déjà le label « Faire Anwerbung Pflege » (§ 2.1). À confirmer par les entretiens du
+  § 7.3, sans démarche avant l'accord de Jacques.
 
 - **Les niveaux (§ 2.2)** : le témoignage confirme le chemin B1 → B2 en Allemagne. Le corpus va
   déjà dans ce sens : B1 238 mots, B2 187, A2 144 (`tests/pflege_vocabulaire.py`, 15 nov.). Il
