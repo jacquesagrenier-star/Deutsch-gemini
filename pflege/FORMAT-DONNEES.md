@@ -87,6 +87,62 @@ MOTS = [ … ]   # une entrée par mot, au format ci-dessous
 genre, pluriel, perfekt, traduction (fr), traduction_<langue>, exemple, exemple_<langue>, article_fr,
 corpus, relire} ] } ] }`.
 
+### 1 bis. La paire « dit le patient / dit le service » (sorte `paire`, 15 nov.)
+
+Le plan du 15 nov. (§ C 1) relie deux registres : ce que dit le patient (« das Bauchweh », « Wasser in
+den Beinen », « groß machen ») et ce que la soignante dit ou écrit au médecin, à la relève, dans le
+dossier (« die Abdominalschmerzen », « die Beinödeme », « der Stuhlgang »). Une paire est **un lien**, pas
+un mot de plus : ses deux côtés peuvent être déjà au corpus chacun.
+
+**Où** : un thème à elles, `soins_sprache` (« Patientensprache und Fachsprache », *comprendre le patient,
+parler au médecin*), placé avant `soins_szenen` dans `THEMES`. Source : `pflege/sources/sprache.py`
+(→ `vocabulaire/t12_sprache.py`, constructeur `P`).
+
+**L'entrée** (le dictionnaire du § 1, avec `"sorte": "paire"`) :
+
+```python
+{
+    "niveau": "B1",
+    "sorte": "paire",
+    "mot": "die Abdominalschmerzen",        # le côté du SERVICE, avec son article, tel qu'on l'écrit ou le dit
+    "patient": "das Bauchweh",              # le côté du PATIENT, tel qu'il le dit (« groß machen », « Mir ist schlecht. »)
+    "exemple": "Herr Schulze klagt seit dem Morgen über Abdominalschmerzen.",   # la transmission, ou l'explication
+    "exemple_patient": "Ich hab so Bauchweh, schon seit heute früh.",          # ce que dit le patient, à l'oral
+    "trad": {"fr": ("les douleurs abdominales", "…"), …},          # registre MÉDICAL de la langue
+    "trad_patient": {"fr": ("le mal au ventre", "…"), …},          # registre de TOUS LES JOURS de la langue
+    "corpus": False,
+    "relire": "⚕️ …",                       # sur tout terme médical
+    "lecture": "…", "lecture_patient": "…", # si une phrase a des chiffres (règle 4)
+}
+```
+
+Ni `genre`, ni `pluriel`, ni `article_fr` : l'article est dans le texte, et les deux côtés n'ont pas
+toujours la même sorte (« groß machen » ↔ « der Stuhlgang »).
+
+**Sortie** (`construire.py`) : les champs du § 1 pour le côté du service (`mot`, `traduction`,
+`traduction_<langue>`, `exemple`, `exemple_<langue>`), et les mêmes suffixés `_patient` pour le côté du
+patient : `patient`, `traduction_patient`, `traduction_patient_<langue>`, `exemple_patient`,
+`exemple_patient_fr`, `exemple_patient_<langue>`, `lecture_patient`.
+
+**La carte**, proposition pour l'architecture, qui en décide :
+- **Sens 1, patient → service** (le premier appris : comprendre et transmettre). Recto : une bulle « le
+  patient dit », la phrase `exemple_patient` dite à voix haute, `patient` en évidence, et la question
+  « Et dans la transmission ? ». Verso : `mot`, la phrase `exemple`, les deux traductions côte à côte
+  (`traduction_patient` → `traduction`), la note ⚕️.
+- **Sens 2, service → patient** (expliquer avec des mots simples). Recto : une bulle « dans le dossier »
+  ou « le médecin dit », `mot` et `exemple`, et la question « Et au patient ? ». Verso : `patient` et
+  `exemple_patient`.
+- Une paire donne ainsi **deux cartes** ; le sens 2 vient quand le sens 1 est su (au deuxième point, par
+  exemple). La progression reste rangée par (thème, niveau, rang) : le rang de la paire, et un suffixe pour
+  le sens 2 (« r »), si l'app en a besoin.
+- Les deux phrases sont dites : celle du patient par une voix de patient, celle du service par une voix
+  de soignante, le jour où les voix sont produites.
+
+**Contrôles** : `tests/pflege.py` accepte la sorte et demande les deux côtés dans les 9 langues ;
+`tests/pflege_vocabulaire.py` y ajoute l'écriture de chaque langue, les chiffres, et refuse deux paires
+identiques (deux paires peuvent partager un côté : « Wasser lassen » est le service de « Pipi machen » et
+le patient de « die Miktion »).
+
 ---
 
 ## 2. Les dialogues — `pflege/datos/dialogues.json` (session « dialogues »)

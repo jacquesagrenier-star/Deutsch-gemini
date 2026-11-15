@@ -48,8 +48,17 @@ def main():
             total += 1
             ou = "%s / %s" % (tid, m.get("mot"))
             sorte = m.get("sorte", "nom")
-            if sorte not in ("nom", "verbe", "adjectif", "expression"):
+            if sorte not in ("nom", "verbe", "adjectif", "expression", "paire"):
                 problemes.append(ou + " : sorte %r" % sorte)
+            if sorte == "paire":
+                if not m.get("patient") or not m.get("exemple_patient"):
+                    problemes.append(ou + " : paire sans le cote du patient (patient, exemple_patient)")
+                for l in LANGUES:
+                    suf = "" if l == "fr" else "_" + l
+                    if not m.get("traduction_patient" + suf) or not m.get("exemple_patient_" + l):
+                        problemes.append(ou + " : paire, traduction ou exemple du patient %s vide" % l)
+                if re.search(r"\d", m.get("exemple_patient", "")) and not m.get("lecture_patient"):
+                    problemes.append(ou + " : chiffre dans l'exemple du patient sans « lecture_patient »")
             if sorte == "nom":
                 if m.get("genre") not in ("der", "die", "das"):
                     problemes.append(ou + " : genre %r" % m.get("genre"))
