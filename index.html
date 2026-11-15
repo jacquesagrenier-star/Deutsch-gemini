@@ -4842,6 +4842,47 @@ body[data-theme="dark"] .eclat-neuf::before{background:rgba(246,226,186,.82);}
     100%{transform:translate(var(--dx), var(--dy)) scale(.2) rotate(90deg); opacity:0;}}
 html[dir="rtl"] .eclat-neuf{right:auto; left:-6px;}
 @media (prefers-reduced-motion: reduce){ .carte-presente-bandeau.eclats .eclat-neuf{animation:none !important;} }
+/* LIGNE 80 (decisions de Jacques du 13 nov. 2026) :
+   1. « Nouveau mot » / « Nouvelle expression » devient une PASTILLE AMBRE (#E8A23A, la couleur Wortando), qui se
+      remplit a l'arrivee des etincelles. Texte a l'encre : 7,4:1 sur l'ambre (le blanc n'y ferait que 2,1:1). De nuit,
+      l'ambre un peu retenu, pour ne pas eblouir sur la carte sombre, le texte toujours a l'encre. Elle ne se confond pas
+      avec « Essentiel » (texte brun sur gris clair, avec sa cle, dans le coin) : fond plein, au centre, en capitales.
+   2. Les etincelles ne restent plus au seul coin du libelle : deux gerbes montent aussi le long des DEUX COTES de la
+      carte, et tout dure plus longtemps (« c'est a peine si on a le temps de les voir ») -- environ 3,5 s au lieu de
+      1,2. Memes couleurs qu'avant (encre le jour, creme adouci la nuit). Rien si le telephone reduit les animations. */
+.carte-presente-bandeau{background:#E8A23A; color:#1C2430; border-color:transparent;}
+body[data-theme="dark"] .carte-presente-bandeau{background:#D99634; color:#1C2430; border-color:transparent;}
+.carte-presente-bandeau.eclats{animation:pastilleAmbre .7s ease-out .05s 1 both;}
+@keyframes pastilleAmbre{0%{background-color:transparent; border-color:rgba(232,162,58,.9); transform:scale(.92);}
+    60%{transform:scale(1.06);} 100%{transform:scale(1);}}
+.carte-presente-bandeau.eclats .eclat-neuf{animation-duration:1.9s;}
+.eclats-carte{position:absolute; inset:0; pointer-events:none; overflow:hidden; border-radius:inherit; z-index:1;}
+.eclat-carte{position:absolute; width:11px; height:11px; opacity:0; top:var(--y);}
+.eclat-carte::before{content:""; position:absolute; inset:0; background:#1C2430;
+    clip-path:polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);}
+body[data-theme="dark"] .eclat-carte::before{background:rgba(246,226,186,.78);}
+.eclat-carte:nth-child(-n+5){left:var(--bord);}
+.eclat-carte:nth-child(n+6){right:var(--bord);}
+.eclat-carte:nth-child(1){--y:14%; --bord:12px; --dx:6px; --dy:-26px; --d:.15s;}
+.eclat-carte:nth-child(2){--y:32%; --bord:22px; --dx:10px; --dy:-30px; --d:.55s; width:8px; height:8px;}
+.eclat-carte:nth-child(3){--y:50%; --bord:10px; --dx:4px; --dy:-34px; --d:.30s; width:13px; height:13px;}
+.eclat-carte:nth-child(4){--y:68%; --bord:24px; --dx:8px; --dy:-24px; --d:.85s; width:9px; height:9px;}
+.eclat-carte:nth-child(5){--y:84%; --bord:14px; --dx:5px; --dy:-28px; --d:1.10s;}
+.eclat-carte:nth-child(6){--y:20%; --bord:14px; --dx:-6px; --dy:-28px; --d:.35s;}
+.eclat-carte:nth-child(7){--y:38%; --bord:24px; --dx:-10px; --dy:-26px; --d:.75s; width:9px; height:9px;}
+.eclat-carte:nth-child(8){--y:56%; --bord:10px; --dx:-4px; --dy:-32px; --d:.20s; width:13px; height:13px;}
+.eclat-carte:nth-child(9){--y:72%; --bord:22px; --dx:-8px; --dy:-26px; --d:1.00s; width:8px; height:8px;}
+.eclat-carte:nth-child(10){--y:88%; --bord:12px; --dx:-5px; --dy:-30px; --d:.60s;}
+.eclats-carte.eclats .eclat-carte{animation:eclatCarte 2.4s ease-in-out var(--d) 1 both;}
+@keyframes eclatCarte{0%{transform:translate(0,0) scale(0) rotate(0); opacity:0;}
+    20%{opacity:1; transform:translate(calc(var(--dx)*.3), calc(var(--dy)*.3)) scale(1.15) rotate(25deg);}
+    45%{opacity:.55; transform:translate(calc(var(--dx)*.55), calc(var(--dy)*.55)) scale(.8) rotate(50deg);}
+    65%{opacity:1; transform:translate(calc(var(--dx)*.75), calc(var(--dy)*.75)) scale(1.05) rotate(70deg);}
+    100%{transform:translate(var(--dx), var(--dy)) scale(.2) rotate(110deg); opacity:0;}}
+@media (prefers-reduced-motion: reduce){
+    .eclats-carte{display:none;}
+    .carte-presente-bandeau.eclats{animation:none !important;}
+}
 .flashcard-actions.paquet-garde .judge-row2{display:none;}
 /* ⚠️ RESSERRE (v559). Les trois boutons prenaient le tiers de l'ecran a eux
    seuls. On gagne la hauteur sur le REMPLISSAGE, pas sur le texte : le libelle
@@ -8655,7 +8696,8 @@ body.seance-fond[data-ecran="flashcards"][data-theme="dark"] #seancePartsNoms{co
 #sceneRepere #sceneParts{display:flex; gap:4px;}
 #sceneRepere #sceneParts i{display:block; flex:1 1 0; min-width:6px; height:7px; border-radius:3.5px; background:rgba(255,255,255,.2);}
 #sceneRepere #sceneParts i.fait{background:#6FD6A6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.4 5.3l1.8 1.8 3.6-4' fill='none' stroke='%230B1626' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / auto 100% no-repeat;}
-#sceneRepere #sceneParts i.ici{background:#FFFFFF;}
+#sceneRepere #sceneParts i.ici{background:linear-gradient(90deg, #FFFFFF 0 var(--q, 0%), rgba(255,255,255,.2) var(--q, 0%) 100%);}
+html[dir="rtl"] #sceneRepere #sceneParts i.ici{background:linear-gradient(270deg, #FFFFFF 0 var(--q, 0%), rgba(255,255,255,.2) var(--q, 0%) 100%);}
 #sceneRepere #scenePartsNoms{display:grid; gap:4px; margin-top:3px; font-size:10px; font-weight:800; line-height:1.12; text-align:center; color:#B8C2CF;}
 #sceneRepere #scenePartsNoms span, #sceneRepere #scenePartsNoms b{min-width:0; overflow-wrap:anywhere; hyphens:auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 #sceneRepere #scenePartsNoms b{font-weight:900; color:#F6CE84;}
@@ -8664,7 +8706,8 @@ body.seance-fond[data-ecran="flashcards"][data-theme="dark"] #seancePartsNoms{co
 #sceneRepere.clair #scenePartsNoms b{color:#1C2430;}
 #sceneRepere.clair #sceneParts i{background:rgba(28,36,48,.16);}
 #sceneRepere.clair #sceneParts i.fait{background:#1F8A5B url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.4 5.3l1.8 1.8 3.6-4' fill='none' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / auto 100% no-repeat;}
-#sceneRepere.clair #sceneParts i.ici{background:#1C2430;}
+#sceneRepere.clair #sceneParts i.ici{background:linear-gradient(90deg, #1C2430 0 var(--q, 0%), rgba(28,36,48,.16) var(--q, 0%) 100%);}
+html[dir="rtl"] #sceneRepere.clair #sceneParts i.ici{background:linear-gradient(270deg, #1C2430 0 var(--q, 0%), rgba(28,36,48,.16) var(--q, 0%) 100%);}
 /* L'ecran de passage entre deux parties. */
 .cp-passage{display:grid; justify-items:center; gap:10px; text-align:center; padding:22px 8px 10px;}
 .cp-passage-ok{width:56px; height:56px; border-radius:50%; display:grid; place-items:center; background:rgba(31,122,85,.12);}
@@ -9683,7 +9726,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1189</span>
+        <span class="subtitle-version">v1193</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -9992,7 +10035,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
     <div id="pfEcran2" class="hidden">
         <h2 class="pf-q" data-i18n="profil_q2">Qu'est-ce qui te ressemble le plus ?</h2>
         <p class="pf-sous" data-i18n="profil_q2_sous">On dosera ta séance en fonction.</p>
-        <button type="button" class="pf-facon" data-facon="images" onclick="choisirFaconProfil('images')"><span class="pf-ap pf-ap-image" id="pfApImage" aria-hidden="true"><i></i></span><span class="pf-txt"><b data-i18n="profil_f_images">Je retiens mieux ce que je vois</b><small data-i18n="profil_f_images_sous">Plus de scènes pendant Premiers pas</small></span></button>
+        <button type="button" class="pf-facon" data-facon="images" onclick="choisirFaconProfil('images')"><span class="pf-ap pf-ap-image" id="pfApImage" aria-hidden="true"><i></i></span><span class="pf-txt"><b data-i18n="profil_f_images">Je retiens mieux ce que je vois</b><small data-i18n="profil_f_images_sous">Plus de scènes et d'images dans ta séance</small></span></button>
         <button type="button" class="pf-facon" data-facon="oreille" onclick="choisirFaconProfil('oreille')"><span class="pf-ap pf-ap-oreille" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pf-txt"><b data-i18n="profil_f_oreille">Je retiens mieux ce que j'entends et répète</b><small data-i18n="profil_f_oreille_sous">Plus de phrases à écouter et à dire</small></span></button>
         <button type="button" class="pf-facon" data-facon="regles" onclick="choisirFaconProfil('regles')"><span class="pf-ap pf-ap-mots" id="pfApMots" aria-hidden="true"><b>der</b><b>die</b><b>das</b></span><span class="pf-txt"><b data-i18n="profil_f_regles">J'aime comprendre comment ça marche</b><small data-i18n="profil_f_regles_sous">Plus de questions de grammaire</small></span></button>
         <button type="button" class="pf-facon" data-facon="tout" onclick="choisirFaconProfil('tout')"><span class="pf-ap pf-ap-tout" id="pfApTout" aria-hidden="true"><span></span><span></span><span></span><span>+</span></span><span class="pf-txt"><b data-i18n="profil_f_tout">Un peu de tout, je ne sais pas encore</b><small data-i18n="profil_f_tout_sous">Le dosage habituel, sans préférence</small></span></button>
@@ -12998,6 +13041,8 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
                 <!-- Le mot neuf presente (revue d'usage du 11 nov. 2026) : un bandeau en haut de la carte, « Nouveau mot »
                      et ce qu'il faut faire (demande de Jacques : qu'on ne croie pas a une carte qui ne se retourne pas). -->
                 <div id="flashNouveauVerso" class="carte-presente-bandeau hidden"><b id="flashNouveauVersoTitre"></b><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i><i class="eclat-neuf" aria-hidden="true"></i></div>
+                <!-- Ligne 80 (decisions de Jacques du 13 nov.) : les etincelles aussi des deux cotes de la carte, plus longues. -->
+                <div id="flashEclatsCarte" class="eclats-carte" aria-hidden="true"><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i><i class="eclat-carte"></i></div>
                 <button type="button" id="flashExamenCoin" class="examen-coin hidden"
                         onclick="event.stopPropagation(); ouvrirAideExamen();"></button>
                 <div id="flashGenre" class="carte-genre hidden"></div>
@@ -15780,6 +15825,7 @@ const I18N = {
         or_passer: "Passer",
         or_sans_verdict: "C'est enregistré. Réécoute-toi et compare au modèle.",
         cp_q_gram: "Complète la phrase",
+        cp_q_sens: "Qu'est-ce que ça veut dire ?",
         cp_q_dictee: "Écris ce que tu entends",
         cp_q_parler: "Répète à voix haute",
         cp_modele: "Modèle",
@@ -15983,6 +16029,7 @@ const I18N = {
         seance_plan_feuille: "la conjugaison",
         seance_plan_reperes: "les repères",
         seance_plan_scene: "une scène",
+        seance_plan_scenes_deux: "deux scènes",
         seance_plan_theme: "un thème illustré",
         seance_plan_son: "le son du jour",
         seance_plan_revisions: "{n} révisions",
@@ -16709,12 +16756,12 @@ const I18N = {
         profil_f_oreille: "Je retiens mieux ce que j'entends et répète",
         profil_f_regles: "J'aime comprendre comment ça marche",
         profil_f_tout: "Un peu de tout, je ne sais pas encore",
-        profil_f_images_sous: "Plus de scènes pendant Premiers pas",
+        profil_f_images_sous: "Plus de scènes et d'images dans ta séance",
         profil_f_oreille_sous: "Plus de phrases à écouter et à dire",
         profil_f_regles_sous: "Plus de questions de grammaire",
         profil_f_tout_sous: "Le dosage habituel, sans préférence",
         profil_pied2: "Tu auras toujours un peu de tout : ton choix change seulement le dosage, et tu peux le changer quand tu veux.",
-        profil_ok_images: "C'est noté : plus de scènes pendant Premiers pas.",
+        profil_ok_images: "C'est noté : plus de scènes et d'images dans ta séance.",
         profil_ok_oreille: "C'est noté : plus d'écoute et d'oral dans ta séance.",
         profil_ok_regles: "C'est noté : plus de grammaire dans ta séance.",
         profil_ok_tout: "C'est noté : un peu de tout dans ta séance.",
@@ -17585,6 +17632,7 @@ const I18N = {
         or_passer: "Skip",
         or_sans_verdict: "Recorded. Listen back and compare with the model.",
         cp_q_gram: "Complete the sentence",
+        cp_q_sens: "What does it mean?",
         cp_q_dictee: "Write what you hear",
         cp_q_parler: "Say it out loud",
         cp_modele: "Model",
@@ -17788,6 +17836,7 @@ const I18N = {
         seance_plan_feuille: "conjugation",
         seance_plan_reperes: "the basics",
         seance_plan_scene: "a scene",
+        seance_plan_scenes_deux: "two scenes",
         seance_plan_theme: "an illustrated topic",
         seance_plan_son: "the sound of the day",
         seance_plan_revisions: "{n} reviews",
@@ -18512,12 +18561,12 @@ const I18N = {
         profil_f_oreille: "I remember best what I hear and repeat",
         profil_f_regles: "I like to understand how it works",
         profil_f_tout: "A bit of everything, I don't know yet",
-        profil_f_images_sous: "More scenes during First steps",
+        profil_f_images_sous: "More scenes and pictures in your session",
         profil_f_oreille_sous: "More sentences to hear and say",
         profil_f_regles_sous: "More grammar questions",
         profil_f_tout_sous: "The usual mix, no preference",
         profil_pied2: "You'll always get a bit of everything: your choice only changes the mix, and you can change it any time.",
-        profil_ok_images: "Got it: more scenes during First steps.",
+        profil_ok_images: "Got it: more scenes and pictures in your session.",
         profil_ok_oreille: "Got it: more listening and speaking in your session.",
         profil_ok_regles: "Got it: more grammar in your session.",
         profil_ok_tout: "Got it: a bit of everything in your session.",
@@ -19406,6 +19455,7 @@ const I18N = {
         or_passer: "Geç",
         or_sans_verdict: "Kaydedildi. Kendini dinle ve modelle karşılaştır.",
         cp_q_gram: "Cümleyi tamamla",
+        cp_q_sens: "Bu ne demek?",
         cp_q_dictee: "Duyduğunu yaz",
         cp_q_parler: "Yüksek sesle tekrarla",
         cp_modele: "Örnek",
@@ -19553,6 +19603,7 @@ const I18N = {
         seance_plan_feuille: "çekim",
         seance_plan_reperes: "temeller",
         seance_plan_scene: "bir sahne",
+        seance_plan_scenes_deux: "iki sahne",
         seance_plan_theme: "resimli bir konu",
         seance_plan_son: "günün sesi",
         seance_plan_revisions: "{n} tekrar",
@@ -20259,12 +20310,12 @@ const I18N = {
         profil_f_oreille: "En iyi duyduklarımı ve tekrar ettiklerimi hatırlarım",
         profil_f_regles: "Nasıl işlediğini anlamayı severim",
         profil_f_tout: "Biraz her şeyden, henüz bilmiyorum",
-        profil_f_images_sous: "İlk adımlar boyunca daha çok sahne",
+        profil_f_images_sous: "Oturumunda daha çok sahne ve görsel",
         profil_f_oreille_sous: "Dinleyip söyleyeceğin daha çok cümle",
         profil_f_regles_sous: "Daha çok dil bilgisi sorusu",
         profil_f_tout_sous: "Her zamanki karışım, tercih yok",
         profil_pied2: "Her zaman biraz her şeyden olacak: seçimin yalnızca dengeyi değiştirir ve onu istediğin zaman değiştirebilirsin.",
-        profil_ok_images: "Not edildi: İlk adımlar boyunca daha çok sahne.",
+        profil_ok_images: "Not edildi: oturumunda daha çok sahne ve görsel.",
         profil_ok_oreille: "Not edildi: oturumunda daha çok dinleme ve konuşma.",
         profil_ok_regles: "Not edildi: oturumunda daha çok dil bilgisi.",
         profil_ok_tout: "Not edildi: oturumunda biraz her şeyden.",
@@ -21214,12 +21265,12 @@ const I18N = {
         profil_f_oreille: "Я краще запамʼятовую те, що чую і повторюю",
         profil_f_regles: "Мені подобається розуміти, як це працює",
         profil_f_tout: "Усього потроху, я ще не знаю",
-        profil_f_images_sous: "Більше сцен у «Перших кроках»",
+        profil_f_images_sous: "Більше сцен і зображень у твоєму занятті",
         profil_f_oreille_sous: "Більше речень, щоб слухати й казати",
         profil_f_regles_sous: "Більше питань з граматики",
         profil_f_tout_sous: "Звичайна суміш, без переваг",
         profil_pied2: "Усього потроху буде завжди: твій вибір змінює лише пропорції, і ти можеш змінити його будь-коли.",
-        profil_ok_images: "Записано: більше сцен у «Перших кроках».",
+        profil_ok_images: "Записано: більше сцен і зображень у твоєму занятті.",
         profil_ok_oreille: "Записано: більше слухання й мовлення у твоєму занятті.",
         profil_ok_regles: "Записано: більше граматики у твоєму занятті.",
         profil_ok_tout: "Записано: усього потроху у твоєму занятті.",
@@ -21619,6 +21670,7 @@ const I18N = {
         or_passer: "Пропустити",
         or_sans_verdict: "Записано. Послухай себе й порівняй зі зразком.",
         cp_q_gram: "Доповни речення",
+        cp_q_sens: "Що це означає?",
         cp_q_dictee: "Напиши, що чуєш",
         cp_q_parler: "Повтори вголос",
         cp_modele: "Зразок",
@@ -21766,6 +21818,7 @@ const I18N = {
         seance_plan_feuille: "дієвідміна",
         seance_plan_reperes: "основи",
         seance_plan_scene: "сцена",
+        seance_plan_scenes_deux: "дві сцени",
         seance_plan_theme: "тема в картинках",
         seance_plan_son: "звук дня",
         seance_plan_revisions: "повторень: {n}",
@@ -23392,12 +23445,12 @@ const I18N = {
         profil_f_oreille: "آنچه را می‌شنوم و تکرار می‌کنم بهتر به خاطر می‌سپارم",
         profil_f_regles: "دوست دارم بفهمم چطور کار می‌کند",
         profil_f_tout: "از هر چیزی کمی، هنوز نمی‌دانم",
-        profil_f_images_sous: "صحنه‌های بیشتر در «گام‌های نخست»",
+        profil_f_images_sous: "صحنه‌ها و تصویرهای بیشتر در جلسه‌ات",
         profil_f_oreille_sous: "جمله‌های بیشتر برای شنیدن و گفتن",
         profil_f_regles_sous: "پرسش‌های دستور زبان بیشتر",
         profil_f_tout_sous: "ترکیب معمول، بدون اولویت",
         profil_pied2: "همیشه از هر چیزی کمی خواهی داشت: انتخابت فقط اندازهٔ هر بخش را تغییر می‌دهد و هر وقت بخواهی می‌توانی عوضش کنی.",
-        profil_ok_images: "ثبت شد: صحنه‌های بیشتر در «گام‌های نخست».",
+        profil_ok_images: "ثبت شد: صحنه‌ها و تصویرهای بیشتر در جلسه‌ات.",
         profil_ok_oreille: "ثبت شد: شنیدن و صحبت بیشتر در جلسه‌ات.",
         profil_ok_regles: "ثبت شد: دستور زبان بیشتر در جلسه‌ات.",
         profil_ok_tout: "ثبت شد: از هر چیزی کمی در جلسه‌ات.",
@@ -24136,6 +24189,7 @@ const I18N = {
         or_passer: "رد شدن",
         or_sans_verdict: "ضبط شد. صدای خودت را گوش کن و با نمونه مقایسه کن.",
         cp_q_gram: "جمله را کامل کن",
+        cp_q_sens: "این یعنی چه؟",
         cp_q_dictee: "آنچه می‌شنوی را بنویس",
         cp_q_parler: "بلند تکرار کن",
         cp_modele: "نمونه",
@@ -24283,6 +24337,7 @@ const I18N = {
         seance_plan_feuille: "صرف فعل",
         seance_plan_reperes: "پایه‌ها",
         seance_plan_scene: "یک صحنه",
+        seance_plan_scenes_deux: "دو صحنه",
         seance_plan_theme: "یک موضوع مصور",
         seance_plan_son: "صدای امروز",
         seance_plan_revisions: "{n} مرور",
@@ -25008,12 +25063,12 @@ const I18N = {
         profil_f_oreille: "أتذكّر أفضل ما أسمعه وأكرّره",
         profil_f_regles: "أحبّ أن أفهم كيف يعمل الأمر",
         profil_f_tout: "قليل من كل شيء، لا أعرف بعد",
-        profil_f_images_sous: "مشاهد أكثر خلال «الخطوات الأولى»",
+        profil_f_images_sous: "مشاهد وصور أكثر في جلستك",
         profil_f_oreille_sous: "جمل أكثر للاستماع والنطق",
         profil_f_regles_sous: "أسئلة قواعد أكثر",
         profil_f_tout_sous: "المزيج المعتاد، بلا تفضيل",
         profil_pied2: "سيكون لديك دائمًا قليل من كل شيء: اختيارك يغيّر النِّسب فقط، ويمكنك تغييره متى شئت.",
-        profil_ok_images: "تمّ: مشاهد أكثر خلال «الخطوات الأولى».",
+        profil_ok_images: "تمّ: مشاهد وصور أكثر في جلستك.",
         profil_ok_oreille: "تمّ: استماع ونطق أكثر في جلستك.",
         profil_ok_regles: "تمّ: قواعد أكثر في جلستك.",
         profil_ok_tout: "تمّ: قليل من كل شيء في جلستك.",
@@ -26058,6 +26113,7 @@ const I18N = {
         or_passer: "تخطٍّ",
         or_sans_verdict: "تم التسجيل. استمع إلى نفسك وقارن بالنموذج.",
         cp_q_gram: "أكمل الجملة",
+        cp_q_sens: "ماذا يعني هذا؟",
         cp_q_dictee: "اكتب ما تسمعه",
         cp_q_parler: "كرّرها بصوت عالٍ",
         cp_modele: "النموذج",
@@ -26205,6 +26261,7 @@ const I18N = {
         seance_plan_feuille: "التصريف",
         seance_plan_reperes: "الأساسيات",
         seance_plan_scene: "مشهد",
+        seance_plan_scenes_deux: "مشهدان",
         seance_plan_theme: "موضوع مصوّر",
         seance_plan_son: "صوت اليوم",
         seance_plan_revisions: "مراجعات: {n}",
@@ -26566,6 +26623,7 @@ const I18N = {
         or_passer: "Pular",
         or_sans_verdict: "Gravado. Ouça a si mesmo e compare com o modelo.",
         cp_q_gram: "Complete a frase",
+        cp_q_sens: "O que isso quer dizer?",
         cp_q_dictee: "Escreva o que você ouve",
         cp_q_parler: "Repita em voz alta",
         cp_modele: "Modelo",
@@ -26713,6 +26771,7 @@ const I18N = {
         seance_plan_feuille: "a conjugação",
         seance_plan_reperes: "os básicos",
         seance_plan_scene: "uma cena",
+        seance_plan_scenes_deux: "duas cenas",
         seance_plan_theme: "um tema ilustrado",
         seance_plan_son: "o som do dia",
         seance_plan_revisions: "{n} revisões",
@@ -27409,12 +27468,12 @@ const I18N = {
         profil_f_oreille: "Eu me lembro melhor do que ouço e repito",
         profil_f_regles: "Gosto de entender como funciona",
         profil_f_tout: "Um pouco de tudo, ainda não sei",
-        profil_f_images_sous: "Mais cenas durante os Primeiros passos",
+        profil_f_images_sous: "Mais cenas e imagens na sua sessão",
         profil_f_oreille_sous: "Mais frases para ouvir e falar",
         profil_f_regles_sous: "Mais perguntas de gramática",
         profil_f_tout_sous: "A mistura de sempre, sem preferência",
         profil_pied2: "Você sempre terá um pouco de tudo: sua escolha só muda a dose, e dá para mudá-la quando quiser.",
-        profil_ok_images: "Anotado: mais cenas durante os Primeiros passos.",
+        profil_ok_images: "Anotado: mais cenas e imagens na sua sessão.",
         profil_ok_oreille: "Anotado: mais escuta e fala na sua sessão.",
         profil_ok_regles: "Anotado: mais gramática na sua sessão.",
         profil_ok_tout: "Anotado: um pouco de tudo na sua sessão.",
@@ -28376,6 +28435,7 @@ const I18N = {
         or_passer: "Pomiń",
         or_sans_verdict: "Nagrane. Posłuchaj siebie i porównaj ze wzorem.",
         cp_q_gram: "Uzupełnij zdanie",
+        cp_q_sens: "Co to znaczy?",
         cp_q_dictee: "Napisz, co słyszysz",
         cp_q_parler: "Powtórz na głos",
         cp_modele: "Wzór",
@@ -28523,6 +28583,7 @@ const I18N = {
         seance_plan_feuille: "odmiana",
         seance_plan_reperes: "podstawy",
         seance_plan_scene: "scena",
+        seance_plan_scenes_deux: "dwie sceny",
         seance_plan_theme: "temat ilustrowany",
         seance_plan_son: "dźwięk dnia",
         seance_plan_revisions: "powtórek: {n}",
@@ -29219,12 +29280,12 @@ const I18N = {
         profil_f_oreille: "Najlepiej zapamiętuję to, co słyszę i powtarzam",
         profil_f_regles: "Lubię rozumieć, jak to działa",
         profil_f_tout: "Wszystkiego po trochu, jeszcze nie wiem",
-        profil_f_images_sous: "Więcej scen w „Pierwszych krokach”",
+        profil_f_images_sous: "Więcej scen i obrazów w twojej sesji",
         profil_f_oreille_sous: "Więcej zdań do słuchania i mówienia",
         profil_f_regles_sous: "Więcej pytań z gramatyki",
         profil_f_tout_sous: "Zwykła mieszanka, bez preferencji",
         profil_pied2: "Zawsze będzie wszystkiego po trochu: twój wybór zmienia tylko proporcje i możesz go zmienić, kiedy chcesz.",
-        profil_ok_images: "Zapisane: więcej scen w „Pierwszych krokach”.",
+        profil_ok_images: "Zapisane: więcej scen i obrazów w twojej sesji.",
         profil_ok_oreille: "Zapisane: więcej słuchania i mówienia w twojej sesji.",
         profil_ok_regles: "Zapisane: więcej gramatyki w twojej sesji.",
         profil_ok_tout: "Zapisane: wszystkiego po trochu w twojej sesji.",
@@ -30186,6 +30247,7 @@ const I18N = {
         or_passer: "Пропустить",
         or_sans_verdict: "Записано. Послушай себя и сравни с образцом.",
         cp_q_gram: "Дополни предложение",
+        cp_q_sens: "Что это значит?",
         cp_q_dictee: "Напиши, что слышишь",
         cp_q_parler: "Повтори вслух",
         cp_modele: "Образец",
@@ -30333,6 +30395,7 @@ const I18N = {
         seance_plan_feuille: "спряжение",
         seance_plan_reperes: "основы",
         seance_plan_scene: "сцена",
+        seance_plan_scenes_deux: "две сцены",
         seance_plan_theme: "тема в картинках",
         seance_plan_son: "звук дня",
         seance_plan_revisions: "повторений: {n}",
@@ -31032,12 +31095,12 @@ const I18N = {
         profil_f_oreille: "Лучше всего я запоминаю то, что слышу и повторяю",
         profil_f_regles: "Мне нравится понимать, как это устроено",
         profil_f_tout: "Всего понемногу, я ещё не знаю",
-        profil_f_images_sous: "Больше сцен на «Первых шагах»",
+        profil_f_images_sous: "Больше сцен и картинок в твоём занятии",
         profil_f_oreille_sous: "Больше фраз, чтобы слушать и говорить",
         profil_f_regles_sous: "Больше вопросов по грамматике",
         profil_f_tout_sous: "Обычная смесь, без предпочтений",
         profil_pied2: "Всего понемногу будет всегда: твой выбор меняет только пропорции, и его можно изменить в любой момент.",
-        profil_ok_images: "Записано: больше сцен на «Первых шагах».",
+        profil_ok_images: "Записано: больше сцен и картинок в твоём занятии.",
         profil_ok_oreille: "Записано: больше слушания и речи в твоём занятии.",
         profil_ok_regles: "Записано: больше грамматики в твоём занятии.",
         profil_ok_tout: "Записано: всего понемногу в твоём занятии.",
@@ -31998,6 +32061,7 @@ const I18N = {
         or_passer: "Überspringen",
         or_sans_verdict: "Aufgenommen. Hör dich noch einmal an und vergleiche mit dem Modell.",
         cp_q_gram: "Ergänze den Satz",
+        cp_q_sens: "Was bedeutet das?",
         cp_q_dictee: "Schreib, was du hörst",
         cp_q_parler: "Sprich laut nach",
         cp_modele: "Modell",
@@ -32145,6 +32209,7 @@ const I18N = {
         seance_plan_feuille: "die Konjugation",
         seance_plan_reperes: "Orientierung",
         seance_plan_scene: "eine Szene",
+        seance_plan_scenes_deux: "zwei Szenen",
         seance_plan_theme: "ein bebildertes Thema",
         seance_plan_son: "der Laut des Tages",
         seance_plan_revisions: "{n} Wiederholungen",
@@ -32844,12 +32909,12 @@ const I18N = {
         profil_f_oreille: "Ich merke mir besser, was ich höre und nachspreche",
         profil_f_regles: "Ich will verstehen, wie es funktioniert",
         profil_f_tout: "Von allem etwas, ich weiß es noch nicht",
-        profil_f_images_sous: "Mehr Szenen in den Ersten Schritten",
+        profil_f_images_sous: "Mehr Szenen und Bilder in deiner Lerneinheit",
         profil_f_oreille_sous: "Mehr Sätze zum Hören und Sprechen",
         profil_f_regles_sous: "Mehr Grammatikfragen",
         profil_f_tout_sous: "Die übliche Mischung, ohne Vorliebe",
         profil_pied2: "Von allem etwas bekommst du immer: Deine Wahl ändert nur die Gewichtung, und du kannst sie jederzeit ändern.",
-        profil_ok_images: "Notiert: mehr Szenen in den Ersten Schritten.",
+        profil_ok_images: "Notiert: mehr Szenen und Bilder in deiner Lerneinheit.",
         profil_ok_oreille: "Notiert: mehr Hören und Sprechen in deiner Lerneinheit.",
         profil_ok_regles: "Notiert: mehr Grammatik in deiner Lerneinheit.",
         profil_ok_tout: "Notiert: von allem etwas in deiner Lerneinheit.",
@@ -33823,6 +33888,7 @@ const I18N = {
         or_passer: "Saltar",
         or_sans_verdict: "Quedó grabado. Vuelve a escucharte y compara con el modelo.",
         cp_q_gram: "Completa la frase",
+        cp_q_sens: "¿Qué significa?",
         cp_q_dictee: "Escribe lo que oyes",
         cp_q_parler: "Repite en voz alta",
         cp_modele: "Modelo",
@@ -33970,6 +34036,7 @@ const I18N = {
         seance_plan_feuille: "la conjugación",
         seance_plan_reperes: "lo básico",
         seance_plan_scene: "una escena",
+        seance_plan_scenes_deux: "dos escenas",
         seance_plan_theme: "un tema ilustrado",
         seance_plan_son: "el sonido del día",
         seance_plan_revisions: "{n} repasos",
@@ -34669,12 +34736,12 @@ const I18N = {
         profil_f_oreille: "Recuerdo mejor lo que oigo y repito",
         profil_f_regles: "Me gusta entender cómo funciona",
         profil_f_tout: "Un poco de todo, todavía no lo sé",
-        profil_f_images_sous: "Más escenas durante los Primeros pasos",
+        profil_f_images_sous: "Más escenas e imágenes en tu práctica",
         profil_f_oreille_sous: "Más frases para escuchar y decir",
         profil_f_regles_sous: "Más preguntas de gramática",
         profil_f_tout_sous: "La mezcla habitual, sin preferencia",
         profil_pied2: "Siempre tendrás un poco de todo: tu elección solo cambia la dosis, y puedes cambiarla cuando quieras.",
-        profil_ok_images: "Anotado: más escenas durante los Primeros pasos.",
+        profil_ok_images: "Anotado: más escenas e imágenes en tu práctica.",
         profil_ok_oreille: "Anotado: más escucha y más oral en tu práctica.",
         profil_ok_regles: "Anotado: más gramática en tu práctica.",
         profil_ok_tout: "Anotado: un poco de todo en tu práctica.",
@@ -37389,7 +37456,7 @@ function finSeanceSuivie(finie, raison){
     const s = seanceCourante();
     seanceSuivie = null;
     if(!s) return;
-    if(finie){ s.p = s.n; s.f = 1; s.q = "f"; delete s.a; }
+    if(finie){ s.p = s.n; s.f = 1; s.q = "f"; delete s.a; oublierSiSeance(s.d); }
     else { s.a = activiteSeance(); if(raison) s.q = raison; }
     s.o = objectifAtteint();
     if(s.p > 0 || finie) s.t = dureeSeance(s);
@@ -40016,7 +40083,7 @@ async function mettreSeanceDeCote(){
         ["hl_titre", "hl_sous", "hl_commencer", "hl_en_ligne", "hl_fin_titre", "hl_fin_texte",
          "hl_recommencer", "hl_encore_sous", "flash_tap_hint", "carte_nouveau_mot", "carte_nouvelle_expression",
          "review_again", "review_continuer", "back_button",
-         "cp_q_ecoute", "cp_q_trou", "cp_q_ordre", "cp_q_dictee", "cp_q_parler", "cp_q_gram",
+         "cp_q_ecoute", "cp_q_trou", "cp_q_ordre", "cp_q_dictee", "cp_q_parler", "cp_q_gram", "cp_q_sens",
          "cp_ecouter", "cp_bravo", "cp_reponse", "cp_presque", "verify_button", "setup_continue"].forEach(k => { textes[k] = t(k); });
         const seance = {
             v: 1, cree: Date.now(), uid: uid, langue: LANGUE_APPRISE,
@@ -45022,8 +45089,16 @@ async function syncProgressToCloud(){
                 catch(e){ return ""; }
             })(),
             // Les phrases ratees a revoir (v827).
+            // Ligne 84 (14 nov. 2026) : le meme champ porte aussi la revision par phrase -- { v: 2, ratees, rev }. Un
+            // appareil d'avant la ligne 84 lit un objet et l'ignore (il n'attend qu'une liste) ; les regles bornees
+            // ne regardent pas ce champ, une cle neuve demanderait de les recoller.
             phrasesRateesJson: (function(){
-                try{ return localStorage.getItem(PHRASES_RATEES_KEY) || ""; }
+                try{
+                    const rev = lireRevisions();
+                    if(!Object.keys(rev.p).length && !Object.keys(rev.t).length && !Object.keys(rev.s).length)
+                        return localStorage.getItem(PHRASES_RATEES_KEY) || "";
+                    return JSON.stringify({ v: 2, ratees: lirePhrasesRatees(), rev: rev });
+                }
                 catch(e){ return ""; }
             })(),
             // L'A1 voyage (v862, essai) : l'escale, les dates, l'avis au retour.
@@ -45550,10 +45625,13 @@ async function restoreProgressFromCloud(){
             // Phrases ratees (v827) : un appareil qui n'en a pas reprend celles
             // du cloud. Pas de reunion : une phrase reussie sur ce telephone
             // reviendrait du cloud.
-            if(typeof data.phrasesRateesJson === "string" && data.phrasesRateesJson
-               && !lirePhrasesRatees().length){
+            // Ligne 84 : un objet { v: 2, ratees, rev } -- les ratees comme avant, la revision par phrase reunie
+            // (par phrase, la vue la plus recente l'emporte : fusionnerRevisions).
+            if(typeof data.phrasesRateesJson === "string" && data.phrasesRateesJson){
                 const d = JSON.parse(data.phrasesRateesJson);
-                if(Array.isArray(d) && d.length) ecrirePhrasesRatees(d);
+                const ratees = Array.isArray(d) ? d : (d && d.v === 2 && Array.isArray(d.ratees)) ? d.ratees : null;
+                if(ratees && ratees.length && !lirePhrasesRatees().length) ecrirePhrasesRatees(ratees);
+                if(d && d.v === 2 && d.rev && typeof d.rev === "object") ecrireRevisions(fusionnerRevisions(lireRevisions(), d.rev));
             }
         }catch(e){}
         try{
@@ -45579,7 +45657,9 @@ async function restoreProgressFromCloud(){
                 let ici = null;
                 try{ ici = JSON.parse(localStorage.getItem(A1_VOYAGE_KEY) || "null"); }catch(e2){ ici = null; }
                 // 8 nov. 2026 : le plus recent l'emporte, sinon un deuxieme appareil restait a son etape.
-                if(d && typeof d === "object" && (!ici || (d.t || 0) > (ici.t || 0))){
+                // 14 nov. 2026 : le plus AVANCE l'emporte, le plus recent a egalite (fusionnerA1Voyage).
+                const garde = fusionnerA1Voyage(ici, d);
+                if(garde && garde === d){
                     try{ localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify(d)); }catch(e2){}
                 }
             }
@@ -57724,6 +57804,7 @@ function estExpressionCarte(mode, texte){
 }
 function loadFlashcard(){
     oublierCarteJugee();   // une carte (re)dessinee n'a pas encore ete jugee
+    try{ ecrireSeanceEnCours(); }catch(e){}   // la seance du jour retient sa carte (reprise du 14 nov.)
     rendreDefilementVerso();   // la carte suivante repart du haut si l'app avait fait defiler la precedente
     updateXpComboDisplay();
     hideFlashcardEnd();
@@ -58501,6 +58582,8 @@ function majPresentation(on){
           rectoEtiq = document.getElementById("flashNouveau");
     if(titreEtiq) titreEtiq.textContent = on && rectoEtiq ? rectoEtiq.textContent : "";
     if(etiq) etiq.classList.toggle("hidden", !on);
+    // Une carte ordinaire qui suit n'herite pas des etincelles encore en vol (ligne 80 : elles durent 3,5 s).
+    if(!on) arreterEclatsPresentation();
     const tr = document.getElementById("flashTranslation"), recto = document.getElementById("flashWord");
     if(!tr) return;
     if(on && recto){
@@ -58541,14 +58624,20 @@ function motPresenteVu(bientot){
 // se tourne pas, une autre se tourne » se lirait comme une panne. D'ou le bandeau « Nouveau mot » en haut, sa
 // consigne, le contour d'encre (CSS #flashcard.presentation), les etincelles a l'arrivee -- la carte arrive deja
 // ouverte -- et, au tout premier mot neuf d'un compte, une bulle d'une phrase, une seule fois.
+// Ligne 80 (13 nov.) : les gerbes des deux cotes de la carte (#flashEclatsCarte) partent avec celles du libelle, et
+// le tout dure plus longtemps -- la derniere etincelle s'eteint vers 3,5 s, d'ou les 3,8 s avant de retirer la classe.
 function entreePresentation(){
-    const b = document.getElementById("flashNouveauVerso");
-    if(!b) return;
-    b.classList.remove("eclats");
-    void b.offsetWidth;
-    b.classList.add("eclats");
+    const elems = ["flashNouveauVerso", "flashEclatsCarte"].map(id => document.getElementById(id)).filter(Boolean);
+    if(!elems.length) return;
+    elems.forEach(e => e.classList.remove("eclats"));
+    void elems[0].offsetWidth;
+    elems.forEach(e => e.classList.add("eclats"));
     clearTimeout(entreePresentation.minuterie);
-    entreePresentation.minuterie = setTimeout(() => b.classList.remove("eclats"), 1600);
+    entreePresentation.minuterie = setTimeout(arreterEclatsPresentation, 3800);
+}
+function arreterEclatsPresentation(){
+    clearTimeout(entreePresentation.minuterie);
+    ["flashNouveauVerso", "flashEclatsCarte"].forEach(id => { const e = document.getElementById(id); if(e) e.classList.remove("eclats"); });
 }
 const AIDE_PRESENTATION_KEY = PREFIXE_STOCKAGE + "aidePresentationVue";
 // TOUCHER LA CARTE DU MOT NEUF (Jacques, 12 nov. 2026 : « normalement on a une carte, on est porte a cliquer sur la
@@ -61715,7 +61804,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1189;
+const APP_VERSION = 1193;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -63925,7 +64014,10 @@ async function encoreUneSeance(){
     if(ENCORE_EN_COURS) return;   // le deuxieme toucher ne compte rien
     ENCORE_EN_COURS = true;
     hideFlashcardEnd();
-    try{ ajouterSerieNeufs(); }catch(e){}
+    // 14 nov. 2026 : une seance entamee se reprend ; la dose de mots neufs n'est que pour une seance NOUVELLE.
+    let reprise = false;
+    try{ reprise = seanceAReprendre(); }catch(e){}
+    if(!reprise){ try{ ajouterSerieNeufs(); }catch(e){} }
     try{ await ouvrirSeanceDuJour(true); }catch(e){}
     ENCORE_EN_COURS = false;
 }
@@ -68083,6 +68175,11 @@ window.addEventListener("message", (e) => {
     // (fini, fermer) ramenent a l'ecran Soins.
     // Ses exercices (« exercice ») et son micro passent plus bas par le chemin commun, comme le telc A2·B1.
     if(d.type === "resultat_examen" && d.examen === "soins_telc"){ try{ enregistrerExamenSoins(d); }catch(err){} return; }
+    // 12 nov. 2026 : la barre du bandeau avance pendant l'arret (voir ARRET_AVANCE).
+    const dansLArret = sceneOuverteDepuis === "arret" || sceneOuverteDepuis === "premiers_pas";
+    if(d.type === "avance"){ if(dansLArret) avancerArret(d.f); return; }
+    if(dansLArret && d.type === "exercice"){ try{ exerciceDansLArret(); }catch(err){} }
+    if(dansLArret && d.type === "fini"){ try{ avancerArret(1); }catch(err){} }
     if(sceneOuverteDepuis === "conversations"){
         if(d.type === "micro") microPourCadre(d, e);
         else if(d.type === "fermer"){ try{ ouvrirToutLeContenu(); }catch(err){ goHome(); } }
@@ -68779,6 +68876,87 @@ function phrasesRateesDues(tout){
     return dues;
 }
 
+// ============ UNE REVISION PAR PHRASE (ligne 84 ; decisions de Jacques du 13 nov. 2026, cd4d778 et df709a9) ============
+// Jacques voyait « Mi tia es profesora » a chaque retour de « tia » : la carte-phrase prenait la phrase la plus facile
+// parmi les mots de la seance, sans memoire de ce qui avait ete vu (60 jours d'A1 mesures : 302 cartes-phrases, 116
+// phrases differentes, « Tengo mucha hambre » 20 fois). Ses mots : « on devrait tout gerer de la facon qu'on gere les
+// cartes » ; « les phrases reussies, on devrait les pousser tres, tres loin. Quitte a les revoir » ; « mettons vraiment
+// de l'espace ». D'ou, par phrase :
+//  - jamais vue : elle passe AVANT une phrase deja vue (la reserve du niveau d'abord) ;
+//  - reussie (ou ecoutee sans verdict) : pas avant 60 jours, puis 180, puis 365 (REVISION_JOURS) ;
+//  - ratee : le lendemain (la liste des ratees, v827, continue de la ramener ; la fin de seance aussi) ;
+//  - une phrase reussie ne revient avant son echeance que si le niveau n'a plus aucune phrase jamais vue ;
+//  - jamais a moins de quatre cartes de la carte de son mot (ANTI_ECHO_PHRASE : le verso montre deja l'exemple).
+// Le MOTEUR est commun (type « p » ; « t » et « s » attendent la ligne 85 : questions des themes et des scenes).
+// L'etat : { p: { id: [reussites de suite, jour de l'echeance, jour de la derniere vue] } }, l'id un hachage court du
+// texte. Il voyage dans le champ phrasesRateesJson (objet { v: 2, ratees, rev }), le seul que les regles bornees
+// acceptent sans y toucher ; 3 000 entrees au plus par type (~75 ko), les reussies les plus anciennes elaguees.
+const REVISIONS_KEY = PREFIXE_STOCKAGE + "revisions";
+const REVISION_JOURS = [60, 180, 365];
+const REVISION_MAX = 3000;
+const ANTI_ECHO_PHRASE = 4;
+function jourRevision(ms){ return Math.floor((ms === undefined ? Date.now() : ms) / 86400000); }
+function idRevision(texte){
+    const s = String(texte || "").normalize("NFC").replace(/\s+/g, " ").trim();
+    let h = 5381;
+    for(let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+    return h.toString(36) + s.length.toString(36);
+}
+function lireRevisions(){
+    let v = null;
+    try{ v = JSON.parse(localStorage.getItem(REVISIONS_KEY) || "null"); }catch(e){ v = null; }
+    if(!v || typeof v !== "object") v = {};
+    ["p", "t", "s"].forEach(k => { if(!v[k] || typeof v[k] !== "object") v[k] = {}; });
+    return v;
+}
+function elaguerRevisions(v){
+    ["p", "t", "s"].forEach(k => {
+        const ids = Object.keys(v[k] || {});
+        if(ids.length <= REVISION_MAX) return;
+        // Les reussies les plus anciennes partent d'abord ; une ratee reste (elle doit revenir).
+        ids.sort((a, b) => ((v[k][a][0] > 0 ? 0 : 1) - (v[k][b][0] > 0 ? 0 : 1)) || (v[k][a][2] - v[k][b][2]));
+        ids.slice(0, ids.length - REVISION_MAX).forEach(id => { delete v[k][id]; });
+    });
+    return v;
+}
+function ecrireRevisions(v){
+    try{ localStorage.setItem(REVISIONS_KEY, JSON.stringify(elaguerRevisions(v))); }catch(e){}
+}
+// juste : true (reussie), false (ratee), null (vue sans verdict : ecoutee, lue) -- comptee comme reussie.
+function noterRevision(type, texte, juste){
+    if(!texte) return;
+    const v = lireRevisions(), id = idRevision(texte), auj = jourRevision();
+    const avant = v[type][id];
+    if(juste === false){
+        v[type][id] = [0, auj + 1, auj];
+    } else {
+        // Revue le jour meme ou elle a ete ratee (le retour de fin de seance) : elle revient quand meme demain.
+        if(avant && avant[0] === 0 && avant[2] === auj){ v[type][id] = [0, auj + 1, auj]; ecrireRevisions(v); return; }
+        const n = avant ? Math.max(0, avant[0]) : 0;
+        v[type][id] = [n + 1, auj + REVISION_JOURS[Math.min(n, REVISION_JOURS.length - 1)], auj];
+    }
+    ecrireRevisions(v);
+}
+// « jamais », « due » (echeance passee) ou « attente » (pas avant son echeance).
+function statutRevision(etat, texte, auj){
+    const x = etat[idRevision(texte)];
+    if(!x) return "jamais";
+    return x[1] > auj ? "attente" : "due";
+}
+// Deux appareils : par phrase, la vue la plus recente l'emporte.
+function fusionnerRevisions(ici, nuage){
+    const out = { p: {}, t: {}, s: {} };
+    ["p", "t", "s"].forEach(k => {
+        const a = (ici && ici[k]) || {}, b = (nuage && nuage[k]) || {};
+        Object.keys(a).forEach(id => { if(Array.isArray(a[id])) out[k][id] = a[id]; });
+        Object.keys(b).forEach(id => {
+            if(!Array.isArray(b[id]) || b[id].length < 3) return;
+            if(!out[k][id] || b[id][2] > out[k][id][2]) out[k][id] = b[id];
+        });
+    });
+    return elaguerRevisions(out);
+}
+
 // v903 (essai « profil ») : le cycle des formes selon ce qui ressemble a la
 // personne. Meme longueur, donc le compteur du cycle (CYCLE_FORMES_KEY) reste
 // juste ; « un peu de tout » ne retire rien : l'oreille garde la grammaire, les
@@ -68825,15 +69003,38 @@ function insererCartesPhrases(seance, tout){
         if(inconnus > palier.inconnus_max) return null;
         return { it: it, p: p, vise: vise, cout: inconnus * 10 - appui + p.mots.length * 0.1 };
     };
+    // Ligne 84 : la revision par phrase. Une jamais vue passe avant une phrase due, une phrase en attente n'est prise
+    // que si le niveau n'a plus de jamais vue (reserveJamaisVide, calculee une fois, a la premiere demande).
+    const etatP = lireRevisions().p, auj = jourRevision();
+    const RANG = { jamais: 0, due: 1, attente: 2 };
+    let reserveVide = null;
+    const reserveJamaisVide = () => {
+        if(reserveVide === null){
+            reserveVide = !(tout || []).some(it => {
+                if(!avecPhrase(it)) return false;
+                const p = phraseDeCarte(it, 99);
+                return !!p && !PHRASES_POSEES.has(p.de) && statutRevision(etatP, p.de, auj) === "jamais";
+            });
+        }
+        return reserveVide;
+    };
     const meilleur = (liste, max) => {
         let best = null;
         liste.forEach(it => {
             if(pris.has(cle(it))) return;
             const e = evaluer(it, max);
-            if(e && PHRASES_POSEES.has(e.p.de)) return;
-            if(e && (!best || e.cout < best.cout)) best = e;
+            if(!e || PHRASES_POSEES.has(e.p.de)) return;
+            e.rang = RANG[statutRevision(etatP, e.p.de, auj)];
+            if(!best || e.rang < best.rang || (e.rang === best.rang && e.cout < best.cout)) best = e;
         });
+        if(best && best.rang === RANG.attente && !reserveJamaisVide()) return null;
         return best;
+    };
+    // Jamais a moins de ANTI_ECHO_PHRASE cartes de la carte de son mot, avant ou apres.
+    const pres = k => {
+        const s = new Set();
+        sortie.slice(Math.max(0, k - ANTI_ECHO_PHRASE), k + ANTI_ECHO_PHRASE + 1).forEach(c => { if(c && c.mode !== "phrase") s.add(cle(c)); });
+        return s;
     };
     const sortie = seance.slice();
     // v839 : LE CYCLE CONTINUE. Il repartait de zero a chaque appel -- chaque
@@ -68872,7 +69073,11 @@ function insererCartesPhrases(seance, tout){
                 continue;
             }
             const max = f === "parler" ? palier.parler_max : (f === "dictee" && palier.dictee_max) ? palier.dictee_max : 0;
-            const e = meilleur(sortie.slice(0, k).filter(avecPhrase), max) || meilleur(vus.filter(avecPhrase), max);
+            const proches = pres(k);
+            const loin = it => avecPhrase(it) && !proches.has(cle(it));
+            // Les mots de la seance d'abord, puis tous les mots vus ; une jamais vue l'emporte sur une due d'ou qu'elle vienne.
+            const e1 = meilleur(sortie.slice(0, k).filter(loin), max), e2 = meilleur(vus.filter(loin), max);
+            const e = (e1 && e2) ? ((e2.rang < e1.rang) ? e2 : e1) : (e1 || e2);
             if(!e) continue;
             if(f === "trou" && e.vise < 0) continue;
             pris.add(cle(e.it));
@@ -71109,6 +71314,8 @@ function repondrePhrase(item, juste){
         try{ recordDailyActivity(); }catch(e){}
         return 0;
     }
+    // Ligne 84 : la revision de la phrase elle-meme, avant tout le reste (un mot pas encore du sortait plus bas sans rien noter).
+    try{ if(item && item.phrase && item.cible && item.forme !== "gram") noterRevision("p", item.phrase.de, juste); }catch(e){}
     try{
         const it = item.cible;
         if(item.forme === "gram" && juste !== null) noterGrammaireSeance(item.jeu, juste);
@@ -71398,6 +71605,12 @@ async function ouvrirPremiersPas(taille){
         // v879 : les reperes (jours, mois, nombres) des Premiers pas.
         try{ const rp = await preparerReperes(); if(rp && items.length > 2) items = insererReperes(items, rp); }catch(e){}
         try{ const sd = await preparerSonDuJour(); if(sd && items.length > 2) items = insererSonDuJour(items, sd); }catch(e){}
+        // 12 nov. 2026 : une partie Grammaire dans chaque seance -- au milieu d'une etape, trois questions de son tableau.
+        try{
+            const d = (items.find(x => x && typeof x.jourPP === "number") || {}).jourPP;
+            const jr = joursPremiersPas()[d];
+            items = await assurerGrammaireSeance(items, jr ? jr.tableau : null, 0);
+        }catch(e){}
         try{ items = premiereCarteFacile(items); }catch(e){}
         // v941 : une scene toutes les 8 cartes, comme la seance du jour (voir
         // preparerArretScene). Jamais en derniere position : la fin de seance lit
@@ -71466,16 +71679,48 @@ const A1V_SEUIL_NOUVEAU = 10;
 //   « installe » | « aucun », dep / ret : « AAAA-MM-JJ », e: escale en cours,
 //   t: son tableau vu, b: ses phrases vues (nombre), d: son dialogue fait,
 //   fin: escales finies, jalon: jalon montre, k: etape de la suite,
-//   sf: suite finie (l'A2 commence), retour: avis donne au retour }
+//   sf: suite finie (l'A2 commence), retour: avis donne au retour,
+//   w: l'heure de l'ecriture (le nuage : le plus recent l'emporte) }
+// ⚠️ 14 nov. 2026 (retour de Jacques sur la v1189 : « deuxieme seance, etape 2 sur 12, Manger dehors », que des
+// cartes, aucune grammaire) : du 8 au 14 nov., l'heure de l'ecriture etait rangee sous « t », la cle qui dit « son
+// tableau vu ». Chaque ecriture marquait donc le tableau comme vu : a partir de la 2e escale, le tableau de
+// l'escale (sa grammaire) ne s'affichait plus, et l'escale avancait sans lui. L'heure vit maintenant sous « w » ;
+// un « t » qui est une heure (un nombre) redevient « pas encore vu » : le tableau de l'escale en cours revient.
 function lireA1Voyage(){
     let v = {};
     try{ v = JSON.parse(localStorage.getItem(A1_VOYAGE_KEY) || "{}"); if(!v || typeof v !== "object") v = {}; }
     catch(e){ v = {}; }
+    if(typeof v.t === "number"){ if(!v.w) v.w = v.t; v.t = false; }
     return v;
 }
+function heureA1Voyage(v){
+    // L'heure d'un etat, ecrit avant (« t », un nombre) ou apres (« w ») le 14 nov.
+    if(!v || typeof v !== "object") return 0;
+    return v.w || (typeof v.t === "number" ? v.t : 0);
+}
+// Deux appareils (l'etat d'ici, celui du nuage) : lequel garder. Le plus recent seul pouvait faire RECULER : un
+// telephone reste a l'escale 2, ecrit en dernier, effacait l'escale 4 de l'autre (le chef, 14 nov. : « ne doit
+// perdre aucune escale »). Le plus avance l'emporte donc -- suite finie, escales finies, etape de la suite ou escale,
+// tableau, phrases, dialogue --, et le plus recent seulement a egalite. Rend l'objet garde (ici ou nuage), ou null.
+function avanceeA1Voyage(v){
+    if(!v || typeof v !== "object") return [-1];
+    const tableauVu = v.t === true ? 1 : 0;   // un « t » numerique est une heure, pas un tableau vu
+    return [v.sf ? 1 : 0, v.fin ? 1 : 0, v.fin ? (v.k || 0) : (v.e || 0), tableauVu, v.b || 0, v.d ? 1 : 0, v.jalon ? 1 : 0];
+}
+function fusionnerA1Voyage(ici, nuage){
+    const okIci = ici && typeof ici === "object", okNuage = nuage && typeof nuage === "object";
+    if(!okNuage) return okIci ? ici : null;
+    if(!okIci) return nuage;
+    const a = avanceeA1Voyage(ici), b = avanceeA1Voyage(nuage);
+    for(let i = 0; i < Math.max(a.length, b.length); i++){
+        if((b[i] || 0) > (a[i] || 0)) return nuage;
+        if((b[i] || 0) < (a[i] || 0)) return ici;
+    }
+    return heureA1Voyage(nuage) > heureA1Voyage(ici) ? nuage : ici;
+}
 function ecrireA1Voyage(v){
-    // 8 nov. 2026 : « t », l'heure de l'ecriture -- l'etat part dans le nuage et le plus recent l'emporte.
-    v.t = Date.now();
+    // 8 nov. 2026 : l'heure de l'ecriture -- l'etat part dans le nuage et le plus recent l'emporte.
+    v.w = Date.now();
     try{ localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify(v)); }catch(e){}
 }
 function a1VoyageEssai(){
@@ -72850,11 +73095,16 @@ async function preparerArretScene(seance, sceneImposee, enPremiersPas){
         // la derniere carte, et une scene DIFFERENTE a chaque arret.
         let p = null;
         try{ p = profilActif(); }catch(e){}
-        const ecart = (p && p.f === "images") ? 4 : (p && (p.f === "oreille" || p.f === "regles")) ? 12 : 8;
+        // 12 nov. 2026 (Jacques, « Oui, les deux ») : « ce que j'entends » et « comment ca marche » reviennent a 8,
+        // comme tout le monde ; seul « ce que je vois » garde 4.
+        const images = !!(p && p.f === "images");
+        const ecart = images ? 4 : 8;
         // Essai « seance_legere » : UNE scene par lecon (le theme court suit), et « Encore une seance »
         // prend une autre scene que la precedente (la N-ieme suivante, N = seances finies aujourd'hui).
+        // 12 nov. 2026 : le profil « images » n'avait plus d'effet hors Premiers pas (une scene par lecon pour tous) ;
+        // il a maintenant DEUX scenes differentes par lecon, avant le theme -- une partie Images plus longue, la meme barre.
         const legere = !enPremiersPas && seanceLegere();
-        const nb = legere ? 1 : Math.max(1, Math.floor(seance.length / ecart));
+        const nb = legere ? (images ? 2 : 1) : Math.max(1, Math.floor(seance.length / ecart));
         let prevue = sceneImposee || sceneDuJour();
         // (la scene imposee d'une etape de l'A1 garde la premiere seance ; les suivantes changent de lieu)
         if(legere){
@@ -73033,6 +73283,9 @@ function revenirDeLArret(){
     showScreen("flashcards");
     cacherCartePhrase();
     nextFlashcard();
+    // 14 nov. 2026 (ligne 77) : apres le DERNIER arret (le theme, la conversation de l'etape), l'ecran de fin s'ouvre
+    // sans redessiner la barre -- elle restait telle qu'a l'ouverture de l'arret (Images a 50 %, Conversations a 0 %).
+    try{ majPartsSeance(); }catch(e){}
 }
 // La porte unique de l'accueil annonce la scene du jour.
 function majAujourdhuiScene(on){
@@ -73079,9 +73332,192 @@ function majAujourdhuiScene(on){
 // L'anglais (essai) a eu la meme regle du 27 oct. (v983) jusqu'a ce que ses
 // Premiers pas, son A1 voyage, ses exercices et ses scenes existent (v986).
 function seanceJaponaise(){ return LANGUE_APPRISE === "ja"; }
+// ============ « CONTINUER LA SEANCE » REPREND LA SEANCE (decision de Jacques du 14 nov. 2026, « Oui, vraie reprise ») ============
+// Le retour de Jacques sur la v1189 : il ouvre sa deuxieme seance, fait quelques cartes, sort, revient -- « comme si
+// j'avais rien fait ». L'accueil disait « Continuer la seance » (depuis le 12 nov.), mais ouvrirSeanceDuJour()
+// reconstruisait TOUJOURS un paquet neuf : carte 1, barre a zero, une entree seancesJson de plus, et les mots seulement
+// presentes de nouveau en tete. Rien ne gardait la seance en cours. Desormais :
+//   (a) EN MEMOIRE : la seance du jour quittee (« ‹ », l'accueil, Tout le contenu…) reste en SEANCE_MEMO ; la rouvrir
+//       le meme jour y retourne -- meme paquet, meme carte, memes parties, PASSAGES_VUS, la meme entree seancesJson.
+//   (b) SUR LE TELEPHONE : la meme seance est ecrite a chaque carte sous SEANCE_EN_COURS_KEY (le jour, la version, les
+//       cartes, la position, les parties, les mots presentes, l'etat de chaque mot au moment de l'ecriture). Si l'app
+//       a ete tuee (iPhone en arriere-plan), elle se reconstruit le meme jour tant qu'il reste des cartes. Le
+//       lendemain, elle est abandonnee : une seance neuve. UNE MISE A JOUR NE LA PERD PAS (le chef, 14 nov. : on publie
+//       plusieurs versions par jour) : chaque carte de mot est retrouvee dans les donnees du jour (themeId:index:mode,
+//       le meme mot) et en reprend le contenu a jour ; elle n'est abandonnee que si une carte ne se retrouve plus, ou
+//       si le FORMAT de ce qui est ecrit a change (SEANCE_EN_COURS_FORMAT, a monter si la forme change).
+//       Une carte de mot jugee AILLEURS entre-temps (autre appareil, nuage) -- son etat a change depuis l'ecriture et
+//       elle n'est plus due -- n'est pas reposee.
+//   (c) ajouterSerieNeufs() (la dose de mots neufs d'« Encore une seance ») seulement au debut d'une VRAIE nouvelle
+//       seance : jamais sur une reprise (un aller-retour sans carte passee en ouvrait 15 de plus chaque fois).
+// Premiers pas garde sa propre reprise (sa position, marquerPositionPremiersPas) : il n'entre pas ici.
+const SEANCE_EN_COURS_KEY = PREFIXE_STOCKAGE + "seanceEnCours";
+// Le format de ce qui est ecrit sous SEANCE_EN_COURS_KEY -- distinct d'APP_VERSION, qui change plusieurs fois par jour.
+const SEANCE_EN_COURS_FORMAT = 1;
+let SEANCE_MEMO = null;   // { d, jour, v, paquet, full, theme, niveau, parts, pool, ciel, passages }
+function signatureMot(it){
+    try{
+        if(!it || it.mode === "phrase" || !it.themeId) return "";
+        const st = getWordState(it.themeId, it.index);
+        return (st.srsHits || 0) + "|" + (st.due || 0) + "|" + (st.mastered ? 1 : 0);
+    }catch(e){ return ""; }
+}
+// Une seance finie n'est plus a reprendre : en memoire ou sur le disque, si c'est bien elle (sa date d'ouverture).
+function oublierSiSeance(d){
+    let disque = null;
+    try{ disque = JSON.parse(localStorage.getItem(SEANCE_EN_COURS_KEY) || "null"); }catch(e){ disque = null; }
+    if((SEANCE_MEMO && SEANCE_MEMO.d === d) || (disque && disque.d === d)) oublierSeanceEnCours();
+}
+function oublierSeanceEnCours(){
+    SEANCE_MEMO = null;
+    try{ localStorage.removeItem(SEANCE_EN_COURS_KEY); }catch(e){}
+}
+// La seance du jour qui vient d'etre construite (ou reprise) devient « la seance en cours ».
+function retenirSeanceEnCours(niveau){
+    if(!seanceSuivie || !estSeanceDuJourOuverte()) return;
+    SEANCE_MEMO = { d: seanceSuivie.d, jour: getTodayStr(), paquet: currentCards, full: currentCardsFull,
+                    theme: currentTheme, niveau: niveau, parts: SEANCE_PARTS, pool: POOL_NEUFS_SEANCE, ciel: CIEL_AV,
+                    passages: PASSAGES_VUS };
+    ecrireSeanceEnCours();
+}
+// Appelee a chaque carte de la seance (loadFlashcard) : la position, et ce qui a pu s'ajouter (« Encore »).
+function ecrireSeanceEnCours(){
+    const m = SEANCE_MEMO;
+    if(!m || currentCards !== m.paquet) return;
+    m.pos = currentFlashcard;
+    try{
+        const parts = m.parts && m.parts.paquet === m.paquet ? m.paquet.map(it => m.parts.parts.get(it) || "") : null;
+        const presentes = [];
+        m.paquet.forEach(it => { try{ if(it && MOTS_PRESENTES.has(clePresentation(it))) presentes.push(clePresentation(it)); }catch(e){} });
+        const v = { f: SEANCE_EN_COURS_FORMAT, j: m.jour, v: APP_VERSION, d: m.d, pos: currentFlashcard, niveau: m.niveau, rattrapage: !!m.rattrapage,
+                    theme: m.theme ? { id: m.theme.id, name: m.theme.name } : null,
+                    cartes: m.paquet, parts: parts,
+                    infos: m.parts ? { themeId: m.parts.themeId, niveau: m.parts.niveau, etape: m.parts.etape, rang: m.parts.rang } : null,
+                    passages: [...(m.passages || [])], presentes: presentes, snap: m.paquet.map(signatureMot) };
+        localStorage.setItem(SEANCE_EN_COURS_KEY, JSON.stringify(v));
+    }catch(e){
+        // Une carte qui ne se met pas en texte, ou le stockage plein : la reprise en memoire reste, celle du disque non.
+        try{ localStorage.removeItem(SEANCE_EN_COURS_KEY); }catch(e2){}
+    }
+}
+// Une seance a reprendre, aujourd'hui ? (l'accueil et « Encore une seance » le demandent aussi)
+function seanceEnCoursLue(){
+    let v = null;
+    try{ v = JSON.parse(localStorage.getItem(SEANCE_EN_COURS_KEY) || "null"); }catch(e){ v = null; }
+    if(!v || typeof v !== "object" || !Array.isArray(v.cartes)) return null;
+    if(v.j !== getTodayStr() || v.f !== SEANCE_EN_COURS_FORMAT){ oublierSeanceEnCours(); return null; }
+    return v;
+}
+function seanceAReprendre(){
+    try{
+        if(premiersPasEnCours()) return false;
+        const m = SEANCE_MEMO;
+        if(m && m.jour === getTodayStr() && m.paquet && m.paquet.length) return true;
+        const v = seanceEnCoursLue();
+        return !!(v && typeof v.pos === "number" && v.pos < v.cartes.length);
+    }catch(e){ return false; }
+}
+// Les cartes de mots du jour, par themeId:index:mode -- tous les niveaux, et Premiers pas (ses cartes reviennent en
+// revision). Sert a retrouver les cartes d'une seance gardee, apres une mise a jour comme apres un rechargement.
+function cleCarteSeance(it){ return it.themeId + ":" + it.index + ":" + (it.mode || "nomen"); }
+async function cartesDuCorpus(){
+    const m = new Map();
+    NIVEAUX_CECR.forEach(n => { try{ paquetDuNiveau(n).forEach(it => m.set(cleCarteSeance(it), it)); }catch(e){} });
+    try{ if(essaiActif("premiers_pas")){ await chargerPremiersPas(); toutesCartesPremiersPas().forEach(it => m.set(cleCarteSeance(it), it)); } }catch(e){}
+    return m;
+}
+// Chaque carte de mot de la seance gardee, retrouvee dans les donnees du jour : la meme cle ET le meme mot. Rend les
+// cartes avec leur contenu a jour, ou null si une seule ne se retrouve plus (la seance est alors abandonnee).
+async function resoudreCartesGardees(cartes){
+    const corpus = await cartesDuCorpus();
+    const out = [];
+    for(const it of cartes){
+        if(!it || it.mode === "phrase" || !it.themeId || !Array.isArray(it.word)){ out.push(it); continue; }
+        const ici = corpus.get(cleCarteSeance(it));
+        if(!ici || !Array.isArray(ici.word) || ici.word[0] !== it.word[0]) return null;
+        out.push(Object.assign({}, it, { word: ici.word }));
+    }
+    return out;
+}
+async function reprendreSeanceDuJour(){
+    if(premiersPasEnCours()) return false;
+    const niveau = niveauSeance();
+    let m = SEANCE_MEMO;
+    if(m && (m.jour !== getTodayStr() || m.niveau !== niveau)) m = null;
+    let pos = null, presentes = [];
+    if(m){
+        // (a) la seance est encore en memoire : on y retourne telle quelle.
+        let lu = null;
+        try{ lu = seanceEnCoursLue(); }catch(e){ lu = null; }
+        pos = (lu && lu.d === m.d && typeof lu.pos === "number") ? lu.pos : (typeof m.pos === "number" ? m.pos : 0);
+    } else {
+        // (b) l'app a ete fermee : on la reconstruit depuis le stockage.
+        const v = seanceEnCoursLue();
+        if(!v || v.niveau !== niveau || typeof v.pos !== "number" || v.pos >= v.cartes.length) return false;
+        // Les cartes retrouvees dans les donnees du jour (une version plus recente a pu les changer) ; une seule
+        // introuvable, et la seance gardee est abandonnee pour une seance neuve.
+        const resolues = await resoudreCartesGardees(v.cartes);
+        if(!resolues){ oublierSeanceEnCours(); return false; }
+        const cartes = resolues, noms = Array.isArray(v.parts) ? v.parts.slice() : null, snap = Array.isArray(v.snap) ? v.snap : [];
+        // Une carte de mot jugee ailleurs depuis l'ecriture, et plus due : on ne la repose pas.
+        const garder = cartes.map((it, i) => {
+            if(i < v.pos || !it || it.mode === "phrase" || !it.themeId) return true;
+            const sig = signatureMot(it);
+            if(!snap[i] || sig === snap[i]) return true;
+            try{ const st = getWordState(it.themeId, it.index); return !(st.mastered || (st.due && st.due > Date.now())); }
+            catch(e){ return true; }
+        });
+        const paquet = cartes.filter((it, i) => garder[i]);
+        const nomsGardes = noms ? noms.filter((x, i) => garder[i]) : null;
+        if(v.pos >= paquet.length) { oublierSeanceEnCours(); return false; }
+        let full = paquet.slice();
+        try{ full = echeancesDeSeance(niveau, accesComplet()); }catch(e){}
+        let parts = null;
+        if(nomsGardes && v.infos){
+            const map = new Map();
+            paquet.forEach((it, i) => { if(nomsGardes[i]) map.set(it, nomsGardes[i]); });
+            parts = Object.assign({ paquet: paquet, parts: map }, v.infos);
+        }
+        m = { d: v.d, jour: v.j, paquet: paquet, full: full, rattrapage: !!v.rattrapage, theme: v.theme || { id: "seance_" + niveau, name: t("seance_titre") + " · " + niveau },
+              niveau: niveau, parts: parts, pool: null, ciel: null, passages: new Set(Array.isArray(v.passages) ? v.passages : []) };
+        pos = v.pos;
+        presentes = Array.isArray(v.presentes) ? v.presentes : [];
+    }
+    if(!m || !m.paquet || pos === null || pos >= m.paquet.length) return false;
+    SEANCE_MEMO = m;
+    presentes.forEach(k => MOTS_PRESENTES.add(k));
+    currentCardsFull = m.full;
+    currentCards = m.paquet;
+    POOL_NEUFS_SEANCE = m.pool;
+    CIEL_AV = m.ciel;
+    // La meme entree seancesJson : la seance continue, elle n'en commence pas une autre.
+    // Pendant le rattrapage, le compte de cartes (p) ne suit plus le paquet : la seance garde le sien.
+    const paquetSuivi = m.rattrapage ? null : m.paquet;
+    if(!seanceSuivie || seanceSuivie.d !== m.d){
+        if(seanceSuivie) finSeanceSuivie(false);
+        seanceSuivie = { d: m.d, paquet: paquetSuivi };
+        derniereSeanceD = m.d;
+        try{ majSeanceSuivie(s => { delete s.q; if(paquetSuivi) s.p = Math.min(s.n, Math.max(s.p || 0, pos)); }); }catch(e){}
+    } else seanceSuivie.paquet = paquetSuivi;
+    retourSeanceAccueil = true;
+    panneauAvantFlashcards = null;
+    flashcardFromSearch = false;
+    currentTheme = m.theme;
+    if(m.passages !== PASSAGES_VUS){ PASSAGES_VUS.clear(); (m.passages || []).forEach(p => PASSAGES_VUS.add(p)); m.passages = PASSAGES_VUS; }
+    SEANCE_PARTS = m.parts;
+    currentFlashcard = pos;
+    flashcardMode = (m.paquet[pos] && m.paquet[pos].mode) || "nomen";
+    setFlashHeader("seance_titre", null);
+    showScreen("flashcards");
+    loadFlashcard();
+    return true;
+}
+
 async function ouvrirSeanceDuJour(sansScene){
     // v828 : en Premiers pas, la porte des mots mene au parcours des 50 mots.
     if(premiersPasEnCours()){ ouvrirPremiersPas(); return; }
+    // 14 nov. 2026 : la seance du jour entamee se reprend (voir « CONTINUER LA SEANCE » REPREND LA SEANCE).
+    try{ if(await reprendreSeanceDuJour()) return; }catch(e){}
     PHRASES_POSEES.clear();
     RETOURS_FIN_SEANCE.length = 0;
     // L'essai des scenes (v713) : l'ecran de choix, une fois par jour.
@@ -73162,6 +73598,11 @@ async function ouvrirSeanceDuJour(sansScene){
     try{ const rp = await preparerReperes(); if(rp && seance.length) seance = insererReperes(seance, rp); }catch(e){}
     // v880 : le son du jour, une fois par jour, au milieu.
     try{ const sd = await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
+    // 12 nov. 2026 : une partie Grammaire dans chaque seance (assurerGrammaireSeance).
+    try{
+        const nVus = tout.filter(it => !estNeuf(getWordState(it.themeId, it.index))).length;
+        seance = await assurerGrammaireSeance(seance, (av && av.lieu && !av.finA1) ? av.lieu.tableau : null, nVus);
+    }catch(e){}
     // 6 nov. 2026 : la seance regroupee par partie (voir LE PLAN DE LA SEANCE),
     // AVANT premiereCarteFacile, qui ne deplace que quelques cartes de tete.
     let regroupee = null;
@@ -73197,6 +73638,8 @@ async function ouvrirSeanceDuJour(sansScene){
     }
     currentFlashcard = 0;
     flashcardMode = seance[0].mode || "nomen";
+    // 14 nov. 2026 : elle devient la seance en cours, a reprendre si on la quitte (reprendreSeanceDuJour).
+    try{ retenirSeanceEnCours(niveau); }catch(e){}
     setFlashHeader("seance_titre", null);
     showScreen("flashcards");
     loadFlashcard();
@@ -73245,11 +73688,11 @@ function glisserPhrasesPlusTard(paquet, tout){
 // dans la seance, sinon dans les revisions : elles restent APRES ce mot.
 // 7 nov. 2026 (decision 6fda9e0) : le theme illustre a sa partie, apres les revisions -- la scene dans la
 // premiere moitie, le theme vers la fin, les deux avant la fin de la seance.
-const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "scene", "conv", "son", "revisions", "theme", "fin"];
+const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "gram", "scene", "conv", "son", "revisions", "theme", "fin"];
 // Essai « seance_legere » (decision d9d9dbd) : la lecon dans l'ordre de la maquette -- « Revisions · Mots ·
 // Grammaire · Scene · Theme ».
 // 8 nov. 2026 : le son avant le theme, qui reste la derniere etape (seules les cartes de cloture le suivent).
-const ORDRE_PARTS_LEGERE = ["revisions", "lieu", "neufs", "feuille", "reperes", "scene", "conv", "son", "theme", "fin"];
+const ORDRE_PARTS_LEGERE = ["revisions", "lieu", "neufs", "feuille", "reperes", "gram", "scene", "conv", "son", "theme", "fin"];
 function ordreParts(){ return seanceLegere() ? ORDRE_PARTS_LEGERE : ORDRE_PARTS; }
 // LA BARRE EN TROIS PARTIES (decision de Jacques du 12 nov. 2026, proposition 5 de la revue : « des cartes,
 // [grammaire], images [...] conversation va s'ajouter » ; « mettre conversation au pluriel » ; puis « Pas besoin de
@@ -73259,13 +73702,16 @@ function ordreParts(){ return seanceLegere() ? ORDRE_PARTS_LEGERE : ORDRE_PARTS;
 // Les parties fines (ORDRE_PARTS) gardent l'ordre a l'interieur d'une partie de la barre.
 const GROUPES_SEANCE = ["cartes", "grammaire", "images", "conv"];
 const GROUPE_DE_PARTIE = { revisions: "cartes", lieu: "cartes", neufs: "cartes", fin: "fin", feuille: "grammaire",
-                           reperes: "grammaire", son: "grammaire", scene: "images", theme: "images", conv: "conv" };
+                           reperes: "grammaire", gram: "grammaire", son: "grammaire", scene: "images", theme: "images", conv: "conv" };
 function groupePartie(p){ return GROUPE_DE_PARTIE[p] || p || "cartes"; }
 let SEANCE_PARTS = null;           // { paquet, parts (Map carte -> partie), themeId, niveau, etape }
 const PASSAGES_VUS = new Set();    // les parties dont l'ecran de passage a ete montre (v1122 : par partie)
 function partDeCarteSeance(c, av, parCle){
     if(!c) return "revisions";
     const forme = c.forme || "";
+    // 12 nov. 2026 (Jacques : « une partie grammaire dans chaque seance ») : les questions de grammaire (« gram »,
+    // sans mot vise, elles tombaient dans les revisions) et le tableau du verbe de l'escale vont dans Grammaire.
+    if(c.mode === "phrase" && (forme === "gram" || c.gramTableau || c.avTableau)) return "gram";
     if(c.av) return /^(av_escale_fin|av_jalon|av_fin_a1)$/.test(forme) ? "fin" : "lieu";
     if(forme === "theme_arret") return "theme";
     if(forme === "scene_arret") return "scene";
@@ -73296,7 +73742,7 @@ function regrouperSeance(seance, av){
     const rang = c => { const i = ordre.indexOf(parts.get(c)); return i < 0 ? ordre.length : i; };
     const rangG = c => { const g = groupePartie(parts.get(c)); const i = GROUPES_SEANCE.indexOf(g); return i < 0 ? GROUPES_SEANCE.length : i; };
     const triees = seance.map((c, i) => [c, i]).sort((a, b) => rangG(a[0]) - rangG(b[0]) || rang(a[0]) - rang(b[0]) || a[1] - b[1]).map(x => x[0]);
-    const cartes = espacerPhrasesEtape(triees, parts);
+    const cartes = eloignerPhrasesDeLeurMot(espacerPhrasesEtape(triees, parts), parts);
     const groupes = new Map();
     cartes.forEach(c => { if(c) groupes.set(c, groupePartie(parts.get(c))); });
     return { cartes: cartes, parts: groupes };
@@ -73360,6 +73806,36 @@ function espacerPhrasesEtape(cartes, parts){
     const sortie = cartes.slice();
     refait.forEach((c, k) => { sortie[idx[0] + k] = c; });
     return sortie;
+}
+// Ligne 84 (anti-echo, decisions du 13 nov.) : le tri par partie rapproche une carte-phrase de la carte de son mot
+// (les deux vont dans la partie du mot) -- 30 jours d'A1 mesures : 99 phrases a moins de quatre cartes de leur mot.
+// Une telle phrase recule dans SA partie, a ANTI_ECHO_PHRASE + 1 cartes apres son mot ; jamais avant lui (v1124), jamais
+// hors de sa partie de la barre. Une partie trop courte la laisse ou elle est.
+function eloignerPhrasesDeLeurMot(cartes, parts){
+    const out = cartes.slice();
+    const g = c => groupePartie(parts.get(c));
+    const cle = c => c.themeId + ":" + c.index;
+    const motDe = (liste, c) => liste.findIndex(d => d && d.mode !== "phrase" && cle(d) === cle(c.cible));
+    for(let passe = 0; passe < 2; passe++){
+        for(let i = 0; i < out.length; i++){
+            const c = out[i];
+            // Le bloc d'une dictee et sa dictee gardent leur ordre (v892) : on ne les deplace pas.
+            if(!c || c.mode !== "phrase" || !c.cible || !c.phrase || c.prepaDictee || c.forme === "dictee") continue;
+            const m = motDe(out, c);
+            if(m < 0 || Math.abs(m - i) > ANTI_ECHO_PHRASE) continue;
+            const gr = g(c);
+            let fin = i;
+            while(fin + 1 < out.length && g(out[fin + 1]) === gr) fin++;
+            const reste = out.slice(0, i).concat(out.slice(i + 1));
+            const m2 = motDe(reste, c);
+            const but = m2 + ANTI_ECHO_PHRASE + 1;
+            // fin - 1 : la derniere place de la partie une fois la phrase retiree ; on peut se poser juste apres.
+            if(m2 < 0 || g(reste[m2]) !== gr || but > fin) continue;
+            reste.splice(but, 0, c);
+            for(let k = 0; k < out.length; k++) out[k] = reste[k];
+        }
+    }
+    return out;
 }
 function seancePartsActive(){
     return !!(SEANCE_PARTS && currentCards === SEANCE_PARTS.paquet && currentTheme && currentTheme.id === SEANCE_PARTS.themeId);
@@ -73551,9 +74027,40 @@ function cleArretCourant(){
     const c = currentCards && currentCards[currentFlashcard];
     return c && c.forme === "theme_arret" ? "theme" : c && c.forme === "conv_arret" ? "conv" : "scene";
 }
+// LA PARTIE IMAGES AVANCE PENDANT LA SCENE (Jacques, 12 nov. 2026, espagnol : « quand je suis passe a image, les images
+// n'avancent pas. Donc, la barre image reste noire. »). Le bandeau du cadre n'etait dessine qu'a l'ouverture, et sa partie
+// en cours etait un aplat plein. Elle se remplit maintenant a chaque question de la scene ou du theme (le message
+// « exercice », sur le nombre prevu : le reglage 5 · 8 · 12 qu'on leur passe) et a chaque replique de la conversation
+// (« avance », la part faite). Elle ne recule jamais, et elle est pleine a la fin (« fini »).
+let ARRET_AVANCE = 0, ARRET_EXOS = 0, ARRET_CLE = null;
+function cleArretOuvert(){
+    const c = currentCards && currentCards[currentFlashcard];
+    return c ? c : null;
+}
+function attenduArret(){
+    const c = cleArretOuvert();
+    if(!c) return 0;
+    if(c.forme === "theme_arret") return c.nb || 6;
+    if(c.forme === "conv_arret") return 0;
+    try{ return questionsSeance(); }catch(e){ return 5; }
+}
+function avancerArret(f){
+    if(cleArretOuvert() !== ARRET_CLE){ ARRET_CLE = cleArretOuvert(); ARRET_AVANCE = 0; ARRET_EXOS = 0; }
+    f = Math.max(0, Math.min(1, +f || 0));
+    if(f <= ARRET_AVANCE) return;
+    ARRET_AVANCE = f;
+    try{ poserRepereScene(); }catch(e){}
+}
+function exerciceDansLArret(){
+    if(cleArretOuvert() !== ARRET_CLE){ ARRET_CLE = cleArretOuvert(); ARRET_AVANCE = 0; ARRET_EXOS = 0; }
+    ARRET_EXOS++;
+    const n = attenduArret();
+    if(n > 0) avancerArret(ARRET_EXOS / n);
+}
 function poserRepereScene(){
     const sec = document.getElementById("sceneSeance"), r = segmentsRepere();
     if(!sec) return;
+    if(cleArretOuvert() !== ARRET_CLE){ ARRET_CLE = cleArretOuvert(); ARRET_AVANCE = 0; ARRET_EXOS = 0; }
     sec.classList.toggle("avec-repere", !!r);
     const conv = sceneOuverteDepuis === "arret" && cleArretCourant() === "conv";
     if(!r){ sec.style.background = conv ? fondCadreConversation() : ""; return; }
@@ -73571,7 +74078,10 @@ function poserRepereScene(){
         r.segs.forEach(s => {
             const b = document.createElement("i");
             if(currentFlashcard >= s.debut + s.n) b.className = "fait";
-            else if(currentFlashcard >= s.debut) b.className = "ici";
+            else if(currentFlashcard >= s.debut){
+                b.className = "ici";
+                b.style.setProperty("--q", Math.round(100 * Math.min(s.n, currentFlashcard - s.debut + ARRET_AVANCE) / s.n) + "%");
+            }
             box.appendChild(b);
         });
     }
@@ -73634,13 +74144,18 @@ function majPartsSeance(){
 function dessinerSegmentsSeance(box, segs){
     box.textContent = "";
     const nomme = repereSeanceDispo();
+    // 14 nov. 2026 : au retour d'une scene, d'un theme ou d'une conversation, la barre des cartes compte ce qui y a
+    // ete fait (ARRET_AVANCE, plein a « fini ») -- sinon elle retombait a mi-partie sous l'ecran de fin, alors que le
+    // bandeau du cadre etait plein (tests/images_avancent.py : « la barre recule au retour »).
+    const cArret = currentCards && currentCards[currentFlashcard];
+    const avance = (cArret && /^(scene_arret|theme_arret|conv_arret|pp_scene)$/.test(cArret.forme || "") && ARRET_CLE === cArret) ? ARRET_AVANCE : 0;
     segs.forEach(s => {
         const b = document.createElement("i");
         b.style.flexGrow = nomme ? "1" : String(s.n);   // avec les noms, des colonnes egales
-        if(currentFlashcard >= s.debut + s.n) b.className = "fait";
+        if(currentFlashcard + avance >= s.debut + s.n) b.className = "fait";
         else if(currentFlashcard >= s.debut){
             b.className = "ici";
-            b.style.setProperty("--q", Math.round(100 * (currentFlashcard - s.debut) / s.n) + "%");
+            b.style.setProperty("--q", Math.round(100 * Math.min(s.n, currentFlashcard - s.debut + avance) / s.n) + "%");
         }
         box.appendChild(b);
     });
@@ -73654,8 +74169,105 @@ function groupeCartePP(c){
     const f = (c && c.forme) || "", tid = String((c && c.themeId) || "");
     if(f === "conv_arret") return "conv";
     if(f === "theme_arret" || f === "scene_arret" || f === "pp_scene") return "images";
+    if(f === "pp_tableau" || f === "gram" || (c && c.gramTableau)) return "grammaire";
     if(tid.indexOf("son_") === 0 || tid.indexOf("rp_") === 0 || (c && (c.rpBadge || c.rpTableau))) return "grammaire";
     return "cartes";
+}
+// UNE PARTIE GRAMMAIRE DANS CHAQUE SEANCE (decision de Jacques du 12 nov. 2026 : « Ouais, j'aimerais avoir une partie
+// grammaire dans chaque seance »). Une seance qui a moins de trois cartes de grammaire (palier 1 : les questions « gram »
+// n'arrivent qu'a 60 mots vus ; Premiers pas ; l'escale dont le tableau est deja vu) est completee a trois, AJOUTEES
+// (les mots nouveaux annonces restent justes) : tirees du tableau de l'etape ou de l'escale quand il y en a un, sinon du
+// cours (questionGrammaire, les questions faciles sous 200 mots vus). Rien n'est ecrit a la main. Le profil dose
+// toujours (formesSelonProfil) ; le japonais n'en recoit pas (sa seance ne prend pas de cartes-phrases).
+const GRAMMAIRE_GARANTIE = 3;
+const PRONOMS_TABLEAU = {
+    de: ["ich", "du", "er", "sie", "es", "wir", "ihr", "Sie"],
+    es: ["yo", "tú", "vos", "usted", "él", "ella", "nosotros", "nosotras", "vosotros", "vosotras", "ustedes", "ellos", "ellas"],
+    en: ["I", "you", "he", "she", "it", "we", "they"],
+    pt: ["eu", "tu", "você", "ele", "ela", "nós", "vocês", "eles", "elas"]
+};
+function compterGrammaire(liste){
+    return (liste || []).filter(c => {
+        if(!c) return false;
+        const tid = String(c.themeId || "");
+        return c.forme === "gram" || c.forme === "pp_tableau" || c.gramTableau || c.avTableau || c.rpBadge || c.rpTableau
+            || c.fcBadge || c.fcFeuille || c.feuilleTemps || tid.indexOf("rp_") === 0 || tid.indexOf("son_") === 0;
+    }).length;
+}
+// Les questions d'un tableau (Premiers pas, escale de l'A1 voyage). Un verbe : « du ___ », trois formes du tableau, une
+// seule juste -- une forme n'est jamais proposee si une autre ligne du tableau la donne a un des pronoms de la question
+// (« sie ___ » : ni « ist », qui est aussi « sie ist », ni rien d'autre que « sind »). Une ligne sans pronom (« voy »,
+// « Wo? », « zwanzig ») : son sens parmi trois sens differents du tableau.
+function questionsDeTableau(tableau, n){
+    const lignes = ((tableau && tableau.l) || []).filter(l => Array.isArray(l) && l[0] && l[1]);
+    const pronoms = PRONOMS_TABLEAU[LANGUE_APPRISE] || [];
+    const bas = x => String(x).toLowerCase();
+    const decoupe = lignes.map(l => {
+        const m = /^(.+?)\s+(\S+)$/.exec(String(l[0]).trim());
+        if(!m) return null;
+        const pr = m[1].split(/\s*·\s*/);
+        if(!pr.every(x => pronoms.indexOf(x) >= 0) || /[·…?¿!]/.test(m[2])) return null;
+        return { pr: pr.map(bas), forme: m[2], sens: sensPremiersPas(l[1]), ligne: l };
+    });
+    const conj = [], sens = [];
+    decoupe.forEach((d, i) => {
+        if(d){
+            const interdites = new Set(decoupe.filter(e => e && e.pr.some(x => d.pr.indexOf(x) >= 0)).map(e => e.forme));
+            const autres = [];
+            decoupe.forEach(e => { if(e && !interdites.has(e.forme) && autres.indexOf(e.forme) < 0) autres.push(e.forme); });
+            if(autres.length >= 2){
+                const pronom = String(lignes[i][0]).trim().replace(/\s+\S+$/, "");
+                conj.push({ question: pronom + " ___", translation: d.sens, answers: [d.forme], correct: d.forme,
+                            options: melangerPhrase([d.forme].concat(melangerPhrase(autres).slice(0, 2))) });
+                return;
+            }
+        }
+        const s0 = sensPremiersPas(lignes[i][1]);
+        const autres = [];
+        lignes.forEach(l => { const s1 = sensPremiersPas(l[1]); if(bas(s1) !== bas(s0) && autres.every(a => bas(a) !== bas(s1))) autres.push(s1); });
+        if(autres.length >= 2 && lignes.filter(l => l[0] === lignes[i][0]).length === 1)
+            sens.push({ sens: true, question: String(lignes[i][0]), answers: [s0], correct: s0,
+                        options: melangerPhrase([s0].concat(melangerPhrase(autres).slice(0, 2))) });
+    });
+    return melangerPhrase(conj).concat(melangerPhrase(sens)).slice(0, n).map((ex, k) => ({
+        mode: "phrase", forme: "gram", ex: ex, jeu: null, cible: null, gramTableau: true, q: ex.sens ? "cp_q_sens" : undefined,
+        themeId: "gram_tableau", index: k, phrase: null, word: "" }));
+}
+function questionsDuCours(n, nVus){
+    const out = [], vues = new Set();
+    for(let essai = 0; out.length < n && essai < n * 8; essai++){
+        const q = questionGrammaire(nVus);
+        if(!q || vues.has(q.ex)) continue;
+        vues.add(q.ex);
+        out.push({ mode: "phrase", forme: "gram", ex: q.ex, jeu: q.nom, cible: null,
+                   themeId: "gram_cours", index: out.length, phrase: null, word: "" });
+    }
+    return out;
+}
+async function assurerGrammaireSeance(seance, tableau, nVus){
+    if(LANGUE_APPRISE === "ja" || !seance || !seance.length) return seance;
+    // Trois cartes de grammaire au moins (cinq au profil « regles », qui en veut plus) : le tableau, les reperes, le son
+    // du jour et les questions deja tirees comptent.
+    let profil = null;
+    try{ profil = profilActif(); }catch(e){}
+    const manque = (profil && profil.f === "regles" ? GRAMMAIRE_GARANTIE + 2 : GRAMMAIRE_GARANTIE) - compterGrammaire(seance);
+    if(manque <= 0) return seance;
+    let ajout = [];
+    try{ if(tableau) ajout = questionsDeTableau(tableau, manque); }catch(e){ ajout = []; }
+    if(ajout.length < manque){
+        // exercices.json est precharge 700 ms apres l'accueil : en pratique deja la. Sinon, 2,5 s au plus -- la barre
+        // est fixee des la premiere carte, la grammaire ne peut pas arriver apres.
+        try{
+            const attente = new Promise(r => setTimeout(r, 2500));
+            await Promise.race([prechargerGrammaireSeance().catch(() => {}), attente]);
+        }catch(e){}
+        try{ ajout = ajout.concat(questionsDuCours(manque - ajout.length, nVus)); }catch(e){}
+    }
+    if(!ajout.length) return seance;
+    // Avant le premier arret (la scene de l'etape ferme la seance de Premiers pas : ce qui la suit n'est pas joue).
+    let i = seance.findIndex(c => c && /^(pp_scene|pp_fin|scene_arret|theme_arret|conv_arret)$/.test(c.forme || ""));
+    if(i < 0) i = seance.length;
+    return seance.slice(0, i).concat(ajout, seance.slice(i));
 }
 function partsPremiersPas(paquet){
     const parts = new Map();
@@ -73669,12 +74281,18 @@ function partsPremiersPas(paquet){
 // theme passe avant la scene de l'etape, qui ferme la seance (et que la conversation suit).
 function ordonnerPremiersPas(items){
     const iEtape = items.findIndex(c => c && c.forme === "pp_scene");
+    // 12 nov. 2026 (Jacques, « Oui, les deux ») : au profil « ce que je vois », deux scenes (la scene de l'etape compte).
+    let images = false;
+    try{ const pr = profilActif(); images = !!(pr && pr.f === "images"); }catch(e){}
+    let place = (images ? 2 : 1) - (iEtape >= 0 ? 1 : 0);
     let liste;
     if(iEtape >= 0){
-        liste = items.filter((c, i) => (i <= iEtape || (c && /^(theme_arret|conv_arret)$/.test(c.forme || ""))) && !(c && c.forme === "scene_arret"));
+        liste = items.filter((c, i) => {
+            if(c && c.forme === "scene_arret"){ if(i > iEtape || place <= 0) return false; place--; return true; }
+            return i <= iEtape || (c && /^(theme_arret|conv_arret)$/.test(c.forme || ""));
+        });
     } else {
-        let vue = false;
-        liste = items.filter(c => { if(c && c.forme === "scene_arret"){ if(vue) return false; vue = true; } return true; });
+        liste = items.filter(c => { if(c && c.forme === "scene_arret"){ if(place <= 0) return false; place--; } return true; });
     }
     const rang = { cartes: 0, grammaire: 1, images: 2, conv: 3 };
     const rangImage = c => c.forme === "scene_arret" ? 0 : c.forme === "theme_arret" ? 1 : 2;
@@ -73811,7 +74429,10 @@ function planSeanceDuJour(){
     const scene = [];
     try{
         if(total >= 2){   // v1127 : le seuil de preparerArretScene dans la seance du jour
-            if(arretSceneActif()) scene.push("seance_plan_scene");
+            // 12 nov. 2026 : deux scenes par lecon au profil « images » (preparerArretScene).
+            let deux = false;
+            try{ const pr = profilActif(); deux = !!(pr && pr.f === "images") && seanceLegere(); }catch(e){}
+            if(arretSceneActif()) scene.push(deux ? "seance_plan_scenes_deux" : "seance_plan_scene");
             if(themeDuJour()) scene.push("seance_plan_theme");
         }
     }catch(e){}
@@ -74231,6 +74852,8 @@ function etatSeanceAccueil(){
     if(der && !der.f && (der.p || 0) > 0) return "entamee";
     let n = 0;
     try{ n = seancesFiniesAujourdhui(); }catch(e){}
+    // 14 nov. 2026 : une « Encore une seance » ouverte puis quittee avant sa premiere carte se reprend aussi.
+    if(n >= 1){ try{ if(seanceAReprendre()) return "entamee"; }catch(e){} }
     return n >= 1 ? "faite" : "neuve";
 }
 // Le bouton de la carte de la seance : « Commencer la seance », « Continuer la seance », ou, la seance faite,
@@ -77037,6 +77660,8 @@ function nextFlashcard(){
         const finitSurTheme = currentCards.some(c => c && c.forme === "theme_arret");
         const rattrapage = cartes => {
             if(SEANCE_PARTS) SEANCE_PARTS.rattrapage = true;   // la fin de ce paquet est bien celle de la seance
+            // La seance en cours (reprise du 14 nov.) suit son rattrapage : sortir pendant lui y ramene.
+            try{ if(SEANCE_MEMO && SEANCE_MEMO.paquet === currentCards){ SEANCE_MEMO.paquet = cartes; SEANCE_MEMO.rattrapage = true; } }catch(e){}
             currentCards = cartes;
             currentFlashcard = 0;
             loadFlashcard();
