@@ -175,6 +175,19 @@ C'est le même piège que l'allemand, langue d'interface de l'espagnol (« de-co
 Les Soins ne vivent que dans `apprendre=de`, ce qui limite le risque. `champEs()` ne s'applique
 aujourd'hui qu'à l'anglais appris : la session de l'espagnol l'étendra à l'allemand.
 
+**Tranché le 15 nov. par la session de l'espagnol d'interface** :
+- **le code est « es »**, côté interface (`getUiLang()`) comme côté données : `traduction_es`, `exemple_es`, la clé
+  `"es"` des unités, le dossier `pflege/sources/traductions/es/` ;
+- on passe par la mécanique ordinaire `texteTraduit()`, avec le repli es → en → fr pour l'allemand appris ;
+- pas de champ `_esp` pour l'instant : l'Amérique latine seule ;
+- **c'est cette session qui ajoutera « es » à `LANGUES`**, au lot 7, une fois le contenu des Soins figé, avec relecture.
+  D'ici là, on n'y touche pas : `tests/pflege.py` réclamerait 10 langues.
+
+Elle signale aussi un piège : `praesens.er_sie_es` (le pronom allemand « es ») apparaît 1 498 fois dans
+`verbe.json` et `themes.json`. Un filtre par suffixe (`endswith('_es')`) le prendrait pour une traduction. Les
+outils des Soins comparent la clé entière (`k in LANGUES`), ils ne sont pas touchés. Le lecteur des dialogues
+(`conversation.html`) devra recevoir « es » dans `LANGUES_UI` et un bloc `UI_SOINS.es`.
+
 La variété : le recrutement vient d'Amérique latine (Mexique, Colombie), et le vocabulaire des soins y
 diffère parfois de l'Espagne (« curita » / « tirita », « suero »…). Le défaut « latam » de l'anglais
 convient. Un champ `_esp` n'est nécessaire que là où l'Espagne dit autrement. La traduction des 2 055
