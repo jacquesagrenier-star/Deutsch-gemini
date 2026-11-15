@@ -11651,7 +11651,12 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <div class="pill">telc B1·B2 Pflege</div>
     </div>
     <div class="card" style="margin-top:15px;">
-        <p class="soins-chapeau">L'allemand des soignants : les mots du service, par niveau, et l'examen blanc du telc Deutsch B1·B2 Pflege. Les scènes, les dialogues, la grammaire du métier et l'écrit arrivent ensuite.</p>
+        <p class="soins-chapeau">L'allemand des soignants : parler aux patients, aux familles, à l'équipe et au médecin ; les mots du service, par niveau ; les scènes ; l'examen blanc du telc Deutsch B1·B2 Pflege. La grammaire du métier et l'écrit arrivent ensuite.</p>
+        <div class="soins-examen">
+            <strong>Les dialogues du service</strong>
+            <div class="soins-sous">Tu joues la soignante ou le soignant : tu choisis ta réponse, ou tu la dis au micro, et l'autre te répond.</div>
+            <button class="primary" onclick="ouvrirDialoguesSoins()">Jouer un dialogue</button>
+        </div>
         <div class="soins-examen">
             <strong>telc Deutsch B1·B2 Pflege</strong>
             <div id="soinsDernierExamen" class="soins-sous"></div>
@@ -57466,6 +57471,55 @@ function ouvrirSceneSoins(nom){
     sceneOuverteDepuis = "soins";
 }
 
+// LE DIALOGUE DANS LA SEANCE D'UN COMPTE SOINS (15 nov. 2026, meme decision) : chaque seance du jour finit par un
+// dialogue du service, sa partie a lui (« conv », Conversations), comme la conversation d'une etape de Premiers pas
+// (conv_arret). La page le choisit (c=auto) : d'abord ceux qu'on n'a jamais joues, A2 et B1 puis B2 (le compte vise le
+// B2), puis le plus anciennement joue. Joue = fini par « Continuer » (« fini » de la page) ; la liste vit sur
+// l'appareil (SOINS_DIALOGUES_KEY), comme les examens blancs, et n'entre pas dans la sauvegarde.
+const SOINS_DIALOGUES_KEY = PREFIXE_STOCKAGE + "soinsDialogues";
+let dialogueSoinsOuvert = null;
+function dialoguesSoinsJoues(){
+    try{ const l = JSON.parse(localStorage.getItem(SOINS_DIALOGUES_KEY) || "[]"); return Array.isArray(l) ? l.filter(x => typeof x === "string").slice(-40) : []; }
+    catch(e){ return []; }
+}
+function marquerDialogueSoinsJoue(id){
+    if(!id || typeof id !== "string" || !/^soins_dlg_[a-z0-9_]+$/.test(id)) return;
+    const l = dialoguesSoinsJoues().filter(x => x !== id);
+    l.push(id);
+    try{ localStorage.setItem(SOINS_DIALOGUES_KEY, JSON.stringify(l.slice(-40))); }catch(e){}
+}
+function insererDialogueSoins(seance){
+    if(!seance || seance.length < 2) return seance;
+    try{ if(!soinsActifs()) return seance; }catch(e){ return seance; }
+    try{ if(premiersPasEnCours()) return seance; }catch(e){}
+    if(seance.some(c => c && c.forme === "conv_arret")) return seance;
+    const item = { mode: "phrase", forme: "conv_arret", soins: true, cible: null, themeId: "conv_arret", index: 0,
+                   conversation: "auto", phrase: null, word: "" };
+    const sortie = seance.slice();
+    let i = sortie.length;
+    while(i > 0 && sortie[i - 1] && /^pp_(scene|fin)$/.test(sortie[i - 1].forme || "")) i--;
+    sortie.splice(i, 0, item);
+    return sortie;
+}
+
+// LES DIALOGUES DU SERVICE (15 nov. 2026, decision de Jacques : « etoffer », la communication au coeur) : les dialogues
+// de pflege/datos/dialogues.json joues dans le lecteur des conversations (visuel/prototype/conversation.html,
+// ?soins=1), qui a deja leur format de noeuds. La page va d'elle-meme de la liste a un dialogue et retour ; « fermer »
+// ramene a l'ecran Soins. Aucune voix enregistree pour l'instant : la voix du telephone.
+function ouvrirDialoguesSoins(id){
+    if(!soinsActifs()) return;
+    sceneOuverteDepuis = "soins-dialogues";
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre){
+        cadre.title = "Les dialogues du service";
+        chargerCadre(cadre, baseScenes() + "conversation.html?soins=1&apprendre=de&lang=" + encodeURIComponent(getUiLang())
+                  + (id ? "&c=" + encodeURIComponent(id) : "")
+                  + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
+                  + "&t=" + Date.now());
+    }
+    showScreen("sceneSeance");
+}
+
 // L'examen blanc telc Pflege : une page a part, sur le modele du telc A2·B1 (ouvrirTelc), construite par la
 // session « examen » dans visuel/prototype/telc-pflege/. Son entree dans l'ecran Soins viendra a l'integration,
 // quand la page existera.
@@ -68401,10 +68455,21 @@ window.addEventListener("message", (e) => {
     const dansLArret = sceneOuverteDepuis === "arret" || sceneOuverteDepuis === "premiers_pas";
     if(d.type === "avance"){ if(dansLArret) avancerArret(d.f); return; }
     if(dansLArret && d.type === "exercice"){ try{ exerciceDansLArret(); }catch(err){} }
+    // Le dialogue des Soins que la page a choisi (c=auto), puis sa fin : il compte comme joue.
+    if(d.type === "dialogue"){ if(dansLArret) dialogueSoinsOuvert = String(d.id || ""); return; }
+    if(dansLArret && d.type === "fini" && dialogueSoinsOuvert){ marquerDialogueSoinsJoue(dialogueSoinsOuvert); dialogueSoinsOuvert = null; }
     if(dansLArret && d.type === "fini"){ try{ avancerArret(1); }catch(err){} }
     if(sceneOuverteDepuis === "conversations"){
         if(d.type === "micro") microPourCadre(d, e);
         else if(d.type === "fermer"){ try{ ouvrirToutLeContenu(); }catch(err){ goHome(); } }
+        return;
+    }
+    // Les dialogues du service (Wortando Pflege, 15 nov.) : comme la tuile Conversations, mais retour aux Soins ; rien
+    // ne compte pour la seance du jour depuis l'ecran Soins. « fini » arrive avec la carte de fin de la page (le bilan,
+    // les erreurs corrigees) : seul « fermer » (Terminer, ‹) ramene aux Soins.
+    if(sceneOuverteDepuis === "soins-dialogues"){
+        if(d.type === "micro") microPourCadre(d, e);
+        else if(d.type === "fermer"){ try{ ouvrirSoins(); }catch(err){ goHome(); } }
         return;
     }
     if(d.type === "fini" && d.faits > 0 && d.bons === d.faits && sceneOuverteDepuis !== "admin"){
@@ -71778,11 +71843,15 @@ function insererConversationPP(items){
 // l'ecran de fin et l'etoile).
 function ouvrirArretConversation(item){
     sceneOuverteDepuis = "arret";
+    dialogueSoinsOuvert = null;
     const cadre = document.getElementById("sceneCadre");
     const appris = ["de", "es", "en"].indexOf(LANGUE_APPRISE) >= 0 ? LANGUE_APPRISE : "de";
+    // Le dialogue des Soins (insererDialogueSoins) : la page le choisit elle-meme (c=auto) parmi ceux qu'on n'a pas
+    // encore joues (joues=, du plus ancien au plus recent), et nous dit lequel (« dialogue »).
+    const soins = item.soins ? "&soins=1&joues=" + encodeURIComponent(dialoguesSoinsJoues().join(",")) : "";
     if(cadre){
         cadre.title = t("orb_conversations");
-        chargerCadre(cadre, baseScenes() + "conversation.html?seance=1&c=" + encodeURIComponent(item.conversation) + "&apprendre=" + appris
+        chargerCadre(cadre, baseScenes() + "conversation.html?seance=1&c=" + encodeURIComponent(item.conversation) + soins + "&apprendre=" + appris
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + (appris === "en" && VARIANTE_ANGLAIS === "gb" ? "&variante=gb" : "")
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
@@ -73820,6 +73889,8 @@ async function ouvrirSeanceDuJour(sansScene){
     // 3 nov. 2026 : un jour sur trois, un theme illustre a la place de cet arret (themeDuJour).
     // 7 nov. 2026 (decision 6fda9e0) : le theme EN PLUS de la scene, chaque jour, A1 voyage compris.
     try{ seance = insererThemeIllustre(seance); }catch(e){}
+    // 15 nov. 2026 (Wortando Pflege) : un dialogue du service, pour un compte ouvert aux Soins.
+    try{ seance = insererDialogueSoins(seance); }catch(e){}
     try{ if(av) seance = insererA1Voyage(seance, av); }catch(e){}
     try{ if(fc && seance.length) seance = insererFeuille(seance, fc, tout); }catch(e){}
     // v879 : les reperes (jours, mois, nombres), tot dans l'A1.
