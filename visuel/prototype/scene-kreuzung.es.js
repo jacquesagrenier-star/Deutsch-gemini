@@ -1917,10 +1917,10 @@ window.SCENE = {
     "C1": "Hypotheses and probability"
    },
    "questions": {
-    "A2 | La farmacia está entre la panadería y la oficina de correos.": "<b>entre</b> = between, with no « de »: entre la panadería y la oficina de correos.",
+    "A2 | La farmacia está entre la panadería y la oficina de correos.": "<b>entre</b> = between, with no “de”: entre la panadería y la oficina de correos.",
     "A2 | La cafetería está en la esquina.": "On the corner: <b>en la esquina</b>. Location takes <b>estar</b>.",
     "A2 | La panadería está enfrente del quiosco.": "<b>enfrente de</b> = opposite. de + el = <b>del</b>: enfrente <b>del</b> quiosco.",
-    "A2 | Delante de la oficina de correos hay un buzón.": "To say what there is, without « the » → <b>hay</b> + un / una.",
+    "A2 | Delante de la oficina de correos hay un buzón.": "To say what there is, without the definite article → <b>hay</b> + un / una.",
     "A2 | La mujer del abrigo rojo espera en la parada.": "<b>en</b> = at, in: where someone is (en la parada).",
     "A2 | El ciclista va por la ciclovía.": "<b>por</b> = along, the way you go: va <b>por</b> el carril bici.",
     "A2 | El ciclista va por el carril bici.": "<b>por</b> = along, the way you go: va <b>por</b> el carril bici.",
