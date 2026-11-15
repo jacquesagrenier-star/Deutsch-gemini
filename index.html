@@ -8135,6 +8135,13 @@ body[data-theme="dark"] #seancePilule, body[data-theme="dark"] #seancePilule .pa
 body[data-theme="dark"] #seancePilule .pa-entrer svg{stroke:#0B2230;}
 @media (prefers-reduced-motion: reduce){ #seancePilule{animation:none;} }
 .explorer-v.verrou::after{content:"🔒"; position:absolute; top:4px; inset-inline-end:4px; font-size:12px;}
+/* ligne 86 (15 nov. 2026) : « Gratuit » sur ce qui reste ouvert en version gratuite -- ambre clair, encre foncee */
+.explorer-v.gratuit::after{content:attr(data-gratuit); position:absolute; top:4px; inset-inline-start:4px; max-width:58px;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:9.5px; font-weight:800; line-height:1;
+    padding:3px 5px; border-radius:999px; background:#FBE7C2; color:#5A3A08;}
+.orb-opt-count.gratuit{background:#FBE7C2; color:#5A3A08; letter-spacing:.02em;}
+body[data-theme="dark"] .explorer-v.gratuit::after,
+body[data-theme="dark"] .orb-opt-count.gratuit{background:#5A3D12; color:#FFE3B0;}
 body[data-theme="dark"] .explorer-scenes{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14);}
 body[data-theme="dark"] .explorer-desc{color:rgba(255,255,255,.72);}
 body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
@@ -16905,6 +16912,7 @@ const I18N = {
         abo_confidentialite: "Confidentialité",
         abo_apercu: "Aperçu : le paiement n'est pas encore branché.",
         abo_fermer: "Fermer",
+        gratuit_etiquette: "Gratuit",
         essai_compteur: "Essai gratuit · encore {n} jours",
         essai_compteur_dernier: "Essai gratuit · dernier jour",
         essai_rappel_titre: "Plus que {n} jours d'essai",
@@ -18734,6 +18742,7 @@ const I18N = {
         abo_confidentialite: "Privacy",
         abo_apercu: "Preview: payment is not connected yet.",
         abo_fermer: "Close",
+        gratuit_etiquette: "Free",
         essai_compteur: "Free trial · {n} days left",
         essai_compteur_dernier: "Free trial · last day",
         essai_rappel_titre: "{n} days of your trial left",
@@ -20507,6 +20516,7 @@ const I18N = {
         abo_confidentialite: "Gizlilik",
         abo_apercu: "Önizleme: ödeme henüz bağlı değil.",
         abo_fermer: "Kapat",
+        gratuit_etiquette: "Ücretsiz",
         essai_compteur: "Ücretsiz deneme · {n} gün kaldı",
         essai_compteur_dernier: "Ücretsiz deneme · son gün",
         essai_rappel_titre: "Denemenin bitmesine {n} gün kaldı",
@@ -21474,6 +21484,7 @@ const I18N = {
         abo_confidentialite: "Конфіденційність",
         abo_apercu: "Попередній перегляд: оплату ще не підключено.",
         abo_fermer: "Закрити",
+        gratuit_etiquette: "Безкоштовно",
         essai_compteur: "Безкоштовний період · залишилось днів: {n}",
         essai_compteur_dernier: "Безкоштовний період · останній день",
         essai_rappel_titre: "До кінця пробного періоду днів: {n}",
@@ -23678,6 +23689,7 @@ const I18N = {
         abo_confidentialite: "حریم خصوصی",
         abo_apercu: "پیش‌نمایش: پرداخت هنوز وصل نشده است.",
         abo_fermer: "بستن",
+        gratuit_etiquette: "رایگان",
         essai_compteur: "دورهٔ آزمایشی رایگان · {n} روز مانده",
         essai_compteur_dernier: "دورهٔ آزمایشی رایگان · روز آخر",
         essai_rappel_titre: "فقط {n} روز از دورهٔ آزمایشی مانده",
@@ -25308,6 +25320,7 @@ const I18N = {
         abo_confidentialite: "الخصوصية",
         abo_apercu: "معاينة: الدفع غير مفعّل بعد.",
         abo_fermer: "إغلاق",
+        gratuit_etiquette: "مجاني",
         essai_compteur: "تجربة مجانية · الأيام المتبقية: {n}",
         essai_compteur_dernier: "تجربة مجانية · اليوم الأخير",
         essai_rappel_titre: "الأيام المتبقية من تجربتك: {n}",
@@ -27761,6 +27774,7 @@ const I18N = {
         abo_confidentialite: "Privacidade",
         abo_apercu: "Prévia: o pagamento ainda não está ligado.",
         abo_fermer: "Fechar",
+        gratuit_etiquette: "Grátis",
         essai_compteur: "Teste grátis · faltam {n} dias",
         essai_compteur_dernier: "Teste grátis · último dia",
         essai_rappel_titre: "Faltam {n} dias de teste",
@@ -29597,6 +29611,7 @@ const I18N = {
         abo_confidentialite: "Prywatność",
         abo_apercu: "Podgląd: płatności nie są jeszcze podłączone.",
         abo_fermer: "Zamknij",
+        gratuit_etiquette: "Bezpłatne",
         essai_compteur: "Darmowy okres próbny · zostało dni: {n}",
         essai_compteur_dernier: "Darmowy okres próbny · ostatni dzień",
         essai_rappel_titre: "Do końca okresu próbnego zostało dni: {n}",
@@ -31436,6 +31451,7 @@ const I18N = {
         abo_confidentialite: "Конфиденциальность",
         abo_apercu: "Предпросмотр: оплата ещё не подключена.",
         abo_fermer: "Закрыть",
+        gratuit_etiquette: "Бесплатно",
         essai_compteur: "Бесплатный период · осталось дней: {n}",
         essai_compteur_dernier: "Бесплатный период · последний день",
         essai_rappel_titre: "До конца пробного периода дней: {n}",
@@ -33274,6 +33290,7 @@ const I18N = {
         abo_confidentialite: "Datenschutz",
         abo_apercu: "Vorschau: Die Zahlung ist noch nicht angeschlossen.",
         abo_fermer: "Schließen",
+        gratuit_etiquette: "Gratis",
         essai_compteur: "Gratis-Test · noch {n} Tage",
         essai_compteur_dernier: "Gratis-Test · letzter Tag",
         essai_rappel_titre: "Noch {n} Tage Testzeit",
@@ -35125,6 +35142,7 @@ const I18N = {
         abo_confidentialite: "Privacidad",
         abo_apercu: "Vista previa: el pago aún no está conectado.",
         abo_fermer: "Cerrar",
+        gratuit_etiquette: "Gratis",
         essai_compteur: "Prueba gratis · quedan {n} días",
         essai_compteur_dernier: "Prueba gratis · último día",
         essai_rappel_titre: "Quedan {n} días de prueba",
@@ -49729,6 +49747,8 @@ function renderOrbPanel(){
     const options = optionsVisibles(data.options).map(o => {
         if(complet) return o;
         if(!optionGratuite(openOrbId, o)) return Object.assign({}, o, { verrou: true, count: "🔒" });
+        if(openOrbId === "themes_illustres" || openOrbId === "scenes")   // ligne 86 : l'etiquette « Gratuit »
+            return Object.assign({}, o, { gratuit: true, count: t("gratuit_etiquette") });
         if(GRATUIT.exercices[openOrbId] === o.action)
             return Object.assign({}, o, { count: String(GRATUIT.exercicesGrammaire) });
         return o;
@@ -49754,7 +49774,7 @@ function renderOrbPanel(){
                     <div class="orb-opt-desc">${o.desc}</div>
                 </div>
             </div>
-            ${o.count ? `<div class="orb-opt-count">${o.count}</div>` : `<div class="orb-opt-arrow">›</div>`}
+            ${o.count ? `<div class="orb-opt-count${o.gratuit ? " gratuit" : ""}">${o.count}</div>` : `<div class="orb-opt-arrow">›</div>`}
         </div>
     `;
 
@@ -53186,9 +53206,14 @@ const GRATUIT = {
     },
     // LES PAGES EN CADRE GRATUITES (ligne 86, 13 nov. 2026) : « theme:<nom> » (THEMES_ILLUSTRES), « conversation:<id> »
     // (une conversation ; la tuile s'ouvre s'il y en a au moins une), « telc » (la page du telc), « scene:<nom> ».
-    // VIDE d'abord (le chef, 13 nov. : tout payant en version gratuite) ; les choix de vitrine de Jacques s'y
-    // ajoutent. La classe (scene:klassenzimmer) est deja gratuite depuis le 2 oct. : voir PAGES_GRATUITES_DECIDEES.
-    portes: [],
+    // LA VITRINE, tranchee par Jacques le 15 nov. (decisions d9628e9, « Vas-y avec ta recommandation ») : deux themes
+    // illustres (la famille, le corps), les 4 conversations de Premiers pas (CONVERSATIONS_PREMIERS_PAS), deux scenes
+    // en rotation dans la seance (la classe, deja gratuite depuis le 2 oct. -- PAGES_GRATUITES_DECIDEES --, et le
+    // restaurant) ; le telc reste ferme (l'echantillon des epreuves communes reste gratuit).
+    // Ce qui est ouvert porte l'etiquette « Gratuit » en version gratuite (etiquetteGratuite), le reste le cadenas.
+    portes: ["theme:familia", "theme:cuerpo",
+             "conversation:pp1-pass", "conversation:pp2-cafe", "conversation:pp5-hotel", "conversation:pp6-achats",
+             "scene:restaurant"],
     // Les portes d'un panneau qui restent ouvertes parce qu'elles verifient
     // elles-memes (themes, niveaux de verbes et d'adjectifs), ou parce
     // qu'elles menent a la serie gratuite (la lecon des adjectifs).
@@ -53424,6 +53449,12 @@ const PAGES_GRATUITES_DECIDEES = ["scene:klassenzimmer"];   // la classe, gratui
 function pageOuverte(id){
     if(accesComplet()) return true;
     return PAGES_GRATUITES_DECIDEES.indexOf(id) >= 0 || (GRATUIT.portes || []).indexOf(id) >= 0;
+}
+// L'ETIQUETTE « GRATUIT » (exigence de Jacques, 15 nov. : « que ce soit clair... qu'est-ce que c'est gratuit ») : en
+// version gratuite seulement, sur ce qui reste ouvert parmi les themes illustres, les scenes et les conversations ;
+// le cadenas est sur le reste. Rien pendant les 7 jours offerts ni pour un abonne : tout y est ouvert.
+function etiquetteGratuite(id){
+    return !accesComplet() && pageOuverte(id);
 }
 // « conversation: » : au moins une page de cette famille est ouverte.
 function famillePageOuverte(prefixe){
@@ -53896,6 +53927,11 @@ function optionGratuite(panneau, o){
     // ligne 86 : un theme illustre n'est ouvert que s'il est dans GRATUIT.portes
     if(panneau === "themes_illustres" && /^ouvrirThemePanneau_/.test(o.action || ""))
         return pageOuverte("theme:" + o.action.replace("ouvrirThemePanneau_", ""));
+    // et une scene seulement si elle est ouverte (la classe, le restaurant : la vitrine du 15 nov.)
+    if(panneau === "scenes"){
+        const sc = SCENES_TOUTES.find(x => x.ouvrir === o.action);
+        if(sc) return pageOuverte("scene:" + sc.nom);
+    }
     if(o.section === "comprendre" || o.section === "ailleurs") return true;
     if(GRATUIT.portesOuvertes.indexOf(o.action) >= 0) return true;
     return GRATUIT.exercices[panneau] === o.action;
@@ -68204,6 +68240,8 @@ function majExplorerScenes(){
     // page change donc chaque jour.
     const liste = [jour].concat(autres.slice(decalage).concat(autres.slice(0, decalage)));
     const complet = accesComplet();
+    // ligne 86 : en version gratuite, les scenes ouvertes d'abord, pour que le gratuit se voie d'un coup d'oeil
+    if(!complet) liste.sort((a, b) => (pageOuverte("scene:" + b.nom) ? 1 : 0) - (pageOuverte("scene:" + a.nom) ? 1 : 0));
     ruban.innerHTML = "";
     // v1043 : LES VIGNETTES CHARGEES D'AVANCE. Jacques, iPhone, 31 oct. 2026 : « Lorsqu'on glisse les
     // scenes [...] il y a comme un petit medaillon beige qui apparait [...] a chaque fois que je rentre
@@ -68214,8 +68252,9 @@ function majExplorerScenes(){
     liste.forEach(s => {
         const b = document.createElement("button");
         b.type = "button";
-        const ouverte = complet || GRATUIT.portesOuvertes.indexOf(s.ouvrir) >= 0;
-        b.className = "explorer-v" + (ouverte ? "" : " verrou");
+        const ouverte = complet || pageOuverte("scene:" + s.nom);
+        b.className = "explorer-v" + (ouverte ? "" : " verrou") + (etiquetteGratuite("scene:" + s.nom) ? " gratuit" : "");
+        if(!complet && ouverte) b.dataset.gratuit = t("gratuit_etiquette");
         const img = document.createElement("img");
         img.loading = rang++ < 8 ? "eager" : "lazy"; img.decoding = "async"; img.alt = ""; img.src = vignetteScene(s.nom);
         const sp = document.createElement("span");
@@ -68267,11 +68306,16 @@ function majExplorerThemes(){
     if(ruban.dataset.cle === cle && ruban.children.length) return;
     ruban.dataset.cle = cle;
     ruban.innerHTML = "";
-    noms.forEach(nom => {
+    // ligne 86 : en version gratuite, les themes ouverts d'abord (copie : noms sert aussi a la cle)
+    const ordre = accesComplet() ? noms
+        : noms.slice().sort((a, b) => (pageOuverte("theme:" + b) ? 1 : 0) - (pageOuverte("theme:" + a) ? 1 : 0));
+    ordre.forEach(nom => {
         const th = THEMES_ILLUSTRES[nom];
         const b = document.createElement("button");
         b.type = "button";
-        b.className = "explorer-v" + (pageOuverte("theme:" + nom) ? "" : " verrou");   // ligne 86
+        b.className = "explorer-v" + (pageOuverte("theme:" + nom) ? "" : " verrou")   // ligne 86
+                    + (etiquetteGratuite("theme:" + nom) ? " gratuit" : "");
+        if(etiquetteGratuite("theme:" + nom)) b.dataset.gratuit = t("gratuit_etiquette");
         const img = document.createElement("img");
         img.alt = ""; img.src = baseScenes() + "themes/" + nom + ".webp";
         const sp = document.createElement("span");
@@ -68655,6 +68699,7 @@ function anneauDuPalier(bloc, multiple){
 }
 
 function ouvrirSceneLibre(nom){
+    if(!pageOuverte("scene:" + nom)){ ouvrirAbonnement(); return; }   // ligne 86, en defense
     sceneOuverteDepuis = "libre";
     const cadre = document.getElementById("sceneCadre");
     if(cadre){

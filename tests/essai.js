@@ -217,7 +217,19 @@ CLES.forEach(k => {
 // ---------- 9. Les pages en cadre (ligne 86, 13 nov. 2026) ----------
 // A : la garde aux portes, inerte avant la sortie. B : la poignee de main dans les pages.
 verifier(/function pageOuverte\(id\)\{\s*if\(accesComplet\(\)\) return true;/.test(source), "pageOuverte : tout est ouvert en acces complet (donc avant la sortie)");
-verifier(/portes: \[\],/.test(source), "GRATUIT.portes est vide d'abord (decision du chef du 13 nov.)");
+verifier(/portes: \["theme:familia", "theme:cuerpo",\s*"conversation:pp1-pass", "conversation:pp2-cafe", "conversation:pp5-hotel", "conversation:pp6-achats",\s*"scene:restaurant"\],/.test(source),
+    "GRATUIT.portes = la vitrine de Jacques du 15 nov. (famille, corps, 4 conversations de Premiers pas, restaurant)");
+verifier(/PAGES_GRATUITES_DECIDEES = \["scene:klassenzimmer"\]/.test(source), "la classe reste gratuite (2 oct.)");
+verifier(!/"telc"/.test((source.match(/portes: \[[^\]]*\]/) || [""])[0]), "le telc reste ferme (4a)");
+verifier(/function etiquetteGratuite\(id\)\{\s*return !accesComplet\(\) && pageOuverte\(id\);/.test(source), "l'etiquette « Gratuit » seulement en version gratuite");
+verifier((source.match(/^\s+gratuit_etiquette: "/mg) || []).length === 11, "gratuit_etiquette dans les 11 langues d'interface");
+verifier(/if\(panneau === "scenes"\)\{\s*const sc = SCENES_TOUTES\.find/.test(source), "les scenes du panneau gardees par leur nom");
+verifier(/function ouvrirSceneLibre\(nom\)\{\s*if\(!pageOuverte\("scene:" \+ nom\)\)/.test(source), "la scene ouverte seule, en defense");
+{
+    const conv = fs.readFileSync(path.join(RACINE, "visuel", "prototype", "conversation.html"), "utf8");
+    verifier(/parent\.pageOuverte\("conversation:" \+ id\)/.test(conv) && /if \(!ouverte\(id\)\)\{ versAbonnement\(\); return; \}/.test(conv),
+        "conversation.html : une conversation fermee ouvre l'abonnement, dans la liste comme par ?c=");
+}
 verifier(/function ouvrirThemeIllustre\(nom, depuis\)\{[\s\S]{0,160}if\(!pageOuverte\("theme:" \+ nom\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte des themes illustres");
 verifier(/function ouvrirConversations\(\)\{\s*if\(!famillePageOuverte\("conversation"\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte des conversations");
 verifier(/function ouvrirTelc\(partie\)\{[\s\S]{0,160}if\(!famillePageOuverte\("telc"\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte du telc");
