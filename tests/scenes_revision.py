@@ -150,6 +150,10 @@ def main():
                                     replis += 1
                             if e["juste"]:
                                 reussie[e["cle"]] = jour
+                    notees = page.evaluate("() => typeof lireRevisions === 'function' ? Object.keys(lireRevisions().s).length : -1")
+                    print("     revisions notees par l'app (type s) : %d" % notees, flush=True)
+                    if a.attendu == "apres" and notees < len(reussie):
+                        fautes.append("%s %s : l'app n'a note que %d questions sur %d" % (langue, nom, notees, len(reussie)))
                     print("%s %-13s %s, %d jours : %d questions posees, %d differentes, %d redites avant 60 jours (dont %d replis), %d ratees par la sonde"
                           % (langue, nom, niv, a.jours, poses, len(reussie), len(redites), replis, ratees), flush=True)
                     for r in redites[:3]:
