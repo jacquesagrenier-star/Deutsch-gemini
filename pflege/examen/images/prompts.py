@@ -170,6 +170,106 @@ PHOTOS = {
 }
 
 
+# ---------------------------------------------------------------- le MODELE 2 (15 nov. 2026)
+# 1A : une prise de tension a l'hopital ; 2A « Menschen am Lebensende begleiten » et « Kultursensible Pflege ».
+# Les personnes sans nom (patients, proches, aumoniere, interprete) n'ont pas de reference : on les decrit ; les
+# soignants ont leur portrait maitre. Les descriptions allemandes de sprechen.json (serie 2) suivent la photo faite.
+HOPITAL = ("The {ref} reference picture is a real phone photograph taken on the same hospital ward: use it for the "
+           "photographic look; the room has the same warm white walls and the same pale grey vinyl floor as in that "
+           "photograph.\n\n")
+MAISON = ("The {ref} reference picture is a real phone photograph taken in the same care home: use it for the "
+          "photographic look and for the warm, homely style of the house; this picture is set in {piece}.\n\n")
+PHOTOS.update({
+    "m2-oral-1a": {
+        "refs": ["perso:yusuf", "scene:soins-aufnahme"],
+        "texte": TETE.format(quoi="a nurse taking the blood pressure of an old man in a hospital room",
+                             lumiere="soft morning daylight through a half-lowered window blind") +
+        HOPITAL.format(ref="second") +
+        "AN OLD MAN of about eighty, bald, with a short grey beard, in blue-and-white striped pyjamas, sits on the edge "
+        "of a hospital bed in the middle of the picture, his feet in brown slippers on the floor, looking down at his "
+        "arm with a doubtful face.\n\n" + YUSUF + " He stands beside the bed, on the left of the picture, fastening "
+        "the grey cuff of a blood pressure monitor round the old man's upper arm, his eyes on the small grey "
+        "monitor in his other hand.\n\n"
+        "THE ROOM: a bedside table with a glass of water and a pair of reading glasses, a call button hanging on the "
+        "bed rail, an empty drip stand by the window, the window blind half lowered." + SANS_TEXTE,
+    },
+    "m2-lebensende-1": {
+        "refs": ["perso:olena", "scene:soins-altenheim"],
+        "texte": TETE.format(quoi="a nurse sitting at the bedside of a very old woman asleep in her room in a care home, holding her hand",
+                             lumiere="the soft warm light of a small bedside lamp, the curtains drawn") +
+        MAISON.format(ref="second", piece="a resident's bedroom") +
+        "A VERY OLD WOMAN of about ninety, with thin white hair spread on the pillow, lies asleep on her back in a bed "
+        "with pale wooden boards on the right of the picture, a cream blanket up to her chest, her face peaceful.\n\n" +
+        OLENA + " She sits on a wooden chair beside the bed, on the left of the picture, leaning towards the old woman and "
+        "holding the old woman's hand in both of hers, her eyes on the old woman's face, calm and gentle.\n\n"
+        "THE ROOM: on the bedside table a small battery candle with a warm glow and a framed old wedding photograph "
+        "turned towards the bed, a soft armchair in the corner, drawn curtains." + SANS_TEXTE,
+    },
+    "m2-lebensende-2": {
+        "refs": ["perso:arun", "scene:soins-altenheim"],
+        "texte": TETE.format(quoi="a nurse giving gentle mouth care to an old man lying on his side in his bed in a care home",
+                             lumiere="soft daylight through light curtains") +
+        MAISON.format(ref="second", piece="a resident's bedroom") +
+        "AN OLD MAN of about eighty-five, very thin, with short white hair, lies on his side in a bed in the middle of "
+        "the picture, facing the left of the picture, a rolled pillow behind his back, his eyes closed, a cream "
+        "blanket over him.\n\n" + ARUN + " He also wears thin blue disposable gloves. He bends over the bed from the "
+        "left of the picture and gently moistens the old man's lips with a pink foam mouth swab on a small stick, a "
+        "small cup of water in his other hand, his eyes on the old man's mouth.\n\n"
+        "THE ROOM: warm white walls, a window with light curtains, a small bedside cabinet." + SANS_TEXTE,
+    },
+    "m2-lebensende-3": {
+        "refs": ["scene:soins-altenheim"],
+        "texte": TETE.format(quoi="a quiet talk between a man, a woman and a chaplain in a small family room of a care home",
+                             lumiere="soft afternoon daylight from the window") +
+        MAISON.format(ref="first", piece="a small family room of the house") +
+        "A MAN and A WOMAN of about fifty, brother and sister, sit side by side in two armchairs on the left of the "
+        "picture: he in a navy-blue jumper, she in a dark-green cardigan, both sad and tired, the woman holding a "
+        "paper tissue.\n\nA CHAPLAIN, a woman of about sixty with short grey hair, in a dark-blue jacket over a light "
+        "blouse, sits in an armchair opposite them on the right of the picture, leaning forward a little, listening, "
+        "her hands open on her knees. Their eyes are on each other.\n\n"
+        "THE ROOM: a low wooden table between them with a teapot, three cups and a box of paper tissues, a lamp, a "
+        "green plant, a window with light curtains." + SANS_TEXTE,
+    },
+    "m2-kultur-1": {
+        "refs": ["perso:elif", "scene:soins-aufnahme"],
+        "texte": TETE.format(quoi="a nurse showing pictures of dishes on a tablet to an old woman in a hospital room",
+                             lumiere="soft daylight from the window") +
+        HOPITAL.format(ref="second") +
+        "AN OLD WOMAN of about seventy-five, with a plain light-grey headscarf covering her hair and a long-sleeved "
+        "dark-blue dress, sits upright in a hospital bed in the middle of the picture, pointing with one finger at the "
+        "tablet, smiling.\n\n" + ELIF + " She stands beside the bed on the left of the picture, holding a tablet towards "
+        "the old woman, her eyes on the old woman's finger. The tablet screen shows a grid of small colour photographs "
+        "of plates of food.\n\nTHE ROOM: a bedside table with a glass of water, a window behind the bed." +
+        SANS_TEXTE.replace("every screen shows only plain pale-blue panels", "the tablet screen shows only small photographs of food"),
+    },
+    "m2-kultur-2": {
+        "refs": ["perso:jonas", "scene:soins-aufnahme"],
+        "texte": TETE.format(quoi="a nurse talking with an old man in a hospital bed while a young interpreter translates",
+                             lumiere="soft daylight from the window") +
+        HOPITAL.format(ref="second") +
+        "AN OLD MAN of about seventy-five, with grey hair and a grey moustache, in a light-blue hospital gown, sits "
+        "propped up in a hospital bed on the right of the picture, his eyes on the young woman.\n\nA YOUNG WOMAN of "
+        "about twenty-five, the interpreter, with long dark hair, in a beige jacket with a plain white card clipped to "
+        "the lapel, sits on a chair beside the bed in the middle of the picture, turned towards the old man, "
+        "speaking.\n\n" + JONAS + " He stands at the foot of the bed on the left of the picture, a clipboard with a "
+        "blank sheet in his hand, his eyes on the old man." + SANS_TEXTE,
+    },
+    "m2-kultur-3": {
+        "refs": ["perso:arun", "scene:soins-altenheim"],
+        "texte": TETE.format(quoi="a small party in the common room of a care home",
+                             lumiere="warm afternoon light from the windows") +
+        "The second reference picture is a real phone photograph of the same common room: use it for the room, the "
+        "furniture and the photographic look.\n\n"
+        "Around a long table covered with a white tablecloth, six residents in their seventies and eighties sit "
+        "together, laughing and talking: women and men, one woman with a light-blue headscarf, one man in a flat cap. "
+        "On the table: plates of pastries from different countries (small diamonds of baklava, a round yeast cake "
+        "dusted with sugar, small honey biscuits), a teapot, glasses of tea and coffee cups. A colourful paper garland "
+        "of small plain triangles hangs on the wall behind them.\n\n" + ARUN + " He stands at the end of the table on "
+        "the right of the picture, pouring tea from a pot into a glass, smiling." + SANS_TEXTE,
+    },
+})
+
+
 def main():
     for nom, p in PHOTOS.items():
         io.open(os.path.join(ICI, nom + ".prompt.txt"), "w", encoding="utf-8", newline="\n").write(p["texte"].strip() + "\n")

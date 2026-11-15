@@ -36,9 +36,13 @@ ORIGINAUX = os.path.join(PFLEGE_LOCAL, "examen")
 WEB = os.path.join(RACINE, "visuel", "prototype", "telc-pflege", "img")
 SPRECHEN = os.path.join(RACINE, "visuel", "prototype", "telc-pflege", "donnees", "sprechen.json")
 # la photo de chaque image dans les donnees : la tache 1A, puis les trois photos de chaque sujet de 2A
-PLACE = {"oral-1a": ("sp1a", None, None),
-         "oral-schmerz-1": ("sp2a", "schmerz", 0), "oral-schmerz-2": ("sp2a", "schmerz", 1), "oral-schmerz-3": ("sp2a", "schmerz", 2),
-         "oral-schicht-1": ("sp2a", "schicht", 0), "oral-schicht-2": ("sp2a", "schicht", 1), "oral-schicht-3": ("sp2a", "schicht", 2)}
+# (serie, tache, sujet, rang) : le modele 1 puis le modele 2
+PLACE = {"oral-1a": (1, "sp1a", None, None),
+         "oral-schmerz-1": (1, "sp2a", "schmerz", 0), "oral-schmerz-2": (1, "sp2a", "schmerz", 1), "oral-schmerz-3": (1, "sp2a", "schmerz", 2),
+         "oral-schicht-1": (1, "sp2a", "schicht", 0), "oral-schicht-2": (1, "sp2a", "schicht", 1), "oral-schicht-3": (1, "sp2a", "schicht", 2),
+         "m2-oral-1a": (2, "sp1a", None, None),
+         "m2-lebensende-1": (2, "sp2a", "lebensende", 0), "m2-lebensende-2": (2, "sp2a", "lebensende", 1), "m2-lebensende-3": (2, "sp2a", "lebensende", 2),
+         "m2-kultur-1": (2, "sp2a", "kultur", 0), "m2-kultur-2": (2, "sp2a", "kultur", 1), "m2-kultur-3": (2, "sp2a", "kultur", 2)}
 
 
 def charger_prompts(chemin=None):
@@ -67,9 +71,9 @@ def web():
     from PIL import Image
     os.makedirs(WEB, exist_ok=True)
     d = json.load(io.open(SPRECHEN, encoding="utf-8"))
-    taches = {t["cle"]: t for t in d["series"][0]["taches"]}
     faits = 0
-    for nom, (cle, theme, k) in PLACE.items():
+    for nom, (serie, cle, theme, k) in PLACE.items():
+        taches = {t["cle"]: t for t in next(s for s in d["series"] if s["id"] == serie)["taches"]}
         src = os.path.join(ORIGINAUX, "scenes", nom + ".png")
         if not os.path.exists(src):
             print("  pas encore : %s" % nom)
