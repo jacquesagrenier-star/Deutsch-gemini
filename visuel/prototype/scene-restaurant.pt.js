@@ -923,26 +923,6 @@ window.SCENE = {
    "fr": "bougie"
   },
   {
-   "id": "salat",
-   "mot": "alface",
-   "genre": "a",
-   "pluriel": "as alfaces",
-   "niveau": "A1",
-   "personne": null,
-   "aussi": [],
-   "sur": "tisch-2",
-   "devant": 0,
-   "boites": [
-    [
-     96,
-     56.5,
-     4,
-     3.5
-    ]
-   ],
-   "fr": "salade"
-  },
-  {
    "id": "tisch-2",
    "mot": "mesa",
    "genre": "a",
@@ -1123,10 +1103,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     33.5,
-     51.5,
-     7,
-     3.5
+     25,
+     50.3,
+     10.5,
+     4.4
     ]
    ],
    "fr": "chemise"

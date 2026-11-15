@@ -6663,6 +6663,41 @@ body[data-theme="dark"] .carte-genre.cas-nom{color:#E9E6DF; background:rgba(242,
 body[data-theme="dark"] .praep-hl{box-shadow:inset 0 -.2em 0 rgba(232,162,58,.7);}
 .praep-ici{margin-top:8px; font-weight:700; font-size:15px; color:#1C2430;}
 body[data-theme="dark"] .praep-ici{color:#E9E6DF;}
+/* Le schema des prepositions dessine dans la carte (14 nov. 2026, point 4b) : memes teintes que les etiquettes de cas,
+   la preposition de la carte entouree d'un trait ambre, en gras, les autres estompees. */
+.praep-schema-cadre{background:#FBF8F1; border-radius:12px; padding:6px 4px 2px;}
+body[data-theme="dark"] .praep-schema-cadre{background:rgba(255,255,255,.05);}
+.praep-schema-cadre.hidden{display:none;}
+.praep-schema-voir{display:inline-flex; align-items:center; gap:6px; margin:2px 0 0; padding:7px 14px; border-radius:20px;
+    border:1.5px solid rgba(232,162,58,.9); background:rgba(232,162,58,.14); color:#1C2430; font:inherit; font-size:15px;
+    font-weight:700; cursor:pointer;}
+body[data-theme="dark"] .praep-schema-voir{color:#F6E2BA; background:rgba(232,162,58,.16);}
+html[dir="rtl"] .praep-schema-fleche{display:inline-block; transform:scaleX(-1);}
+.praep-schema{display:block; width:100%; height:auto; font-family:inherit;}
+.praep-schema text{text-anchor:middle; font-weight:700; font-size:13px;}
+.praep-schema .ps-akk{fill:rgba(91,63,166,.10); stroke:#5B3FA6; stroke-width:1.6;}
+.praep-schema .ps-dat{fill:rgba(154,116,0,.10); stroke:#9A7400; stroke-width:1.6;}
+.praep-schema .ps-titre{font-size:14px; font-weight:800;}
+.praep-schema .ps-titre-akk, .praep-schema .ps-sens-akk{fill:#5B3FA6;}
+.praep-schema .ps-titre-dat, .praep-schema .ps-sens-dat{fill:#8A6800;}
+.praep-schema .ps-titre-gen{fill:#7A3B69;}
+.praep-schema .ps-sens{font-size:11px;}
+.praep-schema .ps-sens-akk{text-anchor:end;}
+.praep-schema .ps-sens-dat{text-anchor:start;}
+.praep-schema .ps-mot{fill:#1C2430;}
+.praep-schema .ps-estompe{opacity:.42;}
+.praep-schema .ps-cible{fill:rgba(232,162,58,.28); stroke:#E8A23A; stroke-width:2;}
+.praep-schema .ps-mot-cible{fill:#1C2430; font-weight:800;}
+.praep-schema .ps-gen-mot{fill:#1C2430;}
+body[data-theme="dark"] .praep-schema .ps-akk{fill:rgba(150,120,230,.16); stroke:#C3B2EE;}
+body[data-theme="dark"] .praep-schema .ps-dat{fill:rgba(200,160,40,.16); stroke:#E3C46B;}
+body[data-theme="dark"] .praep-schema .ps-titre-akk, body[data-theme="dark"] .praep-schema .ps-sens-akk{fill:#C3B2EE;}
+body[data-theme="dark"] .praep-schema .ps-titre-dat, body[data-theme="dark"] .praep-schema .ps-sens-dat{fill:#E3C46B;}
+body[data-theme="dark"] .praep-schema .ps-titre-gen{fill:#E3A6D2;}
+body[data-theme="dark"] .praep-schema .ps-mot{fill:#E9E6DF;}
+body[data-theme="dark"] .praep-schema .ps-estompe{opacity:.5;}
+body[data-theme="dark"] .praep-schema .ps-cible{fill:rgba(232,162,58,.22);}
+body[data-theme="dark"] .praep-schema .ps-mot-cible{fill:#F6E2BA;}
 
 /* --- LE PREMIER LANCEMENT (v678) ---
    Le bouton de langue quitte l'en-tete : la langue vient du telephone et se
@@ -8717,6 +8752,8 @@ body[data-theme="dark"] .cp-passage-ok svg{stroke:#8ED3AA;}
 .cp-passage-fait{font-family:'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size:22px; font-weight:800; letter-spacing:-.015em; line-height:1.2; text-wrap:balance;}
 .cp-passage-ensuite{margin:8px 0 0; font-size:16px; font-weight:700; text-wrap:balance;}
 .cp-passage-n{color:var(--gris-v); font-size:13px;}
+/* Ligne 98 : ce que contient la partie qui vient, en une ligne. */
+.cp-passage-quoi{margin:-4px 0 0; max-width:30ch; font-size:14px; font-weight:600; line-height:1.35; text-wrap:balance;}
 .cp-passage-go{margin-top:10px; min-width:180px;}
 /* Le plan sur la carte de l'accueil : il peut passer sur deux lignes. */
 :is(#home, #decouverteScene) #seancePilule .pa-contenu.pa-plan{white-space:normal; text-wrap:balance;}
@@ -9726,7 +9763,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1193</span>
+        <span class="subtitle-version">v1195</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -15700,7 +15737,8 @@ const I18N = {
         seance_court_reperes: "Repères",
         seance_court_scene: "Scène",
         seance_court_conv: "Conversations",
-        seance_court_cartes: "Cartes",
+        seance_court_cartes: "Mots",
+        seance_court_phrases: "Phrases",
         seance_court_grammaire: "Grammaire",
         seance_court_images: "Images",
         seance_court_son: "Son",
@@ -16013,7 +16051,8 @@ const I18N = {
         seance_part_reperes: "Les repères",
         seance_part_scene: "La scène",
         seance_part_conv: "Conversations",
-        seance_part_cartes: "Cartes",
+        seance_part_cartes: "Mots",
+        seance_part_phrases: "Phrases",
         seance_part_grammaire: "Grammaire",
         seance_part_images: "Images",
         seance_part_theme: "Le thème illustré",
@@ -16024,6 +16063,11 @@ const I18N = {
         seance_passage_ensuite: "Ensuite : {part}",
         seance_passage_n: "{n} cartes",
         seance_passage_un: "1 carte",
+        seance_passage_quoi_cartes: "Une carte, un mot : les nouveaux et ceux à revoir.",
+        seance_passage_quoi_phrases: "Construire, compléter, écouter et dire des phrases.",
+        seance_passage_quoi_grammaire: "Les règles, la conjugaison et le son du jour.",
+        seance_passage_quoi_images: "Une scène et un thème illustré.",
+        seance_passage_quoi_conv: "Une conversation à écouter et à jouer.",
         seance_plan_neufs: "{n} mots nouveaux",
         seance_plan_neufs_un: "1 mot nouveau",
         seance_plan_feuille: "la conjugaison",
@@ -16075,7 +16119,6 @@ const I18N = {
         review_known: "Je le connais déjà",
         review_continuer: "Continuer",
         review_continuer_sous: "il reviendra plus tard",
-        aide_continuer: "Chaque point vert est une réussite : le mot revient de plus en plus espacé, pour bien se fixer. Quand les {n} points sont allumés, il est acquis.",
         point_mot_1: "Vu",
         point_mot_2: "Revu",
         point_mot_3: "Retenu",
@@ -16084,6 +16127,8 @@ const I18N = {
         praep_cas_toujours: "toujours + {cas}",
         praep_cas_les_deux: "les deux : {dat} · {akk}",
         praep_cas_ici: "ici : {cas}",
+        praep_schema_alt: "Schéma des prépositions : avec Akkusativ, avec Dativ, et les deux (wohin? : Akkusativ ; wo? : Dativ)",
+        praep_schema_voir: "Voir le schéma",
         point_maitrise_16: "Maîtrisé · à dans 16 jours",
         point_toujours_35: "Toujours su · à dans 5 semaines",
         point_toujours_90: "Toujours su · à dans 3 mois",
@@ -17508,7 +17553,8 @@ const I18N = {
         seance_court_reperes: "Basics",
         seance_court_scene: "Scene",
         seance_court_conv: "Conversations",
-        seance_court_cartes: "Cards",
+        seance_court_cartes: "Words",
+        seance_court_phrases: "Sentences",
         seance_court_grammaire: "Grammar",
         seance_court_images: "Pictures",
         seance_court_son: "Sound",
@@ -17820,7 +17866,8 @@ const I18N = {
         seance_part_reperes: "The basics",
         seance_part_scene: "The scene",
         seance_part_conv: "Conversations",
-        seance_part_cartes: "Cards",
+        seance_part_cartes: "Words",
+        seance_part_phrases: "Sentences",
         seance_part_grammaire: "Grammar",
         seance_part_images: "Pictures",
         seance_part_theme: "The illustrated topic",
@@ -17831,6 +17878,11 @@ const I18N = {
         seance_passage_ensuite: "Next: {part}",
         seance_passage_n: "{n} cards",
         seance_passage_un: "1 card",
+        seance_passage_quoi_cartes: "One card, one word: new words and words to review.",
+        seance_passage_quoi_phrases: "Build, complete, listen to and say sentences.",
+        seance_passage_quoi_grammaire: "Rules, conjugation and today's sound.",
+        seance_passage_quoi_images: "A scene and an illustrated theme.",
+        seance_passage_quoi_conv: "A conversation to listen to and act out.",
         seance_plan_neufs: "{n} new words",
         seance_plan_neufs_un: "1 new word",
         seance_plan_feuille: "conjugation",
@@ -17882,7 +17934,6 @@ const I18N = {
         review_known: "I already know it",
         review_continuer: "Continue",
         review_continuer_sous: "it will come back later",
-        aide_continuer: "Each green dot is a success: the word comes back at longer and longer intervals, so it sticks. When all {n} dots are lit, it's learned.",
         point_mot_1: "Seen",
         point_mot_2: "Seen again",
         point_mot_3: "Remembered",
@@ -17891,6 +17942,8 @@ const I18N = {
         praep_cas_toujours: "always + {cas}",
         praep_cas_les_deux: "both: {dat} · {akk}",
         praep_cas_ici: "here: {cas}",
+        praep_schema_alt: "Diagram of prepositions: with Akkusativ, with Dativ, and both (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Show the diagram",
         point_maitrise_16: "Mastered · back in 16 days",
         point_toujours_35: "Still known · back in 5 weeks",
         point_toujours_90: "Still known · back in 3 months",
@@ -19331,7 +19384,8 @@ const I18N = {
         seance_court_reperes: "Temeller",
         seance_court_scene: "Sahne",
         seance_court_conv: "Sohbetler",
-        seance_court_cartes: "Kartlar",
+        seance_court_cartes: "Kelimeler",
+        seance_court_phrases: "Cümleler",
         seance_court_grammaire: "Dilbilgisi",
         seance_court_images: "Resimler",
         seance_court_son: "Ses",
@@ -19587,7 +19641,8 @@ const I18N = {
         seance_part_reperes: "Temeller",
         seance_part_scene: "Sahne",
         seance_part_conv: "Sohbetler",
-        seance_part_cartes: "Kartlar",
+        seance_part_cartes: "Kelimeler",
+        seance_part_phrases: "Cümleler",
         seance_part_grammaire: "Dilbilgisi",
         seance_part_images: "Resimler",
         seance_part_theme: "Resimli konu",
@@ -19598,6 +19653,11 @@ const I18N = {
         seance_passage_ensuite: "Sırada: {part}",
         seance_passage_n: "{n} kart",
         seance_passage_un: "1 kart",
+        seance_passage_quoi_cartes: "Bir kart, bir kelime: yeni kelimeler ve tekrar edilecekler.",
+        seance_passage_quoi_phrases: "Cümle kur, tamamla, dinle ve söyle.",
+        seance_passage_quoi_grammaire: "Kurallar, fiil çekimi ve günün sesi.",
+        seance_passage_quoi_images: "Bir sahne ve resimli bir tema.",
+        seance_passage_quoi_conv: "Dinlenecek ve canlandırılacak bir konuşma.",
         seance_plan_neufs: "{n} yeni kelime",
         seance_plan_neufs_un: "1 yeni kelime",
         seance_plan_feuille: "çekim",
@@ -19649,7 +19709,6 @@ const I18N = {
         review_known: "Zaten biliyorum",
         review_continuer: "Devam",
         review_continuer_sous: "daha sonra tekrar gelecek",
-        aide_continuer: "Her yeşil nokta bir başarı: kelime iyice yerleşsin diye giderek daha seyrek geri gelir. {n} nokta da yandığında kelime öğrenilmiştir.",
         point_mot_1: "Görüldü",
         point_mot_2: "Tekrar görüldü",
         point_mot_3: "Akılda kaldı",
@@ -19658,6 +19717,8 @@ const I18N = {
         praep_cas_toujours: "her zaman + {cas}",
         praep_cas_les_deux: "ikisi de: {dat} · {akk}",
         praep_cas_ici: "burada: {cas}",
+        praep_schema_alt: "Edatlar şeması: Akkusativ ile, Dativ ile ve ikisiyle (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Şemayı göster",
         point_maitrise_16: "Öğrenildi · 16 gün sonra",
         point_toujours_35: "Hâlâ aklında · 5 hafta sonra",
         point_toujours_90: "Hâlâ aklında · 3 ay sonra",
@@ -21546,7 +21607,8 @@ const I18N = {
         seance_court_reperes: "Основи",
         seance_court_scene: "Сцена",
         seance_court_conv: "Розмови",
-        seance_court_cartes: "Картки",
+        seance_court_cartes: "Слова",
+        seance_court_phrases: "Речення",
         seance_court_grammaire: "Граматика",
         seance_court_images: "Картинки",
         seance_court_son: "Звук",
@@ -21802,7 +21864,8 @@ const I18N = {
         seance_part_reperes: "Основи",
         seance_part_scene: "Сцена",
         seance_part_conv: "Розмови",
-        seance_part_cartes: "Картки",
+        seance_part_cartes: "Слова",
+        seance_part_phrases: "Речення",
         seance_part_grammaire: "Граматика",
         seance_part_images: "Картинки",
         seance_part_theme: "Тема в картинках",
@@ -21813,6 +21876,11 @@ const I18N = {
         seance_passage_ensuite: "Далі: {part}",
         seance_passage_n: "Карток: {n}",
         seance_passage_un: "1 картка",
+        seance_passage_quoi_cartes: "Одна картка — одне слово: нові слова й ті, що треба повторити.",
+        seance_passage_quoi_phrases: "Складай, доповнюй, слухай і промовляй речення.",
+        seance_passage_quoi_grammaire: "Правила, дієвідмінювання і звук дня.",
+        seance_passage_quoi_images: "Сцена й ілюстрована тема.",
+        seance_passage_quoi_conv: "Розмова, щоб послухати й розіграти.",
         seance_plan_neufs: "нових слів: {n}",
         seance_plan_neufs_un: "1 нове слово",
         seance_plan_feuille: "дієвідміна",
@@ -22637,7 +22705,6 @@ const I18N = {
         review_known: "Я вже знаю",
         review_continuer: "Далі",
         review_continuer_sous: "воно ще повернеться",
-        aide_continuer: "Кожна зелена крапка — це успіх: слово повертається дедалі рідше, щоб добре закріпитися. Коли засвітяться всі {n} крапки, слово засвоєне.",
         point_mot_1: "Побачено",
         point_mot_2: "Повторено",
         point_mot_3: "Запамʼятано",
@@ -22646,6 +22713,8 @@ const I18N = {
         praep_cas_toujours: "завжди + {cas}",
         praep_cas_les_deux: "обидва: {dat} · {akk}",
         praep_cas_ici: "тут: {cas}",
+        praep_schema_alt: "Схема прийменників: з Akkusativ, з Dativ і з обома (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Показати схему",
         point_maitrise_16: "Засвоєно · через 16 днів",
         point_toujours_35: "Не забуто · через 5 тижнів",
         point_toujours_90: "Не забуто · через 3 місяці",
@@ -24065,7 +24134,8 @@ const I18N = {
         seance_court_reperes: "پایه‌ها",
         seance_court_scene: "صحنه",
         seance_court_conv: "گفت‌وگوها",
-        seance_court_cartes: "کارت‌ها",
+        seance_court_cartes: "واژه‌ها",
+        seance_court_phrases: "جمله‌ها",
         seance_court_grammaire: "دستور",
         seance_court_images: "تصویرها",
         seance_court_son: "آوا",
@@ -24321,7 +24391,8 @@ const I18N = {
         seance_part_reperes: "پایه‌ها",
         seance_part_scene: "صحنه",
         seance_part_conv: "گفت‌وگوها",
-        seance_part_cartes: "کارت‌ها",
+        seance_part_cartes: "واژه‌ها",
+        seance_part_phrases: "جمله‌ها",
         seance_part_grammaire: "دستور",
         seance_part_images: "تصویرها",
         seance_part_theme: "موضوع مصور",
@@ -24332,6 +24403,11 @@ const I18N = {
         seance_passage_ensuite: "بعدی: {part}",
         seance_passage_n: "{n} کارت",
         seance_passage_un: "یک کارت",
+        seance_passage_quoi_cartes: "یک کارت، یک واژه: واژه‌های تازه و واژه‌هایی که باید مرور شوند.",
+        seance_passage_quoi_phrases: "ساختن، کامل کردن، شنیدن و گفتن جمله‌ها.",
+        seance_passage_quoi_grammaire: "قاعده‌ها، صرف فعل و صدای امروز.",
+        seance_passage_quoi_images: "یک صحنه و یک موضوع مصور.",
+        seance_passage_quoi_conv: "یک گفت‌وگو برای شنیدن و اجرا کردن.",
         seance_plan_neufs: "{n} واژهٔ تازه",
         seance_plan_neufs_un: "یک واژهٔ تازه",
         seance_plan_feuille: "صرف فعل",
@@ -24382,7 +24458,6 @@ const I18N = {
         review_known: "از قبل بلدم",
         review_continuer: "ادامه",
         review_continuer_sous: "بعداً دوباره می‌آید",
-        aide_continuer: "هر نقطهٔ سبز یک موفقیت است: واژه با فاصله‌های بیشتر و بیشتر برمی‌گردد تا خوب جا بیفتد. وقتی هر {n} نقطه روشن شد، واژه آموخته شده است.",
         point_mot_1: "دیده شد",
         point_mot_2: "دوباره دیده شد",
         point_mot_3: "در یاد ماند",
@@ -24391,6 +24466,8 @@ const I18N = {
         praep_cas_toujours: "همیشه + {cas}",
         praep_cas_les_deux: "هر دو: {dat} · {akk}",
         praep_cas_ici: "اینجا: {cas}",
+        praep_schema_alt: "نمودار حروف اضافه: با Akkusativ، با Dativ و با هر دو (wohin?: Akkusativ؛ wo?: Dativ)",
+        praep_schema_voir: "نمایش نمودار",
         point_maitrise_16: "آموخته · تا 16 روز دیگر",
         point_toujours_35: "فراموش نشده · تا 5 هفته دیگر",
         point_toujours_90: "فراموش نشده · تا 3 ماه دیگر",
@@ -25989,7 +26066,8 @@ const I18N = {
         seance_court_reperes: "أساسيات",
         seance_court_scene: "مشهد",
         seance_court_conv: "المحادثات",
-        seance_court_cartes: "البطاقات",
+        seance_court_cartes: "كلمات",
+        seance_court_phrases: "الجمل",
         seance_court_grammaire: "القواعد",
         seance_court_images: "الصور",
         seance_court_son: "صوت",
@@ -26245,7 +26323,8 @@ const I18N = {
         seance_part_reperes: "الأساسيات",
         seance_part_scene: "المشهد",
         seance_part_conv: "المحادثات",
-        seance_part_cartes: "البطاقات",
+        seance_part_cartes: "كلمات",
+        seance_part_phrases: "الجمل",
         seance_part_grammaire: "القواعد",
         seance_part_images: "الصور",
         seance_part_theme: "الموضوع المصوّر",
@@ -26256,6 +26335,11 @@ const I18N = {
         seance_passage_ensuite: "التالي: {part}",
         seance_passage_n: "البطاقات: {n}",
         seance_passage_un: "بطاقة واحدة",
+        seance_passage_quoi_cartes: "بطاقة واحدة، كلمة واحدة: الكلمات الجديدة وما يجب مراجعته.",
+        seance_passage_quoi_phrases: "ركّب الجمل وأكملها واستمع إليها وقلها.",
+        seance_passage_quoi_grammaire: "القواعد وتصريف الأفعال وصوت اليوم.",
+        seance_passage_quoi_images: "مشهد وموضوع مصوَّر.",
+        seance_passage_quoi_conv: "محادثة للاستماع إليها وتمثيلها.",
         seance_plan_neufs: "كلمات جديدة: {n}",
         seance_plan_neufs_un: "كلمة جديدة واحدة",
         seance_plan_feuille: "التصريف",
@@ -26295,7 +26379,6 @@ const I18N = {
         review_known: "أعرفها مسبقًا",
         review_continuer: "متابعة",
         review_continuer_sous: "ستعود لاحقًا",
-        aide_continuer: "كل نقطة خضراء نجاح: تعود الكلمة على فترات متباعدة أكثر فأكثر لتترسّخ جيدًا. عندما تضيء النقاط الـ{n} كلها، تكون الكلمة قد أُتقنت.",
         point_mot_1: "شوهِدت",
         point_mot_2: "شوهِدت مجددًا",
         point_mot_3: "ترسّخت",
@@ -26304,6 +26387,8 @@ const I18N = {
         praep_cas_toujours: "دائمًا + {cas}",
         praep_cas_les_deux: "كلاهما: {dat} · {akk}",
         praep_cas_ici: "هنا: {cas}",
+        praep_schema_alt: "مخطط حروف الجر: مع Akkusativ، ومع Dativ، ومع الاثنين (wohin?: Akkusativ؛ wo?: Dativ)",
+        praep_schema_voir: "عرض المخطط",
         point_maitrise_16: "متقَنة · تعود بعد 16 يومًا",
         point_toujours_35: "لم تُنسَ · تعود بعد 5 أسابيع",
         point_toujours_90: "لم تُنسَ · تعود بعد 3 أشهر",
@@ -26499,7 +26584,8 @@ const I18N = {
         seance_court_reperes: "Básico",
         seance_court_scene: "Cena",
         seance_court_conv: "Conversas",
-        seance_court_cartes: "Cartões",
+        seance_court_cartes: "Palavras",
+        seance_court_phrases: "Frases",
         seance_court_grammaire: "Gramática",
         seance_court_images: "Imagens",
         seance_court_son: "Som",
@@ -26755,7 +26841,8 @@ const I18N = {
         seance_part_reperes: "Os básicos",
         seance_part_scene: "A cena",
         seance_part_conv: "Conversas",
-        seance_part_cartes: "Cartões",
+        seance_part_cartes: "Palavras",
+        seance_part_phrases: "Frases",
         seance_part_grammaire: "Gramática",
         seance_part_images: "Imagens",
         seance_part_theme: "O tema ilustrado",
@@ -26766,6 +26853,11 @@ const I18N = {
         seance_passage_ensuite: "Agora: {part}",
         seance_passage_n: "{n} cartas",
         seance_passage_un: "1 carta",
+        seance_passage_quoi_cartes: "Uma carta, uma palavra: as novas e as para revisar.",
+        seance_passage_quoi_phrases: "Montar, completar, ouvir e dizer frases.",
+        seance_passage_quoi_grammaire: "As regras, a conjugação e o som do dia.",
+        seance_passage_quoi_images: "Uma cena e um tema ilustrado.",
+        seance_passage_quoi_conv: "Uma conversa para ouvir e encenar.",
         seance_plan_neufs: "{n} palavras novas",
         seance_plan_neufs_un: "1 palavra nova",
         seance_plan_feuille: "a conjugação",
@@ -26817,7 +26909,6 @@ const I18N = {
         review_known: "Já conheço",
         review_continuer: "Continuar",
         review_continuer_sous: "ela volta mais tarde",
-        aide_continuer: "Cada ponto verde é um acerto: a palavra volta em intervalos cada vez maiores, para fixar bem. Quando os {n} pontos estiverem acesos, ela está aprendida.",
         point_mot_1: "Vista",
         point_mot_2: "Vista de novo",
         point_mot_3: "Memorizada",
@@ -26826,6 +26917,8 @@ const I18N = {
         praep_cas_toujours: "sempre + {cas}",
         praep_cas_les_deux: "os dois: {dat} · {akk}",
         praep_cas_ici: "aqui: {cas}",
+        praep_schema_alt: "Esquema das preposições: com Akkusativ, com Dativ e com os dois (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Ver o esquema",
         point_maitrise_16: "Dominada · volta em 16 dias",
         point_toujours_35: "Ainda sabe · volta em 5 sem.",
         point_toujours_90: "Ainda sabe · volta em 3 meses",
@@ -28311,7 +28404,8 @@ const I18N = {
         seance_court_reperes: "Podstawy",
         seance_court_scene: "Scena",
         seance_court_conv: "Rozmowy",
-        seance_court_cartes: "Karty",
+        seance_court_cartes: "Słowa",
+        seance_court_phrases: "Zdania",
         seance_court_grammaire: "Gramatyka",
         seance_court_images: "Obrazy",
         seance_court_son: "Dźwięk",
@@ -28567,7 +28661,8 @@ const I18N = {
         seance_part_reperes: "Podstawy",
         seance_part_scene: "Scena",
         seance_part_conv: "Rozmowy",
-        seance_part_cartes: "Karty",
+        seance_part_cartes: "Słowa",
+        seance_part_phrases: "Zdania",
         seance_part_grammaire: "Gramatyka",
         seance_part_images: "Obrazy",
         seance_part_theme: "Temat ilustrowany",
@@ -28578,6 +28673,11 @@ const I18N = {
         seance_passage_ensuite: "Dalej: {part}",
         seance_passage_n: "Kart: {n}",
         seance_passage_un: "1 karta",
+        seance_passage_quoi_cartes: "Jedna karta, jedno słowo: nowe słowa i te do powtórki.",
+        seance_passage_quoi_phrases: "Układaj, uzupełniaj, słuchaj i wypowiadaj zdania.",
+        seance_passage_quoi_grammaire: "Zasady, odmiana czasowników i dźwięk dnia.",
+        seance_passage_quoi_images: "Scena i ilustrowany temat.",
+        seance_passage_quoi_conv: "Rozmowa do wysłuchania i odegrania.",
         seance_plan_neufs: "nowych słów: {n}",
         seance_plan_neufs_un: "1 nowe słowo",
         seance_plan_feuille: "odmiana",
@@ -28629,7 +28729,6 @@ const I18N = {
         review_known: "Już to znam",
         review_continuer: "Dalej",
         review_continuer_sous: "wróci później",
-        aide_continuer: "Każda zielona kropka to sukces: słowo wraca coraz rzadziej, żeby dobrze się utrwaliło. Gdy zapalą się wszystkie {n} kropki, słowo jest opanowane.",
         point_mot_1: "Zobaczone",
         point_mot_2: "Powtórzone",
         point_mot_3: "Zapamiętane",
@@ -28638,6 +28737,8 @@ const I18N = {
         praep_cas_toujours: "zawsze + {cas}",
         praep_cas_les_deux: "oba: {dat} · {akk}",
         praep_cas_ici: "tutaj: {cas}",
+        praep_schema_alt: "Schemat przyimków: z Akkusativ, z Dativ i z oboma (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Pokaż schemat",
         point_maitrise_16: "Opanowane · za 16 dni",
         point_toujours_35: "Wciąż znasz · za 5 tygodni",
         point_toujours_90: "Wciąż znasz · za 3 miesiące",
@@ -30123,7 +30224,8 @@ const I18N = {
         seance_court_reperes: "Основы",
         seance_court_scene: "Сцена",
         seance_court_conv: "Разговоры",
-        seance_court_cartes: "Карточки",
+        seance_court_cartes: "Слова",
+        seance_court_phrases: "Предложения",
         seance_court_grammaire: "Грамматика",
         seance_court_images: "Картинки",
         seance_court_son: "Звук",
@@ -30379,7 +30481,8 @@ const I18N = {
         seance_part_reperes: "Основы",
         seance_part_scene: "Сцена",
         seance_part_conv: "Разговоры",
-        seance_part_cartes: "Карточки",
+        seance_part_cartes: "Слова",
+        seance_part_phrases: "Предложения",
         seance_part_grammaire: "Грамматика",
         seance_part_images: "Картинки",
         seance_part_theme: "Тема в картинках",
@@ -30390,6 +30493,11 @@ const I18N = {
         seance_passage_ensuite: "Дальше: {part}",
         seance_passage_n: "Карточек: {n}",
         seance_passage_un: "1 карточка",
+        seance_passage_quoi_cartes: "Одна карточка — одно слово: новые слова и слова для повторения.",
+        seance_passage_quoi_phrases: "Составить, дополнить, послушать и произнести предложения.",
+        seance_passage_quoi_grammaire: "Правила, спряжение и звук дня.",
+        seance_passage_quoi_images: "Сцена и иллюстрированная тема.",
+        seance_passage_quoi_conv: "Разговор, чтобы послушать и разыграть.",
         seance_plan_neufs: "новых слов: {n}",
         seance_plan_neufs_un: "1 новое слово",
         seance_plan_feuille: "спряжение",
@@ -30441,7 +30549,6 @@ const I18N = {
         review_known: "Я уже знаю",
         review_continuer: "Дальше",
         review_continuer_sous: "оно ещё вернётся",
-        aide_continuer: "Каждая зелёная точка — это успех: слово возвращается всё реже, чтобы хорошо закрепиться. Когда загорятся все {n} точки, слово освоено.",
         point_mot_1: "Увидено",
         point_mot_2: "Повторено",
         point_mot_3: "Запомнилось",
@@ -30450,6 +30557,8 @@ const I18N = {
         praep_cas_toujours: "всегда + {cas}",
         praep_cas_les_deux: "оба: {dat} · {akk}",
         praep_cas_ici: "здесь: {cas}",
+        praep_schema_alt: "Схема предлогов: с Akkusativ, с Dativ и с обоими (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Показать схему",
         point_maitrise_16: "Выучено · через 16 дней",
         point_toujours_35: "Не забыто · через 5 недель",
         point_toujours_90: "Не забыто · через 3 месяца",
@@ -31938,7 +32047,8 @@ const I18N = {
         seance_court_reperes: "Basis",
         seance_court_scene: "Szene",
         seance_court_conv: "Gespräche",
-        seance_court_cartes: "Karten",
+        seance_court_cartes: "Wörter",
+        seance_court_phrases: "Sätze",
         seance_court_grammaire: "Grammatik",
         seance_court_images: "Bilder",
         seance_court_son: "Laut",
@@ -32193,7 +32303,8 @@ const I18N = {
         seance_part_reperes: "Orientierung",
         seance_part_scene: "Die Szene",
         seance_part_conv: "Gespräche",
-        seance_part_cartes: "Karten",
+        seance_part_cartes: "Wörter",
+        seance_part_phrases: "Sätze",
         seance_part_grammaire: "Grammatik",
         seance_part_images: "Bilder",
         seance_part_theme: "Das bebilderte Thema",
@@ -32204,6 +32315,11 @@ const I18N = {
         seance_passage_ensuite: "Als Nächstes: {part}",
         seance_passage_n: "{n} Karten",
         seance_passage_un: "1 Karte",
+        seance_passage_quoi_cartes: "Eine Karte, ein Wort: neue Wörter und Wörter zum Wiederholen.",
+        seance_passage_quoi_phrases: "Sätze bauen, ergänzen, hören und sprechen.",
+        seance_passage_quoi_grammaire: "Regeln, Konjugation und der Laut des Tages.",
+        seance_passage_quoi_images: "Eine Szene und ein Bildthema.",
+        seance_passage_quoi_conv: "Ein Gespräch zum Hören und Nachspielen.",
         seance_plan_neufs: "{n} neue Wörter",
         seance_plan_neufs_un: "1 neues Wort",
         seance_plan_feuille: "die Konjugation",
@@ -32255,7 +32371,6 @@ const I18N = {
         review_known: "Kenne ich schon",
         review_continuer: "Weiter",
         review_continuer_sous: "es kommt später wieder",
-        aide_continuer: "Jeder grüne Punkt ist ein Erfolg: Das Wort kommt in immer größeren Abständen wieder, damit es sich festsetzt. Wenn alle {n} Punkte leuchten, sitzt es.",
         point_mot_1: "Gesehen",
         point_mot_2: "Wiederholt",
         point_mot_3: "Eingeprägt",
@@ -32264,6 +32379,8 @@ const I18N = {
         praep_cas_toujours: "immer + {cas}",
         praep_cas_les_deux: "beide: {dat} · {akk}",
         praep_cas_ici: "hier: {cas}",
+        praep_schema_alt: "Schema der Präpositionen: mit Akkusativ, mit Dativ und mit beiden (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Schema anzeigen",
         point_maitrise_16: "Sicher · bis in 16 Tagen",
         point_toujours_35: "Sitzt noch · bis in 5 Wochen",
         point_toujours_90: "Sitzt noch · bis in 3 Monaten",
@@ -33765,7 +33882,8 @@ const I18N = {
         seance_court_reperes: "Básicos",
         seance_court_scene: "Escena",
         seance_court_conv: "Conversaciones",
-        seance_court_cartes: "Tarjetas",
+        seance_court_cartes: "Palabras",
+        seance_court_phrases: "Frases",
         seance_court_grammaire: "Gramática",
         seance_court_images: "Imágenes",
         seance_court_son: "Sonido",
@@ -34020,7 +34138,8 @@ const I18N = {
         seance_part_reperes: "Lo básico",
         seance_part_scene: "La escena",
         seance_part_conv: "Conversaciones",
-        seance_part_cartes: "Tarjetas",
+        seance_part_cartes: "Palabras",
+        seance_part_phrases: "Frases",
         seance_part_grammaire: "Gramática",
         seance_part_images: "Imágenes",
         seance_part_theme: "El tema ilustrado",
@@ -34031,6 +34150,11 @@ const I18N = {
         seance_passage_ensuite: "Ahora: {part}",
         seance_passage_n: "{n} tarjetas",
         seance_passage_un: "1 tarjeta",
+        seance_passage_quoi_cartes: "Una tarjeta, una palabra: las nuevas y las que hay que repasar.",
+        seance_passage_quoi_phrases: "Construir, completar, escuchar y decir frases.",
+        seance_passage_quoi_grammaire: "Las reglas, la conjugación y el sonido del día.",
+        seance_passage_quoi_images: "Una escena y un tema ilustrado.",
+        seance_passage_quoi_conv: "Una conversación para escuchar y representar.",
         seance_plan_neufs: "{n} palabras nuevas",
         seance_plan_neufs_un: "1 palabra nueva",
         seance_plan_feuille: "la conjugación",
@@ -34082,7 +34206,6 @@ const I18N = {
         review_known: "Ya lo sé",
         review_continuer: "Continuar",
         review_continuer_sous: "volverá más tarde",
-        aide_continuer: "Cada punto verde es un acierto: la palabra vuelve cada vez más espaciada, para fijarse bien. Cuando los {n} puntos están encendidos, está aprendida.",
         point_mot_1: "Vista",
         point_mot_2: "Repasada",
         point_mot_3: "Recordada",
@@ -34091,6 +34214,8 @@ const I18N = {
         praep_cas_toujours: "siempre + {cas}",
         praep_cas_les_deux: "los dos: {dat} · {akk}",
         praep_cas_ici: "aquí: {cas}",
+        praep_schema_alt: "Esquema de las preposiciones: con Akkusativ, con Dativ y con los dos (wohin?: Akkusativ; wo?: Dativ)",
+        praep_schema_voir: "Ver el esquema",
         point_maitrise_16: "Dominada · vuelve en 16 días",
         point_toujours_35: "La sabes · vuelve en 5 semanas",
         point_toujours_90: "La sabes · vuelve en 3 meses",
@@ -42376,11 +42501,9 @@ const PRAEP_CASE_OPTIONS_EN = ["Akkusativ", "Dativ", "Genitiv", "It depends (Wec
 
 
 
-// ?v=2 (v676) : le schema a ete redessine aux couleurs des cas (accusatif
-// violet, datif ocre, double cas ardoise). Le parametre force les telephones a
-// le recharger au lieu de servir l'ancien, bleu, depuis leur cache. Sa source
-// est video/sources/prep-schema.html (SVG rendu en JPG).
-const PREP_DIAGRAM_URL = LANGUE_ENSEIGNEE.donnees + "video/prep.JPG?v=2";
+// Le schema des cartes de prepositions n'est plus l'image video/prep.JPG (v676, rendue depuis
+// video/sources/prep-schema.html) : il est dessine dans la page, la preposition de la carte entouree
+// (praepSchemaSvg, 14 nov. 2026). L'image reste pour la page « Comprendre les prepositions ».
 
 // En espagnol, la liste de fork.py (fusion, etape 3) ; l'allemande est
 // celle d'avant, inchangee.
@@ -42515,6 +42638,102 @@ function surlignerPraep(phrase, prep){
     if(!p) return s;
     const re = new RegExp("(^|[^\\p{L}])(" + p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")(?![\\p{L}])", "iu");
     return s.replace(re, '$1<strong class="praep-hl">$2</strong>');
+}
+
+// ============ LE SCHEMA DES PREPOSITIONS, DESSINE DANS LA PAGE (decision de Jacques du 14 nov. 2026, point 4b) ============
+// La testeuse anglophone du 13 nov. : « Image doesn't show any prepositions that are in the sentence ». L'image
+// (video/prep.JPG) montrait les 25 prepositions en lettres de 8,8 px a 390 px, sans rien dire de la carte, et elle
+// allongeait le verso au point de passer sous les boutons sur un petit ecran. Desormais le MEME DESSIN -- deux cercles
+// Akkusativ / Dativ, les deux cas au milieu, « wohin? » et « wo? » -- est trace en SVG : la preposition de la carte
+// entouree d'ambre, les autres estompees, plus lisible (13 unites au lieu de 8,8 px) et moins haut (les mots en deux
+// colonnes). Les trois prepositions du genitif, absentes de l'image, ont leur ligne sous le schema pour leurs cartes.
+// Couleurs du jour et de la nuit en CSS (.ps-*), comme les etiquettes de cas. Les mots restent en allemand ; seul le
+// texte pour les lecteurs d'ecran (praep_schema_alt) suit la langue d'interface.
+const PRAEP_SCHEMA = {
+    akk: [["bis", 44, 72], ["durch", 44, 91], ["für", 44, 110], ["ohne", 88, 81], ["gegen", 88, 100], ["um", 88, 119]],
+    mil: [["in", 142, 62], ["an", 142, 81], ["auf", 142, 100], ["neben", 142, 119], ["hinter", 142, 138],
+          ["über", 199, 71], ["unter", 199, 90], ["zwischen", 199, 109], ["vor", 199, 128]],
+    dat: [["ab", 248, 62], ["außer", 248, 81], ["zu", 246, 100], ["nach", 248, 119], ["bei", 248, 138],
+          ["von", 302, 62], ["aus", 302, 81], ["gegenüber", 297, 100], ["seit", 302, 119], ["mit", 302, 138]],
+    gen: ["wegen", "während", "trotz"]
+};
+function echapperSchema(s){ return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]); }
+// SUR UN PETIT ECRAN, LE SCHEMA SE DEPLIE (option B du chef, 14 nov. 2026). Sous 600 px de haut (un iPhone SE dans
+// Safari : 548), la carte « zwischen » avec sa phrase, sa traduction, son cas et le schema ne tenait pas au-dessus des
+// boutons (57 px dessous). Le schema y attend derriere « Voir le schema ▸ » ; un toucher le deplie, la carte se
+// remesure et la page defile jusqu'au bas du SCHEMA (montrerSchemaPraep) : la personne l'a demande, le haut de la carte
+// peut sortir de l'ecran (garderVersoVisible, lui, le garde toujours visible et laissait le bas du schema 42 px sous les
+// boutons a 375x548). Les boutons ne changent pas.
+const SCHEMA_PRAEP_HAUTEUR_MIN = 600;
+function cadreSchemaPraep(prep){
+    const svg = praepSchemaSvg(prep);
+    let petit = false;
+    try{ petit = window.innerHeight < SCHEMA_PRAEP_HAUTEUR_MIN; }catch(e){}
+    if(!petit) return `<div class="praep-schema-cadre">${svg}</div>`;
+    return `<button type="button" class="praep-schema-voir" onclick="event.stopPropagation(); deplierSchemaPraep(this)">`
+        + `${echapperSchema(t("praep_schema_voir"))} <span class="praep-schema-fleche" aria-hidden="true">▸</span></button>`
+        + `<div class="praep-schema-cadre hidden">${svg}</div>`;
+}
+function deplierSchemaPraep(bouton){
+    const cadre = bouton && bouton.nextElementSibling;
+    if(!cadre) return;
+    cadre.classList.remove("hidden");
+    bouton.remove();
+    try{ resizeFlashcard(); }catch(e){}
+    // Deux regards, comme planifierVersoVisible : apres la transition de hauteur, puis une fois tout pose. Une cible
+    // ABSOLUE (scrollTo), pour qu'un second regard pendant le premier defilement vise le meme point au lieu d'ajouter.
+    setTimeout(() => { montrerSchemaPraep(cadre); setTimeout(() => montrerSchemaPraep(cadre), 700); }, 650);
+}
+function montrerSchemaPraep(cadre){
+    const act = document.getElementById("flashcardActions");
+    if(!cadre || !cadre.isConnected || !cadre.offsetParent || !act || act.classList.contains("hidden")) return;
+    const boutons = [...act.querySelectorAll("button")].filter(b => b.offsetParent && b.getBoundingClientRect().height > 0);
+    if(!boutons.length) return;
+    const hautBoutons = Math.min(...boutons.map(b => b.getBoundingClientRect().top));
+    const r = cadre.getBoundingClientRect();
+    const MARGE = 10;
+    // Le bas du schema au-dessus des boutons, sans faire sortir son haut de l'ecran.
+    const defile = Math.min(Math.ceil(r.bottom + MARGE - hautBoutons), Math.floor(r.top - MARGE));
+    if(defile <= 0) return;
+    let reduit = false;
+    try{ reduit = matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
+    defileParLeVerso = true;
+    window.scrollTo({ top: window.scrollY + defile, behavior: reduit ? "auto" : "smooth" });
+}
+function praepSchemaSvg(prep){
+    const p = String(prep || "").toLowerCase();
+    const tous = PRAEP_SCHEMA.akk.concat(PRAEP_SCHEMA.mil, PRAEP_SCHEMA.dat);
+    const dansLeSchema = tous.some(m => m[0] === p);
+    const genitif = PRAEP_SCHEMA.gen.indexOf(p) >= 0;
+    const estompe = dansLeSchema || genitif;
+    // Largeur approchee d'un mot, pour la pastille ambree : 0,6 em par lettre, un peu de marge.
+    const pastille = (mot, x, y, taille) => {
+        const l = Math.round(mot.length * taille * 0.6 + 8), h = taille + 5;
+        return `<rect class="ps-cible" x="${x - l / 2}" y="${y - taille + 1 - 2}" width="${l}" height="${h}" rx="${h / 2}"/>`
+            + `<text class="ps-mot-cible" x="${x}" y="${y}" font-size="${taille}">${echapperSchema(mot)}</text>`;
+    };
+    const mot = (m, classe) => m[0] === p
+        ? pastille(m[0], m[1], m[2], m[0].length > 7 ? 13 : 14)
+        : `<text class="ps-mot ${classe}${estompe ? " ps-estompe" : ""}" x="${m[1]}" y="${m[2]}">${echapperSchema(m[0])}</text>`;
+    const H = genitif ? 204 : 180;
+    let svg = `<svg class="praep-schema" viewBox="0 0 340 ${H}" role="img" aria-label="${echapperSchema(t("praep_schema_alt"))}" xmlns="http://www.w3.org/2000/svg">`
+        + `<ellipse class="ps-akk" cx="118" cy="99" rx="112" ry="80"/>`
+        + `<ellipse class="ps-dat" cx="222" cy="99" rx="112" ry="80"/>`
+        + `<text class="ps-titre ps-titre-akk" x="72" y="13">Akkusativ</text>`
+        + `<text class="ps-titre ps-titre-dat" x="268" y="13">Dativ</text>`
+        + PRAEP_SCHEMA.akk.map(m => mot(m, "ps-akk-mot")).join("")
+        + PRAEP_SCHEMA.mil.map(m => mot(m, "ps-mil-mot")).join("")
+        + PRAEP_SCHEMA.dat.map(m => mot(m, "ps-dat-mot")).join("")
+        + `<text class="ps-sens ps-sens-akk" x="166" y="160">← wohin?</text>`
+        + `<text class="ps-sens ps-sens-dat" x="176" y="160">wo? →</text>`;
+    if(genitif){
+        // La ligne du genitif : « Genitiv », puis les trois mots, celui de la carte entoure.
+        svg += `<text class="ps-titre ps-titre-gen" x="72" y="196">Genitiv</text>`;
+        [["wegen", 160], ["während", 226], ["trotz", 292]].forEach(([g, x]) => {
+            svg += g === p ? pastille(g, x, 196, 14) : `<text class="ps-mot ps-gen-mot" x="${x}" y="196">${echapperSchema(g)}</text>`;
+        });
+    }
+    return svg + `</svg>`;
 }
 
 // Pour les 9 Wechselpräpositionen : une phrase Wo ? (Dativ, position -- reprend
@@ -57816,7 +58035,7 @@ function loadFlashcard(){
     texteAudioExemple = null;
     arreterChaineCarte(true);
     majEcheances();
-    try{ rattraperAvantLeTheme(); }catch(e){}
+    try{ rattraperFinDePartie(); }catch(e){}
     const item = currentCards[currentFlashcard];
     if(!item){ handleFlashcardBack(); return; }
     // L'essai rappel_actif : la question d'une carte precedente s'efface.
@@ -58262,8 +58481,9 @@ function loadFlashcard(){
             translationEl.textContent = frenchWord;
             translationEl.classList.remove("hidden");
         }
+        // 14 nov. 2026 (point 4b) : le schema dessine dans la page, la preposition de la carte entouree (praepSchemaSvg).
         const praepDiagramHtml = flashcardMode === 'praep' && LANGUE_APPRISE === "de"
-            ? `<div class="verb-sep"></div><img src="${PREP_DIAGRAM_URL}" alt="Diagramme Akkusativ/Dativ" style="width:100%; border-radius:12px; display:block;" loading="lazy">`
+            ? `<div class="verb-sep"></div>${cadreSchemaPraep(card[0])}`
             : "";
         const grammarSpeakBtn = sentenceSpeakBtnHtml(exampleSentence, "de");
         // La categorie (le cas, ou la nature du mot) monte en etiquette en tete
@@ -58685,12 +58905,14 @@ function redemanderPlusLoin(item){
     const actives = seancePartsActive();
     if(currentCards === currentCardsFull && !actives) currentCards = currentCards.slice();
     let cible = Math.min(currentFlashcard + 1 + SRS_CARTES_AVANT_RETOUR, currentCards.length);
-    if(actives){
-        const partie = SEANCE_PARTS.parts.get(item);
+    // Ligne 98 : Premiers pas aussi -- apres le dernier mot de SA partie, jamais dans une autre.
+    const parts = partsDuPaquetCourant();
+    if(parts){
+        const partie = parts.get(item) || groupeCartePP(item);
         cible = currentFlashcard + 1;
         for(let i = currentFlashcard + 1; i < currentCards.length; i++){
             const c = currentCards[i];
-            if(c && c.mode !== "phrase" && SEANCE_PARTS.parts.get(c) === partie) cible = i + 1;
+            if(c && c.mode !== "phrase" && parts.get(c) === partie) cible = i + 1;
         }
     }
     const theme = currentCards.findIndex((c, i) => i > currentFlashcard && c && c.forme === "theme_arret");
@@ -61804,7 +62026,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1193;
+const APP_VERSION = 1195;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -72350,7 +72572,7 @@ function traductionNomRepere(motAvecArticle){
 function exercicesRepere(r, n, badge){
     const sens = l => sensPremiersPas(l[1]);
     const carte = (forme, de, s, extra) => Object.assign({ mode: "phrase", forme: forme, cible: null, themeId: "rp_" + r.id,
-        index: 0, word: "", rpBadge: badge, phrase: { de: de, sens: s, mots: motsPhrase(de) } }, extra || {});
+        index: 0, word: "", rpBadge: badge, rpType: r.type || "suite", phrase: { de: de, sens: s, mots: motsPhrase(de) } }, extra || {});
     const out = [];
     // v880 : l'alphabet (entendre la lettre, ecrire le mot epele), le genre
     // (choisir l'article, le dire avec), le pluriel (choisir, le dire).
@@ -72461,7 +72683,7 @@ function insererReperes(seance, rp){
         const r = rp.neuf;
         const badge = tf("rp_badge", { n: rp.rang + 1, t: rp.total });
         placer(pos, { mode: "phrase", forme: "pp_tableau", tableau: { t: r.t, l: r.l, a: r.a }, rpTableau: r.id,
-                      rpBadge: badge, cible: null, themeId: "rp_tableau", index: rp.rang, phrase: null, word: "" });
+                      rpBadge: badge, rpType: r.type || "suite", cible: null, themeId: "rp_tableau", index: rp.rang, phrase: null, word: "" });
         pos += 1;
         exercicesRepere(r, REPERES_EXOS, badge).forEach(x => { placer(pos, x); pos += 2; });
     }
@@ -73579,12 +73801,18 @@ async function ouvrirSeanceDuJour(sansScene){
     // seance l'attendait. Desormais : deja la, rien ne change ; pas encore la,
     // la seance s'ouvre tout de suite et les phrases se glissent plus loin des
     // qu'il arrive (phrasesApres, plus bas).
+    // Ligne 98 : une phrase glissee plus tard (glisserPhrasesPlusTard) prenait la place d'une carte de MOT et sa partie --
+    // une phrase dans les Mots. On attend exercices.json 2,5 s au plus (il est precharge 700 ms apres l'accueil, comme
+    // pour la grammaire garantie) ; s'il n'est toujours pas la, la seance part sans cartes-phrases.
     let phrasesApres = false;
     if(LANGUE_APPRISE !== "ja" && essaiActif("phrases")){
+        if(!JEUX_EXOS){
+            try{ await Promise.race([prechargerGrammaireSeance().catch(() => {}), new Promise(r => setTimeout(r, 2500))]); }catch(e){}
+        }
         if(JEUX_EXOS){
             try{ await prechargerGrammaireSeance(); }catch(e){}
             try{ seance = insererCartesPhrases(seance, tout); }catch(e){}
-        } else phrasesApres = true;
+        }
     }
     // v831 : la scene du jour, une fois, au milieu (essai « scene_arret »).
     // v862 : pendant les escales, la scene de l'escale.
@@ -73688,11 +73916,11 @@ function glisserPhrasesPlusTard(paquet, tout){
 // dans la seance, sinon dans les revisions : elles restent APRES ce mot.
 // 7 nov. 2026 (decision 6fda9e0) : le theme illustre a sa partie, apres les revisions -- la scene dans la
 // premiere moitie, le theme vers la fin, les deux avant la fin de la seance.
-const ORDRE_PARTS = ["lieu", "feuille", "neufs", "reperes", "gram", "scene", "conv", "son", "revisions", "theme", "fin"];
+const ORDRE_PARTS = ["lieu", "neufs", "reperesMots", "revisions", "phrases", "feuille", "reperes", "gram", "son", "scene", "theme", "conv", "fin"];
 // Essai « seance_legere » (decision d9d9dbd) : la lecon dans l'ordre de la maquette -- « Revisions · Mots ·
 // Grammaire · Scene · Theme ».
 // 8 nov. 2026 : le son avant le theme, qui reste la derniere etape (seules les cartes de cloture le suivent).
-const ORDRE_PARTS_LEGERE = ["revisions", "lieu", "neufs", "feuille", "reperes", "gram", "scene", "conv", "son", "theme", "fin"];
+const ORDRE_PARTS_LEGERE = ["revisions", "lieu", "neufs", "reperesMots", "phrases", "feuille", "reperes", "gram", "son", "scene", "theme", "conv", "fin"];
 function ordreParts(){ return seanceLegere() ? ORDRE_PARTS_LEGERE : ORDRE_PARTS; }
 // LA BARRE EN TROIS PARTIES (decision de Jacques du 12 nov. 2026, proposition 5 de la revue : « des cartes,
 // [grammaire], images [...] conversation va s'ajouter » ; « mettre conversation au pluriel » ; puis « Pas besoin de
@@ -73700,9 +73928,22 @@ function ordreParts(){ return seanceLegere() ? ORDRE_PARTS_LEGERE : ORDRE_PARTS;
 // nouveaux), « Grammaire » (le verbe, les reperes, le son du jour), « Images » (la scene et le theme illustre) et, le
 // jour ou une etape se termine, « Conversations ». Une carte ratee revient dans sa propre partie (remettreEnFile).
 // Les parties fines (ORDRE_PARTS) gardent l'ordre a l'interieur d'une partie de la barre.
-const GROUPES_SEANCE = ["cartes", "grammaire", "images", "conv"];
-const GROUPE_DE_PARTIE = { revisions: "cartes", lieu: "cartes", neufs: "cartes", fin: "fin", feuille: "grammaire",
-                           reperes: "grammaire", gram: "grammaire", son: "grammaire", scene: "images", theme: "images", conv: "conv" };
+// LA SEANCE EN PARTIES D'UNE SEULE SORTE (decisions de Jacques du 14 nov. 2026, ligne 98 : « Il faut que ca soit le plus
+// clair possible et le plus significatif possible » ; puis « mots, phrases, grammaire, puis images [...] de temps en temps,
+// on va avoir une conversation qui va s'ajouter ») :
+//   MOTS (le groupe « cartes ») : les mots nouveaux, a revoir, de l'escale, les reperes nombres / jours / mois -- une
+//     carte = un mot ; PHRASES : construire, completer, la dictee, ecouter et repeter, le dialogue de l'escale ;
+//   GRAMMAIRE : le tableau de l'escale, les questions de grammaire, la conjugaison, le genre, le son du jour ;
+//   IMAGES : la scene, le theme illustre ; CONVERSATION : les jours ou il y en a une, a la fin.
+// Trois regles : une carte ratee ou remise revient dans SA partie (rattraperFinDePartie) ; un meme mot une seule fois par
+// seance (unMotParSeance) ; une partie finie ne se rouvre pas (rien ne s'insere dans une partie passee).
+const GROUPES_SEANCE = ["cartes", "phrases", "grammaire", "images", "conv"];
+const GROUPE_DE_PARTIE = { revisions: "cartes", lieu: "cartes", neufs: "cartes", reperesMots: "cartes", phrases: "phrases", fin: "fin",
+                           feuille: "grammaire", reperes: "grammaire", gram: "grammaire", son: "grammaire", scene: "images",
+                           theme: "images", conv: "conv" };
+// Les reperes de la grammaire : le genre (der / die / das, el / la) et le pluriel. Les autres (nombres, jours, mois,
+// couleurs, lettres) sont des mots.
+const REPERES_GRAMMAIRE = ["genre", "pluriel"];
 function groupePartie(p){ return GROUPE_DE_PARTIE[p] || p || "cartes"; }
 let SEANCE_PARTS = null;           // { paquet, parts (Map carte -> partie), themeId, niveau, etape }
 const PASSAGES_VUS = new Set();    // les parties dont l'ecran de passage a ete montre (v1122 : par partie)
@@ -73711,19 +73952,23 @@ function partDeCarteSeance(c, av, parCle){
     const forme = c.forme || "";
     // 12 nov. 2026 (Jacques : « une partie grammaire dans chaque seance ») : les questions de grammaire (« gram »,
     // sans mot vise, elles tombaient dans les revisions) et le tableau du verbe de l'escale vont dans Grammaire.
-    if(c.mode === "phrase" && (forme === "gram" || c.gramTableau || c.avTableau)) return "gram";
-    if(c.av) return /^(av_escale_fin|av_jalon|av_fin_a1)$/.test(forme) ? "fin" : "lieu";
+    // Ligne 98 : les questions d'une feuille de conjugaison aussi (fc_gram).
+    if(c.mode === "phrase" && (forme === "gram" || c.gramTableau || c.avTableau)) return c.fcBadge ? "feuille" : "gram";
+    if(c.av){
+        if(/^(av_escale_fin|av_jalon|av_fin_a1)$/.test(forme)) return "fin";
+        // Ligne 98 : les phrases toutes faites et le dialogue de l'escale sont des PHRASES.
+        if(c.mode === "phrase") return "phrases";
+        return "lieu";
+    }
     if(forme === "theme_arret") return "theme";
     if(forme === "scene_arret") return "scene";
     if(forme === "conv_arret") return "conv";
     const tid = String(c.themeId || "");
     if(tid.indexOf("son_") === 0) return "son";
-    if(c.rpBadge || c.rpTableau || tid.indexOf("rp_") === 0) return "reperes";
-    if(c.fcBadge || c.fcFeuille || c.feuilleTemps) return "feuille";
-    if(c.mode === "phrase"){
-        const k = c.cible ? (c.cible.themeId + ":" + c.cible.index) : null;
-        return (k && parCle.has(k)) ? parCle.get(k) : "revisions";
-    }
+    if(c.rpBadge || c.rpTableau || tid.indexOf("rp_") === 0) return REPERES_GRAMMAIRE.indexOf(c.rpType) >= 0 ? "reperes" : "reperesMots";
+    if(c.fcFeuille) return "feuille";
+    // La phrase de la feuille a remettre en ordre est une PHRASE ; le verbe du jour (feuilleTemps), un MOT.
+    if(c.mode === "phrase") return "phrases";
     let neuf = false;
     try{ neuf = estNeuf(getWordState(c.themeId, c.index)); }catch(e){}
     return neuf ? ((av && !av.finA1) ? "lieu" : "neufs") : "revisions";
@@ -73742,10 +73987,43 @@ function regrouperSeance(seance, av){
     const rang = c => { const i = ordre.indexOf(parts.get(c)); return i < 0 ? ordre.length : i; };
     const rangG = c => { const g = groupePartie(parts.get(c)); const i = GROUPES_SEANCE.indexOf(g); return i < 0 ? GROUPES_SEANCE.length : i; };
     const triees = seance.map((c, i) => [c, i]).sort((a, b) => rangG(a[0]) - rangG(b[0]) || rang(a[0]) - rang(b[0]) || a[1] - b[1]).map(x => x[0]);
-    const cartes = eloignerPhrasesDeLeurMot(espacerPhrasesEtape(triees, parts), parts);
+    const cartes = unMotParSeance(eloignerPhrasesDeLeurMot(espacerPhrasesEtape(triees, parts), parts));
     const groupes = new Map();
     cartes.forEach(c => { if(c) groupes.set(c, groupePartie(parts.get(c))); });
     return { cartes: cartes, parts: groupes };
+}
+// UN MEME MOT UNE SEULE FOIS PAR SEANCE (ligne 98, decision du 14 nov. ; Jacques : « on retrouve des cartes aussi dans la
+// grammaire. Meme des cartes que j'avais vues dans les cartes. »). Ce qu'une carte montre comme UN mot : la carte de mot,
+// un repere d'un mot (« Montag », « la mano »), la question de sens d'une ligne du tableau (« la cuenta »). Une phrase qui
+// emploie le mot n'en est pas un doublon (elle le fait travailler). La premiere carte reste, les suivantes partent --
+// sauf celles dont depend un suivi (le repere a revoir, rpRevu), qui l'emportent sur une carte de mot.
+function cleMotVisible(c){
+    if(!c) return null;
+    const nu = s => String(s || "").toLowerCase().normalize("NFC").replace(/[¿?¡!.,;:«»"()]/g, " ")
+        .replace(/^\s*(el|la|los|las|un|una|der|die|das|den|dem|ein|eine|the|o|os|as)\s+/, "").replace(/\s+/g, " ").trim();
+    if(c.mode !== "phrase"){ const w = motDeLaCarte(c); return w ? nu(w) : null; }
+    if(c.cible || c.forme === "pp_tableau" || c.av) return null;
+    if(String(c.themeId || "").indexOf("rp_") === 0 && c.phrase && c.phrase.de){
+        const k = nu(c.phrase.de);
+        return k && k.split(" ").length <= 2 ? k : null;
+    }
+    if(c.gramTableau && c.ex && c.ex.sens) return nu(c.ex.question) || null;
+    return null;
+}
+function unMotParSeance(cartes){
+    const proteges = new Set();
+    cartes.forEach(c => { const k = cleMotVisible(c); if(k && c.rpRevu) proteges.add(k); });
+    const vus = new Set(), deja = new Set();
+    return cartes.filter(c => {
+        const k = cleMotVisible(c);
+        if(!k) return true;
+        if(deja.has(c)) return true;            // la meme carte, revenue
+        deja.add(c);
+        if(proteges.has(k) && !c.rpRevu) return false;
+        if(vus.has(k)) return false;
+        vus.add(k);
+        return true;
+    });
 }
 // v1124 (decision 64fad6f, Jacques, 6 nov.) : LES PHRASES DE L'ETAPE ESPACEES. Le regroupement retirait
 // les revisions qui separaient les phrases toutes faites (aux cartes 3, 8, 13) et les cartes-phrases des
@@ -73830,7 +74108,7 @@ function eloignerPhrasesDeLeurMot(cartes, parts){
             const m2 = motDe(reste, c);
             const but = m2 + ANTI_ECHO_PHRASE + 1;
             // fin - 1 : la derniere place de la partie une fois la phrase retiree ; on peut se poser juste apres.
-            if(m2 < 0 || g(reste[m2]) !== gr || but > fin) continue;
+            if(m2 < 0 || m2 >= i || but > fin) continue;
             reste.splice(but, 0, c);
             for(let k = 0; k < out.length; k++) out[k] = reste[k];
         }
@@ -73889,7 +74167,7 @@ function nomCourtPartie(p){ p = groupePartie(p); return t("seance_court_" + (GRO
 // le phare pour la grammaire, la ville pour les images, le banc du parc pour les conversations.
 function clePaysagePartie(p, enPP){
     p = groupePartie(p);
-    return { cartes: enPP ? "pp" : "mots", grammaire: "conj", images: "scene", conv: "conv" }[p] || (enPP ? "pp" : "mots");
+    return { cartes: enPP ? "pp" : "mots", phrases: "rev", grammaire: "conj", images: "scene", conv: "conv" }[p] || (enPP ? "pp" : "mots");
 }
 function melangePaysage(hex, cible, k){
     const h = c => [1, 3, 5].map(i => parseInt(c.substr(i, 2), 16)), a = h(hex), b = h(cible);
@@ -74169,8 +74447,13 @@ function groupeCartePP(c){
     const f = (c && c.forme) || "", tid = String((c && c.themeId) || "");
     if(f === "conv_arret") return "conv";
     if(f === "theme_arret" || f === "scene_arret" || f === "pp_scene") return "images";
+    if(f === "pp_fin") return "fin";
+    // Ligne 98 : les reperes nombres, jours, mois sont des mots ; le genre et le pluriel, de la grammaire.
+    if(tid.indexOf("rp_") === 0 || (c && (c.rpBadge || c.rpTableau)) && tid.indexOf("son_") !== 0)
+        return REPERES_GRAMMAIRE.indexOf(c.rpType) >= 0 ? "grammaire" : "cartes";
     if(f === "pp_tableau" || f === "gram" || (c && c.gramTableau)) return "grammaire";
-    if(tid.indexOf("son_") === 0 || tid.indexOf("rp_") === 0 || (c && (c.rpBadge || c.rpTableau))) return "grammaire";
+    if(tid.indexOf("son_") === 0) return "grammaire";
+    if(c && c.mode === "phrase") return "phrases";
     return "cartes";
 }
 // UNE PARTIE GRAMMAIRE DANS CHAQUE SEANCE (decision de Jacques du 12 nov. 2026 : « Ouais, j'aimerais avoir une partie
@@ -74187,18 +74470,22 @@ const PRONOMS_TABLEAU = {
     pt: ["eu", "tu", "você", "ele", "ela", "nós", "vocês", "eles", "elas"]
 };
 function compterGrammaire(liste){
+    // Ligne 98 : ce que la partie Grammaire contiendra vraiment (les reperes nombres / jours / mois et le verbe du jour
+    // sont des Mots, la phrase de la feuille une Phrase).
+    const vide = new Map();
     return (liste || []).filter(c => {
         if(!c) return false;
-        const tid = String(c.themeId || "");
-        return c.forme === "gram" || c.forme === "pp_tableau" || c.gramTableau || c.avTableau || c.rpBadge || c.rpTableau
-            || c.fcBadge || c.fcFeuille || c.feuilleTemps || tid.indexOf("rp_") === 0 || tid.indexOf("son_") === 0;
+        if(c.forme === "pp_tableau" && !c.avTableau && !c.fcFeuille && !(c.rpTableau && REPERES_GRAMMAIRE.indexOf(c.rpType) >= 0)) return false;
+        let p = null;
+        try{ p = partDeCarteSeance(c, null, vide); }catch(e){ return false; }
+        return groupePartie(p) === "grammaire";
     }).length;
 }
 // Les questions d'un tableau (Premiers pas, escale de l'A1 voyage). Un verbe : « du ___ », trois formes du tableau, une
 // seule juste -- une forme n'est jamais proposee si une autre ligne du tableau la donne a un des pronoms de la question
 // (« sie ___ » : ni « ist », qui est aussi « sie ist », ni rien d'autre que « sind »). Une ligne sans pronom (« voy »,
 // « Wo? », « zwanzig ») : son sens parmi trois sens differents du tableau.
-function questionsDeTableau(tableau, n){
+function questionsDeTableau(tableau, n, exclus){
     const lignes = ((tableau && tableau.l) || []).filter(l => Array.isArray(l) && l[0] && l[1]);
     const pronoms = PRONOMS_TABLEAU[LANGUE_APPRISE] || [];
     const bas = x => String(x).toLowerCase();
@@ -74225,6 +74512,8 @@ function questionsDeTableau(tableau, n){
         const s0 = sensPremiersPas(lignes[i][1]);
         const autres = [];
         lignes.forEach(l => { const s1 = sensPremiersPas(l[1]); if(bas(s1) !== bas(s0) && autres.every(a => bas(a) !== bas(s1))) autres.push(s1); });
+        // Ligne 98 : pas la question de sens d'un mot que la seance montre deja en carte (un mot une fois par seance).
+        if(exclus && exclus.has(cleMotVisible({ mode: "phrase", gramTableau: true, ex: { sens: true, question: String(lignes[i][0]) } }))) return;
         if(autres.length >= 2 && lignes.filter(l => l[0] === lignes[i][0]).length === 1)
             sens.push({ sens: true, question: String(lignes[i][0]), answers: [s0], correct: s0,
                         options: melangerPhrase([s0].concat(melangerPhrase(autres).slice(0, 2))) });
@@ -74253,7 +74542,9 @@ async function assurerGrammaireSeance(seance, tableau, nVus){
     const manque = (profil && profil.f === "regles" ? GRAMMAIRE_GARANTIE + 2 : GRAMMAIRE_GARANTIE) - compterGrammaire(seance);
     if(manque <= 0) return seance;
     let ajout = [];
-    try{ if(tableau) ajout = questionsDeTableau(tableau, manque); }catch(e){ ajout = []; }
+    const motsVus = new Set();
+    seance.forEach(c => { const k = cleMotVisible(c); if(k) motsVus.add(k); });
+    try{ if(tableau) ajout = questionsDeTableau(tableau, manque, motsVus); }catch(e){ ajout = []; }
     if(ajout.length < manque){
         // exercices.json est precharge 700 ms apres l'accueil : en pratique deja la. Sinon, 2,5 s au plus -- la barre
         // est fixee des la premiere carte, la grammaire ne peut pas arriver apres.
@@ -74294,15 +74585,16 @@ function ordonnerPremiersPas(items){
     } else {
         liste = items.filter(c => { if(c && c.forme === "scene_arret"){ if(place <= 0) return false; place--; } return true; });
     }
-    const rang = { cartes: 0, grammaire: 1, images: 2, conv: 3 };
+    // Ligne 98 : Mots, Phrases, Grammaire, puis les Images et la conversation ; la carte de fin (pp_fin) apres la
+    // grammaire, avant les images (la scene de l'etape ferme la seance).
+    const rang = { cartes: 0, phrases: 1, grammaire: 2, fin: 2.5, images: 3, conv: 4 };
     const rangImage = c => c.forme === "scene_arret" ? 0 : c.forme === "theme_arret" ? 1 : 2;
-    return liste.map((c, i) => [c, i]).sort((a, b) => {
+    return unMotParSeance(liste.map((c, i) => [c, i]).sort((a, b) => {
         const ga = rang[groupeCartePP(a[0])], gb = rang[groupeCartePP(b[0])];
         if(ga !== gb) return ga - gb;
-        if(ga === 2) return rangImage(a[0]) - rangImage(b[0]) || a[1] - b[1];
-        const fa = a[0].forme === "pp_fin" ? 1 : 0, fb = b[0].forme === "pp_fin" ? 1 : 0;
-        return fa - fb || a[1] - b[1];
-    }).map(x => x[0]);
+        if(ga === 3) return rangImage(a[0]) - rangImage(b[0]) || a[1] - b[1];
+        return a[1] - b[1];
+    }).map(x => x[0]));
 }
 // L'ecran de passage, a la premiere carte d'une partie. Rend true s'il s'affiche :
 // loadFlashcard s'arrete alors, et « Continuer » la rappelle pour la carte.
@@ -74343,6 +74635,11 @@ function montrerPassageSeance(){
     const ensuite = document.createElement("p");
     ensuite.className = "cp-passage-ensuite";
     ensuite.textContent = tf("seance_passage_ensuite", { part: minuscule(titrePartSeance(s.p, P.paquet[s.debut])) });
+    // Ligne 98 : une ligne dit ce que contient la partie qui vient.
+    const quoi = document.createElement("p");
+    quoi.className = "cp-passage-quoi";
+    const gq = groupePartie(s.p);
+    quoi.textContent = t("seance_passage_quoi_" + (GROUPES_SEANCE.indexOf(gq) >= 0 ? gq : "cartes"));
     const n = document.createElement("small");
     n.className = "cp-passage-n";
     n.textContent = s.n === 1 ? t("seance_passage_un") : tf("seance_passage_n", { n: s.n });
@@ -74351,7 +74648,7 @@ function montrerPassageSeance(){
     go.className = "primary cp-passage-go";
     go.textContent = t("review_continuer");
     go.addEventListener("click", () => { loadFlashcard(); });
-    [ok, fait, ensuite, n, go].forEach(x => boite.appendChild(x));
+    [ok, fait, ensuite, quoi, n, go].forEach(x => boite.appendChild(x));
     el.appendChild(boite);
     try{ majCompteurCarte(); }catch(e){}
     try{ go.focus({ preventScroll: true }); }catch(e){}
@@ -75803,40 +76100,50 @@ function remettreEnFile(item){
     }catch(e){}
     currentCards.splice(cible, 0, item);
 }
-// EN ARRIVANT AU THEME : ce qui devait encore revenir de CETTE seance passe avant lui (appele par loadFlashcard, avant
-// l'ecran de passage, pour que « Ensuite : le theme » soit vrai). Les seules cartes du paquet joue : l'arriere du niveau
-// (currentCardsFull) n'appartient pas a cette seance, il ouvrira la suivante. Une carte neuve prend la partie qui
-// precede le theme, pour ne pas couper la barre ni faire naitre un ecran de passage.
-function rattraperAvantLeTheme(){
-    // 12 nov. 2026 : avant les IMAGES (la premiere scene ou le theme), plus seulement avant le theme -- une carte revue
-    // apres la scene faisait renaitre une partie dans la barre.
-    const theme = currentCards[currentFlashcard];
-    if(!theme || !/^(theme_arret|scene_arret)$/.test(theme.forme || "")) return;
-    const avant = currentCards[currentFlashcard - 1];
-    if(avant && /^(theme_arret|scene_arret|pp_scene)$/.test(avant.forme || "")) return;
-    const cle = c => c.themeId + ":" + c.index;
-    const duPaquet = new Map(), permis = new Set();
-    currentCards.forEach(c => {
-        if(!c) return;
-        if(c.mode !== "phrase"){ duPaquet.set(cle(c), c); permis.add(cle(c)); }
-        else if(c.cible) permis.add(cle(c.cible));
-    });
-    const aVenir = new Set(currentCards.slice(currentFlashcard).filter(c => c).map(cle));
-    const vues = new Set(), cartes = [];
-    cartesRevenues(currentCardsFull || []).concat(cartesEncoreEnAttente(currentCardsFull || [])).forEach(c => {
-        const k = cle(c);
-        if(!permis.has(k) || vues.has(k) || aVenir.has(k)) return;
-        vues.add(k);
-        cartes.push(duPaquet.get(k) || c);
-    });
-    if(currentTheme && String(currentTheme.id).indexOf("seance_") === 0) cartes.push(...RETOURS_FIN_SEANCE.splice(0));
-    if(!cartes.length) return;
-    if(seancePartsActive() && currentFlashcard > 0){
-        const P = SEANCE_PARTS, i = currentFlashcard - 1;
-        const seg = segmentsSeance(P.paquet, P.parts).find(x => i >= x.debut && i < x.debut + x.n);
-        cartes.forEach(c => { if(!P.parts.has(c)) P.parts.set(c, seg ? seg.p : "cartes"); });
+// LE RATTRAPAGE PAR PARTIE (ligne 98, decision du 14 nov. ; Jacques, v1192 : apres les trois questions de Grammaire,
+// « ca recommencait avec des cartes [...] c'est comme si ca continuait avec des cartes »). Avant, ce qui devait revenir
+// (les « Encore », les retours de 10 minutes des mots presentes, les phrases ratees) etait insere devant les Images et
+// prenait la partie de la carte d'avant : la Grammaire. Desormais, au passage d'une partie a la suivante, ce qui revient
+// de la partie FINIE passe juste avant, encore sous elle : les mots a la fin des Mots, les phrases ratees a la fin des
+// Phrases. Rien ne s'insere apres la Grammaire, ni devant les Images ; une partie finie ne se rouvre pas. Un retour qui
+// n'est pas encore du a la fin de sa partie (un mot presente il y a 3 minutes) attend la seance suivante.
+// Seance du jour et Premiers pas ; appele par loadFlashcard, avant l'ecran de passage.
+const RATTRAPES_PAR_PAQUET = new WeakMap();
+function partsDuPaquetCourant(){
+    if(seancePartsActive()) return SEANCE_PARTS.parts;
+    if(currentTheme && currentTheme.id === "seance_premiers_pas" && currentCards && currentCards.length > 1) return partsPremiersPas(currentCards);
+    return null;
+}
+function rattraperFinDePartie(){
+    if(!currentTheme || String(currentTheme.id).indexOf("seance_") !== 0) return;
+    const parts = partsDuPaquetCourant();
+    const i = currentFlashcard;
+    if(!parts || i <= 0 || i >= currentCards.length) return;
+    const gp = groupePartie(parts.get(currentCards[i - 1])), gc = groupePartie(parts.get(currentCards[i]));
+    if(!gp || !gc || gp === gc || gp === "fin" || gc === "fin") return;
+    let faits = RATTRAPES_PAR_PAQUET.get(currentCards);
+    if(!faits){ faits = new Set(); RATTRAPES_PAR_PAQUET.set(currentCards, faits); }
+    if(faits.has(gp)) return;
+    faits.add(gp);
+    let cartes = [];
+    if(gp === "cartes"){
+        const cle = c => c.themeId + ":" + c.index;
+        const duPaquet = new Map();
+        currentCards.forEach(c => { if(c && c.mode !== "phrase" && groupePartie(parts.get(c)) === "cartes") duPaquet.set(cle(c), c); });
+        const aVenir = new Set(currentCards.slice(i).filter(c => c && c.mode !== "phrase").map(cle));
+        const vues = new Set();
+        cartesRevenues(currentCardsFull || []).concat(cartesEncoreEnAttente(currentCardsFull || [])).forEach(c => {
+            const k = cle(c);
+            if(!duPaquet.has(k) || vues.has(k) || aVenir.has(k)) return;
+            vues.add(k);
+            cartes.push(duPaquet.get(k));
+        });
+    } else if(gp === "phrases"){
+        cartes = RETOURS_FIN_SEANCE.splice(0);
     }
-    currentCards.splice(currentFlashcard, 0, ...cartes);
+    if(!cartes.length) return;
+    if(seancePartsActive()) cartes.forEach(c => { if(!SEANCE_PARTS.parts.has(c)) SEANCE_PARTS.parts.set(c, gp); });
+    currentCards.splice(i, 0, ...cartes);
 }
 
 // La recompense doit etre VUE. Tant que la carte tournait dans la meme image
@@ -75908,31 +76215,18 @@ function celebrerPalier(pointGagne, nbPastilles){
     programmerSuite(nextFlashcard, pointGagne ? 950 : 520);
 }
 
-// v924 : LA BULLE DU PREMIER « CONTINUER ». Marc-Antoine (rapporte par Jacques,
-// 22 oct. 2026) : les jeunes ne regardent ni les visites guidees ni
-// l'information ; au premier « Continuer », dire ce qu'il fait, UNE fois. Jacques :
-// dire aussi qu'une fois les quatre points allumes, le mot ne revient que dans
-// 16 jours ; « Encore, retour dans 2 minutes » se comprend tout seul. La bulle
-// s'ouvre d'elle-meme au premier appui ; la carte attend le « OK » pour passer.
-// Toucher a cote la ferme aussi : le prochain « Continuer » passe alors sans elle.
+// v924 -> 14 nov. 2026 : LA BULLE DU PREMIER « CONTINUER » EST RETIREE. Elle s'ouvrait au premier ✓ et la carte
+// attendait son « OK » : la testeuse anglophone du 13 nov. a du toucher trois fois pour passer (« I also had to
+// press it 3 times to move on »). Decision de Jacques du 14 nov. : le ✓ juge la carte au premier appui ; les points
+// disent deja leur mot (« Vu », « Revu », « Retenu », « Maitrise », v1164). La cle reste : les sondes de tests/ la
+// posent encore, et un ancien telephone qui l'a deja n'en a plus besoin.
 const AIDE_CONTINUER_KEY = PREFIXE_STOCKAGE + "aideContinuerVue";
-function bulleDuPremierContinuer(){
-    let vue = true;
-    try{ vue = localStorage.getItem(AIDE_CONTINUER_KEY) === "1"; }catch(e){}
-    if(vue) return false;
-    try{ localStorage.setItem(AIDE_CONTINUER_KEY, "1"); }catch(e){}
-    const b = document.querySelector("#flashcardActions .judge-good");
-    if(!b || !b.offsetParent) return false;
-    afficherBulle(b, tf("aide_continuer", { n: SRS_PALIERS }), reviewGood);
-    return true;
-}
 
 function reviewGood(){
     if(!currentCards.length) return;
     // La carte du mot neuf presente : « Continuer » (a la place de la bille) -- rien n'est juge, le mot revient plus loin.
     if(document.querySelector("#flashcardActions.presentation")){ motPresenteVu(); return; }
     if(deuxiemeToucher()) return;
-    if(bulleDuPremierContinuer()) return;
     marquerCarteJugee();
     // JUGER COUPE LA VOIX, TOUT DE SUITE (v741). La carte reste encore 950 ms
     // pour la celebration : la chaine continuait d'y parler, et le pluriel
@@ -75990,11 +76284,13 @@ function remplacerRetourSeance(item){
     // Apres le dernier mot de la partie en cours (avant le dialogue d'une etape, la scene ou le theme), pour ne pas
     // ouvrir une partie de plus : le meme tableau, seancesJson et les parties le lisent.
     const actives = seancePartsActive();
-    const partie = actives ? SEANCE_PARTS.parts.get(item) : null;
+    // Ligne 98 : en Premiers pas aussi, le remplacant reste dans la partie du mot qu'il remplace.
+    const parts = partsDuPaquetCourant();
+    const partie = parts ? (parts.get(item) || groupeCartePP(item)) : null;
     let place = currentFlashcard + 1;
     for(let i = currentFlashcard + 1; i < currentCards.length; i++){
         const c = currentCards[i];
-        if(c && c.mode !== "phrase" && (!actives || SEANCE_PARTS.parts.get(c) === partie)) place = i + 1;
+        if(c && c.mode !== "phrase" && (!parts || parts.get(c) === partie)) place = i + 1;
     }
     currentCards.splice(place, 0, carte);
     if(actives) SEANCE_PARTS.parts.set(carte, partie || "cartes");
@@ -77656,7 +77952,7 @@ function nextFlashcard(){
         // la session, donc le bouton "2 min" ne servait a rien nulle part --
         // pas seulement dans les categories recentes.
         // Un paquet qui a son theme finit sur lui (Jacques, 8 nov. 2026) : ce qui devait revenir est passe avant
-        // (rattraperAvantLeTheme), et ce qui devient du pendant le theme ouvrira la seance suivante.
+        // (rattraperFinDePartie, ligne 98), et ce qui devient du pendant le theme ouvrira la seance suivante.
         const finitSurTheme = currentCards.some(c => c && c.forme === "theme_arret");
         const rattrapage = cartes => {
             if(SEANCE_PARTS) SEANCE_PARTS.rattrapage = true;   // la fin de ce paquet est bien celle de la seance
