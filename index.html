@@ -8135,6 +8135,14 @@ body[data-theme="dark"] #seancePilule, body[data-theme="dark"] #seancePilule .pa
 body[data-theme="dark"] #seancePilule .pa-entrer svg{stroke:#0B2230;}
 @media (prefers-reduced-motion: reduce){ #seancePilule{animation:none;} }
 .explorer-v.verrou::after{content:"🔒"; position:absolute; top:4px; inset-inline-end:4px; font-size:12px;}
+/* ligne 86 (15 nov. 2026) : l'annonce des 7 jours sur l'ecran d'entree (version B de Jacques) */
+.annonce-essai{margin:12px 0 0; padding:12px 14px; border-radius:14px; background:#FFF6E6; border:1px solid #F1D29A;
+    color:#2B3441; font-size:14px; line-height:1.45; text-align:start;}
+.annonce-essai strong{display:block; font-size:15px; color:#1C2430; margin-bottom:6px;}
+.annonce-essai ul{margin:0; padding-inline-start:18px;}
+.annonce-essai li{margin:3px 0;}
+body[data-theme="dark"] .annonce-essai{background:#2A2216; border-color:#5A3D12; color:#E9E2D4;}
+body[data-theme="dark"] .annonce-essai strong{color:#FFE3B0;}
 /* ligne 86 (15 nov. 2026) : « Gratuit » sur ce qui reste ouvert en version gratuite -- ambre clair, encre foncee */
 .explorer-v.gratuit::after{content:attr(data-gratuit); position:absolute; top:4px; inset-inline-start:4px; max-width:58px;
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:9.5px; font-weight:800; line-height:1;
@@ -9823,6 +9831,17 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
          « Continuer sans compte » (appliquerEtatSansCompte). -->
     <div class="card" id="authSansCompteCard">
         <p style="color:#4C566B" id="authSansCompteTexte" data-i18n="sans_compte_desc">Pas besoin de compte pour apprendre : tout est ouvert tout de suite. Tu pourras en créer un plus tard pour sauvegarder ta progression.</p>
+        <!-- L'ANNONCE DES 7 JOURS (decision de Jacques du 15 nov., version B ; regle d'Apple 3.1.1) : avant le debut de
+             l'essai -- ici, avant « Commencer sans compte » comme avant « Creer un compte » --, la duree, ce qui reste
+             gratuit ensuite et le prix. Seulement avec ACCES.actif (majAnnonceEssai). -->
+        <div class="annonce-essai hidden" id="annonceEssai" role="note">
+            <strong data-i18n="essai_annonce_titre">Tes 7 premiers jours : tout est ouvert</strong>
+            <ul>
+                <li data-i18n="essai_annonce_carte">Aucune carte demandée : rien ne devient payant tout seul.</li>
+                <li data-i18n="essai_annonce_gratuit">Ensuite, la version gratuite reste, sans limite de durée, avec un peu de chaque partie, deux thèmes illustrés (la famille, le corps), les quatre premières conversations et deux scènes.</li>
+                <li id="annonceEssaiPrix"></li>
+            </ul>
+        </div>
         <div class="spacer"></div>
         <button type="button" id="authSansCompteBtn" class="primary" onclick="commencerSansCompte()" data-i18n="sans_compte_commencer">COMMENCER SANS COMPTE</button>
     </div>
@@ -16913,6 +16932,10 @@ const I18N = {
         abo_apercu: "Aperçu : le paiement n'est pas encore branché.",
         abo_fermer: "Fermer",
         gratuit_etiquette: "Gratuit",
+        essai_annonce_titre: "Tes 7 premiers jours : tout est ouvert",
+        essai_annonce_carte: "Aucune carte demandée : rien ne devient payant tout seul.",
+        essai_annonce_gratuit: "Ensuite, la version gratuite reste, sans limite de durée, avec un peu de chaque partie, deux thèmes illustrés (la famille, le corps), les quatre premières conversations et deux scènes.",
+        essai_annonce_abo: "Ou l'abonnement : {mois} par mois ou {an} par an, pour toutes les langues.",
         essai_compteur: "Essai gratuit · encore {n} jours",
         essai_compteur_dernier: "Essai gratuit · dernier jour",
         essai_rappel_titre: "Plus que {n} jours d'essai",
@@ -18743,6 +18766,10 @@ const I18N = {
         abo_apercu: "Preview: payment is not connected yet.",
         abo_fermer: "Close",
         gratuit_etiquette: "Free",
+        essai_annonce_titre: "Your first 7 days: everything is open",
+        essai_annonce_carte: "No card needed: nothing becomes paid on its own.",
+        essai_annonce_gratuit: "Afterwards, the free version stays, with no time limit, with a bit of every part, two illustrated topics (family, the body), the first four conversations and two scenes.",
+        essai_annonce_abo: "Or the subscription: {mois} a month or {an} a year, for every language.",
         essai_compteur: "Free trial · {n} days left",
         essai_compteur_dernier: "Free trial · last day",
         essai_rappel_titre: "{n} days of your trial left",
@@ -20517,6 +20544,10 @@ const I18N = {
         abo_apercu: "Önizleme: ödeme henüz bağlı değil.",
         abo_fermer: "Kapat",
         gratuit_etiquette: "Ücretsiz",
+        essai_annonce_titre: "İlk 7 günün: her şey açık",
+        essai_annonce_carte: "Kart istenmez: hiçbir şey kendiliğinden ücretli olmaz.",
+        essai_annonce_gratuit: "Sonrasında ücretsiz sürüm süre sınırı olmadan kalır: her bölümden biraz, iki resimli tema (aile, vücut), ilk dört konuşma ve iki sahne.",
+        essai_annonce_abo: "Ya da abonelik: ayda {mois} veya yılda {an}, tüm diller için.",
         essai_compteur: "Ücretsiz deneme · {n} gün kaldı",
         essai_compteur_dernier: "Ücretsiz deneme · son gün",
         essai_rappel_titre: "Denemenin bitmesine {n} gün kaldı",
@@ -21485,6 +21516,10 @@ const I18N = {
         abo_apercu: "Попередній перегляд: оплату ще не підключено.",
         abo_fermer: "Закрити",
         gratuit_etiquette: "Безкоштовно",
+        essai_annonce_titre: "Перші 7 днів: усе відкрито",
+        essai_annonce_carte: "Картка не потрібна: ніщо не стане платним само собою.",
+        essai_annonce_gratuit: "Потім залишається безкоштовна версія без обмеження в часі: потроху з кожного розділу, дві ілюстровані теми (сімʼя, тіло), перші чотири розмови й дві сцени.",
+        essai_annonce_abo: "Або підписка: {mois} на місяць чи {an} на рік, для всіх мов.",
         essai_compteur: "Безкоштовний період · залишилось днів: {n}",
         essai_compteur_dernier: "Безкоштовний період · останній день",
         essai_rappel_titre: "До кінця пробного періоду днів: {n}",
@@ -23690,6 +23725,10 @@ const I18N = {
         abo_apercu: "پیش‌نمایش: پرداخت هنوز وصل نشده است.",
         abo_fermer: "بستن",
         gratuit_etiquette: "رایگان",
+        essai_annonce_titre: "۷ روز نخست: همه‌چیز باز است",
+        essai_annonce_carte: "کارت لازم نیست: هیچ چیز خودبه‌خود پولی نمی‌شود.",
+        essai_annonce_gratuit: "پس از آن، نسخهٔ رایگان بدون محدودیت زمانی می‌ماند: کمی از هر بخش، دو موضوع مصور (خانواده، بدن)، چهار گفت‌وگوی نخست و دو صحنه.",
+        essai_annonce_abo: "یا اشتراک: ماهانه {mois} یا سالانه {an}، برای همهٔ زبان‌ها.",
         essai_compteur: "دورهٔ آزمایشی رایگان · {n} روز مانده",
         essai_compteur_dernier: "دورهٔ آزمایشی رایگان · روز آخر",
         essai_rappel_titre: "فقط {n} روز از دورهٔ آزمایشی مانده",
@@ -25321,6 +25360,10 @@ const I18N = {
         abo_apercu: "معاينة: الدفع غير مفعّل بعد.",
         abo_fermer: "إغلاق",
         gratuit_etiquette: "مجاني",
+        essai_annonce_titre: "أيامك السبعة الأولى: كل شيء مفتوح",
+        essai_annonce_carte: "لا حاجة إلى بطاقة: لا شيء يصبح مدفوعًا من تلقاء نفسه.",
+        essai_annonce_gratuit: "بعد ذلك تبقى النسخة المجانية بلا حد زمني: قليل من كل قسم، وموضوعان مصوّران (العائلة، الجسم)، والمحادثات الأربع الأولى، ومشهدان.",
+        essai_annonce_abo: "أو الاشتراك: {mois} شهريًا أو {an} سنويًا، لجميع اللغات.",
         essai_compteur: "تجربة مجانية · الأيام المتبقية: {n}",
         essai_compteur_dernier: "تجربة مجانية · اليوم الأخير",
         essai_rappel_titre: "الأيام المتبقية من تجربتك: {n}",
@@ -27775,6 +27818,10 @@ const I18N = {
         abo_apercu: "Prévia: o pagamento ainda não está ligado.",
         abo_fermer: "Fechar",
         gratuit_etiquette: "Grátis",
+        essai_annonce_titre: "Seus primeiros 7 dias: tudo liberado",
+        essai_annonce_carte: "Sem cartão: nada vira pago sozinho.",
+        essai_annonce_gratuit: "Depois, a versão gratuita continua, sem limite de tempo, com um pouco de cada parte, dois temas ilustrados (a família, o corpo), as quatro primeiras conversas e duas cenas.",
+        essai_annonce_abo: "Ou a assinatura: {mois} por mês ou {an} por ano, para todos os idiomas.",
         essai_compteur: "Teste grátis · faltam {n} dias",
         essai_compteur_dernier: "Teste grátis · último dia",
         essai_rappel_titre: "Faltam {n} dias de teste",
@@ -29612,6 +29659,10 @@ const I18N = {
         abo_apercu: "Podgląd: płatności nie są jeszcze podłączone.",
         abo_fermer: "Zamknij",
         gratuit_etiquette: "Bezpłatne",
+        essai_annonce_titre: "Pierwsze 7 dni: wszystko otwarte",
+        essai_annonce_carte: "Bez karty: nic nie stanie się płatne samo z siebie.",
+        essai_annonce_gratuit: "Potem zostaje wersja bezpłatna, bez limitu czasu: po trochu z każdej części, dwa tematy ilustrowane (rodzina, ciało), pierwsze cztery rozmowy i dwie sceny.",
+        essai_annonce_abo: "Albo subskrypcja: {mois} miesięcznie lub {an} rocznie, dla wszystkich języków.",
         essai_compteur: "Darmowy okres próbny · zostało dni: {n}",
         essai_compteur_dernier: "Darmowy okres próbny · ostatni dzień",
         essai_rappel_titre: "Do końca okresu próbnego zostało dni: {n}",
@@ -31452,6 +31503,10 @@ const I18N = {
         abo_apercu: "Предпросмотр: оплата ещё не подключена.",
         abo_fermer: "Закрыть",
         gratuit_etiquette: "Бесплатно",
+        essai_annonce_titre: "Первые 7 дней: всё открыто",
+        essai_annonce_carte: "Карта не нужна: ничего не станет платным само по себе.",
+        essai_annonce_gratuit: "Потом остаётся бесплатная версия без ограничения по времени: понемногу из каждого раздела, две иллюстрированные темы (семья, тело), первые четыре разговора и две сцены.",
+        essai_annonce_abo: "Или подписка: {mois} в месяц или {an} в год, для всех языков.",
         essai_compteur: "Бесплатный период · осталось дней: {n}",
         essai_compteur_dernier: "Бесплатный период · последний день",
         essai_rappel_titre: "До конца пробного периода дней: {n}",
@@ -33291,6 +33346,10 @@ const I18N = {
         abo_apercu: "Vorschau: Die Zahlung ist noch nicht angeschlossen.",
         abo_fermer: "Schließen",
         gratuit_etiquette: "Gratis",
+        essai_annonce_titre: "Deine ersten 7 Tage: alles ist offen",
+        essai_annonce_carte: "Keine Karte nötig: Nichts wird von selbst kostenpflichtig.",
+        essai_annonce_gratuit: "Danach bleibt die kostenlose Version, ohne Zeitlimit, mit etwas aus jedem Bereich, zwei illustrierten Themen (die Familie, der Körper), den ersten vier Gesprächen und zwei Szenen.",
+        essai_annonce_abo: "Oder das Abo: {mois} im Monat oder {an} im Jahr, für alle Sprachen.",
         essai_compteur: "Gratis-Test · noch {n} Tage",
         essai_compteur_dernier: "Gratis-Test · letzter Tag",
         essai_rappel_titre: "Noch {n} Tage Testzeit",
@@ -35143,6 +35202,10 @@ const I18N = {
         abo_apercu: "Vista previa: el pago aún no está conectado.",
         abo_fermer: "Cerrar",
         gratuit_etiquette: "Gratis",
+        essai_annonce_titre: "Tus primeros 7 días: todo abierto",
+        essai_annonce_carte: "No se pide tarjeta: nada pasa a ser de pago por sí solo.",
+        essai_annonce_gratuit: "Después, la versión gratuita sigue, sin límite de tiempo, con un poco de cada parte, dos temas ilustrados (la familia, el cuerpo), las cuatro primeras conversaciones y dos escenas.",
+        essai_annonce_abo: "O la suscripción: {mois} al mes o {an} al año, para todos los idiomas.",
         essai_compteur: "Prueba gratis · quedan {n} días",
         essai_compteur_dernier: "Prueba gratis · último día",
         essai_rappel_titre: "Quedan {n} días de prueba",
@@ -37251,6 +37314,8 @@ chargerCours();
 // variable pas encore initialisée (verbeTheme, themes, etc.).
 function applyUiLang(){
     appliquerLangueDocument();
+    // l'annonce des 7 jours porte un prix calcule : refaite ici (try : appelee tot, avant ACCES)
+    try{ majAnnonceEssai(); }catch(e){}
     document.querySelectorAll('[data-i18n]').forEach(el => {
         el.textContent = t(el.getAttribute('data-i18n'));
     });
@@ -39349,6 +39414,7 @@ function appliquerEtatSansCompte(user){
     montrer("authSansCompteCard", !user || anonyme);
     texte("authSansCompteTexte", anonyme ? "sans_compte_actif" : "sans_compte_desc");
     texte("authSansCompteBtn", anonyme ? "sans_compte_continuer" : "sans_compte_commencer");
+    try{ majAnnonceEssai(); }catch(e){}
     if(anonyme){
         // L'ecran garde ses deux formulaires : creer un compte (qui reliera la
         // progression) ou se connecter a un compte existant.
@@ -52989,6 +53055,43 @@ function prixAbo(v){
             { style: "currency", currency: ABONNEMENT.devise }).format(v);
     }catch(e){ return v.toFixed(2) + " €"; }
 }
+// L'ANNONCE DES 7 JOURS (ligne 86, decision de Jacques du 15 nov., version B). Le prix dans la monnaie de la personne :
+// celui du magasin s'il est deja connu (prixMagasin, garde aussi d'une visite a l'autre), sinon la grille du 2 nov. selon
+// le pays de l'appareil (navigator.languages), sinon l'euro d'ABONNEMENT. Avant le compte, RevenueCat ne repond pas
+// encore : le magasin affiche de toute facon son prix exact au moment de l'achat.
+const PRIX_ABO_PAYS = { US: ["USD", 6.99, 49.99], CA: ["CAD", 9.99, 69.99], GB: ["GBP", 5.99, 44.99],
+                        CH: ["CHF", 7.90, 54.90], BR: ["BRL", 14.90, 99.90], MX: ["MXN", 79, 549] };
+const CLE_PRIX_MAGASIN = "wortando_prixMagasin";
+let apercuAnnonceEssai = false;   // la sonde et l'admin : l'annonce avant la sortie
+function prixAnnonce(){
+    let pm = prixMagasin;
+    if(!pm){ try{ pm = JSON.parse(localStorage.getItem(CLE_PRIX_MAGASIN) || "null"); }catch(e){ pm = null; } }
+    if(pm && pm.mensuel && pm.annuel) return { mois: pm.mensuel, an: pm.annuel };
+    let pays = "";
+    try{
+        (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language]).some(l => {
+            const m = /-([A-Za-z]{2})(?:-|$)/.exec(l || "");
+            if(m){ pays = m[1].toUpperCase(); return true; }
+            return false;
+        });
+    }catch(e){}
+    const g = PRIX_ABO_PAYS[pays];
+    if(g){
+        const f = v => { try{ return new Intl.NumberFormat(LOCALES_ABO[getUiLang()] || "fr-FR", { style: "currency", currency: g[0] }).format(v); }catch(e){ return v + " " + g[0]; } };
+        return { mois: f(g[1]), an: f(g[2]) };
+    }
+    return { mois: prixAbo(ABONNEMENT.mensuel), an: prixAbo(ABONNEMENT.annuel) };
+}
+function majAnnonceEssai(){
+    const el = document.getElementById("annonceEssai");
+    if(!el) return;
+    const voir = !!ACCES.actif || apercuAnnonceEssai;
+    el.classList.toggle("hidden", !voir);
+    if(!voir) return;
+    const p = prixAnnonce();
+    const prix = document.getElementById("annonceEssaiPrix");
+    if(prix) prix.textContent = tf("essai_annonce_abo", { mois: p.mois, an: p.an });
+}
 // Les memes chiffres que les prix : en persan, « ۴۰ » a cote de « ۶٫۹۹ ».
 function nombreAbo(n){
     try{ return new Intl.NumberFormat(LOCALES_ABO[getUiLang()] || "fr-FR").format(n); }
@@ -53575,6 +53678,7 @@ async function chargerPrixMagasin(P){
         annuelParMois: parMois,
         economie: (pm.price > 0 && pa.price > 0) ? Math.round((1 - pa.price / (12 * pm.price)) * 100) : null
     };
+    try{ localStorage.setItem(CLE_PRIX_MAGASIN, JSON.stringify({ mensuel: prixMagasin.mensuel, annuel: prixMagasin.annuel })); }catch(e){}
 }
 
 // Ce que l'on sait de l'abonnement, remis a jour : a la connexion, au retour

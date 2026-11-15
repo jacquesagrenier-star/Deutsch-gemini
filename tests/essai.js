@@ -223,6 +223,11 @@ verifier(/PAGES_GRATUITES_DECIDEES = \["scene:klassenzimmer"\]/.test(source), "l
 verifier(!/"telc"/.test((source.match(/portes: \[[^\]]*\]/) || [""])[0]), "le telc reste ferme (4a)");
 verifier(/function etiquetteGratuite\(id\)\{\s*return !accesComplet\(\) && pageOuverte\(id\);/.test(source), "l'etiquette « Gratuit » seulement en version gratuite");
 verifier((source.match(/^\s+gratuit_etiquette: "/mg) || []).length === 11, "gratuit_etiquette dans les 11 langues d'interface");
+["essai_annonce_titre", "essai_annonce_carte", "essai_annonce_gratuit", "essai_annonce_abo"].forEach(c =>
+    verifier((source.match(new RegExp("^\\s+" + c + ": \"", "mg")) || []).length === 11, c + " dans les 11 langues d'interface"));
+verifier((source.match(/^\s+essai_annonce_abo: "[^"]*\{mois\}[^"]*\{an\}/mg) || []).length === 11, "l'annonce donne les deux prix dans les 11 langues");
+verifier(/const voir = !!ACCES\.actif \|\| apercuAnnonceEssai;/.test(source), "l'annonce des 7 jours seulement avec ACCES.actif");
+verifier(/if\(pm && pm\.mensuel && pm\.annuel\) return \{ mois: pm\.mensuel, an: pm\.annuel \};/.test(source), "le prix du magasin d'abord");
 verifier(/if\(panneau === "scenes"\)\{\s*const sc = SCENES_TOUTES\.find/.test(source), "les scenes du panneau gardees par leur nom");
 verifier(/function ouvrirSceneLibre\(nom\)\{\s*if\(!pageOuverte\("scene:" \+ nom\)\)/.test(source), "la scene ouverte seule, en defense");
 {
