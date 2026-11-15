@@ -1457,16 +1457,71 @@ const melanger = a => a.map(v => [Math.random(), v]).sort((x,y) => x[0]-y[0]).ma
    pas de questions a choix, il a « Trouve ! » (Jacques, 9 oct. : « si on est en
    A2, on devrait avoir la possibilite de faire du A1 aussi »). Avec 3, on
    retrouve exactement l'ancien tirage : deux du niveau, une d'avant. */
+/* UNE REVISION PAR QUESTION (ligne 95, lot 2 ; decision de Jacques du 13 nov. 2026 : « au moment ou on a une grande
+   reserve, autant pour les themes que pour les scenes, on devrait [avoir] une meme approche ») : le moteur commun de
+   l'app, type « s ». Une question de la scene -- « Trouve ! » d'un mot, ou une question a choix A2-C1 -- est
+   identifiee par la scene et son texte ; l'app donne l'etat de chacune (message « questions ») et note chaque
+   verdict (l'« exercice » porte la question). Le tirage la range : jamais posee d'abord, puis due, puis en attente
+   (reussie il y a moins de 60 jours, puis 180, puis 365) -- celle-ci seulement pour completer la partie. Hors de
+   l'app, ou si l'app ne repond pas, rien ne change : le tirage reste au hasard. */
+let REVISIONS_Q = null;   // { etat: { id: [reussites, jour de l'echeance, jour vu] }, jour }
+const cleTrouve = m => NOM_SCENE + "|trouve|" + m.mot;
+const cleChoix = (q, niv) => NOM_SCENE + "|" + (q._niv || niv || niveau) + "|" + q.q;
+// le meme hachage que idRevision() de l'app
+function idQuestion(texte){
+  const s = String(texte || "").normalize("NFC").replace(/\s+/g, " ").trim();
+  let h = 5381;
+  for (let k = 0; k < s.length; k++) h = ((h * 33) ^ s.charCodeAt(k)) >>> 0;
+  return h.toString(36) + s.length.toString(36);
+}
+function rangRevision(cle){
+  if (!REVISIONS_Q || !REVISIONS_Q.etat) return 0;
+  const x = REVISIONS_Q.etat[idQuestion(cle)];
+  return !x ? 0 : x[1] > REVISIONS_Q.jour ? 2 : 1;
+}
+// une liste deja melangee, rangee jamais / due / en attente (l'ordre du hasard garde a rang egal)
+function rangerParRevision(liste, cleDe){
+  if (!REVISIONS_Q) return liste;
+  return liste.map((x, k) => [rangRevision(cleDe(x)), k, x]).sort((a, b) => a[0] - b[0] || a[1] - b[1]).map(v => v[2]);
+}
+// l'« exercice » d'une question : son verdict, la question jugee ; la copie locale suit (une question jugee ne
+// revient pas comme « jamais posee » dans la meme partie)
+function avecQuestion(extra, cle){
+  const out = Object.assign({rev: "s", question: cle}, extra);
+  if (REVISIONS_Q && REVISIONS_Q.etat){
+    const id = idQuestion(cle), j = REVISIONS_Q.jour, av = REVISIONS_Q.etat[id];
+    REVISIONS_Q.etat[id] = extra.juste === false ? [0, j + 1, j] : [(av ? av[0] : 0) + 1, j + 60, j];
+  }
+  return out;
+}
+function demanderQuestions(){
+  if (window.parent === window) return Promise.resolve();
+  return new Promise(fin => {
+    let fait = false;
+    const finir = () => { if (fait) return; fait = true; removeEventListener("message", ecoute); fin(); };
+    const delai = setTimeout(finir, 800);   // une app d'avant la ligne 95 ne repond pas
+    function ecoute(ev){
+      const d = ev.data;
+      if (ev.source !== window.parent || !d || d.source !== "wortando-app" || d.type !== "questions") return;
+      clearTimeout(delai);
+      if (d.etat && typeof d.etat === "object" && typeof d.jour === "number") REVISIONS_Q = {etat: d.etat, jour: d.jour};
+      finir();
+    }
+    addEventListener("message", ecoute);
+    try{ window.parent.postMessage({source: "wortando-scene", type: "questions", rev: "s", scene: NOM_SCENE}, "*"); }
+    catch(e){ clearTimeout(delai); finir(); }
+  });
+}
 function ordreSeance(niv){
   const k = Object.keys(COUCHES), idx = k.indexOf(niv);
-  const ici = melanger(COUCHES[niv].qs).map(q => Object.assign({_niv: niv}, q));
+  const ici = rangerParRevision(melanger(COUCHES[niv].qs).map(q => Object.assign({_niv: niv}, q)), q => cleChoix(q));
   const avant = [];
   for (let j = idx - 1; j >= 0; j--){
     const n = k[j];
     if (COUCHES[n].qs && COUCHES[n].qs.length)
-      avant.push(...melanger(COUCHES[n].qs).map(q => Object.assign({_niv: n}, q)));
+      avant.push(...rangerParRevision(melanger(COUCHES[n].qs).map(q => Object.assign({_niv: n}, q)), q => cleChoix(q)));
     else if (n === "A1")
-      avant.push(...melanger(A_TROUVER.filter(m => aSonNiveau(m, "A1"))).map(m => ({_niv: "A1", _trouve: m})));
+      avant.push(...rangerParRevision(melanger(A_TROUVER.filter(m => aSonNiveau(m, "A1"))), cleTrouve).map(m => ({_niv: "A1", _trouve: m})));
   }
   if (!avant.length) return ici.slice(0, NB_SEANCE);
   const nAvant = Math.min(avant.length, Math.max(1, NB_SEANCE - ici.length));
@@ -1487,7 +1542,7 @@ function demarrer(){
   $("niveaux").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", (b.dataset.niv || b.textContent) === niveau));
   i = 0; bons = 0; faits = 0; attenteToucher = null; verrou = false; etapeTrouve = false; fermerGrosPlan(); effacer();
   if (niveau === "A1") return modeA1 === "decouvrir" ? decouvrir() : trouver();
-  COUCHES[niveau].ordre = EN_SEANCE ? ordreSeance(niveau) : melanger(COUCHES[niveau].qs);
+  COUCHES[niveau].ordre = EN_SEANCE ? ordreSeance(niveau) : rangerParRevision(melanger(COUCHES[niveau].qs), q => cleChoix(q, niveau));
   poser();
 }
 
@@ -1647,7 +1702,7 @@ function proprietaire(mot){
 }
 function trouver(){
   if (!fileTrouver.length || i === 0)
-    fileTrouver = melanger(A_TROUVER.filter(m => aSonNiveau(m, niveau))).slice(0, EN_SEANCE ? NB_SEANCE : PP ? NB_PP : 10);
+    fileTrouver = melanger(rangerParRevision(melanger(A_TROUVER.filter(m => aSonNiveau(m, niveau))), cleTrouve).slice(0, EN_SEANCE ? NB_SEANCE : PP ? NB_PP : 10));
   if (i >= fileTrouver.length) return fin();
   const p = fileTrouver[i]; attenteToucher = p.mot;
   // Le mot n'est pas dans cette vue (die Wade sur Mark de face) : l'app
@@ -1706,7 +1761,7 @@ function toucher(id, pt){
     }
     const juste = !!retenue;
     verrou = true; faits++;
-    envoyer("exercice", {juste});   // v957 : chaque question compte, voir repondre()
+    envoyer("exercice", avecQuestion({juste}, cleTrouve({mot: cible})));   // v957 : chaque question compte, voir repondre()
     reviser(A_TROUVER.find(t => t.mot === cible), juste);
     effacer();
     if (juste){
@@ -1780,7 +1835,7 @@ function repondre(q, opts, k){
      Claire : « chaque question d'une scene est consideree comme un exercice au
      meme titre que les autres »). Envoye AVANT la revision du mot : l'app sait
      alors que cette page compte elle-meme, et ne compte plus par la revision. */
-  envoyer("exercice", {juste});
+  envoyer("exercice", avecQuestion({juste}, cleChoix(q)));
   if (juste){ bons++; bravo(); envoyer("bonne"); }
   if (q.revise) reviser(q.revise, juste);
   // Apres la reponse, le panneau se resserre : la bonne reponse seule (et la
@@ -1845,7 +1900,7 @@ function fin(){
   $("encore").addEventListener("click", demarrer);
 }
 
-demarrer();
+demanderQuestions().then(demarrer);
 /* ---------- le zoom a deux doigts (20 oct. 2026) ----------
    Deux doigts : agrandir (jusqu'a x4) ou rapetisser (jamais sous la taille
    normale), autour du point entre les doigts. Agrandie, la scene se deplace d'un
