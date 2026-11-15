@@ -14405,7 +14405,6 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
 <!-- Firebase SDKs -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, deleteUser, EmailAuthProvider, reauthenticateWithCredential, sendPasswordResetEmail, verifyPasswordResetCode, confirmPasswordReset, signInAnonymously, linkWithCredential } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, deleteField, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getMessaging, getToken as fcmGetToken, isSupported as fcmIsSupported } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js";
@@ -14462,7 +14461,8 @@ if(APP_CHECK_CLE && /^https?:$/.test(location.protocol) && (!APP_CHECK_LOCAL || 
         window.appCheckEtat = "erreur : " + (e && e.message || e);
     }
 }
-const analytics = getAnalytics(app);
+// Pas de Google Analytics (15 nov. 2026, recommandation de l'audit de lancement : il se chargeait sans consentement,
+// et aucun evenement n'etait envoye). confidentialite.html, 2.5, le dit. Ne pas le remettre sans bandeau de consentement.
 const auth = getAuth(app);
 const db = getFirestore(app);
 
