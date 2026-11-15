@@ -109,7 +109,7 @@ les personnages ne parlent que dans les clés `r/…`. Fichiers par voix (hauteu
 `f_alt` 33, `f_mittel` 20, `radio_f` 8, `f_reif` 7 ; `aurora` 547 (211 Hz). Les voix d'homme sont bien des
 voix d'homme. Planche d'écoute (une réplique par personnage) : `Downloads/pflege/voix-personnages/`.
 
-## L'accent d'origine des soignants (décision de Jacques du 14 nov., en préparation)
+## L'accent d'origine des soignants (décision de Jacques du 14 nov. ; voix en attente d'Azure depuis le 15 nov.)
 
 « Les personnes doivent parler avec leur accent d'origine » → « Oui, vas-y avec l'accent léger ». Les cinq
 soignants venus d'ailleurs parlent un allemand clair et correct, avec un accent **léger mais audible** :
@@ -143,6 +143,10 @@ Chiffrage :
 Rien n'est lancé sans l'autorisation de Jacques écrite dans la session.
 
 ## Les 14 dialogues de plus, d13 à d26 (mandat B, chiffrage du 15 nov. 2026)
+
+> **EN ATTENTE (décision de Jacques du 15 nov., `decisions/DECISIONS.md` 23a3d6e)** : « Pour les voix, pour la
+> partie de [Pflege], on va attendre de voir ce qu'on fait avec Azure. » Aucune voix ElevenLabs pour d13-d26 ni
+> pour l'accent des soignants ; la voix du téléphone sert de repli. Le chiffrage ci-dessous reste pour mémoire.
 
 Mesuré à blanc par `python pflege/outils/voix.py` (rien n'est dépensé), sur le même périmètre que le premier
 lot : chemin modèle, Redemittel et questions d'écoute, nombres en lettres, fichiers déjà faits déduits.
