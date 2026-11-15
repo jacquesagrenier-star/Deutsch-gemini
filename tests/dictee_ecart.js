@@ -29,12 +29,13 @@ const constante = (nom) => {
     if(!m) throw new Error("constante introuvable : " + nom);
     return m[0];
 };
-const code = [constante("DICTEE_MOT_TOLERE"), "const t = k => k;",
-    ...["normaliserSaisie", "echapperHtml", "distanceMots", "formeAccents", "accentFaitUnAutreMot", "alignerDictee", "lettresCorrigees"].map(extraire),
-    "module.exports = { alignerDictee, lettresCorrigees };"].join("\n");
+const code = [constante("DICTEE_MOT_TOLERE"), "const t = k => ({ rem_accent: \"N'oublie pas l'accent : {m}\", rem_trema: \"N'oublie pas le tréma : {m}\", rem_accent_faux: \"C'est l'accent qui manque : {m}\" })[k] || k;",
+    ...["normaliserSaisie", "echapperHtml", "distanceMots", "formeAccents", "formeSansEszett", "alignerDictee", "lettresCorrigees",
+        "accentsOublies", "remarqueAccent", "rendreDictee"].map(extraire),
+    "module.exports = { alignerDictee, lettresCorrigees, accentsOublies, remarqueAccent, rendreDictee };"].join("\n");
 const m = { exports: {} };
 new Function("module", code)(m);
-const { alignerDictee, lettresCorrigees } = m.exports;
+const { alignerDictee, lettresCorrigees, accentsOublies, remarqueAccent, rendreDictee } = m.exports;
 
 let echecs = 0;
 function verifier(nom, ok, detail){
@@ -86,9 +87,9 @@ verifier("« cosa » pour « casa » : un autre vrai mot, faux", types(al) === "
 al = alignerDictee("Trabajo con la computatora en casa", ATTENDU, { autres: CORPUS, langue: "es" });
 verifier("« computatora » n'est pas un mot du corpus : toujours « Presque ! »", al.juste && al.presque, types(al));
 al = alignerDictee("Die Mutter sind hier", "Die Mütter sind hier.", { autres: CORPUS, langue: "de" });
-verifier("« Mutter » pour « Mütter » (un autre mot) : faux, le ü en gras",
-    types(al) === "juste faux juste juste" && !al.juste && lettresCorrigees("Mutter", "Mütter", al.paires[1].umlaut) === "M<b>ü</b>tter",
-    types(al) + " " + lettresCorrigees("Mutter", "Mütter", al.paires[1].umlaut));
+verifier("« Mutter » pour « Mütter » (un autre mot) : juste depuis le 13 nov., l'accent note, le ü en gras",
+    types(al) === "juste juste juste juste" && al.juste && al.paires[1].accent && lettresCorrigees("Mutter", "Mütter", true) === "M<b>ü</b>tter",
+    types(al) + " " + lettresCorrigees("Mutter", "Mütter", true));
 al = alignerDictee("Ich bin mude", "Ich bin müde.", { autres: CORPUS, langue: "de" });
 verifier("« mude » pour « müde » (pas un autre mot) : l'accent ne compte pas, juste", types(al) === "juste juste juste" && al.juste, types(al));
 
@@ -110,16 +111,29 @@ verifier("le corpus prend « cosa » dans une phrase d'exemple", corpusPhrases.p
 al = alignerDictee("Trabajo con la computadora en cosa", ATTENDU, { autres: corpusPhrases, langue: "es" });
 verifier("« cosa » pour « casa », corpus des phrases : faux", types(al) === "juste juste juste juste juste faux" && !al.juste, types(al));
 
-// 9. La regle commune (8 nov. 2026, ligne 27) : un accent oublie est accepte, sauf s'il donne un autre vrai mot.
+// 9. La regle du 13 nov. 2026 (decision de Jacques, cd4c384, ligne 82) : un accent, un tilde ou un trema oublie compte
+// JUSTE, meme quand l'oubli fait un autre mot, et la remarque montre la bonne lettre. Le ß tape « ss » n'est pas un accent.
+al = alignerDictee("la sopa esta caliente", "La sopa está caliente.", { autres: CORPUS });
+verifier("« la sopa esta caliente » (la phrase de Jacques) : juste", al.juste && !al.presque && types(al) === "juste juste juste juste", types(al));
+verifier("« esta » note comme accent oublie, et lui seul", al.paires.map(p => p.accent ? 1 : 0).join("") === "0010", JSON.stringify(al.paires));
+verifier("la lettre accentuee en gras dans la bonne phrase", rendreDictee(al, "es").indexOf("est<b>á</b>") > 0, rendreDictee(al, "es"));
+let rem = remarqueAccent(accentsOublies("la sopa esta caliente", "La sopa está caliente."));
+verifier("la remarque : « N'oublie pas l'accent : está »", rem.indexOf("N&#39;oublie pas l&#39;accent : ") >= 0 || rem.indexOf("N'oublie pas l'accent : ") >= 0, rem);
+verifier("la remarque met le á en gras", rem.indexOf("est<b>á</b>") > 0, rem);
 al = alignerDictee("Ella esta aqui", "Ella está aquí.", { autres: CORPUS });
-verifier("« esta » pour « está » : un autre mot, faux ; « aqui » : pas un autre mot, juste", types(al) === "juste faux juste" && !al.juste, types(al));
-verifier("la lettre accentuee en gras", lettresCorrigees("esta", "está", al.paires[1].umlaut) === "est<b>á</b>", lettresCorrigees("esta", "está", al.paires[1].umlaut));
+verifier("« esta » et « aqui » : juste, deux accents notes", al.juste && accentsOublies("Ella esta aqui", "Ella está aquí.").length === 2, types(al));
 al = alignerDictee("El vive aqui", "Él vive aquí.", { autres: CORPUS });
-verifier("un mot de deux lettres compte : « el » pour « él », faux", types(al) === "faux juste juste", types(al));
+verifier("« el » pour « él » : juste, l'accent note", al.juste && al.paires[0].accent, types(al));
 al = alignerDictee("Das ist schon", "Das ist schön.", { autres: CORPUS });
-verifier("« schon » pour « schön » : faux", types(al) === "juste juste faux", types(al));
+verifier("« schon » pour « schön » : juste", al.juste && al.paires[2].accent, types(al));
+rem = remarqueAccent(accentsOublies("Das ist schon", "Das ist schön."));
+verifier("un trema : « N'oublie pas le tréma : schön »", rem.indexOf("tréma") > 0 && rem.indexOf("sch<b>ö</b>n") > 0, rem);
 al = alignerDictee("Die Masse", "Die Maße.", { autres: CORPUS });
-verifier("« Masse » pour « Maße » (un autre mot) : faux", types(al) === "juste faux", types(al));
+verifier("« Masse » pour « Maße » : juste, et pas de remarque (ss pour ß)", al.juste && !al.paires.some(p => p.accent), JSON.stringify(al.paires));
+rem = remarqueAccent(accentsOublies("hablo", "habló"), true);
+verifier("la grammaire stricte : « C'est l'accent qui manque : habló »", rem.indexOf("manque") > 0 && rem.indexOf("habl<b>ó</b>") > 0, rem);
+verifier("pas d'accent oublie : pas de remarque", remarqueAccent(accentsOublies("la sopa está caliente", "La sopa está caliente.")) === "", "");
+verifier("un mot faux n'est pas un accent oublie", accentsOublies("la sopa estaba caliente", "La sopa está caliente.").length === 0, "");
 al = alignerDictee("die strasse", "die Straße", { autres: CORPUS });
 verifier("« strasse » pour « Straße » (pas un autre mot) : juste", types(al) === "juste juste" && al.juste, types(al));
 al = alignerDictee("Ella está", "Ella está.", { autres: CORPUS });
