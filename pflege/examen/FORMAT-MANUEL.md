@@ -53,6 +53,8 @@ un fichier absent. On les remplit, on ne les crée pas. Un chapitre aux rubrique
 - `id` : **101 et plus**, unique dans le fichier. Les pistes enregistrées s'appellent `s<id>-<clé>`, par exemple
   `s101-H1m1`, comme `s1-…` pour l'examen.
 - `titre_*` est facultatif. Sans titre, la page affiche « Série 1 », « Série 2 »…, dans l'ordre du fichier.
+  Une série qui a un titre porte aussi `"cle": "serie<id>"`, par exemple `"serie101"` : comme tout objet traduit,
+  pour le contrôle et pour `a_traduire.py`.
 - **Écoute, lecture et éléments de langue.** `teile` contient une ou plusieurs parties, chacune entière et
   exactement au format de l'examen :
   - même structure et mêmes clés que dans `hoeren.json`, `lesen.json` et `sprachbausteine.json` (le modèle d'une

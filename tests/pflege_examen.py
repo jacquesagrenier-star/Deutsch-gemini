@@ -441,8 +441,6 @@ for e in EPREUVES:
         ou = " (entrainement %s)" % s.get("id")
         D = {x: None for x in EPREUVES}
         D[e] = dict(s, voix=voix)
-        if e != "hoeren" and e in ("sprechen",):
-            D["hoeren"] = {"voix": voix}
         tous = []
         controler(D, tous, complet=False, ou=ou)
         if e in FORMAT and len(tous) != len(set(tous)):
