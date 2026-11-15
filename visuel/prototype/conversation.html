@@ -441,6 +441,12 @@ let voix = { f: null, m: null };
 // La voix de « toi » : une voix de femme dans les conversations ; dans les Soins, celle du personnage qu'on joue
 // (Yusuf et Arun sont des hommes).
 let TOI_VOIX = "f";
+// LES VOIX ENREGISTREES DES SOINS (le chemin modele de chaque dialogue, enregistre le 14 nov. : pflege/datos/sons.json,
+// cles <id>/r/<n> = repliques[n], fichiers sur Firebase Hosting, dossier pflege/). Une replique dont le texte allemand
+// est celui d'une replique enregistree joue son fichier ; les autres branches, et un fichier qui n'a pas demarre en
+// 4 s (reseau, iPhone), passent par la voix du telephone.
+const BASE_SONS_SOINS = "https://deutschai-b6fbb.web.app/pflege/";
+let SONS_SOINS = {}, sonEnCours = null;
 function choisirVoix(){
   const toutes = (window.speechSynthesis && speechSynthesis.getVoices()) || [];
   const ici = toutes.filter(v => (v.lang || "").toLowerCase().startsWith(LANGUE) && !VOIX_A_FUIR.some(f => (v.name || "").toLowerCase().includes(f)));
@@ -452,7 +458,10 @@ function choisirVoix(){
   voix.m = liste.find(v => HOMME.test(v.name)) || liste.find(v => v !== voix.f) || liste[0] || null;
 }
 try{ choisirVoix(); if (window.speechSynthesis) speechSynthesis.onvoiceschanged = choisirVoix; }catch(e){}
-function taire(){ try{ if (window.speechSynthesis) speechSynthesis.cancel(); }catch(e){} }
+function taire(){
+  try{ if (window.speechSynthesis) speechSynthesis.cancel(); }catch(e){}
+  try{ if (sonEnCours){ sonEnCours.pause(); sonEnCours = null; } }catch(e){}
+}
 function dire(texte, qui){
   return new Promise(fini => {
     taire();
@@ -466,6 +475,27 @@ function dire(texte, qui){
     u.onend = u.onerror = fin;
     speechSynthesis.speak(u);
     setTimeout(fin, 900 + texte.length * 110);   // filet : certains moteurs n'appellent jamais onend
+  });
+}
+// Dire une replique : son fichier enregistre s'il en a un (« son », les Soins), sinon la voix du telephone.
+function jouer(texte, qui, son){
+  if (!son) return dire(texte, qui);
+  return new Promise(fini => {
+    taire();
+    const a = new Audio(BASE_SONS_SOINS + son); sonEnCours = a;
+    let rendu = false, parti = false;
+    const fin = () => { if (!rendu){ rendu = true; if (sonEnCours === a) sonEnCours = null; fini(); } };
+    const repli = () => {
+      if (rendu || parti) return;
+      rendu = true; try{ a.pause(); }catch(e){} if (sonEnCours === a) sonEnCours = null;
+      dire(texte, qui).then(fini);
+    };
+    a.onplaying = () => { parti = true; };
+    a.onended = fin;
+    a.onerror = repli;
+    setTimeout(repli, 4000);
+    setTimeout(fin, 4900 + texte.length * 140);   // filet : un fichier qui ne finit jamais
+    try{ const p = a.play(); if (p && p.catch) p.catch(repli); }catch(e){ repli(); }
   });
 }
 
@@ -541,10 +571,10 @@ const SEUIL = 0.5;
 // ---------------------------------------------------------------- l'ecran de jeu
 const HP_SVG = '<svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
 const MIC_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.25 4.5a3.75 3.75 0 1 1 7.5 0v8.25a3.75 3.75 0 1 1-7.5 0V4.5Z"/><path d="M6 10.5a.75.75 0 0 1 .75.75v1.5a5.25 5.25 0 1 0 10.5 0v-1.5a.75.75 0 0 1 1.5 0v1.5a6.751 6.751 0 0 1-6 6.709v2.291h3a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1 0-1.5h3v-2.291a6.751 6.751 0 0 1-6-6.709v-1.5A.75.75 0 0 1 6 10.5Z"/></svg>';
-function boutonHP(texte, qui, libelle){
+function boutonHP(texte, qui, libelle, son){
   const b = el("button"); b.type = "button"; b.innerHTML = HP_SVG; b.appendChild(document.createTextNode(libelle == null ? " " + u("reecouter") : libelle));
   if (!libelle) b.setAttribute("aria-label", u("reecouter"));
-  b.onclick = () => dire(texte, qui);
+  b.onclick = () => jouer(texte, qui, son);
   return b;
 }
 let dernier = null, fil, repondre, sansFilet = Q.get("sansfilet") === "1", noeud = null, ecouteEnCours = null;
@@ -567,11 +597,11 @@ async function replique(r){
   const d = el("div", "de appris", t); d.lang = LANGUE; d.dir = "ltr"; b.appendChild(d);
   const f = el("div", "fr", gabarit(trad(r), "fr")); f.hidden = true; b.appendChild(f);
   const outils = el("div", "outils");
-  outils.appendChild(boutonHP(dit, qui));
+  outils.appendChild(boutonHP(dit, qui, null, r.son));
   const tr = el("button", null, u("traduire")); tr.type = "button"; tr.onclick = () => { f.hidden = !f.hidden; }; outils.appendChild(tr);
   b.appendChild(outils); ligne.appendChild(b); fil.appendChild(ligne); defiler();
   quiParle(qui); dernier = qui;
-  await dire(dit, qui);
+  await jouer(dit, qui, r.son);
   quiParle(null);
   await attendre(250);
 }
@@ -690,7 +720,7 @@ async function choisir(c, touchee){
   maReplique(c);
   S.dit.push(c);
   // touchee : on ne l'a pas dite soi-meme, la voix la dit (au micro, on vient de la dire) ; puis un temps pour la voir
-  if (touchee) await dire(T(c, "dit") ? gabarit(T(c, "dit"), LANGUE) : gabarit(T(c, "t"), LANGUE), "toi");
+  if (touchee) await jouer(T(c, "dit") ? gabarit(T(c, "dit"), LANGUE) : gabarit(T(c, "t"), LANGUE), "toi", c.son);
   await attendre(touchee ? 450 : 700);
   if (c.faux || c.repete){
     essayes(noeud).add(c.i);
@@ -726,7 +756,7 @@ function fin(){
   S.dit.filter(x => !x.faux && !x.repete).forEach(x => {
     const p = el("div", "phrase"), t = gabarit(T(x, "t"), LANGUE);
     const b = el("b", "appris", t); b.lang = LANGUE; b.dir = "ltr"; p.appendChild(b);
-    p.appendChild(boutonHP(t, "toi", ""));
+    p.appendChild(boutonHP(t, "toi", "", x.son));
     c.appendChild(p);
   });
   const re = el("button", "gros", u("rejouer")); re.type = "button"; re.onclick = () => commencer(sansFilet);
@@ -749,7 +779,16 @@ function fin(){
 // plateau, sa voix devient celle de « toi », et la lecture des nombres en lettres (« lecture ») devient « dit ».
 let DIALOGUES_SOINS = [];
 function adapterSoins(d){
-  const versDit = r => { if (r && r.lecture != null && r.dit == null) r.dit = r.lecture; ((r && r.puis) || []).forEach(versDit); };
+  // le texte allemand d'une replique enregistree -> son fichier (sons.json, <id>/r/<n>)
+  const net = s => String(s || "").replace(/\s+/g, " ").trim();
+  const enregistre = {};
+  (d.repliques || []).forEach((r, i) => { const f = SONS_SOINS[d.id + "/r/" + i]; if (f && r.de) enregistre[net(r.de)] = f; });
+  const versDit = r => {
+    if (!r) return;
+    if (r.lecture != null && r.dit == null) r.dit = r.lecture;
+    if (r.t && enregistre[net(r.t)]) r.son = enregistre[net(r.t)];
+    (r.puis || []).forEach(versDit);
+  };
   const noeuds = JSON.parse(JSON.stringify(d.noeuds));
   Object.values(noeuds).forEach(n => { (n.dit || []).forEach(versDit); (n.choix || []).forEach(versDit); });
   TOI_VOIX = (PERS[d.apprenant] || {}).voix || "f";
@@ -908,7 +947,9 @@ poserPaysage();
     PERS = {};
     if (SOINS){
       // les Soins : leurs personnes et leurs dialogues seulement (aucun lot des conversations)
-      const [pers, dlg] = await Promise.all([charger("conversation/soins/personnes.json"), charger("../../pflege/datos/dialogues.json")]);
+      const [pers, dlg, sons] = await Promise.all([charger("conversation/soins/personnes.json"), charger("../../pflege/datos/dialogues.json"),
+                                                    charger("../../pflege/datos/sons.json").catch(() => ({}))]);
+      SONS_SOINS = sons || {};
       Object.keys(pers).filter(k => k.charAt(0) !== "_").forEach(k => { PERS[k] = pers[k]; });
       DIALOGUES_SOINS = dlg.dialogues || [];
       const d = Q.get("c") === "auto" ? dialogueDeLaSeance() : Q.get("c") && dialogueSoins(Q.get("c"));
