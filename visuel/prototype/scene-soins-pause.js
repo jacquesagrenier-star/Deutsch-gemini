@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "fenster",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "pflanze",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "kuehlschrank",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "geladeira",
    "ar": "ثلّاجة",
    "pl": "lodówka",
-   "ru": "холодильник"
+   "ru": "холодильник",
+   "es": "el refrigerador"
   },
   {
    "id": "uhr",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "pinnwand",
@@ -232,7 +237,8 @@ window.SCENE = {
    "pt": "máquina de café",
    "ar": "آلة القهوة",
    "pl": "ekspres do kawy",
-   "ru": "кофемашина"
+   "ru": "кофемашина",
+   "es": "la cafetera"
   },
   {
    "id": "wasserkocher",
@@ -290,7 +296,8 @@ window.SCENE = {
    "pt": "micro-ondas",
    "ar": "ميكروويف",
    "pl": "mikrofalówka",
-   "ru": "микроволновка"
+   "ru": "микроволновка",
+   "es": "el microondas"
   },
   {
    "id": "spuele",
@@ -319,7 +326,8 @@ window.SCENE = {
    "pt": "pia",
    "ar": "حوض المطبخ",
    "pl": "zlew",
-   "ru": "мойка"
+   "ru": "мойка",
+   "es": "el fregadero"
   },
   {
    "id": "wasserhahn",
@@ -348,7 +356,8 @@ window.SCENE = {
    "pt": "torneira",
    "ar": "صنبور الماء",
    "pl": "kran",
-   "ru": "кран"
+   "ru": "кран",
+   "es": "la llave del agua"
   },
   {
    "id": "spind",
@@ -406,7 +415,8 @@ window.SCENE = {
    "pt": "capa de chuva",
    "ar": "سترة واقية من المطر",
    "pl": "kurtka przeciwdeszczowa",
-   "ru": "дождевик"
+   "ru": "дождевик",
+   "es": "el impermeable"
   },
   {
    "id": "tasche",
@@ -435,7 +445,8 @@ window.SCENE = {
    "pt": "bolsa",
    "ar": "حقيبة",
    "pl": "torba, torebka",
-   "ru": "сумка"
+   "ru": "сумка",
+   "es": "la bolsa, el bolso"
   },
   {
    "id": "pflegefachfrau",
@@ -551,7 +562,8 @@ window.SCENE = {
    "pt": "papel",
    "ar": "ورق",
    "pl": "papier",
-   "ru": "бумага"
+   "ru": "бумага",
+   "es": "el papel"
   },
   {
    "id": "tisch",
@@ -580,7 +592,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "obst",
@@ -609,7 +622,8 @@ window.SCENE = {
    "pt": "frutas",
    "ar": "فواكه",
    "pl": "owoce",
-   "ru": "фрукты"
+   "ru": "фрукты",
+   "es": "la fruta (en general)"
   },
   {
    "id": "apfel",
@@ -638,7 +652,8 @@ window.SCENE = {
    "pt": "maçã",
    "ar": "تفاحة",
    "pl": "jabłko",
-   "ru": "яблоко"
+   "ru": "яблоко",
+   "es": "la manzana"
   },
   {
    "id": "banane",
@@ -667,7 +682,8 @@ window.SCENE = {
    "pt": "banana",
    "ar": "موزة",
    "pl": "banan",
-   "ru": "банан"
+   "ru": "банан",
+   "es": "el plátano, el banano"
   },
   {
    "id": "teller",
@@ -696,7 +712,8 @@ window.SCENE = {
    "pt": "prato",
    "ar": "صحن",
    "pl": "talerz",
-   "ru": "тарелка"
+   "ru": "тарелка",
+   "es": "el plato"
   },
   {
    "id": "keks",
@@ -725,7 +742,8 @@ window.SCENE = {
    "pt": "biscoito",
    "ar": "بسكويت",
    "pl": "herbatnik, ciastko",
-   "ru": "печенье"
+   "ru": "печенье",
+   "es": "la galleta"
   },
   {
    "id": "brotdose",
@@ -783,7 +801,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "tasse-r",
@@ -812,7 +831,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "stuhl-v",
@@ -841,7 +861,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "stuhl-l",
@@ -870,7 +891,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "stuhl-r",
@@ -899,7 +921,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "turnschuh",
@@ -928,7 +951,8 @@ window.SCENE = {
    "pt": "tênis (calçado)",
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
-   "ru": "кроссовки, кеды"
+   "ru": "кроссовки, кеды",
+   "es": "el tenis (zapato deportivo)"
   }
  ],
  "grosPlans": [],
@@ -1759,6 +1783,70 @@ window.SCENE = {
     "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "Да, всё хорошо. Слушай, ты не мог бы взять мою утреннюю смену в субботу? Ко мне сестра приезжает из Измира.",
     "SIT | Ich würde dafür deinen Spätdienst am Mittwoch machen. Wäre das okay für dich?": "Я бы за это отработала твою вечернюю смену в среду. Тебе так подойдёт?",
     "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Начну с 14-й палаты. госпожа Леман, 74 года, поступила с раной на правой стопе на фоне диабета."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "La sala de descanso del servicio, a primera hora de la tarde: Elif y Jonas toman un café en la mesa, frente a un frutero, un plato de galletas y una caja azul; Frau Hoffmann, la jefa de la unidad, está de pie junto al horario de turnos fijado en el tablero de corcho, con una hoja en la mano; detrás, los casilleros y una chaqueta impermeable, el rincón de cocina con la cafetera, el hervidor de agua, el microondas y el refrigerador; a la derecha, la ventana y una planta.",
+    "consigne": "Toca un objeto de la sala de descanso, a Elif, a Jonas o a Frau Hoffmann."
+   },
+   "couches": {
+    "A1": "Los objetos de la sala de descanso",
+    "A2": "Du o Sie en el equipo",
+    "B1": "Pedir un favor: el Konjunktiv II",
+    "B2": "El horario de turnos: turnos, cambios, reemplazos",
+    "C1": "El desacuerdo cortés, la crítica constructiva",
+    "SIT": "¿Qué respondes?"
+   },
+   "questions": {
+    "A2 | Jonas, hast du kurz Zeit?": "Entre colegas de enfermería, casi siempre se usa <b>du</b>, con el nombre de pila.",
+    "A2 | Frau Hoffmann, haben Sie einen Moment?": "Con la jefa de la unidad, se suele decir <b>Sie</b> y <b>Frau</b> + el apellido, mientras ella no proponga el «du».",
+    "A2 | Möchtest du auch einen Kaffee? Er ist noch warm.": "Los tres son masculinos (<b>einen</b>), pero solo el café se toma todavía caliente.",
+    "A2 | Ich mache jetzt eine kurze Pause.": "<b>eine Pause machen</b>: <b>die Pause</b> es femenino. El <b>Feierabend</b> es el fin del turno.",
+    "A2 | Um halb drei habe ich Feierabend. Dann gehe ich nach Hause.": "<b>der Feierabend</b> = el fin de la jornada de trabajo. <b>halb drei</b> = las 2:30.",
+    "B1 | Könntest du am Samstag meinen Frühdienst übernehmen?": "<b>Könntest du …?</b>: el Konjunktiv II vuelve cortés la petición, incluso con «du», como «¿podrías…?».",
+    "B1 | Ich würde dafür deinen Spätdienst am Mittwoch machen.": "<b>Ich würde … machen</b>: un ofrecimiento en Konjunktiv II, más suave que una promesa.",
+    "B1 | Frau Hoffmann, würden Sie den Tausch bitte in den Dienstplan eintragen?": "<b>Würden Sie …?</b>: la petición cortés a la jefa de la unidad; <b>eintragen</b> = anotar, registrar.",
+    "B1 | Es wäre super, wenn du mir hilfst.": "<b>Es wäre super, wenn …</b>: se presenta la petición como un deseo.",
+    "B1 | Ich hätte am Mittwoch gern frei.": "<b>Ich hätte gern …</b>: expresar un deseo con cortesía, con el Konjunktiv II de <b>haben</b>.",
+    "B2 | Kannst du heute Nacht für ihn einspringen?": "<b>einspringen</b> = cubrir de último momento a un colega ausente; <b>einsteigen</b> = subir (a un autobús).",
+    "B2 | Diese Woche habe ich drei Nachtdienste hintereinander.": "El plural de <b>der Dienst</b>: <b>die Dienste</b>.",
+    "B2 | Der Frühdienst fängt um sechs Uhr an.": "<b>anfangen</b> es separable: <b>Der Dienst fängt … an</b>.",
+    "B2 | Wir haben am Samstag den Dienst getauscht.": "<b>tauschen</b> es regular: <b>getauscht</b>. Un cambio de turno siempre se le avisa a la jefa de la unidad.",
+    "B2 | Wer schreibt eigentlich den Dienstplan für Dezember?": "El horario de turnos le corresponde a la <b>Stationsleitung</b>, la jefa de la unidad: a ella se le pide un cambio.",
+    "C1 | Ich sehe das ehrlich gesagt etwas anders.": "<b>Ich sehe das anders</b>: se expresa el desacuerdo sin atacar a la persona.",
+    "C1 | Darf ich dir ein kurzes Feedback geben?": "<b>Feedback geben</b>: primero se pregunta si la otra persona está de acuerdo en escucharlo.",
+    "C1 | Mir ist aufgefallen, dass du heute oft allein bei Herrn Brandt warst.": "<b>Mir ist aufgefallen, dass …</b>: una observación, no un reproche. <b>Mir ist eingefallen</b> = se me ocurrió.",
+    "C1 | Könnten wir das vielleicht unter vier Augen besprechen?": "<b>unter vier Augen</b> = en privado, sin los colegas.",
+    "C1 | Trotzdem sehe ich ein Risiko für den Patienten.": "<b>Trotzdem</b> (aun así) matiza sin rechazar; <b>obwohl</b> abriría una subordinada.",
+    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "<b>Entre colegas de enfermería, casi siempre se usa «du», con el nombre de pila.</b> El Konjunktiv sigue siendo cortés con «du»: «Könntest du …?», «Würdest du …?».",
+    "SIT | Ich würde dafür deinen Spätdienst am Mittwoch machen. Wäre das okay für dich?": "<b>«müssen» es una obligación, incluso con «bitte».</b> Para proponer un cambio: «Ich würde dafür … machen» o «Dafür könnte ich … übernehmen».",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Una entrega de turno tiene un orden: quién, por qué, qué pasó, qué queda por hacer.</b> Empieza por la habitación, el nombre, la edad y el motivo de ingreso. Lo demás viene después, si importa para el cuidado."
+   },
+   "sens": {
+    "A2 | Jonas, hast du kurz Zeit?": "Jonas, ¿tienes un momento?",
+    "A2 | Frau Hoffmann, haben Sie einen Moment?": "Señora Hoffmann, ¿tiene un momento?",
+    "A2 | Möchtest du auch einen Kaffee? Er ist noch warm.": "¿Quieres un café tú también? Todavía está caliente.",
+    "A2 | Ich mache jetzt eine kurze Pause.": "Ahora hago una pausa corta.",
+    "A2 | Um halb drei habe ich Feierabend. Dann gehe ich nach Hause.": "A las dos y media termino mi jornada. Después me voy a casa.",
+    "B1 | Könntest du am Samstag meinen Frühdienst übernehmen?": "¿Podrías cubrir mi turno de la mañana el sábado?",
+    "B1 | Ich würde dafür deinen Spätdienst am Mittwoch machen.": "A cambio, yo haría tu turno de la tarde el miércoles.",
+    "B1 | Frau Hoffmann, würden Sie den Tausch bitte in den Dienstplan eintragen?": "Señora Hoffmann, ¿podría anotar el cambio en el horario de turnos, por favor?",
+    "B1 | Es wäre super, wenn du mir hilfst.": "Sería genial que me ayudaras.",
+    "B1 | Ich hätte am Mittwoch gern frei.": "Me gustaría tener libre el miércoles.",
+    "B2 | Kannst du heute Nacht für ihn einspringen?": "¿Puedes cubrirlo esta noche?",
+    "B2 | Diese Woche habe ich drei Nachtdienste hintereinander.": "Esta semana tengo tres turnos de noche seguidos.",
+    "B2 | Der Frühdienst fängt um sechs Uhr an.": "El turno de la mañana empieza a las seis.",
+    "B2 | Wir haben am Samstag den Dienst getauscht.": "Cambiamos de turno el sábado.",
+    "B2 | Wer schreibt eigentlich den Dienstplan für Dezember?": "Por cierto, ¿quién hace el horario de turnos de diciembre?",
+    "C1 | Ich sehe das ehrlich gesagt etwas anders.": "Para ser sincera, yo lo veo un poco distinto.",
+    "C1 | Darf ich dir ein kurzes Feedback geben?": "¿Puedo darte un comentario breve?",
+    "C1 | Mir ist aufgefallen, dass du heute oft allein bei Herrn Brandt warst.": "Noté que hoy estuviste muchas veces solo con el Sr. Brandt.",
+    "C1 | Könnten wir das vielleicht unter vier Augen besprechen?": "¿Podríamos tal vez hablarlo en privado?",
+    "C1 | Trotzdem sehe ich ein Risiko für den Patienten.": "Aun así, veo un riesgo para el paciente.",
+    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "Sí, todo bien. Oye, ¿podrías cubrir mi turno de la mañana el sábado? Mi hermana viene de Izmir.",
+    "SIT | Ich würde dafür deinen Spätdienst am Mittwoch machen. Wäre das okay für dich?": "A cambio, yo haría tu turno de la tarde el miércoles. ¿Te parecería bien?",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Empiezo con la habitación 14. La Sra. Lehmann, 74 años, ingresada por una herida en el pie derecho, con diabetes."
    }
   }
  }

@@ -405,7 +405,7 @@ window.SCENE = {
    "ar": "معصم",
    "pl": "nadgarstek",
    "ru": "запястье",
-   "es": "la muñeca"
+   "es": "la muñeca (de la mano)"
   },
   {
    "id": "hand-l",

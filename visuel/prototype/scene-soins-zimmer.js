@@ -1794,7 +1794,7 @@ window.SCENE = {
     "B1": "El imperativo de cortesía — Sie",
     "B2": "La pasiva en los cuidados",
     "C1": "El estilo de los registros de enfermería",
-    "SIT": "¿Qué hace usted?"
+    "SIT": "¿Qué respondes?"
    },
    "questions": {
     "A2 | Der Rollator steht neben dem Bett.": "<b>neben</b> + dativo: das Bett → neben <b>dem</b> Bett.",
@@ -1818,8 +1818,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "<b>auf Wunsch</b> + genitivo: el motivo jurídico primero. ⚕️ Sin consentimiento ni autorización, la baranda es una medida privativa de la libertad.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "El sustantivo compuesto (<b>Sauerstoffgabe</b>) reemplaza una oración; se escribe lo que se observa (atmet ruhig), no lo que se cree. ⚕️ El flujo se anota según la indicación médica.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Estilo de los registros: el título (<b>Sturzprophylaxe</b>), luego las medidas sin verbo conjugado. <b>griffbereit</b> = al alcance de la mano.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "El paciente decide, pero debe saber por qué: se explica, se respeta, se informa y se documenta ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Un suero se cambia por indicación médica, y lo hace la persona habilitada: mientras llega el reconocimiento del título, se avisa sin demora ⚕️."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "<b>Se dice «aus der Türkei».</b> Para el país de donde uno viene: «aus» + dativo. Algunos países llevan artículo: die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "<b>Primero, muestra que escuchaste: «Das tut mir leid».</b> Decirle «no es para tanto» a alguien que tiene dolor lo ofende, aunque sea con buena intención.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "<b>«weh» no es un sustantivo: se dice «Wo tut es weh?» o «Wo haben Sie Schmerzen?».</b> «wehtun» es un verbo (es tut weh); «der Schmerz, die Schmerzen» es el sustantivo.",
+    "SIT | Seit wann sind die Schmerzen so stark?": "<b>Se dice «Seit wann …?» o «Wie lange schon …?».</b> «Seit wie lange» es una mezcla de las dos, que los alemanes notan enseguida."
    },
    "sens": {
     "A2 | Der Rollator steht neben dem Bett.": "El andador está al lado de la cama.",
@@ -1843,8 +1845,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "Baranda de la cama subida a petición del pac., consentimiento documentado.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Oxígeno por cánula nasal, pac. respira tranquilo, sin disnea.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Prevención de caídas: andador al alcance, timbre a la mano.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "Le explico para qué es el oxígeno y le aviso a la doctora si no lo quiere.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Le aviso de inmediato a la enfermera o al enfermero responsable."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "Sí, trabajo aquí desde hace cuatro meses. Vengo de Turquía, de Izmir.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "Lo siento. Si el dolor se vuelve fuerte, dígamelo enseguida, por favor.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "Lo siento, señor Brandt. ¿Dónde le duele exactamente?",
+    "SIT | Seit wann sind die Schmerzen so stark?": "¿Desde cuándo es tan fuerte el dolor?"
    }
   }
  }

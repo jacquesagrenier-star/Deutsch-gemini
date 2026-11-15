@@ -636,7 +636,7 @@ window.SCENE = {
    "ar": "تذكرة السفر",
    "pl": "bilet",
    "ru": "билет (на проезд)",
-   "es": "el boleto"
+   "es": "el boleto (de tren o autobús)"
   },
   {
    "id": "tisch",

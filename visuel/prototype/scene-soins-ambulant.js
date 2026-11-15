@@ -1972,7 +1972,7 @@ window.SCENE = {
     "B1": "Aconsejar con «sollten»",
     "B2": "Llamar al consultorio médico",
     "C1": "Documentar una negativa",
-    "SIT": "¿Qué haces?"
+    "SIT": "¿Qué respondes?"
    },
    "questions": {
     "A2 | Sie kommt um acht Uhr.": "<b>um</b> + hora; am + día; im + mes.",
@@ -1998,10 +1998,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "Una nota en el expediente: hechos con fecha y hora, comprobables, nunca una opinión.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "<b>trotz</b> + genitivo (a menudo dativo al hablar); <b>BZ</b> = Blutzucker ⚕️.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Se anota la decisión de la persona Y lo que se hizo: <b>Risiko mit ihr besprochen</b>.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Nunca irse, nunca forzar nada sola: se da aviso y se sigue el procedimiento del servicio (familiares, llave, emergencias) ⚕️.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Hipoglucemia: azúcar de acción rápida enseguida, y luego un control; nunca insulina ⚕️.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Una pastilla que se tragó el gato, o que se olvidó, cambia el tratamiento: se cuentan y se avisa.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Una pierna roja, caliente e hinchada puede ser una trombosis: ni medias ni masaje, se llama ⚕️."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "<b>Lee la caja y el plan de medicación, y luego explica con palabras sencillas: «für den Blutdruck».</b> Si no sabes, dilo y ofrece preguntar: nunca respondas «nehmen Sie sie einfach». ⚕️",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "<b>El momento de la toma está en el plan de medicación: léelo.</b> «Laut Medikamentenplan einmal täglich, morgens.» Cada medicamento tiene su hora, y no le corresponde a la enfermera elegirla. ⚕️",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "<b>Algunas tabletas no se trituran (recubrimiento, liberación prolongada).</b> Cuando no sepas, remite a la farmacia: «Das fragen wir am besten in der Apotheke.» Es una respuesta profesional. ⚕️"
    },
    "sens": {
     "A2 | Sie kommt um acht Uhr.": "Ella llega a las ocho.",
@@ -2027,10 +2026,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "La hora, la observación, la medida tomada y a quién se informó.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "A pesar de las instrucciones, la usuaria no se mide la glucosa por sí sola.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "La usuaria no lleva el botón de emergencia de noche; se habló del riesgo con ella.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Llamo a la jefa del servicio de enfermería y sigo el plan de emergencia.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Le doy enseguida pastillas de glucosa o jugo, y después mido otra vez.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Las recojo todas, comparo el pastillero con el plan y aviso si falta una.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "No le pongo las medias y aviso enseguida a la médica de cabecera."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "¿Puedo ver la caja? Ah, ramipril. Es para la presión alta.",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "La toma una vez al día, por la mañana. Así dice aquí, en su plan.",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "No lo sé con seguridad. Lo mejor es preguntarlo en la farmacia o a su médico de cabecera."
    }
   }
  }

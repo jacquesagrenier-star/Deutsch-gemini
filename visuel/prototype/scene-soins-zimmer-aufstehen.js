@@ -1000,15 +1000,13 @@ window.SCENE = {
     "nom_vue": "Herr Brandt se levanta"
    },
    "couches": {
-    "SIT": "¿Qué hace usted?"
+    "SIT": "¿Qué respondes?"
    },
    "questions": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "La seguridad primero, sin encerrarlo: se le acompaña con su andador. Subir la baranda contra su voluntad sería una medida privativa de la libertad ⚕️.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "La bolsa queda siempre más abajo que la vejiga: si no, la orina se regresa, con riesgo de infección ⚕️."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>En el hospital, se le muestra el timbre al paciente: «die Klingel».</b> «Drücken Sie bitte hier»: presione aquí, por favor. Un paciente operado no debe tener que gritar para que lo ayuden. ⚕️"
    },
    "sens": {
-    "SIT | Ich bleibe bei ihm und gebe ihm den Rollator.": "Me quedo con él y le doy el andador.",
-    "SIT | Ich hänge den Urinbeutel an den Rollator, unter Blasenhöhe.": "Cuelgo la bolsa de orina en el andador, por debajo del nivel de la vejiga."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Aquí está su timbre. Por favor, todavía no se levante solo, mejor toque el timbre."
    }
   }
  }

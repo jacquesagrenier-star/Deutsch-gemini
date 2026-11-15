@@ -1870,7 +1870,7 @@ window.SCENE = {
     "B1": "Anunciar y pedir permiso",
     "B2": "Las subordinadas de tiempo",
     "C1": "El estilo nominal del informe",
-    "SIT": "¿Qué haces?"
+    "SIT": "¿Qué respondes?"
    },
    "questions": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "<b>sich waschen</b>: en la 3.ª persona, la a se vuelve ä — sie <b>wäscht</b> sich.",
@@ -1897,10 +1897,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "<b>intakt</b>: la palabra del informe para una piel sin enrojecimiento ni lesión. Enrojecida: <b>gerötet</b>.",
     "C1 | Verband trocken und sauber.": "Ni artículo ni verbo: <b>Verband trocken und sauber</b>. El pie diabético se vigila en cada aseo ⚕️.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "El sustantivo <b>Schwindel</b> (mareo) reemplaza la frase «estaba mareada»; siempre se anota lo que se hizo ⚕️.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Nunca se deja sola a una persona que se siente mal: se la mantiene sentada y se pide ayuda sin irse ⚕️.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Respetar el pudor (<b>die Intimsphäre wahren</b>): la persona hace ella misma lo que puede; si no, se vuelve a hablar del tema y se anota ⚕️.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "Un enrojecimiento en el talón de una paciente diabética puede anunciar una úlcera por presión o una herida: se observa, se anota y se avisa ⚕️.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "Un vendaje mojado ya no protege la herida: se cambia según la indicación médica, y se anota ⚕️."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "<b>Di exactamente lo que vas a hacer y pide el consentimiento.</b> «Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?» «machen» solo no le dice nada a la paciente.",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "<b>Explica para qué sirve el cuidado, con palabras sencillas: «damit …».</b> «Damit die Wunde sauber bleibt und gut heilen kann.» Un paciente que entiende el porqué coopera mejor. ⚕️",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "<b>Es un error de cuidado: la higiene de manos va antes de cualquier procedimiento.</b> «Zuerst desinfiziere ich mir die Hände, dann …». La paciente lo notó: en el examen como en el trabajo, el orden cuenta. ⚕️",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "<b>No prometas que un procedimiento no va a doler.</b> Avisa con honestidad («Es kann ein bisschen ziehen») y dale a la paciente una forma de actuar: «Sagen Sie mir bitte sofort, wenn es wehtut.»",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "<b>Para una herida, palabras neutras y precisas: sauber, gerötet, kleiner, größer.</b> «eklig» (asqueroso) hiere a la paciente y no le aporta nada al expediente."
    },
    "sens": {
     "A2 | Frau Lehmann wäscht sich das Gesicht.": "La Sra. Lehmann se lava la cara.",
@@ -1927,10 +1928,11 @@ window.SCENE = {
     "C1 | Haut intakt.": "Piel intacta.",
     "C1 | Verband trocken und sauber.": "Vendaje seco y limpio.",
     "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "Mareo breve durante el aseo, signos vitales controlados.",
-    "SIT | Ich bleibe bei ihr, halte sie auf dem Stuhl fest und ziehe die Notrufschnur.": "Me quedo con ella, la sostengo en la silla y jalo el cordón de llamada.",
-    "SIT | Ich gebe ihr den Waschlappen und lasse sie es selbst machen, so weit sie kann.": "Le doy la toallita y dejo que lo haga ella misma, hasta donde pueda.",
-    "SIT | Ich sehe sie mir genau an, dokumentiere sie und informiere die Ärztin.": "La observo con atención, la documento e informo a la doctora.",
-    "SIT | Ich sorge dafür, dass er nach Anordnung gewechselt wird, und dokumentiere es.": "Me encargo de que lo cambien según la indicación médica, y lo documento."
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "Buenos días, señora Lehmann. Quisiera cambiarle ahora el vendaje del pie. ¿Está de acuerdo?",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "Para que la herida se mantenga limpia y pueda sanar bien. Con diabetes, una herida suele sanar más despacio.",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "Primero me desinfecto las manos y me pongo guantes. Después quito el vendaje anterior.",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "Puede jalar un poco. Por favor, dígame enseguida si le duele, y hago una pausa.",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "Bien. La herida está limpia y ya se hizo un poco más pequeña."
    }
   }
  }

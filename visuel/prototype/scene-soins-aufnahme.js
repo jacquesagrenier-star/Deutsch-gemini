@@ -2052,7 +2052,7 @@ window.SCENE = {
     "B1": "Las preguntas indirectas",
     "B2": "Las preguntas de la anamnesis",
     "C1": "Reformular para comprobar",
-    "SIT": "¿Qué haces?"
+    "SIT": "¿Qué respondes?"
    },
    "questions": {
     "A2 | Wie heißen Sie?": "<b>Wie</b> heißen Sie? — nunca «Was heißen Sie»; como el «¿cómo?» del español. A una paciente: <b>Sie</b>.",
@@ -2078,10 +2078,9 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "<b>Sie meinen, …?</b>: se propone el término exacto. <b>allergisch gegen</b> + acusativo.",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Precisar sin juzgar: el Konjunktiv II de cortesía (<b>Könnten Sie</b>) y opciones concretas para proponer.",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Se anuncia el resumen (<b>Darf ich kurz zusammenfassen</b>) y luego se pide confirmarlo con una pregunta.",
-    "SIT | Ich lege eine Kopie in die Akte und informiere die Ärztin.": "La voluntad anticipada va al expediente (la norma de la institución dice quién hace la copia), y el médico debe conocerla ⚕️.",
-    "SIT | Ich schreibe die Wertsachen auf, Frau Lehmann unterschreibt, und ihre Tochter nimmt sie mit.": "Los objetos de valor se anotan en una lista y se firman; luego se van a casa o a la caja fuerte, según la norma de la institución ⚕️.",
-    "SIT | Ich trage die Allergie in die Akte ein und sage der Ärztin Bescheid.": "El documento escrito pesa más que un recuerdo dudoso: se anota y se avisa ⚕️.",
-    "SIT | Ich helfe ihr ins Bett und führe das Gespräch später weiter.": "Primero la paciente. La hija puede completar, pero no responde en lugar de su madre."
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "<b>No generalices («bei alten Leuten») y toma en serio la preocupación.</b> Una confusión nueva no es «normal»: es un signo que hay que informar al médico. Mejor di lo que observaste hoy. ⚕️",
+    "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "<b>No prometas nada sobre el diagnóstico ni sobre una operación.</b> No es tu función, y una promesa falsa destruye la confianza. Remite a la doctora: «Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.» ⚕️",
+    "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "<b>Ofrece tu ayuda para organizar la conversación.</b> «Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?»: «Soll ich …?» ofrece un favor, con cortesía."
    },
    "sens": {
     "A2 | Wie heißen Sie?": "¿Cómo se llama usted?",
@@ -2107,10 +2106,9 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "¿Quiere decir que es alérgica a la penicilina?",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "¿Podría decirlo con un poco más de precisión: desde hace días, semanas o meses?",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "¿Puedo resumir un momento: usted vive sola y su hija viene todos los días?",
-    "SIT | Ich lege eine Kopie in die Akte und informiere die Ärztin.": "Pongo una copia en el expediente e informo a la doctora.",
-    "SIT | Ich schreibe die Wertsachen auf, Frau Lehmann unterschreibt, und ihre Tochter nimmt sie mit.": "Anoto los objetos de valor, la Sra. Lehmann firma y su hija se los lleva.",
-    "SIT | Ich trage die Allergie in die Akte ein und sage der Ärztin Bescheid.": "Anoto la alergia en el expediente y le aviso a la doctora.",
-    "SIT | Ich helfe ihr ins Bett und führe das Gespräch später weiter.": "La ayudo a acostarse y continúo la conversación más tarde."
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "Entiendo muy bien que esté preocupada. Hoy su mamá está despierta y bien orientada.",
+    "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "Sobre los resultados de los exámenes y el tratamiento, la doctora puede decirle más. Yo puedo decirle que curamos la herida todos los días.",
+    "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "¿Quiere que le programe una conversación con la Dra. Sommer? Después de la visita médica casi siempre tiene tiempo."
    }
   }
  }

@@ -744,19 +744,19 @@ window.SCENE = {
     "A2": "Wo? — junto a la cama del paciente",
     "B1": "El imperativo de cortesía — Sie",
     "C1": "El estilo de los registros de enfermería",
-    "SIT": "¿Qué hace usted?"
+    "SIT": "¿Qué respondes?"
    },
    "questions": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "<b>Wo?</b> → dativo: der Nachttisch → auf <b>dem</b> Nachttisch.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "A Sie le corresponde <b>Ihr</b>, con mayúscula: Ihre Brille = sus lentes (los de usted).",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Una cantidad (<b>ein halber Becher</b>) y una acción (<b>motiviert</b>), no una impresión. ⚕️ Pat. = Patient.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Primero sus ayudas (audífono, lentes), luego una voz tranquila, frente a él: gritar no hace que se entienda mejor."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "<b>Es un error de cuidado, no de idioma.</b> Solo se da lo que está indicado para este paciente y preparado para él. Di lo que indicó la doctora: «Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet.» ⚕️"
    },
    "sens": {
     "A2 | Die Brille liegt auf dem Nachttisch.": "Los lentes están sobre la mesita de noche.",
     "B1 | Setzen Sie bitte Ihre Brille auf.": "Póngase sus lentes, por favor.",
     "C1 | Trinkmenge bis zehn Uhr: ein halber Becher, Pat. zum Trinken motiviert.": "Cantidad de líquido tomada hasta las diez: medio vaso, pac. animado a beber.",
-    "SIT | Ich gebe ihm sein Hörgerät und spreche langsam und deutlich.": "Le doy su audífono y hablo despacio y claro."
+    "SIT | Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?": "Puede recibir un analgésico si lo necesita. ¿Quiere que se lo traiga?"
    }
   }
  }

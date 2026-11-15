@@ -729,7 +729,7 @@ window.SCENE = {
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
    "ru": "кроссовки, кеды",
-   "es": "el tenis"
+   "es": "el tenis (zapato deportivo)"
   },
   {
    "id": "spiegel",

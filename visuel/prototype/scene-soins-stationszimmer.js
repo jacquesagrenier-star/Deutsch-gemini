@@ -1830,7 +1830,7 @@ window.SCENE = {
     "B1": "Los verbos separables del servicio",
     "B2": "Los modales de la norma",
     "C1": "El Konjunktiv I de las indicaciones",
-    "SIT": "¿Qué haces?"
+    "SIT": "¿Qué respondes?"
    },
    "questions": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "En el trabajo, la hora <b>oficial</b>, de veinticuatro horas: dreizehn Uhr dreißig.",
@@ -1856,10 +1856,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Konjunktiv I de sein: <b>sei</b>; aquí con una pasiva en pasado (sei … geändert worden).",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I de werden: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "El pasado en estilo indirecto: <b>habe</b> + participio (schlafen va con haben).",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "El secreto profesional: no se sabe quién llama, y el diagnóstico le corresponde decirlo al médico ⚕️.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Los estupefacientes están bajo llave y la llave la lleva consigo una persona; una diferencia se reporta enseguida ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Los medicamentos que salieron del frío pueden echarse a perder: se avisa sin esperar, y se documenta ⚕️.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Todo lo que pincha va al contenedor, nunca a la basura: alguien podría lastimarse ⚕️."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S de Situación: quién eres, de dónde llamas, por cuál paciente.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» El médico todavía no conoce al paciente.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>El paciente no hace la operación, la recibe: la pasiva.</b> «Er ist am Dienstag operiert worden» (Perfekt de la pasiva) o «Er wurde am Dienstag operiert» (Präteritum). Es la B de SBAR (Background, Hintergrund): los antecedentes.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A de Assessment (Einschätzung): di claramente lo que piensas.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Tu preocupación es una información para el médico. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "El turno de la tarde empieza a las 13:30.",
@@ -1885,10 +1884,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "La Sra. Hoffmann comunicó que el horario de turnos había sido modificado.",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "La hija comentó por teléfono que su madre se marea a menudo en casa.",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "El turno de la noche informó que la Sra. Lehmann había dormido intranquila.",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "Por teléfono no puedo dar información. Le comunico con la doctora.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Lo cierro con llave e informo enseguida a la jefa de la unidad.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Aviso enseguida a la enfermera o al enfermero responsable.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "La recojo con cuidado y la tiro en el contenedor para agujas."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Disculpe la molestia, doctor Krämer. Habla Yusuf, del servicio 4B. Se trata del Sr. Brandt, habitación 12.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Tiene 82 años y fue operado de la cadera el martes. Desde entonces casi no se ha levantado.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Estoy preocupado. Su estado empeoró notablemente en la última hora. Temo que sea algo de los pulmones."
    }
   }
  }

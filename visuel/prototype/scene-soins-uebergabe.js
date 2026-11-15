@@ -1754,7 +1754,7 @@ window.SCENE = {
     "B1": "Perfekt y Präteritum de la entrega de turno",
     "B2": "Las relativas de la entrega de turno",
     "C1": "La entrega de turno en el orden SBAR",
-    "SIT": "¿Qué haces?"
+    "SIT": "¿Qué respondes?"
    },
    "questions": {
     "A2 | Frau Lehmann hat gut geschlafen.": "<b>schlafen</b> forma su Perfekt con <b>haben</b>: sie <b>hat</b> geschlafen.",
@@ -1781,10 +1781,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation, en alemán <b>Empfehlung</b>: lo que la colega debe hacer.",
     "C1 | Das gehört zur Einschätzung.": "Lo que se observó y lo que se piensa de ello: la <b>Einschätzung</b>. <b>reizlos</b> = sin signos de inflamación ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "Lo que queda por hacer: la <b>Empfehlung</b>, con una hora precisa ⚕️.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "La entrega de turno junto a la cama se hace delante de la paciente y de su familia: objetiva, sin juzgar a nadie ⚕️.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "La paciente es la primera fuente: se la escucha y se corrige la entrega de turno ⚕️.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "El secreto profesional (<b>Schweigepflicht</b>): nada sobre los otros pacientes ⚕️.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "Una entrega de turno se aclara antes de que la colega se vaya: una pregunta que no se hace se convierte en un error ⚕️."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Una entrega de turno tiene un orden: quién, por qué, qué pasó, qué queda por hacer.</b> Empieza por la habitación, el nombre, la edad y el motivo de ingreso. Lo demás viene después, si importa para el cuidado.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Un valor se transmite con su cifra y su hora.</b> «Blutzucker um 7 Uhr: 180». Si no lo recuerdas, vuelve a leer el expediente antes de la entrega de turno. ⚕️",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Una entrega de turno es objetiva: hechos, no juicios.</b> Di lo que pasó y la razón que dio el paciente: «Mobilisation abgelehnt, wegen Angst vor einem Sturz»."
    },
    "sens": {
     "A2 | Frau Lehmann hat gut geschlafen.": "La Sra. Lehmann durmió bien.",
@@ -1811,10 +1810,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Por último, la recomendación: ¿qué debe pasar a continuación?",
     "C1 | Das gehört zur Einschätzung.": "Eso forma parte de la evaluación.",
     "C1 | Das gehört zur Empfehlung.": "Eso forma parte de la recomendación.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "Un comentario personal sobre la hija.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "Pregunto, lo anoto y lo transmito en la entrega de turno.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "Sobre eso, lamentablemente, no me está permitido decirle nada.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "Él pregunta enseguida, antes de que ella se vaya."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Empiezo con la habitación 14. La Sra. Lehmann, 74 años, ingresada por una herida en el pie derecho, con diabetes.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Glucosa a las 7:00: 180. Recibió insulina según el esquema. Al mediodía estaba en 140.",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Movilización rechazada hoy, por miedo a una nueva caída. Está documentado, y la doctora está enterada."
    }
   }
  }

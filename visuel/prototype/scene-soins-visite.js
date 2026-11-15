@@ -1809,7 +1809,7 @@ window.SCENE = {
     "B1": "Los verbos de la indicación médica",
     "B2": "Transmitir una indicación",
     "C1": "Pedir una aclaración con tacto",
-    "SIT": "¿Qué hace usted?"
+    "SIT": "¿Qué respondes?"
    },
    "questions": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "<b>sollen</b>: lo que otra persona pide, aquí la doctora. El segundo verbo va al final, en infinitivo.",
@@ -1836,9 +1836,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "<b>Mir ist noch nicht ganz klar, ob …</b>: se dice lo que no se entendió, sin reproche.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "Una indicación verbal se hace confirmar por escrito (<b>schriftlich</b>) ⚕️.",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Repetir la indicación y preguntar <b>richtig?</b>: la comunicación en circuito cerrado ⚕️.",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Una indicación médica incompleta no se interpreta: se le pregunta al médico antes de dar el medicamento ⚕️.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "El paciente tiene derecho a una información que entienda: se le explica de nuevo con palabras sencillas, y la doctora vuelve para lo que es médico ⚕️.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Una indicación verbal: se repite, se anota, y la doctora la registra ella misma (regla de la institución) ⚕️."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "<b>Primero escuchar, después explicar.</b> Pregunta la razón del rechazo: «Darf ich fragen, warum?». Sin la razón, no puedes encontrar una solución.",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "<b>Ni amenazas ni exageraciones: un riesgo, dicho con hechos.</b> «Wenn Sie lange liegen bleiben, steigt das Risiko für …». El miedo no motiva, bloquea. ⚕️",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "<b>Para proponer, el Konjunktiv II: «Wie wäre es, wenn …?»</b> «Wie ist es» pregunta cómo es algo, no es una propuesta. Otra forma: «Was halten Sie davon, wenn …?» ⚕️",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "<b>Un paciente capaz de decidir tiene derecho a rechazar un cuidado.</b> No se le obliga: se respeta, se documenta («Ich dokumentiere es») y se informa al médico. Se puede volver a proponer más tarde. ⚕️"
    },
    "sens": {
     "A2 | Herr Brandt soll heute aufstehen und ein bisschen laufen.": "El Sr. Brandt debe levantarse hoy y caminar un poco.",
@@ -1865,9 +1866,10 @@ window.SCENE = {
     "C1 | Mir ist noch nicht ganz klar, ob er allein aufstehen darf.": "Todavía no me queda del todo claro si puede levantarse solo.",
     "C1 | Würden Sie die Anordnung bitte noch schriftlich eintragen?": "¿Podría además registrar la indicación por escrito, por favor?",
     "C1 | Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?": "Repito brevemente: a partir de hoy en la noche, dos tabletas en lugar de una, ¿correcto?",
-    "SIT | Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.": "Le pregunto a la doctora antes de dar el medicamento.",
-    "SIT | Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.": "Se lo explico otra vez con palabras sencillas y, si hace falta, le pregunto a la doctora.",
-    "SIT | Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.": "Repito la indicación, la anoto y le pido a ella que la registre."
+    "SIT | Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?": "Entiendo que hoy no tenga ganas. ¿Puedo preguntarle por qué?",
+    "SIT | Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.": "Si se queda mucho tiempo acostado, los músculos se debilitan, y aumenta el riesgo de una trombosis o una neumonía.",
+    "SIT | Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.": "¿Qué tal si hoy solo nos sentamos en el borde de la cama? Solo unos minutos.",
+    "SIT | In Ordnung, ich respektiere das. Ich dokumentiere es und sage Dr. Sommer Bescheid.": "De acuerdo, lo respeto. Lo documento y le aviso a la Dra. Sommer."
    }
   }
  }

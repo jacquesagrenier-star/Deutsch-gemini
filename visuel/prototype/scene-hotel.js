@@ -1536,7 +1536,7 @@ window.SCENE = {
    "ar": "نشرة إعلانية",
    "pl": "prospekt, ulotka",
    "ru": "рекламный проспект",
-   "es": "el folleto"
+   "es": "el folleto publicitario"
   },
   {
    "id": "papier",

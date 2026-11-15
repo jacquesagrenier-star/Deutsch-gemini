@@ -2025,7 +2025,7 @@ window.SCENE = {
     "B1": "Contar una vida en pasado",
     "B2": "Hablar con suavidad, sin contradecir",
     "C1": "Matizar una observación",
-    "SIT": "¿Qué hace usted?"
+    "SIT": "¿Qué respondes?"
    },
    "questions": {
     "A2 | Heute ist Mittwoch.": "El día, sin artículo: Heute ist <b>Mittwoch</b>. «am Mittwoch» (el miércoles) responde a la pregunta Wann?",
@@ -2050,10 +2050,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "<b>zunehmend</b> = cada vez más: una evolución, no un estado.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "<b>ziemlich</b> = bastante.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Comparar con su estado habitual (<b>als sonst</b>): la base de una observación útil.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Acompañar y desviar la atención, avisar al equipo según el procedimiento de la residencia; nunca por la fuerza ⚕️.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "Mientras tose, la tos despeja: se le anima, no se le da de beber; si ya no pasa el aire, es una emergencia ⚕️.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Prevenir la caída sin impedirle moverse: la ayuda al alcance, y uno se queda ahí.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Las personas mayores suelen beber muy poco: ofrecerle lo que le gusta y llevar la cuenta de lo que bebe ⚕️."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "<b>Nunca levantes enseguida a una persona que se cayó.</b> Primero tranquilizar y revisar: una fractura o un golpe en la cabeza pueden pasar inadvertidos. «Bleiben Sie bitte erst mal sitzen.» ⚕️",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "<b>No se deja sola a una persona que se cayó.</b> Pide ayuda desde la habitación: el timbre, el teléfono. «Ich rufe meine Kollegin. Ich bleibe bei Ihnen.» ⚕️",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "<b>Nunca se prueba con la cuchara del residente: es una falta de higiene.</b> Para la temperatura, se revuelve, se espera o se comprueba en el borde del plato. ⚕️",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "<b>Mientras tose, nada de beber ni de comer: la tos limpia por sí sola.</b> Déjalo toser, con el tronco un poco hacia adelante, y quédate cerca de él. Si ya no puede respirar ni toser, es una emergencia: pedir ayuda. ⚕️",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "<b>No contradigas a una persona desorientada: para ella, eso es verdad ahora.</b> Corregirla la inquieta y la enoja. Entra en su mundo: «Sie wollen zur Arbeit?» ⚕️",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "<b>Una orden provoca resistencia.</b> Propón y acompaña: «Darf ich Sie ein Stück begleiten?» La persona conserva la sensación de elegir."
    },
    "sens": {
     "A2 | Heute ist Mittwoch.": "Hoy es miércoles.",
@@ -2078,10 +2080,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "Su orientación disminuye cada vez más.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "La Sra. Weber estuvo hoy de bastante buen humor.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Mientras contaba, se veía más tranquilo que de costumbre.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Camino tranquilamente un rato con él, le hablo de su trabajo y aviso al equipo.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "Me quedo con ella, la animo a toser y busco ayuda si no puede respirar.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Le acerco el andador y espero hasta que esté bien parado.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Le ofrezco otra cosa de beber y anoto cuánto bebe."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "Señora Weber, aquí estoy. Por favor, quédese sentada por ahora, enseguida la ayudo.",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "Ahora toco el timbre y llamo a mi colega. Me quedo con usted.",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "No se preocupe, la revuelvo un poco y así ya no estará tan caliente. Tómese su tiempo.",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "Tosa fuerte, así está bien. Aquí estoy.",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "Señor Schulze, ya está despierto. ¿Quiere ir al trabajo?",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "¿Puedo acompañarlo un tramo? Podríamos ir colgando la chaqueta en su habitación."
    }
   }
  }

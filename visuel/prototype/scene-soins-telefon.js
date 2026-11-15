@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "tafel",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "quadro (lousa)",
    "ar": "سبّورة",
    "pl": "tablica",
-   "ru": "доска"
+   "ru": "доска",
+   "es": "la pizarra"
   },
   {
    "id": "pinnwand",
@@ -203,7 +205,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "desinfektionsmittel",
@@ -261,7 +264,8 @@ window.SCENE = {
    "pt": "geladeira",
    "ar": "ثلّاجة",
    "pl": "lodówka",
-   "ru": "холодильник"
+   "ru": "холодильник",
+   "es": "el refrigerador"
   },
   {
    "id": "notfallwagen",
@@ -348,7 +352,8 @@ window.SCENE = {
    "pt": "computador",
    "ar": "حاسوب",
    "pl": "komputer",
-   "ru": "компьютер"
+   "ru": "компьютер",
+   "es": "la computadora"
   },
   {
    "id": "tastatur",
@@ -377,7 +382,8 @@ window.SCENE = {
    "pt": "teclado",
    "ar": "لوحة المفاتيح",
    "pl": "klawiatura",
-   "ru": "клавиатура"
+   "ru": "клавиатура",
+   "es": "el teclado"
   },
   {
    "id": "maus",
@@ -406,7 +412,8 @@ window.SCENE = {
    "pt": "rato",
    "ar": "فأر",
    "pl": "mysz",
-   "ru": "мышь"
+   "ru": "мышь",
+   "es": "el ratón"
   },
   {
    "id": "lampe",
@@ -435,7 +442,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "telefon",
@@ -464,7 +472,8 @@ window.SCENE = {
    "pt": "telefone",
    "ar": "هاتف",
    "pl": "telefon",
-   "ru": "телефон"
+   "ru": "телефон",
+   "es": "el teléfono"
   },
   {
    "id": "drucker",
@@ -493,7 +502,8 @@ window.SCENE = {
    "pt": "impressora",
    "ar": "طابعة",
    "pl": "drukarka",
-   "ru": "принтер"
+   "ru": "принтер",
+   "es": "la impresora"
   },
   {
    "id": "pflegefachmann",
@@ -551,7 +561,8 @@ window.SCENE = {
    "pt": "ouvinte; fone (do telefone)",
    "ar": "مستمع؛ سمّاعة الهاتف",
    "pl": "słuchacz; słuchawka",
-   "ru": "слушатель; телефонная трубка"
+   "ru": "слушатель; телефонная трубка",
+   "es": "el radioescucha, el auricular"
   },
   {
    "id": "klemmbrett",
@@ -638,7 +649,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "blutdruckmessgeraet",
@@ -754,7 +766,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "schreibtisch",
@@ -783,7 +796,8 @@ window.SCENE = {
    "pt": "escrivaninha",
    "ar": "مكتب (قطعة أثاث)",
    "pl": "biurko",
-   "ru": "письменный стол"
+   "ru": "письменный стол",
+   "es": "el escritorio"
   }
  ],
  "grosPlans": [],
@@ -1642,6 +1656,72 @@ window.SCENE = {
     "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "Можете, пожалуйста, прийти и осмотреть его? И что мне делать до вашего прихода?",
     "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "Повторяю: два литра кислорода через носовую канюлю, приподнять верхнюю часть тела. Вы будете через десять минут.",
     "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "Доброе утро, госпожа Хоффман, это Элиф. К сожалению, я заболела и сегодня не смогу выйти на утреннюю смену."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "La estación de enfermería, de noche: Yusuf, el enfermero de noche, está sentado en el escritorio, con el auricular en la oreja, y toma notas en una tabla con clip, junto a una carpeta azul abierta, la lámpara encendida, el teléfono fijo, la computadora y la impresora; en la pared, la pizarra magnética, el horario de turnos y el reloj; el armario de medicamentos, la pequeña caja fuerte gris, el refrigerador y el carro de paro rojo con su desfibrilador.",
+    "consigne": "Toca un objeto de la estación de enfermería, o a Yusuf."
+   },
+   "couches": {
+    "A1": "Los objetos de la estación, de noche",
+    "A2": "Por teléfono: presentarse, pedir",
+    "B1": "Los verbos separables del teléfono",
+    "B2": "La pasiva de la llamada SBAR",
+    "C1": "Transmitir una indicación: el Konjunktiv I",
+    "SIT": "¿Qué respondes?"
+   },
+   "questions": {
+    "A2 | Guten Abend, hier ist Yusuf von der Station vier B.": "Por teléfono, uno se presenta con <b>Hier ist …</b> (habla …), y luego el servicio.",
+    "A2 | Ich rufe wegen Herrn Brandt an.": "<b>anrufen</b> es separable: <b>Ich rufe … an</b>. <b>wegen</b> + el nombre da el motivo de la llamada.",
+    "A2 | Entschuldigung, können Sie das bitte wiederholen?": "Después de <b>können</b>, el infinitivo va al final: <b>… wiederholen?</b> Pedir que repitan es profesional.",
+    "A2 | Bitte sprechen Sie etwas langsamer.": "<b>etwas langsamer</b>: el comparativo, para pedir con cortesía que hablen más despacio.",
+    "A2 | Einen Moment bitte, ich hole die Ärztin.": "<b>holen</b> + acusativo: <b>die Ärztin</b> (en femenino, el acusativo no cambia).",
+    "B1 | Das Telefon klingelt, und Yusuf nimmt ab.": "<b>abnehmen</b> = contestar (el teléfono); lo contrario: <b>auflegen</b>.",
+    "B1 | Bitte legen Sie nicht auf, ich verbinde Sie.": "<b>auflegen</b> = colgar; <b>verbinden</b> = comunicar a alguien por teléfono.",
+    "B1 | Sie ruft in zehn Minuten zurück.": "<b>zurückrufen</b> = devolver la llamada; <b>anrufen</b> = llamar.",
+    "B1 | Er schreibt die Anordnung sofort auf.": "<b>aufschreiben</b> = anotar. Una indicación verbal se anota durante la llamada ⚕️.",
+    "B1 | Ich stelle Sie zur Intensivstation durch.": "<b>durchstellen</b> = transferir una llamada a otra extensión.",
+    "B1 | Der Arzt hat noch nicht zurückgerufen.": "En el Perfekt, <b>ge-</b> se mete entre la partícula y el verbo: <b>zurückgerufen</b>.",
+    "B2 | Herr Brandt ist am Dienstag an der Hüfte operiert worden.": "La pasiva en Perfekt: <b>ist … operiert worden</b>, y no «geworden». Es la B de SBAR (Background, los antecedentes).",
+    "B2 | Die Ärztin wurde um zwei Uhr informiert.": "La pasiva en Präteritum: <b>wurde informiert</b>, la forma de la entrega de turno.",
+    "B2 | Der Oberkörper soll hoch gelagert werden.": "La pasiva con un verbo modal: <b>soll … gelagert werden</b> ⚕️.",
+    "B2 | Die Sättigung muss alle zehn Minuten kontrolliert werden.": "<b>muss … kontrolliert werden</b>: lo que hay que hacer, sin decir quién lo hace ⚕️.",
+    "B2 | Die mündliche Anordnung muss später von der Ärztin unterschrieben werden.": "<b>von</b> + dativo nombra al agente en la pasiva, como «por». Una indicación verbal se hace firmar después ⚕️.",
+    "C1 | Dr. Krämer sagt, er komme in zehn Minuten.": "En un discurso indirecto escrito, el Konjunktiv I: <b>er komme</b>. Al hablar, se oye a menudo <b>er kommt</b>.",
+    "C1 | Er ordnet an, man solle dem Patienten zwei Liter Sauerstoff geben.": "<b>man solle</b>: el Konjunktiv I de <b>sollen</b>, para una indicación transmitida ⚕️.",
+    "C1 | Der Arzt meint, es könne etwas mit der Lunge sein.": "<b>es könne</b>: el Konjunktiv I de <b>können</b>; se transmite una opinión sin hacerla propia.",
+    "C1 | Im Bericht steht, der Patient habe seit einer Stunde Atemnot.": "<b>er habe</b>: el Konjunktiv I de <b>haben</b>, en un informe escrito ⚕️.",
+    "C1 | Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.": "<b>sie werde</b>: el Konjunktiv I del futuro, en un informe.",
+    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R de Recommendation (Empfehlung): di lo que pides.</b> «Können Sie bitte kommen?» Y no des ningún medicamento sin indicación médica: pregunta qué debes hacer mientras tanto. ⚕️",
+    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Una indicación verbal se le repite al médico, palabra por palabra.</b> «Ich wiederhole: …» Luego se anota y se hace firmar más tarde. Eso es lo que evita los errores por teléfono. ⚕️",
+    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Con la jefa de la unidad: «Sie», tu nombre y el motivo.</b> «Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.» Y se llama temprano, antes de que empiece el turno."
+   },
+   "sens": {
+    "A2 | Guten Abend, hier ist Yusuf von der Station vier B.": "Buenas noches, habla Yusuf, del servicio 4B.",
+    "A2 | Ich rufe wegen Herrn Brandt an.": "Llamo por el Sr. Brandt.",
+    "A2 | Entschuldigung, können Sie das bitte wiederholen?": "Disculpe, ¿puede repetirlo, por favor?",
+    "A2 | Bitte sprechen Sie etwas langsamer.": "Por favor, hable un poco más despacio.",
+    "A2 | Einen Moment bitte, ich hole die Ärztin.": "Un momento, por favor, voy por la doctora.",
+    "B1 | Das Telefon klingelt, und Yusuf nimmt ab.": "El teléfono suena y Yusuf contesta.",
+    "B1 | Bitte legen Sie nicht auf, ich verbinde Sie.": "Por favor, no cuelgue, lo comunico.",
+    "B1 | Sie ruft in zehn Minuten zurück.": "Ella devuelve la llamada en diez minutos.",
+    "B1 | Er schreibt die Anordnung sofort auf.": "Él anota la indicación enseguida.",
+    "B1 | Ich stelle Sie zur Intensivstation durch.": "Lo comunico con la unidad de cuidados intensivos.",
+    "B1 | Der Arzt hat noch nicht zurückgerufen.": "El médico todavía no ha devuelto la llamada.",
+    "B2 | Herr Brandt ist am Dienstag an der Hüfte operiert worden.": "El Sr. Brandt fue operado de la cadera el martes.",
+    "B2 | Die Ärztin wurde um zwei Uhr informiert.": "La doctora fue informada a las dos.",
+    "B2 | Der Oberkörper soll hoch gelagert werden.": "El tronco debe mantenerse elevado.",
+    "B2 | Die Sättigung muss alle zehn Minuten kontrolliert werden.": "La saturación debe controlarse cada diez minutos.",
+    "B2 | Die mündliche Anordnung muss später von der Ärztin unterschrieben werden.": "La indicación verbal debe ser firmada después por la doctora.",
+    "C1 | Dr. Krämer sagt, er komme in zehn Minuten.": "El Dr. Krämer dice que viene en diez minutos.",
+    "C1 | Er ordnet an, man solle dem Patienten zwei Liter Sauerstoff geben.": "Indica que se le den dos litros de oxígeno al paciente.",
+    "C1 | Der Arzt meint, es könne etwas mit der Lunge sein.": "El médico opina que podría ser algo de los pulmones.",
+    "C1 | Im Bericht steht, der Patient habe seit einer Stunde Atemnot.": "En el informe dice que el paciente tiene dificultad para respirar desde hace una hora.",
+    "C1 | Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.": "Se informó a los familiares que la doctora hablará con ellos mañana.",
+    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "¿Puede venir a verlo, por favor? ¿Y qué debo hacer mientras tanto?",
+    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "Repito: dos litros de oxígeno por cánula nasal, mantener el tronco elevado. Usted viene en diez minutos.",
+    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "Buenos días, señora Hoffmann, habla Elif. Lamentablemente estoy enferma y hoy no puedo ir al turno de la mañana."
    }
   }
  }

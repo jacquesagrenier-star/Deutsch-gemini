@@ -365,7 +365,7 @@ window.SCENE = {
    "ar": "دمية",
    "pl": "lalka",
    "ru": "кукла",
-   "es": "la muñeca"
+   "es": "la muñeca (juguete)"
   },
   {
    "id": "stern-2",
