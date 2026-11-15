@@ -17,6 +17,8 @@ Ce qu'il verifie :
   - L'ECRIT : chaque point de la fiche est couvert par le modele, la grille a ses quatre criteres ;
   - LES 9 LANGUES : chaque unite (objet qui a « fr ») a ses 8 traductions, non perimees, avec les memes balises <b>
     et les memes noms ; chaque nom a sa forme dans chaque langue ;
+  - LES CARTES-PHRASES (FORMAT-DONNEES.md, 2 bis) : chaque Redemittel a sa fonction ; les 7 fonctions et les 8
+    groupes ; chaque carte a fonction, groupe, niveau, registre, situation ; id unique ; jamais deux fois le meme « de » ;
   - LES NOMBRES : une phrase allemande prononcee a chiffres a son « dit », en lettres ;
   - LE DERIVE : pflege/datos/ est a jour (refait en memoire et compare).
 """
@@ -93,6 +95,11 @@ def controle_dialogue(ident, d, ids_grammaire):
             (E if ids_grammaire else A)("%s : point de grammaire « %s » inconnu" % (ou, g))
     if not 5 <= len(d.get("redemittel", [])) <= 10:
         E("%s : %d Redemittel (5 à 10)" % (ou, len(d.get("redemittel", []))))
+    for i, r in enumerate(d.get("redemittel", [])):
+        if r.get("fonction") not in FONCTIONS:
+            E("%s redemittel.%d : fonction %r (%s)" % (ou, i, r.get("fonction"), " ".join(FONCTIONS)))
+        if r.get("groupe") and r["groupe"] not in GROUPES:
+            E("%s redemittel.%d : groupe %r" % (ou, i, r["groupe"]))
     noeuds = d.get("noeuds", {})
     if d.get("debut") not in noeuds:
         E("%s : début « %s » absent" % (ou, d.get("debut")))
@@ -280,7 +287,7 @@ def controle_ecrit(ident, d):
 def controle_langues(res):
     nb = 0
     for famille, doc in res.items():
-        cle = {"dialogues": "dialogues", "grammaire": "points", "ecrit": "taches"}[famille]
+        cle = {"dialogues": "dialogues", "grammaire": "points", "ecrit": "taches", "redemittel": "sources"}[famille]
         for el in doc.get(cle, []):
             for chemin, u in T.unites(el):
                 if chemin.startswith("chemin."):
@@ -323,6 +330,67 @@ def controle_gabarits_trad():
                             E("%s/%s %s : %s" % (famille, ident, c, x))
 
 
+# ------------------------------------------------------------------ cartes-phrases (FORMAT-DONNEES.md, 2 bis)
+
+FONCTIONS = ["annoncer", "demander", "rassurer", "refuser", "reformuler", "transmettre", "redemander"]
+GROUPES = ["patient", "famille", "collegues", "releve", "sbar", "visite", "negociation", "telephone"]
+
+
+def controle_sources_redemittel():
+    """Le fichier des fonctions, et les cartes sans dialogue (pflege/sources/redemittel/<groupe>.json)."""
+    for ident, _, d in T.sources("redemittel"):
+        ou = "redemittel/" + ident
+        if ident == "fonctions":
+            if [f.get("id") for f in d.get("fonctions", [])] != FONCTIONS:
+                E("%s : les 7 fonctions, dans l'ordre : %s" % (ou, " ".join(FONCTIONS)))
+            if [g.get("id") for g in d.get("groupes", [])] != GROUPES:
+                E("%s : les 8 groupes, dans l'ordre : %s" % (ou, " ".join(GROUPES)))
+            continue
+        if ident not in GROUPES:
+            E("%s : nom de fichier hors des groupes (%s)" % (ou, " ".join(GROUPES)))
+        if d.get("groupe", ident) != ident:
+            E("%s : « groupe » %r différent du nom du fichier" % (ou, d.get("groupe")))
+        for i, c in enumerate(d.get("cartes", [])):
+            w = "%s cartes.%d" % (ou, i)
+            for k in ("t", "fr", "fonction", "niveau", "registre"):
+                if not c.get(k):
+                    E("%s : « %s » absent" % (w, k))
+            if not (isinstance(c.get("situation"), dict) and c["situation"].get("fr")):
+                E("%s : « situation » absente (obligatoire sans dialogue : {\"fr\": …})" % w)
+            if c.get("fonction") and c["fonction"] not in FONCTIONS:
+                E("%s : fonction %r" % (w, c["fonction"]))
+            if c.get("niveau") and c["niveau"] not in NIVEAUX | {"C1"}:
+                E("%s : niveau %r" % (w, c["niveau"]))
+            if c.get("registre") and c["registre"] not in ("du", "Sie"):
+                E("%s : registre %r (du ou Sie)" % (w, c["registre"]))
+        controle_nombres("redemittel", ident, d)
+        controle_gabarits("redemittel", ident, d)
+
+
+def controle_cartes(export):
+    doc = export["redemittel"]
+    vus_id, vus_de = set(), {}
+    for c in doc["cartes"]:
+        ou = c.get("id", "?")
+        if not re.fullmatch(r"soins_rm_(\d\d|[a-z]+)_\d+", ou):
+            E("carte : id hors contrat %r" % ou)
+        if ou in vus_id:
+            E("%s : id en double" % ou)
+        vus_id.add(ou)
+        if c["fonction"] not in FONCTIONS:
+            E("%s : fonction %r" % (ou, c["fonction"]))
+        if c["groupe"] not in GROUPES:
+            E("%s : groupe %r" % (ou, c["groupe"]))
+        if c["registre"] not in ("du", "Sie"):
+            E("%s : registre %r" % (ou, c["registre"]))
+        if not c["situation"]:
+            E("%s : situation vide" % ou)
+        if c["de"] in vus_de:
+            E("%s : même phrase que %s : %s" % (ou, vus_de[c["de"]], c["de"]))
+        vus_de.setdefault(c["de"], ou)
+    return len(doc["cartes"])
+
+
 # ------------------------------------------------------------------ le contrat (pflege/FORMAT-DONNEES.md, § 2 à 4)
 
 QUI_CONTRAT = {"elif", "jonas", "hoffmann", "sommer", "brandt", "lehmann", "lehmann_tochter", "schulze", "weber",
@@ -337,7 +405,7 @@ def controle_contrat(export):
         if isinstance(obj, dict):
             for k, v in obj.items():
                 if k in ("trad", "titre", "but", "intro", "regle", "resume", "piege", "note", "consigne", "corrige",
-                         "corrige_b1", "rubrique", "texte", "question", "conseil", "seuils") and isinstance(v, dict) \
+                         "corrige_b1", "rubrique", "texte", "question", "conseil", "seuils", "situation") and isinstance(v, dict) \
                         and all(len(x) == 2 for x in v):
                     manque = [l for l in T.LANGUES if not v.get(l)]
                     if manque and not PARTIEL:
@@ -392,6 +460,11 @@ def controle_contrat(export):
                 E("%s : clé « %s » absente" % (ou, k))
         langues(s, ou)
     langues(export["ecrit"]["grilles"], "grilles")
+    for c in export["redemittel"]["cartes"]:
+        parle(c, c.get("id", "?"))
+        langues(c, c.get("id", "?"))
+    langues(export["redemittel"]["fonctions"], "fonctions")
+    langues(export["redemittel"]["groupes"], "groupes")
 
 
 # ------------------------------------------------------------------ main
@@ -417,6 +490,7 @@ def main():
     if len(set(numeros)) != len(numeros):
         E("dialogues : numéros en double")
     controle_gabarits_trad()
+    controle_sources_redemittel()
 
     res, manques = T.construire_tout(ecrire_fichiers=False)
     nb = controle_langues(res)
@@ -438,6 +512,7 @@ def main():
         elif T.lire(ch) != json.loads(json.dumps(doc, ensure_ascii=False)):
             E("pflege/datos/%s.json en retard sur les sources : python pflege/outils/textes.py construire" % famille)
     controle_contrat(export)
+    ncartes = controle_cartes(export)
 
     if "--relire" in ARGS:
         print("À relire par l'infirmière :")
@@ -451,8 +526,8 @@ def main():
     if "--chars" in ARGS:
         chars()
     nrel = sum(1 for f in T.FAMILLES for _, _, d in T.sources(f) for _, u in T.unites(d) if u.get("relire"))
-    print("Textes Soins : %d dialogues, %d points de grammaire, %d fichiers d'écrit ; %d unités à traduire ; %d à relire par l'infirmière."
-          % (len(dialogues), len(grammaire), len(ecrit), nb, nrel))
+    print("Textes Soins : %d dialogues, %d points de grammaire, %d fichiers d'écrit, %d cartes-phrases ; %d unités à traduire ; %d à relire par l'infirmière."
+          % (len(dialogues), len(grammaire), len(ecrit), ncartes, nb, nrel))
     for a in avis[:40]:
         print("  avis : " + a)
     if len(avis) > 40:

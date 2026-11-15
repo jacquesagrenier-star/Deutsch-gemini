@@ -73,6 +73,9 @@ def items(export):
             ajoute("%s/q/%d" % (d["id"], i), "aurora", q)
             for k, c in enumerate(q["choix"]):
                 ajoute("%s/q/%d/c/%d" % (d["id"], i, k), "aurora", c)
+    for c in export.get("redemittel", {}).get("cartes", []):
+        if not c["dialogue"]:   # une carte de dialogue garde le son <dialogue>/rm/<n> ; les autres ont le leur
+            ajoute(c["id"], "aurora", c)
     for p in export["grammaire"]["points"]:
         for i, e in enumerate(p["exemples"]):
             ajoute("%s/ex/%d" % (p["id"], i), "aurora", e)

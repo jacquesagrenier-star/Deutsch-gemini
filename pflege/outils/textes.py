@@ -3,7 +3,7 @@
 
     python pflege/outils/textes.py extraire              # prepare traductions/<langue>/ (garde l'existant)
     python pflege/outils/textes.py extraire --langue tr  # une seule langue
-    python pflege/outils/textes.py construire            # fait pflege/datos/{dialogues,grammaire,ecrit}.json
+    python pflege/outils/textes.py construire            # fait pflege/datos/{dialogues,grammaire,ecrit,redemittel}.json
     python pflege/outils/textes.py etat                  # ce qui reste a traduire, par langue et par famille
 
 Regle d'unite : tout objet qui a une cle "fr" est un texte a traduire ; ses traductions sont ses cles soeurs.
@@ -18,8 +18,18 @@ TRAD = os.path.join(SOURCES, "traductions")
 DATOS = os.path.join(PFLEGE, "datos")
 LANGUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]   # l'ordre du contrat (pflege/FORMAT-DONNEES.md)
 AUTRES = LANGUES[1:]
-FAMILLES = ["dialogues", "grammaire", "ecrit"]
+FAMILLES = ["dialogues", "grammaire", "ecrit", "redemittel"]
+# Les cartes-phrases (FORMAT-DONNEES.md, 2 bis) : les fonctions et les groupes (tenus ici), les cartes sans dialogue
+# (pflege/sources/redemittel/<groupe>.json, ecrites par pflege-examen) ; les cartes des dialogues viennent de leur
+# champ « redemittel ».
+FONCTIONS_RM = os.path.join(SOURCES, "redemittel-fonctions.json")
+GROUPE_DIALOGUE = {1: "patient", 2: "patient", 3: "patient", 4: "negociation", 5: "famille", 6: "releve", 7: "sbar",
+                   8: "patient", 9: "patient", 10: "patient", 11: "collegues", 12: "patient", 13: "patient",
+                   14: "patient", 15: "patient", 16: "collegues", 17: "visite", 18: "negociation", 19: "telephone",
+                   20: "collegues", 21: "collegues", 22: "collegues", 23: "famille", 24: "famille", 25: "patient",
+                   26: "famille"}
 GABARIT = re.compile(r"\{([a-z_]+)(?::([a-z]+))?\}")
+TUTOIEMENT = re.compile(r"\b(du|dich|dir|dein\w*)\b")
 # Cles qui ne sont jamais des textes a traduire, meme dans un objet qui a "fr".
 NON_TEXTE = {"t", "dit", "relire", "relire_note", "qui", "air", "va", "faux", "repete", "pose", "si", "juste",
              "options", "morceaux", "type", "id", "valeur", "prononce", "couvre", "de"}
@@ -43,9 +53,11 @@ def ecrire(chemin, donnees, compact=False):
 def sources(famille):
     """[(id, chemin, donnees)] dans l'ordre des noms de fichiers."""
     dossier = os.path.join(SOURCES, famille)
-    if not os.path.isdir(dossier):
-        return []
     out = []
+    if famille == "redemittel":
+        out.append(("fonctions", FONCTIONS_RM, lire(FONCTIONS_RM)))
+    if not os.path.isdir(dossier):
+        return out
     for nom in sorted(os.listdir(dossier)):
         if nom.endswith(".json"):
             out.append((nom[:-5], os.path.join(dossier, nom), lire(os.path.join(dossier, nom))))
@@ -125,7 +137,9 @@ def extraire(langues=None):
                     if "t" in u:
                         e["de"] = u["t"]
                     vieux = ancien.get(chemin)
-                    if vieux and vieux.get(l):
+                    if u.get(l):
+                        e[l] = u[l]   # ecrite dans la source : recopiee telle quelle
+                    elif vieux and vieux.get(l):
                         if vieux.get("fr") == u["fr"] and vieux.get("de") == u.get("t"):
                             e[l] = vieux[l]
                         else:
@@ -161,6 +175,8 @@ def fusionner(famille, ident, d, manques):
         ch = chemin_traduction(l, famille, ident)
         cles = lire(ch).get("cles", {}) if os.path.exists(ch) else {}
         for chemin, u in index.items():
+            if u.get(l):
+                continue   # une traduction ecrite dans la source l'emporte (cartes de pflege-examen, fonctions)
             e = cles.get(chemin)
             if not e or not e.get(l):
                 manques.append("%s : %s/%s %s : pas de traduction" % (l, famille, ident, chemin))
@@ -227,10 +243,11 @@ def construire_tout(ecrire_fichiers=True):
         for ident, _, d in sources(famille):
             m = fusionner(famille, ident, d, manques)
             m = resoudre(m, table, manques)
+            m.setdefault("id", ident)
             if famille == "dialogues":
                 m["chemin"] = chemin_juste(m)
             elements.append(m)
-        cle = {"dialogues": "dialogues", "grammaire": "points", "ecrit": "taches"}[famille]
+        cle = {"dialogues": "dialogues", "grammaire": "points", "ecrit": "taches", "redemittel": "sources"}[famille]
         doc = {"_note": "DERIVE de pflege/sources/%s/ par pflege/outils/textes.py construire : ne pas corriger a la main (pflege/sources/LISEZ-MOI.md). Langues : %s." % (famille, " ".join(LANGUES)),
                "langues": LANGUES, cle: elements}
         if famille == "dialogues":
@@ -413,7 +430,48 @@ def exporter(res):
                                         "niveaux": [{"points": n["points"], "texte": trad(n)} for n in c["niveaux"]]}
                                        for c in g["criteres"]],
                           "seuils": trad(g["seuils"])}
+    # Cartes-phrases (FORMAT-DONNEES.md, 2 bis)
+    srm = {x["id"]: x for x in res["redemittel"]["sources"]}
+    fonctions = srm["fonctions"]
+    ordre_f = [f["id"] for f in fonctions["fonctions"]]
+    cartes = []
+    for d, dx in zip(res["dialogues"]["dialogues"], dialogues):
+        for i, r in enumerate(d["redemittel"]):
+            reg = r.get("registre") or d["registre"]
+            if reg == "du+Sie":
+                reg = "du" if TUTOIEMENT.search(GABARIT.sub(" ", r["t"])) else "Sie"
+            c = {"id": "soins_rm_%02d_%d" % (d["numero"], i), "fonction": r.get("fonction", ""),
+                 "groupe": r.get("groupe") or GROUPE_DIALOGUE.get(d["numero"], ""), "niveau": r.get("niveau") or d["niveau"],
+                 "registre": reg}
+            c.update(texte_de(r))
+            c["situation"] = trad(r["situation"]) if r.get("situation") else trad(d["titre"])
+            c.update({"dialogue": dx["id"], "apprenant": d["role"], "son": "%s/rm/%d" % (dx["id"], i),
+                      "relire": c.pop("relire", "")})
+            cartes.append(c)
+    for ident, src in srm.items():
+        if ident == "fonctions":
+            continue
+        groupe = src.get("groupe") or ident
+        for i, r in enumerate(src.get("cartes", [])):
+            if r.get("retire"):
+                continue
+            cid = "soins_rm_%s_%d" % (groupe, i)
+            c = {"id": cid, "fonction": r.get("fonction", ""), "groupe": groupe, "niveau": r.get("niveau", ""),
+                 "registre": r.get("registre", "")}
+            c.update(texte_de(r))
+            c["situation"] = trad(r["situation"]) if r.get("situation") else {}
+            c.update({"dialogue": "", "apprenant": "", "son": cid, "relire": c.pop("relire", "")})
+            cartes.append(c)
+    rang_n = {"A2": 0, "B1": 1, "B2": 2, "C1": 3}
+    cartes.sort(key=lambda c: (ordre_f.index(c["fonction"]) if c["fonction"] in ordre_f else 99,
+                               rang_n.get(c["niveau"], 9), 0 if c["dialogue"] else 1))
+    redemittel = {"_note": note % "tout le fichier (cartes-phrases, FORMAT-DONNEES.md 2 bis) : fonctions, groupes, cartes ; l'id d'une carte est stable, son « son » est sa clé de sons.json",
+                  "langues": LANGUES,
+                  "fonctions": [{"id": f["id"], "titre": trad(f["titre"]), "conseil": trad(f["conseil"])} for f in fonctions["fonctions"]],
+                  "groupes": [{"id": g["id"], "titre": trad(g["titre"])} for g in fonctions["groupes"]],
+                  "cartes": cartes}
     return {
+        "redemittel": redemittel,
         "dialogues": {"_note": note % "source, registre, intro, et l'arbre des branches (debut, noeuds : le format des conversations jouées, visuel/CONVERSATIONS.md)",
                       "langues": LANGUES, "dialogues": dialogues},
         "grammaire": {"_note": note % "source, resume, tableau, piege, dialogues ; une question « choix » sans trou a de = « ___ » et une consigne",
