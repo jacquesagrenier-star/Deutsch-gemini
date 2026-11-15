@@ -1,0 +1,167 @@
+{
+ "id": "d13-aufnahmegespraech",
+ "numero": 13,
+ "niveau": "B1",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 5,
+ "role": "elif",
+ "personnes": ["lehmann"],
+ "titre": {"t": "Das Aufnahmegespräch", "fr": "L'entretien d'admission"},
+ "intro": {"fr": "Lundi matin, 10 h 30. {lehmann} arrive au {station} avec sa canne et la lettre de sa médecin traitante : une plaie au pied qui ne guérit pas. Tu joues {elif} : tu fais l'entretien d'admission à l'oral, avant de remplir la fiche. Pose tes questions poliment, vérifie ce qui reste vague, puis résume et explique la suite."},
+ "but": {"fr": "Mener un entretien d'admission : se présenter et l'annoncer ; poser des questions polies et indirectes (Darf ich fragen, ob … ? Können Sie mir sagen, welche … ?) ; demander une précision quand une réponse est vague ; résumer ; expliquer ce qui va se passer."},
+ "grammaire": ["g09", "g07", "g06"],
+ "telc": ["oral-1", "schreiben"],
+ "relire_notes": {"fr": "Les rubriques de l'entretien d'admission infirmier et leur ordre ; la dose d'insuline : se fier au plan de médicaments, jamais à la mémoire ; la levée du secret pour la fille ; ce qui se passe après l'admission (glycémie, médecin, pansement)."},
+ "redemittel": [
+  {"t": "Ich möchte Ihnen jetzt ein paar Fragen stellen. Das dauert ungefähr eine Viertelstunde.", "fr": "J'aimerais maintenant vous poser quelques questions. Cela dure environ un quart d'heure.", "fonction": "annoncer"},
+  {"t": "Können Sie mir sagen, warum Sie heute zu uns kommen?", "fr": "Pouvez-vous me dire pourquoi vous venez chez nous aujourd'hui ?", "fonction": "demander"},
+  {"t": "Darf ich fragen, ob Sie Allergien haben?", "fr": "Puis-je vous demander si vous avez des allergies ?", "fonction": "demander"},
+  {"t": "Wissen Sie, wie viele Einheiten Insulin Sie morgens spritzen?", "fr": "Savez-vous combien d'unités d'insuline vous vous injectez le matin ?", "fonction": "demander"},
+  {"t": "Haben Sie vielleicht Ihren Medikamentenplan dabei?", "fr": "Avez-vous peut-être votre plan de médicaments sur vous ?", "fonction": "redemander"},
+  {"t": "Wen dürfen wir im Notfall anrufen?", "fr": "Qui pouvons-nous appeler en cas d'urgence ?", "fonction": "demander"},
+  {"t": "Ich fasse kurz zusammen: …", "fr": "Je résume rapidement : …", "fonction": "reformuler"},
+  {"t": "Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen.", "fr": "Tout à l'heure, je mesure votre glycémie, et ensuite la médecin passe vous voir.", "fonction": "annoncer"}
+ ],
+ "debut": "begruessen",
+ "noeuds": {
+  "begruessen": {
+   "dit": [
+    {"recit": {"fr": "{lehmann} s'assoit dans la chambre, sa canne posée contre le lit. Elle tient une enveloppe : la lettre de sa médecin traitante."}},
+    {"qui": "lehmann", "air": "sourire", "t": "Guten Morgen. Hier soll ich mich melden, hat man mir unten gesagt.", "fr": "Bonjour. On m'a dit en bas que je devais me présenter ici."}
+   ],
+   "choix": [
+    {"t": "Guten Morgen, {lehmann}. Ich bin {elif}, ich arbeite hier in der Pflege. Ich möchte Ihnen ein paar Fragen stellen, das dauert ungefähr eine Viertelstunde.", "fr": "Bonjour, {lehmann:voc}. Je suis {elif}, je travaille ici dans les soins. J'aimerais vous poser quelques questions, cela dure environ un quart d'heure.", "va": "grund",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Ja, natürlich. Fragen Sie nur.", "fr": "Oui, bien sûr. Allez-y."}]},
+    {"t": "Herzlich willkommen auf der {station}, {lehmann}. Mein Name ist {elif}. Bevor ich Ihnen alles zeige, würde ich gern kurz mit Ihnen sprechen. Ist das in Ordnung?", "dit": "Herzlich willkommen auf der {station:dit}, {lehmann}. Mein Name ist {elif}. Bevor ich Ihnen alles zeige, würde ich gern kurz mit Ihnen sprechen. Ist das in Ordnung?", "fr": "Bienvenue au {station}, {lehmann:voc}. Je m'appelle {elif}. Avant de tout vous montrer, j'aimerais parler un peu avec vous. Ça vous va ?", "va": "grund",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Ja, natürlich. Fragen Sie nur.", "fr": "Oui, bien sûr. Allez-y."}]},
+    {"faux": true, "t": "Hallo! Setz dich, ich hab ein paar Fragen.", "fr": "Salut ! Assieds-toi, j'ai quelques questions.",
+     "puis": [{"qui": "lehmann", "air": "perplexe", "t": "Wir kennen uns doch gar nicht, junge Frau.", "fr": "Mais on ne se connaît pas, jeune femme."}],
+     "aide": {"fr": "<b>Avec une patiente, toujours « Sie », et on se présente.</b> « Guten Morgen, Frau Lehmann. Ich bin Elif, ich arbeite hier in der Pflege. » Puis on annonce l'entretien et sa durée : « Ich möchte Ihnen ein paar Fragen stellen. »"}}
+   ]
+  },
+  "grund": {
+   "dit": [],
+   "choix": [
+    {"t": "Können Sie mir sagen, warum Sie heute zu uns kommen?", "fr": "Pouvez-vous me dire pourquoi vous venez chez nous aujourd'hui ?", "va": "allergien",
+     "puis": [{"qui": "lehmann", "air": "attentive", "t": "Wegen meinem Fuß. Ich habe da vorne eine Wunde, die will einfach nicht heilen. Ich bin ja Diabetikerin, schon seit fünfzehn Jahren.", "fr": "À cause de mon pied. J'ai une plaie à l'avant, qui ne veut pas guérir. Je suis diabétique, depuis quinze ans déjà."}]},
+    {"t": "Was hat Ihre Hausärztin gesagt, warum Sie ins Krankenhaus sollen?", "fr": "Qu'a dit votre médecin traitante, pourquoi devez-vous venir à l'hôpital ?", "va": "allergien",
+     "puis": [{"qui": "lehmann", "air": "attentive", "t": "Wegen meinem Fuß. Ich habe da vorne eine Wunde, die will einfach nicht heilen. Ich bin ja Diabetikerin, schon seit fünfzehn Jahren.", "fr": "À cause de mon pied. J'ai une plaie à l'avant, qui ne veut pas guérir. Je suis diabétique, depuis quinze ans déjà."}]},
+    {"faux": true, "t": "Haben Sie ein diabetisches Fußsyndrom mit Polyneuropathie?", "fr": "Avez-vous un syndrome du pied diabétique avec polyneuropathie ?",
+     "puis": [{"qui": "lehmann", "air": "perplexe", "t": "Ein was? Das weiß ich nicht. Ich habe eine Wunde am Fuß.", "fr": "Un quoi ? Je ne sais pas. J'ai une plaie au pied."}],
+     "aide": {"fr": "<b>Pose une question ouverte, avec les mots de tous les jours.</b> « Können Sie mir sagen, warum Sie heute zu uns kommen? » Les termes médicaux sont pour la fiche et pour l'équipe, pas pour la patiente."}}
+   ]
+  },
+  "allergien": {
+   "dit": [],
+   "choix": [
+    {"t": "Danke. Darf ich fragen, ob Sie Allergien haben? Gegen Medikamente, Pflaster oder Lebensmittel?", "fr": "Merci. Puis-je vous demander si vous avez des allergies ? À des médicaments, à des pansements ou à des aliments ?", "va": "medikamente",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Nein, da ist mir nichts bekannt.", "fr": "Non, pas que je sache."}]},
+    {"t": "Vertragen Sie alle Medikamente? Oder wissen Sie von einer Allergie?", "fr": "Est-ce que vous supportez tous les médicaments ? Ou est-ce que vous avez une allergie connue ?", "va": "medikamente",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Nein, da ist mir nichts bekannt.", "fr": "Non, pas que je sache."}]},
+    {"repete": true, "t": "Entschuldigung, habe ich das richtig verstanden: Sie haben seit fünfzehn Jahren Diabetes?", "fr": "Pardon, j'ai bien compris : vous avez du diabète depuis quinze ans ?", "va": "allergien",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Ja, genau. Seit fünfzehn Jahren. Und seit ein paar Jahren mit Insulin.", "fr": "Oui, c'est ça. Depuis quinze ans. Et depuis quelques années avec de l'insuline."}]}
+   ]
+  },
+  "medikamente": {
+   "dit": [],
+   "choix": [
+    {"t": "Gut. Welche Medikamente nehmen Sie zu Hause? Und wissen Sie, wie viele Einheiten Insulin Sie spritzen?", "fr": "Bien. Quels médicaments prenez-vous à la maison ? Et savez-vous combien d'unités d'insuline vous vous injectez ?", "va": "plan",
+     "puis": [{"qui": "lehmann", "air": "perplexe", "t": "Insulin morgens und abends, und eine Tablette für den Blutdruck. Wie viel genau … das hat sich letzte Woche geändert. Ich glaube, zwölf. Oder vierzehn?", "fr": "De l'insuline le matin et le soir, et un comprimé pour la tension. Combien exactement… ça a changé la semaine dernière. Douze, je crois. Ou quatorze ?"}]},
+    {"t": "Können Sie mir sagen, welche Medikamente Sie regelmäßig nehmen, und wann?", "fr": "Pouvez-vous me dire quels médicaments vous prenez régulièrement, et quand ?", "va": "plan",
+     "puis": [{"qui": "lehmann", "air": "perplexe", "t": "Insulin morgens und abends, und eine Tablette für den Blutdruck. Wie viel genau … das hat sich letzte Woche geändert. Ich glaube, zwölf. Oder vierzehn?", "fr": "De l'insuline le matin et le soir, et un comprimé pour la tension. Combien exactement… ça a changé la semaine dernière. Douze, je crois. Ou quatorze ?"}]}
+   ]
+  },
+  "plan": {
+   "dit": [],
+   "choix": [
+    {"t": "Das ist wichtig, da möchte ich sicher sein. Haben Sie vielleicht Ihren Medikamentenplan dabei? Oder steht es im Brief Ihrer Hausärztin?", "fr": "C'est important, je veux en être sûre. Avez-vous peut-être votre plan de médicaments sur vous ? Ou est-ce que c'est dans la lettre de votre médecin traitante ?", "va": "hilfsmittel",
+     "relire": true, "relire_note": "La dose d'insuline : le plan ou la lettre, jamais la mémoire de la patiente.",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Ach ja, der Plan! Der ist hier im Umschlag, bei dem Brief.", "fr": "Ah oui, le plan ! Il est là, dans l'enveloppe, avec la lettre."}]},
+    {"t": "Dann schauen wir lieber nach. Darf ich mir den Brief von Ihrer Hausärztin ansehen? Da steht die Dosis bestimmt drin.", "fr": "Alors vérifions plutôt. Je peux regarder la lettre de votre médecin traitante ? La dose y est sûrement.", "va": "hilfsmittel",
+     "relire": true, "relire_note": "La dose d'insuline : le plan ou la lettre, jamais la mémoire de la patiente.",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Ach ja, natürlich. Da ist auch mein Medikamentenplan drin.", "fr": "Ah oui, bien sûr. Mon plan de médicaments est dedans aussi."}]},
+    {"faux": true, "t": "Okay, dann schreibe ich zwölf Einheiten auf.", "fr": "D'accord, alors je note douze unités.",
+     "puis": [{"qui": "lehmann", "air": "perplexe", "t": "Aber ich bin mir doch gar nicht sicher …", "fr": "Mais je n'en suis pas du tout sûre…"}],
+     "aide": {"fr": "<b>Une réponse vague sur une dose ne se note pas : on vérifie.</b> « Haben Sie Ihren Medikamentenplan dabei? » ou la lettre de la médecin. Une erreur de dose d'insuline peut être dangereuse."},
+     "relire": true, "relire_note": "Règle : ne pas noter une dose incertaine."}
+   ]
+  },
+  "hilfsmittel": {
+   "dit": [],
+   "choix": [
+    {"t": "Danke, den lege ich gleich zu Ihren Unterlagen. Brauchen Sie eine Brille oder ein Hörgerät? Und gehen Sie immer mit dem Stock?", "fr": "Merci, je le mets tout de suite avec votre dossier. Avez-vous besoin de lunettes ou d'un appareil auditif ? Et marchez-vous toujours avec la canne ?", "va": "nacht",
+     "puis": [{"qui": "lehmann", "air": "attentive", "t": "Eine Brille, ja. Hören tue ich noch gut. Und den Stock nehme ich, seit das mit dem Fuß ist. Ich spüre meine Füße nicht mehr so richtig.", "fr": "Des lunettes, oui. J'entends encore bien. Et la canne, je la prends depuis cette histoire de pied. Je ne sens plus très bien mes pieds."}]},
+    {"t": "Danke schön. Ich frage noch kurz: Tragen Sie eine Brille? Und wie gut können Sie allein gehen?", "fr": "Merci beaucoup. Encore une petite question : portez-vous des lunettes ? Et marchez-vous bien toute seule ?", "va": "nacht",
+     "puis": [{"qui": "lehmann", "air": "attentive", "t": "Eine Brille, ja. Hören tue ich noch gut. Und den Stock nehme ich, seit das mit dem Fuß ist. Ich spüre meine Füße nicht mehr so richtig.", "fr": "Des lunettes, oui. J'entends encore bien. Et la canne, je la prends depuis cette histoire de pied. Je ne sens plus très bien mes pieds."}]}
+   ]
+  },
+  "nacht": {
+   "dit": [],
+   "choix": [
+    {"t": "Das ist gut zu wissen. Und nachts: Müssen Sie zur Toilette? Wie oft ungefähr?", "fr": "C'est bon à savoir. Et la nuit : devez-vous aller aux toilettes ? Environ combien de fois ?", "va": "essen",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Zweimal, meistens. Aber ich schlafe danach wieder gut ein.", "fr": "Deux fois, en général. Mais je me rendors bien après."}]},
+    {"t": "Danke. Wie schlafen Sie denn? Stehen Sie nachts auf?", "fr": "Merci. Et comment dormez-vous ? Vous vous levez la nuit ?", "va": "essen",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Zweimal, meistens. Aber ich schlafe danach wieder gut ein.", "fr": "Deux fois, en général. Mais je me rendors bien après."}]},
+    {"faux": true, "t": "Sind Sie inkontinent?", "fr": "Vous êtes incontinente ?",
+     "puis": [{"qui": "lehmann", "air": "surprise", "t": "Wie bitte? Nein! Was ist denn das für eine Frage?", "fr": "Pardon ? Non ! Qu'est-ce que c'est que cette question ?"}],
+     "aide": {"fr": "<b>Les questions intimes se posent avec tact, par la vie de tous les jours.</b> « Müssen Sie nachts zur Toilette? Wie oft? » La patiente répond, et tu notes ensuite « kontinent » sur la fiche."}}
+   ]
+  },
+  "essen": {
+   "dit": [],
+   "choix": [
+    {"t": "Und beim Essen: Gibt es etwas, das Sie gern essen, oder etwas, das Sie gar nicht mögen?", "fr": "Et pour les repas : y a-t-il quelque chose que vous aimez manger, ou quelque chose que vous n'aimez pas du tout ?", "va": "angehoerige",
+     "puis": [{"qui": "lehmann", "air": "amuse", "t": "Ehrlich gesagt esse ich gern Süßes. Ich weiß, ich weiß, beim Zucker soll ich das nicht.", "fr": "Pour être honnête, j'aime le sucré. Je sais, je sais, avec mon diabète, je ne devrais pas."}]},
+    {"t": "Was essen und trinken Sie denn so am Tag? Haben Sie Wünsche für das Essen hier?", "fr": "Qu'est-ce que vous mangez et buvez dans la journée ? Avez-vous des souhaits pour les repas ici ?", "va": "angehoerige",
+     "puis": [{"qui": "lehmann", "air": "amuse", "t": "Ehrlich gesagt esse ich gern Süßes. Ich weiß, ich weiß, beim Zucker soll ich das nicht.", "fr": "Pour être honnête, j'aime le sucré. Je sais, je sais, avec mon diabète, je ne devrais pas."}]}
+   ]
+  },
+  "angehoerige": {
+   "dit": [],
+   "choix": [
+    {"t": "Danke für Ihre Ehrlichkeit. Wir sprechen mit der Diabetesberatung darüber. Wen dürfen wir im Notfall anrufen?", "fr": "Merci pour votre franchise. Nous en parlerons avec le conseil en diabétologie. Qui pouvons-nous appeler en cas d'urgence ?", "va": "zusammenfassen",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Meine Tochter, Sabine. Die kommt jeden Tag. Sie darf auch alles wissen, das habe ich beim Arzt unterschrieben.", "fr": "Ma fille, Sabine. Elle vient tous les jours. Elle peut tout savoir aussi, je l'ai signé chez le médecin."}]},
+    {"t": "Das notiere ich. Gibt es jemanden, den wir informieren sollen? Und darf diese Person auch Auskunft bekommen?", "fr": "Je le note. Y a-t-il quelqu'un que nous devons informer ? Et cette personne peut-elle aussi recevoir des informations ?", "va": "zusammenfassen",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Meine Tochter, Sabine. Die kommt jeden Tag. Sie darf auch alles wissen, das habe ich beim Arzt unterschrieben.", "fr": "Ma fille, Sabine. Elle vient tous les jours. Elle peut tout savoir aussi, je l'ai signé chez le médecin."}]},
+    {"faux": true, "t": "Sie dürfen hier keine Süßigkeiten essen. Das ist verboten.", "fr": "Vous n'avez pas le droit de manger des sucreries ici. C'est interdit.",
+     "puis": [{"qui": "lehmann", "air": "perplexe", "t": "Verboten? Ich bin doch kein Kind.", "fr": "Interdit ? Je ne suis pas une enfant."}],
+     "aide": {"fr": "<b>À l'admission, on écoute et on note ; on ne fait pas la leçon.</b> « Danke für Ihre Ehrlichkeit. Wir sprechen mit der Diabetesberatung darüber. » Puis on passe à la question suivante : « Wen dürfen wir im Notfall anrufen? »"}}
+   ]
+  },
+  "zusammenfassen": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich fasse kurz zusammen: Sie kommen wegen der Wunde am rechten Fuß, Sie haben keine Allergien, Sie spritzen Insulin nach Plan, Sie brauchen eine Brille und den Stock. Ist das richtig?", "fr": "Je résume rapidement : vous venez pour la plaie au pied droit, vous n'avez pas d'allergie, vous vous injectez l'insuline selon votre plan, vous avez besoin de lunettes et de la canne. C'est exact ?", "va": "naechste",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Ja, das stimmt alles.", "fr": "Oui, c'est tout à fait ça."}]},
+    {"t": "Darf ich noch einmal wiederholen, was ich notiert habe? Wunde am rechten Vorfuß, keine Allergien, Insulin nach dem Plan Ihrer Hausärztin, Brille, Gehstock, und Ihre Tochter als Kontakt.", "fr": "Je peux répéter ce que j'ai noté ? Plaie à l'avant du pied droit, pas d'allergie, insuline selon le plan de votre médecin traitante, lunettes, canne, et votre fille comme contact.", "va": "naechste",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Ja, das stimmt alles.", "fr": "Oui, c'est tout à fait ça."}]}
+   ]
+  },
+  "naechste": {
+   "dit": [],
+   "choix": [
+    {"t": "Gut. Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen. Den Verband am Fuß sehen wir uns heute Nachmittag zusammen an.", "fr": "Bien. Tout à l'heure, je mesure votre glycémie, et ensuite la médecin passe vous voir. Le pansement du pied, nous le regarderons ensemble cet après-midi.", "va": null,
+     "relire": true, "relire_note": "Ce qui suit l'admission.",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Danke, junge Frau. Sie haben das sehr nett gemacht.", "fr": "Merci, jeune femme. Vous avez été très gentille."}]},
+    {"t": "Danke, {lehmann}. Ich messe jetzt noch Ihren Blutzucker. Die Ärztin kommt heute Vormittag, und wenn Sie etwas brauchen, drücken Sie hier auf die Klingel.", "fr": "Merci, {lehmann:voc}. Je vais encore mesurer votre glycémie. La médecin passe ce matin, et si vous avez besoin de quelque chose, appuyez ici sur la sonnette.", "va": null,
+     "relire": true, "relire_note": "Ce qui suit l'admission.",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Danke, junge Frau. Sie haben das sehr nett gemacht.", "fr": "Merci, jeune femme. Vous avez été très gentille."}]},
+    {"faux": true, "t": "Fertig. Tschüss!", "fr": "Terminé. Salut !",
+     "puis": [{"qui": "lehmann", "air": "perplexe", "t": "Und was passiert jetzt mit mir?", "fr": "Et qu'est-ce qui va se passer pour moi maintenant ?"}],
+     "aide": {"fr": "<b>À la fin, on dit ce qui va se passer.</b> « Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen. » Et on montre la sonnette."}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Warum kommt {lehmann} ins Krankenhaus?", "fr": "Pourquoi {lehmann} vient-elle à l'hôpital ?"},
+   "options": [{"t": "Wegen einer Wunde am Fuß.", "fr": "À cause d'une plaie au pied."}, {"t": "Wegen einer Allergie.", "fr": "À cause d'une allergie."}, {"t": "Weil sie gestürzt ist.", "fr": "Parce qu'elle est tombée."}],
+   "juste": 0},
+  {"q": {"t": "Was weiß {lehmann} nicht genau?", "fr": "Qu'est-ce que {lehmann} ne sait pas exactement ?"},
+   "options": [{"t": "Wie oft sie nachts aufsteht.", "fr": "Combien de fois elle se lève la nuit."}, {"t": "Wie viele Einheiten Insulin sie spritzt.", "fr": "Combien d'unités d'insuline elle s'injecte."}, {"t": "Wie ihre Tochter heißt.", "fr": "Comment s'appelle sa fille."}],
+   "juste": 1},
+  {"q": {"t": "Wen darf das Krankenhaus im Notfall anrufen?", "fr": "Qui l'hôpital peut-il appeler en cas d'urgence ?"},
+   "options": [{"t": "Ihre Hausärztin.", "fr": "Sa médecin traitante."}, {"t": "Ihren Nachbarn.", "fr": "Son voisin."}, {"t": "Ihre Tochter.", "fr": "Sa fille."}],
+   "juste": 2}
+ ]
+}

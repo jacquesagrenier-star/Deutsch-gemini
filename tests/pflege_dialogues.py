@@ -128,6 +128,9 @@ def controle_dialogue(ident, d, ids_grammaire):
                 if reg == "Sie" and TUTOIEMENT.search(sans_noms(c.get("t", ""))):
                     E("%s : réponse juste en du dans un nœud au Sie : %s" % (w, c["t"]))
             for r in c.get("puis", []):
+                if "recit" in r:
+                    E("%s : un récit dans « puis » (format des conversations : la réaction est une réplique ; le récit va dans le « dit » du nœud suivant)" % w)
+                    continue
                 verifier_ligne(w, r, d)
         if not lignes and n == d.get("debut"):
             E("%s %s : le début doit dire quelque chose" % (ou, n))
@@ -323,7 +326,8 @@ def controle_gabarits_trad():
 # ------------------------------------------------------------------ le contrat (pflege/FORMAT-DONNEES.md, § 2 à 4)
 
 QUI_CONTRAT = {"elif", "jonas", "hoffmann", "sommer", "brandt", "lehmann", "lehmann_tochter", "schulze", "weber",
-               "kowalski", "amira", "arun", "yusuf", "olena", "kraemer"}   # kraemer : à ajouter au contrat (demandé)
+               "kowalski", "amira", "arun", "yusuf", "olena", "kraemer",
+               "aksoy", "richter", "schulze_tochter"}   # les trois derniers : roles de l'examen repris par d19, d24, d26 (a ajouter au contrat, demande)
 
 
 def controle_contrat(export):

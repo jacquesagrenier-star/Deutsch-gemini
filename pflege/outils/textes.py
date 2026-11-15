@@ -249,13 +249,21 @@ def construire_tout(ecrire_fichiers=True):
 
 SCENE = {1: "soins-zimmer", 2: "soins-zimmer", 3: "soins-zimmer", 4: "soins-zimmer", 5: "soins-stationszimmer",
          6: "soins-uebergabe", 7: "soins-stationszimmer", 8: "soins-altenheim", 9: "soins-altenheim",
-         10: "soins-ambulant", 11: "soins-stationszimmer", 12: "soins-altenheim"}
+         10: "soins-ambulant", 11: "soins-stationszimmer", 12: "soins-altenheim",
+         13: "soins-aufnahme", 14: "soins-zimmer", 15: "soins-zimmer", 16: "soins-zimmer", 17: "soins-visite",
+         18: "soins-stationszimmer", 19: "soins-stationszimmer", 20: "soins-stationszimmer",
+         21: "soins-stationszimmer", 22: "soins-uebergabe", 23: "soins-stationszimmer", 24: "soins-altenheim",
+         25: "soins-zimmer", 26: "soins-altenheim"}
 LIEU = {1: "chambre", 2: "chambre", 3: "chambre", 4: "chambre", 5: "couloir", 6: "poste de soins",
         7: "poste de soins, la nuit", 8: "maison de retraite, chambre", 9: "maison de retraite",
-        10: "domicile", 11: "salle du personnel, téléphone", 12: "maison de retraite, couloir, la nuit"}
+        10: "domicile", 11: "salle du personnel, téléphone", 12: "maison de retraite, couloir, la nuit",
+        13: "admission", 14: "chambre", 15: "chambre", 16: "chambre, urgence", 17: "visite médicale",
+        18: "poste de soins", 19: "poste de soins, téléphone", 20: "poste de soins", 21: "bureau de la cadre",
+        22: "salle du personnel", 23: "poste de soins, téléphone", 24: "maison de retraite",
+        25: "chambre, sortie", 26: "maison de retraite, chambre"}
 PREPARE = {"oral-1": "sprechen_1", "oral-2": "sprechen_2", "oral-3": "sprechen_3", "hoeren": "hoeren_2",
            "lesen": "lesen_3", "schreiben": "schreiben"}
-PREPARE_HOEREN = {6: "hoeren_3", 7: "hoeren_1", 11: "hoeren_1"}   # relève = réunion d'équipe ; téléphone = messages
+PREPARE_HOEREN = {6: "hoeren_3", 7: "hoeren_1", 11: "hoeren_1", 19: "hoeren_1", 23: "hoeren_1"}   # relève = réunion d'équipe ; téléphone = messages
 TYPE_ECRIT = {"aufnahmebericht": "aufnahme", "biografiebericht": "biografie", "pflegebericht": "pflegebericht",
               "sturzprotokoll": "sturz", "nachricht": "nachricht"}
 
