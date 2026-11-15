@@ -1,0 +1,675 @@
+{
+ "_lisez_moi": [
+  "Scene de soins 6, la visite medicale (14 nov. 2026). Memes regles que les scenes generales ; construite par visuel/prototype/construire.py, qui lit aussi pflege/datos/themes.json pour une scene soins-. Controle : python pflege/outils/construire_scenes.py soins-visite.",
+  "Dr. Sommer fait la visite chez Herr Brandt (opere de la hanche) avec Elif. Annexe B, scene 6 : Dr. Aydin et Maricel y sont devenues Dr. Sommer et Elif. Meme chambre que soins-zimmer.",
+  "Zones mesurees sur une grille de 5 % de l'image REELLE (prompt et recu : pflege/scenes/soins-visite.*). La poche sous le lit garde le mot de la chambre (Urinbeutel). L'horloge vient de la chambre de reference, sans chiffres.",
+  "Couches : BROUILLON non relu ; ce qui porte ⚕️ attend l'infirmiere relectrice."
+ ],
+ "image": "soins-visite.webp",
+ "source": "~/.wortando/pflege/scenes/soins-visite.png",
+ "titre": "Die Visite",
+ "alt": "Une chambre d'hôpital, le matin, pendant la visite médicale : Herr Brandt, opéré de la hanche, est assis dans son lit ; Dr. Sommer, la médecin, lui explique la suite, et Elif, l'infirmière, prend des notes ; devant elles, le chariot de visite avec l'ordinateur portable qui montre la radio de la hanche, une chemise bleue et une boîte de gants ; à gauche, la perfusion, la table de chevet, le paravent et l'horloge.",
+ "consigne": "Touche un objet de la chambre, Herr Brandt, la médecin ou Elif.",
+ "couches": {
+  "A1": {
+   "titre": "Les objets de la visite"
+  },
+  "A2": {
+   "titre": "Comprendre une consigne",
+   "qs": [
+    {
+     "q": "Herr Brandt ___ heute aufstehen und ein bisschen laufen.",
+     "c": [
+      "soll",
+      "sollen",
+      "sollst"
+     ],
+     "f": "patient",
+     "phrase": "Herr Brandt soll heute aufstehen und ein bisschen laufen.",
+     "sens": "Herr Brandt doit se lever aujourd'hui et marcher un peu.",
+     "n": "<b>sollen</b> : ce qu'une autre personne demande, ici la médecin. Le deuxième verbe va à la fin, à l'infinitif."
+    },
+    {
+     "q": "Er ___ viel trinken.",
+     "c": [
+      "muss",
+      "müssen",
+      "musst"
+     ],
+     "f": "wasserglas",
+     "phrase": "Er muss viel trinken.",
+     "sens": "Il doit boire beaucoup.",
+     "n": "<b>müssen</b> : er <b>muss</b>, sans -t à la 3e personne."
+    },
+    {
+     "q": "Er ___ das Bein noch nicht ganz belasten.",
+     "c": [
+      "darf",
+      "dürfen",
+      "darfst"
+     ],
+     "f": "patient",
+     "phrase": "Er darf das Bein noch nicht ganz belasten.",
+     "sens": "Il ne doit pas encore appuyer complètement sur la jambe.",
+     "n": "<b>nicht dürfen</b> = ne pas avoir le droit. <b>belasten</b> = mettre du poids sur la jambe ⚕️."
+    },
+    {
+     "q": "Die Ärztin schaut sich das ___ an.",
+     "c": [
+      "Röntgenbild",
+      "Stethoskop",
+      "Fenster"
+     ],
+     "f": "roentgenbild",
+     "phrase": "Die Ärztin schaut sich das Röntgenbild an.",
+     "sens": "La médecin regarde la radio.",
+     "n": "<b>sich etwas anschauen</b> = regarder attentivement. <b>das Röntgenbild</b> = la radio."
+    },
+    {
+     "q": "Haben Sie noch ___?",
+     "c": [
+      "Schmerzen",
+      "Schmerz haben",
+      "schmerzt"
+     ],
+     "f": "patient",
+     "phrase": "Haben Sie noch Schmerzen?",
+     "sens": "Avez-vous encore mal ?",
+     "n": "<b>Schmerzen</b> est presque toujours au pluriel : Ich habe <b>Schmerzen</b>."
+    },
+    {
+     "q": "Elif ___ alles auf.",
+     "c": [
+      "schreibt",
+      "schreiben",
+      "schreib"
+     ],
+     "f": "notizblock",
+     "phrase": "Elif schreibt alles auf.",
+     "sens": "Elif note tout.",
+     "n": "<b>aufschreiben</b> : la particule <b>auf</b> va à la fin."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les verbes de la prescription",
+   "qs": [
+    {
+     "q": "Er hat keine Schmerzen mehr. Die Ärztin setzt das Schmerzmittel ___.",
+     "c": [
+      "ab",
+      "auf",
+      "um"
+     ],
+     "f": "aerztin",
+     "phrase": "Die Ärztin setzt das Schmerzmittel ab.",
+     "sens": "La médecin arrête l'antalgique.",
+     "n": "<b>absetzen</b> = arrêter un médicament ; <b>ansetzen</b> = le commencer ⚕️."
+    },
+    {
+     "q": "Der Blutdruck ist zu hoch. Die Ärztin ___ die Dosis vom Blutdruckmittel.",
+     "c": [
+      "erhöht",
+      "reduziert",
+      "setzt ab"
+     ],
+     "f": "aerztin",
+     "phrase": "Die Ärztin erhöht die Dosis vom Blutdruckmittel.",
+     "sens": "La médecin augmente la dose du médicament contre la tension.",
+     "n": "<b>erhöhen</b> = augmenter ; <b>reduzieren</b> = diminuer."
+    },
+    {
+     "q": "Ihm ist schwindelig, der Blutdruck ist niedrig. Die Ärztin ___ das Blutdruckmittel.",
+     "c": [
+      "reduziert",
+      "erhöht",
+      "verdoppelt"
+     ],
+     "f": "aerztin",
+     "phrase": "Die Ärztin reduziert das Blutdruckmittel.",
+     "sens": "La médecin diminue le médicament contre la tension.",
+     "n": "<b>reduzieren</b> = diminuer une dose. Le vertige après une opération se signale toujours ⚕️."
+    },
+    {
+     "q": "Die Ärztin hat Krankengymnastik ___.",
+     "c": [
+      "angeordnet",
+      "angeordnen",
+      "geanordnet"
+     ],
+     "f": "aerztin",
+     "phrase": "Die Ärztin hat Krankengymnastik angeordnet.",
+     "sens": "La médecin a prescrit de la kinésithérapie.",
+     "n": "<b>anordnen</b> = prescrire un soin ou un examen ; participe : an<b>ge</b>ordnet. L'infirmière exécute ce qui est <b>angeordnet</b> ⚕️."
+    },
+    {
+     "q": "Wegen der Entzündung ___ die Ärztin ein Antibiotikum an.",
+     "c": [
+      "setzt",
+      "stellt",
+      "legt"
+     ],
+     "f": "aerztin",
+     "phrase": "Wegen der Entzündung setzt die Ärztin ein Antibiotikum an.",
+     "sens": "À cause de l'inflammation, la médecin met en place un antibiotique.",
+     "n": "<b>ein Medikament ansetzen</b> = commencer un traitement ; la particule <b>an</b> va à la fin."
+    },
+    {
+     "q": "Die Infusion kann heute ___ werden.",
+     "c": [
+      "abgehängt",
+      "abgehangen",
+      "abhängen"
+     ],
+     "f": "infusion",
+     "phrase": "Die Infusion kann heute abgehängt werden.",
+     "sens": "La perfusion peut être débranchée aujourd'hui.",
+     "n": "<b>die Infusion abhängen</b> = débrancher la perfusion ; au passif avec un modal : kann <b>abgehängt</b> werden."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Rapporter une consigne",
+   "qs": [
+    {
+     "q": "Die Ärztin hat gesagt, der Patient ___ ab morgen mobilisiert werden.",
+     "c": [
+      "solle",
+      "sollen",
+      "sollst"
+     ],
+     "f": "aerztin",
+     "phrase": "Die Ärztin hat gesagt, der Patient solle ab morgen mobilisiert werden.",
+     "sens": "La médecin a dit que le patient devait être mobilisé à partir de demain.",
+     "n": "Discours rapporté, surtout à l'écrit : Konjunktiv I, <b>solle</b>. À l'oral, on entend souvent « soll »."
+    },
+    {
+     "q": "Sie hat gesagt, ___ die Infusion heute Abend abgehängt wird.",
+     "c": [
+      "dass",
+      "ob",
+      "wenn"
+     ],
+     "f": "infusion",
+     "phrase": "Sie hat gesagt, dass die Infusion heute Abend abgehängt wird.",
+     "sens": "Elle a dit que la perfusion serait débranchée ce soir.",
+     "n": "<b>dass</b> + verbe à la fin : la façon la plus simple de rapporter une consigne."
+    },
+    {
+     "q": "Herr Brandt sagt, er ___ schon allein aufstehen.",
+     "c": [
+      "könne",
+      "können",
+      "könnt"
+     ],
+     "f": "patient",
+     "phrase": "Herr Brandt sagt, er könne schon allein aufstehen.",
+     "sens": "Herr Brandt dit qu'il peut déjà se lever seul.",
+     "n": "Konjunktiv I, <b>könne</b> : on rapporte ses mots sans dire qu'on y croit. Avant de le laisser se lever seul, on vérifie ⚕️."
+    },
+    {
+     "q": "Die Ärztin hat gefragt, ___ er nachts gut schläft.",
+     "c": [
+      "ob",
+      "dass",
+      "wenn"
+     ],
+     "f": "aerztin",
+     "phrase": "Die Ärztin hat gefragt, ob er nachts gut schläft.",
+     "sens": "La médecin a demandé s'il dort bien la nuit.",
+     "n": "Une question rapportée sans mot interrogatif : <b>ob</b> (= si)."
+    },
+    {
+     "q": "Laut Ärztin ___ der Verband morgen gewechselt werden.",
+     "c": [
+      "soll",
+      "sollen",
+      "sollst"
+     ],
+     "f": "patient",
+     "phrase": "Laut Ärztin soll der Verband morgen gewechselt werden.",
+     "sens": "Selon la médecin, le pansement doit être changé demain.",
+     "n": "<b>laut</b> = selon ; <b>soll</b> montre qu'on rapporte la consigne de quelqu'un d'autre."
+    },
+    {
+     "q": "Die Ärztin hat angeordnet, ___ er zweimal am Tag aufsteht.",
+     "c": [
+      "dass",
+      "damit",
+      "ob"
+     ],
+     "f": "aerztin",
+     "phrase": "Die Ärztin hat angeordnet, dass er zweimal am Tag aufsteht.",
+     "sens": "La médecin a prescrit qu'il se lève deux fois par jour.",
+     "n": "<b>anordnen, dass …</b> : la consigne en subordonnée, le verbe à la fin."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Demander une précision avec tact",
+   "qs": [
+    {
+     "q": "Entschuldigung, ___ ich kurz nachfragen?",
+     "c": [
+      "darf",
+      "muss",
+      "soll"
+     ],
+     "f": "pflegefachfrau",
+     "phrase": "Entschuldigung, darf ich kurz nachfragen?",
+     "sens": "Excusez-moi, puis-je poser une petite question ?",
+     "n": "<b>Darf ich kurz nachfragen?</b> : on interrompt poliment, sans mettre la médecin en défaut."
+    },
+    {
+     "q": "Habe ich Sie richtig verstanden, ___ die Infusion heute Abend abgehängt wird?",
+     "c": [
+      "dass",
+      "ob",
+      "wenn"
+     ],
+     "f": "infusion",
+     "phrase": "Habe ich Sie richtig verstanden, dass die Infusion heute Abend abgehängt wird?",
+     "sens": "Ai-je bien compris que la perfusion sera débranchée ce soir ?",
+     "n": "<b>Habe ich Sie richtig verstanden, dass …?</b> : on reformule pour vérifier ⚕️."
+    },
+    {
+     "q": "Könnten Sie mir die Dosis bitte noch einmal ___?",
+     "c": [
+      "nennen",
+      "nannte",
+      "genannt"
+     ],
+     "f": "aerztin",
+     "phrase": "Könnten Sie mir die Dosis bitte noch einmal nennen?",
+     "sens": "Pourriez-vous me redire la dose, s'il vous plaît ?",
+     "n": "Le Konjunktiv II <b>Könnten Sie …?</b> adoucit la demande."
+    },
+    {
+     "q": "Mir ist noch nicht ganz klar, ___ er allein aufstehen darf.",
+     "c": [
+      "ob",
+      "dass",
+      "was"
+     ],
+     "f": "pflegefachfrau",
+     "phrase": "Mir ist noch nicht ganz klar, ob er allein aufstehen darf.",
+     "sens": "Je ne sais pas encore bien s'il a le droit de se lever seul.",
+     "n": "<b>Mir ist noch nicht ganz klar, ob …</b> : on dit ce qu'on n'a pas compris, sans reproche."
+    },
+    {
+     "q": "Würden Sie die Anordnung bitte noch ___ eintragen?",
+     "c": [
+      "schriftlich",
+      "schreiblich",
+      "geschrieben"
+     ],
+     "f": "laptop",
+     "phrase": "Würden Sie die Anordnung bitte noch schriftlich eintragen?",
+     "sens": "Pourriez-vous encore inscrire la prescription par écrit ?",
+     "n": "Une consigne orale se fait confirmer par écrit (<b>schriftlich</b>) ⚕️."
+    },
+    {
+     "q": "Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, ___?",
+     "c": [
+      "richtig",
+      "recht",
+      "gerecht"
+     ],
+     "f": "notizblock",
+     "phrase": "Ich wiederhole kurz: ab heute Abend zwei Tabletten statt einer, richtig?",
+     "sens": "Je répète rapidement : à partir de ce soir, deux comprimés au lieu d'un, c'est bien ça ?",
+     "n": "Répéter la consigne et demander <b>richtig?</b> : la vérification en boucle fermée ⚕️."
+    }
+   ]
+  },
+  "SIT": {
+   "titre": "Que faites-vous ?",
+   "niveau": "B2",
+   "qs": [
+    {
+     "q": "In der Anordnung im Laptop fehlt bei einem Medikament die Abenddosis. Was tun Sie?",
+     "c": [
+      "Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.",
+      "Ich gebe die Morgendosis noch einmal.",
+      "Ich lasse das Medikament heute Abend weg."
+     ],
+     "f": "laptop",
+     "type": "situation",
+     "phrase": "Ich frage bei der Ärztin nach, bevor ich das Medikament gebe.",
+     "sens": "Je demande à la médecin avant de donner le médicament.",
+     "n": "Une prescription incomplète ne s'interprète pas : on demande au médecin avant de donner ⚕️."
+    },
+    {
+     "q": "Herr Brandt sagt nach der Visite: „Ich habe nichts verstanden.“ Was tun Sie?",
+     "c": [
+      "Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.",
+      "Ich sage ihm, die Ärztin hat doch alles erklärt.",
+      "Ich gebe ihm den Ausdruck vom Befund."
+     ],
+     "f": "patient",
+     "type": "situation",
+     "phrase": "Ich erkläre es ihm noch einmal in einfachen Worten und frage die Ärztin, wenn nötig.",
+     "sens": "Je lui réexplique avec des mots simples, et je demande à la médecin si nécessaire.",
+     "n": "Le patient a droit à une information qu'il comprend : on reformule simplement, et la médecin revient pour ce qui est médical ⚕️."
+    },
+    {
+     "q": "Die Ärztin ordnet mündlich ein neues Medikament an und geht schnell weiter. Was tun Sie?",
+     "c": [
+      "Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.",
+      "Ich merke sie mir und trage sie später selbst ein.",
+      "Ich gebe das Medikament und frage morgen nach."
+     ],
+     "f": "notizblock",
+     "type": "situation",
+     "phrase": "Ich wiederhole die Anordnung, schreibe sie auf und bitte sie, sie einzutragen.",
+     "sens": "Je répète la prescription, je la note et je lui demande de l'inscrire.",
+     "n": "Une prescription orale : on la répète, on la note, et la médecin l'inscrit elle-même (règle de la maison) ⚕️."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    0.0,
+    12.8,
+    6.4,
+    6.4
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "boite": [
+    34.9,
+    5.1,
+    30.3,
+    32.0
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "sichtschutz",
+   "mot": "Sichtschutz",
+   "boite": [
+    0.0,
+    24.2,
+    8.0,
+    33.0
+   ]
+  },
+  {
+   "id": "infusionsstaender",
+   "mot": "Infusionsständer",
+   "boite": [
+    19.6,
+    21.6,
+    10.2,
+    26.2
+   ]
+  },
+  {
+   "id": "infusion",
+   "mot": "Infusion",
+   "boite": [
+    25.9,
+    22.8,
+    4.2,
+    5.9
+   ]
+  },
+  {
+   "id": "nachttisch",
+   "mot": "Nachttisch",
+   "boite": [
+    5.8,
+    42.9,
+    20.0,
+    15.2
+   ]
+  },
+  {
+   "id": "wasserglas",
+   "mot": "Wasserglas",
+   "boite": [
+    12.7,
+    41.0,
+    3.4,
+    2.8
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "schnabelbecher",
+   "mot": "Schnabelbecher",
+   "boite": [
+    18.3,
+    40.5,
+    5.2,
+    3.3
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "boite": [
+    16.3,
+    43.2,
+    5.8,
+    1.4
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "prothesendose",
+   "mot": "Prothesendose",
+   "boite": [
+    16.3,
+    48.0,
+    4.8,
+    2.0
+   ]
+  },
+  {
+   "id": "patient",
+   "mot": "Patient",
+   "boite": [
+    27.0,
+    36.2,
+    31.8,
+    18.2
+   ]
+  },
+  {
+   "id": "schlafanzug",
+   "mot": "Schlafanzug",
+   "boite": [
+    28.2,
+    41.0,
+    30.8,
+    10.4
+   ]
+  },
+  {
+   "id": "patientenarmband",
+   "mot": "Patientenarmband",
+   "boite": [
+    29.5,
+    50.4,
+    3.5,
+    1.5
+   ]
+  },
+  {
+   "id": "bettdecke",
+   "mot": "Bettdecke",
+   "boite": [
+    14.4,
+    46.2,
+    50.2,
+    14.8
+   ]
+  },
+  {
+   "id": "fernbedienung",
+   "mot": "Fernbedienung",
+   "boite": [
+    27.5,
+    58.3,
+    4.8,
+    6.8
+   ]
+  },
+  {
+   "id": "pflegebett",
+   "mot": "Pflegebett",
+   "boite": [
+    0.0,
+    36.6,
+    64.6,
+    38.0
+   ]
+  },
+  {
+   "id": "urinbeutel",
+   "mot": "Urinbeutel",
+   "boite": [
+    12.8,
+    74.1,
+    14.8,
+    6.0
+   ]
+  },
+  {
+   "id": "aerztin",
+   "mot": "Ärztin",
+   "boite": [
+    55.2,
+    24.9,
+    25.8,
+    43.2
+   ]
+  },
+  {
+   "id": "stethoskop",
+   "mot": "Stethoskop",
+   "boite": [
+    63.3,
+    31.5,
+    12.0,
+    7.2
+   ]
+  },
+  {
+   "id": "kittel",
+   "mot": "Kittel",
+   "boite": [
+    63.1,
+    30.7,
+    18.0,
+    37.2
+   ]
+  },
+  {
+   "id": "pflegefachfrau",
+   "mot": "Pflegefachfrau",
+   "boite": [
+    70.9,
+    25.6,
+    25.9,
+    47.9
+   ],
+   "sam": [
+    [
+     70.9,
+     25.6,
+     25.9,
+     47.9
+    ],
+    [
+     72.5,
+     63.5,
+     16.0,
+     10.5
+    ]
+   ]
+  },
+  {
+   "id": "notizblock",
+   "mot": "Notizblock",
+   "boite": [
+    66.3,
+    41.9,
+    6.0,
+    2.1
+   ]
+  },
+  {
+   "id": "kugelschreiber",
+   "mot": "Kugelschreiber",
+   "boite": [
+    70.9,
+    40.1,
+    5.2,
+    3.1
+   ]
+  },
+  {
+   "id": "visitenwagen",
+   "mot": "Visitenwagen",
+   "boite": [
+    48.6,
+    52.4,
+    51.4,
+    46.4
+   ]
+  },
+  {
+   "id": "laptop",
+   "mot": "Laptop",
+   "boite": [
+    62.8,
+    48.2,
+    32.0,
+    13.0
+   ],
+   "sur": "visitenwagen"
+  },
+  {
+   "id": "roentgenbild",
+   "mot": "Röntgenbild",
+   "boite": [
+    65.0,
+    48.9,
+    17.7,
+    8.4
+   ],
+   "plein": true
+  },
+  {
+   "id": "mappe",
+   "mot": "Mappe",
+   "boite": [
+    51.2,
+    57.9,
+    28.2,
+    6.6
+   ],
+   "sur": "visitenwagen"
+  },
+  {
+   "id": "einmalhandschuhe",
+   "mot": "Einmalhandschuh",
+   "boite": [
+    81.5,
+    73.7,
+    16.8,
+    7.2
+   ],
+   "sur": "visitenwagen"
+  }
+ ]
+}
