@@ -40,6 +40,9 @@ function json(url, facultatif){
 // le contrat des donnees est pflege/examen/FORMAT-MANUEL.md. Les examens blancs (donnees/<epreuve>.json) sont
 // RESERVES a l'examen blanc ; l'entrainement ne lit que donnees/entrainement/<epreuve>.json (series 101 et plus) ;
 // le texte des chapitres vit dans donnees/manuel/ (sommaire.json, puis un fichier par chapitre, facultatif).
+// les chapitres dont des exemples allemands sont enregistres (bloc « de » a « cle » : piste m-<cle>,
+// manifeste donnees/manuel/voix-<chapitre>.json)
+const VOIX_CHAPITRES = ["sprechen"];
 const CHAPITRES = ["examen", "hoeren", "lesen", "sprachbausteine", "schreiben", "sprechen", "kommunikation", "beruf", "grammatik"];   // le 9 (examens) n'a pas de fichier
 Object.assign(PF, { examens: {}, entr: {}, voix: {}, sommaire: [], chap: {} });
 // le modele d'examen blanc : ?serie=N, sinon le dernier commence, sinon le premier
@@ -56,7 +59,8 @@ DTZ.charger(Promise.all([
   Q.get("exemple") ? json("donnees/manuel/_exemple.json", true) : Promise.resolve(null),
   // les Redemittel : UNE source, celle de la section Soins (pflege/datos/redemittel.json, FORMAT-DONNEES.md § 2 bis)
   json("../../../pflege/datos/redemittel.json", true),
-  json("../../../pflege/datos/sons.json", true)
+  json("../../../pflege/datos/sons.json", true),
+  ...VOIX_CHAPITRES.map(c => json("donnees/manuel/voix-" + c + ".json", true))
 ]).then(([ui, ...reste]) => {
   textesTelc({ fr: ui.fr, en: ui.en });
   if (AUTRES) Object.assign(TXT, ui[LANGUE] || {});
@@ -74,6 +78,7 @@ DTZ.charger(Promise.all([
   const ex = reste[2 * n + 4 + CHAPITRES.length];
   PF.rm = reste[2 * n + 5 + CHAPITRES.length] || {};
   PF.sons = reste[2 * n + 6 + CHAPITRES.length] || {};
+  VOIX_CHAPITRES.forEach((c, k) => { const m = reste[2 * n + 7 + CHAPITRES.length + k] || {}; for (const x in m) if (x[0] !== "_") DTZ_PISTES[x] = m[x]; });
   if (ex && ex.rubriques){
     PF.chap._exemple = ex;
     PF.sommaire = [{ id: "_exemple", nr: "·", titre_fr: "Exemple : chaque sorte de bloc", titre_en: "Example: every kind of block", resume_fr: "Pour voir le rendu du format (?exemple=1).", resume_en: "To see how the format renders (?exemple=1)." }].concat(PF.sommaire);
@@ -926,7 +931,8 @@ function blocHtml(b){
     case "p": return '<p>' + aide(b) + '</p>';
     case "titre": return '<h3>' + aide(b) + '</h3>';
     case "liste": { const tag = b.ordre ? "ol" : "ul"; return '<' + tag + ' class="liste-manuel">' + (b.items || []).map(i => '<li>' + aide(i) + '</li>').join("") + '</' + tag + '>'; }
-    case "de": return '<div class="exemple-de"><p lang="de" dir="ltr">' + deHtml(b.de) + '</p>' +
+    case "de": return '<div class="exemple-de">' + (b.cle ? '<button class="jouer" data-de-son="' + esc(b.cle) + '">' + ICONE_SON + ' ' + esc(T("pf_ecouter")) + '</button>' : "") +
+      '<p lang="de" dir="ltr">' + deHtml(b.de) + '</p>' +
       (tr(b, "texte") ? '<details><summary>' + esc(T("pf_traduction")) + '</summary><p>' + aide(b) + '</p></details>' : "") + '</div>';
     case "piege": return '<div class="piege"><div class="piege-t">⚠ ' + esc(T("pf_piege")) + (tr(b, "titre") ? deuxPts + aide(b, "titre") : "") + '</div>' +
       (b.de ? '<p lang="de" dir="ltr" class="piege-de">' + deHtml(b.de) + '</p>' : "") + '<p>' + aide(b) + '</p></div>';
@@ -1009,6 +1015,11 @@ function brancherBlocs(c){
     const f = BASE_SONS_SOINS && PF.sons[c.son];
     if (f && !RAPIDE && await jouerFichier(BASE_SONS_SOINS + f)) return;
     jouerRepliques([{ wer: "neutral", text: c.lecture || c.de }]);
+  });
+  // un exemple allemand enregistre : sa piste m-<cle>, sinon ses repliques (« audio ») a la voix du telephone
+  $("zone").querySelectorAll("[data-de-son]").forEach(x => x.onclick = () => {
+    const b = tous.find(y => y.t === "de" && y.cle === x.dataset.deSon);
+    if (b){ debloquerSon(); arreterSon(); jouerPiste("m-" + b.cle, b.audio || [{ wer: "neutral", text: b.de }]); }
   });
   $("zone").querySelectorAll("[data-serie]").forEach(x => x.onclick = () => {
     const ch = PF.sommaire.find(y => y.id === c);

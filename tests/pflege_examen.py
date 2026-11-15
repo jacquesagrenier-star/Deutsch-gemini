@@ -477,13 +477,22 @@ for c in chap:
         langues_de(c, champ, "sommaire " + str(c.get("id")), True)
 
 # les chapitres
+VOIX_CHAPITRES = ["sprechen"]
+VOIX_EXAMEN = dict((FICHIERS["hoeren"] or {}).get("voix", {}))
+VOIX_EXAMEN.update((FICHIERS["sprechen"] or {}).get("voix", {}))
+for c in VOIX_CHAPITRES:
+    m = lire(os.path.join(DONNEES, "manuel", "voix-" + c + ".json"))
+    if m is None:
+        faute("manuel/voix-%s.json absent (la page le charge)" % c)
+    elif any(not k.startswith("_") and not k.startswith("m-") for k in m):
+        faute("manuel/voix-%s.json : une cle hors des exemples enregistres (m-…)" % c)
 GROUPES_RM = ["patient", "famille", "collegues", "releve", "sbar", "visite", "negociation", "telephone"]
 RM = lire(os.path.join(DEPOT, "pflege", "datos", "redemittel.json"))
 BLOCS = {"p", "titre", "liste", "de", "piege", "tableau", "doc", "redemittel", "exercice", "serie", "renvoi"}
 VERS = re.compile(r"^(dialogue|grammaire|ecrit|theme|scene):[A-Za-z0-9_-]+$|^chapitre:(%s)$" % "|".join(i for i, _ in ATTENDUS))
 cles_manuel = {}
 n_chap = n_blocs = n_ex = 0
-fichiers = sorted(x for x in os.listdir(MANUEL) if x.endswith(".json") and x != "sommaire.json") if os.path.isdir(MANUEL) else []
+fichiers = sorted(x for x in os.listdir(MANUEL) if x.endswith(".json") and x != "sommaire.json" and not x.startswith("voix-")) if os.path.isdir(MANUEL) else []
 for nom in fichiers:
     cid = nom[:-5]
     exemple = cid.startswith("_")
@@ -532,6 +541,20 @@ for nom in fichiers:
                     faute(ob + " : pas d'allemand")
                 if b.get("texte_fr"):
                     langues_de(b, "texte", ob, exiger)
+                if b.get("cle"):
+                    # un exemple enregistre : sa cle unique, ses repliques (« audio »), en lettres, aux voix connues
+                    if b["cle"] in cles_manuel:
+                        faute(ob + " : cle %r en double" % b["cle"])
+                    cles_manuel[b["cle"]] = ob
+                    if cid not in VOIX_CHAPITRES:
+                        faute(ob + " : un exemple enregistre hors des chapitres %s (examen.js, VOIX_CHAPITRES)" % VOIX_CHAPITRES)
+                    if not b.get("audio"):
+                        faute(ob + " : « cle » sans « audio » ([{wer, text}])")
+                    for l in b.get("audio") or []:
+                        if re.search(r"\d", l.get("text", "")):
+                            faute(ob + " : chiffres dans un texte dit (en lettres) : %s" % l.get("text", "")[:60])
+                        if not (VOIX_EXAMEN.get(l.get("wer")) or {}).get("voice_id"):
+                            faute(ob + " : la voix %r n'existe pas dans hoeren.json ni sprechen.json" % l.get("wer"))
             elif t == "piege":
                 langues_de(b, "texte", ob, exiger)
                 if b.get("titre_fr"):

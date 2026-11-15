@@ -128,7 +128,7 @@ crochets.
 | `p` | `texte_*` | un paragraphe |
 | `titre` | `texte_*` | un intertitre |
 | `liste` | `items`: [{`texte_*`}], `ordre` (vrai : 1, 2, 3…) | une liste, numérotée ou non |
-| `de` | `de` (allemand, `\n` permis), `texte_*` (la traduction, facultative) | un exemple allemand, et « Traduction » à déplier |
+| `de` | `de` (allemand, `\n` permis), `texte_*` (la traduction, facultative) ; pour l'**enregistrer** : `cle` (unique) et `audio`: [{`wer`, `text`}] (les voix de `hoeren.json` et `sprechen.json`, nombres en lettres) | un exemple allemand, et « Traduction » à déplier ; avec `cle`, un bouton d'écoute (piste `m-<cle>`, manifeste `manuel/voix-<chapitre>.json`, fait par `voix_soins.py --manuel <chapitre>`). Seul le chapitre `sprechen` enregistre pour l'instant (`VOIX_CHAPITRES`) : les modèles B1 et B2 de l'oral |
 | `piege` | `titre_*`, `de` (facultatif), `texte_*` | un encadré « Piège » : un exemple de notre cru et son explication |
 | `tableau` | `entetes`: [cellule], `lignes`: [[cellule…]] ; une cellule = {`texte_*`} ou {`de`} | un tableau |
 | `doc` | `doc`: {`art`, `kopf`, `betreff`, `absaetze`} (comme dans les examens) | un document allemand (courriel, extrait de plan…) |

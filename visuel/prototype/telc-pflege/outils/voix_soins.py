@@ -3,6 +3,8 @@
     python visuel/prototype/telc-pflege/outils/voix_soins.py                    # a blanc : ce qui manque, ce que ca coute
     python visuel/prototype/telc-pflege/outils/voix_soins.py --detail           # le compte par piste
     python visuel/prototype/telc-pflege/outils/voix_soins.py --pour-de-vrai --plafond N   # APRES l'accord du chef
+    python visuel/prototype/telc-pflege/outils/voix_soins.py --manuel sprechen           # les exemples enregistres d'un
+        chapitre (blocs « de » a « cle » et « audio » ; pistes m-<cle>, manifeste donnees/manuel/voix-<chapitre>.json)
     python visuel/prototype/telc-pflege/outils/voix_soins.py --entrainement hoeren       # les series d'ENTRAINEMENT
         (donnees/entrainement/hoeren.json ou sprechen.json, cles s101-…, manifeste entrainement/voix-<epreuve>.json ;
         pflege/examen/FORMAT-MANUEL.md, § 3)
@@ -91,6 +93,7 @@ def main():
     ap.add_argument("--detail", action="store_true", help="le compte par piste")
     ap.add_argument("--seulement", default="", help="ne produire que ces cles (separees par des virgules), pour un essai")
     ap.add_argument("--entrainement", choices=["hoeren", "sprechen"], help="les series d'entrainement de cette epreuve")
+    ap.add_argument("--manuel", help="les exemples enregistres d'un chapitre du manuel (sprechen…)")
     a = ap.parse_args()
     global MANIFESTE
     H, S = charger("hoeren"), charger("sprechen")
@@ -104,6 +107,11 @@ def main():
         H, S = (E, {}) if a.entrainement == "hoeren" else ({}, E)
         MANIFESTE = os.path.join(DONNEES, "entrainement", "voix-" + a.entrainement + ".json")
     tout = pistes(H, S)
+    if a.manuel:
+        C = charger(os.path.join("manuel", a.manuel))
+        tout = {"m-" + b["cle"]: b["audio"] for r in C.get("rubriques", []) for b in r.get("blocs", [])
+                if b.get("t") == "de" and b.get("cle") and b.get("audio")}
+        MANIFESTE = os.path.join(DONNEES, "manuel", "voix-" + a.manuel + ".json")
     if a.seulement:
         tout = {k: v for k, v in tout.items() if k in a.seulement.split(",")}
     manifeste = json.load(io.open(MANIFESTE, encoding="utf-8")) if os.path.exists(MANIFESTE) else {}
