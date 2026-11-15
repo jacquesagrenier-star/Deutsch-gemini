@@ -41,7 +41,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FICHIERS = {
     "de": {"chemin": "conjugaison.json",
-           "langues": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"],
+           "langues": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"],
            "exercices": "exercices.json",
            "verbes": "verbe.json",
            "temps": {"perfekt": "perfekt", "praeteritum": "praeteritum", "konjunktiv2": "konjunktiv2"},

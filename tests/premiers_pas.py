@@ -27,7 +27,7 @@ import sys
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FICHIERS = {
-    "de": {"chemin": "premiers-pas.json", "langues": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"]},
+    "de": {"chemin": "premiers-pas.json", "langues": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"]},
     "es": {"chemin": os.path.join("espanol", "datos", "premiers-pas.json"), "langues": ["fr", "en", "pt", "ar"]},
 }
 MOTS_OUTILS = {

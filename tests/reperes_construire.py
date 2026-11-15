@@ -308,7 +308,31 @@ def ecrire(chemin, d):
         json.dump(d, f, ensure_ascii=False, indent=1)
         f.write("\n")
 
+# L'ESPAGNOL, LANGUE D'INTERFACE DE L'ALLEMAND (15 nov. 2026, interface-es/). Plutot que d'allonger
+# chaque tuple de par_langue (qui sert aussi a l'espagnol APPRIS), une table {francais: espagnol} :
+# tout objet par langue qui porte « fr » et « ru » recoit « es » s'il est dans la table. L'allemand
+# seulement : l'espagnol appris n'a pas l'espagnol pour langue d'interface.
+def ajouter_espagnol(d):
+    # Une COPIE : construire() partage ses tables (TITRES...) entre l'allemand et l'espagnol appris ;
+    # les modifier sur place mettrait « es » dans espanol/datos/reperes.json.
+    import copy
+    d = copy.deepcopy(d)
+    with io.open(os.path.join(RACINE, "tests", "reperes_es.json"), encoding="utf-8") as f:
+        table = json.load(f)
+    def v(o):
+        if isinstance(o, dict):
+            if isinstance(o.get("fr"), str) and "ru" in o and o["fr"] in table:
+                o["es"] = table[o["fr"]]
+            for x in o.values():
+                v(x)
+        elif isinstance(o, list):
+            for x in o:
+                v(x)
+    v(d)
+    return d
+
+
 if __name__ == "__main__":
-    ecrire(os.path.join(RACINE, "reperes.json"), construire("de"))
+    ecrire(os.path.join(RACINE, "reperes.json"), ajouter_espagnol(construire("de")))
     ecrire(os.path.join(RACINE, "espanol", "datos", "reperes.json"), construire("es"))
     print("reperes.json et espanol/datos/reperes.json ecrits")

@@ -46,6 +46,10 @@ LANGUES = {
     "pt": ("portugais (Bresil)", "PT"),
     # Le polonais (pl-PL).
     "pl": ("polonais", "PL"),
+    # L'espagnol d'Amerique latine (15 nov. 2026, interface-es/). ⚠️ Le pronom allemand
+    # « es » donne aussi des cles `er_sie_es` dans verbe.json et themes.json : ne
+    # jamais chercher les champs espagnols par le seul suffixe `_es`.
+    "es": ("espagnol (Amerique latine)", "ES"),
 }
 
 NIVEAUX = ["A1", "A2", "B1", "B2", "C1"]

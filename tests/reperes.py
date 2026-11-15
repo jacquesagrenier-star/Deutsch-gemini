@@ -21,7 +21,11 @@ erreurs = []
 
 def verifier(chemin, langue):
     d = json.load(io.open(os.path.join(RACINE, chemin), encoding="utf-8"))
-    if d != json.loads(json.dumps(rc.construire(langue), ensure_ascii=False)):
+    attendu = rc.construire(langue)
+    # L'espagnol, langue d'interface de l'allemand (15 nov. 2026) : la table tests/reperes_es.json.
+    if langue == "de":
+        attendu = rc.ajouter_espagnol(attendu)
+    if d != json.loads(json.dumps(attendu, ensure_ascii=False)):
         erreurs.append("%s : differe de ce que construit tests/reperes_construire.py (relancer le constructeur)" % chemin)
     R = d.get("reperes", [])
     if [r.get("id") for r in R] != ORDRE[langue]:
