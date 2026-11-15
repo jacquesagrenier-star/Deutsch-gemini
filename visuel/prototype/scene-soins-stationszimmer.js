@@ -1238,48 +1238,6 @@ window.SCENE = {
      "sens": "Je suis inquiet. Son état s'est nettement aggravé depuis une heure. J'ai peur que ce soit quelque chose aux poumons.",
      "n": "<b>A comme Assessment (Einschätzung) : dis clairement ce que tu penses.</b> « Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss. » Ton inquiétude est une information pour le médecin. ⚕️",
      "source": "d07-sbar/einschaetzung"
-    },
-    {
-     "q": "Am Telefon sagt Dr. Krämer: „Ich komme in zehn Minuten. Geben Sie ihm zwei Liter Sauerstoff über die Nasenbrille und lagern Sie den Oberkörper hoch.“",
-     "c": [
-      "Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.",
-      "Okay, alles klar. Tschüss!",
-      "Hallo, hier ist Yusuf. Dem Patienten geht's nicht gut."
-     ],
-     "f": "telefon",
-     "type": "situation",
-     "phrase": "Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.",
-     "sens": "Je répète : deux litres d'oxygène aux lunettes, buste relevé. Vous arrivez dans dix minutes.",
-     "n": "<b>Une prescription orale se répète au médecin, mot pour mot.</b> « Ich wiederhole: … » Puis on la note et on la fait signer plus tard. C'est ce qui évite les erreurs au téléphone. ⚕️",
-     "source": "d07-sbar/wiederholen"
-    },
-    {
-     "q": "Vor dem Dienstplan fragt Jonas: „Na, Elif, du siehst nachdenklich aus. Alles okay?“",
-     "c": [
-      "Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.",
-      "Ja. Könnten Sie am Samstag meinen Dienst übernehmen, Herr Jonas?",
-      "Du musst am Samstag arbeiten, bitte."
-     ],
-     "f": "dienstplan",
-     "type": "situation",
-     "phrase": "Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.",
-     "sens": "Oui, ça va. Dis-moi, tu pourrais prendre mon poste du matin samedi ? Ma sœur vient d'Izmir.",
-     "n": "<b>Entre collègues soignants, on se dit presque toujours « du », avec le prénom.</b> Le Konjunktiv reste poli au « du » : « Könntest du …? », « Würdest du …? ».",
-     "source": "d11-dienst-tauschen/fragen"
-    },
-    {
-     "q": "Sie sind krank und rufen früh morgens Ihre Stationsleitung an. Sie meldet sich: „Hoffmann, guten Morgen.“",
-     "c": [
-      "Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.",
-      "Hallo, ich bin's. Ich komm heute nicht, okay?",
-      "Okay, alles klar. Tschüss!"
-     ],
-     "f": "telefon",
-     "type": "situation",
-     "phrase": "Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.",
-     "sens": "Bonjour, madame Hoffmann, c'est Elif. Je suis malheureusement malade et je ne peux pas venir au poste du matin aujourd'hui.",
-     "n": "<b>Avec la cadre : « Sie », ton nom, et la raison.</b> « Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen. » Et on appelle tôt, avant le début du service.",
-     "source": "d11-dienst-tauschen/anruf"
     }
    ]
   }
@@ -1324,10 +1282,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "The reported past: <b>habe</b> + participle (schlafen takes haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S for Situation: who you are, where you're calling from, which patient it's about.</b> “Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” The doctor doesn't know the patient yet.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>The patient doesn't perform the operation, he undergoes it: use the passive.</b> “Er ist am Dienstag operiert worden” (passive Perfekt) or “Er wurde am Dienstag operiert” (Präteritum). This is the B of SBAR (Hintergrund in German): the background.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A for Assessment (Einschätzung): say clearly what you think.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Your concern is information for the doctor. ⚕️",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>A verbal order is read back to the doctor, word for word.</b> “Ich wiederhole: …” Then it is documented and signed later. That's what prevents mistakes over the phone. ⚕️",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "<b>Among nursing colleagues, you almost always say “du”, with first names.</b> The Konjunktiv stays polite with “du”: “Könntest du …?”, “Würdest du …?”.",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>With the manager: “Sie”, your name and the reason.</b> “Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.” And you call early, before your shift starts."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A for Assessment (Einschätzung): say clearly what you think.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Your concern is information for the doctor. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "The late shift starts at 1:30 pm.",
@@ -1355,10 +1310,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "The night shift reported that Mrs Lehmann had slept restlessly.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Sorry to disturb you, Dr. Krämer. This is Yusuf from ward 4B. It's about Mr. Brandt, room 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "He's 82 years old, and he had hip surgery on Tuesday. He has hardly been on his feet since.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "I'm worried. His condition has gotten noticeably worse over the last hour. I'm afraid it's something with his lungs.",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "I'll read that back: two liters of oxygen via nasal cannula, head of the bed raised. You'll be here in ten minutes.",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "Yeah, all good. Listen, could you take my early shift on Saturday? My sister's coming from Izmir.",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "Good morning, Mrs. Hoffmann, this is Elif. I'm afraid I'm sick and can't come in for the early shift today."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "I'm worried. His condition has gotten noticeably worse over the last hour. I'm afraid it's something with his lungs."
    }
   },
   "tr": {
@@ -1400,10 +1352,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Aktarılan geçmiş: <b>habe</b> + Partizip II (schlafen, haben alır).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S, yani Situation: kim olduğun, nereden aradığın, hangi hasta için aradığın.</b> “Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” Doktor hastayı henüz tanımıyor.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Ameliyatı hasta yapmaz, ona yapılır: edilgen yapı.</b> “Er ist am Dienstag operiert worden” (edilgen Perfekt) ya da “Er wurde am Dienstag operiert” (Präteritum). Bu, SBAR'daki H: arka plan.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A, yani Assessment (Einschätzung): ne düşündüğünü açıkça söyle.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Endişen, doktor için bir bilgidir. ⚕️",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Sözlü bir talimat doktora kelimesi kelimesine tekrarlanır.</b> “Ich wiederhole: …” Sonra kaydedilir ve daha sonra imzalatılır. Telefondaki hataları önleyen budur. ⚕️",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "<b>Bakım personeli meslektaşlar arasında neredeyse her zaman “du” ve ilk adla konuşur.</b> Konjunktiv “du” ile de kibar kalır: “Könntest du …?”, “Würdest du …?”.",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Sorumlu hemşireyle: “Sie”, adın ve nedeni.</b> “Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.” Ve erkenden, vardiya başlamadan önce aranır."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A, yani Assessment (Einschätzung): ne düşündüğünü açıkça söyle.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Endişen, doktor için bir bilgidir. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "Öğleden sonra vardiyası 13.30'da başlar.",
@@ -1431,10 +1380,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Gece vardiyası, Bayan Lehmann'ın huzursuz uyuduğunu bildirdi.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Rahatsız ettiğim için kusura bakmayın, Doktor Krämer. Ben 4B servisinden Yusuf. Bay Brandt ile ilgili arıyorum, 12 numaralı oda.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "82 yaşında ve salı günü kalçasından ameliyat edildi. O zamandan beri neredeyse hiç ayağa kalkmadı.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Endişeliyim. Son bir saatte durumu belirgin şekilde kötüleşti. Akciğerleriyle ilgili bir şey olmasından korkuyorum.",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "Tekrar ediyorum: nazal kanülle iki litre oksijen, üst gövde yükseltilmiş. On dakikaya geliyorsunuz.",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "Evet, iyiyim. Baksana, cumartesi sabah vardiyamı devralabilir misin? Kız kardeşim İzmir'den geliyor.",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "Günaydın, Hoffmann Hanım, ben Elif. Maalesef hastayım ve bugün sabah vardiyasına gelemiyorum."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Endişeliyim. Son bir saatte durumu belirgin şekilde kötüleşti. Akciğerleriyle ilgili bir şey olmasından korkuyorum."
    }
   },
   "uk": {
@@ -1476,10 +1422,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Минуле в непрямій мові: <b>habe</b> + Partizip II (schlafen вживається з haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S — Situation: хто ти, звідки телефонуєш, щодо якого пацієнта.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» Лікар ще не знає цього пацієнта.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Пацієнт не робить операцію, її роблять йому: пасив.</b> «Er ist am Dienstag operiert worden» (Perfekt пасиву) або «Er wurde am Dienstag operiert» (Präteritum). Це H у SBAR: передісторія.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A — Assessment (Einschätzung): чітко скажи, що думаєш.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Твоя тривога — це інформація для лікаря. ⚕️",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Усне призначення повторюють лікареві слово в слово.</b> «Ich wiederhole: …» Потім його записують і пізніше дають лікареві підписати. Саме це запобігає помилкам по телефону. ⚕️",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "<b>Між колегами-медиками майже завжди кажуть «du» й на імʼя.</b> Konjunktiv залишається ввічливим і з «du»: «Könntest du …?», «Würdest du …?».",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Зі старшою медсестрою: «Sie», своє імʼя і причина.</b> «Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.» І телефонують рано, до початку зміни."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A — Assessment (Einschätzung): чітко скажи, що думаєш.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Твоя тривога — це інформація для лікаря. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "Друга зміна починається о 13:30.",
@@ -1507,10 +1450,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Нічна зміна повідомила, що пані Леман спала неспокійно.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Перепрошую, що турбую, пане лікарю Кремер. Це Юсуф з відділення 4B. Ідеться про пана Брандта, палата 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Йому 82 роки, у вівторок його прооперували на кульшовому суглобі. Відтоді він майже не вставав.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Я стурбований. За останню годину його стан помітно погіршився. Боюся, що це щось із легенями.",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "Повторюю: два літри кисню через носові канюлі, підняти верхню частину тіла. Ви будете за десять хвилин.",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "Так, усе добре. Слухай, ти не міг би в суботу взяти мою ранкову зміну? До мене приїжджає сестра з Ізміра.",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "Доброго ранку, пані Гофман, це Еліф. На жаль, я захворіла й не можу сьогодні вийти на ранкову зміну."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Я стурбований. За останню годину його стан помітно погіршився. Боюся, що це щось із легенями."
    }
   },
   "fa": {
@@ -1552,10 +1492,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "گذشتهٔ نقل‌شده: <b>habe</b> + Partizip II (<span lang=\"de\">schlafen</span> با <span lang=\"de\">haben</span> می‌آید).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S یعنی Situation (وضعیت): تو کی هستی، از کجا زنگ می‌زنی، درباره‌ی کدام بیمار.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» پزشک هنوز بیمار را نمی‌شناسد.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>بیمار عمل را انجام نمی‌دهد، عمل روی او انجام می‌شود: مجهول.</b> «Er ist am Dienstag operiert worden» (Perfekt مجهول) یا «Er wurde am Dienstag operiert» (Präteritum). این H در SBAR است: زمینه.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A یعنی Assessment (Einschätzung، ارزیابی): روشن بگو چه فکر می‌کنی.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» نگرانی تو برای پزشک یک اطلاع مهم است. ⚕️",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>دستور شفاهی را کلمه به کلمه برای پزشک تکرار می‌کنیم.</b> «Ich wiederhole: …» بعد آن را ثبت می‌کنیم و بعداً امضای پزشک را می‌گیریم. همین است که جلوی خطا پشت تلفن را می‌گیرد. ⚕️",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "<b>بین همکاران مراقب، تقریباً همیشه «du» می‌گوییم، با اسم کوچک.</b> Konjunktiv با «du» هم مؤدبانه می‌ماند: «Könntest du …?»، «Würdest du …?».",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>با سرپرستار: «Sie»، نام خودت، و دلیل.</b> «Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.» و زود زنگ می‌زنیم، پیش از شروع شیفت."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A یعنی Assessment (Einschätzung، ارزیابی): روشن بگو چه فکر می‌کنی.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» نگرانی تو برای پزشک یک اطلاع مهم است. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "شیفتِ عصر ساعتِ 13:30 شروع می‌شود.",
@@ -1583,10 +1520,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "شیفتِ شب گزارش داد که <span lang=\"de\">Frau Lehmann</span> ناآرام خوابیده است.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "ببخشید که مزاحمتان می‌شوم، آقای دکتر کرمر. یوسف هستم از بخش 4B. موضوع آقای برانت است، اتاق 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "82 سال دارد و سه‌شنبه لگنش را عمل کرده‌اند. از آن موقع تقریباً سر پا نبوده است.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "نگرانم. حالش در یک ساعت گذشته به‌وضوح بدتر شده است. می‌ترسم مشکلی در ریه‌ها باشد.",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "تکرار می‌کنم: دو لیتر اکسیژن با کانولای بینی، بالاتنه بالا. شما ده دقیقه‌ی دیگر می‌آیید.",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "آره، خوبم. ببین، می‌توانی شنبه شیفت صبحم را برداری؟ خواهرم از ازمیر می‌آید.",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "صبح بخیر، خانم هوفمان، الیف هستم. متأسفانه بیمارم و امروز نمی‌توانم سر شیفت صبح بیایم."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "نگرانم. حالش در یک ساعت گذشته به‌وضوح بدتر شده است. می‌ترسم مشکلی در ریه‌ها باشد."
    }
   },
   "ar": {
@@ -1628,10 +1562,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "الماضي المنقول: <b>habe</b> + اسم المفعول (<span lang=\"de\">schlafen</span> يأخذ <span lang=\"de\">haben</span>).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S تعني Situation (الوضع): من أنت، ومن أين تتصل، وبخصوص أي مريض.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» الطبيب لا يعرف المريض بعد.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>المريض لا يُجري العملية، بل تُجرى له: المبني للمجهول.</b> «Er ist am Dienstag operiert worden» (Perfekt المجهول) أو «Er wurde am Dienstag operiert» (Präteritum). هذا هو حرف H في SBAR: الخلفية.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A تعني Assessment (Einschätzung، التقييم): قل بوضوح ما تفكر فيه.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» قلقك معلومة مهمة للطبيب. ⚕️",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>الأمر الطبي الشفهي يُعاد على الطبيب كلمة بكلمة.</b> «Ich wiederhole: …» ثم يُدوَّن، ويُطلب توقيعه لاحقًا. هذا ما يمنع الأخطاء على الهاتف. ⚕️",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "<b>بين زملاء التمريض نقول «du» في أغلب الأحيان، مع الاسم الأول.</b> والـKonjunktiv يبقى مهذبًا مع «du»: «Könntest du …?»، «Würdest du …?».",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>مع رئيسة التمريض: «Sie»، واسمك، والسبب.</b> «Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.» ونتصل مبكرًا، قبل بداية المناوبة."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A تعني Assessment (Einschätzung، التقييم): قل بوضوح ما تفكر فيه.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» قلقك معلومة مهمة للطبيب. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "تبدأ مناوبة بعد الظهر في الساعة 13:30.",
@@ -1659,10 +1590,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "أفاد فريق الليل بأن السيدة <span lang=\"de\">Lehmann</span> نامت نومًا مضطربًا.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "عذرًا على الإزعاج يا دكتور كريمر. معك يوسف من القسم 4B. الأمر يتعلق بالمريض السيد برانت، الغرفة 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "عمره 82 سنة، وأُجريت له عملية في الورك يوم الثلاثاء. ومنذ ذلك الحين لم يكد ينهض.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "أنا قلق. ساءت حالته بشكل واضح خلال الساعة الأخيرة. أخشى أن تكون المشكلة في الرئتين.",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "أكرّر: لتران من الأكسجين عبر القنية الأنفية، ورفع الجزء العلوي من الجسم. وأنت تصل خلال عشر دقائق.",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "نعم، كل شيء بخير. قل لي، هل يمكنك أن تأخذ مناوبتي الصباحية يوم السبت؟ أختي قادمة من إزمير.",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "صباح الخير يا سيدة هوفمان، معك إليف. أنا مريضة للأسف ولا أستطيع الحضور إلى المناوبة الصباحية اليوم."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "أنا قلق. ساءت حالته بشكل واضح خلال الساعة الأخيرة. أخشى أن تكون المشكلة في الرئتين."
    }
   },
   "pt": {
@@ -1704,10 +1632,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "O passado relatado: <b>habe</b> + particípio (schlafen leva haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S de Situação: quem você é, de onde está ligando, sobre qual paciente.</b> “Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” O médico ainda não conhece o paciente.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>O paciente não faz a cirurgia, ele passa por ela: a voz passiva.</b> “Er ist am Dienstag operiert worden” (Perfekt da passiva) ou “Er wurde am Dienstag operiert” (Präteritum). É o H do SBAR: o contexto.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A de Assessment (Einschätzung): diga claramente o que você pensa.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” A sua preocupação é uma informação para o médico. ⚕️",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Uma prescrição verbal se repete para o médico, palavra por palavra.</b> “Ich wiederhole: …” Depois, ela é registrada e assinada pelo médico mais tarde. É isso que evita erros por telefone. ⚕️",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "<b>Entre colegas de enfermagem, quase sempre se usa “du”, com o primeiro nome.</b> O Konjunktiv continua educado com “du”: “Könntest du …?”, “Würdest du …?”.",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Com a coordenadora: “Sie”, o seu nome e o motivo.</b> “Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.” E liga-se cedo, antes do início do plantão."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A de Assessment (Einschätzung): diga claramente o que você pensa.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” A sua preocupação é uma informação para o médico. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "O turno da tarde começa às 13h30.",
@@ -1735,10 +1660,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "A equipe da noite relatou que a sra. Lehmann tinha dormido mal.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Desculpe incomodar, doutor Krämer. Aqui é o Yusuf, da ala 4B. É sobre o Sr. Brandt, quarto 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Ele tem 82 anos e foi operado do quadril na terça-feira. Desde então, quase não saiu da cama.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Estou preocupado. O estado dele piorou bastante na última hora. Tenho medo de que seja alguma coisa no pulmão.",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "Vou repetir: dois litros de oxigênio por cateter nasal, cabeceira elevada. O senhor chega em dez minutos.",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "Tudo, sim. Me diz uma coisa, você poderia ficar com o meu plantão da manhã no sábado? A minha irmã vem de Izmir.",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "Bom dia, senhora Hoffmann, aqui é a Elif. Infelizmente estou doente e não posso ir ao plantão da manhã hoje."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Estou preocupado. O estado dele piorou bastante na última hora. Tenho medo de que seja alguma coisa no pulmão."
    }
   },
   "pl": {
@@ -1780,10 +1702,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Przeszłość w mowie zależnej: <b>habe</b> + imiesłów (schlafen łączy się z haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S jak Situation: kim jesteś, skąd dzwonisz, w sprawie którego pacjenta.</b> „Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” Lekarz jeszcze nie zna pacjenta.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Pacjent nie wykonuje operacji, tylko jej podlega: strona bierna.</b> „Er ist am Dienstag operiert worden” (Perfekt strony biernej) albo „Er wurde am Dienstag operiert” (Präteritum). To H w SBAR: tło.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A jak Assessment (Einschätzung): powiedz jasno, co myślisz.</b> „Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Twój niepokój to dla lekarza informacja. ⚕️",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Ustne zlecenie powtarza się lekarzowi słowo w słowo.</b> „Ich wiederhole: …” Potem się je zapisuje i później daje do podpisu. To właśnie chroni przed błędami przez telefon. ⚕️",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "<b>Między kolegami z opieki prawie zawsze mówi się sobie „du”, po imieniu.</b> Konjunktiv pozostaje uprzejmy także na „du”: „Könntest du …?”, „Würdest du …?”.",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Z przełożoną: „Sie”, twoje nazwisko i powód.</b> „Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.” I dzwoni się wcześnie, przed początkiem dyżuru."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A jak Assessment (Einschätzung): powiedz jasno, co myślisz.</b> „Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Twój niepokój to dla lekarza informacja. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "Dyżur popołudniowy zaczyna się o 13:30.",
@@ -1811,10 +1730,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Zespół nocny przekazał, że pani Lehmann spała niespokojnie.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Przepraszam, że przeszkadzam, panie doktorze. Mówi Yusuf z oddziału 4B. Chodzi o pana Brandta, sala 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Ma 82 lata i we wtorek przeszedł operację biodra. Od tego czasu prawie nie wstawał.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Niepokoję się. W ciągu ostatniej godziny jego stan wyraźnie się pogorszył. Boję się, że to coś z płucami.",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "Powtarzam: dwa litry tlenu przez wąsy tlenowe, górna część ciała uniesiona. Będzie pan za dziesięć minut.",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "Tak, wszystko dobrze. Słuchaj, mógłbyś wziąć za mnie ranny dyżur w sobotę? Przyjeżdża moja siostra z Izmiru.",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "Dzień dobry, pani Hoffmann, mówi Elif. Niestety jestem chora i nie mogę dziś przyjść na ranny dyżur."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Niepokoję się. W ciągu ostatniej godziny jego stan wyraźnie się pogorszył. Boję się, że to coś z płucami."
    }
   },
   "ru": {
@@ -1856,10 +1772,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Прошедшее в косвенной речи: <b>habe</b> + причастие (schlafen спрягается с haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S — Situation: кто ты, откуда звонишь, по поводу какого пациента.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» Врач ещё не знает пациента.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Пациент не делает операцию, ему её делают: это Passiv.</b> «Er ist am Dienstag operiert worden» (Perfekt пассива) или «Er wurde am Dienstag operiert» (Präteritum). Это H в SBAR: анамнез.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A — Assessment (Einschätzung): ясно скажи, что ты думаешь.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Твоё беспокойство — это информация для врача. ⚕️",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Устное назначение повторяют врачу слово в слово.</b> «Ich wiederhole: …» Потом его записывают, а позже врач его подписывает. Именно это предотвращает ошибки по телефону. ⚕️",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "<b>Между коллегами в уходе почти всегда говорят на «du» и по имени.</b> Konjunktiv остаётся вежливым и с «du»: «Könntest du …?», «Würdest du …?».",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Со старшей медсестрой — «Sie», своё имя и причина.</b> «Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.» И звонят рано, до начала смены."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A — Assessment (Einschätzung): ясно скажи, что ты думаешь.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Твоё беспокойство — это информация для врача. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "Вторая смена начинается в 13:30.",
@@ -1887,10 +1800,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Ночная смена сообщила, что госпожа Леман спала беспокойно.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Извините за беспокойство, доктор Крамер. Говорит Юсуф, отделение 4B. Речь о господине Брандте, палата 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Ему 82 года, во вторник его прооперировали на тазобедренном суставе. С тех пор он почти не вставал.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Я беспокоюсь. За последний час его состояние заметно ухудшилось. Боюсь, что это что-то с лёгкими.",
-    "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "Повторяю: два литра кислорода через носовую канюлю, приподнять верхнюю часть тела. Вы будете через десять минут.",
-    "SIT | Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.": "Да, всё хорошо. Слушай, ты не мог бы взять мою утреннюю смену в субботу? Ко мне сестра приезжает из Измира.",
-    "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "Доброе утро, госпожа Хоффман, это Элиф. К сожалению, я заболела и сегодня не смогу выйти на утреннюю смену."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Я беспокоюсь. За последний час его состояние заметно ухудшилось. Боюсь, что это что-то с лёгкими."
    }
   }
  }
