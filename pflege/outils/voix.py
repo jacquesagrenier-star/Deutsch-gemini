@@ -14,7 +14,8 @@ pflege-examen sur pflege/VOIX.md (les deux sessions partent ensemble).
 LA FABRICATION EST CELLE DU DTZ ET DU TELC (visuel/prototype/dtz/outils/voix.py : la synthese de audio/generer.py,
 la sonie de audio/normaliser.py), sans les modifier. Ce qui change :
   - un fichier par phrase, pas par piste : l'app rejoue une replique seule (jouer son role, remettre dans l'ordre)
-    ou les enchaine (ecouter) ; une replique recoit ses voisines en contexte (previous_text / next_text) ;
+    ou les enchaine (ecouter) ; une replique recoit la precedente en contexte (previous_text ; pas de next_text,
+    qui coupait la fin) ;
   - la voix d'un personnage vient de pflege/sources/voix.json ; Aurora garde les reglages du cours, les
     personnages ceux du dialogue (stabilite 0,40, style 0,45) ;
   - la voix dit la « lecture » en lettres quand le texte a des chiffres ; ces lectures sont aussi versees dans
@@ -169,6 +170,10 @@ def main():
     ajouts, conflits = verser_lectures(liste)
     print("Lectures versees dans audio/lectures/de.json : %d ajouts%s" % (ajouts, (", %d conflits laisses tels quels : %s" % (len(conflits), " | ".join(conflits))) if conflits else ""))
     V.normaliser.FF = V.normaliser.ffmpeg()
+    # depuis un worktree, la cle vit a la racine du depot principal (jamais copiee ni affichee)
+    secret = os.path.join(V.PRINCIPAL, "elevenlabs.secret")
+    if not os.environ.get("ELEVENLABS_API_KEY") and os.path.exists(secret):
+        os.environ["ELEVENLABS_API_KEY"] = io.open(secret, encoding="utf-8").read().strip()
     cle_api = V.generer.cle_api()
     os.makedirs(SORTIE, exist_ok=True)
     depense = 0
@@ -178,7 +183,10 @@ def main():
                 print("Plafond atteint (%d + %d > %d) : arret avant %s." % (depense, len(dit), a.plafond, cle))
                 break
             try:
-                fabriquer_un(vid, qui == "aurora", dit, avant, apres, cle_api, os.path.join(SORTIE, f))
+                # sans le texte suivant : avec next_text, 11 repliques sur 775 finissaient coupees net (CLIC,
+                # lot du 14 nov.), la voix enchainant sur une suite qui n'est pas dans le fichier ; refaites sans,
+                # toutes propres du premier coup
+                fabriquer_un(vid, qui == "aurora", dit, avant, None, cle_api, os.path.join(SORTIE, f))
             except V.generer.TexteBloque as e:
                 print("    REFUSE par ElevenLabs (%s) : %s" % (cle, e))
                 continue
