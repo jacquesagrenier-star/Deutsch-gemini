@@ -189,7 +189,13 @@ const T = (o, champ) => (GB && o[champ + "_gb"] != null) ? o[champ + "_gb"] : o[
 // pflege/sources/dialogues/), au meme format de noeuds ; leurs personnes : conversation/soins/personnes.json
 // (pflege/outils/visages.py). Les neuf langues d'interface des Soins ; hors des Soins, rien ne change.
 const SOINS = Q.get("soins") === "1" && LANGUE === "de";
-const LANGUES_UI = SOINS ? ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"] : ["fr", "en", "ar"];
+// LES CONVERSATIONS DANS TOUTES LES LANGUES D'INTERFACE (ligne 106, 15 nov. 2026, regle de Jacques du 12 oct. « toutes les
+// langues au meme niveau ») : les quatre conversations de Premiers pas sont traduites dans les langues d'interface de
+// chaque app ; l'allemand appris a les neuf de l'app (sauf l'espagnol, en essai), l'espagnol appris fr, en, pt, ar, de.
+// Une conversation sans la langue retombe sur le francais (loc, trad), comme avant.
+const LANGUES_UI = SOINS ? ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]
+                 : LANGUE === "de" ? ["fr", "en", "ar", "tr", "uk", "fa", "pt", "pl", "ru"]
+                 : LANGUE === "es" ? ["fr", "en", "ar", "pt", "de"] : ["fr", "en", "ar"];
 const LANG = LANGUES_UI.includes(Q.get("lang")) ? Q.get("lang") : "fr";
 document.documentElement.lang = LANG;
 document.documentElement.dir = (LANG === "ar" || LANG === "fa") ? "rtl" : "ltr";
@@ -315,6 +321,47 @@ const UI_SOINS = {
    terminer: "Закончить", une_minute: "1 минута", trois_minutes: "3 минуты", de: "Немецкий", introuvable: "Этого диалога пока нет.",
    pardon: "Простите?", continuer: "Дальше", soins_surtitre: "Уход", soins_titre: "Диалоги в отделении", soins_ligne: "Твоя роль: {qui} · {niv} · {m} моментов" }
 };
+// Les textes d'ecran des six langues des Soins servent aussi aux conversations ordinaires (ligne 106), avec les libelles
+// qui leur manquaient (UI_PLUS) ; l'allemand est la langue d'interface de l'espagnol appris.
+const UI_PLUS = {
+ tr: { maquette: "Taslak", conversations: "Konuşmalar", jouer: "Bir konuşma oyna", surtitre: "Konuşma · {niv}", etape: " · {n}. adım",
+   poli: "kibar hitap", de: "Almanca", es: "İspanyolca", en: "İngilizce", gb: "İngilizce (İngiliz)", pp: "İlk adımlar", voyage: "A1 yolculuğu",
+   ligne_etape: "{n}. adım · {niv} · {m} an", ligne: "{niv} · {m} an", introuvable: "Bu konuşma henüz yok." },
+ uk: { maquette: "Макет", conversations: "Розмови", jouer: "Зіграти розмову", surtitre: "Розмова · {niv}", etape: " · крок {n}",
+   poli: "ввічливо", de: "Німецька", es: "Іспанська", en: "Англійська", gb: "Англійська (британська)", pp: "Перші кроки", voyage: "Подорож A1",
+   ligne_etape: "Крок {n} · {niv} · моментів: {m}", ligne: "{niv} · моментів: {m}", introuvable: "Цієї розмови ще немає." },
+ fa: { maquette: "پیش‌نمونه", conversations: "گفت‌وگوها", jouer: "یک گفت‌وگو بازی کن", surtitre: "گفت‌وگو · {niv}", etape: " · گام {n}",
+   poli: "مؤدبانه", de: "آلمانی", es: "اسپانیایی", en: "انگلیسی", gb: "انگلیسی (بریتانیایی)", pp: "گام‌های نخست", voyage: "سفر A1",
+   ligne_etape: "گام {n} · {niv} · {m} لحظه", ligne: "{niv} · {m} لحظه", introuvable: "این گفت‌وگو هنوز وجود ندارد." },
+ pt: { maquette: "Protótipo", conversations: "Conversas", jouer: "Praticar uma conversa", surtitre: "Conversa · {niv}", etape: " · etapa {n}",
+   poli: "registro formal", de: "Alemão", es: "Espanhol", en: "Inglês", gb: "Inglês (britânico)", pp: "Primeiros passos", voyage: "A viagem A1",
+   ligne_etape: "Etapa {n} · {niv} · {m} momentos", ligne: "{niv} · {m} momentos", introuvable: "Esta conversa ainda não existe." },
+ pl: { maquette: "Makieta", conversations: "Rozmowy", jouer: "Zagraj rozmowę", surtitre: "Rozmowa · {niv}", etape: " · etap {n}",
+   poli: "forma grzecznościowa", de: "Niemiecki", es: "Hiszpański", en: "Angielski", gb: "Angielski (brytyjski)", pp: "Pierwsze kroki", voyage: "Podróż A1",
+   ligne_etape: "Etap {n} · {niv} · momenty: {m}", ligne: "{niv} · momenty: {m}", introuvable: "Tej rozmowy jeszcze nie ma." },
+ ru: { maquette: "Макет", conversations: "Разговоры", jouer: "Разыграть разговор", surtitre: "Разговор · {niv}", etape: " · этап {n}",
+   poli: "вежливо", de: "Немецкий", es: "Испанский", en: "Английский", gb: "Английский (британский)", pp: "Первые шаги", voyage: "Путешествие A1",
+   ligne_etape: "Этап {n} · {niv} · моментов: {m}", ligne: "{niv} · моментов: {m}", introuvable: "Этого разговора пока нет." },
+ de: { retour: "Zurück", maquette: "Entwurf", conversations: "Gespräche", jouer: "Ein Gespräch spielen",
+   surtitre: "Gespräch · {niv}", etape: " · Etappe {n}", commencer: "Starten", sans_filet: "Ohne Hilfe: nur mit dem Mikrofon",
+   toi_reponds: "<b>Du antwortest</b>: Tippe auf eine Antwort oder sag sie ins Mikrofon. Das Gespräch folgt deiner Wahl.",
+   pas_de_reco: "Dieser Browser erkennt keine Sprache: Tippe auf die Antworten.",
+   a_toi: "Du bist dran: Tippe auf deine Antwort oder sag sie.", a_toi_micro: "Du bist dran: Antworte ins Mikrofon.", a_toi_touche: "Du bist dran: Tippe auf deine Antwort.",
+   sos: "Ich weiß nicht, was ich sagen soll", ecoute: "Ich höre zu …", micro_indispo: "Das Mikrofon ist nicht verfügbar: Tippe auf deine Antwort.",
+   rien: "Nichts zu hören. Versuch es noch einmal, näher am Handy.", micro_aria: "Ins Mikrofon antworten",
+   tu_as_dit: "<b>Du hast gesagt: „{t}“.</b> Das ist keine der Antworten: Sag sie noch einmal oder tippe darauf.",
+   reecouter: "Noch einmal hören", traduire: "Übersetzen", toi: "Du", bien: "Gut gemacht!", parfait: "Perfekt, ohne einen einzigen Fehler!",
+   erreurs: "Deine Fehler, korrigiert", phrases: "Deine Sätze", rejouer: "Noch einmal mit anderen Antworten spielen",
+   terminer: "Beenden", une_minute: "1 Minute", trois_minutes: "3 Minuten", poli: "höflich",
+   de: "Deutsch", es: "Spanisch", en: "Englisch", gb: "Englisch (britisch)", pp: "Erste Schritte", voyage: "Die A1-Reise",
+   ligne_etape: "Etappe {n} · {niv} · {m} Momente", ligne: "{niv} · {m} Momente", introuvable: "Dieses Gespräch gibt es noch nicht.",
+   pardon: "Wie bitte?", continuer: "Weiter" }
+};
+Object.keys(UI_PLUS).forEach(l => {
+  const base = {};
+  Object.keys(UI_SOINS[l] || {}).forEach(k => { if (!/^soins_/.test(k)) base[k] = UI_SOINS[l][k]; });
+  UI[l] = Object.assign({}, UI[l] || {}, base, UI_PLUS[l]);
+});
 if (SOINS) Object.keys(UI_SOINS).forEach(l => { UI[l] = Object.assign({}, UI[l] || {}, UI_SOINS[l]); });
 const u = (k, v) => (UI[LANG] && UI[LANG][k] != null ? UI[LANG][k] : UI.fr[k]).replace(/\{(\w+)\}/g, (m, n) => (v || {})[n] != null ? v[n] : m);
 // le texte dans la langue d'interface : un objet {fr, en, ar} ; ou le champ de meme nom d'une replique, a cote de « fr »
@@ -372,6 +419,10 @@ function prixEnChiffres(c, l){
   if (l === "fr"){
     if (LANG === "en") return LANGUE === "en" ? "$" + s.replace(",", ".") : "€" + s.replace(",", ".");
     if (LANG === "ar") return s + (LANGUE === "en" ? " دولار" : " يورو");
+    // ligne 106 : l'euro dans chaque langue d'interface (l'anglais appris, en dollars, n'a que fr, en, ar)
+    const EURO = { tr: " avro", uk: " євро", ru: " евро", pl: " euro", pt: " euros", de: " Euro" };
+    if (LANG === "fa") return s.replace(/[0-9]/g, c => "۰۱۲۳۴۵۶۷۸۹"[c]).replace(",", "٫") + " یورو";
+    if (EURO[LANG]) return s + EURO[LANG];
     return s + (LANGUE === "en" ? " $" : " euros");
   }
   return s + (l === "de" ? " Euro" : " euros");
