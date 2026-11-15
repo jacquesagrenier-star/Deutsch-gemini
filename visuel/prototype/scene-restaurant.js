@@ -1287,35 +1287,6 @@ window.SCENE = {
    "ru": "свеча"
   },
   {
-   "id": "salat",
-   "mot": "Salat",
-   "genre": "der",
-   "pluriel": "Salate",
-   "niveau": "A1",
-   "theme": "obst_gemuese_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": "tisch-2",
-   "devant": 0,
-   "boites": [
-    [
-     96,
-     56.5,
-     4,
-     3.5
-    ]
-   ],
-   "fr": "salade",
-   "en": "lettuce, salad",
-   "tr": "salata",
-   "uk": "салат",
-   "fa": "کاهو، سالاد",
-   "pt": "alface, salada",
-   "ar": "خس، سلطة",
-   "pl": "sałata, sałatka",
-   "ru": "салат"
-  },
-  {
    "id": "tisch-2",
    "mot": "Tisch",
    "genre": "der",
@@ -1563,10 +1534,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     33.5,
-     51.5,
-     7,
-     3.5
+     25,
+     50.3,
+     10.5,
+     4.4
     ]
    ],
    "fr": "chemise",

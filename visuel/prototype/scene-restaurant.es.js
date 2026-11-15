@@ -1219,34 +1219,6 @@ window.SCENE = {
    "latam": null
   },
   {
-   "id": "salat",
-   "mot": "ensalada",
-   "genre": "la",
-   "pluriel": "las ensaladas",
-   "niveau": "A1",
-   "theme": "la_comida",
-   "personne": null,
-   "aussi": [],
-   "sur": "tisch-2",
-   "devant": 0,
-   "boites": [
-    [
-     96,
-     56.5,
-     4,
-     3.5
-    ]
-   ],
-   "fr": "la salade",
-   "en": "salad",
-   "pt": "a salada",
-   "ar": "سلطة",
-   "pl": "sałata, sałatka",
-   "ru": "салат",
-   "de": "der Salat",
-   "latam": null
-  },
-  {
    "id": "tisch-2",
    "mot": "mesa",
    "genre": "la",
@@ -1487,10 +1459,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     33.5,
-     51.5,
-     7,
-     3.5
+     25,
+     50.3,
+     10.5,
+     4.4
     ]
    ],
    "fr": "la chemise",
