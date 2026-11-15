@@ -151,3 +151,25 @@ Toutes les entrées de la source, chacune avec `_question` recopiée et **exacte
     PYTHONIOENCODING=utf-8 python interface-es/outils/exos.py controle interface-es/lots/exos-NN.es.json
 
 → 0 FAUTE. Jamais `exos.py pose` ni `exos.py extraire`.
+
+---
+
+## Les scènes (`sources/scenes-NN.json`)
+
+Chaque entrée : `cle` (« scène¦groupe¦clé », à recopier), `fr` (le texte à rendre), `en` (sa version
+anglaise, parfois vide). Le groupe dit ce qu'est le texte :
+
+- `champs¦alt` — la description de l'image pour les lecteurs d'écran : une traduction fidèle,
+  complète ; `champs¦consigne`, `champs¦nom_vue`, `champs¦autre_vue` — des textes courts de l'écran ;
+- `couches¦A2` (…) — le titre d'une couche de questions ;
+- `questions¦<niveau> | <phrase allemande>` — l'explication montrée après la réponse à cette phrase :
+  les mots et formes allemands restent allemands (`<b>der</b>`), **réécris contre l'espagnol** ce qui
+  compare au français ;
+- `sens¦<niveau> | <phrase allemande>` — le sens de la phrase allemande, en espagnol (traduis l'allemand
+  de la clé ; le français est une aide).
+
+Rends `lots/scenes-NN.es.json` : `{cle: texte espagnol}` avec toutes les clés. Contrôle :
+
+    PYTHONIOENCODING=utf-8 python interface-es/outils/scenes_textes.py controle interface-es/lots/scenes-NN.es.json
+
+→ 0 FAUTE. Jamais `scenes_textes.py pose` ni `extraire`.
