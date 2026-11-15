@@ -54,6 +54,8 @@ RELEVE = """() => ({
     boutonsEsVisibles: Array.from(document.querySelectorAll('.setup-choice[onclick*="selectUiLangChoice(\\'es\\')"]'))
         .filter(b => !b.classList.contains("hidden")).length,
     titre: t("plc_titre"),
+    tradCachee: sensAvantReponse({ traductionApres_es: true, translation: "fr", translation_es: "cuándo" }),
+    tradNormale: sensAvantReponse({ translation: "fr", translation_es: "cuando" }),
     carte: (() => {
         try{
             const th = themesComptes()[0]; const lv = th.levels[Object.keys(th.levels)[0]];
@@ -117,6 +119,8 @@ def main():
     attendu(b["boutonsEsVisibles"] == 2, "2 : les deux boutons Español ne sont pas visibles")
     attendu(b["repliEs"] == "es,en,fr", "2 : le repli de l'espagnol n'est pas es,en,fr")
     attendu(b["titre"] == "Encuentra tu nivel", "2 : t() ne parle pas espagnol")
+    attendu(b["tradCachee"] == "" and b["tradNormale"] == "cuando", "2 : la traduction d'une serie wann/wenn n'est pas gardee pour apres")
+    attendu(a["tradCachee"] != "", "1 : hors espagnol, la traduction d'une serie wann/wenn a disparu")
     attendu(c["uiLangs"] == "fr,en,pt,ar,de" and c["essai"] is False, "3 : l'espagnol appris a change")
     attendu(d["uiLangs"] == "fr,es" and d["repliEs"] == "es,fr", "4 : l'anglais appris a change")
     for k, r in res.items():

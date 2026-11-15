@@ -24,6 +24,12 @@ s'ouvre toujours en anglais. L'ouverture à tous = retirer la garde dans `UI_LAN
 | 7 | Pflege (`LANGUES` des outils Pflege, dossier `pflege/sources/traductions/es/`, `tests/pflege*.py`), et le lecteur des dialogues des Soins (`visuel/prototype/conversation.html?soins=1` : `LANGUES_UI` + un bloc `UI_SOINS.es`, 35 textes). En dernier : la session Pflege architecture prévient quand le contenu est figé (d13-d26, paires, cartes-phrases arrivent la semaine du 15 nov.) | à faire |
 | 8 | Contrôles mécaniques (0 suspect, collisions 41 départagées / 47 acceptées), relecture croisée d'un échantillon de 467 entrées + étalonnage (`relecture/BILAN.md`) | fait ; relecture native à venir |
 
+**Pflege, l'examen et le manuel** (15 nov., par pflege-examen, branche `claude/pflege-examen-1cc3a5`,
+commit d69d3fb, pas encore sur main) : interface de telc-pflege (226 clés), examen blanc 1 (160 aides),
+examen blanc 2 (déjà en 10 langues), manuel (sommaire, chapitres 0-4, 7, 8 ; 5 et 6 chez manuel-sprechen).
+Termes douteux : `pflege/examen/RELIRE-LANGUES.md`. **À vérifier au navigateur** (`telc-pflege/telc.html?lang=es`)
+quand les deux branches seront sur main : l'ouverture de `dtz/commun.js` à `lang=es` est ici.
+
 ## Le câblage (lot 0)
 
 Ce que `outils/cablage_es.py` a changé dans `index.html` (il refuse de tourner deux fois) :

@@ -36955,6 +36955,14 @@ function langueEtRepli(lang){
 // La presence de base+"_fr" suffit a decider. Sans cette detection, demander
 // la traduction francaise d'un verbe renvoyait vide, et demander sa phrase
 // francaise renvoyait de l'allemand.
+// La traduction d'un exercice MONTREE AVANT LA REPONSE. En espagnol, quelques series la gardent pour apres
+// (traductionApres_es, interface-es/outils/traduction_apres.py) : cuándo / cuando, pero / sino donneraient
+// la reponse a wann / wenn, aber / sondern, que le francais ne distingue pas (regle du chef, 15 nov. 2026).
+function sensAvantReponse(ex){
+    if(ex && ex.traductionApres_es && getUiLang() === "es") return "";
+    return texteTraduit(ex, "translation");
+}
+
 function texteTraduit(obj, base, lang){
     if(!obj) return "";
     const frSuffixe = obj[base + "_fr"] !== undefined;
@@ -40205,7 +40213,7 @@ function phraseHorsLigne(it){
         if(!ex || !Array.isArray(ex.answers) || !ex.answers.length) return null;
         const opts = valeurTraduite(ex, "options");
         return Object.assign(base, {
-            q: ex.question || "", sens: texteTraduit(ex, "translation") || "", indice: texteTraduit(ex, "hint") || "",
+            q: ex.question || "", sens: sensAvantReponse(ex) || "", indice: texteTraduit(ex, "hint") || "",
             options: Array.isArray(opts) && opts.length ? opts.map(String) : null,
             rep: ex.answers.map(String), tol: !!ex.tolerant,
             corr: valeurTraduite(ex, "correct") || ex.correct || "", expl: texteTraduit(ex, "explanation") || "",
@@ -54230,7 +54238,7 @@ function questionGrammairePlc(ex){
         choix = choix.filter(o => o === bonne || !acceptees.has(sansAccentsPlc(o)));
     }
     choix = melangerPlc(choix.slice(0, 4).indexOf(bonne) >= 0 ? choix.slice(0, 4) : [bonne].concat(choix.filter(o => o !== bonne).slice(0, 3)));
-    return { type: "gram", texte: ex.question, sous: texteTraduit(ex, "translation") || "", indice: indice,
+    return { type: "gram", texte: ex.question, sous: sensAvantReponse(ex) || "", indice: indice,
              options: choix, bonne: choix.indexOf(bonne), sujet: texteTraduit(ex, "topic") || ex.topic || "" };
 }
 const GRAMMAIRE_PLC = {};
@@ -70940,7 +70948,7 @@ function montrerCartePhrase(item){
         const q = creer("p", "cp-phrase", texteTraduit(ex, "question"));
         q.setAttribute("lang", langueDe);
         el.appendChild(q);
-        const sens = texteTraduit(ex, "translation");
+        const sens = sensAvantReponse(ex);
         if(sens) el.appendChild(creer("p", "cp-sens", sens));
         const indice = texteTraduit(ex, "hint");
         if(indice) el.appendChild(creer("p", "cp-indice", indice));
@@ -79572,8 +79580,12 @@ function loadExercise(){
     // exercices a blocs n'ont rien a y mettre : la consigne EST la phrase a
     // produire, elle est deja au-dessus.
     const tradEl = document.getElementById("questionTranslation");
-    tradEl.textContent = translation ? tf("question_translation_label", { translation }) : "";
-    tradEl.classList.toggle("hidden", !translation);
+    // LA TRADUCTION NE DONNE PAS LA REPONSE (15 nov. 2026, interface-es/outils/traduction_apres.py) :
+    // en espagnol, cuándo / cuando, pero / sino trahiraient wann / wenn, aber / sondern, que le
+    // francais ne distingue pas. Ces exercices ne montrent leur traduction qu'apres la reponse.
+    const tradApres = uiLang === "es" && !!ex.traductionApres_es;
+    tradEl.textContent = (translation && !tradApres) ? tf("question_translation_label", { translation }) : "";
+    tradEl.classList.toggle("hidden", !translation || tradApres);
     document.getElementById("hint").textContent = hint;
 
     const input = document.getElementById("answer");
@@ -79774,6 +79786,15 @@ function checkAnswer(){
         }
     }
     answered = true;
+    // La traduction gardee pour apres la reponse (voir loadExercise).
+    if(uiLang === "es" && ex.traductionApres_es){
+        const tradApres = texteTraduit(ex, "translation");
+        const tradEl = document.getElementById("questionTranslation");
+        if(tradApres && tradEl){
+            tradEl.textContent = tf("question_translation_label", { translation: tradApres });
+            tradEl.classList.remove("hidden");
+        }
+    }
     const enRattrapage = !!ex.estRattrapage;
     if(!enRattrapage) exerciseResults.push({ topic: ex.topic, correct: isCorrect, ex });
     if(!enRattrapage && !revisionErreursEnCours) noterGrammaireBilan(exerciseJeuNom, isCorrect);   // v920
