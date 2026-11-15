@@ -57151,8 +57151,14 @@ function retourDeSoins(){ ouvrirToutLeContenu(); }
 // nulle part. Une scene a plusieurs vues s'ouvre par sa premiere vue (champ « vues »). On n'ajoute ici une scene que
 // lorsque sa session l'annonce construite et controlee.
 const SCENES_SOINS = [
-    { nom: "soins-zimmer",   titre: "Das Patientenzimmer", fr: "La chambre du patient" },
-    { nom: "soins-aufnahme", titre: "Die Aufnahme",        fr: "L'admission" }
+    { nom: "soins-zimmer",         titre: "Im Patientenzimmer", fr: "La chambre du patient" },
+    { nom: "soins-stationszimmer", titre: "Im Stationszimmer",  fr: "Le poste de soins" },
+    { nom: "soins-bad",            titre: "Das Bad",            fr: "La salle de bain, la toilette" },
+    { nom: "soins-uebergabe",      titre: "Die Übergabe",       fr: "La relève au lit du patient" },
+    { nom: "soins-aufnahme",       titre: "Die Aufnahme",       fr: "L'admission" },
+    { nom: "soins-visite",         titre: "Die Visite",         fr: "La visite médicale" },
+    { nom: "soins-altenheim",      titre: "Im Altenheim",       fr: "La maison de retraite" },
+    { nom: "soins-ambulant",       titre: "Bei Frau Kowalski",  fr: "Les soins à domicile" }
 ];
 function ouvrirSceneSoins(nom){
     if(!soinsActifs()) return;
