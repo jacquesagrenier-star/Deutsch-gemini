@@ -53,7 +53,7 @@ const JOURS = {
   fr: ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"],
   pt: ["segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado", "domingo"],
   tr: ["pazartesi", "salı", "çarşamba", "perşembe", "cuma", "cumartesi", "pazar"],
-  uk: ["понеділок", "вівторок", "середа", "четвер", "п'ятниця", "субота", "неділя"],
+  uk: ["понеділок", "вівторок", "середа", "четвер", "пʼятниця", "субота", "неділя"],
   ru: ["понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"],
   pl: ["poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota", "niedziela"],
   fa: ["دوشنبه", "سه‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه", "شنبه", "یکشنبه"],
@@ -93,7 +93,7 @@ const MOIS_CAS = {
 };
 const JOURS_CAS = {
   // accusatif apres la preposition (у середу, во вторник, we wtorek), genre (був / була / було)
-  uk: {acc: ["у понеділок", "у вівторок", "у середу", "у четвер", "у п'ятницю", "у суботу", "у неділю"], g: ["m", "m", "f", "m", "f", "f", "f"], etait: {m: "був", f: "була"}},
+  uk: {acc: ["у понеділок", "у вівторок", "у середу", "у четвер", "у пʼятницю", "у суботу", "у неділю"], g: ["m", "m", "f", "m", "f", "f", "f"], etait: {m: "був", f: "була"}},
   ru: {acc: ["в понедельник", "во вторник", "в среду", "в четверг", "в пятницу", "в субботу", "в воскресенье"], g: ["m", "m", "f", "m", "f", "f", "n"], etait: {m: "был", f: "была", n: "было"}},
   pl: {acc: ["w poniedziałek", "we wtorek", "w środę", "w czwartek", "w piątek", "w sobotę", "w niedzielę"], g: ["m", "m", "f", "m", "m", "f", "f"], etait: {m: "był", f: "była"}},
   // le passe turc : pazartesiydi, salıydı, pazardı
@@ -134,7 +134,7 @@ const DUREE = {
   fr: {20: "vingt minutes", 30: "une demi-heure", 45: "quarante-cinq minutes", 60: "une heure", 90: "une heure et demie", 120: "deux heures", 180: "trois heures"},
   pt: {20: "vinte minutos", 30: "meia hora", 45: "quarenta e cinco minutos", 60: "uma hora", 90: "uma hora e meia", 120: "duas horas", 180: "três horas"},
   tr: {20: "yirmi dakika", 30: "yarım saat", 45: "kırk beş dakika", 60: "bir saat", 90: "bir buçuk saat", 120: "iki saat", 180: "üç saat"},
-  uk: {20: "двадцять хвилин", 30: "пів години", 45: "сорок п'ять хвилин", 60: "годину", 90: "півтори години", 120: "дві години", 180: "три години"},
+  uk: {20: "двадцять хвилин", 30: "пів години", 45: "сорок пʼять хвилин", 60: "годину", 90: "півтори години", 120: "дві години", 180: "три години"},
   ru: {20: "двадцать минут", 30: "полчаса", 45: "сорок пять минут", 60: "час", 90: "полтора часа", 120: "два часа", 180: "три часа"},
   pl: {20: "dwadzieścia minut", 30: "pół godziny", 45: "czterdzieści pięć minut", 60: "godzinę", 90: "półtorej godziny", 120: "dwie godziny", 180: "trzy godziny"},
   fa: {20: "بیست دقیقه", 30: "نیم ساعت", 45: "چهل و پنج دقیقه", 60: "یک ساعت", 90: "یک ساعت و نیم", 120: "دو ساعت", 180: "سه ساعت"},
