@@ -53,8 +53,8 @@ window.SCENE = {
    "en": "the painting",
    "pt": "a pintura",
    "ar": "لوحة، رسم",
-   "pl": "kolor",
-   "ru": "цвет, краска",
+   "pl": "farba",
+   "ru": "краска",
    "de": "die Malerei, das Gemälde",
    "latam": null
   },

@@ -755,16 +755,20 @@ window.SCENE = {
      1.6
     ]
    ],
-   "fr": "bonnet",
-   "en": "cap, hat",
-   "tr": "bere",
-   "uk": "шапка",
-   "fa": "کلاه بافتنی",
-   "pt": "gorro",
-   "ar": "قبعة صوفية",
-   "pl": "czapka",
-   "ru": "шапка",
-   "es": "el gorro"
+   "fr": "casquette",
+   "en": "cap",
+   "tr": "kasket",
+   "uk": "кепка",
+   "fa": "کلاه کپ",
+   "pt": "boné",
+   "ar": "قبعة",
+   "pl": "czapka z daszkiem",
+   "ru": "кепка",
+   "es": "la gorra",
+   "zone": {
+    "pt_mot": "o boné",
+    "es_mot": "la gorra"
+   }
   },
   {
    "id": "brille",

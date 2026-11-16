@@ -46,7 +46,7 @@ window.SCENE = {
      28.5
     ]
    ],
-   "fr": "couleur"
+   "fr": "peinture"
   },
   {
    "id": "wand",

@@ -541,9 +541,9 @@ window.SCENE = {
   },
   {
    "id": "muetze",
-   "mot": "gorro",
+   "mot": "boné",
    "genre": "o",
-   "pluriel": "os gorros",
+   "pluriel": "os bonés",
    "niveau": "A1",
    "theme": "roupa_pt",
    "personne": null,
@@ -558,7 +558,7 @@ window.SCENE = {
      1.6
     ]
    ],
-   "fr": "bonnet"
+   "fr": "casquette"
   },
   {
    "id": "brille",

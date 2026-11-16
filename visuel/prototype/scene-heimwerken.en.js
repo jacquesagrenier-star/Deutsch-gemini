@@ -26,11 +26,10 @@ window.SCENE = {
   },
   {
    "id": "farbe",
-   "mot": "color",
+   "mot": "paint",
    "genre": "",
-   "pluriel": "colors",
+   "pluriel": "paints",
    "niveau": "A1",
-   "theme": "everyday_a1",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -43,12 +42,8 @@ window.SCENE = {
      28.5
     ]
    ],
-   "fr": "couleur",
-   "es": "el color",
-   "gb": {
-    "mot": "colour",
-    "pluriel": "colours"
-   }
+   "fr": "peinture",
+   "es": "la pintura"
   },
   {
    "id": "wand",

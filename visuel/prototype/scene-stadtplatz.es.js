@@ -713,8 +713,8 @@ window.SCENE = {
    "en": "the cap",
    "pt": "o boné",
    "ar": "قبّعة رياضية، كاسكيت",
-   "pl": "czapka",
-   "ru": "шапка",
+   "pl": "czapka z daszkiem",
+   "ru": "кепка",
    "de": "die Kappe (Schirmmütze)",
    "latam": null
   },

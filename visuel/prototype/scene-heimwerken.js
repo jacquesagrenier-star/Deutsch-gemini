@@ -51,16 +51,19 @@ window.SCENE = {
      28.5
     ]
    ],
-   "fr": "couleur",
-   "en": "color",
-   "tr": "renk",
-   "uk": "колір",
-   "fa": "رنگ",
-   "pt": "cor",
-   "ar": "لون",
-   "pl": "kolor",
-   "ru": "цвет, краска",
-   "es": "el color"
+   "fr": "peinture",
+   "en": "paint",
+   "tr": "boya",
+   "uk": "фарба",
+   "fa": "رنگ (نقاشی)",
+   "pt": "tinta",
+   "ar": "طلاء",
+   "pl": "farba",
+   "ru": "краска",
+   "es": "la pintura",
+   "zone": {
+    "en_mot": "paint"
+   }
   },
   {
    "id": "wand",

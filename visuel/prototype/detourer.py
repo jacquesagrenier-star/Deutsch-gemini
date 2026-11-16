@@ -364,8 +364,10 @@ def unites(z, W, H):
 def empreinte(z, image):
     """Ce qui decide du masque d'une zone : si rien n'a change, le cache vaut."""
     st = os.stat(image)
-    utile = {k: z.get(k) for k in ("sam", "points_sam", "boite", "boites", "ellipses",
+    utile = {k: z.get(k) for k in ("sam", "points_sam", "boite", "boites", "ellipses", "polygone",
                                    "plein", "rigide", "fond", "enveloppe", "affiner")}
+    if utile["polygone"] is None:      # 15 nov. 2026 : une zone sans polygone garde son empreinte d'avant
+        del utile["polygone"]
     return hashlib.sha1(json.dumps([CHAINE, st.st_size, int(st.st_mtime), utile],
                                    sort_keys=True).encode()).hexdigest()[:16]
 
@@ -559,7 +561,30 @@ def arbitrer(zones, M, lab, cv2, np, journal):
                 M[j] &= ~M[z["id"]]
                 faits.add(frozenset((z["id"], j)))
                 journal.append(["devant_de", z["id"], j, n])
-    ids = [i for i in M if not P[i].get("plein") and not P[i].get("ellipses") and not P[i].get("detail")]
+    # LES PERSONNES DEVANT LES FONDS PLEINS (15 nov. 2026, revue des images,
+    # ligne 107). Un fond « plein » (le mur, le sol, la cagette du marche) est
+    # son rectangle, et l'arbitrage ne le touchait pas : le rectangle du fenouil
+    # prenait le visage d'Anna, celui du rideau la tete de la serveuse, et le
+    # contour ambre traversait la personne. Une personne VISIBLE est devant tout
+    # fond plein : son masque (et ce qu'elle porte, « sur » elle) en est retire.
+    # Pas si le fond est pose sur elle, ni pour une partie du corps en ellipses.
+    # Les zones « rigides » (porte, fenetre) gardent leur forme reconstruite :
+    # la porte entiere derriere la tete de Mark est un choix du 6 oct.
+    personnes = [i for i in M if (P[i].get("mot") in PERSONNES or P[i].get("personne"))
+                 and not P[i].get("ellipses") and not P[i].get("polygone") and not P[i].get("plein") and not P[i].get("detail")]
+    for f in [i for i in M if P[i].get("plein") and i not in personnes]:
+        for pid in personnes:
+            if f in parents(pid) or pid in parents(f) or frozenset((pid, f)) in faits:
+                continue
+            porte = M[pid].copy()
+            for k in M:
+                if pid in parents(k) and not P[k].get("plein") and not P[k].get("ellipses") and not P[k].get("polygone"):
+                    porte |= M[k]
+            n = int((M[f] & porte).sum())
+            if n:
+                M[f] &= ~porte
+                journal.append(["personne devant", pid, f, n])
+    ids = [i for i in M if not P[i].get("plein") and not P[i].get("ellipses") and not P[i].get("polygone") and not P[i].get("detail")]
     cadres = {}
     for i in ids:
         ys, xs = np.nonzero(M[i].any(axis=1))[0], np.nonzero(M[i].any(axis=0))[0]
@@ -615,7 +640,7 @@ def oter_miettes(m8, z, lab, cv2, np):
     et, sur un vetement, une QUEUE : une bande de moins de 13 px qui pend du
     vetement (la veste du gardien du musee descendait le long du pied de la
     chaise). Un vetement n'a pas de partie aussi fine -- sauf ceux de MINCES."""
-    if z.get("plein") or z.get("ellipses") or (z.get("sam") and isinstance(z["sam"][0], (list, tuple))):
+    if z.get("plein") or z.get("ellipses") or z.get("polygone") or (z.get("sam") and isinstance(z["sam"][0], (list, tuple))):
         return m8, 0
     otes = 0
     if z["mot"] in VETEMENTS and z["mot"] not in MINCES:
@@ -785,6 +810,19 @@ def tracer(m8, z, cv2, np):
                 break
         if d:
             polys.append(d)
+    # UN PETIT OBJET A TOUJOURS SON CONTOUR (15 nov. 2026, revue des images) :
+    # le stylo noir de la classe, la craie de kyoushitsu, les lunettes du
+    # monsieur de la place avaient un masque mais aucun morceau de plus de
+    # MIETTE px2 -- touches, ils n'allumaient rien. On trace alors chacun de ses
+    # morceaux (les deux verres des lunettes), au plus fin.
+    if not polys and contours:
+        for k, c in enumerate(contours):
+            if hier[0][k][3] >= 0 or cv2.contourArea(c) < 12:
+                continue
+            p = cv2.approxPolyDP(c, 0.8, True).reshape(-1, 2).astype(np.float64)
+            d = adoucir(p, np, 0) if len(p) >= 3 else None
+            if d:
+                polys.append(d)
     return polys
 
 
@@ -816,7 +854,7 @@ def detourer_entier(z, sam, modele, image, W, H, noyau, cv2, np, bilans):
 
 
 def sam_a_faire_ids(zones):
-    return [z["id"] for z in zones if not (z.get("plein") or z.get("ellipses"))]
+    return [z["id"] for z in zones if not (z.get("plein") or z.get("ellipses") or z.get("polygone"))]
 
 
 def nettoyer(m, z, pixels, noyau, noyau_rigide, cv2, np):
@@ -848,6 +886,15 @@ def dessine(z, W, H, cv2, np):
         for x, y, bw, bh in boites_de(z):
             cv2.rectangle(m, (round(W * x / 100), round(H * y / 100)),
                           (round(W * (x + bw) / 100), round(H * (y + bh) / 100)), 1, -1)
+    elif z.get("polygone"):
+        # UN POLYGONE (15 nov. 2026, revue des images) : quand SAM ne sait pas
+        # separer l'objet de ce qui le touche (le plateau de la table du petit
+        # dejeuner, que SAM prenait avec le sol), on le dessine : une liste de
+        # sommets [x, y] en % de l'image, ou une liste de telles listes.
+        polys = z["polygone"] if isinstance(z["polygone"][0][0], (list, tuple)) else [z["polygone"]]
+        for pl in polys:
+            pts = np.array([[round(W * x / 100), round(H * y / 100)] for x, y in pl], np.int32)
+            cv2.fillPoly(m, [pts], 1)
     else:
         for cx, cy, rx, ry in z["ellipses"]:
             cv2.ellipse(m, (round(W * cx / 100), round(H * cy / 100)),
@@ -907,11 +954,11 @@ def main():
     if not sam_a_faire_ids(a_detourer) and os.path.exists(ancien):
         # Rien a redetourer : le journal de l'affinage d'avant reste vrai.
         journal["affiner"] = json.load(io.open(ancien, encoding="utf-8")).get("affiner", [])
-    sam_a_faire = [z for z in a_detourer if not (z.get("plein") or z.get("ellipses"))]
+    sam_a_faire = [z for z in a_detourer if not (z.get("plein") or z.get("ellipses") or z.get("polygone"))]
     print("  %d zones, %d a detourer (%d par SAM), image %dx%d"
           % (len(zones), len(a_detourer), len(sam_a_faire), W, H))
     for z in a_detourer:
-        if z.get("plein") or z.get("ellipses"):
+        if z.get("plein") or z.get("ellipses") or z.get("polygone"):
             m = dessine(z, W, H, cv2, np)
             m = nettoyer(m, z, pixels, noyau, noyau_rigide, cv2, np)
             masques[z["id"]] = (empreinte(z, image), m, m)
