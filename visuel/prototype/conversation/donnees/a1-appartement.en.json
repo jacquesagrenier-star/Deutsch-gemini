@@ -5,58 +5,58 @@
  "registre": "poli",
  "titre": {"fr": "La visite d'un appartement"},
  "intro": {"fr": "Tu cherches un appartement à Boston. La propriétaire te fait visiter : les pièces, le loyer, la date. À toi de poser les bonnes questions."},
- "personnes": ["vermieter_besichtigung"],
+ "personnes": ["vermieterin"],
  "debut": "door",
  "noeuds": {
   "door": {
    "dit": [
     {"recit": {"fr": "Une vieille maison en brique du South End, au deuxième étage. La propriétaire t'attend devant la porte."}},
-    {"qui": "vermieter_besichtigung", "air": "sourire", "t": "Hi! Are you here to see the apartment?", "fr": "Bonjour ! Vous venez voir l'appartement ?"}
+    {"qui": "vermieterin", "air": "sourire", "t": "Hi! Are you here to see the apartment?", "fr": "Bonjour ! Vous venez voir l'appartement ?"}
    ],
    "choix": [
     {"t": "Yes, hi! I'm looking for an apartment.", "t_gb": "Yes, hello! I'm looking for a flat.", "fr": "Oui, bonjour ! Je cherche un appartement.", "va": "living",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "Come on in!", "fr": "Entrez !"}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Come on in!", "fr": "Entrez !"}]},
     {"t": "Yes. We talked on the phone yesterday.", "t_gb": "Yes. We spoke on the phone yesterday.", "fr": "Oui. Nous nous sommes parlé au téléphone hier.", "va": "living",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "Oh, right! Come on in!", "fr": "Ah oui ! Entrez !"}]}
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Oh, right! Come on in!", "fr": "Ah oui ! Entrez !"}]}
    ]
   },
   "living": {
-   "dit": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "This is the living room. Lots of light, right?", "fr": "Voici le salon. Plein de lumière, non ?"}],
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "This is the living room. Lots of light, right?", "fr": "Voici le salon. Plein de lumière, non ?"}],
    "choix": [
     {"t": "Yes, it's very nice! How big is the apartment?", "t_gb": "Yes, it's very nice! How big is the flat?", "fr": "Oui, il est très beau ! L'appartement fait quelle taille ?", "va": "kitchen",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "About six hundred square feet: one bedroom, a kitchen and a bathroom.", "fr": "Environ six cents pieds carrés (à peu près 55 m²) : une chambre, une cuisine et une salle de bain."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "About six hundred square feet: one bedroom, a kitchen and a bathroom.", "fr": "Environ six cents pieds carrés (à peu près 55 m²) : une chambre, une cuisine et une salle de bain."}]},
     {"t": "Yes, but it's a little small.", "t_gb": "Yes, but it's a bit small.", "fr": "Oui, mais il est un peu petit.", "va": "kitchen",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "Small? For Boston, it's big!", "fr": "Petit ? Pour Boston, c'est grand !"}]}
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Small? For Boston, it's big!", "fr": "Petit ? Pour Boston, c'est grand !"}]}
    ]
   },
   "kitchen": {
-   "dit": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "Here's the kitchen, and the bathroom is over there.", "fr": "Voici la cuisine, et la salle de bain est là-bas."}],
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Here's the kitchen, and the bathroom is over there.", "fr": "Voici la cuisine, et la salle de bain est là-bas."}],
    "choix": [
     {"t": "The kitchen is nice. Is there a washing machine?", "fr": "La cuisine est jolie. Il y a une machine à laver ?", "va": "questions",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "attentive", "t": "No, but there's a laundromat around the corner.", "fr": "Non, mais il y a une laverie au coin de la rue."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "No, but there's a laundromat around the corner.", "fr": "Non, mais il y a une laverie au coin de la rue."}]},
     {"t": "Is heat included?", "t_gb": "Is heating included?", "fr": "Le chauffage est compris ?", "va": "questions",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "Yes, heat and hot water are included.", "fr": "Oui, le chauffage et l'eau chaude sont compris."}]}
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Yes, heat and hot water are included.", "fr": "Oui, le chauffage et l'eau chaude sont compris."}]}
    ]
   },
   "questions": {
-   "dit": [{"qui": "vermieter_besichtigung", "air": "attentive", "t": "Any other questions?", "fr": "D'autres questions ?"}],
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "Any other questions?", "fr": "D'autres questions ?"}],
    "choix": [
     {"t": "Yes. How much is the rent?", "fr": "Oui. Le loyer, c'est combien ?", "va": "decide",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "attentive", "t": "It's $2,400 a month.", "dit": "It's twenty-four hundred dollars a month.", "fr": "C'est 2 400 dollars par mois."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "It's $2,400 a month.", "dit": "It's twenty-four hundred dollars a month.", "fr": "C'est 2 400 dollars par mois."}]},
     {"t": "Yes. When is it available?", "fr": "Oui. Il est disponible quand ?", "va": "decide",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "attentive", "t": "On December 1st.", "dit": "On December first.", "fr": "Le 1er décembre."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "On December 1st.", "dit": "On December first.", "fr": "Le 1er décembre."}]},
     {"faux": true, "t": "Yes. Is the apartment free in December?", "t_gb": "Yes. Is the flat free in December?", "fr": "Oui. L'appartement est libre en décembre ?",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "perplexe", "t": "Free? Ha, I wish! You mean available. Yes, from December first.", "fr": "Gratuit ? Ha, si seulement ! Vous voulez dire disponible. Oui, à partir du premier décembre."}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Free? Ha, I wish! You mean available. Yes, from December first.", "fr": "Gratuit ? Ha, si seulement ! Vous voulez dire disponible. Oui, à partir du premier décembre."}],
      "aide": {"fr": "Faux ami : <b>free</b> veut dire libre… mais aussi et surtout <b>gratuit</b> ! Pour un appartement libre : <b>available</b>, « When is it available? »."}}
    ]
   },
   "decide": {
-   "dit": [{"qui": "vermieter_besichtigung", "air": "attentive", "t": "So, what do you think?", "fr": "Alors, qu'en pensez-vous ?"}],
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "So, what do you think?", "fr": "Alors, qu'en pensez-vous ?"}],
    "choix": [
     {"t": "I love it! I'd like to take it.", "fr": "Il me plaît beaucoup ! Je voudrais le prendre.", "va": null,
-     "puis": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "Great! I'll send you the lease.", "fr": "Super ! Je vous envoie le bail."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Great! I'll send you the lease.", "fr": "Super ! Je vous envoie le bail."}]},
     {"t": "I'm not sure yet. Can I call you tomorrow?", "fr": "Je ne sais pas encore. Je peux vous appeler demain ?", "va": null,
-     "puis": [{"qui": "vermieter_besichtigung", "air": "attentive", "t": "Sure. But don't wait too long: a lot of people want it.", "fr": "Bien sûr. Mais n'attendez pas trop : beaucoup de gens le veulent."}]}
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Sure. But don't wait too long: a lot of people want it.", "fr": "Bien sûr. Mais n'attendez pas trop : beaucoup de gens le veulent."}]}
    ]
   }
  },

@@ -5,58 +5,58 @@
  "registre": "usted",
  "titre": {"fr": "La visite d'un appartement"},
  "intro": {"fr": "Tu cherches un appartement (un piso) à Madrid. La propriétaire te fait visiter : les pièces, le loyer, la date. À toi de poser les bonnes questions."},
- "personnes": ["vermieter_besichtigung"],
+ "personnes": ["vermieterin"],
  "debut": "puerta",
  "noeuds": {
   "puerta": {
    "dit": [
     {"recit": {"fr": "Un vieil immeuble du quartier de Chamberí, au deuxième étage. La propriétaire t'attend devant la porte."}},
-    {"qui": "vermieter_besichtigung", "air": "sourire", "t": "¡Buenos días! ¿Viene a ver el piso?", "fr": "Bonjour ! Vous venez voir l'appartement ?"}
+    {"qui": "vermieterin", "air": "sourire", "t": "¡Buenos días! ¿Viene a ver el piso?", "fr": "Bonjour ! Vous venez voir l'appartement ?"}
    ],
    "choix": [
     {"t": "Sí, buenos días. Busco un piso.", "fr": "Oui, bonjour. Je cherche un appartement.", "va": "salon",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "¡Pase, pase!", "fr": "Entrez, entrez !"}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "¡Pase, pase!", "fr": "Entrez, entrez !"}]},
     {"t": "Sí. Hablamos ayer por teléfono.", "fr": "Oui. Nous nous sommes parlé hier au téléphone.", "va": "salon",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "¡Ah, sí! ¡Pase, pase!", "fr": "Ah oui ! Entrez, entrez !"}]}
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "¡Ah, sí! ¡Pase, pase!", "fr": "Ah oui ! Entrez, entrez !"}]}
    ]
   },
   "salon": {
-   "dit": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "Este es el salón. Tiene mucha luz, ¿verdad?", "fr": "Voici le salon. Il est très lumineux, n'est-ce pas ?"}],
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Este es el salón. Tiene mucha luz, ¿verdad?", "fr": "Voici le salon. Il est très lumineux, n'est-ce pas ?"}],
    "choix": [
     {"t": "Sí, es muy bonito. ¿Cuántos metros tiene el piso?", "fr": "Oui, il est très beau. L'appartement fait combien de mètres carrés ?", "va": "cocina",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "Cincuenta metros: dos habitaciones, cocina y baño.", "fr": "Cinquante mètres carrés : deux chambres, cuisine et salle de bain."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Cincuenta metros: dos habitaciones, cocina y baño.", "fr": "Cinquante mètres carrés : deux chambres, cuisine et salle de bain."}]},
     {"t": "Sí, pero es un poco pequeño.", "fr": "Oui, mais il est un peu petit.", "va": "cocina",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "¿Pequeño? ¡Para Madrid es grande!", "fr": "Petit ? Pour Madrid, c'est grand !"}]}
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "¿Pequeño? ¡Para Madrid es grande!", "fr": "Petit ? Pour Madrid, c'est grand !"}]}
    ]
   },
   "cocina": {
-   "dit": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "Aquí está la cocina, y ahí, el baño.", "fr": "Voici la cuisine, et là, la salle de bain."}],
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Aquí está la cocina, y ahí, el baño.", "fr": "Voici la cuisine, et là, la salle de bain."}],
    "choix": [
     {"t": "La cocina es muy bonita. ¿Hay ascensor en el edificio?", "fr": "La cuisine est très jolie. Il y a un ascenseur dans l'immeuble ?", "va": "alquiler",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "attentive", "t": "No, no hay ascensor. Pero es un segundo piso: no son muchas escaleras.", "fr": "Non, il n'y a pas d'ascenseur. Mais c'est au deuxième, ça ne fait pas beaucoup de marches."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "No, no hay ascensor. Pero es un segundo piso: no son muchas escaleras.", "fr": "Non, il n'y a pas d'ascenseur. Mais c'est au deuxième, ça ne fait pas beaucoup de marches."}]},
     {"t": "¿Hay lavadora?", "fr": "Il y a une machine à laver ?", "va": "alquiler",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "Sí, está en la cocina.", "fr": "Oui, elle est dans la cuisine."}]}
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Sí, está en la cocina.", "fr": "Oui, elle est dans la cuisine."}]}
    ]
   },
   "alquiler": {
-   "dit": [{"qui": "vermieter_besichtigung", "air": "attentive", "t": "¿Tiene alguna pregunta?", "fr": "Vous avez une question ?"}],
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "¿Tiene alguna pregunta?", "fr": "Vous avez une question ?"}],
    "choix": [
     {"t": "Sí. ¿Cuánto es el alquiler?", "fr": "Oui. Le loyer, c'est combien ?", "va": "decision",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "attentive", "t": "Novecientos euros al mes, con los gastos de comunidad.", "fr": "Neuf cents euros par mois, charges de copropriété comprises."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Novecientos euros al mes, con los gastos de comunidad.", "fr": "Neuf cents euros par mois, charges de copropriété comprises."}]},
     {"t": "Sí. ¿Desde cuándo está libre el piso?", "fr": "Oui. L'appartement est libre à partir de quand ?", "va": "decision",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "attentive", "t": "Desde el 1 de diciembre.", "dit": "Desde el uno de diciembre.", "fr": "À partir du 1er décembre."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Desde el 1 de diciembre.", "dit": "Desde el uno de diciembre.", "fr": "À partir du 1er décembre."}]},
     {"faux": true, "t": "Sí. ¿Cuánto es el alquiler con las cargas?", "fr": "Oui. Le loyer, c'est combien avec les charges ?",
-     "puis": [{"qui": "vermieter_besichtigung", "air": "perplexe", "t": "¿Las cargas? Ah, ¿los gastos? Están incluidos.", "fr": "Les « cargas » ? Ah, les charges ? Elles sont comprises."}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "¿Las cargas? Ah, ¿los gastos? Están incluidos.", "fr": "Les « cargas » ? Ah, les charges ? Elles sont comprises."}],
      "aide": {"fr": "Faux ami : les charges d'un appartement se disent <b>los gastos</b> (de comunidad). <b>Una carga</b>, c'est un chargement, un poids à porter."}}
    ]
   },
   "decision": {
-   "dit": [{"qui": "vermieter_besichtigung", "air": "attentive", "t": "¿Y bien? ¿Le interesa el piso?", "fr": "Alors ? L'appartement vous intéresse ?"}],
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "¿Y bien? ¿Le interesa el piso?", "fr": "Alors ? L'appartement vous intéresse ?"}],
    "choix": [
     {"t": "Sí, mucho. ¡Me encanta!", "fr": "Oui, beaucoup. Je l'adore !", "va": null,
-     "puis": [{"qui": "vermieter_besichtigung", "air": "sourire", "t": "¡Estupendo! Entonces le mando el contrato.", "fr": "Formidable ! Alors je vous envoie le contrat."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "¡Estupendo! Entonces le mando el contrato.", "fr": "Formidable ! Alors je vous envoie le contrat."}]},
     {"t": "Todavía no lo sé. ¿Puedo llamarle mañana?", "fr": "Je ne sais pas encore. Je peux vous appeler demain ?", "va": null,
-     "puis": [{"qui": "vermieter_besichtigung", "air": "attentive", "t": "Claro. Pero no tarde mucho: hay mucha gente interesada.", "fr": "Bien sûr. Mais ne tardez pas trop : il y a beaucoup de gens intéressés."}]}
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Claro. Pero no tarde mucho: hay mucha gente interesada.", "fr": "Bien sûr. Mais ne tardez pas trop : il y a beaucoup de gens intéressés."}]}
    ]
   }
  },
