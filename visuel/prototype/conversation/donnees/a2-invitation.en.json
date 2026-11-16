@@ -7,7 +7,7 @@
   "fr": "Une invitation"
  },
  "intro": {
-  "fr": "Javier fête ses cinquante ans samedi et t'invite à son barbecue. Accepte, ou refuse poliment avec une raison et propose autre chose."
+  "fr": "Javier fête ses cinquante ans samedi, avec un barbecue chez lui. Javier, ton collègue cuisinier, t'invite : accepte, ou refuse poliment avec une raison et propose autre chose."
  },
  "personnes": [
   "a22_javier"
@@ -17,7 +17,7 @@
   "suite_fr": {
    "cle": "reponse",
    "oui": "Tu as accepté l'invitation de Javier : samedi à 17 h, au 24 Maple Street, et tu sais quoi apporter.",
-   "non": "Tu as refusé poliment, avec une raison, et proposé à Javier un déjeuner la semaine prochaine pour fêter ses cinquante ans."
+   "non": "Tu as refusé poliment, avec une raison, et proposé à Javier un déjeuner lundi prochain, le jour de fermeture du restaurant, pour fêter ses cinquante ans."
   }
  },
  "noeuds": {
@@ -25,7 +25,7 @@
    "dit": [
     {
      "recit": {
-      "fr": "Mercredi, en fin de journée. Javier s'arrête devant ton bureau, tout sourire."
+      "fr": "Mercredi, après le service du soir. Javier range ses couteaux et se tourne vers toi, tout sourire."
      }
     },
     {
@@ -364,36 +364,52 @@
     {
      "qui": "a22_javier",
      "air": "question",
-     "t": "Which day is good for you?",
-     "fr": "Quel jour t'arrange ?"
+     "t": "Which day? We're closed on Mondays, so Monday is our only free day!",
+     "fr": "Quel jour ? On est fermés le lundi, donc lundi est notre seul jour libre !"
     }
    ],
    "choix": [
     {
-     "t": "How about Tuesday?",
-     "fr": "Mardi, ça te va ?",
+     "t": "Then Monday is perfect.",
+     "fr": "Alors lundi, c'est parfait.",
      "va": "time",
      "puis": [
       {
        "qui": "a22_javier",
        "air": "sourire",
-       "t": "Tuesday works for me.",
-       "fr": "Mardi, ça me va."
+       "t": "Monday it is!",
+       "fr": "Va pour lundi !"
       }
      ]
     },
     {
-     "t": "Is Thursday OK for you?",
-     "fr": "Jeudi, ça te convient ?",
+     "t": "Monday is good for me too.",
+     "fr": "Lundi me convient aussi.",
      "va": "time",
      "puis": [
       {
        "qui": "a22_javier",
        "air": "sourire",
-       "t": "Thursday is perfect.",
-       "fr": "Jeudi, c'est parfait."
+       "t": "Great. Monday, then.",
+       "fr": "Super. Lundi, alors."
       }
      ]
+    },
+    {
+     "faux": true,
+     "t": "For Monday, I am agree.",
+     "fr": "Pour lundi, je « suis » d'accord. (mal formé)",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "You are … agree? Oh, you agree! Great.",
+       "fr": "Tu « es agree » ? Ah, tu es d'accord ! Super."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« agree » est un verbe</b> : « I agree », jamais « I am agree ». Ici, dis simplement : « Then Monday is perfect. »"
+     }
     }
    ]
   },
@@ -402,53 +418,51 @@
     {
      "qui": "a22_javier",
      "air": "question",
-     "t": "What time? I usually take my break around noon.",
-     "fr": "À quelle heure ? Je prends en général ma pause vers midi.",
-     "t_gb": "What time? I usually take my break around twelve."
+     "t": "What time? I like to sleep late on my day off.",
+     "fr": "À quelle heure ? J'aime bien dormir tard, mon jour de congé."
     }
    ],
    "choix": [
     {
-     "t": "Noon is fine. Let's meet at the front door.",
-     "t_gb": "Twelve is fine. Let's meet at the front door.",
-     "fr": "Midi, c'est très bien. Retrouvons-nous à la porte d'entrée.",
+     "t": "Is one o'clock OK?",
+     "fr": "Une heure, ça te va ?",
      "va": "place",
      "puis": [
       {
        "qui": "a22_javier",
        "air": "sourire",
-       "t": "Deal!",
-       "fr": "Ça marche !"
+       "t": "One o'clock is perfect.",
+       "fr": "Une heure, c'est parfait."
       }
      ]
     },
     {
-     "t": "Can we go at twelve thirty? I have a meeting before.",
-     "fr": "On peut y aller à midi et demi ? J'ai une réunion avant.",
+     "t": "How about twelve thirty?",
+     "fr": "Midi et demi, ça te dit ?",
      "va": "place",
      "puis": [
       {
        "qui": "a22_javier",
        "air": "sourire",
-       "t": "Sure, twelve thirty it is.",
-       "fr": "Bien sûr, va pour midi et demi."
+       "t": "Twelve thirty works. I'll be awake, I promise!",
+       "fr": "Midi et demi, ça marche. Je serai réveillé, promis !"
       }
      ]
     },
     {
      "faux": true,
-     "t": "At twelve hours.",
-     "fr": "À douze heures (pendant douze heures).",
+     "t": "At thirteen hours.",
+     "fr": "À treize heures (pendant treize heures).",
      "puis": [
       {
        "qui": "a22_javier",
        "air": "amuse",
-       "t": "Twelve hours? That's a long lunch! You mean twelve o'clock.",
-       "fr": "Douze heures ? C'est un long déjeuner ! Tu veux dire à midi."
+       "t": "Thirteen hours? That's a long lunch! You mean one o'clock.",
+       "fr": "Treize heures ? C'est un long déjeuner ! Tu veux dire à une heure."
       }
      ],
      "aide": {
-      "fr": "<b>« hours » mesure une durée</b> (twelve hours = douze heures de temps). L'heure qu'il est : « twelve o'clock », « noon » ou « twelve thirty »."
+      "fr": "<b>« hours » mesure une durée</b>, et l'anglais compte les heures jusqu'à douze dans la conversation : 13 h se dit « one o'clock »."
      }
     }
    ]
@@ -458,14 +472,14 @@
     {
      "qui": "a22_javier",
      "air": "sourire",
-     "t": "And where do you want to go? You choose!",
-     "fr": "Et où veux-tu aller ? C'est toi qui choisis !"
+     "t": "And where do you want to go? You choose! For once, I'm not cooking.",
+     "fr": "Et où veux-tu aller ? C'est toi qui choisis ! Pour une fois, ce n'est pas moi qui cuisine."
     }
    ],
    "choix": [
     {
-     "t": "I know a good Italian restaurant near the office.",
-     "fr": "Je connais un bon restaurant italien près du bureau.",
+     "t": "I know a good Italian restaurant near the station.",
+     "fr": "Je connais un bon restaurant italien près de la gare.",
      "va": "bye",
      "puis": [
       {
@@ -484,8 +498,8 @@
       {
        "qui": "a22_javier",
        "air": "sourire",
-       "t": "The Thai place on the corner. You'll love it.",
-       "fr": "Le thaïlandais du coin. Tu vas adorer."
+       "t": "There's a little Mexican place near the station. You'll love it.",
+       "fr": "Il y a un petit mexicain près de la gare. Tu vas adorer."
       }
      ]
     }
@@ -505,8 +519,8 @@
     {
      "qui": "a22_javier",
      "air": "sourire",
-     "t": "So, lunch next week. And say hi to your sister!",
-     "fr": "Alors, déjeuner la semaine prochaine. Et salue ta sœur de ma part !",
+     "t": "So, lunch on Monday. And say hi to your sister!",
+     "fr": "Alors, déjeuner lundi. Et salue ta sœur de ma part !",
      "si": {
       "reponse": "non"
      }
@@ -530,8 +544,8 @@
      ]
     },
     {
-     "t": "Thanks for the invitation. See you tomorrow!",
-     "fr": "Merci pour l'invitation. À demain !",
+     "t": "Thanks for the invitation. See you tomorrow in the kitchen!",
+     "fr": "Merci pour l'invitation. À demain en cuisine !",
      "si": {
       "reponse": "oui"
      },

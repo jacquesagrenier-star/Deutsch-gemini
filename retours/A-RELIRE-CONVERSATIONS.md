@@ -187,14 +187,15 @@ Points à regarder en priorité :
 - **Les faits locaux** : Girokonto à 4,90 € par mois, remboursement de 25 % à partir d'une heure de retard (de) ; le café
   offert par le contrôleur (Renfe, Amtrak) ; Boston → Harrisburg avec changement à New York ; « Le he despertado » (leísmo).
 - **Le médecin qui décroche lui-même** (son assistante n'est pas arrivée) : naturel dans les trois pays ?
+
 ## Lot a2-2 (A2 : le travail, la santé, l'école, les loisirs)
 
-Écrit le 16 nov. 2026 (session conv-a2-2), sans voix. Berlin, Madrid, Boston (américain, britannique par `t_gb`).
+Écrit le 16 nov. 2026 (session conv-a2-2), sans voix. Selon la règle des visages, le premier jour et la pause se passent dans la cuisine d'un restaurant (Carmen cheffe, Javier cuisinier). Berlin, Madrid, Boston (américain, britannique par `t_gb`).
 
 | Conversation | Registre (de / es / en) | Allemand | Espagnol | Anglais |
 |---|---|---|---|---|
-| a2-premier-jour (premier jour de travail) | Sie / tú / poli | à relire | à relire | à relire (us, gb) |
-| a2-pause (la pause café entre collègues) | du / tú / familier | à relire | à relire | à relire (us, gb) |
+| a2-premier-jour (premier jour en cuisine de restaurant) | du / tú / poli | à relire | à relire | à relire (us, gb) |
+| a2-pause (la pause entre deux services, en cuisine) | du / tú / familier | à relire | à relire | à relire (us, gb) |
 | a2-invitation (accepter ou refuser) | du / tú / familier | à relire | à relire | à relire (us, gb) |
 | a2-sortie (préparer une fête à deux, comme au DTZ) | du / tú / familier | à relire | à relire | à relire (us, gb) |
 | a2-symptomes (chez le médecin) | Sie / usted / poli | à relire | à relire | à relire (us, gb) |
@@ -206,6 +207,6 @@ Points à regarder en priorité :
 
 Points à regarder en priorité :
 
-- **Allemand** : la Zuzahlung expliquée au comptoir (« einen kleinen Teil ») ; « Ab dem dritten Tag ein Attest » (la règle varie selon les écoles) ; « allergisch auf » donné comme faute (dit dans le sud et en Autriche, mais « gegen » est la norme) ; « Herr Doktor » au médecin de famille ; Javier propose le « du » au premier jour, Frau Krüger reste au « Sie ».
+- **Allemand** : la Zuzahlung expliquée au comptoir (« einen kleinen Teil ») ; « Ab dem dritten Tag ein Attest » (la règle varie selon les écoles) ; « allergisch auf » donné comme faute (dit dans le sud et en Autriche, mais « gegen » est la norme) ; « Herr Doktor » au médecin de famille ; la cheffe propose le « du » dès l'accueil (l'usage en cuisine).
 - **Espagnol** : la faute « El sábado he ido al parque » (norme péninsulaire : « fui », mais des Madrilènes le disent) ; « excusa » donné comme faute pour le justificante ; à la crèche, l'éducatrice au usted (« Pasen, pasen ») alors qu'on tutoie souvent les parents ; « la píldora » (sens contraceptif) ; « Es un virus de estómago » ; « Un placer » entre collègues ; le barbecue « en la terraza », calle del Olmo à Lavapiés.
 - **Anglais** : la fièvre en Fahrenheit dans une réponse juste (« a hundred and one », Celsius en britannique) ; « I feel sick » pour la nausée (net en britannique, vague en américain) ; « third grade » → « Year Four » ; en britannique, des usages américains gardés (copay, insurance card, doctor's note, permission slip) ; « peg » et « settling-in day » à confirmer ; les fautes « It's not grave », « I'm here for the essay », « I rest with her ».

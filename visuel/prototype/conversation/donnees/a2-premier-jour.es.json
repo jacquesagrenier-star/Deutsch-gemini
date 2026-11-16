@@ -7,10 +7,10 @@
   "fr": "Le premier jour de travail"
  },
  "intro": {
-  "fr": "C'est ton premier jour dans une petite agence de Madrid. Ta responsable, Elena, t'accueille : réponds-lui, pose tes questions et fais connaissance avec ton collègue."
+  "fr": "C'est ton premier jour comme aide de cuisine dans un restaurant de Madrid. Carmen, la cheffe, t'accueille : réponds-lui, pose tes questions et fais connaissance avec ton collègue."
  },
  "personnes": [
-  "a22_elena",
+  "a22_carmen",
   "a22_javier"
  ],
  "debut": "llegada",
@@ -19,24 +19,24 @@
    "dit": [
     {
      "recit": {
-      "fr": "Lundi matin, neuf heures moins dix. Tu sonnes à la porte d'une petite agence, dans le centre de Madrid."
+      "fr": "Mardi matin, dix heures vingt. Tu pousses la porte de service d'un restaurant, dans le centre de Madrid."
      }
     },
     {
-     "qui": "a22_elena",
+     "qui": "a22_carmen",
      "air": "sourire",
-     "t": "¡Hola! Tú empiezas hoy con nosotros, ¿verdad? Soy Elena, la responsable del equipo. Y de tú, por favor, ¿eh?",
-     "fr": "Bonjour ! C'est toi qui commences aujourd'hui avec nous, n'est-ce pas ? Je suis Elena, la responsable de l'équipe. Et on se tutoie, hein ?"
+     "t": "¡Hola! Tú empiezas hoy de ayudante de cocina, ¿verdad? Soy Carmen, la jefa de cocina. Aquí nos hablamos todos de tú, ¿eh?",
+     "fr": "Bonjour ! C'est toi qui commences aujourd'hui comme aide de cuisine, n'est-ce pas ? Je suis Carmen, la cheffe. Ici, tout le monde se tutoie, hein ?"
     }
    ],
    "choix": [
     {
-     "t": "¡Hola, Elena! Sí, hoy es mi primer día.",
-     "fr": "Bonjour, Elena ! Oui, aujourd'hui c'est mon premier jour.",
-     "va": "puesto",
+     "t": "¡Hola, Carmen! Sí, hoy es mi primer día.",
+     "fr": "Bonjour, Carmen ! Oui, aujourd'hui c'est mon premier jour.",
+     "va": "taquilla",
      "puis": [
       {
-       "qui": "a22_elena",
+       "qui": "a22_carmen",
        "air": "sourire",
        "t": "¡Pues me alegro de verte! Pasa, pasa.",
        "fr": "Eh bien, contente de te voir ! Entre, entre."
@@ -46,13 +46,13 @@
     {
      "t": "Hola. Sí, soy yo. Llego un poco pronto.",
      "fr": "Bonjour. Oui, c'est moi. J'arrive un peu en avance.",
-     "va": "puesto",
+     "va": "taquilla",
      "puis": [
       {
-       "qui": "a22_elena",
+       "qui": "a22_carmen",
        "air": "sourire",
-       "t": "Mejor pronto que tarde. Pasa, te enseño la oficina.",
-       "fr": "Mieux vaut tôt que tard. Entre, je te montre le bureau."
+       "t": "Mejor pronto que tarde. Pasa, te enseño la cocina.",
+       "fr": "Mieux vaut tôt que tard. Entre, je te montre la cuisine."
       }
      ]
     },
@@ -62,7 +62,7 @@
      "fr": "Oui, aujourd'hui c'est mon premier jour.",
      "puis": [
       {
-       "qui": "a22_elena",
+       "qui": "a22_carmen",
        "air": "amuse",
        "t": "Tu primer día, sí. ¡Y seguro que va a ir muy bien!",
        "fr": "Ton premier jour, oui. Et je suis sûre qu'il va très bien se passer !"
@@ -74,180 +74,218 @@
     }
    ]
   },
-  "puesto": {
+  "taquilla": {
    "dit": [
     {
-     "qui": "a22_elena",
+     "qui": "a22_carmen",
      "air": "sourire",
-     "t": "Mira, esta es tu mesa, al lado de la ventana. El ordenador ya está listo. ¿Has recibido la contraseña?",
-     "fr": "Regarde, voici ton bureau, à côté de la fenêtre. L'ordinateur est déjà prêt. Tu as reçu le mot de passe ?"
+     "t": "Mira, esta es tu taquilla. Dentro tienes la chaquetilla y el delantal. ¿Has traído zapatos de trabajo?",
+     "fr": "Regarde, voici ton casier. Dedans, tu as la veste de cuisine et le tablier. Tu as apporté des chaussures de travail ?"
     }
    ],
    "choix": [
     {
-     "t": "Sí, la he recibido esta mañana por correo.",
-     "fr": "Oui, je l'ai reçu ce matin par e-mail.",
-     "va": "horario",
+     "t": "Sí, los tengo aquí, en la mochila.",
+     "fr": "Oui, je les ai ici, dans mon sac à dos.",
+     "va": "higiene",
      "puis": [
       {
-       "qui": "a22_elena",
+       "qui": "a22_carmen",
        "air": "sourire",
-       "t": "Perfecto. Entonces ya puedes entrar.",
-       "fr": "Parfait. Alors tu peux déjà te connecter."
+       "t": "Perfecto. Te cambias aquí y dejas tus cosas en la taquilla.",
+       "fr": "Parfait. Tu te changes ici et tu laisses tes affaires dans le casier."
       }
      ]
     },
     {
-     "t": "No, todavía no he recibido nada.",
-     "fr": "Non, je n'ai encore rien reçu.",
-     "va": "horario",
+     "t": "No, todavía no tengo. ¿Dónde los compro?",
+     "fr": "Non, je n'en ai pas encore. Où est-ce que je les achète ?",
+     "va": "higiene",
      "puis": [
       {
-       "qui": "a22_elena",
+       "qui": "a22_carmen",
        "air": "attentive",
-       "t": "No pasa nada. Te la mando ahora mismo al móvil.",
-       "fr": "Ce n'est rien. Je te l'envoie tout de suite sur ton portable."
+       "t": "Hay una tienda de ropa de trabajo en esta calle. Hoy te dejo unos: aquí siempre hay.",
+       "fr": "Il y a un magasin de vêtements de travail dans cette rue. Aujourd'hui, je t'en prête une paire : ici, il y en a toujours."
       }
      ]
     },
     {
      "faux": true,
-     "t": "Sí, la he recibido para correo.",
-     "fr": "Oui, je l'ai reçu pour e-mail.",
+     "t": "Sí, los zapatos son en la mochila.",
+     "fr": "Oui, les chaussures sont dans le sac à dos.",
      "puis": [
       {
-       "qui": "a22_elena",
+       "qui": "a22_carmen",
        "air": "perplexe",
-       "t": "¿Para correo? Ah, por correo. Vale, perfecto.",
-       "fr": "Pour e-mail ? Ah, par e-mail. D'accord, parfait."
+       "t": "¿Son…? Ah, que están en la mochila. Vale.",
+       "fr": "Elles sont… ? Ah, elles sont dans le sac à dos. D'accord."
       }
      ],
      "aide": {
-      "fr": "Le moyen se dit avec <b>por</b> : « <b>por</b> correo », « por teléfono ». « Para » indique le but ou le destinataire."
+      "fr": "Pour dire où se trouve une chose : <b>estar</b>. « Los zapatos <b>están</b> en la mochila »."
      }
     }
    ]
   },
-  "horario": {
+  "higiene": {
    "dit": [
     {
-     "qui": "a22_elena",
-     "air": "sourire",
-     "t": "Trabajamos de 9:00 a 18:00, con una hora para comer. Los viernes salimos a las 15:00. ¿Tienes alguna pregunta?",
-     "fr": "Nous travaillons de 9 h à 18 h, avec une heure pour déjeuner. Le vendredi, nous sortons à 15 h. Tu as une question ?",
-     "dit": "Trabajamos de nueve a seis, con una hora para comer. Los viernes salimos a las tres. ¿Tienes alguna pregunta?"
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "Muy importante, la higiene: las manos siempre limpias, el pelo recogido y sin anillos ni reloj.",
+     "fr": "Très important, l'hygiène : les mains toujours propres, les cheveux attachés, et ni bagues ni montre."
     }
    ],
    "choix": [
     {
-     "t": "Sí. ¿A qué hora coméis normalmente?",
-     "fr": "Oui. À quelle heure est-ce que vous déjeunez, d'habitude ?",
-     "va": "tarjeta",
-     "puis": [
-      {
-       "qui": "a22_elena",
-       "air": "sourire",
-       "t": "Sobre las dos. Casi siempre bajamos juntos al bar de la esquina: tienen menú del día.",
-       "fr": "Vers deux heures. Nous descendons presque toujours ensemble au bar du coin : ils ont un menu du jour."
-      }
-     ]
-    },
-    {
-     "t": "¿Puedo trabajar desde casa algún día?",
-     "fr": "Est-ce que je peux travailler de chez moi certains jours ?",
-     "va": "tarjeta",
-     "puis": [
-      {
-       "qui": "a22_elena",
-       "air": "attentive",
-       "t": "Sí, los miércoles, si quieres. Pero el primer mes, mejor aquí, con el equipo.",
-       "fr": "Oui, le mercredi, si tu veux. Mais le premier mois, plutôt ici, avec l'équipe."
-      }
-     ]
-    },
-    {
-     "faux": true,
-     "t": "¿Cuánto horas trabajamos los viernes?",
-     "fr": "Combien d'heures travaillons-nous le vendredi ?",
-     "puis": [
-      {
-       "qui": "a22_elena",
-       "air": "perplexe",
-       "t": "¿Cuántas horas? Seis: de nueve a tres.",
-       "fr": "Combien d'heures ? Six : de neuf heures à trois heures."
-      }
-     ],
-     "aide": {
-      "fr": "<b>Cuánto</b> s'accorde avec le nom : « horas » est féminin pluriel, donc « ¿<b>Cuántas</b> horas? »."
-     }
-    },
-    {
-     "t": "Perdona, ¿puedes repetir el horario, por favor?",
-     "fr": "Pardon, tu peux répéter les horaires, s'il te plaît ?",
+     "t": "Claro. ¿Dónde me lavo las manos?",
+     "fr": "Bien sûr. Où est-ce que je me lave les mains ?",
      "va": "horario",
      "puis": [
       {
-       "qui": "a22_elena",
+       "qui": "a22_carmen",
        "air": "sourire",
-       "t": "Claro. De nueve a seis, y los viernes hasta las tres.",
-       "fr": "Bien sûr. De neuf heures à six heures, et le vendredi jusqu'à trois heures."
+       "t": "Allí, al lado de la puerta. Y otra vez cada vez que cambias de trabajo.",
+       "fr": "Là-bas, à côté de la porte. Et de nouveau chaque fois que tu changes de tâche."
+      }
+     ]
+    },
+    {
+     "t": "De acuerdo. Dejo el reloj en la taquilla.",
+     "fr": "D'accord. Je laisse ma montre dans le casier.",
+     "va": "horario",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Muy bien. Y luego, las manos: allí, al lado de la puerta.",
+       "fr": "Très bien. Et ensuite, les mains : là-bas, à côté de la porte."
+      }
+     ]
+    },
+    {
+     "t": "Perdona, ¿qué significa «recogido»?",
+     "fr": "Pardon, que veut dire « recogido » ?",
+     "va": "higiene",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Así, mira: el pelo atado o dentro del gorro. Y las manos limpias, sin anillos ni reloj.",
+       "fr": "Comme ça, regarde : les cheveux attachés ou sous la toque. Et les mains propres, sans bagues ni montre."
       }
      ],
      "repete": true
     }
    ]
   },
-  "tarjeta": {
+  "horario": {
    "dit": [
     {
-     "qui": "a22_elena",
-     "air": "attentive",
-     "t": "Una cosa más: tu tarjeta de entrada todavía no está lista. ¿Puedes pasar mañana por mi despacho a las 8:45?",
-     "fr": "Encore une chose : ta carte d'entrée n'est pas encore prête. Tu peux passer demain à mon bureau à 8 h 45 ?",
-     "dit": "Una cosa más: tu tarjeta de entrada todavía no está lista. ¿Puedes pasar mañana por mi despacho a las nueve menos cuarto?"
+     "qui": "a22_carmen",
+     "air": "sourire",
+     "t": "Trabajamos con horario partido: de 10:30 a 16:00 y de 18:00 a 23:00. El lunes es el día de descanso. ¿Tienes alguna pregunta?",
+     "fr": "Nous travaillons en horaires coupés : de 10 h 30 à 16 h et de 18 h à 23 h. Le lundi est le jour de repos. Tu as une question ?",
+     "dit": "Trabajamos con horario partido: de diez y media a cuatro y de seis a once. El lunes es el día de descanso. ¿Tienes alguna pregunta?"
     }
    ],
    "choix": [
     {
-     "t": "Claro, mañana a las nueve menos cuarto.",
-     "fr": "Bien sûr, demain à neuf heures moins le quart.",
-     "va": "javier",
+     "t": "Sí. ¿A qué hora comemos nosotros?",
+     "fr": "Oui. À quelle heure est-ce que nous mangeons, nous ?",
+     "va": "manana",
      "puis": [
       {
-       "qui": "a22_elena",
+       "qui": "a22_carmen",
        "air": "sourire",
-       "t": "Eso es. Hoy te abre la puerta Javier.",
-       "fr": "C'est ça. Aujourd'hui, c'est Javier qui t'ouvre la porte."
+       "t": "A las doce y media, todos juntos, antes de abrir. Y se come bien, ¿eh?",
+       "fr": "À midi et demi, tous ensemble, avant d'ouvrir. Et on mange bien, hein ?"
       }
      ]
     },
     {
-     "t": "Sí, no hay problema. ¿Dónde está tu despacho?",
-     "fr": "Oui, pas de problème. Où est ton bureau ?",
-     "va": "javier",
+     "t": "¿Solo descansamos el lunes?",
+     "fr": "Nous ne nous reposons que le lundi ?",
+     "va": "manana",
      "puis": [
       {
-       "qui": "a22_elena",
-       "air": "sourire",
-       "t": "Al fondo del pasillo, la última puerta.",
-       "fr": "Au fond du couloir, la dernière porte."
+       "qui": "a22_carmen",
+       "air": "attentive",
+       "t": "El lunes, y otro día que cambia cada semana. Lo pongo en la lista de la puerta.",
+       "fr": "Le lundi, et un autre jour qui change chaque semaine. Je l'écris sur la liste de la porte."
       }
      ]
     },
     {
      "faux": true,
-     "t": "Vale, mañana a las nueve y cuarto.",
-     "fr": "D'accord, demain à neuf heures et quart.",
+     "t": "¿Cuánto horas trabajamos al día?",
+     "fr": "Combien d'heures travaillons-nous par jour ?",
      "puis": [
       {
-       "qui": "a22_elena",
-       "air": "surprise",
-       "t": "No, no: a las nueve menos cuarto. A las nueve tengo una reunión.",
-       "fr": "Non, non : à neuf heures moins le quart. À neuf heures, j'ai une réunion."
+       "qui": "a22_carmen",
+       "air": "perplexe",
+       "t": "¿Cuántas horas? Unas ocho, con el descanso en medio.",
+       "fr": "Combien d'heures ? Environ huit, avec la pause au milieu."
       }
      ],
      "aide": {
-      "fr": "« Menos cuarto », c'est <b>moins le quart</b> : 8 h 45. « Y cuarto », ce serait 9 h 15."
+      "fr": "<b>Cuánto</b> s'accorde avec le nom : « horas » est féminin pluriel, donc « ¿<b>Cuántas</b> horas? »."
+     }
+    }
+   ]
+  },
+  "manana": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "Una cosa más: mañana el pescado llega temprano. ¿Puedes venir a las 9:45?",
+     "fr": "Encore une chose : demain, le poisson arrive tôt. Tu peux venir à 9 h 45 ?",
+     "dit": "Una cosa más: mañana el pescado llega temprano. ¿Puedes venir a las diez menos cuarto?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Claro, mañana a las diez menos cuarto.",
+     "fr": "Bien sûr, demain à dix heures moins le quart.",
+     "va": "javier",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Eso es. Así ves cómo se limpia el pescado.",
+       "fr": "C'est ça. Comme ça, tu vois comment on prépare le poisson."
+      }
+     ]
+    },
+    {
+     "t": "Sí, no hay problema. ¿Entro por esta puerta?",
+     "fr": "Oui, pas de problème. J'entre par cette porte ?",
+     "va": "javier",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Sí, por la de atrás. Llamas y te abrimos.",
+       "fr": "Oui, par celle de derrière. Tu sonnes et nous t'ouvrons."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Vale, mañana a las diez y cuarto.",
+     "fr": "D'accord, demain à dix heures et quart.",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "surprise",
+       "t": "No, no: a las diez menos cuarto. A las diez y cuarto el pescado ya está limpio.",
+       "fr": "Non, non : à dix heures moins le quart. À dix heures et quart, le poisson est déjà prêt."
+      }
+     ],
+     "aide": {
+      "fr": "« Menos cuarto », c'est <b>moins le quart</b> : 9 h 45. « Y cuarto », ce serait 10 h 15."
      }
     }
    ]
@@ -256,40 +294,40 @@
    "dit": [
     {
      "recit": {
-      "fr": "Un homme à moustache arrive, une tasse à la main."
+      "fr": "Un homme à moustache arrive, une caisse de légumes dans les bras."
      }
     },
     {
      "qui": "a22_javier",
      "air": "sourire",
-     "t": "¡Hombre, una cara nueva! Yo soy Javier, me siento justo enfrente. Si necesitas algo, me lo dices.",
-     "fr": "Tiens, un nouveau visage ! Moi, c'est Javier, je suis assis juste en face. Si tu as besoin de quelque chose, tu me le dis."
+     "t": "¡Hombre, una cara nueva! Yo soy Javier, cocinero. Hoy trabajas conmigo. ¿Me ayudas a cortar estas verduras?",
+     "fr": "Tiens, un nouveau visage ! Moi, c'est Javier, cuisinier. Aujourd'hui, tu travailles avec moi. Tu m'aides à couper ces légumes ?"
     }
    ],
    "choix": [
     {
-     "t": "Hola, Javier. Un placer.",
-     "fr": "Bonjour, Javier. C'est un plaisir.",
-     "va": "cafe",
+     "t": "Hola, Javier. Claro, ¿por dónde empiezo?",
+     "fr": "Bonjour, Javier. Bien sûr, par où je commence ?",
+     "va": "fin",
      "puis": [
       {
        "qui": "a22_javier",
        "air": "sourire",
-       "t": "¡Igualmente!",
-       "fr": "De même !"
+       "t": "Por las cebollas. Y sin prisa: mejor despacio y bien.",
+       "fr": "Par les oignons. Et sans te presser : mieux vaut lentement et bien."
       }
      ]
     },
     {
-     "t": "Gracias, Javier. Seguro que tengo muchas preguntas.",
-     "fr": "Merci, Javier. J'aurai sûrement beaucoup de questions.",
-     "va": "cafe",
+     "t": "Un placer, Javier. ¿Cómo las corto?",
+     "fr": "C'est un plaisir, Javier. Je les coupe comment ?",
+     "va": "fin",
      "puis": [
       {
        "qui": "a22_javier",
-       "air": "amuse",
-       "t": "¡Pregunta todo lo que quieras!",
-       "fr": "Demande tout ce que tu veux !"
+       "air": "sourire",
+       "t": "En trozos pequeños, así, mira. Sin prisa.",
+       "fr": "En petits morceaux, comme ça, regarde. Sans te presser."
       }
      ]
     },
@@ -306,74 +344,7 @@
       }
      ],
      "aide": {
-      "fr": "Au bureau, en Espagne, on se <b>tutoie</b> et on s'appelle par le <b>prénom</b>. « Señor » ne va d'ailleurs qu'avec le nom de famille. Dis : « Hola, Javier »."
-     }
-    }
-   ]
-  },
-  "cafe": {
-   "dit": [
-    {
-     "qui": "a22_javier",
-     "air": "question",
-     "t": "¿Te apetece un café? La cocina está aquí al lado. Y cuéntame, ¿de dónde eres?",
-     "fr": "Tu as envie d'un café ? La cuisine est juste à côté. Et raconte-moi, tu viens d'où ?"
-    }
-   ],
-   "choix": [
-    {
-     "t": "Sí, gracias. Soy de Francia, pero ahora vivo en Madrid.",
-     "fr": "Oui, merci. Je viens de France, mais maintenant j'habite à Madrid.",
-     "va": "fin",
-     "puis": [
-      {
-       "qui": "a22_javier",
-       "air": "sourire",
-       "t": "¡Francia! Yo estuve en París hace años. Me encantó.",
-       "fr": "La France ! Je suis allé à Paris il y a des années. J'ai adoré."
-      }
-     ]
-    },
-    {
-     "t": "Sí, un café con leche. Soy de Canadá.",
-     "fr": "Oui, un café au lait. Je viens du Canada.",
-     "va": "fin",
-     "puis": [
-      {
-       "qui": "a22_javier",
-       "air": "amuse",
-       "t": "¡Canadá! Qué frío, ¿no? Aquí vas a estar mejor.",
-       "fr": "Le Canada ! Quel froid, non ? Ici, tu seras mieux."
-      }
-     ]
-    },
-    {
-     "t": "Ahora no, gracias. Vivo en Madrid desde hace poco.",
-     "fr": "Pas maintenant, merci. J'habite à Madrid depuis peu.",
-     "va": "fin",
-     "puis": [
-      {
-       "qui": "a22_javier",
-       "air": "sourire",
-       "t": "Pues te va a encantar. Luego te cuento dónde se come bien.",
-       "fr": "Eh bien, tu vas adorer. Tout à l'heure, je te dirai où on mange bien."
-      }
-     ]
-    },
-    {
-     "faux": true,
-     "t": "Sí, gracias. Estoy de Francia.",
-     "fr": "Oui, merci. Je suis de France.",
-     "puis": [
-      {
-       "qui": "a22_javier",
-       "air": "perplexe",
-       "t": "¿Estás… en Francia? Ah, ¡que eres de Francia!",
-       "fr": "Tu es… en France ? Ah, tu viens de France !"
-      }
-     ],
-     "aide": {
-      "fr": "L'origine se dit avec <b>ser</b> : « <b>Soy</b> de Francia ». « Estar » sert à dire où l'on se trouve."
+      "fr": "En cuisine, comme presque partout au travail en Espagne, on se <b>tutoie</b> et on s'appelle par le <b>prénom</b>. « Señor » ne va d'ailleurs qu'avec le nom de famille. Dis : « Hola, Javier »."
      }
     }
    ]
@@ -381,36 +352,41 @@
   "fin": {
    "dit": [
     {
-     "qui": "a22_elena",
+     "recit": {
+      "fr": "Une heure plus tard, tous les légumes sont coupés."
+     }
+    },
+    {
+     "qui": "a22_carmen",
      "air": "sourire",
-     "t": "Bueno, te dejo en buenas manos. ¡Que tengas un buen primer día! Si necesitas algo, estoy en mi despacho.",
-     "fr": "Bon, je te laisse entre de bonnes mains. Bonne première journée ! Si tu as besoin de quelque chose, je suis dans mon bureau."
+     "t": "¡Pero qué bien cortado está esto! Buen trabajo. Ahora, a comer con el equipo. ¡Y que tengas un buen primer día!",
+     "fr": "Mais comme c'est bien coupé ! Bon travail. Maintenant, à table avec l'équipe. Et bonne première journée !"
     }
    ],
    "choix": [
     {
-     "t": "Muchas gracias, Elena. ¡Hasta luego!",
-     "fr": "Merci beaucoup, Elena. À tout à l'heure !",
+     "t": "Muchas gracias, Carmen. ¡Tengo hambre!",
+     "fr": "Merci beaucoup, Carmen. J'ai faim !",
      "va": null,
      "puis": [
       {
-       "qui": "a22_elena",
-       "air": "sourire",
-       "t": "¡Hasta luego! Y ánimo.",
-       "fr": "À tout à l'heure ! Et bon courage."
+       "qui": "a22_carmen",
+       "air": "amuse",
+       "t": "¡Pues a la mesa!",
+       "fr": "Eh bien, à table !"
       }
      ]
     },
     {
-     "t": "Gracias por todo. Nos vemos luego.",
-     "fr": "Merci pour tout. On se voit tout à l'heure.",
+     "t": "Gracias por todo. Estoy muy bien aquí.",
+     "fr": "Merci pour tout. Je me sens très bien ici.",
      "va": null,
      "puis": [
       {
-       "qui": "a22_elena",
+       "qui": "a22_carmen",
        "air": "sourire",
-       "t": "¡Hasta ahora!",
-       "fr": "À tout de suite !"
+       "t": "Me alegro. ¡A comer!",
+       "fr": "J'en suis contente. À table !"
       }
      ]
     }
@@ -418,6 +394,6 @@
   }
  },
  "bilan": {
-  "fr": "Tu as trouvé ta place, appris les horaires, pris rendez-vous demain à neuf heures moins le quart pour ta carte d'entrée, et fait la connaissance de Javier."
+  "fr": "Tu as rangé tes affaires dans ton casier, retenu les règles d'hygiène et les horaires, pris rendez-vous demain à dix heures moins le quart, et coupé tes premiers légumes avec Javier."
  }
 }

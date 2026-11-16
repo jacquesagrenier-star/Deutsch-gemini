@@ -17,22 +17,22 @@
   "choix_fr": {
    "cle": "antwort",
    "ja": "accepté l'invitation de Javier pour ses cinquante ans, samedi à dix-huit heures",
-   "nein": "refusé poliment l'invitation de Javier et proposé de déjeuner ensemble"
+   "nein": "refusé poliment l'invitation de Javier et proposé de manger ensemble"
   },
   "tag_fr": {
    "cle": "tag",
-   "mi": " mercredi",
-   "do": " jeudi"
+   "mittag": " lundi midi",
+   "abend": " lundi soir"
   },
   "tag_fr2": {
    "cle": "tag",
-   "mi": "mercredi",
-   "do": "jeudi"
+   "mittag": "lundi midi",
+   "abend": "lundi soir"
   },
   "tag_de": {
    "cle": "tag",
-   "mi": "Mittwoch",
-   "do": "Donnerstag"
+   "mittag": "Montagmittag",
+   "abend": "Montagabend"
   }
  },
  "noeuds": {
@@ -303,21 +303,21 @@
       {
        "qui": "a22_javier",
        "air": "sourire",
-       "t": "Gute Idee! Wann hast du Zeit?",
-       "fr": "Bonne idée ! Tu as le temps quand ?"
+       "t": "Gute Idee! Am Montag haben wir ja frei. Mittags oder abends?",
+       "fr": "Bonne idée ! Le lundi, on est libres. Le midi ou le soir ?"
       }
      ]
     },
     {
-     "t": "Sehr gern! Ich lade dich zum Mittagessen ein.",
-     "fr": "Avec plaisir ! Je t'invite à déjeuner.",
+     "t": "Sehr gern! Ich lade dich am Montag zum Essen ein.",
+     "fr": "Avec plaisir ! Je t'invite à manger lundi.",
      "va": "tag",
      "puis": [
       {
        "qui": "a22_javier",
        "air": "amuse",
-       "t": "Oh, das sage ich nicht nein! Wann passt es dir?",
-       "fr": "Oh, je ne dis pas non ! Quand ça t'arrange ?"
+       "t": "Oh, da sage ich nicht nein! Mittags oder abends?",
+       "fr": "Oh, je ne dis pas non ! Le midi ou le soir ?"
       }
      ]
     }
@@ -333,34 +333,34 @@
    ],
    "choix": [
     {
-     "t": "Hast du am Mittwoch Zeit?",
-     "fr": "Tu as le temps mercredi ?",
+     "t": "Lieber mittags.",
+     "fr": "Plutôt le midi.",
      "pose": {
-      "tag": "mi"
+      "tag": "mittag"
      },
      "va": "uhrzeit",
      "puis": [
       {
        "qui": "a22_javier",
        "air": "sourire",
-       "t": "Mittwoch passt super!",
-       "fr": "Mercredi, ça me va très bien !"
+       "t": "Montagmittag, super!",
+       "fr": "Lundi midi, super !"
       }
      ]
     },
     {
-     "t": "Wie wäre es mit Donnerstag?",
-     "fr": "Et si on disait jeudi ?",
+     "t": "Am Abend, das ist gemütlicher.",
+     "fr": "Le soir, c'est plus convivial.",
      "pose": {
-      "tag": "do"
+      "tag": "abend"
      },
      "va": "uhrzeit",
      "puis": [
       {
        "qui": "a22_javier",
        "air": "sourire",
-       "t": "Donnerstag ist perfekt!",
-       "fr": "Jeudi, c'est parfait !"
+       "t": "Montagabend, gern!",
+       "fr": "Lundi soir, avec plaisir !"
       }
      ]
     }
@@ -371,15 +371,26 @@
     {
      "qui": "a22_javier",
      "air": "question",
-     "t": "Und um wie viel Uhr? Ich habe von 12 bis 13 Uhr Pause.",
-     "fr": "Et à quelle heure ? J'ai ma pause de 12 h à 13 h.",
-     "dit": "Und um wie viel Uhr? Ich habe von zwölf bis dreizehn Uhr Pause."
+     "t": "Und um wie viel Uhr? Um zwölf?",
+     "fr": "Et à quelle heure ? À midi ?",
+     "si": {
+      "tag": "mittag"
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Und um wie viel Uhr? Um sieben?",
+     "fr": "Et à quelle heure ? À sept heures ?",
+     "si": {
+      "tag": "abend"
+     }
     }
    ],
    "choix": [
     {
-     "t": "Um zwölf vor dem Büro?",
-     "fr": "À midi devant le bureau ?",
+     "t": "Ja, das passt mir gut.",
+     "fr": "Oui, ça me va bien.",
      "va": "geburtstag",
      "puis": [
       {
@@ -391,15 +402,15 @@
      ]
     },
     {
-     "t": "Um halb eins? Dann ist es nicht so voll.",
-     "fr": "À midi et demi ? Il y a moins de monde.",
+     "t": "Lieber eine halbe Stunde später. Geht das?",
+     "fr": "Plutôt une demi-heure plus tard. Ça va ?",
      "va": "geburtstag",
      "puis": [
       {
        "qui": "a22_javier",
        "air": "sourire",
-       "t": "Gute Idee. Halb eins vor der Tür.",
-       "fr": "Bonne idée. Midi et demi devant la porte."
+       "t": "Kein Problem. Ich reserviere einen Tisch.",
+       "fr": "Pas de problème. Je réserve une table."
       }
      ]
     }
