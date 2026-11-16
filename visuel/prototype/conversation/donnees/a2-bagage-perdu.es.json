@@ -1,0 +1,112 @@
+{
+ "id": "a2-bagage-perdu",
+ "langue": "es",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Ta valise n'est pas arrivée"},
+ "intro": {"fr": "Tu atterris à Madrid-Barajas, terminal 4. Ta valise n'est pas sur le tapis. Au comptoir des bagages perdus, tu expliques, tu décris ta valise et tu donnes une adresse de livraison."},
+ "personnes": ["gepaeck_agent"],
+ "debut": "saludo",
+ "textes": {
+  "color_fr": {"cle": "color", "negra": "noire", "azul": "bleue"},
+  "lugar_fr": {"cle": "lugar", "casa": "chez toi", "hotel": "à ton hôtel"}
+ },
+ "noeuds": {
+  "saludo": {
+   "dit": [
+    {"recit": {"fr": "Aéroport de Madrid-Barajas, terminal 4. Le tapis s'arrête : ta valise n'est pas là. Tu vas au comptoir des bagages perdus."}},
+    {"qui": "gepaeck_agent", "air": "sourire", "t": "Buenas tardes. Dígame.", "fr": "Bonjour. Je vous écoute."}
+   ],
+   "choix": [
+    {"t": "Buenas tardes. Mi maleta no ha llegado.", "fr": "Bonjour. Ma valise n'est pas arrivée.", "va": "vuelo",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Vaya, lo siento. Vamos a buscarla.", "fr": "Ah, je suis désolé. Nous allons la chercher."}]},
+    {"t": "Buenas tardes. No encuentro mi maleta.", "fr": "Bonjour. Je ne trouve pas ma valise.", "va": "vuelo",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Vaya, lo siento. Vamos a buscarla.", "fr": "Ah, je suis désolé. Nous allons la chercher."}]},
+    {"faux": true, "t": "Buenas tardes. Mi maleta no es llegada.", "fr": "Bonjour. Ma valise n'est pas arrivée.",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "¿Cómo dice? Ah, que su maleta no ha llegado.", "fr": "Comment ? Ah, votre valise n'est pas arrivée."}],
+     "aide": {"fr": "<b>Le passé composé espagnol se forme toujours avec « haber »</b>, jamais avec « ser », et le participe ne s'accorde pas : « Mi maleta no ha llegado »."}}
+   ]
+  },
+  "vuelo": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "¿De dónde viene?", "fr": "D'où venez-vous ?"}],
+   "choix": [
+    {"t": "Vengo de París, con el vuelo de las cuatro.", "fr": "Je viens de Paris, par le vol de quatre heures.", "pose": {"origen": "paris"}, "va": "resguardo",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "El vuelo de París… Sí, faltan varias maletas.", "fr": "Le vol de Paris… Oui, il manque plusieurs valises."}]},
+    {"t": "Vengo de Montreal. He cambiado de avión en París.", "fr": "Je viens de Montréal. J'ai changé d'avion à Paris.", "pose": {"origen": "montreal"}, "va": "resguardo",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Ah, con escala. Seguramente la maleta está todavía en París.", "fr": "Ah, avec une escale. La valise est sans doute encore à Paris."}]},
+    {"faux": true, "t": "Vengo de la Francia, de París.", "fr": "Je viens de la France, de Paris.",
+     "puis": [{"qui": "gepaeck_agent", "air": "amuse", "t": "¿De la Francia? Ah, de Francia. ¿Y en qué vuelo?", "fr": "« De la » France ? Ah, de France. Et par quel vol ?"}],
+     "aide": {"fr": "<b>Les noms de pays ne prennent pas d'article</b> : « Vengo de Francia », « Vengo de Canadá ». Avec une ville : « Vengo de París »."}}
+   ]
+  },
+  "resguardo": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "¿Tiene el resguardo de la maleta? Es una pegatina pequeña, en la tarjeta de embarque.", "fr": "Vous avez le reçu de la valise ? C'est un petit autocollant, sur la carte d'embarquement."}],
+   "choix": [
+    {"t": "Sí, aquí está.", "fr": "Oui, le voici.", "va": "color",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Gracias. Con este número es más fácil.", "fr": "Merci. Avec ce numéro, c'est plus facile."}]},
+    {"t": "Un momento… Sí, aquí lo tiene.", "fr": "Un instant… Oui, le voici.", "va": "color",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Gracias. Con este número es más fácil.", "fr": "Merci. Avec ce numéro, c'est plus facile."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "resguardo",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Claro. El resguardo: un papel pequeño con un número. Está en su tarjeta de embarque.", "fr": "Bien sûr. Le reçu : un petit papier avec un numéro. Il est sur votre carte d'embarquement."}]}
+   ]
+  },
+  "color": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "Ahora, ¿cómo es su maleta?", "fr": "Maintenant, comment est votre valise ?"}],
+   "choix": [
+    {"t": "Es grande y negra, con ruedas.", "fr": "Elle est grande et noire, avec des roulettes.", "pose": {"color": "negra"}, "va": "dentro",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Negra, grande, con ruedas… Como muchas. Pero tenemos el número.", "fr": "Noire, grande, à roulettes… Comme beaucoup. Mais nous avons le numéro."}]},
+    {"t": "Es azul, bastante grande, con una etiqueta roja.", "fr": "Elle est bleue, assez grande, avec une étiquette rouge.", "pose": {"color": "azul"}, "va": "dentro",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Azul con una etiqueta roja. Así es más fácil.", "fr": "Bleue avec une étiquette rouge. Comme ça, c'est plus facile."}]},
+    {"faux": true, "t": "Está grande y negra.", "fr": "Elle est grande et noire.",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "¿Está…? Ah, es grande y negra. ¿Y tiene ruedas?", "fr": "Elle « está »… ? Ah, elle est grande et noire. Et elle a des roulettes ?"}],
+     "aide": {"fr": "<b>Pour décrire un objet (taille, couleur), c'est « ser ».</b> « Es grande y negra ». « Estar » dit où il est ou dans quel état : « La maleta está en París »."}}
+   ]
+  },
+  "dentro": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "¿Hay algo importante dentro? ¿Medicinas, llaves?", "fr": "Il y a quelque chose d'important dedans ? Des médicaments, des clés ?"}],
+   "choix": [
+    {"t": "No, solo ropa y unos libros.", "fr": "Non, seulement des vêtements et quelques livres.", "va": "entrega",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Mejor así.", "fr": "Tant mieux."}]},
+    {"t": "Sí, mis medicinas están dentro.", "fr": "Oui, mes médicaments sont dedans.", "va": "medicinas"},
+    {"faux": true, "t": "No, solo mis vestidos.", "fr": "Non, seulement mes vêtements.",
+     "puis": [{"qui": "gepaeck_agent", "air": "amuse", "t": "¿Solo vestidos? ¿Vestidos de fiesta? ¿O ropa en general?", "fr": "Seulement des robes ? Des robes de soirée ? Ou des vêtements en général ?"}],
+     "aide": {"fr": "<b>« Un vestido », c'est une robe.</b> Les vêtements se disent « la ropa », toujours au singulier : « Solo ropa »."}}
+   ]
+  },
+  "medicinas": {
+   "dit": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "Vaya. ¿Las necesita hoy?", "fr": "Aïe. Vous en avez besoin aujourd'hui ?"}],
+   "choix": [
+    {"t": "No, tengo para dos días en el bolso.", "fr": "Non, j'en ai pour deux jours dans mon sac.", "va": "entrega",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Menos mal. Y hay una farmacia en la terminal, si necesita algo.", "fr": "Heureusement. Et il y a une pharmacie dans le terminal, si vous avez besoin de quelque chose."}]},
+    {"t": "Sí, esta noche. ¿Hay una farmacia aquí?", "fr": "Oui, ce soir. Il y a une pharmacie ici ?", "va": "entrega",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Sí, en la planta de salidas. Está abierta toda la noche.", "fr": "Oui, au niveau des départs. Elle est ouverte toute la nuit."}]}
+   ]
+  },
+  "entrega": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "¿Adónde le mandamos la maleta? ¿A un hotel o a su casa?", "fr": "Où vous envoyons-nous la valise ? À un hôtel ou chez vous ?"}],
+   "choix": [
+    {"t": "A mi casa: calle Fuencarral, número veinte, segundo A.", "fr": "Chez moi : rue Fuencarral, numéro vingt, deuxième étage, porte A.", "pose": {"lugar": "casa"}, "va": "cuando",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Apuntado. Le llamamos al móvil de su reserva antes de ir.", "fr": "C'est noté. Nous vous appelons sur le portable de votre réservation avant de passer."}]},
+    {"t": "Al hotel Arenal, en la calle Mayor.", "fr": "À l'hôtel Arenal, dans la rue Mayor.", "pose": {"lugar": "hotel"}, "va": "cuando",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Apuntado. Le llamamos al móvil de su reserva antes de ir.", "fr": "C'est noté. Nous vous appelons sur le portable de votre réservation avant de passer."}]},
+    {"faux": true, "t": "A mi casa: veinte calle Fuencarral.", "fr": "Chez moi : vingt, rue Fuencarral.",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "¿Veinte calles? Ah, calle Fuencarral, número veinte. ¿Y el piso?", "fr": "Vingt rues ? Ah, rue Fuencarral, numéro vingt. Et l'étage ?"}],
+     "aide": {"fr": "<b>En Espagne, la rue vient avant le numéro</b>, puis l'étage et la porte : « calle Fuencarral, número veinte, segundo A »."}}
+   ]
+  },
+  "cuando": {
+   "dit": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Muy bien. Seguramente la maleta llega mañana por la mañana.", "fr": "Très bien. La valise arrive sans doute demain matin."}],
+   "choix": [
+    {"t": "Necesito ropa y un cepillo de dientes. ¿Paga la compañía?", "fr": "J'ai besoin de vêtements et d'une brosse à dents. La compagnie paie ?", "va": null,
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Sí. Guarde los tiques y la compañía le devuelve el dinero. ¡Y perdone las molestias!", "fr": "Oui. Gardez les tickets de caisse et la compagnie vous rembourse. Et excusez-nous pour le dérangement !"}]},
+    {"t": "De acuerdo. Espero su llamada. Muchas gracias.", "fr": "D'accord. J'attends votre appel. Merci beaucoup.", "va": null,
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Gracias a usted. Si compra algo hoy, guarde los tiques: la compañía le devuelve el dinero.", "fr": "Merci à vous. Si vous achetez quelque chose aujourd'hui, gardez les tickets de caisse : la compagnie vous rembourse."}]},
+    {"faux": true, "t": "¿Puedo comprar una brocha de dientes?", "fr": "Je peux acheter une brosse à dents ?",
+     "puis": [{"qui": "gepaeck_agent", "air": "amuse", "t": "¿Una brocha? ¿Para pintar? Ah, ¡un cepillo de dientes!", "fr": "Un gros pinceau ? Pour peindre ? Ah, une brosse à dents !"}],
+     "aide": {"fr": "<b>« Una brocha », c'est un gros pinceau.</b> La brosse à dents se dit « el cepillo de dientes »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as déclaré la perte de ta valise {color_fr} et demandé qu'on te la livre {lugar_fr}. Garde tes tickets de caisse : la compagnie rembourse !"}
+}

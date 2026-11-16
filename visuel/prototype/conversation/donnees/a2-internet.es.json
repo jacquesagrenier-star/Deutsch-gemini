@@ -1,0 +1,115 @@
+{
+ "id": "a2-internet",
+ "langue": "es",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "usted",
+ "titre": {"fr": "La hotline : internet ne marche plus"},
+ "intro": {"fr": "Depuis hier soir, tu n'as plus internet dans ton appartement de Madrid. Tu appelles le service client : tu expliques la panne, tu suis les consignes et tu obtiens un technicien."},
+ "personnes": ["hotline_agentin"],
+ "debut": "saludo",
+ "textes": {
+  "cita_fr": {"cle": "cita", "manana": "demain matin", "viernes": "vendredi après-midi"}
+ },
+ "noeuds": {
+  "saludo": {
+   "dit": [
+    {"recit": {"fr": "Depuis hier soir, plus d'internet chez toi. Tu appelles le service client de ton fournisseur. Après une longue musique, quelqu'un décroche."}},
+    {"qui": "hotline_agentin", "air": "sourire", "t": "Fibrasol, buenos días. Le atiende Lucía. ¿En qué puedo ayudarle?", "fr": "Fibrasol, bonjour. Lucía à l'appareil. En quoi puis-je vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días. Mi internet no funciona desde ayer.", "fr": "Bonjour. Mon internet ne marche plus depuis hier.", "va": "cliente",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "Vaya, lo siento. Vamos a mirarlo ahora mismo.", "fr": "Ah, je suis désolée. Nous allons regarder ça tout de suite."}]},
+    {"t": "Hola, buenos días. No tengo internet en casa desde anoche.", "fr": "Bonjour. Je n'ai plus internet à la maison depuis hier soir.", "va": "cliente",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "Vaya, lo siento. Vamos a mirarlo ahora mismo.", "fr": "Ah, je suis désolée. Nous allons regarder ça tout de suite."}]},
+    {"faux": true, "t": "Buenos días. Mi internet es roto desde ayer.", "fr": "Bonjour. Mon internet est cassé depuis hier.",
+     "puis": [{"qui": "hotline_agentin", "air": "perplexe", "t": "¿Perdone? ¿Quiere decir que internet no funciona?", "fr": "Pardon ? Vous voulez dire qu'internet ne marche pas ?"}],
+     "aide": {"fr": "<b>Un état se dit avec « estar », pas avec « ser ».</b> Et pour une panne, on dit simplement « no funciona » : « Mi internet no funciona desde ayer »."}}
+   ]
+  },
+  "cliente": {
+   "dit": [{"qui": "hotline_agentin", "air": "question", "t": "¿Me dice su número de cliente, por favor?", "fr": "Vous me donnez votre numéro de client, s'il vous plaît ?"}],
+   "choix": [
+    {"t": "Sí, es el cuatro, siete, dos, nueve, cero, uno.", "fr": "Oui, c'est le quatre, sept, deux, neuf, zéro, un.", "va": "luz",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Cuatro, siete, dos, nueve, cero, uno. Perfecto, ya veo su contrato.", "fr": "Quatre, sept, deux, neuf, zéro, un. Parfait, je vois votre contrat."}]},
+    {"t": "Lo siento, no lo tengo aquí.", "fr": "Désolé(e), je ne l'ai pas sous la main.", "va": "direccion"},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "cliente",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Claro. Su número de cliente. Está en la factura, arriba a la derecha.", "fr": "Bien sûr. Votre numéro de client. Il est sur la facture, en haut à droite."}]}
+   ]
+  },
+  "direccion": {
+   "dit": [{"qui": "hotline_agentin", "air": "sourire", "t": "No pasa nada. ¿Cuál es su dirección?", "fr": "Ce n'est pas grave. Quelle est votre adresse ?"}],
+   "choix": [
+    {"t": "Calle Embajadores, número doce, tercero B.", "fr": "Rue Embajadores, numéro douze, troisième étage, porte B.", "va": "luz",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Embajadores, doce, tercero B… Aquí está. Ya veo su contrato.", "fr": "Embajadores, douze, troisième B… Voilà. Je vois votre contrat."}]},
+    {"t": "Vivo en la calle Embajadores, doce, tercero B.", "fr": "J'habite rue Embajadores, au douze, troisième étage, porte B.", "va": "luz",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Embajadores, doce, tercero B… Aquí está. Ya veo su contrato.", "fr": "Embajadores, douze, troisième B… Voilà. Je vois votre contrat."}]},
+    {"faux": true, "t": "Yo habito en la calle Embajadores, doce.", "fr": "J'habite rue Embajadores, au douze.",
+     "puis": [{"qui": "hotline_agentin", "air": "amuse", "t": "¿Habita…? Ah, vive en la calle Embajadores. ¿Y el piso?", "fr": "Vous « habitez »… ? Ah, vous vivez rue Embajadores. Et l'étage ?"}],
+     "aide": {"fr": "<b>« Habiter » se dit « vivir ».</b> « Habitar » existe, mais personne ne le dit pour son adresse. Et on donne l'étage et la porte : « Vivo en la calle Embajadores, doce, tercero B »."}}
+   ]
+  },
+  "luz": {
+   "dit": [{"qui": "hotline_agentin", "air": "question", "t": "Ahora mire el router, por favor. ¿De qué color es la luz?", "fr": "Maintenant, regardez le routeur, s'il vous plaît. De quelle couleur est le voyant ?"}],
+   "choix": [
+    {"t": "Hay una luz roja.", "fr": "Il y a un voyant rouge.", "pose": {"luz": "roja"}, "va": "reiniciar",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "Una luz roja… Entonces no llega la señal.", "fr": "Un voyant rouge… Alors le signal n'arrive pas."}]},
+    {"t": "Todas las luces están verdes, pero no funciona.", "fr": "Tous les voyants sont verts, mais ça ne marche pas.", "pose": {"luz": "verde"}, "va": "reiniciar",
+     "puis": [{"qui": "hotline_agentin", "air": "surprise", "t": "¡Qué raro! Todo verde y sin conexión…", "fr": "Comme c'est bizarre ! Tout est vert et pas de connexion…"}]}
+   ]
+  },
+  "reiniciar": {
+   "dit": [{"qui": "hotline_agentin", "air": "attentive", "t": "Vamos a reiniciarlo. Apague el router, espere treinta segundos y enciéndalo otra vez.", "fr": "Nous allons le redémarrer. Éteignez le routeur, attendez trente secondes et rallumez-le."}],
+   "choix": [
+    {"t": "Ya lo he hecho esta mañana, y nada.", "fr": "Je l'ai déjà fait ce matin, et rien.", "va": "tecnico",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "Entiendo. Entonces no podemos arreglarlo por teléfono.", "fr": "Je comprends. Alors nous ne pouvons pas le réparer par téléphone."}]},
+    {"t": "Vale, un momento… No, todavía no funciona.", "fr": "D'accord, un instant… Non, ça ne marche toujours pas.", "va": "tecnico",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "Vaya. Entonces no podemos arreglarlo por teléfono.", "fr": "Mince. Alors nous ne pouvons pas le réparer par téléphone."}]},
+    {"faux": true, "t": "Ya lo he hacido esta mañana.", "fr": "Je l'ai déjà fait ce matin.",
+     "puis": [{"qui": "hotline_agentin", "air": "perplexe", "t": "¿Cómo? Ah, ¿ya lo ha hecho? ¿Y sigue igual?", "fr": "Comment ? Ah, vous l'avez déjà fait ? Et c'est toujours pareil ?"}],
+     "aide": {"fr": "<b>Le participe de « hacer » est irrégulier : « hecho ».</b> « Ya lo he hecho » : je l'ai déjà fait."}},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir más despacio?", "fr": "Pardon ? Vous pouvez répéter plus lentement ?", "va": "reiniciar",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Claro. Primero, apague el router. Espere treinta segundos. Después, enciéndalo.", "fr": "Bien sûr. D'abord, éteignez le routeur. Attendez trente secondes. Ensuite, rallumez-le."}]}
+   ]
+  },
+  "tecnico": {
+   "dit": [
+    {"qui": "hotline_agentin", "air": "attentive", "si": {"luz": "roja"}, "t": "Con esa luz roja, el problema está en la línea.", "fr": "Avec ce voyant rouge, le problème vient de la ligne."},
+    {"qui": "hotline_agentin", "air": "attentive", "si": {"luz": "verde"}, "t": "Si todo está verde, puede ser el router.", "fr": "Si tout est vert, c'est peut-être le routeur."},
+    {"qui": "hotline_agentin", "air": "question", "t": "Le mando un técnico. Puede ir mañana por la mañana o el viernes por la tarde. ¿Qué prefiere?", "fr": "Je vous envoie un technicien. Il peut passer demain matin ou vendredi après-midi. Que préférez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Mañana por la mañana, por favor.", "fr": "Demain matin, s'il vous plaît.", "pose": {"cita": "manana"}, "va": "movil",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Perfecto. Mañana, entre las nueve y las doce.", "fr": "Parfait. Demain, entre neuf heures et midi."}]},
+    {"t": "Prefiero el viernes por la tarde. Por las mañanas trabajo.", "fr": "Je préfère vendredi après-midi. Le matin, je travaille.", "pose": {"cita": "viernes"}, "va": "movil",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Muy bien. El viernes, entre las cuatro y las siete.", "fr": "Très bien. Vendredi, entre quatre heures et sept heures."}]},
+    {"faux": true, "t": "Mañana mañana, por favor.", "fr": "Demain matin, s'il vous plaît (mot à mot : « demain demain »).",
+     "puis": [{"qui": "hotline_agentin", "air": "amuse", "t": "¿Mañana mañana? ¿Mañana por la mañana, quiere decir?", "fr": "« Demain demain » ? Demain matin, vous voulez dire ?"}],
+     "aide": {"fr": "<b>« Mañana » veut dire à la fois « demain » et « matin ».</b> Demain matin se dit « mañana por la mañana » ; vendredi après-midi, « el viernes por la tarde »."}}
+   ]
+  },
+  "movil": {
+   "dit": [{"qui": "hotline_agentin", "air": "question", "t": "¿Me da un número de móvil para el técnico?", "fr": "Vous me donnez un numéro de portable pour le technicien ?"}],
+   "choix": [
+    {"t": "Sí, es el seis, uno, dos, tres, cuatro, cinco, seis, siete, ocho.", "fr": "Oui, c'est le six, un, deux, trois, quatre, cinq, six, sept, huit.", "va": "fin"},
+    {"t": "Claro. Apunte: seis, uno, dos, tres, cuatro, cinco, seis, siete, ocho.", "fr": "Bien sûr. Notez : six, un, deux, trois, quatre, cinq, six, sept, huit.", "va": "fin"},
+    {"faux": true, "t": "Sí, mi portable es el seis, uno, dos, tres…", "fr": "Oui, mon « portable », c'est le six, un, deux, trois…",
+     "puis": [{"qui": "hotline_agentin", "air": "perplexe", "t": "¿Su portátil? No, no: necesito el número de su móvil.", "fr": "Votre ordinateur portable ? Non, non : j'ai besoin de votre numéro de portable."}],
+     "aide": {"fr": "<b>Le téléphone portable se dit « el móvil ».</b> « El portátil », c'est l'ordinateur portable. « Mi móvil es el seis, uno, dos… »."}}
+   ]
+  },
+  "fin": {
+   "dit": [{"qui": "hotline_agentin", "air": "sourire", "t": "Apuntado. El técnico le llama antes de ir. ¿Necesita algo más?", "fr": "C'est noté. Le technicien vous appelle avant de passer. Vous avez besoin d'autre chose ?"}],
+   "choix": [
+    {"t": "Sí, una pregunta: ¿hay que pagar la visita?", "fr": "Oui, une question : est-ce qu'il faut payer la visite ?", "va": null,
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "No, no se preocupe, es gratis. ¡Que tenga un buen día!", "fr": "Non, ne vous inquiétez pas, c'est gratuit. Bonne journée !"}]},
+    {"t": "No, nada más. Muchas gracias, adiós.", "fr": "Non, rien d'autre. Merci beaucoup, au revoir.", "va": null,
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Gracias a usted. La visita es gratis, por supuesto. ¡Hasta luego!", "fr": "Merci à vous. La visite est gratuite, bien sûr. Au revoir !"}]},
+    {"faux": true, "t": "No, nada más. Gracias para su ayuda.", "fr": "Non, rien d'autre. Merci pour votre aide.",
+     "puis": [{"qui": "hotline_agentin", "air": "amuse", "t": "¿Cómo? Ah, de nada. Gracias por llamar. ¿Algo más, entonces?", "fr": "Comment ? Ah, de rien. Merci d'avoir appelé. Autre chose, alors ?"}],
+     "aide": {"fr": "<b>On remercie avec « por », jamais avec « para ».</b> « Gracias por su ayuda », « gracias por llamar »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué une panne d'internet au téléphone, suivi les consignes et obtenu un technicien pour {cita_fr}."}
+}

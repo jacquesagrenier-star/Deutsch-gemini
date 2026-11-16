@@ -1,0 +1,123 @@
+{
+ "id": "a2-taxi",
+ "langue": "es",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "usted",
+ "titre": {"fr": "En taxi"},
+ "intro": {"fr": "Tu sors de la gare d'Atocha avec ta valise et tu prends un taxi pour Chamberí. Tu donnes l'adresse, tu bavardes avec le chauffeur, puis tu paies."},
+ "personnes": ["taxi_fahrer"],
+ "debut": "adonde",
+ "prix": {"prado": 1140, "otra": 1230},
+ "panier": ["ruta"],
+ "noeuds": {
+  "adonde": {
+   "dit": [
+    {"recit": {"fr": "Tu sors de la gare d'Atocha avec ta valise. Un taxi blanc à bande rouge s'arrête devant toi."}},
+    {"qui": "taxi_fahrer", "air": "sourire", "t": "¡Buenas! ¿Adónde vamos?", "fr": "Bonjour ! Où allons-nous ?"}
+   ],
+   "choix": [
+    {"t": "A la calle Ponzano, número cuarenta y dos, por favor.", "fr": "Rue Ponzano, au numéro quarante-deux, s'il vous plaît.", "va": "maleta",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Ponzano, cuarenta y dos. En Chamberí, muy bien.", "fr": "Ponzano, quarante-deux. À Chamberí, très bien."}]},
+    {"t": "Buenas tardes. Voy a la calle Ponzano, cuarenta y dos.", "fr": "Bonjour. Je vais rue Ponzano, au quarante-deux.", "va": "maleta",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Ponzano, cuarenta y dos. En Chamberí, muy bien.", "fr": "Ponzano, quarante-deux. À Chamberí, très bien."}]},
+    {"faux": true, "t": "Voy en la calle Ponzano, cuarenta y dos.", "fr": "Je vais « dans » la rue Ponzano, au quarante-deux.",
+     "puis": [{"qui": "taxi_fahrer", "air": "perplexe", "t": "¿Va en…? Ah, va a la calle Ponzano. Vale.", "fr": "Vous allez « en »… ? Ah, vous allez rue Ponzano. D'accord."}],
+     "aide": {"fr": "<b>Après un verbe de mouvement, c'est « a »</b> : « Voy a la calle Ponzano ». « En » dit où l'on est : « Vivo en la calle Ponzano »."}}
+   ]
+  },
+  "maleta": {
+   "dit": [{"qui": "taxi_fahrer", "air": "question", "t": "¿Lleva maleta? La pongo en el maletero.", "fr": "Vous avez une valise ? Je la mets dans le coffre."}],
+   "choix": [
+    {"t": "Sí, esta. Gracias, es muy amable.", "fr": "Oui, celle-ci. Merci, c'est très aimable.", "va": "camino",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "De nada. Suba, suba.", "fr": "De rien. Montez, montez."}]},
+    {"t": "Gracias. Cuidado, pesa mucho.", "fr": "Merci. Attention, elle est très lourde.", "va": "camino",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "¡Uf! ¿Qué lleva aquí, piedras? Venga, suba.", "fr": "Ouf ! Qu'est-ce que vous avez là-dedans, des pierres ? Allez, montez."}]},
+    {"faux": true, "t": "Cuidado, es muy pesante.", "fr": "Attention, elle est très lourde.",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "¿Pesante? Ah, pesada. A ver esa maleta…", "fr": "« Pesante » ? Ah, lourde. Voyons cette valise…"}],
+     "aide": {"fr": "<b>« Lourd » se dit « pesado » (« pesada » au féminin).</b> On dit aussi très souvent « pesa mucho » : « Cuidado, pesa mucho »."}},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "maleta",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Su maleta. La pongo atrás, en el maletero. ¿Vale?", "fr": "Votre valise. Je la mets derrière, dans le coffre. D'accord ?"}]}
+   ]
+  },
+  "camino": {
+   "dit": [
+    {"recit": {"fr": "Le taxi démarre et remonte vers le paseo del Prado."}},
+    {"qui": "taxi_fahrer", "air": "sourire", "t": "Bueno, pues vamos allá.", "fr": "Bon, eh bien, c'est parti."}
+   ],
+   "choix": [
+    {"t": "¿Cuánto tiempo tardamos, más o menos?", "fr": "Nous mettons combien de temps, à peu près ?", "va": "charla",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Unos veinte minutos, si no hay atasco.", "fr": "Une vingtaine de minutes, s'il n'y a pas de bouchon."}]},
+    {"t": "¿Cuánto cuesta, más o menos?", "fr": "Ça coûte combien, à peu près ?", "va": "charla",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Unos doce euros. Depende del tráfico.", "fr": "Une douzaine d'euros. Ça dépend de la circulation."}]},
+    {"faux": true, "t": "¿Es lejos de aquí?", "fr": "C'est loin d'ici ?",
+     "puis": [{"qui": "taxi_fahrer", "air": "perplexe", "t": "¿Cómo? Ah, ¿si está lejos? No, no mucho.", "fr": "Comment ? Ah, si c'est loin ? Non, pas tellement."}],
+     "aide": {"fr": "<b>Pour une distance ou un lieu, c'est « estar ».</b> « ¿Está lejos de aquí? ». Pour la durée : « ¿Cuánto tiempo tardamos? »."}}
+   ]
+  },
+  "charla": {
+   "dit": [{"qui": "taxi_fahrer", "air": "question", "t": "¿Y usted? ¿Está de vacaciones en Madrid o vive aquí?", "fr": "Et vous ? Vous êtes en vacances à Madrid ou vous vivez ici ?"}],
+   "choix": [
+    {"t": "Vivo aquí desde hace un mes.", "fr": "Je vis ici depuis un mois.", "pose": {"vive": "si"}, "va": "atasco",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "¡Anda! Pues en Chamberí se vive muy bien. Tiene que ir al mercado de Vallehermoso.", "fr": "Tiens ! Eh bien, on vit très bien à Chamberí. Il faut aller au marché de Vallehermoso."}]},
+    {"t": "Estoy de vacaciones, una semana.", "fr": "Je suis en vacances, pour une semaine.", "pose": {"vive": "no"}, "va": "atasco",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "¡Qué bien! Entonces tiene que ir al Rastro el domingo. Y probar el bocadillo de calamares.", "fr": "Très bien ! Alors il faut aller au Rastro dimanche. Et goûter le sandwich aux calamars."}]},
+    {"faux": true, "t": "Vivo aquí desde un mes.", "fr": "Je vis ici depuis un mois.",
+     "puis": [{"qui": "taxi_fahrer", "air": "perplexe", "t": "¿Desde un mes? Ah, desde hace un mes. ¡Muy poco, entonces!", "fr": "« Desde un mes » ? Ah, depuis un mois. C'est tout récent, alors !"}],
+     "aide": {"fr": "<b>« Depuis » + une durée se dit « desde hace ».</b> « Vivo aquí desde hace un mes ». « Desde » seul va avec un moment précis : « desde el lunes », « desde ayer »."}}
+   ]
+  },
+  "atasco": {
+   "dit": [{"qui": "taxi_fahrer", "air": "attentive", "t": "Vaya, hay obras en el paseo del Prado y mucho atasco. ¿Vamos por otro camino? Es un poco más largo, pero más rápido.", "fr": "Mince, il y a des travaux sur le paseo del Prado et un gros bouchon. On passe par un autre chemin ? C'est un peu plus long, mais plus rapide."}],
+   "choix": [
+    {"t": "Sí, mejor por el otro camino.", "fr": "Oui, plutôt par l'autre chemin.", "pose": {"ruta": "otra"}, "va": "retiro",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Muy bien. Vamos por Alfonso Doce.", "fr": "Très bien. Nous passons par la rue Alfonso XII."}]},
+    {"t": "No, prefiero seguir por aquí. No tengo prisa.", "fr": "Non, je préfère continuer par ici. Je ne suis pas pressé(e).", "pose": {"ruta": "prado"}, "va": "llegada",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Como quiera. Con calma, entonces.", "fr": "Comme vous voulez. Tranquillement, alors."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir más despacio?", "fr": "Pardon ? Vous pouvez répéter plus lentement ?", "va": "atasco",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Sí. Aquí hay muchos coches. Hay otro camino, más rápido. ¿Vamos por allí?", "fr": "Oui. Ici, il y a beaucoup de voitures. Il y a un autre chemin, plus rapide. On passe par là ?"}]}
+   ]
+  },
+  "retiro": {
+   "dit": [{"qui": "taxi_fahrer", "air": "question", "t": "Mire, a la derecha: el parque del Retiro. ¿Lo conoce?", "fr": "Regardez, à droite : le parc du Retiro. Vous le connaissez ?"}],
+   "choix": [
+    {"t": "No, todavía no. ¿Es muy grande?", "fr": "Non, pas encore. Il est très grand ?", "va": "llegada",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Enorme. Hay un lago con barcas. Vaya un domingo por la mañana.", "fr": "Énorme. Il y a un lac avec des barques. Allez-y un dimanche matin."}]},
+    {"t": "Sí, ya he ido. Es muy bonito.", "fr": "Oui, j'y suis déjà allé(e). Il est très beau.", "va": "llegada",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "¿Verdad? Yo voy los domingos con mis nietos.", "fr": "N'est-ce pas ? Moi, j'y vais le dimanche avec mes petits-enfants."}]},
+    {"faux": true, "t": "No, no lo sé todavía.", "fr": "Non, je ne le connais pas encore.",
+     "puis": [{"qui": "taxi_fahrer", "air": "perplexe", "t": "¿No lo sabe? Ah, no lo conoce. Pues es precioso.", "fr": "Vous ne le « savez » pas ? Ah, vous ne le connaissez pas. Eh bien, il est magnifique."}],
+     "aide": {"fr": "<b>Connaître un lieu ou une personne, c'est « conocer ».</b> « Saber », c'est savoir un fait. « No, no lo conozco todavía »."}}
+   ]
+  },
+  "llegada": {
+   "dit": [
+    {"qui": "taxi_fahrer", "air": "sourire", "si": {"ruta": "otra"}, "t": "¿Ve? Por aquí, sin atasco.", "fr": "Vous voyez ? Par ici, pas de bouchon."},
+    {"qui": "taxi_fahrer", "air": "sourire", "si": {"ruta": "prado"}, "t": "Bueno, al final no ha sido tanto.", "fr": "Bon, finalement, ce n'était pas si long."},
+    {"qui": "taxi_fahrer", "air": "sourire", "t": "Ya estamos. Ponzano, cuarenta y dos. Son {a_payer}.", "dit": "Ya estamos. Ponzano, cuarenta y dos. Son {a_payer:mots}.", "fr": "Nous y voilà. Ponzano, quarante-deux. Ça fait {a_payer}."}
+   ],
+   "choix": [
+    {"t": "Aquí tiene {arrondi:mots} euros. Está bien así.", "fr": "Voici {arrondi} euros. C'est bon comme ça.", "va": "recibo",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "¡Muchas gracias!", "fr": "Merci beaucoup !"}]},
+    {"t": "¿Puedo pagar con tarjeta?", "fr": "Je peux payer par carte ?", "va": "recibo",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Sí, claro. Acerque la tarjeta aquí… Ya está.", "fr": "Oui, bien sûr. Approchez la carte ici… Voilà."}]},
+    {"faux": true, "t": "¿Puedo pagar por tarjeta?", "fr": "Je peux payer par carte ?",
+     "puis": [{"qui": "taxi_fahrer", "air": "perplexe", "t": "¿Por tarjeta? Con tarjeta, sí, claro que puede.", "fr": "« Por » carte ? Avec la carte, oui, bien sûr."}],
+     "aide": {"fr": "<b>« Payer par carte » se dit « pagar con tarjeta ».</b> En espèces : « pagar en efectivo »."}}
+   ]
+  },
+  "recibo": {
+   "dit": [{"qui": "taxi_fahrer", "air": "question", "t": "¿Quiere un recibo?", "fr": "Vous voulez un reçu ?"}],
+   "choix": [
+    {"t": "Sí, por favor. Es para el trabajo.", "fr": "Oui, s'il vous plaît. C'est pour le travail.", "va": null,
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Aquí tiene. Y su maleta. ¡Que vaya bien!", "fr": "Voici. Et votre valise. Bonne continuation !"}]},
+    {"t": "No, no hace falta. Muchas gracias, ¡adiós!", "fr": "Non, ce n'est pas la peine. Merci beaucoup, au revoir !", "va": null,
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Aquí tiene su maleta. ¡Adiós, y que disfrute de Madrid!", "fr": "Voici votre valise. Au revoir, et profitez bien de Madrid !"}]},
+    {"faux": true, "t": "Sí, por favor. Es por el trabajo.", "fr": "Oui, s'il vous plaît. C'est pour le travail.",
+     "puis": [{"qui": "taxi_fahrer", "air": "perplexe", "t": "¿Por el trabajo? Ah, es para el trabajo. Entonces, ¿un recibo?", "fr": "« Por » le travail ? Ah, c'est pour le travail. Un reçu, alors ?"}],
+     "aide": {"fr": "<b>Ce à quoi une chose est destinée se dit avec « para ».</b> « El recibo es para el trabajo ». « Por el trabajo » voudrait dire « à cause du travail »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as pris un taxi de la gare d'Atocha à Chamberí, bavardé avec le chauffeur et payé {a_payer}."}
+}

@@ -1,0 +1,114 @@
+{
+ "id": "a2-location-voiture",
+ "langue": "de",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Louer une voiture pour le week-end"},
+ "intro": {"fr": "Tu veux passer le week-end au bord de la mer Baltique. Au comptoir de location, tu montres tes papiers, tu choisis la voiture et l'assurance, et tu prends la clé."},
+ "personnes": ["vermietung_agentin"],
+ "debut": "empfang",
+ "prix": {"klein": 7800, "gross": 11000, "voll": 2400},
+ "panier": ["auto", "schutz"],
+ "textes": {
+  "auto_fr": {"cle": "auto", "klein": "une petite voiture", "gross": "une grande voiture"},
+  "schutz_fr": {"cle": "schutz", "voll": ", avec l'assurance tous risques"}
+ },
+ "noeuds": {
+  "empfang": {
+   "dit": [
+    {"recit": {"fr": "Samedi matin, à Berlin. Tu pars pour le week-end au bord de la mer Baltique, l'Ostsee. Tu entres dans l'agence de location de voitures, près de la gare centrale."}},
+    {"qui": "vermietung_agentin", "air": "sourire", "t": "Guten Morgen! Was kann ich für Sie tun?", "fr": "Bonjour ! Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen. Ich habe online ein Auto reserviert. Mein Name ist Martin.", "fr": "Bonjour. J'ai réservé une voiture en ligne. Je m'appelle Martin.", "pose": {"res": "ja"}, "va": "papiere",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Einen Moment … Ja, hier: ein Auto von heute bis Sonntagabend.", "fr": "Un instant… Oui, voilà : une voiture d'aujourd'hui à dimanche soir."}]},
+    {"t": "Guten Morgen. Ich möchte ein Auto für zwei Tage mieten.", "fr": "Bonjour. Je voudrais louer une voiture pour deux jours.", "pose": {"res": "nein"}, "va": "frei"},
+    {"faux": true, "t": "Guten Morgen. Ich möchte ein Auto für zwei Tage vermieten.", "fr": "Bonjour. Je voudrais « louer » une voiture pour deux jours (la donner en location).",
+     "puis": [{"qui": "vermietung_agentin", "air": "amuse", "t": "Sie möchten ein Auto vermieten? Das machen wir hier! Sie möchten eins mieten, oder?", "fr": "Vous voulez donner une voiture en location ? C'est nous qui faisons ça ! Vous voulez en louer une, non ?"}],
+     "aide": {"fr": "<b>« louer » a deux traductions : « mieten » (prendre en location) et « vermieten » (donner en location).</b> Le client dit : « Ich möchte ein Auto mieten ». L'agence, elle, « vermietet » ses voitures."}}
+   ]
+  },
+  "frei": {
+   "dit": [{"qui": "vermietung_agentin", "air": "attentive", "t": "Ohne Reservierung? Mal sehen … Sie haben Glück, wir haben noch Autos. Bis wann brauchen Sie es?", "fr": "Sans réservation ? Voyons… Vous avez de la chance, il nous reste des voitures. Jusqu'à quand en avez-vous besoin ?"}],
+   "choix": [
+    {"t": "Bis Sonntagabend.", "fr": "Jusqu'à dimanche soir.", "va": "papiere",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Heute bis Sonntagabend, das geht.", "fr": "D'aujourd'hui à dimanche soir, c'est possible."}]},
+    {"t": "Von heute bis Sonntag, bitte.", "fr": "D'aujourd'hui à dimanche, s'il vous plaît.", "va": "papiere",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Heute bis Sonntag, das geht.", "fr": "D'aujourd'hui à dimanche, c'est possible."}]}
+   ]
+  },
+  "papiere": {
+   "dit": [{"qui": "vermietung_agentin", "air": "attentive", "t": "Dann brauche ich bitte Ihren Führerschein und Ihren Ausweis.", "fr": "Alors il me faut votre permis de conduire et votre pièce d'identité, s'il vous plaît."}],
+   "choix": [
+    {"t": "Hier sind mein Führerschein und mein Pass.", "fr": "Voici mon permis de conduire et mon passeport.", "va": "auto",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Danke schön. Alles in Ordnung.", "fr": "Merci beaucoup. Tout est en ordre."}]},
+    {"t": "Bitte schön. Mein Führerschein ist aus Frankreich. Ist das okay?", "fr": "Voilà. Mon permis de conduire vient de France. C'est bon ?", "va": "auto",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Ja, natürlich, das ist kein Problem.", "fr": "Oui, bien sûr, ce n'est pas un problème."}]},
+    {"faux": true, "t": "Hier sind mein Fahrschein und mein Pass.", "fr": "Voici mon « ticket de transport » et mon passeport.",
+     "puis": [{"qui": "vermietung_agentin", "air": "amuse", "t": "Ihr Fahrschein? Der ist für die U-Bahn! Ich brauche Ihren Führerschein.", "fr": "Votre ticket ? C'est pour le métro ! J'ai besoin de votre permis de conduire."}],
+     "aide": {"fr": "<b>« der Führerschein », c'est le permis de conduire ; « der Fahrschein », c'est le ticket de bus ou de métro.</b> Les deux mots se ressemblent. Dis : « Hier ist mein Führerschein »."}}
+   ]
+  },
+  "auto": {
+   "dit": [
+    {"qui": "vermietung_agentin", "air": "question", "si": {"res": "ja"}, "t": "Sie haben einen Kleinwagen für 39 Euro pro Tag reserviert. Heute habe ich auch ein größeres Auto für 55 Euro pro Tag. Was möchten Sie?", "dit": "Sie haben einen Kleinwagen für neununddreißig Euro pro Tag reserviert. Heute habe ich auch ein größeres Auto für fünfundfünfzig Euro pro Tag. Was möchten Sie?", "fr": "Vous avez réservé une petite voiture à 39 euros par jour. Aujourd'hui, j'ai aussi une voiture plus grande à 55 euros par jour. Que préférez-vous ?"},
+    {"qui": "vermietung_agentin", "air": "question", "si": {"res": "nein"}, "t": "Ich habe einen Kleinwagen für 39 Euro pro Tag oder ein größeres Auto für 55 Euro pro Tag. Was möchten Sie?", "dit": "Ich habe einen Kleinwagen für neununddreißig Euro pro Tag oder ein größeres Auto für fünfundfünfzig Euro pro Tag. Was möchten Sie?", "fr": "J'ai une petite voiture à 39 euros par jour ou une voiture plus grande à 55 euros par jour. Que préférez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Ich nehme den Kleinwagen. Wir sind nur zu zweit.", "fr": "Je prends la petite voiture. Nous ne sommes que deux.", "pose": {"auto": "klein"}, "va": "schutz",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Gern. Der ist auch sparsam.", "fr": "Volontiers. En plus, elle consomme peu."}]},
+    {"t": "Lieber das größere Auto. Wir haben viel Gepäck.", "fr": "Plutôt la plus grande. Nous avons beaucoup de bagages.", "pose": {"auto": "gross"}, "va": "schutz",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Gern. Da passt alles in den Kofferraum.", "fr": "Volontiers. Tout rentrera dans le coffre."}]},
+    {"faux": true, "t": "Ich nehme das mehr große Auto.", "fr": "Je prends la voiture « plus grande » (comparatif mot à mot).",
+     "puis": [{"qui": "vermietung_agentin", "air": "perplexe", "t": "Das mehr große …? Ach so, das größere Auto!", "fr": "La « plus grande »… ? Ah, la voiture plus grande !"}],
+     "aide": {"fr": "<b>Le comparatif se forme avec « -er », pas avec « mehr ».</b> groß → größer, klein → kleiner : « das größere Auto ». « mehr groß » n'existe pas."}},
+    {"repete": true, "t": "Wie bitte? Können Sie das wiederholen?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "auto",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Gern. Das kleine Auto kostet neununddreißig Euro pro Tag. Das große Auto kostet fünfundfünfzig Euro pro Tag.", "fr": "Volontiers. La petite voiture coûte trente-neuf euros par jour. La grande voiture coûte cinquante-cinq euros par jour."}]}
+   ]
+  },
+  "schutz": {
+   "dit": [{"qui": "vermietung_agentin", "air": "question", "t": "Möchten Sie die Vollkasko-Versicherung? Sie kostet zwölf Euro pro Tag. Dann bezahlen Sie bei einem Unfall nichts.", "fr": "Voulez-vous l'assurance tous risques ? Elle coûte douze euros par jour. Comme ça, vous ne payez rien en cas d'accident."}],
+   "choix": [
+    {"t": "Ja, bitte. Das ist sicherer.", "fr": "Oui, s'il vous plaît. C'est plus sûr.", "pose": {"schutz": "voll"}, "va": "tank",
+     "puis": [
+      {"qui": "vermietung_agentin", "air": "sourire", "si": {"auto": "klein"}, "t": "Gut. Dann sind es zusammen {a_payer} für zwei Tage.", "dit": "Gut. Dann sind es zusammen hundertzwei Euro für zwei Tage.", "fr": "Bien. Ça fait donc {a_payer} en tout pour deux jours."},
+      {"qui": "vermietung_agentin", "air": "sourire", "si": {"auto": "gross"}, "t": "Gut. Dann sind es zusammen {a_payer} für zwei Tage.", "dit": "Gut. Dann sind es zusammen hundertvierunddreißig Euro für zwei Tage.", "fr": "Bien. Ça fait donc {a_payer} en tout pour deux jours."}
+     ]},
+    {"t": "Nein, danke. Das brauche ich nicht.", "fr": "Non, merci. Je n'en ai pas besoin.", "va": "tank",
+     "puis": [
+      {"qui": "vermietung_agentin", "air": "sourire", "si": {"auto": "klein"}, "t": "In Ordnung. Dann sind es {a_payer} für zwei Tage.", "dit": "In Ordnung. Dann sind es achtundsiebzig Euro für zwei Tage.", "fr": "Entendu. Ça fait donc {a_payer} pour deux jours."},
+      {"qui": "vermietung_agentin", "air": "sourire", "si": {"auto": "gross"}, "t": "In Ordnung. Dann sind es {a_payer} für zwei Tage.", "dit": "In Ordnung. Dann sind es hundertzehn Euro für zwei Tage.", "fr": "Entendu. Ça fait donc {a_payer} pour deux jours."}
+     ]},
+    {"faux": true, "t": "Nein, danke. Ich brauche nicht das.", "fr": "Non, merci. Je n'ai pas besoin de ça (« nicht » avant « das »).",
+     "puis": [{"qui": "vermietung_agentin", "air": "perplexe", "t": "Wie bitte? Ach so, das brauchen Sie nicht. In Ordnung.", "fr": "Pardon ? Ah, vous n'en avez pas besoin. Entendu."}],
+     "aide": {"fr": "<b>« nicht » se place après le complément : « Ich brauche das nicht ».</b> En français on dit « pas ça », en allemand « das nicht ». On entend aussi souvent : « Das brauche ich nicht »."}}
+   ]
+  },
+  "tank": {
+   "dit": [{"qui": "vermietung_agentin", "air": "attentive", "t": "Der Tank ist voll. Bitte bringen Sie das Auto auch mit vollem Tank zurück. Wann kommen Sie am Sonntag?", "fr": "Le réservoir est plein. Merci de rendre la voiture avec le plein aussi. À quelle heure revenez-vous dimanche ?"}],
+   "choix": [
+    {"t": "Am Sonntag um achtzehn Uhr.", "fr": "Dimanche à dix-huit heures.", "va": "schluessel",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Sehr gut. Wir haben bis zwanzig Uhr geöffnet.", "fr": "Très bien. Nous sommes ouverts jusqu'à vingt heures."}]},
+    {"t": "Gegen sechs Uhr abends. Ist das okay?", "fr": "Vers six heures du soir. Ça va ?", "va": "schluessel",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Ja, kein Problem. Wir haben bis zwanzig Uhr geöffnet.", "fr": "Oui, pas de problème. Nous sommes ouverts jusqu'à vingt heures."}]},
+    {"faux": true, "t": "Am Sonntag zu achtzehn Uhr.", "fr": "Dimanche « à » dix-huit heures (avec « zu »).",
+     "puis": [{"qui": "vermietung_agentin", "air": "attentive", "t": "Um achtzehn Uhr, meinen Sie?", "fr": "À dix-huit heures, vous voulez dire ?"}],
+     "aide": {"fr": "<b>Devant une heure, « à » se dit « um ».</b> « um achtzehn Uhr », « um halb neun ». « zu » ne s'emploie pas pour l'heure."}}
+   ]
+  },
+  "schluessel": {
+   "dit": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Hier ist der Schlüssel. Das Auto steht im Parkhaus, auf Platz vierzehn.", "fr": "Voici la clé. La voiture est au parking, à la place quatorze."}],
+   "choix": [
+    {"t": "Danke. Und wo ist das Parkhaus?", "fr": "Merci. Et où est le parking ?", "va": null,
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Gleich hier links, hinter dem Bahnhof. Gute Fahrt und viel Spaß an der Ostsee!", "fr": "Juste ici à gauche, derrière la gare. Bonne route et amusez-vous bien à la Baltique !"}]},
+    {"t": "Vielen Dank! Bis Sonntag!", "fr": "Merci beaucoup ! À dimanche !", "va": null,
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Bis Sonntag. Gute Fahrt und viel Spaß an der Ostsee!", "fr": "À dimanche. Bonne route et amusez-vous bien à la Baltique !"}]},
+    {"faux": true, "t": "Danke. Und wo ich finde das Parkhaus?", "fr": "Merci. Et où je trouve le parking ? (sujet avant le verbe)",
+     "puis": [{"qui": "vermietung_agentin", "air": "perplexe", "t": "Wie bitte? Ach so, wo Sie das Parkhaus finden!", "fr": "Pardon ? Ah, où vous trouvez le parking !"}],
+     "aide": {"fr": "<b>Dans une question, le verbe vient juste après le mot interrogatif.</b> « Wo finde ich das Parkhaus? » ou, plus simple, « Wo ist das Parkhaus? »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as loué {auto_fr} pour le week-end{schutz_fr} : {a_payer} pour deux jours. Pense à refaire le plein avant dimanche soir !"}
+}

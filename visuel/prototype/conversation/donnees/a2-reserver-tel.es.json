@@ -1,0 +1,115 @@
+{
+ "id": "a2-reserver-tel",
+ "langue": "es",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Réserver une table au téléphone"},
+ "intro": {"fr": "Tu appelles une taberna de Madrid pour réserver une table samedi soir. Au téléphone, pas de gestes : il faut tout dire, le jour, l'heure, le nombre de personnes, ton nom."},
+ "personnes": ["kellnerin"],
+ "debut": "saludo",
+ "textes": {
+  "n_fr": {"cle": "n", "cuatro": "quatre", "seis": "six"},
+  "hora_es": {"cle": "hora", "ocho": "ocho y media", "diez": "diez"},
+  "hora_fr": {"cle": "hora", "ocho": "vingt heures trente", "diez": "vingt-deux heures"},
+  "sitio_es": {"cle": "sitio", "terraza": "en la terraza", "dentro": "dentro"},
+  "sitio_fr": {"cle": "sitio", "terraza": "en terrasse", "dentro": "à l'intérieur"}
+ },
+ "noeuds": {
+  "saludo": {
+   "dit": [
+    {"recit": {"fr": "Jeudi après-midi. Samedi, tu dînes avec des amis : tu appelles la Taberna La Paloma, dans ton quartier."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Taberna La Paloma, buenas tardes. Dígame.", "fr": "Taberna La Paloma, bonjour. Je vous écoute."}
+   ],
+   "choix": [
+    {"t": "Buenas tardes. Quería reservar una mesa para el sábado a las nueve de la noche.", "fr": "Bonjour. Je voudrais réserver une table pour samedi à neuf heures du soir.", "va": "personas"},
+    {"t": "Hola, buenas tardes. ¿Puedo reservar una mesa para el sábado a las nueve?", "fr": "Bonjour. Est-ce que je peux réserver une table pour samedi à neuf heures ?", "va": "personas"},
+    {"faux": true, "t": "Buenas tardes. Quería reservar una tabla para el sábado a las nueve.", "fr": "Bonjour. Je voudrais réserver une planche pour samedi à neuf heures.",
+     "puis": [{"qui": "kellnerin", "air": "amuse", "t": "¿Una tabla? ¿Una tabla de quesos? Ah, ¡una mesa!", "fr": "Une planche ? Une planche de fromages ? Ah, une table !"}],
+     "aide": {"fr": "<b>La table où l'on mange, c'est « la mesa ».</b> « Una tabla » est une planche (« una tabla de quesos », une planche de fromages). Dis : « Quería reservar una mesa »."}}
+   ]
+  },
+  "personas": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "El sábado a las nueve, a ver… ¿Para cuántas personas?", "fr": "Samedi à neuf heures, voyons… Pour combien de personnes ?"}],
+   "choix": [
+    {"t": "Para cuatro personas.", "fr": "Pour quatre personnes.", "pose": {"n": "cuatro"}, "va": "completo"},
+    {"t": "Somos seis.", "fr": "Nous sommes six.", "pose": {"n": "seis"}, "va": "completo"},
+    {"faux": true, "t": "Estamos cuatro.", "fr": "Nous sommes quatre (avec « estar »).",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "¿Están… dónde? Ah, son cuatro personas, ¿verdad?", "fr": "Vous êtes… où ? Ah, vous êtes quatre personnes, c'est ça ?"}],
+     "aide": {"fr": "<b>Pour dire combien on est : « ser ».</b> « Somos cuatro ». « Estamos » dit où l'on est ou comment on va : « estamos en casa », « estamos bien »."}},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "personas",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sí, claro. ¿Cuántas personas van a venir?", "fr": "Oui, bien sûr. Combien de personnes vont venir ?"}]}
+   ]
+  },
+  "completo": {
+   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "Uy, para {n} a las nueve lo tengo todo completo, lo siento. Puedo darles mesa a las ocho y media o a las diez.", "fr": "Aïe, pour {n_fr} à neuf heures, tout est complet, je suis désolée. Je peux vous donner une table à huit heures et demie ou à dix heures."}],
+   "choix": [
+    {"t": "A las ocho y media, entonces.", "fr": "À huit heures et demie, alors.", "pose": {"hora": "ocho"}, "va": "sitio",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Muy bien, a las ocho y media.", "fr": "Très bien, à huit heures et demie."}]},
+    {"t": "Mejor a las diez, por favor.", "fr": "Plutôt à dix heures, s'il vous plaît.", "pose": {"hora": "diez", "sitio": "dentro"}, "va": "nombre",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Perfecto, a las diez. A esa hora solo me queda una mesa dentro, al lado de la ventana.", "fr": "Parfait, à dix heures. À cette heure-là, il ne me reste qu'une table à l'intérieur, à côté de la fenêtre."}]},
+    {"faux": true, "t": "A las ocho y medio, entonces.", "fr": "À huit heures et demi, alors (« medio » au masculin).",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "¿Y medio…? A las ocho y media, ¿verdad?", "fr": "Et demi… ? À huit heures et demie, c'est ça ?"}],
+     "aide": {"fr": "<b>« La hora » est féminin : « y media ».</b> « A las ocho y media », « a la una y media ». « Medio » va avec un nom masculin : « medio kilo »."}},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir más despacio?", "fr": "Pardon ? Vous pouvez répéter plus lentement ?", "va": "completo",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sí, claro. A las nueve no hay mesa. Hay mesa a las ocho y media, o a las diez.", "fr": "Oui, bien sûr. À neuf heures, il n'y a pas de table. Il y a une table à huit heures et demie, ou à dix heures."}]}
+   ]
+  },
+  "sitio": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "¿Prefieren en la terraza o dentro?", "fr": "Vous préférez en terrasse ou à l'intérieur ?"}],
+   "choix": [
+    {"t": "En la terraza, por favor.", "fr": "En terrasse, s'il vous plaît.", "pose": {"sitio": "terraza"}, "va": "nombre",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Muy bien. Tenemos estufas, no van a pasar frío.", "fr": "Très bien. Nous avons des chauffages, vous n'aurez pas froid."}]},
+    {"t": "Dentro, mejor.", "fr": "À l'intérieur, plutôt.", "pose": {"sitio": "dentro"}, "va": "nombre",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Muy bien, dentro.", "fr": "Très bien, à l'intérieur."}]},
+    {"faux": true, "t": "Sobre la terraza, por favor.", "fr": "Sur la terrasse, s'il vous plaît.",
+     "puis": [{"qui": "kellnerin", "air": "amuse", "t": "¿Sobre la terraza? En la terraza, ¿no?", "fr": "Au-dessus de la terrasse ? En terrasse, non ?"}],
+     "aide": {"fr": "<b>« Sur la terrasse », « en terrasse » : « en la terraza ».</b> En espagnol, « en » dit presque toujours l'endroit où l'on est : « en la terraza », « en la mesa », « en la calle »."}}
+   ]
+  },
+  "nombre": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "¿A nombre de quién hago la reserva?", "fr": "À quel nom est-ce que je fais la réservation ?"}],
+   "choix": [
+    {"t": "A nombre de Morel. Eme, o, erre, e, ele.", "fr": "Au nom de Morel. M, O, R, E, L.", "va": "telefono",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Morel… Apuntado.", "fr": "Morel… C'est noté."}]},
+    {"t": "Morel. Se escribe eme, o, erre, e, ele.", "fr": "Morel. Ça s'écrit M, O, R, E, L.", "va": "telefono",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Morel… Apuntado.", "fr": "Morel… C'est noté."}]}
+   ]
+  },
+  "telefono": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "¿Me deja un teléfono de contacto?", "fr": "Vous me laissez un numéro de téléphone ?"}],
+   "choix": [
+    {"t": "Sí, es el seis, uno, dos, cuatro, cinco, ocho, tres, cero, nueve.", "fr": "Oui, c'est le six, un, deux, quatre, cinq, huit, trois, zéro, neuf.", "va": "peticion"},
+    {"t": "Claro. Seis, uno, dos, cuarenta y cinco, ochenta y tres, cero, nueve.", "fr": "Bien sûr. Six, un, deux, quarante-cinq, quatre-vingt-trois, zéro, neuf.", "va": "peticion"},
+    {"faux": true, "t": "Sí, mi número está el seis, uno, dos, cuatro, cinco, ocho, tres, cero, nueve.", "fr": "Oui, mon numéro est (avec « estar ») le six, un, deux…",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "¿Está…? Ah, su número es el seis, uno, dos… Siga, siga.", "fr": "Il est… ? Ah, votre numéro est le six, un, deux… Continuez, continuez."}],
+     "aide": {"fr": "<b>Pour dire ce qu'est une chose : « ser ».</b> « Mi número es el seis, uno, dos… ». « Estar » dit où est quelque chose : « el restaurante está en el centro »."}}
+   ]
+  },
+  "peticion": {
+   "dit": [{"qui": "kellnerin", "air": "sourire", "t": "Perfecto. ¿Alguna cosa más?", "fr": "Parfait. Autre chose ?"}],
+   "choix": [
+    {"t": "Sí. Una persona es vegetariana. ¿Tienen platos sin carne?", "fr": "Oui. Une personne est végétarienne. Vous avez des plats sans viande ?", "va": "confirmar",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sí, claro. Tenemos varios platos vegetarianos, no se preocupe.", "fr": "Oui, bien sûr. Nous avons plusieurs plats végétariens, ne vous inquiétez pas."}]},
+    {"t": "Sí. Es el cumpleaños de una amiga. ¿Podemos llevar una tarta?", "fr": "Oui. C'est l'anniversaire d'une amie. Est-ce que nous pouvons apporter un gâteau ?", "va": "confirmar",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Claro que sí! La guardamos en la nevera y la sacamos con las velas.", "fr": "Bien sûr que oui ! Nous le gardons au frigo et nous le sortons avec les bougies."}]},
+    {"faux": true, "t": "Sí. Una persona está vegetariana.", "fr": "Oui. Une personne est végétarienne (avec « estar »).",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "¿Está vegetariana… solo el sábado? Ah, es vegetariana. No hay problema.", "fr": "Elle est végétarienne… seulement samedi ? Ah, elle est végétarienne. Aucun problème."}],
+     "aide": {"fr": "<b>Ce qu'une personne est, de façon durable : « ser ».</b> « Es vegetariana », « es médico », « es francesa ». Avec « estar », on dirait un état passager."}}
+   ]
+  },
+  "confirmar": {
+   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "Entonces: el sábado a las {hora_es}, mesa para {n}, {sitio_es}, a nombre de Morel. ¿Es correcto?", "fr": "Alors : samedi à {hora_fr}, une table pour {n_fr}, {sitio_fr}, au nom de Morel. C'est bien ça ?"}],
+   "choix": [
+    {"t": "Sí, perfecto. Muchas gracias. ¡Hasta el sábado!", "fr": "Oui, parfait. Merci beaucoup. À samedi !", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gracias a usted. ¡Hasta el sábado!", "fr": "Merci à vous. À samedi !"}]},
+    {"t": "Eso es. Gracias, hasta el sábado.", "fr": "C'est ça. Merci, à samedi.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "A usted. ¡Hasta el sábado, buenas tardes!", "fr": "Merci à vous. À samedi, bonne fin de journée !"}]},
+    {"faux": true, "t": "Sí, perfecto. Gracias, ¡a sábado!", "fr": "Oui, parfait. Merci, à samedi ! (mot à mot)",
+     "puis": [{"qui": "kellnerin", "air": "amuse", "t": "¿A sábado? ¡Hasta el sábado, quiere decir!", "fr": "« A sábado » ? « Hasta el sábado », vous voulez dire !"}],
+     "aide": {"fr": "<b>« À samedi ! » se dit « ¡Hasta el sábado! ».</b> Pour prendre congé jusqu'à un moment précis : « hasta » + l'article : « hasta el lunes », « hasta mañana », « hasta luego »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as réservé au téléphone une table pour {n_fr}, samedi à {hora_fr}, {sitio_fr}, au nom de Morel. À Madrid, dîner à {hora_fr} n'a rien d'étonnant."}
+}

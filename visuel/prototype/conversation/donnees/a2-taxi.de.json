@@ -1,0 +1,119 @@
+{
+ "id": "a2-taxi",
+ "langue": "de",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "En taxi"},
+ "intro": {"fr": "Tu arrives à la gare centrale de Berlin avec ta valise et tu prends un taxi pour Prenzlauer Berg. Tu donnes l'adresse, tu bavardes avec le chauffeur, puis tu paies."},
+ "personnes": ["taxi_fahrer"],
+ "debut": "wohin",
+ "prix": {"umweg": 1820, "stau": 1680},
+ "panier": ["weg"],
+ "noeuds": {
+  "wohin": {
+   "dit": [
+    {"recit": {"fr": "Tu sors de la gare centrale de Berlin, le Hauptbahnhof, avec ta grosse valise. Un taxi attend devant. Le chauffeur baisse sa vitre."}},
+    {"qui": "taxi_fahrer", "air": "sourire", "t": "Guten Tag! Wohin soll es gehen?", "fr": "Bonjour ! Où allons-nous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag. In die Kastanienallee zwölf, bitte.", "fr": "Bonjour. Au douze, Kastanienallee, s'il vous plaît.", "va": "koffer",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Kastanienallee, in Prenzlauer Berg. Alles klar!", "fr": "Kastanienallee, à Prenzlauer Berg. C'est parti !"}]},
+    {"t": "Zur Kastanienallee zwölf, in Prenzlauer Berg, bitte.", "fr": "Au douze, Kastanienallee, à Prenzlauer Berg, s'il vous plaît.", "va": "koffer",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Kastanienallee zwölf. Alles klar!", "fr": "Douze Kastanienallee. C'est parti !"}]},
+    {"faux": true, "t": "Guten Tag. Ich gehe in die Kastanienallee zwölf.", "fr": "Bonjour. Je « vais » au douze, Kastanienallee (à pied).",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "Sie gehen? Zu Fuß, mit dem Koffer? Oder soll ich Sie fahren?", "fr": "Vous y allez… à pied, avec la valise ? Ou je vous y conduis ?"}],
+     "aide": {"fr": "<b>« gehen », c'est aller à pied.</b> En taxi, on donne simplement l'adresse : « In die Kastanienallee zwölf, bitte ». Ou bien : « Ich möchte in die Kastanienallee »."}}
+   ]
+  },
+  "koffer": {
+   "dit": [{"qui": "taxi_fahrer", "air": "question", "t": "Soll ich den Koffer in den Kofferraum legen?", "fr": "Je mets la valise dans le coffre ?"}],
+   "choix": [
+    {"t": "Ja, gern. Vielen Dank!", "fr": "Oui, volontiers. Merci beaucoup !", "va": "fahrt",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Kein Problem. So, bitte einsteigen!", "fr": "Pas de problème. Voilà, montez !"}]},
+    {"t": "Danke, das ist nett. Er ist ziemlich schwer.", "fr": "Merci, c'est gentil. Elle est assez lourde.", "va": "fahrt",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "Uff, stimmt! Was haben Sie da drin, Bücher? So, bitte einsteigen!", "fr": "Ouf, c'est vrai ! Qu'est-ce que vous avez là-dedans, des livres ? Voilà, montez !"}]},
+    {"faux": true, "t": "Danke, das ist nett. Er ist ziemlich schwierig.", "fr": "Merci, c'est gentil. Elle est assez « difficile ».",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "Ein schwieriger Koffer? Ach so, er ist schwer! Ja, das merke ich.", "fr": "Une valise difficile ? Ah, elle est lourde ! Oui, je le sens."}],
+     "aide": {"fr": "<b>« schwer » = lourd, « schwierig » = difficile.</b> Une valise est « schwer » ; un exercice est « schwierig » (ou « schwer » aussi). « Der Koffer ist schwer. »"}}
+   ]
+  },
+  "fahrt": {
+   "dit": [{"qui": "taxi_fahrer", "air": "sourire", "t": "So, los geht's.", "fr": "Allez, on y va."}],
+   "choix": [
+    {"t": "Wie lange dauert die Fahrt?", "fr": "Combien de temps dure le trajet ?", "va": "gespraech",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Ungefähr fünfzehn Minuten, wenn kein Stau ist.", "fr": "Environ quinze minutes, s'il n'y a pas d'embouteillage."}]},
+    {"t": "Was kostet die Fahrt ungefähr?", "fr": "Combien coûte le trajet, à peu près ?", "va": "gespraech",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Ungefähr siebzehn Euro. Es kommt auf den Verkehr an.", "fr": "Environ dix-sept euros. Ça dépend de la circulation."}]},
+    {"faux": true, "t": "Wie lange nimmt die Fahrt?", "fr": "Combien de temps « prend » le trajet ?",
+     "puis": [{"qui": "taxi_fahrer", "air": "perplexe", "t": "Nimmt? Ach so, wie lange die Fahrt dauert! Ungefähr fünfzehn Minuten.", "fr": "« Prend » ? Ah, combien de temps dure le trajet ! Environ quinze minutes."}],
+     "aide": {"fr": "<b>Le temps que « prend » quelque chose se dit avec « dauern ».</b> « Wie lange dauert die Fahrt? » ; « Die Fahrt dauert fünfzehn Minuten. » « nehmen » ne s'emploie pas pour une durée."}}
+   ]
+  },
+  "gespraech": {
+   "dit": [{"qui": "taxi_fahrer", "air": "question", "t": "Sind Sie zu Besuch in Berlin, oder wohnen Sie hier?", "fr": "Vous êtes de passage à Berlin, ou vous habitez ici ?"}],
+   "choix": [
+    {"t": "Ich mache hier eine Woche Urlaub.", "fr": "Je passe une semaine de vacances ici.", "pose": {"grund": "urlaub"}, "va": "stau",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Schön! Dann gehen Sie am Sonntag unbedingt in den Mauerpark: Flohmarkt und Karaoke. Das ist typisch Berlin!", "fr": "Super ! Alors dimanche, allez absolument au Mauerpark : marché aux puces et karaoké. C'est typiquement berlinois !"}]},
+    {"t": "Ich wohne seit einem Monat hier.", "fr": "J'habite ici depuis un mois.", "pose": {"grund": "wohnen"}, "va": "stau",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Ach, ganz neu in Berlin! Ein schönes Viertel. Am Samstag ist am Kollwitzplatz ein toller Markt.", "fr": "Ah, tout nouveau à Berlin ! Un beau quartier. Le samedi, il y a un super marché sur la Kollwitzplatz."}]},
+    {"faux": true, "t": "Ich wohne seit ein Monat hier.", "fr": "J'habite ici depuis un mois (« seit » sans datif).",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Seit einem Monat? Na dann: willkommen in Berlin!", "fr": "Depuis un mois ? Eh bien : bienvenue à Berlin !"}],
+     "aide": {"fr": "<b>« seit » est toujours suivi du datif.</b> « ein Monat » devient « seit einem Monat » ; « eine Woche » devient « seit einer Woche »."}},
+    {"repete": true, "t": "Wie bitte? Können Sie das wiederholen?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "gespraech",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Klar. Machen Sie Urlaub in Berlin? Oder wohnen Sie hier?", "fr": "Bien sûr. Vous êtes en vacances à Berlin ? Ou vous habitez ici ?"}]}
+   ]
+  },
+  "stau": {
+   "dit": [
+    {"recit": {"fr": "Le taxi ralentit. Devant, des travaux et une longue file de voitures à l'arrêt."}},
+    {"qui": "taxi_fahrer", "air": "attentive", "t": "Oh je, eine Baustelle, und alles steht. Soll ich einen anderen Weg nehmen? Der ist etwas länger, aber wir sind schneller da.", "fr": "Oh là là, des travaux, et tout est bloqué. Je prends un autre chemin ? Il est un peu plus long, mais nous arriverons plus vite."}
+   ],
+   "choix": [
+    {"t": "Ja, gern. Nehmen Sie bitte den anderen Weg.", "fr": "Oui, volontiers. Prenez l'autre chemin, s'il vous plaît.", "pose": {"weg": "umweg"}, "va": "zahlen",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Gut, dann fahren wir über die Torstraße.", "fr": "Bien, alors nous passons par la Torstraße."}]},
+    {"t": "Nein, wir bleiben hier. Ich habe Zeit.", "fr": "Non, restons ici. J'ai le temps.", "pose": {"weg": "stau"}, "va": "zahlen",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Wie Sie möchten. Na also, es geht schon weiter.", "fr": "Comme vous voulez. Ah, voilà, ça repart déjà."}]},
+    {"faux": true, "t": "Ja, bitte. Ich bin gepresst.", "fr": "Oui, s'il vous plaît. Je suis « pressé(e) » (mot à mot : écrasé).",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "Gepresst? Wie eine Zitrone? Ach so, Sie haben es eilig!", "fr": "Pressé ? Comme un citron ? Ah, vous êtes pressé(e) !"}],
+     "aide": {"fr": "<b>« Je suis pressé(e) » se dit « Ich habe es eilig ».</b> « gepresst » veut dire écrasé, comme un fruit. On peut dire aussi : « Ich habe wenig Zeit »."}}
+   ]
+  },
+  "zahlen": {
+   "dit": [
+    {"recit": {"fr": "Le taxi s'arrête devant le numéro douze. Le chauffeur sort ta valise du coffre."}},
+    {"qui": "taxi_fahrer", "air": "sourire", "t": "So, da sind wir: Kastanienallee zwölf. Das macht {a_payer}.", "dit": "So, da sind wir: Kastanienallee zwölf. Das macht {a_payer:mots}.", "fr": "Voilà, nous y sommes : douze Kastanienallee. Ça fait {a_payer}."}
+   ],
+   "choix": [
+    {"t": "Hier sind {arrondi:mots} Euro. Stimmt so.", "fr": "Voici {arrondi} euros. Gardez la monnaie.", "va": "quittung",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Oh, vielen Dank!", "fr": "Oh, merci beaucoup !"}]},
+    {"t": "Kann ich mit Karte zahlen?", "fr": "Je peux payer par carte ?", "va": "karte"},
+    {"faux": true, "t": "Kann ich durch Karte zahlen?", "fr": "Je peux payer « par » carte ? (avec « durch »)",
+     "puis": [{"qui": "taxi_fahrer", "air": "perplexe", "t": "Durch die Karte? Ach so, mit Karte! Ja, klar.", "fr": "« À travers » la carte ? Ah, par carte ! Oui, bien sûr."}],
+     "aide": {"fr": "<b>« par carte » se dit « mit Karte ».</b> « Kann ich mit Karte zahlen? » ; en espèces : « bar ». « durch » veut dire « à travers »."}}
+   ]
+  },
+  "karte": {
+   "dit": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Ja, klar, kein Problem. Also {a_payer}?", "dit": "Ja, klar, kein Problem. Also {a_payer:mots}?", "fr": "Oui, bien sûr, pas de problème. Donc {a_payer} ?"}],
+   "choix": [
+    {"t": "Machen Sie bitte {arrondi:mots} Euro.", "fr": "Mettez {arrondi} euros, s'il vous plaît.", "va": "quittung",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Danke schön, sehr nett! Halten Sie die Karte bitte hier dran.", "fr": "Merci beaucoup, c'est très gentil ! Approchez la carte ici, s'il vous plaît."}]},
+    {"t": "{arrondi:mots_maj} Euro, bitte. Der Rest ist für Sie.", "fr": "{arrondi} euros, s'il vous plaît. Le reste est pour vous.", "va": "quittung",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Danke schön, sehr nett! Halten Sie die Karte bitte hier dran.", "fr": "Merci beaucoup, c'est très gentil ! Approchez la carte ici, s'il vous plaît."}]}
+   ]
+  },
+  "quittung": {
+   "dit": [{"qui": "taxi_fahrer", "air": "question", "t": "Brauchen Sie eine Quittung?", "fr": "Vous avez besoin d'un reçu ?"}],
+   "choix": [
+    {"t": "Ja, eine Quittung, bitte.", "fr": "Oui, un reçu, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Hier, bitte. Und Ihr Koffer! Einen schönen Tag noch!", "fr": "Voilà. Et votre valise ! Bonne journée !"}]},
+    {"t": "Nein, danke. Einen schönen Tag noch!", "fr": "Non, merci. Bonne journée !", "va": null,
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Danke, gleichfalls! Und viel Spaß in Berlin!", "fr": "Merci, vous aussi ! Et amusez-vous bien à Berlin !"}]},
+    {"faux": true, "t": "Ja, ein Rezept, bitte.", "fr": "Oui, une « ordonnance », s'il vous plaît.",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "Ein Rezept? Ich bin Taxifahrer, kein Arzt! Sie möchten eine Quittung, oder?", "fr": "Une ordonnance ? Je suis chauffeur de taxi, pas médecin ! Vous voulez un reçu, non ?"}],
+     "aide": {"fr": "<b>Faux ami : « das Rezept », c'est l'ordonnance du médecin (ou la recette de cuisine).</b> Le reçu se dit « die Quittung » : « Eine Quittung, bitte »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as pris un taxi de la gare centrale à Prenzlauer Berg, bavardé avec le chauffeur et payé {a_payer}, plus un petit pourboire : en Allemagne, on arrondit."}
+}

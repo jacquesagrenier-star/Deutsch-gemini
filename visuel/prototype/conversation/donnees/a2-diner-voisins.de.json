@@ -1,0 +1,138 @@
+{
+ "id": "a2-diner-voisins",
+ "langue": "de",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Dîner chez Carmen, ta voisine"},
+ "intro": {"fr": "Carmen, ta voisine du troisième, t'a invité(e) à dîner. Tu apportes un petit cadeau, tu fais des compliments, tu remercies : la politesse à l'allemande."},
+ "personnes": ["nachbarin_carmen"],
+ "debut": "ankunft",
+ "textes": {
+  "cadeau_fr": {"cle": "cadeau", "wein": "une bouteille de vin", "blumen": "des fleurs", "schokolade": "du chocolat"}
+ },
+ "noeuds": {
+  "ankunft": {
+   "dit": [
+    {"recit": {"fr": "Samedi, dix-neuf heures. Tu sonnes chez Carmen, ton petit cadeau à la main. La porte s'ouvre."}},
+    {"qui": "nachbarin_carmen", "air": "sourire", "t": "Guten Abend! Schön, dass Sie da sind. Kommen Sie doch rein!", "fr": "Bonsoir ! Ça me fait plaisir que vous soyez là. Entrez donc !"}
+   ],
+   "choix": [
+    {"t": "Guten Abend! Danke für die Einladung. Der Wein ist für Sie.", "fr": "Bonsoir ! Merci pour l'invitation. Le vin est pour vous.", "pose": {"cadeau": "wein"}, "va": "wohnung",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "Oh, ein Rotwein! Das ist aber nett, vielen Dank!", "fr": "Oh, un vin rouge ! Comme c'est gentil, merci beaucoup !"}]},
+    {"t": "Guten Abend! Ich habe Blumen für Sie mitgebracht.", "fr": "Bonsoir ! Je vous ai apporté des fleurs.", "pose": {"cadeau": "blumen"}, "va": "wohnung",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "Oh, wie schön! Vielen Dank. Ich hole gleich eine Vase.", "fr": "Oh, comme elles sont belles ! Merci beaucoup. Je vais tout de suite chercher un vase."}]},
+    {"t": "Guten Abend! Hier, ein bisschen Schokolade für Sie.", "fr": "Bonsoir ! Tenez, un peu de chocolat pour vous.", "pose": {"cadeau": "schokolade"}, "va": "wohnung",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "Schokolade! Die esse ich so gern. Vielen Dank!", "fr": "Du chocolat ! J'adore ça. Merci beaucoup !"}]},
+    {"faux": true, "t": "Hallo Carmen! Danke für die Einladung. Der Wein ist für dich.", "fr": "Salut Carmen ! Merci pour l'invitation. Le vin est pour toi.",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Oh, danke schön! Aber wir sagen doch noch „Sie“, oder?", "fr": "Oh, merci bien ! Mais nous nous disons encore « vous », non ?"}],
+     "aide": {"fr": "<b>Entre adultes qui se connaissent peu, on dit « Sie ».</b> On attend que la personne propose le « du ». Ici : « Der Wein ist für Sie »."}}
+   ]
+  },
+  "wohnung": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "So, das ist mein Wohnzimmer. Und da hinten ist der Balkon.", "fr": "Voilà, c'est mon salon. Et là-bas, au fond, c'est le balcon."}],
+   "choix": [
+    {"t": "Sie haben eine sehr schöne Wohnung!", "fr": "Vous avez un très bel appartement !", "va": "trinken",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Danke! Ich wohne schon seit zehn Jahren hier.", "fr": "Merci ! J'habite ici depuis dix ans déjà."}]},
+    {"t": "Der Balkon ist toll! Man sieht den Fernsehturm.", "fr": "Le balcon est super ! On voit la tour de télévision.", "va": "trinken",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Ja, abends ist der Blick besonders schön.", "fr": "Oui, le soir, la vue est particulièrement belle."}]},
+    {"faux": true, "t": "Ihre Wohnung ist sehr sympathisch!", "fr": "Votre appartement est très sympa !",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Sympathisch? Meine Wohnung? Sie meinen: Sie ist gemütlich. Danke!", "fr": "Sympathique ? Mon appartement ? Vous voulez dire : il est accueillant. Merci !"}],
+     "aide": {"fr": "<b>« sympathisch » ne se dit que d'une personne.</b> Pour un lieu « sympa » : « schön », « gemütlich » (accueillant) ou « toll »."}}
+   ]
+  },
+  "trinken": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "question", "t": "Setzen Sie sich doch! Was möchten Sie trinken? Ein Glas Wein, ein Bier oder lieber Wasser?", "fr": "Asseyez-vous donc ! Que voulez-vous boire ? Un verre de vin, une bière ou plutôt de l'eau ?"}],
+   "choix": [
+    {"t": "Ein Glas Wein, bitte.", "fr": "Un verre de vin, s'il vous plaît.", "va": "essen",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Gern. Zum Wohl!", "fr": "Volontiers. À votre santé !"}]},
+    {"t": "Für mich bitte nur ein Wasser.", "fr": "Pour moi, seulement de l'eau, s'il vous plaît.", "va": "essen",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Natürlich. Bitte schön!", "fr": "Bien sûr. Voilà !"}]},
+    {"faux": true, "t": "Ich nehme ein Glas von Wein, bitte.", "fr": "Je prends un verre de vin, s'il vous plaît.",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "Ein Glas … Wein? Ein Glas Wein, gern!", "fr": "Un verre… de vin ? Un verre de vin, volontiers !"}],
+     "aide": {"fr": "<b>Pas de « von » après une quantité.</b> « Un verre de vin » = « ein Glas Wein » ; « une tasse de café » = « eine Tasse Kaffee »."}},
+    {"repete": true, "t": "Wie bitte? Können Sie das wiederholen?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "trinken",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Natürlich: Möchten Sie Wein, Bier oder Wasser?", "fr": "Bien sûr : voulez-vous du vin, de la bière ou de l'eau ?"}]}
+   ]
+  },
+  "essen": {
+   "dit": [
+    {"recit": {"fr": "Vous passez à table. Carmen apporte un grand plat fumant : des boulettes dans une sauce claire, avec des pommes de terre."}},
+    {"qui": "nachbarin_carmen", "air": "sourire", "t": "So, bitte schön. Guten Appetit!", "fr": "Voilà, je vous en prie. Bon appétit !"}
+   ],
+   "choix": [
+    {"t": "Mmh, das schmeckt sehr gut! Was ist das?", "fr": "Mmh, c'est très bon ! Qu'est-ce que c'est ?", "va": "nachschlag",
+     "puis": [
+      {"qui": "nachbarin_carmen", "air": "sourire", "t": "Das sind Königsberger Klopse: Fleischbällchen in einer hellen Soße. Ein altes Berliner Rezept.", "fr": "Ce sont des « Königsberger Klopse » : des boulettes de viande dans une sauce claire. Une vieille recette berlinoise."},
+      {"qui": "nachbarin_carmen", "air": "amuse", "t": "Ich bin Köchin von Beruf, wissen Sie. Aber zu Hause koche ich am liebsten.", "fr": "Je suis cuisinière de métier, vous savez. Mais c'est à la maison que je préfère cuisiner."}
+     ]},
+    {"t": "Das ist sehr lecker! Können Sie mir das Rezept geben?", "fr": "C'est délicieux ! Vous pouvez me donner la recette ?", "va": "nachschlag",
+     "puis": [
+      {"qui": "nachbarin_carmen", "air": "amuse", "t": "Gern! Das sind Königsberger Klopse, ein altes Berliner Rezept. Ich schreibe es Ihnen auf.", "fr": "Volontiers ! Ce sont des « Königsberger Klopse », une vieille recette berlinoise. Je vous l'écrirai."},
+      {"qui": "nachbarin_carmen", "air": "sourire", "t": "Ich bin Köchin von Beruf, wissen Sie. Aber zu Hause koche ich am liebsten.", "fr": "Je suis cuisinière de métier, vous savez. Mais c'est à la maison que je préfère cuisiner."}
+     ]},
+    {"faux": true, "t": "Mmh, das schmeckt mich sehr gut!", "fr": "Mmh, ça me plaît beaucoup (au goût) !",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "Es schmeckt … Ihnen? Ah, es schmeckt Ihnen! Das freut mich.", "fr": "Ça vous… plaît ? Ah, ça vous plaît ! Ça me fait plaisir."}],
+     "aide": {"fr": "<b>« schmecken » se construit avec le datif :</b> « Das schmeckt mir sehr gut ». Plus simple encore : « Das schmeckt sehr gut! »."}}
+   ]
+  },
+  "nachschlag": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "question", "t": "Möchten Sie noch etwas? Es ist noch genug da.", "fr": "Vous en reprenez ? Il en reste bien assez."}],
+   "choix": [
+    {"t": "Ja, gern! Es schmeckt wirklich sehr gut.", "fr": "Oui, volontiers ! C'est vraiment très bon.", "va": "nachtisch_klein",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Das freut mich! Bitte schön, noch zwei Klopse.", "fr": "Ça me fait plaisir ! Tenez, encore deux boulettes."}]},
+    {"t": "Nein, danke. Ich bin satt, aber es war sehr lecker.", "fr": "Non, merci. Je n'ai plus faim, mais c'était délicieux.", "va": "nachtisch",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Danke, das höre ich gern!", "fr": "Merci, ça fait plaisir à entendre !"}]},
+    {"faux": true, "t": "Nein, danke. Ich bin voll.", "fr": "Non, merci. Je suis plein(e).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Voll? Aber Sie haben doch fast nichts getrunken! Sie meinen: Sie sind satt.", "fr": "« Voll » ? Mais vous n'avez presque rien bu ! Vous voulez dire : vous n'avez plus faim."}],
+     "aide": {"fr": "<b>« Ich bin voll » veut dire « je suis ivre »</b> (familier). Quand on a assez mangé : « Ich bin satt » ou « Nein, danke, es war sehr lecker »."}}
+   ]
+  },
+  "nachtisch_klein": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "question", "t": "Jetzt gibt es noch Nachtisch: rote Grütze mit Vanillesoße. Schaffen Sie das noch?", "fr": "Maintenant, il y a encore le dessert : des fruits rouges à la sauce vanille. Vous y arriverez encore ?"}],
+   "choix": [
+    {"t": "Ja, aber nur ein bisschen, bitte.", "fr": "Oui, mais juste un peu, s'il vous plaît.", "va": "abschied",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Eine kleine Portion, kommt sofort.", "fr": "Une petite portion, tout de suite."}]},
+    {"t": "Für Nachtisch habe ich immer Platz!", "fr": "Pour le dessert, j'ai toujours de la place !", "va": "abschied",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "So ist es richtig!", "fr": "C'est comme ça qu'il faut faire !"}]}
+   ]
+  },
+  "nachtisch": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "question", "t": "Aber für den Nachtisch haben Sie noch Platz, oder? Es gibt rote Grütze mit Vanillesoße.", "fr": "Mais pour le dessert, vous avez encore de la place, non ? Il y a des fruits rouges à la sauce vanille."}],
+   "choix": [
+    {"t": "Ja, gern! Für Nachtisch habe ich immer Platz.", "fr": "Oui, volontiers ! Pour le dessert, j'ai toujours de la place.", "va": "abschied",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "So ist es richtig!", "fr": "C'est comme ça qu'il faut faire !"}]},
+    {"t": "Gern, aber nur eine kleine Portion.", "fr": "Volontiers, mais seulement une petite portion.", "va": "abschied",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Eine kleine Portion, kommt sofort.", "fr": "Une petite portion, tout de suite."}]},
+    {"faux": true, "t": "Ja, ich will gut.", "fr": "Oui, je veux bien.",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "Sie wollen … gut? Entschuldigung: Möchten Sie Nachtisch oder nicht?", "fr": "Vous voulez… bien ? Excusez-moi : vous voulez du dessert ou pas ?"}],
+     "aide": {"fr": "<b>« Je veux bien » ne se traduit pas mot à mot.</b> Pour accepter : « Ja, gern! » ou « Ja, bitte! »."}}
+   ]
+  },
+  "abschied": {
+   "dit": [
+    {"recit": {"fr": "Le dessert est fini, il est presque onze heures. Tu te lèves pour partir."}},
+    {"qui": "nachbarin_carmen", "air": "sourire", "t": "Schon so spät! Es war schön, dass Sie da waren.", "fr": "Déjà si tard ! C'était un plaisir de vous avoir."}
+   ],
+   "choix": [
+    {"t": "Vielen Dank für den schönen Abend! Das nächste Mal kommen Sie zu mir.", "fr": "Merci beaucoup pour cette belle soirée ! La prochaine fois, c'est vous qui venez chez moi.", "va": "duzen",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Sehr gern! Ich freue mich schon.", "fr": "Très volontiers ! Je m'en réjouis déjà."}]},
+    {"t": "Danke für das tolle Essen! Nächstes Mal lade ich Sie ein.", "fr": "Merci pour ce super repas ! La prochaine fois, c'est moi qui vous invite.", "va": "duzen",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Sehr gern! Ich freue mich schon.", "fr": "Très volontiers ! Je m'en réjouis déjà."}]},
+    {"faux": true, "t": "Vielen Dank für den Abend! Das nächste Mal kommen Sie bei mir.", "fr": "Merci beaucoup pour la soirée ! La prochaine fois, vous venez chez moi.",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "Bei Ihnen …? Ach so, ich komme zu Ihnen! Sehr gern.", "fr": "Chez vous… ? Ah, je viens chez vous ! Très volontiers."}],
+     "aide": {"fr": "<b>« Chez moi » : « zu mir » quand on y va, « bei mir » quand on y est.</b> « Sie kommen zu mir » (direction), mais « Wir essen bei mir » (lieu)."}}
+   ]
+  },
+  "duzen": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "question", "t": "Ach, übrigens: Wollen wir uns nicht duzen? Wir sind ja Nachbarn.", "fr": "Ah, au fait : et si on se tutoyait ? Nous sommes voisins, après tout."}],
+   "choix": [
+    {"t": "Ja, sehr gern!", "fr": "Oui, très volontiers !", "va": null,
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Schön! Dann gute Nacht, und schlaf gut!", "fr": "Parfait ! Alors bonne nuit, et dors bien !"}]},
+    {"t": "Gern! Gute Nacht, Carmen, und bis bald!", "fr": "Volontiers ! Bonne nuit, Carmen, et à bientôt !", "va": null,
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Gute Nacht! Schlaf gut, und bis bald!", "fr": "Bonne nuit ! Dors bien, et à bientôt !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as offert {cadeau_fr}, complimenté Carmen sur son appartement et sa cuisine, et tu l'as invitée à ton tour. Et maintenant, vous vous tutoyez !"}
+}

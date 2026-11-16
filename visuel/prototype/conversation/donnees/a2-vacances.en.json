@@ -1,0 +1,127 @@
+{
+ "id": "a2-vacances",
+ "langue": "en",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "familier",
+ "titre": {"fr": "Raconter tes vacances"},
+ "intro": {"fr": "Tu rentres de vacances. Diego, ton ami, veut tout savoir : où, comment, quel temps… C'est la conversation du passé (le simple past)."},
+ "personnes": ["freund_diego"],
+ "debut": "where",
+ "textes": {
+  "lieu_en": {"cle": "lieu", "florida": "Florida", "vermont": "Vermont"},
+  "lieu_fr": {"cle": "lieu", "florida": "en Floride, à la plage", "vermont": "dans le Vermont, à la montagne"},
+  "lieu_court_fr": {"cle": "lieu", "florida": "la Floride", "vermont": "le Vermont"}
+ },
+ "noeuds": {
+  "where": {
+   "dit": [
+    {"recit": {"fr": "Dimanche après-midi, dans un café de Cambridge. Diego arrive, encore en tenue de l'hôpital."}},
+    {"qui": "freund_diego", "air": "sourire", "t": "Hey, you're back! You look great. So, where did you go?", "fr": "Hé, tu es rentré(e) ! Tu as bonne mine. Alors, tu es allé(e) où ?"}
+   ],
+   "choix": [
+    {"t": "I went to Florida, to the beach.", "fr": "Je suis allé(e) en Floride, à la plage.", "pose": {"lieu": "florida"}, "va": "travel",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Florida! Nice. I'm so jealous.", "fr": "La Floride ! Super. Je suis trop jaloux."}]},
+    {"t": "I went to Vermont, to the mountains.", "fr": "Je suis allé(e) dans le Vermont, à la montagne.", "pose": {"lieu": "vermont"}, "va": "travel",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Vermont! Beautiful. I'm so jealous.", "fr": "Le Vermont ! Magnifique. Je suis trop jaloux."}]},
+    {"faux": true, "t": "I have been in Florida last week.", "fr": "J'ai été en Floride la semaine dernière (mot à mot).",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "You have been …? Wait, last week? So you went to Florida!", "fr": "« You have been »… ? Attends, la semaine dernière ? Donc tu es allé(e) en Floride !"}],
+     "aide": {"fr": "<b>Le passé composé français ne se calque pas : pour un moment terminé (last week, yesterday), l'anglais prend le simple past.</b> « I went to Florida last week », avec « to »."}}
+   ]
+  },
+  "travel": {
+   "dit": [{"qui": "freund_diego", "air": "attentive", "t": "How did you get there?", "fr": "Tu y es allé(e) comment ?"}],
+   "choix": [
+    {"si": {"lieu": "florida"}, "t": "I flew. It was only three hours.", "fr": "J'ai pris l'avion. C'était seulement trois heures.", "va": "did",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Three hours, and you're on the beach. Not bad!", "fr": "Trois heures, et tu es sur la plage. Pas mal !"}]},
+    {"si": {"lieu": "florida"}, "t": "I took a plane on Saturday morning.", "fr": "J'ai pris un avion samedi matin.", "va": "did",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "And a few hours later, you were on the beach. Not bad!", "fr": "Et quelques heures plus tard, tu étais sur la plage. Pas mal !"}]},
+    {"si": {"lieu": "vermont"}, "t": "I drove. It took three hours.", "fr": "J'y suis allé(e) en voiture. Ça a pris trois heures.", "va": "did",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Three hours? That's a nice drive.", "fr": "Trois heures ? C'est une belle route."}]},
+    {"si": {"lieu": "vermont"}, "t": "I took the bus, and then I rented a car.", "t_gb": "I took the bus, and then I hired a car.", "fr": "J'ai pris le bus, et ensuite j'ai loué une voiture.", "va": "did",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Smart. You need a car up there.", "fr": "Malin. Il faut une voiture, là-haut."}]},
+    {"faux": true, "t": "I am gone there with a friend.", "fr": "J'y suis allé(e) avec un ami (mot à mot).",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "You are gone? But you're right here! Oh — you went with a friend.", "fr": "Tu es parti(e) ? Mais tu es là ! Ah, tu y es allé(e) avec un ami."}],
+     "aide": {"fr": "<b>Pas d'auxiliaire « être » au passé en anglais.</b> « Je suis allé » se dit en un seul mot : « I went ». « I went there with a friend »."}}
+   ]
+  },
+  "did": {
+   "dit": [{"qui": "freund_diego", "air": "attentive", "t": "And what did you do all week?", "fr": "Et tu as fait quoi toute la semaine ?"}],
+   "choix": [
+    {"si": {"lieu": "florida"}, "t": "I swam every day and read on the beach.", "fr": "J'ai nagé tous les jours et j'ai lu sur la plage.", "va": "weather",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "That's a real vacation. I worked every weekend this month.", "t_gb": "That's a real holiday. I worked every weekend this month.", "fr": "Ça, ce sont de vraies vacances. Moi, j'ai travaillé tous les week-ends ce mois-ci."}]},
+    {"si": {"lieu": "florida"}, "t": "Nothing! I ate a lot of fish and slept a lot.", "fr": "Rien ! J'ai mangé beaucoup de poisson et j'ai beaucoup dormi.", "va": "weather",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Doctor's orders! I worked every weekend this month.", "fr": "Ordre du médecin ! Moi, j'ai travaillé tous les week-ends ce mois-ci."}]},
+    {"si": {"lieu": "vermont"}, "t": "I went hiking every day. The views were beautiful.", "fr": "J'ai fait de la randonnée tous les jours. Les vues étaient magnifiques.", "va": "weather",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "That's a real vacation. I worked every weekend this month.", "t_gb": "That's a real holiday. I worked every weekend this month.", "fr": "Ça, ce sont de vraies vacances. Moi, j'ai travaillé tous les week-ends ce mois-ci."}]},
+    {"si": {"lieu": "vermont"}, "t": "I visited small towns and ate a lot of cheese.", "fr": "J'ai visité des petites villes et j'ai mangé beaucoup de fromage.", "va": "weather",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Vermont cheese! Did you bring me some? I worked every weekend this month.", "fr": "Le fromage du Vermont ! Tu m'en as rapporté ? Moi, j'ai travaillé tous les week-ends ce mois-ci."}]},
+    {"faux": true, "t": "I eated very well and I sleeped a lot.", "fr": "J'ai très bien mangé et j'ai beaucoup dormi (verbes mal conjugués).",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "You … eated? Oh, you ate well and you slept a lot. Lucky you!", "fr": "Tu as… « eated » ? Ah, tu as bien mangé et beaucoup dormi. Veinard(e) !"}],
+     "aide": {"fr": "<b>« eat » et « sleep » sont irréguliers : pas de -ed.</b> eat → ate, sleep → slept. « I ate very well and I slept a lot »."}}
+   ]
+  },
+  "weather": {
+   "dit": [{"qui": "freund_diego", "air": "attentive", "t": "How was the weather?", "fr": "Il a fait quel temps ?"}],
+   "choix": [
+    {"t": "It was sunny and warm all week.", "fr": "Il a fait beau et chaud toute la semaine.", "va": "funny",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Of course it was. It rained here every single day.", "fr": "Évidemment. Ici, il a plu tous les jours sans exception."}]},
+    {"t": "Great, but it rained one day.", "fr": "Super, mais il a plu une journée.", "va": "rain"},
+    {"faux": true, "t": "It made beautiful all the week.", "fr": "Il a fait beau toute la semaine (mot à mot).",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "It made … what? Oh, the weather was nice!", "fr": "Ça a fait… quoi ? Ah, il a fait beau !"}],
+     "aide": {"fr": "<b>Le temps qu'il fait se dit avec « be », pas avec « make ».</b> « It was sunny », « The weather was nice ». Et « toute la semaine » : « all week », sans « the »."}}
+   ]
+  },
+  "rain": {
+   "dit": [{"qui": "freund_diego", "air": "attentive", "t": "Oh no. What did you do that day?", "fr": "Oh non. Tu as fait quoi, ce jour-là ?"}],
+   "choix": [
+    {"t": "I stayed inside and watched movies.", "t_gb": "I stayed inside and watched films.", "fr": "Je suis resté(e) à l'intérieur et j'ai regardé des films.", "va": "funny",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Honestly, that sounds perfect.", "fr": "Franchement, ça me paraît parfait."}]},
+    {"t": "I went to a small museum. It was really interesting.", "fr": "Je suis allé(e) dans un petit musée. C'était vraiment intéressant.", "va": "funny",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "A museum on vacation? You're a better person than me.", "t_gb": "A museum on holiday? You're a better person than me.", "fr": "Un musée en vacances ? Tu es quelqu'un de mieux que moi."}]},
+    {"faux": true, "t": "I have stayed at the hotel all the day.", "fr": "Je suis resté(e) à l'hôtel toute la journée (mot à mot).",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "You have stayed …? Oh, that day, you stayed at the hotel all day.", "fr": "« You have stayed »… ? Ah, ce jour-là, tu es resté(e) à l'hôtel toute la journée."}],
+     "aide": {"fr": "<b>Un jour précis du passé demande le simple past</b> : « I stayed », pas « I have stayed ». Et « toute la journée » se dit « all day », sans « the »."}}
+   ]
+  },
+  "funny": {
+   "dit": [{"qui": "freund_diego", "air": "sourire", "t": "Did anything funny happen?", "fr": "Il t'est arrivé quelque chose de drôle ?"}],
+   "choix": [
+    {"t": "Yes! I got lost, and a nice family helped me.", "fr": "Oui ! Je me suis perdu(e), et une famille sympa m'a aidé(e).", "va": "advice",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Ha! You get lost in Boston, too.", "fr": "Ha ! Tu te perds à Boston aussi."}]},
+    {"t": "Yes! I forgot my wallet at a restaurant. They called me!", "fr": "Oui ! J'ai oublié mon portefeuille dans un restaurant. Ils m'ont appelé(e) !", "va": "advice",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Ha! That's so you. Nice people, though.", "fr": "Ha ! C'est tout toi. Des gens sympas, en tout cas."}]},
+    {"faux": true, "t": "Yes! I lost me in the city.", "fr": "Oui ! Je me suis perdu(e) dans la ville (mot à mot).",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "You lost … yourself? Oh, you got lost!", "fr": "Tu as perdu… toi-même ? Ah, tu t'es perdu(e) !"}],
+     "aide": {"fr": "<b>« se perdre » se dit « get lost »</b>, sans pronom : « I got lost in the city »."}}
+   ]
+  },
+  "advice": {
+   "dit": [{"qui": "freund_diego", "air": "attentive", "t": "You know, I have a week off next month. Should I go to {lieu_en}?", "fr": "Tu sais, j'ai une semaine de congé le mois prochain. Je devrais aller là-bas, moi aussi ?"}],
+   "choix": [
+    {"t": "Yes, you should go! Look, I took a lot of pictures.", "fr": "Oui, tu devrais y aller ! Regarde, j'ai pris plein de photos.", "va": "bye",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Wow. Okay, {lieu_en} looks amazing.", "fr": "Waouh. D'accord, ça a l'air incroyable."}]},
+    {"t": "Yes! But book your hotel early.", "fr": "Oui ! Mais réserve ton hôtel tôt.", "va": "bye",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Good tip. I'll do it tonight.", "fr": "Bon conseil. Je le fais ce soir."}]},
+    {"faux": true, "t": "Yes, you must to go!", "fr": "Oui, tu dois y aller ! (un « to » en trop)",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "I must … to go? Oh, I should go. Okay!", "fr": "Je dois… « to go » ? Ah, je devrais y aller. D'accord !"}],
+     "aide": {"fr": "<b>Pas de « to » après « must », « should » ou « can ».</b> Pour un conseil, « should » est plus naturel : « You should go! »."}},
+    {"repete": true, "t": "Sorry, what did you say?", "fr": "Pardon, qu'est-ce que tu as dit ?", "va": "advice",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "I have one week of vacation next month. Is {lieu_en} a good idea for me?", "t_gb": "I have one week of holiday next month. Is {lieu_en} a good idea for me?", "fr": "J'ai une semaine de vacances le mois prochain. C'est une bonne idée pour moi, là-bas ?"}]}
+   ]
+  },
+  "bye": {
+   "dit": [{"qui": "freund_diego", "air": "sourire", "t": "Okay, I have to get back to the hospital. Dinner next week? I want to see all the pictures.", "fr": "Bon, je dois retourner à l'hôpital. On dîne ensemble la semaine prochaine ? Je veux voir toutes les photos."}],
+   "choix": [
+    {"t": "Sure! See you next week.", "fr": "Bien sûr ! À la semaine prochaine.", "va": null,
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "See you! And welcome back.", "fr": "À bientôt ! Et bon retour."}]},
+    {"t": "Good idea. Call me!", "fr": "Bonne idée. Appelle-moi !", "va": null,
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "I will. Welcome back!", "fr": "Promis. Bon retour !"}]},
+    {"faux": true, "t": "Sure! See you the next week.", "fr": "Bien sûr ! À la semaine prochaine (un « the » en trop).",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "The next week …? Oh, next week. Yes!", "fr": "« The next week »… ? Ah, la semaine prochaine. Oui !"}],
+     "aide": {"fr": "<b>Pas d'article devant « next week », « last week », « next month ».</b> « See you next week! »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as raconté tes vacances {lieu_fr} au simple past : le voyage, ce que tu as fait, le temps, une petite aventure. Et Diego a maintenant envie de découvrir {lieu_court_fr}."}
+}
