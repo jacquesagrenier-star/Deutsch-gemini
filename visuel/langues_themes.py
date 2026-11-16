@@ -40,6 +40,15 @@ francaise des gloses du theme (D.gloses, gloses.json, GLOSES).
 `tard` : les textes neufs des 20 % derniers tirages d'une sorte ; 0 = la sorte est epuisee. Un theme dont une sorte
 n'est pas epuisee se relance avec plus de tirages (LANGUES_TIRAGES, 2000 par defaut).
 
+LIMITES CONNUES DU PROMENEUR (16 nov. 2026, lot 3 « Les contraires », a corriger plus tard) :
+1. « donnee vue N / M » lit D.trad (ATTENDUS) : juste pour gato et journee, ou D.trad porte les phrases ; dans
+   contrarios (et tout theme ou D.trad porte les GLOSES des mots), la mesure compte des gloses, que le releve exclut :
+   « 0 / 18 » n'y dit rien.
+2. Dans contrarios, la sorte « endung » (« Das ist ein großer Koffer. ») n'est jamais atteinte : ni le francais de
+   source.json ni le controle n'en voient une phrase (35 phrases vues sur 58). La page les traduit bien (sonde
+   directe de EX.endung en fr, ru, ar, 16 nov.) : la cause est dans ENUMERER, pas dans la page. Jusqu'a la
+   correction, une sorte absente du releve se sonde a part.
+
 Langues d'interface a aligner : allemand appris -> tr, uk, fa, ar, pl, ru (fr, en, pt : deja la) ; espagnol appris
 -> ar (fr, en, pt, de : deja la). Port : LANGUES_PORT (8858 par defaut, jamais 8791).
 """
@@ -65,8 +74,9 @@ LANGUES = ["tr", "uk", "fa", "ar", "pl", "ru"]
 # lot 2 (ligne 111, 15 nov.) : la famille d'Anna dans les six langues, dans la page (visuel/prototype/familia/langues.js),
 # l'arabe aussi pour qui apprend l'espagnol (LANGUES_APPRENDRE=es)
 # lot 3 (16 nov.) : les contraires dans les six langues, phrase par phrase dans le generateur (visuel/contrarios/langues.py)
+# lot 4 (16 nov.) : les demarches dans les six langues, morceaux et grammaire dans la page (visuel/prototype/demarches/langues.js)
 BRANCHES = {"gato": ["tr", "uk", "pl", "ru"], "journee": ["tr", "uk", "pl", "ru"], "familia": ["tr", "uk", "pl", "ru", "fa", "ar"],
-            "contrarios": ["tr", "uk", "pl", "ru", "fa", "ar"]}
+            "contrarios": ["tr", "uk", "pl", "ru", "fa", "ar"], "demarches": ["tr", "uk", "pl", "ru", "fa", "ar"]}
 BRANCHEES = ["tr", "uk", "pl", "ru"]
 
 RELEVER = r"""() => {

@@ -59,3 +59,12 @@ La page traduit maintenant chaque phrase (58 en allemand appris), écrite à la 
 1. **komisch** : « dziwaczny » (imbryk, dźwięk), **seltsam** : « dziwny » (krzesło, pytanie).
 2. **Teekanne** : « imbryk » ; **Handy** : « telefon » ; **schlecht** pour le film : « zły film » (« słaby film » serait plus courant ?).
 3. **Der Kuchen schmeckt sehr gut** : « Ciasto bardzo dobrze smakuje. »
+
+## Lot 4, 16 nov. : « Les démarches »
+
+La page assemble maintenant ses phrases traduites (les démarches de Mark, la phrase polie du guichet, les documents, les avis, les heures d'ouverture, le rendez-vous, les champs du formulaire) à partir de morceaux posés dans `visuel/prototype/demarches/langues.js`. À relire :
+
+1. **Bürgeramt** : « biuro obsługi mieszkańców » (à relire : « urząd meldunkowy » ?) ; **Krankenkasse** : « kasa chorych ».
+2. **Anmelden** : « Mark melduje się w … » ; le guichet « Proszę się zameldować. ».
+3. **« Il faut »** : « Do zameldowania potrzebny jest paszport », « potrzebna jest karta… », « potrzebne jest zdjęcie ».
+4. **Les champs** au style d'un formulaire : « Nazwisko Marka: Garnier. », « Stan cywilny Marka: kawaler. ».

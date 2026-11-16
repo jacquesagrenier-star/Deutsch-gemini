@@ -29,3 +29,13 @@ La page traduit maintenant chaque phrase (58 en allemand appris, 49 en espagnol 
 3. **gut** pour le gâteau et la soupe : « لذيذة » ; **schlecht** pour la pomme et le lait : « فاسدة / فاسد ».
 4. **L'accord du demonstratif** : « هذه مزهرية », « هذه حقيبة », « هذا كوب ».
 5. **Pour qui apprend l'espagnol** (49 phrases) : « المنتزه كبير » (el parque), « المبنى قبيح إلى حدٍّ ما » (bastante feo).
+
+## Lot 4, 16 nov. : « Les démarches »
+
+La page assemble maintenant ses phrases traduites (les démarches de Mark, la phrase polie du guichet, les documents, les avis, les heures d'ouverture, le rendez-vous, les champs du formulaire) à partir de morceaux posés dans `visuel/prototype/demarches/langues.js` (et pour qui apprend l'espagnol). À relire :
+
+1. **Bürgeramt** : « مكتب خدمات المواطنين » ; pour l'espagnol, **la oficina** : « مكتب البلدية ».
+2. **Le guichet** au style administratif : « يُرجى … » (« يُرجى ملء الاستمارة. »), plutôt qu'un impératif.
+3. **L'avis** : « لفتح حساب، تحتاج إلى جواز السفر. » (« tu as besoin de »), qui évite d'accorder « يلزم » avec le document.
+4. **Les heures** : « مكتب خدمات المواطنين مغلق يوم الأربعاء في الساعة 15:00. » (le lieu d'abord, l'adjectif accordé : العيادة مفتوحة).
+5. **Les noms** : مارك غارنييه, مونتريال, برلين, « غارتن شتراسه 12 » ; pour l'espagnol « شارع لا لونا 12، الطابق 2، الشقة B ».

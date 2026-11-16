@@ -62,3 +62,12 @@ La page traduit maintenant chaque phrase (58 en allemand appris), écrite à la 
 1. **komisch** : « чудной » (la théière, le bruit), **seltsam** : « странный » (la chaise, la question) — les deux gloses disent « странный ».
 2. **gut** : « Торт вкусный » pour le gâteau ; **schlecht** : « Яблоко испорченное ».
 3. **Tür** : « дверь » au singulier, formes courtes pour l'état (« Дверь открыта »).
+
+## Lot 4, 16 nov. : « Les démarches »
+
+La page assemble maintenant ses phrases traduites (les démarches de Mark, la phrase polie du guichet, les documents, les avis, les heures d'ouverture, le rendez-vous, les champs du formulaire) à partir de morceaux posés dans `visuel/prototype/demarches/langues.js`. À relire :
+
+1. **Bürgeramt** : « бюро обслуживания граждан » (indéclinable, neutre : « бюро … закрыто ») ; **Krankenkasse** : « больничная касса ».
+2. **Le jour** : « в среду в 15:00 », « во вторник » ; le rendez-vous « Марк записан на вторник на 9:30 в … ».
+3. **« Il faut »** accordé : « нужен паспорт », « нужна фотография », « нужно подтверждение от арендодателя ».
+4. **Les noms** : Марк Гарнье, Монреаль, Берлин, « Гартенштрассе, 12 » ; familienstand « холост » (женат, разведён pour les leurres).

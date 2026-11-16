@@ -63,3 +63,12 @@ La page traduit maintenant chaque phrase (58 en allemand appris), écrite à la 
 2. **komisch / seltsam** gardent deux mots : garip (la théière, le bruit) et tuhaf (la chaise, la question), comme les gloses.
 3. **Straße** : « Cadde » pour la rue large comme pour l'étroite (un seul nom pour la paire) ; « Die Gasse ist eng und schmal. » : « Ara sokak dar ve sıkışık. »
 4. **wunderschön** : « harika » (la glose dit « göz alıcı », peu naturel dans « Manzara göz alıcı »).
+
+## Lot 4, 16 nov. : « Les démarches »
+
+La page assemble maintenant ses phrases traduites (les démarches de Mark, la phrase polie du guichet, les documents, les avis, les heures d'ouverture, le rendez-vous, les champs du formulaire) à partir de morceaux posés dans `visuel/prototype/demarches/langues.js`. À relire :
+
+1. **Bürgeramt** : « vatandaş hizmetleri bürosu » (la glose du corpus) ; **Krankenkasse** : « hastalık sigortası kurumu » ; **Praxis** : « muayenehane ».
+2. **L'heure et son suffixe** : « saat 15.00'te », « saat 9.30'da », « saat 7.00'de » (le suffixe suit la lecture : on beş, dokuz otuz, yedi).
+3. **Le guichet** : « Lütfen … » à l'impératif poli (« Lütfen formu doldurun. ») ; « Lütfen buraya imza atın. » pour « Unterschreiben Sie bitte hier! ».
+4. **Les champs** : « Mark'ın uyruğu Kanadalı. », « Mark'ın medeni durumu bekâr. », « Mark'ın şehri Berlin. » (Ort).

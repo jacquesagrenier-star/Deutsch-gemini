@@ -59,3 +59,13 @@ La page traduit maintenant chaque phrase (58 en allemand appris), écrite à la 
 2. **Tür** : « двері », toujours au pluriel (« Двері відчинені », « Це відчинені двері »).
 3. **gut** : « Торт смачний » pour le gâteau, « хороший ресторан » (la glose dit « добрий »).
 4. **klein** : « маленька валіза » (la glose dit « малий »).
+
+## Lot 4, 16 nov. : « Les démarches »
+
+La page assemble maintenant ses phrases traduites (les démarches de Mark, la phrase polie du guichet, les documents, les avis, les heures d'ouverture, le rendez-vous, les champs du formulaire) à partir de morceaux posés dans `visuel/prototype/demarches/langues.js`. À relire :
+
+1. **Bürgeramt** : « центр обслуговування громадян » (la glose dit « муніципальний офіс ») ; **Praxis** : « кабінет лікаря ».
+2. **Le jour** : « у середу о 15:00 » ; le rendez-vous « Марк записаний на вівторок на 9:30 у … ».
+3. **Ouvert / fermé** accordés avec le lieu : « центр … відчинений », « лікарняна каса зачинена ».
+4. **« Il faut »** accordé avec le document : « потрібен паспорт », « потрібна довідка про реєстрацію », « потрібне підтвердження від орендодавця ».
+5. **Les noms** : Марк Гарньє, Монреаль, Берлін, « Гартенштрассе, 12 ».

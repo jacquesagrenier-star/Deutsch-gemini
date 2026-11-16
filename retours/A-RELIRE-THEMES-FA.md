@@ -27,3 +27,12 @@ La page traduit maintenant chaque phrase (58 en allemand appris), écrite à la 
 2. **gut** pour le gâteau : « کیک خوشمزه است » ; **Abend** : « شب » (« این یک شب دل‌انگیز است »).
 3. **L'ezafe ecrite** : « منظرهٔ دل‌انگیز », « دوچرخهٔ نو », « پنجرهٔ باز », « غذای چندش‌آور » ; ailleurs sans signe.
 4. **Die Gasse ist eng und schmal** : « کوچه تنگ و باریک است ».
+
+## Lot 4, 16 nov. : « Les démarches »
+
+La page assemble maintenant ses phrases traduites (les démarches de Mark, la phrase polie du guichet, les documents, les avis, les heures d'ouverture, le rendez-vous, les champs du formulaire) à partir de morceaux posés dans `visuel/prototype/demarches/langues.js`. À relire :
+
+1. **Bürgeramt** : « ادارهٔ امور شهروندی » ; **Krankenkasse** : « صندوق بیمهٔ درمان » ; **Praxis** : « مطب ».
+2. **Le guichet** : « لطفاً … » (« لطفاً فرم را پر کنید. »).
+3. **L'heure** en chiffres latins : « ساعت 15:00 » (comme les autres pages).
+4. **Les noms** : مارک گارنیه, مونترال, برلین, « گارتن‌اشتراسه، پلاک 12 » ; « نام مارک مارک است. » (le prénom de Mark est Mark).
