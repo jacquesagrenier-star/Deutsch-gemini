@@ -20,6 +20,29 @@ try:
 except Exception:
     pass
 
+
+EN_COURS = {}
+
+
+def charger(page, url):
+    """Ouvre l'app et attend qu'elle soit prete (ses fonctions), pas que le reseau se taise ;
+    une requete encore en vol apres 15 s est nommee, pas fatale."""
+    cle = id(page)
+    if cle not in EN_COURS:
+        EN_COURS[cle] = set()
+        page.on("request", lambda r: EN_COURS[cle].add(r.url))
+        page.on("requestfinished", lambda r: EN_COURS[cle].discard(r.url))
+        page.on("requestfailed", lambda r: EN_COURS[cle].discard(r.url))
+    page.goto(url, wait_until="domcontentloaded", timeout=90000)
+    page.wait_for_function("typeof showScreen === 'function' && typeof chargerCadre === 'function'"
+                           " && typeof ouvrirThemeIllustre === 'function' && typeof baseScenes === 'function'",
+                           timeout=90000)
+    try:
+        page.wait_for_load_state("networkidle", timeout=15000)
+    except Exception:
+        reste = sorted(EN_COURS[cle])[:5]
+        print("     (reseau encore actif apres 15 s : %s)" % ", ".join(u[:90] for u in reste), flush=True)
+
 OUVRIR = r"""
 ([jour, nom, niv]) => {
   if(!window.__vraiNow){ window.__vraiNow = Date.now.bind(Date); }
@@ -112,8 +135,7 @@ def main():
                     url = "http://127.0.0.1:%d/index.html?apprendre=%s" % (a.port, langue)
                     reussie, poses, redites, replis, ratees = {}, 0, [], 0, 0
                     for jour in range(a.jours + 1):
-                        page.goto(url)
-                        page.wait_for_load_state("networkidle")
+                        charger(page, url)
                         page.wait_for_timeout(500)
                         page.evaluate(OUVRIR, [jour, nom, niv])
                         f = None
