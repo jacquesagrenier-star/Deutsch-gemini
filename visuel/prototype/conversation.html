@@ -388,24 +388,49 @@ const NB = {
   en: { u: ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"],
         d: ["","","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"] }
 };
+// Les nombres en lettres, de 0 à 9 999 (16 nov. 2026 : on s'arrêtait à 99, et un total de 100 € ou plus devenait
+// illisible). Allemand : « hundertzwei », « tausendeinhundert », « zweitausendeinundzwanzig » ; espagnol : « cien »,
+// « ciento uno », « quinientos », « mil », « dos mil veintiuno » ; anglais : « one hundred five » en américain,
+// « one hundred and five » en britannique (variante=gb).
+const CIENTOS = ["", "ciento", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos", "setecientos", "ochocientos", "novecientos"];
 function nombre(n, l){
   const t = NB[l];
+  if (n < 100){
+    if (l === "de"){
+      if (n < 20) return t.u[n];
+      const d = Math.floor(n / 10), u = n % 10;
+      return u ? (u === 1 ? "ein" : t.u[u]) + "und" + t.d[d] : t.d[d];
+    }
+    if (l === "en"){
+      if (n < 20) return t.u[n];
+      const d = Math.floor(n / 10), u = n % 10;
+      return t.d[d] + (u ? "-" + t.u[u] : "");
+    }
+    if (n < 30) return t.u[n];
+    const d = Math.floor(n / 10), u = n % 10;
+    return t.d[d] + (u ? " y " + t.u[u] : "");
+  }
+  const k = Math.floor(n / 1000), c = Math.floor(n / 100) % 10, r = n % 100;
   if (l === "de"){
-    if (n < 20) return t.u[n];
-    const d = Math.floor(n / 10), u = n % 10;
-    return u ? (u === 1 ? "ein" : t.u[u]) + "und" + t.d[d] : t.d[d];
+    // « hundert » et « tausend » en tête, « einhundert » après les milliers : « tausendeinhundert »
+    return (k ? (k === 1 ? "" : nombre(k, l)) + "tausend" : "")
+         + (c ? (c === 1 ? (k ? "ein" : "") : nombre(c, l)) + "hundert" : "")
+         + (r ? nombre(r, l) : "");
   }
+  const mots = [];
   if (l === "en"){
-    if (n < 20) return t.u[n];
-    const d = Math.floor(n / 10), u = n % 10;
-    return t.d[d] + (u ? "-" + t.u[u] : "");
+    if (k) mots.push(nombre(k, l) + " thousand");
+    if (c) mots.push(nombre(c, l) + " hundred");
+    if (r) mots.push((GB ? "and " : "") + nombre(r, l));
+    return mots.join(" ");
   }
-  if (n < 30) return t.u[n];
-  const d = Math.floor(n / 10), u = n % 10;
-  return t.d[d] + (u ? " y " + t.u[u] : "");
+  if (k) mots.push(k === 1 ? "mil" : nombre(k, l) + " mil");
+  if (c) mots.push(c === 1 && !r ? "cien" : CIENTOS[c]);
+  if (r) mots.push(nombre(r, l));
+  return mots.join(" ");
 }
-// « un euro », « veintiún euros » : la forme courte devant un nom.
-const devantNom = (n, l) => l === "en" ? nombre(n, l) : l === "de" ? (n === 1 ? "ein" : nombre(n, l)) : nombre(n, l).replace(/uno$/, "ún").replace(/^ún$/, "un");
+// « un euro », « veintiún euros », « treinta y un euros », « ciento un euros » : la forme courte devant un nom.
+const devantNom = (n, l) => l === "en" ? nombre(n, l) : l === "de" ? (n === 1 ? "ein" : nombre(n, l)) : nombre(n, l).replace(/veintiuno$/, "veintiún").replace(/uno$/, "un");
 function prixEnMots(c, l){
   const e = Math.floor(c / 100), ct = c % 100;
   if (l === "de") return devantNom(e, l) + " Euro" + (ct ? " " + nombre(ct, l) : "");
