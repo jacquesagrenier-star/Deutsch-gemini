@@ -1,0 +1,155 @@
+{
+ "id": "b1-specialiste",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Chez le spécialiste : le genou"},
+ "intro": {"fr": "Ton genou droit te fait mal depuis trois semaines. Ton médecin traitant t'a adressé(e) à un spécialiste, le Dr Silva, orthopédiste dans une clinique de Boston."},
+ "personnes": ["b11_medecin"],
+ "debut": "welcome",
+ "noeuds": {
+  "welcome": {
+   "dit": [
+    {"recit": {"fr": "Une salle d'examen, à la clinique. On frappe ; le Dr Silva entre, une tablette à la main."}},
+    {"qui": "b11_medecin", "air": "sourire", "t": "Hi, I'm Dr. Silva. I got the referral from your primary care doctor. So, tell me — what's going on with your knee?", "t_gb": "Hello, I'm Dr Silva. I've had the referral letter from your GP. So, tell me — what's going on with your knee?", "fr": "Bonjour, je suis le Dr Silva. J'ai reçu la lettre de votre médecin traitant. Alors, dites-moi : que se passe-t-il avec votre genou ?"}
+   ],
+   "choix": [
+    {"t": "My right knee has been hurting for three weeks.", "fr": "Mon genou droit me fait mal depuis trois semaines.", "va": "how"},
+    {"t": "I've had pain in my right knee for about three weeks.", "fr": "J'ai une douleur au genou droit depuis environ trois semaines.", "va": "how"},
+    {"faux": true, "t": "I have bad to my right knee.", "fr": "J'ai mal au genou droit.",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "You have a bad knee? Tell me more — does it hurt?", "fr": "Vous avez un genou fragile ? Dites-m'en plus : il vous fait mal ?"}],
+     "aide": {"fr": "<b>« avoir mal à »</b> ne se traduit pas mot à mot : c'est la partie du corps qui « hurts ». Dis plutôt : « My right knee hurts. » ou « My right knee has been hurting for three weeks. »"}}
+   ]
+  },
+  "how": {
+   "dit": [{"qui": "b11_medecin", "air": "question", "t": "Three weeks. And how did it start? Did something happen?", "fr": "Trois semaines. Et comment cela a-t-il commencé ? Il s'est passé quelque chose ?"}],
+   "choix": [
+    {"t": "I was running along the river, and I suddenly felt a sharp pain.", "fr": "Je courais le long de la rivière, et j'ai soudain senti une douleur vive.", "pose": {"cause": "course"}, "va": "run"},
+    {"t": "I was playing soccer with friends, and I twisted my knee.", "t_gb": "I was playing football with friends, and I twisted my knee.", "fr": "Je jouais au foot avec des amis, et je me suis tordu le genou.", "pose": {"cause": "foot"}, "va": "soccer"},
+    {"t": "Nothing special. It started when I was going up the stairs.", "fr": "Rien de spécial. Ça a commencé alors que je montais l'escalier.", "pose": {"cause": "escalier"}, "va": "stairs"},
+    {"faux": true, "t": "It arrived when I made a jogging.", "fr": "C'est arrivé quand je faisais un jogging.",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "It arrived? You mean it happened while you were jogging?", "fr": "C'est « arrivé » ? Vous voulez dire que ça s'est produit pendant que vous couriez ?"}],
+     "aide": {"fr": "Deux calques : <b>arriver</b> (se produire) se dit <b>happen</b>, et on ne « fait » pas un jogging, on <b>goes jogging</b>. Dis plutôt : « It happened while I was jogging. »"}}
+   ]
+  },
+  "run": {
+   "dit": [{"qui": "b11_medecin", "air": "attentive", "t": "I see. Do you run a lot?", "fr": "Je vois. Vous courez beaucoup ?"}],
+   "choix": [
+    {"t": "About three times a week, usually along the river.", "fr": "À peu près trois fois par semaine, en général le long de la rivière.", "va": "when",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Good for you. But that hard path is tough on the knees.", "fr": "C'est très bien. Mais ce chemin dur n'est pas tendre avec les genoux."}]},
+    {"t": "Yes, I'm training for a ten-kilometer race.", "t_gb": "Yes, I'm training for a ten-kilometre race.", "fr": "Oui, je m'entraîne pour une course de dix kilomètres.", "va": "when",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Nice! Then let's get you back on your feet.", "fr": "Bravo ! Alors remettons-vous sur pied."}]},
+    {"faux": true, "t": "Yes, I run all the days.", "fr": "Oui, je cours tous les jours.",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "All the … every day, you mean? That's a lot for your knees.", "fr": "« All the »… tous les jours, vous voulez dire ? C'est beaucoup pour vos genoux."}],
+     "aide": {"fr": "<b>« tous les jours »</b> se dit <b>every day</b>. Dis plutôt : « Yes, I run every day. »"}}
+   ]
+  },
+  "soccer": {
+   "dit": [{"qui": "b11_medecin", "air": "attentive", "t": "I see. Did you fall, or did somebody run into you?", "fr": "Je vois. Vous êtes tombé(e), ou quelqu'un vous est rentré dedans ?"}],
+   "choix": [
+    {"t": "Nobody touched me. I turned quickly, and my knee twisted.", "fr": "Personne ne m'a touché(e). Je me suis retourné(e) vite, et mon genou s'est tordu.", "va": "when"},
+    {"t": "Another player ran into me, and I fell on my knee.", "fr": "Un autre joueur m'est rentré dedans, et je suis tombé(e) sur le genou.", "va": "when"},
+    {"faux": true, "t": "A player has shocked me.", "fr": "Un joueur m'a percuté(e).",
+     "puis": [{"qui": "b11_medecin", "air": "amuse", "t": "He shocked you? What on earth did he say? Oh — he ran into you!", "fr": "Il vous a choqué(e) ? Qu'a-t-il bien pu dire ? Ah, il vous est rentré dedans !"}],
+     "aide": {"fr": "<b>« shock »</b>, c'est choquer, scandaliser. Pour un choc physique, on dit <b>run into</b>. Dis plutôt : « Another player ran into me. »"}}
+   ]
+  },
+  "stairs": {
+   "dit": [{"qui": "b11_medecin", "air": "attentive", "t": "No fall, no sports? Then tell me, what kind of work do you do?", "t_gb": "No fall, no sport? Then tell me, what kind of work do you do?", "fr": "Pas de chute, pas de sport ? Alors dites-moi, quel travail faites-vous ?"}],
+   "choix": [
+    {"t": "I work in a restaurant, so I'm on my feet all day.", "fr": "Je travaille dans un restaurant, donc je suis debout toute la journée.", "va": "when",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "That could be it. Standing all day is hard on the knees.", "fr": "C'est peut-être ça. Rester debout toute la journée fatigue les genoux."}]},
+    {"t": "I work in a supermarket, and I carry heavy boxes.", "fr": "Je travaille dans un supermarché, et je porte des cartons lourds.", "va": "when",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "That could be it. Lifting is hard on the knees.", "fr": "C'est peut-être ça. Soulever des charges fatigue les genoux."}]},
+    {"faux": true, "t": "I am cooker in a restaurant.", "fr": "Je suis cuisinier (cuisinière) dans un restaurant.",
+     "puis": [{"qui": "b11_medecin", "air": "amuse", "t": "A cooker? Like a rice cooker? Ah — you're a cook!", "fr": "Un « cooker » ? Comme un cuiseur à riz ? Ah, vous faites la cuisine !"}],
+     "aide": {"fr": "<b>« cooker »</b>, c'est un appareil de cuisson. La personne est <b>a cook</b>, et un métier prend toujours l'article. Dis plutôt : « I'm a cook in a restaurant. »"}}
+   ]
+  },
+  "when": {
+   "dit": [{"qui": "b11_medecin", "air": "question", "t": "And when does it hurt the most?", "fr": "Et quand avez-vous le plus mal ?"}],
+   "choix": [
+    {"t": "When I go down the stairs, and when I stand up after sitting.", "fr": "Quand je descends l'escalier, et quand je me lève après être resté(e) assis(e).", "va": "exam"},
+    {"t": "Mostly in the morning, when I get out of bed.", "fr": "Surtout le matin, quand je sors du lit.", "va": "exam"},
+    {"t": "At night. Sometimes the pain wakes me up.", "fr": "La nuit. Parfois, la douleur me réveille.", "va": "exam"},
+    {"faux": true, "t": "It makes me bad when I descend the stairs.", "fr": "Ça me fait mal quand je descends l'escalier.",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "It makes you … feel bad? Or it hurts on the stairs?", "fr": "Ça vous… rend triste ? Ou ça fait mal dans l'escalier ?"}],
+     "aide": {"fr": "<b>« faire mal »</b> se dit <b>hurt</b>, et « descendre l'escalier », <b>go down the stairs</b>. Dis plutôt : « It hurts when I go down the stairs. »"}}
+   ]
+  },
+  "exam": {
+   "dit": [
+    {"recit": {"fr": "Le médecin te fait allonger, plie doucement ton genou, puis appuie sur le côté."}},
+    {"qui": "b11_medecin", "air": "attentive", "t": "Let me take a look. I'm going to press here … Does this hurt?", "fr": "Voyons cela. Je vais appuyer ici… Ça fait mal ?"}
+   ],
+   "choix": [
+    {"t": "Yes, right there. That's the spot.", "fr": "Oui, juste là. C'est l'endroit précis.", "va": "diagnosis"},
+    {"t": "No, not really. Just a little.", "fr": "Non, pas vraiment. Juste un peu.", "va": "diagnosis"},
+    {"t": "A little, but it's worse on the inside.", "fr": "Un peu, mais c'est pire à l'intérieur.", "va": "diagnosis"},
+    {"faux": true, "t": "No, I don't feel nothing.", "fr": "Non, je ne sens rien.",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "You don't feel nothing … so you do feel something? Or nothing at all?", "fr": "Vous ne sentez pas rien… donc vous sentez quelque chose ? Ou rien du tout ?"}],
+     "aide": {"fr": "Une seule négation en anglais : <b>I don't feel anything</b> (ou « I feel nothing »). Dis plutôt : « No, I don't feel anything there. »"}}
+   ]
+  },
+  "diagnosis": {
+   "dit": [
+    {"qui": "b11_medecin", "air": "sourire", "t": "Okay, you can sit up. Good news: nothing is torn. You've strained a ligament, and the knee is irritated. It's not serious, but it needs rest.", "fr": "Bien, vous pouvez vous rasseoir. Bonne nouvelle : rien n'est déchiré. Vous avez un ligament étiré, et le genou est irrité. Ce n'est pas grave, mais il lui faut du repos."},
+    {"qui": "b11_medecin", "air": "attentive", "t": "I'm prescribing six sessions of physical therapy and an anti-inflammatory. And no sports for three or four weeks.", "t_gb": "I'm prescribing six sessions of physiotherapy and an anti-inflammatory. And no sport for three or four weeks.", "fr": "Je vous prescris six séances de kinésithérapie et un anti-inflammatoire. Et pas de sport pendant trois ou quatre semaines."}
+   ],
+   "choix": [
+    {"t": "That's a relief. When can I start exercising again?", "fr": "Me voilà rassuré(e). Quand pourrai-je reprendre le sport ?", "va": "sport"},
+    {"t": "I'm glad it's not serious. But I work on my feet. Can I keep working?", "fr": "Je suis content(e) que ce ne soit pas grave. Mais je travaille debout. Puis-je continuer à travailler ?", "va": "work"},
+    {"faux": true, "t": "Okay. When can I make sport again?", "fr": "D'accord. Quand puis-je refaire du sport ?",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "Make sport? You mean, when can you exercise again?", "fr": "« Make sport » ? Vous voulez dire : quand pourrez-vous refaire de l'exercice ?"}],
+     "aide": {"fr": "On ne « fait » pas du sport avec <b>make</b> : on dit <b>exercise</b>, « work out » ou « play sports ». Dis plutôt : « When can I start exercising again? »"}}
+   ]
+  },
+  "sport": {
+   "dit": [{"qui": "b11_medecin", "air": "sourire", "t": "You can walk and swim as much as you like. After four weeks, start again slowly. And if it still hurts, stop and call me.", "fr": "Vous pouvez marcher et nager autant que vous voulez. Au bout de quatre semaines, reprenez doucement. Et si la douleur persiste, arrêtez et appelez-moi."}],
+   "choix": [
+    {"t": "All right. I'll start slowly, I promise.", "fr": "Entendu. Je reprendrai doucement, promis.", "va": "therapy"},
+    {"t": "Okay. Is biking all right in the meantime?", "t_gb": "Okay. Is cycling all right in the meantime?", "fr": "D'accord. Et le vélo, c'est permis en attendant ?", "va": "therapy",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Yes. On flat ground, biking is actually good for the knee.", "t_gb": "Yes. On flat ground, cycling is actually good for the knee.", "fr": "Oui. Sur terrain plat, le vélo est même bon pour le genou."}]},
+    {"faux": true, "t": "Okay. I will pay attention.", "fr": "D'accord. Je ferai attention.",
+     "puis": [{"qui": "b11_medecin", "air": "amuse", "t": "Pay attention? To me? Thank you! Oh — you mean you'll be careful.", "fr": "Vous serez attentif (attentive) ? À ce que je dis ? Merci ! Ah, vous voulez dire que vous serez prudent(e)."}],
+     "aide": {"fr": "<b>« pay attention »</b>, c'est écouter attentivement. « Faire attention » (être prudent) se dit <b>be careful</b>. Dis plutôt : « I'll be careful. »"}}
+   ]
+  },
+  "work": {
+   "dit": [{"qui": "b11_medecin", "air": "attentive", "t": "I'd like you to take the rest of this week off. After that, sit down whenever you can. I'll write you a doctor's note for your employer.", "t_gb": "I'd like you to take the rest of this week off. After that, sit down whenever you can. I'll write you a sick note for your employer.", "fr": "J'aimerais que vous vous arrêtiez jusqu'à la fin de la semaine. Ensuite, asseyez-vous dès que vous le pouvez. Je vous fais un certificat pour votre employeur."}],
+   "choix": [
+    {"t": "Thank you. My manager will need that note.", "fr": "Merci. Mon responsable aura besoin de ce certificat.", "va": "therapy"},
+    {"t": "Thanks. Could you write that I need to sit down sometimes?", "fr": "Merci. Pourriez-vous écrire que j'ai besoin de m'asseoir de temps en temps ?", "va": "therapy",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Of course. I'll add that.", "fr": "Bien sûr. Je l'ajoute."}]},
+    {"faux": true, "t": "Thank you. I will give it to my chief.", "fr": "Merci. Je le donnerai à mon chef.",
+     "puis": [{"qui": "b11_medecin", "air": "amuse", "t": "Your chief? Are you a firefighter? Oh — your boss!", "fr": "Votre « chief » ? Vous êtes pompier ? Ah, votre patron !"}],
+     "aide": {"fr": "<b>« chief »</b> se dit du chef des pompiers ou de la police. Au travail, le chef est <b>the boss</b> ou <b>the manager</b>. Dis plutôt : « I'll give it to my manager. »"}}
+   ]
+  },
+  "therapy": {
+   "dit": [{"qui": "b11_medecin", "air": "attentive", "t": "For the physical therapy, there's a clinic on the second floor of this building. They can usually see you within a week, and your copay should be the same as today.", "t_gb": "For the physio, there's a clinic on the first floor of this building. They can usually see you within a week.", "fr": "Pour la kinésithérapie, il y a un cabinet au premier étage de cet immeuble. On vous y reçoit en général dans la semaine, et votre participation aux frais devrait être la même qu'aujourd'hui."}],
+   "choix": [
+    {"t": "Good. Do I need to make the appointment myself?", "fr": "Bien. Dois-je prendre le rendez-vous moi-même ?", "va": "follow",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Yes. Stop at the front desk on your way out, and they'll book it with you.", "t_gb": "Yes. Stop at reception on your way out, and they'll book it with you.", "fr": "Oui. Passez à l'accueil en sortant, on le fixera avec vous."}]},
+    {"t": "Okay. And where do I get the medication?", "fr": "D'accord. Et où dois-je aller chercher le médicament ?", "va": "follow",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "I'm sending the prescription to your pharmacy right now. It should be ready this afternoon.", "fr": "J'envoie l'ordonnance à votre pharmacie à l'instant. Ce devrait être prêt cet après-midi."}]},
+    {"faux": true, "t": "Okay. I must take an appointment?", "fr": "D'accord. Je dois prendre un rendez-vous ?",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "Take one …? Oh, make an appointment. Yes, at the front desk.", "t_gb": "Take one …? Oh, make an appointment. Yes, at reception.", "fr": "En « prendre » un… ? Ah, prendre rendez-vous. Oui, à l'accueil."}],
+     "aide": {"fr": "On <b>makes</b> an appointment, on ne le « prend » pas, et la question se forme avec « do » : « Do I need to make an appointment? »"}}
+   ]
+  },
+  "follow": {
+   "dit": [{"qui": "b11_medecin", "air": "question", "t": "I'd like to see you again in four weeks. If the knee isn't better by then, we'll do an MRI. Does that sound okay?", "t_gb": "I'd like to see you again in four weeks. If the knee isn't better by then, we'll do an MRI scan. Does that sound okay?", "fr": "J'aimerais vous revoir dans quatre semaines. Si le genou ne va pas mieux d'ici là, nous ferons une IRM. Cela vous convient ?"}],
+   "choix": [
+    {"t": "Yes, that's fine. I'll make an appointment for next month.", "fr": "Oui, très bien. Je prendrai rendez-vous pour le mois prochain.", "va": null,
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Perfect. Take care of that knee, and I'll see you in four weeks!", "fr": "Parfait. Ménagez ce genou, et à dans quatre semaines !"}]},
+    {"t": "Sounds good. And what if the pain gets worse before then?", "fr": "Ça me va. Et si la douleur empire d'ici là ?", "va": null,
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Then call us right away. Don't wait. Take care of that knee!", "fr": "Alors appelez-nous tout de suite. N'attendez pas. Ménagez ce genou !"}]},
+    {"faux": true, "t": "Yes. I hope it will go better.", "fr": "Oui. J'espère que ça ira mieux.",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "Go better …? Oh, you hope it gets better. So do I!", "fr": "« Go better »… ? Ah, vous espérez que ça ira mieux. Moi aussi !"}],
+     "aide": {"fr": "<b>« aller mieux »</b> se dit <b>get better</b> ou <b>feel better</b>, jamais « go better ». Dis plutôt : « I hope it gets better soon. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as décrit ta douleur, compris le diagnostic (un ligament étiré, rien de grave) et le traitement, posé ta question, et tu sais quand revenir."}
+}

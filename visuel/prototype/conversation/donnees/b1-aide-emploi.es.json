@@ -1,0 +1,137 @@
+{
+ "id": "b1-aide-emploi",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "S'inscrire à l'agence pour l'emploi"},
+ "intro": {"fr": "Ton contrat vient de se terminer. Tu as rendez-vous à l'oficina de empleo de ton quartier pour t'inscrire comme demandeur d'emploi."},
+ "bilan": {"fr": "Tu t'es inscrit(e) à l'agence pour l'emploi en espagnol : expliquer ta situation, choisir une formation, parler d'une difficulté et comprendre ce que tu dois faire ensuite."},
+ "personnes": ["b11_conseillere"],
+ "debut": "acogida",
+ "noeuds": {
+  "acogida": {
+   "dit": [
+    {"recit": {"fr": "Ton contrat s'est terminé la semaine dernière. À l'oficina de empleo, une conseillère te fait signe de t'asseoir."}},
+    {"qui": "b11_conseillere", "air": "sourire", "t": "Buenos días, siéntese. Cuénteme, ¿en qué puedo ayudarle?", "fr": "Bonjour, asseyez-vous. Racontez-moi, en quoi puis-je vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días. Se me ha acabado el contrato y quiero apuntarme al paro.", "fr": "Bonjour. Mon contrat s'est terminé et je veux m'inscrire au chômage.", "va": "busqueda",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Muy bien, para eso estamos.", "fr": "Très bien, nous sommes là pour ça."}]},
+    {"t": "Buenos días. Vengo a darme de alta como demandante de empleo.", "fr": "Bonjour. Je viens m'inscrire comme demandeur d'emploi.", "va": "busqueda",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Muy bien, lo hacemos ahora mismo.", "fr": "Très bien, nous faisons cela tout de suite."}]},
+    {"faux": true, "t": "Buenos días. Soy sin trabajo desde una semana.", "fr": "Bonjour. Je suis sans travail depuis une semaine.",
+     "puis": [{"qui": "b11_conseillere", "air": "attentive", "t": "Está sin trabajo desde hace una semana, entiendo.", "fr": "Vous êtes sans travail depuis une semaine, je comprends."}],
+     "aide": {"fr": "Une situation se dit avec « estar », et « depuis » + durée se dit « desde hace » : <b>« Estoy sin trabajo desde hace una semana »</b>. Tu peux dire aussi : « Se me ha acabado el contrato »."}}
+   ]
+  },
+  "busqueda": {
+   "dit": [{"qui": "b11_conseillere", "air": "question", "t": "Veo que su contrato terminó el día treinta. ¿Ya ha empezado a buscar trabajo?", "fr": "Je vois que votre contrat s'est terminé le trente. Avez-vous déjà commencé à chercher du travail ?"}],
+   "choix": [
+    {"t": "Sí, ya he enviado varios currículums, pero todavía no me han contestado.", "fr": "Oui, j'ai déjà envoyé plusieurs CV, mais on ne m'a pas encore répondu.", "pose": {"busca": "si"}, "va": "papeles",
+     "puis": [{"qui": "b11_conseillere", "air": "surprise", "t": "¡Qué rapidez! Eso está muy bien. Las respuestas suelen tardar un poco.", "fr": "Quelle rapidité ! C'est très bien. Les réponses mettent souvent un peu de temps."}]},
+    {"t": "Todavía no. No sé muy bien por dónde empezar.", "fr": "Pas encore. Je ne sais pas très bien par où commencer.", "pose": {"busca": "no"}, "va": "sector"},
+    {"faux": true, "t": "Sí, he enviado mi currículum a algunas sociedades.", "fr": "Oui, j'ai envoyé mon CV à quelques sociétés.",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "¿A sociedades? Ah, a algunas empresas.", "fr": "À des sociétés ? Ah, à quelques entreprises."}],
+     "aide": {"fr": "<b>« Sociedad »</b>, c'est la société au sens large. Une société où l'on travaille est « una empresa ». Dis plutôt : « He enviado mi currículum a varias empresas »."}}
+   ]
+  },
+  "sector": {
+   "dit": [{"qui": "b11_conseillere", "air": "sourire", "t": "Es normal al principio. A ver, ¿qué tipo de trabajo le gustaría encontrar?", "fr": "C'est normal au début. Voyons, quel genre de travail aimeriez-vous trouver ?"}],
+   "choix": [
+    {"t": "Me gustaría trabajar en una oficina o en atención al cliente.", "fr": "J'aimerais travailler dans un bureau ou au service client.", "va": "papeles",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Muy bien, lo apunto en su demanda. Así le llegarán ofertas de ese tipo.", "fr": "Très bien, je le note dans votre dossier. Ainsi, vous recevrez des offres de ce type."}]},
+    {"t": "Busco algo en la hostelería, porque ya tengo experiencia.", "fr": "Je cherche quelque chose dans la restauration, parce que j'ai déjà de l'expérience.", "va": "papeles",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "En Madrid, en hostelería siempre hay ofertas. Lo apunto en su demanda.", "fr": "À Madrid, dans la restauration, il y a toujours des offres. Je le note dans votre dossier."}]},
+    {"faux": true, "t": "Busco un trabajo que es cerca de mi casa.", "fr": "Je cherche un travail qui est près de chez moi.",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Que esté cerca de casa, claro. ¿Y en qué sector?", "fr": "Qui soit près de chez vous, bien sûr. Et dans quel secteur ?"}],
+     "aide": {"fr": "Un lieu se dit avec « estar », et un travail qu'on ne connaît pas encore demande le subjonctif : <b>« un trabajo que esté cerca de mi casa »</b>. Dis d'abord le domaine : « Me gustaría trabajar en una oficina »."}}
+   ]
+  },
+  "papeles": {
+   "dit": [{"qui": "b11_conseillere", "air": "attentive", "t": "Para la inscripción necesito su NIE y un teléfono. Y para la prestación por desempleo tiene que pedir cita en el SEPE, dentro de los quince días hábiles.", "fr": "Pour l'inscription, j'ai besoin de votre NIE et d'un téléphone. Et pour l'allocation chômage, vous devez prendre rendez-vous au SEPE, dans les quinze jours ouvrables."}],
+   "choix": [
+    {"t": "Aquí tiene mi NIE. ¿La cita del SEPE se pide por internet?", "fr": "Voici mon NIE. Le rendez-vous au SEPE se prend sur internet ?", "va": "formacion",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Sí, por internet o por teléfono. Y lleve el número de su cuenta bancaria.", "fr": "Oui, sur internet ou par téléphone. Et apportez le numéro de votre compte bancaire."}]},
+    {"t": "De acuerdo. ¿Qué documentos tengo que llevar al SEPE?", "fr": "D'accord. Quels documents dois-je apporter au SEPE ?", "va": "formacion",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "El NIE y el número de su cuenta bancaria. El certificado de empresa lo envía la propia empresa.", "fr": "Le NIE et le numéro de votre compte bancaire. L'attestation de l'employeur, c'est l'entreprise elle-même qui l'envoie."}]},
+    {"faux": true, "t": "Aquí tiene. ¿Es que debo pedir la cita por internet?", "fr": "Tenez. Est-ce que je dois prendre le rendez-vous sur internet ?",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "¿Cómo? Ah, que si la cita se pide por internet. Sí, sí.", "fr": "Comment ? Ah, si le rendez-vous se prend sur internet. Oui, oui."}],
+     "aide": {"fr": "<b>« ¿Es que…? »</b> n'est pas « est-ce que » : il ajoute une nuance d'étonnement ou de reproche. En espagnol, la question se pose directement : « ¿La cita se pide por internet? »."}}
+   ]
+  },
+  "formacion": {
+   "dit": [{"qui": "b11_conseillere", "air": "sourire", "t": "Ya está hecha la inscripción. Mientras busca trabajo, puedo ofrecerle dos cosas: un curso de español para el trabajo o un taller para mejorar el currículum. ¿Qué le interesa más?", "fr": "L'inscription est faite. Pendant que vous cherchez du travail, je peux vous proposer deux choses : un cours d'espagnol pour le travail ou un atelier pour améliorer votre CV. Qu'est-ce qui vous intéresse le plus ?"}],
+   "choix": [
+    {"t": "Me interesa el curso de español, sobre todo para escribir correos.", "fr": "Le cours d'espagnol m'intéresse, surtout pour écrire des courriels.", "pose": {"formacion": "curso"}, "va": "problema",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Buena elección. Empieza el mes que viene, dos tardes por semana.", "fr": "Bon choix. Il commence le mois prochain, deux après-midi par semaine."}]},
+    {"t": "Prefiero el taller, porque mi currículum está hecho al estilo de mi país.", "fr": "Je préfère l'atelier, parce que mon CV est fait à la manière de mon pays.", "pose": {"formacion": "taller"}, "va": "problema",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Buena elección. Son tres tardes, la semana que viene.", "fr": "Bon choix. Ce sont trois après-midi, la semaine prochaine."}]},
+    {"faux": true, "t": "Quiero atender el curso de español.", "fr": "Je veux assister au cours d'espagnol.",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "¿Atender el curso? Ah, que quiere asistir al curso.", "fr": "Vous occuper du cours ? Ah, vous voulez y assister."}],
+     "aide": {"fr": "<b>« Atender »</b>, c'est s'occuper de quelqu'un. Assister à un cours se dit « asistir a ». Dis plutôt : « Me interesa el curso de español »."}}
+   ]
+  },
+  "problema": {
+   "dit": [{"qui": "b11_conseillere", "air": "question", "t": "¿Hay algo más que deba saber? ¿Algún problema con los horarios o con los papeles?", "fr": "Y a-t-il autre chose que je doive savoir ? Un problème d'horaires ou de papiers ?"}],
+   "choix": [
+    {"t": "Sí. Tengo un hijo pequeño y solo puedo trabajar por las mañanas.", "fr": "Oui. J'ai un enfant en bas âge et je ne peux travailler que le matin.", "va": "nino"},
+    {"t": "Sí. Tengo un título universitario de mi país, pero aquí no está reconocido.", "fr": "Oui. J'ai un diplôme universitaire de mon pays, mais il n'est pas reconnu ici.", "va": "titulo"},
+    {"faux": true, "t": "Sí. Mi diploma no es reconocido aquí.", "fr": "Oui. Mon diplôme n'est pas reconnu ici.",
+     "puis": [{"qui": "b11_conseillere", "air": "attentive", "t": "¿Su título no está reconocido? Vamos a ver eso.", "fr": "Votre diplôme n'est pas reconnu ? Voyons cela."}],
+     "aide": {"fr": "Le résultat d'une démarche se dit avec « estar » : <b>« no está reconocido »</b>. Et un diplôme d'études est plutôt « un título ». Dis plutôt : « Tengo un título de mi país, pero aquí no está reconocido »."}}
+   ]
+  },
+  "nino": {
+   "dit": [{"qui": "b11_conseillere", "air": "attentive", "t": "Entiendo. ¿Y por las tardes no tiene con quién dejarlo?", "fr": "Je comprends. Et l'après-midi, vous n'avez personne à qui le confier ?"}],
+   "choix": [
+    {"t": "No, la guardería cierra a las cuatro y no tengo familia aquí.", "fr": "Non, la crèche ferme à quatre heures et je n'ai pas de famille ici.", "va": "renovar",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "De acuerdo. Indico en su demanda que busca turno de mañana, y así no recibirá ofertas que no le sirven.", "fr": "D'accord. J'indique dans votre dossier que vous cherchez un poste du matin ; ainsi, vous ne recevrez pas d'offres qui ne vous conviennent pas."}]},
+    {"t": "Mi pareja trabaja por las tardes, así que me quedo yo con él.", "fr": "Mon conjoint travaille l'après-midi, donc c'est moi qui reste avec lui.", "va": "renovar",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "De acuerdo. Indico en su demanda que busca turno de mañana, y así no recibirá ofertas que no le sirven.", "fr": "D'accord. J'indique dans votre dossier que vous cherchez un poste du matin ; ainsi, vous ne recevrez pas d'offres qui ne vous conviennent pas."}]},
+    {"faux": true, "t": "No, la guardería es cerrada a las cuatro.", "fr": "Non, la crèche est fermée à quatre heures.",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Cierra a las cuatro, ya veo.", "fr": "Elle ferme à quatre heures, je vois."}],
+     "aide": {"fr": "<b>« Es cerrada »</b> ne se dit pas : on dit « está cerrada » (elle est fermée) ou, pour l'horaire, « cierra a las cuatro ». Dis plutôt : « La guardería cierra a las cuatro »."}}
+   ]
+  },
+  "titulo": {
+   "dit": [{"qui": "b11_conseillere", "air": "attentive", "t": "Eso se llama homologación. Se solicita al Ministerio, por internet, y le aviso: tarda bastante. ¿De qué es su título?", "fr": "Cela s'appelle l'homologation. On la demande au ministère, sur internet, et je vous préviens : c'est assez long. Votre diplôme, c'est dans quel domaine ?"}],
+   "choix": [
+    {"t": "Estudié contabilidad durante tres años en la universidad.", "fr": "J'ai étudié la comptabilité pendant trois ans à l'université.", "va": "renovar",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Pues mientras llega la homologación, ponga el título en el currículum: muchas empresas lo valoran igualmente.", "fr": "Eh bien, en attendant l'homologation, mettez le diplôme sur votre CV : beaucoup d'entreprises en tiennent compte quand même."}]},
+    {"t": "Tengo un título de informática y cinco años de experiencia.", "fr": "J'ai un diplôme d'informatique et cinq ans d'expérience.", "va": "renovar",
+     "puis": [{"qui": "b11_conseillere", "air": "surprise", "t": "¡Eso se busca mucho! Mientras llega la homologación, ponga el título en el currículum: las empresas lo valoran igualmente.", "fr": "C'est très recherché ! En attendant l'homologation, mettez le diplôme sur votre CV : les entreprises en tiennent compte quand même."}]},
+    {"faux": true, "t": "Estudié contabilidad pendiente tres años.", "fr": "J'ai étudié la comptabilité pendant trois ans.",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "¿Pendiente? Ah, durante tres años.", "fr": "« Pendiente » ? Ah, pendant trois ans."}],
+     "aide": {"fr": "<b>« Pendiente »</b> veut dire « en attente ». « Pendant » se dit « durante ». Dis plutôt : « Estudié contabilidad durante tres años »."}}
+   ]
+  },
+  "renovar": {
+   "dit": [{"qui": "b11_conseillere", "air": "attentive", "t": "Una cosa importante: tiene que renovar la demanda cada tres meses. Se puede hacer por internet.", "fr": "Une chose importante : vous devez renouveler votre inscription tous les trois mois. Cela peut se faire sur internet."}],
+   "choix": [
+    {"t": "De acuerdo. ¿Qué pasa si se me olvida renovarla?", "fr": "D'accord. Que se passe-t-il si j'oublie de la renouveler ?", "va": "despedida",
+     "puis": [{"qui": "b11_conseillere", "air": "attentive", "t": "Que la demanda se da de baja y puede perder la prestación. Apúnteselo en el móvil.", "fr": "L'inscription est annulée et vous pouvez perdre l'allocation. Notez-le dans votre téléphone."}]},
+    {"t": "Entendido. ¿En qué fecha tengo que renovarla la primera vez?", "fr": "Compris. À quelle date dois-je la renouveler la première fois ?", "va": "despedida",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "El doce de enero. Lo tiene escrito en este papel; guárdelo bien.", "fr": "Le douze janvier. C'est écrit sur ce papier ; gardez-le bien."}]},
+    {"faux": true, "t": "Vale. ¿Es necesario que vengo aquí cada tres meses?", "fr": "D'accord. Il est nécessaire que je viens ici tous les trois mois ?",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "No, no hace falta que venga: se renueva por internet.", "fr": "Non, il n'est pas nécessaire que vous veniez : cela se renouvelle sur internet."}],
+     "aide": {"fr": "Après <b>« es necesario que »</b>, il faut le subjonctif : « que venga ». Et elle vient de dire que cela se fait sur internet. Demande plutôt : « ¿Qué pasa si se me olvida renovarla? »."}}
+   ]
+  },
+  "despedida": {
+   "dit": [
+    {"si": {"formacion": "curso"}, "qui": "b11_conseillere", "air": "sourire", "t": "Y recuerde: el curso de español empieza el mes que viene. Le llegará un mensaje con el día y la hora.", "fr": "Et rappelez-vous : le cours d'espagnol commence le mois prochain. Vous recevrez un message avec le jour et l'heure."},
+    {"si": {"formacion": "taller"}, "qui": "b11_conseillere", "air": "sourire", "t": "Y recuerde: el taller es la semana que viene. Le llegará un mensaje con el día y la hora.", "fr": "Et rappelez-vous : l'atelier a lieu la semaine prochaine. Vous recevrez un message avec le jour et l'heure."},
+    {"qui": "b11_conseillere", "air": "sourire", "t": "Pues eso es todo por hoy. Le deseo mucha suerte con la búsqueda.", "fr": "Eh bien, c'est tout pour aujourd'hui. Je vous souhaite bonne chance dans vos recherches."}
+   ],
+   "choix": [
+    {"t": "Muchas gracias por su ayuda. Me lo ha explicado todo muy bien.", "fr": "Merci beaucoup pour votre aide. Vous m'avez tout très bien expliqué.", "va": null,
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Gracias a usted. Y ánimo, que seguro que pronto sale algo.", "fr": "Merci à vous. Et courage, quelque chose va sûrement se présenter bientôt."}]},
+    {"t": "Gracias. Espero encontrar algo pronto y no tener que volver.", "fr": "Merci. J'espère trouver quelque chose bientôt et ne pas avoir à revenir.", "va": null,
+     "puis": [{"qui": "b11_conseillere", "air": "amuse", "t": "¡Ojalá! Pero aquí estamos si nos necesita.", "fr": "Espérons-le ! Mais nous sommes là si vous avez besoin de nous."}]},
+    {"faux": true, "t": "Gracias. Espero de encontrar un trabajo pronto.", "fr": "Merci. J'espère de trouver un travail bientôt.",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Yo también lo espero. Seguro que sí.", "fr": "Je l'espère aussi. Sûrement."}],
+     "aide": {"fr": "<b>« Esperar »</b> se construit sans préposition devant un infinitif : « Espero encontrar algo pronto »."}}
+   ]
+  }
+ }
+}

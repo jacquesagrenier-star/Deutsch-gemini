@@ -1,0 +1,143 @@
+{
+ "id": "b1-reunion-parents",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "La réunion avec l'institutrice"},
+ "intro": {"fr": "Ta fille Lina, neuf ans, est en « fourth grade » dans une école publique de Boston. Son institutrice, Ms. Keller, te reçoit pour le rendez-vous parents-professeur."},
+ "personnes": ["b11_institutrice"],
+ "debut": "welcome",
+ "noeuds": {
+  "welcome": {
+   "dit": [
+    {"recit": {"fr": "Cinq heures de l'après-midi, à l'école. Ms. Keller t'attend dans la classe, entre les dessins des élèves."}},
+    {"qui": "b11_institutrice", "air": "sourire", "t": "Hello! Thanks for coming in. Please, have a seat — sorry about the tiny chairs.", "fr": "Bonjour ! Merci d'être venu(e). Asseyez-vous, je vous en prie… et pardon pour les chaises minuscules."}
+   ],
+   "choix": [
+    {"t": "Thank you for seeing me. How is Lina doing in class?", "fr": "Merci de me recevoir. Comment ça se passe pour Lina en classe ?", "va": "report"},
+    {"t": "Hello, Ms. Keller. I'm happy to finally meet you.", "fr": "Bonjour, madame Keller. Je suis content(e) de vous rencontrer enfin.", "va": "report",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Me too! Lina talks about you all the time.", "fr": "Moi aussi ! Lina parle de vous tout le temps."}]},
+    {"faux": true, "t": "Hello. How is going Lina at school?", "fr": "Bonjour. Comment va Lina à l'école ?",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "How is … Lina doing, you mean? Let me tell you.", "fr": "Comment… se débrouille Lina, vous voulez dire ? Je vais vous expliquer."}],
+     "aide": {"fr": "Dans une question, le sujet se glisse entre l'auxiliaire et le verbe : <b>How is Lina doing?</b> Dis plutôt : « How is Lina doing in class? »"}}
+   ]
+  },
+  "report": {
+   "dit": [
+    {"qui": "b11_institutrice", "air": "sourire", "t": "Lina is a lovely girl, and she's very strong in math.", "t_gb": "Lina is a lovely girl, and she's very strong in maths.", "fr": "Lina est une enfant adorable, et elle est très forte en maths."},
+    {"qui": "b11_institutrice", "air": "attentive", "t": "But she's having a hard time with reading, and she often looks tired in the morning. Do you have any idea why?", "fr": "Mais elle a du mal en lecture, et elle a souvent l'air fatiguée le matin. Avez-vous une idée de la raison ?"}
+   ],
+   "choix": [
+    {"t": "At home we speak French, so she doesn't read much in English.", "fr": "À la maison, nous parlons français, alors elle lit peu en anglais.", "pose": {"raison": "langue"}, "va": "r_langue"},
+    {"t": "I think she goes to bed too late. She has trouble falling asleep.", "fr": "Je crois qu'elle se couche trop tard. Elle a du mal à s'endormir.", "pose": {"raison": "sommeil"}, "va": "r_sommeil"},
+    {"t": "She told me she's having a problem with a girl in her class.", "fr": "Elle m'a dit qu'elle avait un souci avec une fille de sa classe.", "pose": {"raison": "camarade"}, "va": "r_camarade"},
+    {"faux": true, "t": "She has nine years and she is tired, it's normal.", "fr": "Elle a neuf ans et elle est fatiguée, c'est normal.",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "She has nine …? Oh, she's nine! Yes, but she shouldn't be this tired.", "fr": "Elle a neuf… ? Ah, elle a neuf ans ! Oui, mais elle ne devrait pas être aussi fatiguée."}],
+     "aide": {"fr": "L'âge se dit avec <b>be</b>, pas avec « have » : « She is nine. » Et donne plutôt une raison : « I think she goes to bed too late. »"}}
+   ]
+  },
+  "r_langue": {
+   "dit": [{"qui": "b11_institutrice", "air": "sourire", "t": "Two languages — that's a gift, really. Keep speaking French at home. But she needs more time with English books. Does she ever read on her own?", "fr": "Deux langues, c'est un cadeau, vraiment. Continuez à parler français à la maison. Mais il lui faut plus de temps avec des livres en anglais. Lui arrive-t-il de lire toute seule ?"}],
+   "choix": [
+    {"t": "Yes, but only comics, and mostly in French.", "fr": "Oui, mais seulement des bandes dessinées, et surtout en français.", "va": "support",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Comics are a great start. We'll find her some in English.", "fr": "Les bandes dessinées, c'est un très bon début. Nous lui en trouverons en anglais."}]},
+    {"t": "Not really. She prefers it when I read to her.", "fr": "Pas vraiment. Elle préfère que je lui fasse la lecture.", "va": "support",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "That's fine. Reading together is a good place to start.", "fr": "C'est très bien. Lire ensemble, c'est un bon point de départ."}]},
+    {"faux": true, "t": "She reads only when I oblige her.", "fr": "Elle ne lit que quand je l'y oblige.",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "When you … make her? Oh dear. Let's try to make it fun instead.", "fr": "Quand vous… la forcez ? Aïe. Essayons plutôt d'en faire un plaisir."}],
+     "aide": {"fr": "<b>« obliger quelqu'un à »</b> se dit <b>make someone + verbe</b>, et « only » se place avant le verbe. Dis plutôt : « She only reads when I make her. »"}}
+   ]
+  },
+  "r_sommeil": {
+   "dit": [{"qui": "b11_institutrice", "air": "attentive", "t": "That would explain a lot. What time does she usually fall asleep?", "fr": "Cela expliquerait bien des choses. À quelle heure s'endort-elle, d'habitude ?"}],
+   "choix": [
+    {"t": "Around ten, sometimes later. I know it's too late.", "fr": "Vers dix heures, parfois plus tard. Je sais que c'est trop tard.", "va": "support",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "At her age, nine o'clock would be better. No screens in the last hour — that helps a lot.", "fr": "À son âge, neuf heures, ce serait mieux. Pas d'écran pendant la dernière heure : ça aide beaucoup."}]},
+    {"t": "She's in bed at nine, but she doesn't fall asleep before ten thirty.", "t_gb": "She's in bed at nine, but she doesn't fall asleep before half past ten.", "fr": "Elle est au lit à neuf heures, mais elle ne s'endort pas avant dix heures et demie.", "va": "support",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Then a quiet book before bed could help — and it's good for her reading, too.", "fr": "Alors un livre au calme avant de dormir pourrait l'aider, et c'est bon aussi pour sa lecture."}]},
+    {"faux": true, "t": "She sleeps at ten hours.", "fr": "Elle dort à dix heures.",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "Ten hours? She sleeps for ten hours? Then she shouldn't be tired!", "fr": "Dix heures ? Elle dort dix heures ? Alors elle ne devrait pas être fatiguée !"}],
+     "aide": {"fr": "<b>« ten hours »</b>, c'est une durée de dix heures. L'heure qu'il est se dit « ten » ou « ten o'clock ». Dis plutôt : « She falls asleep around ten. »"}}
+   ]
+  },
+  "r_camarade": {
+   "dit": [{"qui": "b11_institutrice", "air": "surprise", "t": "Oh, I didn't know that. Thank you for telling me. Do you know what happened?", "fr": "Oh, je ne le savais pas. Merci de me le dire. Savez-vous ce qui s'est passé ?"}],
+   "choix": [
+    {"t": "Another girl doesn't let her play with the group at recess.", "t_gb": "Another girl doesn't let her play with the group at break time.", "fr": "Une autre fille ne la laisse pas jouer avec le groupe à la récréation.", "va": "support",
+     "puis": [{"qui": "b11_institutrice", "air": "attentive", "t": "I'll keep an eye on it and talk to both girls. That could explain why she can't concentrate.", "fr": "Je vais surveiller cela et parler aux deux filles. Cela pourrait expliquer qu'elle n'arrive pas à se concentrer."}]},
+    {"t": "I'm not sure. She doesn't want to talk about it.", "fr": "Je ne sais pas trop. Elle ne veut pas en parler.", "va": "support",
+     "puis": [{"qui": "b11_institutrice", "air": "attentive", "t": "I'll watch closely and talk to her myself. That could explain why she can't concentrate.", "fr": "Je vais être attentive et lui parler moi-même. Cela pourrait expliquer qu'elle n'arrive pas à se concentrer."}]},
+    {"faux": true, "t": "A girl is mean with her.", "fr": "Une fille est méchante avec elle.",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "Mean … to her? Oh no. Do you know what happened?", "fr": "Méchante… avec elle ? Oh non. Savez-vous ce qui s'est passé ?"}],
+     "aide": {"fr": "On est <b>mean to</b> quelqu'un, pas « mean with ». Dis plutôt : « A girl is mean to her. » puis raconte : « Another girl doesn't let her play with the group. »"}}
+   ]
+  },
+  "support": {
+   "dit": [{"qui": "b11_institutrice", "air": "sourire", "t": "For the reading, here's what I'd suggest. Read with her for fifteen minutes every evening — the public library has great books for her level. And we have a reading group on Tuesdays after school. I think it would really help her.", "fr": "Pour la lecture, voici ce que je vous propose. Lisez avec elle un quart d'heure chaque soir : la bibliothèque municipale a d'excellents livres de son niveau. Et nous avons un groupe de lecture le mardi après la classe. Je crois que cela l'aiderait vraiment."}],
+   "choix": [
+    {"t": "That sounds great. Is the reading group free?", "fr": "Ça me paraît très bien. Le groupe de lecture est-il gratuit ?", "va": "homework",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Yes, it's free. Our reading specialist runs it. I'll put Lina's name on the list.", "fr": "Oui, c'est gratuit. C'est notre spécialiste de la lecture qui l'anime. J'inscris Lina sur la liste."}]},
+    {"t": "Good idea. What time does the reading group finish?", "fr": "Bonne idée. À quelle heure le groupe de lecture se termine-t-il ?", "va": "homework",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "It runs from 2:45 to 3:45, right here at school. I'll put Lina's name on the list.", "dit": "It runs from two forty-five to three forty-five, right here at school. I'll put Lina's name on the list.", "fr": "Il a lieu de 14 h 45 à 15 h 45, ici même, à l'école. J'inscris Lina sur la liste."}]},
+    {"faux": true, "t": "Good idea. I will inscribe her.", "fr": "Bonne idée. Je vais l'inscrire.",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "Inscribe her? Like on a ring? Oh — you'd like to sign her up!", "fr": "« Inscribe » ? Comme sur une bague ? Ah, vous voulez l'inscrire !"}],
+     "aide": {"fr": "<b>« inscribe »</b>, c'est graver. Inscrire quelqu'un à une activité se dit <b>sign up</b>. Dis plutôt : « I'd like to sign her up. »"}}
+   ]
+  },
+  "homework": {
+   "dit": [{"qui": "b11_institutrice", "air": "attentive", "t": "One more thing. Lina often forgets her homework. Three times this month, her homework folder came back empty.", "fr": "Autre chose. Lina oublie souvent ses devoirs. Trois fois ce mois-ci, sa pochette de devoirs est revenue vide."}],
+   "choix": [
+    {"t": "I'm sorry, I didn't know. I'll check her folder every evening.", "fr": "Je suis désolé(e), je ne le savais pas. Je vérifierai sa pochette tous les soirs.", "va": "trip"},
+    {"t": "Oh, I see. From now on, we'll do her homework together after dinner.", "fr": "Ah, je vois. Désormais, nous ferons ses devoirs ensemble après le dîner.", "va": "trip"},
+    {"faux": true, "t": "Sorry. I will control her homework every night.", "fr": "Désolé(e). Je contrôlerai ses devoirs tous les soirs.",
+     "puis": [{"qui": "b11_institutrice", "air": "amuse", "t": "Control it? You don't have to be that strict! Just check it.", "fr": "Les « contrôler » ? Pas besoin d'être aussi sévère ! Vérifiez-les, simplement."}],
+     "aide": {"fr": "<b>« control »</b>, c'est diriger, dominer. Vérifier se dit <b>check</b>. Dis plutôt : « I'll check her folder every evening. »"}}
+   ]
+  },
+  "trip": {
+   "dit": [{"qui": "b11_institutrice", "air": "sourire", "t": "Thank you, that will help. Now, some good news: in May, the fourth grade is going on a field trip — a whale watch from Boston Harbor! It costs $85 per student.", "t_gb": "Thank you, that will help. Now, some good news: in May, Year 5 is going on a school trip — a whale watch from Boston Harbor! It costs $85 per pupil.", "dit": "Thank you, that will help. Now, some good news: in May, the fourth grade is going on a field trip — a whale watch from Boston Harbor! It costs eighty-five dollars per student.", "dit_gb": "Thank you, that will help. Now, some good news: in May, Year Five is going on a school trip — a whale watch from Boston Harbor! It costs eighty-five dollars per pupil.", "fr": "Merci, cela l'aidera. Maintenant, une bonne nouvelle : en mai, les classes de fourth grade partent en sortie, pour observer les baleines au large de Boston ! Cela coûte 85 dollars par élève."}],
+   "choix": [
+    {"t": "Lina will love that! Eighty-five dollars is fine.", "fr": "Lina va adorer ! Quatre-vingt-cinq dollars, c'est d'accord.", "va": "meeting",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Great. The permission slip is in her folder.", "t_gb": "Great. The permission form is in her folder.", "fr": "Parfait. L'autorisation à signer est dans sa pochette."}]},
+    {"t": "She'd love to go, but that's a lot for us right now. Is there any financial help?", "fr": "Elle adorerait y aller, mais c'est beaucoup pour nous en ce moment. Existe-t-il une aide financière ?", "va": "help"},
+    {"faux": true, "t": "She will be very exciting!", "fr": "Elle va être tout excitée !",
+     "puis": [{"qui": "b11_institutrice", "air": "amuse", "t": "Exciting? Lina IS exciting — but I think you mean she'll be excited!", "fr": "« Exciting » ? Lina est passionnante, c'est vrai… mais vous voulez dire qu'elle sera ravie !"}],
+     "aide": {"fr": "<b>exciting</b> décrit ce qui est passionnant ; <b>excited</b>, la personne qui est ravie. Dis plutôt : « She'll be so excited! » ou « Lina will love that! »"}}
+   ]
+  },
+  "help": {
+   "dit": [{"qui": "b11_institutrice", "air": "sourire", "t": "Of course. The school has a fund for exactly that — so no child has to miss out. Just fill out a short form at the front office. It stays confidential.", "t_gb": "Of course. The school has a fund for exactly that — so no child has to miss out. Just fill in a short form at the school office. It stays confidential.", "fr": "Bien sûr. L'école a un fonds prévu pour cela : aucun enfant n'est laissé de côté. Il suffit de remplir un court formulaire au secrétariat. Cela reste confidentiel."}],
+   "choix": [
+    {"t": "Thank you so much. I'll stop by the office tomorrow morning.", "fr": "Merci infiniment. Je passerai au secrétariat demain matin.", "va": "meeting",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Perfect. They open at eight.", "fr": "Parfait. Il ouvre à huit heures."}]},
+    {"t": "That's a relief. Can I get the form today?", "fr": "Me voilà rassuré(e). Puis-je avoir le formulaire aujourd'hui ?", "va": "meeting",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Sure. I'll walk you to the office on your way out.", "fr": "Bien sûr. Je vous accompagnerai au secrétariat en sortant."}]},
+    {"faux": true, "t": "Thank you. I will fill the formular.", "fr": "Merci. Je remplirai le formulaire.",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "The formula? Oh, the form! Yes, it's very short.", "fr": "La formule ? Ah, le formulaire ! Oui, il est très court."}],
+     "aide": {"fr": "<b>« formulaire »</b> se dit <b>form</b>, et on le remplit avec <b>fill out</b> (« fill in » en anglais britannique). Dis plutôt : « I'll fill out the form tomorrow. »"}}
+   ]
+  },
+  "meeting": {
+   "dit": [{"qui": "b11_institutrice", "air": "question", "t": "Let's meet again in two months to see how the reading is going. Would early April work for you?", "fr": "Revoyons-nous dans deux mois pour faire le point sur la lecture. Début avril, cela vous conviendrait ?"}],
+   "choix": [
+    {"t": "Yes, early April is fine. Late afternoon is best for me.", "fr": "Oui, début avril, c'est très bien. La fin d'après-midi me convient le mieux.", "va": "bye",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Perfect. I'll email you a date.", "fr": "Parfait. Je vous envoie une date par courriel."}]},
+    {"t": "Yes, of course. Could it be after five? I work until four thirty.", "t_gb": "Yes, of course. Could it be after five? I work until half past four.", "fr": "Oui, bien sûr. Ce serait possible après cinq heures ? Je travaille jusqu'à quatre heures et demie.", "va": "bye",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "After five is no problem. I'll email you a date.", "fr": "Après cinq heures, aucun problème. Je vous envoie une date par courriel."}]},
+    {"faux": true, "t": "Yes. I am free the afternoon.", "fr": "Oui. Je suis libre l'après-midi.",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "Free … in the afternoon? Good, that's easy for me.", "fr": "Libre… l'après-midi ? Bien, cela m'arrange."}],
+     "aide": {"fr": "Les moments de la journée prennent <b>in</b> : « in the afternoon », « in the morning ». Dis plutôt : « I'm free in the afternoon. »"}}
+   ]
+  },
+  "bye": {
+   "dit": [{"qui": "b11_institutrice", "air": "sourire", "t": "Thank you for coming. Lina is lucky to have a parent who cares so much.", "fr": "Merci d'être venu(e). Lina a de la chance d'avoir un parent aussi attentif."}],
+   "choix": [
+    {"t": "Thank you, Ms. Keller. We'll start reading together tonight.", "fr": "Merci, madame Keller. Nous commençons à lire ensemble dès ce soir.", "va": null,
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Wonderful. Say hi to Lina for me!", "fr": "Formidable. Dites bonjour à Lina de ma part !"}]},
+    {"t": "Thank you for everything you do for her.", "fr": "Merci pour tout ce que vous faites pour elle.", "va": null,
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "It's my pleasure. Say hi to Lina for me!", "fr": "C'est un plaisir. Dites bonjour à Lina de ma part !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as fait le point sur Lina avec son institutrice : la lecture chaque soir, le groupe de lecture du mardi, les devoirs à vérifier, la sortie de mai et un prochain rendez-vous en avril."}
+}

@@ -1,0 +1,127 @@
+{
+ "id": "b1-reunion-parents",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Le rendez-vous avec l'institutrice"},
+ "intro": {"fr": "Ta fille Lina, neuf ans, est en « cuarto de primaria ». Sa maîtresse, Marta, te reçoit en « tutoría » pour faire le point."},
+ "bilan": {"fr": "Tu as parlé de ta fille avec sa maîtresse : expliquer ce qui se passe à la maison, poser des questions sur le soutien en lecture et t'organiser pour la sortie de classe."},
+ "personnes": ["b11_institutrice"],
+ "debut": "saludo",
+ "noeuds": {
+  "saludo": {
+   "dit": [
+    {"recit": {"fr": "Jeudi, cinq heures et quart. L'école est presque vide. Marta, la maîtresse de Lina, t'attend dans la classe."}},
+    {"qui": "b11_institutrice", "air": "sourire", "t": "¡Hola, buenas tardes! Pase y siéntese. Gracias por venir.", "fr": "Bonjour ! Entrez et asseyez-vous. Merci d'être venu(e)."}
+   ],
+   "choix": [
+    {"t": "Buenas tardes, Marta. Gracias a usted por recibirme.", "fr": "Bonjour, Marta. C'est moi qui vous remercie de me recevoir.", "va": "mates"},
+    {"t": "Buenas tardes. Tenía muchas ganas de hablar con usted sobre Lina.", "fr": "Bonjour. J'avais très envie de parler de Lina avec vous.", "va": "mates"},
+    {"faux": true, "t": "Buenas tardes, Marta. Gracias para recibirme.", "fr": "Bonjour, Marta. Merci pour me recevoir.",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Gracias a usted por venir. Siéntese, siéntese.", "fr": "Merci à vous d'être venu(e). Asseyez-vous, asseyez-vous."}],
+     "aide": {"fr": "On remercie toujours avec <b>« por »</b> : « gracias por… ». Dis plutôt : « Gracias a usted por recibirme »."}}
+   ]
+  },
+  "mates": {
+   "dit": [{"qui": "b11_institutrice", "air": "sourire", "t": "Primero, las buenas noticias: Lina va muy bien en matemáticas y participa mucho en clase.", "fr": "D'abord, les bonnes nouvelles : Lina est très bonne en mathématiques et elle participe beaucoup en classe."}],
+   "choix": [
+    {"t": "¡Qué alegría! En casa siempre dice que le encantan los números.", "fr": "Quelle joie ! À la maison, elle dit toujours qu'elle adore les chiffres.", "va": "explicacion",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Se nota. Es de las primeras en levantar la mano.", "fr": "Ça se voit. Elle est parmi les premières à lever la main."}]},
+    {"t": "Me alegro mucho. Las matemáticas siempre se le han dado bien.", "fr": "J'en suis très heureux(se). Elle a toujours été douée pour les mathématiques.", "va": "explicacion",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Se nota. Es de las primeras en levantar la mano.", "fr": "Ça se voit. Elle est parmi les premières à lever la main."}]},
+    {"faux": true, "t": "Me alegro mucho que va bien.", "fr": "Je suis très content(e) qu'elle va bien.",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Sí, yo también me alegro de que vaya tan bien.", "fr": "Oui, moi aussi je me réjouis qu'elle réussisse si bien."}],
+     "aide": {"fr": "On dit <b>« alegrarse de que »</b>, suivi du subjonctif : « Me alegro de que vaya bien ». Plus simple : « ¡Qué alegría! »."}}
+   ]
+  },
+  "explicacion": {
+   "dit": [{"qui": "b11_institutrice", "air": "perplexe", "t": "Lo que me preocupa un poco es la lectura: le cuesta bastante. Y además la veo cansada por las mañanas. ¿Ha notado algo en casa?", "fr": "Ce qui m'inquiète un peu, c'est la lecture : elle a pas mal de difficultés. Et en plus, je la trouve fatiguée le matin. Avez-vous remarqué quelque chose à la maison ?"}],
+   "choix": [
+    {"t": "En casa hablamos francés, y creo que por eso le cuesta leer en español.", "fr": "À la maison, nous parlons français, et je crois que c'est pour ça qu'elle a du mal à lire en espagnol.", "pose": {"causa": "idioma"}, "va": "refuerzo"},
+    {"t": "Es verdad que últimamente se acuesta demasiado tarde.", "fr": "C'est vrai que ces derniers temps, elle se couche trop tard.", "pose": {"causa": "sueno"}, "va": "refuerzo"},
+    {"t": "Creo que ha tenido un problema con una compañera de clase.", "fr": "Je crois qu'elle a eu un problème avec une camarade de classe.", "pose": {"causa": "companera"}, "va": "companera"},
+    {"faux": true, "t": "Sí, he realizado que lee muy poco.", "fr": "Oui, j'ai réalisé qu'elle lit très peu.",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "¿Que ha realizado… qué? Ah, que se ha dado cuenta.", "fr": "Vous avez réalisé… quoi ? Ah, vous vous en êtes rendu compte."}],
+     "aide": {"fr": "<b>« Realizar »</b> veut dire « effectuer, accomplir ». « Se rendre compte » se dit « darse cuenta de ». Dis plutôt : « Me he dado cuenta de que lee muy poco »."}}
+   ]
+  },
+  "companera": {
+   "dit": [{"qui": "b11_institutrice", "air": "surprise", "t": "¿Ah, sí? No sabía nada. ¿Qué ha pasado exactamente?", "fr": "Ah bon ? Je n'en savais rien. Que s'est-il passé exactement ?"}],
+   "choix": [
+    {"t": "Una niña ya no quiere jugar con ella, y Lina duerme mal.", "fr": "Une petite fille ne veut plus jouer avec elle, et Lina dort mal.", "va": "refuerzo",
+     "puis": [{"qui": "b11_institutrice", "air": "attentive", "t": "Gracias por decírmelo. Mañana mismo hablo con las dos, tranquilamente.", "fr": "Merci de me l'avoir dit. Dès demain, je parle avec toutes les deux, calmement."}]},
+    {"t": "Dice que una compañera se ríe de ella cuando lee en voz alta.", "fr": "Elle dit qu'une camarade se moque d'elle quand elle lit à voix haute.", "va": "refuerzo",
+     "puis": [{"qui": "b11_institutrice", "air": "attentive", "t": "Gracias por decírmelo. Mañana mismo hablo con las dos, tranquilamente.", "fr": "Merci de me l'avoir dit. Dès demain, je parle avec toutes les deux, calmement."}]},
+    {"faux": true, "t": "Una compañera se ríe de ella y Lina está muy embarazada.", "fr": "Une camarade se moque d'elle et Lina est très « embarazada ».",
+     "puis": [{"qui": "b11_institutrice", "air": "surprise", "t": "¿Embarazada? ¡Pero si tiene nueve años! Ah… quiere decir que le da vergüenza.", "fr": "Enceinte ? Mais elle a neuf ans ! Ah… vous voulez dire qu'elle a honte."}],
+     "aide": {"fr": "<b>« Embarazada »</b> veut dire « enceinte » ! Être gêné, avoir honte : « darle vergüenza a alguien ». Dis plutôt : « Una compañera se ríe de ella y a Lina le da mucha vergüenza »."}}
+   ]
+  },
+  "refuerzo": {
+   "dit": [
+    {"si": {"causa": "idioma"}, "qui": "b11_institutrice", "air": "sourire", "t": "Es muy normal en niños que crecen con dos idiomas. Y a la larga es una gran ventaja.", "fr": "C'est tout à fait normal chez les enfants qui grandissent avec deux langues. Et à la longue, c'est un grand avantage."},
+    {"si": {"causa": "sueno"}, "qui": "b11_institutrice", "air": "attentive", "t": "Eso lo explica todo: a su edad necesita dormir unas diez horas.", "fr": "Cela explique tout : à son âge, elle a besoin de dormir une dizaine d'heures."},
+    {"si": {"causa": "companera"}, "qui": "b11_institutrice", "air": "attentive", "t": "Y seguramente eso también le afecta cuando tiene que leer delante de los demás.", "fr": "Et cela joue sûrement aussi quand elle doit lire devant les autres."},
+    {"qui": "b11_institutrice", "air": "sourire", "t": "Le propongo dos cosas: que lea un cuarto de hora cada día en casa, y que venga al refuerzo de lectura, los martes por la tarde.", "fr": "Je vous propose deux choses : qu'elle lise un quart d'heure par jour à la maison, et qu'elle vienne au soutien en lecture, le mardi après-midi."}
+   ],
+   "choix": [
+    {"t": "Me parece muy buena idea. ¿El refuerzo es gratuito?", "fr": "Ça me paraît une très bonne idée. Le soutien est gratuit ?", "va": "deberes",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Sí, es gratuito. Lo organiza el colegio, los martes de cuatro a cinco.", "fr": "Oui, c'est gratuit. C'est l'école qui l'organise, le mardi de quatre à cinq heures."}]},
+    {"t": "De acuerdo. ¿A qué hora termina el refuerzo los martes?", "fr": "D'accord. À quelle heure finit le soutien, le mardi ?", "va": "deberes",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Es de cuatro a cinco. Y es gratuito: lo organiza el colegio.", "fr": "C'est de quatre à cinq heures. Et c'est gratuit : c'est l'école qui l'organise."}]},
+    {"t": "¿Y qué libros podría leer en casa?", "fr": "Et quels livres pourrait-elle lire à la maison ?", "va": "deberes",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Los que ella elija: cómics, cuentos, lo que le guste. En la biblioteca del barrio aconsejan muy bien. Y el refuerzo es gratuito, de cuatro a cinco.", "fr": "Ceux qu'elle choisira : des BD, des contes, ce qui lui plaît. À la bibliothèque du quartier, on conseille très bien. Et le soutien est gratuit, de quatre à cinq heures."}]},
+    {"faux": true, "t": "Buena idea. ¿Puedo demandar si es gratuito?", "fr": "Bonne idée. Je peux demander si c'est gratuit ?",
+     "puis": [{"qui": "b11_institutrice", "air": "amuse", "t": "¿Demandar? ¡Espero que no haga falta! Pregunte, pregunte.", "fr": "Nous poursuivre en justice ? J'espère que ce ne sera pas nécessaire ! Demandez, demandez."}],
+     "aide": {"fr": "<b>« Demandar »</b>, c'est poursuivre en justice. Poser une question se dit « preguntar ». Dis plutôt : « ¿El refuerzo es gratuito? »."}}
+   ]
+  },
+  "deberes": {
+   "dit": [{"qui": "b11_institutrice", "air": "attentive", "t": "Otra cosa: Lina se olvida a menudo de los deberes. Esta semana, dos veces.", "fr": "Autre chose : Lina oublie souvent ses devoirs. Cette semaine, deux fois."}],
+   "choix": [
+    {"t": "No lo sabía. A partir de ahora miraré la agenda cada noche.", "fr": "Je ne le savais pas. À partir de maintenant, je regarderai son agenda chaque soir.", "va": "excursion",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Eso ayudaría mucho. Con que firme la agenda cada día, basta.", "fr": "Cela aiderait beaucoup. Il suffit que vous signiez l'agenda chaque jour."}]},
+    {"t": "Lo siento. Voy a revisar su agenda todos los días después de cenar.", "fr": "Je suis désolé(e). Je vais vérifier son agenda tous les jours après le dîner.", "va": "excursion",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Eso ayudaría mucho. Con que firme la agenda cada día, basta.", "fr": "Cela aiderait beaucoup. Il suffit que vous signiez l'agenda chaque jour."}]},
+    {"faux": true, "t": "Le prometo de mirar la agenda cada noche.", "fr": "Je vous promets de regarder l'agenda chaque soir.",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "¿Me promete mirarla? Pues se lo agradezco.", "fr": "Vous me promettez de le regarder ? Eh bien, je vous en remercie."}],
+     "aide": {"fr": "« Promettre de » se dit <b>« prometer »</b> sans préposition : « Le prometo mirar la agenda ». Plus simple : « A partir de ahora miraré la agenda cada noche »."}}
+   ]
+  },
+  "excursion": {
+   "dit": [{"qui": "b11_institutrice", "air": "sourire", "t": "Y lo último: en mayo nos vamos tres días de convivencia a la sierra con toda la clase. Cuesta noventa y cinco euros.", "fr": "Et pour finir : en mai, nous partons trois jours en classe verte à la montagne avec toute la classe. Cela coûte quatre-vingt-quinze euros."}],
+   "choix": [
+    {"t": "Muy bien, Lina tiene muchas ganas de ir. ¿Cómo se paga?", "fr": "Très bien, Lina a très envie d'y aller. Comment paie-t-on ?", "va": "cita",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Por transferencia, antes del quince de abril. Le mando la circular con todos los datos.", "fr": "Par virement, avant le quinze avril. Je vous envoie la circulaire avec toutes les informations."}]},
+    {"t": "Ahora mismo es mucho dinero para nosotros. ¿Existe alguna ayuda?", "fr": "En ce moment, c'est beaucoup d'argent pour nous. Existe-t-il une aide ?", "va": "ayuda"},
+    {"faux": true, "t": "Es mucho dinero. ¿Es obligatorio de ir?", "fr": "C'est beaucoup d'argent. C'est obligatoire d'y aller ?",
+     "puis": [{"qui": "b11_institutrice", "air": "attentive", "t": "¿Si es obligatorio ir? No, pero sería una pena que Lina se lo perdiera.", "fr": "Si c'est obligatoire d'y aller ? Non, mais ce serait dommage que Lina manque cela."}],
+     "aide": {"fr": "Après « es obligatorio », « es importante », « es difícil »… l'infinitif vient <b>sans « de »</b> : « ¿Es obligatorio ir? ». Tu peux aussi demander : « ¿Existe alguna ayuda? »."}}
+   ]
+  },
+  "ayuda": {
+   "dit": [{"qui": "b11_institutrice", "air": "sourire", "t": "Sí, no se preocupe. El AMPA tiene un fondo para estos casos, y también se puede pagar en tres plazos.", "fr": "Oui, ne vous inquiétez pas. L'association des parents d'élèves (AMPA) a un fonds pour ces cas-là, et on peut aussi payer en trois fois."}],
+   "choix": [
+    {"t": "Pagar en tres plazos me vendría muy bien. ¿Qué tengo que hacer?", "fr": "Payer en trois fois m'arrangerait beaucoup. Que dois-je faire ?", "va": "cita",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Pase por secretaría esta semana; allí se lo arreglan todo. Y es confidencial, por supuesto.", "fr": "Passez au secrétariat cette semaine ; là-bas, on s'occupe de tout. Et c'est confidentiel, bien entendu."}]},
+    {"t": "Prefiero preguntar al AMPA. ¿Con quién tengo que hablar?", "fr": "Je préfère demander à l'AMPA. À qui dois-je m'adresser ?", "va": "cita",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Pase por secretaría esta semana; allí le dan el contacto. Y es confidencial, por supuesto.", "fr": "Passez au secrétariat cette semaine ; là-bas, on vous donnera le contact. Et c'est confidentiel, bien entendu."}]},
+    {"faux": true, "t": "Gracias. Entonces voy a pagar en tres veces.", "fr": "Merci. Alors je vais payer en trois fois.",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "En tres plazos, sí. Sin ningún problema.", "fr": "En trois versements, oui. Sans aucun problème."}],
+     "aide": {"fr": "« Payer en trois fois » se dit <b>« pagar en tres plazos »</b> : « veces » compte seulement les occasions. Dis plutôt : « Pagar en tres plazos me vendría muy bien »."}}
+   ]
+  },
+  "cita": {
+   "dit": [{"qui": "b11_institutrice", "air": "question", "t": "Me gustaría que nos viéramos otra vez dentro de dos meses, para ver cómo va Lina. ¿Le parece?", "fr": "J'aimerais que nous nous revoyions dans deux mois, pour voir comment va Lina. Cela vous convient ?"}],
+   "choix": [
+    {"t": "Por supuesto. Los jueves por la tarde me vienen bien.", "fr": "Bien sûr. Le jeudi après-midi me convient.", "va": null,
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Perfecto. Le apunto la fecha en la agenda de Lina. ¡Gracias por venir!", "fr": "Parfait. Je vous note la date dans l'agenda de Lina. Merci d'être venu(e) !"}]},
+    {"t": "Claro que sí. Espero que para entonces lea con más ganas.", "fr": "Bien sûr. J'espère que d'ici là, elle lira avec plus d'envie.", "va": null,
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Seguro que sí, ya lo verá. Le apunto la fecha en la agenda de Lina. ¡Gracias por venir!", "fr": "Sûrement, vous verrez. Je vous note la date dans l'agenda de Lina. Merci d'être venu(e) !"}]},
+    {"faux": true, "t": "Por supuesto. Soy disponible los jueves.", "fr": "Bien sûr. Je suis disponible le jeudi.",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "¿Está disponible los jueves? Muy bien.", "fr": "Vous êtes disponible le jeudi ? Très bien."}],
+     "aide": {"fr": "Être disponible, c'est un état du moment : <b>« estoy disponible »</b>, avec « estar ». Tu peux dire aussi : « Los jueves por la tarde me vienen bien »."}}
+   ]
+  }
+ }
+}

@@ -238,3 +238,22 @@ le boulanger de la fête (tú). Chiffres, prix et faits locaux plausibles, pas v
 - **Anglais.** Mots peut-être au-dessus du B1 : savory, hoodie, security deposit, pay stubs, lease, quote, taken
   apart, cover letter. À confirmer : résiliation d'une salle au-delà de 25 milles, inspection annuelle à 35 $,
   panneaux « No Parking » posés 48 h avant. « third floor » américain = « second floor » britannique.
+
+## Lot b1-1 (B1, première série) — écrit le 16 nov. 2026, voix à venir
+
+À relire dans les trois langues ; l'anglais en américain puis en britannique (`&variante=gb`). Points propres au lot :
+les démarches (Ausländerbehörde, Jobcenter ; extranjería, SEPE ; DMV, Social Security) doivent être justes sans être
+exhaustives, et les fautes proposées doivent être des fautes qu'un francophone fait vraiment au B1.
+
+| Conversation | Allemand | Espagnol | Anglais |
+|---|---|---|---|
+| b1-entretien (entretien d'embauche, une boulangerie) | à relire | à relire | à relire (us, gb) |
+| b1-candidature-tel (appeler pour une offre, un garage) | à relire | à relire | à relire (us, gb) |
+| b1-loyer (négocier une hausse de loyer) | à relire | à relire | à relire (us, gb) |
+| b1-reunion-parents (l'institutrice de Lina) | à relire | à relire | à relire (us, gb) |
+| b1-titre-sejour (Ausländerbehörde, extranjería, DMV) | à relire | à relire | à relire (us, gb) |
+| b1-aide-emploi (Jobcenter, SEPE, Social Security) | à relire | à relire | à relire (us, gb) |
+| b1-specialiste (l'orthopédiste, le genou) | à relire | à relire | à relire (us, gb) |
+| b1-sinistre (dégât des eaux, le voisin du dessus) | à relire | à relire | à relire (us, gb) |
+| b1-facture (réclamation au téléphone) | à relire | à relire | à relire (us, gb) |
+| b1-debat (donner son avis, comme à l'oral du telc ; du, tú) | à relire | à relire | à relire (us, gb) |

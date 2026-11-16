@@ -1,0 +1,129 @@
+{
+ "id": "b1-facture",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Réclamation sur une facture"},
+ "intro": {"fr": "Ta facture d'internet de ce mois-ci n'est pas normale. Tu appelles le service client de ton fournisseur : explique l'erreur, insiste poliment et obtiens un remboursement."},
+ "personnes": ["b11_service_client"],
+ "debut": "anfang",
+ "noeuds": {
+  "anfang": {
+   "dit": [
+    {"recit": {"fr": "Dix minutes de musique d'attente. Enfin, une voix."}},
+    {"qui": "b11_service_client", "air": "sourire", "t": "Herzlich willkommen beim Kundenservice, guten Tag! Nennen Sie mir bitte zuerst Ihre Kundennummer.", "fr": "Bienvenue au service client, bonjour ! Donnez-moi d'abord votre numéro de client, s'il vous plaît."}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Meine Kundennummer ist vier, sieben, zwei, null, neun, eins.", "fr": "Bonjour. Mon numéro de client est le quatre, sept, deux, zéro, neuf, un.", "va": "problem",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Danke, ich habe Ihr Kundenkonto jetzt vor mir.", "fr": "Merci, j'ai maintenant votre compte client sous les yeux."}]},
+    {"t": "Guten Tag. Einen Moment, bitte … Hier: vier, sieben, zwei, null, neun, eins.", "fr": "Bonjour. Un instant, s'il vous plaît… Voilà : quatre, sept, deux, zéro, neuf, un.", "va": "problem",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Danke, ich habe Ihr Kundenkonto jetzt vor mir.", "fr": "Merci, j'ai maintenant votre compte client sous les yeux."}]},
+    {"faux": true, "t": "Guten Tag. Mein Nummer ist vier, sieben, zwei, zero, neun, eins.", "fr": "Bonjour. Mon numéro est le quatre, sept, deux, zéro, neuf, un.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "Zero? Meinen Sie null? Könnten Sie die Nummer bitte noch einmal sagen?", "fr": "« Zero » ? Vous voulez dire « null » ? Pourriez-vous redire le numéro, s'il vous plaît ?"}],
+     "aide": {"fr": "Le chiffre 0 se dit <b>« null »</b> en allemand. Et « Nummer » est féminin : « <b>Meine</b> Kundennummer ist vier, sieben, zwei, <b>null</b>, neun, eins. »"}}
+   ]
+  },
+  "problem": {
+   "dit": [{"qui": "b11_service_client", "air": "question", "t": "Worum geht es denn?", "fr": "De quoi s'agit-il ?"}],
+   "choix": [
+    {"t": "Die Rechnung wurde diesen Monat zweimal von meinem Konto abgebucht.", "fr": "La facture a été prélevée deux fois sur mon compte ce mois-ci.", "pose": {"fehler": "doppelt"}, "va": "pruefen"},
+    {"t": "Auf meiner Rechnung steht ein Sicherheitspaket, das ich nie bestellt habe.", "fr": "Sur ma facture figure un pack sécurité que je n'ai jamais commandé.", "pose": {"fehler": "paket"}, "va": "pruefen"},
+    {"faux": true, "t": "Ich habe ein Problem mit meiner Faktur.", "fr": "J'ai un problème avec ma facture.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "Mit Ihrer … Faktur? Ach, mit der Rechnung! Was stimmt denn nicht?", "fr": "Avec votre… « Faktur » ? Ah, avec la facture ! Qu'est-ce qui ne va pas ?"}],
+     "aide": {"fr": "« La facture » se dit <b>« die Rechnung »</b>. Et dis tout de suite ce qui ne va pas : « Die Rechnung wurde zweimal abgebucht. »"}}
+   ]
+  },
+  "pruefen": {
+   "dit": [
+    {"qui": "b11_service_client", "air": "attentive", "si": {"fehler": "doppelt"}, "t": "Einen Moment, ich schaue nach … Ja, ich sehe zwei Lastschriften, am Dritten und am Fünften. Vielleicht ist die zweite schon für den nächsten Monat?", "fr": "Un instant, je regarde… Oui, je vois deux prélèvements, le trois et le cinq. Le deuxième est peut-être déjà pour le mois prochain ?"},
+    {"qui": "b11_service_client", "air": "attentive", "si": {"fehler": "paket"}, "t": "Einen Moment, ich schaue nach … Ja, das Sicherheitspaket für 9,99 Euro im Monat. Im System steht, dass es im März am Telefon bestellt wurde.", "dit": "Einen Moment, ich schaue nach … Ja, das Sicherheitspaket für neun Euro neunundneunzig im Monat. Im System steht, dass es im März am Telefon bestellt wurde.", "fr": "Un instant, je regarde… Oui, le pack sécurité à 9,99 euros par mois. Le système indique qu'il a été commandé par téléphone en mars."}
+   ],
+   "choix": [
+    {"si": {"fehler": "doppelt"}, "t": "Nein, das kann nicht sein. Ich bezahle immer nur einmal im Monat.", "fr": "Non, ce n'est pas possible. Je ne paie toujours qu'une fois par mois.", "va": "erstattung",
+     "puis": [{"qui": "b11_service_client", "air": "attentive", "t": "Sie haben recht, jetzt sehe ich es: Der Betrag wurde doppelt abgebucht. Das war unser Fehler, entschuldigen Sie bitte!", "fr": "Vous avez raison, je le vois maintenant : le montant a été prélevé en double. C'est notre erreur, veuillez nous excuser !"}]},
+    {"si": {"fehler": "paket"}, "t": "Das kann nicht sein. Ich habe im März gar nicht mit Ihnen telefoniert.", "fr": "Ce n'est pas possible. En mars, je ne vous ai pas du tout téléphoné.", "va": "erstattung",
+     "puis": [{"qui": "b11_service_client", "air": "attentive", "t": "Sie haben recht: Ich finde keinen Auftrag von Ihnen. Das war unser Fehler, entschuldigen Sie bitte! Das Paket lösche ich sofort.", "fr": "Vous avez raison : je ne trouve aucune commande de votre part. C'est notre erreur, veuillez nous excuser ! Je supprime le pack tout de suite."}]},
+    {"t": "Da muss ein Fehler passiert sein. Könnten Sie das bitte noch einmal prüfen?", "fr": "Il doit y avoir une erreur. Pourriez-vous vérifier encore une fois, s'il vous plaît ?", "va": "erstattung",
+     "puis": [{"qui": "b11_service_client", "air": "attentive", "t": "Gern … Sie haben recht, jetzt sehe ich es. Das war unser Fehler, entschuldigen Sie bitte! Ich korrigiere das sofort.", "fr": "Volontiers… Vous avez raison, je le vois maintenant. C'est notre erreur, veuillez nous excuser ! Je corrige ça tout de suite."}]},
+    {"faux": true, "t": "Nein, Sie haben falsch!", "fr": "Non, vous avez tort !",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "Wie bitte? … Sie meinen, das stimmt nicht? Dann erklären Sie mir bitte, warum.", "fr": "Pardon ?… Vous voulez dire que ce n'est pas exact ? Alors expliquez-moi pourquoi, s'il vous plaît."}],
+     "aide": {"fr": "« Avoir tort » ne se dit pas « falsch haben ». Et au téléphone, mieux vaut rester diplomate : <b>« Das kann nicht sein »</b> ou « Da muss ein Fehler passiert sein »."}}
+   ]
+  },
+  "erstattung": {
+   "dit": [{"qui": "b11_service_client", "air": "question", "t": "Sie bekommen das Geld natürlich zurück. Möchten Sie eine Gutschrift auf der nächsten Rechnung oder eine Überweisung auf Ihr Konto?", "fr": "Vous serez bien sûr remboursé(e). Préférez-vous un avoir sur la prochaine facture ou un virement sur votre compte ?"}],
+   "choix": [
+    {"t": "Eine Gutschrift auf der nächsten Rechnung ist in Ordnung.", "fr": "Un avoir sur la prochaine facture, ça me va.", "va": "bestaetigung",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Gut, dann sehen Sie die Gutschrift auf Ihrer nächsten Rechnung.", "fr": "Bien, vous verrez donc l'avoir sur votre prochaine facture."}]},
+    {"t": "Ich hätte das Geld lieber zurück auf mein Konto.", "fr": "Je préférerais récupérer l'argent sur mon compte.", "va": "konto"},
+    {"faux": true, "t": "Ich will mein Geld zurück, sofort!", "fr": "Je veux mon argent, tout de suite !",
+     "puis": [{"qui": "b11_service_client", "air": "surprise", "t": "Oh … Natürlich bekommen Sie es zurück. Ich möchte Ihnen ja helfen.", "fr": "Oh… Bien sûr que vous serez remboursé(e). Je ne demande qu'à vous aider."}],
+     "aide": {"fr": "<b>« Ich will … sofort! »</b> sonne agressif. Avec le conditionnel, on obtient la même chose poliment : « Ich <b>hätte</b> das Geld lieber zurück auf mein Konto. »"}},
+    {"repete": true, "t": "Entschuldigung, was ist eine Gutschrift? Könnten Sie das erklären?", "fr": "Excusez-moi, qu'est-ce qu'une « Gutschrift » ? Pourriez-vous m'expliquer ?", "va": "erstattung",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Gern. Bei einer Gutschrift ziehen wir den Betrag von Ihrer nächsten Rechnung ab, Sie zahlen dann also weniger. Oder wir überweisen Ihnen das Geld.", "fr": "Volontiers. Avec un avoir, nous déduisons le montant de votre prochaine facture : vous payez donc moins. Ou bien nous vous virons l'argent."}]}
+   ]
+  },
+  "konto": {
+   "dit": [{"qui": "b11_service_client", "air": "question", "t": "Kein Problem. Sollen wir das Geld auf das Konto überweisen, von dem wir auch die Rechnung abbuchen?", "fr": "Aucun problème. Devons-nous virer l'argent sur le compte où nous prélevons aussi la facture ?"}],
+   "choix": [
+    {"t": "Ja, genau, auf dasselbe Konto, bitte.", "fr": "Oui, exactement, sur le même compte, s'il vous plaît.", "va": "bestaetigung",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Gut. Das Geld ist in fünf bis sieben Werktagen bei Ihnen.", "fr": "Bien. L'argent sera chez vous dans cinq à sept jours ouvrables."}]},
+    {"t": "Ja, bitte. Wie lange dauert die Überweisung?", "fr": "Oui, s'il vous plaît. Combien de temps prend le virement ?", "va": "bestaetigung",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Fünf bis sieben Werktage, dann ist das Geld bei Ihnen.", "fr": "Cinq à sept jours ouvrables, et l'argent sera chez vous."}]},
+    {"faux": true, "t": "Ja, auf dem gleichen Konto, bitte.", "fr": "Oui, sur le même compte, s'il vous plaît.",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Auf dasselbe Konto, gern. Ich notiere das.", "fr": "Sur le même compte, volontiers. Je le note."}],
+     "aide": {"fr": "L'argent va vers le compte : c'est un mouvement, donc <b>« auf »</b> + accusatif. « Auf <b>das</b> gleiche Konto » ou « auf <b>dasselbe</b> Konto »."}}
+   ]
+  },
+  "bestaetigung": {
+   "dit": [{"qui": "b11_service_client", "air": "question", "t": "Kann ich sonst noch etwas für Sie tun?", "fr": "Puis-je faire autre chose pour vous ?"}],
+   "choix": [
+    {"t": "Ja. Könnten Sie mir das bitte per E-Mail bestätigen?", "fr": "Oui. Pourriez-vous me le confirmer par courriel, s'il vous plaît ?", "va": "angebot",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Selbstverständlich. Die Bestätigung bekommen Sie in den nächsten Minuten.", "fr": "Naturellement. Vous recevrez la confirmation dans les prochaines minutes."}]},
+    {"t": "Ja. Ich hätte gern eine schriftliche Bestätigung, zur Sicherheit.", "fr": "Oui. J'aimerais une confirmation écrite, par sécurité.", "va": "angebot",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Selbstverständlich. Ich schicke sie Ihnen gleich per E-Mail.", "fr": "Naturellement. Je vous l'envoie tout de suite par courriel."}]},
+    {"faux": true, "t": "Ja. Ich möchte eine Konfirmation per E-Mail.", "fr": "Oui. J'aimerais une confirmation par courriel.",
+     "puis": [{"qui": "b11_service_client", "air": "amuse", "t": "Eine Konfirmation? Die gibt es nur in der Kirche! Sie möchten eine Bestätigung, oder?", "fr": "Une « Konfirmation » ? Ça n'existe qu'à l'église ! Vous voulez une confirmation écrite, c'est ça ?"}],
+     "aide": {"fr": "<b>« Konfirmation »</b>, c'est la confirmation religieuse des protestants. Confirmer un accord : <b>« bestätigen »</b>, « die Bestätigung ». « Könnten Sie mir das per E-Mail bestätigen? »"}}
+   ]
+  },
+  "angebot": {
+   "dit": [{"qui": "b11_service_client", "air": "sourire", "t": "Ich sehe gerade: Sie haben noch einen alten Tarif. Ich könnte Ihnen einen neuen anbieten: doppelt so schnelles Internet und fünf Euro weniger im Monat. Wäre das interessant für Sie?", "fr": "Je vois que vous avez encore un ancien forfait. Je pourrais vous en proposer un nouveau : un internet deux fois plus rapide et cinq euros de moins par mois. Cela vous intéresserait-il ?"}],
+   "choix": [
+    {"t": "Vielleicht. Wie lange läuft der Vertrag dann?", "fr": "Peut-être. Quelle serait alors la durée du contrat ?", "va": "details"},
+    {"t": "Nein, danke. Ich bin mit meinem Tarif zufrieden.", "fr": "Non, merci. Je suis satisfait(e) de mon forfait.", "va": "vorgang",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Kein Problem. Das Angebot gilt noch bis Ende des Monats, falls Sie es sich anders überlegen.", "fr": "Aucun problème. L'offre reste valable jusqu'à la fin du mois, au cas où vous changeriez d'avis."}]},
+    {"faux": true, "t": "Nein, danke, ich bin nicht interessant.", "fr": "Non, merci, je ne suis pas intéressant(e).",
+     "puis": [{"qui": "b11_service_client", "air": "amuse", "t": "Oh, das würde ich nicht sagen! Sie meinen, Sie sind nicht interessiert?", "fr": "Oh, je ne dirais pas ça ! Vous voulez dire que ça ne vous intéresse pas ?"}],
+     "aide": {"fr": "<b>« interessant »</b> = intéressant ; <b>« interessiert »</b> = intéressé. « Ich bin nicht interessiert », ou plus simple : « Nein, danke. »"}}
+   ]
+  },
+  "details": {
+   "dit": [{"qui": "b11_service_client", "air": "attentive", "t": "Der neue Vertrag läuft vierundzwanzig Monate. Ich kann Ihnen die Informationen aber auch erst einmal zuschicken.", "fr": "Le nouveau contrat dure vingt-quatre mois. Mais je peux aussi vous envoyer d'abord les informations."}],
+   "choix": [
+    {"t": "Ja, schicken Sie mir bitte die Informationen. Ich möchte in Ruhe darüber nachdenken.", "fr": "Oui, envoyez-moi les informations, s'il vous plaît. J'aimerais y réfléchir tranquillement.", "va": "vorgang",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Sehr gern, die schicke ich zusammen mit der Bestätigung.", "fr": "Très volontiers, je les envoie avec la confirmation."}]},
+    {"t": "Zwei Jahre sind mir zu lang. Ich bleibe lieber bei meinem Tarif.", "fr": "Deux ans, c'est trop long pour moi. Je préfère garder mon forfait.", "va": "vorgang",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Das verstehe ich. Dann bleibt alles, wie es ist.", "fr": "Je comprends. Alors tout reste comme avant."}]},
+    {"faux": true, "t": "Ich muss daran reflektieren.", "fr": "Je dois y réfléchir.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "Reflektieren …? Ach, Sie möchten darüber nachdenken. Natürlich!", "fr": "« Reflektieren »… ? Ah, vous voulez y réfléchir. Bien sûr !"}],
+     "aide": {"fr": "« Réfléchir à quelque chose » se dit <b>« über etwas nachdenken »</b> : « Ich möchte <b>darüber nachdenken</b>. »"}}
+   ]
+  },
+  "vorgang": {
+   "dit": [{"qui": "b11_service_client", "air": "attentive", "t": "Dann notieren Sie bitte noch Ihre Vorgangsnummer: B 4815. Damit finden wir Ihren Fall sofort wieder.", "dit": "Dann notieren Sie bitte noch Ihre Vorgangsnummer: B, vier, acht, eins, fünf. Damit finden wir Ihren Fall sofort wieder.", "fr": "Notez encore votre numéro de dossier, s'il vous plaît : B 4815. Avec lui, nous retrouverons tout de suite votre cas."}],
+   "choix": [
+    {"t": "Ich wiederhole: B, vier, acht, eins, fünf. Vielen Dank für Ihre Hilfe!", "fr": "Je répète : B, quatre, huit, un, cinq. Merci beaucoup pour votre aide !", "va": null,
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Richtig. Sehr gern, einen schönen Tag noch und auf Wiederhören!", "fr": "C'est exact. Avec plaisir, bonne journée et au revoir !"}]},
+    {"t": "Ich habe es notiert. Danke, Sie haben mir sehr geholfen. Auf Wiederhören!", "fr": "C'est noté. Merci, vous m'avez beaucoup aidé(e). Au revoir !", "va": null,
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Das freut mich. Einen schönen Tag noch und auf Wiederhören!", "fr": "Ça me fait plaisir. Bonne journée et au revoir !"}]},
+    {"faux": true, "t": "Danke, Sie haben mich sehr geholfen.", "fr": "Merci, vous m'avez beaucoup aidé(e).",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Das freut mich – ich habe Ihnen gern geholfen!", "fr": "Ça me fait plaisir : je vous ai aidé(e) volontiers !"}],
+     "aide": {"fr": "<b>« helfen »</b> demande le datif : « Sie haben <b>mir</b> sehr geholfen. »"}},
+    {"repete": true, "t": "Könnten Sie die Nummer bitte langsam wiederholen?", "fr": "Pourriez-vous répéter le numéro lentement, s'il vous plaît ?", "va": "vorgang",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Natürlich: B wie Berta … vier … acht … eins … fünf.", "fr": "Bien sûr : B comme Berta… quatre… huit… un… cinq."}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as fait corriger une facture au téléphone : tu as expliqué l'erreur, insisté poliment, choisi ton remboursement, demandé une confirmation écrite et noté ton numéro de dossier."}
+}
