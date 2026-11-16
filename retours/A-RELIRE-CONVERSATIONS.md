@@ -159,3 +159,31 @@ chaque langue pour elle-même (faux amis et calques du français).
 - **Allemand.** Les prix des transports (BVG AB 3,80 €, ABC 4,70 €, journée AB 10,60 €, ABC 12,30 € ; ICE Berlin-Hambourg 39,90 € l'aller, réservation 5,50 €) sont plausibles, pas vérifiés pour 2026 (l'aller AB serait passé à 4,00 € ?). Le quai : « Gleis vierzehn, oben » à Berlin Hbf. « Hin und her » est-il une faute que font vraiment les francophones ? « Ich hätte gern vier Brot » sonne-t-il comme la faute attendue ? « Sie steht Ihnen wirklich gut » (la veste) : naturel ?
 - **Espagnol.** « jugo » et « boleto » restent proposés comme mots d'Amérique latine qu'on évite à Madrid (décision du chef, 16 nov.) : l'aide doit le dire ainsi, sans parler de faute. « Un ir y volver » (aller-retour mot à mot) : vraisemblable ? Prix de la tarjeta Multi (2,50 €), du billete sencillo (1,50 €), du 10 viajes (12,20 €) et de l'Avant Madrid-Tolède (14,30 € / 22,90 €) à vérifier. « ¿A quién le toca? » / « Me toca a mí, creo » au marché : naturel ? « ¿Es un constipado? » dans la bouche d'une pharmacienne madrilène : naturel ?
 - **Anglais.** Prix MBTA (2,40 $, pass 7 jours 22,50 $), Commuter Rail North Station-Salem (7 $ l'aller ; zone 2 ou 3 ?), sac de caisse à 5 cents à Boston, pas de taxe de vente sur les vêtements au Massachusetts (jusqu'à 175 $) : à confirmer. Faute « It was very delicious » : assez nette pour un anglophone ? Variante britannique : « Eat in or take away? », « Single or return? », « platform », « changing room », « loyalty card », « paracetamol », « Get well soon! » ; le reste garde l'américain (l'action se passe à Boston).
+
+## Lot a2-1 (A2, première série), écrit le 16 nov. 2026, aucune voix
+
+Allemand à Berlin, espagnol à Madrid, anglais à Boston (américain, britannique par `t_gb`). Registre : Sie / usted /
+poli partout, sauf le voisin de la fête en espagnol (tú). Personnes : Diego (médecin), Ines (coiffeuse), Pablo
+(boulanger, voisin), Silvia (banque), Sergio (contrôleur), Irene (propriétaire), Hugo (voisin, 22 ans).
+
+| Lot | Conversation | Allemand | Espagnol | Anglais |
+|---|---|---|---|---|
+| a2-1 | a2-annuler-rdv (annuler un rendez-vous chez le médecin, au téléphone) | à relire | à relire | à relire (us, gb) |
+| a2-1 | a2-coiffeur (chez le coiffeur) | à relire | à relire | à relire (us, gb) |
+| a2-1 | a2-reclamation-resto (une réclamation au restaurant) | à relire | à relire | à relire (us, gb) |
+| a2-1 | a2-echanger (rapporter un pull trop petit) | à relire | à relire | à relire (us, gb) |
+| a2-1 | a2-banque (ouvrir un compte) | à relire | à relire | à relire (us, gb) |
+| a2-1 | a2-colis-voisin (un colis chez le voisin) | à relire | à relire | à relire (us, gb) |
+| a2-1 | a2-bruit (le bruit du voisin ; en espagnol, au tú) | à relire | à relire | à relire (us, gb) |
+| a2-1 | a2-panne (le chauffage en panne, la propriétaire au téléphone) | à relire | à relire | à relire (us, gb) |
+| a2-1 | a2-correspondance (un train en retard, la correspondance) | à relire | à relire | à relire (us, gb) |
+| a2-1 | a2-hotel-probleme (un problème à l'hôtel) | à relire | à relire | à relire (us, gb) |
+
+Points à regarder en priorité :
+- **Le registre** : Hugo, 22 ans, au Sie à Berlin (« Kommen Sie zur Party? ») ; le voisin Pablo à l'usted à Madrid.
+- **Les fautes proposées** les moins sûres : « Ich habe Sie aufgewacht », « Schneiden Sie mich » (de) ; « prendido »,
+  « Buen coraje », « estoy muy embarazada » au féminin même pour un homme (es) ; « It's terrible! », « I want well »,
+  « derangement » (en).
+- **Les faits locaux** : Girokonto à 4,90 € par mois, remboursement de 25 % à partir d'une heure de retard (de) ; le café
+  offert par le contrôleur (Renfe, Amtrak) ; Boston → Harrisburg avec changement à New York ; « Le he despertado » (leísmo).
+- **Le médecin qui décroche lui-même** (son assistante n'est pas arrivée) : naturel dans les trois pays ?

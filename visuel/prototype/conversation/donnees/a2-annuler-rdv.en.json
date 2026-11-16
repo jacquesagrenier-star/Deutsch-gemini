@@ -1,0 +1,104 @@
+{
+ "id": "a2-annuler-rdv",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {"fr": "Annuler un rendez-vous au téléphone"},
+ "intro": {"fr": "Jeudi, tu dois travailler. Tu appelles le cabinet de ton médecin pour annuler ton rendez-vous et en prendre un autre."},
+ "personnes": ["praxis-diego"],
+ "debut": "hello",
+ "textes": {
+  "jour_fr": {"cle": "jour", "mon": "lundi à seize heures", "wed": "mercredi à onze heures"}
+ },
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Il est tôt. Tu appelles le cabinet de ton médecin. C'est le médecin lui-même qui décroche."}},
+    {"qui": "praxis-diego", "air": "sourire", "t": "Beacon Hill Family Medicine, good morning. This is the doctor speaking.", "fr": "Beacon Hill Family Medicine, bonjour. C'est le médecin à l'appareil."}
+   ],
+   "choix": [
+    {"t": "Good morning, Doctor. I'm one of your patients.", "fr": "Bonjour, docteur. Je suis un de vos patients.", "va": "reason",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Good morning! My assistant isn't in yet, so you get me today.", "fr": "Bonjour ! Mon assistante n'est pas encore là, alors c'est moi qui réponds aujourd'hui."}]},
+    {"t": "Good morning. Sorry to call so early.", "fr": "Bonjour. Désolé(e) d'appeler si tôt.", "va": "reason",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "No problem at all. My assistant isn't in yet, so you get me today.", "fr": "Aucun problème. Mon assistante n'est pas encore là, alors c'est moi qui réponds aujourd'hui."}]}
+   ]
+  },
+  "reason": {
+   "dit": [{"qui": "praxis-diego", "air": "question", "t": "How can I help you?", "fr": "Que puis-je faire pour vous ?"}],
+   "choix": [
+    {"t": "I'd like to cancel my appointment on Thursday.", "fr": "Je voudrais annuler mon rendez-vous de jeudi.", "va": "time",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Sure, no problem.", "fr": "Bien sûr, aucun problème."}]},
+    {"t": "I have an appointment on Thursday, but I can't come.", "fr": "J'ai un rendez-vous jeudi, mais je ne peux pas venir.", "va": "time",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Okay, thanks for calling.", "fr": "D'accord, merci d'avoir appelé."}]},
+    {"faux": true, "t": "I'd like to cancel my rendezvous on Thursday.", "fr": "Je voudrais annuler mon rendez-vous (galant) de jeudi.",
+     "puis": [{"qui": "praxis-diego", "air": "perplexe", "t": "Your … rendezvous? With me? Oh, you mean your appointment!", "fr": "Votre… rendez-vous galant ? Avec moi ? Ah, vous voulez dire votre rendez-vous médical !"}],
+     "aide": {"fr": "<b>En anglais, « a rendezvous » est un rendez-vous amoureux ou secret.</b> Chez le médecin, on dit « an appointment » : « I'd like to cancel my appointment »."}}
+   ]
+  },
+  "time": {
+   "dit": [{"qui": "praxis-diego", "air": "question", "t": "What time is your appointment on Thursday?", "fr": "À quelle heure est votre rendez-vous de jeudi ?"}],
+   "choix": [
+    {"t": "At ten.", "fr": "À dix heures.", "pose": {"heure": "ten"}, "va": "why",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Thursday at ten … yes, I see it.", "fr": "Jeudi à dix heures… oui, je le vois."}]},
+    {"t": "At ten thirty.", "fr": "À dix heures trente.", "pose": {"heure": "half"}, "va": "why",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Thursday at ten thirty … yes, I see it.", "fr": "Jeudi à dix heures trente… oui, je le vois."}]},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "time",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Of course. Your appointment on Thursday: what time is it?", "fr": "Bien sûr. Votre rendez-vous de jeudi : il est à quelle heure ?"}]}
+   ]
+  },
+  "why": {
+   "dit": [
+    {"si": {"heure": "ten"}, "qui": "praxis-diego", "air": "attentive", "t": "So you can't come on Thursday at 10:00. Is everything all right?", "fr": "Donc vous ne pouvez pas venir jeudi à 10 h. Tout va bien ?", "dit": "So you can't come on Thursday at ten. Is everything all right?"},
+    {"si": {"heure": "half"}, "qui": "praxis-diego", "air": "attentive", "t": "So you can't come on Thursday at 10:30. Is everything all right?", "fr": "Donc vous ne pouvez pas venir jeudi à 10 h 30. Tout va bien ?", "dit": "So you can't come on Thursday at ten thirty. Is everything all right?"}
+   ],
+   "choix": [
+    {"t": "Yes, everything is fine. I have to work on Thursday.", "fr": "Oui, tout va bien. Je dois travailler jeudi.", "va": "slots",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "I understand. That happens.", "fr": "Je comprends. Ça arrive."}]},
+    {"t": "I'm fine, thanks. But my boss needs me that day.", "fr": "Je vais bien, merci. Mais mon chef a besoin de moi ce jour-là.", "va": "slots",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "I see. That happens.", "fr": "Je vois. Ça arrive."}]},
+    {"faux": true, "t": "I'm fine, but I am occupied on Thursday.", "fr": "Je vais bien, mais je suis occupé(e) jeudi.",
+     "puis": [{"qui": "praxis-diego", "air": "perplexe", "t": "Occupied? Like a restroom? Oh, you mean you're busy!", "t_gb": "Occupied? Like a toilet? Oh, you mean you're busy!", "fr": "Occupé ? Comme des toilettes ? Ah, vous voulez dire que vous êtes pris !"}],
+     "aide": {"fr": "<b>« occupied » se dit d'une place ou des toilettes, pas d'une personne.</b> Pour dire qu'on a trop à faire : « I'm busy on Thursday » ou « I have to work on Thursday »."}}
+   ]
+  },
+  "slots": {
+   "dit": [{"qui": "praxis-diego", "air": "question", "t": "Would you like a new appointment? I have Monday at 4:00 or Wednesday at 11:00.", "fr": "Voulez-vous un autre rendez-vous ? J'ai lundi à 16 h ou mercredi à 11 h.", "dit": "Would you like a new appointment? I have Monday at four or Wednesday at eleven."}],
+   "choix": [
+    {"t": "Monday at four is perfect.", "fr": "Lundi à seize heures, c'est parfait.", "pose": {"jour": "mon"}, "va": "urgent",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Great, I'll write that down.", "fr": "Très bien, je le note."}]},
+    {"t": "Wednesday at eleven, please.", "fr": "Mercredi à onze heures, s'il vous plaît.", "pose": {"jour": "wed"}, "va": "urgent",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Great, I'll write that down.", "fr": "Très bien, je le note."}]},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "slots",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Sure. Monday at 4:00, or Wednesday at 11:00.", "fr": "Bien sûr. Lundi à 16 h, ou mercredi à 11 h.", "dit": "Sure. Monday at four, or Wednesday at eleven."}]}
+   ]
+  },
+  "urgent": {
+   "dit": [
+    {"si": {"jour": "mon"}, "qui": "praxis-diego", "air": "attentive", "t": "So that's Monday at 4:00. And how are you feeling? Is it urgent?", "fr": "Donc lundi à 16 h. Et comment vous sentez-vous ? C'est urgent ?", "dit": "So that's Monday at four. And how are you feeling? Is it urgent?"},
+    {"si": {"jour": "wed"}, "qui": "praxis-diego", "air": "attentive", "t": "So that's Wednesday at 11:00. And how are you feeling? Is it urgent?", "fr": "Donc mercredi à 11 h. Et comment vous sentez-vous ? C'est urgent ?", "dit": "So that's Wednesday at eleven. And how are you feeling? Is it urgent?"}
+   ],
+   "choix": [
+    {"t": "No, it's not urgent. I feel fine.", "fr": "Non, ce n'est pas urgent. Je me sens bien.", "va": "bye",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Good to hear.", "fr": "Tant mieux."}]},
+    {"t": "I'm okay. It's only for a checkup.", "t_gb": "I'm okay. It's only for a check-up.", "fr": "Ça va. C'est seulement pour un bilan de santé.", "va": "bye",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Good to hear.", "fr": "Tant mieux."}]},
+    {"faux": true, "t": "No, it's not urgent. I go well.", "fr": "Non, ce n'est pas urgent. Je vais bien. (mot à mot)",
+     "puis": [{"qui": "praxis-diego", "air": "perplexe", "t": "You go … where? Oh, you mean you're fine!", "fr": "Vous allez… où ? Ah, vous voulez dire que vous allez bien !"}],
+     "aide": {"fr": "<b>« Je vais bien » ne se dit pas avec « go ».</b> En anglais, on emploie « be » ou « feel » : « I'm fine » ou « I feel fine »."}}
+   ]
+  },
+  "bye": {
+   "dit": [
+    {"si": {"jour": "mon"}, "qui": "praxis-diego", "air": "sourire", "t": "Then I'll see you on Monday. Have a good day!", "fr": "Alors à lundi. Bonne journée !"},
+    {"si": {"jour": "wed"}, "qui": "praxis-diego", "air": "sourire", "t": "Then I'll see you on Wednesday. Have a good day!", "fr": "Alors à mercredi. Bonne journée !"}
+   ],
+   "choix": [
+    {"t": "Thank you very much, Doctor. Goodbye!", "fr": "Merci beaucoup, docteur. Au revoir !", "va": null,
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Bye now!", "fr": "Au revoir !"}]},
+    {"t": "Thanks for your help. See you then!", "fr": "Merci pour votre aide. À bientôt !", "va": null,
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Take care!", "fr": "Prenez soin de vous !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as annulé ton rendez-vous de jeudi au téléphone, donné l'heure de ton rendez-vous et pris un nouveau rendez-vous : {jour_fr}."}
+}

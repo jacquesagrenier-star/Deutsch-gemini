@@ -1,0 +1,99 @@
+{
+ "id": "a2-echanger",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Rapporter un article"},
+ "intro": {"fr": "Le pull que tu as acheté hier est trop petit. Tu le rapportes à la boutique, à Berlin, pour l'échanger ou te faire rembourser."},
+ "personnes": ["verkaeuferin"],
+ "debut": "hilfe",
+ "noeuds": {
+  "hilfe": {
+   "dit": [
+    {"recit": {"fr": "Hier, tu as acheté un pull dans une boutique de Friedrichshain. À la maison, tu l'as essayé : il est trop petit. Tu reviens avec le sac."}},
+    {"qui": "verkaeuferin", "air": "sourire", "t": "Guten Tag! Kann ich Ihnen helfen?", "fr": "Bonjour ! Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Ich habe gestern diesen Pullover gekauft, aber er ist zu klein.", "fr": "Bonjour. J'ai acheté ce pull hier, mais il est trop petit.", "va": "bon",
+     "puis": [{"qui": "verkaeuferin", "air": "attentive", "t": "Oh, das ist schade. Das können wir lösen.", "fr": "Oh, c'est dommage. On va arranger ça."}]},
+    {"t": "Ja, bitte. Dieser Pullover ist mir leider zu klein.", "fr": "Oui, s'il vous plaît. Ce pull est malheureusement trop petit pour moi.", "va": "bon",
+     "puis": [{"qui": "verkaeuferin", "air": "attentive", "t": "Kein Problem, das können wir lösen.", "fr": "Pas de problème, on va arranger ça."}]}
+   ]
+  },
+  "bon": {
+   "dit": [
+    {"qui": "verkaeuferin", "air": "question", "t": "Haben Sie den Kassenbon noch?", "fr": "Vous avez encore le ticket de caisse ?"}
+   ],
+   "choix": [
+    {"t": "Ja, hier ist der Kassenbon.", "fr": "Oui, voici le ticket de caisse.", "va": "wahl"},
+    {"t": "Ja, einen Moment … Hier, bitte.", "fr": "Oui, un instant… Voilà.", "va": "wahl"},
+    {"faux": true, "t": "Ja, hier ist das Ticket.", "fr": "Oui, voici le ticket.",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "Das Ticket? … Ach so, Sie meinen den Kassenbon!", "fr": "Le billet ? … Ah, vous voulez dire le ticket de caisse !"}],
+     "aide": {"fr": "<b>« das Ticket »</b>, c'est un billet (de train, de concert). Le ticket de caisse, c'est <b>der Kassenbon</b> : « Hier ist der Kassenbon »."}}
+   ]
+  },
+  "wahl": {
+   "dit": [
+    {"qui": "verkaeuferin", "air": "question", "t": "Danke. Möchten Sie den Pullover umtauschen, oder möchten Sie Ihr Geld zurück?", "fr": "Merci. Vous voulez échanger le pull, ou vous voulez être remboursé ?"}
+   ],
+   "choix": [
+    {"t": "Ich möchte ihn gern umtauschen. Haben Sie ihn eine Nummer größer?", "fr": "Je voudrais bien l'échanger. Vous l'avez une taille au-dessus ?", "pose": {"wahl": "tauschen"}, "va": "weiter",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Ja, in L haben wir ihn noch. Hier, bitte. Die Kabine ist dort hinten.", "fr": "Oui, on l'a encore en L. Tenez. La cabine est au fond."}]},
+    {"t": "Ich möchte lieber mein Geld zurück, bitte.", "fr": "Je préférerais être remboursé, s'il vous plaît.", "pose": {"wahl": "geld"}, "va": "weiter",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Natürlich, kein Problem.", "fr": "Bien sûr, pas de problème."}]},
+    {"faux": true, "t": "Ich möchte den Pullover wechseln.", "fr": "Je voudrais changer le pull (avec le mot « wechseln »).",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "Wechseln? … Sie meinen umtauschen, oder? Gegen eine andere Größe?", "fr": "« Wechseln » ? … Vous voulez dire l'échanger, c'est ça ? Contre une autre taille ?"}],
+     "aide": {"fr": "Rapporter un article pour en prendre un autre, c'est <b>umtauschen</b> : « Ich möchte den Pullover umtauschen ». <b>wechseln</b> sert surtout pour l'argent (Geld wechseln)."}}
+   ]
+  },
+  "weiter": {
+   "dit": [
+    {"si": {"wahl": "tauschen"}, "recit": {"fr": "Tu essaies le pull en L dans la cabine, puis tu ressors."}},
+    {"si": {"wahl": "tauschen"}, "qui": "verkaeuferin", "air": "question", "t": "Und? Passt er jetzt?", "fr": "Alors ? Il vous va, maintenant ?"},
+    {"si": {"wahl": "geld"}, "qui": "verkaeuferin", "air": "question", "t": "Haben Sie mit Karte bezahlt?", "fr": "Vous avez payé par carte ?"}
+   ],
+   "choix": [
+    {"si": {"wahl": "tauschen"}, "t": "Ja, er passt perfekt.", "fr": "Oui, il me va parfaitement.", "va": "schal",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Super! Dann tauschen wir ihn um.", "fr": "Super ! Alors on fait l'échange."}]},
+    {"si": {"wahl": "tauschen"}, "t": "Ja, der ist viel besser. Danke!", "fr": "Oui, celui-là est beaucoup mieux. Merci !", "va": "schal",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Gern! Dann tauschen wir ihn um.", "fr": "Avec plaisir ! Alors on fait l'échange."}]},
+    {"si": {"wahl": "geld"}, "t": "Ja, mit Karte.", "fr": "Oui, par carte.", "va": "schal",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Gut, dann bekommen Sie das Geld auf Ihre Karte zurück. Das dauert ein paar Tage.", "fr": "Bien, alors l'argent revient sur votre carte. Ça prend quelques jours."}]},
+    {"si": {"wahl": "geld"}, "t": "Nein, ich habe bar bezahlt.", "fr": "Non, j'ai payé en espèces.", "va": "schal",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Gut, dann bekommen Sie das Geld bar zurück. Bitte schön.", "fr": "Bien, alors je vous rembourse en espèces. Voilà."}]}
+   ]
+  },
+  "schal": {
+   "dit": [
+    {"qui": "verkaeuferin", "air": "sourire", "t": "Übrigens: Unsere neuen Schals sind heute zwanzig Prozent billiger.", "fr": "Au fait : nos nouvelles écharpes sont à moins vingt pour cent aujourd'hui."}
+   ],
+   "choix": [
+    {"t": "Danke, ich schaue mal.", "fr": "Merci, je vais jeter un œil.", "va": "tuete",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Gern, schauen Sie in Ruhe.", "fr": "Volontiers, regardez tranquillement."}]},
+    {"t": "Nein, danke. Heute nicht.", "fr": "Non, merci. Pas aujourd'hui.", "va": "tuete",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Kein Problem.", "fr": "Pas de problème."}]}
+   ]
+  },
+  "tuete": {
+   "dit": [
+    {"qui": "verkaeuferin", "air": "question", "t": "Brauchen Sie eine Tüte?", "fr": "Vous avez besoin d'un sac ?"}
+   ],
+   "choix": [
+    {"t": "Ja, bitte.", "fr": "Oui, s'il vous plaît.", "va": "tschuess"},
+    {"t": "Nein, danke. Ich habe eine Tasche dabei.", "fr": "Non, merci. J'ai un sac avec moi.", "va": "tschuess"},
+    {"repete": true, "t": "Wie bitte?", "fr": "Pardon ?", "va": "tuete",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Eine Tüte. Für den Pullover.", "fr": "Un sac. Pour le pull."}]}
+   ]
+  },
+  "tschuess": {
+   "dit": [
+    {"qui": "verkaeuferin", "air": "sourire", "t": "So, alles erledigt. Einen schönen Tag noch!", "fr": "Voilà, tout est réglé. Bonne journée !"}
+   ],
+   "choix": [
+    {"t": "Danke, Ihnen auch! Auf Wiedersehen.", "fr": "Merci, à vous aussi ! Au revoir.", "va": null},
+    {"t": "Vielen Dank für Ihre Hilfe. Tschüss!", "fr": "Merci beaucoup pour votre aide. Au revoir !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as rapporté un pull trop petit, montré le ticket de caisse et choisi entre l'échange et le remboursement."}
+}

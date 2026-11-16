@@ -1,0 +1,100 @@
+{
+ "id": "a2-annuler-rdv",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Annuler un rendez-vous au téléphone"},
+ "intro": {"fr": "Tu as rendez-vous chez le médecin jeudi, mais tu dois travailler. Tu appelles le centre médical pour annuler et prendre un autre rendez-vous."},
+ "personnes": ["praxis-diego"],
+ "debut": "llamada",
+ "textes": {
+  "hora_es": {"cle": "hora", "diez": "a las diez", "media": "a las diez y media"},
+  "dia_es": {"cle": "dia", "lunes": "el lunes a las nueve", "miercoles": "el miércoles a las cinco"},
+  "dia_fr": {"cle": "dia", "lunes": "lundi à neuf heures", "miercoles": "mercredi à cinq heures"}
+ },
+ "noeuds": {
+  "llamada": {
+   "dit": [
+    {"recit": {"fr": "Huit heures du matin. Tu appelles le centre médical de ton quartier. L'infirmière n'est pas encore arrivée : c'est le médecin lui-même qui décroche."}},
+    {"qui": "praxis-diego", "air": "sourire", "t": "Centro médico Lavapiés, buenos días. Dígame.", "fr": "Centre médical Lavapiés, bonjour. Je vous écoute."}
+   ],
+   "choix": [
+    {"t": "Buenos días. Llamo por mi cita del jueves.", "fr": "Bonjour. J'appelle pour mon rendez-vous de jeudi.", "va": "motivo",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Muy bien. La enfermera todavía no ha llegado, pero yo le ayudo.", "fr": "Très bien. L'infirmière n'est pas encore arrivée, mais je vais vous aider."}]},
+    {"t": "Buenos días. Tengo una cita con el médico el jueves.", "fr": "Bonjour. J'ai un rendez-vous avec le médecin jeudi.", "va": "motivo",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "El médico soy yo. La enfermera todavía no ha llegado.", "fr": "Le médecin, c'est moi. L'infirmière n'est pas encore arrivée."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "llamada",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Sí, claro. Centro médico Lavapiés. ¿En qué puedo ayudarle?", "fr": "Oui, bien sûr. Centre médical Lavapiés. En quoi puis-je vous aider ?"}]}
+   ]
+  },
+  "motivo": {
+   "dit": [{"qui": "praxis-diego", "air": "question", "t": "¿Y qué pasa con la cita?", "fr": "Et qu'est-ce qui se passe avec ce rendez-vous ?"}],
+   "choix": [
+    {"t": "Quería cancelar la cita. El jueves tengo que trabajar.", "fr": "Je voulais annuler le rendez-vous. Jeudi, je dois travailler.", "va": "hora",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "No pasa nada. Vamos a buscar su cita.", "fr": "Ce n'est pas grave. Cherchons votre rendez-vous."}]},
+    {"t": "No puedo ir el jueves. ¿Podría cambiar la cita?", "fr": "Je ne peux pas venir jeudi. Je pourrais changer le rendez-vous ?", "va": "hora",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Claro que sí. Vamos a buscar su cita.", "fr": "Bien sûr. Cherchons votre rendez-vous."}]},
+    {"faux": true, "t": "No puedo ir. El jueves soy en el trabajo.", "fr": "Je ne peux pas venir. Jeudi, je suis au travail.",
+     "puis": [{"qui": "praxis-diego", "air": "perplexe", "t": "¿Es … en el trabajo? Ah, ¡que está en el trabajo!", "fr": "Vous « êtes »… au travail ? Ah, vous êtes au travail !"}],
+     "aide": {"fr": "<b>Pour dire où l'on est, c'est « estar »</b>, jamais « ser ». Dis : « El jueves estoy en el trabajo » ou « El jueves tengo que trabajar »."}}
+   ]
+  },
+  "hora": {
+   "dit": [{"qui": "praxis-diego", "air": "question", "t": "¿A qué hora es su cita del jueves?", "fr": "À quelle heure est votre rendez-vous de jeudi ?"}],
+   "choix": [
+    {"t": "A las diez.", "fr": "À dix heures.", "pose": {"hora": "diez"}, "va": "hueco",
+     "puis": [{"qui": "praxis-diego", "air": "attentive", "t": "A las diez … Sí, aquí está.", "fr": "À dix heures… Oui, le voilà."}]},
+    {"t": "A las diez y media.", "fr": "À dix heures et demie.", "pose": {"hora": "media"}, "va": "hueco",
+     "puis": [{"qui": "praxis-diego", "air": "attentive", "t": "A las diez y media … Sí, aquí está.", "fr": "À dix heures et demie… Oui, le voilà."}]},
+    {"faux": true, "t": "Es a diez horas.", "fr": "C'est à dix heures.",
+     "puis": [{"qui": "praxis-diego", "air": "perplexe", "t": "¿Diez horas? ¿Una cita de diez horas?", "fr": "Dix heures ? Un rendez-vous de dix heures ?"}],
+     "aide": {"fr": "L'heure se dit <b>« a las… »</b> : « A las diez ». « Diez horas », c'est une durée."}}
+   ]
+  },
+  "hueco": {
+   "dit": [{"qui": "praxis-diego", "air": "sourire", "t": "Ya está cancelada. ¿Quiere otra cita? Tengo un hueco el lunes a las nueve o el miércoles a las cinco de la tarde.", "fr": "Voilà, il est annulé. Vous voulez un autre rendez-vous ? J'ai un créneau lundi à neuf heures ou mercredi à cinq heures de l'après-midi."}],
+   "choix": [
+    {"t": "El lunes a las nueve, por favor.", "fr": "Lundi à neuf heures, s'il vous plaît.", "pose": {"dia": "lunes"}, "va": "urgente",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Perfecto. Lo apunto.", "fr": "Parfait. Je le note."}]},
+    {"t": "Prefiero el miércoles por la tarde.", "fr": "Je préfère mercredi après-midi.", "pose": {"dia": "miercoles"}, "va": "urgente",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Perfecto. Lo apunto.", "fr": "Parfait. Je le note."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "hueco",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Sí. Hay dos citas libres: el lunes a las nueve o el miércoles a las cinco.", "fr": "Oui. Il y a deux rendez-vous libres : lundi à neuf heures ou mercredi à cinq heures."}]}
+   ]
+  },
+  "urgente": {
+   "dit": [{"qui": "praxis-diego", "air": "attentive", "t": "Entonces: no viene el jueves {hora_es}, y viene {dia_es}. Una pregunta: ¿se encuentra bien? ¿Es urgente?", "fr": "Donc : vous ne venez pas jeudi, et vous venez {dia_fr}. Une question : vous vous sentez bien ? C'est urgent ?"}],
+   "choix": [
+    {"t": "Estoy bien, gracias. No es urgente.", "fr": "Je vais bien, merci. Ce n'est pas urgent.", "va": "recordar",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Me alegro.", "fr": "Tant mieux."}]},
+    {"t": "Me duele un poco la espalda, pero no es urgente.", "fr": "J'ai un peu mal au dos, mais ce n'est pas urgent.", "va": "recordar",
+     "puis": [{"qui": "praxis-diego", "air": "attentive", "t": "De acuerdo. Lo vemos con calma en la cita.", "fr": "D'accord. Nous verrons ça tranquillement au rendez-vous."}]}
+   ]
+  },
+  "recordar": {
+   "dit": [{"qui": "praxis-diego", "air": "question", "t": "¿Le mando un mensaje al móvil para recordarle la cita?", "fr": "Je vous envoie un message sur votre portable pour vous rappeler le rendez-vous ?"}],
+   "choix": [
+    {"t": "Sí, por favor. Muchas gracias.", "fr": "Oui, s'il vous plaît. Merci beaucoup.", "va": "adios",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Hecho. Le llega el día antes.", "fr": "C'est fait. Vous le recevrez la veille."}]},
+    {"t": "No, gracias. Ya lo he apuntado en el móvil.", "fr": "Non, merci. Je l'ai déjà noté dans mon portable.", "va": "adios",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Muy bien, mejor así.", "fr": "Très bien, c'est encore mieux."}]},
+    {"faux": true, "t": "Sí, por favor, un mensaje en mi portátil.", "fr": "Oui, s'il vous plaît, un message sur mon portable.",
+     "puis": [{"qui": "praxis-diego", "air": "perplexe", "t": "¿En el portátil? ¿No prefiere en el móvil?", "fr": "Sur votre ordinateur portable ? Vous ne préférez pas sur votre téléphone ?"}],
+     "aide": {"fr": "<b>« el portátil »</b>, c'est l'ordinateur portable. Le téléphone portable se dit « el móvil » : « Sí, por favor, un mensaje al móvil »."}}
+   ]
+  },
+  "adios": {
+   "dit": [
+    {"si": {"dia": "lunes"}, "qui": "praxis-diego", "air": "sourire", "t": "Pues ya está todo. ¡Hasta el lunes!", "fr": "Eh bien, tout est réglé. À lundi !"},
+    {"si": {"dia": "miercoles"}, "qui": "praxis-diego", "air": "sourire", "t": "Pues ya está todo. ¡Hasta el miércoles!", "fr": "Eh bien, tout est réglé. À mercredi !"}
+   ],
+   "choix": [
+    {"t": "Muchas gracias, doctor. ¡Hasta luego!", "fr": "Merci beaucoup, docteur. À bientôt !", "va": null,
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "¡Hasta luego! Que tenga un buen día.", "fr": "À bientôt ! Bonne journée."}]},
+    {"t": "Gracias por su ayuda. ¡Adiós!", "fr": "Merci pour votre aide. Au revoir !", "va": null,
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "De nada. ¡Adiós!", "fr": "Je vous en prie. Au revoir !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as annulé ton rendez-vous de jeudi au téléphone et tu en as pris un autre : {dia_fr}."}
+}

@@ -1,0 +1,93 @@
+{
+ "id": "a2-correspondance",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Le train en retard, la correspondance"},
+ "intro": {"fr": "Tu vas de Berlin à Kiel, avec un changement à Hambourg. Le train a du retard : tu parles au contrôleur de ta correspondance."},
+ "personnes": ["zugbegleiter"],
+ "debut": "kontrolle",
+ "noeuds": {
+  "kontrolle": {
+   "dit": [
+    {"recit": {"fr": "Dans le train de Berlin à Hambourg. À Hambourg, tu dois prendre un autre train pour Kiel. Depuis un moment, le train roule très lentement…"}},
+    {"qui": "zugbegleiter", "air": "sourire", "t": "Guten Tag, die Fahrkarten, bitte!", "fr": "Bonjour, les billets, s'il vous plaît !"}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Hier ist meine Fahrkarte.", "fr": "Bonjour. Voici mon billet.", "va": "verspaetung",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Danke schön.", "fr": "Merci beaucoup."}]},
+    {"t": "Hier, bitte. Ich habe sie auf dem Handy.", "fr": "Voilà. Je l'ai sur mon portable.", "va": "verspaetung",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Kein Problem. Danke schön.", "fr": "Pas de problème. Merci beaucoup."}]}
+   ]
+  },
+  "verspaetung": {
+   "dit": [
+    {"recit": {"fr": "Le contrôleur te rend ton billet. Tu en profites pour lui poser une question."}}
+   ],
+   "choix": [
+    {"t": "Entschuldigung, haben wir Verspätung?", "fr": "Excusez-moi, nous avons du retard ?", "va": "anschluss",
+     "puis": [{"qui": "zugbegleiter", "air": "attentive", "t": "Leider ja, ungefähr dreißig Minuten. Es gibt ein Problem mit einem Signal.", "fr": "Malheureusement oui, environ trente minutes. Il y a un problème de signalisation."}]},
+    {"t": "Ist der Zug pünktlich?", "fr": "Le train est à l'heure ?", "va": "anschluss",
+     "puis": [{"qui": "zugbegleiter", "air": "attentive", "t": "Leider nicht. Wir haben ungefähr dreißig Minuten Verspätung.", "fr": "Malheureusement non. Nous avons environ trente minutes de retard."}]}
+   ]
+  },
+  "anschluss": {
+   "dit": [
+    {"qui": "zugbegleiter", "air": "question", "t": "Müssen Sie umsteigen?", "fr": "Vous avez une correspondance ?"}
+   ],
+   "choix": [
+    {"t": "Ja, in Hamburg. Mein Zug nach Kiel fährt um vierzehn Uhr zwölf.", "fr": "Oui, à Hambourg. Mon train pour Kiel part à quatorze heures douze.", "va": "naechster",
+     "puis": [{"qui": "zugbegleiter", "air": "attentive", "t": "Oh, den schaffen Sie leider nicht.", "fr": "Oh, celui-là, vous ne l'aurez malheureusement pas."}]},
+    {"t": "Ja, ich fahre weiter nach Kiel. In Hamburg habe ich nur zehn Minuten Zeit.", "fr": "Oui, je continue jusqu'à Kiel. À Hambourg, je n'ai que dix minutes.", "va": "naechster",
+     "puis": [{"qui": "zugbegleiter", "air": "attentive", "t": "Hm, das wird leider zu knapp.", "fr": "Hum, ça va malheureusement être trop juste."}]},
+    {"faux": true, "t": "Ja. Ich vermisse meinen Zug nach Kiel.", "fr": "Oui. Je vais rater mon train pour Kiel (avec le verbe « vermissen »).",
+     "puis": [{"qui": "zugbegleiter", "air": "perplexe", "t": "Sie vermissen Ihren Zug? Sie haben ihn gern? … Ach, Sie verpassen ihn!", "fr": "Votre train vous manque ? Vous l'aimez bien ? … Ah, vous allez le rater !"}],
+     "aide": {"fr": "<b>vermissen</b>, c'est regretter l'absence de quelqu'un : « Ich vermisse meine Familie ». Rater un train, c'est <b>verpassen</b> : « Ich verpasse meinen Zug nach Kiel »."}}
+   ]
+  },
+  "naechster": {
+   "dit": [
+    {"recit": {"fr": "Il regarde sur sa tablette."}},
+    {"qui": "zugbegleiter", "air": "sourire", "t": "Moment … Der nächste Zug nach Kiel fährt um 15:12 Uhr, von Gleis 7.", "fr": "Un instant… Le train suivant pour Kiel part à 15 h 12, voie 7.", "dit": "Moment … Der nächste Zug nach Kiel fährt um fünfzehn Uhr zwölf, von Gleis sieben."}
+   ],
+   "choix": [
+    {"t": "Um fünfzehn Uhr zwölf, Gleis sieben. Danke!", "fr": "À quinze heures douze, voie sept. Merci !", "va": "fahrkarte"},
+    {"t": "Gut. Ist Gleis sieben weit?", "fr": "D'accord. La voie sept, c'est loin ?", "va": "fahrkarte",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Nein, nur eine Treppe hoch und wieder runter.", "fr": "Non, juste un escalier à monter et à redescendre."}]},
+    {"repete": true, "t": "Entschuldigung, um wie viel Uhr?", "fr": "Pardon, à quelle heure ?", "va": "naechster",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Um 15:12 Uhr. Von Gleis 7.", "fr": "À 15 h 12. Voie 7.", "dit": "Um fünfzehn Uhr zwölf. Von Gleis sieben."}]}
+   ]
+  },
+  "fahrkarte": {
+   "dit": [
+    {"qui": "zugbegleiter", "air": "attentive", "t": "Ihre Fahrkarte gilt natürlich auch für den nächsten Zug.", "fr": "Votre billet est bien sûr valable aussi pour le train suivant."}
+   ],
+   "choix": [
+    {"t": "Gut, dann ist alles in Ordnung.", "fr": "Bien, alors tout va bien.", "va": "reise"},
+    {"t": "Super. Bekomme ich auch Geld zurück?", "fr": "Super. Est-ce que je suis aussi remboursé(e) ?", "va": "reise",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Ja. Sie kommen in Kiel eine Stunde später an. Dann bekommen Sie fünfundzwanzig Prozent zurück. Das geht in der App.", "fr": "Oui. Vous arrivez à Kiel avec une heure de retard. Vous êtes alors remboursé(e) de vingt-cinq pour cent. Ça se fait dans l'application."}]}
+   ]
+  },
+  "reise": {
+   "dit": [
+    {"qui": "zugbegleiter", "air": "question", "t": "Fahren Sie in den Urlaub nach Kiel?", "fr": "Vous allez à Kiel en vacances ?"}
+   ],
+   "choix": [
+    {"t": "Nein, ich besuche eine Freundin.", "fr": "Non, je rends visite à une amie.", "va": "tschuess",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Schön! Dann rufen Sie sie am besten kurz an.", "fr": "Super ! Alors le mieux, c'est de l'appeler rapidement."}]},
+    {"t": "Ja, ich möchte das Meer sehen.", "fr": "Oui, je voudrais voir la mer.", "va": "tschuess",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Schön! Kiel ist auch im Herbst sehr schön.", "fr": "Super ! Kiel est très belle en automne aussi."}]}
+   ]
+  },
+  "tschuess": {
+   "dit": [
+    {"qui": "zugbegleiter", "air": "sourire", "t": "Gute Reise noch, und entschuldigen Sie die Verspätung!", "fr": "Bon voyage, et excusez-nous pour le retard !"}
+   ],
+   "choix": [
+    {"t": "Danke, kein Problem. Auf Wiedersehen!", "fr": "Merci, pas de problème. Au revoir !", "va": null},
+    {"t": "Vielen Dank für Ihre Hilfe!", "fr": "Merci beaucoup pour votre aide !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as appris que le train avait du retard, expliqué ta correspondance et trouvé le train suivant, avec son heure et sa voie."}
+}

@@ -1,0 +1,101 @@
+{
+ "id": "a2-hotel-probleme",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Un problème à l'hôtel"},
+ "intro": {"fr": "Dix heures du soir, dans ton hôtel de Madrid. Quelque chose ne va pas dans ta chambre. Tu redescends à la réception."},
+ "personnes": ["rezeptionistin"],
+ "debut": "recepcion",
+ "textes": {
+  "problema_fr": {"cle": "problema", "wifi": "le wifi", "ventana": "la fenêtre"}
+ },
+ "noeuds": {
+  "recepcion": {
+   "dit": [
+    {"recit": {"fr": "La réceptionniste lève la tête de son écran."}},
+    {"qui": "rezeptionistin", "air": "sourire", "t": "Buenas noches. ¿Puedo ayudarle?", "fr": "Bonsoir. Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Buenas noches. Sí, hay un problema en mi habitación.", "fr": "Bonsoir. Oui, il y a un problème dans ma chambre.", "va": "problema",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Vaya, lo siento.", "fr": "Oh, je suis désolée."}]},
+    {"t": "Buenas noches. Sí, por favor. Tengo un problema en la habitación doscientos doce.", "fr": "Bonsoir. Oui, s'il vous plaît. J'ai un problème dans la chambre deux cent douze.", "va": "problema",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "La doscientos doce. Vaya, lo siento.", "fr": "La deux cent douze. Oh, je suis désolée."}]},
+    {"faux": true, "t": "Buenas noches. Hay un problema en mi cámara.", "fr": "Bonsoir. Il y a un problème dans ma chambre.",
+     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "¿En su cámara? ¿La cámara de fotos? Ah, ¡en su habitación!", "fr": "Dans votre appareil ? Votre appareil photo ? Ah, dans votre chambre !"}],
+     "aide": {"fr": "<b>« la cámara »</b>, c'est l'appareil photo. La chambre d'hôtel se dit « la habitación » : « Hay un problema en mi habitación »."}}
+   ]
+  },
+  "problema": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Dígame, ¿qué pasa?", "fr": "Dites-moi, que se passe-t-il ?"}],
+   "choix": [
+    {"t": "El wifi no funciona.", "fr": "Le wifi ne marche pas.", "pose": {"problema": "wifi"}, "va": "solucion",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Ah, la contraseña ha cambiado hoy. Se la apunto en este papel.", "fr": "Ah, le mot de passe a changé aujourd'hui. Je vous le note sur ce papier."}]},
+    {"t": "La ventana no cierra y hay mucho ruido.", "fr": "La fenêtre ne ferme pas et il y a beaucoup de bruit.", "pose": {"problema": "ventana"}, "va": "solucion",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Lo siento mucho. A esta hora no hay técnico, pero tengo una habitación libre en la tercera planta.", "fr": "Je suis vraiment désolée. À cette heure-ci, il n'y a pas de technicien, mais j'ai une chambre libre au troisième étage."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "problema",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Sí, claro. ¿Cuál es el problema en su habitación?", "fr": "Oui, bien sûr. Quel est le problème dans votre chambre ?"}]}
+   ]
+  },
+  "solucion": {
+   "dit": [
+    {"si": {"problema": "wifi"}, "recit": {"fr": "Tu tapes le nouveau mot de passe sur ton téléphone."}},
+    {"si": {"problema": "wifi"}, "qui": "rezeptionistin", "air": "question", "t": "¿Funciona ahora con la contraseña nueva?", "fr": "Ça marche, maintenant, avec le nouveau mot de passe ?"},
+    {"si": {"problema": "ventana"}, "qui": "rezeptionistin", "air": "question", "t": "¿Quiere cambiar de habitación ahora?", "fr": "Vous voulez changer de chambre maintenant ?"}
+   ],
+   "choix": [
+    {"si": {"problema": "wifi"}, "t": "Sí, ahora funciona. Gracias.", "fr": "Oui, maintenant ça marche. Merci.", "va": "toallas",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "¡Perfecto!", "fr": "Parfait !"}]},
+    {"si": {"problema": "wifi"}, "t": "A ver … Sí, ya tengo internet.", "fr": "Voyons… Oui, j'ai internet.", "va": "toallas",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "¡Perfecto!", "fr": "Parfait !"}]},
+    {"si": {"problema": "ventana"}, "t": "Sí, por favor. Prefiero una habitación tranquila.", "fr": "Oui, s'il vous plaît. Je préfère une chambre calme.", "va": "toallas",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Muy bien. Aquí tiene la llave nueva: la trescientos cinco.", "fr": "Très bien. Voici la nouvelle clé : la trois cent cinq."}]},
+    {"si": {"problema": "ventana"}, "t": "No, gracias. ¿Puede venir el técnico mañana?", "fr": "Non, merci. Le technicien peut venir demain ?", "va": "toallas",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Sí, mañana a primera hora. Se lo prometo.", "fr": "Oui, demain à la première heure. Je vous le promets."}]}
+   ]
+  },
+  "toallas": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "¿Necesita algo más?", "fr": "Vous avez besoin d'autre chose ?"}],
+   "choix": [
+    {"t": "Sí. No hay toallas en el baño.", "fr": "Oui. Il n'y a pas de serviettes dans la salle de bains.", "va": "desayuno",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "¡Ay, perdone! Ahora mismo le suben dos toallas.", "fr": "Oh, pardon ! On vous monte deux serviettes tout de suite."}]},
+    {"t": "Sí. Necesito dos toallas más, por favor.", "fr": "Oui. J'ai besoin de deux serviettes de plus, s'il vous plaît.", "va": "desayuno",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Claro. Ahora mismo le suben dos toallas.", "fr": "Bien sûr. On vous monte deux serviettes tout de suite."}]},
+    {"faux": true, "t": "Sí. No hay servilletas en el baño.", "fr": "Oui. Il n'y a pas de serviettes dans la salle de bains.",
+     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "¿Servilletas? ¿En el baño? Ah, ¡toallas!", "fr": "Des serviettes de table ? Dans la salle de bains ? Ah, des serviettes de toilette !"}],
+     "aide": {"fr": "<b>« la servilleta »</b>, c'est la serviette de table. Pour la salle de bains : « la toalla ». Dis : « No hay toallas en el baño »."}}
+   ]
+  },
+  "desayuno": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "¿Y tiene alguna pregunta para mañana?", "fr": "Et vous avez une question pour demain ?"}],
+   "choix": [
+    {"t": "Sí. ¿A qué hora es el desayuno?", "fr": "Oui. À quelle heure est le petit-déjeuner ?", "va": "salida",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "De siete a diez y media, en la primera planta.", "fr": "De sept heures à dix heures et demie, au premier étage."}]},
+    {"t": "Sí. ¿Dónde es el desayuno?", "fr": "Oui. Où est servi le petit-déjeuner ?", "va": "salida",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "En la primera planta, de siete a diez y media.", "fr": "Au premier étage, de sept heures à dix heures et demie."}]}
+   ]
+  },
+  "salida": {
+   "dit": [{"qui": "rezeptionistin", "air": "sourire", "t": "Y la salida del hotel es a las once.", "fr": "Et le départ de l'hôtel est à onze heures."}],
+   "choix": [
+    {"t": "¿Podría dejar la habitación un poco más tarde?", "fr": "Je pourrais quitter la chambre un peu plus tard ?", "va": "noche",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Sí, no hay problema. Puede quedarse hasta las doce.", "fr": "Oui, pas de problème. Vous pouvez rester jusqu'à midi."}]},
+    {"t": "Mi tren sale por la tarde. ¿Puedo salir a las doce?", "fr": "Mon train part l'après-midi. Je peux partir à midi ?", "va": "noche",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Sí, claro. Hasta las doce, sin problema.", "fr": "Oui, bien sûr. Jusqu'à midi, sans problème."}]},
+    {"faux": true, "t": "¿Puedo quitar la habitación más tarde?", "fr": "Je peux quitter la chambre plus tard ?",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "¿Quitar la habitación? ¡No, por favor, la necesitamos! Ah, ¡dejar la habitación!", "fr": "Enlever la chambre ? Non, s'il vous plaît, nous en avons besoin ! Ah, quitter la chambre !"}],
+     "aide": {"fr": "<b>« quitar »</b> veut dire enlever. Quitter une chambre, c'est « dejar la habitación ». Dis : « ¿Podría dejar la habitación un poco más tarde? »."}}
+   ]
+  },
+  "noche": {
+   "dit": [{"qui": "rezeptionistin", "air": "sourire", "t": "Entonces, mañana hasta las doce. ¿Todo bien ahora?", "fr": "Donc, demain jusqu'à midi. Tout va bien, maintenant ?"}],
+   "choix": [
+    {"t": "Sí, todo perfecto. Muchas gracias. ¡Buenas noches!", "fr": "Oui, tout est parfait. Merci beaucoup. Bonne nuit !", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "¡Buenas noches! ¡Que descanse!", "fr": "Bonne nuit ! Reposez-vous bien !"}]},
+    {"t": "Sí. Gracias por su ayuda. ¡Hasta mañana!", "fr": "Oui. Merci pour votre aide. À demain !", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "¡Hasta mañana! ¡Que descanse!", "fr": "À demain ! Reposez-vous bien !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as signalé le problème ({problema_fr}), demandé des serviettes et obtenu un départ plus tard, à midi."}
+}

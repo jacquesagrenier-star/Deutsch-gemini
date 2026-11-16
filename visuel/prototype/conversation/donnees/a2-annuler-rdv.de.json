@@ -1,0 +1,107 @@
+{
+ "id": "a2-annuler-rdv",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Annuler un rendez-vous au téléphone"},
+ "intro": {"fr": "Tu appelles le cabinet de ton médecin, à Berlin, pour annuler ton rendez-vous de jeudi et en prendre un autre."},
+ "personnes": ["praxis-diego"],
+ "debut": "anruf",
+ "textes": {
+  "uhr": {"cle": "uhr", "zehn": "um zehn Uhr", "halb": "um halb elf"},
+  "uhr_fr": {"cle": "uhr", "zehn": "à dix heures", "halb": "à dix heures et demie"},
+  "neu": {"cle": "neu", "montag": "Montag um acht Uhr", "mittwoch": "Mittwoch um halb vier"},
+  "neu_fr": {"cle": "neu", "montag": "lundi à huit heures", "mittwoch": "mercredi à quinze heures trente"},
+  "bis": {"cle": "neu", "montag": "Also bis Montag!", "mittwoch": "Also bis Mittwoch!"},
+  "bis_fr": {"cle": "neu", "montag": "Alors à lundi !", "mittwoch": "Alors à mercredi !"}
+ },
+ "noeuds": {
+  "anruf": {
+   "dit": [
+    {"recit": {"fr": "Mardi, huit heures du matin. Jeudi, tu dois travailler : ton rendez-vous chez le médecin tombe mal. Tu appelles le cabinet."}},
+    {"qui": "praxis-diego", "air": "sourire", "t": "Praxis am Kollwitzplatz, guten Morgen!", "fr": "Cabinet médical de la Kollwitzplatz, bonjour !"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen. Ich möchte meinen Termin am Donnerstag absagen.", "fr": "Bonjour. Je voudrais annuler mon rendez-vous de jeudi.", "va": "uhrzeit",
+     "puis": [{"qui": "praxis-diego", "air": "attentive", "t": "Ja, natürlich. Einen Moment, bitte …", "fr": "Oui, bien sûr. Un instant, s'il vous plaît…"}]},
+    {"t": "Guten Morgen. Ich habe am Donnerstag einen Termin, aber ich kann leider nicht kommen.", "fr": "Bonjour. J'ai rendez-vous jeudi, mais malheureusement je ne peux pas venir.", "va": "uhrzeit",
+     "puis": [{"qui": "praxis-diego", "air": "attentive", "t": "Kein Problem. Einen Moment, bitte …", "fr": "Pas de problème. Un instant, s'il vous plaît…"}]},
+    {"faux": true, "t": "Guten Morgen. Ich habe am Donnerstag ein Rendezvous mit dem Arzt.", "fr": "Bonjour. J'ai un rendez-vous galant avec le médecin jeudi.",
+     "puis": [{"qui": "praxis-diego", "air": "perplexe", "t": "Ein Rendezvous? Mit mir? … Ach so, Sie haben einen Termin!", "fr": "Un rendez-vous galant ? Avec moi ? … Ah, vous avez un rendez-vous !"}],
+     "aide": {"fr": "<b>« Rendezvous »</b>, en allemand, c'est un rendez-vous amoureux. Chez le médecin, on a un <b>Termin</b> : « Ich habe am Donnerstag einen Termin »."}}
+   ]
+  },
+  "uhrzeit": {
+   "dit": [
+    {"recit": {"fr": "C'est le médecin lui-même qui a décroché : son assistante n'est pas encore arrivée."}},
+    {"qui": "praxis-diego", "air": "question", "t": "Ich bin heute früh noch allein hier. Um wie viel Uhr ist Ihr Termin?", "fr": "Ce matin, je suis encore seul ici. Votre rendez-vous est à quelle heure ?"}
+   ],
+   "choix": [
+    {"t": "Um zehn Uhr.", "fr": "À dix heures.", "pose": {"uhr": "zehn"}, "va": "grund",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Ah ja, hier ist er: Donnerstag um zehn Uhr.", "fr": "Ah oui, le voici : jeudi à dix heures."}]},
+    {"t": "Um halb elf.", "fr": "À dix heures et demie.", "pose": {"uhr": "halb"}, "va": "grund",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Ah ja, hier ist er: Donnerstag um halb elf.", "fr": "Ah oui, le voici : jeudi à dix heures et demie."}]},
+    {"faux": true, "t": "Um halb zehn.", "fr": "À neuf heures et demie (tu voulais dire dix heures et demie).",
+     "puis": [{"qui": "praxis-diego", "air": "perplexe", "t": "Um halb zehn? Da habe ich keinen Termin … Meinen Sie vielleicht halb elf?", "fr": "À neuf heures et demie ? Je n'ai pas de rendez-vous à cette heure-là… Vous voulez peut-être dire dix heures et demie ?"}],
+     "aide": {"fr": "<b>« halb elf »</b>, c'est « la moitié avant onze » : dix heures et demie. « halb zehn », c'est neuf heures et demie."}},
+    {"repete": true, "t": "Entschuldigung, können Sie das bitte wiederholen?", "fr": "Pardon, vous pouvez répéter, s'il vous plaît ?", "va": "uhrzeit",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Natürlich. Um wie viel Uhr ist Ihr Termin?", "fr": "Bien sûr. Votre rendez-vous est à quelle heure ?"}]}
+   ]
+  },
+  "grund": {
+   "dit": [
+    {"qui": "praxis-diego", "air": "question", "t": "Geht es Ihnen gut? Oder brauchen Sie schnell einen Termin?", "fr": "Vous allez bien ? Ou vous avez besoin d'un rendez-vous rapidement ?"}
+   ],
+   "choix": [
+    {"t": "Mir geht es gut, danke. Ich muss am Donnerstag leider arbeiten.", "fr": "Je vais bien, merci. Malheureusement, je dois travailler jeudi.", "va": "neuer",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Gut, das freut mich.", "fr": "Bien, ça me fait plaisir."}]},
+    {"t": "Es geht mir schon besser, danke. Aber ich habe am Donnerstag leider keine Zeit.", "fr": "Je vais déjà mieux, merci. Mais malheureusement, je n'ai pas le temps jeudi.", "va": "neuer",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Schön, das freut mich.", "fr": "Tant mieux, ça me fait plaisir."}]}
+   ]
+  },
+  "neuer": {
+   "dit": [
+    {"qui": "praxis-diego", "air": "question", "t": "Möchten Sie einen neuen Termin? Ich habe Montag um acht Uhr oder Mittwoch um halb vier.", "fr": "Vous voulez un nouveau rendez-vous ? J'ai lundi à huit heures ou mercredi à quinze heures trente."}
+   ],
+   "choix": [
+    {"t": "Montag um acht passt gut.", "fr": "Lundi à huit heures, ça me va bien.", "pose": {"neu": "montag"}, "va": "karte",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Gut, ich schreibe es auf: Montag um acht Uhr.", "fr": "Bien, je le note : lundi à huit heures."}]},
+    {"t": "Lieber am Mittwoch um halb vier, bitte.", "fr": "Plutôt mercredi à quinze heures trente, s'il vous plaît.", "pose": {"neu": "mittwoch"}, "va": "karte",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Gut, ich schreibe es auf: Mittwoch um halb vier.", "fr": "Bien, je le note : mercredi à quinze heures trente."}]},
+    {"repete": true, "t": "Entschuldigung, wann noch einmal?", "fr": "Pardon, quand, déjà ?", "va": "neuer",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Am Montag um acht Uhr. Oder am Mittwoch um halb vier.", "fr": "Lundi à huit heures. Ou mercredi à quinze heures trente."}]}
+   ]
+  },
+  "karte": {
+   "dit": [
+    {"qui": "praxis-diego", "air": "attentive", "t": "Bringen Sie bitte Ihre Versichertenkarte mit.", "fr": "Apportez votre carte d'assurance maladie, s'il vous plaît."}
+   ],
+   "choix": [
+    {"t": "Ja, natürlich. Ich bringe sie mit.", "fr": "Oui, bien sûr. Je l'apporte.", "va": "ende"},
+    {"t": "Gut. Muss ich früher kommen?", "fr": "D'accord. Je dois venir plus tôt ?", "va": "ende",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Nein, kommen Sie einfach fünf Minuten vorher.", "fr": "Non, venez simplement cinq minutes avant."}]}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "praxis-diego", "air": "sourire", "t": "So, alles erledigt.", "fr": "Voilà, tout est réglé."}
+   ],
+   "choix": [
+    {"t": "Vielen Dank! Und entschuldigen Sie bitte.", "fr": "Merci beaucoup ! Et excusez-moi.", "va": "tschuess",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Kein Problem. Danke, dass Sie angerufen haben!", "fr": "Pas de problème. Merci d'avoir appelé !"}]},
+    {"t": "Danke, das ist sehr nett von Ihnen.", "fr": "Merci, c'est très gentil de votre part.", "va": "tschuess",
+     "puis": [{"qui": "praxis-diego", "air": "sourire", "t": "Gern geschehen.", "fr": "Avec plaisir."}]}
+   ]
+  },
+  "tschuess": {
+   "dit": [
+    {"qui": "praxis-diego", "air": "sourire", "t": "{bis} Einen schönen Tag noch.", "fr": "{bis_fr} Bonne journée."}
+   ],
+   "choix": [
+    {"t": "Danke, Ihnen auch. Auf Wiederhören!", "fr": "Merci, à vous aussi. Au revoir !", "va": null},
+    {"t": "Bis dann! Auf Wiederhören!", "fr": "À bientôt ! Au revoir !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as annulé ton rendez-vous au téléphone, en disant pourquoi, et tu en as pris un nouveau : {neu_fr}."}
+}

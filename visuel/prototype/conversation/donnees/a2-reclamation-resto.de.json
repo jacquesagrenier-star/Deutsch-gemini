@@ -1,0 +1,99 @@
+{
+ "id": "a2-reclamation-resto",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Une réclamation au restaurant"},
+ "intro": {"fr": "Tu dînes dans un restaurant de Berlin. La soupe est froide, puis on t'apporte un plat que tu n'as pas commandé. Tu le dis, poliment."},
+ "personnes": ["kellnerin"],
+ "debut": "suppe",
+ "noeuds": {
+  "suppe": {
+   "dit": [
+    {"recit": {"fr": "Un soir, dans un restaurant de Kreuzberg. Ta soupe de légumes vient d'arriver… mais elle est presque froide."}},
+    {"qui": "kellnerin", "air": "question", "t": "Ist alles in Ordnung bei Ihnen?", "fr": "Tout va bien, chez vous ?"}
+   ],
+   "choix": [
+    {"t": "Entschuldigung, die Suppe ist leider kalt.", "fr": "Excusez-moi, la soupe est malheureusement froide.", "va": "neue",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Oh, das tut mir leid! Ich bringe Ihnen sofort eine neue.", "fr": "Oh, je suis désolée ! Je vous en apporte une autre tout de suite."}]},
+    {"t": "Nicht ganz. Die Suppe ist nicht warm.", "fr": "Pas tout à fait. La soupe n'est pas chaude.", "va": "neue",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Wirklich? Das tut mir leid! Ich bringe Ihnen sofort eine neue.", "fr": "Vraiment ? Je suis désolée ! Je vous en apporte une autre tout de suite."}]},
+    {"repete": true, "t": "Wie bitte?", "fr": "Pardon ?", "va": "suppe",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Ist alles gut? Schmeckt die Suppe?", "fr": "Tout va bien ? La soupe est bonne ?"}]}
+   ]
+  },
+  "neue": {
+   "dit": [
+    {"recit": {"fr": "Elle revient avec une soupe fumante."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "So, bitte schön. Jetzt ist sie richtig heiß. Entschuldigen Sie noch einmal!", "fr": "Voilà pour vous. Maintenant, elle est bien chaude. Excusez-nous encore !"}
+   ],
+   "choix": [
+    {"t": "Danke, kein Problem.", "fr": "Merci, pas de problème.", "va": "hauptgericht"},
+    {"t": "Vielen Dank, das ist sehr nett.", "fr": "Merci beaucoup, c'est très gentil.", "va": "hauptgericht"}
+   ]
+  },
+  "hauptgericht": {
+   "dit": [
+    {"recit": {"fr": "Un peu plus tard, le plat principal. Tu as commandé le poisson… et voici une escalope panée."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Und hier ist Ihr Schnitzel. Guten Appetit!", "fr": "Et voici votre escalope. Bon appétit !"}
+   ],
+   "choix": [
+    {"t": "Entschuldigung, ich habe kein Schnitzel bestellt. Ich habe den Fisch bestellt.", "fr": "Excusez-moi, je n'ai pas commandé d'escalope. J'ai commandé le poisson.", "va": "warten",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Oh nein! Das Schnitzel ist für den Tisch da drüben. Entschuldigung!", "fr": "Oh non ! L'escalope, c'est pour la table là-bas. Pardon !"}]},
+    {"t": "Ich glaube, das ist nicht für mich. Ich hatte den Fisch.", "fr": "Je crois que ce n'est pas pour moi. J'avais pris le poisson.", "va": "warten",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Sie haben recht, das ist für den Tisch da drüben. Entschuldigung!", "fr": "Vous avez raison, c'est pour la table là-bas. Pardon !"}]},
+    {"faux": true, "t": "Entschuldigung, ich habe den Fisch kommandiert.", "fr": "Excusez-moi, j'ai commandé le poisson (avec le mot « kommandieren »).",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Kommandiert? … Ach so, Sie haben den Fisch bestellt!", "fr": "« Kommandiert » ? … Ah, vous avez commandé le poisson !"}],
+     "aide": {"fr": "<b>« kommandieren »</b>, c'est donner des ordres, comme à l'armée. Au restaurant, on <b>bestellt</b> : « Ich habe den Fisch bestellt »."}}
+   ]
+  },
+  "warten": {
+   "dit": [
+    {"qui": "kellnerin", "air": "attentive", "t": "Der Fisch braucht leider noch zehn Minuten. Ist das in Ordnung? Oder möchten Sie etwas anderes?", "fr": "Le poisson demande malheureusement encore dix minutes. Ça vous va ? Ou vous voulez autre chose ?"}
+   ],
+   "choix": [
+    {"t": "Kein Problem, ich warte.", "fr": "Pas de problème, j'attends.", "pose": {"haupt": "fisch"}, "va": "besser",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Danke für Ihre Geduld!", "fr": "Merci pour votre patience !"}]},
+    {"t": "Ich nehme lieber einen Salat. Geht das schneller?", "fr": "Je préfère prendre une salade. Ça va plus vite ?", "pose": {"haupt": "salat"}, "va": "besser",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Ja, der Salat mit Ziegenkäse kommt sofort.", "fr": "Oui, la salade au fromage de chèvre arrive tout de suite."}]}
+   ]
+  },
+  "besser": {
+   "dit": [
+    {"recit": {"fr": "Le plat est arrivé, et il est très bon. La serveuse repasse."}},
+    {"qui": "kellnerin", "air": "question", "t": "Und, ist jetzt alles gut?", "fr": "Alors, maintenant, tout va bien ?"}
+   ],
+   "choix": [
+    {"t": "Ja, sehr lecker, danke!", "fr": "Oui, c'est délicieux, merci !", "va": "nachtisch"},
+    {"si": {"haupt": "fisch"}, "t": "Ja, perfekt. Der Fisch ist wirklich gut.", "fr": "Oui, parfait. Le poisson est vraiment bon.", "va": "nachtisch"},
+    {"si": {"haupt": "salat"}, "t": "Ja, perfekt. Der Salat ist wirklich gut.", "fr": "Oui, parfait. La salade est vraiment bonne.", "va": "nachtisch"}
+   ]
+  },
+  "nachtisch": {
+   "dit": [
+    {"qui": "kellnerin", "air": "sourire", "t": "Das freut mich. Wegen der Probleme heute geht der Nachtisch aufs Haus. Möchten Sie einen Apfelstrudel oder ein Eis?", "fr": "Ça me fait plaisir. À cause des problèmes de ce soir, le dessert est offert par la maison. Vous voulez un strudel aux pommes ou une glace ?"}
+   ],
+   "choix": [
+    {"t": "Oh, das ist sehr nett! Einen Apfelstrudel, bitte.", "fr": "Oh, c'est très gentil ! Un strudel aux pommes, s'il vous plaît.", "va": "rechnung"},
+    {"t": "Danke schön! Ein Eis, bitte.", "fr": "Merci beaucoup ! Une glace, s'il vous plaît.", "va": "rechnung"},
+    {"t": "Das ist nett, aber ich bin satt. Vielleicht einen Kaffee?", "fr": "C'est gentil, mais je n'ai plus faim. Peut-être un café ?", "va": "rechnung",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Natürlich! Dann geht der Kaffee aufs Haus.", "fr": "Bien sûr ! Alors c'est le café qui est offert."}]},
+    {"repete": true, "t": "Entschuldigung, was bedeutet „aufs Haus“?", "fr": "Excusez-moi, que veut dire « aufs Haus » ?", "va": "nachtisch",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Das heißt: Sie müssen ihn nicht bezahlen. Also, Apfelstrudel oder Eis?", "fr": "Ça veut dire : vous n'avez pas à le payer. Alors, strudel ou glace ?"}]}
+   ]
+  },
+  "rechnung": {
+   "dit": [
+    {"recit": {"fr": "Un peu plus tard, tu as fini. Tu fais signe à la serveuse."}},
+    {"qui": "kellnerin", "air": "question", "t": "Ja, bitte?", "fr": "Oui ?"}
+   ],
+   "choix": [
+    {"t": "Die Rechnung, bitte. Es war trotzdem ein schöner Abend.", "fr": "L'addition, s'il vous plaît. C'était quand même une bonne soirée.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Das freut mich sehr! Ich komme sofort.", "fr": "Ça me fait très plaisir ! J'arrive tout de suite."}]},
+    {"t": "Ich möchte bitte zahlen.", "fr": "Je voudrais payer, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gern, ich komme sofort. Und noch einmal Entschuldigung für heute!", "fr": "Volontiers, j'arrive tout de suite. Et encore pardon pour ce soir !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as signalé deux problèmes poliment, la soupe froide et le mauvais plat, et le restaurant s'est excusé en t'offrant le dessert ou le café."}
+}

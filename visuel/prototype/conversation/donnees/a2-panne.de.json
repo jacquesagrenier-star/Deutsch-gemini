@@ -1,0 +1,96 @@
+{
+ "id": "a2-panne",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Le chauffage en panne"},
+ "intro": {"fr": "En plein mois de novembre, le chauffage de ton appartement berlinois ne marche plus. Tu appelles ta propriétaire."},
+ "personnes": ["vermieterin-carmen"],
+ "debut": "anruf",
+ "textes": {
+  "zeit_fr": {"cle": "zeit", "morgen": "demain matin, entre huit et dix heures", "nachmittag": "demain après-midi"}
+ },
+ "noeuds": {
+  "anruf": {
+   "dit": [
+    {"recit": {"fr": "Novembre. Ce matin, l'appartement est glacé : le chauffage ne marche plus. Tu appelles ta propriétaire."}},
+    {"qui": "vermieterin-carmen", "air": "sourire", "t": "Ja, hallo?", "fr": "Oui, allô ?"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen! Ich rufe wegen der Wohnung in der Lindenstraße an.", "fr": "Bonjour ! Je vous appelle au sujet de l'appartement de la Lindenstraße.", "va": "problem",
+     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Ach, hallo! Guten Morgen!", "fr": "Ah, bonjour ! Bonjour à vous !"}]},
+    {"t": "Guten Morgen. Ich wohne in Ihrer Wohnung im zweiten Stock.", "fr": "Bonjour. J'habite votre appartement au deuxième étage.", "va": "problem",
+     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Ach, Sie sind das! Guten Morgen!", "fr": "Ah, c'est vous ! Bonjour !"}]}
+   ]
+  },
+  "problem": {
+   "dit": [
+    {"qui": "vermieterin-carmen", "air": "question", "t": "Ist alles in Ordnung?", "fr": "Tout va bien ?"}
+   ],
+   "choix": [
+    {"t": "Nein, leider nicht. Die Heizung funktioniert nicht.", "fr": "Non, malheureusement. Le chauffage ne fonctionne pas.", "va": "seit",
+     "puis": [{"qui": "vermieterin-carmen", "air": "surprise", "t": "Oh nein! Und das im November!", "fr": "Oh non ! Et en novembre, en plus !"}]},
+    {"t": "Die Heizung ist kaputt. Alle Zimmer sind kalt.", "fr": "Le chauffage est en panne. Toutes les pièces sont froides.", "va": "seit",
+     "puis": [{"qui": "vermieterin-carmen", "air": "surprise", "t": "Oh nein, das ist ja schlimm!", "fr": "Oh non, c'est grave, ça !"}]},
+    {"faux": true, "t": "Nein. Die Heizung marschiert nicht.", "fr": "Non. Le chauffage ne marche pas (avec le verbe « marschieren »).",
+     "puis": [{"qui": "vermieterin-carmen", "air": "perplexe", "t": "Sie marschiert nicht? … Ach so, die Heizung funktioniert nicht!", "fr": "Il ne défile pas au pas ? … Ah, le chauffage ne fonctionne pas !"}],
+     "aide": {"fr": "<b>marschieren</b>, c'est marcher au pas, comme des soldats. Une machine qui ne marche pas : <b>« Die Heizung funktioniert nicht »</b> ou « Die Heizung geht nicht »."}}
+   ]
+  },
+  "seit": {
+   "dit": [
+    {"qui": "vermieterin-carmen", "air": "question", "t": "Seit wann geht die Heizung nicht mehr?", "fr": "Depuis quand le chauffage ne marche plus ?"}
+   ],
+   "choix": [
+    {"t": "Seit gestern Abend.", "fr": "Depuis hier soir.", "va": "techniker"},
+    {"t": "Seit heute Morgen. Gestern war noch alles gut.", "fr": "Depuis ce matin. Hier, tout allait encore bien.", "va": "techniker"},
+    {"repete": true, "t": "Entschuldigung, ich habe Sie nicht verstanden.", "fr": "Pardon, je ne vous ai pas comprise.", "va": "seit",
+     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Seit wann ist die Heizung kaputt? Seit heute?", "fr": "Depuis quand le chauffage est en panne ? Depuis aujourd'hui ?"}]}
+   ]
+  },
+  "techniker": {
+   "dit": [
+    {"qui": "vermieterin-carmen", "air": "attentive", "t": "Gut, ich rufe sofort den Techniker an. Er kann morgen zwischen acht und zehn Uhr kommen. Sind Sie dann zu Hause?", "fr": "Bien, j'appelle tout de suite le chauffagiste. Il peut passer demain entre huit et dix heures. Vous serez chez vous ?"}
+   ],
+   "choix": [
+    {"t": "Ja, morgen früh bin ich zu Hause.", "fr": "Oui, demain matin, je suis chez moi.", "pose": {"zeit": "morgen"}, "va": "kalt",
+     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Perfekt.", "fr": "Parfait."}]},
+    {"t": "Nein, leider nicht. Geht es auch am Nachmittag?", "fr": "Non, malheureusement. C'est possible aussi l'après-midi ?", "pose": {"zeit": "nachmittag"}, "va": "kalt",
+     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Ich glaube schon. Dann sage ich ihm: morgen Nachmittag.", "fr": "Je crois que oui. Alors je lui dis : demain après-midi."}]}
+   ]
+  },
+  "kalt": {
+   "dit": [
+    {"qui": "vermieterin-carmen", "air": "attentive", "t": "Und heute? Ist es sehr kalt bei Ihnen?", "fr": "Et aujourd'hui ? Il fait très froid chez vous ?"}
+   ],
+   "choix": [
+    {"t": "Ja, mir ist sehr kalt.", "fr": "Oui, j'ai très froid.", "va": "heizer"},
+    {"t": "Es geht. Ich trage zwei Pullover.", "fr": "Ça va. Je porte deux pulls.", "va": "heizer",
+     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Zwei Pullover! Oh je.", "fr": "Deux pulls ! Oh là là."}]},
+    {"faux": true, "t": "Ja, ich bin sehr kalt.", "fr": "Oui, j'ai très froid (mot à mot : je suis très froid).",
+     "puis": [{"qui": "vermieterin-carmen", "air": "surprise", "t": "Sie sind kalt? … Ach so, Ihnen ist kalt! Das glaube ich.", "fr": "Vous êtes froid ? … Ah, vous avez froid ! Je veux bien le croire."}],
+     "aide": {"fr": "<b>« Ich bin kalt »</b>, c'est être froid, sans cœur. Pour dire qu'on a froid : <b>« Mir ist kalt »</b>."}}
+   ]
+  },
+  "heizer": {
+   "dit": [
+    {"qui": "vermieterin-carmen", "air": "sourire", "t": "Ich habe einen kleinen Elektroheizer. Ich bringe ihn Ihnen heute Nachmittag vorbei.", "fr": "J'ai un petit radiateur électrique. Je vous l'apporte cet après-midi."}
+   ],
+   "choix": [
+    {"t": "Oh, das ist sehr nett! Vielen Dank.", "fr": "Oh, c'est très gentil ! Merci beaucoup.", "va": "tschuess"},
+    {"t": "Super, danke! Um wie viel Uhr kommen Sie?", "fr": "Super, merci ! Vous venez à quelle heure ?", "va": "tschuess",
+     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "So gegen vier Uhr.", "fr": "Vers quatre heures."}]}
+   ]
+  },
+  "tschuess": {
+   "dit": [
+    {"qui": "vermieterin-carmen", "air": "sourire", "t": "Also, bis später. Und entschuldigen Sie das Problem!", "fr": "Alors, à plus tard. Et excusez-moi pour ce problème !"}
+   ],
+   "choix": [
+    {"t": "Kein Problem. Danke für Ihre schnelle Hilfe!", "fr": "Pas de problème. Merci pour votre aide rapide !", "va": null},
+    {"t": "Danke, bis später. Auf Wiederhören!", "fr": "Merci, à plus tard. Au revoir !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué la panne au téléphone, dit depuis quand, et le chauffagiste vient {zeit_fr}. En attendant, ta propriétaire t'apporte un radiateur."}
+}

@@ -1,0 +1,99 @@
+{
+ "id": "a2-banque",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {"fr": "Ouvrir un compte à la banque"},
+ "intro": {"fr": "Tu viens d'arriver à Boston et il te faut un compte en banque. Tu vas voir une conseillère avec ton passeport et une facture."},
+ "personnes": ["bankberaterin"],
+ "debut": "hello",
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Une banque, dans le centre de Boston. Une conseillère t'invite à t'asseoir à son bureau."}},
+    {"qui": "bankberaterin", "air": "sourire", "t": "Good morning! Please have a seat. What can I do for you?", "fr": "Bonjour ! Asseyez-vous, je vous en prie. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Good morning. I'd like to open a bank account.", "fr": "Bonjour. Je voudrais ouvrir un compte en banque.", "va": "type",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Wonderful. I can help you with that.", "fr": "Très bien. Je peux vous aider."}]},
+    {"t": "Hello. I'm new in Boston and I need a bank account.", "fr": "Bonjour. Je viens d'arriver à Boston et j'ai besoin d'un compte en banque.", "va": "type",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Welcome to Boston! I can help you with that.", "fr": "Bienvenue à Boston ! Je peux vous aider."}]}
+   ]
+  },
+  "type": {
+   "dit": [{"qui": "bankberaterin", "air": "question", "t": "Would you like a checking account or a savings account?", "t_gb": "Would you like a current account or a savings account?", "fr": "Voulez-vous un compte courant ou un compte d'épargne ?"}],
+   "choix": [
+    {"t": "A checking account, please. It's for my pay.", "t_gb": "A current account, please. It's for my pay.", "fr": "Un compte courant, s'il vous plaît. C'est pour mon salaire.", "va": "since",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Good choice.", "fr": "Bon choix."}]},
+    {"t": "I need an account for every day, with a card.", "fr": "J'ai besoin d'un compte pour tous les jours, avec une carte.", "va": "since",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Then you need a checking account: your pay comes in, and you pay with your card.", "t_gb": "Then you need a current account: your pay comes in, and you pay with your card.", "fr": "Alors il vous faut un compte courant : votre salaire y arrive, et vous payez avec votre carte."}]},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "type",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Of course. An account for every day, or an account to save money?", "fr": "Bien sûr. Un compte pour tous les jours, ou un compte pour mettre de l'argent de côté ?"}]}
+   ]
+  },
+  "since": {
+   "dit": [{"qui": "bankberaterin", "air": "question", "t": "How long have you been in Boston?", "fr": "Depuis combien de temps êtes-vous à Boston ?"}],
+   "choix": [
+    {"t": "I've been here for two weeks.", "fr": "Je suis ici depuis deux semaines.", "va": "papers",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Oh, you're brand new!", "fr": "Oh, vous venez tout juste d'arriver !"}]},
+    {"t": "I arrived two weeks ago. I work here now.", "fr": "Je suis arrivé(e) il y a deux semaines. Je travaille ici maintenant.", "va": "papers",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Oh, you're brand new!", "fr": "Oh, vous venez tout juste d'arriver !"}]},
+    {"faux": true, "t": "I am in Boston since two weeks.", "fr": "Je suis à Boston depuis deux semaines. (mot à mot)",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Since two weeks …? Oh, you've been here for two weeks!", "fr": "« Since two weeks »… ? Ah, vous êtes ici depuis deux semaines !"}],
+     "aide": {"fr": "<b>Pour une durée, « depuis » se dit « for », avec le present perfect</b> : « I've been here for two weeks ». « since » va avec un point de départ : « since Monday »."}}
+   ]
+  },
+  "papers": {
+   "dit": [{"qui": "bankberaterin", "air": "attentive", "t": "I need two things from you: a photo ID and proof of address.", "fr": "J'ai besoin de deux choses : une pièce d'identité avec photo et un justificatif de domicile."}],
+   "choix": [
+    {"t": "Here is my passport. And this is my electricity bill.", "fr": "Voici mon passeport. Et voici ma facture d'électricité.", "va": "cost",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Perfect, that's all I need.", "fr": "Parfait, c'est tout ce qu'il me faut."}]},
+    {"t": "I have my passport. Is a phone bill okay for the address?", "fr": "J'ai mon passeport. Une facture de téléphone, ça va pour l'adresse ?", "va": "cost",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Yes, a phone bill is fine.", "fr": "Oui, une facture de téléphone convient."}]},
+    {"faux": true, "t": "Here is my piece of identity.", "fr": "Voici mon morceau d'identité.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "A piece of … what? Oh, your ID! Your passport, yes.", "fr": "Un morceau de… quoi ? Ah, votre pièce d'identité ! Votre passeport, oui."}],
+     "aide": {"fr": "<b>« a piece », c'est un morceau.</b> Une pièce d'identité se dit « ID » ou « photo ID » : « Here is my ID » ou simplement « Here is my passport »."}}
+   ]
+  },
+  "cost": {
+   "dit": [
+    {"recit": {"fr": "Elle recopie ton nom et ton adresse."}},
+    {"qui": "bankberaterin", "air": "question", "t": "Do you have any questions about the account?", "fr": "Avez-vous des questions sur le compte ?"}
+   ],
+   "choix": [
+    {"t": "Yes. How much does the account cost?", "fr": "Oui. Combien coûte le compte ?", "va": "card",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "It's free if your pay comes into this account. If not, it's $5 a month.", "fr": "Il est gratuit si votre salaire arrive sur ce compte. Sinon, c'est 5 dollars par mois.", "dit": "It's free if your pay comes into this account. If not, it's five dollars a month."}]},
+    {"t": "Yes. Is the account free?", "fr": "Oui. Le compte est-il gratuit ?", "va": "card",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Yes, if your pay comes into this account. If not, it's $5 a month.", "fr": "Oui, si votre salaire arrive sur ce compte. Sinon, c'est 5 dollars par mois.", "dit": "Yes, if your pay comes into this account. If not, it's five dollars a month."}]},
+    {"faux": true, "t": "Yes. How much costs the account?", "fr": "Oui. Combien coûte le compte ? (mot à mot)",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Sorry? Oh, how much does it cost!", "fr": "Pardon ? Ah, combien il coûte !"}],
+     "aide": {"fr": "<b>Une question anglaise a besoin de « do » ou « does »</b> : « How much does the account cost? ». Le verbe « cost » reste à la fin, sans « s »."}}
+   ]
+  },
+  "card": {
+   "dit": [{"qui": "bankberaterin", "air": "sourire", "t": "Your debit card will come in the mail in about a week. The PIN comes in a separate letter.", "t_gb": "Your debit card will come in the post in about a week. The PIN comes in a separate letter.", "fr": "Votre carte arrivera par la poste dans une semaine environ. Le code arrive dans une lettre à part."}],
+   "choix": [
+    {"t": "Great. Can I use the account today?", "fr": "Très bien. Je peux utiliser le compte aujourd'hui ?", "va": "sign",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Yes, you can use it online right away.", "fr": "Oui, vous pouvez l'utiliser en ligne tout de suite."}]},
+    {"t": "Okay. And where can I get cash?", "fr": "D'accord. Et où puis-je retirer de l'argent ?", "va": "sign",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "At any of our ATMs. There's one right outside.", "t_gb": "At any of our cash machines. There's one right outside.", "fr": "À n'importe lequel de nos distributeurs. Il y en a un juste devant."}]},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "card",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Sure. You get two letters: first your card, then your PIN, the secret number.", "fr": "Bien sûr. Vous recevrez deux lettres : d'abord votre carte, puis votre code, le numéro secret."}]}
+   ]
+  },
+  "sign": {
+   "dit": [{"qui": "bankberaterin", "air": "sourire", "t": "Now I just need your signature here, please.", "fr": "Maintenant, il me faut juste votre signature ici, s'il vous plaît."}],
+   "choix": [
+    {"t": "Of course. Here you go. Thank you for your help!", "fr": "Bien sûr. Voilà. Merci pour votre aide !", "va": null,
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "You're all set. Welcome aboard, and have a great day!", "fr": "Tout est en ordre. Bienvenue chez nous, et excellente journée !"}]},
+    {"t": "Sure. Do you have a pen, please?", "fr": "Bien sûr. Vous avez un stylo, s'il vous plaît ?", "va": null,
+     "puis": [
+      {"qui": "bankberaterin", "air": "sourire", "t": "Here you are.", "fr": "Tenez."},
+      {"recit": {"fr": "Tu signes."}},
+      {"qui": "bankberaterin", "air": "sourire", "t": "You're all set. Welcome aboard, and have a great day!", "fr": "Tout est en ordre. Bienvenue chez nous, et excellente journée !"}
+     ]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as ouvert un compte courant : tu as dit depuis quand tu es à Boston, montré ton passeport et un justificatif de domicile, demandé le prix et signé."}
+}
